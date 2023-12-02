@@ -1,164 +1,212 @@
-Return-Path: <devicetree+bounces-20920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-20921-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 382D580194F
-	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 02:09:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 18C86801959
+	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 02:11:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E0B3A1F2110B
-	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 01:09:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C38141F210A2
+	for <lists+devicetree@lfdr.de>; Sat,  2 Dec 2023 01:11:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1C21619C6;
-	Sat,  2 Dec 2023 01:09:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4126F1385;
+	Sat,  2 Dec 2023 01:11:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="t8HXCdmu"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="kIh0NEKJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-xc33.google.com (mail-oo1-xc33.google.com [IPv6:2607:f8b0:4864:20::c33])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A4A310D0
-	for <devicetree@vger.kernel.org>; Fri,  1 Dec 2023 17:09:43 -0800 (PST)
-Received: by mail-oo1-xc33.google.com with SMTP id 006d021491bc7-58cecfb4412so1618349eaf.3
-        for <devicetree@vger.kernel.org>; Fri, 01 Dec 2023 17:09:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701479382; x=1702084182; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dm/CsU1TecVhGqK7uMtHEjTeBHqkgwFFAUsgNTx3E7k=;
-        b=t8HXCdmuyHsRAb7whjgAXgZ8XuOVerdIqAbfa4EqSQxrFOglfeDKZOJr+7Ntl885f2
-         fxGT7cPSRX0HBOJ28GZgrLi+SF8PpAq6LahGCe/s1mfhSdD44AGjIzZ1ojFUPmAweIpT
-         Jmdklr2qeLYdGfLK/esZAoue+kN8EnKs2Xt/nQMDVu/5NG9EZaw8vRvV1ZqOL+nbJ2Jy
-         qbMP13oQlHnrmNwN+xzgRx3gZL+T9RCvTwh8G7O3VO0pdJ1WrjnT+Rn3Jz7eRWx/SzZU
-         HF32M/eEVUM905t3HRt/8gcXSRWjg3SMUFEnNXY+pesB4+u4YWUVmEjTFRERuluyRJuk
-         eTaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701479382; x=1702084182;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dm/CsU1TecVhGqK7uMtHEjTeBHqkgwFFAUsgNTx3E7k=;
-        b=uqoMb9dmBDaZT7nZr5c6T+d1WsiwNdUyTd8Q4KoXHdPJCB9uqjNRZP50fgntjlAD8q
-         hC5prqKX2d9Z1jkLBpIlw3NudhyqnAErOUV6nCtFUD7iBQTfBHBTGl6ZyEOPB2OpkpJ6
-         Tm6T6ke5nSkpmSOtWVeX+pzblDmI8cFQkaOmm0ySmX5Ox2n2D2RVbiWWiCopCyJEQzw/
-         Qf9ifZpCs4UcJlzPqraJPasAPoailthpk4QyIIy5bAWFxjWROK9smpeGeONbfLmG8E50
-         418qHXl0ydgWmFc8QJ05wR708rUv4dYjszVG6IQFT9LrOyTarAzEzFOfhPzSRvhrIJO6
-         eKsQ==
-X-Gm-Message-State: AOJu0YwEeuQO5iIFgOaSuHk3hB5MmYYUq7umyMtBk6yS6VrBJppL1BO6
-	71Dpwuo3opFLrrF+iirt+I9BSPpNMCm9iPpRyTTLkg==
-X-Google-Smtp-Source: AGHT+IHneY/ElPnA5P/2bRpVmnKU9oSTsSD93K6ineTQqUbPf7r6AwXLHD8DGCnM9a09BZNv9IxOdZTpyqL9luiNRC4=
-X-Received: by 2002:a05:6358:1a93:b0:170:17eb:377d with SMTP id
- gm19-20020a0563581a9300b0017017eb377dmr430823rwb.37.1701479382291; Fri, 01
- Dec 2023 17:09:42 -0800 (PST)
+Received: from IND01-BMX-obe.outbound.protection.outlook.com (mail-bmxind01olkn2047.outbound.protection.outlook.com [40.92.103.47])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0C0FD54;
+	Fri,  1 Dec 2023 17:11:50 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hMhC84lfg199/Lhgt2fOOcy6PlgNnxXfcVrUeYr3bBOyMnvuiRLvsvB236V5zQ2Qvkj2Es2tFRj1x6fHUcrnZJwzubn+rEOfV4vmybostcCwnXrs+QKNVhizaITItEua9e67cDqlfaQgTeHI2z/+7wJ78gDVWBh9iTVPZY1ft6eMCi8f15pEldQFYOqIeEcI8gH/jfgdwANYRTwUsOShfX4nR2fMfBxIjdf+U6FW6Vakd+A2MbNAUUriaW85SjI/Hrqvefavk7S0lqgncOGKmDUKTOn7AeNKUKj6sfzSYQcVWgyOrdKS2DrLX2RQCPnjSrVcQVYBtPfu07z7bs1W5A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=r/xz0cjQoFaYfAbbc5zlMSgapLIlrdgQMm2WU6WIVf4=;
+ b=G0QCBcYVqVZLC4hl3nMAVbV/0UMwK9RdFGIO1WMF9fkIDj+8pNZx/rhwzgMIpfEFAW6PI4x1xTHd0mn62tJaY/w5Tif9TDDhgtUPTp+cJK0V6M35LI332biu/bDrfUuZIRxuOll+jNVj2MVrUXHyI2B5/i3L5BWbs7dhSkFnfpn9eVEbtJuHzSp6ypHG0khNoaAKOSHk7By/MGGBbPNbk1ib9Ty/lr5v9GUVGvM1lk5idKt0iwyZaru6bUFuQg6w1LUF7E30mpRmW6TnkONc3/xkeLOAWzQyDgGxPz44gAMoALB240OqXSpvEGdOm+yfBbe9kRE9CXYLKB4m0CuMsg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=r/xz0cjQoFaYfAbbc5zlMSgapLIlrdgQMm2WU6WIVf4=;
+ b=kIh0NEKJnxeqLk7NbLjfnZqqWySJc8Za2DsZFCKX90/dUwIFJSstT1aYe8BIqEIFN37UzQjE7GgqCZL0l1kpqdUd4xMZxLU9GOvmPKDMvWOMMAL5IJ+YkBvE93kVcW/yL2prOHhlTJ4sk1fHVU9pIWLTnstlmZJb77vV0AE5G3sowCbiyZeF61H5/F3ifQP/Tts1G0JgSkgNv2zS1OLe1ia6Cq6HWt/xbTrJ8OmyPcDaG5Cvdi9Pse+WFiMgidKXuV0ul3PG2BlRheJooHbEiY6H5E5RyhVoVmusfjTWwex/TG5C3d5QOj4ULw2bvCOuem50Gd4M+b5uJRIAMoEePQ==
+Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:ab::5) by
+ MA0P287MB2448.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:122::11) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7046.27; Sat, 2 Dec 2023 01:11:43 +0000
+Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
+ ([fe80::b1a7:eee7:e903:9ef3]) by MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
+ ([fe80::b1a7:eee7:e903:9ef3%7]) with mapi id 15.20.7046.027; Sat, 2 Dec 2023
+ 01:11:43 +0000
+Message-ID:
+ <MA0P287MB033290A6C8B15202E31E43CCFE80A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
+Date: Sat, 2 Dec 2023 09:11:38 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/7] Add Huashan Pi board support
+To: Conor Dooley <conor@kernel.org>, Inochi Amaoto <inochiama@outlook.com>
+Cc: Chao Wei <chao.wei@sophgo.com>, Thomas Gleixner <tglx@linutronix.de>,
+ Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Anup Patel
+ <anup@brainfault.org>, Conor Dooley <conor.dooley@microchip.com>,
+ Jisheng Zhang <jszhang@kernel.org>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <20231201-strung-mandarin-110a322468c9@wendy>
+ <IA1PR20MB49539E82E5C0B5CBFD889F39BB81A@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <20231201-nutshell-uptake-48161193c6e7@spud>
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <20231201-nutshell-uptake-48161193c6e7@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-TMN: [EYvLaaxD3TkTRkIYxut0PHNqK+0UAeyn]
+X-ClientProxiedBy: SI2PR04CA0010.apcprd04.prod.outlook.com
+ (2603:1096:4:197::11) To MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:ab::5)
+X-Microsoft-Original-Message-ID:
+ <b769665e-c5b3-4921-8b64-9e560f47a854@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231201160925.3136868-1-peter.griffin@linaro.org> <20231201160925.3136868-18-peter.griffin@linaro.org>
-In-Reply-To: <20231201160925.3136868-18-peter.griffin@linaro.org>
-From: Sam Protsenko <semen.protsenko@linaro.org>
-Date: Fri, 1 Dec 2023 19:09:30 -0600
-Message-ID: <CAPLW+4mGykKdYuhjcpYQwk7cabo0mFv6Qo3UedcrVcLvMkww_Q@mail.gmail.com>
-Subject: Re: [PATCH v5 17/20] tty: serial: samsung: Add gs101 compatible and
- common fifoszdt_serial_drv_data
-To: Peter Griffin <peter.griffin@linaro.org>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org, 
-	tomasz.figa@gmail.com, s.nawrocki@samsung.com, linus.walleij@linaro.org, 
-	wim@linux-watchdog.org, linux@roeck-us.net, catalin.marinas@arm.com, 
-	will@kernel.org, arnd@arndb.de, olof@lixom.net, gregkh@linuxfoundation.org, 
-	jirislaby@kernel.org, cw00.choi@samsung.com, alim.akhtar@samsung.com, 
-	tudor.ambarus@linaro.org, andre.draszik@linaro.org, saravanak@google.com, 
-	willmcvicker@google.com, soc@kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-watchdog@vger.kernel.org, kernel-team@android.com, 
-	linux-serial@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MA0P287MB0332:EE_|MA0P287MB2448:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4803afa7-e2a7-488e-ccbc-08dbf2d3a529
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	PNiLuw0/GS3QLMGa2oQ/Vtt15vNkJsU55TMdKOAZHcZMnZxZbN8UKafkmOD98gZ1AdAV2AEi+5pXhUh/BSgyMi1IZWD8yQs+dQ+TfWUVlQJs1BUY3oB/XwnL448iqImnbawX+dvfBG5efOOKB2JtVy0MAQnaG0xebRcQu4swRJH3g5Gy43QFIVCdDvA88X83Cyx0ucapp9JGyo2l4A9eRA3D0+h4ABhOUxmuOlonfSmPScUEpCVx0GgbniHsGkdJpZg4XVu2S9UHnWBwT0HHU6fIreCw/+3xnJCxIhVhyc+ZD2hPMnWbOtO3CSWhiIfl6pHuAM7yNW++idYxd/XON10TDrAZaWJIWznBuXErRkw4WewafnJPDGr6cmVMis6nxE5SAVD94vWSkpYLfX6jT9u6p+PHsze4lGr7leSQPNfPt7tZRxpA0ONs82rfWVAVd4KRyhLa3F0Hsr3MFXvAFCpUQkBFwDMWhCDArkmMEeuHBEYTV3CmZEU1f2wPKq4mEGcRQQWHzgHu4vYS5LbpkAYno6Fp+XlOHK+BZDtjwTwTPWp1pBuHF9/3ar6srAHGlkG+31ZmIMujNfwltN6FJKmZZph6E75zonxg4zL8aZNRE/mrfrdQoaNijKHtvCUd
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?WmZCYmlETzRDb1RRODNqL1ZJSTVFb3BBazZ3ZTgyZE93UnA2bUZmVlNFYng4?=
+ =?utf-8?B?WkdDZTVHM2xmR2Z4ZUFqVFoveE5DOE5CNmFFSDErS2didlhVRTMzR1BWOW1J?=
+ =?utf-8?B?UWxsaGU0NWRNcTcySVd3RjhHNm1pcVFNK05hVjFiR3dMUnM4TUt1SHdscG1Z?=
+ =?utf-8?B?UGxaWWc1WUljU3pwVnF4bmZiZDlNa0NEeDdWM2pnUi9CVVl4SVF3a0VndnJt?=
+ =?utf-8?B?amtXaklkem8ybVg1OENjdlFpM0RpTmRxSlVYbkRlYWRQR0Z5ZXZaTXBqY1N5?=
+ =?utf-8?B?OG85QkdFVWNMblJXcmxDcW1HdndBZHVPejlsU0tPNnVodkM3U0RLWWs5WGkx?=
+ =?utf-8?B?M21wa2Q3Q00zL2I5ZXJvaGdLYzhkUXhqSGI3b1FCZUk0OVA5ckFrRFhSMTh4?=
+ =?utf-8?B?Znk1QSt3eXdWTUFzVDlMREVVd09YR2tRaFl0cjJuTjFPbDVBcUNzK3M2T2hx?=
+ =?utf-8?B?R0JxVGg4bXRFajJwcjdOdWtWekhNNmQxNUlORU9XcTJvMWE3KzdEem4xcWJ0?=
+ =?utf-8?B?WVZLalJFVytYYTFFdWE5cXlYRlVDdkNQUDVpS2NYcDU1a2pmakhCWHNGZTEr?=
+ =?utf-8?B?bVgySStra0tON1VSdkQzRmNKYjRncnV3S3pKc24xSnZnN2NMSGZMTVdyQUpE?=
+ =?utf-8?B?TkROUEtHTVF3STRYbWNzeTV6NkplUGc4djVZRy9aY0YvdE53NkMyNFJZVkU2?=
+ =?utf-8?B?VzQyTFFzMFd1OVVKWld5TEQ4aDI4QjhLZGxWR0JreHd2OUhUZzIxMVpNcm9q?=
+ =?utf-8?B?cXdFcGdjU3J6Ny9IK2twcFdhUWowbFpuT21DUXZ4NDNyQnhXNXkvL09LTDdr?=
+ =?utf-8?B?Rm5rS0RFVjh1Z3BONExFcWhpTEx5WDE4ckhTWHJaVWVURmNtNU9WaTF3UkxR?=
+ =?utf-8?B?T0JUSktaYWlWOUR5OTU0ci9yWXloMGczQUtHY1hSYXF6cmdybDVXbGR1TTBB?=
+ =?utf-8?B?OFlRR3NNdkxKbW5UMExibHdLYkhteFErWG5RS2VrSGZKRlRyS2l0L1lmWS9J?=
+ =?utf-8?B?UzRpM0Z5am9CQ1F3c1d4a2I1NlhBS1ZhZDV3STM2cWdXckkwR3NBckl2c0F0?=
+ =?utf-8?B?ZFVJN2tLYWIyNmZEQjNvMzFQVmxhTTRuTTB4RFhFTk5tdDk2eEkvVE9zK1Bs?=
+ =?utf-8?B?UkE3dlpiVmo5MnppNTc3YWxEdlhITHBoVzRYK09FMTFadFBwcWkvc0ZEOVl2?=
+ =?utf-8?B?U0VYclJLYzlDSVZrLy9oODhxUGpiWXp0TnI3dmNFSnNiTFBFWFZPT1NDc1gy?=
+ =?utf-8?B?c2hhSzRlcEFhK0tZZDhVMUkvaUY5Njk0ZlBFd2R0RmMwVjI3cThzdnZtbUNo?=
+ =?utf-8?B?ZmFKcklBSGRReWtoZG5XRHFMcUl3eUZ3MjgyWW82bFFTSko0WjVXMGhoN3ZC?=
+ =?utf-8?B?U3JycjI4L2xMb0R0YkljZ0lqWXRRZWhtMDA4S0liWVl3TnBmalN4Nm1lSDhD?=
+ =?utf-8?B?ejVYOEJCNDFHNDRQTzlMZHFIY25oSU1HWUwrRktMNnFndnlVNm9iTTQxLzky?=
+ =?utf-8?B?QWN4S3NwS0dweGYvQjNKRFZSRCtBWmdmWWRQdEE4M3dZQTFrcG51SnpZN2Ra?=
+ =?utf-8?B?Q1lWR2FSdkltWUFjUUY3SFNza0lSRUNTdWxQVDJvYi8wcnRBK0w2S3RNdm5m?=
+ =?utf-8?Q?Ht/AW332YpXcwrmxCK/eREQW7VL3FAOmS+JlZjzNg/X4=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4803afa7-e2a7-488e-ccbc-08dbf2d3a529
+X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Dec 2023 01:11:43.0528
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA0P287MB2448
 
-On Fri, Dec 1, 2023 at 10:11=E2=80=AFAM Peter Griffin <peter.griffin@linaro=
-.org> wrote:
->
-> Add serial driver data for Google Tensor gs101 SoC and a common
-> fifoszdt_serial_drv_data that can be used by platforms that specify the
-> samsung,uart-fifosize DT property.
->
-> A corresponding dt-bindings patch updates the yaml to ensure
-> samsung,uart-fifosize is a required property.
->
-> Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
-> Reviewed-by: Arnd Bergmann <arnd@arndb.de>
-> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-> ---
->  drivers/tty/serial/samsung_tty.c | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
->
-> diff --git a/drivers/tty/serial/samsung_tty.c b/drivers/tty/serial/samsun=
-g_tty.c
-> index 1b0c2b467a30..f8d98f1006de 100644
-> --- a/drivers/tty/serial/samsung_tty.c
-> +++ b/drivers/tty/serial/samsung_tty.c
-> @@ -2490,14 +2490,25 @@ static const struct s3c24xx_serial_drv_data exyno=
-s850_serial_drv_data =3D {
->         .fifosize =3D { 256, 64, 64, 64 },
->  };
->
-> +/*
-> + * Common drv_data struct for platforms that specify uart,fifosize in
-> + * device tree.
 
-Isn't it "samsung,uart-fifosize"? Or it was intended this way?
+On 2023/12/2 0:21, Conor Dooley wrote:
+> On Fri, Dec 01, 2023 at 04:31:38PM +0800, Inochi Amaoto wrote:
+>>> On Fri, Dec 01, 2023 at 09:02:59AM +0800, Inochi Amaoto wrote:
+>>>>> On Fri, Dec 01, 2023 at 07:21:29AM +0800, Inochi Amaoto wrote:
+>>>>>>> On Thu, 19 Oct 2023 07:18:00 +0800, Inochi Amaoto wrote:
+>>>>>>>> Huashan Pi board is an embedded development platform based on the
+>>>>>>>> CV1812H chip. Add minimal device tree files for this board.
+>>>>>>>> Currently, it can boot to a basic shell.
+>>>>>>>>
+>>>>>>>> NOTE: this series is based on the Jisheng's Milk-V Duo patch.
+>>>>>>>>
+>>>>>>>> Link: https://en.sophgo.com/product/introduce/huashan.html
+>>>>>>>> Link: https://en.sophgo.com/product/introduce/cv181xH.html
+>>>>>>>> Link: https://lore.kernel.org/linux-riscv/20231006121449.721-1-jszhang@kernel.org/
+>>>>>>>>
+>>>>>>>> [...]
+>>>>>>> Applied to riscv-dt-for-next, thanks! LMK if something looks not as
+>>>>>>> expected.
+>>>>>>>
+>>>>>>> [1/7] dt-bindings: interrupt-controller: Add SOPHGO CV1812H plic
+>>>>>>>       https://git.kernel.org/conor/c/21a34e63afcc
+>>>>>>> [2/7] dt-bindings: timer: Add SOPHGO CV1812H clint
+>>>>>>>       https://git.kernel.org/conor/c/06ea2a1968a9
+>>>>>>> [3/7] dt-bindings: riscv: Add SOPHGO Huashan Pi board compatibles
+>>>>>>>       https://git.kernel.org/conor/c/d7b92027834e
+>>>>>>> [4/7] riscv: dts: sophgo: Separate compatible specific for CV1800B soc
+>>>>>>>       https://git.kernel.org/conor/c/5b5dce3951b2
+>>>>>>> [5/7] riscv: dts: sophgo: cv18xx: Add gpio devices
+>>>>>>>       https://git.kernel.org/conor/c/dd791b45c866
+>>>>>>> [6/7] riscv: dts: sophgo: add initial CV1812H SoC device tree
+>>>>>>>       https://git.kernel.org/conor/c/681ec684a741
+>>>>>>> [7/7] riscv: dts: sophgo: add Huashan Pi board device tree
+>>>>>>>       https://git.kernel.org/conor/c/2c36b0cfb408
+>>>>>> Thanks for the confirmation. But I suggest to revert these patches.
+>>>>>> Several days ago, Sophgo informed me that CV1810 series will be
+>>>>>> renamed. And the Huashan Pi will switch to the chip with new name.
+>>>>>> To avoid unnecessary conflict, please drop these patch and I will
+>>>>>> prepare a new patch once the renamed chip is launched.
+>>>>> This is a board that exists, that you (and possibly others) have, right?
+>>>>>
+>>>> Yes, of course.
+>>> I dunno then. It sounds from your message that this is purely a rebrand
+>>> of the SoCs,
+>> IIRC, it is.
+>> FYI, Chen and Chao. Maybe you know something more.
+>>
+>>> so since people already have these boards, I'd rather not.
+>>> We should be able to support both since it's just a naming change,
+>>> right?
+>> I agree with this. If the above is true, we can just reuse the exists code
+>> with a different compatible name, right?
+> I think so? I'm not sure what the precedent really is for pure
+> rebrandings of an SoC.
+> I say for now, assume we can do that, and we can discuss it with Rob and
+> Krzysztof when the time comes if there is no difference between the SoCs
+> and boards.
+>
+> Cheers,
+> Conor.
 
-Other than this, LGTM (my R-b tag is already present in this patch).
+As far as I know, sophgo's SoC product names all start with "sg", while 
+products starting with "cv" come from CVITEK (another chip company). 
+CVITEK was acquired by sophgo a year ago, so now many SOC product names 
+that originally started with "cv" are being repackaged and changed to 
+start with "sg".
 
-> + */
-> +static const struct s3c24xx_serial_drv_data exynos_fifoszdt_serial_drv_d=
-ata =3D {
-> +       EXYNOS_COMMON_SERIAL_DRV_DATA(),
-> +       .fifosize =3D { 0 },
-> +};
-> +
->  #define EXYNOS4210_SERIAL_DRV_DATA (&exynos4210_serial_drv_data)
->  #define EXYNOS5433_SERIAL_DRV_DATA (&exynos5433_serial_drv_data)
->  #define EXYNOS850_SERIAL_DRV_DATA (&exynos850_serial_drv_data)
-> +#define EXYNOS_FIFOSZDT_DRV_DATA (&exynos_fifoszdt_serial_drv_data)
->
->  #else
->  #define EXYNOS4210_SERIAL_DRV_DATA NULL
->  #define EXYNOS5433_SERIAL_DRV_DATA NULL
->  #define EXYNOS850_SERIAL_DRV_DATA NULL
-> +#define EXYNOS_FIFOSZDT_DRV_DATA NULL
->  #endif
->
->  #ifdef CONFIG_ARCH_APPLE
-> @@ -2581,6 +2592,9 @@ static const struct platform_device_id s3c24xx_seri=
-al_driver_ids[] =3D {
->         }, {
->                 .name           =3D "artpec8-uart",
->                 .driver_data    =3D (kernel_ulong_t)ARTPEC8_SERIAL_DRV_DA=
-TA,
-> +       }, {
-> +               .name           =3D "gs101-uart",
-> +               .driver_data    =3D (kernel_ulong_t)EXYNOS_FIFOSZDT_DRV_D=
-ATA,
->         },
->         { },
->  };
-> @@ -2602,6 +2616,8 @@ static const struct of_device_id s3c24xx_uart_dt_ma=
-tch[] =3D {
->                 .data =3D EXYNOS850_SERIAL_DRV_DATA },
->         { .compatible =3D "axis,artpec8-uart",
->                 .data =3D ARTPEC8_SERIAL_DRV_DATA },
-> +       { .compatible =3D "google,gs101-uart",
-> +               .data =3D EXYNOS_FIFOSZDT_DRV_DATA },
->         {},
->  };
->  MODULE_DEVICE_TABLE(of, s3c24xx_uart_dt_match);
-> --
-> 2.43.0.rc2.451.g8631bc7472-goog
->
+For the cv1800b adopted by Duo, Sophgo has made it clear that it will 
+not change its codename.
+
+But I heard that for other products, such as the cv1812h used by 
+Huashanpi, sophgo may change their names in the future, but sophgo has 
+not officially confirmed it yet. Looks like sophgo themselves are still 
+in the process of digesting cv's products, ;)
+
+Since we have just started to support cv1812h and have not done much 
+work yet, I suggest not to merge this patch into the mainline, and wait 
+until there is clear news before doing this to avoid introducing 
+unnecessary modifications later.
+
+Thanks,
+
+Chen
+
+
+
 
