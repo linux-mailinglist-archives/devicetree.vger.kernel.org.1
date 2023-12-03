@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-21113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21114-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A46E80259E
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 17:46:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 264538025A3
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 17:49:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B99B1F20FB1
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 16:46:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CAFA5280CA3
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 16:49:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60B23156E1;
-	Sun,  3 Dec 2023 16:46:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0219815ADF;
+	Sun,  3 Dec 2023 16:49:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cjP2lNeR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="basi74Xq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D17FD9
-	for <devicetree@vger.kernel.org>; Sun,  3 Dec 2023 08:46:20 -0800 (PST)
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-54ccd715bb9so218578a12.2
-        for <devicetree@vger.kernel.org>; Sun, 03 Dec 2023 08:46:20 -0800 (PST)
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AB72E5
+	for <devicetree@vger.kernel.org>; Sun,  3 Dec 2023 08:49:28 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-40bda47b7c1so16661825e9.1
+        for <devicetree@vger.kernel.org>; Sun, 03 Dec 2023 08:49:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701621979; x=1702226779; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701622167; x=1702226967; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=FjnVGzR8z11f9xYM+Th1CV1Wf34G9BPeVe7HV0Px++c=;
-        b=cjP2lNeRjLDUr6Iarq2KY6K1wfTybsSw2C6h2cv0C4qvjmRMLag1O2RQtxxlZAd5CZ
-         CfHeHnafdOuaPFTf7Lmo9ertfscMysyxErMIOq5Db3vkcVjfUEoMx0eeioRnYzACmXAs
-         6hJh36spCTyjmMrGN1+lSrFdRez3v/I7wgUSxb8QIrTFRjWizTfpP4xBZAukwFwsT1GP
-         JMeB2eqzC6t84VVfH3baVJDfUZD3OOOTeL7UAsMW8hgw5pIb3qcAizrTF7njT4FAUbBI
-         a4INsaN5jUfH0WnXO011TyJyAttAn9DPGujOTY3SgIP4Gk4/GsRdqgscZmNzWYiPqN3d
-         Rsdg==
+        bh=wASE+vrAvx7yA+Wgbsvmor7M/LoIosYELxObbCq6jRQ=;
+        b=basi74Xqy/RKPmI7cLq1SLkugkZIHUIscU0v7eeC8B7eHMbVHbijuqsqp7wuvuEWGI
+         VMnZ9lhbUc2ETdE312DKOgy+NylNFE11d8OWBOY0OU/5w/bbF9PbYOX9/UOejjyBWzHE
+         rB2wGc+4Xk+ChVbvT5I/1ST4NOeFoJ5K9JNv7f5+njy/TuQ1mD/kxFUGQl1gfF/D9Uba
+         lBisweL9HzWkWnRdqeLGMqILwGj3nNs9kMorNGZGCKSTSCiT30w0X6tss3ZH4pqanBYj
+         QeYZ179zqqw76mOUzfJp/UWoivKCsL2WSfRQXn/1oIhW5acPxc7BjiLNMfiqPBkwjdJj
+         ra4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701621979; x=1702226779;
+        d=1e100.net; s=20230601; t=1701622167; x=1702226967;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FjnVGzR8z11f9xYM+Th1CV1Wf34G9BPeVe7HV0Px++c=;
-        b=dVYBkJ3aw0C7E9ZjTzqtdxznmVsRepmjXi0/tc2+PEzVdYYJBSkASNEjjys0p9h6C1
-         tAtX8XzhSA97VouGjfte0JXC0l/dAWwBYT/m8WfSLIA6uhf2JpAXK1Gn5iUZzNFHSFA8
-         7e9s9IMdlSZWl3DpXqgqFcafbIzE8hBe0N6mB2H4jcEm8J6yXgjoFvnQrorGcfPtBdhp
-         7BSvrg87kp34OyhQWC2GguFaXALmrtvm1zQwD0g4nW4Pcg/lyz/6XMwZ08zPcGQts7/8
-         wFUBXZ55FMJZ16L6T3cJt4UgsnszUOEPFDDRgBnzgmUfLu8kN4plzUz+G9MhsDi5/cgX
-         iHUQ==
-X-Gm-Message-State: AOJu0Yw4kFDr6ikZiBEd+rnP7U59F9kFLT6WwXBUNvOmjSCuBBPhNSsk
-	y+9MbAi/dkEZhyw5CyhrhIy28Q==
-X-Google-Smtp-Source: AGHT+IEgpsjt8lO05KrGI94IZRCTYxP/6GqdS0wbBw37q+ja0ZofX9l9rgy9P/TbZKtQ+ciHODRfiQ==
-X-Received: by 2002:a50:8745:0:b0:54c:4837:7587 with SMTP id 5-20020a508745000000b0054c48377587mr3040937edv.51.1701621979137;
-        Sun, 03 Dec 2023 08:46:19 -0800 (PST)
+        bh=wASE+vrAvx7yA+Wgbsvmor7M/LoIosYELxObbCq6jRQ=;
+        b=UsRpqPgufVf35uqwEolYzpsT7EILB+oCS+KaYeEoimQeqyBJrDJs/knhtCe5u0nXR3
+         u+PGk3ZxQcnRRVeK9Lxu+OwfsSHKB4mm+3O26y79rOp6fhTm95EpeZNPsQgztTPCz4ji
+         ZG1Nw2FgzJSYk3oE6SkYwD/C/KR4TAUiUbPR2ODWJBF7JIzPctwJCZTrh3frt29FUCYY
+         rwACaU07dngMYrFInRzgVTd3YBTUev3mZwr2EVfG2YKbnjoHBdI8ptAyK1l1ZwF0jZhX
+         pe1UHGAqCxnpVUyCHu7l4ptVAZEpzsYycnyyTpitV+XmJon6axF8EE1geTTiwRYxMcNr
+         Jhew==
+X-Gm-Message-State: AOJu0Yxxct8oeBX7diVpydt3xXzJhs0eh8Ges3qFlxKoaFqcVSXALPbx
+	eeO98gZ2yeU1dyzU8Vl/35xDkQ==
+X-Google-Smtp-Source: AGHT+IEupEKHNWUHPinaL8yGfmHY3qPr+Qoxg090DuPz40CzrbSs7ceLpEsFFIs96tgGu4Ntm4Mywg==
+X-Received: by 2002:a05:600c:c15:b0:40b:5f03:b3f9 with SMTP id fm21-20020a05600c0c1500b0040b5f03b3f9mr915854wmb.283.1701622166549;
+        Sun, 03 Dec 2023 08:49:26 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id i26-20020a50d75a000000b0054c6a70a435sm2449068edj.44.2023.12.03.08.46.17
+        by smtp.gmail.com with ESMTPSA id g10-20020a05600c4eca00b0040596352951sm15821817wmq.5.2023.12.03.08.49.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 03 Dec 2023 08:46:18 -0800 (PST)
-Message-ID: <01946883-e008-4b4c-8e2a-a73787ad9f23@linaro.org>
-Date: Sun, 3 Dec 2023 17:46:17 +0100
+        Sun, 03 Dec 2023 08:49:25 -0800 (PST)
+Message-ID: <a7fa155c-39d3-4678-bd38-ea08d5f48adc@linaro.org>
+Date: Sun, 3 Dec 2023 17:49:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,17 +62,28 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: phy: realtek: Add Realtek DHC RTD SoC
- PCIe PHY
+Subject: Re: [PATCH v2 01/10] dt-bindings: display: bridge: tc358775: make
+ stby gpio and vdd supplies optional
 Content-Language: en-US
-To: Tzuyi Chang <tychang@realtek.com>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Stanley Chang <stanley_chang@realtek.com>
-References: <20231201105207.11786-1-tychang@realtek.com>
- <20231201105207.11786-2-tychang@realtek.com>
+To: Tony Lindgren <tony@atomide.com>, Andrzej Hajda
+ <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Simha BN <simhavcs@gmail.com>,
+ Sam Ravnborg <sam@ravnborg.org>
+Cc: Carl Philipp Klemm <philipp@uvos.xyz>,
+ Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
+ Merlijn Wajer <merlijn@wizzup.org>, Pavel Machek <pavel@ucw.cz>,
+ Sebastian Reichel <sre@kernel.org>, Michael Walle <mwalle@kernel.org>,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+References: <20231202075514.44474-1-tony@atomide.com>
+ <20231202075514.44474-2-tony@atomide.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -118,46 +129,26 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231201105207.11786-2-tychang@realtek.com>
+In-Reply-To: <20231202075514.44474-2-tony@atomide.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 01/12/2023 11:52, Tzuyi Chang wrote:
-> +  "#phy-cells":
-> +    const: 0
-> +
-> +  nvmem-cells:
-> +    maxItems: 1
-> +    description:
-> +      Phandle to nvmem cell that contains 'Tx swing trim'
-> +      tuning parameter value for PCIe phy.
-> +
-> +  nvmem-cell-names:
-> +    items:
-> +      - const: tx_swing_trim
-> +
-> +  realtek,pcie-syscon:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: phandle of syscon used to control PCIe MDIO register.
+On 02/12/2023 08:54, Tony Lindgren wrote:
+> From: Michael Walle <mwalle@kernel.org>
+> 
+> For a normal operation, the vdd supplies nor the stby GPIO is needed.
+> There are boards, where these voltages are statically enabled during
+> board power-up.
 
-Why this does not have reg property but syscon? This looks hacky.
+This means supply is still required.
 
-Where is the DTS of your platform so we can verify the bindings? In the
-past Realtek bindings and DTS were sent without testing.
-> +
-> +required:
-> +  - compatible
-> +  - realtek,pcie-syscon
-> +  - "#phy-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    pcie1_phy {
-
-phy {
-
+> 
+> The reset pin is required because once the PPI (PHY protocol interface)
+> is started, it can only be stopped by asserting the reset pin.
+> 
+> Signed-off-by: Michael Walle <mwalle@kernel.org>
+> Signed-off-by: Tony Lindgren <tony@atomide.com>
+> ---
 
 
 Best regards,
