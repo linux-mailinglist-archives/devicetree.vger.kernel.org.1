@@ -1,130 +1,146 @@
-Return-Path: <devicetree+bounces-21154-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21155-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5043F802885
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 23:47:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DDC5F8028E2
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 00:03:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 145D8280CF2
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 22:47:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 989A0280D00
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 23:03:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A3EC19448;
-	Sun,  3 Dec 2023 22:46:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98AAD19BD1;
+	Sun,  3 Dec 2023 23:03:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GPzos60p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a02:c205:3004:2154::1])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9576DE7;
-	Sun,  3 Dec 2023 14:46:51 -0800 (PST)
-Received: from p200301077700c3001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:107:7700:c300:1a3d:a2ff:febf:d33a] helo=aktux)
-	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <andreas@kemnade.info>)
-	id 1r9vEf-006zIj-1l; Sun, 03 Dec 2023 23:46:49 +0100
-Date: Sun, 3 Dec 2023 23:46:45 +0100
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, kristo@kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: clock: ti: Convert interface.txt to
- json-schema
-Message-ID: <20231203234645.331d6efc@aktux>
-In-Reply-To: <48cf2111-46a0-4907-8d55-5ce80b585111@linaro.org>
-References: <20231127202359.145778-1-andreas@kemnade.info>
-	<7a62ed8a-b0e3-4881-90d7-b8f5d38e482e@linaro.org>
-	<20231128093241.707a4fa0@aktux>
-	<7361082a-f271-4ef4-9dad-06ee7445c749@linaro.org>
-	<20231128214116.22dfff1e@akair>
-	<221ba6a3-c4c2-40cd-b1d8-8170af78c784@linaro.org>
-	<20231201150937.3631ee99@akair>
-	<7aaea1e4-b7bd-47e4-a6e6-32b8195ea1bf@linaro.org>
-	<20231201154112.2ecfdab2@aktux>
-	<48cf2111-46a0-4907-8d55-5ce80b585111@linaro.org>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58FB0D3
+	for <devicetree@vger.kernel.org>; Sun,  3 Dec 2023 15:03:37 -0800 (PST)
+Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-5d74186170fso11244807b3.3
+        for <devicetree@vger.kernel.org>; Sun, 03 Dec 2023 15:03:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701644616; x=1702249416; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zelJLnC7ZqJCMPyhJLNTJFnx9+oguBrdvy9XXLywcG8=;
+        b=GPzos60p1wR+TQVX1oEtPSQJYJIi40JrqbjQTpvqUq+pV74j7+lmPYuxzG6jWbPeMF
+         TvMAIuWybGyTui7ZeGtOacIvTd7cW8C/j1H/2/pdaxdUz9gjXBXR5BlrTMVYWdYH/laf
+         E8hDuIbENyawc7vaCbFvBjR93G6vUM+0gg6du7wk1QtVZ1H/RUiFQuYLfsPqDt63nmzj
+         gk2Qb+uS9O/3RQoy99BVMvm++QFHJth3cu1IIj63hczkmThqKnnZ+/xq16TtTNg0pm95
+         59Fqbbb5VpWuqNsTRu1MVqTv6vdBjpKaHJwaBYbJN4egWJMnHZnYBB12EEZT6v/6prog
+         OITg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701644616; x=1702249416;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zelJLnC7ZqJCMPyhJLNTJFnx9+oguBrdvy9XXLywcG8=;
+        b=MJ9lE01/8Lf2lE8e3x6BMLW7UPtWzxuBGWVilvcrSC0Y3lIMbKZPhK4cEg5dd65jHZ
+         MFQFQdpT17iMPwnvJdUPvLlV+FO2tTIJoiPOG7JNqR7jGsh0wuJ/GsgtUHP4F7Gjk4UY
+         2EcFDBGxv4UkMqFayMDPdPs7qwyHXofjqWXk71uNpoq7QNJYeO4WsFhgCnGUhrEpCv8f
+         WtgWbOYg5i5QlN2Ugh8VxODJKcj6jZ6kkBEv59OLmUskszzCQNwH71biMPMXgy7OzCQi
+         bMcEUwKP8fo19QGEHahpeBg9+aCIsznc/Pn8QXnWDx0J1K1VGnkpkAYfPyR9btbIsgAy
+         XdQw==
+X-Gm-Message-State: AOJu0YyMC6f8gJifyX0Q0dMp6ipg9Zr1/GS31E7ej9/MwZ1dsguq3G7l
+	g05v7jE0XRrQKDObm0Bq/qhsfaIduoKibu0RFoaduA==
+X-Google-Smtp-Source: AGHT+IFdxlA+4qAP1WmnqmhYuozBj+w898Qc95gW0TILxKBqTzyrlz5TWtLLbWm/9x5bymbWlpPzY28MzXA+ADc7Xwk=
+X-Received: by 2002:a81:9b44:0:b0:5d7:1940:7d63 with SMTP id
+ s65-20020a819b44000000b005d719407d63mr1931460ywg.58.1701644616523; Sun, 03
+ Dec 2023 15:03:36 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20231124-ltc4282-support-v2-0-952bf926f83c@analog.com>
+ <20231124-ltc4282-support-v2-2-952bf926f83c@analog.com> <CACRpkdaksfS4WLNQ6ohauAPq3z2LPG2uF37_jWtm0brQHaDtNw@mail.gmail.com>
+ <6384831c05b8ceeaf4a16cf9229770252989b762.camel@gmail.com>
+ <CACRpkdZr6TdQCLy73Yx2RdMgQifd67remdxENBKYx3UvEMm87A@mail.gmail.com>
+ <971eb35068639ec404669ea5320c8183ea71a7d0.camel@gmail.com>
+ <ZWiP3i80KnVk9qyx@smile.fi.intel.com> <a4bd59df0c5bc1be5d0d6f11b968fd61a59ee2e0.camel@gmail.com>
+ <CACRpkdYz+qi42Pz8CgeWybksC0edaVux6rcEhwzjDWnWe9Jr1g@mail.gmail.com>
+ <61a8f54835c10db7a9c650ee2e3706b47382c634.camel@gmail.com>
+ <CACRpkda55HzPqus5KR-t=xEBkkdND5kYZj1sHdxK+j6QwDUPRg@mail.gmail.com> <b761d2497462664d541779857398b2aa893cbee5.camel@gmail.com>
+In-Reply-To: <b761d2497462664d541779857398b2aa893cbee5.camel@gmail.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Mon, 4 Dec 2023 00:03:23 +0100
+Message-ID: <CACRpkdYBXVt7KvWfPJj1OhPUB7-QJbKg+74zwnR_=0pszg9APA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] hwmon: ltc4282: add support for the LTC4282 chip
+To: =?UTF-8?B?TnVubyBTw6E=?= <noname.nuno@gmail.com>
+Cc: Andy Shevchenko <andy@kernel.org>, nuno.sa@analog.com, linux-hwmon@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
+	Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Bartosz Golaszewski <brgl@bgdev.pl>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 1 Dec 2023 15:45:06 +0100
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+On Fri, Dec 1, 2023 at 4:24=E2=80=AFPM Nuno S=C3=A1 <noname.nuno@gmail.com>=
+ wrote:
 
-> On 01/12/2023 15:41, Andreas Kemnade wrote:
-> > On Fri, 1 Dec 2023 15:17:46 +0100
-> > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> >   
-> >> On 01/12/2023 15:09, Andreas Kemnade wrote:  
-> >>> Am Wed, 29 Nov 2023 09:15:57 +0100
-> >>> schrieb Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>:
-> >>>     
-> >>>> On 28/11/2023 21:41, Andreas Kemnade wrote:    
-> >>>>> Am Tue, 28 Nov 2023 09:41:23 +0100
-> >>>>> schrieb Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>:      
-> >>>>>>> If the interface clock is not below a ti,clksel then we have reg.
-> >>>>>>>        
-> >>>>>>
-> >>>>>> This should be expressed in the bindings. It's fine to make the reg
-> >>>>>> optional (skip the description, it's confusing), but the ti,clksel
-> >>>>>> should reference this schema and enforce it on the children.
-> >>>>>>      
-> >>>>> Well there are other compatibles below ti,clksel, too, so should we
-> >>>>> rather add them when the other .txt files are converted?      
-> >>>>
-> >>>> This binding should already be referenced by ti,clksel. When the other
-> >>>> are ready, you will change additionalProperties from object to false.
-> >>>>    
-> >>> I played around with it:
-> >>>
-> >>> --- a/Documentation/devicetree/bindings/clock/ti/ti,clksel.yaml
-> >>> +++ b/Documentation/devicetree/bindings/clock/ti/ti,clksel.yaml
-> >>> @@ -33,6 +33,11 @@ properties:
-> >>>      const: 2
-> >>>      description: The CLKSEL register and bit offset
-> >>>  
-> >>> +patternProperties:
-> >>> +  "-ick$":
-> >>> +    $ref: /schemas/clock/ti/ti,interface-clock.yaml#
-> >>> +    type: object
-> >>> +
-> >>>  required:
-> >>>    - compatible
-> >>>    - reg
-> >>>
-> >>>  
-> >>> That generates warnings, which look more serious than just a
-> >>> non-converted compatible, so lowering the overall "signal-noise-ratio".
-> >>>
-> >>> e.g.
-> >>> from schema $id:
-> >>> http://devicetree.org/schemas/clock/ti/ti,clksel.yaml#
-> >>> /home/andi/linux-dtbs/arch/arm/boot/dts/ti/omap/omap3-overo-tobiduo.dtb:
-> >>> clock@c40: clock-rm-ick: 'ti,index-starts-at-one', 'ti,max-div' do not
-> >>> match any of the regexes: 'pinctrl-[0-9]+'
-> >>>
-> >>> I think we should rather postpone such referencing.    
-> >>
-> >> Are you sure in such case that your binding is correct? The warnings
-> >> suggest that not, therefore please do not postpone.
-> >>  
-> > well, there is not only stuff from clock/ti/ti,interface.yaml but also from
-> > clock/ti/divider.txt below ti,clksel. So I have one warning about the missing
-> > compatible there and also about the properties belonging to that compatible.  
-> 
-> Ah, you have other bindings for the "-ick" nodes? Then you cannot match
-> by pattern now, indeed. Maybe skipping ref but adding "compatible" into
-> node, like we do for Qualcomm mdss bindings, would work. But in general
-> all these should be converted at the same time.
-> 
-Yes, there are other bindings for the "-ick" nodes. But these bindings
-are not exclusive to the "-ick" nodes. I personally would prefer not
-having to do the whole clock/ti/*.txt directory at once.
+> > If a pins .direction_output() fails, .set_value() will not be called
+> > on it either.
+>
+> This is where I lost you :(
 
-Regards,
-Andreas
+devm_gpiod_get() (and similar interfaces) will set up the default mode for
+the line, as input or output (with value, calling .direction_output) so mos=
+t
+likely it will fail already there, and the driver will not probe or
+userspace client
+will fail.
+
+> So, I'm might be overcomplicating things but... Again,
+> the case where someone wired up HW so that we can actually use the pin to=
+ drive the
+> line high (having an external pull up). In that case, If I return error, =
+then I won't
+> be able to effectively set the line high (as you said, set_value will not=
+ be called
+> on it either).
+>
+> Now, I do understand that if we have the line flagged as GPIO_OPEN_DRAIN,=
+ then
+> gpiolib will switch the line to input which means we will set the line in=
+ high-z
+> which means that if we have a pull up, then the line will be high. I mean=
+, it works
+> but it would be strange if someone wants to have the line as output high =
+and after
+> trying to set the it high, it sees the pin moving to input. But if this i=
+s how it
+> should be, fine by me.
+
+What do you mean by "sees the pin moving to input".
+
+If you mean electrically then yes, it goes to high-Z.
+
+If you mean logically, as seen by software and GPIO and debugfs, not
+really.
+
+I think a good exercise to see how it works is to just walk through the
+code in drivers/gpio/gpiolib.c for e.g.
+gpiod_set_value()
+gpiod_set_value_nocheck()
+gpio_set_open_drain_value_commit()
+
+>direction_input() is indeed called, but that is just a way of using the
+hardware, logically, inside gpiolib, the line is handled as high.
+
+> Yes, that is the only thing we have. Meaning that there is no hw setting =
+to set the
+> pins to open drain. Open drain is what they are. That is why I'm not seei=
+ng the point
+> in having PIN_CONFIG_DRIVE_OPEN_DRAIN implemented.
+
+For satisfying the logic. We have several cases where callbacks are
+just returning a 0 error code for such corner cases, and as Andy points
+out push-pull requests should return an error.
+
+Yours,
+Linus Walleij
 
