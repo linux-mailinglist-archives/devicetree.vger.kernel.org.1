@@ -1,50 +1,54 @@
-Return-Path: <devicetree+bounces-21061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21062-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D947C8022F0
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 12:27:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E4E6E8022FA
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 12:28:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A4475280EC0
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 11:27:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4BBAD280EB9
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 11:28:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DF339465;
-	Sun,  3 Dec 2023 11:26:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3CBD9479;
+	Sun,  3 Dec 2023 11:28:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hNOd/yjx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lK/wm6V9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72A19E555
-	for <devicetree@vger.kernel.org>; Sun,  3 Dec 2023 11:26:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1AE2CC433C9;
-	Sun,  3 Dec 2023 11:26:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92B6E9465;
+	Sun,  3 Dec 2023 11:28:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0224DC433C9;
+	Sun,  3 Dec 2023 11:28:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701602815;
-	bh=4v8ZRwT+lzUcVB1vmrVnhhMyxt4ufRUD0/bRFWzgiD0=;
+	s=k20201202; t=1701602933;
+	bh=orzCajD4xuOoJi/lwUf5LvDxHuelVRXrKmQIRJJW9n4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hNOd/yjxS57o9lnIHHXjC0xFEdq9nOW9z7wtCs9i/VfEtPv8FCW9XlTpHDbGZ82p7
-	 MGem1KhdkA/nENDGmwfGxzckfcT+ifrALkStACWDy480XeGcLOgdQXjEeGgf5XN0yZ
-	 Rbdo8qfFWwXgoDsUM/LuJpdA9YLWzDpwF+kS7xZR7Nxhef3gQRjYwBCF7qm0aR0GL1
-	 qkIHbuSF9ZFUwb8VUCLsLjZUbnLCmz4TpOhoPv9U7ECQuwi2i7oOUkK8h/In57Buzp
-	 4XejgHXmJtfhF9YD9ZelucpD4iNjpIqDw0NRfjs8KiO3hfKsvL4DTGdN8ANDYQvWBA
-	 X7elFvEf+WIuQ==
-Date: Sun, 3 Dec 2023 11:26:50 +0000
+	b=lK/wm6V9CYMuSx6gNCSml1sbdv5sGBTnpAilZVadi0NQM0WeLfZMGJxAn3g0d8daY
+	 08ljHjvMsug85SSfmqaNLpuQcqDGwFsoCGb7khsGxJN+/RK3EchFOgG3XywbWtUS6P
+	 OMgiWUzqVWr9SVpEbLJlvP73pzgKpUVEZNer+9REsCecd2VmwXbokSYZs6XVikyGit
+	 9kS/Mf020nFM7lXTLO173TOdA4IcpBw31ZiHCvTj+/4fOlTcV0lTBaH24YIpw/JAV1
+	 Olk4tssNWhbelrXqo+GNJ8nqVRm4jqsZZzspHeatzYDAnoMILxCLXYVpR8+Vpp26+N
+	 SQt3spHrJmnig==
+Date: Sun, 3 Dec 2023 11:28:48 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: linux-rockchip@lists.infradead.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	quentin.schulz@theobroma-systems.com,
-	Heiko Stuebner <heiko.stuebner@cherry.de>
-Subject: Re: [PATCH 1/2] dt-bindings: arm: rockchip: Add Theobroma-Systems
- Jaguar SBC
-Message-ID: <20231203-landlady-capped-2d2b0f6c26b8@spud>
-References: <20231201191103.343097-1-heiko@sntech.de>
- <20231201191103.343097-2-heiko@sntech.de>
+To: Johan Hovold <johan+linaro@kernel.org>
+Cc: Lee Jones <lee@kernel.org>,
+	Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v2 4/4] dt-bindings: mfd: pm8008: clean up example node
+ names
+Message-ID: <20231203-snowflake-ungodly-6eeb2e7a86f1@spud>
+References: <20231201164546.12606-1-johan+linaro@kernel.org>
+ <20231201164546.12606-5-johan+linaro@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,64 +56,64 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="r6/yndUbqCbeVuIg"
+	protocol="application/pgp-signature"; boundary="+WinrxxUeO6yqKOQ"
 Content-Disposition: inline
-In-Reply-To: <20231201191103.343097-2-heiko@sntech.de>
+In-Reply-To: <20231201164546.12606-5-johan+linaro@kernel.org>
 
 
---r6/yndUbqCbeVuIg
+--+WinrxxUeO6yqKOQ
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Dec 01, 2023 at 08:11:02PM +0100, Heiko Stuebner wrote:
-> From: Heiko Stuebner <heiko.stuebner@cherry.de>
+On Fri, Dec 01, 2023 at 05:45:46PM +0100, Johan Hovold wrote:
+> Devicetree node names should be generic; fix up the pm8008 binding
+> example accordingly.
 >=20
-> Add the binding for the Jaguar board from Theobroma-Systems.
->=20
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-> Signed-off-by: Heiko Stuebner <heiko.stuebner@cherry.de>
-
-GL chief :)
+Cheers,
 Conor.
 
 > ---
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+>  Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
 >=20
-> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Docume=
-ntation/devicetree/bindings/arm/rockchip.yaml
-> index 5f7c6c4aad8f..44181a36c5d5 100644
-> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> @@ -875,6 +875,11 @@ properties:
->            - const: tsd,rk3399-puma-haikou
->            - const: rockchip,rk3399
-> =20
-> +      - description: Theobroma Systems RK3588-SBC Jaguar
-> +        items:
-> +          - const: tsd,rk3588-jaguar
-> +          - const: rockchip,rk3588
+> diff --git a/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml b/Doc=
+umentation/devicetree/bindings/mfd/qcom,pm8008.yaml
+> index 24c6158f73ae..32ea898e3ca9 100644
+> --- a/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
+> @@ -88,10 +88,11 @@ examples:
+>    - |
+>      #include <dt-bindings/interrupt-controller/irq.h>
+>      #include <dt-bindings/gpio/gpio.h>
+> -    qupv3_se13_i2c {
+> +    i2c {
+>        #address-cells =3D <1>;
+>        #size-cells =3D <0>;
+> -      pm8008i@8 {
 > +
->        - description: Tronsmart Orion R68 Meta
->          items:
->            - const: tronsmart,orion-r68-meta
+> +      pmic@8 {
+>          compatible =3D "qcom,pm8008";
+>          reg =3D <0x8>;
+> =20
 > --=20
-> 2.39.2
+> 2.41.0
 >=20
 
---r6/yndUbqCbeVuIg
+--+WinrxxUeO6yqKOQ
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWxl+gAKCRB4tDGHoIJi
-0gRnAQCv+UlVzTntpykJfSQfbxDLQSWZsGnzJQxt6WXfMtzvCwEA1hWDzOsSNRiC
-4hW0Ue3qQE6BA4TrgynQR/+kQRxNhAM=
-=bpH3
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWxmcAAKCRB4tDGHoIJi
+0qSaAP9fWNhsSS3QXH+t58JYKDWfKnUQ7UEbwp5xIH3taFSCxgEAo4bGx9D5sIy3
+MxUUBhXQRLNmYOZo7PO8Cm5sIGwDqA8=
+=Hd/I
 -----END PGP SIGNATURE-----
 
---r6/yndUbqCbeVuIg--
+--+WinrxxUeO6yqKOQ--
 
