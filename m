@@ -1,272 +1,123 @@
-Return-Path: <devicetree+bounces-21105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21106-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A46580254C
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 17:06:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BD9C802551
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 17:09:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AB8F51C208E9
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 16:06:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 841D2280DFE
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 16:09:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F768156DC;
-	Sun,  3 Dec 2023 16:05:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD47D156EB;
+	Sun,  3 Dec 2023 16:09:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="b1cMRzN+"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="SIihe6oh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D57F5CA;
-	Sun,  3 Dec 2023 08:05:52 -0800 (PST)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-a1b22a31649so79187266b.3;
-        Sun, 03 Dec 2023 08:05:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701619551; x=1702224351; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=OipUSxzsD6S96lKe3pW1Ij829Lf4+CHy2Zyn/H1QfkU=;
-        b=b1cMRzN+Wdc00DbK9IYTsn0DBz74wef6PmD5AnDiaYXy53oMQSKZccyNHDkoQuKZbl
-         9bnRDJ+7p9sStwB1oRNP9X0CAXKcXEbySFJDyUv1UiRii3JkPFpMycdcRJe8KS4gkj4x
-         p8VqrefPHcokAXvqy3nHqT9oFjXaObTJoIFMH8JcFJzTzFwPML3LQUJ64RSJB89JwcKG
-         B9rIH4K7yATZqP12mK7vPgoRQG8iw+mnEqt1O9GNx7Mevj/n2gV2y2Ev4wZ5Yfwx1h4X
-         pwE4YkoLYJQn2YziUijF3jXRBRPRpTMQhB/YsehT7CleBB47GDQuhJBSeFcyuyK3nhIM
-         zMEA==
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E188CF
+	for <devicetree@vger.kernel.org>; Sun,  3 Dec 2023 08:09:04 -0800 (PST)
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id AC4C83F193
+	for <devicetree@vger.kernel.org>; Sun,  3 Dec 2023 16:09:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1701619742;
+	bh=Jr2viQE+KNXdoLwjt3YG8fOnB+WKPmtD8qV0RS5wcNE=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=SIihe6oh8Pdg/qzj6ZLeulNjUKAEY45iD1C8Y/jpN0FxCuX2ETt716dOAsORS97Ps
+	 a1uf5lM6VcCn9E3oVhMu3fhyhiJoboAgpsYExq/KQ1nen2N2S2YBLFhB83zxkIU1CK
+	 NOuOLsUnPeBl38U95GCTX6PFtCoemsqw5vqvrTuu/jA/KhEPlJzN1gajiNmlTjv0U8
+	 u3Trk+aLtJqeB06EsxkASd43Gvn4I9M7EJA/5cGmVqR3nzEvAcOsU1sNOOeeoWcG3A
+	 EBWgsHEffQaZKUgWyZiEAxUMPB2dTWVyHbhEyzpInhAZ9FupqVZ0GvAeriyVzjlF1T
+	 Udb7SW279X9bQ==
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-423e0957b35so53063931cf.2
+        for <devicetree@vger.kernel.org>; Sun, 03 Dec 2023 08:09:02 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701619551; x=1702224351;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OipUSxzsD6S96lKe3pW1Ij829Lf4+CHy2Zyn/H1QfkU=;
-        b=C/EsCo4CU+EeNGLwpqH2xzv1aJDOjTxlNXeN1NkruWJ6oxEY9ubMST2VJztHxJmbQu
-         83jaTi2TcfqaZnGDMF+s4RsT+85I7LdyGN7nCpGbgU3pcb79sxnmT6n+CRMZzdFBlcjT
-         2Pg6L92+HwZ3rHTCk5XyLGERXlBUQHce4803ctoqlpfdPYayqRy2A/10olXoZeD4Tv3P
-         p/y9b6dpj8zv4Ko0nd1sDSSiZ9NP5PjFgiaJpTFoHIOaVfjAagIS4AlCt5j9OZU5OTqM
-         z0s3UuqG0IG2NJbDCaVWPUJ0W93lR4yCZs7Syc4ajP8EcOmn3Rku78uqAxz38tqUQPh2
-         EI0g==
-X-Gm-Message-State: AOJu0YzVOExEv+UdPORb5brTbPDrI+G7IPh/mlKz2KcCcBew+iJhYeOS
-	FNv2Yo3zFO6iCR1QUxaTZA==
-X-Google-Smtp-Source: AGHT+IGWEjoREz6AbM1QO1M7NbnNBqGeWAPmrFYVApnunoUDw4fGNyQWKE4A95j88C9iyPV6OhCmIA==
-X-Received: by 2002:a17:906:4c:b0:a04:1f99:3b48 with SMTP id 12-20020a170906004c00b00a041f993b48mr2632548ejg.74.1701619550620;
-        Sun, 03 Dec 2023 08:05:50 -0800 (PST)
-Received: from ?IPV6:2a02:810b:f40:4300:3594:d4c7:658b:6ef7? ([2a02:810b:f40:4300:3594:d4c7:658b:6ef7])
-        by smtp.gmail.com with ESMTPSA id fw15-20020a170906c94f00b009fca9484a62sm1011681ejb.200.2023.12.03.08.05.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 03 Dec 2023 08:05:49 -0800 (PST)
-Message-ID: <4dec2316-f840-44ab-a07a-3d7f0e5e6d8f@gmail.com>
-Date: Sun, 3 Dec 2023 17:05:47 +0100
+        d=1e100.net; s=20230601; t=1701619741; x=1702224541;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Jr2viQE+KNXdoLwjt3YG8fOnB+WKPmtD8qV0RS5wcNE=;
+        b=DLPpwaH2z9zFd0akC4Q1yWxYzl++nwILySEtrV04MFLhSN5yw1Ie7YHTYegVmuRbej
+         0TSaj1pvCCNxh4minIFUaiUVAcpKqitGwHGAubFXQh2uCpFTPXs7UwTAyGDKKjn9rokI
+         MFeIs1/PLB29a9NHO+DYZjOmVsvD3kQ1wL95aJHhDeBEvhwnqeu+a9vqODTzIwUtTSht
+         s6paexQlEeipBk3YaQ8kw1STyiPc4gxLeFQJFkFNksq/wcLR2PsnUYYObo4dwJ1Zu9+F
+         Lf7+05BVFhoaGl2+UWBrj7bgqwDMy8f//VDyd3K/OOptrTtI8PBsK2pMIMAalShMy4Vh
+         bWBw==
+X-Gm-Message-State: AOJu0Yw0sdzyHlUWz8eJVrCsgVnzcHAddvyswQMPdLPjOmSwzCC+NE+x
+	KKyWJLGBc2Eo/C2NbgAlmc51JcioestH6J4FmwVNHm7ur5DVlXoqnWsATb85v0skxr4cG+JC44H
+	AIMWrckF0808m0uxzxkAlUP3NUKVaQU4x/bYcv0btele/fi5lYn2rwqw=
+X-Received: by 2002:a05:622a:1010:b0:425:4043:1db6 with SMTP id d16-20020a05622a101000b0042540431db6mr4559528qte.137.1701619741639;
+        Sun, 03 Dec 2023 08:09:01 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IElcjoXi0CImvP0OyCrnumGiuHmDr6BY0KTDzIC+pp9TQpbbFvQn54i+0pGeMyf5ZofZVoSlxlxQt+VbXqNHm4=
+X-Received: by 2002:a05:622a:1010:b0:425:4043:1db6 with SMTP id
+ d16-20020a05622a101000b0042540431db6mr4559513qte.137.1701619741411; Sun, 03
+ Dec 2023 08:09:01 -0800 (PST)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Sun, 3 Dec 2023 08:09:01 -0800
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <20231203-mountable-snowsuit-24e4252c9eb5@spud>
+References: <20231130-bobbing-valid-b97f26fe8edc@spud> <CAJM55Z9=smqcZ=su1oNdk1YZL_XdYAKrwtrZS7ScS=cAVmxZOA@mail.gmail.com>
+ <20231203-mountable-snowsuit-24e4252c9eb5@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/5] ARM: dts: rockchip: Add power-controller for
- RK3128
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
- Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh+dt@kernel.org>
-Cc: Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-pm@vger.kernel.org
-References: <20231202125144.66052-1-knaerzche@gmail.com>
- <6926340.F8r316W7xa@diego> <7a6eed43-477a-48a4-bd64-4528da920ffd@gmail.com>
- <4891026.6YUMPnJmAY@diego>
-Content-Language: en-US
-From: Alex Bee <knaerzche@gmail.com>
-In-Reply-To: <4891026.6YUMPnJmAY@diego>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+Date: Sun, 3 Dec 2023 08:09:00 -0800
+Message-ID: <CAJM55Z-cb=0X2xToKnEwmqMkBSZkQ-kjAZyoGo1AY=edTLvxew@mail.gmail.com>
+Subject: Re: [PATCH v1] riscv: dts: starfive: move timebase-frequency to .dtsi
+To: Conor Dooley <conor@kernel.org>, 
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc: linux-riscv@lists.infradead.org, Conor Dooley <conor.dooley@microchip.com>, 
+	Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Walker Chen <walker.chen@starfivetech.com>, JeeHeng Sia <jeeheng.sia@starfivetech.com>, 
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Heiko,
-
-Am 02.12.23 um 18:46 schrieb Heiko Stübner:
-> Hi Alex,
+Conor Dooley wrote:
+> On Fri, Dec 01, 2023 at 02:44:58PM +0100, Emil Renner Berthing wrote:
+> > Conor Dooley wrote:
+> > > From: Conor Dooley <conor.dooley@microchip.com>
+> > >
+> > > Properties fixed by the SoC should be defined in the $soc.dtsi, and the
+> > > timebase-frequency is not sourced directly from an off-chip oscillator.
+> >
+> > Yes, according to the JH7100 docs[1] the mtime register is sourced from the
+> > osc_sys external oscillator through u74rtc_toggle. However I haven't yet found
+> > a place in the docs that describe where that clock is divided by 4 to get
+> > 6.25MHz from the 25MHz.
+> >
+> > I expect the JH7110 mtime is set up in a similar way, but haven't yet dug into
+> > the available documentation.
 >
-> Am Samstag, 2. Dezember 2023, 17:36:15 CET schrieb Alex Bee:
->> Am 02.12.23 um 16:51 schrieb Heiko Stübner:
->>> Am Samstag, 2. Dezember 2023, 13:51:41 CET schrieb Alex Bee:
->>>> Add power controller and qos nodes for RK3128 in order to use
->>>> them as powerdomains.
->>> does the power-domain controller work with the incomplete set of
->>> pm-domains too?
->> Yes, it does - the missing domains can request idle only and can't be
->> powered on/off - if no one requests idle they are just up all the time.
->>
->>> What I have in mind is
->>> - adding the power-controller node with the existing set of power-domains
->>> - the gpu pm-domain is in there
->>> - adding the gpu parts
->> My main concern about adding them later was the change of the ABI after
->> they've been exposed in the SoC DT. If that's not an issue - sure: I can
->> add them in a separate series.
-> An ABI change would be _changing_ the domain-ids in the rk3128-power.h
-> I think :-) .
-Well, an addition is still a change.
-> Right now the existing domain ids in the header are already exposed to the
-> world, so someone could already use them, but not the new ones.
+> Your other reply suggests that this is a fixed division for the jh7110,
+> in which case it makes sense to leave it as-is. mpfs is different in
+> that it is fixed to 1 MHz regardless of which of the permitted external
+> oscillator frequencies you use.
 
-I'm fully aware that nothing would ever hard fail anywhere if the new 
-domain ids get added later.
+This is what I've found for the JH7100:
 
-Nevertheless we start using here an ABI which is known to be incomplete. 
-For no reason, as the patches (which I am now asked to remove from this 
-series) for completion are already there (here).
+osc_sys (25MHz) -> u74rtc_toggle (gate) -> ? (div 4) -> mtime
 
-Anyway, if you prefer it this way: I'm pleased to do so.
+The divide by 4 is not in the regular clock tree, so if it is configurable it
+must be some bits hidden in the syscon area or something. The only restriction
+I've found in the docs is that it must be strictly less than half the rate of
+the core clock.
 
-Alex
+For the JH7110 it goes:
 
->
-> Heiko
->
->>> And a second series with
->>> - patch1 from here
->>> - a dts patch adding the additional pm-domains to rk3128.dtsi
->>> - I guess patch1 also should be split into a patch adding the binding-ids
->>>     and a separate patch for the code addition.
->> Yeah, I noticed this also :)
->>
->> Regards,
->>
->> Alex
->>
->>>
->>> Heiko
->>>
->>>> Signed-off-by: Alex Bee <knaerzche@gmail.com>
->>>> ---
->>>>    arch/arm/boot/dts/rockchip/rk3128.dtsi | 101 +++++++++++++++++++++++++
->>>>    1 file changed, 101 insertions(+)
->>>>
->>>> diff --git a/arch/arm/boot/dts/rockchip/rk3128.dtsi b/arch/arm/boot/dts/rockchip/rk3128.dtsi
->>>> index 4e8b38604ecd..b72905db04f7 100644
->>>> --- a/arch/arm/boot/dts/rockchip/rk3128.dtsi
->>>> +++ b/arch/arm/boot/dts/rockchip/rk3128.dtsi
->>>> @@ -8,6 +8,7 @@
->>>>    #include <dt-bindings/interrupt-controller/arm-gic.h>
->>>>    #include <dt-bindings/interrupt-controller/irq.h>
->>>>    #include <dt-bindings/pinctrl/rockchip.h>
->>>> +#include <dt-bindings/power/rk3128-power.h>
->>>>    
->>>>    / {
->>>>    	compatible = "rockchip,rk3128";
->>>> @@ -133,6 +134,106 @@ smp-sram@0 {
->>>>    	pmu: syscon@100a0000 {
->>>>    		compatible = "rockchip,rk3128-pmu", "syscon", "simple-mfd";
->>>>    		reg = <0x100a0000 0x1000>;
->>>> +
->>>> +		power: power-controller {
->>>> +			compatible = "rockchip,rk3128-power-controller";
->>>> +			#power-domain-cells = <1>;
->>>> +			#address-cells = <1>;
->>>> +			#size-cells = <0>;
->>>> +
->>>> +			power-domain@RK3128_PD_VIO {
->>>> +				reg = <RK3128_PD_VIO>;
->>>> +				clocks = <&cru ACLK_CIF>,
->>>> +					 <&cru HCLK_CIF>,
->>>> +					 <&cru DCLK_EBC>,
->>>> +					 <&cru HCLK_EBC>,
->>>> +					 <&cru ACLK_IEP>,
->>>> +					 <&cru HCLK_IEP>,
->>>> +					 <&cru ACLK_LCDC0>,
->>>> +					 <&cru HCLK_LCDC0>,
->>>> +					 <&cru PCLK_MIPI>,
->>>> +					 <&cru ACLK_RGA>,
->>>> +					 <&cru HCLK_RGA>,
->>>> +					 <&cru ACLK_VIO0>,
->>>> +					 <&cru ACLK_VIO1>,
->>>> +					 <&cru HCLK_VIO>,
->>>> +					 <&cru HCLK_VIO_H2P>,
->>>> +					 <&cru DCLK_VOP>,
->>>> +					 <&cru SCLK_VOP>;
->>>> +				pm_qos = <&qos_ebc>,
->>>> +					 <&qos_iep>,
->>>> +					 <&qos_lcdc>,
->>>> +					 <&qos_rga>,
->>>> +					 <&qos_vip>;
->>>> +				#power-domain-cells = <0>;
->>>> +			};
->>>> +
->>>> +			power-domain@RK3128_PD_VIDEO {
->>>> +				reg = <RK3128_PD_VIDEO>;
->>>> +				clocks = <&cru ACLK_VDPU>,
->>>> +					 <&cru HCLK_VDPU>,
->>>> +					 <&cru ACLK_VEPU>,
->>>> +					 <&cru HCLK_VEPU>,
->>>> +					 <&cru SCLK_HEVC_CORE>;
->>>> +				pm_qos = <&qos_vpu>;
->>>> +				#power-domain-cells = <0>;
->>>> +			};
->>>> +
->>>> +			power-domain@RK3128_PD_GPU {
->>>> +				reg = <RK3128_PD_GPU>;
->>>> +				clocks = <&cru ACLK_GPU>;
->>>> +				pm_qos = <&qos_gpu>;
->>>> +				#power-domain-cells = <0>;
->>>> +			};
->>>> +
->>>> +			power-domain@RK3128_PD_CRYPTO {
->>>> +				reg = <RK3128_PD_CRYPTO>;
->>>> +				clocks = <&cru HCLK_CRYPTO>,
->>>> +					 <&cru SCLK_CRYPTO>;
->>>> +				pm_qos = <&qos_crypto>;
->>>> +				#power-domain-cells = <0>;
->>>> +			};
->>>> +		};
->>>> +	};
->>>> +
->>>> +	qos_crypto: qos@10128080 {
->>>> +		compatible = "rockchip,rk3128-qos", "syscon";
->>>> +		reg = <0x10128080 0x20>;
->>>> +	};
->>>> +
->>>> +	qos_gpu: qos@1012d000 {
->>>> +		compatible = "rockchip,rk3128-qos", "syscon";
->>>> +		reg = <0x1012d000 0x20>;
->>>> +	};
->>>> +
->>>> +	qos_vpu: qos@1012e000 {
->>>> +		compatible = "rockchip,rk3128-qos", "syscon";
->>>> +		reg = <0x1012e000 0x20>;
->>>> +	};
->>>> +
->>>> +	qos_rga: qos@1012f000 {
->>>> +		compatible = "rockchip,rk3128-qos", "syscon";
->>>> +		reg = <0x1012f000 0x20>;
->>>> +	};
->>>> +
->>>> +	qos_ebc: qos@1012f080 {
->>>> +		compatible = "rockchip,rk3128-qos", "syscon";
->>>> +		reg = <0x1012f080 0x20>;
->>>> +	};
->>>> +
->>>> +	qos_iep: qos@1012f100 {
->>>> +		compatible = "rockchip,rk3128-qos", "syscon";
->>>> +		reg = <0x1012f100 0x20>;
->>>> +	};
->>>> +
->>>> +	qos_lcdc: qos@1012f180 {
->>>> +		compatible = "rockchip,rk3128-qos", "syscon";
->>>> +		reg = <0x1012f180 0x20>;
->>>> +	};
->>>> +
->>>> +	qos_vip: qos@1012f200 {
->>>> +		compatible = "rockchip,rk3128-qos", "syscon";
->>>> +		reg = <0x1012f200 0x20>;
->>>>    	};
->>>>    
->>>>    	gic: interrupt-controller@10139000 {
->>>>
->>>
->>>
->
->
->
+osc (24MHz) -> rtc_toggle (div N) -> mtime
+
+..where N defaults to 6 and this is also the maximum N.
+
+/Emil
 
