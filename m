@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-21107-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21108-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FFC480257E
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 17:32:56 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7049802581
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 17:33:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EC28D1C2092E
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 16:32:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2EFC8B209A0
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 16:33:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 941042CA9;
-	Sun,  3 Dec 2023 16:32:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDB1714262;
+	Sun,  3 Dec 2023 16:33:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nAfqwfs8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="X0ZqQTff"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D5E4C1
-	for <devicetree@vger.kernel.org>; Sun,  3 Dec 2023 08:32:48 -0800 (PST)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-a18c001f305so433569666b.3
-        for <devicetree@vger.kernel.org>; Sun, 03 Dec 2023 08:32:48 -0800 (PST)
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EADAAE8
+	for <devicetree@vger.kernel.org>; Sun,  3 Dec 2023 08:33:47 -0800 (PST)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-a1b03886fd7so92258066b.2
+        for <devicetree@vger.kernel.org>; Sun, 03 Dec 2023 08:33:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701621167; x=1702225967; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Sw/OQA/5t6AP/KeqDlpGdFAhMqoZGJl2vX8fKi94LXU=;
-        b=nAfqwfs8MQK1I4pvaUhBBCP+93hW3kJE11Nm3j7Xu40Iv1VoAErnlhjoCYQKer9COW
-         ZnJo2mv15Pls4pt3Sm0ekK52bjFOuFHbssZtuZZTuWN9DjunwNE+G72U7Thu5v74dl8r
-         NS1wHYOGdBMfPFVuobeRh0lwjgLvbpOcKiVaU0GZ2pq70CTBVswN+/1gCaH0miSOfKdA
-         2GyoxK2Xf/P7YiPozIenOFp+uw1tIl1GRKvKu7quY9ZcJygr6xCPiIzKWb5Q24bIEQh/
-         YOIV1lI3vKIehvkljOVsXTjAmZtoHaYcx620p3z/nnWgB8Pivr9noQWOUcgtYT7VWykf
-         zw7A==
+        d=linaro.org; s=google; t=1701621226; x=1702226026; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=LD4myhxFv1aMiSYLqC9ASJD82XriEC9rJCJ/sLaBe4E=;
+        b=X0ZqQTffpaM9SJBceY6UfPdVbXUrB4a2NUZ9NP4T+cfsVtYiyns8D/KZvYIbBmXsUc
+         C4g5X9VIrEpkQ/vDXTHZXf06XtWsdEmH0bHcD9zixGuy/WGEnRfL5PBRSbHFTFUR+GB8
+         kQFQNR7QUOfhIeh2i4Thqvu59PmnKmsSU9NKwUbVKZ/xLaPJHO2FYmbKAd98czDmFZCt
+         5CUNjcz6g2vhnGM5b6EwscoSh9S+cKq0dyJxKhSbGoZ8hu3byMDo5A+u5v1AlFrgHpSh
+         tFEzhIcguK8uZw5CWl3nRHCMFbGYiDq+0R+AH2irke3UziVyc3RXwBjC0pPJ0u+l9PX0
+         dDuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701621167; x=1702225967;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Sw/OQA/5t6AP/KeqDlpGdFAhMqoZGJl2vX8fKi94LXU=;
-        b=w/my2AmAB4tQO7IAFpjN3GxwKdb5uBUIqeOJStTDS+/6R8pY8FmQ0geI84KhQMSnwZ
-         sLqzyegmgy1M6NVOkEujY9cCbm9PD2V2e9ZbZOebkRZCqv+pTcfN41qXIX7hkuWxdwB6
-         +5FJ7y8SEDxOo4NBpzZt51B1b7TAbP5j+rQr33dbEjWxl1PvV6uNeh/WNiZYyQ7DUpJT
-         kS3VnpNJ4a6l0aSF7bSTdUJzalLq0zBK6tXRSNIJe6Wi/p9q4VgmWCG3iYt5RWj3l92F
-         u4sYgjMO/EJJzACQR2RE9CZs/+NaotzB+POKuiFGmcSVXH936aZiZlD4XdkXdKEbKYdF
-         F4RQ==
-X-Gm-Message-State: AOJu0Ywz6j+nojz0ThvGrWMwjJbAlLgSpZtyOPRpfzSoZmh5tHiU/wZK
-	w2KqSdhDNYkHu7eyy6+YWWUSqQ==
-X-Google-Smtp-Source: AGHT+IHjA/HMIhhyEKsOHbobGNaz9KME19V31MweRQNO8YK9nStfhzc+UWVv7xi30wuwZAIx8as8nA==
-X-Received: by 2002:a17:907:7618:b0:a12:5e2e:d27a with SMTP id jx24-20020a170907761800b00a125e2ed27amr3353041ejc.0.1701621166676;
-        Sun, 03 Dec 2023 08:32:46 -0800 (PST)
+        d=1e100.net; s=20230601; t=1701621226; x=1702226026;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=LD4myhxFv1aMiSYLqC9ASJD82XriEC9rJCJ/sLaBe4E=;
+        b=Nt8j3KXnEluFeHk7/zqsO7sx4pj7B4N6UGYAfW3pIL+fZOZf8vWHeEC+A17N43k+1/
+         5VXK5lCnxQVe5smdNcCNcYMlWZCzlEVOf0JTkQFRQo0m5IA0Qt6MmI9vwAOG/jG42H9I
+         VtoJ05qCJTHoOxTDWzXZ4GI3JgnWkDHmVp5IQmAfweYhHws4n9nA33kM2gZEWeWfGR4a
+         gMIPron2oz7OiLw9mXuCTyYYgncPFuStJsjtD6nCQGtsC0QCfijNRhgP143k+sm9HAKe
+         wWD5TfC/8cKOA84tVSF2GvzDQdwEzRknr7tpJjjmgcBYGf8YZWQmlM1MOLPiWUuxRMuP
+         zUjQ==
+X-Gm-Message-State: AOJu0YwqSa/CSdJx7BxEq6cUYAIZWpeJQ/LoYmaaUrLwr3pg7tnlRE3K
+	9rq7H08KmEMtlOVHAL9MV4ukCg==
+X-Google-Smtp-Source: AGHT+IEjCXRFvxlwnxceMKE2GE6drMxM44wMjN7pXLKY3+/LRfLHMDr/GphB3Wr78M5SjmKWRxMUNA==
+X-Received: by 2002:a17:906:1c6:b0:a19:a1ba:da48 with SMTP id 6-20020a17090601c600b00a19a1bada48mr2725900ejj.111.1701621226338;
+        Sun, 03 Dec 2023 08:33:46 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id sa12-20020a1709076d0c00b009fd585a2155sm4272210ejc.0.2023.12.03.08.32.44
+        by smtp.gmail.com with ESMTPSA id sa12-20020a1709076d0c00b009fd585a2155sm4272210ejc.0.2023.12.03.08.33.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 03 Dec 2023 08:32:46 -0800 (PST)
-Message-ID: <5134d2c7-b499-400d-bec8-ae0de1eff7db@linaro.org>
-Date: Sun, 3 Dec 2023 17:32:42 +0100
+        Sun, 03 Dec 2023 08:33:45 -0800 (PST)
+Message-ID: <6f4f7903-c112-428b-8082-a8eca7c5981d@linaro.org>
+Date: Sun, 3 Dec 2023 17:33:43 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,23 +62,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/6] dt-bindings: interrupt-controller: Add support for
- Realtek DHC SoCs
-To: =?UTF-8?B?SmFtZXMgVGFpIFvmiLTlv5fls7Bd?= <james.tai@realtek.com>,
- Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20231117162709.1096585-1-james.tai@realtek.com>
- <20231117162709.1096585-2-james.tai@realtek.com>
- <c3a98e2c-ba62-4798-a0d0-a8bc1fe5bb6b@linaro.org>
- <7959920acf004f3cb8072de1e17439fa@realtek.com>
- <e1490203387d4c48a5f8c4040ece038a@realtek.com>
- <6250c57b-6d38-4085-9a79-58e4e5ed1e3d@linaro.org>
- <cf2f9fd124514cb9832e942e16b8fa6e@realtek.com>
+Subject: Re: [PATCH v2 1/1] arm64: dts: qcom: ipq6018: fix clock rates for
+ GCC_USB0_MOCK_UTMI_CLK
 Content-Language: en-US
+To: Chukun Pan <amadeus@jmu.edu.cn>, Bjorn Andersson <andersson@kernel.org>
+Cc: Andy Gross <agross@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20231203154030.532880-1-amadeus@jmu.edu.cn>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -125,42 +117,18 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <cf2f9fd124514cb9832e942e16b8fa6e@realtek.com>
+In-Reply-To: <20231203154030.532880-1-amadeus@jmu.edu.cn>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 03/12/2023 16:56, James Tai [戴志峰] wrote:
->>>>>> +  interrupts-extended:
->>>>>
->>>>> interrupts instead.
->>>>>
->>>>> Anyway, you must describe the items. Why this is not fixed but flexible?
->>>>> Hardware has different number of pins? That's unlikely.
->>>>>
->>>> I will replace it with 'interrupts'. Since our Interrupt controller
->>>> architecture doesn't involve multiple interrupt sources, using 'interrupts'
->> should suffice.
->>>>
->>>
->>> Due to changes in hardware design, some peripheral interrupts pin initially
->> connected to the Realtek interrupt controller were redirected to the GIC.
->>> However, the associated fields and statuses in the Realtek interrupt controller
->> registers were not removed.
->>> As a result, these interrupts cannot be cleared by peripheral register, and their
->> status clearing is still needing the Realtek interrupt controller driver to manage.
->>>
->>> That's why flexibility is necessary.
->>
->> This does not explain why this is not fixed per variant.
->>
+On 03/12/2023 16:40, Chukun Pan wrote:
+> The clock provided by XO is 24MHz, not 20MHz.
+
+That does not look like XO, but GCC_USB0_MOCK_UTMI_CLK
+
 > 
-> Does the definition of "fixed" you mentioned refer to fixed interrupt pins? If not, could you please give me an example and let me know what you mean by "fixed"?
-
-Number of the interrupts per each device or variant should be strictly
-defined, not variable.
-
-Please wrap your emails according to mail netiquette.
-
+> Fixes: 5726079cd486 ("arm64: dts: ipq6018: Use reference clock to set dwc3 period")
+> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
 Best regards,
 Krzysztof
 
