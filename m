@@ -1,54 +1,55 @@
-Return-Path: <devicetree+bounces-21053-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21054-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 666878022A3
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 12:11:20 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 289C98022AB
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 12:19:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7229B280E40
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 11:11:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AE3B5B209CB
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 11:19:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D43D9463;
-	Sun,  3 Dec 2023 11:11:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAC629464;
+	Sun,  3 Dec 2023 11:19:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B86yJ4rl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jNmBJZNv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B3A68833;
-	Sun,  3 Dec 2023 11:11:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 291DBC433C8;
-	Sun,  3 Dec 2023 11:11:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A245A8833;
+	Sun,  3 Dec 2023 11:19:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63A2DC433C8;
+	Sun,  3 Dec 2023 11:19:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701601874;
-	bh=axh+C9i/WNo7QI5/h/RxNR+LYbThXfmZV9VO9RE6NdA=;
+	s=k20201202; t=1701602375;
+	bh=khbZlB+CudlpWOtcypC7aIzJI1JQViaEerLoXBkjgWQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=B86yJ4rlMvJqKKKzAoiG/uY7bChF3LIFDp+Jky7dRuI5bXLSdWt6rJB1FONIy39h7
-	 IdDSVMVpA4t/4UaKHCmKPWqJDsMJ4Dv5s4eJ10cSiifucZhIhct627XNj1UvYNvlDw
-	 V6aOm1o3R126GZ741cf6q6k/CU5L+xE7nJ0ayQ9ABncUhH4LcJrfrEo/FIrfnDQsKw
-	 MaeIHVcuCgGAgQ61mxMu9tNsVF0jDEBPcQ5IEjk6tC8kE28tw7oYae8ADHm0h+PapQ
-	 pmdr92cTLegEiJbUq6jHqNSd5j92K83b71mk+fnlmYSx5GHLPDbF9aN4624CYzbn+l
-	 mPHofHmZENduw==
-Date: Sun, 3 Dec 2023 11:11:09 +0000
+	b=jNmBJZNvjRJCnN+ObC8oLMUvyhaVt+0R8AseNwAN+iRBv99qvZeOI5D3CLwYyBTeh
+	 cyPIuheJ9y1AxJv2ArZyfzVggoM+ipgiEP/QW82jYbzQJQ0qnLEs7uEAEnqoEk8lRb
+	 V24AlYKPLAwcmAiQadAxTNx3wQvxfK3PDCz2uLyBiXA1krhcWSkc1+YBpUEIFs0Qcm
+	 XRKOmTVe+rePAA/R/yQd/W49W94uF2BRpaF6G8yYh/tagnNCPf711ENN8oJWVyUklk
+	 av0Y3/sDQjZyCRs1hn4AL9VNio5GtZ5R0bGo9R53BPMEI9NY0Ba+huHD+H7OIjRz7A
+	 MkuYtYlpPmi/A==
+Date: Sun, 3 Dec 2023 11:19:30 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Stefan Wahren <wahrenst@gmx.net>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+To: Karel Balej <karelb@gimli.ms.mff.cuni.cz>
+Cc: Markuss Broks <markuss.broks@gmail.com>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Mathias Nyman <mathias.nyman@intel.com>,
-	bcm-kernel-feedback-list@broadcom.com,
-	Cyril Brulebois <kibi@debian.org>, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH V3 1/3] dt-bindings: usb: xhci: add support for BCM2711
-Message-ID: <20231203-traffic-aide-cb03afdb3546@spud>
-References: <20231202232217.89652-1-wahrenst@gmx.net>
- <20231202232217.89652-2-wahrenst@gmx.net>
- <20231203-chair-zen-afb8b280ca2f@spud>
+	Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+	Karel Balej <balejk@matfyz.cz>
+Subject: Re: [PATCH v3 4/5] dt-bindings: input/touchscreen: imagis: add
+ compatible for IST3032C
+Message-ID: <20231203-mundane-riches-b6e4ef157384@spud>
+References: <20231202125948.10345-1-karelb@gimli.ms.mff.cuni.cz>
+ <20231202125948.10345-5-karelb@gimli.ms.mff.cuni.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,113 +57,65 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Oqdw2jwLt/x//D/T"
+	protocol="application/pgp-signature"; boundary="BTVe8SmajlARbciW"
 Content-Disposition: inline
-In-Reply-To: <20231203-chair-zen-afb8b280ca2f@spud>
+In-Reply-To: <20231202125948.10345-5-karelb@gimli.ms.mff.cuni.cz>
 
 
---Oqdw2jwLt/x//D/T
+--BTVe8SmajlARbciW
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, Dec 03, 2023 at 11:06:43AM +0000, Conor Dooley wrote:
-> On Sun, Dec 03, 2023 at 12:22:15AM +0100, Stefan Wahren wrote:
-> > The xHCI IP on the BCM2711 SoC is compatible to "brcm,xhci-brcm-v2",
-> > but also requires a power domain.
-Hmm
-This & the driver change makes it look like your compatible setup should
-be `compatible =3D "brcm,bcm2711-xhci", "brcm,xhci-brcm-v2";.
-If the pattern in this patch was repeated, we'd have to modify the
-driver like your 2nd patch does for each and new broadcom system that
-needs the power domain.
-
-
-> > So introduce a new compatible
-> > and the specific constraints. Since the key allOf can only occur
-> > once, merge the reference below.
-> >=20
-> > Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
+On Sat, Dec 02, 2023 at 01:48:35PM +0100, Karel Balej wrote:
+> From: Karel Balej <balejk@matfyz.cz>
 >=20
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> Document possible usage of the Imagis driver with the IST3032C
+> touchscreen.
+
+Please leave mention of the driver out of the binding patch (we deal
+only with the hardware here) and instead describe what is incompatibly
+different between these two devices.
+
+Thanks,
+Conor.
+
 >=20
-> Cheers,
-> Conor.
+> Signed-off-by: Karel Balej <balejk@matfyz.cz>
+> ---
+>  .../devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml   | 1 +
+>  1 file changed, 1 insertion(+)
 >=20
-> > ---
-> >  .../devicetree/bindings/usb/generic-xhci.yaml | 21 ++++++++++++++++---
-> >  1 file changed, 18 insertions(+), 3 deletions(-)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/usb/generic-xhci.yaml b/=
-Documentation/devicetree/bindings/usb/generic-xhci.yaml
-> > index 594ebb3ee432..b6e10b0a3c24 100644
-> > --- a/Documentation/devicetree/bindings/usb/generic-xhci.yaml
-> > +++ b/Documentation/devicetree/bindings/usb/generic-xhci.yaml
-> > @@ -9,9 +9,6 @@ title: USB xHCI Controller
-> >  maintainers:
-> >    - Mathias Nyman <mathias.nyman@intel.com>
-> >=20
-> > -allOf:
-> > -  - $ref: usb-xhci.yaml#
-> > -
-> >  properties:
-> >    compatible:
-> >      oneOf:
-> > @@ -28,6 +25,7 @@ properties:
-> >        - description: Broadcom STB SoCs with xHCI
-> >          enum:
-> >            - brcm,xhci-brcm-v2
-> > +          - brcm,bcm2711-xhci
-> >            - brcm,bcm7445-xhci
-> >        - description: Generic xHCI device
-> >          const: xhci-platform
-> > @@ -49,6 +47,9 @@ properties:
-> >        - const: core
-> >        - const: reg
-> >=20
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> >  unevaluatedProperties: false
-> >=20
-> >  required:
-> > @@ -56,6 +57,20 @@ required:
-> >    - reg
-> >    - interrupts
-> >=20
-> > +allOf:
-> > +  - $ref: usb-xhci.yaml#
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: brcm,bcm2711-xhci
-> > +    then:
-> > +      required:
-> > +        - power-domains
-> > +    else:
-> > +      properties:
-> > +        power-domains: false
-> > +
-> >  examples:
-> >    - |
-> >      usb@f0931000 {
-> > --
-> > 2.34.1
-> >=20
+> diff --git a/Documentation/devicetree/bindings/input/touchscreen/imagis,i=
+st3038c.yaml b/Documentation/devicetree/bindings/input/touchscreen/imagis,i=
+st3038c.yaml
+> index b5372c4eae56..2af71cbcc97d 100644
+> --- a/Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c=
+=2Eyaml
+> +++ b/Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c=
+=2Eyaml
+> @@ -18,6 +18,7 @@ properties:
+> =20
+>    compatible:
+>      enum:
+> +      - imagis,ist3032c
+>        - imagis,ist3038b
+>        - imagis,ist3038c
+> =20
+> --=20
+> 2.43.0
+>=20
 
-
-
---Oqdw2jwLt/x//D/T
+--BTVe8SmajlARbciW
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWxiTQAKCRB4tDGHoIJi
-0pwvAP0ftjAqzLu/r6pNoYYAYQs5oTugu3kN3GmT+drnPNAU4QD/RRZ8W6M+gRsw
-4hzlTOnZ7h1U7vo+cBsICs9eV3qTuwI=
-=AR0B
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWxkQQAKCRB4tDGHoIJi
+0uU4AQDTvFOKjE2bh6MzjfwEJnPy0DVF+pBxGiHPa9Xd1r4gMwEAyprc91Hn2MfG
+eWzTwFa8NMflUIYdHWmrAXPq84fGVA8=
+=7rqZ
 -----END PGP SIGNATURE-----
 
---Oqdw2jwLt/x//D/T--
+--BTVe8SmajlARbciW--
 
