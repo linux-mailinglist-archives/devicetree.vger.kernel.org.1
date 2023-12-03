@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-21112-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21113-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8948C80259C
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 17:44:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A46E80259E
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 17:46:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2F7131F21128
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 16:44:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B99B1F20FB1
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 16:46:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 824AA15AC6;
-	Sun,  3 Dec 2023 16:44:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60B23156E1;
+	Sun,  3 Dec 2023 16:46:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KGqfhvn8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cjP2lNeR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 475C0FE
-	for <devicetree@vger.kernel.org>; Sun,  3 Dec 2023 08:44:00 -0800 (PST)
-Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2c9d0d327d6so42805291fa.1
-        for <devicetree@vger.kernel.org>; Sun, 03 Dec 2023 08:44:00 -0800 (PST)
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D17FD9
+	for <devicetree@vger.kernel.org>; Sun,  3 Dec 2023 08:46:20 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-54ccd715bb9so218578a12.2
+        for <devicetree@vger.kernel.org>; Sun, 03 Dec 2023 08:46:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701621838; x=1702226638; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701621979; x=1702226779; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=mYe4UchOTOmx+IhhiWhl7PSA8a9tRcASEzVNEwAW0C4=;
-        b=KGqfhvn8GMFFoXJLKX4FqeGcXHDz5iKLlZQLhOkjJgLXw6WCa1cwUEH22XSLR0v7Nj
-         M1zH0Sf2GW0NuDiF3YO+5gAv/VgZf0uZc1mFv/s73rxX/8hZjHVXP0eMEkZ5GYduvHtl
-         lZKZF3HpuA1wuzBvyqXgzfT9863rLeStTiXHx6mKaxXZ0Pr1XSc2jwp+3jABaLQMN2u5
-         MH6ja4s48+7DP8LJhT5aTF7k3eEVCcw3II3+2TXAuFHbDr87IRqRN6EcrOzmioSR0dJH
-         5dCRHHpepuE5ueNdrQTyp7vb+35799+e9qoeebDwuFI0NN4tiSObHHt6+9J5v2KrKmHF
-         DAkw==
+        bh=FjnVGzR8z11f9xYM+Th1CV1Wf34G9BPeVe7HV0Px++c=;
+        b=cjP2lNeRjLDUr6Iarq2KY6K1wfTybsSw2C6h2cv0C4qvjmRMLag1O2RQtxxlZAd5CZ
+         CfHeHnafdOuaPFTf7Lmo9ertfscMysyxErMIOq5Db3vkcVjfUEoMx0eeioRnYzACmXAs
+         6hJh36spCTyjmMrGN1+lSrFdRez3v/I7wgUSxb8QIrTFRjWizTfpP4xBZAukwFwsT1GP
+         JMeB2eqzC6t84VVfH3baVJDfUZD3OOOTeL7UAsMW8hgw5pIb3qcAizrTF7njT4FAUbBI
+         a4INsaN5jUfH0WnXO011TyJyAttAn9DPGujOTY3SgIP4Gk4/GsRdqgscZmNzWYiPqN3d
+         Rsdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701621838; x=1702226638;
+        d=1e100.net; s=20230601; t=1701621979; x=1702226779;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mYe4UchOTOmx+IhhiWhl7PSA8a9tRcASEzVNEwAW0C4=;
-        b=Cs0L6UhrduNi1bTrEw5KZ3W5utfNKnp8IVM9XTYztxhNl6D1cISg8Xz5p8Zoo+8S61
-         5aMmB6a1HjElxwB7Q2/ERczPtJF8WVR/rQ81zKtuGJ9vTa2NzTdegyP05zSLNFXlKoYu
-         oxezpNp45LuIPXxTd9+ZixSeVEACQW7erFKk0anxJxzjDYXas7bTO8gd0JDRTWHwxMRq
-         FAsEm+sGeI+rZNDQOr0yQzhGevkjzjBZLHegKX6LU45KQ7Lmf/WpIzaMnC4UeDvkG0hk
-         XTo/odf2QJ7GTXNpkPs0MAxfav3YPpuREsQtUk0FnMq59Hvd13/n4DSK2qt7rVFXbPFQ
-         +vmA==
-X-Gm-Message-State: AOJu0YxyWYtFmso+xPIhEPLNoei3coMeOh0J8bBtn85bwgh5emV1GFtJ
-	IRMNr+eOJNb+1qBIaIFYic4keQ==
-X-Google-Smtp-Source: AGHT+IGV61Jaz37aBiVe7xImrwL2VardAEpYityQQUDantYExUbIq8oWHSX9zBc+oS4/HPYq058png==
-X-Received: by 2002:a2e:9911:0:b0:2c9:fd89:8099 with SMTP id v17-20020a2e9911000000b002c9fd898099mr308871lji.64.1701621838524;
-        Sun, 03 Dec 2023 08:43:58 -0800 (PST)
+        bh=FjnVGzR8z11f9xYM+Th1CV1Wf34G9BPeVe7HV0Px++c=;
+        b=dVYBkJ3aw0C7E9ZjTzqtdxznmVsRepmjXi0/tc2+PEzVdYYJBSkASNEjjys0p9h6C1
+         tAtX8XzhSA97VouGjfte0JXC0l/dAWwBYT/m8WfSLIA6uhf2JpAXK1Gn5iUZzNFHSFA8
+         7e9s9IMdlSZWl3DpXqgqFcafbIzE8hBe0N6mB2H4jcEm8J6yXgjoFvnQrorGcfPtBdhp
+         7BSvrg87kp34OyhQWC2GguFaXALmrtvm1zQwD0g4nW4Pcg/lyz/6XMwZ08zPcGQts7/8
+         wFUBXZ55FMJZ16L6T3cJt4UgsnszUOEPFDDRgBnzgmUfLu8kN4plzUz+G9MhsDi5/cgX
+         iHUQ==
+X-Gm-Message-State: AOJu0Yw4kFDr6ikZiBEd+rnP7U59F9kFLT6WwXBUNvOmjSCuBBPhNSsk
+	y+9MbAi/dkEZhyw5CyhrhIy28Q==
+X-Google-Smtp-Source: AGHT+IEgpsjt8lO05KrGI94IZRCTYxP/6GqdS0wbBw37q+ja0ZofX9l9rgy9P/TbZKtQ+ciHODRfiQ==
+X-Received: by 2002:a50:8745:0:b0:54c:4837:7587 with SMTP id 5-20020a508745000000b0054c48377587mr3040937edv.51.1701621979137;
+        Sun, 03 Dec 2023 08:46:19 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id pj21-20020a170906d79500b00a188fe9563esm4265046ejb.131.2023.12.03.08.43.57
+        by smtp.gmail.com with ESMTPSA id i26-20020a50d75a000000b0054c6a70a435sm2449068edj.44.2023.12.03.08.46.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 03 Dec 2023 08:43:57 -0800 (PST)
-Message-ID: <b1e6f756-bda4-43e8-a49d-5c46f2c9150c@linaro.org>
-Date: Sun, 3 Dec 2023 17:43:55 +0100
+        Sun, 03 Dec 2023 08:46:18 -0800 (PST)
+Message-ID: <01946883-e008-4b4c-8e2a-a73787ad9f23@linaro.org>
+Date: Sun, 3 Dec 2023 17:46:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,16 +62,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: serial: snps-dw-apb-uart: include rs485
- schema
+Subject: Re: [PATCH 1/2] dt-bindings: phy: realtek: Add Realtek DHC RTD SoC
+ PCIe PHY
 Content-Language: en-US
-To: Heiko Stuebner <heiko@sntech.de>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: gregkh@linuxfoundation.org, jirislaby@kernel.org,
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org, quentin.schulz@theobroma-systems.com,
- Heiko Stuebner <heiko.stuebner@cherry.de>
-References: <20231201140542.323564-1-heiko@sntech.de>
+To: Tzuyi Chang <tychang@realtek.com>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Stanley Chang <stanley_chang@realtek.com>
+References: <20231201105207.11786-1-tychang@realtek.com>
+ <20231201105207.11786-2-tychang@realtek.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -117,19 +118,47 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231201140542.323564-1-heiko@sntech.de>
+In-Reply-To: <20231201105207.11786-2-tychang@realtek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 01/12/2023 15:05, Heiko Stuebner wrote:
-> From: Heiko Stuebner <heiko.stuebner@cherry.de>
-> 
-> The dw-apb-uart also can emulate rs485, so include the rs485
-> schema to allow validating rs485 properties.
-> 
-> Signed-off-by: Heiko Stuebner <heiko.stuebner@cherry.de>
+On 01/12/2023 11:52, Tzuyi Chang wrote:
+> +  "#phy-cells":
+> +    const: 0
+> +
+> +  nvmem-cells:
+> +    maxItems: 1
+> +    description:
+> +      Phandle to nvmem cell that contains 'Tx swing trim'
+> +      tuning parameter value for PCIe phy.
+> +
+> +  nvmem-cell-names:
+> +    items:
+> +      - const: tx_swing_trim
+> +
+> +  realtek,pcie-syscon:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: phandle of syscon used to control PCIe MDIO register.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Why this does not have reg property but syscon? This looks hacky.
+
+Where is the DTS of your platform so we can verify the bindings? In the
+past Realtek bindings and DTS were sent without testing.
+> +
+> +required:
+> +  - compatible
+> +  - realtek,pcie-syscon
+> +  - "#phy-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    pcie1_phy {
+
+phy {
+
+
 
 Best regards,
 Krzysztof
