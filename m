@@ -1,55 +1,53 @@
-Return-Path: <devicetree+bounces-21051-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21052-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6850802299
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 12:04:05 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60E1C80229D
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 12:06:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E0E81B209EE
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 11:04:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D982AB209EA
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 11:06:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDB8F8F77;
-	Sun,  3 Dec 2023 11:03:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3900D8F77;
+	Sun,  3 Dec 2023 11:06:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kRgOQtlY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rkyYSH6I"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0DB68F5C
-	for <devicetree@vger.kernel.org>; Sun,  3 Dec 2023 11:03:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4313C433C7;
-	Sun,  3 Dec 2023 11:03:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 131548833;
+	Sun,  3 Dec 2023 11:06:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E26BC433C7;
+	Sun,  3 Dec 2023 11:06:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701601437;
-	bh=RL9hj4/npBVWsIIkeQ9nIijIaQvVjE1SR3pmSj6oEg8=;
+	s=k20201202; t=1701601608;
+	bh=/5uq1CQzGZNdHIzMtVGTpLPtK/zkbFq2U4Y9E9SBsWg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kRgOQtlY1EdSeAzCqTTGDvINRhqHIMsl8+LQeFZaNzcd/5G3CZAlbg+SOtS9kuIMv
-	 68YQgJfICsQHDs9pFWFtFwyUmm3Nae8OnqyIx+HkdZXP8KxoEmQdLJj4BK+wSvgzm5
-	 uSLa3Dyo+XY6EPvYNR7WSB0ZOWGtBK0d6ZodlAVj9fd1WLXUHVo3BgJs0Qq5Lyq+hY
-	 csPMxzR7YNBQiYIUf7jDrYeh2m1eGixPIPQDZCI67+UI49nEbxz7CHGj3x8K7dW9Q7
-	 id7NTjtXqaCvnU005DSuJPlRgnM4plT34q3XmH2A/94r74ekRCYG+X3/C5OZPhA59J
-	 Do5H20Z90k9ng==
-Date: Sun, 3 Dec 2023 11:03:52 +0000
+	b=rkyYSH6I1TjuHiJ74rtWQsfIJxV0uzfdA6Ob7W7X0plSVkwXYhHzzwjAd84Wrm7Ul
+	 VQjoFKEt0z1hJLkEPib7azSBcsq0lxj55L5UQd72OoeVLFD02Xrl4gxJpTFjawVDCo
+	 qkG2+w68ViEJveu426U6ni7OUMfZBX6lLunThsHeoYVR2Hqc5cXJpB9S1ZlaTJv8bX
+	 ieXDQRZ16QctF8K7P5xlMX+XcmZYoMXYQlx5z/EaKpzC6EWL25U9V1oIWNZCWtLdEe
+	 1/VR/GoB3uv32UPgzovS19xdARxslDhhBjCyWU4mO5HesrKwN1+bVzuyyaQpxpFIpr
+	 o0rf6Ro+HWdFw==
+Date: Sun, 3 Dec 2023 11:06:43 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc: linux-riscv@lists.infradead.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Emil Renner Berthing <kernel@esmil.dk>,
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Walker Chen <walker.chen@starfivetech.com>,
-	JeeHeng Sia <jeeheng.sia@starfivetech.com>,
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>
-Subject: Re: [PATCH v1] riscv: dts: starfive: move timebase-frequency to .dtsi
-Message-ID: <20231203-mountable-snowsuit-24e4252c9eb5@spud>
-References: <20231130-bobbing-valid-b97f26fe8edc@spud>
- <CAJM55Z9=smqcZ=su1oNdk1YZL_XdYAKrwtrZS7ScS=cAVmxZOA@mail.gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Mathias Nyman <mathias.nyman@intel.com>,
+	bcm-kernel-feedback-list@broadcom.com,
+	Cyril Brulebois <kibi@debian.org>, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH V3 1/3] dt-bindings: usb: xhci: add support for BCM2711
+Message-ID: <20231203-chair-zen-afb8b280ca2f@spud>
+References: <20231202232217.89652-1-wahrenst@gmx.net>
+ <20231202232217.89652-2-wahrenst@gmx.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,49 +55,101 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="gsgU8ZMzlqhOxgDu"
+	protocol="application/pgp-signature"; boundary="VQSfyViANYpZgCLE"
 Content-Disposition: inline
-In-Reply-To: <CAJM55Z9=smqcZ=su1oNdk1YZL_XdYAKrwtrZS7ScS=cAVmxZOA@mail.gmail.com>
+In-Reply-To: <20231202232217.89652-2-wahrenst@gmx.net>
 
 
---gsgU8ZMzlqhOxgDu
+--VQSfyViANYpZgCLE
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Dec 01, 2023 at 02:44:58PM +0100, Emil Renner Berthing wrote:
-> Conor Dooley wrote:
-> > From: Conor Dooley <conor.dooley@microchip.com>
-> >
-> > Properties fixed by the SoC should be defined in the $soc.dtsi, and the
-> > timebase-frequency is not sourced directly from an off-chip oscillator.
+On Sun, Dec 03, 2023 at 12:22:15AM +0100, Stefan Wahren wrote:
+> The xHCI IP on the BCM2711 SoC is compatible to "brcm,xhci-brcm-v2",
+> but also requires a power domain. So introduce a new compatible
+> and the specific constraints. Since the key allOf can only occur
+> once, merge the reference below.
 >=20
-> Yes, according to the JH7100 docs[1] the mtime register is sourced from t=
-he
-> osc_sys external oscillator through u74rtc_toggle. However I haven't yet =
-found
-> a place in the docs that describe where that clock is divided by 4 to get
-> 6.25MHz from the 25MHz.
+> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
+
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
+Conor.
+
+> ---
+>  .../devicetree/bindings/usb/generic-xhci.yaml | 21 ++++++++++++++++---
+>  1 file changed, 18 insertions(+), 3 deletions(-)
 >=20
-> I expect the JH7110 mtime is set up in a similar way, but haven't yet dug=
- into
-> the available documentation.
+> diff --git a/Documentation/devicetree/bindings/usb/generic-xhci.yaml b/Do=
+cumentation/devicetree/bindings/usb/generic-xhci.yaml
+> index 594ebb3ee432..b6e10b0a3c24 100644
+> --- a/Documentation/devicetree/bindings/usb/generic-xhci.yaml
+> +++ b/Documentation/devicetree/bindings/usb/generic-xhci.yaml
+> @@ -9,9 +9,6 @@ title: USB xHCI Controller
+>  maintainers:
+>    - Mathias Nyman <mathias.nyman@intel.com>
+>=20
+> -allOf:
+> -  - $ref: usb-xhci.yaml#
+> -
+>  properties:
+>    compatible:
+>      oneOf:
+> @@ -28,6 +25,7 @@ properties:
+>        - description: Broadcom STB SoCs with xHCI
+>          enum:
+>            - brcm,xhci-brcm-v2
+> +          - brcm,bcm2711-xhci
+>            - brcm,bcm7445-xhci
+>        - description: Generic xHCI device
+>          const: xhci-platform
+> @@ -49,6 +47,9 @@ properties:
+>        - const: core
+>        - const: reg
+>=20
+> +  power-domains:
+> +    maxItems: 1
+> +
+>  unevaluatedProperties: false
+>=20
+>  required:
+> @@ -56,6 +57,20 @@ required:
+>    - reg
+>    - interrupts
+>=20
+> +allOf:
+> +  - $ref: usb-xhci.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: brcm,bcm2711-xhci
+> +    then:
+> +      required:
+> +        - power-domains
+> +    else:
+> +      properties:
+> +        power-domains: false
+> +
+>  examples:
+>    - |
+>      usb@f0931000 {
+> --
+> 2.34.1
+>=20
 
-Your other reply suggests that this is a fixed division for the jh7110,
-in which case it makes sense to leave it as-is. mpfs is different in
-that it is fixed to 1 MHz regardless of which of the permitted external
-oscillator frequencies you use.
-
---gsgU8ZMzlqhOxgDu
+--VQSfyViANYpZgCLE
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWxgmAAKCRB4tDGHoIJi
-0sJtAP4pMEN4NONQarXTexQ+6rwQOXlXvIdECO8PYelODQxL6gD9EEx+82qjL5N0
-b/REnWOnOFlHnGcBijTAen08Qqc6uAA=
-=tfLH
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWxhQwAKCRB4tDGHoIJi
+0qf6AQCobUSsGXTH1WvP+u6hdLRn2l2UEqDOa6l6put5tg25ngD/dNggWg02qYbT
+V70cCDru9hnNGqh7AjNRoT99v0Zgdw0=
+=pn7t
 -----END PGP SIGNATURE-----
 
---gsgU8ZMzlqhOxgDu--
+--VQSfyViANYpZgCLE--
 
