@@ -1,191 +1,116 @@
-Return-Path: <devicetree+bounces-21150-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21153-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1543802874
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 23:38:42 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07AD6802880
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 23:46:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66C5D280D02
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 22:38:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 753B6B20842
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 22:46:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF131182BB;
-	Sun,  3 Dec 2023 22:38:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 137A818631;
+	Sun,  3 Dec 2023 22:46:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b="fgQGzSbl"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gspeQB1A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A11C3C8;
-	Sun,  3 Dec 2023 14:38:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=s1;
-	t=1701643113; bh=ZXImSee1040m6vOmaaU/BKx1+hi5aIqaEquWy17f6DE=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=fgQGzSblF9Yb28DXySBw5+lW01uS1JddYjg3NjXgZExpzYly9v1P1qF2ZecgwRe6a
-	 CcgZifnA+pFs2Qb9blRcZ+HcUScZOhngBvWLq6l7S/WbNoYHQJvaOC7A0GaYPaADjY
-	 2noswpiIFwY6fRmcZ3nD75dRJYKmCI/qV7T4uwFA=
-From: Luca Weiss <luca@z3ntu.xyz>
-Date: Sun, 03 Dec 2023 23:38:18 +0100
-Subject: [PATCH 2/2] ARM: dts: qcom: msm8226: Add CPU and SAW/ACC nodes
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31950D7;
+	Sun,  3 Dec 2023 14:46:32 -0800 (PST)
+Received: by mail-pl1-x62f.google.com with SMTP id d9443c01a7336-1d053c45897so22335125ad.2;
+        Sun, 03 Dec 2023 14:46:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701643591; x=1702248391; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=a9yYONdg2NO4nh9SwUqz66EGVIpRiF7l/11wqLgxgto=;
+        b=gspeQB1AC+E5jB06IJYpN81wo4NleeGNGWkMCS8by5aoyx9y9FP2TYHvI/R2ICS/oY
+         HTEE2d6+CtKj2da5k35a1KUmsTL/ljsdn9wmMavyrURAN/zswV+dNQh7JAA6+Atgj+wa
+         wfdGDVwgH20+6c5adcG83KdbqyBvOnwMJrhcSDBbxj5Bhi352eOj62Fxi6+8oHc3Y3l9
+         n9l/vxIXtHKjW4WNM2SIJrj//px+uIwMCxK3GWs6/McC+DRWQraqGgjqtd21HdvdsXfJ
+         a6sZ+/RuZTMpI4UWDNZ2xtBGEWScxADuM6HU2wtk6MyVYNyM9pNxjHjG0F5siUXrQyuV
+         QZHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701643591; x=1702248391;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=a9yYONdg2NO4nh9SwUqz66EGVIpRiF7l/11wqLgxgto=;
+        b=OPY6zQn7cS8YkXOy0BaaG5RsPwkgxVRAI2Yp3lz3ht4imLeYw3g8y9e6xHGFwDqO7H
+         6HWHZWRxiyOqGEDbZtUOYLWzPyJZrtQFOCJGbny9/W38t/MYiFUkRsgwUlKfghWRFmXl
+         9AmIwp0oFFPjsHgZPg14lf0oOELHzcCg1SmeDasicqYdXTm0zs+CvQt4/n//UmxGcvH+
+         fW9uIjF/kxLvWBL5Rp/Fl4NZ5VnkmusyQIjrC9C+6clo3pfRIDxInfD9jdOfvhc8YQiY
+         QijnureN9jlwWF8RaOEXad9SZGVB7xDkN7iDaHw3THWoYnVORyiLeDQBfptyoJsEPtmx
+         YjSQ==
+X-Gm-Message-State: AOJu0Yz5kczmOGDvsJ5eL1WLn+q5ABUzv0b1Qd4XDmdltvYcHL7aTddv
+	4er42WLhQrdAP+RnWd1rOIM1/uJqQxfq8gmp4cw=
+X-Google-Smtp-Source: AGHT+IGIYGYNaILDYg6nfCqYpRevWDCbo4e4c39ggc8YqYCNFvBaEcEMjzwrFwffKQKCyB+h1sGb+qWLnYYHmSM2kH8=
+X-Received: by 2002:a17:902:f545:b0:1d0:9a64:e511 with SMTP id
+ h5-20020a170902f54500b001d09a64e511mr1106028plf.73.1701643591576; Sun, 03 Dec
+ 2023 14:46:31 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231203-msm8226-cpu-v1-2-d18e83340b32@z3ntu.xyz>
-References: <20231203-msm8226-cpu-v1-0-d18e83340b32@z3ntu.xyz>
-In-Reply-To: <20231203-msm8226-cpu-v1-0-d18e83340b32@z3ntu.xyz>
-To: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Luca Weiss <luca@z3ntu.xyz>, 
- Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3104; i=luca@z3ntu.xyz;
- h=from:subject:message-id; bh=K8oNPyYoh95lxlCaNrRZ4BbJh5I78RzGRE/djtKa5AE=;
- b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBlbQNnlpGEDrhxMsLcfteE5SsQznX/CWXv4W+z4
- Kxn9WjE4aCJAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCZW0DZwAKCRBy2EO4nU3X
- VnfaD/95qJ9lWfmpkoNQ/PGuXOAVO2/jRkaARw3B7LxXIeYlP2Slc59CoYNMo/Ap4RvEqZz3Hkc
- 0N2vUzic/X43TVrePWBKR8elWrMBAAhNgvOBBqVfoOJSdghFSwA47cVPelLrp2XDecjmdBZfPjJ
- HIgrg9gIe41ObPIp0U3LZyxbPC72kMY5fT5FipUzJzEkG/MEi88zVoru0v74hmoZAl8RICuQRiU
- 4kQQku31VXdgiBFJzpep4jqEMEFlV5qpA/jPzkgOoBuISdrHIVc6RqHMzP5M5XPuVrksJKFJB/j
- CTuoWC14K7xLpRgY2oTIRgk1sk9uh9AvNdJLP2IMhpkFrRzrVtEEbrBXyEQgPbGZszINs8uMyn8
- DGq9ZxdBlI9SQrZnMR3grIS95nX4AloWOaWIlrGNcABfNMCH927JMSx/LKIQooPVVVEI0MnWO9w
- 8WNDKi09zgR0llHr9uxnGSpFrdhaGffE93aqIW1gJB8uedq6WtXYz5ThFy7Ldf1GRCnEN7+IeCn
- Vgk0Kj5w5t9JEdDMeLJH8UDtVxr6CyF3vNMteYKdrJ7BEtlbLHlvVZn6D4Nv3BTCkF+/RY3huvk
- 6oMVKUjLLn8y0uOiS1V3phnfTfWuithGVlLTbt4D+ND45i3o8EkGU5PrAzx1Rrcwdg0QX0wTU2z
- Ft/t2yUUY/StDNQ==
-X-Developer-Key: i=luca@z3ntu.xyz; a=openpgp;
- fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
+References: <20231203222903.343711-1-andreas@kemnade.info> <20231203222903.343711-7-andreas@kemnade.info>
+In-Reply-To: <20231203222903.343711-7-andreas@kemnade.info>
+From: Adam Ford <aford173@gmail.com>
+Date: Sun, 3 Dec 2023 16:46:20 -0600
+Message-ID: <CAHCN7xKG6-vgnJ+mA8xt0aFK-jCBWOX-GkVmJGNERH43N0ikaw@mail.gmail.com>
+Subject: Re: [PATCH v3 6/6] ARM: dts: omap: gta04: standardize system-power-controller
+To: Andreas Kemnade <andreas@kemnade.info>
+Cc: lee@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	conor+dt@kernel.org, bcousson@baylibre.com, tony@atomide.com, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-omap@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+On Sun, Dec 3, 2023 at 4:29=E2=80=AFPM Andreas Kemnade <andreas@kemnade.inf=
+o> wrote:
+>
+> Replace TI-specific property by generic one.
+>
+> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> ---
+> cannot be applied independently of the other ones, so maybe simply delay
+> it.
+>
+>  arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi b/arch/arm/boot/d=
+ts/ti/omap/omap3-gta04.dtsi
+> index 3661340009e7a..5001c4ea35658 100644
+> --- a/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi
+> +++ b/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi
+> @@ -476,6 +476,7 @@ twl: twl@48 {
+>                 reg =3D <0x48>;
+>                 interrupts =3D <7>; /* SYS_NIRQ cascaded to intc */
+>                 interrupt-parent =3D <&intc>;
+> +               system-power-controller;
 
-Add CPU and SAW/ACC nodes to enable SMP on MSM8226.
+Could this go into the twl4030.dtsi file so we don't have every omap3
+board with this part duplicating this line?
 
-Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-[luca: update some nodes to fix dtbs_check errors, reorder, cleanup]
-Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
----
- arch/arm/boot/dts/qcom/qcom-msm8226.dtsi | 91 ++++++++++++++++++++++++++++++++
- 1 file changed, 91 insertions(+)
-
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8226.dtsi b/arch/arm/boot/dts/qcom/qcom-msm8226.dtsi
-index 8757bc0c8a0f..28abaed4dd08 100644
---- a/arch/arm/boot/dts/qcom/qcom-msm8226.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8226.dtsi
-@@ -34,6 +34,57 @@ sleep_clk: sleep_clk {
- 		};
- 	};
- 
-+	cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		CPU0: cpu@0 {
-+			compatible = "arm,cortex-a7";
-+			enable-method = "qcom,msm8226-smp";
-+			device_type = "cpu";
-+			reg = <0>;
-+			next-level-cache = <&L2>;
-+			qcom,acc = <&acc0>;
-+			qcom,saw = <&saw0>;
-+		};
-+
-+		CPU1: cpu@1 {
-+			compatible = "arm,cortex-a7";
-+			enable-method = "qcom,msm8226-smp";
-+			device_type = "cpu";
-+			reg = <1>;
-+			next-level-cache = <&L2>;
-+			qcom,acc = <&acc1>;
-+			qcom,saw = <&saw1>;
-+		};
-+
-+		CPU2: cpu@2 {
-+			compatible = "arm,cortex-a7";
-+			enable-method = "qcom,msm8226-smp";
-+			device_type = "cpu";
-+			reg = <2>;
-+			next-level-cache = <&L2>;
-+			qcom,acc = <&acc2>;
-+			qcom,saw = <&saw2>;
-+		};
-+
-+		CPU3: cpu@3 {
-+			compatible = "arm,cortex-a7";
-+			enable-method = "qcom,msm8226-smp";
-+			device_type = "cpu";
-+			reg = <3>;
-+			next-level-cache = <&L2>;
-+			qcom,acc = <&acc3>;
-+			qcom,saw = <&saw3>;
-+		};
-+
-+		L2: l2-cache {
-+			compatible = "cache";
-+			cache-level = <2>;
-+			cache-unified;
-+		};
-+	};
-+
- 	firmware {
- 		scm {
- 			compatible = "qcom,scm-msm8226", "qcom,scm";
-@@ -243,6 +294,46 @@ frame@f9028000 {
- 			};
- 		};
- 
-+		acc0: power-manager@f9088000 {
-+			compatible = "qcom,kpss-acc-v2";
-+			reg = <0xf9088000 0x1000>, <0xf9008000 0x1000>;
-+		};
-+
-+		saw0: power-manager@f9089000 {
-+			compatible = "qcom,msm8226-saw2-v2.1-cpu", "qcom,saw2";
-+			reg = <0xf9089000 0x1000>;
-+		};
-+
-+		acc1: power-manager@f9098000 {
-+			compatible = "qcom,kpss-acc-v2";
-+			reg = <0xf9098000 0x1000>, <0xf9008000 0x1000>;
-+		};
-+
-+		saw1: power-manager@f9099000 {
-+			compatible = "qcom,msm8226-saw2-v2.1-cpu", "qcom,saw2";
-+			reg = <0xf9099000 0x1000>;
-+		};
-+
-+		acc2: power-manager@f90a8000 {
-+			compatible = "qcom,kpss-acc-v2";
-+			reg = <0xf90a8000 0x1000>, <0xf9008000 0x1000>;
-+		};
-+
-+		saw2: power-manager@f90a9000 {
-+			compatible = "qcom,msm8226-saw2-v2.1-cpu", "qcom,saw2";
-+			reg = <0xf90a9000 0x1000>;
-+		};
-+
-+		acc3: power-manager@f90b8000 {
-+			compatible = "qcom,kpss-acc-v2";
-+			reg = <0xf90b8000 0x1000>, <0xf9008000 0x1000>;
-+		};
-+
-+		saw3: power-manager@f90b9000 {
-+			compatible = "qcom,msm8226-saw2-v2.1-cpu", "qcom,saw2";
-+			reg = <0xf90b9000 0x1000>;
-+		};
-+
- 		sdhc_1: mmc@f9824900 {
- 			compatible = "qcom,msm8226-sdhci", "qcom,sdhci-msm-v4";
- 			reg = <0xf9824900 0x11c>, <0xf9824000 0x800>;
-
--- 
-2.43.0
-
+adam
+>
+>                 clocks =3D <&hfclk_26m>;
+>                 clock-names =3D "fck";
+> @@ -490,7 +491,6 @@ codec {
+>
+>                 twl_power: power {
+>                         compatible =3D "ti,twl4030-power-idle";
+> -                       ti,system-power-controller;
+>                 };
+>         };
+>  };
+> --
+> 2.39.2
+>
+>
 
