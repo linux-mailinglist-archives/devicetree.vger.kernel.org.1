@@ -1,224 +1,87 @@
-Return-Path: <devicetree+bounces-21142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0246802852
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 23:15:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 189CC802859
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 23:29:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 868A1B20851
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 22:15:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A8A92B20801
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 22:29:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE88B1A598;
-	Sun,  3 Dec 2023 22:15:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ScaX2Gk2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C04BE1A70C;
+	Sun,  3 Dec 2023 22:29:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6436D7;
-	Sun,  3 Dec 2023 14:15:44 -0800 (PST)
-Received: by mail-pf1-x42c.google.com with SMTP id d2e1a72fcca58-6cb74a527ceso2619716b3a.2;
-        Sun, 03 Dec 2023 14:15:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701641744; x=1702246544; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Tp4hrKRCxPQEfU5u2oM3FN+8Te5fEZUyhu2s23erNVg=;
-        b=ScaX2Gk2moa4uz1OkmY2GyYQIhHris3i78cwsOarJqLHkIu+Q20irZmLnKt6vRCR09
-         wfzirAGvikCPbWKqKf60D0wxLKBCd9c2mKKyZDoGpgiOcoj/E8i6JN0NAXPpRLWChC85
-         asdo/pGMq10n0yInk9loBlYsmF7kunG0oblii71cX9wP5GcsE5y1qL9yIO1Tg/6/Ibit
-         39FDSEgqcRshg0PiyugzFPJuQFUUqg1CzKuK6BSKqVbTIUKZw1SR4n5oRAXm8qKUHfLd
-         NLEHmRBbeP0x/dJGUOaRz/klCldbz5d0pjsH/uv2ThlPL8as6M987taj5DClmtEEBXFi
-         F2ww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701641744; x=1702246544;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Tp4hrKRCxPQEfU5u2oM3FN+8Te5fEZUyhu2s23erNVg=;
-        b=Ifdt+fUKQChj8ChnxYHj3YI7aJgrUPWvCuxyJcIa02WVJlE19rnnXWb0VqjUX3R6Ge
-         JrtT2rU/jAIcA74Uy7PavnOy5zGKF++eerabe8X/n1NU3HFZxxYZQ9xDwAPPXf55fyR0
-         W0OL+63NVPExVzlb+UOgNKofOk8mfLc2CyK4HStiWIKuE9TKXTyWImr4iLDHHhwh10Xv
-         L2OR4TYTkL9NsSzHAQ7n+KJe5/wXKNwsDFSBkgM2ok0NPC1ryB1MgB6ueuZCcFtAgEt0
-         6ra7efVM6nErUWkcogJwb/QnB1yzWPxLQNbXLqyMwcIiRLkcsDK4mTWotf/9DsXPngOR
-         4jCw==
-X-Gm-Message-State: AOJu0YwYM8m++cjd90tvz6ILKbOQsk2puUDJbcEEzespTBWUFT5YlVuY
-	+ML/5vk2Su+J3AfgsBz/xUshPVF7iZiYpweQDUc=
-X-Google-Smtp-Source: AGHT+IG9fXsgYtF5Q83KAQ/ZHKML1h06g8JjnFlhn6kr4ka+AxbSdTBrabtFPHHC62d1QbOWDqvRyCFc6ayf+h5bOtc=
-X-Received: by 2002:a17:90a:fa8e:b0:286:811c:c3b5 with SMTP id
- cu14-20020a17090afa8e00b00286811cc3b5mr930976pjb.2.1701641743977; Sun, 03 Dec
- 2023 14:15:43 -0800 (PST)
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a02:c205:3004:2154::1])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7796D7;
+	Sun,  3 Dec 2023 14:29:18 -0800 (PST)
+Received: from p200301077700c3001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:107:7700:c300:1a3d:a2ff:febf:d33a] helo=aktux)
+	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <andreas@kemnade.info>)
+	id 1r9uxZ-006zEB-Qi; Sun, 03 Dec 2023 23:29:09 +0100
+Received: from andi by aktux with local (Exim 4.96)
+	(envelope-from <andreas@kemnade.info>)
+	id 1r9uxY-001RXT-2W;
+	Sun, 03 Dec 2023 23:29:08 +0100
+From: Andreas Kemnade <andreas@kemnade.info>
+To: lee@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	bcousson@baylibre.com,
+	tony@atomide.com,
+	andreas@kemnade.info,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-omap@vger.kernel.org
+Subject: [PATCH v3 0/6] mfd: twl: system-power-controller
+Date: Sun,  3 Dec 2023 23:28:57 +0100
+Message-Id: <20231203222903.343711-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231129092759.242641-1-paul.elder@ideasonboard.com>
- <20231129092759.242641-12-paul.elder@ideasonboard.com> <CAHCN7xLihh_r=zn+2EsqZvsOumeJY52DHmrkVv0+A7Grib8AhQ@mail.gmail.com>
-In-Reply-To: <CAHCN7xLihh_r=zn+2EsqZvsOumeJY52DHmrkVv0+A7Grib8AhQ@mail.gmail.com>
-From: Adam Ford <aford173@gmail.com>
-Date: Sun, 3 Dec 2023 16:15:32 -0600
-Message-ID: <CAHCN7xK8prNL8HGUCGpUW0-NLWvCphjGrUz_5D2CpyPFa0vG8Q@mail.gmail.com>
-Subject: Re: [PATCH v4 11/11] media: rkisp1: Add UYVY as an output format
-To: Paul Elder <paul.elder@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	devicetree@vger.kernel.org, kieran.bingham@ideasonboard.com, 
-	tomi.valkeinen@ideasonboard.com, umang.jain@ideasonboard.com, 
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Dafna Hirschfeld <dafna@fastmail.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
-	"moderated list:ARM/Rockchip SoC support" <linux-arm-kernel@lists.infradead.org>, 
-	open list <linux-kernel@vger.kernel.org>, Fabio Estevam <festevam@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Sun, Dec 3, 2023 at 3:32=E2=80=AFPM Adam Ford <aford173@gmail.com> wrote=
-:
->
-> On Wed, Nov 29, 2023 at 3:29=E2=80=AFAM Paul Elder <paul.elder@ideasonboa=
-rd.com> wrote:
-> >
-> > Add support for UYVY as an output format. The uv_swap bit in the
-> > MI_XTD_FORMAT_CTRL register that is used for the NV formats does not
-> > work for packed YUV formats. Thus, UYVY support is implemented via
-> > byte-swapping. This method clearly does not work for implementing
-> > support for YVYU and VYUY.
-> >
-> > Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
-> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > ---
-> >  .../platform/rockchip/rkisp1/rkisp1-capture.c | 41 +++++++++++++++++++
-> >  1 file changed, 41 insertions(+)
->
->
-> Paul,
->
-> I tested this patch series from one of the older submissions and I was
-> able to get it working, but I could not get the video to capture to
-> work no matter what resolution or video format I tried.  Each time, I
-> get the same error message:  rkisp1 32e10000.isp: start pipeline
-> failed -32
->
-> Do you have an example of how you configured the pipeline and how you
-> invoked the video capture?
+Add system-power-controller property in the bindings and
+the corresponding implementation and use it where
+appropriate.
+Not all cases are hit yet, there has probably to be a
+separate series after going through with a brush.
 
-I have it working now but I had to apply the patch [1]  provided by
-Tomi in order for it to work properly
+Changes in v3:
+- twl-core: 
+   - remove repetitive verbose error messages
+   - placed constants at top part of function
+   - minor cleanups
 
-Can you send another revision with his patch included in the series?
+Changes in v2:
+- add A-By
+- fix compiler warning
 
-With that, you can add
+Andreas Kemnade (6):
+  dt-bindings: mfd: ti,twl: Document system-power-controller
+  twl-core: add power off implementation for twl603x
+  ARM: dts: omap-embt2ws: system-power-controller for bt200
+  ARM: dts: omap4-panda-common: Enable powering off the device
+  mfd: twl4030-power: accept standard property for power controller
+  ARM: dts: omap: gta04: standardize system-power-controller
 
-Tested-by: Adam Ford <aford173@gmail.com> #imx8mp-beacon-kit
+ .../devicetree/bindings/mfd/ti,twl.yaml       |  2 ++
+ arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi    |  2 +-
+ .../boot/dts/ti/omap/omap4-epson-embt2ws.dts  |  1 +
+ .../boot/dts/ti/omap/omap4-panda-common.dtsi  |  1 +
+ drivers/mfd/twl-core.c                        | 28 +++++++++++++++++++
+ drivers/mfd/twl4030-power.c                   |  3 ++
+ include/linux/mfd/twl.h                       |  1 +
+ 7 files changed, 37 insertions(+), 1 deletion(-)
 
-Thank you.
+-- 
+2.39.2
 
-adam
-[1] - https://gitlab.com/ideasonboard/nxp/linux/-/commit/d6477fe673b1c0d05d=
-12ae21d8db9a03b07e7fea
-
->
-> thanks
->
-> adam
->
-> >
-> > diff --git a/drivers/media/platform/rockchip/rkisp1/rkisp1-capture.c b/=
-drivers/media/platform/rockchip/rkisp1/rkisp1-capture.c
-> > index a352893308b6..b50b044d22af 100644
-> > --- a/drivers/media/platform/rockchip/rkisp1/rkisp1-capture.c
-> > +++ b/drivers/media/platform/rockchip/rkisp1/rkisp1-capture.c
-> > @@ -97,6 +97,12 @@ static const struct rkisp1_capture_fmt_cfg rkisp1_mp=
-_fmts[] =3D {
-> >                 .uv_swap =3D 0,
-> >                 .write_format =3D RKISP1_MI_CTRL_MP_WRITE_YUVINT,
-> >                 .mbus =3D MEDIA_BUS_FMT_YUYV8_2X8,
-> > +       }, {
-> > +               .fourcc =3D V4L2_PIX_FMT_UYVY,
-> > +               .uv_swap =3D 0,
-> > +               .yc_swap =3D 1,
-> > +               .write_format =3D RKISP1_MI_CTRL_MP_WRITE_YUVINT,
-> > +               .mbus =3D MEDIA_BUS_FMT_YUYV8_2X8,
-> >         }, {
-> >                 .fourcc =3D V4L2_PIX_FMT_YUV422P,
-> >                 .uv_swap =3D 0,
-> > @@ -231,6 +237,13 @@ static const struct rkisp1_capture_fmt_cfg rkisp1_=
-sp_fmts[] =3D {
-> >                 .write_format =3D RKISP1_MI_CTRL_SP_WRITE_INT,
-> >                 .output_format =3D RKISP1_MI_CTRL_SP_OUTPUT_YUV422,
-> >                 .mbus =3D MEDIA_BUS_FMT_YUYV8_2X8,
-> > +       }, {
-> > +               .fourcc =3D V4L2_PIX_FMT_UYVY,
-> > +               .uv_swap =3D 0,
-> > +               .yc_swap =3D 1,
-> > +               .write_format =3D RKISP1_MI_CTRL_SP_WRITE_INT,
-> > +               .output_format =3D RKISP1_MI_CTRL_SP_OUTPUT_YUV422,
-> > +               .mbus =3D MEDIA_BUS_FMT_YUYV8_2X8,
-> >         }, {
-> >                 .fourcc =3D V4L2_PIX_FMT_YUV422P,
-> >                 .uv_swap =3D 0,
-> > @@ -464,6 +477,20 @@ static void rkisp1_mp_config(struct rkisp1_capture=
- *cap)
-> >                 rkisp1_write(rkisp1, RKISP1_CIF_MI_XTD_FORMAT_CTRL, reg=
-);
-> >         }
-> >
-> > +       /*
-> > +        * U/V swapping with the MI_XTD_FORMAT_CTRL register only works=
- for
-> > +        * NV12/NV21 and NV16/NV61, so instead use byte swap to support=
- UYVY.
-> > +        * YVYU and VYUY cannot be supported with this method.
-> > +        */
-> > +       if (rkisp1->info->features & RKISP1_FEATURE_MI_OUTPUT_ALIGN) {
-> > +               reg =3D rkisp1_read(rkisp1, RKISP1_CIF_MI_OUTPUT_ALIGN_=
-FORMAT);
-> > +               if (cap->pix.cfg->yc_swap)
-> > +                       reg |=3D RKISP1_CIF_OUTPUT_ALIGN_FORMAT_MP_BYTE=
-_SWAP_BYTES;
-> > +               else
-> > +                       reg &=3D ~RKISP1_CIF_OUTPUT_ALIGN_FORMAT_MP_BYT=
-E_SWAP_BYTES;
-> > +               rkisp1_write(rkisp1, RKISP1_CIF_MI_OUTPUT_ALIGN_FORMAT,=
- reg);
-> > +       }
-> > +
-> >         rkisp1_mi_config_ctrl(cap);
-> >
-> >         reg =3D rkisp1_read(rkisp1, RKISP1_CIF_MI_CTRL);
-> > @@ -507,6 +534,20 @@ static void rkisp1_sp_config(struct rkisp1_capture=
- *cap)
-> >                 rkisp1_write(rkisp1, RKISP1_CIF_MI_XTD_FORMAT_CTRL, reg=
-);
-> >         }
-> >
-> > +       /*
-> > +        * U/V swapping with the MI_XTD_FORMAT_CTRL register only works=
- for
-> > +        * NV12/NV21 and NV16/NV61, so instead use byte swap to support=
- UYVY.
-> > +        * YVYU and VYUY cannot be supported with this method.
-> > +        */
-> > +       if (rkisp1->info->features & RKISP1_FEATURE_MI_OUTPUT_ALIGN) {
-> > +               reg =3D rkisp1_read(rkisp1, RKISP1_CIF_MI_OUTPUT_ALIGN_=
-FORMAT);
-> > +               if (cap->pix.cfg->yc_swap)
-> > +                       reg |=3D RKISP1_CIF_OUTPUT_ALIGN_FORMAT_SP_BYTE=
-_SWAP_BYTES;
-> > +               else
-> > +                       reg &=3D ~RKISP1_CIF_OUTPUT_ALIGN_FORMAT_SP_BYT=
-E_SWAP_BYTES;
-> > +               rkisp1_write(rkisp1, RKISP1_CIF_MI_OUTPUT_ALIGN_FORMAT,=
- reg);
-> > +       }
-> > +
-> >         rkisp1_mi_config_ctrl(cap);
-> >
-> >         mi_ctrl =3D rkisp1_read(rkisp1, RKISP1_CIF_MI_CTRL);
-> > --
-> > 2.39.2
-> >
 
