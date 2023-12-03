@@ -1,118 +1,202 @@
-Return-Path: <devicetree+bounces-21137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21138-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B79BC8027CE
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 22:32:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AF768027D7
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 22:33:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E51401C2095B
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 21:32:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D415F280C2F
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 21:33:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11E5A199CE;
-	Sun,  3 Dec 2023 21:31:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23F5019465;
+	Sun,  3 Dec 2023 21:33:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dGb8DE/H"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UzHR5xJZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 143E7C2
-	for <devicetree@vger.kernel.org>; Sun,  3 Dec 2023 13:31:54 -0800 (PST)
-Received: by mail-qv1-xf36.google.com with SMTP id 6a1803df08f44-67ac0ef6bb8so3657066d6.1
-        for <devicetree@vger.kernel.org>; Sun, 03 Dec 2023 13:31:54 -0800 (PST)
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5933C2;
+	Sun,  3 Dec 2023 13:33:04 -0800 (PST)
+Received: by mail-pj1-x102e.google.com with SMTP id 98e67ed59e1d1-28655c04da3so1932667a91.0;
+        Sun, 03 Dec 2023 13:33:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701639113; x=1702243913; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=G02u0sdxnFAEWbNN9nRUil1ZtXJaIE05IGNFhr9iJSA=;
-        b=dGb8DE/Ha8y2tMZKwY7e55pB2iCbFw6dKq1sGjeeyTxWnjOt6BEfH8I4g9JbOLrPL8
-         ENLnaHInyTQiEFGPyIAd3PFkC5HgzVzscJ0X7epy+NW4beYxO5LwaictflB/ipOWZD+H
-         MDcsU15rDyA7WAke96kbhUoWzqRSvkCLgspQyFHC4vAIxizQc2k4ANgxjflwvtQ+V3kQ
-         FWOj9fWlUZztxf0EiZrQFK8DyzdX3n4Z4n6YAfWdruGbimif1N30TcqPuQ+h4rlCk7YG
-         r3qc17C9GcXp9Z9w3ux34NJkLUjuR861mAyRJKIvp8pjGlSwqnZ2fr68ktIW4uSqR3N3
-         c66Q==
+        d=gmail.com; s=20230601; t=1701639184; x=1702243984; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4uUY1W5jCT30owrQ3sG0UVyxY52rhXE7pduVYPg+ahQ=;
+        b=UzHR5xJZnGO464U1Le00F2cg42NM95OzLpJu4Pvg1yvCFG2aBy2M0aCHfEWkquOZN/
+         2zMf6DUzEyKdKoiRbRQCsOzg/hlySHtVU5buo2Uf9HZ6fuK33rKF6z8WqPjG/hQE/QV/
+         /XLdfqJzG3F+/IbOgNg3kNJiktP4+vn0w9NTOefzEDVCCFbYz+Tzbpz25k4bePjWgZUP
+         yt/uTRd2qKh2iMxwSAe6NAwzagNTjr1cTop9CnSW68Tou0/vpFxD0yAq9HGZAhTE0T4Y
+         eOXwv+iSE19GVRTCOLzLqRGmh3+qLsKQJQx71RRbSPR207pD1TVEepdW1tzPgzGK+nqf
+         CL6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701639113; x=1702243913;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=G02u0sdxnFAEWbNN9nRUil1ZtXJaIE05IGNFhr9iJSA=;
-        b=qSnZLYCIHLXYIC94iy+yPsUSVJ5hAUJ2hZm3kvIREVeqPGpkH6FvIJJayO9WEE/4JZ
-         79p9GG/Vz9yJNGzER0cKcQu8//DV6GsNuA6uxcBaVtyQA6CrqMHsDO7xX46k4dwzo/nz
-         LewdnbQvqV7/tSxAbhwJFFWARSaSlRdVzjuZBzsxX/kuHfAKUT26Iz3zhspk3L7g95ep
-         6SmGMxf+zglOmbNKfQvuPJkH5qWFoFURwVSleqbQZzo8iwDd4R5LkW8Z3wIo5yyVZ8Zt
-         o936Ui2VfoivURKxnUT0biND/3VRVMJgLGtfo375WqEjM9BhKZ4+xVWUqysm8t1byBNE
-         GK0A==
-X-Gm-Message-State: AOJu0Yx77k35LVWbZP82Q6BvmcZMJNEkTDvJeUkV+yWfRJx9QTYl/y/c
-	3t5aEkLRBgySIavfZ4zvQHu4zl98quxrXVnTp2iN/A==
-X-Google-Smtp-Source: AGHT+IGNohdhuUx6qw41RjMk55NiBYO1sgpsNCtd4DXi5RmzCel7FKuFM65wkoSHPpohcTc4yi+ZokTYRVrg0YEEWT8=
-X-Received: by 2002:a0c:f7d0:0:b0:67a:bb7f:ebd7 with SMTP id
- f16-20020a0cf7d0000000b0067abb7febd7mr1547835qvo.61.1701639113122; Sun, 03
- Dec 2023 13:31:53 -0800 (PST)
+        d=1e100.net; s=20230601; t=1701639184; x=1702243984;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4uUY1W5jCT30owrQ3sG0UVyxY52rhXE7pduVYPg+ahQ=;
+        b=nqbtjn4RcgcclDuI7tjQo0SHhINXdOzzJSjxt1MqhS1OJkb43ICfacLa2uzm8hYSjq
+         VhC72gYQUco7lmj8b8EZa7norZIbFt4EvGlJthWLNTLSNIuIuxqx5/x0RujMcwIVPkMM
+         cGrgAqFCvlVJMdN3tHm5D1aRUWoSHpLCL+XpUDHFVv325gyc0kWWtdfzlfI78tTr35kv
+         MugtWahlKEfrX1T1snjGTZhfAroCpTZpThFSRrWa21qNizmovPHfIfMr965TuXGD2f8A
+         eaSDAW8G0+Tu8BxXmiNhVuszdXOnZdeLJsQivIuZkHXLv8dpc5b5gX1l4eT44BgjQZGF
+         oGYw==
+X-Gm-Message-State: AOJu0YxaEKEtzGnY4C/9hVWChNP6RWT414W7QBrR442GKzzRxR3p+y5O
+	ADy8zxcg63ByNWnZbGaYqj0x3tjLId0j2MKW4IQ=
+X-Google-Smtp-Source: AGHT+IGPWxeHkfwcW6s5frHbR04baTe/Cp+skA++exMPU/AmVPvdrLFK7lu4L+64Z6AB2cWvsAJbNDtD219dx28KB1E=
+X-Received: by 2002:a17:90a:b005:b0:286:6cc0:62a3 with SMTP id
+ x5-20020a17090ab00500b002866cc062a3mr3345815pjq.34.1701639183857; Sun, 03 Dec
+ 2023 13:33:03 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231201160925.3136868-1-peter.griffin@linaro.org>
- <20231201160925.3136868-10-peter.griffin@linaro.org> <59b949a0-5aeb-4f01-8789-cb305513b626@app.fastmail.com>
-In-Reply-To: <59b949a0-5aeb-4f01-8789-cb305513b626@app.fastmail.com>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Sun, 3 Dec 2023 21:31:41 +0000
-Message-ID: <CADrjBPoeLLcoDuLdkVhO4C_8qFAvFSu2igNPP09RXagiJpPsig@mail.gmail.com>
-Subject: Re: [PATCH v5 09/20] dt-bindings: serial: samsung: Make
- samsung,uart-fifosize required property
-To: Arnd Bergmann <arnd@arndb.de>
-Cc: Rob Herring <robh+dt@kernel.org>, krzysztof.kozlowski+dt@linaro.org, 
-	Michael Turquette <mturquette@baylibre.com>, Conor Dooley <conor+dt@kernel.org>, 
-	Stephen Boyd <sboyd@kernel.org>, Tomasz Figa <tomasz.figa@gmail.com>, 
-	Sylwester Nawrocki <s.nawrocki@samsung.com>, Linus Walleij <linus.walleij@linaro.org>, 
-	Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Olof Johansson <olof@lixom.net>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Chanwoo Choi <cw00.choi@samsung.com>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
-	=?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
-	Sam Protsenko <semen.protsenko@linaro.org>, saravanak@google.com, 
-	William McVicker <willmcvicker@google.com>, soc@kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, 
-	"open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>, linux-watchdog@vger.kernel.org, 
-	kernel-team@android.com, linux-serial@vger.kernel.org
+References: <20231129092759.242641-1-paul.elder@ideasonboard.com> <20231129092759.242641-12-paul.elder@ideasonboard.com>
+In-Reply-To: <20231129092759.242641-12-paul.elder@ideasonboard.com>
+From: Adam Ford <aford173@gmail.com>
+Date: Sun, 3 Dec 2023 15:32:52 -0600
+Message-ID: <CAHCN7xLihh_r=zn+2EsqZvsOumeJY52DHmrkVv0+A7Grib8AhQ@mail.gmail.com>
+Subject: Re: [PATCH v4 11/11] media: rkisp1: Add UYVY as an output format
+To: Paul Elder <paul.elder@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	devicetree@vger.kernel.org, kieran.bingham@ideasonboard.com, 
+	tomi.valkeinen@ideasonboard.com, umang.jain@ideasonboard.com, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Dafna Hirschfeld <dafna@fastmail.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+	"moderated list:ARM/Rockchip SoC support" <linux-arm-kernel@lists.infradead.org>, 
+	open list <linux-kernel@vger.kernel.org>, Fabio Estevam <festevam@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Arnd,
-
-On Fri, 1 Dec 2023 at 16:39, Arnd Bergmann <arnd@arndb.de> wrote:
+On Wed, Nov 29, 2023 at 3:29=E2=80=AFAM Paul Elder <paul.elder@ideasonboard=
+.com> wrote:
 >
-> On Fri, Dec 1, 2023, at 17:09, Peter Griffin wrote:
-> >
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - google,gs101-uart
-> > +    then:
-> > +      required:
-> > +        - samsung,uart-fifosize
-> > +
+> Add support for UYVY as an output format. The uv_swap bit in the
+> MI_XTD_FORMAT_CTRL register that is used for the NV formats does not
+> work for packed YUV formats. Thus, UYVY support is implemented via
+> byte-swapping. This method clearly does not work for implementing
+> support for YVYU and VYUY.
 >
-> Is there a way to reverse the list and make the property
-> required for anything that is not explicitly enumerated?
+> Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> ---
+>  .../platform/rockchip/rkisp1/rkisp1-capture.c | 41 +++++++++++++++++++
+>  1 file changed, 41 insertions(+)
 
-I'm not aware of a way to do that, but I'm by no means an expert with
-json schema. Krzysztof or Rob may know of a way.
 
-I presume your rationale is any newly added platform would get a DTC
-warning if they didn't add the samsung,uart-fifosize property?
+Paul,
 
-Krzysztof and Rob also had concerns in the previous series about ABI
-breakage on existing platforms, which is why this was only made
-required for google,gs101-uart.
+I tested this patch series from one of the older submissions and I was
+able to get it working, but I could not get the video to capture to
+work no matter what resolution or video format I tried.  Each time, I
+get the same error message:  rkisp1 32e10000.isp: start pipeline
+failed -32
 
-regards,
+Do you have an example of how you configured the pipeline and how you
+invoked the video capture?
 
-Peter
+thanks
+
+adam
+
+>
+> diff --git a/drivers/media/platform/rockchip/rkisp1/rkisp1-capture.c b/dr=
+ivers/media/platform/rockchip/rkisp1/rkisp1-capture.c
+> index a352893308b6..b50b044d22af 100644
+> --- a/drivers/media/platform/rockchip/rkisp1/rkisp1-capture.c
+> +++ b/drivers/media/platform/rockchip/rkisp1/rkisp1-capture.c
+> @@ -97,6 +97,12 @@ static const struct rkisp1_capture_fmt_cfg rkisp1_mp_f=
+mts[] =3D {
+>                 .uv_swap =3D 0,
+>                 .write_format =3D RKISP1_MI_CTRL_MP_WRITE_YUVINT,
+>                 .mbus =3D MEDIA_BUS_FMT_YUYV8_2X8,
+> +       }, {
+> +               .fourcc =3D V4L2_PIX_FMT_UYVY,
+> +               .uv_swap =3D 0,
+> +               .yc_swap =3D 1,
+> +               .write_format =3D RKISP1_MI_CTRL_MP_WRITE_YUVINT,
+> +               .mbus =3D MEDIA_BUS_FMT_YUYV8_2X8,
+>         }, {
+>                 .fourcc =3D V4L2_PIX_FMT_YUV422P,
+>                 .uv_swap =3D 0,
+> @@ -231,6 +237,13 @@ static const struct rkisp1_capture_fmt_cfg rkisp1_sp=
+_fmts[] =3D {
+>                 .write_format =3D RKISP1_MI_CTRL_SP_WRITE_INT,
+>                 .output_format =3D RKISP1_MI_CTRL_SP_OUTPUT_YUV422,
+>                 .mbus =3D MEDIA_BUS_FMT_YUYV8_2X8,
+> +       }, {
+> +               .fourcc =3D V4L2_PIX_FMT_UYVY,
+> +               .uv_swap =3D 0,
+> +               .yc_swap =3D 1,
+> +               .write_format =3D RKISP1_MI_CTRL_SP_WRITE_INT,
+> +               .output_format =3D RKISP1_MI_CTRL_SP_OUTPUT_YUV422,
+> +               .mbus =3D MEDIA_BUS_FMT_YUYV8_2X8,
+>         }, {
+>                 .fourcc =3D V4L2_PIX_FMT_YUV422P,
+>                 .uv_swap =3D 0,
+> @@ -464,6 +477,20 @@ static void rkisp1_mp_config(struct rkisp1_capture *=
+cap)
+>                 rkisp1_write(rkisp1, RKISP1_CIF_MI_XTD_FORMAT_CTRL, reg);
+>         }
+>
+> +       /*
+> +        * U/V swapping with the MI_XTD_FORMAT_CTRL register only works f=
+or
+> +        * NV12/NV21 and NV16/NV61, so instead use byte swap to support U=
+YVY.
+> +        * YVYU and VYUY cannot be supported with this method.
+> +        */
+> +       if (rkisp1->info->features & RKISP1_FEATURE_MI_OUTPUT_ALIGN) {
+> +               reg =3D rkisp1_read(rkisp1, RKISP1_CIF_MI_OUTPUT_ALIGN_FO=
+RMAT);
+> +               if (cap->pix.cfg->yc_swap)
+> +                       reg |=3D RKISP1_CIF_OUTPUT_ALIGN_FORMAT_MP_BYTE_S=
+WAP_BYTES;
+> +               else
+> +                       reg &=3D ~RKISP1_CIF_OUTPUT_ALIGN_FORMAT_MP_BYTE_=
+SWAP_BYTES;
+> +               rkisp1_write(rkisp1, RKISP1_CIF_MI_OUTPUT_ALIGN_FORMAT, r=
+eg);
+> +       }
+> +
+>         rkisp1_mi_config_ctrl(cap);
+>
+>         reg =3D rkisp1_read(rkisp1, RKISP1_CIF_MI_CTRL);
+> @@ -507,6 +534,20 @@ static void rkisp1_sp_config(struct rkisp1_capture *=
+cap)
+>                 rkisp1_write(rkisp1, RKISP1_CIF_MI_XTD_FORMAT_CTRL, reg);
+>         }
+>
+> +       /*
+> +        * U/V swapping with the MI_XTD_FORMAT_CTRL register only works f=
+or
+> +        * NV12/NV21 and NV16/NV61, so instead use byte swap to support U=
+YVY.
+> +        * YVYU and VYUY cannot be supported with this method.
+> +        */
+> +       if (rkisp1->info->features & RKISP1_FEATURE_MI_OUTPUT_ALIGN) {
+> +               reg =3D rkisp1_read(rkisp1, RKISP1_CIF_MI_OUTPUT_ALIGN_FO=
+RMAT);
+> +               if (cap->pix.cfg->yc_swap)
+> +                       reg |=3D RKISP1_CIF_OUTPUT_ALIGN_FORMAT_SP_BYTE_S=
+WAP_BYTES;
+> +               else
+> +                       reg &=3D ~RKISP1_CIF_OUTPUT_ALIGN_FORMAT_SP_BYTE_=
+SWAP_BYTES;
+> +               rkisp1_write(rkisp1, RKISP1_CIF_MI_OUTPUT_ALIGN_FORMAT, r=
+eg);
+> +       }
+> +
+>         rkisp1_mi_config_ctrl(cap);
+>
+>         mi_ctrl =3D rkisp1_read(rkisp1, RKISP1_CIF_MI_CTRL);
+> --
+> 2.39.2
+>
 
