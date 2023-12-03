@@ -1,159 +1,131 @@
-Return-Path: <devicetree+bounces-21057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21058-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D14658022B4
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 12:24:42 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBF728022CD
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 12:26:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B3001C204F5
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 11:24:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A21C61F21196
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 11:26:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0E769473;
-	Sun,  3 Dec 2023 11:24:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E8269477;
+	Sun,  3 Dec 2023 11:26:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Os2huNSn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="v6yd0E2f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8021E9461;
-	Sun,  3 Dec 2023 11:24:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08CD3C433C7;
-	Sun,  3 Dec 2023 11:24:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701602675;
-	bh=+hli562zk5dYtpGn2rXW8IygBpXXsf4LYyXt8bwX9bU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Os2huNSnaTDA7CdOUExN3Wa+xKx51n8bWFYxm8eA4gj0wytV/c0WPB6H57qGpiunV
-	 IGIL+3iWZwS+iFfByNCZ2BYUvdkh1/ULbjDpL2+Y+IjfZbM9EGEAyxvTHxH7A2fwxB
-	 Dtxue4iTcEw0BB1IUhPoVFJTq79bOKdAqANc5sul1Qlqt9hvpoqlrYOEElotWE60n/
-	 SBdJMGQRnkJF2fqJFpLq/1PGaSeDpBoEO86kaIOPMTZk/MJB0lwrcPntivqrAGrbMh
-	 4Xm/wLJVsmnxT6Cf3sxoZoi2XNZKfaR6tivXRGiidDicxnibhZIH/tmi0W3h39GIH6
-	 YHJ2SlnFznMLQ==
-Date: Sun, 3 Dec 2023 11:24:31 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Abdel Alkuor <alkuor@gmail.com>
-Cc: jic23@kernel.org, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-	lars@metafoo.de, conor+dt@kernel.org, linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: temperature: Add AMS AS6200
-Message-ID: <20231203-wrecking-sneer-d34f19c39f04@spud>
-References: <20231202041651.719963-1-alkuor@gmail.com>
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70929CB
+	for <devicetree@vger.kernel.org>; Sun,  3 Dec 2023 03:26:40 -0800 (PST)
+Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2ca00dffc23so1255881fa.2
+        for <devicetree@vger.kernel.org>; Sun, 03 Dec 2023 03:26:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701602799; x=1702207599; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JRBX9qjaYScewEyAGN3ZWpm24vfD1L73uIHC1C0KO4Y=;
+        b=v6yd0E2fG3g0sluCyynDyQNWieQPP+it6n392fqQzQXspBtgc1C6soPqFge8W6JHtP
+         mVmF84TQMCBR1EyoxwtLnktpTDJfRfI3m0mfCVJgOwuTecDJVqzsOmOWTzuP+Cz9O0NS
+         FZc/5BqdSg70JsdUTAqZa9phxzoKNt93BZHEPypXFB3y6pkiSRZn6nq0kqZkH+LuEk7T
+         imuy+dJp4Xr2y1VAqBKlPB1coVx1kMUywIPffD4Q2faxDOhz1D8cNaqlHTBty/+jfW8E
+         7rXDDxAP9Z+uT/OFRdYnjpVl2pzvgbOdvegCwxj3274Fi1FWVhjTxlawOFpmr2gipR5O
+         wrvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701602799; x=1702207599;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JRBX9qjaYScewEyAGN3ZWpm24vfD1L73uIHC1C0KO4Y=;
+        b=klu23QePA6nNkRLJ7MSQf9gAD7zgsUkc4IGBv8Uv9wFhM+TrcCd9L40UXWqL3RJHCL
+         DMMt4nCgzbrwJ9DJTl1Bu2DJyRCTvkxz7PZHTWfdz/lyj6PkQPRSdbyy53VMs/3+YcIc
+         IrbPkcKSvRYT1ImGRZihnXtNpV4iswMLubxHv5zcHyF0vmePCPWHXlG6qG4knLS6dN1a
+         263vvWmIY9ncIF+ZapNw/olGcHNs42L3s8OC0DuwvExho6HEucVLPn3aPp0smalqcbaF
+         tFaS84v2EygEPQnfrcgBzqYOxS5KFeOhif+Re6BuWHaxlwKLu3vsGFl2gRM7q3LvB4do
+         l2Vw==
+X-Gm-Message-State: AOJu0YzFDI29rxdafEkleihX659/W5WCCe8+ReX0hMDa38GtWV8Ug5c/
+	BLnjdMimEcBBhyQZXFNuR7E0Vg==
+X-Google-Smtp-Source: AGHT+IEo2kVrDxKWsLCcwvE8hl19v/Tnab9g7q9epanULPqx4nYnbkuhxAF8ZygQf6iwFdwfxMYOiw==
+X-Received: by 2002:ac2:442f:0:b0:50b:d764:6e9c with SMTP id w15-20020ac2442f000000b0050bd7646e9cmr1980872lfl.76.1701602798822;
+        Sun, 03 Dec 2023 03:26:38 -0800 (PST)
+Received: from umbar.unikie.fi ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id b9-20020ac25629000000b0050bf01760a1sm241224lff.295.2023.12.03.03.26.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 03 Dec 2023 03:26:38 -0800 (PST)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Rob Clark <robdclark@gmail.com>,
+	Abhinav Kumar <quic_abhinavk@quicinc.com>,
+	Sean Paul <sean@poorly.run>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Loic Poulain <loic.poulain@linaro.org>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Georgi Djakov <djakov@kernel.org>,
+	Will Deacon <will@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Joerg Roedel <joro@8bytes.org>,
+	Krishna Manikandan <quic_mkrishn@quicinc.com>,
+	Robert Marko <robimarko@gmail.com>,
+	Das Srinagesh <quic_gurus@quicinc.com>,
+	cros-qcom-dts-watchers@chromium.org,
+	Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+	Rob Herring <robh@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	freedreno@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	iommu@lists.linux.dev
+Subject: Re: [PATCH v3 00/12] RB1/QCM2290 features
+Date: Sun,  3 Dec 2023 14:26:23 +0300
+Message-Id: <170160265544.1305159.7127586815591334441.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20231125-topic-rb1_feat-v3-0-4cbb567743bb@linaro.org>
+References: <20231125-topic-rb1_feat-v3-0-4cbb567743bb@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="VO1eO5mEsXF2CF0y"
-Content-Disposition: inline
-In-Reply-To: <20231202041651.719963-1-alkuor@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
 
---VO1eO5mEsXF2CF0y
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Wed, 29 Nov 2023 15:43:57 +0100, Konrad Dybcio wrote:
+> This series brings:
+> - interconnect plumbing
+> - display setup
+> 
+> for QCM2290/QRB2210 and
+> 
+> - CAN bus controller
+> - HDMI display
+> - wifi fw variant name
+> 
+> [...]
 
-On Fri, Dec 01, 2023 at 11:16:50PM -0500, Abdel Alkuor wrote:
-> as6200 is high accuracy temperature sensor of -/+ 0.4C degree
+Applied, thanks!
 
-Is +/- 0.4 degrees really "high accuracy"?
+[01/12] dt-bindings: display: msm: qcm2290-mdss: Use the non-deprecated DSI compat
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/25daacc60394
+[02/12] dt-bindings: display: msm: Add reg bus and rotator interconnects
+        https://gitlab.freedesktop.org/lumag/msm/-/commit/a1ed5860efd3
 
-> with a range between -40C to 125C degrees
->=20
-> Signed-off-by: Abdel Alkuor <alkuor@gmail.com>
-> ---
-> Changes in v2:
->   - Add vdd-supply
->=20
->  .../bindings/iio/temperature/ams,as6200.yaml  | 49 +++++++++++++++++++
->  1 file changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/temperature/ams=
-,as6200.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/iio/temperature/ams,as6200=
-=2Eyaml b/Documentation/devicetree/bindings/iio/temperature/ams,as6200.yaml
-> new file mode 100644
-> index 000000000000..a1817795cdca
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/temperature/ams,as6200.yaml
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/temperature/ams,as6200.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: AMS AS6200 Temperature Sensor
-> +
-> +maintainers:
-> +  - Abdel Alkuor <alkuor@gmail.com>
-> +
-> +description: |
-
-Please add the text from your commit message (although perhaps dropping
-the "high accuracy" section) here.
-
-Otherwise, this looks okay to me.
-
-Thanks,
-Conor.
-
-> +  https://ams.com/documents/20143/36005/AS6200_DS000449_4-00.pdf
-> +
-> +properties:
-> +  compatible:
-> +    const: ams,as6200
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  vdd-supply: true
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - vdd-supply
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        temperature-sensor@48 {
-> +            compatible =3D "ams,as6200";
-> +            reg =3D <0x48>;
-> +            vdd-supply =3D <&vdd>;
-> +            interrupt-parent =3D <&gpio1>;
-> +            interrupts =3D <17 IRQ_TYPE_EDGE_BOTH>;
-> +        };
-> +    };
-> +...
-> --=20
-> 2.34.1
->=20
-
---VO1eO5mEsXF2CF0y
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWxlbwAKCRB4tDGHoIJi
-0vpyAQCfmd+i6NPXT2jdvO2gdFD/qBee+EWn0M4wbPRYUWeBFwEAiu4RIcctDI90
-G7b23mXguq1l0mFtK5hAdkZjABenWAU=
-=0u24
------END PGP SIGNATURE-----
-
---VO1eO5mEsXF2CF0y--
+Best regards,
+-- 
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
