@@ -1,138 +1,248 @@
-Return-Path: <devicetree+bounces-21095-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21096-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93A0A802463
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 15:07:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BAAB80246F
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 15:19:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B3091C2083F
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 14:07:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D82D9280C56
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 14:19:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBD9D1173C;
-	Sun,  3 Dec 2023 14:07:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAAFA13AD4;
+	Sun,  3 Dec 2023 14:19:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="X94JAORV"
+	dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b="Da6LsnHK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88670F2
-	for <devicetree@vger.kernel.org>; Sun,  3 Dec 2023 06:07:19 -0800 (PST)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B3E7AeS074480;
-	Sun, 3 Dec 2023 08:07:10 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1701612430;
-	bh=FnhyoYPOhA/cIhDU1jhwIN0RpISFhUA/tAinCGoLxBY=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=X94JAORVRgIrZ3pj3q/qEkUE34SDIbK9bAGq8rWadh8OLnGi3PZqUaHosbC1zZEjo
-	 u7b97jx0NH8p3Yxhg+Zd6ZnRQz+iCudar06gFz5iJLGWUwW4RV9zg8IiKnIyhd6oh4
-	 Ru1Ke19s/901+FgUmMMjE1Zf6ph+NxEgkj91d1ic=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B3E7ABi068627
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Sun, 3 Dec 2023 08:07:10 -0600
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 3
- Dec 2023 08:07:10 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sun, 3 Dec 2023 08:07:10 -0600
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B3E7An6117718;
-	Sun, 3 Dec 2023 08:07:10 -0600
-Date: Sun, 3 Dec 2023 08:07:10 -0600
-From: Nishanth Menon <nm@ti.com>
-To: Tony Lindgren <tony@atomide.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        sukrut bellary
-	<sukrut.bellary@gmail.com>
-Subject: Re: [PATCH] arm64: dts: ti: k3-am625-sk: Add support for WL1837
- module onboard
-Message-ID: <20231203140710.irc7mmwff2b5voak@observant>
-References: <20231121122441.64385-1-tony@atomide.com>
- <20231123071015.is4sffvdkunko5ws@radar>
- <20231129083433.GT5169@atomide.com>
+Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 313B5FA;
+	Sun,  3 Dec 2023 06:19:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=s1;
+	t=1701613175; bh=zG1QlBY918k0cqDNZJiK3uWxGAzr0xCzGr1cWRkdLA4=;
+	h=From:Date:Subject:To:Cc;
+	b=Da6LsnHK7v6Halu26lJ10J8D8lS3Zq0vlMO3ScFXGj8U4ObKw8+3xfDM25rMy7Tfh
+	 hmadtT5G/lEfzbiXUqkn3WkuBaDSIPRpiJYDyCW22qTwgrp29b4e/lAwnYm1KD1sZf
+	 KFgN+MhZ4eiDEjWxT2ZX6/Myb4XcuAKnJkhZA2iM=
+From: Luca Weiss <luca@z3ntu.xyz>
+Date: Sun, 03 Dec 2023 15:19:18 +0100
+Subject: [PATCH] ARM: dts: qcom: Disable pm8941 & pm8226 smbb charger by
+ default
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20231129083433.GT5169@atomide.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20231203-smbb-pm8941-pm8226-v1-1-9ad75909604b@z3ntu.xyz>
+X-B4-Tracking: v=1; b=H4sIAGWObGUC/x2MQQqAIBAAvxJ7TtA1TPtKdLDaag9aKEQQ/T3rN
+ Mxh5oZMiSlDV92Q6OTMeyyi6gqmzceVBM/FASVqhVKLHMZRHMG6Rn1ANMJN5OdWaYPWQwmPRAt
+ f/7QfnucFwEEPImQAAAA=
+To: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Bryant Mairs <bryant@mai.rs>, 
+ Luca Weiss <luca@z3ntu.xyz>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6633; i=luca@z3ntu.xyz;
+ h=from:subject:message-id; bh=Jjda69uIJewreP8b7act6A6XqbWWoTpW68t9pfVJZuI=;
+ b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBlbI5qzJPA1+NyNWogHqHuPmQC+gcn6l916Wga9
+ 6IQHoDf/QyJAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCZWyOagAKCRBy2EO4nU3X
+ VqOJD/9f1qNhZAEwfInHziEJpqmZX2q5EB50sTwcvUr1N7i4u01q8VqrJGuu6jXQm6zIFyjFOHu
+ vg4kUJp1r2gJkg50iZU0uDpdmUJpxQ/opmUPpHlYvPw/BZ9s1PY9F/M+l8CNon/rMOREPHA/Kzj
+ zpwrZ7wA5baoAtRWkSOImrbmEd/IPaBq+iaH2Celcar9G0X4sDUIgavJD0qA8jsBxyo82csZFs5
+ bKZtDkHT6/vhZ3EclV79bqFSAeXBuW6V3FwaqMpFIBnoJ7JDzPHcxpzjVeAX451wTtKPJxGq+7A
+ ZDiSaShCFZDq2kxPinJxdwhRcacIAPhClU9hECOS0UyuwDYQ6mkQ/euz48tOHBW5Quo0q81nyJK
+ BHauowsRak5NHvghPAyLHKgykzsGIQqu3NLYSk820NrOcSOZf4P1U88b+hipb38+Jk3yYjDmUr9
+ dyRUaR6VGlm3ZNxuit7l5EOBxUCGX5jY102aZksudfau9NkyhkK0URftSGvJd3yKBsyYgi3V6FH
+ KmK8O9Gjw9uJV7w/dFfh+kGZjgECwWCpR+b+HnV6la3rLr3rXKkTuZ6YyRv0q06RLatZYX6Qaut
+ 0HQr5JEOx/+YEQbAf0PHHd+dha46wdI0Jcm15ozmkrYZXQIR6+toDTDTuGl8JBruNvIEqIS0/bV
+ 1rAUHJOKsIf8Q1Q==
+X-Developer-Key: i=luca@z3ntu.xyz; a=openpgp;
+ fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
 
-On 10:34-20231129, Tony Lindgren wrote:
-> * Nishanth Menon <nm@ti.com> [231123 07:10]:
-> > On 14:24-20231121, Tony Lindgren wrote:
-> > > From: Vignesh Raghavendra <vigneshr@ti.com>
-> > > 
-> > > WL1837 WLAN card is present on the original AM625 SK board. It
-> > > communicates with the SoC using 4 bit SDIO through the second instance of
-> > > MMCSD.
-> > > 
-> > > Starting with SK-AM62B, there is a M.2 WLAN device connector instead of
-> > 
-> > We support AM62B-SK.
-> 
-> Is that with k3-am62-lp-sk.dts though? Wondering if they should have separate
-> dts files for the M.2.
+From: Bryant Mairs <bryant@mai.rs>
 
-It has been the same dts. Separating the wlan out of the dts sounds
-correct.
+Some platforms don't use the built-in charging hardware (e.g. milletwifi).
+As this is an optional peripheral, default it to off.
 
-> 
-> > > the integrated WL1837 WLAN. The M.2 connector should be handled separately
-> > > in the k3-am62a.dtsi and k3-am62b.dtsi files as needed.
-> > 
-> > Should this rather be an overlay instead of integrated dts fixup? M2
-> > connector allows for various options including the newer 33xx family[2].
-> 
-> Not sure if an overlay makes sense for an integrated device.. It sure makes
-> sense for plug in boards though.
+Keep it enabled for all other boards that use smbb.
 
-overlay works for both variant of devices (please see additional comment
-below).
+Signed-off-by: Bryant Mairs <bryant@mai.rs>
+Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+---
+ arch/arm/boot/dts/qcom/pm8226.dtsi                                    | 2 ++
+ arch/arm/boot/dts/qcom/pm8941.dtsi                                    | 2 ++
+ arch/arm/boot/dts/qcom/qcom-apq8026-asus-sparrow.dts                  | 2 ++
+ arch/arm/boot/dts/qcom/qcom-apq8026-huawei-sturgeon.dts               | 2 ++
+ arch/arm/boot/dts/qcom/qcom-apq8026-lg-lenok.dts                      | 2 ++
+ arch/arm/boot/dts/qcom/qcom-apq8074-dragonboard.dts                   | 4 ++++
+ arch/arm/boot/dts/qcom/qcom-msm8926-htc-memul.dts                     | 2 ++
+ arch/arm/boot/dts/qcom/qcom-msm8974-sony-xperia-rhine.dtsi            | 2 ++
+ arch/arm/boot/dts/qcom/qcom-msm8974pro-fairphone-fp2.dts              | 2 ++
+ arch/arm/boot/dts/qcom/qcom-msm8974pro-oneplus-bacon.dts              | 4 ++++
+ arch/arm/boot/dts/qcom/qcom-msm8974pro-sony-xperia-shinano-castor.dts | 2 ++
+ 11 files changed, 26 insertions(+)
 
-> 
-> > It makes sense for the regulator etc to be on the main dts file, but I
-> > am not convinced about it being integrated as part of the dts.
-> 
-> Yeah if AM62B-SK is supported with the same dts. My vote would be for
-> separate dts files for the integrated variant to keep things simple :)
+diff --git a/arch/arm/boot/dts/qcom/pm8226.dtsi b/arch/arm/boot/dts/qcom/pm8226.dtsi
+index 2413778f3715..2fd4f135ed84 100644
+--- a/arch/arm/boot/dts/qcom/pm8226.dtsi
++++ b/arch/arm/boot/dts/qcom/pm8226.dtsi
+@@ -82,6 +82,8 @@ smbb: charger@1000 {
+ 					  "usb-valid",
+ 					  "dc-valid";
+ 
++			status = "disabled";
++
+ 			chg_otg: otg-vbus { };
+ 		};
+ 
+diff --git a/arch/arm/boot/dts/qcom/pm8941.dtsi b/arch/arm/boot/dts/qcom/pm8941.dtsi
+index ed0ba591c755..aca0052a02b7 100644
+--- a/arch/arm/boot/dts/qcom/pm8941.dtsi
++++ b/arch/arm/boot/dts/qcom/pm8941.dtsi
+@@ -99,6 +99,8 @@ smbb: charger@1000 {
+ 
+ 			usb-otg-in-supply = <&pm8941_5vs1>;
+ 
++			status = "disabled";
++
+ 			chg_otg: otg-vbus { };
+ 		};
+ 
+diff --git a/arch/arm/boot/dts/qcom/qcom-apq8026-asus-sparrow.dts b/arch/arm/boot/dts/qcom/qcom-apq8026-asus-sparrow.dts
+index a39f5a161b03..a2ca456012f1 100644
+--- a/arch/arm/boot/dts/qcom/qcom-apq8026-asus-sparrow.dts
++++ b/arch/arm/boot/dts/qcom/qcom-apq8026-asus-sparrow.dts
+@@ -253,6 +253,8 @@ &smbb {
+ 	qcom,fast-charge-high-threshold-voltage = <4400000>;
+ 	qcom,auto-recharge-threshold-voltage = <4300000>;
+ 	qcom,minimum-input-voltage = <4400000>;
++
++	status = "okay";
+ };
+ 
+ &tlmm {
+diff --git a/arch/arm/boot/dts/qcom/qcom-apq8026-huawei-sturgeon.dts b/arch/arm/boot/dts/qcom/qcom-apq8026-huawei-sturgeon.dts
+index 59b218042d32..ac228965a485 100644
+--- a/arch/arm/boot/dts/qcom/qcom-apq8026-huawei-sturgeon.dts
++++ b/arch/arm/boot/dts/qcom/qcom-apq8026-huawei-sturgeon.dts
+@@ -335,6 +335,8 @@ &smbb {
+ 	qcom,fast-charge-current-limit = <300000>;
+ 	qcom,fast-charge-safe-current = <600000>;
+ 	qcom,auto-recharge-threshold-voltage = <4240000>;
++
++	status = "okay";
+ };
+ 
+ &tlmm {
+diff --git a/arch/arm/boot/dts/qcom/qcom-apq8026-lg-lenok.dts b/arch/arm/boot/dts/qcom/qcom-apq8026-lg-lenok.dts
+index feb78afef3a6..0a1fd5eb3c6d 100644
+--- a/arch/arm/boot/dts/qcom/qcom-apq8026-lg-lenok.dts
++++ b/arch/arm/boot/dts/qcom/qcom-apq8026-lg-lenok.dts
+@@ -292,6 +292,8 @@ &smbb {
+ 	qcom,fast-charge-high-threshold-voltage = <4350000>;
+ 	qcom,auto-recharge-threshold-voltage = <4240000>;
+ 	qcom,minimum-input-voltage = <4450000>;
++
++	status = "okay";
+ };
+ 
+ &tlmm {
+diff --git a/arch/arm/boot/dts/qcom/qcom-apq8074-dragonboard.dts b/arch/arm/boot/dts/qcom/qcom-apq8074-dragonboard.dts
+index d7fb3e0e8886..6fce0112361f 100644
+--- a/arch/arm/boot/dts/qcom/qcom-apq8074-dragonboard.dts
++++ b/arch/arm/boot/dts/qcom/qcom-apq8074-dragonboard.dts
+@@ -430,6 +430,10 @@ &sdhc_2 {
+ 	pinctrl-1 = <&sdc2_off>;
+ };
+ 
++&smbb {
++	status = "okay";
++};
++
+ &tlmm {
+ 	sdc1_on: sdc1-on-state {
+ 		clk-pins {
+diff --git a/arch/arm/boot/dts/qcom/qcom-msm8926-htc-memul.dts b/arch/arm/boot/dts/qcom/qcom-msm8926-htc-memul.dts
+index 9e90330a6231..ed328b24335f 100644
+--- a/arch/arm/boot/dts/qcom/qcom-msm8926-htc-memul.dts
++++ b/arch/arm/boot/dts/qcom/qcom-msm8926-htc-memul.dts
+@@ -355,6 +355,8 @@ &smbb {
+ 	qcom,fast-charge-high-threshold-voltage = <4350000>;
+ 	qcom,auto-recharge-threshold-voltage = <4300000>;
+ 	qcom,minimum-input-voltage = <4300000>;
++
++	status = "okay";
+ };
+ 
+ &usb {
+diff --git a/arch/arm/boot/dts/qcom/qcom-msm8974-sony-xperia-rhine.dtsi b/arch/arm/boot/dts/qcom/qcom-msm8974-sony-xperia-rhine.dtsi
+index a43341ae4495..94cbad81379f 100644
+--- a/arch/arm/boot/dts/qcom/qcom-msm8974-sony-xperia-rhine.dtsi
++++ b/arch/arm/boot/dts/qcom/qcom-msm8974-sony-xperia-rhine.dtsi
+@@ -452,6 +452,8 @@ &smbb {
+ 	qcom,fast-charge-low-threshold-voltage = <3400000>;
+ 	qcom,auto-recharge-threshold-voltage = <4200000>;
+ 	qcom,minimum-input-voltage = <4300000>;
++
++	status = "okay";
+ };
+ 
+ &tlmm {
+diff --git a/arch/arm/boot/dts/qcom/qcom-msm8974pro-fairphone-fp2.dts b/arch/arm/boot/dts/qcom/qcom-msm8974pro-fairphone-fp2.dts
+index 66c422004dcd..fe227fd3f908 100644
+--- a/arch/arm/boot/dts/qcom/qcom-msm8974pro-fairphone-fp2.dts
++++ b/arch/arm/boot/dts/qcom/qcom-msm8974pro-fairphone-fp2.dts
+@@ -408,6 +408,8 @@ &smbb {
+ 	qcom,fast-charge-high-threshold-voltage = <4350000>;
+ 	qcom,auto-recharge-threshold-voltage = <4240000>;
+ 	qcom,minimum-input-voltage = <4450000>;
++
++	status = "okay";
+ };
+ 
+ &tlmm {
+diff --git a/arch/arm/boot/dts/qcom/qcom-msm8974pro-oneplus-bacon.dts b/arch/arm/boot/dts/qcom/qcom-msm8974pro-oneplus-bacon.dts
+index 6d1412aec45a..4c8edadea0ac 100644
+--- a/arch/arm/boot/dts/qcom/qcom-msm8974pro-oneplus-bacon.dts
++++ b/arch/arm/boot/dts/qcom/qcom-msm8974pro-oneplus-bacon.dts
+@@ -460,6 +460,10 @@ &sdhc_1 {
+ 	status = "okay";
+ };
+ 
++&smbb {
++	status = "okay";
++};
++
+ &tlmm {
+ 	gpio_hall_sensor_default: gpio-hall-sensor-default-state {
+ 		pins = "gpio68";
+diff --git a/arch/arm/boot/dts/qcom/qcom-msm8974pro-sony-xperia-shinano-castor.dts b/arch/arm/boot/dts/qcom/qcom-msm8974pro-sony-xperia-shinano-castor.dts
+index 818ff5835031..7c6fe442b559 100644
+--- a/arch/arm/boot/dts/qcom/qcom-msm8974pro-sony-xperia-shinano-castor.dts
++++ b/arch/arm/boot/dts/qcom/qcom-msm8974pro-sony-xperia-shinano-castor.dts
+@@ -585,6 +585,8 @@ &smbb {
+ 	qcom,fast-charge-low-threshold-voltage = <3400000>;
+ 	qcom,auto-recharge-threshold-voltage = <4200000>;
+ 	qcom,minimum-input-voltage = <4300000>;
++
++	status = "okay";
+ };
+ 
+ &tlmm {
 
-we can handle it via dtb itself
+---
+base-commit: fe14587be497254eb07c5c8aa1c799bde2abce39
+change-id: 20231203-smbb-pm8941-pm8226-9cead713628a
 
-dts can remain common, the m2 is a dtso, we generate a dtbo and the
-original will be an additional dtb? I think this can work out without
-dts/dtsi duplication.
-
-arch/arm64/boot/dts/ti/Makefile has previous examples of the form.
-
-> 
-> > Should we use mmc-pwrseq ?
-> 
-> Yes probably, I think there was some issue earlier with that but sounds like
-> it's been solved already.
-> 
-> > Looks like we have run into an issue in BeaglePlay with wlan_en
-> > being always on for loading firmware. so is there a need to keep the
-> > wlan on while suspended?
-> 
-> If the wlan irq was on the first gpio bank, wake-up path would work for
-> the wlan. But I think it's wired to a gpio bank with no wake-up capability,
-> and the padconf wake related patches are still pending. So no need to keep
-> the wlan enabled so far AFAIK.
-
-I believe the issue was around the wlan firmware load itself, but i
-think the mmc-pwrseq will probably help resolve it.
+Best regards,
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Luca Weiss <luca@z3ntu.xyz>
+
 
