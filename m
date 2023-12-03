@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-21115-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B90E8025A7
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 17:51:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C8418025C1
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 17:52:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D37591F21007
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 16:51:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 05CB41F211E6
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 16:52:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A8AF15AE2;
-	Sun,  3 Dec 2023 16:51:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1796F15ADF;
+	Sun,  3 Dec 2023 16:52:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yqT8OyaF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="f/ZKDLBb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6043FE5
-	for <devicetree@vger.kernel.org>; Sun,  3 Dec 2023 08:51:43 -0800 (PST)
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-40c09fcfa9fso4502035e9.2
-        for <devicetree@vger.kernel.org>; Sun, 03 Dec 2023 08:51:43 -0800 (PST)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23802F3
+	for <devicetree@vger.kernel.org>; Sun,  3 Dec 2023 08:52:27 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-40b2ddab817so38086555e9.3
+        for <devicetree@vger.kernel.org>; Sun, 03 Dec 2023 08:52:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701622302; x=1702227102; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701622345; x=1702227145; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=91oFy2qNqN4HX4zZeoeY0NTuJ7kBQ6gWbdIe2Q83kK4=;
-        b=yqT8OyaFpnazlp3Lf8EnT03jSyP32Q5cJCmt2G/5xxr7IF3Spx85xvH29L0GJ9jHpv
-         KP/ovp3Hz3LipGPDQ9+oHzxzbm/FbX54UZZvxtIeb1RTSFHcKjNOJXpQrckSGCg8XMz+
-         HYDJmr1pg/zLzOOknq9uO8rYlbbMRPuUVA0bYLvJ7owqITewuENFf8HRobOKHfSGBhc8
-         RIsui7j7dcDJ5HMz4ivSKG0+pSeHNCDEx7CPvK+DcWN9AMuiKFpUeBw1jfVMEJXOP03h
-         jj16SYkkKz+sgHIHcp0w7tbJjhRMWG6yM8B+ffJbLhCVXKfFm7D26/o/ltyFt9xP9vKr
-         T8kA==
+        bh=04CYILEI80Gr5R2XA7debhtuVx5bEIk2+GQQHM8/NHg=;
+        b=f/ZKDLBbg2rJBBbx8ZgAgxzN0sjZiD3DHpysUZIXp7SoWzqVSqb+Isf+ElYR+pG2mC
+         KkCmSp9lcECYAM4viRaKr6Q6L1QhN4lngV+kN4GcCsSFSdFd1GvWMyaZ3r3JgC3jty5M
+         VWMwllVos9qJooydeM+7JVo7Is4h04VWxltShyccTGGhMDcOjylNQLyhoqAMM7reXDaW
+         A/MMvygQ8QRFIv9mO72/GJUlM8PPLIWBbBfaz0+KW3CI/2fEpkqKE1Is+xj+WK/irrmm
+         5uoT2D+OVa6c5muQki5n+twemLfGaiAonXNwplgquFreYOqD4/iMiiKvJ1UgoB1ZGqFg
+         K59w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701622302; x=1702227102;
+        d=1e100.net; s=20230601; t=1701622345; x=1702227145;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=91oFy2qNqN4HX4zZeoeY0NTuJ7kBQ6gWbdIe2Q83kK4=;
-        b=dPlpVojblXG347EX08aoRi/sY57rPoNsVP+jwRKBRxOwe76833Qv8iNjQLintFQWD9
-         zvkaGtg67MxzDmIlyszaV4DH+CZpDT1eDNxXYC2SHFYxPfozqNs8qkvJ9B9a1XLiM6UP
-         lxXgt/i9ZebBXiCJWAODwiDTFYKc3XnbRb2pYSLtGkhk9BEHKh+XAY409FPeaYarsXh9
-         wkshPKIggoCGHmWeFzQOVDuaWNZlQuSwhpj6aOMEqtvGk/6P/9ScshLea2My3zCpoX1d
-         5xizgOHC4veB/n6U3HHC9b09gi4q7pkARLDagLkGIHfrueBMqqXGBrQgU78Zlg+SSl35
-         H7FA==
-X-Gm-Message-State: AOJu0Yze8NTbhJJsmOg5wU9gQNXM7yV0R1v1EaBZ4jbvKg5OiwivFnIf
-	BF4JVKEfWwqE0C6TuGm1eNKI+Q==
-X-Google-Smtp-Source: AGHT+IH5J8rGUXiYw7XCl8zleb+9mjwB7Lc2Sl1+QVT3dInrWNI3Tm1x0U4sF5mMR4GbeDMn5qj7MA==
-X-Received: by 2002:a05:600c:c1:b0:40c:9d4:4c8e with SMTP id u1-20020a05600c00c100b0040c09d44c8emr240756wmm.109.1701622301886;
-        Sun, 03 Dec 2023 08:51:41 -0800 (PST)
+        bh=04CYILEI80Gr5R2XA7debhtuVx5bEIk2+GQQHM8/NHg=;
+        b=cq+iPFjTYmrmPNoJnF5JfIgIcJ7FpnehXb3VaEsMo1WrXcbovt1IVwF5igQWLmtFq7
+         EmD3m2r+t7d+BFZi+E6nrd144g95k2f1Tkq3dEMvKNpxgWOO9VRpEWVYy35p49CZJBOJ
+         NokgCZnoyHwfU/1cXXGgorS3zTEDLuVs2K6kmOfiN+bZ3h7LzTemKy5oPMGM0zu0uvUv
+         FUt+20R202tY5OupRauJdRW7PiKmhmZpEwQVE2660Lx+VuUa4hUN8nX2eq4Ee0GA1SvT
+         94QxcWLWCQHF2gDN8Zz62x25FZG6UrUlHifeMdR9Bdpy33V0TWCHl4QAK4714u+OtMzv
+         T5BQ==
+X-Gm-Message-State: AOJu0YzbzJKwQAiiASEFYHGfQWvbuwrzgsDqDMdOKfq1RVXOZdVoCbmW
+	m+R04yZW6k6/YTx6zm93IFTvNQ==
+X-Google-Smtp-Source: AGHT+IETvz3Fasyli2iuM/LcxbI/OOJ1bLkRs3b3KKBPtIq/HP89UFxaSlu6Dpx22Oi6GVJPSzsYmw==
+X-Received: by 2002:a05:600c:224c:b0:40c:709:d924 with SMTP id a12-20020a05600c224c00b0040c0709d924mr1016534wmm.147.1701622345542;
+        Sun, 03 Dec 2023 08:52:25 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id g14-20020a05600c310e00b0040b481222e3sm15979984wmo.41.2023.12.03.08.51.40
+        by smtp.gmail.com with ESMTPSA id g14-20020a05600c310e00b0040b481222e3sm15979984wmo.41.2023.12.03.08.52.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 03 Dec 2023 08:51:41 -0800 (PST)
-Message-ID: <51d1c541-dd4f-481a-8fe2-4a8295d194bd@linaro.org>
-Date: Sun, 3 Dec 2023 17:51:39 +0100
+        Sun, 03 Dec 2023 08:52:25 -0800 (PST)
+Message-ID: <fbb4636a-aec2-4d9d-91c6-919ae24ddda0@linaro.org>
+Date: Sun, 3 Dec 2023 17:52:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,8 +62,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 02/10] dt-bindings: display: bridge: tc358775: Add
- data-lanes
+Subject: Re: [PATCH v2 03/10] dt-bindings: display: bridge: tc358775: Add
+ support for tc358765
 Content-Language: en-US
 To: Tony Lindgren <tony@atomide.com>, Andrzej Hajda
  <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
@@ -83,7 +83,7 @@ Cc: Carl Philipp Klemm <philipp@uvos.xyz>,
  Sebastian Reichel <sre@kernel.org>, dri-devel@lists.freedesktop.org,
  devicetree@vger.kernel.org
 References: <20231202075514.44474-1-tony@atomide.com>
- <20231202075514.44474-3-tony@atomide.com>
+ <20231202075514.44474-4-tony@atomide.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -129,35 +129,17 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231202075514.44474-3-tony@atomide.com>
+In-Reply-To: <20231202075514.44474-4-tony@atomide.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 02/12/2023 08:54, Tony Lindgren wrote:
-> The device uses a clock lane, and 1 to 4 DSI data lanes. Let's add the
-> data-lanes property starting at 1 similar to what the other bridge
-> bindings are doing.
-> 
-> Let's also drop the data-lanes properties in the example for the DSI host
-> controller to avoid confusion. The configuration of the DSI host depends
-> on the controller used and is unrelated to the bridge binding.
-> 
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
-> ---
->  .../display/bridge/toshiba,tc358775.yaml      | 21 ++++++++++++++++---
->  1 file changed, 18 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358775.yaml b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358775.yaml
-> --- a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358775.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358775.yaml
-> @@ -46,11 +46,26 @@ properties:
->  
->      properties:
->        port@0:
-> -        $ref: /schemas/graph.yaml#/properties/port
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> The tc358765 is similar to tc358775 except for the stdby-gpios.
 
-You need to add here additionalProperties: false
+In what aspect "except for the stby-gpios"? Does not have them? If so,
+disallow them for that device (:false).
+
+
 
 Best regards,
 Krzysztof
