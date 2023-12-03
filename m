@@ -1,86 +1,91 @@
-Return-Path: <devicetree+bounces-21147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21151-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53067802861
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 23:29:36 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39B8A802877
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 23:39:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83C301C2085C
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 22:29:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E2E3F1F20F6D
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 22:39:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFABA1CAA9;
-	Sun,  3 Dec 2023 22:29:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82BB918631;
+	Sun,  3 Dec 2023 22:39:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b="3jRWZPOB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a02:c205:3004:2154::1])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40F1CDB;
-	Sun,  3 Dec 2023 14:29:19 -0800 (PST)
-Received: from p200301077700c3001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:107:7700:c300:1a3d:a2ff:febf:d33a] helo=aktux)
-	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <andreas@kemnade.info>)
-	id 1r9uxc-006zEy-G1; Sun, 03 Dec 2023 23:29:12 +0100
-Received: from andi by aktux with local (Exim 4.96)
-	(envelope-from <andreas@kemnade.info>)
-	id 1r9uxb-001RbX-37;
-	Sun, 03 Dec 2023 23:29:11 +0100
-From: Andreas Kemnade <andreas@kemnade.info>
-To: lee@kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	bcousson@baylibre.com,
-	tony@atomide.com,
-	andreas@kemnade.info,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-omap@vger.kernel.org
-Subject: [PATCH v3 6/6] ARM: dts: omap: gta04: standardize system-power-controller
-Date: Sun,  3 Dec 2023 23:29:03 +0100
-Message-Id: <20231203222903.343711-7-andreas@kemnade.info>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231203222903.343711-1-andreas@kemnade.info>
-References: <20231203222903.343711-1-andreas@kemnade.info>
+Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6DA5C8;
+	Sun,  3 Dec 2023 14:39:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=s1;
+	t=1701643112; bh=AesBkNxA252D4AbyjH4t7j7mkstu5vSTutkNPCSMK78=;
+	h=From:Subject:Date:To:Cc;
+	b=3jRWZPOBQ37sHriz6gJx599YjztV6LFvoSQ0pTXrIhS46EGq7gtibm4g8vUEbRIp6
+	 VkLNDF04yENFofs7e5viAMajLAqrBBnuy/vraP4zqq0gI4XrFBgRv2JG5MpChKPjJu
+	 07wm5kRHgOuEWpPXkaUiHoS/L/7giHo4xVjRp8HM=
+From: Luca Weiss <luca@z3ntu.xyz>
+Subject: [PATCH 0/2] Bring up more CPU cores on MSM8226
+Date: Sun, 03 Dec 2023 23:38:16 +0100
+Message-Id: <20231203-msm8226-cpu-v1-0-d18e83340b32@z3ntu.xyz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAFgDbWUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI2NDIwNj3dziXAsjIzPd5IJSXQsDw6TUpKTUFAsLMyWgjoKi1LTMCrBp0bG
+ 1tQCaFWvOXQAAAA==
+To: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Luca Weiss <luca@z3ntu.xyz>, 
+ =?utf-8?q?Matti_Lehtim=C3=A4ki?= <matti.lehtimaki@gmail.com>, 
+ Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=676; i=luca@z3ntu.xyz;
+ h=from:subject:message-id; bh=AesBkNxA252D4AbyjH4t7j7mkstu5vSTutkNPCSMK78=;
+ b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBlbQNet1Qkqw9icqh7x2TvysX/TZVC/88Bqf31s
+ /lVyLhq3H+JAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCZW0DXgAKCRBy2EO4nU3X
+ VmSFD/0e+mfQbG/JfIugUj5C5g3aoUlvE2k2qSJIqwdVUZs2s94HVcpvzmdGMebPy3rGV5PhjYv
+ S5+mzX/0+9rJvZvGByZ4C8g4zdjSpYI/X4KlqHn0TBCJudMwaUOSuHJkvpfxXGQfSuIaga37lJ/
+ StIhoXuj2PddYFI5RRQkkJnoU5sNTVzPJ3TxizFc/B4nKkiZC7eAAN+shaxQuYRFnW6RT7/ZLMH
+ 6gUrEkiu6zs356DZWQaWWOTyybJlNlFsrA+H6rWsCFi8PLivi7LFrox3fsvIQWoROlTXTGGOkn1
+ TTL+1cpqrL0/3ybgVtJHdej9B4McYAG+A0xFij91pSbT5914T7OBEF4zr1tl+XaYNX6b3EJj3bV
+ jryo686MpC8IBz6A35osCKmF/ENzxPJ1PHyqWepgt2RSA0Jqe08MzRORzs5RFhaMhO3U7biiyO4
+ bMx8xxQyWscNUzyZ6DqvuAPomv0gAAzHFwRwNoeVA609R1WLGRgxCIZ8DCG85m+BrdwghlKeU6e
+ Loep7pnWqWRH+ntLyhjs/mWuJjh88BznsBHdAyu5KIi8gQXW3m6gYulIOsZibFWUxEdqfnr6NMj
+ Xx/GHdlyzvt852f+y4WfiNhVLq4sDvEkvVLn0P6BfRJXhDDiqJYSE8RnfeQisI5Uz0nEh17K9rS
+ 7UJYr3cZtY0hgBQ==
+X-Developer-Key: i=luca@z3ntu.xyz; a=openpgp;
+ fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
 
-Replace TI-specific property by generic one.
+Add some nodes to bring up SMP on msm8226 SoC. Another commit to fix the
+sorting of the nodes is also included since the ordering is currently a
+bit all over the place.
 
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
 ---
-cannot be applied independently of the other ones, so maybe simply delay
-it.
+Ivaylo Ivanov (1):
+      ARM: dts: qcom: msm8226: Add CPU and SAW/ACC nodes
 
- arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Matti Lehtimäki (1):
+      ARM: dts: qcom: msm8226: Sort and clean up nodes
 
-diff --git a/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi b/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi
-index 3661340009e7a..5001c4ea35658 100644
---- a/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi
-+++ b/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi
-@@ -476,6 +476,7 @@ twl: twl@48 {
- 		reg = <0x48>;
- 		interrupts = <7>; /* SYS_NIRQ cascaded to intc */
- 		interrupt-parent = <&intc>;
-+		system-power-controller;
- 
- 		clocks = <&hfclk_26m>;
- 		clock-names = "fck";
-@@ -490,7 +491,6 @@ codec {
- 
- 		twl_power: power {
- 			compatible = "ti,twl4030-power-idle";
--			ti,system-power-controller;
- 		};
- 	};
- };
+ arch/arm/boot/dts/qcom/qcom-msm8226.dtsi | 751 +++++++++++++++++--------------
+ 1 file changed, 421 insertions(+), 330 deletions(-)
+---
+base-commit: 63b325612c1e996a107fc156db8ea9b756a9f65c
+change-id: 20231203-msm8226-cpu-801bebbed886
+
+Best regards,
 -- 
-2.39.2
+Luca Weiss <luca@z3ntu.xyz>
 
 
