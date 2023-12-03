@@ -1,119 +1,111 @@
-Return-Path: <devicetree+bounces-21062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21063-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4E6E8022FA
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 12:28:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1496880230C
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 12:32:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4BBAD280EB9
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 11:28:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A167B1C208F7
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 11:32:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3CBD9479;
-	Sun,  3 Dec 2023 11:28:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lK/wm6V9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 660949465;
+	Sun,  3 Dec 2023 11:32:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92B6E9465;
-	Sun,  3 Dec 2023 11:28:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0224DC433C9;
-	Sun,  3 Dec 2023 11:28:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701602933;
-	bh=orzCajD4xuOoJi/lwUf5LvDxHuelVRXrKmQIRJJW9n4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lK/wm6V9CYMuSx6gNCSml1sbdv5sGBTnpAilZVadi0NQM0WeLfZMGJxAn3g0d8daY
-	 08ljHjvMsug85SSfmqaNLpuQcqDGwFsoCGb7khsGxJN+/RK3EchFOgG3XywbWtUS6P
-	 OMgiWUzqVWr9SVpEbLJlvP73pzgKpUVEZNer+9REsCecd2VmwXbokSYZs6XVikyGit
-	 9kS/Mf020nFM7lXTLO173TOdA4IcpBw31ZiHCvTj+/4fOlTcV0lTBaH24YIpw/JAV1
-	 Olk4tssNWhbelrXqo+GNJ8nqVRm4jqsZZzspHeatzYDAnoMILxCLXYVpR8+Vpp26+N
-	 SQt3spHrJmnig==
-Date: Sun, 3 Dec 2023 11:28:48 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Johan Hovold <johan+linaro@kernel.org>
-Cc: Lee Jones <lee@kernel.org>,
-	Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 29E83B6;
+	Sun,  3 Dec 2023 03:32:10 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="6.04,247,1695654000"; 
+   d="scan'208";a="185128626"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 03 Dec 2023 20:32:08 +0900
+Received: from localhost.localdomain (unknown [10.226.92.30])
+	by relmlir6.idc.renesas.com (Postfix) with ESMTP id A373A403E66D;
+	Sun,  3 Dec 2023 20:32:02 +0900 (JST)
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v2 4/4] dt-bindings: mfd: pm8008: clean up example node
- names
-Message-ID: <20231203-snowflake-ungodly-6eeb2e7a86f1@spud>
-References: <20231201164546.12606-1-johan+linaro@kernel.org>
- <20231201164546.12606-5-johan+linaro@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	Lee Jones <lee@kernel.org>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	Support Opensource <support.opensource@diasemi.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>,
+	Lukasz Luba <lukasz.luba@arm.com>,
+	Steve Twiss <stwiss.opensource@diasemi.com>,
+	linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>,
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v3 00/11] Convert DA906{1,2} bindings to json-schema
+Date: Sun,  3 Dec 2023 11:31:48 +0000
+Message-Id: <20231203113159.92316-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="+WinrxxUeO6yqKOQ"
-Content-Disposition: inline
-In-Reply-To: <20231201164546.12606-5-johan+linaro@kernel.org>
+Content-Transfer-Encoding: 8bit
+
+Convert the below bindings to json-schema
+1) DA906{1,2} mfd bindings
+2) DA906{1,2,3} onkey bindings
+3) DA906{1,2,3} thermal bindings
+
+Also add fallback for DA9061 watchdog device and document
+DA9063 watchdog device.
+
+v2->v3:
+ * Updated Maintainer entries for watchdog,onkey and thermal bindings
+ * Fixed bot errors related to MAINTAINERS entry, invalid doc
+   references and thermal examples by merging patch#4. 
+
+v1->v2:
+ Ref: https://lore.kernel.org/all/20231201110840.37408-5-biju.das.jz@bp.renesas.com/
+ * DA9062 and DA9061 merged with DA9063
+ * Sorted the child devices
+ * mfd,onkey and thermal are pointing to child bindings
 
 
---+WinrxxUeO6yqKOQ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Fri, Dec 01, 2023 at 05:45:46PM +0100, Johan Hovold wrote:
-> Devicetree node names should be generic; fix up the pm8008 binding
-> example accordingly.
->=20
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+Biju Das (11):
+  MAINTAINERS: Update da9062-watchdog bindings
+  dt-bindings: watchdog: dlg,da9062-watchdog: Add fallback for DA9061
+    watchdog
+  dt-bindings: watchdog: dlg,da9062-watchdog: Document DA9063 watchdog
+  dt-bindings: input: Convert da906{1,2,3} onkey to json-schema
+  dt-bindings: mfd: dlg,da9063: Update watchdog property
+  dt-bindings: mfd: dlg,da9063: Update onkey property
+  dt-bindings: mfd: dlg,da9063: Sort child devices
+  dt-bindings: mfd: da9062: Update watchdog description
+  dt-bindings: mfd: da9062: Update onkey description
+  dt-bindings: mfd: da9062: Update thermal description
+  dt-bindings: mfd: dlg,da9063: Convert da9062 to json-schema
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+ .../bindings/input/da9062-onkey.txt           |  47 ----
+ .../bindings/input/dlg,da9062-onkey.yaml      |  60 +++++
+ .../devicetree/bindings/mfd/da9062.txt        | 124 ----------
+ .../devicetree/bindings/mfd/dlg,da9063.yaml   | 221 +++++++++++++++---
+ .../bindings/thermal/da9062-thermal.txt       |  36 ---
+ .../bindings/thermal/dlg,da9062-thermal.yaml  |  78 +++++++
+ .../watchdog/dlg,da9062-watchdog.yaml         |  12 +-
+ MAINTAINERS                                   |   6 +-
+ 8 files changed, 336 insertions(+), 248 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/input/da9062-onkey.txt
+ create mode 100644 Documentation/devicetree/bindings/input/dlg,da9062-onkey.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mfd/da9062.txt
+ delete mode 100644 Documentation/devicetree/bindings/thermal/da9062-thermal.txt
+ create mode 100644 Documentation/devicetree/bindings/thermal/dlg,da9062-thermal.yaml
 
-Cheers,
-Conor.
+-- 
+2.39.2
 
-> ---
->  Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml b/Doc=
-umentation/devicetree/bindings/mfd/qcom,pm8008.yaml
-> index 24c6158f73ae..32ea898e3ca9 100644
-> --- a/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
-> @@ -88,10 +88,11 @@ examples:
->    - |
->      #include <dt-bindings/interrupt-controller/irq.h>
->      #include <dt-bindings/gpio/gpio.h>
-> -    qupv3_se13_i2c {
-> +    i2c {
->        #address-cells =3D <1>;
->        #size-cells =3D <0>;
-> -      pm8008i@8 {
-> +
-> +      pmic@8 {
->          compatible =3D "qcom,pm8008";
->          reg =3D <0x8>;
-> =20
-> --=20
-> 2.41.0
->=20
-
---+WinrxxUeO6yqKOQ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZWxmcAAKCRB4tDGHoIJi
-0qSaAP9fWNhsSS3QXH+t58JYKDWfKnUQ7UEbwp5xIH3taFSCxgEAo4bGx9D5sIy3
-MxUUBhXQRLNmYOZo7PO8Cm5sIGwDqA8=
-=Hd/I
------END PGP SIGNATURE-----
-
---+WinrxxUeO6yqKOQ--
 
