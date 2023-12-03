@@ -1,146 +1,94 @@
-Return-Path: <devicetree+bounces-21118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18CE38025CC
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 17:59:43 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27ABF8025EC
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 18:15:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD8D8280D4F
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 16:59:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2FFCAB2089F
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 17:15:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B23401642B;
-	Sun,  3 Dec 2023 16:59:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF9AA171BC;
+	Sun,  3 Dec 2023 17:15:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HBYihxNW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SDsmjgNL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A98DD7
-	for <devicetree@vger.kernel.org>; Sun,  3 Dec 2023 08:59:34 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9fa2714e828so510897766b.1
-        for <devicetree@vger.kernel.org>; Sun, 03 Dec 2023 08:59:34 -0800 (PST)
+Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53110DB;
+	Sun,  3 Dec 2023 09:15:43 -0800 (PST)
+Received: by mail-ot1-x334.google.com with SMTP id 46e09a7af769-6d852e06b07so1091301a34.3;
+        Sun, 03 Dec 2023 09:15:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701622772; x=1702227572; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=v2WrHn2KfDjsHr5vzCrOA1RMgn365KSpIf3+qI9R6P8=;
-        b=HBYihxNWzkzt55L2OTEb3jJIsw4+rdy0ADrhm6SFEPSRUYjhvnEWHvZ6ZI49/HoZHx
-         a1FU36JIaguiX0yZjYMtcPwHtKr0UULaptWi+BEWdLZJ4JcOdzya7WDMLVl4r6aAPz0m
-         Q5vOmI0Lxls/7kHRdqiswWEMMV7RYyxwzqpMYfiTKq3adOTRKHrIrF000T50cl+nR3aq
-         DcgGyc/RJj1ZVsJ+07KU9j2QJ/wxX2k6Zn8wR6Wl6XbUbYIcjFUsijV254qjS75qqH/q
-         vCIF2rp9aPgHrHSvHu8V3DmG2svzAE0rGKmvf37R92vT2yxaDWHJGDUlEHoWS5CciVSF
-         OeGA==
+        d=gmail.com; s=20230601; t=1701623742; x=1702228542; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yBZXO26v74KanRQ2TmzpAUNxTFWX1dmRT4JokhSA/SI=;
+        b=SDsmjgNLbWa1ZYhJEVkbI42yJO5/u2ceVgNYRTjTDpwzp58ydN155MPOAnOS7XYa1z
+         b6vNS61jNd0iEHrI8l1lSnK9Sej5O8Pb1QziQ9JYlMuCpvRRREvqmpuMkN4nm3DwNMev
+         svVtoTvnhYoisisiDw/aZy5PdE42lJjTsFD1QZMu/wTawWJqWeVl+dlAtTLXqMp46olL
+         KH+zNFKjHhZhe4UweafPNvRyuBqMa8QtYQaJUirK4Ywr7WC7AB873E2UocryXwERcZS6
+         KuWMSR/r2JI3WeSyhXizO/Jew3dRLPKuKL5EedvRJmI4FV705XM1n2UPUUKiTjvmC++n
+         YGWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701622772; x=1702227572;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=v2WrHn2KfDjsHr5vzCrOA1RMgn365KSpIf3+qI9R6P8=;
-        b=U1x4swI8DiLCram5tnqrx+q3OGCmv3lQJdxguNcNmkKg3tip7CZQ4CPzxC5tD4jzY4
-         dg5u8299wHL2od0PViJuX8TWay/8CtZpOBBjrPFVEhqgRRJTmqFoD4M98U1dUVJgHRFL
-         ZgsIig8rKT1v/UI8/AussoPdcL/YmQmLaQpr3HFAREKXIT+IvSRu8pMWD+HyKn/6v/hs
-         Eg7GIZHPxbDOdoV6ReAU5HlAUDuEk8J2jL6VLY5vA7ySzKcWk8Ufs23i5FfqsydU9+D2
-         6kl4/FlTU7HZ1QrcvF1wDidC5j2sEA0z1zX6hLd892CKVVdz8YPhMwkIPJdWj66OtHZX
-         Iv3Q==
-X-Gm-Message-State: AOJu0YzuHqKKgPxRQxnpXweh9RnJluxXwDq/48QDKieLZLQky2baA6yY
-	sE1/jV9S8zRxfAJboUpF28rApA==
-X-Google-Smtp-Source: AGHT+IHLLwYN3p9N3kVtRmoxJqtaTfVrw8igqvyw+WpQ69cEvBn1ytTqsq2yahnVVXOgV9znKq6/Ew==
-X-Received: by 2002:a17:906:2210:b0:a19:a19b:55ff with SMTP id s16-20020a170906221000b00a19a19b55ffmr2773485ejs.143.1701622772547;
-        Sun, 03 Dec 2023 08:59:32 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id l18-20020a1709065a9200b009fe1d575365sm4293012ejq.55.2023.12.03.08.59.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 03 Dec 2023 08:59:31 -0800 (PST)
-Message-ID: <656d74a1-9fab-4893-b974-cd55fef1c76e@linaro.org>
-Date: Sun, 3 Dec 2023 17:59:29 +0100
+        d=1e100.net; s=20230601; t=1701623742; x=1702228542;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=yBZXO26v74KanRQ2TmzpAUNxTFWX1dmRT4JokhSA/SI=;
+        b=KPrXnJKJY4j2GmG/xoVn6Q6nfJBN8FeTKiS6liqS6B0eME+KOWlqb1+DTDP+7mO3pS
+         idGdAgb4YoIwaUq/Fb8JGc+z1XFiktfdVckZdra9yxrtUHDa8bpYJVZfOlZtGbrYSDZJ
+         4haLOyvrkrVRl3cTkB0AUSgj7TxFcUXWo9bWyD7YF9jtft8SJ3ffNxNQfj9/tLXEZjKL
+         40hZVYs+M2OO9fDPPyE8FILq/Hx/tktlmoHcQd0QuQy68SiMgPNSxdiZQmDuo4vSQAOb
+         0IWZrr1MJPJOswFvj34KxRDEso9Pxu2b6vH45x4vrJxZoxWfaKq9Axep/UJ27r9PTjaQ
+         5YyQ==
+X-Gm-Message-State: AOJu0YzkZ8BNvTqb70shtldmnffcCENW9XU7rpWVzbM7o3oVMsHPb3I8
+	Jys1h1kNjkUAMg+/xhjQgUA=
+X-Google-Smtp-Source: AGHT+IGpYYq9s+D+6iOr2T0a893By27s0UsjTBo8nIfE2jdkP1XUmvSZ1rAasxcX0x8uilSlny2lCg==
+X-Received: by 2002:a05:6820:2813:b0:58e:1c48:1a64 with SMTP id dm19-20020a056820281300b0058e1c481a64mr935915oob.13.1701623742524;
+        Sun, 03 Dec 2023 09:15:42 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id d17-20020a4a9191000000b0058a3c5d590bsm157883ooh.7.2023.12.03.09.15.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 03 Dec 2023 09:15:42 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Sun, 3 Dec 2023 09:15:40 -0800
+From: Guenter Roeck <linux@roeck-us.net>
+To: Michal Simek <michal.simek@amd.com>
+Cc: linux-kernel@vger.kernel.org, monstr@monstr.eu, michal.simek@xilinx.com,
+	git@xilinx.com, Conor Dooley <conor.dooley@microchip.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jean Delvare <jdelvare@suse.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-hwmon@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: hwmon: Increase max number of io-channels
+Message-ID: <3d90a57d-0149-4d4b-8ffc-af26a87132a3@roeck-us.net>
+References: <5110a313a5ce52ce6d7b5cb6b08368d42063dc30.1701419691.git.michal.simek@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 07/10] dt-bindings: display: panel: Add Ilitek ili9805
- panel controller
-Content-Language: en-US
-To: Dario Binacchi <dario.binacchi@amarulasolutions.com>,
- linux-kernel@vger.kernel.org
-Cc: Amarula patchwork <linux-amarula@amarulasolutions.com>,
- michael@amarulasolutions.com, Conor Dooley <conor+dt@kernel.org>,
- Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
- Jessica Zhang <quic_jesszhan@quicinc.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring
- <robh+dt@kernel.org>, Sam Ravnborg <sam@ravnborg.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org
-References: <20231130141705.1796672-1-dario.binacchi@amarulasolutions.com>
- <20231130141705.1796672-8-dario.binacchi@amarulasolutions.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231130141705.1796672-8-dario.binacchi@amarulasolutions.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5110a313a5ce52ce6d7b5cb6b08368d42063dc30.1701419691.git.michal.simek@amd.com>
 
-On 30/11/2023 15:16, Dario Binacchi wrote:
-> From: Michael Trimarchi <michael@amarulasolutions.com>
+On Fri, Dec 01, 2023 at 09:35:00AM +0100, Michal Simek wrote:
+> The Analog Monitoring System (AMS) defines 51 channels
+> (Documentation/devicetree/bindings/iio/adc/xlnx,zynqmp-ams.yaml)
+> that's why increase number to 51.
 > 
-> Add documentation for "ilitek,ili9805" panel.
-> 
-> Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
-> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> 
+> Signed-off-by: Michal Simek <michal.simek@amd.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Applied to hwmon-next. If there are still concerns about the commit message
+please let me know and I'll drop it until resolved.
 
-Best regards,
-Krzysztof
-
+Thanks,
+Guenter
 
