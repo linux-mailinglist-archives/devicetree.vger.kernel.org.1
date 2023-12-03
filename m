@@ -1,166 +1,136 @@
-Return-Path: <devicetree+bounces-21100-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21103-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DD57802507
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 16:11:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2119980253E
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 16:49:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B9A9C1F210AB
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 15:11:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F3EEF1C208FF
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 15:49:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4399E14AB5;
-	Sun,  3 Dec 2023 15:11:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="apiC8iWZ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67A06156D6;
+	Sun,  3 Dec 2023 15:49:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6FF6EA
-	for <devicetree@vger.kernel.org>; Sun,  3 Dec 2023 07:11:39 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-54c67b0da54so2632188a12.0
-        for <devicetree@vger.kernel.org>; Sun, 03 Dec 2023 07:11:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701616298; x=1702221098; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=x1s3diQUmhZKnFhf6RPj31jXRYpUbrUePNSllpbOaq8=;
-        b=apiC8iWZ/4sissKUTHSwoEkqAaTVyzJPqjXkzjAGQVBkOak7vT3SETUE8aC5c7nElA
-         DJ/NZx+64TfkQ4hpX/jsSQNvaEMO9c3A82e8WoW2SnIv2kxfQQEKPY76WCvFZ5rLMKTZ
-         vUvHZvXTWZxh+oCnSRlPnS3B8h/k50kzI8JVZaPWs8qg+L3/nJomOSjgNgkIo4A9ghy8
-         k1Kdi9lGH/QD6z/T2WG40EhF+VsTxj6Zb1YibJSLN92yBItlMuDN/yDYnPuI2ojPssA5
-         JBhVEyFhezfrnH1fS9tvHKFxLHGZf4GZN16F0XvsEAQSYij5bfiHzVNW7z5oi/V5wnwb
-         QBHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701616298; x=1702221098;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=x1s3diQUmhZKnFhf6RPj31jXRYpUbrUePNSllpbOaq8=;
-        b=aAZ50KuRDvPLmG2iViEPQv9XHaYfagqwforRKppZItXGebfOW7xg19B9pH9fHGgDRM
-         IHUqxGjyQaj1W/2kVa/WR7MOen2UN9xaKmBuFVbVNMYeB90WGhDkm1CJhfcHX1BYVxGe
-         ZUocfdJCIqYGRXRBFlHmVSu344Itlg8+KpOkgogZ+DYh2XW+ypMRPMz/9mYaNfhcrMWd
-         pCtwIZMo95/U6aHpoIfDuibdst2OfGT1IAYn9nvR4Myvt9ulK1r/1RrlmUs+aPYGuCrl
-         GJFpRb0dF8U0kIQUgfyQDN9MSoB15Puok1onphVKjJcCzKlPlMnST1SWJNx+VDLt9oek
-         dL9Q==
-X-Gm-Message-State: AOJu0YwlsgEkQdz+RmKTVlaPA/iEymJUSUSUGfcjrbc9bZXhPDRZXgqz
-	OyfeQ+wDIayKlBzl0q9KbhwL7A==
-X-Google-Smtp-Source: AGHT+IE6hLs+OQKKsA4hYNMrfNjXulBViiSAa71dvfVFYSnYccTJHBs8h9EOclYeTIhao87y1pcINQ==
-X-Received: by 2002:a17:906:d10e:b0:a19:a19b:55dc with SMTP id b14-20020a170906d10e00b00a19a19b55dcmr2615752ejz.108.1701616298269;
-        Sun, 03 Dec 2023 07:11:38 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id di16-20020a170906731000b00a1b6d503e7esm492044ejc.157.2023.12.03.07.11.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 03 Dec 2023 07:11:37 -0800 (PST)
-Message-ID: <fedd4ec8-b4e6-472a-9bfd-063ea8b9658e@linaro.org>
-Date: Sun, 3 Dec 2023 16:11:34 +0100
+X-Greylist: delayed 572 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 03 Dec 2023 07:49:16 PST
+Received: from mail-m6023.netease.com (mail-m6023.netease.com [210.79.60.23])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 487D6D7;
+	Sun,  3 Dec 2023 07:49:16 -0800 (PST)
+Received: from Vostro-3710.lan (unknown [119.122.215.53])
+	by mail-m121145.qiye.163.com (Hmail) with ESMTPA id 69DE3800089;
+	Sun,  3 Dec 2023 23:39:21 +0800 (CST)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Andy Gross <agross@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Chukun Pan <amadeus@jmu.edu.cn>
+Subject: [PATCH v2 1/1] arm64: dts: qcom: ipq6018: Add remaining QUP UART node
+Date: Sun,  3 Dec 2023 23:39:14 +0800
+Message-Id: <20231203153914.532654-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 07/20] dt-bindings: pinctrl: samsung: add
- gs101-wakeup-eint compatible
-Content-Language: en-US
-To: Peter Griffin <peter.griffin@linaro.org>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
- conor+dt@kernel.org, sboyd@kernel.org, tomasz.figa@gmail.com,
- s.nawrocki@samsung.com, linus.walleij@linaro.org, wim@linux-watchdog.org,
- linux@roeck-us.net, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
- olof@lixom.net, gregkh@linuxfoundation.org, jirislaby@kernel.org,
- cw00.choi@samsung.com, alim.akhtar@samsung.com
-Cc: tudor.ambarus@linaro.org, andre.draszik@linaro.org,
- semen.protsenko@linaro.org, saravanak@google.com, willmcvicker@google.com,
- soc@kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-watchdog@vger.kernel.org, kernel-team@android.com,
- linux-serial@vger.kernel.org
-References: <20231201160925.3136868-1-peter.griffin@linaro.org>
- <20231201160925.3136868-8-peter.griffin@linaro.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231201160925.3136868-8-peter.griffin@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCGk5NVh1NTR5OTR9DQx0aH1UTARMWGhIXJBQOD1
+	lXWRgSC1lBWUpKQlVKSUlVSUpOVU5IWVdZFhoPEhUdFFlBWU9LSFVKSktISkNVSktLVUtZBg++
+X-HM-Tid: 0a8c30558aecb03akuuu69de3800089
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6ORQ6DBw5Tzw3SwkXVj49NxI*
+	EBEwFA9VSlVKTEtKTUpMQk1JSUJDVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
+	QlVKSUlVSUpOVU5IWVdZCAFZQUhCTkI3Bg++
 
-On 01/12/2023 17:09, Peter Griffin wrote:
-> gs101 is similar to newer Exynos SoCs like Exynos850 and ExynosAutov9
-> where more than one pin controller can do external wake-up interrupt.
-> So add a dedicated compatible for it.
-> 
-> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-> ---
->  .../bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml      | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml b/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml
-> index 2bafa867aea2..de2209f8ba00 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml
-> @@ -44,6 +44,7 @@ properties:
->            - const: samsung,exynos7-wakeup-eint
->        - items:
->            - enum:
-> +              - google,gs101-wakeup-eint
->                - samsung,exynosautov9-wakeup-eint
->                - samsung,exynosautov920-wakeup-eint
->            - const: samsung,exynos850-wakeup-eint
-> @@ -111,6 +112,7 @@ allOf:
->          compatible:
->            contains:
->              enum:
-> +              - google,gs101-wakeup-eint
+Add node to support all the QUP UART node controller inside of IPQ6018.
+Some routers use these bus to connect Bluetooth chips.
 
-Drop, not needed.
+Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+---
+Changes in v2:
+* No changes, resend due to error link to other threads.
 
-Best regards,
-Krzysztof
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi | 50 +++++++++++++++++++++++++++
+ 1 file changed, 50 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+index 9aec89d5e095..ec0a0ce1849e 100644
+--- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
++++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+@@ -439,6 +439,26 @@ blsp_dma: dma-controller@7884000 {
+ 			qcom,ee = <0>;
+ 		};
+ 
++		blsp1_uart1: serial@78af000 {
++			compatible = "qcom,msm-uartdm-v1.4", "qcom,msm-uartdm";
++			reg = <0x0 0x78af000 0x0 0x200>;
++			interrupts = <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&gcc GCC_BLSP1_UART1_APPS_CLK>,
++				 <&gcc GCC_BLSP1_AHB_CLK>;
++			clock-names = "core", "iface";
++			status = "disabled";
++		};
++
++		blsp1_uart2: serial@78b0000 {
++			compatible = "qcom,msm-uartdm-v1.4", "qcom,msm-uartdm";
++			reg = <0x0 0x78b0000 0x0 0x200>;
++			interrupts = <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&gcc GCC_BLSP1_UART2_APPS_CLK>,
++				 <&gcc GCC_BLSP1_AHB_CLK>;
++			clock-names = "core", "iface";
++			status = "disabled";
++		};
++
+ 		blsp1_uart3: serial@78b1000 {
+ 			compatible = "qcom,msm-uartdm-v1.4", "qcom,msm-uartdm";
+ 			reg = <0x0 0x078b1000 0x0 0x200>;
+@@ -449,6 +469,36 @@ blsp1_uart3: serial@78b1000 {
+ 			status = "disabled";
+ 		};
+ 
++		blsp1_uart4: serial@78b2000 {
++			compatible = "qcom,msm-uartdm-v1.4", "qcom,msm-uartdm";
++			reg = <0x0 0x078b2000 0x0 0x200>;
++			interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&gcc GCC_BLSP1_UART4_APPS_CLK>,
++				 <&gcc GCC_BLSP1_AHB_CLK>;
++			clock-names = "core", "iface";
++			status = "disabled";
++		};
++
++		blsp1_uart5: serial@78b3000 {
++			compatible = "qcom,msm-uartdm-v1.4", "qcom,msm-uartdm";
++			reg = <0x0 0x78b3000 0x0 0x200>;
++			interrupts = <GIC_SPI 308 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&gcc GCC_BLSP1_UART5_APPS_CLK>,
++				 <&gcc GCC_BLSP1_AHB_CLK>;
++			clock-names = "core", "iface";
++			status = "disabled";
++		};
++
++		blsp1_uart6: serial@78b4000 {
++			compatible = "qcom,msm-uartdm-v1.4", "qcom,msm-uartdm";
++			reg = <0x0 0x078b4000 0x0 0x200>;
++			interrupts = <GIC_SPI 309 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&gcc GCC_BLSP1_UART6_APPS_CLK>,
++				 <&gcc GCC_BLSP1_AHB_CLK>;
++			clock-names = "core", "iface";
++			status = "disabled";
++		};
++
+ 		blsp1_spi1: spi@78b5000 {
+ 			compatible = "qcom,spi-qup-v2.2.1";
+ 			#address-cells = <1>;
+-- 
+2.25.1
 
 
