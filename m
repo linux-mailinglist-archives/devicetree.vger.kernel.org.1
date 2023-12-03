@@ -1,67 +1,66 @@
-Return-Path: <devicetree+bounces-21161-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21162-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FCC380292F
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 00:48:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B0EC802935
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 00:48:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B7FC280AB3
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 23:48:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D98F7280AB8
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 23:48:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D704B1C2BE;
-	Sun,  3 Dec 2023 23:48:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 025A61C687;
+	Sun,  3 Dec 2023 23:48:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LVBPARiL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="InCrGuLx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9636ECF
-	for <devicetree@vger.kernel.org>; Sun,  3 Dec 2023 15:48:18 -0800 (PST)
-Received: by mail-yb1-xb36.google.com with SMTP id 3f1490d57ef6-db539ab8e02so2257766276.0
-        for <devicetree@vger.kernel.org>; Sun, 03 Dec 2023 15:48:18 -0800 (PST)
+Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92F99CF
+	for <devicetree@vger.kernel.org>; Sun,  3 Dec 2023 15:48:47 -0800 (PST)
+Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-5d3758fdd2eso34276607b3.0
+        for <devicetree@vger.kernel.org>; Sun, 03 Dec 2023 15:48:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701647298; x=1702252098; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701647327; x=1702252127; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=vWqoLalNR8SshokhkQOf7/YDcCmn4G31mg9KQGgCRpA=;
-        b=LVBPARiLnZcwEpAJ545b4VI9cYOGWj5E8yzRd9WBVa0/Ul4jVKlKkDn3p1Cs3wjxOD
-         cUJLTyAYG3CBqPkhBm5s+Ph/fLjSoDyG6g6hn7DuOJYarMZ65o3SvyDyXn6eeXKHvIQi
-         lE7AItQbmGsl5jk7ZCHgLfc9kNkkzgzbm8GzfKzzB8pKZygawmE80YmN3SYfab7ff2oJ
-         TVpHfFsj1e7ip+e2ct4E6l5XRFQNYEMrr5RYmmfpIlr43/lzvucF5RuuaXwd3pKgG67b
-         qB7oR4kzKCTmAawERvJCgXr8ACSvX0+HSL5MwIrpUjM6oCU1VV/uA4l+3KfUqqE2ONsu
-         wcww==
+        bh=y4mwIE64K3KnKAJR/Y6BmY3reEf+tZOwBdBsLV78yPc=;
+        b=InCrGuLxpXgGGXlEuzMBN6LIXkT5258Lt/EXDtcamNdvS6po2ujT+TEJcxwxBXhs/v
+         LqH4ghXKD5KHWrWxX+2V+fNVCb4nEgtwjiMMtdnqf94Tw9rn8g22OFWfgBEeO+VYPf77
+         I0ht2xLIw57FAQfqBGwMUVacV+3adS3qTb6txWz1byoFlytoEuoLlb0N8yISL18eDtTO
+         qFoxLKtf9QJtvRvZE7rQKSkAM1DFousisrAk+hvTcizYEd0tSlWYGcbwqdLBeW/pwaB1
+         sCqLRjm2+rKbLC2s6Uj/Lw2abbPcbRia2yGhp8b+8aNMt19PG6gk2iPDEK+lrfTwdCM/
+         sNMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701647298; x=1702252098;
+        d=1e100.net; s=20230601; t=1701647327; x=1702252127;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=vWqoLalNR8SshokhkQOf7/YDcCmn4G31mg9KQGgCRpA=;
-        b=c8srJgL8EXEbL1Qtt62w+4/eOxJowJ1CDWkxWmgjaaEW7i21gu3fgDkxdRq8rv3wMs
-         piUeNmvw4j+fy5szTXNBtrzHpSNcKUsD/0KZr5e42ZteZ+1IxU3XbSwLjfnqYDa+4nfk
-         0kWyswI1BWUFTgkzoBEQZWPHJlEZdBnTeyZaPV79VqYoipmXu3oMqe6LP4p/+KQ6wQ5h
-         ryfWQhtHvQ/czcKYIs0oYYWZZln8JB0KXq5Uu/MjGknU+h15GiD1RJFOf7JttiRbENVS
-         aXLHKw3wcfJxSLO45h3lssCzqKMGlQWL1hYTpf94Ez835gE7APzPGv6l9nKq+qgAq1oS
-         fwYA==
-X-Gm-Message-State: AOJu0Yyl/i5WFFxfjL8OhFKmwJ30GMT1twF6cnZ1uQQdYzHgqbc0ylRQ
-	KTPJRX+/nqan+tA52LvIq+dxUgN1sZ3wtHG/7+m6xA==
-X-Google-Smtp-Source: AGHT+IGHplLFwjAr05PmC5DkiZjE2D9xRFircODZ6D9h2X05ViVg/npg+QkPUdC93HzupX7slUGi+rdZudZvMu7sLgY=
-X-Received: by 2002:a81:b65f:0:b0:5d3:d439:aabe with SMTP id
- h31-20020a81b65f000000b005d3d439aabemr2265318ywk.26.1701647297842; Sun, 03
- Dec 2023 15:48:17 -0800 (PST)
+        bh=y4mwIE64K3KnKAJR/Y6BmY3reEf+tZOwBdBsLV78yPc=;
+        b=enb00tOxxyh68BRxy3Qb48kfcrFohwWpBt189jiebYgWRLbmI+dv97cGH8/TGlgS4N
+         +nzgInHsMypduMARgN7YFC0PX+zzULyN2uOEj2ekUdgP2eVw4ZBnRgyfVaDAubuNc9Bk
+         y9eAp/warmFVPpC8fCTomlJn3yE6jVHY7mhClk5RWx1C0t3NS2vNQm+f4NTx0pXUz31b
+         3jGsoc3EyU5WLnJ/zuaJqUY4rjcltGFjPmr7nt5sig3YhPidPlunig9JBjkauyxf3t9a
+         UIH3hvim9M2WoabBT76ic641rvnM4Tg3fIZyUuOypGs4dDFbV6JK0ttJRPi77HrYD+sE
+         Xuxg==
+X-Gm-Message-State: AOJu0Yx/PIUNQn1T9Xh6y3zn8mDPVl7qeO5gACUl8Dl/FxArpv9BqHZ4
+	B8vGvW9Q+YZR+fy0t4t47IoQROxAu0NNyvXxEvySVA==
+X-Google-Smtp-Source: AGHT+IFK6o3xpi1dzKHSZrcp9Cmy08sip1nyekE99rglLIRRqt1HaCjXiP0tEEF3ts96ZNbc9twk/YxBI/NcmDT1be4=
+X-Received: by 2002:a81:e404:0:b0:5d1:430e:4b6f with SMTP id
+ r4-20020a81e404000000b005d1430e4b6fmr1764039ywl.9.1701647326829; Sun, 03 Dec
+ 2023 15:48:46 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231202075514.44474-1-tony@atomide.com> <20231202075514.44474-9-tony@atomide.com>
-In-Reply-To: <20231202075514.44474-9-tony@atomide.com>
+References: <20231202075514.44474-1-tony@atomide.com> <20231202075514.44474-11-tony@atomide.com>
+In-Reply-To: <20231202075514.44474-11-tony@atomide.com>
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 4 Dec 2023 01:48:06 +0200
-Message-ID: <CAA8EJpqzz++bdJ7XHmfHWJ1RhXN=vXwwDPmt=SZAR5LxOCkjEg@mail.gmail.com>
-Subject: Re: [PATCH v2 08/10] drm/bridge: tc358775: Enable pre_enable_prev_first
- flag
+Date: Mon, 4 Dec 2023 01:48:34 +0200
+Message-ID: <CAA8EJpo6K21aDJ7Rx-4PSET5i373rU6H-7SerXPZ=_2RUS4f4A@mail.gmail.com>
+Subject: Re: [PATCH v2 10/10] drm/bridge: tc358775: Configure hs_rate and lp_rate
 To: Tony Lindgren <tony@atomide.com>
 Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
 	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
@@ -77,19 +76,19 @@ Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@lina
 	Pavel Machek <pavel@ucw.cz>
 Content-Type: text/plain; charset="UTF-8"
 
-On Sat, 2 Dec 2023 at 10:03, Tony Lindgren <tony@atomide.com> wrote:
+On Sat, 2 Dec 2023 at 10:06, Tony Lindgren <tony@atomide.com> wrote:
 >
-> Set pre_enable_prev_first to ensure the previous bridge is enabled
-> first.
+> The hs_rate and lp_rate may be used by the dsi host for timing
+> calculations. The tc358775 has a maximum bit rate of 1 Gbps/lane,
+> tc358765 has maximurate of 800 Mbps per lane.
 >
 > Signed-off-by: Tony Lindgren <tony@atomide.com>
 > ---
->  drivers/gpu/drm/bridge/tc358775.c | 1 +
->  1 file changed, 1 insertion(+)
->
+>  drivers/gpu/drm/bridge/tc358775.c | 5 +++++
+>  1 file changed, 5 insertions(+)
+
 
 Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
 
 -- 
 With best wishes
