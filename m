@@ -1,40 +1,60 @@
-Return-Path: <devicetree+bounces-21117-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21118-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CC6A8025C9
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 17:57:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18CE38025CC
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 17:59:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CB5421F20F28
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 16:57:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD8D8280D4F
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 16:59:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3040015AFE;
-	Sun,  3 Dec 2023 16:56:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B23401642B;
+	Sun,  3 Dec 2023 16:59:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="PYnJoJyK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HBYihxNW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29EF6F3;
-	Sun,  3 Dec 2023 08:56:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-	s=s31663417; t=1701622586; x=1702227386; i=wahrenst@gmx.net;
-	bh=tRP6BrTRk1GtQs78xeszswu5cMfOHdwOWb4VV2A2ZF4=;
-	h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
-	 In-Reply-To;
-	b=PYnJoJyKn/Fx7cAR3W6cqm36Xt73h6neV74U40fuVqzinQSWSpjcoOdEJZdSDe0/
-	 CZYux+p255r/n3VjAPYm0K6nyw6h3kR/aaI+KaZJfKwDO/1z77g84EmjtrfN2/UQ/
-	 9rCIvAxGFCIWXOMGwq0nHxuRl0nPOzyeTX4YXT5Q764JCxW9khCkTSOr2X1YLt7iC
-	 r4I01RiotM5Y7Wa/IUVpL+zf76FWBe3Pg8kYrsc/eDtZZ0pRwmVmLtgNj26n6QVrq
-	 CftAgJBnzgguAJOh1ppg07Je7FXLtzEfPHeTwMfSvz6Zb7hRclmUdhFo8YmqMro3g
-	 4brIBRWqQlxlvMV2QA==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.130] ([37.4.248.43]) by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MTAFb-1qh0Mv29p1-00UWz1; Sun, 03
- Dec 2023 17:56:26 +0100
-Message-ID: <7dd529a0-ebee-4f3b-879b-c7b1033cfdb9@gmx.net>
-Date: Sun, 3 Dec 2023 17:56:24 +0100
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A98DD7
+	for <devicetree@vger.kernel.org>; Sun,  3 Dec 2023 08:59:34 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9fa2714e828so510897766b.1
+        for <devicetree@vger.kernel.org>; Sun, 03 Dec 2023 08:59:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701622772; x=1702227572; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=v2WrHn2KfDjsHr5vzCrOA1RMgn365KSpIf3+qI9R6P8=;
+        b=HBYihxNWzkzt55L2OTEb3jJIsw4+rdy0ADrhm6SFEPSRUYjhvnEWHvZ6ZI49/HoZHx
+         a1FU36JIaguiX0yZjYMtcPwHtKr0UULaptWi+BEWdLZJ4JcOdzya7WDMLVl4r6aAPz0m
+         Q5vOmI0Lxls/7kHRdqiswWEMMV7RYyxwzqpMYfiTKq3adOTRKHrIrF000T50cl+nR3aq
+         DcgGyc/RJj1ZVsJ+07KU9j2QJ/wxX2k6Zn8wR6Wl6XbUbYIcjFUsijV254qjS75qqH/q
+         vCIF2rp9aPgHrHSvHu8V3DmG2svzAE0rGKmvf37R92vT2yxaDWHJGDUlEHoWS5CciVSF
+         OeGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701622772; x=1702227572;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=v2WrHn2KfDjsHr5vzCrOA1RMgn365KSpIf3+qI9R6P8=;
+        b=U1x4swI8DiLCram5tnqrx+q3OGCmv3lQJdxguNcNmkKg3tip7CZQ4CPzxC5tD4jzY4
+         dg5u8299wHL2od0PViJuX8TWay/8CtZpOBBjrPFVEhqgRRJTmqFoD4M98U1dUVJgHRFL
+         ZgsIig8rKT1v/UI8/AussoPdcL/YmQmLaQpr3HFAREKXIT+IvSRu8pMWD+HyKn/6v/hs
+         Eg7GIZHPxbDOdoV6ReAU5HlAUDuEk8J2jL6VLY5vA7ySzKcWk8Ufs23i5FfqsydU9+D2
+         6kl4/FlTU7HZ1QrcvF1wDidC5j2sEA0z1zX6hLd892CKVVdz8YPhMwkIPJdWj66OtHZX
+         Iv3Q==
+X-Gm-Message-State: AOJu0YzuHqKKgPxRQxnpXweh9RnJluxXwDq/48QDKieLZLQky2baA6yY
+	sE1/jV9S8zRxfAJboUpF28rApA==
+X-Google-Smtp-Source: AGHT+IHLLwYN3p9N3kVtRmoxJqtaTfVrw8igqvyw+WpQ69cEvBn1ytTqsq2yahnVVXOgV9znKq6/Ew==
+X-Received: by 2002:a17:906:2210:b0:a19:a19b:55ff with SMTP id s16-20020a170906221000b00a19a19b55ffmr2773485ejs.143.1701622772547;
+        Sun, 03 Dec 2023 08:59:32 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.223.109])
+        by smtp.gmail.com with ESMTPSA id l18-20020a1709065a9200b009fe1d575365sm4293012ejq.55.2023.12.03.08.59.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 03 Dec 2023 08:59:31 -0800 (PST)
+Message-ID: <656d74a1-9fab-4893-b974-cd55fef1c76e@linaro.org>
+Date: Sun, 3 Dec 2023 17:59:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -42,147 +62,85 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 1/3] dt-bindings: usb: xhci: add support for BCM2711
-To: Conor Dooley <conor@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Justin Chen <justin.chen@broadcom.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Mathias Nyman <mathias.nyman@intel.com>,
- bcm-kernel-feedback-list@broadcom.com, Cyril Brulebois <kibi@debian.org>,
- linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20231202232217.89652-1-wahrenst@gmx.net>
- <20231202232217.89652-2-wahrenst@gmx.net>
- <20231203-chair-zen-afb8b280ca2f@spud>
- <20231203-traffic-aide-cb03afdb3546@spud>
+Subject: Re: [PATCH v3 07/10] dt-bindings: display: panel: Add Ilitek ili9805
+ panel controller
 Content-Language: en-US
-From: Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <20231203-traffic-aide-cb03afdb3546@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:57ZWdztn7nG7UVMkRZWPzK3rBPm+idGw8u9SpKKyRVp7WZYzhLo
- CSrw0j41kIsjnAz3msQiVvGXbZlIggtk4H6iEoR4F//kMzLvbCOVpvO0jxyZNuQjZOw8vVq
- S7mAVWwaY9svt65fcRPWi0z4zrZDTNgmUQIWIK+G60DvvFWrhLDeVdmST38q6626CPVPR9x
- R5I9O0tuPQBJXKwi5MhvA==
-UI-OutboundReport: notjunk:1;M01:P0:iBWZ4jTwWqo=;L993cU8qd6epOofaELofyPBIFZv
- orTbsIH0fK6e+nDi9zAdX0ZGDm7MRlllz7VYTBYIwgzxp1ytVs8WcaG/UxpITlTagM0EBd/Vz
- /c9FU7wUTHjMgLzDk3qjXQ4RD3KTJ7AcgStkITUIPgIywi3e4yShTVhUaDSbVzegujHsx5VAC
- 4iO+PBksdEV/TwJuwx72t9J8PYz1NH138uEz1pdnejB5oByniVBJmmnUm5L+mIY1Cb3fVZcfo
- h9u3reLM2N6VLxhze4QY3iED+vTi0So98rBDF0MnEojMzreXD9l/oAAqlfKQ27yYSHhxalBZa
- 6pOLxhNk50b/sWXI80D7aj6whTITbG8bvQij9ALp40XvKSbkQ/WVYH3LAo8qx9BKGzqbAusU/
- VIxENOt6N4dVodTa+aFj5ywk7TBOzFL1RP5TiCnqHsmrq7fDHmjNCeiVU9ZYfxsNMqr70s/Jp
- 3azE5meCaIaw6bAfuCfNpdAP2/XKL2hyVBJg0JFPtS2Fn0m2YRLsBdK6PeiHfAIeUYHCmI+pc
- SOW3Pw5aJJU/oxhDi70R1dwHjwtUeg1JDeMWlgGBv9Itrnj7jd0mqu6vldSlUNPCN0i3tyQLV
- N4zXk2sATj4RRwSANDr5s7FXoVFYrovIvrUCUtbgOAfRt6qLRnZBkblD4V09IfWPLKvFvetkM
- G/QIgVXL15DaspeKiwm9mqhBZiIT07CEkDxfpRmbOKds41DwyObemYpXp3kFg5T03sSIeptRt
- tNThas2Am/OMrj5w4bgSU6l6OkBFNXrxFxUqNT+jAvMaMLCaLQ3wFG9cKS9YX0qbBzc//XjMG
- g3KkGO25BzgsVUU8/Fo2gi7wv1NXFBsCje6q0C0hqNKe03C6nXQqmkIvfnEDIjMJlVDB0IGSj
- zEY2ZVFUMOImvDsSlcIZcBJK5XCMNGGNmIxY7wM+MLor5mmNahnADYLisbTxcZLTMAgW4FzEj
- TdjPpZkggFL1CGOHqEsNLpiZGGA=
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+ linux-kernel@vger.kernel.org
+Cc: Amarula patchwork <linux-amarula@amarulasolutions.com>,
+ michael@amarulasolutions.com, Conor Dooley <conor+dt@kernel.org>,
+ Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring
+ <robh+dt@kernel.org>, Sam Ravnborg <sam@ravnborg.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
+References: <20231130141705.1796672-1-dario.binacchi@amarulasolutions.com>
+ <20231130141705.1796672-8-dario.binacchi@amarulasolutions.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231130141705.1796672-8-dario.binacchi@amarulasolutions.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi,
+On 30/11/2023 15:16, Dario Binacchi wrote:
+> From: Michael Trimarchi <michael@amarulasolutions.com>
+> 
+> Add documentation for "ilitek,ili9805" panel.
+> 
+> Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
+> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> 
 
-Am 03.12.23 um 12:11 schrieb Conor Dooley:
-> On Sun, Dec 03, 2023 at 11:06:43AM +0000, Conor Dooley wrote:
->> On Sun, Dec 03, 2023 at 12:22:15AM +0100, Stefan Wahren wrote:
->>> The xHCI IP on the BCM2711 SoC is compatible to "brcm,xhci-brcm-v2",
->>> but also requires a power domain.
-> Hmm
-> This & the driver change makes it look like your compatible setup should
-> be `compatible =3D "brcm,bcm2711-xhci", "brcm,xhci-brcm-v2";.
-i don't have insight into the hardware, but the fact that the other
-Broadcom SoC didn't require a power domain before let me think we
-shouldn't do this. Otherwise this binding was broken before. But Justin
-and Florian could clarify this.
-> If the pattern in this patch was repeated, we'd have to modify the
-> driver like your 2nd patch does for each and new broadcom system that
-> needs the power domain.
- From my understanding the DT compatible should be specific as possible.
-This is what i did, especially because the Raspberry Pi boards tends to
-needs some quirks.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Best regards
->
->
->>> So introduce a new compatible
->>> and the specific constraints. Since the key allOf can only occur
->>> once, merge the reference below.
->>>
->>> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
->> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
->>
->> Cheers,
->> Conor.
->>
->>> ---
->>>   .../devicetree/bindings/usb/generic-xhci.yaml | 21 ++++++++++++++++-=
---
->>>   1 file changed, 18 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/usb/generic-xhci.yaml b=
-/Documentation/devicetree/bindings/usb/generic-xhci.yaml
->>> index 594ebb3ee432..b6e10b0a3c24 100644
->>> --- a/Documentation/devicetree/bindings/usb/generic-xhci.yaml
->>> +++ b/Documentation/devicetree/bindings/usb/generic-xhci.yaml
->>> @@ -9,9 +9,6 @@ title: USB xHCI Controller
->>>   maintainers:
->>>     - Mathias Nyman <mathias.nyman@intel.com>
->>>
->>> -allOf:
->>> -  - $ref: usb-xhci.yaml#
->>> -
->>>   properties:
->>>     compatible:
->>>       oneOf:
->>> @@ -28,6 +25,7 @@ properties:
->>>         - description: Broadcom STB SoCs with xHCI
->>>           enum:
->>>             - brcm,xhci-brcm-v2
->>> +          - brcm,bcm2711-xhci
->>>             - brcm,bcm7445-xhci
->>>         - description: Generic xHCI device
->>>           const: xhci-platform
->>> @@ -49,6 +47,9 @@ properties:
->>>         - const: core
->>>         - const: reg
->>>
->>> +  power-domains:
->>> +    maxItems: 1
->>> +
->>>   unevaluatedProperties: false
->>>
->>>   required:
->>> @@ -56,6 +57,20 @@ required:
->>>     - reg
->>>     - interrupts
->>>
->>> +allOf:
->>> +  - $ref: usb-xhci.yaml#
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            const: brcm,bcm2711-xhci
->>> +    then:
->>> +      required:
->>> +        - power-domains
->>> +    else:
->>> +      properties:
->>> +        power-domains: false
->>> +
->>>   examples:
->>>     - |
->>>       usb@f0931000 {
->>> --
->>> 2.34.1
->>>
->
->
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+Best regards,
+Krzysztof
 
 
