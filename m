@@ -1,202 +1,130 @@
-Return-Path: <devicetree+bounces-21138-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21139-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AF768027D7
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 22:33:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28C0C802803
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 22:40:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D415F280C2F
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 21:33:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 563BF1C20949
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 21:40:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23F5019465;
-	Sun,  3 Dec 2023 21:33:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4D391A261;
+	Sun,  3 Dec 2023 21:39:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UzHR5xJZ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="N5L7AweH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5933C2;
-	Sun,  3 Dec 2023 13:33:04 -0800 (PST)
-Received: by mail-pj1-x102e.google.com with SMTP id 98e67ed59e1d1-28655c04da3so1932667a91.0;
-        Sun, 03 Dec 2023 13:33:04 -0800 (PST)
+Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 571A8D3
+	for <devicetree@vger.kernel.org>; Sun,  3 Dec 2023 13:39:55 -0800 (PST)
+Received: by mail-qv1-xf2a.google.com with SMTP id 6a1803df08f44-67ab19339b4so12143826d6.0
+        for <devicetree@vger.kernel.org>; Sun, 03 Dec 2023 13:39:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701639184; x=1702243984; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4uUY1W5jCT30owrQ3sG0UVyxY52rhXE7pduVYPg+ahQ=;
-        b=UzHR5xJZnGO464U1Le00F2cg42NM95OzLpJu4Pvg1yvCFG2aBy2M0aCHfEWkquOZN/
-         2zMf6DUzEyKdKoiRbRQCsOzg/hlySHtVU5buo2Uf9HZ6fuK33rKF6z8WqPjG/hQE/QV/
-         /XLdfqJzG3F+/IbOgNg3kNJiktP4+vn0w9NTOefzEDVCCFbYz+Tzbpz25k4bePjWgZUP
-         yt/uTRd2qKh2iMxwSAe6NAwzagNTjr1cTop9CnSW68Tou0/vpFxD0yAq9HGZAhTE0T4Y
-         eOXwv+iSE19GVRTCOLzLqRGmh3+qLsKQJQx71RRbSPR207pD1TVEepdW1tzPgzGK+nqf
-         CL6A==
+        d=linaro.org; s=google; t=1701639594; x=1702244394; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=7gO8de0lce7HaKv0/P/qdh9+Js5noC/xSOjvtz3e/WM=;
+        b=N5L7AweHBYhyJpgx6fgGw3aIrBLFOzeVEu3xxmSMt+OkZY/WQLPG6/SZ1PtvvquNPO
+         DAgQmu7nqLc9pzD4GF4X+Us6KppvuMh76rIOa5puv8WAk5lBqru+2x+rhV269rfqBpsP
+         afSCFGYwSfth18SQA59kBvmBvhlqXOKE2c4bZu9coSn8Yqof2c/XbsBatJw2Xb1rQ88i
+         XZuxXxA0NKFDaSmfK6PufcA9vABx22hUNOpEkXyQN5I45Uth/hy6Xz2pkXrIcJ5aRrGU
+         WAgtLd7juIiMtZTJUWvwzpIHk+oltqJpN7yRm39NMC/iGU9H+HuSVVRPeHOMDTiuD9Y6
+         n8rw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701639184; x=1702243984;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4uUY1W5jCT30owrQ3sG0UVyxY52rhXE7pduVYPg+ahQ=;
-        b=nqbtjn4RcgcclDuI7tjQo0SHhINXdOzzJSjxt1MqhS1OJkb43ICfacLa2uzm8hYSjq
-         VhC72gYQUco7lmj8b8EZa7norZIbFt4EvGlJthWLNTLSNIuIuxqx5/x0RujMcwIVPkMM
-         cGrgAqFCvlVJMdN3tHm5D1aRUWoSHpLCL+XpUDHFVv325gyc0kWWtdfzlfI78tTr35kv
-         MugtWahlKEfrX1T1snjGTZhfAroCpTZpThFSRrWa21qNizmovPHfIfMr965TuXGD2f8A
-         eaSDAW8G0+Tu8BxXmiNhVuszdXOnZdeLJsQivIuZkHXLv8dpc5b5gX1l4eT44BgjQZGF
-         oGYw==
-X-Gm-Message-State: AOJu0YxaEKEtzGnY4C/9hVWChNP6RWT414W7QBrR442GKzzRxR3p+y5O
-	ADy8zxcg63ByNWnZbGaYqj0x3tjLId0j2MKW4IQ=
-X-Google-Smtp-Source: AGHT+IGPWxeHkfwcW6s5frHbR04baTe/Cp+skA++exMPU/AmVPvdrLFK7lu4L+64Z6AB2cWvsAJbNDtD219dx28KB1E=
-X-Received: by 2002:a17:90a:b005:b0:286:6cc0:62a3 with SMTP id
- x5-20020a17090ab00500b002866cc062a3mr3345815pjq.34.1701639183857; Sun, 03 Dec
- 2023 13:33:03 -0800 (PST)
+        d=1e100.net; s=20230601; t=1701639594; x=1702244394;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7gO8de0lce7HaKv0/P/qdh9+Js5noC/xSOjvtz3e/WM=;
+        b=HmA1DzjKxxIH19fOQQZjAHtX03UPMzvlmmR7Wpdxai4e8XQ4rU/WAY8lPxty0IceaD
+         GoUxtOGC6bPZWvB6sG9yJhCeN/hBTe1UxvNVwj25HsL3WM1KwspNkKsZDfGTWteemGK7
+         zK3ehhEcmsZeIueAD2tlc5O8JxunRmcCOXkVU2WbiL7BZOgUUd17XbMuwL16YFpx5Dv5
+         CUiG0sPMYe4QjDKAs9WTkdlGrW0hKghLntAqRVW3VUj8WrXhuqwnDVGMDDV1+ffasilP
+         8V2n2d7zTAz/W7F/LV0735XJP5uHBelWerrmQtV0xu4bz5n7J/j4iAOORG0DR6SfMjQe
+         Y+Rg==
+X-Gm-Message-State: AOJu0YwIQ34JKEi71sPCFTrkj3n6VkdAxZiwyZHIBvSXHl1QEiVMDn+N
+	16bMpa4nCxj1NoSqVeOZcGo0ppqwcA0Z0SJMCMG30A==
+X-Google-Smtp-Source: AGHT+IGU7r7x9r9+baipwfFC2Z6LHKfOwxTcuFhaimGYhCIcueT+DijNUTVWF4dXUB1M1ZX2RA1n39vU5/gLge1bopA=
+X-Received: by 2002:a0c:e94b:0:b0:67a:a394:e20c with SMTP id
+ n11-20020a0ce94b000000b0067aa394e20cmr4222616qvo.38.1701639594412; Sun, 03
+ Dec 2023 13:39:54 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231129092759.242641-1-paul.elder@ideasonboard.com> <20231129092759.242641-12-paul.elder@ideasonboard.com>
-In-Reply-To: <20231129092759.242641-12-paul.elder@ideasonboard.com>
-From: Adam Ford <aford173@gmail.com>
-Date: Sun, 3 Dec 2023 15:32:52 -0600
-Message-ID: <CAHCN7xLihh_r=zn+2EsqZvsOumeJY52DHmrkVv0+A7Grib8AhQ@mail.gmail.com>
-Subject: Re: [PATCH v4 11/11] media: rkisp1: Add UYVY as an output format
-To: Paul Elder <paul.elder@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	devicetree@vger.kernel.org, kieran.bingham@ideasonboard.com, 
-	tomi.valkeinen@ideasonboard.com, umang.jain@ideasonboard.com, 
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Dafna Hirschfeld <dafna@fastmail.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
-	"moderated list:ARM/Rockchip SoC support" <linux-arm-kernel@lists.infradead.org>, 
-	open list <linux-kernel@vger.kernel.org>, Fabio Estevam <festevam@gmail.com>
+References: <20231201160925.3136868-1-peter.griffin@linaro.org>
+ <20231201160925.3136868-10-peter.griffin@linaro.org> <b4e710c0-dddb-4217-9979-21bdc20ee302@linaro.org>
+In-Reply-To: <b4e710c0-dddb-4217-9979-21bdc20ee302@linaro.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Sun, 3 Dec 2023 21:39:43 +0000
+Message-ID: <CADrjBPpcknRifds+WpuwmdzGxxFq-osLf7_Rn1ENjoRcXwCRxw@mail.gmail.com>
+Subject: Re: [PATCH v5 09/20] dt-bindings: serial: samsung: Make
+ samsung,uart-fifosize required property
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org, 
+	tomasz.figa@gmail.com, s.nawrocki@samsung.com, linus.walleij@linaro.org, 
+	wim@linux-watchdog.org, linux@roeck-us.net, catalin.marinas@arm.com, 
+	will@kernel.org, arnd@arndb.de, olof@lixom.net, gregkh@linuxfoundation.org, 
+	jirislaby@kernel.org, cw00.choi@samsung.com, alim.akhtar@samsung.com, 
+	tudor.ambarus@linaro.org, andre.draszik@linaro.org, 
+	semen.protsenko@linaro.org, saravanak@google.com, willmcvicker@google.com, 
+	soc@kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-watchdog@vger.kernel.org, kernel-team@android.com, 
+	linux-serial@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Nov 29, 2023 at 3:29=E2=80=AFAM Paul Elder <paul.elder@ideasonboard=
-.com> wrote:
+Hi Krzysztof,
+
+On Sun, 3 Dec 2023 at 15:11, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
-> Add support for UYVY as an output format. The uv_swap bit in the
-> MI_XTD_FORMAT_CTRL register that is used for the NV formats does not
-> work for packed YUV formats. Thus, UYVY support is implemented via
-> byte-swapping. This method clearly does not work for implementing
-> support for YVYU and VYUY.
+> On 01/12/2023 17:09, Peter Griffin wrote:
+> > Specifying samsung,uart-fifosize in both DT and driver static data is error
+> > prone and relies on driver probe order and dt aliases to be correct.
+> >
+> > Additionally on many Exynos platforms these are (USI) universal serial
+> > interfaces which can be uart, spi or i2c, so it can change per board.
+> >
+> > For google,gs101-uart and exynosautov9-uart make samsung,uart-fifosize a
+> > required property. For these platforms fifosize now *only* comes from DT.
 >
-> Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> ---
->  .../platform/rockchip/rkisp1/rkisp1-capture.c | 41 +++++++++++++++++++
->  1 file changed, 41 insertions(+)
+> I don't see ExynosAutov9 compatible in your patch.
 
+I dropped exynosautov9-uart compatible from this patch due to the ABI
+breakage. It seems I forgot to update the commit wording though. Will
+fix.
 
-Paul,
-
-I tested this patch series from one of the older submissions and I was
-able to get it working, but I could not get the video to capture to
-work no matter what resolution or video format I tried.  Each time, I
-get the same error message:  rkisp1 32e10000.isp: start pipeline
-failed -32
-
-Do you have an example of how you configured the pipeline and how you
-invoked the video capture?
-
-thanks
-
-adam
-
+Peter.
 >
-> diff --git a/drivers/media/platform/rockchip/rkisp1/rkisp1-capture.c b/dr=
-ivers/media/platform/rockchip/rkisp1/rkisp1-capture.c
-> index a352893308b6..b50b044d22af 100644
-> --- a/drivers/media/platform/rockchip/rkisp1/rkisp1-capture.c
-> +++ b/drivers/media/platform/rockchip/rkisp1/rkisp1-capture.c
-> @@ -97,6 +97,12 @@ static const struct rkisp1_capture_fmt_cfg rkisp1_mp_f=
-mts[] =3D {
->                 .uv_swap =3D 0,
->                 .write_format =3D RKISP1_MI_CTRL_MP_WRITE_YUVINT,
->                 .mbus =3D MEDIA_BUS_FMT_YUYV8_2X8,
-> +       }, {
-> +               .fourcc =3D V4L2_PIX_FMT_UYVY,
-> +               .uv_swap =3D 0,
-> +               .yc_swap =3D 1,
-> +               .write_format =3D RKISP1_MI_CTRL_MP_WRITE_YUVINT,
-> +               .mbus =3D MEDIA_BUS_FMT_YUYV8_2X8,
->         }, {
->                 .fourcc =3D V4L2_PIX_FMT_YUV422P,
->                 .uv_swap =3D 0,
-> @@ -231,6 +237,13 @@ static const struct rkisp1_capture_fmt_cfg rkisp1_sp=
-_fmts[] =3D {
->                 .write_format =3D RKISP1_MI_CTRL_SP_WRITE_INT,
->                 .output_format =3D RKISP1_MI_CTRL_SP_OUTPUT_YUV422,
->                 .mbus =3D MEDIA_BUS_FMT_YUYV8_2X8,
-> +       }, {
-> +               .fourcc =3D V4L2_PIX_FMT_UYVY,
-> +               .uv_swap =3D 0,
-> +               .yc_swap =3D 1,
-> +               .write_format =3D RKISP1_MI_CTRL_SP_WRITE_INT,
-> +               .output_format =3D RKISP1_MI_CTRL_SP_OUTPUT_YUV422,
-> +               .mbus =3D MEDIA_BUS_FMT_YUYV8_2X8,
->         }, {
->                 .fourcc =3D V4L2_PIX_FMT_YUV422P,
->                 .uv_swap =3D 0,
-> @@ -464,6 +477,20 @@ static void rkisp1_mp_config(struct rkisp1_capture *=
-cap)
->                 rkisp1_write(rkisp1, RKISP1_CIF_MI_XTD_FORMAT_CTRL, reg);
->         }
->
-> +       /*
-> +        * U/V swapping with the MI_XTD_FORMAT_CTRL register only works f=
-or
-> +        * NV12/NV21 and NV16/NV61, so instead use byte swap to support U=
-YVY.
-> +        * YVYU and VYUY cannot be supported with this method.
-> +        */
-> +       if (rkisp1->info->features & RKISP1_FEATURE_MI_OUTPUT_ALIGN) {
-> +               reg =3D rkisp1_read(rkisp1, RKISP1_CIF_MI_OUTPUT_ALIGN_FO=
-RMAT);
-> +               if (cap->pix.cfg->yc_swap)
-> +                       reg |=3D RKISP1_CIF_OUTPUT_ALIGN_FORMAT_MP_BYTE_S=
-WAP_BYTES;
-> +               else
-> +                       reg &=3D ~RKISP1_CIF_OUTPUT_ALIGN_FORMAT_MP_BYTE_=
-SWAP_BYTES;
-> +               rkisp1_write(rkisp1, RKISP1_CIF_MI_OUTPUT_ALIGN_FORMAT, r=
-eg);
-> +       }
-> +
->         rkisp1_mi_config_ctrl(cap);
->
->         reg =3D rkisp1_read(rkisp1, RKISP1_CIF_MI_CTRL);
-> @@ -507,6 +534,20 @@ static void rkisp1_sp_config(struct rkisp1_capture *=
-cap)
->                 rkisp1_write(rkisp1, RKISP1_CIF_MI_XTD_FORMAT_CTRL, reg);
->         }
->
-> +       /*
-> +        * U/V swapping with the MI_XTD_FORMAT_CTRL register only works f=
-or
-> +        * NV12/NV21 and NV16/NV61, so instead use byte swap to support U=
-YVY.
-> +        * YVYU and VYUY cannot be supported with this method.
-> +        */
-> +       if (rkisp1->info->features & RKISP1_FEATURE_MI_OUTPUT_ALIGN) {
-> +               reg =3D rkisp1_read(rkisp1, RKISP1_CIF_MI_OUTPUT_ALIGN_FO=
-RMAT);
-> +               if (cap->pix.cfg->yc_swap)
-> +                       reg |=3D RKISP1_CIF_OUTPUT_ALIGN_FORMAT_SP_BYTE_S=
-WAP_BYTES;
-> +               else
-> +                       reg &=3D ~RKISP1_CIF_OUTPUT_ALIGN_FORMAT_SP_BYTE_=
-SWAP_BYTES;
-> +               rkisp1_write(rkisp1, RKISP1_CIF_MI_OUTPUT_ALIGN_FORMAT, r=
-eg);
-> +       }
-> +
->         rkisp1_mi_config_ctrl(cap);
->
->         mi_ctrl =3D rkisp1_read(rkisp1, RKISP1_CIF_MI_CTRL);
-> --
-> 2.39.2
+> >
+> > It is hoped other Exynos platforms will also switch over time.
+> >
+> > Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> > ---
+> >  .../devicetree/bindings/serial/samsung_uart.yaml       | 10 ++++++++++
+> >  1 file changed, 10 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/serial/samsung_uart.yaml b/Documentation/devicetree/bindings/serial/samsung_uart.yaml
+> > index ccc3626779d9..65d5d361e8f4 100644
+> > --- a/Documentation/devicetree/bindings/serial/samsung_uart.yaml
+> > +++ b/Documentation/devicetree/bindings/serial/samsung_uart.yaml
+> > @@ -133,6 +133,16 @@ allOf:
+> >              - const: uart
+> >              - const: clk_uart_baud0
+> >
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - google,gs101-uart
+> Best regards,
+> Krzysztof
 >
 
