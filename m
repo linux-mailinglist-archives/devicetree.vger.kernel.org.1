@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-21097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 635CD8024F7
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 16:05:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F9DB8024FB
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 16:10:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A4AF280570
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 15:05:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4E5E61C208F7
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 15:10:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D4D113FF4;
-	Sun,  3 Dec 2023 15:05:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91A2F14F7B;
+	Sun,  3 Dec 2023 15:10:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DFOxKVf4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="idXsJTWF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFE44C1
-	for <devicetree@vger.kernel.org>; Sun,  3 Dec 2023 07:05:02 -0800 (PST)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-54c4f95e27fso2529880a12.1
-        for <devicetree@vger.kernel.org>; Sun, 03 Dec 2023 07:05:02 -0800 (PST)
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23795ED
+	for <devicetree@vger.kernel.org>; Sun,  3 Dec 2023 07:10:04 -0800 (PST)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-54c7744a93fso1679788a12.2
+        for <devicetree@vger.kernel.org>; Sun, 03 Dec 2023 07:10:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701615901; x=1702220701; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701616202; x=1702221002; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=jX9IpjfH+8GSToZOwniHDWJpuDtqbu6qE49XYEJKFo0=;
-        b=DFOxKVf4qKVLK1Z6Sz14Rfh+wa6P6MfdOTuCvvr1bdph7DrHjRvaUz1kucHJF757eI
-         IahQb855qxPiHOsRk3BpyjN6Kttc91V4+nVmDaWHCOFmqyeGfZj2E5/jiQQtBnINakfY
-         rYxtq9+b5bRMGjhDJiJZZdNV7yRtJidJm0M7QtIdowtWsiL9Yv34T05F/4re59vyZ4io
-         l8mjQ7n60PJgWwVBkgGJUpYG97pWK92SsbQ/FHSuRUVtnybelJCd4hzNSMM1iqVXFCNF
-         9sjw1cLEhFSCjlnBsVA9EMYBZooC1fnNb6y34iur4vgBCZMTeyD8JRdGn1EVbcXnF4+4
-         c9bA==
+        bh=jGB7/4Pq9xLu62LbNXXLS+atvDTK++BhtQFi4zPFcRU=;
+        b=idXsJTWFHxPPkqTnnKs/5zPDJCRLdWagXbHTPM+cfeDtKBZhtx4PVwnmG+rmS+g7UU
+         /8sxJ5/GWol57B+/hKMAxn/pg3WkcQEJ41JxXzIkBDBbaWgKTvPL8TUF+mrCOMg0btLZ
+         aOjXdu0hTDHzsUXrrSmhN3WLpQY4SHp12Dn/6qXHQeYfW1bB8NGNmlVnFQKtprc2U9MP
+         IyMOVsVLXWkUCSBzdyT+yPHUwQmM+mylorDJ5t3jvx/Ng5ryHTQDUL9KjYoyuOSthCDG
+         t8vCDaKyY5LMj9V9i+6yuH6K/p6PgKlEonAZN4q78i9fnZzufz2irdDwiqmev+kt5doL
+         +SFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701615901; x=1702220701;
+        d=1e100.net; s=20230601; t=1701616202; x=1702221002;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jX9IpjfH+8GSToZOwniHDWJpuDtqbu6qE49XYEJKFo0=;
-        b=xRWeLEDIPlkC/zcqy5VnbfcQI89Wz3gnYq6AR95KaDFUNIXEDH3NoFI+ch/uhqtDK0
-         qTAVVsO7GmRU9L+u6Asp0LeuKeYgT2CZ572HX1OQ4HE2OiuM8P4mCwjlJDLwDJ6qykdD
-         yr0+2oS5ycyix9F4nqhUPFcn40MLVySaeoO9rx6DqAN0lZzsNLjTkXSk/WXebd8+8+oc
-         h7bUnQsAY1tK+GkYKP5fLkMr+KrRW51TCmmISMtRmzOj15mH/CMqj9KhbOeEnZmnHkMf
-         StdAjHLFt5YidyM2UhFH9MaI0QeJTC8mOnKHFHPpHZixNRDRs5y3LnXz4oqQXW02KfBq
-         mGFg==
-X-Gm-Message-State: AOJu0YzbmTqOmbX+c+T0fCpIkdA8Wx2hwe77WaBaWXtpD5W4ITC5M3jn
-	Az72b39Wh+Uv1hqI//JQJ6YhLQ==
-X-Google-Smtp-Source: AGHT+IGQ1+iWj4Zm3C0MotW8aRjAqAfAjC4NQ6okmWTo+v8E+ZjrO2wEs5E0CmVkS55FxkOCg4TV7g==
-X-Received: by 2002:a50:cd0d:0:b0:54a:f8d9:8023 with SMTP id z13-20020a50cd0d000000b0054af8d98023mr2461518edi.37.1701615901194;
-        Sun, 03 Dec 2023 07:05:01 -0800 (PST)
+        bh=jGB7/4Pq9xLu62LbNXXLS+atvDTK++BhtQFi4zPFcRU=;
+        b=xOpAaSwCc93ol6ad9JzGY8db7TQEeaL0exW4CIxj9+6R03NUlwmjW3BdZj4qI+1Llq
+         F20hDUJPU6nciMr9IoB579f6aIs9RORgpcG78zzo+qMizhPHQBKtdteHZkZ48TGHO963
+         TdrvNueYiIrDh9Ug+ZgqvlnfOdu4DaTd0J2lFEoQU7Dy8XvsH6bbUk908yc/d2BGS4Ya
+         npZ6FfVCJp0ELZg0pl/e7MUyfYFt2II0d+vMgMjrwfVLVyu4oV1xaVKKKiu6c4hMjkds
+         JZcQXl/42xUsZkuH9Nb0CXNaq+899DYzprGNdgc1gEuFptzpejLyYL876gNZP2dByPzl
+         TmVg==
+X-Gm-Message-State: AOJu0YzVU09fGEBLB83BYp2MCthgBa+CoDEsSMG76KuG+7+CNqizhS/h
+	W2xVAU29vcsMDbzvYdikASwfGQ==
+X-Google-Smtp-Source: AGHT+IHW7znHwy3UiTaFioppqZ7lRoPvFI2q3fuEaMrHtiiZ7ZARoiioG27gvjXmuFmlcOOp4RoODQ==
+X-Received: by 2002:a17:906:d8:b0:a19:53d9:b365 with SMTP id 24-20020a17090600d800b00a1953d9b365mr2097931eji.57.1701616202198;
+        Sun, 03 Dec 2023 07:10:02 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.109])
-        by smtp.gmail.com with ESMTPSA id n28-20020a5099dc000000b0054c9d0436a6sm1272080edb.45.2023.12.03.07.04.59
+        by smtp.gmail.com with ESMTPSA id di16-20020a170906731000b00a1b6d503e7esm492044ejc.157.2023.12.03.07.09.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 03 Dec 2023 07:05:00 -0800 (PST)
-Message-ID: <6250c57b-6d38-4085-9a79-58e4e5ed1e3d@linaro.org>
-Date: Sun, 3 Dec 2023 16:04:58 +0100
+        Sun, 03 Dec 2023 07:09:40 -0800 (PST)
+Message-ID: <2854a9b5-d6c8-454c-bc3b-79744e613686@linaro.org>
+Date: Sun, 3 Dec 2023 16:09:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,21 +62,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/6] dt-bindings: interrupt-controller: Add support for
- Realtek DHC SoCs
+Subject: Re: [PATCH v5 10/20] dt-bindings: soc: samsung: usi: add
+ google,gs101-usi compatible
 Content-Language: en-US
-To: =?UTF-8?B?SmFtZXMgVGFpIFvmiLTlv5fls7Bd?= <james.tai@realtek.com>,
- Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20231117162709.1096585-1-james.tai@realtek.com>
- <20231117162709.1096585-2-james.tai@realtek.com>
- <c3a98e2c-ba62-4798-a0d0-a8bc1fe5bb6b@linaro.org>
- <7959920acf004f3cb8072de1e17439fa@realtek.com>
- <e1490203387d4c48a5f8c4040ece038a@realtek.com>
+To: Peter Griffin <peter.griffin@linaro.org>, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+ conor+dt@kernel.org, sboyd@kernel.org, tomasz.figa@gmail.com,
+ s.nawrocki@samsung.com, linus.walleij@linaro.org, wim@linux-watchdog.org,
+ linux@roeck-us.net, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
+ olof@lixom.net, gregkh@linuxfoundation.org, jirislaby@kernel.org,
+ cw00.choi@samsung.com, alim.akhtar@samsung.com
+Cc: tudor.ambarus@linaro.org, andre.draszik@linaro.org,
+ semen.protsenko@linaro.org, saravanak@google.com, willmcvicker@google.com,
+ soc@kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+ linux-watchdog@vger.kernel.org, kernel-team@android.com,
+ linux-serial@vger.kernel.org
+References: <20231201160925.3136868-1-peter.griffin@linaro.org>
+ <20231201160925.3136868-11-peter.griffin@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -122,42 +126,34 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <e1490203387d4c48a5f8c4040ece038a@realtek.com>
+In-Reply-To: <20231201160925.3136868-11-peter.griffin@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 02/12/2023 17:18, James Tai [戴志峰] wrote:
-> Hi Krzysztof,
+On 01/12/2023 17:09, Peter Griffin wrote:
+> From: Tudor Ambarus <tudor.ambarus@linaro.org>
 > 
->>>> +
->>>> +  compatible:
->>>> +    enum:
->>>> +      - realtek,rtd1319-intc-iso
->>>> +      - realtek,rtd1319-intc-misc
->>>> +
->>>> +  "#address-cells":
->>>> +    const: 0
->>>> +
->>>> +  interrupt-controller: true
->>>> +
->>>> +  interrupts-extended:
->>>
->>> interrupts instead.
->>>
->>> Anyway, you must describe the items. Why this is not fixed but flexible?
->>> Hardware has different number of pins? That's unlikely.
->>>
->> I will replace it with 'interrupts'. Since our Interrupt controller architecture
->> doesn't involve multiple interrupt sources, using 'interrupts' should suffice.
->>
+> Add google,gs101-usi dedicated compatible for representing USI of Google
+> GS101 SoC.
 > 
-> Due to changes in hardware design, some peripheral interrupts pin initially connected to the Realtek interrupt controller were redirected to the GIC. 
-> However, the associated fields and statuses in the Realtek interrupt controller registers were not removed.
-> As a result, these interrupts cannot be cleared by peripheral register, and their status clearing is still needing the Realtek interrupt controller driver to manage.
+> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
-> That's why flexibility is necessary.
+> diff --git a/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml b/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
+> index 61be1f2ddbe7..a10a438d89f0 100644
+> --- a/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
+> +++ b/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
+> @@ -28,6 +28,9 @@ properties:
+>                - samsung,exynosautov9-usi
+>                - samsung,exynosautov920-usi
+>            - const: samsung,exynos850-usi
+> +      - items:
+> +          - const: google,gs101-usi
 
-This does not explain why this is not fixed per variant.
+This should be part of previous enum.
 
 Best regards,
 Krzysztof
