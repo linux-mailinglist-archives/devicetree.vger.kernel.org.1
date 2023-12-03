@@ -1,78 +1,80 @@
-Return-Path: <devicetree+bounces-21020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21021-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 652A48020A6
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 05:37:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 136738020AB
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 05:51:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 947F61C20853
-	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 04:37:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 44ECF1C208CE
+	for <lists+devicetree@lfdr.de>; Sun,  3 Dec 2023 04:51:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E321658;
-	Sun,  3 Dec 2023 04:37:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A5F210EB;
+	Sun,  3 Dec 2023 04:51:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D7aICsSM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CyN7zjnh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 786D439E;
-	Sun,  3 Dec 2023 04:37:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10DA1C433C9;
-	Sun,  3 Dec 2023 04:37:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 754FB10E9;
+	Sun,  3 Dec 2023 04:51:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90891C433C7;
+	Sun,  3 Dec 2023 04:51:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701578267;
-	bh=efSYakHRaNQ1HmzcXaErAE3GqG/WjaPldXZV31BdrcU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=D7aICsSMqliUYyoJB0YbhECQt/0vJdaUvo4Gw9DoqvJfMURFazIoPSSH7pylHfmgM
-	 igKRHYrW8qbRMylp5GSXv6s1KT6BcqyAMEASBqU8Dph5uRuMBvX7kTlQxqNAIa3atB
-	 vUAnUzCjdXgiadkOIcehCupDZ0J/rz8Ws+NvyGr05Cxjo62GTHSDArE0cDnN+6UB6P
-	 KxOkpJtyrQziSvUGabIV2APcP4ICMIWOC5+0uw846pZRJVk5USx0KMDniFN08ZxW0I
-	 KzjrKAUgJLm6Q5MCVeM9BK3ds+4hWQkmMeePw/E9QH7mpnnnO9UNZXUv3Ntf39uIxS
-	 gvM7W7dNYaXhA==
-Date: Sat, 2 Dec 2023 20:41:12 -0800
+	s=k20201202; t=1701579099;
+	bh=e0j+WpVqufsmEGLn+u5GdTx5Hc117pLb2MNxwFg1f4M=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=CyN7zjnhzEg0irpLWZvdgjEeGEhE1eqx+79iyELv0Fbc451xdcXEs9dHx+DomvL9F
+	 o4Ly5sACQzsakLA4EtjjCtcDnkgt1OecULF85Bn+Ap356UJu+8nf/PzYjwNXo5zuaC
+	 GN7zLO5jgINqYgYITvpUBi7cfL60ELtAfwqkk6HkanXBeHS7sWBHL2LVMB/2xiJ0dX
+	 QpMku8/c/iG2YEDjhDTujM/XzRsT4c0LDUTY5iBBt9eXobg2JdNjITa213RKFkUl0X
+	 8JnbiTliIjVUu4p9YbEaZFVzE+izrZgjFWPFrLiP8m+6tkIm8Dz7ntBxDpFgVmmLdi
+	 DP34hfHO4spNQ==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Luca Weiss <luca.weiss@fairphone.com>
-Cc: Andy Gross <agross@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Nitin Rawat <quic_nitirawa@quicinc.com>, ~postmarketos/upstreaming@lists.sr.ht, 
-	phone-devel@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: qcom: qcm6490-fairphone-fp5: Enable UFS
-Message-ID: <dutd7zn5avelyujiyb6k64luzu2pqccy6ywhfj52i4g2m6ld47@2aqstxoekqrq>
-References: <20231002-fp5-ufs-v2-1-e2d7de522134@fairphone.com>
+To: Andy Gross <agross@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Kalle Valo <kvalo@kernel.org>
+Subject: Re: (subset) [PATCH 1/2] arm64: dts: qcom: qrb2210-rb1: add wifi variant property
+Date: Sat,  2 Dec 2023 20:54:30 -0800
+Message-ID: <170157925787.1717511.1692518318263970201.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20230801232448.4175662-1-dmitry.baryshkov@linaro.org>
+References: <20230801232448.4175662-1-dmitry.baryshkov@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231002-fp5-ufs-v2-1-e2d7de522134@fairphone.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Mon, Oct 02, 2023 at 02:30:41PM +0200, Luca Weiss wrote:
-> Enable the UFS phy and controller so that we can access the internal
-> storage of the phone.
-> 
-> At the same time we need to bump the minimum voltage used for UFS VCC,
-> otherwise it doesn't initialize properly. The 2.952V is taken from the
-> vcc-voltage-level property downstream.
-> 
-> See also the following link for more information about the VCCQ/VCCQ2:
-> https://gerrit-public.fairphone.software/plugins/gitiles/kernel/msm-extra/devicetree/+/1590a3739e7dc29d2597307881553236d492f188/fp5/yupik-idp-pm7250b.dtsi#207
-> 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> ---
-> Depends on: https://lore.kernel.org/linux-arm-msm/20230927081858.15961-1-quic_nitirawa@quicinc.com/
 
-I'd love to merge this patch, but this dependency doesn't seem to make
-progress, please consider fixing up the outstanding feedback and posting
-v5.
+On Wed, 02 Aug 2023 02:24:47 +0300, Dmitry Baryshkov wrote:
+> The RB1 platform doesn't have board-specific board-id programmed, it uses
+> generic 0xff. Thus add the property with the 'variant' of the
+> calibration data.
+> 
+> Note: the driver will check for the calibration data for the following
+> IDs, so existing board-2.bin files will continue to work.
+> 
+> [...]
 
-Regards,
-Bjorn
+Applied, thanks!
+
+[1/2] arm64: dts: qcom: qrb2210-rb1: add wifi variant property
+      commit: b6a56a5a25d6273729b2b5139d58e3d390318ed2
+[2/2] arm64: dts: qcom: qrb4210-rb2: add wifi variant property
+      (no commit info)
+
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
 
