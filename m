@@ -1,77 +1,138 @@
-Return-Path: <devicetree+bounces-21240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21242-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 590B4802E95
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 10:29:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D054802EA8
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 10:34:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 041A51F210BE
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 09:29:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9DF221C2094F
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 09:34:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07BDF18644;
-	Mon,  4 Dec 2023 09:29:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 796561A707;
+	Mon,  4 Dec 2023 09:34:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BdoyKckA"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="b1ZJ69R2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC65F1A5A3
-	for <devicetree@vger.kernel.org>; Mon,  4 Dec 2023 09:29:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86B65C433C8;
-	Mon,  4 Dec 2023 09:29:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701682149;
-	bh=DRrtkbyTCk/Szcs4W+WPrKgFw32MQUyWR0BepZqZsWY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=BdoyKckAMdmgjJfAclrg7sdkZAlWGxpnKh3Ned1JjAuYE6BTUryT3Jo24+YEFFeeC
-	 kea4bv+VHJKcIWLBOiugfosfpB1PIsqy2ocDZvjns0TUP5YlKJbx2yCcaG/1WAlcCh
-	 v/VekiHlrm0KMHK59SL33uuR5m+TpNPAv7FBc2nWaWETp7AxSkrkOFHYp6OJBE/dHM
-	 /l8b7PCaaavd2lWER99C4KRKDNrof5EbR9dlqiiNuQKCvo6vORmmUAqGwiC0A7h3LN
-	 QE+ln42Kjkhr631aP5myZZA43zhKQfHzHUXLvwktm6rvHqc23E9SYEcJJEhLd3AjC3
-	 C5tlaX7Rbg7Dg==
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A33C95;
+	Mon,  4 Dec 2023 01:34:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1701682472; x=1733218472;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=+j7cDUoUbhZgg3CFqMSvC7LEHqMyVmx87LysErGNBg0=;
+  b=b1ZJ69R2XqYx0INST3lazjYZk+RY4sje3XaYIY3KYl+Ur7wRqNfHDDhQ
+   l+P3DFZNZ4GPgirSX0Zm04rG9QrycC0hPntwgtz0XFVYLwK5tEt97vt9e
+   JxQ8uREcdSsmXEPvPFF74+BSM3zZuP4H+GW1o1+ggg20V1IbbNWoGyXL4
+   uXL8iB791MVQ2LWeUn0jb7pXO32nd149p4niOxY8XNOX1V/zMTPdPCFoJ
+   6XKvGRALAM3ENDBfzsUjdZ6zT3cPneiWYE7eN4H56BGsNX0QZHAaXmB39
+   VZXspz335klC8SgkIzOlg/p8dFO40eT0S9SiuXyyPkWc0FfFaiHN1Xdrr
+   A==;
+X-CSE-ConnectionGUID: LI86M10uTVibW23RhRt8lw==
+X-CSE-MsgGUID: 6MsAR5MTRiiJ4ozhiHII+g==
+X-ThreatScanner-Verdict: Negative
+X-IronPort-AV: E=Sophos;i="6.04,249,1695711600"; 
+   d="asc'?scan'208";a="12709204"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 04 Dec 2023 02:34:31 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 4 Dec 2023 02:33:29 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex04.mchp-main.com (10.10.85.152)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Mon, 4 Dec 2023 02:33:26 -0700
+Date: Mon, 4 Dec 2023 09:32:56 +0000
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Chen Wang <unicorn_wang@outlook.com>
+CC: Inochi Amaoto <inochiama@outlook.com>, Conor Dooley <conor@kernel.org>,
+	Chao Wei <chao.wei@sophgo.com>, Thomas Gleixner <tglx@linutronix.de>, Marc
+ Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley
+	<paul.walmsley@sifive.com>, Albert Ou <aou@eecs.berkeley.edu>, Daniel Lezcano
+	<daniel.lezcano@linaro.org>, Anup Patel <anup@brainfault.org>, Jisheng Zhang
+	<jszhang@kernel.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+Subject: Re: [PATCH v4 0/7] Add Huashan Pi board support
+Message-ID: <20231204-crane-wolf-95f32865db62@wendy>
+References: <MA0P287MB033290A6C8B15202E31E43CCFE80A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
+ <IA1PR20MB49537B177B6F3614D8D1E3E6BB87A@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <MA0P287MB0332AE2378D633B8A2DCFB77FE86A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Mon, 04 Dec 2023 10:29:01 +0100
-From: Michael Walle <mwalle@kernel.org>
-To: Tony Lindgren <tony@atomide.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong
- <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, Laurent
- Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
- <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
- <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Simha BN <simhavcs@gmail.com>, Sam Ravnborg <sam@ravnborg.org>, Carl Philipp
- Klemm <philipp@uvos.xyz>, Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
- Merlijn Wajer <merlijn@wizzup.org>, Pavel Machek <pavel@ucw.cz>, Sebastian
- Reichel <sre@kernel.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 05/10] drm/bridge: tc358775: make standby GPIO optional
-In-Reply-To: <20231202075514.44474-6-tony@atomide.com>
-References: <20231202075514.44474-1-tony@atomide.com>
- <20231202075514.44474-6-tony@atomide.com>
-Message-ID: <c833e94366ced6e2f36765ddcc65dd5c@kernel.org>
-X-Sender: mwalle@kernel.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="McIyWL/yGKMUQDuC"
+Content-Disposition: inline
+In-Reply-To: <MA0P287MB0332AE2378D633B8A2DCFB77FE86A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
 
-> The stby pin is optional. It is only needed for power-up and down
-> sequencing. It is not needed, if the power rails cannot by dynamically
-> enabled.
-> 
-> Because the GPIO is not optional, remove the error message.
+--McIyWL/yGKMUQDuC
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I just noticed a typo: "is *now* optional.
+On Mon, Dec 04, 2023 at 05:15:36PM +0800, Chen Wang wrote:
+>=20
+> On 2023/12/4 7:32, Inochi Amaoto wrote:
+> > > On 2023/12/2 0:21, Conor Dooley wrote:
 
--michael
+> > > As far as I know, sophgo's SoC product names all start with "sg", whi=
+le products starting with "cv" come from CVITEK (another chip company). CVI=
+TEK was acquired by sophgo a year ago, so now many SOC product names that o=
+riginally started with "cv" are being repackaged and changed to start with =
+"sg".
+> > >=20
+> > > For the cv1800b adopted by Duo, Sophgo has made it clear that it will=
+ not change its codename.
+> > >=20
+> > > But I heard that for other products, such as the cv1812h used by Huas=
+hanpi, sophgo may change their names in the future, but sophgo has not offi=
+cially confirmed it yet. Looks like sophgo themselves are still in the proc=
+ess of digesting cv's products, ;)
+> > >=20
+> > > Since we have just started to support cv1812h and have not done much =
+work yet, I suggest not to merge this patch into the mainline, and wait unt=
+il there is clear news before doing this to avoid introducing unnecessary m=
+odifications later.
+> > >=20
+> > Hi Chen,
+> >=20
+> > There is a update for you. The cv1812h does not have the A53 core as the
+> > sg200x does. Maybe we should treat cv1812h as a trim of sg200x, not just
+> > a reband.
+> >=20
+> > According to this information, I suggest to preserve these code for
+> > cv1812h, it can make upstream the new soc eaiser. Also, adding a new
+> > compatible is not too hard, and it is necessary if we have new soc.
+> > Otherwise, the one with Huashan Pi now may be confused because it have
+> > a old version.
+>=20
+> Thanks Inochi for your info, let's just preserve these code for huashan pi
+> now and keep watching on what's going on then.
+
+Could you explain on what you mean by "preserve"? I'm a little unsure.
+
+
+--McIyWL/yGKMUQDuC
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZW2cyAAKCRB4tDGHoIJi
+0iWtAQCTE8NoHTJcLy2WVDAg8jnv9rQILz7SbYqbBacA3DtmgAD/XtNuvBNLfda8
+3vRc65P/zhIlckuMqFgMuwxMxDUS+wo=
+=aCtm
+-----END PGP SIGNATURE-----
+
+--McIyWL/yGKMUQDuC--
 
