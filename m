@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-21271-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21274-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91FCD802FB9
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 11:11:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12DBB802FD8
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 11:12:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 909591C20A34
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 10:11:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C25D1281A18
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 10:12:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22BD41EB5E;
-	Mon,  4 Dec 2023 10:10:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F82B20320;
+	Mon,  4 Dec 2023 10:12:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YoVnGjF1"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="f0QirGig"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CFED106;
-	Mon,  4 Dec 2023 02:10:47 -0800 (PST)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3B49Vsjx014936;
-	Mon, 4 Dec 2023 10:10:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=VKU/KipbxtGN7bM04jF1vbKfqum/zD2mIO6ySGQW4N0=;
- b=YoVnGjF1hbhqQvUc2cs3n7uLrzfsg7kl2p5A3hlUVUezP7xH4bjKTGJTL+sQVpEFkLUq
- UL4WL9M/wiSfmDqiaSr6qL9lvCYjZ643LbXxzjZKi07Lduw6/STJ9dDQUx6nBPs2c2AZ
- kodlVkOhmd8J5RVdFXuU7hM4C2pYTtuRT++v1QbDoAam72kbleUyxjREGaJM3PgJi8/z
- YjuE9dJtFZbHmW2tcoVarHCKP0Xrwy/SlC01JM9zi2BYyUiy4zi0Zgj+6FNW3gNz16Tn
- 7wd3CNd39durXqpNEYuC6m+KQusTQJnmB3w9n9h8tsTVfEnRcy8fY7bBkv14EY3jaCAI CA== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uqvt8kkej-1
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFE80CC;
+	Mon,  4 Dec 2023 02:12:37 -0800 (PST)
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3B4815Qm008037;
+	Mon, 4 Dec 2023 11:11:49 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=selector1; bh=nQnyC3l
+	sx0aVrbg7MvvuUyjEbRMAbRgqkdEPvR+/ZvI=; b=f0QirGigY05O6nytCchuzif
+	gv9t66Hmttc9XqtGRwziHBpd9qf2yGK0Q3YzfNVCv15FSue1Sg9GNS0JhhhLucHj
+	OXugUCQfATGuDG0qj9UdpJBZ3bkMeZ/TdytGxb8eFgUl/bdSv1fOgcJiB5ldbUZq
+	V1U/VcsCX4zFucniCqgpRZKfv57IXBKb8hXctAIbW7ec1dRLm/MoFy72F7PZh/b4
+	R0i2gNERrzYu5F64IF/KRuGFRwV94RHNh1OVr8slDQ9xckwNlhSYTkZl74IVRo25
+	LWFwLBmpUd/i2NwfBnUN2BGKy2PSz/digzsRfSTYvD16b88MJ8OBlx8Vxqx7Ocw=
+	=
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3urf14vm5u-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 04 Dec 2023 10:10:42 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3B4AAglf021349
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 4 Dec 2023 10:10:42 GMT
-Received: from hu-kriskura-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Mon, 4 Dec 2023 02:10:36 -0800
-From: Krishna Kurapati <quic_kriskura@quicinc.com>
-To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
+	Mon, 04 Dec 2023 11:11:49 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 7FB95100089;
+	Mon,  4 Dec 2023 11:11:46 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 6FFFA21ADAD;
+	Mon,  4 Dec 2023 11:11:46 +0100 (CET)
+Received: from localhost (10.252.13.105) by SHFDAG1NODE2.st.com (10.75.129.70)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 4 Dec
+ 2023 11:11:45 +0100
+From: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+To: Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski
 	<krzysztof.kozlowski+dt@linaro.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        Conor Dooley <conor+dt@kernel.org>, Johan Hovold <johan@kernel.org>,
-        <cros-qcom-dts-watchers@chromium.org>
-CC: <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>,
-        Krishna Kurapati
-	<quic_kriskura@quicinc.com>
-Subject: [PATCH v2 6/6] arm64: dts: qcom: Add missing interrupts for qcs404/ipq5332
-Date: Mon, 4 Dec 2023 15:39:50 +0530
-Message-ID: <20231204100950.28712-7-quic_kriskura@quicinc.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231204100950.28712-1-quic_kriskura@quicinc.com>
-References: <20231204100950.28712-1-quic_kriskura@quicinc.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Yannick Fertre <yannick.fertre@foss.st.com>,
+        Philippe Cornu <philippe.cornu@foss.st.com>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+        Richard Cochran <richardcochran@gmail.com>
+CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>, <netdev@vger.kernel.org>
+Subject: [PATCH v2 0/4] Update STM DSI PHY driver
+Date: Mon, 4 Dec 2023 11:11:09 +0100
+Message-ID: <20231204101113.276368-1-raphael.gallais-pou@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,84 +76,53 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Hmx4DowGjZ3cRlKwp9qHdi3Cex71YmEO
-X-Proofpoint-ORIG-GUID: Hmx4DowGjZ3cRlKwp9qHdi3Cex71YmEO
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
  definitions=2023-12-04_06,2023-11-30_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- priorityscore=1501 mlxlogscore=506 phishscore=0 spamscore=0 bulkscore=0
- adultscore=0 impostorscore=0 suspectscore=0 lowpriorityscore=0
- clxscore=1015 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2312040077
 
-For qcs404 and ipq5332, certain interrupts are missing in DT.
-Add them to ensure they are in accordance to bindings.
+This patch series aims to add several features of the dw-mipi-dsi phy
+driver that are missing or need to be updated.
 
-Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+First patch update a PM macro.
+
+Second patch adds runtime PM functionality to the driver.
+
+Third patch adds a clock provider generated by the PHY itself.  As
+explained in the commit log of the second patch, a clock declaration is
+missing.  Since this clock is parent of 'dsi_k', it leads to an orphan
+clock.  Most importantly this patch is an anticipation for future
+versions of the DSI PHY, and its inclusion within the display subsystem
+and the DRM framework.
+
+Last patch fixes a corner effect introduced previously.  Since 'dsi' and
+'dsi_k' are gated by the same bit on the same register, both reference
+work as peripheral clock in the device-tree.
+
 ---
- arch/arm64/boot/dts/qcom/ipq5332.dtsi |  8 ++++++--
- arch/arm64/boot/dts/qcom/qcs404.dtsi  | 16 ++++++++++++++++
- 2 files changed, 22 insertions(+), 2 deletions(-)
+Changes in v2:
+	- Added patch 1/4 to use SYSTEM_SLEEP_PM_OPS instead of old macro
+	  and removed __maybe_used for accordingly
+	- Changed SET_RUNTIME_PM_OPS to RUNTIME_PM_OPS
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-index d3fef2f80a81..82cd807af475 100644
---- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-@@ -307,8 +307,12 @@ usb: usb@8af8800 {
- 			compatible = "qcom,ipq5332-dwc3", "qcom,dwc3";
- 			reg = <0x08af8800 0x400>;
- 
--			interrupts = <GIC_SPI 62 IRQ_TYPE_LEVEL_HIGH>;
--			interrupt-names = "hs_phy_irq";
-+			interrupts = <GIC_SPI 62 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 53 IRQ_TYPE_EDGE_BOTH>,
-+				     <GIC_SPI 52 IRQ_TYPE_EDGE_BOTH>;
-+			interrupt-names = "pwr_event",
-+					  "dp_hs_phy_irq",
-+					  "dm_hs_phy_irq";
- 
- 			clocks = <&gcc GCC_USB0_MASTER_CLK>,
- 				 <&gcc GCC_SNOC_USB_CLK>,
-diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-index 2721f32dfb71..469ea4d8cd3b 100644
---- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-@@ -684,6 +684,14 @@ usb3: usb@7678800 {
- 			assigned-clocks = <&gcc GCC_USB20_MOCK_UTMI_CLK>,
- 					  <&gcc GCC_USB30_MASTER_CLK>;
- 			assigned-clock-rates = <19200000>, <200000000>;
-+
-+			interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 319 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "pwr_event",
-+					  "hs_phy_irq",
-+					  "qusb2_phy";
-+
- 			status = "disabled";
- 
- 			usb3_dwc3: usb@7580000 {
-@@ -713,6 +721,14 @@ usb2: usb@79b8800 {
- 			assigned-clocks = <&gcc GCC_USB20_MOCK_UTMI_CLK>,
- 					  <&gcc GCC_USB_HS_SYSTEM_CLK>;
- 			assigned-clock-rates = <19200000>, <133333333>;
-+
-+			interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 318 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "pwr_event",
-+					  "hs_phy_irq",
-+					  "qusb2_phy";
-+
- 			status = "disabled";
- 
- 			usb@78c0000 {
+Raphael Gallais-Pou (3):
+  drm/stm: dsi: use new SYSTEM_SLEEP_PM_OPS() macro
+  drm/stm: dsi: expose DSI PHY internal clock
+  arm: dts: st: fix DSI peripheral clock on stm32mp15 boards
+
+Yannick Fertre (1):
+  drm/stm: dsi: add pm runtime ops
+
+ arch/arm/boot/dts/st/stm32mp157.dtsi          |   2 +-
+ arch/arm/boot/dts/st/stm32mp157a-dk1-scmi.dts |   2 +-
+ arch/arm/boot/dts/st/stm32mp157c-dk2-scmi.dts |   2 +-
+ arch/arm/boot/dts/st/stm32mp157c-ed1-scmi.dts |   2 +-
+ arch/arm/boot/dts/st/stm32mp157c-ev1-scmi.dts |   2 +-
+ drivers/gpu/drm/stm/dw_mipi_dsi-stm.c         | 278 +++++++++++++++---
+ 6 files changed, 242 insertions(+), 46 deletions(-)
+
 -- 
-2.42.0
+2.25.1
 
 
