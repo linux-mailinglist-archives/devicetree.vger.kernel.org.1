@@ -1,107 +1,137 @@
-Return-Path: <devicetree+bounces-21192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 026CE802BCE
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 07:59:52 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CE81802BDE
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 08:05:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A8D50280D21
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 06:59:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 765E3B2090F
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 07:05:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC4F7186C;
-	Mon,  4 Dec 2023 06:59:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E971D2573;
+	Mon,  4 Dec 2023 07:04:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="K4cPDqo/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QV8Ac/hn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DC78D8
-	for <devicetree@vger.kernel.org>; Sun,  3 Dec 2023 22:59:42 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-50be10acaf9so2049420e87.1
-        for <devicetree@vger.kernel.org>; Sun, 03 Dec 2023 22:59:42 -0800 (PST)
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E11E2D8;
+	Sun,  3 Dec 2023 23:04:56 -0800 (PST)
+Received: by mail-pl1-x629.google.com with SMTP id d9443c01a7336-1ce28faa92dso11600065ad.2;
+        Sun, 03 Dec 2023 23:04:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1701673180; x=1702277980; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OTNkS8LTnRqCQunaTUOLLsKXlHNWnzfg0xMTKbfGJJg=;
-        b=K4cPDqo/LdCnBQ3arJxu73zcZVxTziEBFMdpc3X40hGxTKLwZPWb5T+nOkQGHbHRS5
-         Vpd5hYrJuegi7dMayKz+UkVC/Kw5hPgWaUmjLcMEDI04q3qX1u0YSl45k2Toc/SDp/lV
-         2N01Nbuw1vJZoqRHE/MYAZNVI/iQ/epx4Olh4=
+        d=gmail.com; s=20230601; t=1701673496; x=1702278296; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=N1vpjPPczaDWxidWWEbF4RZb6CCdsDsvJw92nhMFM8Y=;
+        b=QV8Ac/hnAqU7LnUAyFgeAUYO8BNpYeqbmv7Fjr0WhNSLR86hsFQkt7AZk7uw+T2kq8
+         MdVIGY6yVlpd99ZsKTZdLOk8OHQ6AkKbocNtdCU3FcV2YkHkS7Q95N5xv8z/82SakgKH
+         K4tzfeSWBGL4513p9qkbTESetYS15jEOyPwqXUOzh4FEXTIMbUo6RHu7VD89OvA5rmIx
+         81Fx/jLLN/jGNUe4+WgVwqTGzNfJd10YNyo/d3B2Y07lz95oj74p4NLTbfWze6+AvW6z
+         Nyc7HN+qNaRHVcMcoTPHXFTBHb/Fi0aOT+ECJsCB49WR0E9JXni/GQbV94S6N0ho2mG1
+         CHaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701673180; x=1702277980;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OTNkS8LTnRqCQunaTUOLLsKXlHNWnzfg0xMTKbfGJJg=;
-        b=rYTMUKFo22Q/MPf5G1wf7uWFlIx5SUlgyXsFQBk3FJO1X+p5HKSpTKGsaAIoAwts4/
-         JHa16p0CKe+yMaZ1baz2lPD7Byt8ezpef8FUX+0QStcAiw5YUPQN4uHTQ57xZUa/Wi9L
-         Qh5GdIpXCr0js6c9VG9fg+iFazS+OIYoobmva91X4Iyrozli5GISG2tmtfefJmm701Ol
-         rHSVaR+1fuLTNGITL+L0MwxHP+e4wD07FcrDYOBAW8aNE5waifnvQnOuBRmIDpRK+eGB
-         C6wmiHDktSptWDIXCcpAK71C5bILRu9O+G+IVRPR/kTZoaes1VXt9dSvAEW6G6pgBUOo
-         w08A==
-X-Gm-Message-State: AOJu0YxlknVl+dTrOC9h+9saXYmhOcX+zIEstEygSrsPS/RashssUJmn
-	28ap+vfuOa58O9ey+PJW8y/3lTuG6ZWlFqyY1hXl5w==
-X-Google-Smtp-Source: AGHT+IHoyWO3QIHEBY5JdBrYFEV7xzgnarDfjr1JxVNq6dHU5EQ6tbsFVJqwEhCrsQ2CBaDRnPGYgwSDkHN9tbdxHX4=
-X-Received: by 2002:a05:6512:b9e:b0:50b:ed31:72a4 with SMTP id
- b30-20020a0565120b9e00b0050bed3172a4mr1697429lfv.28.1701673180528; Sun, 03
- Dec 2023 22:59:40 -0800 (PST)
+        d=1e100.net; s=20230601; t=1701673496; x=1702278296;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=N1vpjPPczaDWxidWWEbF4RZb6CCdsDsvJw92nhMFM8Y=;
+        b=TJhQZ+db7KEj8AHsEQlQlJAlnJMQhoHXdpdemiRJuazTiR6U3rhyhiwnK0h/ZftPPq
+         XE4fqJtAxMPfG361VNlfryBJpRNhm20rKvZSi8KmweRtTcqrmpbQUd9J//ZCNZXiM7nw
+         VcVNNDyC46whueIGRTKmPaU4fkGfolS7QG4XveIPfKdgPpvUT9juAG2Qz1PZeqEU3A18
+         I2KwyFOIKiYIlHp+qYp1X1f7EsdcFPOEynuJCRXZf/kdXokXlUeuZALLuSy6RJ3ZyKj4
+         DEH4KhWPRPsY8FHtWA8klB3FqkzQ8KSlNAvoQGMSNhJV4gs/SAuq/uAqvciyyrNPa1oy
+         sd7w==
+X-Gm-Message-State: AOJu0YyGFoumIfM/hIXRxm2Wty5ziy7CAZhv95TCDRPv8bzoP6d2lAy3
+	Cwk0L/CP8k9bjS6heQNTeco=
+X-Google-Smtp-Source: AGHT+IFGQ1tOXEmLAVKqsR7L9UDk4NEuOYXIcXkAIqxH4/1OI0J79Nsp8GNhIOISl/dF3LevXvviSA==
+X-Received: by 2002:a17:902:9302:b0:1d0:91a0:a29 with SMTP id bc2-20020a170902930200b001d091a00a29mr594579plb.6.1701673496136;
+        Sun, 03 Dec 2023 23:04:56 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id u5-20020a170902e5c500b001c62e3e1286sm7679347plf.166.2023.12.03.23.04.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 03 Dec 2023 23:04:55 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <4d978188-b924-4f43-a619-fb5307828440@roeck-us.net>
+Date: Sun, 3 Dec 2023 23:04:53 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231128084236.157152-1-wenst@chromium.org> <20231128084236.157152-5-wenst@chromium.org>
- <CAD=FV=W01gfxV6RN2o6CVS7jjf8qgKP-jUy9Bp94d2hWzVC48A@mail.gmail.com>
-In-Reply-To: <CAD=FV=W01gfxV6RN2o6CVS7jjf8qgKP-jUy9Bp94d2hWzVC48A@mail.gmail.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Mon, 4 Dec 2023 14:59:29 +0800
-Message-ID: <CAGXv+5E+R292XsOFSL-j0KJMmVJjWtxMRgCK8besP7mo6NDOWA@mail.gmail.com>
-Subject: Re: [RFC PATCH v3 4/5] arm64: dts: mediatek: mt8173-elm-hana: Mark
- touchscreens and trackpads as fail
-To: Doug Anderson <dianders@chromium.org>
-Cc: Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Wolfram Sang <wsa@kernel.org>, 
-	Benson Leung <bleung@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>, 
-	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>, 
-	Hsin-Yi Wang <hsinyi@chromium.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
-	andriy.shevchenko@linux.intel.com, Jiri Kosina <jikos@kernel.org>, 
-	linus.walleij@linaro.org, broonie@kernel.org, gregkh@linuxfoundation.org, 
-	hdegoede@redhat.com, james.clark@arm.com, james@equiv.tech, 
-	keescook@chromium.org, rafael@kernel.org, tglx@linutronix.de, 
-	Jeff LaBundy <jeff@labundy.com>, linux-input@vger.kernel.org, linux-i2c@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 0/2] hwmon: Driver for Nuvoton NCT736X
+Content-Language: en-US
+To: baneric926@gmail.com, jdelvare@suse.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, corbet@lwn.net
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ openbmc@lists.ozlabs.org, kwliu@nuvoton.com, kcfeng0@nuvoton.com,
+ DELPHINE_CHIU@wiwynn.com, Bonnie_Lo@wiwynn.com
+References: <20231204055650.788388-1-kcfeng0@nuvoton.com>
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <20231204055650.788388-1-kcfeng0@nuvoton.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Sat, Dec 2, 2023 at 8:58=E2=80=AFAM Doug Anderson <dianders@chromium.org=
-> wrote:
->
-> Hi,
->
-> On Tue, Nov 28, 2023 at 12:45=E2=80=AFAM Chen-Yu Tsai <wenst@chromium.org=
-> wrote:
-> >
-> > @@ -44,6 +46,7 @@ trackpad2: trackpad@2c {
-> >                 reg =3D <0x2c>;
-> >                 hid-descr-addr =3D <0x0020>;
-> >                 wakeup-source;
-> > +               status =3D "fail-needs-probe";
->
-> While doing this, you could also remove the hack where the trackpad
-> IRQ pinctrl is listed under i2c4.
+On 12/3/23 21:56, baneric926@gmail.com wrote:
+> From: Ban Feng <baneric926@gmail.com>
+> 
+> NCT736X is an I2C based hardware monitoring chip from Nuvoton.
+> 
 
-Sure. I do think we can do away with it though. According to at least one
-schematic, the interrupt line has pull-ups on both sides of the voltage
-shifter.
+No, it isn't. Such a chip does not exist. The chips are apparently
+NCT7362Y and NCT7363Y. No wildcards in filenames, variables, etc.,
+please. Pick one name (nct7362y) instead and reference both chips
+where appropriate.
 
-BTW, The touchscreen doesn't have pinctrl entries. This has pull-ups on
-both sides of the voltage shifter as well.
+Guenter
 
-ChenYu
 
