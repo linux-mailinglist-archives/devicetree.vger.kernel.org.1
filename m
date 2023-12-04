@@ -1,100 +1,164 @@
-Return-Path: <devicetree+bounces-21248-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3C9E802F1F
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 10:47:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5284B802F3E
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 10:50:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8DA091F2119C
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 09:47:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 081DA280DD7
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 09:50:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A92F11D68C;
-	Mon,  4 Dec 2023 09:47:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18E2F1CF94;
+	Mon,  4 Dec 2023 09:50:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C3cpLYDt"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="HfrhMJCH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 875055390;
-	Mon,  4 Dec 2023 09:47:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 091F9C433C7;
-	Mon,  4 Dec 2023 09:47:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701683251;
-	bh=NH8cg+cJw4u4aOtEuZrNuL2Wt2x8+s9YJY7ecsjb6ws=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=C3cpLYDtpuujRrytU+r+NrUsaHBHcnRvBvd/wD2QIZWlJ0pCHCdE+wMaXeAUqTMbz
-	 WzA6BS4CRxyA9k/S91yLilxMmS6zLQesCjvLEPdk+7F1gzVGrxsNtVhaUegSsKLNwW
-	 8AbX8f9MQkN/0aWQcyrGY1zsAFqs3z18/puJphsqLeHOsq1hFnnH23D8XktRc0v++K
-	 +o9px/Zh6SXyQuDqHGo27ZdlLkonr2DuoF5NcaXvxF6ncD9B7JLqg8QfaF/Wbb4928
-	 RHImSJN11QqULHdiBE1XFB3mz3ZGqrrdpEZhBo9wEMe6rImO5p6YQQj54HW/aF8OGf
-	 qvCjqbuph1i1g==
-Received: from johan by xi.lan with local (Exim 4.96.2)
-	(envelope-from <johan@kernel.org>)
-	id 1rA5Yg-0000N9-3D;
-	Mon, 04 Dec 2023 10:48:11 +0100
-Date: Mon, 4 Dec 2023 10:48:10 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Johan Hovold <johan+linaro@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Andy Gross <agross@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10olkn2031.outbound.protection.outlook.com [40.92.42.31])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E81C1D2;
+	Mon,  4 Dec 2023 01:50:18 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=HaMKMfl78UQNHXOfg8VPaccMfJ3tAc2k+fLkrj8Z2mlMEpyCh201HHUPsk301Tq+AdkPR4Nu1gtwxlp+0cu5r3xCcxlLq44+AWrBMXT03TezrT3vGUKfYODGHS5E4jXbKAE2T1GETEboJPJnR/KkjcfobsC2otazaqruJVH/fgFeLQ3Ah38b6nF0tJlHOG7DwYIopHrFDrmLeJd7QQQ/g3vYGBFLHxFFVKCk2ugk18Qmr59YVdTppvokwj02To2hHNKxOPWVlMydc8bDfXFWsbsrPIPTxDfdThWzKFdPURAp42P24myTl4EpQ9DhpLAx1QhlWMmuVZyPjcaVU6Ku4g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0rEPJ7Ou91JKHQKHaobuXJBiT2xe/YP/0K8B2ZQtSwI=;
+ b=mALo1tfKqUr/RkSt2n/T2A7ZnvVtWp+bIRKxnmxWMIV/Iw3TCkhWo9X+bJaFqomHd1rXivRDu6tFkpXb6wvYPspvnR3alaU7NCqII+ngHfCP8E58I9ffzFEDUgfPfL1YOVXE6wIGZfq5HlpR/27sWY6wQLlOuQ+/J5dbt/JYYISRc1gfRrHckPsl5Lp3FV9wBvvyWXZ5MMlxAjCWO0PhEsxQjUXcoQCXDB2R+jkbfioLCMUQelRH6eDE5SAQHy+T8qCcHoOQ4Ug27BmdnwHKY3oPDtawKI2KET2/AkfDlR5DZIFCHzId3N0d5sPg9p0jnXFLqKzpItKx7JQYqQJ9Ow==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0rEPJ7Ou91JKHQKHaobuXJBiT2xe/YP/0K8B2ZQtSwI=;
+ b=HfrhMJCH788jvrfNS0Ef1hiPiB7i07XrkGS9j7h1aCC4KFMJxe+n5XXv1QPMjS4m4GG/Q1Jp+NfJaK1YvWy9nEGk+SwzC+dBfLmTMxGvD8Wj63T+Vj8Q2JpFUACwkLlsvRlAO6N7gwpigOhSi8jSni+ChWD1azGuF0kgU59wIhd4yl2UKPLLN6gqjb8eXvc5OAkb6rZ5PDjxrbkSEM57KL7bGDJFj6eTqZueXUvpUw5aVlXWdyayB82BAvG40qZ1IN5euwcYfAm/U0FR2/boM8dA9kQqxb2/uhX6kMckwSupXqJrz+rdPiduQhrrmevYmWPyYLI1O+g0iIMBd99VOA==
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
+ by PH0PR20MB3718.namprd20.prod.outlook.com (2603:10b6:510::7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7046.33; Mon, 4 Dec 2023 09:50:16 +0000
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::55b:c350:980:ad8]) by IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::55b:c350:980:ad8%6]) with mapi id 15.20.7046.024; Mon, 4 Dec 2023
+ 09:50:16 +0000
+From: Inochi Amaoto <inochiama@outlook.com>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: pinctrl: qcom,pmic-mpp: clean up example
-Message-ID: <ZW2gWhzMV0FiB9oM@hovoldconsulting.com>
-References: <20231130172834.12653-1-johan+linaro@kernel.org>
- <20231201144320.GA977713-robh@kernel.org>
- <ZWoQXHnQbJuoxmw0@hovoldconsulting.com>
- <CAL_JsqKh=MG_8TtKap5LvUY-u=KTdGrpb-Sf7MAd1JNqQGue8Q@mail.gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Chao Wei <chao.wei@sophgo.com>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Xiaoguang Xing <xiaoguang.xing@sophgo.com>,
+	Guo Ren <guoren@kernel.org>
+Cc: Anup Patel <anup@brainfault.org>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: [PATCH v5 0/2] Change the sg2042 timer layout to fit aclint format
+Date: Mon,  4 Dec 2023 17:49:52 +0800
+Message-ID:
+ <IA1PR20MB4953C912FC58C0D248976564BB86A@IA1PR20MB4953.namprd20.prod.outlook.com>
+X-Mailer: git-send-email 2.43.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TMN: [VEFFHZhT59HiU2HY6pCnTaW4C149nu5fxDNC//HtJT4=]
+X-ClientProxiedBy: BYAPR05CA0017.namprd05.prod.outlook.com
+ (2603:10b6:a03:c0::30) To IA1PR20MB4953.namprd20.prod.outlook.com
+ (2603:10b6:208:3af::19)
+X-Microsoft-Original-Message-ID:
+ <20231204094954.664903-1-inochiama@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL_JsqKh=MG_8TtKap5LvUY-u=KTdGrpb-Sf7MAd1JNqQGue8Q@mail.gmail.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|PH0PR20MB3718:EE_
+X-MS-Office365-Filtering-Correlation-Id: 01159445-5986-4d62-10cf-08dbf4ae6aeb
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	eq+fJ4u1C0HmXF6YbR1z/VoYu2d5fPFdK7N+hSXUzwfiMo6UfgbgP1c3HIC9haBDrV8owh+RaVkIBqa7BHXmuj+SRBWNNdsnsdHKkSOWkfMVfYehxEudA84ctwsWzorc/asKw0lCs8lHq9pi5ESaFeCBVpxoNZzyiqyigQEJAMAbZOvgqnIcu4hagko766l8iJXh8W2EIhuLY3/VUUsmg8VjwHYqOEjBXq+fm+Qn4WYNuKiVijEhxoGrz85kFfFmY9pnwl6qSA36Z3iSPnYHc7TE/6mC01OyLB3v6C0ZTr52zqmQcPbtgShEedZ9cgPFt1oyGBowQNAb/X+wLk52vFuvcZPSfTNes19YNOaQoMVlGKLZUyt/heF1fxqQICr11tY4i9F1xUceXnwjDds2LYZVOe/aOuJ93bsDC/2QXHz8J6k4X/cQsUsII/KvuZcpe+5rOlUKCd09K/ipEU5wxTxyo2gLGeLjN3XWp2AeMaxju4WqJ31j3rv3NQRmkfjbN1GQv0FkT+1/damiZAwl6MzPilx82aIyzPDmrnUoPapYaF0qmigyuiYhITJtEE806RonJuNVOaYXyOd7tojWrB2sRxk54BdLHUgcLb6UmR6mSsiOLD33Zsn8K/tTdh+Sh8kWLHcip2ZRf7hTJdU8lzBNv0xf8gMkxHUvC0MINLE=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?Y+uO+gxUhNhWG7Wv2YEWfFJvG1RC+ZyKpPtfqLmgippLgrRtBpGSE87gYoWF?=
+ =?us-ascii?Q?2rOdBt+Dy/Nr9pUGmUGjJeyBIH6gSJobhHEQ+tnp5J71CxuFo4NfgDd2RzMb?=
+ =?us-ascii?Q?HK1/cjl3RLUnE6eH4mbn0yYhrsToqPpuqB7OYgpqeuTcOojEz8sEi9OFwo9Q?=
+ =?us-ascii?Q?0WOHCkcZvs4HJLah87elJYkN24K1pdsmKzaikn7jGeWqlMeCTgTTOsdNvZhI?=
+ =?us-ascii?Q?IdadTTtEZ1OHj7z6pvkgQ025CdRmR+//rnsBy/RwfwlbNkPP/+LzmiQmbVOK?=
+ =?us-ascii?Q?HwiMf4LQjnCeyDtTznoGP546Hy2KJIbdTbrwVeMoDJpKsEQsf9BgQFtoC2Ow?=
+ =?us-ascii?Q?Kz9FdGP2Yzm+4Fio/CszsavfMa5P3nNz0QVTUyNUEDsHTKy5Qxy6UkV6VG5J?=
+ =?us-ascii?Q?rCJo8P1QBUElrDWxYQ5nWVNHqIUpF+PK1QIIQSI6/0mDih4va2mg5Z36vBhY?=
+ =?us-ascii?Q?mVVt/QUElZZoW5BJMHmAxtRj6ONBPI8YOwvbbM2eoNjJICxjX9rrJjwRj/80?=
+ =?us-ascii?Q?FbVbyOWjCXJe0tZG7VRyMBCNaWVqfFDgFB1TCcdm3W/ExTtKIoroWfq3Zwto?=
+ =?us-ascii?Q?po29RWsCNBDDxCWHofrpS4cXmb+LB/s75zq5YiYHejB1IrEIDpL4V1d+O92p?=
+ =?us-ascii?Q?WbYK0X0UZa0h7Hbr1PXoGM7Dd8DMK6IUGnUqINgqU+cg7Ek+RZsZ8tPj7ha9?=
+ =?us-ascii?Q?sEZQrSTekiAc1AgGGZdUN69jjIsj8PtQdxOJkg2pCWECFnNTowrU14xoMabH?=
+ =?us-ascii?Q?yKB2NxB1WqSJPunYYSo5E6hZGA+UsipJ8XjBYbjGZii5Otz4Pd0By43ASnjv?=
+ =?us-ascii?Q?61M+ODgXxag38pkocJAeeFgAkRnB7ZL3Cebaq6DfP+/OV+M3NJpztU4x8JS9?=
+ =?us-ascii?Q?L9UcAulUj3/l0au26vtRWziDaosNCsKCcy2dEEB4CWc/GzQG5qXv0DgiBOr0?=
+ =?us-ascii?Q?DM6DiFvL48myNTFkXiKLqevxu17XlZ0qK22Mh+E7RzBYGqeJi8pXCQjcLfZY?=
+ =?us-ascii?Q?fMMecXeCZi6uxf2aeUb21ITfjrg8mfKrYmGB4baL13SC7CktHZwjuh5UwL7q?=
+ =?us-ascii?Q?/i6Y6q6d29kUnIlCScgA451f3z+am/7uaKubj42hyIVsnIpIMgyVyXfWLgRZ?=
+ =?us-ascii?Q?bPEKq+KI0zJDQ4Zc3gIPzm4jZSyZntNTrCQx0WNZf9FeGGQup4uIFLz19oY2?=
+ =?us-ascii?Q?VVOj1rUD74D6MRF201TvrsMgTgg8JA42jCM+POJAup73KGR1YOENAzCO7ig?=
+ =?us-ascii?Q?=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 01159445-5986-4d62-10cf-08dbf4ae6aeb
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Dec 2023 09:50:16.1116
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR20MB3718
 
-On Fri, Dec 01, 2023 at 01:51:06PM -0600, Rob Herring wrote:
-> On Fri, Dec 1, 2023 at 10:56 AM Johan Hovold <johan@kernel.org> wrote:
-> > On Fri, Dec 01, 2023 at 08:43:20AM -0600, Rob Herring wrote:
+As the sg2042 uses different address for timer and mswi of its clint
+device, it should follow the aclint format. For the previous patchs,
+it only use only one address for both mtime and mtimer, this is can
+not be parsed by OpenSBI. To resolve this, separate these two registers
+in the dtb.
 
-> > > This is fine, but I prefer these MFDs have 1 complete example rather
-> > > than piecemeal examples for each child device.
-> >
-> > Yeah, this is not ideal. The closest thing we've got are the examples
-> > in:
-> >
-> >         Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
-> >
-> > Are you suggesting eventually dropping the examples from the child node
-> > bindings and adding (several) complete examples in the parent one?
-> 
-> Yes, but if the child nodes are truly reused across multiple PMICs
-> then, it is probably a worthwhile exception. There's not a great deal
-> of reuse on most MFDs.
+Link: https://lists.infradead.org/pipermail/opensbi/2023-October/005693.html
+Link: https://github.com/riscv/riscv-aclint/blob/main/riscv-aclint.adoc
 
-Yes, they are indeed reused by multiple PMICs in this case.
- 
-> > I guess there would need to be more than one if you want to cover all
-> > the various child nodes with real examples.
-> 
-> We don't want examples to be exhaustive permutations of every
-> possibility either.
+This patch can be tested with upstream SBI with the following patch:
+1. https://lists.infradead.org/pipermail/opensbi/2023-November/005926.html
 
-Not every possible permutation but I guess we'd want coverage of all the
-various child nodes still (i.e. the child node examples that would have
-been removed).
+Changed from v4:
+1. left T-HEAD aclint register in the bindings only.
+2. improve the bindings commit message.
 
-Johan
+Changed from v3:
+1. add all register in the bindings
+
+Changed from v2:
+1. Use reg-names to map the registers.
+
+Changed from v1:
+1. change the commit to address the reason for ABI change.
+2. remove unnecessary link in the commit.
+
+Inochi Amaoto (2):
+  dt-bindings: timer: thead,c900-aclint-mtimer: separate mtime and
+    mtimecmp regs
+  riscv: dts: sophgo: separate sg2042 mtime and mtimecmp to fit aclint
+    format
+
+ .../timer/thead,c900-aclint-mtimer.yaml       |  9 ++-
+ arch/riscv/boot/dts/sophgo/sg2042.dtsi        | 80 +++++++++++--------
+ 2 files changed, 56 insertions(+), 33 deletions(-)
+
+--
+2.43.0
+
 
