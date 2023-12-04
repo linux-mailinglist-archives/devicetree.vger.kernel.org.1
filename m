@@ -1,167 +1,306 @@
-Return-Path: <devicetree+bounces-21314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21315-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BD9680328C
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 13:25:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA30B803299
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 13:28:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F7331C209CB
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 12:25:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DAED01C20A3F
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 12:28:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F186623777;
-	Mon,  4 Dec 2023 12:25:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="Xy+uhazp"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE467241ED;
+	Mon,  4 Dec 2023 12:28:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from IND01-BMX-obe.outbound.protection.outlook.com (mail-bmxind01olkn20800.outbound.protection.outlook.com [IPv6:2a01:111:f403:281c::800])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DEE7CD;
-	Mon,  4 Dec 2023 04:25:29 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lkpxHpDHyqaPPOtZC1Jnb5b23VtEaxsjEihAITQ+NW7Hbl1iREopjZ8kgNQ1V+NxgvxiW8DPlLb9TDXs41P47wzl0/EMhNk3ZDa2/ZePNhFDWRvyRLOHlTikgpU0UaJMX9ENSwaPUkja33iO+AKfCpzX3bsPoUeHxtDDdKNmG86srBNmCyWE3KieMoX9u7wkBOXa3RwR+kTJw0kSYBaPq1MJbrYv44+EXqyTDRCMvZqbePGWR9cjJNxkW9jsBQAEKaFe3tQreLnhOoDFL2keTZ5hY30BtW22zDBT9+EJSh44fe5QDrJOWt8QxJpQM45JpcLA98kKmaLHM4BFwDeFMg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=B43zteGYEB+Svgl8FbBTODYFMHVkgWDwDnQxnZU/N5g=;
- b=UfN+ci5fcvotjL0jap0Q0jfqQcL7xZbF/3TI+Ch00f+xjdheT4pH6iGWNLizBZ5h4+3ms8XE5V5UydZsh8EL+1B+6hBv+i3vGvFnOY0yeehaX2Q9PAPK14+olkbc9e27G2IhiVm+Ca7Wbag5543DB1wdI+WSMZij4fkDzUS7TjCnjv+nkZGcHf+aulk+h9ILsh+RNBBUT+03mZTidskdBULnvTMnMZzo3LKqspsg1zZ4CiBjcRB5bKwxUQPZAaESb1OXoqL5nfpwgXbwHwWN0UJhMUDWUJ2eNN7rOg04ZjNinSyBH74A/LCfiKonOOJrromeI/A5Z2ggyVaZNCcZMw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=B43zteGYEB+Svgl8FbBTODYFMHVkgWDwDnQxnZU/N5g=;
- b=Xy+uhazpOLK9rWSLVYDM4Xvbn43ynIILzEEVSOUb4/DYtXdQ6y69tYkZdx6u/RDpPFW97tsdZxLXBdQdM4BnQSl102AKzGPTaCHHYdEDzvIFClq7Yy77bDoGXoIhWXYctrP7/myV4c1zi41ag7zqVG0lj2Us7t9b1NwI7F0YK3iX1e1LNTee0jOHPz7WLfaQ5LNT5tU3FyuWLwTEQ0mlssrLFTytXKz4uPNKWWtKb+X6+fwhy5qJBuxq3SU0w0V5KJlmuQSKbLaBfhCiWRT2q0djP7JYPehZKTYsYPGflQUAlRzcKYqGpGgtZF46wMh/mRDQ7IqGq9RTSfiEO/6fXA==
-Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:ab::5) by
- PN0P287MB0601.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:163::14) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7046.33; Mon, 4 Dec 2023 12:25:19 +0000
-Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
- ([fe80::b1a7:eee7:e903:9ef3]) by MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
- ([fe80::b1a7:eee7:e903:9ef3%7]) with mapi id 15.20.7046.033; Mon, 4 Dec 2023
- 12:25:19 +0000
-Message-ID:
- <MA0P287MB0332862DC235652C83B4EC2EFE86A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
-Date: Mon, 4 Dec 2023 20:25:13 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/7] Add Huashan Pi board support
-To: Conor Dooley <conor.dooley@microchip.com>
-Cc: Inochi Amaoto <inochiama@outlook.com>, Conor Dooley <conor@kernel.org>,
- Chao Wei <chao.wei@sophgo.com>, Thomas Gleixner <tglx@linutronix.de>,
- Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Anup Patel
- <anup@brainfault.org>, Jisheng Zhang <jszhang@kernel.org>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org
-References: <MA0P287MB033290A6C8B15202E31E43CCFE80A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
- <IA1PR20MB49537B177B6F3614D8D1E3E6BB87A@IA1PR20MB4953.namprd20.prod.outlook.com>
- <MA0P287MB0332AE2378D633B8A2DCFB77FE86A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
- <20231204-crane-wolf-95f32865db62@wendy>
-From: Chen Wang <unicorn_wang@outlook.com>
-In-Reply-To: <20231204-crane-wolf-95f32865db62@wendy>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TMN: [AoBE0TxFN4rZphkfgfxLIZjer/394qBm]
-X-ClientProxiedBy: SGXP274CA0015.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b8::27)
- To MA0P287MB0332.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:ab::5)
-X-Microsoft-Original-Message-ID:
- <5eb4c63d-6af0-4f4d-b918-d6af42a9ea62@outlook.com>
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 623F2F3
+	for <devicetree@vger.kernel.org>; Mon,  4 Dec 2023 04:28:08 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1rA837-0006eT-9Q; Mon, 04 Dec 2023 13:27:45 +0100
+Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1rA836-00DVyo-Lo; Mon, 04 Dec 2023 13:27:44 +0100
+Received: from ore by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1rA836-005Du1-Ih; Mon, 04 Dec 2023 13:27:44 +0100
+Date: Mon, 4 Dec 2023 13:27:44 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Kory Maincent <kory.maincent@bootlin.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Luis Chamberlain <mcgrof@kernel.org>,
+	Russ Weight <russ.weight@linux.dev>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
+	Dent Project <dentproject@linuxfoundation.org>
+Subject: Re: [PATCH net-next v2 2/8] ethtool: Expand Ethernet Power Equipment
+ with c33 (PoE) alongside PoDL
+Message-ID: <20231204122744.GC981228@pengutronix.de>
+References: <20231201-feature_poe-v2-0-56d8cac607fa@bootlin.com>
+ <20231201-feature_poe-v2-2-56d8cac607fa@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MA0P287MB0332:EE_|PN0P287MB0601:EE_
-X-MS-Office365-Filtering-Correlation-Id: d49b98dd-ba98-4738-f89c-08dbf4c4139c
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	CyMeu96QqvkX3cgt7Fni6F6YsKh8BImv6c1MXTc9nV8eXkexzmb3wonUUBW0JSLX3roXwe6yCk/MV66oTdm98jedf9PVb9moiJNAL/yAZyVvcOGFLL92ewQFFeNiT+STrpZGbPIXpeRpzlX+kU6WLg3TuB5HitSAmhfMTcpNNWqfnMo/y6mOrMVWZKXRXcakPujvC3LU6cjEK/75HGpH1gcwXgV5TunuYl4vQWwx170rcOJmFJBk6vjm9FFit73+oIdq819vZySxRl9SOiFL7OyLJLszCAdid672k/WonopI3HYIyUTWlYcxryvN9nTWBcRVPvuUjJvqDVKP7hmAF0+leXFf/+6R0YQC+smrtnpPQvRsIRpSKysEAoUwy/4RyKmLDidICl+cCcjZm0Sf16iK9M7n5QEn0z13AZ4bL8NF6GhWOCVpHDsMqwikv+vfes0AjiRb8z17eKN/saG5Aou6eRdghVFlbctSUCYqXCdOg4ODRaFVNLtQNgNVZNbeJg98ChGdC6yrRhLj1PgvFgzoSiQV/+lw93Pdl5pIXT2os927czoYnC2vqohOuDN1
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?MTd4eEd2TmhqZUV3OVRWQlVyN3pBYTZwSVpEK082dFNzbm56S3JXOXB4UGxs?=
- =?utf-8?B?SCtldlBCeFMzNzROZ3ZGeW5tL0Mrdi9oVWtSNHJYK2QwcjA5ZGJDdUF0MTl5?=
- =?utf-8?B?a0JvbktRWDAyTHFZU1BEdDJzRGlaL2J2ZGRoMFBzUUdwQ0dGWGI1ZlBhWVJH?=
- =?utf-8?B?L3RydjROZ01jUkJXK2ttdk9HN2ZlNk1iTVB5RVRCa3d5OGNMbmlneFk1WkUw?=
- =?utf-8?B?Y096YW1SWmhQL1Z4aHhRK0pTVEJDV2t2WmxydWc5MDlkbkZQZTFYNklkODNJ?=
- =?utf-8?B?eEtTVXpHWVAyaEpObzl4TEZjZjFsckRBeDNwSE85ZlFnVjNEeEVlbExCYTZC?=
- =?utf-8?B?UGdOcWxlMjY0clhmSEY4d3RwUFVzNXFsS1ZSTUtIdW1tbjRLQklKa05QMkpv?=
- =?utf-8?B?ZU1tRXpMQThjTjBRUkV5WHYzODNQOGI0Z0hHbHhIeUlIM3dNNHA2dDI3M0th?=
- =?utf-8?B?SnJLdFNwbjlQZEM1ODMxZTdndFFWdlhFRWRyeUN2L0hoS3NEcFEzQ0h3NW9N?=
- =?utf-8?B?dVAyMUJvR1BVeGw3LzdzYjRKbGhtTWNndjBGLzJtWEZBZy9selQzK0FjU0xU?=
- =?utf-8?B?ZTFzUGVONi9wUCtaU2hBVFFMTVJQZ01EVUNJZGsvZnQ5ditMcllTaktLaVVs?=
- =?utf-8?B?STFzRlpzbWlSejE3MHlBb21OM3FHcEVrYnhoQ1RkVnRwaDJyRHRCdTRiMGpp?=
- =?utf-8?B?eGo4dHEyVXhKdnZCN250RUxSdGltUTBpZjNzMnAra01xMm04SHRqWWZYYWpj?=
- =?utf-8?B?MmJlRXkrNzk3eVVDR0ZwQ0lESzc2bVpvd29OSEtBVm1yREN6WW50WGtUU3dq?=
- =?utf-8?B?VU0rbDdic1o4dy9qR3loLzVxbUVCS1J4NUpYL3lFb1dadU0wY2FxZUd0VXI5?=
- =?utf-8?B?YVhLOXk0aTFoT0l1MHIwQ3JEUlg0cFBsKzdxZEJyNENsWDZtNWp5V0FiUlY5?=
- =?utf-8?B?RkJxZCtITjY3RlNrWHByMXRMSDJEdllmcjZ0Zi9JOWxBdFJObTJxbm1hL0p5?=
- =?utf-8?B?eXJJWW5wVDR0RDBRZ1QyUzQzSnBHR00vMi9leWhSU3hTNHZBcDBEWEk2Qnhu?=
- =?utf-8?B?WlZReWs4OEFTZHlGbm9tazV1cDBpcU0xakhwWDRpa1hzZW42UnlKb0g3NXNt?=
- =?utf-8?B?OXlEeE85QXdBRkhySVV4d1BEdzB5eVIwSWx5T0JJSE15WTVjZFFQV1R5VTM1?=
- =?utf-8?B?Z3JmdnRJcXFwaXlUTStiai8yNlRDZDFXYThPdTk1cDVhSnBZU1kwakRpN0hR?=
- =?utf-8?B?ZTB6QytNaDllZ21ueVZmQTAyUXEvVDNQeUVlRk14T0twZE1QaERETHVXRkRW?=
- =?utf-8?B?OFRHbFdNTjFPbTd1Q01ybG1LaGhlNGp5d1ZPVDZKWW5odHdIK0JhQUxLaklP?=
- =?utf-8?B?ak5maG1LK0pMTXM3Sk96NG9YdjlrMWd3WFBoWlZPbCtYMTlKUWdPU1BoYmV4?=
- =?utf-8?B?aU1TVDA5NmJuMU9kUFg3bW1uTHNoZ2k4dVM3NlpDY3pjNkV4enFRUlJQVXNm?=
- =?utf-8?B?aVU5bkZQMkFTS1Y3ajNDZUVadXFPeTM5V0JyUlZmNkwvSWp3czdPcVovNEF3?=
- =?utf-8?B?eitOTUxWQVJKWHp3aWp3WHR0bzhOSzBFVjdxUjAwUmlnUzJOTzcweDVwSmdz?=
- =?utf-8?Q?e6zCZ6sasrMLR5yp9w3XRMQMLrSAJeON3NK4odQuOK7w=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d49b98dd-ba98-4738-f89c-08dbf4c4139c
-X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Dec 2023 12:25:18.9745
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN0P287MB0601
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231201-feature_poe-v2-2-56d8cac607fa@bootlin.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
+On Fri, Dec 01, 2023 at 06:10:24PM +0100, Kory Maincent wrote:
+> In the current PSE interface for Ethernet Power Equipment, support is
+> limited to PoDL. This patch extends the interface to accommodate the
+> objects specified in IEEE 802.3-2022 145.2 for Power sourcing
+> Equipment (PSE).
+> 
+> The following objects are now supported and considered mandatory:
+> - IEEE 802.3-2022 30.9.1.1.5 aPSEPowerDetectionStatus
+> - IEEE 802.3-2022 30.9.1.1.2 aPSEAdminState
+> - IEEE 802.3-2022 30.9.1.2.1 aPSEAdminControl
+> 
+> To avoid confusion between "PoDL PSE" and "PoE PSE", which have similar
+> names but distinct values, we have followed the suggestion of Oleksij
+> Rempel and Andrew Lunn to maintain separate naming schemes for each,
+> using c33 (clause 33) prefix for "PoE PSE".
+> You can find more details in the discussion threads here:
+> https://lore.kernel.org/netdev/20230912110637.GI780075@pengutronix.de/
+> https://lore.kernel.org/netdev/2539b109-72ad-470a-9dae-9f53de4f64ec@lunn.ch/
+> 
+> Sponsored-by: Dent Project <dentproject@linuxfoundation.org>
+> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
 
-On 2023/12/4 17:32, Conor Dooley wrote:
-> On Mon, Dec 04, 2023 at 05:15:36PM +0800, Chen Wang wrote:
->> On 2023/12/4 7:32, Inochi Amaoto wrote:
->>>> On 2023/12/2 0:21, Conor Dooley wrote:
->>>> As far as I know, sophgo's SoC product names all start with "sg", while products starting with "cv" come from CVITEK (another chip company). CVITEK was acquired by sophgo a year ago, so now many SOC product names that originally started with "cv" are being repackaged and changed to start with "sg".
->>>>
->>>> For the cv1800b adopted by Duo, Sophgo has made it clear that it will not change its codename.
->>>>
->>>> But I heard that for other products, such as the cv1812h used by Huashanpi, sophgo may change their names in the future, but sophgo has not officially confirmed it yet. Looks like sophgo themselves are still in the process of digesting cv's products, ;)
->>>>
->>>> Since we have just started to support cv1812h and have not done much work yet, I suggest not to merge this patch into the mainline, and wait until there is clear news before doing this to avoid introducing unnecessary modifications later.
->>>>
->>> Hi Chen,
->>>
->>> There is a update for you. The cv1812h does not have the A53 core as the
->>> sg200x does. Maybe we should treat cv1812h as a trim of sg200x, not just
->>> a reband.
->>>
->>> According to this information, I suggest to preserve these code for
->>> cv1812h, it can make upstream the new soc eaiser. Also, adding a new
->>> compatible is not too hard, and it is necessary if we have new soc.
->>> Otherwise, the one with Huashan Pi now may be confused because it have
->>> a old version.
->> Thanks Inochi for your info, let's just preserve these code for huashan pi
->> now and keep watching on what's going on then.
-> Could you explain on what you mean by "preserve"? I'm a little unsure.
+Reviewed-by: Oleksij Rempel <o.rempel@pengutronix.de>
 
-hi, Conor,
+Thx!
 
-I meant keeping your changes on riscv-dt-for-next and continue 
-submitting this patch ([PATCH v4 0/7] Add Huashan Pi board support) to 
-upstream.
+> ---
+> 
+> Changes in v2:
+> - Rename all the PoE variables and enum with a c33 prefix.
+> - Add documentation, thanks to Oleksij for having written one.
+> ---
+>  Documentation/networking/pse-pd/introduction.rst | 73 ++++++++++++++++++++++++
+>  include/linux/pse-pd/pse.h                       |  9 +++
+>  include/uapi/linux/ethtool.h                     | 43 ++++++++++++++
+>  include/uapi/linux/ethtool_netlink.h             |  3 +
+>  4 files changed, 128 insertions(+)
+> 
+> diff --git a/Documentation/networking/pse-pd/introduction.rst b/Documentation/networking/pse-pd/introduction.rst
+> new file mode 100644
+> index 000000000000..e213083b9aff
+> --- /dev/null
+> +++ b/Documentation/networking/pse-pd/introduction.rst
+> @@ -0,0 +1,73 @@
+> +.. SPDX-License-Identifier: GPL-2.0
+> +
+> +Power Sourcing Equipment (PSE) in IEEE 802.3 Standard
+> +=====================================================
+> +
+> +Overview
+> +--------
+> +
+> +Power Sourcing Equipment (PSE) is essential in networks for delivering power
+> +along with data over Ethernet cables. It usually refers to devices like
+> +switches and hubs that supply power to Powered Devices (PDs) such as IP
+> +cameras, VoIP phones, and wireless access points.
+> +
+> +PSE vs. PoDL PSE
+> +----------------
+> +
+> +PSE in the IEEE 802.3 standard generally refers to equipment that provides
+> +power alongside data over Ethernet cables, typically associated with Power over
+> +Ethernet (PoE).
+> +
+> +PoDL PSE, or Power over Data Lines PSE, specifically denotes PSEs operating
+> +with single balanced twisted-pair PHYs, as per Clause 104 of IEEE 802.3. PoDL
+> +is significant in contexts like automotive and industrial controls where power
+> +and data delivery over a single pair is advantageous.
+> +
+> +IEEE 802.3-2018 Addendums and Related Clauses
+> +----------------------------------------------
+> +
+> +Key addenda to the IEEE 802.3-2018 standard relevant to power delivery over
+> +Ethernet are as follows:
+> +
+> +- **802.3af (Approved in 2003-06-12)**: Known as PoE in the market, detailed in
+> +  Clause 33, delivering up to 15.4W of power.
+> +- **802.3at (Approved in 2009-09-11)**: Marketed as PoE+, enhancing PoE as
+> +  covered in Clause 33, increasing power delivery to up to 30W.
+> +- **802.3bt (Approved in 2018-09-27)**: Known as 4PPoE in the market, outlined
+> +  in Clause 33. Type 3 delivers up to 60W, and Type 4 up to 100W.
+> +- **802.3bu (Approved in 2016-12-07)**: Formerly referred to as PoDL, detailed
+> +  in Clause 104. Introduces Classes 0 - 9. Class 9 PoDL PSE delivers up to ~65W
+> +
+> +Kernel Naming Convention Recommendations
+> +----------------------------------------
+> +
+> +For clarity and consistency within the Linux kernel's networking subsystem, the
+> +following naming conventions are recommended:
+> +
+> +- For general PSE (PoE) code, use "c33_pse" key words. For example:
+> +  ``enum ethtool_c33_pse_admin_state c33_admin_control;``.
+> +  This aligns with Clause 33, encompassing various PoE forms.
+> +
+> +- For PoDL PSE - specific code, use "podl_pse". For example:
+> +  ``enum ethtool_podl_pse_admin_state podl_admin_control;`` to differentiate
+> +  PoDL PSE settings according to Clause 104.
+> +
+> +Summary of Clause 33: Data Terminal Equipment (DTE) Power via Media Dependent Interface (MDI)
+> +-------------------------------------------------------------------------------------------
+> +
+> +Clause 33 of the IEEE 802.3 standard defines the functional and electrical
+> +characteristics of Powered Device (PD) and Power Sourcing Equipment (PSE).
+> +These entities enable power delivery using the same generic cabling as for data
+> +transmission, integrating power with data communication for devices such as
+> +10BASE-T, 100BASE-TX, or 1000BASE-T.
+> +
+> +Summary of Clause 104: Power over Data Lines (PoDL) of Single Balanced Twisted-Pair Ethernet
+> +-------------------------------------------------------------------------------------------
+> +
+> +Clause 104 of the IEEE 802.3 standard delineates the functional and electrical
+> +characteristics of PoDL Powered Devices (PDs) and PoDL Power Sourcing Equipment
+> +(PSEs). These are designed for use with single balanced twisted-pair Ethernet
+> +Physical Layers. In this clause, 'PSE' refers specifically to PoDL PSE, and
+> +'PD' to PoDL PD. The key intent is to provide devices with a unified interface
+> +for both data and the power required to process this data over a single
+> +balanced twisted-pair Ethernet connection.
+> diff --git a/include/linux/pse-pd/pse.h b/include/linux/pse-pd/pse.h
+> index 199cf4ae3cf2..be4e5754eb24 100644
+> --- a/include/linux/pse-pd/pse.h
+> +++ b/include/linux/pse-pd/pse.h
+> @@ -17,9 +17,12 @@ struct pse_controller_dev;
+>   *
+>   * @podl_admin_control: set PoDL PSE admin control as described in
+>   *	IEEE 802.3-2018 30.15.1.2.1 acPoDLPSEAdminControl
+> + * @c33_admin_control: set PSE admin control as described in
+> + *	IEEE 802.3-2022 30.9.1.2.1 acPSEAdminControl
+>   */
+>  struct pse_control_config {
+>  	enum ethtool_podl_pse_admin_state podl_admin_control;
+> +	enum ethtool_c33_pse_admin_state c33_admin_control;
+>  };
+>  
+>  /**
+> @@ -29,10 +32,16 @@ struct pse_control_config {
+>   *	functions. IEEE 802.3-2018 30.15.1.1.2 aPoDLPSEAdminState
+>   * @podl_pw_status: power detection status of the PoDL PSE.
+>   *	IEEE 802.3-2018 30.15.1.1.3 aPoDLPSEPowerDetectionStatus:
+> + * @c33_admin_state: operational state of the PSE
+> + *	functions. IEEE 802.3-2022 30.9.1.1.2 aPSEAdminState
+> + * @c33_pw_status: power detection status of the PSE.
+> + *	IEEE 802.3-2022 30.9.1.1.5 aPSEPowerDetectionStatus:
+>   */
+>  struct pse_control_status {
+>  	enum ethtool_podl_pse_admin_state podl_admin_state;
+>  	enum ethtool_podl_pse_pw_d_status podl_pw_status;
+> +	enum ethtool_c33_pse_admin_state c33_admin_state;
+> +	enum ethtool_c33_pse_pw_d_status c33_pw_status;
+>  };
+>  
+>  /**
+> diff --git a/include/uapi/linux/ethtool.h b/include/uapi/linux/ethtool.h
+> index f7fba0dc87e5..1d1631f009fa 100644
+> --- a/include/uapi/linux/ethtool.h
+> +++ b/include/uapi/linux/ethtool.h
+> @@ -752,6 +752,49 @@ enum ethtool_module_power_mode {
+>  	ETHTOOL_MODULE_POWER_MODE_HIGH,
+>  };
+>  
+> +/**
+> + * enum ethtool_c33_pse_admin_state - operational state of the PoDL PSE
+> + *	functions. IEEE 802.3-2022 30.9.1.1.2 aPSEAdminState
+> + * @ETHTOOL_C33_PSE_ADMIN_STATE_UNKNOWN: state of PSE functions is unknown
+> + * @ETHTOOL_C33_PSE_ADMIN_STATE_DISABLED: PSE functions are disabled
+> + * @ETHTOOL_C33_PSE_ADMIN_STATE_ENABLED: PSE functions are enabled
+> + */
+> +enum ethtool_c33_pse_admin_state {
+> +	ETHTOOL_C33_PSE_ADMIN_STATE_UNKNOWN = 1,
+> +	ETHTOOL_C33_PSE_ADMIN_STATE_DISABLED,
+> +	ETHTOOL_C33_PSE_ADMIN_STATE_ENABLED,
+> +};
+> +
+> +/**
+> + * enum ethtool_c33_pse_pw_d_status - power detection status of the PSE.
+> + *	IEEE 802.3-2022 30.9.1.1.3 aPoDLPSEPowerDetectionStatus:
+> + * @ETHTOOL_C33_PSE_PW_D_STATUS_UNKNOWN: PSE status is unknown
+> + * @ETHTOOL_C33_PSE_PW_D_STATUS_DISABLED: "The enumeration “disabled”
+> + *	indicates that the PSE State diagram is in the state DISABLED."
+> + * @ETHTOOL_C33_PSE_PW_D_STATUS_SEARCHING: "The enumeration “searching”
+> + *	indicates the PSE State diagram is in a state other than those
+> + *	listed."
+> + * @ETHTOOL_C33_PSE_PW_D_STATUS_DELIVERING: "The enumeration
+> + *	“deliveringPower” indicates that the PSE State diagram is in the
+> + *	state POWER_ON."
+> + * @ETHTOOL_C33_PSE_PW_D_STATUS_TEST: "The enumeration “test” indicates that
+> + *	the PSE State diagram is in the state TEST_MODE."
+> + * @ETHTOOL_C33_PSE_PW_D_STATUS_FAULT: "The enumeration “fault” indicates that
+> + *	the PSE State diagram is in the state TEST_ERROR."
+> + * @ETHTOOL_C33_PSE_PW_D_STATUS_OTHERFAULT: "The enumeration “otherFault”
+> + *	indicates that the PSE State diagram is in the state IDLE due to
+> + *	the variable error_condition = true."
+> + */
+> +enum ethtool_c33_pse_pw_d_status {
+> +	ETHTOOL_C33_PSE_PW_D_STATUS_UNKNOWN = 1,
+> +	ETHTOOL_C33_PSE_PW_D_STATUS_DISABLED,
+> +	ETHTOOL_C33_PSE_PW_D_STATUS_SEARCHING,
+> +	ETHTOOL_C33_PSE_PW_D_STATUS_DELIVERING,
+> +	ETHTOOL_C33_PSE_PW_D_STATUS_TEST,
+> +	ETHTOOL_C33_PSE_PW_D_STATUS_FAULT,
+> +	ETHTOOL_C33_PSE_PW_D_STATUS_OTHERFAULT,
+> +};
+> +
+>  /**
+>   * enum ethtool_podl_pse_admin_state - operational state of the PoDL PSE
+>   *	functions. IEEE 802.3-2018 30.15.1.1.2 aPoDLPSEAdminState
+> diff --git a/include/uapi/linux/ethtool_netlink.h b/include/uapi/linux/ethtool_netlink.h
+> index 73e2c10dc2cc..ba805285e408 100644
+> --- a/include/uapi/linux/ethtool_netlink.h
+> +++ b/include/uapi/linux/ethtool_netlink.h
+> @@ -895,6 +895,9 @@ enum {
+>  	ETHTOOL_A_PODL_PSE_ADMIN_STATE,		/* u32 */
+>  	ETHTOOL_A_PODL_PSE_ADMIN_CONTROL,	/* u32 */
+>  	ETHTOOL_A_PODL_PSE_PW_D_STATUS,		/* u32 */
+> +	ETHTOOL_A_C33_PSE_ADMIN_STATE,		/* u32 */
+> +	ETHTOOL_A_C33_PSE_ADMIN_CONTROL,	/* u32 */
+> +	ETHTOOL_A_C33_PSE_PW_D_STATUS,		/* u32 */
+>  
+>  	/* add new constants above here */
+>  	__ETHTOOL_A_PSE_CNT,
+> 
+> -- 
+> 2.25.1
+> 
+> 
+> 
 
-Sorry for my poor english, hope I have explained it well. :$
-
-Thanks,
-
-Chen
-
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
