@@ -1,145 +1,259 @@
-Return-Path: <devicetree+bounces-21232-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21233-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2AA5802D9E
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 09:53:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5DDB802DA8
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 09:56:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 254AEB20A94
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 08:53:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 90D29280E58
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 08:56:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC863FBF0;
-	Mon,  4 Dec 2023 08:53:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2E4D10955;
+	Mon,  4 Dec 2023 08:56:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="lK8uDfOn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Iy5hv7ea"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBB6FA5;
-	Mon,  4 Dec 2023 00:53:34 -0800 (PST)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3B46sMRR027299;
-	Mon, 4 Dec 2023 08:53:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=DNPW1/ETFxKq/RnXD14axskSrLhfYGFY6SaSrdF8b0A=;
- b=lK8uDfOn8N0dBdSaCmHVYByTU9F/KjqRMJKTmeBf7lX4SWs78+vliwV6l6yLOR6VwjkD
- SHDvTDxlZ5naPzvbRJAcLz0EdFsucBwOIhEYG0pBYE+KqjSw0skSzN9489J+VDdAibwH
- C+EaxQT5CTsdtjmFY2DLvgNwq1YbDh71XYDGQq1908RpYFF7s3Ljx4mSzeNhL5Iw8ChK
- s5qpJe3gslZfsC+mSUgnphsoxoZ4PZqO3tQ3W3BEr6ZQ2jntNgNxk08YGbne1LVafjLM
- iB//ASKZmSD7q6oHM0i8VzuSqq7vJiuxTxi6M7fe2wpHBX5LeNKxzYS66A2LeQZZz84d 0w== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uqwrvuahm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 04 Dec 2023 08:53:17 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3B48rGCN029415
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 4 Dec 2023 08:53:16 GMT
-Received: from [10.253.9.254] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 4 Dec
- 2023 00:53:12 -0800
-Message-ID: <312f2ea7-e0a5-4f0e-884d-85c3450e1ce3@quicinc.com>
-Date: Mon, 4 Dec 2023 16:53:10 +0800
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 232FE101;
+	Mon,  4 Dec 2023 00:56:43 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-40838915cecso42811805e9.2;
+        Mon, 04 Dec 2023 00:56:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701680201; x=1702285001; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Of7anv7twHrm1GM3ZZhVMaGN+HHiOJ/eAtPCQmGTSs0=;
+        b=Iy5hv7eallZTRdH46F5fYyzddJi4DoXAMu/OIimPycQsSxlObzDawdwWNcw9jqRPjS
+         fvET0vsDGGCpznl/QwKWsCNcdookUNF9RcRpyeg8mYXaBsVN2jsCeWulbR6qlD1AMYhu
+         BKJV4Aso1Az5x4O48yddUojVJDnlupsC5zCFScpVvlj5n8HRVgCfCgE2L7PrU9x3fwrh
+         dGc3H6vdcAQLNPIwxzyzARr53zOCIo+JZCkG/HZ1yyL9QrvBrLqw6qFbvGD/NzEoTD/i
+         zihV/T8dQiDyh0n+XSKsZpAFqJKmdoL6cssbnd2Rrxayaa7fsPmdeEdqFgoSDCQo+OsH
+         ilKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701680201; x=1702285001;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Of7anv7twHrm1GM3ZZhVMaGN+HHiOJ/eAtPCQmGTSs0=;
+        b=Ab96FsTxn7TrfQT0BN0ccAa/rDC1QTqGIXz3XE2eknPTgMMvtw964sVGejoZbM5KVz
+         DCBUK5jq88mlZuby7w67tuYLbXX9Ya5GTfaIfEadAfdIBkmMbNTIw97c/ArKHBaaa+Mw
+         XAj/1hi38dRtCFAzYnaqaMdmlGELmORO4Ibwn598QsB6BPTUtGszM+QVbvaxsh2CosuC
+         FMjevTeoZnwwJ7ChIW018o2E2Uqyui/ptNdZd+p7EgvCS6+PZG/JUetFdCxf6JZ4AY4m
+         p00kDnd+Wi7w5tn8KXUhpieAqncFNRZS5d9D95R82MmApEcic8HpSgJeImsLrl9Tq2BE
+         gu3A==
+X-Gm-Message-State: AOJu0Ywp+1itkcFa5ltgNLxAi3DI0ArVYPQzvqzp/zO2uFL+KzCqX6Xm
+	cvD6SGRcofQUE1D1kc72lEg=
+X-Google-Smtp-Source: AGHT+IH104Kfc26vBVXIOBFr05Rw0BdMZYUoKpw8Kvl5Igdx7+N3fC51XzESQVN54zvANJYQ7L8QKg==
+X-Received: by 2002:a05:600c:450d:b0:409:5a92:4718 with SMTP id t13-20020a05600c450d00b004095a924718mr1840488wmo.36.1701680201175;
+        Mon, 04 Dec 2023 00:56:41 -0800 (PST)
+Received: from ?IPv6:2001:a61:3456:4e01:6ae:b55a:bd1d:57fc? ([2001:a61:3456:4e01:6ae:b55a:bd1d:57fc])
+        by smtp.gmail.com with ESMTPSA id g18-20020a5d6992000000b003333abf3edfsm5786866wru.47.2023.12.04.00.56.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Dec 2023 00:56:40 -0800 (PST)
+Message-ID: <a8ef2e4ee00eae38d16baad8e124a68c069dd2e3.camel@gmail.com>
+Subject: Re: [PATCH 10/12] iio: adc: ad9467: convert to backend framework
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: David Lechner <dlechner@baylibre.com>
+Cc: nuno.sa@analog.com, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-iio@vger.kernel.org, Olivier MOYSAN
+ <olivier.moysan@foss.st.com>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>,  "Rafael J. Wysocki" <rafael@kernel.org>, Rob
+ Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>
+Date: Mon, 04 Dec 2023 09:56:40 +0100
+In-Reply-To: <863114fa44cda4ca58e17a47191f0388df39cc80.camel@gmail.com>
+References: <20231121-dev-iio-backend-v1-0-6a3d542eba35@analog.com>
+	 <20231121-dev-iio-backend-v1-10-6a3d542eba35@analog.com>
+	 <CAMknhBFbLju8UQJ7Uz85kHKrbK4mzt=wTRdnp40+PwWCJa5dsA@mail.gmail.com>
+	 <026fa80d29054750937cd077b7f4f689de4e18f2.camel@gmail.com>
+	 <CAMknhBGKinZB==QHLazZ9ZkfALyj2N=rVfZfsOk22p6X9SZSrQ@mail.gmail.com>
+	 <863114fa44cda4ca58e17a47191f0388df39cc80.camel@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/9] net: mdio: ipq4019: Enable GPIO reset for ipq5332
- platform
-To: Andrew Lunn <andrew@lunn.ch>
-CC: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
-        <robert.marko@sartura.hr>, <linux-arm-msm@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_srichara@quicinc.com>
-References: <20231115032515.4249-1-quic_luoj@quicinc.com>
- <20231115032515.4249-4-quic_luoj@quicinc.com>
- <e740a206-37af-49b1-a6b6-baa3c99165c0@lunn.ch>
- <33246b49-2579-4889-9fcb-babec5003a88@quicinc.com>
- <dd2c3cfa-f7ee-4abb-9eff-2aac04fa914f@lunn.ch>
-Content-Language: en-US
-From: Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <dd2c3cfa-f7ee-4abb-9eff-2aac04fa914f@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: uil2KWJSHYT_R_mIUcPECDgqjouLWb4y
-X-Proofpoint-GUID: uil2KWJSHYT_R_mIUcPECDgqjouLWb4y
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-04_06,2023-11-30_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- malwarescore=0 bulkscore=0 lowpriorityscore=0 phishscore=0 mlxlogscore=812
- suspectscore=0 priorityscore=1501 mlxscore=0 spamscore=0 clxscore=1015
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311060000 definitions=main-2312040066
 
+On Sat, 2023-12-02 at 09:46 +0100, Nuno S=C3=A1 wrote:
+> On Fri, 2023-12-01 at 11:44 -0600, David Lechner wrote:
+> > On Fri, Dec 1, 2023 at 3:08=E2=80=AFAM Nuno S=C3=A1 <noname.nuno@gmail.=
+com> wrote:
+> > >=20
+> > > On Thu, 2023-11-30 at 17:30 -0600, David Lechner wrote:
+> > > > On Tue, Nov 21, 2023 at 4:17=E2=80=AFAM Nuno Sa via B4 Relay
+> > > > <devnull+nuno.sa.analog.com@kernel.org> wrote:
+> > > > >=20
+> > > > > From: Nuno Sa <nuno.sa@analog.com>
+> > > > >=20
+> > > > > Convert the driver to use the new IIO backend framework. The devi=
+ce
+> > > > > functionality is expected to be the same (meaning no added or rem=
+oved
+> > > > > features).
+> > > >=20
+> > > > Missing a devicetree bindings patch before this one?
+> > > >=20
+> > > > >=20
+> > > > > Also note this patch effectively breaks ABI and that's needed so =
+we can
+> > > > > properly support this device and add needed features making use o=
+f the
+> > > > > new IIO framework.
+> > > >=20
+> > > > Can you be more specific about what is actually breaking?
+> > > >=20
+> > > > >=20
+> > > > > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+> > > > > ---
+> > > > > =C2=A0drivers/iio/adc/Kconfig=C2=A0 |=C2=A0=C2=A0 2 +-
+> > > > > =C2=A0drivers/iio/adc/ad9467.c | 256 ++++++++++++++++++++++++++++=
++--------------
+> > > > > --
+> > > > > --
+> > > > > =C2=A02 files changed, 157 insertions(+), 101 deletions(-)
+> > > > >=20
+> > > > > diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
+> > > > > index 1e2b7a2c67c6..af56df63beff 100644
+> > > > > --- a/drivers/iio/adc/Kconfig
+> > > > > +++ b/drivers/iio/adc/Kconfig
+> > > > > @@ -275,7 +275,7 @@ config AD799X
+> > > > > =C2=A0config AD9467
+> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tristate "Analog Devic=
+es AD9467 High Speed ADC driver"
+> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 depends on SPI
+> > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 depends on ADI_AXI_ADC
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 select IIO_BACKEND
+> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 help
+> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Say yes he=
+re to build support for Analog Devices:
+> > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * AD9467 1=
+6-Bit, 200 MSPS/250 MSPS Analog-to-Digital Converter
+> > > > > diff --git a/drivers/iio/adc/ad9467.c b/drivers/iio/adc/ad9467.c
+> > > > > index 5db5690ccee8..8b0402e73ace 100644
+> > > > > --- a/drivers/iio/adc/ad9467.c
+> > > > > +++ b/drivers/iio/adc/ad9467.c
+> > > >=20
+> > > > <snip>
+> > > >=20
+> > > > > +static int ad9467_buffer_get(struct iio_dev *indio_dev)
+> > > >=20
+> > > > perhaps a more descriptive name: ad9467_buffer_setup_optional?
+> > > >=20
+> > >=20
+> > > Hmm, no strong feeling. So yeah, can do as you suggest. Even though, =
+now that
+> > > I'm
+> > > thinking, I'm not so sure if this is just some legacy thing we had in=
+ ADI tree.
+> > > I
+> > > wonder if it actually makes sense for a device like with no buffering=
+ support?!
+> > >=20
+> > > > > +{
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct device *dev =3D indi=
+o_dev->dev.parent;
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const char *dma_name;
+> > > > > +
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (!device_property_presen=
+t(dev, "dmas"))
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 return 0;
+> > > > > +
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (device_property_read_st=
+ring(dev, "dma-names", &dma_name))
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 dma_name =3D "rx";
+> > > > > +
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return devm_iio_dmaengine_b=
+uffer_setup(dev, indio_dev, dma_name);
+> > > >=20
+> > > > The device tree bindings for "adi,ad9467" don't include dma propert=
+ies
+> > > > (nor should they). Perhaps the DMA lookup should be a callback to t=
+he
+> > > > backend? Or something similar to the SPI Engine offload that we are
+> > > > working on?
+> > > >=20
+> > >=20
+> > > Oh yes, I need to update the bindings. In the link I sent you we can =
+see my
+> > > thoughts
+> > > on this. In theory, hardwarewise, it would actually make sense for th=
+e DMA to
+> > > be
+> > > on
+> > > the backend device because that's where the connection is in HW. Howe=
+ver, since
+> > > we
+> > > want to have the IIO interface in the frontend, it would be hard to d=
+o that
+> > > without
+> > > hacking devm_iio_dmaengine_buffer_setup(). I mean, lifetime wise it w=
+ould be
+> > > far
+> > > from
+> > > wise to have the DMA buffer associated to a completely different devi=
+ce than
+> > > the
+> > > IIO
+> > > parent device. I mean, one way could just be export iio_dmaengine_buf=
+fer_free()
+> > > and
+> > > iio_dmaengine_buffer_alloc() so we can actually control the lifetime =
+of the
+> > > buffer
+> > > from the frontend device. If Jonathan is fine with this, I'm on board=
+ for
+> > > it....
+> > >=20
+> > > - Nuno S=C3=A1
+> > > >=20
+> > >=20
+> >=20
+> > I was planning on exporting iio_dmaengine_buffer_alloc() [1] for SPI
+> > Engine offload support, so I hope that is the right way to go. ;-)
+> >=20
+> > [1]:
+> > https://github.com/analogdevicesinc/linux/pull/2341/commits/71048ff83a6=
+3e9d0a5ddb9ffa331871edd6bd2a5
+>=20
+> I don't really want to extend much on this since this is still out of tre=
+e code so
+> I'm not sure we should be discussing it much in here. But there a couple =
+of
+> concerns
+> already I'm seeing:
+>=20
+> * AFAIU, you export the function so you can use it in your pwm trigger. A=
+nd you
+> don't
+> want to attach the buffer to a device. That looks very questionable. If y=
+ou don't
+> attach to a device, how do you have the userspace interface working on th=
+at buffer?
+> How can you fetch samples from it? Also hiding the buffer allocation in p=
+ure
+> trigger
+> device is at the very least questionable. But the point is, in the end of=
+ the day,
+> the buffer should belong to a device.
+>=20
+> * Your PWM trigger seems to be highly focused on the spi_engine offload f=
+eature.
+> You
 
+OTOH, it also seems there are some stm focused triggers. So maybe we can al=
+so have
+something more oriented to spi_engine...
 
-On 11/17/2023 1:20 AM, Andrew Lunn wrote:
->> FYI, here is the sequence to bring up qca8084.
->> a. enable clock output to qca8084.
->> b. do gpio reset of qca8084.
->> c. customize MDIO address and initialization configurations.
->> d. the PHY ID can be acquired.
-> 
-> This all sounds like it is specific to the qca8084, so it should be in
-> the driver for the qca8084.
-> 
-> Its been pointed out you can get the driver to load by using the PHY
-> ID in the compatible. You want the SoC clock driver to export a CCF
-> clock, which the PHY driver can use. The PHY driver should also be
-> able to get the GPIO. So i think the PHY driver can do all this.
-> 
->       Andrew
-
-Hi Andrew,
-If i put the GPIO reset in the PHY device tree node, the PHY probe
-function will be postponed to be called instead of being called
-during the MDIO bus register, which leads to the PCS can't be
-created correctly because of reading PHY capability failed before
-the PHY probe function called.
-
-my device tree nodes are as below.
-
-ethernet_device {
-	phy-handle = <&phy3>;
-	phy-mode = "2500base-x";
-	...
-};
-
-mdio@90000 {
-	phy3: ethernet-phy@3 {
-		compatible = "ethernet-phy-id004d.d180";
-		reg = <4>;
-		reset-gpios = <&tlmm 51 GPIO_ACTIVE_LOW>;
-		reset-assert-us = <100000>;
-		reset-deassert-us = <100000>;
-		clocks = <...>;
-		clock-names = "...";
-	};
-};
-
-Since the PHY probe function of phy3 is postponed instead of
-called during the MDIO bus driver register, and the initialization
-of qca8084 is not called when the ethernet_device driver is called
-to create PCS, where the phy3 capability is checked, which is failed
-since the qca8084 PHY probe is not called.
-
-Any idea to resolve this call sequence issue?
-Thanks.
+- Nuno S=C3=A1
 
 
