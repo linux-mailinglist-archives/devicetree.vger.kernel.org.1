@@ -1,211 +1,165 @@
-Return-Path: <devicetree+bounces-21547-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21548-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56F14804264
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 00:09:13 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABD52804270
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 00:15:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 87A5B1C20BC7
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 23:09:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E1ACCB20A97
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 23:15:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 961FB2EB1C;
-	Mon,  4 Dec 2023 23:09:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39CC023751;
+	Mon,  4 Dec 2023 23:15:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="nwUHoIh6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01CD7D3
-	for <devicetree@vger.kernel.org>; Mon,  4 Dec 2023 15:09:06 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1rAI3S-0001Kc-V9; Tue, 05 Dec 2023 00:08:46 +0100
-Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ore@pengutronix.de>)
-	id 1rAI3R-00Dc6M-MG; Tue, 05 Dec 2023 00:08:45 +0100
-Received: from ore by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1rAI3R-005IUM-Ir; Tue, 05 Dec 2023 00:08:45 +0100
-Date: Tue, 5 Dec 2023 00:08:45 +0100
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Luis Chamberlain <mcgrof@kernel.org>,
-	Russ Weight <russ.weight@linux.dev>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10olkn2048.outbound.protection.outlook.com [40.92.41.48])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85401D3;
+	Mon,  4 Dec 2023 15:14:55 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=kP8EmOI7YDDj6jKJsF+1kNrQr7R+2hnUJU2lYAlLv9X90hedjG6mvcEO/SYxkGTd9SmYEgDsZWX4b4J48sFLVMz96EQwbcoDnEl7MqX40GgW/iLyvBYzZwBcjSTcTJiSp4miVGrjazPS5iLFspsNG18ZWk0ia0bm/BmqCHFzwXL3hOBZm7MeXg9A1UJ8PhFamKj07IcGy8WHasuw6HJo1XKk5rPwNLFgyafxL7y9Jj7vYxYLUaUdBnu/wRzo6dc4qWks+Bl9NJr7/dM7g9ClNPT/gdTVJ0ykMXfIttVdG2cZmRyoSz3USOzVxmiKNZwAU+AVpYG04s4pTfEQQNIYTA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=otEtPWKaLLn8O711OEWI8Yf8aFxHuf6I1jhxfZzXOGk=;
+ b=VhcM6U1uo6CfMTeaywrBsdDRQag1vFWPddvYalqDwOPaAudzpFBXQnaWCEE6tu8mhzOFOIcGP8bnYGv7NvDwCSuKqHPO47sGCvybpXFrX59j+ichK3+0Ww17m7YSM8GAOLVb3yG3SaHNZg68iXOAtjtwWe7CZWEOwD9KHzNmhASOPZl7mOX7HEPWsDFeh0Jmqx+rc+2ZVzOG0+jfd3w470/XYr47+NKWZ//JE/QvaXWF9GwMJEk4WvPZHdpMLf++vprFUYnvGgVMmWXKV0hHzSSXxYYqELIYQsNVJ1CnNJzt4acSGNjmZ3EM5ITXn6Odw/CRy/eL5UWsVlHfGXMzkg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=otEtPWKaLLn8O711OEWI8Yf8aFxHuf6I1jhxfZzXOGk=;
+ b=nwUHoIh6Ya8HcrWfWKAVQQ5VnbPWuRRpqGEkI44ub9eJyYmfLDfm2RZicQ9UzxaQWiUTcYsgTTJQXscEpFybuOTS/0hIOw+l4zAU8rp7WNJlwklMklbfjoGrcMaHT7P7+i8NOoXFCyX7cSLDQfBsEWuOYpfvfAPdyjPIMx9fWgHrquIH0JUUUan4cZxTaOR8n+1QdD00O9w3gRwl3WExB9MNyISRkVLQwlzDxAwFP6NI6NU5LBNGUG91oE7wYVKx0assBGidpv4IgWKYof0mkr5CgdoR406f++OYc06kbPMUdBb1RaSgOYcotRFCMfFEs2ayq+2/m8ch4XELpX0E5Q==
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
+ by SJ0PR20MB6170.namprd20.prod.outlook.com (2603:10b6:a03:4e6::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.33; Mon, 4 Dec
+ 2023 23:14:52 +0000
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::55b:c350:980:ad8]) by IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::55b:c350:980:ad8%6]) with mapi id 15.20.7046.024; Mon, 4 Dec 2023
+ 23:14:52 +0000
+From: Inochi Amaoto <inochiama@outlook.com>
+To: Conor Dooley <conor@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: Inochi Amaoto <inochiama@outlook.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
-	Dent Project <dentproject@linuxfoundation.org>
-Subject: Re: [PATCH net-next v2 7/8] dt-bindings: net: pse-pd: Add bindings
- for PD692x0 PSE controller
-Message-ID: <20231204230845.GH981228@pengutronix.de>
-References: <20231201-feature_poe-v2-0-56d8cac607fa@bootlin.com>
- <20231201-feature_poe-v2-7-56d8cac607fa@bootlin.com>
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Anup Patel <anup@brainfault.org>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Guo Ren <guoren@kernel.org>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v5 1/2] dt-bindings: timer: thead,c900-aclint-mtimer: separate mtime and mtimecmp regs
+Date: Tue,  5 Dec 2023 07:14:51 +0800
+Message-ID:
+ <IA1PR20MB4953E67DA1BD6921DC6A8789BB86A@IA1PR20MB4953.namprd20.prod.outlook.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20231204-monorail-boxer-82c77526e764@spud>
+References: <20231204-germproof-venue-6874ad902323@spud>, <20231204-monorail-boxer-82c77526e764@spud>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TMN: [Rmu9e0qwIGHaV+oP7ShTTQZhbeeTBm2RHIr42d5FqF8=]
+X-ClientProxiedBy: TYCP286CA0077.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:2b3::9) To IA1PR20MB4953.namprd20.prod.outlook.com
+ (2603:10b6:208:3af::19)
+X-Microsoft-Original-Message-ID:
+ <20231204231451.56687-1-inochiama@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20231201-feature_poe-v2-7-56d8cac607fa@bootlin.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|SJ0PR20MB6170:EE_
+X-MS-Office365-Filtering-Correlation-Id: c48a6948-8230-4d42-00bc-08dbf51ed1b8
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	B3LYAPsnWFRuzJeXfcp4IZj9WBoyo4nUdDi8facOfb8n59Y7kNCOIEdhIZ5SEw5zutvxGviJcSdOkBESRXIK5fMeKVQPMdN22b+Kvlk7Q5R9a8N20n3f3PyygdcdLI17yjLLmBT3edmi8+KMHh3PZ3YJkk7nrdIT0L3Wiwp4OYm8wJmZajVeKAbOOITXO93M0lGS/jZRFmL9IqwYqZIWHIJgPAMP8KX4pfAV6/D5Xw9MaShDMgLJZhIDe7PkkhiBnxMAstRfCOBukZ80yEy+DBrbNhfn485eYONRsnI6LxbKJ9uYEsxajN8MgxZrSma67M+zmAraxgxmcv1xbwTKFBvCS3F0ewT0d9LsvqX8MpWr5xdjGEamFBY0YnfZUQTIY29lR3eSDOwu/nGG8EONTMvLSs2f29WVK+TBMWdy7OZYObbiW671KBfAnlc/Km/q5MJ6vJ3PmkKHeUFY29RFX724THboc3HF50y1dzIbjugwGfZ/d1OvGjmND5oLZXxSqCjb3axc6Y+shhxS/DiC9GlePN8pYmQKK8y1B9rwkQgTtjfCEYblO/BqBXdfAIUavk4UXOrYm1X/D6o4xq3sbvJcxgV4zJN4xfaOJpXIQzDwYFnWlCaSxFQZvb9pfGrnENgtZyMzkkhWrJhM2JiSnatZkrVlA2poaE5bJ+CI73E=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?NsFZbX5YR/SdRxL7LHy7BC+lNOdwCqB7WiogP5B3Q5cykO14A2tL1/wQP/ui?=
+ =?us-ascii?Q?/z7kC8J2zCdtlgKnc+odQ945SmJOhtGjTr8PKzE9eWNeLYtQFPfsb8Xv8JYU?=
+ =?us-ascii?Q?Sc0U7ypx38jnMTBlCYo3Uq5jaFXtjam5epGr5m8zu1Ir7x6889rrx/G4hF7y?=
+ =?us-ascii?Q?i6zTdcKqgvSxK2O8/Y4kt/EbvhrrsgRcQ7RbSbLQUmKU3e/9MUVa79dH398A?=
+ =?us-ascii?Q?5mxyLMUR1wnHYEIaMOh31Nu771OauySBVYW2CInUkfpeSnfKKs9CAQftk/yP?=
+ =?us-ascii?Q?BCYIQyT9HPWVbYxF2iISUA7jMwi/Uf5iCtnCbiph3qTw7x79XbYGVRJDiudG?=
+ =?us-ascii?Q?Z+rZZIYzOPm3jCS4JD1Pz9uq+RSzTz84jQ1/gzLO8W9WijDgW/J2pVVNxTFv?=
+ =?us-ascii?Q?MGvn2XUfkgy2tfb+dPJ0EHN+aiDNsUEzj4R/WmkFE/HNyif5dNtIP8hWPwEr?=
+ =?us-ascii?Q?ug4/fpR/dlLrxuI9y8MaWtt7fy//ZSi+59jYZJTFDTqgneJSbkZ+/QkHN+xG?=
+ =?us-ascii?Q?iMJt4EVdCcFWUBMiX587xAcHE6/dpRaE6Xk7AnFflu/zLlLmC2u8L50vlDGQ?=
+ =?us-ascii?Q?xna6owUHE8+QVANuMbnrN7Gt/BUZKi2WwojYom9bgxh0Z00gWJ7k0KFU4cVf?=
+ =?us-ascii?Q?5+DHgPqxpGFJ0CxVG5VjC0rUXoKhDyRp6P2t8LF7TP7Nh5t1+eCM1e/Epx8d?=
+ =?us-ascii?Q?N2hQHm1XHkDCv8v9P4QzurkvqwDk2jjgf3zqp3rivvX0ljYWUk9TBOMA9eF9?=
+ =?us-ascii?Q?jmBJ6PogodIBnbIz3XvM8gmOZtAdxM3rezlsCpxRQKlA0lr6Vqn0gjvn0q2r?=
+ =?us-ascii?Q?gnq8HFUfYOLaO1Yl4oimKJ8XlmwFHoRRPw/uAfGhcgR6mQD5EyIT5vhBmq3v?=
+ =?us-ascii?Q?vG7kDxm8xaLlIXR1H0M5Q3F/1PuVo+kMu3buDqWe+SnJt3sdQDZC9zxDATbC?=
+ =?us-ascii?Q?RyemwH9KQtLvlw77wzdq1O/wbsT//BcQNy88F7sFPvLOFvLVYTFXzVl9PbUi?=
+ =?us-ascii?Q?pYdyKVCWuohK8ED8+su5BmC+Ac+Uc9GERIO9yRLIfc8c5UEXxIJMEm5fatoL?=
+ =?us-ascii?Q?LkaCRgVT6maVgUUY1LcUrpfEHcoZyROebI1DbRkxAVel0qKdUXms7fJFZw3m?=
+ =?us-ascii?Q?fDTDJ0/Qb3nEX1Wm/M0fDmVHuvdoYZkeDbYPJT07CRRuJ712jbhYQURLma6G?=
+ =?us-ascii?Q?YP6xQzTPZKJR8PDircJOlyOAlAltPn6OZODcbtSghRgwIYqksInL0+SHcOw?=
+ =?us-ascii?Q?=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c48a6948-8230-4d42-00bc-08dbf51ed1b8
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Dec 2023 23:14:52.3080
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR20MB6170
 
-On Fri, Dec 01, 2023 at 06:10:29PM +0100, Kory Maincent wrote:
-> Add the PD692x0 I2C Power Sourcing Equipment controller device tree
-> bindings documentation.
-> 
-> Sponsored-by: Dent Project <dentproject@linuxfoundation.org>
-> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
-> ---
-> 
-> Changes in v2:
-> - Enhance ports-matrix description.
-> - Replace additionalProperties by unevaluatedProperties.
-> - Drop i2c suffix.
-> ---
->  .../bindings/net/pse-pd/microchip,pd692x0.yaml     | 77 ++++++++++++++++++++++
->  MAINTAINERS                                        |  6 ++
->  2 files changed, 83 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/pse-pd/microchip,pd692x0.yaml b/Documentation/devicetree/bindings/net/pse-pd/microchip,pd692x0.yaml
-> new file mode 100644
-> index 000000000000..3ce81cf99215
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/pse-pd/microchip,pd692x0.yaml
-> @@ -0,0 +1,77 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/pse-pd/microchip,pd692x0.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip PD692x0 Power Sourcing Equipment controller
-> +
-> +maintainers:
-> +  - Kory Maincent <kory.maincent@bootlin.com>
-> +
-> +allOf:
-> +  - $ref: pse-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - microchip,pd69200
-> +      - microchip,pd69210
-> +      - microchip,pd69220
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#pse-cells':
-> +    const: 1
-> +
-> +  ports-matrix:
-> +    description: each set of 48 logical ports can be assigned to one or two
-> +      physical ports. Each physical port is wired to a PD69204/8 PoE
-> +      manager. Using two different PoE managers for one RJ45 port
-> +      (logical port) is interesting for temperature dissipation.
-> +      This parameter describes the configuration of the port conversion
-> +      matrix that establishes the relationship between the 48 logical ports
-> +      and the available 96 physical ports. Unspecified logical ports will
-> +      be deactivated.
-> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> +    minItems: 1
-> +    maxItems: 48
-> +    items:
-> +      items:
-> +        - description: Logical port number
-> +          minimum: 0
-> +          maximum: 47
-> +        - description: Physical port number A (0xff for undefined)
-> +          oneOf:
-> +            - minimum: 0
-> +              maximum: 95
-> +            - const: 0xff
-> +        - description: Physical port number B (0xff for undefined)
-> +          oneOf:
-> +            - minimum: 0
-> +              maximum: 95
-> +            - const: 0xff
-> +
-> +unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        ethernet-pse@3c {
-> +          compatible = "microchip,pd69200";
-> +          reg = <0x3c>;
-> +          #pse-cells = <1>;
-> +          ports-matrix = <0 2 5
-> +                          1 3 6
-> +                          2 0 0xff
-> +                          3 1 0xff>;
+>On Mon, Dec 04, 2023 at 05:39:09PM +0100, Daniel Lezcano wrote:
+>> On 04/12/2023 17:18, Conor Dooley wrote:
+>>> On Mon, Dec 04, 2023 at 05:51:08PM +0800, Inochi Amaoto wrote:
+>>>> The timer registers of aclint don't follow the clint layout and can
+>>>> be mapped on any different offset. As sg2042 uses separated timer
+>>>> and mswi for its clint, it should follow the aclint spec and have
+>>>> separated registers.
+>>>>
+>>>> The previous patch introduced a new type of T-HEAD aclint timer which
+>>>> has clint timer layout. Although it has the clint timer layout, it
+>>>> should follow the aclint spec and uses the separated mtime and mtimecmp
+>>>> regs. So a ABI change is needed to make the timer fit the aclint spec.
+>>>>
+>>>> To make T-HEAD aclint timer more closer to the aclint spec, use
+>>>> regs-names to represent the mtimecmp register, which can avoid hack
+>>>> for unsupport mtime register of T-HEAD aclint timer.
+>>>>
+>>>> Also, as T-HEAD aclint only supports mtimecmp, it is unnecessary to
+>>>> implement the whole aclint spec. To make this binding T-HEAD specific,
+>>>> only add reg-name for existed register. For details, see the discussion
+>>>> in the last link.
+>>>>
+>>>> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+>>>> Fixes: 4734449f7311 ("dt-bindings: timer: Add Sophgo sg2042 CLINT timer")
+>>>> Link: https://lists.infradead.org/pipermail/opensbi/2023-October/005693.html
+>>>> Link: https://github.com/riscv/riscv-aclint/blob/main/riscv-aclint.adoc
+>>>> Link: https://lore.kernel.org/all/IA1PR20MB4953F9D77FFC76A9D236922DBBB6A@IA1PR20MB4953.namprd20.prod.outlook.com/
+>>>
+>>> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>>>
+>>> Although, I figure it is going to be me that ends up taking it.
+>>
+>> No, I should take it
+>
+>Sweet, I'd rather you took it than it went via a DT tree :)
+>
 
-Hm... this will probably not scale.  PSE is kind of PMIC for ethernet. I
-has bunch of regulators which can be grouped to one more powerful
-regulator. Since it is regulators, we will wont to represent them in a
-system as regulators too. We will probably have physical, board
-specific limitation, so we will need to describe regulator limits for
-each separate channel.
-
-> +        };
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index e3fd148d462e..b746684f3fd3 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -14235,6 +14235,12 @@ L:	linux-serial@vger.kernel.org
->  S:	Maintained
->  F:	drivers/tty/serial/8250/8250_pci1xxxx.c
->  
-> +MICROCHIP PD692X0 PSE DRIVER
-> +M:	Kory Maincent <kory.maincent@bootlin.com>
-> +L:	netdev@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/net/pse-pd/microchip,pd692x0.yaml
-> +
->  MICROCHIP POLARFIRE FPGA DRIVERS
->  M:	Conor Dooley <conor.dooley@microchip.com>
->  R:	Vladimir Georgiev <v.georgiev@metrotek.ru>
-> 
-> -- 
-> 2.25.1
-> 
-> 
-> 
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Thanks you both for taking this. This is good news for me.
 
