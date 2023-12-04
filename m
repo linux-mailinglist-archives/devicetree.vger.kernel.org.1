@@ -1,78 +1,112 @@
-Return-Path: <devicetree+bounces-21407-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21408-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 284528038B7
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 16:25:51 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 328AB8038C9
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 16:28:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A7B73B20B11
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 15:25:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AFC67B20B09
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 15:28:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B1B72C1BD;
-	Mon,  4 Dec 2023 15:25:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 759B82C846;
+	Mon,  4 Dec 2023 15:28:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="luWmtpc3"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="WIp3PXXi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49DEB25755;
-	Mon,  4 Dec 2023 15:25:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B9A3C433C8;
-	Mon,  4 Dec 2023 15:25:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701703543;
-	bh=87wG1kDj6b6gH/9dKdYLgikm7mMeRtoP3wmz09aZBmY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=luWmtpc3YS8XrJMgI0Z803J9hR/unwQoXBr+bcRNQLPTJFTLEDPbWJz22FR5JPdx8
-	 vmQJRGm1PUsJokWwExfhCe7NhddmUfamxS02hawMIhnRdPS4uBrLEiQvqjQoho5zTQ
-	 yeiRLr+UOhJ907Jk56YYDhMF1RNh4JeD5ETVtexdRRkMPLtO8HIxpWIAz2mo4CnXDt
-	 tC1Zf3UR49sXMw4ldMK9s7kFUuksrG9yHlmcAtqzJCNVu6nSROG7vwJg529TqaA1E1
-	 KtRnMENQ8z4oZaaMNksBy7ad6OTbC5K4hzxLiAydtr8dh6NhACO9GqkiMGQ68Bnhen
-	 2Dywz51C1yU1w==
-Date: Mon, 4 Dec 2023 15:25:33 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>
-Cc: <nuno.sa@analog.com>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-iio@vger.kernel.org, Olivier MOYSAN
- <olivier.moysan@foss.st.com>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Rob
- Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
- Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>
-Subject: Re: [PATCH 09/12] iio: adc: ad9467: use chip_info variables instead
- of array
-Message-ID: <20231204152533.252b6bfa@jic23-huawei>
-In-Reply-To: <20231121-dev-iio-backend-v1-9-6a3d542eba35@analog.com>
-References: <20231121-dev-iio-backend-v1-0-6a3d542eba35@analog.com>
-	<20231121-dev-iio-backend-v1-9-6a3d542eba35@analog.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C8F2B0;
+	Mon,  4 Dec 2023 07:28:32 -0800 (PST)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 9D4EE240009;
+	Mon,  4 Dec 2023 15:28:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1701703708;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=I0JOcf6jkxhgsas+jU7HoD00NuB8enDjPLTaHOqduD0=;
+	b=WIp3PXXigOKUmqQlWs81eU0ETi9SOluh1iT/y7P8wqndtOZRUNjGwUuN5PUIFmqWUasfE0
+	wDXOHIiQ8oms3C9dcNLzivgpnhKlkUkYsYks/IvHI5/ozbvzV39ncvpIDP1pNrBlSjGkto
+	vRzqRUZmXUuQOqx/01B3/fMqOUnPv6gmYdFhQsRm9YxBITcnFc5De9BYSoGxBIrqy5mump
+	YPa+/IF0L7aagdbcXfmCpk9EnY3qdlfgC3nhU6uXt2VOiYKk4nMJz9Mo8MLClM9TcXuMRS
+	1fDoLiCxEB5vNg21VJFNY1oSDaDpgPDHVguVyrfNDBHIXvtt3RzDh2Qahl0pbQ==
+Date: Mon, 4 Dec 2023 16:28:25 +0100
+From: =?UTF-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+ <pabeni@redhat.com>, Jonathan Corbet <corbet@lwn.net>, Luis Chamberlain
+ <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Oleksij Rempel <o.rempel@pengutronix.de>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ devicetree@vger.kernel.org, Dent Project <dentproject@linuxfoundation.org>
+Subject: Re: [PATCH net-next v2 4/8] net: ethtool: pse-pd: Expand pse
+ commands with the PSE PoE interface
+Message-ID: <20231204162825.40e566fe@kmaincent-XPS-13-7390>
+In-Reply-To: <e0b143dc-ca7e-4762-bd0b-3acffad0932b@lunn.ch>
+References: <20231201-feature_poe-v2-0-56d8cac607fa@bootlin.com>
+	<20231201-feature_poe-v2-4-56d8cac607fa@bootlin.com>
+	<e0b143dc-ca7e-4762-bd0b-3acffad0932b@lunn.ch>
+Organization: bootlin
+X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: kory.maincent@bootlin.com
 
-On Tue, 21 Nov 2023 11:20:22 +0100
-Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org> wrote:
+On Sun, 3 Dec 2023 19:45:18 +0100
+Andrew Lunn <andrew@lunn.ch> wrote:
 
-> From: Nuno Sa <nuno.sa@analog.com>
-> 
-> Instead of having an array and keeping IDs for each entry of the array,
-> just have a chip_info struct per device.
-> 
-> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
-Hi Nuno,
+> > @@ -143,6 +150,43 @@ ethnl_set_pse(struct ethnl_req_info *req_info, str=
+uct
+> > genl_info *info) return -EOPNOTSUPP;
+> >  	}
+> > =20
+> > +	if (!tb[ETHTOOL_A_PODL_PSE_ADMIN_CONTROL] &&
+> > +	    !tb[ETHTOOL_A_C33_PSE_ADMIN_CONTROL])
+> > +		return 0; =20
+>=20
+> -EINVAL? Is there a real use case for not passing either of them?
 
-Probably makes sense to break out the various tidy up an fixes for ad9467 as a
-precursor series and just refer to it from the main one (which will probably take
-longer to settle).  Hopefully we can get these out the way and remove the distraction
-from the stuff you really care about!
+No indeed.
 
-Jonathan
+> > +
+> > +	if (tb[ETHTOOL_A_PODL_PSE_ADMIN_CONTROL] &&
+> > +	    !(pse_get_types(phydev->psec) & PSE_PODL)) {
+> > +		NL_SET_ERR_MSG_ATTR(info->extack,
+> > +				    tb[ETHTOOL_A_PODL_PSE_ADMIN_CONTROL],
+> > +				    "setting PSE PoDL admin control not
+> > supported");
+> > +		return -EOPNOTSUPP;
+> > +	}
+> > +	if (tb[ETHTOOL_A_C33_PSE_ADMIN_CONTROL] &&
+> > +	    !(pse_get_types(phydev->psec) & PSE_C33)) {
+> > +		NL_SET_ERR_MSG_ATTR(info->extack,
+> > +				    tb[ETHTOOL_A_C33_PSE_ADMIN_CONTROL],
+> > +				    "setting PSE PoE admin control not
+> > supported"); =20
+>=20
+> This probably should be C33, not PoE?
+>=20
+> I guess it depends on what the user space tools are using.=20
+
+Yes, I have hesitated on replacing that one.
+If you prefer c33 in the log, I will change it in next version
+
+Regards,
+--=20
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
