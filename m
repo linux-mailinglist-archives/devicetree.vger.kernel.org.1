@@ -1,117 +1,114 @@
-Return-Path: <devicetree+bounces-21365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21366-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F38AE8035C6
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 15:02:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 581558035EC
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 15:05:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2A2601C20A8A
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 14:02:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0BFFE1F21152
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 14:05:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87BA22575B;
-	Mon,  4 Dec 2023 14:02:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6760C25771;
+	Mon,  4 Dec 2023 14:05:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="cZyw07dl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from KOR01-PS2-obe.outbound.protection.outlook.com (mail-ps2kor01olkn2022.outbound.protection.outlook.com [40.92.242.22])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A6DD83
-	for <devicetree@vger.kernel.org>; Mon,  4 Dec 2023 06:02:03 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iSKGLqujY7v+twHlOxo67oLQbnH0sML9oQAH/BtpJRfksGrfwVh7w8qeuhFD0dolWMc3AX1VEC3kv+QebFVgCkq+mS955JznjhF+Gp1Zr3qkw1bSKbRRNiINLWzkeYgzBtFVhPrWG0Bzu3cybT45boIT4fyvjOWda3C//3FrOW5RTe/S4MyLSsLKyeM4xByw31QRtjYdXJsF5Sj3S7mVW6+yDvm5LOYx+3+P1FuLx+lbzz1auqaJ3wSkeiY8icWwvcDlVdAkTb20ILq/uqjcE/AlVMAkBho5urUHIB1d5hR1ud/IHQIUZeTIh08Vl/70hAk7n8vmQul5S9+ak4wQlw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NvcbXrW2pX+HTsiYB4gPvEgra2V5hxXhAFmxLbYcxcE=;
- b=XS6uJNKMsPrGfy+SqXB9oaqpR1r6yur8eUc0EW3dVGhYcHr+N5y6cDLeVzobJLkBloYnj7XeAlABaT7e9CkuZtYfOYNaw9jwEejhj8Y/HbkjSUCBKJRO5X0TvGWVuCgb3iVBpK13GO17MHdQgF/7eWohCntLUqkGLmZit+Qyf8T1oVZR/7lE7+gD2UKLUWi2uJLwDidl5/1+9fCyDvgq0O7J4Mi0oJoYsLwnS1Q24vDP4Iy34s8LkiLzhGuBwUnHCH2SriFvM6eoatTdbkiysPMQRWO3NxzdUUY+UZplG+hnuWND0eZK3A2ISufy6r0UGxiTlnIoWbaVLQ6fm6Ia6g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-Received: from PS2P216MB1348.KORP216.PROD.OUTLOOK.COM (2603:1096:301:99::11)
- by PU4P216MB1979.KORP216.PROD.OUTLOOK.COM (2603:1096:301:d9::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.23; Mon, 4 Dec
- 2023 14:02:00 +0000
-Received: from PS2P216MB1348.KORP216.PROD.OUTLOOK.COM
- ([fe80::c25c:ffae:beb7:284d]) by PS2P216MB1348.KORP216.PROD.OUTLOOK.COM
- ([fe80::c25c:ffae:beb7:284d%5]) with mapi id 15.20.7068.022; Mon, 4 Dec 2023
- 14:02:00 +0000
-From: devicetree <kez1959@live.com.au>
-To: devicetree@vger.kernel.org
-Subject: Re: request for help 
-Date: 4 Dec 2023 06:01:57 -0800
-Message-ID:
- <PS2P216MB1348BD42FB976E4AC024169BE986A@PS2P216MB1348.KORP216.PROD.OUTLOOK.COM>
-Content-Type: text/plain;
-	charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-X-TMN: [g68i6xVbvl7DzZPT4Oio0Ufs7om/3ayQe1CBcDWEZLo=]
-X-ClientProxiedBy: SYBPR01CA0093.ausprd01.prod.outlook.com
- (2603:10c6:10:3::33) To PS2P216MB1348.KORP216.PROD.OUTLOOK.COM
- (2603:1096:301:99::11)
-X-Microsoft-Original-Message-ID: <20231204060153.239A3528360E19C6@live.com.au>
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C68AAD8;
+	Mon,  4 Dec 2023 06:05:22 -0800 (PST)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 67146E000E;
+	Mon,  4 Dec 2023 14:05:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1701698721;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=DW8ey3CmKKKt0VjHcv6+g7Q0lNwQ0v4Ap1ray1F6E40=;
+	b=cZyw07dl+ayTz8KSvAaKYDgdZQBNJ8eULK8duOQowbKX6EoQPLTpuECiDSPGNjdlyNpZHg
+	nNpNUL4dQ5fDjxFGm6ylIe2eYeO9FzOpymGsV+z91ZP0TzIdTsPhuqjyVzxeJ+dVUBoWJC
+	06t2Dm7My5y5F4ida/J3wVE5EHVOnr+0zrkrIOOefHJTnP3D+j7sMmLWTSSJbbdGUACJxE
+	8lq5Qk32S0MvSNtimefuVm76ttP7W3dnaG8+YrKLALL/Igpr+LFdEuuvrbE5NMl27wV2Az
+	uyrpD4qwrcc6DsxeIVEEc1b0HqOccaZGbProiJLlShmRM+dK4XdMQpxtuMs2Xw==
+From: Kamel Bouhara <kamel.bouhara@bootlin.com>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Henrik Rydberg <rydberg@bitmath.org>,
+	linux-input@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Marco Felsch <m.felsch@pengutronix.de>,
+	Jeff LaBundy <jeff@labundy.com>
+Cc: catalin.popescu@leica-geosystems.com,
+	mark.satterthwaite@touchnetix.com,
+	bartp@baasheep.co.uk,
+	hannah.rossiter@touchnetix.com,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	bsp-development.geo@leica-geosystems.com,
+	Kamel Bouhara <kamel.bouhara@bootlin.com>
+Subject: [PATCH v4 0/3] Input: Add TouchNetix axiom touchscreen driver
+Date: Mon,  4 Dec 2023 15:05:01 +0100
+Message-ID: <20231204140505.2838916-1-kamel.bouhara@bootlin.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PS2P216MB1348:EE_|PU4P216MB1979:EE_
-X-MS-Office365-Filtering-Correlation-Id: bcb59486-05cd-4a20-d051-08dbf4d195b3
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	tKs3MR/5WF490V9wS33qRjS49kalPqjObRzMyL7XLPy3/6xgCWNpximy9JmmijHhbZMs6TS0mIG5RGmFzyLrN7CAlV0y0gGS+RAzhU4JP+DuJ0gTcl9hR9vHEk8I4fQd8ZRwF49fqIZLCj3lehWR6P+2Ppa0w0Auwt5aV5G/MuNfU69D//NVM8EFcHoJ3xqfVdXRY0WvBa0uDjtIRl0SFHqoNIzLJVKHHdoMqvI9A3+2nCNrBm9RPM0JcweTnTw3OAfvJHEo8lRAQOM47k7zn6nljUP+OiBeB6+HIy6UCHgikgZMEFaR03oEg/EWmZcV2G/KZ1/vJEgwHe5/M9bMYZSIw/KXkGntn+T6riWMMftunscbAeoTj+mClusnzadyEpu6Lavm7oh0me0EEUhZfwB+dBV789BsumwOE2fw1zilXvLs7CS/DhsJ6ncW2sfxP1gFIavMtMZBBtj72x1JHWUjZzKIG5cf8tea77Gwk9lbAPf7Gbp0H6DaWJ6fuiVPlQ80ThS9Q+ZJjBWYwyaA172BTWPvw8VxODFRxEALB71L6SFH6xArNtmrodTWsQIi
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?L25sUDN1bWhJNDJ2VXZWY1B5Q2lJV0M2RGNUMVd1UjR2dlU2YTBUbVVOaVJp?=
- =?utf-8?B?SHk3SmpQbVY0RXlOU1U2N0lGc2ZMbW0rbGtPU0R4UVNoOEM3OG5vaytYM1l4?=
- =?utf-8?B?Q1Q0K1VLSjkvdGFrSW1aUVlybGNGMlQraTlrQkRsZXFTSm0zODh5NWRUSTBM?=
- =?utf-8?B?akMzTXRlV01PQ29PUklRMHd0Uy9kNU5HdXV2R0tQV1EvamJjZjEwNW1JMmtD?=
- =?utf-8?B?cGlyT1RNUUpzdDB4MVdhbDB3dWQ2MUREOUJyeHBQam4rSjVOMGZCVTBqQWF3?=
- =?utf-8?B?aGRLQUg0cURIcTZOZXpsT0J6SWc1T0NLb0NReVZaeEZhMFluMDJ1QzRpenI1?=
- =?utf-8?B?R3FRUmEvaUpib2k5NE04OWlSSnMyZjJQbmNiemtldzJhVlBHeGFJbGZXazB0?=
- =?utf-8?B?RGZ4NzIzdlVOZTFLTnllaHh2YUxmeWVVbGVSam5RTzBjZVZKWG5YZUh2WWFH?=
- =?utf-8?B?dGJvMGhZcW1xQ0w5bURuclQzK1FHdzZvWlVJc3VoSlprVEQ1SllXOU12ZTJQ?=
- =?utf-8?B?VkJienFremtyNENJTm5nZTdLaVIxRWZZMCt5MHJpTjJtdFp2emxYSzVqbmUz?=
- =?utf-8?B?R3BQQ2dlU0c4b1hjcEdpYWVNeXRuR3RjV1hWOUxCSnErS0RwT0JRS2FxY1Uw?=
- =?utf-8?B?am1oeExCczI2d0x4VG1udGptNFZJMExuck1IUzRwU0lZNS9KbjljRGxxem1W?=
- =?utf-8?B?VlpSb2FRSmhqMzFMbmQ2WWI1cDJ2N0kwNThmMDJvUU51MmdZMDVBeVVZQkhy?=
- =?utf-8?B?R1pNNkhqRER6bmNxWmhCOW02SWZKK1BUbTl2VW1teGlnU3MvcUY2d2prdGdF?=
- =?utf-8?B?dVhqeGZSQUhSYlQ3U2pCQXJQNnNlRU1zZDFtZU4rQWdvd09ZSzZ0aVpXM2tZ?=
- =?utf-8?B?U3BUd2lFM3BPODB2Ylk3YjZnRlA5SjRraHl2YVdTeU83a0tuS1RhWEUzUk13?=
- =?utf-8?B?MUxaV1FlYWlJVDdqVUdpdy9hTmlGaEdSSkFVVmdTdHUxZEtxTTEra0R0YzhN?=
- =?utf-8?B?aHByTkJicDVEM0VuUmJxMnF3TUkydnRWNWlBVVkxYlJxVFFKclRhSVJpd3BV?=
- =?utf-8?B?aEtadU9BY1R3SXlZUXVtc091L0Y2V1VJVTY0dnZsOHZFUWRHRFdKd2VMY2pL?=
- =?utf-8?B?bmRRUUZrL1BocXlaTWw0SDJwRytJdFU0bXREZk5KUzRZL3JaUjlmZSsyMVpZ?=
- =?utf-8?B?UVBQM3o4UURKeno5K3hVWTNvNU9pT0IvVk5VK1pZa2pHMERjc0xJakZZcCtj?=
- =?utf-8?B?Ylk4ZkhoUzI4bmxFQjVhZHJQVTNCREdkdzZXUkxQTmZHUGNWSDhZVXlPT3M3?=
- =?utf-8?B?K2hON2dIbnpZYldYUXpxL1NqaC83elRNS2VPZVRZeFRPV25lK004QXNraHZT?=
- =?utf-8?B?QmM2SldSTWVPSTF3d2hMcFdNRC9XVHI5QUpORVU2bUFERzFBaTNMYlR1cWp3?=
- =?utf-8?B?d0xPQS9abWpCNkg0VUpkeUh2M0FncUN6dE1hK0FNQlRXZm5CcFJQYjdLNDZI?=
- =?utf-8?B?VHZuZHBia3FIY2xReGNnQmVydUNEcWhNMytaSDRQZjJGMXlhZ0lwUVJmOGhr?=
- =?utf-8?B?TllFaDZhYWhuMUxMZUl0OTNKYWdhUE84eG1hNjh1TXdOcG1OYnpjTVl3c2dW?=
- =?utf-8?B?MFRnU2FGL04rS0kvQkZlbHEvWXA1V3c9PQ==?=
-X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-0555f.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: bcb59486-05cd-4a20-d051-08dbf4d195b3
-X-MS-Exchange-CrossTenant-AuthSource: PS2P216MB1348.KORP216.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Dec 2023 14:02:00.3789
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PU4P216MB1979
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: kamel.bouhara@bootlin.com
 
-Hi there,
-We have never met before but I am Doctor Halilovic from Australia=20
-currently in South Gaza. Please may I kindly know your name and=20
-where you are from? I know it can be annoying getting emails from=20
-people you do not know. Still, I am getting in touch because I=20
-wanted to discuss an opportunity for us to connect and=20
-collaborate. I can be reached via my email address:=20
-dr.halilovicnedim@hotmail.com
+Add a new driver for the TouchNetix's axiom family of
+touchscreen controller. This driver only support i2c
+and can be later adapted for SPI and USB support.
 
-Yours faithfully
-Halilovic
+---
+Changes in v2:
+ - Add device tree binding documentation
+ - Move core functions in axiom_i2c as we only care about i2c support now
+ - Use static function when required
+ - Use syntax dev_err_probe()
+ - Add an hardware based reset
+
+Changes in v3:
+ - Remove irq-gpios property in dt-binding
+ - Use a generic node name
+ - Fix issues reported in https://lore.kernel.org/oe-kbuild-all/202310100300.oAC2M62R-lkp@intel.com/
+
+Changes in v4:
+ - Cleanup unused headers and macros
+ - Use standard kernel type
+ - Namespace structures and functions
+ - Use packed struct when possible to avoid bitfield operators
+ - Fix missing break when address is found in axiom_populate_target_address()
+ - Split reads in two steps for the reports, first length then report
+   itself so we only read required bytes
+ - Get poll-interval from devicetree
+ - Add VDDI/VDDA regulators
+ - Add a startup delay of 110 ms required after VDDA/VDDI is applied
+ - Remove axiom_i2c_write() as it is no more used
+
+Kamel Bouhara (3):
+  dt-bindings: vendor-prefixes: Add TouchNetix AS
+  dt-bindings: input: Add TouchNetix axiom touchscreen
+  Input: Add TouchNetix axiom i2c touchscreen driver
+
+ .../input/touchscreen/touchnetix,ax54a.yaml   |  56 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   7 +
+ drivers/input/touchscreen/Kconfig             |  12 +
+ drivers/input/touchscreen/Makefile            |   1 +
+ drivers/input/touchscreen/touchnetix_axiom.c  | 675 ++++++++++++++++++
+ 6 files changed, 753 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/touchnetix,ax54a.yaml
+ create mode 100644 drivers/input/touchscreen/touchnetix_axiom.c
+
+--
+2.25.1
+
 
