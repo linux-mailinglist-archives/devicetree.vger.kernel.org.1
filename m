@@ -1,106 +1,105 @@
-Return-Path: <devicetree+bounces-21306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58ED4803205
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 13:02:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2379C80323F
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 13:13:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1424D280F1A
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 12:02:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C3B67280F25
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 12:13:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1569322F1E;
-	Mon,  4 Dec 2023 12:01:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41F8023761;
+	Mon,  4 Dec 2023 12:13:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DETzKrJo"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="An6Nqerw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C0BBE5;
+	Mon,  4 Dec 2023 04:13:10 -0800 (PST)
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E121722EFC;
-	Mon,  4 Dec 2023 12:01:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8506C433C8;
-	Mon,  4 Dec 2023 12:01:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701691318;
-	bh=dj/jyhV+xo1jIzRIWtSaa1FCw41fyfaNus/o63XmaOw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DETzKrJoOxI8mNS42lev4LPYJoY7SNqoFhoV3N4JrdRLyKD/fCkaXSGhPRXNmsYP1
-	 PL7uXpifJxEZx0a3muC+XCTJv8o/7wr7Dqa4gGjdcpRZBTbb5i8gUfgxw43ktJe/z1
-	 Q0klyTAVyoJhyur68luJo4G8dLLR2yKDnoyvB1lAYPZEhVVdLCeYhzjBxYv2vTvrjz
-	 SF+p50oSFAHgZDug1a1l9yNHA4VzO5AIb3wbDbhxc5NnaIHluGWRR9Bzj9+vY6d7nA
-	 Lh9goruMTArrrp2I4LKGLymul/uMvubIKxj1836pj78p6CdmpDrkaGBIyU7YLjj+gj
-	 eqJGF1Mt4OLtA==
-Date: Mon, 4 Dec 2023 17:31:37 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: vireshk@kernel.org, nm@ti.com, sboyd@kernel.org,
-	myungjoo.ham@samsung.com, kyungmin.park@samsung.com,
-	cw00.choi@samsung.com, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	jejb@linux.ibm.com, martin.petersen@oracle.com,
-	Manivannan Sadhasivam <mani@kernel.org>, alim.akhtar@samsung.com,
-	avri.altman@wdc.com, bvanassche@acm.org, linux-scsi@vger.kernel.org,
-	linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, quic_asutoshd@quicinc.com,
-	quic_cang@quicinc.com, quic_nitirawa@quicinc.com,
-	quic_narepall@quicinc.com, quic_bhaskarv@quicinc.com,
-	quic_richardp@quicinc.com, quic_nguyenb@quicinc.com,
-	quic_ziqichen@quicinc.com, bmasney@redhat.com,
-	krzysztof.kozlowski@linaro.org, linux-kernel@vger.kernel.org,
-	alessandro.carminati@gmail.com
-Subject: Re: (subset) [PATCH v7 0/5] UFS: Add OPP support
-Message-ID: <20231204120137.GE35383@thinkpad>
-References: <20231012172129.65172-1-manivannan.sadhasivam@linaro.org>
- <170157925807.1717511.5041129304704724408.b4-ty@kernel.org>
+	(Authenticated sender: kholk11)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id C0E1766022D1;
+	Mon,  4 Dec 2023 12:13:06 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1701691988;
+	bh=tYd+006RlkhE3PTruMujBJkOUxyMROXE4vAkt2e6WD4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=An6NqerwwhgGfO8PGeiYcMYDkkuGon45hnJi/L5mKU/QUdg8fXvHweDyu5ouS377l
+	 MKZ6u1N7V2WC5ff3OfmXddClu7wle9xb4uwQ0yBIGJ/TuJs2rZBRt5Vs3yvhbwLVll
+	 K6x+zpiw3JjZkGiFIt82WgE3fbPpLsR2oN+Wzna4S+YOr805gK0P8Ky6C8jdfl3x9n
+	 r+oyS8WKSetKFh7uLlkoA2V/I8OEmpjA1T7RDXZiNd+khnQDR43UO15PtIPpI4f9hy
+	 7d2YQy5e/pSWd35k0m8RC2l2iw2xccJQkAGzfcDK9oNhacXJFDNCfkDdvvd3ZiSj8D
+	 RDMhW/jizj9EA==
+Message-ID: <d03bf5b8-d4d7-4080-9af4-17b31ef6c72b@collabora.com>
+Date: Mon, 4 Dec 2023 13:13:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4] docs: dt-bindings: add DTS Coding Style document
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+Cc: Andrew Davis <afd@ti.com>, Andrew Lunn <andrew@lunn.ch>,
+ Arnd Bergmann <arnd@arndb.de>, Bjorn Andersson <andersson@kernel.org>,
+ Chen-Yu Tsai <wens@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Jonathan Corbet <corbet@lwn.net>, Michal Simek <michal.simek@amd.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Nishanth Menon <nm@ti.com>,
+ Olof Johansson <olof@lixom.net>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <zajec5@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ linux-rockchip@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ workflows@vger.kernel.org, linux-doc@vger.kernel.org
+References: <20231203174622.18402-1-krzysztof.kozlowski@linaro.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20231203174622.18402-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <170157925807.1717511.5041129304704724408.b4-ty@kernel.org>
 
-On Sat, Dec 02, 2023 at 08:54:46PM -0800, Bjorn Andersson wrote:
+Il 03/12/23 18:46, Krzysztof Kozlowski ha scritto:
+> Document preferred coding style for Devicetree sources (DTS and DTSI),
+> to bring consistency among all (sub)architectures and ease in reviews.
 > 
-> On Thu, 12 Oct 2023 22:51:24 +0530, Manivannan Sadhasivam wrote:
-> > This series adds OPP (Operating Points) support to UFSHCD driver.
-> > 
-> > Motivation behind adding OPP support is to scale both clocks as well as
-> > regulators/performance state dynamically. Currently, UFSHCD just scales
-> > clock frequency during runtime with the help of "freq-table-hz" property
-> > defined in devicetree. With the addition of OPP tables in devicetree (as
-> > done for Qcom SDM845 and SM8250 SoCs in this series) UFSHCD can now scale
-> > both clocks and performance state of power domain which helps in power
-> > saving.
-> > 
-> > [...]
+> Cc: Andrew Davis <afd@ti.com>
+> cc: Andrew Lunn <andrew@lunn.ch>
+> Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Cc: Arnd Bergmann <arnd@arndb.de>
+> Cc: Bjorn Andersson <andersson@kernel.org>
+> Cc: Chen-Yu Tsai <wens@kernel.org>
+> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Cc: Jonathan Corbet <corbet@lwn.net>
+> Cc: Matthias Brugger <matthias.bgg@gmail.com>
+> Cc: Michal Simek <michal.simek@amd.com>
+> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+> Cc: Nishanth Menon <nm@ti.com>
+> Cc: Olof Johansson <olof@lixom.net>
+> Cc: Rafał Miłecki <zajec5@gmail.com>
+> Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Acked-by: Heiko Stuebner <heiko@sntech.de>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Acked-by: Konrad Dybcio <konradybcio@kernel.org>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> Applied, thanks!
-> 
-> [4/5] arm64: dts: qcom: sdm845: Add OPP table support to UFSHC
->       commit: ec987b5efd59fdea4178d824d8ec4bbdf3019bdf
-> [5/5] arm64: dts: qcom: sm8250: Add OPP table support to UFSHC
->       commit: 725be1d6318e4ea7e3947fd4242a14cf589cfebf
-> 
 
-Bjorn, could you please drop these two patches? I found the OPP regression in
-the ufs-qcom driver due to some patches that got merged last cycle. Nitin is
-working on a fix for that. So I'd like to defer merging of these dts patches to
-v6.9.
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-I can resend them after v6.8-rc1.
-
-- Mani
-
-> Best regards,
-> -- 
-> Bjorn Andersson <andersson@kernel.org>
-
--- 
-மணிவண்ணன் சதாசிவம்
+Thumbs up!
 
