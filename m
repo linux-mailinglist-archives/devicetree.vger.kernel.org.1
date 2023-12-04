@@ -1,218 +1,115 @@
-Return-Path: <devicetree+bounces-21520-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21521-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8535803EC3
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 20:50:54 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 506BE803F03
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 21:09:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D95DE1C20A01
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 19:50:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C2163B20AEA
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 20:09:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D693533078;
-	Mon,  4 Dec 2023 19:50:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3ADF33CCA;
+	Mon,  4 Dec 2023 20:09:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LvyFZ7jI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OaPuZNEO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28AC4CE;
-	Mon,  4 Dec 2023 11:50:47 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-54bfd4546fbso5975379a12.1;
-        Mon, 04 Dec 2023 11:50:47 -0800 (PST)
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9424CE
+	for <devicetree@vger.kernel.org>; Mon,  4 Dec 2023 12:09:38 -0800 (PST)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-a196f84d217so500384266b.3
+        for <devicetree@vger.kernel.org>; Mon, 04 Dec 2023 12:09:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701719445; x=1702324245; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+qdbcC7yRoXStA6//Sf0ppzUiv9xW5yZR+OVcJWO5pA=;
-        b=LvyFZ7jIfK2UXnXp6F/Pn3KindYZatCeV0XwFSQpzCUDH/xO2qpJdxEtGFPaeFwCiZ
-         o4sL+5HUBBTAC6A60KRNpwB9Fj4/ThkOuIOaRQJ2pRNk3k06RhA0Aczavlxl1kyFFBMV
-         s4nBA+MMWwpHpm8ys8DcWJ9xHDXeyNrGYIEja8oR4CMWSV7lhdPvoMqsBw4ZTfWc2wT+
-         uOmElctEIrIzgQalEoKVK6RWCPg0oj3R1y+G61EUTk63FV8aUGBL4MGoI6/Vyg2kwjUw
-         xEZssUenE3v33hCwFUCPscJczTXBB8TeWljhExcKQ2lok6ei8u2q2WE7aWtg81gLlnnD
-         th6Q==
+        d=gmail.com; s=20230601; t=1701720577; x=1702325377; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2MNjE3SeFK0nJKBmYRJMHyr7VIIHtok8kfFl8JThkGU=;
+        b=OaPuZNEOkDL9RXlZqC3wwWoQx7AJmQStSf6YrhLZOAbWc+6lbTyG8n8t+7CF8SP3kG
+         bKgH4NBPgSSoO2KefjrnTaShcGiY3a1HufjansWkmQVp6wm3SHdbsd6R+3pURIpgZNqd
+         HrL+25qRVrGsn3nIL3o5X9U/cQOqQSBwzJosM7OKqc8o6Vx2/BSbrJ/MyNYvIS0Lwn1z
+         yvvwmhYQR8pCkOGy8NJKF1Fzs2qjAP9M3g+GENNPh39UEiFg0tyuGG9w4RcgmmFROCGX
+         hJngoFXMp8aeE7UWsc5MSf4RWJdQry0QR0f1cU0NcufDW0Mj6UDX3wj93kCtxirFG/Rh
+         mvgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701719445; x=1702324245;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+qdbcC7yRoXStA6//Sf0ppzUiv9xW5yZR+OVcJWO5pA=;
-        b=c8NMEyiQCWJelYLaAOt4hMdxL+PKXWceKJHT5+9UQYnmfgsAznlmnnyyHoxUP9c3fU
-         QZ14Sc3Nd5C86wYhcEGLK6xh/FKUuSu6C6y/XJIGf6sYnrH/yEnl7DMTdmEu7iyru86V
-         7DRumjWLuMSJnqIYB+sDFoHz+tldKyH5Ue2rTVAGp+bQO06Rd6UWL+8Z7AjucWOCwA0q
-         6ETzhtSKceeK1hkr3sgy9PrjWXER0Q0oPJTsb6GGIA8ZoVm1iQM0YyWrqfamLfNPw3Q5
-         5WvngfhtGXVtGdMHjXl+yur30ZRmExffCXPNLn++L8igsBvtCExa+kfWfkKt2rtiRHiG
-         9MJA==
-X-Gm-Message-State: AOJu0YzolwWSt71jbe1ldiBLH2tz8eSl6G57I9zNZsKwWMziYstR0ZyC
-	S5ZiUHJFEbblyGlzrZZSjxM=
-X-Google-Smtp-Source: AGHT+IFd3H78EZLb2ntO++WfIolEE0unvWxnYVDbs3/x9OA5b4eIfwNO07EUvodwpvsxw1kYt9ELqQ==
-X-Received: by 2002:a17:906:7159:b0:a19:a19b:78a1 with SMTP id z25-20020a170906715900b00a19a19b78a1mr3701905ejj.100.1701719445371;
-        Mon, 04 Dec 2023 11:50:45 -0800 (PST)
-Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id lj16-20020a170906f9d000b00a0c9024828asm5605562ejb.68.2023.12.04.11.50.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Dec 2023 11:50:45 -0800 (PST)
-Message-ID: <3b436dfe-832a-3c63-cf03-2ddc7aa969c3@gmail.com>
-Date: Mon, 4 Dec 2023 20:50:43 +0100
+        d=1e100.net; s=20230601; t=1701720577; x=1702325377;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2MNjE3SeFK0nJKBmYRJMHyr7VIIHtok8kfFl8JThkGU=;
+        b=KxHyt1Es2o0+pn9Wevq2KSmINYG6uTmw4MpbpJsXUdJvF4VV/p+wQoksJ3fND3D8IQ
+         7vJ8pMuRotI6Gw+OqMQIDz2xmsJ1hdlXal2yH/Rm4QZz1yZSEvxdNLL0U690Epp8GFOY
+         eCugSN+0cOznC4adR71Hl5vS9jgB4NR+HeIP2RvHgK7cFkfSbqdZtUxvYwwePUUxYF+K
+         JizNlRv3Jjesac+P7WSts145O/TmzgYCp3gbYhnZL4rsuexTJBefe89UiKBgvlKZnMqt
+         pIk3BLEXpPPlaUF72oacyWKMf0BsPSASxJJgocLoeedrGoQ+Gm+hE4Z8sic4GdmUvya9
+         H5gw==
+X-Gm-Message-State: AOJu0YwkrY4fb9TT5Sq8M8pH6VnBtnQZQkPaRrmeh6oUdXSaRi2SAXPY
+	6GzD7eiEMgEjZ0J2xoI6nEI=
+X-Google-Smtp-Source: AGHT+IF6M+0ELigfCC740vzy41FYXkfYexMnqkneCjUbUz/KI9vUV3njKfj0W8V9eRTA3Zygn5UL4g==
+X-Received: by 2002:a17:907:3ad1:b0:a19:a1ba:8ccb with SMTP id fi17-20020a1709073ad100b00a19a1ba8ccbmr2852108ejc.105.1701720577156;
+        Mon, 04 Dec 2023 12:09:37 -0800 (PST)
+Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.gmail.com with ESMTPSA id lt12-20020a170906fa8c00b00a0290da4a50sm5620666ejb.186.2023.12.04.12.09.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Dec 2023 12:09:36 -0800 (PST)
+From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= <nfraprado@collabora.com>,
+	Macpaul Lin <macpaul.lin@mediatek.com>,
+	=?UTF-8?q?Bernhard=20Rosenkr=C3=A4nzer?= <bero@baylibre.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Sean Wang <sean.wang@mediatek.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH V2 1/3] dt-bindings: vendor-prefixes: add acelink
+Date: Mon,  4 Dec 2023 21:09:05 +0100
+Message-Id: <20231204200907.5687-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.35.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v1 1/2] ARM: dts: rockchip: add gpio alias for gpio dt
- nodes
-To: =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, jay.xu@rock-chips.com, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <89f2a229-9f14-d43f-c53d-5d4688e70456@gmail.com>
- <62868103.matp6XCIr4@diego>
-Content-Language: en-US
-From: Johan Jonker <jbx6244@gmail.com>
-In-Reply-To: <62868103.matp6XCIr4@diego>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
+From: Rafał Miłecki <rafal@milecki.pl>
 
+Acelink is a Taiwan company providing network products (routers, access
+points, switches, cameras and more).
 
-On 12/4/23 20:35, Heiko Stübner wrote:
-> Hi Johan,
-> 
-> Am Samstag, 2. Dezember 2023, 19:22:01 CET schrieb Johan Jonker:
->> Rockchip SoC TRM, SoC datasheet and board schematics always refer to
->> the same gpio numbers - even if not all are used for a specific board.
->> In order to not have to re-define them for every board add the
->> aliases to SoC dtsi files.
->>
->> Signed-off-by: Jianqun Xu <jay.xu@rock-chips.com>
->> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-> 
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-> patch itself looks good, but I don't understand the authorship situation.
-> As these two signed-off-bys are now it would suggest that you picked up
-> Jianqun Xu's patch, but then the author would need to be different.
-> 
-> Or do you want to declare this via a
-> Co-Developed-by: Jianqun Xu <jay.xu@rock-chips.com>
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 309b94c328c8..503a3caf6fc9 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -39,6 +39,8 @@ patternProperties:
+     description: ShenZhen Asia Better Technology Ltd.
+   "^acbel,.*":
+     description: Acbel Polytech Inc.
++  "^acelink,.*":
++    description: Acelink Technology Co., Ltd.
+   "^acer,.*":
+     description: Acer Inc.
+   "^acme,.*":
+-- 
+2.35.3
 
-The newer tag use of Co-Developed-by is more confusing compared to in the old days...
-
-Patch derived from:
-https://lore.kernel.org/linux-rockchip/20220909090558.3609190-2-jay.xu@rock-chips.com/
-
-Could you add/fix what is needed without resubmitting.
-
-Johan
-
-> 
-> 
-> Thanks
-> Heiko
-> 
->> ---
->>
->> Changed V1:
->>   rebase
->>   remove rk3066 gpio5 alias
->> ---
->>  arch/arm/boot/dts/rockchip/rk3036.dtsi  | 3 +++
->>  arch/arm/boot/dts/rockchip/rk3066a.dtsi | 5 +++++
->>  arch/arm/boot/dts/rockchip/rk322x.dtsi  | 4 ++++
->>  arch/arm/boot/dts/rockchip/rk3288.dtsi  | 9 +++++++++
->>  arch/arm/boot/dts/rockchip/rk3xxx.dtsi  | 4 ++++
->>  5 files changed, 25 insertions(+)
->>
->> diff --git a/arch/arm/boot/dts/rockchip/rk3036.dtsi b/arch/arm/boot/dts/rockchip/rk3036.dtsi
->> index 78686fc72ce6..8aa2e0864fed 100644
->> --- a/arch/arm/boot/dts/rockchip/rk3036.dtsi
->> +++ b/arch/arm/boot/dts/rockchip/rk3036.dtsi
->> @@ -17,6 +17,9 @@ / {
->>  	interrupt-parent = <&gic>;
->>
->>  	aliases {
->> +		gpio0 = &gpio0;
->> +		gpio1 = &gpio1;
->> +		gpio2 = &gpio2;
->>  		i2c0 = &i2c0;
->>  		i2c1 = &i2c1;
->>  		i2c2 = &i2c2;
->> diff --git a/arch/arm/boot/dts/rockchip/rk3066a.dtsi b/arch/arm/boot/dts/rockchip/rk3066a.dtsi
->> index de9915d946f7..30139f21de64 100644
->> --- a/arch/arm/boot/dts/rockchip/rk3066a.dtsi
->> +++ b/arch/arm/boot/dts/rockchip/rk3066a.dtsi
->> @@ -13,6 +13,11 @@
->>  / {
->>  	compatible = "rockchip,rk3066a";
->>
->> +	aliases {
->> +		gpio4 = &gpio4;
->> +		gpio6 = &gpio6;
->> +	};
->> +
->>  	cpus {
->>  		#address-cells = <1>;
->>  		#size-cells = <0>;
->> diff --git a/arch/arm/boot/dts/rockchip/rk322x.dtsi b/arch/arm/boot/dts/rockchip/rk322x.dtsi
->> index a721744cbfd1..831561fc1814 100644
->> --- a/arch/arm/boot/dts/rockchip/rk322x.dtsi
->> +++ b/arch/arm/boot/dts/rockchip/rk322x.dtsi
->> @@ -15,6 +15,10 @@ / {
->>  	interrupt-parent = <&gic>;
->>
->>  	aliases {
->> +		gpio0 = &gpio0;
->> +		gpio1 = &gpio1;
->> +		gpio2 = &gpio2;
->> +		gpio3 = &gpio3;
->>  		serial0 = &uart0;
->>  		serial1 = &uart1;
->>  		serial2 = &uart2;
->> diff --git a/arch/arm/boot/dts/rockchip/rk3288.dtsi b/arch/arm/boot/dts/rockchip/rk3288.dtsi
->> index cb9cdaddffd4..ead343dc3df1 100644
->> --- a/arch/arm/boot/dts/rockchip/rk3288.dtsi
->> +++ b/arch/arm/boot/dts/rockchip/rk3288.dtsi
->> @@ -19,6 +19,15 @@ / {
->>
->>  	aliases {
->>  		ethernet0 = &gmac;
->> +		gpio0 = &gpio0;
->> +		gpio1 = &gpio1;
->> +		gpio2 = &gpio2;
->> +		gpio3 = &gpio3;
->> +		gpio4 = &gpio4;
->> +		gpio5 = &gpio5;
->> +		gpio6 = &gpio6;
->> +		gpio7 = &gpio7;
->> +		gpio8 = &gpio8;
->>  		i2c0 = &i2c0;
->>  		i2c1 = &i2c1;
->>  		i2c2 = &i2c2;
->> diff --git a/arch/arm/boot/dts/rockchip/rk3xxx.dtsi b/arch/arm/boot/dts/rockchip/rk3xxx.dtsi
->> index cb4e42ede56a..f37137f298d5 100644
->> --- a/arch/arm/boot/dts/rockchip/rk3xxx.dtsi
->> +++ b/arch/arm/boot/dts/rockchip/rk3xxx.dtsi
->> @@ -16,6 +16,10 @@ / {
->>
->>  	aliases {
->>  		ethernet0 = &emac;
->> +		gpio0 = &gpio0;
->> +		gpio1 = &gpio1;
->> +		gpio2 = &gpio2;
->> +		gpio3 = &gpio3;
->>  		i2c0 = &i2c0;
->>  		i2c1 = &i2c1;
->>  		i2c2 = &i2c2;
->> --
->> 2.39.2
->>
->>
-> 
-> 
-> 
-> 
 
