@@ -1,226 +1,167 @@
-Return-Path: <devicetree+bounces-21313-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21314-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AE3D80326C
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 13:21:51 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BD9680328C
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 13:25:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 18747280FB6
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 12:21:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F7331C209CB
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 12:25:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 326E123777;
-	Mon,  4 Dec 2023 12:21:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F186623777;
+	Mon,  4 Dec 2023 12:25:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="zTrCvs2e"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="Xy+uhazp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34906C0
-	for <devicetree@vger.kernel.org>; Mon,  4 Dec 2023 04:21:45 -0800 (PST)
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-54c7744a93fso2598645a12.2
-        for <devicetree@vger.kernel.org>; Mon, 04 Dec 2023 04:21:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1701692503; x=1702297303; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=q8RFfNckjuKt1jz+rzrb9C96eRyO85w6LaaTlbGWMzo=;
-        b=zTrCvs2eCip52po00dOtx2DzzrpJtMPOcRbQDM41h23Lx7hyqZxquQ69VS47qcYEMu
-         yG2brI5VZgUBHkfUJXTbD0K+qWqlZ/1GC/ZOHB8LD9LLFHTcfaDmXObrOoxtFjl2R3Gj
-         mQtUppBX715VHQdSeTPR4z8hQovq8amq899U2XrnbiFWqxXwwAM5gqJgnMBwOwf19Ngs
-         Kx5hWG5VOXcISr2x1YXfknjL/hHYkMMmOd3P2Gb09YWolz2PnH34nWfNQUDW0hRTRcVf
-         /njPrbJORv8hDzE0T6SPXaXnAKEs3AZatCrws3M3WGs9Ln5eF7zRQAZhGaZnDGbWSJFw
-         BoXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701692503; x=1702297303;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=q8RFfNckjuKt1jz+rzrb9C96eRyO85w6LaaTlbGWMzo=;
-        b=FXtfFniBDWcB62Wdnln+V7m8h9aIb01X90NqgU8ownxNqRwpHZo/Qt8P06SIjYhxEL
-         d08CD8BMYmvIhidylNExQooO09qkrCaFz8QrJwkU7y1kavX3P/EW7KIcejkEATRA2No8
-         C08LTQ5h7V+1tXh9PuNBX9O6L9dIGgaQ33WtdHih3ui8dvMFvogG+l7oE70O04zC9VQ7
-         vV3FuF6C0ESOuNrA53QNq0fo6IZd6BYKKRGIVUM4LVnedRRHAgzW+U4W/zj3hj4h3Y64
-         xYFUEG85+MqVKIj+CKxuBP8MHRgI575aeBGihE4XayBB5z+H3v3RzphzY+5zKAc0KQcQ
-         1bfw==
-X-Gm-Message-State: AOJu0YytYGJx8MasU6B7gmiU/4zhsj3Ni+Xtiv70ei48+m7sx7ifRs9i
-	0iFjoz1bcMzfFZS33ud+yL2JsA==
-X-Google-Smtp-Source: AGHT+IHKWbMqC/XghMiDqUXODnV4kB7sqmvxFiPQqj9C/x1YwTXvnOVPdhytEdl0d5XSJ62zUJ7Hsw==
-X-Received: by 2002:a50:9b50:0:b0:54c:4837:9a9b with SMTP id a16-20020a509b50000000b0054c48379a9bmr2873330edj.66.1701692503652;
-        Mon, 04 Dec 2023 04:21:43 -0800 (PST)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id dg28-20020a0564021d1c00b0054c9177d18esm2522554edb.2.2023.12.04.04.21.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Dec 2023 04:21:43 -0800 (PST)
+Received: from IND01-BMX-obe.outbound.protection.outlook.com (mail-bmxind01olkn20800.outbound.protection.outlook.com [IPv6:2a01:111:f403:281c::800])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DEE7CD;
+	Mon,  4 Dec 2023 04:25:29 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=lkpxHpDHyqaPPOtZC1Jnb5b23VtEaxsjEihAITQ+NW7Hbl1iREopjZ8kgNQ1V+NxgvxiW8DPlLb9TDXs41P47wzl0/EMhNk3ZDa2/ZePNhFDWRvyRLOHlTikgpU0UaJMX9ENSwaPUkja33iO+AKfCpzX3bsPoUeHxtDDdKNmG86srBNmCyWE3KieMoX9u7wkBOXa3RwR+kTJw0kSYBaPq1MJbrYv44+EXqyTDRCMvZqbePGWR9cjJNxkW9jsBQAEKaFe3tQreLnhOoDFL2keTZ5hY30BtW22zDBT9+EJSh44fe5QDrJOWt8QxJpQM45JpcLA98kKmaLHM4BFwDeFMg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=B43zteGYEB+Svgl8FbBTODYFMHVkgWDwDnQxnZU/N5g=;
+ b=UfN+ci5fcvotjL0jap0Q0jfqQcL7xZbF/3TI+Ch00f+xjdheT4pH6iGWNLizBZ5h4+3ms8XE5V5UydZsh8EL+1B+6hBv+i3vGvFnOY0yeehaX2Q9PAPK14+olkbc9e27G2IhiVm+Ca7Wbag5543DB1wdI+WSMZij4fkDzUS7TjCnjv+nkZGcHf+aulk+h9ILsh+RNBBUT+03mZTidskdBULnvTMnMZzo3LKqspsg1zZ4CiBjcRB5bKwxUQPZAaESb1OXoqL5nfpwgXbwHwWN0UJhMUDWUJ2eNN7rOg04ZjNinSyBH74A/LCfiKonOOJrromeI/A5Z2ggyVaZNCcZMw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=B43zteGYEB+Svgl8FbBTODYFMHVkgWDwDnQxnZU/N5g=;
+ b=Xy+uhazpOLK9rWSLVYDM4Xvbn43ynIILzEEVSOUb4/DYtXdQ6y69tYkZdx6u/RDpPFW97tsdZxLXBdQdM4BnQSl102AKzGPTaCHHYdEDzvIFClq7Yy77bDoGXoIhWXYctrP7/myV4c1zi41ag7zqVG0lj2Us7t9b1NwI7F0YK3iX1e1LNTee0jOHPz7WLfaQ5LNT5tU3FyuWLwTEQ0mlssrLFTytXKz4uPNKWWtKb+X6+fwhy5qJBuxq3SU0w0V5KJlmuQSKbLaBfhCiWRT2q0djP7JYPehZKTYsYPGflQUAlRzcKYqGpGgtZF46wMh/mRDQ7IqGq9RTSfiEO/6fXA==
+Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:ab::5) by
+ PN0P287MB0601.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:163::14) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7046.33; Mon, 4 Dec 2023 12:25:19 +0000
+Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
+ ([fe80::b1a7:eee7:e903:9ef3]) by MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
+ ([fe80::b1a7:eee7:e903:9ef3%7]) with mapi id 15.20.7046.033; Mon, 4 Dec 2023
+ 12:25:19 +0000
+Message-ID:
+ <MA0P287MB0332862DC235652C83B4EC2EFE86A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
+Date: Mon, 4 Dec 2023 20:25:13 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/7] Add Huashan Pi board support
+To: Conor Dooley <conor.dooley@microchip.com>
+Cc: Inochi Amaoto <inochiama@outlook.com>, Conor Dooley <conor@kernel.org>,
+ Chao Wei <chao.wei@sophgo.com>, Thomas Gleixner <tglx@linutronix.de>,
+ Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Anup Patel
+ <anup@brainfault.org>, Jisheng Zhang <jszhang@kernel.org>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org
+References: <MA0P287MB033290A6C8B15202E31E43CCFE80A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
+ <IA1PR20MB49537B177B6F3614D8D1E3E6BB87A@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <MA0P287MB0332AE2378D633B8A2DCFB77FE86A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
+ <20231204-crane-wolf-95f32865db62@wendy>
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <20231204-crane-wolf-95f32865db62@wendy>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-TMN: [AoBE0TxFN4rZphkfgfxLIZjer/394qBm]
+X-ClientProxiedBy: SGXP274CA0015.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b8::27)
+ To MA0P287MB0332.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:ab::5)
+X-Microsoft-Original-Message-ID:
+ <5eb4c63d-6af0-4f4d-b918-d6af42a9ea62@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 04 Dec 2023 13:21:42 +0100
-Message-Id: <CXFJNBNKTRHH.2CS6TO2MEGJWL@fairphone.com>
-Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
- <linux-arm-msm@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v5 2/3] arm64: dts: qcom: sc7280: Add UFS nodes for
- sc7280 soc
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Nitin Rawat" <quic_nitirawa@quicinc.com>, "Andy Gross"
- <agross@kernel.org>, "Bjorn Andersson" <andersson@kernel.org>, "Konrad
- Dybcio" <konrad.dybcio@linaro.org>, "Manivannan Sadhasivam"
- <mani@kernel.org>, "Alim Akhtar" <alim.akhtar@samsung.com>, "Avri Altman"
- <avri.altman@wdc.com>, "Bart Van Assche" <bvanassche@acm.org>, "Rob
- Herring" <robh+dt@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- <cros-qcom-dts-watchers@chromium.org>
-X-Mailer: aerc 0.15.2
-References: <20231204-sc7280-ufs-v5-0-926ceed550da@fairphone.com>
- <20231204-sc7280-ufs-v5-2-926ceed550da@fairphone.com>
- <621388b9-dcee-4af2-9763-e5d623d722b7@quicinc.com>
-In-Reply-To: <621388b9-dcee-4af2-9763-e5d623d722b7@quicinc.com>
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MA0P287MB0332:EE_|PN0P287MB0601:EE_
+X-MS-Office365-Filtering-Correlation-Id: d49b98dd-ba98-4738-f89c-08dbf4c4139c
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	CyMeu96QqvkX3cgt7Fni6F6YsKh8BImv6c1MXTc9nV8eXkexzmb3wonUUBW0JSLX3roXwe6yCk/MV66oTdm98jedf9PVb9moiJNAL/yAZyVvcOGFLL92ewQFFeNiT+STrpZGbPIXpeRpzlX+kU6WLg3TuB5HitSAmhfMTcpNNWqfnMo/y6mOrMVWZKXRXcakPujvC3LU6cjEK/75HGpH1gcwXgV5TunuYl4vQWwx170rcOJmFJBk6vjm9FFit73+oIdq819vZySxRl9SOiFL7OyLJLszCAdid672k/WonopI3HYIyUTWlYcxryvN9nTWBcRVPvuUjJvqDVKP7hmAF0+leXFf/+6R0YQC+smrtnpPQvRsIRpSKysEAoUwy/4RyKmLDidICl+cCcjZm0Sf16iK9M7n5QEn0z13AZ4bL8NF6GhWOCVpHDsMqwikv+vfes0AjiRb8z17eKN/saG5Aou6eRdghVFlbctSUCYqXCdOg4ODRaFVNLtQNgNVZNbeJg98ChGdC6yrRhLj1PgvFgzoSiQV/+lw93Pdl5pIXT2os927czoYnC2vqohOuDN1
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?MTd4eEd2TmhqZUV3OVRWQlVyN3pBYTZwSVpEK082dFNzbm56S3JXOXB4UGxs?=
+ =?utf-8?B?SCtldlBCeFMzNzROZ3ZGeW5tL0Mrdi9oVWtSNHJYK2QwcjA5ZGJDdUF0MTl5?=
+ =?utf-8?B?a0JvbktRWDAyTHFZU1BEdDJzRGlaL2J2ZGRoMFBzUUdwQ0dGWGI1ZlBhWVJH?=
+ =?utf-8?B?L3RydjROZ01jUkJXK2ttdk9HN2ZlNk1iTVB5RVRCa3d5OGNMbmlneFk1WkUw?=
+ =?utf-8?B?Y096YW1SWmhQL1Z4aHhRK0pTVEJDV2t2WmxydWc5MDlkbkZQZTFYNklkODNJ?=
+ =?utf-8?B?eEtTVXpHWVAyaEpObzl4TEZjZjFsckRBeDNwSE85ZlFnVjNEeEVlbExCYTZC?=
+ =?utf-8?B?UGdOcWxlMjY0clhmSEY4d3RwUFVzNXFsS1ZSTUtIdW1tbjRLQklKa05QMkpv?=
+ =?utf-8?B?ZU1tRXpMQThjTjBRUkV5WHYzODNQOGI0Z0hHbHhIeUlIM3dNNHA2dDI3M0th?=
+ =?utf-8?B?SnJLdFNwbjlQZEM1ODMxZTdndFFWdlhFRWRyeUN2L0hoS3NEcFEzQ0h3NW9N?=
+ =?utf-8?B?dVAyMUJvR1BVeGw3LzdzYjRKbGhtTWNndjBGLzJtWEZBZy9selQzK0FjU0xU?=
+ =?utf-8?B?ZTFzUGVONi9wUCtaU2hBVFFMTVJQZ01EVUNJZGsvZnQ5ditMcllTaktLaVVs?=
+ =?utf-8?B?STFzRlpzbWlSejE3MHlBb21OM3FHcEVrYnhoQ1RkVnRwaDJyRHRCdTRiMGpp?=
+ =?utf-8?B?eGo4dHEyVXhKdnZCN250RUxSdGltUTBpZjNzMnAra01xMm04SHRqWWZYYWpj?=
+ =?utf-8?B?MmJlRXkrNzk3eVVDR0ZwQ0lESzc2bVpvd29OSEtBVm1yREN6WW50WGtUU3dq?=
+ =?utf-8?B?VU0rbDdic1o4dy9qR3loLzVxbUVCS1J4NUpYL3lFb1dadU0wY2FxZUd0VXI5?=
+ =?utf-8?B?YVhLOXk0aTFoT0l1MHIwQ3JEUlg0cFBsKzdxZEJyNENsWDZtNWp5V0FiUlY5?=
+ =?utf-8?B?RkJxZCtITjY3RlNrWHByMXRMSDJEdllmcjZ0Zi9JOWxBdFJObTJxbm1hL0p5?=
+ =?utf-8?B?eXJJWW5wVDR0RDBRZ1QyUzQzSnBHR00vMi9leWhSU3hTNHZBcDBEWEk2Qnhu?=
+ =?utf-8?B?WlZReWs4OEFTZHlGbm9tazV1cDBpcU0xakhwWDRpa1hzZW42UnlKb0g3NXNt?=
+ =?utf-8?B?OXlEeE85QXdBRkhySVV4d1BEdzB5eVIwSWx5T0JJSE15WTVjZFFQV1R5VTM1?=
+ =?utf-8?B?Z3JmdnRJcXFwaXlUTStiai8yNlRDZDFXYThPdTk1cDVhSnBZU1kwakRpN0hR?=
+ =?utf-8?B?ZTB6QytNaDllZ21ueVZmQTAyUXEvVDNQeUVlRk14T0twZE1QaERETHVXRkRW?=
+ =?utf-8?B?OFRHbFdNTjFPbTd1Q01ybG1LaGhlNGp5d1ZPVDZKWW5odHdIK0JhQUxLaklP?=
+ =?utf-8?B?ak5maG1LK0pMTXM3Sk96NG9YdjlrMWd3WFBoWlZPbCtYMTlKUWdPU1BoYmV4?=
+ =?utf-8?B?aU1TVDA5NmJuMU9kUFg3bW1uTHNoZ2k4dVM3NlpDY3pjNkV4enFRUlJQVXNm?=
+ =?utf-8?B?aVU5bkZQMkFTS1Y3ajNDZUVadXFPeTM5V0JyUlZmNkwvSWp3czdPcVovNEF3?=
+ =?utf-8?B?eitOTUxWQVJKWHp3aWp3WHR0bzhOSzBFVjdxUjAwUmlnUzJOTzcweDVwSmdz?=
+ =?utf-8?Q?e6zCZ6sasrMLR5yp9w3XRMQMLrSAJeON3NK4odQuOK7w=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d49b98dd-ba98-4738-f89c-08dbf4c4139c
+X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Dec 2023 12:25:18.9745
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN0P287MB0601
 
-On Mon Dec 4, 2023 at 1:15 PM CET, Nitin Rawat wrote:
->
->
-> On 12/4/2023 3:54 PM, Luca Weiss wrote:
-> > From: Nitin Rawat <quic_nitirawa@quicinc.com>
-> >=20
-> > Add UFS host controller and PHY nodes for sc7280 soc.
-> >=20
-> > Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
-> > Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> > Tested-by: Konrad Dybcio <konrad.dybcio@linaro.org> # QCM6490 FP5
-> > [luca: various cleanups and additions as written in the cover letter]
-> > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> > ---
-> >   arch/arm64/boot/dts/qcom/sc7280.dtsi | 74 +++++++++++++++++++++++++++=
-++++++++-
-> >   1 file changed, 73 insertions(+), 1 deletion(-)
-> >=20
-> > diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts=
-/qcom/sc7280.dtsi
-> > index 04bf85b0399a..8b08569f2191 100644
-> > --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > @@ -15,6 +15,7 @@
-> >   #include <dt-bindings/dma/qcom-gpi.h>
-> >   #include <dt-bindings/firmware/qcom,scm.h>
-> >   #include <dt-bindings/gpio/gpio.h>
-> > +#include <dt-bindings/interconnect/qcom,icc.h>
-> >   #include <dt-bindings/interconnect/qcom,osm-l3.h>
-> >   #include <dt-bindings/interconnect/qcom,sc7280.h>
-> >   #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > @@ -906,7 +907,7 @@ gcc: clock-controller@100000 {
-> >   			clocks =3D <&rpmhcc RPMH_CXO_CLK>,
-> >   				 <&rpmhcc RPMH_CXO_CLK_A>, <&sleep_clk>,
-> >   				 <0>, <&pcie1_phy>,
-> > -				 <0>, <0>, <0>,
-> > +				 <&ufs_mem_phy 0>, <&ufs_mem_phy 1>, <&ufs_mem_phy 2>,
-> >   				 <&usb_1_qmpphy QMP_USB43DP_USB3_PIPE_CLK>;
-> >   			clock-names =3D "bi_tcxo", "bi_tcxo_ao", "sleep_clk",
-> >   				      "pcie_0_pipe_clk", "pcie_1_pipe_clk",
-> > @@ -2238,6 +2239,77 @@ pcie1_phy: phy@1c0e000 {
-> >   			status =3D "disabled";
-> >   		};
-> >  =20
-> > +		ufs_mem_hc: ufs@1d84000 {
-> > +			compatible =3D "qcom,sc7280-ufshc", "qcom,ufshc",
-> > +				     "jedec,ufs-2.0";
-> > +			reg =3D <0x0 0x01d84000 0x0 0x3000>;
-> > +			interrupts =3D <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
-> > +			phys =3D <&ufs_mem_phy>;
-> > +			phy-names =3D "ufsphy";
-> > +			lanes-per-direction =3D <2>;
-> > +			#reset-cells =3D <1>;
-> > +			resets =3D <&gcc GCC_UFS_PHY_BCR>;
-> > +			reset-names =3D "rst";
-> > +
-> > +			power-domains =3D <&gcc GCC_UFS_PHY_GDSC>;
-> > +			required-opps =3D <&rpmhpd_opp_nom>;
-> > +
-> > +			iommus =3D <&apps_smmu 0x80 0x0>;
-> > +			dma-coherent;
-> > +
-> > +			interconnects =3D <&aggre1_noc MASTER_UFS_MEM QCOM_ICC_TAG_ALWAYS
-> > +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
-> > +					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-> > +					 &cnoc2 SLAVE_UFS_MEM_CFG QCOM_ICC_TAG_ALWAYS>;
-> > +			interconnect-names =3D "ufs-ddr", "cpu-ufs";
-> > +
-> > +			clocks =3D <&gcc GCC_UFS_PHY_AXI_CLK>,
-> > +				 <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
-> > +				 <&gcc GCC_UFS_PHY_AHB_CLK>,
-> > +				 <&gcc GCC_UFS_PHY_UNIPRO_CORE_CLK>,
-> > +				 <&rpmhcc RPMH_CXO_CLK>,
-> > +				 <&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
-> > +				 <&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
-> > +				 <&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>;
-> > +			clock-names =3D "core_clk",
-> > +				      "bus_aggr_clk",
-> > +				      "iface_clk",
-> > +				      "core_clk_unipro",
-> > +				      "ref_clk",
-> > +				      "tx_lane0_sync_clk",
-> > +				      "rx_lane0_sync_clk",
-> > +				      "rx_lane1_sync_clk";
-> > +			freq-table-hz =3D
-> > +				<75000000 300000000>,
-> > +				<0 0>,
-> > +				<0 0>,
-> > +				<75000000 300000000>,
-> > +				<0 0>,
-> > +				<0 0>,
-> > +				<0 0>,
-> > +				<0 0>;
-> > +			status =3D "disabled";
-> > +		};
-> > +
-> > +		ufs_mem_phy: phy@1d87000 {
-> > +			compatible =3D "qcom,sc7280-qmp-ufs-phy";
-> > +			reg =3D <0x0 0x01d87000 0x0 0xe00>;
-> > +			clocks =3D <&rpmhcc RPMH_CXO_CLK>,
-> > +				 <&gcc GCC_UFS_PHY_PHY_AUX_CLK>,
-> > +				 <&gcc GCC_UFS_1_CLKREF_EN>;
-> > +			clock-names =3D "ref", "ref_aux", "qref";
-> > +
-> > +			power-domains =3D <&gcc GCC_UFS_PHY_GDSC>;
 
-Hi Nitin,
+On 2023/12/4 17:32, Conor Dooley wrote:
+> On Mon, Dec 04, 2023 at 05:15:36PM +0800, Chen Wang wrote:
+>> On 2023/12/4 7:32, Inochi Amaoto wrote:
+>>>> On 2023/12/2 0:21, Conor Dooley wrote:
+>>>> As far as I know, sophgo's SoC product names all start with "sg", while products starting with "cv" come from CVITEK (another chip company). CVITEK was acquired by sophgo a year ago, so now many SOC product names that originally started with "cv" are being repackaged and changed to start with "sg".
+>>>>
+>>>> For the cv1800b adopted by Duo, Sophgo has made it clear that it will not change its codename.
+>>>>
+>>>> But I heard that for other products, such as the cv1812h used by Huashanpi, sophgo may change their names in the future, but sophgo has not officially confirmed it yet. Looks like sophgo themselves are still in the process of digesting cv's products, ;)
+>>>>
+>>>> Since we have just started to support cv1812h and have not done much work yet, I suggest not to merge this patch into the mainline, and wait until there is clear news before doing this to avoid introducing unnecessary modifications later.
+>>>>
+>>> Hi Chen,
+>>>
+>>> There is a update for you. The cv1812h does not have the A53 core as the
+>>> sg200x does. Maybe we should treat cv1812h as a trim of sg200x, not just
+>>> a reband.
+>>>
+>>> According to this information, I suggest to preserve these code for
+>>> cv1812h, it can make upstream the new soc eaiser. Also, adding a new
+>>> compatible is not too hard, and it is necessary if we have new soc.
+>>> Otherwise, the one with Huashan Pi now may be confused because it have
+>>> a old version.
+>> Thanks Inochi for your info, let's just preserve these code for huashan pi
+>> now and keep watching on what's going on then.
+> Could you explain on what you mean by "preserve"? I'm a little unsure.
 
->
-> GCC_UFS_PHY_GDSC is UFS controller GDSC. For sc7280 Phy we don't need thi=
-s.
+hi, Conor,
 
-In the current dt-bindings the power-domains property is required.
+I meant keeping your changes on riscv-dt-for-next and continue 
+submitting this patch ([PATCH v4 0/7] Add Huashan Pi board support) to 
+upstream.
 
-Is there another power-domain for the PHY to use, or do we need to
-adjust the bindings to not require power-domains property for ufs phy on
-sc7280?
+Sorry for my poor english, hope I have explained it well. :$
 
-Also, with "PHY" in the name, it's interesting that this is not for the
-phy ;)
+Thanks,
 
-Regards
-Luca
-
->
-> > +
-> > +			resets =3D <&ufs_mem_hc 0>;
-> > +			reset-names =3D "ufsphy";
-> > +
-> > +			#clock-cells =3D <1>;
-> > +			#phy-cells =3D <0>;
-> > +
-> > +			status =3D "disabled";
-> > +		};
-> > +
-> >   		ipa: ipa@1e40000 {
-> >   			compatible =3D "qcom,sc7280-ipa";
-> >  =20
-> >=20
+Chen
 
 
