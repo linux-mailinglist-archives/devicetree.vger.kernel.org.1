@@ -1,281 +1,126 @@
-Return-Path: <devicetree+bounces-21456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE78D803B5C
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 18:24:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D972803B5E
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 18:25:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2EA27B209C2
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 17:24:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 92E861C209E7
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 17:25:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53B342E65A;
-	Mon,  4 Dec 2023 17:24:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="eokOZBp0"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69FA82E820;
+	Mon,  4 Dec 2023 17:25:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38B11A1
-	for <devicetree@vger.kernel.org>; Mon,  4 Dec 2023 09:24:27 -0800 (PST)
-Received: by mail-qt1-x831.google.com with SMTP id d75a77b69052e-423e04781d3so575691cf.0
-        for <devicetree@vger.kernel.org>; Mon, 04 Dec 2023 09:24:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1701710666; x=1702315466; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GP4cvc0Driv28VGSNnxC3FA51bSIIb687QRO9gk4a5M=;
-        b=eokOZBp06cKJSsoVwc+zSM5fLYK9paQQR8+ZvV1fZ2c2MrQ0In6DtNVDa4VXLveSwe
-         /b6kXk7gqjZWINjppurJvwP9StVb3jkgkBsXZSMpp5lP97IAFx0UZbvmbHBUZrPjkGqZ
-         786tix4UuGVMmwbMQMxaLt5cil8CzDaXWMoJhd3nedifTygZV/bKXtYoncuspWg7j+rG
-         +wjAD6LwEIReFCOO+hTmYlg/BqeTjtnzUA7TwS6i2XxtXrhkTzNq9hMQbniG+J9M8GQm
-         my39tDwcKTBIlhRcCygBaMT1zvx2P7tz0ynOSYW01fuKU0Dg2plLpMVl9K5V146IPixK
-         T+qw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701710666; x=1702315466;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GP4cvc0Driv28VGSNnxC3FA51bSIIb687QRO9gk4a5M=;
-        b=TBPMcw3p+Fy4kgOZUuiFA5Xy1H6OjBcjvA5p84R9F/PvS0AB0XlF7fAmobNDe1K6pv
-         MI6enjOGMtY6D5n0o/shccgjD8eeFuD8lIGYa5O8ZxeWK26YAnqPgb03yQJgrpsG2uTD
-         b6A3jVX6mMM0hHQfeBmHL3BlwE2bxRaVfLjEvmYpkVGviNcDCmjkcx/oeSjpIDuBYmhB
-         t6IMh3hVtgWe4mpRco/ye782mGJg8fMNKQCbkIUdp7ySCgNl54pmEAiUSrYpl0SNpsxt
-         wuZc+fPiD3jXZrCY+VLmqHX8GTbXgbZYdObZ9wILmOuSfG2eKYG2QlU44hU1IjpoZGvg
-         mhFg==
-X-Gm-Message-State: AOJu0YxspfoHgyjUDUFXKlUFaaRRS1Mwy7rtflwJxKHeIuLAwyXlYo1q
-	9EHb0sfLsC+zOqOlMX4dlh1GaTXezzLrob7W9vm+1w==
-X-Google-Smtp-Source: AGHT+IHxH3q4A/7JsH6yk/RnS8O2o0T5tf68JUS/fiRWVu/44O9eklOOT/sed1ITRauNUnIQE+Y11mSDXlOTlggE+2s=
-X-Received: by 2002:ac8:5a08:0:b0:421:6310:b4a6 with SMTP id
- n8-20020ac85a08000000b004216310b4a6mr862294qta.8.1701710665858; Mon, 04 Dec
- 2023 09:24:25 -0800 (PST)
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 27BD8A1;
+	Mon,  4 Dec 2023 09:25:19 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="6.04,250,1695654000"; 
+   d="scan'208";a="185273244"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 05 Dec 2023 02:25:18 +0900
+Received: from localhost.localdomain (unknown [10.226.93.142])
+	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 46F144031BE0;
+	Tue,  5 Dec 2023 02:25:13 +0900 (JST)
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Lee Jones <lee@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	Support Opensource <support.opensource@diasemi.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>,
+	Lukasz Luba <lukasz.luba@arm.com>,
+	Steve Twiss <stwiss.opensource@diasemi.com>,
+	linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>,
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v3.1 0/8] Convert DA906{1,2} bindings to json-schema
+Date: Mon,  4 Dec 2023 17:25:02 +0000
+Message-Id: <20231204172510.35041-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230807174159.1140957-1-kyletso@google.com> <20230807174159.1140957-2-kyletso@google.com>
- <20230821162517.GA1832382-robh@kernel.org> <CAGZ6i=0ey+94YYgc=os5iQ_pNmNVB=qZQD0=jB4fRTKggZPSWA@mail.gmail.com>
- <CAL_JsqLjAooY27pG4GQHRdpiB_=0RCYrkKOjzAvmvz=5yU71Og@mail.gmail.com>
-In-Reply-To: <CAL_JsqLjAooY27pG4GQHRdpiB_=0RCYrkKOjzAvmvz=5yU71Og@mail.gmail.com>
-From: Kyle Tso <kyletso@google.com>
-Date: Tue, 5 Dec 2023 01:24:09 +0800
-Message-ID: <CAGZ6i=2qoi12OJGNmuvVm7wDgbGTnuywpuC=EYZ_MfdNPazNqw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: connector: Add child nodes for
- multiple PD capabilities
-To: Rob Herring <robh@kernel.org>
-Cc: krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, linux@roeck-us.net, 
-	heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org, 
-	badhri@google.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-usb@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Wed, Nov 22, 2023 at 11:36=E2=80=AFPM Rob Herring <robh@kernel.org> wrot=
-e:
->
-> On Wed, Oct 18, 2023 at 12:19=E2=80=AFPM Kyle Tso <kyletso@google.com> wr=
-ote:
-> >
-> > On Tue, Aug 22, 2023 at 12:25=E2=80=AFAM Rob Herring <robh@kernel.org> =
-wrote:
-> > >
-> >
-> > Sorry for the late response...
-> >
-> > > On Tue, Aug 08, 2023 at 01:41:58AM +0800, Kyle Tso wrote:
-> > > > Define a new optional property "capabilities" which is a child node
-> > > > under connector to contain multiple USB Power Delivery capabilities=
-.
-> > > >
-> > > > Define a new property with pattern (e.g. caps-0, caps-1) which is a
-> > >
-> > > A property in json-schema terms, but for DT it's a node not a propert=
-y.
-> > > 'Define a child node ...' would be clearer.
-> > >
-> >
-> > Will do in the future patch
-> >
-> > > > child node under "capabilities". Each node contains PDO data of a
-> > > > selectable Power Delivery capability.
-> > > >
-> > > > Also define common properties for source-pdos, sink-pdos, and
-> > > > op-sink-microwatt that can be referenced.
-> > >
-> > > Why do we need this? What issue does this solve? The commit message
-> > > should answer those questions (always).
-> > >
-> >
-> > Will state the rationale in the future patch
-> >
-> > > > Signed-off-by: Kyle Tso <kyletso@google.com>
-> > > > ---
-> > > > v1 -> v2:
-> > > > - move source/sink-pdos to $defs and reference them in properties
-> > > >
-> > > >  .../bindings/connector/usb-connector.yaml     | 80 +++++++++++++--=
-----
-> > > >  1 file changed, 57 insertions(+), 23 deletions(-)
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/connector/usb-connec=
-tor.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> > > > index 1c4d3eb87763..c6b02dbda83f 100644
-> > > > --- a/Documentation/devicetree/bindings/connector/usb-connector.yam=
-l
-> > > > +++ b/Documentation/devicetree/bindings/connector/usb-connector.yam=
-l
-> > > > @@ -117,28 +117,10 @@ properties:
-> > > >    # The following are optional properties for "usb-c-connector" wi=
-th power
-> > > >    # delivery support.
-> > > >    source-pdos:
-> > > > -    description: An array of u32 with each entry providing support=
-ed power
-> > > > -      source data object(PDO), the detailed bit definitions of PDO=
- can be found
-> > > > -      in "Universal Serial Bus Power Delivery Specification" chapt=
-er 6.4.1.2
-> > > > -      Source_Capabilities Message, the order of each entry(PDO) sh=
-ould follow
-> > > > -      the PD spec chapter 6.4.1. Required for power source and pow=
-er dual role.
-> > > > -      User can specify the source PDO array via PDO_FIXED/BATT/VAR=
-/PPS_APDO()
-> > > > -      defined in dt-bindings/usb/pd.h.
-> > > > -    minItems: 1
-> > > > -    maxItems: 7
-> > > > -    $ref: /schemas/types.yaml#/definitions/uint32-array
-> > > > +    $ref: "#/$defs/source-pdos"
-> > > >
-> > > >    sink-pdos:
-> > > > -    description: An array of u32 with each entry providing support=
-ed power sink
-> > > > -      data object(PDO), the detailed bit definitions of PDO can be=
- found in
-> > > > -      "Universal Serial Bus Power Delivery Specification" chapter =
-6.4.1.3
-> > > > -      Sink Capabilities Message, the order of each entry(PDO) shou=
-ld follow the
-> > > > -      PD spec chapter 6.4.1. Required for power sink and power dua=
-l role. User
-> > > > -      can specify the sink PDO array via PDO_FIXED/BATT/VAR/PPS_AP=
-DO() defined
-> > > > -      in dt-bindings/usb/pd.h.
-> > > > -    minItems: 1
-> > > > -    maxItems: 7
-> > > > -    $ref: /schemas/types.yaml#/definitions/uint32-array
-> > > > +    $ref: "#/$defs/sink-pdos"
-> > > >
-> > > >    sink-vdos:
-> > > >      description: An array of u32 with each entry, a Vendor Defined=
- Message Object (VDO),
-> > > > @@ -164,9 +146,7 @@ properties:
-> > > >      $ref: /schemas/types.yaml#/definitions/uint32-array
-> > > >
-> > > >    op-sink-microwatt:
-> > > > -    description: Sink required operating power in microwatt, if so=
-urce can't
-> > > > -      offer the power, Capability Mismatch is set. Required for po=
-wer sink and
-> > > > -      power dual role.
-> > > > +    $ref: "#/$defs/op-sink-microwatt"
-> > > >
-> > > >    port:
-> > > >      $ref: /schemas/graph.yaml#/properties/port
-> > > > @@ -228,6 +208,30 @@ properties:
-> > > >        SNK_READY for non-pd link.
-> > > >      type: boolean
-> > > >
-> > > > +  capabilities:
-> > > > +    description: A child node to contain all the selectable USB Po=
-wer Delivery capabilities.
-> > > > +    type: object
-> > > > +
-> > > > +    patternProperties:
-> > > > +      "^caps-[0-9]+$":
-> > > > +        description: Child nodes under "capabilities" node. Each n=
-ode contains a selectable USB
-> > > > +          Power Delivery capability.
-> > > > +        type: object
-> > > > +
-> > > > +        properties:
-> > > > +          source-pdos:
-> > > > +            $ref: "#/$defs/source-pdos"
-> > > > +
-> > > > +          sink-pdos:
-> > > > +            $ref: "#/$defs/sink-pdos"
-> > > > +
-> > > > +          op-sink-microwatt:
-> > > > +            $ref: "#/$defs/op-sink-microwatt"
-> > > > +
-> > > > +        additionalProperties: false
-> > > > +
-> > > > +    additionalProperties: false
-> > > > +
-> > > >  dependencies:
-> > > >    sink-vdos-v1: [ 'sink-vdos' ]
-> > > >    sink-vdos: [ 'sink-vdos-v1' ]
-> > > > @@ -235,6 +239,36 @@ dependencies:
-> > > >  required:
-> > > >    - compatible
-> > > >
-> > > > +$defs:
-> > >
-> > > Make this:
-> > >
-> > > $defs:
-> > >   capabilities:
-> > >     properties:
-> > >       ...
-> > >
-> > > And then just reference "#/$defs/capabilities" at the top-level and i=
-n
-> > > caps-[0-9] node schema.
-> > >
-> > > You'll need to use unevaluatedProperties instead of additionalPropert=
-ies
-> > > as well.
-> > >
-> >
-> > I am sorry I don't understand this part. Could you explain more?
-> >
-> > In $defs, define a whole structure of "capabilities" which has
-> > patternProperties "caps-[0-9]+", and inside "caps-[0-9]+" there are
-> > properties "source/sink-pdos" ?
->
-> No, define a list of properties under a def. Here's a more complete examp=
-le:
->
-> $defs:
->   capabilities:
->     properties:
->       source-pdos:
->         ...
->
->       sink-pdos:
->         ...
->
-> And then add "$ref: '#/$defs/capabilities'" at the top-level of this
-> schema doc and under "caps-[0-9]+":
->
->     patternProperties:
->       "^caps-[0-9]+$":
->         description: Child nodes under "capabilities" node. Each node
-> contains a selectable USB
->           Power Delivery capability.
->         type: object
->         $ref: "#/$defs/capabilities"
->         unevaluatedProperties: false
->
-> unevaluatedProperties is needed because it can "see" properties
-> defined in a $ref to get the full list of properties for a node.
->
-> Rob
+Convert the below bindings to json-schema
+1) DA906{1,2} mfd bindings
+2) DA906{1,2,3} onkey bindings
+3) DA906{1,2,3} thermal bindings
 
-Thanks! Will update in v4
+Also add fallback for DA9061 watchdog device and document
+DA9063 watchdog device.
 
-Kyle
+v3->v3.1:
+ * Patch#1 is merge of patch#1 from v2 + patch#8 from v2.
+ * Dropped comment for d9061 watchdog fallback
+ * Replaced enum->const for dlg,da9061-watchdog and its fallback.
+ * Restored patch#4 in series 1 and dropped the thermal example
+ * Added Ack from Conor Dooley for da9063 watchdog binding support.
+ * Updated title DA9062/61->DA906{1,2,3} as it supports DA9063.
+ * Retained Rb tag since the changes are trivial.
+ * Added Ack from Conor for updating watchdog property
+ * Dropped link to product information.
+ * Patch#5(onkey) is squashed with patch#6 and patch#9 from v2.
+ * Replaced enum->const for dlg,da9061-onkey and its fallback.
+ * Dropped example
+ * Restored the thermal binding patch from v2.
+ * Dropped example
+ * Replaced enum->const for compatible property.
+ * Added Rb tag from Rob and retained Rb tag as changes are trivial.
+ * Added Ack from Conor Dooley for patch#7.
+ * Split the thermal binding patch separate
+ * Updated the description
+v2->v3:
+ * Updated Maintainer entries for watchdog,onkey and thermal bindings
+ * Fixed bot errors related to MAINTAINERS entry, invalid doc
+   references and thermal examples by merging patch#4. 
+
+v1->v2:
+ Link: https://lore.kernel.org/all/20231201110840.37408-5-biju.das.jz@bp.renesas.com/
+ * DA9062 and DA9061 merged with DA9063
+ * Sorted the child devices
+ * mfd,onkey and thermal are pointing to child bindings
+
+Biju Das (8):
+  dt-bindings: mfd: da9062: Update watchdog description
+  dt-bindings: watchdog: dlg,da9062-watchdog: Add fallback for DA9061
+    watchdog
+  dt-bindings: watchdog: dlg,da9062-watchdog: Document DA9063 watchdog
+  dt-bindings: mfd: dlg,da9063: Update watchdog property
+  dt-bindings: input: Convert da906{1,2,3} onkey to json-schema
+  dt-bindings: thermal: Convert da906{1,2} thermal to json-schema
+  dt-bindings: mfd: dlg,da9063: Sort child devices
+  dt-bindings: mfd: dlg,da9063: Convert da9062 to json-schema
+
+ .../bindings/input/da9062-onkey.txt           |  47 ----
+ .../bindings/input/dlg,da9062-onkey.yaml      |  39 ++++
+ .../devicetree/bindings/mfd/da9062.txt        | 124 ----------
+ .../devicetree/bindings/mfd/dlg,da9063.yaml   | 221 +++++++++++++++---
+ .../bindings/thermal/da9062-thermal.txt       |  36 ---
+ .../bindings/thermal/dlg,da9062-thermal.yaml  |  35 +++
+ .../watchdog/dlg,da9062-watchdog.yaml         |  13 +-
+ MAINTAINERS                                   |   6 +-
+ 8 files changed, 272 insertions(+), 249 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/input/da9062-onkey.txt
+ create mode 100644 Documentation/devicetree/bindings/input/dlg,da9062-onkey.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mfd/da9062.txt
+ delete mode 100644 Documentation/devicetree/bindings/thermal/da9062-thermal.txt
+ create mode 100644 Documentation/devicetree/bindings/thermal/dlg,da9062-thermal.yaml
+
+-- 
+2.39.2
+
 
