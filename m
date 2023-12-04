@@ -1,125 +1,92 @@
-Return-Path: <devicetree+bounces-21490-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21492-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5E6A803CEA
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 19:24:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C08F7803D35
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 19:36:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F529281210
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 18:24:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F169B1C20A4C
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 18:36:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F3ED2FE03;
-	Mon,  4 Dec 2023 18:23:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="JBeVn6LS"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C33E2C867;
+	Mon,  4 Dec 2023 18:36:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47341130;
-	Mon,  4 Dec 2023 10:23:50 -0800 (PST)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B4IMwk7034910;
-	Mon, 4 Dec 2023 12:22:58 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1701714178;
-	bh=PWj0D2WMvRJ11gnfwf0SZ44vgMNZaHz/OZM54jmoFVs=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=JBeVn6LSLGMkNjL+d/YkWu4H0o6fxo2MdR5Fms74roq7LZv8+Z2jnVYCFSJbjrLwz
-	 V59XS90IBgp+WehEBwrM7H8jiDTGvWpjxKoJf4rRAmU8SBURe4NRt7gXlIBTMHhfBL
-	 /oEAueViMAEbU6Bl8TZbxfVCw7h7jOSA6ZoVDWiU=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B4IMw6W091872
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 4 Dec 2023 12:22:58 -0600
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 4
- Dec 2023 12:22:57 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 4 Dec 2023 12:22:57 -0600
-Received: from fllv0039.itg.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B4IMkxD042313;
-	Mon, 4 Dec 2023 12:22:56 -0600
-From: Andrew Davis <afd@ti.com>
-To: Frank Binns <frank.binns@imgtec.com>,
-        Donald Robson
-	<donald.robson@imgtec.com>,
-        Matt Coster <matt.coster@imgtec.com>,
-        "H .
- Nikolaus Schaller" <hns@goldelico.com>,
-        Adam Ford <aford173@gmail.com>,
-        Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec
-	<jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren
-	<tony@atomide.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra
-	<vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Paul Cercueil
-	<paul@crapouillou.net>
-CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-sunxi@lists.linux.dev>, <linux-omap@vger.kernel.org>,
-        <linux-mips@vger.kernel.org>, Andrew Davis <afd@ti.com>
-Subject: [PATCH RFC 10/10] MIPS: DTS: jz4780: Add device tree entry for SGX GPU
-Date: Mon, 4 Dec 2023 12:22:45 -0600
-Message-ID: <20231204182245.33683-11-afd@ti.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231204182245.33683-1-afd@ti.com>
-References: <20231204182245.33683-1-afd@ti.com>
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A73ADFF;
+	Mon,  4 Dec 2023 10:36:45 -0800 (PST)
+Received: from francesco-nb.int.toradex.com (31-10-206-125.static.upc.ch [31.10.206.125])
+	by mail11.truemail.it (Postfix) with ESMTPA id 10075207C9;
+	Mon,  4 Dec 2023 19:36:42 +0100 (CET)
+Date: Mon, 4 Dec 2023 19:36:40 +0100
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>
+Cc: Francesco Dolcini <francesco@dolcini.it>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Francesco Dolcini <francesco.dolcini@toradex.com>
+Subject: Re: [PATCH v2 3/3] arm64: dts: ti: add verdin am62 mallow board
+Message-ID: <ZW4cONRWiRoOiaVd@francesco-nb.int.toradex.com>
+References: <20231201145551.23337-1-francesco@dolcini.it>
+ <20231201145551.23337-4-francesco@dolcini.it>
+ <20231204181336.scm2fgfyyzpr2u7t@dimmer>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231204181336.scm2fgfyyzpr2u7t@dimmer>
 
-Add SGX GPU device entry to base jz4780 dtsi file.
+Hello Nishanth,
 
-Signed-off-by: Andrew Davis <afd@ti.com>
----
- arch/mips/boot/dts/ingenic/jz4780.dtsi | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+On Mon, Dec 04, 2023 at 12:13:36PM -0600, Nishanth Menon wrote:
+> On 15:55-20231201, Francesco Dolcini wrote:
+> > From: Joao Paulo Goncalves <joao.goncalves@toradex.com>
+> 
+> [...]
+> 
+> > +
+> > +	tpm@1 {
+> > +		compatible = "infineon,slb9670", "tcg,tpm_tis-spi";
+> 
+> arch/arm64/boot/dts/ti/k3-am625-verdin-nonwifi-mallow.dtb: /bus@f0000/spi@20110000/tpm@1: failed to match any schema with compatible: ['infineon,slb9670', 'tcg,tpm_tis-spi']
+> arch/arm64/boot/dts/ti/k3-am625-verdin-wifi-mallow.dtb: /bus@f0000/spi@20110000/tpm@1: failed to match any schema with compatible: ['infineon,slb9670', 'tcg,tpm_tis-spi']
+> 
+> We should either drop this node OR introduce bindings and later
+> introduce this series.
+> 
+> Yes, I know there are other places where the compatible is already used
+> arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-rdk.dts
+> arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts1G
+> etc.. But, unfortunately, I'd rather see the binding
+> Documentation/devicetree/bindings/security/tpm/tpm_tis_spi.txt
+> transition over to yaml prior to picking things up. (NOTE: the same
+> rules apply to TI devs as well..)
 
-diff --git a/arch/mips/boot/dts/ingenic/jz4780.dtsi b/arch/mips/boot/dts/ingenic/jz4780.dtsi
-index 18affff85ce38..5ea6833f5e872 100644
---- a/arch/mips/boot/dts/ingenic/jz4780.dtsi
-+++ b/arch/mips/boot/dts/ingenic/jz4780.dtsi
-@@ -460,6 +460,17 @@ hdmi: hdmi@10180000 {
- 		status = "disabled";
- 	};
- 
-+	gpu: gpu@13040000 {
-+		compatible = "ingenic,jz4780-gpu", "img,powervr-sgx540";
-+		reg = <0x13040000 0x4000>;
-+
-+		clocks = <&cgu JZ4780_CLK_GPU>;
-+		clock-names = "core";
-+
-+		interrupt-parent = <&intc>;
-+		interrupts = <63>;
-+	};
-+
- 	lcdc0: lcdc0@13050000 {
- 		compatible = "ingenic,jz4780-lcd";
- 		reg = <0x13050000 0x1800>;
--- 
-2.39.2
+I disagree (and I also know that in the end is your call to take patches
+or not and I will just accept your decision whatever it is).
 
+What you are asking here is to not use any binding that was not already
+converted from txt to yaml, I do not think it is fair to force this
+decision just for TI DT files.
+
+I'd like also to add that a conversion to yaml of this binding is in the
+work [1] and this DT is compliant with it.
+
+What's DT maintainers opinion on this matter? Rob recently provided
+feedback on TPM bindings txt to yaml conversion so it should be fresh on
+his mind.
+
+Francesco
+
+[1] https://lore.kernel.org/all/cover.1701093036.git.lukas@wunner.de/
 
