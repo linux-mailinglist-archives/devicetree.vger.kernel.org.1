@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-21344-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21346-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 787E38033F6
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 14:09:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA0AB803466
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 14:21:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 33D05281040
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 13:09:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 073871C20A85
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 13:21:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BAB924A14;
-	Mon,  4 Dec 2023 13:09:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2682924B41;
+	Mon,  4 Dec 2023 13:21:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="fhFuFece"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="p3DPy0Gv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E6521BC;
-	Mon,  4 Dec 2023 05:09:03 -0800 (PST)
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7A8195;
+	Mon,  4 Dec 2023 05:21:14 -0800 (PST)
 Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B4D8lCK112972;
-	Mon, 4 Dec 2023 07:08:47 -0600
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B4DL3Jd094902;
+	Mon, 4 Dec 2023 07:21:03 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1701695327;
-	bh=cjcjmvqp4tK3yVcduTGKJTy9FzwlqYGe4Kofp82N1Lc=;
+	s=ti-com-17Q1; t=1701696063;
+	bh=viV7+lwY2a79zTnW1evrf/wrCa3w8/Eku/Dy6wR3OTU=;
 	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=fhFuFeceRofQ6Be9tphpO3ZDoRVXYWkmLcn/l1hjOZd6ZvlhsnN7pgbsTwNvRFiXy
-	 u1ADhyDiwc1E4kv1c3RUAKOhPydAGZ979dbJZ0xpeZbj5quDTg/8g6TdI3R8jg2Vpd
-	 f06msIhIum8kLGkIb+jn+m5iZGhsZVp0PMTo4R/0=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B4D8l6I013669
+	b=p3DPy0GvXCdSFjVlSuxf8i3pAs0mdUWa3Wt0hjv/8mX8Xd2/+cv6A3J/CNsotAY2w
+	 nS2S/r4bLJAGQW0X4Hzz1hjwd8D9nmMz3Tcf8XsCR728XmtSS9CZnX6GZqsCdLR+f8
+	 rjOJ31jkgE65orrYQKBoxqMNrglPFldnyKeRSFBU=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B4DL3b3020203
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 4 Dec 2023 07:08:47 -0600
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 4 Dec 2023 07:21:03 -0600
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 4
- Dec 2023 07:08:46 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ Dec 2023 07:21:03 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 4 Dec 2023 07:08:46 -0600
+ Frontend Transport; Mon, 4 Dec 2023 07:21:03 -0600
 Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B4D8kLr006290;
-	Mon, 4 Dec 2023 07:08:46 -0600
-Date: Mon, 4 Dec 2023 07:08:46 -0600
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B4DL3Fc018616;
+	Mon, 4 Dec 2023 07:21:03 -0600
+Date: Mon, 4 Dec 2023 07:21:03 -0600
 From: Nishanth Menon <nm@ti.com>
-To: Donald Robson <donald.robson@imgtec.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <mripard@kernel.org>,
-        Sarah Walker
-	<sarah.walker@imgtec.com>
-Subject: Re: [PATCH] arm64: dts: ti: k3-am62-main: Add GPU device node
-Message-ID: <20231204130846.m4fhrphg7vfnky3f@brute>
-References: <20231204121522.47862-1-donald.robson@imgtec.com>
+To: Siddharth Vadapalli <s-vadapalli@ti.com>
+CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <danishanwar@ti.com>,
+        <r-gunasekaran@ti.com>, <srk@ti.com>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am654-icssg2: Enable PHY interrupts
+ for ICSSG2
+Message-ID: <20231204132103.ikkxjz3yxz3ynq6s@demystify>
+References: <20231120063159.539306-1-s-vadapalli@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,44 +63,79 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20231204121522.47862-1-donald.robson@imgtec.com>
+In-Reply-To: <20231120063159.539306-1-s-vadapalli@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 12:15-20231204, Donald Robson wrote:
-> From: Sarah Walker <sarah.walker@imgtec.com>
+On 12:01-20231120, Siddharth Vadapalli wrote:
+> Enable interrupt mode of operation of the DP83867 Ethernet PHY which is
+> used by ICSSG2. The DP83867 PHY driver already supports interrupt handling
+> for interrupts generated by the PHY. Thus, add the necessary device-tree
+> support to enable it.
 > 
-> Add the Series AXE GPU node to the AM62 device tree.
+> Since the GPIO1_87 line is muxed with EXT_REFCLK1 and SYNC1_OUT, update
+> the pinmux to select GPIO1_87 for routing the interrupt.
 > 
-> Signed-off-by: Sarah Walker <sarah.walker@imgtec.com>
-> Signed-off-by: Donald Robson <donald.robson@imgtec.com>
+> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
 > ---
->  arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 9 +++++++++
->  1 file changed, 9 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> index e5c64c86d1d5..4338fd8ab2d7 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> @@ -965,4 +965,13 @@ mcasp2: audio-controller@2b20000 {
->  		power-domains = <&k3_pds 192 TI_SCI_PD_EXCLUSIVE>;
->  		status = "disabled";
+> This patch is based on linux-next tagged next-20231120.
+> 
+> Regards,
+> Siddharth.
+> 
+>  arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso | 17 +++++++++++++++--
+>  1 file changed, 15 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso b/arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso
+> index ec8cf20ca3ac..9f723592d0f4 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso
+> +++ b/arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso
+> @@ -124,21 +124,34 @@ AM65X_IOPAD(0x0088, PIN_INPUT, 2) /* (AG17) PRG2_PRU0_GPO4.PRG2_RGMII1_RX_CTL */
 >  	};
-> +
-> +	gpu: gpu@fd00000 {
-> +		compatible = "ti,am62-gpu", "img,img-axe";
-> +		reg = <0x00 0x0fd00000 0x00 0x20000>;
-> +		clocks = <&k3_clks 187 0>;
-> +		clock-names = "core";
-> +		interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
-> +		power-domains = <&k3_pds 187 TI_SCI_PD_EXCLUSIVE>;
-> +	};
 >  };
-> -- 
-> 2.25.1
-> 
+>  
+> +&main_pmx1 {
+> +	/* Select GPIO1_87 for ICSSG2 PHY interrupt */
+> +	icssg2_phy_irq_pins_default: icssg2-phy-irq-default-pins {
+> +		pinctrl-single,pins = <
+> +			AM65X_IOPAD(0x0014, PIN_INPUT, 7) /* (A22) EXT_REFCLK1.GPIO1_87 */
+> +		>;
+> +	};
+> +};
+> +
+>  &icssg2_mdio {
+>  	status = "okay";
+> -	pinctrl-names = "default";
+> -	pinctrl-0 = <&icssg2_mdio_pins_default>;
+> +	pinctrl-names = "default", "icssg2-phy-irq";
+> +	pinctrl-0 = <&icssg2_mdio_pins_default>, <&icssg2_phy_irq_pins_default>;
 
-Please also add a patch to enable GPU in the default armv8 defconfig as a
-kernel module.
+why should the pins be part of mdio pinctrl instead of phy?
+
+>  	#address-cells = <1>;
+>  	#size-cells = <0>;
+>  
+>  	icssg2_phy0: ethernet-phy@0 {
+>  		reg = <0>;
+> +		interrupt-parent = <&main_gpio1>;
+> +		interrupts = <87 0x2>;
+>  		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
+>  		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+>  	};
+>  
+>  	icssg2_phy1: ethernet-phy@3 {
+>  		reg = <3>;
+> +		interrupt-parent = <&main_gpio1>;
+> +		interrupts = <87 0x2>;
+
+Shouldn't you be using macros for interrupt level like IRQ_TYPE_EDGE_FALLING?
+
+>  		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
+>  		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+>  	};
+> -- 
+> 2.34.1
+> 
 
 -- 
 Regards,
