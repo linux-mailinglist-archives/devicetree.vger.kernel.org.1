@@ -1,237 +1,218 @@
-Return-Path: <devicetree+bounces-21519-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21520-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AC73803E9E
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 20:44:59 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8535803EC3
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 20:50:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 14DD51F2123B
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 19:44:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D95DE1C20A01
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 19:50:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E8FE32C7B;
-	Mon,  4 Dec 2023 19:44:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D693533078;
+	Mon,  4 Dec 2023 19:50:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=subdimension.ro header.i=@subdimension.ro header.b="PxbftUAS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LvyFZ7jI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.subdimension.ro (unknown [IPv6:2a01:7e01:e001:1d1::2])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60C43D2;
-	Mon,  4 Dec 2023 11:44:50 -0800 (PST)
-Received: from localhost.localdomain (unknown [188.24.94.216])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by mail.subdimension.ro (Postfix) with ESMTPSA id 988DB28EE6F;
-	Mon,  4 Dec 2023 19:44:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=subdimension.ro;
-	s=skycaves; t=1701719088;
-	bh=4wanOrlQPS66tajSBgXdI4zLh7IC9z4XmP+kH99JeJ4=;
-	h=From:To:Cc:Subject:Date;
-	b=PxbftUAS7Qrd10Z2OmvOju2U1IuULuwOs6w4DO8ctxRNLYTz/M6NUDtIaYHzzdiNV
-	 AxdRSo7/X7NxNK/3mE3l7EOlQmsD5YBpGLtvlczAoNXiKfSvTaKQG2MLAzGgx1qu3E
-	 GngDIzTkhEgqZT2x226pyS4LMH6YHizpr9kuPXf0=
-From: Petre Rodan <petre.rodan@subdimension.ro>
-To: linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: Petre Rodan <petre.rodan@subdimension.ro>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	linux-kernel-mentees@lists.linuxfoundation.org,
-	Jonathan Cameron <jic23@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v7 1/2] dt-bindings: iio: pressure: add honeywell,hsc030
-Date: Mon,  4 Dec 2023 21:43:58 +0200
-Message-ID: <20231204194401.20891-1-petre.rodan@subdimension.ro>
-X-Mailer: git-send-email 2.41.0
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28AC4CE;
+	Mon,  4 Dec 2023 11:50:47 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-54bfd4546fbso5975379a12.1;
+        Mon, 04 Dec 2023 11:50:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701719445; x=1702324245; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+qdbcC7yRoXStA6//Sf0ppzUiv9xW5yZR+OVcJWO5pA=;
+        b=LvyFZ7jIfK2UXnXp6F/Pn3KindYZatCeV0XwFSQpzCUDH/xO2qpJdxEtGFPaeFwCiZ
+         o4sL+5HUBBTAC6A60KRNpwB9Fj4/ThkOuIOaRQJ2pRNk3k06RhA0Aczavlxl1kyFFBMV
+         s4nBA+MMWwpHpm8ys8DcWJ9xHDXeyNrGYIEja8oR4CMWSV7lhdPvoMqsBw4ZTfWc2wT+
+         uOmElctEIrIzgQalEoKVK6RWCPg0oj3R1y+G61EUTk63FV8aUGBL4MGoI6/Vyg2kwjUw
+         xEZssUenE3v33hCwFUCPscJczTXBB8TeWljhExcKQ2lok6ei8u2q2WE7aWtg81gLlnnD
+         th6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701719445; x=1702324245;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+qdbcC7yRoXStA6//Sf0ppzUiv9xW5yZR+OVcJWO5pA=;
+        b=c8NMEyiQCWJelYLaAOt4hMdxL+PKXWceKJHT5+9UQYnmfgsAznlmnnyyHoxUP9c3fU
+         QZ14Sc3Nd5C86wYhcEGLK6xh/FKUuSu6C6y/XJIGf6sYnrH/yEnl7DMTdmEu7iyru86V
+         7DRumjWLuMSJnqIYB+sDFoHz+tldKyH5Ue2rTVAGp+bQO06Rd6UWL+8Z7AjucWOCwA0q
+         6ETzhtSKceeK1hkr3sgy9PrjWXER0Q0oPJTsb6GGIA8ZoVm1iQM0YyWrqfamLfNPw3Q5
+         5WvngfhtGXVtGdMHjXl+yur30ZRmExffCXPNLn++L8igsBvtCExa+kfWfkKt2rtiRHiG
+         9MJA==
+X-Gm-Message-State: AOJu0YzolwWSt71jbe1ldiBLH2tz8eSl6G57I9zNZsKwWMziYstR0ZyC
+	S5ZiUHJFEbblyGlzrZZSjxM=
+X-Google-Smtp-Source: AGHT+IFd3H78EZLb2ntO++WfIolEE0unvWxnYVDbs3/x9OA5b4eIfwNO07EUvodwpvsxw1kYt9ELqQ==
+X-Received: by 2002:a17:906:7159:b0:a19:a19b:78a1 with SMTP id z25-20020a170906715900b00a19a19b78a1mr3701905ejj.100.1701719445371;
+        Mon, 04 Dec 2023 11:50:45 -0800 (PST)
+Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id lj16-20020a170906f9d000b00a0c9024828asm5605562ejb.68.2023.12.04.11.50.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Dec 2023 11:50:45 -0800 (PST)
+Message-ID: <3b436dfe-832a-3c63-cf03-2ddc7aa969c3@gmail.com>
+Date: Mon, 4 Dec 2023 20:50:43 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v1 1/2] ARM: dts: rockchip: add gpio alias for gpio dt
+ nodes
+To: =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, jay.xu@rock-chips.com, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <89f2a229-9f14-d43f-c53d-5d4688e70456@gmail.com>
+ <62868103.matp6XCIr4@diego>
+Content-Language: en-US
+From: Johan Jonker <jbx6244@gmail.com>
+In-Reply-To: <62868103.matp6XCIr4@diego>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Adds binding for digital Honeywell TruStability HSC and SSC series
-pressure and temperature sensors.
-Communication is one way. The sensor only requires 4 bytes worth of
-clock pulses on both i2c and spi in order to push the data out.
-The i2c address is hardcoded and depends on the part number.
-There is no additional GPIO control.
 
-Datasheet:
-https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/trustability-hsc-series/documents/sps-siot-trustability-hsc-series-high-accuracy-board-mount-pressure-sensors-50099148-a-en-ciid-151133.pdf [HSC]
-Datasheet:
-https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/trustability-ssc-series/documents/sps-siot-trustability-ssc-series-standard-accuracy-board-mount-pressure-sensors-50099533-a-en-ciid-151134.pdf [SSC]
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Petre Rodan <petre.rodan@subdimension.ro>
----
-v2: - fix yaml struct
-    - cleanup based on Krzysztof's review
-v3: - rename range_str -> honeywell,pressure-triplet to define the string
-       containing the pressure range, measurement unit and type
-    - honeywell,pmax-pascal becomes uint32
-v4: - added enum to honeywell,transfer-function
-v5: - removed pmin-pascal, pmax-pascal $ref
-    - added pmin-pascal, pmax-pascal constraints
-v6: - no change
-v7: - no change
----
- .../iio/pressure/honeywell,hsc030pa.yaml      | 142 ++++++++++++++++++
- 1 file changed, 142 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml
 
-diff --git a/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml b/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml
-new file mode 100644
-index 000000000000..65a24ed67b3c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml
-@@ -0,0 +1,142 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/pressure/honeywell,hsc030pa.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Honeywell TruStability HSC and SSC pressure sensor series
-+
-+description: |
-+  support for Honeywell TruStability HSC and SSC digital pressure sensor
-+  series.
-+
-+  These sensors have either an I2C, an SPI or an analog interface. Only the
-+  digital versions are supported by this driver.
-+
-+  There are 118 models with different pressure ranges available in each family.
-+  The vendor calls them "HSC series" and "SSC series". All of them have an
-+  identical programming model but differ in pressure range, unit and transfer
-+  function.
-+
-+  To support different models one needs to specify the pressure range as well
-+  as the transfer function. Pressure range can either be provided via
-+  pressure-triplet (directly extracted from the part number) or in case it's
-+  a custom chip via numerical range limits converted to pascals.
-+
-+  The transfer function defines the ranges of raw conversion values delivered
-+  by the sensor. pmin-pascal and pmax-pascal corespond to the minimum and
-+  maximum pressure that can be measured.
-+
-+  Please note that in case of an SPI-based sensor, the clock signal should not
-+  exceed 800kHz and the MOSI signal is not required.
-+
-+  Specifications about the devices can be found at:
-+  https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/trustability-hsc-series/documents/sps-siot-trustability-hsc-series-high-accuracy-board-mount-pressure-sensors-50099148-a-en-ciid-151133.pdf
-+  https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/trustability-ssc-series/documents/sps-siot-trustability-ssc-series-standard-accuracy-board-mount-pressure-sensors-50099533-a-en-ciid-151134.pdf
-+
-+maintainers:
-+  - Petre Rodan <petre.rodan@subdimension.ro>
-+
-+properties:
-+  compatible:
-+    const: honeywell,hsc030pa
-+
-+  reg:
-+    maxItems: 1
-+
-+  honeywell,transfer-function:
-+    description: |
-+      Transfer function which defines the range of valid values delivered by
-+      the sensor.
-+      0 - A, 10% to 90% of 2^14
-+      1 - B, 5% to 95% of 2^14
-+      2 - C, 5% to 85% of 2^14
-+      3 - F, 4% to 94% of 2^14
-+    enum: [0, 1, 2, 3]
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+
-+  honeywell,pressure-triplet:
-+    description: |
-+      Case-sensitive five character string that defines pressure range, unit
-+      and type as part of the device nomenclature. In the unlikely case of a
-+      custom chip, set to "NA" and provide pmin-pascal and pmax-pascal.
-+    enum: [001BA, 1.6BA, 2.5BA, 004BA, 006BA, 010BA, 1.6MD, 2.5MD, 004MD,
-+           006MD, 010MD, 016MD, 025MD, 040MD, 060MD, 100MD, 160MD, 250MD,
-+           400MD, 600MD, 001BD, 1.6BD, 2.5BD, 004BD, 2.5MG, 004MG, 006MG,
-+           010MG, 016MG, 025MG, 040MG, 060MG, 100MG, 160MG, 250MG, 400MG,
-+           600MG, 001BG, 1.6BG, 2.5BG, 004BG, 006BG, 010BG, 100KA, 160KA,
-+           250KA, 400KA, 600KA, 001GA, 160LD, 250LD, 400LD, 600LD, 001KD,
-+           1.6KD, 2.5KD, 004KD, 006KD, 010KD, 016KD, 025KD, 040KD, 060KD,
-+           100KD, 160KD, 250KD, 400KD, 250LG, 400LG, 600LG, 001KG, 1.6KG,
-+           2.5KG, 004KG, 006KG, 010KG, 016KG, 025KG, 040KG, 060KG, 100KG,
-+           160KG, 250KG, 400KG, 600KG, 001GG, 015PA, 030PA, 060PA, 100PA,
-+           150PA, 0.5ND, 001ND, 002ND, 004ND, 005ND, 010ND, 020ND, 030ND,
-+           001PD, 005PD, 015PD, 030PD, 060PD, 001NG, 002NG, 004NG, 005NG,
-+           010NG, 020NG, 030NG, 001PG, 005PG, 015PG, 030PG, 060PG, 100PG,
-+           150PG, NA]
-+    $ref: /schemas/types.yaml#/definitions/string
-+
-+  honeywell,pmin-pascal:
-+    description: |
-+      Minimum pressure value the sensor can measure in pascal.
-+      To be specified only if honeywell,pressure-triplet is set to "NA".
-+
-+  honeywell,pmax-pascal:
-+    description: |
-+      Maximum pressure value the sensor can measure in pascal.
-+      To be specified only if honeywell,pressure-triplet is set to "NA".
-+
-+  vdd-supply:
-+    description:
-+      Provide VDD power to the sensor (either 3.3V or 5V depending on the chip)
-+
-+  spi-max-frequency:
-+    maximum: 800000
-+
-+required:
-+  - compatible
-+  - reg
-+  - honeywell,transfer-function
-+  - honeywell,pressure-triplet
-+
-+additionalProperties: false
-+
-+dependentSchemas:
-+  honeywell,pmin-pascal:
-+    properties:
-+      honeywell,pressure-triplet:
-+        const: NA
-+  honeywell,pmax-pascal:
-+    properties:
-+      honeywell,pressure-triplet:
-+        const: NA
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        pressure@28 {
-+            compatible = "honeywell,hsc030pa";
-+            reg = <0x28>;
-+            honeywell,transfer-function = <0>;
-+            honeywell,pressure-triplet = "030PA";
-+        };
-+    };
-+  - |
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        pressure@0 {
-+            compatible = "honeywell,hsc030pa";
-+            reg = <0>;
-+            spi-max-frequency = <800000>;
-+            honeywell,transfer-function = <0>;
-+            honeywell,pressure-triplet = "NA";
-+            honeywell,pmin-pascal = <0>;
-+            honeywell,pmax-pascal = <200000>;
-+        };
-+    };
-+...
--- 
-2.41.0
+On 12/4/23 20:35, Heiko Stübner wrote:
+> Hi Johan,
+> 
+> Am Samstag, 2. Dezember 2023, 19:22:01 CET schrieb Johan Jonker:
+>> Rockchip SoC TRM, SoC datasheet and board schematics always refer to
+>> the same gpio numbers - even if not all are used for a specific board.
+>> In order to not have to re-define them for every board add the
+>> aliases to SoC dtsi files.
+>>
+>> Signed-off-by: Jianqun Xu <jay.xu@rock-chips.com>
+>> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> 
 
+> patch itself looks good, but I don't understand the authorship situation.
+> As these two signed-off-bys are now it would suggest that you picked up
+> Jianqun Xu's patch, but then the author would need to be different.
+> 
+> Or do you want to declare this via a
+> Co-Developed-by: Jianqun Xu <jay.xu@rock-chips.com>
+
+The newer tag use of Co-Developed-by is more confusing compared to in the old days...
+
+Patch derived from:
+https://lore.kernel.org/linux-rockchip/20220909090558.3609190-2-jay.xu@rock-chips.com/
+
+Could you add/fix what is needed without resubmitting.
+
+Johan
+
+> 
+> 
+> Thanks
+> Heiko
+> 
+>> ---
+>>
+>> Changed V1:
+>>   rebase
+>>   remove rk3066 gpio5 alias
+>> ---
+>>  arch/arm/boot/dts/rockchip/rk3036.dtsi  | 3 +++
+>>  arch/arm/boot/dts/rockchip/rk3066a.dtsi | 5 +++++
+>>  arch/arm/boot/dts/rockchip/rk322x.dtsi  | 4 ++++
+>>  arch/arm/boot/dts/rockchip/rk3288.dtsi  | 9 +++++++++
+>>  arch/arm/boot/dts/rockchip/rk3xxx.dtsi  | 4 ++++
+>>  5 files changed, 25 insertions(+)
+>>
+>> diff --git a/arch/arm/boot/dts/rockchip/rk3036.dtsi b/arch/arm/boot/dts/rockchip/rk3036.dtsi
+>> index 78686fc72ce6..8aa2e0864fed 100644
+>> --- a/arch/arm/boot/dts/rockchip/rk3036.dtsi
+>> +++ b/arch/arm/boot/dts/rockchip/rk3036.dtsi
+>> @@ -17,6 +17,9 @@ / {
+>>  	interrupt-parent = <&gic>;
+>>
+>>  	aliases {
+>> +		gpio0 = &gpio0;
+>> +		gpio1 = &gpio1;
+>> +		gpio2 = &gpio2;
+>>  		i2c0 = &i2c0;
+>>  		i2c1 = &i2c1;
+>>  		i2c2 = &i2c2;
+>> diff --git a/arch/arm/boot/dts/rockchip/rk3066a.dtsi b/arch/arm/boot/dts/rockchip/rk3066a.dtsi
+>> index de9915d946f7..30139f21de64 100644
+>> --- a/arch/arm/boot/dts/rockchip/rk3066a.dtsi
+>> +++ b/arch/arm/boot/dts/rockchip/rk3066a.dtsi
+>> @@ -13,6 +13,11 @@
+>>  / {
+>>  	compatible = "rockchip,rk3066a";
+>>
+>> +	aliases {
+>> +		gpio4 = &gpio4;
+>> +		gpio6 = &gpio6;
+>> +	};
+>> +
+>>  	cpus {
+>>  		#address-cells = <1>;
+>>  		#size-cells = <0>;
+>> diff --git a/arch/arm/boot/dts/rockchip/rk322x.dtsi b/arch/arm/boot/dts/rockchip/rk322x.dtsi
+>> index a721744cbfd1..831561fc1814 100644
+>> --- a/arch/arm/boot/dts/rockchip/rk322x.dtsi
+>> +++ b/arch/arm/boot/dts/rockchip/rk322x.dtsi
+>> @@ -15,6 +15,10 @@ / {
+>>  	interrupt-parent = <&gic>;
+>>
+>>  	aliases {
+>> +		gpio0 = &gpio0;
+>> +		gpio1 = &gpio1;
+>> +		gpio2 = &gpio2;
+>> +		gpio3 = &gpio3;
+>>  		serial0 = &uart0;
+>>  		serial1 = &uart1;
+>>  		serial2 = &uart2;
+>> diff --git a/arch/arm/boot/dts/rockchip/rk3288.dtsi b/arch/arm/boot/dts/rockchip/rk3288.dtsi
+>> index cb9cdaddffd4..ead343dc3df1 100644
+>> --- a/arch/arm/boot/dts/rockchip/rk3288.dtsi
+>> +++ b/arch/arm/boot/dts/rockchip/rk3288.dtsi
+>> @@ -19,6 +19,15 @@ / {
+>>
+>>  	aliases {
+>>  		ethernet0 = &gmac;
+>> +		gpio0 = &gpio0;
+>> +		gpio1 = &gpio1;
+>> +		gpio2 = &gpio2;
+>> +		gpio3 = &gpio3;
+>> +		gpio4 = &gpio4;
+>> +		gpio5 = &gpio5;
+>> +		gpio6 = &gpio6;
+>> +		gpio7 = &gpio7;
+>> +		gpio8 = &gpio8;
+>>  		i2c0 = &i2c0;
+>>  		i2c1 = &i2c1;
+>>  		i2c2 = &i2c2;
+>> diff --git a/arch/arm/boot/dts/rockchip/rk3xxx.dtsi b/arch/arm/boot/dts/rockchip/rk3xxx.dtsi
+>> index cb4e42ede56a..f37137f298d5 100644
+>> --- a/arch/arm/boot/dts/rockchip/rk3xxx.dtsi
+>> +++ b/arch/arm/boot/dts/rockchip/rk3xxx.dtsi
+>> @@ -16,6 +16,10 @@ / {
+>>
+>>  	aliases {
+>>  		ethernet0 = &emac;
+>> +		gpio0 = &gpio0;
+>> +		gpio1 = &gpio1;
+>> +		gpio2 = &gpio2;
+>> +		gpio3 = &gpio3;
+>>  		i2c0 = &i2c0;
+>>  		i2c1 = &i2c1;
+>>  		i2c2 = &i2c2;
+>> --
+>> 2.39.2
+>>
+>>
+> 
+> 
+> 
+> 
 
