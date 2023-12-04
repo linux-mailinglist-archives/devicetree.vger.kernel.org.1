@@ -1,148 +1,137 @@
-Return-Path: <devicetree+bounces-21391-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21392-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98C2680379B
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 15:53:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A349580382B
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 16:02:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 41BD21F21293
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 14:53:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DA5928135F
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 15:02:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94FEB28E13;
-	Mon,  4 Dec 2023 14:53:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3CD228E32;
+	Mon,  4 Dec 2023 15:02:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IAFHXXqf"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WY2nuAIi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7992428E10
-	for <devicetree@vger.kernel.org>; Mon,  4 Dec 2023 14:53:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F40D4C433CA;
-	Mon,  4 Dec 2023 14:53:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701701582;
-	bh=NuRXrq7N3kGS8uwkFtg1Srlgms/l7Ivsv0arLwupqHw=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=IAFHXXqfghi9TPmq3hZ9HtoyYfptiVays5G/rHL0Oh/qzMfnG/09yVgyew/Pjh5Yx
-	 iQtNBjLovBwZvXAdxLY04z/TLrhKfjE/jbvuDDdL1lc9AuYilZNBdRsPGVARnnRFjH
-	 oFgoLhsPJu6kRVMaUY2YxWNU7qDL4A9hHxojVRgJrQ5KRWmS+H0tIJSEVD5p1rj0Ya
-	 XIlUvIU4A55BbHhPmceVxjTfpK98QPtzOhMuBFOKw+bSOs3I620udckcQiYAOssx9f
-	 9kzzWOM71Gc7PaEySoWVsT0ZZZhQHzWfck+jlATBFKSB2h5Ng67jrlPA1j7z+E7wCp
-	 nKz44afyVm5vA==
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2c9f42ccb55so23095971fa.1;
-        Mon, 04 Dec 2023 06:53:01 -0800 (PST)
-X-Gm-Message-State: AOJu0YxDPrdm4w/qkam64Rk+D6ddd4sRfP0C0hR6nqNJh4it6s1ZRjX8
-	YOTpyvSdWTaw6vSnxd7/N7WsvPmhttHEfWCx5wk=
-X-Google-Smtp-Source: AGHT+IHkCIk7W6xkoYH24E/xUgUUfHwLDL7y3oi7LnhmU/itgHIKTq9PTHKelorqOMuakQ0gScRN0vRvJbK8HIusknc=
-X-Received: by 2002:a2e:8015:0:b0:2c9:f181:7347 with SMTP id
- j21-20020a2e8015000000b002c9f1817347mr1874219ljg.4.1701701580168; Mon, 04 Dec
- 2023 06:53:00 -0800 (PST)
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D70E1199
+	for <devicetree@vger.kernel.org>; Mon,  4 Dec 2023 07:01:48 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-40b2ad4953cso35133125e9.0
+        for <devicetree@vger.kernel.org>; Mon, 04 Dec 2023 07:01:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701702107; x=1702306907; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zINM1okmZX3LeNIZxM4CFTe5s+jh7nnY/35H7xAy7yc=;
+        b=WY2nuAIiQQ+JpAQYBzce66aCyBUzcuNbGrfcuDMCZjUa6bN4XcQVhNctk9it8rwTkS
+         Eeaf6fmRKgyn9+C1n9KmfHVrEumsz7GjFLEYJRT3cMEgbXPOAkXL2Fs3U68Yqev3SUdj
+         D64gmwtfR+oKjMxRkxfr8ewdfMDn2U+IJtY8Katx6Jb3yRCAycvG5EW0p5Jw1bAAGAZH
+         lmCrP3C/1yj+b/JOaNnJzXtGlg1qwJN1U+8BvZd20JSca0CQd99YxCDXD6alqQuKyJnR
+         0rmpZ9ktoMpTArZEKQ33kqtu2Q92xRg2BZf5mO2Y983SBERjUiZJTXx+8nRWLyR4tYWt
+         P3Tw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701702107; x=1702306907;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zINM1okmZX3LeNIZxM4CFTe5s+jh7nnY/35H7xAy7yc=;
+        b=NY5DwLTAXcosXokNY7omQXF9qYIdF4U2oJ5bF7g2tX4Mrb4lfwVIwzupmVUcH8/R8U
+         hla77MrHJskF6yBzIPMx5JUlGQnat1CM3SSnGucPWTXflgH4Hf3KMOSC2tLXuzQqp9BD
+         HedjE8I54YegS+Bgi8+Y7JYKNPsPtmfN2W8GHW0RU4w0EbypnBWFIUSEeG2bjZkRoynR
+         0FvIPI5IAZsN2wionONoa1aTLT23Fl1VyaKb34JmnKixDmz237FCSzfbHxCppaTQ8svu
+         gJpoecpWM1+YGl051lD4KlqhPkkP7/MimZyuvrO/poHe7K93zZ2KfG4SGHPi7zDTke5c
+         mrUw==
+X-Gm-Message-State: AOJu0Yxzd+nmeLhKPndczz8mp766/fYs17wCgvGDw/gqCUUi/L8CVH97
+	b1QF7G8kDKnIPKIOgOJ6ULniOQ==
+X-Google-Smtp-Source: AGHT+IGdousMNLimLTKPCBAoNngKkERPZVGyvA1N0j4SLFXWXkwulvp9Tu6BmM9bO83Cgen2z7CdKw==
+X-Received: by 2002:a1c:7c0e:0:b0:40b:5e26:2378 with SMTP id x14-20020a1c7c0e000000b0040b5e262378mr591590wmc.41.1701702107116;
+        Mon, 04 Dec 2023 07:01:47 -0800 (PST)
+Received: from [127.0.1.1] ([82.77.85.67])
+        by smtp.gmail.com with ESMTPSA id n16-20020a05600c501000b00407b93d8085sm19041661wmr.27.2023.12.04.07.01.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Dec 2023 07:01:46 -0800 (PST)
+From: Abel Vesa <abel.vesa@linaro.org>
+Subject: [PATCH v2 0/2] phy: qcom: edp: Add support for X1E80100
+Date: Mon, 04 Dec 2023 17:01:35 +0200
+Message-Id: <20231122-phy-qualcomm-edp-x1e80100-v2-0-114e789f0195@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <IA1PR20MB4953C912FC58C0D248976564BB86A@IA1PR20MB4953.namprd20.prod.outlook.com>
- <IA1PR20MB49531ED1BCC00D6B265C2D10BB86A@IA1PR20MB4953.namprd20.prod.outlook.com>
-In-Reply-To: <IA1PR20MB49531ED1BCC00D6B265C2D10BB86A@IA1PR20MB4953.namprd20.prod.outlook.com>
-From: Guo Ren <guoren@kernel.org>
-Date: Mon, 4 Dec 2023 22:52:48 +0800
-X-Gmail-Original-Message-ID: <CAJF2gTSf5dCuYecY39nksczFzuXUvEJ_hLef5tyW0OgLmCDLPQ@mail.gmail.com>
-Message-ID: <CAJF2gTSf5dCuYecY39nksczFzuXUvEJ_hLef5tyW0OgLmCDLPQ@mail.gmail.com>
-Subject: Re: [PATCH v5 1/2] dt-bindings: timer: thead,c900-aclint-mtimer:
- separate mtime and mtimecmp regs
-To: Inochi Amaoto <inochiama@outlook.com>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, Thomas Gleixner <tglx@linutronix.de>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Chen Wang <unicorn_wang@outlook.com>, 
-	Anup Patel <anup@brainfault.org>, Samuel Holland <samuel.holland@sifive.com>, 
-	Jisheng Zhang <jszhang@kernel.org>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAM/pbWUC/42NSw6DIBRFt9Iw7mv4xFQ66j4aB4APIUGwUI3Gu
+ PdSV9DhOcm9ZycFs8dCHpedZFx88SlW4NcLMU7FAcH3lQmnXDDGOUxug/esgknjCNhPsDJsKaM
+ UVHM3rLHWCq5J3WtVEHRW0bj6EOcQqpwyWr+ewVdX2fnySXk7+wv72X9SC4Pak1K0UlLstXgGH
+ 1VOt5QH0h3H8QWhhOcB2AAAAA==
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Abel Vesa <abel.vesa@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1365; i=abel.vesa@linaro.org;
+ h=from:subject:message-id; bh=Qa4ftx3CC4GaXW0fbbBlA83h4BynsQFZ8fy7MwCf1Ec=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBlbenRWxwbX//ylPmWeNi+DkcS9YuXhUjsgMzGB
+ x1yAHbHYP+JAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZW3p0QAKCRAbX0TJAJUV
+ VhssEACWAn6IZzUEkTKCl1WK49N+WfepOn5CCHgbgxsvS1zO8Tt6mafDJlCqJeqxi0asISOvzUx
+ vYuThO/pEqiFEV+7qRFpDc6RldOziPyqGkakUae6fjx1wCj5lS8iKIskUiftN0iw7j/jfg2b86w
+ DlykAGqK04GBCWKE970MoM3MggIezQkV8Uv57gI433LKGe90ORe0f51PnLzHf6qUxb1m6bbcnAK
+ vyRx9JKWK+7+xqySVAp0+70KL42PmKb+BW6wJy8waBAIducNZM4yxISDqRzTsWdj4NMuYeIgucK
+ VovKbPnJNDKgbmXt5tbAca31MTT6F0ORtVnmrFQK9Tb7WXKfzh44Qb0nn7ZjGufbBcy0Xf90qoW
+ vMAUY7wE4YBXE09MA4wDYDORzzaEiOL/3ilqh85hRi8KdjNBXlVnlR+KWy+7Fg53HCVbL48Hzbg
+ OY4XUYbQ/MWSi/0qN0RbYOBZlL3IZcoPLOJCdW0SUrZiQEvE9rQCxY+O0O1U42JNuFtzzJ0I0Aq
+ dWWNNzH+sK+uK2o26O7BljMBFqLY/ik+t28UY0mX1LI/vArzhxNxaxf44EDLUUXSWM4LI22uNWq
+ e1fR2RcePGjTrtvEwCT2vohJhl1Xo6OXLy0w9vpQKvrnQvRETZZJIFyXqLTwrX9ETuu1k7fNxr0
+ zFDRLCtw4lGXkcw==
+X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
+ fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
-On Mon, Dec 4, 2023 at 5:51=E2=80=AFPM Inochi Amaoto <inochiama@outlook.com=
-> wrote:
->
-> The timer registers of aclint don't follow the clint layout and can
-> be mapped on any different offset. As sg2042 uses separated timer
-> and mswi for its clint, it should follow the aclint spec and have
-> separated registers.
->
-> The previous patch introduced a new type of T-HEAD aclint timer which
-> has clint timer layout. Although it has the clint timer layout, it
-> should follow the aclint spec and uses the separated mtime and mtimecmp
-> regs. So a ABI change is needed to make the timer fit the aclint spec.
->
-> To make T-HEAD aclint timer more closer to the aclint spec, use
-> regs-names to represent the mtimecmp register, which can avoid hack
-> for unsupport mtime register of T-HEAD aclint timer.
->
-> Also, as T-HEAD aclint only supports mtimecmp, it is unnecessary to
-> implement the whole aclint spec. To make this binding T-HEAD specific,
-> only add reg-name for existed register. For details, see the discussion
-> in the last link.
->
-> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
-> Fixes: 4734449f7311 ("dt-bindings: timer: Add Sophgo sg2042 CLINT timer")
-> Link: https://lists.infradead.org/pipermail/opensbi/2023-October/005693.h=
-tml
-> Link: https://github.com/riscv/riscv-aclint/blob/main/riscv-aclint.adoc
-> Link: https://lore.kernel.org/all/IA1PR20MB4953F9D77FFC76A9D236922DBBB6A@=
-IA1PR20MB4953.namprd20.prod.outlook.com/
-> ---
->  .../bindings/timer/thead,c900-aclint-mtimer.yaml         | 9 ++++++++-
->  1 file changed, 8 insertions(+), 1 deletion(-)
->
-> diff --git a/Documentation/devicetree/bindings/timer/thead,c900-aclint-mt=
-imer.yaml b/Documentation/devicetree/bindings/timer/thead,c900-aclint-mtime=
-r.yaml
-> index fbd235650e52..2e92bcdeb423 100644
-> --- a/Documentation/devicetree/bindings/timer/thead,c900-aclint-mtimer.ya=
-ml
-> +++ b/Documentation/devicetree/bindings/timer/thead,c900-aclint-mtimer.ya=
-ml
-> @@ -17,7 +17,12 @@ properties:
->        - const: thead,c900-aclint-mtimer
->
->    reg:
-> -    maxItems: 1
-> +    items:
-> +      - description: MTIMECMP Registers
-> +
-> +  reg-names:
-> +    items:
-> +      - const: mtimecmp
->
->    interrupts-extended:
->      minItems: 1
-> @@ -28,6 +33,7 @@ additionalProperties: false
->  required:
->    - compatible
->    - reg
-> +  - reg-names
->    - interrupts-extended
->
->  examples:
-> @@ -39,5 +45,6 @@ examples:
->                              <&cpu3intc 7>,
->                              <&cpu4intc 7>;
->        reg =3D <0xac000000 0x00010000>;
-> +      reg-names =3D "mtimecmp";
->      };
->  ...
-> --
-> 2.43.0
->
-Acked-by: Guo Ren <guoren@kernel.org>
+This patchset adds support for the X1E80100 eDP/DP PHY and documents its
+compatible.
 
---=20
-Best Regards
- Guo Ren
+This patchset depends on the QSERDES_V6_COM_SSC_ADJ_PER1 register offset
+added by the following patchset:
+
+https://lore.kernel.org/all/20231122-phy-qualcomm-v6-v6-20-v7-new-offsets-v1-0-d9340d362664@linaro.org/
+
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
+Changes in v2:
+- Added Krzysztof's R-b tag
+- Re-worded commit message for bindings to suggest same PHY can work in
+  both eDP and DP mode rather than being different PHY types.
+- Implemented different qcom_edp_configure_ssc and
+  qcom_edp_configure_pll for each version of the PHY.
+- Dropped the cfg8 override in qcom_edp_phy_init
+- Used enum instead of defines for PHY versions
+- Link to v1: https://lore.kernel.org/r/20231122-phy-qualcomm-edp-x1e80100-v1-0-a9938990edb3@linaro.org
+
+---
+Abel Vesa (2):
+      dt-bindings: phy: qcom-edp: Add X1E80100 PHY compatibles
+      phy: qcom: edp: Add X1E80100 eDP and DP PHYs
+
+ .../devicetree/bindings/phy/qcom,edp-phy.yaml      |   2 +
+ drivers/phy/qualcomm/phy-qcom-edp.c                | 230 +++++++++++++++++++--
+ 2 files changed, 214 insertions(+), 18 deletions(-)
+---
+base-commit: 629a3b49f3f957e975253c54846090b8d5ed2e9b
+change-id: 20231122-phy-qualcomm-edp-x1e80100-a57c15fff32b
+
+Best regards,
+-- 
+Abel Vesa <abel.vesa@linaro.org>
+
 
