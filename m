@@ -1,45 +1,45 @@
-Return-Path: <devicetree+bounces-21517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21516-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80810803E65
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 20:29:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABCC6803E63
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 20:29:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2ADDE1F211E1
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 19:29:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 60C0B2810E2
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 19:29:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3181331750;
-	Mon,  4 Dec 2023 19:29:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C2D131731;
+	Mon,  4 Dec 2023 19:29:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f54.google.com (mail-oo1-f54.google.com [209.85.161.54])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AC6CB6
-	for <devicetree@vger.kernel.org>; Mon,  4 Dec 2023 11:29:22 -0800 (PST)
-Received: by mail-oo1-f54.google.com with SMTP id 006d021491bc7-58e1ddc68b2so1973361eaf.2
-        for <devicetree@vger.kernel.org>; Mon, 04 Dec 2023 11:29:22 -0800 (PST)
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 622EFB4;
+	Mon,  4 Dec 2023 11:29:20 -0800 (PST)
+Received: by mail-ot1-f47.google.com with SMTP id 46e09a7af769-6d8162ca490so1650953a34.0;
+        Mon, 04 Dec 2023 11:29:20 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701718161; x=1702322961;
+        d=1e100.net; s=20230601; t=1701718159; x=1702322959;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=qyV1sA1r5dPn4ygpL07ie1UDh6kELrw/hlTPqHm4mZw=;
-        b=QUgh+Ly+xuXG8OYTo7eGbDeM8g2TxRWHRz6DZhzLOH2af1iZES582s07FQ/P13zUvO
-         arnzvFRAGUvvyPDufEH3F4ezS58fGt5XPsLmBiUl7mfJ4SGR9eb1+G4uJMIKDtgsIVM2
-         SSoWa6/EXXbXE5iUlAxcdwfGT2TF99rODhxgzxZN2A5DizYYT6jyGteK06CtXJjR+MEb
-         3MSHZLvK4ekEht24IPr8JqQxJfeGUQYEaWcZwCyQvQn/MZlZfUC3KMO3FJ/zOQvj+696
-         aS1/Lpt8SEvCJKYThvtz6DPEU+G7UmzfEd7UDEgXyK0cjefu3yIisHhwyGcCKFlGE/vx
-         acBQ==
-X-Gm-Message-State: AOJu0YyIPTaapOoECa9ZiGUjzCDUqzSs6O/WxRJ3tfCKwENUlhUtCt38
-	fGG/gUOP+t+d+j+P7pB+mw==
-X-Google-Smtp-Source: AGHT+IHJ0aCuZWEklMciWvIdrm2WgfF21P0EvsQZBkeLJD8Qx1fhubs0EIjuFl2rdcEIx9A52oV8Fg==
-X-Received: by 2002:a05:6871:820:b0:1fb:75c:3fe0 with SMTP id q32-20020a056871082000b001fb075c3fe0mr5278424oap.64.1701718161675;
-        Mon, 04 Dec 2023 11:29:21 -0800 (PST)
+        bh=dopADZSIY9NvRsKkblZeS2auQY53LOm32GMeI4jM0II=;
+        b=Ls+YgdG2FgVFE9omgBravK7YNQ9whf4Iot7itEgO60G08W0twQDRCp3t2rdVqAfBre
+         o4T9NUcbIZiQ/7HjaEaI3sZZoc0LexCT+S+e8NJ9T40SGX1aMxCu2Ssi+gfHkyeAThfc
+         NfEzCcEX7LwAbn4C5aGl55tviH70J5+DzhGapkxsy7KNQN3b9ob7mTrl4jkWDvYwPKEF
+         2br8l1DXr9pVjnTmMDB8ZSa3ITX1CgUTAHQihDDXhcGPs9ymiwU4UotsR8P2su0dzlWL
+         AF8kVZ6nEiIXXHeRxtK+7YuU8vEcaoz/anIzKJZPx1M4mFT9YqC0R3+9qJJPnxyBgkmc
+         MTjA==
+X-Gm-Message-State: AOJu0Yw0BMfGM+IXWoEhivZJpYlz9qR89VrifleswXuqoM8brEF1xOrf
+	Kt1W3RoJzYnEVG835+jMHA==
+X-Google-Smtp-Source: AGHT+IFJY72gUYcS57mGE/6He5HTLRBqBfyrpRzdJyeRee5n4J2NROwezV41UeMAeby2CsBlJJbTIQ==
+X-Received: by 2002:a9d:6f8e:0:b0:6d9:a17c:b1cc with SMTP id h14-20020a9d6f8e000000b006d9a17cb1ccmr106853otq.34.1701718159643;
+        Mon, 04 Dec 2023 11:29:19 -0800 (PST)
 Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id rd14-20020a056871620e00b001fa39dfef88sm2993334oab.37.2023.12.04.11.29.20
+        by smtp.gmail.com with ESMTPSA id ba29-20020a056830461d00b006d99dd7492csm752390otb.42.2023.12.04.11.29.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Dec 2023 11:29:20 -0800 (PST)
-Received: (nullmailer pid 4307 invoked by uid 1000);
+        Mon, 04 Dec 2023 11:29:18 -0800 (PST)
+Received: (nullmailer pid 4304 invoked by uid 1000);
 	Mon, 04 Dec 2023 19:29:17 -0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -50,72 +50,113 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: Rob Herring <robh@kernel.org>
-To: Boris Brezillon <boris.brezillon@collabora.com>
-Cc: "Marty E . Plummer" <hanetzer@startmail.com>, =?utf-8?q?Cl=C3=A9ment_P=C3=A9ron?= <peron.clem@gmail.com>, Liviu Dudau <Liviu.Dudau@arm.com>, Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>, Nicolas Boichat <drinkcat@chromium.org>, Robin Murphy <robin.murphy@arm.com>, Faith Ekstrand <faith.ekstrand@collabora.com>, Daniel Stone <daniels@collabora.com>, Steven Price <steven.price@arm.com>, kernel@collabora.com, Heiko Stuebner <heiko@sntech.de>, Liviu Dudau <liviu.dudau@arm.com>, Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, dri-devel@lists.freedesktop.org
-In-Reply-To: <20231204173313.2098733-14-boris.brezillon@collabora.com>
-References: <20231204173313.2098733-1-boris.brezillon@collabora.com>
- <20231204173313.2098733-14-boris.brezillon@collabora.com>
-Message-Id: <170171811207.4196.6974304837599035136.robh@kernel.org>
-Subject: Re: [PATCH v3 13/14] dt-bindings: gpu: mali-valhall-csf: Add
- support for Arm Mali CSF GPUs
+To: Kyle Tso <kyletso@google.com>
+Cc: linux-kernel@vger.kernel.org, heikki.krogerus@linux.intel.com, devicetree@vger.kernel.org, gregkh@linuxfoundation.org, robh+dt@kernel.org, badhri@google.com, linux@roeck-us.net, linux-usb@vger.kernel.org, conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+In-Reply-To: <20231204172247.1087152-2-kyletso@google.com>
+References: <20231204172247.1087152-1-kyletso@google.com>
+ <20231204172247.1087152-2-kyletso@google.com>
+Message-Id: <170171811110.4161.7711100964649237649.robh@kernel.org>
+Subject: Re: [PATCH v4 1/2] dt-bindings: connector: Add child nodes for
+ multiple PD capabilities
 Date: Mon, 04 Dec 2023 13:29:17 -0600
 
 
-On Mon, 04 Dec 2023 18:33:06 +0100, Boris Brezillon wrote:
-> From: Liviu Dudau <liviu.dudau@arm.com>
+On Tue, 05 Dec 2023 01:22:46 +0800, Kyle Tso wrote:
+> The realtime Power Delivery capabilities of a port may not be always the
+> same under different hardware status such as the port usage of a
+> multiple port system or the status of the battery pack. Define the PD
+> capability sets in DT for better configurability in Type-C/PD port
+> drivers.
 > 
-> Arm has introduced a new v10 GPU architecture that replaces the Job Manager
-> interface with a new Command Stream Frontend. It adds firmware driven
-> command stream queues that can be used by kernel and user space to submit
-> jobs to the GPU.
+> Define an optional child node "capabilities" to contain multiple USB
+> Power Delivery capabilities.
 > 
-> Add the initial schema for the device tree that is based on support for
-> RK3588 SoC. The minimum number of clocks is one for the IP, but on Rockchip
-> platforms they will tend to expose the semi-independent clocks for better
-> power management.
+> Define child nodes with pattern (e.g. caps-0, caps-1) under
+> "capabilities". Each node contains PDO data of a selectable Power
+> Delivery capability.
 > 
-> v3:
-> - Cleanup commit message to remove redundant text
-> - Added opp-table property and re-ordered entries
-> - Clarified power-domains and power-domain-names requirements for RK3588.
-> - Cleaned up example
+> Also define common properties for source-pdos, sink-pdos, and
+> op-sink-microwatt that can be referenced.
 > 
-> Note: power-domains and power-domain-names requirements for other platforms
-> are still work in progress, hence the bindings are left incomplete here.
-> 
-> v2:
-> - New commit
-> 
-> Signed-off-by: Liviu Dudau <liviu.dudau@arm.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Kyle Tso <kyletso@google.com>
 > ---
->  .../bindings/gpu/arm,mali-valhall-csf.yaml    | 147 ++++++++++++++++++
->  1 file changed, 147 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
+> v3 -> v4
+>  - modified the structure of the bindings as corrected in v2
+>  - modified the commit message to better describe the reason of this
+>    change
+> 
+> .../bindings/connector/usb-connector.yaml     | 78 ++++++++++++-------
+>  1 file changed, 49 insertions(+), 29 deletions(-)
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml:108:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
 
 dtschema/dtc warnings/errors:
-make[2]: *** Deleting file 'Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.example.dts'
-Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml:108:1: found a tab character that violates indentation
-make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.example.dts] Error 1
-make[2]: *** Waiting for unfinished jobs....
-./Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml:108:1: found a tab character that violates indentation
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml: ignoring, error parsing file
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1424: dt_binding_check] Error 2
-make: *** [Makefile:234: __sub-make] Error 2
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/connector/usb-connector.yaml: $defs:capabilities: 'anyOf' conditional failed, one must be fixed:
+	'sink-pdos' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
+	'type' was expected
+	hint: $defs entries must contain schemas
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/connector/usb-connector.yaml: $defs:capabilities: 'anyOf' conditional failed, one must be fixed:
+	'op-sink-microwatt' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
+	'type' was expected
+	hint: $defs entries must contain schemas
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/mediatek,mt6370.example.dtb: pmic@34: tcpc:connector: 'op-sink-microwatt', 'sink-pdos', 'source-pdos' do not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/mfd/mediatek,mt6370.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/mediatek,mt6370.example.dtb: pmic@34: tcpc:connector: Unevaluated properties are not allowed ('op-sink-microwatt', 'sink-pdos' were unexpected)
+	from schema $id: http://devicetree.org/schemas/mfd/mediatek,mt6370.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/mediatek,mt6370.example.dtb: tcpc: connector: 'op-sink-microwatt', 'sink-pdos', 'source-pdos' do not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/usb/mediatek,mt6370-tcpc.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/mediatek,mt6370.example.dtb: tcpc: connector: Unevaluated properties are not allowed ('op-sink-microwatt', 'sink-pdos' were unexpected)
+	from schema $id: http://devicetree.org/schemas/usb/mediatek,mt6370-tcpc.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/mediatek,mt6370.example.dtb: connector: 'op-sink-microwatt', 'sink-pdos', 'source-pdos' do not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/connector/usb-connector.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/mediatek,mt6360.example.dtb: pmic@34: tcpc:connector: 'op-sink-microwatt', 'sink-pdos', 'source-pdos' do not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/mfd/mediatek,mt6360.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/mediatek,mt6360.example.dtb: tcpc: connector: 'op-sink-microwatt', 'sink-pdos', 'source-pdos' do not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/usb/mediatek,mt6360-tcpc.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/mediatek,mt6360.example.dtb: connector: 'op-sink-microwatt', 'sink-pdos', 'source-pdos' do not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/connector/usb-connector.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.example.dtb: mt6360@34: tcpc:connector: 'op-sink-microwatt', 'sink-pdos', 'source-pdos' do not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/mfd/mediatek,mt6360.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.example.dtb: tcpc: connector: 'op-sink-microwatt', 'sink-pdos', 'source-pdos' do not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/usb/mediatek,mt6360-tcpc.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.example.dtb: connector: 'op-sink-microwatt', 'sink-pdos', 'source-pdos' do not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/connector/usb-connector.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/nxp,ptn5110.example.dtb: tcpci@50: connector: 'op-sink-microwatt', 'sink-pdos', 'source-pdos' do not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/usb/nxp,ptn5110.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/nxp,ptn5110.example.dtb: tcpci@50: connector: Unevaluated properties are not allowed ('op-sink-microwatt', 'sink-pdos' were unexpected)
+	from schema $id: http://devicetree.org/schemas/usb/nxp,ptn5110.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/nxp,ptn5110.example.dtb: connector: 'op-sink-microwatt', 'sink-pdos', 'source-pdos' do not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/connector/usb-connector.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/maxim,max33359.example.dtb: maxtcpc@25: connector: 'op-sink-microwatt', 'sink-pdos', 'source-pdos' do not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/usb/maxim,max33359.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/maxim,max33359.example.dtb: connector: 'op-sink-microwatt', 'sink-pdos', 'source-pdos' do not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/connector/usb-connector.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/richtek,rt1711h.example.dtb: rt1711h@4e: connector: 'op-sink-microwatt', 'sink-pdos', 'source-pdos' do not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/usb/richtek,rt1711h.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/richtek,rt1711h.example.dtb: connector: 'op-sink-microwatt', 'sink-pdos', 'source-pdos' do not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/connector/usb-connector.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/qcom,pmic-typec.example.dtb: typec@1500: connector: 'source-pdos' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/usb/qcom,pmic-typec.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/qcom,pmic-typec.example.dtb: connector: 'source-pdos' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/connector/usb-connector.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/fcs,fusb302.example.dtb: typec-portc@54: connector: 'op-sink-microwatt', 'sink-pdos', 'source-pdos' do not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/usb/fcs,fusb302.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/fcs,fusb302.example.dtb: typec-portc@54: connector: Unevaluated properties are not allowed ('op-sink-microwatt', 'sink-pdos' were unexpected)
+	from schema $id: http://devicetree.org/schemas/usb/fcs,fusb302.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/fcs,fusb302.example.dtb: connector: 'op-sink-microwatt', 'sink-pdos', 'source-pdos' do not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/connector/usb-connector.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/connector/usb-connector.example.dtb: connector: 'op-sink-microwatt', 'sink-pdos', 'source-pdos' do not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/connector/usb-connector.yaml#
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231204173313.2098733-14-boris.brezillon@collabora.com
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231204172247.1087152-2-kyletso@google.com
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
