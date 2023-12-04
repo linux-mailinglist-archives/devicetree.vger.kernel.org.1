@@ -1,139 +1,137 @@
-Return-Path: <devicetree+bounces-21428-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21429-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B35A380399B
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 17:05:49 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81B628039C3
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 17:10:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 32A0F280F7D
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 16:05:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 376E91F20FC0
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 16:10:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE94C2D05A;
-	Mon,  4 Dec 2023 16:05:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBEFA2D627;
+	Mon,  4 Dec 2023 16:10:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="GurDKIRU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Kh5LUkE8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B86CD116
-	for <devicetree@vger.kernel.org>; Mon,  4 Dec 2023 08:05:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1701705938;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=72Qq8SUAOQ029tY/AmkNsTOso8dRLQAyWrIEdI18AJU=;
-	b=GurDKIRUw7ynPtGCntSu083g/mIKm+45KNremsW/pl2FMdPy6hNu23ZWmM96U22ODSgEV0
-	O5QxQbW//HaDCW83O4pQ8IWJykYZ58UPrd/UqO0MFuSW0etorSlEluAvoaMPasmt4300Mn
-	QpeIrJQErk9oXemSXJrvhC3yFvxvyg4=
-Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
- [209.85.221.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-619-x-cIKuPRMk-62UspQ4yxSQ-1; Mon, 04 Dec 2023 11:05:33 -0500
-X-MC-Unique: x-cIKuPRMk-62UspQ4yxSQ-1
-Received: by mail-wr1-f69.google.com with SMTP id ffacd0b85a97d-3334b472196so675387f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 04 Dec 2023 08:05:33 -0800 (PST)
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7D6E95;
+	Mon,  4 Dec 2023 08:10:04 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-50bf3efe2cbso1503881e87.2;
+        Mon, 04 Dec 2023 08:10:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701706203; x=1702311003; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=sXEOTOPt4KaksZ2Jf2sfO5Vl3iy+KKQQtD8/P41+pGw=;
+        b=Kh5LUkE8YqnjGFJxe89IBCMf7pJZOhCxfkTX43GoIhry2vghgxm1PgqJLl6QplI4Ro
+         KGmeLot6ItieAYeOVzU+a72iDdEqpOJI/E2MZCiHAALDBYwny/taOTl11m7kiGIOdVFU
+         39wFJCo57B7lrUrFfHzRzAgAtM5ITLkDAyov+kfK1thyA/oQhH68J9oirr1nH9jVJVqk
+         jz0L1QnUcJ/SFcC5xgP3SPiQIDlR9e3fERSdTL0615qzbqftFGFtp4mHk5BuXfTzAhB4
+         dfKEvkIFlAOibpYo0qUn2trKIRuWMdvcOq6L1SJSdUz0e5ZGgVUAYslF/kWR2AFiVOHk
+         UWUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701705932; x=1702310732;
-        h=content-transfer-encoding:mime-version:message-id:date:references
-         :in-reply-to:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=72Qq8SUAOQ029tY/AmkNsTOso8dRLQAyWrIEdI18AJU=;
-        b=TZBVuhCNoNUvH98Fd/QiEDxdU1kJCjk85xPiyqHW/7VtOJ/V3sONQ53tGfRyQjf6wz
-         ww/csvtzzI+NtgUE9AcUI4Em5twjqyjxaIkSgF8CCqEXAf/fsXKUW/IFdjsX2koCSPOe
-         fXfBoNRmqQN6GYIBUTbhZA05G6FXojUmQvLDSbGcOARftgx5GPRqgWCbaeDOt0f1mD40
-         HKh/dTxBiPRJZhUzi5brcuGmKWJ2FS6MeQzvUIYCcXZzebqXLqxUyWNs5tuzXWAHxvRU
-         47e+sDABxGP20Ngzyc5ZeWJXY+vo31Hf9TlqUK6tdekfdV+Hx2FjbUZqRxsbSOZ1CSum
-         yS7g==
-X-Gm-Message-State: AOJu0Yw6ABLJ/sru0ApmTPecKVQv3D3IpPfG+ahsb6mtVgZvxznToLAr
-	Cy3B7O9m2lzHU55P8uOh8ITVVFc/vCYX+wF0zl9kdlHwQPUVUuC+63Am8zt8SIne0ei68k8i7qm
-	AAjBP7KUDyC9xz2zK4Iux3w==
-X-Received: by 2002:adf:f841:0:b0:333:38b1:2bde with SMTP id d1-20020adff841000000b0033338b12bdemr2460713wrq.100.1701705932205;
-        Mon, 04 Dec 2023 08:05:32 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGO2c8RIk7FOWrdCK6Vi2bSTizrP/0htWBOg3sB5XZ8oHosjIGzLt0ctc0XtiZkgie4jvH15Q==
-X-Received: by 2002:adf:f841:0:b0:333:38b1:2bde with SMTP id d1-20020adff841000000b0033338b12bdemr2460709wrq.100.1701705931899;
-        Mon, 04 Dec 2023 08:05:31 -0800 (PST)
-Received: from localhost (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id b12-20020a05600010cc00b0033340aa3de2sm5284527wrx.14.2023.12.04.08.05.31
+        d=1e100.net; s=20230601; t=1701706203; x=1702311003;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=sXEOTOPt4KaksZ2Jf2sfO5Vl3iy+KKQQtD8/P41+pGw=;
+        b=pDWwGdu2M/XgZbPk/jVGpG7SOHNi1oJwtKgIifOTgLuVUZtWAuHmjzFub+EINeYjiI
+         gq7aylMV7fChkTiJr9IaIFOf+NH9RBKarVBSRh0vOojDawpkj7c0YMHDzHUoiIwnxYt6
+         GyygEUnmD3tp927zy5rKpnn3TV3OXJMzyn5gRMKcBfcZawdS9tQsC5UfokLbR8nVmpH2
+         mfx5ipIaGsDX2Bz4R3k0TvAKbZ6b5W8w7bw+nEwDy6qYdLxEPhDWjruef23KdKeL3Kj1
+         9Fj1LPi2O+64o0Lmy4CT779LIKgjM+KPA9O5sqCUyaIjtV+WwHv52aQqVYjosaCU9Mo2
+         wR6g==
+X-Gm-Message-State: AOJu0YyS/D1pXtwI2TekagGFsJ7jRoJSbxf0iSCOihe4hUkjYih6v5qC
+	MLHeaCWXY1yyK6eN4e7+ndw=
+X-Google-Smtp-Source: AGHT+IGrgSTLeQgZNtNCnwebWfodvyf80a3JECT6ZZpgKiAz9YVmobqovZ1KD/dkW1dsBBl3lfBa/Q==
+X-Received: by 2002:a19:380d:0:b0:50b:f110:20c with SMTP id f13-20020a19380d000000b0050bf110020cmr558107lfa.217.1701706202672;
+        Mon, 04 Dec 2023 08:10:02 -0800 (PST)
+Received: from ?IPv6:2001:a61:3456:4e01:6ae:b55a:bd1d:57fc? ([2001:a61:3456:4e01:6ae:b55a:bd1d:57fc])
+        by smtp.gmail.com with ESMTPSA id p8-20020a5d59a8000000b003333ed23356sm6067577wrr.4.2023.12.04.08.10.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Dec 2023 08:05:31 -0800 (PST)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>, Ard Biesheuvel
- <ardb@kernel.org>, devicetree@vger.kernel.org, Sergio Lopez
- <slp@redhat.com>, Sima Vetter <daniel.vetter@ffwll.ch>, Hector Martin
- <marcan@marcan.st>, Andrew Worsley <amworsley@gmail.com>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, Frank
- Rowand <frowand.list@gmail.com>
-Subject: Re: [RFC PATCH] of/platform: Disable sysfb if a simple-framebuffer
- node is found
-In-Reply-To: <CAL_Jsq+7AwuLt9pfX0zr8g=65zSVLUFzFds82ENaspEFQNK=gg@mail.gmail.com>
-References: <20231113085305.1823455-1-javierm@redhat.com>
- <CAL_JsqKHTN5hfd4qpg5RXbmQLKZNVywDkSj9mxvfGmjrcChQQg@mail.gmail.com>
- <87jzqi59bt.fsf@minerva.mail-host-address-is-not-set>
- <CAL_JsqJM9+cbNviwuKGB5+3YbyAP3UH+TxCxsU5nUtX-iRGP2w@mail.gmail.com>
- <CAMj1kXG7Xyk0ys9j-XRo7Rr8gYz1qJE8fFSixBOwVbm-pjeX+A@mail.gmail.com>
- <874jhj1fm3.fsf@minerva.mail-host-address-is-not-set>
- <58672ab8-99bf-4a2a-af79-031d1e8fcba0@suse.de>
- <87fs0mxlyp.fsf@minerva.mail-host-address-is-not-set>
- <CAL_JsqJbZ736iV+bRbSNNaimkbJLpB9MbeKLSct16Yi67ttFcw@mail.gmail.com>
- <87a5qqxq56.fsf@minerva.mail-host-address-is-not-set>
- <CAL_Jsq+7AwuLt9pfX0zr8g=65zSVLUFzFds82ENaspEFQNK=gg@mail.gmail.com>
-Date: Mon, 04 Dec 2023 17:05:30 +0100
-Message-ID: <87zfyqvtpx.fsf@minerva.mail-host-address-is-not-set>
+        Mon, 04 Dec 2023 08:10:02 -0800 (PST)
+Message-ID: <69a7ca77055fc57cff6d6be95fb5796723171230.camel@gmail.com>
+Subject: Re: [PATCH 06/12] iio: adc: ad9467: add mutex to struct ad9467_state
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Jonathan Cameron <jic23@kernel.org>, Nuno Sa via B4 Relay
+	 <devnull+nuno.sa.analog.com@kernel.org>
+Cc: nuno.sa@analog.com, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-iio@vger.kernel.org, Olivier MOYSAN
+ <olivier.moysan@foss.st.com>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>,  "Rafael J. Wysocki" <rafael@kernel.org>, Rob
+ Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
+ Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>
+Date: Mon, 04 Dec 2023 17:10:01 +0100
+In-Reply-To: <20231204152301.6c212539@jic23-huawei>
+References: <20231121-dev-iio-backend-v1-0-6a3d542eba35@analog.com>
+	 <20231121-dev-iio-backend-v1-6-6a3d542eba35@analog.com>
+	 <20231204152301.6c212539@jic23-huawei>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
 
-Rob Herring <robh@kernel.org> writes:
+On Mon, 2023-12-04 at 15:23 +0000, Jonathan Cameron wrote:
+> On Tue, 21 Nov 2023 11:20:19 +0100
+> Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org> wrote:
+>=20
+> > From: Nuno Sa <nuno.sa@analog.com>
+> >=20
+> > When calling ad9467_set_scale(), multiple calls to ad9467_spi_write()
+> > are done which means we need to properly protect the whole operation so
+> > we are sure we will be in a sane state if two concurrent calls occur.
+> >=20
+> > Fixes: ad6797120238 ("iio: adc: ad9467: add support AD9467 ADC")
+> > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+> > ---
+> > =C2=A0drivers/iio/adc/ad9467.c | 6 +++++-
+> > =C2=A01 file changed, 5 insertions(+), 1 deletion(-)
+> >=20
+> > diff --git a/drivers/iio/adc/ad9467.c b/drivers/iio/adc/ad9467.c
+> > index 04474dbfa631..91821dee03b7 100644
+> > --- a/drivers/iio/adc/ad9467.c
+> > +++ b/drivers/iio/adc/ad9467.c
+> > @@ -4,7 +4,7 @@
+> > =C2=A0 *
+> > =C2=A0 * Copyright 2012-2020 Analog Devices Inc.
+> > =C2=A0 */
+> > -
+> > +#include <linux/cleanup.h>
+> > =C2=A0#include <linux/module.h>
+> > =C2=A0#include <linux/mutex.h>
+> > =C2=A0#include <linux/device.h>
+> > @@ -122,6 +122,8 @@ struct ad9467_state {
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0unsigned int=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0output_mode;
+> > =C2=A0
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct gpio_desc=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0*pwrdown_gpio;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* protect against concurren=
+t accesses to the device */
+> Not very specific.=C2=A0 Concurrent access usually fine at granularity of
+> individual read/write as the bus locks protect it.=C2=A0 What state
+> is actually being protected?=C2=A0 A shared buffer or some state that we
+> need to ensure remains consistent between driver and device?
 
-> On Mon, Dec 4, 2023 at 3:39=E2=80=AFAM Javier Martinez Canillas
-> <javierm@redhat.com> wrote:
->> Rob Herring <robh@kernel.org> writes:
->> > On Fri, Dec 1, 2023 at 4:21=E2=80=AFAM Javier Martinez Canillas
+At this point not any buffer/data... Just making sure things remain consist=
+ent
+(typical case when you have multiple reads/writes to the device). That's wh=
+y a tried
+to emphasize "accesses to the device". Maybe I should make it explicit I'm =
+speaking
+about multiple reads/writes.
 
-[...]
-
->>
->> > However, there might be one other issue with that and this fix. The DT
->> > simplefb can have resources such as clocks and regulators. With
->> > fw_devlink, the driver won't probe until those dependencies are met.
->> > So if you want the framebuffer console up early, then you may want to
->> > register the EFI framebuffer first and then handoff to the DT simplefb
->> > when it probes (rather than registering the device).
->> >
->> > But I agree, probably better to take this patch now and have those
->> > quirks instead of flat out not working.
->> >
->>
->> If we do that what's the plan? Are you thinking about merging this patch
->> through your OF tree or do you want to go through drm-misc with your ack?
->
-> I can take it. Do we need this in 6.7 and stable?
->
-
-IMO this can wait for v6.8 since is not a fix for a change introduced in
-the v6.7 merge window and something that only happens on a very specific
-setup (DT systems booting with u-boot EFI and providing an EFI-GOP table).
-
-Also the -rc cycle is already in -rc5, so it seems risky to push a change
-at this point. And distros can pick the patch if want to have it earlier.
-
-> Rob
->
-
---=20
-Best regards,
-
-Javier Martinez Canillas
-Core Platforms
-Red Hat
-
+- Nuno S=C3=A1
+>=20
 
