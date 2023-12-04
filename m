@@ -1,349 +1,133 @@
-Return-Path: <devicetree+bounces-21317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21324-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 978F38032C6
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 13:33:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28359803335
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 13:40:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1C9CDB20A1F
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 12:33:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D677C280574
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 12:40:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0A8C1A733;
-	Mon,  4 Dec 2023 12:33:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA6A91EB32;
+	Mon,  4 Dec 2023 12:40:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Fjf1Kq7/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D2FF138;
-	Mon,  4 Dec 2023 04:33:20 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-	by fd01.gateway.ufhost.com (Postfix) with ESMTP id 061067FEF;
-	Mon,  4 Dec 2023 20:33:19 +0800 (CST)
-Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 4 Dec
- 2023 20:33:18 +0800
-Received: from xiaofei.localdomain (180.164.60.184) by EXMBX061.cuchost.com
- (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 4 Dec
- 2023 20:33:18 +0800
-From: Keith Zhao <keith.zhao@starfivetech.com>
-To: Keith Zhao <keith.zhao@starfivetech.com>, <devicetree@vger.kernel.org>,
-	<dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
-	<linux-riscv@lists.infradead.org>
-CC: <mripard@kernel.org>, <tzimmermann@suse.de>, <airlied@gmail.com>,
-	<krzysztof.kozlowski+dt@linaro.org>, <william.qiu@starfivetech.com>,
-	<xingyu.wu@starfivetech.com>, <paul.walmsley@sifive.com>,
-	<aou@eecs.berkeley.edu>, <palmer@dabbelt.com>, <p.zabel@pengutronix.de>,
-	<shengyang.chen@starfivetech.com>, <jack.zhu@starfivetech.com>,
-	<changhuang.liang@starfivetech.com>, <maarten.lankhorst@linux.intel.com>,
-	<suijingfeng@loongson.cn>
-Subject: [v3 6/6] drm/vs: simple encoder
-Date: Mon, 4 Dec 2023 20:33:15 +0800
-Message-ID: <20231204123315.28456-7-keith.zhao@starfivetech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231204123315.28456-1-keith.zhao@starfivetech.com>
-References: <20231204123315.28456-1-keith.zhao@starfivetech.com>
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B14E1C0;
+	Mon,  4 Dec 2023 04:40:49 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-50bfe99b6edso255009e87.1;
+        Mon, 04 Dec 2023 04:40:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701693648; x=1702298448; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vsvgyciOFfSmw/EJbODu9yWaFL86QzDmPatwDo6fAHA=;
+        b=Fjf1Kq7/tv9oz7JTqV64win0IKsNL3NWQEfjpZuPkkNen0d5gINb3pV8wOq+e+5mE9
+         DZrBIuu2sLrpbCtMNZRKTZJhqd37XsAO231t7gp9DTIKZmRj9937fS8h+631sirpirG7
+         nIwiKrP6My4OMqzSeG+tUfUZYYR5j5+5veVnKFBvLeKaE4Ljdx/FGw+iMyRxevOauZhB
+         peCYbW5pSDAALcqCr65/XJt9+5LouX8tlrVSHnSmGavqnVYUO2cTblRdnZ1q6fQYzNqF
+         DewAQTP00qjTAM9t6Muq8v7DiwzvkmJzW19dJgXHwuJFCiP97fQ6eZZhUOtGBvhXZEOX
+         qj1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701693648; x=1702298448;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vsvgyciOFfSmw/EJbODu9yWaFL86QzDmPatwDo6fAHA=;
+        b=pjC29NF12R9rzw1BLisL6whKAz0JhBEtsgznK9Sci1O0OnZo+yHRh8iKPuFUMZyoXt
+         J6Dyhae9VixBzH0jjTbB1e7JD+XB2Bw2VLFoU9woCqlt97R4ljUfKO5pVVGL4BfGg+1V
+         3ZbmAGtg4AOubYxQhEAs6JlZ0tDLS9H14jqXu+HhQior/kA0QUbHQNbP0xeJAq51EfAt
+         XWt6RXqeKXj5hmJOLk+HTjAiK5l/iai9p3K9TukuSNU5NLPDeTCZnljA+I6RjCOijReu
+         lymXOTKEk/59FTLSEu8dxODzFWfoxrGOciWCSs8GIcIrkC/zNhjokXIHmw5UqYEPv2fS
+         3ZsA==
+X-Gm-Message-State: AOJu0YyEHL7/NCeg9dgr8UQ0eQq65Ey47lgDDe+rQMYqQOHzul2EU/PU
+	u/wYyjW/S60S6X8x4qFfchE=
+X-Google-Smtp-Source: AGHT+IGt7rvUqmjUimncGXW2IXVdDHVFAV2T7wKaPCUQGmJMe3Y29H7WiKNl0nj1VyY+oyfMrbTxdA==
+X-Received: by 2002:ac2:560a:0:b0:50b:f041:e434 with SMTP id v10-20020ac2560a000000b0050bf041e434mr1055315lfd.70.1701693647568;
+        Mon, 04 Dec 2023 04:40:47 -0800 (PST)
+Received: from ?IPV6:2a02:2378:120d:1a46:8f76:bf32:c739:eb6e? ([2a02:2378:120d:1a46:8f76:bf32:c739:eb6e])
+        by smtp.gmail.com with ESMTPSA id q3-20020ac246e3000000b004fb7848bacbsm1250826lfo.46.2023.12.04.04.40.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Dec 2023 04:40:47 -0800 (PST)
+Message-ID: <0a035c62-9d35-4f85-b1f3-bcb7dea17d52@gmail.com>
+Date: Mon, 4 Dec 2023 14:40:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX061.cuchost.com
- (172.16.6.61)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/5] dt-bindings: input/touchscreen: Add compatible for
+ IST3038B
+Content-Language: en-US
+To: Conor Dooley <conor@kernel.org>, Karel Balej <karelb@gimli.ms.mff.cuni.cz>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Henrik Rydberg <rydberg@bitmath.org>,
+ linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, =?UTF-8?Q?Duje_Mihanovi=C4=87?=
+ <duje.mihanovic@skole.hr>, ~postmarketos/upstreaming@lists.sr.ht,
+ phone-devel@vger.kernel.org, Karel Balej <balejk@matfyz.cz>
+References: <20231202125948.10345-1-karelb@gimli.ms.mff.cuni.cz>
+ <20231202125948.10345-3-karelb@gimli.ms.mff.cuni.cz>
+ <20231203-outskirts-reformat-e0a833903841@spud>
+From: Markuss Broks <markuss.broks@gmail.com>
+In-Reply-To: <20231203-outskirts-reformat-e0a833903841@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-add simple encoder for dsi bridge
+Hi Conor,
 
-Signed-off-by: Keith Zhao <keith.zhao@starfivetech.com>
----
- drivers/gpu/drm/verisilicon/Makefile        |   4 +-
- drivers/gpu/drm/verisilicon/vs_drv.c        |   2 +
- drivers/gpu/drm/verisilicon/vs_simple_enc.c | 195 ++++++++++++++++++++
- drivers/gpu/drm/verisilicon/vs_simple_enc.h |  23 +++
- 4 files changed, 223 insertions(+), 1 deletion(-)
- create mode 100644 drivers/gpu/drm/verisilicon/vs_simple_enc.c
- create mode 100644 drivers/gpu/drm/verisilicon/vs_simple_enc.h
+On 12/3/23 13:20, Conor Dooley wrote:
+> On Sat, Dec 02, 2023 at 01:48:33PM +0100, Karel Balej wrote:
+>> From: Markuss Broks <markuss.broks@gmail.com>
+>>
+>> Imagis IST3038B is a variant (firmware?) of Imagis IST3038 IC,
+>> add the compatible for it to the IST3038C bindings.
+> This one is better, but would be well served by mentioning what
+> specifically is different (register addresses or firmware commands?)
 
-diff --git a/drivers/gpu/drm/verisilicon/Makefile b/drivers/gpu/drm/veris=
-ilicon/Makefile
-index 71fadafcee13..cd5d0a90bcfe 100644
---- a/drivers/gpu/drm/verisilicon/Makefile
-+++ b/drivers/gpu/drm/verisilicon/Makefile
-@@ -5,6 +5,8 @@ vs_drm-objs :=3D vs_dc_hw.o \
- 		vs_crtc.o \
- 		vs_drv.o \
- 		vs_modeset.o \
--		vs_plane.o
-+		vs_plane.o \
-+		vs_simple_enc.o
-+
- vs_drm-$(CONFIG_DRM_VERISILICON_STARFIVE_HDMI) +=3D starfive_hdmi.o
- obj-$(CONFIG_DRM_VERISILICON) +=3D vs_drm.o
-diff --git a/drivers/gpu/drm/verisilicon/vs_drv.c b/drivers/gpu/drm/veris=
-ilicon/vs_drv.c
-index d7e5199fe293..946f137ab124 100644
---- a/drivers/gpu/drm/verisilicon/vs_drv.c
-+++ b/drivers/gpu/drm/verisilicon/vs_drv.c
-@@ -23,6 +23,7 @@
- #include "vs_drv.h"
- #include "vs_modeset.h"
- #include "vs_dc.h"
-+#include "vs_simple_enc.h"
-=20
- #define DRV_NAME	"verisilicon"
- #define DRV_DESC	"Verisilicon DRM driver"
-@@ -217,6 +218,7 @@ static struct platform_driver *drm_sub_drivers[] =3D =
-{
- #ifdef CONFIG_DRM_VERISILICON_STARFIVE_HDMI
- 	&starfive_hdmi_driver,
- #endif
-+	&simple_encoder_driver,
- };
-=20
- static struct component_match *vs_drm_match_add(struct device *dev)
-diff --git a/drivers/gpu/drm/verisilicon/vs_simple_enc.c b/drivers/gpu/dr=
-m/verisilicon/vs_simple_enc.c
-new file mode 100644
-index 000000000000..c5a8d82bc469
---- /dev/null
-+++ b/drivers/gpu/drm/verisilicon/vs_simple_enc.c
-@@ -0,0 +1,195 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2020 VeriSilicon Holdings Co., Ltd.
-+ */
-+#include <linux/component.h>
-+#include <linux/of_device.h>
-+#include <linux/module.h>
-+
-+#include <drm/drm_atomic_helper.h>
-+#include <drm/drm_bridge.h>
-+#include <drm/drm_crtc_helper.h>
-+#include <drm/drm_of.h>
-+#include <linux/regmap.h>
-+#include <linux/media-bus-format.h>
-+#include <linux/mfd/syscon.h>
-+
-+#include "vs_crtc.h"
-+#include "vs_simple_enc.h"
-+
-+static const struct simple_encoder_priv dsi_priv =3D {
-+	.encoder_type =3D DRM_MODE_ENCODER_DSI
-+};
-+
-+static inline struct simple_encoder *to_simple_encoder(struct drm_encode=
-r *enc)
-+{
-+	return container_of(enc, struct simple_encoder, encoder);
-+}
-+
-+static int encoder_parse_dt(struct device *dev)
-+{
-+	struct simple_encoder *simple =3D dev_get_drvdata(dev);
-+	unsigned int args[2];
-+
-+	simple->dss_regmap =3D syscon_regmap_lookup_by_phandle_args(dev->of_nod=
-e,
-+								  "starfive,syscon",
-+								  2, args);
-+
-+	if (IS_ERR(simple->dss_regmap)) {
-+		return dev_err_probe(dev, PTR_ERR(simple->dss_regmap),
-+				     "getting the regmap failed\n");
-+	}
-+
-+	simple->offset =3D args[0];
-+	simple->mask =3D args[1];
-+
-+	return 0;
-+}
-+
-+void encoder_atomic_enable(struct drm_encoder *encoder,
-+			   struct drm_atomic_state *state)
-+{
-+	struct simple_encoder *simple =3D to_simple_encoder(encoder);
-+
-+	regmap_update_bits(simple->dss_regmap, simple->offset, simple->mask,
-+			   simple->mask);
-+}
-+
-+int encoder_atomic_check(struct drm_encoder *encoder,
-+			 struct drm_crtc_state *crtc_state,
-+			 struct drm_connector_state *conn_state)
-+{
-+	struct vs_crtc_state *vs_crtc_state =3D to_vs_crtc_state(crtc_state);
-+	struct drm_connector *connector =3D conn_state->connector;
-+	int ret =3D 0;
-+
-+	struct drm_bridge *first_bridge =3D drm_bridge_chain_get_first_bridge(e=
-ncoder);
-+	struct drm_bridge_state *bridge_state =3D ERR_PTR(-EINVAL);
-+
-+	vs_crtc_state->encoder_type =3D encoder->encoder_type;
-+
-+	if (first_bridge && first_bridge->funcs->atomic_duplicate_state)
-+		bridge_state =3D drm_atomic_get_bridge_state(crtc_state->state, first_=
-bridge);
-+
-+	if (IS_ERR(bridge_state)) {
-+		if (connector->display_info.num_bus_formats)
-+			vs_crtc_state->output_fmt =3D connector->display_info.bus_formats[0];
-+		else
-+			vs_crtc_state->output_fmt =3D MEDIA_BUS_FMT_FIXED;
-+	} else {
-+		vs_crtc_state->output_fmt =3D bridge_state->input_bus_cfg.format;
-+	}
-+
-+	switch (vs_crtc_state->output_fmt) {
-+	case MEDIA_BUS_FMT_FIXED:
-+	case MEDIA_BUS_FMT_RGB565_1X16:
-+	case MEDIA_BUS_FMT_RGB666_1X18:
-+	case MEDIA_BUS_FMT_RGB888_1X24:
-+	case MEDIA_BUS_FMT_RGB666_1X24_CPADHI:
-+	case MEDIA_BUS_FMT_RGB101010_1X30:
-+	case MEDIA_BUS_FMT_UYYVYY8_0_5X24:
-+	case MEDIA_BUS_FMT_UYVY8_1X16:
-+	case MEDIA_BUS_FMT_YUV8_1X24:
-+	case MEDIA_BUS_FMT_UYYVYY10_0_5X30:
-+	case MEDIA_BUS_FMT_UYVY10_1X20:
-+	case MEDIA_BUS_FMT_YUV10_1X30:
-+		ret =3D 0;
-+		break;
-+	default:
-+		ret =3D -EINVAL;
-+		break;
-+	}
-+
-+	/* If MEDIA_BUS_FMT_FIXED, set it to default value */
-+	if (vs_crtc_state->output_fmt =3D=3D MEDIA_BUS_FMT_FIXED)
-+		vs_crtc_state->output_fmt =3D MEDIA_BUS_FMT_RGB888_1X24;
-+
-+	return ret;
-+}
-+
-+static const struct drm_encoder_helper_funcs encoder_helper_funcs =3D {
-+	.atomic_check =3D encoder_atomic_check,
-+	.atomic_enable =3D encoder_atomic_enable,
-+};
-+
-+static int encoder_bind(struct device *dev, struct device *master, void =
-*data)
-+{
-+	struct drm_device *drm_dev =3D data;
-+	struct simple_encoder *simple =3D dev_get_drvdata(dev);
-+	struct drm_encoder *encoder;
-+	struct drm_bridge *bridge;
-+	int ret;
-+
-+	encoder =3D &simple->encoder;
-+
-+	ret =3D drmm_encoder_init(drm_dev, encoder, NULL, simple->priv->encoder=
-_type, NULL);
-+	if (ret)
-+		return ret;
-+
-+	drm_encoder_helper_add(encoder, &encoder_helper_funcs);
-+
-+	encoder->possible_crtcs =3D
-+			drm_of_find_possible_crtcs(drm_dev, dev->of_node);
-+
-+	/* output port is port1*/
-+	bridge =3D devm_drm_of_get_bridge(dev, dev->of_node, 1, 0);
-+	if (IS_ERR(bridge))
-+		return 0;
-+
-+	return drm_bridge_attach(encoder, bridge, NULL, 0);
-+}
-+
-+static const struct component_ops encoder_component_ops =3D {
-+	.bind =3D encoder_bind,
-+};
-+
-+static const struct of_device_id simple_encoder_dt_match[] =3D {
-+	{ .compatible =3D "starfive,dsi-encoder", .data =3D &dsi_priv},
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, simple_encoder_dt_match);
-+
-+static int encoder_probe(struct platform_device *pdev)
-+{
-+	struct device *dev =3D &pdev->dev;
-+	struct simple_encoder *simple;
-+	int ret;
-+
-+	simple =3D devm_kzalloc(dev, sizeof(*simple), GFP_KERNEL);
-+	if (!simple)
-+		return -ENOMEM;
-+
-+	simple->priv =3D of_device_get_match_data(dev);
-+
-+	simple->dev =3D dev;
-+
-+	dev_set_drvdata(dev, simple);
-+
-+	ret =3D encoder_parse_dt(dev);
-+	if (ret)
-+		return ret;
-+
-+	return component_add(dev, &encoder_component_ops);
-+}
-+
-+static int encoder_remove(struct platform_device *pdev)
-+{
-+	struct device *dev =3D &pdev->dev;
-+
-+	component_del(dev, &encoder_component_ops);
-+	dev_set_drvdata(dev, NULL);
-+
-+	return 0;
-+}
-+
-+struct platform_driver simple_encoder_driver =3D {
-+	.probe =3D encoder_probe,
-+	.remove =3D encoder_remove,
-+	.driver =3D {
-+		.name =3D "vs-simple-encoder",
-+		.of_match_table =3D of_match_ptr(simple_encoder_dt_match),
-+	},
-+};
-+
-+MODULE_DESCRIPTION("Simple Encoder Driver");
-+MODULE_LICENSE("GPL");
-diff --git a/drivers/gpu/drm/verisilicon/vs_simple_enc.h b/drivers/gpu/dr=
-m/verisilicon/vs_simple_enc.h
-new file mode 100644
-index 000000000000..fb33ca9e18d6
---- /dev/null
-+++ b/drivers/gpu/drm/verisilicon/vs_simple_enc.h
-@@ -0,0 +1,23 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Copyright (C) 2022 VeriSilicon Holdings Co., Ltd.
-+ */
-+
-+#ifndef __VS_SIMPLE_ENC_H_
-+#define __VS_SIMPLE_ENC_H_
-+
-+struct simple_encoder_priv {
-+	unsigned char encoder_type;
-+};
-+
-+struct simple_encoder {
-+	struct drm_encoder encoder;
-+	struct device *dev;
-+	const struct simple_encoder_priv *priv;
-+	struct regmap *dss_regmap;
-+	unsigned int offset;
-+	unsigned int mask;
-+};
-+
-+extern struct platform_driver simple_encoder_driver;
-+#endif /* __VS_SIMPLE_ENC_H_ */
---=20
-2.34.1
+I don't think anyone knows this other than Imagis itself. I would guess 
+it's different hardware, since register addresses are indeed different, 
+but on the other hand, there is a possibility that firmware on the MCU 
+could be responding to those commands. I suppose "... IST3038B is a 
+hardware variant of ... IST3038" would be more correct.
 
+The reason why I think it could be firmware-defined is because we have a 
+lot of variants (30xxA, 30xxB, 30xxC, plain 30xx), and the numbers 
+usually mean feature level/completeness, e.g. some don't support the 
+touch pressure or touchkeys, and we don't know what A/B/C/none means.
+
+>
+> Cheers,
+> Conor.
+>
+>> Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
+>> Signed-off-by: Karel Balej <balejk@matfyz.cz>
+>> ---
+>>   .../devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml   | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml b/Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml
+>> index 0d6b033fd5fb..b5372c4eae56 100644
+>> --- a/Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml
+>> +++ b/Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml
+>> @@ -18,6 +18,7 @@ properties:
+>>   
+>>     compatible:
+>>       enum:
+>> +      - imagis,ist3038b
+>>         - imagis,ist3038c
+>>   
+>>     reg:
+>> -- 
+>> 2.43.0
+>>
+- Markuss
 
