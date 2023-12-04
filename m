@@ -1,190 +1,144 @@
-Return-Path: <devicetree+bounces-21398-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21399-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF81780386A
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 16:13:13 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B767D803872
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 16:15:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B03228127C
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 15:13:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3EE60B20945
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 15:15:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D66E2C190;
-	Mon,  4 Dec 2023 15:13:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 078D72C195;
+	Mon,  4 Dec 2023 15:15:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LUQ/JInB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF90DB2;
-	Mon,  4 Dec 2023 07:13:05 -0800 (PST)
-Received: by mail-oi1-f180.google.com with SMTP id 5614622812f47-3b844357f7cso2420513b6e.1;
-        Mon, 04 Dec 2023 07:13:05 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701702785; x=1702307585;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lQuwH9WUYT+pgLpAUKwBB834gsdJ8BIx7PCmxcItZLs=;
-        b=r9kTaUqzjhpWLelGwD23YaBmnO8Qu9HsexXgzfjs26DFhytrtB/ya3RueeaG4YQ15j
-         FVe9yZKpHS8eA4xecizqcBp30rfhl3LGKWlwhWXOFdSE9xWmShMCQOe+nLKcXJNiJcxP
-         BGtWFodFOcYgMAMmW5TQ9OR/Vb007SG/Q4BdQp4KJn6dxWJHayeYirs/VL5wksWcuXHm
-         e1FJCvmQ4LG0Hc8+EFk3DV1If4FfMu2Tt1fb3jxal/Xgfqgr0DFo3uwL2307LbN47HIS
-         VIIJgFNPSEDBG42YQBde3aYnbsVU20gmE4Wgcr+omFNiYVcRl95HPsSlbIl2iEBXre9C
-         LY9A==
-X-Gm-Message-State: AOJu0YxDEtRk5e5L20g0kdG5YclEde/t+FVlhoSzMH+zIVbINGF/cfg4
-	7ZZKZslqx0gXMeexRsPSMw==
-X-Google-Smtp-Source: AGHT+IGEPjoALtHmQxgb3/6E3xleYkYIRBBjXNioqkZbcrEFAN2RwdZ/SiofVetZqdbFnaY8aGrMTQ==
-X-Received: by 2002:a05:6808:180b:b0:3a7:d566:8b5e with SMTP id bh11-20020a056808180b00b003a7d5668b5emr5211406oib.44.1701702785157;
-        Mon, 04 Dec 2023 07:13:05 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 10-20020aca090a000000b003b8b56905b4sm1002082oij.32.2023.12.04.07.13.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Dec 2023 07:13:04 -0800 (PST)
-Received: (nullmailer pid 1355175 invoked by uid 1000);
-	Mon, 04 Dec 2023 15:13:03 -0000
-Date: Mon, 4 Dec 2023 09:13:03 -0600
-From: Rob Herring <robh@kernel.org>
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Support Opensource <support.opensource@diasemi.com>, "Rafael J. Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, Geert Uytterhoeven <geert+renesas@glider.be>, Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v2 04/11] dt-bindings: thermal: Convert da906{1,2}
- thermal to json-schema
-Message-ID: <20231204151303.GB1260709-robh@kernel.org>
-References: <20231202192536.266885-1-biju.das.jz@bp.renesas.com>
- <20231202192536.266885-5-biju.das.jz@bp.renesas.com>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D24B92375B;
+	Mon,  4 Dec 2023 15:15:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08FE8C433C7;
+	Mon,  4 Dec 2023 15:15:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701702923;
+	bh=BOM1EV4bba9ClKDdr+6k5WZ62Teyd2Rgs3hahYp9izU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=LUQ/JInBnw5u1yUBx5xwlGXP3zGOWSnHAHgjcjOFSt2LaTNvH/Wv1HGtE/A1I5xvG
+	 IPZolxBQTkEFTyh2zuOtZC1SqLsPRS6dhNeW+DQ0OXzdAxSozQx7bEoNyPgZkBD68z
+	 hjki1mfO12qJWC5nqLDwwztW6ippl+hpJvIXSEBlt0GHp/FhmpB+VIe9N1O7mp9BEV
+	 pek0XoAOUGO9VlpSWNvLWrNnlHuY5F2fhTuvdFhtpbFbdVCE9QZxdkkS3zV93eUgD9
+	 no6gIb5Km2xfKFp39bJqSfpOJVO0rRwPY4Q5Esyq5Bbn2dej/uybaU2mblNjKer9w7
+	 XjuCRgMGdQMvg==
+Date: Mon, 4 Dec 2023 15:15:14 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
+Cc: David Lechner <dlechner@baylibre.com>, nuno.sa@analog.com,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-iio@vger.kernel.org, Olivier MOYSAN <olivier.moysan@foss.st.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, Frank Rowand
+ <frowand.list@gmail.com>, Lars-Peter Clausen <lars@metafoo.de>, Michael
+ Hennerich <Michael.Hennerich@analog.com>
+Subject: Re: [PATCH 04/12] iio: adc: ad9467: fix reset gpio handling
+Message-ID: <20231204151514.4e2c8ada@jic23-huawei>
+In-Reply-To: <3925cb4b6453644c889675c20329b3477a06fcd5.camel@gmail.com>
+References: <20231121-dev-iio-backend-v1-0-6a3d542eba35@analog.com>
+	<20231121-dev-iio-backend-v1-4-6a3d542eba35@analog.com>
+	<CAMknhBGCqnzCp6vQ+59Z-SybScvbtU7aWdAD6KnP1e6=q60gVQ@mail.gmail.com>
+	<d534c3323c32d4ed2aedae19a9f101be90ef0cc7.camel@gmail.com>
+	<CAMknhBGjm2ja9HOenOWi9O5Ao8qUg=gT=_Vz8CyxQ=pfNX2EJQ@mail.gmail.com>
+	<3925cb4b6453644c889675c20329b3477a06fcd5.camel@gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231202192536.266885-5-biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Sat, Dec 02, 2023 at 07:25:28PM +0000, Biju Das wrote:
-> Convert the da906{1,2} thermal device tree binding documentation to
-> json-schema.
-> 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
->  .../bindings/thermal/da9062-thermal.txt       | 36 ------------
->  .../bindings/thermal/dlg,da9062-thermal.yaml  | 58 +++++++++++++++++++
->  2 files changed, 58 insertions(+), 36 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/thermal/da9062-thermal.txt
->  create mode 100644 Documentation/devicetree/bindings/thermal/dlg,da9062-thermal.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/thermal/da9062-thermal.txt b/Documentation/devicetree/bindings/thermal/da9062-thermal.txt
-> deleted file mode 100644
-> index e241bb5a5584..000000000000
-> --- a/Documentation/devicetree/bindings/thermal/da9062-thermal.txt
-> +++ /dev/null
-> @@ -1,36 +0,0 @@
-> -* Dialog DA9062/61 TJUNC Thermal Module
-> -
-> -This module is part of the DA9061/DA9062. For more details about entire
-> -DA9062 and DA9061 chips see Documentation/devicetree/bindings/mfd/da9062.txt
-> -
-> -Junction temperature thermal module uses an interrupt signal to identify
-> -high THERMAL_TRIP_HOT temperatures for the PMIC device.
-> -
-> -Required properties:
-> -
-> -- compatible: should be one of the following valid compatible string lines:
-> -        "dlg,da9061-thermal", "dlg,da9062-thermal"
-> -        "dlg,da9062-thermal"
-> -
-> -Optional properties:
-> -
-> -- polling-delay-passive : Specify the polling period, measured in
-> -    milliseconds, between thermal zone device update checks.
-> -
-> -Example: DA9062
-> -
-> -	pmic0: da9062@58 {
-> -		thermal {
-> -			compatible = "dlg,da9062-thermal";
-> -			polling-delay-passive = <3000>;
-> -		};
-> -	};
-> -
-> -Example: DA9061 using a fall-back compatible for the DA9062 onkey driver
-> -
-> -	pmic0: da9061@58 {
-> -		thermal {
-> -			compatible = "dlg,da9061-thermal", "dlg,da9062-thermal";
-> -			polling-delay-passive = <3000>;
-> -		};
-> -	};
-> diff --git a/Documentation/devicetree/bindings/thermal/dlg,da9062-thermal.yaml b/Documentation/devicetree/bindings/thermal/dlg,da9062-thermal.yaml
-> new file mode 100644
-> index 000000000000..0021ebdd83a0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/thermal/dlg,da9062-thermal.yaml
-> @@ -0,0 +1,58 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/thermal/dlg,da9062-thermal.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Dialog DA9062/61 TJUNC Thermal Module
-> +
-> +description:
-> +  This module is part of the DA9061/DA9062. For more details about entire
-> +  DA9062 and DA9061 chips see Documentation/devicetree/bindings/mfd/da9062.txt
-> +
-> +  Junction temperature thermal module uses an interrupt signal to identify
-> +  high THERMAL_TRIP_HOT temperatures for the PMIC device.
-> +
-> +maintainers:
-> +  - Biju Das <biju.das.jz@bp.renesas.com>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - dlg,da9062-thermal
-> +      - items:
-> +          - enum:
-> +              - dlg,da9061-thermal
-> +          - const: dlg,da9062-thermal # da9062-thermal fallback
-> +
-> +  polling-delay-passive:
-> +    description:
-> +      Specify the polling period, measured in milliseconds, between
-> +      thermal zone device update checks.
-> +
-> +required:
-> +  - compatible
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +      pmic@58 {
-> +        compatible = "dlg,da9062";
-> +        reg = <0x58>;
-> +        interrupt-parent = <&gpio6>;
-> +        interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-> +        interrupt-controller;
-> +
-> +        thermal {
-> +          compatible = "dlg,da9062-thermal";
-> +          polling-delay-passive = <3000>;
-> +        };
-> +      };
-> +    };
+On Sat, 02 Dec 2023 09:36:47 +0100
+Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
 
-Just drop the example here. No need for 2 examples, just provide 1 
-complete example in the MFD schema.
+> On Fri, 2023-12-01 at 11:01 -0600, David Lechner wrote:
+> > On Fri, Dec 1, 2023 at 2:47=E2=80=AFAM Nuno S=C3=A1 <noname.nuno@gmail.=
+com> wrote: =20
+> > >=20
+> > > On Thu, 2023-11-30 at 15:41 -0600, David Lechner wrote: =20
+> > > > On Tue, Nov 21, 2023 at 4:17=E2=80=AFAM Nuno Sa via B4 Relay
+> > > > <devnull+nuno.sa.analog.com@kernel.org> wrote: =20
+> > > > >=20
+> > > > > From: Nuno Sa <nuno.sa@analog.com>
+> > > > >=20
+> > > > > The reset gpio was being requested with GPIOD_OUT_LOW which means=
+, not
+> > > > > asserted. Then it was being asserted but never de-asserted which =
+means
+> > > > > the devices was left in reset. Fix it by de-asserting the gpio. =
+=20
+> > > >=20
+> > > > It could be helpful to update the devicetree bindings to state the
+> > > > expected active-high or active-low setting for this gpio so it is
+> > > > clear which state means asserted.
+> > > >  =20
+> > >=20
+> > > You could state that the chip is active low but I don't see that chan=
+ge that
+> > > important for now. Not sure if this is clear and maybe that's why you=
+r comment.
+> > > GPIOD_OUT_HIGH has nothing to do with active high or low. It just mea=
+ns, "get me
+> > > the
+> > > pin in the asserted state".
+> > >  =20
+> >=20
+> > I would assume that this bug happened in the first place because
+> > someone forgot GPIOD_OUT_LOW in the devicetree when they were
+> > developing the driver. So this is why I suggested that updating the
+> > devicetree binding docs so that future users are less likely to make
+> > the same mistake. Currently, the bindings don't even have reset-gpios
+> > in the examples. =20
+>=20
+> Hmm, I think you're missing the point... The bug has nothing to do with d=
+evicetree.
+> This is what was happening:
+>=20
+> 1) We were calling devm_gpiod_get_optional() with GPIOD_OUT_LOW. What thi=
+s means is
+> that you get an output gpio deasserted. Hence the device is out of reset.=
+ And here is
+> the important part... what you have in dts does not matter. If you have a=
+ctive low,
+> it means the pin level will be 1. If you have high, the pin level is 0. A=
+nd this is
+> all handled by gpiolib for you.=20
+>=20
+> 2) Then, we called gpiod_direction_output(..., 1), which means set the di=
+rection out
+> (which is actually not needed since it was already done when getting the =
+pin) and
+> assert the pin. Hence, reset the device. And we were never de-asserting t=
+he pin so
+> the device would be left in reset.
 
-With that,
+Functionally I believe David is correct.   Flipping the DT would 'fix' this.
+It's all down to a nreset vs reset pin description.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+In this case I guess it's defined a a 'not reset' on the datasheet which is=
+ what
+is causing the confusion.  It's not uncommon for people to refer to a reset=
+ when
+they mean a "not reset" with assumptions on polarity to match.
 
-Rob
+Jonathan
+
+
+
+>=20
+> - Nuno S=C3=A1
+
 
