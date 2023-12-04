@@ -1,92 +1,99 @@
-Return-Path: <devicetree+bounces-21492-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21493-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C08F7803D35
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 19:36:52 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70749803D46
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 19:39:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F169B1C20A4C
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 18:36:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1116BB20A6C
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 18:39:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C33E2C867;
-	Mon,  4 Dec 2023 18:36:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FBE52E83D;
+	Mon,  4 Dec 2023 18:39:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b="43o/gGkg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A73ADFF;
-	Mon,  4 Dec 2023 10:36:45 -0800 (PST)
-Received: from francesco-nb.int.toradex.com (31-10-206-125.static.upc.ch [31.10.206.125])
-	by mail11.truemail.it (Postfix) with ESMTPA id 10075207C9;
-	Mon,  4 Dec 2023 19:36:42 +0100 (CET)
-Date: Mon, 4 Dec 2023 19:36:40 +0100
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>
-Cc: Francesco Dolcini <francesco@dolcini.it>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: Re: [PATCH v2 3/3] arm64: dts: ti: add verdin am62 mallow board
-Message-ID: <ZW4cONRWiRoOiaVd@francesco-nb.int.toradex.com>
-References: <20231201145551.23337-1-francesco@dolcini.it>
- <20231201145551.23337-4-francesco@dolcini.it>
- <20231204181336.scm2fgfyyzpr2u7t@dimmer>
+Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19E42FA;
+	Mon,  4 Dec 2023 10:39:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=s1;
+	t=1701715118; bh=rj7Er9R1xUABlk9cGEroopYihFMT61dNP76qORyH8LU=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=43o/gGkgLpC4l6K12zlYt+pRDMhb+R1bIunqxnfaZiH+qBkGaiNt+gy3h8gB++v/g
+	 XI2BqFGANYQmFHLXs7hSf36vskRWxrq2TyLFifpfwbj8BfXupkynjhAsf1K64o57hm
+	 oY3nj9P4j8rHKsasN+LR1Ni6+QAaYGiMuVqPMpIw=
+From: Luca Weiss <luca@z3ntu.xyz>
+To: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+Subject: Re: [PATCH 2/2] ARM: dts: qcom: msm8226: Add CPU and SAW/ACC nodes
+Date: Mon, 04 Dec 2023 19:38:37 +0100
+Message-ID: <12332815.O9o76ZdvQC@z3ntu.xyz>
+In-Reply-To: <d1f1ee82-7997-4e36-a21a-7b70d2db9746@linaro.org>
+References:
+ <20231203-msm8226-cpu-v1-0-d18e83340b32@z3ntu.xyz>
+ <20231203-msm8226-cpu-v1-2-d18e83340b32@z3ntu.xyz>
+ <d1f1ee82-7997-4e36-a21a-7b70d2db9746@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231204181336.scm2fgfyyzpr2u7t@dimmer>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hello Nishanth,
-
-On Mon, Dec 04, 2023 at 12:13:36PM -0600, Nishanth Menon wrote:
-> On 15:55-20231201, Francesco Dolcini wrote:
-> > From: Joao Paulo Goncalves <joao.goncalves@toradex.com>
+On Montag, 4. Dezember 2023 11:41:36 CET Konrad Dybcio wrote:
+> On 3.12.2023 23:38, Luca Weiss wrote:
+> > From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+> > 
+> > Add CPU and SAW/ACC nodes to enable SMP on MSM8226.
+> > 
+> > Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+> > [luca: update some nodes to fix dtbs_check errors, reorder, cleanup]
+> > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> > ---
 > 
-> [...]
+> Looks like L2 SAW (@ 0xf9012000) is missing.. but then it's present
+> on 8974.. but it's not bound by any driver :)
+
+Right, I had this node before:
+
+	saw_l2: power-controller@f9012000 {
+		compatible = "qcom,saw2";
+		reg = <0xf9012000 0x1000>;
+		regulator;
+	};
+
+And then used like this:
+
+	L2: l2-cache {
+		compatible = "cache";
+		cache-level = <2>;
+		qcom,saw = <&saw_l2>;
+	};
+
+I decided to remove it because first there's no "qcom,saw2" (without a second 
+compatible) in the yaml. And qcom,saw property in the l2-cache node also 
+wasn't accepted. Since I'm not aware of any driver code currently using this 
+(and the bindings not being particularly maintained, there's still this bit in 
+.txt form?) I decided to remove it to not knowingly introduce binding errors.
+
+Regards
+Luca
+
 > 
-> > +
-> > +	tpm@1 {
-> > +		compatible = "infineon,slb9670", "tcg,tpm_tis-spi";
+> The nodes you added here look correct FWIW
 > 
-> arch/arm64/boot/dts/ti/k3-am625-verdin-nonwifi-mallow.dtb: /bus@f0000/spi@20110000/tpm@1: failed to match any schema with compatible: ['infineon,slb9670', 'tcg,tpm_tis-spi']
-> arch/arm64/boot/dts/ti/k3-am625-verdin-wifi-mallow.dtb: /bus@f0000/spi@20110000/tpm@1: failed to match any schema with compatible: ['infineon,slb9670', 'tcg,tpm_tis-spi']
-> 
-> We should either drop this node OR introduce bindings and later
-> introduce this series.
-> 
-> Yes, I know there are other places where the compatible is already used
-> arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-rdk.dts
-> arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts1G
-> etc.. But, unfortunately, I'd rather see the binding
-> Documentation/devicetree/bindings/security/tpm/tpm_tis_spi.txt
-> transition over to yaml prior to picking things up. (NOTE: the same
-> rules apply to TI devs as well..)
+> Konrad
 
-I disagree (and I also know that in the end is your call to take patches
-or not and I will just accept your decision whatever it is).
 
-What you are asking here is to not use any binding that was not already
-converted from txt to yaml, I do not think it is fair to force this
-decision just for TI DT files.
 
-I'd like also to add that a conversion to yaml of this binding is in the
-work [1] and this DT is compliant with it.
 
-What's DT maintainers opinion on this matter? Rob recently provided
-feedback on TPM bindings txt to yaml conversion so it should be fresh on
-his mind.
-
-Francesco
-
-[1] https://lore.kernel.org/all/cover.1701093036.git.lukas@wunner.de/
 
