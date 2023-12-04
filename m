@@ -1,275 +1,182 @@
-Return-Path: <devicetree+bounces-21170-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21171-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EA5C802A99
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 04:51:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 741E4802AB5
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 05:10:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 102FE1F20F53
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 03:51:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A4EC91C20895
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 04:10:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D07CB33CF;
-	Mon,  4 Dec 2023 03:51:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83A154A34;
+	Mon,  4 Dec 2023 04:09:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="PcNYI5fx"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="DqMRqWSX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4422CC4
-	for <devicetree@vger.kernel.org>; Sun,  3 Dec 2023 19:51:06 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-50abb83866bso5276268e87.3
-        for <devicetree@vger.kernel.org>; Sun, 03 Dec 2023 19:51:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1701661864; x=1702266664; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0syhQ4FzCWigP5oJO4Kq1BAVvU372cUxnkG2YAyqM58=;
-        b=PcNYI5fxCJPUC+t/YG1iv6LaStC1Y6VLe+CMzuh6QoVRJvqq5vMWZqxfMpaTTJDu7Q
-         O8yDRO+76iWsSAkud3Q2QIMPYYr+MlUT8lOq62yFA0r6K5l1kDlMGzOq6YvSp2icYj0Z
-         QUW78tD5e43LR61yxReuOcYCjN793t969Gwak=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701661864; x=1702266664;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0syhQ4FzCWigP5oJO4Kq1BAVvU372cUxnkG2YAyqM58=;
-        b=N9PTWkLzKYI59Uqo+K04zIMC1r54ROdwXaeZb9b9gqD3/p0VAttgNS23ERfCx1oWFS
-         sH+i76/CuG9njtoXYJFwUgEW4vuYGpfeGtsqK7cw0G22b46Bgpjmvp/V5TU18WJ9IEmr
-         cRAa1ANBpz3716Soyd3OYtmnhFa68B8wm3NZOImP35tqUUuev0Uw7JDKg2haCzfMC65A
-         oLt+KN9c0Ki9AV3nQg5jKt6+4bPPsRtejRGc+yYIZE8Rlov+FYRqmtUiYkl3oFqQ6B1t
-         Jql7Exu7qgnrDzaRGmLz6xmRRflp8F+tNlsAt7zSDNRgFsLCNtUK4sqQsui7KK8ikV7E
-         GqMg==
-X-Gm-Message-State: AOJu0Ywili8oiq7ppix3P8qdM24Debmjn2kwanEKm1VfeGlEMD3NxBWt
-	gc+wCWbvT5lEcBlZu4AeP08bd/iWYq44K1d7YYE2Uw==
-X-Google-Smtp-Source: AGHT+IFKsYDE6bCvMKPPAMA2dIf+GqREU669Z4KrunuaczAMtywnMiPr/oN9gXqxZlapAE/ft8JzDvA8aoYuNQ0xm+Y=
-X-Received: by 2002:ac2:48ae:0:b0:50b:f8e6:3786 with SMTP id
- u14-20020ac248ae000000b0050bf8e63786mr174325lfg.103.1701661864266; Sun, 03
- Dec 2023 19:51:04 -0800 (PST)
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB04CD5;
+	Sun,  3 Dec 2023 20:09:54 -0800 (PST)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B449hS2101147;
+	Sun, 3 Dec 2023 22:09:43 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1701662983;
+	bh=sFJlW8fQVjtSfz4/mO3eSp9K2vfl+J4Hwc+oiMu7Ebk=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=DqMRqWSXv3I0d3KUQQu8CzgntoxtPCKpP7/lPhiSfGcO9LRd7CpO65+JrLEtr0Ro/
+	 pWu1ZDfZFHpTDezTdKcMuGh2rWrjMj5Ad1NLLW2zZ07wCxsrSKg2ZejeZiMwRbnRXp
+	 UjiWoSF2+d5AcmzlnAfRLDAJ5jeXPfl8rrf6GSVw=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B449hae116989
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Sun, 3 Dec 2023 22:09:43 -0600
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 3
+ Dec 2023 22:09:42 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Sun, 3 Dec 2023 22:09:42 -0600
+Received: from [172.24.20.156] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B449bjH040369;
+	Sun, 3 Dec 2023 22:09:38 -0600
+Message-ID: <2cbb60f0-3dfc-48f2-9b61-41adf14648c7@ti.com>
+Date: Mon, 4 Dec 2023 09:39:37 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231201070719.1229447-1-wenst@chromium.org> <20231201070719.1229447-7-wenst@chromium.org>
- <CAJMQK-iPT6p1izqQCHmJD2+E_RmnDKQfxsgMetnKtwNgLUmx1A@mail.gmail.com>
-In-Reply-To: <CAJMQK-iPT6p1izqQCHmJD2+E_RmnDKQfxsgMetnKtwNgLUmx1A@mail.gmail.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Mon, 4 Dec 2023 11:50:53 +0800
-Message-ID: <CAGXv+5EpgGhBGWupsQ9oFSyMr-QTma1O38XOPYj2fZ5mpOYYhg@mail.gmail.com>
-Subject: Re: [PATCH v2 6/9] arm64: dts: mediatek: Add MT8186 Krabby platform
- based Tentacruel / Tentacool
-To: Hsin-Yi Wang <hsinyi@chromium.org>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 0/7] Add TPS6594 PMIC support on several boards
+To: Neha Malcom Francis <n-francis@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <a-nandan@ti.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <eblanc@baylibre.com>,
+        <jneanne@baylibre.com>, <aseketeli@baylibre.com>,
+        <jpanis@baylibre.com>, <j-luthra@ti.com>, <vaishnav.a@ti.com>,
+        <hnagalla@ti.com>, <devarsht@ti.com>
+References: <20231128055230.342547-1-n-francis@ti.com>
+Content-Language: en-US
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20231128055230.342547-1-n-francis@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Sat, Dec 2, 2023 at 9:45=E2=80=AFAM Hsin-Yi Wang <hsinyi@chromium.org> w=
-rote:
->
-> On Fri, Dec 1, 2023 at 5:39=E2=80=AFPM Chen-Yu Tsai <wenst@chromium.org> =
-wrote:
-> >
-> > Tentacruel and Tentacool are MT8186 based Chromebooks based on the
-> > Krabby design.
-> >
-> > Tentacruel, also known as the ASUS Chromebook CM14 Flip CM1402F, is a
-> > convertible device with touchscreen and stylus.
-> >
-> > Tentacool, also known as the ASUS Chromebook CM14 CM1402C, is a laptop
-> > device. It does not have a touchscreen or stylus.
-> >
-> > The two devices both have two variants. The difference is a second
-> > source touchpad controller that shares the same address as the original=
-,
-> > but is incompatible.
-> >
-> > The extra SKU IDs for the Tentacruel devices map to different sensor
-> > components attached to the Embedded Controller. These are not visible
-> > to the main processor.
-> >
-> > Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-> > ---
-> > Changes since v1:
-> > - Reorder SKU numbers in descending order.
-> > - Fixed pinconfig node names
-> > - Moved pinctrl-* properties after interrupts-*
-> > - Switched to interrupts-extended for external components
-> > - Marked ADSP as explicitly disabled, with a comment explaining that it
-> >   stalls the system
-> > - Renamed "touchpad" to "trackpad"
-> > - Dropped bogus "no-laneswap" property from it6505 node
-> > - Moved "realtek,jd-src" property to after all the regulator supplies
-> > - Switched to macros for MT6366 regulator "regulator-allowed-modes"
-> > - Renamed "vgpu" regulator name to allow coupling, with a comment
-> >   containing the name used in the design
-> > - Renamed "cr50" node name to "tpm"
-> > - Moved trackpad_pins reference up to i2c2; workaround for second sourc=
-e
-> >   component resource sharing.
-> > - Fix copyright year
-> > - Fixed touchscreen supply name
-> >
-> >  arch/arm64/boot/dts/mediatek/Makefile         |    4 +
-> >  .../dts/mediatek/mt8186-corsola-krabby.dtsi   |  129 ++
-> >  .../mt8186-corsola-tentacool-sku327681.dts    |   57 +
-> >  .../mt8186-corsola-tentacool-sku327683.dts    |   26 +
-> >  .../mt8186-corsola-tentacruel-sku262144.dts   |   44 +
-> >  .../mt8186-corsola-tentacruel-sku262148.dts   |   28 +
-> >  .../boot/dts/mediatek/mt8186-corsola.dtsi     | 1719 +++++++++++++++++
-> >  7 files changed, 2007 insertions(+)
-> >  create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-krabby.=
-dtsi
-> >  create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-tentaco=
-ol-sku327681.dts
-> >  create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-tentaco=
-ol-sku327683.dts
-> >  create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacr=
-uel-sku262144.dts
-> >  create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacr=
-uel-sku262148.dts
-> >  create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-> >
-> > diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dt=
-s/mediatek/Makefile
-> > index e6e7592a3645..442af61b1305 100644
-> > --- a/arch/arm64/boot/dts/mediatek/Makefile
->
-> <snip>
->
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacool-sku3=
-27683.dts b/arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacool-sku327683=
-.dts
-> > new file mode 100644
-> > index 000000000000..2e4d8df978c1
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacool-sku327683.d=
-ts
-> > @@ -0,0 +1,26 @@
-> > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> > +/*
-> > + * Copyright 2023 Google LLC
-> > + */
-> > +
-> > +#include "mt8186-corsola-tentacool-sku327681.dts"
-> > +
-> > +/ {
-> > +       compatible =3D "google,tentacruel-sku327683", "google,tentacrue=
-l", "mediatek,mt8186";
-> > +};
-> > +
-> > +/* This variant replaces only the touchpad controller. */
-> > +&i2c2 {
-> > +       /delete-node/ touchpad@15;
->
-> corsola.dtsi has this node named trackpad@15.
 
-Thanks for spotting the error. Fixed in the next version.
+On 11/28/2023 11:22 AM, Neha Malcom Francis wrote:
+> TPS6594 is a Power Management IC which provides regulators and others
+> features like GPIOs, RTC, watchdog, ESMs (Error Signal Monitor), and
+> PFSM (Pre-configurable Finite State Machine). The SoC and the PMIC can
+> communicate through the I2C or SPI interfaces.
+> TPS6594 is the super-set device while TPS6593 and LP8764 are derivatives.
 
-> > +
-> > +       touchpad@15 {
-> > +               pinctrl-names =3D "default";
-> > +               pinctrl-0 =3D <&trackpad_pin>;
-
-Pinctrl also dropped in the next version.
-
-Same for mt8186-corsola-tentacruel-sku262148.dts.
-
+Please consider adding bootph property in avs regulator node.
 
 Thanks
-ChenYu
 
-> > +               compatible =3D "hid-over-i2c";
-> > +               reg =3D <0x15>;
-> > +               interrupts-extended =3D <&pio 11 IRQ_TYPE_LEVEL_LOW>;
-> > +               hid-descr-addr =3D <0x0001>;
-> > +               vdd-supply =3D <&pp3300_s3>;
-> > +               wakeup-source;
-> > +       };
-> > +};
+Udit
+
+
+> This series adds device tree nodes for TI TPS6594 PMICs found in the
+> following boards:
+> - J721EXSOMXEVM:
+>    Link: https://www.ti.com/tool/J721EXSOMXEVM
+> - J721S2XSOMXEVM:
+>    Link: https://www.ti.com/tool/J721S2XSOMXEVM
+> - J7200XSOMXEVM:
+>    Link: https://www.ti.com/tool/J7200XSOMXEVM
+> - J784S4XEVM
+>    Link: https://www.ti.com/tool/J784S4XEVM
+> - SK-AM69
+>    Link: https://www.ti.com/tool/SK-AM69
+> - SK-TDA4VM (J721E-SK)
+>    Link: https://www.ti.com/tool/SK-TDA4VM
 >
-> <snip>
+> Boot Logs with required config (DONOTMERGE patch) enabled:
+> https://gist.github.com/nehamalcom/f47fcd6183360ed8a146c9ba456202c3
+> Boot Logs without config enabled:
+> https://gist.github.com/nehamalcom/58217b100e614ae55726f314e02b5001
 >
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacruel-sku=
-262148.dts b/arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacruel-sku2621=
-48.dts
-> > new file mode 100644
-> > index 000000000000..7841046084dc
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacruel-sku262148.=
-dts
-> > @@ -0,0 +1,28 @@
-> > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> > +/*
-> > + * Copyright 2023 Google LLC
-> > + */
-> > +
-> > +#include "mt8186-corsola-tentacruel-sku262144.dts"
-> > +
-> > +/ {
-> > +       compatible =3D "google,tentacruel-sku262151", "google,tentacrue=
-l-sku262150",
-> > +                    "google,tentacruel-sku262149", "google,tentacruel-=
-sku262148",
-> > +                    "google,tentacruel", "mediatek,mt8186";
-> > +};
-> > +
-> > +/* This variant replaces only the touchpad controller. */
-> > +&i2c2 {
-> > +       /delete-node/ touchpad@15;
-> > +
+> ---
+> Changes from v7:
+> https://lore.kernel.org/all/20231122104513.2335757-1-n-francis@ti.com/
+> - (New Patches) Add support for SK boards that have TPS6594xx PMIC
+>    present (J721E-SK and AM69-SK)
+> - Add DONOTMERGE defconfig patch to show test logs
 >
-> ditto.
+> Changes from v6:
+> https://lore.kernel.org/all/20230810-tps6594-v6-0-2b2e2399e2ef@ti.com/
+> - Modify patch series to include only patches not merged (J7)
+> - Add boot logs for all affected boards
 >
-> > +       touchpad@15 {
-> > +               pinctrl-names =3D "default";
-> > +               pinctrl-0 =3D <&trackpad_pin>;
-> > +               compatible =3D "hid-over-i2c";
-> > +               reg =3D <0x15>;
-> > +               interrupts-extended =3D <&pio 11 IRQ_TYPE_LEVEL_LOW>;
-> > +               hid-descr-addr =3D <0x0001>;
-> > +               vdd-supply =3D <&pp3300_s3>;
-> > +               wakeup-source;
-> > +       };
-> > +};
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi b/arch/ar=
-m64/boot/dts/mediatek/mt8186-corsola.dtsi
-> > new file mode 100644
-> > index 000000000000..c5446b18783d
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-> > @@ -0,0 +1,1719 @@
+> Changes from v5:
+> https://lore.kernel.org/all/20230809-tps6594-v5-0-485fd3d63670@ti.com
+> - Range-diff: http://0x0.st/H_fD.diff
+> - Reword the patch fixing interrupt ranges for mcu domain gpio intr, and
+>    add Fixes: tag
+> - Also fix interrupt ranges for main domain gpio intr in the same patch
+> - Change pinctrl node names to end in -pins to fix dtbs_check warnings
+> - (New Patch) Enable TPS6594 in defconfig
 >
-> <snip>
+> Changes from v4:
+> https://lore.kernel.org/all/20230727130908.10656-1-eblanc@baylibre.com/
+> - Range-diff: https://0x0.st/H_L7.diff
+> - Rebased on top of linux-next
+> - Fix min voltage on vdd_usb_3v3 regulator (ldo2) on j721e-som
+> - Use 3-hex-digit format for pinctrl values
 >
-> > +
-> > +&i2c2 {
-> > +       pinctrl-names =3D "default";
-> > +       /*
-> > +        * Trackpad pin put here to work around second source component=
-s
-> > +        * sharing the pinmux
-> > +        */
-> > +       pinctrl-0 =3D <&i2c2_pins>, <&trackpad_pin>;
-> > +       clock-frequency =3D <400000>;
-> > +       i2c-scl-internal-delay-ns =3D <10000>;
-> > +       status =3D "okay";
-> > +
-> > +       trackpad@15 {
-> > +               compatible =3D "elan,ekth3000";
-> > +               reg =3D <0x15>;
-> > +               interrupts-extended =3D <&pio 11 IRQ_TYPE_LEVEL_LOW>;
-> > +               vcc-supply =3D <&pp3300_s3>;
-> > +               wakeup-source;
-> > +       };
-> > +};
-> > +
+> Changes from v3:
+> https://lore.kernel.org/all/20230417154832.216774-1-eblanc@baylibre.com/
+> - Rebased on top of v6.5-rc1.
+> - Change pinctrl number for irq pin as wkup_pmx0 was split on some boards.
+> - Use already present wkup_i2c0 node instead of creating a new one.
 >
-> <snip>
+> Changes from v2:
+> https://lore.kernel.org/lkml/20230414112843.1358067-1-eblanc@baylibre.com/
+> - Change node name as per Krzysztof review.
+> - Add a fix for the interrupt range of wakeup gpio used by TPS6594 pmic
+>    on J784S4.
+>    The interruptions of the PMIC were not working before that.
+> - Remove dependencies on other patch series as that was a mistake, see
+>    https://lore.kernel.org/lkml/CRYY2V3HJ0CP.96JQ18PLZB3C@burritosblues/
+>
+> Changes from v1:
+> https://lore.kernel.org/lkml/20230329142948.833800-1-eblanc@baylibre.com/
+> - Harmonize regulators names across the different boards.
+> - Adjust AVS voltage range.
+> - Remove some outdated comments.
+> - Add PMIC to J784S4 board.
+> - Compatible string modified to match dt-bindings.
+> - Add gpio-controller and gpio-cells properties.
+>
+> Esteban Blanc (2):
+>    arm64: dts: ti: k3-j7200-som-p0: Add TP6594 family PMICs
+>    arm64: dts: ti: k3-j721s2-som-p0: Add TP6594 family PMICs
+>
+> Jerome Neanne (2):
+>    arm64: dts: ti: k3-j721e-som-p0: Add TP6594 family PMICs
+>    arm64: dts: ti: k3-j784s4-evm: Add support for TPS6594 PMIC
+>
+> Neha Malcom Francis (3):
+>    arm64: dts: ti: k3-am69-sk: Add support for TPS6594 PMIC
+>    arm64: dts: ti: k3-j721e-sk: Add TPS6594 family PMICs
+>    DONOTMERGE: arm64: defconfig: Enable TPS6594 PMIC for J7 devices
+>
+>   arch/arm64/boot/dts/ti/k3-am69-sk.dts        | 100 ++++++++++
+>   arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi  | 157 +++++++++++++++
+>   arch/arm64/boot/dts/ti/k3-j721e-sk.dts       | 154 ++++++++++++++
+>   arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi  | 163 +++++++++++++++
+>   arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi | 199 +++++++++++++++++++
+>   arch/arm64/boot/dts/ti/k3-j784s4-evm.dts     | 104 ++++++++++
+>   arch/arm64/configs/defconfig                 |   2 +-
+>   7 files changed, 878 insertions(+), 1 deletion(-)
+>
 
