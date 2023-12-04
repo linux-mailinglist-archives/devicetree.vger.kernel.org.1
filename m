@@ -1,124 +1,113 @@
-Return-Path: <devicetree+bounces-21297-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21298-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CC47803149
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 12:12:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45D05803151
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 12:13:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 57826280E32
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 11:12:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E9C131F20D6F
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 11:13:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5264022EE2;
-	Mon,  4 Dec 2023 11:12:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F12B822EE4;
+	Mon,  4 Dec 2023 11:13:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Fv6cE1eZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YLM5rjvN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7129CD
-	for <devicetree@vger.kernel.org>; Mon,  4 Dec 2023 03:12:10 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-54c77e0835bso2439244a12.2
-        for <devicetree@vger.kernel.org>; Mon, 04 Dec 2023 03:12:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701688329; x=1702293129; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=sgf7gcTNEQXm7YeByfT4kT1Azq/b47gm4+/+dJKG1ac=;
-        b=Fv6cE1eZdcKB/KpcxbZVyy3I2Ii4v0IMm4EJBS8lRIU/vZ/IuPDruBy53xKKzAWgWw
-         Ka5HKJzFosuXWnY6rhwa6FK3iQwudrxh5Wt7VSxbpL8pZ9/1OK8kfXTee+wC+sNBrte9
-         hJEdH5TZgw07EYHeJBTF9pYk/sqHMGC/Sb6NoByuM6ueNjoJ90p6dWjMaDzFZnfooCkn
-         hQgUf6RwxWeLqcNkakVY8L9Uz0iHQ5VXlVJ15nd5xk68OiR0DVGUI+ds4rQTdgxDSnC2
-         LnMgaBl+OFN7c4oeRH0U/QD5i6A9xfXebMbDBHKWslQI8PK+nIchQ3gygIAHgy8pDxZZ
-         W8bQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701688329; x=1702293129;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sgf7gcTNEQXm7YeByfT4kT1Azq/b47gm4+/+dJKG1ac=;
-        b=euOZbPskGys49cpfCgLEbBzG/bIejas72UW/GTERjcUA8frJrhXwESyv+EVvYQjCOJ
-         C2ACWPVd4rTfcoVLVWg7twaUU3t79m5jJwqNt0Lji9DHmV5u7u/LwRccNLSTzdw5D2yA
-         qwrrVDxI5d4YDsyP2l0D8dEPu6wcYsSNeKguU1iGt7F/5mFwsWm8nE2hWmM1Vu1KgvbI
-         0F9BTG2NYduNFb3ZGRykko6V1VBvukWRRhTl7I60cgbfzh/1hOi3TkQxizRN2iJp6opU
-         IiBF6qBnQoLKes6V65If+7na2vkYFujOYIXOJbO2dY0UV+x3dIhXpskeq49C7G/X2WAT
-         YS0Q==
-X-Gm-Message-State: AOJu0YwcS4UBtdkP+3TPi5sNRItJ+sigm951m0lQhyJNuKPlAvMOHW71
-	1rxBtxwVV4ILHMomorV9tj57kQ==
-X-Google-Smtp-Source: AGHT+IE6NMcJe5w17lGVtbAAck1pPHnid1HH57jO9clJhvcLonMW+1NrHumcKZn5an0JjH7+xErO9Q==
-X-Received: by 2002:a17:906:4bc1:b0:a19:a19b:78cf with SMTP id x1-20020a1709064bc100b00a19a19b78cfmr3108391ejv.146.1701688329132;
-        Mon, 04 Dec 2023 03:12:09 -0800 (PST)
-Received: from [192.168.209.83] (178235179097.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.97])
-        by smtp.gmail.com with ESMTPSA id y22-20020a17090668d600b00a191d15fc86sm4710651ejr.134.2023.12.04.03.12.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Dec 2023 03:12:08 -0800 (PST)
-Message-ID: <3e85b36e-4261-497f-9788-2bc20e6a9000@linaro.org>
-Date: Mon, 4 Dec 2023 12:12:07 +0100
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D000E1F958;
+	Mon,  4 Dec 2023 11:13:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DF42C433C7;
+	Mon,  4 Dec 2023 11:13:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701688411;
+	bh=2XwAfycpniLMpRRkj1AgYd2OQFR+IEoJXGRydmgWEi4=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=YLM5rjvN1jPGsWFMxXxmje2pnLmddvDWNL6ATspD1unuAomA9abDtfaqjvT6qmAcM
+	 EPHHtHaSq50ecLXorduQaxF8XHDYdIZR7FF4z4mNGXe794BjxhwwbqyCumx2G5Kgba
+	 BZjTgV/JX5aR0LztCWkDttofFGGpPGRDh34RxjhAL5ac8a82DbvkgWY2hG6jCUT+ld
+	 Zh3l0AJwIjcAH7ymezzVabhjcHGebkwEJvtpQWeU/AAay3YJUoRr1zRDAtYAFVPBlx
+	 5C7alsiZntbDpHB3CRKoWcpikSYTyj7RYJ3WZRavmND4RNh9wj5fnvRrzH+BNBCHYW
+	 ZAND8adsPKi2Q==
+Date: Mon, 4 Dec 2023 11:13:17 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Marek Vasut <marex@denx.de>
+Cc: Jonathan Cameron <Jonathan.Cameron@Huawei.com>,
+ linux-iio@vger.kernel.org, Andy Shevchenko
+ <andriy.shevchenko@linux.intel.com>, Matti Vaittinen
+ <mazziesaccount@gmail.com>, Alexander Stein
+ <alexander.stein@ew.tq-group.com>, Andre Werner
+ <andre.werner@systec-electronic.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@denx.de>,
+ Guenter Roeck <linux@roeck-us.net>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, Mark Brown <broonie@kernel.org>,
+ Naresh Solanki <naresh.solanki@9elements.com>, Patrick Rudolph
+ <patrick.rudolph@9elements.com>, Rob Herring <robh+dt@kernel.org>, Stefan
+ Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>, Vincent Tremblay
+ <vincent@vtremblay.dev>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 2/2] iio: light: isl76682: Add ISL76682 driver
+Message-ID: <20231204111317.22c679ed@jic23-huawei>
+In-Reply-To: <00a21ed4-18b5-4aca-8dd6-628d475664e7@denx.de>
+References: <20231125222738.97875-1-marex@denx.de>
+	<20231125222738.97875-2-marex@denx.de>
+	<20231126181655.4e1040f9@jic23-huawei>
+	<9e73c450-2380-459a-9b41-a1b88f89548c@denx.de>
+	<20231201181721.0000445c@Huawei.com>
+	<00a21ed4-18b5-4aca-8dd6-628d475664e7@denx.de>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/3] ARM: dts: qcom: include cpu in idle-state node
- names
-Content-Language: en-US
-To: David Heidelberg <david@ixit.cz>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231202234832.155306-1-david@ixit.cz>
- <20231202234832.155306-2-david@ixit.cz>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20231202234832.155306-2-david@ixit.cz>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On 3.12.2023 00:47, David Heidelberg wrote:
-> Required for dt-schema validation.
-> 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
-Only patches 2 and 3 made it to my inbox and linux-arm-msm
+On Sat, 2 Dec 2023 07:48:12 +0100
+Marek Vasut <marex@denx.de> wrote:
 
-Konrad
+> On 12/1/23 19:17, Jonathan Cameron wrote:
+> > On Sun, 26 Nov 2023 23:09:36 +0100
+> > Marek Vasut <marex@denx.de> wrote:
+> >   
+> >> On 11/26/23 19:16, Jonathan Cameron wrote:  
+> >>> On Sat, 25 Nov 2023 23:26:23 +0100
+> >>> Marek Vasut <marex@denx.de> wrote:
+> >>>      
+> >>>> The ISL76682 is very basic ALS which only supports ALS or IR mode
+> >>>> in four ranges, 1k/4k/16k/64k LUX. There is no IRQ support or any
+> >>>> other fancy functionality.
+> >>>>
+> >>>> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> >>>> Reviewed-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> >>>> Signed-off-by: Marek Vasut <marex@denx.de>  
+> >>>
+> >>> Hi Marek,
+> >>>
+> >>> One last question + a comment in general. Act on that if you like.
+> >>>
+> >>> Thanks,
+> >>>
+> >>> Jonathan
+> >>>
+> >>>      
+> >>>> +static int integration_time_available[] = { 0, ISL76682_INT_TIME_US };  
+> >>>
+> >>> Why have an available attribute for a single value. Is it useful for anything?  
+> >>
+> >> To report it to userspace, iio-sensor-proxy uses that to control the ALS
+> >> poll interval .  
+> > 
+> > It should use integration_time, not the associated available attribute.  
+> 
+> So, what should I do with this feedback ?
+> 
+> I did send the V6 already, so shall I change anything in V7 ?
+
+I'll reply there.  Just noticed some other oddities around available.
 
