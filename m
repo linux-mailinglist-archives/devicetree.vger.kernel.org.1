@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-21296-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21297-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B511F803123
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 12:00:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CC47803149
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 12:12:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6F3E4280E75
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 11:00:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 57826280E32
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 11:12:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6323B224EF;
-	Mon,  4 Dec 2023 11:00:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5264022EE2;
+	Mon,  4 Dec 2023 11:12:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ne9EJZO4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Fv6cE1eZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C18811BC
-	for <devicetree@vger.kernel.org>; Mon,  4 Dec 2023 03:00:22 -0800 (PST)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-a18f732dc83so734235466b.1
-        for <devicetree@vger.kernel.org>; Mon, 04 Dec 2023 03:00:22 -0800 (PST)
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7129CD
+	for <devicetree@vger.kernel.org>; Mon,  4 Dec 2023 03:12:10 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-54c77e0835bso2439244a12.2
+        for <devicetree@vger.kernel.org>; Mon, 04 Dec 2023 03:12:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701687621; x=1702292421; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701688329; x=1702293129; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=zMJ0dX/x7e8dMzBxocrNbXjh+xb4eJogbtARHYIGT34=;
-        b=Ne9EJZO4GsfVsiKH3aTqAwueotFkkuXvUu9F2g28kvVrvIP7mWX7eEMS5+nqEKvH/X
-         a3U+mXM9s1rqxYm0UP53URII58ksq7b6jDOoUTMwj0EbxhqaNkKnMMBjAUzBOHyhFlkH
-         53Vgo5zvIO1i5NAnFkacaTchDFgKfChPT2WA06iibPWG2DlMOc8tF7MNZCWJwuXwtHOe
-         4i2t7Ww8l+5gPKv2Dv3/5FTDuZKxlCAaaFQP99vU4DnlvTuUayu2H/cbC+Jdrt+kso/C
-         wWQyunDSCvBdLwJ82ytxouD+VezMKEUBkQrlZF7DpV6Bq5cA0WVUiNJvpThOFx/nPyyv
-         QWuA==
+        bh=sgf7gcTNEQXm7YeByfT4kT1Azq/b47gm4+/+dJKG1ac=;
+        b=Fv6cE1eZdcKB/KpcxbZVyy3I2Ii4v0IMm4EJBS8lRIU/vZ/IuPDruBy53xKKzAWgWw
+         Ka5HKJzFosuXWnY6rhwa6FK3iQwudrxh5Wt7VSxbpL8pZ9/1OK8kfXTee+wC+sNBrte9
+         hJEdH5TZgw07EYHeJBTF9pYk/sqHMGC/Sb6NoByuM6ueNjoJ90p6dWjMaDzFZnfooCkn
+         hQgUf6RwxWeLqcNkakVY8L9Uz0iHQ5VXlVJ15nd5xk68OiR0DVGUI+ds4rQTdgxDSnC2
+         LnMgaBl+OFN7c4oeRH0U/QD5i6A9xfXebMbDBHKWslQI8PK+nIchQ3gygIAHgy8pDxZZ
+         W8bQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701687621; x=1702292421;
+        d=1e100.net; s=20230601; t=1701688329; x=1702293129;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zMJ0dX/x7e8dMzBxocrNbXjh+xb4eJogbtARHYIGT34=;
-        b=vPYGL+FB1pqwzS7gG//QCCCqXugIe2iihr3/IZSKe83Pg0+sI7PzUGbH2iJVTjuyR5
-         Zco6Bm0hys6pqW/62VMY72frSRrpV7SBx1qtLuE9hY+AiSDTntPpI+IPAhe1R+k2VDrR
-         9v4ZZe+Nd54q986O1fhTRT1kZuapqu3nB+6ABHBMUHXgZVFphPLN+kjYSZf/GJdEXWX0
-         D4myjQP8EwCKF5MESxMLJlVQFdpxleOnlgW/16Wp5d8nnQGylnXX84o9HHwKs+b6P0nj
-         /ezRSMFlGFaXajEQ81x+TrJPpinzEI2a98Jbb6kzPu+ZLAa+xDtsq+Ks0JcPy85bFojM
-         y9dA==
-X-Gm-Message-State: AOJu0YyLaG3jCE/5t8REdhAW7jyKQlus/huF8gT+J3DyJdK6MS2DWbs6
-	5y/1RV7W3HGmqSUQ7d9Xd6Rouw==
-X-Google-Smtp-Source: AGHT+IGr++cSCnry8v6UCnnH6JPuwxMw6hOwRdfEiM0xGHi/7wyzDr1p7SZ8wYyTjpx8aZIEJkNiJA==
-X-Received: by 2002:a17:906:268e:b0:a16:7f44:25bf with SMTP id t14-20020a170906268e00b00a167f4425bfmr4621773ejc.17.1701687620957;
-        Mon, 04 Dec 2023 03:00:20 -0800 (PST)
+        bh=sgf7gcTNEQXm7YeByfT4kT1Azq/b47gm4+/+dJKG1ac=;
+        b=euOZbPskGys49cpfCgLEbBzG/bIejas72UW/GTERjcUA8frJrhXwESyv+EVvYQjCOJ
+         C2ACWPVd4rTfcoVLVWg7twaUU3t79m5jJwqNt0Lji9DHmV5u7u/LwRccNLSTzdw5D2yA
+         qwrrVDxI5d4YDsyP2l0D8dEPu6wcYsSNeKguU1iGt7F/5mFwsWm8nE2hWmM1Vu1KgvbI
+         0F9BTG2NYduNFb3ZGRykko6V1VBvukWRRhTl7I60cgbfzh/1hOi3TkQxizRN2iJp6opU
+         IiBF6qBnQoLKes6V65If+7na2vkYFujOYIXOJbO2dY0UV+x3dIhXpskeq49C7G/X2WAT
+         YS0Q==
+X-Gm-Message-State: AOJu0YwcS4UBtdkP+3TPi5sNRItJ+sigm951m0lQhyJNuKPlAvMOHW71
+	1rxBtxwVV4ILHMomorV9tj57kQ==
+X-Google-Smtp-Source: AGHT+IE6NMcJe5w17lGVtbAAck1pPHnid1HH57jO9clJhvcLonMW+1NrHumcKZn5an0JjH7+xErO9Q==
+X-Received: by 2002:a17:906:4bc1:b0:a19:a19b:78cf with SMTP id x1-20020a1709064bc100b00a19a19b78cfmr3108391ejv.146.1701688329132;
+        Mon, 04 Dec 2023 03:12:09 -0800 (PST)
 Received: from [192.168.209.83] (178235179097.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.97])
-        by smtp.gmail.com with ESMTPSA id w17-20020a170906481100b009fad1dfe472sm5135963ejq.153.2023.12.04.03.00.19
+        by smtp.gmail.com with ESMTPSA id y22-20020a17090668d600b00a191d15fc86sm4710651ejr.134.2023.12.04.03.12.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Dec 2023 03:00:20 -0800 (PST)
-Message-ID: <f24e9f93-bd48-4845-96cb-ae08f8b4f210@linaro.org>
-Date: Mon, 4 Dec 2023 12:00:18 +0100
+        Mon, 04 Dec 2023 03:12:08 -0800 (PST)
+Message-ID: <3e85b36e-4261-497f-9788-2bc20e6a9000@linaro.org>
+Date: Mon, 4 Dec 2023 12:12:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,18 +62,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: msm8939: Add clock-frequency for
- broadcast timer
+Subject: Re: [PATCH v4 2/3] ARM: dts: qcom: include cpu in idle-state node
+ names
 Content-Language: en-US
-To: Stephan Gerhold <stephan@gerhold.net>,
- Bjorn Andersson <andersson@kernel.org>
-Cc: Andy Gross <agross@kernel.org>, Shawn Guo <shawn.guo@linaro.org>,
- Benjamin Li <benl@squareup.com>, James Willcox <jwillcox@squareup.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Leo Yan <leo.yan@linaro.org>,
- Vincent Knecht <vincent.knecht@mailoo.org>, Jun Nie <jun.nie@linaro.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231204-msm8939-timer-v1-1-a2486c625786@gerhold.net>
+To: David Heidelberg <david@ixit.cz>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231202234832.155306-1-david@ixit.cz>
+ <20231202234832.155306-2-david@ixit.cz>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -110,36 +109,16 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20231204-msm8939-timer-v1-1-a2486c625786@gerhold.net>
+In-Reply-To: <20231202234832.155306-2-david@ixit.cz>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 4.12.2023 10:55, Stephan Gerhold wrote:
-> Looks like not all firmware versions used for MSM8939 program the timer
-> frequency for both broadcast/MMIO timers, causing a WARNING at runtime:
+On 3.12.2023 00:47, David Heidelberg wrote:
+> Required for dt-schema validation.
 > 
-> WARNING: CPU: 0 PID: 0 at kernel/time/clockevents.c:38 cev_delta2ns+0x74/0x90
-> pc : cev_delta2ns+0x74/0x90
-> lr : clockevents_config.part.0+0x64/0x8c
-> Call trace:
->  cev_delta2ns+0x74/0x90
->  clockevents_config_and_register+0x20/0x34
->  arch_timer_mem_of_init+0x374/0x534
->  timer_probe+0x88/0x110
->  time_init+0x14/0x4c
->  start_kernel+0x2c0/0x640
-> 
-> Unfortunately there is no way to fix the firmware on most of these
-> devices since it's proprietary and signed. As a workaround, specify the
-> clock-frequency explicitly in the DT to fix the warning.
-> 
-> Fixes: 61550c6c156c ("arm64: dts: qcom: Add msm8939 SoC")
-> Reported-by: Vincent Knecht <vincent.knecht@mailoo.org>
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> Signed-off-by: David Heidelberg <david@ixit.cz>
 > ---
-Ouch.
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Only patches 2 and 3 made it to my inbox and linux-arm-msm
 
 Konrad
 
