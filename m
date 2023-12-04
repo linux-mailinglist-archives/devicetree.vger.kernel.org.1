@@ -1,86 +1,126 @@
-Return-Path: <devicetree+bounces-21347-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21349-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A75280346E
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 14:23:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 878EE8034CD
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 14:27:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2FFEC1F21083
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 13:23:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B8E861C20A8C
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 13:27:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1656824B3F;
-	Mon,  4 Dec 2023 13:23:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49A7124B5B;
+	Mon,  4 Dec 2023 13:27:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AJs1P8Qd"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="T+vWUT9Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E727D24B38;
-	Mon,  4 Dec 2023 13:23:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1285BC433C7;
-	Mon,  4 Dec 2023 13:23:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701696216;
-	bh=ek3ANT87AWqPR1Eca9OZQtmPMVo5VRMPorN42gdYvgY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=AJs1P8QdLhwxhurk24vb8kK4mxKFCklvfs+/zuUF4DXHatRF3YJgx0ZchAXpYEjNz
-	 EuYCkY2kQPoYoDmbMOCXxzsB3h2MRgnkvN9skNHMwLDqYL4bzfwsuVCzHjoZMQ4zta
-	 Gpnmrng3JciT7HY/s8+FAbyCWCkdHjntdre9726t7QtijJAhMpJT0CFDm7cpUZdK1k
-	 TSm+5+bdNA16U6UZg1cOFK1Hyx/AJ8hBjjVOEcHKwm2LpUrMaq+WyX1RSPvxMXfbmR
-	 fAsAiZsnMZTh6OApYM0BtuNZvEhBjELSLRH/ow6Ia9x3ITVFvkjCDe2nBP6JugC9JY
-	 GAlBSp6/x+qig==
-Date: Mon, 4 Dec 2023 13:23:27 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Tony Lindgren <tony@atomide.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: iio/adc: ti,palmas-gpadc: Drop incomplete
- example
-Message-ID: <20231204132327.227588d8@jic23-huawei>
-In-Reply-To: <87771c1f-17fd-4895-aafc-4fe0c38a59ee@linaro.org>
-References: <20231128214803.3975542-1-robh@kernel.org>
-	<87771c1f-17fd-4895-aafc-4fe0c38a59ee@linaro.org>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B12FB2139;
+	Mon,  4 Dec 2023 05:27:03 -0800 (PST)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3B4BxS16015148;
+	Mon, 4 Dec 2023 13:26:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=f6cum8EU/qHcJiQXZXCKxQ3OmusZZpPYWsbk4BsV5hc=;
+ b=T+vWUT9QRBGsgwHWW5nfP4zt4pek6gW6P1Drt/7QA1tm/AhviMv9i/be92PHvZdpbO9S
+ MizCNRuySa/n66zXOj6cwyzdynXtc7WMlrv3WYWdF0rajKINUbO3ZgRoVp7l9u3s8e46
+ kaYFUQbRq/UbV9BmhTFI2gmRB82z44f+LPSu+wiC+W8r+FRoRfTS1+PDIhr+ArExwA9B
+ G0jUxqyVdbTO0II2AA3KblDKWCVvzEPMerTU6BjwhhLxgrGjPOTgSfHFUABXBROEJBDO
+ AKmQ4RTwQCYngmepyLIPWDtAvZhdbX/29AjkCHi0tDVYOAylMgeqXj9qXQbv2vHdYhO+ Cw== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3us81yh85k-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 04 Dec 2023 13:26:49 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3B4DQmQI010064
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 4 Dec 2023 13:26:48 GMT
+Received: from hu-jsuraj-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Mon, 4 Dec 2023 05:26:39 -0800
+From: Suraj Jaiswal <quic_jsuraj@quicinc.com>
+To: <quic_jsuraj@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
+        Bhupesh Sharma
+	<bhupesh.sharma@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "David S.
+ Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        "Jakub
+ Kicinski" <kuba@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        "Jose
+ Abreu" <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>, <netdev@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Prasad Sodagudi
+	<psodagud@quicinc.com>,
+        Andrew Halaney <ahalaney@redhat.com>
+CC: <kernel@quicinc.com>
+Subject: [PATCH net-next v3 0/3] Ethernet DWMAC5 fault IRQ support
+Date: Mon, 4 Dec 2023 18:56:14 +0530
+Message-ID: <cover.1701695218.git.quic_jsuraj@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: sihd6brC_J_DXszfSBOm7NrweF6Z5ZaO
+X-Proofpoint-GUID: sihd6brC_J_DXszfSBOm7NrweF6Z5ZaO
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-04_12,2023-12-04_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0
+ priorityscore=1501 adultscore=0 mlxscore=0 bulkscore=0 lowpriorityscore=0
+ spamscore=0 impostorscore=0 suspectscore=0 malwarescore=0 clxscore=1015
+ mlxlogscore=970 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2312040101
 
-On Wed, 29 Nov 2023 09:30:23 +0100
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+Add support to listen Ethernet HW safery IRQ. The safety IRQ will be
+triggered for ECC, DPP, FSM error.
 
-> On 28/11/2023 22:48, Rob Herring wrote:
-> > The example for the TI Palmas ADC is incomplete as the binding is the
-> > full PMIC, not just the sub-functions. It is preferred for MFD examples
-> > to be complete in the top-level MFD device binding rather than piecemeal
-> > in each sub-function binding.
-> > 
-> > This also fixes an undocumented (by schema) compatible warning for
-> > '"ti,twl6035-pmic", "ti,palmas-pmic"'.
-> > 
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---  
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> Best regards,
-> Krzysztof
-> 
+Changes since v3:
+- Fix DT_CHECKER warning
+- use name safety for the IRQ.
+ 
 
-Applied to the togreg branch of iio.git and pushed out as testing
-for all the normal reasons.
+Suraj Jaiswal (3):
+  dt-bindings: net: qcom,ethqos: add binding doc for safety IRQ for
+    sa8775p
+  arm64: dts: qcom: sa8775p: enable safety IRQ
+  net: stmmac: Add driver support for DWMAC5 safety IRQ Support
 
-Thanks,
+ .../devicetree/bindings/net/qcom,ethqos.yaml   |  9 ++++++---
+ .../devicetree/bindings/net/snps,dwmac.yaml    |  5 +++--
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi          | 10 ++++++----
+ drivers/net/ethernet/stmicro/stmmac/common.h   |  1 +
+ drivers/net/ethernet/stmicro/stmmac/stmmac.h   |  2 ++
+ .../net/ethernet/stmicro/stmmac/stmmac_main.c  | 18 ++++++++++++++++++
+ .../ethernet/stmicro/stmmac/stmmac_platform.c  |  9 +++++++++
+ 7 files changed, 45 insertions(+), 9 deletions(-)
 
-Jonathan
+-- 
+2.25.1
+
 
