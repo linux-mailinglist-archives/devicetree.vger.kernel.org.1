@@ -1,140 +1,316 @@
-Return-Path: <devicetree+bounces-21260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21261-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7CA0802F68
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 10:56:27 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26983802F79
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 11:01:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 965ED1F21177
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 09:56:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 400E4B20953
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 10:01:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2852F1DDDC;
-	Mon,  4 Dec 2023 09:56:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BCC51EB34;
+	Mon,  4 Dec 2023 10:01:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="qFYe8pjE";
-	dkim=permerror (0-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="Y/xhm7w4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UGe7GZ6i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.164])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B944B2;
-	Mon,  4 Dec 2023 01:56:17 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1701683764; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=UalJ5K5YacFCgSJU9PAOpd9CDIdIt9TFhQybw+eTKhluvuAsSab7o6SfnDp+9dSSCT
-    CLAWfw4mwqCuiFfhz787D7swiJ1d5QyFohcAh62NQM+d5+a3KvfLNQi2jN5QO1yRDciQ
-    WHUQBvnsV/Fw6ZZEnw3IDXLCD62R5cKuz5Tq5VrjIfsfrnzET5vA9h6T6SMLT6jeQUpu
-    cUjdpN8Zx0XDFfzdJrOHMlEV/WPA8KoGqcLFwXoTU1fd+rsJwgYCcvbWFHKLz0zBflit
-    2G9Z9VT9hU1QbKZtKMI9MEATaLb5gcrUVnCisX2wwe2PAKuqcDqOXwrwOjiyS3LN46n5
-    zqfA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1701683764;
-    s=strato-dkim-0002; d=strato.com;
-    h=Cc:To:Message-Id:Subject:Date:From:Cc:Date:From:Subject:Sender;
-    bh=GYSNAjEeGhjGrJ4Pr8zjmuf4tvYXmPYIbiwnZuOFo1o=;
-    b=QJQY76CUBe1lchGG+9l2yrBdsCUzfk+UwLdUcdEHVT/RSz4Z8Ddw7hAdm5s26UfhYe
-    lhMlU9ZIa8TAiFSgq9nb9ULb5bn7lQE4tuXbtqrxZQhA1Mqnl635qhwODDtpcxvgxqU2
-    9WkNSM6cU5GLZrK1VFx210wDX2UyOwnvueBhHU2iKoxka1m5qPSv+dOgbt3JrJxVRbdY
-    hWVSYpfbZhzbtDAykYeGjcauL3GdAJJxvWhJmJeGF1XARfGxOkzS6kWv+ci2FmOIBA0j
-    zjYCVpfU/PENFI7GI9u1jayxDdQqghd/FK8xkUe7nqD/1efaxGpfYojwDkBG4lGJAe7i
-    vrwA==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1701683764;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=Cc:To:Message-Id:Subject:Date:From:Cc:Date:From:Subject:Sender;
-    bh=GYSNAjEeGhjGrJ4Pr8zjmuf4tvYXmPYIbiwnZuOFo1o=;
-    b=qFYe8pjEWIoUclSglV6qztxn8PH8O6H6PpZ/efqBNiln83QGcyNqjq74Of7rus3jUX
-    xuvm5ax7IXYPv4DCgf4u4UTEZMJij7q2U6A1foT7G5ZiqoA9CVrNbAskhH+XdB0bAaJW
-    1/f/jbIYkUmbozGNJft+So3dg/v+JSew/pUxdOLrAgg3epAh2Bf2Tm39edO5/DzRjCFs
-    3D0W1Qk5OSyTn+F0nbuyM9gw2gfoYVDf1rpEq81zqo/iPIF6ABYDbWuT5gp6trC4pRG8
-    /3cnZ2O+YOrPjrHW/bEm1x1Ow3Q+hFkaaBhZAjdnFwgoHMYFa4Le/XlG3i3JW1AIO+VE
-    BzxQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1701683764;
-    s=strato-dkim-0003; d=gerhold.net;
-    h=Cc:To:Message-Id:Subject:Date:From:Cc:Date:From:Subject:Sender;
-    bh=GYSNAjEeGhjGrJ4Pr8zjmuf4tvYXmPYIbiwnZuOFo1o=;
-    b=Y/xhm7w4/L4kPflg5D6PrVepE9A074Di3rHwGQcw2CWW59beRmxW2V5Xk7PPwLjQMn
-    jGLegN1dn3Yjldf4wnCA==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQjVd4CteZ/7jYgS+mLFY+H0JAn8u4l+/zY="
-Received: from [192.168.244.3]
-    by smtp.strato.de (RZmta 49.9.7 DYNA|AUTH)
-    with ESMTPSA id R5487bzB49u39nd
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-	(Client did not present a certificate);
-    Mon, 4 Dec 2023 10:56:03 +0100 (CET)
-From: Stephan Gerhold <stephan@gerhold.net>
-Date: Mon, 04 Dec 2023 10:55:53 +0100
-Subject: [PATCH] arm64: dts: qcom: msm8939: Add clock-frequency for
- broadcast timer
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08BD7F5
+	for <devicetree@vger.kernel.org>; Mon,  4 Dec 2023 02:01:25 -0800 (PST)
+Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2c9f413d6b2so16511621fa.1
+        for <devicetree@vger.kernel.org>; Mon, 04 Dec 2023 02:01:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701684083; x=1702288883; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=6ZudBhO/WCplbQCp3KVlqjf1fHRbAS/TfrewGCqAIPY=;
+        b=UGe7GZ6i5Gk5Xty/f2kGTEcOZO4q4YI6F/ZTNBsgnXmWApJbEZ05e5KrZ7uLo1XZ0U
+         +vA+hyxiqrBGpbgep+scL1qauA386N7bqrErYtC2w5cV/itesJkUlEmaTlvdUTnUPp80
+         Ml2nRtWO3R2BmLt0nzif9+NyaH+GGysqPXkHxckXzM3V7wEwwqSuLBKQE0c9OEpNGlhI
+         dCVp2FW4psPAZxKT8LAgLYkIT/3z9yLfjuqpyL0zWZoIyfLTsjaWT6DZ8AQL8TlUzQgF
+         pkWZwiRPHPlHu4aD9H30sU1lItXG60hpwDANb5sA8u3/l4D9P6Ho9xQ9Oj3hojsVmMlw
+         ckFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701684083; x=1702288883;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6ZudBhO/WCplbQCp3KVlqjf1fHRbAS/TfrewGCqAIPY=;
+        b=dOtEEfufqy33cmWqbkmYdbq9XTqA+Je1WIz4KO0UR4IUDPIZNqFlVFeFi5iWcPrltH
+         RHpbWqplJmkGa9LJOxGJ9gHUKzcdD6iEBB8psjdcO43F3PXW6F/CjyCECGZz977q+1aL
+         3K1fU3YIarcNQz35qGK2oV2bNbCB04ZEzjASHs4MnWOTMXopd6HH+t5A7oZEiHafme1i
+         2KpETQbvRRpguwPZFg56fh6guSnfwHK71+CCVJ8W7DzsoFQMYJe0D+VipdFYcrAZJrsn
+         SjIl7k6D53vrZMdTT2gp2OqUGHgOX73yl7CSQS7zE4gDruxfuMLJpjfRQQ1MVeCGJnal
+         Zdjw==
+X-Gm-Message-State: AOJu0YyyNcDAMFKw+RvLgS/3xcaazf01Jtd3NwDMEmaSzol8YUzTrKA3
+	1dUcN9tdgINPaoCtp/JqWk0t4g==
+X-Google-Smtp-Source: AGHT+IEDH45bXF+mWwkq6P/83Vxtzbob4paKWveQYD4Oa84mb7HX7jeUMe6GVsa5KVjC2XQoi2C8Xw==
+X-Received: by 2002:a2e:82c3:0:b0:2c9:f7fb:4e0f with SMTP id n3-20020a2e82c3000000b002c9f7fb4e0fmr770674ljh.101.1701684082678;
+        Mon, 04 Dec 2023 02:01:22 -0800 (PST)
+Received: from krzk-bin.. ([178.197.223.109])
+        by smtp.gmail.com with ESMTPSA id pj21-20020a170906d79500b00a188fe9563esm5065572ejb.131.2023.12.04.02.01.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Dec 2023 02:01:22 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Banajit Goswami <bgoswami@quicinc.com>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	alsa-devel@alsa-project.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/2] ASoC: qcom: Add x1e80100 sound machine driver
+Date: Mon,  4 Dec 2023 11:01:15 +0100
+Message-Id: <20231204100116.211898-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231204-msm8939-timer-v1-1-a2486c625786@gerhold.net>
-X-B4-Tracking: v=1; b=H4sIACiibWUC/x3MQQqAIBBA0avErBN0dKFdJVqITTULLTQiEO+et
- HyL/ysUykwFpqFCpocLn6lDjQOEw6edBK/dgBK1QmlELNE67cTNkbIINqCy3qMxEnpzZdr4/X/
- z0toHwTNaEV8AAAA=
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: Andy Gross <agross@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Shawn Guo <shawn.guo@linaro.org>, 
- Benjamin Li <benl@squareup.com>, James Willcox <jwillcox@squareup.com>, 
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Leo Yan <leo.yan@linaro.org>, 
- Vincent Knecht <vincent.knecht@mailoo.org>, Jun Nie <jun.nie@linaro.org>, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Stephan Gerhold <stephan@gerhold.net>
-X-Mailer: b4 0.12.4
+Content-Transfer-Encoding: 8bit
 
-Looks like not all firmware versions used for MSM8939 program the timer
-frequency for both broadcast/MMIO timers, causing a WARNING at runtime:
+Add sound machine driver for the soundcards on Qualcomm X1E80100 SoC,
+supporting up to four channel audio playback over Soundwire bus.  The
+driver is based on existing sc8280xp.c driver.
 
-WARNING: CPU: 0 PID: 0 at kernel/time/clockevents.c:38 cev_delta2ns+0x74/0x90
-pc : cev_delta2ns+0x74/0x90
-lr : clockevents_config.part.0+0x64/0x8c
-Call trace:
- cev_delta2ns+0x74/0x90
- clockevents_config_and_register+0x20/0x34
- arch_timer_mem_of_init+0x374/0x534
- timer_probe+0x88/0x110
- time_init+0x14/0x4c
- start_kernel+0x2c0/0x640
-
-Unfortunately there is no way to fix the firmware on most of these
-devices since it's proprietary and signed. As a workaround, specify the
-clock-frequency explicitly in the DT to fix the warning.
-
-Fixes: 61550c6c156c ("arm64: dts: qcom: Add msm8939 SoC")
-Reported-by: Vincent Knecht <vincent.knecht@mailoo.org>
-Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/msm8939.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+ sound/soc/qcom/Kconfig    |  12 +++
+ sound/soc/qcom/Makefile   |   2 +
+ sound/soc/qcom/x1e80100.c | 168 ++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 182 insertions(+)
+ create mode 100644 sound/soc/qcom/x1e80100.c
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8939.dtsi b/arch/arm64/boot/dts/qcom/msm8939.dtsi
-index 95610a32750a..4ba115eecfd5 100644
---- a/arch/arm64/boot/dts/qcom/msm8939.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8939.dtsi
-@@ -2195,6 +2195,8 @@ timer@b120000 {
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
-+			/* Necessary because firmware does not configure this correctly */
-+			clock-frequency = <19200000>;
+diff --git a/sound/soc/qcom/Kconfig b/sound/soc/qcom/Kconfig
+index e7b00d1d9e99..762491d6f2f2 100644
+--- a/sound/soc/qcom/Kconfig
++++ b/sound/soc/qcom/Kconfig
+@@ -221,4 +221,16 @@ config SND_SOC_SC7280
+ 	  SC7280 SoC-based systems.
+ 	  Say Y or M if you want to use audio device on this SoCs.
  
- 			frame@b121000 {
- 				reg = <0x0b121000 0x1000>,
-
----
-base-commit: adcad44bd1c73a5264bff525e334e2f6fc01bb9b
-change-id: 20231204-msm8939-timer-c8c218aa2440
-
-Best regards,
++config SND_SOC_X1E80100
++	tristate "SoC Machine driver for X1E80100 boards"
++	depends on QCOM_APR && SOUNDWIRE
++	depends on COMMON_CLK
++	select SND_SOC_QDSP6
++	select SND_SOC_QCOM_COMMON
++	select SND_SOC_QCOM_SDW
++	help
++	  Add support for audio on Qualcomm Technologies Inc.
++	  X1E80100 SoC-based systems.
++	  Say Y or M if you want to use audio device on this SoCs.
++
+ endif #SND_SOC_QCOM
+diff --git a/sound/soc/qcom/Makefile b/sound/soc/qcom/Makefile
+index 254350d9dc06..34f3fcb8ee9a 100644
+--- a/sound/soc/qcom/Makefile
++++ b/sound/soc/qcom/Makefile
+@@ -29,6 +29,7 @@ snd-soc-sm8250-objs := sm8250.o
+ snd-soc-sc8280xp-objs := sc8280xp.o
+ snd-soc-qcom-common-objs := common.o
+ snd-soc-qcom-sdw-objs := sdw.o
++snd-soc-x1e80100-objs := x1e80100.o
+ 
+ obj-$(CONFIG_SND_SOC_STORM) += snd-soc-storm.o
+ obj-$(CONFIG_SND_SOC_APQ8016_SBC) += snd-soc-apq8016-sbc.o
+@@ -40,6 +41,7 @@ obj-$(CONFIG_SND_SOC_SDM845) += snd-soc-sdm845.o
+ obj-$(CONFIG_SND_SOC_SM8250) += snd-soc-sm8250.o
+ obj-$(CONFIG_SND_SOC_QCOM_COMMON) += snd-soc-qcom-common.o
+ obj-$(CONFIG_SND_SOC_QCOM_SDW) += snd-soc-qcom-sdw.o
++obj-$(CONFIG_SND_SOC_X1E80100) += snd-soc-x1e80100.o
+ 
+ #DSP lib
+ obj-$(CONFIG_SND_SOC_QDSP6) += qdsp6/
+diff --git a/sound/soc/qcom/x1e80100.c b/sound/soc/qcom/x1e80100.c
+new file mode 100644
+index 000000000000..c3c8bf7ffb5b
+--- /dev/null
++++ b/sound/soc/qcom/x1e80100.c
+@@ -0,0 +1,168 @@
++// SPDX-License-Identifier: GPL-2.0
++// Copyright (c) 2023, Linaro Limited
++
++#include <dt-bindings/sound/qcom,q6afe.h>
++#include <linux/module.h>
++#include <linux/platform_device.h>
++#include <linux/soundwire/sdw.h>
++#include <sound/pcm.h>
++#include <sound/jack.h>
++#include <sound/soc.h>
++#include <sound/soc-dapm.h>
++
++#include "common.h"
++#include "qdsp6/q6afe.h"
++#include "sdw.h"
++
++struct x1e80100_snd_data {
++	bool stream_prepared[AFE_PORT_MAX];
++	struct snd_soc_card *card;
++	struct sdw_stream_runtime *sruntime[AFE_PORT_MAX];
++	struct snd_soc_jack jack;
++	bool jack_setup;
++};
++
++static int x1e80100_snd_init(struct snd_soc_pcm_runtime *rtd)
++{
++	struct x1e80100_snd_data *data = snd_soc_card_get_drvdata(rtd->card);
++
++	return qcom_snd_wcd_jack_setup(rtd, &data->jack, &data->jack_setup);
++}
++
++static void x1e80100_snd_shutdown(struct snd_pcm_substream *substream)
++{
++	struct snd_soc_pcm_runtime *rtd = substream->private_data;
++	struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
++	struct x1e80100_snd_data *data = snd_soc_card_get_drvdata(rtd->card);
++	struct sdw_stream_runtime *sruntime = data->sruntime[cpu_dai->id];
++
++	data->sruntime[cpu_dai->id] = NULL;
++	sdw_release_stream(sruntime);
++}
++
++static int x1e80100_be_hw_params_fixup(struct snd_soc_pcm_runtime *rtd,
++				     struct snd_pcm_hw_params *params)
++{
++	struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
++	struct snd_interval *rate = hw_param_interval(params,
++						      SNDRV_PCM_HW_PARAM_RATE);
++	struct snd_interval *channels = hw_param_interval(params,
++							  SNDRV_PCM_HW_PARAM_CHANNELS);
++
++	rate->min = rate->max = 48000;
++	switch (cpu_dai->id) {
++	case TX_CODEC_DMA_TX_0:
++	case TX_CODEC_DMA_TX_1:
++	case TX_CODEC_DMA_TX_2:
++	case TX_CODEC_DMA_TX_3:
++		channels->min = 1;
++		break;
++	default:
++		break;
++	}
++
++	return 0;
++}
++
++static int x1e80100_snd_hw_params(struct snd_pcm_substream *substream,
++				struct snd_pcm_hw_params *params)
++{
++	struct snd_soc_pcm_runtime *rtd = substream->private_data;
++	struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
++	struct x1e80100_snd_data *data = snd_soc_card_get_drvdata(rtd->card);
++
++	return qcom_snd_sdw_hw_params(substream, params, &data->sruntime[cpu_dai->id]);
++}
++
++static int x1e80100_snd_prepare(struct snd_pcm_substream *substream)
++{
++	struct snd_soc_pcm_runtime *rtd = substream->private_data;
++	struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
++	struct x1e80100_snd_data *data = snd_soc_card_get_drvdata(rtd->card);
++	struct sdw_stream_runtime *sruntime = data->sruntime[cpu_dai->id];
++
++	return qcom_snd_sdw_prepare(substream, sruntime,
++				    &data->stream_prepared[cpu_dai->id]);
++}
++
++static int x1e80100_snd_hw_free(struct snd_pcm_substream *substream)
++{
++	struct snd_soc_pcm_runtime *rtd = substream->private_data;
++	struct x1e80100_snd_data *data = snd_soc_card_get_drvdata(rtd->card);
++	struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
++	struct sdw_stream_runtime *sruntime = data->sruntime[cpu_dai->id];
++
++	return qcom_snd_sdw_hw_free(substream, sruntime,
++				    &data->stream_prepared[cpu_dai->id]);
++}
++
++static const struct snd_soc_ops x1e80100_be_ops = {
++	.startup = qcom_snd_sdw_startup,
++	.shutdown = x1e80100_snd_shutdown,
++	.hw_params = x1e80100_snd_hw_params,
++	.hw_free = x1e80100_snd_hw_free,
++	.prepare = x1e80100_snd_prepare,
++};
++
++static void x1e80100_add_be_ops(struct snd_soc_card *card)
++{
++	struct snd_soc_dai_link *link;
++	int i;
++
++	for_each_card_prelinks(card, i, link) {
++		if (link->no_pcm == 1) {
++			link->init = x1e80100_snd_init;
++			link->be_hw_params_fixup = x1e80100_be_hw_params_fixup;
++			link->ops = &x1e80100_be_ops;
++		}
++	}
++}
++
++static int x1e80100_platform_probe(struct platform_device *pdev)
++{
++	struct snd_soc_card *card;
++	struct x1e80100_snd_data *data;
++	struct device *dev = &pdev->dev;
++	int ret;
++
++	card = devm_kzalloc(dev, sizeof(*card), GFP_KERNEL);
++	if (!card)
++		return -ENOMEM;
++	/* Allocate the private data */
++	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
++	if (!data)
++		return -ENOMEM;
++
++	card->owner = THIS_MODULE;
++	card->dev = dev;
++	dev_set_drvdata(dev, card);
++	snd_soc_card_set_drvdata(card, data);
++
++	ret = qcom_snd_parse_of(card);
++	if (ret)
++		return ret;
++
++	card->driver_name = "x1e80100";
++	x1e80100_add_be_ops(card);
++
++	return devm_snd_soc_register_card(dev, card);
++}
++
++static const struct of_device_id snd_x1e80100_dt_match[] = {
++	{ .compatible = "qcom,x1e80100-sndcard", },
++	{}
++};
++MODULE_DEVICE_TABLE(of, snd_x1e80100_dt_match);
++
++static struct platform_driver snd_x1e80100_driver = {
++	.probe  = x1e80100_platform_probe,
++	.driver = {
++		.name = "snd-x1e80100",
++		.of_match_table = snd_x1e80100_dt_match,
++	},
++};
++module_platform_driver(snd_x1e80100_driver);
++MODULE_AUTHOR("Srinivas Kandagatla <srinivas.kandagatla@linaro.org");
++MODULE_AUTHOR("Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>");
++MODULE_DESCRIPTION("Qualcomm X1E80100 ASoC Machine Driver");
++MODULE_LICENSE("GPL");
 -- 
-Stephan Gerhold <stephan@gerhold.net>
+2.34.1
 
 
