@@ -1,122 +1,162 @@
-Return-Path: <devicetree+bounces-21526-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21527-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60313803F22
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 21:16:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D5A9803F3C
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 21:25:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1AA4B281262
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 20:16:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7E33C1C2088B
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 20:25:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BCED3418E;
-	Mon,  4 Dec 2023 20:16:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2183633CFE;
+	Mon,  4 Dec 2023 20:25:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="Mmsc6DZG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BCLHeL/o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2EBB101
-	for <devicetree@vger.kernel.org>; Mon,  4 Dec 2023 12:16:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1701720978;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=scE6uJE/gsl0ExlvPlw1tvZXL0nwbCHoC6Ch9ngDrG8=;
-	b=Mmsc6DZGnEyOCtXgD8gf/ugV4LaDb/hHHGdIfx+cg0H/ILH3yDmeHXVhj/qlyfka/6v/a+
-	seh2K0IOqJPXiVvzPxlHf4qyNUvRQRWO9fQAoIUHGqEOv44mIqg8mY89xamoWBeo6uLVjN
-	hTU7Df1Ud5WXqN2zPPzRvoDgrSyu59o=
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com
- [209.85.219.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-447-QXaYQR4PNyeiAxPhpL46EA-1; Mon, 04 Dec 2023 15:16:15 -0500
-X-MC-Unique: QXaYQR4PNyeiAxPhpL46EA-1
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-67aa944afd6so15884576d6.3
-        for <devicetree@vger.kernel.org>; Mon, 04 Dec 2023 12:16:15 -0800 (PST)
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB978CB;
+	Mon,  4 Dec 2023 12:25:31 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-50be03cc8a3so3969889e87.1;
+        Mon, 04 Dec 2023 12:25:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701721530; x=1702326330; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=O4zwTB/miMPtSWCRzH5LYRAkGFmdPgzBkW3R45x59/A=;
+        b=BCLHeL/oROUHSd9M3gfWOOFd6Tt/19UvDPvMIVmG3eOBtzzLYLmueFDaFx7YkFXUOO
+         mBmJJvSoqOcH1WPn1JKnSP8aMHVIAyxG6uHLZW4TB8b/uUWGUIGHmnocd4SGMiDfpAOj
+         Xmh0pSlkqfLKKMZ7nRLJYvxGXixFO5ASKL8/L1PEP1ViexgsHblasNVv/jIVKnrdtO29
+         wkP3YOhbo/GXnaJkaCt36fEx8AhRgalOlviWTE3EmaWhO9Bm9WMvDT9lk/XqqGbQBF1L
+         c2MmB/pgmD1MOtm2i5yvHE/iwuFSH+nuW5vUCfynI0Jsf425QeCHdusjsDcVxWfxdTIz
+         NC/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701720975; x=1702325775;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=scE6uJE/gsl0ExlvPlw1tvZXL0nwbCHoC6Ch9ngDrG8=;
-        b=kqT2JfQ005UD1e8xG/r9+pZuj1VWX9ALo05vyTn5aA2GDaOXT+6xOxEq70eMq9q/Zl
-         YeQLqTxUGTQAFA6Ugn6rwJtKMJdrl+5KiQcHhkqhxd0C4/3peSxKFA1nha9nE4mSzDUh
-         GVkVB54H7nSsauasjn6KyWm9FIqsADSkgnOvBYjWEtzeOKh1MS9QR99/r9RC/TuuXws/
-         Nm0OpeC/WNkcOcisEqS2dVe9Waz90mbQ3rQxD0hs6Bj2RgXPPCCjvM/qYZtyGVg78Ov8
-         lunxqKxFl7gV9ULpz8RW5Bk0x5G5h02zout/q0nIsNU0k+ck0gyj2JMWkObNNmgK8Kox
-         wxWg==
-X-Gm-Message-State: AOJu0YwvSnz8cj32f+/p35D+r7tuSPOnN9ToB2X15cOUGgG8aJ0jtm8r
-	6KXhsEPqRFGj6ND7i2y93xDM4ql0cxFUCLazgsjorKY+QbZyoohoQq8V3/lfLKVD5VU4QtTSplL
-	SXkjLWYjp873ZxRVqnmMjrg==
-X-Received: by 2002:ad4:4481:0:b0:67a:a721:ec1a with SMTP id m1-20020ad44481000000b0067aa721ec1amr127143qvt.94.1701720975330;
-        Mon, 04 Dec 2023 12:16:15 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGgoVrFG6EC//oL2uzFysj4twtnTf+9h/+HjOZVaxTJrf07QpXYwOj+ja1iSEQZGrynxBr/Ig==
-X-Received: by 2002:ad4:4481:0:b0:67a:a721:ec1a with SMTP id m1-20020ad44481000000b0067aa721ec1amr127121qvt.94.1701720975037;
-        Mon, 04 Dec 2023 12:16:15 -0800 (PST)
-Received: from fedora ([2600:1700:1ff0:d0e0::47])
-        by smtp.gmail.com with ESMTPSA id r3-20020a0cb283000000b00677fb735738sm4618230qve.34.2023.12.04.12.16.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Dec 2023 12:16:14 -0800 (PST)
-Date: Mon, 4 Dec 2023 14:16:12 -0600
-From: Andrew Halaney <ahalaney@redhat.com>
-To: Suraj Jaiswal <quic_jsuraj@quicinc.com>
-Cc: Vinod Koul <vkoul@kernel.org>, 
-	Bhupesh Sharma <bhupesh.sharma@linaro.org>, Andy Gross <agross@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com, Prasad Sodagudi <psodagud@quicinc.com>, kernel@quicinc.com
-Subject: Re: [PATCH net-next v3 0/3] Ethernet DWMAC5 fault IRQ support
-Message-ID: <rw5vfdvre5rt4rwytfsp3qy6sgsdr3dm6oefr4sap2aqbvpw42@c2dxz42tucby>
-References: <cover.1701695218.git.quic_jsuraj@quicinc.com>
+        d=1e100.net; s=20230601; t=1701721530; x=1702326330;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=O4zwTB/miMPtSWCRzH5LYRAkGFmdPgzBkW3R45x59/A=;
+        b=N8wM2j60MfiF/ocPFu8F7jKZpz/F3dAKNuiA7bYqr1BznkTA+IPpaFsGxTdq5jAy19
+         mGtVScA94SBsMpQzqAKyYXfc0sCIlpQzDk3IBCXzeeH0l8AtP6f8ksanC1lx+ClL7vE0
+         pDjr2CH0kEfbeU2UM0kkcWi7Zi7c5orqYlmr2FxRYva8bmFb7XvRkk7IXxiQ1lg0AZTh
+         mHK65tezXglPQk1UBxc4nar5tXqI3KKPv5sLglVGtevt3nNjDtCKW7xT4ZeyNPiJTzod
+         uCC28iBCCk9uolUSb80NNq4dypTXOGu61nDKsg/MVy076JPqpTIFrSY2kGt75kklovWM
+         3mEA==
+X-Gm-Message-State: AOJu0Yxvs8QyDvVSOxe8NF6Y/gdz/WcJdG7Pp5AeYc9v6YyrXWbS4SOH
+	W3kOfQ5sBU/9/GlzPwmowfo=
+X-Google-Smtp-Source: AGHT+IHghfI/wepGC1I4yJLErrynLmDWoNAeInmFJJD7a8PBE9bsHDIMPexR8UEVinabv/Xruuf+Ew==
+X-Received: by 2002:a05:6512:2343:b0:50b:fcd6:cb10 with SMTP id p3-20020a056512234300b0050bfcd6cb10mr904083lfu.130.1701721529711;
+        Mon, 04 Dec 2023 12:25:29 -0800 (PST)
+Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id f4-20020a056402150400b0054c9df4317dsm180568edw.7.2023.12.04.12.25.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Dec 2023 12:25:29 -0800 (PST)
+Message-ID: <bdda61be-8e02-36f5-6261-37d4b75278ba@gmail.com>
+Date: Mon, 4 Dec 2023 21:25:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1701695218.git.quic_jsuraj@quicinc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v1 3/3] ARM: dts: rockchip: rk3036-kylin: add
+ hdmi-connector node
+Content-Language: en-US
+To: Alex Bee <knaerzche@gmail.com>, heiko@sntech.de, hjc@rock-chips.com
+Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <49c6afec-022f-02de-99a0-d409b64da198@gmail.com>
+ <f5bc182b-f9b6-26a8-8649-19ce33e3c0e1@gmail.com>
+ <447b1bde-584f-4eb4-8bfb-9abd3aa8b6fa@gmail.com>
+From: Johan Jonker <jbx6244@gmail.com>
+In-Reply-To: <447b1bde-584f-4eb4-8bfb-9abd3aa8b6fa@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Mon, Dec 04, 2023 at 06:56:14PM +0530, Suraj Jaiswal wrote:
-> Add support to listen Ethernet HW safery IRQ. The safety IRQ will be
+Hi Alex, Heiko,
 
-s/safery/safety/
+On 12/4/23 20:12, Alex Bee wrote:
+> Hi Johan,
+> Am 04.12.23 um 18:40 schrieb Johan Jonker:
+>> Add hdmi-connector node to comply with the inno_hdmi binding.
+>>
+>> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+>> ---
+>>   arch/arm/boot/dts/rockchip/rk3036-kylin.dts | 17 +++++++++++++++++
+>>   1 file changed, 17 insertions(+)
+>>
+>> diff --git a/arch/arm/boot/dts/rockchip/rk3036-kylin.dts b/arch/arm/boot/dts/rockchip/rk3036-kylin.dts
+>> index 67e1e04139e7..a213333be011 100644
+>> --- a/arch/arm/boot/dts/rockchip/rk3036-kylin.dts
+>> +++ b/arch/arm/boot/dts/rockchip/rk3036-kylin.dts
+>> @@ -13,6 +13,17 @@ memory@60000000 {
+>>           reg = <0x60000000 0x20000000>;
+>>       };
+>>
+>> +    hdmi_con: hdmi-con {
+>> +        compatible = "hdmi-connector";
+>> +        type = "c";
 
-> triggered for ECC, DPP, FSM error.
+
+> According to [0], kylin has an A-Type HDMI port - so this should be
+>  +        type = "a";
+> > [0] http://rockchip.wikidot.com/kylin
+
+Not sure from the text or do I miss something...
+
+I did look at that board picture before submitting.
+Can be wrong, but to me it looks a smaller HDMI connector.
+
+Does anyone have a Kylin picture from a different angle?
+Or reference design?
+
+Else apply and fix later? (Heiko ?)
+Let me know.
+
+Johan
+
 > 
-> Changes since v3:
-
-This is listed as v3 in the subject, but it should now be v4 since the
-last version was v3.
-
-> - Fix DT_CHECKER warning
-> - use name safety for the IRQ.
->  
+> Regards,
+> Alex
+>> +
+>> +        port {
+>> +            hdmi_con_in: endpoint {
+>> +                remote-endpoint = <&hdmi_out_con>;
+>> +            };
+>> +        };
+>> +    };
+>> +
+>>       leds: gpio-leds {
+>>           compatible = "gpio-leds";
+>>
+>> @@ -110,6 +121,12 @@ &hdmi {
+>>       status = "okay";
+>>   };
+>>
+>> +&hdmi_out {
+>> +    hdmi_out_con: endpoint {
+>> +        remote-endpoint = <&hdmi_con_in>;
+>> +    };
+>> +};
+>> +
+>>   &i2c1 {
+>>       clock-frequency = <400000>;
+>>
+>> -- 
+>> 2.39.2
+>>
+>>
+>> _______________________________________________
+>> Linux-rockchip mailing list
+>> Linux-rockchip@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-rockchip
 > 
-> Suraj Jaiswal (3):
->   dt-bindings: net: qcom,ethqos: add binding doc for safety IRQ for
->     sa8775p
->   arm64: dts: qcom: sa8775p: enable safety IRQ
->   net: stmmac: Add driver support for DWMAC5 safety IRQ Support
-> 
->  .../devicetree/bindings/net/qcom,ethqos.yaml   |  9 ++++++---
->  .../devicetree/bindings/net/snps,dwmac.yaml    |  5 +++--
->  arch/arm64/boot/dts/qcom/sa8775p.dtsi          | 10 ++++++----
->  drivers/net/ethernet/stmicro/stmmac/common.h   |  1 +
->  drivers/net/ethernet/stmicro/stmmac/stmmac.h   |  2 ++
->  .../net/ethernet/stmicro/stmmac/stmmac_main.c  | 18 ++++++++++++++++++
->  .../ethernet/stmicro/stmmac/stmmac_platform.c  |  9 +++++++++
->  7 files changed, 45 insertions(+), 9 deletions(-)
-> 
-> -- 
-> 2.25.1
-> 
-
 
