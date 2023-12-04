@@ -1,65 +1,83 @@
-Return-Path: <devicetree+bounces-21479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21488-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F1C3803C8F
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 19:15:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 707AA803CDE
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 19:24:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E99912810EF
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 18:15:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 25F4C2811B6
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 18:24:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13B362EB1C;
-	Mon,  4 Dec 2023 18:15:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58B542FC4F;
+	Mon,  4 Dec 2023 18:23:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="MqpZuS1G"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="syULo6DI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B9B2FF;
-	Mon,  4 Dec 2023 10:15:22 -0800 (PST)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B4IFBbP031331;
-	Mon, 4 Dec 2023 12:15:11 -0600
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9A1C188;
+	Mon,  4 Dec 2023 10:23:47 -0800 (PST)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B4IMmEF056511;
+	Mon, 4 Dec 2023 12:22:48 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1701713711;
-	bh=ky632JItAjYRjDnRFjZUIuc/NYHp4SSuHv5eDViF4cQ=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=MqpZuS1GBynjyg2SDqYuu9YKJu6+Qt3lnAmBN+4dGzVDQG+UzAy/ATY+2iySZprPY
-	 ij5THq1qnmzTwbkb56+Hqhg+LlsKLVy9DOdf2goL0Qzks6OV+pOTdURMw+lMek0OOq
-	 TQ5QI9fijJEPZ3cORJwrauGTVr0PBZQ3OZOXNSs8=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B4IFBtm078719
+	s=ti-com-17Q1; t=1701714168;
+	bh=+UzfahhmDwBPCn7TWWajz5gUYl9JjiSSOpzMGjXxwzA=;
+	h=From:To:CC:Subject:Date;
+	b=syULo6DI3uaKA7PmxusECJJaNHtLh0LWj7cBqvHZLyr5oA7ej6Zi1pfTkGRZREXir
+	 IvUunMquSdI56ECGXuVQVIVV9tNQ1GkzrN5m96ZM8oLXKlHa52FXcnOqEYS6uTuaMN
+	 yAy7NX5FY23zAUFvLf0eft+Cp+cZ0QOJZhp+bnh0=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B4IMmjx013404
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 4 Dec 2023 12:15:11 -0600
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 4 Dec 2023 12:22:48 -0600
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 4
- Dec 2023 12:15:11 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ Dec 2023 12:22:48 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 4 Dec 2023 12:15:11 -0600
-Received: from udba0500997.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B4IF6ad035354;
-	Mon, 4 Dec 2023 12:15:11 -0600
-From: Brandon Brnich <b-brnich@ti.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>,
-        Sebastian Fricke
-	<sebastian.fricke@collabora.com>,
-        Nas Chung <nas.chung@chipsnmedia.com>
-CC: Nishanth Menon <nm@ti.com>, Darren Etheridge <detheridge@ti.com>,
-        Brandon
- Brnich <b-brnich@ti.com>
-Subject: [PATCH 2/2] media: chips-media: wave5: Remove K3 References
-Date: Mon, 4 Dec 2023 12:14:52 -0600
-Message-ID: <20231204181452.1258419-3-b-brnich@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231204181452.1258419-1-b-brnich@ti.com>
-References: <20231204181452.1258419-1-b-brnich@ti.com>
+ Frontend Transport; Mon, 4 Dec 2023 12:22:48 -0600
+Received: from fllv0039.itg.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B4IMkx3042313;
+	Mon, 4 Dec 2023 12:22:46 -0600
+From: Andrew Davis <afd@ti.com>
+To: Frank Binns <frank.binns@imgtec.com>,
+        Donald Robson
+	<donald.robson@imgtec.com>,
+        Matt Coster <matt.coster@imgtec.com>,
+        "H .
+ Nikolaus Schaller" <hns@goldelico.com>,
+        Adam Ford <aford173@gmail.com>,
+        Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec
+	<jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren
+	<tony@atomide.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra
+	<vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>, Paul Cercueil
+	<paul@crapouillou.net>
+CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-sunxi@lists.linux.dev>, <linux-omap@vger.kernel.org>,
+        <linux-mips@vger.kernel.org>, Andrew Davis <afd@ti.com>
+Subject: [PATCH RFC 00/10] Device tree support for Imagination Series5 GPU
+Date: Mon, 4 Dec 2023 12:22:35 -0600
+Message-ID: <20231204182245.33683-1-afd@ti.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,34 +88,57 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Change compatible string to match dt bindings for
-TI devices with Wave521c. 
+Hello all,
 
-K3 family prefix should not be included
-as it deviates from naming convention.
+I know this has been tried before[0], but given the recent upstreaming of
+the Series6+ GPU bindings I figured it might be time to give the Series5
+bindings another try.
 
-Fixes: 9707a6254a8a ("media: chips-media: wave5: Add the v4l2 layer")
-Reported-by: Geert Uytterhoeven <geert@linux-m68k.org>
-Closes: https://lore.kernel.org/all/CAMuHMdUYOq=q1j=d+Eac28hthOUAaNUkuvxmRu-mUN1pLKq69g@mail.gmail.com/
-Signed-off-by: Brandon Brnich <b-brnich@ti.com>
----
- drivers/media/platform/chips-media/wave5/wave5-vpu.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+While there is currently no mainline driver for these binding, there is an
+open source out-of-tree kernel-side driver available[1]. Having a stable
+and upstream binding for these devices allows us to describe this hardware
+in device tree.
 
-diff --git a/drivers/media/platform/chips-media/wave5/wave5-vpu.c b/drivers/media/platform/chips-media/wave5/wave5-vpu.c
-index bfe4caa79cc9..0d90b5820bef 100644
---- a/drivers/media/platform/chips-media/wave5/wave5-vpu.c
-+++ b/drivers/media/platform/chips-media/wave5/wave5-vpu.c
-@@ -272,7 +272,7 @@ static const struct wave5_match_data ti_wave521c_data = {
- };
- 
- static const struct of_device_id wave5_dt_ids[] = {
--	{ .compatible = "ti,k3-j721s2-wave521c", .data = &ti_wave521c_data },
-+	{ .compatible = "ti,j721s2-wave521c", .data = &ti_wave521c_data },
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, wave5_dt_ids);
+This is my vision for how these bindings should look, along with some
+example uses in several SoC DT files. The compatible names have been
+updated to match what was decided on for Series6+, but otherwise most
+is the same as we have been using in our vendor tree for many years.
+
+Thanks,
+Andrew
+
+Based on next-20231204.
+
+[0]: https://lkml.org/lkml/2020/4/24/1222
+[1]: https://github.com/openpvrsgx-devgroup
+
+Andrew Davis (10):
+  dt-bindings: gpu: Add PowerVR Series5 SGX GPUs
+  ARM: dts: omap3: Add device tree entry for SGX GPU
+  ARM: dts: omap4: Add device tree entry for SGX GPU
+  ARM: dts: omap5: Add device tree entry for SGX GPU
+  ARM: dts: AM33xx: Add device tree entry for SGX GPU
+  ARM: dts: AM437x: Add device tree entry for SGX GPU
+  ARM: dts: DRA7xx: Add device tree entry for SGX GPU
+  arm64: dts: ti: k3-am654-main: Add device tree entry for SGX GPU
+  ARM: dts: sun6i: Add device tree entry for SGX GPU
+  MIPS: DTS: jz4780: Add device tree entry for SGX GPU
+
+ .../devicetree/bindings/gpu/img,powervr.yaml  | 69 +++++++++++++++++--
+ arch/arm/boot/dts/allwinner/sun6i-a31.dtsi    |  9 +++
+ arch/arm/boot/dts/ti/omap/am33xx.dtsi         |  9 +--
+ arch/arm/boot/dts/ti/omap/am3517.dtsi         | 11 +--
+ arch/arm/boot/dts/ti/omap/am4372.dtsi         |  6 ++
+ arch/arm/boot/dts/ti/omap/dra7.dtsi           |  9 ++-
+ arch/arm/boot/dts/ti/omap/omap34xx.dtsi       | 11 +--
+ arch/arm/boot/dts/ti/omap/omap36xx.dtsi       |  9 +--
+ arch/arm/boot/dts/ti/omap/omap4.dtsi          |  9 +--
+ arch/arm/boot/dts/ti/omap/omap5.dtsi          |  9 +--
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi      |  7 ++
+ arch/mips/boot/dts/ingenic/jz4780.dtsi        | 11 +++
+ 12 files changed, 136 insertions(+), 33 deletions(-)
+
 -- 
-2.34.1
+2.39.2
 
 
