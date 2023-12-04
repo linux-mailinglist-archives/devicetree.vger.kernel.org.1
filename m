@@ -1,193 +1,190 @@
-Return-Path: <devicetree+bounces-21173-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21178-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADF31802ABB
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 05:12:51 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA483802ACB
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 05:14:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 57421280C43
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 04:12:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 43D07B209C5
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 04:14:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E4664A34;
-	Mon,  4 Dec 2023 04:12:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70683468B;
+	Mon,  4 Dec 2023 04:14:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="WQW1AIp9"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="atXaMwGT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA69DD5;
-	Sun,  3 Dec 2023 20:12:43 -0800 (PST)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B44CTFw072609;
-	Sun, 3 Dec 2023 22:12:29 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1701663149;
-	bh=/frd/I0E8PCItu7auYP7y0viegT7LnlUyS8kGezkDwQ=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=WQW1AIp9c4e/tPIk1tPlLOl4jxAtRTM15MFJ0BQUxsFyQEPN04TgwQmcqlRO6NTIq
-	 UYagCMLCy733mz9IsJ7Kk5rwifEz57nsZUjFPEymxemBWxEsW8L9hKoC8N6HvKQUiM
-	 etjL23FzAVN1PahDaxs/DboiZovK70yKwx3XiBrI=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B44CT9P061178
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Sun, 3 Dec 2023 22:12:29 -0600
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 3
- Dec 2023 22:12:29 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sun, 3 Dec 2023 22:12:29 -0600
-Received: from [172.24.227.36] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B44COk1043073;
-	Sun, 3 Dec 2023 22:12:24 -0600
-Message-ID: <9eb2010a-5039-4b51-b0f6-5f92d6d80c9c@ti.com>
-Date: Mon, 4 Dec 2023 09:42:23 +0530
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36ADB197;
+	Sun,  3 Dec 2023 20:14:36 -0800 (PST)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3B43Qtqk000570;
+	Mon, 4 Dec 2023 04:14:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=u/SrorPZafxayYbjMxackuDqOb8tJdzY5SKThHKYPTQ=;
+ b=atXaMwGTCFuU1GhHCX9S847/qPlv09oby5Bf17bmZncDQazdxnskOvot8jR6otczVj7Y
+ KVmgF1RnpzWc6iKwS4eFVgfSKO+bdjGBOtVC66V4CA2qEq70JPXxI6x70q4wPwXsYZ4J
+ Bepb90SP4/+MfvHNnFaEhqS8Fn1Hr3uv473PEDNHJ/CPtwfVc/eta5Ck3Y0uPyMeRcs+
+ k/BGHfPsKqCFj+95EK3HrTjzOvYPF+ISpqrZp9IFSW1GIhok6fRZVFkA8+ou9W4uZ3sg
+ KGSUq3u+dc9URV9JT16Zh0jvfnHvXOWixzDtwr+Zj/Z+PpdJKbckHQW9EBiAC7EqRU9r fg== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uqukg2yf8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 04 Dec 2023 04:13:59 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3B44Dwvj026135
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 4 Dec 2023 04:13:58 GMT
+Received: from hu-obabatun-lv.qualcomm.com (10.49.16.6) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Sun, 3 Dec 2023 20:13:55 -0800
+From: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
+To: <catalin.marinas@arm.com>, <will@kernel.org>, <robh+dt@kernel.org>,
+        <frowand.list@gmail.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <kernel@quicinc.com>, Oreoluwa Babatunde <quic_obabatun@quicinc.com>
+Subject: [RFC PATCH v2 0/6] Dynamic allocation of reserved_mem array.
+Date: Sun, 3 Dec 2023 20:13:33 -0800
+Message-ID: <20231204041339.9902-1-quic_obabatun@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 0/7] Add TPS6594 PMIC support on several boards
-To: "Kumar, Udit" <u-kumar1@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <a-nandan@ti.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <eblanc@baylibre.com>,
-        <jneanne@baylibre.com>, <aseketeli@baylibre.com>,
-        <jpanis@baylibre.com>, <j-luthra@ti.com>, <vaishnav.a@ti.com>,
-        <hnagalla@ti.com>, <devarsht@ti.com>
-References: <20231128055230.342547-1-n-francis@ti.com>
- <2cbb60f0-3dfc-48f2-9b61-41adf14648c7@ti.com>
-Content-Language: en-US
-From: Neha Malcom Francis <n-francis@ti.com>
-In-Reply-To: <2cbb60f0-3dfc-48f2-9b61-41adf14648c7@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: f_xxp2rLqRz6X5iR4o4sfT7j4thv-3e_
+X-Proofpoint-ORIG-GUID: f_xxp2rLqRz6X5iR4o4sfT7j4thv-3e_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-04_01,2023-11-30_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 adultscore=0
+ mlxscore=0 phishscore=0 lowpriorityscore=0 bulkscore=0 impostorscore=0
+ mlxlogscore=754 priorityscore=1501 suspectscore=0 spamscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2311060000 definitions=main-2312040029
 
-Hi Udit,
+The reserved_mem array is used to store the data of the different
+reserved memory regions specified in the DT of a device.
+The array stores information such as the name, node, starting address,
+and size of a reserved memory region.
 
-On 04/12/23 09:39, Kumar, Udit wrote:
-> 
-> On 11/28/2023 11:22 AM, Neha Malcom Francis wrote:
->> TPS6594 is a Power Management IC which provides regulators and others
->> features like GPIOs, RTC, watchdog, ESMs (Error Signal Monitor), and
->> PFSM (Pre-configurable Finite State Machine). The SoC and the PMIC can
->> communicate through the I2C or SPI interfaces.
->> TPS6594 is the super-set device while TPS6593 and LP8764 are derivatives.
-> 
-> Please consider adding bootph property in avs regulator node.
-> 
-> Thanks
-> 
-> Udit
-> 
+The array is currently statically allocated with a size of
+MAX_RESERVED_REGIONS(64). This means that any system that specifies a
+number of reserved memory regions greater than MAX_RESERVED_REGIONS(64)
+will not have enough space to store the information for all the regions.
 
-Thanks for catching that, I'll send out v9 with the bootph property added.
+Therefore, this series extends the use of a static array for
+reserved_mem, and introduces a dynamically allocated array using
+memblock_alloc() based on the number of reserved memory regions
+specified in the DT.
 
-> 
->> This series adds device tree nodes for TI TPS6594 PMICs found in the
->> following boards:
->> - J721EXSOMXEVM:
->>    Link: https://www.ti.com/tool/J721EXSOMXEVM
->> - J721S2XSOMXEVM:
->>    Link: https://www.ti.com/tool/J721S2XSOMXEVM
->> - J7200XSOMXEVM:
->>    Link: https://www.ti.com/tool/J7200XSOMXEVM
->> - J784S4XEVM
->>    Link: https://www.ti.com/tool/J784S4XEVM
->> - SK-AM69
->>    Link: https://www.ti.com/tool/SK-AM69
->> - SK-TDA4VM (J721E-SK)
->>    Link: https://www.ti.com/tool/SK-TDA4VM
->>
->> Boot Logs with required config (DONOTMERGE patch) enabled:
->> https://gist.github.com/nehamalcom/f47fcd6183360ed8a146c9ba456202c3
->> Boot Logs without config enabled:
->> https://gist.github.com/nehamalcom/58217b100e614ae55726f314e02b5001
->>
->> ---
->> Changes from v7:
->> https://lore.kernel.org/all/20231122104513.2335757-1-n-francis@ti.com/
->> - (New Patches) Add support for SK boards that have TPS6594xx PMIC
->>    present (J721E-SK and AM69-SK)
->> - Add DONOTMERGE defconfig patch to show test logs
->>
->> Changes from v6:
->> https://lore.kernel.org/all/20230810-tps6594-v6-0-2b2e2399e2ef@ti.com/
->> - Modify patch series to include only patches not merged (J7)
->> - Add boot logs for all affected boards
->>
->> Changes from v5:
->> https://lore.kernel.org/all/20230809-tps6594-v5-0-485fd3d63670@ti.com
->> - Range-diff: http://0x0.st/H_fD.diff
->> - Reword the patch fixing interrupt ranges for mcu domain gpio intr, and
->>    add Fixes: tag
->> - Also fix interrupt ranges for main domain gpio intr in the same patch
->> - Change pinctrl node names to end in -pins to fix dtbs_check warnings
->> - (New Patch) Enable TPS6594 in defconfig
->>
->> Changes from v4:
->> https://lore.kernel.org/all/20230727130908.10656-1-eblanc@baylibre.com/
->> - Range-diff: https://0x0.st/H_L7.diff
->> - Rebased on top of linux-next
->> - Fix min voltage on vdd_usb_3v3 regulator (ldo2) on j721e-som
->> - Use 3-hex-digit format for pinctrl values
->>
->> Changes from v3:
->> https://lore.kernel.org/all/20230417154832.216774-1-eblanc@baylibre.com/
->> - Rebased on top of v6.5-rc1.
->> - Change pinctrl number for irq pin as wkup_pmx0 was split on some boards.
->> - Use already present wkup_i2c0 node instead of creating a new one.
->>
->> Changes from v2:
->> https://lore.kernel.org/lkml/20230414112843.1358067-1-eblanc@baylibre.com/
->> - Change node name as per Krzysztof review.
->> - Add a fix for the interrupt range of wakeup gpio used by TPS6594 pmic
->>    on J784S4.
->>    The interruptions of the PMIC were not working before that.
->> - Remove dependencies on other patch series as that was a mistake, see
->>    https://lore.kernel.org/lkml/CRYY2V3HJ0CP.96JQ18PLZB3C@burritosblues/
->>
->> Changes from v1:
->> https://lore.kernel.org/lkml/20230329142948.833800-1-eblanc@baylibre.com/
->> - Harmonize regulators names across the different boards.
->> - Adjust AVS voltage range.
->> - Remove some outdated comments.
->> - Add PMIC to J784S4 board.
->> - Compatible string modified to match dt-bindings.
->> - Add gpio-controller and gpio-cells properties.
->>
->> Esteban Blanc (2):
->>    arm64: dts: ti: k3-j7200-som-p0: Add TP6594 family PMICs
->>    arm64: dts: ti: k3-j721s2-som-p0: Add TP6594 family PMICs
->>
->> Jerome Neanne (2):
->>    arm64: dts: ti: k3-j721e-som-p0: Add TP6594 family PMICs
->>    arm64: dts: ti: k3-j784s4-evm: Add support for TPS6594 PMIC
->>
->> Neha Malcom Francis (3):
->>    arm64: dts: ti: k3-am69-sk: Add support for TPS6594 PMIC
->>    arm64: dts: ti: k3-j721e-sk: Add TPS6594 family PMICs
->>    DONOTMERGE: arm64: defconfig: Enable TPS6594 PMIC for J7 devices
->>
->>   arch/arm64/boot/dts/ti/k3-am69-sk.dts        | 100 ++++++++++
->>   arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi  | 157 +++++++++++++++
->>   arch/arm64/boot/dts/ti/k3-j721e-sk.dts       | 154 ++++++++++++++
->>   arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi  | 163 +++++++++++++++
->>   arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi | 199 +++++++++++++++++++
->>   arch/arm64/boot/dts/ti/k3-j784s4-evm.dts     | 104 ++++++++++
->>   arch/arm64/configs/defconfig                 |   2 +-
->>   7 files changed, 878 insertions(+), 1 deletion(-)
->>
+Memory gotten from memblock_alloc() is only writable after paging_init()
+is called, but the reserved memory regions need to be reserved before
+then so that the system does not create page table mappings for them.
+
+Reserved memory regions can be divided into 2 groups.
+i) Statically-placed reserved memory regions
+i.e. regions defined in the DT using the @reg property.
+ii) Dynamically-placed reserved memory regions.
+i.e. regions specified in the DT using the @alloc_ranges
+    and @size properties.
+
+It is possible to call memblock_reserve() and memblock_mark_nomap() on
+the statically-placed reserved memory regions and not need to save them
+to the array until after paging_init(), but this is not possible for the
+dynamically-placed reserved memory because the starting address of these
+regions need to be stored somewhere after they are allocated.
+
+Therefore, this series achieves the allocation and population of the
+reserved_mem array in two steps:
+
+1. Before paging_init()
+   Before paging_init() is called, iterate through the reserved_mem
+   nodes in the DT and do the following:
+   - Allocate memory for dynamically-placed reserved memory regions and
+     store their starting address in the static allocated reserved_mem
+     array.
+   - Call memblock_reserve() and memblock_mark_nomap() on all the
+     reserved memory regions as needed.
+   - Count the total number of reserved_mem nodes in the DT.
+
+2. After paging_init()
+   After paging_init() is called:
+   - Allocate new memory for the reserved_mem array based on the number
+     of reserved memory nodes in the DT.
+   - Transfer all the information that was stored in the static array
+     into the new array.
+   - Store the rest of the reserved_mem regions in the new array.
+     i.e. the statically-placed regions.
+
+The static array is no longer needed after this point, but there is
+currently no obvious way to free the memory. Therefore, the size of the
+initial static array is now defined using a config option.
+Because the array is used only before paging_init() to store the
+dynamically-placed reserved memory regions, the required size can vary
+from device to device. Therefore, scaling it can help get some memory
+savings.
+
+A possible solution to freeing the memory for the static array will be
+to mark it as __initdata. This will automatically free the memory once
+the init process is done running.
+The reason why this is not pursued in this series is because of
+the possibility of a use-after-free.
+If the dynamic allocation of the reserved_mem array fails, then future
+accesses of the reserved_mem array will still be referencing the static
+array. When the init process ends and the memory is freed up, any
+further attempts to use the reserved_mem array will result in a
+use-after-free.
+
+Note:
+
+- The limitation to this approach is that there is still a limit of
+  64 for dynamically reserved memory regions.
+- Upon further review, the series might need to be split up/duplicated
+  for other archs.
+
+
+Oreoluwa Babatunde (6):
+  of: reserved_mem: Change the order that reserved_mem regions are
+    stored
+  of: reserved_mem: Swicth call to unflatten_device_tree() to after
+    paging_init()
+  of: resevred_mem: Delay allocation of memory for dynamic regions
+  of: reserved_mem: Add code to use unflattened DT for reserved_mem
+    nodes
+  of: reserved_mem: Add code to dynamically allocate reserved_mem array
+  of: reserved_mem: Make MAX_RESERVED_REGIONS a config option
+
+ arch/loongarch/kernel/setup.c      |   2 +-
+ arch/mips/kernel/setup.c           |   3 +-
+ arch/nios2/kernel/setup.c          |   4 +-
+ arch/openrisc/kernel/setup.c       |   4 +-
+ arch/powerpc/kernel/setup-common.c |   3 +
+ arch/sh/kernel/setup.c             |   5 +-
+ arch/um/kernel/dtb.c               |   1 -
+ arch/um/kernel/um_arch.c           |   2 +
+ arch/xtensa/kernel/setup.c         |   4 +-
+ drivers/of/Kconfig                 |  13 +++
+ drivers/of/fdt.c                   |  39 +++++--
+ drivers/of/of_private.h            |   6 +-
+ drivers/of/of_reserved_mem.c       | 175 +++++++++++++++++++++--------
+ include/linux/of_reserved_mem.h    |   8 +-
+ kernel/dma/coherent.c              |   4 +-
+ kernel/dma/contiguous.c            |   8 +-
+ kernel/dma/swiotlb.c               |  10 +-
+ 17 files changed, 205 insertions(+), 86 deletions(-)
 
 -- 
-Thanking You
-Neha Malcom Francis
+2.17.1
+
 
