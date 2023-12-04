@@ -1,154 +1,120 @@
-Return-Path: <devicetree+bounces-21190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21191-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1267E802B83
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 07:03:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF99E802BA2
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 07:28:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AEE041F20FF1
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 06:03:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 03AAA1C209C1
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 06:28:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BAB733CF;
-	Mon,  4 Dec 2023 06:03:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 182A263D8;
+	Mon,  4 Dec 2023 06:28:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="cxx1r+XX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F21B9D;
-	Sun,  3 Dec 2023 22:03:39 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-	by ex01.ufhost.com (Postfix) with ESMTP id 8A28D24E22E;
-	Mon,  4 Dec 2023 14:03:37 +0800 (CST)
-Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 4 Dec
- 2023 14:03:37 +0800
-Received: from [192.168.125.85] (183.27.97.199) by EXMBX171.cuchost.com
- (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 4 Dec
- 2023 14:03:36 +0800
-Message-ID: <d060a66e-33a5-482d-a4c2-609a00d8b89d@starfivetech.com>
-Date: Mon, 4 Dec 2023 14:03:35 +0800
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB871D2
+	for <devicetree@vger.kernel.org>; Sun,  3 Dec 2023 22:28:32 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-50bc2e7f1e4so5442711e87.1
+        for <devicetree@vger.kernel.org>; Sun, 03 Dec 2023 22:28:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1701671311; x=1702276111; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nKeCfLZc7mdf5ttEOE5xpGWsNMCS5nBu7bohK0rYA9k=;
+        b=cxx1r+XXew+5s+HnBUjs9bSZmFf1RrhwwZDVsG1B+j/MITFaoTbHWKgHOhiW3qydkw
+         s8tWVThoy8yct0MUtGo7xf9dTnNaJNzDqfMIBThvpiF1MADlftto1/VQnB9Jg/jN9swv
+         qtbTm3gOL0TojgktRRfmW992C/4HWC0BarWkE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701671311; x=1702276111;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=nKeCfLZc7mdf5ttEOE5xpGWsNMCS5nBu7bohK0rYA9k=;
+        b=MG6WEWAVou25wzissh6+JCCAAsi5amFyHWObhs4Io8AIsTR/qrdAuFEkJAf6lJEmYx
+         OX7CIxtaNQwgmQIeSjrleZ1EpgEjnkuu8SEaqKjtReWHjKkWEgYYJMiuqn9K4mV1Muvs
+         SXrWTMBVXMbwvmWPGPi0SrfFmLiuy4eARKVqMX+7ZPjpeMhe1MmvxapebymJize5qQ7m
+         6f9MgMJM730kHPkgXN8H8gDmmB9HD1t9QHd4Rk7o6ME8QQZsSV23KSWu4XJpnMkAfmqN
+         ZHi2Yl+wCedfGpoSKkXfv80li9HktQKw5/T5kp/KPgnf/yial62e78CTDSIxJhVRlBub
+         c7Vw==
+X-Gm-Message-State: AOJu0Yzne9TjOr6YrZsCH7zHDWC6uGrmi2GgsrpRc+51TEe0N5osvFy3
+	8Cwzy1Rhr73zyK0l0VCLtdCjNkmYUEeZkHAg2KEhpA==
+X-Google-Smtp-Source: AGHT+IG95fL6ZmhFrrdBZs1yHZpwJEkMdnWR6Z3TRg/FZYz0mqiHrefYfWV2agXhFMwbCcFaJSeavkE3C7jpb9RAWYc=
+X-Received: by 2002:a05:6512:368f:b0:50b:f88a:dd63 with SMTP id
+ d15-20020a056512368f00b0050bf88add63mr334344lfs.102.1701671311129; Sun, 03
+ Dec 2023 22:28:31 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v11 19/20] PCI: starfive: Add JH7110 PCIe controller
-Content-Language: en-US
-To: Emil Renner Berthing <emil.renner.berthing@canonical.com>, Conor Dooley
-	<conor@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-	"Rob Herring" <robh+dt@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	"Lorenzo Pieralisi" <lpieralisi@kernel.org>, Daire McNamara
-	<daire.mcnamara@microchip.com>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-riscv@lists.infradead.org>, <linux-pci@vger.kernel.org>, Paul Walmsley
-	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
-	<aou@eecs.berkeley.edu>, Philipp Zabel <p.zabel@pengutronix.de>, Mason Huo
-	<mason.huo@starfivetech.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Kevin Xie <kevin.xie@starfivetech.com>
-References: <20231115114912.71448-1-minda.chen@starfivetech.com>
- <20231115114912.71448-20-minda.chen@starfivetech.com>
- <CAJM55Z8hb3vBgwOHoHuJpEPFVMNirhcs8AfZWRn4EgxbOGsq2Q@mail.gmail.com>
-From: Minda Chen <minda.chen@starfivetech.com>
-In-Reply-To: <CAJM55Z8hb3vBgwOHoHuJpEPFVMNirhcs8AfZWRn4EgxbOGsq2Q@mail.gmail.com>
+References: <20231128084236.157152-1-wenst@chromium.org> <20231128084236.157152-2-wenst@chromium.org>
+ <CAD=FV=V_v11eZ6+3gUwOvdWGNM9owG7zCK5EiezTY7RJ3eaEMw@mail.gmail.com>
+In-Reply-To: <CAD=FV=V_v11eZ6+3gUwOvdWGNM9owG7zCK5EiezTY7RJ3eaEMw@mail.gmail.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Mon, 4 Dec 2023 14:28:20 +0800
+Message-ID: <CAGXv+5GiwgF4CJBPT7JucV8qEMY0jLAvT3TqRzvLjCKcVMZ0Mg@mail.gmail.com>
+Subject: Re: [RFC PATCH v3 1/5] of: dynamic: Add of_changeset_update_prop_string
+To: Doug Anderson <dianders@chromium.org>
+Cc: Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Wolfram Sang <wsa@kernel.org>, 
+	Benson Leung <bleung@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>, 
+	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>, 
+	Hsin-Yi Wang <hsinyi@chromium.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	andriy.shevchenko@linux.intel.com, Jiri Kosina <jikos@kernel.org>, 
+	linus.walleij@linaro.org, broonie@kernel.org, gregkh@linuxfoundation.org, 
+	hdegoede@redhat.com, james.clark@arm.com, james@equiv.tech, 
+	keescook@chromium.org, rafael@kernel.org, tglx@linutronix.de, 
+	Jeff LaBundy <jeff@labundy.com>, linux-input@vger.kernel.org, linux-i2c@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EXCAS061.cuchost.com (172.16.6.21) To EXMBX171.cuchost.com
- (172.16.6.91)
-X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: quoted-printable
 
+On Sat, Dec 2, 2023 at 9:01=E2=80=AFAM Doug Anderson <dianders@chromium.org=
+> wrote:
+>
+> Hi,
+>
+> On Tue, Nov 28, 2023 at 12:45=E2=80=AFAM Chen-Yu Tsai <wenst@chromium.org=
+> wrote:
+> >
+> > @@ -1039,3 +1039,50 @@ int of_changeset_add_prop_u32_array(struct of_ch=
+angeset *ocs,
+> >         return ret;
+> >  }
+> >  EXPORT_SYMBOL_GPL(of_changeset_add_prop_u32_array);
+> > +
+> > +static int of_changeset_update_prop_helper(struct of_changeset *ocs,
+> > +                                          struct device_node *np,
+> > +                                          const struct property *pp)
+> > +{
+> > +       struct property *new_pp;
+> > +       int ret;
+> > +
+> > +       new_pp =3D __of_prop_dup(pp, GFP_KERNEL);
+> > +       if (!new_pp)
+> > +               return -ENOMEM;
+> > +
+> > +       ret =3D of_changeset_update_property(ocs, np, new_pp);
+> > +       if (ret) {
+> > +               kfree(new_pp->name);
+> > +               kfree(new_pp->value);
+> > +               kfree(new_pp);
+>
+> Given that this is the 3rd copy of the freeing logic, does it make
+> sense to make __of_prop_free() that's documented to free what was
+> returned by __of_prop_dupe()?
 
+Makes sense.  There's also one in property_list_free(). I'll add a patch
+for it.
 
-On 2023/12/2 22:44, Emil Renner Berthing wrote:
-> Minda Chen wrote:
->> Add StarFive JH7110 SoC PCIe controller platform driver codes, JH7110
->> with PLDA host PCIe core.
->>
->> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
->> Co-developed-by: Kevin Xie <kevin.xie@starfivetech.com>
->> Reviewed-by: Mason Huo <mason.huo@starfivetech.com>
->> ---
->>  MAINTAINERS                                 |   7 +
->>  drivers/pci/controller/plda/Kconfig         |  11 +
->>  drivers/pci/controller/plda/Makefile        |   1 +
->>  drivers/pci/controller/plda/pcie-plda.h     |  71 ++-
->>  drivers/pci/controller/plda/pcie-starfive.c | 460 ++++++++++++++++++++
->>  drivers/pci/pci.h                           |   7 +
->>  6 files changed, 556 insertions(+), 1 deletion(-)
->>  create mode 100644 drivers/pci/controller/plda/pcie-starfive.c
->>
-> 
-> ...
-> 
->> +
->> +static int starfive_pcie_parse_dt(struct starfive_jh7110_pcie *pcie,
->> +				  struct device *dev)
->> +{
->> +	int domain_nr;
->> +
->> +	pcie->num_clks = devm_clk_bulk_get_all(dev, &pcie->clks);
->> +	if (pcie->num_clks < 0)
->> +		return dev_err_probe(dev, -ENODEV,
->> +				     "failed to get pcie clocks\n");
-> 
-> Hi Minda,
-> 
-> From Damian's mail I noticed that this should propagate the error from
-> devm_clk_bulk_get_all() properly, so -EPROBE is converted to an -ENODEV error.
-> Eg.
-> 
-> 	if (pcie->num_clks < 0)
-> 		return dev_err_probe(dev, pcie->num_clks,
-> 				     "failed to get pcie clocks\n");
-> 
-Thanks. I will change it in next version.
-
->> +
->> +	pcie->resets = devm_reset_control_array_get_exclusive(dev);
->> +	if (IS_ERR(pcie->resets))
->> +		return dev_err_probe(dev, PTR_ERR(pcie->resets),
->> +				     "failed to get pcie resets");
->> +
->> +	pcie->reg_syscon =
->> +		syscon_regmap_lookup_by_phandle(dev->of_node,
->> +						"starfive,stg-syscon");
->> +
->> +	if (IS_ERR(pcie->reg_syscon))
->> +		return dev_err_probe(dev, PTR_ERR(pcie->reg_syscon),
->> +				     "failed to parse starfive,stg-syscon\n");
->> +
->> +	pcie->phy = devm_phy_optional_get(dev, NULL);
->> +	if (IS_ERR(pcie->phy))
->> +		return dev_err_probe(dev, PTR_ERR(pcie->phy),
->> +				     "failed to get pcie phy\n");
->> +
->> +	domain_nr = of_get_pci_domain_nr(dev->of_node);
->> +
->> +	if (domain_nr < 0 || domain_nr > 1)
->> +		return dev_err_probe(dev, -ENODEV,
->> +				     "failed to get valid pcie domain\n");
->> +
->> +	if (domain_nr == 0)
->> +		pcie->stg_pcie_base = STG_SYSCON_PCIE0_BASE;
->> +	else
->> +		pcie->stg_pcie_base = STG_SYSCON_PCIE1_BASE;
->> +
->> +	pcie->reset_gpio = devm_gpiod_get_optional(dev, "perst",
->> +						   GPIOD_OUT_HIGH);
->> +	if (IS_ERR(pcie->reset_gpio))
->> +		return dev_err_probe(dev, PTR_ERR(pcie->reset_gpio),
->> +				     "failed to get perst-gpio\n");
->> +
->> +	pcie->power_gpio = devm_gpiod_get_optional(dev, "enable",
->> +						   GPIOD_OUT_LOW);
->> +	if (IS_ERR(pcie->power_gpio))
->> +		return dev_err_probe(dev, PTR_ERR(pcie->power_gpio),
->> +				     "failed to get power-gpio\n");
->> +
->> +	return 0;
->> +}
+ChenYu
 
