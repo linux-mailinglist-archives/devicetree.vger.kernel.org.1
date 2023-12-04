@@ -1,192 +1,239 @@
-Return-Path: <devicetree+bounces-21421-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21422-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 492B7803930
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 16:50:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99E9E803937
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 16:52:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7AB851C20A94
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 15:50:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4C48C1F20F40
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 15:52:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDCD92CCD4;
-	Mon,  4 Dec 2023 15:50:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8662F2D022;
+	Mon,  4 Dec 2023 15:52:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="hlIqo3CR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b3FSjTKQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2119.outbound.protection.outlook.com [40.107.113.119])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6822D2;
-	Mon,  4 Dec 2023 07:50:44 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VWNkFk738Gf+jOgWIRzM1ILXv8Erc9WgwUd+tQAic55Ucd96ruZczftHeSohEfG1hzd+DjjMABlAfeazygZ8V7RaFlpCjhQDjvelwpF0U8VfW4JwbXotiFx8MDWZFrOdK0GoBonwaC0779hoi4pJvxhFgG7Yr4PJKsfoDj1rrVux+V8Z60I/dFlmHNPG7SjV23ANUk41pK3/vwVk/8+ufnyrW3sjCGcl3Kq1SiLwWT4Ztu8wUCEhmn6dfftTImwfIAObiDiXQaaNdMvJ65Ico47NF/IJi7M49/Ki3qscDi3+PTZlyyKbNYACnXzm1+fXqdMyvS5Hl7bOjS0eQ7LRJA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DeiVLa4jZ6o1jjq5gljOwyfXRHwuJciefKftrp/puEE=;
- b=SeYQVBQASGNTMop1LJhZDczLNMECCdZAJAMeZfmX4zJ42zVZ0w7RRYpQWAnZy2Luj0bPfd3JW1KrC+6yFGdkI9JcegQ4wVMx76aCnhTLY/GE7Upv3PJxGE846C807zygWs7xT7e92UbJ2Wi1hKgny0oBBGqlpVAccSaQ7JriM92YYGaCBNfXuGyV8PQbY47E0TTHmas9kWXAylrjbiM7ZW5iowEjtpnFjqgLjZtONgKSa92XAJ/4sGiBIEEWD6sO6RDb7H/tQ4LKIBWMtEDevpcRrhcag/7beUBb7tXLPUJuzW4vUg+4cePDskEsrPW7aoS1DdBR2KyB2LB22LQqWg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DeiVLa4jZ6o1jjq5gljOwyfXRHwuJciefKftrp/puEE=;
- b=hlIqo3CR1viTXwb4BHtKomk9k2evxUqv54Fqilg4QxoakwdCUm6aLb8N84dS6fwpXKdXTJyvwGy3qTQ70vfgBbR+zTY+K943mhuJtT70g3UiMHsZDLiyosYY+cil6ykE/QQT+R1MsMx6ezsn1PPos+UYb8zaYpmk1hFUpwsySDw=
-Received: from TYCPR01MB11269.jpnprd01.prod.outlook.com
- (2603:1096:400:3c0::10) by TYCPR01MB6144.jpnprd01.prod.outlook.com
- (2603:1096:400:4c::5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.34; Mon, 4 Dec
- 2023 15:50:42 +0000
-Received: from TYCPR01MB11269.jpnprd01.prod.outlook.com
- ([fe80::4af6:b31a:8826:51ac]) by TYCPR01MB11269.jpnprd01.prod.outlook.com
- ([fe80::4af6:b31a:8826:51ac%6]) with mapi id 15.20.7046.033; Mon, 4 Dec 2023
- 15:50:42 +0000
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Rob Herring <robh@kernel.org>
-CC: Conor Dooley <conor@kernel.org>, Lee Jones <lee@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
-	<conor+dt@kernel.org>, Support Opensource <support.opensource@diasemi.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, Geert Uytterhoeven
-	<geert+renesas@glider.be>, Prabhakar Mahadev Lad
-	<prabhakar.mahadev-lad.rj@bp.renesas.com>, biju.das.au
-	<biju.das.au@gmail.com>, "linux-renesas-soc@vger.kernel.org"
-	<linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH v2 08/11] dt-bindings: mfd: da9062: Update watchdog
- description
-Thread-Topic: [PATCH v2 08/11] dt-bindings: mfd: da9062: Update watchdog
- description
-Thread-Index: AQHaJVV1j9EwvOOFn0iYN0xeL8oGL7CXcIWAgAAUh7CAAbm/AIAACZMA
-Date: Mon, 4 Dec 2023 15:50:41 +0000
-Message-ID:
- <TYCPR01MB112694D03F303BD79F0B3DD838686A@TYCPR01MB11269.jpnprd01.prod.outlook.com>
-References: <20231202192536.266885-1-biju.das.jz@bp.renesas.com>
- <20231202192536.266885-9-biju.das.jz@bp.renesas.com>
- <20231203-unblock-xerox-cdc5dd68230b@spud>
- <TYCPR01MB11269ACE25217769333DFA0EC8687A@TYCPR01MB11269.jpnprd01.prod.outlook.com>
- <20231204151536.GC1260709-robh@kernel.org>
-In-Reply-To: <20231204151536.GC1260709-robh@kernel.org>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYCPR01MB11269:EE_|TYCPR01MB6144:EE_
-x-ms-office365-filtering-correlation-id: 593594a6-7d40-4200-4be8-08dbf4e0c51b
-x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- 5JLVdWw7ritmuYI8hp/3es+HVS/tXaOwMLdgC1BbiXjnsqivIC+/iIm959mJOXy9aZbTqdesEsMjZj24w5BZbuO43+Pjsm0WAp92X7Ggu0pnpWen09o3JyujTETpGfWsswLwFuqk0XRJugC/HF71Uv9h/jdyL8CVC8/VwWTtGs1LHwbH8r11Pxlh/njbC8V/5m2s5jtx8SKdJIylrZHOV8ZgCNJ4uChXnyXZqfXtW1/E8iu+cXuVwxcVB7yO6gpgK8mU+g0dLBpuCrJG9YhMGSRnZdhiQeUn52yKVbweNeg0g92t6X9md3bPk4MQ5aLsRmXvvjyJ6sPhFL7TNbC2iaSU6V5uoKwOYmY//oQZbyZcMahTfn6X5hs8CE1OvuN3VKXwVKJNHvNmAo1+jPmJv1vtR7DWeg/d73fROHwFgL3msXN34LLLNDf2M2kTe07SK02cnxAcY4v++PTfjYiXxXzQSZiCocr4gmRBMthCTy9aKhwNfJfafDiOsKfz7oAZ+3OvPRYI5uJOok44lJ9VV7aFn4ZIpBe4lfbMWtxcIzGeDNf4xYZkQCJCZXdao2L66oT6eTC7zRBk5YjamSm7RuuPFKWPV5BbPw+sI2dFBp/ulkK2BEUTEp4EiIC+BEyp
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB11269.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(39860400002)(366004)(376002)(346002)(136003)(230922051799003)(64100799003)(451199024)(186009)(1800799012)(52536014)(5660300002)(7416002)(2906002)(15650500001)(38070700009)(33656002)(86362001)(41300700001)(6506007)(7696005)(71200400001)(9686003)(53546011)(478600001)(55016003)(38100700002)(83380400001)(26005)(66446008)(76116006)(66946007)(66556008)(316002)(66476007)(6916009)(54906003)(64756008)(4326008)(8676002)(8936002)(122000001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?5YlFBfMkHPZF+PqopPxQdJc6DpDl8sPYHTJoG6iSLxTKwMl2Ax4MwED+2/hE?=
- =?us-ascii?Q?NhOK7Z7hMOt6gTVJlpcujBigAQ57iwR0x8djemdl9Hvf7MknhUstDTRyLMAU?=
- =?us-ascii?Q?LOCUb+uAoxCt6hUr0X/qrR9i90ECSW2PTdC7pUc8v2rz9gAyhcN3JwyBMZGU?=
- =?us-ascii?Q?NtjQU4TX3MPyPARYwzx4ILlTJ5hi9L6ZDWGg9nqLavHsZDYg9Mujzley5kY4?=
- =?us-ascii?Q?xGDSsUSaTOdqBxqDJZXiq0BjxVfn8seGpcyuFNZ5gfhJJY31sPYNeinN6HRc?=
- =?us-ascii?Q?smF0sj/jI0/1Yp2EJNJA0U0ChlAHCw4rSnY5IWBE6IUqJR6Fjk3+MuptgSh1?=
- =?us-ascii?Q?yS7iMNUJgz7chhzjEdwWVq0/4X0H5vc4pSMLEHUDhqOxSQcKJEr/LwtQYqk5?=
- =?us-ascii?Q?r/mT+qJvd7T9kMq/INIW8r4ieacx+EDfAGChVEMNFCqGA3Ecr1XpSxFfLoYX?=
- =?us-ascii?Q?mE9q50jbCc0WzgIUC3Z2F4gtlkQ2/c5ROqq93i1/IRiPSNxVL2sukBNP9Rkc?=
- =?us-ascii?Q?f48lD+jPtTUzR2kZWDKlojvuG3wjnhV8cgFgpgWlA3LIfCQeJBxKCN7SdQj5?=
- =?us-ascii?Q?2MDeTR4XZVo8gOGK49ap/MwnyEzS7qqHL1JhI4rcbYmNKUGNAVIzEl0o5Vz+?=
- =?us-ascii?Q?TKMHwN3YtmMpGDU7sb55uxSyLUVVHTw5MmXgA5Rc4ZGW94CYJKLVXwrkA8x5?=
- =?us-ascii?Q?mG43DOlW2BSWDajMBtLmJDWsumX3TZTEtDCQW/gIEtJOYkpyRJMuX1gH+fmN?=
- =?us-ascii?Q?t4BlUlOKEX/ppnIsggmIRTaPJLztp2nnKgkJZ85bzLeWc/p8xvOcG6zcTCNf?=
- =?us-ascii?Q?dg6S1orxc9Ngqml4XGdn+fwk7iEVnRkbvIDyoY7BXJRqqgxaRUe4qGigOd1s?=
- =?us-ascii?Q?8iKN32/Xczh94oJdTHJzJil0lZ/tZFPZsqWHwSK1366Jc0gggZKaofsIfoL4?=
- =?us-ascii?Q?b5d4FBVAS31wqnLpxxfSO+zx8f68NPykNFd+wnfeszO790FHe2U+Uu0ZUEWQ?=
- =?us-ascii?Q?085X/mQgiuFASkyvJVYWdd6ISUWucGDTBQWJDwUbN38jHjz3GrdxXDQMHo0R?=
- =?us-ascii?Q?wCgZhJfw/BsjW4DjxH06ykjEAhtulYzjAm5VQT39GtlkMaEzCJHsIHRH+n6K?=
- =?us-ascii?Q?TKPzgnLz6Etf1Mgqa7BkXH3D4djOL+i5FlN7GvWxI2XBxYv5LcSUxoC369DC?=
- =?us-ascii?Q?IFbRzGHibF8U6h4K/xtljPhj9pd4IJBTh92HYMwcJ07smuhXB0QFKU+FVswU?=
- =?us-ascii?Q?OteUnio5qUsplBxniLKWjCa52HRuWDjZrb5TKx/LYqfdlaNAEf21AYjJYZuG?=
- =?us-ascii?Q?8QegkSGlH2OPSI2HgI9cGzoZnSL51DqhwGVdaniCZaKiPox//e1b8+klPjKr?=
- =?us-ascii?Q?p7VXuGXFX3z81OyyIqpuA4Xi0eLWIOuffBLZ901WscN8oEP1qy82mSTC+W2i?=
- =?us-ascii?Q?xRnmKLiW8K4UJ596m4QRn0aOXa4aGY5a6n3y/jwJDohmYpbf7oANTk5kVmUj?=
- =?us-ascii?Q?KLcCrE2f3bfncSIzd70ZfSTUGssscSDgetkUGibHAo5H8yeC272E4UR6+Tif?=
- =?us-ascii?Q?0dZoo013HjqajWUHNLHwRB812LBW6trwVgg5UAQjKhhBdb9IHApxmgNGly+O?=
- =?us-ascii?Q?Bg=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66CD62C18A;
+	Mon,  4 Dec 2023 15:52:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C08EFC433C8;
+	Mon,  4 Dec 2023 15:52:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701705125;
+	bh=sLrwXKlgpUH4XcLJWMQP/dKn9qdJ9bPMqLmWrNS2VyM=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=b3FSjTKQpOQlFLB2G8k+Q9wkA2RQBQttVjE1w79xEwSgkSVHp3u8g055qfRUhlGel
+	 5TGTUWtcI84zFkKCY8pK/LlGhlWjGdiZn7ViI3S7uydkeM/YGzqEVvjkWpYhAGJmst
+	 zq5JI2OX0HsWYrTOvM3UqOvoXl2G1m1fIftKuHM/D11fbFxwMMhB52ukFaSCS0LcHp
+	 0j18raVLP1+9jvOPJiQGW9mQEoZ6ocwippWqvFqyrKj600H8M7O+BRWZFx6In4WUdG
+	 UIYCmH0/eiuKaCgzezMqADPFrjXNThC47xSxLsFjQLTdZygoEUNJmINYXvD/e5i/k3
+	 lvmJD4Hw5wsQQ==
+Date: Mon, 4 Dec 2023 15:51:58 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>
+Cc: <nuno.sa@analog.com>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-iio@vger.kernel.org, Olivier MOYSAN
+ <olivier.moysan@foss.st.com>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Rob
+ Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
+ Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>
+Subject: Re: [PATCH 11/12] iio: adc: adi-axi-adc: convert to regmap
+Message-ID: <20231204155158.411b4bbd@jic23-huawei>
+In-Reply-To: <20231121-dev-iio-backend-v1-11-6a3d542eba35@analog.com>
+References: <20231121-dev-iio-backend-v1-0-6a3d542eba35@analog.com>
+	<20231121-dev-iio-backend-v1-11-6a3d542eba35@analog.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB11269.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 593594a6-7d40-4200-4be8-08dbf4e0c51b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Dec 2023 15:50:41.9598
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 6y3UBGlahq1gqhucUFIJcwfimgvV2rlj6BTal1/PRSgTlUBjk00uC45G8A5laXKc0mK+cLdaOV9Y++yfAw28gJWyWchfN0wSmJ1AZ5rlfLk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB6144
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Hi Rob Herring,
+On Tue, 21 Nov 2023 11:20:24 +0100
+Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org> wrote:
 
-Thanks for the feedback.
+> From: Nuno Sa <nuno.sa@analog.com>
+> 
+> Use MMIO regmap interface. It makes things easier for manipulating bits.
+> 
+> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+Perhaps put this in the precursor set as well. Looks fine to me and will just
+be noise in the main discussion.
 
-> -----Original Message-----
-> From: Rob Herring <robh@kernel.org>
-> Sent: Monday, December 4, 2023 3:16 PM
-> Subject: Re: [PATCH v2 08/11] dt-bindings: mfd: da9062: Update watchdog
-> description
->=20
-> On Sun, Dec 03, 2023 at 12:56:22PM +0000, Biju Das wrote:
-> >
-> > Hi Conor Dooley,
-> >
-> > Thanks for the feedback.
-> >
-> > > -----Original Message-----
-> > > From: Conor Dooley <conor@kernel.org>
-> > > Sent: Sunday, December 3, 2023 11:41 AM
-> > > Subject: Re: [PATCH v2 08/11] dt-bindings: mfd: da9062: Update
-> > > watchdog description
-> > >
-> > > On Sat, Dec 02, 2023 at 07:25:32PM +0000, Biju Das wrote:
-> > > > Update watchdog description by referring to dlg,da9062-watchdog
-> > > > binding file.
-> > > >
-> > > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > > > ---
-> > > >  Documentation/devicetree/bindings/mfd/da9062.txt | 2 +-
-> > > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/mfd/da9062.txt
-> > > > b/Documentation/devicetree/bindings/mfd/da9062.txt
-> > > > index e4eedd3bd233..020106322b08 100644
-> > > > --- a/Documentation/devicetree/bindings/mfd/da9062.txt
-> > > > +++ b/Documentation/devicetree/bindings/mfd/da9062.txt
-> > > > @@ -86,7 +86,7 @@ Sub-nodes:
-> > > >
-> > > >  - onkey : See ../input/da9062-onkey.txt
-> > > >
-> > > > -- watchdog: See ../watchdog/da9062-wdt.txt
-> > > > +- watchdog: See ../watchdog/da9062-watchdog.yaml
-> > >
-> > > Should this not be squashed with the conversion of that binding?
-> >
-> > Yes I can squash these patches.
-> >
-> > I am not sure how this is going to applied as it involves Mfd and
-> > watchdog changes, who is going to apply this patch?
->=20
-> The series should all go thru the MFD tree.
+Jonathan
 
-OK, I will squash the patches as mentioned by Conor.
+> ---
+>  drivers/iio/adc/adi-axi-adc.c | 85 ++++++++++++++++++++++++++-----------------
+>  1 file changed, 52 insertions(+), 33 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/adi-axi-adc.c b/drivers/iio/adc/adi-axi-adc.c
+> index ae83ada7f9f2..c247ff1541d2 100644
+> --- a/drivers/iio/adc/adi-axi-adc.c
+> +++ b/drivers/iio/adc/adi-axi-adc.c
+> @@ -14,6 +14,7 @@
+>  #include <linux/of.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/property.h>
+> +#include <linux/regmap.h>
+>  #include <linux/slab.h>
+>  
+>  #include <linux/iio/iio.h>
+> @@ -62,7 +63,7 @@ struct adi_axi_adc_state {
+>  	struct mutex				lock;
+>  
+>  	struct adi_axi_adc_client		*client;
+> -	void __iomem				*regs;
+> +	struct regmap				*regmap;
+>  };
+>  
+>  struct adi_axi_adc_client {
+> @@ -90,19 +91,6 @@ void *adi_axi_adc_conv_priv(struct adi_axi_adc_conv *conv)
+>  }
+>  EXPORT_SYMBOL_NS_GPL(adi_axi_adc_conv_priv, IIO_ADI_AXI);
+>  
+> -static void adi_axi_adc_write(struct adi_axi_adc_state *st,
+> -			      unsigned int reg,
+> -			      unsigned int val)
+> -{
+> -	iowrite32(val, st->regs + reg);
+> -}
+> -
+> -static unsigned int adi_axi_adc_read(struct adi_axi_adc_state *st,
+> -				     unsigned int reg)
+> -{
+> -	return ioread32(st->regs + reg);
+> -}
+> -
+>  static int adi_axi_adc_config_dma_buffer(struct device *dev,
+>  					 struct iio_dev *indio_dev)
+>  {
+> @@ -163,17 +151,20 @@ static int adi_axi_adc_update_scan_mode(struct iio_dev *indio_dev,
+>  {
+>  	struct adi_axi_adc_state *st = iio_priv(indio_dev);
+>  	struct adi_axi_adc_conv *conv = &st->client->conv;
+> -	unsigned int i, ctrl;
+> +	unsigned int i;
+> +	int ret;
+>  
+>  	for (i = 0; i < conv->chip_info->num_channels; i++) {
+> -		ctrl = adi_axi_adc_read(st, ADI_AXI_REG_CHAN_CTRL(i));
+> -
+>  		if (test_bit(i, scan_mask))
+> -			ctrl |= ADI_AXI_REG_CHAN_CTRL_ENABLE;
+> +			ret = regmap_set_bits(st->regmap,
+> +					      ADI_AXI_REG_CHAN_CTRL(i),
+> +					      ADI_AXI_REG_CHAN_CTRL_ENABLE);
+>  		else
+> -			ctrl &= ~ADI_AXI_REG_CHAN_CTRL_ENABLE;
+> -
+> -		adi_axi_adc_write(st, ADI_AXI_REG_CHAN_CTRL(i), ctrl);
+> +			ret = regmap_clear_bits(st->regmap,
+> +						ADI_AXI_REG_CHAN_CTRL(i),
+> +						ADI_AXI_REG_CHAN_CTRL_ENABLE);
+> +		if (ret)
+> +			return ret;
+>  	}
+>  
+>  	return 0;
+> @@ -310,21 +301,32 @@ static int adi_axi_adc_setup_channels(struct device *dev,
+>  	}
+>  
+>  	for (i = 0; i < conv->chip_info->num_channels; i++) {
+> -		adi_axi_adc_write(st, ADI_AXI_REG_CHAN_CTRL(i),
+> -				  ADI_AXI_REG_CHAN_CTRL_DEFAULTS);
+> +		ret = regmap_write(st->regmap, ADI_AXI_REG_CHAN_CTRL(i),
+> +				   ADI_AXI_REG_CHAN_CTRL_DEFAULTS);
+> +		if (ret)
+> +			return ret;
+>  	}
+>  
+>  	return 0;
+>  }
+>  
+> -static void axi_adc_reset(struct adi_axi_adc_state *st)
+> +static int axi_adc_reset(struct adi_axi_adc_state *st)
+>  {
+> -	adi_axi_adc_write(st, ADI_AXI_REG_RSTN, 0);
+> +	int ret;
+> +
+> +	ret = regmap_write(st->regmap, ADI_AXI_REG_RSTN, 0);
+> +	if (ret)
+> +		return ret;
+> +
+>  	mdelay(10);
+> -	adi_axi_adc_write(st, ADI_AXI_REG_RSTN, ADI_AXI_REG_RSTN_MMCM_RSTN);
+> +	ret = regmap_write(st->regmap, ADI_AXI_REG_RSTN,
+> +			   ADI_AXI_REG_RSTN_MMCM_RSTN);
+> +	if (ret)
+> +		return ret;
+> +
+>  	mdelay(10);
+> -	adi_axi_adc_write(st, ADI_AXI_REG_RSTN,
+> -			  ADI_AXI_REG_RSTN_RSTN | ADI_AXI_REG_RSTN_MMCM_RSTN);
+> +	return regmap_write(st->regmap, ADI_AXI_REG_RSTN,
+> +			    ADI_AXI_REG_RSTN_RSTN | ADI_AXI_REG_RSTN_MMCM_RSTN);
+>  }
+>  
+>  static void adi_axi_adc_cleanup(void *data)
+> @@ -335,12 +337,20 @@ static void adi_axi_adc_cleanup(void *data)
+>  	module_put(cl->dev->driver->owner);
+>  }
+>  
+> +static const struct regmap_config axi_adc_regmap_config = {
+> +	.val_bits = 32,
+> +	.reg_bits = 32,
+> +	.reg_stride = 4,
+> +	.max_register = 0x0800,
+> +};
+> +
+>  static int adi_axi_adc_probe(struct platform_device *pdev)
+>  {
+>  	struct adi_axi_adc_conv *conv;
+>  	struct iio_dev *indio_dev;
+>  	struct adi_axi_adc_client *cl;
+>  	struct adi_axi_adc_state *st;
+> +	void __iomem *base;
+>  	unsigned int ver;
+>  	int ret;
+>  
+> @@ -361,15 +371,24 @@ static int adi_axi_adc_probe(struct platform_device *pdev)
+>  	cl->state = st;
+>  	mutex_init(&st->lock);
+>  
+> -	st->regs = devm_platform_ioremap_resource(pdev, 0);
+> -	if (IS_ERR(st->regs))
+> -		return PTR_ERR(st->regs);
+> +	base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(base))
+> +		return PTR_ERR(base);
+> +
+> +	st->regmap = devm_regmap_init_mmio(&pdev->dev, base,
+> +					   &axi_adc_regmap_config);
+> +	if (IS_ERR(st->regmap))
+> +		return PTR_ERR(st->regmap);
+>  
+>  	conv = &st->client->conv;
+>  
+> -	axi_adc_reset(st);
+> +	ret = axi_adc_reset(st);
+> +	if (ret)
+> +		return ret;
+>  
+> -	ver = adi_axi_adc_read(st, ADI_AXI_REG_VERSION);
+> +	ret = regmap_read(st->regmap, ADI_AXI_REG_VERSION, &ver);
+> +	if (ret)
+> +		return ret;
+>  
+>  	if (cl->info->version > ver) {
+>  		dev_err(&pdev->dev,
+> 
 
-Cheers,
-Biju
 
