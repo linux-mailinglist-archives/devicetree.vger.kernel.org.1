@@ -1,111 +1,121 @@
-Return-Path: <devicetree+bounces-21236-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21237-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5AE5802DF3
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 10:12:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6F57802E44
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 10:14:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6FC2B1F210A7
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 09:12:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 12F2E1C20974
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 09:14:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 890A512E67;
-	Mon,  4 Dec 2023 09:12:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90A4212E70;
+	Mon,  4 Dec 2023 09:14:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="YEnvCHmZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ng6vYGRC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3CD1CD;
-	Mon,  4 Dec 2023 01:12:09 -0800 (PST)
-X-UUID: 2dd54a82928511ee8051498923ad61e6-20231204
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=/uzFrjt8aUKTbxRLxmdKkdFySY3RzU5L+0QmsGF+qqA=;
-	b=YEnvCHmZ3gS12RzwrrOzj6SLxflwouk/XBuF9Q1AOfRPOs7D77wi3rSNIOfGwkV1woztgLNkLvBjKljghAAEroRM8Wlqx0hEQUwrWISzUW9K9safCjQTR5cfvzkygcDIDhjEcC8LawYjN5rQ+LmYOvrZcZsjaBGo2tF3tF47o5A=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.34,REQID:32bffc3b-33b5-4140-8e21-b0aa60661ec3,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:abefa75,CLOUDID:c569ca60-c89d-4129-91cb-8ebfae4653fc,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
-	DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 2dd54a82928511ee8051498923ad61e6-20231204
-Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw02.mediatek.com
-	(envelope-from <chui-hao.chiu@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 407980655; Mon, 04 Dec 2023 17:11:59 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Mon, 4 Dec 2023 17:11:57 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Mon, 4 Dec 2023 17:11:57 +0800
-From: Peter Chiu <chui-hao.chiu@mediatek.com>
-To: Felix Fietkau <nbd@nbd.name>, Rob Herring <robh+dt@kernel.org>
-CC: Lorenzo Bianconi <lorenzo.bianconi@redhat.com>, Ryder Lee
-	<ryder.Lee@mediatek.com>, Evelyn Tsai <evelyn.tsai@mediatek.com>, Shayne Chen
-	<shayne.chen@mediatek.com>, Sam Shih <sam.shih@mediatek.com>,
-	<linux-wireless@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, Peter Chiu <chui-hao.chiu@mediatek.com>
-Subject: [PATCH v2] dt-bindings: net: wireless: mt76: add interrupts description for MT7986
-Date: Mon, 4 Dec 2023 17:11:56 +0800
-Message-ID: <20231204091156.6535-1-chui-hao.chiu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C83B0E6;
+	Mon,  4 Dec 2023 01:14:48 -0800 (PST)
+Received: by mail-pf1-x434.google.com with SMTP id d2e1a72fcca58-6ce5a0c37cfso238169b3a.3;
+        Mon, 04 Dec 2023 01:14:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701681288; x=1702286088; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=td7arQQdUq802c/iq8WzPBS2L5rlsrypnKsRbx7YZ7Q=;
+        b=ng6vYGRCQP/ncD+Qvk22Gm7VEtdsYHiJGUlXc5AryQKJhrHw+02TbWkWR7LNKzrx3A
+         NbYb6zuImU5SO+QrYNIHtsTIq6yuvGQs5BDzZEOhyRXbAv2vy+JN9SlqJ5D/YpG0IAPV
+         Uk4mk+29kR4HA2mihb0fD460OOFipO87UcXLNQeBKOv+Ibj8gxtAmeopX2vWfyjWf5VJ
+         6mEbxn2k4A8lykg58oMnBF7bxtBuqkEYg+dt2DAGdSOP0PhOV00vIIoe4zU26NtssS9R
+         kEyB6/QtprfIhKKAf4mKV/Z5QJBjfjlDnUAqw9victdBSh0cpEiFXPefIqDNiXdw9j9N
+         7kZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701681288; x=1702286088;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=td7arQQdUq802c/iq8WzPBS2L5rlsrypnKsRbx7YZ7Q=;
+        b=Xj5RIA7wPzeiw5/eE7RRAccAfAyRyVFr4xzE1fpn+Zcf1K0bLuuP6tZu1yX32FYJFr
+         eqr2XapZ/4GnKfT1TQpKTAE9TD1AVT7fNFefHNMjmQ9GT52WIdeZAMBXOY3je+ZjCblU
+         usD9NRVmXytpnn66DkIQEy5/OUUp7Cb8AHtEdWqrgckUIr4te5A2DfgjYZTvQG7jVeuI
+         fUIktclcf0Hz/nsoOLodZZb3ggqFgZpPfhrE8wnuy23uCR0JxoS3yV5t2PF+laFqskV7
+         PUhGMLUsI6YCFM8fjq/BnqxPgiKG5sRCs4EK9XM30EFsGWiPTkXXujcw9SLbwbHuxMSP
+         n3Rg==
+X-Gm-Message-State: AOJu0YzMG2IqE0HaQqlljRgmUjjlv3iEJsNDltHxFuPNsFTx0YjTojq8
+	DtSyzMFp/N1gkXeMNr60blc=
+X-Google-Smtp-Source: AGHT+IFXKxEEFX8vP4aBeoqt1BTZEmVpqXJif6onxC1JfujMmktO4OxKGd9+qeCqhfM51JReO+Rvfg==
+X-Received: by 2002:a05:6a00:3495:b0:6ce:5312:c413 with SMTP id cp21-20020a056a00349500b006ce5312c413mr660791pfb.15.1701681288078;
+        Mon, 04 Dec 2023 01:14:48 -0800 (PST)
+Received: from [10.10.14.80] (1-34-21-66.hinet-ip.hinet.net. [1.34.21.66])
+        by smtp.gmail.com with ESMTPSA id m17-20020aa78a11000000b006be4bb0d2dcsm7349362pfa.149.2023.12.04.01.14.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Dec 2023 01:14:47 -0800 (PST)
+Message-ID: <ad6fb2a1-c376-4e03-8b18-12b228799bcc@gmail.com>
+Date: Mon, 4 Dec 2023 17:14:45 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--4.679900-8.000000
-X-TMASE-MatchedRID: v+sphrBU45F2W20gLTzAqYei/mZCYVwuONP4Z3dggBYY0A95tjAn+/pZ
-	jWQiqBlhCqcYnzgqPbt4xIuyG0zHEJDCbn5v5k09Y7jepwkpr699LQinZ4QefPcjNeVeWlqY+gt
-	Hj7OwNO34ZhR52Rc1au7UdPYHaiHyW5kMCPJeUiSb6ByuLYX+T07zv/KPifYCLRhCjkNLcoSRBq
-	5lu6PnXv3uL/cp+ftvKHEBTVoCjqueU8bDRAXvQkma3zYT97IFAYfQIAUhBayZvmCbKVb49sZL6
-	x5U/HridGByp+zdaDg=
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--4.679900-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP:
-	34C5B0D5B06512149F2AAE3C5D7C8D78FEA92A61C60D7458B60A76B5E78195422000:8
-X-MTK: N
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 0/2] Add Facebook Minerva Harma (AST2600) BMC
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, patrick@stwcx.xyz,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org
+References: <20231204081029.2272626-1-peteryin.openbmc@gmail.com>
+ <fddcbad4-5368-4c2a-ba87-f4c4326a8385@linaro.org>
+ <3ff5dcd7-69a3-4098-92c6-ed1e8f0bd8f9@gmail.com>
+ <f2519d16-1b34-4d77-be69-cf80fa3415a1@linaro.org>
+From: PeterYin <peteryin.openbmc@gmail.com>
+In-Reply-To: <f2519d16-1b34-4d77-be69-cf80fa3415a1@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-The mt7986 can support four interrupts to distribute the interrupts
-to different CPUs.
 
-Signed-off-by: Peter Chiu <chui-hao.chiu@mediatek.com>
----
-v2: Change to use description instead of using items.
----
- .../devicetree/bindings/net/wireless/mediatek,mt76.yaml     | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
-index 252207adbc54..933bc7bdda01 100644
---- a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
-+++ b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
-@@ -38,7 +38,11 @@ properties:
-       MT7986 should contain 3 regions consys, dcm, and sku, in this order.
- 
-   interrupts:
--    maxItems: 1
-+    minItems: 1
-+    maxItems: 4
-+    description:
-+      MT7986 provides up to 4 interrupts including one primary interrupt and
-+      three additional interrupts for ring 4, 5, and 19.
- 
-   power-domains:
-     maxItems: 1
--- 
-2.18.0
+Krzysztof Kozlowski 於 12/4/23 17:06 寫道:
+> On 04/12/2023 09:46, PeterYin wrote:
+>>
+>> Krzysztof Kozlowski 於 12/4/23 16:20 寫道:
+>>> On 04/12/2023 09:10, Peter Yin wrote:
+>>>> Summary:
+>>>> Add linux device tree entry related to Minerva Harma
+>>>> specific devices connected to BMC SoC.
+>>>>
+>>>> v4:https://lore.kernel.org/all/20231204054131.1845775-3-peter.yin@quantatw.com/
+>>>> v3:https://lore.kernel.org/all/20231123050415.3441429-3-peteryin.openbmc@gmail.com/
+>>>> v2:https://lore.kernel.org/all/cdbc75b9-3be1-4017-9bee-c8f161b6843c@linaro.org/
+>>>> v1:https://lore.kernel.org/all/20231024082404.735843-3-peteryin.openbmc@gmail.com/
+>>>>
+>>>> Change log
+>>>> v4 -> v5
+>>>>     - Rename document and file from minerva-harma to harma.
+>>>
+>>> You must explain that you dropped people's review for some reason.
+>>>
+>>> Best regards,
+>>> Krzysztof
+>>>
+>> Due to changes in the project name and content, please assist in
+>> reviewing it.
+> 
+> When dropping people's tag, the patch changelog (---) should say that
+> you dropped people's tag.
+> 
+> Best regards,
+> Krzysztof
+> 
+Thank you for your explanation. I will pay attention to it next time.
 
+Thanks,
+Peter.
 
