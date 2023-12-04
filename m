@@ -1,166 +1,338 @@
-Return-Path: <devicetree+bounces-21389-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21390-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB2E4803770
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 15:49:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 373F280378C
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 15:51:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A20FD28110E
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 14:49:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 59F2B1C20A4C
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 14:51:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A622926297;
-	Mon,  4 Dec 2023 14:49:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43B1828DB6;
+	Mon,  4 Dec 2023 14:51:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mP1NKR8W"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gz5KAAHE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8678F288D7;
-	Mon,  4 Dec 2023 14:49:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DD35C433C7;
-	Mon,  4 Dec 2023 14:49:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22D701799E
+	for <devicetree@vger.kernel.org>; Mon,  4 Dec 2023 14:51:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E1EDC433C8;
+	Mon,  4 Dec 2023 14:51:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701701376;
-	bh=+rfhQvthjBio9vKPuOuZeZLKHbgV1eAS2Q4KP5aiGdw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=mP1NKR8WcwA+hcZQ6uKxxCQEnsh3wuXEAjUr52iqagkAxstbdi8MnYIviiDX0Y+tN
-	 FAPnWwLPDVJE6/0x0dRz9DUEl35GqLq3/BvMWTQVFeh5qzzKYvLbxBF1R3JMlUe3PU
-	 2nsB5bDfcVu21DcHS+eV/VKlsW8o0uV1iBc/aGRlav7o8NTlluBw0MSsCZ74fa77KM
-	 jKEZtDLPH05I7H0Ftn58M5hS95djYVZyJDt2jHdD9ys8e/JZKNf9iruGYWzWGKItg2
-	 UwGjVHVbq8TkFWccMc1HBnxtFvIjF8+yWhL4VHfjn7w2d/XNpAv+2Uq6QSFtYlBOZZ
-	 AQ5/hYhWUpxiQ==
-Date: Mon, 4 Dec 2023 14:49:25 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>, nuno.sa@analog.com,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-iio@vger.kernel.org, Olivier MOYSAN <olivier.moysan@foss.st.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, Frank Rowand
- <frowand.list@gmail.com>, Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich <Michael.Hennerich@analog.com>
-Subject: Re: [PATCH 00/12] iio: add new backend framework
-Message-ID: <20231204144925.4fe9922f@jic23-huawei>
-In-Reply-To: <CAMknhBEg+cFrm9kQh1G+8nxGPCFsBaca3rnLEnXZ1h=XDS1aeQ@mail.gmail.com>
-References: <20231121-dev-iio-backend-v1-0-6a3d542eba35@analog.com>
-	<CAMknhBH0pF_+z_JqWGscELBmAEDyxLAtgQ-j3=6P2MeFXnzhWQ@mail.gmail.com>
-	<CAMknhBEcEJ01nO0p5_vy4jVBVTL_rhEk+pvBpXdMtaDurc-05A@mail.gmail.com>
-	<369a72dd34c0bc457620b88594a975d96aa85a22.camel@gmail.com>
-	<CAMknhBEg+cFrm9kQh1G+8nxGPCFsBaca3rnLEnXZ1h=XDS1aeQ@mail.gmail.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	s=k20201202; t=1701701509;
+	bh=RHSkQPErtXOGynynU6cls9Ekhhdmw6a+NWa6Doy47Vo=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=gz5KAAHEpkA55LnHXoy2dY9ywU4FOE/FsF1Xrc3fzqeD8X74E81v1CdonGf4sYH1Q
+	 qcUWkfHOAuSQpLgRxGjayjvEpNbZGvoo2uH40glcD6WNJaMZTjg+e+VTzS1RvjTaz0
+	 7gYiCDXRRuIdzGTIbBHfDbOZu73z3AUjhgXEPFzTrT1yoMtxRIDvonmumVhp7ayWnD
+	 lXYk+7RshlJnVpYy31Y1kdr3bUPT70V33PCHAnUqStfBX5IxD6WjTa3f4NXNVyHyYk
+	 fFmhrWzMfpPGHl5NLy/walqv5jgX/HAjuueGPELgY36wefgW/5LCGQZCyzhGxQQEIl
+	 5f7XUR4oWC7zA==
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-54cfd70b2dcso200584a12.3;
+        Mon, 04 Dec 2023 06:51:49 -0800 (PST)
+X-Gm-Message-State: AOJu0Ywdg8G+P82lW3QQykGGabU+82JQsyADly2PvueGRbPqOLEt1ryW
+	6tYR7z9pTCESWNT02AMy4sjwXsc5rih5wFDNTsI=
+X-Google-Smtp-Source: AGHT+IELcPLdvLiOUwtkWJqyqDDGwXbrJTEzfqOVdsfOnj1dSecZgP2VatsCQG2lhAHeBHTBnq77zxNog2lye4nv1E4=
+X-Received: by 2002:a17:906:5358:b0:a19:a19b:c737 with SMTP id
+ j24-20020a170906535800b00a19a19bc737mr3083142ejo.135.1701701507976; Mon, 04
+ Dec 2023 06:51:47 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+References: <IA1PR20MB4953C912FC58C0D248976564BB86A@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <IA1PR20MB4953669C097D9C9E24B549FFBB86A@IA1PR20MB4953.namprd20.prod.outlook.com>
+In-Reply-To: <IA1PR20MB4953669C097D9C9E24B549FFBB86A@IA1PR20MB4953.namprd20.prod.outlook.com>
+From: Guo Ren <guoren@kernel.org>
+Date: Mon, 4 Dec 2023 22:51:35 +0800
+X-Gmail-Original-Message-ID: <CAJF2gTRkixZf6mhQjPky+81fV6a+rx32xtZ3JC90cu4iXf5bFQ@mail.gmail.com>
+Message-ID: <CAJF2gTRkixZf6mhQjPky+81fV6a+rx32xtZ3JC90cu4iXf5bFQ@mail.gmail.com>
+Subject: Re: [PATCH v5 2/2] riscv: dts: sophgo: separate sg2042 mtime and
+ mtimecmp to fit aclint format
+To: Inochi Amaoto <inochiama@outlook.com>
+Cc: Chao Wei <chao.wei@sophgo.com>, Chen Wang <unicorn_wang@outlook.com>, 
+	Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Xiaoguang Xing <xiaoguang.xing@sophgo.com>, 
+	Anup Patel <anup@brainfault.org>, Samuel Holland <samuel.holland@sifive.com>, 
+	Jisheng Zhang <jszhang@kernel.org>, linux-riscv@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, 2 Dec 2023 10:16:52 -0600
-David Lechner <dlechner@baylibre.com> wrote:
+On Mon, Dec 4, 2023 at 5:51=E2=80=AFPM Inochi Amaoto <inochiama@outlook.com=
+> wrote:
+>
+> Change the timer layout in the dtb to fit the format that needed by
+> the SBI.
+>
+> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+> Fixes: 967a94a92aaa ("riscv: dts: add initial Sophgo SG2042 SoC device tr=
+ee")
+> Reviewed-by: Chen Wang <unicorn_wang@outlook.com>
+> ---
+>  arch/riscv/boot/dts/sophgo/sg2042.dtsi | 80 +++++++++++++++-----------
+>  1 file changed, 48 insertions(+), 32 deletions(-)
+>
+> diff --git a/arch/riscv/boot/dts/sophgo/sg2042.dtsi b/arch/riscv/boot/dts=
+/sophgo/sg2042.dtsi
+> index 93256540d078..ead1cc35d88b 100644
+> --- a/arch/riscv/boot/dts/sophgo/sg2042.dtsi
+> +++ b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
+> @@ -93,144 +93,160 @@ clint_mswi: interrupt-controller@7094000000 {
+>                                               <&cpu63_intc 3>;
+>                 };
+>
+> -               clint_mtimer0: timer@70ac000000 {
+> +               clint_mtimer0: timer@70ac004000 {
+>                         compatible =3D "sophgo,sg2042-aclint-mtimer", "th=
+ead,c900-aclint-mtimer";
+> -                       reg =3D <0x00000070 0xac000000 0x00000000 0x00007=
+ff8>;
+> +                       reg =3D <0x00000070 0xac004000 0x00000000 0x0000c=
+000>;
+> +                       reg-names =3D "mtimecmp";
+>                         interrupts-extended =3D <&cpu0_intc 7>,
+>                                               <&cpu1_intc 7>,
+>                                               <&cpu2_intc 7>,
+>                                               <&cpu3_intc 7>;
+>                 };
+>
+> -               clint_mtimer1: timer@70ac010000 {
+> +               clint_mtimer1: timer@70ac014000 {
+>                         compatible =3D "sophgo,sg2042-aclint-mtimer", "th=
+ead,c900-aclint-mtimer";
+> -                       reg =3D <0x00000070 0xac010000 0x00000000 0x00007=
+ff8>;
+> +                       reg =3D <0x00000070 0xac014000 0x00000000 0x0000c=
+000>;
+> +                       reg-names =3D "mtimecmp";
+>                         interrupts-extended =3D <&cpu4_intc 7>,
+>                                               <&cpu5_intc 7>,
+>                                               <&cpu6_intc 7>,
+>                                               <&cpu7_intc 7>;
+>                 };
+>
+> -               clint_mtimer2: timer@70ac020000 {
+> +               clint_mtimer2: timer@70ac024000 {
+>                         compatible =3D "sophgo,sg2042-aclint-mtimer", "th=
+ead,c900-aclint-mtimer";
+> -                       reg =3D <0x00000070 0xac020000 0x00000000 0x00007=
+ff8>;
+> +                       reg =3D <0x00000070 0xac024000 0x00000000 0x0000c=
+000>;
+> +                       reg-names =3D "mtimecmp";
+>                         interrupts-extended =3D <&cpu8_intc 7>,
+>                                               <&cpu9_intc 7>,
+>                                               <&cpu10_intc 7>,
+>                                               <&cpu11_intc 7>;
+>                 };
+>
+> -               clint_mtimer3: timer@70ac030000 {
+> +               clint_mtimer3: timer@70ac034000 {
+>                         compatible =3D "sophgo,sg2042-aclint-mtimer", "th=
+ead,c900-aclint-mtimer";
+> -                       reg =3D <0x00000070 0xac030000 0x00000000 0x00007=
+ff8>;
+> +                       reg =3D <0x00000070 0xac034000 0x00000000 0x0000c=
+000>;
+> +                       reg-names =3D "mtimecmp";
+>                         interrupts-extended =3D <&cpu12_intc 7>,
+>                                               <&cpu13_intc 7>,
+>                                               <&cpu14_intc 7>,
+>                                               <&cpu15_intc 7>;
+>                 };
+>
+> -               clint_mtimer4: timer@70ac040000 {
+> +               clint_mtimer4: timer@70ac044000 {
+>                         compatible =3D "sophgo,sg2042-aclint-mtimer", "th=
+ead,c900-aclint-mtimer";
+> -                       reg =3D <0x00000070 0xac040000 0x00000000 0x00007=
+ff8>;
+> +                       reg =3D <0x00000070 0xac044000 0x00000000 0x0000c=
+000>;
+> +                       reg-names =3D "mtimecmp";
+>                         interrupts-extended =3D <&cpu16_intc 7>,
+>                                               <&cpu17_intc 7>,
+>                                               <&cpu18_intc 7>,
+>                                               <&cpu19_intc 7>;
+>                 };
+>
+> -               clint_mtimer5: timer@70ac050000 {
+> +               clint_mtimer5: timer@70ac054000 {
+>                         compatible =3D "sophgo,sg2042-aclint-mtimer", "th=
+ead,c900-aclint-mtimer";
+> -                       reg =3D <0x00000070 0xac050000 0x00000000 0x00007=
+ff8>;
+> +                       reg =3D <0x00000070 0xac054000 0x00000000 0x0000c=
+000>;
+> +                       reg-names =3D "mtimecmp";
+>                         interrupts-extended =3D <&cpu20_intc 7>,
+>                                               <&cpu21_intc 7>,
+>                                               <&cpu22_intc 7>,
+>                                               <&cpu23_intc 7>;
+>                 };
+>
+> -               clint_mtimer6: timer@70ac060000 {
+> +               clint_mtimer6: timer@70ac064000 {
+>                         compatible =3D "sophgo,sg2042-aclint-mtimer", "th=
+ead,c900-aclint-mtimer";
+> -                       reg =3D <0x00000070 0xac060000 0x00000000 0x00007=
+ff8>;
+> +                       reg =3D <0x00000070 0xac064000 0x00000000 0x0000c=
+000>;
+> +                       reg-names =3D "mtimecmp";
+>                         interrupts-extended =3D <&cpu24_intc 7>,
+>                                               <&cpu25_intc 7>,
+>                                               <&cpu26_intc 7>,
+>                                               <&cpu27_intc 7>;
+>                 };
+>
+> -               clint_mtimer7: timer@70ac070000 {
+> +               clint_mtimer7: timer@70ac074000 {
+>                         compatible =3D "sophgo,sg2042-aclint-mtimer", "th=
+ead,c900-aclint-mtimer";
+> -                       reg =3D <0x00000070 0xac070000 0x00000000 0x00007=
+ff8>;
+> +                       reg =3D <0x00000070 0xac074000 0x00000000 0x0000c=
+000>;
+> +                       reg-names =3D "mtimecmp";
+>                         interrupts-extended =3D <&cpu28_intc 7>,
+>                                               <&cpu29_intc 7>,
+>                                               <&cpu30_intc 7>,
+>                                               <&cpu31_intc 7>;
+>                 };
+>
+> -               clint_mtimer8: timer@70ac080000 {
+> +               clint_mtimer8: timer@70ac084000 {
+>                         compatible =3D "sophgo,sg2042-aclint-mtimer", "th=
+ead,c900-aclint-mtimer";
+> -                       reg =3D <0x00000070 0xac080000 0x00000000 0x00007=
+ff8>;
+> +                       reg =3D <0x00000070 0xac084000 0x00000000 0x0000c=
+000>;
+> +                       reg-names =3D "mtimecmp";
+>                         interrupts-extended =3D <&cpu32_intc 7>,
+>                                               <&cpu33_intc 7>,
+>                                               <&cpu34_intc 7>,
+>                                               <&cpu35_intc 7>;
+>                 };
+>
+> -               clint_mtimer9: timer@70ac090000 {
+> +               clint_mtimer9: timer@70ac094000 {
+>                         compatible =3D "sophgo,sg2042-aclint-mtimer", "th=
+ead,c900-aclint-mtimer";
+> -                       reg =3D <0x00000070 0xac090000 0x00000000 0x00007=
+ff8>;
+> +                       reg =3D <0x00000070 0xac094000 0x00000000 0x0000c=
+000>;
+> +                       reg-names =3D "mtimecmp";
+>                         interrupts-extended =3D <&cpu36_intc 7>,
+>                                               <&cpu37_intc 7>,
+>                                               <&cpu38_intc 7>,
+>                                               <&cpu39_intc 7>;
+>                 };
+>
+> -               clint_mtimer10: timer@70ac0a0000 {
+> +               clint_mtimer10: timer@70ac0a4000 {
+>                         compatible =3D "sophgo,sg2042-aclint-mtimer", "th=
+ead,c900-aclint-mtimer";
+> -                       reg =3D <0x00000070 0xac0a0000 0x00000000 0x00007=
+ff8>;
+> +                       reg =3D <0x00000070 0xac0a4000 0x00000000 0x0000c=
+000>;
+> +                       reg-names =3D "mtimecmp";
+>                         interrupts-extended =3D <&cpu40_intc 7>,
+>                                               <&cpu41_intc 7>,
+>                                               <&cpu42_intc 7>,
+>                                               <&cpu43_intc 7>;
+>                 };
+>
+> -               clint_mtimer11: timer@70ac0b0000 {
+> +               clint_mtimer11: timer@70ac0b4000 {
+>                         compatible =3D "sophgo,sg2042-aclint-mtimer", "th=
+ead,c900-aclint-mtimer";
+> -                       reg =3D <0x00000070 0xac0b0000 0x00000000 0x00007=
+ff8>;
+> +                       reg =3D <0x00000070 0xac0b4000 0x00000000 0x0000c=
+000>;
+> +                       reg-names =3D "mtimecmp";
+>                         interrupts-extended =3D <&cpu44_intc 7>,
+>                                               <&cpu45_intc 7>,
+>                                               <&cpu46_intc 7>,
+>                                               <&cpu47_intc 7>;
+>                 };
+>
+> -               clint_mtimer12: timer@70ac0c0000 {
+> +               clint_mtimer12: timer@70ac0c4000 {
+>                         compatible =3D "sophgo,sg2042-aclint-mtimer", "th=
+ead,c900-aclint-mtimer";
+> -                       reg =3D <0x00000070 0xac0c0000 0x00000000 0x00007=
+ff8>;
+> +                       reg =3D <0x00000070 0xac0c4000 0x00000000 0x0000c=
+000>;
+> +                       reg-names =3D "mtimecmp";
+>                         interrupts-extended =3D <&cpu48_intc 7>,
+>                                               <&cpu49_intc 7>,
+>                                               <&cpu50_intc 7>,
+>                                               <&cpu51_intc 7>;
+>                 };
+>
+> -               clint_mtimer13: timer@70ac0d0000 {
+> +               clint_mtimer13: timer@70ac0d4000 {
+>                         compatible =3D "sophgo,sg2042-aclint-mtimer", "th=
+ead,c900-aclint-mtimer";
+> -                       reg =3D <0x00000070 0xac0d0000 0x00000000 0x00007=
+ff8>;
+> +                       reg =3D <0x00000070 0xac0d4000 0x00000000 0x0000c=
+000>;
+> +                       reg-names =3D "mtimecmp";
+>                         interrupts-extended =3D <&cpu52_intc 7>,
+>                                               <&cpu53_intc 7>,
+>                                               <&cpu54_intc 7>,
+>                                               <&cpu55_intc 7>;
+>                 };
+>
+> -               clint_mtimer14: timer@70ac0e0000 {
+> +               clint_mtimer14: timer@70ac0e4000 {
+>                         compatible =3D "sophgo,sg2042-aclint-mtimer", "th=
+ead,c900-aclint-mtimer";
+> -                       reg =3D <0x00000070 0xac0e0000 0x00000000 0x00007=
+ff8>;
+> +                       reg =3D <0x00000070 0xac0e4000 0x00000000 0x0000c=
+000>;
+> +                       reg-names =3D "mtimecmp";
+>                         interrupts-extended =3D <&cpu56_intc 7>,
+>                                               <&cpu57_intc 7>,
+>                                               <&cpu58_intc 7>,
+>                                               <&cpu59_intc 7>;
+>                 };
+>
+> -               clint_mtimer15: timer@70ac0f0000 {
+> +               clint_mtimer15: timer@70ac0f4000 {
+>                         compatible =3D "sophgo,sg2042-aclint-mtimer", "th=
+ead,c900-aclint-mtimer";
+> -                       reg =3D <0x00000070 0xac0f0000 0x00000000 0x00007=
+ff8>;
+> +                       reg =3D <0x00000070 0xac0f4000 0x00000000 0x0000c=
+000>;
+> +                       reg-names =3D "mtimecmp";
+>                         interrupts-extended =3D <&cpu60_intc 7>,
+>                                               <&cpu61_intc 7>,
+>                                               <&cpu62_intc 7>,
+> --
+> 2.43.0
+>
+Reviewed-by: Guo Ren <guoren@kernel.org>
 
-> On Sat, Dec 2, 2023 at 3:37=E2=80=AFAM Nuno S=C3=A1 <noname.nuno@gmail.co=
-m> wrote:
-> >
-> > On Fri, 2023-12-01 at 21:53 -0600, David Lechner wrote: =20
-> > > On Thu, Nov 30, 2023 at 5:54=E2=80=AFPM David Lechner <dlechner@bayli=
-bre.com> wrote: =20
-> > > >
-> > > > On Tue, Nov 21, 2023 at 4:17=E2=80=AFAM Nuno Sa via B4 Relay
-> > > > <devnull+nuno.sa.analog.com@kernel.org> wrote: =20
-> > > > >
-> > > > > Hi all,
-> > > > >
-> > > > > This is a Framework to handle complex IIO aggregate devices.
-> > > > >
-> > > > > The typical architecture is to have one device as the frontend de=
-vice which
-> > > > > can be "linked" against one or multiple backend devices. All the =
-IIO and
-> > > > > userspace interface is expected to be registers/managed by the fr=
-ontend
-> > > > > device which will callback into the backends when needed (to get/=
-set
-> > > > > some configuration that it does not directly control).
-> > > > >
-> > > > > The basic framework interface is pretty simple:
-> > > > >  - Backends should register themselves with @devm_iio_backend_reg=
-ister()
-> > > > >  - Frontend devices should get backends with @devm_iio_backend_ge=
-t()
-> > > > >
-> > > > > (typical provider - consumer stuff)
-> > > > > =20
-> > > >
-> > > > The "typical provider - consumer stuff" seems pretty straight forwa=
-rd
-> > > > for finding and connecting two different devices, but the definition
-> > > > of what is a frontend and what is a backend seems a bit nebulous. It
-> > > > would be nice to seem some example devicetree to be able to get a
-> > > > better picture of how this will be used in practices (links to the =
-the
-> > > > hardware docs for those examples would be nice too).
-> > > > =20
-> > >
-> > > Fulfilling my own request here...
-> > >
-> > > Since AD9467 is being use as the example first user of the IIO offloa=
-d framework
-> > > I did a deep dive into how it is actually being used. It looks like t=
-his:
-> > > =20
-> >
-> > This is not an offload framework... I think somehow you're connecting t=
-his to the
-> > spi_engine offload and these are two completely different things. Maybe=
- they can
-> > intersect at some point but as of now, I don't see any benefit in doing=
- it. The goal
-> > of this patchseries is to have a simple and generic framework so we can=
- connect IIO
-> > devices (frontends) to a backend device having kind of an IIO aggregate=
- device so to
-> > say. Moreover, we just want to have the ad9467 driver in the same state=
- it was before
-> > to keep things simple. I'm already fixing some things but I don't want =
-extend that
-> > too much as the primary goal is to have the framework in. Cleanups can =
-come
-> > afterwards.
-> >
-> > That said, is fine to have this kind of discussion but I honestly think=
- you're over
-> > engineering the whole thing. Maybe you're already too ahead of me :), b=
-ut where we
-> > stand right now, I don't see any reason for anything so complicated as =
-the below.
-> > Also note this should be simple and generic. As I already said, this is=
- not supposed
-> > to be an ADI only thing and STM also wants to make use of this infrastr=
-ucture. But
-> > see below some of my comments on why I think it's too much... =20
->=20
-> This is a very fair point. I do have a tendency to overthink things. :-)
->=20
-> At the very least, being able to see the schematic of how it all fits
-> together filled in the holes of my understanding and now everything
-> you are doing in this series makes sense to me. And I totally agree
-> with keeping it simpler is better.
-
-Interesting discussion. One key thing it has highlighted for me is that
-even the simpler proposal that Nuno has put forward deserves some
-more documentation!  Preferably with some asci art - though maybe not as co=
-mplex
-as David's pretty picture.  I keep forgetting which is the backend and which
-is the front end for this discussion which isn't helping me get my head
-around it.
-
-Jonathan
-
-
-
+--=20
+Best Regards
+ Guo Ren
 
