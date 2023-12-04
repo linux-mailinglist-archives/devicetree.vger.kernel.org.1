@@ -1,101 +1,79 @@
-Return-Path: <devicetree+bounces-21372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21374-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8745F803686
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 15:26:00 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 396D480369A
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 15:28:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B8A421C20A55
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 14:25:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B9884B20A99
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 14:27:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E2BF28DAD;
-	Mon,  4 Dec 2023 14:25:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CD5328DBB;
+	Mon,  4 Dec 2023 14:27:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="hir36Kpx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B56642129;
-	Mon,  4 Dec 2023 06:25:20 -0800 (PST)
-Received: by mail-oo1-f52.google.com with SMTP id 006d021491bc7-58e1ddc68b2so1737630eaf.2;
-        Mon, 04 Dec 2023 06:25:20 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701699920; x=1702304720;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Lhhmi8w8FhrDZiDw2dpqrrV8WQgs4nmlcgmnrIZW9vM=;
-        b=RYBGE3x62o0/TbHadOb1SnzkaSgy2Sd+5iP4z2j1n2bb/yU8P5jRW8Ygd2oLKGFXl/
-         C3hJ3kX40jllyM/pzhFyHN80C4UtujjUDZWWtqsEJzleXJDgb3e1c5IZzFSHNmU9Wm4S
-         GG2WPkpg05UukWmU99Dmi1sRWyK4CgmX6/qCxJ0quCQdN5Larzv1ILSzrY1nW5jF4lxg
-         L0sYW64varrZ+MTXk2ztIGkz1Cn2mNLup8N5Ed0PLgn/ruVeKfKVdzNTySB8dov4Gy8/
-         SgThDidT8m30+vUAh4DxWRB+eVJWo/hv26KnXUOoySwwSXz6Pqg4j0tKyZefIPP70nes
-         OB6Q==
-X-Gm-Message-State: AOJu0YwOvxQEGHnokL/+QZhckH8s6q8F2WBVi5YUFJlVZzGspYBBmaUD
-	jgdKHfZyLYpgTAGIdkt0Nw==
-X-Google-Smtp-Source: AGHT+IHUIM+kCotvnxNhLlPOfisb9roK9l9+KaY7l/Gbx+B9GlChh+E50rzm8GoEQ40QIBw//sepKg==
-X-Received: by 2002:a05:6820:a82:b0:58e:1c48:4953 with SMTP id de2-20020a0568200a8200b0058e1c484953mr2535013oob.13.1701699919830;
-        Mon, 04 Dec 2023 06:25:19 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id x16-20020a4a6210000000b00587aaf6add7sm1976179ooc.9.2023.12.04.06.25.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Dec 2023 06:25:19 -0800 (PST)
-Received: (nullmailer pid 1225685 invoked by uid 1000);
-	Mon, 04 Dec 2023 14:25:17 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1B95385D;
+	Mon,  4 Dec 2023 06:27:49 -0800 (PST)
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id DCDF16602F41;
+	Mon,  4 Dec 2023 14:27:46 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1701700067;
+	bh=V9x5XsnAYvTRabg/WvQRDL3w7N8rufl/OG+QWOqronQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=hir36KpxRDGhkVeELLiLNB9qCCq2/X7ZoUG6lyCWRfccnF6rhMDrBYZH2QQAXgV/J
+	 79sw1Slt214xnYDOGqS/AOLHx3+Nf9ZYZ+er3XX01IUWqczOp7ASEaOxASa9lBhyqh
+	 EUDo2Tcl+O/uxc04HqwDYK5Adehm76h6zw3Yczm95VVhKlU6geoDku+tJLh/Pk+gyF
+	 VDlBXJGGwhZ7PXnGH8OjZgp1GUF3j+7MtLspBjDff6nOLPPiRHGK+P14HpcYopxtej
+	 3FCeKN0L9fUoGh1LRaGhbU4PIw/DM5OPSCY8eBGg0nz5PTiM0fidwWNA26nWGGiHHI
+	 tGmL71pD8OWIg==
+Message-ID: <e68dddc4-7175-4457-9882-6403b09a1e8b@collabora.com>
+Date: Mon, 4 Dec 2023 15:27:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Chen Wang <unicornxw@gmail.com>
-Cc: guoren@kernel.org, robh+dt@kernel.org, samuel.holland@sifive.com, jszhang@kernel.org, linux-kernel@vger.kernel.org, mturquette@baylibre.com, richardcochran@gmail.com, paul.walmsley@sifive.com, conor@kernel.org, inochiama@outlook.com, linux-clk@vger.kernel.org, Chen Wang <unicorn_wang@outlook.com>, palmer@dabbelt.com, sboyd@kernel.org, krzysztof.kozlowski+dt@linaro.org, xiaoguang.xing@sophgo.com, devicetree@vger.kernel.org, chao.wei@sophgo.com, aou@eecs.berkeley.edu, linux-riscv@lists.infradead.org, haijiao.liu@sophgo.com
-In-Reply-To: <14616bce163d689a4e640ab7b372421ca8306a92.1701691923.git.unicorn_wang@outlook.com>
-References: <cover.1701691923.git.unicorn_wang@outlook.com>
- <14616bce163d689a4e640ab7b372421ca8306a92.1701691923.git.unicorn_wang@outlook.com>
-Message-Id: <170169991797.1225669.8378193409195638634.robh@kernel.org>
-Subject: Re: [PATCH v3 1/4] dt-bindings: soc: sophgo: Add Sophgo system
- control module
-Date: Mon, 04 Dec 2023 08:25:17 -0600
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 9/9] arm64: dts: mediatek: Add MT8186 Magneton
+ Chromebooks
+Content-Language: en-US
+To: Chen-Yu Tsai <wenst@chromium.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
+References: <20231204084012.2281292-1-wenst@chromium.org>
+ <20231204084012.2281292-10-wenst@chromium.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20231204084012.2281292-10-wenst@chromium.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-
-On Mon, 04 Dec 2023 20:54:53 +0800, Chen Wang wrote:
-> From: Chen Wang <unicorn_wang@outlook.com>
+Il 04/12/23 09:40, Chen-Yu Tsai ha scritto:
+> Add entries for the MT8186 based Chromebooks, also collectively known
+> as the Lenovo IdeaPad Slim 3 Chromebook (14M868). It is also based on
+> the "Steelix" design. Being a laptop instead of a convertible device,
+> there is no stylus, which is similar to Rusty. However Magneton does
+> not have ports on the right side of the device.
 > 
-> Add documentation to describe Sophgo System Controller for SG2042.
+> Three variants are listed separately. These use different touchscreen
+> controllers, or lack a touchscreen altogether.
 > 
-> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
-> ---
->  .../soc/sophgo/sophgo,sg2042-sysctrl.yaml     | 35 +++++++++++++++++++
->  1 file changed, 35 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/sophgo/sophgo,sg2042-sysctrl.yaml
-> 
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/soc/sophgo/sophgo,sg2042-sysctrl.example.dtb: /example-0/system-controller@30010000: failed to match any schema with compatible: ['sophgo,sg2042-sysctl']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/14616bce163d689a4e640ab7b372421ca8306a92.1701691923.git.unicorn_wang@outlook.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
 
