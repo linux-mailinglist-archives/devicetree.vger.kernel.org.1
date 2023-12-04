@@ -1,413 +1,130 @@
-Return-Path: <devicetree+bounces-21356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 724FD80355E
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 14:50:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06289803567
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 14:50:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD1261F210BA
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 13:50:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B5285280F68
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 13:50:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28E6D2555E;
-	Mon,  4 Dec 2023 13:50:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5BDB2555E;
+	Mon,  4 Dec 2023 13:50:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gZVgeDIf"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QO+9BzVp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05B2F22EF9;
-	Mon,  4 Dec 2023 13:50:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28924C433C8;
-	Mon,  4 Dec 2023 13:50:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701697819;
-	bh=VV1BuiJ1OwVCEWtHLl7+yaqme2qtXHo53o/BL+A/auA=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=gZVgeDIfgeZaD88GftysdRn16puI2n1IPKBtxaEgYhDpxQTqg+Wvc6IAllU41d6Sa
-	 izugvuDkjgZSyh5h01NuTYm/EmdVNNcZYbGteXJztSumqguEvcdOmC6/+1AiTyGTDU
-	 QM008H9mvRfjdKdwUuZ+qQbhZpxh3mibPbUBX+XWcnOs0qovzu6GVoba2ga1Hhw7Ei
-	 Katsm4XiKpu5NNtfS9+StU5knsIw7ep3iZVgkoL8DDEqWYLg3H/Wr0hyuoG2ezOENy
-	 SiKAnHwe8nVb3z1IWuMTtyvdTDuTH2vYOk0LzMZBkfvHachXc4V8Z7+QqCm9qbNK0M
-	 aZ3QAjtUiGJVw==
-Date: Mon, 4 Dec 2023 13:50:14 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Abdel Alkuor <alkuor@gmail.com>
-Cc: krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org, lars@metafoo.de,
- conor+dt@kernel.org, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] iio: temperature: Add support for AMS AS6200
-Message-ID: <20231204135014.15ea47b6@jic23-huawei>
-In-Reply-To: <20231202041651.719963-2-alkuor@gmail.com>
-References: <20231202041651.719963-1-alkuor@gmail.com>
-	<20231202041651.719963-2-alkuor@gmail.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0C18FE
+	for <devicetree@vger.kernel.org>; Mon,  4 Dec 2023 05:50:39 -0800 (PST)
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-3335397607dso253367f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 04 Dec 2023 05:50:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701697838; x=1702302638; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=eAuYi+CP8FnDvl1/9mJlyIJtR24fsmGGBMNOB1G00HM=;
+        b=QO+9BzVpqrgcAjVH4KIBQzTyMMLF05hN0BF5rJdBHwKyGOL/OduoeIkO+yEwBQya/v
+         W3oUSG6IElhRfBABlyn1gpL5GP8IvC+DI/b94pK3lJqAo+Vwfl/0iknXVbxpOr99PYRv
+         qiQfLwdSUQ+iPq55YyeGABMd3HxfyU765rfT8DrzDe9OYBXcJbhna9IYBPUrmQ4jo8CM
+         i8+Rd84tRK19j4uULeuMrcoISxM3G8AwTbJFTWY6r8e2a7fAKNdp6Pa5w/n4KVDNb1Vy
+         tAW4OnyeYDoob15RFsCA+adxNUGMtcca/3tqdXdQpGL2ezFI9TrcTZf1ir3t4VFl1Z8q
+         1MxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701697838; x=1702302638;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eAuYi+CP8FnDvl1/9mJlyIJtR24fsmGGBMNOB1G00HM=;
+        b=R7M0PFFzxKx3/qsqqVU6ePBKb+NPftqBXsafx9agOK8kLgiHvK5UqfLLGn0GOXL3JO
+         i54Yt8ArXcQDNHmzpFrpc2uHjdWVgx7JY7emcodQoL87PV+27C+sWTs1qD9b+EJDdyxn
+         7LmvWmLQv+XAD973fMkO6vTwPcy+TRQQaJvHilihk0D1yS+6KK+SiKGnh7qUnh56dMyP
+         0SZL6Q8mPn/A5zVx68MXAjI6i67KNHqH9a1yD/QhATDNN4hsjOYytKa4ADpYtQPNTB+r
+         BF1xhbqAFjGROjLJ8dMF5PjjjS127k8LiydJwIvv4Or7QyXUKpl/99rUC41St4MkCS2f
+         qUuA==
+X-Gm-Message-State: AOJu0YwnB2YtcEugMo3lLgvIWZ5RiEedbc+xu/tgWwgjJlRLqDuxRj9r
+	uY9WYq0xGNp7uus5OsBsOEg2iA==
+X-Google-Smtp-Source: AGHT+IGi4e3DED/9yTz6CQ5jSU6WrggjZ7YH99yV7/7tpCLqmYsyGhKNkD/u/aBxbEgr9z5+byR+qA==
+X-Received: by 2002:a05:6000:110f:b0:333:39c1:b7b8 with SMTP id z15-20020a056000110f00b0033339c1b7b8mr1872523wrw.119.1701697838164;
+        Mon, 04 Dec 2023 05:50:38 -0800 (PST)
+Received: from [127.0.1.1] ([82.77.85.67])
+        by smtp.gmail.com with ESMTPSA id w12-20020a5d680c000000b003333e09990dsm5908553wru.8.2023.12.04.05.50.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Dec 2023 05:50:37 -0800 (PST)
+From: Abel Vesa <abel.vesa@linaro.org>
+Subject: [PATCH v2 0/2] phy: qcom: qmp-usb: Add support for X1E80100 USB3
+ PHY
+Date: Mon, 04 Dec 2023 15:50:26 +0200
+Message-Id: <20231122-phy-qualcomm-usb3-uniphy-x1e80100-v2-0-1a3e1d98564e@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACLZbWUC/5WOSw6DIBRFt9Iw7mv41FQ76j4aB4AoL0GwUIzGu
+ PeiO+jwnME9dyPJRDSJPC8biWbGhMEX4NcL0Vb6wQB2hQmnXDDGOUx2hU+WTodxhJyUgOzxkAs
+ zNWWUQvMQuq551TDTk7KjZDKgovTaliWfnStyiqbH5Qy/28IW0zfE9fwxs8P+k5wZUBB9pTrOR
+ Vep+8uhlzHcQhxIu+/7DzIw7tzoAAAA
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Johan Hovold <johan@kernel.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Abel Vesa <abel.vesa@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1186; i=abel.vesa@linaro.org;
+ h=from:subject:message-id; bh=bq12H4LhIOP0hqLRSHiVZk4lQQxtWa9RmciRWDla0xI=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBlbdkkc7kZeVKqZ0M198ktPur8uAhz993joSY47
+ DXYu62EB0KJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZW3ZJAAKCRAbX0TJAJUV
+ VhBfEADEHcWM3kW6D8c+Ye+Sr62piQRou48rb7TvAxtP/L9wDjU6rfaiVE9LwMdbIjNnhQl4r5x
+ Ff3W/FlqdXLJWIbdhQZRpllk/9eF4i/pZvlnMEjDS8/3OwZAu5D7ehkkpfGifQk+Gu+O2IbxLQU
+ ++NK/ailb4Q7f8o2asuHlXxz52W4u25LaikRAF+X6qivYSeST45h39h9HS1opv4jag4wWwX3vUT
+ mJv5DpERnIAD0T62EoJauFqnQj9NnmeaNuZOtSrzELJbfUsYlV5JEmOrkN5eS/H/1GsYRJXfGXa
+ oa9wNVRJ0n5MzniPh5Gv4hZZQOQmJLTKXHgBIVYiuTt0aW7wnflbWRJJ6HOLNeYxWI8naz6U/PS
+ i7pzBfiSdgDhmTurwES5ZREOtzAGiD60z0qMMSnP24I7KDJhiN7xAGuH+fEqrnCH9D4IW5D6Qwp
+ nEZ/7zdsqo6QCKE1HsRjL8IBzkI4c5DcMulonTj9AEy5RLKoUSU98QII/Z/0fj5KweISJ2O6/xK
+ wqy/DiCdJPdLLMDvh7GIltFEph+iXcqFLE7K8BaY3YMILlWpPW6Tljp4NoiLrAyRM11FtYqp9wM
+ YRdtF/cUb9HFiG2o7eTJ6/Ddk65qGYK/MmX5VhZ5FwgHFc1iG6jNTlwwImL16x89qoTrQFBLd14
+ 3UIbFGLJtAFUaiQ==
+X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
+ fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
-On Fri,  1 Dec 2023 23:16:51 -0500
-Abdel Alkuor <alkuor@gmail.com> wrote:
+This patchset adds support for USB3 PHYs instances found on X1E80100.
+It depends on the v7 register offsets added by the following patchset:
 
-> as6200 is a high accuracy temperature sensor of 0.0625C with a range
-> between -40 to 125 Celsius degrees.
-> 
-> The driver implements the alert trigger event in comparator mode where
-> consecutive faults are converted into periods, high/low temperature
-> thresholds require to be above/below the set limit for n seconds for
-> the alert to be triggered/cleared. The alert is only cleared when the
-> current temperature is below the low temperature threshold for n seconds.
-> 
-> The driver supports the following:
-> - show available sampling frequencey
-> - read/write sampling frequency
-> - read raw temperature
-> - read scaling factor
-> - read/write temperature period that needs to be met for low/high
->   temperature thresholds to trigger an alert
-> - show available temperature period thresholds
-> - buffer trigger
-> - temperature alert event trigger
+https://lore.kernel.org/all/20231122-phy-qualcomm-v6-v6-20-v7-new-offsets-v1-0-d9340d362664@linaro.org/
 
-Hi Abdel,
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
+Changes in v2:
+- Added qmp_usb_offsets_v7, as Dmitry suggested
+- Properly sorted the init tables, cfg struct and compatible entry, as
+  suggested by Johan
+- Add entries to allOf section in the schema, as suggested by Krzysztof
+- Link to v1: https://lore.kernel.org/r/20231122-phy-qualcomm-usb3-uniphy-x1e80100-v1-0-3f5bd223d5b4@linaro.org
 
-A few comments inline. Looking good in general.
+---
+Abel Vesa (2):
+      dt-bindings: phy: qcom,sc8280xp-qmp-usb3-uni: Add X1E80100 USB PHY binding
+      phy: qcom-qmp-usb: Add Qualcomm X1E80100 USB3 PHY support
 
-> 
-> Datasheet: https://ams.com/documents/20143/36005/AS6200_DS000449_4-00.pdf
-> 
+ .../phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml        |   3 +
+ drivers/phy/qualcomm/phy-qcom-qmp-usb.c            | 160 +++++++++++++++++++++
+ 2 files changed, 163 insertions(+)
+---
+base-commit: cf0b28e02cfac455b54f1a29fe907931d2b0bb9d
+change-id: 20231122-phy-qualcomm-usb3-uniphy-x1e80100-973c882591ef
 
-No blank line here.  Tags block (and Datasheet is a tag) never has blank lines
-as that breaks some existing tooling.
-
-> Signed-off-by: Abdel Alkuor <alkuor@gmail.com>
->  
->  What:		/sys/bus/iio/devices/iio:deviceX/in_filter_notch_center_frequency
-> diff --git a/drivers/iio/temperature/Kconfig b/drivers/iio/temperature/Kconfig
-> index ed384f33e0c7..a0ffbc77e623 100644
-> --- a/drivers/iio/temperature/Kconfig
-> +++ b/drivers/iio/temperature/Kconfig
-> @@ -4,6 +4,17 @@
->  #
->  menu "Temperature sensors"
->  
-> +config AS6200
-> +       tristate "AS6200 temperature sensor"
-> +       depends on I2C
-> +       select REGMAP_I2C
-> +       help
-> +         If you say yes here you get support for AS6200
-> +         temperature sensor chip connected via I2C.
-> +
-> +         This driver can also be built as a module.  If so, the module
-> +         will be called as6200.
-> +
->  config IQS620AT_TEMP
->  	tristate "Azoteq IQS620AT temperature sensor"
->  	depends on MFD_IQS62X || COMPILE_TEST
-> @@ -157,5 +168,4 @@ config MAX31865
->  
->  	  This driver can also be build as a module. If so, the module
->  	  will be called max31865.
-> -
-Stray change.
-
->  endmenu
-
-> diff --git a/drivers/iio/temperature/as6200.c b/drivers/iio/temperature/as6200.c
-> new file mode 100644
-> index 000000000000..7fcc785871d8
-> --- /dev/null
-> +++ b/drivers/iio/temperature/as6200.c
-> @@ -0,0 +1,493 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Driver for AMS AS6200 Temperature sensor
-> + *
-> + * Author: Abdel Alkuor <alkuor@gmail.com>
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/device.h>
-> +#include <linux/i2c.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/kstrtox.h>
-> +#include <linux/module.h>
-> +#include <linux/regmap.h>
-> +
-> +#include <linux/iio/buffer.h>
-> +#include <linux/iio/events.h>
-> +#include <linux/iio/iio.h>
-> +#include <linux/iio/sysfs.h>
-> +#include <linux/iio/trigger.h>
-> +#include <linux/iio/triggered_buffer.h>
-> +#include <linux/iio/trigger_consumer.h>
-> +
-> +#define AS6200_TVAL_REG		0x0
-> +#define AS6200_CONFIG_REG	0x1
-> +#define AS6200_TLOW_REG		0x2
-> +#define AS6200_THIGH_REG	0x3
-> +
-> +#define AS6200_CONFIG_AL	BIT(5)
-> +#define AS6200_CONFIG_CR	GENMASK(7, 6)
-> +#define AS6200_CONFIG_SM	BIT(8)
-> +#define AS6200_CONFIG_IM	BIT(9)
-> +#define AS6200_CONFIG_POL	BIT(10)
-> +#define AS6200_CONFIG_CF	GENMASK(12, 11)
-> +
-> +#define AS6200_TEMP_MASK	GENMASK(15, 4)
-> +
-> +struct as6200 {
-> +	struct regmap *regmap;
-> +	struct mutex lock; /* Prevent concurrent temp fault processing */
-
-Why does it matter? What might cause such processing?
-
-> +};
-> +
-> +static const int as6200_samp_freq[4][2] = {
-> +	{ 0, 250000 },
-> +	{ 1, 0 },
-> +	{ 4, 0 },
-> +	{ 8, 0 }
-> +};
-> +
-> +/* Consective faults converted to period */
-> +static const int as6200_temp_thresh_periods[4][4][2] = {
-> +	{ { 4, 0 }, { 8, 0 }, { 16, 0 }, { 24, 0 } },
-> +	{ { 1, 0 }, { 2, 0 }, { 4, 0 }, { 6, 0 } },
-> +	{ { 0, 250000 }, { 0, 500000 }, { 1, 0 }, { 2, 0} },
-> +	{ { 0, 125000 }, { 0, 250000 }, { 0, 500000 }, { 0, 750000 } }
-
-I'd suggest naming the first column at least (which is CR I think?)
-
-So define an enum and 
-enum {
-	AS6200_CR_0_25HZ = 0,
-	AS6200_CR_1HZ = 1,
-	AS6200_CR_4HZ = 2,
-	AS6200_CR_8HZ = 3,
-};
-And use that for the samp freq entries above, so that they clearly relate
-to the rows of this arram
-	[AS6200_CR_0_25HZ] = { { 4, 0 }, { 8, 0 }, { 16, 0 }, { 24, 0 } },
-You could take it further and use an enum for CF as well.
-
-	[AS6200_CR_0_25HZ] = {
-		[AS6200_CF_1] = { 4, 0 },
-		[AS6200_CF_2] = { 8, 0 },
-		[AS6200_CF_4] = { 16, 0 },
-		[AS6200_CF_6] = { 24, 0 },
-	},
-	[AS6200_CR_1_HZ] = {
-		[AS6200_CF_1] = { 1, 0 },
-		[AS6200_CF_2] = { 2, 0 },
-	...	
-	}
-	etc which makes it clear where all the numbers come.
-
-> +};
-
-
-> +static int as6200_read_event_value(struct iio_dev *indio_dev,
-> +				   const struct iio_chan_spec *chan,
-> +				   enum iio_event_type type,
-> +				   enum iio_event_direction dir,
-> +				   enum iio_event_info info,
-> +				   int *val, int *val2)
-> +{
-> +	struct as6200 *as = iio_priv(indio_dev);
-> +	unsigned int reg;
-> +	unsigned int tmp;
-> +	int ret;
-> +	u8 cf;
-> +	u8 cr;
-> +
-> +	switch (dir) {
-> +	case IIO_EV_DIR_FALLING:
-> +		reg = AS6200_TLOW_REG;
-> +		break;
-> +	case IIO_EV_DIR_RISING:
-> +		reg = AS6200_THIGH_REG;
-> +		break;
-> +	case IIO_EV_DIR_EITHER:
-> +		reg = AS6200_CONFIG_REG;
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +
-> +	ret = regmap_read(as->regmap, reg, &tmp);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (info == IIO_EV_INFO_VALUE) {
-> +		*val = sign_extend32(FIELD_GET(AS6200_TEMP_MASK, tmp), 11);
-> +		ret = IIO_VAL_INT;
-return here.
-
-> +	} else {
-> +		cf = FIELD_GET(AS6200_CONFIG_CF, tmp);
-> +		cr = FIELD_GET(AS6200_CONFIG_CR, tmp);
-> +		*val = as6200_temp_thresh_periods[cr][cf][0];
-> +		*val2 = as6200_temp_thresh_periods[cr][cf][1];
-> +		ret = IIO_VAL_INT_PLUS_MICRO;
-
-and here.  If there is nothing more to be done, it simplifies the code
-flow being read to just return as quick as possible.
-
-> +	}
-> +
-> +	return ret;
-> +}
-
-> +static irqreturn_t as6200_event_handler(int irq, void *private)
-> +{
-> +	struct iio_dev *indio_dev = private;
-> +	struct as6200 *as = iio_priv(indio_dev);
-> +	unsigned int alert;
-> +	enum iio_event_direction dir;
-> +	int ret;
-> +
-> +	guard(mutex)(&as->lock);
-What data are we protecting here?
-
-> +
-> +	ret = regmap_read(as->regmap, AS6200_CONFIG_REG, &alert);
-> +	if (ret)
-> +		return IRQ_NONE;
-> +
-> +	alert = FIELD_GET(AS6200_CONFIG_AL, alert);
-> +
-> +	dir = alert ? IIO_EV_DIR_FALLING : IIO_EV_DIR_RISING;
-> +
-> +	iio_push_event(indio_dev,
-> +		       IIO_EVENT_CODE(IIO_TEMP, 0, 0,
-> +				      dir,
-> +				      IIO_EV_TYPE_THRESH,
-> +				      0, 0, 0),
-> +		       iio_get_time_ns(indio_dev));
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static irqreturn_t as6200_trigger_handler(int irq, void *private)
-> +{
-> +	struct iio_poll_func *pf = private;
-> +	struct iio_dev *indio_dev = pf->indio_dev;
-> +	struct as6200 *as = iio_priv(indio_dev);
-> +	int ret;
-> +	u8 data[16];
-
-I'd make this much more explicit and make sure you zero it to avoid leaking
-data.
-
-	struct data {
-		u8 channel;
-		s64 timestamp __aligned(8);
-	};
-
-	memset(&data, 0, sizeof(data)); /* Ensures the holes are zero filled */
-
-Also, avoid the casting mess and read into a local variable that is an unsigned int
-and copy it to the struct data if no error.
-> +
-> +	ret = regmap_read(as->regmap, AS6200_TVAL_REG, (unsigned int *)data);
-> +	if (!ret)
-Whilst it's more lines, greatly prefer to see error paths out of line and good
-paths inline (so no if (!ret))
-
-	if (ret)
-		goto done;
-
-	iio_push...
-
-done:
-	...
-
-May seem silly but when reviewing a lot of code, keeping things looking "normal"
-is a great benefit!
-
-> +		iio_push_to_buffers_with_timestamp(indio_dev, data,
-> +						   iio_get_time_ns(indio_dev));
-> +
-> +	iio_trigger_notify_done(indio_dev->trig);
-> +
-> +	return IRQ_HANDLED;
-> +}
-
-...
-
-> +
-> +static int __maybe_unused as6200_suspend(struct device *dev)
-> +{
-> +	struct i2c_client *client = to_i2c_client(dev);
-> +	struct as6200 *as = iio_priv(i2c_get_clientdata(client));
-> +
-> +	if (client->irq)
-> +		disable_irq(client->irq);
-> +
-> +	return regmap_update_bits(as->regmap, AS6200_CONFIG_REG,
-> +				  AS6200_CONFIG_SM, AS6200_CONFIG_SM);
-> +}
-> +
-> +static int __maybe_unused as6200_resume(struct device *dev)
-> +{
-> +	struct i2c_client *client = to_i2c_client(dev);
-> +	struct as6200 *as = iio_priv(i2c_get_clientdata(client));
-> +
-> +	if (client->irq)
-> +		enable_irq(client->irq);
-
-I would normally expect suspend and resume to be mirror images. If that doesn't
-make sense for some reason and we do need to do the irq handling
-before the register write in both cases then add a comment.
-
-> +
-> +	return regmap_update_bits(as->regmap, AS6200_CONFIG_REG,
-> +				  AS6200_CONFIG_SM, 0);
-> +}
-> +
-> +static const struct dev_pm_ops as6200_pm_ops = {
-
-DEFINE_SIMPLE_DEV_PM_OPS()
-
-
-> +	SET_SYSTEM_SLEEP_PM_OPS(as6200_suspend, as6200_resume)
-> +};
-> +
-> +static const struct i2c_device_id as6200_id_table[] = {
-> +	{ "as6200" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(i2c, as6200_id_table);
-> +
-> +static const struct of_device_id as6200_of_match[] = {
-> +	{ .compatible = "ams,as6200" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, as6200_of_match);
-> +
-> +static struct i2c_driver as6200_driver = {
-> +	.driver = {
-> +		.name = "as6200",
-> +		.pm = pm_sleep_ptr(&as6200_pm_ops),
-> +		.of_match_table = as6200_of_match,
-> +	},
-> +	.probe = as6200_probe,
-> +	.id_table = as6200_id_table,
-> +};
-> +module_i2c_driver(as6200_driver);
-> +
-> +MODULE_AUTHOR("Abdel Alkuor <alkuor@gmail.com");
-> +MODULE_DESCRIPTION("AMS AS6200 Temperature Sensor");
-> +MODULE_LICENSE("GPL");
+Best regards,
+-- 
+Abel Vesa <abel.vesa@linaro.org>
 
 
