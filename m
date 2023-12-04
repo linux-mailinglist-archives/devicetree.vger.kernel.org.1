@@ -1,60 +1,41 @@
-Return-Path: <devicetree+bounces-21541-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21542-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6C07804177
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 23:17:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 673738041B0
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 23:27:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 90EEE280ED3
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 22:17:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9980E1C20C3B
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 22:27:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 718B23A8CB;
-	Mon,  4 Dec 2023 22:17:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="lofcBWGe"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54A623BB41;
+	Mon,  4 Dec 2023 22:27:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE415CD;
-	Mon,  4 Dec 2023 14:17:01 -0800 (PST)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 1F71240002;
-	Mon,  4 Dec 2023 22:16:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1701728219;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=NS4jS69KLOJnxFovqZv/8vQ3n77jCj0+KLo8w0Mmcsg=;
-	b=lofcBWGepeW/OU/1n6lJ8R6GE91nJTN2RoVmxDzB15pF9kdEiP7bO0iK0X1sv/XtlsDrIh
-	MnOZIWUSeJRGkli7LMGZAW3C27vp22wofxiW098Qnv8KdgMxEieov+WNEGoBHjUe5LGRVY
-	nMIbM0Qc9jsW5R+7C+7nLQLYREMNFbocLbWSmC8E8V+LlcDmlDslF+43uhjYIVVnUSOm4A
-	YXnuPlsxnA00gaHZyQXStqWEYInVGusAIN9CpaDQk1HQYaCRYS3jBQ4FT0lsyIeP/nwgMg
-	83XERe3VDQtNi4zxYQytFRtKtBs79vu2MVvSgYndNJ/pjq8a4Xb+BXqQVAdPsA==
-Date: Mon, 4 Dec 2023 23:16:55 +0100
-From: =?UTF-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>
-To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
- <pabeni@redhat.com>, Jonathan Corbet <corbet@lwn.net>, Luis Chamberlain
- <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Oleksij Rempel <o.rempel@pengutronix.de>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- devicetree@vger.kernel.org, Dent Project <dentproject@linuxfoundation.org>
-Subject: Re: [PATCH net-next v2 8/8] net: pse-pd: Add PD692x0 PSE controller
- driver
-Message-ID: <20231204231655.19baa1a4@kmaincent-XPS-13-7390>
-In-Reply-To: <6eeead27-e1b1-48e4-8a3b-857e1c33496b@wanadoo.fr>
-References: <20231201-feature_poe-v2-0-56d8cac607fa@bootlin.com>
-	<20231201-feature_poe-v2-8-56d8cac607fa@bootlin.com>
-	<6eeead27-e1b1-48e4-8a3b-857e1c33496b@wanadoo.fr>
-Organization: bootlin
-X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a02:c205:3004:2154::1])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0D4285;
+	Mon,  4 Dec 2023 14:27:34 -0800 (PST)
+Received: from p200301077700c3001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:107:7700:c300:1a3d:a2ff:febf:d33a] helo=aktux)
+	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <andreas@kemnade.info>)
+	id 1rAHPS-0071Vx-0b; Mon, 04 Dec 2023 23:27:26 +0100
+Date: Mon, 4 Dec 2023 23:27:22 +0100
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Adam Ford <aford173@gmail.com>
+Cc: lee@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, bcousson@baylibre.com, tony@atomide.com,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-omap@vger.kernel.org
+Subject: Re: [PATCH v3 6/6] ARM: dts: omap: gta04: standardize
+ system-power-controller
+Message-ID: <20231204232722.031f618c@aktux>
+In-Reply-To: <CAHCN7xKG6-vgnJ+mA8xt0aFK-jCBWOX-GkVmJGNERH43N0ikaw@mail.gmail.com>
+References: <20231203222903.343711-1-andreas@kemnade.info>
+	<20231203222903.343711-7-andreas@kemnade.info>
+	<CAHCN7xKG6-vgnJ+mA8xt0aFK-jCBWOX-GkVmJGNERH43N0ikaw@mail.gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,31 +44,40 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: kory.maincent@bootlin.com
 
-Thanks for your review!
+On Sun, 3 Dec 2023 16:46:20 -0600
+Adam Ford <aford173@gmail.com> wrote:
 
-On Sun, 3 Dec 2023 22:11:46 +0100
-Christophe JAILLET <christophe.jaillet@wanadoo.fr> wrote:
-
-> > +
-> > +	fwl =3D firmware_upload_register(THIS_MODULE, dev, dev_name(dev),
-> > +				       &pd692x0_fw_ops, priv);
-> > +	if (IS_ERR(fwl)) {
-> > +		dev_err(dev, "Failed to register to the Firmware Upload
-> > API\n");
-> > +		ret =3D PTR_ERR(fwl);
-> > +		return ret; =20
+> On Sun, Dec 3, 2023 at 4:29=E2=80=AFPM Andreas Kemnade <andreas@kemnade.i=
+nfo> wrote:
+> >
+> > Replace TI-specific property by generic one.
+> >
+> > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> > ---
+> > cannot be applied independently of the other ones, so maybe simply delay
+> > it.
+> >
+> >  arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi b/arch/arm/boot=
+/dts/ti/omap/omap3-gta04.dtsi
+> > index 3661340009e7a..5001c4ea35658 100644
+> > --- a/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi
+> > +++ b/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi
+> > @@ -476,6 +476,7 @@ twl: twl@48 {
+> >                 reg =3D <0x48>;
+> >                 interrupts =3D <7>; /* SYS_NIRQ cascaded to intc */
+> >                 interrupt-parent =3D <&intc>;
+> > +               system-power-controller; =20
 >=20
-> Nit: return dev_err_probe()?
-
-No EPROBE_DEFER error can be catch from firmware_upload_register() function=
-, so
-it's not needed.
+> Could this go into the twl4030.dtsi file so we don't have every omap3
+> board with this part duplicating this line?
+>=20
+Well, that is a board-specific issue, so I do not think it belongs there,
+although quite common to have the twl4030 as the system-power-controller.
 
 Regards,
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+Andreas
 
