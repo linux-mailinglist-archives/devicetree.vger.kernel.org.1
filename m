@@ -1,258 +1,181 @@
-Return-Path: <devicetree+bounces-21245-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21246-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1FE6802F03
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 10:43:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EC9B802F14
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 10:46:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A641B2807BC
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 09:43:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1738B280AA2
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 09:46:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1C8D1CA9F;
-	Mon,  4 Dec 2023 09:43:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AB851CFB7;
+	Mon,  4 Dec 2023 09:46:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ew4y8eVq"
+	dkim=pass (2048-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="rPk0hNXw";
+	dkim=permerror (0-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="WBm/rMl4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B14981C6A5;
-	Mon,  4 Dec 2023 09:43:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8B8CC433C7;
-	Mon,  4 Dec 2023 09:43:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701683024;
-	bh=OgG54f7CW3gUgc2H+TO5dUHN3X3mqI/wAR/hHnHXcRY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Ew4y8eVqcEl6gudf6nE7lvLKPOPeLa1WqJFLrtpinSb/2YSoIs0JM14Be1SxoBGsN
-	 5L45mRaftVc9PdKcHkLImd885PcRIcKGXVT+AUKnfN2OFzsVBPebEvVxorRoPaXtZi
-	 sSAE8fPSkN/F5jlm7Up2z3Z3jCK27VLaRNSt7fjvLvvempIufzktK4MEWNX5BhPoS5
-	 x6zG3FbAIjDlrNwD6BMLbIGHWh9tCXRgUqV1aV0xez6n8fLX5KTg0qlZ/zbmODJEOj
-	 LF0ZojqVIv5AX6g9J8bUgKhoS6NHeXV5x3IOjlJpdnEeWQS0kbSsdsta1pMCeig8Tk
-	 uUZ1Ntg4TwK+w==
-Date: Mon, 4 Dec 2023 09:43:35 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: <Marius.Cristea@microchip.com>
-Cc: <conor@kernel.org>, <robh+dt@kernel.org>, <conor+dt@kernel.org>,
- <devicetree@vger.kernel.org>, <lars@metafoo.de>,
- <linux-iio@vger.kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: adding dt-bindings for
- PAC193X
-Message-ID: <20231204094335.21800f38@jic23-huawei>
-In-Reply-To: <7974eb280202c551eb66000c8c26276080ad7da2.camel@microchip.com>
-References: <20231025134404.131485-1-marius.cristea@microchip.com>
-	<20231025134404.131485-2-marius.cristea@microchip.com>
-	<20231025-cheddar-tucking-b2ea777ed4f9@spud>
-	<937af3ec4012c6ec1d66285660d8c56dcf356703.camel@microchip.com>
-	<20231026-perkiness-financial-55313e297230@spud>
-	<20231027152625.44b26d80@jic23-huawei>
-	<7974eb280202c551eb66000c8c26276080ad7da2.camel@microchip.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.50])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D8CC106;
+	Mon,  4 Dec 2023 01:46:29 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1701683177; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=pJudvDMWVylERXpP3nXifI54PwmHy6yRb7Ypnhpzgj7ZoVcDiGHBjsg/8R75Z5e1W6
+    DMfi3mnwbZA6YWq0v7fZaRxmysOJBQVtG0mcO0IE1tzcyMXrDztGOOdxmqRyIWNw+qgF
+    yMve/5gREh7iIgqlpV/ZQSQLQvXWGEfAFjxlYE/BTBl8sw5AecdjthMHTW+QZu/j1pVb
+    oTCJVAhUH6rAWUrFKlwmNOZUSZ1VvrKdyVJ3NuLqWXdnX7uAdFdk0vpyUJpzTy1MXVt1
+    O5P/k58x2wjTAkEvck3MSReq/6MmelJTZiK15FGh6QKvi1Qe2dmHiHm+wEupCFepOOd4
+    6BbQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1701683177;
+    s=strato-dkim-0002; d=strato.com;
+    h=Cc:To:Message-Id:Subject:Date:From:Cc:Date:From:Subject:Sender;
+    bh=vPDDwu/LFJBTyJh71GaE5A1eXeoeKpnofr6UkCT3JFc=;
+    b=bd2THfus25v89rcBx4MqjHLvnuJmGkBScugwnrIMCaFKKsevsnVAXqQBJSnUk9/T8P
+    tF8xQtZLkxJ4XzHKwcbiJAPd0nmExJKxt3Glr53CTt5yT7xpAmV/de93QwA94ku92AsD
+    CnyFogbpcvuSdBQZRPSyaMQAdJH+2JfzJBa3IttDUF93DvUEKUTRXqXlwhZ5A8yK0Df+
+    qy6Ss9A7SZp9sIEWt2GXodmOfa6O6EYwJOFtt1OOgwvcvoqLYG0bKQ8wT24Ix3kNS3WU
+    Td8K4AfTY3MElWi03nNmfMYwCDSANsdaKgvR5BhnOgieteffnl04weYE/pU3HbgOUu+U
+    R6aQ==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1701683177;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=Cc:To:Message-Id:Subject:Date:From:Cc:Date:From:Subject:Sender;
+    bh=vPDDwu/LFJBTyJh71GaE5A1eXeoeKpnofr6UkCT3JFc=;
+    b=rPk0hNXwy2KILWychu1slf4uvwLJiipWZ2W0xPHJ8gFStNsZUkEcqJTJVFbxf2dDV3
+    zDtjhGHKCPKWIvzbSidbDBq6LkPTzvtARTNy0ILUgv14avRr0VyV8HGgaeRRGtTQGyNO
+    kGmGUCknTErt4eLIEpv27DLIg39t8GXUWFs9TZuiJCpdL8VhN0t2rcHnEue8k+QeLTXJ
+    UjwV5U/WT1OPVitHhsrHJFI43AquUKs2lSlg2SS2Knp9HABnXCekPKc6GRnhqE5Z2JYx
+    9nMOkVCZOiM0HaC0XsfyG7ISWEBY5Wexg6GFPb1E0aw/SMrHVXvFfKpGu7lbyK7hG7v3
+    EXtA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1701683177;
+    s=strato-dkim-0003; d=gerhold.net;
+    h=Cc:To:Message-Id:Subject:Date:From:Cc:Date:From:Subject:Sender;
+    bh=vPDDwu/LFJBTyJh71GaE5A1eXeoeKpnofr6UkCT3JFc=;
+    b=WBm/rMl4qC5EUAACv3CtuLo+TKvmcHiI9F+fVlKzN2o6kMxDlpRZk20CgOo64UwzJj
+    qNipme+P/lOSFYRJ/GAw==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQjVd4CteZ/7jYgS+mLFY+H0JAn8u4l+/zY="
+Received: from [192.168.244.3]
+    by smtp.strato.de (RZmta 49.9.7 DYNA|AUTH)
+    with ESMTPSA id R5487bzB49kG9je
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+	(Client did not present a certificate);
+    Mon, 4 Dec 2023 10:46:16 +0100 (CET)
+From: Stephan Gerhold <stephan@gerhold.net>
+Date: Mon, 04 Dec 2023 10:46:11 +0100
+Subject: [PATCH] arm64: dts: qcom: Add missing vio-supply for AW2013
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20231204-qcom-aw2013-vio-v1-1-5d264bb5c0b2@gerhold.net>
+X-B4-Tracking: v=1; b=H4sIAOKfbWUC/x3MQQ5AMBBA0avIrE3STkvCVcSCGsyC0iZIGnfXW
+ L7F/wkiB+EIbZEg8CVR/J6hywLcOuwLo0zZQIqMJmXxdH7D4SalDV7isdHT6BRVztYWcnUEnuX
+ 5j13/vh8qnxsnYQAAAA==
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Andy Gross <agross@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, linux-arm-msm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ stable@vger.kernel.org, Stephan Gerhold <stephan@gerhold.net>
+X-Mailer: b4 0.12.4
 
-On Fri, 10 Nov 2023 16:27:54 +0000
-<Marius.Cristea@microchip.com> wrote:
+Add the missing vio-supply to all usages of the AW2013 LED controller
+to ensure that the regulator needed for pull-up of the interrupt and
+I2C lines is really turned on. While this seems to have worked fine so
+far some of these regulators are not guaranteed to be always-on. For
+example, pm8916_l6 is typically turned off together with the display
+if there aren't any other devices (e.g. sensors) keeping it always-on.
 
-> Hi Jonathan,
->=20
-> On Fri, 2023-10-27 at 15:26 +0100, Jonathan Cameron wrote:
-> > EXTERNAL EMAIL: Do not click links or open attachments unless you
-> > know the content is safe
-> >=20
-> > On Thu, 26 Oct 2023 17:08:07 +0100
-> > Conor Dooley <conor@kernel.org> wrote:
-> >  =20
-> > > On Thu, Oct 26, 2023 at 03:23:46PM +0000,
-> > > Marius.Cristea@microchip.com=C2=A0wrote: =20
-> > > > Hi Conor,
-> > > >=20
-> > > > On Wed, 2023-10-25 at 16:08 +0100, Conor Dooley wrote: =20
-> > > > > Hey Marius,
-> > > > >=20
-> > > > > On Wed, Oct 25, 2023 at 04:44:03PM +0300,
-> > > > > marius.cristea@microchip.com=C2=A0wrote: =20
-> > > > > > From: Marius Cristea <marius.cristea@microchip.com>
-> > > > > >  =20
-> .................
-> > > > > > +$id:
-> > > > > > http://devicetree.org/schemas/iio/adc/microchip,pac1934.yaml#
-> > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > > > +
-> > > > > > +title: Microchip PAC1934 Power Monitors with Accumulator
-> > > > > > +
-> > > > > > +maintainers:
-> > > > > > +=C2=A0 - Marius Cristea <marius.cristea@microchip.com>
-> > > > > > +
-> > > > > > +description: |
-> > > > > > +=C2=A0 Bindings for the Microchip family of Power Monitors with
-> > > > > > Accumulator.
-> > > > > > +=C2=A0 The datasheet for PAC1931, PAC1932, PAC1933 and PAC1934
-> > > > > > can be
-> > > > > > found here:
-> > > > > > +
-> > > > > > https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/=
-ProductDocuments/DataSheets/PAC1931-Family-Data-Sheet-DS20005850E.pdf
-> > > > > > +
-> > > > > > +properties:
-> > > > > > +=C2=A0 compatible:
-> > > > > > +=C2=A0=C2=A0=C2=A0 enum:
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - microchip,pac1931
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - microchip,pac1932
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - microchip,pac1933
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - microchip,pac1934
-> > > > > > +
-> > > > > > +=C2=A0 reg:
-> > > > > > +=C2=A0=C2=A0=C2=A0 maxItems: 1
-> > > > > > +
-> > > > > > +=C2=A0 "#address-cells":
-> > > > > > +=C2=A0=C2=A0=C2=A0 const: 1
-> > > > > > +
-> > > > > > +=C2=A0 "#size-cells":
-> > > > > > +=C2=A0=C2=A0=C2=A0 const: 0
-> > > > > > +
-> > > > > > +=C2=A0 interrupts:
-> > > > > > +=C2=A0=C2=A0=C2=A0 description: IRQ line of the ADC
-> > > > > > +=C2=A0=C2=A0=C2=A0 maxItems: 1
-> > > > > > +
-> > > > > > +=C2=A0 drive-open-drain:
-> > > > > > +=C2=A0=C2=A0=C2=A0 description: The IRQ signal is configured a=
-s open-drain.
-> > > > > > +=C2=A0=C2=A0=C2=A0 type: boolean
-> > > > > > +=C2=A0=C2=A0=C2=A0 maxItems: 1
-> > > > > > +
-> > > > > > +=C2=A0 microchip,slow-io:
-> > > > > > +=C2=A0=C2=A0=C2=A0 type: boolean
-> > > > > > +=C2=A0=C2=A0=C2=A0 description: |
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 A GPIO used to trigger a change=
- is sampling rate
-> > > > > > (lowering
-> > > > > > the chip power consumption).
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 In default mode, if this pin is=
- forced high, sampling
-> > > > > > rate
-> > > > > > is forced to eight
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 samples/second. When it is forc=
-ed low, the sampling
-> > > > > > rate is
-> > > > > > 1024 samples/second unless
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 a different sample rate has bee=
-n programmed. =20
-> > > > >=20
-> > > > > This description doesn't really make sense to me - if a GPIO is
-> > > > > used
-> > > > > to
-> > > > > drive the pin low or high, why do we need a property? A DT
-> > > > > property
-> > > > > implies that this is a static configuration depending on the
-> > > > > board,
-> > > > > but
-> > > > > reading the description this seems to be something that can be
-> > > > > toggled
-> > > > > at runtime.
-> > > > > I do note though, that this GPIO is not documented in the
-> > > > > binding, so
-> > > > > I
-> > > > > suppose what really needs to happen here is document the gpio
-> > > > > so that
-> > > > > the driver can determine at runtime what state this pin is in?
-> > > > >=20
-> > > > > Also, you say "In default mode", but don't mention what the
-> > > > > non-
-> > > > > default
-> > > > > mode is. What happens in the other mode? =20
-> > >  =20
-> > > > This is a "double function" pin. On the PAC193x there is the
-> > > > SLOW/ALERT
-> > > > pin. At runtime this pin could be configured as an input to the
-> > > > PAC and
-> > > > the functionality will be "SLOW" that means if it is forced high,
-> > > > the
-> > > > PAC will work in low power mode by changing the sample rate to 8
-> > > > SPS.
-> > > > If it's forced low the PAC will work at it's full sample rate. =20
-> > >=20
-> > > Since this is a runtime thing, it doesn't make sense to have a
-> > > property
-> > > that is set at dts creation time that decides what mode the pin is
-> > > in.
-> > >  =20
-> > > > "SLOW" is the default function of the pin but it may be
-> > > > programmed to
-> > > > function as ALERT pin (Open Collector when functioning as ALERT,
-> > > > requires pull-up resistor to VDD I/O). This time the pin will be
-> > > > set as
-> > > > output from PAC (ALERT functionality) to trigger an interrupt to
-> > > > the
-> > > > system (this is covered by the interrupts and drive-open-drain). =20
-> > >=20
-> > > Hmm, at the risk of getting out of my depth with what the GPIO
-> > > subsystem
-> > > is capable of doing, I would expect to see something like
-> > >=20
-> > > sampling-rate-gpios:
-> > > =C2=A0 description:
-> > > =C2=A0=C2=A0=C2=A0 <what you have above>
-> > > =C2=A0 maxItems: 1
-> > >=20
-> > > Which would allow the driver to either drive this pin via the gpio
-> > > subsystem, or to use the interrupt property to use it as an
-> > > interrupt
-> > > instead.
-> > >=20
-> > > Perhaps Jonathan etc knows better for these sort of dual mode pins. =
-=20
-> >=20
-> > Beyond them being a pain? The fun is they may get wired to interrupt
-> > controllers that are also GPIOs or they may not (and the other way
-> > around
-> > with them wired to GPIO pins that aren't interrupt pins).
-> >=20
-> > I don't understand the usecase for the SLOW control.
-> > Given it seems software can override the use for SLOW I'd be tempted
-> > to
-> > always do that.
-> > Thus making this pin useable only as an optional interrupt.
-> >  =20
->=20
-> I was thinking to have something like interrupt or an equivalent to
-> "powerdown-gpios", "richtek,mute-enable", "shutdown-gpios", "mute-
-> gpios", "gain-gpios". I think the driver should know (from the Device
-> Tree) if the pin is routed to a gpio and it could be used as "SLOW"/low
-> power.
-If we assume the slow pin is always connected to the host CPU then
-simply providing the interrupt and the gpio definition is sufficient.
-A comment will do to say they are the same physical pin.
+Cc:  <stable@vger.kernel.org> # 6.6
+Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+---
+I omitted the Fixes: tag here as it would be 5 separate commits, and
+it's really only useful to backport this to v6.6+ since this is where
+the necessary driver addition landed (see commit baca986e1f2c3 ("leds:
+aw2013: Enable pull-up supply for interrupt and I2C"). I'm not aware
+that anyone actually ran into trouble with this missing regulator yet.
+---
+ arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts  | 1 +
+ arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dts | 1 +
+ arch/arm64/boot/dts/qcom/msm8953-xiaomi-mido.dts      | 1 +
+ arch/arm64/boot/dts/qcom/msm8953-xiaomi-tissot.dts    | 1 +
+ arch/arm64/boot/dts/qcom/msm8953-xiaomi-vince.dts     | 1 +
+ 5 files changed, 5 insertions(+)
 
-Things get messier if we assume that slow control is coming from something
-external to the world Linux knows about.  That tends to be when we need
-things like mute-enable
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts
+index 37fa55166918..5f24c40a6020 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts
++++ b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts
+@@ -104,6 +104,7 @@ led-controller@45 {
+ 		#size-cells = <0>;
+ 
+ 		vcc-supply = <&pm8916_l17>;
++		vio-supply = <&pm8916_l6>;
+ 
+ 		led@0 {
+ 			reg = <0>;
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dts b/arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dts
+index d4b88c787e59..510b3b3c4e3c 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dts
++++ b/arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dts
+@@ -142,6 +142,7 @@ led-controller@45 {
+ 		#size-cells = <0>;
+ 
+ 		vcc-supply = <&pm8916_l16>;
++		vio-supply = <&pm8916_l5>;
+ 
+ 		led@0 {
+ 			reg = <0>;
+diff --git a/arch/arm64/boot/dts/qcom/msm8953-xiaomi-mido.dts b/arch/arm64/boot/dts/qcom/msm8953-xiaomi-mido.dts
+index ed95d09cedb1..6b9245cd8b0c 100644
+--- a/arch/arm64/boot/dts/qcom/msm8953-xiaomi-mido.dts
++++ b/arch/arm64/boot/dts/qcom/msm8953-xiaomi-mido.dts
+@@ -111,6 +111,7 @@ led-controller@45 {
+ 		reg = <0x45>;
+ 
+ 		vcc-supply = <&pm8953_l10>;
++		vio-supply = <&pm8953_l5>;
+ 
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+diff --git a/arch/arm64/boot/dts/qcom/msm8953-xiaomi-tissot.dts b/arch/arm64/boot/dts/qcom/msm8953-xiaomi-tissot.dts
+index 61ff629c9bf3..9ac4f507e321 100644
+--- a/arch/arm64/boot/dts/qcom/msm8953-xiaomi-tissot.dts
++++ b/arch/arm64/boot/dts/qcom/msm8953-xiaomi-tissot.dts
+@@ -104,6 +104,7 @@ led-controller@45 {
+ 		reg = <0x45>;
+ 
+ 		vcc-supply = <&pm8953_l10>;
++		vio-supply = <&pm8953_l5>;
+ 
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+diff --git a/arch/arm64/boot/dts/qcom/msm8953-xiaomi-vince.dts b/arch/arm64/boot/dts/qcom/msm8953-xiaomi-vince.dts
+index 1a1d3f92a511..b0588f30f8f1 100644
+--- a/arch/arm64/boot/dts/qcom/msm8953-xiaomi-vince.dts
++++ b/arch/arm64/boot/dts/qcom/msm8953-xiaomi-vince.dts
+@@ -113,6 +113,7 @@ led-controller@45 {
+ 		reg = <0x45>;
+ 
+ 		vcc-supply = <&pm8953_l10>;
++		vio-supply = <&pm8953_l5>;
+ 
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
 
-Jonathan
+---
+base-commit: adcad44bd1c73a5264bff525e334e2f6fc01bb9b
+change-id: 20231204-qcom-aw2013-vio-91dbc025c464
 
->=20
-> > If someone hard wires it to high or low that is harmless if we aren't
-> > letting it control anything.
-> >  =20
-> > >  =20
-> > > > The system could work fine without this pin. The driver doesn't
-> > > > use
-> > > > interrupt at this time, but it could be extended. =20
-> > >=20
-> > > Cheers,
-> > > Conor. =20
-> >  =20
-> Thanks,
-> Marius
->=20
+Best regards,
+-- 
+Stephan Gerhold <stephan@gerhold.net>
 
 
