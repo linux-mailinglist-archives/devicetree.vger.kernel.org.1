@@ -1,107 +1,81 @@
-Return-Path: <devicetree+bounces-21449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21450-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F30FF803B14
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 18:04:36 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB35C803B1F
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 18:07:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A1A142810A5
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 17:04:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4DB19B20985
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 17:07:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2D132E626;
-	Mon,  4 Dec 2023 17:04:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3107A2E630;
+	Mon,  4 Dec 2023 17:07:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JChpAYHi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hd0/Cdto"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99904171D9;
-	Mon,  4 Dec 2023 17:04:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CFCEC433C8;
-	Mon,  4 Dec 2023 17:04:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C8DE171D9;
+	Mon,  4 Dec 2023 17:07:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45055C433C8;
+	Mon,  4 Dec 2023 17:07:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701709471;
-	bh=P+UWpGYQw9cHPhsOzB7zUN5u6QOr2IQI7845Qq7rmWk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JChpAYHiSFUKba8vUOvFO+LPMhtXPdx6jjA5zQ35H/ZD1ylQj8O1bz/C97QsPEMJq
-	 VaYMRlG4q0yyPuMQubb2SzGug1V98Gr8CJE/Y+5bnrbrdHTGulejqIt686x74SKQsp
-	 I6aAOx42zhjJHAAP9+t6dBvGQ0HHNWovvjgDNFrjwyT9rlw5uoyT8KfmJPSuX/dYPC
-	 HBOEdfaGygGtiwCorGwh3N0ioe9Pne9eYgRqqQ8tycmFOpKhG/9GPXTqNbqHlpqR5y
-	 pkCiCdetkzq1p2ONsQIkU/aTN1bpda9VsicpeUW4Ud8tQbwXyL5dBYJlbZYYcPSsmy
-	 fryXzjbOQnSWQ==
-Date: Mon, 4 Dec 2023 17:04:26 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Stefan Wahren <wahrenst@gmx.net>
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
-	Justin Chen <justin.chen@broadcom.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mathias Nyman <mathias.nyman@intel.com>,
-	bcm-kernel-feedback-list@broadcom.com,
-	Cyril Brulebois <kibi@debian.org>, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH V3 1/3] dt-bindings: usb: xhci: add support for BCM2711
-Message-ID: <20231204-sevenfold-slashing-bb7ea3419c92@spud>
-References: <20231202232217.89652-1-wahrenst@gmx.net>
- <20231202232217.89652-2-wahrenst@gmx.net>
- <20231203-chair-zen-afb8b280ca2f@spud>
- <20231203-traffic-aide-cb03afdb3546@spud>
- <7dd529a0-ebee-4f3b-879b-c7b1033cfdb9@gmx.net>
+	s=k20201202; t=1701709641;
+	bh=mt093VTtGq5Qlwj3G6OkmJBdRwq4g/+zIdsd0yfDcVI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=Hd0/CdtoomeVktSiDKrquMd+1bXGk8Lh0U3TYWfKkoeT7YUk8l2ufEwRmLop522Te
+	 QQhUZZNcQ2QcjyrbqOOppuP/r+kTcfIIr4CAaQiHcxAtAOTx/XWFmvTnb8bNlTrJe3
+	 3ur1dxl+VqR6ZxNM6HBM7CvXQB7MLmR0yV5Cj4LfQCIFEuQyjPGdrWWl2D52b679id
+	 1EOFiP+0RQc3qfLrfJd35tY/0j187QMo8TZ1mV9fs7xvVBXPC/ZLxfZyZnjH+cVtgy
+	 oAZ3lUuXLgndjc6Co0437lyD+nbLaRG0WNNfPExMGyzpMCXIA3/bWFr9zkygF0cSPw
+	 lu7sL8uq6SEqA==
+Date: Mon, 4 Dec 2023 17:07:12 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Johan Hovold <johan+linaro@kernel.org>, Lars-Peter Clausen
+ <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/6] dt-bindings: iio/adc: qcom,spmi: fix up examples
+Message-ID: <20231204170712.4d100617@jic23-huawei>
+In-Reply-To: <20231204-exclude-tapioca-0db6d01640aa@spud>
+References: <20231130171628.12257-1-johan+linaro@kernel.org>
+	<20231204132624.03733d50@jic23-huawei>
+	<20231204-exclude-tapioca-0db6d01640aa@spud>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="FoLWAdGXhqeSpqYw"
-Content-Disposition: inline
-In-Reply-To: <7dd529a0-ebee-4f3b-879b-c7b1033cfdb9@gmx.net>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
+On Mon, 4 Dec 2023 16:25:34 +0000
+Conor Dooley <conor@kernel.org> wrote:
 
---FoLWAdGXhqeSpqYw
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> On Mon, Dec 04, 2023 at 01:26:24PM +0000, Jonathan Cameron wrote:
+> > On Thu, 30 Nov 2023 18:16:22 +0100
+> > Johan Hovold <johan+linaro@kernel.org> wrote:
+> >   
+> > > When reviewing the various SPMI PMIC bindings, I noticed that several
+> > > examples were incorrect and misleading and could also use some cleanup.
+> > > 
+> > > This series addresses the iio/adc ones.  
+> > 
+> > All look fine to me.  Just waiting for the DT folk to have time to take a look.  
+> 
+> Yah, they all look grand to me.
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> 
+> Cheers,
+> Conor.
+Applied.  Thanks,
 
-On Sun, Dec 03, 2023 at 05:56:24PM +0100, Stefan Wahren wrote:
-> Hi,
->=20
-> Am 03.12.23 um 12:11 schrieb Conor Dooley:
-> > On Sun, Dec 03, 2023 at 11:06:43AM +0000, Conor Dooley wrote:
-> > > On Sun, Dec 03, 2023 at 12:22:15AM +0100, Stefan Wahren wrote:
-> > > > The xHCI IP on the BCM2711 SoC is compatible to "brcm,xhci-brcm-v2",
-> > > > but also requires a power domain.
-> > Hmm
-> > This & the driver change makes it look like your compatible setup should
-> > be `compatible =3D "brcm,bcm2711-xhci", "brcm,xhci-brcm-v2";.
-> i don't have insight into the hardware, but the fact that the other
-> Broadcom SoC didn't require a power domain before let me think we
-> shouldn't do this. Otherwise this binding was broken before. But Justin
-> and Florian could clarify this.
-> > If the pattern in this patch was repeated, we'd have to modify the
-> > driver like your 2nd patch does for each and new broadcom system that
-> > needs the power domain.
-> From my understanding the DT compatible should be specific as possible.
-
-Note that I am suggesting have 2 compatibles. One specific, falling back
-to the existing generic one.
-
---FoLWAdGXhqeSpqYw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZW4GmgAKCRB4tDGHoIJi
-0l2TAP9XICOfjnIB73laF0LJRz+79Jmicl6iTNQve0Eh6qAxPQD8CNHmgFi0TcDr
-FdXa/A8/P+7n01pK2Dg8u1tqOQrH4gw=
-=EduR
------END PGP SIGNATURE-----
-
---FoLWAdGXhqeSpqYw--
+J
 
