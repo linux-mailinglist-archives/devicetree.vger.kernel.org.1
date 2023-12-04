@@ -1,131 +1,116 @@
-Return-Path: <devicetree+bounces-21285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F1FF80302A
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 11:24:57 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75707803038
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 11:25:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD0981F21253
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 10:24:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E12A0B209EC
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 10:25:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 430DA2137A;
-	Mon,  4 Dec 2023 10:24:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6C7C210FF;
+	Mon,  4 Dec 2023 10:25:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="j2ujXazv"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="v7gGEBmE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10ABA185
-	for <devicetree@vger.kernel.org>; Mon,  4 Dec 2023 02:24:18 -0800 (PST)
-Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2c9f72176cfso15668671fa.2
-        for <devicetree@vger.kernel.org>; Mon, 04 Dec 2023 02:24:17 -0800 (PST)
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A879619B6
+	for <devicetree@vger.kernel.org>; Mon,  4 Dec 2023 02:25:20 -0800 (PST)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-a1a0bc1e415so341629166b.0
+        for <devicetree@vger.kernel.org>; Mon, 04 Dec 2023 02:25:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1701685456; x=1702290256; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=F+ofOOqwlUZnjaPwU1R/ES77wt7OX5hZOTqDiest6VM=;
-        b=j2ujXazv/wUQHlX6L8k6yZjFkX7b+JLx6E7rsmF0HvSXzJVk/vgAgyUv8P/uHNfpQP
-         LCWWv1SC/SJCFOA/JqPwDd8DEA8rFl9incD11jouhTn4TSilgqoF1cXhWuYDEaYRMCCX
-         aVl7qIwlksXK12AuKAzpfMLvWvmaT0z5irvGkqr+UMF8Dh77GzZrkjd/JnSVHVwID1ri
-         cRP6dTJ7lNRsZlamwAUoOmkh0fx6DFh1Q+ywHNA8NTbhiEpN42QcN7UvQ9IUitNIXbVw
-         W+z8K7aercDlu3VQ2BGnbl/SMyVOmlF61BZ+j+4T7wwm+NZxixK1V6LYGsgwIZvIPOt6
-         T1SA==
+        d=fairphone.com; s=fair; t=1701685519; x=1702290319; darn=vger.kernel.org;
+        h=in-reply-to:references:subject:cc:to:from:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aq+xirBYpOKkgca1eZSuL+2A1j9+CgouYiCwrjD1giM=;
+        b=v7gGEBmE+kCZFnoVPEa45r2ReOx+/1p2IILLp95HhqJ5wcVZBJ3tJfB0yqTEjU7tOM
+         DCZFTZJsQM6dWbHwltdAPTFM/OzVH09HZfF9JhZpReE+H1ZGRu7sze3tbREPpcvxy5oB
+         U2LxVkzgF9aHcDXRmBa06YUYGvx1JuA8rgDAYL+vaE7CNzStC5fUNpcwOungj/NLMkc8
+         3dj+JC/AfDMZbbR8YU3X3FRRnm+lb0966bAlcLofXMJtB3OsqpTsRVb9pEkbuK529nbF
+         1Gq49X0Sp+v/3su+dXdG2wlVa3Mkpft6dYynt9LRNf62nIk5cMIIQ5cEQU0hgeqfKIy5
+         gcUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701685456; x=1702290256;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=F+ofOOqwlUZnjaPwU1R/ES77wt7OX5hZOTqDiest6VM=;
-        b=iY1RAVAUKjSBmRxDib2KKZj3LVRJ9XYtdGF4kznJtSOAvT1rbr9VGuwz0xjU1JXj0F
-         iZMydsr0BdXKc+/Swtz5bh1SySZXxNWjG367W0YmU+sdMgMwu9zC5ci75f5FSKAyH7T/
-         o9PMr7KstrPM9B5b0CWCmasgU3r8BxLjjD44c5f5OI7Hf4lyTVhicrE4tGyFcx3BVFZy
-         yBLN9Fhx901tq5rhIbRzC54rZFJKRzKrZ9mcqDBspRibtOfNtb6yPGk7Bs17re2iiPCo
-         vjhC4E7D/1U9iBbA5h0HOPUDOILTf4djKEFLu7t19KXIaWtxJz49+NX4qFciYG1kr3m7
-         6T2A==
-X-Gm-Message-State: AOJu0YwGNwA6NCgZ1HxVbB7l5FtLhR3qTZ/gyo0Hi13enEt9oqYoddZC
-	gtdjbC9TYXh4vUQX2bfJOsZ7kQ==
-X-Google-Smtp-Source: AGHT+IGfZyiNNc0jMr4snd1gdmvFtqMZ3JH/kWXhhcJq6QF1u/8bMbIuMuKp40e7ciUb3tmmWiMGlQ==
-X-Received: by 2002:a2e:2c01:0:b0:2c9:f776:e28f with SMTP id s1-20020a2e2c01000000b002c9f776e28fmr396256ljs.120.1701685456383;
-        Mon, 04 Dec 2023 02:24:16 -0800 (PST)
-Received: from otso.luca.vpn.lucaweiss.eu (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id t15-20020a1709066bcf00b00a0bdfab0f02sm5121551ejs.77.2023.12.04.02.24.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Dec 2023 02:24:15 -0800 (PST)
-From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Mon, 04 Dec 2023 11:24:06 +0100
-Subject: [PATCH v5 3/3] arm64: dts: qcom: sc7280: Add UFS nodes for sc7280
- IDP board
+        d=1e100.net; s=20230601; t=1701685519; x=1702290319;
+        h=in-reply-to:references:subject:cc:to:from:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=aq+xirBYpOKkgca1eZSuL+2A1j9+CgouYiCwrjD1giM=;
+        b=fH5+koUiR6z3rr5H+dbqkfKYYVOJ77ltYb4TufYtR6whahEO162+guo6qJ63NAyPN8
+         WHK1r1mf/TmAUUUQhBMGSl639KgtOJzyheusZxkeiO8wNn/1W5Q2iDhhmo06yREIl10Z
+         JXptGI1ZgwbbQPDyBW38NKjhcdir+EPM2IJuLqKZnBzua1HHrSOuIB44QVGXZIPNbpmE
+         zwUANRuI5AigwfljmlfdvvKCRNHzUDrQvmtsLX5Lz1n8aGCCR8+w+qWe0vRoRjALkwqy
+         /9bW+zXLdQ3hnnSDh6QyitpchW7J5qazf8dmEd0JhBEHQrL4DFsNS3P5SS8s/7Cl1fBP
+         mBqg==
+X-Gm-Message-State: AOJu0YwTP64eyye1KKVyQ/iuHdjb9KgxMjapZlr3g0Lx/H+yQhJnVfNa
+	3kyosYWIdmaIVOasEumONXXqOQ==
+X-Google-Smtp-Source: AGHT+IGXQXao7rNTBZHQgJuB0+45+KeoiPwj8lhmQ5FXfr08n7j/ar6GYkc4R2qZf+xv/FEM23ln4w==
+X-Received: by 2002:a17:906:3f58:b0:a1a:60e6:a1a3 with SMTP id f24-20020a1709063f5800b00a1a60e6a1a3mr1963513ejj.24.1701685519006;
+        Mon, 04 Dec 2023 02:25:19 -0800 (PST)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id ef10-20020a17090697ca00b00a1b6ec7a88asm1291759ejb.113.2023.12.04.02.25.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Dec 2023 02:25:18 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231204-sc7280-ufs-v5-3-926ceed550da@fairphone.com>
-References: <20231204-sc7280-ufs-v5-0-926ceed550da@fairphone.com>
-In-Reply-To: <20231204-sc7280-ufs-v5-0-926ceed550da@fairphone.com>
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Manivannan Sadhasivam <mani@kernel.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>, 
- Bart Van Assche <bvanassche@acm.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Nitin Rawat <quic_nitirawa@quicinc.com>, 
- Luca Weiss <luca.weiss@fairphone.com>, 
- Manivannan Sadhasivam <mani@kernel.org>
-X-Mailer: b4 0.12.4
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 04 Dec 2023 11:25:18 +0100
+Message-Id: <CXFH66Y6MBZE.1YDXWOFV4MY7Z@fairphone.com>
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: "Bjorn Andersson" <andersson@kernel.org>
+Cc: "Andy Gross" <agross@kernel.org>, "Konrad Dybcio"
+ <konrad.dybcio@linaro.org>, "Rob Herring" <robh+dt@kernel.org>, "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Nitin Rawat" <quic_nitirawa@quicinc.com>,
+ <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
+ <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2] arm64: dts: qcom: qcm6490-fairphone-fp5: Enable UFS
+X-Mailer: aerc 0.15.2
+References: <20231002-fp5-ufs-v2-1-e2d7de522134@fairphone.com>
+ <dutd7zn5avelyujiyb6k64luzu2pqccy6ywhfj52i4g2m6ld47@2aqstxoekqrq>
+In-Reply-To: <dutd7zn5avelyujiyb6k64luzu2pqccy6ywhfj52i4g2m6ld47@2aqstxoekqrq>
 
-From: Nitin Rawat <quic_nitirawa@quicinc.com>
+On Sun Dec 3, 2023 at 5:41 AM CET, Bjorn Andersson wrote:
+> On Mon, Oct 02, 2023 at 02:30:41PM +0200, Luca Weiss wrote:
+> > Enable the UFS phy and controller so that we can access the internal
+> > storage of the phone.
+> >=20
+> > At the same time we need to bump the minimum voltage used for UFS VCC,
+> > otherwise it doesn't initialize properly. The 2.952V is taken from the
+> > vcc-voltage-level property downstream.
+> >=20
+> > See also the following link for more information about the VCCQ/VCCQ2:
+> > https://gerrit-public.fairphone.software/plugins/gitiles/kernel/msm-ext=
+ra/devicetree/+/1590a3739e7dc29d2597307881553236d492f188/fp5/yupik-idp-pm72=
+50b.dtsi#207
+> >=20
+> > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> > ---
+> > Depends on: https://lore.kernel.org/linux-arm-msm/20230927081858.15961-=
+1-quic_nitirawa@quicinc.com/
+>
+> I'd love to merge this patch, but this dependency doesn't seem to make
+> progress, please consider fixing up the outstanding feedback and posting
+> v5.
 
-Add UFS host controller and PHY nodes for sc7280 IDP board.
+Right, it's been a while since the last revision there.
 
-Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
-Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
----
- arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+I've just sent v5, hopefully the various feedbacks should be addressed
+there :)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-index 2ff549f4dc7a..a0059527d9e4 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-@@ -499,6 +499,25 @@ &uart5 {
- 	status = "okay";
- };
- 
-+&ufs_mem_hc {
-+	reset-gpios = <&tlmm 175 GPIO_ACTIVE_LOW>;
-+	vcc-supply = <&vreg_l7b_2p9>;
-+	vcc-max-microamp = <800000>;
-+	vccq-supply = <&vreg_l9b_1p2>;
-+	vccq-max-microamp = <900000>;
-+	vccq2-supply = <&vreg_l9b_1p2>;
-+	vccq2-max-microamp = <900000>;
-+
-+	status = "okay";
-+};
-+
-+&ufs_mem_phy {
-+	vdda-phy-supply = <&vreg_l10c_0p8>;
-+	vdda-pll-supply = <&vreg_l6b_1p2>;
-+
-+	status = "okay";
-+};
-+
- &usb_1 {
- 	status = "okay";
- };
+Regards
+Luca
 
--- 
-2.43.0
+>
+> Regards,
+> Bjorn
 
 
