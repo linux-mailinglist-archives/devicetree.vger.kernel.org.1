@@ -1,134 +1,208 @@
-Return-Path: <devicetree+bounces-21385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3EC88036E7
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 15:35:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42541803753
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 15:45:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9382AB20B10
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 14:35:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 65CCC1C20D98
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 14:45:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E505E250F4;
-	Mon,  4 Dec 2023 14:35:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C5402377A;
+	Mon,  4 Dec 2023 14:45:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MBTHRZHS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VtDFUM3I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0D9322F07;
-	Mon,  4 Dec 2023 14:35:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80CA4C433C8;
-	Mon,  4 Dec 2023 14:35:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701700533;
-	bh=43kZFxboZ4YHoUC1LLSWMdjlMCmjRQLpNL6yIzCv1ok=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=MBTHRZHSVjsriGMLsBOOJy6+2Udr/gW1c78Zn2Nxh9AF1rmd9cp6kfCTrdQ+XGr0C
-	 knttF9rDe9zvGzkZo3z4RMkbd5o5nrjvb+Udr8peaH+VpBf4SGwZmSGrsuVUD4KNX3
-	 MGgZ1APITGNKjo/Y8RpidIPCjy1F3WOx3XtDXy1Dzj3wqVK8OYhXM//RhBD4CEc+LC
-	 c9YyU5DFxa8d3adpmRMMTvhGcUZK7qQtXnwejMla1X0qIDOL4jlzVDfNPTO/wmcJj6
-	 HyhMT7VBcSvTdPxfDLxhy4MGEeffovyrj94z2nnSNcQ5UaeSYKczjvLg80KIEIXGMX
-	 VCayo+Ji5hmIw==
-Date: Mon, 4 Dec 2023 14:35:21 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Marek Vasut <marex@denx.de>
-Cc: linux-iio@vger.kernel.org, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>, Matti Vaittinen
- <mazziesaccount@gmail.com>, Alexander Stein
- <alexander.stein@ew.tq-group.com>, Andre Werner
- <andre.werner@systec-electronic.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@denx.de>,
- Guenter Roeck <linux@roeck-us.net>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>, Mark Brown <broonie@kernel.org>,
- Naresh Solanki <naresh.solanki@9elements.com>, Patrick Rudolph
- <patrick.rudolph@9elements.com>, Rob Herring <robh+dt@kernel.org>, Stefan
- Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>, Vincent Tremblay
- <vincent@vtremblay.dev>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 2/2] iio: light: isl76682: Add ISL76682 driver
-Message-ID: <20231204143521.5ca0fc7e@jic23-huawei>
-In-Reply-To: <6e4ed42c-21be-469c-a8bb-57779ef24bf9@denx.de>
-References: <20231127212726.77707-1-marex@denx.de>
-	<20231127212726.77707-2-marex@denx.de>
-	<20231204112001.7dff7066@jic23-huawei>
-	<6e4ed42c-21be-469c-a8bb-57779ef24bf9@denx.de>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4ECC719A7;
+	Mon,  4 Dec 2023 06:44:49 -0800 (PST)
+Received: by mail-pl1-x62b.google.com with SMTP id d9443c01a7336-1d0538d9bbcso27099765ad.3;
+        Mon, 04 Dec 2023 06:44:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701701088; x=1702305888; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7eRLjlThPLhM7zIw6XvrWrrbob10TfqT1M4cq4iJfTE=;
+        b=VtDFUM3IswYKjFC6VBYY7ucRJ7NImAHtJ94e7EcNY4Ht6AIzWAK3y6TZHFqSQr6AJf
+         XrhMZTZeN6wXY7kJozyRPTL/A2d+7GjFWKTHihb7rLqQpZyoXiJ78+6OgkAZS8DnKcCd
+         a2G7H2jxIQL9+eVzgw5JWugYu8HFhRdxoE0B5i51yrEt/lJoBjj8LCtOtO6EOmJW3Xfk
+         8d8Bp59lEVdmQkCUmVbHud0ww3o+sg3//xCr2E0bE6wTpdtwqiuPlen63FNW0gEkVfsj
+         4bB4yuWXZ/i7J4OOTGGmEDSNx2qH8pWzwcoWsg5oJMbQoIriV2mZKcVMCs5DF4KY7fpU
+         AoPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701701088; x=1702305888;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7eRLjlThPLhM7zIw6XvrWrrbob10TfqT1M4cq4iJfTE=;
+        b=fiRXS3PPUJ5vjvm/QvGWV7sNdQph3E6y3aDRORDR5NToKr5IG+rdLUqhKM63qx46TD
+         7VhTlrZpZRie6n7fwmdX/BGve/opMukD/KFFNDi6pXm6ZSa0Mw+EIQR0P9lEkrtP0qhP
+         AYSTcs1lZp450gDDKB9LQAMBYW/WHgLM1y/TItRpnmoQd0PsThZb7Bid540KKhD42m1Z
+         hmneSlzt+NsqJ+q0wkwmKHcbIvKYpIUsfEldza8DwHSRAUOUKyNTKvLIliwgdc5v6dU9
+         /5UUJt0cstFURbHOn3WKSCWDee6ci/oWZ6cB67/uPIRFYlfYRYoRzQdnDqZZ17FyM9w6
+         Wd6w==
+X-Gm-Message-State: AOJu0YzZ6Mp2m76gHEr2iWJ8x7vfcPL3qgs9KF5Okhvmm8BR01GRFVPC
+	9n09tkdC88utDtBWb3hnm14=
+X-Google-Smtp-Source: AGHT+IGTgdMm1IrP9P0QKhOOvICj9TIyyaKAwxubN0u1nWy9phktn3LnrrLnNFT21DIFr3oeklgtcg==
+X-Received: by 2002:a17:903:647:b0:1d0:8e61:102a with SMTP id kh7-20020a170903064700b001d08e61102amr2321909plb.90.1701701088620;
+        Mon, 04 Dec 2023 06:44:48 -0800 (PST)
+Received: from localhost.localdomain ([49.205.242.26])
+        by smtp.gmail.com with ESMTPSA id l6-20020a170902d34600b001cfb99d8b82sm6446815plk.136.2023.12.04.06.44.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Dec 2023 06:44:48 -0800 (PST)
+From: Anand Moon <linux.amoon@gmail.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Icenowy Zheng <uwu@icenowy.me>
+Cc: Anand Moon <linux.amoon@gmail.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	linux-amlogic@lists.infradead.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v6 1/2] dt-bindings: usb: Add the binding example for the Genesys Logic GL3523 hub
+Date: Mon,  4 Dec 2023 20:14:25 +0530
+Message-ID: <20231204144429.45197-2-linux.amoon@gmail.com>
+X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20231204144429.45197-1-linux.amoon@gmail.com>
+References: <20231204144429.45197-1-linux.amoon@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On Mon, 4 Dec 2023 12:23:06 +0100
-Marek Vasut <marex@denx.de> wrote:
+Add the binding example for the USB3.1 Genesys Logic GL3523
+integrates with USB 3.1 Gen 1 Super Speed and USB 2.0 High-Speed
+hub.
 
-> On 12/4/23 12:20, Jonathan Cameron wrote:
-> > On Mon, 27 Nov 2023 22:26:53 +0100
-> > Marek Vasut <marex@denx.de> wrote:
-> >   
-> >> The ISL76682 is very basic ALS which only supports ALS or IR mode
-> >> in four ranges, 1k/4k/16k/64k LUX. There is no IRQ support or any
-> >> other fancy functionality.
-> >>
-> >> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> >> Reviewed-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> >> Signed-off-by: Marek Vasut <marex@denx.de>  
-> > Hi Marek,
-> > 
-> > Discussion around available on v5 made me look closer at that aspect.
-> > You are providing all the available entries in the callback but they
-> > shouldn't be exposed to actually read unless the *_available bitmap
-> > bits corresponding to them are set.
-> > 
-> > If you like I can just rip the unused code out whilst applying?
-> > Or if you'd prefer to send a v7 that's great too.
-> > 
-> > Otherwise everything looks good to me.  
-> 
-> Maybe just do that while applying and I'll test it right after to see 
-> whether something broke, that's probably fastest. Just let me know where 
-> this got applied. I have the device on my desk .
+For onboard hub controllers that support USB 3.x and USB 2.0 hubs
+with shared resets and power supplies, this property is used to identify
+the hubs with which these are shared.
 
-Diff is below.  Applied to the togreg branch of iio.git and initially pushed out
-as testing for normal reasons + for you to test.
+GL3523 has built-in 5V to 3.3V and 5V to 1.2V regulators, which serves
+power to the USB HUB, it uses 5V power regulator.
 
-Thanks,
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+---
+V6: fix the description of the regulators
+Updated the commit message for regulator updates.
+add reviewed by Conor Dooley
+[1] https://lore.kernel.org/all/20231130053130.21966-2-linux.amoon@gmail.com/
+v5: upgrade peer-hub description : Conor Dooley
+[0] https://www.genesyslogic.com.tw/en/product_view.php?show=67 [Block Diagram]
+v4: Fix the description of peer-hub and update the commit message.
+Schematics of the Odroid N2+
+https://dn.odroid.com/S922X/ODROID-N2/Schematic/odroid-n2_rev0.6_20210121.pdf
+V3: fix the dt_binding_check error, added new example for Genesys GL3523
+v2: added Genesys GL3523 binding
+v1: none
+---
+ .../bindings/usb/genesys,gl850g.yaml          | 65 +++++++++++++++++--
+ 1 file changed, 61 insertions(+), 4 deletions(-)
 
-Jonathan
-
-
-diff --git a/drivers/iio/light/isl76682.c b/drivers/iio/light/isl76682.c
-index 15a68609985b..8605187bfb62 100644
---- a/drivers/iio/light/isl76682.c
-+++ b/drivers/iio/light/isl76682.c
-@@ -184,8 +184,6 @@ static int intensity_scale_available[] = {
-        0, 673000,
- };
+diff --git a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+index ee08b9c3721f..c6f63a69396d 100644
+--- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
++++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+@@ -9,9 +9,6 @@ title: Genesys Logic USB hub controller
+ maintainers:
+   - Icenowy Zheng <uwu@icenowy.me>
  
--static int integration_time_available[] = { 0, ISL76682_INT_TIME_US };
+-allOf:
+-  - $ref: usb-device.yaml#
 -
- static int isl76682_read_avail(struct iio_dev *indio_dev,
-                               struct iio_chan_spec const *chan,
-                               const int **vals, int *type,
-@@ -207,11 +205,6 @@ static int isl76682_read_avail(struct iio_dev *indio_dev,
-                default:
-                        return -EINVAL;
-                }
--       case IIO_CHAN_INFO_INT_TIME:
--               *vals = integration_time_available;
--               *length = ARRAY_SIZE(integration_time_available);
--               *type = IIO_VAL_INT_PLUS_MICRO;
--               return IIO_AVAIL_LIST;
-        default:
-                return -EINVAL;
-        }
-
-
+ properties:
+   compatible:
+     enum:
+@@ -27,12 +24,46 @@ properties:
+ 
+   vdd-supply:
+     description:
+-      the regulator that provides 3.3V core power to the hub.
++      The regulator that provides 3.3V or 5.0V core power to the hub.
++
++  peer-hub:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      For onboard hub controllers that support USB 3.x and USB 2.0 hubs
++      with shared resets and power supplies, this property is used to identify
++      the hubs with which these are shared.
+ 
+ required:
+   - compatible
+   - reg
+ 
++allOf:
++  - $ref: usb-device.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - usb5e3,608
++    then:
++      properties:
++        peer-hub: false
++        vdd-supply: false
++        reset-gpios: true
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - usb5e3,610
++              - usb5e3,620
++    then:
++      properties:
++        peer-hub: true
++        vdd-supply: true
++        reset-gpios: true
++
+ additionalProperties: false
+ 
+ examples:
+@@ -49,3 +80,29 @@ examples:
+             reset-gpios = <&pio 7 2 GPIO_ACTIVE_LOW>;
+         };
+     };
++
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    usb {
++        dr_mode = "host";
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        /* 2.0 hub on port 1 */
++        hub_2_0: hub@1 {
++            compatible = "usb5e3,610";
++            reg = <1>;
++            peer-hub = <&hub_3_0>;
++            reset-gpios = <&gpio 20 GPIO_ACTIVE_LOW>;
++            vdd-supply = <&vcc_5v>;
++        };
++
++        /* 3.1 hub on port 4 */
++        hub_3_0: hub@2 {
++            compatible = "usb5e3,620";
++            reg = <2>;
++            peer-hub = <&hub_2_0>;
++            reset-gpios = <&gpio 20 GPIO_ACTIVE_LOW>;
++            vdd-supply = <&vcc_5v>;
++        };
++    };
+-- 
+2.42.0
 
 
