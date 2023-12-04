@@ -1,127 +1,169 @@
-Return-Path: <devicetree+bounces-21442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21443-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A93A803A8B
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 17:39:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1340B803A96
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 17:41:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C9F982810A5
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 16:39:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4293A1C20B7A
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 16:41:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A54F22F12;
-	Mon,  4 Dec 2023 16:39:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0A02250F4;
+	Mon,  4 Dec 2023 16:41:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cuAqk8XI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m6lrwR/c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 430899A
-	for <devicetree@vger.kernel.org>; Mon,  4 Dec 2023 08:39:12 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-40c0a0d068bso13241245e9.3
-        for <devicetree@vger.kernel.org>; Mon, 04 Dec 2023 08:39:12 -0800 (PST)
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1B789A;
+	Mon,  4 Dec 2023 08:41:50 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-3316a4bc37dso4392857f8f.2;
+        Mon, 04 Dec 2023 08:41:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701707951; x=1702312751; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=RceQfd2kwzQmuZ7IwlKyNuRvvDqLtfY8/yof+Ma1es8=;
-        b=cuAqk8XIPlvriXVeR398Ksc3sXcYKIziVtcUAG0HYFKbzEHFKXFBbqGn0MPAL+TW2V
-         C3/7r+IlMk4zgZeH3v1CtbcIAqcBMpneYAY3vxUHlPRc47qD7r1eELR5+ENq1cGLU+Df
-         AV46Se8abajNsLkGdcvwJKWMKVjxaUr2CZL7OnEjCoLs1X3JLlhGTIId62qTzupZPLrR
-         NEt5WDDudh6k2PF/lYVIYrTHK3aI1AZSl4juURpqrJk0v0BAg8OR5HWQAsqgdlcmOTqo
-         hKv/8a1n2b/dkv5NMG7K1UhPgcJL5EoF8YdqDnShtE2VquSMmw+uz0ombTjtDwHDGxU9
-         cxnQ==
+        d=gmail.com; s=20230601; t=1701708109; x=1702312909; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=6KJn9AsRhet3LPMYrxQkrFL4xXi1HWQlnhRfWLxXAos=;
+        b=m6lrwR/c9DqngHxTbixY+YNJLxMl0kjS8z6N0zWzZmTK2aeOvirReyrDNXFCIkoGKl
+         HcoM+6G0BL7SMpJNFmm8+F36uGiXJO666QuxI/AsNZQ2pRDvxbvoq1c03rr8HitmoADu
+         Ju4IuleYLBoZi/yokWAGIlTSHOvQAXpmBwjlcexawbDswnBQ72Nffdwi1VeZsn63UcIc
+         HlhkJxWkZmmO9JrEd5tOHFCpraDSLvPqnG7MlSsN3fKSGO3y4pxYga8ewrd3jj4/WcYT
+         OJEshNJVxITKcq6XHvnTwvpOv246S2dzbL4M0YDjqbm6uAwMRhMdFa/JO9FdGjyNaxgf
+         j9fg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701707951; x=1702312751;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RceQfd2kwzQmuZ7IwlKyNuRvvDqLtfY8/yof+Ma1es8=;
-        b=OMoeTba34rEP3onqEHRueWThIbN2HENQwAP+EW4B3HEPFlt3lr9NWy8G1YGBMqtTds
-         +XoO1T+nlCdcedTyIl3RAtg/xJCxGE8Owp5pKZw42Tq2lY4VgbNON4B18n8efnn0+bPb
-         1iFiSoJWZD1cSTYoBsZU1bTUrRQxmRpy8sI/RvyCLchMY6PA+F4tvq8W2BeffidXfDYD
-         MZUvMNsHKankiZvl2EZmyYzxerFocZK2EXc5xuvq4M6btjh6dWBNJPycxnq6nS5AEZ15
-         8RnexHH1hQUXWdwkpXHUqMD9zUdaxrMJ5/qe8ge3LDzMg3s4VHHmOdZ9tvW3k7GhlaSw
-         qaVQ==
-X-Gm-Message-State: AOJu0YxfgqAUAjYoAt7vwB0aGVDmelfHfOVFLjkOu3nkrUE2OW9aK42B
-	I7+UaGBZUWQbvxjRdshXECJZoA==
-X-Google-Smtp-Source: AGHT+IG282oOuIH/Ryb7/0jcCnlMBSY7MmUP8+OPoXqpPn6QejmrQmjmqt9zYHtLmgplLc7jUVzusg==
-X-Received: by 2002:a05:600c:1552:b0:40b:5e22:963 with SMTP id f18-20020a05600c155200b0040b5e220963mr3467493wmg.82.1701707950682;
-        Mon, 04 Dec 2023 08:39:10 -0800 (PST)
-Received: from ?IPV6:2a05:6e02:1041:c10:c831:1e47:2:5b96? ([2a05:6e02:1041:c10:c831:1e47:2:5b96])
-        by smtp.googlemail.com with ESMTPSA id bh6-20020a05600c3d0600b0040b54335d57sm10982089wmb.17.2023.12.04.08.39.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Dec 2023 08:39:10 -0800 (PST)
-Message-ID: <a1374b10-c012-4a3f-b56a-29ef4ca7e5f0@linaro.org>
-Date: Mon, 4 Dec 2023 17:39:09 +0100
+        d=1e100.net; s=20230601; t=1701708109; x=1702312909;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6KJn9AsRhet3LPMYrxQkrFL4xXi1HWQlnhRfWLxXAos=;
+        b=WrFgx0Fnmrc80QV23uIT6LPj0PreENUFVVkM+lfw1k64iQF7imslCPOaB0OFmZ4nQL
+         gK1yBhlVaeyjAM3YqE40ekoyE3LzmUWNmv11hICNeV9ptRskfzyjjxiQ3X6NpN8Suw7l
+         zgG8nRPqYmzDWL8HHApyrpEj/FfN+7obHVl6uPhk3In+UiRWZuKwpRHcJBD2z/LrN618
+         ELs3F15dXAEqTlDZ/HDzRHgutwCO+8Y3okkc6xtZLG03ref0nt4V5PvN1+OqM43Rfhhv
+         rSbuMnNbIFI4Zy7XFSueRMQ21HZXqSWbdzY/euqGlp+u2UyBgESSlrrHhGYv5laVg3di
+         nqYw==
+X-Gm-Message-State: AOJu0YyApnUBs4oLOZMjLHPrPyiiujUVcX05qa6fFwqRCYJ3GoQx4oco
+	hxl2FVEBSjGDKLwSxME3LvA=
+X-Google-Smtp-Source: AGHT+IGGQsZJ3eOLPq6l8Ehu4n5FPqXCh2VbaytPpR3qjhezSmcei/sWQ9i5KU8NMKyMFwH4pcjblA==
+X-Received: by 2002:a5d:40c4:0:b0:333:1ca5:7954 with SMTP id b4-20020a5d40c4000000b003331ca57954mr3089959wrq.69.1701708108943;
+        Mon, 04 Dec 2023 08:41:48 -0800 (PST)
+Received: from ?IPv6:2001:a61:3456:4e01:6ae:b55a:bd1d:57fc? ([2001:a61:3456:4e01:6ae:b55a:bd1d:57fc])
+        by smtp.gmail.com with ESMTPSA id j28-20020adfb31c000000b003333d46a9e8sm6415350wrd.56.2023.12.04.08.41.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Dec 2023 08:41:48 -0800 (PST)
+Message-ID: <9b11a42d83dfe77215bafae1d116375ee2398ae6.camel@gmail.com>
+Subject: Re: [PATCH 04/12] iio: adc: ad9467: fix reset gpio handling
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: David Lechner <dlechner@baylibre.com>, nuno.sa@analog.com, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-iio@vger.kernel.org, Olivier MOYSAN <olivier.moysan@foss.st.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, Frank Rowand
+ <frowand.list@gmail.com>, Lars-Peter Clausen <lars@metafoo.de>, Michael
+ Hennerich <Michael.Hennerich@analog.com>
+Date: Mon, 04 Dec 2023 17:41:48 +0100
+In-Reply-To: <20231204151514.4e2c8ada@jic23-huawei>
+References: <20231121-dev-iio-backend-v1-0-6a3d542eba35@analog.com>
+	 <20231121-dev-iio-backend-v1-4-6a3d542eba35@analog.com>
+	 <CAMknhBGCqnzCp6vQ+59Z-SybScvbtU7aWdAD6KnP1e6=q60gVQ@mail.gmail.com>
+	 <d534c3323c32d4ed2aedae19a9f101be90ef0cc7.camel@gmail.com>
+	 <CAMknhBGjm2ja9HOenOWi9O5Ao8qUg=gT=_Vz8CyxQ=pfNX2EJQ@mail.gmail.com>
+	 <3925cb4b6453644c889675c20329b3477a06fcd5.camel@gmail.com>
+	 <20231204151514.4e2c8ada@jic23-huawei>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/2] dt-bindings: timer: thead,c900-aclint-mtimer:
- separate mtime and mtimecmp regs
-Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>, Inochi Amaoto <inochiama@outlook.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
- <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Chen Wang <unicorn_wang@outlook.com>,
- Anup Patel <anup@brainfault.org>, Samuel Holland
- <samuel.holland@sifive.com>, Guo Ren <guoren@kernel.org>,
- Jisheng Zhang <jszhang@kernel.org>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <IA1PR20MB4953C912FC58C0D248976564BB86A@IA1PR20MB4953.namprd20.prod.outlook.com>
- <IA1PR20MB49531ED1BCC00D6B265C2D10BB86A@IA1PR20MB4953.namprd20.prod.outlook.com>
- <20231204-germproof-venue-6874ad902323@spud>
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20231204-germproof-venue-6874ad902323@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
 
-On 04/12/2023 17:18, Conor Dooley wrote:
-> On Mon, Dec 04, 2023 at 05:51:08PM +0800, Inochi Amaoto wrote:
->> The timer registers of aclint don't follow the clint layout and can
->> be mapped on any different offset. As sg2042 uses separated timer
->> and mswi for its clint, it should follow the aclint spec and have
->> separated registers.
->>
->> The previous patch introduced a new type of T-HEAD aclint timer which
->> has clint timer layout. Although it has the clint timer layout, it
->> should follow the aclint spec and uses the separated mtime and mtimecmp
->> regs. So a ABI change is needed to make the timer fit the aclint spec.
->>
->> To make T-HEAD aclint timer more closer to the aclint spec, use
->> regs-names to represent the mtimecmp register, which can avoid hack
->> for unsupport mtime register of T-HEAD aclint timer.
->>
->> Also, as T-HEAD aclint only supports mtimecmp, it is unnecessary to
->> implement the whole aclint spec. To make this binding T-HEAD specific,
->> only add reg-name for existed register. For details, see the discussion
->> in the last link.
->>
->> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
->> Fixes: 4734449f7311 ("dt-bindings: timer: Add Sophgo sg2042 CLINT timer")
->> Link: https://lists.infradead.org/pipermail/opensbi/2023-October/005693.html
->> Link: https://github.com/riscv/riscv-aclint/blob/main/riscv-aclint.adoc
->> Link: https://lore.kernel.org/all/IA1PR20MB4953F9D77FFC76A9D236922DBBB6A@IA1PR20MB4953.namprd20.prod.outlook.com/
-> 
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> 
-> Although, I figure it is going to be me that ends up taking it.
+On Mon, 2023-12-04 at 15:15 +0000, Jonathan Cameron wrote:
+> On Sat, 02 Dec 2023 09:36:47 +0100
+> Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
+>=20
+> > On Fri, 2023-12-01 at 11:01 -0600, David Lechner wrote:
+> > > On Fri, Dec 1, 2023 at 2:47=E2=80=AFAM Nuno S=C3=A1 <noname.nuno@gmai=
+l.com> wrote:=C2=A0=20
+> > > >=20
+> > > > On Thu, 2023-11-30 at 15:41 -0600, David Lechner wrote:=C2=A0=20
+> > > > > On Tue, Nov 21, 2023 at 4:17=E2=80=AFAM Nuno Sa via B4 Relay
+> > > > > <devnull+nuno.sa.analog.com@kernel.org> wrote:=C2=A0=20
+> > > > > >=20
+> > > > > > From: Nuno Sa <nuno.sa@analog.com>
+> > > > > >=20
+> > > > > > The reset gpio was being requested with GPIOD_OUT_LOW which mea=
+ns, not
+> > > > > > asserted. Then it was being asserted but never de-asserted whic=
+h means
+> > > > > > the devices was left in reset. Fix it by de-asserting the gpio.=
+=C2=A0=20
+> > > > >=20
+> > > > > It could be helpful to update the devicetree bindings to state th=
+e
+> > > > > expected active-high or active-low setting for this gpio so it is
+> > > > > clear which state means asserted.
+> > > > > =C2=A0=20
+> > > >=20
+> > > > You could state that the chip is active low but I don't see that ch=
+ange that
+> > > > important for now. Not sure if this is clear and maybe that's why y=
+our
+> > > > comment.
+> > > > GPIOD_OUT_HIGH has nothing to do with active high or low. It just m=
+eans, "get
+> > > > me
+> > > > the
+> > > > pin in the asserted state".
+> > > > =C2=A0=20
+> > >=20
+> > > I would assume that this bug happened in the first place because
+> > > someone forgot GPIOD_OUT_LOW in the devicetree when they were
+> > > developing the driver. So this is why I suggested that updating the
+> > > devicetree binding docs so that future users are less likely to make
+> > > the same mistake. Currently, the bindings don't even have reset-gpios
+> > > in the examples.=C2=A0=20
+> >=20
+> > Hmm, I think you're missing the point... The bug has nothing to do with
+> > devicetree.
+> > This is what was happening:
+> >=20
+> > 1) We were calling devm_gpiod_get_optional() with GPIOD_OUT_LOW. What t=
+his means
+> > is
+> > that you get an output gpio deasserted. Hence the device is out of rese=
+t. And
+> > here is
+> > the important part... what you have in dts does not matter. If you have=
+ active
+> > low,
+> > it means the pin level will be 1. If you have high, the pin level is 0.=
+ And this
+> > is
+> > all handled by gpiolib for you.=20
+> >=20
+> > 2) Then, we called gpiod_direction_output(..., 1), which means set the =
+direction
+> > out
+> > (which is actually not needed since it was already done when getting th=
+e pin) and
+> > assert the pin. Hence, reset the device. And we were never de-asserting=
+ the pin
+> > so
+> > the device would be left in reset.
+>=20
+> Functionally I believe David is correct.=C2=A0=C2=A0 Flipping the DT woul=
+d 'fix' this.
+> It's all down to a nreset vs reset pin description.
+>=20
 
-No, I should take it
+Ahh I see. Well would not really be a fix :)
 
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+- Nuno S=C3=A1
 
 
