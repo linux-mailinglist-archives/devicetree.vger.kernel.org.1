@@ -1,81 +1,165 @@
-Return-Path: <devicetree+bounces-21450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB35C803B1F
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 18:07:28 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DE05803B2A
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 18:10:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4DB19B20985
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 17:07:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 383BB1F21218
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 17:10:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3107A2E630;
-	Mon,  4 Dec 2023 17:07:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 461EE2E637;
+	Mon,  4 Dec 2023 17:10:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hd0/Cdto"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="naWk9UmZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C8DE171D9;
-	Mon,  4 Dec 2023 17:07:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45055C433C8;
-	Mon,  4 Dec 2023 17:07:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 225E42557A;
+	Mon,  4 Dec 2023 17:10:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C692C433C8;
+	Mon,  4 Dec 2023 17:10:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701709641;
-	bh=mt093VTtGq5Qlwj3G6OkmJBdRwq4g/+zIdsd0yfDcVI=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Hd0/CdtoomeVktSiDKrquMd+1bXGk8Lh0U3TYWfKkoeT7YUk8l2ufEwRmLop522Te
-	 QQhUZZNcQ2QcjyrbqOOppuP/r+kTcfIIr4CAaQiHcxAtAOTx/XWFmvTnb8bNlTrJe3
-	 3ur1dxl+VqR6ZxNM6HBM7CvXQB7MLmR0yV5Cj4LfQCIFEuQyjPGdrWWl2D52b679id
-	 1EOFiP+0RQc3qfLrfJd35tY/0j187QMo8TZ1mV9fs7xvVBXPC/ZLxfZyZnjH+cVtgy
-	 oAZ3lUuXLgndjc6Co0437lyD+nbLaRG0WNNfPExMGyzpMCXIA3/bWFr9zkygF0cSPw
-	 lu7sL8uq6SEqA==
-Date: Mon, 4 Dec 2023 17:07:12 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Johan Hovold <johan+linaro@kernel.org>, Lars-Peter Clausen
- <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/6] dt-bindings: iio/adc: qcom,spmi: fix up examples
-Message-ID: <20231204170712.4d100617@jic23-huawei>
-In-Reply-To: <20231204-exclude-tapioca-0db6d01640aa@spud>
-References: <20231130171628.12257-1-johan+linaro@kernel.org>
-	<20231204132624.03733d50@jic23-huawei>
-	<20231204-exclude-tapioca-0db6d01640aa@spud>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	s=k20201202; t=1701709834;
+	bh=YUtRTPoK+tW4AtegcB6or0aHS1jwSCry6p86GjMrycM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=naWk9UmZ+0O0Fr45lIji8VEMQ0cPq1FHELZdFD9a7vEd5KGbcTtbd5j79h0XLikRP
+	 WFJOe0K44PXgHROCohlsHUdFxIYONO2IWD+c9JJOj5wWGfv0PdoQpIAl61nwxNh5pl
+	 loC8u+T1HDSKzBTnPGRibHd7m0ryl7vcVt6Wr80eHfQnNFYuluDUhzU5J0CCGbqQfK
+	 1pVOf0//CGLT0SGWEf92zjsQ7Jee/FjdubSZufoP55M/K8Vi2UW1clrWhMXviDYlEk
+	 42Gacx/dNeHsHhvTVpqKMxh00YM7fTUbyCZt0xPHlvQCM8hKKoljzNergTmcpPK4Ah
+	 l+qUR9SQLwsoQ==
+Date: Mon, 4 Dec 2023 17:10:29 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Steve Twiss <stwiss.opensource@diasemi.com>,
+	"linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	"biju.das.au" <biju.das.au@gmail.com>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH v2 01/11] dt-bindings: watchdog: dlg,da9062-watchdog: Add
+ fallback for DA9061 watchdog
+Message-ID: <20231204-wrist-docile-d6107670140e@spud>
+References: <20231202192536.266885-1-biju.das.jz@bp.renesas.com>
+ <20231202192536.266885-2-biju.das.jz@bp.renesas.com>
+ <20231203-daisy-palm-9e97126eaf3f@spud>
+ <TYCPR01MB1126961003EB5830E645742BE8687A@TYCPR01MB11269.jpnprd01.prod.outlook.com>
+ <TYCPR01MB112697ABEBD60A1ADB32ECA248686A@TYCPR01MB11269.jpnprd01.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="M8mGZHn7Y3eYQmc1"
+Content-Disposition: inline
+In-Reply-To: <TYCPR01MB112697ABEBD60A1ADB32ECA248686A@TYCPR01MB11269.jpnprd01.prod.outlook.com>
 
-On Mon, 4 Dec 2023 16:25:34 +0000
-Conor Dooley <conor@kernel.org> wrote:
 
-> On Mon, Dec 04, 2023 at 01:26:24PM +0000, Jonathan Cameron wrote:
-> > On Thu, 30 Nov 2023 18:16:22 +0100
-> > Johan Hovold <johan+linaro@kernel.org> wrote:
-> >   
-> > > When reviewing the various SPMI PMIC bindings, I noticed that several
-> > > examples were incorrect and misleading and could also use some cleanup.
-> > > 
-> > > This series addresses the iio/adc ones.  
-> > 
-> > All look fine to me.  Just waiting for the DT folk to have time to take a look.  
-> 
-> Yah, they all look grand to me.
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> 
-> Cheers,
-> Conor.
-Applied.  Thanks,
+--M8mGZHn7Y3eYQmc1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-J
+On Mon, Dec 04, 2023 at 10:55:20AM +0000, Biju Das wrote:
+> Hi Conor Dooley,
+>=20
+> > Subject: RE: [PATCH v2 01/11] dt-bindings: watchdog: dlg,da9062-watchdo=
+g:
+> > Add fallback for DA9061 watchdog
+> >=20
+> > Hi Conor Dooley,
+> >=20
+> > Thanks for the feedback.
+> >=20
+> > > Subject: Re: [PATCH v2 01/11] dt-bindings: watchdog: dlg,da9062-
+> > watchdog:
+> > > Add fallback for DA9061 watchdog
+> > >
+> > > On Sat, Dec 02, 2023 at 07:25:25PM +0000, Biju Das wrote:
+> > > > The DA9061 watchdog is identical to DA9062 watchdog, so no driver
+> > > > changes are required. The fallback compatible string
+> > > > "dlg,da9062-watchdog" will be used on DA9061 watchdog.
+> > > >
+> > > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > > > ---
+> > > > v2:
+> > > >  * New patch
+> > > > ---
+> > > >  .../bindings/watchdog/dlg,da9062-watchdog.yaml        | 11 +++++++=
++--
+> > -
+> > > >  1 file changed, 8 insertions(+), 3 deletions(-)
+> > > >
+> > > > diff --git
+> > > > a/Documentation/devicetree/bindings/watchdog/dlg,da9062-watchdog.yam
+> > > > l
+> > > > b/Documentation/devicetree/bindings/watchdog/dlg,da9062-watchdog.yam
+> > > > l index f058628bb632..2b71fdb9251c 100644
+> > > > ---
+> > > > a/Documentation/devicetree/bindings/watchdog/dlg,da9062-watchdog.yam
+> > > > l
+> > > > +++ b/Documentation/devicetree/bindings/watchdog/dlg,da9062-watchdog
+> > > > +++ .y
+> > > > +++ aml
+> > > > @@ -14,9 +14,14 @@ allOf:
+> > > >
+> > > >  properties:
+> > > >    compatible:
+> > > > -    enum:
+> > > > -      - dlg,da9061-watchdog
+> > > > -      - dlg,da9062-watchdog
+> > > > +    oneOf:
+> > > > +      - items:
+> > > > +          - enum:
+> > > > +              - dlg,da9062-watchdog
+> > > > +      - items:
+> > > > +          - enum:
+> > > > +              - dlg,da9061-watchdog
+> > >
+> > > If there is no da9064 on the horizon, I'd just make this const.
+> >=20
+> > You mean since it is single device having a fallback, define both device
+> > compatible and fallback as const instead of enum and const??
+> >=20
+> > >
+> > > > +          - const: dlg,da9062-watchdog # da9062-watchdog fallback
+> > >
+> > > The comment here is just noise IMO.
+>=20
+> Yes it make sense, comment is not needed.
+>=20
+>     oneOf:
+>       - items:
+>           - enum:
+>               - dlg,da9062-watchdog
+>       - items:
+>           - const: dlg,da9061-watchdog
+>           - const: dlg,da9062-watchdog
+
+Ye, this looks good. Thanks.
+
+--M8mGZHn7Y3eYQmc1
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZW4IBAAKCRB4tDGHoIJi
+0kE8AQCcC7P7CwbjI8mpyPErFJHTFEwz3vrCNUDGiTNrth5GGwD/TI9FzFZQsqoN
+zDBdPRztUuv2Hc+3w2sYVRWR7YxnHAA=
+=jkrD
+-----END PGP SIGNATURE-----
+
+--M8mGZHn7Y3eYQmc1--
 
