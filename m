@@ -1,129 +1,130 @@
-Return-Path: <devicetree+bounces-21446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21445-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D25D803AF5
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 17:56:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6400803AD6
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 17:51:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 380CD1F20F8D
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 16:56:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6BDAA1F2128D
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 16:51:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EEC22D781;
-	Mon,  4 Dec 2023 16:56:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2E3C2E40C;
+	Mon,  4 Dec 2023 16:51:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="ASjPHTbz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ba7t9+j+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C6ACB6
-	for <devicetree@vger.kernel.org>; Mon,  4 Dec 2023 08:56:05 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-54ca339ae7aso2171391a12.3
-        for <devicetree@vger.kernel.org>; Mon, 04 Dec 2023 08:56:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1701708964; x=1702313764; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=O8E333mX0LWpYdsutAHYgoOIGzA9DDLQh7glRXD1fJM=;
-        b=ASjPHTbzsw3mSaVveDOllrbzHJ7Bf3PvmYC5zwsWUKV+Eq37l0f4UZXNpApxdhVETJ
-         mvmq02fml7DsMKWpcYl8g5/aDle4/cl2CrSLvvsPiWxSCaqqSJOcU8jaMlYMcDC/V9Bp
-         wPXu2jsSJzQr47g660u79sKggUDtFJSol7IgM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701708964; x=1702313764;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=O8E333mX0LWpYdsutAHYgoOIGzA9DDLQh7glRXD1fJM=;
-        b=f2SKHPOwuCIL5FLzgI+KXt+ujP3uh7xI1lIeHNhwC9J/5lGBh8pxt5MQgCiwlfE5yg
-         zkj2QobnVx/zC9zzUyucGT9MI8/nvhc0OQRyswt/I+q8kLLQNmxhekgp0z/gEsy2LDgu
-         8toHVj1ylLq4J7oslETTqZP7AlaCP6dFlH/5PL6hnIB8OIU3kRMsbz4szRVV6PVX8/Kb
-         c4w0vZRF4iKnbDo4Z9BX5/3IG8RO3aiV0YYw2EakLYlkRYwmtOxd00p9iQDvaF0SFH9X
-         UL/QgQLAx2lzdruWNwJp7mVmb8XS2BXgzJQLnr1nuWR6tjn991G8w8UeQnhDuWLPs1+a
-         E2+w==
-X-Gm-Message-State: AOJu0YyUx/jvNdtSvMb8NlfyFlOacyhuix3x66kYHMDJIEzWhAbYv5pw
-	g/PU/Z704fic+nzdWClTsz7XH1nlG+QBuhZs9ee3LWiN
-X-Google-Smtp-Source: AGHT+IFyUj1NAHcjgOfDPGg9erRnAN+nNx064st5LJWpCTQdkZVFEJUgVq9s3x5LemdGqEFFQR3nIA==
-X-Received: by 2002:a17:907:20e9:b0:a18:d0d5:baba with SMTP id rh9-20020a17090720e900b00a18d0d5babamr3330021ejb.24.1701708963991;
-        Mon, 04 Dec 2023 08:56:03 -0800 (PST)
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com. [209.85.128.42])
-        by smtp.gmail.com with ESMTPSA id uz14-20020a170907118e00b009e5db336137sm5462848ejb.196.2023.12.04.08.56.03
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Dec 2023 08:56:03 -0800 (PST)
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-40b367a0a12so101455e9.1
-        for <devicetree@vger.kernel.org>; Mon, 04 Dec 2023 08:56:03 -0800 (PST)
-X-Received: by 2002:a05:600c:5247:b0:405:320a:44f9 with SMTP id
- fc7-20020a05600c524700b00405320a44f9mr414355wmb.5.1701708616473; Mon, 04 Dec
- 2023 08:50:16 -0800 (PST)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A465241FD;
+	Mon,  4 Dec 2023 16:51:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45BDCC433C7;
+	Mon,  4 Dec 2023 16:51:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701708700;
+	bh=fFXmEBT5AMl/e+v8v12kevHaf03zfjvJ1t3IxHwqbNU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=Ba7t9+j+aC25aU7nX6xksyw/rfPPpMj8n/VfYLO3TpnArg0UAv+E45421nE8y0/MD
+	 X/gOjv+U2EF1gFDddOk4wwf1RH2PkfuK7S4A0l8V4DZOOM/QRmWZRuQKeIdMjPjZYq
+	 +48Nn6abrEeP3GxF0y2czaNjOvlsx+Ui2CNXmL9ztENe4cWVShNwgwUtcIvaZRd+C3
+	 XVe9xHXL0/5+Mzx3NiNSr+N8KWkW6mUYUAEP0ZT4EK+qFJsLUbcDyBSSap4l6FeqAV
+	 FWW4fvXp4I65VA03n8S1icgb0ke9JYVz+nBnRAdwp7ekbD+PKW0ugEa0hGxlwpX3FH
+	 lc0IBcv3zSBww==
+Date: Mon, 4 Dec 2023 16:51:29 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
+Cc: Nuno Sa via B4 Relay  <devnull+nuno.sa.analog.com@kernel.org>,
+ nuno.sa@analog.com, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-iio@vger.kernel.org, Olivier MOYSAN
+ <olivier.moysan@foss.st.com>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Rob
+ Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
+ Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>
+Subject: Re: [PATCH 06/12] iio: adc: ad9467: add mutex to struct
+ ad9467_state
+Message-ID: <20231204165129.130e189c@jic23-huawei>
+In-Reply-To: <69a7ca77055fc57cff6d6be95fb5796723171230.camel@gmail.com>
+References: <20231121-dev-iio-backend-v1-0-6a3d542eba35@analog.com>
+	<20231121-dev-iio-backend-v1-6-6a3d542eba35@analog.com>
+	<20231204152301.6c212539@jic23-huawei>
+	<69a7ca77055fc57cff6d6be95fb5796723171230.camel@gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231128084236.157152-1-wenst@chromium.org> <20231128084236.157152-5-wenst@chromium.org>
- <CAD=FV=W01gfxV6RN2o6CVS7jjf8qgKP-jUy9Bp94d2hWzVC48A@mail.gmail.com> <CAGXv+5E+R292XsOFSL-j0KJMmVJjWtxMRgCK8besP7mo6NDOWA@mail.gmail.com>
-In-Reply-To: <CAGXv+5E+R292XsOFSL-j0KJMmVJjWtxMRgCK8besP7mo6NDOWA@mail.gmail.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Mon, 4 Dec 2023 08:50:01 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=UQkAjgMuR85cPikNtCxsODWPWs7cibOcOoNGdjSSvF8Q@mail.gmail.com>
-Message-ID: <CAD=FV=UQkAjgMuR85cPikNtCxsODWPWs7cibOcOoNGdjSSvF8Q@mail.gmail.com>
-Subject: Re: [RFC PATCH v3 4/5] arm64: dts: mediatek: mt8173-elm-hana: Mark
- touchscreens and trackpads as fail
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Wolfram Sang <wsa@kernel.org>, 
-	Benson Leung <bleung@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>, 
-	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>, 
-	Hsin-Yi Wang <hsinyi@chromium.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
-	andriy.shevchenko@linux.intel.com, Jiri Kosina <jikos@kernel.org>, 
-	linus.walleij@linaro.org, broonie@kernel.org, gregkh@linuxfoundation.org, 
-	hdegoede@redhat.com, james.clark@arm.com, james@equiv.tech, 
-	keescook@chromium.org, rafael@kernel.org, tglx@linutronix.de, 
-	Jeff LaBundy <jeff@labundy.com>, linux-input@vger.kernel.org, linux-i2c@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On Mon, 04 Dec 2023 17:10:01 +0100
+Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
 
-On Sun, Dec 3, 2023 at 10:59=E2=80=AFPM Chen-Yu Tsai <wenst@chromium.org> w=
-rote:
->
-> On Sat, Dec 2, 2023 at 8:58=E2=80=AFAM Doug Anderson <dianders@chromium.o=
-rg> wrote:
-> >
-> > Hi,
-> >
-> > On Tue, Nov 28, 2023 at 12:45=E2=80=AFAM Chen-Yu Tsai <wenst@chromium.o=
-rg> wrote:
-> > >
-> > > @@ -44,6 +46,7 @@ trackpad2: trackpad@2c {
-> > >                 reg =3D <0x2c>;
-> > >                 hid-descr-addr =3D <0x0020>;
-> > >                 wakeup-source;
-> > > +               status =3D "fail-needs-probe";
-> >
-> > While doing this, you could also remove the hack where the trackpad
-> > IRQ pinctrl is listed under i2c4.
->
-> Sure. I do think we can do away with it though. According to at least one
-> schematic, the interrupt line has pull-ups on both sides of the voltage
-> shifter.
->
-> BTW, The touchscreen doesn't have pinctrl entries. This has pull-ups on
-> both sides of the voltage shifter as well.
+> On Mon, 2023-12-04 at 15:23 +0000, Jonathan Cameron wrote:
+> > On Tue, 21 Nov 2023 11:20:19 +0100
+> > Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org> wrote:
+> >  =20
+> > > From: Nuno Sa <nuno.sa@analog.com>
+> > >=20
+> > > When calling ad9467_set_scale(), multiple calls to ad9467_spi_write()
+> > > are done which means we need to properly protect the whole operation =
+so
+> > > we are sure we will be in a sane state if two concurrent calls occur.
+> > >=20
+> > > Fixes: ad6797120238 ("iio: adc: ad9467: add support AD9467 ADC")
+> > > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+> > > ---
+> > > =C2=A0drivers/iio/adc/ad9467.c | 6 +++++-
+> > > =C2=A01 file changed, 5 insertions(+), 1 deletion(-)
+> > >=20
+> > > diff --git a/drivers/iio/adc/ad9467.c b/drivers/iio/adc/ad9467.c
+> > > index 04474dbfa631..91821dee03b7 100644
+> > > --- a/drivers/iio/adc/ad9467.c
+> > > +++ b/drivers/iio/adc/ad9467.c
+> > > @@ -4,7 +4,7 @@
+> > > =C2=A0 *
+> > > =C2=A0 * Copyright 2012-2020 Analog Devices Inc.
+> > > =C2=A0 */
+> > > -
+> > > +#include <linux/cleanup.h>
+> > > =C2=A0#include <linux/module.h>
+> > > =C2=A0#include <linux/mutex.h>
+> > > =C2=A0#include <linux/device.h>
+> > > @@ -122,6 +122,8 @@ struct ad9467_state {
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0unsigned int=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0output_mode;
+> > > =C2=A0
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct gpio_desc=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0*pwrdown_gpio;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* protect against concurr=
+ent accesses to the device */ =20
+> > Not very specific.=C2=A0 Concurrent access usually fine at granularity =
+of
+> > individual read/write as the bus locks protect it.=C2=A0 What state
+> > is actually being protected?=C2=A0 A shared buffer or some state that we
+> > need to ensure remains consistent between driver and device? =20
+>=20
+> At this point not any buffer/data... Just making sure things remain consi=
+stent
+> (typical case when you have multiple reads/writes to the device). That's =
+why a tried
+> to emphasize "accesses to the device". Maybe I should make it explicit I'=
+m speaking
+> about multiple reads/writes.
 
-I dunno if the convention is different on Mediatek boards, but at
-least on boards I've been involved with in the past we've always put
-pinctrl entries just to make things explicit. This meant that we
-didn't rely on the firmware/bootrom/defaults to leave pulls in any
-particular state. ...otherwise those external pull-ups could be
-fighting with internal pull-downs, right?
+Talk about the data or state rather than the access to it.
+Something like
+'ensure consistent state obtained on multiple related accesses.'
+Or if it's RMW then say that.
+>=20
+> - Nuno S=C3=A1
+> >  =20
+>=20
 
--Doug
 
