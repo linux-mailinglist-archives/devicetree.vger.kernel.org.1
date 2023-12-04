@@ -1,133 +1,90 @@
-Return-Path: <devicetree+bounces-21324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21325-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28359803335
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 13:40:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41D2E80334A
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 13:44:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D677C280574
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 12:40:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ECAFC1F21159
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 12:44:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA6A91EB32;
-	Mon,  4 Dec 2023 12:40:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Fjf1Kq7/"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5086224209;
+	Mon,  4 Dec 2023 12:44:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B14E1C0;
-	Mon,  4 Dec 2023 04:40:49 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-50bfe99b6edso255009e87.1;
-        Mon, 04 Dec 2023 04:40:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701693648; x=1702298448; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vsvgyciOFfSmw/EJbODu9yWaFL86QzDmPatwDo6fAHA=;
-        b=Fjf1Kq7/tv9oz7JTqV64win0IKsNL3NWQEfjpZuPkkNen0d5gINb3pV8wOq+e+5mE9
-         DZrBIuu2sLrpbCtMNZRKTZJhqd37XsAO231t7gp9DTIKZmRj9937fS8h+631sirpirG7
-         nIwiKrP6My4OMqzSeG+tUfUZYYR5j5+5veVnKFBvLeKaE4Ljdx/FGw+iMyRxevOauZhB
-         peCYbW5pSDAALcqCr65/XJt9+5LouX8tlrVSHnSmGavqnVYUO2cTblRdnZ1q6fQYzNqF
-         DewAQTP00qjTAM9t6Muq8v7DiwzvkmJzW19dJgXHwuJFCiP97fQ6eZZhUOtGBvhXZEOX
-         qj1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701693648; x=1702298448;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vsvgyciOFfSmw/EJbODu9yWaFL86QzDmPatwDo6fAHA=;
-        b=pjC29NF12R9rzw1BLisL6whKAz0JhBEtsgznK9Sci1O0OnZo+yHRh8iKPuFUMZyoXt
-         J6Dyhae9VixBzH0jjTbB1e7JD+XB2Bw2VLFoU9woCqlt97R4ljUfKO5pVVGL4BfGg+1V
-         3ZbmAGtg4AOubYxQhEAs6JlZ0tDLS9H14jqXu+HhQior/kA0QUbHQNbP0xeJAq51EfAt
-         XWt6RXqeKXj5hmJOLk+HTjAiK5l/iai9p3K9TukuSNU5NLPDeTCZnljA+I6RjCOijReu
-         lymXOTKEk/59FTLSEu8dxODzFWfoxrGOciWCSs8GIcIrkC/zNhjokXIHmw5UqYEPv2fS
-         3ZsA==
-X-Gm-Message-State: AOJu0YyEHL7/NCeg9dgr8UQ0eQq65Ey47lgDDe+rQMYqQOHzul2EU/PU
-	u/wYyjW/S60S6X8x4qFfchE=
-X-Google-Smtp-Source: AGHT+IGt7rvUqmjUimncGXW2IXVdDHVFAV2T7wKaPCUQGmJMe3Y29H7WiKNl0nj1VyY+oyfMrbTxdA==
-X-Received: by 2002:ac2:560a:0:b0:50b:f041:e434 with SMTP id v10-20020ac2560a000000b0050bf041e434mr1055315lfd.70.1701693647568;
-        Mon, 04 Dec 2023 04:40:47 -0800 (PST)
-Received: from ?IPV6:2a02:2378:120d:1a46:8f76:bf32:c739:eb6e? ([2a02:2378:120d:1a46:8f76:bf32:c739:eb6e])
-        by smtp.gmail.com with ESMTPSA id q3-20020ac246e3000000b004fb7848bacbsm1250826lfo.46.2023.12.04.04.40.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Dec 2023 04:40:47 -0800 (PST)
-Message-ID: <0a035c62-9d35-4f85-b1f3-bcb7dea17d52@gmail.com>
-Date: Mon, 4 Dec 2023 14:40:44 +0200
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66C0BC3
+	for <devicetree@vger.kernel.org>; Mon,  4 Dec 2023 04:44:09 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1rA8Id-0001lF-QK; Mon, 04 Dec 2023 13:43:47 +0100
+Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1rA8Id-00DWR9-2b; Mon, 04 Dec 2023 13:43:47 +0100
+Received: from ore by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1rA8Ic-005E0X-W2; Mon, 04 Dec 2023 13:43:47 +0100
+Date: Mon, 4 Dec 2023 13:43:46 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Kory Maincent <kory.maincent@bootlin.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Luis Chamberlain <mcgrof@kernel.org>,
+	Russ Weight <russ.weight@linux.dev>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
+	Dent Project <dentproject@linuxfoundation.org>
+Subject: Re: [PATCH net-next v2 3/8] net: pse-pd: Introduce PSE types
+ enumeration
+Message-ID: <20231204124346.GD981228@pengutronix.de>
+References: <20231201-feature_poe-v2-0-56d8cac607fa@bootlin.com>
+ <20231201-feature_poe-v2-3-56d8cac607fa@bootlin.com>
+ <5f461acf-5cdd-48c7-86cd-8c58a566e12f@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/5] dt-bindings: input/touchscreen: Add compatible for
- IST3038B
-Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>, Karel Balej <karelb@gimli.ms.mff.cuni.cz>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Henrik Rydberg <rydberg@bitmath.org>,
- linux-input@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, =?UTF-8?Q?Duje_Mihanovi=C4=87?=
- <duje.mihanovic@skole.hr>, ~postmarketos/upstreaming@lists.sr.ht,
- phone-devel@vger.kernel.org, Karel Balej <balejk@matfyz.cz>
-References: <20231202125948.10345-1-karelb@gimli.ms.mff.cuni.cz>
- <20231202125948.10345-3-karelb@gimli.ms.mff.cuni.cz>
- <20231203-outskirts-reformat-e0a833903841@spud>
-From: Markuss Broks <markuss.broks@gmail.com>
-In-Reply-To: <20231203-outskirts-reformat-e0a833903841@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <5f461acf-5cdd-48c7-86cd-8c58a566e12f@lunn.ch>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi Conor,
+On Sun, Dec 03, 2023 at 07:31:01PM +0100, Andrew Lunn wrote:
+> > +u32 pse_get_types(struct pse_control *psec)
+> > +{
+> > +	if (!psec->pcdev)
+> 
+> Is that possible?
 
-On 12/3/23 13:20, Conor Dooley wrote:
-> On Sat, Dec 02, 2023 at 01:48:33PM +0100, Karel Balej wrote:
->> From: Markuss Broks <markuss.broks@gmail.com>
->>
->> Imagis IST3038B is a variant (firmware?) of Imagis IST3038 IC,
->> add the compatible for it to the IST3038C bindings.
-> This one is better, but would be well served by mentioning what
-> specifically is different (register addresses or firmware commands?)
+pcdev is automatically linked within pse_control_get_internal()
 
-I don't think anyone knows this other than Imagis itself. I would guess 
-it's different hardware, since register addresses are indeed different, 
-but on the other hand, there is a possibility that firmware on the MCU 
-could be responding to those commands. I suppose "... IST3038B is a 
-hardware variant of ... IST3038" would be more correct.
-
-The reason why I think it could be firmware-defined is because we have a 
-lot of variants (30xxA, 30xxB, 30xxC, plain 30xx), and the numbers 
-usually mean feature level/completeness, e.g. some don't support the 
-touch pressure or touchkeys, and we don't know what A/B/C/none means.
-
->
-> Cheers,
-> Conor.
->
->> Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
->> Signed-off-by: Karel Balej <balejk@matfyz.cz>
->> ---
->>   .../devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml   | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml b/Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml
->> index 0d6b033fd5fb..b5372c4eae56 100644
->> --- a/Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml
->> +++ b/Documentation/devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml
->> @@ -18,6 +18,7 @@ properties:
->>   
->>     compatible:
->>       enum:
->> +      - imagis,ist3038b
->>         - imagis,ist3038c
->>   
->>     reg:
->> -- 
->> 2.43.0
->>
-- Markuss
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
