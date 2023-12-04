@@ -1,83 +1,93 @@
-Return-Path: <devicetree+bounces-21540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5E648040F8
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 22:28:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6C07804177
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 23:17:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE4741C20A53
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 21:28:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 90EEE280ED3
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 22:17:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E3A236AFB;
-	Mon,  4 Dec 2023 21:28:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 718B23A8CB;
+	Mon,  4 Dec 2023 22:17:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H/J7lopG"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="lofcBWGe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAC2A364CC;
-	Mon,  4 Dec 2023 21:28:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05F5AC433C8;
-	Mon,  4 Dec 2023 21:28:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701725289;
-	bh=GrS6re0Pnw+uBm1V2qdt1ie4VrYb1sT11XMmUaB1pJo=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=H/J7lopGl2zOh80yIab32Hw2C21PBA9XV4prHzPUMF1TwgbcoRR2/AMyokVQ/WhhK
-	 +Sz1zOkMRXEtMdG3piW0ZaK77Iew3pWvoZAuQn7G/0yxh9I1t/Y7VqLWSeQEgcN8mQ
-	 TaHqdg5/yqMAVWNdBGgK9jX98z2cmqTVCR/qUEM6PYLhPC67HaLL2I4OAk3mSajXIi
-	 7ymuNm1HL5nquwdwPfvJHdckLcZZlJ6VYgompaD+aM/PU79N2QdRRIDSPxZc4um7s9
-	 K/GvYgYEAOfjFuk/ndFVC8h7ULdXR7jrH8RNexCSfMHtQNm2XJGa3HYlHneNsTtvaH
-	 2Le+5VdZDX1Ig==
-Date: Mon, 4 Dec 2023 15:28:07 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Minda Chen <minda.chen@starfivetech.com>
-Cc: Conor Dooley <conor@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Mason Huo <mason.huo@starfivetech.com>,
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Kevin Xie <kevin.xie@starfivetech.com>
-Subject: Re: [PATCH v11 0/20] Refactoring Microchip PCIe driver and add
- StarFive PCIe
-Message-ID: <20231204212807.GA629695@bhelgaas>
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE415CD;
+	Mon,  4 Dec 2023 14:17:01 -0800 (PST)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 1F71240002;
+	Mon,  4 Dec 2023 22:16:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1701728219;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=NS4jS69KLOJnxFovqZv/8vQ3n77jCj0+KLo8w0Mmcsg=;
+	b=lofcBWGepeW/OU/1n6lJ8R6GE91nJTN2RoVmxDzB15pF9kdEiP7bO0iK0X1sv/XtlsDrIh
+	MnOZIWUSeJRGkli7LMGZAW3C27vp22wofxiW098Qnv8KdgMxEieov+WNEGoBHjUe5LGRVY
+	nMIbM0Qc9jsW5R+7C+7nLQLYREMNFbocLbWSmC8E8V+LlcDmlDslF+43uhjYIVVnUSOm4A
+	YXnuPlsxnA00gaHZyQXStqWEYInVGusAIN9CpaDQk1HQYaCRYS3jBQ4FT0lsyIeP/nwgMg
+	83XERe3VDQtNi4zxYQytFRtKtBs79vu2MVvSgYndNJ/pjq8a4Xb+BXqQVAdPsA==
+Date: Mon, 4 Dec 2023 23:16:55 +0100
+From: =?UTF-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>
+To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+ <pabeni@redhat.com>, Jonathan Corbet <corbet@lwn.net>, Luis Chamberlain
+ <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Oleksij Rempel <o.rempel@pengutronix.de>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ devicetree@vger.kernel.org, Dent Project <dentproject@linuxfoundation.org>
+Subject: Re: [PATCH net-next v2 8/8] net: pse-pd: Add PD692x0 PSE controller
+ driver
+Message-ID: <20231204231655.19baa1a4@kmaincent-XPS-13-7390>
+In-Reply-To: <6eeead27-e1b1-48e4-8a3b-857e1c33496b@wanadoo.fr>
+References: <20231201-feature_poe-v2-0-56d8cac607fa@bootlin.com>
+	<20231201-feature_poe-v2-8-56d8cac607fa@bootlin.com>
+	<6eeead27-e1b1-48e4-8a3b-857e1c33496b@wanadoo.fr>
+Organization: bootlin
+X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c4154501-5b93-4eaf-8d2d-690809d26c57@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: kory.maincent@bootlin.com
 
-On Sat, Dec 02, 2023 at 09:17:24PM +0800, Minda Chen wrote:
-> ...
-> Please check this configuation.
-> CONFIG_PHY_STARFIVE_JH7110_PCIE=y
-> CONFIG_PINCTRL_STARFIVE_JH7110=y
-> CONFIG_PINCTRL_STARFIVE_JH7110_SYS=y
-> CONFIG_PINCTRL_STARFIVE_JH7110_AON=y
-> 
-> BTW, Maybe you can reply e-mail to me only.
+Thanks for your review!
 
-There's usually no benefit to replying off-list.  The list archives
-are very valuable for future maintenance because they help us
-understand the reason things were done a certain way.
+On Sun, 3 Dec 2023 22:11:46 +0100
+Christophe JAILLET <christophe.jaillet@wanadoo.fr> wrote:
 
-Bjorn
+> > +
+> > +	fwl =3D firmware_upload_register(THIS_MODULE, dev, dev_name(dev),
+> > +				       &pd692x0_fw_ops, priv);
+> > +	if (IS_ERR(fwl)) {
+> > +		dev_err(dev, "Failed to register to the Firmware Upload
+> > API\n");
+> > +		ret =3D PTR_ERR(fwl);
+> > +		return ret; =20
+>=20
+> Nit: return dev_err_probe()?
+
+No EPROBE_DEFER error can be catch from firmware_upload_register() function=
+, so
+it's not needed.
+
+Regards,
+--=20
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
