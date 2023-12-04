@@ -1,218 +1,119 @@
-Return-Path: <devicetree+bounces-21238-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21239-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62B3C802E4C
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 10:16:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C71B5802E54
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 10:17:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C9D2280A06
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 09:15:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0392A1C2097D
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 09:17:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9F8112E7E;
-	Mon,  4 Dec 2023 09:15:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F06714A9A;
+	Mon,  4 Dec 2023 09:17:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="YwB/wyBW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Pill59r3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from IND01-MAX-obe.outbound.protection.outlook.com (mail-maxind01olkn2099.outbound.protection.outlook.com [40.92.102.99])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70210D6;
-	Mon,  4 Dec 2023 01:15:51 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ERnxQShAXRJqx0kOzw/WidRn4dPuyduuUSX2rC9EYFe6/DyfBl0Lpt7slMnB+tCqTUSPtnjR/TyFQppaFosK7Aw7zcc5LmTMtLPoJLwxpvUEhoYaSHP82z2Jl/f68Han5K8EwPOumHTnHSN3OVdIh6KCXc8OHFmg594q6j66Ef8qVvjdR6wZ0+xtlhdq/YigSD/xo+PTTH52qwdFGWXkD9z1MOIOrKCB5doarrkGeYOok+8GZKpL+y4tiz7LB/1jCQA3WqV0rFFUny6LH50ZdTN0n/sTS3LmS51BDni3PVrwPzxQ9AXcMur9mdSlB0tQ+y5sqe5SelD4LY05h3bvug==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=67YqCCpwKj1GVNAUrUFJXiBqTP+nDEZwq9PU94Dk1ms=;
- b=GzLa6aY7QVM9rKJlteioOUnsEASE+/HETsbhtoSi9sTo/A0zSSaOKB6dO9qxkHjEEd7FrQlCQZrdbvFMjK51bOUmTVqOpXCVZo9tGXZtnt0Ml5ZFzTukbVa8wHFl0NWbxuu+z/24UOJbTGC3lWSjnm224RnsjLDN0fjs0VgOTkQlvG+O9k46g5WeyJW+th20TdtZX/a6CGMfXt2N4KjaYL+yl/4SKTWFEA6unxlathusuYTZWPUvoLpMNiZ9TCslPKapd7oLRZsbHWSeO/STtkQICdeOB8Xv1Iqryp3blSq3/WZNflWKCUsfZWnqskQC23xfMJM2R7m+tEv0iZKIOQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=67YqCCpwKj1GVNAUrUFJXiBqTP+nDEZwq9PU94Dk1ms=;
- b=YwB/wyBWAiKt6m06UtSGTOsbDdcgyIRbcnPL6MXcSywgSK8LbrHT89GFejeSJMs9WVx1n+p4h65BfanVva9PEjEWFpEbMxtM5iE2N8GX1a5JSgcbd8WyTJ5GR2xnV1Oql+lvmfX/LlN6BTDAU7JjEMbB0HFAXTa9Lok8finPFajN1JIeLwEKhzRJ+mOSc9EEdLEIhbaJLOcLXppTK3J7gp3QTIl5urtswmekQXtqezLq7OtT5YSfQyqiPmCJQM/J7881JtT7PC4aYyIFaZr6NqgpdIVQeWjO4Lh0Pa8EdOU+uqjI4HnVoQZcJzjhTtXU6zc1L5ULNWAyjzxOg6eQ4w==
-Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:ab::5) by
- PN3P287MB0163.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:d1::14) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7046.33; Mon, 4 Dec 2023 09:15:43 +0000
-Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
- ([fe80::b1a7:eee7:e903:9ef3]) by MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
- ([fe80::b1a7:eee7:e903:9ef3%7]) with mapi id 15.20.7046.033; Mon, 4 Dec 2023
- 09:15:43 +0000
-Message-ID:
- <MA0P287MB0332AE2378D633B8A2DCFB77FE86A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
-Date: Mon, 4 Dec 2023 17:15:36 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/7] Add Huashan Pi board support
-To: Inochi Amaoto <inochiama@outlook.com>, Conor Dooley <conor@kernel.org>
-Cc: Chao Wei <chao.wei@sophgo.com>, Thomas Gleixner <tglx@linutronix.de>,
- Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Anup Patel
- <anup@brainfault.org>, Conor Dooley <conor.dooley@microchip.com>,
- Jisheng Zhang <jszhang@kernel.org>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <MA0P287MB033290A6C8B15202E31E43CCFE80A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
- <IA1PR20MB49537B177B6F3614D8D1E3E6BB87A@IA1PR20MB4953.namprd20.prod.outlook.com>
-From: Chen Wang <unicorn_wang@outlook.com>
-In-Reply-To: <IA1PR20MB49537B177B6F3614D8D1E3E6BB87A@IA1PR20MB4953.namprd20.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TMN: [3NQ4qCTD5c8H0nvts66tRE9vGUVMm4U2]
-X-ClientProxiedBy: SI2P153CA0021.APCP153.PROD.OUTLOOK.COM
- (2603:1096:4:190::20) To MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:ab::5)
-X-Microsoft-Original-Message-ID:
- <7c146af6-081f-4aed-b950-3397c3da7b90@outlook.com>
+Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57130186;
+	Mon,  4 Dec 2023 01:17:02 -0800 (PST)
+Received: by mail-pf1-x42e.google.com with SMTP id d2e1a72fcca58-6cb74a527ceso2886513b3a.2;
+        Mon, 04 Dec 2023 01:17:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701681421; x=1702286221; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :to:subject:from:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9D3kW2Aojjv4RqGRthj2b1rTnXc6ubMuseBwhuWQ0QI=;
+        b=Pill59r3s/8zuGiFoB+iMnKcQdsPXdVS5tLZ6FNveePjxLYU4fyE30yzugeDR4EhsW
+         M6VEXKi5swY6PWalptyZqj5XT3FLrCxhXhu0B2sV2N+uq1cQkc1urxz4GfyeVkIgPI94
+         aziV4pRPcohRYSVyH21Ia6M06Hihnvpfb/3cH/bZAWMT5CKnGBjhBuvWAG/mXG6c1WAo
+         0Z81Mdbrym6SxnSFl/QYkGsA5P3TTYZCW2Irr8cXB9filctjfJ7rlcoQMf/SSuoto7pQ
+         pw4knqJBqd3OUaWQOiHXKXyb9yCGg5Sy+ZvA2/gIKvl1IB9bg3RYjcQuR4TlrTwBHQsT
+         CFnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701681421; x=1702286221;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :to:subject:from:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9D3kW2Aojjv4RqGRthj2b1rTnXc6ubMuseBwhuWQ0QI=;
+        b=CHZRcyrRD1aEwGy2BccX1tF1KQ2Dab0JGuCBHNIzQog8xCAFUBoG1MDymBrmRLb9jO
+         Iu1BZjwGfamT5l9AHtS6Fpl5YfPd2O8vk5E2RrABgbN0tSa31sRTE348z73F+DsbnblT
+         CEg2mkJtB9UMSxfjreXkq/8VH7gP1Z1okHrQPJsgONpG0u9IFqvSl0tNFPmRcp5c0wI7
+         4YBgO6mfO4FAGrFwjM49eceUebo/uAxauoZLdnHiZ1cWzOwEwYtYdwJGASk5uKatzsdG
+         cCI7qRnUQJjmqqAyirtD4CiUYq92LnnpF8GKpyB29cjhN1kma6fqR1ilKBYN3Se2A7OJ
+         p4gQ==
+X-Gm-Message-State: AOJu0Yx6KVBfkaZT8H+kLcXxGUNJYRhT4num0CrgVvJoG18IzOHINZU6
+	/gwGNkuKWhiqWQQ7qOWt0DYGYYvh9uw=
+X-Google-Smtp-Source: AGHT+IHyM39DQ3WajW7PhaikQO34qZT7BP0+23uV4Oo4Za/YodiTkb9bgMI4pdUXIRTv0cLmFYUxWQ==
+X-Received: by 2002:a05:6a00:2e12:b0:6b5:86c3:ccaf with SMTP id fc18-20020a056a002e1200b006b586c3ccafmr29556613pfb.22.1701681421517;
+        Mon, 04 Dec 2023 01:17:01 -0800 (PST)
+Received: from [10.10.14.80] (1-34-21-66.hinet-ip.hinet.net. [1.34.21.66])
+        by smtp.gmail.com with ESMTPSA id t14-20020aa7938e000000b006ce5bb61a5fsm670762pfe.3.2023.12.04.01.16.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Dec 2023 01:17:01 -0800 (PST)
+Message-ID: <bf3f2195-2d26-4817-ac5d-1608722c23f6@gmail.com>
+Date: Mon, 4 Dec 2023 17:16:58 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MA0P287MB0332:EE_|PN3P287MB0163:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8b7e9b34-52d3-4251-e3bd-08dbf4a99683
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	qp43GjkL5MAdtdb2tBq+A3sSbdpOA7R/Uy8t5lPjt9p7WsNxUXy3dLNjnA79Gc+E2MiBP0VY1h0QqsL3twrjSzyXZfqcvINMgX0LhO0MxtdTX+Y0n5xcqezYbMZpB6SHyYtbHA9NEqc0vH7CLuwhmuBYuXTsPXqfEsUcCaZJqdWYXZcmEZB76saHCB5SwbVXnxwB1fNuf6aWahagQDG6MSCZx3zhCIUS6wzEN7fUY/lKESpxPoTMUJumK6zxHNkTPvuwf8lcFPEtLkfp7pIzsBsOBEpLqK8Ue1WlwqSo7Lv0W5OFJdpjXay9VByQzhJOTi9rNl7gRTrr6YKgimNM+bkQXWqasOUauvzONMQh7o6wUIINH+ePOAmxGmMveQef3hy2dSac88wiJXMEXlfjxhiCdLTaEmWDiWhse3Ipak22jnrrZbqFlpP6YVJhkwK1csJ8ztPVd7WYAx4VHWQERRDxHrbw+dbQL2U4pdt9mNWbokrITKd0dJH3cxTYnOPVH7c+Aon4cNXaC2d5KZlMPACk6nZ0HSh7kI9UASKN9IfUtjjJ2TUqsA2A1jXw2UfskmHcBtzsrmL9UZrcvJXkIsREH1ph7DB/mdFzupdEFoggOmyIF7E1idnoZed651oH
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?M2dkay82OGcyWjBvSDdyL0JwdVFSWFRXYmFUak9kUHJQU211d3NlTnI0WXUw?=
- =?utf-8?B?V1NuTWRqMm8vRWNZRFlXQkQ3Y3JKRVZpMXF3WE1FYVp3QXRlUkt1emhEMm5l?=
- =?utf-8?B?d0RnZ2svY2Ftb1RCWVVpQ0YwdFl1SVY0K0VPMVptbTk2Mnp5MEt1OXNiZ2N5?=
- =?utf-8?B?RmlzWUFjaDRYNEFINTFaNm9jWjExWE85NjdadWFwYXBwbmJrM2RDTGNIM0hW?=
- =?utf-8?B?dldrcEcxT3U1ZnMxL1p3aVFNOFNTeGZYYzdPL1lYQzl1cXF3WGxiWkhZVW43?=
- =?utf-8?B?QlFEek9SQXM3NDhvN0xBVUlOZXpvcW10b3RNWG1DTThPMzJxQ1hpWEltZHRq?=
- =?utf-8?B?YWFBTnNwSnJvT054U0pGeTRLQi9NdmlicTZSMGtGTHMyWE9lVk5wNDdlb1Rs?=
- =?utf-8?B?cmFxTnpXNFpEZ25id2E4UFU1QVF1MlcxV0szZVdhODBPNlM5UzNPcjVuWEVJ?=
- =?utf-8?B?YndRVkxKZ0JWREpDQzV5UUorNkdzUkY2bWdZL2hTckpaZEIwMy9OOG55d3pN?=
- =?utf-8?B?YW5RRVg1Wm93eDBxbjQ5cUhwbFdQT3VXbS9NZTNMcjd6aWhTNktENkMyWlI0?=
- =?utf-8?B?di9jbksvTWVOb2Ric2k0MEx0bFRIc1FpeU9pcEdoR0U0N3l4UzIwZVE4cW5w?=
- =?utf-8?B?RmFDeHFJdkdsT3p6a3gzL0ZDYmZudkd3bThOdXdWaHhzQkVuWlJhQzMzcUQy?=
- =?utf-8?B?Z3lWdjFYbzBqSG1nM0ZPMFJHdW9XYU1rRkxwZm9XY3ByaXlUWnNicHA3aC9H?=
- =?utf-8?B?dXRLNHAwTjNjOVNjTVE0ZzBjR2Y3YVdJamc2Vk5TMGgzbncrWEp4QVp6cWtB?=
- =?utf-8?B?c3BEL0JhMm9Ma0NFOUhyZHkvV0ZoL0szbXpZTjJIQ21vdW9QaENQRG9kdzZ1?=
- =?utf-8?B?aDVkK2RIcXpUNlV6aUFpUzZMdnFuWkJRbDFMWXpGUWRJaUNpZ2FhSTAxMTNQ?=
- =?utf-8?B?WjBJZWsyZDN0Y05qNkcxS1RNeC9QT1FTK1FzaURleVhNand4Ymt2c2lIY1ZC?=
- =?utf-8?B?ZFJwTGhjUUZTTW8rQTZMSytGSEp3WkJITGpJT2w2Y0dneFVuZk01VThZdVdq?=
- =?utf-8?B?MWFCV1hZbjJ1bS9QeW53ZkhjSTdrRHNyUUtCd1BGbGpBeEVOV08vaG95enRV?=
- =?utf-8?B?U2dad3h3Tkd6emlXQ1BDR2FNYk1RdkdBaXBNVk9Lejl5dWhEUHlUZVJKL2l5?=
- =?utf-8?B?ajN2QWY3T3pNbXNjQ2tmKytTT0cwZVprWXEyK25pOTR0QmxiampzeDdKVGJq?=
- =?utf-8?B?eTF3TmJTQjRmYSt2MldaTk5KNExKc3R6Z2trSko1cHZ6WjZsM1VGcUthcS9n?=
- =?utf-8?B?cmU5WHpkNk8rL0hTM2diZHNhdHpIQnAxUjc1Y1lzMW4yTFNvL1Bkc0RXR3Jr?=
- =?utf-8?B?R2xYOU5qcEgzcmsvOUxXakJBWFkyVFUwSUQxM2dTbFJwby9BRnNUQzQ1UCsz?=
- =?utf-8?B?bEtBa1FkVUF6bnFBNkE3QTNVdXg5ZU0yQW81RzZIa2hXcERDazZSNzlUMCto?=
- =?utf-8?B?cGlnWlp0b3hWRU9wOUpMVW9uVGFQYU5PdHkvVzRjV0FHdk5kN1lieXRVMXdu?=
- =?utf-8?B?Z0xlRjdqOEIzaE00Zy9sZ1J5QkV3dVI1eXViYTFTNzRRYWtZZHZTUTZYV2k4?=
- =?utf-8?Q?Q8I/Id9H2Ey4m4E1QSypUz4lwIbsULUFd0QvSEaBlyvc=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8b7e9b34-52d3-4251-e3bd-08dbf4a99683
-X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Dec 2023 09:15:43.1305
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN3P287MB0163
+User-Agent: Mozilla Thunderbird
+From: PeterYin <peteryin.openbmc@gmail.com>
+Subject: Re: [PATCH v5 0/2] Add Facebook Minerva Harma (AST2600) BMC
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, patrick@stwcx.xyz,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org
+References: <20231204081029.2272626-1-peteryin.openbmc@gmail.com>
+ <fddcbad4-5368-4c2a-ba87-f4c4326a8385@linaro.org>
+ <3ff5dcd7-69a3-4098-92c6-ed1e8f0bd8f9@gmail.com>
+ <f2519d16-1b34-4d77-be69-cf80fa3415a1@linaro.org>
+Content-Language: en-US
+In-Reply-To: <f2519d16-1b34-4d77-be69-cf80fa3415a1@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-
-On 2023/12/4 7:32, Inochi Amaoto wrote:
->> On 2023/12/2 0:21, Conor Dooley wrote:
->>> On Fri, Dec 01, 2023 at 04:31:38PM +0800, Inochi Amaoto wrote:
->>>>> On Fri, Dec 01, 2023 at 09:02:59AM +0800, Inochi Amaoto wrote:
->>>>>>> On Fri, Dec 01, 2023 at 07:21:29AM +0800, Inochi Amaoto wrote:
->>>>>>>>> On Thu, 19 Oct 2023 07:18:00 +0800, Inochi Amaoto wrote:
->>>>>>>>>> Huashan Pi board is an embedded development platform based on the
->>>>>>>>>> CV1812H chip. Add minimal device tree files for this board.
->>>>>>>>>> Currently, it can boot to a basic shell.
->>>>>>>>>>
->>>>>>>>>> NOTE: this series is based on the Jisheng's Milk-V Duo patch.
->>>>>>>>>>
->>>>>>>>>> Link: https://en.sophgo.com/product/introduce/huashan.html
->>>>>>>>>> Link: https://en.sophgo.com/product/introduce/cv181xH.html
->>>>>>>>>> Link: https://lore.kernel.org/linux-riscv/20231006121449.721-1-jszhang@kernel.org/
->>>>>>>>>>
->>>>>>>>>> [...]
->>>>>>>>> Applied to riscv-dt-for-next, thanks! LMK if something looks not as
->>>>>>>>> expected.
->>>>>>>>>
->>>>>>>>> [1/7] dt-bindings: interrupt-controller: Add SOPHGO CV1812H plic
->>>>>>>>>        https://git.kernel.org/conor/c/21a34e63afcc
->>>>>>>>> [2/7] dt-bindings: timer: Add SOPHGO CV1812H clint
->>>>>>>>>        https://git.kernel.org/conor/c/06ea2a1968a9
->>>>>>>>> [3/7] dt-bindings: riscv: Add SOPHGO Huashan Pi board compatibles
->>>>>>>>>        https://git.kernel.org/conor/c/d7b92027834e
->>>>>>>>> [4/7] riscv: dts: sophgo: Separate compatible specific for CV1800B soc
->>>>>>>>>        https://git.kernel.org/conor/c/5b5dce3951b2
->>>>>>>>> [5/7] riscv: dts: sophgo: cv18xx: Add gpio devices
->>>>>>>>>        https://git.kernel.org/conor/c/dd791b45c866
->>>>>>>>> [6/7] riscv: dts: sophgo: add initial CV1812H SoC device tree
->>>>>>>>>        https://git.kernel.org/conor/c/681ec684a741
->>>>>>>>> [7/7] riscv: dts: sophgo: add Huashan Pi board device tree
->>>>>>>>>        https://git.kernel.org/conor/c/2c36b0cfb408
->>>>>>>> Thanks for the confirmation. But I suggest to revert these patches.
->>>>>>>> Several days ago, Sophgo informed me that CV1810 series will be
->>>>>>>> renamed. And the Huashan Pi will switch to the chip with new name.
->>>>>>>> To avoid unnecessary conflict, please drop these patch and I will
->>>>>>>> prepare a new patch once the renamed chip is launched.
->>>>>>> This is a board that exists, that you (and possibly others) have, right?
->>>>>>>
->>>>>> Yes, of course.
->>>>> I dunno then. It sounds from your message that this is purely a rebrand
->>>>> of the SoCs,
->>>> IIRC, it is.
->>>> FYI, Chen and Chao. Maybe you know something more.
+Krzysztof Kozlowski 於 12/4/23 17:06 寫道:
+> On 04/12/2023 09:46, PeterYin wrote:
+>>
+>> Krzysztof Kozlowski 於 12/4/23 16:20 寫道:
+>>> On 04/12/2023 09:10, Peter Yin wrote:
+>>>> Summary:
+>>>> Add linux device tree entry related to Minerva Harma
+>>>> specific devices connected to BMC SoC.
 >>>>
->>>>> so since people already have these boards, I'd rather not.
->>>>> We should be able to support both since it's just a naming change,
->>>>> right?
->>>> I agree with this. If the above is true, we can just reuse the exists code
->>>> with a different compatible name, right?
->>> I think so? I'm not sure what the precedent really is for pure
->>> rebrandings of an SoC.
->>> I say for now, assume we can do that, and we can discuss it with Rob and
->>> Krzysztof when the time comes if there is no difference between the SoCs
->>> and boards.
+>>>> v4:https://lore.kernel.org/all/20231204054131.1845775-3-peter.yin@quantatw.com/
+>>>> v3:https://lore.kernel.org/all/20231123050415.3441429-3-peteryin.openbmc@gmail.com/
+>>>> v2:https://lore.kernel.org/all/cdbc75b9-3be1-4017-9bee-c8f161b6843c@linaro.org/
+>>>> v1:https://lore.kernel.org/all/20231024082404.735843-3-peteryin.openbmc@gmail.com/
+>>>>
+>>>> Change log
+>>>> v4 -> v5
+>>>>     - Rename document and file from minerva-harma to harma.
 >>>
->>> Cheers,
->>> Conor.
->> As far as I know, sophgo's SoC product names all start with "sg", while products starting with "cv" come from CVITEK (another chip company). CVITEK was acquired by sophgo a year ago, so now many SOC product names that originally started with "cv" are being repackaged and changed to start with "sg".
->>
->> For the cv1800b adopted by Duo, Sophgo has made it clear that it will not change its codename.
->>
->> But I heard that for other products, such as the cv1812h used by Huashanpi, sophgo may change their names in the future, but sophgo has not officially confirmed it yet. Looks like sophgo themselves are still in the process of digesting cv's products, ;)
->>
->> Since we have just started to support cv1812h and have not done much work yet, I suggest not to merge this patch into the mainline, and wait until there is clear news before doing this to avoid introducing unnecessary modifications later.
->>
-> Hi Chen,
->
-> There is a update for you. The cv1812h does not have the A53 core as the
-> sg200x does. Maybe we should treat cv1812h as a trim of sg200x, not just
-> a reband.
->
-> According to this information, I suggest to preserve these code for
-> cv1812h, it can make upstream the new soc eaiser. Also, adding a new
-> compatible is not too hard, and it is necessary if we have new soc.
-> Otherwise, the one with Huashan Pi now may be confused because it have
-> a old version.
+>>> You must explain that you dropped people's review for some reason.
+>>>
+>>> Best regards,
+>>> Krzysztof
+>>>
+>> Due to changes in the project name and content, please assist in
+>> reviewing it.
+> 
+> When dropping people's tag, the patch changelog (---) should say that
+> you dropped people's tag.
+> 
+> Best regards,
+> Krzysztof
+> 
+Thank you for your explanation. I will pay attention to it next time.
 
-Thanks Inochi for your info, let's just preserve these code for huashan 
-pi now and keep watching on what's going on then.
-
-Regards,
-
-Chen
-
->
->> Thanks,
->>
->> Chen
->>
+Thanks,
+Peter.
 
