@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-21289-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21290-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 813C58030C1
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 11:43:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E16808030E1
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 11:45:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 35DAA1F21025
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 10:43:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9E6F4280C86
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 10:45:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 913EC81E;
-	Mon,  4 Dec 2023 10:43:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8722E22314;
+	Mon,  4 Dec 2023 10:45:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KudhpRRg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nFdbUWfv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93219C3
-	for <devicetree@vger.kernel.org>; Mon,  4 Dec 2023 02:43:11 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-54cb4fa667bso1261336a12.3
-        for <devicetree@vger.kernel.org>; Mon, 04 Dec 2023 02:43:11 -0800 (PST)
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF150B9
+	for <devicetree@vger.kernel.org>; Mon,  4 Dec 2023 02:45:21 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-54b545ec229so5433853a12.0
+        for <devicetree@vger.kernel.org>; Mon, 04 Dec 2023 02:45:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701686590; x=1702291390; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701686720; x=1702291520; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=YH2Ij/F/wMEEbbAmHc7EPSvsXzYx4kJlgIGSkqXdxfI=;
-        b=KudhpRRg/js7oSb6LGL4wcguejwjkWdi4oQfSOEftUuf0WSAIXMx/UwzsoEclIEYqd
-         wIQVHHn3Jb4huomFjicpQ8moYtiaQliEK8ifiGE5Y3XFjAzlj7/0V+vmhwDdElRMrw54
-         9VxXth8koqmquRD7VWQolcYk7b4Z3ZVTshizIlTXXKhg8RAy/RJ4hl3Khr2TJ9yZLcRL
-         7tDaTI/aZJL5K6zSI316951fKtFr+C6r2vuHWZYCKUc/nwushhy/ukDSVnxW1XcVAGZ5
-         sYOg3LEMm5HYNHhQygtKlo5s/vRYH2LFKgVueOrxyUAYwrBzdr1D6Yioc6cBmabiGUU3
-         dZVA==
+        bh=6YyztTu0COTbmlcMD4L0hygA8BtaTvI3nN75TEHzfHI=;
+        b=nFdbUWfv31zyu3vMX72F0iYgWtFejs9xIpHQM49PojNhylZMJ1dfLJjmK+SSWI0RHH
+         LcYFQtgQ0wO8aD4cJwwwzFAMQHz2o5mAHxeb1h8BahlK3v9CnVAOtVlQERVOeCbkEKMF
+         xK5xbJlX8H6M6TKdQLUC0XrcnJVt168qajP2oCJSQ/6UAgU70jUo7GS59N/hhK8uiZTf
+         j8a6n79y3/t05Q0s+UOoDtl8AanUPDQFBQzTXHlbx3OXQUhBk5Uobt/jDsnqQJxq10Lp
+         mlFR7vQ9BAZl/ZRYKYFW3iYK4GMnyeyHRbypJmjg2bmqB8DY7j97I78s++eNZCy7qOzT
+         mtBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701686590; x=1702291390;
+        d=1e100.net; s=20230601; t=1701686720; x=1702291520;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YH2Ij/F/wMEEbbAmHc7EPSvsXzYx4kJlgIGSkqXdxfI=;
-        b=UKr9RT44WA9GxaCQJGQNrFO9S4RCC5OJrsJtAkKA5TJkqvIme4A5wnuK/9JPmNdejw
-         9rVhJpjIBSbs9MF2qfHpF6dn79cegcasKePH9uBj5OYZZsQuN6vtQwTScwCnqcJi8pxS
-         N/a1Hv8W1CQ2Qe0MAbfEnvJYc8ot9enUL+nbz6ZQ41ohLi0soLOBOfWPy+7/IS2ZEf+3
-         3p83vCHgzDiW0UOO76Pa6XDQpFeIFI3dcoXY6qgSeg1/Ghyb4KW15FgEDiZBCtSyJp4k
-         aYPW703gnJtuEadRQUzd6zoJBVoh75lVidpc4Up/NiwUMsTPRT3R/IOA9cXq4SM+toqz
-         YPhw==
-X-Gm-Message-State: AOJu0YycC+dW9CDM+vJaumi2qSC8yxhtrawZ7bVf99MeANfaEDoUxm/3
-	aEdjehCEcqRbXr9MeERKTo1iAQ==
-X-Google-Smtp-Source: AGHT+IGeS6J9m2+FzcV1/4dFqgU6LovESxmEWg22Z7PF2++0+369OKlqMTVxUEbbDH1I/3O/wExisA==
-X-Received: by 2002:a05:6402:358f:b0:543:90d4:6132 with SMTP id y15-20020a056402358f00b0054390d46132mr3320462edc.16.1701686589974;
-        Mon, 04 Dec 2023 02:43:09 -0800 (PST)
+        bh=6YyztTu0COTbmlcMD4L0hygA8BtaTvI3nN75TEHzfHI=;
+        b=CNWr2KZTK1m6V9Ygt7T/Rs8asAhTybsz9dlawTtZ53keEl6Y1YPf8tNBZwhH6c88hF
+         j7FQ+b+r4mfg43yuSmZYeYDoJC1x9MAwiIAQ1smrN74EofHKG5PyMueIgGZUv5JmOGdg
+         wHfr/vA92SqRza91ZKL45SZW6clE4BhgEh2i4tmHwgqRceKpuDkWyTGOSVFxsBj1MroV
+         iqfcem5yoh4afBNXYKgaI6UDOfTD7UAvlqRuDzHXM7ko4IAQhEOUJZj8oZi5DiY0ttVt
+         9EYDc9nrWh3jE9Jth/MzzGgBbYOulo9E0vJ/uGtJN1n7/Y6Z3KjhSg6iVWHTv7asIpvQ
+         rFqg==
+X-Gm-Message-State: AOJu0Yz3dSMUm9f+j/3X+PkCCX+6RqQak4WxcxyMSpsvtFYETvXk3wRL
+	L/4J6OyGx63GO6i5/LdNPGn9bg==
+X-Google-Smtp-Source: AGHT+IFSjGkSVgh5Xs2KkgKSiERG0P1FSH0235jUWEfNRfdAVN5fzTc3kFuiSWxzA0Gbdyj2qJ4F1Q==
+X-Received: by 2002:a50:ab0d:0:b0:54a:fe10:dede with SMTP id s13-20020a50ab0d000000b0054afe10dedemr2966994edc.36.1701686720300;
+        Mon, 04 Dec 2023 02:45:20 -0800 (PST)
 Received: from [192.168.209.83] (178235179097.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.97])
-        by smtp.gmail.com with ESMTPSA id f10-20020a056402354a00b0054ca1d90410sm1985488edd.85.2023.12.04.02.43.08
+        by smtp.gmail.com with ESMTPSA id q9-20020a056402040900b0054c0264a7fasm4618484edv.64.2023.12.04.02.45.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Dec 2023 02:43:09 -0800 (PST)
-Message-ID: <7147f99c-7fd4-4fb4-828f-5463ddac9809@linaro.org>
-Date: Mon, 4 Dec 2023 11:43:08 +0100
+        Mon, 04 Dec 2023 02:45:20 -0800 (PST)
+Message-ID: <3678b052-d812-439f-89b3-6d816d8f35f8@linaro.org>
+Date: Mon, 4 Dec 2023 11:45:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,18 +62,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: qcom: apq8026-samsung-matissewifi: Configure
- touch keys
+Subject: Re: [PATCH] ARM: dts: qcom: Disable pm8941 & pm8226 smbb charger by
+ default
 Content-Language: en-US
-To: =?UTF-8?Q?Matti_Lehtim=C3=A4ki?= <matti.lehtimaki@gmail.com>,
- linux-arm-msm@vger.kernel.org
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
+To: Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
+ phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231204094649.10094-1-matti.lehtimaki@gmail.com>
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Bryant Mairs <bryant@mai.rs>
+References: <20231203-smbb-pm8941-pm8226-v1-1-9ad75909604b@z3ntu.xyz>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -110,18 +109,22 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20231204094649.10094-1-matti.lehtimaki@gmail.com>
+In-Reply-To: <20231203-smbb-pm8941-pm8226-v1-1-9ad75909604b@z3ntu.xyz>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 4.12.2023 10:46, Matti Lehtimäki wrote:
-> Add touch keys which are handled in touchscreen driver.
-> Use KEY_APPSELECT for the left button because other devices use that
-> even though downstream kernel uses KEY_RECENT.
+On 3.12.2023 15:19, Luca Weiss wrote:
+> From: Bryant Mairs <bryant@mai.rs>
 > 
-> Signed-off-by: Matti Lehtimäki <matti.lehtimaki@gmail.com>
+> Some platforms don't use the built-in charging hardware (e.g. milletwifi).
+> As this is an optional peripheral, default it to off.
+> 
+> Keep it enabled for all other boards that use smbb.
+> 
+> Signed-off-by: Bryant Mairs <bryant@mai.rs>
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
 > ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Acked-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
 
