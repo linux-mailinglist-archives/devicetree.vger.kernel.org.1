@@ -1,98 +1,156 @@
-Return-Path: <devicetree+bounces-21401-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21403-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33071803875
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 16:15:48 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B76B80388D
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 16:19:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E288F281194
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 15:15:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A62ABB20B13
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 15:19:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 768EB2C19A;
-	Mon,  4 Dec 2023 15:15:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6322A2C1A1;
+	Mon,  4 Dec 2023 15:19:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vv/Fx9qE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YousOfmM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 549BB2375B;
-	Mon,  4 Dec 2023 15:15:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B42ECC433C8;
-	Mon,  4 Dec 2023 15:15:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 445FA2C19C;
+	Mon,  4 Dec 2023 15:19:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F5EFC433C8;
+	Mon,  4 Dec 2023 15:19:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701702943;
-	bh=lKRmpWH6UR7dQ27BRS9KstFz+7kTpsRB9YknLvU8rlU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Vv/Fx9qEMNFV0KlnfGLl4eFeHmRhbZTXvwqMfQeFytuZoP6LN7riUBwDOB8/Ts2Yf
-	 Y9nkN2IRhew5Vmafw/4ybGAnsP71mb0RrZnBlThTmHHTFea4Gm6MMyYSuoGrtgbxwB
-	 nXnaHdMWyEwDruCaX45tD2E+jHwQ3eyInCqDvxefavWnPS3kQCabsD8PZpWtKQ5NAq
-	 f9FenlvEt7BYvlp03YanuX+LYWDrI0eO9eZCZqac7Je2M7IM0MuDaOgBfS/DtjqnbS
-	 hGpDBLPKvXpQ+4vl3C9bElr9d2DwbENkZDLCpZqb4e5yW5HZMUHqtgBHCgR7huqNDZ
-	 oN8R+FmDksUmg==
-Received: from johan by xi.lan with local (Exim 4.96.2)
-	(envelope-from <johan@kernel.org>)
-	id 1rAAgJ-0003tX-1d;
-	Mon, 04 Dec 2023 16:16:23 +0100
-Date: Mon, 4 Dec 2023 16:16:23 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Abel Vesa <abel.vesa@linaro.org>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Abhinav Kumar <quic_abhinavk@quicinc.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: phy: qcom-edp: Add X1E80100 PHY
- compatibles
-Message-ID: <ZW3tR86MM0upnh9v@hovoldconsulting.com>
-References: <20231122-phy-qualcomm-edp-x1e80100-v2-0-114e789f0195@linaro.org>
- <20231122-phy-qualcomm-edp-x1e80100-v2-1-114e789f0195@linaro.org>
+	s=k20201202; t=1701703160;
+	bh=5sEvSdS3ZKittuPMVcViM6IheLlMNVV6ts0oVk77otY=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=YousOfmMHBUnvlRCr32wRy8FZAF1dTCiHuVIv7Kp2hghkRxjzn4MqQ2IV42kUi7mm
+	 O9QiotGnaRLRKMgVT9kSHYI+B0kNX5sGLb3YOcF/kzMaCF31Y2xt0yqhBWBqIRMDWq
+	 uq5Arw2zDAQiMqdZtJirTTKNWaFMN4ppVhJsgzYHfyspehGngnpOAabogB9WgdXQnn
+	 O0L+CzECjLKWu7s6MDvRCZY1fhRKbvtqjh7ujY9+PsMOHqFuWPemkJgn6KTSvMlH2b
+	 Yjqm/OreLE8I7rJN96gXBgSlgoMwvs2dcppvhwEqvWaOMXxt3EldipR0L6XUx4VriV
+	 gXJgWFPGyGguw==
+Date: Mon, 4 Dec 2023 15:19:10 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>
+Cc: <nuno.sa@analog.com>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-iio@vger.kernel.org, Olivier MOYSAN
+ <olivier.moysan@foss.st.com>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Rob
+ Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
+ Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>
+Subject: Re: [PATCH 05/12] iio: adc: ad9467: don't ignore error codes
+Message-ID: <20231204151910.6ab1728f@jic23-huawei>
+In-Reply-To: <20231121-dev-iio-backend-v1-5-6a3d542eba35@analog.com>
+References: <20231121-dev-iio-backend-v1-0-6a3d542eba35@analog.com>
+	<20231121-dev-iio-backend-v1-5-6a3d542eba35@analog.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231122-phy-qualcomm-edp-x1e80100-v2-1-114e789f0195@linaro.org>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Mon, Dec 04, 2023 at 05:01:36PM +0200, Abel Vesa wrote:
-> The Qualcomm X1E80100 platform has multiple PHYs that can work in both eDP
-> or DP mode, add compatibles for these.
+On Tue, 21 Nov 2023 11:20:18 +0100
+Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org> wrote:
+
+> From: Nuno Sa <nuno.sa@analog.com>
 > 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> Make sure functions that return errors are not ignored.
+> 
+> Fixes: ad6797120238 ("iio: adc: ad9467: add support AD9467 ADC")
+> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
 > ---
->  Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  drivers/iio/adc/ad9467.c | 25 ++++++++++++++++---------
+>  1 file changed, 16 insertions(+), 9 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
-> index 6566353f1a02..190f61c1d0f9 100644
-> --- a/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
-> @@ -21,6 +21,8 @@ properties:
->        - qcom,sc8180x-edp-phy
->        - qcom,sc8280xp-dp-phy
->        - qcom,sc8280xp-edp-phy
-> +      - qcom,x1e80100-dp-phy
-> +      - qcom,x1e80100-edp-phy
+> diff --git a/drivers/iio/adc/ad9467.c b/drivers/iio/adc/ad9467.c
+> index 368ea57be117..04474dbfa631 100644
+> --- a/drivers/iio/adc/ad9467.c
+> +++ b/drivers/iio/adc/ad9467.c
+> @@ -6,6 +6,7 @@
+>   */
+>  
+>  #include <linux/module.h>
+> +#include <linux/mutex.h>
+David noted this one...
 
-As was discussed here:
+>  #include <linux/device.h>
+>  #include <linux/kernel.h>
+>  #include <linux/slab.h>
+> @@ -160,11 +161,12 @@ static int ad9467_reg_access(struct adi_axi_adc_conv *conv, unsigned int reg,
+>  	struct spi_device *spi = st->spi;
+>  	int ret;
+>  
+> -	if (readval == NULL) {
+> +	if (!readval) {
 
-	https://lore.kernel.org/lkml/20231017032810.GP3553829@hu-bjorande-lv.qualcomm.com/
+Nothing wrong with tidying this up if the !readval syntax is more common
+in the driver, but it doesn't have anything to do with the fix, so not in this
+patch.
 
-there should most likely only be one compatible here too as this is just
-the same hardware block operating in two different modes.
+>  		ret = ad9467_spi_write(spi, reg, writeval);
+> -		ad9467_spi_write(spi, AN877_ADC_REG_TRANSFER,
+> -				 AN877_ADC_TRANSFER_SYNC);
+> -		return ret;
+> +		if (ret)
+> +			return ret;
+> +		return ad9467_spi_write(spi, AN877_ADC_REG_TRANSFER,
+> +					AN877_ADC_TRANSFER_SYNC);
+>  	}
+>  
+>  	ret = ad9467_spi_read(spi, reg);
+> @@ -274,6 +276,8 @@ static int ad9467_get_scale(struct adi_axi_adc_conv *conv, int *val, int *val2)
+>  	unsigned int i, vref_val;
+unsigned and you check it for < 0 ..
 
-Johan
+>  
+>  	vref_val = ad9467_spi_read(st->spi, AN877_ADC_REG_VREF);
+> +	if (vref_val < 0)
+> +		return vref_val;
+
+int ret = ...
+
+	vref_val = ret & info1->vref_mask; 
+if not an error.
+
+
+>  
+>  	vref_val &= info1->vref_mask;
+>  
+> @@ -296,6 +300,7 @@ static int ad9467_set_scale(struct adi_axi_adc_conv *conv, int val, int val2)
+>  	struct ad9467_state *st = adi_axi_adc_conv_priv(conv);
+>  	unsigned int scale_val[2];
+>  	unsigned int i;
+> +	int ret;
+>  
+>  	if (val != 0)
+>  		return -EINVAL;
+> @@ -305,11 +310,13 @@ static int ad9467_set_scale(struct adi_axi_adc_conv *conv, int val, int val2)
+>  		if (scale_val[0] != val || scale_val[1] != val2)
+>  			continue;
+>  
+> -		ad9467_spi_write(st->spi, AN877_ADC_REG_VREF,
+> -				 info->scale_table[i][1]);
+> -		ad9467_spi_write(st->spi, AN877_ADC_REG_TRANSFER,
+> -				 AN877_ADC_TRANSFER_SYNC);
+> -		return 0;
+> +		ret = ad9467_spi_write(st->spi, AN877_ADC_REG_VREF,
+> +				       info->scale_table[i][1]);
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		return ad9467_spi_write(st->spi, AN877_ADC_REG_TRANSFER,
+> +					AN877_ADC_TRANSFER_SYNC);
+>  	}
+>  
+>  	return -EINVAL;
+> 
+
 
