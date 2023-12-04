@@ -1,107 +1,166 @@
-Return-Path: <devicetree+bounces-21388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21389-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FA70803759
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 15:45:47 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB2E4803770
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 15:49:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 60FA51C20DB3
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 14:45:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A20FD28110E
+	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 14:49:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19605249EB;
-	Mon,  4 Dec 2023 14:45:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A622926297;
+	Mon,  4 Dec 2023 14:49:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mP1NKR8W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 323E4D4D;
-	Mon,  4 Dec 2023 06:45:26 -0800 (PST)
-Received: by mail-oi1-f179.google.com with SMTP id 5614622812f47-3b8b0ced0f4so965449b6e.0;
-        Mon, 04 Dec 2023 06:45:26 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701701125; x=1702305925;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=IStlrL3AAA++ujnW7Gs80LO4c80fIgknoPnSy4FHWTY=;
-        b=eV/OIhpXuu39TO1zkZ7A6NFC38toXXxtZizcIYx8wuXyFQ1eUgWVAZ9TDz7Az6hAj/
-         /u7UPPwZlxlCHKQM1aXVBAQoHyAdJSmo8cLA7SQwhtmdgwwjRIQ0DNgPQ+9aaookoXSi
-         aUDTFGfWsqRYZijmvDSxvCSt6MqBF9NTGoEaq/OD2Sy6FDhbNt1PpL5P9GEAOEft3ICs
-         TmLdgnjIzkd8DoZBRoSWH9t5d4V9y+G/3iGl6nz7wJqGwjefYwqfELuQW5kHKZzvWaqV
-         OfOgTE9rVEJ1o3W/Dch82aRUU3eHSlqgEsZONUV1P+OMlyPF13w2gnnAsIfUM1EDWDFM
-         w2MA==
-X-Gm-Message-State: AOJu0YwNl8lx9J+Y8aWIYk0o6BotRMqw8C1uBQ2SqqS68OG4KUzpFS2T
-	utrKAKPJ79Ra6Uk/6Alz5w==
-X-Google-Smtp-Source: AGHT+IGP/nC2C30emuK8+P2XIGBs/Pp0+yyMdPBFSIlSkDXIrMUGupMhp1AlWT6VkWwdCJoaeK1dQg==
-X-Received: by 2002:a54:4414:0:b0:3b8:b06b:9807 with SMTP id k20-20020a544414000000b003b8b06b9807mr1684905oiw.55.1701701125334;
-        Mon, 04 Dec 2023 06:45:25 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id z3-20020a056808048300b003b83c516e62sm1847817oid.51.2023.12.04.06.45.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Dec 2023 06:45:24 -0800 (PST)
-Received: (nullmailer pid 1246097 invoked by uid 1000);
-	Mon, 04 Dec 2023 14:45:23 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8678F288D7;
+	Mon,  4 Dec 2023 14:49:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DD35C433C7;
+	Mon,  4 Dec 2023 14:49:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701701376;
+	bh=+rfhQvthjBio9vKPuOuZeZLKHbgV1eAS2Q4KP5aiGdw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=mP1NKR8WcwA+hcZQ6uKxxCQEnsh3wuXEAjUr52iqagkAxstbdi8MnYIviiDX0Y+tN
+	 FAPnWwLPDVJE6/0x0dRz9DUEl35GqLq3/BvMWTQVFeh5qzzKYvLbxBF1R3JMlUe3PU
+	 2nsB5bDfcVu21DcHS+eV/VKlsW8o0uV1iBc/aGRlav7o8NTlluBw0MSsCZ74fa77KM
+	 jKEZtDLPH05I7H0Ftn58M5hS95djYVZyJDt2jHdD9ys8e/JZKNf9iruGYWzWGKItg2
+	 UwGjVHVbq8TkFWccMc1HBnxtFvIjF8+yWhL4VHfjn7w2d/XNpAv+2Uq6QSFtYlBOZZ
+	 AQ5/hYhWUpxiQ==
+Date: Mon, 4 Dec 2023 14:49:25 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>, nuno.sa@analog.com,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-iio@vger.kernel.org, Olivier MOYSAN <olivier.moysan@foss.st.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, Frank Rowand
+ <frowand.list@gmail.com>, Lars-Peter Clausen <lars@metafoo.de>, Michael
+ Hennerich <Michael.Hennerich@analog.com>
+Subject: Re: [PATCH 00/12] iio: add new backend framework
+Message-ID: <20231204144925.4fe9922f@jic23-huawei>
+In-Reply-To: <CAMknhBEg+cFrm9kQh1G+8nxGPCFsBaca3rnLEnXZ1h=XDS1aeQ@mail.gmail.com>
+References: <20231121-dev-iio-backend-v1-0-6a3d542eba35@analog.com>
+	<CAMknhBH0pF_+z_JqWGscELBmAEDyxLAtgQ-j3=6P2MeFXnzhWQ@mail.gmail.com>
+	<CAMknhBEcEJ01nO0p5_vy4jVBVTL_rhEk+pvBpXdMtaDurc-05A@mail.gmail.com>
+	<369a72dd34c0bc457620b88594a975d96aa85a22.camel@gmail.com>
+	<CAMknhBEg+cFrm9kQh1G+8nxGPCFsBaca3rnLEnXZ1h=XDS1aeQ@mail.gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Suraj Jaiswal <quic_jsuraj@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Bhupesh Sharma <bhupesh.sharma@linaro.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, linux-arm-msm@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>, Rob Herring <robh+dt@kernel.org>, "David S. Miller" <davem@davemloft.net>, linux-stm32@st-md-mailman.stormreply.com, linux-kernel@vger.kernel.org, Prasad Sodagudi <psodagud@quicinc.com>, kernel@quicinc.com, Jose Abreu <joabreu@synopsys.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, Conor Dooley <conor+dt@kernel.org>, Andrew Halaney <ahalaney@redhat.com>, Konrad Dybcio <konrad.dybcio@linaro.org>, Andy Gross <agross@kernel.org>, Eric Dumazet <edumazet@google.com>, netdev@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, devicetree@vger.kernel.org, Vinod Koul <vkoul@kernel.org>
-In-Reply-To: <2f215e2dabec345ec7f28e759c9463854959cced.1701695218.git.quic_jsuraj@quicinc.com>
-References: <cover.1701695218.git.quic_jsuraj@quicinc.com>
- <2f215e2dabec345ec7f28e759c9463854959cced.1701695218.git.quic_jsuraj@quicinc.com>
-Message-Id: <170170112344.1246081.15695671179356012271.robh@kernel.org>
-Subject: Re: [PATCH net-next v3 1/3] dt-bindings: net: qcom,ethqos: add
- binding doc for safety IRQ for sa8775p
-Date: Mon, 04 Dec 2023 08:45:23 -0600
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+On Sat, 2 Dec 2023 10:16:52 -0600
+David Lechner <dlechner@baylibre.com> wrote:
+
+> On Sat, Dec 2, 2023 at 3:37=E2=80=AFAM Nuno S=C3=A1 <noname.nuno@gmail.co=
+m> wrote:
+> >
+> > On Fri, 2023-12-01 at 21:53 -0600, David Lechner wrote: =20
+> > > On Thu, Nov 30, 2023 at 5:54=E2=80=AFPM David Lechner <dlechner@bayli=
+bre.com> wrote: =20
+> > > >
+> > > > On Tue, Nov 21, 2023 at 4:17=E2=80=AFAM Nuno Sa via B4 Relay
+> > > > <devnull+nuno.sa.analog.com@kernel.org> wrote: =20
+> > > > >
+> > > > > Hi all,
+> > > > >
+> > > > > This is a Framework to handle complex IIO aggregate devices.
+> > > > >
+> > > > > The typical architecture is to have one device as the frontend de=
+vice which
+> > > > > can be "linked" against one or multiple backend devices. All the =
+IIO and
+> > > > > userspace interface is expected to be registers/managed by the fr=
+ontend
+> > > > > device which will callback into the backends when needed (to get/=
+set
+> > > > > some configuration that it does not directly control).
+> > > > >
+> > > > > The basic framework interface is pretty simple:
+> > > > >  - Backends should register themselves with @devm_iio_backend_reg=
+ister()
+> > > > >  - Frontend devices should get backends with @devm_iio_backend_ge=
+t()
+> > > > >
+> > > > > (typical provider - consumer stuff)
+> > > > > =20
+> > > >
+> > > > The "typical provider - consumer stuff" seems pretty straight forwa=
+rd
+> > > > for finding and connecting two different devices, but the definition
+> > > > of what is a frontend and what is a backend seems a bit nebulous. It
+> > > > would be nice to seem some example devicetree to be able to get a
+> > > > better picture of how this will be used in practices (links to the =
+the
+> > > > hardware docs for those examples would be nice too).
+> > > > =20
+> > >
+> > > Fulfilling my own request here...
+> > >
+> > > Since AD9467 is being use as the example first user of the IIO offloa=
+d framework
+> > > I did a deep dive into how it is actually being used. It looks like t=
+his:
+> > > =20
+> >
+> > This is not an offload framework... I think somehow you're connecting t=
+his to the
+> > spi_engine offload and these are two completely different things. Maybe=
+ they can
+> > intersect at some point but as of now, I don't see any benefit in doing=
+ it. The goal
+> > of this patchseries is to have a simple and generic framework so we can=
+ connect IIO
+> > devices (frontends) to a backend device having kind of an IIO aggregate=
+ device so to
+> > say. Moreover, we just want to have the ad9467 driver in the same state=
+ it was before
+> > to keep things simple. I'm already fixing some things but I don't want =
+extend that
+> > too much as the primary goal is to have the framework in. Cleanups can =
+come
+> > afterwards.
+> >
+> > That said, is fine to have this kind of discussion but I honestly think=
+ you're over
+> > engineering the whole thing. Maybe you're already too ahead of me :), b=
+ut where we
+> > stand right now, I don't see any reason for anything so complicated as =
+the below.
+> > Also note this should be simple and generic. As I already said, this is=
+ not supposed
+> > to be an ADI only thing and STM also wants to make use of this infrastr=
+ucture. But
+> > see below some of my comments on why I think it's too much... =20
+>=20
+> This is a very fair point. I do have a tendency to overthink things. :-)
+>=20
+> At the very least, being able to see the schematic of how it all fits
+> together filled in the holes of my understanding and now everything
+> you are doing in this series makes sense to me. And I totally agree
+> with keeping it simpler is better.
+
+Interesting discussion. One key thing it has highlighted for me is that
+even the simpler proposal that Nuno has put forward deserves some
+more documentation!  Preferably with some asci art - though maybe not as co=
+mplex
+as David's pretty picture.  I keep forgetting which is the backend and which
+is the front end for this discussion which isn't helping me get my head
+around it.
+
+Jonathan
 
 
-On Mon, 04 Dec 2023 18:56:15 +0530, Suraj Jaiswal wrote:
-> Add binding doc for safety IRQ. The safety IRQ will be
-> triggered for ECC, DPP, FSM error.
-> 
-> Signed-off-by: Suraj Jaiswal <quic_jsuraj@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/net/qcom,ethqos.yaml | 9 ++++++---
->  Documentation/devicetree/bindings/net/snps,dwmac.yaml  | 5 +++--
->  2 files changed, 9 insertions(+), 5 deletions(-)
-> 
-
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/snps,dwmac.example.dtb: ethernet@e0800000: interrupt-names:2: 'eth_lpi' is not one of ['eth_wake_irq', 'safety']
-	from schema $id: http://devicetree.org/schemas/net/snps,dwmac.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.example.dtb: ethernet@16030000: interrupt-names:2: 'eth_lpi' is not one of ['eth_wake_irq', 'safety']
-	from schema $id: http://devicetree.org/schemas/net/snps,dwmac.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.example.dtb: ethernet@16030000: interrupt-names:2: 'eth_lpi' is not one of ['eth_wake_irq', 'safety']
-	from schema $id: http://devicetree.org/schemas/net/starfive,jh7110-dwmac.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.example.dtb: ethernet@16030000: Unevaluated properties are not allowed ('mdio', 'phy-handle', 'phy-mode', 'rx-fifo-depth', 'snps,axi-config', 'snps,en-tx-lpi-clockgating', 'snps,fixed-burst', 'snps,force_thresh_dma_mode', 'snps,multicast-filter-bins', 'snps,no-pbl-x8', 'snps,perfect-filter-entries', 'snps,rxpbl', 'snps,tso', 'snps,txpbl', 'stmmac-axi-config', 'tx-fifo-depth' were unexpected)
-	from schema $id: http://devicetree.org/schemas/net/starfive,jh7110-dwmac.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/2f215e2dabec345ec7f28e759c9463854959cced.1701695218.git.quic_jsuraj@quicinc.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
 
 
