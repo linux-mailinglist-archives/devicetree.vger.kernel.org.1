@@ -1,96 +1,159 @@
-Return-Path: <devicetree+bounces-21813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21814-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69A99805374
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 12:49:58 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 110AE805385
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 12:52:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C807AB20CD7
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 11:49:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5A3BFB20CBA
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 11:52:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF52759E2A;
-	Tue,  5 Dec 2023 11:49:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E76FA59E3A;
+	Tue,  5 Dec 2023 11:52:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SEVVCGo/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QyqT/lPf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 660C31AB;
-	Tue,  5 Dec 2023 03:49:46 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-50bf898c43cso1994651e87.1;
-        Tue, 05 Dec 2023 03:49:46 -0800 (PST)
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9DB6CA
+	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 03:52:05 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-54c1cd8d239so6359152a12.0
+        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 03:52:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701776984; x=1702381784; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=AcNcuzGaQBjUBsiLWETqgO5QGNFrGHbqm/wUp0AM8dI=;
-        b=SEVVCGo/NXb7w7bSjOiZx0rYuK6Eyyy6rI6Gyc5cnev3w19Ma7/WpOQ9C9G4onTNPx
-         wKZBDQXA/2MV4lNYaS3zuiFoFg9ZTwn5IU4kIdyvvEoBjcfpp5sgDMTr79/meJ+N6IYv
-         UjIIC4dqE7/9J5S1bgpgL11toczURz8AbNHLOL+ei2tT3BaSjI7HN8xViK7X19GX+WGP
-         C6L0JPvPnsIDkhCPToPi9EcxH625z74X+p5EhPiTk4mzlC7IGRpwkn2Inwfqa5kRtQ65
-         5MIJCcbtwmByC2tc2nQum1LvzDC637VpJwcU3xkyess+cqPgQJmCZeI/f++hWQ3sEQec
-         YJgw==
+        d=linaro.org; s=google; t=1701777124; x=1702381924; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=eWxyfiqnGwzzhjqMSgxKtJR+4/qcf8CjyzHmuAnIma0=;
+        b=QyqT/lPfI6p/JywCtGjKbX2gS6xpFgauJ98ewLBt0bgy9uTFCwL2ozMXPktAJ6hekB
+         +PkUXmMhCirV1qjQ7mFM7qqfMwiqY0Dxu/OduY4iOfp4KRXL5hSih7QtSF89qDhRdH/t
+         CYsDcSrlCyzi6zJa83wf3m/blHdq7wOurhpRH4xp6fZ6dSKEwHruea1l4jgWkVZ1k1hr
+         Df+Ieryyt0yZZMG7mjsrzmh1W9PSqq/LQDKIBF6EprRxPsjG5F8lRZM4C4c3EhrCxjGR
+         zkXXVzktjCcbHFpjEPer5RUpZ9upVuJxYMlhAz/o9diBawfA1+XPYpscdDCFl8lT6YO0
+         oYCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701776984; x=1702381784;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AcNcuzGaQBjUBsiLWETqgO5QGNFrGHbqm/wUp0AM8dI=;
-        b=DcTITSU7NLfBJDMD6ZIFR/m6G2RbEe7GUtYmWk43DpuIleGO0wSv353YaERfYvLVp6
-         jFdpcqdngvznMyM4RnvbGN/X3HmVLiOQ+jENJYXdMQkHp+329JX1ka/NOqnd+fywYTaI
-         19BeZ+xNU+0TwAXGQuZsXzXIAfQmzJzv29r5mfXrF2Z1HUTUvdr1/N0GbN/3geKXTfJt
-         MInDixlGftEpc3duOGktoofP1bTEALPFyZMDegOlxb+YDxQy39qmHg1CzbUzb7TahBt0
-         B1ogjnECDg2ZHeRKMdb60vKwx7EDa4sZ5uWuMBhzxYzsjlr8Vdeo3FkBMmiDvZlDSzOO
-         72IQ==
-X-Gm-Message-State: AOJu0YxBz0CE622HQ+NsnTv/VGV3pILyHe80prybPmtsDtojM77zygTD
-	42aQP0rt+jCnRTYlSQmWW1E=
-X-Google-Smtp-Source: AGHT+IHG01Rbi7bi2+HqRxjF1g6Uid7DKqoIjAsfnJUvTJZdfjRyLs23pzhCbhHBaCrpogRFumVNSg==
-X-Received: by 2002:a05:6512:1394:b0:50c:320:f171 with SMTP id fc20-20020a056512139400b0050c0320f171mr476503lfb.197.1701776983952;
-        Tue, 05 Dec 2023 03:49:43 -0800 (PST)
-Received: from mobilestation ([178.176.56.174])
-        by smtp.gmail.com with ESMTPSA id e2-20020a05651236c200b0050bf0921ac1sm792193lfs.206.2023.12.05.03.49.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Dec 2023 03:49:43 -0800 (PST)
-Date: Tue, 5 Dec 2023 14:49:41 +0300
-From: Serge Semin <fancer.lancer@gmail.com>
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
-	Russell King <linux@armlinux.org.uk>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Jose Abreu <joabreu@synopsys.com>, Jose Abreu <Jose.Abreu@synopsys.com>, 
-	Maxime Chevallier <maxime.chevallier@bootlin.com>, Tomer Maimon <tmaimon77@gmail.com>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, openbmc@lists.ozlabs.org, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 05/16] net: pcs: xpcs: Move native device ID
- macro to linux/pcs/pcs-xpcs.h
-Message-ID: <6zejbbv6oriaztbbgyjy6r6hycccq6rvypb5ywxf7nqx3vlq7r@na5eossdsuec>
-References: <20231205103559.9605-1-fancer.lancer@gmail.com>
- <20231205103559.9605-1-fancer.lancer@gmail.com>
- <20231205103559.9605-6-fancer.lancer@gmail.com>
- <20231205103559.9605-6-fancer.lancer@gmail.com>
- <20231205112755.3am2mazwireflpkq@skbuf>
+        d=1e100.net; s=20230601; t=1701777124; x=1702381924;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=eWxyfiqnGwzzhjqMSgxKtJR+4/qcf8CjyzHmuAnIma0=;
+        b=NZkRKacqBlXaJO0SlJq56xLORMU+4QjVJYMQa6Z9cKvmMVH2VnmKjz7LU4rjrKx3yU
+         5WID/xLiJe7+1nuBiUAim/xmWFXGEP7gWnH9kVQqUvEvIaImInyb0eglvy854BVTPE8B
+         A4MKMfjHx99doZK0v6vZnFo4kwLs+YypUoL90BxhZngTkaLv74V7iJB0IGF+W/8ztjWM
+         1nOdi47V8d6CARUS5l+YTZ+5MuinJLQwGHLjbkfWNqLz0BNwlpdEcaJNeq+4wNreyTes
+         5myrOtBT/KNyv5WA8IOckwMH9EyBbtb4tZF4G3FDQ+RjY2VcnmvKBHK/uiCqayAXhKxu
+         4hxQ==
+X-Gm-Message-State: AOJu0YwptmSvA81VVFXxYaza+/kirCKlKG8IHKt5cfVW6RFXEl/CI/OU
+	UFO+0Hads8+wZk9JciljHKF/8w==
+X-Google-Smtp-Source: AGHT+IG6dLc8lrGhio1wlufsCF8qAtSf89sBo3+OTMgNylBCHQcWOU0BrK6gPmhgtXdDFxACRk9I7Q==
+X-Received: by 2002:a17:907:503:b0:a1c:fd09:67ef with SMTP id wj3-20020a170907050300b00a1cfd0967efmr26840ejb.53.1701777124151;
+        Tue, 05 Dec 2023 03:52:04 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id ks13-20020a170906f84d00b00a1c99f67834sm567171ejb.70.2023.12.05.03.52.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Dec 2023 03:52:03 -0800 (PST)
+Message-ID: <6f5223aa-a45f-44d3-8430-2543c7aef7b1@linaro.org>
+Date: Tue, 5 Dec 2023 12:52:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231205112755.3am2mazwireflpkq@skbuf>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: qrb5165-rb5: add a pin function for
+ BT enable GPIO
+Content-Language: en-US
+To: Bartosz Golaszewski <brgl@bgdev.pl>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Alex Elder <elder@linaro.org>,
+ Srini Kandagatla <srinivas.kandagatla@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+References: <20231205112311.16391-1-brgl@bgdev.pl>
+ <20231205112311.16391-2-brgl@bgdev.pl>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231205112311.16391-2-brgl@bgdev.pl>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Dec 05, 2023 at 01:27:55PM +0200, Vladimir Oltean wrote:
-> On Tue, Dec 05, 2023 at 01:35:26PM +0300, Serge Semin wrote:
-> > In addition to that having all supported DW XPCS device IDs defined in
-> > a sinle place will improve the code maintainability and readability.
+On 05/12/2023 12:23, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > 
-> single
+> Set up the pin function for the Bluetooth enable GPIO.
+> 
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> index ce6ae0771d34..ead0c45ba60c 100644
+> --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> @@ -1264,6 +1264,17 @@ &tlmm {
+>  		"HST_WLAN_UART_TX",
+>  		"HST_WLAN_UART_RX";
+>  
+> +	bt_en_state: bt-default-state {
+> +		bt-en {
 
-Got it. Thanks. Seeing there are so many comments about the log
-messages I'll double check them on v2.
+This looks like tlmm, so you miss here suffix.
 
--Serge(y)
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
+
+
+Best regards,
+Krzysztof
+
 
