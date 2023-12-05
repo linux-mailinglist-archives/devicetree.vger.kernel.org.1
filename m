@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-21626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F080804BC1
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 09:05:03 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AC3C804BD0
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 09:06:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BA44AB20C6E
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 08:04:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B8E1F1F2146E
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 08:06:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD3EC364C8;
-	Tue,  5 Dec 2023 08:04:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7B6639FDD;
+	Tue,  5 Dec 2023 08:06:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oGpU9UGW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PQwZbAs1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BEDF136
-	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 00:04:47 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-54ca339ae7aso2978631a12.3
-        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 00:04:47 -0800 (PST)
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49AC8D4E
+	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 00:06:29 -0800 (PST)
+Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2ca0715f0faso22387601fa.0
+        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 00:06:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701763486; x=1702368286; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701763587; x=1702368387; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=kQgvrsG+45eRTqwoowf77ABXnXZq9SZNP9x+aYSkZUs=;
-        b=oGpU9UGWbxkK8p/HEtYkWrmAoHV7hhjodwyyznldGr6QduFoGeZ7wpknszu9r1fDAP
-         Ypf8LEVD0XlZkB9Q4o89hHAwmMNnHeg1+hOcO1BERcEqTZGuESV6hh/+nBR6IeJ/VV/b
-         /6i2ssh+Y5/g+w8OrZvRzK6BwGLXmRUlX0AolH3x5GFbsuHSXKwKWmCgYQ5YR5tEc0fl
-         6PVrEUwj2KIFK1RlcdiNkvdd3UGzrbzt/QoJplxSiWvI7xNO+A/N3fAxKWCNEgayma0V
-         ychxgccNI9u97niRDSpTSqKSr4MeZu2JY40JqH61+brxlCE79iuM9qR8IzDLcUlKbIzq
-         ZyMw==
+        bh=xXHrqrmyDXrxhHJgb2AkCy+sSOHhoIKiOezRfvsHkMw=;
+        b=PQwZbAs1rPG3+qP+dPGxOjhK560HgRJkpSXY+Y15HR/FMC0xeiS7yMhWM5YZHRi5T/
+         OJrd4KpAKl0FEL+Tp1sW48Zr4hrS8DQ+Feu6xtJGKK0laf8isQTUdPi3YFv7sXHkJo9D
+         7zjEISC0a40XCsoDqBkgo0i74dq7k2GtwQbBjzktIhx8Fp2YmPE3fO7zLh+aVTRc2ysN
+         bMHNvhhiGsZIRKHTwGyaMsd11HRIGYUBz6RIwxaf7As9xNHqHt5NjKzj29yFMnL+HH8S
+         pONazfNwyaQwVqjTqhw/HYx2i+dH3Q6VcKniIvkfLglmeDto46f4yKvtqYUl9zw5IxoV
+         z2xw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701763486; x=1702368286;
+        d=1e100.net; s=20230601; t=1701763587; x=1702368387;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kQgvrsG+45eRTqwoowf77ABXnXZq9SZNP9x+aYSkZUs=;
-        b=i2i8YSV+D7ddczQXIWMxmoITQ7mqVV1sZAYu/Ubbe+hx+7c79w3PoBE9Mg4uJ8zif8
-         7hijxVMHAbdqf5zoPwlYyG8BpBFlAtbVAer0BTO5HtO6/5cuFIdF9etml98S8FIFcCxL
-         ZUYRpa9H8rw//bGy7+6WLhwh+36nw7vmQLQZa7piMdWt1q2AqRUmS5lwNLTVwDXaBnWU
-         pML10pxenuxE8DuQNo7qCTQ5+lTZffJ8fmL61PS6fZ5EfOZzZ41Bx3uvlmY1k44iP3nH
-         qPbNRXGvgvDNk7fyzG2uHOSkG9PhIuZnAphiBZcp97QKIJJFDWiaHpDYPKMpKy9eLVfF
-         vXRA==
-X-Gm-Message-State: AOJu0Yx54O81rRcV7eLopjCRMuY3Xru6bwAUToRyUcunuIrI1FR3GoLq
-	c6/mbnrr0rsWZq4yRlbk2IS0JA==
-X-Google-Smtp-Source: AGHT+IH0z0PnpnE+uMWJrpLKJufOusH4jJJ2vfE35thSUbndxPFBqO6jHZlTNiTj66BVNb5sUXkKDQ==
-X-Received: by 2002:a17:906:209e:b0:9e0:4910:1666 with SMTP id 30-20020a170906209e00b009e049101666mr3844736ejq.35.1701763485742;
-        Tue, 05 Dec 2023 00:04:45 -0800 (PST)
+        bh=xXHrqrmyDXrxhHJgb2AkCy+sSOHhoIKiOezRfvsHkMw=;
+        b=dbptyY+Mzy/v6vid+lWaovs4wvNBVlp+yno0ajAaJ9Vo2Xlzsuv5rvQ4kQ86HECSbd
+         wkjnxXbTsGNSNZQV+pKSDpOfhi8vMYPMQbGo4dlLOMa5zYFXljKf5T/Q7pbyCF2X4LMj
+         xgMyQPUFPHFx926Q2I4zYfgRKZ/tcckJ22f/9QW9889oEHvcZsL3NI13XSSy+zZMB9mf
+         9ke9SWoHQDzx/kLGUJq83cxGktQs5Jv5oUNUEZ80vUMc4mgMVte0t/JLD8ef6UM8i1sQ
+         aicYxMTqOsjrmVM9wejiqses+tarOXb91LWEBnT66gYl/00/j4Pw0KELDkMqP0NmU74c
+         tDNw==
+X-Gm-Message-State: AOJu0Yyj9GT2L7cPzI8vu/tTC3Ah3Y+TDRJHlf1OyIc8iNt4dhMossGg
+	08g9KaG/5ybw8U7c7v9IL4qyWQ==
+X-Google-Smtp-Source: AGHT+IGsBN5o5IcayjdKijYEvdxpqJpr+nss7YG2BNN0W1SE1L0lP/e3QGLq0qMYFirhkAlTpAsoaw==
+X-Received: by 2002:a05:651c:d1:b0:2c9:f140:6a52 with SMTP id 17-20020a05651c00d100b002c9f1406a52mr1967205ljr.25.1701763587383;
+        Tue, 05 Dec 2023 00:06:27 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id g2-20020a1709064e4200b00a1cb351dd4fsm174276ejw.9.2023.12.05.00.04.44
+        by smtp.gmail.com with ESMTPSA id g2-20020a1709064e4200b00a1cb351dd4fsm174276ejw.9.2023.12.05.00.06.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Dec 2023 00:04:45 -0800 (PST)
-Message-ID: <02caed36-7914-47d1-9593-5120d3503ff7@linaro.org>
-Date: Tue, 5 Dec 2023 09:04:43 +0100
+        Tue, 05 Dec 2023 00:06:26 -0800 (PST)
+Message-ID: <8ad3cc5d-3138-47ef-92d6-020b65db7409@linaro.org>
+Date: Tue, 5 Dec 2023 09:06:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,28 +62,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/2] hwmon: Driver for Nuvoton NCT736X
+Subject: Re: [PATCH v4 1/4] dt-bindings: soc: sophgo: Add Sophgo system
+ control module
 Content-Language: en-US
-To: "KCFENG0@nuvoton.com" <KCFENG0@nuvoton.com>,
- Guenter Roeck <linux@roeck-us.net>,
- "baneric926@gmail.com" <baneric926@gmail.com>,
- "jdelvare@suse.com" <jdelvare@suse.com>,
- "robh+dt@kernel.org" <robh+dt@kernel.org>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>, "corbet@lwn.net"
- <corbet@lwn.net>
-Cc: "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
- "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
- "KWLIU@nuvoton.com" <KWLIU@nuvoton.com>,
- "DELPHINE_CHIU@wiwynn.com" <DELPHINE_CHIU@wiwynn.com>,
- "Bonnie_Lo@wiwynn.com" <Bonnie_Lo@wiwynn.com>
-References: <20231204055650.788388-1-kcfeng0@nuvoton.com>
- <20231204055650.788388-3-kcfeng0@nuvoton.com>
- <87c11991-8f74-4f71-972e-373ffa1fddb1@roeck-us.net>
- <TYZPR03MB7712AD5A08E3DD97541C39FDF085A@TYZPR03MB7712.apcprd03.prod.outlook.com>
+To: Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu,
+ chao.wei@sophgo.com, conor@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ mturquette@baylibre.com, palmer@dabbelt.com, paul.walmsley@sifive.com,
+ richardcochran@gmail.com, robh+dt@kernel.org, sboyd@kernel.org,
+ devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com, guoren@kernel.org,
+ jszhang@kernel.org, inochiama@outlook.com, samuel.holland@sifive.com
+Cc: Chen Wang <unicorn_wang@outlook.com>
+References: <cover.1701734442.git.unicorn_wang@outlook.com>
+ <d02730f0b2b531ce7f59e6569e83a57f551f72aa.1701734442.git.unicorn_wang@outlook.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -129,18 +121,19 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <TYZPR03MB7712AD5A08E3DD97541C39FDF085A@TYZPR03MB7712.apcprd03.prod.outlook.com>
+In-Reply-To: <d02730f0b2b531ce7f59e6569e83a57f551f72aa.1701734442.git.unicorn_wang@outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/12/2023 06:02, KCFENG0@nuvoton.com wrote:
-> Hi Guenter
+On 05/12/2023 01:22, Chen Wang wrote:
+> From: Chen Wang <unicorn_wang@outlook.com>
+> 
+> Add documentation to describe Sophgo System Controller for SG2042.
+> 
+> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
+> ---
 
-...
-
->  The privileged confidential information contained in this email is intended for use only by the addressees as indicated by the original sender of this email. If you are not the addressee indicated in this email or are not responsible for delivery of the email to such a person, please kindly reply to the sender indicating this fact and delete all copies of it from your computer and network server immediately. 
-
-As requested: I am going to delete all the copies of your emails.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
