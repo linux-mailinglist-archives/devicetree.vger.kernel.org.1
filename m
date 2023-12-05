@@ -1,91 +1,184 @@
-Return-Path: <devicetree+bounces-21956-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21958-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA881805D16
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 19:19:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14454805DDC
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 19:43:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 73E9C1F21775
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 18:19:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1EC131C210A9
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 18:43:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AEFC68B85;
-	Tue,  5 Dec 2023 18:19:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="DxH1pk0c"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 439C6391;
+	Tue,  5 Dec 2023 18:43:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7225BAC;
-	Tue,  5 Dec 2023 10:19:50 -0800 (PST)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B5IJdOJ041306;
-	Tue, 5 Dec 2023 12:19:39 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1701800379;
-	bh=WAEGbkCdkZQkNXT1+Kwb7nEHiZjAZT6KEw41iaIbNQo=;
-	h=From:To:CC:Subject:Date;
-	b=DxH1pk0c8WJqs8oE4Yrex1n24HrbWfUZEafC3RW8/Wh54ZtQe7gNBNVX76a7i2rRV
-	 kPdwpNXDbeRmkKe9uz11KAndcPW2Zi7qE5s1DFlhrgekAOybMWcY/hQYqk/x2by8W5
-	 VQX+SC6aD9CuorLNUYL8VcCm4IUU5wowVshGsS7c=
-Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B5IJdID115823
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 5 Dec 2023 12:19:39 -0600
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 5
- Dec 2023 12:19:39 -0600
-Received: from DLEE108.ent.ti.com ([fe80::922:4dc:27cc:b334]) by
- DLEE108.ent.ti.com ([fe80::922:4dc:27cc:b334%17]) with mapi id
- 15.01.2507.023; Tue, 5 Dec 2023 12:19:39 -0600
-From: "Brnich, Brandon" <b-brnich@ti.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Geert Uytterhoeven
-	<geert@linux-m68k.org>,
-        "linux-media@vger.kernel.org"
-	<linux-media@vger.kernel.org>,
-        "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>,
-        Sebastian Fricke
-	<sebastian.fricke@collabora.com>,
-        Nas Chung <nas.chung@chipsnmedia.com>
-CC: "Menon, Nishanth" <nm@ti.com>, "Etheridge, Darren" <detheridge@ti.com>
-Subject: Re: [PATCH 1/2] dt-bindings: media: Remove K3 Family Prefix from
- Compatible
-Thread-Topic: [PATCH 1/2] dt-bindings: media: Remove K3 Family Prefix from
- Compatible
-Thread-Index: AdonnnBOfXbF7ysvRZOWDYpHdQCVVA==
-Date: Tue, 5 Dec 2023 18:19:39 +0000
-Message-ID: <5240cd51831a471f859a0440f5405c51@ti.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-Greylist: delayed 1222 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 05 Dec 2023 10:43:22 PST
+Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4636410D3;
+	Tue,  5 Dec 2023 10:43:22 -0800 (PST)
+Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
+	by finn.localdomain with esmtp (Exim 4.93)
+	(envelope-from <tharvey@gateworks.com>)
+	id 1rAa4A-00BDe6-Vq; Tue, 05 Dec 2023 18:22:43 +0000
+From: Tim Harvey <tharvey@gateworks.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Tim Harvey <tharvey@gateworks.com>
+Subject: [PATCH] arm64: dts: imx8mm-venice-gw7: Fix pci sub-nodes
+Date: Tue,  5 Dec 2023 10:22:41 -0800
+Message-Id: <20231205182241.2550284-1-tharvey@gateworks.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-SGVsbG8gS3J6eXN6dG9mLA0KDQo+IE9uIDA0LzEyLzIwMjMgMTk6MTQsIEJyYW5kb24gQnJuaWNo
-IHdyb3RlOg0KPiA+IEszIGZhbWlseSBwcmVmaXggaXMgbm90IGluY2x1ZGVkIGluIG90aGVyIFRJ
-IGNvbXBhdGlibGUgc3RyaW5ncy4NCj4gPiBSZW1vdmUgdGhpcyBwcmVmaXggdG8ga2VlcCBuYW1p
-bmcgY29udmVudGlvbiBjb25zaXN0ZW50Lg0KPiA+DQo+ID4gRml4ZXM6IGRlNGI5ZjdlMzcxYSAo
-ImR0LWJpbmRpbmdzOiBtZWRpYTogd2F2ZTU6IGFkZCB5YW1sIGRldmljZXRyZWUNCj4gPiBiaW5k
-aW5ncyIpDQo+IA0KPiBUaGlzIGNoYW5nZSBicmVha3MgdGhlIEFCSSwgc28gZG9lcyBpdCBtZWFu
-IGl0IHdhcyBub3QgeWV0IHJlbGVhc2VkPw0KDQpUaGlzIGRyaXZlciBoYXMgbm90IHlldCBtYWRl
-IGl0IGludG8gcmVsZWFzZXMuIEl0IGN1cnJlbnRseSByZXNpZGVzIGluIGxpbnV4LW5leHQuIA0K
-DQo+IA0KPiBQbGVhc2UgdXNlIHNjcmlwdHMvZ2V0X21haW50YWluZXJzLnBsIHRvIGdldCBhIGxp
-c3Qgb2YgbmVjZXNzYXJ5IHBlb3BsZSBhbmQNCj4gbGlzdHMgdG8gQ0MgKGFuZCBjb25zaWRlciAt
-LW5vLWdpdC1mYWxsYmFjayBhcmd1bWVudCkuIEl0IG1pZ2h0IGhhcHBlbiwgdGhhdA0KPiBjb21t
-YW5kIHdoZW4gcnVuIG9uIGFuIG9sZGVyIGtlcm5lbCwgZ2l2ZXMgeW91IG91dGRhdGVkIGVudHJp
-ZXMuDQo+IFRoZXJlZm9yZSBwbGVhc2UgYmUgc3VyZSB5b3UgYmFzZSB5b3VyIHBhdGNoZXMgb24g
-cmVjZW50IExpbnV4IGtlcm5lbC4NCg0KSSB3aWxsIHVwZGF0ZSB0aGlzIGluIG5leHQgdmVyc2lv
-bi4NCg0KPiANCj4gQmVzdCByZWdhcmRzLA0KPiBLcnp5c3p0b2YNCg0KVGhhbmtzLA0KQnJhbmRv
-bg0KDQoNCg==
+Several schema warnings were fixed in commit
+d61c5068729a ("arm64: dts: imx8mm-venice-gw7: Fix pci sub-nodes")
+however the node names and the ethernet NIC node were not quite correct.
+
+Fix the node names as the ethernet device should have a node name of
+'ethernet' and remove the device_type, #address-cells, #size-cells, and
+ranges properties that should only be on busses/bridges.
+
+Fixes: d61c5068729a ("arm64: dts: imx8mm-venice-gw7: Fix pci sub-nodes")
+Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+---
+ .../dts/freescale/imx8mm-venice-gw72xx.dtsi    | 18 +++++++-----------
+ .../dts/freescale/imx8mm-venice-gw73xx.dtsi    | 18 +++++++-----------
+ .../dts/freescale/imx8mm-venice-gw7902.dts     | 10 +++-------
+ 3 files changed, 17 insertions(+), 29 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
+index a337e8f20441..31f16f7cf37c 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
+@@ -157,33 +157,29 @@ &pcie0 {
+ 				 <&clk IMX8MM_SYS_PLL2_250M>;
+ 	status = "okay";
+ 
+-	pcie@0,0 {
+-		reg = <0x0000 0 0 0 0>;
++	pcie@0 {
+ 		device_type = "pci";
++		reg = <0x0000 0 0 0 0>;
+ 		#address-cells = <3>;
+ 		#size-cells = <2>;
+ 		ranges;
+ 
+-		pcie@0,0 {
+-			reg = <0x0000 0 0 0 0>;
++		pcie@0 {
+ 			device_type = "pci";
++			reg = <0x0000 0 0 0 0>;
+ 			#address-cells = <3>;
+ 			#size-cells = <2>;
+ 			ranges;
+ 
+-			pcie@3,0 {
+-				reg = <0x1800 0 0 0 0>;
++			pcie@3 {
+ 				device_type = "pci";
++				reg = <0x1800 0 0 0 0>;
+ 				#address-cells = <3>;
+ 				#size-cells = <2>;
+ 				ranges;
+ 
+-				eth1: pcie@0,0 {
++				eth1: ethernet@0 {
+ 					reg = <0x0000 0 0 0 0>;
+-					device_type = "pci";
+-					#address-cells = <3>;
+-					#size-cells = <2>;
+-					ranges;
+ 
+ 					local-mac-address = [00 00 00 00 00 00];
+ 				};
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
+index 2247d1c4e2af..6f5a6d91c95e 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
+@@ -177,33 +177,29 @@ &pcie0 {
+ 				 <&clk IMX8MM_SYS_PLL2_250M>;
+ 	status = "okay";
+ 
+-	pcie@0,0 {
+-		reg = <0x0000 0 0 0 0>;
++	pcie@0 {
+ 		device_type = "pci";
++		reg = <0x0000 0 0 0 0>;
+ 		#address-cells = <3>;
+ 		#size-cells = <2>;
+ 		ranges;
+ 
+-		pcie@0,0 {
+-			reg = <0x0000 0 0 0 0>;
++		pcie@0 {
+ 			device_type = "pci";
++			reg = <0x0000 0 0 0 0>;
+ 			#address-cells = <3>;
+ 			#size-cells = <2>;
+ 			ranges;
+ 
+-			pcie@4,0 {
+-				reg = <0x2000 0 0 0 0>;
++			pcie@4 {
+ 				device_type = "pci";
++				reg = <0x2000 0 0 0 0>;
+ 				#address-cells = <3>;
+ 				#size-cells = <2>;
+ 				ranges;
+ 
+-				eth1: pcie@0,0 {
++				eth1: ethernet@0 {
+ 					reg = <0x0000 0 0 0 0>;
+-					device_type = "pci";
+-					#address-cells = <3>;
+-					#size-cells = <2>;
+-					ranges;
+ 
+ 					local-mac-address = [00 00 00 00 00 00];
+ 				};
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
+index 7ef17c2b0e9d..4bb22fdc5d2e 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
+@@ -633,19 +633,15 @@ &pcie0 {
+ 				 <&clk IMX8MM_SYS_PLL2_250M>;
+ 	status = "okay";
+ 
+-	pcie@0,0 {
+-		reg = <0x0000 0 0 0 0>;
++	pcie@0 {
+ 		device_type = "pci";
++		reg = <0x0000 0 0 0 0>;
+ 		#address-cells = <3>;
+ 		#size-cells = <2>;
+ 		ranges;
+ 
+-		eth1: pcie@0,0 {
++		eth1: ethernet@0 {
+ 			reg = <0x0000 0 0 0 0>;
+-			device_type = "pci";
+-			#address-cells = <3>;
+-			#size-cells = <2>;
+-			ranges;
+ 
+ 			local-mac-address = [00 00 00 00 00 00];
+ 		};
+-- 
+2.25.1
+
 
