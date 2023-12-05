@@ -1,202 +1,134 @@
-Return-Path: <devicetree+bounces-21937-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21938-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDBF1805A7C
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 17:52:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED0EF805A8F
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 17:55:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F4E51F2171B
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 16:52:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66003281A84
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 16:55:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB51660BB1;
-	Tue,  5 Dec 2023 16:52:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 262B663DDB;
+	Tue,  5 Dec 2023 16:55:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FjFLZ1Rh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 41A54D64
-	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 08:52:13 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8B1A91576;
-	Tue,  5 Dec 2023 08:52:59 -0800 (PST)
-Received: from e121345-lin.cambridge.arm.com (e121345-lin.cambridge.arm.com [10.1.196.40])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id D6A3F3F5A1;
-	Tue,  5 Dec 2023 08:52:11 -0800 (PST)
-From: Robin Murphy <robin.murphy@arm.com>
-To: will@kernel.org
-Cc: mark.rutland@arm.com,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	suzuki.poulose@arm.com,
-	ilkka@os.amperecomputing.com,
-	bwicaksono@nvidia.com,
-	YWan@nvidia.com,
-	rwiley@nvidia.com
-Subject: [PATCH 5/5] perf/arm_cspmu: Add devicetree support
-Date: Tue,  5 Dec 2023 16:51:58 +0000
-Message-Id: <7000cdf3a22afe684793863e81a1d96bbddb5db1.1701793996.git.robin.murphy@arm.com>
-X-Mailer: git-send-email 2.39.2.101.g768bb238c484.dirty
-In-Reply-To: <cover.1701793996.git.robin.murphy@arm.com>
-References: <cover.1701793996.git.robin.murphy@arm.com>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08C0C60BBE
+	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 16:55:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29C03C433C7;
+	Tue,  5 Dec 2023 16:55:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701795348;
+	bh=RwcNNAfsT2+STZzMi5x3BGwN32YgoA2d0mKr4ENbGZE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FjFLZ1Rh+du2h3Xb0bSK4KrUOT6fT/mC3PCn1xTExxYL1Y9m6klM24q5lg1anp4fM
+	 VNee4O0kp/dYn/OjnEz2zyPba6X5OPGM/zHSORp8+8noc+Fs/VoH4RI6HHM1uFtGVO
+	 23v3U91sGep4k51vdmQE7QGYYBhrzTH4vVQUoTQ9UCG/yUQ1sQqvO8GzKgQtOOnJlu
+	 ImKOnsrqWdkJzcwZK9yqxYPuTDOg33Ea9YikvpStDx8Ra+JAHSfou0NygtMVmwEplC
+	 DTm5Ld0nRrs/7yx92WsNscDE1+9aj/9ztHcwj53aZcD1gyHCOuJZgBM2BSDKNvyQ7S
+	 /67tlhJmHj2Jw==
+Date: Tue, 5 Dec 2023 16:55:42 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Johan Jonker <jbx6244@gmail.com>
+Cc: Alex Bee <knaerzche@gmail.com>, heiko@sntech.de, hjc@rock-chips.com,
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+	tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/3] dt-bindings: drm: rockchip: convert
+ inno_hdmi-rockchip.txt to yaml
+Message-ID: <20231205-agency-paralyses-2a7b6df25c66@spud>
+References: <49c6afec-022f-02de-99a0-d409b64da198@gmail.com>
+ <3f235189-da75-4e9d-ad68-8cbebca12f6d@gmail.com>
+ <3331543a-73fb-3565-47c6-d3303c44ba21@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="7k2kR/ZshohNs10q"
+Content-Disposition: inline
+In-Reply-To: <3331543a-73fb-3565-47c6-d3303c44ba21@gmail.com>
 
-Hook up devicetree probing support. For now let's hope that people
-implement PMIIDR properly and we don't need an override mechanism.
 
-Signed-off-by: Robin Murphy <robin.murphy@arm.com>
----
- drivers/perf/arm_cspmu/arm_cspmu.c | 71 +++++++++++++++++++++++-------
- 1 file changed, 56 insertions(+), 15 deletions(-)
+--7k2kR/ZshohNs10q
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/perf/arm_cspmu/arm_cspmu.c b/drivers/perf/arm_cspmu/arm_cspmu.c
-index b64de4d800c7..80b5fc417ee3 100644
---- a/drivers/perf/arm_cspmu/arm_cspmu.c
-+++ b/drivers/perf/arm_cspmu/arm_cspmu.c
-@@ -27,6 +27,7 @@
- #include <linux/io-64-nonatomic-lo-hi.h>
- #include <linux/module.h>
- #include <linux/mutex.h>
-+#include <linux/of.h>
- #include <linux/perf_event.h>
- #include <linux/platform_device.h>
- 
-@@ -309,6 +310,10 @@ static const char *arm_cspmu_get_name(const struct arm_cspmu *cspmu)
- 	static atomic_t pmu_idx[ACPI_APMT_NODE_TYPE_COUNT] = { 0 };
- 
- 	dev = cspmu->dev;
-+	if (!has_acpi_companion(dev))
-+		return devm_kasprintf(dev, GFP_KERNEL, PMUNAME "_%u",
-+				      atomic_fetch_inc(&pmu_idx[0]));
-+
- 	apmt_node = arm_cspmu_apmt_node(dev);
- 	pmu_type = apmt_node->type;
- 
-@@ -406,7 +411,6 @@ static struct arm_cspmu_impl_match *arm_cspmu_impl_match_get(u32 pmiidr)
- static int arm_cspmu_init_impl_ops(struct arm_cspmu *cspmu)
- {
- 	int ret = 0;
--	struct acpi_apmt_node *apmt_node = arm_cspmu_apmt_node(cspmu->dev);
- 	struct arm_cspmu_impl_match *match;
- 
- 	/* Start with a default PMU implementation */
-@@ -425,8 +429,12 @@ static int arm_cspmu_init_impl_ops(struct arm_cspmu *cspmu)
- 	};
- 
- 	/* Firmware may override implementer/product ID from PMIIDR */
--	if (apmt_node->impl_id)
--		cspmu->impl.pmiidr = apmt_node->impl_id;
-+	if (has_acpi_companion(cspmu->dev)) {
-+		struct acpi_apmt_node *apmt_node = arm_cspmu_apmt_node(cspmu->dev);
-+
-+		if (apmt_node->impl_id)
-+			cspmu->impl.pmiidr = apmt_node->impl_id;
-+	}
- 
- 	/* Find implementer specific attribute ops. */
- 	match = arm_cspmu_impl_match_get(cspmu->impl.pmiidr);
-@@ -928,7 +936,6 @@ static void arm_cspmu_read(struct perf_event *event)
- 
- static struct arm_cspmu *arm_cspmu_alloc(struct platform_device *pdev)
- {
--	struct acpi_apmt_node *apmt_node;
- 	struct arm_cspmu *cspmu;
- 	struct device *dev = &pdev->dev;
- 
-@@ -939,8 +946,13 @@ static struct arm_cspmu *arm_cspmu_alloc(struct platform_device *pdev)
- 	cspmu->dev = dev;
- 	platform_set_drvdata(pdev, cspmu);
- 
--	apmt_node = arm_cspmu_apmt_node(dev);
--	cspmu->has_atomic_dword = apmt_node->flags & ACPI_APMT_FLAGS_ATOMIC;
-+	if (has_acpi_companion(dev)) {
-+		struct acpi_apmt_node *apmt_node = arm_cspmu_apmt_node(dev);
-+
-+		cspmu->has_atomic_dword = apmt_node->flags & ACPI_APMT_FLAGS_ATOMIC;
-+	} else {
-+		cspmu->has_atomic_dword = device_property_read_bool(dev, "arm,64-bit-atomic");
-+	}
- 
- 	return cspmu;
- }
-@@ -1133,11 +1145,6 @@ static int arm_cspmu_acpi_get_cpus(struct arm_cspmu *cspmu)
- 		}
- 	}
- 
--	if (cpumask_empty(&cspmu->associated_cpus)) {
--		dev_dbg(cspmu->dev, "No cpu associated with the PMU\n");
--		return -ENODEV;
--	}
--
- 	return 0;
- }
- #else
-@@ -1147,9 +1154,36 @@ static int arm_cspmu_acpi_get_cpus(struct arm_cspmu *cspmu)
- }
- #endif
- 
-+static int arm_cspmu_of_get_cpus(struct arm_cspmu *cspmu)
-+{
-+	struct of_phandle_iterator it;
-+	int ret, cpu;
-+
-+	of_for_each_phandle(&it, ret, cspmu->dev->of_node, "cpus", NULL, 0) {
-+		cpu = of_cpu_node_to_id(it.node);
-+		if (cpu < 0)
-+			continue;
-+		cpumask_set_cpu(cpu, &cspmu->associated_cpus);
-+	}
-+	return ret;
-+}
-+
- static int arm_cspmu_get_cpus(struct arm_cspmu *cspmu)
- {
--	return arm_cspmu_acpi_get_cpus(cspmu);
-+	int ret = 0;
-+
-+	if (has_acpi_companion(cspmu->dev))
-+		ret = arm_cspmu_acpi_get_cpus(cspmu);
-+	else if (of_property_present(cspmu->dev->of_node, "cpus"))
-+		ret = arm_cspmu_of_get_cpus(cspmu);
-+	else
-+		cpumask_copy(&cspmu->associated_cpus, cpu_possible_mask);
-+
-+	if (!ret && cpumask_empty(&cspmu->associated_cpus)) {
-+		dev_dbg(cspmu->dev, "No cpu associated with the PMU\n");
-+		ret = -ENODEV;
-+	}
-+	return ret;
- }
- 
- static int arm_cspmu_register_pmu(struct arm_cspmu *cspmu)
-@@ -1246,11 +1280,18 @@ static const struct platform_device_id arm_cspmu_id[] = {
- };
- MODULE_DEVICE_TABLE(platform, arm_cspmu_id);
- 
-+static const struct of_device_id arm_cspmu_of_match[] = {
-+	{ .compatible = "arm,coresight-pmu" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, arm_cspmu_of_match);
-+
- static struct platform_driver arm_cspmu_driver = {
- 	.driver = {
--			.name = DRVNAME,
--			.suppress_bind_attrs = true,
--		},
-+		.name = DRVNAME,
-+		.of_match_table = arm_cspmu_of_match,
-+		.suppress_bind_attrs = true,
-+	},
- 	.probe = arm_cspmu_device_probe,
- 	.remove = arm_cspmu_device_remove,
- 	.id_table = arm_cspmu_id,
--- 
-2.39.2.101.g768bb238c484.dirty
+On Mon, Dec 04, 2023 at 09:47:15PM +0100, Johan Jonker wrote:
+> On 12/4/23 19:56, Alex Bee wrote:
+> > Am 04.12.23 um 18:39 schrieb Johan Jonker:
+> >> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockch=
+ip,inno-hdmi.yaml b/Documentation/devicetree/bindings/display/rockchip/rock=
+chip,inno-hdmi.yaml
+> >> new file mode 100644
+> >> index 000000000000..96889c86849a
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,inno=
+-hdmi.yaml
+> >> @@ -0,0 +1,103 @@
+> >> +# SPDX-License-Identifier: GPL-2.0
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: http://devicetree.org/schemas/display/rockchip/rockchip,inno-hdm=
+i.yaml#
+> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> +
+> >> +title: Rockchip Innosilicon HDMI controller
+> >> +
+> >> +maintainers:
+> >> +=A0 - Sandy Huang <hjc@rock-chips.com>
+> >> +=A0 - Heiko Stuebner <heiko@sntech.de>
+> >> +
+> >> +properties:
+> >> +=A0 compatible:
+> >> +=A0=A0=A0 enum:
+> >> +=A0=A0=A0=A0=A0 - rockchip,rk3036-inno-hdmi
+> >> +
+> >> +=A0 reg:
+> >> +=A0=A0=A0 maxItems: 1
+> >> +
+> >> +=A0 interrupts:
+> >> +=A0=A0=A0 maxItems: 1
+> >> +
+> >> +=A0 clocks:
+> >> +=A0=A0=A0 maxItems: 1
+>=20
+> > The interrupts/clock description exists already in the txt-bindings - s=
+o how about:
+> >=20
+> > +=A0=A0=A0 items:
+> > +=A0=A0=A0=A0=A0 - descrition: ....
+> >> +
+>=20
+> It's not common to do so when there's only one clock and nothing special =
+to mention.
+> Used this style for most of my conversions.=20
+> Further rational might be given by Krzysztof and co.
 
+Ye, when there is no ambiguity, having the description is not
+required.
+
+--7k2kR/ZshohNs10q
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZW9WDgAKCRB4tDGHoIJi
+0kOrAP9ylHU9P8zGa7mCfZC4jocgIUPfnviKF/UNsLkrX04RRgEAoOTHJFCbSG0E
+PQExNlhDrVVvQL7O9+TCRCb60H04Uwg=
+=Ow+j
+-----END PGP SIGNATURE-----
+
+--7k2kR/ZshohNs10q--
 
