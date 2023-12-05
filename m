@@ -1,131 +1,173 @@
-Return-Path: <devicetree+bounces-21815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21816-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0422E805388
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 12:52:49 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1B51805392
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 12:55:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6568CB20C03
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 11:52:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A84E1F213E5
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 11:55:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD51A59E36;
-	Tue,  5 Dec 2023 11:52:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78E4A59E3C;
+	Tue,  5 Dec 2023 11:55:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fGyFDt+2"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="XuI7GkRB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB68AC3;
-	Tue,  5 Dec 2023 03:52:38 -0800 (PST)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-a1975fe7befso601336066b.2;
-        Tue, 05 Dec 2023 03:52:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701777157; x=1702381957; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=yQnio+BjHch7uekOs0EbRaR6+xPg48w0mlLLI/zKaaU=;
-        b=fGyFDt+2zfMoMGFkNb+wIqez0LxE+nJA6J0daN/LW4CpjKTBTpG5Gt9AUaEY4VWKFc
-         Y/b4lLuuer2jiUCNf/A+rZ4+Ay+AWp7mxKScBDRdynDcFafxfvQLu0WouwBaD3pxB0+q
-         aawAAXulKODe7QHWNAA/b2QfBM9BeKtbDNqK9fJkvRC//82r8X+0hWlt9OBbo++1dUMB
-         a/d6//g4g2DGrP4PZ68TOhkGBbGkDv2L7mFDK7JcGg7PKggjMf4ZQCJeBhcOdVgSXhL/
-         mSclAgN9uAVIMcf+V6YxYS/j4R9AQFoCyrip7JxinLKBrybeAi+6YcUKWTncNmGpC4Hu
-         6hUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701777157; x=1702381957;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yQnio+BjHch7uekOs0EbRaR6+xPg48w0mlLLI/zKaaU=;
-        b=izdRUqlLbiT921wq7u3sJQ35clLmjmc1cRkjllg7ySibdmDDd9hCavXZ2VRIYORofi
-         1aIa1FBMbTEfCtIxhhGb6PZzjHBH8eKBagiCuNp0CuKj1wFaBxm1Q7nNKgnUausGBDf2
-         QMcVpe9EcCRj4VIlYM66EWIZdsd/Z0C1vFH2fU5XWQY13zUEW9GV4W66gVizdl+4Op+0
-         x8uCiZB98bihz/181/UT81WhZZ3H5/cS2RDhsQigJ4BUThNmz227f42/FBSU/SQ+diNf
-         jnEFLxhSbTYEUteEcbmqFOz2SZUCzkHjPQOSNJrfjM1U2bZyauTDj2NMTvS80vzKW5VL
-         Kqgg==
-X-Gm-Message-State: AOJu0YzLp3ohxMJI9ZuniHxCxOiKmVRCLym9g9QLcOEBbnkJAnDeSgTc
-	DNwZC6C0FbUm7hAtXnjt9CA=
-X-Google-Smtp-Source: AGHT+IFbcUHHGMa0y7mPKTyHnJVqbuoOrcBU5Fgp7HSueg3Asjnj4OKHJ4FateR0JcHkUAKp1ewXJQ==
-X-Received: by 2002:a17:907:8c8:b0:a0e:d93a:3202 with SMTP id zu8-20020a17090708c800b00a0ed93a3202mr323045ejb.4.1701777157222;
-        Tue, 05 Dec 2023 03:52:37 -0800 (PST)
-Received: from skbuf ([188.27.185.68])
-        by smtp.gmail.com with ESMTPSA id x12-20020a170906298c00b00a1cbb055575sm451602eje.180.2023.12.05.03.52.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Dec 2023 03:52:37 -0800 (PST)
-Date: Tue, 5 Dec 2023 13:52:34 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Serge Semin <fancer.lancer@gmail.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Jose Abreu <Jose.Abreu@synopsys.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Tomer Maimon <tmaimon77@gmail.com>,
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04olkn2030.outbound.protection.outlook.com [40.92.46.30])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6DA698;
+	Tue,  5 Dec 2023 03:55:11 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=emU6CPN7SGLAvnIJY7+opT0dgLx3i66845I5qPI3aMsZlHtY8/7UNF/uba+wIaz+dauaBaHO+D3g4fPHxV7x2jzfPlle/wRCP13r6B0RgN2gakm5mJZxQNaosKcMvdHB+JNm+BsBLpR/XGukiMRDjG1hRTlIWzYoK+pRjYWncH/1IjFpVG+Q9QdsTgFxoJopEdi2AUhQ6rvYJZPkbUlUWDWDS6Api5gH8+zoERCoYC8F5++79Z5EhdjxCSSKLLs6y03V6FgVeczLGUSOGGgHUetUNNbiiYE2lw81iwVE36oyvq6hoTUoRNzh6enDSL5rg3appxbA2YYBfEBjf8eGUg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ZC/QrhbBMcoEvLnbnKD4UeqJbZk0U3USV2Yefi6xk7A=;
+ b=j4KYgh2a1be4JV+kKJ4253tzq3uzkGur37T8rZjhVKG95GfZx9gjmr0HdHVy6/mpjX6x1/66bsXceABI5f4kKCttXsxDhetJy6IwBGSorUOS4r0LVWr+fw29hH4VpKiZeNbPfokdNwcEC96KB8ziORBCAxtniH3y/hgj9BDhUmUnboH/PUeF3kSgJEfEMYNfICjgYRa73zUrxL8HpG9ZNbCrFAXy15JDzp2Mg4Q+jLMPkmkgVjWMu5e46qgREDPzkt0bM6Aor7UZNnh5bJLByOwTCubXWc6Lgfj73diVlL2m1umRZ3KGQ+oqUTxyhMnOt7CR3DYsFLLGiLBOJoAz8Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZC/QrhbBMcoEvLnbnKD4UeqJbZk0U3USV2Yefi6xk7A=;
+ b=XuI7GkRBHrvbcVb2or+l/5EAJpcukE9zt+f8xwyoi5kUCLZ3+4En4SexwYOrCE3B6qvzJmJm8dqDuJIqRiyDTKeyEOMjzvodGjp965po1Wjxkss7HJWaA4tgriOnF7PO1XvVXpZqc3V/7lni93vBDgOYbG7PduqEDrWswKNc4wG6TlUyT54sPRl2vnse+wE3jvMJCbCW35yrnONRph6xoEiU4MCjE7Ea1Jst5DS5Ux0ei47pEJfIK4y3GajUnD3Pn4o/0u+ePLO5YLJgu3ioleptHHO/KZY44BxYLsf1F6cQczD7if7B5TOsjtz8Eg1HemKravexY+BI8aAc023LFQ==
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
+ by LV8PR20MB7005.namprd20.prod.outlook.com (2603:10b6:408:1e4::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.34; Tue, 5 Dec
+ 2023 11:55:09 +0000
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::55b:c350:980:ad8]) by IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::55b:c350:980:ad8%6]) with mapi id 15.20.7046.024; Tue, 5 Dec 2023
+ 11:55:09 +0000
+From: Inochi Amaoto <inochiama@outlook.com>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	openbmc@lists.ozlabs.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 06/16] net: pcs: xpcs: Avoid creating dummy XPCS
- MDIO device
-Message-ID: <20231205115234.7ntjvymurot5nnak@skbuf>
-References: <20231205103559.9605-1-fancer.lancer@gmail.com>
- <20231205103559.9605-1-fancer.lancer@gmail.com>
- <20231205103559.9605-7-fancer.lancer@gmail.com>
- <20231205103559.9605-7-fancer.lancer@gmail.com>
+	Chao Wei <chao.wei@sophgo.com>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Inochi Amaoto <inochiama@outlook.com>
+Cc: Jisheng Zhang <jszhang@kernel.org>,
+	qiujingbao.dlmu@gmail.com,
+	dlan@gentoo.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: [PATCH v2 0/4] riscv: sophgo: add clock support for Sophgo CV1800 SoCs
+Date: Tue,  5 Dec 2023 19:55:01 +0800
+Message-ID:
+ <IA1PR20MB49532E1A3D8BA71FDBB444BCBB85A@IA1PR20MB4953.namprd20.prod.outlook.com>
+X-Mailer: git-send-email 2.43.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TMN: [QZ0Le7tpsbUO5lorP6Hsi4Erkz8FEmc2CE85TtP/RTM=]
+X-ClientProxiedBy: SJ0PR03CA0029.namprd03.prod.outlook.com
+ (2603:10b6:a03:33a::34) To IA1PR20MB4953.namprd20.prod.outlook.com
+ (2603:10b6:208:3af::19)
+X-Microsoft-Original-Message-ID:
+ <20231205115503.1040233-1-inochiama@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231205103559.9605-7-fancer.lancer@gmail.com>
- <20231205103559.9605-7-fancer.lancer@gmail.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|LV8PR20MB7005:EE_
+X-MS-Office365-Filtering-Correlation-Id: ac058f9e-0e2a-4bf9-cf1d-08dbf589076d
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	2/EI4JvYQ1970VHiPihVnYgtf3UZU8ETTlRdVAVl9MauZOg9Tx4bqQ+IQ/hArL6PFsNSKo63B2zm6sBngD9lRHGU5klf1MmPyV7dz8MW5NWa4OBMHvLoHdWML5cDYBoYSaXLbtR8aCfjb4PZI6nJQC3WQT2j82tRigsYJ81Y0cx2J8Bq/kq1v2u2cfB1L6BTElMfQeJrXUPVSibD8+xnhNQ/mfSMmQ7UfZpdDCIHFfdgxKyHYF/YraKVccROEh+FQfXl42N6MKx2FTcFku4F60hyFrE9a/SAdomPMQXww2ZvTa47y6gHaGdNy7PbcvZdG9dE1eDg7CcuSLc9nie9Gy9KNKnN71Qe6To/48AgNimf49/MPtip7o56/P/F2J6CgUS5OETGFrBQPnC2sK73r7FrvGN11a11UScli0FMNqLEe2ZsCNYlcSH72V2uWgLrVXi9gla2sky8WQjzUBYyvbdi5yQCImva8gZe5JDY7fT2hmBznkc1dIKESMxa4tPHwclnbvwMfKtPfNULgEbQlU/mQ0KWrQPzJnw/n7ElcDFaOIZHIIy6DMAZ+s/9TlMN2MMuGyuCO1a2XBpTnO3euIzXMFF4oxzfryi16QXn0gxxiiFP+vvwMWEJtRQRCfw9
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?PlnUWuCp5mO7xc2OqcNXE/4bwzXdSuB5RYOv2+hLlMoN7+klgm0AZJVj+3a1?=
+ =?us-ascii?Q?nxqUZ1rs+BItAMY8YNTwPcAROCXjPpAHgnGfsAgzZZwu5PXBmAlmRWoO7pkh?=
+ =?us-ascii?Q?OCgtmKtT8UzvOXAXzd4TH/ESLhB0wxvnZPvYN8bpQQj8vUwaE003EGVHTv+Y?=
+ =?us-ascii?Q?b3q1H7S9ifYGqflG5X2NjjuX2plgP6gtcUWPICXtXtcXNn6b3rfH8SFZbSEp?=
+ =?us-ascii?Q?c2b6Asq6b9nLScNneGh2baV1Wpim6X1xf9z5iiuCXUM5W7CMDKIHLym3BQVp?=
+ =?us-ascii?Q?e2gI3VtLHqYhKVbeB/TnL15TnzwzGIgc4zXgD+Gof3lD0ZydDhH6mxe9qDwj?=
+ =?us-ascii?Q?5umdc9A1Ob0kSzgcglN5r3/mz1CguSFN4D7wc0jw6v7Zyj/Zzq25/qWxbSBs?=
+ =?us-ascii?Q?J7PTI4YMlWk+fyC9IhFD1m4BJTBeyhpBruF5nAlnAM+STjbIxUz7YtH0LoyW?=
+ =?us-ascii?Q?AwZUws1C4PjNklTYsPPc8m6nF2RJxeLvmE67FLIjeAVEWbQ0CG9AXIk6VB5T?=
+ =?us-ascii?Q?/jGiYms4dSE9BsmIdDHLIr1cklWg/8zhE13C7FGny88TPnCeK4gpYnmAbI+H?=
+ =?us-ascii?Q?h71lmv1QKWW9usLf11FU2vg2HyKyvjBadDlDcNoCEFwsILKBramUps8leSx7?=
+ =?us-ascii?Q?P4HC0tLR4heUIuycdb9ljSY8iXjLeTW6dcwA5ma0uLr6CueX77lAAMYDx6Ju?=
+ =?us-ascii?Q?X0X9i5jgsgqkdlK9HkiTBYU4Ae5m9q3IfI0VUper64yzvDPxhyPkmDU9a3Ow?=
+ =?us-ascii?Q?7IaGxkBqHHBVhaOt+unsr6E88jR9npuvUufL6oeiH9YH6fxdey2BNzXYrXSi?=
+ =?us-ascii?Q?XfSqNP9exHrqCmC7ngKS1l8YrschK0Vaj4Wpl/tiwLdltl7R3zU/jXUmWhRC?=
+ =?us-ascii?Q?U2op4ZGTsi/Ybt9IU9Jlt1sdXrJu+K6x4DZ7+zEocsZIScLrGm/mffH4bnoH?=
+ =?us-ascii?Q?EiZbzmYx0PDhbXOHAV3IbLFrhsU6QROh0M06P/8huDr6StIn5k0rgril15Wp?=
+ =?us-ascii?Q?22SrBus+XEVTigy9WJy0/ZH2Z3s1A+WTBAuc0toJTX9yk13bZJD4IEb8wiOI?=
+ =?us-ascii?Q?T49+iNcED7NeJ3oqlaj5/lIN/fkDOPu1AqVXTS36gOHaEeaCTChHYcjbVr5t?=
+ =?us-ascii?Q?O9goEXHEJLMvHqx/agf2y5ALBcqZqvekAq1C83M48pq60K1RScOIQPtslzy1?=
+ =?us-ascii?Q?3SJP/7/CSvUVu3PLi1T+7nJPqsJmhAGLZRI1KEs68RUbJNjgEJL9xMfKDEs?=
+ =?us-ascii?Q?=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ac058f9e-0e2a-4bf9-cf1d-08dbf589076d
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Dec 2023 11:55:09.1403
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR20MB7005
 
-On Tue, Dec 05, 2023 at 01:35:27PM +0300, Serge Semin wrote:
-> If the DW XPCS MDIO devices are either left unmasked for being auto-probed
-> or explicitly registered in the MDIO subsystem by means of the
-> mdiobus_register_board_info() method
+Add clock controller support for the Sophgo CV1800B and CV1812H.
 
-mdiobus_register_board_info() has exactly one caller, and that is
-dsa_loop. I don't understand the relevance of it w.r.t. Synopsys XPCS.
-I'm reading the patches in order from the beginning.
+This patch follow this patch series:
+https://lore.kernel.org/all/IA1PR20MB495399CAF2EEECC206ADA7ABBBD5A@IA1PR20MB4953.namprd20.prod.outlook.com/
 
-> there is no point in creating the dummy MDIO device instance in order
+Changed from v1:
+1. fix license issues.
 
-Why dummy? There's nothing dummy about the mdio_device. It's how the PCS
-code accesses the hardware.
+Inochi Amaoto (4):
+  dt-bindings: clock: sophgo: Add clock controller of CV1800 series SoC
+  clk: sophgo: Add CV1800 series clock controller driver
+  riscv: dts: sophgo: add clock generator for Sophgo CV1800 series SoC
+  riscv: dts: sophgo: add uart clock for Sophgo CV1800 series SoC
 
-> to get the DW XPCS handler since the MDIO core subsystem will create
-> the device during the MDIO bus registration procedure.
+ .../bindings/clock/sophgo,cv1800-clk.yaml     |   53 +
+ arch/riscv/boot/dts/sophgo/cv1800b.dtsi       |    4 +
+ arch/riscv/boot/dts/sophgo/cv1812h.dtsi       |    4 +
+ arch/riscv/boot/dts/sophgo/cv18xx.dtsi        |   28 +-
+ drivers/clk/Kconfig                           |    1 +
+ drivers/clk/Makefile                          |    1 +
+ drivers/clk/sophgo/Kconfig                    |    7 +
+ drivers/clk/sophgo/Makefile                   |    7 +
+ drivers/clk/sophgo/clk-cv1800.c               | 1548 +++++++++++++++++
+ drivers/clk/sophgo/clk-cv1800.h               |  123 ++
+ drivers/clk/sophgo/clk-cv18xx-common.c        |   76 +
+ drivers/clk/sophgo/clk-cv18xx-common.h        |   85 +
+ drivers/clk/sophgo/clk-cv18xx-ip.c            |  898 ++++++++++
+ drivers/clk/sophgo/clk-cv18xx-ip.h            |  266 +++
+ drivers/clk/sophgo/clk-cv18xx-pll.c           |  465 +++++
+ drivers/clk/sophgo/clk-cv18xx-pll.h           |   79 +
+ include/dt-bindings/clock/sophgo,cv1800.h     |  174 ++
+ 17 files changed, 3814 insertions(+), 5 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/sophgo,cv1800-clk.yaml
+ create mode 100644 drivers/clk/sophgo/Kconfig
+ create mode 100644 drivers/clk/sophgo/Makefile
+ create mode 100644 drivers/clk/sophgo/clk-cv1800.c
+ create mode 100644 drivers/clk/sophgo/clk-cv1800.h
+ create mode 100644 drivers/clk/sophgo/clk-cv18xx-common.c
+ create mode 100644 drivers/clk/sophgo/clk-cv18xx-common.h
+ create mode 100644 drivers/clk/sophgo/clk-cv18xx-ip.c
+ create mode 100644 drivers/clk/sophgo/clk-cv18xx-ip.h
+ create mode 100644 drivers/clk/sophgo/clk-cv18xx-pll.c
+ create mode 100644 drivers/clk/sophgo/clk-cv18xx-pll.h
+ create mode 100644 include/dt-bindings/clock/sophgo,cv1800.h
 
-It won't, though? Unless someone is using mdiobus_register_board_info()
-possibly, but who does that?
+--
+2.43.0
 
-> All what needs to be done is to just reuse the MDIO-device instance
-> available in the mii_bus.mdio_map array (using some getter for it
-> would look better though). It shall prevent the XPCS devices been
-> accessed over several MDIO-device instances.
-> 
-> Note since the MDIO-device instance might be retrieved from the MDIO-bus
-> map array its reference counter shall be increased. If the MDIO-device
-> instance is created in the xpcs_create_mdiodev() method its reference
-> counter will be already increased. So there is no point in toggling the
-> reference counter in the xpcs_create() function. Just drop it from there.
-> 
-> Signed-off-by: Serge Semin <fancer.lancer@gmail.com>
-> ---
-
-Sorry, because the commit log lost me at the "context presentation" stage,
-I failed to understand the "what"s and the "why"s.
-
-Are you basically trying to add xpcs support on top of an mdio_device
-where the mdio_device_create() call was made externally to the xpcs code,
-through mdiobus_register_board_info() and mdiobus_setup_mdiodev_from_board_info()?
 
