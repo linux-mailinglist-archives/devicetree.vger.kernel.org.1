@@ -1,114 +1,114 @@
-Return-Path: <devicetree+bounces-21695-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21698-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9415A804E3D
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 10:44:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27830804E46
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 10:45:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4F21F281669
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 09:44:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D5B57281625
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 09:45:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBA6A41773;
-	Tue,  5 Dec 2023 09:44:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E7E141774;
+	Tue,  5 Dec 2023 09:45:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="dGZ4BWZt"
 X-Original-To: devicetree@vger.kernel.org
-X-Greylist: delayed 2452 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 05 Dec 2023 01:44:05 PST
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a02:c205:3004:2154::1])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D211AFA;
-	Tue,  5 Dec 2023 01:44:05 -0800 (PST)
-Received: from p200301077700c3001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:107:7700:c300:1a3d:a2ff:febf:d33a] helo=aktux)
-	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <andreas@kemnade.info>)
-	id 1rARxy-0072Tw-GJ; Tue, 05 Dec 2023 10:43:46 +0100
-Date: Tue, 5 Dec 2023 10:43:43 +0100
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Tony Lindgren <tony@atomide.com>, Andrew Davis <afd@ti.com>, Frank Binns
- <frank.binns@imgtec.com>, Donald Robson <donald.robson@imgtec.com>, Matt
- Coster <matt.coster@imgtec.com>, "H . Nikolaus Schaller"
- <hns@goldelico.com>, Adam Ford <aford173@gmail.com>, Ivaylo Dimitrov
- <ivo.g.dimitrov.75@gmail.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
- <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
- =?UTF-8?B?QmVub8OudA==?= Cousson <bcousson@baylibre.com>, Nishanth Menon
- <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo
- <kristo@kernel.org>, Paul Cercueil <paul@crapouillou.net>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-omap@vger.kernel.org,
- linux-mips@vger.kernel.org
-Subject: Re: [PATCH RFC 01/10] dt-bindings: gpu: Add PowerVR Series5 SGX
- GPUs
-Message-ID: <20231205104343.2e3c4105@aktux>
-In-Reply-To: <78a81d54-f12c-401e-9a26-5125eb0b1c65@linaro.org>
-References: <20231204182245.33683-1-afd@ti.com>
-	<20231204182245.33683-2-afd@ti.com>
-	<b97f04f6-cda2-4e9b-b729-a5149e36f978@linaro.org>
-	<20231205075657.GN5169@atomide.com>
-	<df7dd7b0-f315-4033-985a-175f75568a8c@linaro.org>
-	<20231205081031.GO5169@atomide.com>
-	<efcd64f4-00d2-4671-af3a-e27764f70e8d@linaro.org>
-	<20231205083001.GP5169@atomide.com>
-	<27f2e3a3-0791-4278-adb2-55ed76820a3a@linaro.org>
-	<20231205100246.5db0d6a1@aktux>
-	<78a81d54-f12c-401e-9a26-5125eb0b1c65@linaro.org>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+Received: from mail-m11876.qiye.163.com (mail-m11876.qiye.163.com [115.236.118.76])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC93E124;
+	Tue,  5 Dec 2023 01:44:54 -0800 (PST)
+DKIM-Signature: a=rsa-sha256;
+	b=dGZ4BWZty1d0oIWgBZ6X8FBIyGDPCj743XxLuAfNp+xa34p6BSXVPPWnrai2cFtu/MHaXQF1gs5x6htnfVWl192MLEzMqyi5frolErK8Uhb06vt8nQrgBdjNV6XOr4AZV9ICA09I88dZL2kgtm/Es/DqW6YWSYfL+Qc52ZB/YV8=;
+	c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=Qwe7/iDLwPEEdgYbXXnkzwx2HO9asx5VCXEH67b0F/w=;
+	h=date:mime-version:subject:message-id:from;
+Received: from [172.16.12.141] (unknown [58.22.7.114])
+	by mail-m12779.qiye.163.com (Hmail) with ESMTPA id 59D887801C1;
+	Tue,  5 Dec 2023 17:44:03 +0800 (CST)
+Message-ID: <87831dc3-2554-4b53-a9f8-6b61cf67732e@rock-chips.com>
+Date: Tue, 5 Dec 2023 17:44:03 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 11/14] drm/rockchip: vop2: Add support for rk3588
+Content-Language: en-US
+To: Sascha Hauer <sha@pengutronix.de>, Andy Yan <andyshrk@163.com>
+Cc: heiko@sntech.de, hjc@rock-chips.com, dri-devel@lists.freedesktop.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+ devicetree@vger.kernel.org, sebastian.reichel@collabora.com,
+ kever.yang@rock-chips.com, chris.obbard@collabora.com
+References: <20231130122001.12474-1-andyshrk@163.com>
+ <20231130122439.13374-1-andyshrk@163.com>
+ <20231205092936.GW1057032@pengutronix.de>
+From: Andy Yan <andy.yan@rock-chips.com>
+In-Reply-To: <20231205092936.GW1057032@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGU1DS1ZMGkpCGUoZGEgZTkxVEwETFh
+	oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSk1PSU5JVUpLS1VKQl
+	kG
+X-HM-Tid: 0a8c395cf962b24fkuuu59d887801c1
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NRQ6PQw6PDw0FgMVDBpKIykY
+	GQxPCRZVSlVKTEtKTE1CT09PSUJIVTMWGhIXVRoVHwJVAhoVOwkUGBBWGBMSCwhVGBQWRVlXWRIL
+	WUFZTkNVSUlVTFVKSk9ZV1kIAVlBSElNTjcG
 
-On Tue, 5 Dec 2023 10:27:56 +0100
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+Hi Sascha:
 
-> On 05/12/2023 10:02, Andreas Kemnade wrote:
-> > On Tue, 5 Dec 2023 09:45:44 +0100
-> > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> >   
-> >>> Sure the clock nodes can be there for the child IP, but they won't do
-> >>> anything. And still need to be managed separately by the device driver if
-> >>> added.    
-> >>
-> >> So if OS does not have runtime PM, the bindings are wrong? Bindings
-> >> should not depend on some particular feature of some particular OS.  
-> > 
-> > Any user of the devicetree sees that there is a parent and the parent needs
-> > to be enabled by some mechanism.
-> > E.g. I2c devices do not specify the clocks of the parent (the i2c master)  
+On 12/5/23 17:29, Sascha Hauer wrote:
+> On Thu, Nov 30, 2023 at 08:24:39PM +0800, Andy Yan wrote:
+>> From: Andy Yan <andy.yan@rock-chips.com>
+>>
+>> VOP2 on rk3588:
+>>
+>> Four video ports:
+>> VP0 Max 4096x2160
+>> VP1 Max 4096x2160
+>> VP2 Max 4096x2160
+>> VP3 Max 2048x1080
+>>
+>> 4 4K Cluster windows with AFBC/line RGB and AFBC-only YUV support
+>> 4 4K Esmart windows with line RGB/YUV support
+>>
+>> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
 > 
-> If you use this analogy, then compare it with an I2C device which has
-> these clock inputs. Such device must have clocks in the bindings.
+> With the two nits below feel free to add my:
 > 
-I would see target-module = i2c master.
-
-Well, if there is a variant of the i2c device which does not require
-external clocks and a variant which requires it, then clock can be
-optional.
-
-> > 
-> > Maybe it is just more fine-grained on omap.
-> > 
-> > look e.g. at ti/omap/omap4-l4.dtsi
-> > there are target-module@xxxx
-> > with the devices as a child and a clock in the parent.  
+> Reviewed-by: Sascha Hauer <s.hauer@pengutronix.de>
 > 
-> Not related to runtime PM...
+> Thanks for working on this.
 > 
-Well, runtime PM is just the linux-specific mechanism to enable the
-resources needed by the parent, so yes, it is not related... As said,
-another OS can have another mechanism.
+>> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
+>> index 8d7ff52523fb..8b16031eda52 100644
+>> --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
+>> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
+>> @@ -13,9 +13,16 @@
+>>   
+>>   #define VOP_FEATURE_OUTPUT_10BIT        BIT(0)
+> 
+> You could rename this to include "VP" for Video Port so it's not so
+> easily mixed up with the defines below.
 
-But anyways, the target module specifies resources which are required.
+Yes, I have the same idea, maybe it's better to do the rename in a separate ?
+> 
+>>   
+>> +#define VOP2_FEATURE_HAS_SYS_GRF	BIT(0)
+>> +#define VOP2_FEATURE_HAS_VO0_GRF	BIT(1)
+>> +#define VOP2_FEATURE_HAS_VO1_GRF	BIT(2)
+>> +#define VOP2_FEATURE_HAS_VOP_GRF	BIT(3)
+>> +#define VOP2_FEATURE_HAS_SYS_PMU	BIT(5)
+> 
+> Should be BIT(4)
 
-Regards,
-Andreas
+Thanks for catching this, will fix in next version.
+> 
+> Sascha
+> 
 
