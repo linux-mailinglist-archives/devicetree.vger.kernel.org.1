@@ -1,90 +1,74 @@
-Return-Path: <devicetree+bounces-21795-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21796-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50FB28052E6
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 12:31:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B95F98052E8
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 12:31:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 80E4A1C20BB5
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 11:31:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7468C2817FA
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 11:31:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 580636979F;
-	Tue,  5 Dec 2023 11:31:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82AA1697A0;
+	Tue,  5 Dec 2023 11:31:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="M7XiLvX7";
-	dkim=permerror (0-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="wcXJG4s/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dkOdnC2j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.164])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8112C1B9;
-	Tue,  5 Dec 2023 03:31:16 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1701775857; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=j8ERvUoQFRjxzG3q+WoTBj1tiSAUaNNRRWQVzv3YChJpuqqjq5wIMapskHmrZ/dxQn
-    +nKRxGQOx6sQbb4VS2JbtwukY5kfaegoSRxR9hJUtpRj+EsdsI9kDlOUsS6DT/uNKZiV
-    E3oaZANWqdrl7ieUdYqoH8yNUOXdqqYpdyZf11MRpkAcPw6K5+Jn+wh1emKGR+Gy0d5V
-    COveT6qXTRG25t8X78MCMe59XUDiSHVGjGR7FEFFFWMaUr9V+YYfL6thiAScqmghyFL1
-    v7I4Ez06vPu+n4Y1+aEDP9PFo71j0K+ba4D7wdbaNG8d9EKc4H5Y9mf1I9oMN2JkhlWr
-    yp1Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1701775857;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=R8hAw3u8uqXybhgsoJbMwSKfmEEJh0/vArUEqpnDzW8=;
-    b=Xuo2z92jnhvalBzoA/FJv5RM/4iFyeugNtj6kUQdMnOLBCqg5rKX3+xbNHURiAADij
-    qpxe45n6q99RsaPrYpcoxZyI4UegrYWSgyXBh8CYzjPXiX3uVk2KhQ7cqjkLVBFewx5y
-    rFtVEdHS/oZLKqaxEUIBwJFwdAksVZilS7a0lKVib6QkFbmx32eXpacWS96hkPbyy281
-    7loYXdggQt2wVeYQuw0HYoEihJ//VDF0EWXTBkGpUjlfBCwXBgdDiXbNuwVmS3IF1rr5
-    PdSELmVfXHMTMGbJDLOhGu7IfsdlNit91/eFnupQgGvfgJVRxSbcy8K1POjlNLS1DZK1
-    rfNw==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1701775857;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=R8hAw3u8uqXybhgsoJbMwSKfmEEJh0/vArUEqpnDzW8=;
-    b=M7XiLvX73qoQax2FX0WCdtSotvrXrkdQu0DAmf1qcF9qH0wnlpwaNKMCuXVB17FC7r
-    c4nXgffq+mYxza2XOpLGCGV9chiVi8ngsOFUf2VOOSdhpzGQ9H3Fr8nt9uVo3gc5sKvi
-    2tSdbtMPm2zogOqbBHig8FQIMMflhs/uh6jZqLZf4t0wVbosyx/VG/fziMa2z3NV1FIf
-    mNQxj7JhcwGw3loI6xByyfVBqdBGKXLH0hqUeBnRgRoNf+KQlwqWmmoKMH0IiVrEPr7l
-    BARz5m3nXqWcC71+LbBtYsOleD/Lw1NsvnCnI/iBiYy2OjX/wo1e8ND7iXElkYuv4pg6
-    5nRg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1701775857;
-    s=strato-dkim-0003; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=R8hAw3u8uqXybhgsoJbMwSKfmEEJh0/vArUEqpnDzW8=;
-    b=wcXJG4s/z88ltIwTsAmmSfGUkunYw8ndfagKoH9cZ5jWXVCPV736ww7fHo65T71Bco
-    75BdiM0wjzv+sI5D1sDg==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4peA8paF1A=="
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 49.10.0 DYNA|AUTH)
-    with ESMTPSA id 58bb61zB5BUu12y
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-	(Client did not present a certificate);
-    Tue, 5 Dec 2023 12:30:56 +0100 (CET)
-Date: Tue, 5 Dec 2023 12:30:50 +0100
-From: Stephan Gerhold <stephan@gerhold.net>
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: Raymond Hackley <raymondhackley@protonmail.com>,
-	linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jakob Hauser <jahau@rocketmail.com>,
-	Nikita Travkin <nikita@trvn.ru>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH] arm64: dts: qcom: msm8916/39-samsung-a2015: Add PMIC and
- charger
-Message-ID: <ZW8J6vYKg82Q4JFV@gerhold.net>
-References: <20231205093841.24325-1-raymondhackley@protonmail.com>
- <1c62dd8b-72b2-4204-8284-a1dd90d4f909@linaro.org>
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 591781AB;
+	Tue,  5 Dec 2023 03:31:46 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-50bfa7f7093so2354334e87.0;
+        Tue, 05 Dec 2023 03:31:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701775904; x=1702380704; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=iWABwC93ZRSAHZ+Njf9xIdiKvJp/CP14/ZzB27UiO+I=;
+        b=dkOdnC2jVcPaiBlOkIvqbrTfzUQ3I7jxR0Kwld7MjSIUuPzjIhXwdTkw1F6sqRfO4k
+         Sj91baZc4COMmXwLhS8a8Yp5CVC1rmrK609Z/i/U056UjJ8VpGQAvx4a2+p54cL6eqjM
+         M6iVbUIBo+BTlJ+7Ah6Ac2fbe4ENTLQm8hTy6uCFtG8vrOPz5kk6JrLPtbvzyCSg17qY
+         B9aDNaZC6jpTSdmuL2BzlqZsEhP6ktmLaGQqTAsjaZ8NACo0f0ntjqqRT21COJ4c9pt1
+         U5wA+DQn9RBsTzucjQioQPJmQM95C4+r5QV/9D13823kHWgPRWOsamk5hWp5RHdj73BO
+         j42A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701775904; x=1702380704;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iWABwC93ZRSAHZ+Njf9xIdiKvJp/CP14/ZzB27UiO+I=;
+        b=hGxGdsJaL7UoCmrD9UVX0DZt3SFivLr6bRvKNYt+Gq2B/ffTN3oRKttPidxrJ4x3X5
+         WSqRibG/RVB8AlIiVH7+Pl4jbx6MAvqR386hFoUCWdJvoF1aD4t4T+b9X28kgEbpg76B
+         sOKw3h7jYGsJHtB124oiVEJUQnqJTEvpRk+/f9T8KQGdIcLl7Ca8XkdhjI7GvnN2CphV
+         GdKqBJGxSd35BjJfV/3trdNngs1f7ihBJKCdFO+gF6y1sRHR6WPRIek6LnZvs6ho237U
+         IprrjfqNNsQvRFC9V+Xxt/ztnPY99zeMmg7tT2TU71nMs0G1P9dZGt80xW0rNkWHrf6H
+         MUvg==
+X-Gm-Message-State: AOJu0YwU8gpUnTzZEpZkf4N1IU/TM44xJpbHvPw2dcJFEtr0bY8API90
+	XHuF0M/9CxJlIVEpAbo48PY=
+X-Google-Smtp-Source: AGHT+IFOyPrsnNLbi6atUEGuAJC2I0o2XaEEchq0I+1cdYruq2/3i2EBhY8YCpuSc2tnpJmsGAzuyg==
+X-Received: by 2002:ac2:5490:0:b0:50b:f2e0:4997 with SMTP id t16-20020ac25490000000b0050bf2e04997mr1735238lfk.103.1701775904378;
+        Tue, 05 Dec 2023 03:31:44 -0800 (PST)
+Received: from mobilestation ([178.176.56.174])
+        by smtp.gmail.com with ESMTPSA id bi38-20020a0565120ea600b0050bfd88075asm395757lfb.287.2023.12.05.03.31.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Dec 2023 03:31:43 -0800 (PST)
+Date: Tue, 5 Dec 2023 14:31:41 +0300
+From: Serge Semin <fancer.lancer@gmail.com>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>, 
+	Jose Abreu <Jose.Abreu@synopsys.com>, Maxime Chevallier <maxime.chevallier@bootlin.com>, 
+	Tomer Maimon <tmaimon77@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, openbmc@lists.ozlabs.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 06/16] net: pcs: xpcs: Avoid creating dummy XPCS
+ MDIO device
+Message-ID: <rgp33mm4spbpm5tmgxurkhy4is3lz3z62rz64rni2pygteyrit@zwflw2ejdkn7>
+References: <20231205103559.9605-1-fancer.lancer@gmail.com>
+ <20231205103559.9605-7-fancer.lancer@gmail.com>
+ <ZW8ASzkC9IFFlxkV@shell.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,41 +77,66 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1c62dd8b-72b2-4204-8284-a1dd90d4f909@linaro.org>
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <ZW8ASzkC9IFFlxkV@shell.armlinux.org.uk>
 
-On Tue, Dec 05, 2023 at 12:17:15PM +0100, Bryan O'Donoghue wrote:
-> On 05/12/2023 10:38, Raymond Hackley wrote:
-> > The phones listed below have Richtek RT5033 PMIC and charger.
-> > Add them to the device trees.
-> > 
-> > - Samsung Galaxy A3/A5/A7 2015
-> > - Samsung Galaxy E5/E7
-> > - Samsung Galaxy Grand Max
-> > 
-> > Signed-off-by: Raymond Hackley <raymondhackley@protonmail.com>
-> > [...]
-> > +			/*
-> > +			 * Needed for camera, but not used yet.
-> > +			 * Define empty nodes to allow disabling the unused
-> > +			 * regulators.
-> > +			 */
-> > +			LDO {};
-> > +			BUCK {};
-> > +		};
-> 
-> Aren't the camera regulators off until enabled ?
+On Tue, Dec 05, 2023 at 10:49:47AM +0000, Russell King (Oracle) wrote:
+> On Tue, Dec 05, 2023 at 01:35:27PM +0300, Serge Semin wrote:
+> > If the DW XPCS MDIO devices are either left unmasked for being auto-probed
+> > or explicitly registered in the MDIO subsystem by means of the
+> > mdiobus_register_board_info() method there is no point in creating the
+> > dummy MDIO device instance in order to get the DW XPCS handler since the
+> > MDIO core subsystem will create the device during the MDIO bus
+> > registration procedure.
 > 
 
-We don't know for sure what state they are in during boot. If we omit
-these nodes the regulator core will ignore these regulators completely
-and just leave them in whatever state they are.
+> Please reword this overly long sentence.
 
-I would indeed expect them to be off after reset, but there are also
-other situations in which Linux might be booted, such as kexec. That's
-why it's usually better to be explicit and avoid relying on boot/reset
-states altogether.
+Ok.
 
-Thanks,
-Stephan
+> 
+> If they're left unmasked, what prevents them being created as PHY
+> devices?
+
+Not sure I fully get what you meant. If they are left unmasked the
+MDIO-device descriptor will be created by the MDIO subsystem anyway.
+What the point in creating another one?
+
+> 
+> > @@ -1437,19 +1435,21 @@ struct dw_xpcs *xpcs_create_mdiodev(struct mii_bus *bus, int addr,
+> >  	struct mdio_device *mdiodev;
+> >  	struct dw_xpcs *xpcs;
+> >  
+> > -	mdiodev = mdio_device_create(bus, addr);
+> > -	if (IS_ERR(mdiodev))
+> > -		return ERR_CAST(mdiodev);
+> > +	if (addr >= PHY_MAX_ADDR)
+> > +		return ERR_PTR(-EINVAL);
+> >  
+> > -	xpcs = xpcs_create(mdiodev, interface);
+> > +	if (mdiobus_is_registered_device(bus, addr)) {
+> > +		mdiodev = bus->mdio_map[addr];
+> > +		mdio_device_get(mdiodev);
+> 
+
+> No, this makes no sense now. This function is called
+> xpcs_create_mdiodev() - note the "create_mdiodev" part. If it's getting
+> the mdiodev from what is already there then it isn't creating it, so
+> it's no longer doing what it says in its function name. If you want to
+> add this functionality, create a new function to do it.
+
+AFAICS the method semantics is a bit different. It's responsibility is to
+create the DW XPCS descriptor. MDIO-device is utilized internally by
+the DW XPCS driver. The function callers don't access the created MDIO
+device directly (at least since some recent commit). So AFAIU "create"
+means creating the XPCS descriptor irrespective from the internal
+communication layer. So IMO the suffix is a bit misleading. I'll
+change it in one of the next commit anyway. Should I just merge that
+patch back in this one?
+
+-Serge(y)
+
+> 
+> -- 
+> RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+> FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
