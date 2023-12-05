@@ -1,236 +1,91 @@
-Return-Path: <devicetree+bounces-21993-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21994-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A271805FFB
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 22:02:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF4FC806002
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 22:02:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E932281B30
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 21:02:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 998E3280FCC
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 21:02:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8041C6A345;
-	Tue,  5 Dec 2023 21:02:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEB766AB88;
+	Tue,  5 Dec 2023 21:02:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="hZ6TuF4k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09F62188;
-	Tue,  5 Dec 2023 13:02:03 -0800 (PST)
-Received: by mail-oo1-f41.google.com with SMTP id 006d021491bc7-58e30de3933so2124922eaf.3;
-        Tue, 05 Dec 2023 13:02:03 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701810122; x=1702414922;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IdYRNh7Vlob6vHvVQj3FqYlHUzVIZf5EcZbK3xhngEg=;
-        b=bmC304Ybt/lLceVWsw9hKVUQc4tT6c/EXo7VyB5kCoSkYY0yZjwiSp4NnPrF3DcVkq
-         FgzKQWcJzl5meVCTC5gWPcrCLLu4UXYOug+FP9Z4IW6V8DiBGcxkRuZPBOgloLh0NFwG
-         tbm/EccMFRZubUff9J/Ld8m5NI34i9Uhs2fTOXVeEZQEEwUmBXR/wO3BKzP6ZIvChgL2
-         8Qm2WURSfz2w8UHNltYlX2GYG5gPSk5nj0hFgvX2XzKSuH5TMsYBKw+gNJ2ZKTByGqBs
-         2VKCDlxhwtcb7SDpG5L/keprKM9Y1s8IkFGhu8G8Zde8UB8wmUL4IELj11KDuGxWCl+R
-         wF7w==
-X-Gm-Message-State: AOJu0Yx3jMCB6MTfbiz6YoxNEFiflpptJw8OVrDild9hhu+Qx1YWL02C
-	1gISSb38dpxlUmw/K98hrQ==
-X-Google-Smtp-Source: AGHT+IEELo2vI+di+qlC0rsG6Gdv4w/6prGhHS2OYuIkz413JcirnWVw4QzKEsB7bi8jrOvnQ/zU7Q==
-X-Received: by 2002:a05:6870:b50e:b0:1fb:75c:3feb with SMTP id v14-20020a056870b50e00b001fb075c3febmr7677773oap.75.1701810122176;
-        Tue, 05 Dec 2023 13:02:02 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id ps14-20020a0568709e0e00b001fb4aaf261csm1037762oab.32.2023.12.05.13.01.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Dec 2023 13:02:01 -0800 (PST)
-Received: (nullmailer pid 3792495 invoked by uid 1000);
-	Tue, 05 Dec 2023 21:01:58 -0000
-Date: Tue, 5 Dec 2023 15:01:58 -0600
-From: Rob Herring <robh@kernel.org>
-To: Yoshinori Sato <ysato@users.sourceforge.jp>
-Cc: linux-sh@vger.kernel.org, Damien Le Moal <dlemoal@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Thomas Gleixner <tglx@linutronix.de>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, Rich Felker <dalias@libc.org>, 
-	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>, Lee Jones <lee@kernel.org>, 
-	Helge Deller <deller@gmx.de>, Heiko Stuebner <heiko@sntech.de>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Chris Morgan <macromorgan@hotmail.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Randy Dunlap <rdunlap@infradead.org>, 
-	Arnd Bergmann <arnd@arndb.de>, Hyeonggon Yoo <42.hyeyoo@gmail.com>, 
-	David Rientjes <rientjes@google.com>, Vlastimil Babka <vbabka@suse.cz>, Baoquan He <bhe@redhat.com>, 
-	Andrew Morton <akpm@linux-foundation.org>, Guenter Roeck <linux@roeck-us.net>, 
-	Stephen Rothwell <sfr@canb.auug.org.au>, Guo Ren <guoren@kernel.org>, 
-	Javier Martinez Canillas <javierm@redhat.com>, Azeem Shaikh <azeemshaikh38@gmail.com>, 
-	Palmer Dabbelt <palmer@rivosinc.com>, Bin Meng <bmeng@tinylab.org>, 
-	Max Filippov <jcmvbkbc@gmail.com>, Tom Rix <trix@redhat.com>, 
-	Herve Codina <herve.codina@bootlin.com>, Jacky Huang <ychuang3@nuvoton.com>, 
-	Lukas Bulwahn <lukas.bulwahn@gmail.com>, Jonathan Corbet <corbet@lwn.net>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
-	Sam Ravnborg <sam@ravnborg.org>, Michael Karcher <kernel@mkarcher.dialup.fu-berlin.de>, 
-	Sergey Shtylyov <s.shtylyov@omp.ru>, 
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, linux-ide@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-pci@vger.kernel.org, 
-	linux-serial@vger.kernel.org, linux-fbdev@vger.kernel.org
-Subject: Re: [DO NOT MERGE v5 19/37] dt-bindings: interrupt-controller:
- renesas,sh7751-irl-ext: Add json-schema
-Message-ID: <20231205210158.GA3774253-robh@kernel.org>
-References: <cover.1701768028.git.ysato@users.sourceforge.jp>
- <1623383c89532994218795cd3755c37819be426b.1701768028.git.ysato@users.sourceforge.jp>
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 554BD18F;
+	Tue,  5 Dec 2023 13:02:36 -0800 (PST)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 174CF870DE;
+	Tue,  5 Dec 2023 22:02:33 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1701810154;
+	bh=f+N2Yu7AIHQddi497s2W5pp+WWb2A6s6ckPENX6+zcU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=hZ6TuF4k9gPudiU82Tr0x83+v+Nv/Sx7rejRG4TjO3njQagWh2AjqGUFNQ2X1cmN9
+	 cQiDqM71epHBTvTAQR73riP+D41IareubPtZbiMNN5J+Eh04jztcZ1koNgn1mVl5jA
+	 OubeaDdlwJEilZCKx3NH4WTkCjXvMFYgvVOfkov9LYhzmL7qMAenw9FCcNRUm6UcxP
+	 3Eckt4RTBHpAQDGQ+A+zyoSSYtqfUP9WnOKfN0cca21BqrPHhILkigtvRr8xRjzJtn
+	 IjD4/fKkEy8rxzcdjFLkVODWcgspXOPq9dcDdbiLvylRpRhxAkJvP+XOAf9oSldbZj
+	 AptGcaLZ0RP4Q==
+Message-ID: <62015c87-cc24-4ab6-9c91-605926f1c572@denx.de>
+Date: Tue, 5 Dec 2023 22:02:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1623383c89532994218795cd3755c37819be426b.1701768028.git.ysato@users.sourceforge.jp>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 2/2] iio: light: isl76682: Add ISL76682 driver
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
+ Matti Vaittinen <mazziesaccount@gmail.com>,
+ Alexander Stein <alexander.stein@ew.tq-group.com>,
+ Andre Werner <andre.werner@systec-electronic.com>,
+ Bjorn Helgaas <bhelgaas@google.com>, Conor Dooley <conor+dt@kernel.org>,
+ Fabio Estevam <festevam@denx.de>, Guenter Roeck <linux@roeck-us.net>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, Mark Brown <broonie@kernel.org>,
+ Naresh Solanki <naresh.solanki@9elements.com>,
+ Patrick Rudolph <patrick.rudolph@9elements.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
+ Vincent Tremblay <vincent@vtremblay.dev>, devicetree@vger.kernel.org
+References: <20231127212726.77707-1-marex@denx.de>
+ <20231127212726.77707-2-marex@denx.de> <20231204112941.770e22cb@jic23-huawei>
+ <0ae6466f-479a-476a-adf4-3bd099235eda@denx.de>
+ <ZW9Hwm5LnPGl4Ird@smile.fi.intel.com>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <ZW9Hwm5LnPGl4Ird@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-On Tue, Dec 05, 2023 at 06:45:38PM +0900, Yoshinori Sato wrote:
-> Renesas SH7751 external interrupt encoder json-schema.
+On 12/5/23 16:54, Andy Shevchenko wrote:
+> On Tue, Dec 05, 2023 at 02:43:30AM +0100, Marek Vasut wrote:
+>> On 12/4/23 12:29, Jonathan Cameron wrote:
+>>> On Mon, 27 Nov 2023 22:26:53 +0100
+>>> Marek Vasut <marex@denx.de> wrote:
 > 
-> Signed-off-by: Yoshinori Sato <ysato@users.sourceforge.jp>
-> ---
->  .../renesas,sh7751-irl-ext.yaml               | 83 +++++++++++++++++++
->  1 file changed, 83 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/renesas,sh7751-irl-ext.yaml
+> ...
 > 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/renesas,sh7751-irl-ext.yaml b/Documentation/devicetree/bindings/interrupt-controller/renesas,sh7751-irl-ext.yaml
-> new file mode 100644
-> index 000000000000..ba4fe2e4d749
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,sh7751-irl-ext.yaml
-> @@ -0,0 +1,83 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/interrupt-controller/renesas,sh7751-irl-ext.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas SH7751 IRL external encoder with enable regs.
+>>                  If a discrete set of scale values is available, they
+>> -               are listed in this attribute.
+>> +               are listed in this attribute. Unlike illumination,
+>> +               multiplying intensity by intensity_scale does not
+>> +               yield value with any standardized unit .
+> 
+> (Do not forget to drop extra space)
 
-IRL? In Real Life?
-
-> +
-> +maintainers:
-> +  - Yoshinori Sato <ysato@users.sourceforge.jp>
-> +
-> +description: |
-
-Don't need '|' if no formatting to preserve.
-
-> +  This is the generally used external interrupt encoder on SH7751 based boards.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: renesas,sh7751-irl-ext
-> +
-> +  reg:
-> +    minItems: 1
-
-maxItems: 1
-
-> +
-> +  interrupt-controller: true
-> +
-> +  '#interrupt-cells':
-> +    const: 1
-> +
-> +  '#address-cells':
-> +    const: 0
-> +
-> +  '#size-cells':
-> +    const: 0
-
-Don't need #size-cells.
-
-> +
-> +  renesas,width:
-> +    description: Enable register width
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [8, 16, 32]
-
-reg-io-width is the standard property for this purpose.
-
-> +
-> +  renesas,set-to-disable:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description: Setting this flag to 1 disables it.
-
-You can't set a boolean to 1. What is 'it' here? 
-
-> +
-> +  renesas,enable-bit:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-
-You've described a 2 entry matrix, not an array.
-
-> +    description: |
-> +      IRL enable register bit mapping
-> +      1st word IRL
-> +      2nd word bit index of enable register
-
-Needs a better description of what this is for. If it is per SoC then it 
-should be implied from the compatible string.
-
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupt-controller
-> +  - '#interrupt-cells'
-> +  - renesas,width
-> +  - renesas,enable-bit
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    r2dintc: sh7751irl_encoder@a4000000 {
-
-interrupt-controller@...
-
-Drop unused labels.
-
-> +        compatible = "renesas,sh7751-irl-ext";
-> +        reg = <0xa4000000 0x02>;
-> +        interrupt-controller;
-> +        #address-cells = <0>;
-> +        #size-cells = <0>;
-> +        #interrupt-cells = <1>;
-> +        renesas,width = <16>;
-> +        renesas,enable-bit = <0 11>,            /* PCI INTD */
-> +                             <1 9>,             /* CF IDE */
-> +                             <2 8>,             /* CF CD */
-> +                             <3 12>,            /* PCI INTC */
-> +                             <4 10>,            /* SM501 */
-> +                             <5 6>,             /* KEY */
-> +                             <6 5>,             /* RTC ALARM */
-> +                             <7 4>,             /* RTC T */
-> +                             <8 7>,             /* SDCARD */
-> +                             <9 14>,            /* PCI INTA */
-> +                             <10 13>,           /* PCI INTB */
-> +                             <11 0>,            /* EXT */
-> +                             <12 15>;           /* TP */
-
-Looks like the first value is just the index of the entry, so drop it 
-and use the index.
-
-But better yet, these are all per interrupt values. Put them into the 
-interrupt cell values instead. For example the RTC would have something 
-like:
-
-interrupts = <6 5>, <7 4>;
-
-Though I do wonder if you really need the first value, or that was just 
-interrupt numbers you made up and then created this mapping?
-
-Rob
+Which extra space ?
 
