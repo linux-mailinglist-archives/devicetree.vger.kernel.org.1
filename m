@@ -1,101 +1,89 @@
-Return-Path: <devicetree+bounces-21941-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21942-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F1E5805A9E
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 18:01:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0A51805AA3
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 18:02:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E5E6F281A09
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 17:01:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9BC2F1F216E3
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 17:02:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D29A63DFE;
-	Tue,  5 Dec 2023 17:01:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1B4A65EB1;
+	Tue,  5 Dec 2023 17:02:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fR2Hc/Os"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rrYEZ6mD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE15763DF8;
-	Tue,  5 Dec 2023 17:01:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 438B8C433C8;
-	Tue,  5 Dec 2023 17:01:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81AB563DDB;
+	Tue,  5 Dec 2023 17:02:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE16FC433C7;
+	Tue,  5 Dec 2023 17:02:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701795708;
-	bh=hvoZmvi5kVxk0mKJg/p4H7TFldJx6GDXwB6b10p0uR4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fR2Hc/OslizATX35uwXnI7Yz3TsBy2irvFrhCksyJFJeKU7QY3Pv6S1TiijifowEi
-	 NKF9D7AFAqoMoxJ7sCnsaylG3pihVGZiJUGDjsxpb2QAI5MkLTZ1pjLTyWW0CbMcXd
-	 ivXTpjZKGhOD9bJ7pOPudMirLdpL6WP6rZPx9VKjM0kdtFfeaVpZlakvloRnIHNXYl
-	 PIG6C6EAgDcIR6PIhfJbGpxhMGIxHNbyXmqORzU4Y1w4hAZ0wkaAuvBEWXLcCVTGl5
-	 DMmPmopRNYUVpWEWMZeJLZnTfbpnhUTd2DgGsXiDOV7ms2Ax9WmPUD4I48Y0uXlIS9
-	 A1eFJEWJsvpKA==
-Date: Tue, 5 Dec 2023 17:01:43 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	s=k20201202; t=1701795740;
+	bh=6eqzdlbd2wRbilXyM8br8k9jCk9NPFOASbrV1lTKof0=;
+	h=Date:From:To:Subject:In-Reply-To:From;
+	b=rrYEZ6mDeh47zil4efVVC3txYOSi3rtzc6BqQyBLELxK0D/OYbcop4/aMyi9qyW/f
+	 8jxcOmxzxRzfvPxNByuPLgS/aZI8iJ7htUrK96g5D6/KFghAQTzPvMuAZaC0/E8RK+
+	 I+bWsBKRNSQMZjLsUPpE4C8b+/FE38MZ6Jn9GaOBN5UvMt0qMIVarFGu/pQNUjIF+B
+	 S4vlHyGARZ1IssLp0lh2IAZVHWHG8VhcQwlSjBucgsUhWjWrre/J6zG6A+2RGPwCoK
+	 EHBa1CSNYQnFrXoZ/gtIChK7DVQBBFQiQKGJVn64K5xD7y78QFCWZjsl2OeozApwgS
+	 qVGFWeFfjIScg==
+Date: Tue, 5 Dec 2023 11:02:18 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Minda Chen <minda.chen@starfivetech.com>,
+	Conor Dooley <conor@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
 	Rob Herring <robh+dt@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Support Opensource <support.opensource@diasemi.com>,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v3.1 5/8] dt-bindings: input: Convert da906{1,2,3} onkey
- to json-schema
-Message-ID: <20231205-mobilize-eldercare-868f30da5018@spud>
-References: <20231204172510.35041-1-biju.das.jz@bp.renesas.com>
- <20231204172510.35041-6-biju.das.jz@bp.renesas.com>
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Mason Huo <mason.huo@starfivetech.com>,
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Kevin Xie <kevin.xie@starfivetech.com>
+Subject: Re: [PATCH v11 0/20] Refactoring Microchip PCIe driver and add
+ StarFive PCIe
+Message-ID: <20231205170218.GA679691@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="EOW+nDDhcTc8iYm6"
-Content-Disposition: inline
-In-Reply-To: <20231204172510.35041-6-biju.das.jz@bp.renesas.com>
-
-
---EOW+nDDhcTc8iYm6
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <ZW7q1LEvEpVxoI4l@fedora>
 
-On Mon, Dec 04, 2023 at 05:25:07PM +0000, Biju Das wrote:
-> Convert the da906{1,2,3} onkey device tree binding documentation to
-> json-schema.
->=20
-> Update MAINTAINERS entries, description and onkey property by
-> referring to dlg,da9062-onkey binding file.
->=20
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> v3->v3.1:
->  * Squashed with patch#6 and patch#9 from v2.
->  * Replaced enum->const for dlg,da9061-onkey and its fallback.
->  * Dropped example
+On Tue, Dec 05, 2023 at 10:18:12AM +0100, Damian Tometzki wrote:
+> > On Sat, Dec 02, 2023 at 09:17:24PM +0800, Minda Chen wrote:
+> > > ...
+> > > Please check this configuation.
+> > > CONFIG_PHY_STARFIVE_JH7110_PCIE=y
+> > > CONFIG_PINCTRL_STARFIVE_JH7110=y
+> > > CONFIG_PINCTRL_STARFIVE_JH7110_SYS=y
+> > > CONFIG_PINCTRL_STARFIVE_JH7110_AON=y
+> ...
 
-I think this looks good
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> Hello together,
+> the main problemwas was  to find the rquired CONFIG_* options for StarFive
+> Board. It would be great to have an CONFIG_ Options with all required
+> Dependencies.
 
-Cheers,
-Conor.
+I didn't follow all the discussion here so I don't know all the
+symptoms and what the resulting working config was, but it sounds like
+the Kconfig needs to be simplified somehow so other users don't have
+to repeat this struggle.
 
---EOW+nDDhcTc8iYm6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZW9XdwAKCRB4tDGHoIJi
-0lIGAQDo5aN83IrA9nHWbyIhxaqc8rLOnl9ey0qNKRcC3jTXUgEAwFsn3VUZCK8j
-2YPZeSTnjUf6JZtL0DDYVPkgf56P9g0=
-=h6KR
------END PGP SIGNATURE-----
-
---EOW+nDDhcTc8iYm6--
+Bjorn
 
