@@ -1,231 +1,116 @@
-Return-Path: <devicetree+bounces-21952-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21953-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAE79805CD3
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 19:04:51 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52BBB805CE6
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 19:08:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 56C0D1F21621
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 18:04:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 84A8F1C2106F
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 18:08:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 162FE6A34F;
-	Tue,  5 Dec 2023 18:04:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E050959E32;
+	Tue,  5 Dec 2023 18:08:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="L6vpZfzM";
-	dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="TD8ho4B7"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="G5t+V4ad"
 X-Original-To: devicetree@vger.kernel.org
-X-Greylist: delayed 35102 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 05 Dec 2023 10:04:40 PST
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [85.215.255.81])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E42D190;
-	Tue,  5 Dec 2023 10:04:40 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1701799457; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=VmFc1XWvs5u9DH+vdiul0FqKwjuBitqSXZVOQBWY2k7zVyPvg1NFis5yw+pu7hmxjh
-    wyBdSnIvT5bWcOXBbunmBinnT+T9BHveySdmlJzKdEEU3OkhU29CuOOm96PD2ZhHg3fc
-    4Sui3G7Xqu0ZbPdXkpiRIlM8/A/Qc5RipA9C474RLa2ASZISyDpVCXM7Ewn3BpNy++Bm
-    Im7VjKjKu70FtHvnkYLjO4OanaL9ByOwRs1FxlGDldD7bKwxnRI14SHG0QdQBrro/wHA
-    2MaPnejDlQI77jit9hQ9EHpkvj76PTeq6jyYt9GFn9uTN9haJowbmrMbYJv0yOkAh4ux
-    zdKQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1701799457;
-    s=strato-dkim-0002; d=strato.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=1UBNn0Iu2hfNvuHQsBRxEquJNd6AQ4+RDCYbbSAQ0nU=;
-    b=agnyK1EuXFGdO/wTcLOUuhg6Ytzq9u1Zvl2IeoEdXlDrA6C2jck+3VWJ9z+DvQgDJN
-    LJMqWuTrCBDo/W9YR9ay6fB+nophfxjT669jApdlMp4IF5WLgizew3quzAyuvo+uStAk
-    70uATWRJt0lCHbfUQsl7SRK994w3IGMXrSrFUDjaMIglqC2D70LS9nth4yFt1jKXF/x3
-    GqKWSfgKRzVS7teLHLUX2fhuTAddCBcZ4kkUN6fCICpQoP6pJ2mBfphPW1q3Z++VX7Kl
-    B9Xpw8A2dIn0Y9uqkuejz/aJ3UMwLl/3rjnighW18bMLHANtrfKVz6ZOO4j+eJPdioqo
-    bPmg==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo02
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1701799457;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=1UBNn0Iu2hfNvuHQsBRxEquJNd6AQ4+RDCYbbSAQ0nU=;
-    b=L6vpZfzMuHzcxIaLRg6AvzGgDfwVhVH5aV+YftyHIakS72uPspob4CHDIrBafsVwNw
-    Xp4y9dZX/c8trthSmjtvXCTv14AioTepn55vjePkKWcouBQH6RexbG4BpGLtjR8XKPuj
-    jNMrYVYiWlkhY/uhpk0PT6ngNhhiLqYuMzKKMUUJxWOadq7D1LsM1m/ka9lJ+bjGpPKo
-    ZPMlFJbVTi8l1AGGTKJc4tXTWzhQpKovbziBzQhPNz47ApvlLfIRLxGgSgBky6OQLsmd
-    dNNy0S0Vmp+rxP/96Wv92ukPSF9w6T74eIqChdoxZ7oIGvLzGZDl76wYRBPhiaAQJUV2
-    mcnw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1701799457;
-    s=strato-dkim-0003; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=1UBNn0Iu2hfNvuHQsBRxEquJNd6AQ4+RDCYbbSAQ0nU=;
-    b=TD8ho4B7CGbx6LG30k3gueB1c00HDFe+LdKRbDGI8bd5fwaUoeqx4THPruFYoRie54
-    5SO17IPoBXNHVj7mz6Ag==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj5Apz9PSN6LgsXcGeonQ="
-Received: from smtpclient.apple
-    by smtp.strato.de (RZmta 49.10.0 DYNA|AUTH)
-    with ESMTPSA id wfeb35zB5I4F3Mm
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-	(Client did not present a certificate);
-    Tue, 5 Dec 2023 19:04:15 +0100 (CET)
-Content-Type: text/plain;
-	charset=us-ascii
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DA8590;
+	Tue,  5 Dec 2023 10:08:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1701799694; x=1733335694;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=3aabID007GWzE7OZJjag1L/LlvBoYmhmC6WBs8z1c60=;
+  b=G5t+V4add89nTokjZHEdAa9uslAL3OcyB1sb+FNEfEvF8lanmbQHOhD7
+   FZv1cgyEKZ+XkQXa6PRgoDjYIFIt+Hb6hO2EacCOHLnqV0BxrH2jzH1Zw
+   rhHGlTBOJn5EdKTHzyO5hc87E5cpLXZvOBL2d6dLF4gZbNC3zxTkjYphd
+   SG64gwjpBolHeeDCOv6M1umf1MWWF667joF+U7XMYKJ30eCiDxMhWWizU
+   E/6eKQmex6VBIh0ObPh2ouJU4m/n9806A3JFSvql0qooNHzKwdVIz+Hf7
+   xOeY9bcwkER5G2HPm7HExT2TymEUPWRIWMaT9Y/w9PF/WphWy48tPA/2q
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="992255"
+X-IronPort-AV: E=Sophos;i="6.04,253,1695711600"; 
+   d="scan'208";a="992255"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Dec 2023 10:08:13 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="764416688"
+X-IronPort-AV: E=Sophos;i="6.04,253,1695711600"; 
+   d="scan'208";a="764416688"
+Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
+  by orsmga007.jf.intel.com with ESMTP; 05 Dec 2023 10:08:10 -0800
+Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rAZq3-0009VW-1z;
+	Tue, 05 Dec 2023 18:08:07 +0000
+Date: Wed, 6 Dec 2023 02:07:40 +0800
+From: kernel test robot <lkp@intel.com>
+To: Allen_Lin <allencl_lin@hotmail.com>, dmitry.torokhov@gmail.com,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, jikos@kernel.org,
+	benjamin.tissoires@redhat.com, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, Allen_Lin <allencl_lin@hotmail.com>
+Subject: Re: [PATCH v1 2/2] Input: Add Himax HX83102J touchscreen driver
+Message-ID: <202312060112.Rqj5MNEl-lkp@intel.com>
+References: <TY0PR06MB5611228C6B67733DC93842C99E85A@TY0PR06MB5611.apcprd06.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.200.91.1.1\))
-Subject: Re: [PATCH RFC 01/10] dt-bindings: gpu: Add PowerVR Series5 SGX GPUs
-From: "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <cb590a13-e0ff-49d9-8583-be613ad50dc5@ti.com>
-Date: Tue, 5 Dec 2023 19:04:05 +0100
-Cc: Frank Binns <frank.binns@imgtec.com>,
- Donald Robson <donald.robson@imgtec.com>,
- Matt Coster <matt.coster@imgtec.com>,
- Adam Ford <aford173@gmail.com>,
- Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>,
- =?utf-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
- Tony Lindgren <tony@atomide.com>,
- Nishanth Menon <nm@ti.com>,
- Vignesh Raghavendra <vigneshr@ti.com>,
- Tero Kristo <kristo@kernel.org>,
- Paul Cercueil <paul@crapouillou.net>,
- dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev,
- linux-omap@vger.kernel.org,
- linux-mips@vger.kernel.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <FE0DBA5E-95A5-4C27-9F69-D1D8BDF56EC3@goldelico.com>
-References: <20231204182245.33683-1-afd@ti.com>
- <20231204182245.33683-2-afd@ti.com>
- <CFF198DA-5C42-425E-86F4-759629489ECB@goldelico.com>
- <cb590a13-e0ff-49d9-8583-be613ad50dc5@ti.com>
-To: Andrew Davis <afd@ti.com>
-X-Mailer: Apple Mail (2.3774.200.91.1.1)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <TY0PR06MB5611228C6B67733DC93842C99E85A@TY0PR06MB5611.apcprd06.prod.outlook.com>
 
+Hi Allen_Lin,
 
+kernel test robot noticed the following build warnings:
 
-> Am 05.12.2023 um 18:33 schrieb Andrew Davis <afd@ti.com>:
->=20
-> On 12/5/23 2:17 AM, H. Nikolaus Schaller wrote:
->>> +          - enum:
->>> +              - ti,omap3430-gpu # Rev 121
->>> +              - ti,omap3630-gpu # Rev 125
->> Is the "Rev 121" and "Rev 125" a property of the SoC integration =
-(clock/reset/power
->> hookup etc.) or of the integrated SGX core?
->=20
-> The Rev is a property of the SGX core, not the SoC integration.
+[auto build test WARNING on hid/for-next]
+[also build test WARNING on dtor-input/next dtor-input/for-linus robh/for-next linus/master v6.7-rc4 next-20231205]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Then, it should belong there and not be a comment of the ti,omap*-gpu =
-record.
-In this way it does not seem to be a proper hardware description.
+url:    https://github.com/intel-lab-lkp/linux/commits/Allen_Lin/Input-Add-Himax-HX83102J-touchscreen-driver/20231205-180837
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/hid/hid.git for-next
+patch link:    https://lore.kernel.org/r/TY0PR06MB5611228C6B67733DC93842C99E85A%40TY0PR06MB5611.apcprd06.prod.outlook.com
+patch subject: [PATCH v1 2/2] Input: Add Himax HX83102J touchscreen driver
+reproduce: (https://download.01.org/0day-ci/archive/20231206/202312060112.Rqj5MNEl-lkp@intel.com/reproduce)
 
-BTW: there are examples where the revision is part of the compatible =
-string, even
-if the (Linux) driver makes no use of it:
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202312060112.Rqj5MNEl-lkp@intel.com/
 
-drivers/net/ethernet/xilinx/xilinx_emaclite.c
+versioncheck warnings: (new ones prefixed by >>)
+   INFO PATH=/opt/cross/clang/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+   /usr/bin/timeout -k 100 3h /usr/bin/make KCFLAGS= -Wtautological-compare -Wno-error=return-type -Wreturn-type -Wcast-function-type -funsigned-char -Wundef -Wformat-overflow -Wformat-truncation -Wstringop-overflow -Wrestrict -Wenum-conversion W=1 --keep-going HOSTCC=gcc-12 CC=gcc-12 -j32 KBUILD_MODPOST_WARN=1 ARCH=x86_64 versioncheck
+   find ./* \( -name SCCS -o -name BitKeeper -o -name .svn -o -name CVS -o -name .pc -o -name .hg -o -name .git \) -prune -o \
+   	-name '*.[hcS]' -type f -print | sort \
+   	| xargs perl -w ./scripts/checkversion.pl
+   ./drivers/accessibility/speakup/genmap.c: 13 linux/version.h not needed.
+   ./drivers/accessibility/speakup/makemapdata.c: 13 linux/version.h not needed.
+>> ./drivers/hid/hid-himax-83102j.h: 24 linux/version.h not needed.
+   ./drivers/staging/media/atomisp/include/linux/atomisp.h: 23 linux/version.h not needed.
+   ./samples/bpf/spintest.bpf.c: 8 linux/version.h not needed.
+   ./samples/trace_events/trace_custom_sched.c: 11 linux/version.h not needed.
+   ./sound/soc/codecs/cs42l42.c: 14 linux/version.h not needed.
+   ./tools/lib/bpf/bpf_helpers.h: 403: need linux/version.h
+   ./tools/testing/selftests/bpf/progs/dev_cgroup.c: 9 linux/version.h not needed.
+   ./tools/testing/selftests/bpf/progs/netcnt_prog.c: 3 linux/version.h not needed.
+   ./tools/testing/selftests/bpf/progs/test_map_lock.c: 4 linux/version.h not needed.
+   ./tools/testing/selftests/bpf/progs/test_send_signal_kern.c: 4 linux/version.h not needed.
+   ./tools/testing/selftests/bpf/progs/test_spin_lock.c: 4 linux/version.h not needed.
+   ./tools/testing/selftests/bpf/progs/test_tcp_estats.c: 37 linux/version.h not needed.
+   ./tools/testing/selftests/wireguard/qemu/init.c: 27 linux/version.h not needed.
 
-> But it seems that
-> compatible string is being used to define both (as we see being =
-debated in the other
-> thread on this series).
->=20
->> In my understanding the Revs are different variants of the SGX core =
-(errata
->> fixes, instruction set, pipeline size etc.). And therefore the =
-current driver code
->> has to be configured by some macros to handle such cases.
->> So the Rev should IMHO be part of the next line:
->>> +          - const: img,powervr-sgx530
->> +          - enum:
->> +              - img,powervr-sgx530-121
->> +              - img,powervr-sgx530-125
->> We have a similar definition in the openpvrsgx code.
->> Example: compatible =3D "ti,omap3-sgx530-121", "img,sgx530-121", =
-"img,sgx530";
->> (I don't mind about the powervr- prefix).
->> This would allow a generic and universal sgx driver (loaded through =
-just matching
->> "img,sgx530") to handle the errata and revision specifics at runtime =
-based on the
->> compatible entry ("img,sgx530-121") and know about SoC integration =
-("ti,omap3-sgx530-121").
->> And user-space can be made to load the right firmware variant based =
-on "img,sgx530-121"
->> I don't know if there is some register which allows to discover the =
-revision long
->> before the SGX subsystem is initialized and the firmware is up and =
-running.
->> What I know is that it is possible to read out the revision after =
-starting the firmware
->> but it may just echo the version number of the firmware binary =
-provided from user-space.
->=20
-> We should be able to read out the revision (register =
-EUR_CR_CORE_REVISION), the problem is
-> today the driver is built for a given revision at compile time.
-
-Yes, that is something we had planned to get rid of for a long time by =
-using different compatible
-strings and some variant specific struct like many others drivers are =
-doing it.
-But it was a to big task so nobody did start with it.
-
-> That is a software issue,
-> not something that we need to encode in DT. While the core ID (SGX5xx) =
-can be also detected
-> (EUR_CR_CORE_ID), the location of that register changes, and so it =
-does need encoded in
-> DT compatible.
-
-Ok, I didn't know about such registers as there is not much public =
-information available.
-Fair enough, there are some error reports about in different forums.
-
-On the other hand we then must read out this register in more or less =
-early initialization
-stages. Even if we know this information to be static and it could be as =
-simple as a list
-of compatible strings in the driver.
-
-> The string "ti,omap3430-gpu" tells us the revision if we cannot detect =
-it (as in the current
-> driver), and the SoC integration is generic anyway (just a reg and =
-interrupt).
-
-It of course tells, but may need a translation table that needs to be =
-maintained in a
-different format. Basically the same what the comments show in a =
-non-machine readable
-format.
-
-I just wonder why the specific version can or should not become simply =
-part of the DTS
-and needs this indirection.
-
-Basically it is a matter of openness for future (driver) development and =
-why it needs
-careful decisions.
-
-So in other words: I would prefer to see the comments about versions =
-encoded in the device
-tree binary to make it machine readable.
-
-BR and thanks,
-Nikolaus=
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
