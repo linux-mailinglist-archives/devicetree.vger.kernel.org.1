@@ -1,398 +1,128 @@
-Return-Path: <devicetree+bounces-21875-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21877-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1671805771
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 15:37:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3997805789
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 15:39:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E43E91C21000
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 14:37:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6FE19281E6C
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 14:39:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B39C2AD30;
-	Tue,  5 Dec 2023 14:37:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87F9461FD1;
+	Tue,  5 Dec 2023 14:39:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="XP9DwNKM"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="n/cLmLnB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34314B9;
-	Tue,  5 Dec 2023 06:37:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
-	:Date:subject:date:message-id:reply-to;
-	bh=hLuvIGGhrJQZt6OQp/R9heM2HZCtRAn+KLY/+yoEDes=; b=XP9DwNKM8rQw8UbJ0cncndd5rT
-	cIUVeV6ojelWAEfVjl8GpfR5Dn5NuJldSf1EzMIQWjD5DXMGkWurVNOr/rqVbsZzKXnElkcM9870/
-	m77ovNIQIbsE1kZhpy6MICoZ+ISRDVY0uhqAMg4hXwWilJ8AS/mrcT6ji8hqa/bfvw2c=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:48254 helo=pettiford)
-	by mail.hugovil.com with esmtpa (Exim 4.92)
-	(envelope-from <hugo@hugovil.com>)
-	id 1rAWXe-0008MY-9w; Tue, 05 Dec 2023 09:36:55 -0500
-Date: Tue, 5 Dec 2023 09:36:51 -0500
-From: Hugo Villeneuve <hugo@hugovil.com>
-To: Shawn Guo <shawnguo@kernel.org>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
- festevam@gmail.com, linux-imx@nxp.com, leoyang.li@nxp.com, robh@kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Hugo Villeneuve
- <hvilleneuve@dimonoff.com>
-Message-Id: <20231205093651.9d0cb90acad8668e004398f1@hugovil.com>
-In-Reply-To: <20231205122756.GE236001@dragon>
-References: <20231103142831.2116163-1-hugo@hugovil.com>
-	<20231103142831.2116163-4-hugo@hugovil.com>
-	<20231205122756.GE236001@dragon>
-X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69E82AF
+	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 06:39:06 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-54cde11d0f4so2670073a12.2
+        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 06:39:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1701787145; x=1702391945; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=VTsU0tLdMfpk3k+17/uFzQeio4Ea0FMF0dlG83ANcS0=;
+        b=n/cLmLnBvPll7b6FvlUsMrCkFyCN3gHnhH7hpLmlc3K+f8rXYlezeiZL/k5SADMznt
+         vrSRCqgiZT51vg/HqxxLRiJLlG3oBQwppislsi5k040HmUXwl8VV5RMK9v8LlQKeiuzY
+         M+yg1Ma4NDg2LSE/YA2NXM21VBVHUvKfBCm7w90Y0PmmzFnQKZo8Ns44gFw6Lbg9FmDV
+         8wBQDVGdIKBeVXCsVDlC/iKAwHo/qeFOtDjrnep7ciJxtMBLFn+vRBnqJ+sxq51o2ko6
+         RA0Wyv3RKgr0XTlYb7lq5q6KxcFyIiSHGiCrcs84+hIGa00R8AM/uZxonH/p2Gne0gzX
+         ovAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701787145; x=1702391945;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VTsU0tLdMfpk3k+17/uFzQeio4Ea0FMF0dlG83ANcS0=;
+        b=msHeYpo9wL77rFMJqGFE4A2vmltM8+SGQo7SEKBjnSy2khYeMo5gEIM3dZj+S/lrCH
+         WJp8Y22hyWO85u4/JA5tnhMeEZFmS5qpKcg3a/6rrVqj2KwexEv+7BzzOpHdVn3A7tJ6
+         2i+pIiey1qhISCjBChbMVogKTpCU1kn7nX564DPfkuS1zzsq66nnpPH86jfjXCx7eTY3
+         AA+0SnRhe3H84A0WV8N8RcmONQNWbiwFv0ZxtKDSsUKQ2JN3G5WmF4dqROFzccjB1AL7
+         rK52xdHKvTf8g5MgaqnUBtAwY252dt0KsHaI73dPc9RMb1UG7WpfCDpXFBJYVYTttALg
+         sARQ==
+X-Gm-Message-State: AOJu0YxjLz66Qi2U9DR5n0PiAXq8hlzbOIq6iGv7lqPteLC7taRqbObT
+	doV9A4OzW4jGUHoyZhO6PSH1HQ==
+X-Google-Smtp-Source: AGHT+IFQuWQQqywH3CVl2hKn71xrka+HXiv9ID0fLEcgLwb4Eomjby4eFCI/jt81Jh5Pl1fWcnCPSA==
+X-Received: by 2002:a17:906:1011:b0:a19:f69e:1d3f with SMTP id 17-20020a170906101100b00a19f69e1d3fmr3812202ejm.71.1701787144906;
+        Tue, 05 Dec 2023 06:39:04 -0800 (PST)
+Received: from otso.luca.vpn.lucaweiss.eu (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id gq18-20020a170906e25200b00a0a8b2b74ddsm6795404ejb.154.2023.12.05.06.39.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Dec 2023 06:39:04 -0800 (PST)
+From: Luca Weiss <luca.weiss@fairphone.com>
+Subject: [PATCH v6 0/3] Add UFS host controller and Phy nodes for sc7280
+Date: Tue, 05 Dec 2023 15:38:53 +0100
+Message-Id: <20231205-sc7280-ufs-v6-0-ad6ca7796de7@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
-X-Spam-Level: 
-Subject: Re: [PATCH v4 3/3] arm64: dts: freescale: introduce rve-gateway
- board
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
+X-B4-Tracking: v=1; b=H4sIAP01b2UC/23OsQ6CMBSF4Vchnb2kLVCsE+9hiKnlInegxRZQQ
+ 3h3gcHJ8R/Ol7OwiIEwskuysIAzRfJuC3VKmO2MeyBQszWTXGZC8hyiLeWZw9RGuAssc4VGcWz
+ YNhgCtvQ+sGu9dRt8D2MX0PwIrqUWmdCZSqXOpQABz4nszdFIwbxMtRc5m1rf72RHcfThc9ybi
+ x3++2QugIOWyiI2RcEbU7WGwtB5h4dUr+v6BSbnrvrrAAAA
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Manivannan Sadhasivam <mani@kernel.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>, 
+ Bart Van Assche <bvanassche@acm.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Nitin Rawat <quic_nitirawa@quicinc.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ "Bao D. Nguyen" <quic_nguyenb@quicinc.com>, 
+ Luca Weiss <luca.weiss@fairphone.com>, 
+ Manivannan Sadhasivam <mani@kernel.org>
+X-Mailer: b4 0.12.4
 
-On Tue, 5 Dec 2023 20:27:56 +0800
-Shawn Guo <shawnguo@kernel.org> wrote:
+This patch adds UFS host controller and Phy nodes for Qualcomm sc7280
+SoC and enable it on some sc7280-based boards.
 
-> On Fri, Nov 03, 2023 at 10:28:31AM -0400, Hugo Villeneuve wrote:
-> > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > 
-> > The RVE gateway board is based on a Variscite VAR-SOM-NANO,
-> > with a NXP MX8MN nano CPU.
-> > 
-> > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > ---
-> >  arch/arm64/boot/dts/freescale/Makefile        |   1 +
-> >  .../boot/dts/freescale/imx8mn-rve-gateway.dts | 282 ++++++++++++++++++
-> >  2 files changed, 283 insertions(+)
-> >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-rve-gateway.dts
-> > 
-> > diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> > index 300049037eb0..c99da779ef7b 100644
-> > --- a/arch/arm64/boot/dts/freescale/Makefile
-> > +++ b/arch/arm64/boot/dts/freescale/Makefile
-> > @@ -98,6 +98,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mn-bsh-smm-s2pro.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mn-evk.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mn-ddr3l-evk.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mn-ddr4-evk.dtb
-> > +dtb-$(CONFIG_ARCH_MXC) += imx8mn-rve-gateway.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mn-tqma8mqnl-mba8mx.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mn-var-som-symphony.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mn-venice-gw7902.dtb
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mn-rve-gateway.dts b/arch/arm64/boot/dts/freescale/imx8mn-rve-gateway.dts
-> > new file mode 100644
-> > index 000000000000..186f54fd06c6
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mn-rve-gateway.dts
-> > @@ -0,0 +1,282 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > +/*
-> > + * Copyright 2023 DimOnOff
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include <dt-bindings/usb/pd.h>
-> > +#include "imx8mn-var-som.dtsi"
-> > +
-> > +/ {
-> > +	model = "RVE gateway";
-> > +	compatible = "rve,rve-gateway", "variscite,var-som-mx8mn", "fsl,imx8mn";
-> > +
-> > +	crystal_duart_24m: crystal-duart-24m {
-> > +		compatible = "fixed-clock";
-> > +		#clock-cells = <0>;
-> > +		clock-frequency = <24000000>;
-> > +	};
-> > +
-> > +	gpio-keys {
-> > +		compatible = "gpio-keys";
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&pinctrl_gpio_keys>;
-> > +
-> > +		key-enter {
-> > +			label = "enter";
-> > +			gpios = <&gpio1 1 GPIO_ACTIVE_LOW>;
-> > +			linux,code = <KEY_ENTER>;
-> > +		};
-> > +
-> > +		key-exit {
-> > +			label = "exit";
-> > +			gpios = <&gpio3 23 GPIO_ACTIVE_LOW>;
-> > +			linux,code = <KEY_ESC>;
-> > +		};
-> > +	};
-> > +
-> > +	lcd {
-> > +		compatible = "hit,hd44780";
-> > +		display-height-chars = <2>;
-> > +		display-width-chars = <20>;
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&pinctrl_lcd>;
-> > +		data-gpios = <&gpio5  1 GPIO_ACTIVE_HIGH>,
-> > +			     <&gpio1  6 GPIO_ACTIVE_HIGH>,
-> > +			     <&gpio1 14 GPIO_ACTIVE_HIGH>,
-> > +			     <&gpio4 28 GPIO_ACTIVE_HIGH>,
-> > +			     <&gpio5 24 GPIO_ACTIVE_HIGH>,
-> > +			     <&gpio5  2 GPIO_ACTIVE_HIGH>,
-> > +			     <&gpio1 12 GPIO_ACTIVE_HIGH>,
-> > +			     <&gpio5 25 GPIO_ACTIVE_HIGH>;
-> > +		enable-gpios = <&gpio5 23 GPIO_ACTIVE_HIGH>;
-> > +		rs-gpios = <&gpio1 7 GPIO_ACTIVE_HIGH>;
-> > +		rw-gpios = <&gpio4 27 GPIO_ACTIVE_HIGH>;
-> > +	};
-> > +
-> > +	reg_3p3v: regulator-3p3v {
-> > +		compatible = "regulator-fixed";
-> > +		regulator-name = "3P3V";
-> > +		regulator-min-microvolt = <3300000>;
-> > +		regulator-max-microvolt = <3300000>;
-> > +		regulator-always-on;
-> > +	};
-> > +
-> > +	/* Bourns PEC12R rotary encoder, 24 steps. */
-> > +	rotary: rotary-encoder {
-> > +		compatible = "rotary-encoder";
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&pinctrl_rotary>;
-> > +		gpios = <&gpio1  5 GPIO_ACTIVE_LOW>, /* A */
-> > +			<&gpio3 21 GPIO_ACTIVE_LOW>; /* B */
-> > +		linux,axis = <0>; /* REL_X */
-> > +		rotary-encoder,encoding = "gray";
-> > +		rotary-encoder,relative-axis;
-> > +	};
-> > +};
-> > +
-> > +&ecspi1 {
-> > +	cs-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
-> > +
-> > +	duart1: serial@0 {
-> > +		compatible = "nxp,sc16is752";
-> > +		reg = <0>;
-> > +		spi-rx-bus-width = <1>;
-> > +		spi-tx-bus-width = <1>;
-> > +		spi-max-frequency = <4000000>;
-> > +		clocks = <&crystal_duart_24m>;
-> > +		interrupt-parent = <&gpio3>;
-> > +		interrupts = <22 IRQ_TYPE_EDGE_FALLING>;
-> > +		gpio-controller;
-> > +		#gpio-cells = <2>;
-> > +		gpio-line-names = "RADIO0", "RADIO1", "RADIO2", "RADIO3",
-> > +		"RADIO4", "RADIO_RESET", "TP12", "TP11";
-> 
-> Can we add some indent to get the line aligned with the first " above?
-> There are a few such lines that could be improved.
+Pick up the patchset from Nitin since the last revision (v4) has been
+sent end of September and is blocking qcm6490-fairphone-fp5 UFS.
 
-Hi,
-Sure, will do for V5.
+---
+Changes in v6:
+- Use MX power domain for phy, UFS_PHY_GDSC is only used for the
+  controller (Mani)
+- Link to v5: https://lore.kernel.org/r/20231204-sc7280-ufs-v5-0-926ceed550da@fairphone.com
 
-Hugo.
+Changes in v5:
+- Try to get patch tags in order
+- Drop patch reordering clocks/clock-names in dt-bindings example (Rob)
+- Use QCOM_ICC_TAG_ALWAYS for interconnect (Konrad)
+- Add missing interconnect-names (Luca)
+- Fix sorting of ufs nodes, place at correct location (Luca)
+- Provide ufs_mem_phy clock to gcc node (Luca)
+- Add missing power-domain to ufs_mem_phy (Luca)
+- Link to v4: https://lore.kernel.org/linux-arm-msm/20230929131936.29421-1-quic_nitirawa@quicinc.com/
 
+---
+Nitin Rawat (3):
+      scsi: ufs: qcom: dt-bindings: Add SC7280 compatible string
+      arm64: dts: qcom: sc7280: Add UFS nodes for sc7280 soc
+      arm64: dts: qcom: sc7280: Add UFS nodes for sc7280 IDP board
 
-> 
-> Shawn
-> 
-> > +		linux,rs485-enabled-at-boot-time;
-> > +		rs485-rts-active-low;
-> > +	};
-> > +
-> > +	/delete-node/ touchscreen@0;
-> > +};
-> > +
-> > +&ecspi2 {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&pinctrl_ecspi2>;
-> > +	cs-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
-> > +	/delete-property/ dmas;
-> > +	/delete-property/ dma-names;
-> > +	status = "okay";
-> > +
-> > +	duart2: serial@0 {
-> > +		compatible = "nxp,sc16is752";
-> > +		reg = <0>;
-> > +		spi-rx-bus-width = <1>;
-> > +		spi-tx-bus-width = <1>;
-> > +		spi-max-frequency = <4000000>;
-> > +		clocks = <&crystal_duart_24m>;
-> > +		interrupt-parent = <&gpio3>;
-> > +		interrupts = <20 IRQ_TYPE_EDGE_FALLING>;
-> > +		gpio-controller;
-> > +		#gpio-cells = <2>;
-> > +		gpio-line-names = "LED_B_USER", "LED_R_USER", "LED_G_USER",
-> > +		"GPIO_EXT3", "GPIO_EXT2", "GPIO_EXT1", "GPIO_EXT0", "TP13";
-> > +		linux,rs485-enabled-at-boot-time;
-> > +		rs485-rts-active-low;
-> > +	};
-> > +};
-> > +
-> > +/* Configure PWM pins in GPIO mode: */
-> > +&gpio5 {
-> > +	gpio-line-names = "", "", "", "PWM3", "PWM2", "PWM1";
-> > +};
-> > +
-> > +&gpu {
-> > +	status = "disabled";
-> > +};
-> > +
-> > +&i2c2 {
-> > +	clock-frequency = <400000>;
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&pinctrl_i2c2>;
-> > +	status = "okay";
-> > +
-> > +	/* Carrier board EEPROM */
-> > +	eeprom_cb: eeprom@56 {
-> > +		compatible = "atmel,24c04";
-> > +		reg = <0x56>;
-> > +		pagesize = <16>;
-> > +		vcc-supply = <&reg_3p3v>;
-> > +	};
-> > +
-> > +	lm75: sensor@48 {
-> > +		compatible = "st,stlm75";
-> > +		reg = <0x48>;
-> > +		vs-supply = <&reg_3p3v>;
-> > +	};
-> > +
-> > +	mcp7940: rtc@6f {
-> > +		compatible = "microchip,mcp7940x";
-> > +		reg = <0x6f>;
-> > +	};
-> > +};
-> > +
-> > +&i2c3 {
-> > +	codec@1a {
-> > +		status = "disabled";
-> > +	};
-> > +};
-> > +
-> > +&i2c4 {
-> > +	clock-frequency = <400000>;
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&pinctrl_i2c4>;
-> > +	status = "okay";
-> > +
-> > +	pcf8574_1: gpio@38 {
-> > +		compatible = "nxp,pcf8574";
-> > +		reg = <0x38>;
-> > +		gpio-controller;
-> > +		#gpio-cells = <2>;
-> > +		gpio-line-names = "LED_B_COMM3", "LED_R_COMM3", "LED_G_COMM3",
-> > +		"TP14", "TP15", "LED_G_COMM4", "LED_R_COMM4", "LED_B_COMM4";
-> > +	};
-> > +
-> > +	pcf8574_2: gpio@39 {
-> > +		compatible = "nxp,pcf8574";
-> > +		reg = <0x39>;
-> > +		gpio-controller;
-> > +		#gpio-cells = <2>;
-> > +		gpio-line-names = "LED_B_COMM2", "LED_G_COMM2", "LED_B_COMM1",
-> > +		"LED_R_COMM2", "LED_R_COMM1", "LED_G_COMM1", "TP16", "TP17";
-> > +	};
-> > +};
-> > +
-> > +/* Bluetooth */
-> > +&uart2 {
-> > +	status = "disabled";
-> > +};
-> > +
-> > +&usbotg1 {
-> > +	dr_mode = "host";
-> > +	disable-over-current;
-> > +	status = "okay";
-> > +};
-> > +
-> > +/* SD interface on expansion connector. */
-> > +&usdhc2 {
-> > +	vmmc-supply = <&reg_3p3v>;
-> > +	cd-gpios = <&gpio1 13 GPIO_ACTIVE_LOW>;
-> > +};
-> > +
-> > +&iomuxc {
-> > +	pinctrl_ecspi1: ecspi1grp {
-> > +		fsl,pins = <
-> > +			MX8MN_IOMUXC_ECSPI1_SCLK_ECSPI1_SCLK	0x13
-> > +			MX8MN_IOMUXC_ECSPI1_MOSI_ECSPI1_MOSI	0x13
-> > +			MX8MN_IOMUXC_ECSPI1_MISO_ECSPI1_MISO	0x13
-> > +			MX8MN_IOMUXC_ECSPI1_SS0_GPIO5_IO9	0x13 /* SS0 */
-> > +			MX8MN_IOMUXC_SAI5_RXD1_GPIO3_IO22	0x13 /* SC16 IRQ */
-> > +		>;
-> > +	};
-> > +
-> > +	pinctrl_ecspi2: ecspi2grp {
-> > +		fsl,pins = <
-> > +			MX8MN_IOMUXC_ECSPI2_SCLK_ECSPI2_SCLK	0x13
-> > +			MX8MN_IOMUXC_ECSPI2_MOSI_ECSPI2_MOSI	0x13
-> > +			MX8MN_IOMUXC_ECSPI2_MISO_ECSPI2_MISO	0x13
-> > +			MX8MN_IOMUXC_ECSPI2_SS0_GPIO5_IO13	0x13 /* SS0 */
-> > +			MX8MN_IOMUXC_SAI5_RXC_GPIO3_IO20	0x13 /* SC16 IRQ */
-> > +		>;
-> > +	};
-> > +
-> > +	pinctrl_gpio_keys: gpiokeysgrp {
-> > +		fsl,pins = <
-> > +			MX8MN_IOMUXC_GPIO1_IO01_GPIO1_IO1	0xc6 /* Enter */
-> > +			MX8MN_IOMUXC_SAI5_RXD2_GPIO3_IO23	0xc6 /* Exit */
-> > +		>;
-> > +	};
-> > +
-> > +	pinctrl_i2c2: i2c2grp {
-> > +		fsl,pins = <
-> > +			MX8MN_IOMUXC_I2C2_SCL_I2C2_SCL		0x400001c3
-> > +			MX8MN_IOMUXC_I2C2_SDA_I2C2_SDA		0x400001c3
-> > +		>;
-> > +	};
-> > +
-> > +	pinctrl_i2c4: i2c4grp {
-> > +		fsl,pins = <
-> > +			MX8MN_IOMUXC_I2C4_SCL_I2C4_SCL		0x400001c3
-> > +			MX8MN_IOMUXC_I2C4_SDA_I2C4_SDA		0x400001c3
-> > +		>;
-> > +	};
-> > +
-> > +	pinctrl_lcd: lcdgrp {
-> > +		fsl,pins = <
-> > +			MX8MN_IOMUXC_SAI3_TXD_GPIO5_IO1		0x00000156 /* D0 */
-> > +			MX8MN_IOMUXC_GPIO1_IO06_GPIO1_IO6	0x00000156 /* D1 */
-> > +			MX8MN_IOMUXC_GPIO1_IO14_GPIO1_IO14	0x00000156 /* D2 */
-> > +			MX8MN_IOMUXC_SAI3_RXFS_GPIO4_IO28	0x00000156 /* D3 */
-> > +			MX8MN_IOMUXC_UART2_RXD_GPIO5_IO24	0x00000156 /* D4 */
-> > +			MX8MN_IOMUXC_SAI3_MCLK_GPIO5_IO2	0x00000156 /* D5 */
-> > +			MX8MN_IOMUXC_GPIO1_IO12_GPIO1_IO12	0x00000156 /* D6 */
-> > +			MX8MN_IOMUXC_UART2_TXD_GPIO5_IO25	0x00000156 /* D7 */
-> > +			MX8MN_IOMUXC_UART1_TXD_GPIO5_IO23	0x00000156 /* E */
-> > +			MX8MN_IOMUXC_GPIO1_IO07_GPIO1_IO7	0x00000156 /* RS */
-> > +			MX8MN_IOMUXC_SAI2_MCLK_GPIO4_IO27	0x00000156 /* R/W */
-> > +		>;
-> > +	};
-> > +
-> > +	pinctrl_rotary: rotarygrp {
-> > +		fsl,pins = <
-> > +			MX8MN_IOMUXC_GPIO1_IO05_GPIO1_IO5	0x00000156 /* A */
-> > +			MX8MN_IOMUXC_SAI5_RXD0_GPIO3_IO21	0x00000156 /* B */
-> > +		>;
-> > +	};
-> > +
-> > +	/* Override Card Detect function GPIO value (GPIO1_IO10) from SOM: */
-> > +	pinctrl_usdhc2_gpio: usdhc2gpiogrp {
-> > +		fsl,pins = <
-> > +			MX8MN_IOMUXC_GPIO1_IO13_GPIO1_IO13	0x41
-> > +		>;
-> > +	};
-> > +};
-> > -- 
-> > 2.39.2
-> > 
+ .../devicetree/bindings/ufs/qcom,ufs.yaml          |  2 +
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi           | 19 ++++++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi               | 74 +++++++++++++++++++++-
+ 3 files changed, 94 insertions(+), 1 deletion(-)
+---
+base-commit: ce733604ab13d907655fd76ef5be55d16bbd0f8c
+change-id: 20231204-sc7280-ufs-b1e746ea60ed
 
-
+Best regards,
 -- 
-Hugo Villeneuve
+Luca Weiss <luca.weiss@fairphone.com>
+
 
