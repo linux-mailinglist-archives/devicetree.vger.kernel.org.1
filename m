@@ -1,90 +1,92 @@
-Return-Path: <devicetree+bounces-21970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21971-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61EF2805E31
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 19:57:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78EC0805E4F
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 20:05:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 167E9B20EAE
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 18:57:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA4BF1C20F78
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 19:05:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEEA267E8D;
-	Tue,  5 Dec 2023 18:57:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AACF68EA6;
+	Tue,  5 Dec 2023 19:05:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HzdBN6M2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WuhUwi7C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67A8CC6;
-	Tue,  5 Dec 2023 10:57:28 -0800 (PST)
-Received: by mail-pl1-x631.google.com with SMTP id d9443c01a7336-1d03f90b0cbso11355095ad.1;
-        Tue, 05 Dec 2023 10:57:28 -0800 (PST)
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 019D6B0;
+	Tue,  5 Dec 2023 11:05:17 -0800 (PST)
+Received: by mail-pj1-x102c.google.com with SMTP id 98e67ed59e1d1-28648be0811so4404568a91.0;
+        Tue, 05 Dec 2023 11:05:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701802648; x=1702407448; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tevZ8UT2m5FuLuMDQ9ysXxP+PUvVdIyb8mMOrUfUXmE=;
-        b=HzdBN6M29X5ZCHyZgWomWjLpaVR9snQaoRscmLKa4KzF0SZUlEKDjSJrAAwVr98gBc
-         bbSZUjg5lVD3tKrilZlLgS/vykPvSdlLdv4zY5a/7Bh9dRz7DPOvipMkt+/NQ1lzyCGb
-         g0wfXZy6FE1f+TbehGDvm+UXPrlA58iuLk4OT5McvZGvPB8whksTIL0WTVGSkbmxL52n
-         q6NkAZJLbD/m4+Xx/tfdXzLK0AMPyaJr6ROTSEjdtJ+3S6WOdDRdcEYwwW3E3a/G2VA4
-         RRykU41X3hRUiEDzmH+k4B0i7X+jp1AMzCsStk05YPth2mjuyg7Nm3dNNlvza30n/CeZ
-         fqIw==
+        d=gmail.com; s=20230601; t=1701803116; x=1702407916; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/YpRo6JOF2d6j3rPa12X0C68slW+v5pjWgqMK6QLn2s=;
+        b=WuhUwi7Cpru+ci+F9IfpM6qU8noYAplWFUnvgkWIAQZ5sGvkW6EN3h/FihiNRCRfct
+         jwv8KvfnGUugfiXR7q/qZ07OpBiLuUHNpLqkCllUY6kFP79DPfE36wm++/drxxJDIj9S
+         OakPd//ScV6xh+oAPJuqFeLMLF/nDBlBuarm/IUDPsomw6g9X+ckA01eRV0OFtkE9iMt
+         nGOBOqsGG6NwumbeBvBZvnbcNegl+iBph0Q96k6SeoiqRJouEoyQm/nI0UO5qwIY8LD+
+         tjBVFLvwPx5gQSZZEM+60U38qmPgouuAnNaMfCdtaTB1NC/+6dGecLFyqLLYmRFQrg9Q
+         lTcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701802648; x=1702407448;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tevZ8UT2m5FuLuMDQ9ysXxP+PUvVdIyb8mMOrUfUXmE=;
-        b=SNfKu7e8uH5fsjbTaWNnWk4T+LYgTDy9gvSTY7s1e+o4m5o1AtB49CM1S3uJmYPKVu
-         DVu40z1MVzdZ1W68KuyqW2JX7fHMnM1OaT5Luehdwwsm6ABGsO4Cda1IPI172cWZc7Oh
-         Gx7YPJd86uwfCPIHVxroogkBU0Kh8sKmnlGSBvrUmGuCusBOWXuAXcp/p11PlbTMFoi/
-         7j/EDcYZRVGh79O0oDUskWMkTISCGfqxIqwb8fQqvz+vqqwI0juDmortU7FyUrM79NkP
-         AMacgesz8pWrBsxd9XZGkHw1k0US5VfWcj5JkXj71gl5NfCbATUAhduktoCWf1r2H3DV
-         K+JA==
-X-Gm-Message-State: AOJu0Yy5i9rkaYy1Gpvekvm/YwHRJV4e5BeEX3Nqrgeup4PN6FbS+U02
-	IO/xGeAPrdcS/Biuxypy0sfDCNIwymaEKAj+m6E=
-X-Google-Smtp-Source: AGHT+IEc7ie+iZwnxI8QRTTNI16dcqfV0yF8NX/A4xD6jvv/ItHDeZ+zdy4uH7nahij/EoLO4oKI2AgP6VqIaHfHPRk=
-X-Received: by 2002:a17:90a:a10f:b0:286:4055:63e0 with SMTP id
- s15-20020a17090aa10f00b00286405563e0mr16091799pjp.0.1701802647829; Tue, 05
- Dec 2023 10:57:27 -0800 (PST)
+        d=1e100.net; s=20230601; t=1701803116; x=1702407916;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/YpRo6JOF2d6j3rPa12X0C68slW+v5pjWgqMK6QLn2s=;
+        b=GBZQrNwAoGmeQj10Cksohglt5NA59cB81MC3739UCq/3KQezh9bvdj//XNm8VhCoxl
+         I73fGRg4upQg0WZDgZW6SNsPAnMnBJ0rDFNI/WrzTysycSInY5QbJsku2fqjVWyPh9Gr
+         ZJ9SVaCLzRDc0HASeJHH54IDKfF7XYp+Tf5sADXB5FaBWpjRpWW3Ol/liTigzFRb+5mh
+         PrtynzfEGHikuDFZJuQLtMsnvbh8Ya1JT3zK7kOohSRNGIojhZVKE9WF5L2PkEuGsv9W
+         XjA14n+H5DKYgomWLKAGQLIKSQVMRYFxBr/IyYLQzK+WnYQ1YJ+Bhl9Ik9lLIuXQaeu1
+         zhYw==
+X-Gm-Message-State: AOJu0Ywlhuu7nMR5doHYRC139hQZZIxxngyhLP6yfQkZxCes0QfjYA/n
+	kU8qsH9WM4UL/JEi8SFIugCRaJeljCQ=
+X-Google-Smtp-Source: AGHT+IF3mB1DJWrQGKXFFEpF3BoVcs2vfq0HnTFIh6mMi6cg+C7zNqoF/5zHpRyx20VScDk5ws1uJg==
+X-Received: by 2002:a17:90a:f28b:b0:286:295a:b33a with SMTP id fs11-20020a17090af28b00b00286295ab33amr1446687pjb.8.1701803115469;
+        Tue, 05 Dec 2023 11:05:15 -0800 (PST)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id gb2-20020a17090b060200b00286c1a13ed9sm3110511pjb.56.2023.12.05.11.05.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Dec 2023 11:05:14 -0800 (PST)
+Message-ID: <fee61230-58f9-45d5-b435-e3f76f4993e4@gmail.com>
+Date: Tue, 5 Dec 2023 11:05:13 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231205182241.2550284-1-tharvey@gateworks.com>
-In-Reply-To: <20231205182241.2550284-1-tharvey@gateworks.com>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Tue, 5 Dec 2023 15:57:16 -0300
-Message-ID: <CAOMZO5AWsytgARbfMdva31Yo3nB=BkjfkhQiXHY=nmWUGe3-DQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8mm-venice-gw7: Fix pci sub-nodes
-To: Tim Harvey <tharvey@gateworks.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, NXP Linux Team <linux-imx@nxp.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] memory: brcmstb_dpfe: introduce version-specific
+ compatible strings
+Content-Language: en-US
+To: Markus Mayer <mmayer@broadcom.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
+ Device Tree Mailing List <devicetree@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20231205184741.3092376-1-mmayer@broadcom.com>
+ <20231205184741.3092376-3-mmayer@broadcom.com>
+From: Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <20231205184741.3092376-3-mmayer@broadcom.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Tim,
+On 12/5/23 10:47, Markus Mayer wrote:
+> Introduce compatible strings brcm,dpfe-cpu-v1 through brcm,dpfe-cpu-v3
+> to the Broadcom DPFE driver.
+> 
+> Signed-off-by: Markus Mayer <mmayer@broadcom.com>
 
-On Tue, Dec 5, 2023 at 3:22=E2=80=AFPM Tim Harvey <tharvey@gateworks.com> w=
-rote:
->
-> Several schema warnings were fixed in commit
-> d61c5068729a ("arm64: dts: imx8mm-venice-gw7: Fix pci sub-nodes")
-> however the node names and the ethernet NIC node were not quite correct.
->
-> Fix the node names as the ethernet device should have a node name of
-> 'ethernet' and remove the device_type, #address-cells, #size-cells, and
-> ranges properties that should only be on busses/bridges.
+Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
+-- 
+Florian
 
-I sent this one to address the remaining issues:
-
-https://lore.kernel.org/linux-devicetree/20231130225242.988336-1-festevam@g=
-mail.com/
 
