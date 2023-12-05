@@ -1,188 +1,212 @@
-Return-Path: <devicetree+bounces-21752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21754-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36010805036
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 11:32:47 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 211FC805048
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 11:36:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D6DE11F214E6
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 10:32:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 56F1DB20CBD
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 10:36:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 835CA51C36;
-	Tue,  5 Dec 2023 10:32:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBC634F5E4;
+	Tue,  5 Dec 2023 10:36:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iLd+tU4J"
 X-Original-To: devicetree@vger.kernel.org
-X-Greylist: delayed 288 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 05 Dec 2023 02:32:37 PST
-Received: from 189.cn (ptr.189.cn [183.61.185.102])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id B42F5BA;
-	Tue,  5 Dec 2023 02:32:37 -0800 (PST)
-HMM_SOURCE_IP:10.64.8.31:56582.66917648
-HMM_ATTACHE_NUM:0000
-HMM_SOURCE_TYPE:SMTP
-Received: from clientip-106.39.148.68 (unknown [10.64.8.31])
-	by 189.cn (HERMES) with SMTP id C166E1001E8;
-	Tue,  5 Dec 2023 18:27:44 +0800 (CST)
-Received: from  ([106.39.148.68])
-	by gateway-151646-dep-64bdf77f94-vkj2l with ESMTP id b40fada1729c49d09c097b89903bb9bf for keith.zhao@starfivetech.com;
-	Tue, 05 Dec 2023 18:27:46 CST
-X-Transaction-ID: b40fada1729c49d09c097b89903bb9bf
-X-Real-From: 15330273260@189.cn
-X-Receive-IP: 106.39.148.68
-X-MEDUSA-Status: 0
-Sender: 15330273260@189.cn
-Message-ID: <f6beefa7-ebff-49a6-aa58-5aced4eeb1fb@189.cn>
-Date: Tue, 5 Dec 2023 18:27:43 +0800
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61C9B113;
+	Tue,  5 Dec 2023 02:36:04 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-50bf4f97752so2706099e87.1;
+        Tue, 05 Dec 2023 02:36:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701772562; x=1702377362; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=dtMf2uo6v4HRaO3aTGATHxiPGfcXJjAcpZInpCqs6aI=;
+        b=iLd+tU4Jx4ojdORgJwFw1jET5CRvvt8KXgyiK4FzlMdlBDBzQvg0KPRoMa9lJ/KqsZ
+         bJel3Avaj9KWpVlY5jggy8JghdfSimoWM2AisTbr4vMn8n9ZwsbIws0ptqgE/dZa17Nr
+         sQrjIsIOr/Ruziu5Bi588evn8Vo4lOG2oiJkpZYggMloCk508CMLPXXknddGXBnOkt1A
+         ScuxJ875w6wxZYHJjvtFqsqPjw1AylRVl9hkaiEpdNep4yXn5l7unY+bCmTzwNKuSVDV
+         l4JNDJ0pRspbx+v6mGzizsvt5z8sZnpL/uWGZ7Cwb309t8aV13Hiw87MI2cK9Zf98Ro3
+         5oJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701772562; x=1702377362;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dtMf2uo6v4HRaO3aTGATHxiPGfcXJjAcpZInpCqs6aI=;
+        b=OQ2txSkEw1DJftHtw2A2BJ9Oxt8MEtNH4yRAqWQvWiv0+4ccGNTVd3MEAGS/HrsW3l
+         MiJ9AUFoli/LaEA/C6Rhf2QmctF0x7o9CK+maaGDbIkxn1i3L4TVXLFXFUCm1O9A7JWr
+         zQGTQThVKqky/PZsNvMqetqJhTAikkMPwSrwz6aNjEWGZh1XlGDZRf8Zm7PKpnW48LCf
+         u26P/UMaQkx+RMNc6MhakcztQEhWBAHWvOACNZb4w4HiUbF5/JGZyHCDMG1ghVHFmhUm
+         RPnCE7muz2Gvy8uCRTnFhQQ+RX5fObbzCBItp5Zs87fzr3dIHHaR6nfVYobKorAhpEbt
+         P9Mg==
+X-Gm-Message-State: AOJu0YwibUg0+xnh7xd86Cc8MKZNLgoujUDzHrhF1KUqcrjHRHeGRguc
+	mKMC/QtIxxSpPn4woZ46IsI=
+X-Google-Smtp-Source: AGHT+IGlNIwd4/e0H62YzHZHqaYqpG0StEiFbdOr/1a/chFWUYy/uwi3/P3hdcNgTRT9b2PsOO2mVg==
+X-Received: by 2002:a05:6512:2013:b0:50b:fafd:8a6e with SMTP id a19-20020a056512201300b0050bfafd8a6emr1336040lfb.54.1701772562280;
+        Tue, 05 Dec 2023 02:36:02 -0800 (PST)
+Received: from localhost ([178.176.56.174])
+        by smtp.gmail.com with ESMTPSA id r15-20020ac25f8f000000b0050bc41caf04sm538386lfe.304.2023.12.05.02.36.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Dec 2023 02:36:01 -0800 (PST)
+From: Serge Semin <fancer.lancer@gmail.com>
+To: Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Jose Abreu <Jose.Abreu@synopsys.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Tomer Maimon <tmaimon77@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Serge Semin <fancer.lancer@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	openbmc@lists.ozlabs.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH net-next 00/16] net: pcs: xpcs: Add memory-based management iface support
+Date: Tue,  5 Dec 2023 13:35:21 +0300
+Message-ID: <20231205103559.9605-1-fancer.lancer@gmail.com>
+X-Mailer: git-send-email 2.42.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [v3 0/6] DRM driver for verisilicon
-To: Keith Zhao <keith.zhao@starfivetech.com>, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org
-Cc: aou@eecs.berkeley.edu, tzimmermann@suse.de, paul.walmsley@sifive.com,
- mripard@kernel.org, xingyu.wu@starfivetech.com, jack.zhu@starfivetech.com,
- palmer@dabbelt.com, krzysztof.kozlowski+dt@linaro.org,
- william.qiu@starfivetech.com, shengyang.chen@starfivetech.com,
- changhuang.liang@starfivetech.com
-References: <20231204123315.28456-1-keith.zhao@starfivetech.com>
-Content-Language: en-US
-From: Sui Jingfeng <15330273260@189.cn>
-In-Reply-To: <20231204123315.28456-1-keith.zhao@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-HI,
+The main goal of this series is to extend the DW XPCS device support in
+the kernel. Particularly the patchset adds the DW XPCS MCI/APB3 management
+interface support to the MDIO subsystem (basically it's a way to access
+the memory-mapped DW XPCS devices), modifies the DW XPCS PCS-driver to
+being registered as a standard MDIO-device driver and finally extends the
+STMMAC MDIO sub-module functionality so one would be able to support both
+SMA- and MI-based ways to communicate with the XPCS-device. The later way
+will implies to have an XPCS-device passed to the DW MAC node via the
+generic "pcs-handle" property.
 
-This series are very interesting and nice!
+The series traditionally starts with the cleanup patches, which can be
+also considered as preparations. First redundant sentinel entry and the
+header files are removed. Then two errno cleanups are introduced: return
+EINVAL from the soft-reset method and make sure that the validate method
+returns EINVAL straight away if the requested interface isn't supported by
+the XPCS device instance.
 
+Afterwards three preparation patches are introduced. First one just moves
+the generic DW XPCS IDs macro-based declarations from the internal header
+file to the external one where some other IDs also reside. Second patch
+updates the XPCS registration procedure to avoid dummy MDIO-device
+creation if it is already available in the framework of the specified
+MDIO-bus. Finally third patch splits up the xpcs_create() method to a set
+of the coherent sub-function for the sake of the further easier updates
+and to have it looking less complicated.
 
-On 2023/12/4 20:33, Keith Zhao wrote:
-> This patch is a drm driver for Starfive Soc JH7110,
+The next three patches add the DW XPCS Management Interface driver to the
+MDIO subsystem, update the DW XPCS driver to support a PCS-device
+registered on a MDIO-bus and add the DT-bindings for both of these
+objects.  Note the hierarchical design (having a DW XPCS device defined as
+a sub-node of the DW XPCS management interface node) has been chosen for
+several reasons. First Synopsys calls the MCI/APB3 interface as Management
+Interface with two possible ways of the MMD CSRs access (direct and
+indirect), which is basically a bus between the system and the PCS-device
+with a possibility to have more than just one device attached. So the
+chosen design looks more correct from the HW representation point of view.
+Second the drivers for the SMA/MDIO-capable controllers (STMMAC and it's
+glue layers for example) will still be able to manually register an
+MDIO-bus but from now with custom XPCS-device identifiers. So the DW XPCS
+driver will get to be attached to that device activating respective
+internal functionality (see patches 10, 13 and 16). Thus if there is no
+way to auto-identify the XPCS device capabilities it can be done based on
+the custom device IDs or DT-node compatible string (see patch 10). But if
+it's, then the device IDs will be auto-detected by the MDIO-subsystem and
+the DW XPCS driver will still get attached to the device on the MDIO-bus.
+All of that AFAICS would have been impossible (or much harder) to
+implement should the Management Interface MDIO-bus be just internally
+created in the DW XPCS driver.
 
-'SoC' : System on Chip, no more 'Soc' or 'soc' please.
+Afterwards two patches add the "pcs-handle" DT-property support to the DW
+XPCS driver. The first one of them is a preparation patch, which just
+converts the name of the currently available XPCS device registration
+method to having "_byaddr" suffix. It better identifies the method and
+will make it more distinguishable from the method being added in the next
+patch. The second patch introduces a new function which responsibility is
+to create the DW XPCS descriptor based on the "pcs-handle" property and
+PCS-PHY interface. The prototype is specifically selected to be looking
+similar to another XPCS device registration method and to the phylink
+fwnode-based connect interface function.
 
-> I am sending Drm driver part and HDMI driver part.
+Finally after two small preparations the STMMAC driver is finally updated
+to support the DW XPCS devices specified via the "pcs-handle" firmware
+node. Thus the STMMAC driver from now will be able to handle the cases
+with the DW XPCS devices accessible over the memory-based management
+interface or over the external MDIO-buses.
 
+That's it for now. Thanks for review in advance. Any tests are very
+welcome. After this series is merged in, I'll submit another one which
+adds the generic 10GBase-R and 10GBase-X interfaces support to the STMMAC
+and DW XPCS driver with proper CSRs re-initialization, PMA initialization
+and reference clock selection as it's defined by the Synopsys DW XPCS HW
+manual.
 
-'DRM' or 'drm' nor Drm. DRM: Direct Rendering Manager.
+Signed-off-by: Serge Semin <fancer.lancer@gmail.com>
+Cc: "David S. Miller" <davem@davemloft.net>
+Cc: Eric Dumazet <edumazet@google.com>
+Cc: Jakub Kicinski <kuba@kernel.org>
+Cc: Paolo Abeni <pabeni@redhat.com>
+Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: openbmc@lists.ozlabs.org
+Cc: netdev@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
 
-Typically you should only *capitalize* the *first* letter of the first word
-in a sentence, while this Drm appears in the middle of this sentence.
+Serge Semin (16):
+  net: pcs: xpcs: Drop sentinel entry from 2500basex ifaces list
+  net: pcs: xpcs: Drop redundant workqueue.h include directive
+  net: pcs: xpcs: Return EINVAL in the internal methods
+  net: pcs: xpcs: Explicitly return error on caps validation
+  net: pcs: xpcs: Move native device ID macro to linux/pcs/pcs-xpcs.h
+  net: pcs: xpcs: Avoid creating dummy XPCS MDIO device
+  net: pcs: xpcs: Split up xpcs_create() content to sub-functions
+  dt-bindings: net: Add Synopsys DW xPCS bindings
+  net: mdio: Add Synopsys DW XPCS management interface support
+  net: pcs: xpcs: Add generic DW XPCS MDIO-device support
+  net: pcs: xpcs: Change xpcs_create_mdiodev() suffix to "byaddr"
+  net: pcs: xpcs: Add xpcs_create_bynode() method
+  net: stmmac: intel: Register generic MDIO device
+  net: stmmac: Pass netdev to XPCS setup function
+  net: stmmac: Add dedicated XPCS cleanup method
+  net: stmmac: Add externally detected DW XPCS support
 
-Please also improve the English written also, for example:
+ .../bindings/net/pcs/snps,dw-xpcs.yaml        |  88 ++++
+ .../bindings/net/snps,dw-xpcs-mi.yaml         |  88 ++++
+ drivers/net/dsa/sja1105/sja1105_mdio.c        |   2 +-
+ .../net/ethernet/stmicro/stmmac/dwmac-intel.c |  31 +-
+ drivers/net/ethernet/stmicro/stmmac/stmmac.h  |   3 +-
+ .../net/ethernet/stmicro/stmmac/stmmac_main.c |  14 +-
+ .../net/ethernet/stmicro/stmmac/stmmac_mdio.c |  51 ++-
+ drivers/net/mdio/Kconfig                      |   8 +
+ drivers/net/mdio/Makefile                     |   1 +
+ drivers/net/mdio/mdio-dw-xpcs.c               | 384 ++++++++++++++++++
+ drivers/net/pcs/Kconfig                       |   6 +-
+ drivers/net/pcs/pcs-xpcs.c                    | 285 ++++++++++---
+ drivers/net/pcs/pcs-xpcs.h                    |   7 +-
+ include/linux/pcs/pcs-xpcs.h                  |  36 +-
+ 14 files changed, 908 insertions(+), 96 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/pcs/snps,dw-xpcs.yaml
+ create mode 100644 Documentation/devicetree/bindings/net/snps,dw-xpcs-mi.yaml
+ create mode 100644 drivers/net/mdio/mdio-dw-xpcs.c
 
-This series is a DRM driver for Starfive Soc JH7110, which contains (consists of)
-a KMS driver for the vivante DC8200 display controller and a HDMI transmitter driver.
+-- 
+2.42.1
 
-
->
-> We used GEM framework for buffer management,
-> and for buffer allocation,we use DMA APIs.
->
-> the Starfive HDMI servers as interface between a LCD Controller
-
-'servers' -> 'serve as', because server is a noun.
-
-> and a HDMI bus.
-> A HDMI TX consists of one HDMI transmitter controller
-> and one HDMI transmitter PHY.
-> (Sound support is not include in this patch)
->
-> This patchset should be applied on next branch.
->
-> V1:
-> Changes since v1:
-> - Further standardize the yaml file.
-> - Dts naming convention improved.
-> - Fix the problem of compiling and loading ko files.
-> - Use drm new api to automatically manage resources.
-> - Drop vs_crtc_funcs&vs_plane_funcs, subdivide the plane's help interface.
-> - Reduce the modifiers unused.
-> - Optimize the hdmi driver code
->
-> V2:
-> Changes since v2:
-> - fix the error about checking the yaml file.
-> - match drm driver GEM DMA API.
-> - Delete the custom crtc property .
-> - hdmi use drmm_ new api to automatically manage resources.
-> - update the modifiers comments.
-> - enabling KASAN, fix the error during removing module
->
-> V3:
-> Changes since v3:
-> - Delete the custom plane property.
-> - Delete the custom fourcc modifiers.
-> - Adjust the calculation mode of hdmi pixclock.
-> - Add match data for dc8200 driver.
-> - Adjust some magic values.
-> - Add a simple encoder for dsi output.
->
-> Keith Zhao (6):
->    dt-bindings: display: Add yamls for JH7110 display system
->    riscv: dts: starfive: jh7110: display subsystem
->    drm/vs: Register DRM device
->    drm/vs: Add KMS crtc&plane
->    drm/vs: Add hdmi driver
->    drm/vs: simple encoder
->
->   .../starfive/starfive,display-subsystem.yaml  |  104 ++
->   .../starfive/starfive,dsi-encoder.yaml        |   92 ++
->   .../starfive/starfive,jh7110-dc8200.yaml      |  113 ++
->   .../starfive/starfive,jh7110-inno-hdmi.yaml   |   82 ++
->   .../soc/starfive/starfive,jh7110-syscon.yaml  |    1 +
->   MAINTAINERS                                   |    8 +
->   .../jh7110-starfive-visionfive-2.dtsi         |  134 ++
->   arch/riscv/boot/dts/starfive/jh7110.dtsi      |   49 +
->   drivers/gpu/drm/Kconfig                       |    2 +
->   drivers/gpu/drm/Makefile                      |    1 +
->   drivers/gpu/drm/verisilicon/Kconfig           |   21 +
->   drivers/gpu/drm/verisilicon/Makefile          |   12 +
->   drivers/gpu/drm/verisilicon/starfive_hdmi.c   |  849 ++++++++++++
->   drivers/gpu/drm/verisilicon/starfive_hdmi.h   |  304 +++++
->   drivers/gpu/drm/verisilicon/vs_crtc.c         |  208 +++
->   drivers/gpu/drm/verisilicon/vs_crtc.h         |   42 +
->   drivers/gpu/drm/verisilicon/vs_dc.c           | 1192 +++++++++++++++++
->   drivers/gpu/drm/verisilicon/vs_dc.h           |   67 +
->   drivers/gpu/drm/verisilicon/vs_dc_hw.c        | 1022 ++++++++++++++
->   drivers/gpu/drm/verisilicon/vs_dc_hw.h        |  580 ++++++++
->   drivers/gpu/drm/verisilicon/vs_drv.c          |  323 +++++
->   drivers/gpu/drm/verisilicon/vs_drv.h          |   46 +
->   drivers/gpu/drm/verisilicon/vs_modeset.c      |   39 +
->   drivers/gpu/drm/verisilicon/vs_modeset.h      |   10 +
->   drivers/gpu/drm/verisilicon/vs_plane.c        |  301 +++++
->   drivers/gpu/drm/verisilicon/vs_plane.h        |   39 +
->   drivers/gpu/drm/verisilicon/vs_simple_enc.c   |  195 +++
->   drivers/gpu/drm/verisilicon/vs_simple_enc.h   |   23 +
->   drivers/gpu/drm/verisilicon/vs_type.h         |   69 +
->   29 files changed, 5928 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/display/starfive/starfive,display-subsystem.yaml
->   create mode 100644 Documentation/devicetree/bindings/display/starfive/starfive,dsi-encoder.yaml
->   create mode 100644 Documentation/devicetree/bindings/display/starfive/starfive,jh7110-dc8200.yaml
->   create mode 100644 Documentation/devicetree/bindings/display/starfive/starfive,jh7110-inno-hdmi.yaml
->   create mode 100644 drivers/gpu/drm/verisilicon/Kconfig
->   create mode 100644 drivers/gpu/drm/verisilicon/Makefile
->   create mode 100644 drivers/gpu/drm/verisilicon/starfive_hdmi.c
->   create mode 100644 drivers/gpu/drm/verisilicon/starfive_hdmi.h
->   create mode 100644 drivers/gpu/drm/verisilicon/vs_crtc.c
->   create mode 100644 drivers/gpu/drm/verisilicon/vs_crtc.h
->   create mode 100644 drivers/gpu/drm/verisilicon/vs_dc.c
->   create mode 100644 drivers/gpu/drm/verisilicon/vs_dc.h
->   create mode 100644 drivers/gpu/drm/verisilicon/vs_dc_hw.c
->   create mode 100644 drivers/gpu/drm/verisilicon/vs_dc_hw.h
->   create mode 100644 drivers/gpu/drm/verisilicon/vs_drv.c
->   create mode 100644 drivers/gpu/drm/verisilicon/vs_drv.h
->   create mode 100644 drivers/gpu/drm/verisilicon/vs_modeset.c
->   create mode 100644 drivers/gpu/drm/verisilicon/vs_modeset.h
->   create mode 100644 drivers/gpu/drm/verisilicon/vs_plane.c
->   create mode 100644 drivers/gpu/drm/verisilicon/vs_plane.h
->   create mode 100644 drivers/gpu/drm/verisilicon/vs_simple_enc.c
->   create mode 100644 drivers/gpu/drm/verisilicon/vs_simple_enc.h
->   create mode 100644 drivers/gpu/drm/verisilicon/vs_type.h
->
 
