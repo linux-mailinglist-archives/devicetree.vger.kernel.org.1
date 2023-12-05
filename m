@@ -1,61 +1,71 @@
-Return-Path: <devicetree+bounces-21945-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21946-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2B11805B05
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 18:18:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B89D9805B11
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 18:23:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 92C151F21940
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 17:18:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D9D71F212D6
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 17:23:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE0F9692B9;
-	Tue,  5 Dec 2023 17:18:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A34965EBC;
+	Tue,  5 Dec 2023 17:23:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="EWrIWCc3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 194E9C0;
-	Tue,  5 Dec 2023 09:18:22 -0800 (PST)
-X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="425085150"
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60A881AA;
+	Tue,  5 Dec 2023 09:23:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1701796991; x=1733332991;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=xSFoJNtBEh1slwXcU0gofzkPL1OMQMY6UhlC/9rL2Bs=;
+  b=EWrIWCc3b1JWpNi3ME1DQZNDI43p6NESSCigO28cmlTNZhQR/gGbeJLp
+   jkH+IYDcRIXuOvy2ddF8Ww0U00B4lolRjsW5QfJfGbK2Lqyaf32+mPRaZ
+   EpdIIpSpdHKBBeNOVU4NYlFLYkMXrYfqw420ucqyaGQ+eLenI2aM62tOM
+   U3OpkS2vLIFN9gZF8CbS3naKEJCfK2islJZlFymE2n4v26ZAuEGdziCMn
+   I75i4rjs41Uqxj/FW5+QL0uMzTnSt0JcHQfpMzOWUSFfkXkqQOq3dXB5/
+   XcJUX89H2D8DCy9UxHnEhdNykua/9wWH9y8N73lnuMHtrAdxgWA8V8Nsj
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="12645337"
 X-IronPort-AV: E=Sophos;i="6.04,252,1695711600"; 
-   d="scan'208";a="425085150"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Dec 2023 09:18:21 -0800
+   d="scan'208";a="12645337"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Dec 2023 09:23:11 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="841545261"
+X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="720779258"
 X-IronPort-AV: E=Sophos;i="6.04,252,1695711600"; 
-   d="scan'208";a="841545261"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Dec 2023 09:18:16 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andy.shevchenko@gmail.com>)
-	id 1rAZ3k-000000026Ns-2qE0;
-	Tue, 05 Dec 2023 19:18:12 +0200
-Date: Tue, 5 Dec 2023 19:18:12 +0200
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-To: Ceclan Dumitru <mitrutzceclan@gmail.com>
-Cc: linus.walleij@linaro.org, brgl@bgdev.pl, linux-gpio@vger.kernel.org,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+   d="scan'208";a="720779258"
+Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
+  by orsmga003.jf.intel.com with ESMTP; 05 Dec 2023 09:23:06 -0800
+Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rAZ8S-0009RK-0h;
+	Tue, 05 Dec 2023 17:23:04 +0000
+Date: Wed, 6 Dec 2023 01:22:43 +0800
+From: kernel test robot <lkp@intel.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Banajit Goswami <bgoswami@quicinc.com>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Michael Walle <michael@walle.cc>, Arnd Bergmann <arnd@arndb.de>,
-	ChiaEn Wu <chiaen_wu@richtek.com>,
-	Niklas Schnelle <schnelle@linux.ibm.com>,
-	Leonard =?iso-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>,
-	Mike Looijmans <mike.looijmans@topic.nl>,
-	Haibo Chen <haibo.chen@nxp.com>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Ceclan Dumitru <dumitru.ceclan@analog.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 2/2] iio: adc: ad7173: add AD7173 driver
-Message-ID: <ZW9bVDLZl4-QLIbg@smile.fi.intel.com>
-References: <20231205134223.17335-1-mitrutzceclan@gmail.com>
- <20231205134223.17335-2-mitrutzceclan@gmail.com>
- <CAHp75VeKhR5y4AB=L5VVSrm=13Ruw7e86m+K9m9t-LZg5puDow@mail.gmail.com>
- <e72085fd-3203-4166-afab-73707d27d174@gmail.com>
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
+Cc: oe-kbuild-all@lists.linux.dev, linux-arm-msm@vger.kernel.org,
+	alsa-devel@alsa-project.org, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v2 5/5] ASoC: codecs: Add WCD939x Codec driver
+Message-ID: <202312060107.dTzr6BK9-lkp@intel.com>
+References: <20231201-topic-sm8650-upstream-wcd939x-codec-v2-5-94ed814b25aa@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,47 +74,51 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <e72085fd-3203-4166-afab-73707d27d174@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20231201-topic-sm8650-upstream-wcd939x-codec-v2-5-94ed814b25aa@linaro.org>
 
-On Tue, Dec 05, 2023 at 06:12:18PM +0200, Ceclan Dumitru wrote:
-> On 12/5/23 17:28, Andy Shevchenko wrote:
-> >> +               ref_label = ad7173_ref_sel_str[AD7173_SETUP_REF_SEL_INT_REF];
-> >> +
-> >> +               fwnode_property_read_string(child, "adi,reference-select",
-> >> +                                           &ref_label);
-> >> +               ref_sel = match_string(ad7173_ref_sel_str,
-> >> +                                      ARRAY_SIZE(ad7173_ref_sel_str), ref_label);
-> >> +               if (ref_sel < 0) {
-> > Can we use fwnode_property_match_property_string()?
-> 
-> fwnode_property_match_string() searches a given string in a device-tree
-> string array and returns the index. I do not think that this function
-> fits here as the DT attribute is a single string.
+Hi Neil,
 
-I'm not talking about that. I mentioned different API call.
+kernel test robot noticed the following build warnings:
 
-/**
- * fwnode_property_match_property_string - find a property string value in an array and return index
- * @fwnode: Firmware node to get the property of
- * @propname: Name of the property holding the string value
- * @array: String array to search in
- * @n: Size of the @array
- *
- * Find a property string value in a given @array and if it is found return
- * the index back.
- *
- * Return: index, starting from %0, if the string value was found in the @array (success),
- *         %-ENOENT when the string value was not found in the @array,
- *         %-EINVAL if given arguments are not valid,
- *         %-ENODATA if the property does not have a value,
- *         %-EPROTO or %-EILSEQ if the property is not a string,
- *         %-ENXIO if no suitable firmware interface is present.
- */
+[auto build test WARNING on broonie-sound/for-next]
+[also build test WARNING on linus/master v6.7-rc4 next-20231205]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Neil-Armstrong/ASoC-dt-bindings-document-WCD939x-Audio-Codec/20231202-000916
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+patch link:    https://lore.kernel.org/r/20231201-topic-sm8650-upstream-wcd939x-codec-v2-5-94ed814b25aa%40linaro.org
+patch subject: [PATCH v2 5/5] ASoC: codecs: Add WCD939x Codec driver
+config: arc-randconfig-r123-20231203 (https://download.01.org/0day-ci/archive/20231206/202312060107.dTzr6BK9-lkp@intel.com/config)
+compiler: arceb-elf-gcc (GCC) 13.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20231206/202312060107.dTzr6BK9-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202312060107.dTzr6BK9-lkp@intel.com/
+
+sparse warnings: (new ones prefixed by >>)
+>> sound/soc/codecs/wcd939x.c:1563:12: sparse: sparse: symbol 'tx_master_ch_text' was not declared. Should it be static?
+>> sound/soc/codecs/wcd939x.c:1570:23: sparse: sparse: symbol 'tx_master_ch_enum' was not declared. Should it be static?
+
+vim +/tx_master_ch_text +1563 sound/soc/codecs/wcd939x.c
+
+  1562	
+> 1563	const char * const tx_master_ch_text[] = {
+  1564		"ZERO", "SWRM_PCM_OUT", "SWRM_TX1_CH1", "SWRM_TX1_CH2", "SWRM_TX1_CH3",
+  1565		"SWRM_TX1_CH4", "SWRM_TX2_CH1", "SWRM_TX2_CH2", "SWRM_TX2_CH3",
+  1566		"SWRM_TX2_CH4", "SWRM_TX3_CH1", "SWRM_TX3_CH2", "SWRM_TX3_CH3",
+  1567		"SWRM_TX3_CH4", "SWRM_PCM_IN",
+  1568	};
+  1569	
+> 1570	const struct soc_enum tx_master_ch_enum =
+  1571		SOC_ENUM_SINGLE_EXT(ARRAY_SIZE(tx_master_ch_text),
+  1572				    tx_master_ch_text);
+  1573	
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
