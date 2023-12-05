@@ -1,155 +1,142 @@
-Return-Path: <devicetree+bounces-21645-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21649-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD480804C4B
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 09:28:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82B03804C55
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 09:29:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B6A81C2096C
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 08:28:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 46E6E28171E
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 08:29:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7245C3C46A;
-	Tue,  5 Dec 2023 08:28:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B4353C680;
+	Tue,  5 Dec 2023 08:29:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jj87tb0y"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="aRiGIxzt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BD02C0
-	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 00:28:27 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-40c0873cf84so26531665e9.1
-        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 00:28:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701764906; x=1702369706; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:from:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NFKSpKSrRWoXFYENkiq8+HWQ5Z6F7TKJoFhiU9QOe50=;
-        b=jj87tb0yhpvjQKFErmqoHFiIwd/X3gUIJbAXGvUotknsnKn7Ummb0N33E3nz0DoSXV
-         93JS9MIC/5bbf54TgNWhh5nl6WfM1HPHUrZazbpVHww1IM4gYZbZPiMz9+uYzHZ7cacs
-         XI4SnJI4YG6ununjPSY0nfMYQPddg9swlboQfLDc47EJVU5tSPyphCcIsB7lWWuWozfl
-         +NWwqMc6rgkBp/XsS/rfilb/4hHqiZyWo8Jm4Cy2ZFTLG+8IwbW6g0LNda9qltlz8UqS
-         2hBGrb8d98XKM7HSPsdS9cRj/9JCBQxqF7fnoOwB00csDIbU6pw9K7n6+yhcKfR4BR8K
-         TetA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701764906; x=1702369706;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:from:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=NFKSpKSrRWoXFYENkiq8+HWQ5Z6F7TKJoFhiU9QOe50=;
-        b=N2LW+Qlc2tOV7l/bCQj0B8vRvEDpN8UPEq4d4QKc7UYwfTIexJl/HmybZnKs2RgTfK
-         BB8Z1sKUZkbB4EIJn6VHD4JOHG39hXn2EZMo8FR5+1dQVFdD8CDJVOaVzXDX9gotXcwp
-         lMd2gTAZQXYuYkYr7QhbO+gvnqKxoKRG6n4wRtoaW1smqZBVGGXOfCT3x9QAbxr/OIIX
-         aQKcwQaZ0H8/nEv2U4EdNgnk5OLfDRV1arOtVMxxHApwyiH237ecW5QKMCeyGXB8bZbu
-         0fdwr2GU6AM0sS8PcxXn5pvF5X02XNlL27IInIO6+pvMP/x/Wtos1zzkMz04givEa3kC
-         803Q==
-X-Gm-Message-State: AOJu0Yw5JkITYcXf/KjQMberouAdcVfwW0P+IHsyEkJT+1kaFQeA1oXh
-	6O8+FWdVSZjPhcRplyWeRB/iug==
-X-Google-Smtp-Source: AGHT+IHYiYh03gF0HR7CFXPhKVhJzy9KsD1yiXJ0hCAKQRDxLuSaDr/vOiQCjfOHYK/99proMO0sbQ==
-X-Received: by 2002:a1c:7315:0:b0:40b:5e21:d341 with SMTP id d21-20020a1c7315000000b0040b5e21d341mr254803wmb.74.1701764905895;
-        Tue, 05 Dec 2023 00:28:25 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:4518:5e57:ff13:b4bb? ([2a01:e0a:982:cbb0:4518:5e57:ff13:b4bb])
-        by smtp.gmail.com with ESMTPSA id p7-20020a05600c358700b0040849ce7116sm21619517wmq.43.2023.12.05.00.28.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Dec 2023 00:28:25 -0800 (PST)
-Message-ID: <f93acb2c-0871-469e-9744-60e52f4b9918@linaro.org>
-Date: Tue, 5 Dec 2023 09:28:24 +0100
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34EA110F;
+	Tue,  5 Dec 2023 00:29:39 -0800 (PST)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3B56e8fu009054;
+	Tue, 5 Dec 2023 08:29:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=ORcuQYviGo8ljICe7rV/aIaRYueXRqSuWORvR+cf0YM=;
+ b=aRiGIxztHv0bacAbSw+rnQyNf7OOwFYR/S2Bux1NEWcj4pyhhjz7IWAD18kpKpvFpIx7
+ 1rNRBxFwpBYgWRTAVkNwr5ZmZbfxIECyniVc7H5AhNP32RMCO/t7+haXmFDSL0lrgiPL
+ txf7vlkgllEpMpLhvDOjwDXfEDKyqpWPl/Y8OQYEZCxl1zUaSxBCyxo/dH+tpVbYm4Xp
+ xVaZWG9BCKUBBDEXH61quxKbZDGU9+SaumtlHe11c5hqiGfG8sRcAwZOqUsbaWYxbk0D
+ l7o9jxQ+Pfom1Lpns31DxcM/Wg+2fAgOC/vd9fVZZUr4GdARyDE3y+0je0LEbTjesjLY 5A== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3usdbnap40-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 05 Dec 2023 08:29:34 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3B58TXXN020042
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 5 Dec 2023 08:29:33 GMT
+Received: from hu-jinlmao-lv.qualcomm.com (10.49.16.6) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Tue, 5 Dec 2023 00:29:32 -0800
+From: Mao Jinlong <quic_jinlmao@quicinc.com>
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: Mao Jinlong <quic_jinlmao@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Tingwei Zhang
+	<quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        "Tao
+ Zhang" <quic_taozha@quicinc.com>
+Subject: [PATCH v2 0/4] arm64: dts: qcom: Fix the warnings from coresight bindings
+Date: Tue, 5 Dec 2023 00:29:15 -0800
+Message-ID: <20231205082922.32149-1-quic_jinlmao@quicinc.com>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 00/10] rockchip: Add Powkiddy X55
-Content-Language: en-US, fr
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: linux-rockchip@lists.infradead.org, Chris Morgan <macroalpha82@gmail.com>
-Cc: dri-devel@lists.freedesktop.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, sboyd@kernel.org, mturquette@baylibre.com,
- tzimmermann@suse.de, mripard@kernel.org, maarten.lankhorst@linux.intel.com,
- daniel@ffwll.ch, airlied@gmail.com, sam@ravnborg.org,
- quic_jesszhan@quicinc.com, javierm@redhat.com, heiko@sntech.de,
- conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
- Chris Morgan <macromorgan@hotmail.com>
-References: <20231204185719.569021-1-macroalpha82@gmail.com>
- <170176481258.4073725.14793788958228896320.b4-ty@linaro.org>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <170176481258.4073725.14793788958228896320.b4-ty@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: z1TGejewRxbkhUCo7a_QmkgsvuSzJMsv
+X-Proofpoint-GUID: z1TGejewRxbkhUCo7a_QmkgsvuSzJMsv
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-05_03,2023-12-04_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ priorityscore=1501 bulkscore=0 mlxlogscore=503 phishscore=0
+ lowpriorityscore=0 mlxscore=0 impostorscore=0 clxscore=1015 spamscore=0
+ malwarescore=0 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2311060000 definitions=main-2312050068
 
-On 05/12/2023 09:26, Neil Armstrong wrote:
-> Hi,
-> 
-> On Mon, 04 Dec 2023 12:57:09 -0600, Chris Morgan wrote:
->> From: Chris Morgan <macromorgan@hotmail.com>
->>
->> Add support for the Rockchip RK3566 based Powkiddy X55 handheld gaming
->> console.
->>
->> Changes since V1:
->>   - Corrected a bug with the DRM mode flags for the video driver.
->>   - Adjusted panel front and back porch and pixel clock to fix
->>     issues with display that occurred after correcting DRM mode
->>     flag bug.
->>   - Add a new clk frequency for PLL_VPLL to get panel to run at ~60hz.
->>
->> [...]
-> 
-> Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
-> 
-> [01/10] drm/panel: himax-hx8394: Drop prepare/unprepare tracking
->          https://cgit.freedesktop.org/drm/drm-misc/commit/?id=8c2c5d1d33f0725b7995f44f87a81311d13a441d
-> [02/10] drm/panel: himax-hx8394: Drop shutdown logic
->          https://cgit.freedesktop.org/drm/drm-misc/commit/?id=e4f53a4d921eba6187a2599cf184a3beeb604fe2
-> [03/10] dt-bindings: display: Document Himax HX8394 panel rotation
->          https://cgit.freedesktop.org/drm/drm-misc/commit/?id=be478bc7ab08127473ce9ed893378cc2a8762611
-> [04/10] drm/panel: himax-hx8394: Add Panel Rotation Support
->          https://cgit.freedesktop.org/drm/drm-misc/commit/?id=a695a5009c8fd239a98d98209489997ff5397d2b
-> [05/10] dt-bindings: display: himax-hx8394: Add Powkiddy X55 panel
->          https://cgit.freedesktop.org/drm/drm-misc/commit/?id=00830a0d8f0d820335e7beb26e251069d90f2574
-> [06/10] drm/panel: himax-hx8394: Add Support for Powkiddy X55 panel
->          https://cgit.freedesktop.org/drm/drm-misc/commit/?id=38db985966d2f0f89f7e1891253489a16936fc5e
-> [07/10] clk: rockchip: Mark pclk_usb as critical on rk3568
->          (no commit info)
-> [08/10] clk: rockchip: rk3568: Add PLL rate for 126.4MHz
->          (no commit info)
-> [09/10] dt-bindings: arm: rockchip: Add Powkiddy X55
->          (no commit info)
-> [10/10] arm64: dts: rockchip: Add Powkiddy X55
->          (no commit info)
-> 
+Fix all warnings in Qualcomm boards coming from Coresight bindings.
 
-To clarify, only patches 1 to 6 were applied to drm-misc-next,
+There are warnings below after running dtbs_check. The patches are
+to fix them for Qcom boards.
 
-Thanks,
-Neil
+funnel@3023000: 'in-ports' is a required property
+
+etm@7c40000: 'out-ports' is a required property
+
+etf@6047000: in-ports: '#address-cells', '#size-cells', 'port@1'
+do not match any of the regexes: 'pinctrl-[0-9]+'
+
+replicator@604a000: in-ports: '#address-cells', '#size-cells',
+'port@1' do not match any of the regexes: 'pinctrl-[0-9]+'
+
+funnel@6c2d000: out-ports: '#address-cells', '#size-cells' do not
+match any of the regexes: 'pinctrl-[0-9]+'
+
+Warning (graph_child_address): /soc@0/tpda@6004000/out-ports:
+graph node has single child node 'port@0', #address-cells/#size-cells
+are not necessary
+
+Warning (graph_child_address): /soc@0/funnel@6005000/in-ports: graph
+node has single child node 'port@0', #address-cells/#size-cells are
+not necessary
+
+Warning (graph_child_address): /soc@0/etf@6b05000/in-ports: graph node
+has single child node 'port@0', #address-cells/#size-cells are not
+necessary
+
+Warning (graph_child_address): /soc@0/funnel@7810000/in-ports: graph
+node has single child node 'port@0', #address-cells/#size-cells are
+not necessary
+
+Changes since V1:
+1. Add new dt binding for remote etm.
+2. Add new dt node modem-etm in msm8996.dtsi
+
+Mao Jinlong (4):
+  dt-bindings: arm: Add remote etm dt-binding
+  arm64: dts: qcom: msm8996: Fix 'in-ports' is a required property
+  arm64: dts: qcom: msm8998: Fix 'out-ports' is a required property
+  arm64: dts: qcom: Fix coresight warnings in in-ports and out-ports
+
+ .../arm/qcom,coresight-remote-etm.yaml        | 60 +++++++++++++++++++
+ arch/arm64/boot/dts/qcom/msm8996.dtsi         | 22 +++++++
+ arch/arm64/boot/dts/qcom/msm8998.dtsi         | 32 ++++++----
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          |  5 +-
+ arch/arm64/boot/dts/qcom/sm8150.dtsi          |  5 +-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          | 24 ++------
+ 6 files changed, 108 insertions(+), 40 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-remote-etm.yaml
+
+-- 
+2.41.0
+
 
