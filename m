@@ -1,60 +1,53 @@
-Return-Path: <devicetree+bounces-21924-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21925-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A9168059ED
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 17:25:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70B048059FD
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 17:32:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8E45282019
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 16:25:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2BF34281E9A
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 16:32:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC348675B2;
-	Tue,  5 Dec 2023 16:25:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8EE4634;
+	Tue,  5 Dec 2023 16:32:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sAk9M7Em"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fh8Mf5MC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0F61675AF;
-	Tue,  5 Dec 2023 16:25:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28F1EC433C8;
-	Tue,  5 Dec 2023 16:25:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 967E5675CD;
+	Tue,  5 Dec 2023 16:32:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75421C433C7;
+	Tue,  5 Dec 2023 16:32:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701793549;
-	bh=l+yMCO/2N3ShBBsyZVkdZcF1uzW3j1QSS3UJ2FkcKQ4=;
+	s=k20201202; t=1701793959;
+	bh=7Xd0bOmFkvL1Xm4beaBl2rncR1EV0Oppge74zfAfREY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sAk9M7Em7oE9ofYmyvxJZwMQ0oYdN/PKTB6VLJobCr+mwd8A3pFKZ4OpB5mf5jA4S
-	 lEfuu+E2+vduEx/OWDxvu8/NQLOqhle9nRvHCj8Q0Pb6S1cmtpNAHQ1SHQeBCYomRW
-	 koBITEzhdXcRj+FYKm06eNOO+o2yw5p60foAxVwVyMPkcOWFtmTM4jIMll0fMDfDP5
-	 MellRCj8GZ6PwA8NYIPOy1N19MAj0Gjqva9UpPC47Z3LgbFdAMLWZnMrrIIllt0s5w
-	 F1ozMR/6uCaMEqI+VETarD3cQbvq9uqqCHe/UEcL7UC6WAPixyZuVfFWxtHrqh+Lt2
-	 YpmZb3ScDo4SA==
-Date: Tue, 5 Dec 2023 16:25:42 +0000
+	b=fh8Mf5MCDI9Bf/S2LS1zOdREXb6hQ7G7NtKrQqUDmPouWiiiV87ICHQ5IG5oUDf/t
+	 jsvXuZxqjjY6lR1EEKMRqgrVAwlwdG5bRDhAvffkDG/PtB4PmgwAPRqeD82xoDwHjC
+	 wv2FTKfKs9G/ihmOFCypY5TdB7TjZTTauwTNSQAIOl9y1PWD1eh+BJDYyVSTSIZLGo
+	 aIEZ+AP/oxuUKQvdr77abhgyK6QW5OZ3ex7Vy2Z4z26zxwm+W8T7fo++gbKqVOqp0r
+	 2necfwtFfkoW8L7jdwMnME+QIiovWCDV7ax9cOmji1sINtGKmsuW9us/tAt9Z8HZ+C
+	 MKhcGCBoEHQ6Q==
+Date: Tue, 5 Dec 2023 16:32:34 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Dumitru Ceclan <mitrutzceclan@gmail.com>
-Cc: linus.walleij@linaro.org, brgl@bgdev.pl, andy@kernel.org,
-	linux-gpio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
+To: Inochi Amaoto <inochiama@outlook.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Michael Walle <michael@walle.cc>,
-	Andy Shevchenko <andy.shevchenko@gmail.com>,
-	Arnd Bergmann <arnd@arndb.de>, ChiaEn Wu <chiaen_wu@richtek.com>,
-	Niklas Schnelle <schnelle@linux.ibm.com>,
-	Leonard =?iso-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>,
-	Mike Looijmans <mike.looijmans@topic.nl>,
-	Haibo Chen <haibo.chen@nxp.com>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Ceclan Dumitru <dumitru.ceclan@analog.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 1/2] dt-bindings: adc: add AD7173
-Message-ID: <20231205-jockey-chance-bc324d8809f9@spud>
-References: <20231205134223.17335-1-mitrutzceclan@gmail.com>
+	Chen Wang <unicorn_wang@outlook.com>,
+	Jisheng Zhang <jszhang@kernel.org>, qiujingbao.dlmu@gmail.com,
+	dlan@gentoo.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: clock: sophgo: Add clock controller
+ of CV1800 series SoC
+Message-ID: <20231205-chump-ravage-2c5478289421@spud>
+References: <IA1PR20MB49532E1A3D8BA71FDBB444BCBB85A@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <IA1PR20MB49535CCEBCC36C864B949CF5BB85A@IA1PR20MB4953.namprd20.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,118 +55,89 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="/ZchycVY0o6z6yFD"
+	protocol="application/pgp-signature"; boundary="y1dM/5FzzPQUk+3F"
 Content-Disposition: inline
-In-Reply-To: <20231205134223.17335-1-mitrutzceclan@gmail.com>
+In-Reply-To: <IA1PR20MB49535CCEBCC36C864B949CF5BB85A@IA1PR20MB4953.namprd20.prod.outlook.com>
 
 
---/ZchycVY0o6z6yFD
+--y1dM/5FzzPQUk+3F
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Dec 05, 2023 at 03:42:20PM +0200, Dumitru Ceclan wrote:
-> The AD7173 family offer a complete integrated Sigma-Delta ADC solution
-> which can be used in high precision, low noise single channel applications
-> or higher speed multiplexed applications. The Sigma-Delta ADC is intended
-> primarily for measurement of signals close to DC but also delivers
-> outstanding performance with input bandwidths out to ~10kHz.
+On Tue, Dec 05, 2023 at 07:55:50PM +0800, Inochi Amaoto wrote:
+> Add definition for the clock controller of the CV1800 series SoC.
 >=20
-> Signed-off-by: Dumitru Ceclan <mitrutzceclan@gmail.com>
+> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+> Link: https://github.com/milkv-duo/duo-files/blob/main/hardware/CV1800B/C=
+V1800B-CV1801B-Preliminary-Datasheet-full-en.pdf
 > ---
->  .../bindings/iio/adc/adi,ad7173.yaml          | 170 ++++++++++++++++++
->  1 file changed, 170 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7173.=
-yaml
+>  .../bindings/clock/sophgo,cv1800-clk.yaml     |  53 ++++++
+>  include/dt-bindings/clock/sophgo,cv1800.h     | 174 ++++++++++++++++++
+>  2 files changed, 227 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/sophgo,cv1800=
+-clk.yaml
+>  create mode 100644 include/dt-bindings/clock/sophgo,cv1800.h
 >=20
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml b/=
-Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
+> diff --git a/Documentation/devicetree/bindings/clock/sophgo,cv1800-clk.ya=
+ml b/Documentation/devicetree/bindings/clock/sophgo,cv1800-clk.yaml
 > new file mode 100644
-> index 000000000000..087820a0cf48
+> index 000000000000..388be5bfa163
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
-> @@ -0,0 +1,170 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2023 Analog Devices Inc.
+> +++ b/Documentation/devicetree/bindings/clock/sophgo,cv1800-clk.yaml
+> @@ -0,0 +1,53 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/iio/adc/adi,ad7173.yaml#
+> +$id: http://devicetree.org/schemas/clock/sophgo,cv1800-clk.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Analog Devices AD7173 ADC
+> +title: Sophgo CV1800 Series Clock Controller
 > +
 > +maintainers:
-> +  - Ceclan Dumitru <dumitru.ceclan@analog.com>
-> +
-> +description: |
-> +  Bindings for the Analog Devices AD717X ADC's. Datasheets for supported=
- chips:
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
-AD7172-2.pdf
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
-AD7173-8.pdf
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
-AD7175-2.pdf
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
-AD7176-2.pdf
+> +  - Inochi Amaoto <inochiama@outlook.com>
 > +
 > +properties:
 > +  compatible:
 > +    enum:
-> +      - adi,ad7172-2
-> +      - adi,ad7173-8
-> +      - adi,ad7175-2
-> +      - adi,ad7176-2
+> +      - sophgo,cv1800-clk
+> +      - sophgo,cv1810-clk
+
+I'm not reading 1000s of lines of driver code to figure it out, what
+differs in the programming model for these two devices? You should
+mention in your commit message why the cv1810 has an incompatible
+programming model if you are adding multiple devices in one commit
+message.
+
 > +
 > +  reg:
 > +    maxItems: 1
 > +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +  spi-max-frequency:
-> +    maximum: 20000000
-> +
-> +  refin-supply:
-> +    description: external reference supply, can be used as reference for=
- conversion.
-> +
-> +  refin2-supply:
-> +    description: external reference supply, can be used as reference for=
- conversion.
-> +
-> +  avdd-supply:
-> +    description: avdd supply, can be used as reference for conversion.
-> +
+> +  clocks:
+> +    items:
+> +      - description: Oscillator (25 MHz)
 
-> +  required:
-> +    - compatible
-> +    - reg
-> +    - interrupts
+This could just be "maxItems: 1".
 
-This is at the wrong level of indent (as Rob's bot pointed out) and
-should come after patternProperties too.
+> +
+> +  clock-names:
+> +    items:
+> +      - const: osc
 
-Otherwise, this looks okay to me.
-Thanks,
-Conor.
+You have one clock, why do you need a name?
 
---/ZchycVY0o6z6yFD
+Otherwise, this looks okay, thanks.
+
+--y1dM/5FzzPQUk+3F
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZW9PBgAKCRB4tDGHoIJi
-0hQJAQDLS/cTqT9ORoSbrXbQtoH978ZVY0+xnOhJDyqmEZK4cwD+M62KCeuB5Kh5
-1/k1EQxuWA7Di4h3IlK2+MsqyRfAKwQ=
-=F1ne
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZW9QogAKCRB4tDGHoIJi
+0o9zAQCmOjmMPcxdu0nlCDz31Yb7QgwLZbyW5hjYhZ1s15DzuwEA9fvBJ4d6Kv7U
+eqy0tSDErlKmjaG62DnG2yCeo+DUTQQ=
+=bleb
 -----END PGP SIGNATURE-----
 
---/ZchycVY0o6z6yFD--
+--y1dM/5FzzPQUk+3F--
 
