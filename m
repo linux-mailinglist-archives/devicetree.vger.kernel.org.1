@@ -1,82 +1,50 @@
-Return-Path: <devicetree+bounces-21825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21826-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A813805404
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 13:23:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E21F805424
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 13:28:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C88E31F2139E
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 12:23:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AD5F21F213BB
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 12:28:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6A285B5A1;
-	Tue,  5 Dec 2023 12:23:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A60A75B5AE;
+	Tue,  5 Dec 2023 12:28:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hWHuxdWf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KY1q7+rr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEAF9D7;
-	Tue,  5 Dec 2023 04:23:20 -0800 (PST)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-a1ceae92ab6so28042166b.0;
-        Tue, 05 Dec 2023 04:23:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701778999; x=1702383799; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=AMhBj0PFcNsp7ddu4+x1EUxsSq8BTDuggzzUZ8nA8Vo=;
-        b=hWHuxdWf3f/v7yccbhzi0QVFphGHaxMpa3tU2F5P7baGvWpHw9GDrJMx20UpO8gK1o
-         a64u9sk8CEhVuGANDFfc8ufTQBjacGaVS0K+SlhoOXhhiSHxvtrYu8sWSls4NnGAeyxq
-         TTK+BnhvCMXNH4NfxzA9AYrj4vfH+9A5RbEt4o7aYbT1QUDImz+txYomn8xcasuHJcNz
-         1aR0LN7ug2Cy0uJkEvtmIB2kzkok2AwJ2Fzn636wiiHiiv1Kmq2yfn/35L9t36Zpq0j+
-         z5VFmvUgc1W/yZ1fAoQ6ALOPaMtpIG8MbPJVgb99zyA/ED30DVET/JkREJ+5kI1VhO/k
-         U4Cw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701778999; x=1702383799;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AMhBj0PFcNsp7ddu4+x1EUxsSq8BTDuggzzUZ8nA8Vo=;
-        b=bbI98sX8lnP+mvwNMihOoF3w9LfheH/30a+IJBKIyI2dh00bKHtel3iUS41szaH9Rv
-         66uMPAJ24lFY0znWNXXUBJ1WYxbVUb0qmLxDDyv23w+TyhT0dORgBvpg+pIQZlZLNEM7
-         vFBKcQlg8tGa+KQtN+okfA4gA6LRxDeljRbnjagq/TW2GUfaedrn683tcPcUWpTOSuOl
-         k5OLRxLLoIR8sSkKFd6JSMF064+xJ6NC/09wYhvsAtZdkeho3mJw4IMr+l/w2+Lga1+n
-         zsce8FQ8oztxImL0RYfszA6oHWaLDTnbYan4lczWbNVHQc5DDUx1P9xVAK+6M9R7K4du
-         fYvA==
-X-Gm-Message-State: AOJu0YwSVr/exAl47ph9hrSOkU6v3nknymBjG22IqsHz88hWuZjZP3LO
-	B8cRB3WOPNTLpwRnxhLaQ/A=
-X-Google-Smtp-Source: AGHT+IHXa16mYQRzXdXsaQ0F8tsGp0lBaqOkdzuQ8VVSVqrPVczhzIUkL1oJDasQLcddWAUvhLTuAA==
-X-Received: by 2002:a17:906:3f5c:b0:a19:a1ba:da6a with SMTP id f28-20020a1709063f5c00b00a19a1bada6amr3859595ejj.145.1701778998985;
-        Tue, 05 Dec 2023 04:23:18 -0800 (PST)
-Received: from skbuf ([188.27.185.68])
-        by smtp.gmail.com with ESMTPSA id k11-20020a170906128b00b009ff8f199f21sm6726467ejb.19.2023.12.05.04.23.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Dec 2023 04:23:18 -0800 (PST)
-Date: Tue, 5 Dec 2023 14:23:16 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Serge Semin <fancer.lancer@gmail.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Jose Abreu <Jose.Abreu@synopsys.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Tomer Maimon <tmaimon77@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	openbmc@lists.ozlabs.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 10/16] net: pcs: xpcs: Add generic DW XPCS
- MDIO-device support
-Message-ID: <20231205122316.ihhpklv222f5giz3@skbuf>
-References: <20231205103559.9605-1-fancer.lancer@gmail.com>
- <20231205103559.9605-11-fancer.lancer@gmail.com>
- <20231205111351.xjjuwpbf7kwg3vuh@skbuf>
- <uivunnjv5vi3w3fkc5w2f4lem5bingrgajgjfsu2ih7fuhz6hd@3naeubr5spak>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85F763B798
+	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 12:28:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C680C433C7;
+	Tue,  5 Dec 2023 12:28:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701779283;
+	bh=Lq9+YFD8ee/CPgqqk36XThTfc/xuSyQLSaprYPsaFug=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KY1q7+rrLQGzsVbZXhBT/FMtamYxQwS52Jj105jVLMK8a0rGXVY12A74sCDCryKRb
+	 948XlUxkZRbh2OFwOjBMOdcU5yXgMmnAXA7n3dAryn7TZWaXXVPLyAqoZPXT3PqHXk
+	 bIqR5xuCvlUbY4d50YL0goJJ6RhPVxHxU/12Xxc6xPOUjRWEiqNd5iY2rPfFizahl8
+	 PhF8AQPvtdxD56yvldxAFfU4Ap392lTUp8xlpimanhz2oTG86gla5FSV2nAfY0h/Gg
+	 RJwPoWshqsKMKWL+g+jVFOPcRGwFabCE0v58uk5uEeMyERdScEZVKSA9p4bc54lQFZ
+	 9caorURlOetzA==
+Date: Tue, 5 Dec 2023 20:27:56 +0800
+From: Shawn Guo <shawnguo@kernel.org>
+To: Hugo Villeneuve <hugo@hugovil.com>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, linux-imx@nxp.com, leoyang.li@nxp.com,
+	robh@kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Subject: Re: [PATCH v4 3/3] arm64: dts: freescale: introduce rve-gateway board
+Message-ID: <20231205122756.GE236001@dragon>
+References: <20231103142831.2116163-1-hugo@hugovil.com>
+ <20231103142831.2116163-4-hugo@hugovil.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,34 +53,328 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <uivunnjv5vi3w3fkc5w2f4lem5bingrgajgjfsu2ih7fuhz6hd@3naeubr5spak>
+In-Reply-To: <20231103142831.2116163-4-hugo@hugovil.com>
 
-On Tue, Dec 05, 2023 at 02:35:46PM +0300, Serge Semin wrote:
-> Omg, thank you very much for testing the series straight away and
-> sorry for the immediate trouble it caused. I'll need some more time
-> for investigation. I'll get back to this topic a bit later on this
-> week.
+On Fri, Nov 03, 2023 at 10:28:31AM -0400, Hugo Villeneuve wrote:
+> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> 
+> The RVE gateway board is based on a Variscite VAR-SOM-NANO,
+> with a NXP MX8MN nano CPU.
+> 
+> Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> ---
+>  arch/arm64/boot/dts/freescale/Makefile        |   1 +
+>  .../boot/dts/freescale/imx8mn-rve-gateway.dts | 282 ++++++++++++++++++
+>  2 files changed, 283 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-rve-gateway.dts
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+> index 300049037eb0..c99da779ef7b 100644
+> --- a/arch/arm64/boot/dts/freescale/Makefile
+> +++ b/arch/arm64/boot/dts/freescale/Makefile
+> @@ -98,6 +98,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mn-bsh-smm-s2pro.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mn-evk.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mn-ddr3l-evk.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mn-ddr4-evk.dtb
+> +dtb-$(CONFIG_ARCH_MXC) += imx8mn-rve-gateway.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mn-tqma8mqnl-mba8mx.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mn-var-som-symphony.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mn-venice-gw7902.dtb
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mn-rve-gateway.dts b/arch/arm64/boot/dts/freescale/imx8mn-rve-gateway.dts
+> new file mode 100644
+> index 000000000000..186f54fd06c6
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx8mn-rve-gateway.dts
+> @@ -0,0 +1,282 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright 2023 DimOnOff
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/usb/pd.h>
+> +#include "imx8mn-var-som.dtsi"
+> +
+> +/ {
+> +	model = "RVE gateway";
+> +	compatible = "rve,rve-gateway", "variscite,var-som-mx8mn", "fsl,imx8mn";
+> +
+> +	crystal_duart_24m: crystal-duart-24m {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <24000000>;
+> +	};
+> +
+> +	gpio-keys {
+> +		compatible = "gpio-keys";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_gpio_keys>;
+> +
+> +		key-enter {
+> +			label = "enter";
+> +			gpios = <&gpio1 1 GPIO_ACTIVE_LOW>;
+> +			linux,code = <KEY_ENTER>;
+> +		};
+> +
+> +		key-exit {
+> +			label = "exit";
+> +			gpios = <&gpio3 23 GPIO_ACTIVE_LOW>;
+> +			linux,code = <KEY_ESC>;
+> +		};
+> +	};
+> +
+> +	lcd {
+> +		compatible = "hit,hd44780";
+> +		display-height-chars = <2>;
+> +		display-width-chars = <20>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_lcd>;
+> +		data-gpios = <&gpio5  1 GPIO_ACTIVE_HIGH>,
+> +			     <&gpio1  6 GPIO_ACTIVE_HIGH>,
+> +			     <&gpio1 14 GPIO_ACTIVE_HIGH>,
+> +			     <&gpio4 28 GPIO_ACTIVE_HIGH>,
+> +			     <&gpio5 24 GPIO_ACTIVE_HIGH>,
+> +			     <&gpio5  2 GPIO_ACTIVE_HIGH>,
+> +			     <&gpio1 12 GPIO_ACTIVE_HIGH>,
+> +			     <&gpio5 25 GPIO_ACTIVE_HIGH>;
+> +		enable-gpios = <&gpio5 23 GPIO_ACTIVE_HIGH>;
+> +		rs-gpios = <&gpio1 7 GPIO_ACTIVE_HIGH>;
+> +		rw-gpios = <&gpio4 27 GPIO_ACTIVE_HIGH>;
+> +	};
+> +
+> +	reg_3p3v: regulator-3p3v {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "3P3V";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	/* Bourns PEC12R rotary encoder, 24 steps. */
+> +	rotary: rotary-encoder {
+> +		compatible = "rotary-encoder";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_rotary>;
+> +		gpios = <&gpio1  5 GPIO_ACTIVE_LOW>, /* A */
+> +			<&gpio3 21 GPIO_ACTIVE_LOW>; /* B */
+> +		linux,axis = <0>; /* REL_X */
+> +		rotary-encoder,encoding = "gray";
+> +		rotary-encoder,relative-axis;
+> +	};
+> +};
+> +
+> +&ecspi1 {
+> +	cs-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
+> +
+> +	duart1: serial@0 {
+> +		compatible = "nxp,sc16is752";
+> +		reg = <0>;
+> +		spi-rx-bus-width = <1>;
+> +		spi-tx-bus-width = <1>;
+> +		spi-max-frequency = <4000000>;
+> +		clocks = <&crystal_duart_24m>;
+> +		interrupt-parent = <&gpio3>;
+> +		interrupts = <22 IRQ_TYPE_EDGE_FALLING>;
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +		gpio-line-names = "RADIO0", "RADIO1", "RADIO2", "RADIO3",
+> +		"RADIO4", "RADIO_RESET", "TP12", "TP11";
 
-Don't worry, I got suspicious when I was CCed to review only a one-line
-change in patch 11/16. It's never about that one line, is it?)
+Can we add some indent to get the line aligned with the first " above?
+There are a few such lines that could be improved.
 
-Anyway, the NULL dev->p is a symptom of device_add() not having been
-called, most likely from mdio_device_register().
+Shawn
 
-I'll be honest and say that I still don't quite understand what you're
-trying to achieve. You're trying to bind the hardcoded mdio_devices
-created by xpcs_create() to a driver? That was attempted a while ago by
-Sean Anderson with the Lynx PCS. Are you aware of the fact that even in
-the good case in which binding the driver actually works, the user can
-then come along and unbind it from the PCS device, and phylink isn't
-prepared to handle that, so it will crash the kernel upon the next
-phylink_pcs call?
-
-The pcs-rzn1-miic.c driver puts a device_link to the MAC to at least
-tear down the whole thing when the PCS is unbound, which is saner than
-crashing the kernel. I don't see the equivalent protection mechanism here?
-
-Can't the xpcs continue to live without a bound driver? Having a
-compatible string in the OF description is perfectly fine though,
-and should absolutely not preclude that.
+> +		linux,rs485-enabled-at-boot-time;
+> +		rs485-rts-active-low;
+> +	};
+> +
+> +	/delete-node/ touchscreen@0;
+> +};
+> +
+> +&ecspi2 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_ecspi2>;
+> +	cs-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
+> +	/delete-property/ dmas;
+> +	/delete-property/ dma-names;
+> +	status = "okay";
+> +
+> +	duart2: serial@0 {
+> +		compatible = "nxp,sc16is752";
+> +		reg = <0>;
+> +		spi-rx-bus-width = <1>;
+> +		spi-tx-bus-width = <1>;
+> +		spi-max-frequency = <4000000>;
+> +		clocks = <&crystal_duart_24m>;
+> +		interrupt-parent = <&gpio3>;
+> +		interrupts = <20 IRQ_TYPE_EDGE_FALLING>;
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +		gpio-line-names = "LED_B_USER", "LED_R_USER", "LED_G_USER",
+> +		"GPIO_EXT3", "GPIO_EXT2", "GPIO_EXT1", "GPIO_EXT0", "TP13";
+> +		linux,rs485-enabled-at-boot-time;
+> +		rs485-rts-active-low;
+> +	};
+> +};
+> +
+> +/* Configure PWM pins in GPIO mode: */
+> +&gpio5 {
+> +	gpio-line-names = "", "", "", "PWM3", "PWM2", "PWM1";
+> +};
+> +
+> +&gpu {
+> +	status = "disabled";
+> +};
+> +
+> +&i2c2 {
+> +	clock-frequency = <400000>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_i2c2>;
+> +	status = "okay";
+> +
+> +	/* Carrier board EEPROM */
+> +	eeprom_cb: eeprom@56 {
+> +		compatible = "atmel,24c04";
+> +		reg = <0x56>;
+> +		pagesize = <16>;
+> +		vcc-supply = <&reg_3p3v>;
+> +	};
+> +
+> +	lm75: sensor@48 {
+> +		compatible = "st,stlm75";
+> +		reg = <0x48>;
+> +		vs-supply = <&reg_3p3v>;
+> +	};
+> +
+> +	mcp7940: rtc@6f {
+> +		compatible = "microchip,mcp7940x";
+> +		reg = <0x6f>;
+> +	};
+> +};
+> +
+> +&i2c3 {
+> +	codec@1a {
+> +		status = "disabled";
+> +	};
+> +};
+> +
+> +&i2c4 {
+> +	clock-frequency = <400000>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_i2c4>;
+> +	status = "okay";
+> +
+> +	pcf8574_1: gpio@38 {
+> +		compatible = "nxp,pcf8574";
+> +		reg = <0x38>;
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +		gpio-line-names = "LED_B_COMM3", "LED_R_COMM3", "LED_G_COMM3",
+> +		"TP14", "TP15", "LED_G_COMM4", "LED_R_COMM4", "LED_B_COMM4";
+> +	};
+> +
+> +	pcf8574_2: gpio@39 {
+> +		compatible = "nxp,pcf8574";
+> +		reg = <0x39>;
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +		gpio-line-names = "LED_B_COMM2", "LED_G_COMM2", "LED_B_COMM1",
+> +		"LED_R_COMM2", "LED_R_COMM1", "LED_G_COMM1", "TP16", "TP17";
+> +	};
+> +};
+> +
+> +/* Bluetooth */
+> +&uart2 {
+> +	status = "disabled";
+> +};
+> +
+> +&usbotg1 {
+> +	dr_mode = "host";
+> +	disable-over-current;
+> +	status = "okay";
+> +};
+> +
+> +/* SD interface on expansion connector. */
+> +&usdhc2 {
+> +	vmmc-supply = <&reg_3p3v>;
+> +	cd-gpios = <&gpio1 13 GPIO_ACTIVE_LOW>;
+> +};
+> +
+> +&iomuxc {
+> +	pinctrl_ecspi1: ecspi1grp {
+> +		fsl,pins = <
+> +			MX8MN_IOMUXC_ECSPI1_SCLK_ECSPI1_SCLK	0x13
+> +			MX8MN_IOMUXC_ECSPI1_MOSI_ECSPI1_MOSI	0x13
+> +			MX8MN_IOMUXC_ECSPI1_MISO_ECSPI1_MISO	0x13
+> +			MX8MN_IOMUXC_ECSPI1_SS0_GPIO5_IO9	0x13 /* SS0 */
+> +			MX8MN_IOMUXC_SAI5_RXD1_GPIO3_IO22	0x13 /* SC16 IRQ */
+> +		>;
+> +	};
+> +
+> +	pinctrl_ecspi2: ecspi2grp {
+> +		fsl,pins = <
+> +			MX8MN_IOMUXC_ECSPI2_SCLK_ECSPI2_SCLK	0x13
+> +			MX8MN_IOMUXC_ECSPI2_MOSI_ECSPI2_MOSI	0x13
+> +			MX8MN_IOMUXC_ECSPI2_MISO_ECSPI2_MISO	0x13
+> +			MX8MN_IOMUXC_ECSPI2_SS0_GPIO5_IO13	0x13 /* SS0 */
+> +			MX8MN_IOMUXC_SAI5_RXC_GPIO3_IO20	0x13 /* SC16 IRQ */
+> +		>;
+> +	};
+> +
+> +	pinctrl_gpio_keys: gpiokeysgrp {
+> +		fsl,pins = <
+> +			MX8MN_IOMUXC_GPIO1_IO01_GPIO1_IO1	0xc6 /* Enter */
+> +			MX8MN_IOMUXC_SAI5_RXD2_GPIO3_IO23	0xc6 /* Exit */
+> +		>;
+> +	};
+> +
+> +	pinctrl_i2c2: i2c2grp {
+> +		fsl,pins = <
+> +			MX8MN_IOMUXC_I2C2_SCL_I2C2_SCL		0x400001c3
+> +			MX8MN_IOMUXC_I2C2_SDA_I2C2_SDA		0x400001c3
+> +		>;
+> +	};
+> +
+> +	pinctrl_i2c4: i2c4grp {
+> +		fsl,pins = <
+> +			MX8MN_IOMUXC_I2C4_SCL_I2C4_SCL		0x400001c3
+> +			MX8MN_IOMUXC_I2C4_SDA_I2C4_SDA		0x400001c3
+> +		>;
+> +	};
+> +
+> +	pinctrl_lcd: lcdgrp {
+> +		fsl,pins = <
+> +			MX8MN_IOMUXC_SAI3_TXD_GPIO5_IO1		0x00000156 /* D0 */
+> +			MX8MN_IOMUXC_GPIO1_IO06_GPIO1_IO6	0x00000156 /* D1 */
+> +			MX8MN_IOMUXC_GPIO1_IO14_GPIO1_IO14	0x00000156 /* D2 */
+> +			MX8MN_IOMUXC_SAI3_RXFS_GPIO4_IO28	0x00000156 /* D3 */
+> +			MX8MN_IOMUXC_UART2_RXD_GPIO5_IO24	0x00000156 /* D4 */
+> +			MX8MN_IOMUXC_SAI3_MCLK_GPIO5_IO2	0x00000156 /* D5 */
+> +			MX8MN_IOMUXC_GPIO1_IO12_GPIO1_IO12	0x00000156 /* D6 */
+> +			MX8MN_IOMUXC_UART2_TXD_GPIO5_IO25	0x00000156 /* D7 */
+> +			MX8MN_IOMUXC_UART1_TXD_GPIO5_IO23	0x00000156 /* E */
+> +			MX8MN_IOMUXC_GPIO1_IO07_GPIO1_IO7	0x00000156 /* RS */
+> +			MX8MN_IOMUXC_SAI2_MCLK_GPIO4_IO27	0x00000156 /* R/W */
+> +		>;
+> +	};
+> +
+> +	pinctrl_rotary: rotarygrp {
+> +		fsl,pins = <
+> +			MX8MN_IOMUXC_GPIO1_IO05_GPIO1_IO5	0x00000156 /* A */
+> +			MX8MN_IOMUXC_SAI5_RXD0_GPIO3_IO21	0x00000156 /* B */
+> +		>;
+> +	};
+> +
+> +	/* Override Card Detect function GPIO value (GPIO1_IO10) from SOM: */
+> +	pinctrl_usdhc2_gpio: usdhc2gpiogrp {
+> +		fsl,pins = <
+> +			MX8MN_IOMUXC_GPIO1_IO13_GPIO1_IO13	0x41
+> +		>;
+> +	};
+> +};
+> -- 
+> 2.39.2
+> 
 
