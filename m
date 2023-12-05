@@ -1,260 +1,177 @@
-Return-Path: <devicetree+bounces-21618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21619-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCEED804B73
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 08:51:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DDC2804B7C
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 08:52:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DFCB01C20C7A
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 07:51:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 191F028173D
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 07:52:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23D6B2E839;
-	Tue,  5 Dec 2023 07:51:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 873002F862;
+	Tue,  5 Dec 2023 07:52:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="aMt0c9fP"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="An6VN3FL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEDC5D7
-	for <devicetree@vger.kernel.org>; Mon,  4 Dec 2023 23:51:07 -0800 (PST)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-a1c890f9b55so23881966b.1
-        for <devicetree@vger.kernel.org>; Mon, 04 Dec 2023 23:51:07 -0800 (PST)
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B164F109
+	for <devicetree@vger.kernel.org>; Mon,  4 Dec 2023 23:52:26 -0800 (PST)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-a19ce1404e1so527267466b.3
+        for <devicetree@vger.kernel.org>; Mon, 04 Dec 2023 23:52:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1701762666; x=1702367466; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HyuJyxUi/Di3ImMftt85DOYwPWljWaiyyMsVFy/09DE=;
-        b=aMt0c9fPfP8qqAIN9CfLZgG9ylV0LZhFN11LbzoPd1TLgc+C0dZzdub5qgfAjuzQl1
-         t3t4HTZHtOrvVO7hsjrQnXfLES6Obx9ULohP0o5XucMSRDpto+Nagaq+1m/xCFZP7i/c
-         fgF9+TYa+t9e/w/CZeKMlqSMZE0424HIs+tr7MyWWtYxfYLun50upedPMa7Nf5UgB/gD
-         himKFPpghY7ZyKGj8QQ4HWVxOid3WrpXWdheICYQMcadOcbf2Ldkl2iCsedqCWfJhXoj
-         2RjiYoMQqm/wc7uWuRbxDBJXUmbkp8FEDQcZvaV4sKbEP3EhkIxR4zcW5LmJ0sc2VPj1
-         T+Dw==
+        d=linaro.org; s=google; t=1701762745; x=1702367545; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=HE/x2HX9YSFYGtjbEwzCNCIFrX4hXFWClA1p9cANaOA=;
+        b=An6VN3FL8YTngmvQIVKPM66F6MZ0eQLnLIfwi/xsxWsKpZ0Umowx3CtBCd5PB3sFOq
+         R5wY6vFHJxi6IyWlSt2i4gvAjHxYERxOid4sKqaV3qerONi20rldtIgVjNF3SzrsmAyj
+         sAzBOJvcx7QghwDi9S5VQd6pTPciUPs9e5+vi3VnQRBDwCvRQeAY5bBP3tab1IBXzxSL
+         993YBlUErRRYBjBSLBVIi5RyO6Bz3tMVMV/AO6Y9rMIpQdQbew5AwVc/0XeNHK5LB7Cz
+         BnUeZ7nedzQfJyLFZwkCoutFzQ1lo9jEK8IUmrdtSHXWtFW3XHMKyhJEMFGf7WIFzYrE
+         +ELw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701762666; x=1702367466;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=HyuJyxUi/Di3ImMftt85DOYwPWljWaiyyMsVFy/09DE=;
-        b=aQrCl2JSzNENLgiOMaI6hcs32ylRo18sGtNnVFqGcLIZBNG4bO69kLSanXiWiY0J7A
-         TOiC6/A6iBoaLByV+DfhP/95Mge+z5a9NHmmuZbFGzodAaNap6hLW9FqokdaUcmNC5vY
-         AVDgyO6PHreb3s9PWv540AB3nLXyWgbFgmh2my01Ya6YeorhI4rlop+W0vEYrfNqXIG1
-         ZsAYDubzX345wROZiq6fb+aboDa4vBvKSyC11lMa4FmowSdM7efESHQG8mr67d1m1gNn
-         VzlfcyeApz8DibAKVUPUpWiMP5cBERon1uKemYB08Xt1fWNH7HCSJN5OYOHu/EnI/PHs
-         htmQ==
-X-Gm-Message-State: AOJu0Yzku4Eyc6CbBsHxh5JXuXBuJPpX77UxW9/HDkEh2OCvBf6jMc1g
-	pyevjeHyAbFXdeu1Jd4OWKAH4w==
-X-Google-Smtp-Source: AGHT+IHw20d12kH/ta2Dik5X+CSFd/UQj8q5dFtrpvVTRqBYOC+dwW0hwx9QKF+FyY9N8PbWouG3Gw==
-X-Received: by 2002:a17:907:1003:b0:a19:736f:fa25 with SMTP id ox3-20020a170907100300b00a19736ffa25mr3792405ejb.46.1701762666286;
-        Mon, 04 Dec 2023 23:51:06 -0800 (PST)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id lr25-20020a170906fb9900b00a19a073e946sm5259853ejb.124.2023.12.04.23.51.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Dec 2023 23:51:05 -0800 (PST)
+        d=1e100.net; s=20230601; t=1701762745; x=1702367545;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HE/x2HX9YSFYGtjbEwzCNCIFrX4hXFWClA1p9cANaOA=;
+        b=wiIhXpROGU7tv3qG2SBClwoSRQyMMhbMDv84rOsqH4Y+nfRERy+ZfWO7meqF840jS5
+         uFbvcPPdHfHoV58NmYy/mBLSNvMAsnZeV0PwmiFCvm0WbyVfICdqq5lzmyNUcw6m140T
+         UZTbKBS0H7GVazyxiyOKupH1HI1JU2XA6XIY3+lL6l4FfANnuQXd2/gdEnXDNlzQ8KiM
+         crQ5jMzJG+ipBntOLrW06FyfJ/G6hZ9ttpNpFxjaYxz8J2ZBxJaNwgkKzVoj3M8JKKQZ
+         +U9TBnPI9en1+KGWd8woQ/AenU3jVayFBO3CE1daguYAyBNLCgJHWBXOfIyMUGzftXSC
+         Eo4A==
+X-Gm-Message-State: AOJu0YyKVgrm9Rf1BlN2rnLU8t+lc8waVn6AKn9VOlQWHTbhxUbyWYGI
+	vUOgL6cYmz1ije4zA48+lKjZJw==
+X-Google-Smtp-Source: AGHT+IHbV8OwzZcl7l/X03ZGEbDkrVRvPZ9VTnKnRZqff4x1iAUtK7Aml/g+lGmSKaItydhkWAvUeg==
+X-Received: by 2002:a17:906:4a98:b0:a1c:9738:2235 with SMTP id x24-20020a1709064a9800b00a1c97382235mr148783eju.118.1701762745098;
+        Mon, 04 Dec 2023 23:52:25 -0800 (PST)
+Received: from [10.1.1.118] ([80.111.64.44])
+        by smtp.gmail.com with ESMTPSA id lt12-20020a170906fa8c00b00a0290da4a50sm6213248ejb.186.2023.12.04.23.52.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Dec 2023 23:52:24 -0800 (PST)
+Message-ID: <5e9c0b1c5885775a7bc32ef59cb09a2a93d4cbe1.camel@linaro.org>
+Subject: Re: [PATCH v5 12/20] clk: samsung: clk-gs101: Add cmu_top, cmu_misc
+ and cmu_apm support
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Peter Griffin <peter.griffin@linaro.org>, robh+dt@kernel.org, 
+ krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+ conor+dt@kernel.org,  sboyd@kernel.org, tomasz.figa@gmail.com,
+ s.nawrocki@samsung.com,  linus.walleij@linaro.org, wim@linux-watchdog.org,
+ linux@roeck-us.net,  catalin.marinas@arm.com, will@kernel.org,
+ arnd@arndb.de, olof@lixom.net,  gregkh@linuxfoundation.org,
+ jirislaby@kernel.org, cw00.choi@samsung.com,  alim.akhtar@samsung.com
+Cc: tudor.ambarus@linaro.org, semen.protsenko@linaro.org,
+ saravanak@google.com,  willmcvicker@google.com, soc@kernel.org,
+ devicetree@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org,  linux-clk@vger.kernel.org,
+ linux-gpio@vger.kernel.org,  linux-watchdog@vger.kernel.org,
+ kernel-team@android.com,  linux-serial@vger.kernel.org
+Date: Tue, 05 Dec 2023 07:52:22 +0000
+In-Reply-To: <20231201160925.3136868-13-peter.griffin@linaro.org>
+References: <20231201160925.3136868-1-peter.griffin@linaro.org>
+	 <20231201160925.3136868-13-peter.griffin@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.49.2-3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 05 Dec 2023 08:51:05 +0100
-Message-Id: <CXG8INYXCEXN.C6TF6FALDP6D@fairphone.com>
-Cc: "Nitin Rawat" <quic_nitirawa@quicinc.com>, "Andy Gross"
- <agross@kernel.org>, "Bjorn Andersson" <andersson@kernel.org>, "Konrad
- Dybcio" <konrad.dybcio@linaro.org>, "Alim Akhtar"
- <alim.akhtar@samsung.com>, "Avri Altman" <avri.altman@wdc.com>, "Bart Van
- Assche" <bvanassche@acm.org>, "Rob Herring" <robh+dt@kernel.org>,
- "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
- <conor+dt@kernel.org>, <cros-qcom-dts-watchers@chromium.org>,
- <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
- <linux-arm-msm@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v5 2/3] arm64: dts: qcom: sc7280: Add UFS nodes for
- sc7280 soc
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Manivannan Sadhasivam" <mani@kernel.org>
-X-Mailer: aerc 0.15.2
-References: <20231204-sc7280-ufs-v5-0-926ceed550da@fairphone.com>
- <20231204-sc7280-ufs-v5-2-926ceed550da@fairphone.com>
- <621388b9-dcee-4af2-9763-e5d623d722b7@quicinc.com>
- <CXFJNBNKTRHH.2CS6TO2MEGJWL@fairphone.com>
- <20231204172829.GA69580@thinkpad>
-In-Reply-To: <20231204172829.GA69580@thinkpad>
+MIME-Version: 1.0
 
-On Mon Dec 4, 2023 at 6:28 PM CET, Manivannan Sadhasivam wrote:
-> On Mon, Dec 04, 2023 at 01:21:42PM +0100, Luca Weiss wrote:
-> > On Mon Dec 4, 2023 at 1:15 PM CET, Nitin Rawat wrote:
-> > >
-> > >
-> > > On 12/4/2023 3:54 PM, Luca Weiss wrote:
-> > > > From: Nitin Rawat <quic_nitirawa@quicinc.com>
-> > > >=20
-> > > > Add UFS host controller and PHY nodes for sc7280 soc.
-> > > >=20
-> > > > Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
-> > > > Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> > > > Tested-by: Konrad Dybcio <konrad.dybcio@linaro.org> # QCM6490 FP5
-> > > > [luca: various cleanups and additions as written in the cover lette=
-r]
-> > > > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> > > > ---
-> > > >   arch/arm64/boot/dts/qcom/sc7280.dtsi | 74 +++++++++++++++++++++++=
-++++++++++++-
-> > > >   1 file changed, 73 insertions(+), 1 deletion(-)
-> > > >=20
-> > > > diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot=
-/dts/qcom/sc7280.dtsi
-> > > > index 04bf85b0399a..8b08569f2191 100644
-> > > > --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > > +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > > @@ -15,6 +15,7 @@
-> > > >   #include <dt-bindings/dma/qcom-gpi.h>
-> > > >   #include <dt-bindings/firmware/qcom,scm.h>
-> > > >   #include <dt-bindings/gpio/gpio.h>
-> > > > +#include <dt-bindings/interconnect/qcom,icc.h>
-> > > >   #include <dt-bindings/interconnect/qcom,osm-l3.h>
-> > > >   #include <dt-bindings/interconnect/qcom,sc7280.h>
-> > > >   #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > > > @@ -906,7 +907,7 @@ gcc: clock-controller@100000 {
-> > > >   			clocks =3D <&rpmhcc RPMH_CXO_CLK>,
-> > > >   				 <&rpmhcc RPMH_CXO_CLK_A>, <&sleep_clk>,
-> > > >   				 <0>, <&pcie1_phy>,
-> > > > -				 <0>, <0>, <0>,
-> > > > +				 <&ufs_mem_phy 0>, <&ufs_mem_phy 1>, <&ufs_mem_phy 2>,
-> > > >   				 <&usb_1_qmpphy QMP_USB43DP_USB3_PIPE_CLK>;
-> > > >   			clock-names =3D "bi_tcxo", "bi_tcxo_ao", "sleep_clk",
-> > > >   				      "pcie_0_pipe_clk", "pcie_1_pipe_clk",
-> > > > @@ -2238,6 +2239,77 @@ pcie1_phy: phy@1c0e000 {
-> > > >   			status =3D "disabled";
-> > > >   		};
-> > > >  =20
-> > > > +		ufs_mem_hc: ufs@1d84000 {
-> > > > +			compatible =3D "qcom,sc7280-ufshc", "qcom,ufshc",
-> > > > +				     "jedec,ufs-2.0";
-> > > > +			reg =3D <0x0 0x01d84000 0x0 0x3000>;
-> > > > +			interrupts =3D <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
-> > > > +			phys =3D <&ufs_mem_phy>;
-> > > > +			phy-names =3D "ufsphy";
-> > > > +			lanes-per-direction =3D <2>;
-> > > > +			#reset-cells =3D <1>;
-> > > > +			resets =3D <&gcc GCC_UFS_PHY_BCR>;
-> > > > +			reset-names =3D "rst";
-> > > > +
-> > > > +			power-domains =3D <&gcc GCC_UFS_PHY_GDSC>;
-> > > > +			required-opps =3D <&rpmhpd_opp_nom>;
-> > > > +
-> > > > +			iommus =3D <&apps_smmu 0x80 0x0>;
-> > > > +			dma-coherent;
-> > > > +
-> > > > +			interconnects =3D <&aggre1_noc MASTER_UFS_MEM QCOM_ICC_TAG_ALWA=
-YS
-> > > > +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
-> > > > +					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-> > > > +					 &cnoc2 SLAVE_UFS_MEM_CFG QCOM_ICC_TAG_ALWAYS>;
-> > > > +			interconnect-names =3D "ufs-ddr", "cpu-ufs";
-> > > > +
-> > > > +			clocks =3D <&gcc GCC_UFS_PHY_AXI_CLK>,
-> > > > +				 <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
-> > > > +				 <&gcc GCC_UFS_PHY_AHB_CLK>,
-> > > > +				 <&gcc GCC_UFS_PHY_UNIPRO_CORE_CLK>,
-> > > > +				 <&rpmhcc RPMH_CXO_CLK>,
-> > > > +				 <&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
-> > > > +				 <&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
-> > > > +				 <&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>;
-> > > > +			clock-names =3D "core_clk",
-> > > > +				      "bus_aggr_clk",
-> > > > +				      "iface_clk",
-> > > > +				      "core_clk_unipro",
-> > > > +				      "ref_clk",
-> > > > +				      "tx_lane0_sync_clk",
-> > > > +				      "rx_lane0_sync_clk",
-> > > > +				      "rx_lane1_sync_clk";
-> > > > +			freq-table-hz =3D
-> > > > +				<75000000 300000000>,
-> > > > +				<0 0>,
-> > > > +				<0 0>,
-> > > > +				<75000000 300000000>,
-> > > > +				<0 0>,
-> > > > +				<0 0>,
-> > > > +				<0 0>,
-> > > > +				<0 0>;
-> > > > +			status =3D "disabled";
-> > > > +		};
-> > > > +
-> > > > +		ufs_mem_phy: phy@1d87000 {
-> > > > +			compatible =3D "qcom,sc7280-qmp-ufs-phy";
-> > > > +			reg =3D <0x0 0x01d87000 0x0 0xe00>;
-> > > > +			clocks =3D <&rpmhcc RPMH_CXO_CLK>,
-> > > > +				 <&gcc GCC_UFS_PHY_PHY_AUX_CLK>,
-> > > > +				 <&gcc GCC_UFS_1_CLKREF_EN>;
-> > > > +			clock-names =3D "ref", "ref_aux", "qref";
-> > > > +
-> > > > +			power-domains =3D <&gcc GCC_UFS_PHY_GDSC>;
-> >=20
-> > Hi Nitin,
-> >=20
-> > >
-> > > GCC_UFS_PHY_GDSC is UFS controller GDSC. For sc7280 Phy we don't need=
- this.
-> >=20
-> > In the current dt-bindings the power-domains property is required.
-> >=20
-> > Is there another power-domain for the PHY to use, or do we need to
-> > adjust the bindings to not require power-domains property for ufs phy o=
-n
-> > sc7280?
-> >=20
->
-> PHYs are backed by MX power domain. So you should use that.
+Hi Pete,
 
-Sounds reasonable (though I understand little how the SoC is wired up
-internally).
+On Fri, 2023-12-01 at 16:09 +0000, Peter Griffin wrote:
+> cmu_top is the top level clock management unit which contains PLLs, muxes=
+,
+> dividers and gates that feed the other clock management units.
+>=20
+> cmu_misc clocks IPs such as Watchdog and cmu_apm clocks ips part of the
+> APM module.
+>=20
+> Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
+> Tested-by: Will McVicker <willmcvicker@google.com>
+> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> ---
+> =C2=A0drivers/clk/samsung/Makefile=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 =
+1 +
+> =C2=A0drivers/clk/samsung/clk-gs101.c | 2495 ++++++++++++++++++++++++++++=
++++
+> =C2=A02 files changed, 2496 insertions(+)
+> =C2=A0create mode 100644 drivers/clk/samsung/clk-gs101.c
+>=20
+> diff --git a/drivers/clk/samsung/Makefile b/drivers/clk/samsung/Makefile
+> index ebbeacabe88f..3056944a5a54 100644
+> --- a/drivers/clk/samsung/Makefile
+> +++ b/drivers/clk/samsung/Makefile
+> @@ -21,6 +21,7 @@ obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+=3D clk-exynos7.=
+o
+> =C2=A0obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+=3D clk-exynos7885.o
+> =C2=A0obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+=3D clk-exynos850.o
+> =C2=A0obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+=3D clk-exynosautov9.o
+> +obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+=3D clk-gs101.o
+> =C2=A0obj-$(CONFIG_S3C64XX_COMMON_CLK)	+=3D clk-s3c64xx.o
+> =C2=A0obj-$(CONFIG_S5PV210_COMMON_CLK)	+=3D clk-s5pv210.o clk-s5pv210-aud=
+ss.o
+> =C2=A0obj-$(CONFIG_TESLA_FSD_COMMON_CLK)	+=3D clk-fsd.o
+> diff --git a/drivers/clk/samsung/clk-gs101.c b/drivers/clk/samsung/clk-gs=
+101.c
+> new file mode 100644
+> index 000000000000..6bd233a7ab63
+> --- /dev/null
+> +++ b/drivers/clk/samsung/clk-gs101.c
+> @@ -0,0 +1,2495 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (C) 2023 Linaro Ltd.
+> + * Author: Peter Griffin <peter.griffin@linaro.org>
+> + *
+> + * Common Clock Framework support for GS101.
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/clk-provider.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +
+> +#include <dt-bindings/clock/google,gs101.h>
+> +
+> +#include "clk.h"
+> +#include "clk-exynos-arm64.h"
+> +
+> +/* NOTE: Must be equal to the last clock ID increased by one */
+> +#define TOP_NR_CLK	(CLK_GOUT_TPU_UART + 1)
+> +#define APM_NR_CLK	(CLK_APM_PLL_DIV16_APM + 1)
+> +#define MISC_NR_CLK	(CLK_GOUT_MISC_XIU_D_MISC_IPCLKPORT_ACLK + 1)
+> +
+> +/* ---- CMU_TOP --------------------------------------------------------=
+----- */
+> +
+> [...]
+> +
+> +/* ---- CMU_APM --------------------------------------------------------=
+----- */
+> [..]
+> +
+> +/* ---- CMU_MISC -------------------------------------------------------=
+------ */
 
->
-> > Also, with "PHY" in the name, it's interesting that this is not for the
-> > phy ;)
-> >=20
->
-> Yes, confusing indeed. But the controllers (PCIe, UFS, USB etc...) are ba=
-cked by
-> GDSCs and all the analog components (PHYs) belong to MX domain since it i=
-s kind
-> of always ON.
->
-> I'll submit a series to fix this for the rest of the SoCs.
+nit - the CMU_MISC comment here is an outlier.
 
-Great!
+> [..]
+> +
+> +/* ---- platform_driver ------------------------------------------------=
+----- */
+> +
+> [...]
 
-So I'll send v6 with power-domains =3D <&rpmhpd SC7280_MX>; for the phy.
-
-Regards
-Luca
-
->
-> - Mani
->
-> > Regards
-> > Luca
-> >=20
-> > >
-> > > > +
-> > > > +			resets =3D <&ufs_mem_hc 0>;
-> > > > +			reset-names =3D "ufsphy";
-> > > > +
-> > > > +			#clock-cells =3D <1>;
-> > > > +			#phy-cells =3D <0>;
-> > > > +
-> > > > +			status =3D "disabled";
-> > > > +		};
-> > > > +
-> > > >   		ipa: ipa@1e40000 {
-> > > >   			compatible =3D "qcom,sc7280-ipa";
-> > > >  =20
-> > > >=20
-> >=20
+Cheers,
+Andre'
 
 
