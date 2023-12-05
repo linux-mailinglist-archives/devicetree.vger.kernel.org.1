@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-21625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21626-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5B2A804BB0
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 09:03:21 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F080804BC1
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 09:05:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B4C9281799
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 08:03:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BA44AB20C6E
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 08:04:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13A36364DE;
-	Tue,  5 Dec 2023 08:03:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD3EC364C8;
+	Tue,  5 Dec 2023 08:04:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="D1mHGXGw"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oGpU9UGW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 442D111F
-	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 00:03:13 -0800 (PST)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-a1c890f9b55so25208266b.1
-        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 00:03:13 -0800 (PST)
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BEDF136
+	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 00:04:47 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-54ca339ae7aso2978631a12.3
+        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 00:04:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701763391; x=1702368191; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=NBBsY27wq9VmY+KpTBAEj8LMUoBYVmtkIhuVKVNt4x0=;
-        b=D1mHGXGwccHJELggpcBHmTymM1jtrkPEc+uU5b2eGoBL2xAkyA4DqpjScs0Qgk5qmR
-         qZkMCv86uf2+tUoaDykRDKo4bAz/iXMpu1fNPdQD8WKXQiVFEEhFs9quni3s+Eh6ahN7
-         BEDKdryB/ykvnQzR/u8EUHlSqCQFp2DzH0vFvrR2uH4ntak1gz/vdkUsbmJQkQp9A0pY
-         c7tYyySgWDVvIasKMV5Z3i09L5vwLvCClQC9YAsoe4LuUKg8kFuz4UvQtDEgyXUMtNQS
-         q8YVvYXp8VWOcuQf6yIQmvyVOBXTNlz9ezMRneRNJCa3xYAErWkJmizK9zznsGHWznWI
-         0eyg==
+        d=linaro.org; s=google; t=1701763486; x=1702368286; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=kQgvrsG+45eRTqwoowf77ABXnXZq9SZNP9x+aYSkZUs=;
+        b=oGpU9UGWbxkK8p/HEtYkWrmAoHV7hhjodwyyznldGr6QduFoGeZ7wpknszu9r1fDAP
+         Ypf8LEVD0XlZkB9Q4o89hHAwmMNnHeg1+hOcO1BERcEqTZGuESV6hh/+nBR6IeJ/VV/b
+         /6i2ssh+Y5/g+w8OrZvRzK6BwGLXmRUlX0AolH3x5GFbsuHSXKwKWmCgYQ5YR5tEc0fl
+         6PVrEUwj2KIFK1RlcdiNkvdd3UGzrbzt/QoJplxSiWvI7xNO+A/N3fAxKWCNEgayma0V
+         ychxgccNI9u97niRDSpTSqKSr4MeZu2JY40JqH61+brxlCE79iuM9qR8IzDLcUlKbIzq
+         ZyMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701763391; x=1702368191;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NBBsY27wq9VmY+KpTBAEj8LMUoBYVmtkIhuVKVNt4x0=;
-        b=TwXSF1+Ma2s20CSWu02pZoY7J/dYed067jxWvGPJWmzIOMAN/cSZx3r8D4GmVW3KUK
-         1Jv7T7yC+e53J+Kmftmjy4vPN0sDayP2qotpYwjSdo+tfCuK/GpEaCVBzmHGqCfwlbqs
-         gqIEtdMO9F96rxam4XIR0xl1ZNOO2Y2q1xcuw+BQV18IX+wJJiwLBCKCviwSVDeTXXdy
-         uVuIMwrD2FunDpnMCsDMVfoifHifwf/ejpcldBG7GS+WEhyByd5xF4bjpdyE+tA1CzoZ
-         vUJbGwd5FyQ8cH/d5LsfarQkou+IiEEwPxvvNlZIce05uJ2rQj2C64QMSjId5O2hD2vV
-         WOoA==
-X-Gm-Message-State: AOJu0YybHpsvzk0EY512ovBlG+QnChRsHGV7udPe5oKoagipqJKudT7t
-	s5PvI/hIN7Rn/lB+XT2xdcAWKg==
-X-Google-Smtp-Source: AGHT+IH/l2przp9aMrKOiJWomE8EGlLcP7jKNdmUFA2P39jfHf+Az/cNgrkAc6DLRhT/wCST/Y61kw==
-X-Received: by 2002:a17:906:3f17:b0:a19:a1ba:da39 with SMTP id c23-20020a1709063f1700b00a19a1bada39mr3858179ejj.96.1701763391609;
-        Tue, 05 Dec 2023 00:03:11 -0800 (PST)
+        d=1e100.net; s=20230601; t=1701763486; x=1702368286;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=kQgvrsG+45eRTqwoowf77ABXnXZq9SZNP9x+aYSkZUs=;
+        b=i2i8YSV+D7ddczQXIWMxmoITQ7mqVV1sZAYu/Ubbe+hx+7c79w3PoBE9Mg4uJ8zif8
+         7hijxVMHAbdqf5zoPwlYyG8BpBFlAtbVAer0BTO5HtO6/5cuFIdF9etml98S8FIFcCxL
+         ZUYRpa9H8rw//bGy7+6WLhwh+36nw7vmQLQZa7piMdWt1q2AqRUmS5lwNLTVwDXaBnWU
+         pML10pxenuxE8DuQNo7qCTQ5+lTZffJ8fmL61PS6fZ5EfOZzZ41Bx3uvlmY1k44iP3nH
+         qPbNRXGvgvDNk7fyzG2uHOSkG9PhIuZnAphiBZcp97QKIJJFDWiaHpDYPKMpKy9eLVfF
+         vXRA==
+X-Gm-Message-State: AOJu0Yx54O81rRcV7eLopjCRMuY3Xru6bwAUToRyUcunuIrI1FR3GoLq
+	c6/mbnrr0rsWZq4yRlbk2IS0JA==
+X-Google-Smtp-Source: AGHT+IH0z0PnpnE+uMWJrpLKJufOusH4jJJ2vfE35thSUbndxPFBqO6jHZlTNiTj66BVNb5sUXkKDQ==
+X-Received: by 2002:a17:906:209e:b0:9e0:4910:1666 with SMTP id 30-20020a170906209e00b009e049101666mr3844736ejq.35.1701763485742;
+        Tue, 05 Dec 2023 00:04:45 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id g2-20020a1709064e4200b00a1cb351dd4fsm174276ejw.9.2023.12.05.00.03.09
+        by smtp.gmail.com with ESMTPSA id g2-20020a1709064e4200b00a1cb351dd4fsm174276ejw.9.2023.12.05.00.04.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Dec 2023 00:03:11 -0800 (PST)
-Message-ID: <df7dd7b0-f315-4033-985a-175f75568a8c@linaro.org>
-Date: Tue, 5 Dec 2023 09:03:08 +0100
+        Tue, 05 Dec 2023 00:04:45 -0800 (PST)
+Message-ID: <02caed36-7914-47d1-9593-5120d3503ff7@linaro.org>
+Date: Tue, 5 Dec 2023 09:04:43 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,31 +62,28 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 01/10] dt-bindings: gpu: Add PowerVR Series5 SGX GPUs
-To: Tony Lindgren <tony@atomide.com>
-Cc: Andrew Davis <afd@ti.com>, Frank Binns <frank.binns@imgtec.com>,
- Donald Robson <donald.robson@imgtec.com>,
- Matt Coster <matt.coster@imgtec.com>,
- "H . Nikolaus Schaller" <hns@goldelico.com>, Adam Ford <aford173@gmail.com>,
- Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, =?UTF-8?Q?Beno=C3=AEt_Cousson?=
- <bcousson@baylibre.com>, Nishanth Menon <nm@ti.com>,
- Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
- Paul Cercueil <paul@crapouillou.net>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-omap@vger.kernel.org, linux-mips@vger.kernel.org
-References: <20231204182245.33683-1-afd@ti.com>
- <20231204182245.33683-2-afd@ti.com>
- <b97f04f6-cda2-4e9b-b729-a5149e36f978@linaro.org>
- <20231205075657.GN5169@atomide.com>
+Subject: Re: [PATCH v1 2/2] hwmon: Driver for Nuvoton NCT736X
 Content-Language: en-US
+To: "KCFENG0@nuvoton.com" <KCFENG0@nuvoton.com>,
+ Guenter Roeck <linux@roeck-us.net>,
+ "baneric926@gmail.com" <baneric926@gmail.com>,
+ "jdelvare@suse.com" <jdelvare@suse.com>,
+ "robh+dt@kernel.org" <robh+dt@kernel.org>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>, "corbet@lwn.net"
+ <corbet@lwn.net>
+Cc: "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+ "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+ "KWLIU@nuvoton.com" <KWLIU@nuvoton.com>,
+ "DELPHINE_CHIU@wiwynn.com" <DELPHINE_CHIU@wiwynn.com>,
+ "Bonnie_Lo@wiwynn.com" <Bonnie_Lo@wiwynn.com>
+References: <20231204055650.788388-1-kcfeng0@nuvoton.com>
+ <20231204055650.788388-3-kcfeng0@nuvoton.com>
+ <87c11991-8f74-4f71-972e-373ffa1fddb1@roeck-us.net>
+ <TYZPR03MB7712AD5A08E3DD97541C39FDF085A@TYZPR03MB7712.apcprd03.prod.outlook.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -133,37 +129,18 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231205075657.GN5169@atomide.com>
+In-Reply-To: <TYZPR03MB7712AD5A08E3DD97541C39FDF085A@TYZPR03MB7712.apcprd03.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/12/2023 08:56, Tony Lindgren wrote:
-> * Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> [231205 07:10]:
->> On 04/12/2023 19:22, Andrew Davis wrote:
->>> @@ -56,6 +76,43 @@ allOf:
->>>        properties:
->>>          clocks:
->>>            maxItems: 1
->>> +      required:
->>> +        - clocks
->>> +        - clock-names
->>
->> You need to define the clocks for your variants or disallow them. The
->> original code should be fixed as well and make the clocks fixed for all
->> img-axe cases.
-> 
-> To clarify, the clocks may be optional as they can be hardwired and coming
-> from the interconnect target wrapper module and enabled with runtime PM.
+On 05/12/2023 06:02, KCFENG0@nuvoton.com wrote:
+> Hi Guenter
 
-What does runtime PM have to do with it? If runtime PM enables clocks,
-these are real signals and not optional.
+...
 
-The bindings is quite unspecific in that matter which is not what we
-want usually. If you have implementation which does not have these
-clocks exposed, then disallow them.
+>  The privileged confidential information contained in this email is intended for use only by the addressees as indicated by the original sender of this email. If you are not the addressee indicated in this email or are not responsible for delivery of the email to such a person, please kindly reply to the sender indicating this fact and delete all copies of it from your computer and network server immediately. 
 
-Just don't make it floating like it is in existing binding and how
-Andrew continues for new devices.
+As requested: I am going to delete all the copies of your emails.
 
 Best regards,
 Krzysztof
