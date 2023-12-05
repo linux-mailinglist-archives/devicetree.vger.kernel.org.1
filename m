@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-21636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21637-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83980804C12
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 09:16:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F394E804C18
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 09:17:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E6071F212B9
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 08:16:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D4B5281549
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 08:17:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51E0A3BB50;
-	Tue,  5 Dec 2023 08:16:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AC513BB41;
+	Tue,  5 Dec 2023 08:17:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xQcv0k3P"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vQ+DxPlL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30F24D3
-	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 00:16:32 -0800 (PST)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-a1b7b6bf098so305608666b.1
-        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 00:16:32 -0800 (PST)
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53742BA
+	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 00:17:30 -0800 (PST)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-54cb4fa667bso2553940a12.3
+        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 00:17:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701764190; x=1702368990; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701764249; x=1702369049; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=6FJMpaGSx8fGDIaVFaWFGemf+cZDKGpWw4+07M2ms3c=;
-        b=xQcv0k3PC8VrAuDhNtsoEbrPryX32jqN9Eg/xcqMPNYeLH4yb8P+Vcy/JnckQgTWi2
-         D0H1JLMTd4SDdD4H1BpHdV2aLJptFZrvAUsolLdcx7HJPANCaz8dNmTC0eIYKgu2JG/l
-         arSsDCRC8JlTm2K59JbQ5Uod4ozo9nCrBzcO3MsGfdPiwQaIEfyuBy0QG4dk3xIYWzrG
-         cp0e70HsdXc87a1Us47sz9Ql2aO9ySdequ/PJ1Eo5t7JRuerLHDClltJS5iw7gp5hMfc
-         WPgeXefUaRnKzBmvXVcFyi9TgCIXX0ftuLZFpP+E/5YCEllT5hlgnj3GLc/3V2QYPn1a
-         ghjg==
+        bh=mPz9jfaMy9WfW8hg0phqJVMwKyt+kROV74/4yAXSMZY=;
+        b=vQ+DxPlLquOkdYgvREoP5asjJkibHqEmit3FJ/TuyGUm56+tGgPI8vZ0idCSn9ENH/
+         8J72bC4ieq/tcEKXyIPVJ8J6j8/poGEnsQud2XlZRbS+0st1X2Gijom5f2cqwF3OdtYz
+         3OSWGyAX02KNvJz8rWCTzAzCUYcFgtT5txqDogigebQtnqz4x/3H//9zz+jqfpJtMylC
+         V97wBhoOrUKK3gKEDEyOvaP57Pqm3eVtTrYG+CvUFGwOTM5c4hxIwQ9Z1SMJIvas5ilW
+         kmb0CFgcOhHfoY9a8Q3JAt9YtjADxtbPA3hrcYhjn4LlvNKfhNfEsA2OttP+R0VOa/uH
+         u7oQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701764190; x=1702368990;
+        d=1e100.net; s=20230601; t=1701764249; x=1702369049;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6FJMpaGSx8fGDIaVFaWFGemf+cZDKGpWw4+07M2ms3c=;
-        b=A6aaUajzNQ0rGgyVjRyEHFmQobj5hDhePocByJM8qAl6P+cgogBCk3y+uiHUMafSjQ
-         ktNVWziZTbtMGWfxGb2vN4mJUz4CyncNLn3Z3vAYrNjit81xm8LyXV4fW7NSaMYOnf8g
-         VW3hZiXDiueC8pkefj6wkVTH6zKlROaimXtPlqR2GajMlz/NdNLZJHZYce56l0sKyKF5
-         MC8eHV6d1/guVI6Ku803+SFMxmLdmnoM0J0Qaf/UcEmBv8+SkSiwhe3OHRxSlzLeCSjY
-         kOGbpmL6ncszSrNN2uVSVjFRrz+2AlSis3qgPCeHtCZ35AnWYym2qI1sbPygDHIxsZTQ
-         GA8w==
-X-Gm-Message-State: AOJu0Yy4iP8uluaKe2hEMbqwqHDwWQh610ofcuzUVJtcZzLeUdfbeQ7i
-	wxG+UWm+6e7pZpwL0plQCm63ww==
-X-Google-Smtp-Source: AGHT+IHN2gH965dQgXmuAAZKeysIOwUdIGa0AF9KSWTegev2JtYmeBLOXXvz611Wg4thZDzT+ZaMig==
-X-Received: by 2002:a17:907:7290:b0:a19:f7d:853 with SMTP id dt16-20020a170907729000b00a190f7d0853mr739043ejc.20.1701764190698;
-        Tue, 05 Dec 2023 00:16:30 -0800 (PST)
+        bh=mPz9jfaMy9WfW8hg0phqJVMwKyt+kROV74/4yAXSMZY=;
+        b=tuzVtGIc0CRIiiPh0+ZE7XvV9k6bMT8mwOjGAb5lpsivy7k5OVId497ewiv4szyXyz
+         umPM72CMHitD+cG1DesrvnZtjYyykDDbkmugVJvRBv4UfPxbGZkVi13KWkRSYEmIwYKs
+         jR7CmLvzSYCl55ojVmVce6nbEj3ASa6frFFIn5Dneb4szYAb7kyApZPW12MXFGqCgUnX
+         jp+2gr7VWw6aIhSx966PjhAkGCIDdWy4syO7yzYT+x8iQ9oUQF8kZc2yUATs0Ok1uvRX
+         wDbH49FgApIWjMPIWThsdlCxXlWWoN+S4+QTtNOF79hsBvNr+JmHRo/z8K53JRAXQRnE
+         erkQ==
+X-Gm-Message-State: AOJu0YzTMCwo/JBMAheb7U+v4Dib2iWSA5BTEKoaoCck+rwX/+iI3ubu
+	KE24w3Y7e0D8Cj0BNbQR0dOlag==
+X-Google-Smtp-Source: AGHT+IGTGq8eZUL21L0GK2BlMpKAGOWw5jstOd/ML65SceMiyLpFSFpWoNQeZKIFnXC3kBTLDlYjDw==
+X-Received: by 2002:a17:906:fd45:b0:a09:589f:8853 with SMTP id wi5-20020a170906fd4500b00a09589f8853mr260147ejb.66.1701764248814;
+        Tue, 05 Dec 2023 00:17:28 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id e20-20020a1709067e1400b00a10ec36ad10sm6208987ejr.204.2023.12.05.00.16.28
+        by smtp.gmail.com with ESMTPSA id e20-20020a1709067e1400b00a10ec36ad10sm6208987ejr.204.2023.12.05.00.17.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Dec 2023 00:16:30 -0800 (PST)
-Message-ID: <efcd64f4-00d2-4671-af3a-e27764f70e8d@linaro.org>
-Date: Tue, 5 Dec 2023 09:16:28 +0100
+        Tue, 05 Dec 2023 00:17:28 -0800 (PST)
+Message-ID: <c957a1fa-0189-425f-8333-f423c09161b1@linaro.org>
+Date: Tue, 5 Dec 2023 09:17:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,33 +62,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 01/10] dt-bindings: gpu: Add PowerVR Series5 SGX GPUs
+Subject: Re: [PATCH v2 1/2] dt-bindings: phy: qcom,sc8280xp-qmp-usb3-uni: Add
+ X1E80100 USB PHY binding
 Content-Language: en-US
-To: Tony Lindgren <tony@atomide.com>
-Cc: Andrew Davis <afd@ti.com>, Frank Binns <frank.binns@imgtec.com>,
- Donald Robson <donald.robson@imgtec.com>,
- Matt Coster <matt.coster@imgtec.com>,
- "H . Nikolaus Schaller" <hns@goldelico.com>, Adam Ford <aford173@gmail.com>,
- Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, =?UTF-8?Q?Beno=C3=AEt_Cousson?=
- <bcousson@baylibre.com>, Nishanth Menon <nm@ti.com>,
- Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
- Paul Cercueil <paul@crapouillou.net>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-omap@vger.kernel.org, linux-mips@vger.kernel.org
-References: <20231204182245.33683-1-afd@ti.com>
- <20231204182245.33683-2-afd@ti.com>
- <b97f04f6-cda2-4e9b-b729-a5149e36f978@linaro.org>
- <20231205075657.GN5169@atomide.com>
- <df7dd7b0-f315-4033-985a-175f75568a8c@linaro.org>
- <20231205081031.GO5169@atomide.com>
+To: Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Johan Hovold <johan@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231122-phy-qualcomm-usb3-uniphy-x1e80100-v2-0-1a3e1d98564e@linaro.org>
+ <20231122-phy-qualcomm-usb3-uniphy-x1e80100-v2-1-1a3e1d98564e@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -134,20 +122,21 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231205081031.GO5169@atomide.com>
+In-Reply-To: <20231122-phy-qualcomm-usb3-uniphy-x1e80100-v2-1-1a3e1d98564e@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/12/2023 09:10, Tony Lindgren wrote:
-> * Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> [231205 08:03]:
->> What does runtime PM have to do with it? If runtime PM enables clocks,
->> these are real signals and not optional.
+On 04/12/2023 14:50, Abel Vesa wrote:
+> Add compatible string for Qualcomm QMP Super Speed (SS) UNI PHY found
+> in X1E80100.
 > 
-> Runtime PM propagates to the parent device.
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
+>  .../devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml        | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
 
-Then it is not really relevant to the hardware talk here, unless you put
-this device clocks in parent node, but then it's just wrong hardware
-description.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
