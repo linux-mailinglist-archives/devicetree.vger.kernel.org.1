@@ -1,234 +1,179 @@
-Return-Path: <devicetree+bounces-21681-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21683-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89B8D804DE6
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 10:31:34 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9405F804DF5
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 10:35:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 105231F212D8
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 09:31:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C4C781C20C49
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 09:35:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14B1F3F8EE;
-	Tue,  5 Dec 2023 09:31:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 503323FB2E;
+	Tue,  5 Dec 2023 09:35:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Jf4/LrIF"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Y+iL0iE6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-xd2c.google.com (mail-io1-xd2c.google.com [IPv6:2607:f8b0:4864:20::d2c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 496AA1712;
-	Tue,  5 Dec 2023 01:31:12 -0800 (PST)
-Received: by mail-io1-xd2c.google.com with SMTP id ca18e2360f4ac-7b3a8366e13so213787839f.1;
-        Tue, 05 Dec 2023 01:31:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701768671; x=1702373471; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RenfwwRJ+AFtvegtJNUpHv8NSTFiZxHcpwZvmM/2PSE=;
-        b=Jf4/LrIFbDZ7xFNQGncpPKfItPdWPYvYBQvqI+QqmOMwThh6UPSvitMCHKxa8S/kqd
-         mkV2S2Cyudo5Xu2y7ofmZcWnFfbRAxl9G+ja1ocAjON2C2PLiC6pc4o0+y3vEcHAU5Pf
-         sk26WfkbDhkydsyMBHKNkPxK0RIzYLY3vpQtDW59kpJb2ec8lEEloVSPkra9qcYrCUJT
-         InY0GH8u0iYrkbxDAfZ9Ch5qsrNVUto1NNp9F4BTvT4KDOoI1eBy2lXl8/pUG4+CmHvv
-         NnlaY7roj3Izz6wtRo+DNGzD7wVfKNpnabOLo/DXglVOOrGu7RUhC9bv+euXskc3S/EF
-         Vx/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701768671; x=1702373471;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RenfwwRJ+AFtvegtJNUpHv8NSTFiZxHcpwZvmM/2PSE=;
-        b=hbhumq5+L3TpqMeTCA4teO8fDR6oVo4rgJGmUo7CjiBpLy9MM6cFUYsqNLOBpO088z
-         4T43wnu5Q46WoKJxpnjJogIiKQ+WvCddHZda/NWbl/n5z06zfzcMqlT9aqm84pBhbm9j
-         uaX8lVi4457uh1vA7f1xKOKv/eY0nVXVj4wrElyumxusH5KvtYrX9snp5We2FI5rJ8t3
-         XvzYJoEwmAV6dl2XaAhaAg8hl4q+c6yP04ifjNmhY/Et4qtunX2e+9Dt0u+jXbq9o+zs
-         sdWZoFSPxdfFodCLLGx/E8pkMY6oOTyfkVILnGujsANis+WGGEIn3JsqeZPe/wAGRZM/
-         xlaA==
-X-Gm-Message-State: AOJu0Yw1Rm2W0qG4VVHMoAlI3bEwokGXG/TW2sm4yema5KaR2WqlSnfS
-	+REEPjNLlPMUUztS8y8XO3hyxRPswiboiRHsJ/c=
-X-Google-Smtp-Source: AGHT+IFr6D6BYqWGEyE3UMSbNV71rjyqF6qvTXD3vh+DfXrYkp9XBifnGHmOK8cQ4HX10HYIwoHFe7lh2PJHgyC+q1I=
-X-Received: by 2002:a5d:974a:0:b0:7b4:28f8:1dfa with SMTP id
- c10-20020a5d974a000000b007b428f81dfamr7247279ioo.25.1701768671291; Tue, 05
- Dec 2023 01:31:11 -0800 (PST)
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8957FA7;
+	Tue,  5 Dec 2023 01:34:58 -0800 (PST)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B59Yk6X009267;
+	Tue, 5 Dec 2023 03:34:46 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1701768886;
+	bh=42Uxhd/vo0d/cPj9rq2rsYuSN4TVQOfYppeWYBS8MLs=;
+	h=From:To:CC:Subject:Date;
+	b=Y+iL0iE6xWahlf1M5OcK9MZalnVGXd2DUgJBXCjGc+wK76TjPLqaI2FqJ7n+B0aNV
+	 PdSFkAfXrfzWZoZ0r/uWuUHyYnLjNY6l/hRbpU1Q5ggtLLoCGHf7fxZjHNrmDmudxF
+	 Qa1poXJDSA0XHCuyU1E7dTvBDHOk9BVnGp+FdOsE=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B59Yk4K082150
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 5 Dec 2023 03:34:46 -0600
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 5
+ Dec 2023 03:34:45 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 5 Dec 2023 03:34:45 -0600
+Received: from a0497641-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B59YeMl010566;
+	Tue, 5 Dec 2023 03:34:40 -0600
+From: Neha Malcom Francis <n-francis@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <a-nandan@ti.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <eblanc@baylibre.com>,
+        <jneanne@baylibre.com>, <aseketeli@baylibre.com>,
+        <jpanis@baylibre.com>, <u-kumar1@ti.com>, <j-luthra@ti.com>,
+        <vaishnav.a@ti.com>, <hnagalla@ti.com>, <devarsht@ti.com>,
+        <n-francis@ti.com>
+Subject: [PATCH v9 0/7] Add TPS6594 PMIC support on several boards
+Date: Tue, 5 Dec 2023 15:04:32 +0530
+Message-ID: <20231205093439.2298296-1-n-francis@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231204055650.788388-1-kcfeng0@nuvoton.com> <20231204055650.788388-2-kcfeng0@nuvoton.com>
- <94607c47-9824-4e2c-8f22-99ca2e088b27@linaro.org>
-In-Reply-To: <94607c47-9824-4e2c-8f22-99ca2e088b27@linaro.org>
-From: Ban Feng <baneric926@gmail.com>
-Date: Tue, 5 Dec 2023 17:31:00 +0800
-Message-ID: <CALz278ZbjcbjUmFKv4B20DPDW33KPW-nZn4if3qTLjYKZZmWWw@mail.gmail.com>
-Subject: Re: [PATCH v1 1/2] dt-bindings: hwmon: Add nct736x bindings
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, corbet@lwn.net, 
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
-	openbmc@lists.ozlabs.org, kwliu@nuvoton.com, kcfeng0@nuvoton.com, 
-	DELPHINE_CHIU@wiwynn.com, Bonnie_Lo@wiwynn.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Krzysztof,
+TPS6594 is a Power Management IC which provides regulators and others
+features like GPIOs, RTC, watchdog, ESMs (Error Signal Monitor), and
+PFSM (Pre-configurable Finite State Machine). The SoC and the PMIC can
+communicate through the I2C or SPI interfaces.
+TPS6594 is the super-set device while TPS6593 and LP8764 are derivatives.
 
-On Mon, Dec 4, 2023 at 4:04=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 04/12/2023 06:56, baneric926@gmail.com wrote:
-> > From: Ban Feng <kcfeng0@nuvoton.com>
-> >
-> > This change documents the device tree bindings for the Nuvoton
-> > NCT7362Y, NCT7363Y driver.
-> >
-> > Signed-off-by: Ban Feng <kcfeng0@nuvoton.com>
-> > ---
-> >  .../bindings/hwmon/nuvoton,nct736x.yaml       | 80 +++++++++++++++++++
-> >  MAINTAINERS                                   |  6 ++
-> >  2 files changed, 86 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/hwmon/nuvoton,nct=
-736x.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/hwmon/nuvoton,nct736x.ya=
-ml b/Documentation/devicetree/bindings/hwmon/nuvoton,nct736x.yaml
-> > new file mode 100644
-> > index 000000000000..f98fd260a20f
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/hwmon/nuvoton,nct736x.yaml
-> > @@ -0,0 +1,80 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +
-> > +$id: http://devicetree.org/schemas/hwmon/nuvoton,nct736x.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Nuvoton NCT736X Hardware Monitoring IC
-> > +
-> > +maintainers:
-> > +  - Ban Feng <kcfeng0@nuvoton.com>
-> > +
-> > +description: |
-> > +  The NCT736X is a Fan controller which provides up to 16 independent
-> > +  FAN input monitors, and up to 16 independent PWM output with SMBus i=
-nterface.
-> > +  Besides, NCT7363Y has a built-in watchdog timer which is used for
-> > +  conditionally generating a system reset output (INT#).
-> > +
-> > +additionalProperties: false
->
-> Please place it just like other bindings are placing it. Not in some
-> random order. See example-schema.
+This series adds device tree nodes for TI TPS6594 PMICs found in the
+following boards:
+- J721EXSOMXEVM:
+  Link: https://www.ti.com/tool/J721EXSOMXEVM
+- J721S2XSOMXEVM:
+  Link: https://www.ti.com/tool/J721S2XSOMXEVM
+- J7200XSOMXEVM:
+  Link: https://www.ti.com/tool/J7200XSOMXEVM
+- J784S4XEVM
+  Link: https://www.ti.com/tool/J784S4XEVM
+- SK-AM69
+  Link: https://www.ti.com/tool/SK-AM69
+- SK-TDA4VM (J721E-SK)
+  Link: https://www.ti.com/tool/SK-TDA4VM
 
-ok, I'll move additionalProperties to the correct place.
+Boot Logs with required config (DONOTMERGE patch) enabled:
+https://gist.github.com/nehamalcom/f47fcd6183360ed8a146c9ba456202c3
+Boot Logs without config enabled:
+https://gist.github.com/nehamalcom/58217b100e614ae55726f314e02b5001
 
->
-> You should use common fan properties. If it was not merged yet, you must
-> rebase on patchset on LKML and mention the dependency in the change log
-> (---).
+---
+Changes from v8:
+https://lore.kernel.org/all/20231128055230.342547-4-n-francis@ti.com/
+- added bootph-pre-ram to AVS regulator (Udit)
+- keeping boot logs and Tested-by tags the same (no effect to kernel)
 
-please kindly see below
+Changes from v7:
+https://lore.kernel.org/all/20231122104513.2335757-1-n-francis@ti.com/
+- (New Patches) Add support for SK boards that have TPS6594xx PMIC
+  present (J721E-SK and AM69-SK) (Nishanth)
+- Add DONOTMERGE defconfig patch to show test logs
 
->
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - nuvoton,nct7362
-> > +      - nuvoton,nct7363
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  nuvoton,pwm-mask:
-> > +    description: |
-> > +      each bit means PWMx enable/disable setting, where x =3D 0~15.
-> > +      0: disabled, 1: enabled
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    minimum: 0x0
-> > +    maximum: 0xFFFF
-> > +    default: 0x0
->
-> Use pwms, not own property for this.
+Changes from v6:
+https://lore.kernel.org/all/20230810-tps6594-v6-0-2b2e2399e2ef@ti.com/
+- Modify patch series to include only patches not merged (J7)
+- Add boot logs for all affected boards
 
-NCT736X has 16 funtion pins, they can be
-GPIO/PWM/FANIN/Reserved_or_ALERT#, and default is GPIO.
-We would like to add such a property that can configure the function
-pin for pin0~7 and pin10~17.
+Changes from v5:
+https://lore.kernel.org/all/20230809-tps6594-v5-0-485fd3d63670@ti.com
+- Range-diff: http://0x0.st/H_fD.diff
+- Reword the patch fixing interrupt ranges for mcu domain gpio intr, and
+  add Fixes: tag
+- Also fix interrupt ranges for main domain gpio intr in the same patch
+- Change pinctrl node names to end in -pins to fix dtbs_check warnings
+- (New Patch) Enable TPS6594 in defconfig
 
-My original design is only for PWM/FANIN, however,
-I noticed that we can change the design to "nuvoton,pin[0-7]$" and
-"nuvoton,pin[10-17]$", like example in adt7475.yaml.
-I'm not sure if this can be accepted or not, please kindly review this.
+Changes from v4:
+https://lore.kernel.org/all/20230727130908.10656-1-eblanc@baylibre.com/
+- Range-diff: https://0x0.st/H_L7.diff
+- Rebased on top of linux-next
+- Fix min voltage on vdd_usb_3v3 regulator (ldo2) on j721e-som
+- Use 3-hex-digit format for pinctrl values
 
->
-> > +
-> > +  nuvoton,fanin-mask:
-> > +    description: |
-> > +      each bit means FANINx monitoring enable/disable setting,
-> > +      where x =3D 0~15.
-> > +      0: disabled, 1: enabled
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    minimum: 0x0
-> > +    maximum: 0xFFFF
-> > +    default: 0x0
->
-> Use properties from common fan bindings.
+Changes from v3:
+https://lore.kernel.org/all/20230417154832.216774-1-eblanc@baylibre.com/
+- Rebased on top of v6.5-rc1.
+- Change pinctrl number for irq pin as wkup_pmx0 was split on some boards.
+- Use already present wkup_i2c0 node instead of creating a new one.
 
-Ditto
+Changes from v2:
+https://lore.kernel.org/lkml/20230414112843.1358067-1-eblanc@baylibre.com/
+- Change node name as per Krzysztof review.
+- Add a fix for the interrupt range of wakeup gpio used by TPS6594 pmic
+  on J784S4.
+  The interruptions of the PMIC were not working before that.
+- Remove dependencies on other patch series as that was a mistake, see
+  https://lore.kernel.org/lkml/CRYY2V3HJ0CP.96JQ18PLZB3C@burritosblues/
 
->
-> > +
-> > +  nuvoton,wdt-timeout:
-> > +    description: |
-> > +      Watchdog Timer time configuration for NCT7363Y, as below
-> > +      0: 15 sec (default)
-> > +      1: 7.5 sec
-> > +      2: 3.75 sec
-> > +      3: 30 sec
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    enum: [0, 1, 2, 3]
-> > +    default: 0
->
-> Nope, reference watchdog.yaml and use its properties. See other watchdog
-> bindings for examples.
+Changes from v1:
+https://lore.kernel.org/lkml/20230329142948.833800-1-eblanc@baylibre.com/
+- Harmonize regulators names across the different boards.
+- Adjust AVS voltage range.
+- Remove some outdated comments.
+- Add PMIC to J784S4 board.
+- Compatible string modified to match dt-bindings.
+- Add gpio-controller and gpio-cells properties.
 
-NCT7363 has a built-in watchdog timer which is used for conditionally
-generating a system reset
-output (INT#) if the microcontroller or microprocessor stops to
-periodically send a pulse signal or
-interface communication access signal like SCL signal from SMBus interface.
 
-We only consider "Watchdog Timer Configuration Register" enable bit
-and timeout setting.
-Should we still need to add struct watchdog_device to struct nct736x_data?
+Esteban Blanc (2):
+  arm64: dts: ti: k3-j7200-som-p0: Add TP6594 family PMICs
+  arm64: dts: ti: k3-j721s2-som-p0: Add TP6594 family PMICs
 
->
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - nuvoton,pwm-mask
-> > +  - nuvoton,fanin-mask
-> > +
-> > +examples:
-> > +  - |
-> > +    i2c {
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <0>;
-> > +
-> > +        nct7363@22 {
->
-> Node names should be generic. See also an explanation and list of
-> examples (not exhaustive) in DT specification:
-> https://devicetree-specification.readthedocs.io/en/latest/chapter2-device=
-tree-basics.html#generic-names-recommendation
+Jerome Neanne (2):
+  arm64: dts: ti: k3-j721e-som-p0: Add TP6594 family PMICs
+  arm64: dts: ti: k3-j784s4-evm: Add support for TPS6594 PMIC
 
-ok, I'll change nct7363@22 to hwmon@22.
+Neha Malcom Francis (3):
+  arm64: dts: ti: k3-am69-sk: Add support for TPS6594 PMIC
+  arm64: dts: ti: k3-j721e-sk: Add TPS6594 family PMICs
+  DONOTMERGE: arm64: defconfig: Enable TPS6594 PMIC for J7 devices
 
-Thanks,
-Ban
+ arch/arm64/boot/dts/ti/k3-am69-sk.dts        | 100 +++++++++
+ arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi  | 161 +++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j721e-sk.dts       | 158 +++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi  | 167 +++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi | 203 +++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j784s4-evm.dts     | 104 ++++++++++
+ arch/arm64/configs/defconfig                 |   2 +-
+ 7 files changed, 894 insertions(+), 1 deletion(-)
+
+-- 
+2.34.1
+
 
