@@ -1,142 +1,631 @@
-Return-Path: <devicetree+bounces-21796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21797-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B95F98052E8
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 12:31:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF2E88052F5
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 12:34:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7468C2817FA
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 11:31:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D3E991C20B36
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 11:34:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82AA1697A0;
-	Tue,  5 Dec 2023 11:31:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB5E7697A0;
+	Tue,  5 Dec 2023 11:34:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dkOdnC2j"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="f3B/kA5J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 591781AB;
-	Tue,  5 Dec 2023 03:31:46 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-50bfa7f7093so2354334e87.0;
-        Tue, 05 Dec 2023 03:31:46 -0800 (PST)
+Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 605AA10D0
+	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 03:33:57 -0800 (PST)
+Received: by mail-yb1-xb2e.google.com with SMTP id 3f1490d57ef6-dae0ab8ac3eso3912980276.0
+        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 03:33:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701775904; x=1702380704; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=iWABwC93ZRSAHZ+Njf9xIdiKvJp/CP14/ZzB27UiO+I=;
-        b=dkOdnC2jVcPaiBlOkIvqbrTfzUQ3I7jxR0Kwld7MjSIUuPzjIhXwdTkw1F6sqRfO4k
-         Sj91baZc4COMmXwLhS8a8Yp5CVC1rmrK609Z/i/U056UjJ8VpGQAvx4a2+p54cL6eqjM
-         M6iVbUIBo+BTlJ+7Ah6Ac2fbe4ENTLQm8hTy6uCFtG8vrOPz5kk6JrLPtbvzyCSg17qY
-         B9aDNaZC6jpTSdmuL2BzlqZsEhP6ktmLaGQqTAsjaZ8NACo0f0ntjqqRT21COJ4c9pt1
-         U5wA+DQn9RBsTzucjQioQPJmQM95C4+r5QV/9D13823kHWgPRWOsamk5hWp5RHdj73BO
-         j42A==
+        d=linaro.org; s=google; t=1701776036; x=1702380836; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZhsRabMwHLdT/83BOzk87yIZ/nT96lpL8CbTHmgEiXY=;
+        b=f3B/kA5JNZI9zVwxD9Mol9SJzC0o2r25FeuGA7endeL3isP21hE5xK73egCB8a1pxg
+         3HI/jeoYP3S6pUELNoE+8HCFrRhjkINx3bRhqRIdvRwroaazLmEAh97PLletYulTmmJY
+         +QavoVznQDvgrPlQFTIkvz4TkQDjsdNUcb1v7fW/tK71MNrYpdVFsKtOI4DDuHHEarHB
+         szsJ6FWzOJOi/0IV3hiCuZW7IAf6r1/Hk3EeJ5D78lE4CLMchjWjlP57SN77fb2h2oJx
+         3Mh8JP2d3IZwdB3qp6t2IGPvVjz3CgCHSfXlpD95kiZjXk+/GChGZC/O+CnDzsgYxtyq
+         GeUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701775904; x=1702380704;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iWABwC93ZRSAHZ+Njf9xIdiKvJp/CP14/ZzB27UiO+I=;
-        b=hGxGdsJaL7UoCmrD9UVX0DZt3SFivLr6bRvKNYt+Gq2B/ffTN3oRKttPidxrJ4x3X5
-         WSqRibG/RVB8AlIiVH7+Pl4jbx6MAvqR386hFoUCWdJvoF1aD4t4T+b9X28kgEbpg76B
-         sOKw3h7jYGsJHtB124oiVEJUQnqJTEvpRk+/f9T8KQGdIcLl7Ca8XkdhjI7GvnN2CphV
-         GdKqBJGxSd35BjJfV/3trdNngs1f7ihBJKCdFO+gF6y1sRHR6WPRIek6LnZvs6ho237U
-         IprrjfqNNsQvRFC9V+Xxt/ztnPY99zeMmg7tT2TU71nMs0G1P9dZGt80xW0rNkWHrf6H
-         MUvg==
-X-Gm-Message-State: AOJu0YwU8gpUnTzZEpZkf4N1IU/TM44xJpbHvPw2dcJFEtr0bY8API90
-	XHuF0M/9CxJlIVEpAbo48PY=
-X-Google-Smtp-Source: AGHT+IFOyPrsnNLbi6atUEGuAJC2I0o2XaEEchq0I+1cdYruq2/3i2EBhY8YCpuSc2tnpJmsGAzuyg==
-X-Received: by 2002:ac2:5490:0:b0:50b:f2e0:4997 with SMTP id t16-20020ac25490000000b0050bf2e04997mr1735238lfk.103.1701775904378;
-        Tue, 05 Dec 2023 03:31:44 -0800 (PST)
-Received: from mobilestation ([178.176.56.174])
-        by smtp.gmail.com with ESMTPSA id bi38-20020a0565120ea600b0050bfd88075asm395757lfb.287.2023.12.05.03.31.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Dec 2023 03:31:43 -0800 (PST)
-Date: Tue, 5 Dec 2023 14:31:41 +0300
-From: Serge Semin <fancer.lancer@gmail.com>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>, 
-	Jose Abreu <Jose.Abreu@synopsys.com>, Maxime Chevallier <maxime.chevallier@bootlin.com>, 
-	Tomer Maimon <tmaimon77@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, openbmc@lists.ozlabs.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 06/16] net: pcs: xpcs: Avoid creating dummy XPCS
- MDIO device
-Message-ID: <rgp33mm4spbpm5tmgxurkhy4is3lz3z62rz64rni2pygteyrit@zwflw2ejdkn7>
-References: <20231205103559.9605-1-fancer.lancer@gmail.com>
- <20231205103559.9605-7-fancer.lancer@gmail.com>
- <ZW8ASzkC9IFFlxkV@shell.armlinux.org.uk>
+        d=1e100.net; s=20230601; t=1701776036; x=1702380836;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZhsRabMwHLdT/83BOzk87yIZ/nT96lpL8CbTHmgEiXY=;
+        b=eLN2gnomZzhs7/GZo7D8KmCVeqTr48um2c7P6NMoY3O8th3qQ//GVJufW9ee+xq8E8
+         BmoIFCUVWb62f6iFQtEzpbVsjDn5ig/Sksev1cAFhjnwdrGnIBdOmr5056y9z+YvtFez
+         P+EsaHGHsWrNccJGodivhnL3wQqD4zb7cL4VqPo0yKuYLbsh5+kBVUNbxgQFU2qqbabK
+         956gBaGRi+OiGEeri/uqNO2r/kmTvPjNzAsboTUJD44Ua9TKp3svjEy6AsxJ4CcbjsvV
+         7fYibKw8A777nd3fySQ12U2yB9FBHs66hLK9FpjUiTWd7Wc8dI1c+O7WFDD0rr3C68TF
+         +vbg==
+X-Gm-Message-State: AOJu0Yx18DgibS02uEXToh/69wfhMs6y/y4SMv1B/wdIlEwg+t3u81UJ
+	9sumiFk2oXJxh5hQYrW7sKNJL8EufWZmFihFHwLsVw==
+X-Google-Smtp-Source: AGHT+IEYX0mlAXrPoEqnAG4It1U3rjYFagPejC1cjhV8FDSQilebuKlVLTmrSJdwmk4gdJOPTf5nWSvplQ0sZq7CrmE=
+X-Received: by 2002:a25:ccd5:0:b0:db7:dacf:6ff4 with SMTP id
+ l204-20020a25ccd5000000b00db7dacf6ff4mr4673468ybf.124.1701776036477; Tue, 05
+ Dec 2023 03:33:56 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZW8ASzkC9IFFlxkV@shell.armlinux.org.uk>
+References: <20231204123315.28456-1-keith.zhao@starfivetech.com> <20231204123315.28456-4-keith.zhao@starfivetech.com>
+In-Reply-To: <20231204123315.28456-4-keith.zhao@starfivetech.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Tue, 5 Dec 2023 13:33:45 +0200
+Message-ID: <CAA8EJpr784=-W9SuM6XH3++G1UXP2acnfRJoBktmx61_NMsZ0w@mail.gmail.com>
+Subject: Re: [v3 3/6] drm/vs: Register DRM device
+To: Keith Zhao <keith.zhao@starfivetech.com>
+Cc: devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	aou@eecs.berkeley.edu, suijingfeng@loongson.cn, tzimmermann@suse.de, 
+	paul.walmsley@sifive.com, mripard@kernel.org, xingyu.wu@starfivetech.com, 
+	jack.zhu@starfivetech.com, palmer@dabbelt.com, 
+	krzysztof.kozlowski+dt@linaro.org, william.qiu@starfivetech.com, 
+	shengyang.chen@starfivetech.com, changhuang.liang@starfivetech.com
+Content-Type: text/plain; charset="UTF-8"
 
-On Tue, Dec 05, 2023 at 10:49:47AM +0000, Russell King (Oracle) wrote:
-> On Tue, Dec 05, 2023 at 01:35:27PM +0300, Serge Semin wrote:
-> > If the DW XPCS MDIO devices are either left unmasked for being auto-probed
-> > or explicitly registered in the MDIO subsystem by means of the
-> > mdiobus_register_board_info() method there is no point in creating the
-> > dummy MDIO device instance in order to get the DW XPCS handler since the
-> > MDIO core subsystem will create the device during the MDIO bus
-> > registration procedure.
-> 
+On Mon, 4 Dec 2023 at 14:33, Keith Zhao <keith.zhao@starfivetech.com> wrote:
+>
+> Implement drm device registration interface
+>
+> Signed-off-by: Keith Zhao <keith.zhao@starfivetech.com>
+> ---
+>  MAINTAINERS                              |   1 +
+>  drivers/gpu/drm/Kconfig                  |   2 +
+>  drivers/gpu/drm/Makefile                 |   1 +
+>  drivers/gpu/drm/verisilicon/Kconfig      |  13 +
+>  drivers/gpu/drm/verisilicon/Makefile     |   6 +
+>  drivers/gpu/drm/verisilicon/vs_drv.c     | 316 +++++++++++++++++++++++
+>  drivers/gpu/drm/verisilicon/vs_drv.h     |  42 +++
+>  drivers/gpu/drm/verisilicon/vs_modeset.c |  39 +++
+>  drivers/gpu/drm/verisilicon/vs_modeset.h |  10 +
+>  9 files changed, 430 insertions(+)
+>  create mode 100644 drivers/gpu/drm/verisilicon/Kconfig
+>  create mode 100644 drivers/gpu/drm/verisilicon/Makefile
+>  create mode 100644 drivers/gpu/drm/verisilicon/vs_drv.c
+>  create mode 100644 drivers/gpu/drm/verisilicon/vs_drv.h
+>  create mode 100644 drivers/gpu/drm/verisilicon/vs_modeset.c
+>  create mode 100644 drivers/gpu/drm/verisilicon/vs_modeset.h
+>
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 7caaadb83f3f..8dc9ebfe4605 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -6887,6 +6887,7 @@ L:        dri-devel@lists.freedesktop.org
+>  S:     Maintained
+>  T:     git git://anongit.freedesktop.org/drm/drm-misc
+>  F:     Documentation/devicetree/bindings/display/starfive/
+> +F:     drivers/gpu/drm/verisilicon/
+>
+>  DRM DRIVER FOR TI DLPC3433 MIPI DSI TO DMD BRIDGE
+>  M:     Jagan Teki <jagan@amarulasolutions.com>
+> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+> index 3eee8636f847..e8d53c2e7c86 100644
+> --- a/drivers/gpu/drm/Kconfig
+> +++ b/drivers/gpu/drm/Kconfig
+> @@ -394,6 +394,8 @@ source "drivers/gpu/drm/solomon/Kconfig"
+>
+>  source "drivers/gpu/drm/sprd/Kconfig"
+>
+> +source "drivers/gpu/drm/verisilicon/Kconfig"
+> +
+>  config DRM_HYPERV
+>         tristate "DRM Support for Hyper-V synthetic video device"
+>         depends on DRM && PCI && MMU && HYPERV
+> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+> index 8e1bde059170..29e04acded06 100644
+> --- a/drivers/gpu/drm/Makefile
+> +++ b/drivers/gpu/drm/Makefile
+> @@ -198,3 +198,4 @@ obj-$(CONFIG_DRM_HYPERV) += hyperv/
+>  obj-y                  += solomon/
+>  obj-$(CONFIG_DRM_SPRD) += sprd/
+>  obj-$(CONFIG_DRM_LOONGSON) += loongson/
+> +obj-$(CONFIG_DRM_VERISILICON) += verisilicon/
+> diff --git a/drivers/gpu/drm/verisilicon/Kconfig b/drivers/gpu/drm/verisilicon/Kconfig
+> new file mode 100644
+> index 000000000000..e10fa97635aa
+> --- /dev/null
+> +++ b/drivers/gpu/drm/verisilicon/Kconfig
+> @@ -0,0 +1,13 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +config DRM_VERISILICON
+> +       tristate "DRM Support for VeriSilicon"
+> +       depends on DRM
+> +       select DRM_KMS_HELPER
+> +       select DRM_GEM_DMA_HELPER
+> +       select CMA
+> +       select DMA_CMA
+> +       help
+> +         Choose this option if you have a VeriSilicon soc chipset.
+> +         This driver provides VeriSilicon kernel mode
+> +         setting and buffer management. It does not
+> +         provide 2D or 3D acceleration.
+> diff --git a/drivers/gpu/drm/verisilicon/Makefile b/drivers/gpu/drm/verisilicon/Makefile
+> new file mode 100644
+> index 000000000000..d785a1dfaa7f
+> --- /dev/null
+> +++ b/drivers/gpu/drm/verisilicon/Makefile
+> @@ -0,0 +1,6 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +
+> +vs_drm-objs := vs_drv.o \
+> +              vs_modeset.o
+> +
+> +obj-$(CONFIG_DRM_VERISILICON) += vs_drm.o
+> diff --git a/drivers/gpu/drm/verisilicon/vs_drv.c b/drivers/gpu/drm/verisilicon/vs_drv.c
+> new file mode 100644
+> index 000000000000..4fb1f29ef84b
+> --- /dev/null
+> +++ b/drivers/gpu/drm/verisilicon/vs_drv.c
+> @@ -0,0 +1,316 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2023 VeriSilicon Holdings Co., Ltd.
+> + */
+> +#include <linux/clk.h>
+> +#include <linux/component.h>
+> +#include <linux/of_clk.h>
+> +#include <linux/pm_runtime.h>
+> +
+> +#include <drm/drm_aperture.h>
+> +#include <drm/drm_atomic_helper.h>
+> +#include <drm/drm_crtc.h>
+> +#include <drm/drm_crtc_helper.h>
+> +#include <drm/drm_fb_helper.h>
+> +#include <drm/drm_fbdev_generic.h>
+> +#include <drm/drm_file.h>
+> +#include <drm/drm_gem_dma_helper.h>
+> +#include <drm/drm_module.h>
+> +#include <drm/drm_of.h>
+> +#include <drm/drm_probe_helper.h>
+> +#include <drm/drm_vblank.h>
+> +
+> +#include "vs_drv.h"
+> +#include "vs_modeset.h"
+> +
+> +#define DRV_NAME       "verisilicon"
+> +#define DRV_DESC       "Verisilicon DRM driver"
+> +#define DRV_DATE       "20230516"
+> +#define DRV_MAJOR      1
+> +#define DRV_MINOR      0
+> +
+> +static int vs_gem_dumb_create(struct drm_file *file, struct drm_device *dev,
+> +                             struct drm_mode_create_dumb *args)
+> +{
+> +       struct vs_drm_device *priv = to_vs_drm_private(dev);
+> +       unsigned int pitch = DIV_ROUND_UP(args->width * args->bpp, 8);
+> +
+> +       args->pitch = ALIGN(pitch, priv->pitch_alignment);
+> +       return drm_gem_dma_dumb_create_internal(file, dev, args);
+> +}
+> +
+> +DEFINE_DRM_GEM_FOPS(vs_drm_fops);
+> +
+> +static struct drm_driver vs_drm_driver = {
+> +       .driver_features        = DRIVER_MODESET | DRIVER_ATOMIC | DRIVER_GEM,
+> +
+> +       DRM_GEM_DMA_DRIVER_OPS_WITH_DUMB_CREATE(vs_gem_dumb_create),
+> +
+> +       .fops                   = &vs_drm_fops,
+> +       .name                   = DRV_NAME,
+> +       .desc                   = DRV_DESC,
+> +       .date                   = DRV_DATE,
+> +       .major                  = DRV_MAJOR,
+> +       .minor                  = DRV_MINOR,
+> +};
+> +
+> +static void vs_drm_device_release_clocks(void *res)
+> +{
+> +       struct vs_drm_device *priv = res;
+> +       unsigned int i;
+> +
+> +       reset_control_bulk_assert(priv->nrsts, priv->rst_vout);
+> +
+> +       for (i = 0; i < priv->clk_count; ++i) {
+> +               if (priv->clks[i]) {
+> +                       clk_disable_unprepare(priv->clks[i]);
+> +                       clk_put(priv->clks[i]);
+> +               }
+> +       }
+> +}
+> +
+> +static const char * const vout_resets[] = {
+> +       "axi",
+> +       "ahb",
+> +       "core",
+> +};
+> +
+> +static int vs_drm_device_init_clocks(struct vs_drm_device *priv)
+> +{
+> +       struct drm_device *dev = &priv->base;
+> +       struct platform_device *pdev = to_platform_device(dev->dev);
+> +       struct device_node *of_node = pdev->dev.of_node;
+> +       struct clk *clock;
+> +       unsigned int i;
+> +       int ret;
+> +
+> +       if (dev_get_platdata(&pdev->dev) || !of_node)
+> +               return 0;
 
-> Please reword this overly long sentence.
+Drop dev_get_platdata(), you don't seem to use it.
 
-Ok.
+> +
+> +       priv->nrsts = ARRAY_SIZE(priv->rst_vout);
+> +       for (int i = 0; i < priv->nrsts; ++i)
+> +               priv->rst_vout[i].id = vout_resets[i];
+> +       ret = devm_reset_control_bulk_get_shared(dev->dev, priv->nrsts,
+> +                                                priv->rst_vout);
+> +       if (ret) {
+> +               drm_err(dev, "Failed to get reset controls\n");
+> +               return ret;
+> +       }
+> +
+> +       priv->clk_count = of_clk_get_parent_count(of_node);
+> +       if (!priv->clk_count)
+> +               return 0;
+> +
+> +       priv->clks = drmm_kzalloc(dev, priv->clk_count * sizeof(priv->clks[0]),
+> +                                 GFP_KERNEL);
+> +       if (!priv->clks)
+> +               return -ENOMEM;
+> +
+> +       for (i = 0; i < priv->clk_count; ++i) {
+> +               clock = of_clk_get(of_node, i);
+> +               if (IS_ERR(clock)) {
+> +                       ret = PTR_ERR(clock);
+> +                       if (ret == -EPROBE_DEFER)
+> +                               goto err;
+> +                       drm_err(dev, "clock %u not found: %d\n", i, ret);
+> +                       continue;
+> +               }
+> +               ret = clk_prepare_enable(clock);
+> +               if (ret) {
+> +                       drm_err(dev, "failed to enable clock %u: %d\n",
+> +                               i, ret);
+> +                       clk_put(clock);
+> +                       continue;
+> +               }
+> +               priv->clks[i] = clock;
+> +       }
 
-> 
-> If they're left unmasked, what prevents them being created as PHY
-> devices?
+This can be rewritten as devm_clk_bulk_get_all()
 
-Not sure I fully get what you meant. If they are left unmasked the
-MDIO-device descriptor will be created by the MDIO subsystem anyway.
-What the point in creating another one?
+> +
+> +       ret = reset_control_bulk_deassert(priv->nrsts, priv->rst_vout);
+> +       if (ret)
+> +               return ret;
 
-> 
-> > @@ -1437,19 +1435,21 @@ struct dw_xpcs *xpcs_create_mdiodev(struct mii_bus *bus, int addr,
-> >  	struct mdio_device *mdiodev;
-> >  	struct dw_xpcs *xpcs;
-> >  
-> > -	mdiodev = mdio_device_create(bus, addr);
-> > -	if (IS_ERR(mdiodev))
-> > -		return ERR_CAST(mdiodev);
-> > +	if (addr >= PHY_MAX_ADDR)
-> > +		return ERR_PTR(-EINVAL);
-> >  
-> > -	xpcs = xpcs_create(mdiodev, interface);
-> > +	if (mdiobus_is_registered_device(bus, addr)) {
-> > +		mdiodev = bus->mdio_map[addr];
-> > +		mdio_device_get(mdiodev);
-> 
+It is a bad idea to mix get_resources kind of function with the actual
+resource control. Please move reset deassertion upwards.
 
-> No, this makes no sense now. This function is called
-> xpcs_create_mdiodev() - note the "create_mdiodev" part. If it's getting
-> the mdiodev from what is already there then it isn't creating it, so
-> it's no longer doing what it says in its function name. If you want to
-> add this functionality, create a new function to do it.
+> +
+> +       return devm_add_action_or_reset(&pdev->dev,
+> +                                       vs_drm_device_release_clocks,
+> +                                       priv);
+> +
+> +err:
+> +       while (i) {
+> +               --i;
+> +               if (priv->clks[i]) {
+> +                       clk_disable_unprepare(priv->clks[i]);
+> +                       clk_put(priv->clks[i]);
+> +               }
+> +       }
+> +       return ret;
+> +}
+> +
+> +static int vs_drm_bind(struct device *dev)
+> +{
+> +       struct platform_device *pdev = to_platform_device(dev);
+> +       struct vs_drm_device *priv;
+> +       int ret;
+> +       struct drm_device *drm_dev;
+> +
+> +       /* Remove existing drivers that may own the framebuffer memory. */
+> +       ret = drm_aperture_remove_framebuffers(&vs_drm_driver);
+> +       if (ret)
+> +               return ret;
 
-AFAICS the method semantics is a bit different. It's responsibility is to
-create the DW XPCS descriptor. MDIO-device is utilized internally by
-the DW XPCS driver. The function callers don't access the created MDIO
-device directly (at least since some recent commit). So AFAIU "create"
-means creating the XPCS descriptor irrespective from the internal
-communication layer. So IMO the suffix is a bit misleading. I'll
-change it in one of the next commit anyway. Should I just merge that
-patch back in this one?
+If anything happens during the probe, your platform is left with no
+display output. I think it might be better to call this when the
+driver has acquired all the resources and is ready to start hw init.
 
--Serge(y)
+> +
+> +       priv = devm_drm_dev_alloc(dev, &vs_drm_driver, struct vs_drm_device, base);
+> +       if (IS_ERR(priv))
+> +               return PTR_ERR(priv);
+> +
+> +       priv->pitch_alignment = 64;
+> +
+> +       ret = dma_set_coherent_mask(priv->base.dev, DMA_BIT_MASK(40));
+> +       if (ret)
+> +               return ret;
+> +
+> +       drm_dev = &priv->base;
+> +       platform_set_drvdata(pdev, drm_dev);
+> +
+> +       ret = vs_drm_device_init_clocks(priv);
+> +       if (ret)
+> +               return ret;
+> +
+> +       vs_mode_config_init(drm_dev);
+> +
+> +       /* Now try and bind all our sub-components */
+> +       ret = component_bind_all(dev, drm_dev);
+> +       if (ret)
+> +               return ret;
+> +
+> +       ret = drm_vblank_init(drm_dev, drm_dev->mode_config.num_crtc);
+> +       if (ret)
+> +               return ret;
+> +
+> +       drm_mode_config_reset(drm_dev);
+> +
+> +       drm_kms_helper_poll_init(drm_dev);
+> +
+> +       ret = drm_dev_register(drm_dev, 0);
+> +       if (ret)
+> +               return ret;
 
-> 
-> -- 
-> RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-> FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+Teardown path is missing.
+
+> +
+> +       drm_fbdev_generic_setup(drm_dev, 32);
+> +
+> +       return 0;
+> +}
+> +
+> +static void vs_drm_unbind(struct device *dev)
+> +{
+> +       struct drm_device *drm_dev = dev_get_drvdata(dev);
+> +
+> +       drm_dev_unregister(drm_dev);
+> +       drm_kms_helper_poll_fini(drm_dev);
+> +       component_unbind_all(drm_dev->dev, drm_dev);
+> +}
+> +
+> +static const struct component_master_ops vs_drm_ops = {
+> +       .bind = vs_drm_bind,
+> +       .unbind = vs_drm_unbind,
+> +};
+> +
+> +static struct platform_driver *drm_sub_drivers[] = {
+> +};
+> +
+> +static struct component_match *vs_drm_match_add(struct device *dev)
+> +{
+> +       struct component_match *match = NULL;
+> +       int i;
+> +
+> +       for (i = 0; i < ARRAY_SIZE(drm_sub_drivers); ++i) {
+> +               struct platform_driver *drv = drm_sub_drivers[i];
+> +               struct device *p = NULL, *d;
+> +
+> +               while ((d = platform_find_device_by_driver(p, &drv->driver))) {
+> +                       put_device(p);
+> +
+> +                       drm_of_component_match_add(dev, &match, component_compare_of,
+> +                                                  d->of_node);
+> +                       p = d;
+> +               }
+> +               put_device(p);
+> +       }
+> +
+> +       return match ? match : ERR_PTR(-ENODEV);
+> +}
+> +
+> +static int vs_drm_platform_probe(struct platform_device *pdev)
+> +{
+> +       struct device *dev = &pdev->dev;
+> +       struct component_match *match;
+> +
+> +       match = vs_drm_match_add(dev);
+> +       if (IS_ERR(match))
+> +               return PTR_ERR(match);
+> +
+> +       return component_master_add_with_match(dev, &vs_drm_ops, match);
+
+I wonder if you can use drm_of_component_probe() instead?
+
+> +}
+> +
+> +static int vs_drm_platform_remove(struct platform_device *pdev)
+
+I think this should be void vs_drm_platform_remove() and .remove_new
+
+> +{
+> +       component_master_del(&pdev->dev, &vs_drm_ops);
+> +       return 0;
+> +}
+> +
+> +#ifdef CONFIG_PM_SLEEP
+> +static int vs_drm_suspend(struct device *dev)
+> +{
+> +       return drm_mode_config_helper_suspend(dev_get_drvdata(dev));
+> +}
+> +
+> +static int vs_drm_resume(struct device *dev)
+> +{
+> +       drm_mode_config_helper_resume(dev_get_drvdata(dev));
+
+return drm_mode_config_helper_resume()
+
+> +
+> +       return 0;
+> +}
+> +#endif
+> +
+> +static SIMPLE_DEV_PM_OPS(vs_drm_pm_ops, vs_drm_suspend, vs_drm_resume);
+> +
+> +static const struct of_device_id vs_drm_dt_ids[] = {
+> +       { .compatible = "starfive,display-subsystem", },
+> +       { },
+> +};
+> +
+> +MODULE_DEVICE_TABLE(of, vs_drm_dt_ids);
+> +
+> +static struct platform_driver vs_drm_platform_driver = {
+> +       .probe = vs_drm_platform_probe,
+> +       .remove = vs_drm_platform_remove,
+> +
+> +       .driver = {
+> +               .name = DRV_NAME,
+> +               .of_match_table = vs_drm_dt_ids,
+> +               .pm = &vs_drm_pm_ops,
+> +       },
+> +};
+> +
+> +static int __init vs_drm_init(void)
+> +{
+> +       int ret;
+> +
+> +       ret = platform_register_drivers(drm_sub_drivers, ARRAY_SIZE(drm_sub_drivers));
+> +       if (ret)
+> +               return ret;
+> +
+> +       ret = drm_platform_driver_register(&vs_drm_platform_driver);
+> +       if (ret)
+> +               platform_unregister_drivers(drm_sub_drivers, ARRAY_SIZE(drm_sub_drivers));
+> +
+> +       return ret;
+> +}
+> +
+> +static void __exit vs_drm_fini(void)
+> +{
+> +       platform_driver_unregister(&vs_drm_platform_driver);
+> +       platform_unregister_drivers(drm_sub_drivers, ARRAY_SIZE(drm_sub_drivers));
+> +}
+> +
+> +late_initcall_sync(vs_drm_init);
+> +module_exit(vs_drm_fini);
+> +
+> +MODULE_DESCRIPTION("VeriSilicon DRM Driver");
+> +MODULE_LICENSE("GPL");
+> diff --git a/drivers/gpu/drm/verisilicon/vs_drv.h b/drivers/gpu/drm/verisilicon/vs_drv.h
+> new file mode 100644
+> index 000000000000..ea2189772980
+> --- /dev/null
+> +++ b/drivers/gpu/drm/verisilicon/vs_drv.h
+> @@ -0,0 +1,42 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright (C) 2023 VeriSilicon Holdings Co., Ltd.
+> + */
+> +
+> +#ifndef __VS_DRV_H__
+> +#define __VS_DRV_H__
+> +
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <drm/drm_drv.h>
+> +#include <drm/drm_gem.h>
+> +#include <drm/drm_managed.h>
+> +#include <linux/clk.h>
+> +#include <linux/reset.h>
+> +
+> +enum rst_vout {
+> +       RST_VOUT_AXI = 0,
+> +       RST_VOUT_AHB,
+> +       RST_VOUT_CORE,
+> +       RST_VOUT_NUM
+> +};
+
+Do you need these values? They can easily get out of sync with vout_rsts.
+
+> +
+> +/*@pitch_alignment: buffer pitch alignment required by sub-devices.*/
+> +struct vs_drm_device {
+> +       struct drm_device base;
+> +       unsigned int pitch_alignment;
+> +       /* clocks */
+> +       unsigned int clk_count;
+> +       struct clk **clks;
+> +
+> +       struct reset_control_bulk_data rst_vout[RST_VOUT_NUM];
+> +       int     nrsts;
+> +};
+> +
+> +static inline struct vs_drm_device *
+> +to_vs_drm_private(const struct drm_device *dev)
+> +{
+> +       return container_of(dev, struct vs_drm_device, base);
+> +}
+> +
+> +#endif /* __VS_DRV_H__ */
+> diff --git a/drivers/gpu/drm/verisilicon/vs_modeset.c b/drivers/gpu/drm/verisilicon/vs_modeset.c
+> new file mode 100644
+> index 000000000000..eaf406c1b7c7
+> --- /dev/null
+> +++ b/drivers/gpu/drm/verisilicon/vs_modeset.c
+> @@ -0,0 +1,39 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2023 VeriSilicon Holdings Co., Ltd.
+> + */
+> +
+> +#include <linux/module.h>
+> +
+> +#include <drm/drm_damage_helper.h>
+> +#include <drm/drm_fb_helper.h>
+> +#include <drm/drm_gem_framebuffer_helper.h>
+> +
+> +#include "vs_modeset.h"
+> +
+> +static const struct drm_mode_config_funcs vs_mode_config_funcs = {
+> +       .fb_create                       = drm_gem_fb_create,
+> +       .atomic_check            = drm_atomic_helper_check,
+> +       .atomic_commit           = drm_atomic_helper_commit,
+> +};
+> +
+> +static struct drm_mode_config_helper_funcs vs_mode_config_helpers = {
+> +       .atomic_commit_tail = drm_atomic_helper_commit_tail_rpm,
+> +};
+> +
+> +void vs_mode_config_init(struct drm_device *dev)
+> +{
+> +       int ret;
+> +
+> +       ret = drmm_mode_config_init(dev);
+> +       if (ret)
+> +               return;
+> +
+> +       dev->mode_config.min_width  = 0;
+> +       dev->mode_config.min_height = 0;
+> +       dev->mode_config.max_width  = 4096;
+> +       dev->mode_config.max_height = 4096;
+> +
+> +       dev->mode_config.funcs = &vs_mode_config_funcs;
+> +       dev->mode_config.helper_private = &vs_mode_config_helpers;
+> +}
+> diff --git a/drivers/gpu/drm/verisilicon/vs_modeset.h b/drivers/gpu/drm/verisilicon/vs_modeset.h
+> new file mode 100644
+> index 000000000000..bd04f81d2ad2
+> --- /dev/null
+> +++ b/drivers/gpu/drm/verisilicon/vs_modeset.h
+> @@ -0,0 +1,10 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright (C) 2020 VeriSilicon Holdings Co., Ltd.
+> + */
+> +
+> +#ifndef __VS_MODESET_H__
+> +#define __VS_MODESET_H__
+> +
+> +void vs_mode_config_init(struct drm_device *dev);
+> +#endif /* __VS_FB_H__ */
+> --
+> 2.34.1
+>
+
+
+-- 
+With best wishes
+Dmitry
 
