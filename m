@@ -1,116 +1,122 @@
-Return-Path: <devicetree+bounces-21953-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21954-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52BBB805CE6
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 19:08:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BD61805D08
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 19:13:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 84A8F1C2106F
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 18:08:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5605A282000
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 18:13:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E050959E32;
-	Tue,  5 Dec 2023 18:08:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6317E5F1F3;
+	Tue,  5 Dec 2023 18:13:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="G5t+V4ad"
+	dkim=pass (2048-bit key) header.d=gateworks-com.20230601.gappssmtp.com header.i=@gateworks-com.20230601.gappssmtp.com header.b="Zk/tiMBt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DA8590;
-	Tue,  5 Dec 2023 10:08:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1701799694; x=1733335694;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=3aabID007GWzE7OZJjag1L/LlvBoYmhmC6WBs8z1c60=;
-  b=G5t+V4add89nTokjZHEdAa9uslAL3OcyB1sb+FNEfEvF8lanmbQHOhD7
-   FZv1cgyEKZ+XkQXa6PRgoDjYIFIt+Hb6hO2EacCOHLnqV0BxrH2jzH1Zw
-   rhHGlTBOJn5EdKTHzyO5hc87E5cpLXZvOBL2d6dLF4gZbNC3zxTkjYphd
-   SG64gwjpBolHeeDCOv6M1umf1MWWF667joF+U7XMYKJ30eCiDxMhWWizU
-   E/6eKQmex6VBIh0ObPh2ouJU4m/n9806A3JFSvql0qooNHzKwdVIz+Hf7
-   xOeY9bcwkER5G2HPm7HExT2TymEUPWRIWMaT9Y/w9PF/WphWy48tPA/2q
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="992255"
-X-IronPort-AV: E=Sophos;i="6.04,253,1695711600"; 
-   d="scan'208";a="992255"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Dec 2023 10:08:13 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="764416688"
-X-IronPort-AV: E=Sophos;i="6.04,253,1695711600"; 
-   d="scan'208";a="764416688"
-Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
-  by orsmga007.jf.intel.com with ESMTP; 05 Dec 2023 10:08:10 -0800
-Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rAZq3-0009VW-1z;
-	Tue, 05 Dec 2023 18:08:07 +0000
-Date: Wed, 6 Dec 2023 02:07:40 +0800
-From: kernel test robot <lkp@intel.com>
-To: Allen_Lin <allencl_lin@hotmail.com>, dmitry.torokhov@gmail.com,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, jikos@kernel.org,
-	benjamin.tissoires@redhat.com, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, Allen_Lin <allencl_lin@hotmail.com>
-Subject: Re: [PATCH v1 2/2] Input: Add Himax HX83102J touchscreen driver
-Message-ID: <202312060112.Rqj5MNEl-lkp@intel.com>
-References: <TY0PR06MB5611228C6B67733DC93842C99E85A@TY0PR06MB5611.apcprd06.prod.outlook.com>
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D8B8B0
+	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 10:13:36 -0800 (PST)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-54cfd70b2dcso1952421a12.3
+        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 10:13:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gateworks-com.20230601.gappssmtp.com; s=20230601; t=1701800014; x=1702404814; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mXq0MfZRsUUXWF9wD5yNB4JShTMDiPdjDXjC0F7taj4=;
+        b=Zk/tiMBtakw5L3FcipK7znbHmefycm8fIrj6JtDEjulBR1qOK/8He7CaAkzszZjWR+
+         VQ+GpOf/tBRj+PujLs3pwnGHYR++Oi+mD8oqydqQbNoftKvFF9uP1k0ns874PSttsUBA
+         nmGfosSDzXPhZhG01ZbapclY9kjDI8Vg5gQoDQ2q7WraPdijNmLH+/fBAHsjJ7EBqJMP
+         5vV/ofOm0KMkL08yUMXBqoz0MkGqtpEtooWZrEXwgxvFcg5PLyi5lsSEO14hwXXLt8mx
+         yyF89RVlPbQGc47vsrLV+IWdvjaK4NBABHYszrrkD+FBHeWe0ATJtktTzh5wytw3jQBm
+         Rrgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701800014; x=1702404814;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=mXq0MfZRsUUXWF9wD5yNB4JShTMDiPdjDXjC0F7taj4=;
+        b=DjNtF870Je67VwZHYr7YzSM34V9PjFxbXhMWl8K5bXfRFd+fkCE8/IxOainozh9bHf
+         5Pen+ZWyFNu7OLPNPEZhAnN9RicvBRIxxJMxQPgGHh2tiiqCpedHJIeoifMA0SJ+j93N
+         nCsJFCOMdUf5fvJlbDA0jsVeyZr1/c2jTTo39Ft9xLUkV0+g5Ergf9q+4+lJB7TN3RB2
+         ffKue46v4U0zZC0+gULjUbYuMpTHR3ASpX09KC2y4UaWYENajgVJq9zoI2AhH3XuaDNH
+         EcVnmqWK/4NjUEjcD8c0iu2pM37+bS8OCdaeURc6KT7/V03+QE5vQzpqPbUHWIsVvLRT
+         oJyw==
+X-Gm-Message-State: AOJu0YyUxCaa5+ImlIi6++1v8pER05tAdjhegwUw8Y8l6p80h7EJpTCN
+	u/PQAu+rv1GKy1VjXel6o/8HUkMTbUZcnn2VmRTuEw==
+X-Google-Smtp-Source: AGHT+IFmKwiC4EDFrybnCkMnPFoevOkPdtg4vQBvxBHXLhsCV0BnoZlp1hCTpg2BeuOvGr+igVu2Q9Lq73abUwn5b58=
+X-Received: by 2002:a17:906:73d1:b0:a19:b93c:d28e with SMTP id
+ n17-20020a17090673d100b00a19b93cd28emr4703493ejl.2.1701800014652; Tue, 05 Dec
+ 2023 10:13:34 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <TY0PR06MB5611228C6B67733DC93842C99E85A@TY0PR06MB5611.apcprd06.prod.outlook.com>
+References: <20231130191815.2421978-1-robh@kernel.org> <CAOMZO5AZNz1cRg+aYQjDmpZ75ATJQUTWmC5mx+vgaYcBL6M+2w@mail.gmail.com>
+ <CAL_JsqKLFpPo8xTh_vgWvDXSY5J8tQJZh9SrkW2EiK5V_ZNeeA@mail.gmail.com>
+In-Reply-To: <CAL_JsqKLFpPo8xTh_vgWvDXSY5J8tQJZh9SrkW2EiK5V_ZNeeA@mail.gmail.com>
+From: Tim Harvey <tharvey@gateworks.com>
+Date: Tue, 5 Dec 2023 10:13:21 -0800
+Message-ID: <CAJ+vNU1DiFbQivka8gA1URiLMD2mWJnWSdn-77bEo8Uz0Liqcg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: imx8mm-venice: Fix PCI bus nodes
+To: Rob Herring <robh@kernel.org>
+Cc: Fabio Estevam <festevam@gmail.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, NXP Linux Team <linux-imx@nxp.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Allen_Lin,
+On Thu, Nov 30, 2023 at 2:33=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
+>
+> On Thu, Nov 30, 2023 at 1:28=E2=80=AFPM Fabio Estevam <festevam@gmail.com=
+> wrote:
+> >
+> > Hi Rob,
+> >
+> > On Thu, Nov 30, 2023 at 4:18=E2=80=AFPM Rob Herring <robh@kernel.org> w=
+rote:
+> > >
+> > > The imx8mm-venice boards PCI bus nodes are a complete mess. The
+> > > unit-addresses are wrong. The PCI bridge nodes are incomplete missing
+> > > "device_type" and "ranges" and just wrong for "#address-cells" and
+> > > "#size-cells" values.
+> > >
+> > > All of these issues are reported warnings if anyone bothered to pay
+> > > attention. Sigh.
 
-kernel test robot noticed the following build warnings:
+Rob,
 
-[auto build test WARNING on hid/for-next]
-[also build test WARNING on dtor-input/next dtor-input/for-linus robh/for-next linus/master v6.7-rc4 next-20231205]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Sorry about that. At the time the dt was submitted there were still so
+many dt warnings it wasn't very clear what was a legitimate issue and
+the PCI bindings are not that easy to understand.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Allen_Lin/Input-Add-Himax-HX83102J-touchscreen-driver/20231205-180837
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/hid/hid.git for-next
-patch link:    https://lore.kernel.org/r/TY0PR06MB5611228C6B67733DC93842C99E85A%40TY0PR06MB5611.apcprd06.prod.outlook.com
-patch subject: [PATCH v1 2/2] Input: Add Himax HX83102J touchscreen driver
-reproduce: (https://download.01.org/0day-ci/archive/20231206/202312060112.Rqj5MNEl-lkp@intel.com/reproduce)
+> >
+> > The warnings are gone in linux-next:
+> >
+> > https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/com=
+mit/arch/arm64/boot/dts/freescale?h=3Dnext-20231130&id=3Dd61c5068729a76a618=
+3a897bcad4bf26e8d3d674
+>
+> Linux-next is wrong. The ethernet device should have a node name of
+> 'ethernet'. The 'pcie' node name and 'device_type =3D "pci"' is for PCI
+> buses/bridges only.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202312060112.Rqj5MNEl-lkp@intel.com/
+So as Fabio has tried to fix this with a patch that landed in
+linux-next this patch won't apply. I'll submit one that covers your
+changes.
 
-versioncheck warnings: (new ones prefixed by >>)
-   INFO PATH=/opt/cross/clang/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-   /usr/bin/timeout -k 100 3h /usr/bin/make KCFLAGS= -Wtautological-compare -Wno-error=return-type -Wreturn-type -Wcast-function-type -funsigned-char -Wundef -Wformat-overflow -Wformat-truncation -Wstringop-overflow -Wrestrict -Wenum-conversion W=1 --keep-going HOSTCC=gcc-12 CC=gcc-12 -j32 KBUILD_MODPOST_WARN=1 ARCH=x86_64 versioncheck
-   find ./* \( -name SCCS -o -name BitKeeper -o -name .svn -o -name CVS -o -name .pc -o -name .hg -o -name .git \) -prune -o \
-   	-name '*.[hcS]' -type f -print | sort \
-   	| xargs perl -w ./scripts/checkversion.pl
-   ./drivers/accessibility/speakup/genmap.c: 13 linux/version.h not needed.
-   ./drivers/accessibility/speakup/makemapdata.c: 13 linux/version.h not needed.
->> ./drivers/hid/hid-himax-83102j.h: 24 linux/version.h not needed.
-   ./drivers/staging/media/atomisp/include/linux/atomisp.h: 23 linux/version.h not needed.
-   ./samples/bpf/spintest.bpf.c: 8 linux/version.h not needed.
-   ./samples/trace_events/trace_custom_sched.c: 11 linux/version.h not needed.
-   ./sound/soc/codecs/cs42l42.c: 14 linux/version.h not needed.
-   ./tools/lib/bpf/bpf_helpers.h: 403: need linux/version.h
-   ./tools/testing/selftests/bpf/progs/dev_cgroup.c: 9 linux/version.h not needed.
-   ./tools/testing/selftests/bpf/progs/netcnt_prog.c: 3 linux/version.h not needed.
-   ./tools/testing/selftests/bpf/progs/test_map_lock.c: 4 linux/version.h not needed.
-   ./tools/testing/selftests/bpf/progs/test_send_signal_kern.c: 4 linux/version.h not needed.
-   ./tools/testing/selftests/bpf/progs/test_spin_lock.c: 4 linux/version.h not needed.
-   ./tools/testing/selftests/bpf/progs/test_tcp_estats.c: 37 linux/version.h not needed.
-   ./tools/testing/selftests/wireguard/qemu/init.c: 27 linux/version.h not needed.
+It's always been unfortunate to have to have this level of detail in a
+device-tree just to allow boot firmware to populate the mac address of
+a PCI ethernet device.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Best Regards,
+
+Tim
 
