@@ -1,119 +1,132 @@
-Return-Path: <devicetree+bounces-21999-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22000-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E503D8060F2
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 22:44:12 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E403806109
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 22:49:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 858C41F21604
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 21:44:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E9B3EB2110C
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 21:49:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E25E6E2AD;
-	Tue,  5 Dec 2023 21:44:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FDE26FCCE;
+	Tue,  5 Dec 2023 21:48:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="k8qoaeEQ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vcx1QLG6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96688183
-	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 13:44:05 -0800 (PST)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-54cd8f5bb5cso2913442a12.1
-        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 13:44:05 -0800 (PST)
+Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B9E21A5
+	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 13:48:53 -0800 (PST)
+Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-59b5484fbe6so71013717b3.1
+        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 13:48:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701812644; x=1702417444; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=NtPODTHNMByw4rsHzSlvkWk3wVQbetWpeccUPj/d6as=;
-        b=k8qoaeEQ2YYvllButvKLfa5qVKx2e0YJmvapjnc59bZ/t2N/HePjLG1Qtlvwkz5DlW
-         KBR9gyRsGqNL8AEGtAKstW3SVKJPHOQ7/z6+vpiA6VO/uWJ6vjl5OxKh8dcb6muGE+KQ
-         WA4YyQIT9KO+J0Q/7y5pXZhssX0B3R18H+zbliA8UPU19BoRDs8Pp+S/1raC6uFr3x9V
-         J6XVx6n2wbdE0CgERk0543dU5bGlVu9PoL5GZrZpgTSTIjUPvdLxWGRZYKqd33z93ufO
-         fZLhEzAUhyDMzheQah88DI54HV5Agk9JIYgdAcCt1oPGoOhzd5SsbDagR3mKcC3KmtqP
-         yd2w==
+        d=linaro.org; s=google; t=1701812932; x=1702417732; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5eP0uI2tmZM9ZtqjfsWxJwWzFVr6JH04FbBdTmyNv/w=;
+        b=vcx1QLG6WwxECp6bKqCg4qzU+3z0twyYAm/fKxldOfbA0WT56rifsYRjs4CMIYCITy
+         aCAuzONwK7DCLR79+Wq9XgzHQiJt5eyvZuKwUHgqqP2BVud0kuHKDyCUvYuAJ0zJmV7b
+         U47iSy0ilrmbYL+Ig3V7i06FYB4fsP0hA5kxYxGpOSHVmSo4Mxz9u0AdYe8mWtTIsVXJ
+         2e/UlpJMgTltzCcqk818OWNmMQPdEVbjojQQoSI8FmevbYke5EDsmrPD4AbgfVI8FEzG
+         6mzfV/A3hV5n40HIiA0Xf8gYZD8L9E1rdzo4m353KTeFLzqEp627WSWrPzsrT1mZPnvX
+         ns4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701812644; x=1702417444;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NtPODTHNMByw4rsHzSlvkWk3wVQbetWpeccUPj/d6as=;
-        b=DXDnzd0GpBBaN/iHqJqh9ktO1ocBYTe3d15m9RWiW/hivH+m0uIanfOKs+dfFv8O5+
-         d5ZzZINyolZSGTP0ahYpwU2EY1Y2CPiEjUyPxjlHropJQDYm8061259nsSIdqGBs0/ar
-         YHcLoTnbBrsoeJmfwQcOnU5CiM7EhpM7y/8fHU3wJYnaJVLFT82TfpC4vcho8D6YllZp
-         uLWVttMsvbBF+XDA28TSaUU+5wXxXPs1+K3nE7P6XSN5XGvmOX01ATiN4uv+w7aekhFO
-         2lN1OyLnHLnO29bFypdwMCjvLPW/o3412PgCC1z79ntOprgWpgbYhWol9aV3Fv5DcQRx
-         F63A==
-X-Gm-Message-State: AOJu0YxkFKR1xzf2cQrt9q9ZW8vKb2ARfG2D72/rAk5YHODnnZKBrU/u
-	awCiAMnkvpeYiGufw9cd1tY=
-X-Google-Smtp-Source: AGHT+IF1vMo5ATjjFj0hYEASG1eV3bg6VLC9crTxdALyAIVt0wYlW+9/bW/mvqNlF1Ks3sbIjz8R2g==
-X-Received: by 2002:a17:906:5992:b0:a19:a19a:eac7 with SMTP id m18-20020a170906599200b00a19a19aeac7mr818787ejs.128.1701812643685;
-        Tue, 05 Dec 2023 13:44:03 -0800 (PST)
-Received: from [192.168.26.149] (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.googlemail.com with ESMTPSA id g5-20020a170906198500b009c5c5c2c5a4sm7267888ejd.219.2023.12.05.13.44.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Dec 2023 13:44:03 -0800 (PST)
-Message-ID: <708e46fb-5aaf-4c47-a8f5-4cd5171a8d76@gmail.com>
-Date: Tue, 5 Dec 2023 22:44:01 +0100
+        d=1e100.net; s=20230601; t=1701812932; x=1702417732;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5eP0uI2tmZM9ZtqjfsWxJwWzFVr6JH04FbBdTmyNv/w=;
+        b=j+aDP9UKY/COX5PebtJPl89LFfnL7AYKqN680emT8cpD4vl9Xg3e0KtjqeXbm1XOqy
+         ghdM3iDqeuc+y1omzNnhwMpmtVE825Hx4rgOl/yb0A7xc8WqdJtw+gY4F4Uo5eiR19j8
+         M1DaJ5SwiyalSytwg0N499udYI58Ko196p/hiKVw7URYo3AGF26YY6TuK5jybpf06SSI
+         DfrwIOLuDyLbXHrkUD9c6kjwy3cZLEWrvC93b8Y8QJfQEjXeMjwFiITKtDfkw9FteScL
+         yI1GsC+ZK+GkHuS5B+EaIvfRcsOkDYKqHiaTePUtyBJ46vJhG9Jq4AD5+p8Kf48T/YkE
+         Ek6g==
+X-Gm-Message-State: AOJu0YwmHWbE+R893m7qr9OvsZhOHlvIvTcAF1Xro280vPcC7iyLk4rs
+	ZKR06fo4Gf5I1p+rvJWDA6eXVRvmbGj3L0IY3oGrYQ==
+X-Google-Smtp-Source: AGHT+IEC7pNshX6Y57af6XTx4hp1z/Y9MEpMHk/hv4YF7sUJybFapw88Qbjz6GB2s4WrIdgZn+IiEoCY/A4u2lTVAiA=
+X-Received: by 2002:a25:aac2:0:b0:db7:dacf:59d1 with SMTP id
+ t60-20020a25aac2000000b00db7dacf59d1mr4535677ybi.69.1701812932200; Tue, 05
+ Dec 2023 13:48:52 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 3/3] arm64: dts: mediatek: Add Acelink EW-7886CAX
-To: kernel test robot <lkp@intel.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev,
- =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <nfraprado@collabora.com>,
- Macpaul Lin <macpaul.lin@mediatek.com>,
- =?UTF-8?Q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>,
- Heiko Stuebner <heiko@sntech.de>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Chris Morgan <macromorgan@hotmail.com>,
- Linus Walleij <linus.walleij@linaro.org>, Sean Wang
- <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20231204200907.5687-3-zajec5@gmail.com>
- <202312060400.SeDMAMe7-lkp@intel.com>
-Content-Language: en-US
-From: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-In-Reply-To: <202312060400.SeDMAMe7-lkp@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <cover.1701768028.git.ysato@users.sourceforge.jp>
+ <602e1ba4f02489fcbc47e8f9904f3c1db1c9f14a.1701768028.git.ysato@users.sourceforge.jp>
+ <2ef81211-9525-4f96-a6b2-3fcfbed0c6e5@app.fastmail.com>
+In-Reply-To: <2ef81211-9525-4f96-a6b2-3fcfbed0c6e5@app.fastmail.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Tue, 5 Dec 2023 22:48:41 +0100
+Message-ID: <CACRpkdZUAMXJ4YM9+xW2Snzt0Dx5mxWjcwHZifsXPJH9ozL5bg@mail.gmail.com>
+Subject: Re: [DO NOT MERGE v5 11/37] pci: pci-sh7751: Add SH7751 PCI driver
+To: Arnd Bergmann <arnd@arndb.de>
+Cc: Yoshinori Sato <ysato@users.sourceforge.jp>, linux-sh@vger.kernel.org, 
+	Damien Le Moal <dlemoal@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Thomas Gleixner <tglx@linutronix.de>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Jiri Slaby <jirislaby@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Rich Felker <dalias@libc.org>, 
+	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>, Lee Jones <lee@kernel.org>, 
+	Helge Deller <deller@gmx.de>, =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Chris Morgan <macromorgan@hotmail.com>, 
+	Randy Dunlap <rdunlap@infradead.org>, Hyeonggon Yoo <42.hyeyoo@gmail.com>, 
+	David Rientjes <rientjes@google.com>, Vlastimil Babka <vbabka@suse.cz>, Baoquan He <bhe@redhat.com>, 
+	Andrew Morton <akpm@linux-foundation.org>, Guenter Roeck <linux@roeck-us.net>, 
+	Stephen Rothwell <sfr@canb.auug.org.au>, guoren <guoren@kernel.org>, 
+	Javier Martinez Canillas <javierm@redhat.com>, Azeem Shaikh <azeemshaikh38@gmail.com>, 
+	Palmer Dabbelt <palmer@rivosinc.com>, Bin Meng <bmeng@tinylab.org>, 
+	Max Filippov <jcmvbkbc@gmail.com>, Tom Rix <trix@redhat.com>, 
+	Herve Codina <herve.codina@bootlin.com>, Jacky Huang <ychuang3@nuvoton.com>, 
+	Lukas Bulwahn <lukas.bulwahn@gmail.com>, Jonathan Corbet <corbet@lwn.net>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
+	Sam Ravnborg <sam@ravnborg.org>, Michael Karcher <kernel@mkarcher.dialup.fu-berlin.de>, 
+	Sergey Shtylyov <s.shtylyov@omp.ru>, 
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, linux-ide@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Linux-Renesas <linux-renesas-soc@vger.kernel.org>, linux-clk@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-pci@vger.kernel.org, 
+	linux-serial@vger.kernel.org, linux-fbdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 5.12.2023 22:04, kernel test robot wrote:
-> Hi Rafał,
-> 
-> kernel test robot noticed the following build errors:
-> 
-> [auto build test ERROR on robh/for-next]
-> [also build test ERROR on linus/master v6.7-rc4 next-20231205]
-> [If your patch is applied to the wrong git tree, kindly drop us a note.
-> And when submitting patch, we suggest to use '--base' as documented in
-> https://git-scm.com/docs/git-format-patch#_base_tree_information]
-> 
-> url:    https://github.com/intel-lab-lkp/linux/commits/Rafa-Mi-ecki/dt-bindings-arm64-dts-mediatek-Add-Acelink-EW-7886CAX-access-point/20231205-041120
-> base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-> patch link:    https://lore.kernel.org/r/20231204200907.5687-3-zajec5%40gmail.com
-> patch subject: [PATCH V2 3/3] arm64: dts: mediatek: Add Acelink EW-7886CAX
-> config: arm64-defconfig (https://download.01.org/0day-ci/archive/20231206/202312060400.SeDMAMe7-lkp@intel.com/config)
-> compiler: aarch64-linux-gcc (GCC) 13.2.0
-> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231206/202312060400.SeDMAMe7-lkp@intel.com/reproduce)
-> 
-> If you fix the issue in a separate patch/commit (i.e. not just a new version of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202312060400.SeDMAMe7-lkp@intel.com/
-> 
-> All errors (new ones prefixed by >>):
-> 
->>> Error: arch/arm64/boot/dts/mediatek/mt7986a-acelink-ew-7886cax.dts:103.3-4 syntax error
->     FATAL ERROR: Unable to parse input tree
+On Tue, Dec 5, 2023 at 2:26=E2=80=AFPM Arnd Bergmann <arnd@arndb.de> wrote:
+> On Tue, Dec 5, 2023, at 10:45, Yoshinori Sato wrote:
 
-Ahh, required change stayed right there in my "git diff". I noticed it,
-fixed, but forgot to amend. Sorry, I'll send V3 shortly.
+> > +     if (of_property_read_u32_array(pdev->dev.of_node,
+> > +                                    "renesas,memory", memory, 2) < 0) =
+{
+> > +             /*
+> > +              * If no memory range is specified,
+> > +              *  the entire main memory will be targeted for DMA.
+> > +              */
+> > +             memory[0] =3D memory_start;
+> > +             memory[1] =3D memory_end - memory_start;
+> > +     }
+>
+> There is a generic "dma-ranges" proerty for describing
+> which memory is visible by a bus.
+
+It's really a headache to use, so I put a bit of documentation here:
+https://elinux.org/Device_Tree_Usage#PCI_DMA_Address_Translation
+
+Yoshinoro, you can look at these bindings and drivers that use
+dma-ranges for help:
+Documentation/devicetree/bindings/pci/intel,ixp4xx-pci.yaml
+drivers/pci/controller/pci-ixp4xx.c
+Documentation/devicetree/bindings/pci/faraday,ftpci100.yaml
+drivers/pci/controller/pci-ftpci100.c
+
+Yours,
+Linus Walleij
 
