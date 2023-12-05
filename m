@@ -1,93 +1,108 @@
-Return-Path: <devicetree+bounces-22012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22013-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25FA58062C1
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 00:11:49 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B1028062EE
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 00:25:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D6141C208FB
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 23:11:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7E458B21001
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 23:25:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB86F405FB;
-	Tue,  5 Dec 2023 23:11:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A514041218;
+	Tue,  5 Dec 2023 23:25:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="kSbyj5x5"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="dax39C/X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53AD01B1;
-	Tue,  5 Dec 2023 15:11:40 -0800 (PST)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 4165686D10;
-	Wed,  6 Dec 2023 00:11:36 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1701817897;
-	bh=89Pwr4A+LObOBTtUkWIj1tmP5pCkLj29nfLDYovVCdQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=kSbyj5x5CQ3m1HecmzdFLs+WeSCilRaSbaagFD9+JEEOraX02VVJiW3BUum5Ew9td
-	 cpONxXaoY8KZx5Uv9M7ydpNUu9fvuwEobvV8pgDz1YttzBSNdJocXujDiJ3QlpRQ8n
-	 ApcO8SseCARN5NQVAAjg9MAoU7sHlv1VtF56e12IaRKlzNoZTC2Aqm8LV1BkOPk6fN
-	 UbMAeLn6QKRTWIQ3R/Js1te9ewt/YRv6LFCWLTAQr5woWPRGxyB/6XaYfOyYROzrYc
-	 BRD5CuM74l4Xe+HWUjhL//U63oSqwB1+MpRA0yqzbuHWSHGk1gs9Ey20KBzDXciuWf
-	 RTbcx2WL+hpXw==
-Message-ID: <5eabd094-45bc-4adb-ab25-1b76352c1115@denx.de>
-Date: Wed, 6 Dec 2023 00:11:35 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 133B5AC;
+	Tue,  5 Dec 2023 15:25:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1701818705; x=1733354705;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=BOo943kXiot0+zKGN4PvVd6kTI3itwMLBYdViiwwY0c=;
+  b=dax39C/XKEaXyDsRsUadLGCieIPpWy7a8mlX2Yr/JpqBMFzFJ3/dEqdH
+   +FxVeHrCBiyvGqfVlj9POL0MjOqG+d6nWgfSPE/pc0B48dBAgXtwOPb5P
+   b4pWuEnIFbdUlrmxSIwzEIYobP3IEHShXj/qIETFGEHJPq0AOCqtOVypL
+   +jBAnImybQppqM+51bKRNRjWfB/bXZiVXFYUkEsjpYPoCMhUbZcjwCz4r
+   FkNvSFRziyMUNHqS5ooiMUMLJMxaOoXeDGkzqiWpED8PeW7nJvFehoBdo
+   O0FezfcfIyz8hIoNFq6HR0oxopAbSOIxkUovsih0JdN4u4xsMfkqfpxup
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="480173534"
+X-IronPort-AV: E=Sophos;i="6.04,253,1695711600"; 
+   d="scan'208";a="480173534"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Dec 2023 15:25:04 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="861916800"
+X-IronPort-AV: E=Sophos;i="6.04,253,1695711600"; 
+   d="scan'208";a="861916800"
+Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
+  by FMSMGA003.fm.intel.com with ESMTP; 05 Dec 2023 15:25:00 -0800
+Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rAemg-0009ro-0b;
+	Tue, 05 Dec 2023 23:24:58 +0000
+Date: Wed, 6 Dec 2023 07:24:26 +0800
+From: kernel test robot <lkp@intel.com>
+To: Cosmo Chou <chou.cosmo@gmail.com>, jdelvare@suse.com,
+	linux@roeck-us.net, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	corbet@lwn.net, heiko@sntech.de, jernej.skrabec@gmail.com,
+	macromorgan@hotmail.com, linus.walleij@linaro.org
+Cc: oe-kbuild-all@lists.linux.dev, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, chou.cosmo@gmail.com,
+	cosmo.chou@quantatw.com
+Subject: Re: [PATCH 3/3] hwmon: Add driver for Astera Labs PT516XX retimer
+Message-ID: <202312060716.Zh0AHxKs-lkp@intel.com>
+References: <20231205074723.3546295-4-chou.cosmo@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/2] iio: light: isl76682: Add ISL76682 driver
-Content-Language: en-US
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
- Matti Vaittinen <mazziesaccount@gmail.com>,
- Alexander Stein <alexander.stein@ew.tq-group.com>,
- Andre Werner <andre.werner@systec-electronic.com>,
- Bjorn Helgaas <bhelgaas@google.com>, Conor Dooley <conor+dt@kernel.org>,
- Fabio Estevam <festevam@denx.de>, Guenter Roeck <linux@roeck-us.net>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>, Mark Brown <broonie@kernel.org>,
- Naresh Solanki <naresh.solanki@9elements.com>,
- Patrick Rudolph <patrick.rudolph@9elements.com>,
- Rob Herring <robh+dt@kernel.org>,
- Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
- Vincent Tremblay <vincent@vtremblay.dev>, devicetree@vger.kernel.org
-References: <20231127212726.77707-1-marex@denx.de>
- <20231127212726.77707-2-marex@denx.de> <20231204112941.770e22cb@jic23-huawei>
- <0ae6466f-479a-476a-adf4-3bd099235eda@denx.de>
- <ZW9Hwm5LnPGl4Ird@smile.fi.intel.com>
- <62015c87-cc24-4ab6-9c91-605926f1c572@denx.de>
- <ZW-c44H84hZPNWl-@smile.fi.intel.com>
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <ZW-c44H84hZPNWl-@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231205074723.3546295-4-chou.cosmo@gmail.com>
 
-On 12/5/23 22:57, Andy Shevchenko wrote:
-> On Tue, Dec 05, 2023 at 10:02:32PM +0100, Marek Vasut wrote:
->> On 12/5/23 16:54, Andy Shevchenko wrote:
->>> On Tue, Dec 05, 2023 at 02:43:30AM +0100, Marek Vasut wrote:
-> 
-> ...
-> 
->>> ...unit .
->>>
->>> (Do not forget to drop extra space)
->>
->> Which extra space ?
-> 
-> Like in your question :-)
-> (I left the only relevant context, easy to notice.)
+Hi Cosmo,
 
-Added, thanks.
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on groeck-staging/hwmon-next]
+[also build test WARNING on robh/for-next linus/master v6.7-rc4 next-20231205]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Cosmo-Chou/dt-bindings-vendor-prefixes-add-asteralabs/20231205-155020
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
+patch link:    https://lore.kernel.org/r/20231205074723.3546295-4-chou.cosmo%40gmail.com
+patch subject: [PATCH 3/3] hwmon: Add driver for Astera Labs PT516XX retimer
+reproduce: (https://download.01.org/0day-ci/archive/20231206/202312060716.Zh0AHxKs-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202312060716.Zh0AHxKs-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> Documentation/hwmon/pt516xx.rst:4: WARNING: Title underline too short.
+
+vim +4 Documentation/hwmon/pt516xx.rst
+
+     2	
+     3	Kernel driver pt516xx
+   > 4	====================
+     5	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
