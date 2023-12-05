@@ -1,75 +1,77 @@
-Return-Path: <devicetree+bounces-21817-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21818-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E7C8805395
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 12:56:03 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7774880539A
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 12:56:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 49B8D1C20914
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 11:56:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EB21D1F20FC4
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 11:56:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8B2F59E3E;
-	Tue,  5 Dec 2023 11:55:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4282E59E48;
+	Tue,  5 Dec 2023 11:56:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="Zz+qZnwr"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="W+jE4Trb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04olkn2030.outbound.protection.outlook.com [40.92.46.30])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDC9FA7;
-	Tue,  5 Dec 2023 03:55:54 -0800 (PST)
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04olkn2019.outbound.protection.outlook.com [40.92.46.19])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E46BDD3;
+	Tue,  5 Dec 2023 03:56:07 -0800 (PST)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hikTb7JCD1Av/Mt5tFaPcBSTicQJrb9UjdW9PbWNh5+ZILjWli99T3+NFZ1TpvG2VJYI4PKsQYYA2gq8sP4+Xa0jS5evRhj5c755uzz5EBXpNKp6cEfNuD3iL99gvVkB7I/oDa7DXCrIJSbVbqbDVSRw3CB7MQ5eywLmYY8Ji9ttmFghetoYv2ZIYeR4EV+BDR9a4t3AeKa0afkY9qJ7a6NKjCmuCkjaouOUk9E0gZr06qggURdaLn30ETCNlCXTE/hW+Y7sKwTKA8zo5euZzkm7XSwTGND3430wwn1YA1k7ys2lHzzrM9gqRV++J8vltXP1U9PJSd1oj6OH5LBmkw==
+ b=RBfRJ2M+YchjIcIxJefLCQsgeJ4sG/Le7dB6nbzzU1VL5TfRZtLNwNFt4+83n4RVLyM6jiTWL+BDVUwFma3xZsA7+/f+0W/4MteJ3lZbD5Ld3h5rNtscVocF+SqnKgg2eEl/ErugAEOvlvPE7MyZqHC/MAIjXMUWw4hUH2EM/WOfAFs21v2EcGdjLfoMsA47RkzhlM2B/lQY7dHuad1V005QdEdQPUpN2Hz+KaAQRCDendJrTiDtZrWU1rLMhEFKtHiCUEkcp2rkxLsnuXRlxG7uwFF24EeOIaZmVEupNfpNIaFXVGoGv3bBwz1jQDmAa4iBWCK+fQG4hO46+CXsuA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wkJ4tuqpyYiHc8hET54cWD7UWVWXOZRgCY+HCi+5uUk=;
- b=MFMrRIDZii+jiPAkPl867NjACfwbSDyKzCuxXENc9ZkNuQO9YLVTcGI7BUf/jucNWZfRPV8HdrRu+z5B3CwjeInsOvF6d+DVuYzSGI08c4/cWJTwf9j/3sbHkRPdrUsYLFcnmHJE1mNZjuiXqKU/vQp826z/EFA2SmqorlwrW8d/vxdY30JPX0C9w91v5cMA5/HuJJObRj4/LQQgf44vWFmRnOseSFHEykjtZF8Num94vrZw+dRp+20x0iP6TP2MiuWdjxbliwooS7aw/Lb1HtrmoqgUzW/oiItwwU0b4ufIYEkOD4bdGZbaCwhcJsg85wpahOELCYEwJQhzikUuBA==
+ bh=ZRGWdGJrOwy0Kzglr0wJP+3yrtUaNFEVf9rbWcSCYes=;
+ b=YCg0gFr0tggistvfjKkh1u4H/xdvShmTxLqSOpZ4Qkb7FLfcll2v8Gg/D4F9toOIOhdCZXLciMeoQHFMkAo9Vh1uqZCZER0OG0sRXUxPrKwtcTmIbNxUJ3/LF4EBxt97IBXv+7UiPkRn40EvHBC9YopNTGalYShfxyrHkx2i119bCoAAFbuzFJej3Y2dwyldH/zvYruYPjANpatKbJoMhuIXP0Wjs8dydHAOBAkWnZR0rmBRBeH2hlGVouZBZGEs3tR7hVo2tS3GgK36Q1z5WP9HdFvmqG98SecZUYMdADF+RVWJE5ZiQ0CD2KeECalkliYcZirBzf6/3cz6OrK2zw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
  dkim=none; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wkJ4tuqpyYiHc8hET54cWD7UWVWXOZRgCY+HCi+5uUk=;
- b=Zz+qZnwr9S0cy+TAXygW4UkHMfkRq5uSeGuWo7scHmnIyemMz678maMcU3D3D1i9MtUh6g3E2WE969IFRGCIUO7RQrulNjwiUqCciti4sFZF5GMUFoZv43IdMZPXIYL3iZydyDu1SMbYQ92caR8udaej2kn/ztCH+ttsC7CWIITctU/Ryu828OImTbO/CWPahkcQRa0debTgJ1Nr0jiop6tdw5Kw0mDtBQ0jvtohkHWRugJN0z3iYfspK9kpwK6hvJZOG3++EPOcZiGe0H94wtZ6wDmkDHyfTkDl1Zn91XVPyfNLrfg0hU7ZHnrHoly+lijh+3pzlNX5/Jx+y3MXQg==
+ bh=ZRGWdGJrOwy0Kzglr0wJP+3yrtUaNFEVf9rbWcSCYes=;
+ b=W+jE4TrbFM50f6wwsnHu6nwqlbBHg35PCXlFgQcHltBsMEINMXKuZDceZuTOgXtGqUzIFks9yu4dMtGnYOJw5qpHaKZ85E736/LmS+wxKpzz8ebPqurp5qHizhT/YONUda3qPXxcVcOwrZlOGekhkQffWzwe5/3/TZLSMV0ijn+SaLLXcA49Hpx4YZ6gpMD/xoJatHoxu38owcY0viNRqtDTEfq0duebozhhFe7xd6w5xCo9d6OCiOEGZ0BM1kR13LwUQMBLIGjTKgG/smaBeTWolbUE60TLpQ1dG1aSmvhYnIwj8oRw3zAv/eBOMhhEyASbk2riHjntkcZY7PuZ1A==
 Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
  by LV8PR20MB7005.namprd20.prod.outlook.com (2603:10b6:408:1e4::13) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.34; Tue, 5 Dec
- 2023 11:55:52 +0000
+ 2023 11:56:02 +0000
 Received: from IA1PR20MB4953.namprd20.prod.outlook.com
  ([fe80::55b:c350:980:ad8]) by IA1PR20MB4953.namprd20.prod.outlook.com
  ([fe80::55b:c350:980:ad8%6]) with mapi id 15.20.7046.024; Tue, 5 Dec 2023
- 11:55:52 +0000
+ 11:56:02 +0000
 From: Inochi Amaoto <inochiama@outlook.com>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
+To: Chao Wei <chao.wei@sophgo.com>,
+	Chen Wang <unicorn_wang@outlook.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Inochi Amaoto <inochiama@outlook.com>
-Cc: Chen Wang <unicorn_wang@outlook.com>,
-	Jisheng Zhang <jszhang@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>
+Cc: Jisheng Zhang <jszhang@kernel.org>,
 	qiujingbao.dlmu@gmail.com,
 	dlan@gentoo.org,
-	linux-clk@vger.kernel.org,
+	Inochi Amaoto <inochiama@outlook.com>,
 	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 1/4] dt-bindings: clock: sophgo: Add clock controller of CV1800 series SoC
-Date: Tue,  5 Dec 2023 19:55:50 +0800
+Subject: [PATCH v2 3/4] riscv: dts: sophgo: add clock generator for Sophgo CV1800 series SoC
+Date: Tue,  5 Dec 2023 19:55:52 +0800
 Message-ID:
- <IA1PR20MB49535CCEBCC36C864B949CF5BB85A@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <IA1PR20MB495338E03BCEF6D1764613D3BB85A@IA1PR20MB4953.namprd20.prod.outlook.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <IA1PR20MB49532E1A3D8BA71FDBB444BCBB85A@IA1PR20MB4953.namprd20.prod.outlook.com>
 References: <IA1PR20MB49532E1A3D8BA71FDBB444BCBB85A@IA1PR20MB4953.namprd20.prod.outlook.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-TMN: [mbD5R0mdaJ++KPxGbHL0X+SUUgI5o57LaHsp7rlZNWc=]
-X-ClientProxiedBy: SJ0PR03CA0071.namprd03.prod.outlook.com
- (2603:10b6:a03:331::16) To IA1PR20MB4953.namprd20.prod.outlook.com
+X-TMN: [1LzopHneD1s0ElVdW09OaHdpOv9W24NvDHGIa67DkWw=]
+X-ClientProxiedBy: SJ0PR03CA0017.namprd03.prod.outlook.com
+ (2603:10b6:a03:33a::22) To IA1PR20MB4953.namprd20.prod.outlook.com
  (2603:10b6:208:3af::19)
 X-Microsoft-Original-Message-ID:
- <20231205115555.1042712-1-inochiama@outlook.com>
+ <20231205115555.1042712-3-inochiama@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,39 +81,39 @@ MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|LV8PR20MB7005:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1ee0d60a-299c-46fc-2275-08dbf5892197
+X-MS-Office365-Filtering-Correlation-Id: 471b8ee1-eeb9-4b9a-e525-08dbf5892785
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info:
-	J2I/b1LLg9K8R7Q9yzqcTxAJgglEnWIq9I9pOZtczSR8HssTB7SRmSE2cf/gUBGCqjIicNfosEj3doDOjE8wm8F3+97tnb78l3xfJ8UGzUqA5inNiZ7TZMxuO/w6a9v9MReKT/bYtJcJrO7SItWou9T0ut/cFBKJVYJeZWcYJb0RGIfgS53B8++cjhf3BO0q8bjmCylKg1VYa80eF7uqc579nhQJxybyDs1HvcIrkuhs3aAnobs2sCSNDhzvdegkCf1ZqU79O/vfCgcpsSy/HfD79ROr+t4fBlisMaoLWr7ZCXMT2NmIjvOCO0ZqjsU9Nxi2Sx7x06ap46tXNL/KfJyUQAfY6ebKzX4tNG/4cs75LjqApMFXL9f2lkiTxZPOLVNPKqm4l1vnbbX8qF1csm4qNwTKHNCes8SIO22RsQQizdaCKoGTnUm/pH/oNbBRMOBdCrbkvoEyqYxGYZqZ777kQRKBSRXw3FUEuZnZxuLfqRwcM7TtpopEVFgEI3z8UdX8KVO3G7fsiOpMU5he7B3fIvClXzpWVd5BIiVjuIZVOoiEJ7Lw6gWwmfNQEN9v6yWlZTm1MTiEZtYV1dELLnIHK17Fa/Pm4xU9dVmeh6/m8GelM1tAkYHRmoLJbpqi
+	vLDl0dveX5cESmc4JMhUES46obPpmtIYFaOmEA8CbF1VJURg6TftT5asrcI4Wsdc9hPqWRr8ctI0pMYHNDIKfwuzw8ERe04qYKeUQsEdr3cnllYKUTl496IU3X1U+t16YVQviXr3N73VB0pHvpR/L2sVFnBvNrDWh2UC/TitWcePR30aZAv3DWlc3ikRUNlJ845YIg89j4f07JACH7MmBdB9isyA4z5vSGDyNavRJCeQa0vd/bUrXj8ZHhumejOByKom9KNdGHdTiJ/Y1tcTNL7Mi4tQw9OHKQwwj8PX2YMsno2mN7UWFiLaWZwpgIlYrxMHF97PIECdalTmWA0/srxS+eUk8hQUV9FZWpL5NnOFqqKSF0T7ojKl7ZkLmAQPRaaNcrWW+l/gbdYsIUMCZT5sO6/Pw0TPXozD25S3wIC77B/WQKbBGT+wy/2EBFvJRN+mJhR3RMC+o6Xp6k3rzCduLuJySaavRZpGy6oaVz14XqkW9f7wY22Wdp88J+6MLkaTzKSyjGcZ3yP5osrtWeKDVhfmq5E6TUTvAPi0+pb6ubxM9a1MoQSs+zyhQItt1xXu3i3BQg8Z3bPCx2/BOu74rW1mrM6gnDqesO+xo6WtRzD6nLtJJm8/tUpVovba
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?NDI5hdrqdZoAT97c1q8sAycaYjtuc7Ye2EpLHMZgKVFVNEKO48d6bhxGSMrS?=
- =?us-ascii?Q?9y29865vf9pUbAk0Pc+oUsj4PRyABGdv7JqhvL+mczJdf9MfIhGVjd6XhREh?=
- =?us-ascii?Q?nULcKHRtxYrVjlKKR3p9D0cMZHNWwn6tdqHpFea2RavDBa5MORbQlx1g4+/o?=
- =?us-ascii?Q?MqmVJ437YIrK76K3b+ox30fWGSqCGuS+J1tfETUCJ2R5NKarKjxq0A1cwru9?=
- =?us-ascii?Q?KB2G7fUG1PPnoEz+Mvp6cfAcKof5NnHNGTnntjWW4vlK0fz+QCDMFEfxCXVH?=
- =?us-ascii?Q?D2FNrOkAX8OoQ/scl/6fQCQlB1B+2/QTGEO86R9/43rx/LeFGLTe25XbYuZd?=
- =?us-ascii?Q?sKJEKbxG3r9N11qpbraE9YuW4SHnG72ooqFRV0+D0kXIgewCAiKh3gv4Jkoi?=
- =?us-ascii?Q?l214NBnKdkIDd5q4ZM+gDzbrLP6V3lteDikknliX+GNlwW/b+bPAM6Ae4A56?=
- =?us-ascii?Q?bL6/eFn91/B28FfVNEJvVCPknkSr7Nagq0YxDRPLcSZGxJUAzbEbNJFdOHw1?=
- =?us-ascii?Q?0DWSoNMAmZxNjN9SmdqZ4QUB6bz7ZJfKv0TRTDvMN63kGNA9if59YOy68WFh?=
- =?us-ascii?Q?NzxSzXMxVZfJNfv7GxiQYSe6HJAtBUa1CCygkH9YiPcCXkjhW4obZqskkT8w?=
- =?us-ascii?Q?XsgzzN/2IOcCJgqkFv+28bwHCtDVRvBLPBFI+ZKIwK5Iiz8N2HQ+BrPeUupG?=
- =?us-ascii?Q?QwbaKL8+klRgxcQkLAC1VtOvzB2pPExyqlZEnRXrkh/gYmfnCbfzSTTVSaNB?=
- =?us-ascii?Q?ALE/L49O5eCXen0Bwg9xnrmy15Tc/ZJdL51jOaAAyazrUGtvSIYGgtQ+VIEk?=
- =?us-ascii?Q?EoA8abDi/TWQ2PXRkciRpQBkjOkXAG177xTXcLp+Jvc7YAY3Ur5wkXWakJI9?=
- =?us-ascii?Q?HTJDpuj/F2zLhfh6NtSBQTsqpiQokm1YUJdLVHc+JO9vLEcnpcnev9nHMKKZ?=
- =?us-ascii?Q?Sa63Whkx/TDX+YvJRmmREHy3i93VoXeygA6ebhjP8vo7HHwWHi0cxXRSQIms?=
- =?us-ascii?Q?WNNVFmH+53KI1Wp2SuIHOk7xsrB/h9kCasE7BeGRmjCX6xMJEgb78Z5+CX3U?=
- =?us-ascii?Q?DekdozwCR/KX4N7r1MtBUYpSo3vpnLGhleXyfmDZYdysxZIhxV0yINcgNaWS?=
- =?us-ascii?Q?r2zXnVNoKJQ76Nmiz6zIq9VJtgiQrwBueTJqIfBdZNXEV3IhDDaC3d2rkBRt?=
- =?us-ascii?Q?jLYPebBRgPxbYSgsk7vHAuTWeLYgDihKeK0W8JKtHKJdK3m99tOAc2utleg?=
+	=?us-ascii?Q?mu1J4exCZ7HFvNUreLFLju9kCMFXzC608+xfJVB8FDJCaI1+CCBuTntYz7mI?=
+ =?us-ascii?Q?T4bauomXpKb+lGnW0pijI1vIJb8GcwhYYfIe0MOxIyNiL1DybAhIMJqnI2Z3?=
+ =?us-ascii?Q?w4vIfDjE5ceP/Ws5qS+FQIIMsiejTV27qChQ802DMbo4t1ZfADS4xV8Mt+Vu?=
+ =?us-ascii?Q?iCxoohZdMk7FIZG2QaoaO50GsLevQCVMxaWCuR3I+e6M7zBsqpYAtVEP6D1w?=
+ =?us-ascii?Q?n5escVx3iZ7Ud/k2N9R6GviHrNDNY7gGGQGwHTIpQhPt8PcwGzNXk2WmmY02?=
+ =?us-ascii?Q?Tx1DI8ft/WUR34H23qarJuSEp6zMtYgvRgSpVwvVoh4NJP/flKlLL9So4zOK?=
+ =?us-ascii?Q?ShXwU26mxcmswMWZAAj4IeFTnRKQh/xXOcN+WsM+54YtI9TadrQAGIee2eD2?=
+ =?us-ascii?Q?bitB6AIZX8zmgzhevcyeReqVkQ48Ms8KgBgf8Ai3YXZUn6OYbNcNaIqQm4IT?=
+ =?us-ascii?Q?1I1dwKsCZk3XNN3KxPcMzfj6MTGc/viWyLrCOKmUsuDTsIoQygvEgHw06Ck6?=
+ =?us-ascii?Q?IK9V0y3efaKSV7HRiv6p/fpXWBJxrY4TcL9icLV1HSauWbGM2tJpIs6rRmQn?=
+ =?us-ascii?Q?q0cOopbWSSsuLrGbUaiK+Am5iJyI+Nl0wjRYBmnNXGfaavCtsLUAO/se7cKb?=
+ =?us-ascii?Q?7ti93TNX+b4s2HzUe3R7PafRDM6m7KGrB4MnHDJIQfuhb7+HVWlMZ0HAhsTi?=
+ =?us-ascii?Q?NbfOlBfgTNCfU7nS4nzWNKkX0tO4LyDBa41DyycDzmQ8wokS1/sIP9R3x3N9?=
+ =?us-ascii?Q?ZaMRtOcSnienKYJoFuWUc1Tw+fb4MrokyvMHjNgo7Ead+jPFNeFWSP+wVQub?=
+ =?us-ascii?Q?HpyIxlyU4Y4eO9wBspl3A5mhATUHNIFeCWnz0ybECboBW9MEASkD9y2Gfwgv?=
+ =?us-ascii?Q?6rdyKpY0PLNnlkYfyAOJL/QXYh13r0XWsb15ZZE+xEBZI6OtPWhROCwLKqML?=
+ =?us-ascii?Q?YzUqhrcjLfr94mATht6DXWxqUuEwKchivXk6L7fGKcX0hrGEdedkG7jSXqmI?=
+ =?us-ascii?Q?JGmpn7WvItrmTghCfoU/Z2R0XqB2BEoWzdNqi5LdqEeZtuJdS5IUCgnDztsZ?=
+ =?us-ascii?Q?XTJ7dgUAYSmxvDS7X9tFxrzKq3+rbQOKdjNVcUAwNhF6Oy2fZF5IdfE8azBa?=
+ =?us-ascii?Q?XmMQWxzFsJ/pH9KjW+DL8cJKKjOKq26kXZWDCHkcf6qoPTpvYRqenP71tzJs?=
+ =?us-ascii?Q?mW6q6HlsOY3qVw5a7n9BNwsUBi8TJviJhgfcpNLuzbYT/4YJ90Fk+15ZzYI?=
  =?us-ascii?Q?=3D?=
 X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1ee0d60a-299c-46fc-2275-08dbf5892197
+X-MS-Exchange-CrossTenant-Network-Message-Id: 471b8ee1-eeb9-4b9a-e525-08dbf5892785
 X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Dec 2023 11:55:52.8176
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Dec 2023 11:56:02.7889
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
@@ -119,256 +121,58 @@ X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
 	00000000-0000-0000-0000-000000000000
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR20MB7005
 
-Add definition for the clock controller of the CV1800 series SoC.
+Add clock generator node for CV1800B and CV1812H.
 
 Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
 Link: https://github.com/milkv-duo/duo-files/blob/main/hardware/CV1800B/CV1800B-CV1801B-Preliminary-Datasheet-full-en.pdf
 ---
- .../bindings/clock/sophgo,cv1800-clk.yaml     |  53 ++++++
- include/dt-bindings/clock/sophgo,cv1800.h     | 174 ++++++++++++++++++
- 2 files changed, 227 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/sophgo,cv1800-clk.yaml
- create mode 100644 include/dt-bindings/clock/sophgo,cv1800.h
+ arch/riscv/boot/dts/sophgo/cv1800b.dtsi | 4 ++++
+ arch/riscv/boot/dts/sophgo/cv1812h.dtsi | 4 ++++
+ arch/riscv/boot/dts/sophgo/cv18xx.dtsi  | 7 +++++++
+ 3 files changed, 15 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/clock/sophgo,cv1800-clk.yaml b/Documentation/devicetree/bindings/clock/sophgo,cv1800-clk.yaml
-new file mode 100644
-index 000000000000..388be5bfa163
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/sophgo,cv1800-clk.yaml
-@@ -0,0 +1,53 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/sophgo,cv1800-clk.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+index 165e9e320a8c..baf641829e72 100644
+--- a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
++++ b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+@@ -16,3 +16,7 @@ &plic {
+ &clint {
+ 	compatible = "sophgo,cv1800b-clint", "thead,c900-clint";
+ };
 +
-+title: Sophgo CV1800 Series Clock Controller
++&clk {
++	compatible = "sophgo,cv1800-clk";
++};
+diff --git a/arch/riscv/boot/dts/sophgo/cv1812h.dtsi b/arch/riscv/boot/dts/sophgo/cv1812h.dtsi
+index 9a375935b00c..83243c918204 100644
+--- a/arch/riscv/boot/dts/sophgo/cv1812h.dtsi
++++ b/arch/riscv/boot/dts/sophgo/cv1812h.dtsi
+@@ -21,3 +21,7 @@ &plic {
+ &clint {
+ 	compatible = "sophgo,cv1812h-clint", "thead,c900-clint";
+ };
 +
-+maintainers:
-+  - Inochi Amaoto <inochiama@outlook.com>
++&clk {
++	compatible = "sophgo,cv1810-clk";
++};
+diff --git a/arch/riscv/boot/dts/sophgo/cv18xx.dtsi b/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
+index 2d6f4a4b1e58..c5642dd7cbbd 100644
+--- a/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
++++ b/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
+@@ -53,6 +53,13 @@ soc {
+ 		dma-noncoherent;
+ 		ranges;
+
++		clk: clock-controller@3002000 {
++			reg = <0x03002000 0x1000>;
++			clocks = <&osc>;
++			clock-names = "osc";
++			#clock-cells = <1>;
++		};
 +
-+properties:
-+  compatible:
-+    enum:
-+      - sophgo,cv1800-clk
-+      - sophgo,cv1810-clk
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: Oscillator (25 MHz)
-+
-+  clock-names:
-+    items:
-+      - const: osc
-+
-+  "#clock-cells":
-+    const: 1
-+    description:
-+      See <dt-bindings/clock/sophgo,cv1800.h> for valid indices.
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - "#clock-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    clock-controller@3002000 {
-+        compatible = "sophgo,cv1800-clk";
-+        reg = <0x03002000 0x1000>;
-+        clocks = <&osc>;
-+        clock-names = "osc";
-+        #clock-cells = <1>;
-+    };
-+
-+...
-diff --git a/include/dt-bindings/clock/sophgo,cv1800.h b/include/dt-bindings/clock/sophgo,cv1800.h
-new file mode 100644
-index 000000000000..a71ad2a93153
---- /dev/null
-+++ b/include/dt-bindings/clock/sophgo,cv1800.h
-@@ -0,0 +1,174 @@
-+/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
-+/*
-+ * Copyright (C) 2023 Sophgo Ltd.
-+ */
-+
-+#ifndef __DT_BINDINGS_SOPHGO_CV1800_CLK_H__
-+#define __DT_BINDINGS_SOPHGO_CV1800_CLK_H__
-+
-+#define CLK_MPLL			0
-+#define CLK_TPLL			1
-+#define CLK_FPLL			2
-+#define CLK_MIPIMPLL			3
-+#define CLK_A0PLL			4
-+#define CLK_DISPPLL			5
-+#define CLK_CAM0PLL			6
-+#define CLK_CAM1PLL			7
-+
-+#define CLK_MIPIMPLL_D3			8
-+#define CLK_CAM0PLL_D2			9
-+#define CLK_CAM0PLL_D3			10
-+
-+#define CLK_TPU				11
-+#define CLK_TPU_FAB			12
-+#define CLK_AHB_ROM			13
-+#define CLK_DDR_AXI_REG			14
-+#define CLK_RTC_25M			15
-+#define CLK_SRC_RTC_SYS_0		16
-+#define CLK_TEMPSEN			17
-+#define CLK_SARADC			18
-+#define CLK_EFUSE			19
-+#define CLK_APB_EFUSE			20
-+#define CLK_DEBUG			21
-+#define CLK_AP_DEBUG			22
-+#define CLK_XTAL_MISC			23
-+#define CLK_AXI4_EMMC			24
-+#define CLK_EMMC			25
-+#define CLK_EMMC_100K			26
-+#define CLK_AXI4_SD0			27
-+#define CLK_SD0				28
-+#define CLK_SD0_100K			29
-+#define CLK_AXI4_SD1			30
-+#define CLK_SD1				31
-+#define CLK_SD1_100K			32
-+#define CLK_SPI_NAND			33
-+#define CLK_ETH0_500M			34
-+#define CLK_AXI4_ETH0			35
-+#define CLK_ETH1_500M			36
-+#define CLK_AXI4_ETH1			37
-+#define CLK_APB_GPIO			38
-+#define CLK_APB_GPIO_INTR		39
-+#define CLK_GPIO_DB			40
-+#define CLK_AHB_SF			41
-+#define CLK_AHB_SF1			42
-+#define CLK_A24M			43
-+#define CLK_AUDSRC			44
-+#define CLK_APB_AUDSRC			45
-+#define CLK_SDMA_AXI			46
-+#define CLK_SDMA_AUD0			47
-+#define CLK_SDMA_AUD1			48
-+#define CLK_SDMA_AUD2			49
-+#define CLK_SDMA_AUD3			50
-+#define CLK_I2C				51
-+#define CLK_APB_I2C			52
-+#define CLK_APB_I2C0			53
-+#define CLK_APB_I2C1			54
-+#define CLK_APB_I2C2			55
-+#define CLK_APB_I2C3			56
-+#define CLK_APB_I2C4			57
-+#define CLK_APB_WDT			58
-+#define CLK_PWM_SRC			59
-+#define CLK_PWM				60
-+#define CLK_SPI				61
-+#define CLK_APB_SPI0			62
-+#define CLK_APB_SPI1			63
-+#define CLK_APB_SPI2			64
-+#define CLK_APB_SPI3			65
-+#define CLK_1M				66
-+#define CLK_CAM0_200			67
-+#define CLK_PM				68
-+#define CLK_TIMER0			69
-+#define CLK_TIMER1			70
-+#define CLK_TIMER2			71
-+#define CLK_TIMER3			72
-+#define CLK_TIMER4			73
-+#define CLK_TIMER5			74
-+#define CLK_TIMER6			75
-+#define CLK_TIMER7			76
-+#define CLK_UART0			77
-+#define CLK_APB_UART0			78
-+#define CLK_UART1			79
-+#define CLK_APB_UART1			80
-+#define CLK_UART2			81
-+#define CLK_APB_UART2			82
-+#define CLK_UART3			83
-+#define CLK_APB_UART3			84
-+#define CLK_UART4			85
-+#define CLK_APB_UART4			86
-+#define CLK_APB_I2S0			87
-+#define CLK_APB_I2S1			88
-+#define CLK_APB_I2S2			89
-+#define CLK_APB_I2S3			90
-+#define CLK_AXI4_USB			91
-+#define CLK_APB_USB			92
-+#define CLK_USB_125M			93
-+#define CLK_USB_33K			94
-+#define CLK_USB_12M			95
-+#define CLK_AXI4			96
-+#define CLK_AXI6			97
-+#define CLK_DSI_ESC			98
-+#define CLK_AXI_VIP			99
-+#define CLK_SRC_VIP_SYS_0		100
-+#define CLK_SRC_VIP_SYS_1		101
-+#define CLK_SRC_VIP_SYS_2		102
-+#define CLK_SRC_VIP_SYS_3		103
-+#define CLK_SRC_VIP_SYS_4		104
-+#define CLK_CSI_BE_VIP			105
-+#define CLK_CSI_MAC0_VIP		106
-+#define CLK_CSI_MAC1_VIP		107
-+#define CLK_CSI_MAC2_VIP		108
-+#define CLK_CSI0_RX_VIP			109
-+#define CLK_CSI1_RX_VIP			110
-+#define CLK_ISP_TOP_VIP			111
-+#define CLK_IMG_D_VIP			112
-+#define CLK_IMG_V_VIP			113
-+#define CLK_SC_TOP_VIP			114
-+#define CLK_SC_D_VIP			115
-+#define CLK_SC_V1_VIP			116
-+#define CLK_SC_V2_VIP			117
-+#define CLK_SC_V3_VIP			118
-+#define CLK_DWA_VIP			119
-+#define CLK_BT_VIP			120
-+#define CLK_DISP_SRC_VIP		121
-+#define CLK_DISP_VIP			122
-+#define CLK_DSI_MAC_VIP			123
-+#define CLK_LVDS0_VIP			124
-+#define CLK_LVDS1_VIP			125
-+#define CLK_PAD_VI_VIP			126
-+#define CLK_PAD_VI1_VIP			127
-+#define CLK_PAD_VI2_VIP			128
-+#define CLK_CFG_REG_VIP			129
-+#define CLK_VIP_IP0			130
-+#define CLK_VIP_IP1			131
-+#define CLK_VIP_IP2			132
-+#define CLK_VIP_IP3			133
-+#define CLK_IVE_VIP			134
-+#define CLK_RAW_VIP			135
-+#define CLK_OSDC_VIP			136
-+#define CLK_CAM0_VIP			137
-+#define CLK_AXI_VIDEO_CODEC		138
-+#define CLK_VC_SRC0			139
-+#define CLK_VC_SRC1			140
-+#define CLK_VC_SRC2			141
-+#define CLK_H264C			142
-+#define CLK_APB_H264C			143
-+#define CLK_H265C			144
-+#define CLK_APB_H265C			145
-+#define CLK_JPEG			146
-+#define CLK_APB_JPEG			147
-+#define CLK_CAM0			148
-+#define CLK_CAM1			149
-+#define CLK_WGN				150
-+#define CLK_WGN0			151
-+#define CLK_WGN1			152
-+#define CLK_WGN2			153
-+#define CLK_KEYSCAN			154
-+#define CLK_CFG_REG_VC			155
-+#define CLK_C906_0			156
-+#define CLK_C906_1			157
-+#define CLK_A53				158
-+#define CLK_CPU_AXI0			159
-+#define CLK_CPU_GIC			160
-+#define CLK_XTAL_AP			161
-+
-+#endif /* __DT_BINDINGS_SOPHGO_CV1800_CLK_H__ */
+ 		gpio0: gpio@3020000 {
+ 			compatible = "snps,dw-apb-gpio";
+ 			reg = <0x3020000 0x1000>;
 --
 2.43.0
 
