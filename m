@@ -1,126 +1,104 @@
-Return-Path: <devicetree+bounces-21868-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21869-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CED2480569D
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 14:57:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C08E8056A1
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 14:58:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 89692281C67
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 13:57:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C53E2281C89
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 13:58:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A83AE5E0DF;
-	Tue,  5 Dec 2023 13:57:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BB925FEF1;
+	Tue,  5 Dec 2023 13:58:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="a6lbRkIL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zE3+v8Pl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0801218B
-	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 05:56:58 -0800 (PST)
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 2C52240185
-	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 13:56:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1701784616;
-	bh=IiRXF4n/93v5Ug5hjoOSvZlervZ246QbgRyu0qVcQa4=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type;
-	b=a6lbRkIL85HyTMX4ah6v0+WPNEH3DSlKOsftq1C6xOd/L0WlHBqYFUODkzGXSwAwt
-	 YUO8Spt8L2B1mDPdB6I/Y+O37F4e77gZH1jJObr1n9gSOSCM5QaTjpFLpNtQG0jYiV
-	 rD7YbPbF9jFV8z7c9EArC03TIZa+fBK+hniQUq3hRkHGs4i8V6/u0SsJwlebOieIak
-	 yzLyz/7dhD+IvneyfrpgnqvvvKHW3u4ZwdL6sITFv0bmn8kq9lCnRcE+MuWv0zFHzn
-	 Y8p0whDNI+jWVKTwkllYiWbBWtbl4WUWX1DZ/X2SnkDQyL1E4dM/1z1zXhSZg93kps
-	 6EbaF7+803gpA==
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-67ac4104c84so29418116d6.3
-        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 05:56:56 -0800 (PST)
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05CE8BA
+	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 05:58:33 -0800 (PST)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-a196f84d217so599208266b.3
+        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 05:58:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701784711; x=1702389511; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/5Oze3/1RDszWMpciOU5HHEZVBDC8CTTQ6maphqjCpk=;
+        b=zE3+v8Pl4FyaKTnJaicGogKNVZWUgSOQesuO5YGvmZsC+42Am0sTtc4D767AqauTgJ
+         xN6Pjkh89fTr0Fit/O0zO+O581bbn3GuQM3Ibgfw4vGlgGAI09EkfsgR8/nwkbNZWT12
+         te/rkQ5ZqHVdFwcIOtcAmmcukIAzIOTM+60pYDyMU6Hc/uOb2UDYKpUL1HoC8YSgVr+a
+         FdrS6Urd4qNUHJ4mKlKgP+ncv9p8qFh9PIXJzeOLorGk+QLxd++SA9/K+9Txd/4chkS1
+         BZP4j7LQ22nqCIub16+Fne5dUt8dndUPxQbC4UacBczRcVPyxxpNxZRou3fkUo2NZNjJ
+         8nLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701784615; x=1702389415;
-        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IiRXF4n/93v5Ug5hjoOSvZlervZ246QbgRyu0qVcQa4=;
-        b=w7wBoebZTHEwHHasw4Jy1Z+cOsiSx+UYdh9Ioq68xo/qh4H5xPtP6okitniraenL/F
-         NDkYUSkjfFUo2eDSqF2hL72q05/b41AiWvMLA4TRBxC38rprf8/b1zeIjdZGeSB2AKac
-         iGRvDYRG04/40Slgz7wqdlj8c4RDEVp2gcmgVaoTrLIV79gtzYjsqBVvBshqshULNerz
-         quUCpu3g9o+WqHHXH9iLfmR+mf/0x+ufL+X3oKk1BfH3ctzlx2YYOhtid+mFfZwIviMo
-         OY+kOlmOTOidHo6aJlinxg/N6WLpu0t9+tERyrU/HrOcdDMwZi/jCFpubnsmixYrxwIe
-         IFcQ==
-X-Gm-Message-State: AOJu0Yx/frtT6Cw+JOUJPPLekU7MGMIFoucsw9kvLAG2ToxO5BvT2KBa
-	QNi3ZSNRyPpcvhcezep2G0WER5I3W9GDt67q/I7L65orw2LyB676rfCib4yRxtoQq8Xac1BqWyj
-	60up8/h5NtR0Kcn4uY2h7LVaFXVRD7PJaLmFn8ZR5ckGCupqtmDEj1LY=
-X-Received: by 2002:ad4:4486:0:b0:67a:a721:f30f with SMTP id m6-20020ad44486000000b0067aa721f30fmr1465510qvt.79.1701784615269;
-        Tue, 05 Dec 2023 05:56:55 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IErR1wXH/GabDZKXesdKBFPnJz7SeypeN/oGzxkp5WIwT9bEBYm1KaRkIO2O9CcQbAKZYRddKnzH6OnMewqq8I=
-X-Received: by 2002:ad4:4486:0:b0:67a:a721:f30f with SMTP id
- m6-20020ad44486000000b0067aa721f30fmr1465497qvt.79.1701784615073; Tue, 05 Dec
- 2023 05:56:55 -0800 (PST)
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 5 Dec 2023 05:56:54 -0800
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <IA1PR20MB4953EBF14C9CA436760B2A58BB85A@IA1PR20MB4953.namprd20.prod.outlook.com>
-References: <IA1PR20MB49532E1A3D8BA71FDBB444BCBB85A@IA1PR20MB4953.namprd20.prod.outlook.com>
- <IA1PR20MB4953EBF14C9CA436760B2A58BB85A@IA1PR20MB4953.namprd20.prod.outlook.com>
+        d=1e100.net; s=20230601; t=1701784711; x=1702389511;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/5Oze3/1RDszWMpciOU5HHEZVBDC8CTTQ6maphqjCpk=;
+        b=uRNOWoVfQOPtePZ3nuMXMMDQ35bfDoLa5Q7IVndwwU9PJTJbuppN/ufvzalgOhjTQA
+         Gq6eMuhBRGWB9tNlayUzVCfmPHFShZ8UKs0FhvwhK2w6SoY2si6EI9SWymXZO4zQUBS+
+         0Qt2+5Z8THNQSpWF/1VDScHHCd5fD8EOOqiI+krR2TpjMT6Hx4vvooBGNzbB6nFC8Nyu
+         RfbiY1ZbJgwUAtD2AAYRVhLBK0jMGHm3q70M830fqVPpIhXJ2BAq2Q3OJgVMlYzTAOMs
+         Qbh+KeeFWYk/5SLz9i6U1Vx+l8VvktkclA2G6R3Kb7QR3nbDsbUWAW9UC+NdyKDlkgUF
+         gRNA==
+X-Gm-Message-State: AOJu0YxrA2ZWQ4xbJSEYJ9XP0cZiOeTdmILT5VzSXVFgIsdcPQGKewww
+	LZSngicA3hmjQLC4R4FkmyJfZA==
+X-Google-Smtp-Source: AGHT+IH8wju8GD5Zx60pHtilWQSmGAaG7mcnh/RhurUSWf5JLiDlXK8tl9XAaYjvFRrkmybVIUDznA==
+X-Received: by 2002:a17:906:811:b0:9fe:3d74:2b62 with SMTP id e17-20020a170906081100b009fe3d742b62mr3713369ejd.12.1701784711500;
+        Tue, 05 Dec 2023 05:58:31 -0800 (PST)
+Received: from hackbox.lan ([82.79.186.233])
+        by smtp.gmail.com with ESMTPSA id e20-20020a1709062c1400b00a1c7b20e9e6sm833583ejh.32.2023.12.05.05.58.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Dec 2023 05:58:30 -0800 (PST)
+From: Abel Vesa <abel.vesa@linaro.org>
+To: robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	sboyd@kernel.org,
+	abelvesa@kernel.org,
+	"Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: kernel@pengutronix.de,
+	festevam@gmail.com,
+	linux-imx@nxp.com,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Peng Fan <peng.fan@nxp.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH V4 1/2] dt-bindings: clock: support i.MX93 Analog clock module
+Date: Tue,  5 Dec 2023 15:58:23 +0200
+Message-Id: <170178465116.22654.4507616023393071038.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20231121063446.155300-1-peng.fan@oss.nxp.com>
+References: <20231121063446.155300-1-peng.fan@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Date: Tue, 5 Dec 2023 05:56:54 -0800
-Message-ID: <CAJM55Z8DU_OPJOYqT28wtH9EGFj=y9VVPcawOnYjY=U75pt2vg@mail.gmail.com>
-Subject: Re: [PATCH v2 4/4] riscv: dts: sophgo: add uart clock for Sophgo
- CV1800 series SoC
-To: Inochi Amaoto <inochiama@outlook.com>, Chao Wei <chao.wei@sophgo.com>, 
-	Chen Wang <unicorn_wang@outlook.com>, Conor Dooley <conor@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>
-Cc: Jisheng Zhang <jszhang@kernel.org>, qiujingbao.dlmu@gmail.com, dlan@gentoo.org, 
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Inochi Amaoto wrote:
-> Add missing clocks of uart node for CV1800B and CV1812H.
->
-> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
-> ---
->  arch/riscv/boot/dts/sophgo/cv18xx.dtsi | 21 ++++++++++++++++-----
->  1 file changed, 16 insertions(+), 5 deletions(-)
->
-> diff --git a/arch/riscv/boot/dts/sophgo/cv18xx.dtsi b/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
-> index c5642dd7cbbd..3f290a515011 100644
-> --- a/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
-> +++ b/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
-> @@ -5,6 +5,7 @@
->   */
->
->  #include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/clock/sophgo,cv1800.h>
->
->  / {
->  	#address-cells = <1>;
-> @@ -136,7 +137,9 @@ uart0: serial@4140000 {
->  			compatible = "snps,dw-apb-uart";
->  			reg = <0x04140000 0x100>;
->  			interrupts = <44 IRQ_TYPE_LEVEL_HIGH>;
-> -			clocks = <&osc>;
-> +			clock-frequency = <25000000>;
-> +			clocks = <&clk CLK_UART0>, <&clk CLK_APB_UART0>;
-> +			clock-names = "baudclk", "apb_pclk";
->  			reg-shift = <2>;
->  			reg-io-width = <4>;
->  			status = "disabled";
 
-Hi Inochi,
+On Tue, 21 Nov 2023 14:34:45 +0800, Peng Fan (OSS) wrote:
+> Support i.MX93 Analog module which contains PLL and OSC for Clock
+> Controller Module
+> 
+> 
 
-When there is a proper "baudclk" defined the driver should get the rate
-(frequency) from that and the manually defined clock-frequency should not be
-needed.
+Applied, thanks!
 
-/Emil
+[1/2] dt-bindings: clock: support i.MX93 Analog clock module
+      commit: d24ffddd1071dd3bb348b010f1f9b780722ae90f
+
+Best regards,
+-- 
+Abel Vesa <abel.vesa@linaro.org>
 
