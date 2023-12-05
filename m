@@ -1,118 +1,73 @@
-Return-Path: <devicetree+bounces-21827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21828-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1696E80542E
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 13:32:20 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAA9D805431
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 13:32:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C01B61F214E4
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 12:32:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 460A0B20C80
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 12:32:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6FFC5ABBF;
-	Tue,  5 Dec 2023 12:32:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97A905ABBF;
+	Tue,  5 Dec 2023 12:32:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="LBVKtPQm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pJyCRqKU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D310C6;
-	Tue,  5 Dec 2023 04:32:09 -0800 (PST)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 5B801FF811;
-	Tue,  5 Dec 2023 12:32:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1701779528;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=DgcnHD3vyBMyp03Zy3XMz8GUwdycjO24GHf/1xFuXTY=;
-	b=LBVKtPQmrUQ6Vu0G6IcPAIa8eJoxjxXJkgPJpFKcHVeuiAv6/8G9VGnHA5N8JqYmKhT4TB
-	rbS6qBwhmw9YFtJb1d2+jAIzzEgLmCsKG7EwK8FsFnP13KTeVJfi/62NqzRtmHgES/9XHx
-	b8Q6znSSChPfEGHvAy3iISOdVQl43UBChfES/DAms5SmpIPq6x9C5AckHcNjiJQ8EtgUz6
-	tfH3YL9GyBR3qqMLENJEj1B5/EGrU0T8wOXU34b50N4WTrNYh4OwbP/LrzjiT2YMlGVXZz
-	dd3ktMSEwO96aaAwPW709BuHUke59iTw9AoljYR7k17TTOQWvbkwk3J3KbLBmw==
-Date: Tue, 5 Dec 2023 13:32:05 +0100
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-To: Serge Semin <fancer.lancer@gmail.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
- Russell King <linux@armlinux.org.uk>, Alexandre Torgue
- <alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>, Jose
- Abreu <Jose.Abreu@synopsys.com>, Tomer Maimon <tmaimon77@gmail.com>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
- <pabeni@redhat.com>, openbmc@lists.ozlabs.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 09/16] net: mdio: Add Synopsys DW XPCS
- management interface support
-Message-ID: <20231205133205.3309ab91@device.home>
-In-Reply-To: <20231205103559.9605-10-fancer.lancer@gmail.com>
-References: <20231205103559.9605-1-fancer.lancer@gmail.com>
-	<20231205103559.9605-10-fancer.lancer@gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 708175C8F9;
+	Tue,  5 Dec 2023 12:32:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E37FC433C7;
+	Tue,  5 Dec 2023 12:32:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701779563;
+	bh=xuJdQoSW/6bVDWd6DLIrWKYfDIQYTwdWvR4+vRYOAAY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pJyCRqKUNg5knyQ3nkNQ6ld37IhFDSA2AzZFLw0iCe+AjbtfGIC2npDCIV+76rZgj
+	 io3xCJGT4zYqY4d0a/FgSmX19xTyPSKVa3DppE54dc0pF/vKcZsUYebIS7ZfnUaClv
+	 fmbDpBgt19GxAIfdk3W+eFhuqdezHCk+T1pFcVeHLNLIjxkYC3F/z+R69Nl9HT1Y9G
+	 swDkli1AjDZVOoRTeyli/kOiIlI7SeoZqUm4RPRZ2K4n49B4TFxjZB05rjF8R+KPTj
+	 jxd3Vh6D+SlGSCvhksfeKul3WZnAicGufnECbgvfhvpD/x8jusC6jlSo7PssUaaqYI
+	 DqtJHiIAD4oLw==
+Date: Tue, 5 Dec 2023 20:32:38 +0800
+From: Shawn Guo <shawnguo@kernel.org>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Thierry Reding <thierry.reding@gmail.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	NXP Linux Team <linux-imx@nxp.com>, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 2/3] arm64: dts: freescale: imx8-ss-lsio: Fix
+ #pwm-cells
+Message-ID: <20231205123238.GG236001@dragon>
+References: <20231106151326.812099-1-alexander.stein@ew.tq-group.com>
+ <20231106151326.812099-3-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-GND-Sasl: maxime.chevallier@bootlin.com
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231106151326.812099-3-alexander.stein@ew.tq-group.com>
 
-Hi Serge,
-
-On Tue,  5 Dec 2023 13:35:30 +0300
-Serge Semin <fancer.lancer@gmail.com> wrote:
-
-> Synopsys DesignWare XPCS IP-core can be synthesized with the device CSRs
-> being accessible over MCI or APB3 interface instead of the MDIO bus (see
-> the CSR_INTERFACE HDL parameter). Thus all the PCS registers can be just
-> memory mapped and be a subject of standard MMIO operations of course
-> taking into account the way the Clause C45 CSRs mapping is defined. This
-> commit is about adding a device driver for the DW XPCS Management
-> Interface platform device and registering it in the framework of the
-> kernel MDIO subsystem.
+On Mon, Nov 06, 2023 at 04:13:25PM +0100, Alexander Stein wrote:
+> i.MX8QM/QXP supports inverted PWM output, thus #pwm-cells needs to be set
+> to 3.
 > 
-> DW XPCS platform device is supposed to be described by the respective
-> compatible string "snps,dw-xpcs-mi", CSRs memory space and optional
-> peripheral bus clock source. Note depending on the INDIRECT_ACCESS DW XPCS
-> IP-core synthesize parameter the memory-mapped reg-space can be
-> represented as either directly or indirectly mapped Clause 45 space. In
-> the former case the particular address is determined based on the MMD
-> device and the registers offset (5 + 16 bits all together) within the
-> device reg-space. In the later case there is only 256 lower address bits
-> are utilized for the registers mapping. The upper bits are supposed to be
-> written into the respective viewport CSR in order to reach the entire C45
-> space.
+> Fixes: a05c329644d81 ("arm64: dts: freescale: imx8-ss-lsio: add support for lsio_pwm0-3")
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Reviewed-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
 
-Too bad the mdio-regmap driver can't be re-used here, it would deal
-with reg width for you, for example. I guess the main reason would be
-the direct vs indirect accesses ?
-
-I do have a comment tough :
-
-[...]
-
-> +static inline ptrdiff_t dw_xpcs_mmio_addr_format(int dev, int reg)
-> +{
-> +	return FIELD_PREP(0x1f0000, dev) | FIELD_PREP(0xffff, reg);
-> +}
-> +
-> +static inline u16 dw_xpcs_mmio_addr_page(ptrdiff_t csr)
-> +{
-> +	return FIELD_GET(0x1fff00, csr);
-> +}
-> +
-> +static inline ptrdiff_t dw_xpcs_mmio_addr_offset(ptrdiff_t csr)
-> +{
-> +	return FIELD_GET(0xff, csr);
-> +}
-
-You shouldn't use inline in C files, only in headers.
-
-Maxime
+Applied, thanks!
 
