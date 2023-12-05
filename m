@@ -1,196 +1,73 @@
-Return-Path: <devicetree+bounces-21550-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21553-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11F4F8042F9
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 00:58:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D782F804314
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 01:06:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 87F5A1F2118A
-	for <lists+devicetree@lfdr.de>; Mon,  4 Dec 2023 23:58:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 151B21C20B70
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 00:06:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D86B53AC0F;
-	Mon,  4 Dec 2023 23:58:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="U9p92Fza"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53FCE39C;
+	Tue,  5 Dec 2023 00:06:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from IND01-MAX-obe.outbound.protection.outlook.com (mail-maxind01olkn2099.outbound.protection.outlook.com [40.92.102.99])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1BDCFA;
-	Mon,  4 Dec 2023 15:58:48 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=m3uAHHofE39+J39rZ5P6GzwRm32pBAeZ1Hx36ODCP54FrxID+XtGedjgvVBQz8WvNJ5qffEeImEUyTG1t4nVGRNoVqAsmBmXcep7u2otEJ0Q6DB+xSV/UrAgLJ8vNFLpp6T5dYekmnbBBxxAfCySjSPMUnXS+VXmSkRaHlZHekRYE4B+/MFanjc3C4/4doKrl2LPYisE3xoQEXLZmQq0ikgqFPVj/vPmqxebVY7g/7KnTf6RGyEJO6eykeF35Gec5Bg4t/NJVVao7o6pW+pfDKqr0q5ecxzXtB7TTkMYmNezJ0GSsO/Mrhs29cjP/HL4oVgkYObYgsDRII+2Y5yphQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fm1Cp+VqLVbeyYlxDuFlFElJPdvB0dC9+ifSGDyEth8=;
- b=XgfaEpKdCIrav3kzBer9pjVADZ82OlsH2YZECjLvrCPXH2JtSzfHyhhBVLTil8ToSUqGs4tVI3NY08exXSEjm0k/YLkEByfZx+H9yGk14mm2HAQzq70UUnEricdQj/+6/XjaFBOB+jC4cK9Di2aE3TBY5I/Fs6Sil31tTcjogUtBmn8dGaN3obdIkr39oRB7gnpkqJcV+VKDoSm86CobV+Hbi6WnRLSwTZIYLeTdYkBYTKvc0KQS9eJaMqZdRFm+CRqeXlmSf3fw8bAz3hFEjOZhVFh+NhtqLGK9Hpy8woMAcBu1nPcGPHiPj8hWnPnI5HQy8gZdzAtTEAtz2HAJ6A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fm1Cp+VqLVbeyYlxDuFlFElJPdvB0dC9+ifSGDyEth8=;
- b=U9p92FzaIsXehkkHbxutIYFHIDmDNmyhQL5KHRlhKSyAnY0penWY/gubgM923FWfv7Civzuoqzq3+lKsCiemMFMJzZEY4B4TuPHHurhZtmsq3pqjBPQbYIrBab1eTOrM8bKI5qIHOa1TArHxJ4cHO82UTMhTv4lQeEdDc4VTzEB2nL704gsa39Rn5LMy/+ahBcaGAE91zsLnRFUS6K8Tatfa00CF0OdFTdZQPbFThzvsbwHJR+4qyIKkYsltTBeYwekQmbEUwYfTiC6Yyl7/oOuWDsIl5v19lmhCqsbHdhbyoL0dZEWFCmtEPlJZHMHZZUP2DBsynAqCxbosYa4IQw==
-Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:ab::5) by
- PN3P287MB1287.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:1a1::11) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7046.34; Mon, 4 Dec 2023 23:58:40 +0000
-Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
- ([fe80::b1a7:eee7:e903:9ef3]) by MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
- ([fe80::b1a7:eee7:e903:9ef3%7]) with mapi id 15.20.7046.034; Mon, 4 Dec 2023
- 23:58:40 +0000
-Message-ID:
- <MA0P287MB03329CEC490E59AEE970B571FE86A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
-Date: Tue, 5 Dec 2023 07:58:32 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/4] riscv: sophgo: add clock support for sg2042
-To: Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu,
- chao.wei@sophgo.com, conor@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- mturquette@baylibre.com, palmer@dabbelt.com, paul.walmsley@sifive.com,
- richardcochran@gmail.com, robh+dt@kernel.org, sboyd@kernel.org,
- devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com, guoren@kernel.org,
- jszhang@kernel.org, inochiama@outlook.com, samuel.holland@sifive.com
-References: <cover.1701691923.git.unicorn_wang@outlook.com>
-From: Chen Wang <unicorn_wang@outlook.com>
-In-Reply-To: <cover.1701691923.git.unicorn_wang@outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TMN: [D4XGbn0dJNAfTVE6LE0TT5TIQb8ycxZj]
-X-ClientProxiedBy: TYCP301CA0009.JPNP301.PROD.OUTLOOK.COM
- (2603:1096:400:386::7) To MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:ab::5)
-X-Microsoft-Original-Message-ID:
- <67092374-73ce-457a-80fe-7d53f2173fb3@outlook.com>
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 184C8FF;
+	Mon,  4 Dec 2023 16:06:10 -0800 (PST)
+Received: from i53875b61.versanet.de ([83.135.91.97] helo=phil.lan)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1rAIws-0001qb-Vk; Tue, 05 Dec 2023 01:06:03 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Alex Bee <knaerzche@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 0/3] Move core bus and gpio aliases to SoC dtsi for RK3128
+Date: Tue,  5 Dec 2023 01:05:58 +0100
+Message-Id: <170173468934.501889.12474504620278418598.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20231202130506.66738-2-knaerzche@gmail.com>
+References: <20231202130506.66738-2-knaerzche@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MA0P287MB0332:EE_|PN3P287MB1287:EE_
-X-MS-Office365-Filtering-Correlation-Id: cefdc073-6163-4780-dad6-08dbf524effa
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	gCf7qxc+I95ZOh2xtFc+kbvSRmIFde0UW+bYDD7G/Ih1HFCMXsXLCiK49ib7Lid9cqaKgSaJfnGdUsB8IJHmTbOElX1DN2uMGQ+yQvfvY2HGnp0v3NjSmEhBd6/tcsrmPct8qT2E7EOxamL13jK1SvxzZ0Kac+URj6gUUZgQwkixUHUyaoJMaKyllK5XONoTVZH7fCNzpNfOe5a67LI/3tJ3V02h0PEXW5hApdJRPjADA/Q3gVlM2Ih7eUBgu74H+5hODkAOF/zd7EQrFFTOHhnPHcSWWvy+JU1i4nTlST+42Up/k3Vf3UiIGQ3Z20T2zNrGU3Oe9VFZZqzeXugrAnJWoSfm+ZsTXdQqv10Qf5FbB5cO9Hi0m1veZZ3nWsCphb2gqaQtYjp7s/CJ4uoi5TX5+7YQ6/hHdlsIN59200JcEKGzVTUsc3XOOM/lYH0fX+S91izwYsmjKm3yeQbwdWdR2Zcb5vYjNGN+pDpfDXnKH93VBaP7DkcthD+2dxIf2MN2BIovNlBPFGy/DtDWYQZRgzTna3/dOZVnhPZ3j5V9lpcr5kLFaa9sLcIprjGlsbESix2Kf2sLCwUg2RUhyX3La/LgmURSacKoyPSDQUdp/8+3+tz7tRgbF+iw0Hssy/GMPKzxAOHHlFa9nbu5/Q==
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?ZWc5UWdONmsrT1QyN0VoTE9EYmMrMTRKOGE0RFBUOUpJUVJQSlRaUzNZRmtq?=
- =?utf-8?B?VWpET2lTL2ZZTnJEMnNxSEQrZVlNTnA3RlFTck9zL0Y0dnVYLzBnSEFiT1Fz?=
- =?utf-8?B?V09VcytvUXQyR3haRVUrY0lFc1VWcldGTkJrNEVHYXBCN3h1Q2VkQ0V6SE5P?=
- =?utf-8?B?Mkk0eUt2WFBubk9lTUZaY3Jhc3JWSjg0WSsvQkJjYlRoeFI1Wjh2a2llVXYr?=
- =?utf-8?B?ajF6Mk14ME1jOW5WVlVGRkpOZWo2T3pIUkJxVHczelNvYUhVQmdKR3NQOWVF?=
- =?utf-8?B?OXRGbGpRODlZb0VVZktGaHZ3V0RiUDRBbDA0WksxU3g5NlIwQVEvQnJvOGlr?=
- =?utf-8?B?V3U5M3lOLzZCVWdJcjVUYUdKdUd1Qm5FbUlWSll3cXVlbUNQV0pnQis4ZlVK?=
- =?utf-8?B?Y3YzQUZmNUFnS1NLMlhQd0M1SzZ6QTMxb1J0ZDY5UlBmYm0rYS94bS9LRldr?=
- =?utf-8?B?bE5yQTdsUjRpQVJ1TDQxb0VUZHBGSHc5SGZMcTJVMFQxTFliYmc0Vkw2WEdx?=
- =?utf-8?B?VTh1TWtRUWp5MEp4U29yRGtMM1VTQVBuTklIaE1pTGlUayt6aHRXcmpIUDVx?=
- =?utf-8?B?T1JvNGJSbVlJcFNzQllpWWwzRlVodVZvY2xMKzFOVVR0cEZWMWo0aFdzRzdt?=
- =?utf-8?B?ZzA5bEdxWkJjejlPYXUzcklET2JzY0NTYkpINXF6bzVQWFdJUk5HcHJ3dzJP?=
- =?utf-8?B?QjR3N3VsYUQxRVNkL3Z0aE1FWDNvOE5yU0Z0bVAzNC9GTjFEYXorVk1hRXFy?=
- =?utf-8?B?SVRaVTJIYnMwQTR3cXpjeGtYR1JlTlY2UFIzbHl3SHhXTHFxR0lOMDgwR1Jq?=
- =?utf-8?B?VFdwT1VrTHpVck5pVXo1MTV2S3N5YkhiNTRoRjNJUS9GSFA0c1duaWk3enBa?=
- =?utf-8?B?VmZYSnFnNGFmZTdvZHZ3WHUzTVBkdW8zalZncGFBUjh5TkZmMkQ4eHZvQVZ5?=
- =?utf-8?B?NVRoYXdCcGxiYm12OCt6UDNhMWNzQkEvUnhMVzZUc1NBS3EreVhZNitFMlJX?=
- =?utf-8?B?QWt5SG0xclFydllYeVpzaE8vVi9wcU5SaEl1SlcxbWpoaWpnajA2U3FhcUho?=
- =?utf-8?B?WTY0YjBWUnl1dWVrcDFCOGxiNGx5UENhbVJ3U0RNV2pwV0tuVW05VU5wQzJ0?=
- =?utf-8?B?OEFPSHZxY2VyN0l3dXl6VlVuSThJK1drSVF0L1ZDMGpaWkl3eDBBaGFkUHhB?=
- =?utf-8?B?U05zNyt2alpqTlhBWWQzNkc1V25qQzJUamlFaTVBV2NLVFVWWWJ6Vytad1pu?=
- =?utf-8?B?VW1nSVJBcyt0Y0R3dkQxVjhJOFlxN3A1eStmZFA4YkVMUDhJZXhHbW5sVFkx?=
- =?utf-8?B?UjQreW5rOXRqRkU4UUdWaHRNYnEycy9Od1VTVTZ1aWxVZnJnYWZxNUJibS9w?=
- =?utf-8?B?TzNCK2NHTmVJYWxJZGhTcit4blIyZTVzb0lMTWUvYkVDL0hEemh1dUpKNlhJ?=
- =?utf-8?B?OWtVcHowYkUyNlRFOUVnVEg0cE1GVTVWaTRoZDY0UmdTZnZRNGFkSkhmKzZP?=
- =?utf-8?B?Y3lkeUlkdC9OZG1iYjJORG9Ja3dUb1NzWDRwVXlNVEx5aDdzNUR0VWxoRnIw?=
- =?utf-8?B?cTlaWEVBa2NGMk1HNkt0YUlac2ZtN1ZnaCtEYzJJdXkwZFhTUURBTzM3d2dz?=
- =?utf-8?Q?Svk2cxr4qugyFPo7TrP6j5d6t3y4Hf9pccxNRPMTUZSE=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cefdc073-6163-4780-dad6-08dbf524effa
-X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Dec 2023 23:58:40.1739
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN3P287MB1287
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-This version has one adt_binding_check error (thanks Rob pointed it 
-out), so please ignore this v3, I will fix the bug and send out v4 soon.
+On Sat, 2 Dec 2023 14:05:04 +0100, Alex Bee wrote:
+> Following up the recent discussion [0] about where aliases can be/should be
+> placed this series moves gpio, i2c and uart aliases to SoC dtsi for RK3128.
+> 
+> Note: This patches are based on maintainter's repo.
+> 
+> [0] https://lore.kernel.org/all/b0c637f5-5abf-420b-8b02-839eba68799e@linaro.org/T/#m94aebb23a29b015d94b250a70b675febdaa902ea
+> 
+> [...]
 
-On 2023/12/4 20:54, Chen Wang wrote:
-> From: Chen Wang <unicorn_wang@outlook.com>
->
-> This series adds clock controller support for sophgo sg2042.
->
-> Thanks,
-> Chen
->
-> ---
->
-> Changes in v3:
->    The patch series is based on v6.7-rc1. You can simply review or test the
->    patches at the link [3].
->    - DTS: don't use syscon but define sg2042 specific system control node. More
->      background info can read [4].
->    - Updating minor issues in dt-bindings as per input from reviews.
->
-> Changes in v2:
->    The patch series is based on v6.7-rc1. You can simply review or test the
->    patches at the link [2].
->    - Squashed the patch adding clock definitions with the patch adding the
->      binding for the clock controller.
->    - Updating dt-binding for syscon, remove oneOf for property compatible;
->      define clock controller as child of syscon.
->    - DTS changes: merge sg2042-clock.dtsi into sg2042.dtsi; move clock-frequency
->      property of osc to board devicethree due to the oscillator is outside the
->      SoC.
->    - Fixed some bugs in driver code during testing, including removing warnings
->      for rv32_defconfig.
->    - Updated MAINTAINERS info.
->
-> Changes in v1:
->    The patch series is based on v6.7-rc1. You can simply review or test the
->    patches at the link [1].
->
-> Link: https://github.com/unicornx/linux-riscv/commits/upstream-sg2042-clock-v1 [1]
-> Link: https://github.com/unicornx/linux-riscv/commits/upstream-sg2042-clock-v2 [2]
-> Link: https://github.com/unicornx/linux-riscv/commits/upstream-sg2042-clock-v3 [3]
-> Link: https://lore.kernel.org/linux-riscv/MA0P287MB03329AE180378E1A2E034374FE82A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM/ [4]
->
-> ---
->
-> Chen Wang (4):
->    dt-bindings: soc: sophgo: Add Sophgo system control module
->    dt-bindings: clock: sophgo: Add SG2042 bindings
->    clk: sophgo: Add SG2042 clock generator driver
->    riscv: dts: add clock generator for Sophgo SG2042 SoC
->
->   .../clock/sophgo/sophgo,sg2042-clkgen.yaml    |   50 +
->   .../soc/sophgo/sophgo,sg2042-sysctrl.yaml     |   35 +
->   MAINTAINERS                                   |    7 +
->   .../boot/dts/sophgo/sg2042-milkv-pioneer.dts  |    4 +
->   arch/riscv/boot/dts/sophgo/sg2042.dtsi        |   79 +
->   drivers/clk/Kconfig                           |    1 +
->   drivers/clk/Makefile                          |    1 +
->   drivers/clk/sophgo/Kconfig                    |    8 +
->   drivers/clk/sophgo/Makefile                   |    2 +
->   drivers/clk/sophgo/clk-sophgo-sg2042.c        | 1371 +++++++++++++++++
->   drivers/clk/sophgo/clk-sophgo-sg2042.h        |  226 +++
->   .../dt-bindings/clock/sophgo,sg2042-clkgen.h  |  169 ++
->   12 files changed, 1953 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/clock/sophgo/sophgo,sg2042-clkgen.yaml
->   create mode 100644 Documentation/devicetree/bindings/soc/sophgo/sophgo,sg2042-sysctrl.yaml
->   create mode 100644 drivers/clk/sophgo/Kconfig
->   create mode 100644 drivers/clk/sophgo/Makefile
->   create mode 100644 drivers/clk/sophgo/clk-sophgo-sg2042.c
->   create mode 100644 drivers/clk/sophgo/clk-sophgo-sg2042.h
->   create mode 100644 include/dt-bindings/clock/sophgo,sg2042-clkgen.h
->
->
-> base-commit: b85ea95d086471afb4ad062012a4d73cd328fa86
+Applied, thanks!
+
+[1/3] ARM: dts: rockchip: Move gpio aliases to SoC dtsi for RK3128
+      commit: 3b0422a4ce59d8afb84bd7516bf71a3c1caa7925
+[2/3] ARM: dts: rockchip: Move i2c aliases to SoC dtsi for RK3128
+      commit: 39732a49803cf271454416341549df09c4a2fd2f
+
+I also applied patch 3 ... though had to pick it manually from the list
+as the subject was a bit garbled (missing 3/3), so b4 did not pick it up.
+
+
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
