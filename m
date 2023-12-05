@@ -1,554 +1,232 @@
-Return-Path: <devicetree+bounces-21905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21907-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EED18058C9
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 16:33:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 254FF805900
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 16:41:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0D990B21016
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 15:33:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 561211C20D9D
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 15:41:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D9135F1D1;
-	Tue,  5 Dec 2023 15:33:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 851675F1EE;
+	Tue,  5 Dec 2023 15:41:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Gd1kmM3f"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Qems+SsA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED657BA
-	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 07:33:22 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-50bf37fd2bbso3398063e87.0
-        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 07:33:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701790401; x=1702395201; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=/ujxeChxul4+pl20V58bA+GosHdEzOC9Mwy1kr2oAVA=;
-        b=Gd1kmM3fx/R3ymYZgKE4jqgL+K7szshQX3Tt7juvcm/l/tqle5u/sIR1KMaXhd3908
-         TaOAKxeI+6pSObbI4kVkPbJbAsu2r8qEO/YR3x6t95C4C683Oc7lQVOpIwW9I4AR7GPr
-         7KULzeZ6Ql0iLBNnr7SNQz3avfvsOLeXght7XhA2LI72WyWctRi3NTHSse9AX39yQajF
-         Ai3YR2L/deZBMPgc+DkdJ3splNiaejzBZ7uL0XRALgFiQgXd3He8lV7wjYJhIF0aNOR3
-         bI93BzM/ASpRznVKayraZpkjVh3pV+ALyih0MXkHp9lM+C3nxLI52A/fT0qlSV85aYXb
-         wM1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701790401; x=1702395201;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/ujxeChxul4+pl20V58bA+GosHdEzOC9Mwy1kr2oAVA=;
-        b=pC8yJgIiwZ8epTeUaTQ8eNlwTwbGJbm/wZE/jvAbK7rTvmj9J49OK7Sq6Khgc4Q5qY
-         UrPqqd4l7SSzHPWmGXNTII3RDLbOB2Qptf/LEjNJqv909CPScdiH2vC4PAiMD6OtfOcS
-         N4XTUHjWeqAtXcN+K/YhOCVfwN0/0ikgR+pesPkuU8Emdmp2hRVr1e+QYOhmtfRyKSfD
-         zf/cRPS4UJ8U1bks7OlyN6cows6s5qYlp+a3wamyxNbMy3Wmy0A2G0hqHwFq+47TngdV
-         dwGhpWoY+MMVJ6psVuVJ90OrBFKcj4ZNiiDI79Kjs1Ry7UR/loaAJbceLLbMD2Jdx5Mq
-         jyug==
-X-Gm-Message-State: AOJu0Yyg+rXFZIUYFhlGPWC6LpMxXZdYm7/3SLbiA9jqRJT7lgcfizNj
-	DQQa2ddMyUw/Rwuw1RT0b1tbTQ==
-X-Google-Smtp-Source: AGHT+IF7UC/f6D8WCZCJtlrtP3z1cgy3aOIY6Uf48q25EW58SgPSRfQyCL2ziQXnW5WdxKccL2/G4g==
-X-Received: by 2002:ac2:560a:0:b0:50b:f025:2544 with SMTP id v10-20020ac2560a000000b0050bf0252544mr2136188lfd.121.1701790400900;
-        Tue, 05 Dec 2023 07:33:20 -0800 (PST)
-Received: from krzk-bin.. ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id ca11-20020a170906a3cb00b00a0369e232bfsm6785159ejb.75.2023.12.05.07.33.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Dec 2023 07:33:20 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2] ARM: dts: qcom: use defines for interrupts
-Date: Tue,  5 Dec 2023 16:33:17 +0100
-Message-Id: <20231205153317.346109-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5F9D122;
+	Tue,  5 Dec 2023 07:41:36 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B5FfNgN030746;
+	Tue, 5 Dec 2023 09:41:23 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1701790883;
+	bh=AVn0002yRli+Ox6PwCSlDwX08+5mwWUcBAOYBqtz3k0=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=Qems+SsAXBY/RYxhHo4hLtfo9a9z29pnnoc2wMQtW1SnhzHQ+7PiaFIuB48ozZuIr
+	 caB/Ca/ORuvkqmkhZ9294UB0bxLLD7Le3eNfhOTsYCIR7fQKarIZaJ1e0Pzuov7806
+	 1hSx84iC6OyfeyjmDD/WIctnI2jHq8G2DkXtzuHM=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B5FfN3g125467
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 5 Dec 2023 09:41:23 -0600
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 5
+ Dec 2023 09:41:23 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 5 Dec 2023 09:41:23 -0600
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B5FfNim014099;
+	Tue, 5 Dec 2023 09:41:23 -0600
+Date: Tue, 5 Dec 2023 09:41:23 -0600
+From: Nishanth Menon <nm@ti.com>
+To: Andrew Davis <afd@ti.com>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Jan Kiszka <jan.kiszka@siemens.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am65: Add AM652 DTSI file
+Message-ID: <20231205154123.dy3t5xcuzj6kzm3w@thorn>
+References: <20231117165330.98472-1-afd@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20231117165330.98472-1-afd@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Replace hard-coded interrupt parts (GIC, flags) with standard defines
-for readability.  No changes in resulting DTBs.
+On 10:53-20231117, Andrew Davis wrote:
+> The AM652 is basically a AM654 but with 2 cores instead of 4. Add
+> a DTSI file for AM652 matching AM654 except this core difference.
+> 
+> This removes the need to remove the extra cores from AM654 manually
+> in DT files for boards that use the AM652 variant. Do that for
+> the IOT2050 boards here.
+> 
+> Signed-off-by: Andrew Davis <afd@ti.com>
+> ---
+>  .../boot/dts/ti/k3-am65-iot2050-common.dtsi   |  1 -
+>  arch/arm64/boot/dts/ti/k3-am652.dtsi          | 74 +++++++++++++++++++
+>  .../ti/k3-am6528-iot2050-basic-common.dtsi    | 11 +--
+>  .../ti/k3-am6548-iot2050-advanced-common.dtsi |  1 +
+>  4 files changed, 76 insertions(+), 11 deletions(-)
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-am652.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+> index ba1c14a54acf4..bd5273a37b095 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
----
+Could you rebase to latest next? patch doesn't apply anymore.
 
-Changes in v2:
-1. Convert few more values to defines (GIC_PPI) - the tedious part which
-   Konrad wanted.
----
- arch/arm/boot/dts/qcom/qcom-apq8064.dtsi | 38 ++++++++++++------------
- arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi |  8 ++---
- arch/arm/boot/dts/qcom/qcom-msm8660.dtsi | 14 ++++-----
- arch/arm/boot/dts/qcom/qcom-msm8974.dtsi | 18 +++++------
- arch/arm/boot/dts/qcom/qcom-sdx55.dtsi   | 18 +++++------
- arch/arm/boot/dts/qcom/qcom-sdx65.dtsi   | 26 ++++++++--------
- 6 files changed, 61 insertions(+), 61 deletions(-)
+> @@ -9,7 +9,6 @@
+>   * Common bits of the IOT2050 Basic and Advanced variants, PG1 and PG2
+>   */
+>  
+> -#include "k3-am654.dtsi"
+>  #include <dt-bindings/phy/phy.h>
+>  
+>  / {
+> diff --git a/arch/arm64/boot/dts/ti/k3-am652.dtsi b/arch/arm64/boot/dts/ti/k3-am652.dtsi
+> new file mode 100644
+> index 0000000000000..0f22e00faa903
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/ti/k3-am652.dtsi
+> @@ -0,0 +1,74 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Device Tree Source for AM65 SoC family in Dual core configuration
+> + *
+> + * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
+> + */
+> +
+> +#include "k3-am65.dtsi"
+> +
+> +/ {
+> +	cpus {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		cpu-map {
+> +			cluster0: cluster0 {
+> +				core0 {
+> +					cpu = <&cpu0>;
+> +				};
+> +
+> +				core1 {
+> +					cpu = <&cpu1>;
+> +				};
+> +			};
+> +		};
+> +
+> +		cpu0: cpu@0 {
+> +			compatible = "arm,cortex-a53";
+> +			reg = <0x000>;
+> +			device_type = "cpu";
+> +			enable-method = "psci";
+> +			i-cache-size = <0x8000>;
+> +			i-cache-line-size = <64>;
+> +			i-cache-sets = <256>;
+> +			d-cache-size = <0x8000>;
+> +			d-cache-line-size = <64>;
+> +			d-cache-sets = <128>;
+> +			next-level-cache = <&L2_0>;
+> +		};
+> +
+> +		cpu1: cpu@1 {
+> +			compatible = "arm,cortex-a53";
+> +			reg = <0x001>;
+> +			device_type = "cpu";
+> +			enable-method = "psci";
+> +			i-cache-size = <0x8000>;
+> +			i-cache-line-size = <64>;
+> +			i-cache-sets = <256>;
+> +			d-cache-size = <0x8000>;
+> +			d-cache-line-size = <64>;
+> +			d-cache-sets = <128>;
+> +			next-level-cache = <&L2_0>;
+> +		};
+> +	};
+> +
+> +	L2_0: l2-cache0 {
+> +		compatible = "cache";
+> +		cache-level = <2>;
+> +		cache-unified;
+> +		cache-size = <0x80000>;
+> +		cache-line-size = <64>;
+> +		cache-sets = <512>;
+> +		next-level-cache = <&msmc_l3>;
+> +	};
+> +
+> +	msmc_l3: l3-cache0 {
+> +		compatible = "cache";
+> +		cache-level = <3>;
+> +		cache-unified;
+> +	};
+> +
+> +	thermal_zones: thermal-zones {
+> +		#include "k3-am654-industrial-thermal.dtsi"
+> +	};
+> +};
+> diff --git a/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-common.dtsi b/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-common.dtsi
+> index 5ab434c02ab6b..feb0eae4e6df4 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-common.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-common.dtsi
+> @@ -9,6 +9,7 @@
+>   * Common bits of the IOT2050 Basic variant, PG1 and PG2
+>   */
+>  
+> +#include "k3-am652.dtsi"
+>  #include "k3-am65-iot2050-common.dtsi"
+>  
+>  / {
+> @@ -17,16 +18,6 @@ memory@80000000 {
+>  		/* 1G RAM */
+>  		reg = <0x00000000 0x80000000 0x00000000 0x40000000>;
+>  	};
+> -
+> -	cpus {
+> -		cpu-map {
+> -			/delete-node/ cluster1;
+> -		};
+> -		/delete-node/ cpu@100;
+> -		/delete-node/ cpu@101;
+> -	};
+> -
+> -	/delete-node/ l2-cache1;
+>  };
+>  
+>  /* eMMC */
+> diff --git a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-common.dtsi b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-common.dtsi
+> index be55494b1f3fc..ff2fdc2e12e3c 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-common.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-common.dtsi
+> @@ -11,6 +11,7 @@
+>  
+>  /dts-v1/;
+>  
+> +#include "k3-am654.dtsi"
+>  #include "k3-am65-iot2050-common.dtsi"
+>  
+>  / {
+> -- 
+> 2.39.2
+> 
 
-diff --git a/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
-index 95ac25e1a3b4..4a0be9b45712 100644
---- a/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
-@@ -190,7 +190,7 @@ cpu_crit3: trip1 {
- 
- 	cpu-pmu {
- 		compatible = "qcom,krait-pmu";
--		interrupts = <1 10 0x304>;
-+		interrupts = <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_HIGH)>;
- 	};
- 
- 	clocks {
-@@ -244,7 +244,7 @@ apps_smsm: apps@0 {
- 
- 		modem_smsm: modem@1 {
- 			reg = <1>;
--			interrupts = <0 38 IRQ_TYPE_EDGE_RISING>;
-+			interrupts = <GIC_SPI 38 IRQ_TYPE_EDGE_RISING>;
- 
- 			interrupt-controller;
- 			#interrupt-cells = <2>;
-@@ -252,7 +252,7 @@ modem_smsm: modem@1 {
- 
- 		q6_smsm: q6@2 {
- 			reg = <2>;
--			interrupts = <0 89 IRQ_TYPE_EDGE_RISING>;
-+			interrupts = <GIC_SPI 89 IRQ_TYPE_EDGE_RISING>;
- 
- 			interrupt-controller;
- 			#interrupt-cells = <2>;
-@@ -260,7 +260,7 @@ q6_smsm: q6@2 {
- 
- 		wcnss_smsm: wcnss@3 {
- 			reg = <3>;
--			interrupts = <0 204 IRQ_TYPE_EDGE_RISING>;
-+			interrupts = <GIC_SPI 204 IRQ_TYPE_EDGE_RISING>;
- 
- 			interrupt-controller;
- 			#interrupt-cells = <2>;
-@@ -268,7 +268,7 @@ wcnss_smsm: wcnss@3 {
- 
- 		dsps_smsm: dsps@4 {
- 			reg = <4>;
--			interrupts = <0 137 IRQ_TYPE_EDGE_RISING>;
-+			interrupts = <GIC_SPI 137 IRQ_TYPE_EDGE_RISING>;
- 
- 			interrupt-controller;
- 			#interrupt-cells = <2>;
-@@ -299,7 +299,7 @@ tlmm_pinmux: pinctrl@800000 {
- 			#gpio-cells = <2>;
- 			interrupt-controller;
- 			#interrupt-cells = <2>;
--			interrupts = <0 16 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
- 
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&ps_hold>;
-@@ -321,9 +321,9 @@ intc: interrupt-controller@2000000 {
- 		timer@200a000 {
- 			compatible = "qcom,kpss-wdt-apq8064", "qcom,kpss-timer",
- 				     "qcom,msm-timer";
--			interrupts = <1 1 0x301>,
--				     <1 2 0x301>,
--				     <1 3 0x301>;
-+			interrupts = <GIC_PPI 1 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_EDGE_RISING)>,
-+				     <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_EDGE_RISING)>,
-+				     <GIC_PPI 3 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_EDGE_RISING)>;
- 			reg = <0x0200a000 0x100>;
- 			clock-frequency = <27000000>;
- 			cpu-offset = <0x80000>;
-@@ -411,7 +411,7 @@ gsbi1_serial: serial@12450000 {
- 				compatible = "qcom,msm-uartdm-v1.3", "qcom,msm-uartdm";
- 				reg = <0x12450000 0x100>,
- 				      <0x12400000 0x03>;
--				interrupts = <0 193 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupts = <GIC_SPI 193 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GSBI1_UART_CLK>, <&gcc GSBI1_H_CLK>;
- 				clock-names = "core", "iface";
- 				status = "disabled";
-@@ -423,7 +423,7 @@ gsbi1_i2c: i2c@12460000 {
- 				pinctrl-1 = <&i2c1_pins_sleep>;
- 				pinctrl-names = "default", "sleep";
- 				reg = <0x12460000 0x1000>;
--				interrupts = <0 194 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupts = <GIC_SPI 194 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GSBI1_QUP_CLK>, <&gcc GSBI1_H_CLK>;
- 				clock-names = "core", "iface";
- 				#address-cells = <1>;
-@@ -452,7 +452,7 @@ gsbi2_i2c: i2c@124a0000 {
- 				pinctrl-0 = <&i2c2_pins>;
- 				pinctrl-1 = <&i2c2_pins_sleep>;
- 				pinctrl-names = "default", "sleep";
--				interrupts = <0 196 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupts = <GIC_SPI 196 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GSBI2_QUP_CLK>, <&gcc GSBI2_H_CLK>;
- 				clock-names = "core", "iface";
- 				#address-cells = <1>;
-@@ -539,7 +539,7 @@ gsbi5_serial: serial@1a240000 {
- 				compatible = "qcom,msm-uartdm-v1.3", "qcom,msm-uartdm";
- 				reg = <0x1a240000 0x100>,
- 				      <0x1a200000 0x03>;
--				interrupts = <0 154 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupts = <GIC_SPI 154 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GSBI5_UART_CLK>, <&gcc GSBI5_H_CLK>;
- 				clock-names = "core", "iface";
- 				status = "disabled";
-@@ -548,7 +548,7 @@ gsbi5_serial: serial@1a240000 {
- 			gsbi5_spi: spi@1a280000 {
- 				compatible = "qcom,spi-qup-v1.1.1";
- 				reg = <0x1a280000 0x1000>;
--				interrupts = <0 155 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupts = <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>;
- 				pinctrl-0 = <&spi5_default>;
- 				pinctrl-1 = <&spi5_sleep>;
- 				pinctrl-names = "default", "sleep";
-@@ -575,7 +575,7 @@ gsbi6_serial: serial@16540000 {
- 				compatible = "qcom,msm-uartdm-v1.3", "qcom,msm-uartdm";
- 				reg = <0x16540000 0x100>,
- 				      <0x16500000 0x03>;
--				interrupts = <0 156 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GSBI6_UART_CLK>, <&gcc GSBI6_H_CLK>;
- 				clock-names = "core", "iface";
- 				status = "disabled";
-@@ -611,7 +611,7 @@ gsbi7_serial: serial@16640000 {
- 				compatible = "qcom,msm-uartdm-v1.3", "qcom,msm-uartdm";
- 				reg = <0x16640000 0x1000>,
- 				      <0x16600000 0x1000>;
--				interrupts = <0 158 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupts = <GIC_SPI 158 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GSBI7_UART_CLK>, <&gcc GSBI7_H_CLK>;
- 				clock-names = "core", "iface";
- 				status = "disabled";
-@@ -908,7 +908,7 @@ sdcc3: mmc@12180000 {
- 		sdcc3bam: dma-controller@12182000 {
- 			compatible = "qcom,bam-v1.3.0";
- 			reg = <0x12182000 0x8000>;
--			interrupts = <0 96 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&gcc SDC3_H_CLK>;
- 			clock-names = "bam_clk";
- 			#dma-cells = <1>;
-@@ -936,7 +936,7 @@ sdcc4: mmc@121c0000 {
- 		sdcc4bam: dma-controller@121c2000 {
- 			compatible = "qcom,bam-v1.3.0";
- 			reg = <0x121c2000 0x8000>;
--			interrupts = <0 95 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupts = <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&gcc SDC4_H_CLK>;
- 			clock-names = "bam_clk";
- 			#dma-cells = <1>;
-@@ -965,7 +965,7 @@ sdcc1: mmc@12400000 {
- 		sdcc1bam: dma-controller@12402000 {
- 			compatible = "qcom,bam-v1.3.0";
- 			reg = <0x12402000 0x8000>;
--			interrupts = <0 98 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&gcc SDC1_H_CLK>;
- 			clock-names = "bam_clk";
- 			#dma-cells = <1>;
-diff --git a/arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi b/arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi
-index b9c8517e15e7..114c92b4d8d4 100644
---- a/arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi
-@@ -162,10 +162,10 @@ scm {
- 
- 	timer {
- 		compatible = "arm,armv7-timer";
--		interrupts = <1 2 0xf08>,
--			     <1 3 0xf08>,
--			     <1 4 0xf08>,
--			     <1 1 0xf08>;
-+		interrupts = <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 3 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 4 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 1 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
- 		clock-frequency = <48000000>;
- 		always-on;
- 	};
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8660.dtsi b/arch/arm/boot/dts/qcom/qcom-msm8660.dtsi
-index a7c245b9c8f9..17188fe54617 100644
---- a/arch/arm/boot/dts/qcom/qcom-msm8660.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8660.dtsi
-@@ -47,7 +47,7 @@ memory {
- 
- 	cpu-pmu {
- 		compatible = "qcom,scorpion-mp-pmu";
--		interrupts = <1 9 0x304>;
-+		interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_HIGH)>;
- 	};
- 
- 	clocks {
-@@ -89,9 +89,9 @@ intc: interrupt-controller@2080000 {
- 
- 		timer@2000000 {
- 			compatible = "qcom,scss-timer", "qcom,msm-timer";
--			interrupts = <1 0 0x301>,
--				     <1 1 0x301>,
--				     <1 2 0x301>;
-+			interrupts = <GIC_PPI 0 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_EDGE_RISING)>,
-+				     <GIC_PPI 1 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_EDGE_RISING)>,
-+				     <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_EDGE_RISING)>;
- 			reg = <0x02000000 0x100>;
- 			clock-frequency = <27000000>,
- 					  <32768>;
-@@ -105,7 +105,7 @@ tlmm: pinctrl@800000 {
- 			gpio-controller;
- 			gpio-ranges = <&tlmm 0 0 173>;
- 			#gpio-cells = <2>;
--			interrupts = <0 16 0x4>;
-+			interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-controller;
- 			#interrupt-cells = <2>;
- 
-@@ -283,7 +283,7 @@ gsbi12_serial: serial@19c40000 {
- 				compatible = "qcom,msm-uartdm-v1.3", "qcom,msm-uartdm";
- 				reg = <0x19c40000 0x1000>,
- 				      <0x19c00000 0x1000>;
--				interrupts = <0 195 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupts = <GIC_SPI 195 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GSBI12_UART_CLK>, <&gcc GSBI12_H_CLK>;
- 				clock-names = "core", "iface";
- 				status = "disabled";
-@@ -292,7 +292,7 @@ gsbi12_serial: serial@19c40000 {
- 			gsbi12_i2c: i2c@19c80000 {
- 				compatible = "qcom,i2c-qup-v1.1.1";
- 				reg = <0x19c80000 0x1000>;
--				interrupts = <0 196 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupts = <GIC_SPI 196 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&gcc GSBI12_QUP_CLK>, <&gcc GSBI12_H_CLK>;
- 				clock-names = "core", "iface";
- 				#address-cells = <1>;
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom/qcom-msm8974.dtsi
-index ee202f3f161e..c15c4e6e7754 100644
---- a/arch/arm/boot/dts/qcom/qcom-msm8974.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8974.dtsi
-@@ -31,7 +31,7 @@ sleep_clk: sleep_clk {
- 	cpus {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
--		interrupts = <GIC_PPI 9 0xf04>;
-+		interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
- 
- 		CPU0: cpu@0 {
- 			compatible = "qcom,krait";
-@@ -110,7 +110,7 @@ memory {
- 
- 	pmu {
- 		compatible = "qcom,krait-pmu";
--		interrupts = <GIC_PPI 7 0xf04>;
-+		interrupts = <GIC_PPI 7 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
- 	};
- 
- 	rpm: remoteproc {
-@@ -538,7 +538,7 @@ blsp1_i2c1: i2c@f9923000 {
- 			status = "disabled";
- 			compatible = "qcom,i2c-qup-v2.1.1";
- 			reg = <0xf9923000 0x1000>;
--			interrupts = <0 95 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupts = <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&gcc GCC_BLSP1_QUP1_I2C_APPS_CLK>, <&gcc GCC_BLSP1_AHB_CLK>;
- 			clock-names = "core", "iface";
- 			pinctrl-names = "default", "sleep";
-@@ -566,7 +566,7 @@ blsp1_i2c3: i2c@f9925000 {
- 			status = "disabled";
- 			compatible = "qcom,i2c-qup-v2.1.1";
- 			reg = <0xf9925000 0x1000>;
--			interrupts = <0 97 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&gcc GCC_BLSP1_QUP3_I2C_APPS_CLK>, <&gcc GCC_BLSP1_AHB_CLK>;
- 			clock-names = "core", "iface";
- 			pinctrl-names = "default", "sleep";
-@@ -666,7 +666,7 @@ blsp2_i2c6: i2c@f9968000 {
- 			status = "disabled";
- 			compatible = "qcom,i2c-qup-v2.1.1";
- 			reg = <0xf9968000 0x1000>;
--			interrupts = <0 106 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupts = <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&gcc GCC_BLSP2_QUP6_I2C_APPS_CLK>, <&gcc GCC_BLSP2_AHB_CLK>;
- 			clock-names = "core", "iface";
- 			pinctrl-names = "default", "sleep";
-@@ -2410,10 +2410,10 @@ gpu2_alert0: trip-point0 {
- 
- 	timer {
- 		compatible = "arm,armv7-timer";
--		interrupts = <GIC_PPI 2 0xf08>,
--			     <GIC_PPI 3 0xf08>,
--			     <GIC_PPI 4 0xf08>,
--			     <GIC_PPI 1 0xf08>;
-+		interrupts = <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 3 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 4 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 1 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
- 		clock-frequency = <19200000>;
- 	};
- };
-diff --git a/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi b/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi
-index 49d9bfeb0c7f..dcb0179996a2 100644
---- a/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi
-@@ -728,57 +728,57 @@ timer@17820000 {
- 
- 			frame@17821000 {
- 				frame-number = <0>;
--				interrupts = <GIC_SPI 7 0x4>,
--					     <GIC_SPI 6 0x4>;
-+				interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
-+					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
- 				reg = <0x17821000 0x1000>,
- 				      <0x17822000 0x1000>;
- 			};
- 
- 			frame@17823000 {
- 				frame-number = <1>;
--				interrupts = <GIC_SPI 8 0x4>;
-+				interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
- 				reg = <0x17823000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17824000 {
- 				frame-number = <2>;
--				interrupts = <GIC_SPI 9 0x4>;
-+				interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
- 				reg = <0x17824000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17825000 {
- 				frame-number = <3>;
--				interrupts = <GIC_SPI 10 0x4>;
-+				interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
- 				reg = <0x17825000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17826000 {
- 				frame-number = <4>;
--				interrupts = <GIC_SPI 11 0x4>;
-+				interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
- 				reg = <0x17826000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17827000 {
- 				frame-number = <5>;
--				interrupts = <GIC_SPI 12 0x4>;
-+				interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
- 				reg = <0x17827000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17828000 {
- 				frame-number = <6>;
--				interrupts = <GIC_SPI 13 0x4>;
-+				interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
- 				reg = <0x17828000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17829000 {
- 				frame-number = <7>;
--				interrupts = <GIC_SPI 14 0x4>;
-+				interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
- 				reg = <0x17829000 0x1000>;
- 				status = "disabled";
- 			};
-diff --git a/arch/arm/boot/dts/qcom/qcom-sdx65.dtsi b/arch/arm/boot/dts/qcom/qcom-sdx65.dtsi
-index bad47174b66c..9ab3e7166b37 100644
---- a/arch/arm/boot/dts/qcom/qcom-sdx65.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-sdx65.dtsi
-@@ -671,57 +671,57 @@ timer@17820000 {
- 
- 			frame@17821000 {
- 				frame-number = <0>;
--				interrupts = <GIC_SPI 7 0x4>,
--					     <GIC_SPI 6 0x4>;
-+				interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
-+					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
- 				reg = <0x17821000 0x1000>,
- 				      <0x17822000 0x1000>;
- 			};
- 
- 			frame@17823000 {
- 				frame-number = <1>;
--				interrupts = <GIC_SPI 8 0x4>;
-+				interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
- 				reg = <0x17823000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17824000 {
- 				frame-number = <2>;
--				interrupts = <GIC_SPI 9 0x4>;
-+				interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
- 				reg = <0x17824000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17825000 {
- 				frame-number = <3>;
--				interrupts = <GIC_SPI 10 0x4>;
-+				interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
- 				reg = <0x17825000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17826000 {
- 				frame-number = <4>;
--				interrupts = <GIC_SPI 11 0x4>;
-+				interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
- 				reg = <0x17826000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17827000 {
- 				frame-number = <5>;
--				interrupts = <GIC_SPI 12 0x4>;
-+				interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
- 				reg = <0x17827000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17828000 {
- 				frame-number = <6>;
--				interrupts = <GIC_SPI 13 0x4>;
-+				interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
- 				reg = <0x17828000 0x1000>;
- 				status = "disabled";
- 			};
- 
- 			frame@17829000 {
- 				frame-number = <7>;
--				interrupts = <GIC_SPI 14 0x4>;
-+				interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
- 				reg = <0x17829000 0x1000>;
- 				status = "disabled";
- 			};
-@@ -808,10 +808,10 @@ apps_bcm_voter: bcm-voter {
- 
- 	timer {
- 		compatible = "arm,armv7-timer";
--		interrupts = <1 13 0xf08>,
--			<1 12 0xf08>,
--			<1 10 0xf08>,
--			<1 11 0xf08>;
-+		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 12 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
- 		clock-frequency = <19200000>;
- 	};
- };
 -- 
-2.34.1
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
