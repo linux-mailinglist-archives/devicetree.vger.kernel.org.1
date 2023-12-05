@@ -1,631 +1,513 @@
-Return-Path: <devicetree+bounces-21797-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21798-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF2E88052F5
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 12:34:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EA258052FE
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 12:34:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D3E991C20B36
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 11:34:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B2871281725
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 11:34:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB5E7697A0;
-	Tue,  5 Dec 2023 11:34:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD85C697AE;
+	Tue,  5 Dec 2023 11:34:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="f3B/kA5J"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ihKJJJT7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 605AA10D0
-	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 03:33:57 -0800 (PST)
-Received: by mail-yb1-xb2e.google.com with SMTP id 3f1490d57ef6-dae0ab8ac3eso3912980276.0
-        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 03:33:57 -0800 (PST)
+Received: from mail-qv1-xf32.google.com (mail-qv1-xf32.google.com [IPv6:2607:f8b0:4864:20::f32])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5203D67
+	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 03:34:30 -0800 (PST)
+Received: by mail-qv1-xf32.google.com with SMTP id 6a1803df08f44-67ad891ff36so6555636d6.1
+        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 03:34:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701776036; x=1702380836; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZhsRabMwHLdT/83BOzk87yIZ/nT96lpL8CbTHmgEiXY=;
-        b=f3B/kA5JNZI9zVwxD9Mol9SJzC0o2r25FeuGA7endeL3isP21hE5xK73egCB8a1pxg
-         3HI/jeoYP3S6pUELNoE+8HCFrRhjkINx3bRhqRIdvRwroaazLmEAh97PLletYulTmmJY
-         +QavoVznQDvgrPlQFTIkvz4TkQDjsdNUcb1v7fW/tK71MNrYpdVFsKtOI4DDuHHEarHB
-         szsJ6FWzOJOi/0IV3hiCuZW7IAf6r1/Hk3EeJ5D78lE4CLMchjWjlP57SN77fb2h2oJx
-         3Mh8JP2d3IZwdB3qp6t2IGPvVjz3CgCHSfXlpD95kiZjXk+/GChGZC/O+CnDzsgYxtyq
-         GeUg==
+        d=linaro.org; s=google; t=1701776070; x=1702380870; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iwtFK4uZk8YXwxxWxxu0bCEynVzQGRZAOw69ApxLFiQ=;
+        b=ihKJJJT7y0e/y0ZPDK5C6hInE0FnJ52aCMDP3gAWADbxyCSIkDsmt8hAnpyUMtyDo2
+         SGFZhluROoQkXTzSPDmhl+oXxem4unyoDYWrUjW6OyBpl0J07ebLSlw0s8GziB/1sn+6
+         3fd3nPeudbVohPJPYWRYMrz0PTCkMrl+F13/Bvx7SGrYhbQQjhmenqnqPyjT2JYjuqPH
+         wEAaPL0Qp4QE27v6bZBqCe5cb8MjEYZNrKOKpARWIFRUGr8g2An+3i6CE++uEGFkCsh5
+         ws31sKK7XA3yn7GchqUoCrrjaJt1C5/d5FPpF8ssXHj1PzAwRktV6avns6TbgpWPnZ3z
+         X3Cg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701776036; x=1702380836;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ZhsRabMwHLdT/83BOzk87yIZ/nT96lpL8CbTHmgEiXY=;
-        b=eLN2gnomZzhs7/GZo7D8KmCVeqTr48um2c7P6NMoY3O8th3qQ//GVJufW9ee+xq8E8
-         BmoIFCUVWb62f6iFQtEzpbVsjDn5ig/Sksev1cAFhjnwdrGnIBdOmr5056y9z+YvtFez
-         P+EsaHGHsWrNccJGodivhnL3wQqD4zb7cL4VqPo0yKuYLbsh5+kBVUNbxgQFU2qqbabK
-         956gBaGRi+OiGEeri/uqNO2r/kmTvPjNzAsboTUJD44Ua9TKp3svjEy6AsxJ4CcbjsvV
-         7fYibKw8A777nd3fySQ12U2yB9FBHs66hLK9FpjUiTWd7Wc8dI1c+O7WFDD0rr3C68TF
-         +vbg==
-X-Gm-Message-State: AOJu0Yx18DgibS02uEXToh/69wfhMs6y/y4SMv1B/wdIlEwg+t3u81UJ
-	9sumiFk2oXJxh5hQYrW7sKNJL8EufWZmFihFHwLsVw==
-X-Google-Smtp-Source: AGHT+IEYX0mlAXrPoEqnAG4It1U3rjYFagPejC1cjhV8FDSQilebuKlVLTmrSJdwmk4gdJOPTf5nWSvplQ0sZq7CrmE=
-X-Received: by 2002:a25:ccd5:0:b0:db7:dacf:6ff4 with SMTP id
- l204-20020a25ccd5000000b00db7dacf6ff4mr4673468ybf.124.1701776036477; Tue, 05
- Dec 2023 03:33:56 -0800 (PST)
+        d=1e100.net; s=20230601; t=1701776070; x=1702380870;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=iwtFK4uZk8YXwxxWxxu0bCEynVzQGRZAOw69ApxLFiQ=;
+        b=h+FKBVhEtDfjO+ePIp3zSeKVDdGZVvR3W7+n5NzhdEPwiJoAxoYfPsadL4cZAwi1Aj
+         QxxIS23GPP2j0xGE9LC7zPzX7BRyiauAKvxJ9kzD0C72rW6HI9Otasf/uSKV+EFsrkGm
+         Ou/1Ch8eB8FfImFkJ51m4KTeAQNiAXbd0n1BvyLi8pFmKuRdrZRYA5OAt+KsK2BEFGXQ
+         Qrg4lZlTiASUeGbKa+jeWiCkKGWLd9C7PMitJjWuUiRBYZ/QrMXZVku5N/hSqyuyeAhJ
+         hoYPsz4lOKHyzot6G3RJBIoW5VCOEFxP04kagpOa3kLugkWEVZGsGOY0l6xcRcHezvN+
+         P4jQ==
+X-Gm-Message-State: AOJu0Yx4A0bYw/kNus/XhZaAgUtOONhHUWnzj8P1mplpH46rzuwljnrC
+	ENSXMkV9FMMt3iN9QIATKLUdDiTVMMxDI9wH7gg11g==
+X-Google-Smtp-Source: AGHT+IGx7N4HJp+W5DRsPvhVHmiYYxTg2xQR3uNUhGbspvlU5nXwTu6Ab40JkEXEQ/QdRnqcCARDEIeu+koLqGwogag=
+X-Received: by 2002:ad4:44a3:0:b0:67a:509c:78af with SMTP id
+ n3-20020ad444a3000000b0067a509c78afmr1430322qvt.60.1701776069546; Tue, 05 Dec
+ 2023 03:34:29 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231204123315.28456-1-keith.zhao@starfivetech.com> <20231204123315.28456-4-keith.zhao@starfivetech.com>
-In-Reply-To: <20231204123315.28456-4-keith.zhao@starfivetech.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 5 Dec 2023 13:33:45 +0200
-Message-ID: <CAA8EJpr784=-W9SuM6XH3++G1UXP2acnfRJoBktmx61_NMsZ0w@mail.gmail.com>
-Subject: Re: [v3 3/6] drm/vs: Register DRM device
-To: Keith Zhao <keith.zhao@starfivetech.com>
-Cc: devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	aou@eecs.berkeley.edu, suijingfeng@loongson.cn, tzimmermann@suse.de, 
-	paul.walmsley@sifive.com, mripard@kernel.org, xingyu.wu@starfivetech.com, 
-	jack.zhu@starfivetech.com, palmer@dabbelt.com, 
-	krzysztof.kozlowski+dt@linaro.org, william.qiu@starfivetech.com, 
-	shengyang.chen@starfivetech.com, changhuang.liang@starfivetech.com
+References: <20231201160925.3136868-1-peter.griffin@linaro.org>
+ <20231201160925.3136868-14-peter.griffin@linaro.org> <CAPLW+4nJCabQhyGrTKZhKG40Z9ysRq7Zms413JrhZKzeYzad5w@mail.gmail.com>
+In-Reply-To: <CAPLW+4nJCabQhyGrTKZhKG40Z9ysRq7Zms413JrhZKzeYzad5w@mail.gmail.com>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Tue, 5 Dec 2023 11:34:18 +0000
+Message-ID: <CADrjBPrq_CTzZsP+5cqpNkkyVYHu9Yey0AF+m4VxcSEz+Z+wrQ@mail.gmail.com>
+Subject: Re: [PATCH v5 13/20] pinctrl: samsung: Add filter selection support
+ for alive banks
+To: Sam Protsenko <semen.protsenko@linaro.org>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org, 
+	tomasz.figa@gmail.com, s.nawrocki@samsung.com, linus.walleij@linaro.org, 
+	wim@linux-watchdog.org, linux@roeck-us.net, catalin.marinas@arm.com, 
+	will@kernel.org, arnd@arndb.de, olof@lixom.net, gregkh@linuxfoundation.org, 
+	jirislaby@kernel.org, cw00.choi@samsung.com, alim.akhtar@samsung.com, 
+	tudor.ambarus@linaro.org, andre.draszik@linaro.org, saravanak@google.com, 
+	willmcvicker@google.com, soc@kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-watchdog@vger.kernel.org, kernel-team@android.com, 
+	linux-serial@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 4 Dec 2023 at 14:33, Keith Zhao <keith.zhao@starfivetech.com> wrote:
+Hi Sam,
+
+Thanks for your review.
+
+On Sat, 2 Dec 2023 at 00:22, Sam Protsenko <semen.protsenko@linaro.org> wro=
+te:
 >
-> Implement drm device registration interface
+> On Fri, Dec 1, 2023 at 10:11=E2=80=AFAM Peter Griffin <peter.griffin@lina=
+ro.org> wrote:
+> >
+> > Newer Exynos SoCs have a filter selection register on alive bank pins.
+> > This allows the selection of a digital or delay filter for each pin. If
+> > the filter selection register is not available then the default filter
+> > (digital) is applied.
+> >
+> > On suspend we apply the analog filter to all pins in the bank (as the
+> > digital filter relies on a clock). On resume the digital filter is
+> > reapplied to all pins in the bank. The digital filter is working via
+> > clock and has an adjustable filter delay register bitfield, whereas
+> > the analog filter uses a fixed delay.
+> >
+> > The filter determines to what extent signal fluctuations received throu=
+gh
+> > the pad are considered glitches.
+> >
+> > The code path can be exercised using
+> > echo mem > /sys/power/state
+> > And then wake the device using a eint gpio
 >
-> Signed-off-by: Keith Zhao <keith.zhao@starfivetech.com>
-> ---
->  MAINTAINERS                              |   1 +
->  drivers/gpu/drm/Kconfig                  |   2 +
->  drivers/gpu/drm/Makefile                 |   1 +
->  drivers/gpu/drm/verisilicon/Kconfig      |  13 +
->  drivers/gpu/drm/verisilicon/Makefile     |   6 +
->  drivers/gpu/drm/verisilicon/vs_drv.c     | 316 +++++++++++++++++++++++
->  drivers/gpu/drm/verisilicon/vs_drv.h     |  42 +++
->  drivers/gpu/drm/verisilicon/vs_modeset.c |  39 +++
->  drivers/gpu/drm/verisilicon/vs_modeset.h |  10 +
->  9 files changed, 430 insertions(+)
->  create mode 100644 drivers/gpu/drm/verisilicon/Kconfig
->  create mode 100644 drivers/gpu/drm/verisilicon/Makefile
->  create mode 100644 drivers/gpu/drm/verisilicon/vs_drv.c
->  create mode 100644 drivers/gpu/drm/verisilicon/vs_drv.h
->  create mode 100644 drivers/gpu/drm/verisilicon/vs_modeset.c
->  create mode 100644 drivers/gpu/drm/verisilicon/vs_modeset.h
+> Period.
+
+Will fix
+
 >
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 7caaadb83f3f..8dc9ebfe4605 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -6887,6 +6887,7 @@ L:        dri-devel@lists.freedesktop.org
->  S:     Maintained
->  T:     git git://anongit.freedesktop.org/drm/drm-misc
->  F:     Documentation/devicetree/bindings/display/starfive/
-> +F:     drivers/gpu/drm/verisilicon/
+> >
+> > Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> > ---
+> >  drivers/pinctrl/samsung/pinctrl-exynos.c  | 89 ++++++++++++++++++++++-
+> >  drivers/pinctrl/samsung/pinctrl-exynos.h  |  7 ++
+> >  drivers/pinctrl/samsung/pinctrl-samsung.c |  2 +
+> >  drivers/pinctrl/samsung/pinctrl-samsung.h | 22 ++++++
+> >  4 files changed, 119 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/pinctrl/samsung/pinctrl-exynos.c b/drivers/pinctrl=
+/samsung/pinctrl-exynos.c
+> > index 6b58ec84e34b..56fc11a1fe2f 100644
+> > --- a/drivers/pinctrl/samsung/pinctrl-exynos.c
+> > +++ b/drivers/pinctrl/samsung/pinctrl-exynos.c
+> > @@ -269,6 +269,71 @@ struct exynos_eint_gpio_save {
+> >         u32 eint_mask;
+> >  };
+> >
+> > +/*
+> > + * Set the desired filter (digital or analog delay) to every pin in
+> > + * the bank. Note the filter selection bitfield is only found on alive
+> > + * banks. The filter determines to what extent signal fluctuations
+> > + * received through the pad are considered glitches.
+> > + */
+> > +static void exynos_eint_flt_config(struct samsung_pinctrl_drv_data *d,
+> > +                                  struct samsung_pin_bank *bank, int f=
+ilter)
+> > +{
+> > +       unsigned int flt_reg, flt_con =3D 0;
+> > +       unsigned int val, shift;
+> > +       int i;
+> > +       int loop_cnt;
+> > +
+> > +       /*
+> > +        * The FLTCON register has the following layout
+> > +        *
+> > +        * BitfieldName[PinNum][Bit:Bit]
+> > +        * FLT_EN[3][31] FLT_SEL[3][30] FLT_WIDTH[3][29:24]
+> > +        * FLT_EN[2][23] FLT_SEL[2][22] FLT_WIDTH[2][21:16]
+> > +        * FLT_EN[1][15] FLT_SEL[1][14] FLT_WIDTH[1][13:8]
+> > +        * FLT_EN[0][7]  FLT_SEL[0][6]  FLT_WIDTH[0][5:0]
+> > +        *
+> > +        * FLT_EN       0x0 =3D Disable, 0x1=3DEnable
+> > +        * FLT_SEL      0x0 =3D Delay filter, 0x1 Digital filter
+> > +        * FLT_WIDTH    Filtering width. Valid when FLT_SEL is 0x1
+> > +        */
+> > +
+> > +       flt_con |=3D EXYNOS9_FLTCON_EN;
+> > +
+> > +       if (filter)
+> > +               flt_con |=3D EXYNOS9_FLTCON_DIGITAL;
+> > +
+> > +       flt_reg =3D EXYNOS_GPIO_EFLTCON_OFFSET + bank->fltcon_offset;
+> > +
+> > +       /*
+> > +        * If nr_pins > 4, we should set FLTCON0 register fully.
+> > +        * (pin0 ~ 3). So loop 4 times in case of FLTCON0.
+> > +        */
+> > +       if (bank->nr_pins > EXYNOS9_FLTCON_NR_PIN)
+> > +               loop_cnt =3D EXYNOS9_FLTCON_NR_PIN;
+> > +       else
+> > +               loop_cnt =3D bank->nr_pins;
+> > +
+> > +       val =3D readl(d->virt_base + flt_reg);
+> > +       for (i =3D 0; i < loop_cnt; i++) {
+> > +               shift =3D i * EXYNOS9_FLTCON_LEN;
+> > +               val &=3D ~(EXYNOS9_FLTCON_MASK << shift);
+> > +               val |=3D (flt_con << shift);
+> > +       }
+> > +       writel(val, d->virt_base + flt_reg);
+> > +
+> > +       /* Loop for FLTCON1 pin 4 ~ 7 */
+> > +       if (bank->nr_pins > EXYNOS9_FLTCON_NR_PIN) {
+> > +               loop_cnt =3D (bank->nr_pins - EXYNOS9_FLTCON_NR_PIN);
+> > +               val =3D readl(d->virt_base + flt_reg + 0x4);
+> > +               for (i =3D 0; i < loop_cnt; i++) {
+> > +                       shift =3D i * EXYNOS9_FLTCON_LEN;
+> > +                       val &=3D ~(EXYNOS9_FLTCON_MASK << shift);
+> > +                       val |=3D (flt_con << shift);
+> > +               }
+> > +               writel(val, d->virt_base + flt_reg + 0x4);
+> > +       }
+> > +}
+> > +
 >
->  DRM DRIVER FOR TI DLPC3433 MIPI DSI TO DMD BRIDGE
->  M:     Jagan Teki <jagan@amarulasolutions.com>
-> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-> index 3eee8636f847..e8d53c2e7c86 100644
-> --- a/drivers/gpu/drm/Kconfig
-> +++ b/drivers/gpu/drm/Kconfig
-> @@ -394,6 +394,8 @@ source "drivers/gpu/drm/solomon/Kconfig"
+> This whole function needs a refactoring. Do you think below code looks be=
+tter?
+
+Yes it does!
 >
->  source "drivers/gpu/drm/sprd/Kconfig"
+> 8<----------------------------------------------------------------->8
+> static void exynos_eint_update_flt_reg(void __iomem *reg, int cnt, int co=
+n)
+> {
+>     unsigned int val, shift;
+>     int i;
 >
-> +source "drivers/gpu/drm/verisilicon/Kconfig"
-> +
->  config DRM_HYPERV
->         tristate "DRM Support for Hyper-V synthetic video device"
->         depends on DRM && PCI && MMU && HYPERV
-> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-> index 8e1bde059170..29e04acded06 100644
-> --- a/drivers/gpu/drm/Makefile
-> +++ b/drivers/gpu/drm/Makefile
-> @@ -198,3 +198,4 @@ obj-$(CONFIG_DRM_HYPERV) += hyperv/
->  obj-y                  += solomon/
->  obj-$(CONFIG_DRM_SPRD) += sprd/
->  obj-$(CONFIG_DRM_LOONGSON) += loongson/
-> +obj-$(CONFIG_DRM_VERISILICON) += verisilicon/
-> diff --git a/drivers/gpu/drm/verisilicon/Kconfig b/drivers/gpu/drm/verisilicon/Kconfig
-> new file mode 100644
-> index 000000000000..e10fa97635aa
-> --- /dev/null
-> +++ b/drivers/gpu/drm/verisilicon/Kconfig
-> @@ -0,0 +1,13 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +config DRM_VERISILICON
-> +       tristate "DRM Support for VeriSilicon"
-> +       depends on DRM
-> +       select DRM_KMS_HELPER
-> +       select DRM_GEM_DMA_HELPER
-> +       select CMA
-> +       select DMA_CMA
-> +       help
-> +         Choose this option if you have a VeriSilicon soc chipset.
-> +         This driver provides VeriSilicon kernel mode
-> +         setting and buffer management. It does not
-> +         provide 2D or 3D acceleration.
-> diff --git a/drivers/gpu/drm/verisilicon/Makefile b/drivers/gpu/drm/verisilicon/Makefile
-> new file mode 100644
-> index 000000000000..d785a1dfaa7f
-> --- /dev/null
-> +++ b/drivers/gpu/drm/verisilicon/Makefile
-> @@ -0,0 +1,6 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +
-> +vs_drm-objs := vs_drv.o \
-> +              vs_modeset.o
-> +
-> +obj-$(CONFIG_DRM_VERISILICON) += vs_drm.o
-> diff --git a/drivers/gpu/drm/verisilicon/vs_drv.c b/drivers/gpu/drm/verisilicon/vs_drv.c
-> new file mode 100644
-> index 000000000000..4fb1f29ef84b
-> --- /dev/null
-> +++ b/drivers/gpu/drm/verisilicon/vs_drv.c
-> @@ -0,0 +1,316 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2023 VeriSilicon Holdings Co., Ltd.
-> + */
-> +#include <linux/clk.h>
-> +#include <linux/component.h>
-> +#include <linux/of_clk.h>
-> +#include <linux/pm_runtime.h>
-> +
-> +#include <drm/drm_aperture.h>
-> +#include <drm/drm_atomic_helper.h>
-> +#include <drm/drm_crtc.h>
-> +#include <drm/drm_crtc_helper.h>
-> +#include <drm/drm_fb_helper.h>
-> +#include <drm/drm_fbdev_generic.h>
-> +#include <drm/drm_file.h>
-> +#include <drm/drm_gem_dma_helper.h>
-> +#include <drm/drm_module.h>
-> +#include <drm/drm_of.h>
-> +#include <drm/drm_probe_helper.h>
-> +#include <drm/drm_vblank.h>
-> +
-> +#include "vs_drv.h"
-> +#include "vs_modeset.h"
-> +
-> +#define DRV_NAME       "verisilicon"
-> +#define DRV_DESC       "Verisilicon DRM driver"
-> +#define DRV_DATE       "20230516"
-> +#define DRV_MAJOR      1
-> +#define DRV_MINOR      0
-> +
-> +static int vs_gem_dumb_create(struct drm_file *file, struct drm_device *dev,
-> +                             struct drm_mode_create_dumb *args)
-> +{
-> +       struct vs_drm_device *priv = to_vs_drm_private(dev);
-> +       unsigned int pitch = DIV_ROUND_UP(args->width * args->bpp, 8);
-> +
-> +       args->pitch = ALIGN(pitch, priv->pitch_alignment);
-> +       return drm_gem_dma_dumb_create_internal(file, dev, args);
-> +}
-> +
-> +DEFINE_DRM_GEM_FOPS(vs_drm_fops);
-> +
-> +static struct drm_driver vs_drm_driver = {
-> +       .driver_features        = DRIVER_MODESET | DRIVER_ATOMIC | DRIVER_GEM,
-> +
-> +       DRM_GEM_DMA_DRIVER_OPS_WITH_DUMB_CREATE(vs_gem_dumb_create),
-> +
-> +       .fops                   = &vs_drm_fops,
-> +       .name                   = DRV_NAME,
-> +       .desc                   = DRV_DESC,
-> +       .date                   = DRV_DATE,
-> +       .major                  = DRV_MAJOR,
-> +       .minor                  = DRV_MINOR,
-> +};
-> +
-> +static void vs_drm_device_release_clocks(void *res)
-> +{
-> +       struct vs_drm_device *priv = res;
-> +       unsigned int i;
-> +
-> +       reset_control_bulk_assert(priv->nrsts, priv->rst_vout);
-> +
-> +       for (i = 0; i < priv->clk_count; ++i) {
-> +               if (priv->clks[i]) {
-> +                       clk_disable_unprepare(priv->clks[i]);
-> +                       clk_put(priv->clks[i]);
-> +               }
-> +       }
-> +}
-> +
-> +static const char * const vout_resets[] = {
-> +       "axi",
-> +       "ahb",
-> +       "core",
-> +};
-> +
-> +static int vs_drm_device_init_clocks(struct vs_drm_device *priv)
-> +{
-> +       struct drm_device *dev = &priv->base;
-> +       struct platform_device *pdev = to_platform_device(dev->dev);
-> +       struct device_node *of_node = pdev->dev.of_node;
-> +       struct clk *clock;
-> +       unsigned int i;
-> +       int ret;
-> +
-> +       if (dev_get_platdata(&pdev->dev) || !of_node)
-> +               return 0;
-
-Drop dev_get_platdata(), you don't seem to use it.
-
-> +
-> +       priv->nrsts = ARRAY_SIZE(priv->rst_vout);
-> +       for (int i = 0; i < priv->nrsts; ++i)
-> +               priv->rst_vout[i].id = vout_resets[i];
-> +       ret = devm_reset_control_bulk_get_shared(dev->dev, priv->nrsts,
-> +                                                priv->rst_vout);
-> +       if (ret) {
-> +               drm_err(dev, "Failed to get reset controls\n");
-> +               return ret;
-> +       }
-> +
-> +       priv->clk_count = of_clk_get_parent_count(of_node);
-> +       if (!priv->clk_count)
-> +               return 0;
-> +
-> +       priv->clks = drmm_kzalloc(dev, priv->clk_count * sizeof(priv->clks[0]),
-> +                                 GFP_KERNEL);
-> +       if (!priv->clks)
-> +               return -ENOMEM;
-> +
-> +       for (i = 0; i < priv->clk_count; ++i) {
-> +               clock = of_clk_get(of_node, i);
-> +               if (IS_ERR(clock)) {
-> +                       ret = PTR_ERR(clock);
-> +                       if (ret == -EPROBE_DEFER)
-> +                               goto err;
-> +                       drm_err(dev, "clock %u not found: %d\n", i, ret);
-> +                       continue;
-> +               }
-> +               ret = clk_prepare_enable(clock);
-> +               if (ret) {
-> +                       drm_err(dev, "failed to enable clock %u: %d\n",
-> +                               i, ret);
-> +                       clk_put(clock);
-> +                       continue;
-> +               }
-> +               priv->clks[i] = clock;
-> +       }
-
-This can be rewritten as devm_clk_bulk_get_all()
-
-> +
-> +       ret = reset_control_bulk_deassert(priv->nrsts, priv->rst_vout);
-> +       if (ret)
-> +               return ret;
-
-It is a bad idea to mix get_resources kind of function with the actual
-resource control. Please move reset deassertion upwards.
-
-> +
-> +       return devm_add_action_or_reset(&pdev->dev,
-> +                                       vs_drm_device_release_clocks,
-> +                                       priv);
-> +
-> +err:
-> +       while (i) {
-> +               --i;
-> +               if (priv->clks[i]) {
-> +                       clk_disable_unprepare(priv->clks[i]);
-> +                       clk_put(priv->clks[i]);
-> +               }
-> +       }
-> +       return ret;
-> +}
-> +
-> +static int vs_drm_bind(struct device *dev)
-> +{
-> +       struct platform_device *pdev = to_platform_device(dev);
-> +       struct vs_drm_device *priv;
-> +       int ret;
-> +       struct drm_device *drm_dev;
-> +
-> +       /* Remove existing drivers that may own the framebuffer memory. */
-> +       ret = drm_aperture_remove_framebuffers(&vs_drm_driver);
-> +       if (ret)
-> +               return ret;
-
-If anything happens during the probe, your platform is left with no
-display output. I think it might be better to call this when the
-driver has acquired all the resources and is ready to start hw init.
-
-> +
-> +       priv = devm_drm_dev_alloc(dev, &vs_drm_driver, struct vs_drm_device, base);
-> +       if (IS_ERR(priv))
-> +               return PTR_ERR(priv);
-> +
-> +       priv->pitch_alignment = 64;
-> +
-> +       ret = dma_set_coherent_mask(priv->base.dev, DMA_BIT_MASK(40));
-> +       if (ret)
-> +               return ret;
-> +
-> +       drm_dev = &priv->base;
-> +       platform_set_drvdata(pdev, drm_dev);
-> +
-> +       ret = vs_drm_device_init_clocks(priv);
-> +       if (ret)
-> +               return ret;
-> +
-> +       vs_mode_config_init(drm_dev);
-> +
-> +       /* Now try and bind all our sub-components */
-> +       ret = component_bind_all(dev, drm_dev);
-> +       if (ret)
-> +               return ret;
-> +
-> +       ret = drm_vblank_init(drm_dev, drm_dev->mode_config.num_crtc);
-> +       if (ret)
-> +               return ret;
-> +
-> +       drm_mode_config_reset(drm_dev);
-> +
-> +       drm_kms_helper_poll_init(drm_dev);
-> +
-> +       ret = drm_dev_register(drm_dev, 0);
-> +       if (ret)
-> +               return ret;
-
-Teardown path is missing.
-
-> +
-> +       drm_fbdev_generic_setup(drm_dev, 32);
-> +
-> +       return 0;
-> +}
-> +
-> +static void vs_drm_unbind(struct device *dev)
-> +{
-> +       struct drm_device *drm_dev = dev_get_drvdata(dev);
-> +
-> +       drm_dev_unregister(drm_dev);
-> +       drm_kms_helper_poll_fini(drm_dev);
-> +       component_unbind_all(drm_dev->dev, drm_dev);
-> +}
-> +
-> +static const struct component_master_ops vs_drm_ops = {
-> +       .bind = vs_drm_bind,
-> +       .unbind = vs_drm_unbind,
-> +};
-> +
-> +static struct platform_driver *drm_sub_drivers[] = {
-> +};
-> +
-> +static struct component_match *vs_drm_match_add(struct device *dev)
-> +{
-> +       struct component_match *match = NULL;
-> +       int i;
-> +
-> +       for (i = 0; i < ARRAY_SIZE(drm_sub_drivers); ++i) {
-> +               struct platform_driver *drv = drm_sub_drivers[i];
-> +               struct device *p = NULL, *d;
-> +
-> +               while ((d = platform_find_device_by_driver(p, &drv->driver))) {
-> +                       put_device(p);
-> +
-> +                       drm_of_component_match_add(dev, &match, component_compare_of,
-> +                                                  d->of_node);
-> +                       p = d;
-> +               }
-> +               put_device(p);
-> +       }
-> +
-> +       return match ? match : ERR_PTR(-ENODEV);
-> +}
-> +
-> +static int vs_drm_platform_probe(struct platform_device *pdev)
-> +{
-> +       struct device *dev = &pdev->dev;
-> +       struct component_match *match;
-> +
-> +       match = vs_drm_match_add(dev);
-> +       if (IS_ERR(match))
-> +               return PTR_ERR(match);
-> +
-> +       return component_master_add_with_match(dev, &vs_drm_ops, match);
-
-I wonder if you can use drm_of_component_probe() instead?
-
-> +}
-> +
-> +static int vs_drm_platform_remove(struct platform_device *pdev)
-
-I think this should be void vs_drm_platform_remove() and .remove_new
-
-> +{
-> +       component_master_del(&pdev->dev, &vs_drm_ops);
-> +       return 0;
-> +}
-> +
-> +#ifdef CONFIG_PM_SLEEP
-> +static int vs_drm_suspend(struct device *dev)
-> +{
-> +       return drm_mode_config_helper_suspend(dev_get_drvdata(dev));
-> +}
-> +
-> +static int vs_drm_resume(struct device *dev)
-> +{
-> +       drm_mode_config_helper_resume(dev_get_drvdata(dev));
-
-return drm_mode_config_helper_resume()
-
-> +
-> +       return 0;
-> +}
-> +#endif
-> +
-> +static SIMPLE_DEV_PM_OPS(vs_drm_pm_ops, vs_drm_suspend, vs_drm_resume);
-> +
-> +static const struct of_device_id vs_drm_dt_ids[] = {
-> +       { .compatible = "starfive,display-subsystem", },
-> +       { },
-> +};
-> +
-> +MODULE_DEVICE_TABLE(of, vs_drm_dt_ids);
-> +
-> +static struct platform_driver vs_drm_platform_driver = {
-> +       .probe = vs_drm_platform_probe,
-> +       .remove = vs_drm_platform_remove,
-> +
-> +       .driver = {
-> +               .name = DRV_NAME,
-> +               .of_match_table = vs_drm_dt_ids,
-> +               .pm = &vs_drm_pm_ops,
-> +       },
-> +};
-> +
-> +static int __init vs_drm_init(void)
-> +{
-> +       int ret;
-> +
-> +       ret = platform_register_drivers(drm_sub_drivers, ARRAY_SIZE(drm_sub_drivers));
-> +       if (ret)
-> +               return ret;
-> +
-> +       ret = drm_platform_driver_register(&vs_drm_platform_driver);
-> +       if (ret)
-> +               platform_unregister_drivers(drm_sub_drivers, ARRAY_SIZE(drm_sub_drivers));
-> +
-> +       return ret;
-> +}
-> +
-> +static void __exit vs_drm_fini(void)
-> +{
-> +       platform_driver_unregister(&vs_drm_platform_driver);
-> +       platform_unregister_drivers(drm_sub_drivers, ARRAY_SIZE(drm_sub_drivers));
-> +}
-> +
-> +late_initcall_sync(vs_drm_init);
-> +module_exit(vs_drm_fini);
-> +
-> +MODULE_DESCRIPTION("VeriSilicon DRM Driver");
-> +MODULE_LICENSE("GPL");
-> diff --git a/drivers/gpu/drm/verisilicon/vs_drv.h b/drivers/gpu/drm/verisilicon/vs_drv.h
-> new file mode 100644
-> index 000000000000..ea2189772980
-> --- /dev/null
-> +++ b/drivers/gpu/drm/verisilicon/vs_drv.h
-> @@ -0,0 +1,42 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Copyright (C) 2023 VeriSilicon Holdings Co., Ltd.
-> + */
-> +
-> +#ifndef __VS_DRV_H__
-> +#define __VS_DRV_H__
-> +
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <drm/drm_drv.h>
-> +#include <drm/drm_gem.h>
-> +#include <drm/drm_managed.h>
-> +#include <linux/clk.h>
-> +#include <linux/reset.h>
-> +
-> +enum rst_vout {
-> +       RST_VOUT_AXI = 0,
-> +       RST_VOUT_AHB,
-> +       RST_VOUT_CORE,
-> +       RST_VOUT_NUM
-> +};
-
-Do you need these values? They can easily get out of sync with vout_rsts.
-
-> +
-> +/*@pitch_alignment: buffer pitch alignment required by sub-devices.*/
-> +struct vs_drm_device {
-> +       struct drm_device base;
-> +       unsigned int pitch_alignment;
-> +       /* clocks */
-> +       unsigned int clk_count;
-> +       struct clk **clks;
-> +
-> +       struct reset_control_bulk_data rst_vout[RST_VOUT_NUM];
-> +       int     nrsts;
-> +};
-> +
-> +static inline struct vs_drm_device *
-> +to_vs_drm_private(const struct drm_device *dev)
-> +{
-> +       return container_of(dev, struct vs_drm_device, base);
-> +}
-> +
-> +#endif /* __VS_DRV_H__ */
-> diff --git a/drivers/gpu/drm/verisilicon/vs_modeset.c b/drivers/gpu/drm/verisilicon/vs_modeset.c
-> new file mode 100644
-> index 000000000000..eaf406c1b7c7
-> --- /dev/null
-> +++ b/drivers/gpu/drm/verisilicon/vs_modeset.c
-> @@ -0,0 +1,39 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2023 VeriSilicon Holdings Co., Ltd.
-> + */
-> +
-> +#include <linux/module.h>
-> +
-> +#include <drm/drm_damage_helper.h>
-> +#include <drm/drm_fb_helper.h>
-> +#include <drm/drm_gem_framebuffer_helper.h>
-> +
-> +#include "vs_modeset.h"
-> +
-> +static const struct drm_mode_config_funcs vs_mode_config_funcs = {
-> +       .fb_create                       = drm_gem_fb_create,
-> +       .atomic_check            = drm_atomic_helper_check,
-> +       .atomic_commit           = drm_atomic_helper_commit,
-> +};
-> +
-> +static struct drm_mode_config_helper_funcs vs_mode_config_helpers = {
-> +       .atomic_commit_tail = drm_atomic_helper_commit_tail_rpm,
-> +};
-> +
-> +void vs_mode_config_init(struct drm_device *dev)
-> +{
-> +       int ret;
-> +
-> +       ret = drmm_mode_config_init(dev);
-> +       if (ret)
-> +               return;
-> +
-> +       dev->mode_config.min_width  = 0;
-> +       dev->mode_config.min_height = 0;
-> +       dev->mode_config.max_width  = 4096;
-> +       dev->mode_config.max_height = 4096;
-> +
-> +       dev->mode_config.funcs = &vs_mode_config_funcs;
-> +       dev->mode_config.helper_private = &vs_mode_config_helpers;
-> +}
-> diff --git a/drivers/gpu/drm/verisilicon/vs_modeset.h b/drivers/gpu/drm/verisilicon/vs_modeset.h
-> new file mode 100644
-> index 000000000000..bd04f81d2ad2
-> --- /dev/null
-> +++ b/drivers/gpu/drm/verisilicon/vs_modeset.h
-> @@ -0,0 +1,10 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Copyright (C) 2020 VeriSilicon Holdings Co., Ltd.
-> + */
-> +
-> +#ifndef __VS_MODESET_H__
-> +#define __VS_MODESET_H__
-> +
-> +void vs_mode_config_init(struct drm_device *dev);
-> +#endif /* __VS_FB_H__ */
-> --
-> 2.34.1
+>     val =3D readl(reg);
+>     for (i =3D 0; i < cnt; i++) {
+>         shift =3D i * EXYNOS9_FLTCON_LEN;
+>         val &=3D ~(EXYNOS9_FLTCON_MASK << shift);
+>         val |=3D con << shift;
+>     }
+>     writel(val, reg);
+> }
 >
+> /*
+>  * Set the desired filter (digital or analog delay) to every pin in the b=
+ank.
+>  * Note the filter selection bitfield is only found on alive banks. The f=
+ilter
+>  * determines to what extent signal fluctuations received through the pad=
+ are
+>  * considered glitches.
+>  *
+>  * The FLTCON register has the following layout:
+>  *
+>  *     BitfieldName[PinNum][Bit:Bit]
+>  *     FLT_EN[3][31] FLT_SEL[3][30] FLT_WIDTH[3][29:24]
+>  *     FLT_EN[2][23] FLT_SEL[2][22] FLT_WIDTH[2][21:16]
+>  *     FLT_EN[1][15] FLT_SEL[1][14] FLT_WIDTH[1][13:8]
+>  *     FLT_EN[0][7]  FLT_SEL[0][6]  FLT_WIDTH[0][5:0]
+>  *
+>  * FLT_EN    0x0 =3D Disable, 0x1 =3D Enable
+>  * FLT_SEL    0x0 =3D Delay filter, 0x1 =3D Digital filter
+>  * FLT_WIDTH    Filtering width. Valid when FLT_SEL is 0x1
+>  */
+> static void exynos_eint_flt_config(struct samsung_pinctrl_drv_data *d,
+>                    struct samsung_pin_bank *bank, int filter)
+> {
+>     unsigned int off =3D EXYNOS_GPIO_EFLTCON_OFFSET + bank->fltcon_offset=
+;
+>     unsigned int con =3D EXYNOS9_FLTCON_EN | filter;
+>     void __iomem *reg =3D d->virt_base + off;
+>     u8 n =3D bank->nr_pins;
+>
+>     if (bank->fltcon_type =3D=3D FLT_DEFAULT)
+>         return;
+>
+>     /*
+>      * If nr_pins > 4, we should set FLTCON0 register fully (pin0~3).
+>      * So loop 4 times in case of FLTCON0. Loop for FLTCON1 pin4~7.
+>      */
+>     if (n <=3D 4) {
+>         exynos_eint_update_flt_reg(reg, n, con);
+>     } else {
+>         exynos_eint_update_flt_reg(reg, 4, con);
+>         exynos_eint_update_flt_reg(reg + 0x4, n - 4, con);
+>     }
+> }
+> 8<----------------------------------------------------------------->8
+>
+> (the code is only to illustrate the idea, I never tested it).
 
+I can refactor it along those lines.
 
--- 
-With best wishes
-Dmitry
+>
+> >  /*
+> >   * exynos_eint_gpio_init() - setup handling of external gpio interrupt=
+s.
+> >   * @d: driver data of samsung pinctrl driver.
+> > @@ -321,6 +386,10 @@ __init int exynos_eint_gpio_init(struct samsung_pi=
+nctrl_drv_data *d)
+> >                         goto err_domains;
+> >                 }
+> >
+> > +               /* Set Delay Analog Filter */
+>
+> The code below looks quite self-explanatory to. Maybe remove all
+> comments like this? If you don't think exynos_eint_flt_config() is
+> clear, maybe rename it to exynos_eint_set_filter().
+
+Ok, I will update the function name to exynos_eint_set_filter() and
+remove the comments.
+
+>
+> > +               if (bank->fltcon_type !=3D FLT_DEFAULT)
+> > +                       exynos_eint_flt_config(d, bank,
+> > +                                              EXYNOS9_FLTCON_DELAY);
+>
+> It fits the previous line just fine, no need to break the line.
+>
+> Also, if you use the refactored version of exynos_eint_flt_config() I
+> mentioned above, you can drop all 'if' conditions like this.
+
+Will fix
+
+>
+> >         }
+> >
+> >         return 0;
+> > @@ -555,6 +624,11 @@ __init int exynos_eint_wkup_init(struct samsung_pi=
+nctrl_drv_data *d)
+> >                 if (bank->eint_type !=3D EINT_TYPE_WKUP)
+> >                         continue;
+> >
+> > +               /* Set Digital Filter */
+> > +               if (bank->fltcon_type !=3D FLT_DEFAULT)
+> > +                       exynos_eint_flt_config(d, bank,
+> > +                                              EXYNOS9_FLTCON_DIGITAL);
+>
+> Ditto: no need to break the line, remove the comment. If you use the
+> refactored function, you can drop 'if'.
+
+will fix
+
+>
+> > +
+> >                 bank->irq_chip =3D devm_kmemdup(dev, irq_chip, sizeof(*=
+irq_chip),
+> >                                               GFP_KERNEL);
+> >                 if (!bank->irq_chip) {
+> > @@ -658,6 +732,7 @@ static void exynos_pinctrl_suspend_bank(
+> >  void exynos_pinctrl_suspend(struct samsung_pinctrl_drv_data *drvdata)
+> >  {
+> >         struct samsung_pin_bank *bank =3D drvdata->pin_banks;
+> > +       struct samsung_pinctrl_drv_data *d =3D bank->drvdata;
+> >         struct exynos_irq_chip *irq_chip =3D NULL;
+> >         int i;
+> >
+> > @@ -665,6 +740,10 @@ void exynos_pinctrl_suspend(struct samsung_pinctrl=
+_drv_data *drvdata)
+> >                 if (bank->eint_type =3D=3D EINT_TYPE_GPIO)
+> >                         exynos_pinctrl_suspend_bank(drvdata, bank);
+> >                 else if (bank->eint_type =3D=3D EINT_TYPE_WKUP) {
+> > +                       /* Setting Delay (Analog) Filter */
+> > +                       if (bank->fltcon_type !=3D FLT_DEFAULT)
+> > +                               exynos_eint_flt_config(d, bank,
+> > +                                                      EXYNOS9_FLTCON_D=
+ELAY);
+>
+> Ditto: no need to break the line, remove the comment. If you use the
+> refactored function, you can drop 'if'.
+
+Will fix
+>
+> >                         if (!irq_chip) {
+> >                                 irq_chip =3D bank->irq_chip;
+> >                                 irq_chip->set_eint_wakeup_mask(drvdata,
+> > @@ -707,11 +786,19 @@ static void exynos_pinctrl_resume_bank(
+> >  void exynos_pinctrl_resume(struct samsung_pinctrl_drv_data *drvdata)
+> >  {
+> >         struct samsung_pin_bank *bank =3D drvdata->pin_banks;
+> > +       struct samsung_pinctrl_drv_data *d =3D bank->drvdata;
+> >         int i;
+> >
+> >         for (i =3D 0; i < drvdata->nr_banks; ++i, ++bank)
+> > -               if (bank->eint_type =3D=3D EINT_TYPE_GPIO)
+> > +               if (bank->eint_type =3D=3D EINT_TYPE_GPIO) {
+> >                         exynos_pinctrl_resume_bank(drvdata, bank);
+> > +               } else if (bank->eint_type =3D=3D EINT_TYPE_WKUP ||
+> > +                          bank->eint_type =3D=3D EINT_TYPE_WKUP_MUX) {
+> > +                       /* Set Digital Filter */
+> > +                       if (bank->fltcon_type !=3D FLT_DEFAULT)
+> > +                               exynos_eint_flt_config(d, bank,
+> > +                                                      EXYNOS9_FLTCON_D=
+IGITAL);
+>
+> Ditto: remove the comment, and if you use the refactored function, you
+> can drop 'if'; also there will be no need to break the line.
+
+Will fix
+>
+> > +               }
+> >  }
+> >
+> >  static void exynos_retention_enable(struct samsung_pinctrl_drv_data *d=
+rvdata)
+> > diff --git a/drivers/pinctrl/samsung/pinctrl-exynos.h b/drivers/pinctrl=
+/samsung/pinctrl-exynos.h
+> > index 3ac52c2cf998..e2799ff1b5e9 100644
+> > --- a/drivers/pinctrl/samsung/pinctrl-exynos.h
+> > +++ b/drivers/pinctrl/samsung/pinctrl-exynos.h
+> > @@ -50,6 +50,13 @@
+> >
+> >  #define EXYNOS_EINT_MAX_PER_BANK       8
+> >  #define EXYNOS_EINT_NR_WKUP_EINT
+>
+> Maybe add an empty line here?
+
+Will fix
+>
+> > +/* EINT filter configuration */
+> > +#define EXYNOS9_FLTCON_EN              BIT(7)
+> > +#define EXYNOS9_FLTCON_DIGITAL         BIT(6)
+> > +#define EXYNOS9_FLTCON_DELAY           (0 << 6)
+> > +#define EXYNOS9_FLTCON_MASK            0xff
+> > +#define EXYNOS9_FLTCON_LEN             8
+> > +#define EXYNOS9_FLTCON_NR_PIN          4
+>
+> I'd say drop this one and just hard-code it where needed?
+
+Ok, will drop.
+
+>
+> >
+> >  #define EXYNOS_PIN_BANK_EINTN(pins, reg, id)           \
+> >         {                                               \
+> > diff --git a/drivers/pinctrl/samsung/pinctrl-samsung.c b/drivers/pinctr=
+l/samsung/pinctrl-samsung.c
+> > index 79babbb39ced..50c360b4753a 100644
+> > --- a/drivers/pinctrl/samsung/pinctrl-samsung.c
+> > +++ b/drivers/pinctrl/samsung/pinctrl-samsung.c
+> > @@ -1105,6 +1105,8 @@ samsung_pinctrl_get_soc_data(struct samsung_pinct=
+rl_drv_data *d,
+> >                 bank->eint_func =3D bdata->eint_func;
+> >                 bank->eint_type =3D bdata->eint_type;
+> >                 bank->eint_mask =3D bdata->eint_mask;
+> > +               bank->fltcon_type =3D bdata->fltcon_type;
+> > +               bank->fltcon_offset =3D bdata->fltcon_offset;
+> >                 bank->eint_offset =3D bdata->eint_offset;
+> >                 bank->name =3D bdata->name;
+> >
+> > diff --git a/drivers/pinctrl/samsung/pinctrl-samsung.h b/drivers/pinctr=
+l/samsung/pinctrl-samsung.h
+> > index 9b3db50adef3..5fab3885a7d7 100644
+> > --- a/drivers/pinctrl/samsung/pinctrl-samsung.h
+> > +++ b/drivers/pinctrl/samsung/pinctrl-samsung.h
+> > @@ -82,6 +82,20 @@ enum eint_type {
+> >         EINT_TYPE_WKUP_MUX,
+> >  };
+> >
+> > +/**
+> > + * enum fltcon_type - filter selection
+> > + * @FLT_DEFAULT: filter not selectable, default digital filter
+> > + * @FLT_SELECT: filter selectable (digital or delay)
+> > + *
+> > + * Some banks on newer Exynos based SoCs have a selectable filter on a=
+live
+> > + * banks of 'analog/delay' or 'digital'. If the filter selection regis=
+ter is
+> > + * not available then the default filter is used (digital).
+> > + */
+> > +enum fltcon_type {
+> > +       FLT_DEFAULT,
+> > +       FLT_SELECTABLE,
+> > +};
+>
+> Is there any benefit of having this enum over replacing it with just a
+> bool field (e.g. 'bool flt_selectable')?
+
+I thought it made it clearer at the callee sites which filter was
+being set, but I can update to a bool if that's what you prefer.
+
+regards,
+
+Peter.
+
+>
+> > +
+> >  /* maximum length of a pin in pin descriptor (example: "gpa0-0") */
+> >  #define PIN_NAME_LENGTH        10
+> >
+> > @@ -122,6 +136,8 @@ struct samsung_pin_bank_type {
+> >   * @eint_type: type of the external interrupt supported by the bank.
+> >   * @eint_mask: bit mask of pins which support EINT function.
+> >   * @eint_offset: SoC-specific EINT register or interrupt offset of ban=
+k.
+> > + * @fltcon_type: whether the filter (delay/digital) is selectable
+> > + * @fltcon_offset: SoC-specific EINT filter control register offset of=
+ bank.
+> >   * @name: name to be prefixed for each pin in this pin bank.
+> >   */
+> >  struct samsung_pin_bank_data {
+> > @@ -133,6 +149,8 @@ struct samsung_pin_bank_data {
+> >         enum eint_type  eint_type;
+> >         u32             eint_mask;
+> >         u32             eint_offset;
+> > +       enum fltcon_type fltcon_type;
+> > +       u32             fltcon_offset;
+> >         const char      *name;
+> >  };
+> >
+> > @@ -147,6 +165,8 @@ struct samsung_pin_bank_data {
+> >   * @eint_type: type of the external interrupt supported by the bank.
+> >   * @eint_mask: bit mask of pins which support EINT function.
+> >   * @eint_offset: SoC-specific EINT register or interrupt offset of ban=
+k.
+> > + * @fltcon_type: whether the filter (delay/digital) is selectable
+> > + * @fltcon_offset: SoC-specific EINT filter control register offset of=
+ bank.
+> >   * @name: name to be prefixed for each pin in this pin bank.
+> >   * @id: id of the bank, propagated to the pin range.
+> >   * @pin_base: starting pin number of the bank.
+> > @@ -170,6 +190,8 @@ struct samsung_pin_bank {
+> >         enum eint_type  eint_type;
+> >         u32             eint_mask;
+> >         u32             eint_offset;
+> > +       enum fltcon_type fltcon_type;
+> > +       u32             fltcon_offset;
+> >         const char      *name;
+> >         u32             id;
+> >
+> > --
+> > 2.43.0.rc2.451.g8631bc7472-goog
+> >
 
