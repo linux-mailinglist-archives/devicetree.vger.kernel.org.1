@@ -1,42 +1,69 @@
-Return-Path: <devicetree+bounces-21961-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21964-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4074805DF7
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 19:46:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FEFB805E04
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 19:48:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 034BF1C210C6
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 18:46:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA4561F20FB8
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 18:48:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05195675A8;
-	Tue,  5 Dec 2023 18:46:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5873163DFD;
+	Tue,  5 Dec 2023 18:48:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="YV2NNP5+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [IPv6:2001:4b7e:0:8::81])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3522E1A2;
-	Tue,  5 Dec 2023 10:46:17 -0800 (PST)
-Received: from francesco-nb.corp.toradex.com (31-10-206-125.static.upc.ch [31.10.206.125])
-	by mail11.truemail.it (Postfix) with ESMTPA id 3D637201F1;
-	Tue,  5 Dec 2023 19:46:14 +0100 (CET)
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>,
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 058451B9
+	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 10:48:05 -0800 (PST)
+Received: by mail-pl1-x631.google.com with SMTP id d9443c01a7336-1d0481b68ebso10158855ad.0
+        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 10:48:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1701802084; x=1702406884; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=n9X0r27/UbN68GCjekZeYhwtKfth61JxLqxfjcWsu3w=;
+        b=YV2NNP5+YFYUnHdaeV4f6/85wPAFHWoasarITInW0kh+SFHFbfPwIyYU6WgGtvE98P
+         xP9YrLa2YLFqpTVvsguubIcm9Sd+HxuIE7XW252He/6OiWRYT3v1NJlneHu/1WjpqFU6
+         Z+LWKyT9WKAFwEFMpEA9SLzDKtQdfj+td3nEc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701802084; x=1702406884;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=n9X0r27/UbN68GCjekZeYhwtKfth61JxLqxfjcWsu3w=;
+        b=GZtJIVEU+FHS4rTw5RewLFVKfeHnGPAHcVeFOXrYG3Et8kd/TdUfIsP9DX3EHaIXcl
+         N/bWDu9UlM3GkOg7uJoxpY1uGl1yw0uQj7pIk4pf7O19ozzTTUDC7+6pOakD9c61ZMMx
+         Q938UY4TNCx9Hg634fu0qjfNILNDXhq7m3upmEu47EzFyzYtCd0e9xCWdtr84YVwvgg2
+         ORcL7fSRwhkF5yy86tedBYWtcoYVHk2RYLVKudJJksm+Obw/cUGQ98gE/+PUO1GF9GFV
+         Lr6qxO5+nY+3nhmetKC84aBJgbgpYHGhMoSUtfM6/TQAjZAMlScM00jHMcd8z2E1CXiw
+         mMvA==
+X-Gm-Message-State: AOJu0Yzhdv1vQ/TFh5cSIP0HykYIjvx8JOJi2POJgvlDtvUbVClzDmvX
+	mAePRvT5trbYSCsmOhaP4arD8w==
+X-Google-Smtp-Source: AGHT+IE1+yOzhmVcL8taX+gYSSTqB7TcNtmGAbJ+dH168Aul+Cu6lmHkkattSuS8hRhsTx9zw4Jk4g==
+X-Received: by 2002:a17:903:41c1:b0:1d0:6eae:8e57 with SMTP id u1-20020a17090341c100b001d06eae8e57mr12590444ple.1.1701802084368;
+        Tue, 05 Dec 2023 10:48:04 -0800 (PST)
+Received: from lbrmn-mmayer.ric.broadcom.net ([192.19.161.248])
+        by smtp.gmail.com with ESMTPSA id b11-20020a1709027e0b00b001bbb7af4963sm10726422plm.68.2023.12.05.10.48.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Dec 2023 10:48:03 -0800 (PST)
+Received: by lbrmn-mmayer.ric.broadcom.net (Postfix, from userid 1000)
+	id 7555AD00; Tue,  5 Dec 2023 10:48:02 -0800 (PST)
+From: Markus Mayer <mmayer@broadcom.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
 	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>
-Cc: Joao Paulo Goncalves <joao.goncalves@toradex.com>,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: [PATCH v3 3/3] arm64: dts: ti: add verdin am62 mallow board
-Date: Tue,  5 Dec 2023 19:46:05 +0100
-Message-Id: <20231205184605.35225-4-francesco@dolcini.it>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231205184605.35225-1-francesco@dolcini.it>
-References: <20231205184605.35225-1-francesco@dolcini.it>
+Cc: Markus Mayer <mmayer@broadcom.com>,
+	Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
+	Device Tree Mailing List <devicetree@vger.kernel.org>,
+	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/4] memory: brcmstb_dpfe: support DPFE API v4
+Date: Tue,  5 Dec 2023 10:47:33 -0800
+Message-ID: <20231205184741.3092376-1-mmayer@broadcom.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -45,297 +72,48 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Joao Paulo Goncalves <joao.goncalves@toradex.com>
+It has become necessary to distinguish between the various DPFE API
+versions by version number. Having just chip-specific compatible strings
+and one generic version is no longer meeting our needs.
 
-Add Toradex Verdin AM62 Mallow carrier board support. Mallow is a
-low-cost carrier board in the Verdin family with a small form factor and
-build for volume production making it ideal for industrial and embedded
-applications.
+Also, a new DPFE API version, v4, needs to be supported by the driver.
 
-https://www.toradex.com/products/carrier-board/mallow-carrier-board
+As a result, an intermediate compatible string format is being
+introduced: brcm,dpfe-cpu-v<N> where <N> represents the API version
+number. This is more specific than the catch-all "brcm,dpfe-cpu" and
+more generic than chip-specific compatible strings, such as
+"brcm,bcm7271-dpfe-cpu".
 
-Signed-off-by: Joao Paulo Goncalves <joao.goncalves@toradex.com>
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
----
-v2: fixed temperature sensor compatible (s/tmp75c/tmp1075)
-v3: removed TPM node
----
- arch/arm64/boot/dts/ti/Makefile               |   2 +
- .../boot/dts/ti/k3-am62-verdin-mallow.dtsi    | 188 ++++++++++++++++++
- .../dts/ti/k3-am625-verdin-nonwifi-mallow.dts |  22 ++
- .../dts/ti/k3-am625-verdin-wifi-mallow.dts    |  22 ++
- 4 files changed, 234 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am62-verdin-mallow.dtsi
- create mode 100644 arch/arm64/boot/dts/ti/k3-am625-verdin-nonwifi-mallow.dts
- create mode 100644 arch/arm64/boot/dts/ti/k3-am625-verdin-wifi-mallow.dts
+The changes are split into several steps.
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 77a347f9f47d..92ebf001a217 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -16,9 +16,11 @@ dtb-$(CONFIG_ARCH_K3) += k3-am625-phyboard-lyra-rdk.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am625-sk.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-nonwifi-dahlia.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-nonwifi-dev.dtb
-+dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-nonwifi-mallow.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-nonwifi-yavia.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-dahlia.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-dev.dtb
-+dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-mallow.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-yavia.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am62-lp-sk.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am625-sk-hdmi-audio.dtb
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin-mallow.dtsi b/arch/arm64/boot/dts/ti/k3-am62-verdin-mallow.dtsi
-new file mode 100644
-index 000000000000..17b93534f658
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am62-verdin-mallow.dtsi
-@@ -0,0 +1,188 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2023 Toradex
-+ *
-+ * Common dtsi for Verdin AM62 SoM on Mallow carrier board
-+ *
-+ * https://www.toradex.com/computer-on-modules/verdin-arm-family/ti-am62
-+ * https://www.toradex.com/products/carrier-board/mallow-carrier-board
-+ */
-+
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_qspi1_clk_gpio>,
-+			    <&pinctrl_qspi1_cs_gpio>,
-+			    <&pinctrl_qspi1_io0_gpio>,
-+			    <&pinctrl_qspi1_io1_gpio>;
-+
-+		/* SODIMM 52 - USER_LED_1_RED */
-+		led-0 {
-+			color = <LED_COLOR_ID_RED>;
-+			function = LED_FUNCTION_DEBUG;
-+			function-enumerator = <1>;
-+			gpios = <&main_gpio0 0 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		/* SODIMM 54 - USER_LED_1_GREEN */
-+		led-1 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_DEBUG;
-+			function-enumerator = <1>;
-+			gpios = <&main_gpio0 11 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		/* SODIMM 56 - USER_LED_2_RED */
-+		led-2 {
-+			color = <LED_COLOR_ID_RED>;
-+			function = LED_FUNCTION_DEBUG;
-+			function-enumerator = <2>;
-+			gpios = <&main_gpio0 3 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		/* SODIMM 58 - USER_LED_2_GREEN */
-+		led-3 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_DEBUG;
-+			function-enumerator = <2>;
-+			gpios = <&main_gpio0 4 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+};
-+
-+/* Verdin ETH */
-+&cpsw3g {
-+	status = "okay";
-+};
-+
-+/* Verdin MDIO */
-+&cpsw3g_mdio {
-+	status = "okay";
-+};
-+
-+/* Verdin ETH_1*/
-+&cpsw_port1 {
-+	status = "okay";
-+};
-+
-+/* Verdin PWM_1 and PWM_2*/
-+&epwm0 {
-+	status = "okay";
-+};
-+
-+/* Verdin PWM_3 DSI */
-+&epwm1 {
-+	status = "okay";
-+};
-+
-+&main_gpio0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_ctrl_sleep_moci>,
-+		    <&pinctrl_gpio_1>,
-+		    <&pinctrl_gpio_2>,
-+		    <&pinctrl_gpio_3>,
-+		    <&pinctrl_gpio_4>;
-+};
-+
-+/* Verdin I2C_1 */
-+&main_i2c1 {
-+	status = "okay";
-+
-+	/* Temperature sensor */
-+	sensor@4f {
-+		compatible = "ti,tmp1075";
-+		reg = <0x4f>;
-+	};
-+
-+	/* EEPROM */
-+	eeprom@57 {
-+		compatible = "st,24c02", "atmel,24c02";
-+		reg = <0x57>;
-+		pagesize = <16>;
-+	};
-+};
-+
-+/* Verdin I2C_2 DSI */
-+&main_i2c2 {
-+	status = "okay";
-+};
-+
-+/* Verdin I2C_4 CSI */
-+&main_i2c3 {
-+	status = "okay";
-+};
-+
-+/* Verdin CAN_1 */
-+&main_mcan0 {
-+	status = "okay";
-+};
-+
-+/* Verdin SPI_1 */
-+&main_spi1 {
-+	pinctrl-0 = <&pinctrl_spi1>,
-+		    <&pinctrl_spi1_cs0>,
-+		    <&pinctrl_qspi1_cs2_gpio>;
-+	cs-gpios = <0>, <&main_gpio0 12 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+};
-+
-+/* Verdin UART_3 */
-+&main_uart0 {
-+	status = "okay";
-+};
-+
-+/* Verdin UART_1 */
-+&main_uart1 {
-+	status = "okay";
-+};
-+
-+/* Verdin I2C_3_HDMI */
-+&mcu_i2c0 {
-+	status = "okay";
-+};
-+
-+/* Verdin CAN_2 */
-+&mcu_mcan0 {
-+	status = "okay";
-+};
-+
-+/* Verdin UART_4 */
-+&mcu_uart0 {
-+	status = "okay";
-+};
-+
-+/* Verdin SD_1 */
-+&sdhci1 {
-+	status = "okay";
-+};
-+
-+/* Verdin USB_1 */
-+&usbss0 {
-+	status = "okay";
-+};
-+
-+&usb0 {
-+	status = "okay";
-+};
-+
-+/* Verdin USB_2 */
-+&usbss1 {
-+	status = "okay";
-+};
-+
-+&usb1 {
-+	status = "okay";
-+};
-+
-+/* Verdin CTRL_WAKE1_MICO# */
-+&verdin_gpio_keys {
-+	status = "okay";
-+};
-+
-+/* Verdin UART_2 */
-+&wkup_uart0 {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-am625-verdin-nonwifi-mallow.dts b/arch/arm64/boot/dts/ti/k3-am625-verdin-nonwifi-mallow.dts
-new file mode 100644
-index 000000000000..9cae12106e0e
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am625-verdin-nonwifi-mallow.dts
-@@ -0,0 +1,22 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2023 Toradex
-+ *
-+ * https://www.toradex.com/computer-on-modules/verdin-arm-family/ti-am62
-+ * https://www.toradex.com/products/carrier-board/mallow-carrier-board
-+ */
-+
-+/dts-v1/;
-+
-+#include "k3-am625.dtsi"
-+#include "k3-am62-verdin.dtsi"
-+#include "k3-am62-verdin-nonwifi.dtsi"
-+#include "k3-am62-verdin-mallow.dtsi"
-+
-+/ {
-+	model = "Toradex Verdin AM62 on Mallow Board";
-+	compatible = "toradex,verdin-am62-nonwifi-mallow",
-+		     "toradex,verdin-am62-nonwifi",
-+		     "toradex,verdin-am62",
-+		     "ti,am625";
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-am625-verdin-wifi-mallow.dts b/arch/arm64/boot/dts/ti/k3-am625-verdin-wifi-mallow.dts
-new file mode 100644
-index 000000000000..81d834b22649
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am625-verdin-wifi-mallow.dts
-@@ -0,0 +1,22 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright 2023 Toradex
-+ *
-+ * https://www.toradex.com/computer-on-modules/verdin-arm-family/ti-am62
-+ * https://www.toradex.com/products/carrier-board/mallow-carrier-board
-+ */
-+
-+/dts-v1/;
-+
-+#include "k3-am625.dtsi"
-+#include "k3-am62-verdin.dtsi"
-+#include "k3-am62-verdin-wifi.dtsi"
-+#include "k3-am62-verdin-mallow.dtsi"
-+
-+/ {
-+	model = "Toradex Verdin AM62 WB on Mallow Board";
-+	compatible = "toradex,verdin-am62-wifi-mallow",
-+		     "toradex,verdin-am62-wifi",
-+		     "toradex,verdin-am62",
-+		     "ti,am625";
-+};
+First, we update the binding and introduce the versioned compatible
+strings.
+
+Secondly, we add support for brcm,dpfe-cpu-v1 through brcm,dpfe-cpu-v3
+in the driver to match existing API versions.
+
+Thirdly, we introduce DPFE API v4.
+
+Lastly, there is a change that isn't directly related to the
+introduction of the new binding format or DPFE API v4. However, with the
+increasing number of API versions, broadening compatibility can be
+helpful. If registering the driver using the DT-provided compatible
+string fails, the driver will try all DPFE APIs (except for v1) to see
+if one might end up working. This can come in handy if the driver moves
+on and learns about new API versions while Device Tree cannot be
+updated.
+
+Markus Mayer (4):
+  dt-bindings: memory: additional compatible strings for Broadcom DPFE
+  memory: brcmstb_dpfe: introduce version-specific compatible strings
+  memory: brcmstb_dpfe: support DPFE API v4
+  memory: brcmstb_dpfe: introduce best-effort API detection
+
+ .../memory-controllers/brcm,dpfe-cpu.yaml     |  8 +-
+ drivers/memory/brcmstb_dpfe.c                 | 95 ++++++++++++++++++-
+ 2 files changed, 100 insertions(+), 3 deletions(-)
+
 -- 
-2.25.1
+2.43.0
 
 
