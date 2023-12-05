@@ -1,338 +1,237 @@
-Return-Path: <devicetree+bounces-21849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21850-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCEB78055C9
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 14:24:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52FFC8055D9
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 14:26:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 78454281A24
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 13:24:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 09FA0281A79
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 13:26:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3614E5D48E;
-	Tue,  5 Dec 2023 13:24:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1F845D8E1;
+	Tue,  5 Dec 2023 13:26:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Y36ItO/U"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="bLrkhj0k";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="d4gOIy6q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4EA119B;
-	Tue,  5 Dec 2023 05:24:05 -0800 (PST)
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 63EB16607295;
-	Tue,  5 Dec 2023 13:24:03 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1701782644;
-	bh=rgRJciFYZdx6+hvDmrRnGxCF5Q5fpD4IdOikLohD9Lg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Y36ItO/Uz92rvBlyZxPWhCjRVz3ezKxV7Ls0/mghuKCZNXB+miwat3BBrJ0ZY2SaI
-	 MkWfAgDexzA56mOGyyRS0zQ1/eRbvc1/gaNrLBeOKiyvHsClL3KVcD3+ALVylxxhqQ
-	 eTvSeNtA4TYAhzqzzVwwFN+KbAPHubm5OTww9SVUJ25zxWFbgEZfhL3fJ0S6MjphsJ
-	 a9AA/Td7teCqL3zDdEAU3P5Koa0PP4AG4PyoSyptqJEWpDAGv2ljw7YUF59YlpAKR4
-	 f04Q46UHs1588E7mcihW8lIqhc4BFgxyZTOL3BkfsMrelP6q2QBTcnfh3ij6YB1fIl
-	 X6rgz3udWo4fQ==
-Message-ID: <e85cc03e-616f-4d72-8234-f65741047df5@collabora.com>
-Date: Tue, 5 Dec 2023 14:24:00 +0100
+Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com [66.111.4.29])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 305031B6;
+	Tue,  5 Dec 2023 05:26:35 -0800 (PST)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailout.nyi.internal (Postfix) with ESMTP id 7C1375C02B6;
+	Tue,  5 Dec 2023 08:26:34 -0500 (EST)
+Received: from imap51 ([10.202.2.101])
+  by compute5.internal (MEProxy); Tue, 05 Dec 2023 08:26:34 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-type:content-type:date:date:from:from:in-reply-to
+	:in-reply-to:message-id:mime-version:references:reply-to:sender
+	:subject:subject:to:to; s=fm3; t=1701782794; x=1701869194; bh=W3
+	qjdlXCrGJYdFNLku/WKxa0Yd1q1gu7loL3v5KHYRM=; b=bLrkhj0kwVDlhhm0+R
+	pQOLQFBz3kV22n0WjqMPaeVJUuBarW8pHH0nK37J/5f8lyTuxsz2iWa8ZqFmKkvC
+	bjX8ZUvMEM99/GWgx/ImY4aW2B57xjYC7/4m+Dym3fOqkaAUClDVHUysbFmA4/+f
+	g0JG0o8FYgwLMFnPUTyVGmFLBD6DNdJtY1XaHdWWii/IZIvzbjKUGI6OaxpYXP6Z
+	yZRpeA+UMpBUnu7aWcUsxpkYmwwSrbJn+s4gTCc6wXq9dlUUPeCkKdlld4bHJXo3
+	Ww6yrjXgSQc3NvsAH7/Mg32qSWdf7+l7p0V5xYztDOfDopVj1g7QejZd/AjfsI7U
+	vUFw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:sender:subject
+	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+	:x-sasl-enc; s=fm1; t=1701782794; x=1701869194; bh=W3qjdlXCrGJYd
+	FNLku/WKxa0Yd1q1gu7loL3v5KHYRM=; b=d4gOIy6qFdfd4X8LITm6s20dSvrO3
+	aP93Rin/2ZeuMjOa7bvPlovch3EgW5aTuq97NwuYM580SBPIeKLfKfWWLPIY2Zqu
+	s8WF+rnjnMldz+/cS//YOStmVRB73mjLgxqySiQLavRbCMjDBJF1dMx9lLYAofmI
+	/+ydkW25kJ7+a5+Bsb7TxEieR6l4x2X0sfXzscZycM+TGUhHXExj4kKU2PTy6e52
+	UmWDBdh2eXtqipjevJgcwI5ux44TvC2fK8Pc3DCbjd0261VPdxUk/VcNq+0kF9VZ
+	pxiKtzUo4Jcz9yyCOlmZkjLQvz0PsF70LMMLU9IT+0En9R60z3S16ajzQ==
+X-ME-Sender: <xms:CSVvZR2yRWRM5O1avSn_FLQL1ZguZi5cyvJ3Q30j3VQ9Tj5UY5_qyg>
+    <xme:CSVvZYEAZfA6rLSD12L9wcO3DBami0p64gbC8wZ3jCddYdMPUnPuwmnEwFILejz_E
+    xQdApVNGNeVSZumTaE>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrudejkedghedvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
+    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
+    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
+    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+    hrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:CSVvZR51wWVSOf2-nUeOHEczOECInaM4vVT544JLIAMl3sKnxuosGw>
+    <xmx:CSVvZe09I2NIDTQR1ESj5jIGD_9NCkdsw6MKwKhW7u15kV7bwBoZng>
+    <xmx:CSVvZUEQZLjFoOsXzzyqAPMTxnAtPJl4K2IX_aangTCdPuMBPp13_Q>
+    <xmx:CiVvZX9-AQzVLkA6ea-YgRw-YGkkLQnJ6Hy4ABssclTqSGV6IzWEDg>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id 7D795B6008D; Tue,  5 Dec 2023 08:26:33 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-1178-geeaf0069a7-fm-20231114.001-geeaf0069
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] mmc: mediatek: extend number of tuning steps
-Content-Language: en-US
-To: =?UTF-8?B?QXhlIFlhbmcgKOadqOejiik=?= <Axe.Yang@mediatek.com>,
- "robh+dt@kernel.org" <robh+dt@kernel.org>,
- =?UTF-8?B?V2VuYmluIE1laSAo5qKF5paH5b2sKQ==?= <Wenbin.Mei@mediatek.com>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- =?UTF-8?B?Q2hhb3RpYW4gSmluZyAo5LqV5pyd5aSpKQ==?=
- <Chaotian.Jing@mediatek.com>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>
-Cc: "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- Project_Global_Chrome_Upstream_Group
- <Project_Global_Chrome_Upstream_Group@mediatek.com>
-References: <20231130061513.1296-1-axe.yang@mediatek.com>
- <20231130061513.1296-3-axe.yang@mediatek.com>
- <27313484-10a9-4a2f-93b1-9b5ce04ad9c6@collabora.com>
- <a419295339c8126150c1e393fcc4cb6a232f07b5.camel@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <a419295339c8126150c1e393fcc4cb6a232f07b5.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Message-Id: <2ef81211-9525-4f96-a6b2-3fcfbed0c6e5@app.fastmail.com>
+In-Reply-To: 
+ <602e1ba4f02489fcbc47e8f9904f3c1db1c9f14a.1701768028.git.ysato@users.sourceforge.jp>
+References: <cover.1701768028.git.ysato@users.sourceforge.jp>
+ <602e1ba4f02489fcbc47e8f9904f3c1db1c9f14a.1701768028.git.ysato@users.sourceforge.jp>
+Date: Tue, 05 Dec 2023 14:26:13 +0100
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Yoshinori Sato" <ysato@users.sourceforge.jp>, linux-sh@vger.kernel.org
+Cc: "Damien Le Moal" <dlemoal@kernel.org>,
+ "Rob Herring" <robh+dt@kernel.org>,
+ "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "Geert Uytterhoeven" <geert+renesas@glider.be>,
+ "Michael Turquette" <mturquette@baylibre.com>,
+ "Stephen Boyd" <sboyd@kernel.org>, "Dave Airlie" <airlied@gmail.com>,
+ "Daniel Vetter" <daniel@ffwll.ch>,
+ "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
+ "Maxime Ripard" <mripard@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>,
+ "Thomas Gleixner" <tglx@linutronix.de>,
+ "Lorenzo Pieralisi" <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ "Bjorn Helgaas" <bhelgaas@google.com>,
+ "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+ "Jiri Slaby" <jirislaby@kernel.org>,
+ "Magnus Damm" <magnus.damm@gmail.com>,
+ "Daniel Lezcano" <daniel.lezcano@linaro.org>,
+ "Rich Felker" <dalias@libc.org>,
+ "John Paul Adrian Glaubitz" <glaubitz@physik.fu-berlin.de>,
+ "Lee Jones" <lee@kernel.org>, "Helge Deller" <deller@gmx.de>,
+ =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+ "Jernej Skrabec" <jernej.skrabec@gmail.com>,
+ "Chris Morgan" <macromorgan@hotmail.com>,
+ "Linus Walleij" <linus.walleij@linaro.org>,
+ "Randy Dunlap" <rdunlap@infradead.org>,
+ "Hyeonggon Yoo" <42.hyeyoo@gmail.com>,
+ "David Rientjes" <rientjes@google.com>,
+ "Vlastimil Babka" <vbabka@suse.cz>, "Baoquan He" <bhe@redhat.com>,
+ "Andrew Morton" <akpm@linux-foundation.org>,
+ "Guenter Roeck" <linux@roeck-us.net>,
+ "Stephen Rothwell" <sfr@canb.auug.org.au>, guoren <guoren@kernel.org>,
+ "Javier Martinez Canillas" <javierm@redhat.com>,
+ "Azeem Shaikh" <azeemshaikh38@gmail.com>,
+ "Palmer Dabbelt" <palmer@rivosinc.com>, "Bin Meng" <bmeng@tinylab.org>,
+ "Max Filippov" <jcmvbkbc@gmail.com>, "Tom Rix" <trix@redhat.com>,
+ "Herve Codina" <herve.codina@bootlin.com>,
+ "Jacky Huang" <ychuang3@nuvoton.com>,
+ "Lukas Bulwahn" <lukas.bulwahn@gmail.com>,
+ "Jonathan Corbet" <corbet@lwn.net>,
+ "Biju Das" <biju.das.jz@bp.renesas.com>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+ "Sam Ravnborg" <sam@ravnborg.org>,
+ "Michael Karcher" <kernel@mkarcher.dialup.fu-berlin.de>,
+ "Sergey Shtylyov" <s.shtylyov@omp.ru>,
+ "Laurent Pinchart" <laurent.pinchart+renesas@ideasonboard.com>,
+ linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+ linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-pci@vger.kernel.org, linux-serial@vger.kernel.org,
+ linux-fbdev@vger.kernel.org
+Subject: Re: [DO NOT MERGE v5 11/37] pci: pci-sh7751: Add SH7751 PCI driver
+Content-Type: text/plain
 
-Il 05/12/23 03:02, Axe Yang (杨磊) ha scritto:
-> On Fri, 2023-12-01 at 10:02 +0100, AngeloGioacchino Del Regno wrote:
->> Il 30/11/23 07:15, Axe Yang ha scritto:
->>> Previously, during the MSDC calibration process, a full clock cycle
->>> actually not be covered, which in some cases didn't yield the best
->>> results and could cause CRC errors. This problem is particularly
->>> evident when MSDC is used as an SDIO host. In fact, MSDC support
->>> tuning up to a maximum of 64 steps, but by default, the step number
->>> is 32. By increase the tuning step, we are more likely to cover
->>> more
->>> parts of a clock cycle, and get better calibration result.
->>>
->>> To illustrate, when tuning 32 steps, if the obtained window has a
->>> hole
->>> near the middle, like this: 0xffc07ff (hex), then the selected
->>> delay
->>> will be the 6 (counting from right to left).
->>>
->>> (32 <- 1)
->>> 1111 1111 1100 0000 0000 0111 11(1)1 1111
->>>
->>> However, if we tune 64 steps, the window obtained may look like
->>> this:
->>> 0xfffffffffffc07ff. The final selected delay will be 44, which is
->>> safer as it is further away from the hole:
->>>
->>> (64 <- 1)
->>> 1111 ... (1)111 1111 1111 1111 1111 1100 0000 0000 0111 1111 1111
->>>
->>> In this case, delay 6 selected through 32 steps tuning is obviously
->>> not optimal, and this delay is closer to the hole, using it would
->>> easily cause CRC problems.
->>>
->>> You will need to configure property "mediatek,tuning-step" in MSDC
->>> dts node to 64 to extend the steps.
->>>
->>> Signed-off-by: Axe Yang <axe.yang@mediatek.com>
->>> ---
->>>    drivers/mmc/host/mtk-sd.c | 155 ++++++++++++++++++++++++++-------
->>> -----
->>>    1 file changed, 107 insertions(+), 48 deletions(-)
->>>
->>> diff --git a/drivers/mmc/host/mtk-sd.c b/drivers/mmc/host/mtk-sd.c
->>> index 97f7c3d4be6e..4cd306b3b295 100644
->>> --- a/drivers/mmc/host/mtk-sd.c
->>> +++ b/drivers/mmc/host/mtk-sd.c
->>> @@ -252,12 +252,16 @@
->>>    
->>>    #define MSDC_PAD_TUNE_DATWRDLY	  GENMASK(4, 0)		/*
->>> RW */
->>>    #define MSDC_PAD_TUNE_DATRRDLY	  GENMASK(12, 8)	/* RW */
->>> +#define MSDC_PAD_TUNE_DATRRDLY2	  GENMASK(12, 8)	/* RW */
->>>    #define MSDC_PAD_TUNE_CMDRDLY	  GENMASK(20, 16)	/* RW */
->>> +#define MSDC_PAD_TUNE_CMDRDLY2	  GENMASK(20, 16)	/* RW */
->>>    #define MSDC_PAD_TUNE_CMDRRDLY	  GENMASK(26, 22)	/* RW */
->>>    #define MSDC_PAD_TUNE_CLKTDLY	  GENMASK(31, 27)	/* RW */
->>>    #define MSDC_PAD_TUNE_RXDLYSEL	  BIT(15)   /* RW */
->>>    #define MSDC_PAD_TUNE_RD_SEL	  BIT(13)   /* RW */
->>>    #define MSDC_PAD_TUNE_CMD_SEL	  BIT(21)   /* RW */
->>> +#define MSDC_PAD_TUNE_RD2_SEL	  BIT(13)   /* RW */
->>> +#define MSDC_PAD_TUNE_CMD2_SEL	  BIT(21)   /* RW */
->>>    
->>>    #define PAD_DS_TUNE_DLY_SEL       BIT(0)	  /* RW */
->>>    #define PAD_DS_TUNE_DLY1	  GENMASK(6, 2)   /* RW */
->>> @@ -325,7 +329,8 @@
->>>    
->>>    #define DEFAULT_DEBOUNCE	(8)	/* 8 cycles CD debounce */
->>>    
->>> -#define PAD_DELAY_MAX	32 /* PAD delay cells */
->>> +#define PAD_DELAY_HALF	32 /* PAD delay cells */
->>> +#define PAD_DELAY_FULL	64
->>>    /*---------------------------------------------------------------
->>> -----------*/
->>>    /* Descriptor
->>> Structure                                                     */
->>>    /*---------------------------------------------------------------
->>> -----------*/
->>> @@ -461,6 +466,7 @@ struct msdc_host {
->>>    	u32 hs400_ds_dly3;
->>>    	u32 hs200_cmd_int_delay; /* cmd internal delay for HS200/SDR104
->>> */
->>>    	u32 hs400_cmd_int_delay; /* cmd internal delay for HS400 */
->>> +	u32 tuning_step;
->>>    	bool hs400_cmd_resp_sel_rising;
->>>    				 /* cmd response sample selection for
->>> HS400 */
->>>    	bool hs400_mode;	/* current eMMC will run at hs400 mode */
->>> @@ -1615,7 +1621,7 @@ static irqreturn_t msdc_cmdq_irq(struct
->>> msdc_host *host, u32 intsts)
->>>    	}
->>>    
->>>    	if (cmd_err || dat_err) {
->>> -		dev_err(host->dev, "cmd_err = %d, dat_err =%d, intsts =
->>> 0x%x",
->>> +		dev_err(host->dev, "cmd_err = %d, dat_err = %d, intsts
->>> = 0x%x",
->>>    			cmd_err, dat_err, intsts);
->>>    	}
->>>    
->>> @@ -1780,10 +1786,20 @@ static void msdc_init_hw(struct msdc_host
->>> *host)
->>>    				     DATA_K_VALUE_SEL);
->>>    			sdr_set_bits(host->top_base + EMMC_TOP_CMD,
->>>    				     PAD_CMD_RD_RXDLY_SEL);
->>> +			if (host->tuning_step > PAD_DELAY_HALF) {
->>> +				sdr_set_bits(host->top_base +
->>> EMMC_TOP_CONTROL,
->>> +					     PAD_DAT_RD_RXDLY2_SEL);
->>> +				sdr_set_bits(host->top_base +
->>> EMMC_TOP_CMD,
->>> +					     PAD_CMD_RD_RXDLY2_SEL);
->>> +			}
->>>    		} else {
->>>    			sdr_set_bits(host->base + tune_reg,
->>>    				     MSDC_PAD_TUNE_RD_SEL |
->>>    				     MSDC_PAD_TUNE_CMD_SEL);
->>> +			if (host->tuning_step > PAD_DELAY_HALF)
->>> +				sdr_set_bits(host->base + tune_reg + 4,
->>
->> `tune_reg + 4` is a different register, please define it.
->>
-> The tune_reg is not a fixed register address, it is defined in
-> compatible structures. So using the offset here will make the code more
-> consise. The offset of registers related to 64 steps tuning is fixed
-> relative to 32-steps tuning regsiter, the offset is always 4.
-> 
-> However. using the magic number '4' here directly is not ideal. I think
-> I can improve this part of code by defining '4' as a macro. What do you
-> think about it? If you insist on redifning the registers, I can do it,
-> but it will make the code a bit more complex than it is now.
-> 
-> 
->> Also, I can't find this in MT8192, MT8195 - as those bits seem to be
->> undefined,
->> so, which SoCs are actually compatible with this change?
-> 
-> Sorry, which bits are you talking about?
-> This change compatible for all SoCs. In fact, MSDC has always supported
-> 64 step tuning.
-> 
-> 
+On Tue, Dec 5, 2023, at 10:45, Yoshinori Sato wrote:
 
-Sorry, found it under a slightly different name. Nevermind.
+> +#include <asm/addrspace.h>
+> +#include "pci-sh7751.h"
+> +
+> +#define pcic_writel(val, base, reg) __raw_writel(val, base + (reg))
+> +#define pcic_readl(base, reg) __raw_readl(base + (reg))
 
->>
->>
->>> +					     MSDC_PAD_TUNE_RD2_SEL |
->>> +					     MSDC_PAD_TUNE_CMD2_SEL);
->>>    		}
->>>    	} else {
->>>    		/* choose clock tune */
->>> @@ -1925,24 +1941,24 @@ static void msdc_ops_set_ios(struct
->>> mmc_host *mmc, struct mmc_ios *ios)
->>>    		msdc_set_mclk(host, ios->timing, ios->clock);
->>>    }
->>>    
->>> -static u32 test_delay_bit(u32 delay, u32 bit)
->>> +static u64 test_delay_bit(u64 delay, u32 bit)
->>>    {
->>> -	bit %= PAD_DELAY_MAX;
->>> -	return delay & BIT(bit);
->>> +	bit %= PAD_DELAY_FULL;
->>> +	return delay & BIT_ULL(bit);
->>>    }
->>>    
->>> -static int get_delay_len(u32 delay, u32 start_bit)
->>> +static int get_delay_len(u64 delay, u32 start_bit)
->>>    {
->>>    	int i;
->>>    
->>> -	for (i = 0; i < (PAD_DELAY_MAX - start_bit); i++) {
->>> +	for (i = 0; i < (PAD_DELAY_FULL - start_bit); i++) {
->>>    		if (test_delay_bit(delay, start_bit + i) == 0)
->>>    			return i;
->>>    	}
->>> -	return PAD_DELAY_MAX - start_bit;
->>> +	return PAD_DELAY_FULL - start_bit;
->>>    }
->>>    
->>> -static struct msdc_delay_phase get_best_delay(struct msdc_host
->>> *host, u32 delay)
->>> +static struct msdc_delay_phase get_best_delay(struct msdc_host
->>> *host, u64 delay)
->>>    {
->>>    	int start = 0, len = 0;
->>>    	int start_final = 0, len_final = 0;
->>> @@ -1950,28 +1966,28 @@ static struct msdc_delay_phase
->>> get_best_delay(struct msdc_host *host, u32 delay)
->>>    	struct msdc_delay_phase delay_phase = { 0, };
->>>    
->>>    	if (delay == 0) {
->>> -		dev_err(host->dev, "phase error: [map:%x]\n", delay);
->>> +		dev_err(host->dev, "phase error: [map:%016llx]\n",
->>> delay);
->>>    		delay_phase.final_phase = final_phase;
->>>    		return delay_phase;
->>>    	}
->>>    
->>> -	while (start < PAD_DELAY_MAX) {
->>> +	while (start < PAD_DELAY_FULL) {
->>>    		len = get_delay_len(delay, start);
->>>    		if (len_final < len) {
->>>    			start_final = start;
->>>    			len_final = len;
->>>    		}
->>>    		start += len ? len : 1;
->>> -		if (len >= 12 && start_final < 4)
->>> +		if (!upper_32_bits(delay) && len >= 12 && start_final <
->>> 4)
->>>    			break;
->>>    	}
->>>    
->>>    	/* The rule is that to find the smallest delay cell */
->>>    	if (start_final == 0)
->>> -		final_phase = (start_final + len_final / 3) %
->>> PAD_DELAY_MAX;
->>> +		final_phase = (start_final + len_final / 3) %
->>> PAD_DELAY_FULL;
->>>    	else
->>> -		final_phase = (start_final + len_final / 2) %
->>> PAD_DELAY_MAX;
->>> -	dev_dbg(host->dev, "phase: [map:%x] [maxlen:%d] [final:%d]\n",
->>> +		final_phase = (start_final + len_final / 2) %
->>> PAD_DELAY_FULL;
->>> +	dev_dbg(host->dev, "phase: [map:%016llx] [maxlen:%d]
->>> [final:%d]\n",
->>>    		delay, len_final, final_phase);
->>>    
->>>    	delay_phase.maxlen = len_final;
->>> @@ -1984,30 +2000,68 @@ static inline void
->>> msdc_set_cmd_delay(struct msdc_host *host, u32 value)
->>>    {
->>>    	u32 tune_reg = host->dev_comp->pad_tune_reg;
->>>    
->>> -	if (host->top_base)
->>> -		sdr_set_field(host->top_base + EMMC_TOP_CMD,
->>> PAD_CMD_RXDLY,
->>> -			      value);
->>> -	else
->>> -		sdr_set_field(host->base + tune_reg,
->>> MSDC_PAD_TUNE_CMDRDLY,
->>> -			      value);
->>> +	if (host->top_base) {
->>> +		if (value < PAD_DELAY_HALF) {
->>> +			sdr_set_field(host->top_base + EMMC_TOP_CMD,
->>> PAD_CMD_RXDLY,
->>> +				      value);
->>
->> This goes up to 92 columns, and it's fine, so fits in one line and
->> it's more
->> readable like that.
->>
->> I know that's not your fault, but since you're actually touching
->> those lines
->> it's a good occasion to also do that (not only here) :-)
->>
-> Sure, will update this part in v4, and thanks for your meticulous
-> review.
-> 
+__raw_writel()/__raw_readl() has a number of problems with
+atomicity (the compiler may split or merge pointer
+dereferences), barriers and endianess. You should normally
+always use readl()/writel() instead.
 
-Thank you!
-Angelo
+> +	memset(pci_config, 0, sizeof(pci_config));
+> +	if (of_property_read_u32_array(np, "renesas,config",
+> +				       pci_config, SH7751_NUM_CONFIG) == 0) {
+> +		for (i = 0; i < SH7751_NUM_CONFIG; i++) {
+> +			r = pci_config[i * 2];
+> +			/* CONFIG0 is read-only, so make it a sentinel. */
+> +			if (r == 0)
+> +				break;
+> +			pcic_writel(pci_config[i * 2 + 1], pcic, r * 4);
+> +		}
+> +	}
 
+the config property seems a little too specific to this
+implementation of the driver. Instead of encoding register
+values in DT, I think these should either be described
+in named properties where needed, or hardcoded in the driver
+if there is only one sensible value.
+
+> +/*
+> + * We need to avoid collisions with `mirrored' VGA ports
+> + * and other strange ISA hardware, so we always want the
+> + * addresses to be allocated in the 0x000-0x0ff region
+> + * modulo 0x400.
+> + */
+> +#define IO_REGION_BASE 0x1000
+> +resource_size_t pcibios_align_resource(void *data, const struct 
+> resource *res,
+> +				resource_size_t size, resource_size_t align)
+> +{
+
+You can't have these generic functions in a driver, as that
+prevents you from building more than one such driver.
+
+The logic you have here is neither architecture nor
+driver specific.
+
+> +static int sh7751_pci_probe(struct platform_device *pdev)
+> +{
+> +	struct resource *res, *bscres;
+> +	void __iomem *pcic;
+> +	void __iomem *bsc;
+> +	u32 memory[2];
+> +	u16 vid, did;
+> +	u32 word;
+> +
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +	if (IS_ERR(res))
+> +		return PTR_ERR(res);
+> +	pcic = (void __iomem *)res->start;
+
+This cast is invalid, as res->start is a physical address
+that you would need to ioremap() to turn into an __iomem
+pointer.
+
+> +	bscres = platform_get_resource(pdev, IORESOURCE_MEM, 1);
+> +	bsc = devm_ioremap_resource(&pdev->dev, bscres);
+> +	if (IS_ERR(bsc))
+> +		return PTR_ERR(bsc);
+> +
+> +	if (of_property_read_u32_array(pdev->dev.of_node,
+> +				       "renesas,memory", memory, 2) < 0) {
+> +		/*
+> +		 * If no memory range is specified,
+> +		 *  the entire main memory will be targeted for DMA.
+> +		 */
+> +		memory[0] = memory_start;
+> +		memory[1] = memory_end - memory_start;
+> +	}
+
+There is a generic "dma-ranges" proerty for describing
+which memory is visible by a bus.
+
+> diff --git a/drivers/pci/controller/pci-sh7751.h 
+> b/drivers/pci/controller/pci-sh7751.h
+> new file mode 100644
+> index 000000000000..540cee7095c6
+> --- /dev/null
+> +++ b/drivers/pci/controller/pci-sh7751.h
+> @@ -0,0 +1,76 @@
+
+If the header is only included from one file, just removed
+it and add the register definitions to the driver directly.
+
+     Arnd
 
