@@ -1,339 +1,463 @@
-Return-Path: <devicetree+bounces-21567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21568-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A91BA80446F
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 03:05:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A5AD804487
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 03:16:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE51E1F2135B
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 02:05:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 509F21C20A05
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 02:16:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 801CE2112;
-	Tue,  5 Dec 2023 02:05:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 794AD2116;
+	Tue,  5 Dec 2023 02:16:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="AJ/eYgIS";
-	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="tZIIkEbb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kBj3tR3j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6AE2107;
-	Mon,  4 Dec 2023 18:05:28 -0800 (PST)
-X-UUID: bd852228931211ee8051498923ad61e6-20231205
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=a1NHScstPCAQwEnuqP0mYo3wzW1a+9AfLoV/qoAQmTI=;
-	b=AJ/eYgISx3aKxl8lV4UpQdg7e+sA/rgTcLU7Py69mO+qs1S/VG9S2rRBPEFrOu6GZ1iPFJosGw1TYgbprbu6ciEyYzpOv7/hep0s7oTDn9uOg8CzrzxH0h7x3bOheINPsK42zn3UZEQG0dddfDNiRmBmLD1e0c6SrPL6X7C8WjI=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.34,REQID:54c31673-ec16-41fa-b52d-49b9f1598ff8,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:abefa75,CLOUDID:43e7d060-c89d-4129-91cb-8ebfae4653fc,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
-	DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: bd852228931211ee8051498923ad61e6-20231205
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-	(envelope-from <axe.yang@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 2124051917; Tue, 05 Dec 2023 10:05:19 +0800
-Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
- mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Tue, 5 Dec 2023 10:05:18 +0800
-Received: from APC01-TYZ-obe.outbound.protection.outlook.com (172.21.101.237)
- by mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Tue, 5 Dec 2023 10:05:17 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BfJicGp8vqoa1lerV5aUUW9ue2mO48kQSAiSyFjcdDVx2QhYLGb+7+Ssf4fUSKl6azt4rLgV8gWCwwbcV7r9xFyyrypD0QnPVMeAbditIiuq0bp0IDpaWNEvifEi4AKbrpLENF5IU3XdPvF5J39VCfN8hDVOjpGEXoChPBnBAEm6xGCawJ+a1bwYmzvMxr8x12itFkyuLLT9DLbAIg0+iqtI68Tycmka/HwtzlGa8GZEhlq2X6R3cr0DfWj9WjwcWhMZV8NBsa8ThPgK5E3S0c+Qq5+WmXTfd3zF0PlEPhfMyI43dVmmbqtExx68YGEU1bnMPkjNFuubThEAlc+/vQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=a1NHScstPCAQwEnuqP0mYo3wzW1a+9AfLoV/qoAQmTI=;
- b=nQfi0lJn2LDqAntl5goEazGh5GSYK4J65nWtmtfDReRdVUdhvw+tsr+581cHAz8RVB8ef+QXl/WwmylKfCesjx1BtqTZntDHtjpc82b5gyW2p6iF9IcfZo/me4CIZqKRth6SNa8Tavq4juBXrFrduBgm+asnsXj5mHmUeAEFy2oq9p3SgP9U4J0QFPJIVjxTGyt+n9ia9fz9z0mV/wgb1GV9gbxrjGFg1Tkr57kWtMVDXMdws4NVbL+QvGsCTKIgi0fZW4rUy6Dcd3lI5pQ+yHvIsWXrRVJaIDtyLfXjzSi0pCXAg6sLAZokJNKyeblObTTksOt78oyQ70Acqqak0g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
+Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3FC4107;
+	Mon,  4 Dec 2023 18:16:46 -0800 (PST)
+Received: by mail-qk1-x72c.google.com with SMTP id af79cd13be357-77dd4532a60so361784185a.2;
+        Mon, 04 Dec 2023 18:16:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=a1NHScstPCAQwEnuqP0mYo3wzW1a+9AfLoV/qoAQmTI=;
- b=tZIIkEbbfuRrD05+E+MM+z57TeszQj3OqZ13mOQefj8X8P6spHwWbR1Vc33ACC+WsZZJIOrl4sJfubW4OBoq0B6Skzb6jtNS7nhQsaZ3GWeVCQXRVUQ1XqbGIoli5Cy8LmzBSt6guPOrvH6A56IHe5FJmhmfEYCIH9lm3bx8xMQ=
-Received: from SL2PR03MB4537.apcprd03.prod.outlook.com (2603:1096:100:59::17)
- by PUZPR03MB5961.apcprd03.prod.outlook.com (2603:1096:301:b1::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.34; Tue, 5 Dec
- 2023 02:02:14 +0000
-Received: from SL2PR03MB4537.apcprd03.prod.outlook.com
- ([fe80::2cc7:1b29:a66:6d47]) by SL2PR03MB4537.apcprd03.prod.outlook.com
- ([fe80::2cc7:1b29:a66:6d47%4]) with mapi id 15.20.7046.033; Tue, 5 Dec 2023
- 02:02:13 +0000
-From: =?utf-8?B?QXhlIFlhbmcgKOadqOejiik=?= <Axe.Yang@mediatek.com>
-To: "robh+dt@kernel.org" <robh+dt@kernel.org>,
-	=?utf-8?B?V2VuYmluIE1laSAo5qKF5paH5b2sKQ==?= <Wenbin.Mei@mediatek.com>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	=?utf-8?B?Q2hhb3RpYW4gSmluZyAo5LqV5pyd5aSpKQ==?=
-	<Chaotian.Jing@mediatek.com>, "krzysztof.kozlowski+dt@linaro.org"
-	<krzysztof.kozlowski+dt@linaro.org>, "matthias.bgg@gmail.com"
-	<matthias.bgg@gmail.com>, "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
-	"angelogioacchino.delregno@collabora.com"
-	<angelogioacchino.delregno@collabora.com>
-CC: "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-mmc@vger.kernel.org"
-	<linux-mmc@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-mediatek@lists.infradead.org"
-	<linux-mediatek@lists.infradead.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, Project_Global_Chrome_Upstream_Group
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: Re: [PATCH v3 2/2] mmc: mediatek: extend number of tuning steps
-Thread-Topic: [PATCH v3 2/2] mmc: mediatek: extend number of tuning steps
-Thread-Index: AQHaI1S3D0qg8k92hEGDip3hDavkALCUI3KAgAXTeQA=
-Date: Tue, 5 Dec 2023 02:02:13 +0000
-Message-ID: <a419295339c8126150c1e393fcc4cb6a232f07b5.camel@mediatek.com>
-References: <20231130061513.1296-1-axe.yang@mediatek.com>
-	 <20231130061513.1296-3-axe.yang@mediatek.com>
-	 <27313484-10a9-4a2f-93b1-9b5ce04ad9c6@collabora.com>
-In-Reply-To: <27313484-10a9-4a2f-93b1-9b5ce04ad9c6@collabora.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SL2PR03MB4537:EE_|PUZPR03MB5961:EE_
-x-ms-office365-filtering-correlation-id: 156634c7-266f-4675-ee8f-08dbf53632c6
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: fYJP815ESe5UBoSxJVNd68LD1ZTkkTcn8ihiyIbJNb5o/qrMpunPx6upY+trLdsEN/q64qqVKdLecoh8hd/4kP8LdXeIT0eH8DAI35Ki98bXezstq1hKh+aeh2v5iUEVbUA0h0mue3+K+YOAWzjmQLWQL440nbeMvZj39a6sbvPoyXyKfviOsek4LvNZwmh78aXWdQ1NgaNOQgRfF4LBoKQ3cElgXR3JAUvJJ+6/JJYRS6ITNIcX0WZtLiiLPSxLsK5VIrarAFJkxA0y+BRRFRRdpnD5QpWeE0uvafgxvnzUJc8ezaWoH/bWcaewK1RuD0nOToU+A89habkalP3EYfMc9DAZLNvuAy+dAaEk7J/xJc+uPvQexSEBZW+8hAipdNvblESsojJYJvx6Ht7RTFV8SGAQUKV97Z2ryB3PBoivRJ6q26RoaEzh1O1kUqpWmsnBQ2DI9dQQWXJCOp/qqiVmH4Q9f4M49HfFeWFIw1JA4grPXq2A9KFOlkI8t442uXj7Az8O6yhJBU77VxrUdnM3Z+v1TmeyQkbTrY6xsBxb717cYmEcMZBPEvwDsrEjFsWrFgVVG4GOSQYFOjfAE9LLjJNG6wRI62BySK/rJ94OnSMP0QaLyQDNvOARYCxv843MeBlxZTbElJYfBl+4AzNGs9WH/Sn+bRdBm8yYkt1K1AbHHgy1eKZ/sgFcLUWk
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SL2PR03MB4537.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(39860400002)(396003)(346002)(136003)(376002)(230922051799003)(1800799012)(186009)(64100799003)(451199024)(66899024)(7416002)(38100700002)(2906002)(5660300002)(86362001)(36756003)(85182001)(41300700001)(122000001)(107886003)(6486002)(2616005)(26005)(71200400001)(6506007)(478600001)(6512007)(8936002)(8676002)(4326008)(76116006)(66946007)(66556008)(66476007)(66446008)(64756008)(54906003)(91956017)(110136005)(83380400001)(316002)(38070700009)(99106002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?UkM1NzRSOHE5ck1NOXNDSTBWWUF5YVplZUxhOXp4VStoR1FJTzQ0dVM1emE3?=
- =?utf-8?B?K0JkdUFEaEZpQlZhTzVsVlZhK2hYWGlwMWZzS1p0OVJDWGswRFZ2QXBadFZ1?=
- =?utf-8?B?MzdkWW5wYWtPSzhkUHc1ZGlERmNTWEFaMDRQZGxjTTZPUEY0S1dVTWhzYTBE?=
- =?utf-8?B?KzEyMHg2bjJxWk52RDdoZEFKM3N2N29qMUc0bnpiTCs3NU5lVVRadklqSXBu?=
- =?utf-8?B?dnFxaUhZall4bkVVb0MxWHlMT2hYYlJpMEdjc0xYVkZaVWdTNnp4SWFXMGdx?=
- =?utf-8?B?RDIvTGl2RDFZMUVCaWRKSTBFN2JtT1NkbWwxWEVHdmxSWUZ4dmZ6dU13dTQv?=
- =?utf-8?B?bmpGOWF5dmhyK3FLSWROa3JyTjhXbHBaRFhlR1VpMUhsL2pHRmVDK3diUmZv?=
- =?utf-8?B?Y3g1Zmc2eFJTWjNCWlFhTGxyaHBUR3lpZmpmdXZjZ3d3S0JjRG9Xd1VjcVIy?=
- =?utf-8?B?ejZuUWZpUU5WSEQwdWpBUUVWYkVaemF5Z3NtcXplcHR1Nm9RQ0Y1a1pURE5V?=
- =?utf-8?B?ejYwZzdEU0xzRHRvNUI3U2lSZlB0eUgvNlNYK0o4TmFIRVlUV3JSZnZxNFpE?=
- =?utf-8?B?ZmdtTVptNHhqVFd1bmNlNGVTdW55UkZSeXlHN1E0eWpRUzRYZnV1U05RY2Ft?=
- =?utf-8?B?WVZFQVNIMWkrakRFb1FOVGdlL3JvNU1mbE1RbElVLy9JNm5qeXcrd3NlU1oy?=
- =?utf-8?B?aGZNRGhTVm1lNkJJOXNSa1A1ZlBBMDlpNmpsR0NpdnFQbm1RVUNLMUxNQ0tk?=
- =?utf-8?B?bk5vdzVhNnE2Z0g2ZzhqQ3MwMkFQMjZOTk1NNmZpWUFVMWtrK3R6OEtleU5j?=
- =?utf-8?B?K0pILytkZHBvUTZjVm5PdEFNaWlTTDlHMGNxNk1xTzJ3bGMzQ2xqaHFrUkRa?=
- =?utf-8?B?ek1qbTZ3UEpvYmo5YWgzdVcrRzJSM3hjZXY2VmtBbU1YS29QOG9CZldrZGh5?=
- =?utf-8?B?N1hKUks4OGQ5cmdFV2pzdW1XdWRGOVY4ZTA5MmhwbUdhMGRLRFQ5YVBFWUx2?=
- =?utf-8?B?NzAzTytGRlNXVXkvMktwSWZ0SWM1Q1ZPeHpLd0Y3UkdNMG1mL0F0QnFtaTRl?=
- =?utf-8?B?S1c5UjdEYk1BZ1lwM1JrYTlIbzZjL0UvanRkS2w3QW5NU0ZzMzREM2laNXN1?=
- =?utf-8?B?MUp5a0YybHZGeW5WYWJ4Q1NZWlRsQXNabUoxMEI3M0JkMm16bmRWR3F6TWQx?=
- =?utf-8?B?S3B4OURqMWYvTnpGdmppNS9CVjNvTVBJcXBxS2szS0JBMEd5dXFVT1NiSW44?=
- =?utf-8?B?N0hkUmtjUk1Ua0pJTm52VDBZMy9iRXlIb20vUnJqaEFhTzdWN3NmYnF5cDFF?=
- =?utf-8?B?amQvUlA1RnJqWFZKdGhTbzFWRFVQTXRsbXR5QVRRYm1kTDFpMG5vNWkrOVJa?=
- =?utf-8?B?ajVuNFN5cmtOL05KVGZkakZGZjZCaWxNalE5QzBZNlQwcUtVdE85QlFkM3RP?=
- =?utf-8?B?KzJ3aHdDeW5JYVdWdEJPQWZRSzNYSlF4SmkwMlBTdDRLeURCOUxBdzNmYlVP?=
- =?utf-8?B?czVCRDRFamJkcGtQSHBvbURTcHhoTDlwMDFZNTJkMTJ6dlhicmoxN0JUTTJr?=
- =?utf-8?B?NytzNW5IVTVtRlVoU2JwSEQvaVBrY2hiU0F3RGphV1NvZUZJaGRhM2FGRmZM?=
- =?utf-8?B?djJaSjRVRzRUU3BmZVF2b2VaVzBiWE5iNXFuRGdSaGhLN1FyditESlZ2MDJl?=
- =?utf-8?B?bldOUmkyYytpVnR1dkNVWmg1M3VuazBRNzFWTy9NNC9FWTJWZTdyNzgyYldQ?=
- =?utf-8?B?aXVTeUpndzVpZ1NrZkYySFFHVlpCbUQxZVl1WHI4WnpER3M5Qnl0T2o2eW5N?=
- =?utf-8?B?bmc1bTlJYitFYTJ6eHNqWndCQW42THdObkNzOW1ndnEvT2pVWk9SaVBmYkUw?=
- =?utf-8?B?c2NsaDRQMHluOFMzekQ2ejhkMUdpaU9tSlJQOWppQ1dCSEpsRDZLNFNITW1s?=
- =?utf-8?B?SHF2aXZScFJoL0FZWEFhT2VHVXVyd0lHcXg2MGY2cmltWEFjYm5IS0k4VFJ2?=
- =?utf-8?B?OFQvU1E2STZHdXkrbkp0cWRNSEsyMW52NEJzOC93Qm0zQ2FkQm9tbk40eTdI?=
- =?utf-8?B?YlMwNXJuTSs4bnBYRDZrT0ZQeFJzdGF5NDhFTEQwbDNvOGVSWklaTTlZZHB0?=
- =?utf-8?B?VVMvOFNuLzdzK25yU0NFV09uT25GUGtYQ1Yra3hVVnhaeWZIYzJzVFFXOUV0?=
- =?utf-8?B?K0E9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <AF8F560C154ECA4C9C786F4BA48F25BD@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=gmail.com; s=20230601; t=1701742606; x=1702347406; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=YJvYfpdx4Dv3ZMACoLttg384q/B4GTiS77MM47VJumU=;
+        b=kBj3tR3jkiKMzwnIJyXNJTw4z4KkhKP7sIGSDcCEoqVR7COvVX1Pm9xr6VGPHzXl40
+         F6pymsJ4xNN+TbQCwZDdxd8ADR+xA6RIC84H5kAH1mQ+Nm0s0QuOIbIBbwukB8mIRgHX
+         N7e78Gpv+pWmT9Lhopc4nRnV447MMj9m9YsERRNznGDbvCbUjMtzqb4kLr347rVJG9CJ
+         R3rNRzEfp/paWKrC/pVyTpuiTL6HYW3EjCWms7Zg2aB3hNcQphPxUh08Vblk+WZbZugh
+         zVhzbwPuEniv3rQBVgm9L6MPdL646gGFVtDaLkbXOkSzP3ReWJUfwlz7tdDPvwDGlvim
+         syCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701742606; x=1702347406;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YJvYfpdx4Dv3ZMACoLttg384q/B4GTiS77MM47VJumU=;
+        b=j3qyadCFpYsmWpfuJRAgW5AaD1cpqILiFNqixD/MJBQf9IYVNtLqvn0vflzCOl9pLq
+         6eFJj/QBn3v9mttAQ8f61zuzFqD/Avbrr1t0m5oZzue+Lqmt2p4+6F2eCO+I1JKCpyGL
+         pl9Tt8YZf12GL3n4xG3DZ9lezh9wCmAsT0wcJ6EdC7ZGfFG/iM0zEFcj5y+YL9hbwU2z
+         WIqSO9IA2H4wke5PmZPrt9uTRWxTdcXasOFRwXAod60GzW8BvsJHE9f966EQXQnQ4JbC
+         BG4eas3YPadfGewGET7SwVsnrX64EPkP3e7eSQPONY8CPdLkPw2bqhgtBwt3n0T7+4u2
+         nRXQ==
+X-Gm-Message-State: AOJu0YxuuVa7cgAf7zJQ+HX6xdaXb1KvQ018WXxf9nFRMSHrsww8gM2i
+	84ouJWRE1x1Y+bCtejuBV4XPMmvOeRu4SA==
+X-Google-Smtp-Source: AGHT+IH9YVBqotP2NLDIK98VWhd2qevLzXqU3eb0dmV5lWwjUcw9OnX5FhsTapTzZ8BeOor0nBabsw==
+X-Received: by 2002:a05:620a:1206:b0:77f:878:b58 with SMTP id u6-20020a05620a120600b0077f08780b58mr535341qkj.153.1701742605606;
+        Mon, 04 Dec 2023 18:16:45 -0800 (PST)
+Received: from abdel ([174.95.13.129])
+        by smtp.gmail.com with ESMTPSA id k13-20020a05620a07ed00b0077d61831eb2sm4716435qkk.40.2023.12.04.18.16.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Dec 2023 18:16:45 -0800 (PST)
+Date: Mon, 4 Dec 2023 21:16:34 -0500
+From: Abdel Alkuor <alkuor@gmail.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org, lars@metafoo.de,
+	conor+dt@kernel.org, linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] iio: temperature: Add support for AMS AS6200
+Message-ID: <ZW6IArKhx4KvxyTD@abdel>
+References: <20231202041651.719963-1-alkuor@gmail.com>
+ <20231202041651.719963-2-alkuor@gmail.com>
+ <20231204135014.15ea47b6@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SL2PR03MB4537.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 156634c7-266f-4675-ee8f-08dbf53632c6
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Dec 2023 02:02:13.1490
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: YzYzFN8rf3/WANs3KXDfUUjGOd6dbiea+1wglsP/Kk4+Bjdf9UBuLW4FagkVk6nQrGZlFqgV2h2UFcldPpTPAA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PUZPR03MB5961
-X-MTK: N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231204135014.15ea47b6@jic23-huawei>
 
-T24gRnJpLCAyMDIzLTEyLTAxIGF0IDEwOjAyICswMTAwLCBBbmdlbG9HaW9hY2NoaW5vIERlbCBS
-ZWdubyB3cm90ZToNCj4gSWwgMzAvMTEvMjMgMDc6MTUsIEF4ZSBZYW5nIGhhIHNjcml0dG86DQo+
-ID4gUHJldmlvdXNseSwgZHVyaW5nIHRoZSBNU0RDIGNhbGlicmF0aW9uIHByb2Nlc3MsIGEgZnVs
-bCBjbG9jayBjeWNsZQ0KPiA+IGFjdHVhbGx5IG5vdCBiZSBjb3ZlcmVkLCB3aGljaCBpbiBzb21l
-IGNhc2VzIGRpZG4ndCB5aWVsZCB0aGUgYmVzdA0KPiA+IHJlc3VsdHMgYW5kIGNvdWxkIGNhdXNl
-IENSQyBlcnJvcnMuIFRoaXMgcHJvYmxlbSBpcyBwYXJ0aWN1bGFybHkNCj4gPiBldmlkZW50IHdo
-ZW4gTVNEQyBpcyB1c2VkIGFzIGFuIFNESU8gaG9zdC4gSW4gZmFjdCwgTVNEQyBzdXBwb3J0DQo+
-ID4gdHVuaW5nIHVwIHRvIGEgbWF4aW11bSBvZiA2NCBzdGVwcywgYnV0IGJ5IGRlZmF1bHQsIHRo
-ZSBzdGVwIG51bWJlcg0KPiA+IGlzIDMyLiBCeSBpbmNyZWFzZSB0aGUgdHVuaW5nIHN0ZXAsIHdl
-IGFyZSBtb3JlIGxpa2VseSB0byBjb3Zlcg0KPiA+IG1vcmUNCj4gPiBwYXJ0cyBvZiBhIGNsb2Nr
-IGN5Y2xlLCBhbmQgZ2V0IGJldHRlciBjYWxpYnJhdGlvbiByZXN1bHQuDQo+ID4gDQo+ID4gVG8g
-aWxsdXN0cmF0ZSwgd2hlbiB0dW5pbmcgMzIgc3RlcHMsIGlmIHRoZSBvYnRhaW5lZCB3aW5kb3cg
-aGFzIGENCj4gPiBob2xlDQo+ID4gbmVhciB0aGUgbWlkZGxlLCBsaWtlIHRoaXM6IDB4ZmZjMDdm
-ZiAoaGV4KSwgdGhlbiB0aGUgc2VsZWN0ZWQNCj4gPiBkZWxheQ0KPiA+IHdpbGwgYmUgdGhlIDYg
-KGNvdW50aW5nIGZyb20gcmlnaHQgdG8gbGVmdCkuDQo+ID4gDQo+ID4gKDMyIDwtIDEpDQo+ID4g
-MTExMSAxMTExIDExMDAgMDAwMCAwMDAwIDAxMTEgMTEoMSkxIDExMTENCj4gPiANCj4gPiBIb3dl
-dmVyLCBpZiB3ZSB0dW5lIDY0IHN0ZXBzLCB0aGUgd2luZG93IG9idGFpbmVkIG1heSBsb29rIGxp
-a2UNCj4gPiB0aGlzOg0KPiA+IDB4ZmZmZmZmZmZmZmZjMDdmZi4gVGhlIGZpbmFsIHNlbGVjdGVk
-IGRlbGF5IHdpbGwgYmUgNDQsIHdoaWNoIGlzDQo+ID4gc2FmZXIgYXMgaXQgaXMgZnVydGhlciBh
-d2F5IGZyb20gdGhlIGhvbGU6DQo+ID4gDQo+ID4gKDY0IDwtIDEpDQo+ID4gMTExMSAuLi4gKDEp
-MTExIDExMTEgMTExMSAxMTExIDExMTEgMTEwMCAwMDAwIDAwMDAgMDExMSAxMTExIDExMTENCj4g
-PiANCj4gPiBJbiB0aGlzIGNhc2UsIGRlbGF5IDYgc2VsZWN0ZWQgdGhyb3VnaCAzMiBzdGVwcyB0
-dW5pbmcgaXMgb2J2aW91c2x5DQo+ID4gbm90IG9wdGltYWwsIGFuZCB0aGlzIGRlbGF5IGlzIGNs
-b3NlciB0byB0aGUgaG9sZSwgdXNpbmcgaXQgd291bGQNCj4gPiBlYXNpbHkgY2F1c2UgQ1JDIHBy
-b2JsZW1zLg0KPiA+IA0KPiA+IFlvdSB3aWxsIG5lZWQgdG8gY29uZmlndXJlIHByb3BlcnR5ICJt
-ZWRpYXRlayx0dW5pbmctc3RlcCIgaW4gTVNEQw0KPiA+IGR0cyBub2RlIHRvIDY0IHRvIGV4dGVu
-ZCB0aGUgc3RlcHMuDQo+ID4gDQo+ID4gU2lnbmVkLW9mZi1ieTogQXhlIFlhbmcgPGF4ZS55YW5n
-QG1lZGlhdGVrLmNvbT4NCj4gPiAtLS0NCj4gPiAgIGRyaXZlcnMvbW1jL2hvc3QvbXRrLXNkLmMg
-fCAxNTUgKysrKysrKysrKysrKysrKysrKysrKysrKystLS0tLS0tDQo+ID4gLS0tLS0NCj4gPiAg
-IDEgZmlsZSBjaGFuZ2VkLCAxMDcgaW5zZXJ0aW9ucygrKSwgNDggZGVsZXRpb25zKC0pDQo+ID4g
-DQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvbW1jL2hvc3QvbXRrLXNkLmMgYi9kcml2ZXJzL21t
-Yy9ob3N0L210ay1zZC5jDQo+ID4gaW5kZXggOTdmN2MzZDRiZTZlLi40Y2QzMDZiM2IyOTUgMTAw
-NjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9tbWMvaG9zdC9tdGstc2QuYw0KPiA+ICsrKyBiL2RyaXZl
-cnMvbW1jL2hvc3QvbXRrLXNkLmMNCj4gPiBAQCAtMjUyLDEyICsyNTIsMTYgQEANCj4gPiAgIA0K
-PiA+ICAgI2RlZmluZSBNU0RDX1BBRF9UVU5FX0RBVFdSRExZCSAgR0VOTUFTSyg0LCAwKQkJLyoN
-Cj4gPiBSVyAqLw0KPiA+ICAgI2RlZmluZSBNU0RDX1BBRF9UVU5FX0RBVFJSRExZCSAgR0VOTUFT
-SygxMiwgOCkJLyogUlcgKi8NCj4gPiArI2RlZmluZSBNU0RDX1BBRF9UVU5FX0RBVFJSRExZMgkg
-IEdFTk1BU0soMTIsIDgpCS8qIFJXICovDQo+ID4gICAjZGVmaW5lIE1TRENfUEFEX1RVTkVfQ01E
-UkRMWQkgIEdFTk1BU0soMjAsIDE2KQkvKiBSVyAqLw0KPiA+ICsjZGVmaW5lIE1TRENfUEFEX1RV
-TkVfQ01EUkRMWTIJICBHRU5NQVNLKDIwLCAxNikJLyogUlcgKi8NCj4gPiAgICNkZWZpbmUgTVNE
-Q19QQURfVFVORV9DTURSUkRMWQkgIEdFTk1BU0soMjYsIDIyKQkvKiBSVyAqLw0KPiA+ICAgI2Rl
-ZmluZSBNU0RDX1BBRF9UVU5FX0NMS1RETFkJICBHRU5NQVNLKDMxLCAyNykJLyogUlcgKi8NCj4g
-PiAgICNkZWZpbmUgTVNEQ19QQURfVFVORV9SWERMWVNFTAkgIEJJVCgxNSkgICAvKiBSVyAqLw0K
-PiA+ICAgI2RlZmluZSBNU0RDX1BBRF9UVU5FX1JEX1NFTAkgIEJJVCgxMykgICAvKiBSVyAqLw0K
-PiA+ICAgI2RlZmluZSBNU0RDX1BBRF9UVU5FX0NNRF9TRUwJICBCSVQoMjEpICAgLyogUlcgKi8N
-Cj4gPiArI2RlZmluZSBNU0RDX1BBRF9UVU5FX1JEMl9TRUwJICBCSVQoMTMpICAgLyogUlcgKi8N
-Cj4gPiArI2RlZmluZSBNU0RDX1BBRF9UVU5FX0NNRDJfU0VMCSAgQklUKDIxKSAgIC8qIFJXICov
-DQo+ID4gICANCj4gPiAgICNkZWZpbmUgUEFEX0RTX1RVTkVfRExZX1NFTCAgICAgICBCSVQoMCkJ
-ICAvKiBSVyAqLw0KPiA+ICAgI2RlZmluZSBQQURfRFNfVFVORV9ETFkxCSAgR0VOTUFTSyg2LCAy
-KSAgIC8qIFJXICovDQo+ID4gQEAgLTMyNSw3ICszMjksOCBAQA0KPiA+ICAgDQo+ID4gICAjZGVm
-aW5lIERFRkFVTFRfREVCT1VOQ0UJKDgpCS8qIDggY3ljbGVzIENEIGRlYm91bmNlICovDQo+ID4g
-ICANCj4gPiAtI2RlZmluZSBQQURfREVMQVlfTUFYCTMyIC8qIFBBRCBkZWxheSBjZWxscyAqLw0K
-PiA+ICsjZGVmaW5lIFBBRF9ERUxBWV9IQUxGCTMyIC8qIFBBRCBkZWxheSBjZWxscyAqLw0KPiA+
-ICsjZGVmaW5lIFBBRF9ERUxBWV9GVUxMCTY0DQo+ID4gICAvKi0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KPiA+IC0tLS0tLS0t
-LS0tKi8NCj4gPiAgIC8qIERlc2NyaXB0b3INCj4gPiBTdHJ1Y3R1cmUgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICovDQo+ID4gICAvKi0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0K
-PiA+IC0tLS0tLS0tLS0tKi8NCj4gPiBAQCAtNDYxLDYgKzQ2Niw3IEBAIHN0cnVjdCBtc2RjX2hv
-c3Qgew0KPiA+ICAgCXUzMiBoczQwMF9kc19kbHkzOw0KPiA+ICAgCXUzMiBoczIwMF9jbWRfaW50
-X2RlbGF5OyAvKiBjbWQgaW50ZXJuYWwgZGVsYXkgZm9yIEhTMjAwL1NEUjEwNA0KPiA+ICovDQo+
-ID4gICAJdTMyIGhzNDAwX2NtZF9pbnRfZGVsYXk7IC8qIGNtZCBpbnRlcm5hbCBkZWxheSBmb3Ig
-SFM0MDAgKi8NCj4gPiArCXUzMiB0dW5pbmdfc3RlcDsNCj4gPiAgIAlib29sIGhzNDAwX2NtZF9y
-ZXNwX3NlbF9yaXNpbmc7DQo+ID4gICAJCQkJIC8qIGNtZCByZXNwb25zZSBzYW1wbGUgc2VsZWN0
-aW9uIGZvcg0KPiA+IEhTNDAwICovDQo+ID4gICAJYm9vbCBoczQwMF9tb2RlOwkvKiBjdXJyZW50
-IGVNTUMgd2lsbCBydW4gYXQgaHM0MDAgbW9kZSAqLw0KPiA+IEBAIC0xNjE1LDcgKzE2MjEsNyBA
-QCBzdGF0aWMgaXJxcmV0dXJuX3QgbXNkY19jbWRxX2lycShzdHJ1Y3QNCj4gPiBtc2RjX2hvc3Qg
-Kmhvc3QsIHUzMiBpbnRzdHMpDQo+ID4gICAJfQ0KPiA+ICAgDQo+ID4gICAJaWYgKGNtZF9lcnIg
-fHwgZGF0X2Vycikgew0KPiA+IC0JCWRldl9lcnIoaG9zdC0+ZGV2LCAiY21kX2VyciA9ICVkLCBk
-YXRfZXJyID0lZCwgaW50c3RzID0NCj4gPiAweCV4IiwNCj4gPiArCQlkZXZfZXJyKGhvc3QtPmRl
-diwgImNtZF9lcnIgPSAlZCwgZGF0X2VyciA9ICVkLCBpbnRzdHMNCj4gPiA9IDB4JXgiLA0KPiA+
-ICAgCQkJY21kX2VyciwgZGF0X2VyciwgaW50c3RzKTsNCj4gPiAgIAl9DQo+ID4gICANCj4gPiBA
-QCAtMTc4MCwxMCArMTc4NiwyMCBAQCBzdGF0aWMgdm9pZCBtc2RjX2luaXRfaHcoc3RydWN0IG1z
-ZGNfaG9zdA0KPiA+ICpob3N0KQ0KPiA+ICAgCQkJCSAgICAgREFUQV9LX1ZBTFVFX1NFTCk7DQo+
-ID4gICAJCQlzZHJfc2V0X2JpdHMoaG9zdC0+dG9wX2Jhc2UgKyBFTU1DX1RPUF9DTUQsDQo+ID4g
-ICAJCQkJICAgICBQQURfQ01EX1JEX1JYRExZX1NFTCk7DQo+ID4gKwkJCWlmIChob3N0LT50dW5p
-bmdfc3RlcCA+IFBBRF9ERUxBWV9IQUxGKSB7DQo+ID4gKwkJCQlzZHJfc2V0X2JpdHMoaG9zdC0+
-dG9wX2Jhc2UgKw0KPiA+IEVNTUNfVE9QX0NPTlRST0wsDQo+ID4gKwkJCQkJICAgICBQQURfREFU
-X1JEX1JYRExZMl9TRUwpOw0KPiA+ICsJCQkJc2RyX3NldF9iaXRzKGhvc3QtPnRvcF9iYXNlICsN
-Cj4gPiBFTU1DX1RPUF9DTUQsDQo+ID4gKwkJCQkJICAgICBQQURfQ01EX1JEX1JYRExZMl9TRUwp
-Ow0KPiA+ICsJCQl9DQo+ID4gICAJCX0gZWxzZSB7DQo+ID4gICAJCQlzZHJfc2V0X2JpdHMoaG9z
-dC0+YmFzZSArIHR1bmVfcmVnLA0KPiA+ICAgCQkJCSAgICAgTVNEQ19QQURfVFVORV9SRF9TRUwg
-fA0KPiA+ICAgCQkJCSAgICAgTVNEQ19QQURfVFVORV9DTURfU0VMKTsNCj4gPiArCQkJaWYgKGhv
-c3QtPnR1bmluZ19zdGVwID4gUEFEX0RFTEFZX0hBTEYpDQo+ID4gKwkJCQlzZHJfc2V0X2JpdHMo
-aG9zdC0+YmFzZSArIHR1bmVfcmVnICsgNCwNCj4gDQo+IGB0dW5lX3JlZyArIDRgIGlzIGEgZGlm
-ZmVyZW50IHJlZ2lzdGVyLCBwbGVhc2UgZGVmaW5lIGl0Lg0KPiANClRoZSB0dW5lX3JlZyBpcyBu
-b3QgYSBmaXhlZCByZWdpc3RlciBhZGRyZXNzLCBpdCBpcyBkZWZpbmVkIGluDQpjb21wYXRpYmxl
-IHN0cnVjdHVyZXMuIFNvIHVzaW5nIHRoZSBvZmZzZXQgaGVyZSB3aWxsIG1ha2UgdGhlIGNvZGUg
-bW9yZQ0KY29uc2lzZS4gVGhlIG9mZnNldCBvZiByZWdpc3RlcnMgcmVsYXRlZCB0byA2NCBzdGVw
-cyB0dW5pbmcgaXMgZml4ZWQNCnJlbGF0aXZlIHRvIDMyLXN0ZXBzIHR1bmluZyByZWdzaXRlciwg
-dGhlIG9mZnNldCBpcyBhbHdheXMgNC4NCg0KSG93ZXZlci4gdXNpbmcgdGhlIG1hZ2ljIG51bWJl
-ciAnNCcgaGVyZSBkaXJlY3RseSBpcyBub3QgaWRlYWwuIEkgdGhpbmsNCkkgY2FuIGltcHJvdmUg
-dGhpcyBwYXJ0IG9mIGNvZGUgYnkgZGVmaW5pbmcgJzQnIGFzIGEgbWFjcm8uIFdoYXQgZG8geW91
-DQp0aGluayBhYm91dCBpdD8gSWYgeW91IGluc2lzdCBvbiByZWRpZm5pbmcgdGhlIHJlZ2lzdGVy
-cywgSSBjYW4gZG8gaXQsDQpidXQgaXQgd2lsbCBtYWtlIHRoZSBjb2RlIGEgYml0IG1vcmUgY29t
-cGxleCB0aGFuIGl0IGlzIG5vdy4NCg0KDQo+IEFsc28sIEkgY2FuJ3QgZmluZCB0aGlzIGluIE1U
-ODE5MiwgTVQ4MTk1IC0gYXMgdGhvc2UgYml0cyBzZWVtIHRvIGJlDQo+IHVuZGVmaW5lZCwNCj4g
-c28sIHdoaWNoIFNvQ3MgYXJlIGFjdHVhbGx5IGNvbXBhdGlibGUgd2l0aCB0aGlzIGNoYW5nZT8N
-Cg0KU29ycnksIHdoaWNoIGJpdHMgYXJlIHlvdSB0YWxraW5nIGFib3V0PyANClRoaXMgY2hhbmdl
-IGNvbXBhdGlibGUgZm9yIGFsbCBTb0NzLiBJbiBmYWN0LCBNU0RDIGhhcyBhbHdheXMgc3VwcG9y
-dGVkDQo2NCBzdGVwIHR1bmluZy4NCg0KDQo+IA0KPiANCj4gPiArCQkJCQkgICAgIE1TRENfUEFE
-X1RVTkVfUkQyX1NFTCB8DQo+ID4gKwkJCQkJICAgICBNU0RDX1BBRF9UVU5FX0NNRDJfU0VMKTsN
-Cj4gPiAgIAkJfQ0KPiA+ICAgCX0gZWxzZSB7DQo+ID4gICAJCS8qIGNob29zZSBjbG9jayB0dW5l
-ICovDQo+ID4gQEAgLTE5MjUsMjQgKzE5NDEsMjQgQEAgc3RhdGljIHZvaWQgbXNkY19vcHNfc2V0
-X2lvcyhzdHJ1Y3QNCj4gPiBtbWNfaG9zdCAqbW1jLCBzdHJ1Y3QgbW1jX2lvcyAqaW9zKQ0KPiA+
-ICAgCQltc2RjX3NldF9tY2xrKGhvc3QsIGlvcy0+dGltaW5nLCBpb3MtPmNsb2NrKTsNCj4gPiAg
-IH0NCj4gPiAgIA0KPiA+IC1zdGF0aWMgdTMyIHRlc3RfZGVsYXlfYml0KHUzMiBkZWxheSwgdTMy
-IGJpdCkNCj4gPiArc3RhdGljIHU2NCB0ZXN0X2RlbGF5X2JpdCh1NjQgZGVsYXksIHUzMiBiaXQp
-DQo+ID4gICB7DQo+ID4gLQliaXQgJT0gUEFEX0RFTEFZX01BWDsNCj4gPiAtCXJldHVybiBkZWxh
-eSAmIEJJVChiaXQpOw0KPiA+ICsJYml0ICU9IFBBRF9ERUxBWV9GVUxMOw0KPiA+ICsJcmV0dXJu
-IGRlbGF5ICYgQklUX1VMTChiaXQpOw0KPiA+ICAgfQ0KPiA+ICAgDQo+ID4gLXN0YXRpYyBpbnQg
-Z2V0X2RlbGF5X2xlbih1MzIgZGVsYXksIHUzMiBzdGFydF9iaXQpDQo+ID4gK3N0YXRpYyBpbnQg
-Z2V0X2RlbGF5X2xlbih1NjQgZGVsYXksIHUzMiBzdGFydF9iaXQpDQo+ID4gICB7DQo+ID4gICAJ
-aW50IGk7DQo+ID4gICANCj4gPiAtCWZvciAoaSA9IDA7IGkgPCAoUEFEX0RFTEFZX01BWCAtIHN0
-YXJ0X2JpdCk7IGkrKykgew0KPiA+ICsJZm9yIChpID0gMDsgaSA8IChQQURfREVMQVlfRlVMTCAt
-IHN0YXJ0X2JpdCk7IGkrKykgew0KPiA+ICAgCQlpZiAodGVzdF9kZWxheV9iaXQoZGVsYXksIHN0
-YXJ0X2JpdCArIGkpID09IDApDQo+ID4gICAJCQlyZXR1cm4gaTsNCj4gPiAgIAl9DQo+ID4gLQly
-ZXR1cm4gUEFEX0RFTEFZX01BWCAtIHN0YXJ0X2JpdDsNCj4gPiArCXJldHVybiBQQURfREVMQVlf
-RlVMTCAtIHN0YXJ0X2JpdDsNCj4gPiAgIH0NCj4gPiAgIA0KPiA+IC1zdGF0aWMgc3RydWN0IG1z
-ZGNfZGVsYXlfcGhhc2UgZ2V0X2Jlc3RfZGVsYXkoc3RydWN0IG1zZGNfaG9zdA0KPiA+ICpob3N0
-LCB1MzIgZGVsYXkpDQo+ID4gK3N0YXRpYyBzdHJ1Y3QgbXNkY19kZWxheV9waGFzZSBnZXRfYmVz
-dF9kZWxheShzdHJ1Y3QgbXNkY19ob3N0DQo+ID4gKmhvc3QsIHU2NCBkZWxheSkNCj4gPiAgIHsN
-Cj4gPiAgIAlpbnQgc3RhcnQgPSAwLCBsZW4gPSAwOw0KPiA+ICAgCWludCBzdGFydF9maW5hbCA9
-IDAsIGxlbl9maW5hbCA9IDA7DQo+ID4gQEAgLTE5NTAsMjggKzE5NjYsMjggQEAgc3RhdGljIHN0
-cnVjdCBtc2RjX2RlbGF5X3BoYXNlDQo+ID4gZ2V0X2Jlc3RfZGVsYXkoc3RydWN0IG1zZGNfaG9z
-dCAqaG9zdCwgdTMyIGRlbGF5KQ0KPiA+ICAgCXN0cnVjdCBtc2RjX2RlbGF5X3BoYXNlIGRlbGF5
-X3BoYXNlID0geyAwLCB9Ow0KPiA+ICAgDQo+ID4gICAJaWYgKGRlbGF5ID09IDApIHsNCj4gPiAt
-CQlkZXZfZXJyKGhvc3QtPmRldiwgInBoYXNlIGVycm9yOiBbbWFwOiV4XVxuIiwgZGVsYXkpOw0K
-PiA+ICsJCWRldl9lcnIoaG9zdC0+ZGV2LCAicGhhc2UgZXJyb3I6IFttYXA6JTAxNmxseF1cbiIs
-DQo+ID4gZGVsYXkpOw0KPiA+ICAgCQlkZWxheV9waGFzZS5maW5hbF9waGFzZSA9IGZpbmFsX3Bo
-YXNlOw0KPiA+ICAgCQlyZXR1cm4gZGVsYXlfcGhhc2U7DQo+ID4gICAJfQ0KPiA+ICAgDQo+ID4g
-LQl3aGlsZSAoc3RhcnQgPCBQQURfREVMQVlfTUFYKSB7DQo+ID4gKwl3aGlsZSAoc3RhcnQgPCBQ
-QURfREVMQVlfRlVMTCkgew0KPiA+ICAgCQlsZW4gPSBnZXRfZGVsYXlfbGVuKGRlbGF5LCBzdGFy
-dCk7DQo+ID4gICAJCWlmIChsZW5fZmluYWwgPCBsZW4pIHsNCj4gPiAgIAkJCXN0YXJ0X2ZpbmFs
-ID0gc3RhcnQ7DQo+ID4gICAJCQlsZW5fZmluYWwgPSBsZW47DQo+ID4gICAJCX0NCj4gPiAgIAkJ
-c3RhcnQgKz0gbGVuID8gbGVuIDogMTsNCj4gPiAtCQlpZiAobGVuID49IDEyICYmIHN0YXJ0X2Zp
-bmFsIDwgNCkNCj4gPiArCQlpZiAoIXVwcGVyXzMyX2JpdHMoZGVsYXkpICYmIGxlbiA+PSAxMiAm
-JiBzdGFydF9maW5hbCA8DQo+ID4gNCkNCj4gPiAgIAkJCWJyZWFrOw0KPiA+ICAgCX0NCj4gPiAg
-IA0KPiA+ICAgCS8qIFRoZSBydWxlIGlzIHRoYXQgdG8gZmluZCB0aGUgc21hbGxlc3QgZGVsYXkg
-Y2VsbCAqLw0KPiA+ICAgCWlmIChzdGFydF9maW5hbCA9PSAwKQ0KPiA+IC0JCWZpbmFsX3BoYXNl
-ID0gKHN0YXJ0X2ZpbmFsICsgbGVuX2ZpbmFsIC8gMykgJQ0KPiA+IFBBRF9ERUxBWV9NQVg7DQo+
-ID4gKwkJZmluYWxfcGhhc2UgPSAoc3RhcnRfZmluYWwgKyBsZW5fZmluYWwgLyAzKSAlDQo+ID4g
-UEFEX0RFTEFZX0ZVTEw7DQo+ID4gICAJZWxzZQ0KPiA+IC0JCWZpbmFsX3BoYXNlID0gKHN0YXJ0
-X2ZpbmFsICsgbGVuX2ZpbmFsIC8gMikgJQ0KPiA+IFBBRF9ERUxBWV9NQVg7DQo+ID4gLQlkZXZf
-ZGJnKGhvc3QtPmRldiwgInBoYXNlOiBbbWFwOiV4XSBbbWF4bGVuOiVkXSBbZmluYWw6JWRdXG4i
-LA0KPiA+ICsJCWZpbmFsX3BoYXNlID0gKHN0YXJ0X2ZpbmFsICsgbGVuX2ZpbmFsIC8gMikgJQ0K
-PiA+IFBBRF9ERUxBWV9GVUxMOw0KPiA+ICsJZGV2X2RiZyhob3N0LT5kZXYsICJwaGFzZTogW21h
-cDolMDE2bGx4XSBbbWF4bGVuOiVkXQ0KPiA+IFtmaW5hbDolZF1cbiIsDQo+ID4gICAJCWRlbGF5
-LCBsZW5fZmluYWwsIGZpbmFsX3BoYXNlKTsNCj4gPiAgIA0KPiA+ICAgCWRlbGF5X3BoYXNlLm1h
-eGxlbiA9IGxlbl9maW5hbDsNCj4gPiBAQCAtMTk4NCwzMCArMjAwMCw2OCBAQCBzdGF0aWMgaW5s
-aW5lIHZvaWQNCj4gPiBtc2RjX3NldF9jbWRfZGVsYXkoc3RydWN0IG1zZGNfaG9zdCAqaG9zdCwg
-dTMyIHZhbHVlKQ0KPiA+ICAgew0KPiA+ICAgCXUzMiB0dW5lX3JlZyA9IGhvc3QtPmRldl9jb21w
-LT5wYWRfdHVuZV9yZWc7DQo+ID4gICANCj4gPiAtCWlmIChob3N0LT50b3BfYmFzZSkNCj4gPiAt
-CQlzZHJfc2V0X2ZpZWxkKGhvc3QtPnRvcF9iYXNlICsgRU1NQ19UT1BfQ01ELA0KPiA+IFBBRF9D
-TURfUlhETFksDQo+ID4gLQkJCSAgICAgIHZhbHVlKTsNCj4gPiAtCWVsc2UNCj4gPiAtCQlzZHJf
-c2V0X2ZpZWxkKGhvc3QtPmJhc2UgKyB0dW5lX3JlZywNCj4gPiBNU0RDX1BBRF9UVU5FX0NNRFJE
-TFksDQo+ID4gLQkJCSAgICAgIHZhbHVlKTsNCj4gPiArCWlmIChob3N0LT50b3BfYmFzZSkgew0K
-PiA+ICsJCWlmICh2YWx1ZSA8IFBBRF9ERUxBWV9IQUxGKSB7DQo+ID4gKwkJCXNkcl9zZXRfZmll
-bGQoaG9zdC0+dG9wX2Jhc2UgKyBFTU1DX1RPUF9DTUQsDQo+ID4gUEFEX0NNRF9SWERMWSwNCj4g
-PiArCQkJCSAgICAgIHZhbHVlKTsNCj4gDQo+IFRoaXMgZ29lcyB1cCB0byA5MiBjb2x1bW5zLCBh
-bmQgaXQncyBmaW5lLCBzbyBmaXRzIGluIG9uZSBsaW5lIGFuZA0KPiBpdCdzIG1vcmUNCj4gcmVh
-ZGFibGUgbGlrZSB0aGF0Lg0KPiANCj4gSSBrbm93IHRoYXQncyBub3QgeW91ciBmYXVsdCwgYnV0
-IHNpbmNlIHlvdSdyZSBhY3R1YWxseSB0b3VjaGluZw0KPiB0aG9zZSBsaW5lcw0KPiBpdCdzIGEg
-Z29vZCBvY2Nhc2lvbiB0byBhbHNvIGRvIHRoYXQgKG5vdCBvbmx5IGhlcmUpIDotKQ0KPiANClN1
-cmUsIHdpbGwgdXBkYXRlIHRoaXMgcGFydCBpbiB2NCwgYW5kIHRoYW5rcyBmb3IgeW91ciBtZXRp
-Y3Vsb3VzDQpyZXZpZXcuDQoNClJlZ2FyZHMsDQpBeGUNCj4gQW5nZWxvDQo=
+On Mon, Dec 04, 2023 at 01:50:14PM +0000, Jonathan Cameron wrote:
+> On Fri,  1 Dec 2023 23:16:51 -0500
+> Abdel Alkuor <alkuor@gmail.com> wrote:
+> 
+> > as6200 is a high accuracy temperature sensor of 0.0625C with a range
+> > between -40 to 125 Celsius degrees.
+> > 
+> > The driver implements the alert trigger event in comparator mode where
+> > consecutive faults are converted into periods, high/low temperature
+> > thresholds require to be above/below the set limit for n seconds for
+> > the alert to be triggered/cleared. The alert is only cleared when the
+> > current temperature is below the low temperature threshold for n seconds.
+> > 
+> > The driver supports the following:
+> > - show available sampling frequencey
+> > - read/write sampling frequency
+> > - read raw temperature
+> > - read scaling factor
+> > - read/write temperature period that needs to be met for low/high
+> >   temperature thresholds to trigger an alert
+> > - show available temperature period thresholds
+> > - buffer trigger
+> > - temperature alert event trigger
+> 
+> Hi Abdel,
+> 
+> A few comments inline. Looking good in general.
+>
+Hi Jonathon,
+
+Thank you for your time. I have a couple _silly_ questions about the tag
+and returning from if else. Other than that, your comments will be addressed
+in v3.
+> > 
+> > Datasheet: https://ams.com/documents/20143/36005/AS6200_DS000449_4-00.pdf
+> > 
+> 
+> No blank line here.  Tags block (and Datasheet is a tag) never has blank lines
+> as that breaks some existing tooling.
+> 
+Understood. 
+
+P.S. when running checkpatch.pl on this patch, I get the following warning:
+
+WARNING: Unknown link reference 'Datasheet:', use 'Link:' or 'Closes:' instead
+
+should I use Link instead?
+> > Signed-off-by: Abdel Alkuor <alkuor@gmail.com>
+> >  
+> >  What:		/sys/bus/iio/devices/iio:deviceX/in_filter_notch_center_frequency
+> > diff --git a/drivers/iio/temperature/Kconfig b/drivers/iio/temperature/Kconfig
+> > index ed384f33e0c7..a0ffbc77e623 100644
+> > --- a/drivers/iio/temperature/Kconfig
+> > +++ b/drivers/iio/temperature/Kconfig
+> > @@ -4,6 +4,17 @@
+> >  #
+> >  menu "Temperature sensors"
+> >  
+> > +config AS6200
+> > +       tristate "AS6200 temperature sensor"
+> > +       depends on I2C
+> > +       select REGMAP_I2C
+> > +       help
+> > +         If you say yes here you get support for AS6200
+> > +         temperature sensor chip connected via I2C.
+> > +
+> > +         This driver can also be built as a module.  If so, the module
+> > +         will be called as6200.
+> > +
+> >  config IQS620AT_TEMP
+> >  	tristate "Azoteq IQS620AT temperature sensor"
+> >  	depends on MFD_IQS62X || COMPILE_TEST
+> > @@ -157,5 +168,4 @@ config MAX31865
+> >  
+> >  	  This driver can also be build as a module. If so, the module
+> >  	  will be called max31865.
+> > -
+> Stray change.
+>
+Ops, I fixed it locally and forgot to regenerate a patch after. Will be fixed
+in v3
+> >  endmenu
+> 
+> > diff --git a/drivers/iio/temperature/as6200.c b/drivers/iio/temperature/as6200.c
+> > new file mode 100644
+> > index 000000000000..7fcc785871d8
+> > --- /dev/null
+> > +++ b/drivers/iio/temperature/as6200.c
+> > @@ -0,0 +1,493 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Driver for AMS AS6200 Temperature sensor
+> > + *
+> > + * Author: Abdel Alkuor <alkuor@gmail.com>
+> > + */
+> > +
+> > +#include <linux/bitfield.h>
+> > +#include <linux/device.h>
+> > +#include <linux/i2c.h>
+> > +#include <linux/interrupt.h>
+> > +#include <linux/kstrtox.h>
+> > +#include <linux/module.h>
+> > +#include <linux/regmap.h>
+> > +
+> > +#include <linux/iio/buffer.h>
+> > +#include <linux/iio/events.h>
+> > +#include <linux/iio/iio.h>
+> > +#include <linux/iio/sysfs.h>
+> > +#include <linux/iio/trigger.h>
+> > +#include <linux/iio/triggered_buffer.h>
+> > +#include <linux/iio/trigger_consumer.h>
+> > +
+> > +#define AS6200_TVAL_REG		0x0
+> > +#define AS6200_CONFIG_REG	0x1
+> > +#define AS6200_TLOW_REG		0x2
+> > +#define AS6200_THIGH_REG	0x3
+> > +
+> > +#define AS6200_CONFIG_AL	BIT(5)
+> > +#define AS6200_CONFIG_CR	GENMASK(7, 6)
+> > +#define AS6200_CONFIG_SM	BIT(8)
+> > +#define AS6200_CONFIG_IM	BIT(9)
+> > +#define AS6200_CONFIG_POL	BIT(10)
+> > +#define AS6200_CONFIG_CF	GENMASK(12, 11)
+> > +
+> > +#define AS6200_TEMP_MASK	GENMASK(15, 4)
+> > +
+> > +struct as6200 {
+> > +	struct regmap *regmap;
+> > +	struct mutex lock; /* Prevent concurrent temp fault processing */
+> 
+> Why does it matter? What might cause such processing?
+> 
+Good point. I had a misunderstanding how the interrupts work and I did
+some reading and realized that the interrupt is disabled until the
+buttom half of the interrupt is completed as oneshot type is used.
+I'll remove it in v3.
+> > +};
+> > +
+> > +static const int as6200_samp_freq[4][2] = {
+> > +	{ 0, 250000 },
+> > +	{ 1, 0 },
+> > +	{ 4, 0 },
+> > +	{ 8, 0 }
+> > +};
+> > +
+> > +/* Consective faults converted to period */
+> > +static const int as6200_temp_thresh_periods[4][4][2] = {
+> > +	{ { 4, 0 }, { 8, 0 }, { 16, 0 }, { 24, 0 } },
+> > +	{ { 1, 0 }, { 2, 0 }, { 4, 0 }, { 6, 0 } },
+> > +	{ { 0, 250000 }, { 0, 500000 }, { 1, 0 }, { 2, 0} },
+> > +	{ { 0, 125000 }, { 0, 250000 }, { 0, 500000 }, { 0, 750000 } }
+> 
+> I'd suggest naming the first column at least (which is CR I think?)
+> 
+> So define an enum and 
+> enum {
+> 	AS6200_CR_0_25HZ = 0,
+> 	AS6200_CR_1HZ = 1,
+> 	AS6200_CR_4HZ = 2,
+> 	AS6200_CR_8HZ = 3,
+> };
+> And use that for the samp freq entries above, so that they clearly relate
+> to the rows of this arram
+> 	[AS6200_CR_0_25HZ] = { { 4, 0 }, { 8, 0 }, { 16, 0 }, { 24, 0 } },
+> You could take it further and use an enum for CF as well.
+> 
+> 	[AS6200_CR_0_25HZ] = {
+> 		[AS6200_CF_1] = { 4, 0 },
+> 		[AS6200_CF_2] = { 8, 0 },
+> 		[AS6200_CF_4] = { 16, 0 },
+> 		[AS6200_CF_6] = { 24, 0 },
+> 	},
+> 	[AS6200_CR_1_HZ] = {
+> 		[AS6200_CF_1] = { 1, 0 },
+> 		[AS6200_CF_2] = { 2, 0 },
+> 	...	
+> 	}
+> 	etc which makes it clear where all the numbers come.
+> 
+> > +};
+>
+Good suggestion. I'll fix it in v3.
+> 
+> > +static int as6200_read_event_value(struct iio_dev *indio_dev,
+> > +				   const struct iio_chan_spec *chan,
+> > +				   enum iio_event_type type,
+> > +				   enum iio_event_direction dir,
+> > +				   enum iio_event_info info,
+> > +				   int *val, int *val2)
+> > +{
+> > +	struct as6200 *as = iio_priv(indio_dev);
+> > +	unsigned int reg;
+> > +	unsigned int tmp;
+> > +	int ret;
+> > +	u8 cf;
+> > +	u8 cr;
+> > +
+> > +	switch (dir) {
+> > +	case IIO_EV_DIR_FALLING:
+> > +		reg = AS6200_TLOW_REG;
+> > +		break;
+> > +	case IIO_EV_DIR_RISING:
+> > +		reg = AS6200_THIGH_REG;
+> > +		break;
+> > +	case IIO_EV_DIR_EITHER:
+> > +		reg = AS6200_CONFIG_REG;
+> > +		break;
+> > +	default:
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	ret = regmap_read(as->regmap, reg, &tmp);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	if (info == IIO_EV_INFO_VALUE) {
+> > +		*val = sign_extend32(FIELD_GET(AS6200_TEMP_MASK, tmp), 11);
+> > +		ret = IIO_VAL_INT;
+> return here.
+> 
+> > +	} else {
+> > +		cf = FIELD_GET(AS6200_CONFIG_CF, tmp);
+> > +		cr = FIELD_GET(AS6200_CONFIG_CR, tmp);
+> > +		*val = as6200_temp_thresh_periods[cr][cf][0];
+> > +		*val2 = as6200_temp_thresh_periods[cr][cf][1];
+> > +		ret = IIO_VAL_INT_PLUS_MICRO;
+> 
+> and here.  If there is nothing more to be done, it simplifies the code
+> flow being read to just return as quick as possible.
+>
+I did it as you mentioned, and when running check_patch.pl, it gives back a
+warning that else is not needed here because of the return in the if
+statement. So I opted into using ret instead, should I remove the else or ignore
+the warning?
+> > +	}
+> > +
+> > +	return ret;
+> > +}
+> 
+> > +static irqreturn_t as6200_event_handler(int irq, void *private)
+> > +{
+> > +	struct iio_dev *indio_dev = private;
+> > +	struct as6200 *as = iio_priv(indio_dev);
+> > +	unsigned int alert;
+> > +	enum iio_event_direction dir;
+> > +	int ret;
+> > +
+> > +	guard(mutex)(&as->lock);
+> What data are we protecting here?
+> 
+No data actually. As I mentioned prior, will be dropped in v3.
+> > +
+> > +	ret = regmap_read(as->regmap, AS6200_CONFIG_REG, &alert);
+> > +	if (ret)
+> > +		return IRQ_NONE;
+> > +
+> > +	alert = FIELD_GET(AS6200_CONFIG_AL, alert);
+> > +
+> > +	dir = alert ? IIO_EV_DIR_FALLING : IIO_EV_DIR_RISING;
+> > +
+> > +	iio_push_event(indio_dev,
+> > +		       IIO_EVENT_CODE(IIO_TEMP, 0, 0,
+> > +				      dir,
+> > +				      IIO_EV_TYPE_THRESH,
+> > +				      0, 0, 0),
+> > +		       iio_get_time_ns(indio_dev));
+> > +
+> > +	return IRQ_HANDLED;
+> > +}
+> > +
+> > +static irqreturn_t as6200_trigger_handler(int irq, void *private)
+> > +{
+> > +	struct iio_poll_func *pf = private;
+> > +	struct iio_dev *indio_dev = pf->indio_dev;
+> > +	struct as6200 *as = iio_priv(indio_dev);
+> > +	int ret;
+> > +	u8 data[16];
+> 
+> I'd make this much more explicit and make sure you zero it to avoid leaking
+> data.
+> 
+> 	struct data {
+> 		u8 channel;
+> 		s64 timestamp __aligned(8);
+> 	};
+> 
+> 	memset(&data, 0, sizeof(data)); /* Ensures the holes are zero filled */
+>
+My system 1 thinking got me here as I tested it and all holes
+were set to 0. Will be fixed in v3.
+> Also, avoid the casting mess and read into a local variable that is an unsigned int
+> and copy it to the struct data if no error.
+> > +
+> > +	ret = regmap_read(as->regmap, AS6200_TVAL_REG, (unsigned int *)data);
+> > +	if (!ret)
+> Whilst it's more lines, greatly prefer to see error paths out of line and good
+> paths inline (so no if (!ret))
+> 
+> 	if (ret)
+> 		goto done;
+> 
+> 	iio_push...
+> 
+> done:
+> 	...
+> 
+> May seem silly but when reviewing a lot of code, keeping things looking "normal"
+> is a great benefit!
+>
+Makes sense. Will be fixed in v3.
+> > +		iio_push_to_buffers_with_timestamp(indio_dev, data,
+> > +						   iio_get_time_ns(indio_dev));
+> > +
+> > +	iio_trigger_notify_done(indio_dev->trig);
+> > +
+> > +	return IRQ_HANDLED;
+> > +}
+> 
+> ...
+> 
+> > +
+> > +static int __maybe_unused as6200_suspend(struct device *dev)
+> > +{
+> > +	struct i2c_client *client = to_i2c_client(dev);
+> > +	struct as6200 *as = iio_priv(i2c_get_clientdata(client));
+> > +
+> > +	if (client->irq)
+> > +		disable_irq(client->irq);
+> > +
+> > +	return regmap_update_bits(as->regmap, AS6200_CONFIG_REG,
+> > +				  AS6200_CONFIG_SM, AS6200_CONFIG_SM);
+> > +}
+> > +
+> > +static int __maybe_unused as6200_resume(struct device *dev)
+> > +{
+> > +	struct i2c_client *client = to_i2c_client(dev);
+> > +	struct as6200 *as = iio_priv(i2c_get_clientdata(client));
+> > +
+> > +	if (client->irq)
+> > +		enable_irq(client->irq);
+> 
+> I would normally expect suspend and resume to be mirror images. If that doesn't
+> make sense for some reason and we do need to do the irq handling
+> before the register write in both cases then add a comment.
+No reason. Will be fixed in v3.
+> 
+> > +
+> > +	return regmap_update_bits(as->regmap, AS6200_CONFIG_REG,
+> > +				  AS6200_CONFIG_SM, 0);
+> > +}
+> > +
+> > +static const struct dev_pm_ops as6200_pm_ops = {
+> 
+> DEFINE_SIMPLE_DEV_PM_OPS()
+>
+Will be fixed in v3.
+> 
+> > +	SET_SYSTEM_SLEEP_PM_OPS(as6200_suspend, as6200_resume)
+> > +};
+> > +
+> > +static const struct i2c_device_id as6200_id_table[] = {
+> > +	{ "as6200" },
+> > +	{ }
+> > +};
+> > +MODULE_DEVICE_TABLE(i2c, as6200_id_table);
+> > +
+> > +static const struct of_device_id as6200_of_match[] = {
+> > +	{ .compatible = "ams,as6200" },
+> > +	{ }
+> > +};
+> > +MODULE_DEVICE_TABLE(of, as6200_of_match);
+> > +
+> > +static struct i2c_driver as6200_driver = {
+> > +	.driver = {
+> > +		.name = "as6200",
+> > +		.pm = pm_sleep_ptr(&as6200_pm_ops),
+> > +		.of_match_table = as6200_of_match,
+> > +	},
+> > +	.probe = as6200_probe,
+> > +	.id_table = as6200_id_table,
+> > +};
+> > +module_i2c_driver(as6200_driver);
+> > +
+> > +MODULE_AUTHOR("Abdel Alkuor <alkuor@gmail.com");
+> > +MODULE_DESCRIPTION("AMS AS6200 Temperature Sensor");
+> > +MODULE_LICENSE("GPL");
+> 
 
