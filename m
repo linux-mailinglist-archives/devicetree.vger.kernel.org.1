@@ -1,184 +1,101 @@
-Return-Path: <devicetree+bounces-21958-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21957-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14454805DDC
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 19:43:29 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7414C805D62
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 19:32:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1EC131C210A9
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 18:43:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 25495B21005
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 18:32:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 439C6391;
-	Tue,  5 Dec 2023 18:43:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72E1A6A00B;
+	Tue,  5 Dec 2023 18:32:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="apAc6UiP"
 X-Original-To: devicetree@vger.kernel.org
-X-Greylist: delayed 1222 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 05 Dec 2023 10:43:22 PST
-Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4636410D3;
-	Tue,  5 Dec 2023 10:43:22 -0800 (PST)
-Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
-	by finn.localdomain with esmtp (Exim 4.93)
-	(envelope-from <tharvey@gateworks.com>)
-	id 1rAa4A-00BDe6-Vq; Tue, 05 Dec 2023 18:22:43 +0000
-From: Tim Harvey <tharvey@gateworks.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Tim Harvey <tharvey@gateworks.com>
-Subject: [PATCH] arm64: dts: imx8mm-venice-gw7: Fix pci sub-nodes
-Date: Tue,  5 Dec 2023 10:22:41 -0800
-Message-Id: <20231205182241.2550284-1-tharvey@gateworks.com>
-X-Mailer: git-send-email 2.25.1
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF3CD1A3;
+	Tue,  5 Dec 2023 10:32:04 -0800 (PST)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B5IVtsK069716;
+	Tue, 5 Dec 2023 12:31:55 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1701801115;
+	bh=s7vJc403VmnZq30rm2kHIIpCMIF7DVzrRxssjHMAj7Q=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=apAc6UiPbD0hMDeuHsaBTxdr/dcxXDEFon4DRGEtHrDHA1mVAgkKbol11EHscCfWX
+	 r4RjDKZwNqxzOWlLD/lyRvSyoS7yWS85ZFRIZzVa6bxJnEiHUqnbXzzEUZMAmSwcZO
+	 LV5Z1eWW6CtkoO4WMCzymtmUvFEcI0NOvjt5jU3g=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B5IVtJ1068194
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 5 Dec 2023 12:31:55 -0600
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 5
+ Dec 2023 12:31:55 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 5 Dec 2023 12:31:55 -0600
+Received: from [10.249.141.75] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B5IVo9x066832;
+	Tue, 5 Dec 2023 12:31:51 -0600
+Message-ID: <30baf959-e486-4804-947b-516e53cce6fa@ti.com>
+Date: Wed, 6 Dec 2023 00:01:49 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/3] arm64: dts: ti: Add Itap Delay Value For High Speed
+ DDR
+To: Bhavya Kapoor <b-kapoor@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+CC: <conor+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <robh+dt@kernel.org>, <kristo@kernel.org>, <vigneshr@ti.com>,
+        <nm@ti.com>, <u-kumar1@ti.com>
+References: <20231201082045.790478-1-b-kapoor@ti.com>
+Content-Language: en-US
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20231201082045.790478-1-b-kapoor@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Several schema warnings were fixed in commit
-d61c5068729a ("arm64: dts: imx8mm-venice-gw7: Fix pci sub-nodes")
-however the node names and the ethernet NIC node were not quite correct.
+Hi Bhavya
 
-Fix the node names as the ethernet device should have a node name of
-'ethernet' and remove the device_type, #address-cells, #size-cells, and
-ranges properties that should only be on busses/bridges.
+On 12/1/2023 1:50 PM, Bhavya Kapoor wrote:
+> This Series adds Itap Delay Value for DDR52 speed mode for eMMC in
+> J7200 and for DDR50 speed mode for MMCSD in J721s2 and J784s4 SoC.
+>
+> Rebased to next-20231201
+>
+> Bhavya Kapoor (3):
+>    arm64: dts: ti: k3-j7200-main: Add Itap Delay Value For DDR52 speed
+>      mode
+>    arm64: dts: ti: k3-j721s2-main: Add Itap Delay Value For DDR50 speed
+>      mode
+>    arm64: dts: ti: k3-j784s4-main: Add Itap Delay Value For DDR50 speed
+>      mode
 
-Fixes: d61c5068729a ("arm64: dts: imx8mm-venice-gw7: Fix pci sub-nodes")
-Signed-off-by: Tim Harvey <tharvey@gateworks.com>
----
- .../dts/freescale/imx8mm-venice-gw72xx.dtsi    | 18 +++++++-----------
- .../dts/freescale/imx8mm-venice-gw73xx.dtsi    | 18 +++++++-----------
- .../dts/freescale/imx8mm-venice-gw7902.dts     | 10 +++-------
- 3 files changed, 17 insertions(+), 29 deletions(-)
+Could you confirm, after adding itap values, above modes are working 
+fine apart from
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
-index a337e8f20441..31f16f7cf37c 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
-@@ -157,33 +157,29 @@ &pcie0 {
- 				 <&clk IMX8MM_SYS_PLL2_250M>;
- 	status = "okay";
- 
--	pcie@0,0 {
--		reg = <0x0000 0 0 0 0>;
-+	pcie@0 {
- 		device_type = "pci";
-+		reg = <0x0000 0 0 0 0>;
- 		#address-cells = <3>;
- 		#size-cells = <2>;
- 		ranges;
- 
--		pcie@0,0 {
--			reg = <0x0000 0 0 0 0>;
-+		pcie@0 {
- 			device_type = "pci";
-+			reg = <0x0000 0 0 0 0>;
- 			#address-cells = <3>;
- 			#size-cells = <2>;
- 			ranges;
- 
--			pcie@3,0 {
--				reg = <0x1800 0 0 0 0>;
-+			pcie@3 {
- 				device_type = "pci";
-+				reg = <0x1800 0 0 0 0>;
- 				#address-cells = <3>;
- 				#size-cells = <2>;
- 				ranges;
- 
--				eth1: pcie@0,0 {
-+				eth1: ethernet@0 {
- 					reg = <0x0000 0 0 0 0>;
--					device_type = "pci";
--					#address-cells = <3>;
--					#size-cells = <2>;
--					ranges;
- 
- 					local-mac-address = [00 00 00 00 00 00];
- 				};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
-index 2247d1c4e2af..6f5a6d91c95e 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
-@@ -177,33 +177,29 @@ &pcie0 {
- 				 <&clk IMX8MM_SYS_PLL2_250M>;
- 	status = "okay";
- 
--	pcie@0,0 {
--		reg = <0x0000 0 0 0 0>;
-+	pcie@0 {
- 		device_type = "pci";
-+		reg = <0x0000 0 0 0 0>;
- 		#address-cells = <3>;
- 		#size-cells = <2>;
- 		ranges;
- 
--		pcie@0,0 {
--			reg = <0x0000 0 0 0 0>;
-+		pcie@0 {
- 			device_type = "pci";
-+			reg = <0x0000 0 0 0 0>;
- 			#address-cells = <3>;
- 			#size-cells = <2>;
- 			ranges;
- 
--			pcie@4,0 {
--				reg = <0x2000 0 0 0 0>;
-+			pcie@4 {
- 				device_type = "pci";
-+				reg = <0x2000 0 0 0 0>;
- 				#address-cells = <3>;
- 				#size-cells = <2>;
- 				ranges;
- 
--				eth1: pcie@0,0 {
-+				eth1: ethernet@0 {
- 					reg = <0x0000 0 0 0 0>;
--					device_type = "pci";
--					#address-cells = <3>;
--					#size-cells = <2>;
--					ranges;
- 
- 					local-mac-address = [00 00 00 00 00 00];
- 				};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
-index 7ef17c2b0e9d..4bb22fdc5d2e 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
-@@ -633,19 +633,15 @@ &pcie0 {
- 				 <&clk IMX8MM_SYS_PLL2_250M>;
- 	status = "okay";
- 
--	pcie@0,0 {
--		reg = <0x0000 0 0 0 0>;
-+	pcie@0 {
- 		device_type = "pci";
-+		reg = <0x0000 0 0 0 0>;
- 		#address-cells = <3>;
- 		#size-cells = <2>;
- 		ranges;
- 
--		eth1: pcie@0,0 {
-+		eth1: ethernet@0 {
- 			reg = <0x0000 0 0 0 0>;
--			device_type = "pci";
--			#address-cells = <3>;
--			#size-cells = <2>;
--			ranges;
- 
- 			local-mac-address = [00 00 00 00 00 00];
- 		};
--- 
-2.25.1
+mode detection.
 
+Thanks
+
+Udit
+
+
+>   arch/arm64/boot/dts/ti/k3-j7200-main.dtsi  | 1 +
+>   arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 1 +
+>   arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 1 +
+>   3 files changed, 3 insertions(+)
+>
 
