@@ -1,131 +1,149 @@
-Return-Path: <devicetree+bounces-21744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6AB2804FC3
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 11:05:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 076E8804FC8
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 11:06:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 45115B203D1
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 10:05:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AFF451F21446
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 10:06:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1971A4C3A4;
-	Tue,  5 Dec 2023 10:05:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E1D74BAA9;
+	Tue,  5 Dec 2023 10:06:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FfnNa7j+"
+	dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b="iSxC6LKa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD930A9;
-	Tue,  5 Dec 2023 02:05:05 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-50bf37fd2bbso2860167e87.0;
-        Tue, 05 Dec 2023 02:05:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701770704; x=1702375504; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ceYdxCZagZpSeCFLYFzxnNcJXtK8XBSjVUScbGg+gCE=;
-        b=FfnNa7j+Hi+IrtzzWGx30iOIYfWkNX4fRH54pN43lVnf2QEeHZNGdj1am6tBXhZhSa
-         rC5I99g7pi8mCmMM7bAIP1KcU4cwwp1KTUhWyGZUfQJd0KeTbSEMUa0V1gtlyQW0WM7+
-         VU1zrk5OYIUjKFgTZkVZplRIz5zMxk3SzJf0t+MypoKCdGd6FknQV9uZuqGALuwYyC0t
-         pzvTGxm/krO03MTwluR/sf30pihXME3/VPPY4SykDev5vKsQRPy+VIteNm7XJNC0BTYV
-         b7H23/3TbDurjS97GLbi+qZkXm4uteLLAE9V5L1+WeGQdlpheomeUdteraTEiD54Tdqk
-         ZCpA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701770704; x=1702375504;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ceYdxCZagZpSeCFLYFzxnNcJXtK8XBSjVUScbGg+gCE=;
-        b=dUSJRC+rB6ibXjTDVlLKrVfDRrnIf5BlzVQ33+E9B3kjPxLUFhW2HceaFfKapXczDE
-         IJ50SJF86pWuVlKEg+iOTvadvc1u8QGSpiRD3jzmYG6u1EZ1Tz6r+YkLaZBvyrnKK2Z4
-         YF9AkLcneovxPFeoJShCK7EMMOWatpBuwiB1kN+J6afEdYeoP62h61x75cwer6MfmflX
-         CXjLrlne/xR5ukKJDNj7+FuZFGBha6g944AfK8tzkh4Te8d20z49vDQgjVuO+J8A5lGJ
-         70YwXWPNkd0Vk/WPeeSGzB7+hvtjJ2N2FgANKMovDAUJ+7maubGfUOy98LC6rbxwTnyx
-         1WTw==
-X-Gm-Message-State: AOJu0Yy4CLY0aZs2cd2ShTHwCE+T8B8VonwTJ++487IMMcJ3nF3vzR8V
-	EvzJ3BZlLqe0P5wAYxMOHy8=
-X-Google-Smtp-Source: AGHT+IFsxWxor1w8WHtWV1o0i+23KJ3Nkjh3BSrlVrP0/buct3ZAchb106gkjeHNqo3qrVKMznHGsQ==
-X-Received: by 2002:a05:6512:3189:b0:50b:e6f4:666c with SMTP id i9-20020a056512318900b0050be6f4666cmr2752238lfe.123.1701770703549;
-        Tue, 05 Dec 2023 02:05:03 -0800 (PST)
-Received: from mobilestation ([178.176.56.174])
-        by smtp.gmail.com with ESMTPSA id o12-20020ac2494c000000b0050bf0320718sm781130lfi.95.2023.12.05.02.05.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Dec 2023 02:05:03 -0800 (PST)
-Date: Tue, 5 Dec 2023 13:05:00 +0300
-From: Serge Semin <fancer.lancer@gmail.com>
-To: Andrew Halaney <ahalaney@redhat.com>, 
-	Suraj Jaiswal <quic_jsuraj@quicinc.com>
-Cc: Suraj Jaiswal <quic_jsuraj@quicinc.com>, Vinod Koul <vkoul@kernel.org>, 
-	Bhupesh Sharma <bhupesh.sharma@linaro.org>, Andy Gross <agross@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com, Prasad Sodagudi <psodagud@quicinc.com>, kernel@quicinc.com
-Subject: Re: [PATCH net-next v3 0/3] Ethernet DWMAC5 fault IRQ support
-Message-ID: <zzkw5obc3z5fndowmrycy77gtjf6wscvkj7klnn34f3ycs3her@hmh5aebpbi3s>
-References: <cover.1701695218.git.quic_jsuraj@quicinc.com>
- <rw5vfdvre5rt4rwytfsp3qy6sgsdr3dm6oefr4sap2aqbvpw42@c2dxz42tucby>
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01olkn2073.outbound.protection.outlook.com [40.92.52.73])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA9DFA7;
+	Tue,  5 Dec 2023 02:06:09 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=lyMWO1qdyJymCT2uXkJ3xQPdcJ6j/CWOZNVt9xPVwJCU4vSX3Tkl+lBse4ma8l2D5dqPVG0lJx/NV2eB637CHFhpwhuZfGMD12DtYnqI3hzUQOwbYKlKP3j7S1lTcKfBgRR4PTMJUb3W/AyZdtR9+rKrfcMOgdKfVFb+XoHf8nK45Q2oLtM2O8IQ/XAiMOsyETe+rhiNsW3iYskum2bEBswLEfI+nfNDl4JoCXMOH1jN89OyebK9MbnfR8BlZJi0h78z/D1e7kPgpvpqT3flQoJ8IHmMx403VR6TwtBfMGg/+fMlUZ+d5J354oUJp0wbDguKfxvjPphD6Jj89JhKqw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DKhxWmIdDiIMAzWAiSNLLBuHVP89Xp1LGNtfBX0yFSg=;
+ b=f7FlHbFKavL2MwcCMN4tr/bCQL4zUxhSaFBVGusnn79gOHmgT+QiNhf+2tvOhlIuOukfBacKs550y6RKJ3YP32Hq+tfpNI6okXhuBOEgi7V1jKHxNkfogcCQkdXXKiP4gd7wbe5eFApNyiNZYRYGERsM0M5L+qgYuJ3Lql240dpEs70Yl3BzK2pKKMyTFqWiABVP3EHanzzHtU1I8YE1JF5vNsYpaGEh/5gehcuc6qvWG7wlXIhUOy8vRbgCpUnq9ncldeyi+pHF3K5OUg18BEFoiy4qoG3t3BRxox4PBUOc9yDRJKJxRCfxoVIyiVZfklP516DLPOZHIQZmX0Uqcg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DKhxWmIdDiIMAzWAiSNLLBuHVP89Xp1LGNtfBX0yFSg=;
+ b=iSxC6LKa2VaQ0iyO54UGL8dAA/yvLXZYzIeenR7pLsKlUujDdaK/TMWsWxd+sTddaChPE5EXcR/zpFUCqBbVgV/1mCrNGrXjSCWMutEdyt8ZL0iDtsajnafCnlpMpP2zz5PnnVn7K77VvuxLDJE8BNArjCfN9CsXMrEtJtUkaUZ3DQahjTv4AOQPYDNZ3++6+8FvKIEPD8xVNKfd9MQ+O/V05IaeFm3G/zg5R1eQsMSBpepbs+PUmbmYK5iNEnlYQTJjhU+JlHpjFubcQsCpwV9y7GeeH50BwRsk6NoZaqDNUrfDSbb+ZzzuIlgbeEu6ug1DUx9LzwZKCeOhsxSrSw==
+Received: from TY0PR06MB5611.apcprd06.prod.outlook.com (2603:1096:400:31e::8)
+ by SEYPR06MB6587.apcprd06.prod.outlook.com (2603:1096:101:169::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.34; Tue, 5 Dec
+ 2023 10:06:04 +0000
+Received: from TY0PR06MB5611.apcprd06.prod.outlook.com
+ ([fe80::f2fd:d852:e4b9:6166]) by TY0PR06MB5611.apcprd06.prod.outlook.com
+ ([fe80::f2fd:d852:e4b9:6166%5]) with mapi id 15.20.7046.034; Tue, 5 Dec 2023
+ 10:06:04 +0000
+From: Allen_Lin <allencl_lin@hotmail.com>
+To: dmitry.torokhov@gmail.com,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	jikos@kernel.org,
+	benjamin.tissoires@redhat.com,
+	linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Allen_Lin <allencl_lin@hotmail.com>
+Subject: [PATCH v1 0/2] Add HX83102j driver for HIMAX HID touchscreen 
+Date: Tue,  5 Dec 2023 18:05:50 +0800
+Message-ID:
+ <TY0PR06MB56110AE059FC985028EF2E409E85A@TY0PR06MB5611.apcprd06.prod.outlook.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TMN:
+ [+WOS5bSWrvBkBI4dqqj2IVU+lU9np3Jb/jhll2J/ogwDTI+X4d0Ck+SHXxJkvr5fESK7BJyQwr8=]
+X-ClientProxiedBy: TYCPR01CA0102.jpnprd01.prod.outlook.com
+ (2603:1096:405:4::18) To TY0PR06MB5611.apcprd06.prod.outlook.com
+ (2603:1096:400:31e::8)
+X-Microsoft-Original-Message-ID:
+ <20231205100552.723620-1-allencl_lin@hotmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <rw5vfdvre5rt4rwytfsp3qy6sgsdr3dm6oefr4sap2aqbvpw42@c2dxz42tucby>
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TY0PR06MB5611:EE_|SEYPR06MB6587:EE_
+X-MS-Office365-Filtering-Correlation-Id: 366aecbe-1b6b-4bf6-169d-08dbf579cabe
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	trbyneZUi9OL4fy8bSK9LOQtuIw4+saQT85XMS2rORWLyu6hYvp+raVluRi1N84S9KzdSH0FfH7bYp50pUOxR//xe9IG9a1zHmfpXjy2JYjEOD9csMeF9SQ6ILCqgPsmhtO6eEAyaKWZX2fI/f2TbYOr6J6m5qEj+xAOoglXlP5yoJ2jiLk9rgTHuvIht7zo2Vt8JuMEDq2HJSeUyGvKCZ5tyqInnWYabLbS8yM0g7k/JSQzlrYVt/IDoH5kK4WxVyaVFpKEmK+swJFfQAWqIpKx2JKrH+N2Fvst5NnjV/ffBuSaravG0nDpou1A6WBoBExCwEsnpJ+fk77KjCtLJ0NAbs5gfqSxXLZGQ90qSrIrUK4pMBPJequ83A/7g+mC3kWo0BO851IGQMeUUwIT/mI3lzzysViP+RcMaCWGZYxE5rwR9i++IYhrPhNMpsmkopFgyjv/J4BPHBq5sQpTkqO2+iFWBUPU+40XVwbZuGg97DL0duE+plfr07MzXJP7mcUFNUzKRDQCiUzgKAAenUaD3eZnaVSseKQWQ/ssYI4jGbuCFU9rzmDwRxu0inxr2oNsvwj7imLKIEkGeoYGFo+ZJSWGbBhtssiZe8oac2ldpu7RF6DAQ4es9EKkP3jW
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?WC+Gta5GSvMHJG0NbMlcX4fWBJQx6Nwa+H8bFnvuyAqE1QQx8HLgrIQgGI3P?=
+ =?us-ascii?Q?JcLRWyhu5PRfnSWhU6EqnGvDR7hlWZpEGyBC1sIeW8B+hkNDhyVEK8TmmL4I?=
+ =?us-ascii?Q?nI2EX3lcEqlstCrdWD0lt9WMpo5ZoBUJb94X5dUSW7s4jbfWtIlDcJqS25Mx?=
+ =?us-ascii?Q?4edGhxnf2+pVzjT4fQJn7h+uSUeu8CmPQJZsbpwEmhhelc7eAgr1KKmhrjXO?=
+ =?us-ascii?Q?YCfQhgng8GA+M6310/ykO/moLst8Xmg8Oa4syUGn2xRb3tkCeUE26kyjLLHw?=
+ =?us-ascii?Q?5fYbyUE7kzH+VhojXJJfyX9GUrQ50xqIyOwelbDyDQ7CCXcrBKCuXjCsxCdP?=
+ =?us-ascii?Q?uL88Gfrw2Tqi4RHfZsk7weH0PcIIjBRs6JPyJ0CTr54X1z3iVvaKUAvIhEP9?=
+ =?us-ascii?Q?041Un3eceOJ7b01Rnac0neWgCQfupLp2i4Q542oG9UA5T2waOBuqJVOu/ijq?=
+ =?us-ascii?Q?KP2fhYNW3fUpSDFJ1QAzP9ZdYqe22P6Qfllf/fX91yPKg+P39ZOxj4kdWabL?=
+ =?us-ascii?Q?yfHQamI7+qut3ZfKL/E1voNeW6ew9Y8pMMn3Wvk4i0CaBI066/JtSmo0YzbW?=
+ =?us-ascii?Q?kyotma5kiLTrU5unaRrDtwTxDE6TZB/57sLr9AQoNjip7wT2C/k6y8MqHl8b?=
+ =?us-ascii?Q?K2iue7dTxvz3ItmLJjkgJxdsdDcjiwHtHHXc1ttxi3hFLEPVLPM7HfqCM3Id?=
+ =?us-ascii?Q?LrHfwjDV0NIar5rxpGByF00FTWDO1j4VUHr1V0ahKedxGQ/P2k8/IFDIk8Wl?=
+ =?us-ascii?Q?2yDQ6CliCkr4LseX0XEsOmluJidZAeo+s4fgvVs9M/RfH/d7ryp2F/b8dLh3?=
+ =?us-ascii?Q?RzqIsjxSt7mJHTL8eqayluq4EV9vr+wgKCZp1qGs+LzfCsK2/OowOPe5NEdB?=
+ =?us-ascii?Q?3MM61Dna1VrKUeOzlRIrefitD2G04fyuOlf5mDb1h9Yy9gj4QbBiwZhUiPHQ?=
+ =?us-ascii?Q?01Q4dXCx8UWlnKL1ZU8Sk5x/hWKL1yLm9mJfICa+J8rx73+Sky527pNFaw/Y?=
+ =?us-ascii?Q?0FfeDIJVENf4B8HlowruF3XTpblnwjb/hKfXsiArr1vB37r86GzzqsDE0UQz?=
+ =?us-ascii?Q?jYDt29hHvECssDcRolF9R/eVR9KO6ikhqrH0NpsEJKXhoo5zPnd1TW2Jrs36?=
+ =?us-ascii?Q?bAwQukdCMAeEwzrz7tUgXLKnntAjXlSkTKEIVsSAGSqowKPNgy2Y7RF6aqLM?=
+ =?us-ascii?Q?z4fxlDMdzi83j6iWduCeSsFFsKsM0LAApSg2xQ/pvnUBHovaGD9RC6755d/G?=
+ =?us-ascii?Q?YsFRkF4kFdzxbZ3oR1WIFHSCDQAzqFJQhbt20QZtykv6zeBCPSGSTUWYGAZD?=
+ =?us-ascii?Q?ejo=3D?=
+X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-3208f.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: 366aecbe-1b6b-4bf6-169d-08dbf579cabe
+X-MS-Exchange-CrossTenant-AuthSource: TY0PR06MB5611.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Dec 2023 10:06:04.7061
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR06MB6587
 
-Hi Suraj
+Hi,
 
-On Mon, Dec 04, 2023 at 02:16:12PM -0600, Andrew Halaney wrote:
-> On Mon, Dec 04, 2023 at 06:56:14PM +0530, Suraj Jaiswal wrote:
-> > Add support to listen Ethernet HW safery IRQ. The safety IRQ will be
-> 
-> s/safery/safety/
-> 
-> > triggered for ECC, DPP, FSM error.
-> > 
-> > Changes since v3:
-> 
-> This is listed as v3 in the subject, but it should now be v4 since the
-> last version was v3.
+This driver implements for HIMAX HID touchscreen HX8310XX series. 
 
-There are several style-type problems I would like to share. But as
-Andrew correctly noted the series version was incorrectly left
-unchanged. Please resubmit the series with the version incremented.
-I'll send my comments to that new thread so the discussion history and
-the lore archive would look cleaner. Thanks.
+Using SPI interface to acquire HID packets from driver. 
 
--Serge(y)
+Patchs notes as below 
+1. Add the Maintainer and devicetree bindings document for driver
+2. Add the driver code and modify Kconfig/Makefiles to support the driver
 
-> 
-> > - Fix DT_CHECKER warning
-> > - use name safety for the IRQ.
-> >  
-> > 
-> > Suraj Jaiswal (3):
-> >   dt-bindings: net: qcom,ethqos: add binding doc for safety IRQ for
-> >     sa8775p
-> >   arm64: dts: qcom: sa8775p: enable safety IRQ
-> >   net: stmmac: Add driver support for DWMAC5 safety IRQ Support
-> > 
-> >  .../devicetree/bindings/net/qcom,ethqos.yaml   |  9 ++++++---
-> >  .../devicetree/bindings/net/snps,dwmac.yaml    |  5 +++--
-> >  arch/arm64/boot/dts/qcom/sa8775p.dtsi          | 10 ++++++----
-> >  drivers/net/ethernet/stmicro/stmmac/common.h   |  1 +
-> >  drivers/net/ethernet/stmicro/stmmac/stmmac.h   |  2 ++
-> >  .../net/ethernet/stmicro/stmmac/stmmac_main.c  | 18 ++++++++++++++++++
-> >  .../ethernet/stmicro/stmmac/stmmac_platform.c  |  9 +++++++++
-> >  7 files changed, 45 insertions(+), 9 deletions(-)
-> > 
-> > -- 
-> > 2.25.1
-> > 
-> 
-> 
+Thanks,
+
+Allen_Lin (2):
+  dt-bindings: input: Add Himax HX83102J touchscreen
+  Input: Add Himax HX83102J touchscreen driver
+
+ .../bindings/input/himax,hx8310xx.yaml        |   70 +
+ MAINTAINERS                                   |    8 +
+ drivers/hid/Kconfig                           |    9 +-
+ drivers/hid/Makefile                          |    2 +-
+ drivers/hid/hid-himax-83102j.c                | 3176 +++++++++++++++++
+ drivers/hid/hid-himax-83102j.h                |  927 +++++
+ 6 files changed, 4190 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/input/himax,hx8310xx.yaml
+ create mode 100644 drivers/hid/hid-himax-83102j.c
+ create mode 100644 drivers/hid/hid-himax-83102j.h
+
+-- 
+2.34.1
+
 
