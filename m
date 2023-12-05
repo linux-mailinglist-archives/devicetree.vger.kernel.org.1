@@ -1,66 +1,74 @@
-Return-Path: <devicetree+bounces-21983-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21984-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6EDE805F20
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 21:09:28 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11C18805F26
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 21:11:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 50D541F2160B
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 20:09:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD9611F21460
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 20:11:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1BCE6DCF0;
-	Tue,  5 Dec 2023 20:09:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AD056DCEB;
+	Tue,  5 Dec 2023 20:11:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="QD5xkjt5"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="BJgOONCf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66F98183;
-	Tue,  5 Dec 2023 12:09:20 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B5K93o2069698;
-	Tue, 5 Dec 2023 14:09:03 -0600
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6D95D53;
+	Tue,  5 Dec 2023 12:11:35 -0800 (PST)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B5KBLaY070414;
+	Tue, 5 Dec 2023 14:11:21 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1701806943;
-	bh=p+XNgdtb0CCtI4BcDes4ErB+0R7hl7VBZEfkKbjVsUE=;
+	s=ti-com-17Q1; t=1701807081;
+	bh=tykLgFAN0sBT/vZntrlheG7q4aoOYiXjvXxIPINHQbE=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=QD5xkjt5tUs3i6Ey3wahjVYNUXv3+a9WG7YwCv3TJvxiBduN9NUFCI8Cc4PBnfcwU
-	 d2HfSXA0CxHvqgSKEVUY/yQNg3EB3Exhi1NjzEcmoeE5SFVqKcKNhdGDTdEUytWB1o
-	 xA267aQXWZ2msU+dE2MbKx2FNAdlLFH7Bh0/S2Ek=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B5K92KY000989
+	b=BJgOONCfowq1kcoBHDUWwNilYmJjkaeP8ezneBLiINgca8ukIQLLIzDq8j8odgFns
+	 UpIhEfL1qxRtciTPYM7AjryfCI51e76LNOQ8Ngp65s6cTDOtytrNXXJByLGKS1L2MR
+	 4J1PyHOGrXh52Ou8AUm3/3GM2mqYjootuUIq2QH0=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B5KBLcd008887
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 5 Dec 2023 14:09:02 -0600
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 5 Dec 2023 14:11:21 -0600
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 5
- Dec 2023 14:09:02 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ Dec 2023 14:11:21 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 5 Dec 2023 14:09:02 -0600
+ Frontend Transport; Tue, 5 Dec 2023 14:11:21 -0600
 Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B5K924M108568;
-	Tue, 5 Dec 2023 14:09:02 -0600
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B5KBLhB110808;
+	Tue, 5 Dec 2023 14:11:21 -0600
 From: Nishanth Menon <nm@ti.com>
-To: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob
+ Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski
 	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jan
- Kiszka <jan.kiszka@siemens.com>, Bryan Brattlof <bb@ti.com>,
-        Andrew Davis
-	<afd@ti.com>
+        Conor Dooley <conor+dt@kernel.org>, Jai
+ Luthra <j-luthra@ti.com>
 CC: Nishanth Menon <nm@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-am65: Add AM652 DTSI file
-Date: Tue, 5 Dec 2023 14:09:00 -0600
-Message-ID: <170180691055.3345166.14566348520909354148.b4-ty@ti.com>
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Aradhya Bhatia
+	<a-bhatia1@ti.com>, Devarsh Thakkar <devarsht@ti.com>,
+        Vaishnav Achath
+	<vaishnav.a@ti.com>,
+        Julien Massot <julien.massot@collabora.com>,
+        Martyn
+ Welch <martyn.welch@collabora.com>,
+        Matthias Schiffer
+	<matthias.schiffer@ew.tq-group.com>
+Subject: Re: [PATCH RESEND v3 0/9] arm64: dts: ti: Enable CSI cameras for AM62 family
+Date: Tue, 5 Dec 2023 14:11:14 -0600
+Message-ID: <170180697250.3345832.2524014147786723166.b4-ty@ti.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20231205162358.23904-1-afd@ti.com>
-References: <20231205162358.23904-1-afd@ti.com>
+In-Reply-To: <20231201-csi_dts-v3-0-9f06f31080fe@ti.com>
+References: <20231201-csi_dts-v3-0-9f06f31080fe@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,23 +79,45 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Andrew Davis,
+Hi Jai Luthra,
 
-On Tue, 05 Dec 2023 10:23:58 -0600, Andrew Davis wrote:
-> The AM652 is basically a AM654 but with 2 cores instead of 4. Add
-> a DTSI file for AM652 matching AM654 except this core difference.
+On Fri, 01 Dec 2023 10:39:15 +0530, Jai Luthra wrote:
+> This series enables CSI camera support on BeaglePlay, SK-AM62 and
+> SK-AM62A, now that the dt-bindings and driver support for CSI-RX related
+> IPs is merged in v6.7-rc1.
 > 
-> This removes the need to remove the extra cores from AM654 manually
-> in DT files for boards that use the AM652 variant. Do that for
-> the IOT2050 boards here.
+> Along with the device tree nodes for CSI-RX, add new DT overlays for
+> different camera modules like RPiv2 (IMX219) or PCam5C (OV5640).
 > 
 > [...]
 
-I have applied the following to branch ti-k3-dts-next on [1].
+I have applied the following to branch ti-k3-config-next on [1].
 Thank you!
 
-[1/1] arm64: dts: ti: k3-am65: Add AM652 DTSI file
-      commit: fcb97d190c3ca411b37d8dd0b2650fa1378f08d4
+[1/9] arm64: defconfig: Enable AM62 CSI2RX
+      commit: bd62d91f42d015e173809214badaf750b75be2d1
+
+I have applied the following to branch ti-k3-dts-next on [1]:
+
+[2/9] arm64: dts: ti: Enable CSI-RX on AM62
+      commit: 2017f5a610a998cd414c7d9e8b19051014f3126b
+[3/9] arm64: dts: ti: Enable CSI-RX on AM62A
+      commit: c45e3b54ad1e84f59b3193abc6f451a8cdf7d69f
+[4/9] arm64: dts: ti: k3-am625-beagleplay: Add overlays for OV5640
+      commit: defa1438c5b34af13fb56c7faefaeec648805530
+[5/9] arm64: dts: ti: k3-am62x-sk: Enable camera peripherals
+      commit: fed1e53ecf9f0ecf04bd931428287fd1002899ef
+[6/9] arm64: dts: ti: k3-am62x: Add overlays for OV5640
+      commit: 635ed97151945a7fdf104ef1227d86f0a9e3678e
+[7/9] arm64: dts: ti: k3-am62a7-sk: Enable camera peripherals
+      commit: 00d7f8f9efdbdf551e92683f5cd274145dce2c4b
+[8/9] arm64: dts: ti: k3-am62x: Add overlay for IMX219
+      commit: 4111db03dc05c49ded2d9ec21b52c0ca45b59303
+[9/9] arm64: dts: ti: Use OF_ALL_DTBS for combined blobs
+      commit: b0044823a6607e535fdb083c89f487fbf183b171
+
+with minor $subject and formatting updates to stay in sync with existing
+changes.
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
