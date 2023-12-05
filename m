@@ -1,99 +1,273 @@
-Return-Path: <devicetree+bounces-21897-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21896-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F8D280585E
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 16:17:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46B6480585C
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 16:17:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B9AE1F217EA
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 15:17:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD5871F2178B
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 15:17:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6B0A68E91;
-	Tue,  5 Dec 2023 15:17:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EC0A68E88;
+	Tue,  5 Dec 2023 15:17:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ix49uvV8"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ohq3db3Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96D2D68E8B;
-	Tue,  5 Dec 2023 15:17:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BDD2C433CB;
-	Tue,  5 Dec 2023 15:17:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701789432;
-	bh=WxBLNu98B1cLwePPURJz8e+EQWq5ivagn8IAmvjaT3Y=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=ix49uvV8oLKxiIEprFaWOAde/iQBJKopyRhqC8e3Oeq7vo9/0533Ykgobh4dvgXw1
-	 Yh4TW0z3zHD9+AbWCSNbtFKev35vnrVBDZ+yNRSrHmbm3ET2f4HAbEFq5YBVdqz0B+
-	 7Xc01gdnidPQlbbEiI58lTcwhIuhvODKLnGmXEjBlicoQS87Urhw2EZSDBduSyW80z
-	 OOaZ/UyD7hb/9swK83N4omotpvJ8iNMAintAQ73somh10nxvAd0DtUOYxdb/Xi4+Ap
-	 SvYXSOlx/Jc2q9GmaXiKoIhvQE7hGWgl6lHBU/ldgZv12feL26iK8koECfAGqQxdA4
-	 3MDGGcGfz+30g==
-From: Will Deacon <will@kernel.org>
-To: s.hauer@pengutronix.de,
-	mark.rutland@arm.com,
-	corbet@lwn.net,
-	Xu Yang <xu.yang_2@nxp.com>,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	kernel@pengutronix.de,
-	shawnguo@kernel.org,
-	frank.li@nxp.com
-Cc: catalin.marinas@arm.com,
-	kernel-team@android.com,
-	Will Deacon <will@kernel.org>,
-	linux-doc@vger.kernel.org,
-	festevam@gmail.com,
-	linux-imx@nxp.com,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	conor+dt@kernel.org
-Subject: Re: [PATCH v3 1/5] perf: fsl_imx8_ddr: Add AXI ID PORT CHANNEL filter support
-Date: Tue,  5 Dec 2023 15:16:38 +0000
-Message-Id: <170178552961.2948567.1593321424507215483.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20231120093317.2652866-1-xu.yang_2@nxp.com>
-References: <20231120093317.2652866-1-xu.yang_2@nxp.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07795D5E;
+	Tue,  5 Dec 2023 07:17:00 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B5FGmiM111363;
+	Tue, 5 Dec 2023 09:16:48 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1701789408;
+	bh=BKzh+kOh02ASiRlhIrGNOM+NRUg1YSYQZynqZVbiX4Q=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=ohq3db3YyM5Cr3/S2RrNv1rrtm3nuBaRdpoOHRVx7eElLzcfYCwz11ZxMr6u2egs5
+	 75jm7zF1ZmArHJ6HZ1AnIS6YfkO6hyLTumhXYtls+Q2uR9hZMwd8CePKfXHXh7HMR7
+	 cgfsLPeywtmQVTXLXqPxhjjT8lSyHS8PUpwY/Mxw=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B5FGmII105736
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 5 Dec 2023 09:16:48 -0600
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 5
+ Dec 2023 09:16:48 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 5 Dec 2023 09:16:47 -0600
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B5FGltD080358;
+	Tue, 5 Dec 2023 09:16:47 -0600
+Date: Tue, 5 Dec 2023 09:16:47 -0600
+From: Nishanth Menon <nm@ti.com>
+To: Neha Malcom Francis <n-francis@ti.com>
+CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <a-nandan@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <eblanc@baylibre.com>, <jneanne@baylibre.com>,
+        <aseketeli@baylibre.com>, <jpanis@baylibre.com>, <u-kumar1@ti.com>,
+        <j-luthra@ti.com>, <vaishnav.a@ti.com>, <hnagalla@ti.com>,
+        <devarsht@ti.com>
+Subject: Re: [PATCH v9 6/7] arm64: dts: ti: k3-j721e-sk: Add TPS6594 family
+ PMICs
+Message-ID: <20231205151647.vh6rlhro7qlwoerc@knelt>
+References: <20231205093439.2298296-1-n-francis@ti.com>
+ <20231205093439.2298296-7-n-francis@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20231205093439.2298296-7-n-francis@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Mon, 20 Nov 2023 17:33:13 +0800, Xu Yang wrote:
-> This is the extension of AXI ID filter.
+On 15:04-20231205, Neha Malcom Francis wrote:
+> This patch adds support for TPS6594 PMIC family on wakeup I2C0 bus.
+> These devices provide regulators (bucks and LDOs), but also GPIOs, a
+> RTC, a watchdog, an ESM (Error Signal Monitor) which monitors the SoC
+> error output signal, and a PFSM (Pre-configurable Finite State Machine)
+> which manages the operational modes of the PMIC.
 > 
-> Filter is defined with 2 configuration registers per counter 1-3 (counter
-> 0 is not used for filtering and lacks these registers).
-> * Counter N MASK COMP register - AXI_ID and AXI_MASKING.
-> * Counter N MUX CNTL register - AXI CHANNEL and AXI PORT.
->   -- 0: address channel
->   -- 1: data channel
+> Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-j721e-sk.dts | 158 +++++++++++++++++++++++++
+>  1 file changed, 158 insertions(+)
 > 
-> [...]
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
+> index 42fe8eee9ec8..e600825f7e78 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
+> @@ -459,6 +459,13 @@ J721E_IOPAD(0x234, PIN_INPUT, 7) /* (U3) EXT_REFCLK1.GPIO1_12 */
+>  };
+>  
+>  &wkup_pmx0 {
+> +	pmic_irq_pins_default: pmic-irq-default-pins {
+> +		bootph-pre-ram;
+> +		pinctrl-single,pins = <
+> +			J721E_WKUP_IOPAD(0x0cc, PIN_INPUT, 7) /* (G28) WKUP_GPIO0_7 */
+> +		>;
+> +	};
+> +
+>  	mcu_cpsw_pins_default: mcu-cpsw-default-pins {
+>  		pinctrl-single,pins = <
+>  			J721E_WKUP_IOPAD(0x84, PIN_INPUT, 0) /* (B24) MCU_RGMII1_RD0 */
+> @@ -560,6 +567,157 @@ eeprom@51 {
+>  		compatible = "atmel,24c512";
+>  		reg = <0x51>;
+>  	};
+> +
+> +	tps659413: pmic@48 {
+> +		bootph-pre-ram;
 
-Applied first four patches to will (for-next/perf), thanks!
+only for the leaf nodes. See
+https://libera.irclog.whitequark.org/armlinux/2023-10-19
 
-[1/5] perf: fsl_imx8_ddr: Add AXI ID PORT CHANNEL filter support
-      https://git.kernel.org/will/c/afd83967e7bb
-[2/5] docs/perf: Add explanation for DDR_CAP_AXI_ID_PORT_CHANNEL_FILTER quirk
-      https://git.kernel.org/will/c/9745295358f4
-[3/5] dt-bindings: perf: fsl-imx-ddr: Add i.MX8DXL compatible
-      https://git.kernel.org/will/c/2fe44e7dcb86
-[4/5] perf: fsl_imx8_ddr: Add driver support for i.MX8DXL DDR Perf
-      https://git.kernel.org/will/c/46fe448ec3b7
+> +		compatible = "ti,tps6594-q1";
+> +		reg = <0x48>;
+> +		system-power-controller;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pmic_irq_pins_default>;
+> +		interrupt-parent = <&wkup_gpio0>;
+> +		interrupts = <9 IRQ_TYPE_EDGE_FALLING>;
+> +		ti,primary-pmic;
+> +
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +
+> +		buck123-supply = <&vsys_3v3>;
+> +		buck4-supply = <&vsys_3v3>;
+> +		buck5-supply = <&vsys_3v3>;
+> +		ldo1-supply = <&vsys_3v3>;
+> +		ldo2-supply = <&vsys_3v3>;
+> +		ldo3-supply = <&vsys_3v3>;
+> +		ldo4-supply = <&vsys_3v3>;
+> +
+> +		regulators {
+> +			bootph-pre-ram;
+> +			bucka123: buck123 {
+> +				bootph-pre-ram;
+> +				regulator-name = "vdd_cpu_avs";
+> +				regulator-min-microvolt = <600000>;
+> +				regulator-max-microvolt = <900000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			bucka4: buck4 {
+> +				regulator-name = "vdd_mcu_0v85";
+> +				regulator-min-microvolt = <850000>;
+> +				regulator-max-microvolt = <850000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			bucka5: buck5 {
+> +				regulator-name = "vdd_phyio_1v8";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldoa1: ldo1 {
+> +				regulator-name = "vdd1_lpddr4_1v8";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldoa2: ldo2 {
+> +				regulator-name = "vdd_mcuio_1v8";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldoa3: ldo3 {
+> +				regulator-name = "vdda_dll_0v8";
+> +				regulator-min-microvolt = <800000>;
+> +				regulator-max-microvolt = <800000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldoa4: ldo4 {
+> +				regulator-name = "vda_mcu_1v8";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +		};
+> +	};
+> +
+> +	tps659411: pmic@4c {
+> +		compatible = "ti,tps6594-q1";
+> +		reg = <0x4c>;
+> +		system-power-controller;
+> +		interrupt-parent = <&wkup_gpio0>;
+> +		interrupts = <9 IRQ_TYPE_EDGE_FALLING>;
+> +
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +
+> +		buck1234-supply = <&vsys_3v3>;
+> +		buck5-supply = <&vsys_3v3>;
+> +		ldo1-supply = <&vsys_3v3>;
+> +		ldo2-supply = <&vsys_3v3>;
+> +		ldo3-supply = <&vsys_3v3>;
+> +		ldo4-supply = <&vsys_3v3>;
+> +
+> +		regulators {
+> +			buckb1234: buck1234 {
+> +				regulator-name = "vdd_core_0v8";
+> +				regulator-min-microvolt = <800000>;
+> +				regulator-max-microvolt = <800000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			buckb5: buck5 {
+> +				regulator-name = "vdd_ram_0v85";
+> +				regulator-min-microvolt = <850000>;
+> +				regulator-max-microvolt = <850000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldob1: ldo1 {
+> +				regulator-name = "vdd_sd_dv";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldob2: ldo2 {
+> +				regulator-name = "vdd_usb_3v3";
+> +				regulator-min-microvolt = <3300000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldob3: ldo3 {
+> +				regulator-name = "vdd_io_1v8";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldob4: ldo4 {
+> +				regulator-name = "vda_pll_1v8";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +		};
+> +	};
+>  };
+>  
+>  &mcu_uart0 {
+> -- 
+> 2.34.1
+> 
 
-Cheers,
 -- 
-Will
-
-https://fixes.arm64.dev
-https://next.arm64.dev
-https://will.arm64.dev
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
