@@ -1,109 +1,204 @@
-Return-Path: <devicetree+bounces-22002-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22003-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DA85806120
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 22:58:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C93B4806148
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 23:04:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 06C77B2111C
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 21:58:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8556D281E62
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 22:04:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D9296FCE7;
-	Tue,  5 Dec 2023 21:58:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 547246A03D;
+	Tue,  5 Dec 2023 22:04:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ABBWAVA2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xPh7CNK+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CCDBD3;
-	Tue,  5 Dec 2023 13:58:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1701813486; x=1733349486;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=zmgNkHBF0/cbJizp8pAUjxzxghNb6XzJWYSo4FRAuCg=;
-  b=ABBWAVA2a54Jm7QJ8ELIG3pgnuMyNAPqmVM0mPSAljyYW6Zh5n4VFkMq
-   92a02z7zRQJ8IqF+gkcQ4hL9rPD2F+HHX1n9L9xebz4+WLB2Cm5ic0oMD
-   I9ElY6rzqQSY9WZ3+r8ha0LAtcq/ePZHIcx9lVa4805JmWebyUny2cSIm
-   qNaqmAuMq7OadT7wdBY1Xb567YmtRvyHMQlrQb3cQPN2+0/ilBh3sqgZ+
-   m+KDWLCsCy9A1p0fWSmMiMu1QrQiK+r/7ZrbfM0OMOT+liznAYpsg4P81
-   d1Er79xI4kRaEUznyUr7XO49CL+WuBh6f626sle3keGzrcT9Ye85OzQmj
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="458283461"
-X-IronPort-AV: E=Sophos;i="6.04,253,1695711600"; 
-   d="scan'208";a="458283461"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Dec 2023 13:58:05 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="800115628"
-X-IronPort-AV: E=Sophos;i="6.04,253,1695711600"; 
-   d="scan'208";a="800115628"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Dec 2023 13:58:00 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1rAdQS-00000002Bzt-0K94;
-	Tue, 05 Dec 2023 23:57:56 +0200
-Date: Tue, 5 Dec 2023 23:57:55 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Marek Vasut <marex@denx.de>
-Cc: Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Andre Werner <andre.werner@systec-electronic.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@denx.de>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Mark Brown <broonie@kernel.org>,
-	Naresh Solanki <naresh.solanki@9elements.com>,
-	Patrick Rudolph <patrick.rudolph@9elements.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
-	Vincent Tremblay <vincent@vtremblay.dev>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 2/2] iio: light: isl76682: Add ISL76682 driver
-Message-ID: <ZW-c44H84hZPNWl-@smile.fi.intel.com>
-References: <20231127212726.77707-1-marex@denx.de>
- <20231127212726.77707-2-marex@denx.de>
- <20231204112941.770e22cb@jic23-huawei>
- <0ae6466f-479a-476a-adf4-3bd099235eda@denx.de>
- <ZW9Hwm5LnPGl4Ird@smile.fi.intel.com>
- <62015c87-cc24-4ab6-9c91-605926f1c572@denx.de>
+Received: from mail-qv1-xf30.google.com (mail-qv1-xf30.google.com [IPv6:2607:f8b0:4864:20::f30])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EBCE1BD
+	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 14:04:04 -0800 (PST)
+Received: by mail-qv1-xf30.google.com with SMTP id 6a1803df08f44-67adac40221so9364536d6.2
+        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 14:04:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701813843; x=1702418643; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HLkdwIzSkRdyJvWkuBYBl8NXAPFxbIdD1dlzt6dCueE=;
+        b=xPh7CNK+ZzcmfuafW9Mo8a4nRBb40XecDcWDXBzqHuc4yDmG5Bdf+HRrHwDX2tlUZR
+         PoNRmaV5CZXIkJFbL9piVJ+dCb/T9Y77zciEjGu7aPl/MS88apXEVTwMS9Hhz/Oxp4DW
+         t2T03EYj3CgZhj9knwKfyqfePkoG8IuSbcdGyf3gZYyTORIB3fh4UfjKZalM0wjCE3sP
+         N81fhHQCaHDvwroxmt3v3/VqtbovvuUPIqIohZRPheTyQlSMftuk2c0AUeatnYxDEyf2
+         d35LeuipINFZwlYK7THChOWPdpNPSd8ewR2bGtw8cV0WBfmAc2XqtUfrDXm0ex/QsTMV
+         hPCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701813843; x=1702418643;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=HLkdwIzSkRdyJvWkuBYBl8NXAPFxbIdD1dlzt6dCueE=;
+        b=T0pHlkOYAOVmt7o6NpvbQZsFlE236+JaagWbqKOZS6ZVmvQXhBno5S+Z/ozF5MBQQq
+         YeDWx1CJy/uFLwliiohFA3TTtXq3rxj8E3gMbYKJ3LOrUKQx+20qBQlT1kQMi4RPIboF
+         Bnkrk0vh+2mT0m/5hDNsISeuwq8wHEQOXohYIRqgGCgRC7V0jPxWXT/H5KwkspOCSAzg
+         hEbETqnYougRwAsx9vMpR4IVNeiai5I9kZsm3xm6XXTMTzY4FzYjA93eJjEbkTU5RhJb
+         b3x1fnq3NaHCTKG3+3/O7fwGfiflI8VciBwBgfwN48EjGP8Wr9igONtyJRq1qf/6qf1m
+         +HLA==
+X-Gm-Message-State: AOJu0YwPyy3k/LEYRtm/JTPXdbSM267pB90yqDkH+YYuwYD8tMzDiNie
+	JoICiBBudb2+dAEvbvc33hGwcuyDA8XHgV+20w5E3g==
+X-Google-Smtp-Source: AGHT+IErwhru2UO/1eHXtSZq4qe6vdEPU3tHwbbh+WsPhY++retoRNq1NqNHFm94bagQ4+LqS0vzUYQ8jyi5KmPRCa4=
+X-Received: by 2002:a0c:eb46:0:b0:67a:bae1:a48f with SMTP id
+ c6-20020a0ceb46000000b0067abae1a48fmr1886783qvq.103.1701813843342; Tue, 05
+ Dec 2023 14:04:03 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <62015c87-cc24-4ab6-9c91-605926f1c572@denx.de>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20231201160925.3136868-1-peter.griffin@linaro.org>
+ <20231201160925.3136868-16-peter.griffin@linaro.org> <CAPLW+4=2aK-XJ69cTBzwhQF8s3E9in-NFkK3h43L7C+oieqyDg@mail.gmail.com>
+In-Reply-To: <CAPLW+4=2aK-XJ69cTBzwhQF8s3E9in-NFkK3h43L7C+oieqyDg@mail.gmail.com>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Tue, 5 Dec 2023 22:03:51 +0000
+Message-ID: <CADrjBPreo1uXOksJ15AaiowGS8wf63DV6Q_phDvZzxoinVYjqQ@mail.gmail.com>
+Subject: Re: [PATCH v5 15/20] watchdog: s3c2410_wdt: Add support for WTCON
+ register DBGACK_MASK bit
+To: Sam Protsenko <semen.protsenko@linaro.org>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org, 
+	tomasz.figa@gmail.com, s.nawrocki@samsung.com, linus.walleij@linaro.org, 
+	wim@linux-watchdog.org, linux@roeck-us.net, catalin.marinas@arm.com, 
+	will@kernel.org, arnd@arndb.de, olof@lixom.net, gregkh@linuxfoundation.org, 
+	jirislaby@kernel.org, cw00.choi@samsung.com, alim.akhtar@samsung.com, 
+	tudor.ambarus@linaro.org, andre.draszik@linaro.org, saravanak@google.com, 
+	willmcvicker@google.com, soc@kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-watchdog@vger.kernel.org, kernel-team@android.com, 
+	linux-serial@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Dec 05, 2023 at 10:02:32PM +0100, Marek Vasut wrote:
-> On 12/5/23 16:54, Andy Shevchenko wrote:
-> > On Tue, Dec 05, 2023 at 02:43:30AM +0100, Marek Vasut wrote:
+Hi Sam,
 
-...
-
-> > ...unit .
+On Sat, 2 Dec 2023 at 00:53, Sam Protsenko <semen.protsenko@linaro.org> wro=
+te:
+>
+> On Fri, Dec 1, 2023 at 10:11=E2=80=AFAM Peter Griffin <peter.griffin@lina=
+ro.org> wrote:
 > >
-> > (Do not forget to drop extra space)
-> 
-> Which extra space ?
+> > The WDT uses the CPU core signal DBGACK to determine whether the SoC
+> > is running in debug mode or not. If the DBGACK signal is asserted and
+> > DBGACK_MASK bit is enabled, then WDT output and interrupt is masked
+> > (disabled).
+> >
+> > Presence of the DBGACK_MASK bit is determined by adding a new
+> > QUIRK_HAS_DBGACK_BIT quirk.
+> >
+> > Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> > ---
+> >  drivers/watchdog/s3c2410_wdt.c | 27 ++++++++++++++++++++++++---
+> >  1 file changed, 24 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/drivers/watchdog/s3c2410_wdt.c b/drivers/watchdog/s3c2410_=
+wdt.c
+> > index 0b4bd883ff28..39f3489e41d6 100644
+> > --- a/drivers/watchdog/s3c2410_wdt.c
+> > +++ b/drivers/watchdog/s3c2410_wdt.c
+> > @@ -34,9 +34,10 @@
+> >
+> >  #define S3C2410_WTCNT_MAXCNT   0xffff
+> >
+> > -#define S3C2410_WTCON_RSTEN    (1 << 0)
+> > -#define S3C2410_WTCON_INTEN    (1 << 2)
+> > -#define S3C2410_WTCON_ENABLE   (1 << 5)
+> > +#define S3C2410_WTCON_RSTEN            (1 << 0)
+> > +#define S3C2410_WTCON_INTEN            (1 << 2)
+> > +#define S3C2410_WTCON_ENABLE           (1 << 5)
+> > +#define S3C2410_WTCON_DBGACK_MASK      (1 << 16)
+>
+> Suggest using BIT() macro. Btw, checkpatch with --strict option
+> suggests it too :)
 
-Like in your question :-)
-(I left the only relevant context, easy to notice.)
+Yes indeed. I was somewhat reluctant to include changes that had
+nothing to do with the DBGACK feature but I will update to use the BIT
+macro in v6.
+>
+> >
+> >  #define S3C2410_WTCON_DIV16    (0 << 3)
+> >  #define S3C2410_WTCON_DIV32    (1 << 3)
+> > @@ -100,12 +101,17 @@
+> >   * %QUIRK_HAS_PMU_CNT_EN: PMU block has some register (e.g. CLUSTERx_N=
+ONCPU_OUT)
+> >   * with "watchdog counter enable" bit. That bit should be set to make =
+watchdog
+> >   * counter running.
+> > + *
+> > + * %QUIRK_HAS_DBGACK_BIT: WTCON register has DBGACK_MASK bit. Setting =
+the
+> > + * DBGACK_MASK bit disables the watchdog outputs when the SoC is in de=
+bug mode.
+> > + * Debug mode is determined by the DBGACK CPU signal.
+> >   */
+> >  #define QUIRK_HAS_WTCLRINT_REG                 (1 << 0)
+> >  #define QUIRK_HAS_PMU_MASK_RESET               (1 << 1)
+> >  #define QUIRK_HAS_PMU_RST_STAT                 (1 << 2)
+> >  #define QUIRK_HAS_PMU_AUTO_DISABLE             (1 << 3)
+> >  #define QUIRK_HAS_PMU_CNT_EN                   (1 << 4)
+> > +#define QUIRK_HAS_DBGACK_BIT                   (1 << 5)
+> >
+> >  /* These quirks require that we have a PMU register map */
+> >  #define QUIRKS_HAVE_PMUREG \
+> > @@ -375,6 +381,19 @@ static int s3c2410wdt_enable(struct s3c2410_wdt *w=
+dt, bool en)
+> >         return 0;
+> >  }
+> >
+> > +static void s3c2410wdt_mask_dbgack(struct s3c2410_wdt *wdt)
+> > +{
+> > +       unsigned long wtcon;
+> > +
+> > +       if (!(wdt->drv_data->quirks & QUIRK_HAS_DBGACK_BIT))
+> > +               return;
+> > +
+> > +       /*  disable watchdog outputs if CPU is in debug mode */
+>
+> Double whitespace in the comment. Also, I'd move this comment up to
+> the function declaration.
 
--- 
-With Best Regards,
-Andy Shevchenko
+Will fix
 
+>
+> Other than that:
+>
+> Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
 
+Thanks,
+
+Peter
+>
+> > +       wtcon =3D readl(wdt->reg_base + S3C2410_WTCON);
+> > +       wtcon |=3D S3C2410_WTCON_DBGACK_MASK;
+> > +       writel(wtcon, wdt->reg_base + S3C2410_WTCON);
+> > +}
+> > +
+> >  static int s3c2410wdt_keepalive(struct watchdog_device *wdd)
+> >  {
+> >         struct s3c2410_wdt *wdt =3D watchdog_get_drvdata(wdd);
+> > @@ -700,6 +719,8 @@ static int s3c2410wdt_probe(struct platform_device =
+*pdev)
+> >         wdt->wdt_device.bootstatus =3D s3c2410wdt_get_bootstatus(wdt);
+> >         wdt->wdt_device.parent =3D dev;
+> >
+> > +       s3c2410wdt_mask_dbgack(wdt);
+> > +
+> >         /*
+> >          * If "tmr_atboot" param is non-zero, start the watchdog right =
+now. Also
+> >          * set WDOG_HW_RUNNING bit, so that watchdog core can kick the =
+watchdog.
+> > --
+> > 2.43.0.rc2.451.g8631bc7472-goog
+> >
 
