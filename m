@@ -1,119 +1,103 @@
-Return-Path: <devicetree+bounces-21787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21788-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3475B8052BD
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 12:25:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F6298052C0
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 12:26:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE8231F21373
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 11:25:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D00041C20748
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 11:26:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFDB369792;
-	Tue,  5 Dec 2023 11:25:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9846E69789;
+	Tue,  5 Dec 2023 11:26:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="VGsUfrlk"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="TuG7clMs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C92A10CF;
-	Tue,  5 Dec 2023 03:23:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=ixJ2HNTOflVEtkIw9lPsvgsuTF/SutHy/lni6jq+Myc=; b=VGsUfrlkXC8ZAyffXZfVwcCK+8
-	DQgoZkbr0CEW7jsTuw1iqVIrncKemqyj6pLzVxB+hTGKPXkYwJZfZc+kN6Bs/NvR7kW+kXH7NLTQr
-	F5dcMBnv3p5gVQONwXCpvP5ihezZNLsrTY183aXqPu5wGuX1BcSDc08SVXf4p4LbFeYmWs6OGiohl
-	gdrHylSYM2T+21z66PWK7vsB/WA3lcEhylu5b5o+gTDOfbT8YnZVRZ/ONo9giZZw/cISb+U7/LHDJ
-	KkYMqAnTvnjMucWpxOOz9vryxqz2wOjG5rVdXYiLQNWgiwSh/4UdKAZx9BMXX2citboGRoHZz8nWA
-	0osNnBWg==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:55396)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1rATVq-0006gB-1w;
-	Tue, 05 Dec 2023 11:22:50 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1rATVq-0001fI-HX; Tue, 05 Dec 2023 11:22:50 +0000
-Date: Tue, 5 Dec 2023 11:22:50 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Serge Semin <fancer.lancer@gmail.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Jose Abreu <Jose.Abreu@synopsys.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Tomer Maimon <tmaimon77@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	openbmc@lists.ozlabs.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 05/16] net: pcs: xpcs: Move native device ID
- macro to linux/pcs/pcs-xpcs.h
-Message-ID: <ZW8ICvzwIHJhoV9U@shell.armlinux.org.uk>
-References: <20231205103559.9605-1-fancer.lancer@gmail.com>
- <20231205103559.9605-6-fancer.lancer@gmail.com>
- <ZW7/TrtSols1igy/@shell.armlinux.org.uk>
- <bas6l42vk2zzrwo22ss7fuganf4ekvhtvkb32duydjise7ui3o@o4f3rbcpokur>
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97C6F1722
+	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 03:23:50 -0800 (PST)
+Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-3333fbbeab9so2415312f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 03:23:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1701775402; x=1702380202; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=dWGEOgBlaV+9GD0eZ+EUXVzemfxXSkN0akB4k15I/sQ=;
+        b=TuG7clMsgAuNCb+eIJ4lLSuOhYVfEOKcCcMWx53HP7pOcQIQ/5VnWAuPnixDYyAHl7
+         YIbF8cT/OzjFBtxfYaXAqcM0YSipME1C+XaKznTTJRfqgUg3JADclvbwbeXlflzQ3/nf
+         qpeHihzxGNAkei4lsgX4s875DZUg1hg2pT9S4Pkra3l1EZ0aNGZ9GmTh4JpRUAihJV+3
+         gmFlFTd7mJYAhkJLdWjZJQK34vg5f5vnqhPTbEZfmpn9Vmpgubthb9cbo62Z4gfTHR/w
+         dp7BgYDP+UHu3BnPv4QFOOIjyDNBO2wEu4bIYT2a7jsFMeZPEcCFGamaMAz5Zc0DBWxY
+         dwCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701775402; x=1702380202;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dWGEOgBlaV+9GD0eZ+EUXVzemfxXSkN0akB4k15I/sQ=;
+        b=SC8lRuMeGogKo64R4ARVYPob8ENgeZowO0kEWro0Ic8u9biHYjPilvXJImuwZaMTpH
+         aZGn+/q+J6+zAKU12KNQDTuz74q63+s03YjrtORcfaF/s+pGiOSjMBIsyJ/fDE4BEwzK
+         QniumpSNKOikQLLB2zHu3FXbnYajsikjYGtrDeHKmj/VcLRNljqzUgQEDL8LZ/BZNBpy
+         SozkV1IXB+L2qn9Mj++HjwwqYdiNlvCqka0pMMDF9E1eudxlQOr38yfyDRUtiko+BgRZ
+         GZRkfYKZaZy+HRWJg/l9hXJfm1Tvp8qVSrCmL0cNEU9S2jh28yQ6Cw5BIUF9G4Ge3jKP
+         2dAg==
+X-Gm-Message-State: AOJu0Yxv/giQ9HN/d0y+5w3Ku3abLocVpVizjOVd/IEIpG9D3KW3MMf0
+	9NYMB0rslSb00iBihbBvAvN2+Q==
+X-Google-Smtp-Source: AGHT+IERJhbMlFae8VaZ0toP10wux4ZqDAU5aWYjeBHgjCeQv0tlJZg2P6EOxMzPBICtQOwgXli8Vw==
+X-Received: by 2002:adf:cf10:0:b0:333:272f:b5a9 with SMTP id o16-20020adfcf10000000b00333272fb5a9mr4421979wrj.36.1701775401961;
+        Tue, 05 Dec 2023 03:23:21 -0800 (PST)
+Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:2dd9:dce:96c5:9e9a])
+        by smtp.gmail.com with ESMTPSA id p8-20020a5d59a8000000b003333ed23356sm8127775wrr.4.2023.12.05.03.23.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Dec 2023 03:23:21 -0800 (PST)
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+To: Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Alex Elder <elder@linaro.org>,
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: [PATCH 1/3] arm64: dts: qcom: qrb5165-rb5: add an alias for uart6
+Date: Tue,  5 Dec 2023 12:23:09 +0100
+Message-Id: <20231205112311.16391-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <bas6l42vk2zzrwo22ss7fuganf4ekvhtvkb32duydjise7ui3o@o4f3rbcpokur>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Transfer-Encoding: 8bit
 
-On Tue, Dec 05, 2023 at 02:14:34PM +0300, Serge Semin wrote:
-> On Tue, Dec 05, 2023 at 10:45:34AM +0000, Russell King (Oracle) wrote:
-> > On Tue, Dec 05, 2023 at 01:35:26PM +0300, Serge Semin wrote:
-> > > Generic MDIO-device driver will support setting a custom device ID for the
-> > > particular MDIO-device.
-> > 
-> > Why future tense? I don't see anything later in this patch set adding
-> > this.
-> 
-> After the next patch is applied
-> [PATCH net-next 10/16] net: pcs: xpcs: Add generic DW XPCS MDIO-device support
-> the DW XPCS driver _will_ support setting custom IDs based on the
-> platform data and the DT compatibles.
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-What is confusing is that the sentence makes it sound like it's some
-generic driver that can be used for any PCS, whereas in reality it is
-_this_ XPCS driver which is not generic.
+Alias uart6 to serial1 for qrb5165-rb5. This is the high-speed port used
+by Bluetooth.
 
-"This driver will support setting a custom device ID in a future patch."
-or explicitly state the summary line of the patch concerned so one can
-refer to it. Future references are difficult to find whether they're in
-email and especially once they're merged into git.
+Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
-> It can be used for instance to
-> fix the already available SJ1105 and SJ1110 MDIO bus implementations,
-> so instead of substituting the XPCS IDs on the PHYSID CSR reads the
-> driver could just pass the device ID and PMA ID via the device
-> platform data.
-> 
-> If my patch log text looks unclear anyway, just say so. I'll change it
-> accordingly. I guess it would be enough to say that moving is required
-> just to collect all the IDs in a single place.
-
-You need to adjust your attitude - I did exactly that. There was
-something which I didn't understand, so I raised the issue. Sorry
-for spotting a problem, but do you always get arsey when a reviewer
-picks up on something wrong? If that's your attitude, then for this
-entire series: NAK.
-
+diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+index c8cd40a462a3..ce6ae0771d34 100644
+--- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
++++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+@@ -23,6 +23,7 @@ / {
+ 
+ 	aliases {
+ 		serial0 = &uart12;
++		serial1 = &uart6;
+ 		sdhc2 = &sdhc_2;
+ 	};
+ 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+2.40.1
+
 
