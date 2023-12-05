@@ -1,79 +1,73 @@
-Return-Path: <devicetree+bounces-21641-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21642-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39437804C37
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 09:27:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84DD6804C36
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 09:27:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E932FB20B1A
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 08:27:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3027E1F21495
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 08:27:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 146793C099;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E08073C469;
 	Tue,  5 Dec 2023 08:26:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="H8gM2SMV"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FJ8iiyw0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E386C0
-	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 00:26:54 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-40838915cecso55067365e9.2
-        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 00:26:53 -0800 (PST)
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1499A9C
+	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 00:26:55 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-40c039e9719so33539725e9.1
+        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 00:26:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701764812; x=1702369612; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701764813; x=1702369613; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=9ONp2xeZJwWnYurG8deLTSE0gkCza6RtQu4dgCKPeQ4=;
-        b=H8gM2SMVANO1E4Q7UGtfnmVkPXdk2XZtvC+KfCOVLx/kRXHxQUZiwuSma4YJyWEZKH
-         ZkdOJqNNgx1g9eQI6AD3aNaP4nQ4ZZPikOZpN8kPQa/y8NqBzDzS2WUQ0uk6jRT1OTew
-         ZhC/BOgDEutOi22MC1YdUT6kh9KGGGq8HQfiBJHiKvGFAMbwziYMilE9kcHtSePIokt1
-         iJE1kWRqPMzy+KhauXdOUGyGfs0F5ZX9EACRreDkoVtrQPk9x/I/0TewqA1q7kl8542P
-         ywQXQnuoJ/+wwzAJpNr9AU53T8Ai8Pw1ac9md4JRLt+BwWOVhFbkEAn3nO1xf52lxEGk
-         Vl1Q==
+        bh=2xo+/EwDShXw+0ErTm/Pk49sbvWBMtU3LMyMVMefHxA=;
+        b=FJ8iiyw0vD3N3LPvwAK07sWQO+FgnHAPSFzXjeYas1sJi8fW7acyzSl24KGFJZNEVx
+         dxYfmtmu9peGfyxpiPMGRIckdt6v5FQIbPnhYkeV9cS6Wfa4uphlaWPmy0XLnFRPLN09
+         ETdnGZ+vAtw/4nyilHPxNU0s001lQTWs90Gny5bRThe/pVQ6+zR9ewo+p7cML1w50wTt
+         glwXyLI+54EqXsux+dAzmhCuFifpNiYxvIQ4NgVQkFCBq4DVpxIRSgMfX/6QxcPprMzw
+         QYPmpcLge8MDApzJ39ZPL+ecdcc9W2iVcnxJ2H15Mqx+NST1B6UX20AsMKvGEk7TUe9a
+         7Fig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701764812; x=1702369612;
+        d=1e100.net; s=20230601; t=1701764813; x=1702369613;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=9ONp2xeZJwWnYurG8deLTSE0gkCza6RtQu4dgCKPeQ4=;
-        b=SLTQ4I5TfaSHNi17LaZe6cNRBTJ3jAr1/PR50Yeqlotk2iJ1/MgnB9IFIOC7iVh0RW
-         YjyX0H4npgnarPlZ7Def8JsA17cWVX4HSwgvaUQ2Ki9FX0Fh2jzNb9FFNCueuInh/BPJ
-         PgKqibBjjxuaWUpk6JO1gHjHQSH+2whDoQkjvckHyBzJ87jCY8txPWymb35THk1htL5n
-         Y5DYMYRO3EqZSc3yD3h5pnNgCT43v4Xij/r7/pHFdfUYgF6/XC5x9LkWEQtboD6RSlVC
-         b+nsD2/PaSa9v0jXxF8lh0ja3h8bUjKpzpuo/SUEq6IlUMJJ2uMR+UTuFefROZT1bGzJ
-         u0lg==
-X-Gm-Message-State: AOJu0Yy8nCumOVggRZ3LSMun6A503uzSP4Qi/lI30eTqgXwHa/atFux1
-	G3IT4hihDSY8Rn+fCqTU9s2P7w==
-X-Google-Smtp-Source: AGHT+IH7wgiY+RXSlX5gVy/D8OdYWT70nRrboj3nA4gpJE5NsI9UJv5ilLIdET+CbMek0Lds1Rb+Aw==
-X-Received: by 2002:a05:600c:ac1:b0:40b:5e59:daa1 with SMTP id c1-20020a05600c0ac100b0040b5e59daa1mr236001wmr.180.1701764812446;
-        Tue, 05 Dec 2023 00:26:52 -0800 (PST)
+        bh=2xo+/EwDShXw+0ErTm/Pk49sbvWBMtU3LMyMVMefHxA=;
+        b=ECG58fjTKsW24/iQaki21+sb2EPHv7Z9bG7T/2xtrBSaHFRjLB4MuvougULp73u7PD
+         IVSCFN/Y6ph2RhxoVRyNeosDkrYOT+X05fyNWYbJMDbw6ZC3LN7mA9Vhey/6RmNFTz3I
+         h8KKzxWXFCdNWpPFCWJnCuXi18u7leI7PVnQq5zI1mD21gD9SfktYU6+mReNR9JNHBh/
+         mSmeTvgfDjEIS2VR7CQqi8U9Dl3GO3hU/kM9eKEdX7OOCKiY1IvIhY2WLHyTmfbxGQhd
+         XbbdWgBzAbB6uwNl2UZsvC4obxyJl3MCiwFzFY1O6dwfGtlFY98ayVOihko/YgWOTcLb
+         S5cQ==
+X-Gm-Message-State: AOJu0Yyss3XV2IAIT7BP/dvXBFrQtLnoBxAIymPrb6e6spJQbHAVAAyM
+	y9ZcF00f9cuhQvOKXVAnj22DVQ==
+X-Google-Smtp-Source: AGHT+IHm8d3BCfIGqE69y8jUoy6J3Kzb+QtEPPQ+oGlTFuH/rWCx6J2gokcJ9ngcoHN+c1BW732iPw==
+X-Received: by 2002:a05:600c:4655:b0:40b:5e1c:5c1f with SMTP id n21-20020a05600c465500b0040b5e1c5c1fmr234872wmo.52.1701764813586;
+        Tue, 05 Dec 2023 00:26:53 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id d4-20020a05600c3ac400b0040b538047b4sm21329282wms.3.2023.12.05.00.26.51
+        by smtp.gmail.com with ESMTPSA id d4-20020a05600c3ac400b0040b538047b4sm21329282wms.3.2023.12.05.00.26.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Dec 2023 00:26:52 -0800 (PST)
+        Tue, 05 Dec 2023 00:26:53 -0800 (PST)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Jessica Zhang <quic_jesszhan@quicinc.com>, 
- Sam Ravnborg <sam@ravnborg.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>, Tony Lindgren <tony@atomide.com>
-Cc: Carl Philipp Klemm <philipp@uvos.xyz>, 
- Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>, 
- Merlijn Wajer <merlijn@wizzup.org>, Pavel Machek <pavel@ucw.cz>, 
- Sebastian Reichel <sre@kernel.org>, dri-devel@lists.freedesktop.org, 
- devicetree@vger.kernel.org
-In-Reply-To: <20231127051547.15023-1-tony@atomide.com>
-References: <20231127051547.15023-1-tony@atomide.com>
-Subject: Re: [PATCH 1/2] dt-bindings: display: simple: Add boe,bp101wx1-100
- panel
-Message-Id: <170176481142.4073725.17752464155243136680.b4-ty@linaro.org>
-Date: Tue, 05 Dec 2023 09:26:51 +0100
+To: linux-rockchip@lists.infradead.org, 
+ Chris Morgan <macroalpha82@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, sboyd@kernel.org, mturquette@baylibre.com, 
+ tzimmermann@suse.de, mripard@kernel.org, maarten.lankhorst@linux.intel.com, 
+ daniel@ffwll.ch, airlied@gmail.com, sam@ravnborg.org, 
+ quic_jesszhan@quicinc.com, javierm@redhat.com, heiko@sntech.de, 
+ conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org, 
+ Chris Morgan <macromorgan@hotmail.com>
+In-Reply-To: <20231204185719.569021-1-macroalpha82@gmail.com>
+References: <20231204185719.569021-1-macroalpha82@gmail.com>
+Subject: Re: [PATCH V2 00/10] rockchip: Add Powkiddy X55
+Message-Id: <170176481258.4073725.14793788958228896320.b4-ty@linaro.org>
+Date: Tue, 05 Dec 2023 09:26:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,17 +80,43 @@ X-Mailer: b4 0.12.3
 
 Hi,
 
-On Mon, 27 Nov 2023 07:15:43 +0200, Tony Lindgren wrote:
-> This panel is found on Motorola mapphone tablets mz615 to mz617.
+On Mon, 04 Dec 2023 12:57:09 -0600, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
+> Add support for the Rockchip RK3566 based Powkiddy X55 handheld gaming
+> console.
 > 
+> Changes since V1:
+>  - Corrected a bug with the DRM mode flags for the video driver.
+>  - Adjusted panel front and back porch and pixel clock to fix
+>    issues with display that occurred after correcting DRM mode
+>    flag bug.
+>  - Add a new clk frequency for PLL_VPLL to get panel to run at ~60hz.
+> 
+> [...]
 
 Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
 
-[1/2] dt-bindings: display: simple: Add boe,bp101wx1-100 panel
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=4777dded21717c31d2d8471bccaf7c0ff58feaa4
-[2/2] drm/panel: simple: Add BOE BP101WX1-100 panel
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=eeaddab4c14beb02157db5ca8f9e074066759bfd
+[01/10] drm/panel: himax-hx8394: Drop prepare/unprepare tracking
+        https://cgit.freedesktop.org/drm/drm-misc/commit/?id=8c2c5d1d33f0725b7995f44f87a81311d13a441d
+[02/10] drm/panel: himax-hx8394: Drop shutdown logic
+        https://cgit.freedesktop.org/drm/drm-misc/commit/?id=e4f53a4d921eba6187a2599cf184a3beeb604fe2
+[03/10] dt-bindings: display: Document Himax HX8394 panel rotation
+        https://cgit.freedesktop.org/drm/drm-misc/commit/?id=be478bc7ab08127473ce9ed893378cc2a8762611
+[04/10] drm/panel: himax-hx8394: Add Panel Rotation Support
+        https://cgit.freedesktop.org/drm/drm-misc/commit/?id=a695a5009c8fd239a98d98209489997ff5397d2b
+[05/10] dt-bindings: display: himax-hx8394: Add Powkiddy X55 panel
+        https://cgit.freedesktop.org/drm/drm-misc/commit/?id=00830a0d8f0d820335e7beb26e251069d90f2574
+[06/10] drm/panel: himax-hx8394: Add Support for Powkiddy X55 panel
+        https://cgit.freedesktop.org/drm/drm-misc/commit/?id=38db985966d2f0f89f7e1891253489a16936fc5e
+[07/10] clk: rockchip: Mark pclk_usb as critical on rk3568
+        (no commit info)
+[08/10] clk: rockchip: rk3568: Add PLL rate for 126.4MHz
+        (no commit info)
+[09/10] dt-bindings: arm: rockchip: Add Powkiddy X55
+        (no commit info)
+[10/10] arm64: dts: rockchip: Add Powkiddy X55
+        (no commit info)
 
 -- 
 Neil
