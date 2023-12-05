@@ -1,173 +1,209 @@
-Return-Path: <devicetree+bounces-21779-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21780-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EB87805175
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 12:02:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BECC805185
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 12:05:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CF2441C20BB0
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 11:02:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20B19281559
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 11:05:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D5D84F5E4;
-	Tue,  5 Dec 2023 11:02:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C94E53E1D;
+	Tue,  5 Dec 2023 11:05:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="nF4nEzBj"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aymnqoW6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10olkn2076.outbound.protection.outlook.com [40.92.41.76])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2FD810F;
-	Tue,  5 Dec 2023 03:02:33 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NVSq+Z3KdiVhbS7YddLG5kvDbx3EkK+ihGV176BYN8p8Dlau1zio74iPanGOGfJPl7e+NreBAFieWr7nlmwV54C9GtOLuLrSKEtBiDfqbjf5RR7FDUiXxbqIkrMQ6QktRPCtyOkbsk7qPqJ4WUpolJ9MJTU5pilRzdssuuGnqTvsr/887ala7YDtGmTmtf2r0UioexjRRJDlwUmAxeypWqgPWrZvVhKDh+O03uLpFN6x3Sq7UfSgAGONL+TLkgfPimZTJI1LHquzz5zxBz8chXr0kHioPPtUcq4NBGSk8MXwAv+0nceBzIGj0eu8JZ9pNJ3WFSzMuEuQZ6x3JzvIKQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dWTBreLWmrV4RdzBxhHiuBz+w0l7oGr5dRypcKGvWbE=;
- b=VQzmS6wpoX/UQcjmqxTEBdvnVUq/IA4Kkb5RJKpUxhkjy2N0NTRBeUBEnpubkOjRuhv3bRTZQPaECBLanpcLlPwMEDP17kDLn8r9UvNUYUki1Ss90htjx/4jnsEvkP7LuOr6aJTxAZL0g/vqMMvMyFtMKNqumCSf1LQwljaW0jfUCOmMejfPUBJbR0pp/FHDZMV9u/0McGz2RYX1L4IUSDGFgagsa4mD80y7dlcr+TkEaJuHC1hXakwgs030YGzM2ZNHI3J6f+qkjCFOs0vbOrWUgPSHmK5aXY19aALXkR2wqN77kvl/uv8eGGQ/BaTUjzlzvnnV4GmzVV3uDUXRtQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dWTBreLWmrV4RdzBxhHiuBz+w0l7oGr5dRypcKGvWbE=;
- b=nF4nEzBjQeOARUVKctxkCEbZwiF8Zpu/e9crt/hXdmwqKQMN9pYYAD34NN3md5rQhQijbA+YUGNGqYgTDZJ3T3cxg+PRQNQDh8txyJ1NcJbOHc18wJ6QQTgIaDO3C+aFMqhLSVeXc5N0e7+ri1shbD6mLDkfAqPpISgoFXZs29AppP7V7SnlxgMRAmrxQLc7Xgg99CLcZHnODozuECtcRYj0eBYDAAi9qgPwe3Wv6S5VfBmXKql3/Eqbci1ETZH/rkR9XqTfYo1YZoCmh5NuY4Q2iz1e3f91Sq2ackKg0q8dPt4hoAZfmC+iIxoOH+qLSax0gskZ+TPg6I5QsZN4+w==
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
- by PH7PR20MB5141.namprd20.prod.outlook.com (2603:10b6:510:1b0::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.34; Tue, 5 Dec
- 2023 11:02:31 +0000
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::55b:c350:980:ad8]) by IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::55b:c350:980:ad8%6]) with mapi id 15.20.7046.024; Tue, 5 Dec 2023
- 11:02:31 +0000
-From: Inochi Amaoto <inochiama@outlook.com>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chao Wei <chao.wei@sophgo.com>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Inochi Amaoto <inochiama@outlook.com>
-Cc: Jisheng Zhang <jszhang@kernel.org>,
-	qiujingbao.dlmu@gmail.com,
-	dlan@gentoo.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 0/4] riscv: sophgo: add clock support for Sophgo CV1800 SoCs
-Date: Tue,  5 Dec 2023 19:02:34 +0800
-Message-ID:
- <IA1PR20MB4953948963D792F889396B37BB85A@IA1PR20MB4953.namprd20.prod.outlook.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <IA1PR20MB495382B725AFF6FC2C336BA6BB85A@IA1PR20MB4953.namprd20.prod.outlook.com>
-References: <IA1PR20MB495382B725AFF6FC2C336BA6BB85A@IA1PR20MB4953.namprd20.prod.outlook.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TMN: [uVoNrPE5tZ0jk6ozmFW057+LfJlJM0kktZAx7ChtA7E=]
-X-ClientProxiedBy: TY2PR06CA0041.apcprd06.prod.outlook.com
- (2603:1096:404:2e::29) To IA1PR20MB4953.namprd20.prod.outlook.com
- (2603:10b6:208:3af::19)
-X-Microsoft-Original-Message-ID:
- <20231205110234.979342-1-inochiama@outlook.com>
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 599629A;
+	Tue,  5 Dec 2023 03:05:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1701774325; x=1733310325;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=vxtWDeGzVM4kvy0di8LLvjYNsy4xYn3TtHE94cFFtoI=;
+  b=aymnqoW63Xl1IB8S6sWu2XvyFcuuiQkiTynli4f3CHEN44n3KucPPanE
+   5jeP1b9WpoaE2ryBCvVNJ/i9ZwAuZq78kMOD+xjwKDnkDclzwoTDInUNb
+   VFm5RLxb+2rPPAhcK+guFNxNPu7VYlkXOHGc54t0tJhuf3Z/+j3RxE/Ta
+   jt47MteQjelfWeHVlselsEHD8KnN9LhoVggcQm3dXOmePUkoMNeS1nC/r
+   cevLmMBLRvB87Y3qM2m7qy4VvRekB/X2I4zsjmphKXR6UW0LLHfyf9odR
+   t2078ay7oWoG7qInjFPCUwWoy1/XaCp7GlLDwBuu5iKS4MAS7J7JLKl10
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10914"; a="458199426"
+X-IronPort-AV: E=Sophos;i="6.04,251,1695711600"; 
+   d="scan'208";a="458199426"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Dec 2023 03:05:24 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10914"; a="861708559"
+X-IronPort-AV: E=Sophos;i="6.04,251,1695711600"; 
+   d="scan'208";a="861708559"
+Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
+  by FMSMGA003.fm.intel.com with ESMTP; 05 Dec 2023 03:05:20 -0800
+Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rATEp-0008pW-0o;
+	Tue, 05 Dec 2023 11:05:16 +0000
+Date: Tue, 5 Dec 2023 19:04:30 +0800
+From: kernel test robot <lkp@intel.com>
+To: baneric926@gmail.com, jdelvare@suse.com, linux@roeck-us.net,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, corbet@lwn.net
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+	openbmc@lists.ozlabs.org, kwliu@nuvoton.com, kcfeng0@nuvoton.com,
+	DELPHINE_CHIU@wiwynn.com, Bonnie_Lo@wiwynn.com
+Subject: Re: [PATCH v1 2/2] hwmon: Driver for Nuvoton NCT736X
+Message-ID: <202312051854.qBIoJW1N-lkp@intel.com>
+References: <20231204055650.788388-3-kcfeng0@nuvoton.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|PH7PR20MB5141:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5fe25801-f749-4eb7-4c6a-08dbf581ad12
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	olpotJh3jDkMYaAxsPX4UnKjpxrRq8NWr2cWeGscBkJOI/1cgHlqLgZYb8dsZclfDnejwE5tjnBztHei1zHDqFFoXwOoFGHNKBEzBfsY932QgT2rlc76OC/G8zrOBOZuQhTlLuVx49uJieb4RMLKtmTObTCni4b6Nb8qTZnJcDE+4ekNMsbwOuSlhLrJ3HgZ+hOP+zULZHRtC3QbTNKG94S8UZaLxEeAqYNE9i5QmLEnr9l/TAfGVW8ySiuD1ZpdketCWZYsMEa9g7RwLuvLSIz5Omi2752URWVWY5GCIzLjhJ3mEf4XISw1dklEY23v2NNO9kAD9dq4gdP+ePO3DY4Oh8lk6E7BmbgxciXyiOMiVBKOD72hO7lSsjCK3sED5B5/iCTsQDBZ+mIYrpcIE4ziCsnwj4MRgRr6xKUfu34h8MVv6f8OvDhYZiXIKzUMd/Pg+A1zw2HzRqIwaKtQycaoQwAsX0Vqs9JiyOhublOqYJQ79PgjUmi7497MaQgrlSisSBXt1B8DqbPCqxgismY0QvJXkYIg9ggt5fHJFIvrwVYXneMP8NVj2K/It/jn/ZfpBnlPeokXR5ZhWvGhIkjZNv3WDoRh4uCnNuvhE2JLBm+NBoPTcMfBfiY4Ki6n
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?d8cc0buXfkcWWyoRGODh6jRvLxEm8OBpSCA3bFaRMV07P9qwsbSoNmyl0uzY?=
- =?us-ascii?Q?H7rmxW1tWxVQib2TlJZ2apSq3CA/PLihbX0irNvt4NorRpsYmIifFr+siSae?=
- =?us-ascii?Q?N4UB1ANthtTdi1axooCi+7UMiyq5r24uIc/cKOhFnyinWH6ZoscWzl2Cmj2e?=
- =?us-ascii?Q?Wp9ywVF/LSz4M3R6Ok+w5h3Mr1BaO+9O6bRSMPfcI6qyr19quytOD6u9aAsO?=
- =?us-ascii?Q?zE6COWoDwPhRY2s+5R0VJ6fnU2K7+ZqCAn0HKALw7YCQyUYF1MYa+EerTb9A?=
- =?us-ascii?Q?N5oI7nxsvRXDMi7mwWA4AV/WC6xXeigcIDh4oxWBiFHfDDY6bf5VjwHQfWEc?=
- =?us-ascii?Q?7iitKWX8QjTOyUn8FmH/15CjBbJx9kg0n01cSlwhJqf7OrV2hv01SkZLmorP?=
- =?us-ascii?Q?SvjDLdo6XQqHCJdpm7yHf7yhPnqCTwitju1ny71CnZ5kxsUIUfXwUjhcV3FR?=
- =?us-ascii?Q?3MqM1oZ/9KOsKhw6zrS2SB219T1STK6k/Ig7dSvuqg5OT8NLXhbaef+1wsXw?=
- =?us-ascii?Q?r9kyigYR6MnTh6kZvEmlyeZ4r9aTdSgh+swgqUzeWEdUg1AsTWzNWZ7/hg8I?=
- =?us-ascii?Q?AZ+U1iiRUguPDZwn5KxHiICE251rw80zW3jX3E5JReM/+blxPOAVpQis4Lle?=
- =?us-ascii?Q?jDoZuQ48BG1F7zjZZ+dX9nHvvZO1p6MlBcQ/l11cu7o91WH8eK+46qYpax6A?=
- =?us-ascii?Q?Q6Vyorb0yepPlwOep84pl/jeF+jfW0Ue+qhzhdAAN3t9hiXvm4ViXD3Bw6Dn?=
- =?us-ascii?Q?IkSWlakaXVs4oE0U2iBcbfI9Qn6qa8cynYZvdh9mqPg5umPzKq0fjmEe7hMi?=
- =?us-ascii?Q?IpG9KH36zZze80zUdB0x155yd4/+aLx3sNIZWIAqwOM8+1nmz9S0xoeBF7pE?=
- =?us-ascii?Q?ZbhnkXZrAmkdrMjuhJRsG6ISDfe9kYhzSU3jMMQNZEL0X9F1NngaStosf+Rx?=
- =?us-ascii?Q?SQ9nNm1YWqXE/6F3XebBrMb/P2uQXm0IhyyNv0tt5JabQNOVm97Dl/2YlHlW?=
- =?us-ascii?Q?bLmM6bmhdj/XxSF0ZJ35T5stSATDkvZ25Yg3v3FttL743CDrwl7/biYULSwp?=
- =?us-ascii?Q?AvugKlBNBClT7qD0+tzjtcOg1xu0ootN7RdbOHkANNLWDZzLIODWJl0Zos7M?=
- =?us-ascii?Q?GEldcrq0VgzkHRIURF4lRtQ7HD3p2DKmMlFkaYHmi7olS64TGcmlMSJ4YKv5?=
- =?us-ascii?Q?hbycvdqF6JiBZN4Dq/uetcuw3v1HA77wjRV4gnx7xyOHqy70MDhiq/P58Fk?=
- =?us-ascii?Q?=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5fe25801-f749-4eb7-4c6a-08dbf581ad12
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Dec 2023 11:02:30.9872
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR20MB5141
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231204055650.788388-3-kcfeng0@nuvoton.com>
 
->
->Add clock controller support for the Sophgo CV1800B and CV1812H.
->
->Inochi Amaoto (4):
->  dt-bindings: clock: sophgo: Add CV1800 bindings
->  clk: sophgo: Add CV1800 series clock controller driver
->  riscv: dts: sophgo: add clock generator for Sophgo CV1800 series SoC
->  riscv: dts: sophgo: add uart clock for Sophgo CV1800 series SoC
->
-> .../bindings/clock/sophgo,cv1800-clk.yaml     |   53 +
-> arch/riscv/boot/dts/sophgo/cv1800b.dtsi       |    4 +
-> arch/riscv/boot/dts/sophgo/cv1812h.dtsi       |    4 +
-> arch/riscv/boot/dts/sophgo/cv18xx.dtsi        |   28 +-
-> drivers/clk/Kconfig                           |    1 +
-> drivers/clk/Makefile                          |    1 +
-> drivers/clk/sophgo/Kconfig                    |    7 +
-> drivers/clk/sophgo/Makefile                   |    7 +
-> drivers/clk/sophgo/clk-cv1800.c               | 1548 +++++++++++++++++
-> drivers/clk/sophgo/clk-cv1800.h               |  123 ++
-> drivers/clk/sophgo/clk-cv18xx-common.c        |   76 +
-> drivers/clk/sophgo/clk-cv18xx-common.h        |   85 +
-> drivers/clk/sophgo/clk-cv18xx-ip.c            |  898 ++++++++++
-> drivers/clk/sophgo/clk-cv18xx-ip.h            |  266 +++
-> drivers/clk/sophgo/clk-cv18xx-pll.c           |  465 +++++
-> drivers/clk/sophgo/clk-cv18xx-pll.h           |   79 +
-> include/dt-bindings/clock/sophgo,cv1800.h     |  174 ++
-> 17 files changed, 3814 insertions(+), 5 deletions(-)
-> create mode 100644 Documentation/devicetree/bindings/clock/sophgo,cv1800-clk.yaml
-> create mode 100644 drivers/clk/sophgo/Kconfig
-> create mode 100644 drivers/clk/sophgo/Makefile
-> create mode 100644 drivers/clk/sophgo/clk-cv1800.c
-> create mode 100644 drivers/clk/sophgo/clk-cv1800.h
-> create mode 100644 drivers/clk/sophgo/clk-cv18xx-common.c
-> create mode 100644 drivers/clk/sophgo/clk-cv18xx-common.h
-> create mode 100644 drivers/clk/sophgo/clk-cv18xx-ip.c
-> create mode 100644 drivers/clk/sophgo/clk-cv18xx-ip.h
-> create mode 100644 drivers/clk/sophgo/clk-cv18xx-pll.c
-> create mode 100644 drivers/clk/sophgo/clk-cv18xx-pll.h
-> create mode 100644 include/dt-bindings/clock/sophgo,cv1800.h
->
->--
->2.43.0
->
+Hi,
 
-This patch follow this patch series:
-https://lore.kernel.org/all/IA1PR20MB495399CAF2EEECC206ADA7ABBBD5A@IA1PR20MB4953.namprd20.prod.outlook.com/
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on linus/master]
+[also build test WARNING on v6.7-rc4 next-20231205]
+[cannot apply to groeck-staging/hwmon-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/baneric926-gmail-com/dt-bindings-hwmon-Add-nct736x-bindings/20231204-135942
+base:   linus/master
+patch link:    https://lore.kernel.org/r/20231204055650.788388-3-kcfeng0%40nuvoton.com
+patch subject: [PATCH v1 2/2] hwmon: Driver for Nuvoton NCT736X
+config: i386-allmodconfig (https://download.01.org/0day-ci/archive/20231205/202312051854.qBIoJW1N-lkp@intel.com/config)
+compiler: clang version 16.0.4 (https://github.com/llvm/llvm-project.git ae42196bc493ffe877a7e3dff8be32035dea4d07)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231205/202312051854.qBIoJW1N-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202312051854.qBIoJW1N-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/hwmon/nct736x.c:352:5: warning: variable 'gpio14_17' is uninitialized when used here [-Wuninitialized]
+                                   gpio14_17 |= FANIN_SEL(i);
+                                   ^~~~~~~~~
+   drivers/hwmon/nct736x.c:339:46: note: initialize the variable 'gpio14_17' to silence this warning
+           u8 i, gpio0_3, gpio4_7, gpio10_13, gpio14_17;
+                                                       ^
+                                                        = '\0'
+>> drivers/hwmon/nct736x.c:347:5: warning: variable 'gpio10_13' is uninitialized when used here [-Wuninitialized]
+                                   gpio10_13 |= FANIN_SEL(i);
+                                   ^~~~~~~~~
+   drivers/hwmon/nct736x.c:339:35: note: initialize the variable 'gpio10_13' to silence this warning
+           u8 i, gpio0_3, gpio4_7, gpio10_13, gpio14_17;
+                                            ^
+                                             = '\0'
+>> drivers/hwmon/nct736x.c:350:5: warning: variable 'gpio4_7' is uninitialized when used here [-Wuninitialized]
+                                   gpio4_7 |= PWM_SEL(i);
+                                   ^~~~~~~
+   drivers/hwmon/nct736x.c:339:24: note: initialize the variable 'gpio4_7' to silence this warning
+           u8 i, gpio0_3, gpio4_7, gpio10_13, gpio14_17;
+                                 ^
+                                  = '\0'
+>> drivers/hwmon/nct736x.c:345:5: warning: variable 'gpio0_3' is uninitialized when used here [-Wuninitialized]
+                                   gpio0_3 |= PWM_SEL(i);
+                                   ^~~~~~~
+   drivers/hwmon/nct736x.c:339:15: note: initialize the variable 'gpio0_3' to silence this warning
+           u8 i, gpio0_3, gpio4_7, gpio10_13, gpio14_17;
+                        ^
+                         = '\0'
+   4 warnings generated.
+
+
+vim +/gpio14_17 +352 drivers/hwmon/nct736x.c
+
+   334	
+   335	static int nct736x_init_chip(struct i2c_client *client,
+   336				     u32 pwm_mask, u32 fanin_mask, u32 wdt_cfg)
+   337	{
+   338		const struct i2c_device_id *id = i2c_match_id(nct736x_id, client);
+   339		u8 i, gpio0_3, gpio4_7, gpio10_13, gpio14_17;
+   340		int ret;
+   341	
+   342		for (i = 0; i < NCT736X_PWM_COUNT; i++) {
+   343			if (i < 4) {
+   344				if (pwm_mask & BIT_CHECK(i))
+ > 345					gpio0_3 |= PWM_SEL(i);
+   346				if (fanin_mask & BIT_CHECK(i))
+ > 347					gpio10_13 |= FANIN_SEL(i);
+   348			} else if (i < 8) {
+   349				if (pwm_mask & BIT_CHECK(i))
+ > 350					gpio4_7 |= PWM_SEL(i);
+   351				if (fanin_mask & BIT_CHECK(i))
+ > 352					gpio14_17 |= FANIN_SEL(i);
+   353			} else if (i < 12) {
+   354				if (pwm_mask & BIT_CHECK(i))
+   355					gpio10_13 |= PWM_SEL(i);
+   356				if (fanin_mask & BIT_CHECK(i))
+   357					gpio0_3 |= FANIN_SEL(i);
+   358			} else {
+   359				if (pwm_mask & BIT_CHECK(i))
+   360					gpio14_17 |= PWM_SEL(i);
+   361				if (fanin_mask & BIT_CHECK(i))
+   362					gpio4_7 |= FANIN_SEL(i);
+   363			}
+   364		}
+   365	
+   366		/* Pin Function Configuration */
+   367		ret = nct736x_write_reg(client, NCT736X_REG_GPIO_0_3, gpio0_3);
+   368		if (ret < 0)
+   369			return ret;
+   370		ret = nct736x_write_reg(client, NCT736X_REG_GPIO_4_7, gpio4_7);
+   371		if (ret < 0)
+   372			return ret;
+   373		ret = nct736x_write_reg(client, NCT736X_REG_GPIO_10_13, gpio10_13);
+   374		if (ret < 0)
+   375			return ret;
+   376		ret = nct736x_write_reg(client, NCT736X_REG_GPIO_14_17, gpio14_17);
+   377		if (ret < 0)
+   378			return ret;
+   379	
+   380		/* PWM and FANIN Monitoring Enable */
+   381		ret = nct736x_write_reg(client, NCT736X_REG_PWMEN_0_7,
+   382					pwm_mask & 0xff);
+   383		if (ret < 0)
+   384			return ret;
+   385		ret = nct736x_write_reg(client,
+   386					NCT736X_REG_PWMEN_8_15, (pwm_mask >> 8) & 0xff);
+   387		if (ret < 0)
+   388			return ret;
+   389		ret = nct736x_write_reg(client, NCT736X_REG_FANINEN_0_7,
+   390					fanin_mask & 0xff);
+   391		if (ret < 0)
+   392			return ret;
+   393		ret = nct736x_write_reg(client, NCT736X_REG_FANINEN_8_15,
+   394					(fanin_mask >> 8) & 0xff);
+   395		if (ret < 0)
+   396			return ret;
+   397	
+   398		/* Watchdog Timer Configuration */
+   399		if (wdt_cfg != 0xff && id->driver_data == nct7363) {
+   400			ret = nct736x_write_reg(client, NCT7363_REG_WDT, wdt_cfg);
+   401			if (ret < 0)
+   402				return ret;
+   403		}
+   404	
+   405		return 0;
+   406	}
+   407	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
