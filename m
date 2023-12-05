@@ -1,99 +1,111 @@
-Return-Path: <devicetree+bounces-21864-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21866-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E849805677
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 14:50:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 811A080568F
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 14:52:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 64743B20F6E
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 13:50:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B14F11C21008
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 13:52:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D9A85E0C6;
-	Tue,  5 Dec 2023 13:50:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E5435E0CF;
+	Tue,  5 Dec 2023 13:52:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jCbI+sOY"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="NktDqN5j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B490A8;
-	Tue,  5 Dec 2023 05:50:39 -0800 (PST)
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-54c7744a93fso4240277a12.2;
-        Tue, 05 Dec 2023 05:50:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701784238; x=1702389038; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3CnnPrYJbZn+ydGuLss8Ol0k4CEJ0cAzskXkdkO+me0=;
-        b=jCbI+sOYMcqvCfkaSvqiPRMEDIE9RYid9bXyurZiLwNWzp/eH+butlRkZkX+ixtzF/
-         aaBeaumkWlcBie4ltwG1Uh9wcsLo/wQwU+e+yD587pgcSzSJDwLd2JSy+YyJ/lzupI4a
-         JpS2CeX0OkwQP9JX4P+fRHRA4yMpoOklXCCksVsJKErjQFwCo547HPv/GxOCSF0uuyZQ
-         oGdNF+iRkmyctcllSWbnkqDwDGjICekoDAf2Hcmw4CskmXazJsk2FmD8XbM+CPckNZiB
-         sedONh/OB9NtDkRWCxPRYbBJyhEw6UTfahAYF1CoyeS7UtC8Xb3oQfb9gY2fBstypPak
-         /giA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701784238; x=1702389038;
-        h=content-transfer-encoding:in-reply-to:from:references:cc
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3CnnPrYJbZn+ydGuLss8Ol0k4CEJ0cAzskXkdkO+me0=;
-        b=sVgV+Ux6+0rZtsYJNWfAGifWpJQwGREqp9cY5DdzKDGXuAww6sl5fkvxaa4vXcixkY
-         qqRjJjZHaKvw0qHUcPZRRI6PRg0rg9O0NlwWYkgBS8Kg35+hH4y8Er6Q4BPSXgN8Vkmi
-         UND3Rf1eo7i0qeheadHxYWhgPBKsLmM0nOM56YtEKTmGoQz5LntZnrGjFXoMEVkMbBXO
-         Jlttf9L9h7d/F9jcD+JmjoF2fTyQmEpSPHAWnW32xnKPhnjjV9hRc6OP4tiwr7DHsUzG
-         KU3S7Bj/JoWu5PAFIpzULDcSoMJ75k79QPZ0vD3JlTxsqlJb/2ubI7rbw6O4uCjXVP7U
-         DYmA==
-X-Gm-Message-State: AOJu0YxGfyrB8tO/k4cCy/MeuCYQyELjR4v764bQ5cXWvVR7qBn6xGOh
-	ko12yYsa0hqXyfVeSzfgk/UeUqE47rTTNUYi8ug=
-X-Google-Smtp-Source: AGHT+IFRaJTQe39dBZzAkMfzbK51eiz+syrbne0p2I0XfRFqE6HVR4Nw6vvZ01b7wOMFjjnYC/bSOw==
-X-Received: by 2002:a17:906:10ce:b0:a1c:aa9e:17e4 with SMTP id v14-20020a17090610ce00b00a1caa9e17e4mr468382ejv.49.1701784238338;
-        Tue, 05 Dec 2023 05:50:38 -0800 (PST)
-Received: from [172.25.98.130] ([5.2.194.157])
-        by smtp.gmail.com with ESMTPSA id o9-20020a17090637c900b00a1cdf29af64sm424678ejc.45.2023.12.05.05.50.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Dec 2023 05:50:37 -0800 (PST)
-Message-ID: <9717981d-2f41-4664-afd4-bf9a1544bb95@gmail.com>
-Date: Tue, 5 Dec 2023 15:50:36 +0200
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51DB012C;
+	Tue,  5 Dec 2023 05:52:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=fp/k+9cjXPMJD2AI1NBPq4sHcsTLnY0P6a5ilpBrwwI=; b=NktDqN5jNI5Ylg9ZHDCm/VXu55
+	z+DTg9FlA8wsQGtB2rP4e07ENtnZ+R782xG+VNf6Ve91GLktgfzGKWa6epkNfgsfR0hUo+dhFhhS3
+	1CrG3fFgCQUD8ABXHVmW2Siqq94y127Lrsf4p0pvesSlcVu9tV0o9cHVqHfYFhdammPM=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rAVqa-0026FF-6u; Tue, 05 Dec 2023 14:52:24 +0100
+Date: Tue, 5 Dec 2023 14:52:24 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Serge Semin <fancer.lancer@gmail.com>
+Cc: "Russell King (Oracle)" <linux@armlinux.org.uk>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Jose Abreu <Jose.Abreu@synopsys.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Tomer Maimon <tmaimon77@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	openbmc@lists.ozlabs.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 06/16] net: pcs: xpcs: Avoid creating dummy XPCS
+ MDIO device
+Message-ID: <e1806c15-757e-4af0-a8be-075aa77918c2@lunn.ch>
+References: <20231205103559.9605-1-fancer.lancer@gmail.com>
+ <20231205103559.9605-7-fancer.lancer@gmail.com>
+ <ZW8ASzkC9IFFlxkV@shell.armlinux.org.uk>
+ <rgp33mm4spbpm5tmgxurkhy4is3lz3z62rz64rni2pygteyrit@zwflw2ejdkn7>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 1/2] dt-bindings: adc: add AD7173
-Content-Language: en-US
-Cc: linus.walleij@linaro.org, brgl@bgdev.pl, andy@kernel.org,
- linux-gpio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Michael Walle <michael@walle.cc>,
- Andy Shevchenko <andy.shevchenko@gmail.com>, Arnd Bergmann <arnd@arndb.de>,
- ChiaEn Wu <chiaen_wu@richtek.com>, Niklas Schnelle <schnelle@linux.ibm.com>,
- =?UTF-8?Q?Leonard_G=C3=B6hrs?= <l.goehrs@pengutronix.de>,
- Mike Looijmans <mike.looijmans@topic.nl>, Haibo Chen <haibo.chen@nxp.com>,
- Hugo Villeneuve <hvilleneuve@dimonoff.com>,
- Ceclan Dumitru <dumitru.ceclan@analog.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231205134223.17335-1-mitrutzceclan@gmail.com>
-From: Ceclan Dumitru <mitrutzceclan@gmail.com>
-In-Reply-To: <20231205134223.17335-1-mitrutzceclan@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Level: *
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <rgp33mm4spbpm5tmgxurkhy4is3lz3z62rz64rni2pygteyrit@zwflw2ejdkn7>
 
-
-
-On 12/5/23 15:42, Dumitru Ceclan wrote:
-> The AD7173 family offer a complete integrated Sigma-Delta ADC solution
-> which can be used in high precision, low noise single channel applications
-> or higher speed multiplexed applications. The Sigma-Delta ADC is intended
-> primarily for measurement of signals close to DC but also delivers
-> outstanding performance with input bandwidths out to ~10kHz.
+On Tue, Dec 05, 2023 at 02:31:41PM +0300, Serge Semin wrote:
+> On Tue, Dec 05, 2023 at 10:49:47AM +0000, Russell King (Oracle) wrote:
+> > On Tue, Dec 05, 2023 at 01:35:27PM +0300, Serge Semin wrote:
+> > > If the DW XPCS MDIO devices are either left unmasked for being auto-probed
+> > > or explicitly registered in the MDIO subsystem by means of the
+> > > mdiobus_register_board_info() method there is no point in creating the
+> > > dummy MDIO device instance in order to get the DW XPCS handler since the
+> > > MDIO core subsystem will create the device during the MDIO bus
+> > > registration procedure.
+> > 
 > 
+> > Please reword this overly long sentence.
+> 
+> Ok.
+> 
+> > 
+> > If they're left unmasked, what prevents them being created as PHY
+> > devices?
+> 
+> Not sure I fully get what you meant. If they are left unmasked the
+> MDIO-device descriptor will be created by the MDIO subsystem anyway.
+> What the point in creating another one?
 
-Bindings V6 -> V7
- - remove redundant bipolar attribute
- - add reference-select example
+Saying what Russell said, in a different way:
+
+/*
+ * Return true if the child node is for a phy. It must either:
+ * o Compatible string of "ethernet-phy-idX.X"
+ * o Compatible string of "ethernet-phy-ieee802.3-c45"
+ * o Compatible string of "ethernet-phy-ieee802.3-c22"
+ * o In the white list above (and issue a warning)
+ * o No compatibility string
+ *
+ * A device which is not a phy is expected to have a compatible string
+ * indicating what sort of device it is.
+ */
+bool of_mdiobus_child_is_phy(struct device_node *child)
+
+So when walking the bus, if a node is found which fits these criteria,
+its assumed to be a PHY. 
+
+Anything on the MDIO bus which is not a PHY needs to use a compatible.
+
+	 Andrew
 
