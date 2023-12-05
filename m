@@ -1,128 +1,136 @@
-Return-Path: <devicetree+bounces-21571-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21573-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0808F804500
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 03:34:20 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61F65804568
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 04:01:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B80142811EF
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 02:34:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 159281F21348
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 03:01:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BFC120E8;
-	Tue,  5 Dec 2023 02:34:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B557E803;
+	Tue,  5 Dec 2023 03:01:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="U1UwV78r"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="JPfe9bXc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC1B8129
-	for <devicetree@vger.kernel.org>; Mon,  4 Dec 2023 18:34:11 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-50be58a751cso3344305e87.2
-        for <devicetree@vger.kernel.org>; Mon, 04 Dec 2023 18:34:11 -0800 (PST)
+Received: from mail-yw1-x114a.google.com (mail-yw1-x114a.google.com [IPv6:2607:f8b0:4864:20::114a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1998CA
+	for <devicetree@vger.kernel.org>; Mon,  4 Dec 2023 19:01:20 -0800 (PST)
+Received: by mail-yw1-x114a.google.com with SMTP id 00721157ae682-5d98fde753eso6907967b3.2
+        for <devicetree@vger.kernel.org>; Mon, 04 Dec 2023 19:01:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701743650; x=1702348450; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uUs2VYvk6Ti9rO4s4jPnLIpH7Phymi/5Rx2uYOP145Y=;
-        b=U1UwV78rleSAip2ISpqm8RxB7L5xAP23NsCSvrv59Cf0wWPmmayaY+ReVUWtC5XL+Q
-         wEAnblh77Xo71CepQljQIquj4aKCo3UAS+TxHJ8MOVpey0sKgzrI/4q+4oLEM5YpnKpC
-         gDtJpCEBkFgJYNFkz9XVYbZKdc1xbCnsusJBic8UYxOwb2YZbvkN5ixKflzm+HunZNQX
-         0uPRdnARDGoYqrAkl5UrHLlhTnZ3/K3ibGGOCdU2C7Zx4U175/GZKYGRrj6Cd9hmFkMb
-         9+MoJoy/HjKl3yM2KoaLGqjtKORAZRtrQZKx4ay97kG2J99Uhj1+nUrK9GPOlk4zeHNC
-         3N/g==
+        d=google.com; s=20230601; t=1701745280; x=1702350080; darn=vger.kernel.org;
+        h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=xlu9+t1DOTHoAK10hD5B5rkt19wvJuo0A6ryzFaunG0=;
+        b=JPfe9bXc+oGpxL0G2OHXkTGaqYTvLGNwpMHxvWnnH3pJnVoBX4bfjhIxxeyY7mcC8i
+         t4e2mvr4blH6qhnBKfzjwEomxOxNUo2KqcYRF9rsn0rEpxqVaKN3eBRDkex8qBNwcQ/B
+         eris3MxEYWK4TcA7oSTaOiiFrgVdpaPRgwaJBXLsoruMLsSzmSvPudcbRjWXxOR+nL6Z
+         0o8OCCen8K1HBeOIhpBPsyxCpR4bRyqqslCYoE4GBqv1HwLnvrWjlTczj3cv06nQ/MdW
+         QQXCPpTs19u/o1krOTmDmSKaFEZZgC68QofUhQGOvqJjy7H7fVULmgAokoKIaA4CCDHc
+         6vRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701743650; x=1702348450;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uUs2VYvk6Ti9rO4s4jPnLIpH7Phymi/5Rx2uYOP145Y=;
-        b=UZzowVg0iTnvk4LKNo6g77FhDLAbLTD09sfqDdEQ+2nkTPe1o+eekT4DarT1wTSlru
-         Z0fEmfeMS7rISBrNj+SLRaPtzjRxI5ZC+NFtyPWxaTaj0UeisirtPElUYTUjOCHhRWRB
-         PlJ0LjLWsCsBSGkUhdKnDUw5KRfs+QlmgHw6aRt7udgFA2KYKC2xgbHESaA2GSTTFSxp
-         NBR58mt0aScdKLm5iHPomVPiMZcMbr4EjXtZLEZF75DyTwz2sNOA4w4TkSSjXqHPi6Wu
-         mpJLzC9JtpTFgervBjza876luWj9hrd31BhZk+aRebqGk9XiQ6kFPXL+M6V0AcP1oCrE
-         QW/A==
-X-Gm-Message-State: AOJu0YyRsgWR3J7ceJv0luSq1PSmGgO3QRtJPzYM8j4jU0jjya3/fJR7
-	vBlgF6E/SbeG6gHK5d1frfr0pA==
-X-Google-Smtp-Source: AGHT+IE30tkOKHs/2LeruE1buPYxVdVFdUT9POrsHNxulaN52CoGY5B35l52Wgkk0pxu8LTzdgUPHA==
-X-Received: by 2002:a05:6512:3da1:b0:50b:ec8c:6697 with SMTP id k33-20020a0565123da100b0050bec8c6697mr2021251lfv.128.1701743650074;
-        Mon, 04 Dec 2023 18:34:10 -0800 (PST)
-Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id bi3-20020a0565120e8300b0050aa6bd6d8csm1415483lfb.178.2023.12.04.18.34.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Dec 2023 18:34:09 -0800 (PST)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Rob Clark <robdclark@gmail.com>,
-	Abhinav Kumar <quic_abhinavk@quicinc.com>,
-	Sean Paul <sean@poorly.run>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Marek <jonathan@marek.ca>,
-	Krishna Manikandan <quic_mkrishn@quicinc.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	freedreno@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v2 0/8] drm/msm: Introduce display support for SM8650
-Date: Tue,  5 Dec 2023 05:34:06 +0300
-Message-Id: <170174354263.1582017.12643932401792527185.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231030-topic-sm8650-upstream-mdss-v2-0-43f1887c82b8@linaro.org>
-References: <20231030-topic-sm8650-upstream-mdss-v2-0-43f1887c82b8@linaro.org>
+        d=1e100.net; s=20230601; t=1701745280; x=1702350080;
+        h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xlu9+t1DOTHoAK10hD5B5rkt19wvJuo0A6ryzFaunG0=;
+        b=QJIbkv+qFbsL+9liT8oIq1FApoQfv9FSpzeHCwQyBv5ZsXwp5eebiX+uN6VZL0mCbo
+         /mF3aM4afuvpe2kHQWyOVNyA8zwQR++bsatjs2Yt7i0xlRi9og8IKPvazoATQE8hvBJq
+         t6NR9d5Qm6EOkAV1wlL5AjnQS8jA/2dwitmRQPQ4KPsWlR1VtAcqx/ZJVa1gIHAyHfr5
+         uy5aYM6fuuyW910UyDteQqHoXuWcRHqWm6pPkD50lFk+rmrrnVZGO7kdfG06MOcVv2Cc
+         orfwkiN3kFuhdEJlzH1hnVKgwgLHG4p+bk9+YIo6GxETS3jwxFsGxyRzJcQbJit1dIn6
+         UsxA==
+X-Gm-Message-State: AOJu0YyI3GjAI0BhE87Jf1Laiw6QoyqpOUnFcn6w46TroNElw26elZDR
+	v9cnU8keVkP8kuwYVS88ppdNtQM5JkbY
+X-Google-Smtp-Source: AGHT+IFIaX5+NRoqRDR+X9oO3SfkvqsPc5su1wbudcbyofAFuYAu5FFuFg2nsfpjjnGJU/RNH+57gdAQ/snB
+X-Received: from kyletso-p620lin01.ntc.corp.google.com ([2401:fa00:fc:202:ac51:a57:5e72:a957])
+ (user=kyletso job=sendgmr) by 2002:a25:fb07:0:b0:db4:5d35:c5a3 with SMTP id
+ j7-20020a25fb07000000b00db45d35c5a3mr1059913ybe.0.1701745279879; Mon, 04 Dec
+ 2023 19:01:19 -0800 (PST)
+Date: Tue,  5 Dec 2023 11:01:12 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.43.0.472.g3155946c3a-goog
+Message-ID: <20231205030114.1349089-1-kyletso@google.com>
+Subject: [PATCH v5 0/2] mutiple selectable capabilities in tcpm
+From: Kyle Tso <kyletso@google.com>
+To: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	linux@roeck-us.net, heikki.krogerus@linux.intel.com, 
+	gregkh@linuxfoundation.org
+Cc: badhri@google.com, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
+	Kyle Tso <kyletso@google.com>
+Content-Type: text/plain; charset="UTF-8"
 
+updates in v5
 
-On Mon, 30 Oct 2023 11:36:22 +0100, Neil Armstrong wrote:
-> The SM8650 MDSS is very close from the MDSS 9.0.0 found
-> on the SM8550 SoC, with the following difference:
-> - DSI PHY 2.8.8, no significant differences
-> - DPU 10.0.0:
->   - Enhanced max_linewidth to 8k
->   - PINGPONG_8 & PINGPONG_9
->   - MERGE_3D_4
->   - DSC_4 & DSC_5, DSC_NATIVE_42x on DSC0/1
-> 
-> [...]
+dt-bindings: connector: Add child nodes for multiple PD capabilities
+  - Fixed DT_CHECK errors
 
-Applied, thanks!
+usb: typec: tcpm: Support multiple capabilities
+  - no change
 
-[1/8] dt-bindings: display: msm-dsi-phy-7nm: document the SM8650 DSI PHY
-      https://gitlab.freedesktop.org/lumag/msm/-/commit/0014a4ad6c08
-[2/8] dt-bindings: display: msm-dsi-controller-main: document the SM8650 DSI Controller
-      https://gitlab.freedesktop.org/lumag/msm/-/commit/8adc26fcebae
-[3/8] dt-bindings: display: msm: document the SM8650 DPU
-      https://gitlab.freedesktop.org/lumag/msm/-/commit/3e135a7700f9
-[4/8] dt-bindings: display: msm: document the SM8650 Mobile Display Subsystem
-      https://gitlab.freedesktop.org/lumag/msm/-/commit/cbcef056fa40
-[5/8] drm/msm/dpu: add support for SM8650 DPU
-      https://gitlab.freedesktop.org/lumag/msm/-/commit/b94747f7d8c7
-[6/8] drm/msm: mdss: add support for SM8650
-      https://gitlab.freedesktop.org/lumag/msm/-/commit/e6488c2a3541
-[7/8] drm/msm: dsi: add support for DSI-PHY on SM8650
-      https://gitlab.freedesktop.org/lumag/msm/-/commit/3a73e376cff3
-[8/8] drm/msm: dsi: add support for DSI 2.8.0
-      https://gitlab.freedesktop.org/lumag/msm/-/commit/fec254cc752d
+---
+updates in v4
 
-Best regards,
+dt-bindings: connector: Add child nodes for multiple PD capabilities
+  - Modified the structure as corrected in v2
+  - Modified the commit message
+
+usb: typec: tcpm: Support multiple capabilities
+  - no change
+
+---
+updates in v3
+
+dt-bindings: connector: Add child nodes for multiple PD capabilities
+  - Updated the commit message
+  - Remain unchanged for the comments about the property/node
+    refactor
+
+usb: typec: tcpm: Support multiple capabilities
+  - Changed the error handling and the usage of the APIs
+  - Updated the commit message
+
+---
+updates in v2
+
+dt-bindings: connector: Add child nodes for multiple PD capabilities
+  - revised the dt-bindings
+
+usb: typec: tcpm: Support multiple capabilities
+  - Added missing cleanups in the function tcpm_port_unregister_pd
+
+---
+Original cover letter:
+
+In commit a7cff92f0635 ("usb: typec: USB Power Delivery helpers for
+ports and partners"), typec_operations has two new ops .pd_get and
+.pd_set providing selection of different PD capabilities. This commit
+implements these two ops in tcpm.
+
+To support multiple capabilities, new dt-binding properties need to be
+defined to create a tree structure for the driver to get each set of
+capabilities one by one. The first tier of the child node under
+connector is called "capabilities". Under this child node lies several
+2nd tier of child nodes whose names are in the pattern of ^caps[0-9]+$.
+And the source and sink capabilities are placed in these nodes.
+
+Kyle Tso (2):
+  dt-bindings: connector: Add child nodes for multiple PD capabilities
+  usb: typec: tcpm: Support multiple capabilities
+
+ .../bindings/connector/usb-connector.yaml     |  88 ++--
+ drivers/usb/typec/tcpm/tcpm.c                 | 389 ++++++++++++++----
+ 2 files changed, 362 insertions(+), 115 deletions(-)
+
 -- 
-Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+2.43.0.472.g3155946c3a-goog
+
 
