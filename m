@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-21678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21679-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59EB3804DBE
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 10:26:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 947EB804DC7
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 10:28:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C9FB1C20B4C
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 09:26:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 17D511F2131F
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 09:28:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F73A3E496;
-	Tue,  5 Dec 2023 09:26:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C004E3F8C8;
+	Tue,  5 Dec 2023 09:28:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eTIPZSWv"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JxbHmGjj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CEC798
-	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 01:26:45 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-40b2ad4953cso40140805e9.0
-        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 01:26:45 -0800 (PST)
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FB059B
+	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 01:28:01 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-40bd5eaa66cso41521215e9.2
+        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 01:28:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701768404; x=1702373204; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701768479; x=1702373279; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=mNHBZx5D35Gv0zasV+7VIgIkMHB/ghsR6r8y0f+6RxY=;
-        b=eTIPZSWvOJWBXHCr5FIJ8uoofp4jzGODOX+4+Hx9JU5liIBLnGXACz5vo/Tlk4n/NZ
-         MMRF6zXZufJ5CaZQDOvXjhC8pD1r5M8Gaz9yvhQspCw+BOwpsIx+R2BPwDDJ0bllRdJa
-         t0Oxgc9VrVs8PkEPsHV1M50Hi3/9V6wTwta0PvwCa48oRQTId0FaUAEYUEM+lxyIfTIe
-         oKfAFsY+gWEhxAVF2wUW7XeKkrjHO/Hf4eyFd80xwOghV/nBlA3dBvxmIalfQEx15qHp
-         sf/cWn53436hWmqJpfSqiBzXFvwE+XujSv8/h8RYp69j9Y4VkL5vfCxEhNc3FwHdDjch
-         DiIg==
+        bh=CS8J4q12YedWzT2gH/0LjzjeAMQwNUR2jyKyMPxxBZo=;
+        b=JxbHmGjj4Sb3PUx637x9D9ZtjtOblWVs7w4ZLATyWWZFBNjcVdjSpcoWHEk14L7kay
+         IiU3qUbVz/JeTdvAAndlg06wAi1IA40HcK//WnGt/6a8kAsDcQlv8JYExR0ezKpFfdWV
+         j/pg8eaAk0u1IKjBcCovohs87FpMjSxufls/88xerpuPpPlWmmX2uSKaYnDb7sX6kxbU
+         Gy+SXhSxsqpQrWKSam5dvWSjhtTZBK6OhWmhmdQFs+zM28ERQx6sxWmX2EPdhGz7o1aI
+         VBPkRpNAeyYOt6aAdJoRwujTa/qG04DjLE5eP/eajcxaUCrJDyLBC1PI3HOjvJDtVBWB
+         C3zg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701768404; x=1702373204;
+        d=1e100.net; s=20230601; t=1701768479; x=1702373279;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mNHBZx5D35Gv0zasV+7VIgIkMHB/ghsR6r8y0f+6RxY=;
-        b=hVNKi8RQVYcrJXTTkyaleNHTM+Kd63gk134Y4fGKSIOUvTd+euRwQwpF5rEcRHiR0e
-         17S6igz753l4wDzq15Ew/+EpGaLRmDrAYOQ57w/01P3rxMeu5GPAk5R/L+MHCqstavfT
-         ipjetDdSmxQreecpniw4hBW5hCT+7T6vQqerBEwPgdIPn9vIlwGlnbnFebmLWlkgLeGy
-         XfGO54u8UQE2j8zgRS1Kq1zGLfjTkZ8e1dRQzWydGSPxqfthrF+ue0nlH8prMjJQUNzv
-         Ip6EraowIAaje0x6lic4rT7bgfOZ6SP0yBx7rvXsYooafpXfYf5T0uM9hvvd4Xi89F/6
-         +XZQ==
-X-Gm-Message-State: AOJu0YxcHk4L9px3XhiUd7N2m3IbXttTzIuRhFzH4+jB9szzfUVzQEK+
-	4i1XNU/o4SZaQYjfUmhoc0CVIA==
-X-Google-Smtp-Source: AGHT+IGnnDEYV3BttcrF3pmj3Fiyhe5p5UwmqCSZI+LpNdI44X/YQAWmCn739KEwjT6xgxP3UJfDNg==
-X-Received: by 2002:a05:600c:35c6:b0:40b:5e26:2371 with SMTP id r6-20020a05600c35c600b0040b5e262371mr331586wmq.34.1701768403830;
-        Tue, 05 Dec 2023 01:26:43 -0800 (PST)
+        bh=CS8J4q12YedWzT2gH/0LjzjeAMQwNUR2jyKyMPxxBZo=;
+        b=k78zCcWrfSt3ufXRt41hn7vgRqV1yl0gBGxcPyEDQhZdAGgHYNcpZRCrMjDgRa245G
+         x+9DV3YkAXAj7lnmWnb4L/PnuuGc+puVmpZl6Ei9rvpLb5UuvuqmSIL1hKRT+rkZasJC
+         5b9476C/8ax1S4yikWk71VAl82nM0mNuRWRZoakf2Kr4JF/vMoPdD4QJU4EJjpXXYl9J
+         XyLyscvrloAIDY9GKymw7Kn604MPcmrA/rhR4QK2FfC/RbZ5sOzEx+jb4T/OMmWJzK9M
+         u/2ea0BLUPfAGghbbZ7GPPWUeUceJPI+1mEqX0zASJ3NVH5DIUNm7G2QaAl8pH2i1vHo
+         Q2nw==
+X-Gm-Message-State: AOJu0YyUFjEO3kgKfbUUG8ILy4NTe0Hos84/1zSla+2lYUcBAOpo7rwj
+	irtY9LPikIt3xKuCG0tywN29Qg==
+X-Google-Smtp-Source: AGHT+IHp0w+gdLsV8lTWGvMje0TOphY3F9ZkUPGE9sTLVZ3z6dH8XGaCGDduDsC7FdZ9FSafLrmTzw==
+X-Received: by 2002:a05:600c:4ecf:b0:40b:4b93:a369 with SMTP id g15-20020a05600c4ecf00b0040b4b93a369mr304894wmq.14.1701768479600;
+        Tue, 05 Dec 2023 01:27:59 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id fc9-20020a05600c524900b0040b34720206sm18034665wmb.12.2023.12.05.01.26.41
+        by smtp.gmail.com with ESMTPSA id fc9-20020a05600c524900b0040b34720206sm18034665wmb.12.2023.12.05.01.27.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Dec 2023 01:26:43 -0800 (PST)
-Message-ID: <1a3ce8a9-a9f0-48fe-ac1b-aabbe58967a8@linaro.org>
-Date: Tue, 5 Dec 2023 10:26:41 +0100
+        Tue, 05 Dec 2023 01:27:59 -0800 (PST)
+Message-ID: <78a81d54-f12c-401e-9a26-5125eb0b1c65@linaro.org>
+Date: Tue, 5 Dec 2023 10:27:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,26 +62,38 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/3] dt-bindings: input: Add TouchNetix axiom
- touchscreen
+Subject: Re: [PATCH RFC 01/10] dt-bindings: gpu: Add PowerVR Series5 SGX GPUs
 Content-Language: en-US
-To: Kamel BOUHARA <kamel.bouhara@bootlin.com>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+To: Andreas Kemnade <andreas@kemnade.info>
+Cc: Tony Lindgren <tony@atomide.com>, Andrew Davis <afd@ti.com>,
+ Frank Binns <frank.binns@imgtec.com>,
+ Donald Robson <donald.robson@imgtec.com>,
+ Matt Coster <matt.coster@imgtec.com>,
+ "H . Nikolaus Schaller" <hns@goldelico.com>, Adam Ford <aford173@gmail.com>,
+ Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Henrik Rydberg <rydberg@bitmath.org>,
- linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Marco Felsch <m.felsch@pengutronix.de>,
- Jeff LaBundy <jeff@labundy.com>, catalin.popescu@leica-geosystems.com,
- mark.satterthwaite@touchnetix.com, bartp@baasheep.co.uk,
- hannah.rossiter@touchnetix.com,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Gregory Clement <gregory.clement@bootlin.com>,
- bsp-development.geo@leica-geosystems.com
-References: <20231204140505.2838916-1-kamel.bouhara@bootlin.com>
- <20231204140505.2838916-3-kamel.bouhara@bootlin.com>
- <3ce65c3a-e781-4ba3-8436-8379e8e94d6b@linaro.org>
- <8ac4a9924e1d3b98c9f74dcb07b044b2@bootlin.com>
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, =?UTF-8?Q?Beno=C3=AEt_Cousson?=
+ <bcousson@baylibre.com>, Nishanth Menon <nm@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+ Paul Cercueil <paul@crapouillou.net>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-omap@vger.kernel.org, linux-mips@vger.kernel.org
+References: <20231204182245.33683-1-afd@ti.com>
+ <20231204182245.33683-2-afd@ti.com>
+ <b97f04f6-cda2-4e9b-b729-a5149e36f978@linaro.org>
+ <20231205075657.GN5169@atomide.com>
+ <df7dd7b0-f315-4033-985a-175f75568a8c@linaro.org>
+ <20231205081031.GO5169@atomide.com>
+ <efcd64f4-00d2-4671-af3a-e27764f70e8d@linaro.org>
+ <20231205083001.GP5169@atomide.com>
+ <27f2e3a3-0791-4278-adb2-55ed76820a3a@linaro.org>
+ <20231205100246.5db0d6a1@aktux>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -127,54 +139,36 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <8ac4a9924e1d3b98c9f74dcb07b044b2@bootlin.com>
+In-Reply-To: <20231205100246.5db0d6a1@aktux>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 05/12/2023 10:17, Kamel BOUHARA wrote:
-> Le 2023-12-05 09:15, Krzysztof Kozlowski a écrit :
->> On 04/12/2023 15:05, Kamel Bouhara wrote:
->>> Add the TouchNetix axiom I2C touchscreen device tree bindings
->>> documentation.
->>>
->>> Signed-off-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
->>
->>> +$id: 
->>> http://devicetree.org/schemas/input/touchscreen/touchnetix,ax54a.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: TouchNetix Axiom series touchscreen controller
->>> +
->>> +maintainers:
->>> +  - Kamel Bouhara <kamel.bouhara@bootlin.com>
->>> +
->>
->> Why you do not have ref to touchscreen? Is it not a touchscreen?
+On 05/12/2023 10:02, Andreas Kemnade wrote:
+> On Tue, 5 Dec 2023 09:45:44 +0100
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 > 
-> The common properties are not used or applicable here, should I still 
-> ref touchscreen ?
+>>> Sure the clock nodes can be there for the child IP, but they won't do
+>>> anything. And still need to be managed separately by the device driver if
+>>> added.  
+>>
+>> So if OS does not have runtime PM, the bindings are wrong? Bindings
+>> should not depend on some particular feature of some particular OS.
+> 
+> Any user of the devicetree sees that there is a parent and the parent needs
+> to be enabled by some mechanism.
+> E.g. I2c devices do not specify the clocks of the parent (the i2c master)
 
-Why they are not applicable? Do you get the panel coordinates and sizes
-from device registers or are they fixed somehow in the controller?
-
-
-...
+If you use this analogy, then compare it with an I2C device which has
+these clock inputs. Such device must have clocks in the bindings.
 
 > 
->>> +    description: I/O power supply regulator on VDDI pin
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>
->> Supplies are usually required. Devices rarely can operate without  
->> power.
+> Maybe it is just more fine-grained on omap.
 > 
-> Indeed, can I still have them optional in the driver ?
+> look e.g. at ti/omap/omap4-l4.dtsi
+> there are target-module@xxxx
+> with the devices as a child and a clock in the parent.
 
-Yes, I comment here only about the bindings. Bindings are not related to
-your driver, but to hardware.
-
+Not related to runtime PM...
 
 Best regards,
 Krzysztof
