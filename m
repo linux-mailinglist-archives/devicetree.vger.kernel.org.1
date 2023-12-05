@@ -1,136 +1,554 @@
-Return-Path: <devicetree+bounces-21904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19CC88058B3
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 16:29:42 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EED18058C9
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 16:33:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C120C1F21777
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 15:29:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0D990B21016
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 15:33:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 750C65F1CC;
-	Tue,  5 Dec 2023 15:29:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D9135F1D1;
+	Tue,  5 Dec 2023 15:33:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Gd1kmM3f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16F77122;
-	Tue,  5 Dec 2023 07:29:32 -0800 (PST)
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-5d6b9143782so41120787b3.0;
-        Tue, 05 Dec 2023 07:29:32 -0800 (PST)
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED657BA
+	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 07:33:22 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-50bf37fd2bbso3398063e87.0
+        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 07:33:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701790401; x=1702395201; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=/ujxeChxul4+pl20V58bA+GosHdEzOC9Mwy1kr2oAVA=;
+        b=Gd1kmM3fx/R3ymYZgKE4jqgL+K7szshQX3Tt7juvcm/l/tqle5u/sIR1KMaXhd3908
+         TaOAKxeI+6pSObbI4kVkPbJbAsu2r8qEO/YR3x6t95C4C683Oc7lQVOpIwW9I4AR7GPr
+         7KULzeZ6Ql0iLBNnr7SNQz3avfvsOLeXght7XhA2LI72WyWctRi3NTHSse9AX39yQajF
+         Ai3YR2L/deZBMPgc+DkdJ3splNiaejzBZ7uL0XRALgFiQgXd3He8lV7wjYJhIF0aNOR3
+         bI93BzM/ASpRznVKayraZpkjVh3pV+ALyih0MXkHp9lM+C3nxLI52A/fT0qlSV85aYXb
+         wM1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701790171; x=1702394971;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nKR4eGh9Q8YilRGEEfPHT07Wa+ghJ3PZE9UUZkDUQSU=;
-        b=keJkStga+jZ8Uo/hghHETxFv1rnAbPnVJYh/f97si3DN+oSv/dV5LVrp6cW17uTp7P
-         XPSy9sDSuIVslUS+xMwXHGcaiBaGmXoLz9UflI74kZXyJOlMsXaiedV6N+IWsl/IOXIm
-         leoO8YygGc9bEKFa6VUmyQ6Br9k2EJE0TsXeR6QpbdUjziDl5rqYZJghRWHnFJXrabaO
-         QcIJ9rEeNAHwS1q/JKGGjLGpfDJFly9tT4g2ReLdG4L/K+l/g2t2Plb128lIXEnZGy/3
-         mnGePHA7VIZm7epis3AyVuXTpcGz0h8b8soSE27LjzJk/CGn8cqRFPxEALijTQ2cb3TL
-         sPOQ==
-X-Gm-Message-State: AOJu0Yxy2TE4HDGwaUgRPYOE5T+cEDH7t3qIyOAiAN8iNeJ8BfpTn4RL
-	bLAeG07zUYFwFYUvd+nesfAxAjcw01KY4g==
-X-Google-Smtp-Source: AGHT+IGniOkt2In+ND9FjMFdQCNAS6I92uhwMneiOiO5M4fByOWCFxG9E/IRcrI00OxBWY6PTr24Kg==
-X-Received: by 2002:a81:4c0c:0:b0:5d3:5887:edb9 with SMTP id z12-20020a814c0c000000b005d35887edb9mr4411016ywa.44.1701790171070;
-        Tue, 05 Dec 2023 07:29:31 -0800 (PST)
-Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com. [209.85.219.169])
-        by smtp.gmail.com with ESMTPSA id u64-20020a814743000000b00582b239674esm4218954ywa.129.2023.12.05.07.29.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Dec 2023 07:29:30 -0800 (PST)
-Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-d9beb865a40so4101478276.1;
-        Tue, 05 Dec 2023 07:29:30 -0800 (PST)
-X-Received: by 2002:a25:870f:0:b0:db7:d3e0:46d1 with SMTP id
- a15-20020a25870f000000b00db7d3e046d1mr4072755ybl.32.1701790170465; Tue, 05
- Dec 2023 07:29:30 -0800 (PST)
+        d=1e100.net; s=20230601; t=1701790401; x=1702395201;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/ujxeChxul4+pl20V58bA+GosHdEzOC9Mwy1kr2oAVA=;
+        b=pC8yJgIiwZ8epTeUaTQ8eNlwTwbGJbm/wZE/jvAbK7rTvmj9J49OK7Sq6Khgc4Q5qY
+         UrPqqd4l7SSzHPWmGXNTII3RDLbOB2Qptf/LEjNJqv909CPScdiH2vC4PAiMD6OtfOcS
+         N4XTUHjWeqAtXcN+K/YhOCVfwN0/0ikgR+pesPkuU8Emdmp2hRVr1e+QYOhmtfRyKSfD
+         zf/cRPS4UJ8U1bks7OlyN6cows6s5qYlp+a3wamyxNbMy3Wmy0A2G0hqHwFq+47TngdV
+         dwGhpWoY+MMVJ6psVuVJ90OrBFKcj4ZNiiDI79Kjs1Ry7UR/loaAJbceLLbMD2Jdx5Mq
+         jyug==
+X-Gm-Message-State: AOJu0Yyg+rXFZIUYFhlGPWC6LpMxXZdYm7/3SLbiA9jqRJT7lgcfizNj
+	DQQa2ddMyUw/Rwuw1RT0b1tbTQ==
+X-Google-Smtp-Source: AGHT+IF7UC/f6D8WCZCJtlrtP3z1cgy3aOIY6Uf48q25EW58SgPSRfQyCL2ziQXnW5WdxKccL2/G4g==
+X-Received: by 2002:ac2:560a:0:b0:50b:f025:2544 with SMTP id v10-20020ac2560a000000b0050bf0252544mr2136188lfd.121.1701790400900;
+        Tue, 05 Dec 2023 07:33:20 -0800 (PST)
+Received: from krzk-bin.. ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id ca11-20020a170906a3cb00b00a0369e232bfsm6785159ejb.75.2023.12.05.07.33.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Dec 2023 07:33:20 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2] ARM: dts: qcom: use defines for interrupts
+Date: Tue,  5 Dec 2023 16:33:17 +0100
+Message-Id: <20231205153317.346109-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1701768028.git.ysato@users.sourceforge.jp> <91a4cac133cb7244903e872b9e63fbbd57fbd68c.1701768028.git.ysato@users.sourceforge.jp>
-In-Reply-To: <91a4cac133cb7244903e872b9e63fbbd57fbd68c.1701768028.git.ysato@users.sourceforge.jp>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 5 Dec 2023 16:29:19 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUNQ_u0O1ANv6zdao5SOp9H=WLuULnYuvAt2tgAfsp_GQ@mail.gmail.com>
-Message-ID: <CAMuHMdUNQ_u0O1ANv6zdao5SOp9H=WLuULnYuvAt2tgAfsp_GQ@mail.gmail.com>
-Subject: Re: [DO NOT MERGE v5 09/37] dt-bindings: timer: renesas,tmu: add renesas,tmu-sh7750
-To: Yoshinori Sato <ysato@users.sourceforge.jp>
-Cc: linux-sh@vger.kernel.org, Damien Le Moal <dlemoal@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Thomas Gleixner <tglx@linutronix.de>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, Rich Felker <dalias@libc.org>, 
-	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>, Lee Jones <lee@kernel.org>, 
-	Helge Deller <deller@gmx.de>, Heiko Stuebner <heiko@sntech.de>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Chris Morgan <macromorgan@hotmail.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Randy Dunlap <rdunlap@infradead.org>, 
-	Arnd Bergmann <arnd@arndb.de>, Hyeonggon Yoo <42.hyeyoo@gmail.com>, 
-	David Rientjes <rientjes@google.com>, Vlastimil Babka <vbabka@suse.cz>, Baoquan He <bhe@redhat.com>, 
-	Andrew Morton <akpm@linux-foundation.org>, Guenter Roeck <linux@roeck-us.net>, 
-	Stephen Rothwell <sfr@canb.auug.org.au>, Guo Ren <guoren@kernel.org>, 
-	Javier Martinez Canillas <javierm@redhat.com>, Azeem Shaikh <azeemshaikh38@gmail.com>, 
-	Palmer Dabbelt <palmer@rivosinc.com>, Bin Meng <bmeng@tinylab.org>, 
-	Max Filippov <jcmvbkbc@gmail.com>, Tom Rix <trix@redhat.com>, 
-	Herve Codina <herve.codina@bootlin.com>, Jacky Huang <ychuang3@nuvoton.com>, 
-	Lukas Bulwahn <lukas.bulwahn@gmail.com>, Jonathan Corbet <corbet@lwn.net>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
-	Sam Ravnborg <sam@ravnborg.org>, Michael Karcher <kernel@mkarcher.dialup.fu-berlin.de>, 
-	Sergey Shtylyov <s.shtylyov@omp.ru>, 
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, linux-ide@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-pci@vger.kernel.org, 
-	linux-serial@vger.kernel.org, linux-fbdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi Sato-san,
+Replace hard-coded interrupt parts (GIC, flags) with standard defines
+for readability.  No changes in resulting DTBs.
 
-On Tue, Dec 5, 2023 at 10:46=E2=80=AFAM Yoshinori Sato
-<ysato@users.sourceforge.jp> wrote:
-> Add SH7750 TMU entry.
->
-> Signed-off-by: Yoshinori Sato <ysato@users.sourceforge.jp>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Thanks for your patch!
+---
 
-> --- a/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
-> +++ b/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
-> @@ -21,6 +21,7 @@ properties:
->    compatible:
->      items:
->        - enum:
-> +          - renesas,tmu-sh7750   # SH7750
+Changes in v2:
+1. Convert few more values to defines (GIC_PPI) - the tedious part which
+   Konrad wanted.
+---
+ arch/arm/boot/dts/qcom/qcom-apq8064.dtsi | 38 ++++++++++++------------
+ arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi |  8 ++---
+ arch/arm/boot/dts/qcom/qcom-msm8660.dtsi | 14 ++++-----
+ arch/arm/boot/dts/qcom/qcom-msm8974.dtsi | 18 +++++------
+ arch/arm/boot/dts/qcom/qcom-sdx55.dtsi   | 18 +++++------
+ arch/arm/boot/dts/qcom/qcom-sdx65.dtsi   | 26 ++++++++--------
+ 6 files changed, 61 insertions(+), 61 deletions(-)
 
-Please preserve alphabetical sort order.
+diff --git a/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
+index 95ac25e1a3b4..4a0be9b45712 100644
+--- a/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
++++ b/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
+@@ -190,7 +190,7 @@ cpu_crit3: trip1 {
+ 
+ 	cpu-pmu {
+ 		compatible = "qcom,krait-pmu";
+-		interrupts = <1 10 0x304>;
++		interrupts = <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_HIGH)>;
+ 	};
+ 
+ 	clocks {
+@@ -244,7 +244,7 @@ apps_smsm: apps@0 {
+ 
+ 		modem_smsm: modem@1 {
+ 			reg = <1>;
+-			interrupts = <0 38 IRQ_TYPE_EDGE_RISING>;
++			interrupts = <GIC_SPI 38 IRQ_TYPE_EDGE_RISING>;
+ 
+ 			interrupt-controller;
+ 			#interrupt-cells = <2>;
+@@ -252,7 +252,7 @@ modem_smsm: modem@1 {
+ 
+ 		q6_smsm: q6@2 {
+ 			reg = <2>;
+-			interrupts = <0 89 IRQ_TYPE_EDGE_RISING>;
++			interrupts = <GIC_SPI 89 IRQ_TYPE_EDGE_RISING>;
+ 
+ 			interrupt-controller;
+ 			#interrupt-cells = <2>;
+@@ -260,7 +260,7 @@ q6_smsm: q6@2 {
+ 
+ 		wcnss_smsm: wcnss@3 {
+ 			reg = <3>;
+-			interrupts = <0 204 IRQ_TYPE_EDGE_RISING>;
++			interrupts = <GIC_SPI 204 IRQ_TYPE_EDGE_RISING>;
+ 
+ 			interrupt-controller;
+ 			#interrupt-cells = <2>;
+@@ -268,7 +268,7 @@ wcnss_smsm: wcnss@3 {
+ 
+ 		dsps_smsm: dsps@4 {
+ 			reg = <4>;
+-			interrupts = <0 137 IRQ_TYPE_EDGE_RISING>;
++			interrupts = <GIC_SPI 137 IRQ_TYPE_EDGE_RISING>;
+ 
+ 			interrupt-controller;
+ 			#interrupt-cells = <2>;
+@@ -299,7 +299,7 @@ tlmm_pinmux: pinctrl@800000 {
+ 			#gpio-cells = <2>;
+ 			interrupt-controller;
+ 			#interrupt-cells = <2>;
+-			interrupts = <0 16 IRQ_TYPE_LEVEL_HIGH>;
++			interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
+ 
+ 			pinctrl-names = "default";
+ 			pinctrl-0 = <&ps_hold>;
+@@ -321,9 +321,9 @@ intc: interrupt-controller@2000000 {
+ 		timer@200a000 {
+ 			compatible = "qcom,kpss-wdt-apq8064", "qcom,kpss-timer",
+ 				     "qcom,msm-timer";
+-			interrupts = <1 1 0x301>,
+-				     <1 2 0x301>,
+-				     <1 3 0x301>;
++			interrupts = <GIC_PPI 1 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_EDGE_RISING)>,
++				     <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_EDGE_RISING)>,
++				     <GIC_PPI 3 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_EDGE_RISING)>;
+ 			reg = <0x0200a000 0x100>;
+ 			clock-frequency = <27000000>;
+ 			cpu-offset = <0x80000>;
+@@ -411,7 +411,7 @@ gsbi1_serial: serial@12450000 {
+ 				compatible = "qcom,msm-uartdm-v1.3", "qcom,msm-uartdm";
+ 				reg = <0x12450000 0x100>,
+ 				      <0x12400000 0x03>;
+-				interrupts = <0 193 IRQ_TYPE_LEVEL_HIGH>;
++				interrupts = <GIC_SPI 193 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GSBI1_UART_CLK>, <&gcc GSBI1_H_CLK>;
+ 				clock-names = "core", "iface";
+ 				status = "disabled";
+@@ -423,7 +423,7 @@ gsbi1_i2c: i2c@12460000 {
+ 				pinctrl-1 = <&i2c1_pins_sleep>;
+ 				pinctrl-names = "default", "sleep";
+ 				reg = <0x12460000 0x1000>;
+-				interrupts = <0 194 IRQ_TYPE_LEVEL_HIGH>;
++				interrupts = <GIC_SPI 194 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GSBI1_QUP_CLK>, <&gcc GSBI1_H_CLK>;
+ 				clock-names = "core", "iface";
+ 				#address-cells = <1>;
+@@ -452,7 +452,7 @@ gsbi2_i2c: i2c@124a0000 {
+ 				pinctrl-0 = <&i2c2_pins>;
+ 				pinctrl-1 = <&i2c2_pins_sleep>;
+ 				pinctrl-names = "default", "sleep";
+-				interrupts = <0 196 IRQ_TYPE_LEVEL_HIGH>;
++				interrupts = <GIC_SPI 196 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GSBI2_QUP_CLK>, <&gcc GSBI2_H_CLK>;
+ 				clock-names = "core", "iface";
+ 				#address-cells = <1>;
+@@ -539,7 +539,7 @@ gsbi5_serial: serial@1a240000 {
+ 				compatible = "qcom,msm-uartdm-v1.3", "qcom,msm-uartdm";
+ 				reg = <0x1a240000 0x100>,
+ 				      <0x1a200000 0x03>;
+-				interrupts = <0 154 IRQ_TYPE_LEVEL_HIGH>;
++				interrupts = <GIC_SPI 154 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GSBI5_UART_CLK>, <&gcc GSBI5_H_CLK>;
+ 				clock-names = "core", "iface";
+ 				status = "disabled";
+@@ -548,7 +548,7 @@ gsbi5_serial: serial@1a240000 {
+ 			gsbi5_spi: spi@1a280000 {
+ 				compatible = "qcom,spi-qup-v1.1.1";
+ 				reg = <0x1a280000 0x1000>;
+-				interrupts = <0 155 IRQ_TYPE_LEVEL_HIGH>;
++				interrupts = <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>;
+ 				pinctrl-0 = <&spi5_default>;
+ 				pinctrl-1 = <&spi5_sleep>;
+ 				pinctrl-names = "default", "sleep";
+@@ -575,7 +575,7 @@ gsbi6_serial: serial@16540000 {
+ 				compatible = "qcom,msm-uartdm-v1.3", "qcom,msm-uartdm";
+ 				reg = <0x16540000 0x100>,
+ 				      <0x16500000 0x03>;
+-				interrupts = <0 156 IRQ_TYPE_LEVEL_HIGH>;
++				interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GSBI6_UART_CLK>, <&gcc GSBI6_H_CLK>;
+ 				clock-names = "core", "iface";
+ 				status = "disabled";
+@@ -611,7 +611,7 @@ gsbi7_serial: serial@16640000 {
+ 				compatible = "qcom,msm-uartdm-v1.3", "qcom,msm-uartdm";
+ 				reg = <0x16640000 0x1000>,
+ 				      <0x16600000 0x1000>;
+-				interrupts = <0 158 IRQ_TYPE_LEVEL_HIGH>;
++				interrupts = <GIC_SPI 158 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GSBI7_UART_CLK>, <&gcc GSBI7_H_CLK>;
+ 				clock-names = "core", "iface";
+ 				status = "disabled";
+@@ -908,7 +908,7 @@ sdcc3: mmc@12180000 {
+ 		sdcc3bam: dma-controller@12182000 {
+ 			compatible = "qcom,bam-v1.3.0";
+ 			reg = <0x12182000 0x8000>;
+-			interrupts = <0 96 IRQ_TYPE_LEVEL_HIGH>;
++			interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&gcc SDC3_H_CLK>;
+ 			clock-names = "bam_clk";
+ 			#dma-cells = <1>;
+@@ -936,7 +936,7 @@ sdcc4: mmc@121c0000 {
+ 		sdcc4bam: dma-controller@121c2000 {
+ 			compatible = "qcom,bam-v1.3.0";
+ 			reg = <0x121c2000 0x8000>;
+-			interrupts = <0 95 IRQ_TYPE_LEVEL_HIGH>;
++			interrupts = <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&gcc SDC4_H_CLK>;
+ 			clock-names = "bam_clk";
+ 			#dma-cells = <1>;
+@@ -965,7 +965,7 @@ sdcc1: mmc@12400000 {
+ 		sdcc1bam: dma-controller@12402000 {
+ 			compatible = "qcom,bam-v1.3.0";
+ 			reg = <0x12402000 0x8000>;
+-			interrupts = <0 98 IRQ_TYPE_LEVEL_HIGH>;
++			interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&gcc SDC1_H_CLK>;
+ 			clock-names = "bam_clk";
+ 			#dma-cells = <1>;
+diff --git a/arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi b/arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi
+index b9c8517e15e7..114c92b4d8d4 100644
+--- a/arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi
++++ b/arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi
+@@ -162,10 +162,10 @@ scm {
+ 
+ 	timer {
+ 		compatible = "arm,armv7-timer";
+-		interrupts = <1 2 0xf08>,
+-			     <1 3 0xf08>,
+-			     <1 4 0xf08>,
+-			     <1 1 0xf08>;
++		interrupts = <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 3 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 4 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 1 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
+ 		clock-frequency = <48000000>;
+ 		always-on;
+ 	};
+diff --git a/arch/arm/boot/dts/qcom/qcom-msm8660.dtsi b/arch/arm/boot/dts/qcom/qcom-msm8660.dtsi
+index a7c245b9c8f9..17188fe54617 100644
+--- a/arch/arm/boot/dts/qcom/qcom-msm8660.dtsi
++++ b/arch/arm/boot/dts/qcom/qcom-msm8660.dtsi
+@@ -47,7 +47,7 @@ memory {
+ 
+ 	cpu-pmu {
+ 		compatible = "qcom,scorpion-mp-pmu";
+-		interrupts = <1 9 0x304>;
++		interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_HIGH)>;
+ 	};
+ 
+ 	clocks {
+@@ -89,9 +89,9 @@ intc: interrupt-controller@2080000 {
+ 
+ 		timer@2000000 {
+ 			compatible = "qcom,scss-timer", "qcom,msm-timer";
+-			interrupts = <1 0 0x301>,
+-				     <1 1 0x301>,
+-				     <1 2 0x301>;
++			interrupts = <GIC_PPI 0 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_EDGE_RISING)>,
++				     <GIC_PPI 1 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_EDGE_RISING)>,
++				     <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_EDGE_RISING)>;
+ 			reg = <0x02000000 0x100>;
+ 			clock-frequency = <27000000>,
+ 					  <32768>;
+@@ -105,7 +105,7 @@ tlmm: pinctrl@800000 {
+ 			gpio-controller;
+ 			gpio-ranges = <&tlmm 0 0 173>;
+ 			#gpio-cells = <2>;
+-			interrupts = <0 16 0x4>;
++			interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-controller;
+ 			#interrupt-cells = <2>;
+ 
+@@ -283,7 +283,7 @@ gsbi12_serial: serial@19c40000 {
+ 				compatible = "qcom,msm-uartdm-v1.3", "qcom,msm-uartdm";
+ 				reg = <0x19c40000 0x1000>,
+ 				      <0x19c00000 0x1000>;
+-				interrupts = <0 195 IRQ_TYPE_LEVEL_HIGH>;
++				interrupts = <GIC_SPI 195 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GSBI12_UART_CLK>, <&gcc GSBI12_H_CLK>;
+ 				clock-names = "core", "iface";
+ 				status = "disabled";
+@@ -292,7 +292,7 @@ gsbi12_serial: serial@19c40000 {
+ 			gsbi12_i2c: i2c@19c80000 {
+ 				compatible = "qcom,i2c-qup-v1.1.1";
+ 				reg = <0x19c80000 0x1000>;
+-				interrupts = <0 196 IRQ_TYPE_LEVEL_HIGH>;
++				interrupts = <GIC_SPI 196 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GSBI12_QUP_CLK>, <&gcc GSBI12_H_CLK>;
+ 				clock-names = "core", "iface";
+ 				#address-cells = <1>;
+diff --git a/arch/arm/boot/dts/qcom/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom/qcom-msm8974.dtsi
+index ee202f3f161e..c15c4e6e7754 100644
+--- a/arch/arm/boot/dts/qcom/qcom-msm8974.dtsi
++++ b/arch/arm/boot/dts/qcom/qcom-msm8974.dtsi
+@@ -31,7 +31,7 @@ sleep_clk: sleep_clk {
+ 	cpus {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+-		interrupts = <GIC_PPI 9 0xf04>;
++		interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
+ 
+ 		CPU0: cpu@0 {
+ 			compatible = "qcom,krait";
+@@ -110,7 +110,7 @@ memory {
+ 
+ 	pmu {
+ 		compatible = "qcom,krait-pmu";
+-		interrupts = <GIC_PPI 7 0xf04>;
++		interrupts = <GIC_PPI 7 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
+ 	};
+ 
+ 	rpm: remoteproc {
+@@ -538,7 +538,7 @@ blsp1_i2c1: i2c@f9923000 {
+ 			status = "disabled";
+ 			compatible = "qcom,i2c-qup-v2.1.1";
+ 			reg = <0xf9923000 0x1000>;
+-			interrupts = <0 95 IRQ_TYPE_LEVEL_HIGH>;
++			interrupts = <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&gcc GCC_BLSP1_QUP1_I2C_APPS_CLK>, <&gcc GCC_BLSP1_AHB_CLK>;
+ 			clock-names = "core", "iface";
+ 			pinctrl-names = "default", "sleep";
+@@ -566,7 +566,7 @@ blsp1_i2c3: i2c@f9925000 {
+ 			status = "disabled";
+ 			compatible = "qcom,i2c-qup-v2.1.1";
+ 			reg = <0xf9925000 0x1000>;
+-			interrupts = <0 97 IRQ_TYPE_LEVEL_HIGH>;
++			interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&gcc GCC_BLSP1_QUP3_I2C_APPS_CLK>, <&gcc GCC_BLSP1_AHB_CLK>;
+ 			clock-names = "core", "iface";
+ 			pinctrl-names = "default", "sleep";
+@@ -666,7 +666,7 @@ blsp2_i2c6: i2c@f9968000 {
+ 			status = "disabled";
+ 			compatible = "qcom,i2c-qup-v2.1.1";
+ 			reg = <0xf9968000 0x1000>;
+-			interrupts = <0 106 IRQ_TYPE_LEVEL_HIGH>;
++			interrupts = <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&gcc GCC_BLSP2_QUP6_I2C_APPS_CLK>, <&gcc GCC_BLSP2_AHB_CLK>;
+ 			clock-names = "core", "iface";
+ 			pinctrl-names = "default", "sleep";
+@@ -2410,10 +2410,10 @@ gpu2_alert0: trip-point0 {
+ 
+ 	timer {
+ 		compatible = "arm,armv7-timer";
+-		interrupts = <GIC_PPI 2 0xf08>,
+-			     <GIC_PPI 3 0xf08>,
+-			     <GIC_PPI 4 0xf08>,
+-			     <GIC_PPI 1 0xf08>;
++		interrupts = <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 3 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 4 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 1 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
+ 		clock-frequency = <19200000>;
+ 	};
+ };
+diff --git a/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi b/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi
+index 49d9bfeb0c7f..dcb0179996a2 100644
+--- a/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi
++++ b/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi
+@@ -728,57 +728,57 @@ timer@17820000 {
+ 
+ 			frame@17821000 {
+ 				frame-number = <0>;
+-				interrupts = <GIC_SPI 7 0x4>,
+-					     <GIC_SPI 6 0x4>;
++				interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
++					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
+ 				reg = <0x17821000 0x1000>,
+ 				      <0x17822000 0x1000>;
+ 			};
+ 
+ 			frame@17823000 {
+ 				frame-number = <1>;
+-				interrupts = <GIC_SPI 8 0x4>;
++				interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
+ 				reg = <0x17823000 0x1000>;
+ 				status = "disabled";
+ 			};
+ 
+ 			frame@17824000 {
+ 				frame-number = <2>;
+-				interrupts = <GIC_SPI 9 0x4>;
++				interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
+ 				reg = <0x17824000 0x1000>;
+ 				status = "disabled";
+ 			};
+ 
+ 			frame@17825000 {
+ 				frame-number = <3>;
+-				interrupts = <GIC_SPI 10 0x4>;
++				interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
+ 				reg = <0x17825000 0x1000>;
+ 				status = "disabled";
+ 			};
+ 
+ 			frame@17826000 {
+ 				frame-number = <4>;
+-				interrupts = <GIC_SPI 11 0x4>;
++				interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
+ 				reg = <0x17826000 0x1000>;
+ 				status = "disabled";
+ 			};
+ 
+ 			frame@17827000 {
+ 				frame-number = <5>;
+-				interrupts = <GIC_SPI 12 0x4>;
++				interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
+ 				reg = <0x17827000 0x1000>;
+ 				status = "disabled";
+ 			};
+ 
+ 			frame@17828000 {
+ 				frame-number = <6>;
+-				interrupts = <GIC_SPI 13 0x4>;
++				interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
+ 				reg = <0x17828000 0x1000>;
+ 				status = "disabled";
+ 			};
+ 
+ 			frame@17829000 {
+ 				frame-number = <7>;
+-				interrupts = <GIC_SPI 14 0x4>;
++				interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
+ 				reg = <0x17829000 0x1000>;
+ 				status = "disabled";
+ 			};
+diff --git a/arch/arm/boot/dts/qcom/qcom-sdx65.dtsi b/arch/arm/boot/dts/qcom/qcom-sdx65.dtsi
+index bad47174b66c..9ab3e7166b37 100644
+--- a/arch/arm/boot/dts/qcom/qcom-sdx65.dtsi
++++ b/arch/arm/boot/dts/qcom/qcom-sdx65.dtsi
+@@ -671,57 +671,57 @@ timer@17820000 {
+ 
+ 			frame@17821000 {
+ 				frame-number = <0>;
+-				interrupts = <GIC_SPI 7 0x4>,
+-					     <GIC_SPI 6 0x4>;
++				interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
++					     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
+ 				reg = <0x17821000 0x1000>,
+ 				      <0x17822000 0x1000>;
+ 			};
+ 
+ 			frame@17823000 {
+ 				frame-number = <1>;
+-				interrupts = <GIC_SPI 8 0x4>;
++				interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
+ 				reg = <0x17823000 0x1000>;
+ 				status = "disabled";
+ 			};
+ 
+ 			frame@17824000 {
+ 				frame-number = <2>;
+-				interrupts = <GIC_SPI 9 0x4>;
++				interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
+ 				reg = <0x17824000 0x1000>;
+ 				status = "disabled";
+ 			};
+ 
+ 			frame@17825000 {
+ 				frame-number = <3>;
+-				interrupts = <GIC_SPI 10 0x4>;
++				interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
+ 				reg = <0x17825000 0x1000>;
+ 				status = "disabled";
+ 			};
+ 
+ 			frame@17826000 {
+ 				frame-number = <4>;
+-				interrupts = <GIC_SPI 11 0x4>;
++				interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
+ 				reg = <0x17826000 0x1000>;
+ 				status = "disabled";
+ 			};
+ 
+ 			frame@17827000 {
+ 				frame-number = <5>;
+-				interrupts = <GIC_SPI 12 0x4>;
++				interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
+ 				reg = <0x17827000 0x1000>;
+ 				status = "disabled";
+ 			};
+ 
+ 			frame@17828000 {
+ 				frame-number = <6>;
+-				interrupts = <GIC_SPI 13 0x4>;
++				interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
+ 				reg = <0x17828000 0x1000>;
+ 				status = "disabled";
+ 			};
+ 
+ 			frame@17829000 {
+ 				frame-number = <7>;
+-				interrupts = <GIC_SPI 14 0x4>;
++				interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
+ 				reg = <0x17829000 0x1000>;
+ 				status = "disabled";
+ 			};
+@@ -808,10 +808,10 @@ apps_bcm_voter: bcm-voter {
+ 
+ 	timer {
+ 		compatible = "arm,armv7-timer";
+-		interrupts = <1 13 0xf08>,
+-			<1 12 0xf08>,
+-			<1 10 0xf08>,
+-			<1 11 0xf08>;
++		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 12 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
+ 		clock-frequency = <19200000>;
+ 	};
+ };
+-- 
+2.34.1
 
->            - renesas,tmu-r8a7740  # R-Mobile A1
->            - renesas,tmu-r8a774a1 # RZ/G2M
->            - renesas,tmu-r8a774b1 # RZ/G2N
-
-The rest LGTM.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
