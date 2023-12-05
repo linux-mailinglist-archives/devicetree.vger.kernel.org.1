@@ -1,81 +1,167 @@
-Return-Path: <devicetree+bounces-21554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8729804315
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 01:06:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6731804337
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 01:22:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1686B1C20B5C
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 00:06:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2719281298
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 00:22:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8651B182;
-	Tue,  5 Dec 2023 00:06:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E162E384;
+	Tue,  5 Dec 2023 00:22:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e0THresJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14522101;
-	Mon,  4 Dec 2023 16:06:11 -0800 (PST)
-Received: from i53875b61.versanet.de ([83.135.91.97] helo=phil.lan)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1rAIwu-0001qb-BG; Tue, 05 Dec 2023 01:06:04 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: Tim Lunn <tim@feathertop.org>,
-	linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	linux-arm-kernel@lists.infradead.org,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Jagan Teki <jagan@edgeble.ai>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	linux-i2c@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: (subset) [PATCH v3 0/8] Add support for Sonoff iHost RV1126 Smart Home Gateway
-Date: Tue,  5 Dec 2023 01:06:01 +0100
-Message-Id: <170173468934.501889.1733383840975468730.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231203124004.2676174-1-tim@feathertop.org>
-References: <20231203124004.2676174-1-tim@feathertop.org>
+Received: from mail-oa1-x2d.google.com (mail-oa1-x2d.google.com [IPv6:2001:4860:4864:20::2d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B42C8BB;
+	Mon,  4 Dec 2023 16:22:19 -0800 (PST)
+Received: by mail-oa1-x2d.google.com with SMTP id 586e51a60fabf-1fb33059466so1216050fac.2;
+        Mon, 04 Dec 2023 16:22:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701735739; x=1702340539; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=AceSiloMzdXvIE2DaEevBBcic/LsMH6cBLoMMH2zSsQ=;
+        b=e0THresJi4EsBjzx1FHcR6oT2ZqDCFeIfUV3nRQudOkBac8hATihqgort2ubrZ9ZTo
+         ziLUQc5MIJKr6qCZMo+1DIGY+nxQkQkd4oipuuEKuaM1CN9zf4nIegIOHlQaeBtyLmNt
+         1w70KkWfxrLqf4MO5OniUzagrdYqqZI++n1PtZ8Jo2Tzb5KhCNeNoYtPyR3Eh9j8Lsvs
+         buG4A0WrqZ1oppiw3rh5gHJRYZPXseUSPkntJmhRHrOgayo+2sEL8l4EdS9FON+szYuu
+         B13p8v1YYXGXmZMhv9s6TOSzebFonxj/Iyba5jBuNWFg+tZoGRO8aB4uytHEUPvvWWjj
+         /xRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701735739; x=1702340539;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AceSiloMzdXvIE2DaEevBBcic/LsMH6cBLoMMH2zSsQ=;
+        b=oXCo2HmB1kKytA8cBhwShIMh50TNiT4uJzq8uohdtWOK6nVvf+h/gRdJsAwvryJu7U
+         I4Zv30KCqKAr0pRzY9CCschYSEi6ZMnRZsIGxs0phVVMLGbzrFBPAn/7XqB9r62HCban
+         sTs3mmoyHnsKIQQnxAYz+tm8nnU7ils5I62mKLsl33JRDA7uRpLnP1CYtO/9wENyoQXZ
+         Of4imq7ab7l2AamqPOd8+zypkUxLnKKVGnp1z25P5ETb//QVishpuGjA4/A+VKSh8zLZ
+         +4ygcF2nNF1h2dpZ/Fx5qUxCOM5eo2WwzO/b9rEwkJUkn5evPyjq3h42kSg1UmMqVb9A
+         BK/A==
+X-Gm-Message-State: AOJu0YzwVeUHrll7kuhrop7lNJ5ISybkMItfCtHl8ptSQpZEFDgm73mK
+	mqeZms7T+rzYB6x0m8872Xsng4HX6Zb9Yw==
+X-Google-Smtp-Source: AGHT+IGGpyH/uvDWZtUKbPGliRelSXQEiyxnYM/KxdFEwKMgIWFm+BsnmtfipMmVy4gfgRrC6v6CIg==
+X-Received: by 2002:a05:6871:4004:b0:1fa:26e7:c428 with SMTP id kx4-20020a056871400400b001fa26e7c428mr6236892oab.19.1701735738877;
+        Mon, 04 Dec 2023 16:22:18 -0800 (PST)
+Received: from localhost.localdomain ([122.8.183.87])
+        by smtp.gmail.com with ESMTPSA id o11-20020a9d404b000000b006d87f95566bsm1142899oti.51.2023.12.04.16.22.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Dec 2023 16:22:18 -0800 (PST)
+From: Chen Wang <unicornxw@gmail.com>
+To: aou@eecs.berkeley.edu,
+	chao.wei@sophgo.com,
+	conor@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	mturquette@baylibre.com,
+	palmer@dabbelt.com,
+	paul.walmsley@sifive.com,
+	richardcochran@gmail.com,
+	robh+dt@kernel.org,
+	sboyd@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	haijiao.liu@sophgo.com,
+	xiaoguang.xing@sophgo.com,
+	guoren@kernel.org,
+	jszhang@kernel.org,
+	inochiama@outlook.com,
+	samuel.holland@sifive.com
+Cc: Chen Wang <unicorn_wang@outlook.com>
+Subject: [PATCH v4 0/4] riscv: sophgo: add clock support for sg2042
+Date: Tue,  5 Dec 2023 08:22:06 +0800
+Message-Id: <cover.1701734442.git.unicorn_wang@outlook.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-On Sun, 3 Dec 2023 23:39:56 +1100, Tim Lunn wrote:
-> Sonoff iHost is gateway device designed to provide a Smart Home Hub,
-> most notably it includes builtin radios for Wifi, BT and Zigbee, which
-> make it suitable SBC for use with many of the open home automation
-> platforms. It is availabe in two versions, first is based on
-> Rockchip RV1126 and 4GB DDR4 RAM. There is a second version based off
-> the RV1109 dual core SoC and 2GB RAM.
-> 
-> [...]
+From: Chen Wang <unicorn_wang@outlook.com>
 
-Applied, thanks!
+This series adds clock controller support for sophgo sg2042.
 
-[1/8] ARM: dts: rockchip: rv1126: Add alternate UART pins
-      commit: 86fd29b0329c95d4136a5dcef555287a0be8a038
-[2/8] ARM: dts: rockchip: rv1126: Serial aliases
-      commit: 30250a587bddb5265bceb9f8397c459f5cc04e0c
-[4/8] ARM: dts: rockchip: rv1126: Add i2c2 nodes
-      commit: 655ff5d45dc9de5e67c839af4baf47eaffed348f
-[5/8] ARM: dts: rockchip: rv1126: Split up rgmii1 pinctrl
-      commit: d3bab19c83c7ce24e89d9f08f09e596c39b14658
-[6/8] ARM: dts: rockchip: Add rv1109 SoC
-      commit: bd6f1b13b972caebf54be1fb3bc2eb9f47de9d63
-[7/8] ARM: dts: Add Sonoff iHost Smart Home Hub
-      commit: 0f385eea8157bcb36d30d9f96105251465bc6684
-[8/8] dt-bindings: arm: rockchip: Add Sonoff iHost
-      commit: 98feed126e7dcae617af3b0e76f50160806e3233
+Thanks,
+Chen
 
-Best regards,
+---
+Changes in v4:
+  The patch series is based on v6.7-rc1. You can simply review or test the
+  patches at the link [5].
+  - dt-bindings: fixed a dt_binding_check error.
+
+Changes in v3:
+  The patch series is based on v6.7-rc1. You can simply review or test the
+  patches at the link [3].
+  - DTS: don't use syscon but define sg2042 specific system control node. More
+    background info can read [4].
+  - Updating minor issues in dt-bindings as per input from reviews.
+
+Changes in v2:
+  The patch series is based on v6.7-rc1. You can simply review or test the
+  patches at the link [2].
+  - Squashed the patch adding clock definitions with the patch adding the
+    binding for the clock controller.
+  - Updating dt-binding for syscon, remove oneOf for property compatible;
+    define clock controller as child of syscon.
+  - DTS changes: merge sg2042-clock.dtsi into sg2042.dtsi; move clock-frequency
+    property of osc to board devicethree due to the oscillator is outside the
+    SoC.
+  - Fixed some bugs in driver code during testing, including removing warnings
+    for rv32_defconfig.
+  - Updated MAINTAINERS info.
+
+Changes in v1:
+  The patch series is based on v6.7-rc1. You can simply review or test the
+  patches at the link [1].
+
+Link: https://github.com/unicornx/linux-riscv/commits/upstream-sg2042-clock-v1 [1]
+Link: https://github.com/unicornx/linux-riscv/commits/upstream-sg2042-clock-v2 [2]
+Link: https://github.com/unicornx/linux-riscv/commits/upstream-sg2042-clock-v3 [3]
+Link: https://lore.kernel.org/linux-riscv/MA0P287MB03329AE180378E1A2E034374FE82A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM/ [4]
+Link: https://github.com/unicornx/linux-riscv/commits/upstream-sg2042-clock-v4 [5]
+
+---
+
+Chen Wang (4):
+  dt-bindings: soc: sophgo: Add Sophgo system control module
+  dt-bindings: clock: sophgo: Add SG2042 bindings
+  clk: sophgo: Add SG2042 clock generator driver
+  riscv: dts: add clock generator for Sophgo SG2042 SoC
+
+ .../clock/sophgo/sophgo,sg2042-clkgen.yaml    |   50 +
+ .../soc/sophgo/sophgo,sg2042-sysctrl.yaml     |   35 +
+ MAINTAINERS                                   |    7 +
+ .../boot/dts/sophgo/sg2042-milkv-pioneer.dts  |    4 +
+ arch/riscv/boot/dts/sophgo/sg2042.dtsi        |   79 +
+ drivers/clk/Kconfig                           |    1 +
+ drivers/clk/Makefile                          |    1 +
+ drivers/clk/sophgo/Kconfig                    |    8 +
+ drivers/clk/sophgo/Makefile                   |    2 +
+ drivers/clk/sophgo/clk-sophgo-sg2042.c        | 1371 +++++++++++++++++
+ drivers/clk/sophgo/clk-sophgo-sg2042.h        |  226 +++
+ .../dt-bindings/clock/sophgo,sg2042-clkgen.h  |  169 ++
+ 12 files changed, 1953 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/sophgo/sophgo,sg2042-clkgen.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/sophgo/sophgo,sg2042-sysctrl.yaml
+ create mode 100644 drivers/clk/sophgo/Kconfig
+ create mode 100644 drivers/clk/sophgo/Makefile
+ create mode 100644 drivers/clk/sophgo/clk-sophgo-sg2042.c
+ create mode 100644 drivers/clk/sophgo/clk-sophgo-sg2042.h
+ create mode 100644 include/dt-bindings/clock/sophgo,sg2042-clkgen.h
+
+
+base-commit: b85ea95d086471afb4ad062012a4d73cd328fa86
 -- 
-Heiko Stuebner <heiko@sntech.de>
+2.25.1
+
 
