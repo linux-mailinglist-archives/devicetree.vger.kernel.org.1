@@ -1,98 +1,74 @@
-Return-Path: <devicetree+bounces-21651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21653-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C968804C61
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 09:30:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28EAE804C74
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 09:33:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ADE121C20B1D
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 08:30:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 58EDC1C20BEF
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 08:33:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 028ED3C48D;
-	Tue,  5 Dec 2023 08:30:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A34C53C067;
+	Tue,  5 Dec 2023 08:33:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VXUzwDjh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDF5AC0;
-	Tue,  5 Dec 2023 00:30:27 -0800 (PST)
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-5d3758fdd2eso51194427b3.0;
-        Tue, 05 Dec 2023 00:30:27 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701765027; x=1702369827;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MXcsyir3a7SBDDGCoBHp70/mRJJIxewAzXRQ0oT/0fw=;
-        b=l3pCq2P8xUY6gIW1kjxSpIiPmIb4aYYEhL0j+1vQS/8WFwq9Ql3SnPKcjHIPtElXVG
-         IP1F0NnojmJAYQbIN51KWy32BKctddu6zb3fM31KQr1UV5KpV420xN2HaWARF/Zxd51+
-         I+d0VbfOqyaL5zASzAYCeEGtyCOsZmG2CsScH/oGsMne1hzUILBjG5rRxaPUWVM6Hfka
-         GWJG8rSp2TNLrVU6WvwtBeCIZGWs5knITShR4qwLJQAQodYS1apAKj1q6hEq8rTxrx5f
-         cUSOAuN94xvrilcU2og8QTvlPEsnn6kt07jH540PiiBpx25TctHISbseLNtlenBhAjM1
-         r+rA==
-X-Gm-Message-State: AOJu0YwbVvYVku819vkYzjjBydlhATFSYyfzKzLZrEq2sLbyD9CvqaX4
-	qIuHVKuPbIn6ct3GmbBbzrbP9gBBC6NWcw==
-X-Google-Smtp-Source: AGHT+IEuC9FmKfND1IgC/oooQgncgGNkX0d8XoCJWWzSWhoRO/096JYs4Uzj6jN8urGaGOEuJxnD4g==
-X-Received: by 2002:a05:6902:248:b0:db7:dad0:76b5 with SMTP id k8-20020a056902024800b00db7dad076b5mr3316558ybs.81.1701765026994;
-        Tue, 05 Dec 2023 00:30:26 -0800 (PST)
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com. [209.85.128.171])
-        by smtp.gmail.com with ESMTPSA id j129-20020a25d287000000b00d7ba4c5e31fsm2937054ybg.39.2023.12.05.00.30.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Dec 2023 00:30:26 -0800 (PST)
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-5d3644ca426so51844327b3.1;
-        Tue, 05 Dec 2023 00:30:26 -0800 (PST)
-X-Received: by 2002:a25:ca4f:0:b0:db7:dad0:76b7 with SMTP id
- a76-20020a25ca4f000000b00db7dad076b7mr3257272ybg.83.1701765025931; Tue, 05
- Dec 2023 00:30:25 -0800 (PST)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82FE43D977
+	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 08:33:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F70BC433C8;
+	Tue,  5 Dec 2023 08:33:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701765203;
+	bh=ls7QYnZoAsXnjVPCwoKCbFvmyNk3iEr0faVWrH3Pvvg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VXUzwDjhgMKrEoQNQA0omHhVrcA1hxx3hKQ2pvWeCjCtAfeNYGxw0gb2c+psRC1Wg
+	 pV/1UGp9P6hZhOHELAM5sAwHSe7INAWYL0AVLO4ZgfKOlWLYD/dYrS9OY+t36YAm3R
+	 51xKkGcHza0uPqNZ3IsH6l0/wO6uW3kHRp0vpSuqyV13XdjBkuUzikQrxLB3h3QFtJ
+	 2n3vIXhtbbNlMmRvLx1mwlJhR6rHqFm44j0Nx67iRZnvAqHO7AwXIRZl944eCgT8lT
+	 2PvfTWNI39JH9y2mYLH3t0cH5hJrVVGbNvyiM5b50yeCqWXQzqjzrmYiO2WxXemn9T
+	 ZMkkeuy3xLPew==
+Date: Tue, 5 Dec 2023 16:33:11 +0800
+From: Shawn Guo <shawnguo@kernel.org>
+To: Kieran Bingham <kieran.bingham@ideasonboard.com>
+Cc: devicetree@vger.kernel.org, Marco Felsch <m.felsch@pengutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3] arm64: dts: freescale: debix-som-a-bmb-08: Add CSI
+ Power Regulators
+Message-ID: <20231205083311.GB236001@dragon>
+References: <20231127124037.888597-1-kieran.bingham@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231204172510.35041-1-biju.das.jz@bp.renesas.com> <20231204172510.35041-2-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20231204172510.35041-2-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 5 Dec 2023 09:30:15 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdW0VU8f2oRVuS0WZQazrF__rhGebOV_V7LO4uJKwecDLA@mail.gmail.com>
-Message-ID: <CAMuHMdW0VU8f2oRVuS0WZQazrF__rhGebOV_V7LO4uJKwecDLA@mail.gmail.com>
-Subject: Re: [PATCH v3.1 1/8] dt-bindings: mfd: da9062: Update watchdog description
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Support Opensource <support.opensource@diasemi.com>, devicetree@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231127124037.888597-1-kieran.bingham@ideasonboard.com>
 
-On Mon, Dec 4, 2023 at 6:25=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.com=
-> wrote:
-> Update watchdog description by referring to dlg,da9062-watchdog binding
-> file.
->
-> Update MAINTAINERS entries.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> v3.1:
->  Merged with patch#8 from v2.
+On Mon, Nov 27, 2023 at 12:40:34PM +0000, Kieran Bingham wrote:
+> Provide the 1.8 and 3.3 volt regulators that are utilised on the Debix
+> SOM BMB-08 base board.
+> 
+> Facilitate this by also supplying the pin control used to enable the
+> regulators on the second MIPI CSI port.
+> 
+> Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
+> Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
 
-Fixes: bd888a4377ae1030 ("dt-bindings: watchdog: da9062-wdt: convert
-txt to yaml")
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Applied, thanks!
 
