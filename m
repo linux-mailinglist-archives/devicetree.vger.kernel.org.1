@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-21611-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21612-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21E97804ADD
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 08:03:11 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F025D804AE8
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 08:10:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C85DF2816F3
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 07:03:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1EAF71C20DF0
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 07:10:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 912E012B76;
-	Tue,  5 Dec 2023 07:03:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 769A915EAC;
+	Tue,  5 Dec 2023 07:10:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MZ5fAImD"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="En6EMnxy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC83C109
-	for <devicetree@vger.kernel.org>; Mon,  4 Dec 2023 23:03:03 -0800 (PST)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-a1b654faa8cso264520966b.2
-        for <devicetree@vger.kernel.org>; Mon, 04 Dec 2023 23:03:03 -0800 (PST)
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43D31109
+	for <devicetree@vger.kernel.org>; Mon,  4 Dec 2023 23:10:14 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-3333b46f26aso2563695f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 04 Dec 2023 23:10:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701759782; x=1702364582; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701760213; x=1702365013; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=kLxOfoSnfeXO1fwIiym5h60hAewpPJZbH69nBfsLJ1g=;
-        b=MZ5fAImDdzOObf0KIZX7bg+j0XZhGBTrwF/tw3IaR9Y+m23dpknrn9VvEHBdtTRsJb
-         WsEU2DpbueXzF+BX+FJKrIqsIIba5kmZd6ah6ew2AdyWSRZ6espAkWnj5jn5O6wUMks4
-         Bom2MtLhE1EE1unCSQYYaL9s7DaDzOrpx8Fz1hAQ/U8oIs0++spGLtdAXAg2ajNXiP2w
-         D/AmsNc9qS8YI7w/yuHwM4k+r33fba66iAKcl/JBKo3sCITcMK7tty4b1UgrinaPvG9A
-         Hc006wB2mBeAyegcMVtnrcpwcmbUdsseRd2rCizjmWPldhSVe0JOrxANjvqWLeO/ooI6
-         kkUA==
+        bh=SVAEj6IWcf3rrewE0PI9IiD451dQSPUt4SomApm71zI=;
+        b=En6EMnxyDssG8HdYqODP3Q5NhS7AKnl2W4xwdrK+XBd6I7yzhSyZbbkcJay249GAU3
+         IAri/NyLmUo/mqSmF/kij7NYcpec1MGoN4KhOL8X6TH/jjnCaunyZKeePvV91Z/f8ybm
+         ynOxtcVJGZslOV82Hei5FHZ6FyfyTa5iFWKVT3X3m1dglhJ8Vi5q7tHtBqZEO1adRw0x
+         V/GuOKsJ0w6cU4muHWLrBc9Zb4V/G0ca2Nx7iaiC5ekaAdZb2R5NPsGqZ8FEWISZyerB
+         F6Dk14p/rMJ03dwreWRPAbjRBfGfB3QDPN/Qq5WLJnM0pZd1iJZjg5OlPtgw9TFH8/Bs
+         6vYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701759782; x=1702364582;
+        d=1e100.net; s=20230601; t=1701760213; x=1702365013;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kLxOfoSnfeXO1fwIiym5h60hAewpPJZbH69nBfsLJ1g=;
-        b=h65S9APLX0M/bGP0RXXZn+uUDD315K9XkjkyM/00tr9pzIzzRorDlhwdsg0PlilAMf
-         pw2hG7vC04tsyXDhwinrXw1tr1pP6K7OoDglY7JZz3Ezxavppo4aU7CrDYLNh39hbJFJ
-         pYiCJGeTK3vUZWFTF4vuINtkYb9gUBB76VIgI2qeXOaE6oojNA6jqEMTtENraGVML0er
-         JQpIlNbksKFs95SxNr4cCOSB0FZN3CFv2fk7TZvweC68qz20kWq1JOKJoO3xR+1kcQXS
-         gAGKcKw1rDKSYaMV3Avva6Oac65hwzsRpwWhF5ib5J/Ow9N4ATLGGGaM1Fl8kwzoGJsA
-         gQ2g==
-X-Gm-Message-State: AOJu0YxdGFrgtAirIAfjTObnWSIIPTRzMcoF9k18+Y6sV08A+kSfmB33
-	gNaqxJJLVb0Z0olYpiQRFqdqLQ==
-X-Google-Smtp-Source: AGHT+IHRzvSu/hOc5PxCvUjgcni03i6t5SBuW58h3FQnjEL8qCAWki0PGP/izorSXuILG49ZtxMGAw==
-X-Received: by 2002:a17:906:dfda:b0:a19:d40a:d23d with SMTP id jt26-20020a170906dfda00b00a19d40ad23dmr2106137ejc.265.1701759782387;
-        Mon, 04 Dec 2023 23:03:02 -0800 (PST)
+        bh=SVAEj6IWcf3rrewE0PI9IiD451dQSPUt4SomApm71zI=;
+        b=B/fEW0s1gdZLv1NafkXFzxy2XjfHMIxBDZ02nO1pyeC1R3e3wcOfgULoSdIPSaMof5
+         NIdtHeWPXTLM8/PUtK3EOvfkUHNXPVWlN7//57U5gHPLbryZ2+NodBxTshVgCrxLPvPL
+         6bZI5oLeFVKHIZCgTGkdV71ndSWBzOHNyKl1R2rqnD1dMfhGxkSAlW4FOAdUB5zJeGm4
+         /DaewvnadETpUVt6ogzea2b859PMqolZZITcnIEZ5PrOLPUBHe5s7OdfVs3r2gxKSufb
+         FTdWKIzkGEovt2cCNw2Y1UG9cj3HF823kdDRDF7BZ4kB8hYgZgQvENny63iTs1azLcSE
+         4jPg==
+X-Gm-Message-State: AOJu0YylO9h9RiU51N3WFMhHF6ibUdxdkatilehQcBEQXVJ/s3vMqQ9X
+	op2qPzHuLcHTTD8/00J/4fXZXQ==
+X-Google-Smtp-Source: AGHT+IEh1yyse3RrKzXfWlgA1lUMYc5fycCT+yx7MiP8AVViKu4ufDcT0uk1l1kIAiwTjMwU4PiQFw==
+X-Received: by 2002:adf:e612:0:b0:333:3a13:91dc with SMTP id p18-20020adfe612000000b003333a1391dcmr2619650wrm.86.1701760212746;
+        Mon, 04 Dec 2023 23:10:12 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id o26-20020a170906289a00b009e5ce1acb01sm6155668ejd.103.2023.12.04.23.03.00
+        by smtp.gmail.com with ESMTPSA id q4-20020a05600000c400b003333fa3d043sm7376024wrx.12.2023.12.04.23.10.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Dec 2023 23:03:01 -0800 (PST)
-Message-ID: <64ea0631-13d9-4661-bf83-05ef21a1611d@linaro.org>
-Date: Tue, 5 Dec 2023 08:02:59 +0100
+        Mon, 04 Dec 2023 23:10:12 -0800 (PST)
+Message-ID: <b97f04f6-cda2-4e9b-b729-a5149e36f978@linaro.org>
+Date: Tue, 5 Dec 2023 08:10:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,16 +62,29 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/1] arm64: dts: qcom: ipq6018: fix clock rates for
- GCC_USB0_MOCK_UTMI_CLK
+Subject: Re: [PATCH RFC 01/10] dt-bindings: gpu: Add PowerVR Series5 SGX GPUs
 Content-Language: en-US
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: agross@kernel.org, andersson@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, konrad.dybcio@linaro.org,
- krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, robh+dt@kernel.org
-References: <6f4f7903-c112-428b-8082-a8eca7c5981d@linaro.org>
- <20231205030201.12694-1-amadeus@jmu.edu.cn>
+To: Andrew Davis <afd@ti.com>, Frank Binns <frank.binns@imgtec.com>,
+ Donald Robson <donald.robson@imgtec.com>,
+ Matt Coster <matt.coster@imgtec.com>,
+ "H . Nikolaus Schaller" <hns@goldelico.com>, Adam Ford <aford173@gmail.com>,
+ Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, =?UTF-8?Q?Beno=C3=AEt_Cousson?=
+ <bcousson@baylibre.com>, Tony Lindgren <tony@atomide.com>,
+ Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Tero Kristo <kristo@kernel.org>, Paul Cercueil <paul@crapouillou.net>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-omap@vger.kernel.org,
+ linux-mips@vger.kernel.org
+References: <20231204182245.33683-1-afd@ti.com>
+ <20231204182245.33683-2-afd@ti.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -117,20 +130,91 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231205030201.12694-1-amadeus@jmu.edu.cn>
+In-Reply-To: <20231204182245.33683-2-afd@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/12/2023 04:02, Chukun Pan wrote:
->> That does not look like XO, but GCC_USB0_MOCK_UTMI_CLK
+On 04/12/2023 19:22, Andrew Davis wrote:
+> The Imagination PowerVR Series5 "SGX" GPU is part of several SoCs from
+> multiple vendors. Describe how the SGX GPU is integrated in these SoC,
+> including register space and interrupts. Clocks, reset, and power domain
+> information is SoC specific.
 > 
-> I don't have the datasheet, but the reference clock (XO) is 24MHz, 
-> and I receive the following warning:
-> clk: couldn't set gcc_usb0_mock_utmi_clk clk rate to 20000000 (-22), current rate: 24000000
+> Signed-off-by: Andrew Davis <afd@ti.com>
+> ---
+>  .../devicetree/bindings/gpu/img,powervr.yaml  | 69 +++++++++++++++++--
+>  1 file changed, 63 insertions(+), 6 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/gpu/img,powervr.yaml b/Documentation/devicetree/bindings/gpu/img,powervr.yaml
+> index a13298f1a1827..9f036891dad0b 100644
+> --- a/Documentation/devicetree/bindings/gpu/img,powervr.yaml
+> +++ b/Documentation/devicetree/bindings/gpu/img,powervr.yaml
+> @@ -11,11 +11,33 @@ maintainers:
+>    - Frank Binns <frank.binns@imgtec.com>
+>  
+>  properties:
+> +  $nodename:
+> +    pattern: '^gpu@[a-f0-9]+$'
 
-Referencing XO in commit  msg is confusing. Anyway, answer to such error
-is not necessarily change the clock rate. What if it must be 20 MHz? You
-just ignore such requirement...
+Why? We do not enforce it in other bindings.
+
+> +
+>    compatible:
+> -    items:
+> -      - enum:
+> -          - ti,am62-gpu
+> -      - const: img,img-axe # IMG AXE GPU model/revision is fully discoverable
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - ti,am62-gpu
+> +          - const: img,img-axe # IMG AXE GPU model/revision is fully discoverable
+> +      - items:
+> +          - enum:
+> +              - ti,omap3430-gpu # Rev 121
+> +              - ti,omap3630-gpu # Rev 125
+> +          - const: img,powervr-sgx530
+> +      - items:
+> +          - enum:
+> +              - ingenic,jz4780-gpu # Rev 130
+> +              - ti,omap4430-gpu # Rev 120
+> +          - const: img,powervr-sgx540
+> +      - items:
+> +          - enum:
+> +              - allwinner,sun6i-a31-gpu # MP2 Rev 115
+> +              - ti,omap4470-gpu # MP1 Rev 112
+> +              - ti,omap5432-gpu # MP2 Rev 105
+> +              - ti,am5728-gpu # MP2 Rev 116
+> +              - ti,am6548-gpu # MP1 Rev 117
+> +          - const: img,powervr-sgx544
+>  
+>    reg:
+>      maxItems: 1
+> @@ -40,8 +62,6 @@ properties:
+>  required:
+>    - compatible
+>    - reg
+> -  - clocks
+> -  - clock-names
+
+I don't think so... How can you run without clocks?
+
+>    - interrupts
+>  
+>  additionalProperties: false
+> @@ -56,6 +76,43 @@ allOf:
+>        properties:
+>          clocks:
+>            maxItems: 1
+> +      required:
+> +        - clocks
+> +        - clock-names
+
+You need to define the clocks for your variants or disallow them. The
+original code should be fixed as well and make the clocks fixed for all
+img-axe cases.
+
+
 
 Best regards,
 Krzysztof
