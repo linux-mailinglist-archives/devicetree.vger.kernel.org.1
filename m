@@ -1,112 +1,96 @@
-Return-Path: <devicetree+bounces-21793-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21794-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E4158052CB
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 12:27:06 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96C598052D1
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 12:28:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8FAED1C20910
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 11:27:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 19FF3B20B57
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 11:28:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91A8C6978D;
-	Tue,  5 Dec 2023 11:27:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEEB06979D;
+	Tue,  5 Dec 2023 11:28:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mab/ITuX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fQu4q2yL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E1FD26AC;
-	Tue,  5 Dec 2023 03:26:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1701775617; x=1733311617;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=OWPD/eGzPxDr4/kQ5lviw+9wKyBmE2JGu/aOr799fyU=;
-  b=mab/ITuXuETG4xRc/stKaz2hS7DHlTFDYX6qglo4wP64EF8LZaxxeGW5
-   eoIF71egxVsMI50KQqObnM5BXCcper0UQAVHGeVLmqGOusuaTg5fYQZEW
-   ZUFO8AyACfALGnabts5t3PsdMMEl6XZ7ELg5D3QZqQTtGxffwuBpEirzU
-   dVnPf6sX/cQIBFEe+bslLhrgB7TMiVvux+TLg8aWfLHWyZh0DVJ7B0ghL
-   wdReVcGkkzltuwjZbzA3ukbXQhaZmnuGFpQrvKqxdqlQ3jE/DV2JONXuP
-   Ae8Y3WD7o9CDakakRJPcjefzGTGe9S8CAOy+C5pOXWgznfcxVwFsgXnOz
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10914"; a="943605"
-X-IronPort-AV: E=Sophos;i="6.04,252,1695711600"; 
-   d="scan'208";a="943605"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Dec 2023 03:26:56 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10914"; a="1018194403"
-X-IronPort-AV: E=Sophos;i="6.04,252,1695711600"; 
-   d="scan'208";a="1018194403"
-Received: from ahunter6-mobl1.ger.corp.intel.com (HELO [10.0.2.15]) ([10.252.46.77])
-  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Dec 2023 03:26:51 -0800
-Message-ID: <8e7b6ac2-9d92-4f37-97c4-ae295f7cdbd4@intel.com>
-Date: Tue, 5 Dec 2023 13:26:47 +0200
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F8572134;
+	Tue,  5 Dec 2023 03:28:00 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-50bf7bc38c0so2455868e87.2;
+        Tue, 05 Dec 2023 03:28:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701775678; x=1702380478; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=/v7mvN9deEkGkoO3uLhdgRvmngCCOUew4NWi2nI998Y=;
+        b=fQu4q2yL3XukflwhZ5VcRL/lOS5sePv6kFbOW4t4FdNWwqe1aRT5DH458J10CshIAE
+         pwFZvaBtm9ev2MbS7q9LKQeHtVy8BsYnsS9Cb6DmYtHqaiZZ/u/+9QXA/Zbb7Ja7JbFh
+         3mgXwMZ5NAC2/O3dPIxX+9v0Fi4cuExcqSg44JMEMuosArNuoOOPJX6dDUpEW0ry0SYO
+         nvquXwBDM5F/oQmyd9HmuSoZW5M5HVzX4u6ZdP/fQim2hIOGqY2ZlnRkreEogXsVgvdj
+         XUjV7QlvPHR78USWexP89poyD4AVagFwhaA24N1V7+v0ARrC9oEIUemVEH5SrYe+ny8R
+         +tNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701775678; x=1702380478;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/v7mvN9deEkGkoO3uLhdgRvmngCCOUew4NWi2nI998Y=;
+        b=snFGANytkuAgvq8Pls+Z9PzAABwljRSN0y9evuBmr1QD/xFzm7czpQGv0o7D8fL1e+
+         ULNagKtBufeaIq4/orqkSEEcO651Aat0ZhBkl2JxIzLx1P/lU3W+GfuwqOcASC7O0l5m
+         ehzmtK5xrDuo+8uw26QyFh35Qi0eXvRrYTn4aXj8vGLbYGPkTn6v/c2rj/H7ptc6zt8X
+         PpnrVWWkTGhQ9mS4OT1w+B2DiFJJue6P8hdnLbRtvkc807nhplBNNExWU/OhWdz/QaIG
+         YWLit7XvQN6zvZXbfMg40GZnhy9QN6hPSOOcueaDxxL9pBPowEvIkyPlcrMQF33JYj3t
+         qU+g==
+X-Gm-Message-State: AOJu0YxIst/HGgHDT5WhGbg7We2T92tMOnhfYeG/+hBvfTtcFRgYyHXa
+	VLrRVyI+lDwjPpQV+NbeLv4=
+X-Google-Smtp-Source: AGHT+IFe2lA1Mf/Iiur7xxZp+MD/kz1MnNPCSfxB6taRVzZdr7Y41r+BOmqbXfAuO7Wa25P9mapKFw==
+X-Received: by 2002:a05:6512:239e:b0:50b:c30b:813a with SMTP id c30-20020a056512239e00b0050bc30b813amr4383751lfv.53.1701775678111;
+        Tue, 05 Dec 2023 03:27:58 -0800 (PST)
+Received: from skbuf ([188.27.185.68])
+        by smtp.gmail.com with ESMTPSA id cf6-20020a170906b2c600b00a1937153bddsm5951892ejb.20.2023.12.05.03.27.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Dec 2023 03:27:57 -0800 (PST)
+Date: Tue, 5 Dec 2023 13:27:55 +0200
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Serge Semin <fancer.lancer@gmail.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Jose Abreu <Jose.Abreu@synopsys.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Tomer Maimon <tmaimon77@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	openbmc@lists.ozlabs.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 05/16] net: pcs: xpcs: Move native device ID
+ macro to linux/pcs/pcs-xpcs.h
+Message-ID: <20231205112755.3am2mazwireflpkq@skbuf>
+References: <20231205103559.9605-1-fancer.lancer@gmail.com>
+ <20231205103559.9605-1-fancer.lancer@gmail.com>
+ <20231205103559.9605-6-fancer.lancer@gmail.com>
+ <20231205103559.9605-6-fancer.lancer@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7][2/4] mmc: Add Synopsys DesignWare mmc cmdq host driver
-Content-Language: en-US
-To: =?UTF-8?B?SnlhbiBDaG91IFvlkajoirflrold?= <jyanchou@realtek.com>,
- "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
- "jh80.chung@samsung.com" <jh80.chung@samsung.com>,
- "riteshh@codeaurora.org" <riteshh@codeaurora.org>,
- "robh+dt@kernel.org" <robh+dt@kernel.org>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>
-Cc: "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "asutoshd@codeaurora.org" <asutoshd@codeaurora.org>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "arnd@arndb.de" <arnd@arndb.de>,
- "briannorris@chromium.org" <briannorris@chromium.org>,
- "doug@schmorgal.com" <doug@schmorgal.com>,
- "tonyhuang.sunplus@gmail.com" <tonyhuang.sunplus@gmail.com>,
- "abel.vesa@linaro.org" <abel.vesa@linaro.org>,
- "william.qiu@starfivetech.com" <william.qiu@starfivetech.com>
-References: <20231121091101.5540-1-jyanchou@realtek.com>
- <20231121091101.5540-3-jyanchou@realtek.com>
- <655c5964-0917-4021-b254-7917b368b05f@intel.com>
- <7b4b7219c2b6430b9c320c8d9ac1cc8b@realtek.com>
-From: Adrian Hunter <adrian.hunter@intel.com>
-Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
- Business Identity Code: 0357606 - 4, Domiciled in Helsinki
-In-Reply-To: <7b4b7219c2b6430b9c320c8d9ac1cc8b@realtek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231205103559.9605-6-fancer.lancer@gmail.com>
+ <20231205103559.9605-6-fancer.lancer@gmail.com>
 
-On 5/12/23 11:19, Jyan Chou [周芷安] wrote:
->>> +
->>> +static irqreturn_t dw_mci_cqe_interrupt(int irq, void *dev_id) {
->>> +     struct dw_mci *host = dev_id;
->>> +     struct mmc_host *mmc = host->slot->mmc;
->>> +     struct cqhci_host *cq_host = NULL;
->>> +     int cmd_error = 0, data_error = 0;
->>> +
->>> +     if (host->pdata && (host->pdata->caps2 & MMC_CAP2_CQE))
->>> +             cq_host = mmc->cqe_private;
->>> +
->>> +     dw_mci_get_int(host);
->>> +
->>> +     if (host->pdata && (host->pdata->caps2 & MMC_CAP2_CQE)) {
->>> +             if (!mmc->cqe_on && !cq_host->activated)
->>
->> Shouldn't really look at internals like mmc->cqe_on or cq_host->activated.
->> There are the cqhci_host_ops ->enable() and ->disable() callbacks to keep track
->> of whether cqhci is expecting interrupts.
-> 
-> Does this means we need to use cqhci_host_ops ->enable() and ->disable() callbacks
-> instead of mmc->cqe_on && !cq_host->activated? Thanks.
+On Tue, Dec 05, 2023 at 01:35:26PM +0300, Serge Semin wrote:
+> In addition to that having all supported DW XPCS device IDs defined in
+> a sinle place will improve the code maintainability and readability.
 
-Yes.  ->enable() is always called before cqhci operation and ->disable()
-before non-cqhci operation, so they can be used to determine if an interrupt
-is for cqhci.
-
+single
 
