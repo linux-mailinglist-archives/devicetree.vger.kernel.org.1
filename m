@@ -1,57 +1,57 @@
-Return-Path: <devicetree+bounces-22009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22010-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27AB580622A
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 23:54:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A66180622C
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 23:54:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 280A11C210DA
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 22:54:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9CDBA1C210D7
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 22:54:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7B853FE57;
-	Tue,  5 Dec 2023 22:54:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B13B405CD;
+	Tue,  5 Dec 2023 22:54:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="UzXA+4sd"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="Cq6qxHO7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C3101B2
-	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 14:53:57 -0800 (PST)
-Received: by mail-pg1-x52b.google.com with SMTP id 41be03b00d2f7-5bdb0be3591so3893580a12.2
-        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 14:53:57 -0800 (PST)
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97102109
+	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 14:53:59 -0800 (PST)
+Received: by mail-pj1-x1034.google.com with SMTP id 98e67ed59e1d1-2866fe08b32so2195903a91.2
+        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 14:53:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1701816836; x=1702421636; darn=vger.kernel.org;
+        d=broadcom.com; s=google; t=1701816839; x=1702421639; darn=vger.kernel.org;
         h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=O/wmr/weYhNbbdkiGUqqvFLIh0n/WMIVZSqHfodH98c=;
-        b=UzXA+4sdZhid9WqLgH2FpXJ+apiF4ioToVuzOqSTCscJFUATdHL7Yto2ji4iNkPrte
-         /K0KPblr18ES838TQQ6ovUdszOZH5pmw/CkNwOZwIwfWsVtx/JMRUxG5/zQ30xLgqx8U
-         HNmSJjPMyu+M1pQcqCZW46CxvR91GPq7Mcr2A=
+        bh=HwjYsL5Tlarsvo+8Dq2gB9afVr7vRdLQ3Q5xOmkBvlE=;
+        b=Cq6qxHO7+NBhTLypp5PspQFoUfjvJ68iyw9v1eIli2gZPpqB3YZR6hf5aEbgfOCAwS
+         NI+vCkT1SzyLyjUngOqVaPV85gvb5VKLX0GLFTUepxX+87zyj0iT3xCBOPXTy2uNnfcH
+         UhTMVqndv/CC+av3c5EnGuRb8STttpMnYKkjk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701816836; x=1702421636;
+        d=1e100.net; s=20230601; t=1701816839; x=1702421639;
         h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=O/wmr/weYhNbbdkiGUqqvFLIh0n/WMIVZSqHfodH98c=;
-        b=p4Ix7cWwezPogMLfUCMU/Lwks3pRWdrEx6Lq7tevDzSE6UVv2t3rvzAJLlk/f5OckX
-         f6WP3McjZloFyQVoCDZLsCErZ2LyCxfhphMCyxAnvJ8gEodUR739ApZSHXzJSZShsCnH
-         banQ2jcMn+KmvcpJaWB2K1XGJ4TbrvLS6P71Rk+kELKf4B/aCaubW8agmfIIJ7bcffKA
-         cWMEwY6kKIAQe4VXDCCMQxjPTvZX87E1Edk6ASSlHMuS0MCr9Qq0qZgoYFWnwUQNtElW
-         VPVhICqTDK0KCz+Wy9phQC/LRR+KsabxTsEGEn+lgys90V1ikjPTmzjEPS2XXjC2zVel
-         L/Eg==
-X-Gm-Message-State: AOJu0YxOwUP8zDZVezzCS8DzRSY6yQgsesCjFhRWDe7BZUb9xrwusr03
-	fSyo1qdmyzdnUMAA69fy9uhd9A==
-X-Google-Smtp-Source: AGHT+IGLxIlw0SwyGjBsEcWrWY83y81rMHY6VtpjD21BgHc4IHhwppZWwiEeyz2s37g9rkjAXCdQiQ==
-X-Received: by 2002:a17:90a:195a:b0:286:6cc1:3f05 with SMTP id 26-20020a17090a195a00b002866cc13f05mr11254pjh.60.1701816836376;
-        Tue, 05 Dec 2023 14:53:56 -0800 (PST)
+        bh=HwjYsL5Tlarsvo+8Dq2gB9afVr7vRdLQ3Q5xOmkBvlE=;
+        b=fjK0calILHooiyvieKej3s2VpW8wsxbQTyjLZUFjkSSUx+gNjbd2pkupOAzXVB23ju
+         A78t/TJ3E6aL6JC9HbRB7yIGzhXtKWMg/U9NZFYRRfTAJW2aQqI9Hf61UkU6d+v9iOq/
+         Iow0WI8q3KN0fIj1PSrPEPe3P+3B4yN+BmsNVpWcq019YKkkNzEXmcU1RmdezZMZeXM0
+         G2s9XY4DNs3CGrsyyhrjWY+pbMGA6q3PLYhwwzHO1ur4j6EcO6MtuoyXtjh+oL5hCpki
+         H5wi+Ge+V2lj9RZrJNwQXi8cX0xoYYsomBj3jJJoWSwPDQb8rPRN9i+/F8jNQYqzrtEc
+         Xq3Q==
+X-Gm-Message-State: AOJu0Yy8gdv3WGqaQhVxibOJw95cq3VypjxpggnlDpuecmTuJShPm7Nw
+	AqzvdEZ6CB9utnsLv0GwrxNX7A==
+X-Google-Smtp-Source: AGHT+IFYbUtyr+kjEBl/ZGL38l55KGT0QAEq6vxBxPk5NgMFLbcWapYZckycknvjx/MsDxU4Hr4VsA==
+X-Received: by 2002:a17:90b:3141:b0:286:8672:51e4 with SMTP id ip1-20020a17090b314100b00286867251e4mr12940pjb.16.1701816838972;
+        Tue, 05 Dec 2023 14:53:58 -0800 (PST)
 Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id lr4-20020a17090b4b8400b002839679c23dsm5261839pjb.13.2023.12.05.14.53.55
+        by smtp.gmail.com with ESMTPSA id lr4-20020a17090b4b8400b002839679c23dsm5261839pjb.13.2023.12.05.14.53.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Dec 2023 14:53:55 -0800 (PST)
-Message-ID: <361289df-6a76-4a83-b027-318dcfa3817a@broadcom.com>
-Date: Tue, 5 Dec 2023 14:53:54 -0800
+        Tue, 05 Dec 2023 14:53:57 -0800 (PST)
+Message-ID: <ae9171c1-af2c-4bd2-82f4-a7598aa92959@broadcom.com>
+Date: Tue, 5 Dec 2023 14:53:56 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,7 +59,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V4 2/3] usb: xhci: xhci-plat: Add support for BCM2711
+Subject: Re: [PATCH V4 3/3] ARM: dts: bcm2711: Add BCM2711 xHCI support
 To: Stefan Wahren <wahrenst@gmx.net>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
  Rob Herring <robh+dt@kernel.org>,
@@ -69,7 +69,7 @@ Cc: bcm-kernel-feedback-list@broadcom.com, Cyril Brulebois <kibi@debian.org>,
  linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org
 References: <20231205200531.8232-1-wahrenst@gmx.net>
- <20231205200531.8232-3-wahrenst@gmx.net>
+ <20231205200531.8232-4-wahrenst@gmx.net>
 From: Florian Fainelli <florian.fainelli@broadcom.com>
 Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
  xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
@@ -103,18 +103,20 @@ Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
  MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
  7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
  95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <20231205200531.8232-3-wahrenst@gmx.net>
+In-Reply-To: <20231205200531.8232-4-wahrenst@gmx.net>
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-	boundary="000000000000072cf8060bcb1c86"
+	boundary="0000000000002f0a0d060bcb1c63"
 
---000000000000072cf8060bcb1c86
+--0000000000002f0a0d060bcb1c63
 Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 On 12/5/23 12:05, Stefan Wahren wrote:
-> With the introduction of a BCM2711 specific compatible, this also
-> needs to be added to the xHCI driver.
+> The BCM2711 SoC also has a mostly generic xHCI. The USB port is
+> currently only usable on the Compute Module 4 (e.g. via IO board).
+> Because DWC2 and xHCI share the same PHY, we let the bootloader
+> enable it on demand.
 > 
 > Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
 
@@ -124,7 +126,7 @@ Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
 Florian
 
 
---000000000000072cf8060bcb1c86
+--0000000000002f0a0d060bcb1c63
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -195,15 +197,15 @@ kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
 NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
 AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
 LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIIaIt+5fzTU0P04D
-2nOQiRcvhh6ONxkVcjUeWfkO/6y0MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTIzMTIwNTIyNTM1NlowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
+/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIHhKX/agydoQxjA5
+CTGkcWEO5/CbTbUvsqGsz63K/qIDMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
+AQkFMQ8XDTIzMTIwNTIyNTM1OVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
 AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQC8m7k0wSZ8QY7pjARb5xsBgpSfGydRgjmK
-a/byP1wLVgf1yQ2IEQR5+F3iqUIXMMT54pbB/tupqkRVQyBi1gtZKw3xpVz+BClsJwqUy3ZIZaaO
-bdmzpYCR4zXqd+DmIigWFwe/T2WYROnbwDaMkxgQoCd5luSRMJvnStmAIdlhW4B6hFlsDyGpWSUJ
-xzPeZ6g90SZ204tj6F9/uWG0AkweZbpOsewpu5S7XxVj9A67LBmm9IjWwWvgwzmmgt0ZDAVxqCZd
-8Bv1GT/lkJuqUWqXbgD7y+OqN2GVTkIXUa0FjxujikjyCNXjDhUICdr8Eu6W+fhJUIygVvEHhoFO
-fNIe
---000000000000072cf8060bcb1c86--
+MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQAA/Vtna00TEuf57oOwEdul5rFi0HkzuaDL
+eFm4O28p9eU35dHkyxxjLC2W74zzfm/cFGfO6E0FsleKW3J03sddao9iUvk4U8BbvugfXz2qtlMW
+JvYKbusZNW9iwBgxX3o9f5ApSoV4s4iv920xUs8FdRB+pqcBAb9iXDZAQZHB4I57g/unlKsvzFKJ
+Sm5GWyOqfoKo/RnKogo0bDNhoy78dyqJ6OUw3aTujNUNuCq1YpNl9IPWPBY8mpcjTnBLD4odIK2D
+vQ0JIwXLjG/CUiw8bynWVN8HrEQBpR7c0NmKL3dgZhVUdxMJ8HDgGDAVaLAhekSZ8E6runJvqGLF
+7tqH
+--0000000000002f0a0d060bcb1c63--
 
