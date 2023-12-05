@@ -1,204 +1,111 @@
-Return-Path: <devicetree+bounces-21943-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21944-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 570FD805AE8
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 18:12:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6239D805AEB
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 18:13:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F95E281F99
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 17:12:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 180D71F21DFC
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 17:13:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 557ED6929B;
-	Tue,  5 Dec 2023 17:12:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2498E692A7;
+	Tue,  5 Dec 2023 17:13:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QBxqVkc1"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="TYqKDZYv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29F4769280;
-	Tue,  5 Dec 2023 17:12:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50413C433CA;
-	Tue,  5 Dec 2023 17:12:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701796336;
-	bh=+0SRtpBwj79hIz/hHBCulYEHeN2HzGzV1N8GdMPi31w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QBxqVkc1BziMmuPR3tIkkMNgJr+V3run3T4gG81YFKuJTAzX/zKyDCkEzv7frte7m
-	 lAT1Artq+rZz/ciZE1ZjUffmsv718UE2U6YvMqCtFHC7LfI4go6ThDchoT4vKQ4OMK
-	 Mf4ikzZ/4aJy7xjamZk7AdokjjW3bf4DWDvonwbsryiBj1Yd5KXmb16OyJD8DtTFB/
-	 j0BXj9qdVSTsQQTvtZUYaQFBFF0L/YW0OcjTlwk0TbtgKgBon3piss3mXQGuen0iIo
-	 V8+4NdEQhNh+q0kBH4psHqHgnyNRG55uDj9+vhMPIgSntYHeeu0RxO0Rt/qm0P2F5W
-	 9ChT+OSFwLXtw==
-Date: Tue, 5 Dec 2023 17:12:10 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-	Support Opensource <support.opensource@diasemi.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-	Steve Twiss <stwiss.opensource@diasemi.com>,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v3.1 8/8] dt-bindings: mfd: dlg,da9063: Convert da9062 to
- json-schema
-Message-ID: <20231205-negate-matrix-0e55c151017b@spud>
-References: <20231204172510.35041-1-biju.das.jz@bp.renesas.com>
- <20231204172510.35041-9-biju.das.jz@bp.renesas.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20464A9;
+	Tue,  5 Dec 2023 09:13:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1701796392; x=1733332392;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=BmifUTMaKj9dY4/DK95TnLsaZxvxHwv5Do/Twvz99vk=;
+  b=TYqKDZYvjw9GhQCnF+VMSEXEXZsOuiGCpqDGxXauUJSrlOLL5d+qQMK8
+   Xt5ly7QWGeTkrWHuvC/f4Th6TGPoG/VFEfsXMLcnyvGpDD205B5sniJGk
+   uK4EPjl3aGFGwluB6Vra1ojBQOeRYnLq+y6VrM0XPK+mYVP9KTjaF7qua
+   NlpnDdwTfkF7b95ShWYw+TwxtrmOrMF4hphH0JjWqL2TxSqrcGf5hsK6f
+   6zXSPkgYjcgoyKtBuoHmtoqEx09BLyN0nwNrjSgKimXeyO14/bC+anzME
+   MMp37CDvdkr00zzdmhCqsrXVwq49oe8bIreMqmKsw8NBPTZ7tHslZreaL
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="984046"
+X-IronPort-AV: E=Sophos;i="6.04,252,1695711600"; 
+   d="scan'208";a="984046"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Dec 2023 09:13:11 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="861813064"
+X-IronPort-AV: E=Sophos;i="6.04,252,1695711600"; 
+   d="scan'208";a="861813064"
+Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
+  by FMSMGA003.fm.intel.com with ESMTP; 05 Dec 2023 09:13:06 -0800
+Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rAYyl-0009Qk-27;
+	Tue, 05 Dec 2023 17:13:03 +0000
+Date: Wed, 6 Dec 2023 01:12:25 +0800
+From: kernel test robot <lkp@intel.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Banajit Goswami <bgoswami@quicinc.com>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
+Cc: oe-kbuild-all@lists.linux.dev, linux-arm-msm@vger.kernel.org,
+	alsa-devel@alsa-project.org, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v2 5/5] ASoC: codecs: Add WCD939x Codec driver
+Message-ID: <202312060158.z29IZpw9-lkp@intel.com>
+References: <20231201-topic-sm8650-upstream-wcd939x-codec-v2-5-94ed814b25aa@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="4rzgZ3xOApeS7mXd"
-Content-Disposition: inline
-In-Reply-To: <20231204172510.35041-9-biju.das.jz@bp.renesas.com>
-
-
---4rzgZ3xOApeS7mXd
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20231201-topic-sm8650-upstream-wcd939x-codec-v2-5-94ed814b25aa@linaro.org>
 
-On Mon, Dec 04, 2023 at 05:25:10PM +0000, Biju Das wrote:
+Hi Neil,
 
-> @@ -60,8 +85,65 @@ properties:
->  required:
->    - compatible
->    - reg
-> -  - interrupts
-> -  - interrupt-controller
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - dlg,da9063
-> +              - dlg,da9063l
-> +    then:
-> +      properties:
-> +        thermal: false
-> +        gpio: false
-> +        gpio-controller: false
-> +        "#gpio-cells": false
-> +        regulators:
-> +          patternProperties:
-> +            "^buck[1-4]$": false
-> +      required:
-> +        - interrupts
-> +        - interrupt-controller
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - dlg,da9062
-> +    then:
-> +      properties:
-> +        regulators:
-> +          patternProperties:
-> +            "^(ldo([5-9]|10|11)|bcore([1-2]|s-merged)|b(pro|mem|io|peri)=
-|bmem-bio-merged)$": false
-> +      required:
-> +        - gpio
-> +        - onkey
-> +        - rtc
-> +        - thermal
-> +        - watchdog
+kernel test robot noticed the following build errors:
 
-Why are these required for the 9062 (and another set for the 9061)?
-The original binding does not seem to require them, nor does the yaml
-binding for the 9063.
+[auto build test ERROR on broonie-sound/for-next]
+[also build test ERROR on linus/master v6.7-rc4 next-20231205]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - dlg,da9061
-> +    then:
-> +      properties:
-> +        gpio: false
-> +        gpio-controller: false
-> +        "#gpio-cells": false
-> +        regulators:
-> +          patternProperties:
-> +            "^(ldo([5-9]|10|11)|bcore([1-2]|s-merged)|b(pro|mem|io|peri)=
-|bmem-bio-merged|buck4)$": false
-> +        rtc: false
-> +      required:
-> +        - onkey
-> +        - thermal
-> +        - watchdog
-> =20
->  additionalProperties: false
-> =20
-> @@ -118,4 +200,98 @@ examples:
->          };
->        };
->      };
-> +
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/regulator/dlg,da9063-regulator.h>
-> +    i2c {
-> +      #address-cells =3D <1>;
-> +      #size-cells =3D <0>;
-> +      pmic@58 {
-> +        compatible =3D "dlg,da9062";
-> +        reg =3D <0x58>;
-> +        #interrupt-cells =3D <2>;
-> +        interrupt-parent =3D <&gpio1>;
-> +        interrupts =3D <2 IRQ_TYPE_LEVEL_LOW>;
-> +        interrupt-controller;
-> +
-> +        gpio {
-> +          compatible =3D "dlg,da9062-gpio";
-> +          status =3D "disabled";
+url:    https://github.com/intel-lab-lkp/linux/commits/Neil-Armstrong/ASoC-dt-bindings-document-WCD939x-Audio-Codec/20231202-000916
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+patch link:    https://lore.kernel.org/r/20231201-topic-sm8650-upstream-wcd939x-codec-v2-5-94ed814b25aa%40linaro.org
+patch subject: [PATCH v2 5/5] ASoC: codecs: Add WCD939x Codec driver
+config: arm64-randconfig-r123-20231204 (https://download.01.org/0day-ci/archive/20231206/202312060158.z29IZpw9-lkp@intel.com/config)
+compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project.git 4a5ac14ee968ff0ad5d2cc1ffa0299048db4c88a)
+reproduce: (https://download.01.org/0day-ci/archive/20231206/202312060158.z29IZpw9-lkp@intel.com/reproduce)
 
-Why add it disabled? This should be enabled IMO.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202312060158.z29IZpw9-lkp@intel.com/
 
-> +        rtc {
-> +          compatible =3D "dlg,da9062-rtc";
-> +          status =3D "disabled";
-> +        };
-> +
-> +        thermal {
-> +          compatible =3D "dlg,da9062-thermal";
-> +          status =3D "disabled";
-> +        };
+All errors (new ones prefixed by >>):
 
-Ditto for these.
+>> ld.lld: error: undefined symbol: typec_switch_set
+   >>> referenced by wcd939x.c
+   >>>               sound/soc/codecs/wcd939x.o:(wcd939x_swap_gnd_mic) in archive vmlinux.a
 
-Thanks,
-Conor.
-
-
---4rzgZ3xOApeS7mXd
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZW9Z6QAKCRB4tDGHoIJi
-0s25AQCT8XSj7t9IWgumkPnfPudYqItXou/tVFS/+9+gGopdIQD5AUYZftVFIznQ
-csQ+dxbWkG9X4t5mJHnZ9/RohqMsFAU=
-=qT5H
------END PGP SIGNATURE-----
-
---4rzgZ3xOApeS7mXd--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
