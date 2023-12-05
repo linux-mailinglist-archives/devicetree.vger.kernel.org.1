@@ -1,171 +1,171 @@
-Return-Path: <devicetree+bounces-21920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21921-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09AA3805996
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 17:13:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E87280599F
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 17:13:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3AD0D1C20FBA
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 16:13:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C77801F21876
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 16:13:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69C1663DED;
-	Tue,  5 Dec 2023 16:13:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD56C63DFB;
+	Tue,  5 Dec 2023 16:13:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="MBmWascI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A6BCC3
-	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 08:13:06 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rAY21-00048v-Nv; Tue, 05 Dec 2023 17:12:21 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rAY1z-00DmUU-DU; Tue, 05 Dec 2023 17:12:19 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rAY1z-00EqaV-2n; Tue, 05 Dec 2023 17:12:19 +0100
-Date: Tue, 5 Dec 2023 17:12:18 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Thierry Reding <thierry.reding@gmail.com>
-Cc: David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Lee Jones <lee@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Tomasz Figa <tomasz.figa@gmail.com>,
-	Sylwester Nawrocki <s.nawrocki@samsung.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Alessandro Zummo <a.zummo@towertech.it>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Jaehoon Chung <jh80.chung@samsung.com>,
-	Sam Protsenko <semen.protsenko@linaro.org>,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
-	linux-iio@vger.kernel.org, linux-mmc@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
-	linux-rtc@vger.kernel.org, linux-serial@vger.kernel.org,
-	alsa-devel@alsa-project.org, linux-sound@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	kernel@pengutronix.de
-Subject: Re: (subset) [PATCH 00/17] dt-bindings: samsung: add specific
- compatibles for existing SoC
-Message-ID: <20231205161218.wymlzvhk4pnnkwze@pengutronix.de>
-References: <20231108104343.24192-1-krzysztof.kozlowski@linaro.org>
- <170119374454.445690.515311393756577368.b4-ty@gmail.com>
- <20231128205841.al23ra5s34rn3muj@pengutronix.de>
- <ZW8ZNZ_FJSV8fq-U@orome.fritz.box>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13A8D9E;
+	Tue,  5 Dec 2023 08:13:22 -0800 (PST)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B5GD8oE130667;
+	Tue, 5 Dec 2023 10:13:08 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1701792788;
+	bh=hV74SP8aQqHLR+Ir12KG2Sb61JQrmfg9au5Yy62/M9w=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=MBmWascIjkIHdrKUhqfCF6gZLtJ2f3gKGzd0rAo+Xgo1xYBDOPvBoirlfrXSaA0uN
+	 +DMXBMazbuufvrdcVPWo5NEuZh6n6eog8VXkySSKHJ4B0893VJAVlRhJXcrtZcC1Wk
+	 esnh7+M+UvhoADPMAJNuqUzaIaspVQfps1qtVUjY=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B5GD8OQ091013
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 5 Dec 2023 10:13:08 -0600
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 5
+ Dec 2023 10:13:08 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 5 Dec 2023 10:13:07 -0600
+Received: from [10.249.36.163] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B5GD7Me104930;
+	Tue, 5 Dec 2023 10:13:07 -0600
+Message-ID: <c50f5dc2-8ab8-4213-a809-fcd4cd18589d@ti.com>
+Date: Tue, 5 Dec 2023 10:13:07 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="dyjed4xxkou772mg"
-Content-Disposition: inline
-In-Reply-To: <ZW8ZNZ_FJSV8fq-U@orome.fritz.box>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] arm64: dts: ti: k3-j721e-evm: Add overlay for
+ PCIE0 Endpoint Mode
+Content-Language: en-US
+To: Siddharth Vadapalli <s-vadapalli@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <r-gunasekaran@ti.com>,
+        <srk@ti.com>
+References: <20231115085204.3578616-1-s-vadapalli@ti.com>
+ <20231115085204.3578616-2-s-vadapalli@ti.com>
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <20231115085204.3578616-2-s-vadapalli@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
+On 11/15/23 2:52 AM, Siddharth Vadapalli wrote:
+> Add overlay to enable the PCIE0 instance of PCIe on J721E-EVM in
+> Endpoint mode of operation.
+> 
+> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> ---
+>   arch/arm64/boot/dts/ti/Makefile               |  3 ++
+>   .../boot/dts/ti/k3-j721e-evm-pcie0-ep.dtso    | 53 +++++++++++++++++++
+>   2 files changed, 56 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/ti/k3-j721e-evm-pcie0-ep.dtso
+> 
+> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+> index 77a347f9f47d..5620db44d4dc 100644
+> --- a/arch/arm64/boot/dts/ti/Makefile
+> +++ b/arch/arm64/boot/dts/ti/Makefile
+> @@ -66,6 +66,8 @@ dtb-$(CONFIG_ARCH_K3) += k3-j7200-evm.dtb
+>   k3-j721e-evm-dtbs := k3-j721e-common-proc-board.dtb k3-j721e-evm-quad-port-eth-exp.dtbo
+>   dtb-$(CONFIG_ARCH_K3) += k3-j721e-beagleboneai64.dtb
+>   dtb-$(CONFIG_ARCH_K3) += k3-j721e-evm.dtb
+> +k3-j721e-evm-pcie0-ep-dtbs := k3-j721e-evm.dtb k3-j721e-evm-pcie0-ep.dtbo
+> +dtb-$(CONFIG_ARCH_K3) += k3-j721e-evm-pcie0-ep.dtb
 
---dyjed4xxkou772mg
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Do you really need to produce this pre-combined DTB file? If you would rather
+just the overlay produced which could be applied at load-time (I prefer this),
+then you should do as Jai has done[0]. Add just the overlay, and test its
+application using a dummy target.
 
-Hello Thierry,
+Andrew
 
-On Tue, Dec 05, 2023 at 01:36:05PM +0100, Thierry Reding wrote:
-> On Tue, Nov 28, 2023 at 09:58:41PM +0100, Uwe Kleine-K=F6nig wrote:
-> > On Tue, Nov 28, 2023 at 06:49:23PM +0100, Thierry Reding wrote:
-> > >=20
-> > > On Wed, 08 Nov 2023 11:43:26 +0100, Krzysztof Kozlowski wrote:
-> > > > Merging
-> > > > =3D=3D=3D=3D=3D=3D=3D
-> > > > I propose to take entire patchset through my tree (Samsung SoC), be=
-cause:
-> >     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> >=20
-> > > > 1. Next cycle two new SoCs will be coming (Google GS101 and ExynosA=
-utov920), so
-> > > >    they will touch the same lines in some of the DT bindings (not a=
-ll, though).
-> > > >    It is reasonable for me to take the bindings for the new SoCs, t=
-o have clean
-> > > >    `make dtbs_check` on the new DTS.
-> > > > 2. Having it together helps me to have clean `make dtbs_check` with=
-in my tree
-> > > >    on the existing DTS.
-> > > > 3. No drivers are affected by this change.
-> > > > 4. I plan to do the same for Tesla FSD and Exynos ARM32 SoCs, thus =
-expect
-> > > >    follow up patchsets.
-> > > >=20
-> > > > [...]
-> > >=20
-> > > Applied, thanks!
-> > >=20
-> > > [12/17] dt-bindings: pwm: samsung: add specific compatibles for exist=
-ing SoC
-> > >         commit: 5d67b8f81b9d598599366214e3b2eb5f84003c9f
-> >=20
-> > You didn't honor (or even comment) Krzysztof's proposal to take the
-> > whole patchset via his tree (marked above). Was there some off-list
-> > agreement?
->=20
-> I had read all that and then looking at patchwork saw that you had
-> marked all other patches in the series as "handled-elsewhere" and only
-> this one was left as "new", so I assumed that, well, everything else was
-> handled elsewhere and I was supposed to pick this one up...
+[0] https://www.spinics.net/lists/kernel/msg5015247.html
 
-I didn't mark it as handled-elsewhere, but my expectation was that you
-might want to send an Ack only.
-
-For today's series by Krzysztof I acked and marked the patch as
-handled-elsewhere (together with the rest of the series that isn't pwm
-related). So you have to consult your inbox if you still want to send an
-Ack for that one.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---dyjed4xxkou772mg
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmVvS+IACgkQj4D7WH0S
-/k4wwAf6AlMbQoIitSxoLyL8EPf/AFm1OReNOJVSWyeoYnXJ6AOvGwmxAqCesfcV
-8NCugoHjF1JiraIJPpyVgrmmas8T0uk5v4N32GPcL7ld1hBZGsH8B9GsuTioS5R7
-+pMOUKwLPmf+vPiDCjkvAL9B3HOBCCSHjU6g9vf2b4O0dNvJK+vVFOuKPF5r+GQr
-fFPsuCRnPkkHNn8PWA6HWPUR+0V1rsyiabnsgxlnC6PPyu64tC9aD2Xto0+kM0D0
-WAdt4elH5P373tccyXATCZK4xaJWO4eHbzJTeVOCeEqcjB55BwuzMgVP8xQ85Mrx
-RHto9piBhu5zc5d4EcBjLTp4QpooUg==
-=k470
------END PGP SIGNATURE-----
-
---dyjed4xxkou772mg--
+>   dtb-$(CONFIG_ARCH_K3) += k3-j721e-evm-gesi-exp-board.dtbo
+>   dtb-$(CONFIG_ARCH_K3) += k3-j721e-sk.dtb
+>   
+> @@ -85,4 +87,5 @@ DTC_FLAGS_k3-am625-sk += -@
+>   DTC_FLAGS_k3-am62-lp-sk += -@
+>   DTC_FLAGS_k3-am6548-iot2050-advanced-m2 += -@
+>   DTC_FLAGS_k3-j721e-common-proc-board += -@
+> +DTC_FLAGS_k3-j721e-evm += -@
+>   DTC_FLAGS_k3-j721s2-common-proc-board += -@
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-evm-pcie0-ep.dtso b/arch/arm64/boot/dts/ti/k3-j721e-evm-pcie0-ep.dtso
+> new file mode 100644
+> index 000000000000..0c82a13b65a4
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-evm-pcie0-ep.dtso
+> @@ -0,0 +1,53 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/**
+> + * DT Overlay for enabling PCIE0 instance in Endpoint Configuration with the
+> + * J7 common processor board.
+> + *
+> + * J7 Common Processor Board Product Link: https://www.ti.com/tool/J721EXCPXEVM
+> + *
+> + * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
+> + */
+> +
+> +/dts-v1/;
+> +/plugin/;
+> +
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/soc/ti,sci_pm_domain.h>
+> +
+> +#include "k3-pinctrl.h"
+> +
+> +/*
+> + * Since Root Complex and Endpoint modes are mutually exclusive
+> + * disable Root Complex mode.
+> + */
+> +&pcie0_rc {
+> +	status = "disabled";
+> +};
+> +
+> +&cbass_main {
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +	interrupt-parent = <&gic500>;
+> +
+> +	pcie0_ep: pcie-ep@2900000 {
+> +		compatible = "ti,j721e-pcie-ep";
+> +		reg = <0x00 0x02900000 0x00 0x1000>,
+> +		      <0x00 0x02907000 0x00 0x400>,
+> +		      <0x00 0x0d000000 0x00 0x00800000>,
+> +		      <0x00 0x10000000 0x00 0x08000000>;
+> +		reg-names = "intd_cfg", "user_cfg", "reg", "mem";
+> +		interrupt-names = "link_state";
+> +		interrupts = <GIC_SPI 318 IRQ_TYPE_EDGE_RISING>;
+> +		ti,syscon-pcie-ctrl = <&scm_conf 0x4070>;
+> +		max-link-speed = <3>;
+> +		num-lanes = <1>;
+> +		power-domains = <&k3_pds 239 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 239 1>;
+> +		clock-names = "fck";
+> +		max-functions = /bits/ 8 <6>;
+> +		max-virtual-functions = /bits/ 8 <4 4 4 4 0 0>;
+> +		dma-coherent;
+> +		phys = <&serdes0_pcie_link>;
+> +		phy-names = "pcie-phy";
+> +	};
+> +};
 
