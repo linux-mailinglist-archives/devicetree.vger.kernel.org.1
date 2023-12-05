@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-21683-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21682-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9405F804DF5
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 10:35:08 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91A85804DF6
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 10:35:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C4C781C20C49
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 09:35:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CBBEBB20B6F
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 09:35:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 503323FB2E;
-	Tue,  5 Dec 2023 09:35:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCC013FB29;
+	Tue,  5 Dec 2023 09:35:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Y+iL0iE6"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Q+UD8J3T"
 X-Original-To: devicetree@vger.kernel.org
 Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8957FA7;
-	Tue,  5 Dec 2023 01:34:58 -0800 (PST)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B59Yk6X009267;
-	Tue, 5 Dec 2023 03:34:46 -0600
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60246B2;
+	Tue,  5 Dec 2023 01:34:59 -0800 (PST)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B59YqZt009280;
+	Tue, 5 Dec 2023 03:34:52 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1701768886;
-	bh=42Uxhd/vo0d/cPj9rq2rsYuSN4TVQOfYppeWYBS8MLs=;
-	h=From:To:CC:Subject:Date;
-	b=Y+iL0iE6xWahlf1M5OcK9MZalnVGXd2DUgJBXCjGc+wK76TjPLqaI2FqJ7n+B0aNV
-	 PdSFkAfXrfzWZoZ0r/uWuUHyYnLjNY6l/hRbpU1Q5ggtLLoCGHf7fxZjHNrmDmudxF
-	 Qa1poXJDSA0XHCuyU1E7dTvBDHOk9BVnGp+FdOsE=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B59Yk4K082150
+	s=ti-com-17Q1; t=1701768892;
+	bh=UfjBhtaZZ/NKcvDIFDopEMmKDLrafRemrAtn6Pjaw1I=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=Q+UD8J3Tmie4w5lAjj5Ylj5Oc05z43MTtVcyU2+4YX+HzgXYsw8zYQE07UEqcK50d
+	 Tw/fTxpnPIt7TphinOvhcjb/+yCwjDLSC7GDD9n3uo49pS29zJ7A9h1FElUa9LT6r1
+	 AtQcQ14jn9ioRHpCMLbCMxb2O8mb7sLJgVpfSylw=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B59YqY5009020
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 5 Dec 2023 03:34:46 -0600
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 5 Dec 2023 03:34:52 -0600
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 5
- Dec 2023 03:34:45 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ Dec 2023 03:34:51 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 5 Dec 2023 03:34:45 -0600
+ Frontend Transport; Tue, 5 Dec 2023 03:34:51 -0600
 Received: from a0497641-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B59YeMl010566;
-	Tue, 5 Dec 2023 03:34:40 -0600
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B59YeMm010566;
+	Tue, 5 Dec 2023 03:34:46 -0600
 From: Neha Malcom Francis <n-francis@ti.com>
 To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
         <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
@@ -53,10 +53,12 @@ CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
         <jpanis@baylibre.com>, <u-kumar1@ti.com>, <j-luthra@ti.com>,
         <vaishnav.a@ti.com>, <hnagalla@ti.com>, <devarsht@ti.com>,
         <n-francis@ti.com>
-Subject: [PATCH v9 0/7] Add TPS6594 PMIC support on several boards
-Date: Tue, 5 Dec 2023 15:04:32 +0530
-Message-ID: <20231205093439.2298296-1-n-francis@ti.com>
+Subject: [PATCH v9 1/7] arm64: dts: ti: k3-j7200-som-p0: Add TP6594 family PMICs
+Date: Tue, 5 Dec 2023 15:04:33 +0530
+Message-ID: <20231205093439.2298296-2-n-francis@ti.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20231205093439.2298296-1-n-francis@ti.com>
+References: <20231205093439.2298296-1-n-francis@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,112 +69,208 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-TPS6594 is a Power Management IC which provides regulators and others
-features like GPIOs, RTC, watchdog, ESMs (Error Signal Monitor), and
-PFSM (Pre-configurable Finite State Machine). The SoC and the PMIC can
-communicate through the I2C or SPI interfaces.
-TPS6594 is the super-set device while TPS6593 and LP8764 are derivatives.
+From: Esteban Blanc <eblanc@baylibre.com>
 
-This series adds device tree nodes for TI TPS6594 PMICs found in the
-following boards:
-- J721EXSOMXEVM:
-  Link: https://www.ti.com/tool/J721EXSOMXEVM
-- J721S2XSOMXEVM:
-  Link: https://www.ti.com/tool/J721S2XSOMXEVM
-- J7200XSOMXEVM:
-  Link: https://www.ti.com/tool/J7200XSOMXEVM
-- J784S4XEVM
-  Link: https://www.ti.com/tool/J784S4XEVM
-- SK-AM69
-  Link: https://www.ti.com/tool/SK-AM69
-- SK-TDA4VM (J721E-SK)
-  Link: https://www.ti.com/tool/SK-TDA4VM
+This patch adds support for TPS6594 PMIC family on wakup I2C0 bus.
+Theses devices provides regulators (bucks and LDOs), but also
+GPIOs, a RTC, a watchdog, an ESM (Error Signal Monitor)
+which monitors the SoC error output signal, and a PFSM
+(Pre-configurable Finite State Machine) which manages the
+operational modes of the PMIC.
 
-Boot Logs with required config (DONOTMERGE patch) enabled:
-https://gist.github.com/nehamalcom/f47fcd6183360ed8a146c9ba456202c3
-Boot Logs without config enabled:
-https://gist.github.com/nehamalcom/58217b100e614ae55726f314e02b5001
-
+Signed-off-by: Esteban Blanc <eblanc@baylibre.com>
+Signed-off-by: Jai Luthra <j-luthra@ti.com>
+Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
 ---
-Changes from v8:
-https://lore.kernel.org/all/20231128055230.342547-4-n-francis@ti.com/
-- added bootph-pre-ram to AVS regulator (Udit)
-- keeping boot logs and Tested-by tags the same (no effect to kernel)
+ arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi | 161 ++++++++++++++++++++
+ 1 file changed, 161 insertions(+)
 
-Changes from v7:
-https://lore.kernel.org/all/20231122104513.2335757-1-n-francis@ti.com/
-- (New Patches) Add support for SK boards that have TPS6594xx PMIC
-  present (J721E-SK and AM69-SK) (Nishanth)
-- Add DONOTMERGE defconfig patch to show test logs
-
-Changes from v6:
-https://lore.kernel.org/all/20230810-tps6594-v6-0-2b2e2399e2ef@ti.com/
-- Modify patch series to include only patches not merged (J7)
-- Add boot logs for all affected boards
-
-Changes from v5:
-https://lore.kernel.org/all/20230809-tps6594-v5-0-485fd3d63670@ti.com
-- Range-diff: http://0x0.st/H_fD.diff
-- Reword the patch fixing interrupt ranges for mcu domain gpio intr, and
-  add Fixes: tag
-- Also fix interrupt ranges for main domain gpio intr in the same patch
-- Change pinctrl node names to end in -pins to fix dtbs_check warnings
-- (New Patch) Enable TPS6594 in defconfig
-
-Changes from v4:
-https://lore.kernel.org/all/20230727130908.10656-1-eblanc@baylibre.com/
-- Range-diff: https://0x0.st/H_L7.diff
-- Rebased on top of linux-next
-- Fix min voltage on vdd_usb_3v3 regulator (ldo2) on j721e-som
-- Use 3-hex-digit format for pinctrl values
-
-Changes from v3:
-https://lore.kernel.org/all/20230417154832.216774-1-eblanc@baylibre.com/
-- Rebased on top of v6.5-rc1.
-- Change pinctrl number for irq pin as wkup_pmx0 was split on some boards.
-- Use already present wkup_i2c0 node instead of creating a new one.
-
-Changes from v2:
-https://lore.kernel.org/lkml/20230414112843.1358067-1-eblanc@baylibre.com/
-- Change node name as per Krzysztof review.
-- Add a fix for the interrupt range of wakeup gpio used by TPS6594 pmic
-  on J784S4.
-  The interruptions of the PMIC were not working before that.
-- Remove dependencies on other patch series as that was a mistake, see
-  https://lore.kernel.org/lkml/CRYY2V3HJ0CP.96JQ18PLZB3C@burritosblues/
-
-Changes from v1:
-https://lore.kernel.org/lkml/20230329142948.833800-1-eblanc@baylibre.com/
-- Harmonize regulators names across the different boards.
-- Adjust AVS voltage range.
-- Remove some outdated comments.
-- Add PMIC to J784S4 board.
-- Compatible string modified to match dt-bindings.
-- Add gpio-controller and gpio-cells properties.
-
-
-Esteban Blanc (2):
-  arm64: dts: ti: k3-j7200-som-p0: Add TP6594 family PMICs
-  arm64: dts: ti: k3-j721s2-som-p0: Add TP6594 family PMICs
-
-Jerome Neanne (2):
-  arm64: dts: ti: k3-j721e-som-p0: Add TP6594 family PMICs
-  arm64: dts: ti: k3-j784s4-evm: Add support for TPS6594 PMIC
-
-Neha Malcom Francis (3):
-  arm64: dts: ti: k3-am69-sk: Add support for TPS6594 PMIC
-  arm64: dts: ti: k3-j721e-sk: Add TPS6594 family PMICs
-  DONOTMERGE: arm64: defconfig: Enable TPS6594 PMIC for J7 devices
-
- arch/arm64/boot/dts/ti/k3-am69-sk.dts        | 100 +++++++++
- arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi  | 161 +++++++++++++++
- arch/arm64/boot/dts/ti/k3-j721e-sk.dts       | 158 +++++++++++++++
- arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi  | 167 +++++++++++++++
- arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi | 203 +++++++++++++++++++
- arch/arm64/boot/dts/ti/k3-j784s4-evm.dts     | 104 ++++++++++
- arch/arm64/configs/defconfig                 |   2 +-
- 7 files changed, 894 insertions(+), 1 deletion(-)
-
+diff --git a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
+index 5a300d4c8ba0..327db681199c 100644
+--- a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
+@@ -127,6 +127,14 @@ J721E_WKUP_IOPAD(0x9c, PIN_INPUT_PULLUP, 0) /* (H21) WKUP_I2C0_SDA */
+ 	};
+ };
+ 
++&wkup_pmx3 {
++	pmic_irq_pins_default: pmic-irq-default-pins {
++		pinctrl-single,pins = <
++			J721E_WKUP_IOPAD(0x01c, PIN_INPUT, 7) /* (E18) WKUP_GPIO0_84 */
++		>;
++	};
++};
++
+ &main_pmx0 {
+ 	main_i2c0_pins_default: main-i2c0-default-pins {
+ 		pinctrl-single,pins = <
+@@ -255,6 +263,7 @@ exp_som: gpio@21 {
+ };
+ 
+ &wkup_i2c0 {
++	bootph-pre-ram;
+ 	status = "okay";
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&wkup_i2c0_pins_default>;
+@@ -264,6 +273,158 @@ eeprom@50 {
+ 		compatible = "atmel,24c256";
+ 		reg = <0x50>;
+ 	};
++
++	tps659414: pmic@48 {
++		compatible = "ti,tps6594-q1";
++		reg = <0x48>;
++		ti,primary-pmic;
++		system-power-controller;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&pmic_irq_pins_default>;
++		interrupt-parent = <&wkup_gpio0>;
++		interrupts = <84 IRQ_TYPE_EDGE_FALLING>;
++
++		gpio-controller;
++		#gpio-cells = <2>;
++
++		buck1-supply = <&vsys_3v3>;
++		buck2-supply = <&vsys_3v3>;
++		buck3-supply = <&vsys_3v3>;
++		buck4-supply = <&vsys_3v3>;
++		buck5-supply = <&vsys_3v3>;
++		ldo1-supply = <&vsys_3v3>;
++		ldo2-supply = <&vsys_3v3>;
++		ldo3-supply = <&vsys_3v3>;
++		ldo4-supply = <&vsys_3v3>;
++
++		regulators {
++			bucka1: buck1 {
++				regulator-name = "vda_mcu_1v8";
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			bucka2: buck2 {
++				regulator-name = "vdd_mcuio_1v8";
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			bucka3: buck3 {
++				regulator-name = "vdd_mcu_0v85";
++				regulator-min-microvolt = <850000>;
++				regulator-max-microvolt = <850000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			bucka4: buck4 {
++				regulator-name = "vdd_ddr_1v1";
++				regulator-min-microvolt = <1100000>;
++				regulator-max-microvolt = <1100000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			bucka5: buck5 {
++				regulator-name = "vdd_phyio_1v8";
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			ldoa1: ldo1 {
++				regulator-name = "vdd1_lpddr4_1v8";
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			ldoa2: ldo2 {
++				regulator-name = "vda_dll_0v8";
++				regulator-min-microvolt = <800000>;
++				regulator-max-microvolt = <800000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			ldoa3: ldo3 {
++				regulator-name = "vdd_wk_0v8";
++				regulator-min-microvolt = <800000>;
++				regulator-max-microvolt = <800000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			ldoa4: ldo4 {
++				regulator-name = "vda_pll_1v8";
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++		};
++	};
++
++	lp876441: pmic@4c {
++		bootph-pre-ram;
++		compatible = "ti,lp8764-q1";
++		reg = <0x4c>;
++		system-power-controller;
++		interrupt-parent = <&wkup_gpio0>;
++		interrupts = <84 IRQ_TYPE_EDGE_FALLING>;
++
++		gpio-controller;
++		#gpio-cells = <2>;
++
++		buck1-supply = <&vsys_3v3>;
++		buck2-supply = <&vsys_3v3>;
++		buck3-supply = <&vsys_3v3>;
++		buck4-supply = <&vsys_3v3>;
++
++		regulators: regulators {
++			bootph-pre-ram;
++			buckb1: buck1 {
++				bootph-pre-ram;
++				regulator-name = "vdd_cpu_avs";
++				regulator-min-microvolt = <600000>;
++				regulator-max-microvolt = <900000>;
++				regulator-always-on;
++				regulator-boot-on;
++			};
++
++			buckb2: buck2 {
++				regulator-name = "vdd_ram_0v85";
++				regulator-min-microvolt = <850000>;
++				regulator-max-microvolt = <850000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			buckb3: buck3 {
++				regulator-name = "vdd_core_0v85";
++				regulator-min-microvolt = <850000>;
++				regulator-max-microvolt = <850000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			buckb4: buck4 {
++				regulator-name = "vdd_io_1v8";
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++		};
++	};
+ };
+ 
+ &ospi0 {
 -- 
 2.34.1
 
