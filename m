@@ -1,27 +1,27 @@
-Return-Path: <devicetree+bounces-21933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21934-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC80C805A76
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FD49805A75
 	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 17:52:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9EEF2B2124B
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 16:52:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD5EC1F217DC
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 16:52:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35B7560BB9;
-	Tue,  5 Dec 2023 16:52:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 656E25F1E7;
+	Tue,  5 Dec 2023 16:52:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3886B19A2
-	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 08:52:06 -0800 (PST)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 8347119AE
+	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 08:52:07 -0800 (PST)
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4ACD0139F;
-	Tue,  5 Dec 2023 08:52:52 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A8DF9153B;
+	Tue,  5 Dec 2023 08:52:53 -0800 (PST)
 Received: from e121345-lin.cambridge.arm.com (e121345-lin.cambridge.arm.com [10.1.196.40])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 95AD03F5A1;
-	Tue,  5 Dec 2023 08:52:04 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 008143F5A1;
+	Tue,  5 Dec 2023 08:52:05 -0800 (PST)
 From: Robin Murphy <robin.murphy@arm.com>
 To: will@kernel.org
 Cc: mark.rutland@arm.com,
@@ -32,9 +32,9 @@ Cc: mark.rutland@arm.com,
 	bwicaksono@nvidia.com,
 	YWan@nvidia.com,
 	rwiley@nvidia.com
-Subject: [PATCH 1/5] perf/arm_cspmu: Simplify initialisation
-Date: Tue,  5 Dec 2023 16:51:54 +0000
-Message-Id: <9842b71263a0a5e7ebb9aebb5f9ac15e1e24ff65.1701793996.git.robin.murphy@arm.com>
+Subject: [PATCH 2/5] perf/arm_cspmu: Simplify attribute groups
+Date: Tue,  5 Dec 2023 16:51:55 +0000
+Message-Id: <f75cacb440011df35fc476cf4be37484fd044b92.1701793996.git.robin.murphy@arm.com>
 X-Mailer: git-send-email 2.39.2.101.g768bb238c484.dirty
 In-Reply-To: <cover.1701793996.git.robin.murphy@arm.com>
 References: <cover.1701793996.git.robin.murphy@arm.com>
@@ -46,122 +46,95 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-It's far simpler for implementations to literally override whichever
-default ops they want to, by initialising to the default ops first. This
-saves all the bother of checking what the impl_init_ops call has or
-hasn't touched. Make the same clear distinction for the PMIIDR override
-as well, in case we gain more sources for overriding that in future.
+The attribute group array itself is always the same, so there's no
+need to allocate it separately. Storing it directly in our instance
+data saves memory and gives us one less point of failure.
 
 Signed-off-by: Robin Murphy <robin.murphy@arm.com>
 ---
- drivers/perf/arm_cspmu/arm_cspmu.c    | 55 +++++++++++----------------
- drivers/perf/arm_cspmu/nvidia_cspmu.c |  6 ---
- 2 files changed, 22 insertions(+), 39 deletions(-)
+ drivers/perf/arm_cspmu/arm_cspmu.c | 26 +++++++++-----------------
+ drivers/perf/arm_cspmu/arm_cspmu.h |  1 +
+ 2 files changed, 10 insertions(+), 17 deletions(-)
 
 diff --git a/drivers/perf/arm_cspmu/arm_cspmu.c b/drivers/perf/arm_cspmu/arm_cspmu.c
-index 2cc35dded007..a3347b1287e6 100644
+index a3347b1287e6..f7aa2ac5fd88 100644
 --- a/drivers/perf/arm_cspmu/arm_cspmu.c
 +++ b/drivers/perf/arm_cspmu/arm_cspmu.c
-@@ -100,13 +100,6 @@
- #define ARM_CSPMU_ACTIVE_CPU_MASK		0x0
- #define ARM_CSPMU_ASSOCIATED_CPU_MASK		0x1
- 
--/* Check and use default if implementer doesn't provide attribute callback */
--#define CHECK_DEFAULT_IMPL_OPS(ops, callback)			\
--	do {							\
--		if (!ops->callback)				\
--			ops->callback = arm_cspmu_ ## callback;	\
--	} while (0)
--
- /*
-  * Maximum poll count for reading counter value using high-low-high sequence.
-  */
-@@ -408,21 +401,32 @@ static struct arm_cspmu_impl_match *arm_cspmu_impl_match_get(u32 pmiidr)
- 	return NULL;
+@@ -501,23 +501,16 @@ arm_cspmu_alloc_format_attr_group(struct arm_cspmu *cspmu)
+ 	return format_group;
  }
  
-+#define DEFAULT_IMPL_OP(name)	.name = arm_cspmu_##name
-+
- static int arm_cspmu_init_impl_ops(struct arm_cspmu *cspmu)
+-static struct attribute_group **
+-arm_cspmu_alloc_attr_group(struct arm_cspmu *cspmu)
++static int arm_cspmu_alloc_attr_groups(struct arm_cspmu *cspmu)
  {
- 	int ret = 0;
--	struct arm_cspmu_impl_ops *impl_ops = &cspmu->impl.ops;
- 	struct acpi_apmt_node *apmt_node = arm_cspmu_apmt_node(cspmu->dev);
- 	struct arm_cspmu_impl_match *match;
+-	struct attribute_group **attr_groups = NULL;
+-	struct device *dev = cspmu->dev;
++	const struct attribute_group **attr_groups = cspmu->attr_groups;
+ 	const struct arm_cspmu_impl_ops *impl_ops = &cspmu->impl.ops;
  
--	/*
--	 * Get PMU implementer and product id from APMT node.
--	 * If APMT node doesn't have implementer/product id, try get it
--	 * from PMIIDR.
--	 */
--	cspmu->impl.pmiidr =
--		(apmt_node->impl_id) ? apmt_node->impl_id :
--				       readl(cspmu->base0 + PMIIDR);
-+	/* Start with a default PMU implementation */
-+	cspmu->impl.module = THIS_MODULE;
-+	cspmu->impl.pmiidr = readl(cspmu->base0 + PMIIDR);
-+	cspmu->impl.ops = (struct arm_cspmu_impl_ops) {
-+		DEFAULT_IMPL_OP(get_event_attrs),
-+		DEFAULT_IMPL_OP(get_format_attrs),
-+		DEFAULT_IMPL_OP(get_identifier),
-+		DEFAULT_IMPL_OP(get_name),
-+		DEFAULT_IMPL_OP(is_cycle_counter_event),
-+		DEFAULT_IMPL_OP(event_type),
-+		DEFAULT_IMPL_OP(event_filter),
-+		DEFAULT_IMPL_OP(set_ev_filter),
-+		DEFAULT_IMPL_OP(event_attr_is_visible),
-+	};
-+
-+	/* Firmware may override implementer/product ID from PMIIDR */
-+	if (apmt_node->impl_id)
-+		cspmu->impl.pmiidr = apmt_node->impl_id;
+ 	cspmu->identifier = impl_ops->get_identifier(cspmu);
+ 	cspmu->name = impl_ops->get_name(cspmu);
  
- 	/* Find implementer specific attribute ops. */
- 	match = arm_cspmu_impl_match_get(cspmu->impl.pmiidr);
-@@ -450,24 +454,9 @@ static int arm_cspmu_init_impl_ops(struct arm_cspmu *cspmu)
- 		}
- 
- 		mutex_unlock(&arm_cspmu_lock);
-+	}
- 
--		if (ret)
--			return ret;
--	} else
--		cspmu->impl.module = THIS_MODULE;
+ 	if (!cspmu->identifier || !cspmu->name)
+-		return NULL;
 -
--	/* Use default callbacks if implementer doesn't provide one. */
--	CHECK_DEFAULT_IMPL_OPS(impl_ops, get_event_attrs);
--	CHECK_DEFAULT_IMPL_OPS(impl_ops, get_format_attrs);
--	CHECK_DEFAULT_IMPL_OPS(impl_ops, get_identifier);
--	CHECK_DEFAULT_IMPL_OPS(impl_ops, get_name);
--	CHECK_DEFAULT_IMPL_OPS(impl_ops, is_cycle_counter_event);
--	CHECK_DEFAULT_IMPL_OPS(impl_ops, event_type);
--	CHECK_DEFAULT_IMPL_OPS(impl_ops, event_filter);
--	CHECK_DEFAULT_IMPL_OPS(impl_ops, event_attr_is_visible);
--	CHECK_DEFAULT_IMPL_OPS(impl_ops, set_ev_filter);
--
--	return 0;
-+	return ret;
+-	attr_groups = devm_kcalloc(dev, 5, sizeof(struct attribute_group *),
+-				   GFP_KERNEL);
+-	if (!attr_groups)
+-		return NULL;
++		return -ENOMEM;
+ 
+ 	attr_groups[0] = arm_cspmu_alloc_event_attr_group(cspmu);
+ 	attr_groups[1] = arm_cspmu_alloc_format_attr_group(cspmu);
+@@ -525,9 +518,9 @@ arm_cspmu_alloc_attr_group(struct arm_cspmu *cspmu)
+ 	attr_groups[3] = &arm_cspmu_cpumask_attr_group;
+ 
+ 	if (!attr_groups[0] || !attr_groups[1])
+-		return NULL;
++		return -ENOMEM;
+ 
+-	return attr_groups;
++	return 0;
  }
  
- static struct attribute_group *
-diff --git a/drivers/perf/arm_cspmu/nvidia_cspmu.c b/drivers/perf/arm_cspmu/nvidia_cspmu.c
-index 0382b702f092..5b84b701ad62 100644
---- a/drivers/perf/arm_cspmu/nvidia_cspmu.c
-+++ b/drivers/perf/arm_cspmu/nvidia_cspmu.c
-@@ -388,12 +388,6 @@ static int nv_cspmu_init_ops(struct arm_cspmu *cspmu)
- 	impl_ops->get_format_attrs		= nv_cspmu_get_format_attrs;
- 	impl_ops->get_name			= nv_cspmu_get_name;
+ static inline void arm_cspmu_reset_counters(struct arm_cspmu *cspmu)
+@@ -1166,11 +1159,10 @@ static int arm_cspmu_get_cpus(struct arm_cspmu *cspmu)
+ static int arm_cspmu_register_pmu(struct arm_cspmu *cspmu)
+ {
+ 	int ret, capabilities;
+-	struct attribute_group **attr_groups;
  
--	/* Set others to NULL to use default callback. */
--	impl_ops->event_type			= NULL;
--	impl_ops->event_attr_is_visible		= NULL;
--	impl_ops->get_identifier		= NULL;
--	impl_ops->is_cycle_counter_event	= NULL;
--
- 	return 0;
- }
+-	attr_groups = arm_cspmu_alloc_attr_group(cspmu);
+-	if (!attr_groups)
+-		return -ENOMEM;
++	ret = arm_cspmu_alloc_attr_groups(cspmu);
++	if (ret)
++		return ret;
  
+ 	ret = cpuhp_state_add_instance(arm_cspmu_cpuhp_state,
+ 				       &cspmu->cpuhp_node);
+@@ -1192,7 +1184,7 @@ static int arm_cspmu_register_pmu(struct arm_cspmu *cspmu)
+ 		.start		= arm_cspmu_start,
+ 		.stop		= arm_cspmu_stop,
+ 		.read		= arm_cspmu_read,
+-		.attr_groups	= (const struct attribute_group **)attr_groups,
++		.attr_groups	= cspmu->attr_groups,
+ 		.capabilities	= capabilities,
+ 	};
+ 
+diff --git a/drivers/perf/arm_cspmu/arm_cspmu.h b/drivers/perf/arm_cspmu/arm_cspmu.h
+index 2fe723555a6b..c9163acfe810 100644
+--- a/drivers/perf/arm_cspmu/arm_cspmu.h
++++ b/drivers/perf/arm_cspmu/arm_cspmu.h
+@@ -157,6 +157,7 @@ struct arm_cspmu {
+ 	int cycle_counter_logical_idx;
+ 
+ 	struct arm_cspmu_hw_events hw_events;
++	const struct attribute_group *attr_groups[5];
+ 
+ 	struct arm_cspmu_impl impl;
+ };
 -- 
 2.39.2.101.g768bb238c484.dirty
 
