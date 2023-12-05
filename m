@@ -1,180 +1,83 @@
-Return-Path: <devicetree+bounces-21844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12A018055A3
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 14:15:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 387748055A9
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 14:15:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD1CA1F21442
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 13:15:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E7191281A4A
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 13:15:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12A185CD05;
-	Tue,  5 Dec 2023 13:15:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EC975CD06;
+	Tue,  5 Dec 2023 13:15:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="e82s3Tzu";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="HwSdQyAW"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="gDPrHdHl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com [66.111.4.29])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C22F098;
-	Tue,  5 Dec 2023 05:14:58 -0800 (PST)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailout.nyi.internal (Postfix) with ESMTP id 395F35C013F;
-	Tue,  5 Dec 2023 08:14:58 -0500 (EST)
-Received: from imap51 ([10.202.2.101])
-  by compute5.internal (MEProxy); Tue, 05 Dec 2023 08:14:58 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-type:content-type:date:date:from:from:in-reply-to
-	:in-reply-to:message-id:mime-version:references:reply-to:sender
-	:subject:subject:to:to; s=fm3; t=1701782098; x=1701868498; bh=ei
-	yfcAaW8S/0cnNR5qvKPP9FPzFqObUKOJebJtjaT4g=; b=e82s3TzuEm8iFGHKNS
-	Gcw1xRqRWMIt+B+zrl3U0DcuJVDFwt45xi8LiyrETrtYnQ1wwLupBHoIqQsyddf6
-	xLgfDKb1dMSQmJoElVvQt15tbGwy7+iNWi3jKg2rDxwVif5N6YS1cuKreesIgPUq
-	zD3DE4jkp+gB/bwz0CQTZYkghmZZNUTR5KlpTidQP9XU7RUUmL+hZipJ2tmXS7hA
-	bZyy5sT9uwijI6dPCHPag6D/oDN/VF3NFZp4mmCIvfl/cPq3WmTafwg/7a3AVA8u
-	IGUyrUlV/e8uCgKAnb/Cvf5cOBPJH88SX3/NTZXJ/FsHE0dClpcWsXkubmTc2Wfv
-	R1Ow==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:sender:subject
-	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-	:x-sasl-enc; s=fm1; t=1701782098; x=1701868498; bh=eiyfcAaW8S/0c
-	nNR5qvKPP9FPzFqObUKOJebJtjaT4g=; b=HwSdQyAWxW10UNefYT+kXCz5FDcjS
-	W3AhGVkVloQUOHSnpjTfkkghKOTbu44s5p8TcKhEl+SnyyLVMc3/Xjpvc2Ek8ySH
-	NuHNha8/kVEiyuotDB7hzu2/jYnZPzJEXWNrwtH4Yg8Fnt/K/VnXGEdS57TabMmN
-	ii8E3FocogroF9nuQ7oJOXEn26CU5wWcNFfzvz6cIAt4arVC5ovnC9okSdw0APMo
-	Nre8n6G9+BX/KZeaMvpa+Jv9S3TDwSLxOff1e/Y0/efyNaYBKuaDxSfhlXmiZrIl
-	CJ70bTRP9NN591XKuEzxPMzeRferbt7Xul1BBNaJWzOhfvLV1higsQPpQ==
-X-ME-Sender: <xms:USJvZd6q_qqg8y-myUW2OU3XdoUUet26-KY4YMbQhmxIpGJ1HIuw9w>
-    <xme:USJvZa5QkOzymByuv8k2ZrXFpUNnPL_taeqwsClWJF9URxNDSIWSOLSl5TQdCrKGt
-    YywaZXVFg3htsISz3o>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrudejkedghedtucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
-    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
-    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
-    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
-    hrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:USJvZUcGt532mfRjlVgZJK4Y2XADcxhtuKw4tFKzfx02wWZqFEGX4Q>
-    <xmx:USJvZWLi6DblaUd28BK613vl7KpjoFKhlqm4ZCa235mWj_lrpjOxnw>
-    <xmx:USJvZRI0KIfF8nQeRic7wKBrMOS9L_IdS3EPwoUhNULSNpFw4EkeAw>
-    <xmx:UiJvZbz9T_gxgOYCBAmoSkOQ8q9e95L4fubtQWiXR8-oxiJcNAF_ZA>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 7F054B60089; Tue,  5 Dec 2023 08:14:57 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-1178-geeaf0069a7-fm-20231114.001-geeaf0069
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AA53135
+	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 05:15:24 -0800 (PST)
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id C16576607295;
+	Tue,  5 Dec 2023 13:15:21 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1701782123;
+	bh=6DkmrpDnGeZXGofKoixLDnz2zWUHekUv7+HrZandZ4I=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=gDPrHdHlHgN/zybDJ8CqUj7Pva762vdm9BSs7iK0NbnXWbaOqt3AV7UFiRaMf9rJ0
+	 1p7SB/Af+rveT/26/3p5yiSa/pXp0i6DWKXYh0XRoSvBmhvG96qdwHzd0A2TqSZlwN
+	 kJEU7hux803bOWXQtP4ftNKtPlyXfwXKuQYUVAItFJCKKmcq7xTJ+DJLDu4k5g6UhE
+	 oEch2JlmUbkIAxGnX4aZ1Ke7/la77REqOHwPnY2YlaXfYuufOh3lU/OG/2WaIO6inI
+	 uLhFObnoa91S+JQ7Y3Od/wPbxzuwOp6V3cYIluopevUv1aKtLCZcIFSaU46K3EDJJl
+	 cPvOcu4roebpA==
+Message-ID: <6e6cd1d0-c46e-496a-9a31-c1ecd75bf34f@collabora.com>
+Date: Tue, 5 Dec 2023 14:15:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <f2b58a5c-5457-485a-974f-cfda2e6dc2d2@app.fastmail.com>
-In-Reply-To: 
- <76bbd45b22ef6cc1fa69369aff908c9c4e366860.1701768028.git.ysato@users.sourceforge.jp>
-References: <cover.1701768028.git.ysato@users.sourceforge.jp>
- <76bbd45b22ef6cc1fa69369aff908c9c4e366860.1701768028.git.ysato@users.sourceforge.jp>
-Date: Tue, 05 Dec 2023 14:14:37 +0100
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Yoshinori Sato" <ysato@users.sourceforge.jp>, linux-sh@vger.kernel.org
-Cc: "Damien Le Moal" <dlemoal@kernel.org>,
- "Rob Herring" <robh+dt@kernel.org>,
- "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
- "Conor Dooley" <conor+dt@kernel.org>,
- "Geert Uytterhoeven" <geert+renesas@glider.be>,
- "Michael Turquette" <mturquette@baylibre.com>,
- "Stephen Boyd" <sboyd@kernel.org>, "Dave Airlie" <airlied@gmail.com>,
- "Daniel Vetter" <daniel@ffwll.ch>,
- "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
- "Maxime Ripard" <mripard@kernel.org>,
- "Thomas Zimmermann" <tzimmermann@suse.de>,
- "Thomas Gleixner" <tglx@linutronix.de>,
- "Lorenzo Pieralisi" <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- "Bjorn Helgaas" <bhelgaas@google.com>,
- "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
- "Jiri Slaby" <jirislaby@kernel.org>,
- "Magnus Damm" <magnus.damm@gmail.com>,
- "Daniel Lezcano" <daniel.lezcano@linaro.org>,
- "Rich Felker" <dalias@libc.org>,
- "John Paul Adrian Glaubitz" <glaubitz@physik.fu-berlin.de>,
- "Lee Jones" <lee@kernel.org>, "Helge Deller" <deller@gmx.de>,
- =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
- "Jernej Skrabec" <jernej.skrabec@gmail.com>,
- "Chris Morgan" <macromorgan@hotmail.com>,
- "Linus Walleij" <linus.walleij@linaro.org>,
- "Randy Dunlap" <rdunlap@infradead.org>,
- "Hyeonggon Yoo" <42.hyeyoo@gmail.com>,
- "David Rientjes" <rientjes@google.com>,
- "Vlastimil Babka" <vbabka@suse.cz>, "Baoquan He" <bhe@redhat.com>,
- "Andrew Morton" <akpm@linux-foundation.org>,
- "Guenter Roeck" <linux@roeck-us.net>,
- "Stephen Rothwell" <sfr@canb.auug.org.au>, guoren <guoren@kernel.org>,
- "Javier Martinez Canillas" <javierm@redhat.com>,
- "Azeem Shaikh" <azeemshaikh38@gmail.com>,
- "Palmer Dabbelt" <palmer@rivosinc.com>, "Bin Meng" <bmeng@tinylab.org>,
- "Max Filippov" <jcmvbkbc@gmail.com>, "Tom Rix" <trix@redhat.com>,
- "Herve Codina" <herve.codina@bootlin.com>,
- "Jacky Huang" <ychuang3@nuvoton.com>,
- "Lukas Bulwahn" <lukas.bulwahn@gmail.com>,
- "Jonathan Corbet" <corbet@lwn.net>,
- "Biju Das" <biju.das.jz@bp.renesas.com>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
- "Sam Ravnborg" <sam@ravnborg.org>,
- "Michael Karcher" <kernel@mkarcher.dialup.fu-berlin.de>,
- "Sergey Shtylyov" <s.shtylyov@omp.ru>,
- "Laurent Pinchart" <laurent.pinchart+renesas@ideasonboard.com>,
- linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
- linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-pci@vger.kernel.org, linux-serial@vger.kernel.org,
- linux-fbdev@vger.kernel.org
-Subject: Re: [DO NOT MERGE v5 06/37] sh: kernel/setup Update DT support.
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V2 2/3] dt-bindings: arm64: dts: mediatek: Add Acelink
+ EW-7886CAX access point
+Content-Language: en-US
+To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?=
+ <nfraprado@collabora.com>, Macpaul Lin <macpaul.lin@mediatek.com>,
+ =?UTF-8?Q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>,
+ Heiko Stuebner <heiko@sntech.de>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Chris Morgan <macromorgan@hotmail.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Sean Wang
+ <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+ Conor Dooley <conor.dooley@microchip.com>
+References: <20231204200907.5687-1-zajec5@gmail.com>
+ <20231204200907.5687-2-zajec5@gmail.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20231204200907.5687-2-zajec5@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Tue, Dec 5, 2023, at 10:45, Yoshinori Sato wrote:
-> Fix extrnal fdt initialize and bootargs.
->
-> Signed-off-by: Yoshinori Sato <ysato@users.sourceforge.jp>
-> ---
->  arch/sh/kernel/setup.c | 51 ++++++++++++++++++++++++++++--------------
->  1 file changed, 34 insertions(+), 17 deletions(-)
->
-> diff --git a/arch/sh/kernel/setup.c b/arch/sh/kernel/setup.c
-> index 3d80515298d2..b299abff68e0 100644
-> --- a/arch/sh/kernel/setup.c
-> +++ b/arch/sh/kernel/setup.c
-> @@ -30,6 +30,7 @@
->  #include <linux/memblock.h>
->  #include <linux/of.h>
->  #include <linux/of_fdt.h>
-> +#include <linux/libfdt.h>
->  #include <linux/uaccess.h>
->  #include <uapi/linux/mount.h>
->  #include <asm/io.h>
-> @@ -74,7 +75,13 @@ extern int root_mountflags;
->  #define RAMDISK_PROMPT_FLAG		0x8000
->  #define RAMDISK_LOAD_FLAG		0x4000
+Il 04/12/23 21:09, Rafał Miłecki ha scritto:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> +#if defined(CONFIG_OF) && !defined(CONFIG_USE_BUILTIN_DTB)
-> +#define CHOSEN_BOOTARGS
-> +#endif
-> +
-> +#ifndef CHOSEN_BOOTARGS
->  static char __initdata command_line[COMMAND_LINE_SIZE] = { 0, };
-> +#endif
+> Acelink EW-7886CAX is an MT7986A (AKA Filogic 830) based access point.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-I think an appended DTB is generally better than a built-in
-one, as that allows you to still have a single kernel
-image across machines and just pick the dtb when installing it.
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-With everything else being equal, I would suggest not
-actually making this an option for new platforms.
 
-    Arnd
 
