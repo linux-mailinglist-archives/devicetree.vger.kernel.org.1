@@ -1,101 +1,157 @@
-Return-Path: <devicetree+bounces-21836-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21837-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EF8D805546
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 13:55:34 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 477DC805556
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 14:02:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A316FB20BA3
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 12:55:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1BF71F21520
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 13:02:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FBB955769;
-	Tue,  5 Dec 2023 12:55:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 423495C093;
+	Tue,  5 Dec 2023 13:02:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VCp1XxpV"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="cvgOgYA7";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="yacRC4BU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE5153D3BC;
-	Tue,  5 Dec 2023 12:55:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF517C433C8;
-	Tue,  5 Dec 2023 12:55:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701780926;
-	bh=llK4VgfU9M7BUAIsGTV5IdpayF9LEJp4ETnPX0BuuzM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VCp1XxpVWCmqmJ19VGGl95DZFPb+kwewM3cLBzV0oEEb/VXdEfcisAi+UmR/wdNn2
-	 cm7b1CkJlnbjlPn5ZnIMVEel9ZLe7G4OUj4wWi6ujSryAHq9Ck/M2aVL6RMjpsSNRl
-	 r3X3WDPhMufICSgai/BLnFyt20K13unfbRks+bjBtM0qEMSwfoDjqxnbY0yeK/43X9
-	 Z5feOjrFfI7EdCML7zfaLj9+0ZHuYP0EWe+78EI/imZdTcADtsHf3drQzkVQ+EOPNY
-	 n5YjyMcTLQC07nqCr//PwlwPqwgX08JfJbodZGY1QOSChm/t5eYeNeVTmeRU4atiu5
-	 luojtG+NcRXJg==
-Date: Tue, 5 Dec 2023 12:55:18 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: Kory Maincent <kory.maincent@bootlin.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Luis Chamberlain <mcgrof@kernel.org>,
-	Russ Weight <russ.weight@linux.dev>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
-	Dent Project <dentproject@linuxfoundation.org>,
-	Liam Girdwood <lgirdwood@gmail.com>
-Subject: Re: [PATCH net-next v2 8/8] net: pse-pd: Add PD692x0 PSE controller
- driver
-Message-ID: <4b96b8c8-7def-46e5-9c85-d9e925fb9251@sirena.org.uk>
-References: <20231201-feature_poe-v2-0-56d8cac607fa@bootlin.com>
- <20231201-feature_poe-v2-8-56d8cac607fa@bootlin.com>
- <20231204225956.GG981228@pengutronix.de>
- <20231205064527.GJ981228@pengutronix.de>
+Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com [66.111.4.29])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 677D385;
+	Tue,  5 Dec 2023 05:01:56 -0800 (PST)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailout.nyi.internal (Postfix) with ESMTP id 2E2795C02C6;
+	Tue,  5 Dec 2023 08:01:53 -0500 (EST)
+Received: from imap51 ([10.202.2.101])
+  by compute5.internal (MEProxy); Tue, 05 Dec 2023 08:01:53 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-type:content-type:date:date:from:from:in-reply-to
+	:in-reply-to:message-id:mime-version:references:reply-to:sender
+	:subject:subject:to:to; s=fm3; t=1701781313; x=1701867713; bh=Vz
+	5fHcnpm58kiwXE8hZp/Ye9ElTOS3WdqAMkMGNeaRk=; b=cvgOgYA7MGSeQTnroK
+	55TwaexI6T0Ar7/K3PpDbIQ/J0PV5KguP1FtgugKmTAtVlWgSKaeDt70Qbpm6NA2
+	fjtBpR9W4wctFEprPmxR0FZxklq02d1JmOTx58/pVUsu+haKEvj1rkrhLWZ8Lhse
+	as4s2nBA47xUgpqBf/Lw+bZ4Mh0Gs5QMo+yq7uoF3GkXPuhTTKKW+QqQED268YnK
+	kF4sLhZ0HzT+UiaqkpDkgi0Ko21Sm5UzxkxHz1IsAoYoCk8/Mf3MtZNerezo5kbM
+	u1e6g1fDnlJSsccZwhH3xpohgzt0KVwiT8jUdF58GIvmOpp0X7geJSAhUTfPKxyB
+	TQPA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:sender:subject
+	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+	:x-sasl-enc; s=fm1; t=1701781313; x=1701867713; bh=Vz5fHcnpm58ki
+	wXE8hZp/Ye9ElTOS3WdqAMkMGNeaRk=; b=yacRC4BUn+jelBSr1r50xeLrSUMCB
+	P6gWdxS8PNmXvS2lwcnI9DrOi1wvxBhoMf/rcRbUuFB9uSFgQlC8vNL90sum4vES
+	5q1gG8eL1N3/1BmRTf4XZb/EQmj5fWHyvMdVvY/ZiHzXWIcpC2xpump8q1MVBWNv
+	gRarAcCi277E4wzsJ91n7IkgGZgzHpjqG6XkHKiQC5zMujdFUyrNlzsRKqnr1vkP
+	S3Y5IDoMX/vCYkl1ca9CMMKzPLtTt6E5P6Cxhe1WfvVhQcyzYfESDXxG/suwT7WS
+	WQrFbEVBupeGfe/ARqv0OnG9byGFqiTYywlG1j0UNEzxpD48p52h5rCsw==
+X-ME-Sender: <xms:Px9vZe8BGJJcjAaWpIBNmHZHQUAg5lk32PhyHWI1PPVAghG_Bel7Vg>
+    <xme:Px9vZeuoPxhZ3ok-vivHK_BSKpjPpWEB3H3KnipZsv-A-LA4xvbJHzK71WgZbELkv
+    LfrV8sKhSIKdBdSyU4>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrudejkedggeejucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
+    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
+    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
+    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+    hrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:Px9vZUBm4v5Q7KA2WQXF-XiajbjsnXVqTq21-2-MlaAkifDTqyf91w>
+    <xmx:Px9vZWd1JvaRpUqFk01U31zGT8hK5cwc_w-5CO1Xs2BI5_uYCZXc4w>
+    <xmx:Px9vZTNLEiUB2a9YJPLTUaVVi1yA8GFJ9bz4xkqAkoe-d2tMhCPxaw>
+    <xmx:QR9vZQla8R70Vm7nNVfKk--auJl8wCkKe6hUzvCK5V4k3_Sw8810jQ>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id 7D516B60089; Tue,  5 Dec 2023 08:01:51 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-1178-geeaf0069a7-fm-20231114.001-geeaf0069
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="zoXV23kthTxZLA1X"
-Content-Disposition: inline
-In-Reply-To: <20231205064527.GJ981228@pengutronix.de>
-X-Cookie: I've Been Moved!
+Message-Id: <d76fc75e-15c8-4177-a150-6f906233b82e@app.fastmail.com>
+In-Reply-To: 
+ <d6c242c0ab6e25e775284ec1d4b29a1ddd888af0.1701768028.git.ysato@users.sourceforge.jp>
+References: <cover.1701768028.git.ysato@users.sourceforge.jp>
+ <d6c242c0ab6e25e775284ec1d4b29a1ddd888af0.1701768028.git.ysato@users.sourceforge.jp>
+Date: Tue, 05 Dec 2023 14:01:31 +0100
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Yoshinori Sato" <ysato@users.sourceforge.jp>, linux-sh@vger.kernel.org
+Cc: "Damien Le Moal" <dlemoal@kernel.org>,
+ "Rob Herring" <robh+dt@kernel.org>,
+ "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "Geert Uytterhoeven" <geert+renesas@glider.be>,
+ "Michael Turquette" <mturquette@baylibre.com>,
+ "Stephen Boyd" <sboyd@kernel.org>, "Dave Airlie" <airlied@gmail.com>,
+ "Daniel Vetter" <daniel@ffwll.ch>,
+ "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
+ "Maxime Ripard" <mripard@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>,
+ "Thomas Gleixner" <tglx@linutronix.de>,
+ "Lorenzo Pieralisi" <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ "Bjorn Helgaas" <bhelgaas@google.com>,
+ "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+ "Jiri Slaby" <jirislaby@kernel.org>,
+ "Magnus Damm" <magnus.damm@gmail.com>,
+ "Daniel Lezcano" <daniel.lezcano@linaro.org>,
+ "Rich Felker" <dalias@libc.org>,
+ "John Paul Adrian Glaubitz" <glaubitz@physik.fu-berlin.de>,
+ "Lee Jones" <lee@kernel.org>, "Helge Deller" <deller@gmx.de>,
+ =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+ "Jernej Skrabec" <jernej.skrabec@gmail.com>,
+ "Chris Morgan" <macromorgan@hotmail.com>,
+ "Linus Walleij" <linus.walleij@linaro.org>,
+ "Randy Dunlap" <rdunlap@infradead.org>,
+ "Hyeonggon Yoo" <42.hyeyoo@gmail.com>,
+ "David Rientjes" <rientjes@google.com>,
+ "Vlastimil Babka" <vbabka@suse.cz>, "Baoquan He" <bhe@redhat.com>,
+ "Andrew Morton" <akpm@linux-foundation.org>,
+ "Guenter Roeck" <linux@roeck-us.net>,
+ "Stephen Rothwell" <sfr@canb.auug.org.au>, guoren <guoren@kernel.org>,
+ "Javier Martinez Canillas" <javierm@redhat.com>,
+ "Azeem Shaikh" <azeemshaikh38@gmail.com>,
+ "Palmer Dabbelt" <palmer@rivosinc.com>, "Bin Meng" <bmeng@tinylab.org>,
+ "Max Filippov" <jcmvbkbc@gmail.com>, "Tom Rix" <trix@redhat.com>,
+ "Herve Codina" <herve.codina@bootlin.com>,
+ "Jacky Huang" <ychuang3@nuvoton.com>,
+ "Lukas Bulwahn" <lukas.bulwahn@gmail.com>,
+ "Jonathan Corbet" <corbet@lwn.net>,
+ "Biju Das" <biju.das.jz@bp.renesas.com>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+ "Sam Ravnborg" <sam@ravnborg.org>,
+ "Michael Karcher" <kernel@mkarcher.dialup.fu-berlin.de>,
+ "Sergey Shtylyov" <s.shtylyov@omp.ru>,
+ "Laurent Pinchart" <laurent.pinchart+renesas@ideasonboard.com>,
+ linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+ linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-pci@vger.kernel.org, linux-serial@vger.kernel.org,
+ linux-fbdev@vger.kernel.org
+Subject: Re: [DO NOT MERGE v5 35/37] sh: RTS7751R2D Plus OF defconfig
+Content-Type: text/plain
 
+On Tue, Dec 5, 2023, at 10:45, Yoshinori Sato wrote:
+> Signed-off-by: Yoshinori Sato <ysato@users.sourceforge.jp>
+> ---
+>  arch/sh/configs/rts7751r2dplus-of_defconfig | 93 +++++++++++++++++++++
 
---zoXV23kthTxZLA1X
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+This is very similar to the landisk config, so it may be
+easier to just have one of them that works for both, as well
+as future ones.
 
-On Tue, Dec 05, 2023 at 07:45:27AM +0100, Oleksij Rempel wrote:
+> +CONFIG_LOG_BUF_SHIFT=14
+> +CONFIG_NAMESPACES=y
+> +CONFIG_EXPERT=y
 
-> CC regulator devs here too.
+You should not normally need to enable CONFIG_EXPERT in a
+defconfig. Is there any particular reason for this?
 
-Again, I'm not sure what if any question there is?
-
---zoXV23kthTxZLA1X
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmVvHbYACgkQJNaLcl1U
-h9BHrQf8C6nw/SboP4lAP9ogknacWdRLOmkOBm/zqJn3nEWLF+zm/vly+rGUUWnk
-CFA5bDZdBl96CHHQwJAW/O6tPl2hbNoKYh1H4TuZ8GSqZh0EXgwswEy1rGamnZBt
-DtKBokQP85r1ryASwAmyGs0s34PRimChsG5Jgo11mD02cysAMiwFUrpPzyUYsY7c
-Z4n40HTEOa8nat42h5rqCnVIdJPBmNYWzFsCUBzOELFl11PF3yIkZ/f72wPwkShv
-PFHRrki1bfSqpQs0WyPPAGXS+gVTpJY/qlAGB5VhZjAU3JyMlUFTGj1nZvM0H9hl
-Ipq4bh94622GiF4rrkbT3/Qndr2nCA==
-=CFvz
------END PGP SIGNATURE-----
-
---zoXV23kthTxZLA1X--
+    Arnd
 
