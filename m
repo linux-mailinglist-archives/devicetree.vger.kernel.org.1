@@ -1,104 +1,96 @@
-Return-Path: <devicetree+bounces-21869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C08E8056A1
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 14:58:40 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47B8D8056B6
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 15:02:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C53E2281C89
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 13:58:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 12047B20FB2
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 14:02:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BB925FEF1;
-	Tue,  5 Dec 2023 13:58:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zE3+v8Pl"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 651D561FC2;
+	Tue,  5 Dec 2023 14:02:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05CE8BA
-	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 05:58:33 -0800 (PST)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-a196f84d217so599208266b.3
-        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 05:58:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701784711; x=1702389511; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/5Oze3/1RDszWMpciOU5HHEZVBDC8CTTQ6maphqjCpk=;
-        b=zE3+v8Pl4FyaKTnJaicGogKNVZWUgSOQesuO5YGvmZsC+42Am0sTtc4D767AqauTgJ
-         xN6Pjkh89fTr0Fit/O0zO+O581bbn3GuQM3Ibgfw4vGlgGAI09EkfsgR8/nwkbNZWT12
-         te/rkQ5ZqHVdFwcIOtcAmmcukIAzIOTM+60pYDyMU6Hc/uOb2UDYKpUL1HoC8YSgVr+a
-         FdrS6Urd4qNUHJ4mKlKgP+ncv9p8qFh9PIXJzeOLorGk+QLxd++SA9/K+9Txd/4chkS1
-         BZP4j7LQ22nqCIub16+Fne5dUt8dndUPxQbC4UacBczRcVPyxxpNxZRou3fkUo2NZNjJ
-         8nLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701784711; x=1702389511;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/5Oze3/1RDszWMpciOU5HHEZVBDC8CTTQ6maphqjCpk=;
-        b=uRNOWoVfQOPtePZ3nuMXMMDQ35bfDoLa5Q7IVndwwU9PJTJbuppN/ufvzalgOhjTQA
-         Gq6eMuhBRGWB9tNlayUzVCfmPHFShZ8UKs0FhvwhK2w6SoY2si6EI9SWymXZO4zQUBS+
-         0Qt2+5Z8THNQSpWF/1VDScHHCd5fD8EOOqiI+krR2TpjMT6Hx4vvooBGNzbB6nFC8Nyu
-         RfbiY1ZbJgwUAtD2AAYRVhLBK0jMGHm3q70M830fqVPpIhXJ2BAq2Q3OJgVMlYzTAOMs
-         Qbh+KeeFWYk/5SLz9i6U1Vx+l8VvktkclA2G6R3Kb7QR3nbDsbUWAW9UC+NdyKDlkgUF
-         gRNA==
-X-Gm-Message-State: AOJu0YxrA2ZWQ4xbJSEYJ9XP0cZiOeTdmILT5VzSXVFgIsdcPQGKewww
-	LZSngicA3hmjQLC4R4FkmyJfZA==
-X-Google-Smtp-Source: AGHT+IH8wju8GD5Zx60pHtilWQSmGAaG7mcnh/RhurUSWf5JLiDlXK8tl9XAaYjvFRrkmybVIUDznA==
-X-Received: by 2002:a17:906:811:b0:9fe:3d74:2b62 with SMTP id e17-20020a170906081100b009fe3d742b62mr3713369ejd.12.1701784711500;
-        Tue, 05 Dec 2023 05:58:31 -0800 (PST)
-Received: from hackbox.lan ([82.79.186.233])
-        by smtp.gmail.com with ESMTPSA id e20-20020a1709062c1400b00a1c7b20e9e6sm833583ejh.32.2023.12.05.05.58.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Dec 2023 05:58:30 -0800 (PST)
-From: Abel Vesa <abel.vesa@linaro.org>
-To: robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	sboyd@kernel.org,
-	abelvesa@kernel.org,
-	"Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: kernel@pengutronix.de,
-	festevam@gmail.com,
-	linux-imx@nxp.com,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Peng Fan <peng.fan@nxp.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH V4 1/2] dt-bindings: clock: support i.MX93 Analog clock module
-Date: Tue,  5 Dec 2023 15:58:23 +0200
-Message-Id: <170178465116.22654.4507616023393071038.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231121063446.155300-1-peng.fan@oss.nxp.com>
-References: <20231121063446.155300-1-peng.fan@oss.nxp.com>
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1762018D
+	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 06:02:37 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1rAVzw-0005NI-Rb; Tue, 05 Dec 2023 15:02:04 +0100
+Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1rAVzv-00Dkwo-Q9; Tue, 05 Dec 2023 15:02:03 +0100
+Received: from ore by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1rAVzv-005PIO-Mv; Tue, 05 Dec 2023 15:02:03 +0100
+Date: Tue, 5 Dec 2023 15:02:03 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Mark Brown <broonie@kernel.org>
+Cc: Kory Maincent <kory.maincent@bootlin.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Luis Chamberlain <mcgrof@kernel.org>,
+	Russ Weight <russ.weight@linux.dev>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
+	Dent Project <dentproject@linuxfoundation.org>,
+	Liam Girdwood <lgirdwood@gmail.com>
+Subject: Re: [PATCH net-next v2 8/8] net: pse-pd: Add PD692x0 PSE controller
+ driver
+Message-ID: <20231205140203.GK981228@pengutronix.de>
+References: <20231201-feature_poe-v2-0-56d8cac607fa@bootlin.com>
+ <20231201-feature_poe-v2-8-56d8cac607fa@bootlin.com>
+ <20231204225956.GG981228@pengutronix.de>
+ <20231205064527.GJ981228@pengutronix.de>
+ <4b96b8c8-7def-46e5-9c85-d9e925fb9251@sirena.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <4b96b8c8-7def-46e5-9c85-d9e925fb9251@sirena.org.uk>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-
-On Tue, 21 Nov 2023 14:34:45 +0800, Peng Fan (OSS) wrote:
-> Support i.MX93 Analog module which contains PLL and OSC for Clock
-> Controller Module
+On Tue, Dec 05, 2023 at 12:55:18PM +0000, Mark Brown wrote:
+> On Tue, Dec 05, 2023 at 07:45:27AM +0100, Oleksij Rempel wrote:
 > 
+> > CC regulator devs here too.
 > 
+> Again, I'm not sure what if any question there is?
 
-Applied, thanks!
+PSE is kind of PMIC for Ethernet ports. I assume, it is good to let you
+know at least about existence drivers.
 
-[1/2] dt-bindings: clock: support i.MX93 Analog clock module
-      commit: d24ffddd1071dd3bb348b010f1f9b780722ae90f
-
-Best regards,
+Regards,
+Oleksij
 -- 
-Abel Vesa <abel.vesa@linaro.org>
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
