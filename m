@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-21612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21613-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F025D804AE8
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 08:10:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9EC0804B09
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 08:20:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1EAF71C20DF0
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 07:10:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9DC5728173B
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 07:20:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 769A915EAC;
-	Tue,  5 Dec 2023 07:10:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 265AB171A5;
+	Tue,  5 Dec 2023 07:19:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="En6EMnxy"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hIUugI7l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43D31109
-	for <devicetree@vger.kernel.org>; Mon,  4 Dec 2023 23:10:14 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-3333b46f26aso2563695f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 04 Dec 2023 23:10:14 -0800 (PST)
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5713EAA
+	for <devicetree@vger.kernel.org>; Mon,  4 Dec 2023 23:19:52 -0800 (PST)
+Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2ca04b1cc37so16175721fa.1
+        for <devicetree@vger.kernel.org>; Mon, 04 Dec 2023 23:19:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701760213; x=1702365013; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701760790; x=1702365590; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=SVAEj6IWcf3rrewE0PI9IiD451dQSPUt4SomApm71zI=;
-        b=En6EMnxyDssG8HdYqODP3Q5NhS7AKnl2W4xwdrK+XBd6I7yzhSyZbbkcJay249GAU3
-         IAri/NyLmUo/mqSmF/kij7NYcpec1MGoN4KhOL8X6TH/jjnCaunyZKeePvV91Z/f8ybm
-         ynOxtcVJGZslOV82Hei5FHZ6FyfyTa5iFWKVT3X3m1dglhJ8Vi5q7tHtBqZEO1adRw0x
-         V/GuOKsJ0w6cU4muHWLrBc9Zb4V/G0ca2Nx7iaiC5ekaAdZb2R5NPsGqZ8FEWISZyerB
-         F6Dk14p/rMJ03dwreWRPAbjRBfGfB3QDPN/Qq5WLJnM0pZd1iJZjg5OlPtgw9TFH8/Bs
-         6vYg==
+        bh=oHIQ/2mNSoBOsXK9FvHpf2z+uBxTtLumASk1JH/x2+U=;
+        b=hIUugI7lu/RR1Zt21TrQW0niDMruL81RDwPfrPz7wFqMJfAVfTlQ8Ccqh/UiiWmRSv
+         RHWTyv7UBw9xBkE2G43t0yAMBfE+wjRiE97CsLGX7+nAR0/ztoGBCEtEswRzgbi00Q4h
+         sWsGVwOQpEX6YNX8i5PVjNK+qM88kkpQJysC1dTPsCyE4SewKQCyQ1FjFtGjC6+9Mb89
+         /ajjIRPvQip95nzgGRLKRkjv0sB7t6yUsKsJFy/0opObXu2je2/FWdo/1ncvYu+JZe1Q
+         bdTTpCqnrKwiEEfH8jQ0oVjVz77i6WSEk/8//FnnJ5M0Xrxfmf3kNBwhFSRUmCHFAsp6
+         tZYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701760213; x=1702365013;
+        d=1e100.net; s=20230601; t=1701760790; x=1702365590;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SVAEj6IWcf3rrewE0PI9IiD451dQSPUt4SomApm71zI=;
-        b=B/fEW0s1gdZLv1NafkXFzxy2XjfHMIxBDZ02nO1pyeC1R3e3wcOfgULoSdIPSaMof5
-         NIdtHeWPXTLM8/PUtK3EOvfkUHNXPVWlN7//57U5gHPLbryZ2+NodBxTshVgCrxLPvPL
-         6bZI5oLeFVKHIZCgTGkdV71ndSWBzOHNyKl1R2rqnD1dMfhGxkSAlW4FOAdUB5zJeGm4
-         /DaewvnadETpUVt6ogzea2b859PMqolZZITcnIEZ5PrOLPUBHe5s7OdfVs3r2gxKSufb
-         FTdWKIzkGEovt2cCNw2Y1UG9cj3HF823kdDRDF7BZ4kB8hYgZgQvENny63iTs1azLcSE
-         4jPg==
-X-Gm-Message-State: AOJu0YylO9h9RiU51N3WFMhHF6ibUdxdkatilehQcBEQXVJ/s3vMqQ9X
-	op2qPzHuLcHTTD8/00J/4fXZXQ==
-X-Google-Smtp-Source: AGHT+IEh1yyse3RrKzXfWlgA1lUMYc5fycCT+yx7MiP8AVViKu4ufDcT0uk1l1kIAiwTjMwU4PiQFw==
-X-Received: by 2002:adf:e612:0:b0:333:3a13:91dc with SMTP id p18-20020adfe612000000b003333a1391dcmr2619650wrm.86.1701760212746;
-        Mon, 04 Dec 2023 23:10:12 -0800 (PST)
+        bh=oHIQ/2mNSoBOsXK9FvHpf2z+uBxTtLumASk1JH/x2+U=;
+        b=GMdZQPuYWbgU7NXX8XpauacaJ5+HiMtAWypeRxkXmuhw2mtQqxYLvL0L1HMcEFva2o
+         vBfHk16mrSlGdOMVtYoJsP+CknI/Wbd1qramw426c/VUIZr+7g3LlcsGe0bu3fT2jOFw
+         8I2ZeRgiRv2C2+2FU0LR4P+vpkKkySIg6cIHP90KcKkaAXs9zVfml6kFl4ni95DHvSQJ
+         dHIP2eNpoegSjUuETzaOc8QhdmYSFzyM0OB2ZA86cAXpfoWqAz73bWTMSiEGGy1/cRWi
+         5tCLZ84tNtQN0jRpjs1KlV4r9lcLU0X2sPrKqwlfPmi3xcoRlZghybVART6Y/oeywkTe
+         D5qQ==
+X-Gm-Message-State: AOJu0YwCjTgp6W5BbYB4MAeB/ufjltlHAK+zvqcVzk9YQ8Ttl9JuaO8W
+	aYEOI84zUtPv73QmXkZ863qCBA==
+X-Google-Smtp-Source: AGHT+IE5LA2wlitbhPoifagKjEobb8bCR0W7Af/M36xPI/329IBqelvJogRwHAPUjGDWPeEbfPj0bA==
+X-Received: by 2002:a2e:8097:0:b0:2c9:e81e:81ac with SMTP id i23-20020a2e8097000000b002c9e81e81acmr599857ljg.11.1701760790005;
+        Mon, 04 Dec 2023 23:19:50 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id q4-20020a05600000c400b003333fa3d043sm7376024wrx.12.2023.12.04.23.10.10
+        by smtp.gmail.com with ESMTPSA id s30-20020a05651c201e00b002ca033a919dsm578949ljo.20.2023.12.04.23.19.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Dec 2023 23:10:12 -0800 (PST)
-Message-ID: <b97f04f6-cda2-4e9b-b729-a5149e36f978@linaro.org>
-Date: Tue, 5 Dec 2023 08:10:09 +0100
+        Mon, 04 Dec 2023 23:19:49 -0800 (PST)
+Message-ID: <8596c2a7-b3f6-4f8c-9529-91c1d6fc5716@linaro.org>
+Date: Tue, 5 Dec 2023 08:19:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,29 +62,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 01/10] dt-bindings: gpu: Add PowerVR Series5 SGX GPUs
+Subject: Re: [PATCH v5 18/20] arm64: dts: exynos: google: Add initial Google
+ gs101 SoC support
 Content-Language: en-US
-To: Andrew Davis <afd@ti.com>, Frank Binns <frank.binns@imgtec.com>,
- Donald Robson <donald.robson@imgtec.com>,
- Matt Coster <matt.coster@imgtec.com>,
- "H . Nikolaus Schaller" <hns@goldelico.com>, Adam Ford <aford173@gmail.com>,
- Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, =?UTF-8?Q?Beno=C3=AEt_Cousson?=
- <bcousson@baylibre.com>, Tony Lindgren <tony@atomide.com>,
- Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
- Tero Kristo <kristo@kernel.org>, Paul Cercueil <paul@crapouillou.net>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-omap@vger.kernel.org,
- linux-mips@vger.kernel.org
-References: <20231204182245.33683-1-afd@ti.com>
- <20231204182245.33683-2-afd@ti.com>
+To: Sam Protsenko <semen.protsenko@linaro.org>,
+ Peter Griffin <peter.griffin@linaro.org>, krzysztof.kozlowski+dt@linaro.org
+Cc: robh+dt@kernel.org, mturquette@baylibre.com, conor+dt@kernel.org,
+ sboyd@kernel.org, tomasz.figa@gmail.com, s.nawrocki@samsung.com,
+ linus.walleij@linaro.org, wim@linux-watchdog.org, linux@roeck-us.net,
+ catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, olof@lixom.net,
+ gregkh@linuxfoundation.org, jirislaby@kernel.org, cw00.choi@samsung.com,
+ alim.akhtar@samsung.com, tudor.ambarus@linaro.org, andre.draszik@linaro.org,
+ saravanak@google.com, willmcvicker@google.com, soc@kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-watchdog@vger.kernel.org,
+ kernel-team@android.com, linux-serial@vger.kernel.org
+References: <20231201160925.3136868-1-peter.griffin@linaro.org>
+ <20231201160925.3136868-19-peter.griffin@linaro.org>
+ <CAPLW+4ki_GUAnor4sTanXFLzKrAB9JpxK98PED1fUY-MLCzUdA@mail.gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -130,91 +126,51 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231204182245.33683-2-afd@ti.com>
+In-Reply-To: <CAPLW+4ki_GUAnor4sTanXFLzKrAB9JpxK98PED1fUY-MLCzUdA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 04/12/2023 19:22, Andrew Davis wrote:
-> The Imagination PowerVR Series5 "SGX" GPU is part of several SoCs from
-> multiple vendors. Describe how the SGX GPU is integrated in these SoC,
-> including register space and interrupts. Clocks, reset, and power domain
-> information is SoC specific.
+On 02/12/2023 02:54, Sam Protsenko wrote:
+> On Fri, Dec 1, 2023 at 10:11 AM Peter Griffin <peter.griffin@linaro.org> wrote:
+>>
+>> Google gs101 SoC is ARMv8 mobile SoC found in the Pixel 6,
+>> (oriole) Pixel 6a (bluejay) and Pixel 6 pro (raven) mobile
+>> phones. It features:
+>> * 4xA55 little cluster
+>> * 2xA76 Mid cluster
+>> * 2xX1 Big cluster
+>>
+>> This commit adds the basic device tree for gs101 (SoC).
+>> Further platform support will be added over time.
+>>
+>> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+>> ---
+
+...
+
+>> +
+>> +               watchdog_cl0: watchdog@10060000 {
+>> +                       compatible = "google,gs101-wdt";
+>> +                       reg = <0x10060000 0x100>;
+>> +                       interrupts = <GIC_SPI 765 IRQ_TYPE_LEVEL_HIGH 0>;
+>> +                       clocks =
+>> +                         <&cmu_misc CLK_GOUT_MISC_WDT_CLUSTER0_IPCLKPORT_PCLK>,
+>> +                         <&ext_24_5m>;
+>> +                       clock-names = "watchdog", "watchdog_src";
+>> +                       samsung,syscon-phandle = <&pmu_system_controller>;
+>> +                       samsung,cluster-index = <0>;
+>> +                       status = "disabled";
+>> +               };
 > 
-> Signed-off-by: Andrew Davis <afd@ti.com>
-> ---
->  .../devicetree/bindings/gpu/img,powervr.yaml  | 69 +++++++++++++++++--
->  1 file changed, 63 insertions(+), 6 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/gpu/img,powervr.yaml b/Documentation/devicetree/bindings/gpu/img,powervr.yaml
-> index a13298f1a1827..9f036891dad0b 100644
-> --- a/Documentation/devicetree/bindings/gpu/img,powervr.yaml
-> +++ b/Documentation/devicetree/bindings/gpu/img,powervr.yaml
-> @@ -11,11 +11,33 @@ maintainers:
->    - Frank Binns <frank.binns@imgtec.com>
->  
->  properties:
-> +  $nodename:
-> +    pattern: '^gpu@[a-f0-9]+$'
+> Krzysztof, can you please advice which scheme is preferred right now:
+> sorting by name or by address? I saw your patch for dts style doc, but
+> just want to know the current state of affairs.
 
-Why? We do not enforce it in other bindings.
+Use coding style, so sorting by unit address in DTSI and by
+label/phandle of overrides in DTS.
 
-> +
->    compatible:
-> -    items:
-> -      - enum:
-> -          - ti,am62-gpu
-> -      - const: img,img-axe # IMG AXE GPU model/revision is fully discoverable
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - ti,am62-gpu
-> +          - const: img,img-axe # IMG AXE GPU model/revision is fully discoverable
-> +      - items:
-> +          - enum:
-> +              - ti,omap3430-gpu # Rev 121
-> +              - ti,omap3630-gpu # Rev 125
-> +          - const: img,powervr-sgx530
-> +      - items:
-> +          - enum:
-> +              - ingenic,jz4780-gpu # Rev 130
-> +              - ti,omap4430-gpu # Rev 120
-> +          - const: img,powervr-sgx540
-> +      - items:
-> +          - enum:
-> +              - allwinner,sun6i-a31-gpu # MP2 Rev 115
-> +              - ti,omap4470-gpu # MP1 Rev 112
-> +              - ti,omap5432-gpu # MP2 Rev 105
-> +              - ti,am5728-gpu # MP2 Rev 116
-> +              - ti,am6548-gpu # MP1 Rev 117
-> +          - const: img,powervr-sgx544
->  
->    reg:
->      maxItems: 1
-> @@ -40,8 +62,6 @@ properties:
->  required:
->    - compatible
->    - reg
-> -  - clocks
-> -  - clock-names
-
-I don't think so... How can you run without clocks?
-
->    - interrupts
->  
->  additionalProperties: false
-> @@ -56,6 +76,43 @@ allOf:
->        properties:
->          clocks:
->            maxItems: 1
-> +      required:
-> +        - clocks
-> +        - clock-names
-
-You need to define the clocks for your variants or disallow them. The
-original code should be fixed as well and make the clocks fixed for all
-img-axe cases.
-
-
+Coding style was not yet applied, but I don't see any objections to it
+so it is just a matter of days.
 
 Best regards,
 Krzysztof
