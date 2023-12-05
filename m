@@ -1,102 +1,122 @@
-Return-Path: <devicetree+bounces-21654-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21655-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 082CD804C7B
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 09:34:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0C78804C9B
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 09:37:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B6C81281728
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 08:34:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D1FF01C20BEF
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 08:37:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B345D51A;
-	Tue,  5 Dec 2023 08:34:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1641938DD6;
+	Tue,  5 Dec 2023 08:37:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hKYRHMfb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69065185;
-	Tue,  5 Dec 2023 00:34:07 -0800 (PST)
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-59b5484fbe6so61188337b3.1;
-        Tue, 05 Dec 2023 00:34:07 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701765246; x=1702370046;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HCC9dgHmyasaCrcNxfdU/Q1KMGuxj2gAnILOurzZajU=;
-        b=nxMChfZy5ZDfKAArPE8HqwTXEha/rk50GGjqLIlk9uOfMLSmyyvMS+EbHh6r3l5IVv
-         LwXfZdeD0YEEmpUFPnFTwJ4VGYDFJK0/ve4qLAjz5XhRuhha5l0F44olDf4wQSjgrBlv
-         SxPQ6BsYlWKaWlwatcruQXPEJEP3g+tddzMxWq707Zaq3DZCoNlRLNGkNfNfj6wR2FNc
-         qFNw+CtFoCgdmrmLW40u0PQf97qUjEnLoIukLacoV0tU+JlSLpy1ElvL2qA9aUYU/HwW
-         aQHxQsukC9idNYipb5AR5hhPdUX56L/Q+wW+ulvSGQCP62UzPVWaZAv7SBd3l03ANmRw
-         93OQ==
-X-Gm-Message-State: AOJu0YxIQrpFo5okiiRnr9RQf6npw+IQd1a+pX/Vke5z8/o1WTZrjSlR
-	jowS5WND6+DJAeSKWJPHpK9vaYk9MGgNxw==
-X-Google-Smtp-Source: AGHT+IFr9wp40z7tz6vpgIWB5NyP4X8v15SAId0Qrv/6gD6GusCkP9zn5MPIpgVc+mdKon3O+J0S+w==
-X-Received: by 2002:a81:98cc:0:b0:5d7:1940:b39b with SMTP id p195-20020a8198cc000000b005d71940b39bmr4370180ywg.103.1701765246273;
-        Tue, 05 Dec 2023 00:34:06 -0800 (PST)
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com. [209.85.128.179])
-        by smtp.gmail.com with ESMTPSA id n81-20020a817254000000b005d76007799bsm2396127ywc.141.2023.12.05.00.34.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Dec 2023 00:34:05 -0800 (PST)
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-5d2d0661a8dso61162877b3.2;
-        Tue, 05 Dec 2023 00:34:05 -0800 (PST)
-X-Received: by 2002:a0d:d40c:0:b0:5d7:1940:b38e with SMTP id
- w12-20020a0dd40c000000b005d71940b38emr4926807ywd.90.1701765244916; Tue, 05
- Dec 2023 00:34:04 -0800 (PST)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AF492E839
+	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 08:37:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99884C433C7;
+	Tue,  5 Dec 2023 08:37:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701765432;
+	bh=QaChC19t84tPQ3fhVSi46FxHN4jYeXoCcq8WNBAg/w0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hKYRHMfb4IUzwQjLfdVCGGS+Ub/LwL1X5Dsl2HE+MPu9zUDyU5PW2pIGAuj9h09iu
+	 l3eMzoX0vg8AM/J//Yh/TQ32PbbSsUyLg317MQgKOMIpsffKyUCYoUI+t5AymiXu9M
+	 9XVNYP7IH0dVjd8Me6etnFB02TVFw1J/T2OnMe7k/l2xHokBi2otAi/zsfZvYOLAVj
+	 B00ovEuBy8I/voMgE+j3CfcU9pkHG8r52DoiimTcj/3r+uXxa8HN61iRcK2zEileQp
+	 P8sA4OqJOlVrrQzUP8QCQMukW08r6W0LMENkQ/ThbbicdZn4QtH7MOaI9ayDtpdWFW
+	 fOHTpbeV/1VGA==
+Date: Tue, 5 Dec 2023 16:37:06 +0800
+From: Shawn Guo <shawnguo@kernel.org>
+To: Nathan Rossi <nathan@nathanrossi.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, Nathan Rossi <nathan.rossi@digi.com>,
+	Fabio Estevam <festevam@gmail.com>, Li Jun <jun.li@nxp.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	NXP Linux Team <linux-imx@nxp.com>
+Subject: Re: [PATCH v2] arm64: dts: imx8mp: imx8mq: Add
+ parkmode-disable-ss-quirk on DWC3
+Message-ID: <20231205083706.GC236001@dragon>
+References: <20231106021436.1917894-1-nathan@nathanrossi.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231204172510.35041-1-biju.das.jz@bp.renesas.com> <20231204172510.35041-3-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20231204172510.35041-3-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 5 Dec 2023 09:33:53 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUOa_1EGERWXhbsxY-RxLgv+6As=XOLzZSkq+d1KMRG1A@mail.gmail.com>
-Message-ID: <CAMuHMdUOa_1EGERWXhbsxY-RxLgv+6As=XOLzZSkq+d1KMRG1A@mail.gmail.com>
-Subject: Re: [PATCH v3.1 2/8] dt-bindings: watchdog: dlg,da9062-watchdog: Add
- fallback for DA9061 watchdog
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Lee Jones <lee@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>, 
-	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Support Opensource <support.opensource@diasemi.com>, 
-	Steve Twiss <stwiss.opensource@diasemi.com>, linux-watchdog@vger.kernel.org, 
-	devicetree@vger.kernel.org, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231106021436.1917894-1-nathan@nathanrossi.com>
 
-On Mon, Dec 4, 2023 at 6:25=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.com=
-> wrote:
-> The DA9061 watchdog is identical to DA9062 watchdog, so no driver changes
-> are required. The fallback compatible string "dlg,da9062-watchdog" will b=
-e
-> used on DA9061 watchdog.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> v3->v3.1:
->  * Dropped comment for d9061 watchdog fallback.
->  * Replaced enum->const for dlg,da9061-watchdog and its fallback.
+On Mon, Nov 06, 2023 at 02:14:36AM +0000, Nathan Rossi wrote:
+> From: Nathan Rossi <nathan.rossi@digi.com>
+> 
+> The i.MX8MP and i.MX8MQ devices both use the same DWC3 controller and
+> are both affected by a known issue with the controller due to specific
+> behaviour when park mode is enabled in SuperSpeed host mode operation.
+> 
+> Under heavy USB traffic from multiple endpoints the controller will
+> sometimes incorrectly process transactions such that some transactions
+> are lost, or the controller may hang when processing transactions. When
+> the controller hangs it does not recover.
+> 
+> This issue is documented partially within the linux-imx vendor kernel
+> which references a Synopsys STAR number 9001415732 in commits [1] and
+> additional details in [2]. Those commits provide some additional
+> controller internal implementation specifics around the incorrect
+> behaviour of the SuperSpeed host controller operation when park mode is
+> enabled.
+> 
+> The summary of this issue is that the host controller can incorrectly
+> enter/exit park mode such that part of the controller is in a state
+> which behaves as if in park mode even though it is not. In this state
+> the controller incorrectly calculates the number of TRBs available which
+> results in incorrect access of the internal caches causing the overwrite
+> of pending requests in the cache which should have been processed but
+> are ignored. This can cause the controller to drop the requests or hang
+> waiting for the pending state of the dropped requests.
+> 
+> The workaround for this issue is to disable park mode for SuperSpeed
+> operation of the controller through the GUCTL1[17] bit. This is already
+> available as a quirk for the DWC3 controller and can be enabled via the
+> 'snps,parkmode-disable-ss-quirk' device tree property.
+> 
+> It is possible to replicate this failure on an i.MX8MP EVK with a USB
+> Hub connecting 4 SuperSpeed USB flash drives. Performing continuous
+> small read operations (dd if=/dev/sd... of=/dev/null bs=16) on the block
+> devices will result in device errors initially and will eventually
+> result in the controller hanging.
+> 
+>   [13240.896936] xhci-hcd xhci-hcd.0.auto: WARN Event TRB for slot 4 ep 2 with no TDs queued?
+>   [13240.990708] usb 2-1.3: reset SuperSpeed USB device number 5 using xhci-hcd
+>   [13241.015582] sd 2:0:0:0: [sdc] tag#0 UNKNOWN(0x2003) Result: hostbyte=0x07 driverbyte=DRIVER_OK cmd_age=0s
+>   [13241.025198] sd 2:0:0:0: [sdc] tag#0 CDB: opcode=0x28 28 00 00 00 03 e0 00 01 00 00
+>   [13241.032949] I/O error, dev sdc, sector 992 op 0x0:(READ) flags 0x80700 phys_seg 25 prio class 2
+>   [13272.150710] usb 2-1.2: reset SuperSpeed USB device number 4 using xhci-hcd
+>   [13272.175469] sd 1:0:0:0: [sdb] tag#0 UNKNOWN(0x2003) Result: hostbyte=0x03 driverbyte=DRIVER_OK cmd_age=31s
+>   [13272.185365] sd 1:0:0:0: [sdb] tag#0 CDB: opcode=0x28 28 00 00 00 03 e0 00 01 00 00
+>   [13272.193385] I/O error, dev sdb, sector 992 op 0x0:(READ) flags 0x80700 phys_seg 18 prio class 2
+>   [13434.846556] xhci-hcd xhci-hcd.0.auto: xHCI host not responding to stop endpoint command
+>   [13434.854592] xhci-hcd xhci-hcd.0.auto: xHCI host controller not responding, assume dead
+>   [13434.862553] xhci-hcd xhci-hcd.0.auto: HC died; cleaning up
+> 
+> [1] https://github.com/nxp-imx/linux-imx/commit/97a5349d936b08cf301730b59e4e8855283f815c
+> [2] https://github.com/nxp-imx/linux-imx/commit/b4b5cbc5a12d7c3b920d1d7cba0ada3379e4e42b
+> 
+> Fixes: fb8587a2c165 ("arm64: dtsi: imx8mp: add usb nodes")
+> Fixes: ad37549cb5dc ("arm64: dts: imx8mq: add USB nodes")
+> Signed-off-by: Nathan Rossi <nathan.rossi@digi.com>
+> Reviewed-by: Fabio Estevam <festevam@gmail.com>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Applied, thanks!
 
