@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-21773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21774-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F125080513F
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 11:54:18 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78175805142
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 11:54:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 251171C20934
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 10:54:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D3A59B20C16
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 10:54:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6282241F1;
-	Tue,  5 Dec 2023 10:54:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E177C3F8D3;
+	Tue,  5 Dec 2023 10:54:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="V834Ea7Q"
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="XZjR0gd9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51073184
-	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 02:54:11 -0800 (PST)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-a1b68ae4104so282626866b.3
-        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 02:54:11 -0800 (PST)
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E5A81A1
+	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 02:54:14 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-50be3eed85aso4292927e87.2
+        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 02:54:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1701773650; x=1702378450; darn=vger.kernel.org;
+        d=amarulasolutions.com; s=google; t=1701773653; x=1702378453; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=9dqXlBbcQt0R29oSjxr4jyi0yptqDX27ArBU37Ndav8=;
-        b=V834Ea7QEbLlDANziHtk630zx0eRLG0UP6thG/Ol60r+zCahKGto37Macv1nsiLTf3
-         J05EagMkC6i+vXw/ZE6mdJo5ZjJtt5nmNUja7XBKyRIeU/0TebodD/gfLIBtSjoa6dqh
-         6gbgcMrT0G7WjHdckuQhZ3FesCgf0WYkB1EbQ=
+        bh=IL3sCCBm1t+y4jTpNMbGRo3NUuZEcn+OIUHSm5NfmuQ=;
+        b=XZjR0gd9VO1DWo4pnEXeNfaW4duL8gXffhRoedB30hE4eg/xPt97mRwVrpLp4C8vUk
+         mA7PJJGZy2I4KTMSAjoTpmgbwTgMT0cGAIXJEAZu9rbonlE3hZvjBP6QW9u+FVpFfOTP
+         zSqKOI7W2l6UpNNo65yryFFK2vFYHKyKQAXfQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701773650; x=1702378450;
+        d=1e100.net; s=20230601; t=1701773653; x=1702378453;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=9dqXlBbcQt0R29oSjxr4jyi0yptqDX27ArBU37Ndav8=;
-        b=anHtTiJlHw7woZZokFKThQCCFgZRT5AGnAloy4j5A9vtQz+iO1yxl5sYnI86NrpY2f
-         nQYDxlW3ZdlX6s4KsM20w2dkCYd0OuZz72VjGECmHzA+aYxPxIhXhM4toglgS4xnfYW8
-         lamS77G7dsUbdkTcDhPwfocWfWnwImK35kYfC7lY966P0eR/PLyYTOdDDrfs9+PIli+z
-         rBn0zlS0QDUYFyNDL8yAlut4lPmXfPCyfOt/ij7/mCiq9TL2z1ttB9/ziuIyoVvi1oi1
-         NhMN6p4xtzZKCqAgddZcmclkRz5CDXWQmPyv0Un1dVOxfNBmKSR6CJ8EsHWMS1V+riOx
-         xQsg==
-X-Gm-Message-State: AOJu0YyWXUGhf3R63EyIKeRSF+qvURVdaxYrsSuY0P7z55Ai2qDJJaOf
-	4K3eNe4vfzy5pcoqqdpLBXmqiA==
-X-Google-Smtp-Source: AGHT+IGOSYD/AClTyfZcyu80kE/QwnxMTd6gl521vDVTarXuD1raEagUY5DoiAfWBI4SWVeeRDqYmw==
-X-Received: by 2002:a17:906:cc96:b0:a17:781f:20bf with SMTP id oq22-20020a170906cc9600b00a17781f20bfmr337719ejb.6.1701773649822;
-        Tue, 05 Dec 2023 02:54:09 -0800 (PST)
+        bh=IL3sCCBm1t+y4jTpNMbGRo3NUuZEcn+OIUHSm5NfmuQ=;
+        b=S90e/yUU/mggSFI53SpVAvDLnNU9pQDJ/hw8NYJxGWtmAhirR7dkAs04YfMTPK74PC
+         sg5oP4tJEddH3lXbQwJHa0LQngLWXjTdV+O2oFTH+JSyxSJHIvWAv68M9e/vhnNVAw6Z
+         4U6Zc8CtJFKuRESW3s4E+OvxOxnHQAktFTgE9xexTxumTmXPb7Ruy8va53iWI+1oZIPZ
+         jk9pCVUDpDp39wQpi53neUoINrIb5QpKMXoygfMcKPt6WDp5AEC/KR3aeV3WXkcpUMHk
+         NkiLnaueQaoHseclrL0XHz2evx8zWeHrJq/HjobStoCMCu7b7DemBoVyzN0RarLJCflq
+         RgEQ==
+X-Gm-Message-State: AOJu0YxTSRg8SbuJ4qa3GLi35PyA3Dsh8GJbBAUj/ya13f50MTHjbBn/
+	KEAIzQ9DtgFcNxytutW9p9AdlA==
+X-Google-Smtp-Source: AGHT+IFMskpHmm7wXUHyl8tVMcaN73QDyDq+Qj7bJpi64rf79GvZfezQ13yyObMpwoTHsLKgjITXJg==
+X-Received: by 2002:a05:6512:48b:b0:50b:ed78:80d5 with SMTP id v11-20020a056512048b00b0050bed7880d5mr2180308lfq.92.1701773652666;
+        Tue, 05 Dec 2023 02:54:12 -0800 (PST)
 Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-82-54-95-129.retail.telecomitalia.it. [82.54.95.129])
-        by smtp.gmail.com with ESMTPSA id n23-20020a170906089700b0099297782aa9sm6413491eje.49.2023.12.05.02.54.08
+        by smtp.gmail.com with ESMTPSA id n23-20020a170906089700b0099297782aa9sm6413491eje.49.2023.12.05.02.54.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Dec 2023 02:54:09 -0800 (PST)
+        Tue, 05 Dec 2023 02:54:12 -0800 (PST)
 From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 To: linux-kernel@vger.kernel.org
 Cc: Amarula patchwork <linux-amarula@amarulasolutions.com>,
 	michael@amarulasolutions.com,
 	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Daniel Vetter <daniel@ffwll.ch>,
 	David Airlie <airlied@gmail.com>,
@@ -69,9 +68,9 @@ Cc: Amarula patchwork <linux-amarula@amarulasolutions.com>,
 	Thomas Zimmermann <tzimmermann@suse.de>,
 	devicetree@vger.kernel.org,
 	dri-devel@lists.freedesktop.org
-Subject: [PATCH v4 05/10] dt-bindings: display: panel: Add synaptics r63353 panel controller
-Date: Tue,  5 Dec 2023 11:52:52 +0100
-Message-ID: <20231205105341.4100896-6-dario.binacchi@amarulasolutions.com>
+Subject: [PATCH v4 07/10] dt-bindings: display: panel: Add Ilitek ili9805 panel controller
+Date: Tue,  5 Dec 2023 11:52:54 +0100
+Message-ID: <20231205105341.4100896-8-dario.binacchi@amarulasolutions.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20231205105341.4100896-1-dario.binacchi@amarulasolutions.com>
 References: <20231205105341.4100896-1-dario.binacchi@amarulasolutions.com>
@@ -85,20 +84,17 @@ Content-Transfer-Encoding: 8bit
 
 From: Michael Trimarchi <michael@amarulasolutions.com>
 
-Add documentation for "synaptics,r63353" panel.
+Add documentation for "ilitek,ili9805" panel.
 
 Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
 Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 ---
 
 (no changes since v3)
 
 Changes in v3:
-- Add 'Reviewed-by' tag of Krzysztof Kozlowski.
-- Replace "synaptics,r63353" compatible with "syna,r63353", as
-  required by vendor-prefixes.yaml.
+- Drop power-supply
 
 Changes in v2:
 - Add $ref to panel-common.yaml
@@ -106,23 +102,23 @@ Changes in v2:
 - Set port and backlight ad required
 - Replace additionalProperties with unevaluatedProperties
 
- .../display/panel/synaptics,r63353.yaml       | 61 +++++++++++++++++++
- 1 file changed, 61 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/panel/synaptics,r63353.yaml
+ .../display/panel/ilitek,ili9805.yaml         | 62 +++++++++++++++++++
+ 1 file changed, 62 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/ilitek,ili9805.yaml
 
-diff --git a/Documentation/devicetree/bindings/display/panel/synaptics,r63353.yaml b/Documentation/devicetree/bindings/display/panel/synaptics,r63353.yaml
+diff --git a/Documentation/devicetree/bindings/display/panel/ilitek,ili9805.yaml b/Documentation/devicetree/bindings/display/panel/ilitek,ili9805.yaml
 new file mode 100644
-index 000000000000..e5617d125567
+index 000000000000..f4f91f93f490
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/display/panel/synaptics,r63353.yaml
-@@ -0,0 +1,61 @@
++++ b/Documentation/devicetree/bindings/display/panel/ilitek,ili9805.yaml
+@@ -0,0 +1,62 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/display/panel/synaptics,r63353.yaml#
++$id: http://devicetree.org/schemas/display/panel/ilitek,ili9805.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Synaptics R63353 based MIPI-DSI panels
++title: Ilitek ILI9805 based MIPI-DSI panels
 +
 +maintainers:
 +  - Michael Trimarchi <michael@amarulasolutions.com>
@@ -134,8 +130,9 @@ index 000000000000..e5617d125567
 +  compatible:
 +    items:
 +      - enum:
-+          - sharp,ls068b3sx02
-+      - const: syna,r63353
++          - giantplus,gpm1790a0
++          - tianma,tm041xdhg01
++      - const: ilitek,ili9805
 +
 +  avdd-supply: true
 +  dvdd-supply: true
@@ -161,7 +158,7 @@ index 000000000000..e5617d125567
 +        #size-cells = <0>;
 +
 +        panel@0 {
-+            compatible = "sharp,ls068b3sx02", "syna,r63353";
++            compatible = "giantplus,gpm1790a0", "ilitek,ili9805";
 +            reg = <0>;
 +            avdd-supply = <&avdd_display>;
 +            dvdd-supply = <&dvdd_display>;
