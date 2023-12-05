@@ -1,175 +1,160 @@
-Return-Path: <devicetree+bounces-21783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21784-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F05008051D1
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 12:16:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB7AE8051DD
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 12:17:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A94B1F210AA
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 11:16:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D9201F21227
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 11:17:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1380856462;
-	Tue,  5 Dec 2023 11:16:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCB1B56742;
+	Tue,  5 Dec 2023 11:17:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b="RfVfi8qp"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Be41f6x4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-VI1-obe.outbound.protection.outlook.com (mail-vi1eur02on2054.outbound.protection.outlook.com [40.107.241.54])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F44D116;
-	Tue,  5 Dec 2023 03:15:54 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=B9tKIuiy0FP+jkAtN9wWly8MJdrOIx6Ejvl63nZAD0adh22nTnV1zFc2kNQzjPcCmWFlJNv76W72D2CBGWzsFz0C2Z3G3uuTywWq0Fh5zyYywVNoIoH59A0rJEiWslRHm/S1hzjgzf+LmwE9cAjv+AKjE1dYZreleoBoaIpxMJScppAC4ZIP/Tje51mNQnWunV7cc1WEBy86iTXzrQRpGJiGWXQoTuFac4BFyzvBS5gqtQgGudVldMGtllQ+iXQ8B/R04aISkh3xO/S5VJJv5Xdj54m81dK6Li0JMEAXpLNQ1knfPxkCvqd0o3V3Nm5JFoYsZNb8u+tZfVN12DqKTA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/qXaI8l6xCZbIjtv0GG5fCDTC+AbyQB3FIYZrG67NVc=;
- b=d/9FUNleTo9obNs0THYVJZhKgsuXwsiJcz6TzrYByJ7cHmKVwzinj9TgnBM5cNv7lIrArtkymnGxC0sof/L2Q7dYElF6+VORdNO03T+8aYgRTAYHUhKwA1kPOFhpkjB8aiZSHRuP2hvcwSjLsm6aPNjThy2949GWxm0Hv1FWa8cMQnOwPzKeAc/udt7x/o5FgSb4IvVCIIilvkVzp9Wq7+OVlScjeUCLy1WuPcAgN4fMHciOknTcTAnQCU+rYOJcVkp2GYZvACv7wJWXxFAfZCfmwOU7b29IkOSaPMpfrwePK0A/cmNcW+GcR0Arqqt0ocN/ddrKzeG4whXLZJ9QUQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
- dkim=pass header.d=siemens.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/qXaI8l6xCZbIjtv0GG5fCDTC+AbyQB3FIYZrG67NVc=;
- b=RfVfi8qpfXkvZcRr2tPAngtkt13ZugD6wz4Lcmn+YLm/sGaB0pVnxBYC9qcz7JZ+p3GBt1MQbQ9utsgWCr54lvkz0lFnnhIXqCKUTNQPn3uJ+wmLcfGGDIdl85QIDInVk9nFX9avn+rw+cbeyY7sLMqlJTfgRCugUVW4NE00/YwbqlAaafTJ/VP+5J8ppNs6dstTvmOeiRpp5EfYdcATQKyirtJ1Dnb8HQfP7H57QFPDHN/JFR7zwMnW9Z6r4w46/F4SNUUTsm9vpVRid+fG+/Nd2gPSGmODYtoXWw9tHis+5lkWdgOiEn8atVuy+4JDhaxv7v+pTKVi9nryTOvOvQ==
-Received: from AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:5b6::22)
- by AM0PR10MB3124.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:18d::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.34; Tue, 5 Dec
- 2023 11:15:51 +0000
-Received: from AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::f1e6:2701:4840:b64f]) by AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::f1e6:2701:4840:b64f%5]) with mapi id 15.20.7046.034; Tue, 5 Dec 2023
- 11:15:51 +0000
-From: "Sverdlin, Alexander" <alexander.sverdlin@siemens.com>
-To: "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "donald.robson@imgtec.com"
-	<donald.robson@imgtec.com>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-CC: "sarah.walker@imgtec.com" <sarah.walker@imgtec.com>, "kristo@kernel.org"
-	<kristo@kernel.org>, "nm@ti.com" <nm@ti.com>, "vigneshr@ti.com"
-	<vigneshr@ti.com>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"mripard@kernel.org" <mripard@kernel.org>, "robh+dt@kernel.org"
-	<robh+dt@kernel.org>
-Subject: Re: [PATCH] arm64: dts: ti: k3-am62-main: Add GPU device node
-Thread-Topic: [PATCH] arm64: dts: ti: k3-am62-main: Add GPU device node
-Thread-Index: AQHaJ09veZnwcgNaAE6OVXFA3XpTmbCaii8A
-Date: Tue, 5 Dec 2023 11:15:51 +0000
-Message-ID: <c20b213534667337f08b75a6c325fafec6526135.camel@siemens.com>
-References: <20231204121522.47862-1-donald.robson@imgtec.com>
-In-Reply-To: <20231204121522.47862-1-donald.robson@imgtec.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=siemens.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AS8PR10MB6867:EE_|AM0PR10MB3124:EE_
-x-ms-office365-filtering-correlation-id: 2fe2d393-8ef6-4dec-3c9b-08dbf5838a7c
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- k/xrV+Oog2+m2oGWHw+TMqiUGRtb58Z3jXmIfXFIlwLarqP6vCuNIwdMvoQB4hL71srocKVwpPRXC7plH0SH2EyojH+/GSlUl9m2YF7xmgxOCH96I1L079EAtl1wL59IG2FvHm46Ljij90toEfT0gDn0wgRanQDfusdFzwTFpcbN6rMSanBjJ6yl5DesfI+LNNli14Fsq8KHpaStN5rFup7/4gE2mR/cVqGoslvn0R9NvmZBPuoZc/2vJoXRknQmVyBCDdAqVwky43yGvYbmVNGA3LDXo01ukBmN95qDnTJeGtQ03P0r3YEotbr8MuzcgLlRN22aLngj1CGj9Z0D3dLciVD0YY+4jSnn9j8+YPegOckV/UknMulPasRmml6Gf5KD8WzTmOpZj/j4/mccNWZjoHHkOpGGo1ixEKaZXD5SsQywntQlmTfj6gTsva425uot+HkChnE2pCLUR38HWwy0DhFQJ5Gf4n/0XdY7k2f4b2iyg5NMK0JgiGKF9RvjT3siBBJdiHpLNSTa/c9jbLKaW+YE4RozZDDzstM4GYxaKiKrR0WL/ArdIegAhd3kZtDAIaj0CJ99nMCNGV4E8tZTwZiwY6iyue6WpF3MIsCb+bwoVasFTFNq9PqmjENlOrTQYLjfKDRPWAmfxya9gg==
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(136003)(376002)(396003)(366004)(346002)(230922051799003)(186009)(64100799003)(1800799012)(451199024)(7416002)(15974865002)(2906002)(110136005)(316002)(91956017)(66556008)(54906003)(64756008)(66446008)(66476007)(38070700009)(76116006)(86362001)(66946007)(8676002)(4326008)(41300700001)(36756003)(8936002)(5660300002)(38100700002)(122000001)(82960400001)(6486002)(83380400001)(478600001)(26005)(71200400001)(2616005)(6512007)(55236004)(6506007)(18886075002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?Nm9xd25xOTJvQW1tWDNWM09kRW1wZldXVFdTNGxGSURUNUl0M2ZKNkNOZ0I4?=
- =?utf-8?B?Z3R4eUZCQjBOdDcyWkdLeGE1K1NTeHFkaTE4OWljUURJZ3hmY3ZqbU1zaklR?=
- =?utf-8?B?am9YOW1VM3AzbVM4emRFNkRXMEc2bkxNN2E3b29jYTczNnJ4WDJWS2tPb0FE?=
- =?utf-8?B?QzJhKzREODhpL0xqQmY5RG1seFFUSlZPNTYwK0w2cHVJUUhqMjBHM3kwOVQ3?=
- =?utf-8?B?dXZ6SEpNeFoyTTlXc0ppd2dBYmhRQ0hxa2tRQlV5WUtRVGd2RW1KU3ltNWhw?=
- =?utf-8?B?c2pKVXdiK0ExNWE0T3VFOWZrOTZMYWlPd0FNQ0E0ckdlWFMvd3R1aUFwVmwx?=
- =?utf-8?B?TWtLZGYyQnB0NWpNOVpRWmVXSWRJd2h4US9EM1hFTEN0WTg2ZkxGVjlwbGQ1?=
- =?utf-8?B?R3RhZ2oyVUR1bkxvMkQ4M3AwVGtSd0NPNTgwNnVxK3Q4ZXZ4VHNRb0o1VHly?=
- =?utf-8?B?K2RLZTM3dTREaU1JMHBnZ1FkazQyc3l5QWg0bGczZGhMMXBYOWc3SmVMcE4v?=
- =?utf-8?B?U0VRczdqZ0xjaDlwMTlESEFqOVlGWFV2Z2ZWZFFmTDl3cEhpWUZPTGhyc1dh?=
- =?utf-8?B?Q3J0Vlg2eVkwM3dCNVBCRTd1VDlLWnc0dkpsdFZCYlRQT3B6SGcwb3M1d05I?=
- =?utf-8?B?N3BaZzkvYnpJcTlOU0h5OGtnQnNROTJwYVV1YUJhb3puMFp6bHJab0JMUWR6?=
- =?utf-8?B?ZHdOd0dFWXJBeWhKbFZ0RHlwQVg5eDlSZDg5dmJPZFllTThsY2NlbW1zMGU4?=
- =?utf-8?B?S0UxdnkwY05lZDl1cXNlVDNxVzVVMGJWS0VhdUZ3RWExdmZoZ2dmWmppcHAv?=
- =?utf-8?B?WmpqMm1XMVF4TVp5SzRuVDh4QXA5VENUcGRiTmhHS29CNkkvbk9QWGdjM2ox?=
- =?utf-8?B?L2w1MmFUU2FQbDFuVDg1bURPYjZ4WjVYWUpyZFlZL0U1eHl3Y2REbVZMR2RJ?=
- =?utf-8?B?VnVlMXpZaXlMTkFKMGw0SHdta2lNWjdza0lEUHVEUmJxdHVlKzhJVmtPdXpC?=
- =?utf-8?B?d2FmV3ZYTXJGQWl5UVBqMDNEL0YwSGpPSnRHd0RGVW9FelcvN2xCNTdMNnIr?=
- =?utf-8?B?bHcvQmhlRlhMWDJxNi90a2pMcUV0VTFld3o4K3VRZmY5czE4NHhUM1JOMjZI?=
- =?utf-8?B?UnFtM3d2dDBzTTh0QUJCemsyQ21rVlBXMWF6MzZnUFJuMDR3aVB5OFpoWW9u?=
- =?utf-8?B?LzFoc3E4N3ljZFIvZnU1d0g0WGZTcy9IdHdiM0kvVnZrWGFTVlExTXNDaS9y?=
- =?utf-8?B?VE1jckM4cUtjZDRLb1NlK09vQ0pBYWdTUmFVRDhiNTlOL2hGQ2hUemhzRCtp?=
- =?utf-8?B?S21GSDNiNXBBMktEN1hVQjZvbGpmbE1IL1pjTndEWDhTVjFvZ2ZZb0RIMkRM?=
- =?utf-8?B?RElpd0o2RUtKekl3bXhQbVpZdmtCZU1CdlNaQ08wOVJmTS9VQ2d5Tzdza2dV?=
- =?utf-8?B?WU5laGRqbE5KYjlkUjhzMnFHSzFucGNGOGdycUNBOUNObk9BS1NaYTJMd204?=
- =?utf-8?B?a1BhY042Q0d6Z1JYL052djBOTDBVN01zMUNPNmlEQ0dCNkMySG9GQUpoWnh2?=
- =?utf-8?B?TStZeEQ5Zjd4RVl4czRHbWxJS0ozYUMwVWZOWndvSkFQZnN4VStxQXVJbzRK?=
- =?utf-8?B?Qk12aGNiVWNFUGhtOFFBc3huSUthaWtxeVdBblRadVJiRmNLRTZWOXBZaVJY?=
- =?utf-8?B?dDlvTE5UTFZXMHlJQ083c0tSOXRyMkJ0S21IakthRXB6UE1xamNtc2dIMEVn?=
- =?utf-8?B?Qnp3TEd2WlEwQU9hZSsyazlRMi9wZk4yNnhrd1VxZDlqZzkxdU1NaWtPelIr?=
- =?utf-8?B?NVpIU3JIZStNQnp4L2h2empHQjJVMC9XNlQ3NStZekkvUi84RGoyWVBuNDBz?=
- =?utf-8?B?aVdvdXgzK2Z6UFNrVjJRUjc3dVBEcm1YZVZOaHQwZXdIMTBPN003L084TUpy?=
- =?utf-8?B?WnFSd0w2TjY5TTRSVlJtWlo2Wk01UEFsWERxZGJTU3Q5VWRJT0hmM3Y4bEdI?=
- =?utf-8?B?amk1OU56M0NzQStVWnovbVRmUGlLcncvNjFzOFptekQvcTl2Z0hBajdrYkpt?=
- =?utf-8?B?WWlZc09VTURFbm95MGcyOTVldFV2K0JlN2c0UUgyOXA1ZjdUc0NvMDlHbzhJ?=
- =?utf-8?B?ZDgzWlE1R3hHaUZHRTd6L0pFRVFLVnUyT0JmcExmNnIzMU8xU25uN3lKcVo2?=
- =?utf-8?Q?O+NSfUmJpClguVin4WOr54o=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <50FFA9251770424F8D0B84BB0E7923A9@EURPRD10.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: base64
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D70F0113
+	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 03:17:18 -0800 (PST)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-54cfb03f1a8so1409857a12.2
+        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 03:17:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701775037; x=1702379837; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9bFWvbHdZ+yBWjkG2AjCOWgUeQFJsO6N0KpFAtG5kgs=;
+        b=Be41f6x48JSYW40Nf+sf7VQmx2ksdDqrd/auftSDo6qYt9rI/nCKTELdIumiJFxfZx
+         Fk9m6piQfiWC/wyJnkTFjQEN0NXLRWcDFqft/mqgywFzC4KnxM0z9G/tKbUMJP3mluyk
+         NeUK2uCOI4cMpKbzKWdiRQfDPRJHI6gRbjyEnAcum0BNdGOcmibzwjRFyG4lSwQ15rNy
+         BcfG6RPFvcronsd0X1hYtisZxk3s8SqOGEOH/BlnRAK7Tx71baqlTK1f7DPFJcVH4gN1
+         vfpoThtPAJXofP0UNflMxmeiPGraklWHmMl1c/p4nf7tcayFy88iicVLQH3ijWn/N2xv
+         153Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701775037; x=1702379837;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9bFWvbHdZ+yBWjkG2AjCOWgUeQFJsO6N0KpFAtG5kgs=;
+        b=L5J2mRkx+lVvXJg9fIZdzrmHV3sKv6rYJ6SWWDXIOf1agRuDb9C0pxQosvh91J9Kbz
+         oqkeMDnAzjj0vZ+sHAhsSb9blyvNCejRq/xu8M1aRemHmnOj0ekgRf9ZVM6zW/fX43eF
+         xWRPOZt9Z6WIcWbhvNt5en5hphFid+L3kHZfKUa5YX0D609p0Gmb5JwhLRwrmv9oMz5Q
+         PdSNmC8yTdn2eGD0ZDAfcPQVKzA6884spQskB3Ol3+eUlcqCtXUZJa0vPiiHSLm6x3tQ
+         kbV7mxHzOksaXeu5oQFn1f3clXbnRnY2kVPhOnv4mA923Oeo6xOjqUPE9BiagnXzqXHz
+         XJrQ==
+X-Gm-Message-State: AOJu0YzSCp6silMK8B9N8n98KEH04c+yAoJf7qdBAL3vbWLbbnPkhF8L
+	npc9wZO1w1Udx2rHIwhQnV7NqA==
+X-Google-Smtp-Source: AGHT+IFxEB0bUAN14B30xmG0RvzRxnAklPYvA45XIZ8ORyABH1tKv+IfQodqEJ35m4YFxPMADQHx5A==
+X-Received: by 2002:a05:6402:5190:b0:54c:c744:da7e with SMTP id q16-20020a056402519000b0054cc744da7emr1929309edd.40.1701775037298;
+        Tue, 05 Dec 2023 03:17:17 -0800 (PST)
+Received: from ?IPV6:2001:1c06:2302:5600:366d:ca8f:f3af:381? (2001-1c06-2302-5600-366d-ca8f-f3af-0381.cable.dynamic.v6.ziggo.nl. [2001:1c06:2302:5600:366d:ca8f:f3af:381])
+        by smtp.gmail.com with ESMTPSA id g21-20020aa7c595000000b0054b3d8e65d7sm935118edq.47.2023.12.05.03.17.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Dec 2023 03:17:16 -0800 (PST)
+Message-ID: <1c62dd8b-72b2-4204-8284-a1dd90d4f909@linaro.org>
+Date: Tue, 5 Dec 2023 12:17:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: siemens.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2fe2d393-8ef6-4dec-3c9b-08dbf5838a7c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Dec 2023 11:15:51.5614
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 9+M6QUw5nnQvtk5jENTRHF0EpkBpqWaK0Y+O10P6bMndaxsYnN9HME0bL50Z7R7QtxZplhOkV9bfl1zcOhwwe0YGoPFNSuDX+4lLsqKsfSg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR10MB3124
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: msm8916/39-samsung-a2015: Add PMIC and
+ charger
+Content-Language: en-US
+To: Raymond Hackley <raymondhackley@protonmail.com>,
+ linux-kernel@vger.kernel.org
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jakob Hauser <jahau@rocketmail.com>,
+ Stephan Gerhold <stephan@gerhold.net>, Nikita Travkin <nikita@trvn.ru>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht
+References: <20231205093841.24325-1-raymondhackley@protonmail.com>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20231205093841.24325-1-raymondhackley@protonmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-SGkgRG9uYWxkLCBTYXJhaCBldCBhbCwNCg0KdGhhbmtzIGZvciB0aGUgcGF0Y2ghDQoNCk9uIE1v
-biwgMjAyMy0xMi0wNCBhdCAxMjoxNSArMDAwMCwgRG9uYWxkIFJvYnNvbiB3cm90ZToNCj4gRnJv
-bTogU2FyYWggV2Fsa2VyIDxzYXJhaC53YWxrZXJAaW1ndGVjLmNvbT4NCj4gDQo+IEFkZCB0aGUg
-U2VyaWVzIEFYRSBHUFUgbm9kZSB0byB0aGUgQU02MiBkZXZpY2UgdHJlZS4NCj4gDQo+IFNpZ25l
-ZC1vZmYtYnk6IFNhcmFoIFdhbGtlciA8c2FyYWgud2Fsa2VyQGltZ3RlYy5jb20+DQo+IFNpZ25l
-ZC1vZmYtYnk6IERvbmFsZCBSb2Jzb24gPGRvbmFsZC5yb2Jzb25AaW1ndGVjLmNvbT4NCg0KcG93
-ZXJ2ciBmZDAwMDAwLmdwdTogW2RybV0gbG9hZGVkIGZpcm13YXJlIHBvd2VydnIvcm9ndWVfMzMu
-MTUuMTEuM192MS5mdw0KcG93ZXJ2ciBmZDAwMDAwLmdwdTogW2RybV0gRlcgdmVyc2lvbiB2MS4w
-IChidWlsZCA2NTAzNzI1IE9TKQ0KW2RybV0gSW5pdGlhbGl6ZWQgcG93ZXJ2ciAxLjAuMCAyMDIz
-MDkwNCBmb3IgZmQwMDAwMC5ncHUgb24gbWlub3IgMA0KDQpJbiBnZW5lcmFsIGl0IGFsbG93cyB0
-aGUgZHJpdmVyIHRvIGJlIHByb2JlZCBvbiBUSSBBTTYyNSBFSywgc28NClRlc3RlZC1ieTogQWxl
-eGFuZGVyIFN2ZXJkbGluIDxhbGV4YW5kZXIuc3ZlcmRsaW5Ac2llbWVucy5jb20+DQoNCkJ1dCBJ
-J20gbm90IHN1cmUgaWYgeW91IG1heWJlIHdhbnQgdG8gZGlzYWJsZSBpdCBieSBkZWZhdWx0IGxp
-a2UNCm90aGVyIEhXIGJsb2NrcyBmb3IgdGhlIChwb3RlbnRpYWwpIGJvYXJkcyB3aGljaCBkb24n
-dCBoYXZlIHZpZGVvIGF0IGFsbC4NCg0KPiAtLS0NCj4gwqBhcmNoL2FybTY0L2Jvb3QvZHRzL3Rp
-L2szLWFtNjItbWFpbi5kdHNpIHwgOSArKysrKysrKysNCj4gwqAxIGZpbGUgY2hhbmdlZCwgOSBp
-bnNlcnRpb25zKCspDQo+IA0KPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy90aS9r
-My1hbTYyLW1haW4uZHRzaSBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvdGkvazMtYW02Mi1tYWluLmR0
-c2kNCj4gaW5kZXggZTVjNjRjODZkMWQ1Li40MzM4ZmQ4YWIyZDcgMTAwNjQ0DQo+IC0tLSBhL2Fy
-Y2gvYXJtNjQvYm9vdC9kdHMvdGkvazMtYW02Mi1tYWluLmR0c2kNCj4gKysrIGIvYXJjaC9hcm02
-NC9ib290L2R0cy90aS9rMy1hbTYyLW1haW4uZHRzaQ0KPiBAQCAtOTY1LDQgKzk2NSwxMyBAQCBt
-Y2FzcDI6IGF1ZGlvLWNvbnRyb2xsZXJAMmIyMDAwMCB7DQo+IMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgcG93ZXItZG9tYWlucyA9IDwmazNfcGRzIDE5MiBUSV9TQ0lfUERfRVhDTFVT
-SVZFPjsNCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBzdGF0dXMgPSAiZGlzYWJs
-ZWQiOw0KPiDCoMKgwqDCoMKgwqDCoMKgfTsNCj4gKw0KPiArwqDCoMKgwqDCoMKgwqBncHU6IGdw
-dUBmZDAwMDAwIHsNCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGNvbXBhdGlibGUg
-PSAidGksYW02Mi1ncHUiLCAiaW1nLGltZy1heGUiOw0KPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgcmVnID0gPDB4MDAgMHgwZmQwMDAwMCAweDAwIDB4MjAwMDA+Ow0KPiArwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgY2xvY2tzID0gPCZrM19jbGtzIDE4NyAwPjsNCj4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGNsb2NrLW5hbWVzID0gImNvcmUiOw0KPiArwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgaW50ZXJydXB0cyA9IDxHSUNfU1BJIDg2IElSUV9U
-WVBFX0xFVkVMX0hJR0g+Ow0KPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcG93ZXIt
-ZG9tYWlucyA9IDwmazNfcGRzIDE4NyBUSV9TQ0lfUERfRVhDTFVTSVZFPjsNCj4gK8KgwqDCoMKg
-wqDCoMKgfTsNCj4gwqB9Ow0KDQotLSANCkFsZXhhbmRlciBTdmVyZGxpbg0KU2llbWVucyBBRw0K
-d3d3LnNpZW1lbnMuY29tDQo=
+On 05/12/2023 10:38, Raymond Hackley wrote:
+> The phones listed below have Richtek RT5033 PMIC and charger.
+> Add them to the device trees.
+> 
+> - Samsung Galaxy A3/A5/A7 2015
+> - Samsung Galaxy E5/E7
+> - Samsung Galaxy Grand Max
+> 
+> Signed-off-by: Raymond Hackley <raymondhackley@protonmail.com>
+> ---
+>   .../qcom/msm8916-samsung-a2015-common.dtsi    | 59 +++++++++++++++++-
+>   .../boot/dts/qcom/msm8916-samsung-a3u-eur.dts |  6 ++
+>   .../boot/dts/qcom/msm8916-samsung-a5u-eur.dts |  6 ++
+>   .../qcom/msm8916-samsung-e2015-common.dtsi    |  6 ++
+>   .../boot/dts/qcom/msm8916-samsung-e5.dts      |  6 ++
+>   .../boot/dts/qcom/msm8916-samsung-e7.dts      |  7 +++
+>   .../dts/qcom/msm8916-samsung-grandmax.dts     |  6 ++
+>   .../boot/dts/qcom/msm8939-samsung-a7.dts      | 62 ++++++++++++++++++-
+>   8 files changed, 156 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi b/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
+> index 2937495940ea..e6355e5e2177 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
+> @@ -28,6 +28,12 @@ tz-apps@85500000 {
+>   		};
+>   	};
+>   
+> +	battery: battery {
+> +		compatible = "simple-battery";
+> +		precharge-current-microamp = <450000>;
+> +		precharge-upper-limit-microvolt = <3500000>;
+> +	};
+> +
+>   	clk_pwm: pwm {
+>   		compatible = "clk-pwm";
+>   		#pwm-cells = <2>;
+> @@ -128,6 +134,12 @@ muic: extcon@25 {
+>   
+>   			pinctrl-names = "default";
+>   			pinctrl-0 = <&muic_int_default>;
+> +
+> +			usb_con: connector {
+> +				compatible = "usb-b-connector";
+> +				label = "micro-USB";
+> +				type = "micro";
+> +			};
+
+It would be nice to break this up into individual patches
+
+One patch for the battery, one patch for the usb-b-connector per device 
+you are targetting.
+
+More work but better practice to have more granular commits.
+
+
+> +		regulators {
+> +			rt5033_reg_safe_ldo: SAFE_LDO {
+> +				regulator-min-microvolt = <4900000>;
+> +				regulator-max-microvolt = <4900000>;
+> +				regulator-always-on;
+> +			};
+> +
+> +			/*
+> +			 * Needed for camera, but not used yet.
+> +			 * Define empty nodes to allow disabling the unused
+> +			 * regulators.
+> +			 */
+> +			LDO {};
+> +			BUCK {};
+> +		};
+
+Aren't the camera regulators off until enabled ?
+
+---
+bod
+
 
