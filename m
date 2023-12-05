@@ -1,176 +1,111 @@
-Return-Path: <devicetree+bounces-21820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDE0F8053C8
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 13:05:42 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDD168053D1
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 13:07:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7261928178F
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 12:05:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6E3E3B20C99
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 12:07:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7000C5ABB4;
-	Tue,  5 Dec 2023 12:05:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 795675A11A;
+	Tue,  5 Dec 2023 12:07:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="IAVA675A"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ox7KS79q"
 X-Original-To: devicetree@vger.kernel.org
-X-Greylist: delayed 340 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 05 Dec 2023 04:05:34 PST
-Received: from out-179.mta1.migadu.com (out-179.mta1.migadu.com [IPv6:2001:41d0:203:375::b3])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 969DDB9
-	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 04:05:34 -0800 (PST)
-Message-ID: <50e674a2-89f8-46d2-8efe-3cf65ca1b554@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1701777590;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=9FNNsCD4UdrxJOkb/IVwaih82zP1k+LML9/DNjLCExQ=;
-	b=IAVA675At4yZ/VrLScYNDbl/w7pWWgyAmRpL+D3r5bkICJmsonRbjwkAPoE5YDQ5PJf7d4
-	ejJy1DXjM77hAzel142fv9DyEYR+kvK6f2OLGTEiKxuxz7vAwGPnN26LMyG7Nbb0rHuWtp
-	+wCRBTsxbOQyI9Oogr51f/SrfOePv0s=
-Date: Tue, 5 Dec 2023 19:59:40 +0800
+Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99EF6A7
+	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 04:07:32 -0800 (PST)
+Received: by mail-qk1-x731.google.com with SMTP id af79cd13be357-77d84f8808dso362256585a.2
+        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 04:07:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701778051; x=1702382851; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fzzss/3oc7wEg7L1wA9iFADpFSvhD8QNQvMXGtF4oXc=;
+        b=Ox7KS79qlUvfkW4ogM7M+Kosv/o62NMH4dmPzTafqoK8YC3ynwwdkU0lBAUBcYHXGO
+         WvVmt8Zt3TCi1VK8S5OLWUUK622HGR/hcjch4rQAF0/AeTTHBwGu7IWZoaQ6jzo/H7WX
+         TIVxhTXgEId4KHwDH9+xT+DWSaJw1FhNc9M5Tuuw4uBfh/ah64mRDsf4EqBqSu3YKNzC
+         HeWaGkNe+DZ64MjsAri6J4yuk6rGHz1TPfNGGAcsXoPJK7W4bS4pUqWP5dCzUOFm94nf
+         AIGKSVM/hinzL6MPb0SAj6O3Lx9udn/USDHSYd32diirThTMP54zTrIFlLwtBExTAP2s
+         Ss6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701778051; x=1702382851;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fzzss/3oc7wEg7L1wA9iFADpFSvhD8QNQvMXGtF4oXc=;
+        b=lDJz7KLCImK893uRGd2/PgR6m/L0PLWurxv1yEzZrLd0Wqt7mqGplLrWfa4A94V51s
+         wB/+tsXN9+8soxxRaxPeokau/wsTRrdAOt5O2aIOOvtTA5n9LWCjneERYbSxyhUfVz56
+         Cis7Dnxr6qmu8RIyF/a8/VpuEjXA9k8id4hows3R9Vu8yNoMyvLJXh2vHv64gEruGVCa
+         Ll2TsFZ0S1RcDI4SqYA8UkqXTCaCBE+GXMSl62t5ro5fIE0cbGUtZvy79l2pL+TRrCuz
+         Ea5PubWbC4gVbxow6ev/vPalNmizV1FoccxWpe4A+OSnmffPben4WNriEusdJrcAVO3t
+         WQvw==
+X-Gm-Message-State: AOJu0YzElLqsHK5mkmXMElCteTYJDwNAGADMM/h5kl/cLWRGU67KlyKq
+	akDCcyVr2eaC24mcWyGvjT6nWA==
+X-Google-Smtp-Source: AGHT+IEQ/fwXPYm/SKTmDVSPGaitnffnHXzR6LAxf7KIzfoLTCFxCaGIqthZPP3RG1C1BnV2D3zrLg==
+X-Received: by 2002:a05:620a:8883:b0:77e:fba3:938f with SMTP id qk3-20020a05620a888300b0077efba3938fmr931908qkn.113.1701778051719;
+        Tue, 05 Dec 2023 04:07:31 -0800 (PST)
+Received: from [172.30.204.197] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id dx9-20020a05620a608900b0077d9fdde1dcsm5045144qkb.42.2023.12.05.04.07.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Dec 2023 04:07:31 -0800 (PST)
+Message-ID: <95d47311-f25d-4594-b59d-bd389e39100c@linaro.org>
+Date: Tue, 5 Dec 2023 13:07:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [v3 0/6] DRM driver for verisilicon
-To: Keith Zhao <keith.zhao@starfivetech.com>, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org
-Cc: aou@eecs.berkeley.edu, tzimmermann@suse.de, paul.walmsley@sifive.com,
- mripard@kernel.org, xingyu.wu@starfivetech.com, jack.zhu@starfivetech.com,
- palmer@dabbelt.com, krzysztof.kozlowski+dt@linaro.org,
- william.qiu@starfivetech.com, shengyang.chen@starfivetech.com,
- changhuang.liang@starfivetech.com
-References: <20231204123315.28456-1-keith.zhao@starfivetech.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: qrb5165-rb5: add a pin function for
+ BT enable GPIO
 Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Sui Jingfeng <sui.jingfeng@linux.dev>
-In-Reply-To: <20231204123315.28456-1-keith.zhao@starfivetech.com>
+To: Bartosz Golaszewski <brgl@bgdev.pl>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Alex Elder <elder@linaro.org>,
+ Srini Kandagatla <srinivas.kandagatla@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+References: <20231205112311.16391-1-brgl@bgdev.pl>
+ <20231205112311.16391-2-brgl@bgdev.pl>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20231205112311.16391-2-brgl@bgdev.pl>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
-
-Hi,
-
-On 2023/12/4 20:33, Keith Zhao wrote:
-> This patch is a drm driver for Starfive Soc JH7110,
-> I am sending Drm driver part and HDMI driver part.
->
-> We used GEM framework for buffer management,
-> and for buffer allocation,we use DMA APIs.
->
-> the Starfive HDMI servers as interface between a LCD Controller
-> and a HDMI bus.
-> A HDMI TX consists of one HDMI transmitter controller
-> and one HDMI transmitter PHY.
-> (Sound support is not include in this patch)
->
-> This patchset should be applied on next branch.
+X-Spam-Level: *
 
 
-Please study Thomas's patch[1][2] carefully and write a good cover letter.
-Introduce what each single patch does, demonstrate how the whole driver is
-divided and organized, and why. And probably keep contact with him if he
-would like to curve your driver to a good shape. :-)
 
+On 12/5/23 12:23, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> 
+> Set up the pin function for the Bluetooth enable GPIO.
+> 
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> ---
+>   arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 11 +++++++++++
+>   1 file changed, 11 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> index ce6ae0771d34..ead0c45ba60c 100644
+> --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> @@ -1264,6 +1264,17 @@ &tlmm {
+>   		"HST_WLAN_UART_TX",
+>   		"HST_WLAN_UART_RX";
+>   
+> +	bt_en_state: bt-default-state {
+> +		bt-en {
+> +			pins = "gpio21";
+If it's the only GPIO expected to be here, you may drop the
+extra bt-en level, like the entry below
 
-[1] https://lore.kernel.org/dri-devel/20200715145902.13122-1-tzimmermann@suse.de/
-[2] https://lore.kernel.org/dri-devel/20231113091439.17181-1-tzimmermann@suse.de/
-
-
-> V1:
-> Changes since v1:
-> - Further standardize the yaml file.
-> - Dts naming convention improved.
-> - Fix the problem of compiling and loading ko files.
-> - Use drm new api to automatically manage resources.
-> - Drop vs_crtc_funcs&vs_plane_funcs, subdivide the plane's help interface.
-> - Reduce the modifiers unused.
-> - Optimize the hdmi driver code
->
-> V2:
-> Changes since v2:
-> - fix the error about checking the yaml file.
-> - match drm driver GEM DMA API.
-> - Delete the custom crtc property .
-> - hdmi use drmm_ new api to automatically manage resources.
-> - update the modifiers comments.
-> - enabling KASAN, fix the error during removing module
->
-> V3:
-> Changes since v3:
-> - Delete the custom plane property.
-> - Delete the custom fourcc modifiers.
-> - Adjust the calculation mode of hdmi pixclock.
-> - Add match data for dc8200 driver.
-> - Adjust some magic values.
-> - Add a simple encoder for dsi output.
->
-> Keith Zhao (6):
->    dt-bindings: display: Add yamls for JH7110 display system
->    riscv: dts: starfive: jh7110: display subsystem
->    drm/vs: Register DRM device
->    drm/vs: Add KMS crtc&plane
->    drm/vs: Add hdmi driver
->    drm/vs: simple encoder
->
->   .../starfive/starfive,display-subsystem.yaml  |  104 ++
->   .../starfive/starfive,dsi-encoder.yaml        |   92 ++
->   .../starfive/starfive,jh7110-dc8200.yaml      |  113 ++
->   .../starfive/starfive,jh7110-inno-hdmi.yaml   |   82 ++
->   .../soc/starfive/starfive,jh7110-syscon.yaml  |    1 +
->   MAINTAINERS                                   |    8 +
->   .../jh7110-starfive-visionfive-2.dtsi         |  134 ++
->   arch/riscv/boot/dts/starfive/jh7110.dtsi      |   49 +
->   drivers/gpu/drm/Kconfig                       |    2 +
->   drivers/gpu/drm/Makefile                      |    1 +
->   drivers/gpu/drm/verisilicon/Kconfig           |   21 +
->   drivers/gpu/drm/verisilicon/Makefile          |   12 +
->   drivers/gpu/drm/verisilicon/starfive_hdmi.c   |  849 ++++++++++++
->   drivers/gpu/drm/verisilicon/starfive_hdmi.h   |  304 +++++
->   drivers/gpu/drm/verisilicon/vs_crtc.c         |  208 +++
->   drivers/gpu/drm/verisilicon/vs_crtc.h         |   42 +
->   drivers/gpu/drm/verisilicon/vs_dc.c           | 1192 +++++++++++++++++
->   drivers/gpu/drm/verisilicon/vs_dc.h           |   67 +
->   drivers/gpu/drm/verisilicon/vs_dc_hw.c        | 1022 ++++++++++++++
->   drivers/gpu/drm/verisilicon/vs_dc_hw.h        |  580 ++++++++
->   drivers/gpu/drm/verisilicon/vs_drv.c          |  323 +++++
->   drivers/gpu/drm/verisilicon/vs_drv.h          |   46 +
->   drivers/gpu/drm/verisilicon/vs_modeset.c      |   39 +
->   drivers/gpu/drm/verisilicon/vs_modeset.h      |   10 +
->   drivers/gpu/drm/verisilicon/vs_plane.c        |  301 +++++
->   drivers/gpu/drm/verisilicon/vs_plane.h        |   39 +
->   drivers/gpu/drm/verisilicon/vs_simple_enc.c   |  195 +++
->   drivers/gpu/drm/verisilicon/vs_simple_enc.h   |   23 +
->   drivers/gpu/drm/verisilicon/vs_type.h         |   69 +
->   29 files changed, 5928 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/display/starfive/starfive,display-subsystem.yaml
->   create mode 100644 Documentation/devicetree/bindings/display/starfive/starfive,dsi-encoder.yaml
->   create mode 100644 Documentation/devicetree/bindings/display/starfive/starfive,jh7110-dc8200.yaml
->   create mode 100644 Documentation/devicetree/bindings/display/starfive/starfive,jh7110-inno-hdmi.yaml
->   create mode 100644 drivers/gpu/drm/verisilicon/Kconfig
->   create mode 100644 drivers/gpu/drm/verisilicon/Makefile
->   create mode 100644 drivers/gpu/drm/verisilicon/starfive_hdmi.c
->   create mode 100644 drivers/gpu/drm/verisilicon/starfive_hdmi.h
->   create mode 100644 drivers/gpu/drm/verisilicon/vs_crtc.c
->   create mode 100644 drivers/gpu/drm/verisilicon/vs_crtc.h
->   create mode 100644 drivers/gpu/drm/verisilicon/vs_dc.c
->   create mode 100644 drivers/gpu/drm/verisilicon/vs_dc.h
->   create mode 100644 drivers/gpu/drm/verisilicon/vs_dc_hw.c
->   create mode 100644 drivers/gpu/drm/verisilicon/vs_dc_hw.h
->   create mode 100644 drivers/gpu/drm/verisilicon/vs_drv.c
->   create mode 100644 drivers/gpu/drm/verisilicon/vs_drv.h
->   create mode 100644 drivers/gpu/drm/verisilicon/vs_modeset.c
->   create mode 100644 drivers/gpu/drm/verisilicon/vs_modeset.h
->   create mode 100644 drivers/gpu/drm/verisilicon/vs_plane.c
->   create mode 100644 drivers/gpu/drm/verisilicon/vs_plane.h
->   create mode 100644 drivers/gpu/drm/verisilicon/vs_simple_enc.c
->   create mode 100644 drivers/gpu/drm/verisilicon/vs_simple_enc.h
->   create mode 100644 drivers/gpu/drm/verisilicon/vs_type.h
->
+Konrad
 
