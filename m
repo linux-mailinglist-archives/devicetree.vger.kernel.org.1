@@ -1,144 +1,189 @@
-Return-Path: <devicetree+bounces-21984-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21986-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11C18805F26
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 21:11:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71314805F4D
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 21:20:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD9611F21460
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 20:11:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0466F281F1F
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 20:20:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AD056DCEB;
-	Tue,  5 Dec 2023 20:11:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A92806A345;
+	Tue,  5 Dec 2023 20:19:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="BJgOONCf"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YzqMsmIJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6D95D53;
-	Tue,  5 Dec 2023 12:11:35 -0800 (PST)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B5KBLaY070414;
-	Tue, 5 Dec 2023 14:11:21 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1701807081;
-	bh=tykLgFAN0sBT/vZntrlheG7q4aoOYiXjvXxIPINHQbE=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=BJgOONCfowq1kcoBHDUWwNilYmJjkaeP8ezneBLiINgca8ukIQLLIzDq8j8odgFns
-	 UpIhEfL1qxRtciTPYM7AjryfCI51e76LNOQ8Ngp65s6cTDOtytrNXXJByLGKS1L2MR
-	 4J1PyHOGrXh52Ou8AUm3/3GM2mqYjootuUIq2QH0=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B5KBLcd008887
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 5 Dec 2023 14:11:21 -0600
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 5
- Dec 2023 14:11:21 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 5 Dec 2023 14:11:21 -0600
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B5KBLhB110808;
-	Tue, 5 Dec 2023 14:11:21 -0600
-From: Nishanth Menon <nm@ti.com>
-To: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob
- Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Jai
- Luthra <j-luthra@ti.com>
-CC: Nishanth Menon <nm@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Aradhya Bhatia
-	<a-bhatia1@ti.com>, Devarsh Thakkar <devarsht@ti.com>,
-        Vaishnav Achath
-	<vaishnav.a@ti.com>,
-        Julien Massot <julien.massot@collabora.com>,
-        Martyn
- Welch <martyn.welch@collabora.com>,
-        Matthias Schiffer
-	<matthias.schiffer@ew.tq-group.com>
-Subject: Re: [PATCH RESEND v3 0/9] arm64: dts: ti: Enable CSI cameras for AM62 family
-Date: Tue, 5 Dec 2023 14:11:14 -0600
-Message-ID: <170180697250.3345832.2524014147786723166.b4-ty@ti.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20231201-csi_dts-v3-0-9f06f31080fe@ti.com>
-References: <20231201-csi_dts-v3-0-9f06f31080fe@ti.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06A9CC0
+	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 12:19:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1701807594; x=1733343594;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=+sO3tPg+0yesqijDj+LCNYPdq4zKvypZxitJf8XaVKo=;
+  b=YzqMsmIJVbVTtdZrsToYvvb+aHrIUpeRs/OBuKIpHyZtbbBVndA90Rgs
+   a7xkM2NPtG077lONMWpXWzWab+zFHhXvsi3mdbTznuXqz0RrlDe5LTqZ2
+   aY6Cm3/puMsl21Ot7tXGlO7ukAf+axc4s/MtdhhOBkoo+I/3Ab/JSm534
+   iAkAlZokJvI+mashESWtgUK+C2SXxLtt9NXXYuo4hd3GeLEBH56NL+qwy
+   oG656PFj03b5lh5FH3LUxgQim/hbr5LwEgq08GmJ9luw2Camha4nMvCMK
+   FXxxp3omhbK6ZbQDQLCGlS7yA4I11OzbKhmgYel7v0or8Bxd/Xpv+OrTy
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="849894"
+X-IronPort-AV: E=Sophos;i="6.04,253,1695711600"; 
+   d="scan'208";a="849894"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Dec 2023 12:19:54 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="841594386"
+X-IronPort-AV: E=Sophos;i="6.04,253,1695711600"; 
+   d="scan'208";a="841594386"
+Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
+  by fmsmga004.fm.intel.com with ESMTP; 05 Dec 2023 12:19:47 -0800
+Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rAbtR-0009fI-0p;
+	Tue, 05 Dec 2023 20:19:45 +0000
+Date: Wed, 6 Dec 2023 04:19:10 +0800
+From: kernel test robot <lkp@intel.com>
+To: Tony Lindgren <tony@atomide.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Simha BN <simhavcs@gmail.com>,
+	Sam Ravnborg <sam@ravnborg.org>
+Cc: oe-kbuild-all@lists.linux.dev, Carl Philipp Klemm <philipp@uvos.xyz>,
+	devicetree@vger.kernel.org,
+	Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
+	Merlijn Wajer <merlijn@wizzup.org>,
+	Sebastian Reichel <sre@kernel.org>, dri-devel@lists.freedesktop.org,
+	Pavel Machek <pavel@ucw.cz>
+Subject: Re: [PATCH v2 09/10] drm/bridge: tc358775: Add support for tc358765
+Message-ID: <202312060419.B8qmgrsh-lkp@intel.com>
+References: <20231202075514.44474-10-tony@atomide.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231202075514.44474-10-tony@atomide.com>
 
-Hi Jai Luthra,
+Hi Tony,
 
-On Fri, 01 Dec 2023 10:39:15 +0530, Jai Luthra wrote:
-> This series enables CSI camera support on BeaglePlay, SK-AM62 and
-> SK-AM62A, now that the dt-bindings and driver support for CSI-RX related
-> IPs is merged in v6.7-rc1.
-> 
-> Along with the device tree nodes for CSI-RX, add new DT overlays for
-> different camera modules like RPiv2 (IMX219) or PCam5C (OV5640).
-> 
-> [...]
+kernel test robot noticed the following build warnings:
 
-I have applied the following to branch ti-k3-config-next on [1].
-Thank you!
+[auto build test WARNING on drm-misc/drm-misc-next]
+[also build test WARNING on linus/master v6.7-rc4 next-20231205]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-[1/9] arm64: defconfig: Enable AM62 CSI2RX
-      commit: bd62d91f42d015e173809214badaf750b75be2d1
+url:    https://github.com/intel-lab-lkp/linux/commits/Tony-Lindgren/dt-bindings-display-bridge-tc358775-make-stby-gpio-and-vdd-supplies-optional/20231202-160622
+base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
+patch link:    https://lore.kernel.org/r/20231202075514.44474-10-tony%40atomide.com
+patch subject: [PATCH v2 09/10] drm/bridge: tc358775: Add support for tc358765
+config: x86_64-randconfig-121-20231203 (https://download.01.org/0day-ci/archive/20231206/202312060419.B8qmgrsh-lkp@intel.com/config)
+compiler: clang version 16.0.4 (https://github.com/llvm/llvm-project.git ae42196bc493ffe877a7e3dff8be32035dea4d07)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231206/202312060419.B8qmgrsh-lkp@intel.com/reproduce)
 
-I have applied the following to branch ti-k3-dts-next on [1]:
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202312060419.B8qmgrsh-lkp@intel.com/
 
-[2/9] arm64: dts: ti: Enable CSI-RX on AM62
-      commit: 2017f5a610a998cd414c7d9e8b19051014f3126b
-[3/9] arm64: dts: ti: Enable CSI-RX on AM62A
-      commit: c45e3b54ad1e84f59b3193abc6f451a8cdf7d69f
-[4/9] arm64: dts: ti: k3-am625-beagleplay: Add overlays for OV5640
-      commit: defa1438c5b34af13fb56c7faefaeec648805530
-[5/9] arm64: dts: ti: k3-am62x-sk: Enable camera peripherals
-      commit: fed1e53ecf9f0ecf04bd931428287fd1002899ef
-[6/9] arm64: dts: ti: k3-am62x: Add overlays for OV5640
-      commit: 635ed97151945a7fdf104ef1227d86f0a9e3678e
-[7/9] arm64: dts: ti: k3-am62a7-sk: Enable camera peripherals
-      commit: 00d7f8f9efdbdf551e92683f5cd274145dce2c4b
-[8/9] arm64: dts: ti: k3-am62x: Add overlay for IMX219
-      commit: 4111db03dc05c49ded2d9ec21b52c0ca45b59303
-[9/9] arm64: dts: ti: Use OF_ALL_DTBS for combined blobs
-      commit: b0044823a6607e535fdb083c89f487fbf183b171
+All warnings (new ones prefixed by >>):
 
-with minor $subject and formatting updates to stay in sync with existing
-changes.
+>> drivers/gpu/drm/bridge/tc358775.c:661:13: warning: cast to smaller integer type 'enum tc3587x5_type' from 'const void *' [-Wvoid-pointer-to-enum-cast]
+           tc->type = (enum tc3587x5_type)of_device_get_match_data(dev);
+                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   1 warning generated.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+vim +661 drivers/gpu/drm/bridge/tc358775.c
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+   648	
+   649	static int tc_probe(struct i2c_client *client)
+   650	{
+   651		struct device *dev = &client->dev;
+   652		struct tc_data *tc;
+   653		int ret;
+   654	
+   655		tc = devm_kzalloc(dev, sizeof(*tc), GFP_KERNEL);
+   656		if (!tc)
+   657			return -ENOMEM;
+   658	
+   659		tc->dev = dev;
+   660		tc->i2c = client;
+ > 661		tc->type = (enum tc3587x5_type)of_device_get_match_data(dev);
+   662	
+   663		tc->panel_bridge = devm_drm_of_get_bridge(dev, dev->of_node,
+   664							  TC358775_LVDS_OUT0, 0);
+   665		if (IS_ERR(tc->panel_bridge))
+   666			return PTR_ERR(tc->panel_bridge);
+   667	
+   668		ret = tc358775_parse_dt(dev->of_node, tc);
+   669		if (ret)
+   670			return ret;
+   671	
+   672		tc->vddio = devm_regulator_get(dev, "vddio-supply");
+   673		if (IS_ERR(tc->vddio)) {
+   674			ret = PTR_ERR(tc->vddio);
+   675			dev_err(dev, "vddio-supply not found\n");
+   676			return ret;
+   677		}
+   678	
+   679		tc->vdd = devm_regulator_get(dev, "vdd-supply");
+   680		if (IS_ERR(tc->vdd)) {
+   681			ret = PTR_ERR(tc->vdd);
+   682			dev_err(dev, "vdd-supply not found\n");
+   683			return ret;
+   684		}
+   685	
+   686		tc->stby_gpio = devm_gpiod_get_optional(dev, "stby", GPIOD_OUT_HIGH);
+   687		if (IS_ERR(tc->stby_gpio))
+   688			return PTR_ERR(tc->stby_gpio);
+   689	
+   690		tc->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+   691		if (IS_ERR(tc->reset_gpio)) {
+   692			ret = PTR_ERR(tc->reset_gpio);
+   693			dev_err(dev, "cannot get reset-gpios %d\n", ret);
+   694			return ret;
+   695		}
+   696	
+   697		tc->bridge.funcs = &tc_bridge_funcs;
+   698		tc->bridge.of_node = dev->of_node;
+   699		tc->bridge.pre_enable_prev_first = true;
+   700		drm_bridge_add(&tc->bridge);
+   701	
+   702		i2c_set_clientdata(client, tc);
+   703	
+   704		ret = tc_attach_host(tc);
+   705		if (ret)
+   706			goto err_bridge_remove;
+   707	
+   708		return 0;
+   709	
+   710	err_bridge_remove:
+   711		drm_bridge_remove(&tc->bridge);
+   712		return ret;
+   713	}
+   714	
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
