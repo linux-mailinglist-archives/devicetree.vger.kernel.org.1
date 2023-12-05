@@ -1,211 +1,284 @@
-Return-Path: <devicetree+bounces-21859-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21860-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69544805631
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 14:37:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21BD580564B
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 14:46:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 22BC2281BB0
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 13:37:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D1F21C20F73
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 13:46:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 245A55D912;
-	Tue,  5 Dec 2023 13:37:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A03955D915;
+	Tue,  5 Dec 2023 13:46:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="qJEun988";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="kzomfXtM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OSyp3xub"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com [66.111.4.29])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF4141AB;
-	Tue,  5 Dec 2023 05:37:15 -0800 (PST)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailout.nyi.internal (Postfix) with ESMTP id 3B5CC5C0073;
-	Tue,  5 Dec 2023 08:37:15 -0500 (EST)
-Received: from imap51 ([10.202.2.101])
-  by compute5.internal (MEProxy); Tue, 05 Dec 2023 08:37:15 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-type:content-type:date:date:from:from:in-reply-to
-	:in-reply-to:message-id:mime-version:references:reply-to:sender
-	:subject:subject:to:to; s=fm3; t=1701783435; x=1701869835; bh=MS
-	o40/DzILPmk4fVztq26tP1UcAt4IZ5edthROYfIeQ=; b=qJEun988LPpJTneK4B
-	iOm8MG4rNWEJ2M9ylmnOyL8l6IwefIw3g+/fCxBQAzyJ7hYdhL0/vWbPNpuzsUFh
-	3rJnLmNXViDWxshFEt8CsL6vb4PkVF+BORWHrbr3H58yGuLoV7d7VhDamFjpQhcT
-	U/u+M5I1drvoNI3dxxKiGfFRUhtB2Ve3C1g31EZOupjooD8zk4+Mo+IjzVNeit2A
-	xrIqpr9SYwC2iP4Gd4vV3r7M8WNNp6iK/T8nTedZd/kkRg34bxzcsBoYntKliqtf
-	rWt81QWBmEKAovmrUW9mB6GfVJnBfIPPZu0EVRiRyoy+3Hv5hrUNpSjlpotMCzoZ
-	Tfwg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:sender:subject
-	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-	:x-sasl-enc; s=fm1; t=1701783435; x=1701869835; bh=MSo40/DzILPmk
-	4fVztq26tP1UcAt4IZ5edthROYfIeQ=; b=kzomfXtMU0QNVW1G9ASuu30rLAGos
-	brOM5jegxaM9w5e0E+Mx0NaBvK7yKRLW7QEFi70l9E13SQcdbmlVehN4FL8GG+v3
-	7RsF2zI2Nyv6dHAMGGHfT47Lx9dGZC/A9N679EkNRrcIR+iFfssYQHIRL1Npjkbk
-	eBYMVft4X3MdNIlB9Zj8bhY3LknHONoh7BVL83Nvp2HHAnfut73c+YWszU2OV3K/
-	6zMPitTGR7BZjpWbzVUNxULgkm1Gk00Wy3GqEXLYAsGzKmGbotT7+uN4YvG5UW9z
-	iuXVOurc69aA6dcmz84gY6uMYS+XnL6znE2Xy2uInouwlGoH3ug5OPSsw==
-X-ME-Sender: <xms:iidvZSzxzQt9c1fSV60YcizLeTJiBllKOkZaAoH87W9KXaB9-0jiKg>
-    <xme:iidvZeRT49Fh7djkd5qgQf2NCRjlrWgdztUMf8L5b0qdI-EFZGp5EXBPiTBQ73rXl
-    eg3yUbr-dA7ideEfis>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrudejkedgheegucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
-    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
-    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
-    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
-    hrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:iidvZUXouaBsV59xnbNVHKF_uXZMwp2q_wCdiiHs5wsWMnd_ACMcKw>
-    <xmx:iidvZYhPVbBEyaGydQt8CbxNo52xULx8foRb9eVwP_9xGKxILkcQRA>
-    <xmx:iidvZUDRajflv2u1GEbjLptgtHm7CwStnkYNNuqBvb20vTp0-pEA4g>
-    <xmx:iydvZdKP1SM2yKZ3zCKMv0fokHE2VVWKyjYuf1Spzjczx5f7DTcEfA>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 2D405B60089; Tue,  5 Dec 2023 08:37:13 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-1178-geeaf0069a7-fm-20231114.001-geeaf0069
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E05218B;
+	Tue,  5 Dec 2023 05:46:26 -0800 (PST)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-54cff638658so1589184a12.1;
+        Tue, 05 Dec 2023 05:46:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701783984; x=1702388784; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=TTeJ0EDjbcdiYqEviIIm+5LsxySuiePtzDtzi3eR2Yk=;
+        b=OSyp3xubmVf3/SGcYs4CKgXLGwycCsS8MWahSbkOaPyGUMa45i2mQNsc9t51oOhcgE
+         rBMkdiOCTjBC5wjqsWv+oKCkRLWlRe5XaTPCkJH7aglwZIRfgMQCwp5cCMvGocVuHAgT
+         5KZRdep0T1afkyc+mf0PCLqtTvlWaf1if1ji8RbxcjjcvMsVG5qfYA+LIJH0/9BynOy+
+         iSuDAdncqkJDwAT80h5LucxqQBslJVJVgh9lfhr1wK8SRGo2vzci8rw2YXYvBLOFFnlG
+         svfBTahx3NkxAGNbtMTligud259B/8KkEXRY+Zmn2y5Y8JxOyqkPLcaU2os/rFG3C+Nn
+         KpoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701783984; x=1702388784;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TTeJ0EDjbcdiYqEviIIm+5LsxySuiePtzDtzi3eR2Yk=;
+        b=fY+lKuxC1xeqvv3OUR8YpN0Oh9BQLeYa7z0FLc5r+ZamNfcNN3HIsyolS3RtuCRPd9
+         B9f/wPHwVZ9kysiJlCUAGZzjx6GqzR5IJD7v5Dm3X+6QiKW3e2YoGBKcVkFqn+VsDAF6
+         9GtvSIIlOt0J3swut/cwO1mwBaUXA3gTKCCLzQuYJ0KKQnbtiFqvYg/l1EBMJTJYMl8U
+         HV0QiSawIl128B564hoXMfJ5KeuuRdT30NQFhfxpP0JW2KaHODdIGLezUsZgr4evJTw3
+         zjpAgl7tIWUOhLDDzKtP6fz+tDao32UxlIeYrtP+JLSCfemquQhztSSZz0gfFT0MGmV+
+         oWog==
+X-Gm-Message-State: AOJu0YyYttdQ0y6sFxojNsdbPTGZt5Mv2hQlMpiAnX0+ZznfmoKkXAkZ
+	cHVsi2rNeOQ/WMZYDM1E/Xzw0T9NuLtoBuC8wDE=
+X-Google-Smtp-Source: AGHT+IHIGvB6u0O1iOh8G8NwKm8XBsB8DRTT0Cab/+S3uj7y2caskUdc4TFT7kN0IGVA7SpWD4NzKQ==
+X-Received: by 2002:a50:8d4e:0:b0:548:5605:4682 with SMTP id t14-20020a508d4e000000b0054856054682mr3942458edt.21.1701783984336;
+        Tue, 05 Dec 2023 05:46:24 -0800 (PST)
+Received: from HYB-hhAwRlzzMZb.ad.analog.com ([5.2.194.157])
+        by smtp.gmail.com with ESMTPSA id by6-20020a0564021b0600b0054cacb41abasm1102233edb.60.2023.12.05.05.46.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Dec 2023 05:46:23 -0800 (PST)
+From: Dumitru Ceclan <mitrutzceclan@gmail.com>
+To: 
+Cc: linus.walleij@linaro.org,
+	brgl@bgdev.pl,
+	andy@kernel.org,
+	linux-gpio@vger.kernel.org,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Walle <michael@walle.cc>,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	ChiaEn Wu <chiaen_wu@richtek.com>,
+	Niklas Schnelle <schnelle@linux.ibm.com>,
+	=?UTF-8?q?Leonard=20G=C3=B6hrs?= <l.goehrs@pengutronix.de>,
+	Mike Looijmans <mike.looijmans@topic.nl>,
+	Haibo Chen <haibo.chen@nxp.com>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	Ceclan Dumitru <dumitru.ceclan@analog.com>,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Dumitru Ceclan <mitrutzceclan@gmail.com>
+Subject: [PATCH v7 1/2] dt-bindings: adc: add AD7173
+Date: Tue,  5 Dec 2023 15:42:20 +0200
+Message-ID: <20231205134223.17335-1-mitrutzceclan@gmail.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <2a5ce0d0-ad0a-49d7-84a6-055c4b729eec@app.fastmail.com>
-In-Reply-To: 
- <f671beae8a8ebfd361f4c903bccce713135a169f.1701768028.git.ysato@users.sourceforge.jp>
-References: <cover.1701768028.git.ysato@users.sourceforge.jp>
- <f671beae8a8ebfd361f4c903bccce713135a169f.1701768028.git.ysato@users.sourceforge.jp>
-Date: Tue, 05 Dec 2023 14:36:53 +0100
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Yoshinori Sato" <ysato@users.sourceforge.jp>, linux-sh@vger.kernel.org
-Cc: "Damien Le Moal" <dlemoal@kernel.org>,
- "Rob Herring" <robh+dt@kernel.org>,
- "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
- "Conor Dooley" <conor+dt@kernel.org>,
- "Geert Uytterhoeven" <geert+renesas@glider.be>,
- "Michael Turquette" <mturquette@baylibre.com>,
- "Stephen Boyd" <sboyd@kernel.org>, "Dave Airlie" <airlied@gmail.com>,
- "Daniel Vetter" <daniel@ffwll.ch>,
- "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
- "Maxime Ripard" <mripard@kernel.org>,
- "Thomas Zimmermann" <tzimmermann@suse.de>,
- "Thomas Gleixner" <tglx@linutronix.de>,
- "Lorenzo Pieralisi" <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- "Bjorn Helgaas" <bhelgaas@google.com>,
- "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
- "Jiri Slaby" <jirislaby@kernel.org>,
- "Magnus Damm" <magnus.damm@gmail.com>,
- "Daniel Lezcano" <daniel.lezcano@linaro.org>,
- "Rich Felker" <dalias@libc.org>,
- "John Paul Adrian Glaubitz" <glaubitz@physik.fu-berlin.de>,
- "Lee Jones" <lee@kernel.org>, "Helge Deller" <deller@gmx.de>,
- =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
- "Jernej Skrabec" <jernej.skrabec@gmail.com>,
- "Chris Morgan" <macromorgan@hotmail.com>,
- "Linus Walleij" <linus.walleij@linaro.org>,
- "Randy Dunlap" <rdunlap@infradead.org>,
- "Hyeonggon Yoo" <42.hyeyoo@gmail.com>,
- "David Rientjes" <rientjes@google.com>,
- "Vlastimil Babka" <vbabka@suse.cz>, "Baoquan He" <bhe@redhat.com>,
- "Andrew Morton" <akpm@linux-foundation.org>,
- "Guenter Roeck" <linux@roeck-us.net>,
- "Stephen Rothwell" <sfr@canb.auug.org.au>, guoren <guoren@kernel.org>,
- "Javier Martinez Canillas" <javierm@redhat.com>,
- "Azeem Shaikh" <azeemshaikh38@gmail.com>,
- "Palmer Dabbelt" <palmer@rivosinc.com>, "Bin Meng" <bmeng@tinylab.org>,
- "Max Filippov" <jcmvbkbc@gmail.com>, "Tom Rix" <trix@redhat.com>,
- "Herve Codina" <herve.codina@bootlin.com>,
- "Jacky Huang" <ychuang3@nuvoton.com>,
- "Lukas Bulwahn" <lukas.bulwahn@gmail.com>,
- "Jonathan Corbet" <corbet@lwn.net>,
- "Biju Das" <biju.das.jz@bp.renesas.com>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
- "Sam Ravnborg" <sam@ravnborg.org>,
- "Michael Karcher" <kernel@mkarcher.dialup.fu-berlin.de>,
- "Sergey Shtylyov" <s.shtylyov@omp.ru>,
- "Laurent Pinchart" <laurent.pinchart+renesas@ideasonboard.com>,
- linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
- linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-pci@vger.kernel.org, linux-serial@vger.kernel.org,
- linux-fbdev@vger.kernel.org
-Subject: Re: [DO NOT MERGE v5 22/37] dt-bindings: display: smi,sm501: SMI SM501 binding
- json-schema
-Content-Type: text/plain
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Tue, Dec 5, 2023, at 10:45, Yoshinori Sato wrote:
-> Define SM501 functions and modes.
->
-> Signed-off-by: Yoshinori Sato <ysato@users.sourceforge.jp>
-> ---
->  .../bindings/display/smi,sm501.yaml           | 134 ++++++++++++++++++
->  include/dt-bindings/display/sm501.h           |  25 ++++
+The AD7173 family offer a complete integrated Sigma-Delta ADC solution
+which can be used in high precision, low noise single channel applications
+or higher speed multiplexed applications. The Sigma-Delta ADC is intended
+primarily for measurement of signals close to DC but also delivers
+outstanding performance with input bandwidths out to ~10kHz.
 
-It looks like we already have a binding at
-Documentation/devicetree/bindings/display/sm501fb.txt
+Signed-off-by: Dumitru Ceclan <mitrutzceclan@gmail.com>
+---
+ .../bindings/iio/adc/adi,ad7173.yaml          | 170 ++++++++++++++++++
+ 1 file changed, 170 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
 
-> +  little-endian:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description: available on big endian systems, to set different 
-> foreign endian.
-> +  big-endian:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description: available on little endian systems, to set different 
-> foreign endian.
-> +
-> +  swap-fb-endian:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description: swap framebuffer byteorder.
+diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
+new file mode 100644
+index 000000000000..087820a0cf48
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
+@@ -0,0 +1,170 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright 2023 Analog Devices Inc.
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/adc/adi,ad7173.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Analog Devices AD7173 ADC
++
++maintainers:
++  - Ceclan Dumitru <dumitru.ceclan@analog.com>
++
++description: |
++  Bindings for the Analog Devices AD717X ADC's. Datasheets for supported chips:
++    https://www.analog.com/media/en/technical-documentation/data-sheets/AD7172-2.pdf
++    https://www.analog.com/media/en/technical-documentation/data-sheets/AD7173-8.pdf
++    https://www.analog.com/media/en/technical-documentation/data-sheets/AD7175-2.pdf
++    https://www.analog.com/media/en/technical-documentation/data-sheets/AD7176-2.pdf
++
++properties:
++  compatible:
++    enum:
++      - adi,ad7172-2
++      - adi,ad7173-8
++      - adi,ad7175-2
++      - adi,ad7176-2
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 0
++
++  spi-max-frequency:
++    maximum: 20000000
++
++  refin-supply:
++    description: external reference supply, can be used as reference for conversion.
++
++  refin2-supply:
++    description: external reference supply, can be used as reference for conversion.
++
++  avdd-supply:
++    description: avdd supply, can be used as reference for conversion.
++
++  required:
++    - compatible
++    - reg
++    - interrupts
++
++patternProperties:
++  "^channel@[0-9a-f]$":
++    type: object
++    $ref: adc.yaml
++    unevaluatedProperties: false
++
++    properties:
++      reg:
++        minimum: 0
++        maximum: 15
++
++      diff-channels:
++        items:
++          minimum: 0
++          maximum: 31
++
++      adi,reference-select:
++        description: |
++          Select the reference source to use when converting on
++          the specific channel. Valid values are:
++          refin      : REFIN(+)/REFIN(−).
++          refin2     : REFIN2(+)/REFIN2(−)
++          refout-avss: REFOUT/AVSS (Internal reference)
++          avdd       : AVDD
++
++          External reference refin2 only available on ad7173-8.
++          If not specified, internal reference used.
++        enum:
++          - refin
++          - refin2
++          - refout-avss
++          - avdd
++        default: refout-avss
++
++    required:
++      - reg
++      - diff-channels
++
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++  - if:
++      properties:
++        compatible:
++          not:
++            contains:
++              const: adi,ad7173-8
++    then:
++      properties:
++        refin2-supply: false
++      patternProperties:
++        "^channel@[0-9a-f]$":
++          properties:
++            adi,reference-select:
++              enum:
++                - refin
++                - refout-avss
++                - avdd
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    spi {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      adc@0 {
++        compatible = "adi,ad7173-8";
++        reg = <0>;
++
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        interrupts = <25 IRQ_TYPE_EDGE_FALLING>;
++        interrupt-parent = <&gpio>;
++        spi-max-frequency = <5000000>;
++
++        refin-supply = <&dummy_regulator>;
++
++        channel@0 {
++          reg = <0>;
++          bipolar;
++          diff-channels = <0 1>;
++          adi,reference-select = "refin";
++        };
++
++        channel@1 {
++          reg = <1>;
++          diff-channels = <2 3>;
++        };
++
++        channel@2 {
++          reg = <2>;
++          bipolar;
++          diff-channels = <4 5>;
++        };
++
++        channel@3 {
++          reg = <3>;
++          bipolar;
++          diff-channels = <6 7>;
++        };
++
++        channel@4 {
++          reg = <4>;
++          diff-channels = <8 9>;
++          adi,reference-select = "avdd";
++        };
++      };
++    };
+-- 
+2.42.0
 
-Why do you need both the "swap" and the specific little/big
-properties?
-
-> +  crt:
-> +    description: CRT output control
-> +
-> +  panel:
-> +    description: Panel output control
-
-What type are these?
-
-> +  smi,misc-timing:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Miscellaneous Timing reg value.
-> +
-> +  smi,misc-control:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Miscellaneous Control reg value.
-> +
-> +  smi,gpio-low:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: GPIO0 to 31 Control reg value.
-> +
-> +  smi,gpio-high:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: GPIO32 to 63 Control reg value.
-
-Register values should generally not go into DT
-
-
-> +
-> +  smi,gpio-i2c:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    minItems: 5
-> +    description: |
-> +      GPIO I2C bus number
-> +      1st field - I2C bus number
-> +      2nd Field - GPIO SDA
-> +      3rd Field - GPIO SCL
-> +      4th Field - Timeout
-> +      5th Field - udelay
-
-Instead of a bus number and other fields, I think
-this should reference an i2c device.
-
-      Arnd
 
