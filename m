@@ -1,185 +1,110 @@
-Return-Path: <devicetree+bounces-21927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21928-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDCC4805A05
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 17:34:54 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAE84805A20
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 17:41:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 829D1282007
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 16:34:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 93BEFB211BC
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 16:41:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17F66634;
-	Tue,  5 Dec 2023 16:34:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6F1B645;
+	Tue,  5 Dec 2023 16:41:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="QnLp8DxB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t8r8CH2w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3F8A129;
-	Tue,  5 Dec 2023 08:34:47 -0800 (PST)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id CAC49FF805;
-	Tue,  5 Dec 2023 16:34:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1701794086;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Uwdqih8d4ChJEVJBX1tE0PIM7+9cgSue2Go+/HkBFxA=;
-	b=QnLp8DxBW+vkkFhgEGG5u30oDPIp1UJ1ZIgMiIHL6+ulgLjy0fhQKhNulokopgfNUdsCds
-	I2owO3Rqq562ImCeO6pWMbaCXyD9QSk+etF1ovgJDyJwt/zxrtoxsGJtHhEBaoylHnslR0
-	KR/bZcCkV92lwJ0RZ97+LcqYP8JMNoB/Wh8gpv1VHjYJqWZvYrDPcHSk4lC6pxQHgb4G9u
-	vk4HCxcd8MQq09dR2qupsSdF7vT1ZqWZRAiYPCneHu+snktyVXG3Yb6A826GJZS1KrvGbH
-	D+etNxgfJktOAsN1WeYsDX3R6bdnhJw2HB26Nx42jFhMRjOhe4Or6Df84QjKpQ==
-From: Gregory CLEMENT <gregory.clement@bootlin.com>
-To:  Jiaxun Yang <jiaxun.yang@flygoat.com>
-Cc: Paul Burton <paulburton@kernel.org>, Thomas Bogendoerfer
- <tsbogend@alpha.franken.de>, linux-mips@vger.kernel.org, Vladimir
-  Kondratiev <vladimir.kondratiev@mobileye.com>, Tawfik Bayouk
- <tawfik.bayouk@mobileye.com>, Alexandre Belloni
- <alexandre.belloni@bootlin.com>, =?utf-8?Q?Th=C3=A9o?= Lebrun
- <theo.lebrun@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 06/22] MIPS: Refactor mips_cps_core_entry implementation
-In-Reply-To: <20231201111512.803120-7-gregory.clement@bootlin.com>
-References: <20231201111512.803120-1-gregory.clement@bootlin.com>
- <20231201111512.803120-7-gregory.clement@bootlin.com>
-Date: Tue, 05 Dec 2023 17:34:45 +0100
-Message-ID: <87lea8ehga.fsf@BL-laptop>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87B2765ED5;
+	Tue,  5 Dec 2023 16:41:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2540C433C8;
+	Tue,  5 Dec 2023 16:41:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701794502;
+	bh=7gPvTvewOLYQNm6H9vhHB2NPFfXXl0A8Iq7cfPwQivU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=t8r8CH2wNSFGCbhl+A9QSDbuA2BjoZh332npyGfbLI/Xm9ItOrW8syvIgeDTlZ1q5
+	 wLf7hB/9KqXbzM5nA7Ed4L3Eaxd58OUSMd9V6Owkh/I0PD5JGgcvFnXxdd45TWB45N
+	 dZHNx1v8l2qarIZEqlOvnS6zv92XbrLUBhRP8cnBQ6C8e/tll68GcLBnYDvJHZCBHH
+	 /tITBhqqE/+NntvMtsIVPyI1cRyp88XUnMpeq77USqcR2rq3+I+QZlAtDFZio8240f
+	 MED/YK/ypi+zoWyRR8CJxZSfYIGVO+dV0CfVh28+NT+GbGpdOt5KHr+teW873ceATp
+	 r6/4OwfhZMJvw==
+Date: Tue, 5 Dec 2023 16:41:35 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>, linux-fsd@tesla.com,
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pwm@vger.kernel.org, linux-serial@vger.kernel.org,
+	linux-watchdog@vger.kernel.org
+Subject: Re: [PATCH 0/6] dt-bindings: samsung: continued - add specific
+ compatibles for Tesla FSD Hi,
+Message-ID: <20231205-outnumber-yelp-dafb6ace186e@spud>
+References: <20231205092229.19135-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="C3JOgYS3s1TAhdme"
+Content-Disposition: inline
+In-Reply-To: <20231205092229.19135-1-krzysztof.kozlowski@linaro.org>
+
+
+--C3JOgYS3s1TAhdme
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: gregory.clement@bootlin.com
 
-Hello Jiaxun,
+On Tue, Dec 05, 2023 at 10:22:23AM +0100, Krzysztof Kozlowski wrote:
+> Merging
+> =3D=3D=3D=3D=3D=3D=3D
+> I propose to take entire patchset through my tree (Samsung SoC), because:
+> 1. I already took similar work this cycle:
+>    https://lore.kernel.org/all/169997520487.6747.17671551558724027958.b4-=
+ty@linaro.org/
+> 2. Two new SoCs are coming (Google GS101 and ExynosAutov920) and they mig=
+ht
+>    touch the same lines.  It is reasonable for me to take the bindings fo=
+r the new
+>    SoCs, to have clean `make dtbs_check` on the new DTS.
+> 3. Having it together helps me to have clean `make dtbs_check` within my =
+tree
+>    on the existing DTS.
+> 4. No drivers are affected by this change.
+>=20
+> If folks agree, please kindly Ack the patches.
 
-> From: Jiaxun Yang <jiaxun.yang@flygoat.com>
->
-> Now the exception vector for CPS systems are allocated on-fly
-> with memblock as well.
->
-> It will try to allocate from KSEG1 first, and then try to allocate
-> in low 4G if possible.
->
-> The main reset vector is now generated by uasm, to avoid tons
-> of patches to the code. Other vectors are copied to the location
-> later.
->
-> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
-> ---
-[...]
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
+Cheers,
+Conor.
 
-> diff --git a/arch/mips/kernel/smp-cps.c b/arch/mips/kernel/smp-cps.c
-[...]
+--C3JOgYS3s1TAhdme
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +static int __init setup_cps_vecs(void)
-> +{
-> +	extern void excep_tlbfill(void);
-> +	extern void excep_xtlbfill(void);
-> +	extern void excep_cache(void);
-> +	extern void excep_genex(void);
-> +	extern void excep_intex(void);
-> +	extern void excep_ejtag(void);
-> +	phys_addr_t cps_vec_pa;
-> +	void *cps_vec;
-> +
-> +	/* Try to allocate in KSEG1 first */
-> +	cps_vec_pa =3D memblock_phys_alloc_range(BEV_VEC_SIZE, BEV_VEC_ALIGN,
-> +						0x0, KSEGX_SIZE - 1);
-> +
-> +	if (cps_vec_pa)
-> +		core_entry_reg =3D CKSEG1ADDR(cps_vec_pa) &
-> +					CM_GCR_Cx_RESET_BASE_BEVEXCBASE;
-> +
-> +	if (!cps_vec_pa && mips_cm_is64) {
-> +		cps_vec_pa =3D memblock_phys_alloc_range(BEV_VEC_SIZE, BEV_VEC_ALIGN,
-> +							0x0, SZ_4G - 1);
-> +		if (cps_vec_pa)
-> +			core_entry_reg =3D (cps_vec_pa & CM_GCR_Cx_RESET_BASE_BEVEXCBASE) |
-> +					CM_GCR_Cx_RESET_BASE_MODE;
-> +	}
-> +
-> +	if (!cps_vec_pa)
-> +		return -ENOMEM;
-> +
-> +	/* We want to ensure cache is clean before writing uncached mem */
-> +	blast_dcache_range(TO_CAC(cps_vec_pa), TO_CAC(cps_vec_pa) + BEV_VEC_SIZ=
-E);
-> +	bc_wback_inv(TO_CAC(cps_vec_pa), BEV_VEC_SIZE);
-> +	__sync();
-> +
-> +	cps_vec =3D (void *)TO_UNCAC(cps_vec_pa);
+-----BEGIN PGP SIGNATURE-----
 
-Following your remark about the configuration for generic mips32[1]. I made
-some changes and tried to build with the following command:
-make 32r6el_defconfig; make
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZW9SvwAKCRB4tDGHoIJi
+0rShAP9wrpk6xlyay96Xfkv7prBahXUjkK/0KUi1p6lsWcoq7gEA09NZdE4qyxo8
+SFwP9y3wxxh6dsTeHbeIUJ6yL4EpOgs=
+=wgER
+-----END PGP SIGNATURE-----
 
-I got the follower error:
-arch/mips/kernel/smp-cps.c: In function =E2=80=98setup_cps_vecs=E2=80=99:
-arch/mips/kernel/smp-cps.c:162:19: error: cast to pointer from integer of d=
-ifferent size [-Werror=3Dint-to-pointer-cast]
-
-The issue comes from the TO_UNCAC macro that use the TO_PHYS_MASK macro
-which is 64 bits, so it turn the size of TO_UNCAC() to 8 bytes while the
-size of a pointer is 4 bytes.
-
-Actually it show that TO_UNCAC was created to be only used for 64 bits,
-and it was only your patch "MIPS: spaces: Define a couple of handy
-macros" that made possible to use in 32 bit case.
-
-Did you mange to build a kernel in 32 bits configuration ?
-Maybe you had a local patch that made it possible.
-
-I propose the following fix to squash into the patch "MIPS: spaces:
-Define a couple of handy macros" , what do you think of it?
-
-diff --git a/arch/mips/include/asm/mach-generic/spaces.h b/arch/mips/includ=
-e/asm/mach-generic/spaces.h
-index 05db19521e817..4884199d8b8c4 100644
---- a/arch/mips/include/asm/mach-generic/spaces.h
-+++ b/arch/mips/include/asm/mach-generic/spaces.h
-@@ -49,6 +49,9 @@
- #define HIGHMEM_START          _AC(0x20000000, UL)
- #endif
-=20
-+#define TO_UNCAC(x)            CKSEG1ADDR(x)
-+#define TO_CAC(x)              CKSEG0ADDR(x)
-+
- #endif /* CONFIG_32BIT */
-=20
- #ifdef CONFIG_64BIT
-@@ -78,12 +81,12 @@
- #define HIGHMEM_START          (_AC(1, UL) << _AC(59, UL))
- #endif
-=20
-+#define TO_UNCAC(x)            (UNCAC_BASE | ((x) & TO_PHYS_MASK))
-+#define TO_CAC(x)              (CAC_BASE   | ((x) & TO_PHYS_MASK))
- #define TO_PHYS(x)             (             ((x) & TO_PHYS_MASK))
-=20
- #endif /* CONFIG_64BIT */
-=20
--#define TO_CAC(x)              (CAC_BASE   | ((x) & TO_PHYS_MASK))
--#define TO_UNCAC(x)            (UNCAC_BASE | ((x) & TO_PHYS_MASK))
-=20
- /*
-  * This handles the memory map.
-
-
-[1]:https://lore.kernel.org/linux-mips/4eb150cf-3fb7-41c8-accc-06b13e46f086=
-@app.fastmail.com/
-
---=20
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
+--C3JOgYS3s1TAhdme--
 
