@@ -1,53 +1,56 @@
-Return-Path: <devicetree+bounces-21938-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21939-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED0EF805A8F
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 17:55:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E608805A93
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 17:56:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66003281A84
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 16:55:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AED9D1C21217
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 16:56:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 262B663DDB;
-	Tue,  5 Dec 2023 16:55:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AD8C60BBB;
+	Tue,  5 Dec 2023 16:56:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FjFLZ1Rh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EBuCCi3D"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08C0C60BBE
-	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 16:55:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29C03C433C7;
-	Tue,  5 Dec 2023 16:55:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E86803F8C3;
+	Tue,  5 Dec 2023 16:56:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73909C433C7;
+	Tue,  5 Dec 2023 16:56:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701795348;
-	bh=RwcNNAfsT2+STZzMi5x3BGwN32YgoA2d0mKr4ENbGZE=;
+	s=k20201202; t=1701795408;
+	bh=aeB2VEZILGjhrXQQ9y3UPhXsadO71NJYhGzeeVCb/30=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FjFLZ1Rh+du2h3Xb0bSK4KrUOT6fT/mC3PCn1xTExxYL1Y9m6klM24q5lg1anp4fM
-	 VNee4O0kp/dYn/OjnEz2zyPba6X5OPGM/zHSORp8+8noc+Fs/VoH4RI6HHM1uFtGVO
-	 23v3U91sGep4k51vdmQE7QGYYBhrzTH4vVQUoTQ9UCG/yUQ1sQqvO8GzKgQtOOnJlu
-	 ImKOnsrqWdkJzcwZK9yqxYPuTDOg33Ea9YikvpStDx8Ra+JAHSfou0NygtMVmwEplC
-	 DTm5Ld0nRrs/7yx92WsNscDE1+9aj/9ztHcwj53aZcD1gyHCOuJZgBM2BSDKNvyQ7S
-	 /67tlhJmHj2Jw==
-Date: Tue, 5 Dec 2023 16:55:42 +0000
+	b=EBuCCi3DX6IUgCBt/LFcREbwYaCsw24xS+PBL2ZfRbCSaabE8uRATnLIVYgRYDNy3
+	 OGS6GE1Qfy/6IgPLSIWiFGBP7gPhJW/SFwyH3VkisaYW2Fg5JZ1Eao82Fup7/IKP0b
+	 S/GJCTf6rwd4yrTbvRrpjFuQa35NqcekZqe+B/j8EB3jOwdZQIHOwEpSMhNVoPGFLc
+	 eTOTPSrU9oAFnUbfXkrmJBUGbwPmOKdIwQFh0NGbTqpao2Gh1EaHasSKBU0FO3AWE/
+	 tgr2e7gA5TF5tBcyTs4QzpspRPjJAZWZuyWiQjN2Rgb/S5HCnA+EAulrBZXI54vMDL
+	 kAUlsggYasUSQ==
+Date: Tue, 5 Dec 2023 16:56:43 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Johan Jonker <jbx6244@gmail.com>
-Cc: Alex Bee <knaerzche@gmail.com>, heiko@sntech.de, hjc@rock-chips.com,
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-	tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/3] dt-bindings: drm: rockchip: convert
- inno_hdmi-rockchip.txt to yaml
-Message-ID: <20231205-agency-paralyses-2a7b6df25c66@spud>
-References: <49c6afec-022f-02de-99a0-d409b64da198@gmail.com>
- <3f235189-da75-4e9d-ad68-8cbebca12f6d@gmail.com>
- <3331543a-73fb-3565-47c6-d3303c44ba21@gmail.com>
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Lee Jones <lee@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Support Opensource <support.opensource@diasemi.com>,
+	Steve Twiss <stwiss.opensource@diasemi.com>,
+	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v3.1 2/8] dt-bindings: watchdog: dlg,da9062-watchdog: Add
+ fallback for DA9061 watchdog
+Message-ID: <20231205-robe-take-ea1aeedb4063@spud>
+References: <20231204172510.35041-1-biju.das.jz@bp.renesas.com>
+ <20231204172510.35041-3-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,80 +58,35 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="7k2kR/ZshohNs10q"
+	protocol="application/pgp-signature"; boundary="/3n8Uo5ox6GsArq0"
 Content-Disposition: inline
-In-Reply-To: <3331543a-73fb-3565-47c6-d3303c44ba21@gmail.com>
+In-Reply-To: <20231204172510.35041-3-biju.das.jz@bp.renesas.com>
 
 
---7k2kR/ZshohNs10q
-Content-Type: text/plain; charset=iso-8859-1
+--/3n8Uo5ox6GsArq0
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Dec 04, 2023 at 09:47:15PM +0100, Johan Jonker wrote:
-> On 12/4/23 19:56, Alex Bee wrote:
-> > Am 04.12.23 um 18:39 schrieb Johan Jonker:
-> >> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockch=
-ip,inno-hdmi.yaml b/Documentation/devicetree/bindings/display/rockchip/rock=
-chip,inno-hdmi.yaml
-> >> new file mode 100644
-> >> index 000000000000..96889c86849a
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,inno=
--hdmi.yaml
-> >> @@ -0,0 +1,103 @@
-> >> +# SPDX-License-Identifier: GPL-2.0
-> >> +%YAML 1.2
-> >> +---
-> >> +$id: http://devicetree.org/schemas/display/rockchip/rockchip,inno-hdm=
-i.yaml#
-> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> +
-> >> +title: Rockchip Innosilicon HDMI controller
-> >> +
-> >> +maintainers:
-> >> +=A0 - Sandy Huang <hjc@rock-chips.com>
-> >> +=A0 - Heiko Stuebner <heiko@sntech.de>
-> >> +
-> >> +properties:
-> >> +=A0 compatible:
-> >> +=A0=A0=A0 enum:
-> >> +=A0=A0=A0=A0=A0 - rockchip,rk3036-inno-hdmi
-> >> +
-> >> +=A0 reg:
-> >> +=A0=A0=A0 maxItems: 1
-> >> +
-> >> +=A0 interrupts:
-> >> +=A0=A0=A0 maxItems: 1
-> >> +
-> >> +=A0 clocks:
-> >> +=A0=A0=A0 maxItems: 1
+On Mon, Dec 04, 2023 at 05:25:04PM +0000, Biju Das wrote:
+> The DA9061 watchdog is identical to DA9062 watchdog, so no driver changes
+> are required. The fallback compatible string "dlg,da9062-watchdog" will be
+> used on DA9061 watchdog.
 >=20
-> > The interrupts/clock description exists already in the txt-bindings - s=
-o how about:
-> >=20
-> > +=A0=A0=A0 items:
-> > +=A0=A0=A0=A0=A0 - descrition: ....
-> >> +
->=20
-> It's not common to do so when there's only one clock and nothing special =
-to mention.
-> Used this style for most of my conversions.=20
-> Further rational might be given by Krzysztof and co.
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-Ye, when there is no ambiguity, having the description is not
-required.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---7k2kR/ZshohNs10q
+--/3n8Uo5ox6GsArq0
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZW9WDgAKCRB4tDGHoIJi
-0kOrAP9ylHU9P8zGa7mCfZC4jocgIUPfnviKF/UNsLkrX04RRgEAoOTHJFCbSG0E
-PQExNlhDrVVvQL7O9+TCRCb60H04Uwg=
-=Ow+j
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZW9WSwAKCRB4tDGHoIJi
+0uT+APoD7PLlFTYvw5MQbw4MVqBhh0CFH+BFi/ndSqMIKa3JegEAg722aEyfGGNc
+m6TGeTe9X5Krd2Eb4vj4yeYZrQJoEAA=
+=fv0k
 -----END PGP SIGNATURE-----
 
---7k2kR/ZshohNs10q--
+--/3n8Uo5ox6GsArq0--
 
