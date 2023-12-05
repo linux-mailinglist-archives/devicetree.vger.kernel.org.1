@@ -1,176 +1,99 @@
-Return-Path: <devicetree+bounces-21865-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21864-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F747805678
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 14:50:51 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E849805677
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 14:50:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1A93E1F21623
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 13:50:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 64743B20F6E
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 13:50:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13E245E0B9;
-	Tue,  5 Dec 2023 13:50:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D9A85E0C6;
+	Tue,  5 Dec 2023 13:50:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="gvUKaiKK";
-	dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="x37upRab"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jCbI+sOY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [81.169.146.171])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A47481B1;
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B490A8;
 	Tue,  5 Dec 2023 05:50:39 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1701784221; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=thU7GfXRdmud16hhoF4YyX4UyRq9xu8+0ec7eMtYZq6PzQHu9bU7+t16hQJyrbIY5w
-    GL43j8cVmLYgqOpbix8oO2ePrp7uxovZc3vowcCgLSSJB14r3n6NH21BEfkuKtIwDUJs
-    6DyteLESA4VghIobt5FAHd9lmURbVH2klx5IriG98W+NYPpIz+yT1pM738CqvV7VXAfp
-    5gzfvd/xV330osDp3h/PnCep6vj1KugCgQp/ER7Mq05AaZSUwC/k/HUPD7L6hIJxxtmm
-    sAebDLoA4UG3BTwTZS+sV7N2ydT4lBv4g+Wz4kIN3ChQJY9ydJeL4jl+YrxWIB2NxdBO
-    rIaw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1701784221;
-    s=strato-dkim-0002; d=strato.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=BevZB1eqZGl2+QcgqrpfzNR7Ri326ZukfU8Ti2ESIko=;
-    b=ZVpKj2lE6UPY6x3rSSrJ7NfyMfdvhGF9RIjIg0ZR9UUAlLlNvqo3Li8ta2mp9Y9VD6
-    XYvfWbbahV3E21QwqkRuQoVnz644/UhUfx5y/VZQeORB5E0a4fEZgPdrIXEUTwYlVzMb
-    yYyQWYCZH57WLtDsTbsyO1ujb9o432hTJrdb2NUpt7PlKGntO5X34mRuEelYXg7buC94
-    dio6zGF4RtTNQakUADFfxYYyAnqiWDbeaom9wvijddx+sr88vYCKdf8VYKIY/TaDoaSb
-    pErlX2aiGi+hoZTUbY5Wr3JRpILxWNMtL0hKujCg5NZqXMkeRJOx9p/CNURxOwKtw4pw
-    1oBQ==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo02
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1701784221;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=BevZB1eqZGl2+QcgqrpfzNR7Ri326ZukfU8Ti2ESIko=;
-    b=gvUKaiKK2pMqJEih6X3qP5q2HE4diwktFDI0x2D7T7fTE+3LK06yJbr3OOZfOSt96k
-    m5a8zJuY6gCFs8CA77MgeV27eIUf05hISz6asZhErxc/2dD9SsipdOu4foe5N0TgSU6E
-    xoCttMcyStMKC4Hf8ZEij4D9M5JcAvsPmyfl4aPPhS1c62G77aG06mxzcDyvBnCd9Bll
-    iDIa55H0PNZy5EJb3vIbZ/JzzJASRlpBjicBFBWMQdZLPZHa46wHi7cJbrOi7/tYSAWZ
-    2CHggPsKZ3DF5C6+inhSN+EfKWRLeS6ORG/StvZfPif3VcQc4rYjy1huLMLkzmCb62b0
-    uJcw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1701784221;
-    s=strato-dkim-0003; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=BevZB1eqZGl2+QcgqrpfzNR7Ri326ZukfU8Ti2ESIko=;
-    b=x37upRaba5EaONfJgBtnk5313VU0c1csZgqbOTRvjE4ZsOoxVaOULDhgAPPuK6SxUl
-    0xGrW118EH0GxKq/L7DQ==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj5Apz9PSN6LgsXcGeonQ="
-Received: from smtpclient.apple
-    by smtp.strato.de (RZmta 49.10.0 DYNA|AUTH)
-    with ESMTPSA id wfeb35zB5DoJ252
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-	(Client did not present a certificate);
-    Tue, 5 Dec 2023 14:50:19 +0100 (CET)
-Content-Type: text/plain;
-	charset=us-ascii
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-54c7744a93fso4240277a12.2;
+        Tue, 05 Dec 2023 05:50:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701784238; x=1702389038; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3CnnPrYJbZn+ydGuLss8Ol0k4CEJ0cAzskXkdkO+me0=;
+        b=jCbI+sOYMcqvCfkaSvqiPRMEDIE9RYid9bXyurZiLwNWzp/eH+butlRkZkX+ixtzF/
+         aaBeaumkWlcBie4ltwG1Uh9wcsLo/wQwU+e+yD587pgcSzSJDwLd2JSy+YyJ/lzupI4a
+         JpS2CeX0OkwQP9JX4P+fRHRA4yMpoOklXCCksVsJKErjQFwCo547HPv/GxOCSF0uuyZQ
+         oGdNF+iRkmyctcllSWbnkqDwDGjICekoDAf2Hcmw4CskmXazJsk2FmD8XbM+CPckNZiB
+         sedONh/OB9NtDkRWCxPRYbBJyhEw6UTfahAYF1CoyeS7UtC8Xb3oQfb9gY2fBstypPak
+         /giA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701784238; x=1702389038;
+        h=content-transfer-encoding:in-reply-to:from:references:cc
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3CnnPrYJbZn+ydGuLss8Ol0k4CEJ0cAzskXkdkO+me0=;
+        b=sVgV+Ux6+0rZtsYJNWfAGifWpJQwGREqp9cY5DdzKDGXuAww6sl5fkvxaa4vXcixkY
+         qqRjJjZHaKvw0qHUcPZRRI6PRg0rg9O0NlwWYkgBS8Kg35+hH4y8Er6Q4BPSXgN8Vkmi
+         UND3Rf1eo7i0qeheadHxYWhgPBKsLmM0nOM56YtEKTmGoQz5LntZnrGjFXoMEVkMbBXO
+         Jlttf9L9h7d/F9jcD+JmjoF2fTyQmEpSPHAWnW32xnKPhnjjV9hRc6OP4tiwr7DHsUzG
+         KU3S7Bj/JoWu5PAFIpzULDcSoMJ75k79QPZ0vD3JlTxsqlJb/2ubI7rbw6O4uCjXVP7U
+         DYmA==
+X-Gm-Message-State: AOJu0YxGfyrB8tO/k4cCy/MeuCYQyELjR4v764bQ5cXWvVR7qBn6xGOh
+	ko12yYsa0hqXyfVeSzfgk/UeUqE47rTTNUYi8ug=
+X-Google-Smtp-Source: AGHT+IFRaJTQe39dBZzAkMfzbK51eiz+syrbne0p2I0XfRFqE6HVR4Nw6vvZ01b7wOMFjjnYC/bSOw==
+X-Received: by 2002:a17:906:10ce:b0:a1c:aa9e:17e4 with SMTP id v14-20020a17090610ce00b00a1caa9e17e4mr468382ejv.49.1701784238338;
+        Tue, 05 Dec 2023 05:50:38 -0800 (PST)
+Received: from [172.25.98.130] ([5.2.194.157])
+        by smtp.gmail.com with ESMTPSA id o9-20020a17090637c900b00a1cdf29af64sm424678ejc.45.2023.12.05.05.50.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Dec 2023 05:50:37 -0800 (PST)
+Message-ID: <9717981d-2f41-4664-afd4-bf9a1544bb95@gmail.com>
+Date: Tue, 5 Dec 2023 15:50:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.200.91.1.1\))
-Subject: Re: [PATCH RFC 01/10] dt-bindings: gpu: Add PowerVR Series5 SGX GPUs
-From: "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <vawv2mwhonuyvgmp7uox4rfgdcjwg5fa7hmbcfgl3wiase6e4p@tyavpclppfvu>
-Date: Tue, 5 Dec 2023 14:50:08 +0100
-Cc: Andrew Davis <afd@ti.com>,
- Frank Binns <frank.binns@imgtec.com>,
- Donald Robson <donald.robson@imgtec.com>,
- Matt Coster <matt.coster@imgtec.com>,
- Adam Ford <aford173@gmail.com>,
- Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh+dt@kernel.org>,
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 1/2] dt-bindings: adc: add AD7173
+Content-Language: en-US
+Cc: linus.walleij@linaro.org, brgl@bgdev.pl, andy@kernel.org,
+ linux-gpio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>,
- =?utf-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
- Tony Lindgren <tony@atomide.com>,
- Nishanth Menon <nm@ti.com>,
- Vignesh Raghavendra <vigneshr@ti.com>,
- Tero Kristo <kristo@kernel.org>,
- Paul Cercueil <paul@crapouillou.net>,
- dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev,
- linux-omap@vger.kernel.org,
- linux-mips@vger.kernel.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <6BC60156-89E2-4734-BD00-B49A9A6C1D7A@goldelico.com>
-References: <20231204182245.33683-1-afd@ti.com>
- <20231204182245.33683-2-afd@ti.com>
- <23livt5mcc64bb6lkeec2uxp5cyn4wfekwaj6wzrjnrkndvwgj@6tveqglqpr4v>
- <B3A1B8A7-0363-4ECB-AFBF-576FECA569FA@goldelico.com>
- <vawv2mwhonuyvgmp7uox4rfgdcjwg5fa7hmbcfgl3wiase6e4p@tyavpclppfvu>
-To: Maxime Ripard <mripard@kernel.org>
-X-Mailer: Apple Mail (2.3774.200.91.1.1)
+ Conor Dooley <conor+dt@kernel.org>, Michael Walle <michael@walle.cc>,
+ Andy Shevchenko <andy.shevchenko@gmail.com>, Arnd Bergmann <arnd@arndb.de>,
+ ChiaEn Wu <chiaen_wu@richtek.com>, Niklas Schnelle <schnelle@linux.ibm.com>,
+ =?UTF-8?Q?Leonard_G=C3=B6hrs?= <l.goehrs@pengutronix.de>,
+ Mike Looijmans <mike.looijmans@topic.nl>, Haibo Chen <haibo.chen@nxp.com>,
+ Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+ Ceclan Dumitru <dumitru.ceclan@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231205134223.17335-1-mitrutzceclan@gmail.com>
+From: Ceclan Dumitru <mitrutzceclan@gmail.com>
+In-Reply-To: <20231205134223.17335-1-mitrutzceclan@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Level: *
 
-Hi,
 
-> Am 05.12.2023 um 14:29 schrieb Maxime Ripard <mripard@kernel.org>:
->=20
-> Hi,
->=20
-> On Tue, Dec 05, 2023 at 09:18:58AM +0100, H. Nikolaus Schaller wrote:
->>> Am 05.12.2023 um 07:57 schrieb Maxime Ripard <mripard@kernel.org>:
->>>=20
->>> On Mon, Dec 04, 2023 at 12:22:36PM -0600, Andrew Davis wrote:
->>>> The Imagination PowerVR Series5 "SGX" GPU is part of several SoCs =
-from
->>>> multiple vendors. Describe how the SGX GPU is integrated in these =
-SoC,
->>>> including register space and interrupts. Clocks, reset, and power =
-domain
->>>> information is SoC specific.
->>>>=20
->>>> Signed-off-by: Andrew Davis <afd@ti.com>
->>>> ---
->>>> .../devicetree/bindings/gpu/img,powervr.yaml  | 69 =
-+++++++++++++++++--
->>>> 1 file changed, 63 insertions(+), 6 deletions(-)
->>>=20
->>> I think it would be best to have a separate file for this, =
-img,sgx.yaml
->>> maybe?
->>=20
->> Why?
->=20
-> Because it's more convenient?
 
-Is it?
+On 12/5/23 15:42, Dumitru Ceclan wrote:
+> The AD7173 family offer a complete integrated Sigma-Delta ADC solution
+> which can be used in high precision, low noise single channel applications
+> or higher speed multiplexed applications. The Sigma-Delta ADC is intended
+> primarily for measurement of signals close to DC but also delivers
+> outstanding performance with input bandwidths out to ~10kHz.
+> 
 
->> The whole family of IMG GPUs is PowerVR and SGX and Rogue are =
-generations 5 and 6++:
->>=20
->> https://en.wikipedia.org/wiki/PowerVR
->=20
-> That's not really relevant as far as bindings go.
-
-But maybe for choosing binding file names. Well they are machine =
-readable
-but sometimes humans work with them.
-
-> We have multiple
-> binding files for devices of the same generation, or single bindings
-> covering multiple generations.
->=20
-> The important part is that every compatible is documented. It doesn't
-> really matter how or where.
-
-Yes, and that is why I would find it more convenient to have a single
-"img,powervr.yaml" for all variations unless it becomes filled with
-unrelated stuff (which isn't as far as I see).
-
-BR, Nikolaus=
+Bindings V6 -> V7
+ - remove redundant bipolar attribute
+ - add reference-select example
 
