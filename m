@@ -1,114 +1,262 @@
-Return-Path: <devicetree+bounces-21698-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21738-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27830804E46
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 10:45:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C3CC804F8C
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 10:57:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D5B57281625
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 09:45:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5F11C1C20ECF
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 09:57:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E7E141774;
-	Tue,  5 Dec 2023 09:45:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="dGZ4BWZt"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E9CC5D48A;
+	Tue,  5 Dec 2023 09:55:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m11876.qiye.163.com (mail-m11876.qiye.163.com [115.236.118.76])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC93E124;
-	Tue,  5 Dec 2023 01:44:54 -0800 (PST)
-DKIM-Signature: a=rsa-sha256;
-	b=dGZ4BWZty1d0oIWgBZ6X8FBIyGDPCj743XxLuAfNp+xa34p6BSXVPPWnrai2cFtu/MHaXQF1gs5x6htnfVWl192MLEzMqyi5frolErK8Uhb06vt8nQrgBdjNV6XOr4AZV9ICA09I88dZL2kgtm/Es/DqW6YWSYfL+Qc52ZB/YV8=;
-	c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=Qwe7/iDLwPEEdgYbXXnkzwx2HO9asx5VCXEH67b0F/w=;
-	h=date:mime-version:subject:message-id:from;
-Received: from [172.16.12.141] (unknown [58.22.7.114])
-	by mail-m12779.qiye.163.com (Hmail) with ESMTPA id 59D887801C1;
-	Tue,  5 Dec 2023 17:44:03 +0800 (CST)
-Message-ID: <87831dc3-2554-4b53-a9f8-6b61cf67732e@rock-chips.com>
-Date: Tue, 5 Dec 2023 17:44:03 +0800
+Received: from sakura.ysato.name (ik1-413-38519.vs.sakura.ne.jp [153.127.30.23])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 46853189;
+	Tue,  5 Dec 2023 01:55:37 -0800 (PST)
+Received: from SIOS1075.ysato.name (ZM005235.ppp.dion.ne.jp [222.8.5.235])
+	by sakura.ysato.name (Postfix) with ESMTPSA id 9924C1C012C;
+	Tue,  5 Dec 2023 18:46:00 +0900 (JST)
+From: Yoshinori Sato <ysato@users.sourceforge.jp>
+To: linux-sh@vger.kernel.org
+Cc: Yoshinori Sato <ysato@users.sourceforge.jp>,
+	Damien Le Moal <dlemoal@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Rich Felker <dalias@libc.org>,
+	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
+	Lee Jones <lee@kernel.org>,
+	Helge Deller <deller@gmx.de>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Randy Dunlap <rdunlap@infradead.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Hyeonggon Yoo <42.hyeyoo@gmail.com>,
+	David Rientjes <rientjes@google.com>,
+	Vlastimil Babka <vbabka@suse.cz>,
+	Baoquan He <bhe@redhat.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Stephen Rothwell <sfr@canb.auug.org.au>,
+	Guo Ren <guoren@kernel.org>,
+	Javier Martinez Canillas <javierm@redhat.com>,
+	Azeem Shaikh <azeemshaikh38@gmail.com>,
+	Palmer Dabbelt <palmer@rivosinc.com>,
+	Bin Meng <bmeng@tinylab.org>,
+	Max Filippov <jcmvbkbc@gmail.com>,
+	Tom Rix <trix@redhat.com>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Jacky Huang <ychuang3@nuvoton.com>,
+	Lukas Bulwahn <lukas.bulwahn@gmail.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Michael Karcher <kernel@mkarcher.dialup.fu-berlin.de>,
+	Sergey Shtylyov <s.shtylyov@omp.ru>,
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+	linux-ide@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-pci@vger.kernel.org,
+	linux-serial@vger.kernel.org,
+	linux-fbdev@vger.kernel.org
+Subject: [DO NOT MERGE v5 00/37] Device Tree support for SH7751 based board
+Date: Tue,  5 Dec 2023 18:45:19 +0900
+Message-Id: <cover.1701768028.git.ysato@users.sourceforge.jp>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 11/14] drm/rockchip: vop2: Add support for rk3588
-Content-Language: en-US
-To: Sascha Hauer <sha@pengutronix.de>, Andy Yan <andyshrk@163.com>
-Cc: heiko@sntech.de, hjc@rock-chips.com, dri-devel@lists.freedesktop.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
- devicetree@vger.kernel.org, sebastian.reichel@collabora.com,
- kever.yang@rock-chips.com, chris.obbard@collabora.com
-References: <20231130122001.12474-1-andyshrk@163.com>
- <20231130122439.13374-1-andyshrk@163.com>
- <20231205092936.GW1057032@pengutronix.de>
-From: Andy Yan <andy.yan@rock-chips.com>
-In-Reply-To: <20231205092936.GW1057032@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGU1DS1ZMGkpCGUoZGEgZTkxVEwETFh
-	oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSk1PSU5JVUpLS1VKQl
-	kG
-X-HM-Tid: 0a8c395cf962b24fkuuu59d887801c1
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NRQ6PQw6PDw0FgMVDBpKIykY
-	GQxPCRZVSlVKTEtKTE1CT09PSUJIVTMWGhIXVRoVHwJVAhoVOwkUGBBWGBMSCwhVGBQWRVlXWRIL
-	WUFZTkNVSUlVTFVKSk9ZV1kIAVlBSElNTjcG
+Content-Transfer-Encoding: 8bit
 
-Hi Sascha:
+This is an updated version of something I wrote about 7 years ago.
+Minimum support for R2D-plus and LANDISK.
+I think R2D-1 will work if you add AX88796 to dts.
+And board-specific functions and SCI's SPI functions are not supported.
 
-On 12/5/23 17:29, Sascha Hauer wrote:
-> On Thu, Nov 30, 2023 at 08:24:39PM +0800, Andy Yan wrote:
->> From: Andy Yan <andy.yan@rock-chips.com>
->>
->> VOP2 on rk3588:
->>
->> Four video ports:
->> VP0 Max 4096x2160
->> VP1 Max 4096x2160
->> VP2 Max 4096x2160
->> VP3 Max 2048x1080
->>
->> 4 4K Cluster windows with AFBC/line RGB and AFBC-only YUV support
->> 4 4K Esmart windows with line RGB/YUV support
->>
->> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
-> 
-> With the two nits below feel free to add my:
-> 
-> Reviewed-by: Sascha Hauer <s.hauer@pengutronix.de>
-> 
-> Thanks for working on this.
-> 
->> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
->> index 8d7ff52523fb..8b16031eda52 100644
->> --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
->> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
->> @@ -13,9 +13,16 @@
->>   
->>   #define VOP_FEATURE_OUTPUT_10BIT        BIT(0)
-> 
-> You could rename this to include "VP" for Video Port so it's not so
-> easily mixed up with the defines below.
+You can get it working with qemu found here.
+https://gitlab.com/yoshinori.sato/qemu/-/tree/landisk
 
-Yes, I have the same idea, maybe it's better to do the rename in a separate ?
-> 
->>   
->> +#define VOP2_FEATURE_HAS_SYS_GRF	BIT(0)
->> +#define VOP2_FEATURE_HAS_VO0_GRF	BIT(1)
->> +#define VOP2_FEATURE_HAS_VO1_GRF	BIT(2)
->> +#define VOP2_FEATURE_HAS_VOP_GRF	BIT(3)
->> +#define VOP2_FEATURE_HAS_SYS_PMU	BIT(5)
-> 
-> Should be BIT(4)
 
-Thanks for catching this, will fix in next version.
-> 
-> Sascha
-> 
+v5 changes.
+- pci-sh7751: revert header changes. and some fix in previuous driver.
+- sh/kernel/iomap.c: Use SH io functions.
+- sm501 and sm501fb: re-write DT support.
+
+v4 changes.
+- cpg-sh7750: use clk-divider and clk-gate.
+- pci-sh7751: unified header files to old PCI driver.
+- irq-renesas-sh7751: IPR registers direct mapping.
+- irq-renesas-sh7751irl: useful register bit mapping.
+- sm501 and sm501fb: re-write dt parser.
+- j2_minus: fix build error.
+- dt-binding schema: fix some errors.
+- *.dts: cleanup.
+
+v3 changes.
+- Rewrite clk drivers.
+- Added sh_tmu to OF support.
+- Cleanup PCI stuff.
+- Update sm501 and sm501fb OF support.
+- Update devicetree and documents.
+
+v2 changes.
+- Rebasing v6,6-rc1
+- re-write irqchip driver.
+- Add binding documents.
+- Cleanup review comment.
+
+Yoshinori Sato (37):
+  sh: passing FDT address to kernel startup.
+  sh: Kconfig unified OF supported targets.
+  sh: Enable OF support for build and configuration.
+  dt-bindings: interrupt-controller: Add header for Renesas SH3/4 INTC.
+  sh: GENERIC_IRQ_CHIP support for CONFIG_OF=y
+  sh: kernel/setup Update DT support.
+  sh: Fix COMMON_CLK support in CONFIG_OF=y.
+  clocksource: sh_tmu: CLOCKSOURCE support.
+  dt-bindings: timer: renesas,tmu: add renesas,tmu-sh7750
+  sh: Common PCI Framework driver support.
+  pci: pci-sh7751: Add SH7751 PCI driver
+  dt-bindings: pci: pci-sh7751: Add SH7751 PCI
+  dt-bindings: clock: sh7750-cpg: Add renesas,sh7750-cpg header.
+  clk: Compatible with narrow registers
+  clk: renesas: Add SH7750/7751 CPG Driver
+  irqchip: Add SH7751 INTC driver
+  dt-bindings: interrupt-controller: renesas,sh7751-intc: Add
+    json-schema
+  irqchip: SH7751 IRL external encoder with enable gate.
+  dt-bindings: interrupt-controller: renesas,sh7751-irl-ext: Add
+    json-schema
+  serial: sh-sci: fix SH4 OF support.
+  dt-bindings: serial: renesas,scif: Add scif-sh7751.
+  dt-bindings: display: smi,sm501: SMI SM501 binding json-schema
+  mfd: sm501: Convert platform_data to OF property
+  dt-binding: sh: cpus: Add SH CPUs json-schema
+  dt-bindings: vendor-prefixes: Add iodata
+  dt-bindings: vendor-prefixes:  Add smi
+  dt-bindings: ata: ata-generic: Add new targets
+  dt-bindings: soc: renesas: sh: Add SH7751 based target
+  sh: SH7751R SoC Internal peripheral definition dtsi.
+  sh: add RTS7751R2D Plus DTS
+  sh: Add IO DATA LANDISK dts
+  sh: Add IO DATA USL-5P dts
+  sh: j2_mimas_v2.dts update
+  sh: Add dtbs target support.
+  sh: RTS7751R2D Plus OF defconfig
+  sh: LANDISK OF defconfig
+  sh: j2_defconfig: update
+
+ .../devicetree/bindings/ata/ata-generic.yaml  |   2 +
+ .../bindings/clock/renesas,sh7750-cpg.yaml    | 103 ++++
+ .../bindings/display/smi,sm501.yaml           | 134 +++++
+ .../renesas,sh7751-intc.yaml                  | 105 ++++
+ .../renesas,sh7751-irl-ext.yaml               |  83 +++
+ .../bindings/pci/renesas,sh7751-pci.yaml      | 128 +++++
+ .../bindings/serial/renesas,scif.yaml         |   1 +
+ .../devicetree/bindings/sh/cpus.yaml          |  73 +++
+ .../devicetree/bindings/soc/renesas/sh.yaml   |  32 ++
+ .../bindings/timer/renesas,tmu.yaml           |  11 +-
+ .../devicetree/bindings/vendor-prefixes.yaml  |   4 +
+ arch/sh/Kconfig                               |  11 +-
+ arch/sh/boards/Kconfig                        |  24 +-
+ arch/sh/boards/of-generic.c                   |  28 +-
+ arch/sh/boot/compressed/head_32.S             |   5 +-
+ arch/sh/boot/dts/Makefile                     |   5 +
+ arch/sh/boot/dts/j2_mimas_v2.dts              |   2 +-
+ arch/sh/boot/dts/landisk.dts                  |  74 +++
+ arch/sh/boot/dts/rts7751r2dplus.dts           | 157 ++++++
+ arch/sh/boot/dts/sh7751r.dtsi                 | 150 ++++++
+ arch/sh/boot/dts/usl-5p.dts                   |  84 +++
+ arch/sh/configs/j2_defconfig                  |  11 +-
+ arch/sh/configs/landisk-of_defconfig          | 111 ++++
+ arch/sh/configs/rts7751r2dplus-of_defconfig   |  93 ++++
+ arch/sh/drivers/Makefile                      |   2 +
+ arch/sh/drivers/pci/pci.c                     |   6 -
+ arch/sh/include/asm/io.h                      |   6 +
+ arch/sh/include/asm/irq.h                     |  10 +-
+ arch/sh/include/asm/pci.h                     |   4 +
+ arch/sh/kernel/cpu/Makefile                   |   6 +-
+ arch/sh/kernel/cpu/irq/imask.c                |  17 +
+ arch/sh/kernel/cpu/sh4/Makefile               |   3 +
+ arch/sh/kernel/iomap.c                        |  24 +
+ arch/sh/kernel/setup.c                        |  51 +-
+ arch/sh/kernel/time.c                         |  12 +
+ drivers/clk/clk-divider.c                     |  56 +-
+ drivers/clk/clk-gate.c                        |  56 +-
+ drivers/clk/renesas/Kconfig                   |  16 +-
+ drivers/clk/renesas/Makefile                  |   1 +
+ drivers/clk/renesas/clk-sh7750.c              | 498 ++++++++++++++++++
+ drivers/clocksource/sh_tmu.c                  | 161 ++++--
+ drivers/irqchip/Kconfig                       |  15 +
+ drivers/irqchip/Makefile                      |   3 +
+ drivers/irqchip/irq-renesas-sh7751.c          | 290 ++++++++++
+ drivers/irqchip/irq-renesas-sh7751irl.c       | 227 ++++++++
+ drivers/mfd/sm501.c                           |  99 ++++
+ drivers/pci/controller/Kconfig                |   9 +
+ drivers/pci/controller/Makefile               |   1 +
+ drivers/pci/controller/pci-sh7751.c           | 302 +++++++++++
+ drivers/pci/controller/pci-sh7751.h           |  76 +++
+ drivers/tty/serial/Kconfig                    |   2 +-
+ drivers/tty/serial/sh-sci.c                   |   6 +-
+ drivers/video/fbdev/sm501fb.c                 |  82 +++
+ include/dt-bindings/clock/sh7750-cpg.h        |  26 +
+ include/dt-bindings/display/sm501.h           |  25 +
+ .../interrupt-controller/sh7751-intc.h        |  21 +
+ include/linux/clk-provider.h                  |  22 +-
+ include/linux/sh_intc.h                       |   7 +-
+ 58 files changed, 3396 insertions(+), 177 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/renesas,sh7750-cpg.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/smi,sm501.yaml
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/renesas,sh7751-intc.yaml
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/renesas,sh7751-irl-ext.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/renesas,sh7751-pci.yaml
+ create mode 100644 Documentation/devicetree/bindings/sh/cpus.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/renesas/sh.yaml
+ create mode 100644 arch/sh/boot/dts/landisk.dts
+ create mode 100644 arch/sh/boot/dts/rts7751r2dplus.dts
+ create mode 100644 arch/sh/boot/dts/sh7751r.dtsi
+ create mode 100644 arch/sh/boot/dts/usl-5p.dts
+ create mode 100644 arch/sh/configs/landisk-of_defconfig
+ create mode 100644 arch/sh/configs/rts7751r2dplus-of_defconfig
+ create mode 100644 drivers/clk/renesas/clk-sh7750.c
+ create mode 100644 drivers/irqchip/irq-renesas-sh7751.c
+ create mode 100644 drivers/irqchip/irq-renesas-sh7751irl.c
+ create mode 100644 drivers/pci/controller/pci-sh7751.c
+ create mode 100644 drivers/pci/controller/pci-sh7751.h
+ create mode 100644 include/dt-bindings/clock/sh7750-cpg.h
+ create mode 100644 include/dt-bindings/display/sm501.h
+ create mode 100644 include/dt-bindings/interrupt-controller/sh7751-intc.h
+
+-- 
+2.39.2
+
 
