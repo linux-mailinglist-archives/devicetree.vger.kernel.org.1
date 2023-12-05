@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-21627-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21628-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AC3C804BD0
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 09:06:36 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 002E8804BD9
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 09:09:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B8E1F1F2146E
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 08:06:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A83B71F21476
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 08:09:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7B6639FDD;
-	Tue,  5 Dec 2023 08:06:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E1303A8C6;
+	Tue,  5 Dec 2023 08:09:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PQwZbAs1"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Q4hUDIFc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49AC8D4E
-	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 00:06:29 -0800 (PST)
-Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2ca0715f0faso22387601fa.0
-        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 00:06:29 -0800 (PST)
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96807130
+	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 00:09:03 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-40c08af319cso26111685e9.2
+        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 00:09:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701763587; x=1702368387; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701763742; x=1702368542; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=xXHrqrmyDXrxhHJgb2AkCy+sSOHhoIKiOezRfvsHkMw=;
-        b=PQwZbAs1rPG3+qP+dPGxOjhK560HgRJkpSXY+Y15HR/FMC0xeiS7yMhWM5YZHRi5T/
-         OJrd4KpAKl0FEL+Tp1sW48Zr4hrS8DQ+Feu6xtJGKK0laf8isQTUdPi3YFv7sXHkJo9D
-         7zjEISC0a40XCsoDqBkgo0i74dq7k2GtwQbBjzktIhx8Fp2YmPE3fO7zLh+aVTRc2ysN
-         bMHNvhhiGsZIRKHTwGyaMsd11HRIGYUBz6RIwxaf7As9xNHqHt5NjKzj29yFMnL+HH8S
-         pONazfNwyaQwVqjTqhw/HYx2i+dH3Q6VcKniIvkfLglmeDto46f4yKvtqYUl9zw5IxoV
-         z2xw==
+        bh=462UZ1yegAonH30IZwbGS1GDx37pFEUQzZ/HmWu5+3s=;
+        b=Q4hUDIFcky+4y39qpXwzg2o2Ryk+dm3AcLiMnilqzwg4DrZWCt4GOLqIVDkx0JlVa+
+         TKv0x6q3DXnUTqPplqM4tWsaRBAdqKvK4OH+kRUmuKN6Ynvf0bvBdaubao2jFfvD0Emh
+         mqZMaaovVckhUBIJImBZbzr2KtKp228zlnP+GzteisoJNjGxDJNGhSbyutkrGQI0O2xS
+         dA1Ny5UQFJVim79vFrLk4lqasCHRWa+b7UNEjSLV6hZOEMxHVaveOF51dMjcyK6p5fU7
+         iBxfj2Wi/rOF1YzL+TUlWIDipJtQazxm4FeNneEsWQJ4KlXSHreSUi4Dew+uyQIZ52T3
+         Wi3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701763587; x=1702368387;
+        d=1e100.net; s=20230601; t=1701763742; x=1702368542;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xXHrqrmyDXrxhHJgb2AkCy+sSOHhoIKiOezRfvsHkMw=;
-        b=dbptyY+Mzy/v6vid+lWaovs4wvNBVlp+yno0ajAaJ9Vo2Xlzsuv5rvQ4kQ86HECSbd
-         wkjnxXbTsGNSNZQV+pKSDpOfhi8vMYPMQbGo4dlLOMa5zYFXljKf5T/Q7pbyCF2X4LMj
-         xgMyQPUFPHFx926Q2I4zYfgRKZ/tcckJ22f/9QW9889oEHvcZsL3NI13XSSy+zZMB9mf
-         9ke9SWoHQDzx/kLGUJq83cxGktQs5Jv5oUNUEZ80vUMc4mgMVte0t/JLD8ef6UM8i1sQ
-         aicYxMTqOsjrmVM9wejiqses+tarOXb91LWEBnT66gYl/00/j4Pw0KELDkMqP0NmU74c
-         tDNw==
-X-Gm-Message-State: AOJu0Yyj9GT2L7cPzI8vu/tTC3Ah3Y+TDRJHlf1OyIc8iNt4dhMossGg
-	08g9KaG/5ybw8U7c7v9IL4qyWQ==
-X-Google-Smtp-Source: AGHT+IGsBN5o5IcayjdKijYEvdxpqJpr+nss7YG2BNN0W1SE1L0lP/e3QGLq0qMYFirhkAlTpAsoaw==
-X-Received: by 2002:a05:651c:d1:b0:2c9:f140:6a52 with SMTP id 17-20020a05651c00d100b002c9f1406a52mr1967205ljr.25.1701763587383;
-        Tue, 05 Dec 2023 00:06:27 -0800 (PST)
+        bh=462UZ1yegAonH30IZwbGS1GDx37pFEUQzZ/HmWu5+3s=;
+        b=DjQ5ssSUsHKM9VXgLYk7z//CWlKO8LVpexDMh6i/yKf6IYuZE9i/DyN+zPlpOZMxR1
+         AYjZwKQWib54m0K+/05nnKNqFeeb3Oo+itnrgvyDT3vvCL/kxR8wa/dqXUjPI0esbwfa
+         Uill+Z2gnsuMV3+plgaGU76N8NGZmGzY+yKDL75EEPV3zqT9TXT2vynSTtEybkboG0Xn
+         bfylkeiA+qf38oKTYD4E177S2yhZLrL1vtv/DM4XhySGCQ4OpEFmaNEL33IzlQFmhrLC
+         DHFVe9iPI0OelC33ODKjnQ2FFdwQQODKgsmaGKWeUXmftNQCLAH5pYdq5PBaZzLiUeXX
+         eZig==
+X-Gm-Message-State: AOJu0YyU+8O/etvFsu8TsgSJCscNrNa84hJ4r0KaJVQtDYqeIwL3VCui
+	Vq4PRFLcS/8Lmwvi4bkogDtNVw==
+X-Google-Smtp-Source: AGHT+IEC4FiWUWM2BTYgY1iWusMxoNrt+uMPvUxEC0AbPaGV7dUl2iD2PV9kPQbnoMi8zX11N8sngg==
+X-Received: by 2002:a7b:cb04:0:b0:40b:387b:1135 with SMTP id u4-20020a7bcb04000000b0040b387b1135mr237699wmj.5.1701763741991;
+        Tue, 05 Dec 2023 00:09:01 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id g2-20020a1709064e4200b00a1cb351dd4fsm174276ejw.9.2023.12.05.00.06.24
+        by smtp.gmail.com with ESMTPSA id iv7-20020a05600c548700b00405959469afsm17769031wmb.3.2023.12.05.00.08.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Dec 2023 00:06:26 -0800 (PST)
-Message-ID: <8ad3cc5d-3138-47ef-92d6-020b65db7409@linaro.org>
-Date: Tue, 5 Dec 2023 09:06:24 +0100
+        Tue, 05 Dec 2023 00:09:01 -0800 (PST)
+Message-ID: <5412a9a2-38cd-4321-9ee6-b50dd060a08f@linaro.org>
+Date: Tue, 5 Dec 2023 09:08:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,8 +62,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/4] dt-bindings: soc: sophgo: Add Sophgo system
- control module
+Subject: Re: [PATCH v4 2/4] dt-bindings: clock: sophgo: Add SG2042 bindings
 Content-Language: en-US
 To: Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu,
  chao.wei@sophgo.com, conor@kernel.org, krzysztof.kozlowski+dt@linaro.org,
@@ -75,7 +74,7 @@ To: Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu,
  jszhang@kernel.org, inochiama@outlook.com, samuel.holland@sifive.com
 Cc: Chen Wang <unicorn_wang@outlook.com>
 References: <cover.1701734442.git.unicorn_wang@outlook.com>
- <d02730f0b2b531ce7f59e6569e83a57f551f72aa.1701734442.git.unicorn_wang@outlook.com>
+ <188cd5e99394f358c0d103b8b95377f32c010161.1701734442.git.unicorn_wang@outlook.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -121,19 +120,91 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <d02730f0b2b531ce7f59e6569e83a57f551f72aa.1701734442.git.unicorn_wang@outlook.com>
+In-Reply-To: <188cd5e99394f358c0d103b8b95377f32c010161.1701734442.git.unicorn_wang@outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/12/2023 01:22, Chen Wang wrote:
+On 05/12/2023 01:23, Chen Wang wrote:
 > From: Chen Wang <unicorn_wang@outlook.com>
 > 
-> Add documentation to describe Sophgo System Controller for SG2042.
-> 
-> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
-> ---
+> Add bindings for the clock generator on the SG2042 RISC-V SoC.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+A nit, subject: drop second/last, redundant "bindings". The
+"dt-bindings" prefix is already stating that these are bindings.
+
+> +
+> +maintainers:
+> +  - Chen Wang <unicorn_wang@outlook.com>
+> +
+> +properties:
+> +  compatible:
+> +    items:
+
+Drop items, the same in previous patch. We keep simplified form for
+compatibles usually.
+
+> +      - const: sophgo,sg2042-clkgen
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  system-ctrl:
+
+Missing vendor prefix.
+
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: a phandle to SG2042 System Controller node.
+
+Add explanation how it is used and what its purpose is.
+
+> +
+> +  clocks:
+> +    items:
+> +      - description: Clock Generation IC (25 MHz)
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +    description:
+> +      See <dt-bindings/clock/sophgo,sg2042-clkgen.h> for valid indices.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - system-ctrl
+> +  - clocks
+> +  - '#clock-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    clock-controller@30012000 {
+> +        compatible = "sophgo,sg2042-clkgen";
+> +        reg = <0x30012000 0x1000>;
+> +        system-ctrl = <&sys_ctrl>;
+> +        clocks = <&cgi>;
+> +        #clock-cells = <1>;
+> +    };
+> diff --git a/include/dt-bindings/clock/sophgo,sg2042-clkgen.h b/include/dt-bindings/clock/sophgo,sg2042-clkgen.h
+> new file mode 100644
+> index 000000000000..b12046046f1f
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/sophgo,sg2042-clkgen.h
+> @@ -0,0 +1,169 @@
+> +/* SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause */
+> +/*
+> + * Copyright (C) 2023 Sophgo Technology Inc. All rights reserved.
+> + */
+> +
+> +#ifndef __DT_BINDINGS_CLOCK_SOPHGO_SG2042_H__
+> +#define __DT_BINDINGS_CLOCK_SOPHGO_SG2042_H__
+> +
+> +/* Divider clocks */
+> +#define	DIV_CLK_MPLL_RP_CPU_NORMAL_0	0
+
+No indentation after #define. Open other header files and look how it is
+done there.
+
 
 Best regards,
 Krzysztof
