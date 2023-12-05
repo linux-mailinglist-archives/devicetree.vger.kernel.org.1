@@ -1,136 +1,103 @@
-Return-Path: <devicetree+bounces-21740-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-21741-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB8F3804FA8
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 11:00:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79A32804FB5
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 11:04:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 45AA02817C4
-	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 10:00:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D56A1C208DB
+	for <lists+devicetree@lfdr.de>; Tue,  5 Dec 2023 10:04:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4748D4C620;
-	Tue,  5 Dec 2023 10:00:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BACE24C3A2;
+	Tue,  5 Dec 2023 10:03:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YDRJRetf"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=helmholz.de header.i=@helmholz.de header.b="ZX/Q5NPO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-x1136.google.com (mail-yw1-x1136.google.com [IPv6:2607:f8b0:4864:20::1136])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63E72C6
-	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 02:00:08 -0800 (PST)
-Received: by mail-yw1-x1136.google.com with SMTP id 00721157ae682-5d7692542beso28752107b3.3
-        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 02:00:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701770407; x=1702375207; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=i93Z/CqJ+EBecddDOnAmVzRbIcIUtO0ehOz5S54CfrQ=;
-        b=YDRJRetfQA80jrjZYAlfT90vA6kpOsfF70/ktTGJ25Lk4nxospYByarCuZVETKVEX+
-         T04DRfvWpjz7YsT/JikHiUPmjRMxckzN8B9eEohxgMhuq7QUvCZndWlRA1q+zTiXqVk8
-         raIS3RFBgbsMdp/iYKWaZ6ehoAazJ2aYoUu+BtQviPhvZxEdC8ELMogHqNsWrplpuegX
-         K/cI+VioTMwDX2wVOK7t+zmNadxVEtG6WgHcaC2menF1zD2agwrSdmG6LpvYGQH7xrhb
-         l6V0g+FLpDsl8+R0qUAVUTFj57n7Ilf6hVnNXQfX7hiOzM/b6Ti9kN1yK9VZvctCVCrZ
-         KiUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701770407; x=1702375207;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=i93Z/CqJ+EBecddDOnAmVzRbIcIUtO0ehOz5S54CfrQ=;
-        b=keqaI6CpA2krqCmwgb/nTRwNPDUxreTfKSDAFgR91KHW/Ukt0WVuE2E/Wq/KElTTMU
-         KJH7TqNMkXmXca46hUdqakgcb4W2qKrIO3zuQ87m+5dRci0lzIbzqBjs/YCTTL7q2pcL
-         lUP6ZE/XFa9nPPye++BQixJzipwx5ATspFNAi0U50Y7/qpJXVjCBEEDJgzUZFSOxUZ/D
-         omlSTwkGshjEufPGUW2cBV50EESSAZDVdGe4dO4LirEvvm0ZavDf+S4BCNgXoa+NPiQ0
-         vWCdqL+kiNcLUhuLxGSJgMWhlx6WTkdiWT3qvwARpaJphFP6Zfhuz4PVshr/2LavG6jd
-         xCYA==
-X-Gm-Message-State: AOJu0YwL0QIfJq9cg2gubCnSxELH2BdgnF8ATv7OcwgU1LUJgq64opPF
-	NhBmWzSnSdnfpDN5OUZRZtgPNuWwYuLnoxytrRDQrA==
-X-Google-Smtp-Source: AGHT+IH5eTb2gwdS22rkWHvbJD/nbpWagDnymfw80erU7E8T3kEYsszdXZXrJ4vDy/yEfDwBBs/YnsUIOf3GGpmbFhk=
-X-Received: by 2002:a0d:ccd6:0:b0:5d7:1940:53d6 with SMTP id
- o205-20020a0dccd6000000b005d7194053d6mr4529462ywd.78.1701770407103; Tue, 05
- Dec 2023 02:00:07 -0800 (PST)
+Received: from mail.helmholz.de (mail.helmholz.de [217.6.86.34])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1023EA0
+	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 02:03:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=helmholz.de
+	; s=dkim1; h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From:
+	Sender:Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=kD9lq9aclw/T1/ArjlXbOL6jV60eKkquYPwaXOg/diI=; b=ZX/Q5NPOS06V8Fdu8bMi3Xvlao
+	jdShAqs3WZ3SxVkqyuLFhKgSUfUExxGsSgvX++6S+kON7YK63qGJw3mWYtkB4LNXrb+ahamnCJ+Gx
+	JSU3i3VnITAdkHKNqePXmwnmarwUwY/mSsl9aT7K3TPkQeiBhhkkL+TlLDHYgr6/TMbntFpdpXcOQ
+	z3vl+EsonfsHLc9z4Ygc0VRqYVHcRuOlbSok0M8O9l6SSBSLhUArf8Eh+TlInvSu51lU5YSoVvKud
+	+7T/ivGKVJ73VqHWYghvDWZlF1rkNJc03fNZ+PFsnFFHGX5VWUBE3iAMbD7pXtU/IvWKv2H8/oguv
+	uFgOX6SA==;
+Received: from [192.168.1.4] (port=29461 helo=SH-EX2013.helmholz.local)
+	by mail.helmholz.de with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
+	(Exim 4.96)
+	(envelope-from <Ante.Knezic@helmholz.de>)
+	id 1rASHN-0005TD-34;
+	Tue, 05 Dec 2023 11:03:49 +0100
+Received: from linuxdev.helmholz.local (192.168.6.7) by
+ SH-EX2013.helmholz.local (192.168.1.4) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.48; Tue, 5 Dec 2023 11:03:49 +0100
+From: Ante Knezic <ante.knezic@helmholz.de>
+To: <netdev@vger.kernel.org>
+CC: <woojung.huh@microchip.com>, <andrew@lunn.ch>, <f.fainelli@gmail.com>,
+	<olteanv@gmail.com>, <davem@davemloft.net>, <edumazet@google.com>,
+	<kuba@kernel.org>, <pabeni@redhat.com>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>, <marex@denx.de>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<UNGLinuxDriver@microchip.com>, Ante Knezic <ante.knezic@helmholz.de>
+Subject: [PATCH net-next v7 0/2] net: dsa: microchip: enable setting rmii reference
+Date: Tue, 5 Dec 2023 11:03:37 +0100
+Message-ID: <cover.1701770394.git.ante.knezic@helmholz.de>
+X-Mailer: git-send-email 2.11.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1701768028.git.ysato@users.sourceforge.jp> <1fafcf1c70ee4e38847bac1379bcb4555a237505.1701768028.git.ysato@users.sourceforge.jp>
-In-Reply-To: <1fafcf1c70ee4e38847bac1379bcb4555a237505.1701768028.git.ysato@users.sourceforge.jp>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Tue, 5 Dec 2023 10:59:54 +0100
-Message-ID: <CACRpkdbFNyEn_ub3moh9f6zbBKzTBt-CPRykUfexd5fXjpKE3Q@mail.gmail.com>
-Subject: Re: [DO NOT MERGE v5 17/37] dt-bindings: interrupt-controller:
- renesas,sh7751-intc: Add json-schema
-To: Yoshinori Sato <ysato@users.sourceforge.jp>
-Cc: linux-sh@vger.kernel.org, Damien Le Moal <dlemoal@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Thomas Gleixner <tglx@linutronix.de>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, Rich Felker <dalias@libc.org>, 
-	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>, Lee Jones <lee@kernel.org>, 
-	Helge Deller <deller@gmx.de>, Heiko Stuebner <heiko@sntech.de>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Chris Morgan <macromorgan@hotmail.com>, 
-	Randy Dunlap <rdunlap@infradead.org>, Arnd Bergmann <arnd@arndb.de>, 
-	Hyeonggon Yoo <42.hyeyoo@gmail.com>, David Rientjes <rientjes@google.com>, 
-	Vlastimil Babka <vbabka@suse.cz>, Baoquan He <bhe@redhat.com>, 
-	Andrew Morton <akpm@linux-foundation.org>, Guenter Roeck <linux@roeck-us.net>, 
-	Stephen Rothwell <sfr@canb.auug.org.au>, Guo Ren <guoren@kernel.org>, 
-	Javier Martinez Canillas <javierm@redhat.com>, Azeem Shaikh <azeemshaikh38@gmail.com>, 
-	Palmer Dabbelt <palmer@rivosinc.com>, Bin Meng <bmeng@tinylab.org>, 
-	Max Filippov <jcmvbkbc@gmail.com>, Tom Rix <trix@redhat.com>, 
-	Herve Codina <herve.codina@bootlin.com>, Jacky Huang <ychuang3@nuvoton.com>, 
-	Lukas Bulwahn <lukas.bulwahn@gmail.com>, Jonathan Corbet <corbet@lwn.net>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
-	Sam Ravnborg <sam@ravnborg.org>, Michael Karcher <kernel@mkarcher.dialup.fu-berlin.de>, 
-	Sergey Shtylyov <s.shtylyov@omp.ru>, 
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, linux-ide@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-pci@vger.kernel.org, 
-	linux-serial@vger.kernel.org, linux-fbdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-ClientProxiedBy: SH-EX2013.helmholz.local (192.168.1.4) To
+ SH-EX2013.helmholz.local (192.168.1.4)
+X-EXCLAIMER-MD-CONFIG: 2ae5875c-d7e5-4d7e-baa3-654d37918933
 
-Hi Yoshinori,
+KSZ88X3 devices can select between internal and external RMII reference clock.
+This patch series introduces new device tree property for setting reference
+clock to internal.
 
-thanks for your patch!
+---
+V7:
+  - adapt dt schema as suggested by Rob Herring
+V6:
+  - use dev->cpu_port and dsa_to_port() instead of parsing the device tree.
+V5:
+  - move rmii-clk-internal to be a port device tree property.
+V4:
+  - remove rmii_clk_internal from ksz_device, as its not needed any more
+  - move rmii clk config as well as ksz8795_cpu_interface_select to 
+    ksz8_config_cpu_port
+V3: 
+  - move ksz_cfg from global switch config to port config as suggested by Vladimir
+    Oltean
+  - reverse patch order as suggested by Vladimir Oltean
+  - adapt dt schema as suggested by Conor Dooley
+V2: 
+  - don't rely on default register settings - enforce set/clear property as
+    suggested by Andrew Lunn
+  - enforce dt schema as suggested by Conor Dooley
 
-On Tue, Dec 5, 2023 at 10:46=E2=80=AFAM Yoshinori Sato
-<ysato@users.sourceforge.jp> wrote:
+Ante Knezic (2):
+  dt-bindings: net: microchip,ksz: document microchip,rmii-clk-internal
+  net: dsa: microchip: add property to select internal RMII reference
+    clock
 
-> +  renesas,icr-irlm:
-> +    type: boolean
-> +    description: If true ICR.IRLM=3D1
+ .../devicetree/bindings/net/dsa/microchip,ksz.yaml | 34 +++++++++++++++++++++-
+ drivers/net/dsa/microchip/ksz8795.c                | 29 ++++++++++++++----
+ drivers/net/dsa/microchip/ksz8795_reg.h            |  3 ++
+ 3 files changed, 59 insertions(+), 7 deletions(-)
 
-That's a bit hard to understand. I suppose it's something that need to some=
-times
-be changed for a system so would be good to document it properly.
+-- 
+2.11.0
 
-> +  renesas,ipr-map:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    description: |
-> +      IRQ to IPR mapping definition.
-> +      1st - INTEVT
-> +      2nd - Register
-> +      3rd - bit index
-
-Isn't this table always the same for a certain SoC, e.g. compatible
-"renesas,sh7751-intc"?
-
-Then don't keep it in the device tree, just look it up per-soc from a
-table in the driver.
-
-Other than that it looks good to me.
-
-Yours,
-Linus Walleij
 
