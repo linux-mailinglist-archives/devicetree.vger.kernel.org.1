@@ -1,110 +1,74 @@
-Return-Path: <devicetree+bounces-22370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22371-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FEB38073CA
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 16:36:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B05428073D3
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 16:39:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 61650281F66
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 15:36:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5E9CE1F21814
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 15:39:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05D6C405F6;
-	Wed,  6 Dec 2023 15:36:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6832405F8;
+	Wed,  6 Dec 2023 15:39:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G5ww8XIj"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="W1kYYAU2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C99213FE58;
-	Wed,  6 Dec 2023 15:36:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68019C433C8;
-	Wed,  6 Dec 2023 15:36:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701876999;
-	bh=S97fwyqurmhPwtoTkqcJFQVRifEWBxQOjTFb6lB82jI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=G5ww8XIj7dj3TZOJxaCrFTldYB5ca7IqnJXRhLRleaWSkgIe+SY0xz2qBP4v/NKYJ
-	 7pBQdCA+52VAEdNfmXilhOziH6wYC+lzMplb4RD70B9MyZj1T5bj/8327FhqbkcKjs
-	 qlgCkt/U8gwmjFJ3R3vFwKnSwxLjtjmZ5usJyHE3olxbK1OFNXX9MwyWcZJnOz2sKD
-	 IdtEZMQJJr+GbNQRfakj5L38f7gBhehO87P8KHGBghrUfCHrjEl4O8tSqHWZbHqitz
-	 L4YVujLIp9vmo7HnBEDCEO2f4vF/GMhL/Begi9OwounWEY1el/YrWfmBEKrcn5Pgdw
-	 iXes2HaDLetew==
-Date: Wed, 6 Dec 2023 21:06:27 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Manikanta Maddireddy <mmaddireddy@nvidia.com>
-Cc: bhelgaas@google.com, thierry.reding@gmail.com, petlozup@nvidia.com,
-	rafael.j.wysocki@intel.com, lpieralisi@kernel.org, robh@kernel.org,
-	jeffy.chen@rock-chips.com, krzysztof.kozlowski+dt@linaro.org,
-	jonathanh@nvidia.com, dmitry.osipenko@collabora.com,
-	viresh.kumar@linaro.org, gregkh@linuxfoundation.org,
-	steven.price@arm.com, kw@linux.com, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
-	vidyas@nvidia.com
-Subject: Re: [RFC,v14 4/5] arm64: tegra: Add PCIe port node with PCIe WAKE#
- for C1 controller
-Message-ID: <20231206153627.GJ12802@thinkpad>
-References: <20230208111645.3863534-1-mmaddireddy@nvidia.com>
- <20230208111645.3863534-5-mmaddireddy@nvidia.com>
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A84318F;
+	Wed,  6 Dec 2023 07:39:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=pMiL+/ow71FTD3BCAhVuJftaiVNCNI0dN54qUi2P3UI=; b=W1kYYAU2y57RHQIGZEqwWcr8yd
+	Gf2cmk1GKOrPXxPx0EISnelP3xCXYin4UvP9ZQMXd/lU8MvR+bv+P81bkKtJmyEldG4bA/LtvF07T
+	AVaBlbAgO/gyDpLThqPFiIOelOU4AHixOIF9L95zFkVxpR36zlmmbJCITyYOx1LYCpdM=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rAtzf-002Dl2-HB; Wed, 06 Dec 2023 16:39:23 +0100
+Date: Wed, 6 Dec 2023 16:39:23 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Ante Knezic <ante.knezic@helmholz.de>
+Cc: netdev@vger.kernel.org, woojung.huh@microchip.com, f.fainelli@gmail.com,
+	olteanv@gmail.com, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	marex@denx.de, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com
+Subject: Re: [PATCH net-next v7 2/2] net: dsa: microchip: add property to
+ select internal RMII reference clock
+Message-ID: <2ce63acd-576d-479f-847a-9528c915d64f@lunn.ch>
+References: <cover.1701770394.git.ante.knezic@helmholz.de>
+ <c309c907d7e1dd34dcc782e23ec0344aeadf2955.1701770394.git.ante.knezic@helmholz.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230208111645.3863534-5-mmaddireddy@nvidia.com>
+In-Reply-To: <c309c907d7e1dd34dcc782e23ec0344aeadf2955.1701770394.git.ante.knezic@helmholz.de>
 
-On Wed, Feb 08, 2023 at 04:46:44PM +0530, Manikanta Maddireddy wrote:
-> Add PCIe port node under the PCIe controller-1 device tree node to support
-> PCIe WAKE# interrupt for WiFi.
+On Tue, Dec 05, 2023 at 11:03:39AM +0100, Ante Knezic wrote:
+> Microchip KSZ8863/KSZ8873 have the ability to select between internal
+> and external RMII reference clock. By default, reference clock
+> needs to be provided via REFCLKI_3 pin. If required, device can be
+> setup to provide RMII clock internally so that REFCLKI_3 pin can be
+> left unconnected.
+> Add a new "microchip,rmii-clk-internal" property which will set
+> RMII clock reference to internal. If property is not set, reference
+> clock needs to be provided externally.
 > 
-> Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
-> ---
+> While at it, move the ksz8795_cpu_interface_select() to
+> ksz8_config_cpu_port() to get a cleaner call path for cpu port.
 > 
-> Changes in v14:
-> New patch in the series to support PCIe WAKE# in NVIDIA Jetson AGX Orin.
-> 
->  .../dts/nvidia/tegra234-p3737-0000+p3701-0000.dts     | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
-> index 8a9747855d6b..9c89be263141 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
-> +++ b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
-> @@ -2147,6 +2147,17 @@ pcie@14100000 {
->  
->  			phys = <&p2u_hsio_3>;
->  			phy-names = "p2u-0";
-> +
-> +			pci@0,0 {
-> +				reg = <0x0000 0 0 0 0>;
-> +				#address-cells = <3>;
-> +				#size-cells = <2>;
-> +				ranges;
-> +
-> +				interrupt-parent = <&gpio>;
-> +				interrupts = <TEGRA234_MAIN_GPIO(L, 2) IRQ_TYPE_LEVEL_LOW>;
-> +				interrupt-names = "wakeup";
+> Signed-off-by: Ante Knezic <ante.knezic@helmholz.de>
 
-WAKE# should be part of the PCIe controller, not device. And the interrupt name
-should be "wake".
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-- Mani
-
-> +			};
->  		};
->  
->  		pcie@14160000 {
-> -- 
-> 2.25.1
-> 
-
--- 
-மணிவண்ணன் சதாசிவம்
+    Andrew
 
