@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-22225-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22226-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 455C9806D86
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 12:12:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D0EF806D8D
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 12:13:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA7E71F216AD
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 11:12:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A4E941F21304
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 11:13:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E729F315BD;
-	Wed,  6 Dec 2023 11:12:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D368031599;
+	Wed,  6 Dec 2023 11:13:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="DlncmySJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xsxrUpgJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70A5C10A
-	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 03:12:00 -0800 (PST)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-a1d93da3eb7so64782866b.0
-        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 03:12:00 -0800 (PST)
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09F6BD1
+	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 03:13:23 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-40b2ddab817so69639185e9.3
+        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 03:13:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1701861119; x=1702465919; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1701861201; x=1702466001; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=dcUwLRWzoKCiLujNLbeBgYDSgnjO4m7YhLdFf0vhr4A=;
-        b=DlncmySJI0BK09GpYxHKtmX5lq6kWZTu+SiBkeOU6alFzv21K4opxJnQMZQ35bi2aw
-         KaeRLP0JT+qSl/jIXwIxniERDGPVmyxzwxrO1jEechOUwuVIIgmuZ5e+JbFfyZxcKHd0
-         4JzXLkXx1Un11ugPboa5KhsJesspWH1ag2BjvEVBIih+Fp7H2sBKZf5f1NPEC5U940FQ
-         JersVQ1FyvU4Jnr47TZVmGeug+OVT4yC2A2jbHbRhnMszJtAzU6aY4IleFCvoQEfmpMD
-         nQ9m5Ynq+mL+LV50A1RBK1DwMfuAxtoz29tIhi6nvZNqAXhmDVOmdy+3wlbcRO+8srRp
-         2K2g==
+        bh=taILMNBmv0UhUk+zKRJE40uPAEg1eYYDWH/IKikPI8U=;
+        b=xsxrUpgJPM37oJ+4uX8Loa/5wIr2aRtz4mQ/9C9RbY2c+yG07nPKOHLyknGIOvW8uJ
+         C8pZZcBwH0k7NmxiHLWPmWY9IgmiJ128WCr/UQBFZNn7NEf5AzNYrtErwa6NC7pPQR1s
+         Gc691YfgeHzWhJj8Ab8wPZw6bqoSnNCQQQsKDU3EbP0D9Posf0FX0MptNIP240x3myiI
+         gX57L8NcnirA5L6cBjWk+sQgiN3yDUF92KfcJKJnr7b9sAhg/TAekHS+VY8DZKHMBoOS
+         rR0yTBDzM6o7YtYjx8NxVU1rl345S+l0o5W5lYvDF0vL9TAoAaxvpAfDyRB7XOsBmkEY
+         WKgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701861119; x=1702465919;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1701861201; x=1702466001;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dcUwLRWzoKCiLujNLbeBgYDSgnjO4m7YhLdFf0vhr4A=;
-        b=ImvxBo2NIlXnBn/PPDutegcSkVx67vCh6DXQyDpSlCo/xxNE6VqjXJudPjWX+xAw18
-         WcC6q+NKwiVo787d1yq4ir7JVciJYzmahHdUsWOkKlQRyp8GNajE3ZpO7tlL7CETklJM
-         iRx46H0JvZ6F2I33gTnpe0d5+ecun5BjzsfTQuwFGpeuwkPxcfX4n5gNMCRWPDZ07vGG
-         8lFrYUFNJq1oftIhFT9TVjwnvUFKy+4GwLmeccqBZzoYzZv8f9oCmXDG2loH/aYW08Sr
-         m4QT6us9dR4/R06vhk3Imm3zNXMntMU3OWMnsd9u3Sx5WCZSXV80xn8Xm71EI7m8nxHr
-         QRRQ==
-X-Gm-Message-State: AOJu0YymQkCKfhQQj6uo+/3+9KwjYnX4U4WDV6RBHkmH5Mjm5TgH3268
-	SvPQgmHKEQW06vGsvqloBAaPGQ==
-X-Google-Smtp-Source: AGHT+IG3qcWvsI2ibZlg8aF3jqdwhI35Pva3o+lOtVXoK2FasThHPg+BRgLUAXOVFiJ2Rh0QB4rE+A==
-X-Received: by 2002:a17:906:3f5b:b0:9ff:53b6:f951 with SMTP id f27-20020a1709063f5b00b009ff53b6f951mr451808ejj.23.1701861118706;
-        Wed, 06 Dec 2023 03:11:58 -0800 (PST)
-Received: from [192.168.50.4] ([82.78.167.22])
-        by smtp.gmail.com with ESMTPSA id o26-20020a170906289a00b009e5ce1acb01sm8100203ejd.103.2023.12.06.03.11.55
+        bh=taILMNBmv0UhUk+zKRJE40uPAEg1eYYDWH/IKikPI8U=;
+        b=VBQdnxQVPRla8QMPj5quEHjQY0P+Di9N2loqrlVGLnnMR9SkLKjtFqfFfTOamxPxWi
+         yTTyfbavQ0MvnjaFnn0Dl9WohHdZ14OAtw4Kx9jXBtb232eyH9PG77GPlCPWfBppoopU
+         VWvtThOLyhdKyRtR+uYYFnu2gfPAtip/lFPXKcI1J082r5rIFwyEnPtxGcjniaPFFhn4
+         xfV0fBpJXupxahu3kbpABWpd0b0HIQtKTt6iebMRi17GyW/IRk4fKtayMvW7Z+8qQ1zr
+         Y9HmRuMuSkuENW4f7ghUj4N3/4I4J/p3dYUp/x8IIJpQpRXoOd5A0wiRoD22kGKq4oTJ
+         +I+g==
+X-Gm-Message-State: AOJu0YwPQxRLYDtSFptCQHOxw/PoBPOCS3IHKa1dPtx3eC8xZSl6W51+
+	qmt+d6+EYZ0H9KBsCQ3fEg5BLQ==
+X-Google-Smtp-Source: AGHT+IExFG83iuPQ4zXtvq3yL38vp2jPwoWtmtZOf0Ugg1jxvDmCEohOl9bwNtAqpH8zGrDuNDGJNw==
+X-Received: by 2002:a05:600c:3b0e:b0:40b:3643:48bf with SMTP id m14-20020a05600c3b0e00b0040b364348bfmr499723wms.17.1701861201434;
+        Wed, 06 Dec 2023 03:13:21 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id j37-20020a05600c1c2500b0040b3515cdf8sm21645411wms.7.2023.12.06.03.13.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Dec 2023 03:11:58 -0800 (PST)
-Message-ID: <248d24a9-589e-4b92-94b6-98504f78d7b9@tuxon.dev>
-Date: Wed, 6 Dec 2023 13:11:55 +0200
+        Wed, 06 Dec 2023 03:13:21 -0800 (PST)
+Message-ID: <8e86fb4c-9526-4d64-9352-f9c8e5cae75f@linaro.org>
+Date: Wed, 6 Dec 2023 12:13:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,155 +62,170 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 11/14] arm64: renesas: rzg3s-smarc-som: Invert the logic
- for SW_SD2_EN macro
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: s.shtylyov@omp.ru, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- linux@armlinux.org.uk, geert+renesas@glider.be, magnus.damm@gmail.com,
- mturquette@baylibre.com, sboyd@kernel.org, linus.walleij@linaro.org,
- p.zabel@pengutronix.de, arnd@arndb.de, m.szyprowski@samsung.com,
- alexandre.torgue@foss.st.com, afd@ti.com, broonie@kernel.org,
- alexander.stein@ew.tq-group.com, eugen.hristev@collabora.com,
- sergei.shtylyov@gmail.com, prabhakar.mahadev-lad.rj@bp.renesas.com,
- biju.das.jz@bp.renesas.com, linux-renesas-soc@vger.kernel.org,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20231120070024.4079344-1-claudiu.beznea.uj@bp.renesas.com>
- <20231120070024.4079344-12-claudiu.beznea.uj@bp.renesas.com>
- <CAMuHMdUbKe=yiXWNmk5BJFLtF2psx9khiDRGasT9WsnHz4RWsg@mail.gmail.com>
- <CAMuHMdXwSo1L9UuFg9RL0TLL_xzVt2r6QEFc0gtPoydpr4FmSQ@mail.gmail.com>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
+Subject: Re: [PATCH 4/4] memory: brcmstb_dpfe: introduce best-effort API
+ detection
 Content-Language: en-US
-In-Reply-To: <CAMuHMdXwSo1L9UuFg9RL0TLL_xzVt2r6QEFc0gtPoydpr4FmSQ@mail.gmail.com>
+To: Markus Mayer <mmayer@broadcom.com>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
+ Device Tree Mailing List <devicetree@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20231205184741.3092376-1-mmayer@broadcom.com>
+ <20231205184741.3092376-5-mmayer@broadcom.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231205184741.3092376-5-mmayer@broadcom.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-Hi, Geert,
+On 05/12/2023 19:47, Markus Mayer wrote:
+> Add a best-effort probe function that tries all known DPFE versions to
+> see if one might actually work. This helps in cases where device tree
+> doesn't provide the proper version information for whatever reason. In
 
-On 06.12.2023 12:56, Geert Uytterhoeven wrote:
-> On Wed, Dec 6, 2023 at 11:33 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->> On Mon, Nov 20, 2023 at 8:03 AM Claudiu <claudiu.beznea@tuxon.dev> wrote:
->>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>>
->>> The intention of SW_SD2_EN macro was to reflect the state of SW_CONFIG3
->>> switch available on RZ/G3S Smarc Module. According to documentation SD2
->>> is enabled when switch is in OFF state. For this, changed the logic of
->>> marco to map value 0 to switch's OFF state and value 1 to switch's ON
->>> state. Along with this update the description for each state for better
->>> understanding.
->>>
->>> The value of SW_SD2_EN macro was not changed in file because, according to
->>> documentation, the default state for this switch is ON.
->>>
->>> Fixes: adb4f0c5699c ("arm64: dts: renesas: Add initial support for RZ/G3S SMARC SoM")
->>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>
->> Thanks for your patch!
->>
->>> --- a/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
->>> +++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
->>> @@ -14,8 +14,8 @@
->>>   *     0 - SD0 is connected to eMMC
->>>   *     1 - SD0 is connected to uSD0 card
->>>   * @SW_SD2_EN:
->>> - *     0 - SCIF1, SSI0, IRQ0, IRQ1 connected to SoC
->>> - *     1 - SD2 is connected to SoC
->>> + *     0 - (switch OFF) SD2 is connected to SoC
->>> + *     1 - (switch ON)  SCIF1, SSI0, IRQ0, IRQ1 connected to SoC
->>
->> I think this is still confusing: SW_SD2_EN refers to an active-low signal
->> (SW_SD2_EN#) in the schematics.
+So for incomplete DTS you now add elaborate, own, custom matching
+function. That's not how the code should work.
+
+> that case, the driver may still be able to register if one of the known
+> API versions ends up working.
 > 
-> OMG, while the signal is called "SW_SD2_EN#" in the schematics, it is
-> _not_ active-low!
-> SW_D2_EN# drives a STG3692 quad SPDT switch, and SD2 is enabled
-> if SW_D2_EN# is high...
-> 
-> The RZ/G3S SMARC Module User Manual says:
-> 
-> Signal SW_SD2_EN ON: SD2 is disabled.
-> Signal SW_SD2_EN OFF: SD2 is enabled.
+> Caveat: we have to skip "v1" during our best effort attempts. This is
+> due to the fact that attempting a firmware download as required by v1
+> will result in a memory access violation on anything but v1 hardware.
+> This would crash the kernel. Since we don't know the HW version, we need
+> to play it safe and skip v1.
 
-I followed the description in this manual, chapter 2.1.1 SW_CONFIG. The
-idea was that these macros to correspond to individual switches, to match
-that table (describing switches position) with this code as the user in the
-end sets those switches described in table at 2.1.1 w/o necessary going
-deep into schematic (at least in the beginning when trying different
-functionalities).
+None of this commit explains what is real problem being solved.
 
-Do you think it would be better if we will have these macros named
-SWCONFIGX, X in {1, 2, 3, 4, 5, 6} ?
 
 > 
-> So whatever we do, something will look odd :-(
+> Signed-off-by: Markus Mayer <mmayer@broadcom.com>
+> ---
+>  drivers/memory/brcmstb_dpfe.c | 58 ++++++++++++++++++++++++++++++++++-
+>  1 file changed, 57 insertions(+), 1 deletion(-)
 > 
->> Before, SW_SD2_EN used assertion-logic (1 is enabled), and didn't
->> match the physical signal level.
->> After your patch, SW_SD2_EN matches the active-low physical level, but
->> this is not reflected in the name...
->>
->>>   */
->>>  #define SW_SD0_DEV_SEL 1
->>>  #define SW_SD2_EN      1
->>> @@ -25,7 +25,7 @@ / {
->>>
->>>         aliases {
->>>                 mmc0 = &sdhi0;
->>> -#if SW_SD2_EN
->>> +#if !SW_SD2_EN
->>
->> ... so this condition looks really weird.
-> 
-> Still, I think the original looks nicer here.
-> 
-> So I suggest to keep the original logic, but clarify the position of
-> the switch.
-> Does that make sense?
+> diff --git a/drivers/memory/brcmstb_dpfe.c b/drivers/memory/brcmstb_dpfe.c
+> index 0b0a9b85b605..15f4ee3b8535 100644
+> --- a/drivers/memory/brcmstb_dpfe.c
+> +++ b/drivers/memory/brcmstb_dpfe.c
+> @@ -879,6 +879,50 @@ static int brcmstb_dpfe_resume(struct platform_device *pdev)
+>  	return brcmstb_dpfe_download_firmware(priv);
+>  }
+>  
+> +static int brcmstb_dpfe_probe_best_effort(struct platform_device *pdev)
+> +{
+> +	const char versioned_compat[] = "brcm,dpfe-cpu-v";
+> +	const char v1_str[] = "-v1";
+> +	const struct of_device_id *matches;
+> +	const struct dpfe_api *orig_dpfe_api;
+> +	struct device *dev = &pdev->dev;
+> +	struct brcmstb_dpfe_priv *priv;
+> +	int ret = -ENODEV;
+> +
+> +	priv = dev_get_drvdata(dev);
+> +	orig_dpfe_api = priv->dpfe_api;
+> +	matches = dev->driver->of_match_table;
+> +
+> +	/* Loop over all compatible strings */
+> +	for (; matches->compatible[0]; matches++) {
+> +		const char *compat = matches->compatible;
+> +		/* Find the ones that start with "brcm,dpfe-cpu-v" */
+> +		if (strstr(compat, versioned_compat) == compat) {
+> +			char *v1_ptr = strstr(compat, v1_str);
+> +			/*
+> +			 * We must skip v1, since we don't know the hardware
+> +			 * version and attempting a firmware download on v2 and
+> +			 * newer would crash the kernel due to a memory access
+> +			 * violation.
+> +			 * We make sure to match "-v1" at the end of the string
+> +			 * only.
+> +			 */
+> +			if (v1_ptr && v1_ptr[sizeof(v1_str)] == '\0')
+> +				continue;
+> +			priv->dpfe_api = matches->data;
+> +			/* Fingers crossed... */
+> +			ret = brcmstb_dpfe_download_firmware(priv);
+> +			if (!ret)
+> +				return 0;
+> +		}
+> +	}
+> +
+> +	/* It didn't work, so let's clean up. */
+> +	priv->dpfe_api = orig_dpfe_api;
+> +
+> +	return ret;
+> +}
+> +
+>  static int brcmstb_dpfe_probe(struct platform_device *pdev)
+>  {
+>  	struct device *dev = &pdev->dev;
+> @@ -923,8 +967,20 @@ static int brcmstb_dpfe_probe(struct platform_device *pdev)
+>  	}
+>  
+>  	ret = brcmstb_dpfe_download_firmware(priv);
+> +	if (ret && ret != -EPROBE_DEFER) {
+> +		/*
+> +		 * If the information provided by Device Tree didn't work, let's
+> +		 * try all known version. Maybe one will work.
 
-It will still be odd, AFAICT, as this way as we will map 0 to ON and 1 to
-OFF... A bit counterintuitive.
+I don't understand how this comment is related to downloading firmware.
 
-> 
-> 
->>
->>>                 mmc2 = &sdhi2;
->>>  #endif
->>>         };
->>> @@ -116,7 +116,7 @@ &sdhi0 {
->>>  };
->>>  #endif
->>>
->>> -#if SW_SD2_EN
->>> +#if !SW_SD2_EN
->>>  &sdhi2 {
->>>         pinctrl-0 = <&sdhi2_pins>;
->>>         pinctrl-names = "default";
->>
->> So I think SW_SD2_EN should be renamed to SW_SD2_EN_N.
->>
->> Cfr. SW_ET0_EN_N on RZ/G2UL:
->>
->> arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dts- * DIP-Switch SW1 setting
->> arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dts- * 1 : High; 0: Low
->> arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dts- * SW1-2 :
->> SW_SD0_DEV_SEL    (0: uSD; 1: eMMC)
->> arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dts- * SW1-3 :
->> SW_ET0_EN_N               (0: ETHER0; 1: CAN0, CAN1, SSI1, RSPI1)
->> arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dts- * Please change
->> below macros according to SW1 setting on the SoM
-> 
-> Gr{oetje,eeting}s,
-> 
->                         Geert
-> 
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-> 
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
+> +		 */
+> +		dev_warn(dev,
+> +			"DPFE v%d didn't work, reverting to best-effort\n",
+> +			priv->dpfe_api->version);
+> +		dev_warn(dev,
+> +			"Device Tree and / or the driver should be updated\n");
+
+You are now introducing new warnings?
+
+NAK
+
+Best regards,
+Krzysztof
+
 
