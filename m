@@ -1,57 +1,57 @@
-Return-Path: <devicetree+bounces-22412-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22417-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71FCF8074C4
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 17:19:56 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3BED8074E4
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 17:25:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C33E281D31
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 16:19:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 008801C20ACB
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 16:25:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0EF54653D;
-	Wed,  6 Dec 2023 16:19:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 601AA4655E;
+	Wed,  6 Dec 2023 16:24:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="BzUc4ZtG"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="Pq5tQohM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E01912F
-	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 08:19:49 -0800 (PST)
-Received: by mail-pl1-x62e.google.com with SMTP id d9443c01a7336-1d075392ff6so8326765ad.1
-        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 08:19:49 -0800 (PST)
+Received: from mail-oa1-x31.google.com (mail-oa1-x31.google.com [IPv6:2001:4860:4864:20::31])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFFE9137
+	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 08:24:54 -0800 (PST)
+Received: by mail-oa1-x31.google.com with SMTP id 586e51a60fabf-1eb39505ba4so6868fac.0
+        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 08:24:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1701879589; x=1702484389; darn=vger.kernel.org;
+        d=broadcom.com; s=google; t=1701879894; x=1702484694; darn=vger.kernel.org;
         h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=KUtZvk2UU47Mkwmu8p0EncMomCqv8Tt9PjZ19LeJbj4=;
-        b=BzUc4ZtGp+QQiop4R6F5bE1if9cbS0CZkmkkieNRIq0RIMSz5tKpEKsqf58hDmb9nf
-         g7q8kMa6YL+1BTw1bwn37wxu6ZipyhBZJODWJMw0OjPxQWrdRnlUiS9pCCqEBLTSdMG4
-         daHvE9zBL3ei6Le9tnXyW5XsCLc/4rPnuoDsQ=
+        bh=b5GXjyNes9V0W/OP884RCOkcwUOTwug3Jipx2T62Jik=;
+        b=Pq5tQohMSE8uwvkbGThr2+bGbzgRR44NArCk4eX1oqadRhpaeZrz7VcMHKWXcvVWTf
+         AdTuaozIMnoFaHxpvu9YYwFWDEbZvKGzVW3zzYjHYln9hDfVkkLh7G7eL3BS+lWDlFjs
+         75RWVro/vEowqCYPz2I/ynZ4aP2zaSCtbEobE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701879589; x=1702484389;
+        d=1e100.net; s=20230601; t=1701879894; x=1702484694;
         h=in-reply-to:autocrypt:from:references:cc:to:subject:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=KUtZvk2UU47Mkwmu8p0EncMomCqv8Tt9PjZ19LeJbj4=;
-        b=mddy2oL4xKXcN7r7SrPaknCLynDJKQxMvzGrfviOl//Cuo7bJqZtn9MUIgBBvWpf19
-         yH0yqoYZunpCV4sF9SI6JMnz/VEJ2RdK8n/JgITyMGugYjtCnG5wfcsiqANXS9DNi2z/
-         5p9+sjrm56z5UdQ7H9z2TG1zr9RRzXKcqhbuibhJk4/xjB1rmRQn04/EzhMGu1J/+27X
-         LUItDTmUrVv7rpPM/0HStzfULyakgIdo6yxIj9CmjfVUZRgxZwfpQ2O/wqIcdjxOuCh1
-         VyJgSATdJ2lz85lUAI7TY/k3LSqIvcSqvoEkxCDEekA7YvOxZspBj5s+QMbwo28/GDva
-         EkVg==
-X-Gm-Message-State: AOJu0YzVVzn6PRA9wlMDSqmiAzTQWylsITkeiWQKYyWQZvecQyKGQ41K
-	t5hbcS2Ke8Jr8saa0UKcdgUEng==
-X-Google-Smtp-Source: AGHT+IGDXDUHgGAGgSfqTth6PqsvL98m/DXRUzl96P4fCSFEjYMfv+TF6uqo8JrUk5rZC4Z/fkZHMA==
-X-Received: by 2002:a17:903:1c1:b0:1d0:b246:721d with SMTP id e1-20020a17090301c100b001d0b246721dmr4805680plh.60.1701879588717;
-        Wed, 06 Dec 2023 08:19:48 -0800 (PST)
+        bh=b5GXjyNes9V0W/OP884RCOkcwUOTwug3Jipx2T62Jik=;
+        b=AEsdG7xkdCoiN5CU2dWknmFN+ZbgKCCb/DQA0BecpqKCyFHIg9l/u/ZX3iQmZJ0e3t
+         18heZDcQ8PklfdwoSSqL5UFJg5uG/NIS/2KDztLxyP6GPeA0obz8zJNy65Y/46NzHyaX
+         o4k3+O8AmLq3tjzJ9kLaE5+eIQiSmeehkZKl6pGRMlBbTicyE5boOr3FxgzSqZHImYZ3
+         M+s96M3e5+q/1xJv4N5SfopevemNn2h6zJ8mfONuJBkOPwkszehsHzbvixu41xWz8YR8
+         dgQqDIRthxs0ls3ZbmUEjHLy/v2oVGtFpRsXviLjzCBe9gYqXkZV3aPAfg7P5EpwNwin
+         wlrA==
+X-Gm-Message-State: AOJu0YxFvhqodM4LG1bDz+8b/XkJV0MHi2rloV7H573wgSyQTKWT9XGI
+	NLqhY8g4NZFFb56z9//NzR0LFQ==
+X-Google-Smtp-Source: AGHT+IHzLmt9NezmgrsOA6ga+coSKyur2ub5lDGbWlXFAr8iiEkJlVujbPbB9hTdvtYrRXeGvhcGTQ==
+X-Received: by 2002:a05:6870:7027:b0:1fa:dfd7:dc38 with SMTP id u39-20020a056870702700b001fadfd7dc38mr1227578oae.41.1701879894008;
+        Wed, 06 Dec 2023 08:24:54 -0800 (PST)
 Received: from [192.168.1.3] (ip72-194-116-95.oc.oc.cox.net. [72.194.116.95])
-        by smtp.gmail.com with ESMTPSA id v2-20020a63b642000000b005c6007a13b5sm87660pgt.25.2023.12.06.08.19.47
+        by smtp.gmail.com with ESMTPSA id m18-20020a0ce8d2000000b0067a8dc869afsm90715qvo.70.2023.12.06.08.24.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Dec 2023 08:19:48 -0800 (PST)
-Message-ID: <cb1d5118-b4f6-46b3-814b-2edf16372d01@broadcom.com>
-Date: Wed, 6 Dec 2023 08:19:46 -0800
+        Wed, 06 Dec 2023 08:24:53 -0800 (PST)
+Message-ID: <60f1db84-893b-4ce0-bf3b-592452e87a91@broadcom.com>
+Date: Wed, 6 Dec 2023 08:24:50 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,8 +59,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] memory: brcmstb_dpfe: introduce version-specific
- compatible strings
+Subject: Re: [PATCH 4/4] memory: brcmstb_dpfe: introduce best-effort API
+ detection
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
  Markus Mayer <mmayer@broadcom.com>, Rob Herring <robh+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>
@@ -68,8 +68,8 @@ Cc: Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
  Device Tree Mailing List <devicetree@vger.kernel.org>,
  Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 References: <20231205184741.3092376-1-mmayer@broadcom.com>
- <20231205184741.3092376-3-mmayer@broadcom.com>
- <7844ca22-df53-458d-9e3b-7b0758a80455@linaro.org>
+ <20231205184741.3092376-5-mmayer@broadcom.com>
+ <8e86fb4c-9526-4d64-9352-f9c8e5cae75f@linaro.org>
 From: Florian Fainelli <florian.fainelli@broadcom.com>
 Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
  xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
@@ -103,53 +103,34 @@ Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
  MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
  7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
  95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <7844ca22-df53-458d-9e3b-7b0758a80455@linaro.org>
+In-Reply-To: <8e86fb4c-9526-4d64-9352-f9c8e5cae75f@linaro.org>
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-	boundary="0000000000005ca345060bd9b8e0"
+	boundary="0000000000008cdbe9060bd9caf0"
 
---0000000000005ca345060bd9b8e0
+--0000000000008cdbe9060bd9caf0
 Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 
 
-On 12/6/2023 3:09 AM, Krzysztof Kozlowski wrote:
+On 12/6/2023 3:13 AM, Krzysztof Kozlowski wrote:
 > On 05/12/2023 19:47, Markus Mayer wrote:
->> Introduce compatible strings brcm,dpfe-cpu-v1 through brcm,dpfe-cpu-v3
->> to the Broadcom DPFE driver.
+>> Add a best-effort probe function that tries all known DPFE versions to
+>> see if one might actually work. This helps in cases where device tree
+>> doesn't provide the proper version information for whatever reason. In
 > 
-> No, why?
-> 
->>
->> Signed-off-by: Markus Mayer <mmayer@broadcom.com>
->> ---
->>   drivers/memory/brcmstb_dpfe.c | 6 ++++++
->>   1 file changed, 6 insertions(+)
->>
->> diff --git a/drivers/memory/brcmstb_dpfe.c b/drivers/memory/brcmstb_dpfe.c
->> index a7ab3d377206..66876b409e59 100644
->> --- a/drivers/memory/brcmstb_dpfe.c
->> +++ b/drivers/memory/brcmstb_dpfe.c
->> @@ -924,6 +924,12 @@ static const struct of_device_id brcmstb_dpfe_of_match[] = {
->>   	{ .compatible = "brcm,bcm7271-dpfe-cpu", .data = &dpfe_api_old_v2 },
->>   	{ .compatible = "brcm,bcm7278-dpfe-cpu", .data = &dpfe_api_old_v2 },
->>   	{ .compatible = "brcm,bcm7211-dpfe-cpu", .data = &dpfe_api_new_v2 },
->> +
->> +	/* Match specific DCPU versions */
->> +	{ .compatible = "brcm,dpfe-cpu-v1", .data = &dpfe_api_old_v2 },
->> +	{ .compatible = "brcm,dpfe-cpu-v2", .data = &dpfe_api_new_v2 },
->> +	{ .compatible = "brcm,dpfe-cpu-v3", .data = &dpfe_api_v3 },
-> 
-> Pointless change.
+> So for incomplete DTS you now add elaborate, own, custom matching
+> function. That's not how the code should work.
 
-Is it possible to ask you as a maintainer to stop having those knee jerk 
-reactions and try to understand things a bit better, or simply request a 
-better explanation from the submitter?
+I suppose that we could drop that change and simply rely upon the Device 
+Tree containing an adequate compatible string. This change was added as 
+a transitional step for ourselves mostly. I agree this may not entirely 
+belong upstream.
 -- 
 Florian
 
---0000000000005ca345060bd9b8e0
+--0000000000008cdbe9060bd9caf0
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -220,15 +201,15 @@ kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
 NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
 AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
 LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEINKW4qCzIU/Edp2z
-qblPLto8BNZ+VA1E0q2cn9F7X9FtMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTIzMTIwNjE2MTk0OVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
+/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEICg6xrJwIDtQSLqN
+BJUn1mElJKAv7dR2344x2qd0aBjVMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
+AQkFMQ8XDTIzMTIwNjE2MjQ1NFowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
 AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQAb8nY9fphuajHjOiZSbmDD7L1n041IE8Ux
-uvnEw07vyIKh5b4AMCraAvhI6rKx7sxTIDyP7+7QSLMkm2ygd/sgjcjbpNb9UdLy0zWE0qeqUv/K
-k6c6OalSt3UI0RRYBsXR+ymexQ0zcqI55rMhDxMAscnS3qMqlARwfo0fvJTeLNl3GBil/4eNK36B
-3qzgW5jKe6xbdOG8sn7+rgF/apG3E2aGZ2Te5cZAI6tJnVGm5MyKNTzONSXrZLtBlbSNEuV3sKZP
-Iq84PJJB35CYvrw5eIaO+tAQZYyyxQEgROqPkzfHFjuRM+PCF3TVWwz0jtSENMJDKzGbBYC1XibF
-d9IV
---0000000000005ca345060bd9b8e0--
+MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQC0hIWazs41pWLIoTRXDBqFCpfJaflMWAxl
+yc7TbL//SMCPjmev8G5QmcCooUZUhWd/D27wu23mE8tqmpQ12+nfSHToMYfsMHxzZkeBY5pu5Aox
+6rqhLrY2IUzVl6ogcQOAVcJC15flwBydQdgpCY2OBCg3/qeX7FTPFjfkBBj3J652g+MS4wb87Y1Y
+VJOBi7weF+A9gkUk026HnEv671UylKB8DO7Y1/1ifanKO0jBQfDpkmBAGvh0sAPyzQO2O7d+Xq0s
+cQFehpO517cJuhWnyLlYBx5AXoOnxYsYesH4BynKDiEGZ53uRZG4CVn+8Of/tVHnqschLw0YIG26
+DxTu
+--0000000000008cdbe9060bd9caf0--
 
