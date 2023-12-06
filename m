@@ -1,97 +1,105 @@
-Return-Path: <devicetree+bounces-22470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22471-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10F8A8078FD
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 20:53:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F484807904
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 20:55:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A56C5B2109C
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 19:53:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A6D41C20A6A
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 19:55:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 109A147F78;
-	Wed,  6 Dec 2023 19:52:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0772D47F7D;
+	Wed,  6 Dec 2023 19:55:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="jU856g8G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEE74FA;
-	Wed,  6 Dec 2023 11:52:49 -0800 (PST)
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.96.2)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1rAxwa-0007c0-2h;
-	Wed, 06 Dec 2023 19:52:30 +0000
-Date: Wed, 6 Dec 2023 19:52:23 +0000
-From: Daniel Golle <daniel@makrotopia.org>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chunfeng Yun <chunfeng.yun@mediatek.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Mark Lee <Mark-MC.Lee@mediatek.com>,
-	Lorenzo Bianconi <lorenzo@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Alexander Couzens <lynxis@fe80.eu>,
-	Qingfang Deng <dqfext@gmail.com>,
-	SkyLake Huang <SkyLake.Huang@mediatek.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org
-Subject: Re: [RFC PATCH v2 8/8] net: ethernet: mtk_eth_soc: add paths and
- SerDes modes for MT7988
-Message-ID: <ZXDQ94Xh3gzL3IR9@makrotopia.org>
-References: <cover.1701826319.git.daniel@makrotopia.org>
- <3ccc33fa14310ab47e90ff8e6ce46f1562bb838e.1701826319.git.daniel@makrotopia.org>
- <ZXDDtmRklS6o994V@shell.armlinux.org.uk>
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DD26D5A;
+	Wed,  6 Dec 2023 11:55:21 -0800 (PST)
+Received: from nicolas-tpx395.localdomain (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: nicolas)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 8E3AF6607355;
+	Wed,  6 Dec 2023 19:55:17 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1701892519;
+	bh=CkVlcx+Z8D6zKOTzgGQDWy9DnJ9h2npW9kYFRrf3yew=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=jU856g8GESQdCTMCRG7VeRN8Kjh3/NWarjQb0RBbEBnWUUvknwaVcS1Fsp7kD3vLB
+	 +67EcNM7ELH1/XWC5D+Lo8I5CKVsyp9Rr1Vqj9Ztc1ZlSL+mfE6TSz+2irKzN3PrUg
+	 zfXcY/QRXOWrZZuMuXg6y5lUn4HAd5xwjU2imvW+9zDZp+PuiohRrrtP+WgspdvF28
+	 ObdXPbrNMgDOm6h5EelzFjyMgtL7pKppMPzKZSBS1Ni1zmsyK9yP6Mf4mL29lE5kgd
+	 axTnArLo6Lmf+LGhvtallCj2gybEPxfk3FCF2athW6wgM3g2UnD0PH8ikZrsj2dHYW
+	 mkPOjopqr0yYQ==
+Message-ID: <f76f9d460b6d7e37aadc4100dbbd57321e5330c2.camel@collabora.com>
+Subject: Re: [PATCH v2 2/2] media: chips-media: wave5: Remove K3 References
+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To: Brandon Brnich <b-brnich@ti.com>, linux-media@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Mauro Carvalho
+ Chehab <mchehab@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Nas Chung <nas.chung@chipsnmedia.com>, Jackson Lee
+ <jackson.lee@chipsnmedia.com>, Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+ Sebastian Fricke <sebastian.fricke@collabora.com>,  Robert Beckett
+ <bob.beckett@collabora.com>, Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Nishanth Menon <nm@ti.com>, Darren Etheridge <detheridge@ti.com>
+Date: Wed, 06 Dec 2023 14:55:07 -0500
+In-Reply-To: <20231206185254.1748473-3-b-brnich@ti.com>
+References: <20231206185254.1748473-1-b-brnich@ti.com>
+	 <20231206185254.1748473-3-b-brnich@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZXDDtmRklS6o994V@shell.armlinux.org.uk>
 
-On Wed, Dec 06, 2023 at 06:55:50PM +0000, Russell King (Oracle) wrote:
-> On Wed, Dec 06, 2023 at 01:45:17AM +0000, Daniel Golle wrote:
-> > @@ -516,6 +538,21 @@ static struct phylink_pcs *mtk_mac_select_pcs(struct phylink_config *config,
-> >  	struct mtk_eth *eth = mac->hw;
-> >  	unsigned int sid;
-> >  
-> > +	if (mtk_is_netsys_v3_or_greater(eth)) {
-> > +		switch (interface) {
-> > +		case PHY_INTERFACE_MODE_1000BASEX:
-> > +		case PHY_INTERFACE_MODE_2500BASEX:
-> > +		case PHY_INTERFACE_MODE_SGMII:
-> > +			return mtk_pcs_lynxi_select_pcs(mac->sgmii_pcs_of_node, interface);
-> > +		case PHY_INTERFACE_MODE_5GBASER:
-> > +		case PHY_INTERFACE_MODE_10GBASER:
-> > +		case PHY_INTERFACE_MODE_USXGMII:
-> > +			return mtk_usxgmii_select_pcs(mac->usxgmii_pcs_of_node, interface);
-> 
-> From what I can see, neither of these two "select_pcs" methods that
-> you're calling makes any use of the "interface" you pass to them.
-> I'm not sure what they _could_ do with it either, given that what
-> you're effectively doing here is getting the phylink_pcs structure from
-> the driver, and each one only has a single phylink_pcs.
+As this is a DT call made by TI, there is not much to review.
 
-Yes, you are right, the interface parameter isn't used, I will drop
-it from both mtk_*_select_pcs() prototypes.
+Le mercredi 06 d=C3=A9cembre 2023 =C3=A0 12:52 -0600, Brandon Brnich a =C3=
+=A9crit=C2=A0:
+> Change compatible string to match dt bindings for TI devices. K3 family
+> prefix should not be included as it deviates from naming convention.
+>=20
+> Fixes: 9707a6254a8a ("media: chips-media: wave5: Add the v4l2 layer")
+> Reported-by: Geert Uytterhoeven <geert@linux-m68k.org>
+> Closes: https://lore.kernel.org/all/CAMuHMdUYOq=3Dq1j=3Dd+Eac28hthOUAaNUk=
+uvxmRu-mUN1pLKq69g@mail.gmail.com/
+> Signed-off-by: Brandon Brnich <b-brnich@ti.com>
 
-In the long run we may want something like
-struct phylink_pcs *of_pcs_get(struct device_node *np, phy_interface_t interface)
-provided by a to-be-built drivers/net/pcs/core.c...
+This should just be picked.
+
+Acked-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+
+
+> ---
+>  V1 -> V2: Fix style issues in commit message
+>=20
+>  drivers/media/platform/chips-media/wave5/wave5-vpu.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/media/platform/chips-media/wave5/wave5-vpu.c b/drive=
+rs/media/platform/chips-media/wave5/wave5-vpu.c
+> index bfe4caa79cc9..0d90b5820bef 100644
+> --- a/drivers/media/platform/chips-media/wave5/wave5-vpu.c
+> +++ b/drivers/media/platform/chips-media/wave5/wave5-vpu.c
+> @@ -272,7 +272,7 @@ static const struct wave5_match_data ti_wave521c_data=
+ =3D {
+>  };
+> =20
+>  static const struct of_device_id wave5_dt_ids[] =3D {
+> -	{ .compatible =3D "ti,k3-j721s2-wave521c", .data =3D &ti_wave521c_data =
+},
+> +	{ .compatible =3D "ti,j721s2-wave521c", .data =3D &ti_wave521c_data },
+>  	{ /* sentinel */ }
+>  };
+>  MODULE_DEVICE_TABLE(of, wave5_dt_ids);
+
 
