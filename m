@@ -1,48 +1,51 @@
-Return-Path: <devicetree+bounces-22029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22030-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8142C8063FC
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 02:14:14 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5734580640A
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 02:23:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CE2E28222A
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 01:14:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4ACD7B20F6A
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 01:23:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44059805;
-	Wed,  6 Dec 2023 01:14:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45760A56;
+	Wed,  6 Dec 2023 01:23:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hX8aJ98v"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H5xEmSB9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25EAF7FC
-	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 01:14:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4CA1C433C7;
-	Wed,  6 Dec 2023 01:14:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28E40A3F
+	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 01:23:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 957DFC433C8;
+	Wed,  6 Dec 2023 01:23:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701825249;
-	bh=3nVYZvN9qhVn1X/uVwrjcoRSY2NSlngaJr+fsoT/T94=;
+	s=k20201202; t=1701825812;
+	bh=5Eu7jo+JIE7fz8i/jqCUoUnz8Sm/OwdJtQDe2uCLfMI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hX8aJ98v1yplT8diC+Ovx3MbOyApOsLwIW/nTPayd9i6z8VbtuUWukNjTZbqpuqN+
-	 V5blM8TlV3zZEjWdgCfiTNikr9H/yuT658XyvtXespDDAPlfJEE14xHpXKFHI5xWM9
-	 5yelmx2DTCvEcAVgcW5Bn4nKrUX8I4RLdmzAgyloXgQmE2m0B+K5UBlDzguYoHesMd
-	 4vnROoV+Ia4WYHdFIT7/S2e8gkMzAD4abUZltRWhbQUkxIg//CMHbYPgLoG+fFt0FT
-	 CnhkcC7aG/EzjPxHk5C5FDjMwv8sZheA9yyyG5VxBs7fBW+2O0k+mqay1Won7q8CK1
-	 iCmucpkwHQabw==
-Date: Wed, 6 Dec 2023 09:14:04 +0800
+	b=H5xEmSB9V72mWkaHt5Hg54bS38YTp4qt5riu03zTI/LsvBQAaEXQLmh6HTHbsMUwu
+	 0csCJKgVi1/YhFGPAQTGqE7i7MPW4z0howzoIII26w1fUu889+gqoWk4gB8h0wTUla
+	 DLicrW62zgC4HWrvMXx2aahOGMackHpikl7glIrXfiHEmz8u0CZo6bRs2OnFSvUcso
+	 3bW6nM21Wp/thyw3F1RhGxKmTfk0pDCtVLqTrXFA4XYFyKvLpE7T+WdVqOYKCy8sHk
+	 Bc+yXZI6G2RVXiNV/w9WvTFcXv6tYX7pCnAj4dA8oWkuonPRWq70XBrzNMXud9YzfB
+	 ppmBMDHh38QgQ==
+Date: Wed, 6 Dec 2023 09:23:27 +0800
 From: Shawn Guo <shawnguo@kernel.org>
-To: haibo.chen@nxp.com
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, linux-imx@nxp.com, peng.fan@nxp.com,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] arm64: dts: imx93: update gpio node name to align
- with register address
-Message-ID: <20231206011404.GV236001@dragon>
-References: <20231115035621.3834539-1-haibo.chen@nxp.com>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	NXP Linux Team <linux-imx@nxp.com>, linux@ew.tq-group.com,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/1] arm64: dts: tqma8mpql: Remove invalid/unused property
+Message-ID: <20231206012327.GX236001@dragon>
+References: <20231117075957.2128070-1-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,15 +54,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231115035621.3834539-1-haibo.chen@nxp.com>
+In-Reply-To: <20231117075957.2128070-1-alexander.stein@ew.tq-group.com>
 
-On Wed, Nov 15, 2023 at 11:56:20AM +0800, haibo.chen@nxp.com wrote:
-> From: Haibo Chen <haibo.chen@nxp.com>
+On Fri, Nov 17, 2023 at 08:59:57AM +0100, Alexander Stein wrote:
+> 'dr_mode' is part of the USB DWC3 core, not the glue layer. Remove the
+> property from glue layer. Fixes the dtbs_check warning:
+> arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dtb: usb@32f10108:
+>   'dr_mode' does not match any of the regexes: '^usb@[0-9a-f]+$',
+>   'pinctrl-[0-9]+'
+>  from schema $id: http://devicetree.org/schemas/usb/fsl,imx8mp-dwc3.yaml#
 > 
-> Change the gpio node name to align with register address
-> 
-> Fixes: c1d0782b5fc3 ("arm64: dts: imx93: update gpio node")
-> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-Applied both, thanks!
+Applied, thanks!
 
