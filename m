@@ -1,27 +1,60 @@
-Return-Path: <devicetree+bounces-22214-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22217-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39CE6806D3D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 12:03:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F1F0806D4B
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 12:05:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E48BB1F20F52
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 11:03:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F3BD1C208C6
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 11:05:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0992630CF0;
-	Wed,  6 Dec 2023 11:03:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 077D830CFC;
+	Wed,  6 Dec 2023 11:04:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OtvhA9K9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6BA12FE0C;
-	Wed,  6 Dec 2023 11:03:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EFD6AC433C8;
-	Wed,  6 Dec 2023 11:03:34 +0000 (UTC)
-Message-ID: <178d5426-9761-4790-a488-a0009b0c9ba0@xs4all.nl>
-Date: Wed, 6 Dec 2023 12:03:32 +0100
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 737A21FEF
+	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 03:03:48 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-33349b3f99aso597489f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 03:03:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701860625; x=1702465425; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Rh73ClzDM6IcbJAAhPoTAxKltMNdEdAQK5XTonECUlE=;
+        b=OtvhA9K961V+yxPnIVcCcIbfYn55WozunrbFWF9IDzktdilCbgFn4D+X9eeLtwYaTZ
+         8G9+3NDPB59iV+Oh+iRs9oxTCyI0Sj4oWbLEO8O8z8J6QEc2w2xaDwReEgVfRX7KTyN+
+         XJNPcryDaybQJQrr0wTnAfXLJpdUjxKY9ZcpDISD1yY7P3llHY/Jqd5NhzDvrgLaqSJB
+         DyxwIKWIUaT/2J6LmQw3CNc1+ipLiLzVrPwWZPDwgmgt8ekNffkEYMBaIELtmxYRxM86
+         2BwdYpEtsArqLVjKhqiP2egTjP6d9xGo+ZBK2RjWWrLLgQ3aKbzA4GT3O27c9Qz9cozw
+         tJIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701860625; x=1702465425;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Rh73ClzDM6IcbJAAhPoTAxKltMNdEdAQK5XTonECUlE=;
+        b=iPPrZRUmM0fTB/DhfcRF4yyqdalYNpe9l0b4S4b4keKjCV2ZRAhulXHCEOJOy+ZqwB
+         AnI5WE5B9HkXhMV42eyOCKTl4pgUxj5gNan3DK/B1UgQxYlXh9hShUJaeDLLZ3kJOLgu
+         rBhP56+CB75UP+YmR3WpnMR9gMcgMbdR9yPbUM6xsrxBQiGl8NwUZbWoiEjvR22GpVS4
+         2RG12IO0WI4BQAwgnmyDnYh4LpNpbAp4U8C+87n40M7pqYeJH5cyiBzgOxlI1K2Xn+N8
+         muqiCHYMRq/x6+elch+jqIFZSLbhyDo2pY9MZxLm1sftdo9F1fHXq9FR+YKMXAbnd+yi
+         GYog==
+X-Gm-Message-State: AOJu0Yw2wAY7tA2NGHwiFMGRavYSPx+GyBkrzn1p86jF1gwNQDcvAvhA
+	AmZ+lzFcLwNouFA+Sb45hLpL3w==
+X-Google-Smtp-Source: AGHT+IHiaPkQ0VeZdhZE5/bhxJGM6sVyZa5f6rtlil0mhfHaBOLrP4WyJIgzluUro+mh0/elSvb0Rg==
+X-Received: by 2002:a5d:42cb:0:b0:333:52ff:37ca with SMTP id t11-20020a5d42cb000000b0033352ff37camr397636wrr.32.1701860625311;
+        Wed, 06 Dec 2023 03:03:45 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id ba18-20020a0560001c1200b00333479734a7sm8669148wrb.99.2023.12.06.03.03.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Dec 2023 03:03:44 -0800 (PST)
+Message-ID: <914bd0c8-5eb1-4e0b-b408-cc8991ff6917@linaro.org>
+Date: Wed, 6 Dec 2023 12:03:43 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -29,292 +62,85 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 3/5] media: platform: visconti: add V4L2 vendor
- specific control handlers
-Content-Language: en-US, nl
-To: yuji2.ishikawa@toshiba.co.jp, laurent.pinchart@ideasonboard.com,
- mchehab@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, nobuhiro1.iwamatsu@toshiba.co.jp
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20231012071329.2542003-1-yuji2.ishikawa@toshiba.co.jp>
- <20231012071329.2542003-4-yuji2.ishikawa@toshiba.co.jp>
- <6095bd3d-2580-44e2-b622-3ad31e12787f@xs4all.nl>
- <a84ce942-e6df-414e-8d0c-e7d3ef3e62f6@xs4all.nl>
- <TYAPR01MB62013046647975761414115992BDA@TYAPR01MB6201.jpnprd01.prod.outlook.com>
-From: Hans Verkuil <hverkuil@xs4all.nl>
-Autocrypt: addr=hverkuil@xs4all.nl; keydata=
- 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
-In-Reply-To: <TYAPR01MB62013046647975761414115992BDA@TYAPR01MB6201.jpnprd01.prod.outlook.com>
+Subject: Re: [PATCH] dt-bindings: lcdif: Properly describe the i.MX23
+ interrupts
+Content-Language: en-US
+To: Fabio Estevam <festevam@gmail.com>, marex@denx.de
+Cc: stefan@agner.ch, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
+References: <20231205174949.2091953-1-festevam@gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231205174949.2091953-1-festevam@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 27/11/2023 01:45, yuji2.ishikawa@toshiba.co.jp wrote:
-> Hello Hans,
+On 05/12/2023 18:49, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
 > 
->> -----Original Message-----
->> From: Hans Verkuil <hverkuil@xs4all.nl>
->> Sent: Tuesday, November 14, 2023 6:11 PM
->> To: ishikawa yuji(石川 悠司 ○ＲＤＣ□ＡＩＴＣ○ＥＡ開)
->> <yuji2.ishikawa@toshiba.co.jp>; Laurent Pinchart
->> <laurent.pinchart@ideasonboard.com>; Mauro Carvalho Chehab
->> <mchehab@kernel.org>; Rob Herring <robh+dt@kernel.org>; Krzysztof
->> Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley
->> <conor+dt@kernel.org>; iwamatsu nobuhiro(岩松 信洋 ○ＤＩＴＣ□ＤＩＴ○
->> ＯＳＴ) <nobuhiro1.iwamatsu@toshiba.co.jp>
->> Cc: linux-media@vger.kernel.org; devicetree@vger.kernel.org;
->> linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org
->> Subject: Re: [PATCH v9 3/5] media: platform: visconti: add V4L2 vendor
->> specific control handlers
->>
->> On 14/11/2023 10:02, Hans Verkuil wrote:
->>> On 12/10/2023 09:13, Yuji Ishikawa wrote:
->>>> Add support to Image Signal Processors of Visconti's Video Input Interface.
->>>> This patch adds vendor specific compound controls to configure the
->>>> image signal processor.
->>>>
->>>> Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
->>>> ---
->>>> Changelog v2:
->>>> - Resend v1 because a patch exceeds size limit.
->>>>
->>>> Changelog v3:
->>>> - Adapted to media control framework
->>>> - Introduced ISP subdevice, capture device
->>>> - Remove private IOCTLs and add vendor specific V4L2 controls
->>>> - Change function name avoiding camelcase and uppercase letters
->>>>
->>>> Changelog v4:
->>>> - Split patches because the v3 patch exceeds size limit
->>>> - Stop using ID number to identify driver instance:
->>>>   - Use dynamically allocated structure to hold HW specific context,
->>>>     instead of static one.
->>>>   - Call HW layer functions with the context structure instead of ID
->>>> number
->>>>
->>>> Changelog v5:
->>>> - no change
->>>>
->>>> Changelog v6:
->>>> - remove unused macros
->>>> - removed hwd_ and HWD_ prefix
->>>> - update source code documentation
->>>> - Suggestion from Hans Verkuil
->>>>   - pointer to userland memory is removed from uAPI arguments
->>>>     - style of structure is now "nested" instead of "chained by pointer";
->>>>   - use div64_u64 for 64bit division
->>>>   - vendor specific controls support TRY_EXT_CTRLS
->>>>   - add READ_ONLY flag to GET_CALIBRATION_STATUS control and
->> similar ones
->>>>   - human friendry control names for vendor specific controls
->>>>   - add initial value to each vendor specific control
->>>>   - GET_LAST_CAPTURE_STATUS control is updated asyncnously from
->> workqueue
->>>>   - remove EXECUTE_ON_WRITE flag of vendor specific control
->>>>   - uAPI: return value of GET_CALIBRATION_STATUS follows common
->> rules of error codes
->>>>   - applied v4l2-compliance
->>>> - Suggestion from Sakari Ailus
->>>>   - use div64_u64 for 64bit division
->>>>   - update copyright's year
->>>>   - remove redandunt cast
->>>>   - use bool instead of HWD_VIIF_ENABLE/DISABLE
->>>>   - simplify comparison to 0
->>>>   - simplify statements with trigram operator
->>>>   - remove redundant local variables
->>>>   - use general integer types instead of u32/s32
->>>> - Suggestion from Laurent Pinchart
->>>>   - moved VIIF driver to driver/platform/toshiba/visconti
->>>>   - change register access: struct-style to macro-style
->>>>   - remove unused type definitions
->>>>   - define enums instead of successive macro constants
->>>>   - remove redundant parenthesis of macro constant
->>>>   - embed struct hwd_res into struct viif_device
->>>>   - use xxx_dma instead of xxx_paddr for variable names of IOVA
->>>>   - literal value: just 0 instead of 0x0
->>>>   - use literal 1 or 0 instead of HWD_VIIF_ENABLE, DISABLE for register
->> access
->>>>   - use true or false instead of HWD_VIIF_ENABLE, DISABLE for function
->> calls
->>>>   - uAPI: return value of GET_CALIBRATION_STATUS follows common
->> rules
->>>> of error codes
->>>>
->>>> Changelog v7:
->>>> - remove unused variables
->>>> - split long statements which have multiple logical-OR and trigram
->>>> operators
->>>>
->>>> Changelog v8:
->>>> - define constant V4L2_CTRL_TYPE_VISCONTI_ISP for datatype
->>>>   of Visconti specific controls
->>>> - Suggestion from Hans Verkuil
->>>>   - remove pr_info()
->>>>   - use pm_runtime_get_if_in_use() to get power status
->>>>
->>>> Changelog v9:
->>>> - fix warning for cast between ptr and dma_addr_t
->>>>
->>>>  .../media/platform/toshiba/visconti/Makefile  |    2 +-
->>>>  .../media/platform/toshiba/visconti/viif.c    |   10 +-
->>>>  .../platform/toshiba/visconti/viif_controls.c | 3395
->> +++++++++++++++++
->>>>  .../platform/toshiba/visconti/viif_controls.h |   18 +
->>>>  .../platform/toshiba/visconti/viif_isp.c      |   15 +-
->>>>  drivers/media/v4l2-core/v4l2-ctrls-core.c     |    7 +-
->>>>  include/uapi/linux/videodev2.h                |    2 +
->>>>  7 files changed, 3431 insertions(+), 18 deletions(-)  create mode
->>>> 100644 drivers/media/platform/toshiba/visconti/viif_controls.c
->>>>  create mode 100644
->>>> drivers/media/platform/toshiba/visconti/viif_controls.h
->>>>
->>>
->>> <snip>
->>>
->>> These core changes below should be in a separate patch, not mixed in
->>> with the driver.
->>>
->>>> diff --git a/drivers/media/v4l2-core/v4l2-ctrls-core.c
->>>> b/drivers/media/v4l2-core/v4l2-ctrls-core.c
->>>> index a662fb60f73f..0c4df9fffbe0 100644
->>>> --- a/drivers/media/v4l2-core/v4l2-ctrls-core.c
->>>> +++ b/drivers/media/v4l2-core/v4l2-ctrls-core.c
->>>> @@ -367,7 +367,9 @@ void v4l2_ctrl_type_op_log(const struct v4l2_ctrl
->> *ctrl)
->>>>  	case V4L2_CTRL_TYPE_AV1_FILM_GRAIN:
->>>>  		pr_cont("AV1_FILM_GRAIN");
->>>>  		break;
->>>> -
->>>> +	case V4L2_CTRL_TYPE_VISCONTI_ISP:
->>>> +		pr_cont("VISCONTI_ISP");
->>>> +		break;
->>>>  	default:
->>>>  		pr_cont("unknown type %d", ctrl->type);
->>>>  		break;
->>>> @@ -1163,6 +1165,9 @@ static int std_validate_compound(const struct
->> v4l2_ctrl *ctrl, u32 idx,
->>>>  	case V4L2_CTRL_TYPE_AV1_FILM_GRAIN:
->>>>  		return validate_av1_film_grain(p);
->>>>
->>>> +	case V4L2_CTRL_TYPE_VISCONTI_ISP:
->>>> +		break;
->>>> +
->>>>  	case V4L2_CTRL_TYPE_AREA:
->>>>  		area = p;
->>>>  		if (!area->width || !area->height) diff --git
->>>> a/include/uapi/linux/videodev2.h b/include/uapi/linux/videodev2.h
->>>> index c3d4e490ce7c..bbc3cd3efa65 100644
->>>> --- a/include/uapi/linux/videodev2.h
->>>> +++ b/include/uapi/linux/videodev2.h
->>>> @@ -1915,6 +1915,8 @@ enum v4l2_ctrl_type {
->>>>  	V4L2_CTRL_TYPE_AV1_TILE_GROUP_ENTRY = 0x281,
->>>>  	V4L2_CTRL_TYPE_AV1_FRAME	    = 0x282,
->>>>  	V4L2_CTRL_TYPE_AV1_FILM_GRAIN	    = 0x283,
->>>> +
->>>> +	V4L2_CTRL_TYPE_VISCONTI_ISP = 0x290,
->>>
->>> I see you are using the same V4L2_CTRL_TYPE_VISCONTI_ISP for all the
->>> compound controls. But that's not allowed: the V4L2_CTRL_TYPE_ defines
->>> determine the control type, so each struct used by a control needs its own
->> type.
->>
->> Actually, you don't want to add such a type at all. This is all driver specific, so
->> support like this belongs in the driver.
->>
->> A good example of that is
->> V4L2_CID_DW100_DEWARPING_16x16_VERTEX_MAP in
->> drivers/media/platform/nxp/dw100/dw100.c: there all the handling is done in
->> the driver, and it adds init/validate/log/equal ops as well.
+> i.MX23 has two i.MX23 interrupts instead of a single one like other
+> i.MX devices.
 > 
-> I checked drivers/media/platform/nxp/dw100/dw100.c and found that
-> V4L2_CID_DW100_DEWARPING_16x16_VERTEX_MAP handles a 2D array of U32 parameters,
-> which is covered by standard v4l2_ctrl_type_op_xxxx() APIs.
+> Take this into account for properly describing the i.MX23 LCDIF
+> interrupts.
 > 
-> I suppose that controls of the VIIF driver, which handle control specific structs,
-> would not be implemented in the same way and something else may be needed.
+> This fixes the following dt-schema warning:
+> 
+> imx23-olinuxino.dtb: lcdif@80030000: interrupts: [[46], [45]] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/fsl,lcdif.yaml#
+> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> ---
+>  .../devicetree/bindings/display/fsl,lcdif.yaml   | 16 +++++++++++++++-
+>  1 file changed, 15 insertions(+), 1 deletion(-)
 
-The key takeaway here is that you don't want to have to add support for a
-driver-specific type to the core control framework. It has to remain
-driver specific. In this case that means you need to provide your own
-custom type ops in the driver, just like dw100 does. The actual code there
-will of course be different, since you are dealing with a compound type,
-not an array. But the principle is the same.
+Same problems as other patches. You should narrow to 1 existing variants.
 
-Regards,
-
-	Hans
-
-> 
->> Regards,
->>
->> 	Hans
->>
->>>
->>> I also noticed looking through include/uapi/linux/visconti_viif.h that
->>> some of the struct have holes. I really want to avoid holes in structs
->>> used by controls, it is bad practice.
->>>
->>> The pahole utility is very useful for testing this. It is also highly
->>> recommended to check for both 32 and 64 bit compilation: the struct
->>> layout must be the same, otherwise you would run into problems if a 32
->>> bit application is used with a 64 bit kernel.
->>>
->>> Finally, Laurent and/or Sakari will also take a look at this driver,
->>> for some reason this driver has been mostly reviewed by me, but I am
->>> not really the expert on ISPs.
->>>
->>> Regards,
->>>
->>> 	Hans
->>>
->>>>  };
->>>>
->>>>  /*  Used in the VIDIOC_QUERYCTRL ioctl for querying controls */
->>>
->>>
-> 
-> Regards,
-> Yuji
+Best regards,
+Krzysztof
 
 
