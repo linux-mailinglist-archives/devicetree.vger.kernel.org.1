@@ -1,139 +1,198 @@
-Return-Path: <devicetree+bounces-22237-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22238-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F862806DD0
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 12:24:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BC74806DD3
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 12:26:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF8A31F212EC
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 11:24:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A4A11C2099B
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 11:26:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A38F63172E;
-	Wed,  6 Dec 2023 11:24:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C4A731743;
+	Wed,  6 Dec 2023 11:25:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BNzbCDOr"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VRZm7OZY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B86D137
-	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 03:23:56 -0800 (PST)
-Received: by mail-pf1-x42a.google.com with SMTP id d2e1a72fcca58-6ce40061e99so562547b3a.0
-        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 03:23:56 -0800 (PST)
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EEFED3
+	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 03:25:52 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-a1c8512349dso86931066b.2
+        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 03:25:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701861836; x=1702466636; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=mFCukuSdWsuRhvFe3mgqtOXnJmu9VjUJaxtlOP7dBQI=;
-        b=BNzbCDOrsCsiP4mM9kEtiFntdNYcFYH9VjbBpi1mli9RYCgIs2riB6zN2d1Qr2NTpq
-         zmEV77n1dLEimIb2ztJIBg9qiYgINzIQzKwn1mauZ+Nh53vvFW4hxRLC0Nl/uyPslOgy
-         scClvg7y5G98G3BWuF5zaOmEX0zOPxa178KMOPv68xP7e1I4KkPblIAcg81bYt0FJX0W
-         yFDpZ8LPcSDR0sn5O3hctxbi4SkIvA1MkGtHKVRLXW97hg+XJ8tt2lX5DhnbKYzPvZ16
-         n4u4owSgF1pqJV09YGUhGZ9qla+6tYpxI1cufvwNj4mqGDk1JZnn7oWLt+9gczZteeeu
-         qJVA==
+        d=linaro.org; s=google; t=1701861951; x=1702466751; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7iFHTH9alWkglkkF8qs/MSlvKU4xNsLsdZ29PoySgFA=;
+        b=VRZm7OZYUUzL1jESq7XrucLwznkuSbr/tpFFY+smIDySmfYpHrWOMz4AwyTNzZrykq
+         o2I/fnBioWznMinDvXxN0S2xtd4MGRZPReI7NCbsvQbKCrACWSKGH0xUEVgQ9FTusfJc
+         y9dYLr5YI1g24oTmmbjucvVYspgPZKqhknAKNuX7eGZjs1FnSpNwsfFlP8ZzCcnMNuQP
+         7WjYKm7LGOrVmpoMwTPrqGH0HJxgh9U5grLbKt4iTHlFElguSm4iJA7rzW/waHFwCxsa
+         xf4cRd5khiGrWpWCNd6yRHgPqYR4FN52MqDULm+1nIV2BmVlC7QYeXj4Q/OlCST4Q1AM
+         G7mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701861836; x=1702466636;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mFCukuSdWsuRhvFe3mgqtOXnJmu9VjUJaxtlOP7dBQI=;
-        b=KhEGylG9G4DWNCW9/wSyy0rH0xQXW4FLnu/XedTpEqJOJI4MhYIKbAfnPw3xhY3l74
-         IrT+ZZuQGWMNteYR8TukQqqmBEOveZD25i8G/WGXWXWlDlVmgLqvuqiFxqmOWhe85GZ9
-         7YsYUBfEr7Xbi3lGrxiNoYBNd0TNGMrRxEKPUi/+iTU5a3/cvYve3ED2hBa5c/Zf3LpN
-         dKlb83pPjjOU05U+2vm2RIfwfMj5xDagjk8XWC6Wpi9uJP0rpZgo7r83rpHwCGiH1WDU
-         w8EiS1G78dfR0WuzZLo98NZfgk139r9j5YdvrccLBNWLmWYCG5mdlfyE3sCm9NlfeDe4
-         MY8Q==
-X-Gm-Message-State: AOJu0Yzd4jw22+QYc16CopPp1mjvtsK7CI7KC6c3DnlJ7EGYtzEwpSuv
-	EMbQnHfbvTq3E74fkA/3dt0=
-X-Google-Smtp-Source: AGHT+IErRb2I0j2INI9Zc3pcAIFqg2Ge+UJaxEcBqAcuwEjcZmUXjdWj53TzibB9k2rKIMD4NHNEOQ==
-X-Received: by 2002:a05:6a00:2d11:b0:6ce:68a5:757 with SMTP id fa17-20020a056a002d1100b006ce68a50757mr1433588pfb.0.1701861835628;
-        Wed, 06 Dec 2023 03:23:55 -0800 (PST)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:6764:e124:5ffc:3f5])
-        by smtp.gmail.com with ESMTPSA id i128-20020a62c186000000b006ce5300ddacsm1876723pfg.5.2023.12.06.03.23.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Dec 2023 03:23:55 -0800 (PST)
-From: Fabio Estevam <festevam@gmail.com>
-To: marex@denx.de
-Cc: stefan@agner.ch,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH v2] dt-bindings: lcdif: Properly describe the i.MX23 interrupts
-Date: Wed,  6 Dec 2023 08:23:37 -0300
-Message-Id: <20231206112337.2234849-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20230601; t=1701861951; x=1702466751;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7iFHTH9alWkglkkF8qs/MSlvKU4xNsLsdZ29PoySgFA=;
+        b=W0sr0aE2pme/ljrY9PQ+aaPLzu7Ua/DHIQxn0/Gc/8ygzJJq48gatfZe5JZw1cAfGL
+         qKSrpxsF0LxpyVuY2oiIEsHwpGl5rukvJbX5HgKlHvk38NOdLFZx99ZofN7XZpYFXFhA
+         peNG3uR2uPKXhy/YLKajDpD7Oos3VY6PGsKYy/MixifDjMt+UXNakR3hANKedXJAi2py
+         fUG6JMQmoU+wRq3ZwWvcxd+hmMhXpd2H943FpoTqhLUyAzQYhAhobYsUB9NlJq2MPRdD
+         1H/El0mcMCdviZcfXfMhuCyBtTBD5E7QVmCpE7if0zbc6hiD48IsocB8bctuccKoumLk
+         BpUA==
+X-Gm-Message-State: AOJu0YzWjV3VwKTyNnzU7wHupc8I0ve0T1rm31W+W216K2qTe7eghqv4
+	ZaKFp+7kmbL9m9Q/kYAuOPuJdjVO+5DAymYoghc=
+X-Google-Smtp-Source: AGHT+IGuH68c9ySP/svaW642ByNKdVCZSeCEYtoee4Pl2NOU6l8yChU6e8x6+kWikBShJ4r7Lz2fOw==
+X-Received: by 2002:a17:906:3654:b0:a19:a19b:c722 with SMTP id r20-20020a170906365400b00a19a19bc722mr386713ejb.114.1701861950832;
+        Wed, 06 Dec 2023 03:25:50 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id 14-20020a170906318e00b00a0d672bfbb0sm8277262ejy.142.2023.12.06.03.25.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Dec 2023 03:25:50 -0800 (PST)
+Message-ID: <cb41490a-72f8-4eb4-b9ff-3823fa452a39@linaro.org>
+Date: Wed, 6 Dec 2023 12:25:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/4] dt-bindings: arm: Add remote etm dt-binding
+Content-Language: en-US
+To: Mao Jinlong <quic_jinlmao@quicinc.com>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
+ Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+ Tao Zhang <quic_taozha@quicinc.com>
+References: <20231205082922.32149-1-quic_jinlmao@quicinc.com>
+ <20231205082922.32149-2-quic_jinlmao@quicinc.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231205082922.32149-2-quic_jinlmao@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Fabio Estevam <festevam@denx.de>
+On 05/12/2023 09:29, Mao Jinlong wrote:
+> Remote ETM(Embedded Trace Macrocell) is to capture information of
+> the executed processor instructions of remote processors like modem.
+> Add new coresight-remote-etm.yaml file describing the bindings
+> required to define coresight remote etm in the device trees.
+> 
+> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
 
-i.MX23 has two LCDIF interrupts instead of a single one like other
-i.MX devices.
 
-Take this into account for properly describing the i.MX23 LCDIF
-interrupts.
+> +description:
+> +  Support for ETM trace collection on remote processor using coresight
+> +  framework. Enabling this will allow turning on ETM tracing on remote
+> +  processor like modem processor via sysfs and collecting the trace
+> +  via coresight TMC sinks.
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,coresight-remote-etm
+> +
+> +  qcom,inst-id:
 
-This fixes the following dt-schema warning:
+I did not receive my answer about this property one month ago, so:
+NAK, drop this property.
 
-imx23-olinuxino.dtb: lcdif@80030000: interrupts: [[46], [45]] is too long
-        from schema $id: http://devicetree.org/schemas/display/fsl,lcdif.yaml#
-        
-Signed-off-by: Fabio Estevam <festevam@denx.de>
-Reviewed-by: Marek Vasut <marex@denx.de>
----
-Changes since v1:
-- Add missing else to limit the number of irqs for the other variants. (Krzysztof)
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Each kind of remote ETM has its unique instance id. The remote etm will
+> +      be enabled/disabled on remote processor based on the id send from
+> +      ap processor.
+> +
+> +  out-ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      port:
+> +        description: Output connection to the CoreSight Trace bus.
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +
+> +required:
+> +  - compatible
+> +  - qcom,inst-id
+> +  - out-ports
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    modem-etm0 {
 
- .../bindings/display/fsl,lcdif.yaml           | 20 ++++++++++++++++++-
- 1 file changed, 19 insertions(+), 1 deletion(-)
+etm {
 
-diff --git a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-index fc11ab5fc465..1c2be8d6f633 100644
---- a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-+++ b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-@@ -51,7 +51,10 @@ properties:
-     minItems: 1
- 
-   interrupts:
--    maxItems: 1
-+    items:
-+      - description: LCDIF DMA interrupt
-+      - description: LCDIF Error interrupt
-+    minItems: 1
- 
-   power-domains:
-     maxItems: 1
-@@ -131,6 +134,21 @@ allOf:
-     then:
-       required:
-         - power-domains
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - fsl,imx23-lcdif
-+    then:
-+      properties:
-+        interrupts:
-+          minItems: 2
-+          maxItems: 2
-+    else:
-+      properties:
-+        interrupts:
-+          maxItems: 1
- 
- examples:
-   - |
--- 
-2.34.1
+> +          compatible = "qcom,coresight-remote-etm";
+> +          qcom,inst-id = <2>;
+> +
+> +          out-ports {
+> +              port {
+> +                  modem_etm0_out_funnel_modem: endpoint {
+> +                  remote-endpoint = <&funnel_modem_in_modem_etm0>;
+
+Missing indentation level
+
+> +                  };
+> +              };
+> +          };
+> +    };
+> +...
+
+Best regards,
+Krzysztof
 
 
