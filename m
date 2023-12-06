@@ -1,165 +1,161 @@
-Return-Path: <devicetree+bounces-22093-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22094-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 249458066A5
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 06:39:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B3138066AE
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 06:46:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF7D41F21578
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 05:39:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 90BC11F2127A
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 05:46:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C93B101E9;
-	Wed,  6 Dec 2023 05:39:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFB61101C7;
+	Wed,  6 Dec 2023 05:46:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jofVXjQa"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="k+MdylXq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08E391A5
-	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 21:39:15 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-40bd5eaa66cso56336455e9.2
-        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 21:39:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701841153; x=1702445953; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=O4u7u9EhMLinCMKXbsJZZCgBovG/kdzoMMlzODKZOcY=;
-        b=jofVXjQav42skNKW3WVLcTJv9Yb1fCMYBw/D+5st8Aa31DdsPJk4pJiyMLALucbvKF
-         rID76S5sQtqqRQw4NkcsIB/vVfYCI7U6UNF3WSSA4RsDe9h20OiAPiso3EMnFtQYtopf
-         n6nMD+O4zp9upBcBtOhgzwj6qFNxXiduWVK1g090cklFyrxIo5yHPilfIr76pCsnUSiU
-         6i3uve0asHudlEEvWvQPNJNwCSvAjdpdX14D0HzdmjzbZ6fsg5tReDzvptCzO2UkB153
-         LCzmhWQRP/ply6rBAhlbsX8ZnmnnoZUp85/JTfvJsfFIGRBAJLAlVnq/xOi9C/37bLbe
-         Qo8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701841153; x=1702445953;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=O4u7u9EhMLinCMKXbsJZZCgBovG/kdzoMMlzODKZOcY=;
-        b=nLfQI+XY9yRGlpIJjyunp0onatSAYuiU5G7x2rOsnrF8jIr/59vaLsmpSwB9hN2Cf7
-         xSYeRLd+YhwX1dSgjlWu6rIRhlta6Qmvo6xCPqBJb2qfJPXTuCtUCn+nzaPTU1oH9VS0
-         fgtPz1f0P8OY/0mfvlNwdDzHsuk9J7rZEZguXJQu7dzzkTNflFGq2et8Wur+ZkhD7C+O
-         myxEQ4hWAPL3lZxr9E4bLr4rIS0a2GmDI7Gt5mNgPjc1zonx+fqInwegYzV43VhrXWWA
-         FCwrJNSdSlXpIYFnTilTdNnAfLi5NIT+2N4tNI+SEkKTCSTdOX5QZli33sd7otpCXogI
-         NOkQ==
-X-Gm-Message-State: AOJu0Yw6fXV1SughrGDsmP0nyq+x1FF7oKVQsQhiGNx/YX4UwlG7SKn+
-	vI+zDv6Nhs6ZOlZRloL6wfY0GA==
-X-Google-Smtp-Source: AGHT+IFAy6YDNnloe+CZg+064fYW1hphxl7Aimv9oj+A8PdlsOtVdmaSug/MC0yOqj37RYmzI49Gwg==
-X-Received: by 2002:a05:600c:4f15:b0:40c:192f:6ae8 with SMTP id l21-20020a05600c4f1500b0040c192f6ae8mr258952wmq.115.1701841153488;
-        Tue, 05 Dec 2023 21:39:13 -0800 (PST)
-Received: from localhost ([102.36.222.112])
-        by smtp.gmail.com with ESMTPSA id fs16-20020a05600c3f9000b0040b48690c49sm20593171wmb.6.2023.12.05.21.39.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Dec 2023 21:39:13 -0800 (PST)
-Date: Wed, 6 Dec 2023 08:39:10 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: oe-kbuild@lists.linux.dev, Neil Armstrong <neil.armstrong@linaro.org>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Banajit Goswami <bgoswami@quicinc.com>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
-Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
-	linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2 5/5] ASoC: codecs: Add WCD939x Codec driver
-Message-ID: <1a09512c-aaff-4fb6-914e-db755ce6e667@suswa.mountain>
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2060.outbound.protection.outlook.com [40.107.22.60])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3958218F;
+	Tue,  5 Dec 2023 21:46:30 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=cYtFZRwKnFmoR011AI0Rq7Mrf62O9H8erFoM/c1XdfV2zqlqKIbTUvv/71pXAInn+yXtxOqGLjsmktUDIoISQvF9YPyDLYQ/Y95RgG4ewm3t2k94WSThlSnUSlCkyCOZj6CphbbIpLn605UkISUx23h8nG+AleUPCHTUFlrHen1AD3eYRPOghF+NI5NvbaKCtM1zIqW9aXnRvBMUEERoT3JIFrVk+eDo0WX7mR1ffQ6IFmut3mQtFjVPshBMbmCK9D+/Y1YMb5YHDv6zahNCba1Kv+zxDpGshAYMEDoAVA923uNcck7QtlMjfAsBNoDtn1oxmVvB/fnqyR3ARFS94A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Vq0bdcMzWC/IKMJq8Nym4AsjF1dJyJqNVXPjo9NXEXU=;
+ b=gC92CY9S5DOjLEGKsuJDMdrHZ1TF7SIjtAilSUwxziJnZbJzYe1C2a8LoyQLFB12Bywq3xvq469TybivXX0rVOWbq6RtEyUoma/Zt9hAIyej9j90/MVml7i6j75WhkrmFIUigO/zrAVBLrhqlwRcC5R1tNgBnSR5eO8y81sNLOLc01AF4VnsYsCN85EDHUcV6wsdY9nQQd3I2ZzVaY1hRKOmSphad+ckoGPvaJZrPLt2mCIx4WR+r3ZaL9s42ku4jqLPP5SOl37o46R5PI7DIEPWyi5PKY3vFLAkLg8TEjVd34GpEYyDqFRIA1nPjub89ZPXVQgYtD4NOkJYmnV5vA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Vq0bdcMzWC/IKMJq8Nym4AsjF1dJyJqNVXPjo9NXEXU=;
+ b=k+MdylXqJ4COy+M/K9T6VTOt1rm8x0cNcODVpwYktObYZ9ZMRNLecypyjtlHYU5kYZIMNcP1D9zfX961bgJ+UBnsUKjPNNzDRT8zLwYzqx28VWHhZ5vBP35yaLuw3Hd/TLvLJVvqjS5QT4RP5sG+OXs1eooCCVBBq8yVhcuP8Pc=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM6PR04MB4838.eurprd04.prod.outlook.com (2603:10a6:20b:4::16)
+ by PAXPR04MB9665.eurprd04.prod.outlook.com (2603:10a6:102:240::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.25; Wed, 6 Dec
+ 2023 05:46:27 +0000
+Received: from AM6PR04MB4838.eurprd04.prod.outlook.com
+ ([fe80::95f5:5118:258f:ee40]) by AM6PR04MB4838.eurprd04.prod.outlook.com
+ ([fe80::95f5:5118:258f:ee40%6]) with mapi id 15.20.7068.022; Wed, 6 Dec 2023
+ 05:46:27 +0000
+Date: Wed, 6 Dec 2023 00:46:15 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Conor Dooley <conor.dooley@microchip.com>
+Cc: Shawn Guo <shawnguo@kernel.org>, alexander.stein@ew.tq-group.com,
+	alexandre.belloni@bootlin.com, conor+dt@kernel.org,
+	conor.culhane@silvaco.com, conor@kernel.org,
+	devicetree@vger.kernel.org, festevam@gmail.com, haibo.chen@nxp.com,
+	imx@lists.linux.dev, joe@perches.com, kernel@pengutronix.de,
+	krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org,
+	linux-arm-kernel@lists.infradead.org, linux-i3c@lists.infradead.org,
+	linux-imx@nxp.com, linux-kernel@vger.kernel.org, peng.fan@nxp.com,
+	ping.bai@nxp.com, robh+dt@kernel.org, s.hauer@pengutronix.de,
+	sherry.sun@nxp.com, xiaoning.wang@nxp.com
+Subject: Re: [PATCH v2 2/2] arm64: dts: freescale: imx93: add i3c1 and i3c2
+Message-ID: <ZXAKp1WS97cAI5X2@lizhi-Precision-Tower-5810>
+References: <20231017194657.3199749-1-Frank.Li@nxp.com>
+ <20231017194657.3199749-2-Frank.Li@nxp.com>
+ <ZUz/8fBWtnwdSW9w@lizhi-Precision-Tower-5810>
+ <20231127022140.GJ87953@dragon>
+ <20231127-cherisher-falsify-8193656e8872@wendy>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231127-cherisher-falsify-8193656e8872@wendy>
+X-ClientProxiedBy: BY5PR04CA0009.namprd04.prod.outlook.com
+ (2603:10b6:a03:1d0::19) To AM6PR04MB4838.eurprd04.prod.outlook.com
+ (2603:10a6:20b:4::16)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231201-topic-sm8650-upstream-wcd939x-codec-v2-5-94ed814b25aa@linaro.org>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM6PR04MB4838:EE_|PAXPR04MB9665:EE_
+X-MS-Office365-Filtering-Correlation-Id: 75aa8b6c-e145-4a63-f15c-08dbf61eb031
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	91dz/ePH5ZVFGWNQX/2IrbCLFX0X5uEaLqEsPq8kGDXL6N/Avoqd+1QYzXWTtHdYqSsPd0vg9rQKMoJqVs0pIHcbJgXb2CKNhC/6eoPY0g5e9ctmpc9W27l6EUQ9MuWE950YeTagopc89VNWAFpIE3ss3GivCIynIRudEHqE2fjMr6g2T6+4/hqtNBv2Z7ZNy1ct2N0fdoU396nBBEeLV2JqIH4u4RdJ5nbyTz4aX1DyGULCot/qT9bDHCd5fHEaYVRLNQBYHZiZ2hxhKcn2A0Ob9oWjLqNUJGNNP9i1vBMuY5cfi691ekhaMaEsidEQgzZuRYEDwII6HBPp8UzhZnvgNIqNDAQkw6FNPlJ7S//VGWViWGzCKYhJs0+gCf+Qg+slhpj4P2DBGFJFEO0LkfaLHwjcMWPkE0FaSTygkwgWmItDWz02BEcGeDpZ4j/j9ujXrlKVntWcWh4qHhsZpyUL0cbywxnQXsj2YufIFxhdYk4qWtXRpzXF9pXJckqi1WpisPTGQCMeprOMleNQISUsKAwphxNkSVo4hB69KFZFvafjeHHhZi/0MLJr0zN404tp8rgxyTxe/yR2rG/+lJ+j6MJwst8k2TEGNMl3pCUHJsmz+ouIhYM1duagM34H
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4838.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(366004)(396003)(376002)(346002)(136003)(39860400002)(230922051799003)(451199024)(64100799003)(1800799012)(186009)(86362001)(6666004)(33716001)(52116002)(478600001)(6486002)(2906002)(966005)(9686003)(6512007)(6506007)(4744005)(38350700005)(83380400001)(26005)(41300700001)(38100700002)(5660300002)(7416002)(6916009)(66556008)(66476007)(4326008)(8676002)(8936002)(316002)(66946007)(138113003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?EpXqJffcLdBjx6rj0ppQwk0lDCir25h4ZLcXzMQU6yM79gP+I3SBIRUWEQio?=
+ =?us-ascii?Q?oofqlbZOgaRfCi4iaXlRX20XxhQThzbhF1PGL7g/J1ALg2kinurCddZQlQ6U?=
+ =?us-ascii?Q?tPfXQpYW09qLnzLNOudhKc+AYvbhNjbyAg9c5JTqLJ9n+4tEfcDkSVWCqg0L?=
+ =?us-ascii?Q?tZWfjfw7Cbxpb8DVbfDu5iyMoEFrnRxM5vYmqdmn/rZ0to/DYqoB9wuq0uuc?=
+ =?us-ascii?Q?yrg63NUoQh66yVN4MOhWMCngdFlAI7Y+itYV0KXQGcgFG9yng3W1GIcd7Zd7?=
+ =?us-ascii?Q?0LrVwS3J6FfB0HCFZQr0UsoriixiGF9CVowtx3IVC0bvQFE+K4qPMISYVfc/?=
+ =?us-ascii?Q?zyDvWlCU6FzEwuVze0ZU55CiEdnLuwXabw5czkC65oEwcUiMUx4lfE9DMkc/?=
+ =?us-ascii?Q?SxuY9xzIokG8VD2bjaM7r6h4YuOBk126OyHUQLstE16N37FS1JZyPtCyqzMl?=
+ =?us-ascii?Q?NwvCfj4uM7PQw9946KGAoWxMkonIfAUuA00dIcmeyoybnH+eIegbouGpAtRJ?=
+ =?us-ascii?Q?1n9t2eWoWiKHZG/botlY6/P1c6ESWsn9nj4xiC22aVsXRsA/KMrAeMRu7R8/?=
+ =?us-ascii?Q?K23xZfWiaAJNHiglmn+eJ6LrXIkLTaQjrA9Gnrpa2lDaD/684OBLLRXhISlQ?=
+ =?us-ascii?Q?sas6jydQZrFAIA3S8/B1GRHAzJLPZSCRvC1yJfTQODn0dS1nbQOaMwTR2msp?=
+ =?us-ascii?Q?KT6lp9/JEkrFzqJS4BjTl9gLT8SJ+VmDOSC9QFGW5eis6/ym5VMIQp/BJ2bh?=
+ =?us-ascii?Q?DhEXar+sNheH+/fr/adPZqlv2iFYF980ph6O8x3O5AKZvYfkYy17PoArnCvJ?=
+ =?us-ascii?Q?pA500IBHTMm4b/fx5TeeixASwFeh/YSuMrr68V/d4Be94f40XUIvJFz6CwyF?=
+ =?us-ascii?Q?puyBRbhVCDLToJsVIvzxa+zF2s4oZh+7wWEgBT3vyluH75x09E70uKFSFT76?=
+ =?us-ascii?Q?Jp4EVp44W80V9ChM20cb2rIe99DUnj+bFoZF9VND0sBsyMtJFVTFmNpmFzzz?=
+ =?us-ascii?Q?K1xyolM7kny1uHCkbd+Nh6Si/k+s0jMlGhhR5/aumkP+uvSxqLAq1aPuI4A6?=
+ =?us-ascii?Q?goiqX9farmFZKFyOAX4HOZTnpPsGT2s03tWpopGkCVu5ulDmGHhyfx4Jv1FQ?=
+ =?us-ascii?Q?r3wDSXE4za1TDbC6PtZvug7noNeoJqdQvSGUTqn04ojBcHEIJ6aFIHTFcPuY?=
+ =?us-ascii?Q?dtWI2N/JeS3KUaMMDpJfKoP2c+cn5RDNB3M4neMrT23LuoeBcd+s56t9jveT?=
+ =?us-ascii?Q?/NFKH4W3/vaFqGDs1NxpDvjFhppkfbUo/BKV2SGXs5n/r8HrRRY7rTGdbfUz?=
+ =?us-ascii?Q?3bURqjg8EVrv4+BPI7eJiupAgie0Rn/ZxSWycQiRbHqtfeWwPHn7xFSx/HDd?=
+ =?us-ascii?Q?jw4VN27g/KUhSYMb1EdlA5vNdXLw9Q8tVEXZd2wU5zQc+PSQTZre5dn+4Nfj?=
+ =?us-ascii?Q?gi3RrIIXlw8m3OGUN10PDiRb7QVg9zuWCOKM2VSmhv9RxnkZ0KQZ9KLzixZM?=
+ =?us-ascii?Q?7OhNKT7822YVyew3V3zykagLq76e5U0WlkFYmcJI3lKLuua0VdEk8G0xRMcf?=
+ =?us-ascii?Q?0sE/6/FxKqNOjaQD+oI8FkbWoj/YLQNMf7VQdIUQ?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 75aa8b6c-e145-4a63-f15c-08dbf61eb031
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4838.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Dec 2023 05:46:27.0474
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: qdOljeRyoghjq2DS9MU4Jg4z2YK6bjlLU7IRHC/03m8Eg4KNy/ntdr3Guc137W2Q07WdLzCFwg5kZtjcA4paKQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9665
 
-Hi Neil,
+On Mon, Nov 27, 2023 at 09:35:39AM +0000, Conor Dooley wrote:
+> On Mon, Nov 27, 2023 at 10:21:40AM +0800, Shawn Guo wrote:
+> > On Thu, Nov 09, 2023 at 10:51:13AM -0500, Frank Li wrote:
+> > > On Tue, Oct 17, 2023 at 03:46:57PM -0400, Frank Li wrote:
+> > > > Add I3C1 and I3C2.
+> > > > 
+> > > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > > ---
+> > > 
+> > > @Guo Shawn:
+> > > 
+> > > Driver part already merged. 
+> > > 
+> > > Please pick up dts part
+> > 
+> > Rob had a comment [1] about SoC specific compatible.  That's not what we
+> > want?
+> > 
+> > Shawn
+> > 
+> > [1] https://lkml.iu.edu/hypermail/linux/kernel/2310.2/03035.html
+> 
+> Yeah, Rob's request here looks valid to me. Should just be a bindings
+> change Frank & fall back to the "silvaco,i3c-master-v1" compatible.
+> 
+> Cheers,
+> Conor.
 
-kernel test robot noticed the following build warnings:
+@shawn:
+	rob agree on "silvaco,i3c-master-v1" compatible.
 
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Neil-Armstrong/ASoC-dt-bindings-document-WCD939x-Audio-Codec/20231202-000916
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-patch link:    https://lore.kernel.org/r/20231201-topic-sm8650-upstream-wcd939x-codec-v2-5-94ed814b25aa%40linaro.org
-patch subject: [PATCH v2 5/5] ASoC: codecs: Add WCD939x Codec driver
-config: powerpc64-randconfig-r081-20231204 (https://download.01.org/0day-ci/archive/20231206/202312060127.FLhplIP3-lkp@intel.com/config)
-compiler: powerpc64-linux-gcc (GCC) 13.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20231206/202312060127.FLhplIP3-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-| Closes: https://lore.kernel.org/r/202312060127.FLhplIP3-lkp@intel.com/
-
-New smatch warnings:
-sound/soc/codecs/wcd939x.c:3168 wcd939x_typec_mux_set() error: 'wcd939x' dereferencing possible ERR_PTR()
-sound/soc/codecs/wcd939x.c:3221 wcd939x_swap_gnd_mic() warn: signedness bug returning '(-22)'
-
-Old smatch warnings:
-sound/soc/codecs/wcd939x.c:3170 wcd939x_typec_mux_set() error: 'wcd939x' dereferencing possible ERR_PTR()
-sound/soc/codecs/wcd939x.c:3173 wcd939x_typec_mux_set() error: 'wcd939x' dereferencing possible ERR_PTR()
-sound/soc/codecs/wcd939x.c:3174 wcd939x_typec_mux_set() error: 'wcd939x' dereferencing possible ERR_PTR()
-sound/soc/codecs/wcd939x.c:3176 wcd939x_typec_mux_set() error: 'wcd939x' dereferencing possible ERR_PTR()
-sound/soc/codecs/wcd939x.c:3177 wcd939x_typec_mux_set() error: 'wcd939x' dereferencing possible ERR_PTR()
-sound/soc/codecs/wcd939x.c:3179 wcd939x_typec_mux_set() error: 'wcd939x' dereferencing possible ERR_PTR()
-
-vim +/wcd939x +3168 sound/soc/codecs/wcd939x.c
-
-6c302e2f95b1d1 Neil Armstrong 2023-12-01  3164  static int wcd939x_typec_mux_set(struct typec_mux_dev *mux,
-6c302e2f95b1d1 Neil Armstrong 2023-12-01  3165  				 struct typec_mux_state *state)
-6c302e2f95b1d1 Neil Armstrong 2023-12-01  3166  {
-6c302e2f95b1d1 Neil Armstrong 2023-12-01  3167  	struct wcd939x_priv *wcd939x = typec_mux_get_drvdata(mux);
-6c302e2f95b1d1 Neil Armstrong 2023-12-01 @3168  	unsigned int previous_mode = wcd939x->typec_mode;
-
-The Kconfig should probably depend on CONFIG_TYPEC to avoid a crash here.
-
-6c302e2f95b1d1 Neil Armstrong 2023-12-01  3169  
-6c302e2f95b1d1 Neil Armstrong 2023-12-01  3170  	if (!wcd939x->wcd_mbhc)
-6c302e2f95b1d1 Neil Armstrong 2023-12-01  3171  		return -EINVAL;
-6c302e2f95b1d1 Neil Armstrong 2023-12-01  3172  
-6c302e2f95b1d1 Neil Armstrong 2023-12-01  3173  	if (wcd939x->typec_mode != state->mode) {
-6c302e2f95b1d1 Neil Armstrong 2023-12-01  3174  		wcd939x->typec_mode = state->mode;
-6c302e2f95b1d1 Neil Armstrong 2023-12-01  3175  
-6c302e2f95b1d1 Neil Armstrong 2023-12-01  3176  		if (wcd939x->typec_mode == TYPEC_MODE_AUDIO)
-6c302e2f95b1d1 Neil Armstrong 2023-12-01  3177  			return wcd_mbhc_typec_report_plug(wcd939x->wcd_mbhc);
-6c302e2f95b1d1 Neil Armstrong 2023-12-01  3178  		else if (previous_mode == TYPEC_MODE_AUDIO)
-6c302e2f95b1d1 Neil Armstrong 2023-12-01  3179  			return wcd_mbhc_typec_report_unplug(wcd939x->wcd_mbhc);
-6c302e2f95b1d1 Neil Armstrong 2023-12-01  3180  	}
-6c302e2f95b1d1 Neil Armstrong 2023-12-01  3181  
-6c302e2f95b1d1 Neil Armstrong 2023-12-01  3182  	return 0;
-6c302e2f95b1d1 Neil Armstrong 2023-12-01  3183  }
-
-[ snip ]
-
-6c302e2f95b1d1 Neil Armstrong 2023-12-01  3216  static bool wcd939x_swap_gnd_mic(struct snd_soc_component *component, bool active)
-6c302e2f95b1d1 Neil Armstrong 2023-12-01  3217  {
-6c302e2f95b1d1 Neil Armstrong 2023-12-01  3218  	struct wcd939x_priv *wcd939x = snd_soc_component_get_drvdata(component);
-6c302e2f95b1d1 Neil Armstrong 2023-12-01  3219  
-6c302e2f95b1d1 Neil Armstrong 2023-12-01  3220  	if (!wcd939x->typec_analog_mux || !wcd939x->typec_switch)
-6c302e2f95b1d1 Neil Armstrong 2023-12-01 @3221  		return -EINVAL;
-
-This is type bool.  return false?
-
-6c302e2f95b1d1 Neil Armstrong 2023-12-01  3222  
-6c302e2f95b1d1 Neil Armstrong 2023-12-01  3223  	/* Report inversion via Type Switch of USBSS */
-6c302e2f95b1d1 Neil Armstrong 2023-12-01  3224  	return typec_switch_set(wcd939x->typec_switch,
-6c302e2f95b1d1 Neil Armstrong 2023-12-01  3225  				wcd939x->typec_orientation == TYPEC_ORIENTATION_REVERSE ?
-6c302e2f95b1d1 Neil Armstrong 2023-12-01  3226  					TYPEC_ORIENTATION_NORMAL : TYPEC_ORIENTATION_REVERSE);
-6c302e2f95b1d1 Neil Armstrong 2023-12-01  3227  }
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
-
+Frank
 
