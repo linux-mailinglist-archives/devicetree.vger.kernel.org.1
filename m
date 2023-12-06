@@ -1,132 +1,152 @@
-Return-Path: <devicetree+bounces-22167-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22168-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55B5A806BB0
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 11:16:53 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F403806BB6
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 11:17:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10775281867
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 10:16:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E59BDB20EA1
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 10:17:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E61232D047;
-	Wed,  6 Dec 2023 10:16:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B2932D61B;
+	Wed,  6 Dec 2023 10:17:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="CXw46s6k"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pgtAuoOG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 357B4AA
-	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 02:16:43 -0800 (PST)
-Received: from mail-lj1-f198.google.com (mail-lj1-f198.google.com [209.85.208.198])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id AC1AC4063A
-	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 10:16:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1701857799;
-	bh=fPFWRVi4UC1wxgK1BZ+tE5lPscptXMAGgYLtmt3rvb8=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type;
-	b=CXw46s6kC/Vqc9ajKch32nLtoUBGMCS6lEFuwe+IO6Esq7qv+U+sR8SAqcjTFbB7c
-	 06nRSxIEFXERPUR80YxVmMgeibKcXtzJhJyo6uu0PTQOC2L6XO6/aLqLBETKMoicRy
-	 4O0KuMi8NutcwfrphY2nRJ6chK7xWq9UJv/TPhamBtm5Su4i53B0m6TH0C0b4M5NId
-	 f76xgMzyWCle2n28PMgJL2pjlof9GJ7Zg/xUs3IngiOUomfxUVn/OMKi/gt98lxAH2
-	 xoEJ9Ho69Bptw6CwzROqqItp1hHXvR1X01RR5OaAa/LCoFJYN7f970/5rpeyMKQjLU
-	 Vq5ITCyTxptlw==
-Received: by mail-lj1-f198.google.com with SMTP id 38308e7fff4ca-2c9e510a1c4so41835181fa.3
-        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 02:16:39 -0800 (PST)
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF811FA
+	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 02:17:22 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-3316a4bc37dso548417f8f.2
+        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 02:17:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701857841; x=1702462641; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=sWyvgy1TdeV0DVsJPDLWkrf/rSqR8TtA4Yp6VgZDT/o=;
+        b=pgtAuoOGYSFQ3w8DrLk3BdFdQFj2vxo+kPvQ/7LCqj3gQps19zTjobg+e5nmC0B+DI
+         kydQbqaQmKq7ORqt20u4JiIKg2BYYP+Yf+eQsfAORXwxJ/tYvRYqGX1gKJPjHNeelMDI
+         XtBFZqThNDiBOMrfkNMkZ+N3wdCqtXGaDN7vopqxq4LiD1PpQrS9VyjU+LDkXfsyQdVy
+         pvJ+KJzXiCynA+UfIEBINoqbmJ81QqNvM20+uSPTdLiaKtXU1IiE7WCFIGcb9FkjpATy
+         uzFcIoOJaoP2atBpDnVIF/8G2Fm0TjgHApdvEb6jc8W+L1n+Q61dapNb5zyiPKu1uJLI
+         jRfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701857794; x=1702462594;
-        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fPFWRVi4UC1wxgK1BZ+tE5lPscptXMAGgYLtmt3rvb8=;
-        b=QdaIU9JLaeAMGBuIf5dmNZMYplabM3O245nVFeZ6mvVuE7BcLfqqaVb91DdB0mx7Pq
-         i4IWTXj8j7Q6H09UMcER4j3f2rShP5WuQLdXFkeO5TLaYb8OveiP8jwDWIcO6PeVB80T
-         hP3egyGNeYlTxg3ohEPAogIqMFFwfQp9EDbB1EwpZ9kkHCVA8HnxnRToZKe7DU/hiBxh
-         OUrs6CXoM9F4KlTGv9Tkd4wZ8ndTE1k3IO9QcAdB/HNEngylQ86/Dz/HfCmO6c774uhQ
-         u2qpZw7y8JnyUw8rsAlz5V1lxvX105y+Fzmf+RSomVEuGWarMwJcTSz5ajGJLFnxOe7B
-         qp9g==
-X-Gm-Message-State: AOJu0Ywwr5bYOgIrw2C00OQ2tZCTnTPM92OirL382XQxFUVR6eqIv3sn
-	iNV2ROACvHAkwnCWfxL6K/j9UjJ84Tsec4TNjmLg+86YQqUd5GLWGJjd1b6SeJZwoA1XtmUQwsO
-	qn0csRSv224ApT58yYvlfTggPO/rDQihYAPAOaiATy2MLp4MnSD0s0Ri/HrfUDOx1Nw==
-X-Received: by 2002:a2e:740e:0:b0:2c9:f925:df0e with SMTP id p14-20020a2e740e000000b002c9f925df0emr211960ljc.34.1701857794554;
-        Wed, 06 Dec 2023 02:16:34 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEq781bpnuacD5QiFiBCg1mUOnOOSBbtHNvzHUW70ZtF1hR2gyBittWXfHSvEnQsp0nEdWGwPsBBWgtAAGiL6c=
-X-Received: by 2002:a2e:740e:0:b0:2c9:f925:df0e with SMTP id
- p14-20020a2e740e000000b002c9f925df0emr211946ljc.34.1701857794264; Wed, 06 Dec
- 2023 02:16:34 -0800 (PST)
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 6 Dec 2023 04:16:33 -0600
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <IA1PR20MB49531468A92E2A7670F1EE0BBB84A@IA1PR20MB4953.namprd20.prod.outlook.com>
-References: <CAJM55Z9WO+0Yb-at6CAR6=UP9j60iQz=s7MK-3qiT=w-8N6+Zw@mail.gmail.com>
- <IA1PR20MB49531468A92E2A7670F1EE0BBB84A@IA1PR20MB4953.namprd20.prod.outlook.com>
+        d=1e100.net; s=20230601; t=1701857841; x=1702462641;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=sWyvgy1TdeV0DVsJPDLWkrf/rSqR8TtA4Yp6VgZDT/o=;
+        b=ejoFxQXuVLd7ZEZURYPYCYrksyEeXH/ZZcer00AM1ebezkDkxg9uxMlvB2BXgCLbGw
+         M9MsmKSSb/qDvWTA+wTd+26+pVPkHK/qHv4eD4JM2rQr948My6bnRoPS3oqjcoqmQcYQ
+         hGCFF02d0wAECHhtY3+arB8OntfcdWt02ZD+8J++tY6F4aaPx/R6AnGBA8g3YYH+7ndc
+         9b1XbjSAbhrae4Zo8EO6W82wJwF5fAqMLrE36XybnFC4n7veKUnT9v5L08Pxjn6Kx9J+
+         fOG8OS7OgBQEi8bBUIWYtIZaRXDzX9Ekk8A0dpA7p9PZfSSXVUHx127CxfW0wrs+1Xa1
+         qhrw==
+X-Gm-Message-State: AOJu0YyUyU51WIW0CKIojrdpLJpDAMnl55N/zgInXSr1FsSa6r4Np+U5
+	TSAwGfEMUMPD+nBZ0A2iYlN+aw==
+X-Google-Smtp-Source: AGHT+IFawGY6+6fHO+cR5L8Hk60iACl/6NxfFmP6jJ5BxTvXxAhyf6JKbdqwB4Q2ogxjgUL7IUWBNQ==
+X-Received: by 2002:a05:600c:20e:b0:40c:18d5:2198 with SMTP id 14-20020a05600c020e00b0040c18d52198mr410632wmi.149.1701857841287;
+        Wed, 06 Dec 2023 02:17:21 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id r20-20020a05600c35d400b0040c05c768afsm14204160wmq.9.2023.12.06.02.17.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Dec 2023 02:17:20 -0800 (PST)
+Message-ID: <c006dd3a-07a2-4d14-899b-72373540ad37@linaro.org>
+Date: Wed, 6 Dec 2023 11:17:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Date: Wed, 6 Dec 2023 04:16:33 -0600
-Message-ID: <CAJM55Z-hCzuw+eQ-ABXoBYX7oSScXTKHwUzEe_2k6eSyy5HqKQ@mail.gmail.com>
-Subject: Re: [PATCH v2 0/4] riscv: sophgo: add clock support for Sophgo CV1800 SoCs
-To: Inochi Amaoto <inochiama@outlook.com>, 
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chao Wei <chao.wei@sophgo.com>, Chen Wang <unicorn_wang@outlook.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>
-Cc: Jisheng Zhang <jszhang@kernel.org>, qiujingbao.dlmu@gmail.com, dlan@gentoo.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: rng: starfive: Add jh8100 compatible
+ string
+Content-Language: en-US
+To: Jia Jie Ho <jiajie.ho@starfivetech.com>,
+ Olivia Mackall <olivia@selenic.com>, Herbert Xu
+ <herbert@gondor.apana.org.au>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-crypto@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231206014236.1109832-1-jiajie.ho@starfivetech.com>
+ <20231206014236.1109832-2-jiajie.ho@starfivetech.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231206014236.1109832-2-jiajie.ho@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Inochi Amaoto wrote:
-> >Inochi Amaoto wrote:
-> >> Add clock controller support for the Sophgo CV1800B and CV1812H.
-> >>
-> >> This patch follow this patch series:
-> >> https://lore.kernel.org/all/IA1PR20MB495399CAF2EEECC206ADA7ABBBD5A@IA1PR20MB4953.namprd20.prod.outlook.com/
-> >>
-> >> Changed from v1:
-> >> 1. fix license issues.
-> >>
-> >> Inochi Amaoto (4):
-> >>   dt-bindings: clock: sophgo: Add clock controller of CV1800 series SoC
-> >>   clk: sophgo: Add CV1800 series clock controller driver
-> >>   riscv: dts: sophgo: add clock generator for Sophgo CV1800 series SoC
-> >>   riscv: dts: sophgo: add uart clock for Sophgo CV1800 series SoC
-> >
-> >Hi Inochi,
-> >
-> >This series seems to be missing patch 1 and 2. If you did send them, but just
-> >omitted linux-riscv from those patches, please don't do that. Having the whole
-> >series makes it a lot easier to review without having to hunt down all the
-> >missing parts on lore.kernel.org.
-> >
-> >scripts/get_maintainer.pl does support muliple patches as input
-> >
-> >/Emil
-> >
->
-> Hi Emil,
->
-> The get_maintainer.pl does not give me linux-riscv mail list for the first
-> and second patch. I have added this to the second one, but the patch is
-> held by the mail list since is too big. Anyway, I will add this mail list
-> manually if you need. Sorry for this inconvenience.
+On 06/12/2023 02:42, Jia Jie Ho wrote:
+> Add compatible string for StarFive JH8100 trng.
+> 
+> Signed-off-by: Jia Jie Ho <jiajie.ho@starfivetech.com>
+> ---
+>  .../devicetree/bindings/rng/starfive,jh7110-trng.yaml         | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/rng/starfive,jh7110-trng.yaml b/Documentation/devicetree/bindings/rng/starfive,jh7110-trng.yaml
+> index 2b76ce25acc4..d275bdc4d009 100644
+> --- a/Documentation/devicetree/bindings/rng/starfive,jh7110-trng.yaml
+> +++ b/Documentation/devicetree/bindings/rng/starfive,jh7110-trng.yaml
+> @@ -11,7 +11,9 @@ maintainers:
+>  
+>  properties:
+>    compatible:
+> -    const: starfive,jh7110-trng
+> +    enum:
+> +      - starfive,jh7110-trng
+> +      - starfive,jh8100-trng
 
-No worries. Yeah, that's what I meant by get_maintainer.pl supporting multiple
-patches.  You can do something like
+Your driver change suggests these are compatible, so express this here
+and drop driver change.
 
-  git format-patch <starting point>..
-  ./scripts/get_maintainer.pl *.patch
+Best regards,
+Krzysztof
 
-..to get a list of recipients for the whole series.
-
-/Emil
 
