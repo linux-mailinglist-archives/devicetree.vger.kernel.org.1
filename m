@@ -1,145 +1,107 @@
-Return-Path: <devicetree+bounces-22150-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22151-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30CA8806A99
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 10:23:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36C12806AB4
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 10:31:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A59BC1F21131
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 09:23:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E409D28195A
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 09:31:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5A6A1A71A;
-	Wed,  6 Dec 2023 09:23:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A8D3182A7;
+	Wed,  6 Dec 2023 09:31:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mIfeycM5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W/dbmKyH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80463D66
-	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 01:04:43 -0800 (PST)
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-54cfd70b2dcso2685383a12.3
-        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 01:04:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701853482; x=1702458282; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZsHiL2ZUmiIgS6rkHU6mVjEXHdpiWr472PzKVF3t02Y=;
-        b=mIfeycM5lr69e85N9cYknYU7h6Qpu0YKf7jlXDVu2bGeCL3KJjJj5ccAA7jsT1FThk
-         OoPWSZwMrgitL9K0k1JqSmvOj2L8intXawlwkJmkwYE617CK2kLRwojDB+Pc5bbEnjh3
-         1mELZdPFnQyjiNVIG+9O6LsGd6mAVj5xOVo3fiXWJE5MmFnQj2lqX6mfOppO/33ofTCB
-         Wp44MUK3Mt7Yr4mBCpCd19kvX929wUsKmKNGPFp269PA1pZcKph5m0jK2/pKdgfimPNh
-         9evLkw1jn6XYa+YP34xVNwddDoMIatYDdisDB6P0SCaiPHXd9UBd4Wsa/UIBUeBwt+U1
-         nImw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701853482; x=1702458282;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZsHiL2ZUmiIgS6rkHU6mVjEXHdpiWr472PzKVF3t02Y=;
-        b=OqKbSumAUIQWHQbKidpBRjJGrdz7fBzKhDYK6e5N/F+BMdhZKtim82TygoVI4aT15s
-         30Fncb09/s9NCNiHieCC9wM4dPzIoVqiv7hFn3wmy35yNgftixH/UP8jhvGIhnyP9c5u
-         9trj5H6hiQryEbi5Vx/oSjZ5KOr2zar9H3OB5MPLgvB8X9JB0E3xIxnr7J9GjXMiTOR5
-         6lbz8v8OgUjv/M7m2pnYJ2+7HXKFW8RP/GKE+j4PjtoGWZa5wDUJjx6tSTRa05dK0Y4w
-         EpW5s982R8jPmFPpEs0AHQFpw1zPxix0/gm6Wg9A20q7fWFQWr4dWbOz0jtRCL8g9Cw2
-         hupg==
-X-Gm-Message-State: AOJu0YzMGUMLja6tyw5WumhHLQKupn4x740/WKupl6mUa6rbVUvdn9ge
-	3V88DZQ18chUx7pek5g7EQGGpA==
-X-Google-Smtp-Source: AGHT+IFDqGfCU7cCs8W3QH11Ja59brTp7kkVgXhBt+rEkaeoTbSzFzHT3nKfiZVp9FaW8PUWP2/DOA==
-X-Received: by 2002:a17:906:e8b:b0:a1d:7f40:bebe with SMTP id p11-20020a1709060e8b00b00a1d7f40bebemr321125ejf.126.1701853481998;
-        Wed, 06 Dec 2023 01:04:41 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id z17-20020a170906715100b00a1dc4307ecfsm352823ejj.188.2023.12.06.01.04.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Dec 2023 01:04:41 -0800 (PST)
-Message-ID: <006c3c39-5266-4177-ae7f-263af5f0821c@linaro.org>
-Date: Wed, 6 Dec 2023 10:04:39 +0100
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF4EC10788;
+	Wed,  6 Dec 2023 09:31:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E184C433C9;
+	Wed,  6 Dec 2023 09:31:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701855074;
+	bh=IqMFN3NBD8fJEXGdzcsWRBm0VvjMfikWoLBOrHQyNEM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=W/dbmKyHcbZUVGXY26w0XNpnZCrNhqu8i6kiDo3uOwXsDv5n7bGUhOuBMtG636xsg
+	 JrvedZW3YS1XepPThc0ds5laMa4pywatIJlnEQtbOgPtWtZCwr+c69dR0xEw0AVzrV
+	 F2MxX56GNK2fZ9wqA3kJPcFa8Z5YcNNzK1/DV8SqAlUzzQbRI+X0gxf8g9crYKUhUb
+	 x8tV6SLWiAiky4+kZ3u4y6T8x6p7UgM0aOwnlHKySyYacpQIUV84okkEqRCErTZJuE
+	 1BPACPL8x2+m3PFBQW4E4IuGRUTs6sFVFi/CuxftGs8sTAVtULGR/MnK4DAUBRAsmm
+	 XKlaGY6EAZHzg==
+Date: Wed, 6 Dec 2023 17:31:06 +0800
+From: Shawn Guo <shawnguo@kernel.org>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+	alexander.stein@ew.tq-group.com, alexandre.belloni@bootlin.com,
+	conor+dt@kernel.org, conor.culhane@silvaco.com, conor@kernel.org,
+	devicetree@vger.kernel.org, festevam@gmail.com, haibo.chen@nxp.com,
+	imx@lists.linux.dev, joe@perches.com, kernel@pengutronix.de,
+	krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org,
+	linux-arm-kernel@lists.infradead.org, linux-i3c@lists.infradead.org,
+	linux-imx@nxp.com, linux-kernel@vger.kernel.org, peng.fan@nxp.com,
+	ping.bai@nxp.com, robh+dt@kernel.org, s.hauer@pengutronix.de,
+	sherry.sun@nxp.com, xiaoning.wang@nxp.com
+Subject: Re: [PATCH v2 2/2] arm64: dts: freescale: imx93: add i3c1 and i3c2
+Message-ID: <20231206093106.GE270430@dragon>
+References: <20231017194657.3199749-1-Frank.Li@nxp.com>
+ <20231017194657.3199749-2-Frank.Li@nxp.com>
+ <ZUz/8fBWtnwdSW9w@lizhi-Precision-Tower-5810>
+ <20231127022140.GJ87953@dragon>
+ <20231127-cherisher-falsify-8193656e8872@wendy>
+ <ZXAKp1WS97cAI5X2@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/2] dt-bindings: pinctrl: qcom: Add SM4450 pinctrl
-Content-Language: en-US
-To: Tengfei Fan <quic_tengfan@quicinc.com>, agross@kernel.org,
- andersson@kernel.org, konrad.dybcio@linaro.org, linus.walleij@linaro.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
-References: <20231206020840.33228-1-quic_tengfan@quicinc.com>
- <20231206020840.33228-2-quic_tengfan@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231206020840.33228-2-quic_tengfan@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZXAKp1WS97cAI5X2@lizhi-Precision-Tower-5810>
 
-On 06/12/2023 03:08, Tengfei Fan wrote:
-> Add device tree binding Documentation details for Qualcomm SM4450
-> TLMM device.
+On Wed, Dec 06, 2023 at 12:46:15AM -0500, Frank Li wrote:
+> On Mon, Nov 27, 2023 at 09:35:39AM +0000, Conor Dooley wrote:
+> > On Mon, Nov 27, 2023 at 10:21:40AM +0800, Shawn Guo wrote:
+> > > On Thu, Nov 09, 2023 at 10:51:13AM -0500, Frank Li wrote:
+> > > > On Tue, Oct 17, 2023 at 03:46:57PM -0400, Frank Li wrote:
+> > > > > Add I3C1 and I3C2.
+> > > > > 
+> > > > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > > > ---
+> > > > 
+> > > > @Guo Shawn:
+> > > > 
+> > > > Driver part already merged. 
+> > > > 
+> > > > Please pick up dts part
+> > > 
+> > > Rob had a comment [1] about SoC specific compatible.  That's not what we
+> > > want?
+> > > 
+> > > Shawn
+> > > 
+> > > [1] https://lkml.iu.edu/hypermail/linux/kernel/2310.2/03035.html
+> > 
+> > Yeah, Rob's request here looks valid to me. Should just be a bindings
+> > change Frank & fall back to the "silvaco,i3c-master-v1" compatible.
+> > 
+> > Cheers,
+> > Conor.
 > 
-> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
-> ---
->  .../bindings/pinctrl/qcom,sm4450-tlmm.yaml    | 151 ++++++++++++++++++
->  1 file changed, 151 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml
-> 
+> @shawn:
+> 	rob agree on "silvaco,i3c-master-v1" compatible.
 
-There was no reason to drop my review tag here. You did not explain why
-it had to be dropped and changing indentation on example is for sure not
-the case.
+Hmm, not sure I have seen that.  Here is what I saw from Rob:
 
-Please read submitting-patches before posting new patches to mailing list.
+"
+The real problem here is not whether we have "v1" or not, but you need
+an SoC specific compatible. Unless there's a public spec where we can
+know exactly how many resets, clocks, interrupts, etc.
+"
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+Shawn
 
