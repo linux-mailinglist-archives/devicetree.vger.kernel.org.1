@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-22217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22219-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F1F0806D4B
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 12:05:03 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D187806D55
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 12:06:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F3BD1C208C6
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 11:05:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA6A41F211F9
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 11:06:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 077D830CFC;
-	Wed,  6 Dec 2023 11:04:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17B3F30F8A;
+	Wed,  6 Dec 2023 11:06:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OtvhA9K9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Wrs6mYs9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 737A21FEF
-	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 03:03:48 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-33349b3f99aso597489f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 03:03:48 -0800 (PST)
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A83910D3
+	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 03:06:20 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-40c08af319cso41355635e9.2
+        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 03:06:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701860625; x=1702465425; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701860778; x=1702465578; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Rh73ClzDM6IcbJAAhPoTAxKltMNdEdAQK5XTonECUlE=;
-        b=OtvhA9K961V+yxPnIVcCcIbfYn55WozunrbFWF9IDzktdilCbgFn4D+X9eeLtwYaTZ
-         8G9+3NDPB59iV+Oh+iRs9oxTCyI0Sj4oWbLEO8O8z8J6QEc2w2xaDwReEgVfRX7KTyN+
-         XJNPcryDaybQJQrr0wTnAfXLJpdUjxKY9ZcpDISD1yY7P3llHY/Jqd5NhzDvrgLaqSJB
-         DyxwIKWIUaT/2J6LmQw3CNc1+ipLiLzVrPwWZPDwgmgt8ekNffkEYMBaIELtmxYRxM86
-         2BwdYpEtsArqLVjKhqiP2egTjP6d9xGo+ZBK2RjWWrLLgQ3aKbzA4GT3O27c9Qz9cozw
-         tJIw==
+        bh=jClcqTKkEdlh/0n7GUFJamNERw69d7IUU8YIMDhi+mA=;
+        b=Wrs6mYs9AEL6tIA5ntG7olO4OAA+eBadszsc7d5gZeNW+0+X6R8Wt1s4Eja2DY6Ym+
+         6YJyGClcon6llEifVlGeBdq7p3U477c2tf0aDpJvzYuMwx1hkjkCaLUsSzf5cIMWTUgs
+         Lxr0E0CEp6tdYyUxkJ5e+F2Ffiyy9cGEbxeyYRrWVPH6+cLzXU9YUonRTO8TWqNriDpV
+         nGXvSvUh/kgqAnD7nO2dxVPTw9B9c4U8pwsLDAN/ghegY5n6g8NLphmclHt2ZCN+SlTi
+         BPQLB3d65E1jWJ9RwDvk39+qVixHH25DgBsvarheXLsyzPG3p2nb9nnqDLJRF0jnVLIJ
+         fIJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701860625; x=1702465425;
+        d=1e100.net; s=20230601; t=1701860778; x=1702465578;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Rh73ClzDM6IcbJAAhPoTAxKltMNdEdAQK5XTonECUlE=;
-        b=iPPrZRUmM0fTB/DhfcRF4yyqdalYNpe9l0b4S4b4keKjCV2ZRAhulXHCEOJOy+ZqwB
-         AnI5WE5B9HkXhMV42eyOCKTl4pgUxj5gNan3DK/B1UgQxYlXh9hShUJaeDLLZ3kJOLgu
-         rBhP56+CB75UP+YmR3WpnMR9gMcgMbdR9yPbUM6xsrxBQiGl8NwUZbWoiEjvR22GpVS4
-         2RG12IO0WI4BQAwgnmyDnYh4LpNpbAp4U8C+87n40M7pqYeJH5cyiBzgOxlI1K2Xn+N8
-         muqiCHYMRq/x6+elch+jqIFZSLbhyDo2pY9MZxLm1sftdo9F1fHXq9FR+YKMXAbnd+yi
-         GYog==
-X-Gm-Message-State: AOJu0Yw2wAY7tA2NGHwiFMGRavYSPx+GyBkrzn1p86jF1gwNQDcvAvhA
-	AmZ+lzFcLwNouFA+Sb45hLpL3w==
-X-Google-Smtp-Source: AGHT+IHiaPkQ0VeZdhZE5/bhxJGM6sVyZa5f6rtlil0mhfHaBOLrP4WyJIgzluUro+mh0/elSvb0Rg==
-X-Received: by 2002:a5d:42cb:0:b0:333:52ff:37ca with SMTP id t11-20020a5d42cb000000b0033352ff37camr397636wrr.32.1701860625311;
-        Wed, 06 Dec 2023 03:03:45 -0800 (PST)
+        bh=jClcqTKkEdlh/0n7GUFJamNERw69d7IUU8YIMDhi+mA=;
+        b=YjT8jp8QDYLWzwoglp2VZag/tw+lFOVGhbDXBwIFC/fA1C7/r0pART56czH3hR4v+3
+         dmSHDIhxx32cD6Cr78w6FQkexbGn6F5WsG8XQTlAA8y+GwLpRyPOyQwBGj8VfciupGY7
+         sCiy1UmpxFLbgz1vdn9ozURx6zjHzDmXLMJ+rDLAlJv4PSZGa5eD+pKqKYd4Jq3qJACl
+         75LoS6gBOdppdXUw1HrJ8rmwXcmQ1i7yqKcurSkzhv7iVKcI6hkH5yewv8TliKzQyLRr
+         Hmn+FTATo6XTvLXV7g2NkovcxsLAKIrJ4o4MAX1ikGkXmHNkoQYefTW4KrIvPI/TbiOA
+         Avow==
+X-Gm-Message-State: AOJu0YyJX7XYKZs6j89L7dkb5RYWK1pgEfWK74q8aEtV35hfq0EUsZK+
+	u1fpkwJN/QHKWsXCTp4IbHbZ5Q==
+X-Google-Smtp-Source: AGHT+IH0VuWe5InqREqifmqooyinWBx+yfuLzH9q5QbfammxeOLg8AeNYOhYqj0HtNtgF1CVmZH67A==
+X-Received: by 2002:a7b:c447:0:b0:40b:5e59:e9df with SMTP id l7-20020a7bc447000000b0040b5e59e9dfmr489123wmi.126.1701860778670;
+        Wed, 06 Dec 2023 03:06:18 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id ba18-20020a0560001c1200b00333479734a7sm8669148wrb.99.2023.12.06.03.03.43
+        by smtp.gmail.com with ESMTPSA id je18-20020a05600c1f9200b003feea62440bsm21897673wmb.43.2023.12.06.03.06.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Dec 2023 03:03:44 -0800 (PST)
-Message-ID: <914bd0c8-5eb1-4e0b-b408-cc8991ff6917@linaro.org>
-Date: Wed, 6 Dec 2023 12:03:43 +0100
+        Wed, 06 Dec 2023 03:06:18 -0800 (PST)
+Message-ID: <332dfce5-f2a8-421a-878e-85f95aa64d10@linaro.org>
+Date: Wed, 6 Dec 2023 12:06:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,14 +62,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: lcdif: Properly describe the i.MX23
- interrupts
+Subject: Re: [PATCH v3.1 0/8] Convert DA906{1,2} bindings to json-schema
 Content-Language: en-US
-To: Fabio Estevam <festevam@gmail.com>, marex@denx.de
-Cc: stefan@agner.ch, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
-References: <20231205174949.2091953-1-festevam@gmail.com>
+To: Biju Das <biju.das.jz@bp.renesas.com>, Lee Jones <lee@kernel.org>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Support Opensource <support.opensource@diasemi.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>,
+ Steve Twiss <stwiss.opensource@diasemi.com>, linux-input@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+ Biju Das <biju.das.au@gmail.com>, linux-renesas-soc@vger.kernel.org
+References: <20231204172510.35041-1-biju.das.jz@bp.renesas.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -115,30 +123,53 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231205174949.2091953-1-festevam@gmail.com>
+In-Reply-To: <20231204172510.35041-1-biju.das.jz@bp.renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/12/2023 18:49, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
+On 04/12/2023 18:25, Biju Das wrote:
+> Convert the below bindings to json-schema
+> 1) DA906{1,2} mfd bindings
+> 2) DA906{1,2,3} onkey bindings
+> 3) DA906{1,2,3} thermal bindings
 > 
-> i.MX23 has two i.MX23 interrupts instead of a single one like other
-> i.MX devices.
+> Also add fallback for DA9061 watchdog device and document
+> DA9063 watchdog device.
 > 
-> Take this into account for properly describing the i.MX23 LCDIF
-> interrupts.
-> 
-> This fixes the following dt-schema warning:
-> 
-> imx23-olinuxino.dtb: lcdif@80030000: interrupts: [[46], [45]] is too long
-> 	from schema $id: http://devicetree.org/schemas/display/fsl,lcdif.yaml#
-> 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
-> ---
->  .../devicetree/bindings/display/fsl,lcdif.yaml   | 16 +++++++++++++++-
->  1 file changed, 15 insertions(+), 1 deletion(-)
+> v3->v3.1:
+>  * Patch#1 is merge of patch#1 from v2 + patch#8 from v2.
+>  * Dropped comment for d9061 watchdog fallback
+>  * Replaced enum->const for dlg,da9061-watchdog and its fallback.
+>  * Restored patch#4 in series 1 and dropped the thermal example
+>  * Added Ack from Conor Dooley for da9063 watchdog binding support.
+>  * Updated title DA9062/61->DA906{1,2,3} as it supports DA9063.
+>  * Retained Rb tag since the changes are trivial.
+>  * Added Ack from Conor for updating watchdog property
+>  * Dropped link to product information.
+>  * Patch#5(onkey) is squashed with patch#6 and patch#9 from v2.
+>  * Replaced enum->const for dlg,da9061-onkey and its fallback.
+>  * Dropped example
+>  * Restored the thermal binding patch from v2.
+>  * Dropped example
+>  * Replaced enum->const for compatible property.
+>  * Added Rb tag from Rob and retained Rb tag as changes are trivial.
+>  * Added Ack from Conor Dooley for patch#7.
+>  * Split the thermal binding patch separate
+>  * Updated the description
 
-Same problems as other patches. You should narrow to 1 existing variants.
+
+Hundreds of changes and just "3 -> 3.1"? This does not make sense.
+
+Also, use normal versioning:
+
+b4 diff '<20231204172510.35041-9-biju.das.jz@bp.renesas.com>'
+Grabbing thread from
+lore.kernel.org/all/20231204172510.35041-9-biju.das.jz@bp.renesas.com/t.mbox.gz
+---
+Analyzing 21 messages in the thread
+ERROR: Could not auto-find previous revision
+       Run "b4 am -T" manually, then "b4 diff -m mbx1 mbx2"
+
 
 Best regards,
 Krzysztof
