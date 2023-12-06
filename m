@@ -1,160 +1,253 @@
-Return-Path: <devicetree+bounces-22373-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22374-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CA268073DB
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 16:41:35 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 251A68073E9
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 16:43:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E830DB20E06
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 15:41:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9563EB20EF4
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 15:43:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB9D34595E;
-	Wed,  6 Dec 2023 15:41:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A5A84597B;
+	Wed,  6 Dec 2023 15:43:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hB0+DXoy"
+	dkim=pass (2048-bit key) header.d=gmx.de header.i=linosanfilippo@gmx.de header.b="Q4FCK93f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3AA83DBBC;
-	Wed,  6 Dec 2023 15:41:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08782C433C8;
-	Wed,  6 Dec 2023 15:41:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701877289;
-	bh=Uv8b+EwMtwJvMdfrPZdZ0AgVz/8itxAOt+skCzPWAIc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hB0+DXoyAPXGeE5NqAPSHP0yqeelHdgj73jAwCnh6L8msEZco1WvyF8zme077/FvN
-	 yEHv2cEhn4UwjMD4b01vuIkYLb97o13SSMvQXJSk0thkT2cPyVi9nIBqS38oSkiRE7
-	 Sd08aV0X/FdkYpG0/x0+zekyJS8fe7FzhBmhoqvgtXCXrF07yUiTjpXaY1GqY5sZ2N
-	 Y1AzFg7mKOL/jDyeUKtWSVsXxCaPsQhdMpHH3fBFmw6B2subP5uAVDXu3xOde3AxAM
-	 gR+Qz9LjLWwG0bwrUN7gYaMNtmoRwXdKYehPgbL/5OqwskQ2pqx4srqMTkBWtqMKE6
-	 Si0FFSv0ZvUfg==
-Date: Wed, 6 Dec 2023 15:41:24 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-Cc: nuno.sa@analog.com, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>
-Subject: Re: [PATCH v3 1/2] dt-bindings: hwmon: Add LTC4282 bindings
-Message-ID: <20231206-reference-litigator-eb7c466222a3@spud>
-References: <20231205-ltc4282-support-v3-0-e0877b281bc2@analog.com>
- <20231205-ltc4282-support-v3-1-e0877b281bc2@analog.com>
- <20231205-cognitive-propose-aa71278f65ea@spud>
- <92aeaa124adf7e678f9ef1750b353fe9d11f8909.camel@gmail.com>
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE3F49C;
+	Wed,  6 Dec 2023 07:43:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.de; s=s31663417;
+	t=1701877375; x=1702482175; i=linosanfilippo@gmx.de;
+	bh=+B+LxkQRG0FiOkqsDobn6wzE6xjaBL4vaAVQMw/RddI=;
+	h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
+	 In-Reply-To;
+	b=Q4FCK93fitK8Hyfkx8TOehhJ5pV8TlRKVhBIMgIwhQL1AGndt//rTz+3yD2CjJ+W
+	 WANqw0j/g9fuiRvd2W8OOIKFufe+6HQ3UHyk9SDjBNAaZ+1qDQ8H1d+xaQE8letFI
+	 UkHPE+AiIH65NFawHjrSjoLSikYuY1BDtCHzUWCpDWQFYHGeOP/M0SW5/mDeif062
+	 YTPNcajqFGlRqWiBh2VDnrtO2XPWMWY0dXWkiyjJzLChFbYvRjgop1F1uPBkeG1/Q
+	 Hr0sGDJgS57GdfJ/8VATa3KpxlW+1+bR+1TsI9DnIcfqQSlVGY4ZADnjSnMzfQPij
+	 TppaIgo4vK9cF8s0YQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.2.42] ([84.180.3.177]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MvsIv-1rULwO24W7-00ss2t; Wed, 06
+ Dec 2023 16:42:55 +0100
+Message-ID: <5c140498-69e3-4187-8703-db0c41e7ca89@gmx.de>
+Date: Wed, 6 Dec 2023 16:42:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="s9iPQ469fKQZnoy/"
-Content-Disposition: inline
-In-Reply-To: <92aeaa124adf7e678f9ef1750b353fe9d11f8909.camel@gmail.com>
-
-
---s9iPQ469fKQZnoy/
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: serial: rs485: add rs485-mux-gpios
+ binding
+Content-Language: en-US
+To: Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+ Lukas Wunner <lukas@wunner.de>, Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ "brenda.streiff@ni.com" <brenda.streiff@ni.com>,
+ Crescent CY Hsieh <crescentcy.hsieh@moxa.com>,
+ Tomas Paukrt <tomaspaukrt@email.cz>
+References: <20231120151056.148450-1-linux@rasmusvillemoes.dk>
+ <20231120151056.148450-2-linux@rasmusvillemoes.dk>
+ <20231122145344.GA18949@wunner.de>
+ <3b8548b1-b8a9-0c9e-4040-5cfda06a85c6@gmx.de>
+ <ec66d25162de4cbc92720df1e7008fe8@dh-electronics.com>
+From: Lino Sanfilippo <LinoSanfilippo@gmx.de>
+In-Reply-To: <ec66d25162de4cbc92720df1e7008fe8@dh-electronics.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:WinMUwLcoT/5jSdBB4YJ422Zl+vb7oDmXwC2HQTaW998KaH9ihI
+ sqP+B8DEZ0UDmlB+It0Z7Hc3W+yoMA6Hx/3VoHu9+/fk5+CU8jIAjuiKnI1N7V85nuQrm7n
+ JeuvISeJHy/9p0ZSIRfr8lueE3F8FZ4NnR+2NxWiP5pgqLF+vgH+5uvQqOrWzNaAdF3c0Xz
+ 1wiDvwKU9gyimDawVvk+Q==
+UI-OutboundReport: notjunk:1;M01:P0:sEeYN/Oia54=;/26vZ9Qjn3UrFVNZctFBkMinSKI
+ 8ppq/pqC0e8SCYG9ASwVlsd6TFjdJ87r/wUyEOsE9ksNRAGHNM8Rf4FXCKz53/cgYD03/KoJ2
+ HcFx3nR/utvFZytrF7gN35yskria+AdMf2YtGQzqPNlHwvA4/qp84lfSi8p53ez/4JX5iriDb
+ 0bRfDsjR+jKtc9F6DzLzX2m8D0VQtdZucnVsIfkM7KVqkz4woZrihphykJ4TJOVwd9u4h6PuC
+ P+Xg0qT8iTKTJy6SBP5DNw5wjugyyevaziPCzc0MJuLWlLDRLB9YdeK6ra9qGUJ+y77F0jTro
+ UABxctUFFc0ByF7gDt7PbwCdFfEL+959UAu5KzIEuSo8/xOhvzhUa5G/bEaNLKRKHyRG9aFkt
+ GDXGbFnKSJvbbcQjycGilMYBofedT6eEbAkl9sUUb8CXyO6+NR8/UqauqClmJjT4jz5FXhI1o
+ iLBrhGR+L//ll+TKZ4JYIUBMKSXhxaJKPshppbiRCahb8BC8KIVHvfz4FAwrqR7Zd0XUHW0qn
+ nM+cT+saBIPG8cH7v8FkJgye6JT4iezILmxnPb5DF79uylIn0r25c1rzBeg8szM0OrKkLJq6m
+ kEx82cc4fZEqcfPtgEscJJ8cXH5tTsm/6RRqo5Pgw2mZTg5q8Mmy1lA8jA4iKDkMUGhNBVY4q
+ WnCqbt8db78d1v+ytSlmnQvi4E4PdrC4QFYH4cMNkqu+bKhQMlKkHDDZP/+2DZzDVwCu8lVhz
+ B+8mLxm/8CNcefNs7dPqzw6btYkwDpLKK/a9Sg5yeV5zPWVrApqDSqvsuYd2jaJQEp23CP4Wi
+ qpEvlzIEPQ5tT16+ud9YgdvXyHANnT5xQROlU5g1guXwOJ9SQuoMO8ZphM66Zzy/uSCjF4TLV
+ ONRycyyjosSGei2JQ0hRCStbZmohGYar/U3Yfi9nAKGznUcRfr9+ypV3j7ud7RQbp65U8Ul+n
+ Mpa+M0Dd9RNNIX5I1NctNJ0RAsY=
 
-On Wed, Dec 06, 2023 at 09:38:11AM +0100, Nuno S=E1 wrote:
-> On Tue, 2023-12-05 at 16:18 +0000, Conor Dooley wrote:
-> > On Tue, Dec 05, 2023 at 04:22:55PM +0100, Nuno Sa via B4 Relay wrote:
-> >=20
-> > > +=A0 adi,overvoltage-dividers:
-> > > +=A0=A0=A0 description: |
-> > > +=A0=A0=A0=A0=A0 Select which dividers to use for VDD Overvoltage det=
-ection. Note that
-> > > +=A0=A0=A0=A0=A0 when the internal dividers are used the threshold is=
- referenced to VDD.
-> > > +=A0=A0=A0=A0=A0 The percentages in the datasheet are misleading sinc=
-e the actual values
-> > > +=A0=A0=A0=A0=A0 to look for are in the "Absolute Maximum Ratings" ta=
-ble in the
-> > > +=A0=A0=A0=A0=A0 "Comparator Inputs" section. In there there's a line=
- for each of the 5%,
-> > > +=A0=A0=A0=A0=A0 10% and 15% settings with the actual min, typical an=
-d max tolerances.
-> > > +=A0=A0=A0 $ref: /schemas/types.yaml#/definitions/string
-> > > +=A0=A0=A0 enum: [external, vdd_5_percent, vdd_10_percent, vdd_15_per=
-cent]
-> > > +
-> > > +=A0 adi,undervoltage-dividers:
-> > > +=A0=A0=A0 description: |
-> > > +=A0=A0=A0=A0=A0 Select which dividers to use for VDD Overvoltage det=
-ection. Note that
-> > > +=A0=A0=A0=A0=A0 when the internal dividers are used the threshold is=
- referenced to VDD.
-> > > +=A0=A0=A0=A0=A0 The percentages in the datasheet are misleading sinc=
-e the actual values
-> > > +=A0=A0=A0=A0=A0 to look for are in the "Absolute Maximum Ratings" ta=
-ble in the
-> > > +=A0=A0=A0=A0=A0 "Comparator Inputs" section. In there there's a line=
- for each of the 5%,
-> > > +=A0=A0=A0=A0=A0 10% and 15% settings with the actual min, typical an=
-d max tolerances.
-> > > +=A0=A0=A0 $ref: /schemas/types.yaml#/definitions/string
-> > > +=A0=A0=A0 enum: [external, vdd_5_percent, vdd_10_percent, vdd_15_per=
-cent]
-> >=20
-> > > +=A0 adi,gpio1-mode:
-> > > +=A0=A0=A0 description: Defines the function of the Pin. It can indic=
-ate that power is
-> > > +=A0=A0=A0=A0=A0 good (PULL the pin low when power is not good) or th=
-at power is bad (Go
-> > > +=A0=A0=A0=A0=A0 into high-z when power is not good).
-> > > +=A0=A0=A0 $ref: /schemas/types.yaml#/definitions/string
-> > > +=A0=A0=A0 enum: [power_bad, power_good]
-> > > +
-> > > +=A0 adi,gpio2-mode:
-> > > +=A0=A0=A0 description: Defines the function of the Pin. It can be se=
-t as the input for
-> > > +=A0=A0=A0=A0=A0 the ADC or indicating that the MOSFET is in stress (=
-dissipating power).
-> > > +=A0=A0=A0 $ref: /schemas/types.yaml#/definitions/string
-> > > +=A0=A0=A0 enum: [adc_input, stress_fet]
-> >=20
-> > None of these properties have a default nor are required.
-> > What happens when they are omitted?
-> >=20
->=20
-> Yeah, they get the power on reset default values (or whatever is in eepro=
-m but that's
-> not the typical usecase). I'll add a default for all these properties. Yo=
-ur question
-> already made me realize something I need to fix for v4. For some reason, =
-I thought
-> gpio3 was the default pin to be muxed into the ADC (and hence monitored b=
-y hwmon) but
-> I realized that gpio2 is the default one. Hence, I need a boolean propert=
-y to allow
-> for users to mux gpio3 instead of gpio2.
 
-:+1: patch should be good to go then IMO with those defaults added and
-the mux one fixed.
+Hi,
 
-Thanks,
-Conor.
+On 27.11.23 13:14, Christoph Niedermaier wrote:
+> From: Lino Sanfilippo [mailto:LinoSanfilippo@gmx.de]
+> Sent: Sunday, November 26, 2023 12:40 AM
+>
+> Hi,
+>
+>> On 22.11.23 at 15:53, Lukas Wunner wrote:
+>>> On Mon, Nov 20, 2023 at 04:10:54PM +0100, Rasmus Villemoes wrote:
+>>>> Some boards are capable of both rs232 and rs485, and control which
+>>>> external terminals are active via a gpio-controlled mux. Allow
+>>>> describing that gpio in DT so that the kernel can transparently handl=
+e
+>>>> the proper setting when the uart is switched between rs232 and rs485
+>>>> modes.
+>>>
+>>> Crescent CY Hsieh (+cc) is in parallel trying to add an RS-422 mode bi=
+t
+>>> to struct serial_rs485:
+>>>
+>>> https://lore.kernel.org/all/20231121095122.15948-1-crescentcy.hsieh@mo=
+xa.com/
+>>>
+>>
+>> That new flag was suggested by me instead of using SER_RS422_ENABLED, w=
+hich
+>> would mostly be redundant to SER_RS485_ENABLED.
+>> I dont know if it is a good choice in the long term to handle both mode=
+s within
+>> the RS485 configuration. It would be cleaner to have an own RS422 struc=
+ture with
+>> its own flags and properties. And until now the only flag that seems to=
+ make sense
+>> for both RS422 and RS485 is AFAICS SER_RS485_TERMINATE_BUS.
+>>
+>> On the other hand the bus termination is at least a property that both =
+modes have
+>> in common. And handling RS422 in its own structure would require anothe=
+r ioctl
+>> to set and get the the RS422 settings.
+>>
+>> But maybe there are more or better possibilities to handle RS4822 suppo=
+rt. I would like to
+>> hear other ideas.
+>>
+>>
+>>
+>>> I don't know whether that makes sense at all (I had thought RS-422 is
+>>> the same as RS-485 with full-duplex, i.e. SER_RS485_ENABLED plus
+>>> SER_RS485_RX_DURING_TX)
+>
+> With RS-485 full duplex, SER_RS485_RX_DURING_TX makes no sense to me.
+> See below.
+>
+>>>
+>>> But if that patch gets accepted, we'd have *three* different modes:
+>>> RS-232, RS-485, RS-422.
+>>
+>> Actually we would have four (as Brenda already wrote,
+>> see https://lore.kernel.org/all/c6ea912f-d5ab-4761-813d-3b6b6be141cb@ni=
+.com/),
+>> and with the propose SER_RS485_MODE_RS422 flag these modes would be use=
+d like
+>>
+>> RS-232:                       rs485->flags =3D 0
+>> RS-422:                       rs485->flags =3D SER_RS485_ENABLED|SER_RS=
+485_MODE_RS422
+>> RS-485 (2-wire half-duplex):  rs485->flags =3D SER_RS485_ENABLED
+>> RS-485 (4-wire full-duplex):  rs485->flags =3D SER_RS485_ENABLED|SER_RS=
+485_RX_DURING_TX
+>
+> In my point of view there are also two different modes for the RS-485 2-=
+wire
+> half-duplex bus depending on the flag SER_RS485_RX_DURING_TX.
+> - SER_RS485_RX_DURING_TX is not set: The device doesn't see the bus duri=
+ng sending
+>                                      (RX is off during sending).
+> - SER_RS485_RX_DURING_TX is set:     The device see want is on bus durin=
+g sending
+>                                      (RX is also on during sending), so =
+you can
+>                                      see your transmission and also if a=
+nother bus
+>                                      device is transmitting at the same =
+time.
+>
+> On RS-485 4-wire TX and RX are separated by wires. So the definition of
+> SER_RS485_RX_DURING_TX above makes no sense, because you can receive all=
+ the time
+> without worrying about TX. On the software side RS-485 4-wire full duple=
+x it behaves
+> like RS-232. So we don't need transceiver controlling by the RTS pin.
+>> Basically for me the SER_RS485_ENABLED flag is to enable the RTS contro=
+l for the
+> transceiver. Maybe on software side we can distinguish between half and =
+full duplex
+> mode and whether RX is enabled during sending by the flag SER_RS485_RX_D=
+URING_TX:
+> RS-232:                          rs485->flags =3D 0
+> RS-422 / RS-485 (4-wire):        rs485->flags =3D SER_RS485_ENABLED|SER_=
+RS485_MODE_FULL_DUPLEX
 
---s9iPQ469fKQZnoy/
-Content-Type: application/pgp-signature; name="signature.asc"
+How can we switch between RS485 (4-wire) and RS422 then? AFAIU they are no=
+t the same. And even
+if a driver behaves the same in both modes it needs to know when to switch=
+ from one mode to the
+other.
 
------BEGIN PGP SIGNATURE-----
+> RS-485 (2-wire NO RX_DURING_TX): rs485->flags =3D SER_RS485_ENABLED|SER_=
+RS485_MODE_HALF_DUPLEX
+> RS-485 (2-wire RX_DURING_TX):    rs485->flags =3D SER_RS485_ENABLED|SER_=
+RS485_MODE_HALF_DUPLEX|SER_RS485_RX_DURING_TX
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZXCWJAAKCRB4tDGHoIJi
-0iy7AQDlbLpqU0xbjnJVhrmJIKxpmhs40HeLz0LxacxpaCytWAD8Dq6mYWlGLajz
-uJt7xdmFpf1v61NEz7qhRpOseP4cagk=
-=3D/+
------END PGP SIGNATURE-----
+I think we can omit the SER_RS485_MODE_HALF_DUPLEX flag if we assume that =
+a missing
+SER_RS485_MODE_FULL_DUPLEX means half duplex (i.e. controlling the RTS lin=
+e).
 
---s9iPQ469fKQZnoy/--
+> SER_RS485_MODE_FULL_DUPLEX and SER_RS485_MODE_HALF_DUPLEX can be defined=
+ at the
+> same bit. If SER_RS485_MODE_HALF_DUPLEX will be defined as 0 it breaks n=
+othing.
+> With SER_RS485_MODE_FULL_DUPLEX, the RTS pin does not need to be control=
+led
+>
+>>
+>>>  A single GPIO seems insufficient to handle that.
+>>
+>> GPIOs for RS485 is another thing.
+>>
+>> I mean, currently we have a GPIO for RS485 termination (I introduced it=
+ with commit
+>> 44b27aec9d9680875).
+>> Christoph introduced support for a rx-during-tx GPIO (see commit 163f08=
+0eb717). Tomas
+>> intends
+>> to add a GPIO which enables RS485 if asserted
+>> (see https://lore.kernel.org/all/3Za.ZZs%7D.ndXI8CMee4.1bN6eQ@seznam.cz=
+/) and with Rasmus
+>> patches
+>> we are about to add a MUX-GPIO which is to be asserted if RS485 is enab=
+led.
+>>
+>> I wonder where this will end and if we really have to support every pos=
+sible GPIO
+>> in the serial core.
+>
+> I think the GPIOs reflect the flag states and are meaningful:
+> - SER_RS485_TERMINATE_BUS: Switch bus termination on/off by GPIO
+> - SER_RS485_RX_DURING_TX:  Used to stop RX during TX in hardware by GPIO=
+ (for 2-wire)
+> - SER_RS485_ENABLED:       Muxing between RS-232 and RS-485 by GPIO
+>
+> Switching RS-485 on during boot could also be handled by a devicetree ov=
+erlay. Evaluate the
+> GPIO and load a DTO accordingly before booting.
+>
+
+Regards,
+Lino
 
