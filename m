@@ -1,110 +1,172 @@
-Return-Path: <devicetree+bounces-22435-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22436-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A62C5807641
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 18:15:48 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B94C80766C
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 18:21:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E18C281B65
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 17:15:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5C6F7B20BAA
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 17:21:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AABB5F1C0;
-	Wed,  6 Dec 2023 17:15:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D36165EC8;
+	Wed,  6 Dec 2023 17:21:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qIX1Wpc1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 322AAD7D;
-	Wed,  6 Dec 2023 09:15:43 -0800 (PST)
-Received: by mail-ot1-f44.google.com with SMTP id 46e09a7af769-6d87a83ec27so3057068a34.2;
-        Wed, 06 Dec 2023 09:15:43 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701882942; x=1702487742;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GYp3frOVvXsJ2X/Ct957xNNutu3j7/9mfiaXXwDsyL8=;
-        b=gVKbVzCAXYra62bMjIMCoZ1fft+a+UfeCRDYYZd2rzSipG2X5NFrvuHhWZvZPwtsqX
-         KOLsGaPh13O/W64SjPHM3Zu/CR2D5U00gAWX8Z+PWAO/ecR6T+PneZ1oZOAY4LzjdoJN
-         ANLOVgb6vpg19czs4s3O/ISivvnExXLTHhI5znK20MuRFfqB0SrmqLsMuG+JUmZid8EG
-         n1yAwKrJMbeZ0YUo68i2BH4kkE8ROT0e6Ymkoul1Mx2e3VZ0KgVK1OoYXCmSW5e/81ZY
-         rPtDXnlyWdhHRnSHPrFmMQIjsF928rD0+kQ1zW2Mchz69qez6eE5xae7OJzFaTTbLQ4P
-         loNA==
-X-Gm-Message-State: AOJu0YxKuvafD92fMpwROXvJL3MrPDBXXqPztrugyk5cOZripG0ZBgFg
-	QA3DKie3JwY1nyS+WdSw+Q==
-X-Google-Smtp-Source: AGHT+IG1oCexMuFyW4w0wlSNBbozqLu3b5kTesKDg8PYp6W65l111/ajQomBc1CroYb/JPZNbkf1hQ==
-X-Received: by 2002:a9d:7991:0:b0:6d9:ca1e:af9a with SMTP id h17-20020a9d7991000000b006d9ca1eaf9amr1061464otm.31.1701882942455;
-        Wed, 06 Dec 2023 09:15:42 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q26-20020a9d4b1a000000b006d99c53f745sm34818otf.77.2023.12.06.09.15.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Dec 2023 09:15:41 -0800 (PST)
-Received: (nullmailer pid 2703661 invoked by uid 1000);
-	Wed, 06 Dec 2023 17:15:40 -0000
-Date: Wed, 6 Dec 2023 11:15:40 -0600
-From: Rob Herring <robh@kernel.org>
-To: Herve Codina <herve.codina@bootlin.com>, Saravana Kannan <saravanak@google.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Frank Rowand <frowand.list@gmail.com>, Lizhi Hou <lizhi.hou@amd.com>, Max Zhen <max.zhen@amd.com>, Sonal Santan <sonal.santan@amd.com>, Stefano Stabellini <stefano.stabellini@xilinx.com>, Jonathan Cameron <Jonathan.Cameron@huawei.com>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>, Horatiu Vultur <horatiu.vultur@microchip.com>, Steen Hegelund <steen.hegelund@microchip.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 0/2] Synchronize DT overlay removal with devlink removals
-Message-ID: <20231206171540.GA2697853-robh@kernel.org>
-References: <20231130174126.688486-1-herve.codina@bootlin.com>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1CFD4F1F3;
+	Wed,  6 Dec 2023 17:21:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7059FC433C7;
+	Wed,  6 Dec 2023 17:20:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701883261;
+	bh=iH7nPHv7nxpFTnIIg5qFfUrheqhXwiZvAbuhhnhnD5Y=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=qIX1Wpc1Cfak05zq3VEDdoG6lSNrfrxg1aYzsZsFzZe2F46yhsQZKyGF6Q156REbk
+	 LSKVZEUDw76FFya1TD/UUG7Sb+lIAhZdIAMF562U+h00IDFbtnGMo4Trca8Ho1YNQ9
+	 fR19lCCyY4x6/Mz+Os1qhrGEeQHDZWPZo7RFX7lEoajCwOtYy+bufdZpgB7Z4ncWeF
+	 Bf1pZY+rrn+J+vGUVf17jNIaNpJqYcvQ/edmYuWwLR050gD2V7qk50PiJDumhdavg5
+	 BEtx6UJUWBwZ6P9bOOoT0de7Q/TOZSLWmuy0PboqvsiCrYFn8kgk84a2zgphLhj5Do
+	 SCrZkpwszikgw==
+Date: Wed, 6 Dec 2023 17:20:49 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Marek Vasut <marex@denx.de>
+Cc: linux-iio@vger.kernel.org, Andy Shevchenko
+ <andriy.shevchenko@linux.intel.com>, Matti Vaittinen
+ <mazziesaccount@gmail.com>, Alexander Stein
+ <alexander.stein@ew.tq-group.com>, Andre Werner
+ <andre.werner@systec-electronic.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@denx.de>,
+ Guenter Roeck <linux@roeck-us.net>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, Mark Brown <broonie@kernel.org>,
+ Naresh Solanki <naresh.solanki@9elements.com>, Patrick Rudolph
+ <patrick.rudolph@9elements.com>, Rob Herring <robh+dt@kernel.org>, Stefan
+ Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>, Vincent Tremblay
+ <vincent@vtremblay.dev>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 2/2] iio: light: isl76682: Add ISL76682 driver
+Message-ID: <20231206172049.3e0ce859@jic23-huawei>
+In-Reply-To: <e3d3cc61-0d31-4d83-92a9-07d74995a66a@denx.de>
+References: <20231127212726.77707-1-marex@denx.de>
+	<20231127212726.77707-2-marex@denx.de>
+	<20231204112001.7dff7066@jic23-huawei>
+	<6e4ed42c-21be-469c-a8bb-57779ef24bf9@denx.de>
+	<20231204143521.5ca0fc7e@jic23-huawei>
+	<e3d3cc61-0d31-4d83-92a9-07d74995a66a@denx.de>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231130174126.688486-1-herve.codina@bootlin.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Thu, Nov 30, 2023 at 06:41:07PM +0100, Herve Codina wrote:
-> Hi,
+On Tue, 5 Dec 2023 02:24:51 +0100
+Marek Vasut <marex@denx.de> wrote:
 
-+Saravana for comment
+> On 12/4/23 15:35, Jonathan Cameron wrote:
+> > On Mon, 4 Dec 2023 12:23:06 +0100
+> > Marek Vasut <marex@denx.de> wrote:
+> >   
+> >> On 12/4/23 12:20, Jonathan Cameron wrote:  
+> >>> On Mon, 27 Nov 2023 22:26:53 +0100
+> >>> Marek Vasut <marex@denx.de> wrote:
+> >>>      
+> >>>> The ISL76682 is very basic ALS which only supports ALS or IR mode
+> >>>> in four ranges, 1k/4k/16k/64k LUX. There is no IRQ support or any
+> >>>> other fancy functionality.
+> >>>>
+> >>>> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> >>>> Reviewed-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> >>>> Signed-off-by: Marek Vasut <marex@denx.de>  
+> >>> Hi Marek,
+> >>>
+> >>> Discussion around available on v5 made me look closer at that aspect.
+> >>> You are providing all the available entries in the callback but they
+> >>> shouldn't be exposed to actually read unless the *_available bitmap
+> >>> bits corresponding to them are set.
+> >>>
+> >>> If you like I can just rip the unused code out whilst applying?
+> >>> Or if you'd prefer to send a v7 that's great too.
+> >>>
+> >>> Otherwise everything looks good to me.  
+> >>
+> >> Maybe just do that while applying and I'll test it right after to see
+> >> whether something broke, that's probably fastest. Just let me know where
+> >> this got applied. I have the device on my desk .  
+> > 
+> > Diff is below.  Applied to the togreg  
+> 
+> I only found the commit in 'testing' branch , so I used that one .
+I messed up it seems and didn't actually push the updated version.
+Done so now along with squashing in the bracket tidy up.
+> 
+> > branch of iio.git and initially pushed out
+> > as testing for normal reasons + for you to test.
+> > 
+> > Thanks,
+> > 
+> > Jonathan
+> > 
+> > 
+> > diff --git a/drivers/iio/light/isl76682.c b/drivers/iio/light/isl76682.c
+> > index 15a68609985b..8605187bfb62 100644
+> > --- a/drivers/iio/light/isl76682.c
+> > +++ b/drivers/iio/light/isl76682.c
+> > @@ -184,8 +184,6 @@ static int intensity_scale_available[] = {
+> >          0, 673000,
+> >   };
+> >   
+> > -static int integration_time_available[] = { 0, ISL76682_INT_TIME_US };
+> > -
+> >   static int isl76682_read_avail(struct iio_dev *indio_dev,
+> >                                 struct iio_chan_spec const *chan,
+> >                                 const int **vals, int *type,
+> > @@ -207,11 +205,6 @@ static int isl76682_read_avail(struct iio_dev *indio_dev,
+> >                  default:
+> >                          return -EINVAL;
+> >                  }
+> > -       case IIO_CHAN_INFO_INT_TIME:
+> > -               *vals = integration_time_available;
+> > -               *length = ARRAY_SIZE(integration_time_available);
+> > -               *type = IIO_VAL_INT_PLUS_MICRO;
+> > -               return IIO_AVAIL_LIST;
+> >          default:
+> >                  return -EINVAL;
+> >          }  
+> 
+> Ah, looking at the attrs before and after, now I get it:
+> 
+> $ grep -H . /sys/bus/iio/devices/iio\:device0/*
+> /sys/bus/iio/devices/iio:device0/in_illuminance_raw:21
+> /sys/bus/iio/devices/iio:device0/in_illuminance_scale:0.015000
+> /sys/bus/iio/devices/iio:device0/in_illuminance_scale_available:0.015 
+> 0.06 0.24 0.96
+> /sys/bus/iio/devices/iio:device0/in_intensity_raw:33
+> /sys/bus/iio/devices/iio:device0/in_intensity_scale:0.010500
+> /sys/bus/iio/devices/iio:device0/in_intensity_scale_available:0.0105 
+> 0.042 0.168 0.673
+> /sys/bus/iio/devices/iio:device0/integration_time_available:0.090
+> /sys/bus/iio/devices/iio:device0/name:isl76682
+> 
+> /sys/bus/iio/devices/iio:device0/in_illuminance_raw:22
+> /sys/bus/iio/devices/iio:device0/in_illuminance_scale:0.015000
+> /sys/bus/iio/devices/iio:device0/in_illuminance_scale_available:0.015000 
+> 0.060000 0.240000 0.960000
+> /sys/bus/iio/devices/iio:device0/in_intensity_raw:24
+> /sys/bus/iio/devices/iio:device0/in_intensity_scale:0.010500
+> /sys/bus/iio/devices/iio:device0/in_intensity_scale_available:0.010500 
+> 0.042000 0.168000 0.673000
+> /sys/bus/iio/devices/iio:device0/integration_time:0.090000
+> /sys/bus/iio/devices/iio:device0/name:isl76682
+> 
+> Thanks !
+> 
 
-Looks okay to me though.
-
-> 
-> In the following sequence:
->   of_platform_depopulate(); /* Remove devices from a DT overlay node */
->   of_overlay_remove(); /* Remove the DT overlay node itself */
-> 
-> Some warnings are raised by __of_changeset_entry_destroy() which  was
-> called from of_overlay_remove():
->   ERROR: memory leak, expected refcount 1 instead of 2 ...
-> 
-> The issue is that, during the device devlink removals triggered from the
-> of_platform_depopulate(), jobs are put in a workqueue.
-> These jobs drop the reference to the devices. When a device is no more
-> referenced (refcount == 0), it is released and the reference to its
-> of_node is dropped by a call to of_node_put().
-> These operations are fully correct except that, because of the
-> workqueue, they are done asynchronously with respect to function calls.
-> 
-> In the sequence provided, the jobs are run too late, after the call to
-> __of_changeset_entry_destroy() and so a missing of_node_put() call is
-> detected by __of_changeset_entry_destroy().
-> 
-> This series fixes this issue introducing device_link_wait_removal() in
-> order to wait for the end of jobs execution (patch 1) and using this
-> function to synchronize the overlay removal with the end of jobs
-> execution (patch 2).
-> 
-> Best regards,
-> Hervé
-> 
-> Herve Codina (2):
->   driver core: Introduce device_link_wait_removal()
->   of: overlay: Synchronize of_overlay_remove() with the devlink removals
-> 
->  drivers/base/core.c    | 26 +++++++++++++++++++++++---
->  drivers/of/overlay.c   |  6 ++++++
->  include/linux/device.h |  1 +
->  3 files changed, 30 insertions(+), 3 deletions(-)
-> 
-> -- 
-> 2.42.0
-> 
 
