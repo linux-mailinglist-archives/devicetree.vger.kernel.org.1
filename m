@@ -1,118 +1,333 @@
-Return-Path: <devicetree+bounces-22406-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22407-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73D6180747B
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 17:04:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EDE280748E
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 17:09:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2D555281E8B
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 16:04:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 429C21C20AF4
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 16:09:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21CF646442;
-	Wed,  6 Dec 2023 16:04:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="vcI6hQHU"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E18DD46523;
+	Wed,  6 Dec 2023 16:09:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B0B31700;
-	Wed,  6 Dec 2023 08:04:19 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B6G45ZW003754;
-	Wed, 6 Dec 2023 10:04:05 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1701878645;
-	bh=SNmMVSD0WdKAZnR9jxmtFYXTQ6KqIggd063vB1LY1j4=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=vcI6hQHULz+Qe7Qjqj5S4kehx0xiMRpajDgGbVvYPjI85pFvvVZ48DlBk1fX7OzIc
-	 TTX9Q9aVIj+45hZrf5t01dKCq3smvlRSdfODPmyjfuXZ6NybCvo46LSmN+f8zVPyVw
-	 nrOIoVZcLeCj7ETvO+HD2zHfU+KYkPDdMZmRmlPk=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B6G45Rl010967
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 6 Dec 2023 10:04:05 -0600
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 6
- Dec 2023 10:04:04 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 6 Dec 2023 10:04:04 -0600
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B6G44ca020938;
-	Wed, 6 Dec 2023 10:04:04 -0600
-From: Nishanth Menon <nm@ti.com>
-To: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Francesco Dolcini <francesco@dolcini.it>
-CC: Nishanth Menon <nm@ti.com>,
-        Francesco Dolcini
-	<francesco.dolcini@toradex.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 0/3] arm64: dts: ti: add verdin am62 mallow board
-Date: Wed, 6 Dec 2023 10:04:03 -0600
-Message-ID: <170187863264.4898.11481701414086150455.b4-ty@ti.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20231205184605.35225-1-francesco@dolcini.it>
-References: <20231205184605.35225-1-francesco@dolcini.it>
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 152EFAA;
+	Wed,  6 Dec 2023 08:09:11 -0800 (PST)
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.96.2)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1rAuS2-0006hS-10;
+	Wed, 06 Dec 2023 16:08:43 +0000
+Date: Wed, 6 Dec 2023 16:08:39 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Rob Herring <robh@kernel.org>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chunfeng Yun <chunfeng.yun@mediatek.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
+	Sean Wang <sean.wang@mediatek.com>,
+	Mark Lee <Mark-MC.Lee@mediatek.com>,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Alexander Couzens <lynxis@fe80.eu>,
+	Qingfang Deng <dqfext@gmail.com>,
+	SkyLake Huang <SkyLake.Huang@mediatek.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org
+Subject: Re: [RFC PATCH v2 7/8] dt-bindings: net: mediatek,net: fix and
+ complete mt7988-eth binding
+Message-ID: <ZXCch6o2Wfp3fQQw@makrotopia.org>
+References: <cover.1701826319.git.daniel@makrotopia.org>
+ <567c6aaa64ecb4872056bc0105c70153fd9d9b50.1701826319.git.daniel@makrotopia.org>
+ <20231206133816.GA1914715-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231206133816.GA1914715-robh@kernel.org>
 
-Hi Francesco Dolcini,
-
-On Tue, 05 Dec 2023 19:46:02 +0100, Francesco Dolcini wrote:
-> From: Francesco Dolcini <francesco.dolcini@toradex.com>
+On Wed, Dec 06, 2023 at 07:38:16AM -0600, Rob Herring wrote:
+> On Wed, Dec 06, 2023 at 01:45:02AM +0000, Daniel Golle wrote:
+> > Complete support for MT7988 which comes with 3 MACs, SRAM for DMA
+> > descriptors and uses a dedicated PCS for the SerDes units.
+> > 
+> > Fixes: c94a9aabec36 ("dt-bindings: net: mediatek,net: add mt7988-eth binding")
+> > Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> > ---
+> >  .../devicetree/bindings/net/mediatek,net.yaml | 148 +++++++++++++++++-
+> >  1 file changed, 146 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/mediatek,net.yaml b/Documentation/devicetree/bindings/net/mediatek,net.yaml
+> > index 030d106bc7d3f..ca0667c51c1c2 100644
+> > --- a/Documentation/devicetree/bindings/net/mediatek,net.yaml
+> > +++ b/Documentation/devicetree/bindings/net/mediatek,net.yaml
+> > @@ -28,7 +28,10 @@ properties:
+> >        - ralink,rt5350-eth
+> >  
+> >    reg:
+> > -    maxItems: 1
+> > +    minItems: 1
+> > +    items:
+> > +      - description: Base of registers used to program the ethernet controller
+> > +      - description: SRAM region used for DMA descriptors
 > 
-> Add Toradex Verdin AM62 Mallow carrier board support. Mallow is a
-> low-cost carrier board in the Verdin family with a small form factor and
-> build for volume production making it ideal for industrial and embedded
-> applications.
+> Is this a dedicated SRAM for this purpose, or a common one partitioned 
+> up. mmio-sram and a phandle is how to do the latter.
+
+The SRAM memory sits just next to the Ethernet and dedicated for this
+purpose, at least in theory. I'm not aware of the internal details here.
+
 > 
-> [...]
+> >  
+> >    clocks: true
+> >    clock-names: true
+> > @@ -115,6 +118,9 @@ allOf:
+> >                - mediatek,mt7623-eth
+> >      then:
+> >        properties:
+> > +        reg:
+> > +          maxItems: 1
+> > +
+> >          interrupts:
+> >            maxItems: 3
+> >  
+> > @@ -149,6 +155,9 @@ allOf:
+> >                - mediatek,mt7621-eth
+> >      then:
+> >        properties:
+> > +        reg:
+> > +          maxItems: 1
+> > +
+> >          interrupts:
+> >            maxItems: 1
+> >  
+> > @@ -174,6 +183,9 @@ allOf:
+> >              const: mediatek,mt7622-eth
+> >      then:
+> >        properties:
+> > +        reg:
+> > +          maxItems: 1
+> > +
+> >          interrupts:
+> >            maxItems: 3
+> >  
+> > @@ -215,6 +227,9 @@ allOf:
+> >              const: mediatek,mt7629-eth
+> >      then:
+> >        properties:
+> > +        reg:
+> > +          maxItems: 1
+> > +
+> >          interrupts:
+> >            maxItems: 3
+> >  
+> > @@ -257,6 +272,9 @@ allOf:
+> >              const: mediatek,mt7981-eth
+> >      then:
+> >        properties:
+> > +        reg:
+> > +          maxItems: 1
+> > +
+> >          interrupts:
+> >            minItems: 4
+> >  
+> > @@ -295,6 +313,9 @@ allOf:
+> >              const: mediatek,mt7986-eth
+> >      then:
+> >        properties:
+> > +        reg:
+> > +          maxItems: 1
+> > +
+> >          interrupts:
+> >            minItems: 4
+> >  
+> > @@ -333,8 +354,13 @@ allOf:
+> >              const: mediatek,mt7988-eth
+> >      then:
+> >        properties:
+> > +        reg:
+> > +          maxItems: 2
+> 
+> Don't need maxItems here. That's already the max.
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
+Ack.
 
-[1/3] arm64: dts: ti: verdin-am62: improve spi1 chip-select pinctrl
-      commit: fcb335934c5132f6f0646475ece5db729fcfbf84
-[2/3] dt-bindings: arm: ti: add verdin am62 mallow board
-      commit: f9b5aae471dca94de2ea525136a59927e9b1d7cf
-[3/3] arm64: dts: ti: add verdin am62 mallow board
-      commit: 7698622fbcf4fef2ec7e2fcbae35eb5e503dfddf
+> 
+> > +          minItems: 2
+> > +
+> >          interrupts:
+> >            minItems: 4
+> > +          maxItems: 4
+> >  
+> >          clocks:
+> >            minItems: 24
+> > @@ -368,7 +394,7 @@ allOf:
+> >              - const: top_netsys_warp_sel
+> >  
+> >  patternProperties:
+> > -  "^mac@[0-1]$":
+> > +  "^mac@[0-2]$":
+> >      type: object
+> >      unevaluatedProperties: false
+> >      allOf:
+> > @@ -382,6 +408,9 @@ patternProperties:
+> >        reg:
+> >          maxItems: 1
+> >  
+> > +      phys:
+> > +        maxItems: 1
+> > +
+> >      required:
+> >        - reg
+> >        - compatible
+> > @@ -559,3 +588,118 @@ examples:
+> >          };
+> >        };
+> >      };
+> > +
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > +    #include <dt-bindings/clock/mediatek,mt7988-clk.h>
+> 
+> 
+> Why is fixing the binding needing a new example? Is this example really 
+> different enough to justify a whole other example?
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+Starting from MT7988 the PCS needs to be referenced as pcs-handle in the
+MAC node, so that is a bit different. If you don't think that justifies
+including the additional example I will drop that.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
-
+> 
+> > +
+> > +    soc {
+> > +      #address-cells = <2>;
+> > +      #size-cells = <2>;
+> > +
+> > +      ethernet@15100000 {
+> > +        compatible = "mediatek,mt7988-eth";
+> > +        reg = <0 0x15100000 0 0x80000>, <0 0x15400000 0 0x380000>;
+> > +        interrupts = <GIC_SPI 196 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 197 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 198 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <GIC_SPI 199 IRQ_TYPE_LEVEL_HIGH>;
+> > +
+> > +        clocks = <&ethsys CLK_ETHDMA_XGP1_EN>,
+> > +                 <&ethsys CLK_ETHDMA_XGP2_EN>,
+> > +                 <&ethsys CLK_ETHDMA_XGP3_EN>,
+> > +                 <&ethsys CLK_ETHDMA_FE_EN>,
+> > +                 <&ethsys CLK_ETHDMA_GP2_EN>,
+> > +                 <&ethsys CLK_ETHDMA_GP1_EN>,
+> > +                 <&ethsys CLK_ETHDMA_GP3_EN>,
+> > +                 <&ethsys CLK_ETHDMA_ESW_EN>,
+> > +                 <&ethsys CLK_ETHDMA_CRYPT0_EN>,
+> > +                 <&ethwarp CLK_ETHWARP_WOCPU2_EN>,
+> > +                 <&ethwarp CLK_ETHWARP_WOCPU1_EN>,
+> > +                 <&ethwarp CLK_ETHWARP_WOCPU0_EN>,
+> > +                 <&topckgen CLK_TOP_ETH_GMII_SEL>,
+> > +                 <&topckgen CLK_TOP_ETH_REFCK_50M_SEL>,
+> > +                 <&topckgen CLK_TOP_ETH_SYS_200M_SEL>,
+> > +                 <&topckgen CLK_TOP_ETH_SYS_SEL>,
+> > +                 <&topckgen CLK_TOP_ETH_XGMII_SEL>,
+> > +                 <&topckgen CLK_TOP_ETH_MII_SEL>,
+> > +                 <&topckgen CLK_TOP_NETSYS_SEL>,
+> > +                 <&topckgen CLK_TOP_NETSYS_500M_SEL>,
+> > +                 <&topckgen CLK_TOP_NETSYS_PAO_2X_SEL>,
+> > +                 <&topckgen CLK_TOP_NETSYS_SYNC_250M_SEL>,
+> > +                 <&topckgen CLK_TOP_NETSYS_PPEFB_250M_SEL>,
+> > +                 <&topckgen CLK_TOP_NETSYS_WARP_SEL>;
+> > +
+> > +        clock-names = "xgp1", "xgp2", "xgp3", "fe", "gp2", "gp1",
+> > +                      "gp3", "esw", "crypto",
+> > +                      "ethwarp_wocpu2", "ethwarp_wocpu1",
+> > +                      "ethwarp_wocpu0", "top_eth_gmii_sel",
+> > +                      "top_eth_refck_50m_sel", "top_eth_sys_200m_sel",
+> > +                      "top_eth_sys_sel", "top_eth_xgmii_sel",
+> > +                      "top_eth_mii_sel", "top_netsys_sel",
+> > +                      "top_netsys_500m_sel", "top_netsys_pao_2x_sel",
+> > +                      "top_netsys_sync_250m_sel",
+> > +                      "top_netsys_ppefb_250m_sel",
+> > +                      "top_netsys_warp_sel";
+> > +        assigned-clocks = <&topckgen CLK_TOP_NETSYS_2X_SEL>,
+> > +                          <&topckgen CLK_TOP_NETSYS_GSW_SEL>,
+> > +                          <&topckgen CLK_TOP_USXGMII_SBUS_0_SEL>,
+> > +                          <&topckgen CLK_TOP_USXGMII_SBUS_1_SEL>,
+> > +                          <&topckgen CLK_TOP_SGM_0_SEL>,
+> > +                          <&topckgen CLK_TOP_SGM_1_SEL>;
+> > +        assigned-clock-parents = <&apmixedsys CLK_APMIXED_NET2PLL>,
+> > +                                 <&topckgen CLK_TOP_NET1PLL_D4>,
+> > +                                 <&topckgen CLK_TOP_NET1PLL_D8_D4>,
+> > +                                 <&topckgen CLK_TOP_NET1PLL_D8_D4>,
+> > +                                 <&apmixedsys CLK_APMIXED_SGMPLL>,
+> > +                                 <&apmixedsys CLK_APMIXED_SGMPLL>;
+> > +        mediatek,ethsys = <&ethsys>;
+> > +        mediatek,infracfg = <&topmisc>;
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        mac@0 {
+> > +          compatible = "mediatek,eth-mac";
+> > +          reg = <0>;
+> > +          phy-mode = "internal"; /* CPU port of built-in 1GE switch */
+> > +
+> > +          fixed-link {
+> > +            speed = <10000>;
+> > +            full-duplex;
+> > +            pause;
+> > +          };
+> > +        };
+> > +
+> > +        mac@1 {
+> > +          compatible = "mediatek,eth-mac";
+> > +          reg = <1>;
+> > +          phy-handle = <&int_2p5g_phy>;
+> > +        };
+> > +
+> > +        mac@2 {
+> > +          compatible = "mediatek,eth-mac";
+> > +          reg = <2>;
+> > +          pcs-handle = <&usxgmiisys0>;
+> > +          phy-handle = <&phy0>;
+> > +        };
+> > +
+> > +        mdio_bus: mdio-bus {
+> > +          #address-cells = <1>;
+> > +          #size-cells = <0>;
+> > +
+> > +          /* external PHY */
+> > +          phy0: ethernet-phy@0 {
+> > +            reg = <0>;
+> > +            compatible = "ethernet-phy-ieee802.3-c45";
+> > +          };
+> > +
+> > +          /* internal 2.5G PHY */
+> > +          int_2p5g_phy: ethernet-phy@15 {
+> > +            reg = <15>;
+> > +            compatible = "ethernet-phy-ieee802.3-c45";
+> > +            phy-mode = "internal";
+> > +          };
+> > +        };
+> > +      };
+> > +    };
+> > -- 
+> > 2.43.0
 
