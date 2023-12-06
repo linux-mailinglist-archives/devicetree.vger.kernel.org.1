@@ -1,333 +1,143 @@
-Return-Path: <devicetree+bounces-22407-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22414-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EDE280748E
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 17:09:20 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50D018074C9
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 17:20:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 429C21C20AF4
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 16:09:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 821BA1C20E88
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 16:20:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E18DD46523;
-	Wed,  6 Dec 2023 16:09:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 915E64654F;
+	Wed,  6 Dec 2023 16:20:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 152EFAA;
-	Wed,  6 Dec 2023 08:09:11 -0800 (PST)
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.96.2)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1rAuS2-0006hS-10;
-	Wed, 06 Dec 2023 16:08:43 +0000
-Date: Wed, 6 Dec 2023 16:08:39 +0000
-From: Daniel Golle <daniel@makrotopia.org>
-To: Rob Herring <robh@kernel.org>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chunfeng Yun <chunfeng.yun@mediatek.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Mark Lee <Mark-MC.Lee@mediatek.com>,
-	Lorenzo Bianconi <lorenzo@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Alexander Couzens <lynxis@fe80.eu>,
-	Qingfang Deng <dqfext@gmail.com>,
-	SkyLake Huang <SkyLake.Huang@mediatek.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org
-Subject: Re: [RFC PATCH v2 7/8] dt-bindings: net: mediatek,net: fix and
- complete mt7988-eth binding
-Message-ID: <ZXCch6o2Wfp3fQQw@makrotopia.org>
-References: <cover.1701826319.git.daniel@makrotopia.org>
- <567c6aaa64ecb4872056bc0105c70153fd9d9b50.1701826319.git.daniel@makrotopia.org>
- <20231206133816.GA1914715-robh@kernel.org>
+Received: from pegase1.c-s.fr (pegase1.c-s.fr [93.17.236.30])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B23C137
+	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 08:20:09 -0800 (PST)
+Received: from localhost (mailhub3.si.c-s.fr [192.168.12.233])
+	by localhost (Postfix) with ESMTP id 4SljBT1j8vz9v3s;
+	Wed,  6 Dec 2023 17:13:37 +0100 (CET)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from pegase1.c-s.fr ([192.168.12.234])
+	by localhost (pegase1.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id j29R1s66VDJD; Wed,  6 Dec 2023 17:13:37 +0100 (CET)
+Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
+	by pegase1.c-s.fr (Postfix) with ESMTP id 4SljBQ3nBqz9tLb;
+	Wed,  6 Dec 2023 17:13:34 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by messagerie.si.c-s.fr (Postfix) with ESMTP id 7D5588B775;
+	Wed,  6 Dec 2023 17:13:34 +0100 (CET)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from messagerie.si.c-s.fr ([127.0.0.1])
+	by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
+	with ESMTP id tKgdmTAWPCof; Wed,  6 Dec 2023 17:13:34 +0100 (CET)
+Received: from PO20335.idsi0.si.c-s.fr (unknown [192.168.233.46])
+	by messagerie.si.c-s.fr (Postfix) with ESMTP id 2FAB78B768;
+	Wed,  6 Dec 2023 17:13:34 +0100 (CET)
+From: Christophe Leroy <christophe.leroy@csgroup.eu>
+To: Michael Ellerman <mpe@ellerman.id.au>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Frank Rowand <frowand.list@gmail.com>
+Cc: Christophe Leroy <christophe.leroy@csgroup.eu>,
+	linux-kernel@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v1 1/4] of: Add of_machine_compatible_match()
+Date: Wed,  6 Dec 2023 17:13:32 +0100
+Message-ID: <e6cf01d41502b15e688b6f5aa5c3b68c62b8ac64.1701878821.git.christophe.leroy@csgroup.eu>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231206133816.GA1914715-robh@kernel.org>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1701879211; l=2801; i=christophe.leroy@csgroup.eu; s=20211009; h=from:subject:message-id; bh=c6d/Rx06Kt8Bt1G9rtquAkZe0f2nlHuViMD7F0hL2S4=; b=1f+/wsYwWQjD5pmBu7O+IVQFbcxSbh2ceZui+mlCpSuQo7mjy4uAIzshOFoDg40UJs0Gpei86 XqDnXzbH4InC73ivd8DhRSoDj2sZO72NGEgaXbWqIEWWNBplHv4euCP
+X-Developer-Key: i=christophe.leroy@csgroup.eu; a=ed25519; pk=HIzTzUj91asvincQGOFx6+ZF5AoUuP9GdOtQChs7Mm0=
+Content-Transfer-Encoding: 8bit
 
-On Wed, Dec 06, 2023 at 07:38:16AM -0600, Rob Herring wrote:
-> On Wed, Dec 06, 2023 at 01:45:02AM +0000, Daniel Golle wrote:
-> > Complete support for MT7988 which comes with 3 MACs, SRAM for DMA
-> > descriptors and uses a dedicated PCS for the SerDes units.
-> > 
-> > Fixes: c94a9aabec36 ("dt-bindings: net: mediatek,net: add mt7988-eth binding")
-> > Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> > ---
-> >  .../devicetree/bindings/net/mediatek,net.yaml | 148 +++++++++++++++++-
-> >  1 file changed, 146 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/mediatek,net.yaml b/Documentation/devicetree/bindings/net/mediatek,net.yaml
-> > index 030d106bc7d3f..ca0667c51c1c2 100644
-> > --- a/Documentation/devicetree/bindings/net/mediatek,net.yaml
-> > +++ b/Documentation/devicetree/bindings/net/mediatek,net.yaml
-> > @@ -28,7 +28,10 @@ properties:
-> >        - ralink,rt5350-eth
-> >  
-> >    reg:
-> > -    maxItems: 1
-> > +    minItems: 1
-> > +    items:
-> > +      - description: Base of registers used to program the ethernet controller
-> > +      - description: SRAM region used for DMA descriptors
-> 
-> Is this a dedicated SRAM for this purpose, or a common one partitioned 
-> up. mmio-sram and a phandle is how to do the latter.
+From: Michael Ellerman <mpe@ellerman.id.au>
 
-The SRAM memory sits just next to the Ethernet and dedicated for this
-purpose, at least in theory. I'm not aware of the internal details here.
+We have of_machine_is_compatible() to check if a machine is compatible
+with a single compatible string. However some code is able to support
+multiple compatible boards, and so wants to check for one of many
+compatible strings.
 
-> 
-> >  
-> >    clocks: true
-> >    clock-names: true
-> > @@ -115,6 +118,9 @@ allOf:
-> >                - mediatek,mt7623-eth
-> >      then:
-> >        properties:
-> > +        reg:
-> > +          maxItems: 1
-> > +
-> >          interrupts:
-> >            maxItems: 3
-> >  
-> > @@ -149,6 +155,9 @@ allOf:
-> >                - mediatek,mt7621-eth
-> >      then:
-> >        properties:
-> > +        reg:
-> > +          maxItems: 1
-> > +
-> >          interrupts:
-> >            maxItems: 1
-> >  
-> > @@ -174,6 +183,9 @@ allOf:
-> >              const: mediatek,mt7622-eth
-> >      then:
-> >        properties:
-> > +        reg:
-> > +          maxItems: 1
-> > +
-> >          interrupts:
-> >            maxItems: 3
-> >  
-> > @@ -215,6 +227,9 @@ allOf:
-> >              const: mediatek,mt7629-eth
-> >      then:
-> >        properties:
-> > +        reg:
-> > +          maxItems: 1
-> > +
-> >          interrupts:
-> >            maxItems: 3
-> >  
-> > @@ -257,6 +272,9 @@ allOf:
-> >              const: mediatek,mt7981-eth
-> >      then:
-> >        properties:
-> > +        reg:
-> > +          maxItems: 1
-> > +
-> >          interrupts:
-> >            minItems: 4
-> >  
-> > @@ -295,6 +313,9 @@ allOf:
-> >              const: mediatek,mt7986-eth
-> >      then:
-> >        properties:
-> > +        reg:
-> > +          maxItems: 1
-> > +
-> >          interrupts:
-> >            minItems: 4
-> >  
-> > @@ -333,8 +354,13 @@ allOf:
-> >              const: mediatek,mt7988-eth
-> >      then:
-> >        properties:
-> > +        reg:
-> > +          maxItems: 2
-> 
-> Don't need maxItems here. That's already the max.
+So add of_machine_compatible_match() which takes a NULL terminated
+array of compatible strings to check against the root node's
+compatible property.
 
-Ack.
+Compared to an open coded match this is slightly more self
+documenting, and also avoids the caller needing to juggle the root
+node either directly or via of_find_node_by_path().
 
-> 
-> > +          minItems: 2
-> > +
-> >          interrupts:
-> >            minItems: 4
-> > +          maxItems: 4
-> >  
-> >          clocks:
-> >            minItems: 24
-> > @@ -368,7 +394,7 @@ allOf:
-> >              - const: top_netsys_warp_sel
-> >  
-> >  patternProperties:
-> > -  "^mac@[0-1]$":
-> > +  "^mac@[0-2]$":
-> >      type: object
-> >      unevaluatedProperties: false
-> >      allOf:
-> > @@ -382,6 +408,9 @@ patternProperties:
-> >        reg:
-> >          maxItems: 1
-> >  
-> > +      phys:
-> > +        maxItems: 1
-> > +
-> >      required:
-> >        - reg
-> >        - compatible
-> > @@ -559,3 +588,118 @@ examples:
-> >          };
-> >        };
-> >      };
-> > +
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    #include <dt-bindings/clock/mediatek,mt7988-clk.h>
-> 
-> 
-> Why is fixing the binding needing a new example? Is this example really 
-> different enough to justify a whole other example?
+Signed-off-by: Michael Ellerman <mpe@ellerman.id.au>
+Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
+---
+ drivers/of/base.c  | 21 +++++++++++++++++++++
+ include/linux/of.h |  6 ++++++
+ 2 files changed, 27 insertions(+)
 
-Starting from MT7988 the PCS needs to be referenced as pcs-handle in the
-MAC node, so that is a bit different. If you don't think that justifies
-including the additional example I will drop that.
+diff --git a/drivers/of/base.c b/drivers/of/base.c
+index 8d93cb6ea9cd..9020be2eb4d5 100644
+--- a/drivers/of/base.c
++++ b/drivers/of/base.c
+@@ -394,6 +394,27 @@ int of_device_compatible_match(const struct device_node *device,
+ }
+ EXPORT_SYMBOL_GPL(of_device_compatible_match);
+ 
++/**
++ * of_machine_compatible_match - Test root of device tree against a compatible array
++ * @compats: NULL terminated array of compatible strings to look for in root node's compatible property.
++ *
++ * Returns true if the root node has any of the given compatible values in its
++ * compatible property.
++ */
++bool of_machine_compatible_match(const char *const *compats)
++{
++	struct device_node *root;
++	int rc = 0;
++
++	root = of_find_node_by_path("/");
++	if (root) {
++		rc = of_device_compatible_match(root, compats);
++		of_node_put(root);
++	}
++
++	return rc != 0;
++}
++
+ /**
+  * of_machine_is_compatible - Test root of device tree for a given compatible value
+  * @compat: compatible string to look for in root node's compatible property.
+diff --git a/include/linux/of.h b/include/linux/of.h
+index 6a9ddf20e79a..e3418babc203 100644
+--- a/include/linux/of.h
++++ b/include/linux/of.h
+@@ -403,6 +403,7 @@ extern int of_alias_get_id(struct device_node *np, const char *stem);
+ extern int of_alias_get_highest_id(const char *stem);
+ 
+ extern int of_machine_is_compatible(const char *compat);
++bool of_machine_compatible_match(const char *const *compats);
+ 
+ extern int of_add_property(struct device_node *np, struct property *prop);
+ extern int of_remove_property(struct device_node *np, struct property *prop);
+@@ -808,6 +809,11 @@ static inline int of_remove_property(struct device_node *np, struct property *pr
+ 	return 0;
+ }
+ 
++static inline bool of_machine_compatible_match(const char *const *compats)
++{
++	return false;
++}
++
+ static inline bool of_console_check(const struct device_node *dn, const char *name, int index)
+ {
+ 	return false;
+-- 
+2.41.0
 
-> 
-> > +
-> > +    soc {
-> > +      #address-cells = <2>;
-> > +      #size-cells = <2>;
-> > +
-> > +      ethernet@15100000 {
-> > +        compatible = "mediatek,mt7988-eth";
-> > +        reg = <0 0x15100000 0 0x80000>, <0 0x15400000 0 0x380000>;
-> > +        interrupts = <GIC_SPI 196 IRQ_TYPE_LEVEL_HIGH>,
-> > +                     <GIC_SPI 197 IRQ_TYPE_LEVEL_HIGH>,
-> > +                     <GIC_SPI 198 IRQ_TYPE_LEVEL_HIGH>,
-> > +                     <GIC_SPI 199 IRQ_TYPE_LEVEL_HIGH>;
-> > +
-> > +        clocks = <&ethsys CLK_ETHDMA_XGP1_EN>,
-> > +                 <&ethsys CLK_ETHDMA_XGP2_EN>,
-> > +                 <&ethsys CLK_ETHDMA_XGP3_EN>,
-> > +                 <&ethsys CLK_ETHDMA_FE_EN>,
-> > +                 <&ethsys CLK_ETHDMA_GP2_EN>,
-> > +                 <&ethsys CLK_ETHDMA_GP1_EN>,
-> > +                 <&ethsys CLK_ETHDMA_GP3_EN>,
-> > +                 <&ethsys CLK_ETHDMA_ESW_EN>,
-> > +                 <&ethsys CLK_ETHDMA_CRYPT0_EN>,
-> > +                 <&ethwarp CLK_ETHWARP_WOCPU2_EN>,
-> > +                 <&ethwarp CLK_ETHWARP_WOCPU1_EN>,
-> > +                 <&ethwarp CLK_ETHWARP_WOCPU0_EN>,
-> > +                 <&topckgen CLK_TOP_ETH_GMII_SEL>,
-> > +                 <&topckgen CLK_TOP_ETH_REFCK_50M_SEL>,
-> > +                 <&topckgen CLK_TOP_ETH_SYS_200M_SEL>,
-> > +                 <&topckgen CLK_TOP_ETH_SYS_SEL>,
-> > +                 <&topckgen CLK_TOP_ETH_XGMII_SEL>,
-> > +                 <&topckgen CLK_TOP_ETH_MII_SEL>,
-> > +                 <&topckgen CLK_TOP_NETSYS_SEL>,
-> > +                 <&topckgen CLK_TOP_NETSYS_500M_SEL>,
-> > +                 <&topckgen CLK_TOP_NETSYS_PAO_2X_SEL>,
-> > +                 <&topckgen CLK_TOP_NETSYS_SYNC_250M_SEL>,
-> > +                 <&topckgen CLK_TOP_NETSYS_PPEFB_250M_SEL>,
-> > +                 <&topckgen CLK_TOP_NETSYS_WARP_SEL>;
-> > +
-> > +        clock-names = "xgp1", "xgp2", "xgp3", "fe", "gp2", "gp1",
-> > +                      "gp3", "esw", "crypto",
-> > +                      "ethwarp_wocpu2", "ethwarp_wocpu1",
-> > +                      "ethwarp_wocpu0", "top_eth_gmii_sel",
-> > +                      "top_eth_refck_50m_sel", "top_eth_sys_200m_sel",
-> > +                      "top_eth_sys_sel", "top_eth_xgmii_sel",
-> > +                      "top_eth_mii_sel", "top_netsys_sel",
-> > +                      "top_netsys_500m_sel", "top_netsys_pao_2x_sel",
-> > +                      "top_netsys_sync_250m_sel",
-> > +                      "top_netsys_ppefb_250m_sel",
-> > +                      "top_netsys_warp_sel";
-> > +        assigned-clocks = <&topckgen CLK_TOP_NETSYS_2X_SEL>,
-> > +                          <&topckgen CLK_TOP_NETSYS_GSW_SEL>,
-> > +                          <&topckgen CLK_TOP_USXGMII_SBUS_0_SEL>,
-> > +                          <&topckgen CLK_TOP_USXGMII_SBUS_1_SEL>,
-> > +                          <&topckgen CLK_TOP_SGM_0_SEL>,
-> > +                          <&topckgen CLK_TOP_SGM_1_SEL>;
-> > +        assigned-clock-parents = <&apmixedsys CLK_APMIXED_NET2PLL>,
-> > +                                 <&topckgen CLK_TOP_NET1PLL_D4>,
-> > +                                 <&topckgen CLK_TOP_NET1PLL_D8_D4>,
-> > +                                 <&topckgen CLK_TOP_NET1PLL_D8_D4>,
-> > +                                 <&apmixedsys CLK_APMIXED_SGMPLL>,
-> > +                                 <&apmixedsys CLK_APMIXED_SGMPLL>;
-> > +        mediatek,ethsys = <&ethsys>;
-> > +        mediatek,infracfg = <&topmisc>;
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        mac@0 {
-> > +          compatible = "mediatek,eth-mac";
-> > +          reg = <0>;
-> > +          phy-mode = "internal"; /* CPU port of built-in 1GE switch */
-> > +
-> > +          fixed-link {
-> > +            speed = <10000>;
-> > +            full-duplex;
-> > +            pause;
-> > +          };
-> > +        };
-> > +
-> > +        mac@1 {
-> > +          compatible = "mediatek,eth-mac";
-> > +          reg = <1>;
-> > +          phy-handle = <&int_2p5g_phy>;
-> > +        };
-> > +
-> > +        mac@2 {
-> > +          compatible = "mediatek,eth-mac";
-> > +          reg = <2>;
-> > +          pcs-handle = <&usxgmiisys0>;
-> > +          phy-handle = <&phy0>;
-> > +        };
-> > +
-> > +        mdio_bus: mdio-bus {
-> > +          #address-cells = <1>;
-> > +          #size-cells = <0>;
-> > +
-> > +          /* external PHY */
-> > +          phy0: ethernet-phy@0 {
-> > +            reg = <0>;
-> > +            compatible = "ethernet-phy-ieee802.3-c45";
-> > +          };
-> > +
-> > +          /* internal 2.5G PHY */
-> > +          int_2p5g_phy: ethernet-phy@15 {
-> > +            reg = <15>;
-> > +            compatible = "ethernet-phy-ieee802.3-c45";
-> > +            phy-mode = "internal";
-> > +          };
-> > +        };
-> > +      };
-> > +    };
-> > -- 
-> > 2.43.0
 
