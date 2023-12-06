@@ -1,197 +1,283 @@
-Return-Path: <devicetree+bounces-22362-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22363-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 108F080735F
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 16:08:11 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09668807365
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 16:09:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 966311F21100
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 15:08:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 39F671C209F1
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 15:09:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D61B3FB03;
-	Wed,  6 Dec 2023 15:08:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 837093FB0A;
+	Wed,  6 Dec 2023 15:09:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D905D59;
-	Wed,  6 Dec 2023 07:08:02 -0800 (PST)
-X-SpamFilter-By: ArmorX SpamTrap 5.78 with qID 3B6F7aSxA3678221, This message is accepted by code: ctloc85258
-Received: from mail.realtek.com (rtexh36505.realtek.com.tw[172.21.6.25])
-	by rtits2.realtek.com.tw (8.15.2/2.95/5.92) with ESMTPS id 3B6F7aSxA3678221
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 6 Dec 2023 23:07:36 +0800
-Received: from RTEXMBS05.realtek.com.tw (172.21.6.98) by
- RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.32; Wed, 6 Dec 2023 23:07:36 +0800
-Received: from RTEXMBS03.realtek.com.tw (172.21.6.96) by
- RTEXMBS05.realtek.com.tw (172.21.6.98) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.34; Wed, 6 Dec 2023 23:07:36 +0800
-Received: from RTEXMBS03.realtek.com.tw ([fe80::5510:ad08:5390:1ed3]) by
- RTEXMBS03.realtek.com.tw ([fe80::5510:ad08:5390:1ed3%2]) with mapi id
- 15.01.2375.007; Wed, 6 Dec 2023 23:07:36 +0800
-From: =?utf-8?B?SmFtZXMgVGFpIFvmiLTlv5fls7Bd?= <james.tai@realtek.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Thomas Gleixner
-	<tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [PATCH v2 1/6] dt-bindings: interrupt-controller: Add support for Realtek DHC SoCs
-Thread-Topic: [PATCH v2 1/6] dt-bindings: interrupt-controller: Add support
- for Realtek DHC SoCs
-Thread-Index: AQHaGXMHJnbDooY4VkyEcMH4aisPjrCBFAaAgAG3OTCAE2RqMIABC34AgACK6PD//42bAIADJhOw//98noCAAgAXEA==
-Date: Wed, 6 Dec 2023 15:07:36 +0000
-Message-ID: <612d61f5fae0415f9c8eb93b12f49645@realtek.com>
-References: <20231117162709.1096585-1-james.tai@realtek.com>
- <20231117162709.1096585-2-james.tai@realtek.com>
- <c3a98e2c-ba62-4798-a0d0-a8bc1fe5bb6b@linaro.org>
- <7959920acf004f3cb8072de1e17439fa@realtek.com>
- <e1490203387d4c48a5f8c4040ece038a@realtek.com>
- <6250c57b-6d38-4085-9a79-58e4e5ed1e3d@linaro.org>
- <cf2f9fd124514cb9832e942e16b8fa6e@realtek.com>
- <5134d2c7-b499-400d-bec8-ae0de1eff7db@linaro.org>
- <f27cb5d8943e44b597a13d7655edf4d0@realtek.com>
- <3356a35c-0c50-4539-a955-01d2e67b4eca@linaro.org>
-In-Reply-To: <3356a35c-0c50-4539-a955-01d2e67b4eca@linaro.org>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-x-kse-serverinfo: RTEXMBS05.realtek.com.tw, 9
-x-kse-antispam-interceptor-info: fallback
-x-kse-antivirus-interceptor-info: fallback
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43877B5;
+	Wed,  6 Dec 2023 07:09:30 -0800 (PST)
+Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-1fa37df6da8so3861097fac.2;
+        Wed, 06 Dec 2023 07:09:30 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701875369; x=1702480169;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Enp8JXit3bBPLB9zYnFqXf4hRKchGtxRg8vIuYER+tc=;
+        b=wjcRctI1pu5qEdzHPY1s/52jWJwWq3BK+5kZl1Z2FNN2Ib+nC7AxpbhXWCkNdpmnQE
+         CgZ96luaa/f3+Rhv1W3VdiKm8Uj29MFy8Iga7rv6ry9978E2CyPjAvvEDnlLT5JyqlFO
+         wHTYYFLiAJGjcVKkVxV8dR25rcV5bG2gBprKtL1QsMaphru/OMCQQ0JTM8TpvALhUbMW
+         Fy+zPT7adwU9tRQfqKw6Yh9HAH9fx8jcbInpiN9lA0b5O0tv6wNjtqNqZ5OlHHsMnDcB
+         iZjTjdy8yXxqKme0MsxZe1FXe3LfQAKcXbrFJ8LZWrPwfXvkxXwH/7/f+UeRXCQ6244f
+         FoUw==
+X-Gm-Message-State: AOJu0Yxlzj81jhN/Re9Rl9aZD7e/fiMDfCuaqWXw/mfcH3QGtC6sd2U0
+	166BHgaho06f0erCxItdQw==
+X-Google-Smtp-Source: AGHT+IEwsXmkr3xemv+wydJVOjenVj40+xrIWeWEDjwNZfQ+hY1bLHiVjfI5NIh7ve9NW8FJXFSqnQ==
+X-Received: by 2002:a05:6871:729c:b0:1fa:f7de:6c71 with SMTP id mm28-20020a056871729c00b001faf7de6c71mr1142858oac.29.1701875369471;
+        Wed, 06 Dec 2023 07:09:29 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id z13-20020a05683010cd00b006c4f7ced5d2sm2597349oto.70.2023.12.06.07.09.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Dec 2023 07:09:28 -0800 (PST)
+Received: (nullmailer pid 2169863 invoked by uid 1000);
+	Wed, 06 Dec 2023 15:09:27 -0000
+Date: Wed, 6 Dec 2023 09:09:27 -0600
+From: Rob Herring <robh@kernel.org>
+To: Tanmay Shah <tanmay.shah@amd.com>
+Cc: jassisinghbrar@gmail.com, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, shubhrajyoti.datta@amd.com, michal.simek@amd.com, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, ben.levinsky@amd.com
+Subject: Re: [PATCH] dt-bindings: mailbox: add Versal IPI bindings
+Message-ID: <20231206150927.GA2140113-robh@kernel.org>
+References: <20231130011936.3753814-1-tanmay.shah@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-ServerInfo: RTEXH36505.realtek.com.tw, 9
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-Antivirus-Interceptor-Info: fallback
-X-KSE-AntiSpam-Interceptor-Info: fallback
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231130011936.3753814-1-tanmay.shah@amd.com>
 
-SGkgS3J6eXN6dG9mLA0KDQo+Pj4+Pj4+Pj4gKyAgaW50ZXJydXB0cy1leHRlbmRlZDoNCj4+Pj4+
-Pj4+DQo+Pj4+Pj4+PiBpbnRlcnJ1cHRzIGluc3RlYWQuDQo+Pj4+Pj4+Pg0KPj4+Pj4+Pj4gQW55
-d2F5LCB5b3UgbXVzdCBkZXNjcmliZSB0aGUgaXRlbXMuIFdoeSB0aGlzIGlzIG5vdCBmaXhlZCBi
-dXQNCj5mbGV4aWJsZT8NCj4+Pj4+Pj4+IEhhcmR3YXJlIGhhcyBkaWZmZXJlbnQgbnVtYmVyIG9m
-IHBpbnM/IFRoYXQncyB1bmxpa2VseS4NCj4+Pj4+Pj4+DQo+Pj4+Pj4+IEkgd2lsbCByZXBsYWNl
-IGl0IHdpdGggJ2ludGVycnVwdHMnLiBTaW5jZSBvdXIgSW50ZXJydXB0DQo+Pj4+Pj4+IGNvbnRy
-b2xsZXIgYXJjaGl0ZWN0dXJlIGRvZXNuJ3QgaW52b2x2ZSBtdWx0aXBsZSBpbnRlcnJ1cHQgc291
-cmNlcywgdXNpbmcNCj4naW50ZXJydXB0cycNCj4+Pj4+IHNob3VsZCBzdWZmaWNlLg0KPj4+Pj4+
-Pg0KPj4+Pj4+DQo+Pj4+Pj4gRHVlIHRvIGNoYW5nZXMgaW4gaGFyZHdhcmUgZGVzaWduLCBzb21l
-IHBlcmlwaGVyYWwgaW50ZXJydXB0cyBwaW4NCj4+Pj4+PiBpbml0aWFsbHkNCj4+Pj4+IGNvbm5l
-Y3RlZCB0byB0aGUgUmVhbHRlayBpbnRlcnJ1cHQgY29udHJvbGxlciB3ZXJlIHJlZGlyZWN0ZWQg
-dG8gdGhlIEdJQy4NCj4+Pj4+PiBIb3dldmVyLCB0aGUgYXNzb2NpYXRlZCBmaWVsZHMgYW5kIHN0
-YXR1c2VzIGluIHRoZSBSZWFsdGVrDQo+Pj4+Pj4gaW50ZXJydXB0IGNvbnRyb2xsZXINCj4+Pj4+
-IHJlZ2lzdGVycyB3ZXJlIG5vdCByZW1vdmVkLg0KPj4+Pj4+IEFzIGEgcmVzdWx0LCB0aGVzZSBp
-bnRlcnJ1cHRzIGNhbm5vdCBiZSBjbGVhcmVkIGJ5IHBlcmlwaGVyYWwNCj4+Pj4+PiByZWdpc3Rl
-ciwgYW5kIHRoZWlyDQo+Pj4+PiBzdGF0dXMgY2xlYXJpbmcgaXMgc3RpbGwgbmVlZGluZyB0aGUg
-UmVhbHRlayBpbnRlcnJ1cHQgY29udHJvbGxlcg0KPj4+Pj4gZHJpdmVyIHRvDQo+Pj4gbWFuYWdl
-Lg0KPj4+Pj4+DQo+Pj4+Pj4gVGhhdCdzIHdoeSBmbGV4aWJpbGl0eSBpcyBuZWNlc3NhcnkuDQo+
-Pj4+Pg0KPj4+Pj4gVGhpcyBkb2VzIG5vdCBleHBsYWluIHdoeSB0aGlzIGlzIG5vdCBmaXhlZCBw
-ZXIgdmFyaWFudC4NCj4+Pj4+DQo+Pj4+DQo+Pj4+IERvZXMgdGhlIGRlZmluaXRpb24gb2YgImZp
-eGVkIiB5b3UgbWVudGlvbmVkIHJlZmVyIHRvIGZpeGVkDQo+Pj4+IGludGVycnVwdCBwaW5zPyBJ
-ZiBub3QsIGNvdWxkIHlvdSBwbGVhc2UgZ2l2ZSBtZSBhbiBleGFtcGxlIGFuZCBsZXQNCj4+Pj4g
-bWUga25vdyB3aGF0IHlvdSBtZWFuIGJ5ICJmaXhlZCI/DQo+Pj4NCj4+PiBOdW1iZXIgb2YgdGhl
-IGludGVycnVwdHMgcGVyIGVhY2ggZGV2aWNlIG9yIHZhcmlhbnQgc2hvdWxkIGJlDQo+Pj4gc3Ry
-aWN0bHkgZGVmaW5lZCwgbm90IHZhcmlhYmxlLg0KPj4NCj4+IFRoYW5rIHlvdSBmb3IgeW91ciBl
-eHBsYW5hdGlvbi4NCj4+DQo+PiBUaGUgREhDIHBsYXRmb3JtcyBjb250YWluIHR3byBpbnRlcnJ1
-cHQgY29udHJvbGxlcnMsIGVhY2ggaGFuZGxpbmcgcGVyaXBoZXJhbA0KPmRldmljZSBpbnRlcnJ1
-cHRzIGluIHRoZSB0d28gcG93ZXIgZG9tYWlucy4NCj4+IFdoaWxlIGVhY2ggaGFzIGEgZml4ZWQg
-SVJRIG51bWJlcnMsIHRoZSBzcGVjaWZpYyBJUlEgdmFyaWVzIGRlcGVuZGluZyBvbiB0aGUNCj4+
-cGxhdGZvcm0uDQo+DQo+U3JzbHksIHdoYXQgInNwZWNpZmljIElSUSIgaGFzIGFueXRoaW5nIHRv
-IGRvIHdpdGggIm51bWJlciBvZiBpbnRlcnJ1cHRzIHBlcg0KPmVhY2ggZGV2aWNlIG9yIHZhcmlh
-bnQiPw0KDQpFYWNoIFJlYWx0ZWsgaW50ZXJydXB0IGNvbnRyb2xsZXIgaXMgYXNzaWduZWQgYSBm
-aXhlZCBJUlEsIHdoaWNoIGdhdGhlcnMgaW50ZXJydXB0cyBmcm9tIHBlcmlwaGVyYWwgZGV2aWNl
-cyBzdWNoIGFzIGkyYywgc3BpLCBldGhlcm5ldCBwaHksIHRpbWVyLCB1YXJ0LCB3YXRjaGRvZywg
-cnRjLCBwd20sIGV0Yy4NCg0KRHVlIHRvIG1vZGlmaWNhdGlvbnMgaW4gdGhlIGhhcmR3YXJlIGNp
-cmN1aXQsIGNlcnRhaW4gcGVyaXBoZXJhbCBkZXZpY2UgaW50ZXJydXB0cyBpbmNsdWRpbmcgd2F0
-Y2hkb2csIHJ0YywgdWFydDEsIGFuZCB1YXJ0MiBhcmUgbm93IHJlZGlyZWN0ZWQgdG8gdGhlIEdJ
-Qy4gDQpDb25zZXF1ZW50bHksIHRoZXNlIGRldmljZXMgY2Fubm90IGNsZWFyIGludGVycnVwdCBz
-dGF0dXNlcyB0aHJvdWdoIHRoZWlyIG93biByZWdpc3RlcnMuIFRvIHJlc29sdmUgdGhpcywgd2Ug
-bWFuYWdlIHRoZWlyIGludGVycnVwdHMgdGhyb3VnaCB0aGUgUmVhbHRlayBpbnRlcnJ1cHQgY29u
-dHJvbGxlci4NCg0KVGhpcyByZXN1bHRzIGluIGEgdmFyaWF0aW9uIGluIHRoZSBudW1iZXIgb2Yg
-SVJRcyByZWdpc3RlcmVkIGJ5IHRoZSBpbnRlcnJ1cHQgY29udHJvbGxlcnMgb2YgSVNPIChpc29s
-YXRpb24pIGFuZCBNU0lDIChtaXNjZWxsYW5lb3VzKS4NCg0KSW4gdGhlIERUUyBleGFtcGxlcyBw
-cm92aWRlZCBpbiB0aGUgaW5pdGlhbCBwYXRjaCByZWxlYXNlLCBJUlFzIDQxIGFuZCA0MiBhcmUg
-YXNzaWduZWQgdG8gdGhlIFJlYWx0ZWsgaW50ZXJydXB0IGNvbnRyb2xsZXIuIA0KQXMgd2F0Y2hk
-b2csIHJ0YywgdWFydDEsIGFuZCB1YXJ0MiBpbnRlcnJ1cHRzIG5vIGxvbmdlciB1c2UgSVJRcyA0
-MSBvciA0MiwgdGhlaXIgSVJRcyAoMCwgMzksIDg5LCA5MCkgYXJlIGFzc2lnbmVkIHRvIGJlIHJl
-Z2lzdGVyZWQgYnkgdGhlIFJlYWx0ZWsgaW50ZXJydXB0IGNvbnRyb2xsZXIuDQoNCkZpeGVkIElS
-UXM6DQotIDQxOiBwZXJpcGhlcmFsIGRldmljZXMgKGlzbyBwb3dlciBkb21haW4pDQotIDQyOiBw
-ZXJpcGhlcmFsIGRldmljZXMgKG1pc2MgcG93ZXIgZG9tYWluKQ0KDQpTcGVjaWZpYyBJUlFzOg0K
-LSAwOiB3YXRjaGRvZyAoaXNvIHBvd2VyIGRvbWFpbikNCi0gMzk6IHJ0YyAobWlzYyBwb3dlciBk
-b21haW4pDQotIDg5OiB1YXJ0MSAobWlzYyBwb3dlciBkb21haW4pDQotIDkwOiB1YXJ0MiAobWlz
-YyBwb3dlciBkb21haW4pDQoNCkV4YW1wbGVzKHYxIHBhdGNoZXMpOg0KICAgIGlzb19pcnFfbXV4
-OiBpc29faXJxX211eEA0MCB7DQogICAgICBjb21wYXRpYmxlID0gInJlYWx0ZWsscnRkMTMxOS1p
-bnRjLWlzbyI7DQogICAgICByZWcgPSA8MHgwMCAweDQwPjsNCiAgICAgIGludGVycnVwdHMtZXh0
-ZW5kZWQgPSA8JmdpYyBHSUNfU1BJIDQxIElSUV9UWVBFX0xFVkVMX0hJR0g+LA0KICAgICAgICAg
-ICAgICAgICAgICAgICAgPCZnaWMgR0lDX1NQSSAzOSBJUlFfVFlQRV9MRVZFTF9ISUdIPjsNCiAg
-ICAgIGludGVycnVwdC1jb250cm9sbGVyOw0KICAgICAgI2FkZHJlc3MtY2VsbHMgPSA8MD47DQog
-ICAgICAjaW50ZXJydXB0LWNlbGxzID0gPDE+Ow0KICAgIH07DQoNCiAgICBtaXNjX2lycV9tdXg6
-IG1pc2NfaXJxX211eEA4MCB7DQogICAgICBjb21wYXRpYmxlID0gInJlYWx0ZWsscnRkMTMxOS1p
-bnRjLW1pc2MiOw0KICAgICAgcmVnID0gPDB4MDAgMHg4MD47DQogICAgICBpbnRlcnJ1cHRzLWV4
-dGVuZGVkID0gPCZnaWMgR0lDX1NQSSA0MCBJUlFfVFlQRV9MRVZFTF9ISUdIPiwNCiAgICAgICAg
-ICAgICAgICAgICAgICAgIDwmZ2ljIEdJQ19TUEkgMCBJUlFfVFlQRV9MRVZFTF9ISUdIPiwNCiAg
-ICAgICAgICAgICAgICAgICAgICAgIDwmZ2ljIEdJQ19TUEkgODkgSVJRX1RZUEVfTEVWRUxfSElH
-SD4sDQogICAgICAgICAgICAgICAgICAgICAgICA8JmdpYyBHSUNfU1BJIDkwIElSUV9UWVBFX0xF
-VkVMX0hJR0g+Ow0KICAgICAgaW50ZXJydXB0LWNvbnRyb2xsZXI7DQogICAgICAjYWRkcmVzcy1j
-ZWxscyA9IDwwPjsNCiAgICAgICNpbnRlcnJ1cHQtY2VsbHMgPSA8MT47DQogICAgfTsNCg0KICAg
-IGlzb19pcnFfbXV4OiBpc29faXJxX211eEA0MCB7DQogICAgICBjb21wYXRpYmxlID0gInJlYWx0
-ZWsscnRkMTMxOWQtaW50Yy1pc28iOw0KICAgICAgcmVnID0gPDB4MDAgMHg0MD47DQogICAgICBp
-bnRlcnJ1cHRzLWV4dGVuZGVkID0gPCZnaWMgR0lDX1NQSSA0MSBJUlFfVFlQRV9MRVZFTF9ISUdI
-PiwNCiAgICAgICAgICAgICAgICAgICAgICAgICA8JmdpYyBHSUNfU1BJIDAgSVJRX1RZUEVfTEVW
-RUxfSElHSD47DQogICAgICBpbnRlcnJ1cHQtY29udHJvbGxlcjsNCiAgICAgICNhZGRyZXNzLWNl
-bGxzID0gPDA+Ow0KICAgICAgI2ludGVycnVwdC1jZWxscyA9IDwxPjsNCiAgICB9Ow0KDQogICAg
-bWlzY19pcnFfbXV4OiBtaXNjX2lycV9tdXhAODAgew0KICAgICAgY29tcGF0aWJsZSA9ICJyZWFs
-dGVrLHJ0ZDEzMTlkLWludGMtbWlzYyI7DQogICAgICByZWcgPSA8MHgwMCAweDgwPjsNCiAgICAg
-IGludGVycnVwdHMtZXh0ZW5kZWQgPSA8JmdpYyBHSUNfU1BJIDQwIElSUV9UWVBFX0xFVkVMX0hJ
-R0g+LA0KICAgICAgICAgICAgICAgICAgICAgICAgPCZnaWMgR0lDX1NQSSA4OSBJUlFfVFlQRV9M
-RVZFTF9ISUdIPiwNCiAgICAgICAgICAgICAgICAgICAgICAgIDwmZ2ljIEdJQ19TUEkgOTAgSVJR
-X1RZUEVfTEVWRUxfSElHSD4sDQogICAgICAgICAgICAgICAgICAgICAgICA8JmdpYyBHSUNfU1BJ
-IDM5IElSUV9UWVBFX0xFVkVMX0hJR0g+Ow0KICAgICAgaW50ZXJydXB0LWNvbnRyb2xsZXI7DQog
-ICAgICAjYWRkcmVzcy1jZWxscyA9IDwwPjsNCiAgICAgICNpbnRlcnJ1cHQtY2VsbHMgPSA8MT47
-DQogICAgfTsNCg0KICAgIGlzb19pcnFfbXV4OiBpc29faXJxX211eEA0MCB7DQogICAgICBjb21w
-YXRpYmxlID0gInJlYWx0ZWsscnRkMTMyNS1pbnRjLWlzbyI7DQogICAgICByZWcgPSA8MHgwMCAw
-eDQwPjsNCiAgICAgIGludGVycnVwdHMtZXh0ZW5kZWQgPSA8JmdpYyBHSUNfU1BJIDQxIElSUV9U
-WVBFX0xFVkVMX0hJR0g+LA0KICAgICAgICAgICAgICAgICAgICAgICAgPCZnaWMgR0lDX1NQSSAw
-IElSUV9UWVBFX0xFVkVMX0hJR0g+Ow0KICAgICAgaW50ZXJydXB0LWNvbnRyb2xsZXI7DQogICAg
-ICAjYWRkcmVzcy1jZWxscyA9IDwwPjsNCiAgICAgICNpbnRlcnJ1cHQtY2VsbHMgPSA8MT47DQog
-ICAgfTsNCg0KICAgIG1pc2NfaXJxX211eDogbWlzY19pcnFfbXV4QDgwIHsNCiAgICAgIGNvbXBh
-dGlibGUgPSAicmVhbHRlayxydGQxMzI1LWludGMtbWlzYyI7DQogICAgICByZWcgPSA8MHgwMCAw
-eDgwPjsNCiAgICAgIGludGVycnVwdHMtZXh0ZW5kZWQgPSA8JmdpYyBHSUNfU1BJIDQwIElSUV9U
-WVBFX0xFVkVMX0hJR0g+LA0KICAgICAgICAgICAgICAgICAgICAgICAgPCZnaWMgR0lDX1NQSSA4
-OSBJUlFfVFlQRV9MRVZFTF9ISUdIPiwNCiAgICAgICAgICAgICAgICAgICAgICAgIDwmZ2ljIEdJ
-Q19TUEkgOTAgSVJRX1RZUEVfTEVWRUxfSElHSD4sDQogICAgICAgICAgICAgICAgICAgICAgICA8
-JmdpYyBHSUNfU1BJIDM5IElSUV9UWVBFX0xFVkVMX0hJR0g+Ow0KICAgICAgaW50ZXJydXB0LWNv
-bnRyb2xsZXI7DQogICAgICAjYWRkcmVzcy1jZWxscyA9IDwwPjsNCiAgICAgICNpbnRlcnJ1cHQt
-Y2VsbHMgPSA8MT47DQogICAgfTsNCg0KICAgIGlzb19pcnFfbXV4OiBpc29faXJxX211eEA0MCB7
-DQogICAgICBjb21wYXRpYmxlID0gInJlYWx0ZWsscnRkMTYxOWItaW50Yy1pc28iOw0KICAgICAg
-cmVnID0gPDB4MDAgMHg0MD47DQogICAgICBpbnRlcnJ1cHRzLWV4dGVuZGVkID0gPCZnaWMgR0lD
-X1NQSSA0MSBJUlFfVFlQRV9MRVZFTF9ISUdIPiwNCiAgICAgICAgICAgICAgICAgICAgICAgIDwm
-Z2ljIEdJQ19TUEkgMCBJUlFfVFlQRV9MRVZFTF9ISUdIPjsNCiAgICAgIGludGVycnVwdC1jb250
-cm9sbGVyOw0KICAgICAgI2FkZHJlc3MtY2VsbHMgPSA8MD47DQogICAgICAjaW50ZXJydXB0LWNl
-bGxzID0gPDE+Ow0KICAgIH07DQoNCiAgICBtaXNjX2lycV9tdXg6IG1pc2NfaXJxX211eEA4MCB7
-DQogICAgICBjb21wYXRpYmxlID0gInJlYWx0ZWsscnRkMTYxOWItaW50Yy1taXNjIjsNCiAgICAg
-IHJlZyA9IDwweDAwIDB4ODA+Ow0KICAgICAgaW50ZXJydXB0cy1leHRlbmRlZCA9IDwmZ2ljIEdJ
-Q19TUEkgNDAgSVJRX1RZUEVfTEVWRUxfSElHSD4sDQogICAgICAgICAgICAgICAgICAgICAgICA8
-JmdpYyBHSUNfU1BJIDg5IElSUV9UWVBFX0xFVkVMX0hJR0g+LA0KICAgICAgICAgICAgICAgICAg
-ICAgICAgPCZnaWMgR0lDX1NQSSA5MCBJUlFfVFlQRV9MRVZFTF9ISUdIPiwNCiAgICAgIGludGVy
-cnVwdC1jb250cm9sbGVyOw0KICAgICAgI2FkZHJlc3MtY2VsbHMgPSA8MD47DQogICAgICAjaW50
-ZXJydXB0LWNlbGxzID0gPDE+Ow0KICAgIH07DQoNCj4NCj5Mb29rIGF0IGFsbCBvdGhlciBiaW5k
-aW5ncyBjb3ZlcmluZyBtdWx0aXBsZSBkZXZpY2VzIGFuZCB0aGVpcg0KPmNsb2Nrcy9pbnRlcnJ1
-cHRzL2ludGVyY29ubmVjdHMvcmVnIGV0Yy4NCg0KTWF5IEkgYWRvcHQgdGhlIGFwcHJvYWNoIHVz
-ZWQgaW4gdGhpcyBZQU1MIGZvciBteSBjYXNlPw0KaHR0cHM6Ly93d3cua2VybmVsLm9yZy9kb2Mv
-RG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3RpbWVyL2FsbHdpbm5lciUyQ3N1bjRp
-LWExMC10aW1lci55YW1sDQoNClRoYW5rIHlvdSBmb3IgeW91ciBmZWVkYmFjay4NCg0KUmVnYXJk
-cywNCkphbWVzDQo=
+On Wed, Nov 29, 2023 at 05:19:36PM -0800, Tanmay Shah wrote:
+> Add documentation for AMD-Xilinx Versal platform Inter Processor Interrupt
+> controller. These bindings are different from previous
+> xlnx,zynqmp-ipi-mailbox bindings and hence introduced in separate file.
+> However, same existing driver will be extended for devices that are based
+> on Versal bindings.
+
+Looks to me like the binding doc could be shared.
+
+> 
+> Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
+> ---
+>  .../mailbox/xlnx,versal-ipi-mailbox.yaml      | 174 ++++++++++++++++++
+>  1 file changed, 174 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mailbox/xlnx,versal-ipi-mailbox.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mailbox/xlnx,versal-ipi-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/xlnx,versal-ipi-mailbox.yaml
+> new file mode 100644
+> index 000000000000..4408b59d392d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mailbox/xlnx,versal-ipi-mailbox.yaml
+> @@ -0,0 +1,174 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mailbox/xlnx,versal-ipi-mailbox.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Xilinx IPI(Inter Processor Interrupt) mailbox controller
+> +
+> +description: |
+> +  The Xilinx IPI(Inter Processor Interrupt) mailbox controller is to manage
+> +  messaging between two IPI agents. Each IPI agent owns registers used for
+> +  notification and buffers for message.
+> +
+> +               +-------------------------------------+
+> +               | Xilinx IPI Controller               |
+> +               +-------------------------------------+
+> +    +--------------------------------------------------+
+> +  TF-A                   |                     |
+> +                         |                     |
+> +                         |                     |
+> +    +--------------------------+               |
+> +                         |                     |
+> +                         |                     |
+> +    +--------------------------------------------------+
+> +              +------------------------------------------+
+> +              |  +----------------+   +----------------+ |
+> +  Hardware    |  |  IPI Agent     |   |  IPI Buffers   | |
+> +              |  |  Registers     |   |  (optional)    | |
+> +              |  |                |   |                | |
+> +              |  +----------------+   +----------------+ |
+> +              |                                          |
+> +              | Xilinx IPI Agent Block                   |
+> +              +------------------------------------------+
+> +
+> +maintainers:
+> +  - Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: xlnx,versal-ipi-mailbox
+> +
+> +  method:
+> +    description: |
+> +      The method of calling the PM-API firmware layer.
+> +      Permitted values are.
+> +      - "smc" : SMC
+> +      - "hvc" : HVC
+
+The schema already says this, no need to do so twice.
+
+> +
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    enum:
+> +      - smc
+> +      - hvc
+> +    default: smc
+> +
+> +  '#address-cells':
+> +    const: 2
+> +
+> +  '#size-cells':
+> +    const: 2
+> +
+> +  reg:
+> +    minItems: 1
+> +    items:
+> +      - description: Host IPI agent control registers
+> +      - description: Host IPI agent optional message buffers
+> +
+> +  reg-names:
+> +    minItems: 1
+> +    items:
+> +      - const: ctrl
+> +      - const: msg
+> +
+> +  xlnx,ipi-id:
+> +    description: |
+> +      Remote Xilinx IPI agent ID of which the mailbox is connected to.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+
+Any value 0-2^32 is valid?
+
+Place vendor properties last.
+
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  ranges: true
+> +
+> +patternProperties:
+> +  '^mailbox@[0-9a-f]+$':
+> +    description: Internal ipi mailbox node
+> +    type: object
+> +
+> +    properties:
+> +
+> +      compatible:
+> +        const: xlnx,versal-ipi-dest-mailbox
+> +
+> +      xlnx,ipi-id:
+> +        description:
+> +          Remote Xilinx IPI agent ID of which the mailbox is connected to.
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+
+Any value 0-2^32 is valid?
+
+> +
+> +      '#mbox-cells':
+> +        const: 1
+> +        description:
+> +          It contains tx(0) or rx(1) channel IPI id number.
+> +
+> +      reg:
+> +        minItems: 1
+> +        items:
+> +          - description: Host IPI agent control registers
+> +          - description: Host IPI agent optional message buffers
+
+Same description as the parent? But the parent is not a mailbox (No 
+#mbox-cells)? 
+
+> +
+> +      reg-names:
+> +        minItems: 1
+> +        items:
+> +          - const: ctrl
+> +          - const: msg
+> +
+> +    additionalProperties: false
+> +
+> +    required:
+> +      - compatible
+> +      - reg
+> +      - reg-names
+> +      - xlnx,ipi-id
+> +      - "#mbox-cells"
+> +
+> +additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - interrupts
+> +  - '#address-cells'
+> +  - '#size-cells'
+> +  - reg
+> +  - reg-names
+> +  - xlnx,ipi-id
+
+Same order as 'properties'.
+
+> +
+> +examples:
+> +  - |
+> +    #include<dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    amba {
+
+bus {
+
+> +      #address-cells = <0x2>;
+> +      #size-cells = <0x2>;
+> +      zynqmp-mailbox@ff300000 {
+> +        compatible = "xlnx,versal-ipi-mailbox";
+> +        interrupts = <GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>;
+> +        xlnx,ipi-id = <0>;
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +        reg = <0x0 0xff300000 0x0 0x1000>,
+> +              <0x0 0xff990000 0x0 0x1ff>;
+> +        reg-names = "ctrl", "msg";
+> +        ranges;
+> +
+> +        /* buffered IPI */
+> +        mailbox@ff340000 {
+> +          compatible = "xlnx,versal-ipi-dest-mailbox";
+> +          reg = <0x0 0xff340000 0x0 0x1000>,
+> +                <0x0 0xff990400 0x0 0x1ff>;
+> +          reg-names = "ctrl", "msg";
+> +          #mbox-cells = <1>;
+> +          xlnx,ipi-id = <4>;
+> +        };
+> +
+> +        /* bufferless IPI */
+> +        mailbox@ff370000 {
+> +          compatible = "xlnx,versal-ipi-dest-mailbox";
+> +          reg = <0x0 0xff370000 0x0 0x1000>;
+> +          reg-names = "ctrl";
+> +          #mbox-cells = <1>;
+> +          xlnx,ipi-id = <7>;
+> +        };
+> +      };
+> +    };
+> +
+> +...
+> 
+> base-commit: 2cc14f52aeb78ce3f29677c2de1f06c0e91471ab
+> -- 
+> 2.25.1
+> 
 
