@@ -1,214 +1,302 @@
-Return-Path: <devicetree+bounces-22208-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22210-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BECA5806D20
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 12:00:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07BDE806D2E
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 12:01:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2B887B20D91
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 11:00:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2AC551C20895
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 11:01:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1968230F93;
-	Wed,  6 Dec 2023 10:59:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02B4F3066F;
+	Wed,  6 Dec 2023 11:01:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 002EF30F8E;
-	Wed,  6 Dec 2023 10:59:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39BB9C433C7;
-	Wed,  6 Dec 2023 10:59:32 +0000 (UTC)
-Message-ID: <cae19173-1b36-4300-b770-782a7b7c2200@xs4all.nl>
-Date: Wed, 6 Dec 2023 11:59:30 +0100
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 86AB02136
+	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 03:00:13 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 301161474
+	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 03:00:59 -0800 (PST)
+Received: from e110455-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id D73A33F5A1
+	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 03:00:12 -0800 (PST)
+Date: Wed, 6 Dec 2023 10:59:38 +0000
+From: Liviu Dudau <Liviu.Dudau@arm.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Boris Brezillon <boris.brezillon@collabora.com>,
+	dri-devel@lists.freedesktop.org,
+	"Marty E . Plummer" <hanetzer@startmail.com>,
+	=?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
+	Nicolas Boichat <drinkcat@chromium.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Faith Ekstrand <faith.ekstrand@collabora.com>,
+	Daniel Stone <daniels@collabora.com>,
+	Steven Price <steven.price@arm.com>,
+	Robin Murphy <robin.murphy@arm.com>, kernel@collabora.com,
+	Heiko Stuebner <heiko@sntech.de>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 13/14] dt-bindings: gpu: mali-valhall-csf: Add support
+ for Arm Mali CSF GPUs
+Message-ID: <ZXBUGhL6utV15-Yx@e110455-lin.cambridge.arm.com>
+References: <20231204173313.2098733-1-boris.brezillon@collabora.com>
+ <20231204173313.2098733-14-boris.brezillon@collabora.com>
+ <20231205204827.GA3761421-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 5/5] MAINTAINERS: Add entries for Toshiba Visconti
- Video Input Interface
-Content-Language: en-US, nl
-To: yuji2.ishikawa@toshiba.co.jp, laurent.pinchart@ideasonboard.com,
- mchehab@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, nobuhiro1.iwamatsu@toshiba.co.jp
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20231012071329.2542003-1-yuji2.ishikawa@toshiba.co.jp>
- <20231012071329.2542003-6-yuji2.ishikawa@toshiba.co.jp>
- <767e3297-e1f9-483d-870e-67e75048b91a@xs4all.nl>
- <TYAPR01MB62015CB80317567D6F9C4A5E92BDA@TYAPR01MB6201.jpnprd01.prod.outlook.com>
-From: Hans Verkuil <hverkuil@xs4all.nl>
-Autocrypt: addr=hverkuil@xs4all.nl; keydata=
- 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
-In-Reply-To: <TYAPR01MB62015CB80317567D6F9C4A5E92BDA@TYAPR01MB6201.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231205204827.GA3761421-robh@kernel.org>
 
-On 27/11/2023 01:38, yuji2.ishikawa@toshiba.co.jp wrote:
-> Hello Hans,
-> Thank you for the review.
+Hi Rob,
+
+Thanks for reviewing this!
+
+On Tue, Dec 05, 2023 at 02:48:27PM -0600, Rob Herring wrote:
+> On Mon, Dec 04, 2023 at 06:33:06PM +0100, Boris Brezillon wrote:
+> > From: Liviu Dudau <liviu.dudau@arm.com>
+> > 
+> > Arm has introduced a new v10 GPU architecture that replaces the Job Manager
+> > interface with a new Command Stream Frontend. It adds firmware driven
+> > command stream queues that can be used by kernel and user space to submit
+> > jobs to the GPU.
+> > 
+> > Add the initial schema for the device tree that is based on support for
+> > RK3588 SoC. The minimum number of clocks is one for the IP, but on Rockchip
+> > platforms they will tend to expose the semi-independent clocks for better
+> > power management.
+> > 
+> > v3:
+> > - Cleanup commit message to remove redundant text
+> > - Added opp-table property and re-ordered entries
+> > - Clarified power-domains and power-domain-names requirements for RK3588.
+> > - Cleaned up example
+> > 
+> > Note: power-domains and power-domain-names requirements for other platforms
+> > are still work in progress, hence the bindings are left incomplete here.
+> > 
+> > v2:
+> > - New commit
+> > 
+> > Signed-off-by: Liviu Dudau <liviu.dudau@arm.com>
+> > Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Cc: Conor Dooley <conor+dt@kernel.org>
+> > Cc: devicetree@vger.kernel.org
+> > ---
+> >  .../bindings/gpu/arm,mali-valhall-csf.yaml    | 147 ++++++++++++++++++
+> >  1 file changed, 147 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
+> > new file mode 100644
+> > index 000000000000..d72de094c8ea
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
+> > @@ -0,0 +1,147 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/gpu/arm,mali-valhall-csf.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: ARM Mali Valhall GPU
+> > +
+> > +maintainers:
+> > +  - Liviu Dudau <liviu.dudau@arm.com>
+> > +  - Boris Brezillon <boris.brezillon@collabora.com>
+> > +
+> > +properties:
+> > +  $nodename:
+> > +    pattern: '^gpu@[a-f0-9]+$'
+> > +
+> > +  compatible:
+> > +    oneOf:
 > 
->> -----Original Message-----
->> From: Hans Verkuil <hverkuil@xs4all.nl>
->> Sent: Tuesday, November 14, 2023 5:41 PM
->> To: ishikawa yuji(石川 悠司 ○ＲＤＣ□ＡＩＴＣ○ＥＡ開)
->> <yuji2.ishikawa@toshiba.co.jp>; Laurent Pinchart
->> <laurent.pinchart@ideasonboard.com>; Mauro Carvalho Chehab
->> <mchehab@kernel.org>; Rob Herring <robh+dt@kernel.org>; Krzysztof
->> Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley
->> <conor+dt@kernel.org>; iwamatsu nobuhiro(岩松 信洋 ○ＤＩＴＣ□ＤＩＴ○
->> ＯＳＴ) <nobuhiro1.iwamatsu@toshiba.co.jp>
->> Cc: linux-media@vger.kernel.org; devicetree@vger.kernel.org;
->> linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org
->> Subject: Re: [PATCH v9 5/5] MAINTAINERS: Add entries for Toshiba Visconti
->> Video Input Interface
->>
->> On 12/10/2023 09:13, Yuji Ishikawa wrote:
->>> Added entries for visconti Video Input Interface driver, including;
->>> * device tree bindings
->>> * source files
->>> * documentation files
->>>
->>> Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
->>> ---
->>> Changelog v2:
->>> - no change
->>>
->>> Changelog v3:
->>> - added entry for driver API documentation
->>>
->>> Changelog v4:
->>> - added entry for header file
->>>
->>> Changelog v5:
->>> - no change
->>>
->>> Changelog v6:
->>> - update path to VIIF driver source files
->>>
->>> Changelog v7:
->>> - no change
->>>
->>> Changelog v8:
->>> - rename bindings description file
->>>
->>> Changelog v9:
->>> - no change
->>>
->>>  MAINTAINERS | 4 ++++
->>>  1 file changed, 4 insertions(+)
->>>
->>> diff --git a/MAINTAINERS b/MAINTAINERS index
->>> eaa1a28a9d54..6035f711b3fb 100644
->>> --- a/MAINTAINERS
->>> +++ b/MAINTAINERS
->>> @@ -2902,17 +2902,21 @@ F:
->> 	Documentation/devicetree/bindings/arm/toshiba.yaml
->>>  F:
->> 	Documentation/devicetree/bindings/clock/toshiba,tmpv770x-pipllct.y
->> aml
->>>  F:
->> 	Documentation/devicetree/bindings/clock/toshiba,tmpv770x-pismu.y
->> aml
->>>  F:	Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.yaml
->>> +F:
->> 	Documentation/devicetree/bindings/media/toshiba,visconti5-viif.yam
->> l
->>>  F:
->> 	Documentation/devicetree/bindings/net/toshiba,visconti-dwmac.ya
->> ml
->>>  F:	Documentation/devicetree/bindings/pci/toshiba,visconti-pcie.yaml
->>>  F:
->> 	Documentation/devicetree/bindings/pinctrl/toshiba,visconti-pinctrl.y
->> aml
->>>  F:
->> 	Documentation/devicetree/bindings/watchdog/toshiba,visconti-wdt.
->> yaml
->>> +F:	Documentation/driver-api/media/drivers/visconti-viif.rst
->>>  F:	arch/arm64/boot/dts/toshiba/
->>>  F:	drivers/clk/visconti/
->>>  F:	drivers/gpio/gpio-visconti.c
->>> +F:	drivers/media/platform/toshiba/visconti/
->>>  F:	drivers/net/ethernet/stmicro/stmmac/dwmac-visconti.c
->>>  F:	drivers/pci/controller/dwc/pcie-visconti.c
->>>  F:	drivers/pinctrl/visconti/
->>>  F:	drivers/watchdog/visconti_wdt.c
->>> +F:	include/uapi/linux/visconti_viif.h
->>>  N:	visconti
->>
->> This is a bit odd: it adds the driver to an existing entry, but you do not add
->> yourself as maintainer. Typically a large driver like this one will have its own
->> entry.
->>
->> At minimum I need an Acked-by from Nobuhiro Iwamatsu for this change. But I
->> think it might be better to make a separate entry for this driver. Up to you,
->> though.
-> 
-> I'll make a separate entry for Visconti VIIF driver.
-> I talked it over with Iwamatsu-san and he agreed.
-> I need Acked-by tag from him at v10 patch submission; is it a correct understanding?
+> Don't need oneOf.
 
-Yes, that's correct.
-
-Regards,
-
-	Hans
+This has come up on the review of the previous version. We're planning on adding support for more
+SoCs once the initial panthor driver gets merged, but I don't think it's worth advertising it now.
+Krzyszof raised the same point and then agreed to keep it, as seen here[1].
 
 > 
->>
->> Regards,
->>
->> 	Hans
->>
->>>
->>>  ARM/UNIPHIER ARCHITECTURE
+> > +      - items:
+> > +          - enum:
+> > +              - rockchip,rk3588-mali
+> > +          - const: arm,mali-valhall-csf   # Mali Valhall GPU model/revision is fully discoverable
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    items:
+> > +      - description: Job interrupt
+> > +      - description: MMU interrupt
+> > +      - description: GPU interrupt
+> > +
+> > +  interrupt-names:
+> > +    items:
+> > +      - const: job
+> > +      - const: mmu
+> > +      - const: gpu
+> > +
+> > +  clocks:
+> > +    minItems: 1
+> > +    maxItems: 3
 > 
-> Regards,
-> Yuji
+> The function of each clock based on just the names below aren't too 
+> evident. 'core' is, but then what is 'stacks'? Please add some 
+> descriptions.
+> 
+The names match the hardware architecture, where the core clock powers
+most of the GPU, the 'stacks' clock is for shader core stacks and the
+'coregroup' is used by stacks and tilers. All this is defined as "logical
+power domains" and the implementer of the IP can decide to map them to
+individual physical power domains or to group everything into a minimum of
+one power domain. Hence the flexibility in describing the hardware.
 
+As for describing what the function of each power domain is, I'm afraid we
+need to keep it at "matches the architecture" for now and I will look into
+what more information can be added later. At the high level, the more
+power domains you have the more you can fine tune the power consumption of
+the GPU.
+
+> I expect there is better visibility into what's correct here than we had 
+> on earlier h/w. IOW, I don't want to see different clocks for every SoC. 
+> Same applies to power-domains.
+
+Afraid that's up to the SoC implementation to decide how they wire the
+power domains. Hardware is capable to automatically powering up the domains
+needed, as long as the relevant clocks are provided.
+
+Best regards,
+Liviu
+
+> 
+> > +
+> > +  clock-names:
+> > +    minItems: 1
+> > +    items:
+> > +      - const: core
+> > +      - const: coregroup
+> > +      - const: stacks
+> > +
+> > +  mali-supply: true
+> > +
+> > +  operating-points-v2: true
+> > +  opp-table:
+> > +    type: object
+> > +
+> > +  power-domains:
+> > +    minItems: 1
+> > +    maxItems: 5
+> > +
+> > +  power-domain-names:
+> > +    minItems: 1
+> > +    maxItems: 5
+> > +
+> > +  sram-supply: true
+> > +
+> > +  "#cooling-cells":
+> > +    const: 2
+> > +
+> > +  dynamic-power-coefficient:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description:
+> > +      A u32 value that represents the running time dynamic
+> > +      power coefficient in units of uW/MHz/V^2. The
+> > +      coefficient can either be calculated from power
+> > +      measurements or derived by analysis.
+> > +
+> > +      The dynamic power consumption of the GPU is
+> > +      proportional to the square of the Voltage (V) and
+> > +      the clock frequency (f). The coefficient is used to
+> > +      calculate the dynamic power as below -
+> > +
+> > +      Pdyn = dynamic-power-coefficient * V^2 * f
+> > +
+> > +      where voltage is in V, frequency is in MHz.
+> > +
+> > +  dma-coherent: true
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - interrupt-names
+> > +  - clocks
+> > +  - mali-supply
+> > +
+> > +additionalProperties: false
+> > +
+> > +allOf:
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: rockchip,rk3588-mali
+> > +    then:
+> > +      properties:
+> > +        clocks:
+> > +          minItems: 3
+> > +	power-domains:
+> > +	  maxItems: 1
+> > +	power-domain-names: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/clock/rockchip,rk3588-cru.h>
+> > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    #include <dt-bindings/power/rk3588-power.h>
+> > +
+> > +    gpu: gpu@fb000000 {
+> > +        compatible = "rockchip,rk3588-mali", "arm,mali-valhall-csf";
+> > +        reg = <0xfb000000 0x200000>;
+> > +        interrupts = <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH 0>,
+> > +                     <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH 0>,
+> > +                     <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH 0>;
+> > +        interrupt-names = "job", "mmu", "gpu";
+> > +        clock-names = "core", "coregroup", "stacks";
+> > +        clocks = <&cru CLK_GPU>, <&cru CLK_GPU_COREGROUP>,
+> > +                 <&cru CLK_GPU_STACKS>;
+> > +        power-domains = <&power RK3588_PD_GPU>;
+> > +        operating-points-v2 = <&gpu_opp_table>;
+> > +        mali-supply = <&vdd_gpu_s0>;
+> > +        sram-supply = <&vdd_gpu_mem_s0>;
+> > +    };
+> > +
+> > +    gpu_opp_table: opp-table {
+> > +        compatible = "operating-points-v2";
+> > +        opp-300000000 {
+> > +            opp-hz = /bits/ 64 <300000000>;
+> > +            opp-microvolt = <675000 675000 850000>;
+> > +        };
+> > +        opp-400000000 {
+> > +            opp-hz = /bits/ 64 <400000000>;
+> > +            opp-microvolt = <675000 675000 850000>;
+> > +        };
+> > +    };
+> > +
+> > +...
+> > -- 
+> > 2.43.0
+> > 
+
+-- 
+====================
+| I would like to |
+| fix the world,  |
+| but they're not |
+| giving me the   |
+ \ source code!  /
+  ---------------
+    ¯\_(ツ)_/¯
 
