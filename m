@@ -1,88 +1,161 @@
-Return-Path: <devicetree+bounces-22356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F34F807315
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 15:53:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 363A7807319
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 15:54:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E32E2B20DDC
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 14:53:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9DCD41F21813
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 14:54:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 673BE3EA70;
-	Wed,  6 Dec 2023 14:53:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50F023EA70;
+	Wed,  6 Dec 2023 14:54:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m87zyRsO"
+	dkim=pass (1024-bit key) header.d=mysnt.onmicrosoft.com header.i=@mysnt.onmicrosoft.com header.b="UKs/iwzX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C46F37144;
-	Wed,  6 Dec 2023 14:53:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02380C433C7;
-	Wed,  6 Dec 2023 14:53:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701874414;
-	bh=BfmDvJ8RDuCVQ+mXdoNuZyTFuN44YPuJHi24jXGbAHc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=m87zyRsOCTOxBF+aKu/NHagCRxmyDv+Asnc8Pkf2E+AAD7YXbZYTb2GGZMvLfzeWX
-	 VZ5pkGgYk3j0VYIYveNb3P31U1FAy8X5FqnWZq6yfWW9DlHik457j/oyJf7KHYvh8s
-	 ELfU7SepC17kVpuBOPHGjq5K9C3XqOj161s2rCi8dv106SlsrOPR+zELd1+0pCGXJF
-	 VpVYP9hqoBCjvmv50D11jVZDv9XuPt2gfBQaYpO4OBASeSaSHXhtwvQOyMuyUtjfSi
-	 dJCG6dePOCByyQogNNPzTyfwW5PCWgb9TqfiFFsCroboK7yan46DXg/4R5ojFmsc09
-	 LZOgRB4roLxqA==
-Date: Wed, 6 Dec 2023 14:53:29 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Li peiyu <579lpy@gmail.com>
-Cc: jic23@kernel.org, javier.carrasco.cruz@gmail.com, lars@metafoo.de,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 4/4] iio: humidity: Add TI HDC302x support
-Message-ID: <20231206-quarrel-dill-27b94d881ec0@spud>
-References: <20231206134655.559474-1-579lpy@gmail.com>
- <20231206135148.559564-1-579lpy@gmail.com>
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2137.outbound.protection.outlook.com [40.107.20.137])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CF58D44;
+	Wed,  6 Dec 2023 06:54:21 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=VjDKt8b91uv43lyhIipcUUZNgfsWNld4Eq8fCNXGkndRY9nKLRWwLAns6CckhTPQEaFOcTmVTMmGicKRawxVgqen+o18xr7WxlL5rl+qh6AvTz3yKx5q8n/viu4DqPR0RRLLVsFJ+jXrm9F89d9t28zn8GKMhwe/tvsRNCXlnreiELtchhPVhM0eor5+clo5nMw5YPLsb3hxvpKV8E49nAK8ksuQo0cx4/xmwOTqdxeQ1a5EZiR7Lbgoy3DgZ7lcrMhHcPVxC/rtHV57ZLi6bVHcYW7p/Ucw5wSUKJgaP+6AbL20ZXDg1659iMmxXuPBF+b4EBW9/cMZKrjDoaNcRw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=21Zn5XMRI0iYInGQIlyRdLqQT7HQV6FXgb3hUV3ZPDA=;
+ b=YWhjUT+hXuBJd4LX4LSHEREVChSkhSXiCthf7ERJ3zNmTuk3fEIUoXLOj1P53I1Ll9BJTMWLxY4qK5IIzh95XVIGMYQam3MTFzl6Z13S2r61z26dbBt0NDWs3j8zcEFq2mQEV6yC9SCay1TbexIqUtmFsEHt0cjgpL4uBSE6C3zNDItlPllULZ00+gXHWTWwL078akYHJtq7+are+ruFdbSag5mkKWEZCjhnf0ZxwsAewNmVKXzaqNgU8bOA6BDXckoQjxMpZphA04icyzTLNCYVGCCQiBEKGGkuknrmEJ+YxkAP0DQ6vq439wptfbB2Pwtpw9TSeQRq+EVX1V1zvA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=kontron.de; dmarc=pass action=none header.from=kontron.de;
+ dkim=pass header.d=kontron.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mysnt.onmicrosoft.com;
+ s=selector2-mysnt-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=21Zn5XMRI0iYInGQIlyRdLqQT7HQV6FXgb3hUV3ZPDA=;
+ b=UKs/iwzX4STPbZ71Z89A717Ltuk75bB0W+a23pgysHpdo5jFxrKspmNRzSGXq76CmBAsdLhdotxwUD+QTPC/04EkBm1ZVl0fR5QKFyrNowrJ1jVxKEyxBEjGm8LreB1Hew3Ew/ng4wtBhlHrRi7m8WPNCKHq4JH7587kK8dYtU4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=kontron.de;
+Received: from PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:263::10)
+ by DUZPR10MB8100.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:4d8::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.34; Wed, 6 Dec
+ 2023 14:54:19 +0000
+Received: from PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::27ba:9922:8d12:7b3d]) by PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::27ba:9922:8d12:7b3d%5]) with mapi id 15.20.7068.025; Wed, 6 Dec 2023
+ 14:54:18 +0000
+Message-ID: <ce45d170-9331-47b5-b8c3-6feff489db1b@kontron.de>
+Date: Wed, 6 Dec 2023 15:54:17 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 01/14] arm64: dts: imx8mm-kontron: Add support for
+ display bridges on BL i.MX8MM
+Content-Language: en-US, de-DE
+To: Fabio Estevam <festevam@gmail.com>, Frieder Schrempf <frieder@fris.de>
+Cc: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Rob Herring <robh+dt@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Shawn Guo <shawnguo@kernel.org>, NXP Linux Team <linux-imx@nxp.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>
+References: <20231206144201.46911-1-frieder@fris.de>
+ <20231206144201.46911-2-frieder@fris.de>
+ <CAOMZO5Akp9PsFf2GrSFTKyM1c3kSUEeU=W9ODgiMkyHATRWHOw@mail.gmail.com>
+From: Frieder Schrempf <frieder.schrempf@kontron.de>
+In-Reply-To: <CAOMZO5Akp9PsFf2GrSFTKyM1c3kSUEeU=W9ODgiMkyHATRWHOw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR0P281CA0151.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:b3::19) To PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:102:263::10)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="QXd7A5Rf7VK5v4Il"
-Content-Disposition: inline
-In-Reply-To: <20231206135148.559564-1-579lpy@gmail.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR10MB5681:EE_|DUZPR10MB8100:EE_
+X-MS-Office365-Filtering-Correlation-Id: ab52415a-16ec-4870-f983-08dbf66b3966
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	m1ijCkn+6BJuCWocyG+TOjlemqsK0VN2ZYaBPu8A8QkHlMfcHzCXW0QWNtAnnznwWm6MjbEL2MYjFBb5W4erM+b+pwKey4HtnvUJghmN4Jcg5QiBig5NfHNbj1KyWfgu7tF0yzSOcTIJ43MK1g5np08qA3Y90H7+tXhaJeVtMVMRBRsr9c0BauJH0bdwRG8kGuSgRHJW41y4w2z3ma5GNshWlkITm5crcNlyR6ztC5+l3BPrfYvowOAXoWkEvbOG+IyWoW6IeMWY0Po8Xx6XbMPUOnPAlfFdwtck9hWc+w1RRJJwzo6Yw4Vn+oBVqt3Q+C8oMWgKial5eScAHE6pyOcHm2gOKDUgqzCQiBvxVlX2AqKoXdNlP32SZb0TymnSW7R0BRrUdJ92FEUrEYvAYn/AHbJ5d9GikuqwGLeyXoBVERzUzkric7dhDmltgitsruU6bllvPhDYCzU8qSnNdMHcJCbRaiOLy+IlE/zMrfV06UgqJo+4CUpPaOo8N2Amq3R70nvzK8R7U4c1O7qhBvmz3tdqBs4iBwI53w1fwX+LPQFPF0m90hCKkPcIaniDysmpVNQI5opJh5m6hNinm+55uv/ISkRN9e+al3+LOwugvv+BwXi4rwluaSGegLmkq9JiIgWh0gVpCwhEV+f37QH81e35GfK6i6wz8PsfXK8=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(136003)(346002)(396003)(366004)(376002)(230922051799003)(186009)(64100799003)(1800799012)(451199024)(7416002)(4744005)(44832011)(31696002)(2906002)(316002)(110136005)(54906003)(66556008)(66476007)(66946007)(4326008)(8676002)(86362001)(36756003)(8936002)(41300700001)(31686004)(5660300002)(38100700002)(6486002)(478600001)(26005)(2616005)(6512007)(6506007)(53546011)(32563001)(43740500002)(45980500001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?Ris2aEVYd09WaUI0UWd2dENFc1Z4WXQ4dzF1bGhnZGdHeVFHcHRRMXF1UXN6?=
+ =?utf-8?B?MHlXODdzM29JQTJzVmgyYmJPdWtWTzJVaDRQSXNydXZSYmVPZ2o5ODAvNDho?=
+ =?utf-8?B?elZaNENuaVJzNE5uR0Q3K3Y0bGR2ZTVGbUI5a0Q1NnJRYlZSdklWaEJpMDJD?=
+ =?utf-8?B?SElIaGdaS1VNVzMrQThEa21LSDE2dGFPQmhyZTR4TzhJT1prbXJzUjlLR0NX?=
+ =?utf-8?B?MExRR2x2c0p3VjJjMXcyUVluQ0hFTHUzNTZ5VnJqLy9UT3dPL3hBaXA5SEVx?=
+ =?utf-8?B?YnZWTVR6T1RTeTNOazlUb3NaWTcyNzNseGxVZFBCZ2VYbEtSaWZtWkhBbFNG?=
+ =?utf-8?B?d3g4Q2RXMjB2UnduYlRxeDZ2ZXNYek4yT1U3N1RRVGJzOTRhZ0JIdGZCNmRD?=
+ =?utf-8?B?U1hlZ0E3L1oySDFNeGlUUDFlQWhVeFJTalFsMEcrcTJSWHNzY1RqTCtKYlJx?=
+ =?utf-8?B?cy9OUEVUNXE2MkRPTWVwdEduZzdPcEQyL1lNRGpXQ3daTlllZlRRZ1VyRG9j?=
+ =?utf-8?B?TEh1RG1BMWNjd3JWQzBmVEd1NDdHSUkrT29wdkhvQnFaUjRJOU5LRXBFM2Ji?=
+ =?utf-8?B?dWFmcG85VUdpNmM2TW5ic29XdmthNFVScm5xdEVkcS9jSys4VVNPLzEwTWYz?=
+ =?utf-8?B?YTVRbzBSSm93MDQzYlA5SzJoZmxhdXA5WnZzSDFVOU4zY1JMTW9nSmpGQU9r?=
+ =?utf-8?B?dWY4WThrSHEySVhGeDNSRlRMalZJZTBUYngrejRmRFErUVhkWVVDbDFZaTJu?=
+ =?utf-8?B?MmR3K1BLZXYzMVJtZFoyRVJJODdCQmR4R3hLUTNBOEFydGwyZWRGaU44Vm1y?=
+ =?utf-8?B?L1BVSm51NU5ybS90cGNlYUJFbHRZTGc3SHQzWGNaZDlIUUFYSk1waVRuS2xh?=
+ =?utf-8?B?Z2VnSGpuVytZUmlrdDc4RHVieDF1VWh5Nis0NlM0Y2ZHZUNtLytHNTZzMVZI?=
+ =?utf-8?B?UXdkOERWa3htSVRMdWdCRG5hOTdEd2NDOGhOMkp0SnFvbldGSkNqQnplK0Yz?=
+ =?utf-8?B?eXhFd0FXaGtFVUwyWGZNVEpwTjF5aEdxeFkvczR3OS93eGc1Y3JUTnh1a0Rx?=
+ =?utf-8?B?VjFwL3NNOWJISzZWM3lkRlJLR0M2YmY1N0ZUMWJCZXFrdy9FTS9jaFBhN3hN?=
+ =?utf-8?B?d2htaUdpQUpyUWF1YXlUZTBjZTlVdHc1R0xiUjVKM2R6OGV2Rk1vdGZ3aUhT?=
+ =?utf-8?B?cUhlZ1VHWjVwVmxWNTNyNjR0eUFwQXJqbEpicTdiTkNSbjdtTEs4SXM1Y1ls?=
+ =?utf-8?B?NDVQTEdITEQxdHJNaFJtdGJNVkF0WWZpbVk3cEFZSXZMS1ZPc1BFVnFUQzdB?=
+ =?utf-8?B?Ym1weHBhUVhxcmMyZ1dxZWFmWGV6bnByLy82RzhNQmhwOUMxa2MvOWgyWitz?=
+ =?utf-8?B?cER4dUx6R0lKd3lZTENWTGhKTG0xMEtyQTIzeWhCc3Y1VGZPcjFOdzJYSnFx?=
+ =?utf-8?B?aXNoM1l0VWVqVjMxOG1sQ1Rtb3F4Y2sxTGo1OW0zRWdSRzYwK3NhOFh2d0dW?=
+ =?utf-8?B?NWM2czFTTmIybGdSbUw0VFZaRytkYTRlUmJodGNHY1NJQUdyYUFHVWlVY1pj?=
+ =?utf-8?B?Ym42d0pxU2pMUVdOaUVQbVBraDA5Q0diNnRHdlIwQ2VsS0QrcC9hOFhlWXI4?=
+ =?utf-8?B?M3pJbW9YeHRLZFRUamtVVlJnSkVGVHJmeU1DeWgwWkE4MVZ0Ni9MQUZhRUhD?=
+ =?utf-8?B?MXlXSFZGbkc5WDNkQWNXRUJNbDN1YW4wUGxxU0QwVENoZXFzeWJyQzU0ZmQ0?=
+ =?utf-8?B?TndwbWdvcVM0QWlkRHFYNTJ0TDE1S0wxbHIzNVgxZmkzNjdaOStaaHhlYnpy?=
+ =?utf-8?B?WHUwc3BpeE5Od0VZaEdzQzZsc3hMdTk2OHM3U1BneTdrd1hZT0xYbzJxeTRW?=
+ =?utf-8?B?VDFtYStFbkRDREwxQXl6UEVpZHlGOVhGM3JJL00rMGNreWNWWEw0YU5zaHNn?=
+ =?utf-8?B?Ui8vUGFXeUE0ZzhiV05lNzFCbWhtenFhQ3JpQjVpblFuUUhYdHpzbHEydm5i?=
+ =?utf-8?B?ZzVPWUc2QVVDdDZQNitidDVnaWhzUjhZNnVDdzFXNkhwcXlPdVdQcmY3dXVa?=
+ =?utf-8?B?dzVYYk1hdTVnZWt3Lzd5SnNYZVBzWTVyakpYQ0VIRjBZSC9kampHMVRGYVZI?=
+ =?utf-8?B?b0pDcUpPSDZuUXFwSUl1cUx3SXRPQ3FvajVweDRPRUdaeUxlNjVoRVBIMmEr?=
+ =?utf-8?B?SUE9PQ==?=
+X-OriginatorOrg: kontron.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: ab52415a-16ec-4870-f983-08dbf66b3966
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Dec 2023 14:54:18.9045
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8c9d3c97-3fd9-41c8-a2b1-646f3942daf1
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: EthT44wmHMI7BdQM9/SWw8S0q3SZ6jGD1gslml8OdQMz/rMkbt63xVc4qcfx7OYbcBQkRJKpvVwlGoyeqd7WLnX1PU+qy5XFSx71eLtYeb0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DUZPR10MB8100
 
+Hi Fabio,
 
---QXd7A5Rf7VK5v4Il
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 06.12.23 15:47, Fabio Estevam wrote:
+> Hi Frieder,
+> 
+> On Wed, Dec 6, 2023 at 11:44 AM Frieder Schrempf <frieder@fris.de> wrote:
+> 
+>> +               a2vdd-supply = <&reg_vdd_1v8>;
+>> +               avdd-supply = <&reg_vdd_1v8>;
+>> +               dvdd-supply = <&reg_vdd_1v8>;
+>> +               pvdd-supply = <&reg_vdd_1v8>;
+>> +               v1p2-supply = <&reg_vdd_1v8>;
+> 
+> Supplying 1.8V to v1p2-supply looks strange.
 
-On Wed, Dec 06, 2023 at 09:51:48PM +0800, Li peiyu wrote:
-> Add device tree bindings for HDC3020/HDC3021/HDC3022 humidity and
-> temperature sensors.
->=20
-> Signed-off-by: Li peiyu <579lpy@gmail.com>
+Indeed, but it's correct. From the binding docs:
 
-If there is a resubmission, please prepend "dt-bindings: " to your
-commit $subject. Otherwise, I am only with this.
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+  v1p2-supply:
+    description:
+      A supply that powers up the V1P2 pin. It can be either 1.2V
+      or 1.8V for ADV7533 but only 1.8V for ADV7535.
 
-Thanks,
-Conor.
-
---QXd7A5Rf7VK5v4Il
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZXCK6QAKCRB4tDGHoIJi
-0qgdAQC2K/aw8tdHJ+rVh82hTYCgzPkrJT1gzpW/7/zq0F+giAD/U2P64GnkIVeo
-Opn8r6Hjo4FpMoZKTGwUaQQMKQJ/0g4=
-=+UPl
------END PGP SIGNATURE-----
-
---QXd7A5Rf7VK5v4Il--
+Best regards
+Frieder
 
