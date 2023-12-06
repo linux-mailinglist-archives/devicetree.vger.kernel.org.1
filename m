@@ -1,97 +1,118 @@
-Return-Path: <devicetree+bounces-22069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22070-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3852C806508
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 03:35:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B37C806538
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 03:43:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 68E3D1C20A9E
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 02:35:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7BFF31C210F6
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 02:43:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A230B111A;
-	Wed,  6 Dec 2023 02:35:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF0C9EC9;
+	Wed,  6 Dec 2023 02:43:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="SRK+pabr"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EAqMPUCv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECB75183
-	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 18:35:37 -0800 (PST)
-Received: by mail-yb1-xb31.google.com with SMTP id 3f1490d57ef6-d9beb865a40so4767722276.1
-        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 18:35:37 -0800 (PST)
+Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DD29129
+	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 18:43:55 -0800 (PST)
+Received: by mail-ot1-x333.google.com with SMTP id 46e09a7af769-6d8750718adso3265676a34.0
+        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 18:43:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1701830136; x=1702434936; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1701830634; x=1702435434; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=xlDuu53vbrn6lPFwY45IWnvR+3YA7mUVyinONkEtmto=;
-        b=SRK+pabrlkiwbYXkzJtUFX14s18ngYJbY2/idV6bttR4EnH3nzHEp7QhkddKFrwg9o
-         kwBc3JqH9Hoggz/idJkLT3G+sTiL4D2/8ngF4v2flkhwMWbU3m7I/mhQ9WxrsbHgb9kn
-         z7o+vcJdntMjiBc48pEbcpS/uZJvxLfqfDvQgshB226/Z4VlGwJKeo4xXVxlqvZwBl37
-         VDp9bYFtDJJICEcDjSF9jHw1CFUjLejSq9jJwmkdQZ3vW3s425xbN1isioU8ipAp2Run
-         X27EKXF1lbzhF/v4pGvl/b9XNrxl4SoMphI86lo7IDERngZIbX5510PXciYgT1Sl66Gi
-         sW2A==
+        bh=lNRQu6oyNFbpjA1kqXJBdLfx5S4cnvF7XoM5bFKpgiE=;
+        b=EAqMPUCveYO/eZ54ipPErWC5iEbotaNLUUVvcJgaSu9ze9ecSZ4ONnhqM9y07GG9Ft
+         TcnwYTIMGWzuxz+ERjoEYKh9XTiVw6WWEvh0hhm5h9PWGLnZedMAtsrVHy0aoNHKHK2d
+         RasIXMHz1OlwIi8IEUUBWgEAsfLtYpsyomBuSOj+oX69gVbd9yKPdWAZP1w1U7XFrHWS
+         XeOimAE8bkESfmShVRCEvIfvADXuM0Wko+sSgIw/MfEOzj2mx5IhUETqrmq5JejPMMPj
+         zTrx2ZZZWsE72LdAjL/2qUZK778bYQxTJFdfOKfAo4EXMWHdlcxdLGXwuxFeRVaV2y3k
+         38oA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701830136; x=1702434936;
+        d=1e100.net; s=20230601; t=1701830634; x=1702435434;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=xlDuu53vbrn6lPFwY45IWnvR+3YA7mUVyinONkEtmto=;
-        b=qaIGzhgp3nqqBLud52HMVgm8l1Z7LiQwzgJr2omAUhWWWvs4hNSlwwBDslJ7jnh4jZ
-         wxLjhzFwkGyfilnn81xtA4asTxk+vtSRVWavhzC1px2bSTPD0lbzRRoc492xpQV3D6xH
-         jJoxN3zol1aElYIVjz6k4ptRfXdap7In8nFSNyQUeJEJohobSh+bKMyRRB0GMa12qeJR
-         ngRgOLA87+kjkzlL6oBPer2dgZCI/x8LBacgLgYQ8KOtFjKE6MfY2b3c+cfGYFF9Q5H4
-         wdMdKM27DiFNl4+VE0o3K0AA/yd4wsqL/HjDz9ZhxNEw66CxPU+HoDI9I8anufSiZDXa
-         K2Xg==
-X-Gm-Message-State: AOJu0YzTH5zwNJDgrVDdLrNbQPilfG1gXjn+rIGczLQxu8Z7C2VFGQSi
-	dSU+wG5kCH/P96KrRz+lhlK2N9UIQvDoTjRzA8D5mw==
-X-Google-Smtp-Source: AGHT+IEAAK7nw9Tt/NLs1EhilQZoE6ZJOZfYmBJo7cb7QrMdkaOgVc2RlX9xN6TjZVgIA+w28XmZQLETw6at2bm172k=
-X-Received: by 2002:a05:6902:522:b0:db7:dacf:3faf with SMTP id
- y2-20020a056902052200b00db7dacf3fafmr126141ybs.92.1701830135801; Tue, 05 Dec
- 2023 18:35:35 -0800 (PST)
+        bh=lNRQu6oyNFbpjA1kqXJBdLfx5S4cnvF7XoM5bFKpgiE=;
+        b=gZUxlkwCdt7Vak7ARM0uadWzgj7kOSER0Tw0UgCjwDt3iaytE3X+/9m8vQ482tqGs6
+         wxng5aszRSRGTWiOWgK7rIqY25TIics2v0lejABooCCZOnUWuEd3eUjAqYgVvRX3aiEH
+         G/rFuNs4UBDxJHzDzN29mUA91WsiV6g3+6N53oSdMFqN1FnwoEuPdrwA37sFSLMI71nf
+         bok2yNMx2cIiEH1mVHF7xMsofS2iSPxqvyaP2jZouSLAKxALXMgVnYwrJp6W2hMzXlVR
+         OMnBQ+WR4m9lca6z1bcj9PTJCIfKevci9LSg2pWPpQeQZjdsbo+d0OzRDKshTDUyoBS9
+         Xh+g==
+X-Gm-Message-State: AOJu0YzeG2QgUAk+HsvF99F7rNZgtgY0iuB+VeueKxo8jZAEqW8O17CC
+	x55J44iVE/43YDgckmSP44r25dBh+mT33RLj1a0iQrX/ivc=
+X-Google-Smtp-Source: AGHT+IE/01zByJdpwb+ejZn+nZCVZSSt1bpaoOMo+UVjmmFQ7HJnu/gZHm4xhXcv1QQlqg3R+sMuh9ZUGzC3iN8jO+4=
+X-Received: by 2002:a05:6358:5921:b0:16e:5950:67c with SMTP id
+ g33-20020a056358592100b0016e5950067cmr474038rwf.25.1701830633962; Tue, 05 Dec
+ 2023 18:43:53 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231024101902.6689-1-nylon.chen@sifive.com> <20231024101902.6689-3-nylon.chen@sifive.com>
- <CAHh=Yk_i-tH-n_5wuwp6H8QRu3cZovkukDzMbeUZrgiih46V8g@mail.gmail.com> <21985579-e017-4a56-b5e3-697fd9d0c9d7@linaro.org>
-In-Reply-To: <21985579-e017-4a56-b5e3-697fd9d0c9d7@linaro.org>
-From: Nylon Chen <nylon.chen@sifive.com>
-Date: Wed, 6 Dec 2023 10:35:24 +0800
-Message-ID: <CAHh=Yk_=JJnBXVY4nrcmam6aQVN6Db=sPp59je=_BXj140QP3Q@mail.gmail.com>
-Subject: Re: [v5 2/2] pwm: sifive: change the PWM controlled LED algorithm
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
-	thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de, 
-	emil.renner.berthing@canonical.com, vincent.chen@sifive.com, 
-	greentime.hu@sifive.com, zong.li@sifive.com, nylon7717@gmail.com
+References: <20231206012831.2179356-1-festevam@gmail.com>
+In-Reply-To: <20231206012831.2179356-1-festevam@gmail.com>
+From: Adam Ford <aford173@gmail.com>
+Date: Tue, 5 Dec 2023 20:43:42 -0600
+Message-ID: <CAHCN7xLiSpYN4BF4MGWdUypKf0YLaCsAq1RfSeo1xTOyAiyXkw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: display: adi,adv75xx: Document #sound-dai-cells
+To: Fabio Estevam <festevam@gmail.com>
+Cc: Laurent.pinchart@ideasonboard.com, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	Fabio Estevam <festevam@denx.de>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Ping on the series.
-
-The merge window should have ended.
-
-Is there anything more I can do to push the process forward?
-
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> =E6=96=BC 2023=E5=B9=
-=B411=E6=9C=889=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=884:22=E5=AF=AB=
-=E9=81=93=EF=BC=9A
+On Tue, Dec 5, 2023 at 7:28=E2=80=AFPM Fabio Estevam <festevam@gmail.com> w=
+rote:
 >
-> On 09/11/2023 08:02, Nylon Chen wrote:
-> > Hi, Ping on the series.
-> >
-> > Uwe, is there anything more I can do to push the process forward?
+> From: Fabio Estevam <festevam@denx.de>
 >
-> It's merge window. What do you exactly expect to happen?
+> When using audio from ADV7533 or ADV7535 and describing the audio
+> card via simple-audio-card, the '#sound-dai-cells' needs to be passed.
 >
-> Best regards,
-> Krzysztof
+> Document the '#sound-dai-cells' property to fix the following
+> dt-schema warning:
+>
+
+Thanks for doing that.
+
+> imx8mn-beacon-kit.dtb: hdmi@3d: '#sound-dai-cells' does not match any of =
+the regexes: 'pinctrl-[0-9]+'
+>         from schema $id: http://devicetree.org/schemas/display/bridge/adi=
+,adv7533.yaml#
+>
+
+Acked-by: Adam Ford <aford173@gmail.com>
+
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> ---
+>  .../devicetree/bindings/display/bridge/adi,adv7533.yaml        | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/display/bridge/adi,adv7533=
+.yaml b/Documentation/devicetree/bindings/display/bridge/adi,adv7533.yaml
+> index 987aa83c2649..e15ae072922e 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/adi,adv7533.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/adi,adv7533.yaml
+> @@ -89,6 +89,9 @@ properties:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      enum: [ 1, 2, 3, 4 ]
+>
+> +  '#sound-dai-cells':
+> +    const: 0
+> +
+>    ports:
+>      description:
+>        The ADV7533/35 has two video ports and one audio port.
+> --
+> 2.34.1
 >
 
