@@ -1,392 +1,294 @@
-Return-Path: <devicetree+bounces-22499-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22497-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5B83807C84
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 00:44:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0F59807C81
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 00:44:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3C0821F21D27
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 23:44:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A6B202824E9
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 23:44:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1AAC328B1;
-	Wed,  6 Dec 2023 23:44:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32C39328A2;
+	Wed,  6 Dec 2023 23:44:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="CQgwjxD9"
+	dkim=pass (1024-bit key) header.d=os.amperecomputing.com header.i=@os.amperecomputing.com header.b="bKdJsy38"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCE5BA4;
-	Wed,  6 Dec 2023 15:44:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1701906258; x=1733442258;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=aBQ3UsUdaTX6qmXYeXuurT+R78I2+gSlJN8HCaWvth4=;
-  b=CQgwjxD9HcnYPuyVQSGjnkGlDz3xB8e3DyHf6Eyu4pX8iJE4pz0d5q+0
-   IiJ5qXaPFedvmcCzP0t07GkaeglGN/1zSJJKjKJNrmKFh0KZedkajkFS0
-   JHCkQ9VrGzxIeouxlj51K5uPF0xLXdu9YvqoG0tqelHNcSx6Mo/ez52GX
-   oIR5uBoiz+i24ABMrIne9U7RFKbyFEiiHNE09o+OfMpnSPXXCTIqpFzJ3
-   9+TVDpHUNti2vXfnS3vQJi8+5g/4h/5UaQYGySx1O0vemF8juzPi9snLg
-   ejunWJyGO5YODRl1Fy/iO4IFK8SmlNRW6oaLPgCeizOcmwjyDIDwD9XbG
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="373634476"
-X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; 
-   d="scan'208";a="373634476"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Dec 2023 15:44:16 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="1018737711"
-X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; 
-   d="scan'208";a="1018737711"
-Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
-  by fmsmga006.fm.intel.com with ESMTP; 06 Dec 2023 15:44:09 -0800
-Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rB1Yk-000Bb2-2w;
-	Wed, 06 Dec 2023 23:44:06 +0000
-Date: Thu, 7 Dec 2023 07:43:15 +0800
-From: kernel test robot <lkp@intel.com>
-To: Yunfei Dong <yunfei.dong@mediatek.com>,
-	Jeffrey Kardatzke <jkardatzke@google.com>,
-	=?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado <nfraprado@collabora.com>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Hans Verkuil <hverkuil@xs4all.nl>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-	Nathan Hebert <nhebert@chromium.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Chen-Yu Tsai <wenst@chromium.org>, Yong Wu <yong.wu@mediatek.com>,
-	Hsin-Yi Wang <hsinyi@chromium.org>,
-	Fritz Koenig <frkoenig@chromium.org>,
-	Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>,
-	Yunfei Dong <yunfei.dong@mediatek.com>,
-	Sumit Semwal <sumit.semwal@linaro.org>,
-	Brian Starkey <Brian.Starkey@arm.com>,
-	John Stultz <jstultz@google.com>,
-	"T . J . Mercier" <tjmercier@google.com>,
-	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH] media: medkatek: vcodec: support tee decoder
-Message-ID: <202312070723.APrpMLj9-lkp@intel.com>
-References: <20231206081538.17056-21-yunfei.dong@mediatek.com>
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2104.outbound.protection.outlook.com [40.107.92.104])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71839A4
+	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 15:44:08 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nhU303G8QqFA23uvfnXtIteK1D2IYvexp7hAil5sONJ4IaS89pRMHsf14k/J4ISjfMCEi9Fd7sitLW9UNeXV5B7IWXkVVUMi45IwC88Addacxp9dsr3jo1ZLrKmVlI9mtnrMnuiOinaqd66okMCYMtqsgD03RZZZmyF1z3nRTWYMXZPjVnHiXkUK9+Zvy0ODgM7EcFw+6kKjHmEmrhb94NPJpIzaqPVe0EMq0bPKHkkKU1+9njjoPZIJnFEmHHj/7piVToPCt9S4KXOPdVXTtslNT6HYHJ9gd0VQjYTapwW2xNyzvCDDt8vGdsqysigZDZuSh7hu4GrsjjzQI6Mirg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8hqsJqwFBg4QZSSJ58wASQypzvTxOP+N2o/MyAVCsA0=;
+ b=JosylgJWVCVg67cMkprLEttrMCS2y/HX8pqGCIP+1dIFF6PM24XOMyRBhmAdb/2e1S2b30Hs1XzhevAWD1SX5cly7OaBTJyS0Vym5LcRLb0gj3ErsDR1mZ/64pgUepFk2b2TvOLGU2RY80ivf4OfHXZISvwq6HbKCmWrWSqvAKwnSLoICv+Ek3r3fhYrm1oETc2gpBSLSztZVxZueBtPwTMoHhBAf3JDwtMhU1yMsnDiSdCjPgbPdAKxJJoQIxKMo/XD66NhkwKKkxsgPAATtq1fvbHF73j23s7cawDSdMh/0I3Z+euMvpaefmtt8YWqYcr+NBMnWudZUh+ZAeWXwA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
+ header.from=os.amperecomputing.com; dkim=pass
+ header.d=os.amperecomputing.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=os.amperecomputing.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8hqsJqwFBg4QZSSJ58wASQypzvTxOP+N2o/MyAVCsA0=;
+ b=bKdJsy387TyM4/sutffGz5iW1yggHu0JtjDOvtxAyB5mwMbqnGXAvP0yMhnpNvvKJK8LgDb5wS3h7W0Ax41667mpeZV66aOqwlLxgxF9aUKJkB5DXyvSlzGRno53wVhPAVU3qBQ8IdMEbD3PUv52Pm7Bsr3yhO7ELlVUWtCsX0U=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=os.amperecomputing.com;
+Received: from DM5PR0102MB3590.prod.exchangelabs.com (2603:10b6:4:a4::25) by
+ SJ2PR01MB8298.prod.exchangelabs.com (2603:10b6:a03:540::18) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7068.25; Wed, 6 Dec 2023 23:44:03 +0000
+Received: from DM5PR0102MB3590.prod.exchangelabs.com
+ ([fe80::49fa:8dc0:6fd1:72e6]) by DM5PR0102MB3590.prod.exchangelabs.com
+ ([fe80::49fa:8dc0:6fd1:72e6%4]) with mapi id 15.20.7068.025; Wed, 6 Dec 2023
+ 23:44:03 +0000
+Date: Wed, 6 Dec 2023 15:43:39 -0800 (PST)
+From: Ilkka Koskinen <ilkka@os.amperecomputing.com>
+To: Robin Murphy <robin.murphy@arm.com>
+cc: will@kernel.org, mark.rutland@arm.com, 
+    linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+    suzuki.poulose@arm.com, ilkka@os.amperecomputing.com, 
+    bwicaksono@nvidia.com, YWan@nvidia.com, rwiley@nvidia.com
+Subject: Re: [PATCH 5/5] perf/arm_cspmu: Add devicetree support
+In-Reply-To: <7000cdf3a22afe684793863e81a1d96bbddb5db1.1701793996.git.robin.murphy@arm.com>
+Message-ID: <b7905a93-e4c-b6a6-d584-389131f4276@os.amperecomputing.com>
+References: <cover.1701793996.git.robin.murphy@arm.com> <7000cdf3a22afe684793863e81a1d96bbddb5db1.1701793996.git.robin.murphy@arm.com>
+Content-Type: text/plain; format=flowed; charset=US-ASCII
+X-ClientProxiedBy: CH0PR03CA0368.namprd03.prod.outlook.com
+ (2603:10b6:610:119::17) To DM5PR0102MB3590.prod.exchangelabs.com
+ (2603:10b6:4:a4::25)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231206081538.17056-21-yunfei.dong@mediatek.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM5PR0102MB3590:EE_|SJ2PR01MB8298:EE_
+X-MS-Office365-Filtering-Correlation-Id: e8793d06-1f83-4fff-35f8-08dbf6b539fb
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	8hG88xHEl4J0KNwA2AuXRYWnJVNKgTlWE1Qr2EfuIRy4VKn+LpTqtXA0DyCbQqWCXrBa8BXGVbMmmRWsFW0jz7woCCb7h0umn3MvDtQckzHkxXjcN3zjxeVEFyr+VXa4R5gE0KlndZHhlQ1SarX7vD2RejtDAHrPcCLVfo/qGUHZ22Wsoc/Pbjlk8d4TbM4s7UdZWq3pvAhVR+1SbjESjIC73djrWhp0hzB449GMvGvlBnOL5nqGWatxe6CZj7cbHVhcNGZuRhfUWpzxzuGn/1G9AQH74Blyck/eIA3TMT2hZOeKH2PmL/WKNRMk3TKu/RWrslzCFG+r87bNH5HH0ZNJ8vNDpeubX2T5kgqmaHjUAYgw80rUl3CQfvnIpOluJRSZ/lw7P65ay5r+2at3iH65L4lZ/VpGMUA+cxNUMl4EqMhR8BCbTAkm+8PxRGGx0wk269fzKib4xAtLj39j1LZc1yv9c9eY2ny9gOYHIkI9SjjYlXNUzhALliHwslcoBMckVJVxCXkCzd70ri1T3URyzBOTJjxSWp2h9Pqw7mNQ1KZSz1E9S3YwsARqicDq2pJ9FDTLZoy2T9Bl/gXzdWX7zBrHR8C41nWrWKWWUq6i8obVgV+4CshQg26DPJjr
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM5PR0102MB3590.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(366004)(39850400004)(396003)(376002)(346002)(230922051799003)(186009)(1800799012)(451199024)(64100799003)(6512007)(2616005)(6506007)(83380400001)(26005)(86362001)(38350700005)(41300700001)(8936002)(2906002)(8676002)(4326008)(5660300002)(66476007)(66556008)(6916009)(316002)(52116002)(6666004)(6486002)(478600001)(66946007)(38100700002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?4LTn8q9S2AYMDnVnmNZDrQVAXZ/Ckd8YPgSnLOfXge4XwFsgYZ5Yp2rNO7A6?=
+ =?us-ascii?Q?jn1ke3OG7T/fpESwsBhm6b7o2XCd6kbjzyKo283C+LLaXZCunX8H9v7JhSEN?=
+ =?us-ascii?Q?l/pscd7EWKtzYiidIF+4eiykUZEBWNw3x6j6GFjhX+xGGYNsZckrinuh4yZo?=
+ =?us-ascii?Q?9l2stDKYUxz1yTyjx3WRS3YQ4lOmmHOhx29BIBv1AOXvxDE1e2wV6Mjf5MVP?=
+ =?us-ascii?Q?r1Z8q2UqM78F6iglV7UT4l+MoI6s4BNSopVgHvng2Z0w3n30MCxuL7RsFKur?=
+ =?us-ascii?Q?FPBMCtGinTKtA08+1vedPNBrVU2rbFmD+dCCbGAvAdPxo7XDFgu0IDO1oyDV?=
+ =?us-ascii?Q?t7TPkpMDGDJuj7ZDMns7Psb9AP5oc0bZtEnGpMD76Tu+TOy5kCCSAAAcnLy2?=
+ =?us-ascii?Q?jK+QlvPw2k+17vUCjZ8I7RMT0RGowl/FNICHozKIoiy4ozIaUr5HR3dsQCS9?=
+ =?us-ascii?Q?m5mEqCfWjLjs6pF5eNkHpVoJ4GBFRM0Z/pBFPzDzrVUWMY33LQHmzch27M/4?=
+ =?us-ascii?Q?QYWlw5Ct6i+tzBHsiLh4Z7OVWYrdCczkzgL1jcWBD1ipiRyeCu6oiDWp94V2?=
+ =?us-ascii?Q?y1Q74gzifzKqZIXOFpRWOd02qcZxJUs2RJnqSKna2AEBKtRmtmqfc/Z65nr2?=
+ =?us-ascii?Q?wEpL4n0Sbb26oMiZ/aeHa5i/43UODYNpldrMgyade+N0hli+5jV8YvjF54hH?=
+ =?us-ascii?Q?/kx89Z9alQM5INA3watBD9EahzfS5lcb+jnZHDtfUgkZtc/1+GjXaMiD6wJM?=
+ =?us-ascii?Q?SnBiIq1d4M1tvZqlE8JVAxFdf+cX8ZYQg2zSJSwf7oFpgeORvkAtO1xGeBPG?=
+ =?us-ascii?Q?SqsJlcNBJSerjg1vQabmRc8eVGhzrQPZFIIlrQv8+TxUFRzMaSLD/Pdgr5tr?=
+ =?us-ascii?Q?AGprH1XuOpW54/z1qXCS858l38CdXmozsafDH/pZuGrWTCnjGGezFJwGu/Wi?=
+ =?us-ascii?Q?axipwikQ+WXnuy3Cs/XkdAEFzRpoKUSCoZUaYkoEQaV+/R+Um2H8HK7P3eTc?=
+ =?us-ascii?Q?pQLnfOXP0b6PCKna7IR/CbaHcRxlc/Ydv0HcsvoHtDRPZtj/QdAFfYYtXykk?=
+ =?us-ascii?Q?tIEsf695O2HxSRuiXLy9NEyohJ60hJFe8Zy9S35Lw1gHJt5TB5xxdM/e86nf?=
+ =?us-ascii?Q?8qKH4iM027LgEJH+rufcBL+E+SubaDPSenUqWBJysAqz2THZaUfca9mXAwNF?=
+ =?us-ascii?Q?TyPyi2dlBVwnOYTnxPoukzgo878j6AcMX/YmGmhTBXiyx3Hz7MaIGjWz0qBC?=
+ =?us-ascii?Q?RvNAD2C38Do/Mo+c4e9SYZz5kza4WqvURluanRUY4/xhWmiP6X+9DivHjNFp?=
+ =?us-ascii?Q?2/HmK7uZ3xiffD937tWNh0FdNpRw8tpjXTjf5z/chtmVHe/wDqJ8Ok8g3BPC?=
+ =?us-ascii?Q?4bSgT0TN0+o+L5eHwwPIqM721qoWDirB2vbEpeh3VUA5aGTfAbRCRNvizv2M?=
+ =?us-ascii?Q?RlUI8vj1p1ki93I/L2O4LnJp25NbnHsOqfAtmU/vbetJtPukPmZ5dc/69JL2?=
+ =?us-ascii?Q?0O7Z92GgDDOtyFVTwOrerNL0mUa3o/xbcqpG1uB2MmqrB2D4WKVO9NI4KnlS?=
+ =?us-ascii?Q?ImF4OK6WGPiIvP/ainsynJZN43FsHcEHPjCU6bisTSAql8+NZfRojyveaB43?=
+ =?us-ascii?Q?DAOHeHPSuhOKGfMKkXPEhJQ=3D?=
+X-OriginatorOrg: os.amperecomputing.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e8793d06-1f83-4fff-35f8-08dbf6b539fb
+X-MS-Exchange-CrossTenant-AuthSource: DM5PR0102MB3590.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Dec 2023 23:44:02.9374
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: N9sqz/LtZkSpVUEyyVJkb4PtaSZzW0ugC/sr/dQeDKX8QRIldqMhHXl21h9fjMSlyrXALbm7dBt4i8AAzlo0HWkRZRrNUZRNN1x3q6bJprID4oBVC9uDs1diq1Lsnczl
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR01MB8298
 
-Hi Yunfei,
 
-kernel test robot noticed the following build errors:
+Hi Robin,
 
-[auto build test ERROR on media-tree/master]
-[also build test ERROR on linus/master v6.7-rc4 next-20231206]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+On Tue, 5 Dec 2023, Robin Murphy wrote:
+> Hook up devicetree probing support. For now let's hope that people
+> implement PMIIDR properly and we don't need an override mechanism.
+>
+> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+> ---
+> drivers/perf/arm_cspmu/arm_cspmu.c | 71 +++++++++++++++++++++++-------
+> 1 file changed, 56 insertions(+), 15 deletions(-)
+>
+> diff --git a/drivers/perf/arm_cspmu/arm_cspmu.c b/drivers/perf/arm_cspmu/arm_cspmu.c
+> index b64de4d800c7..80b5fc417ee3 100644
+> --- a/drivers/perf/arm_cspmu/arm_cspmu.c
+> +++ b/drivers/perf/arm_cspmu/arm_cspmu.c
+> @@ -27,6 +27,7 @@
+> #include <linux/io-64-nonatomic-lo-hi.h>
+> #include <linux/module.h>
+> #include <linux/mutex.h>
+> +#include <linux/of.h>
+> #include <linux/perf_event.h>
+> #include <linux/platform_device.h>
+>
+> @@ -309,6 +310,10 @@ static const char *arm_cspmu_get_name(const struct arm_cspmu *cspmu)
+> 	static atomic_t pmu_idx[ACPI_APMT_NODE_TYPE_COUNT] = { 0 };
+>
+> 	dev = cspmu->dev;
+> +	if (!has_acpi_companion(dev))
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Yunfei-Dong/media-medkatek-vcodec-support-tee-decoder/20231206-201843
-base:   git://linuxtv.org/media_tree.git master
-patch link:    https://lore.kernel.org/r/20231206081538.17056-21-yunfei.dong%40mediatek.com
-patch subject: [PATCH] media: medkatek: vcodec: support tee decoder
-config: powerpc-allmodconfig (https://download.01.org/0day-ci/archive/20231207/202312070723.APrpMLj9-lkp@intel.com/config)
-compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project.git 4a5ac14ee968ff0ad5d2cc1ffa0299048db4c88a)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231207/202312070723.APrpMLj9-lkp@intel.com/reproduce)
+Am I missing something since this doesn't work on top of v6.7-rc4?
+The problem I see is that has_acpi_companion() calls 
+is_acpi_device_node(), which compares whether
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202312070723.APrpMLj9-lkp@intel.com/
+ 	fwnode->ops == &acpi_device_fwnode_ops;
 
-All errors (new ones prefixed by >>):
+However, the acpi/apmt code allocates fwnode by calling
+acpi_alloc_fwnode_static(), which assigns &acpi_static_fwnode_ops
+to ops.
 
->> drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c:313:11: error: no member named 'is_secure_playback' in 'struct mtk_vcodec_dec_ctx'
-     313 |         if (ctx->is_secure_playback)
-         |             ~~~  ^
->> drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c:314:3: error: call to undeclared function 'mtk_vcodec_dec_optee_release'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     314 |                 mtk_vcodec_dec_optee_release(dev->optee_private);
-         |                 ^
-   drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c:314:3: note: did you mean 'mtk_vcodec_dec_release'?
-   drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.h:88:6: note: 'mtk_vcodec_dec_release' declared here
-      88 | void mtk_vcodec_dec_release(struct mtk_vcodec_dec_ctx *ctx);
-         |      ^
->> drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c:314:37: error: no member named 'optee_private' in 'struct mtk_vcodec_dec_dev'
-     314 |                 mtk_vcodec_dec_optee_release(dev->optee_private);
-         |                                              ~~~  ^
->> drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c:472:8: error: call to undeclared function 'mtk_vcodec_dec_optee_private_init'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     472 |         ret = mtk_vcodec_dec_optee_private_init(dev);
-         |               ^
-   drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c:472:8: note: did you mean 'mtk_vcodec_dec_queue_init'?
-   drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.h:85:5: note: 'mtk_vcodec_dec_queue_init' declared here
-      85 | int mtk_vcodec_dec_queue_init(void *priv, struct vb2_queue *src_vq,
-         |     ^
-   4 errors generated.
+I wonder though, if is_acpi_device_node() should check the static variant 
+too? :/
 
+Cheers, Ilkka
 
-vim +313 drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c
-
-   291	
-   292	static int fops_vcodec_release(struct file *file)
-   293	{
-   294		struct mtk_vcodec_dec_dev *dev = video_drvdata(file);
-   295		struct mtk_vcodec_dec_ctx *ctx = fh_to_dec_ctx(file->private_data);
-   296	
-   297		mtk_v4l2_vdec_dbg(0, ctx, "[%d] decoder", ctx->id);
-   298		mutex_lock(&dev->dev_mutex);
-   299	
-   300		/*
-   301		 * Call v4l2_m2m_ctx_release before mtk_vcodec_dec_release. First, it
-   302		 * makes sure the worker thread is not running after vdec_if_deinit.
-   303		 * Second, the decoder will be flushed and all the buffers will be
-   304		 * returned in stop_streaming.
-   305		 */
-   306		v4l2_m2m_ctx_release(ctx->m2m_ctx);
-   307		mtk_vcodec_dec_release(ctx);
-   308	
-   309		v4l2_fh_del(&ctx->fh);
-   310		v4l2_fh_exit(&ctx->fh);
-   311		v4l2_ctrl_handler_free(&ctx->ctrl_hdl);
-   312	
- > 313		if (ctx->is_secure_playback)
- > 314			mtk_vcodec_dec_optee_release(dev->optee_private);
-   315	
-   316		mtk_vcodec_dbgfs_remove(dev, ctx->id);
-   317		list_del_init(&ctx->list);
-   318		kfree(ctx);
-   319		mutex_unlock(&dev->dev_mutex);
-   320		return 0;
-   321	}
-   322	
-   323	static const struct v4l2_file_operations mtk_vcodec_fops = {
-   324		.owner		= THIS_MODULE,
-   325		.open		= fops_vcodec_open,
-   326		.release	= fops_vcodec_release,
-   327		.poll		= v4l2_m2m_fop_poll,
-   328		.unlocked_ioctl	= video_ioctl2,
-   329		.mmap		= v4l2_m2m_fop_mmap,
-   330	};
-   331	
-   332	static void mtk_vcodec_dec_get_chip_name(struct mtk_vcodec_dec_dev *vdec_dev)
-   333	{
-   334		struct device *dev = &vdec_dev->plat_dev->dev;
-   335	
-   336		if (of_device_is_compatible(dev->of_node, "mediatek,mt8173-vcodec-dec"))
-   337			vdec_dev->chip_name = MTK_VDEC_MT8173;
-   338		else if (of_device_is_compatible(dev->of_node, "mediatek,mt8183-vcodec-dec"))
-   339			vdec_dev->chip_name = MTK_VDEC_MT8183;
-   340		else if (of_device_is_compatible(dev->of_node, "mediatek,mt8192-vcodec-dec"))
-   341			vdec_dev->chip_name = MTK_VDEC_MT8192;
-   342		else if (of_device_is_compatible(dev->of_node, "mediatek,mt8195-vcodec-dec"))
-   343			vdec_dev->chip_name = MTK_VDEC_MT8195;
-   344		else if (of_device_is_compatible(dev->of_node, "mediatek,mt8186-vcodec-dec"))
-   345			vdec_dev->chip_name = MTK_VDEC_MT8186;
-   346		else if (of_device_is_compatible(dev->of_node, "mediatek,mt8188-vcodec-dec"))
-   347			vdec_dev->chip_name = MTK_VDEC_MT8188;
-   348		else
-   349			vdec_dev->chip_name = MTK_VDEC_INVAL;
-   350	}
-   351	
-   352	static int mtk_vcodec_probe(struct platform_device *pdev)
-   353	{
-   354		struct mtk_vcodec_dec_dev *dev;
-   355		struct video_device *vfd_dec;
-   356		phandle rproc_phandle;
-   357		enum mtk_vcodec_fw_type fw_type;
-   358		int i, ret;
-   359	
-   360		dev = devm_kzalloc(&pdev->dev, sizeof(*dev), GFP_KERNEL);
-   361		if (!dev)
-   362			return -ENOMEM;
-   363	
-   364		INIT_LIST_HEAD(&dev->ctx_list);
-   365		dev->plat_dev = pdev;
-   366	
-   367		mtk_vcodec_dec_get_chip_name(dev);
-   368		if (dev->chip_name == MTK_VDEC_INVAL) {
-   369			dev_err(&pdev->dev, "Failed to get decoder chip name");
-   370			return -EINVAL;
-   371		}
-   372	
-   373		dev->vdec_pdata = of_device_get_match_data(&pdev->dev);
-   374		if (!of_property_read_u32(pdev->dev.of_node, "mediatek,vpu",
-   375					  &rproc_phandle)) {
-   376			fw_type = VPU;
-   377		} else if (!of_property_read_u32(pdev->dev.of_node, "mediatek,scp",
-   378						 &rproc_phandle)) {
-   379			fw_type = SCP;
-   380		} else {
-   381			dev_dbg(&pdev->dev, "Could not get vdec IPI device");
-   382			return -ENODEV;
-   383		}
-   384		dma_set_max_seg_size(&pdev->dev, UINT_MAX);
-   385	
-   386		dev->fw_handler = mtk_vcodec_fw_select(dev, fw_type, DECODER);
-   387		if (IS_ERR(dev->fw_handler))
-   388			return PTR_ERR(dev->fw_handler);
-   389	
-   390		ret = mtk_vcodec_init_dec_resources(dev);
-   391		if (ret) {
-   392			dev_err(&pdev->dev, "Failed to init dec resources");
-   393			goto err_dec_pm;
-   394		}
-   395	
-   396		if (IS_VDEC_LAT_ARCH(dev->vdec_pdata->hw_arch)) {
-   397			dev->core_workqueue =
-   398				alloc_ordered_workqueue("core-decoder",
-   399							WQ_MEM_RECLAIM | WQ_FREEZABLE);
-   400			if (!dev->core_workqueue) {
-   401				dev_dbg(&pdev->dev, "Failed to create core workqueue");
-   402				ret = -EINVAL;
-   403				goto err_res;
-   404			}
-   405		}
-   406	
-   407		for (i = 0; i < MTK_VDEC_HW_MAX; i++)
-   408			mutex_init(&dev->dec_mutex[i]);
-   409		mutex_init(&dev->dev_mutex);
-   410		spin_lock_init(&dev->irqlock);
-   411	
-   412		snprintf(dev->v4l2_dev.name, sizeof(dev->v4l2_dev.name), "%s",
-   413			"[/MTK_V4L2_VDEC]");
-   414	
-   415		ret = v4l2_device_register(&pdev->dev, &dev->v4l2_dev);
-   416		if (ret) {
-   417			dev_err(&pdev->dev, "v4l2_device_register err=%d", ret);
-   418			goto err_core_workq;
-   419		}
-   420	
-   421		vfd_dec = video_device_alloc();
-   422		if (!vfd_dec) {
-   423			dev_err(&pdev->dev, "Failed to allocate video device");
-   424			ret = -ENOMEM;
-   425			goto err_dec_alloc;
-   426		}
-   427		vfd_dec->fops		= &mtk_vcodec_fops;
-   428		vfd_dec->ioctl_ops	= &mtk_vdec_ioctl_ops;
-   429		vfd_dec->release	= video_device_release;
-   430		vfd_dec->lock		= &dev->dev_mutex;
-   431		vfd_dec->v4l2_dev	= &dev->v4l2_dev;
-   432		vfd_dec->vfl_dir	= VFL_DIR_M2M;
-   433		vfd_dec->device_caps	= V4L2_CAP_VIDEO_M2M_MPLANE |
-   434				V4L2_CAP_STREAMING;
-   435	
-   436		snprintf(vfd_dec->name, sizeof(vfd_dec->name), "%s",
-   437			MTK_VCODEC_DEC_NAME);
-   438		video_set_drvdata(vfd_dec, dev);
-   439		dev->vfd_dec = vfd_dec;
-   440		platform_set_drvdata(pdev, dev);
-   441	
-   442		dev->m2m_dev_dec = v4l2_m2m_init(&mtk_vdec_m2m_ops);
-   443		if (IS_ERR((__force void *)dev->m2m_dev_dec)) {
-   444			dev_err(&pdev->dev, "Failed to init mem2mem dec device");
-   445			ret = PTR_ERR((__force void *)dev->m2m_dev_dec);
-   446			goto err_dec_alloc;
-   447		}
-   448	
-   449		dev->decode_workqueue =
-   450			alloc_ordered_workqueue(MTK_VCODEC_DEC_NAME,
-   451				WQ_MEM_RECLAIM | WQ_FREEZABLE);
-   452		if (!dev->decode_workqueue) {
-   453			dev_err(&pdev->dev, "Failed to create decode workqueue");
-   454			ret = -EINVAL;
-   455			goto err_event_workq;
-   456		}
-   457	
-   458		if (dev->vdec_pdata->is_subdev_supported) {
-   459			ret = of_platform_populate(pdev->dev.of_node, NULL, NULL,
-   460						   &pdev->dev);
-   461			if (ret) {
-   462				dev_err(&pdev->dev, "Main device of_platform_populate failed.");
-   463				goto err_reg_cont;
-   464			}
-   465		} else {
-   466			set_bit(MTK_VDEC_CORE, dev->subdev_bitmap);
-   467		}
-   468	
-   469		atomic_set(&dev->dec_active_cnt, 0);
-   470		memset(dev->vdec_racing_info, 0, sizeof(dev->vdec_racing_info));
-   471		mutex_init(&dev->dec_racing_info_mutex);
- > 472		ret = mtk_vcodec_dec_optee_private_init(dev);
-   473		if (ret) {
-   474			dev_err(&pdev->dev, "Failed to init svp private.");
-   475			goto err_reg_cont;
-   476		}
-   477	
-   478		ret = video_register_device(vfd_dec, VFL_TYPE_VIDEO, -1);
-   479		if (ret) {
-   480			dev_err(&pdev->dev, "Failed to register video device");
-   481			goto err_reg_cont;
-   482		}
-   483	
-   484		if (dev->vdec_pdata->uses_stateless_api) {
-   485			v4l2_disable_ioctl(vfd_dec, VIDIOC_DECODER_CMD);
-   486			v4l2_disable_ioctl(vfd_dec, VIDIOC_TRY_DECODER_CMD);
-   487	
-   488			dev->mdev_dec.dev = &pdev->dev;
-   489			strscpy(dev->mdev_dec.model, MTK_VCODEC_DEC_NAME,
-   490				sizeof(dev->mdev_dec.model));
-   491	
-   492			media_device_init(&dev->mdev_dec);
-   493			dev->mdev_dec.ops = &mtk_vcodec_media_ops;
-   494			dev->v4l2_dev.mdev = &dev->mdev_dec;
-   495	
-   496			ret = v4l2_m2m_register_media_controller(dev->m2m_dev_dec, dev->vfd_dec,
-   497								 MEDIA_ENT_F_PROC_VIDEO_DECODER);
-   498			if (ret) {
-   499				dev_err(&pdev->dev, "Failed to register media controller");
-   500				goto err_dec_mem_init;
-   501			}
-   502	
-   503			ret = media_device_register(&dev->mdev_dec);
-   504			if (ret) {
-   505				dev_err(&pdev->dev, "Failed to register media device");
-   506				goto err_media_reg;
-   507			}
-   508	
-   509			dev_dbg(&pdev->dev, "media registered as /dev/media%d", vfd_dec->minor);
-   510		}
-   511	
-   512		mtk_vcodec_dbgfs_init(dev, false);
-   513		dev_dbg(&pdev->dev, "decoder registered as /dev/video%d", vfd_dec->minor);
-   514	
-   515		return 0;
-   516	
-   517	err_media_reg:
-   518		v4l2_m2m_unregister_media_controller(dev->m2m_dev_dec);
-   519	err_dec_mem_init:
-   520		video_unregister_device(vfd_dec);
-   521	err_reg_cont:
-   522		if (dev->vdec_pdata->uses_stateless_api)
-   523			media_device_cleanup(&dev->mdev_dec);
-   524		destroy_workqueue(dev->decode_workqueue);
-   525	err_event_workq:
-   526		v4l2_m2m_release(dev->m2m_dev_dec);
-   527	err_dec_alloc:
-   528		v4l2_device_unregister(&dev->v4l2_dev);
-   529	err_core_workq:
-   530		if (IS_VDEC_LAT_ARCH(dev->vdec_pdata->hw_arch))
-   531			destroy_workqueue(dev->core_workqueue);
-   532	err_res:
-   533		if (!dev->vdec_pdata->is_subdev_supported)
-   534			pm_runtime_disable(dev->pm.dev);
-   535	err_dec_pm:
-   536		mtk_vcodec_fw_release(dev->fw_handler);
-   537		return ret;
-   538	}
-   539	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> +		return devm_kasprintf(dev, GFP_KERNEL, PMUNAME "_%u",
+> +				      atomic_fetch_inc(&pmu_idx[0]));
+> +
+> 	apmt_node = arm_cspmu_apmt_node(dev);
+> 	pmu_type = apmt_node->type;
+>
+> @@ -406,7 +411,6 @@ static struct arm_cspmu_impl_match *arm_cspmu_impl_match_get(u32 pmiidr)
+> static int arm_cspmu_init_impl_ops(struct arm_cspmu *cspmu)
+> {
+> 	int ret = 0;
+> -	struct acpi_apmt_node *apmt_node = arm_cspmu_apmt_node(cspmu->dev);
+> 	struct arm_cspmu_impl_match *match;
+>
+> 	/* Start with a default PMU implementation */
+> @@ -425,8 +429,12 @@ static int arm_cspmu_init_impl_ops(struct arm_cspmu *cspmu)
+> 	};
+>
+> 	/* Firmware may override implementer/product ID from PMIIDR */
+> -	if (apmt_node->impl_id)
+> -		cspmu->impl.pmiidr = apmt_node->impl_id;
+> +	if (has_acpi_companion(cspmu->dev)) {
+> +		struct acpi_apmt_node *apmt_node = arm_cspmu_apmt_node(cspmu->dev);
+> +
+> +		if (apmt_node->impl_id)
+> +			cspmu->impl.pmiidr = apmt_node->impl_id;
+> +	}
+>
+> 	/* Find implementer specific attribute ops. */
+> 	match = arm_cspmu_impl_match_get(cspmu->impl.pmiidr);
+> @@ -928,7 +936,6 @@ static void arm_cspmu_read(struct perf_event *event)
+>
+> static struct arm_cspmu *arm_cspmu_alloc(struct platform_device *pdev)
+> {
+> -	struct acpi_apmt_node *apmt_node;
+> 	struct arm_cspmu *cspmu;
+> 	struct device *dev = &pdev->dev;
+>
+> @@ -939,8 +946,13 @@ static struct arm_cspmu *arm_cspmu_alloc(struct platform_device *pdev)
+> 	cspmu->dev = dev;
+> 	platform_set_drvdata(pdev, cspmu);
+>
+> -	apmt_node = arm_cspmu_apmt_node(dev);
+> -	cspmu->has_atomic_dword = apmt_node->flags & ACPI_APMT_FLAGS_ATOMIC;
+> +	if (has_acpi_companion(dev)) {
+> +		struct acpi_apmt_node *apmt_node = arm_cspmu_apmt_node(dev);
+> +
+> +		cspmu->has_atomic_dword = apmt_node->flags & ACPI_APMT_FLAGS_ATOMIC;
+> +	} else {
+> +		cspmu->has_atomic_dword = device_property_read_bool(dev, "arm,64-bit-atomic");
+> +	}
+>
+> 	return cspmu;
+> }
+> @@ -1133,11 +1145,6 @@ static int arm_cspmu_acpi_get_cpus(struct arm_cspmu *cspmu)
+> 		}
+> 	}
+>
+> -	if (cpumask_empty(&cspmu->associated_cpus)) {
+> -		dev_dbg(cspmu->dev, "No cpu associated with the PMU\n");
+> -		return -ENODEV;
+> -	}
+> -
+> 	return 0;
+> }
+> #else
+> @@ -1147,9 +1154,36 @@ static int arm_cspmu_acpi_get_cpus(struct arm_cspmu *cspmu)
+> }
+> #endif
+>
+> +static int arm_cspmu_of_get_cpus(struct arm_cspmu *cspmu)
+> +{
+> +	struct of_phandle_iterator it;
+> +	int ret, cpu;
+> +
+> +	of_for_each_phandle(&it, ret, cspmu->dev->of_node, "cpus", NULL, 0) {
+> +		cpu = of_cpu_node_to_id(it.node);
+> +		if (cpu < 0)
+> +			continue;
+> +		cpumask_set_cpu(cpu, &cspmu->associated_cpus);
+> +	}
+> +	return ret;
+> +}
+> +
+> static int arm_cspmu_get_cpus(struct arm_cspmu *cspmu)
+> {
+> -	return arm_cspmu_acpi_get_cpus(cspmu);
+> +	int ret = 0;
+> +
+> +	if (has_acpi_companion(cspmu->dev))
+> +		ret = arm_cspmu_acpi_get_cpus(cspmu);
+> +	else if (of_property_present(cspmu->dev->of_node, "cpus"))
+> +		ret = arm_cspmu_of_get_cpus(cspmu);
+> +	else
+> +		cpumask_copy(&cspmu->associated_cpus, cpu_possible_mask);
+> +
+> +	if (!ret && cpumask_empty(&cspmu->associated_cpus)) {
+> +		dev_dbg(cspmu->dev, "No cpu associated with the PMU\n");
+> +		ret = -ENODEV;
+> +	}
+> +	return ret;
+> }
+>
+> static int arm_cspmu_register_pmu(struct arm_cspmu *cspmu)
+> @@ -1246,11 +1280,18 @@ static const struct platform_device_id arm_cspmu_id[] = {
+> };
+> MODULE_DEVICE_TABLE(platform, arm_cspmu_id);
+>
+> +static const struct of_device_id arm_cspmu_of_match[] = {
+> +	{ .compatible = "arm,coresight-pmu" },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, arm_cspmu_of_match);
+> +
+> static struct platform_driver arm_cspmu_driver = {
+> 	.driver = {
+> -			.name = DRVNAME,
+> -			.suppress_bind_attrs = true,
+> -		},
+> +		.name = DRVNAME,
+> +		.of_match_table = arm_cspmu_of_match,
+> +		.suppress_bind_attrs = true,
+> +	},
+> 	.probe = arm_cspmu_device_probe,
+> 	.remove = arm_cspmu_device_remove,
+> 	.id_table = arm_cspmu_id,
+> -- 
+> 2.39.2.101.g768bb238c484.dirty
+>
+>
 
