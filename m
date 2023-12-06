@@ -1,154 +1,156 @@
-Return-Path: <devicetree+bounces-22303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB57A80713D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 14:52:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE76C80714D
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 14:53:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 249761C20EC1
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 13:52:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A1B0F281D98
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 13:53:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0744B3BB4E;
-	Wed,  6 Dec 2023 13:52:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="C6BuFcl3"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92D2C3C479;
+	Wed,  6 Dec 2023 13:53:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-x644.google.com (mail-pl1-x644.google.com [IPv6:2607:f8b0:4864:20::644])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 440F7D44;
-	Wed,  6 Dec 2023 05:52:02 -0800 (PST)
-Received: by mail-pl1-x644.google.com with SMTP id d9443c01a7336-1d0ccda19eeso11750645ad.1;
-        Wed, 06 Dec 2023 05:52:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701870722; x=1702475522; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Lm+D5jKJ17HuWeeaSzfoieBbBFG7aIweWno7P45cPZU=;
-        b=C6BuFcl3wnlf0GgKMlAhHqf3iVxS/XwSHI5485/K/M4FlDk1E9DnTUnOgSfWhTCLou
-         Hfe8ofl2zm6gzw4jj7m7857a/WFNC6I8KNx+y6UyIILpoUf2W8eyRHctOjo8f6edk1Md
-         dtz226NhCo1jdrXFMDm2gVkUmNHiOkp+9bzgorCIFbcFHI7hWPSl/8LLQ7ETF41TQcJF
-         goJNrkFYkbaM/W3TJvH/wLMz7iHG1GnhdeVREBsLVbzsqnrUsRyDv2gVvJH6XWb73xPI
-         rcYH8GyiP5A/P82pyUjPHgGWPVDE66E3EdflG2lSncU3h8UUUwVsFR4ty9toMLOu2bYV
-         C6UQ==
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E70AA4;
+	Wed,  6 Dec 2023 05:53:14 -0800 (PST)
+Received: by mail-oi1-f173.google.com with SMTP id 5614622812f47-3b84e328327so4107432b6e.2;
+        Wed, 06 Dec 2023 05:53:14 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701870722; x=1702475522;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Lm+D5jKJ17HuWeeaSzfoieBbBFG7aIweWno7P45cPZU=;
-        b=bn7VLPzMQJG4CPfcSumsQ+GJFRKre2yKZxtJyaN+XDCADo3D4MJ8tdzqguINcZmgyf
-         xg/TYHYl3mOLxqQ0oYR5buWZRYhVcoS2X6ncRnHvpl8iufzQ6LQRp1fNlVw0OsATGnkO
-         FxU7wuZMOqXsVooIb4SldeSmzD/4IOLnAnWngxi+3xtIGuiFjKFUefY/I9PdIcCfeesG
-         d7JQAdAXdrPw+qLvvq1zv7/kdYozjQVeQSczT8hDskifVWKDvJfx1rX8mQZK3ieSN4+y
-         +oGa5oc0PBLDAs4CFt6SNm/axBoibbRN3Qw76WJD0dPzzaMmbdfjajeQa+I06ISusPfQ
-         ddCw==
-X-Gm-Message-State: AOJu0YziKsM5elM7kJVxlJi9INCyWmlDr+L0dJ8Wf2+DCSZJilgauK4C
-	Pzl3knCf8a3JplUxu+D/IBM=
-X-Google-Smtp-Source: AGHT+IHGSFwRWfYX+lMdYGWOxubT0DY/bPjf6h9lituNkPiE+Arv9DNEp8vfXIzXqoEDyKmciyIYlA==
-X-Received: by 2002:a17:903:1250:b0:1d0:6ffe:1e81 with SMTP id u16-20020a170903125000b001d06ffe1e81mr638593plh.100.1701870721529;
-        Wed, 06 Dec 2023 05:52:01 -0800 (PST)
-Received: from dawn-virtual-machine.localdomain ([183.198.59.249])
-        by smtp.gmail.com with ESMTPSA id d8-20020a170902cec800b001d0af279a1fsm5122701plg.182.2023.12.06.05.51.56
+        d=1e100.net; s=20230601; t=1701870793; x=1702475593;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ELAnzgA5DxDxpCpfzQO17fyyUMvM5sG9LtRZSNKeVTs=;
+        b=jaNHeYQrQ3G5640sj2BCWSIUkdQMoyNnua+BLdjlHAs3E/Q1CT75FBjqSbgIA/uLnQ
+         cgs0tBqkhiza8lOXWC0x0Q4W5Qfuem9TDWxQw58wcVCP+QUahCmrrl5Sb9U2Xwi+Ez4B
+         NlFDWUwugE3oKaFhll5AeW72NLyCYyHJ4ggsi9NMpr/Ygx3LZwBzyBjvGYjS5xxQc2rO
+         RQ+3+rvBhmODOnAUSi3hhhklrV083FuCX3lrRZTUu2EQq6rbT76KN8/qL3zMubJtOqmN
+         BegjkTNohaEE5YtKzfOWZeotvkM1aXIP4eLZxX8UwlPuw9Pe0/8+CWlbi0v2N+f10k/m
+         2D9w==
+X-Gm-Message-State: AOJu0YypRurF8pxrbO0nYb0042lukWSfgEk5PKFncb41i90yC/WYyg5Z
+	7fK2hq+QkgYqFXtvWeV0/WQ4CE7xbA==
+X-Google-Smtp-Source: AGHT+IEVaa/iHpBSbWcNgoXvomDJzk20fAqRd+fvaRNdmt3y7YPgh2MfstnaZSYrJPliRoSiim9bqg==
+X-Received: by 2002:a05:6808:318b:b0:3b8:b55a:84aa with SMTP id cd11-20020a056808318b00b003b8b55a84aamr1125383oib.43.1701870793491;
+        Wed, 06 Dec 2023 05:53:13 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id bm19-20020a0568081a9300b003b9d36eb9c4sm65604oib.57.2023.12.06.05.53.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Dec 2023 05:52:00 -0800 (PST)
-From: Li peiyu <579lpy@gmail.com>
-To: jic23@kernel.org
-Cc: javier.carrasco.cruz@gmail.com,
-	lars@metafoo.de,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Li peiyu <579lpy@gmail.com>
-Subject: [PATCH v4 4/4] iio: humidity: Add TI HDC302x support
-Date: Wed,  6 Dec 2023 21:51:48 +0800
-Message-Id: <20231206135148.559564-1-579lpy@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231206134655.559474-1-579lpy@gmail.com>
-References: <20231206134655.559474-1-579lpy@gmail.com>
+        Wed, 06 Dec 2023 05:53:12 -0800 (PST)
+Received: (nullmailer pid 2045482 invoked by uid 1000);
+	Wed, 06 Dec 2023 13:53:11 -0000
+Date: Wed, 6 Dec 2023 07:53:11 -0600
+From: Rob Herring <robh@kernel.org>
+To: Anand Moon <linux.amoon@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Icenowy Zheng <uwu@icenowy.me>, Neil Armstrong <neil.armstrong@linaro.org>, linux-amlogic@lists.infradead.org, Conor Dooley <conor.dooley@microchip.com>, linux-usb@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 1/2] dt-bindings: usb: Add the binding example for the
+ Genesys Logic GL3523 hub
+Message-ID: <20231206135311.GA2043711-robh@kernel.org>
+References: <20231204144429.45197-1-linux.amoon@gmail.com>
+ <20231204144429.45197-2-linux.amoon@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231204144429.45197-2-linux.amoon@gmail.com>
 
-Add device tree bindings for HDC3020/HDC3021/HDC3022 humidity and
-temperature sensors.
+On Mon, Dec 04, 2023 at 08:14:25PM +0530, Anand Moon wrote:
+> Add the binding example for the USB3.1 Genesys Logic GL3523
+> integrates with USB 3.1 Gen 1 Super Speed and USB 2.0 High-Speed
+> hub.
+> 
+> For onboard hub controllers that support USB 3.x and USB 2.0 hubs
+> with shared resets and power supplies, this property is used to identify
+> the hubs with which these are shared.
+> 
+> GL3523 has built-in 5V to 3.3V and 5V to 1.2V regulators, which serves
+> power to the USB HUB, it uses 5V power regulator.
+> 
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> ---
+> V6: fix the description of the regulators
+> Updated the commit message for regulator updates.
+> add reviewed by Conor Dooley
+> [1] https://lore.kernel.org/all/20231130053130.21966-2-linux.amoon@gmail.com/
+> v5: upgrade peer-hub description : Conor Dooley
+> [0] https://www.genesyslogic.com.tw/en/product_view.php?show=67 [Block Diagram]
+> v4: Fix the description of peer-hub and update the commit message.
+> Schematics of the Odroid N2+
+> https://dn.odroid.com/S922X/ODROID-N2/Schematic/odroid-n2_rev0.6_20210121.pdf
+> V3: fix the dt_binding_check error, added new example for Genesys GL3523
+> v2: added Genesys GL3523 binding
+> v1: none
+> ---
+>  .../bindings/usb/genesys,gl850g.yaml          | 65 +++++++++++++++++--
+>  1 file changed, 61 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> index ee08b9c3721f..c6f63a69396d 100644
+> --- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> +++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> @@ -9,9 +9,6 @@ title: Genesys Logic USB hub controller
+>  maintainers:
+>    - Icenowy Zheng <uwu@icenowy.me>
+>  
+> -allOf:
+> -  - $ref: usb-device.yaml#
+> -
+>  properties:
+>    compatible:
+>      enum:
+> @@ -27,12 +24,46 @@ properties:
+>  
+>    vdd-supply:
+>      description:
+> -      the regulator that provides 3.3V core power to the hub.
+> +      The regulator that provides 3.3V or 5.0V core power to the hub.
+> +
+> +  peer-hub:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      For onboard hub controllers that support USB 3.x and USB 2.0 hubs
+> +      with shared resets and power supplies, this property is used to identify
+> +      the hubs with which these are shared.
+>  
+>  required:
+>    - compatible
+>    - reg
+>  
+> +allOf:
+> +  - $ref: usb-device.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - usb5e3,608
+> +    then:
+> +      properties:
+> +        peer-hub: false
+> +        vdd-supply: false
+> +        reset-gpios: true
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - usb5e3,610
+> +              - usb5e3,620
+> +    then:
+> +      properties:
+> +        peer-hub: true
+> +        vdd-supply: true
+> +        reset-gpios: true
 
-Signed-off-by: Li peiyu <579lpy@gmail.com>
----
- .../bindings/iio/humidity/ti,hdc3020.yaml     | 55 +++++++++++++++++++
- 1 file changed, 55 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml
+No need for this if schema. The default is they are allowed.
 
-diff --git a/Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml b/Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml
-new file mode 100644
-index 000000000000..f04b09fdca5e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml
-@@ -0,0 +1,55 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/humidity/ti,hdc3020.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: HDC3020/HDC3021/HDC3022 humidity and temperature iio sensors
-+
-+maintainers:
-+  - Li peiyu <579lpy@gmail.com>
-+  - Javier Carrasco <javier.carrasco.cruz@gmail.com>
-+
-+description:
-+  https://www.ti.com/lit/ds/symlink/hdc3020.pdf
-+
-+  The HDC302x is an integrated capacitive based relative humidity (RH)
-+  and temperature sensor.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - ti,hdc3021
-+              - ti,hdc3022
-+          - const: ti,hdc3020
-+      - items:
-+          - const: ti,hdc3020
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  vdd-supply: true
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        humidity-sensor@47 {
-+            compatible = "ti,hdc3021", "ti,hdc3020";
-+            reg = <0x47>;
-+            vdd-supply = <&vcc_3v3>;
-+        };
-+    };
--- 
-2.34.1
-
+Rob
 
