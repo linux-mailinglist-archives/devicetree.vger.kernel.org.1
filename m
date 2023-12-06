@@ -1,159 +1,205 @@
-Return-Path: <devicetree+bounces-22279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22280-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E750806FDA
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 13:36:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 503F0807018
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 13:46:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB3E21F215B0
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 12:36:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 792CB1C20A54
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 12:46:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40E7D1A5B0;
-	Wed,  6 Dec 2023 12:36:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dztOIm3q"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCDE63454F;
+	Wed,  6 Dec 2023 12:46:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8800712F
-	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 04:36:16 -0800 (PST)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-a1d6f4a0958so149745566b.1
-        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 04:36:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701866175; x=1702470975; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=dhP0y3lO/PweF1RfHhFSQDOkyteb+oLvHY0gryFPYWI=;
-        b=dztOIm3qEwyrrlAhjghjt/2y0izUrCL3bWee5fMCH5Jbh3nOlDQ3nmYK9hZNMvd2OU
-         7iVX4G+DJzm32VKHHUjxWBMlWpff0xVywx8ynP0fGw5jFhYKAKv3/Gce5gvLf1PeYHZx
-         ZALYejgBHTLQnPEyQzPYwRCuvPHBCiqhSqvq8iaXuzrKh9H/nAW+IX7r/BdjgRLxVIpy
-         No1hc7hrVb8KBZhoEUkH2rExdBkweEDJ6kOdkeOH8yDjx+nw7JOOVWapMdbhy3ef0qLO
-         VP7Z3tLvkgipTyj/8wpBusqHVqIBIDGWYbfjtok0rHxaXM408fcxuOo1raBIS2bkho5+
-         usCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701866175; x=1702470975;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dhP0y3lO/PweF1RfHhFSQDOkyteb+oLvHY0gryFPYWI=;
-        b=GyVwPzVic8/QHNrabsibetnHxAtUZrv/a2ooZp9k+zRqR6F+DIuALKPjJMLvv5bxr9
-         yqtlGRwB3uoUZi7hjP2OY5GQTZxyu2k+XsXUISnFYSJVk5jCKYymuFd8VktZHt1apb5o
-         XPmhI0WuH16ctf6yU8MWg0gvzwGLB7N6qCF5r7dLVUc/nZ2xEN5YuzTPeTTUxriO6GiY
-         bHvi06m4EY19lAYT0IcAZMdqZJXIXPsUlN+8robnnH/TZNKwa78g0PhkRSLCZi9YFdZT
-         hnPa6FDwKJp0LICmKkrDjJbfVl40BRdJssebzCFz3joclpTBQ5XA8Togz0Qc5qMgTm9j
-         FnVg==
-X-Gm-Message-State: AOJu0YzDG8gkaJlCL5U/2KNoSgObLQ6ymO9Fq4PTGpNhujlfFmbGQpny
-	rvGJYWap1IFxWby3XU335JJUDQ==
-X-Google-Smtp-Source: AGHT+IEjEppnEL2GoHQL+oSSs+kXp+IGJw6L0InNoVjYIKYoc18xPZI23Uhq0UOlHEKfZ3JBehNE+w==
-X-Received: by 2002:a17:906:2201:b0:a1b:6f31:11d8 with SMTP id s1-20020a170906220100b00a1b6f3111d8mr3162054ejs.25.1701866174962;
-        Wed, 06 Dec 2023 04:36:14 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id h14-20020a1709063c0e00b00a1b7747e3c0sm3944175ejg.151.2023.12.06.04.36.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Dec 2023 04:36:13 -0800 (PST)
-Message-ID: <701278db-2ea3-49eb-a292-67294d3fdfa5@linaro.org>
-Date: Wed, 6 Dec 2023 13:36:12 +0100
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 937DA181;
+	Wed,  6 Dec 2023 04:46:05 -0800 (PST)
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.96.2)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1rArHf-0005kg-2z;
+	Wed, 06 Dec 2023 12:45:49 +0000
+Date: Wed, 6 Dec 2023 12:45:40 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Sabrina Dubroca <sd@queasysnail.net>,
+	Jianhui Zhao <zhaojh329@gmail.com>,
+	Chen-Yu Tsai <wenst@chromium.org>,
+	"Garmin.Chang" <Garmin.Chang@mediatek.com>,
+	Sam Shih <sam.shih@mediatek.com>,
+	Frank Wunderlich <frank-w@public-files.de>,
+	Dan Carpenter <dan.carpenter@linaro.org>,
+	James Liao <jamesjj.liao@mediatek.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org
+Subject: Re: [PATCH v3 2/4] dt-bindings: clock: mediatek: add clock
+ controllers of MT7988
+Message-ID: <ZXBs9GOOOlZrMuSW@makrotopia.org>
+References: <23bc89d407e7797e97b703fa939b43bfe79296ce.1701823757.git.daniel@makrotopia.org>
+ <def05aac79ddff872d3e56698b736cb445f14116.1701823757.git.daniel@makrotopia.org>
+ <3e72bff6-9f4d-4cd4-845e-b065f1233ec6@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 3/3] gpio: nuvoton: Add Nuvoton NPCM sgpio driver
-Content-Language: en-US
-To: Jim Liu <jim.t90615@gmail.com>, JJLIU0@nuvoton.com,
- krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org,
- andy@kernel.org, robh+dt@kernel.org, conor+dt@kernel.org, KWLIU@nuvoton.com
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org
-References: <20231206014530.1600151-1-jim.t90615@gmail.com>
- <20231206014530.1600151-4-jim.t90615@gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
- m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
- HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
- XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
- mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
- v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
- cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
- rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
- qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
- aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
- gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
- dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
- NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
- hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
- oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
- H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
- yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
- 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
- 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
- +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
- FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
- 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
- DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
- oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
- 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
- Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
- qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
- /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
- qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
- EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
- KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
- fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231206014530.1600151-4-jim.t90615@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3e72bff6-9f4d-4cd4-845e-b065f1233ec6@collabora.com>
 
-On 06/12/2023 02:45, Jim Liu wrote:
-> Add Nuvoton BMC NPCM7xx/NPCM8xx sgpio driver support.
-> Nuvoton NPCM SGPIO module is combine serial to parallel IC (HC595)
-> and parallel to serial IC (HC165), and use APB3 clock to control it.
-> This interface has 4 pins  (D_out , D_in, S_CLK, LDSH).
-> BMC can use this driver to increase 64 GPI pins and 64 GPO pins to use.
+On Wed, Dec 06, 2023 at 11:59:54AM +0100, AngeloGioacchino Del Regno wrote:
+> Il 06/12/23 01:57, Daniel Golle ha scritto:
+> > Add various clock controllers found in the MT7988 SoC to existing
+> > bindings (if applicable) and add files for the new ethwarp, mcusys
+> > and xfi-pll clock controllers not previously present in any SoC.
+> > 
+> > Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> > ---
+> > v3:
+> >   * move clock bindings to clock folder
+> >   * drop ti,syscon-reset from bindings and example
+> >   * merge mcusys with topckgen bindings
+> > 
+> > v2:
+> >   * dropped unused labels
+> >   * add 'type: object' declaration for reset-controller found in new
+> >     ethwarp controller and represented as ti,syscon-reset
+> >   * rebase on top of
+> >     "dt-bindings: arm: mediatek: move ethsys controller & convert to DT schema"
+> > 
+> >   .../arm/mediatek/mediatek,infracfg.yaml       |  1 +
+> >   .../bindings/clock/mediatek,apmixedsys.yaml   |  1 +
+> >   .../bindings/clock/mediatek,ethsys.yaml       |  1 +
+> >   .../clock/mediatek,mt7988-ethwarp.yaml        | 49 +++++++++++++++++++
+> >   .../clock/mediatek,mt7988-xfi-pll.yaml        | 48 ++++++++++++++++++
+> >   .../bindings/clock/mediatek,topckgen.yaml     |  2 +
+> >   .../bindings/net/pcs/mediatek,sgmiisys.yaml   | 13 +++--
+> >   7 files changed, 112 insertions(+), 3 deletions(-)
+> >   create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt7988-ethwarp.yaml
+> >   create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt7988-xfi-pll.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.yaml
+> > index ea98043c6ba3d..230b5188a88db 100644
+> > --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.yaml
+> > @@ -30,6 +30,7 @@ properties:
+> >                 - mediatek,mt7629-infracfg
+> >                 - mediatek,mt7981-infracfg
+> >                 - mediatek,mt7986-infracfg
+> > +              - mediatek,mt7988-infracfg
+> >                 - mediatek,mt8135-infracfg
+> >                 - mediatek,mt8167-infracfg
+> >                 - mediatek,mt8173-infracfg
+> > diff --git a/Documentation/devicetree/bindings/clock/mediatek,apmixedsys.yaml b/Documentation/devicetree/bindings/clock/mediatek,apmixedsys.yaml
+> > index 372c1d744bc27..685535846cbb7 100644
+> > --- a/Documentation/devicetree/bindings/clock/mediatek,apmixedsys.yaml
+> > +++ b/Documentation/devicetree/bindings/clock/mediatek,apmixedsys.yaml
+> > @@ -22,6 +22,7 @@ properties:
+> >             - mediatek,mt7622-apmixedsys
+> >             - mediatek,mt7981-apmixedsys
+> >             - mediatek,mt7986-apmixedsys
+> > +          - mediatek,mt7988-apmixedsys
+> >             - mediatek,mt8135-apmixedsys
+> >             - mediatek,mt8173-apmixedsys
+> >             - mediatek,mt8516-apmixedsys
+> > diff --git a/Documentation/devicetree/bindings/clock/mediatek,ethsys.yaml b/Documentation/devicetree/bindings/clock/mediatek,ethsys.yaml
+> > index 94d42c8647777..f9cddacc2eae1 100644
+> > --- a/Documentation/devicetree/bindings/clock/mediatek,ethsys.yaml
+> > +++ b/Documentation/devicetree/bindings/clock/mediatek,ethsys.yaml
+> > @@ -22,6 +22,7 @@ properties:
+> >                 - mediatek,mt7629-ethsys
+> >                 - mediatek,mt7981-ethsys
+> >                 - mediatek,mt7986-ethsys
+> > +              - mediatek,mt7988-ethsys
+> >             - const: syscon
+> >         - items:
+> >             - const: mediatek,mt7623-ethsys
+> > diff --git a/Documentation/devicetree/bindings/clock/mediatek,mt7988-ethwarp.yaml b/Documentation/devicetree/bindings/clock/mediatek,mt7988-ethwarp.yaml
+> > new file mode 100644
+> > index 0000000000000..9b919a155eb13
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/clock/mediatek,mt7988-ethwarp.yaml
+> > @@ -0,0 +1,49 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/arm/mediatek/mediatek,mt7988-ethwarp.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: MediaTek MT7988 ethwarp Controller
+> > +
+> > +maintainers:
+> > +  - Daniel Golle <daniel@makrotopia.org>
+> > +
+> > +description:
+> > +  The Mediatek MT7988 ethwarp controller provides clocks and resets for the
+> > +  Ethernet related subsystems found the MT7988 SoC.
+> > +  The clock values can be found in <dt-bindings/clock/mt*-clk.h>.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - const: mediatek,mt7988-ethwarp
+> > +      - const: syscon
+> > +      - const: simple-mfd
 > 
-> Signed-off-by: Jim Liu <jim.t90615@gmail.com>
-> ---
+> No, this is not a mfd, I say.
+> 
+> Prove me wrong! :-)
 
-...
+https://github.com/dangowrt/linux/blob/mt7988-for-next/arch/arm64/boot/dts/mediatek/mt7988a.dtsi#L564
 
-> +	switch (reg) {
-> +	case READ_DATA:
-> +		return gpio->base + bank->rdata_reg;
-> +	case WRITE_DATA:
-> +		return gpio->base + bank->wdata_reg;
-> +	case EVENT_CFG:
-> +		return gpio->base + bank->event_config;
-> +	case EVENT_STS:
-> +		return gpio->base + bank->event_status;
-> +	default:
-> +		/* actually if code runs to here, it's an error case */
-> +		dev_WARN(true, "Getting here is an error condition");
+The 'simple-mfd' compatible is required to have the Linux
+kernel probe drivers for sub-nodes -- several drivers will act on
+the different aspects of the circuit exposed at this memory range.
+From what I understand, this is the definition of a MFD.
 
-So you did not even compile your code. v8 and still not built :(
-
-> +	}
-> +	return 0;
-> +}
-
-
-
-Best regards,
-Krzysztof
-
+> 
+> ..snip..
+> 
+> > diff --git a/Documentation/devicetree/bindings/net/pcs/mediatek,sgmiisys.yaml b/Documentation/devicetree/bindings/net/pcs/mediatek,sgmiisys.yaml
+> > index 66a95191bd776..68632cda334bd 100644
+> > --- a/Documentation/devicetree/bindings/net/pcs/mediatek,sgmiisys.yaml
+> > +++ b/Documentation/devicetree/bindings/net/pcs/mediatek,sgmiisys.yaml
+> > @@ -15,15 +15,22 @@ description:
+> >   properties:
+> >     compatible:
+> > -    items:
+> > -      - enum:
+> > +    oneOf:
+> > +      - items:
+> > +        - enum:
+> >             - mediatek,mt7622-sgmiisys
+> >             - mediatek,mt7629-sgmiisys
+> >             - mediatek,mt7981-sgmiisys_0
+> >             - mediatek,mt7981-sgmiisys_1
+> >             - mediatek,mt7986-sgmiisys_0
+> >             - mediatek,mt7986-sgmiisys_1
+> > -      - const: syscon
+> > +        - const: syscon
+> > +      - items:
+> > +        - enum:
+> > +          - mediatek,mt7988-sgmiisys_0
+> > +          - mediatek,mt7988-sgmiisys_1
+> > +        - const: syscon
+> > +        - const: simple-mfd
+> 
+> Same.
+> 
+> Cheers,
+> Angelo
 
