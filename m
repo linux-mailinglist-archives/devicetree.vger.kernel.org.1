@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-22339-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22338-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BC398072CF
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 15:44:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF34E8072CA
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 15:44:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 013A1281AA9
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 14:44:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 94FDE1F21882
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 14:44:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69DC23C082;
-	Wed,  6 Dec 2023 14:44:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2BD130FAB;
+	Wed,  6 Dec 2023 14:44:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b="g1WWld62"
+	dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b="zX6fAcHq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.fris.de (mail.fris.de [116.203.77.234])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98BFFD47;
-	Wed,  6 Dec 2023 06:44:36 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 7F65BC00E1;
-	Wed,  6 Dec 2023 15:44:34 +0100 (CET)
+Received: from mail.fris.de (unknown [IPv6:2a01:4f8:c2c:390b::1])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D329D62;
+	Wed,  6 Dec 2023 06:44:38 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 02823C0191;
+	Wed,  6 Dec 2023 15:44:35 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fris.de; s=dkim;
-	t=1701873874; h=from:subject:date:message-id:to:cc:mime-version:
+	t=1701873876; h=from:subject:date:message-id:to:cc:mime-version:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=oeyirk30VzrJwXs/jPqp36nZYKhhaMWlQBYYBY4oDRg=;
-	b=g1WWld62zYcSAD+OzHDUgIIPySaYHRHD3moakIVOl50tfEtz4AHpTg3qiaOCmnsPrKyPFf
-	VaTRdD3cNAhcP0Kq2+UuHEdfWmi8LQAdGHsVNm+/FwgPQRWKPDcLn5wK5q3+hIj5Y6JJ5s
-	cuopLKS4SH+Jml0QA/RatdtlCiRNK7Ir2QEr2QDu21oLcm9+0oiTo7ILG7qjt3DmQTc2Fg
-	MhUn4XCSs5JXnCkGeU6gZqdn/EODiYEkrf1+n3EkfSy2E8DkEjNNZ1NWr+c8iCEa1E0kJP
-	d7MYkrumx05ifhqit1q0Tfaa6I7h+NXixOgENGeqTZ76MkikgN05ASMXMgLbjw==
+	bh=QLCjnonuAbegej4DQkbKP3MHbkGcNHZPvf2RlTiENxo=;
+	b=zX6fAcHqiFqB0GVbo5b3W1dFBicZS3zkQ/aOxZnb1ZpTMGtjdv36CtG0aVNhQ6Dy3ktN02
+	AOt+dd/kdhxHnXQtI0a8lmuSyjkmmYYNoFO5ruqXYsmfwo0j8mFLxx7mRPQYXle/sO0AMP
+	82D4LLWvAkyhzZZ2RU8p97tkCYnX7tY0upljLEQF0+ciRnhpzV2XHRS2sSUN9dR6CQG/Vn
+	BCz2lVjnZ7+th+mNQ2bnG89ElJjNwR4Uk/D2eRga8b5fMxti4fNbUDFDxRsvxh6cViVOlO
+	F7VW0qvcpY/AsdaQIArg1+L/d/YFN1l09fJvZUCl0fdkZF928Girpc7RIdlz6Q==
 From: Frieder Schrempf <frieder@fris.de>
 To: Conor Dooley <conor+dt@kernel.org>,
 	devicetree@vger.kernel.org,
@@ -40,11 +40,12 @@ To: Conor Dooley <conor+dt@kernel.org>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
 	Shawn Guo <shawnguo@kernel.org>
 Cc: Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
 	NXP Linux Team <linux-imx@nxp.com>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: [PATCH v3 05/14] arm64: dts: imx8mm-kontron: Disable pullups for onboard UART signals on BL OSM-S board
-Date: Wed,  6 Dec 2023 15:41:08 +0100
-Message-ID: <20231206144201.46911-6-frieder@fris.de>
+Subject: [PATCH v3 06/14] arm64: dts: imx8mm-kontron: Disable pullups for onboard UART signals on BL board
+Date: Wed,  6 Dec 2023 15:41:09 +0100
+Message-ID: <20231206144201.46911-7-frieder@fris.de>
 In-Reply-To: <20231206144201.46911-1-frieder@fris.de>
 References: <20231206144201.46911-1-frieder@fris.de>
 Precedence: bulk
@@ -63,7 +64,7 @@ transceiver. There's no need to enable the internal pull resistors
 and due to silicon errata ERR050080 let's disable the internal ones
 to prevent any unwanted behavior in case they wear out.
 
-Fixes: de9618e84f76 ("arm64: dts: Add support for Kontron SL/BL i.MX8MM OSM-S")
+Fixes: 8668d8b2e67f ("arm64: dts: Add the Kontron i.MX8M Mini SoMs and baseboards")
 Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
 ---
 Changes for v3:
@@ -72,14 +73,14 @@ Changes for v3:
 Changes for v2:
 * none
 ---
- .../dts/freescale/imx8mm-kontron-bl-osm-s.dts    | 16 ++++++++--------
+ .../boot/dts/freescale/imx8mm-kontron-bl.dts     | 16 ++++++++--------
  1 file changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-kontron-bl-osm-s.dts b/arch/arm64/boot/dts/freescale/imx8mm-kontron-bl-osm-s.dts
-index 0730c22e5b6b9..1dd03ef0a7835 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-kontron-bl-osm-s.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-kontron-bl-osm-s.dts
-@@ -313,19 +313,19 @@ MX8MM_IOMUXC_SAI5_MCLK_GPIO3_IO25		0x19
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-kontron-bl.dts b/arch/arm64/boot/dts/freescale/imx8mm-kontron-bl.dts
+index 866f35d1633d4..767012661bfca 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-kontron-bl.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mm-kontron-bl.dts
+@@ -452,19 +452,19 @@ MX8MM_IOMUXC_SD2_WP_GPIO2_IO20			0x19
  
  	pinctrl_uart1: uart1grp {
  		fsl,pins = <
