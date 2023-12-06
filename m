@@ -1,376 +1,140 @@
-Return-Path: <devicetree+bounces-22080-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C93FE806594
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 04:20:27 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B359F80654D
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 03:56:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B71C4B20AC0
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 03:20:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2A0EEB21248
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 02:56:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61AEBCA7A;
-	Wed,  6 Dec 2023 03:20:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2169C63B3;
+	Wed,  6 Dec 2023 02:56:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bvDHniXk"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="DE1M362M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C41C1AA;
-	Tue,  5 Dec 2023 19:20:16 -0800 (PST)
-Received: by mail-pg1-x52c.google.com with SMTP id 41be03b00d2f7-5c629a9fe79so2810204a12.3;
-        Tue, 05 Dec 2023 19:20:16 -0800 (PST)
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2F221B5
+	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 18:55:58 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-50bf898c43cso2908561e87.1
+        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 18:55:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701832816; x=1702437616; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=YbWegLruIWfk7HHjzudK83DEHlZmfwTMD8LAtlJ7Hk8=;
-        b=bvDHniXkeH+TAlr2mucy/zP2xU9GlbRkCJ0BcjKY+CjFNwFbjy/Z9lTraT71n0Tl8N
-         QnO0nXqLNOMPzGRfKk8eXDVCi99DCVF4f14yjrNl1Q0CbOJmlhVtmi7i7n6VDvBAfmRy
-         +0QlwiPcFxlRU3QI/N/aaFL3x6zhyCTT5AJm13CS5HYyhpX4itEQCtKj90d9eGJevKwF
-         tFcMmFxEzUq45fJ+W/jOSNom62CofSVL2UGhjampTBziArmkaS4ylJl/dDY8tJUhK1K3
-         T3hbQ8sEl6795jsA+V+YLVlMv/qWks8m5BNAtd660UW20Iao61zwDGKlUiofpEfG3eYO
-         7Ddg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701832816; x=1702437616;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=chromium.org; s=google; t=1701831356; x=1702436156; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=YbWegLruIWfk7HHjzudK83DEHlZmfwTMD8LAtlJ7Hk8=;
-        b=MWA13kvq97TxYsAo+C6aMyf2OcnXD4biysfQHUWVoYokgVzvCEgNI3ZgiQrA1p1UrL
-         rrE7AYzvPk02r3TkXHBH0Ezkc7Oamu9A9QbkuanRcv5hmvtb+z+Spr5nR9p97Wm6Yp6l
-         7ZNdyXuwafBEi8NlYm1tWEREygVAswioUp0jqfdgZNlYWls15eztH8byO1ZvUpyZfLGm
-         yLheUKodlPpcyV/dk00xftF6ieoW1dOHMJ6IlXUnsjjfw8ZyCzWo2j3oY7dOJ2H2NbzS
-         HfK6G2mh5K/u40kwwBGYNIZ2pFg+U5QlfaN9ehoatEOI1qS2cvMol5qv/NhT1B+g08gP
-         me8g==
-X-Gm-Message-State: AOJu0YzDj0e7joXAwWRA6c444rb8JG3RxkWxnlL7W+KZgWikSmUripzQ
-	0UjNUU1RieAWEc9ON1ci+tI=
-X-Google-Smtp-Source: AGHT+IGHvutYgMcTLhOthlYgg/Dwf/5tmBozECpELlMTbXQaeNaLXGBV6iGB2iChY7bhGVrPh+XzcA==
-X-Received: by 2002:a05:6a20:760a:b0:18b:9b41:eb90 with SMTP id m10-20020a056a20760a00b0018b9b41eb90mr103486pze.10.1701832815584;
-        Tue, 05 Dec 2023 19:20:15 -0800 (PST)
-Received: from archie.me ([103.131.18.64])
-        by smtp.gmail.com with ESMTPSA id z6-20020a170902ee0600b001cfc35d1326sm7515152plb.177.2023.12.05.19.20.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Dec 2023 19:20:15 -0800 (PST)
-Received: by archie.me (Postfix, from userid 1000)
-	id 482C11025C548; Wed,  6 Dec 2023 09:45:45 +0700 (WIB)
-Date: Wed, 6 Dec 2023 09:45:44 +0700
-From: Bagas Sanjaya <bagasdotme@gmail.com>
-To: Kory Maincent <kory.maincent@bootlin.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Luis Chamberlain <mcgrof@kernel.org>,
-	Russ Weight <russ.weight@linux.dev>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Oleksij Rempel <o.rempel@pengutronix.de>,
-	attreyee-muk <tintinm2017@gmail.com>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Linux Networking <netdev@vger.kernel.org>,
-	linux-kernel@vger.kernel.org,
-	Linux Documentation <linux-doc@vger.kernel.org>,
-	Linux Devicetree <devicetree@vger.kernel.org>,
-	Dent Project <dentproject@linuxfoundation.org>
-Subject: Re: [PATCH net-next v2 2/8] ethtool: Expand Ethernet Power Equipment
- with c33 (PoE) alongside PoDL
-Message-ID: <ZW_gWDrlp4ltXIRf@archie.me>
-References: <20231201-feature_poe-v2-0-56d8cac607fa@bootlin.com>
- <20231201-feature_poe-v2-2-56d8cac607fa@bootlin.com>
+        bh=kAjB+OSC2G0sATXrxYuI8k53/GEiZUhN5YxDKMU/l7c=;
+        b=DE1M362Mr3J/o1u4oHby3q8T9PzICCGMhNDiPxByQf26C+O8nh+Ac0/iEtSpdkOHdK
+         npS7G+QzxOjRmZJc0xTj6esaIRFMbt429pOLjuowICKmitmWx6K2WZayTLw7uA2VKbB+
+         7OhrbyrAUf9ARrYLCWK+Hnw5xPz9s9W4Hv7Og=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701831356; x=1702436156;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=kAjB+OSC2G0sATXrxYuI8k53/GEiZUhN5YxDKMU/l7c=;
+        b=YxEkghTQf5ghNS2dZxXLU64vKkn29bjWhYUFWZGmB2t//PNkJP+3VAs4q3UdtUNBoJ
+         KmV9WCUSi6sMlsfSETxj2C9eCAmV5brKArSZiTQTjxuVtkHxGX5CYT7vYao6kg3A7tKY
+         eEDKTbivvGR0ltsfVsal2A19262ds9+GWe4iHql3UMnRE3+MNgyqlg5/73DGBBulGohw
+         cDarEMvEcsSgFwujJnJEDZ0eHMEXTZEKSmYZSRl9z0nvsJ8IA0bLFqLT/jU6p+uts00j
+         07uCXJu650e+urmSqy7A31zCojZ6czWawVziBG244tL2ZhSXGpKm215koRfR2gSIx4mI
+         83wg==
+X-Gm-Message-State: AOJu0YwIrbMFqj49KH7lu74fujsiUuBGiUfImtrd/X0sH9lEWwCr6+5k
+	tU7dHSCDO/nL5Cu8C3vJ0lAnZXhQf/AuOJq2556G7w==
+X-Google-Smtp-Source: AGHT+IHnNZLv+A8rBD2iJfouOzY8bodAfVe2SPHWkYOI3dEcOPciD4ew3LweH+XusZAZCM5WonigRoCXzwrqYp9fpWQ=
+X-Received: by 2002:a05:6512:1107:b0:50b:f88d:f83b with SMTP id
+ l7-20020a056512110700b0050bf88df83bmr112272lfg.78.1701831355848; Tue, 05 Dec
+ 2023 18:55:55 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="xUlHZgsU8STvZe3K"
-Content-Disposition: inline
-In-Reply-To: <20231201-feature_poe-v2-2-56d8cac607fa@bootlin.com>
-
-
---xUlHZgsU8STvZe3K
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+References: <20231128084236.157152-1-wenst@chromium.org> <20231128084236.157152-5-wenst@chromium.org>
+ <CAD=FV=W01gfxV6RN2o6CVS7jjf8qgKP-jUy9Bp94d2hWzVC48A@mail.gmail.com>
+ <CAGXv+5E+R292XsOFSL-j0KJMmVJjWtxMRgCK8besP7mo6NDOWA@mail.gmail.com>
+ <CAD=FV=UQkAjgMuR85cPikNtCxsODWPWs7cibOcOoNGdjSSvF8Q@mail.gmail.com> <3700f05f-2411-4422-972f-f3df690efb84@collabora.com>
+In-Reply-To: <3700f05f-2411-4422-972f-f3df690efb84@collabora.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Wed, 6 Dec 2023 10:55:44 +0800
+Message-ID: <CAGXv+5G5fFTv8zn=YamSdccjuYemE5oKBqjb8CSyGzu9aMJ0eg@mail.gmail.com>
+Subject: Re: [RFC PATCH v3 4/5] arm64: dts: mediatek: mt8173-elm-hana: Mark
+ touchscreens and trackpads as fail
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Doug Anderson <dianders@chromium.org>, Rob Herring <robh+dt@kernel.org>, 
+	Frank Rowand <frowand.list@gmail.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, Wolfram Sang <wsa@kernel.org>, 
+	Benson Leung <bleung@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>, 
+	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>, 
+	Hsin-Yi Wang <hsinyi@chromium.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	andriy.shevchenko@linux.intel.com, Jiri Kosina <jikos@kernel.org>, 
+	linus.walleij@linaro.org, broonie@kernel.org, gregkh@linuxfoundation.org, 
+	hdegoede@redhat.com, james.clark@arm.com, james@equiv.tech, 
+	keescook@chromium.org, rafael@kernel.org, tglx@linutronix.de, 
+	Jeff LaBundy <jeff@labundy.com>, linux-input@vger.kernel.org, linux-i2c@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Dec 01, 2023 at 06:10:24PM +0100, Kory Maincent wrote:
-> In the current PSE interface for Ethernet Power Equipment, support is
-> limited to PoDL. This patch extends the interface to accommodate the
-> objects specified in IEEE 802.3-2022 145.2 for Power sourcing
-> Equipment (PSE).
->=20
-> The following objects are now supported and considered mandatory:
-> - IEEE 802.3-2022 30.9.1.1.5 aPSEPowerDetectionStatus
-> - IEEE 802.3-2022 30.9.1.1.2 aPSEAdminState
-> - IEEE 802.3-2022 30.9.1.2.1 aPSEAdminControl
->=20
-> To avoid confusion between "PoDL PSE" and "PoE PSE", which have similar
-> names but distinct values, we have followed the suggestion of Oleksij
-> Rempel and Andrew Lunn to maintain separate naming schemes for each,
-> using c33 (clause 33) prefix for "PoE PSE".
-> You can find more details in the discussion threads here:
-> https://lore.kernel.org/netdev/20230912110637.GI780075@pengutronix.de/
-> https://lore.kernel.org/netdev/2539b109-72ad-470a-9dae-9f53de4f64ec@lunn.=
-ch/
->=20
-> Sponsored-by: Dent Project <dentproject@linuxfoundation.org>
-> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
-> ---
->=20
-> Changes in v2:
-> - Rename all the PoE variables and enum with a c33 prefix.
-> - Add documentation, thanks to Oleksij for having written one.
-> ---
->  Documentation/networking/pse-pd/introduction.rst | 73 ++++++++++++++++++=
-++++++
->  include/linux/pse-pd/pse.h                       |  9 +++
->  include/uapi/linux/ethtool.h                     | 43 ++++++++++++++
->  include/uapi/linux/ethtool_netlink.h             |  3 +
->  4 files changed, 128 insertions(+)
->=20
-> diff --git a/Documentation/networking/pse-pd/introduction.rst b/Documenta=
-tion/networking/pse-pd/introduction.rst
-> new file mode 100644
-> index 000000000000..e213083b9aff
-> --- /dev/null
-> +++ b/Documentation/networking/pse-pd/introduction.rst
-> @@ -0,0 +1,73 @@
-> +.. SPDX-License-Identifier: GPL-2.0
-> +
-> +Power Sourcing Equipment (PSE) in IEEE 802.3 Standard
-> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D
-> +
-> +Overview
-> +--------
-> +
-> +Power Sourcing Equipment (PSE) is essential in networks for delivering p=
-ower
-> +along with data over Ethernet cables. It usually refers to devices like
-> +switches and hubs that supply power to Powered Devices (PDs) such as IP
-> +cameras, VoIP phones, and wireless access points.
-> +
-> +PSE vs. PoDL PSE
-> +----------------
-> +
-> +PSE in the IEEE 802.3 standard generally refers to equipment that provid=
-es
-> +power alongside data over Ethernet cables, typically associated with Pow=
-er over
-> +Ethernet (PoE).
-> +
-> +PoDL PSE, or Power over Data Lines PSE, specifically denotes PSEs operat=
-ing
-> +with single balanced twisted-pair PHYs, as per Clause 104 of IEEE 802.3.=
- PoDL
-> +is significant in contexts like automotive and industrial controls where=
- power
-> +and data delivery over a single pair is advantageous.
-> +
-> +IEEE 802.3-2018 Addendums and Related Clauses
-> +----------------------------------------------
-> +
-> +Key addenda to the IEEE 802.3-2018 standard relevant to power delivery o=
-ver
-> +Ethernet are as follows:
-> +
-> +- **802.3af (Approved in 2003-06-12)**: Known as PoE in the market, deta=
-iled in
-> +  Clause 33, delivering up to 15.4W of power.
-> +- **802.3at (Approved in 2009-09-11)**: Marketed as PoE+, enhancing PoE =
-as
-> +  covered in Clause 33, increasing power delivery to up to 30W.
-> +- **802.3bt (Approved in 2018-09-27)**: Known as 4PPoE in the market, ou=
-tlined
-> +  in Clause 33. Type 3 delivers up to 60W, and Type 4 up to 100W.
-> +- **802.3bu (Approved in 2016-12-07)**: Formerly referred to as PoDL, de=
-tailed
-> +  in Clause 104. Introduces Classes 0 - 9. Class 9 PoDL PSE delivers up =
-to ~65W
-> +
-> +Kernel Naming Convention Recommendations
-> +----------------------------------------
-> +
-> +For clarity and consistency within the Linux kernel's networking subsyst=
-em, the
-> +following naming conventions are recommended:
-> +
-> +- For general PSE (PoE) code, use "c33_pse" key words. For example:
-> +  ``enum ethtool_c33_pse_admin_state c33_admin_control;``.
-> +  This aligns with Clause 33, encompassing various PoE forms.
-> +
-> +- For PoDL PSE - specific code, use "podl_pse". For example:
-> +  ``enum ethtool_podl_pse_admin_state podl_admin_control;`` to different=
-iate
-> +  PoDL PSE settings according to Clause 104.
-> +
-> +Summary of Clause 33: Data Terminal Equipment (DTE) Power via Media Depe=
-ndent Interface (MDI)
-> +------------------------------------------------------------------------=
--------------------
-> +
-> +Clause 33 of the IEEE 802.3 standard defines the functional and electric=
-al
-> +characteristics of Powered Device (PD) and Power Sourcing Equipment (PSE=
-).
-> +These entities enable power delivery using the same generic cabling as f=
-or data
-> +transmission, integrating power with data communication for devices such=
- as
-> +10BASE-T, 100BASE-TX, or 1000BASE-T.
-> +
-> +Summary of Clause 104: Power over Data Lines (PoDL) of Single Balanced T=
-wisted-Pair Ethernet
-> +------------------------------------------------------------------------=
--------------------
-> +
-> +Clause 104 of the IEEE 802.3 standard delineates the functional and elec=
-trical
-> +characteristics of PoDL Powered Devices (PDs) and PoDL Power Sourcing Eq=
-uipment
-> +(PSEs). These are designed for use with single balanced twisted-pair Eth=
-ernet
-> +Physical Layers. In this clause, 'PSE' refers specifically to PoDL PSE, =
-and
-> +'PD' to PoDL PD. The key intent is to provide devices with a unified int=
-erface
-> +for both data and the power required to process this data over a single
-> +balanced twisted-pair Ethernet connection.
+On Tue, Dec 5, 2023 at 6:22=E2=80=AFPM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> Il 04/12/23 17:50, Doug Anderson ha scritto:
+> > Hi,
+> >
+> > On Sun, Dec 3, 2023 at 10:59=E2=80=AFPM Chen-Yu Tsai <wenst@chromium.or=
+g> wrote:
+> >>
+> >> On Sat, Dec 2, 2023 at 8:58=E2=80=AFAM Doug Anderson <dianders@chromiu=
+m.org> wrote:
+> >>>
+> >>> Hi,
+> >>>
+> >>> On Tue, Nov 28, 2023 at 12:45=E2=80=AFAM Chen-Yu Tsai <wenst@chromium=
+.org> wrote:
+> >>>>
+> >>>> @@ -44,6 +46,7 @@ trackpad2: trackpad@2c {
+> >>>>                  reg =3D <0x2c>;
+> >>>>                  hid-descr-addr =3D <0x0020>;
+> >>>>                  wakeup-source;
+> >>>> +               status =3D "fail-needs-probe";
+> >>>
+> >>> While doing this, you could also remove the hack where the trackpad
+> >>> IRQ pinctrl is listed under i2c4.
+> >>
+> >> Sure. I do think we can do away with it though. According to at least =
+one
+> >> schematic, the interrupt line has pull-ups on both sides of the voltag=
+e
+> >> shifter.
+> >>
+> >> BTW, The touchscreen doesn't have pinctrl entries. This has pull-ups o=
+n
+> >> both sides of the voltage shifter as well.
+> >
+> > I dunno if the convention is different on Mediatek boards, but at
+> > least on boards I've been involved with in the past we've always put
+> > pinctrl entries just to make things explicit. This meant that we
+> > didn't rely on the firmware/bootrom/defaults to leave pulls in any
+> > particular state. ...otherwise those external pull-ups could be
+> > fighting with internal pull-downs, right?
+> >
+>
+> MediaTek boards aren't special and there's no good reason for those to re=
+ly on
+> firmware/bootrom/defaults - so there is no good reason to avoid declaring=
+ any
+> relevant pinctrl entry.
 
-I get many htmldocs warnings:
+I think this should be migrated to use the proper GPIO bindings: the
+GPIO_PULL_UP / GPIO_PULL_DOWN / GPIO_BIAS_DISABLE flags.
 
-```
-Documentation/networking/pse-pd/introduction.rst:56: WARNING: Title underli=
-ne too short.
+But that's a different discussion.
 
-Summary of Clause 33: Data Terminal Equipment (DTE) Power via Media Depende=
-nt Interface (MDI)
----------------------------------------------------------------------------=
-----------------
-Documentation/networking/pse-pd/introduction.rst:56: WARNING: Title underli=
-ne too short.
-
-Summary of Clause 33: Data Terminal Equipment (DTE) Power via Media Depende=
-nt Interface (MDI)
----------------------------------------------------------------------------=
-----------------
-Documentation/networking/pse-pd/introduction.rst:65: WARNING: Title underli=
-ne too short.
-
-Summary of Clause 104: Power over Data Lines (PoDL) of Single Balanced Twis=
-ted-Pair Ethernet
----------------------------------------------------------------------------=
-----------------
-Documentation/networking/pse-pd/introduction.rst:65: WARNING: Title underli=
-ne too short.
-
-Summary of Clause 104: Power over Data Lines (PoDL) of Single Balanced Twis=
-ted-Pair Ethernet
----------------------------------------------------------------------------=
-----------------
-looking for now-outdated files... none found
-pickling environment... done
-checking consistency... Documentation/networking/pse-pd/introduction.rst: W=
-ARNING: document isn't included in any toctree
-```
-
-I have to fix them up:
-
----- >8 ----
-diff --git a/Documentation/networking/index.rst b/Documentation/networking/=
-index.rst
-index 683eb42309cc5b..3900c6885cfc7d 100644
---- a/Documentation/networking/index.rst
-+++ b/Documentation/networking/index.rst
-@@ -88,6 +88,7 @@ Contents:
-    phonet
-    pktgen
-    plip
-+   pse-pd/index
-    ppp_generic
-    proc_net_tcp
-    radiotap-headers
-diff --git a/Documentation/networking/pse-pd/index.rst b/Documentation/netw=
-orking/pse-pd/index.rst
-new file mode 100644
-index 00000000000000..18197bc7303dc9
---- /dev/null
-+++ b/Documentation/networking/pse-pd/index.rst
-@@ -0,0 +1,9 @@
-+.. SPDX-License-Identifier: GPL-2.0
-+
-+Power Sourcing Equipment (PSE) Documentation
-+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-+
-+.. toctree::
-+   :maxdepth: 2
-+
-+   introduction
-diff --git a/Documentation/networking/pse-pd/introduction.rst b/Documentati=
-on/networking/pse-pd/introduction.rst
-index e213083b9aff2d..e3d3faaef717f2 100644
---- a/Documentation/networking/pse-pd/introduction.rst
-+++ b/Documentation/networking/pse-pd/introduction.rst
-@@ -24,7 +24,7 @@ is significant in contexts like automotive and industrial=
- controls where power
- and data delivery over a single pair is advantageous.
-=20
- IEEE 802.3-2018 Addendums and Related Clauses
------------------------------------------------
-+---------------------------------------------
-=20
- Key addenda to the IEEE 802.3-2018 standard relevant to power delivery over
- Ethernet are as follows:
-@@ -53,7 +53,7 @@ following naming conventions are recommended:
-   PoDL PSE settings according to Clause 104.
-=20
- Summary of Clause 33: Data Terminal Equipment (DTE) Power via Media Depend=
-ent Interface (MDI)
----------------------------------------------------------------------------=
------------------
-+--------------------------------------------------------------------------=
--------------------
-=20
- Clause 33 of the IEEE 802.3 standard defines the functional and electrical
- characteristics of Powered Device (PD) and Power Sourcing Equipment (PSE).
-@@ -62,7 +62,7 @@ transmission, integrating power with data communication f=
-or devices such as
- 10BASE-T, 100BASE-TX, or 1000BASE-T.
-=20
- Summary of Clause 104: Power over Data Lines (PoDL) of Single Balanced Twi=
-sted-Pair Ethernet
----------------------------------------------------------------------------=
------------------
-+--------------------------------------------------------------------------=
-------------------
-=20
- Clause 104 of the IEEE 802.3 standard delineates the functional and electr=
-ical
- characteristics of PoDL Powered Devices (PDs) and PoDL Power Sourcing Equi=
-pment
-
-Thanks.
-
---=20
-An old man doll... just what I always wanted! - Clara
-
---xUlHZgsU8STvZe3K
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCZW/gVAAKCRD2uYlJVVFO
-oyi0AP0akTssoZ2ef0IsF2c3NcWk9n0I0Qa7r88yxoNHZh4whAD/Q3Tnge1Z06AT
-0nVAX/jUCWw3zw0Bk7o2ptuss7XjxwA=
-=NdIm
------END PGP SIGNATURE-----
-
---xUlHZgsU8STvZe3K--
+ChenYu
 
