@@ -1,161 +1,139 @@
-Return-Path: <devicetree+bounces-22241-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22237-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1397E806DE7
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 12:28:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F862806DD0
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 12:24:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 450411C20956
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 11:28:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF8A31F212EC
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 11:24:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97D1231A60;
-	Wed,  6 Dec 2023 11:28:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A38F63172E;
+	Wed,  6 Dec 2023 11:24:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BNzbCDOr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE921C9;
-	Wed,  6 Dec 2023 03:28:38 -0800 (PST)
-Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-2866951b6e0so4493420a91.2;
-        Wed, 06 Dec 2023 03:28:38 -0800 (PST)
+Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B86D137
+	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 03:23:56 -0800 (PST)
+Received: by mail-pf1-x42a.google.com with SMTP id d2e1a72fcca58-6ce40061e99so562547b3a.0
+        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 03:23:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701861836; x=1702466636; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=mFCukuSdWsuRhvFe3mgqtOXnJmu9VjUJaxtlOP7dBQI=;
+        b=BNzbCDOrsCsiP4mM9kEtiFntdNYcFYH9VjbBpi1mli9RYCgIs2riB6zN2d1Qr2NTpq
+         zmEV77n1dLEimIb2ztJIBg9qiYgINzIQzKwn1mauZ+Nh53vvFW4hxRLC0Nl/uyPslOgy
+         scClvg7y5G98G3BWuF5zaOmEX0zOPxa178KMOPv68xP7e1I4KkPblIAcg81bYt0FJX0W
+         yFDpZ8LPcSDR0sn5O3hctxbi4SkIvA1MkGtHKVRLXW97hg+XJ8tt2lX5DhnbKYzPvZ16
+         n4u4owSgF1pqJV09YGUhGZ9qla+6tYpxI1cufvwNj4mqGDk1JZnn7oWLt+9gczZteeeu
+         qJVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701862118; x=1702466918;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0S0kmFImYzeIHSyo7VpqV5Zap9umvn3x/Zbri7a4b0g=;
-        b=S+ZcXaDZtRkudeRDU3JGQ82h8uzqy9iOkCfwsj7wgUc5RmFC/I0fpecZTjYy2mUnwQ
-         MbuMIhpESW81vB1/wGlYzfs8ZVwSDnrFTs/w7tb/bnzeer0g7+f0XLUjmdn41jPOUZqx
-         8ckwEwDZ7zo1Jx0xw2e4Hikg3BF/VwbSeM1KukJkYg4cd7XBxlhRxyGtDvsWNtFNvWIb
-         Vn/2NaBQFi3OIc1wpQoNH8a4bgoKKFB5BO4+paRGKcpWcNY40Pip0VtZE7DPFM+3W5hF
-         RIVwzjoi3QydozICbYagpNZ+q0mRRqjI+M62FWi0odMzx2OOSkPMH0kYFvyKoig6hgzP
-         BlXg==
-X-Gm-Message-State: AOJu0YyhpMp4KcUJNxKNT982DRN9InzgUbSFBn/Rpl7E5Fjm0sKF/Tlu
-	PmIGNe/JBDHteltijEFW1zCSI6MO2PSiEA==
-X-Google-Smtp-Source: AGHT+IFJRKN9kEYEzXAgQhz5tCOXfmXnrkUfAqeHzyOLSzTJ7Wxo8oNcR3Nsi9GvM97os3Jl3pJXng==
-X-Received: by 2002:a17:90a:780e:b0:286:ca3e:be8c with SMTP id w14-20020a17090a780e00b00286ca3ebe8cmr718479pjk.90.1701862117992;
-        Wed, 06 Dec 2023 03:28:37 -0800 (PST)
-Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com. [209.85.215.178])
-        by smtp.gmail.com with ESMTPSA id 14-20020a17090a194e00b00281032f9f9csm14159353pjh.35.2023.12.06.03.28.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Dec 2023 03:28:37 -0800 (PST)
-Received: by mail-pg1-f178.google.com with SMTP id 41be03b00d2f7-53fbf2c42bfso4324519a12.3;
-        Wed, 06 Dec 2023 03:28:37 -0800 (PST)
-X-Received: by 2002:a25:bec4:0:b0:db5:47ee:47c4 with SMTP id
- k4-20020a25bec4000000b00db547ee47c4mr366154ybm.53.1701861745075; Wed, 06 Dec
- 2023 03:22:25 -0800 (PST)
+        d=1e100.net; s=20230601; t=1701861836; x=1702466636;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mFCukuSdWsuRhvFe3mgqtOXnJmu9VjUJaxtlOP7dBQI=;
+        b=KhEGylG9G4DWNCW9/wSyy0rH0xQXW4FLnu/XedTpEqJOJI4MhYIKbAfnPw3xhY3l74
+         IrT+ZZuQGWMNteYR8TukQqqmBEOveZD25i8G/WGXWXWlDlVmgLqvuqiFxqmOWhe85GZ9
+         7YsYUBfEr7Xbi3lGrxiNoYBNd0TNGMrRxEKPUi/+iTU5a3/cvYve3ED2hBa5c/Zf3LpN
+         dKlb83pPjjOU05U+2vm2RIfwfMj5xDagjk8XWC6Wpi9uJP0rpZgo7r83rpHwCGiH1WDU
+         w8EiS1G78dfR0WuzZLo98NZfgk139r9j5YdvrccLBNWLmWYCG5mdlfyE3sCm9NlfeDe4
+         MY8Q==
+X-Gm-Message-State: AOJu0Yzd4jw22+QYc16CopPp1mjvtsK7CI7KC6c3DnlJ7EGYtzEwpSuv
+	EMbQnHfbvTq3E74fkA/3dt0=
+X-Google-Smtp-Source: AGHT+IErRb2I0j2INI9Zc3pcAIFqg2Ge+UJaxEcBqAcuwEjcZmUXjdWj53TzibB9k2rKIMD4NHNEOQ==
+X-Received: by 2002:a05:6a00:2d11:b0:6ce:68a5:757 with SMTP id fa17-20020a056a002d1100b006ce68a50757mr1433588pfb.0.1701861835628;
+        Wed, 06 Dec 2023 03:23:55 -0800 (PST)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:6764:e124:5ffc:3f5])
+        by smtp.gmail.com with ESMTPSA id i128-20020a62c186000000b006ce5300ddacsm1876723pfg.5.2023.12.06.03.23.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Dec 2023 03:23:55 -0800 (PST)
+From: Fabio Estevam <festevam@gmail.com>
+To: marex@denx.de
+Cc: stefan@agner.ch,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: [PATCH v2] dt-bindings: lcdif: Properly describe the i.MX23 interrupts
+Date: Wed,  6 Dec 2023 08:23:37 -0300
+Message-Id: <20231206112337.2234849-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231120070024.4079344-1-claudiu.beznea.uj@bp.renesas.com> <20231120070024.4079344-14-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20231120070024.4079344-14-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 6 Dec 2023 12:22:13 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXs9tKo9W31f5OybNR51a_i99Lyx=wHe0GLrADN_8KZTg@mail.gmail.com>
-Message-ID: <CAMuHMdXs9tKo9W31f5OybNR51a_i99Lyx=wHe0GLrADN_8KZTg@mail.gmail.com>
-Subject: Re: [PATCH 13/14] arm64: dts: renesas: rzg3s-smarc-som: Enable
- Ethernet interfaces
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: s.shtylyov@omp.ru, davem@davemloft.net, edumazet@google.com, 
-	kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, linux@armlinux.org.uk, 
-	magnus.damm@gmail.com, mturquette@baylibre.com, sboyd@kernel.org, 
-	linus.walleij@linaro.org, p.zabel@pengutronix.de, arnd@arndb.de, 
-	m.szyprowski@samsung.com, alexandre.torgue@foss.st.com, afd@ti.com, 
-	broonie@kernel.org, alexander.stein@ew.tq-group.com, 
-	eugen.hristev@collabora.com, sergei.shtylyov@gmail.com, 
-	prabhakar.mahadev-lad.rj@bp.renesas.com, biju.das.jz@bp.renesas.com, 
-	linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi Claudiu,
+From: Fabio Estevam <festevam@denx.de>
 
-Thanks for your patch!
+i.MX23 has two LCDIF interrupts instead of a single one like other
+i.MX devices.
 
-On Mon, Nov 20, 2023 at 8:03=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev> =
-wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> RZ/G3S Smarc Module has Ethernet PHYs (KSZ9131) connected to each Etherne=
-t
-> IP. For this add proper DT bindings to enable the Ethernet communication
-> though these PHYs.
->
-> The interface b/w PHYs and MACs is RGMII. The skew settings were set to
-> zero as based on phy-mode (rgmii-id) the KSZ9131 driver enables internal
-> DLL which adds 2ns delay b/w clocks (TX/RX) and data signals.
+Take this into account for properly describing the i.MX23 LCDIF
+interrupts.
 
-So shouldn't you just use phy-mode "rgmii" instead?
+This fixes the following dt-schema warning:
 
-> Different pin settings were applied to TXC, TX_CTL compared with the rest
-> of the RGMII pins to comply with requirements for these pins imposed by
-> HW manual of RZ/G3S (see chapters "Ether Ch0 Voltage Mode Control
-> Register (ETH0_POC)", "Ether Ch1 Voltage Mode Control Register (ETH1_POC)=
-",
-> for power source selection, "Ether MII/RGMII Mode Control Register
-> (ETH_MODE)" for output-enable and "Input Enable Control Register (IEN_m)"
-> for input-enable configurations).
->
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+imx23-olinuxino.dtb: lcdif@80030000: interrupts: [[46], [45]] is too long
+        from schema $id: http://devicetree.org/schemas/display/fsl,lcdif.yaml#
+        
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+Reviewed-by: Marek Vasut <marex@denx.de>
+---
+Changes since v1:
+- Add missing else to limit the number of irqs for the other variants. (Krzysztof)
 
-> --- a/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
-> @@ -25,7 +25,10 @@ / {
->
->         aliases {
->                 mmc0 =3D &sdhi0;
-> -#if !SW_SD2_EN
-> +#if SW_SD2_EN
+ .../bindings/display/fsl,lcdif.yaml           | 20 ++++++++++++++++++-
+ 1 file changed, 19 insertions(+), 1 deletion(-)
 
-Cfr. my comment on [PATCH 11/14], this looks odd...
+diff --git a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+index fc11ab5fc465..1c2be8d6f633 100644
+--- a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
++++ b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+@@ -51,7 +51,10 @@ properties:
+     minItems: 1
+ 
+   interrupts:
+-    maxItems: 1
++    items:
++      - description: LCDIF DMA interrupt
++      - description: LCDIF Error interrupt
++    minItems: 1
+ 
+   power-domains:
+     maxItems: 1
+@@ -131,6 +134,21 @@ allOf:
+     then:
+       required:
+         - power-domains
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - fsl,imx23-lcdif
++    then:
++      properties:
++        interrupts:
++          minItems: 2
++          maxItems: 2
++    else:
++      properties:
++        interrupts:
++          maxItems: 1
+ 
+ examples:
+   - |
+-- 
+2.34.1
 
-> +               eth0 =3D &eth0;
-> +               eth1 =3D &eth1;
-> +#else
->                 mmc2 =3D &sdhi2;
->  #endif
->         };
-> @@ -81,6 +84,64 @@ vcc_sdhi2: regulator2 {
->         };
->  };
->
-> +#if SW_SD2_EN
-
-Likewise.
-
-> +&eth0 {
-> +       pinctrl-0 =3D <&eth0_pins>;
-> +       pinctrl-names =3D "default";
-> +       phy-handle =3D <&phy0>;
-> +       phy-mode =3D "rgmii-id";
-> +       #address-cells =3D <1>;
-> +       #size-cells =3D <0>;
-
-#{address,size}-cells should be in the SoC-specific .dtsi.
-Same for eth1.
-
-> +       status =3D "okay";
-
-The rest LGTM.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
