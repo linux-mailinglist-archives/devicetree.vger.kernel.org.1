@@ -1,209 +1,218 @@
-Return-Path: <devicetree+bounces-22247-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22246-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74E60806E33
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 12:39:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54934806E28
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 12:38:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1FB791F21548
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 11:39:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A533281B5E
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 11:38:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95AF7321AC;
-	Wed,  6 Dec 2023 11:39:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6B3C321AE;
+	Wed,  6 Dec 2023 11:38:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Xfcn0oqc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YuKaTjKF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D060112;
-	Wed,  6 Dec 2023 03:39:29 -0800 (PST)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3B69NALq005138;
-	Wed, 6 Dec 2023 11:39:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- content-transfer-encoding : in-reply-to; s=qcppdkim1;
- bh=lznMPLlQXuHC6QqF1xj/Bm4pxkXQNtJyh7qYp4nNzkw=;
- b=Xfcn0oqck9I+TifLQGVuOCZ5YNPGDm38J/F0qiZVZCdofheBHCrqBYOKGw3tPR7pK1rF
- FMqyMNzhX/FuMxnSak1G+KbXVfYMLZ0CFP7Wf7g747Hc3Xjr6O1V8OR6JwXV514Wj7g9
- jvaf7dHE6builV+vApUPCqeYRGlPLtGQylpkHMM4M+HD4N9fibt459INFJMOghpDmp7p
- p/Qk+GKg62wEBahUxIOp6MrPXqPbxmZadRjF1SCJDSmyMF/JkNybCk6fGIMcBmf7FXMz
- Gn1JxoF7jDqul5dUNmv6WeAeqH5mACuj7XZbro39hN4T2E8DxeZjI17pKVj0U/gSVfI2 vg== 
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3utdmd1ehw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 06 Dec 2023 11:39:24 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3B6BdN4g008206
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 6 Dec 2023 11:39:23 GMT
-Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Wed, 6 Dec 2023 03:38:08 -0800
-Date: Wed, 6 Dec 2023 17:08:05 +0530
-From: Varadarajan Narayanan <quic_varada@quicinc.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <lgirdwood@gmail.com>, <broonie@kernel.org>,
-        <dmitry.baryshkov@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v1 2/2] arm64: dts: qcom: ipq9574: Fix USB
- 'vdda-pll-supply'
-Message-ID: <ZXBdHQpJYBmZbd76@hu-varada-blr.qualcomm.com>
-References: <cover.1701160842.git.varada@hu-varada-blr.qualcomm.com>
- <f98bbf0a515236709d999010f08c8f2470a31209.1701160842.git.varada@hu-varada-blr.qualcomm.com>
- <832a6d4f-f561-4cf5-b1cb-7e4b2d4d50b4@linaro.org>
- <ZWW9oF24YUGfev+2@hu-varada-blr.qualcomm.com>
- <0acdc122-b7fa-4bb4-b838-6420cd43d0e0@linaro.org>
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38FB81BD
+	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 03:38:19 -0800 (PST)
+Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-33334480eb4so768567f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 03:38:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701862697; x=1702467497; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Qm7pCcZmaWCMHPggwY7CXlYkirEJ9BDVaMQ6Qupg/xA=;
+        b=YuKaTjKFzlYvUVmPIlI/jO6J4yUO7idRnUbGMFM133GtOcjFF7QUVxfjDMoJjyTdsR
+         s6c+q+rOATGuPSrM7pgP8qu7m/P8T+BVMjEscgBRzdZJkmCxflHa1AybKVZtmXcTen+u
+         6xmBmi+8aLdA5qtGc2rdoeGzYQXWivBSN5fRV5nXv41tCKDBOZ4ydUznGpF3mpbWgNGy
+         yw8cr8eoc3qI9ReEzh6MMpxmHlbJXu44BS/+n7osFfuLVZX5SfEEYicfZqzu9sJ3Yf38
+         ZGAkvM8ZW41HVwePSHR7ZdaFkrBfAWIqGhS7T6kh6lxI6rP8qxkAAFBfIDHh6rV7Qdkj
+         PxkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701862697; x=1702467497;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Qm7pCcZmaWCMHPggwY7CXlYkirEJ9BDVaMQ6Qupg/xA=;
+        b=VJOsJYJL3lwB4O0UAhnBlz6SzuENg8z59fJozV0GPrlTInsD1EnV9IAHNKYbfp8gae
+         RlRjHE5l5qBgJeSTOfEjODwbei+zSCjwNGyI62gaI3WCz4l3SH6vwxxKCxQvX6AjBhfo
+         FeEBIrHRzhdD58SK+B1SxG24qdBOkrHgyPVg2U8IcLbozUgaoHFlrUUCj/jEOkpd8uLA
+         Zlc+KwvsN5rJlXkF8UQfjpQ+nzVXJm0qc+l3a09JAq9+L//SrFRbgBpghqMcXKAHzONM
+         TUI8VaspIjZuN6ajQ9mjvi2X8kyNsvBxccWa9Bopd1vGCeuTzLyQFPI7JyLADHBUmLp5
+         fRtg==
+X-Gm-Message-State: AOJu0YxiB1zfol4odANBA0oYLJY8zMsY5Z6R07sH1ibRbCKoF93IAj1/
+	KPEW3doZ4wYtNhHqYOsuFlMRCQ==
+X-Google-Smtp-Source: AGHT+IHDl6UGXjkhX+Sh5mNIn+o9ppG/aW6SJEMyI6QLyUYRYrTFnfXaaCrq1qDg++lrAfzAdnteqw==
+X-Received: by 2002:a5d:4fca:0:b0:333:387b:687b with SMTP id h10-20020a5d4fca000000b00333387b687bmr387774wrw.34.1701862697689;
+        Wed, 06 Dec 2023 03:38:17 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id f13-20020a5d64cd000000b003334898aafasm8392073wri.11.2023.12.06.03.38.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Dec 2023 03:38:16 -0800 (PST)
+Message-ID: <71972f4f-b5ac-484a-8a09-0b74bd7c623b@linaro.org>
+Date: Wed, 6 Dec 2023 12:38:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 14/20] pinctrl: samsung: Add gs101 SoC pinctrl
+ configuration
+Content-Language: en-US
+To: Alim Akhtar <alim.akhtar@samsung.com>,
+ 'Sam Protsenko' <semen.protsenko@linaro.org>,
+ 'Peter Griffin' <peter.griffin@linaro.org>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org,
+ tomasz.figa@gmail.com, s.nawrocki@samsung.com, linus.walleij@linaro.org,
+ wim@linux-watchdog.org, linux@roeck-us.net, catalin.marinas@arm.com,
+ will@kernel.org, arnd@arndb.de, olof@lixom.net, gregkh@linuxfoundation.org,
+ jirislaby@kernel.org, cw00.choi@samsung.com, tudor.ambarus@linaro.org,
+ andre.draszik@linaro.org, saravanak@google.com, willmcvicker@google.com,
+ soc@kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+ linux-watchdog@vger.kernel.org, kernel-team@android.com,
+ linux-serial@vger.kernel.org
+References: <20231201160925.3136868-1-peter.griffin@linaro.org>
+ <20231201160925.3136868-15-peter.griffin@linaro.org>
+ <CGME20231202004026epcas5p4d3947d7bb99e54f70ca37272cfdc5e55@epcas5p4.samsung.com>
+ <CAPLW+4kBOWFPx3Hr-=UoLWvRxCorzBY9RCOiBhfkKcU0LAa21Q@mail.gmail.com>
+ <000001da24c0$0b83aab0$228b0010$@samsung.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <000001da24c0$0b83aab0$228b0010$@samsung.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <0acdc122-b7fa-4bb4-b838-6420cd43d0e0@linaro.org>
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: ws1jWjDn5Y3mhcCKC-u1wb6yeh3sKe9F
-X-Proofpoint-ORIG-GUID: ws1jWjDn5Y3mhcCKC-u1wb6yeh3sKe9F
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-06_09,2023-12-06_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=419 spamscore=0
- clxscore=1015 impostorscore=0 adultscore=0 lowpriorityscore=0
- malwarescore=0 phishscore=0 bulkscore=0 suspectscore=0 priorityscore=1501
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311290000 definitions=main-2312060096
 
-On Tue, Nov 28, 2023 at 03:01:12PM +0100, Krzysztof Kozlowski wrote:
-> On 28/11/2023 11:14, Varadarajan Narayanan wrote:
-> > On Tue, Nov 28, 2023 at 09:51:50AM +0100, Krzysztof Kozlowski wrote:
-> >> On 28/11/2023 09:46, Varadarajan Narayanan wrote:
-> >>> From: Varadarajan Narayanan <quic_varada@quicinc.com>
-> >>>
-> >>> The earlier patch ec4f047679d5, incorrectly used 'l2'
-> >>> as the vdda-pll-supply. However, 'l5' is the correct
-> >>> ldo that supplies power to the USB PHY.
-> >>>
-> >>> Fixes: ec4f047679d5 ("arm64: dts: qcom: ipq9574: Enable USB")
-> >>
-> >> Doesn't this depend on the driver change?
-> >
-> > Yes, will mention in the cover letter.
->
-> This commit should have it in its changelog ---
->
-> >
-> >> It affects both existing
-> >> kernel and backports which you claim here should happen.
-> >
-> > Ok. Will include stable@vger.kernel.org in the next revision.
->
-> I wasn't speaking about Cc. You indicated this should be backported.
-> Then please backport it, without previous commit, and check the result.
-> Is stable tree working correctly or not?
+On 02/12/2023 02:36, Alim Akhtar wrote:
+> 
+> 
+>> -----Original Message-----
+>> From: Sam Protsenko <semen.protsenko@linaro.org>
+>> Sent: Saturday, December 2, 2023 6:10 AM
+>> To: Peter Griffin <peter.griffin@linaro.org>
+>> Cc: robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
+>> mturquette@baylibre.com; conor+dt@kernel.org; sboyd@kernel.org;
+>> tomasz.figa@gmail.com; s.nawrocki@samsung.com; linus.walleij@linaro.org;
+>> wim@linux-watchdog.org; linux@roeck-us.net; catalin.marinas@arm.com;
+>> will@kernel.org; arnd@arndb.de; olof@lixom.net;
+>> gregkh@linuxfoundation.org; jirislaby@kernel.org;
+>> cw00.choi@samsung.com; alim.akhtar@samsung.com;
+>> tudor.ambarus@linaro.org; andre.draszik@linaro.org;
+>> saravanak@google.com; willmcvicker@google.com; soc@kernel.org;
+>> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+>> samsung-soc@vger.kernel.org; linux-clk@vger.kernel.org; linux-
+>> gpio@vger.kernel.org; linux-watchdog@vger.kernel.org; kernel-
+>> team@android.com; linux-serial@vger.kernel.org
+>> Subject: Re: [PATCH v5 14/20] pinctrl: samsung: Add gs101 SoC pinctrl
+>> configuration
+>>
+>> On Fri, Dec 1, 2023 at 10:11 AM Peter Griffin <peter.griffin@linaro.org>
+>> wrote:
+>>>
+>>> Add support for the pin-controller found on the gs101 SoC used in
+>>> Pixel 6 phones.
+>>>
+>>> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+>>> ---
+>>>  .../pinctrl/samsung/pinctrl-exynos-arm64.c    | 159 ++++++++++++++++++
+>>>  drivers/pinctrl/samsung/pinctrl-exynos.c      |   2 +
+>>>  drivers/pinctrl/samsung/pinctrl-exynos.h      |  34 ++++
+>>>  drivers/pinctrl/samsung/pinctrl-samsung.c     |   2 +
+>>>  drivers/pinctrl/samsung/pinctrl-samsung.h     |   1 +
+>>>  5 files changed, 198 insertions(+)
+>>>
+>>> diff --git a/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c
+>>> b/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c
+>>> index cb965cf93705..e1a0668ecb16 100644
+>>> --- a/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c
+>>> +++ b/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c
+>>> @@ -796,3 +796,162 @@ const struct samsung_pinctrl_of_match_data
+>> fsd_of_data __initconst = {
+>>>         .ctrl           = fsd_pin_ctrl,
+>>>         .num_ctrl       = ARRAY_SIZE(fsd_pin_ctrl),
+>>>  };
+>>> +
+>>> +/*
+>>> + * bank type for non-alive type
+>>> + * (CON bit field: 4, DAT bit field: 1, PUD bit field: 4, DRV bit
+>>> +field: 4)
+>>> + * (CONPDN bit field: 2, PUDPDN bit field: 4)  */ static struct
+>>> +samsung_pin_bank_type gs101_bank_type_off  = {
+>>> +       .fld_width = { 4, 1, 4, 4, 2, 4, },
+>>> +       .reg_offset = { 0x00, 0x04, 0x08, 0x0c, 0x10, 0x14, }, };
+>>
+>> This is just the same as exynos850_bank_type_off (100% duplication).
+>> Here is what I suggest. Now that it's obvious there is some common platform
+>> for moder Exynos SoCs, and it's probably Exynos9, I'd suggest next course of
+>> action (if maintainers agree):
+>>   1. Remove this one
+>>   2. Rename exynos850_bank_type_off to exynos9_bank_type_off
+>>   3. Use it for both gs101 and exynos850
+>>
+>> Does it make sense?
+>>
+> My opinion is to reuse exynos850 for gs101 (wherever applicable), same philosophy was historically followed in this file.
+> That way (using exynos850 for gs101) things will be simple. 
+> Adding exynos9_* is not adding any benefit, rather it create confusion.
 
-Without the previous commit, it would fail in both the latest
-and stable tree. (Please see below for the error messages and
-stack dump)
+I don't see much value in renaming exynos850 bank type to exynos9
+considering:
+1. We don't really know the bank types for all of Exynos9xxx SoCs,
+2. Exynos7885 also uses Exynos850 bank types. Exynos7885 was much
+earlier than Exynos9xxx family.
 
-The previous commit is necessary for this commit to work.
+Best regards,
+Krzysztof
 
-Thanks
-Varada
-
-Linux version 6.7.0-rc3-next-20231128-00002-gf98bbf0a5152
----------------------------------------------------------
-	[    1.073091] l5: Bringing 0uV into 1800000-1800000uV
-	[    1.095184] l5: failed to enable: -ENXIO
-	[    1.100751] clk: Disabling unused clocks
-	[    1.105428] ------------[ cut here ]------------
-	[    1.120170] WARNING: CPU: 2 PID: 58 at drivers/regulator/core.c:2397 _regulator_put.part.36+0x154/0x15c
-	[    1.124774] Modules▒ $HL▒137014] Hardware name: Qualcomm Technologies, Inc. IPQ9574/AP-AL02-C7 (DT)
-	[    1.137033] Workqueue: events_unbound async_run_entry_fn
-	[    1.143111] pstate: 80000005 (Nzcv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
-	[    1.148579] pc : _regulator_put.part.36+0x154/0x15c
-	[    1.155261] lr : regulator_put+0x34/0x4c
-	[    1.160122] sp : ffff80008136ba10
-	[    1.164288] x29: ffff80008136ba10 x28: ffff80008136bba8 x27: 0000000000000000
-	[    1.167504] x26: ffff000002b76810 x25: fffffffffffffffa x24: ffff800080902000
-	[    1.174622] x23: ffff00000039f800 x22: ffff0000009dfa80 x21: ffff0000009df898
-	[    1.181740] x20: ffff00000256f840 x19: ffff00000256f840 x18: ffffffffffffffff
-	[    1.188858] x17: 7571657266206c61 x16: 6974696e69206465 x15: ffff800080901480
-	[    1.195976] x14: 0000000000000000 x13: 307475706e692f74 x12: 75706e692f737965
-	[    1.203094] x11: 6b2d6f6970672f6d x10: 000000000000000d x9 : 0000000000000000
-	[    1.210212] x8 : ffff800081035000 x7 : 000000000000000a x6 : 0000000000000000
-	[    1.217330] x5 : 0000000000000000 x4 : 0000000000000000 x3 : 0000000000000000
-	[    1.224449] x2 : ffff000000286a00 x1 : 0000000000000000 x0 : 0000000000000001
-	[    1.231567] Call trace:
-	[    1.238681]  _regulator_put.part.36+0x154/0x15c
-	[    1.241633]  regulator_put+0x34/0x4c
-	[    1.245886]  regulator_register+0x420/0x9e8
-	[    1.249707]  devm_regulator_register+0x58/0xb4
-	[    1.253613]  rpm_reg_probe+0x12c/0x238
-	[    1.258126]  platform_probe+0x4c/0xa8
-	[    1.261859]  really_probe+0x144/0x298
-	[    1.265591]  __driver_probe_device+0xc4/0xe8
-	[    1.269238]  driver_probe_device+0x38/0x114
-	[    1.273578]  __device_attach_driver+0xac/0xe8
-	[    1.277484]  bus_for_each_drv+0x6c/0xd8
-	[    1.281997]  __device_attach_async_helper+0xac/0xb4
-	[    1.285643]  async_run_entry_fn+0x2c/0xdc
-	[    1.290505]  process_scheduled_works+0x16c/0x288
-	[    1.294672]  worker_thread+0x160/0x33c
-	[    1.299358]  kthread+0x100/0x10c
-	[    1.302917]  ret_from_fork+0x10/0x20
-	[    1.306303] ---[ end trace 0000000000000000 ]---
-	[    1.309902] qcom_rpm_smd_regulator remoteproc:glink-edge:rpm-requests:regulators: l5: devm_regulator_register() failed, ret=-6
-
-Linux version 6.6.4-dirty
--------------------------
-	[    1.028110] qcom_rpm_smd_regulator remoteproc:glink-edge:rpm-requests:regulators: Unknown regulator l5
-	[    1.036839] clk: Disabling unused clocks
-	[    1.039163] mmc0: Failed to initialize a non-removable card
-	[    1.046249] qcom_rpm_smd_regulator: probe of remoteproc:glink-edge:rpm-requests:regulators failed with error -22
-	[    1.046329] ------------[ cut here ]------------
-	[    1.075147] WARNING: CPU: 3 PID: 56 at drivers/regulator/core.c:5760 regulator_unregister+0xd0/0xd8
-	[    1.079750] Modulesm▒▒r▒ʊ▒▒▒▒        *▒.YW,▒Y▒name: Qualcomm Technologies, Inc. IPQ9574/AP-AL02-C7 (DT)
-	[    1.091661] Workqueue: events_unbound async_run_entry_fn
-	[    1.097738] pstate: 60000005 (nZCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
-	[    1.103207] pc : regulator_unregister+0xd0/0xd8
-	[    1.109889] lr : regulator_unregister+0x4c/0xd8
-	[    1.114402] sp : ffff8000813bbb30
-	[    1.118915] x29: ffff8000813bbb30 x28: ffff00000000e205 x27: ffff00000009c6e0
-	[    1.122912] x26: ffff00000083be00 x25: 61c8864680b583eb x24: ffff0000002321a4
-	[    1.129944] x23: ffff0000002321a8 x22: ffff000000232010 x21: ffff8000813bbbd8
-	[    1.137062] x20: ffff800080f45000 x19: ffff000000911c00 x18: ffff000000030310
-	[    1.144180] x17: 65757165722d6d70 x16: 723a656764652d6b x15: ffff0000004a46a0
-	[    1.151298] x14: 0000000000000000 x13: ffff000000030310 x12: ffff0000004a4490
-	[    1.158415] x11: 0001ffffffffffff x10: ffff000000030318 x9 : ffff000000030310
-	[    1.165534] x8 : ffff0000004a44b8 x7 : 0000000000000000 x6 : ffff0000008f5cc0
-	[    1.172652] x5 : ffff00000039c0f8 x4 : 0000000000000000 x3 : 0000000000000000
-	[    1.179770] x2 : ffff0000008f5cc0 x1 : 0000000000000000 x0 : 0000000000000001
-	[    1.186888] Call trace:
-	[    1.194002]  regulator_unregister+0xd0/0xd8
-	[    1.196260]  devm_rdev_release+0x10/0x18
-	[    1.200426]  release_nodes+0x38/0x60
-	[    1.204593]  devres_release_all+0x90/0xd8
-	[    1.208153]  device_unbind_cleanup+0x14/0x50
-	[    1.212059]  really_probe+0xdc/0x298
-	[    1.216399]  __driver_probe_device+0xc4/0xe8
-	[    1.219958]  driver_probe_device+0x34/0x10c
-	[    1.224211]  __device_attach_driver+0xac/0xe8
-	[    1.228118]  bus_for_each_drv+0x6c/0xd8
-	[    1.232632]  __device_attach_async_helper+0xac/0xb4
-	[    1.236277]  async_run_entry_fn+0x2c/0xdc
-	[    1.241139]  process_scheduled_works+0x16c/0x288
-	[    1.245305]  worker_thread+0x15c/0x338
-	[    1.249992]  kthread+0x100/0x10c
-	[    1.253551]  ret_from_fork+0x10/0x20
-	[    1.256937] ---[ end trace 0000000000000000 ]---
 
