@@ -1,133 +1,112 @@
-Return-Path: <devicetree+bounces-22452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22453-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F5E38076FF
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 18:52:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A7CD807702
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 18:53:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2241E281CA7
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 17:52:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B4E6281D72
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 17:52:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68ACB6DCEE;
-	Wed,  6 Dec 2023 17:52:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F41766D1D2;
+	Wed,  6 Dec 2023 17:52:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="zH/nzGG9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tiji+3Z5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 023F9D5A;
-	Wed,  6 Dec 2023 09:52:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=xtEyYJ2fL6Bd/0ZQMBJdBd4JHYGCVwVdwTisB+sS+6c=; b=zH/nzGG9C8Rq19EuObrG0yz4pf
-	R93eD9OUVT4C3HY1QMdnol7HJPeIhWZROomiVjeEA5vOZl+0VpkragNpePVgochBymEUcb4tqXCE3
-	+cjT7SYIHITZerFDewzgXH17u0OEX74lJJgr1l0RhzVh/6LqsKCJhwiwCF7e2roBz4pIBnMbfKqer
-	rsm1nvLceBhbmqXohGYuaIJpwIMyIwAia2po95HwUoKD2VVBzltSdO2VPi64RXLRe2cWd+jlWTZg7
-	LkNLQNz1yJGIvo73+eEPhriyAPciIpXk+54b0oGxPr5VdsfZ3ol0O1LZA6f3oOXKHIkbRLhsIHA6d
-	4E4Aed3w==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:45446)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1rAw3e-0000CW-1J;
-	Wed, 06 Dec 2023 17:51:38 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1rAw3a-0002uY-MH; Wed, 06 Dec 2023 17:51:34 +0000
-Date: Wed, 6 Dec 2023 17:51:34 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chunfeng Yun <chunfeng.yun@mediatek.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Mark Lee <Mark-MC.Lee@mediatek.com>,
-	Lorenzo Bianconi <lorenzo@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Alexander Couzens <lynxis@fe80.eu>,
-	Qingfang Deng <dqfext@gmail.com>,
-	SkyLake Huang <SkyLake.Huang@mediatek.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org
-Subject: Re: [RFC PATCH v2 3/8] net: pcs: pcs-mtk-lynxi: add platform driver
- for MT7988
-Message-ID: <ZXC0pq2C6iRmeF4B@shell.armlinux.org.uk>
-References: <cover.1701826319.git.daniel@makrotopia.org>
- <68bb81ac6bf99393c8de256f42e5715626590af8.1701826319.git.daniel@makrotopia.org>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4FEC364B2;
+	Wed,  6 Dec 2023 17:52:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 149A4C433C8;
+	Wed,  6 Dec 2023 17:52:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701885174;
+	bh=eQj8MdTVfam+v/WP6NntKwGS4bt+2MoHIiUP3tMRNi0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=Tiji+3Z51wqG8estcOqphd6/JBkbTZPJWQxOJEzazaWuSVe13G1RbSCkb7JSG11w4
+	 Es8CDs8cMM68uEOm20rl6EfvDqVWXRMZkLiUX48/iZYRS3qljnuOGkEoVwdn3URKkp
+	 sg5jNCcBuLSdIVP1HPVopouI1qitGMxh2x37eod52MFKRx3P5GogvqPZlkc3naUGiQ
+	 EFR3WzxGwyh8yjWEmCV0lH6qC3QoXxgItfyuvDcEnB5GYxYft9e2cDZiVmSBiQ/+GA
+	 cYd+WLRV1s3PIFQcW2BDtMtSjc06MgufJG+9NqmZ1iD82dJo6GeNmW1aPVMIH4EZnn
+	 vZJIVUtm5ZIbg==
+Date: Wed, 6 Dec 2023 17:52:45 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Li peiyu <579lpy@gmail.com>
+Cc: javier.carrasco.cruz@gmail.com, lars@metafoo.de, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/4] iio: core: introduce trough modifier for minimum
+  values
+Message-ID: <20231206175245.73b91fe0@jic23-huawei>
+In-Reply-To: <20231206134819.559496-1-579lpy@gmail.com>
+References: <20231206134655.559474-1-579lpy@gmail.com>
+	<20231206134819.559496-1-579lpy@gmail.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <68bb81ac6bf99393c8de256f42e5715626590af8.1701826319.git.daniel@makrotopia.org>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Wed, Dec 06, 2023 at 01:44:17AM +0000, Daniel Golle wrote:
-> +struct phylink_pcs *mtk_pcs_lynxi_select_pcs(struct device_node *np, phy_interface_t mode)
-> +{
-> +	struct platform_device *pdev;
-> +	struct mtk_pcs_lynxi *mpcs;
-> +
-> +	if (!np)
-> +		return NULL;
-> +
-> +	if (!of_device_is_available(np))
-> +		return ERR_PTR(-ENODEV);
-> +
-> +	if (!of_match_node(mtk_pcs_lynxi_of_match, np))
-> +		return ERR_PTR(-EINVAL);
-> +
-> +	pdev = of_find_device_by_node(np);
-> +	if (!pdev || !platform_get_drvdata(pdev)) {
-> +		if (pdev)
-> +			put_device(&pdev->dev);
-> +		return ERR_PTR(-EPROBE_DEFER);
-> +	}
-> +
-> +	mpcs = platform_get_drvdata(pdev);
-> +	put_device(&pdev->dev);
-> +
-> +	return &mpcs->pcs;
-> +}
-> +EXPORT_SYMBOL(mtk_pcs_lynxi_select_pcs);
+On Wed,  6 Dec 2023 21:48:19 +0800
+Li peiyu <579lpy@gmail.com> wrote:
 
-If you're going to play games like this, then you must mark the driver
-with .suppress_bind_attrs = true to remove the bind/unbind attributes
-in userspace that could wreak havoc with the above - because there is
-_nothing_ that guarantees that the memory you're returning from this
-function will remain intact. Basically, it's racy.
+> From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+> 
+> The IIO_CHAN_INFO_PEAK modifier is used for maximum values and currently
+> there is no equivalent for minimum values. Instead of overloading the
+> existing peak modifier, a new modifier can be added.
+> 
+> In principle there is no need to add a _TROUGH_SCALE modifier as the
+> scale will be the same as the one required for the INFO_PEAK modifier,
+> which in turn is sometimes omitted if a single scale for peaks and raw
+> values is required.
+> 
 
-Also, I'm not sure I approve of using the "select_pcs" suffix (I
-haven't spotted _where_ you use this, but returning EPROBE_DEFER to
-phylink's mac_select_pcs() method doesn't do anything to defer any
-probe, so that's an entirely misleading error code.
+Terminology is a bit mixed up in here. Modifiers in IIO are things
+like the axis or a color for light sensors.  This is an 
+info element that applies to a channel (modified or not).
 
-If we are going to have device drivers for PCS, then we need to
-seriously think about how we look up PCS and return the phylink_pcs
-pointer - and also how we handle the PCS device going away. None of
-that should be coded into _any_ PCS driver.
+Other than that looks good to me.
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+> Add an IIO_CHAN_INFO_TROUGH modifier for minimum values.
+> 
+> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+> ---
+>  drivers/iio/industrialio-core.c | 1 +
+>  include/linux/iio/types.h       | 1 +
+>  2 files changed, 2 insertions(+)
+> 
+> diff --git a/drivers/iio/industrialio-core.c b/drivers/iio/industrialio-core.c
+> index c77745b594bd..351c64c2f4da 100644
+> --- a/drivers/iio/industrialio-core.c
+> +++ b/drivers/iio/industrialio-core.c
+> @@ -182,6 +182,7 @@ static const char * const iio_chan_info_postfix[] = {
+>  	[IIO_CHAN_INFO_THERMOCOUPLE_TYPE] = "thermocouple_type",
+>  	[IIO_CHAN_INFO_CALIBAMBIENT] = "calibambient",
+>  	[IIO_CHAN_INFO_ZEROPOINT] = "zeropoint",
+> +	[IIO_CHAN_INFO_TROUGH] = "trough_raw",
+>  };
+>  /**
+>   * iio_device_id() - query the unique ID for the device
+> diff --git a/include/linux/iio/types.h b/include/linux/iio/types.h
+> index 117bde7d6ad7..d89982c98368 100644
+> --- a/include/linux/iio/types.h
+> +++ b/include/linux/iio/types.h
+> @@ -68,6 +68,7 @@ enum iio_chan_info_enum {
+>  	IIO_CHAN_INFO_THERMOCOUPLE_TYPE,
+>  	IIO_CHAN_INFO_CALIBAMBIENT,
+>  	IIO_CHAN_INFO_ZEROPOINT,
+> +	IIO_CHAN_INFO_TROUGH,
+>  };
+>  
+>  #endif /* _IIO_TYPES_H_ */
+
 
