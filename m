@@ -1,42 +1,60 @@
-Return-Path: <devicetree+bounces-22209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22213-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF4D1806D27
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 12:00:37 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2169806D3A
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 12:03:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 749931F2167F
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 11:00:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6312BB20D4E
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 11:03:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B78F43066F;
-	Wed,  6 Dec 2023 11:00:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D43A30D0B;
+	Wed,  6 Dec 2023 11:03:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Aud7xUpj"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MbzJjMBz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E79B1FF1;
-	Wed,  6 Dec 2023 02:59:58 -0800 (PST)
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id D896C660576A;
-	Wed,  6 Dec 2023 10:59:54 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1701860396;
-	bh=HoPHOhlV5xjupYlTbEAUED1Io4kwS+bA2h3iDVkbUWc=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=Aud7xUpjM8bRjM7zomse72JYlZAIPri/6RIp9o0ijL/8LGxHF+BIayERr9Sakoevn
-	 b4uXHgp5w5WVDSltP2n2DpVpy83vXk46pKB3JVTAYXIApp+W9sAYmM8wUWdmrpPvUd
-	 nXRN7BdRwYPFnjWK3Ug4RlUI8biuHmBbHPrW67zo4RRGKjfDzcDCY1bEBLxkyTk15V
-	 7E2USSxoKh6efRjxybRqYk0NfNF1U0zLXhvglR6loxxeFi4wEHMrsrl0xqoQkyylHG
-	 TwxA3q/FkZQs3xeBGESjLQEfJdpiHjHiEqa9G+m7jtYK2DIYINdVMeIP3nfJ8F5AuB
-	 /kd33Us9uCKfQ==
-Message-ID: <3e72bff6-9f4d-4cd4-845e-b065f1233ec6@collabora.com>
-Date: Wed, 6 Dec 2023 11:59:54 +0100
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 287D630E0
+	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 03:00:45 -0800 (PST)
+Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-3316bb1303bso478263f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 03:00:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701860443; x=1702465243; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FPhhus+h0/OzMDouB3uZsxOuBY91lWyEIx8Tfql5Hyc=;
+        b=MbzJjMBz3L/FGNXw7G3jkQarF1qb5NVPJjqe8Tg4mkam11PAsCvJPUrPXGQbeGWtYa
+         V3RWRSsv6qJx7apze40s1RngbOWR7PEz1vWzPW+jDPpc/ZsonG8FhJKgZrgGfrPUkjEv
+         AXYeKr1WJdBleovDVAHfWhHKnqLANs3BukOL0upgjZVN4P14XUYKQoednckUgqLxtFJK
+         5VQbSFPEpiSj8o6yLGVPG7uJHxgstDhffjsw846GmxUE78aHCPf3ORhZzVaw/MiQQ0Kx
+         CVyAg9vKZO3OZklzQ7P4PrTDVz+56aAPmDlYiqwnvJUYwIRubiVv4q4bQ+28QxF5mi/s
+         ubRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701860443; x=1702465243;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FPhhus+h0/OzMDouB3uZsxOuBY91lWyEIx8Tfql5Hyc=;
+        b=G2anbdx9EjGG485+CD5AflxSMUa0p9Ublz4tSk+hcXLKnCEysyFBLCVMYrcsqIv2qG
+         /0Miv05dG4d6J1/fMGm4XPpmuUtnsyck7CzB3p/zz6Z+JcRiN/G8MvH4X2xYUrr8vymz
+         i5xTh9kKf8CtvVMoykJTabhPDTb+A7vO4+dzpUwI0Quhh2VP6yhb1OQwAJIDV1TZq1l2
+         CnCL1IDal6s/DWUnZPAHVe5D+jaZvZX3Y1xyMEzrriwqJyxLGs3dKAxsbtjg+HjHUyv6
+         i9yDWhisKQGfd8S3ETmuSBPyKtqnOxD2r2EQ2bvNl6MJ6l8FSPR7ub3TFmU8qgmLcbLW
+         UlLw==
+X-Gm-Message-State: AOJu0YzIaQTZNaKr4ohypxao/DzvOrxb7CqFgoUkiwB9O6uD44G3ksLV
+	U3E63gRgLfNiABoYfq+Q0s2nmQ==
+X-Google-Smtp-Source: AGHT+IHfEopXvXDSksmAEce2ljkG1NRPB3ktJTr1iC+1KloGFhh7QVeN1gGj+Bt1BjsIoM9uDoRtNA==
+X-Received: by 2002:a5d:4cc1:0:b0:333:2fd2:8166 with SMTP id c1-20020a5d4cc1000000b003332fd28166mr481150wrt.131.1701860443266;
+        Wed, 06 Dec 2023 03:00:43 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id ba18-20020a0560001c1200b00333479734a7sm8669148wrb.99.2023.12.06.03.00.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Dec 2023 03:00:42 -0800 (PST)
+Message-ID: <17ce60f7-81aa-452f-84cc-8b09b7cb1b7e@linaro.org>
+Date: Wed, 6 Dec 2023 12:00:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -44,163 +62,82 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/4] dt-bindings: clock: mediatek: add clock
- controllers of MT7988
+Subject: Re: [PATCH v2 0/2] Add HX83102j driver for HIMAX HID touchscreen
 Content-Language: en-US
-To: Daniel Golle <daniel@makrotopia.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Sabrina Dubroca <sd@queasysnail.net>, Jianhui Zhao <zhaojh329@gmail.com>,
- Chen-Yu Tsai <wenst@chromium.org>, "Garmin.Chang"
- <Garmin.Chang@mediatek.com>, Sam Shih <sam.shih@mediatek.com>,
- Frank Wunderlich <frank-w@public-files.de>,
- Dan Carpenter <dan.carpenter@linaro.org>,
- James Liao <jamesjj.liao@mediatek.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- netdev@vger.kernel.org
-References: <23bc89d407e7797e97b703fa939b43bfe79296ce.1701823757.git.daniel@makrotopia.org>
- <def05aac79ddff872d3e56698b736cb445f14116.1701823757.git.daniel@makrotopia.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <def05aac79ddff872d3e56698b736cb445f14116.1701823757.git.daniel@makrotopia.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: Allen_Lin <allencl_lin@hotmail.com>, dmitry.torokhov@gmail.com,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ jikos@kernel.org, benjamin.tissoires@redhat.com,
+ linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <TY0PR06MB5611F2CBE520DB21F15DF9B99E84A@TY0PR06MB5611.apcprd06.prod.outlook.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <TY0PR06MB5611F2CBE520DB21F15DF9B99E84A@TY0PR06MB5611.apcprd06.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Il 06/12/23 01:57, Daniel Golle ha scritto:
-> Add various clock controllers found in the MT7988 SoC to existing
-> bindings (if applicable) and add files for the new ethwarp, mcusys
-> and xfi-pll clock controllers not previously present in any SoC.
+On 06/12/2023 11:35, Allen_Lin wrote:
+> Hi,
+> This driver implements for HIMAX HID touchscreen HX8310XX series. 
 > 
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> ---
-> v3:
->   * move clock bindings to clock folder
->   * drop ti,syscon-reset from bindings and example
->   * merge mcusys with topckgen bindings
+> Using SPI interface to acquire HID packets from driver. 
 > 
-> v2:
->   * dropped unused labels
->   * add 'type: object' declaration for reset-controller found in new
->     ethwarp controller and represented as ti,syscon-reset
->   * rebase on top of
->     "dt-bindings: arm: mediatek: move ethsys controller & convert to DT schema"
+> Patchs notes as below 
+> 1. Add the Maintainer and devicetree bindings document for driver
+> 2. Add the driver code and modify Kconfig/Makefiles to support the driver
 > 
->   .../arm/mediatek/mediatek,infracfg.yaml       |  1 +
->   .../bindings/clock/mediatek,apmixedsys.yaml   |  1 +
->   .../bindings/clock/mediatek,ethsys.yaml       |  1 +
->   .../clock/mediatek,mt7988-ethwarp.yaml        | 49 +++++++++++++++++++
->   .../clock/mediatek,mt7988-xfi-pll.yaml        | 48 ++++++++++++++++++
->   .../bindings/clock/mediatek,topckgen.yaml     |  2 +
->   .../bindings/net/pcs/mediatek,sgmiisys.yaml   | 13 +++--
->   7 files changed, 112 insertions(+), 3 deletions(-)
->   create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt7988-ethwarp.yaml
->   create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt7988-xfi-pll.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.yaml
-> index ea98043c6ba3d..230b5188a88db 100644
-> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.yaml
-> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.yaml
-> @@ -30,6 +30,7 @@ properties:
->                 - mediatek,mt7629-infracfg
->                 - mediatek,mt7981-infracfg
->                 - mediatek,mt7986-infracfg
-> +              - mediatek,mt7988-infracfg
->                 - mediatek,mt8135-infracfg
->                 - mediatek,mt8167-infracfg
->                 - mediatek,mt8173-infracfg
-> diff --git a/Documentation/devicetree/bindings/clock/mediatek,apmixedsys.yaml b/Documentation/devicetree/bindings/clock/mediatek,apmixedsys.yaml
-> index 372c1d744bc27..685535846cbb7 100644
-> --- a/Documentation/devicetree/bindings/clock/mediatek,apmixedsys.yaml
-> +++ b/Documentation/devicetree/bindings/clock/mediatek,apmixedsys.yaml
-> @@ -22,6 +22,7 @@ properties:
->             - mediatek,mt7622-apmixedsys
->             - mediatek,mt7981-apmixedsys
->             - mediatek,mt7986-apmixedsys
-> +          - mediatek,mt7988-apmixedsys
->             - mediatek,mt8135-apmixedsys
->             - mediatek,mt8173-apmixedsys
->             - mediatek,mt8516-apmixedsys
-> diff --git a/Documentation/devicetree/bindings/clock/mediatek,ethsys.yaml b/Documentation/devicetree/bindings/clock/mediatek,ethsys.yaml
-> index 94d42c8647777..f9cddacc2eae1 100644
-> --- a/Documentation/devicetree/bindings/clock/mediatek,ethsys.yaml
-> +++ b/Documentation/devicetree/bindings/clock/mediatek,ethsys.yaml
-> @@ -22,6 +22,7 @@ properties:
->                 - mediatek,mt7629-ethsys
->                 - mediatek,mt7981-ethsys
->                 - mediatek,mt7986-ethsys
-> +              - mediatek,mt7988-ethsys
->             - const: syscon
->         - items:
->             - const: mediatek,mt7623-ethsys
-> diff --git a/Documentation/devicetree/bindings/clock/mediatek,mt7988-ethwarp.yaml b/Documentation/devicetree/bindings/clock/mediatek,mt7988-ethwarp.yaml
-> new file mode 100644
-> index 0000000000000..9b919a155eb13
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/mediatek,mt7988-ethwarp.yaml
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/mediatek/mediatek,mt7988-ethwarp.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek MT7988 ethwarp Controller
-> +
-> +maintainers:
-> +  - Daniel Golle <daniel@makrotopia.org>
-> +
-> +description:
-> +  The Mediatek MT7988 ethwarp controller provides clocks and resets for the
-> +  Ethernet related subsystems found the MT7988 SoC.
-> +  The clock values can be found in <dt-bindings/clock/mt*-clk.h>.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: mediatek,mt7988-ethwarp
-> +      - const: syscon
-> +      - const: simple-mfd
+> change in v2 :
+> - Fix kernel test robot build warnings.
 
-No, this is not a mfd, I say.
+I reviewed v1, so you must fix everything I pointed out. This code is in
+absolutely terrible shape. It way over complicated, with way too many
+structures, way too many abstractions (you must have exactly 0
+abstractions). It was not written in Linux style.
 
-Prove me wrong! :-)
+Best regards,
+Krzysztof
 
-..snip..
-
-> diff --git a/Documentation/devicetree/bindings/net/pcs/mediatek,sgmiisys.yaml b/Documentation/devicetree/bindings/net/pcs/mediatek,sgmiisys.yaml
-> index 66a95191bd776..68632cda334bd 100644
-> --- a/Documentation/devicetree/bindings/net/pcs/mediatek,sgmiisys.yaml
-> +++ b/Documentation/devicetree/bindings/net/pcs/mediatek,sgmiisys.yaml
-> @@ -15,15 +15,22 @@ description:
->   
->   properties:
->     compatible:
-> -    items:
-> -      - enum:
-> +    oneOf:
-> +      - items:
-> +        - enum:
->             - mediatek,mt7622-sgmiisys
->             - mediatek,mt7629-sgmiisys
->             - mediatek,mt7981-sgmiisys_0
->             - mediatek,mt7981-sgmiisys_1
->             - mediatek,mt7986-sgmiisys_0
->             - mediatek,mt7986-sgmiisys_1
-> -      - const: syscon
-> +        - const: syscon
-> +      - items:
-> +        - enum:
-> +          - mediatek,mt7988-sgmiisys_0
-> +          - mediatek,mt7988-sgmiisys_1
-> +        - const: syscon
-> +        - const: simple-mfd
-
-Same.
-
-Cheers,
-Angelo
 
