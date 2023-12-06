@@ -1,46 +1,51 @@
-Return-Path: <devicetree+bounces-22032-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22033-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1146F806429
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 02:32:59 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD32680642C
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 02:34:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BFFD628133C
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 01:32:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B1831C20B20
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 01:34:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2330BED6;
-	Wed,  6 Dec 2023 01:32:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17442EBC;
+	Wed,  6 Dec 2023 01:34:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tmb2zilu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ar0vZZ3n"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 051BBEC4
-	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 01:32:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 710C8C433C7;
-	Wed,  6 Dec 2023 01:32:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAA4210E1;
+	Wed,  6 Dec 2023 01:34:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABA41C433C7;
+	Wed,  6 Dec 2023 01:34:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701826373;
-	bh=lxYbfjcG7mONb9ZNDxGcdgQVT9vJ4xvTWN/HBECty2g=;
+	s=k20201202; t=1701826467;
+	bh=0Ub3inJ2wgHo/fdvl0F3hZsMohV02nkHk6UaI4SB4/4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Tmb2zilu85kSH4A7EFyLZBdCB900pAbA0nQvBGqJ3Zlih8Z8/muDvwjbcWWrocpJx
-	 kodW+65B+RLzT9S6Meg0tFozw7JI0pw7xgS3Q/YDrQ5ucwOifW6CVH/VpN2CI1DigH
-	 owyGJT46DiTFw/ojMtklb6BKQWKiMV8x35koC6Bt6aSOq9223ju8Jv58X+mNI9L2Wq
-	 nqZkYNyxBZ8r4qrQIJS0lKNw9pwHzxicuoMXkBuNZInke+F8IejZv9WgTmT46CYr0c
-	 qe8Il70cCLmdKzWFTuPdcxkBV3mCP7G6M0GWvpXirrmtEEauZ+rgBgvuLlbhzAWjbu
-	 rpBheLQZR1xqQ==
-Date: Wed, 6 Dec 2023 09:32:47 +0800
+	b=Ar0vZZ3nLb7DBySAUwolloKk5Xw9saEMq7hdktaeXLUvQfVOFZAgNieRCGBL0P3sH
+	 rxmVD82+GfZLYwBuxGuRt01Xb5yOVy6cE3OlBqAVq2lzuZqTeYbUh/LRFnCPIQmMl5
+	 qMxzmv7iUoJU2bdH2M1ULNstq6wvxOuiXrIPaKjLeMgJNHV/rC9SzU450/WDm268pJ
+	 O5R57By5mgBDcPQnN2tV5AKnCeCJBbMjTztYFN1x6lx6t1ILtGlDELarRkzNqw1YAR
+	 d+gR0Yw0wiFmpu18Ls3Irwdx0/qjIQFb14FhNfyMAENPUh/UzImTd8jOXmj0lc9Wua
+	 hWfijEUUzhqSg==
+Date: Wed, 6 Dec 2023 09:34:21 +0800
 From: Shawn Guo <shawnguo@kernel.org>
-To: Lech Perczak <lech.perczak@gmail.com>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@gmail.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>
-Subject: Re: [PATCH] ARM: dts: nxp: imx7d-pico: add cpu-supply nodes
-Message-ID: <20231206013247.GY236001@dragon>
-References: <20231117232352.101713-1-lech.perczak@gmail.com>
+To: Xu Yang <xu.yang_2@nxp.com>
+Cc: frank.li@nxp.com, corbet@lwn.net, s.hauer@pengutronix.de,
+	kernel@pengutronix.de, will@kernel.org, mark.rutland@arm.com,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	festevam@gmail.com, conor+dt@kernel.org, linux-imx@nxp.com,
+	linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 5/5] arm64: dts: imx8dxl-ss-ddr: change ddr_pmu0
+ compatible
+Message-ID: <20231206013421.GZ236001@dragon>
+References: <20231120093317.2652866-1-xu.yang_2@nxp.com>
+ <20231120093317.2652866-5-xu.yang_2@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -49,26 +54,13 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231117232352.101713-1-lech.perczak@gmail.com>
+In-Reply-To: <20231120093317.2652866-5-xu.yang_2@nxp.com>
 
-On Sat, Nov 18, 2023 at 12:23:52AM +0100, Lech Perczak wrote:
-> The PICO-IMX7D SoM has the usual power supply configuration using
-> output sw1a of PF3000 PMIC, which was defined in downstream derivative
-> of linux-imx (see link) in the sources for "Android Things" devkit.
-> It is required to support CPU frequency scaling.
+On Mon, Nov 20, 2023 at 05:33:17PM +0800, Xu Yang wrote:
+> i.MX8DXL's ddr pmu has port/channel filter capabilities, but it still is
+> compatible with "fsl,imx8-ddr-pmu". This will change the compatible.
 > 
-> Map the respective "cpu-supply" nodes of each core to sw1a of the PMIC.
-> 
-> Enabling them causes cpufreq-dt, and imx-thermal drivers to probe
-> successfully, and CPU frequency scaling to function.
-> 
-> Link: https://android.googlesource.com/platform/hardware/bsp/kernel/nxp/imx-v4.1/+/o-iot-preview-5/arch/arm/boot/dts/imx7d-pico.dtsi#849
-> 
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> 
-> Signed-off-by: Lech Perczak <lech.perczak@gmail.com>
+> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
 
 Applied, thanks!
 
