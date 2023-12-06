@@ -1,54 +1,54 @@
-Return-Path: <devicetree+bounces-22481-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22482-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01F5F807AC6
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 22:50:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 260D3807AD8
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 22:53:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D96B1C20B45
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 21:50:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D54852819E2
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 21:53:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB64D12E65;
-	Wed,  6 Dec 2023 21:50:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B38224187D;
+	Wed,  6 Dec 2023 21:53:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D869E8F;
-	Wed,  6 Dec 2023 13:50:18 -0800 (PST)
-Received: by mail-oi1-f171.google.com with SMTP id 5614622812f47-3b9d2b8c3c6so202925b6e.1;
-        Wed, 06 Dec 2023 13:50:18 -0800 (PST)
+Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C82398
+	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 13:53:37 -0800 (PST)
+Received: by mail-oi1-f179.google.com with SMTP id 5614622812f47-3b9b5bff21dso209015b6e.2
+        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 13:53:37 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701899418; x=1702504218;
+        d=1e100.net; s=20230601; t=1701899616; x=1702504416;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=aEnrg1KlYR6vf/zDP0yzao4X3UI09Y6k9tq3wxu2Hyk=;
-        b=jQ39/hVKGkpq7jOKtOB/YLWL7yjPN/spVP3CjlPoPpeTdCo6ZLY8iKhTx3p7bJzD6I
-         ma+dOp8xa8x6J+pRergvvj5HjqnL0Sj9VMLUVbn3eSdcGVqY45R5F+2R0XX4/VmJXNN3
-         YzL/bJMPnlLB02g+9hJjSzkkTepFyxRxM/rhmhdEZdYPPnGRhQBGOmkW6PXgzSiHJakZ
-         Bi+XnCNt66qZdhizuwirpDMsl6CnCwc0fV8KKp+gqU8A1O8ACpl6e+mbRlb4dy8Vd/SX
-         cHUFUBQjUC5zaccgUGV6MD36YF37V1RnT2oJUPCiTbsn6s51Qoq97Rwl3mb2tEZNE5CI
-         tUTQ==
-X-Gm-Message-State: AOJu0YyQONmZ2shU3q/s7eKZotzohhz2TKbKTM963Ump2S7KUB2Jsu9+
-	9e2xkLHNJR+MhcRaG7ta6Q==
-X-Google-Smtp-Source: AGHT+IERHoALlq7OdHIXZ4O4/+rMxWVHFWkvKbTfFzryW2OMoqqku1HaTGIob5AKzzHZ6T1m0WhzTw==
-X-Received: by 2002:a05:6808:209d:b0:3b8:b063:8247 with SMTP id s29-20020a056808209d00b003b8b0638247mr1940169oiw.73.1701899418101;
-        Wed, 06 Dec 2023 13:50:18 -0800 (PST)
+        bh=TRApxN84tK1OELGvRIkKXdOvX6UMTgem7J1gQuAhgrg=;
+        b=Crcw0rOZdJsFmW9wdvA71NcWoNoeurUP94BlMlENGUGuwFivbIDvhDFo/c0gfnsxg3
+         zPiZSDR2Wltn1WXOrwaFztrSL26cWZzcGUsXvdyf0I4FV7yEhRs2Yt2KU8NeeUztkIdG
+         u52M4jKeygqoicOavy1cNQ3+Um3rZPG2EBxThMV2N8BVgUIiGqsg44aCtxQXXvinLuaY
+         K0y5rSPiiNXvh4GgEvtvXTf+eG0VLUTszvW3s1qfcToke35+zNQaGE8/ewEV7B3lAcqW
+         K/HzdOQioCLm6/sVeOdH2MzHSXHd8hvIgzovJx7Qd6bm/L5nKpGnrmaLr0kCadekEvnJ
+         ZW0Q==
+X-Gm-Message-State: AOJu0YxH5nCRXrKSU+GYlSfxEjWbjMGy/cBnlL3mUgixw92Z3mHmxHiN
+	ylN8JkSZbhBPFR9qPpRjIw==
+X-Google-Smtp-Source: AGHT+IGSHMJia4JEhVitpl4rHwyzT+vJEYWcrBDIAeXj93oiVLvFAOezZjEaBHHG5bU3owr8bMVpeg==
+X-Received: by 2002:a05:6808:218e:b0:3b2:ef9e:45af with SMTP id be14-20020a056808218e00b003b2ef9e45afmr2100596oib.13.1701899616447;
+        Wed, 06 Dec 2023 13:53:36 -0800 (PST)
 Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id n22-20020a9d6f16000000b006d87f95566bsm119111otq.51.2023.12.06.13.50.17
+        by smtp.gmail.com with ESMTPSA id bd32-20020a056808222000b003ae11a7ab80sm141791oib.47.2023.12.06.13.53.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Dec 2023 13:50:17 -0800 (PST)
-Received: (nullmailer pid 3384012 invoked by uid 1000);
-	Wed, 06 Dec 2023 21:50:16 -0000
-Date: Wed, 6 Dec 2023 15:50:16 -0600
+        Wed, 06 Dec 2023 13:53:35 -0800 (PST)
+Received: (nullmailer pid 3390127 invoked by uid 1000);
+	Wed, 06 Dec 2023 21:53:34 -0000
+Date: Wed, 6 Dec 2023 15:53:34 -0600
 From: Rob Herring <robh@kernel.org>
-To: David Heidelberg <david@ixit.cz>
-Cc: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/5] dt-bindings: arm: hwmon: gpio-fan: Convert txt
- bindings to yaml
-Message-ID: <20231206215016.GA3379159-robh@kernel.org>
-References: <20231202222934.137191-1-david@ixit.cz>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, dri-devel@lists.freedesktop.org, krzysztof.kozlowski+dt@linaro.org, marex@denx.de, robh+dt@kernel.org, stefan@agner.ch, Fabio Estevam <festevam@denx.de>
+Subject: Re: [PATCH v2] dt-bindings: lcdif: Properly describe the i.MX23
+ interrupts
+Message-ID: <170189961308.3390031.1609585569246344819.robh@kernel.org>
+References: <20231206112337.2234849-1-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,148 +57,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231202222934.137191-1-david@ixit.cz>
+In-Reply-To: <20231206112337.2234849-1-festevam@gmail.com>
 
-On Sat, Dec 02, 2023 at 11:29:00PM +0100, David Heidelberg wrote:
-> Convert fan devices connected to GPIOs to the YAML syntax.
+
+On Wed, 06 Dec 2023 08:23:37 -0300, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
 > 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
+> i.MX23 has two LCDIF interrupts instead of a single one like other
+> i.MX devices.
+> 
+> Take this into account for properly describing the i.MX23 LCDIF
+> interrupts.
+> 
+> This fixes the following dt-schema warning:
+> 
+> imx23-olinuxino.dtb: lcdif@80030000: interrupts: [[46], [45]] is too long
+>         from schema $id: http://devicetree.org/schemas/display/fsl,lcdif.yaml#
+> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> Reviewed-by: Marek Vasut <marex@denx.de>
 > ---
->  .../devicetree/bindings/hwmon/gpio-fan.txt    | 41 -----------
->  .../devicetree/bindings/hwmon/gpio-fan.yaml   | 70 +++++++++++++++++++
->  2 files changed, 70 insertions(+), 41 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/hwmon/gpio-fan.txt
->  create mode 100644 Documentation/devicetree/bindings/hwmon/gpio-fan.yaml
+> Changes since v1:
+> - Add missing else to limit the number of irqs for the other variants. (Krzysztof)
 > 
-> diff --git a/Documentation/devicetree/bindings/hwmon/gpio-fan.txt b/Documentation/devicetree/bindings/hwmon/gpio-fan.txt
-> deleted file mode 100644
-> index f4cfa350f6a1..000000000000
-> --- a/Documentation/devicetree/bindings/hwmon/gpio-fan.txt
-> +++ /dev/null
-> @@ -1,41 +0,0 @@
-> -Bindings for fan connected to GPIO lines
-> -
-> -Required properties:
-> -- compatible : "gpio-fan"
-> -
-> -Optional properties:
-> -- gpios: Specifies the pins that map to bits in the control value,
-> -  ordered MSB-->LSB.
-> -- gpio-fan,speed-map: A mapping of possible fan RPM speeds and the
-> -  control value that should be set to achieve them. This array
-> -  must have the RPM values in ascending order.
-> -- alarm-gpios: This pin going active indicates something is wrong with
-> -  the fan, and a udev event will be fired.
-> -- #cooling-cells: If used as a cooling device, must be <2>
-> -  Also see:
-> -  Documentation/devicetree/bindings/thermal/thermal-cooling-devices.yaml
-> -  min and max states are derived from the speed-map of the fan.
-> -
-> -Note: At least one the "gpios" or "alarm-gpios" properties must be set.
-> -
-> -Examples:
-> -
-> -	gpio_fan {
-> -		compatible = "gpio-fan";
-> -		gpios = <&gpio1 14 1
-> -			 &gpio1 13 1>;
-> -		gpio-fan,speed-map = <0    0
-> -				      3000 1
-> -				      6000 2>;
-> -		alarm-gpios = <&gpio1 15 1>;
-> -	};
-> -	gpio_fan_cool: gpio_fan {
-> -		compatible = "gpio-fan";
-> -		gpios = <&gpio2 14 1
-> -			 &gpio2 13 1>;
-> -		gpio-fan,speed-map =	<0    0>,
-> -					<3000 1>,
-> -					<6000 2>;
-> -		alarm-gpios = <&gpio2 15 1>;
-> -		#cooling-cells = <2>; /* min followed by max */
-> -	};
-> diff --git a/Documentation/devicetree/bindings/hwmon/gpio-fan.yaml b/Documentation/devicetree/bindings/hwmon/gpio-fan.yaml
-> new file mode 100644
-> index 000000000000..0e220874bee6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/gpio-fan.yaml
-> @@ -0,0 +1,70 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/gpio-fan.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Fan connected to GPIO lines
-> +
-> +maintainers:
-> +  - Rob Herring <robh@kernel.org>
-> +
-> +properties:
-> +  compatible:
-> +    const: gpio-fan
-> +
-> +  gpios:
-> +    description: |
-> +      Specifies the pins that map to bits in the control value,
-> +      ordered MSB-->LSB.
-> +    minItems: 1
-> +    maxItems: 7
-> +
-> +  alarm-gpios:
-> +    maxItems: 1
-> +
-> +  gpio-fan,speed-map:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> +    minItems: 2
-> +    maxItems: 127
-> +    items:
-> +      items:
-> +        - description: fan speed in RPMs
-> +        - description: control value
-> +    description: |
-> +      A mapping of possible fan RPM speeds and the
-> +      control value that should be set to achieve them. This array
-> +      must have the RPM values in ascending order.
-> +
-> +  '#cooling-cells':
-> +    const: 2
-> +
-> +required:
-> +  - compatible
-> +  - gpios
-> +  - gpio-fan,speed-map
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    gpio_fan {
-> +      compatible = "gpio-fan";
-> +      gpios = <&gpio1 14 1
-> +               &gpio1 13 1>;
-> +      gpio-fan,speed-map = <    0 0>,
-> +                           < 3000 1>,
-> +                           <36000 2>;
-> +      alarm-gpios = <&gpio1 15 1>;
-> +    };
-> +  - |
-> +    gpio_fan_cool: gpio_fan {
+>  .../bindings/display/fsl,lcdif.yaml           | 20 ++++++++++++++++++-
+>  1 file changed, 19 insertions(+), 1 deletion(-)
+> 
 
-Drop unused labels.
+Applied, thanks!
 
-> +      compatible = "gpio-fan";
-> +      gpios = <&gpio2 14 1
-> +               &gpio2 13 1>;
-> +      gpio-fan,speed-map = <   0 0>,
-> +                           <3000 1>,
-> +                           <6000 2>;
-> +      alarm-gpios = <&gpio2 15 1>;
-> +      #cooling-cells = <2>; /* min followed by max */
-> +    };
-
-Not really much difference in the 2 examples. Drop the first one 
-(having fewer properties).
-
-Rob
 
