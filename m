@@ -1,86 +1,142 @@
-Return-Path: <devicetree+bounces-22298-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22299-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D786880710A
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 14:42:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4B3380711E
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 14:47:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5F316B20E1E
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 13:42:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 69C321F21215
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 13:47:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A52B39FF1;
-	Wed,  6 Dec 2023 13:42:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 373D63A8F0;
+	Wed,  6 Dec 2023 13:47:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Rqij4ofu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 707AAC7;
-	Wed,  6 Dec 2023 05:42:47 -0800 (PST)
-Received: by mail-oi1-f175.google.com with SMTP id 5614622812f47-3b8958b32a2so4220841b6e.2;
-        Wed, 06 Dec 2023 05:42:47 -0800 (PST)
+Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B902EC7;
+	Wed,  6 Dec 2023 05:47:09 -0800 (PST)
+Received: by mail-pf1-x442.google.com with SMTP id d2e1a72fcca58-6ce26a03d9eso2945573b3a.0;
+        Wed, 06 Dec 2023 05:47:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701870429; x=1702475229; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=indVg3iJe1bUmDftGyXLEFS478Gs8luViEtcG78izGA=;
+        b=Rqij4ofu6i9zykU6O7BNl06GG1qNAZD4LERI9AgfSiRY2vijCrtjYMSwZC+xJ0/XZN
+         eBCUNl2FfvTD5Uq+8Oh1cRvRIHVp+1TcpzyThQjdqqV93HjyIls1WPY+7xS1EW0gbfmn
+         apCzmIiegP9x7aAOi0zfy5HfZ6BtO86CEhWgA6B4BMoZebWTAGHd1YK44JSuZcikJHRu
+         BWzvom9thHTaaP1REsWko1WXZ5S7TaDvWICT+9gDDS+JdgenNUQ4I1xJQJgFKPAm/Th7
+         z41lWfQ23hkwVPwbu+zYLYVjzO8CYjBOqUHiIRoPROPtLMKTY0Ucvsmsv8HDSCxx8ddV
+         LZIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701870166; x=1702474966;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uLzpQ4fOC8RLmPkow4CQkCwl/Mdnw93sW11GlybnYgs=;
-        b=ZH4AezgBVO9Cg+oP++6voEmQ5G67m7jKi7sUbRFbAf/BJABErhbodQYu0LOGidapUX
-         wNP2/FdaP+/muzCAdhzMADkjOH006IbE+dGDpMp8y7gkFaygUc4Le1P4xx86beqY3hz3
-         Q75pSVKPtsrxlKEjNn3bvd0aKe03yVUpOE5V7hfVtzfCctWNdU3l2+f64mTDdzcEeS0Z
-         ESwrmqveYKrZUVOnCpXQk6TBAGobJuxHLHsxS/bHU708tUAn0/7DNliIymdGeULpmPRO
-         duB0jTysqO2WoXdZY0+5BDKTs1zil8fqAgT/JzJdLLtQQ0fAnrjLMAluUakOHHhb7v3k
-         Yniw==
-X-Gm-Message-State: AOJu0YykRCxkFm5NdaH/KI10B9fGtXhzYQRg5+E21MkXpao05P5EUyd5
-	bhouG0UO6OU9l1Bk6sPotQ==
-X-Google-Smtp-Source: AGHT+IE7PnaaolCnZdgfvQMGg6RBkpYWak6PaCEiL9P2gMCYQYxnLE6AEQWyIP3OQXfLn3puL5Lwpw==
-X-Received: by 2002:a05:6808:1410:b0:3b8:63aa:826f with SMTP id w16-20020a056808141000b003b863aa826fmr1470443oiv.25.1701870166732;
-        Wed, 06 Dec 2023 05:42:46 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id o27-20020a05680803db00b003b8388ffaffsm2544248oie.41.2023.12.06.05.42.45
+        d=1e100.net; s=20230601; t=1701870429; x=1702475229;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=indVg3iJe1bUmDftGyXLEFS478Gs8luViEtcG78izGA=;
+        b=FVLoJ3obHcQz134I2nKxOMTIUTl3Mt6Kuwue5xuWYbiLJxQTXDFSFVD/bcgv8T1Bh6
+         DhtE2Bw49FA3iXP8G5dvrbQknpAp1tc8K6oj9zqsOLoi3Z7nOM4vRGC0T5vK+i/nzBYt
+         UERfU8yxMxZTsNLQKwQh4qCFyD6xgQI4nC14wqxKO4Z154E5sMy4oirW7yOjcFAUBO9L
+         mLQd+/WJ4prE0GPnXWYzucNiTiCvF8pgsMsiXU41MbBoYdZ4VbRO+nsLsJnwuByGLR9c
+         HQdW/MsHypDSrrme20w6m3cjporgZpifIsv1iOmxCs6bo8pnE9e7N/z5BfAdQ6ZTsnOI
+         PhaQ==
+X-Gm-Message-State: AOJu0YyEMTjCTVfjIbC5WAhI1Bx7TiqP3U9gioFl3GNcYBNqGZ2/xb6Y
+	A+sIVW9TiBjCnRyKdmCcAd0=
+X-Google-Smtp-Source: AGHT+IE7Id75EsCrlMdTpxA69hAH3GctF3TfPfA9wGdP5BlXGfsKjpbKppHc7MbvOzUGiatKJFAK5A==
+X-Received: by 2002:a05:6a00:6ca8:b0:6ce:4c5b:4c97 with SMTP id jc40-20020a056a006ca800b006ce4c5b4c97mr567521pfb.56.1701870428881;
+        Wed, 06 Dec 2023 05:47:08 -0800 (PST)
+Received: from dawn-virtual-machine.localdomain ([183.198.59.249])
+        by smtp.gmail.com with ESMTPSA id f7-20020a056a0022c700b006cb574445efsm7287038pfj.88.2023.12.06.05.47.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Dec 2023 05:42:46 -0800 (PST)
-Received: (nullmailer pid 1999706 invoked by uid 1000);
-	Wed, 06 Dec 2023 13:42:45 -0000
-Date: Wed, 6 Dec 2023 07:42:45 -0600
-From: Rob Herring <robh@kernel.org>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Bjorn Andersson <andersson@kernel.org>, linux-kernel@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>, Andy Gross <agross@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawn.guo@linaro.org>, Marc Zyngier <maz@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, linux-arm-msm@vger.kernel.org, Marijn Suijten <marijn.suijten@somainline.org>
-Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: Allow
- #power-domain-cells
-Message-ID: <170187016332.1999400.6374393677018050947.robh@kernel.org>
-References: <20231129-topic-mpmbindingspd-v2-1-acbe909ceee1@linaro.org>
+        Wed, 06 Dec 2023 05:47:08 -0800 (PST)
+From: Li peiyu <579lpy@gmail.com>
+To: jic23@kernel.org
+Cc: javier.carrasco.cruz@gmail.com,
+	lars@metafoo.de,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Li peiyu <579lpy@gmail.com>
+Subject: [PATCH v4 0/4] iio: humidity: Add driver for ti HDC302x humidity sensors
+Date: Wed,  6 Dec 2023 21:46:55 +0800
+Message-Id: <20231206134655.559474-1-579lpy@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231129-topic-mpmbindingspd-v2-1-acbe909ceee1@linaro.org>
+Content-Transfer-Encoding: 8bit
 
+Add support for HDC302x integrated capacitive based relative
+humidity (RH) and temperature sensor.
+This driver supports reading values, reading the maximum and
+minimum of values and controlling the integrated heater of
+the sensor.
 
-On Wed, 29 Nov 2023 20:12:31 +0100, Konrad Dybcio wrote:
-> MPM provides a single genpd. Allow #power-domain-cells = <0>.
-> 
-> Fixes: 54fc9851c0e0 ("dt-bindings: interrupt-controller: Add Qualcomm MPM support")
-> Acked-by: Shawn Guo <shawn.guo@linaro.org>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
-> Changes since v1:
-> - Add this property to the example
-> - Pick up tags
-> 
-> Link to v1: https://lore.kernel.org/linux-arm-msm/20230308011705.291337-1-konrad.dybcio@linaro.org/#t
-> 
-> Marc/Krzysztof, can we still pick this up for 6.7?
-> It's been stale for quite a while..
-> ---
->  Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
+Signed-off-by: Li peiyu <579lpy@gmail.com>
+---
+changes in v4:
+	iio core:
+	  - Add an IIO_CHAN_INFO_TROUGH modifier for minimum values.
+	iio ABI:
+	  - Document the new _TROUGH modifier.
+	sensor driver:
+	  - Add MAINTAINERS.
+	  - Use new IIO_CHAN_INFO_TROUGH modifier.
+	  - Support the complete heater range.
+	  - Remove measurement values from the data structure.
+	  - Use guard(mutex)(...), make the code simpler
+	  - Removed buffer mode and direct mode conversion code
+	  - Minor coding-style fixes.
+	dt-bindings:
+	  - removed unnecessary example
+	  - add vdd-supply to the example
+changes in v3:
+	sensor driver:
+	  - Removed the custom ABI
+	  - Give up calculating values in the driver
+	  - Use read_avail callback to get available parameters
+	  - Changed the scope of the lock to make the code more concise
+	  - Fixed the code format issue
+	dt-bindings:
+	  - Use a fallback compatible
+changes in v2:
+	sensor driver:
+	  - Added static modification to global variables
+	  - change the methord to read peak value
+	dt-bindings:
+	  - change the maintainers to me.
+	  - hdc3020,hdc3021,hdc3022 are compatible,I've changed the dirver.
+	  - change the node name to humidity-sensor.
 
-Applied, thanks!
+---
+Javier Carrasco (2):
+      iio: core: introduce trough modifier for minimum values
+      iio: ABI: document temperature and humidity peak/trough raw attributes
 
+Li peiyu (2):
+      dt-bindings: iio: humidity: Add TI HDC302x support
+      iio: humidity: Add driver for TI HDC302x humidity sensors
+
+ Documentation/ABI/testing/sysfs-bus-iio            |  13 +-
+ .../bindings/iio/humidity/ti,hdc3020.yaml          |  55 +++
+ MAINTAINERS                                        |   8 +
+ drivers/iio/humidity/Kconfig                       |  12 +
+ drivers/iio/humidity/Makefile                      |   1 +
+ drivers/iio/humidity/hdc3020.c                     | 468 +++++++++++++++++++++
+ drivers/iio/industrialio-core.c                    |   1 +
+ include/linux/iio/types.h                          |   1 +
+ 8 files changed, 558 insertions(+), 1 deletion(-)
+ ---
+base-commit: 33cc938e65a98f1d29d0a18403dbbee050dcad9a
+
+Best regards,
 
