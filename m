@@ -1,134 +1,128 @@
-Return-Path: <devicetree+bounces-22164-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22165-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 033B7806B38
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 11:02:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08177806B53
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 11:09:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 502011F215A0
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 10:02:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B83B828176F
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 10:09:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BEF320307;
-	Wed,  6 Dec 2023 10:02:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A6D428E0E;
+	Wed,  6 Dec 2023 10:09:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="QqSgwEI2"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="DwjNPhfZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5811FA;
-	Wed,  6 Dec 2023 02:02:33 -0800 (PST)
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6C31FA
+	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 02:09:02 -0800 (PST)
+Received: from mail-lf1-f72.google.com (mail-lf1-f72.google.com [209.85.167.72])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 73A4166072EC;
-	Wed,  6 Dec 2023 10:02:30 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1701856952;
-	bh=cr+tV0XqzVvByUwmvFvRoMfvYN0mf8oLqsTQmUgIzdI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=QqSgwEI2TEj20+Ep5cFRKALAPW2dGLQ+U6+O//hmeymH+I85vaA544p42v4fUIYGq
-	 kMTDOzwhdnCgN0qBdKruKDYPv5cEtZ/wsKeAU9n6p7vqnXjI0wXAidADulKD6AOpUG
-	 ++lhp2UKrtuta7g1DPvnGCIsleozW5Px79utFaF1GLkYQjuwKXpfBK+LyQauseX66+
-	 /Y2FfupnUpxOAnSQEA7GHWDWvXcJzC0hFTZzBg6ENhNKkqDhTNTlBifqMgGHYo2QKI
-	 xBmn+cRsEul8n19Mmgk7LsBm/5G5JIG0W5sBfdxuLyqMhsgDyv0h+ZHinXRZDricCI
-	 +SIkKoNwWXvew==
-Message-ID: <4b9ea82c-d1a4-47b6-ba03-346cfdedef05@collabora.com>
-Date: Wed, 6 Dec 2023 11:02:30 +0100
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id E199A40DAF
+	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 10:09:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1701857340;
+	bh=AqWoFNYysK0tdV0YeJun1QToBYa0Z8FAZWlnxm20ym0=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=DwjNPhfZjZKQJ+pkntTst/oUdOJNFj/v5hkG3IaDEMxg5WZoxj4DPbpxnZUPIWnsR
+	 05Yde7hc9lOlRToLx2H9nF+XXLJVlf8HD0G6bjmq3bSO6uh3L9Fu3woVSie3yCo7Fb
+	 uiUYFLxyjFD/t9pLvVoUs9c1pQdyPwtMNWzFDWMXpNNyxuCKa80lw80ZnZlAk/2XlA
+	 hbicQ5ZqcXB6AVFWc60TnWxH51pnlAl93YSAOn63JucRvbGjIZb12zRw632hOPRczx
+	 ZWbnQVEUhsIXEA43mzHw+dRnmZ6OZthy3qeJEnXeRluPk0iqHrR05gzPGAmPaYCS/E
+	 GQnEWYOgj4AhQ==
+Received: by mail-lf1-f72.google.com with SMTP id 2adb3069b0e04-50bf273aa74so2863496e87.2
+        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 02:09:00 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701857340; x=1702462140;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AqWoFNYysK0tdV0YeJun1QToBYa0Z8FAZWlnxm20ym0=;
+        b=ZvmkA4gCUh01fh2aRyrlO70W4aGf87K69X6mLTYd0KH+B4nZ7c6Rcl57QtjwCnVc2d
+         Io4+T5UMv0m1ZceuT3Qleg3guVsyPGCDAGM7RnF7bWE0LLOQDInbvx/0a+ld9qIjlcKG
+         AqOykl3fm4aNu/diHqRfIjsc+J+SUHZqRjlhxwzwEYnK31xBaL5fqTOhXdC0Krwy/1+n
+         eFUbg8KHqvj+U9ZA2gPHgyvlraOv8IeoB7Q6SWXeq5gqkrmlZLc5SIlAlUbpH8YPwSw5
+         vNBqo2cQ9UXP0cCGnTiSQwfe3u9d9Kt/32U2V+AXBp8zpAAg0BcXMxxHXepubfmaz5Lb
+         KzlQ==
+X-Gm-Message-State: AOJu0YxNKZgj6itcBE3b9d6EFXy7+FCEwBQclr9GddT4/yiDB4uwnvZh
+	r7ZADprDDX/jyYtPyLGwrx1YFeYTHgaNC7TMIjece4EYXRz9VaUKxn49TBlIUX6Y3jMXTcS7oCf
+	ObHeEIXQMx3JfE7RElzF6XpIV0LHtiohCkLhQgLw/jIFZn6trFqf+2CU=
+X-Received: by 2002:a05:6512:5d7:b0:50b:f32c:4d with SMTP id o23-20020a05651205d700b0050bf32c004dmr387799lfo.136.1701857339924;
+        Wed, 06 Dec 2023 02:08:59 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEdJQnx21lgo677Y/w22hAazVC3Yypb1Mi9jGIFZ5ofssNYc7Abs2AMBwvoktWnU2ZF6MV9GexmQoAcnQyWfbI=
+X-Received: by 2002:a05:6512:5d7:b0:50b:f32c:4d with SMTP id
+ o23-20020a05651205d700b0050bf32c004dmr387775lfo.136.1701857339589; Wed, 06
+ Dec 2023 02:08:59 -0800 (PST)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 6 Dec 2023 04:08:57 -0600
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <20231206-th1520_mmc_dts-v8-1-69220e373e8f@baylibre.com>
+References: <20231206-th1520_mmc_dts-v8-0-69220e373e8f@baylibre.com> <20231206-th1520_mmc_dts-v8-1-69220e373e8f@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v3 4/5] arm64: dts: mediatek: mt8173-elm-hana: Mark
- touchscreens and trackpads as fail
-Content-Language: en-US
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Doug Anderson <dianders@chromium.org>, Rob Herring <robh+dt@kernel.org>,
- Frank Rowand <frowand.list@gmail.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Wolfram Sang <wsa@kernel.org>,
- Benson Leung <bleung@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>,
- chrome-platform@lists.linux.dev, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>,
- Hsin-Yi Wang <hsinyi@chromium.org>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- andriy.shevchenko@linux.intel.com, Jiri Kosina <jikos@kernel.org>,
- linus.walleij@linaro.org, broonie@kernel.org, gregkh@linuxfoundation.org,
- hdegoede@redhat.com, james.clark@arm.com, james@equiv.tech,
- keescook@chromium.org, rafael@kernel.org, tglx@linutronix.de,
- Jeff LaBundy <jeff@labundy.com>, linux-input@vger.kernel.org,
- linux-i2c@vger.kernel.org
-References: <20231128084236.157152-1-wenst@chromium.org>
- <20231128084236.157152-5-wenst@chromium.org>
- <CAD=FV=W01gfxV6RN2o6CVS7jjf8qgKP-jUy9Bp94d2hWzVC48A@mail.gmail.com>
- <CAGXv+5E+R292XsOFSL-j0KJMmVJjWtxMRgCK8besP7mo6NDOWA@mail.gmail.com>
- <CAD=FV=UQkAjgMuR85cPikNtCxsODWPWs7cibOcOoNGdjSSvF8Q@mail.gmail.com>
- <3700f05f-2411-4422-972f-f3df690efb84@collabora.com>
- <CAGXv+5G5fFTv8zn=YamSdccjuYemE5oKBqjb8CSyGzu9aMJ0eg@mail.gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <CAGXv+5G5fFTv8zn=YamSdccjuYemE5oKBqjb8CSyGzu9aMJ0eg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+Date: Wed, 6 Dec 2023 04:08:57 -0600
+Message-ID: <CAJM55Z_sG2CFZo_MmeTCVz43rRBi9cbjajprWM8MspMZuF9tEg@mail.gmail.com>
+Subject: Re: [PATCH v8 1/4] riscv: defconfig: Enable mmc and dma drivers for
+ T-Head TH1520
+To: Drew Fustini <dfustini@baylibre.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
+	Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Jason Kridner <jkridner@beagleboard.org>, Robert Nelson <robertcnelson@beagleboard.org>, 
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Il 06/12/23 03:55, Chen-Yu Tsai ha scritto:
-> On Tue, Dec 5, 2023 at 6:22 PM AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
->>
->> Il 04/12/23 17:50, Doug Anderson ha scritto:
->>> Hi,
->>>
->>> On Sun, Dec 3, 2023 at 10:59 PM Chen-Yu Tsai <wenst@chromium.org> wrote:
->>>>
->>>> On Sat, Dec 2, 2023 at 8:58 AM Doug Anderson <dianders@chromium.org> wrote:
->>>>>
->>>>> Hi,
->>>>>
->>>>> On Tue, Nov 28, 2023 at 12:45 AM Chen-Yu Tsai <wenst@chromium.org> wrote:
->>>>>>
->>>>>> @@ -44,6 +46,7 @@ trackpad2: trackpad@2c {
->>>>>>                   reg = <0x2c>;
->>>>>>                   hid-descr-addr = <0x0020>;
->>>>>>                   wakeup-source;
->>>>>> +               status = "fail-needs-probe";
->>>>>
->>>>> While doing this, you could also remove the hack where the trackpad
->>>>> IRQ pinctrl is listed under i2c4.
->>>>
->>>> Sure. I do think we can do away with it though. According to at least one
->>>> schematic, the interrupt line has pull-ups on both sides of the voltage
->>>> shifter.
->>>>
->>>> BTW, The touchscreen doesn't have pinctrl entries. This has pull-ups on
->>>> both sides of the voltage shifter as well.
->>>
->>> I dunno if the convention is different on Mediatek boards, but at
->>> least on boards I've been involved with in the past we've always put
->>> pinctrl entries just to make things explicit. This meant that we
->>> didn't rely on the firmware/bootrom/defaults to leave pulls in any
->>> particular state. ...otherwise those external pull-ups could be
->>> fighting with internal pull-downs, right?
->>>
->>
->> MediaTek boards aren't special and there's no good reason for those to rely on
->> firmware/bootrom/defaults - so there is no good reason to avoid declaring any
->> relevant pinctrl entry.
-> 
-> I think this should be migrated to use the proper GPIO bindings: the
-> GPIO_PULL_UP / GPIO_PULL_DOWN / GPIO_BIAS_DISABLE flags.
-> 
-> But that's a different discussion.
-> 
+Drew Fustini wrote:
+> Enable the mmc controller driver and dma controller driver needed for
+> T-Head TH1520 based boards, like the LicheePi 4A and BeagleV-Ahead, to
+> boot from eMMC storage.
+>
+> Reviewed-by: Guo Ren <guoren@kernel.org>
+> Signed-off-by: Drew Fustini <dfustini@baylibre.com>
 
-100% agreed.
+Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
 
-Cheers,
-Angelo
-
+> ---
+>  arch/riscv/configs/defconfig | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/arch/riscv/configs/defconfig b/arch/riscv/configs/defconfig
+> index 905881282a7c..e635dc9d1997 100644
+> --- a/arch/riscv/configs/defconfig
+> +++ b/arch/riscv/configs/defconfig
+> @@ -214,6 +214,7 @@ CONFIG_MMC=y
+>  CONFIG_MMC_SDHCI=y
+>  CONFIG_MMC_SDHCI_PLTFM=y
+>  CONFIG_MMC_SDHCI_CADENCE=y
+> +CONFIG_MMC_SDHCI_OF_DWCMSHC=y
+>  CONFIG_MMC_SPI=y
+>  CONFIG_MMC_DW=y
+>  CONFIG_MMC_DW_STARFIVE=y
+> @@ -223,6 +224,7 @@ CONFIG_RTC_CLASS=y
+>  CONFIG_RTC_DRV_SUN6I=y
+>  CONFIG_DMADEVICES=y
+>  CONFIG_DMA_SUN6I=m
+> +CONFIG_DW_AXI_DMAC=y
+>  CONFIG_RZ_DMAC=y
+>  CONFIG_VIRTIO_PCI=y
+>  CONFIG_VIRTIO_BALLOON=y
+>
+> --
+> 2.34.1
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
