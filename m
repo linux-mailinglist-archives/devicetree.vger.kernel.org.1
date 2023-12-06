@@ -1,164 +1,120 @@
-Return-Path: <devicetree+bounces-22152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22153-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B01F0806AC3
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 10:33:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBE97806ACB
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 10:36:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 67F8B281999
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 09:33:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F1D71F212CF
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 09:36:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B32E1A706;
-	Wed,  6 Dec 2023 09:33:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="NoO6f+HI"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E3CE1A710;
+	Wed,  6 Dec 2023 09:36:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2090.outbound.protection.outlook.com [40.107.113.90])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73153A4;
-	Wed,  6 Dec 2023 01:33:43 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=m9O3jlRqvc8WGY3tt51vprM4ZulOGT6AwKS2qRxNbRdjj41Fg+Y9CRyfvTBinejAIODiWpgzfJtmVB4GXiMJb+d5NytVw+3r0F0eQLng8NCKbaoYv5yRZ0jahUJdGnf8XVK+CpzEEV/B+1mIEJdhkxY9sB1+leFKs9CX7OqyAt0pERSBfgCDjKViqg6GwyxDhxmTDTUld99fRCN/xXXC6jXXYhGLdHe+zdkeZVHgzXdMMyKhBU1RWMJ4SAczxqzgW7LAU4S3kFy5PDvwxgNKTQUvdN9Wrr09ixrim1KRGgQM3cY754AR0ZRDRXiWyUlFbhCvJ0DggNEISJpRzoa2oA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FRoLH6vwVxk5mkSW7aaVwi15TGHLqHZccsx/tZvYIMo=;
- b=e1riIEU1E5my+dmKEJgC4WEsXJeiLDNbypc7IOrYHqkc8A2qXwkhceznjxRK+hEpO1LCef55d6ibGCsbU2cBCfEyfRNBOuT7CS596nwGH4kYMgohsS6t+avyTe7XkS+NAE/xf8xSv/Bi8IvjyCZ1x6ekIgJERNLF3qsAky8NJz2RCuSQUvEmEeCOUr4qm2gX2l+vWkDgAkx0rGjjYOqwBKtNBB8/FGlbY7elbrYAr5RRGe18XPL/B23vzgUtel1zOaLzGZpWWTWXGoes+Q3eUijUqMkAHV5lGhq8o6gbDdpTpoisE69PGEKtbP4iiuvZS/R1JogvjsaaGUWXZd2H7g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FRoLH6vwVxk5mkSW7aaVwi15TGHLqHZccsx/tZvYIMo=;
- b=NoO6f+HIvSiPyqDKDk0Ad/nDUBN8hMT5jiLvo/TyMMH/MHUKiX3yVlc3YkZoz6Hzx7TrPJIf2R6JT+iror3pfIOJ4z7MCLcapYR83vZRHrtv61Bd2LvgOVh99n+ublw82/5Pgm+tFrul7XWzx4A0iRCWVVTSVZb0O3ygiGu3Law=
-Received: from TYVPR01MB11279.jpnprd01.prod.outlook.com
- (2603:1096:400:366::13) by TYWPR01MB8759.jpnprd01.prod.outlook.com
- (2603:1096:400:16d::13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.25; Wed, 6 Dec
- 2023 09:33:40 +0000
-Received: from TYVPR01MB11279.jpnprd01.prod.outlook.com
- ([fe80::db2e:9e88:68f8:486b]) by TYVPR01MB11279.jpnprd01.prod.outlook.com
- ([fe80::db2e:9e88:68f8:486b%4]) with mapi id 15.20.7068.025; Wed, 6 Dec 2023
- 09:33:40 +0000
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: kernel test robot <lkp@intel.com>, Lee Jones <lee@kernel.org>, Rob Herring
-	<robh+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>
-CC: "oe-kbuild-all@lists.linux.dev" <oe-kbuild-all@lists.linux.dev>, Support
- Opensource <support.opensource@diasemi.com>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH 4/6] dt-bindings: mfd: Convert da9062 to json-schema
-Thread-Topic: [PATCH 4/6] dt-bindings: mfd: Convert da9062 to json-schema
-Thread-Index: AQHaJEbLbkLjDyc/Rk+ATYqnJ+1Y7rCbvd2AgABG8QA=
-Date: Wed, 6 Dec 2023 09:33:40 +0000
-Message-ID:
- <TYVPR01MB11279FA6949EFAE62C70EB2948684A@TYVPR01MB11279.jpnprd01.prod.outlook.com>
-References: <20231201110840.37408-5-biju.das.jz@bp.renesas.com>
- <202312061323.Zk81yCZU-lkp@intel.com>
-In-Reply-To: <202312061323.Zk81yCZU-lkp@intel.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYVPR01MB11279:EE_|TYWPR01MB8759:EE_
-x-ms-office365-filtering-correlation-id: a5568960-e81f-4bec-93a8-08dbf63e6e58
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- ZHi87aMFJZmFR7C6ALYC8TTo6i4R3/BKo/yVpzQh6n6Nbz7X02eiYwvFksEn8K+PIbFejQi6oLZC5lYEc5nPgbeC2pJ9pVOERrGzgrieZDMfZkD1TjoDxqFrtJeOklhRPsBzcYDjshhMtZ/THY1/N6ClVCJKaj3QUf9ySfxMX4ANsFRMmFt4YU6ACW2oUbwKKHPLAguynkKM9bqFQvmXNv+rBm+MHS+AsR1NdiC4FERFJ1aoqxfp6dTBQO85LzGHwKpsTOpX/XdccWEPrcVlzQiHWtWEni4veBCxwWfKD+3VmxqhbfSrDpveU2isuO8AwuwsMXeSvDMqgVDVEF06hUiU+RAOQd57q04amjg8E+89zdtWLBGzXhz68jqVfsmHEOTFbQgyi67Vd5oSOCilM6RdXGVboPdvZr2xo7clfep0ppC1RXQz/+cppg41EkzKmxeYglHf56t5zWdDh2L3HJ/3FHbjOdhGKW5kZYoHzR3/RpKC2ZyQMfVDqGVexPrJ7JqVMNDNilDH+fY/vL88Kz9AD47R5y65BYYMf0Xw/wjfhwqsf3ptugMOy0uv8KM6+8l4AKWrxm3rQ+iMzksFb7E/66q+HzkeTaxsNLqXx0trW3ZUNjtgWxkF7vSq8VTKGKuCE4XMPSf4zGx4kvtOFA==
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYVPR01MB11279.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(346002)(366004)(136003)(396003)(376002)(230173577357003)(230273577357003)(230922051799003)(1800799012)(64100799003)(451199024)(186009)(26005)(52536014)(38070700009)(122000001)(55016003)(6506007)(7696005)(86362001)(33656002)(41300700001)(71200400001)(478600001)(966005)(9686003)(64756008)(66476007)(66446008)(316002)(66556008)(76116006)(66946007)(110136005)(38100700002)(2906002)(8936002)(8676002)(4326008)(7416002)(5660300002)(4744005)(54906003)(83380400001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?4FemblMBZBH9GMcEutk2XngekQO+g9QstNSUSEfpVdgIzKU9DOU9FtFeVh92?=
- =?us-ascii?Q?nJALulkoT4tq2beCUpK0CI4A6t7sxKKwmK7Vpy4LqEQU2y9EquS6GQPbcq5B?=
- =?us-ascii?Q?rkfb0AWvKWEgqVVP1687jGsO0s6pNSMVpY07LdkUxgDSKytX67oO26fGqq9L?=
- =?us-ascii?Q?SIjWXDvqVmBJjx+afifTEEREPXhwCKZPzOPy57eT+yNhEAuBLEQosMWj1q5t?=
- =?us-ascii?Q?jNd1VXzOFPQEGCdNhShrtCbN7B7Y5Zth4rzvDma7+5pqLJEczLW9MTdVpXpy?=
- =?us-ascii?Q?541Rg04fRLkUx/V2CC/zcpPCSOc+FRDDo2CIRgA13s0+C9BmxWneWhXvCwmS?=
- =?us-ascii?Q?WGLOdBOcKsu/Wu3bew/l2faPGX7QizY9LS9/xJDADgE5yV7Ff8IFSxogb0Zk?=
- =?us-ascii?Q?ab/2DXnC0KIMnkB9XZOelsiPNNxw95xgkqbtEZcvMY0DPfGxhSI1CsALwfFy?=
- =?us-ascii?Q?myhlvv9p+ADRCVRs9iHY7EBKPqID1kIMU6aQRVdCI/8rj/xauz3BGEokJCEC?=
- =?us-ascii?Q?HPwP26JR2P9QRVq0iA2usZZ9AkXwmsYazVnueBwlXDZIuuuQX081tktYtNXY?=
- =?us-ascii?Q?QEGZx0KbwJgcPZIA8lRg6WOTTH7I98d6KBrOpLg+fDTI3rxmw+dS0y/s3GN7?=
- =?us-ascii?Q?r82PMgJVhonN9CTlUNJb6SsyfUGV+eCChzc82rt/JVQ/qKHmfXZ8bAd2xW/4?=
- =?us-ascii?Q?WBVKtWnWxxmKY14lLjyf8vx/SX47amNSYKfJkZjmlGgYGrMUJRryEl/JlZM9?=
- =?us-ascii?Q?FknIlcpSOZ9H0pc8ZRl/CkUhDpF2ao66tWrjbqIGnadt7fJMDdLojdK0x5LH?=
- =?us-ascii?Q?nXLR5ZkO9HW5cwLk+a0cJFvLPSdC7j9GwI211vs5cSfHoZvByQ+Ldl/NjhzG?=
- =?us-ascii?Q?c/ht5dLAn5D1CTJse8haI7q1C4OH1RBTSijk0Z3AfBe9OCs0NQn0LEIp78hj?=
- =?us-ascii?Q?e6JB3bTtPwdEZXBmOJWNemgqz5nYUEM3LgnBywNHTdn8Z+LdVJMZpl7RlYNJ?=
- =?us-ascii?Q?E8Y6N2KQxbrNb3bDT63hfJs6JukycdbbCLrkWaJrF0l/U7RLSvR2cC/78XzC?=
- =?us-ascii?Q?sJVGD8FaeCRLMjnIQDNYrJ84FAP8sybWEajN+wzld6VB6rK8ySthGQABFF3A?=
- =?us-ascii?Q?9wBlRCfzXnW2Ul+yvltBu/7nPGp6TBSSwoUTUmsPQrIWpuVgcHMPY2ltdVSh?=
- =?us-ascii?Q?vZpzjvjq1Bfigw8S0c6uSQm1QJvb+YX/qjhVs/50/vFN03ov23OzYTgmC/c9?=
- =?us-ascii?Q?dgTK2pySoturio+XN+gpeAozhgvi+evJidElJz39d1ANlqAbCJ7/1nN9Ixa2?=
- =?us-ascii?Q?ASfEv6a68jXLYwQo0Gqx2F6QaXLz8qJxfHtZXgGc+IfIAcLRoigy7aOGP+2Q?=
- =?us-ascii?Q?Rk+qgk41zyyIi6KEUv/MHYVYIaMZp9aSc9R/sNEzVVHmeY8rRX/9hq7NU5Nh?=
- =?us-ascii?Q?vPXSpwR40fft/4tZZR6oFWQ43LhdCjQra9t76LJA3MDjW9bpibQ3GAj/rjmR?=
- =?us-ascii?Q?GLyEQz30khVL/fci3rkNvTHlUsQHp2hymk3tTQDt4ZZiIOaHAwB6CMDdbBCO?=
- =?us-ascii?Q?1+oT0hQJXy2jiSS/VmOQagQVhGIkc0ZXT6XMbTHzAfTVqQ+f9Fp0zlfVOBDj?=
- =?us-ascii?Q?1w=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83F12BA;
+	Wed,  6 Dec 2023 01:35:54 -0800 (PST)
+Received: from i53875b61.versanet.de ([83.135.91.97] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1rAoJp-0008S0-Tl; Wed, 06 Dec 2023 10:35:49 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Rob Herring <robh+dt@kernel.org>, Sam Edwards <cfsworks@gmail.com>
+Cc: linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Daniel =?utf-8?B?S3VraWXFgmE=?= <daniel@kukiela.pl>,
+ Sven Rademakers <sven.rademakers@gmail.com>,
+ Joshua Riek <jjriek@verizon.net>, Sam Edwards <CFSworks@gmail.com>
+Subject:
+ Re: [RESEND PATCH] arm64: dts: rockchip: Add PCIe pinctrls to Turing RK1
+Date: Wed, 06 Dec 2023 10:35:48 +0100
+Message-ID: <2724771.ElGaqSPkdT@diego>
+In-Reply-To: <20231205202900.4617-1-CFSworks@gmail.com>
+References: <20231205202900.4617-1-CFSworks@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYVPR01MB11279.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a5568960-e81f-4bec-93a8-08dbf63e6e58
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Dec 2023 09:33:40.2200
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: W8o5i1k5+xY+qFyT2K4/XjxAnweFXh4qaLX2X6cJHM0f9H71zgFj0ELzEEN0IhiWTplNMgjrj5MlrmkEZKwkITYcegaTNHPIZPdj1IYaBVE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWPR01MB8759
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi kernel test robot,
+Am Dienstag, 5. Dezember 2023, 21:28:59 CET schrieb Sam Edwards:
+> The RK3588 PCIe 3.0 controller seems to have unpredictable behavior when
+> no CLKREQ/PERST/WAKE pins are configured in the pinmux. In particular, it
+> will sometimes (varying between specific RK3588 chips, not over time) shut
+> off the DBI block, and reads to this range will instead stall
+> indefinitely.
+> 
+> When this happens, it will prevent Linux from booting altogether. The
+> PCIe driver will stall the CPU core once it attempts to read the version
+> information from the DBI range.
+> 
+> Fix this boot hang by adding the correct pinctrl configuration to the
+> PCIe 3.0 device node, which is the proper thing to do anyway. While
+> we're at it, also add the necessary configuration to the PCIe 2.0 node,
+> which may or may not fix the equivalent problem over there -- but is the
+> proper thing to do anyway. :)
+> 
+> Fixes: 2806a69f3fef6 ("arm64: dts: rockchip: Add Turing RK1 SoM support")
+> Signed-off-by: Sam Edwards <CFSworks@gmail.com>
+> ---
+>  .../arm64/boot/dts/rockchip/rk3588-turing-rk1.dtsi | 14 ++------------
+>  1 file changed, 2 insertions(+), 12 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-turing-rk1.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-turing-rk1.dtsi
+> index 9570b34aca2e..129f14dbd42f 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588-turing-rk1.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-turing-rk1.dtsi
+> @@ -214,7 +214,7 @@ rgmii_phy: ethernet-phy@1 {
+>  &pcie2x1l1 {
+>  	linux,pci-domain = <1>;
+>  	pinctrl-names = "default";
+> -	pinctrl-0 = <&pcie2_reset>;
+> +	pinctrl-0 = <&pcie30x1m1_pins>;
 
-> -----Original Message-----
-> From: kernel test robot <lkp@intel.com>
-> Subject: Re: [PATCH 4/6] dt-bindings: mfd: Convert da9062 to json-schema
->=20
-> Hi Biju,
->=20
-> kernel test robot noticed the following build warnings:
->=20
->=20
-> If you fix the issue in a separate patch/commit (i.e. not just a new
-> version of the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes:
->=20
-> All warnings (new ones prefixed by >>):
->=20
-> >> Warning: Documentation/devicetree/bindings/input/da9062-onkey.txt
-> >> references a file that doesn't exist:
-> >> Documentation/devicetree/bindings/mfd/da9062.txt
-> >> Warning: Documentation/devicetree/bindings/thermal/da9062-thermal.txt
-> >> references a file that doesn't exist:
-> >> Documentation/devicetree/bindings/mfd/da9062.txt
->=20
+This really throws me for a loop here - in the original submission too
+already. Because somehow those pins are named pcie30x1... for the
+pcie2 controller ;-) .
 
-There is an updated patch series available[1] and Please retest and
-provide feedback if any?
 
-[1] https://lore.kernel.org/all/20231204172510.35041-1-biju.das.jz@bp.renes=
-as.com/
+>  	reset-gpios = <&gpio4 RK_PA2 GPIO_ACTIVE_HIGH>;
+>  	status = "okay";
+>  };
+> @@ -226,7 +226,7 @@ &pcie30phy {
+>  &pcie3x4 {
+>  	linux,pci-domain = <0>;
+>  	pinctrl-names = "default";
+> -	pinctrl-0 = <&pcie3_reset>;
+> +	pinctrl-0 = <&pcie30x4m1_pins>;
+>  	reset-gpios = <&gpio4 RK_PB6 GPIO_ACTIVE_HIGH>;
+>  	vpcie3v3-supply = <&vcc3v3_pcie30>;
+>  	status = "okay";
+> @@ -245,17 +245,7 @@ hym8563_int: hym8563-int {
+>  		};
+>  	};
+>  
+> -	pcie2 {
+> -		pcie2_reset: pcie2-reset {
+> -			rockchip,pins = <4 RK_PA2 RK_FUNC_GPIO &pcfg_pull_none>;
+> -		};
+> -	};
+> -
+>  	pcie3 {
+> -		pcie3_reset: pcie3-reset {
+> -			rockchip,pins = <4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
+> -		};
+> -
+>  		vcc3v3_pcie30_en: pcie3-reg {
+>  			rockchip,pins = <2 RK_PC5 RK_FUNC_GPIO &pcfg_pull_none>;
+>  		};
+> 
 
-Cheers,
-Biju
+
+
 
 
