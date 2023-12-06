@@ -1,105 +1,75 @@
-Return-Path: <devicetree+bounces-22325-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22326-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F0F880722C
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 15:20:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1E22807245
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 15:23:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CFB641C20A51
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 14:20:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A2871F215C8
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 14:23:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F8D23DBB3;
-	Wed,  6 Dec 2023 14:20:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F4823EA62;
+	Wed,  6 Dec 2023 14:23:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F715D44
-	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 06:20:34 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rAslC-0004bH-8A; Wed, 06 Dec 2023 15:20:22 +0100
-Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rAslA-00Dyy8-Sk; Wed, 06 Dec 2023 15:20:20 +0100
-Received: from pza by lupine with local (Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rAslA-000E1j-2e;
-	Wed, 06 Dec 2023 15:20:20 +0100
-Message-ID: <ec1912eab8bead59f520c48b6d73a084fd07732d.camel@pengutronix.de>
-Subject: Re: [PATCH v5 4/5] clk: stm32: introduce clocks for STM32MP257
- platform
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: gabriel.fernandez@foss.st.com, Michael Turquette
- <mturquette@baylibre.com>,  Stephen Boyd <sboyd@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue
- <alexandre.torgue@foss.st.com>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org,  linux-kernel@vger.kernel.org
-Date: Wed, 06 Dec 2023 15:20:20 +0100
-In-Reply-To: <20231206140029.492906-5-gabriel.fernandez@foss.st.com>
-References: <20231206140029.492906-1-gabriel.fernandez@foss.st.com>
-	 <20231206140029.492906-5-gabriel.fernandez@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF435D40;
+	Wed,  6 Dec 2023 06:23:32 -0800 (PST)
+Received: by mail-oo1-f43.google.com with SMTP id 006d021491bc7-58e30de3933so2606211eaf.3;
+        Wed, 06 Dec 2023 06:23:32 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701872612; x=1702477412;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OpCrWaPIxeDssdyEzrjnT1c7IS3T+pTErjTHSzBnvOk=;
+        b=fhxCGoQTiUpknwb7pyh4oc+KZU9feFo43Wp2vH9WzI3ifJxo8oDgCWwhSmDbxlOv4b
+         bZOHoprGoAaltl9jReXBTntTffC+oYNYHyiW36abfypoMPP/bQDnpo1mMvfz2z0V3cG7
+         VO/fqjTG+8kZZzXH3/pbyD1sWM6Oj8s186XW8TAZoRMSWCRY5p+iMQuKBa4JPt8SzWNN
+         DSq8JjUeoekwaUQUQc8LAAOzC33LcgSz2dh+b1+3+NENv/MxKZ6R3ygVA958ujQe6Fgw
+         VQdCgKHeEVtngxaALrQ2GLRmlvS2zVIz72p4yvBt9VN2wpqtWW5ovwTpOdvAYz8pX9pW
+         UYug==
+X-Gm-Message-State: AOJu0Yy0SI4xV2f0eBp0a2keaKNA10P+7BneQsVCAUeOMBI0h1IqKQvJ
+	OrGcy40aXAwLuOGH/JUG8Q==
+X-Google-Smtp-Source: AGHT+IFWQTrlPLxcozyLAD800qlPN2UKoJz8Qh3PpU/NNLkkiyAehsLiKb2jwnIz1GKxJiZrihtguQ==
+X-Received: by 2002:a05:6820:812:b0:58d:a202:5bdd with SMTP id bg18-20020a056820081200b0058da2025bddmr1063238oob.9.1701872612191;
+        Wed, 06 Dec 2023 06:23:32 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id l14-20020a4ad9ce000000b0057b6ac3922esm5126oou.18.2023.12.06.06.23.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Dec 2023 06:23:31 -0800 (PST)
+Received: (nullmailer pid 2093301 invoked by uid 1000);
+	Wed, 06 Dec 2023 14:23:29 -0000
+Date: Wed, 6 Dec 2023 08:23:29 -0600
+From: Rob Herring <robh@kernel.org>
+To: Ante Knezic <ante.knezic@helmholz.de>
+Cc: f.fainelli@gmail.com, krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org, netdev@vger.kernel.org, marex@denx.de, UNGLinuxDriver@microchip.com, edumazet@google.com, davem@davemloft.net, linux-kernel@vger.kernel.org, woojung.huh@microchip.com, conor+dt@kernel.org, pabeni@redhat.com, kuba@kernel.org, olteanv@gmail.com, robh+dt@kernel.org, andrew@lunn.ch
+Subject: Re: [PATCH net-next v7 1/2] dt-bindings: net: microchip,ksz:
+ document microchip,rmii-clk-internal
+Message-ID: <170187260197.2093058.12221518156391791381.robh@kernel.org>
+References: <cover.1701770394.git.ante.knezic@helmholz.de>
+ <721693a7a37d7579d3a29ed5819dbbdf1d4ea3f4.1701770394.git.ante.knezic@helmholz.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <721693a7a37d7579d3a29ed5819dbbdf1d4ea3f4.1701770394.git.ante.knezic@helmholz.de>
 
-Hi Gabriel,
 
-On Mi, 2023-12-06 at 15:00 +0100, gabriel.fernandez@foss.st.com wrote:
-> From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
->=20
-> This driver is intended for the STM32MP25 clock family and utilizes
-> the stm32-core API, similar to the stm32mp13 clock driver.
->=20
-> Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+On Tue, 05 Dec 2023 11:03:38 +0100, Ante Knezic wrote:
+> Add documentation for selecting reference rmii clock on KSZ88X3 devices
+> 
+> Signed-off-by: Ante Knezic <ante.knezic@helmholz.de>
 > ---
-[...]
-> diff --git a/drivers/clk/stm32/stm32mp25_rcc.h b/drivers/clk/stm32/stm32m=
-p25_rcc.h
-> new file mode 100644
-> index 000000000000..b1aca78a0b22
-> --- /dev/null
-> +++ b/drivers/clk/stm32/stm32mp25_rcc.h
-> @@ -0,0 +1,4977 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Copyright (C) STMicroelectronics 2023 - All Rights Reserved
-> + * Author: Gabriel Fernandez <gabriel.fernandez@foss.st.com> for STMicro=
-electronics.
-> + */
-> +
-> +#ifndef STM32MP25_RCC_H
-> +#define STM32MP25_RCC_H
-> +
-> +#define RCC_SECCFGR0				0x0
-[...]
+>  .../devicetree/bindings/net/dsa/microchip,ksz.yaml | 34 +++++++++++++++++++++-
+>  1 file changed, 33 insertions(+), 1 deletion(-)
+> 
 
-What is the purpose of all the unused #defines?
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-I initially wanted to point out that the _SHIFT #defines are redundant
-because the same information is already contained in the corresponding
-_MASK #defines, but it seems like neither of the register field
-definitions are used anywhere. It appears only some of the *CFGR
-register offset #defines are actually used.
-
-regards
-Philipp
 
