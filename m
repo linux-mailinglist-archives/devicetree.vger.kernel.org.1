@@ -1,38 +1,38 @@
-Return-Path: <devicetree+bounces-22436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22437-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B94C80766C
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 18:21:09 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C4F680767A
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 18:24:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5C6F7B20BAA
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 17:21:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 91C43B20CB6
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 17:24:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D36165EC8;
-	Wed,  6 Dec 2023 17:21:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA4EF675AA;
+	Wed,  6 Dec 2023 17:23:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qIX1Wpc1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jMMe/r8Q"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1CFD4F1F3;
-	Wed,  6 Dec 2023 17:21:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7059FC433C7;
-	Wed,  6 Dec 2023 17:20:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B84AD60B97;
+	Wed,  6 Dec 2023 17:23:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B587CC433C8;
+	Wed,  6 Dec 2023 17:23:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701883261;
-	bh=iH7nPHv7nxpFTnIIg5qFfUrheqhXwiZvAbuhhnhnD5Y=;
+	s=k20201202; t=1701883436;
+	bh=yQe1hhlghXHIzeiywFrRp3JcvgCHn8uJPfTmcmii+1w=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=qIX1Wpc1Cfak05zq3VEDdoG6lSNrfrxg1aYzsZsFzZe2F46yhsQZKyGF6Q156REbk
-	 LSKVZEUDw76FFya1TD/UUG7Sb+lIAhZdIAMF562U+h00IDFbtnGMo4Trca8Ho1YNQ9
-	 fR19lCCyY4x6/Mz+Os1qhrGEeQHDZWPZo7RFX7lEoajCwOtYy+bufdZpgB7Z4ncWeF
-	 Bf1pZY+rrn+J+vGUVf17jNIaNpJqYcvQ/edmYuWwLR050gD2V7qk50PiJDumhdavg5
-	 BEtx6UJUWBwZ6P9bOOoT0de7Q/TOZSLWmuy0PboqvsiCrYFn8kgk84a2zgphLhj5Do
-	 SCrZkpwszikgw==
-Date: Wed, 6 Dec 2023 17:20:49 +0000
+	b=jMMe/r8QHUccNDjXTTOizpkzKyNNGBKGR82CuZoyie63yGMIoebvA3O9f3iCgtmEJ
+	 qvA3GEEAVkJgY+8HtSmq1Ppu0xbdUxiWl7fmOXb8mis9E6jZGuFyDk2XfKtrLAeIcH
+	 CN8rEwgY2HtYCY+/0HU6+VRhvj7HbulswkkyPenAU4npSoX9auvAxsgLREwPQLwzEJ
+	 pw3wcTGFdCQooK0Yo4KQY0aFR2r5jhRMSDWGLBTT/whG1oBNGRAyrC+5wECfec8Ezg
+	 kdjY3BQAJafPlXReKBWm0rHey5eBhnptM/sTt9yGUuvL2gVXd2DtDABh5gEPAvdCiK
+	 kVGzFYKK/tnuA==
+Date: Wed, 6 Dec 2023 17:23:43 +0000
 From: Jonathan Cameron <jic23@kernel.org>
 To: Marek Vasut <marex@denx.de>
 Cc: linux-iio@vger.kernel.org, Andy Shevchenko
@@ -49,14 +49,12 @@ Cc: linux-iio@vger.kernel.org, Andy Shevchenko
  Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>, Vincent Tremblay
  <vincent@vtremblay.dev>, devicetree@vger.kernel.org
 Subject: Re: [PATCH v6 2/2] iio: light: isl76682: Add ISL76682 driver
-Message-ID: <20231206172049.3e0ce859@jic23-huawei>
-In-Reply-To: <e3d3cc61-0d31-4d83-92a9-07d74995a66a@denx.de>
+Message-ID: <20231206172343.100e8bd7@jic23-huawei>
+In-Reply-To: <0ae6466f-479a-476a-adf4-3bd099235eda@denx.de>
 References: <20231127212726.77707-1-marex@denx.de>
 	<20231127212726.77707-2-marex@denx.de>
-	<20231204112001.7dff7066@jic23-huawei>
-	<6e4ed42c-21be-469c-a8bb-57779ef24bf9@denx.de>
-	<20231204143521.5ca0fc7e@jic23-huawei>
-	<e3d3cc61-0d31-4d83-92a9-07d74995a66a@denx.de>
+	<20231204112941.770e22cb@jic23-huawei>
+	<0ae6466f-479a-476a-adf4-3bd099235eda@denx.de>
 X-Mailer: Claws Mail 4.2.0 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -67,106 +65,66 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Tue, 5 Dec 2023 02:24:51 +0100
+On Tue, 5 Dec 2023 02:43:30 +0100
 Marek Vasut <marex@denx.de> wrote:
 
-> On 12/4/23 15:35, Jonathan Cameron wrote:
-> > On Mon, 4 Dec 2023 12:23:06 +0100
+> On 12/4/23 12:29, Jonathan Cameron wrote:
+> > On Mon, 27 Nov 2023 22:26:53 +0100
 > > Marek Vasut <marex@denx.de> wrote:
 > >   
-> >> On 12/4/23 12:20, Jonathan Cameron wrote:  
-> >>> On Mon, 27 Nov 2023 22:26:53 +0100
-> >>> Marek Vasut <marex@denx.de> wrote:
-> >>>      
-> >>>> The ISL76682 is very basic ALS which only supports ALS or IR mode
-> >>>> in four ranges, 1k/4k/16k/64k LUX. There is no IRQ support or any
-> >>>> other fancy functionality.
-> >>>>
-> >>>> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> >>>> Reviewed-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> >>>> Signed-off-by: Marek Vasut <marex@denx.de>  
-> >>> Hi Marek,
-> >>>
-> >>> Discussion around available on v5 made me look closer at that aspect.
-> >>> You are providing all the available entries in the callback but they
-> >>> shouldn't be exposed to actually read unless the *_available bitmap
-> >>> bits corresponding to them are set.
-> >>>
-> >>> If you like I can just rip the unused code out whilst applying?
-> >>> Or if you'd prefer to send a v7 that's great too.
-> >>>
-> >>> Otherwise everything looks good to me.  
+> >> The ISL76682 is very basic ALS which only supports ALS or IR mode
+> >> in four ranges, 1k/4k/16k/64k LUX. There is no IRQ support or any
+> >> other fancy functionality.
 > >>
-> >> Maybe just do that while applying and I'll test it right after to see
-> >> whether something broke, that's probably fastest. Just let me know where
-> >> this got applied. I have the device on my desk .  
+> >> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> >> Reviewed-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> >> Signed-off-by: Marek Vasut <marex@denx.de>  
 > > 
-> > Diff is below.  Applied to the togreg  
-> 
-> I only found the commit in 'testing' branch , so I used that one .
-I messed up it seems and didn't actually push the updated version.
-Done so now along with squashing in the bracket tidy up.
-> 
-> > branch of iio.git and initially pushed out
-> > as testing for normal reasons + for you to test.
+> > There is a additional question on what scale means for
+> > an IR channel.  There aren't any well defined units (as it depends
+> > on the sensitivity curve) so in general we avoid providing scale
+> > for intensity readings.
 > > 
-> > Thanks,
+> > The datasheet has a vague go at working around this problem by
+> > using counts relative to IR measurement in daylight which would
+> > measure 210 LUX.  (via faking that with a 850nm green led??)
 > > 
-> > Jonathan
+> > That's far from a standard..
 > > 
+> > We do have precedence of scale applied to intensity channels
+> > so I guess the ship has sailed.
 > > 
-> > diff --git a/drivers/iio/light/isl76682.c b/drivers/iio/light/isl76682.c
-> > index 15a68609985b..8605187bfb62 100644
-> > --- a/drivers/iio/light/isl76682.c
-> > +++ b/drivers/iio/light/isl76682.c
-> > @@ -184,8 +184,6 @@ static int intensity_scale_available[] = {
-> >          0, 673000,
-> >   };
-> >   
-> > -static int integration_time_available[] = { 0, ISL76682_INT_TIME_US };
-> > -
-> >   static int isl76682_read_avail(struct iio_dev *indio_dev,
-> >                                 struct iio_chan_spec const *chan,
-> >                                 const int **vals, int *type,
-> > @@ -207,11 +205,6 @@ static int isl76682_read_avail(struct iio_dev *indio_dev,
-> >                  default:
-> >                          return -EINVAL;
-> >                  }
-> > -       case IIO_CHAN_INFO_INT_TIME:
-> > -               *vals = integration_time_available;
-> > -               *length = ARRAY_SIZE(integration_time_available);
-> > -               *type = IIO_VAL_INT_PLUS_MICRO;
-> > -               return IIO_AVAIL_LIST;
-> >          default:
-> >                  return -EINVAL;
-> >          }  
+> > Perhaps we should just add an explicit not to the ABI docs
+> > to cover that changing the scale in these sensors will result
+> > in the counts changing, but multiplying raw by scale isn't going
+> > to give any sensible units.
+> > 
+> > So probably not a thing to fix in this series, but to address
+> > separately.  
 > 
-> Ah, looking at the attrs before and after, now I get it:
+> Is something like this what you have in mind ?
+
+Yes, something along those lines.  We could add more detail on why
+but perhaps that would just confuse things more than just stating
+it is the case.
+
 > 
-> $ grep -H . /sys/bus/iio/devices/iio\:device0/*
-> /sys/bus/iio/devices/iio:device0/in_illuminance_raw:21
-> /sys/bus/iio/devices/iio:device0/in_illuminance_scale:0.015000
-> /sys/bus/iio/devices/iio:device0/in_illuminance_scale_available:0.015 
-> 0.06 0.24 0.96
-> /sys/bus/iio/devices/iio:device0/in_intensity_raw:33
-> /sys/bus/iio/devices/iio:device0/in_intensity_scale:0.010500
-> /sys/bus/iio/devices/iio:device0/in_intensity_scale_available:0.0105 
-> 0.042 0.168 0.673
-> /sys/bus/iio/devices/iio:device0/integration_time_available:0.090
-> /sys/bus/iio/devices/iio:device0/name:isl76682
+> diff --git a/Documentation/ABI/testing/sysfs-bus-iio 
+> b/Documentation/ABI/testing/sysfs-bus-iio
+> index 0eadc08c3a139..584607f560d02 100644
+> --- a/Documentation/ABI/testing/sysfs-bus-iio
+> +++ b/Documentation/ABI/testing/sysfs-bus-iio
+> @@ -618,7 +618,9 @@ KernelVersion:      2.6.35
+>   Contact:       linux-iio@vger.kernel.org
+>   Description:
+>                  If a discrete set of scale values is available, they
+> -               are listed in this attribute.
+> +               are listed in this attribute. Unlike illumination,
+> +               multiplying intensity by intensity_scale does not
+> +               yield value with any standardized unit .
 > 
-> /sys/bus/iio/devices/iio:device0/in_illuminance_raw:22
-> /sys/bus/iio/devices/iio:device0/in_illuminance_scale:0.015000
-> /sys/bus/iio/devices/iio:device0/in_illuminance_scale_available:0.015000 
-> 0.060000 0.240000 0.960000
-> /sys/bus/iio/devices/iio:device0/in_intensity_raw:24
-> /sys/bus/iio/devices/iio:device0/in_intensity_scale:0.010500
-> /sys/bus/iio/devices/iio:device0/in_intensity_scale_available:0.010500 
-> 0.042000 0.168000 0.673000
-> /sys/bus/iio/devices/iio:device0/integration_time:0.090000
-> /sys/bus/iio/devices/iio:device0/name:isl76682
-> 
-> Thanks !
+>   What:          /sys/bus/iio/devices/iio:deviceX/out_voltageY_hardwaregain
+>   What:          /sys/bus/iio/devices/iio:deviceX/in_intensity_hardwaregain
 > 
 
 
