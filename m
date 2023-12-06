@@ -1,198 +1,171 @@
-Return-Path: <devicetree+bounces-22433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FF33807636
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 18:14:55 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A82D980763F
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 18:15:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A579FB20D5F
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 17:14:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4533DB20CB6
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 17:15:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B64DD4F1F3;
-	Wed,  6 Dec 2023 17:14:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F9955D8E1;
+	Wed,  6 Dec 2023 17:15:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YovOouNg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hGV6V4mJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41EECD3;
-	Wed,  6 Dec 2023 09:14:41 -0800 (PST)
-Received: by mail-ot1-x32c.google.com with SMTP id 46e09a7af769-6d7fa93afe9so3897980a34.2;
-        Wed, 06 Dec 2023 09:14:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701882880; x=1702487680; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=0A3N+96A+1Q1WOKJBTgT0YZdafSP9BVjbGQLT1Px9rg=;
-        b=YovOouNgTODG/pzmSMtVeE2GhHjiCAbFomMiTBpEyX3E2JTz4ZXvg/sziWGrci+ul1
-         zR75H13sSNcz7luqQar2h5adwDNKuttuviUy88CRzCvuvYdRNCuY9NtljIFDzCjXmXgl
-         GDgi83mpgcOnIrZcRN4L88J57fsowE1IjGj7e9HraIJuE9cvC+lmgk39Q9Y48CXiN/0k
-         aYuFY/RoUpMMllH19Fj7hWL2zEIP6dyrf2xIbmnxzFlbYzPWCCD4L8LAit5QhGgzNjSy
-         GML9OqzF1oRSB8FnMAc4V+bA6U9NmaR1KhGwT4+DxLP7saFZ9URCSCalXVZ2Qfp6LKVW
-         awGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701882880; x=1702487680;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0A3N+96A+1Q1WOKJBTgT0YZdafSP9BVjbGQLT1Px9rg=;
-        b=mRcfJZeIm8ieqG9EBB5Uf8h5jAgoNJQCZ9Nh9MKk+lmBuE1ZDxnDH/biBqWrHws+V9
-         K+UQhRMNmNNttcdu3mX30HWI0ytO4SFr/O5WNxQscoeSmVbyq7gGP49U0zamKxSFGfBe
-         3paHhDa3pWkMZn2tG+0RSW5BGHUa2J2XEkqr7hBZqWBK9/fyeR4Gwcd/I544S/TZOlYH
-         6ZH0OmUsxbadhC8rH/bqOLWCxtF8uEgOYklslj6VVsgsA3hY/3IIFPId8PGeWWrmg2ZA
-         zG4UhSdwTeL4oqFQ2ky5bwPWVgLkJz9Sp46ftTDUnxSaajM4kLdG+28JjZ2hTmasZiq1
-         L4yQ==
-X-Gm-Message-State: AOJu0YweDf079x/ysGpg+zVzO4LjhKNsC4b45j+dgl6ThQDHsa/HmgK7
-	n06/oQMCYbmUsgahnPwbLht2mTmDjDbWdKnSyjA=
-X-Google-Smtp-Source: AGHT+IHXBDJwsUWKBFw4DqlEqnhQX9IUX2BaSV8wq52NeyLZimuYnsac+q5/+DjzsdbKheZI6/62489OkjicV+ovZqg=
-X-Received: by 2002:a05:6870:970c:b0:1fb:75a:c421 with SMTP id
- n12-20020a056870970c00b001fb075ac421mr1176895oaq.74.1701882880366; Wed, 06
- Dec 2023 09:14:40 -0800 (PST)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FE333DB80;
+	Wed,  6 Dec 2023 17:15:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBA0DC433C7;
+	Wed,  6 Dec 2023 17:15:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701882931;
+	bh=TWZ1PvW7WsY9XY5jYN+qaVdqjJkgESCw9MviqH1sYBE=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=hGV6V4mJFQX2x3YGSlq+x1KYAj6S4+h6e5vo7bjpEbX1F6AlgsWjSm+LJxZcm37G+
+	 kLrI5g7wRdBb02GY0lOAuxnW+OsWrTar5jDylsFMTvKBRjlLLYMI9+SdWq1wz6B/HA
+	 zT1S/kNthQtmnvqPz/3TE/mrlT+vnat8ZTOuQCJ8OOyCFt/OzdlWxCLXnIvfGnB/nu
+	 T4w1gxDa++qDnAPQ9gIInnmLSDvQp382+3rMoSrxeaTeP3e+jiQ1byPsKebBINY8+y
+	 HXRIoU0V9IkVIAUhxhgEvdaFOfqMeVRIchZeMgjQ4QHwu2MCUx92ETbG4V4Hx0fSz8
+	 s/yP5yW/w56kw==
+Date: Wed, 6 Dec 2023 17:15:21 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
+Cc: Nuno Sa via B4 Relay  <devnull+nuno.sa.analog.com@kernel.org>,
+ nuno.sa@analog.com, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-iio@vger.kernel.org, Olivier MOYSAN
+ <olivier.moysan@foss.st.com>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Rob
+ Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
+ Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>
+Subject: Re: [PATCH 03/12] iio: add the IIO backend framework
+Message-ID: <20231206171521.4133569a@jic23-huawei>
+In-Reply-To: <bba767835e775909c6b8a3334cceeb419afef4ca.camel@gmail.com>
+References: <20231121-dev-iio-backend-v1-0-6a3d542eba35@analog.com>
+	<20231121-dev-iio-backend-v1-3-6a3d542eba35@analog.com>
+	<20231204153855.71c9926f@jic23-huawei>
+	<bba767835e775909c6b8a3334cceeb419afef4ca.camel@gmail.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231204144429.45197-1-linux.amoon@gmail.com> <20231204144429.45197-2-linux.amoon@gmail.com>
- <20231206135311.GA2043711-robh@kernel.org>
-In-Reply-To: <20231206135311.GA2043711-robh@kernel.org>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Wed, 6 Dec 2023 22:44:24 +0530
-Message-ID: <CANAwSgTS0ZSFPv4x803pCLEpjH5imh8vEoWpbiJRH14Sy3GZww@mail.gmail.com>
-Subject: Re: [PATCH v6 1/2] dt-bindings: usb: Add the binding example for the
- Genesys Logic GL3523 hub
-To: Rob Herring <robh@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Icenowy Zheng <uwu@icenowy.me>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	linux-amlogic@lists.infradead.org, Conor Dooley <conor.dooley@microchip.com>, 
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Hi Rob,
+On Wed, 06 Dec 2023 13:05:53 +0100
+Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
 
-On Wed, 6 Dec 2023 at 19:23, Rob Herring <robh@kernel.org> wrote:
->
-> On Mon, Dec 04, 2023 at 08:14:25PM +0530, Anand Moon wrote:
-> > Add the binding example for the USB3.1 Genesys Logic GL3523
-> > integrates with USB 3.1 Gen 1 Super Speed and USB 2.0 High-Speed
-> > hub.
-> >
-> > For onboard hub controllers that support USB 3.x and USB 2.0 hubs
-> > with shared resets and power supplies, this property is used to identify
-> > the hubs with which these are shared.
-> >
-> > GL3523 has built-in 5V to 3.3V and 5V to 1.2V regulators, which serves
-> > power to the USB HUB, it uses 5V power regulator.
-> >
-> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> > ---
-> > V6: fix the description of the regulators
-> > Updated the commit message for regulator updates.
-> > add reviewed by Conor Dooley
-> > [1] https://lore.kernel.org/all/20231130053130.21966-2-linux.amoon@gmail.com/
-> > v5: upgrade peer-hub description : Conor Dooley
-> > [0] https://www.genesyslogic.com.tw/en/product_view.php?show=67 [Block Diagram]
-> > v4: Fix the description of peer-hub and update the commit message.
-> > Schematics of the Odroid N2+
-> > https://dn.odroid.com/S922X/ODROID-N2/Schematic/odroid-n2_rev0.6_20210121.pdf
-> > V3: fix the dt_binding_check error, added new example for Genesys GL3523
-> > v2: added Genesys GL3523 binding
-> > v1: none
-> > ---
-> >  .../bindings/usb/genesys,gl850g.yaml          | 65 +++++++++++++++++--
-> >  1 file changed, 61 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> > index ee08b9c3721f..c6f63a69396d 100644
-> > --- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> > +++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> > @@ -9,9 +9,6 @@ title: Genesys Logic USB hub controller
-> >  maintainers:
-> >    - Icenowy Zheng <uwu@icenowy.me>
-> >
-> > -allOf:
-> > -  - $ref: usb-device.yaml#
-> > -
-> >  properties:
-> >    compatible:
-> >      enum:
-> > @@ -27,12 +24,46 @@ properties:
-> >
-> >    vdd-supply:
-> >      description:
-> > -      the regulator that provides 3.3V core power to the hub.
-> > +      The regulator that provides 3.3V or 5.0V core power to the hub.
-> > +
-> > +  peer-hub:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description:
-> > +      For onboard hub controllers that support USB 3.x and USB 2.0 hubs
-> > +      with shared resets and power supplies, this property is used to identify
-> > +      the hubs with which these are shared.
-> >
-> >  required:
-> >    - compatible
-> >    - reg
-> >
-> > +allOf:
-> > +  - $ref: usb-device.yaml#
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - usb5e3,608
-> > +    then:
-> > +      properties:
-> > +        peer-hub: false
-> > +        vdd-supply: false
-> > +        reset-gpios: true
-> > +
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - usb5e3,610
-> > +              - usb5e3,620
-> > +    then:
-> > +      properties:
-> > +        peer-hub: true
-> > +        vdd-supply: true
-> > +        reset-gpios: true
->
-> No need for this if schema. The default is they are allowed.
->
+> On Mon, 2023-12-04 at 15:38 +0000, Jonathan Cameron wrote:
+> > On Tue, 21 Nov 2023 11:20:16 +0100
+> > Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org> wrote:
+> >  =20
+> > > From: Nuno Sa <nuno.sa@analog.com>
+> > >=20
+> > > This is a Framework to handle complex IIO aggregate devices.
+> > >=20
+> > > The typical architecture is to have one device as the frontend device=
+ which
+> > > can be "linked" against one or multiple backend devices. All the IIO =
+and
+> > > userspace interface is expected to be registers/managed by the fronte=
+nd
+> > > device which will callback into the backends when needed (to get/set
+> > > some configuration that it does not directly control). =20
+> >=20
+> > As this is first place backend / frontend terminology used (I think), m=
+ake
+> > sure to give an example so people understand what sorts of IP / devices=
+ thes
+> > might be.
+> >  =20
+> > >=20
+> > > The basic framework interface is pretty simple:
+> > > =C2=A0- Backends should register themselves with @devm_iio_backend_re=
+gister()
+> > > =C2=A0- Frontend devices should get backends with @devm_iio_backend_g=
+et()
+> > >=20
+> > > Signed-off-by: Nuno Sa <nuno.sa@analog.com> =20
+> >=20
+> > Looks good to me in general.=C2=A0 I'll need to have a really close rea=
+d though
+> > before we merge this as there may be sticky corners! (hopefully not)
+> >=20
+> >=20
+> > ...
+> >  =20
+> > > +static LIST_HEAD(iio_back_list);
+> > > +static DEFINE_MUTEX(iio_back_lock);
+> > > +
+> > > +/*
+> > > + * Helper macros to properly call backend ops. The main point for th=
+ese macros
+> > > + * is to properly lock the backend mutex on every call plus checking=
+ if the
+> > > + * backend device is still around (by looking at the *ops pointer). =
+=20
+> > If just checking if it is around rather thank looking for a bug, then
+> > I'd suggest a lighter choice than WARN_ON_x=20
+> >  =20
+>=20
+> Arguably, in here, removing a backend is the user doing something serious=
+ly wrong so
+> I see the splat with good eyes :D.
+>=20
+> That said, I'm fine in turning this into a pr_warn_once()...
+>=20
+> > Btw, there were some interesting discussions on lifetimes and consumer =
+/ provider
+> > models at plumbers. I think https://www.youtube.com/watch?v=3DbHaMMnIH6=
+AM=C2=A0will be
+> > the video.=C2=A0=C2=A0 Suggested the approach of not refcounting but in=
+stead allowing for
+> > a deliberate removal of access similar to your check on ops here (and t=
+he one
+> > we do in core IIO for similar purposes).=C2=A0 Sounded interesting but =
+I've not
+> > explored what it would really mean to switch to that model yet. =20
+>=20
+> Yes, interesting talk indeed. I have been following this issue for some t=
+ime now.
+> That's why I tried to be careful in the backend stuff (so we don't explod=
+e if a
+> backend is gone) even though is a much more simpler approach. But the tal=
+k mentions
+> three solutions and we kind of have both option C (the pointer stuff) and=
+ option A
+> (consumer removed on provicer unbind)
+> in here. option A is being given through device links with the AUTO_REMOV=
+E_CONSUMER
+> flag.
+>=20
+> And the talk actually left me thinking on that (as it's discussed in ther=
+e. In our
+> simpler case (ADI ones), it does make sense to remove the consumer if the=
+ provider is
+> not there. But if we think in more advanced usecases (or maybe already in=
+ the STM
+> usecase) where we have a backend per data path. Does it make sense to com=
+pletely
+> "kill" the consumer if we remove one of the data paths? Starting to think=
+ it
+> doesn't...
 
-If I move reset-gpios to required, I observe the below warning.
+There is a reasonably argument that partial tear down isn't a common case. =
+So
+may not be worth worrying about.
 
-  DTC_CHK Documentation/devicetree/bindings/usb/maxim,max33359.example.dtb
-/home/alarm/linux-amlogic-5.y-devel/Documentation/devicetree/bindings/usb/usb-device.example.dtb:
-hub@1: 'reset-gpio' is a required property
-        from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
-  DTC_CHK Documentation/devicetree/bindings/usb/mediatek,musb.example.dtb
-  DTC_CHK Documentation/devicetree/bindings/usb/usb251xb.example.dtb
-  DTC_CHK Documentation/devicetree/bindings/usb/realtek,rts5411.example.dtb
-/home/alarm/linux-amlogic-5.y-devel/Documentation/devicetree/bindings/usb/genesys,gl850g.example.dtb:
-hub@1: 'reset-gpio' is a required property
-        from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
-  DTC_CHK Documentation/devicetree/bindings/usb/brcm,bdc.example.dtb
-/home/alarm/linux-amlogic-5.y-devel/Documentation/devicetree/bindings/usb/genesys,gl850g.example.dtb:
-hub@1: 'reset-gpio' is a required property
-        from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
-  DTC_CHK Documentation/devicetree/bindings/usb/xlnx,usb2.example.dtb
-/home/alarm/linux-amlogic-5.y-devel/Documentation/devicetree/bindings/usb/genesys,gl850g.example.dtb:
-hub@2: 'reset-gpio' is a required property
-        from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
-  DTC_CHK Documentation/devicetree/bindings/usb/starfive,jh7110-usb.example.dtb
+J
+>=20
+> - Nuno S=C3=A1
+>=20
 
-> Rob
-
-Thanks
--Anand
 
