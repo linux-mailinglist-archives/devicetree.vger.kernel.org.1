@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-22440-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22441-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4840A8076A4
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 18:32:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5ADB58076A9
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 18:34:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 01F0F281471
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 17:32:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 065D21F210DA
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 17:34:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3E486A000;
-	Wed,  6 Dec 2023 17:32:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95C42697B8;
+	Wed,  6 Dec 2023 17:34:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tro7t0Xj"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lTuXn0Zt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF29CD46
-	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 09:32:00 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-334af3b3ddfso24026f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 09:32:00 -0800 (PST)
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BD23122
+	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 09:33:57 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-40b2ddab817so312165e9.3
+        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 09:33:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701883919; x=1702488719; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701884036; x=1702488836; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Cpq9439iWlnUrS6CBOEYmk9p6jyST2wHec88LB0c6Bw=;
-        b=tro7t0XjUIl17rw7grl1R+m8PqGFjqfUtOj2fCddWqAzPgKOlLkCzwF9tMBM+z/3CQ
-         up/iW5U428GC6WJiJfjImfDCrMns0IGXnBv3kC7v3/ggoJ0h9WP3lvbjVvNnu4Hzo1Kt
-         7SBcQUf0tR07Rih8vQg5siPLOVVj+AV9yVpTgVdczB5HyxGTiP8I/6RcsWlsmiFFT3al
-         cvogOSMH1lDvIG4DbXfzpmJWTQjBTZ2lUr7XnoCwREZxXw1lziwojlXYBUEFLfoqFMYa
-         A3TXc/9piSVbjjUWAxB7mcYwxvBPevLP0/597iR7gEA4rcHPaY7k0Etb0Wt61AEpYwrJ
-         s9bA==
+        bh=r5kmQ0svcDs85kacFzSY2HfHtu574WUvMMh1hv/48Ms=;
+        b=lTuXn0Zto6grWCezCpyKUpFyiDTDHPCSAw/Ywo5BQ1gvusv12oNtNCiafN8mFNAuiI
+         Nwqoo2M10BFUvsNkJaIKeZJMf3EKX2pcUGekLkchkuSIGXBPLfFk7S0xKKrVAjFZQtYP
+         S8qj3dTwYGyTmQx60+/Z7MQHXlXbUUyQHnj+b6HHIQQGVEEZMS7Ss2w7Le64/7nziuhY
+         79eu+Hd1O7wLkJ9JzIX2TSXZgmAgDECXMmAMCPrebkKbOOMtQqvdRIp/oVGylj3K0gf2
+         1DHkeMRpt8KPsPulyQIwDkhUa9CpE5STSohGLQ2W/Bp3eZt091n2tkkNt2mQ4elBn8B5
+         dPxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701883919; x=1702488719;
+        d=1e100.net; s=20230601; t=1701884036; x=1702488836;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Cpq9439iWlnUrS6CBOEYmk9p6jyST2wHec88LB0c6Bw=;
-        b=CnNpze3vtAZFIM0mqSphsmNK8POCZT4+BTk7DIZYh1F7XSBuN7wBdka9IaKzMVNQtM
-         MTSr8bx4rfaoNmwpGY+bMvnzAaPSuU8PjwmRYpg5vPAVRKxbCgwaVoMjXvLbPG68HL/O
-         bPaVbw+ey2gqMFmHHWC0FJlJU5//vE4t8JcUJ7iUZDxcuMkPTh1snbeMTsSRiabf01Pv
-         lUp7yofixgzcLMbkSSu/eUXCHK+WirYoErBpKsQvXXGDyhtWrd8IssHn5pb53Zbwzi4O
-         /2u8SX4E9qNm0Q6JZemG4BIz2pkV01qjFJsHbYO/jMqJCA/+zyUTAHMdF00ykJidiFPB
-         iJyA==
-X-Gm-Message-State: AOJu0YzY+lI1S/k/gEB70w1jviTl92J/wPY4mqhT9vaanfxhrtZBvghh
-	PZB2fC6N8y5ZA3mRCsQUhXGDew==
-X-Google-Smtp-Source: AGHT+IHBusiVLD0fPW9UM1wjpTpb1F1Y1YhL7DrIxRXaOxfT+fIeu5/1LWKk3YcJJkovgSCnw3jkTQ==
-X-Received: by 2002:a5d:56cb:0:b0:333:4a9b:d441 with SMTP id m11-20020a5d56cb000000b003334a9bd441mr734983wrw.131.1701883919403;
-        Wed, 06 Dec 2023 09:31:59 -0800 (PST)
+        bh=r5kmQ0svcDs85kacFzSY2HfHtu574WUvMMh1hv/48Ms=;
+        b=JymMgWqBDRIezytzd0SiAHmnFcp7hzpIoPjBKuX+qwgqMXffxG0bBa4LUgXf8oxaJZ
+         irOpCXZ9ymaAMQIYjd8GIlhQVZ+cM1njDXVyQ6LMYY0OI2nPxoVJxdVJBJwb/P4ykMXS
+         2gmvkwhYczVMBe1dhzP5K5INP4qEqh4dfP7VtwYHBDAxrlEuynQfhcHarY9OHDVWBgzh
+         cZIiBJiXQ9gcF4No1XUkN3ZupvhsRgPCGqRx8H3Jaqnxol2DLGvNrmyiidhdj8VaVj2a
+         IRYri/zrE5fMvVAe0sEg662dcQU1wVW//TFUOT/l8aUa5iiLRHPcXWe7kxuXWSCKyHMf
+         60Jw==
+X-Gm-Message-State: AOJu0YxqyVg08RnB0y4gL9eqQWrY2otwSDn8Xwo+HR6UgKqBPvig8wfW
+	MntEU5D1IPj8mAImwNJFIViXkQ==
+X-Google-Smtp-Source: AGHT+IF50AUMyrHT4YEt9gLoJnSQfVIDxMn6Vizx7xXcjY8ScWOXMtpZl141mKyejfQgE7WENoKDYg==
+X-Received: by 2002:a7b:c8c4:0:b0:40c:1834:507e with SMTP id f4-20020a7bc8c4000000b0040c1834507emr860539wml.102.1701884035582;
+        Wed, 06 Dec 2023 09:33:55 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id l20-20020adfa394000000b003333a0da243sm183243wrb.81.2023.12.06.09.31.58
+        by smtp.gmail.com with ESMTPSA id v9-20020a05600c444900b0040b3632e993sm313928wmn.46.2023.12.06.09.33.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Dec 2023 09:31:59 -0800 (PST)
-Message-ID: <c483e962-a565-45b0-91e2-41f47e2cf4bb@linaro.org>
-Date: Wed, 6 Dec 2023 18:31:56 +0100
+        Wed, 06 Dec 2023 09:33:55 -0800 (PST)
+Message-ID: <7d30acd6-1f00-47d1-b7ed-05e7bdab119c@linaro.org>
+Date: Wed, 6 Dec 2023 18:33:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,7 +62,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] memory: brcmstb_dpfe: support DPFE API v4
+Subject: Re: [PATCH 2/4] memory: brcmstb_dpfe: introduce version-specific
+ compatible strings
 Content-Language: en-US
 To: Florian Fainelli <florian.fainelli@broadcom.com>,
  Markus Mayer <mmayer@broadcom.com>, Rob Herring <robh+dt@kernel.org>,
@@ -71,9 +72,9 @@ Cc: Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
  Device Tree Mailing List <devicetree@vger.kernel.org>,
  Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 References: <20231205184741.3092376-1-mmayer@broadcom.com>
- <20231205184741.3092376-4-mmayer@broadcom.com>
- <e63906cf-9f76-4fed-91b0-1a9168b179bd@linaro.org>
- <12f3c515-71cf-46a5-ad92-15bf6c4c2f2c@broadcom.com>
+ <20231205184741.3092376-3-mmayer@broadcom.com>
+ <7844ca22-df53-458d-9e3b-7b0758a80455@linaro.org>
+ <cb1d5118-b4f6-46b3-814b-2edf16372d01@broadcom.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -119,53 +120,50 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <12f3c515-71cf-46a5-ad92-15bf6c4c2f2c@broadcom.com>
+In-Reply-To: <cb1d5118-b4f6-46b3-814b-2edf16372d01@broadcom.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/12/2023 17:18, Florian Fainelli wrote:
+On 06/12/2023 17:19, Florian Fainelli wrote:
 > 
 > 
-> On 12/6/2023 3:10 AM, Krzysztof Kozlowski wrote:
+> On 12/6/2023 3:09 AM, Krzysztof Kozlowski wrote:
 >> On 05/12/2023 19:47, Markus Mayer wrote:
->>> Add support for version 4 of the DPFE API. This new version is largely
->>> identical to version 3. The main difference is that all commands now
->>> take the MHS version number as the first argument. Any other arguments
->>> have been pushed down by one (i.e. what used to be arg0 in v3 is arg1 in
->>> v4).
+>>> Introduce compatible strings brcm,dpfe-cpu-v1 through brcm,dpfe-cpu-v3
+>>> to the Broadcom DPFE driver.
+>>
+>> No, why?
+>>
 >>>
 >>> Signed-off-by: Markus Mayer <mmayer@broadcom.com>
 >>> ---
->>
->> ...
->>
+>>>   drivers/memory/brcmstb_dpfe.c | 6 ++++++
+>>>   1 file changed, 6 insertions(+)
+>>>
+>>> diff --git a/drivers/memory/brcmstb_dpfe.c b/drivers/memory/brcmstb_dpfe.c
+>>> index a7ab3d377206..66876b409e59 100644
+>>> --- a/drivers/memory/brcmstb_dpfe.c
+>>> +++ b/drivers/memory/brcmstb_dpfe.c
+>>> @@ -924,6 +924,12 @@ static const struct of_device_id brcmstb_dpfe_of_match[] = {
+>>>   	{ .compatible = "brcm,bcm7271-dpfe-cpu", .data = &dpfe_api_old_v2 },
+>>>   	{ .compatible = "brcm,bcm7278-dpfe-cpu", .data = &dpfe_api_old_v2 },
+>>>   	{ .compatible = "brcm,bcm7211-dpfe-cpu", .data = &dpfe_api_new_v2 },
 >>> +
->>>   static const char *get_error_text(unsigned int i)
->>>   {
->>>   	static const char * const error_text[] = {
->>> @@ -929,8 +954,12 @@ static const struct of_device_id brcmstb_dpfe_of_match[] = {
->>>   	{ .compatible = "brcm,dpfe-cpu-v1", .data = &dpfe_api_old_v2 },
->>>   	{ .compatible = "brcm,dpfe-cpu-v2", .data = &dpfe_api_new_v2 },
->>>   	{ .compatible = "brcm,dpfe-cpu-v3", .data = &dpfe_api_v3 },
->>> +	{ .compatible = "brcm,dpfe-cpu-v4", .data = &dpfe_api_v4 },
->>>   
+>>> +	/* Match specific DCPU versions */
+>>> +	{ .compatible = "brcm,dpfe-cpu-v1", .data = &dpfe_api_old_v2 },
+>>> +	{ .compatible = "brcm,dpfe-cpu-v2", .data = &dpfe_api_new_v2 },
+>>> +	{ .compatible = "brcm,dpfe-cpu-v3", .data = &dpfe_api_v3 },
 >>
->> No, use SoC specific compatible.
+>> Pointless change.
 > 
-> This is not that simple because for a given SoC, the API implemented by 
-> the firmware can change, in fact it has changed over the lifetime of a 
-> given SoC as firmware updates get rolled out. Arguably the dialect 
-> spoken by the firmware should not have changed and we told the firmware 
-> team about that but it basically went nowhere and here we are.
-> 
-> The Device Tree gets populated by the boot loader which figures out 
-> which API is spoken and places one of those compatible strings 
-> accordingly for the kernel to avoid having to do any sort of run-time 
-> detection which is slow and completely unnecessary when we can simply 
-> tell it ahead of time what to use.
+> Is it possible to ask you as a maintainer to stop having those knee jerk 
+> reactions and try to understand things a bit better, or simply request a 
+> better explanation from the submitter?
 
-Thanks for providing justification, quite reasonable. A pity that none
-of the commit msgs answered this way.
+I asked: "Why?". None of the commits explain the rationale behind the
+change. None of them say why such change is needed. They all repeat what
+the patch is doing, which is pretty easy to see from the diff. The
+commit must answer the trickiest question: why are we doing this?
 
 Best regards,
 Krzysztof
