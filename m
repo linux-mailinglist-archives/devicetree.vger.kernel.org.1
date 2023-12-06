@@ -1,98 +1,98 @@
-Return-Path: <devicetree+bounces-22294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22295-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA2318070E3
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 14:28:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 613408070F6
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 14:34:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 646211F215B3
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 13:28:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0A5DA1F21659
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 13:34:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FB8B39FC3;
-	Wed,  6 Dec 2023 13:28:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZA/Zmu/P"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93A7039FE2;
+	Wed,  6 Dec 2023 13:34:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 341A337156;
-	Wed,  6 Dec 2023 13:28:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05BEDC433C7;
-	Wed,  6 Dec 2023 13:28:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701869299;
-	bh=yhesIzATDO4OKYwmDYNzt3VwQxpPURRVsiQ5N4uF9JA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZA/Zmu/PCGtt14UyyxMI3C7VqmLniML0nD31PssOTkSNky1FI3+xd2j+fb+8cgzFy
-	 2EbGV50p3J9IbirKmC+j3OijJKRgZiMv2H/0MyzIUAGnwOSFIIW8IQg6QpRpFxSwVk
-	 iLy9H0xbC3lFd0InNJfMB+AhYz5VVdaoBthrjX2UXD6Qmr+0/DSQfN2EP0RFJYcaNB
-	 CwcCKJzh9tu+w/5v/EUfC5ah/skqzv9ksiQdxasa/0Wmzln0TkfOWUwZ+diJsmVWy5
-	 pY6nIk6GvSAi8ejavwodixQKZAciu6aYG6ywwgb3gwhv8VFczSdV9hNMSnzVtG5+L6
-	 CTeNzXcWgjtJQ==
-Date: Wed, 6 Dec 2023 13:28:13 +0000
-From: Lee Jones <lee@kernel.org>
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: kernel test robot <lkp@intel.com>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"oe-kbuild-all@lists.linux.dev" <oe-kbuild-all@lists.linux.dev>,
-	Support Opensource <support.opensource@diasemi.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH 4/6] dt-bindings: mfd: Convert da9062 to json-schema
-Message-ID: <20231206132813.GC3375667@google.com>
-References: <20231201110840.37408-5-biju.das.jz@bp.renesas.com>
- <202312061323.Zk81yCZU-lkp@intel.com>
- <TYVPR01MB11279FA6949EFAE62C70EB2948684A@TYVPR01MB11279.jpnprd01.prod.outlook.com>
+Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C662122;
+	Wed,  6 Dec 2023 05:34:06 -0800 (PST)
+Received: by mail-ot1-f52.google.com with SMTP id 46e09a7af769-6d9d29a2332so46603a34.0;
+        Wed, 06 Dec 2023 05:34:06 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701869646; x=1702474446;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GKUyAGPVNJ2iCz/byc+vad2U0HtCXFR/OKxsFSUjBSo=;
+        b=Afr08ZZnZPflUMyXwsoWEYz2ezular9v0AiFuR2H+yREBvoQX07sLYoUN1csfE0M+8
+         8PFV9eOsxWT0meHHZO1crWjhhg43dFoZzpO6zXKYHHMuZLwgEyiEsUbfoEvwfw7k1Bon
+         k/5rHG6bmLPccVJXadEyU5UMQAFgUaPgaZENS3TqYv6/u5s34JrZBuI9+cRYIp3SQhsJ
+         pmfKxQcZ6MQ8h/oIH4NZ3EbISQRsDEd1Qe7SdztxRKOg9MW21Df8+wmNng6jmdekriMQ
+         k+vKln7W/rb4lWYGX4+H98wPgcDGAXRi2ppCT66RFbElC2uGqNSWzeP1J7PC7NrPLelF
+         fmlw==
+X-Gm-Message-State: AOJu0Yx9KzH4HMzc1IhChQbqOCTauqXBaUXDiRYCJf5R50ZA2EG3k/V+
+	6TkQpIqJ1ylDVDYY5MOs1g==
+X-Google-Smtp-Source: AGHT+IHWs8BDYeEsQ9p7nU50NuMdIrEA5NhSUWcTgZm0IYA+OhimehJYkLAie1qpwHIrrcHjciYBFA==
+X-Received: by 2002:a05:6830:2aaa:b0:6d8:74e2:552a with SMTP id s42-20020a0568302aaa00b006d874e2552amr431988otu.22.1701869645696;
+        Wed, 06 Dec 2023 05:34:05 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id z17-20020a9d62d1000000b006b9848f8aa7sm2665206otk.45.2023.12.06.05.34.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Dec 2023 05:34:05 -0800 (PST)
+Received: (nullmailer pid 1911334 invoked by uid 1000);
+	Wed, 06 Dec 2023 13:34:03 -0000
+Date: Wed, 6 Dec 2023 07:34:03 -0600
+From: Rob Herring <robh@kernel.org>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>, 
+	Sean Wang <sean.wang@mediatek.com>, Mark Lee <Mark-MC.Lee@mediatek.com>, 
+	Lorenzo Bianconi <lorenzo@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Andrew Lunn <andrew@lunn.ch>, 
+	Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
+	Alexander Couzens <lynxis@fe80.eu>, Qingfang Deng <dqfext@gmail.com>, 
+	SkyLake Huang <SkyLake.Huang@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org
+Subject: Re: [RFC PATCH v2 5/8] net: pcs: add driver for MediaTek USXGMII PCS
+Message-ID: <20231206133403.GA1894508-robh@kernel.org>
+References: <cover.1701826319.git.daniel@makrotopia.org>
+ <3cd8af5e44554c2db2d7898494ee813967206bd9.1701826319.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <TYVPR01MB11279FA6949EFAE62C70EB2948684A@TYVPR01MB11279.jpnprd01.prod.outlook.com>
+In-Reply-To: <3cd8af5e44554c2db2d7898494ee813967206bd9.1701826319.git.daniel@makrotopia.org>
 
-On Wed, 06 Dec 2023, Biju Das wrote:
-
-> Hi kernel test robot,
+On Wed, Dec 06, 2023 at 01:44:38AM +0000, Daniel Golle wrote:
+> Add driver for USXGMII PCS found in the MediaTek MT7988 SoC and supporting
+> USXGMII, 10GBase-R and 5GBase-R interface modes. In order to support
+> Cisco SGMII, 1000Base-X and 2500Base-X via the also present LynxI PCS
+> create a wrapped PCS taking care of the components shared between the
+> new USXGMII PCS and the legacy LynxI PCS.
 > 
-> > -----Original Message-----
-> > From: kernel test robot <lkp@intel.com>
-> > Subject: Re: [PATCH 4/6] dt-bindings: mfd: Convert da9062 to json-schema
-> > 
-> > Hi Biju,
-> > 
-> > kernel test robot noticed the following build warnings:
-> > 
-> > 
-> > If you fix the issue in a separate patch/commit (i.e. not just a new
-> > version of the same patch/commit), kindly add following tags
-> > | Reported-by: kernel test robot <lkp@intel.com>
-> > | Closes:
-> > 
-> > All warnings (new ones prefixed by >>):
-> > 
-> > >> Warning: Documentation/devicetree/bindings/input/da9062-onkey.txt
-> > >> references a file that doesn't exist:
-> > >> Documentation/devicetree/bindings/mfd/da9062.txt
-> > >> Warning: Documentation/devicetree/bindings/thermal/da9062-thermal.txt
-> > >> references a file that doesn't exist:
-> > >> Documentation/devicetree/bindings/mfd/da9062.txt
-> > 
-> 
-> There is an updated patch series available[1] and Please retest and
-> provide feedback if any?
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> ---
+>  .../bindings/net/pcs/mediatek,usxgmii.yaml    |  46 +-
 
-Do you often find yourself chatting with inanimate/automated services? :)
+Why are you changing the binding you just added?
 
--- 
-Lee Jones [李琼斯]
+In any case, bindings are separate patches.
+
+>  MAINTAINERS                                   |   2 +
+>  drivers/net/pcs/Kconfig                       |  11 +
+>  drivers/net/pcs/Makefile                      |   1 +
+>  drivers/net/pcs/pcs-mtk-usxgmii.c             | 413 ++++++++++++++++++
+>  include/linux/pcs/pcs-mtk-usxgmii.h           |  26 ++
+>  6 files changed, 456 insertions(+), 43 deletions(-)
+>  create mode 100644 drivers/net/pcs/pcs-mtk-usxgmii.c
+>  create mode 100644 include/linux/pcs/pcs-mtk-usxgmii.h
 
