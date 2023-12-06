@@ -1,116 +1,198 @@
-Return-Path: <devicetree+bounces-22432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22433-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4C3580761F
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 18:09:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FF33807636
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 18:14:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 63FCFB20D0C
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 17:09:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A579FB20D5F
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 17:14:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA57E49F85;
-	Wed,  6 Dec 2023 17:09:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B64DD4F1F3;
+	Wed,  6 Dec 2023 17:14:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YovOouNg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9121D3;
-	Wed,  6 Dec 2023 09:09:41 -0800 (PST)
-Received: by mail-ot1-f47.google.com with SMTP id 46e09a7af769-6d9d0d0e083so303299a34.2;
-        Wed, 06 Dec 2023 09:09:41 -0800 (PST)
+Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41EECD3;
+	Wed,  6 Dec 2023 09:14:41 -0800 (PST)
+Received: by mail-ot1-x32c.google.com with SMTP id 46e09a7af769-6d7fa93afe9so3897980a34.2;
+        Wed, 06 Dec 2023 09:14:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701882880; x=1702487680; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=0A3N+96A+1Q1WOKJBTgT0YZdafSP9BVjbGQLT1Px9rg=;
+        b=YovOouNgTODG/pzmSMtVeE2GhHjiCAbFomMiTBpEyX3E2JTz4ZXvg/sziWGrci+ul1
+         zR75H13sSNcz7luqQar2h5adwDNKuttuviUy88CRzCvuvYdRNCuY9NtljIFDzCjXmXgl
+         GDgi83mpgcOnIrZcRN4L88J57fsowE1IjGj7e9HraIJuE9cvC+lmgk39Q9Y48CXiN/0k
+         aYuFY/RoUpMMllH19Fj7hWL2zEIP6dyrf2xIbmnxzFlbYzPWCCD4L8LAit5QhGgzNjSy
+         GML9OqzF1oRSB8FnMAc4V+bA6U9NmaR1KhGwT4+DxLP7saFZ9URCSCalXVZ2Qfp6LKVW
+         awGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701882581; x=1702487381;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iI5hjWa77Sf/KBjh/jB8rfdIyFJDxe0sHwzujCbbVSg=;
-        b=mEgOPiIs1HGTy6G+dr2KbEYH8J7OfjfrQ2R4aeWY2N/OArBnLln9/fVe30wHIcIW4g
-         wUNslHkaGGSy5/NdLYgMGQUwqf3u8nCsWSYqkywDIz7xTFhM9guJDmfQJk9qlyB9dVqJ
-         Yg8YPhjL3iRNR+QIZIJA2RoUM/QmjPFOYc7zIRDDagSKNY4tACF+9wifITvdYdGrXfZL
-         wf2eX2qrbkfD4P+cBPPl5qvhr+dv+PK8y4aJro+uZfr+WNCPReZKUb5D9gzlLJJOWBqz
-         0ib/9C5ZDRxIHxEGbjvG+yW5zNUygIyYI+KQLy1FYqaqB2kqUwo2CMzNiR+K4rujdhCj
-         YSow==
-X-Gm-Message-State: AOJu0YyO+OaAm7W4JFjEZcHiJ8YfLFb50eny6eSiWfAA07yj86cXd6Of
-	P4ySc73HHc0oPNx7egNpyw==
-X-Google-Smtp-Source: AGHT+IGYYrYPqxRD4wI2kY57RX78/Okb+2yHNgN5HP4in9wmkhehh7Gfbbh2RpqYhkuweieDZy0oEg==
-X-Received: by 2002:a05:6871:72a:b0:1fa:dfd7:dc37 with SMTP id f42-20020a056871072a00b001fadfd7dc37mr1382817oap.37.1701882580993;
-        Wed, 06 Dec 2023 09:09:40 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id g4-20020a056870ea0400b001fb38204e42sm55710oap.20.2023.12.06.09.09.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Dec 2023 09:09:40 -0800 (PST)
-Received: (nullmailer pid 2694820 invoked by uid 1000);
-	Wed, 06 Dec 2023 17:09:39 -0000
-Date: Wed, 6 Dec 2023 11:09:39 -0600
-From: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Chen-Yu Tsai <wenst@chromium.org>, Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Benson Leung <bleung@chromium.org>, Guenter Roeck <groeck@chromium.org>, devicetree@vger.kernel.org, chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mfd: cros-ec: Allow interrupts-extended
- property
-Message-ID: <20231206170939.GA2195738-robh@kernel.org>
-References: <20231130083333.932862-1-wenst@chromium.org>
- <2288442b-9002-4711-9b64-16b204f19985@linaro.org>
- <CAGXv+5HwzSX=x_0u-95i1+q+xbstrCmuMxRoKXJwEL5ErnRgOQ@mail.gmail.com>
- <7b9a2f1a-59d6-454c-95ed-6cb920751551@linaro.org>
+        d=1e100.net; s=20230601; t=1701882880; x=1702487680;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0A3N+96A+1Q1WOKJBTgT0YZdafSP9BVjbGQLT1Px9rg=;
+        b=mRcfJZeIm8ieqG9EBB5Uf8h5jAgoNJQCZ9Nh9MKk+lmBuE1ZDxnDH/biBqWrHws+V9
+         K+UQhRMNmNNttcdu3mX30HWI0ytO4SFr/O5WNxQscoeSmVbyq7gGP49U0zamKxSFGfBe
+         3paHhDa3pWkMZn2tG+0RSW5BGHUa2J2XEkqr7hBZqWBK9/fyeR4Gwcd/I544S/TZOlYH
+         6ZH0OmUsxbadhC8rH/bqOLWCxtF8uEgOYklslj6VVsgsA3hY/3IIFPId8PGeWWrmg2ZA
+         zG4UhSdwTeL4oqFQ2ky5bwPWVgLkJz9Sp46ftTDUnxSaajM4kLdG+28JjZ2hTmasZiq1
+         L4yQ==
+X-Gm-Message-State: AOJu0YweDf079x/ysGpg+zVzO4LjhKNsC4b45j+dgl6ThQDHsa/HmgK7
+	n06/oQMCYbmUsgahnPwbLht2mTmDjDbWdKnSyjA=
+X-Google-Smtp-Source: AGHT+IHXBDJwsUWKBFw4DqlEqnhQX9IUX2BaSV8wq52NeyLZimuYnsac+q5/+DjzsdbKheZI6/62489OkjicV+ovZqg=
+X-Received: by 2002:a05:6870:970c:b0:1fb:75a:c421 with SMTP id
+ n12-20020a056870970c00b001fb075ac421mr1176895oaq.74.1701882880366; Wed, 06
+ Dec 2023 09:14:40 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <7b9a2f1a-59d6-454c-95ed-6cb920751551@linaro.org>
+References: <20231204144429.45197-1-linux.amoon@gmail.com> <20231204144429.45197-2-linux.amoon@gmail.com>
+ <20231206135311.GA2043711-robh@kernel.org>
+In-Reply-To: <20231206135311.GA2043711-robh@kernel.org>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Wed, 6 Dec 2023 22:44:24 +0530
+Message-ID: <CANAwSgTS0ZSFPv4x803pCLEpjH5imh8vEoWpbiJRH14Sy3GZww@mail.gmail.com>
+Subject: Re: [PATCH v6 1/2] dt-bindings: usb: Add the binding example for the
+ Genesys Logic GL3523 hub
+To: Rob Herring <robh@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Icenowy Zheng <uwu@icenowy.me>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	linux-amlogic@lists.infradead.org, Conor Dooley <conor.dooley@microchip.com>, 
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Fri, Dec 01, 2023 at 09:03:09AM +0100, Krzysztof Kozlowski wrote:
-> On 01/12/2023 05:37, Chen-Yu Tsai wrote:
-> > On Thu, Nov 30, 2023 at 4:52 PM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 30/11/2023 09:33, Chen-Yu Tsai wrote:
-> >>> "interrupts-extended" provides a more concise way of describing external
-> >>> GPIO interrupts.
-> >>>
-> >>> Allow using this instead of "interrupts" plus "interrupt-parent" for
-> >>> cros-ec.
-> >>>
-> >>> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-> >>> ---
-> >>>  .../devicetree/bindings/mfd/google,cros-ec.yaml          | 9 ++++++++-
-> >>>  1 file changed, 8 insertions(+), 1 deletion(-)
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> >>> index e1ca4f297c6d..e514eac9f4fc 100644
-> >>> --- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> >>> +++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> >>> @@ -75,6 +75,9 @@ properties:
-> >>>    interrupts:
-> >>>      maxItems: 1
-> >>>
-> >>> +  interrupts-extended:
-> >>> +    maxItems: 1
-> >>> +
-> >>
-> >> I don't understand why you need it. You already have interrupts there,
-> >> so this is redundant. I suggest to drop the patch or provide real
-> >> rationale (which I doubt you can get :) ).
-> > 
-> > I'm sorry, I should've included this in the commit message.
-> > 
-> > The other half of the patch gets rid of a DT validation fail when
-> > interrupts-extended is used instead of interrupts:
-> > 
-> > .../arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dtb: ec@0:
-> > 'interrupts' is a required property
-> >     from schema $id: http://devicetree.org/schemas/mfd/google,cros-ec.yaml#
-> > 
-> 
-> That looks either like a bug in bindings or in dtschema or in your DTS.
-> This patch should not be needed to solve that.
+Hi Rob,
 
-I'll be commiting a dtschema fix soon. There's quite a few places 
-needing the fixup.
+On Wed, 6 Dec 2023 at 19:23, Rob Herring <robh@kernel.org> wrote:
+>
+> On Mon, Dec 04, 2023 at 08:14:25PM +0530, Anand Moon wrote:
+> > Add the binding example for the USB3.1 Genesys Logic GL3523
+> > integrates with USB 3.1 Gen 1 Super Speed and USB 2.0 High-Speed
+> > hub.
+> >
+> > For onboard hub controllers that support USB 3.x and USB 2.0 hubs
+> > with shared resets and power supplies, this property is used to identify
+> > the hubs with which these are shared.
+> >
+> > GL3523 has built-in 5V to 3.3V and 5V to 1.2V regulators, which serves
+> > power to the USB HUB, it uses 5V power regulator.
+> >
+> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> > ---
+> > V6: fix the description of the regulators
+> > Updated the commit message for regulator updates.
+> > add reviewed by Conor Dooley
+> > [1] https://lore.kernel.org/all/20231130053130.21966-2-linux.amoon@gmail.com/
+> > v5: upgrade peer-hub description : Conor Dooley
+> > [0] https://www.genesyslogic.com.tw/en/product_view.php?show=67 [Block Diagram]
+> > v4: Fix the description of peer-hub and update the commit message.
+> > Schematics of the Odroid N2+
+> > https://dn.odroid.com/S922X/ODROID-N2/Schematic/odroid-n2_rev0.6_20210121.pdf
+> > V3: fix the dt_binding_check error, added new example for Genesys GL3523
+> > v2: added Genesys GL3523 binding
+> > v1: none
+> > ---
+> >  .../bindings/usb/genesys,gl850g.yaml          | 65 +++++++++++++++++--
+> >  1 file changed, 61 insertions(+), 4 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> > index ee08b9c3721f..c6f63a69396d 100644
+> > --- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> > +++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> > @@ -9,9 +9,6 @@ title: Genesys Logic USB hub controller
+> >  maintainers:
+> >    - Icenowy Zheng <uwu@icenowy.me>
+> >
+> > -allOf:
+> > -  - $ref: usb-device.yaml#
+> > -
+> >  properties:
+> >    compatible:
+> >      enum:
+> > @@ -27,12 +24,46 @@ properties:
+> >
+> >    vdd-supply:
+> >      description:
+> > -      the regulator that provides 3.3V core power to the hub.
+> > +      The regulator that provides 3.3V or 5.0V core power to the hub.
+> > +
+> > +  peer-hub:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description:
+> > +      For onboard hub controllers that support USB 3.x and USB 2.0 hubs
+> > +      with shared resets and power supplies, this property is used to identify
+> > +      the hubs with which these are shared.
+> >
+> >  required:
+> >    - compatible
+> >    - reg
+> >
+> > +allOf:
+> > +  - $ref: usb-device.yaml#
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - usb5e3,608
+> > +    then:
+> > +      properties:
+> > +        peer-hub: false
+> > +        vdd-supply: false
+> > +        reset-gpios: true
+> > +
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - usb5e3,610
+> > +              - usb5e3,620
+> > +    then:
+> > +      properties:
+> > +        peer-hub: true
+> > +        vdd-supply: true
+> > +        reset-gpios: true
+>
+> No need for this if schema. The default is they are allowed.
+>
 
-Rob
+If I move reset-gpios to required, I observe the below warning.
+
+  DTC_CHK Documentation/devicetree/bindings/usb/maxim,max33359.example.dtb
+/home/alarm/linux-amlogic-5.y-devel/Documentation/devicetree/bindings/usb/usb-device.example.dtb:
+hub@1: 'reset-gpio' is a required property
+        from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
+  DTC_CHK Documentation/devicetree/bindings/usb/mediatek,musb.example.dtb
+  DTC_CHK Documentation/devicetree/bindings/usb/usb251xb.example.dtb
+  DTC_CHK Documentation/devicetree/bindings/usb/realtek,rts5411.example.dtb
+/home/alarm/linux-amlogic-5.y-devel/Documentation/devicetree/bindings/usb/genesys,gl850g.example.dtb:
+hub@1: 'reset-gpio' is a required property
+        from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
+  DTC_CHK Documentation/devicetree/bindings/usb/brcm,bdc.example.dtb
+/home/alarm/linux-amlogic-5.y-devel/Documentation/devicetree/bindings/usb/genesys,gl850g.example.dtb:
+hub@1: 'reset-gpio' is a required property
+        from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
+  DTC_CHK Documentation/devicetree/bindings/usb/xlnx,usb2.example.dtb
+/home/alarm/linux-amlogic-5.y-devel/Documentation/devicetree/bindings/usb/genesys,gl850g.example.dtb:
+hub@2: 'reset-gpio' is a required property
+        from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
+  DTC_CHK Documentation/devicetree/bindings/usb/starfive,jh7110-usb.example.dtb
+
+> Rob
+
+Thanks
+-Anand
 
