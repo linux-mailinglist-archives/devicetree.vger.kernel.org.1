@@ -1,158 +1,209 @@
-Return-Path: <devicetree+bounces-22429-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22430-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC6888075FB
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 18:02:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE7E280760B
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 18:07:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7282A1F211BA
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 17:02:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1D196281DD9
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 17:07:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BCE849F70;
-	Wed,  6 Dec 2023 17:02:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64CF349F78;
+	Wed,  6 Dec 2023 17:07:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="u3gzp63k"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="FD5X/j61"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DFC710C3;
-	Wed,  6 Dec 2023 09:02:26 -0800 (PST)
-Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 2FECB100090;
-	Wed,  6 Dec 2023 20:02:25 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 2FECB100090
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1701882145;
-	bh=fj1spA/7Ui2NDhe2nHqht/pr8SxF0h7lUNYu0J33Vio=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-	b=u3gzp63k7pQcmXP/RXPol0YfqjT7aVRi/UB8MOdi3XQbk9meyUgVXnGJ4u+qIiMKf
-	 3z+5GsYYJINNrDXlkFleip8DICpc6xxhlHiC0G4BxNcOXRsLyPDSI+vu89kyr8h0rr
-	 wg0sK1k6DeQrPIK5SyTTeAclu8VzgGSdfy/9djNWrtjg6bosNLCUabzwAmuk5YkMLm
-	 0HUJPINYfrFGcXAckb0zBN8nDo3slzUAGdFWJe9v/eAClY53qEhRn676DqQ51pG4mf
-	 Otf/Hhg5Ev3PNJ12KkSvzmqE6FGZOFX2hRQ3ZmuNSKsJrMoVLMhsZPCRYsisc946Gu
-	 iA8/jL2Gc+OuA==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Wed,  6 Dec 2023 20:02:25 +0300 (MSK)
-Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
- (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 6 Dec
- 2023 20:02:24 +0300
-Date: Wed, 6 Dec 2023 20:02:24 +0300
-From: Dmitry Rokosov <ddrokosov@salutedevices.com>
-To: Lee Jones <lee@kernel.org>
-CC: <pavel@ucw.cz>, <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<conor+dt@kernel.org>, <andy.shevchenko@gmail.com>, <kernel@sberdevices.ru>,
-	<rockosov@gmail.com>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-leds@vger.kernel.org>
-Subject: Re: [PATCH v5 00/11] leds: aw200xx: several driver updates
-Message-ID: <20231206170224.u3du6b7ganimzft2@CAB-WSD-L081021>
-References: <20231125200519.1750-1-ddrokosov@salutedevices.com>
- <170142898612.3365188.2222761548333694548.b4-ty@kernel.org>
- <20231206112958.xlzrzorkzzexwpwe@CAB-WSD-L081021>
- <20231206131134.GA3375667@google.com>
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2055.outbound.protection.outlook.com [40.107.21.55])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 953B8D40;
+	Wed,  6 Dec 2023 09:07:21 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZWw+fqm7rDyEkKbae+lj0lVP8nNQYgwrrTtHdBF2hCpB9FrpdQUEE0+IzbMfGV3ndgT1AQHBN4kgHBBJBN7me8DEy8BE7K3f7GdA8bzmg1Ic/1S4ekIhsBkCriGFynq1PtHhfphW3k4icUv1CQBLBHphHjl83atwudaMIqRk8C5NwUNuimMd9gjNdXZ0W2w2iK3+BfYjlAApwDbSiYJwJLUinb1tPARRmldjjJeXYiaghispHdy/p8oCiO0oKvSIoLPE2C3LI3cPDMeNTFL3OV1gR/RmNdoSTJLZPQRfcEbugqtr3PYJkPwXSAV8imiBRY/srt7O0von4b71bLdzSw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=k1wCyBM1+eCE7XF3bmKzo4H2Km+WyCO2evHnDVPaJQU=;
+ b=g9yuvDQTKtwGS99MbIuwNiHZt7989oa+1MbRNw3/fbDpqZO5XvGrlvHNIKluU9NAQzDjDJdJE+zOlKRcUjJeMFZF9DrCOpyU5ytxBMz0IA3TKdB7TlHdnj/VbPlACWXdL7olcv0kNsxeLmKXgEJwSyglo/V2pZPnzx1l7ISp0ymfwJG3gR+8PoZBqI6Sa+KUAPcrOdsnNcNsIrUL/caN/mEo6umXVtBICw6QvdGhDHN/Tney/iBl4+u7p8wzQi6fuyUFSYL1DYSv+7Wy7UhC+sHh5Y/XhFvu1U1S69JgBH6YB6XmPTWngKbd0OVrtRsdMgg3/NrnOAfG1f6F2kYsMg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=k1wCyBM1+eCE7XF3bmKzo4H2Km+WyCO2evHnDVPaJQU=;
+ b=FD5X/j614EfD/1kwvAc7lShPJM8ddMaZzWvW3aQq9eD/3OWfUkW8YOjqDoBOlmeQP+sZ2ZSly8FcwO+Q7JIJUt1CTAsekRfZVVuJGGls8RZbWo6jQZnzOVDv4PSwQ+925TKI7Y9KmhZaoVE9hmigf+nXpI0r2VgI0SehLnx8CZ4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from VI1PR04MB4845.eurprd04.prod.outlook.com (2603:10a6:803:51::30)
+ by PAXPR04MB9253.eurprd04.prod.outlook.com (2603:10a6:102:2bd::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.24; Wed, 6 Dec
+ 2023 17:07:17 +0000
+Received: from VI1PR04MB4845.eurprd04.prod.outlook.com
+ ([fe80::dfaa:e869:45eb:76e5]) by VI1PR04MB4845.eurprd04.prod.outlook.com
+ ([fe80::dfaa:e869:45eb:76e5%6]) with mapi id 15.20.7068.022; Wed, 6 Dec 2023
+ 17:07:16 +0000
+Date: Wed, 6 Dec 2023 12:07:00 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: imx@lists.linux.dev, Richard Zhu <hongxing.zhu@nxp.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	"open list:PCI DRIVER FOR IMX6" <linux-pci@vger.kernel.org>,
+	"moderated list:PCI DRIVER FOR IMX6" <linux-arm-kernel@lists.infradead.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 4/9] PCI: imx6: Using "linux,pci-domain" as slot ID
+Message-ID: <ZXCqNI3VZ8Sn23WM@lizhi-Precision-Tower-5810>
+References: <ZXCmSOwTWR6AVpGB@lizhi-Precision-Tower-5810>
+ <20231206165953.GA717921@bhelgaas>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231206165953.GA717921@bhelgaas>
+X-ClientProxiedBy: SJ0PR05CA0126.namprd05.prod.outlook.com
+ (2603:10b6:a03:33d::11) To AM6PR04MB4838.eurprd04.prod.outlook.com
+ (2603:10a6:20b:4::16)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20231206131134.GA3375667@google.com>
-User-Agent: NeoMutt/20220415
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 181915 [Dec 06 2023]
-X-KSMG-AntiSpam-Version: 6.0.0.2
-X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 5 0.3.5 98d108ddd984cca1d7e65e595eac546a62b0144b, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2;salutedevices.com:7.1.1;p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/12/06 15:44:00 #22621111
-X-KSMG-AntiVirus-Status: Clean, skipped
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VI1PR04MB4845:EE_|PAXPR04MB9253:EE_
+X-MS-Office365-Filtering-Correlation-Id: 470673d6-267c-41af-f3e0-08dbf67dc82b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	4a4+9fYg1RfaxzFql1IsMZVeMHdQ2AB3oPeTScfOhKWirSpr7oFZagbdWUCCiaAposO73u/fHU7VkBBqTjSqnvqGClF2LFx4oxFG4G33hQUmGr4WxE8Ilx7Emhut6PCas6ZoA5Y20UKSC5iDIbU2rBgLS98Yq5QbfELChW28e38mQ2ipc5ql0eJYP+JeLXfxGnohJoovf3TzW7PVrstOfd19chiGXNyjt2RoL+2z0deQEIe2PjnfKEOeGRMIYpJ8LNXn1JRUR7w994TY3uUzXDSeRMgjj+vf1bVk5zgY3NQyht9/Io/ngCadKX6+1r6uqpLUEh0ykpzCWn1oUawS+5K5JWyRJ3PF50SUuyp+WM8RSj+UhLYrNatYFpcTJx53JMJPOBtHiOeOhEynbo9N/FWYj8rjmenVrbg49T/EjlnpKKJwt9HsdsAZR3qX/EO4gM5sWnFy56GrJACysMXIRGuEAxY+N2eqcxmahmXHYskw6ErYSwnoXmseTnndfmqlxesrdjYEhGuOXhsRQW1+9kNmKX+W/xpfaMQY+EnbjHT3VMVGaRg7LDVra/liHRIyRP9EE8NIp+yXFkISAsYPD7ETPdJbo4sCscrKPawfRfjaAZOFf93JiKX3oC3NqBhJ
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB4845.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(136003)(346002)(396003)(376002)(39860400002)(366004)(230922051799003)(451199024)(186009)(1800799012)(64100799003)(8936002)(8676002)(4326008)(52116002)(6506007)(6666004)(26005)(6512007)(9686003)(316002)(54906003)(66946007)(66556008)(66476007)(6916009)(6486002)(478600001)(41300700001)(7416002)(5660300002)(33716001)(2906002)(86362001)(38100700002)(38350700005)(83380400001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?iIz5Y76F2jzW29g9dAfkJJINQdSo5eoacjD4xoEiq0+gOe+xwlUJ0sbD2BHG?=
+ =?us-ascii?Q?OMzS9avHtS+KEpydpJcfp/7HhzyQFAg0Qf/u4PjmRAr475iUGkcAt7hdq7Z+?=
+ =?us-ascii?Q?Bpe861zCkuU4zb2BaZ/NjblRM7ffcsFORovf4TOKdX/Dk97DKWgpgYj9XCAd?=
+ =?us-ascii?Q?lcPAjmXcd+cBZvE9/LX2TJcpPGtivhzTsyBGF4djrsJVaAYsFyJNoTujAbM3?=
+ =?us-ascii?Q?5PNhoZqyFcB3LmRteps4OO6uCAi8kfsrQaL5ndoBugmLMKK/IpmpwYUbfB4/?=
+ =?us-ascii?Q?pHWOJiiJjoqvu6DkZHKlkdgMBCmlVVIIK5187g+G2TJdT06zJ/sCliUpeMOr?=
+ =?us-ascii?Q?z7IThryE+VYrFi4mM8IeUQ85c2dHuisr8yopDJBQJqTGjY2lxluJ9TrXODH0?=
+ =?us-ascii?Q?U2xML5QoPhxcQKnz/zhddlwSjKvh2A20GYeW47aJ660uXAcA6D6UiySKK5B2?=
+ =?us-ascii?Q?jInY6bLouWn32WMYcKoC4HaqNyNa29Dn6W0SafLk8Ce5fG6tNFdou9+ToLGc?=
+ =?us-ascii?Q?fLRKdfKzsJBM5T3BeAgBmtbFLqcWl2PyfrHhXobb56ug6Wcf3TsqRocpq3qc?=
+ =?us-ascii?Q?5MHQ7UwPEr9EDptqu72HunnWYabzlh2fqx1Oq47Higs6g0XCc1ciiIAGJQ1Y?=
+ =?us-ascii?Q?sh/PxCfhdKD+q/wkBuiL4yE/5+enZk8E8Xqw7EEf0xkXix4MGNIM44mAXVFR?=
+ =?us-ascii?Q?+THwEv3mbBmWoWqCJJikwBns1U5LBidB5zuaErSg3JeB5ejEv7CfL1jbsiXj?=
+ =?us-ascii?Q?QCgdouW1n11o2J8ixPXEzrOAaeB2hKqSiKfJCYKcLEo13bLuAaDV2qOESW17?=
+ =?us-ascii?Q?1ybUt4tTzmE68dUMlnKvMunna9nAmy9KPs8m435n6/GrM2ZrCbx7UCrhJJFE?=
+ =?us-ascii?Q?pTNDWzj3TkrP5bB+zFt4431KsERk8C8si7NYz+F/FVuHkNZCYIIqFrJROpnW?=
+ =?us-ascii?Q?cSianWAYDjF/DVVwf5rMNP6EFWdhJCF9z6T6EHksG4DNU5AoTdXw+bowoOKk?=
+ =?us-ascii?Q?Bk/Yz3XP3S4RvABJZ1CMACUF3HBxm2xPl6HAW3cAM2Jbc3QOBj9WwyDdEwaE?=
+ =?us-ascii?Q?qUdakuGeNgln7uhdF6yAjFsBomW2EfCAWJX6EEYfNLd+BGzsUMTCTBjjMwSx?=
+ =?us-ascii?Q?v3ieWCHdivunjfU1pTY038WOFngDac2t4vZlM6mWL7gfr1MXNFQYcAeY7A85?=
+ =?us-ascii?Q?jz/E3Rkwu/Y5gkradbpmsnSYJ2jvtDUY1swTKFnTPbji9rfZs6HsEvU03ufA?=
+ =?us-ascii?Q?0DS6Vn9+kwHZeYvtmv1pdiR+CsUZ1SgQRov/wDN321xKvei8qwr4ZKfaglzP?=
+ =?us-ascii?Q?nBh8uuDQbxqsHQXsh2Q4lT2cbWAryx8UZvPZQ3+qFG32zfKzPTFl0EepvZ4p?=
+ =?us-ascii?Q?p6ecrxH9F4S3aMPerq79o5cPC7QFcwLpdWPK0cJ+ovai1u4JVZ+PsN3bFHLL?=
+ =?us-ascii?Q?QFPXgWnSm5Noqw9ztQAe0gRVfXHlvVBH3ZI2ZX+cEH9sjaguj4Bcy6gdxjLL?=
+ =?us-ascii?Q?gMhoOvZMlLd8M+PrgT9FaXi5eMH+zZZDxYYFYaitdt1/ctWAkE3wuu8iwcKo?=
+ =?us-ascii?Q?+lEvjisXdjhiOacx74KaUkkUzFqNArfNDp+ygN7K?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 470673d6-267c-41af-f3e0-08dbf67dc82b
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4838.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Dec 2023 17:07:16.2747
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: mdM9Esu3sM9WKT/5C7cQINGq6W6yWR6hHJfmS2wrWA0TXlnp7n1ujW3PvA//TGGy0oYcZqXVFkiw1o1NpUmAaw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9253
 
-On Wed, Dec 06, 2023 at 01:11:34PM +0000, Lee Jones wrote:
-> On Wed, 06 Dec 2023, Dmitry Rokosov wrote:
-> 
-> > Hello Lee,
-> > 
-> > On Fri, Dec 01, 2023 at 11:09:46AM +0000, Lee Jones wrote:
-> > > On Sat, 25 Nov 2023 23:05:08 +0300, Dmitry Rokosov wrote:
-> > > > The following patch series includes several updates for the AW200XX LED
-> > > > driver:
-> > > >     - some small fixes and optimizations to the driver implementation:
-> > > >       delays, autodimming calculation, disable_locking regmap flag,
-> > > >       display_rows calculation in runtime;
-> > > >     - fix LED device tree node pattern to accept LED names counting not
-> > > >       only from 0 to f;
-> > > >     - add missing reg constraints;
-> > > >     - support HWEN hardware control, which allows enabling or disabling
-> > > >       AW200XX RTL logic from the main SoC using a GPIO pin;
-> > > >     - introduce the new AW20108 LED controller, the datasheet for this
-> > > >       controller can be found at [1].
+On Wed, Dec 06, 2023 at 10:59:53AM -0600, Bjorn Helgaas wrote:
+> On Wed, Dec 06, 2023 at 11:50:16AM -0500, Frank Li wrote:
+> > On Wed, Dec 06, 2023 at 10:36:56AM -0600, Bjorn Helgaas wrote:
+> > > In subject, maybe you mean "Use 'linux,pci-domain' as slot ID"?
+> > > "Using" is the wrong verb form here.
+> > > 
+> > > On Wed, Dec 06, 2023 at 10:58:58AM -0500, Frank Li wrote:
+> > > > Avoid use get slot id by compared with register physical address. If there
+> > > > are more than 2 slots, compared logic will become complex.
+> > > 
+> > > But this doesn't say anything about "linux,pci-domain", and I don't
+> > > see anything about a register physical address in the patch.
+> > > 
+> > > Maybe this commit log was meant for a different patch?  I'm confused.
+> > > 
+> > > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > > ---
+> > > >  drivers/pci/controller/dwc/pci-imx6.c | 6 ++++++
+> > > >  1 file changed, 6 insertions(+)
 > > > > 
-> > > > [...]
+> > > > diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
+> > > > index 62d77fabd82a..239ef439ba70 100644
+> > > > --- a/drivers/pci/controller/dwc/pci-imx6.c
+> > > > +++ b/drivers/pci/controller/dwc/pci-imx6.c
+> > > > @@ -33,6 +33,7 @@
+> > > >  #include <linux/pm_domain.h>
+> > > >  #include <linux/pm_runtime.h>
+> > > >  
+> > > > +#include "../../pci.h"
+> > > >  #include "pcie-designware.h"
+> > > >  
+> > > >  #define IMX8MQ_GPR_PCIE_REF_USE_PAD		BIT(9)
+> > > > @@ -1333,6 +1334,11 @@ static int imx6_pcie_probe(struct platform_device *pdev)
+> > > >  					     "Failed to get PCIEPHY reset control\n");
+> > > >  	}
+> > > >  
+> > > > +	/* Using linux,pci-domain as PCI slot id */
+> > > > +	imx6_pcie->controller_id = of_get_pci_domain_nr(node);
+> > > > +	if (imx6_pcie->controller_id)
+> > > > +		imx6_pcie->controller_id = 0;
 > > > 
-> > > Applied, thanks!
+> > > I don't understand what this is doing.  It looks the same as just:
+> > 
+> > Good capture. It should be 
+> > if (imx6_pcie->controller_id < 0)
+> > 	imx6_pcie->controller_id = 0;
+> > 
+> > for only one PCI controller case. I just tested first one slot before send
+> > patch, so not met problem.
+> > 
+> > Previously, we use below logic
+> > 	if (dbi_base->start == IMX8MQ_PCIE2_BASE_ADDR)
+> > 		imx6_pcie->controller_id = 1;
+> > 
+> > It is not good to depend on register's base address. If there are 3
+> > controllers, check logic will becomoe ugly.
+> 
+> Makes sense.  If the previous code depended on the base address, this
+> patch would make more sense if it contained both the addition of the
+> of_get_pci_domain_nr() call and the removal of the base address code.
+
+Remove base address code will block existed functions. My plan is
+1. this patch upstreamed
+2. related dts add linux,pci-domain.
+3. removed base address compare code.
+
+Frank
+
+> 
+> > > Maybe this is a typo?  As written, it doesn't look like there's any
+> > > point in calling of_get_pci_domain_nr().
 > > > 
-> > > [01/11] leds: aw200xx: fix write to DIM parameter
-> > >         commit: 785fec3a8daff2957fd55e49cbdfe0a50866fdb7
-> > > [02/11] leds: aw200xx: support HWEN hardware control
-> > >         commit: eabe8239022cf3c75b90d9ee07dcfbbe4e50bcac
-> > > [03/11] dt-bindings: leds: aw200xx: introduce optional enable-gpios property
-> > >         commit: e91899ea3759d04e185721153a036e1a25e315b7
-> > > [04/11] leds: aw200xx: calculate dts property display_rows in the driver
-> > >         commit: 4ccd392c3ea7ceefbee58622e634d4997ef46acc
-> > > [05/11] dt-bindings: leds: aw200xx: remove property "awinic,display-rows"
-> > >         commit: 66d078f105837670c52bb31da29e26ad13bc2923
-> > > [06/11] leds: aw200xx: add delay after software reset
-> > >         commit: aac13e5630d6e081a9f6c5a57e5e6fc1152acca8
-> > > [07/11] leds: aw200xx: enable disable_locking flag in regmap config
-> > >         commit: 851fa70b9b162bbf5b5f5f92fc450633e6b21a3a
-> > > [08/11] leds: aw200xx: improve autodim calculation method
-> > >         commit: 5fcc24b92b43f012cbf430244f0698ff588ec9fc
-> > > [09/11] leds: aw200xx: add support for aw20108 device
-> > >         commit: abc74724d5e714bb3359124f3576d5318828a83e
-> > > [10/11] dt-bindings: leds: awinic,aw200xx: add AW20108 device
-> > >         commit: d6bbe677add2c560ae4aa2f9dab7a19c287e2193
-> > > [11/11] dt-bindings: leds: aw200xx: fix led pattern and add reg constraints
-> > >         commit: 5707a06e5391a4eeaf0c2705f973336537a41c79
-> > 
-> > Thank you for applying the patch series!
-> > 
-> > Could you please advise where I can find the above commits? I've tried
-> > looking in the 'lee/leds' branch, but I couldn't find anything. I want
-> 
-> They there now and should be in -next by tomorrow.
-> 
-
-Thank you, got it!
-
-> > to cherry-pick the commits that you applied to my internal branch, which
-> > I sync with the upstream periodically.
-> 
-> I suggest that a rebase might be a better approach.
-
-Of course, you are absolutely correct! We regularly perform rebases on
-our mainline mirror. However, the patches that we are preparing for the
-upstream are managed through our internal Gerrit system. When the
-maintainer merges these patches into their tree, we also merge them on
-the Gerrit side. Therefore, I would like to inquire about the current
-status of these patches.
-
--- 
-Thank you,
-Dmitry
+> > > >  	switch (imx6_pcie->drvdata->variant) {
+> > > >  	case IMX7D:
+> > > >  		if (dbi_base->start == IMX8MQ_PCIE2_BASE_ADDR)
+> > > > -- 
+> > > > 2.34.1
+> > > > 
 
