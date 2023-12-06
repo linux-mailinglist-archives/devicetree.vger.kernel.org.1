@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-22168-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22169-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F403806BB6
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 11:17:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0271806BC6
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 11:20:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E59BDB20EA1
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 10:17:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC69A281D6D
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 10:20:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B2932D61B;
-	Wed,  6 Dec 2023 10:17:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A657F2D623;
+	Wed,  6 Dec 2023 10:20:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pgtAuoOG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dzQzM0mx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF811FA
-	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 02:17:22 -0800 (PST)
-Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-3316a4bc37dso548417f8f.2
-        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 02:17:22 -0800 (PST)
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 615A88F
+	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 02:20:24 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-32f8441dfb5so524927f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 02:20:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701857841; x=1702462641; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701858023; x=1702462823; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=sWyvgy1TdeV0DVsJPDLWkrf/rSqR8TtA4Yp6VgZDT/o=;
-        b=pgtAuoOGYSFQ3w8DrLk3BdFdQFj2vxo+kPvQ/7LCqj3gQps19zTjobg+e5nmC0B+DI
-         kydQbqaQmKq7ORqt20u4JiIKg2BYYP+Yf+eQsfAORXwxJ/tYvRYqGX1gKJPjHNeelMDI
-         XtBFZqThNDiBOMrfkNMkZ+N3wdCqtXGaDN7vopqxq4LiD1PpQrS9VyjU+LDkXfsyQdVy
-         pvJ+KJzXiCynA+UfIEBINoqbmJ81QqNvM20+uSPTdLiaKtXU1IiE7WCFIGcb9FkjpATy
-         uzFcIoOJaoP2atBpDnVIF/8G2Fm0TjgHApdvEb6jc8W+L1n+Q61dapNb5zyiPKu1uJLI
-         jRfw==
+        bh=TcagDNq61xICjIxo/4l6ClZPIhnyzcVjcPtwymEXLJ0=;
+        b=dzQzM0mxCdcH3VoIEY6lESlSOfo3MKl5KUCj4nviVR5dPxt8Ioxa306KnnMnxZAyVw
+         tz7Ir0QfH0hPOwZTlJPH9oSMeY0Et3NWUmw0Z9NwMQ6oACM4KwMNUb3Qh6IFWY4dxlxT
+         stOpP4gdhJ53YBzbD4iRk6YaLgOxvLqbvavxf1MoecQ744CN7p4iyg6H+qG80dqXLFge
+         OABeQ62hbOlr6NA85eTHiSmFxhA3XxW/A9Pa6Ai6DDOYZAsIaFzaUk1m4xLqRNUc8Y/s
+         zJXBFOaIQ0Ki1NKILuJ9G77M4LJDAhSH04rgpF0DJ7cOxx94iozq7XV3yFXzn4Tyk8/V
+         egEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701857841; x=1702462641;
+        d=1e100.net; s=20230601; t=1701858023; x=1702462823;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sWyvgy1TdeV0DVsJPDLWkrf/rSqR8TtA4Yp6VgZDT/o=;
-        b=ejoFxQXuVLd7ZEZURYPYCYrksyEeXH/ZZcer00AM1ebezkDkxg9uxMlvB2BXgCLbGw
-         M9MsmKSSb/qDvWTA+wTd+26+pVPkHK/qHv4eD4JM2rQr948My6bnRoPS3oqjcoqmQcYQ
-         hGCFF02d0wAECHhtY3+arB8OntfcdWt02ZD+8J++tY6F4aaPx/R6AnGBA8g3YYH+7ndc
-         9b1XbjSAbhrae4Zo8EO6W82wJwF5fAqMLrE36XybnFC4n7veKUnT9v5L08Pxjn6Kx9J+
-         fOG8OS7OgBQEi8bBUIWYtIZaRXDzX9Ekk8A0dpA7p9PZfSSXVUHx127CxfW0wrs+1Xa1
-         qhrw==
-X-Gm-Message-State: AOJu0YyUyU51WIW0CKIojrdpLJpDAMnl55N/zgInXSr1FsSa6r4Np+U5
-	TSAwGfEMUMPD+nBZ0A2iYlN+aw==
-X-Google-Smtp-Source: AGHT+IFawGY6+6fHO+cR5L8Hk60iACl/6NxfFmP6jJ5BxTvXxAhyf6JKbdqwB4Q2ogxjgUL7IUWBNQ==
-X-Received: by 2002:a05:600c:20e:b0:40c:18d5:2198 with SMTP id 14-20020a05600c020e00b0040c18d52198mr410632wmi.149.1701857841287;
-        Wed, 06 Dec 2023 02:17:21 -0800 (PST)
+        bh=TcagDNq61xICjIxo/4l6ClZPIhnyzcVjcPtwymEXLJ0=;
+        b=EAOpPpOqYQTK8JUn2o15A4QVp1tVzunD8Hg5ffve5tzzoYWpOrhlRzk8alfZ01q3tT
+         bX/UTJbLMeezp/DZ3I86HBJjDoxUQKZgDUWB5IW6ExLk2HZz6JqAOkg4lutooaWMr+/s
+         hYxa8Asva+T+vNztHc9QTgZYOVZOYPWY9fXFRqL03RY3MXdPXeMVPEHRV5RbdophFAx3
+         WkWwdEajBXb02RGtHXofC3ZD3KPuBxHf5UP/AYfLuS1LJ5G+1GDrvo5iiVgvINCfjDYz
+         DifDLKplYLss9Uo5lFukLu1afCa2vKj73Mz0v69DUeOGiuWjOfqJjy2g6AxLHvIx0mJa
+         fddQ==
+X-Gm-Message-State: AOJu0Yx/QRDNoHDqXie2MfPq0viUiKY3ZHGJWiTTp0WEUGDS73KZ4nNX
+	cbrUBUWlB2305Z3zQNghVAQpEQ==
+X-Google-Smtp-Source: AGHT+IHt5zwuXEpqq+KYBDmqWSOHIF97FnlLFsH67km27PsxnfyXBPHfb6hQ5SmmltVDFQVTYg/f9Q==
+X-Received: by 2002:a05:6000:882:b0:333:2fd2:6f4b with SMTP id cs2-20020a056000088200b003332fd26f4bmr355363wrb.85.1701858022803;
+        Wed, 06 Dec 2023 02:20:22 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id r20-20020a05600c35d400b0040c05c768afsm14204160wmq.9.2023.12.06.02.17.20
+        by smtp.gmail.com with ESMTPSA id b5-20020adfe645000000b00333404e9935sm9831476wrn.54.2023.12.06.02.20.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Dec 2023 02:17:20 -0800 (PST)
-Message-ID: <c006dd3a-07a2-4d14-899b-72373540ad37@linaro.org>
-Date: Wed, 6 Dec 2023 11:17:19 +0100
+        Wed, 06 Dec 2023 02:20:22 -0800 (PST)
+Message-ID: <dfd4af72-c621-42ae-bb13-cb204aaa8ffd@linaro.org>
+Date: Wed, 6 Dec 2023 11:20:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,17 +62,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: rng: starfive: Add jh8100 compatible
- string
+Subject: Re: [PATCH v3 1/4] dt-bindings: clock: mediatek: add MT7988 clock IDs
 Content-Language: en-US
-To: Jia Jie Ho <jiajie.ho@starfivetech.com>,
- Olivia Mackall <olivia@selenic.com>, Herbert Xu
- <herbert@gondor.apana.org.au>, Rob Herring <robh+dt@kernel.org>,
+To: Daniel Golle <daniel@makrotopia.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-crypto@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231206014236.1109832-1-jiajie.ho@starfivetech.com>
- <20231206014236.1109832-2-jiajie.ho@starfivetech.com>
+ Conor Dooley <conor+dt@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Sabrina Dubroca <sd@queasysnail.net>, Jianhui Zhao <zhaojh329@gmail.com>,
+ Chen-Yu Tsai <wenst@chromium.org>, "Garmin.Chang"
+ <Garmin.Chang@mediatek.com>, Sam Shih <sam.shih@mediatek.com>,
+ Frank Wunderlich <frank-w@public-files.de>,
+ Dan Carpenter <dan.carpenter@linaro.org>,
+ James Liao <jamesjj.liao@mediatek.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ netdev@vger.kernel.org
+References: <23bc89d407e7797e97b703fa939b43bfe79296ce.1701823757.git.daniel@makrotopia.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -118,33 +127,32 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231206014236.1109832-2-jiajie.ho@starfivetech.com>
+In-Reply-To: <23bc89d407e7797e97b703fa939b43bfe79296ce.1701823757.git.daniel@makrotopia.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/12/2023 02:42, Jia Jie Ho wrote:
-> Add compatible string for StarFive JH8100 trng.
+On 06/12/2023 01:55, Daniel Golle wrote:
+> From: Sam Shih <sam.shih@mediatek.com>
 > 
-> Signed-off-by: Jia Jie Ho <jiajie.ho@starfivetech.com>
+> Add MT7988 clock dt-bindings for topckgen, apmixedsys, infracfg,
+> ethernet and xfipll subsystem clocks.
+> 
+> Signed-off-by: Sam Shih <sam.shih@mediatek.com>
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
 > ---
->  .../devicetree/bindings/rng/starfive,jh7110-trng.yaml         | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/rng/starfive,jh7110-trng.yaml b/Documentation/devicetree/bindings/rng/starfive,jh7110-trng.yaml
-> index 2b76ce25acc4..d275bdc4d009 100644
-> --- a/Documentation/devicetree/bindings/rng/starfive,jh7110-trng.yaml
-> +++ b/Documentation/devicetree/bindings/rng/starfive,jh7110-trng.yaml
-> @@ -11,7 +11,9 @@ maintainers:
->  
->  properties:
->    compatible:
-> -    const: starfive,jh7110-trng
-> +    enum:
-> +      - starfive,jh7110-trng
-> +      - starfive,jh8100-trng
+> v3: no changes
 
-Your driver change suggests these are compatible, so express this here
-and drop driver change.
+Really? It was entirely different author at v2.
+
+> v2: fix indentation
+> 
+>  .../dt-bindings/clock/mediatek,mt7988-clk.h   | 280 ++++++++++++++++++
+>  1 file changed, 280 insertions(+)
+>  create mode 100644 include/dt-bindings/clock/mediatek,mt7988-clk.h
+> 
+
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
