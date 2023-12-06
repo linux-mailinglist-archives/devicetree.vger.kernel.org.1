@@ -1,53 +1,48 @@
-Return-Path: <devicetree+bounces-22028-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22029-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E904F8063F3
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 02:03:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8142C8063FC
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 02:14:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 934AF1F21823
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 01:03:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CE2E28222A
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 01:14:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E664D651;
-	Wed,  6 Dec 2023 01:03:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44059805;
+	Wed,  6 Dec 2023 01:14:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hcBQTLeu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hX8aJ98v"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C880462A
-	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 01:03:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB43AC433C7;
-	Wed,  6 Dec 2023 01:03:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25EAF7FC
+	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 01:14:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4CA1C433C7;
+	Wed,  6 Dec 2023 01:14:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701824602;
-	bh=0vLsY6u2UoxJlbnKoMmD/RQTZH8jVMu/7QKA/18Jqgg=;
+	s=k20201202; t=1701825249;
+	bh=3nVYZvN9qhVn1X/uVwrjcoRSY2NSlngaJr+fsoT/T94=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hcBQTLeu4y1WjBDbqOFbfqDN9Wv8SUEa/G7Yd5L0yELcX9QHjkWj6UwcL7d27bY/t
-	 YO86+dGkn4o+7uGWgVzHzxqJ0oR/SDeYk6c8kLh/9mwdAoJGaILtkK6PVy1tiyhLVX
-	 HKprU8cvKywLUmxcR4wBjHidrZXUGZQe5K/98vXCDIPwrvRK2f1Wo2gDK9ouzbqEhc
-	 vmI/B3Ad8udotta/K8dp9SoZV0sWeCZHBC1RnAXK0Sg/RRR9PwRtDA5wJ+7G2DOBIH
-	 ZujvipcSZ07MsQ4mNPnLwbNzfvCpN76K+pcRsuyjoO0eiDHdxX7WZRfqQSZZte/oxh
-	 ZL3jJtHXe64lQ==
-Date: Wed, 6 Dec 2023 09:03:16 +0800
+	b=hX8aJ98v1yplT8diC+Ovx3MbOyApOsLwIW/nTPayd9i6z8VbtuUWukNjTZbqpuqN+
+	 V5blM8TlV3zZEjWdgCfiTNikr9H/yuT658XyvtXespDDAPlfJEE14xHpXKFHI5xWM9
+	 5yelmx2DTCvEcAVgcW5Bn4nKrUX8I4RLdmzAgyloXgQmE2m0B+K5UBlDzguYoHesMd
+	 4vnROoV+Ia4WYHdFIT7/S2e8gkMzAD4abUZltRWhbQUkxIg//CMHbYPgLoG+fFt0FT
+	 CnhkcC7aG/EzjPxHk5C5FDjMwv8sZheA9yyyG5VxBs7fBW+2O0k+mqay1Won7q8CK1
+	 iCmucpkwHQabw==
+Date: Wed, 6 Dec 2023 09:14:04 +0800
 From: Shawn Guo <shawnguo@kernel.org>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	=?iso-8859-1?Q?S=F8ren?= Andersen <san@skov.dk>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	kernel@pengutronix.de, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Fabio Estevam <festevam@gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: Add compatible for SKOV i.MX8MP
- RevB board
-Message-ID: <20231206010316.GN236001@dragon>
-References: <20231113113855.4076151-1-o.rempel@pengutronix.de>
+To: haibo.chen@nxp.com
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, linux-imx@nxp.com, peng.fan@nxp.com,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] arm64: dts: imx93: update gpio node name to align
+ with register address
+Message-ID: <20231206011404.GV236001@dragon>
+References: <20231115035621.3834539-1-haibo.chen@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,13 +51,15 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231113113855.4076151-1-o.rempel@pengutronix.de>
+In-Reply-To: <20231115035621.3834539-1-haibo.chen@nxp.com>
 
-On Mon, Nov 13, 2023 at 12:38:54PM +0100, Oleksij Rempel wrote:
-> Add DT compatible string for a SKOV i.MX8MP RevB climate controller board.
+On Wed, Nov 15, 2023 at 11:56:20AM +0800, haibo.chen@nxp.com wrote:
+> From: Haibo Chen <haibo.chen@nxp.com>
 > 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Change the gpio node name to align with register address
+> 
+> Fixes: c1d0782b5fc3 ("arm64: dts: imx93: update gpio node")
+> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
 
 Applied both, thanks!
 
