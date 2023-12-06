@@ -1,88 +1,68 @@
-Return-Path: <devicetree+bounces-22055-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22056-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3041806460
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 02:48:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6785806465
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 02:51:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 45B3AB20F3F
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 01:48:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 482C91F212ED
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 01:51:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB9FA20F9;
-	Wed,  6 Dec 2023 01:48:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71D7E3FE6;
+	Wed,  6 Dec 2023 01:51:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K7cfRXrY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WIdpcWOl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D06D820F5
-	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 01:48:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEA9DC433C8;
-	Wed,  6 Dec 2023 01:48:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 544DD20E0
+	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 01:51:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24DC2C433C7;
+	Wed,  6 Dec 2023 01:51:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701827288;
-	bh=aveWPcmiMSYTLWtxgppugRwbwEVebRAdbAJo1waV97c=;
+	s=k20201202; t=1701827466;
+	bh=7jRfIVx1+60KM935PoKkTUIodP1pufhXRHS5Rlp+FW0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=K7cfRXrYgDXLXiBhlMsGo0raQgTfNSb7goYEvNKSi2Qz0hAujY2zZj4C6Grw5zcQs
-	 /T3p7ZJuv/mctwQcxxl7ZH4nxql51YFsfgo4Yo6gFqRRHO+pYTr4jk2I78DArC1Xpx
-	 jAPHbNi0jq4eQP3iL7wrzi0mEF0jwQWgroRynZ6ZS519FolU/pSHX+CBiFBtmv2Zf2
-	 ZhBSqe//RjwKnD9ro4YlMTdYAqsyK4Sw7Gbz+ro0iOzK2VMA8PHPOTvv0i4QB6ocaG
-	 XBqrbzOEi054OzGfF3273iNBuO8qa8bijj/1q0qVr/7QwizUQ+VKo8Dugjhxpmi57p
-	 gwkG1LjwwFVIg==
-Date: Wed, 6 Dec 2023 09:48:02 +0800
+	b=WIdpcWOllhXxTR/G5ouwXAyVXNHWhwo0A19JvSVSFtmLnXebORW/Km8I20VwTxb6I
+	 z3AVduKX6EvBk6Peq1VtWm0TK6kdHQnUiC4puaQJZuRb9lUx+rZmmqFw8syiDGtD7h
+	 ZY7UH2xBGGKCYIrlHOWgYgJKaytveZIjbPvfsuWRbG4qVsV/5KJ2pBgOp+pJCo1ZMi
+	 bg75GlBRgBunXi4VYcALBDbSlCF1WmCxlf3ob4HomQm0OOLHsUEpgsk2Kx+fsvnThP
+	 FP6vk+xtHpcEt7C90SNvUnXs42YVNoAplCjnU1hQ15420t8CvWW1NYsnczZr726nHE
+	 DhOWMO6DSuMog==
+Date: Wed, 6 Dec 2023 09:51:00 +0800
 From: Shawn Guo <shawnguo@kernel.org>
-To: Francesco Dolcini <francesco@dolcini.it>
-Cc: Fabio Estevam <festevam@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
 	NXP Linux Team <linux-imx@nxp.com>,
-	Stefan Eichenberger <stefan.eichenberger@toradex.com>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: Re: [PATCH v1] arm64: dts: imx8-apalis: set wifi regulator to
- always-on
-Message-ID: <20231206014802.GC236001@dragon>
-References: <20231123104812.13906-1-francesco@dolcini.it>
- <CAOMZO5A53XFbRBp6QXWoDVBr=J347_riO1wWgPLxczT3JcuwQA@mail.gmail.com>
- <ZV8v5zd8G6f7BdN9@francesco-nb.int.toradex.com>
+	Vladimir Zapolskiy <vz@mleia.com>, Li Yang <leoyang.li@nxp.com>,
+	Stefan Agner <stefan@agner.ch>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] ARM: dts: nxp: minor whitespace cleanup around '='
+Message-ID: <20231206015100.GD236001@dragon>
+References: <20231124095104.58772-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZV8v5zd8G6f7BdN9@francesco-nb.int.toradex.com>
+In-Reply-To: <20231124095104.58772-1-krzysztof.kozlowski@linaro.org>
 
-On Thu, Nov 23, 2023 at 11:56:39AM +0100, Francesco Dolcini wrote:
-> Hello Fabio,
+On Fri, Nov 24, 2023 at 10:51:03AM +0100, Krzysztof Kozlowski wrote:
+> The DTS code coding style expects exactly one space before and after '='
+> sign.
 > 
-> On Thu, Nov 23, 2023 at 07:52:27AM -0300, Fabio Estevam wrote:
-> > On Thu, Nov 23, 2023 at 7:48 AM Francesco Dolcini <francesco@dolcini.it> wrote:
-> > >
-> > > From: Stefan Eichenberger <stefan.eichenberger@toradex.com>
-> > >
-> > > Make sure that the wifi regulator is always on. The wifi driver itself
-> > > puts the wifi module into suspend mode. If we cut the power the driver
-> > > will crash when resuming from suspend.
-> > >
-> > > Signed-off-by: Stefan Eichenberger <stefan.eichenberger@toradex.com>
-> > > Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
-> > 
-> > I think this one deserves a Fixes tag.
-> 
-> Fixes: ad0de4ceb706 ("arm64: dts: freescale: add initial apalis imx8 aka quadmax module support")
-> 
-> Shawn, I assume you could just pick the Fixes tag without me sending a
-> v2, if you disagree just speak-up.
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Applied with the Fixes tag, thanks!
+Applied both, thanks!
 
