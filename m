@@ -1,47 +1,30 @@
-Return-Path: <devicetree+bounces-22473-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22474-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 744B0807956
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 21:23:42 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF7EA8079BF
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 21:47:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 29CFE1F21813
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 20:23:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AFEAAB2102D
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 20:47:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD4AD6F626;
-	Wed,  6 Dec 2023 20:23:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="C9nleJc1"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43B833FB36;
+	Wed,  6 Dec 2023 20:47:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2B69D4E;
-	Wed,  6 Dec 2023 12:23:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=84Czrtcy2ZdOY4+h79KmMJFEB0OGPN7K+ECAl/hY/XY=; b=C9nleJc1D1bnud5B+/8Tbghh79
-	whvs/4LG4gjAT74s1zNKdFPzP2rpGW1WNOONIwcQFF6R8nwUnXfqJJxJEqYSjCujDFjyUD0fdmZ1R
-	7xciKN5L3S4tBmCXvvz/19t8huMZX2axs7ZnS/rRI1ZdJMyB+yo+lNKt1KaRdVcKmKz6Z0koWdkMV
-	N8HioUfsQQZg/qqAtdQWlnhYgL1WdktiFzm3vgjDSopFhfnbnZNY7FS+X1bPHdKeel6hJvf91js9A
-	g0LpCzOtUsgdNvTbTYynMD+f4JUvSsnUv4ilS0tvcKB8gdbDUQBQwZ5mHzz6DWr732tlzlkoA6M7b
-	ptUrlNvw==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:35882)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1rAyQG-0000MN-09;
-	Wed, 06 Dec 2023 20:23:08 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1rAyQD-00030c-I2; Wed, 06 Dec 2023 20:23:05 +0000
-Date: Wed, 6 Dec 2023 20:23:05 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Daniel Golle <daniel@makrotopia.org>
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24242135;
+	Wed,  6 Dec 2023 12:47:48 -0800 (PST)
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.96.2)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1rAynn-0007mp-2m;
+	Wed, 06 Dec 2023 20:47:29 +0000
+Date: Wed, 6 Dec 2023 20:47:25 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
 Cc: "David S. Miller" <davem@davemloft.net>,
 	Eric Dumazet <edumazet@google.com>,
 	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
@@ -68,11 +51,12 @@ Cc: "David S. Miller" <davem@davemloft.net>,
 	linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org
 Subject: Re: [RFC PATCH v2 8/8] net: ethernet: mtk_eth_soc: add paths and
  SerDes modes for MT7988
-Message-ID: <ZXDYKeXsMuJZlzWB@shell.armlinux.org.uk>
+Message-ID: <ZXDd3VmlG0e_Uzmk@makrotopia.org>
 References: <cover.1701826319.git.daniel@makrotopia.org>
  <3ccc33fa14310ab47e90ff8e6ce46f1562bb838e.1701826319.git.daniel@makrotopia.org>
  <ZXDDtmRklS6o994V@shell.armlinux.org.uk>
  <ZXDQ94Xh3gzL3IR9@makrotopia.org>
+ <ZXDYKeXsMuJZlzWB@shell.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,66 +65,82 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZXDQ94Xh3gzL3IR9@makrotopia.org>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+In-Reply-To: <ZXDYKeXsMuJZlzWB@shell.armlinux.org.uk>
 
-On Wed, Dec 06, 2023 at 07:52:23PM +0000, Daniel Golle wrote:
-> On Wed, Dec 06, 2023 at 06:55:50PM +0000, Russell King (Oracle) wrote:
-> > On Wed, Dec 06, 2023 at 01:45:17AM +0000, Daniel Golle wrote:
-> > > @@ -516,6 +538,21 @@ static struct phylink_pcs *mtk_mac_select_pcs(struct phylink_config *config,
-> > >  	struct mtk_eth *eth = mac->hw;
-> > >  	unsigned int sid;
-> > >  
-> > > +	if (mtk_is_netsys_v3_or_greater(eth)) {
-> > > +		switch (interface) {
-> > > +		case PHY_INTERFACE_MODE_1000BASEX:
-> > > +		case PHY_INTERFACE_MODE_2500BASEX:
-> > > +		case PHY_INTERFACE_MODE_SGMII:
-> > > +			return mtk_pcs_lynxi_select_pcs(mac->sgmii_pcs_of_node, interface);
-> > > +		case PHY_INTERFACE_MODE_5GBASER:
-> > > +		case PHY_INTERFACE_MODE_10GBASER:
-> > > +		case PHY_INTERFACE_MODE_USXGMII:
-> > > +			return mtk_usxgmii_select_pcs(mac->usxgmii_pcs_of_node, interface);
+Hi Russell,
+
+thank for going into my patch in depth and taking your time for an
+elaborate and constructive answer.
+
+On Wed, Dec 06, 2023 at 08:23:05PM +0000, Russell King (Oracle) wrote:
+> On Wed, Dec 06, 2023 at 07:52:23PM +0000, Daniel Golle wrote:
+> > On Wed, Dec 06, 2023 at 06:55:50PM +0000, Russell King (Oracle) wrote:
+> > > On Wed, Dec 06, 2023 at 01:45:17AM +0000, Daniel Golle wrote:
+> > > > @@ -516,6 +538,21 @@ static struct phylink_pcs *mtk_mac_select_pcs(struct phylink_config *config,
+> > > >  	struct mtk_eth *eth = mac->hw;
+> > > >  	unsigned int sid;
+> > > >  
+> > > > +	if (mtk_is_netsys_v3_or_greater(eth)) {
+> > > > +		switch (interface) {
+> > > > +		case PHY_INTERFACE_MODE_1000BASEX:
+> > > > +		case PHY_INTERFACE_MODE_2500BASEX:
+> > > > +		case PHY_INTERFACE_MODE_SGMII:
+> > > > +			return mtk_pcs_lynxi_select_pcs(mac->sgmii_pcs_of_node, interface);
+> > > > +		case PHY_INTERFACE_MODE_5GBASER:
+> > > > +		case PHY_INTERFACE_MODE_10GBASER:
+> > > > +		case PHY_INTERFACE_MODE_USXGMII:
+> > > > +			return mtk_usxgmii_select_pcs(mac->usxgmii_pcs_of_node, interface);
+> > > 
+> > > From what I can see, neither of these two "select_pcs" methods that
+> > > you're calling makes any use of the "interface" you pass to them.
+> > > I'm not sure what they _could_ do with it either, given that what
+> > > you're effectively doing here is getting the phylink_pcs structure from
+> > > the driver, and each one only has a single phylink_pcs.
 > > 
-> > From what I can see, neither of these two "select_pcs" methods that
-> > you're calling makes any use of the "interface" you pass to them.
-> > I'm not sure what they _could_ do with it either, given that what
-> > you're effectively doing here is getting the phylink_pcs structure from
-> > the driver, and each one only has a single phylink_pcs.
+> > Yes, you are right, the interface parameter isn't used, I will drop
+> > it from both mtk_*_select_pcs() prototypes.
+> > 
+> > In the long run we may want something like
+> > struct phylink_pcs *of_pcs_get(struct device_node *np, phy_interface_t interface)
+> > provided by a to-be-built drivers/net/pcs/core.c...
 > 
-> Yes, you are right, the interface parameter isn't used, I will drop
-> it from both mtk_*_select_pcs() prototypes.
+> Again... it's not as simple as that. As soon as we get into the
+> situation that some _other_ driver becomes responsible for providing
+> the struct phylink_pcs pointer, we _then_ need to have some way of
+> dealing with that device going away.
+
+I assume you are referring to struct phylink_pcs *of_pcs_get(...),
+right? And true, it'd be quite a complex piece of infrastructure.
+
 > 
-> In the long run we may want something like
-> struct phylink_pcs *of_pcs_get(struct device_node *np, phy_interface_t interface)
-> provided by a to-be-built drivers/net/pcs/core.c...
+> By that I mean that the memory pointed to returned from such a function
+> that you are proposing above could be freed - or worse could be unmapped
+> from the kernel address space, and the same goes for the operations
+> structure as well - even more so if the "ops" are part of module data
+> and the module is unloaded.
+> 
+> As I know how these discussions go (it's not my first time bringing up
+> these kinds of multi-driver interations), no, locking the module into
+> memory doesn't work, and shows a lack of a full understanding of the
+> problem.
+> 
+> We need to have a way that when a PCS device is removed, that is
+> propagated up the management levels and causes the PCS to be gracefully
+> removed from the network driver (in other words, from phylink).
 
-Again... it's not as simple as that. As soon as we get into the
-situation that some _other_ driver becomes responsible for providing
-the struct phylink_pcs pointer, we _then_ need to have some way of
-dealing with that device going away.
+I see -- spontanous removal of the PCS may not be a practical problem
+on that very hardware, but from the driver model point of view, it is.
 
-By that I mean that the memory pointed to returned from such a function
-that you are proposing above could be freed - or worse could be unmapped
-from the kernel address space, and the same goes for the operations
-structure as well - even more so if the "ops" are part of module data
-and the module is unloaded.
+Should the callback for removal be implemented as part of the network
+driver or are you suggesting to add such infrastructure to phylink?
 
-As I know how these discussions go (it's not my first time bringing up
-these kinds of multi-driver interations), no, locking the module into
-memory doesn't work, and shows a lack of a full understanding of the
-problem.
+> 
+> I won't accept a hack that sticky-plasters around the problem - not for
+> code that I am involved in actively maintaining - and sticky-plastering
+> around this class of problem seems to happen all too often in the
+> kernel.
 
-We need to have a way that when a PCS device is removed, that is
-propagated up the management levels and causes the PCS to be gracefully
-removed from the network driver (in other words, from phylink).
-
-I won't accept a hack that sticky-plasters around the problem - not for
-code that I am involved in actively maintaining - and sticky-plastering
-around this class of problem seems to happen all too often in the
-kernel.
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+Oh yes, I can see that every day when testing various SFP modules with
+exposed PHYs -- and often get stackdumps thrown at me when I remove
+them...
 
