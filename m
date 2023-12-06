@@ -1,104 +1,120 @@
-Return-Path: <devicetree+bounces-22108-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22109-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA8628067B6
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 07:46:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9371806807
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 08:11:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 78D651F2139E
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 06:46:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 59371B21203
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 07:11:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 235B3111B7;
-	Wed,  6 Dec 2023 06:46:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB61C15487;
+	Wed,  6 Dec 2023 07:11:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=jms.id.au header.i=@jms.id.au header.b="ZbKzSgV8"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="VfORvOVI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DB401B6;
-	Tue,  5 Dec 2023 22:46:29 -0800 (PST)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-a18b0f69b33so88742466b.0;
-        Tue, 05 Dec 2023 22:46:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google; t=1701845188; x=1702449988; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=7HVLCsTwM0AJQ7P3LEZ/Kcz/0E6qcEp8zHBIIWNc8vA=;
-        b=ZbKzSgV8f192+itH71EniBFxt5g2qsrW1o8EeSHptbqSM/JR/f5SMxHefUjJvBi/u4
-         OZIUsnv6EwbP/0ZDIwAlurVJi6CpFWs/V50z33bsi+vNVqJRpPxgpfivhklFYCLDNDql
-         Aiw0WFb85IKcoEygcPv4BY5d2A/OyqYKka9cA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701845188; x=1702449988;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7HVLCsTwM0AJQ7P3LEZ/Kcz/0E6qcEp8zHBIIWNc8vA=;
-        b=eiCwTNcviModvui2KJfIQ3/adgKKhxwD14abfDjP44ERWj9lPN1btqqRCxjra9qPfY
-         RCgodRYpNLtaOjxNGIPOuE0WXfb3jcFYtzT0DZLCIYoXn74AxMnWoarN5CNxmG4JH5L+
-         JNjcoWAvcndqXY+pYLH0TdhTTW5RukH+eC02uehgOdI0OYY/8n2sAEMk42y8fRAs3ldZ
-         EFO4Cs5xr74kKyI1ko2gucKFPG76v2GHKNU8GFXO5mTW2UBU0NO9K4GVgjX2YkICMl37
-         GH8z9NNcvyMEZuI7qMOYXrME0lCVQp9Inhf5qHgTfnF7cG6O0y1NY7BWRJ/DEWVGSKFo
-         guqA==
-X-Gm-Message-State: AOJu0YwHNqxedtw85yWhPJMq27nw1SWs3IU/2BAQYnsGaJXKc74AKCLb
-	jUJ5lv4IjZGf/OdeXFnfiov4K/pYzTK1jYVVmsw=
-X-Google-Smtp-Source: AGHT+IHk5A7B0U4wO24pz2HCwBWIvrSswHBxiBDm7juowHDhQdsr4u3Yd57RZEy+FbH8wjd9qhmCMTkRudGz8aw8gBA=
-X-Received: by 2002:a17:906:c292:b0:a1b:75f6:165c with SMTP id
- r18-20020a170906c29200b00a1b75f6165cmr2521102ejz.52.1701845187768; Tue, 05
- Dec 2023 22:46:27 -0800 (PST)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2403C135;
+	Tue,  5 Dec 2023 23:11:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1701846676; x=1733382676;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=xffnH9F5/s2eglTFcbaIqO0o3VhqJC3mGV+1KbfvF1U=;
+  b=VfORvOVIC7YOn3ELU3BleiEeRPduebZE2GKvIZdqCqW+a38IM8D5aun0
+   cYAGI0udZn0E9IDuUW7h4aXGMoGdQyiDqXuqQcJelJA6nqsh4MqFVFHav
+   AbqsHmvSteFfumkXW2tDvqtcwomOAbOwLVbNZEChXRhklgGfxGlsStzLb
+   SMIAubf5bnIksCmeC25WB+6+huinhwr8RRreivZmaaWzkoY2EaMBdRyKs
+   bU6py/IJEfGVrMf3OLVM4SRW4+xSbf+D+NdKJXLvBvsKm7jjI2KOjC9L7
+   N3gPVRb2xSuaH82C+5dDpOYR+2y2ML+FD6Sliall8s1DmfGhirTj6bgcm
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="480215905"
+X-IronPort-AV: E=Sophos;i="6.04,254,1695711600"; 
+   d="scan'208";a="480215905"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Dec 2023 23:11:15 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="862019409"
+X-IronPort-AV: E=Sophos;i="6.04,254,1695711600"; 
+   d="scan'208";a="862019409"
+Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
+  by FMSMGA003.fm.intel.com with ESMTP; 05 Dec 2023 23:11:11 -0800
+Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rAm3m-000ARm-1q;
+	Wed, 06 Dec 2023 07:11:07 +0000
+Date: Wed, 6 Dec 2023 15:10:44 +0800
+From: kernel test robot <lkp@intel.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Banajit Goswami <bgoswami@quicinc.com>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v2 5/5] ASoC: codecs: Add WCD939x Codec driver
+Message-ID: <202312061428.ck8TrWdU-lkp@intel.com>
+References: <20231201-topic-sm8650-upstream-wcd939x-codec-v2-5-94ed814b25aa@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231202003908.3635695-1-renze@rnplus.nl>
-In-Reply-To: <20231202003908.3635695-1-renze@rnplus.nl>
-From: Joel Stanley <joel@jms.id.au>
-Date: Wed, 6 Dec 2023 17:16:15 +1030
-Message-ID: <CACPK8XfhK8eSjYvEd=7WshOh+Sj6vrERxwgAYGitVALw0pUf8w@mail.gmail.com>
-Subject: Re: [PATCH v3 0/2] ARM: dts: aspeed: asrock: Add ASRock X570D4U BMC
-To: Renze Nicolai <renze@rnplus.nl>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-aspeed@lists.ozlabs.org, arnd@arndb.de, 
-	olof@lixom.net, soc@kernel.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, andrew@aj.id.au
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231201-topic-sm8650-upstream-wcd939x-codec-v2-5-94ed814b25aa@linaro.org>
 
-On Sat, 2 Dec 2023 at 11:09, Renze Nicolai <renze@rnplus.nl> wrote:
->
-> Hello,
->
-> These patches add a device-tree (and a bindings update) for the
-> Aspeed BMC on the ASRock X570D4U, so that it can be added as a
-> supported OpenBMC platform.
+Hi Neil,
 
-Looks great!
+kernel test robot noticed the following build errors:
 
-Reviewed-by: Joel Stanley <joel@jms.id.au>
+[auto build test ERROR on broonie-sound/for-next]
+[also build test ERROR on linus/master v6.7-rc4 next-20231205]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-I've also added this to the openbmc tree, so no need to send the patches there..
+url:    https://github.com/intel-lab-lkp/linux/commits/Neil-Armstrong/ASoC-dt-bindings-document-WCD939x-Audio-Codec/20231202-000916
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+patch link:    https://lore.kernel.org/r/20231201-topic-sm8650-upstream-wcd939x-codec-v2-5-94ed814b25aa%40linaro.org
+patch subject: [PATCH v2 5/5] ASoC: codecs: Add WCD939x Codec driver
+config: x86_64-randconfig-001-20231203 (https://download.01.org/0day-ci/archive/20231206/202312061428.ck8TrWdU-lkp@intel.com/config)
+compiler: clang version 16.0.4 (https://github.com/llvm/llvm-project.git ae42196bc493ffe877a7e3dff8be32035dea4d07)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231206/202312061428.ck8TrWdU-lkp@intel.com/reproduce)
 
->
-> Changes since v2:
->   - Renamed leds to led-0 and led-1 to match Documentation/devicetree/bindings/leds/leds-gpio.yaml
->   - Added aliasses and labels for the i2c-mux on i2c bus 4
->   - Added the missing blank line between the ehci1 and uhci nodes
->
-> Greetings,
-> Renze Nicolai
->
-> Renze Nicolai (2):
->   dt-bindings: arm: aspeed: add Asrock X570D4U board
->   ARM: dts: aspeed: asrock: Add ASRock X570D4U BMC
->
->  .../bindings/arm/aspeed/aspeed.yaml           |   1 +
->  arch/arm/boot/dts/aspeed/Makefile             |   1 +
->  .../dts/aspeed/aspeed-bmc-asrock-x570d4u.dts  | 377 ++++++++++++++++++
->  3 files changed, 379 insertions(+)
->  create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x570d4u.dts
->
-> --
-> 2.43.0
->
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202312061428.ck8TrWdU-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> ld.lld: error: undefined symbol: typec_switch_unregister
+   >>> referenced by wcd939x.c:3610 (sound/soc/codecs/wcd939x.c:3610)
+   >>>               sound/soc/codecs/wcd939x.o:(wcd939x_probe) in archive vmlinux.a
+--
+>> ld.lld: error: undefined symbol: fwnode_typec_switch_get
+   >>> referenced by wcd939x.c:3369 (sound/soc/codecs/wcd939x.c:3369)
+   >>>               sound/soc/codecs/wcd939x.o:(wcd939x_bind) in archive vmlinux.a
+--
+>> ld.lld: error: undefined symbol: typec_switch_put
+   >>> referenced by wcd939x.c:3483 (sound/soc/codecs/wcd939x.c:3483)
+   >>>               sound/soc/codecs/wcd939x.o:(wcd939x_bind) in archive vmlinux.a
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
