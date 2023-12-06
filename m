@@ -1,114 +1,110 @@
-Return-Path: <devicetree+bounces-22464-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22465-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B26CB807829
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 19:53:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 982AD807835
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 19:56:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D4CAD1C20FB9
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 18:53:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 404081F21230
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 18:56:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B50F8675D7;
-	Wed,  6 Dec 2023 18:53:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA3B6482E4;
+	Wed,  6 Dec 2023 18:56:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="CbNnMD4o"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="NuxGpwJ4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 225ACD40;
-	Wed,  6 Dec 2023 10:53:28 -0800 (PST)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B6IrEVV057757;
-	Wed, 6 Dec 2023 12:53:14 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1701888794;
-	bh=K1KWedNJcvVp5thdYC7ZqsG88KraphWllYULHvlTvpY=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=CbNnMD4oeXVTTXAmonax5l5F7wrIO00HOXSkLwFV+JoZT3QJTrraAfugvB9NkATig
-	 xiMiIJ/9WiALjglRmjzRHcRj5XMLNH4ZWYVQyY2hqbIjSgVN4xMOCsv8uSSvhY/J+O
-	 wpnK4zWZXo49VpM0KBN5NEygCxcqSNwbjVaQdTuw=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B6IrEvr089248
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 6 Dec 2023 12:53:14 -0600
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 6
- Dec 2023 12:53:13 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 6 Dec 2023 12:53:13 -0600
-Received: from udba0500997.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B6IrBNF020337;
-	Wed, 6 Dec 2023 12:53:13 -0600
-From: Brandon Brnich <b-brnich@ti.com>
-To: <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Nas
- Chung <nas.chung@chipsnmedia.com>,
-        Jackson Lee <jackson.lee@chipsnmedia.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Sebastian Fricke
-	<sebastian.fricke@collabora.com>,
-        Dafna Hirschfeld
-	<dafna.hirschfeld@collabora.com>,
-        Robert Beckett <bob.beckett@collabora.com>,
-        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-        Geert Uytterhoeven
-	<geert@linux-m68k.org>
-CC: Nishanth Menon <nm@ti.com>, Darren Etheridge <detheridge@ti.com>,
-        Brandon
- Brnich <b-brnich@ti.com>
-Subject: [PATCH v2 2/2] media: chips-media: wave5: Remove K3 References
-Date: Wed, 6 Dec 2023 12:52:54 -0600
-Message-ID: <20231206185254.1748473-3-b-brnich@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231206185254.1748473-1-b-brnich@ti.com>
-References: <20231206185254.1748473-1-b-brnich@ti.com>
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD8AC135;
+	Wed,  6 Dec 2023 10:56:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=gaQSwzEe0Xur6B1Z8BTAtunQazBNhblKyHvqvRPA9qI=; b=NuxGpwJ4zNCkf1lg45ptXAd9Dw
+	jTCjNyllqYlOVX5/Ps2/IfyyeZFIBv3uy+5VWQyeox8aqYKLHvDWdKVnCzs8fp+pKKFZCGtwy+s+Z
+	4y0+mNr3+WzkoMX4vPHbvs7KxlvriN1CgzZ+DuEQBaHenZk1udPJTCehWCReaIGwLgbVyS58nfgV8
+	sLbB9Y8kkBUdhTxRymYT7LxdzYPTK2wNSaqSmbeXe263/JNNWSBQVymB+pDEzDEsgxTjLHF66rxOK
+	KQPCgGQAZKhh10jWejOBTDZ4cYVL88xmF2jNWDw+ag3N5Co3yFbwGa+7Ke3CO2PtWzCtpxAIqoVwr
+	eNkiCryw==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:57102)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1rAx3o-0000HF-2e;
+	Wed, 06 Dec 2023 18:55:53 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1rAx3m-0002x1-U7; Wed, 06 Dec 2023 18:55:50 +0000
+Date: Wed, 6 Dec 2023 18:55:50 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chunfeng Yun <chunfeng.yun@mediatek.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
+	Sean Wang <sean.wang@mediatek.com>,
+	Mark Lee <Mark-MC.Lee@mediatek.com>,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Alexander Couzens <lynxis@fe80.eu>,
+	Qingfang Deng <dqfext@gmail.com>,
+	SkyLake Huang <SkyLake.Huang@mediatek.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org
+Subject: Re: [RFC PATCH v2 8/8] net: ethernet: mtk_eth_soc: add paths and
+ SerDes modes for MT7988
+Message-ID: <ZXDDtmRklS6o994V@shell.armlinux.org.uk>
+References: <cover.1701826319.git.daniel@makrotopia.org>
+ <3ccc33fa14310ab47e90ff8e6ce46f1562bb838e.1701826319.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3ccc33fa14310ab47e90ff8e6ce46f1562bb838e.1701826319.git.daniel@makrotopia.org>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-Change compatible string to match dt bindings for TI devices. K3 family
-prefix should not be included as it deviates from naming convention.
+On Wed, Dec 06, 2023 at 01:45:17AM +0000, Daniel Golle wrote:
+> @@ -516,6 +538,21 @@ static struct phylink_pcs *mtk_mac_select_pcs(struct phylink_config *config,
+>  	struct mtk_eth *eth = mac->hw;
+>  	unsigned int sid;
+>  
+> +	if (mtk_is_netsys_v3_or_greater(eth)) {
+> +		switch (interface) {
+> +		case PHY_INTERFACE_MODE_1000BASEX:
+> +		case PHY_INTERFACE_MODE_2500BASEX:
+> +		case PHY_INTERFACE_MODE_SGMII:
+> +			return mtk_pcs_lynxi_select_pcs(mac->sgmii_pcs_of_node, interface);
+> +		case PHY_INTERFACE_MODE_5GBASER:
+> +		case PHY_INTERFACE_MODE_10GBASER:
+> +		case PHY_INTERFACE_MODE_USXGMII:
+> +			return mtk_usxgmii_select_pcs(mac->usxgmii_pcs_of_node, interface);
 
-Fixes: 9707a6254a8a ("media: chips-media: wave5: Add the v4l2 layer")
-Reported-by: Geert Uytterhoeven <geert@linux-m68k.org>
-Closes: https://lore.kernel.org/all/CAMuHMdUYOq=q1j=d+Eac28hthOUAaNUkuvxmRu-mUN1pLKq69g@mail.gmail.com/
-Signed-off-by: Brandon Brnich <b-brnich@ti.com>
----
- V1 -> V2: Fix style issues in commit message
+From what I can see, neither of these two "select_pcs" methods that
+you're calling makes any use of the "interface" you pass to them.
+I'm not sure what they _could_ do with it either, given that what
+you're effectively doing here is getting the phylink_pcs structure from
+the driver, and each one only has a single phylink_pcs.
 
- drivers/media/platform/chips-media/wave5/wave5-vpu.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/media/platform/chips-media/wave5/wave5-vpu.c b/drivers/media/platform/chips-media/wave5/wave5-vpu.c
-index bfe4caa79cc9..0d90b5820bef 100644
---- a/drivers/media/platform/chips-media/wave5/wave5-vpu.c
-+++ b/drivers/media/platform/chips-media/wave5/wave5-vpu.c
-@@ -272,7 +272,7 @@ static const struct wave5_match_data ti_wave521c_data = {
- };
- 
- static const struct of_device_id wave5_dt_ids[] = {
--	{ .compatible = "ti,k3-j721s2-wave521c", .data = &ti_wave521c_data },
-+	{ .compatible = "ti,j721s2-wave521c", .data = &ti_wave521c_data },
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, wave5_dt_ids);
 -- 
-2.34.1
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
