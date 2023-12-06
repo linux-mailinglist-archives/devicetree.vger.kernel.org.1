@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-22172-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22173-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73A15806BE8
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 11:28:44 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2583806BF4
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 11:32:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A57F71C20835
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 10:28:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 15FEAB20E1E
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 10:32:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 364192D7AA;
-	Wed,  6 Dec 2023 10:28:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BB1F2DF88;
+	Wed,  6 Dec 2023 10:32:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RfJBFO8g"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rqM2BvfV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E9C1120
-	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 02:28:38 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-40c0a11a914so34288315e9.2
-        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 02:28:37 -0800 (PST)
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDA4212B
+	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 02:32:11 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-33340c50af9so606561f8f.3
+        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 02:32:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701858516; x=1702463316; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701858730; x=1702463530; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=4Hfe0TYfjVtdEI9xyAdlPwDDzeL8Zy9eNiCfRMnso1Y=;
-        b=RfJBFO8gWH4tImNaJC+26Lsos3Pp+ZiYhPIkafWpVP3zR7WffL0LE3PPrIiEkC1JMc
-         5WJKZfYjKo1w/w2e89HpEQDHhEHOeSdL6/62o+6Zt48D130VrVo1sEuMNVlnnE7JlJxF
-         msMQaIYGjhPkb2+ObLT4PJ/TeMsYp3RSYJJ/EtpUoG5TvufW2uvcnIjbPNX5QnVTbT6r
-         qVIQAcsVfU/xMgh+3ifGnxpRu+TCKCeqsxYln640UJoiNJAOmZkmBFbIGNheYB7yZZAo
-         FHx1bxMSwkifngQVgOouU4c2vx0BeAg9y1Y15hNwoJoYX8bNGqegoveFOttPoyauwCMH
-         Xq+w==
+        bh=ouux16XZ+Qxb5EsDM7Joudi1AdrJFEAcn4DpLCm36OU=;
+        b=rqM2BvfVRVhqXdO61FsZSOL+QwqAREvLnM5Apw/EUtqxbLunNnOmz7cjXcwrqu1i34
+         IlyEbjB+MI6z6+tlfXD9GNfjzpQFsbD9PNz0vONa2kJ4uyYXqq+4T57CDaWmbqvKcopA
+         LNCpP3wEEWE9qgLSWi8fvEdweYKfJW4UHnh3yxrLPR0t5QYSAEzV9gqG4W96/kTlXjBC
+         UYirnB0acfN0KY2k7eS/jNyx8a8APdSz20PhwHjobjnfbTN4NLl1XNHLK9T9j+/pSdDb
+         QZoqdBqmFMnrEcLp4rxx3zb1ZiOWPVY58WqUJ0yFM4vN4COqHiICtEDgWJ24r9BuHM6Z
+         kDZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701858516; x=1702463316;
+        d=1e100.net; s=20230601; t=1701858730; x=1702463530;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4Hfe0TYfjVtdEI9xyAdlPwDDzeL8Zy9eNiCfRMnso1Y=;
-        b=qJQ0X/tEZkM94/kABhgT255bQZGaoG9AlDb634qu0Yb/DQIrxNNupzkXnbIK81YDT9
-         pDyUWGkkFIUip6AdW0u2Ka4FKhUHhuOKYJJ6ljqTn+4oTTv1qZGTdLEPykJksv7keVj5
-         o2SbOLYW+i00RVZndsPgb49GJnXScUrZafZ9eIoGiFJb6rsxJgEeyfzpBfo9hxTroeVd
-         k9/4EKXdJI4u576oaDFuo3kqVJB0IZNBNfpWsAcmeHy7PvgZRrPCjG22bC5LtvCFhaNl
-         p2u9yeV5Vznot4zfEozfQmKAXFZyJXTU1yGrOdKd4ikHjsoxiqzOKjvBaJwvClYZUhNu
-         dE0Q==
-X-Gm-Message-State: AOJu0YyVzNMW4CUjaAxyj7OooUBPGmK7TxA3Xpj5LHXjvxL2+2UcZe/X
-	mj/HRx4nlAyWZLNeCG2ibYRTYw==
-X-Google-Smtp-Source: AGHT+IHcOCpGp2/wpU4RcNYDMeHI6YVu8NOtCkCmK1k6i1oLXi69uCu9/ze0rz64uhjPD+28O7lG2Q==
-X-Received: by 2002:a05:600c:b46:b0:40c:93f:5da2 with SMTP id k6-20020a05600c0b4600b0040c093f5da2mr429145wmr.33.1701858516503;
-        Wed, 06 Dec 2023 02:28:36 -0800 (PST)
+        bh=ouux16XZ+Qxb5EsDM7Joudi1AdrJFEAcn4DpLCm36OU=;
+        b=w8aeByyhjD2GLwkQP/HewFr9rvLNCIdNcjMuRlJsrLz905bzncCcIQD8jhuozjKf+U
+         7zt01/wCjr1hrpXCcbZxINm7R3UVxXcWv0ij4Y2G8Rd5Rqpha1CrAtKY08Z5ifPTkrGL
+         IfdqYpKctnUdsigRWnsEoNrQGHuvvxFOFVUSk2On9TJEgSsx03fyYGBn14kDY1Y1paaF
+         K9He21P8cfPIMnPVukKZwTj/S3BJo8CJDlCKfdVGPi2bS3txJjRLh0ungdmYb2nQDKz6
+         q+j71TtOJQYUem451NaggTUhjiTKOzhF4r/AcdmMhoncQQ+VsA3ElpgaD98XEaDjb4Yy
+         R+eg==
+X-Gm-Message-State: AOJu0YxSZILOnMiF5gBp6+j6MiN2iWG2Ll8A/sYC8Fe6hTdXCTqM8qtN
+	9DrLtNvTFxlpZDNKw3GJOyrgvQ==
+X-Google-Smtp-Source: AGHT+IEvG+C+j0HWHfO3donybV+MlTT4aR8LQ7B/eZbJ8E0u34bBoDKPH21mUvPBQN0RzbGWthxfMw==
+X-Received: by 2002:adf:e491:0:b0:333:1b9e:6246 with SMTP id i17-20020adfe491000000b003331b9e6246mr305252wrm.48.1701858730158;
+        Wed, 06 Dec 2023 02:32:10 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id t17-20020a05600c451100b0040b379e8526sm25009832wmo.25.2023.12.06.02.28.35
+        by smtp.gmail.com with ESMTPSA id f9-20020adff8c9000000b003333d2c6420sm10864547wrq.74.2023.12.06.02.32.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Dec 2023 02:28:36 -0800 (PST)
-Message-ID: <f42248f1-c8fa-4ca1-806a-94c06cba8689@linaro.org>
-Date: Wed, 6 Dec 2023 11:28:34 +0100
+        Wed, 06 Dec 2023 02:32:09 -0800 (PST)
+Message-ID: <58b77bd2-84fc-4e94-807f-1600d0053938@linaro.org>
+Date: Wed, 6 Dec 2023 11:32:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,19 +62,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] dt-bindings: clock: sophgo: Add clock controller
- of CV1800 series SoC
+Subject: Re: [Patch v5 01/11] dt-bindings: media: s5p-mfc: Add mfcv12 variant
 Content-Language: en-US
-To: Inochi Amaoto <inochiama@outlook.com>, Conor Dooley <conor@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>,
- Jisheng Zhang <jszhang@kernel.org>, qiujingbao.dlmu@gmail.com,
- dlan@gentoo.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <IA1PR20MB4953BFA99F4C91EA525BF03FBB84A@IA1PR20MB4953.namprd20.prod.outlook.com>
- <IA1PR20MB4953B8844BCAB9EDB9309309BB84A@IA1PR20MB4953.namprd20.prod.outlook.com>
+To: Aakarsh Jain <aakarsh.jain@samsung.com>,
+ linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc: m.szyprowski@samsung.com, andrzej.hajda@intel.com, mchehab@kernel.org,
+ hverkuil-cisco@xs4all.nl, krzysztof.kozlowski+dt@linaro.org,
+ robh+dt@kernel.org, conor+dt@kernel.org, linux-samsung-soc@vger.kernel.org,
+ andi@etezian.org, gost.dev@samsung.com, alim.akhtar@samsung.com,
+ aswani.reddy@samsung.com, pankaj.dubey@samsung.com,
+ ajaykumar.rs@samsung.com, linux-fsd@tesla.com
+References: <20231206063045.97234-1-aakarsh.jain@samsung.com>
+ <CGME20231206063108epcas5p1af3d9d0442c8abebe91d769cc68284d5@epcas5p1.samsung.com>
+ <20231206063045.97234-2-aakarsh.jain@samsung.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -120,29 +121,18 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <IA1PR20MB4953B8844BCAB9EDB9309309BB84A@IA1PR20MB4953.namprd20.prod.outlook.com>
+In-Reply-To: <20231206063045.97234-2-aakarsh.jain@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/12/2023 03:04, Inochi Amaoto wrote:
->>>> +
->>>> +  clock-names:
->>>> +    items:
->>>> +      - const: osc
->>>
->>> You have one clock, why do you need a name?
->>
->> I am not pretty familiar with this. I just wrote this binding by
->> referencing others. Maybe use "maxItems: 1" is just fine?
-
-No, just drop clock-names and get clocks by indices in the driver.
-
->>
+On 06/12/2023 07:30, Aakarsh Jain wrote:
+> Add Tesla FSD MFC(MFC v12) compatible.
 > 
-> I have referenced this name in the clk_parent_data as the global clock
-> parent. Removing this will cause driver broken.
+> Cc: linux-fsd@tesla.com
+> Signed-off-by: Aakarsh Jain <aakarsh.jain@samsung.com>
+> ---
 
-It's not related.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
