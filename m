@@ -1,58 +1,58 @@
-Return-Path: <devicetree+bounces-22268-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22269-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DFB7806F3E
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 12:55:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E74F7806F42
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 12:56:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6F6C2B20F5E
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 11:55:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8DA011F2120B
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 11:56:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B9B03588B;
-	Wed,  6 Dec 2023 11:54:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43E743588F;
+	Wed,  6 Dec 2023 11:55:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="p3QqQYRs"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EuJb61s1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F8B7170E
-	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 03:53:39 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-50be3611794so5598520e87.0
-        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 03:53:39 -0800 (PST)
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A736D1BE5
+	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 03:53:41 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-50c0478f970so2118784e87.3
+        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 03:53:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701863618; x=1702468418; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701863619; x=1702468419; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=79i0nr6Mx6SDbEcWLjAX+WhVuGqRhzWJkAvdfcMiEaU=;
-        b=p3QqQYRsXWnbie5anhv/gEkVbmXP+eNkMWIqF0qOZJjof3kLrph+lqB5F0Bc2Gxr0j
-         rxNHvLYAXfmdFv/k886Unc/++nB1yCsa4Vqa4nzO8FQvKJmZibNRNMndsIdVX+xGQ0xP
-         vdV+nkfWmR1PkxvPyJqGoKkL55KqdzYfSOjx4WrVeBIGQo6Et9DXfxqvwnkkleQYHpLT
-         iFda1dgJGvEzAMxnF+YZmGxfS0uMNtExTzbV78MjzsbXGEn0vtyZdh2nvaeJJdJ9Q02b
-         nN6aR0Rto3AXzUVgE7J84UMxRFbac2QfYTed2E8Yw1HtEWDvbjgUMb6H6RFRTxDKPTGA
-         vEWg==
+        bh=A3Vdsej8Bcsh3gYcNaeKTgqd2sJv+6EY0djT8yDBbDk=;
+        b=EuJb61s1xzZ1uFZdlp1PEd9uNv5NOjXtFxiXrm7kUEJZbhYuY5fyZEeCVJqtsd42aS
+         X2TWswrASShvWvwi2A+hOFHGGYgbwIC55mdRW+Nrhv6jNTkb+5rFpaNzjBHU6a96NwXs
+         IqfGEBHK1xjWFlUNQluISZ/8uqJXSX6PQKtYeDDcrNDD2eP2C+LgciKKigXsybjnjTPy
+         bP7dyKjcFvJvA98xLlDdZVY6RMJY1qlJhTE19KWQN0kb23i3QZGmrA7U/jCbdTH12HCY
+         2O2n0ZQo8GFOBMkFXJsyu9NFNd5OMk9XM1F2AdgsP+gp6+bngeOUVn00gPqnFLtDXLz2
+         Bvhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701863618; x=1702468418;
+        d=1e100.net; s=20230601; t=1701863619; x=1702468419;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=79i0nr6Mx6SDbEcWLjAX+WhVuGqRhzWJkAvdfcMiEaU=;
-        b=BgCswoDEaCvyvc4E+C/hrJ+P9cI9EYW7xI85I0+yWvTnRdrHn6UgIJPDPyOQ/wlS5v
-         YofbiSdVcM42EGel+N/meJhvqliTLTS0iy4sjyC94Yx9gXni9gG/cYEO23G5rE4LoD+v
-         M9tFrxFOOLZvUsFcIWe4ro/oMVtVQj+CXnBI2GXaPvc4GFDoeJhi0r/bViTZFfBYseU0
-         3Tzn9XkQJkyVEGVLHci0g9O7zjX9a39x/M7old/+PuxVxf20z1+q6nAKlxwQgLdGnqeW
-         BO7pAfzlBzA0II8rQeAqdJKqEdpSLcKPzRTd8ayWj1W0skokMt8bkGB/KnpHDpAvcQYC
-         KljA==
-X-Gm-Message-State: AOJu0YwBRb6ScnnS2edvzqkg4KgPAB5NB7pZTa63+SfUu8d3l3Nkrf1R
-	C/2YH/iNFSby7ZrejAXiGczQxQ==
-X-Google-Smtp-Source: AGHT+IE2TaPbtSnOjycRibKiMQ7n6YkJuP7QLfBLSQHgPk0U78Z5dIgqJ7F7+2AJZOkjIqFCKRcb3A==
-X-Received: by 2002:ac2:5511:0:b0:50b:f82e:6d54 with SMTP id j17-20020ac25511000000b0050bf82e6d54mr496504lfk.20.1701863617804;
-        Wed, 06 Dec 2023 03:53:37 -0800 (PST)
+        bh=A3Vdsej8Bcsh3gYcNaeKTgqd2sJv+6EY0djT8yDBbDk=;
+        b=eJ/qavsS4I3lYYCHmN6cyOa5ysjYpKFN/G/ZVq4Yz/utIsYrMrBldhfaLPY2JoHOX6
+         hIDPyqF6Ul9cKXS6JYVTkBjWBKUCG6xUVY1G9lmKejNwSCXJIbqv7eFTGyGB3iSTdpTJ
+         qkjqlWGdzUSHC9AoSRULZtgs8kULORnSeeG000STRDNCgZtdQwID3G5HaEpfT3VUtlFF
+         4Vl7+l6RA3IJU3xxhLCvhnABnt+cLZ1ubyhRrXxVGrIW0lRX+Yghp6NlyBoGaPozYHc5
+         i8r4SvuYvRvFjBJuTtpeTRpCFL4kdohD/epflQy/8OIjYDrSCcUbtLe8OOg5Hnzka6im
+         qhZw==
+X-Gm-Message-State: AOJu0YzOKKy0jxkBs453P9ZnGeSgvxZRiGkG0Dhsd5/Kzqtb8v75CfvF
+	hxdH4Aq6jnBvLTN4WR0A8ui8UA==
+X-Google-Smtp-Source: AGHT+IHPKqZmkMmocmv6VlyRh3i7wWNqaLeXnscUcnHn1+t/hyTb1DxF2EOqUPCQHRREgTtRU41nXQ==
+X-Received: by 2002:a05:6512:3e01:b0:50b:e77d:32e4 with SMTP id i1-20020a0565123e0100b0050be77d32e4mr581228lfv.60.1701863619674;
+        Wed, 06 Dec 2023 03:53:39 -0800 (PST)
 Received: from krzk-bin.. ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id i13-20020a056402054d00b0054c4fdb42e5sm2337326edx.74.2023.12.06.03.53.36
+        by smtp.gmail.com with ESMTPSA id i13-20020a056402054d00b0054c4fdb42e5sm2337326edx.74.2023.12.06.03.53.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Dec 2023 03:53:37 -0800 (PST)
+        Wed, 06 Dec 2023 03:53:39 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Suzuki K Poulose <suzuki.poulose@arm.com>,
 	Mike Leach <mike.leach@linaro.org>,
@@ -72,9 +72,9 @@ To: Suzuki K Poulose <suzuki.poulose@arm.com>,
 	linux-kernel@vger.kernel.org,
 	linux-arm-msm@vger.kernel.org
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/3] dt-bindings: arm: qcom,coresight-tpda: drop redundant type from ports
-Date: Wed,  6 Dec 2023 12:53:31 +0100
-Message-Id: <20231206115332.22712-2-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 3/3] dt-bindings: arm: qcom,coresight-tpda: fix indentation in the example
+Date: Wed,  6 Dec 2023 12:53:32 +0100
+Message-Id: <20231206115332.22712-3-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231206115332.22712-1-krzysztof.kozlowski@linaro.org>
 References: <20231206115332.22712-1-krzysztof.kozlowski@linaro.org>
@@ -86,32 +86,66 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-"in-ports" and "out-ports" are defined by graph schema, so defining its
-type is redundant.
+Fix triple-space indentation to double-space in the example DTS.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml | 2 --
- 1 file changed, 2 deletions(-)
+ .../bindings/arm/qcom,coresight-tpda.yaml     | 32 +++++++++----------
+ 1 file changed, 15 insertions(+), 17 deletions(-)
 
 diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
-index e55f69c2ff38..66d291b56019 100644
+index 66d291b56019..b748cf21a4d7 100644
 --- a/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
 +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
-@@ -66,13 +66,11 @@ properties:
-       - const: apb_pclk
+@@ -96,33 +96,31 @@ examples:
+   # minimum tpda definition.
+   - |
+     tpda@6004000 {
+-       compatible = "qcom,coresight-tpda", "arm,primecell";
+-       reg = <0x6004000 0x1000>;
++      compatible = "qcom,coresight-tpda", "arm,primecell";
++      reg = <0x6004000 0x1000>;
  
-   in-ports:
--    type: object
-     description: |
-       Input connections from TPDM to TPDA
-     $ref: /schemas/graph.yaml#/properties/ports
+-       clocks = <&aoss_qmp>;
+-       clock-names = "apb_pclk";
++      clocks = <&aoss_qmp>;
++      clock-names = "apb_pclk";
  
-   out-ports:
--    type: object
-     description: |
-       Output connections from the TPDA to legacy CoreSight trace bus.
-     $ref: /schemas/graph.yaml#/properties/ports
+-       in-ports {
+-         #address-cells = <1>;
+-         #size-cells = <0>;
++      in-ports {
++        #address-cells = <1>;
++        #size-cells = <0>;
+ 
+         port@0 {
+           reg = <0>;
+           tpda_qdss_0_in_tpdm_dcc: endpoint {
+-            remote-endpoint =
+-              <&tpdm_dcc_out_tpda_qdss_0>;
+-            };
++            remote-endpoint = <&tpdm_dcc_out_tpda_qdss_0>;
++          };
+         };
+       };
+ 
+-       out-ports {
+-         port {
+-                 tpda_qdss_out_funnel_in0: endpoint {
+-                    remote-endpoint =
+-                    <&funnel_in0_in_tpda_qdss>;
+-                  };
++      out-ports {
++        port {
++          tpda_qdss_out_funnel_in0: endpoint {
++            remote-endpoint = <&funnel_in0_in_tpda_qdss>;
+           };
+-       };
++        };
++      };
+     };
+ 
+ ...
 -- 
 2.34.1
 
