@@ -1,117 +1,84 @@
-Return-Path: <devicetree+bounces-22445-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77AE48076C4
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 18:39:17 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8574A8076CA
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 18:41:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B31F282019
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 17:39:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 173CFB20CB5
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 17:41:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B92D6A031;
-	Wed,  6 Dec 2023 17:39:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0E316A03B;
+	Wed,  6 Dec 2023 17:41:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XiKEqaut"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29891D40
-	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 09:39:12 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rAvrJ-0001zC-1c; Wed, 06 Dec 2023 18:38:53 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rAvrH-00E0m4-Ce; Wed, 06 Dec 2023 18:38:51 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rAvrH-00FdlK-32; Wed, 06 Dec 2023 18:38:51 +0100
-Date: Wed, 6 Dec 2023 18:38:50 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Alexandre Mergnat <amergnat@baylibre.com>
-Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Jitao Shi <jitao.shi@mediatek.com>, CK Hu <ck.hu@mediatek.com>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, dri-devel@lists.freedesktop.org,
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-pwm@vger.kernel.org
-Subject: Re: [PATCH 12/18] dt-bindings: pwm: add binding for mt8365 SoC
-Message-ID: <20231206173850.s6dndsjeeuy3sjan@pengutronix.de>
-References: <20231023-display-support-v1-0-5c860ed5c33b@baylibre.com>
- <20231023-display-support-v1-12-5c860ed5c33b@baylibre.com>
- <20231023214411.sbrdqgethas25rkd@pengutronix.de>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EA7A6A00A;
+	Wed,  6 Dec 2023 17:41:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BA17C433C7;
+	Wed,  6 Dec 2023 17:40:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701884460;
+	bh=ha/WzCOsQe3G+coUldXRa0OE2YfkZhh+fxESdFI6heA=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=XiKEqautHbq72b4VhUNaN3Y1psiZAOIoJu8izwzTVqxMfHFSTWaXqr5NItM69xil8
+	 02YlOLBg0kwJk73sZN2J1S43UT9rV39PbQ+VPW05ojhS1GNfcNR6zmgJqzWfsMdwIj
+	 WZbYgLsy6L3gIHh7cLChLV8RGNSJcuS9U7xfwLKi1c9kqrnKHz3AU2GpX/8aUtcrri
+	 +3ZaaMfd5aEJZggjz/joKAb0o5wkokWmesjhyWRVU5cgDSOpouma7O5qC21DPTX+KU
+	 g9CyCAWyHtk/rxAHzFX+ID4rUC3AM2gxWRbIyZQFhtWgPLKAjRA5Sb15Kkar05ssLP
+	 XABqbLzga30hA==
+Date: Wed, 6 Dec 2023 17:40:50 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Abdel Alkuor <alkuor@gmail.com>
+Cc: Conor Dooley <conor@kernel.org>, krzysztof.kozlowski+dt@linaro.org,
+ robh+dt@kernel.org, lars@metafoo.de, conor+dt@kernel.org,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: temperature: Add AMS AS6200
+Message-ID: <20231206174050.12ad1c98@jic23-huawei>
+In-Reply-To: <ZW6IqoelmMhTgjgW@abdel>
+References: <20231202041651.719963-1-alkuor@gmail.com>
+	<20231203-wrecking-sneer-d34f19c39f04@spud>
+	<ZW6IqoelmMhTgjgW@abdel>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ywtlv6jlyscfsmgx"
-Content-Disposition: inline
-In-Reply-To: <20231023214411.sbrdqgethas25rkd@pengutronix.de>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
+On Mon, 4 Dec 2023 21:19:22 -0500
+Abdel Alkuor <alkuor@gmail.com> wrote:
 
---ywtlv6jlyscfsmgx
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> On Sun, Dec 03, 2023 at 11:24:31AM +0000, Conor Dooley wrote:
+> > On Fri, Dec 01, 2023 at 11:16:50PM -0500, Abdel Alkuor wrote:  
+> > > as6200 is high accuracy temperature sensor of -/+ 0.4C degree  
+> >  
+> Hi Conor,
+> > Is +/- 0.4 degrees really "high accuracy"?
+> >  
+> That's what the datasheet says :D. I'll remove it.
 
-Hello,
+I'd not noticed this.  Why is this an IIO driver rather than an hwmon one?
 
-On Mon, Oct 23, 2023 at 11:44:11PM +0200, Uwe Kleine-K=F6nig wrote:
-> On Mon, Oct 23, 2023 at 04:40:12PM +0200, Alexandre Mergnat wrote:
-> > Display PWM for MT8365 is compatible with MT8183. Then, add MT8365 bind=
-ing
-> > along with MT8183 SoC.
-> >=20
-> > Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
->=20
-> Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
->=20
-> What is the merge plan here? Should the whole series go in via drm?
+Mostly we do that only for very high accuracy or weird temperature sensors
+(infrared ones for example or things with complex thermocouple handling).
+Simpler devices meant for hardware monitoring type applications typically go
+in hwmon.
 
-I'll assume that Alexandre will send out a new round of this series and
-this patch isn't supposed to be applied as is to the pwm tree. So I'm
-marking this patch as "changes requested" in our patchwork.
+We have the iio to hwmon bridge driver for things that naturally have uses
+where IIO features are needed, but which get used for hwmon sometimes.
+Not sure this is enough IIO focused though, so perhaps list out why you
+think it should be in IIO?
 
-Best regards
-Uwe
+Jonathan
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---ywtlv6jlyscfsmgx
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmVwsaoACgkQj4D7WH0S
-/k4hSggAle3BHyJ1MVsRw1KxYXPxxCujjOlC/iVTOF+lNCnkFIgsBCP3LIGUb/Vw
-5cmRVOyQP9gr52PMZeQo7aa3eMxhZqixVS3FbEWppG6kPVCE2RwP6CV7SfP7N3Hp
-VjKdzXifWVgRH366u/RaWoVuLftZvofZFYMTtF24KxoH0r40anqojRtJYYLwy/np
-NDqAUYu3WNdjYKWsNa1s1PBSlasbG0B7bcAP5RfRuJXoTuTssx2XxrbjLcpu3Zhr
-jPMxcBS60BO81t/LYCTMHDz6RNHpacGnRHTeWbnUaZm1SuHpyFuRGSAfIBkAmDGX
-DXzkv8oxnnoFs+g0fj0LuxnlSkXixg==
-=95Im
------END PGP SIGNATURE-----
-
---ywtlv6jlyscfsmgx--
 
