@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-22165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08177806B53
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 11:09:11 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04AB8806B5F
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 11:10:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B83B828176F
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 10:09:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 35F291C20A4B
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 10:10:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A6D428E0E;
-	Wed,  6 Dec 2023 10:09:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 358602C851;
+	Wed,  6 Dec 2023 10:10:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="DwjNPhfZ"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="UzJH0zV2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6C31FA
-	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 02:09:02 -0800 (PST)
-Received: from mail-lf1-f72.google.com (mail-lf1-f72.google.com [209.85.167.72])
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23273112
+	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 02:10:32 -0800 (PST)
+Received: from mail-lj1-f200.google.com (mail-lj1-f200.google.com [209.85.208.200])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id E199A40DAF
-	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 10:09:00 +0000 (UTC)
+	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 2D2DE3F1D9
+	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 10:10:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1701857340;
-	bh=AqWoFNYysK0tdV0YeJun1QToBYa0Z8FAZWlnxm20ym0=;
+	s=20210705; t=1701857430;
+	bh=fcdtr+UWRkr2bcyvcYZo0x7Tv/0e4LlLY26MkaiwxuM=;
 	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
 	 To:Cc:Content-Type;
-	b=DwjNPhfZjZKQJ+pkntTst/oUdOJNFj/v5hkG3IaDEMxg5WZoxj4DPbpxnZUPIWnsR
-	 05Yde7hc9lOlRToLx2H9nF+XXLJVlf8HD0G6bjmq3bSO6uh3L9Fu3woVSie3yCo7Fb
-	 uiUYFLxyjFD/t9pLvVoUs9c1pQdyPwtMNWzFDWMXpNNyxuCKa80lw80ZnZlAk/2XlA
-	 hbicQ5ZqcXB6AVFWc60TnWxH51pnlAl93YSAOn63JucRvbGjIZb12zRw632hOPRczx
-	 ZWbnQVEUhsIXEA43mzHw+dRnmZ6OZthy3qeJEnXeRluPk0iqHrR05gzPGAmPaYCS/E
-	 GQnEWYOgj4AhQ==
-Received: by mail-lf1-f72.google.com with SMTP id 2adb3069b0e04-50bf273aa74so2863496e87.2
-        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 02:09:00 -0800 (PST)
+	b=UzJH0zV2olX7sgDWm8/u+fi8RgSkgJAOAkWVXBjOuN+wSlGjzf0E52NwNxNDRu12Q
+	 3KRiTFTSMkZagwqU71zvpY1EZFSUGl5TsoY36dwk9SnfFaGoOQXZdnYx8c4Vl6Pz2l
+	 80msDLUxyRa9j20TNyFE5OP53u9d+P39zQqWv8b93z34EUMIWD9wOjwO4qpeblkxca
+	 AgcTuiq+psTMCpE9jwGBplIYTs7HMPvxqSsPewBRu8XZGCJwPLrgXZjA4UfmtU+lXD
+	 5G9bBQUMYaFI1pkBX6Ez81VkNdUtJpSySVlKK23B05aQwBYO2U51cy7wSWetekRUfD
+	 Lp1ZGZ+C8tFLA==
+Received: by mail-lj1-f200.google.com with SMTP id 38308e7fff4ca-2c8872d92edso63378721fa.2
+        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 02:10:30 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701857340; x=1702462140;
+        d=1e100.net; s=20230601; t=1701857429; x=1702462229;
         h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
          :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AqWoFNYysK0tdV0YeJun1QToBYa0Z8FAZWlnxm20ym0=;
-        b=ZvmkA4gCUh01fh2aRyrlO70W4aGf87K69X6mLTYd0KH+B4nZ7c6Rcl57QtjwCnVc2d
-         Io4+T5UMv0m1ZceuT3Qleg3guVsyPGCDAGM7RnF7bWE0LLOQDInbvx/0a+ld9qIjlcKG
-         AqOykl3fm4aNu/diHqRfIjsc+J+SUHZqRjlhxwzwEYnK31xBaL5fqTOhXdC0Krwy/1+n
-         eFUbg8KHqvj+U9ZA2gPHgyvlraOv8IeoB7Q6SWXeq5gqkrmlZLc5SIlAlUbpH8YPwSw5
-         vNBqo2cQ9UXP0cCGnTiSQwfe3u9d9Kt/32U2V+AXBp8zpAAg0BcXMxxHXepubfmaz5Lb
-         KzlQ==
-X-Gm-Message-State: AOJu0YxNKZgj6itcBE3b9d6EFXy7+FCEwBQclr9GddT4/yiDB4uwnvZh
-	r7ZADprDDX/jyYtPyLGwrx1YFeYTHgaNC7TMIjece4EYXRz9VaUKxn49TBlIUX6Y3jMXTcS7oCf
-	ObHeEIXQMx3JfE7RElzF6XpIV0LHtiohCkLhQgLw/jIFZn6trFqf+2CU=
-X-Received: by 2002:a05:6512:5d7:b0:50b:f32c:4d with SMTP id o23-20020a05651205d700b0050bf32c004dmr387799lfo.136.1701857339924;
-        Wed, 06 Dec 2023 02:08:59 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEdJQnx21lgo677Y/w22hAazVC3Yypb1Mi9jGIFZ5ofssNYc7Abs2AMBwvoktWnU2ZF6MV9GexmQoAcnQyWfbI=
-X-Received: by 2002:a05:6512:5d7:b0:50b:f32c:4d with SMTP id
- o23-20020a05651205d700b0050bf32c004dmr387775lfo.136.1701857339589; Wed, 06
- Dec 2023 02:08:59 -0800 (PST)
+        bh=fcdtr+UWRkr2bcyvcYZo0x7Tv/0e4LlLY26MkaiwxuM=;
+        b=qWrAbemC8Tm0eZjR3xRIixCLRZYoMFdct43yFYRy3l0YmRkIyX9SjISk/azzH4j1K9
+         tzxsUkXENPoj/Km3OTWEkHZfAI7fDVydxoD3B6SkYqIieDKxQjHvn9ZckWBvX5QQWIGN
+         8bE2uTZ9jfHiw7yiK3LRzseg6HffhMN9Jsq1b5IH+3vqZRTavRMpsp7YpmNlRCR0ssxv
+         9rNHDJlgn5auv01Ha+uO9jHJDgLFj5GgZPD1xPuiI7/YJYvS0Hi0s1J+h+3Dr0z0EyQ1
+         8+BuUw7bZ2piIKcgNZKDdR/Kfcf3Yi8CYDjqCiEmrcWiCBST+U8QIUeRmII7xsHdbt/l
+         WtjQ==
+X-Gm-Message-State: AOJu0YyRlDZ0Zd/t3z7vQeTLe4MOiae2ZrytTR9X1T14iDO0hyhFlZ1H
+	Zr2FbiIuOZKfXnATe1bxHwvAc2kqIiOh34Fc9Jas9X5IDFu8Vwm3+Ra65p60tiSPQApUleBRzW0
+	85+qUrfvTGw3v0O6RV2bjZXAILGk2PA/QvOpE2iIuhrht8kAIg7J3/Vo=
+X-Received: by 2002:a2e:a456:0:b0:2ca:252d:ea3d with SMTP id v22-20020a2ea456000000b002ca252dea3dmr330687ljn.98.1701857429652;
+        Wed, 06 Dec 2023 02:10:29 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGs92N5wzpZ2+RDYJq5RciPViDvSYByTuJP/RjgJ3NmIPzmJzSvS2xAGrVkoFNNDaX6YxvjLcMhL1PXJThRVN4=
+X-Received: by 2002:a2e:a456:0:b0:2ca:252d:ea3d with SMTP id
+ v22-20020a2ea456000000b002ca252dea3dmr330669ljn.98.1701857429336; Wed, 06 Dec
+ 2023 02:10:29 -0800 (PST)
 Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 6 Dec 2023 04:08:57 -0600
+ HTTPREST; Wed, 6 Dec 2023 04:10:28 -0600
 From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <20231206-th1520_mmc_dts-v8-1-69220e373e8f@baylibre.com>
-References: <20231206-th1520_mmc_dts-v8-0-69220e373e8f@baylibre.com> <20231206-th1520_mmc_dts-v8-1-69220e373e8f@baylibre.com>
+In-Reply-To: <20231206-th1520_mmc_dts-v8-2-69220e373e8f@baylibre.com>
+References: <20231206-th1520_mmc_dts-v8-0-69220e373e8f@baylibre.com> <20231206-th1520_mmc_dts-v8-2-69220e373e8f@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 Mime-Version: 1.0
-Date: Wed, 6 Dec 2023 04:08:57 -0600
-Message-ID: <CAJM55Z_sG2CFZo_MmeTCVz43rRBi9cbjajprWM8MspMZuF9tEg@mail.gmail.com>
-Subject: Re: [PATCH v8 1/4] riscv: defconfig: Enable mmc and dma drivers for
- T-Head TH1520
+Date: Wed, 6 Dec 2023 04:10:28 -0600
+Message-ID: <CAJM55Z_jRhJLLQg9_OzJ_UeqaoqByu_BgxmwtVRUK2Z+qEKZxg@mail.gmail.com>
+Subject: Re: [PATCH v8 2/4] riscv: dts: thead: Add TH1520 mmc controllers and
+ sdhci clock
 To: Drew Fustini <dfustini@baylibre.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
 	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
 	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
@@ -83,39 +83,79 @@ Cc: Jason Kridner <jkridner@beagleboard.org>, Robert Nelson <robertcnelson@beagl
 Content-Type: text/plain; charset="UTF-8"
 
 Drew Fustini wrote:
-> Enable the mmc controller driver and dma controller driver needed for
-> T-Head TH1520 based boards, like the LicheePi 4A and BeagleV-Ahead, to
-> boot from eMMC storage.
+> Add node for the fixed reference clock used for emmc and sdio nodes.
+> Add emmc node for the 1st dwcmshc instance which is typically connected
+> to an eMMC device. Add sdio0 node for the 2nd dwcmshc instance which is
+> typically connected to microSD slot. Add sdio1 node for the 3rd dwcmshc
+> instance which is typically connected to an SDIO WiFi module. The node
+> names are based on Table 1-2 C910/C906 memory map in the TH1520 System
+> User Manual.
 >
-> Reviewed-by: Guo Ren <guoren@kernel.org>
+> Link: https://git.beagleboard.org/beaglev-ahead/beaglev-ahead/-/tree/main/docs
 > Signed-off-by: Drew Fustini <dfustini@baylibre.com>
+
+Thanks! The rest of the patches look good too, but I don't really have
+a schematic
+to do proper review.
 
 Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
 
 > ---
->  arch/riscv/configs/defconfig | 2 ++
->  1 file changed, 2 insertions(+)
+>  arch/riscv/boot/dts/thead/th1520.dtsi | 34 ++++++++++++++++++++++++++++++++++
+>  1 file changed, 34 insertions(+)
 >
-> diff --git a/arch/riscv/configs/defconfig b/arch/riscv/configs/defconfig
-> index 905881282a7c..e635dc9d1997 100644
-> --- a/arch/riscv/configs/defconfig
-> +++ b/arch/riscv/configs/defconfig
-> @@ -214,6 +214,7 @@ CONFIG_MMC=y
->  CONFIG_MMC_SDHCI=y
->  CONFIG_MMC_SDHCI_PLTFM=y
->  CONFIG_MMC_SDHCI_CADENCE=y
-> +CONFIG_MMC_SDHCI_OF_DWCMSHC=y
->  CONFIG_MMC_SPI=y
->  CONFIG_MMC_DW=y
->  CONFIG_MMC_DW_STARFIVE=y
-> @@ -223,6 +224,7 @@ CONFIG_RTC_CLASS=y
->  CONFIG_RTC_DRV_SUN6I=y
->  CONFIG_DMADEVICES=y
->  CONFIG_DMA_SUN6I=m
-> +CONFIG_DW_AXI_DMAC=y
->  CONFIG_RZ_DMAC=y
->  CONFIG_VIRTIO_PCI=y
->  CONFIG_VIRTIO_BALLOON=y
+> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
+> index ba4d2c673ac8..8b915e206f3a 100644
+> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
+> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
+> @@ -146,6 +146,13 @@ uart_sclk: uart-sclk-clock {
+>  		#clock-cells = <0>;
+>  	};
+>
+> +	sdhci_clk: sdhci-clock {
+> +		compatible = "fixed-clock";
+> +		clock-frequency = <198000000>;
+> +		clock-output-names = "sdhci_clk";
+> +		#clock-cells = <0>;
+> +	};
+> +
+>  	soc {
+>  		compatible = "simple-bus";
+>  		interrupt-parent = <&plic>;
+> @@ -304,6 +311,33 @@ dmac0: dma-controller@ffefc00000 {
+>  			status = "disabled";
+>  		};
+>
+> +		emmc: mmc@ffe7080000 {
+> +			compatible = "thead,th1520-dwcmshc";
+> +			reg = <0xff 0xe7080000 0x0 0x10000>;
+> +			interrupts = <62 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&sdhci_clk>;
+> +			clock-names = "core";
+> +			status = "disabled";
+> +		};
+> +
+> +		sdio0: mmc@ffe7090000 {
+> +			compatible = "thead,th1520-dwcmshc";
+> +			reg = <0xff 0xe7090000 0x0 0x10000>;
+> +			interrupts = <64 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&sdhci_clk>;
+> +			clock-names = "core";
+> +			status = "disabled";
+> +		};
+> +
+> +		sdio1: mmc@ffe70a0000 {
+> +			compatible = "thead,th1520-dwcmshc";
+> +			reg = <0xff 0xe70a0000 0x0 0x10000>;
+> +			interrupts = <71 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&sdhci_clk>;
+> +			clock-names = "core";
+> +			status = "disabled";
+> +		};
+> +
+>  		timer0: timer@ffefc32000 {
+>  			compatible = "snps,dw-apb-timer";
+>  			reg = <0xff 0xefc32000 0x0 0x14>;
 >
 > --
 > 2.34.1
