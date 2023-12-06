@@ -1,86 +1,88 @@
-Return-Path: <devicetree+bounces-22355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22356-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 413B0807308
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 15:51:07 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F34F807315
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 15:53:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4CD531C20A92
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 14:51:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E32E2B20DDC
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 14:53:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A1B53DB99;
-	Wed,  6 Dec 2023 14:51:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 673BE3EA70;
+	Wed,  6 Dec 2023 14:53:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m87zyRsO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB414D49;
-	Wed,  6 Dec 2023 06:50:55 -0800 (PST)
-Received: from i53875b61.versanet.de ([83.135.91.97] helo=phil.lan)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1rAtEe-0002nV-3l; Wed, 06 Dec 2023 15:50:48 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: lpieralisi@kernel.org,
-	kw@linux.com,
-	bhelgaas@google.com
-Cc: robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	heiko@sntech.de,
-	linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	quentin.schulz@theobroma-systems.com,
-	Heiko Stuebner <heiko.stuebner@cherry.de>
-Subject: [PATCH] dt-bindings: PCI: dwc: rockchip: document optional pcie reference clock input
-Date: Wed,  6 Dec 2023 15:50:41 +0100
-Message-Id: <20231206145041.667900-1-heiko@sntech.de>
-X-Mailer: git-send-email 2.39.2
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C46F37144;
+	Wed,  6 Dec 2023 14:53:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02380C433C7;
+	Wed,  6 Dec 2023 14:53:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701874414;
+	bh=BfmDvJ8RDuCVQ+mXdoNuZyTFuN44YPuJHi24jXGbAHc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=m87zyRsOCTOxBF+aKu/NHagCRxmyDv+Asnc8Pkf2E+AAD7YXbZYTb2GGZMvLfzeWX
+	 VZ5pkGgYk3j0VYIYveNb3P31U1FAy8X5FqnWZq6yfWW9DlHik457j/oyJf7KHYvh8s
+	 ELfU7SepC17kVpuBOPHGjq5K9C3XqOj161s2rCi8dv106SlsrOPR+zELd1+0pCGXJF
+	 VpVYP9hqoBCjvmv50D11jVZDv9XuPt2gfBQaYpO4OBASeSaSHXhtwvQOyMuyUtjfSi
+	 dJCG6dePOCByyQogNNPzTyfwW5PCWgb9TqfiFFsCroboK7yan46DXg/4R5ojFmsc09
+	 LZOgRB4roLxqA==
+Date: Wed, 6 Dec 2023 14:53:29 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Li peiyu <579lpy@gmail.com>
+Cc: jic23@kernel.org, javier.carrasco.cruz@gmail.com, lars@metafoo.de,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 4/4] iio: humidity: Add TI HDC302x support
+Message-ID: <20231206-quarrel-dill-27b94d881ec0@spud>
+References: <20231206134655.559474-1-579lpy@gmail.com>
+ <20231206135148.559564-1-579lpy@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="QXd7A5Rf7VK5v4Il"
+Content-Disposition: inline
+In-Reply-To: <20231206135148.559564-1-579lpy@gmail.com>
 
-From: Heiko Stuebner <heiko.stuebner@cherry.de>
 
-On some boards the 100MHz PCIe reference clock to both controller and
-devices is controllable. Add that clock to the list of clocks.
+--QXd7A5Rf7VK5v4Il
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The clock is optional, so the minItems stays the same.
+On Wed, Dec 06, 2023 at 09:51:48PM +0800, Li peiyu wrote:
+> Add device tree bindings for HDC3020/HDC3021/HDC3022 humidity and
+> temperature sensors.
+>=20
+> Signed-off-by: Li peiyu <579lpy@gmail.com>
 
-Signed-off-by: Heiko Stuebner <heiko.stuebner@cherry.de>
----
- Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+If there is a resubmission, please prepend "dt-bindings: " to your
+commit $subject. Otherwise, I am only with this.
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-index 1ae8dcfa072c..5f719218c472 100644
---- a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-+++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-@@ -49,6 +49,7 @@ properties:
-       - description: APB clock for PCIe
-       - description: Auxiliary clock for PCIe
-       - description: PIPE clock
-+      - description: Reference clock for PCIe
- 
-   clock-names:
-     minItems: 5
-@@ -59,6 +60,7 @@ properties:
-       - const: pclk
-       - const: aux
-       - const: pipe
-+      - const: ref
- 
-   interrupts:
-     items:
--- 
-2.39.2
+Thanks,
+Conor.
 
+--QXd7A5Rf7VK5v4Il
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZXCK6QAKCRB4tDGHoIJi
+0qgdAQC2K/aw8tdHJ+rVh82hTYCgzPkrJT1gzpW/7/zq0F+giAD/U2P64GnkIVeo
+Opn8r6Hjo4FpMoZKTGwUaQQMKQJ/0g4=
+=+UPl
+-----END PGP SIGNATURE-----
+
+--QXd7A5Rf7VK5v4Il--
 
