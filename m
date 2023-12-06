@@ -1,156 +1,111 @@
-Return-Path: <devicetree+bounces-22304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22305-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE76C80714D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 14:53:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D372807153
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 14:56:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A1B0F281D98
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 13:53:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 477701F2117D
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 13:56:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92D2C3C479;
-	Wed,  6 Dec 2023 13:53:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 778433BB4C;
+	Wed,  6 Dec 2023 13:55:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VGVCEW5C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E70AA4;
-	Wed,  6 Dec 2023 05:53:14 -0800 (PST)
-Received: by mail-oi1-f173.google.com with SMTP id 5614622812f47-3b84e328327so4107432b6e.2;
-        Wed, 06 Dec 2023 05:53:14 -0800 (PST)
+Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBCA718D
+	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 05:55:53 -0800 (PST)
+Received: by mail-pf1-x42d.google.com with SMTP id d2e1a72fcca58-6cda22140f2so6576161b3a.1
+        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 05:55:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701870953; x=1702475753; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Jo4sjmVaV/TBAMJQg43OcyML+wJBUfl40Ts13Xx0yio=;
+        b=VGVCEW5CyMHN8E1h+aLD/A+6crvPQMWmcbbuWt2k06l3JtSk6Wg5L64bNPXGygSB5D
+         SysxNdeZIA7Rta1jwrz637PiEMinkzsfNNI9NUrS83rdED3Ad7C8y8quhRm+ib13IMBb
+         gAgx0fhJj6lV7tpIeGWWVI/jUm/naom4JBKzECJTygamAvUf4zz/baATD0jj3bVsTog2
+         tx8SmYWhYq8l3QNcz38WSklkzOZiJ4p568ls6Wwrzp1xpmo2G6e2PApJv7xcwR/8LLGC
+         NzclMFoRoJ8j081uno4YK0Ipvex1oRpD04GKl8oQG3d0Go5StE/6emG99Nuvw608SQKN
+         9PQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701870793; x=1702475593;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ELAnzgA5DxDxpCpfzQO17fyyUMvM5sG9LtRZSNKeVTs=;
-        b=jaNHeYQrQ3G5640sj2BCWSIUkdQMoyNnua+BLdjlHAs3E/Q1CT75FBjqSbgIA/uLnQ
-         cgs0tBqkhiza8lOXWC0x0Q4W5Qfuem9TDWxQw58wcVCP+QUahCmrrl5Sb9U2Xwi+Ez4B
-         NlFDWUwugE3oKaFhll5AeW72NLyCYyHJ4ggsi9NMpr/Ygx3LZwBzyBjvGYjS5xxQc2rO
-         RQ+3+rvBhmODOnAUSi3hhhklrV083FuCX3lrRZTUu2EQq6rbT76KN8/qL3zMubJtOqmN
-         BegjkTNohaEE5YtKzfOWZeotvkM1aXIP4eLZxX8UwlPuw9Pe0/8+CWlbi0v2N+f10k/m
-         2D9w==
-X-Gm-Message-State: AOJu0YypRurF8pxrbO0nYb0042lukWSfgEk5PKFncb41i90yC/WYyg5Z
-	7fK2hq+QkgYqFXtvWeV0/WQ4CE7xbA==
-X-Google-Smtp-Source: AGHT+IEVaa/iHpBSbWcNgoXvomDJzk20fAqRd+fvaRNdmt3y7YPgh2MfstnaZSYrJPliRoSiim9bqg==
-X-Received: by 2002:a05:6808:318b:b0:3b8:b55a:84aa with SMTP id cd11-20020a056808318b00b003b8b55a84aamr1125383oib.43.1701870793491;
-        Wed, 06 Dec 2023 05:53:13 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id bm19-20020a0568081a9300b003b9d36eb9c4sm65604oib.57.2023.12.06.05.53.12
+        d=1e100.net; s=20230601; t=1701870953; x=1702475753;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Jo4sjmVaV/TBAMJQg43OcyML+wJBUfl40Ts13Xx0yio=;
+        b=YUVL7sAXh8+oSacNL90QYXIZD04HvlsxjzeB0lvF2QadT12sE91chOhKbSbsRohO0q
+         8Njor9efpWjb1CXlCyQLGXUBK3c80WiLunFsMktXkgIXEpkq+jYAWRUCXgjMpZI6ZIhd
+         CO8zfHrWM98jjwx/naT3q421qjaCZkW/iUei8lyldlrQVpdrQwe6xrCSGpSi/8VyEc6X
+         TcPvl/0jjwZz0ZOJBrsy5CoWApOccXVzOIGJB793Cu4SX5vWvXfKWKY85RFZI8V+lSs+
+         zjEul+7Z3dIbNumSvPrvKtHNbEXR11wWhdJw+SD8emWiG1pJdCjcAdCKvG8l7A88qphl
+         pFnQ==
+X-Gm-Message-State: AOJu0YxbOXsA2Cjd0QiRJx/708sZGMETcsZOQFjjxZneyOhwG2IXe5P4
+	wYUKLpvExh6+G8+g/yk8VwJG
+X-Google-Smtp-Source: AGHT+IFtRa9+0838RSSI9ko0zFdJdodaKRgyzIqc6JbiWzTHnFiflLRfRI9fQ6/eZ/NpRcFfWuZ26w==
+X-Received: by 2002:a05:6a00:3391:b0:6ce:3f6b:638a with SMTP id cm17-20020a056a00339100b006ce3f6b638amr947618pfb.48.1701870953263;
+        Wed, 06 Dec 2023 05:55:53 -0800 (PST)
+Received: from localhost.localdomain ([117.202.188.104])
+        by smtp.gmail.com with ESMTPSA id n38-20020a056a000d6600b006ce91cdb1c4sm1366056pfv.188.2023.12.06.05.55.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Dec 2023 05:53:12 -0800 (PST)
-Received: (nullmailer pid 2045482 invoked by uid 1000);
-	Wed, 06 Dec 2023 13:53:11 -0000
-Date: Wed, 6 Dec 2023 07:53:11 -0600
-From: Rob Herring <robh@kernel.org>
-To: Anand Moon <linux.amoon@gmail.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Icenowy Zheng <uwu@icenowy.me>, Neil Armstrong <neil.armstrong@linaro.org>, linux-amlogic@lists.infradead.org, Conor Dooley <conor.dooley@microchip.com>, linux-usb@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 1/2] dt-bindings: usb: Add the binding example for the
- Genesys Logic GL3523 hub
-Message-ID: <20231206135311.GA2043711-robh@kernel.org>
-References: <20231204144429.45197-1-linux.amoon@gmail.com>
- <20231204144429.45197-2-linux.amoon@gmail.com>
+        Wed, 06 Dec 2023 05:55:52 -0800 (PST)
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: andersson@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	konrad.dybcio@linaro.org,
+	conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH 0/3] Qcom PCIe DTS fixes
+Date: Wed,  6 Dec 2023 19:25:37 +0530
+Message-Id: <20231206135540.17068-1-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231204144429.45197-2-linux.amoon@gmail.com>
+Content-Transfer-Encoding: 8bit
 
-On Mon, Dec 04, 2023 at 08:14:25PM +0530, Anand Moon wrote:
-> Add the binding example for the USB3.1 Genesys Logic GL3523
-> integrates with USB 3.1 Gen 1 Super Speed and USB 2.0 High-Speed
-> hub.
-> 
-> For onboard hub controllers that support USB 3.x and USB 2.0 hubs
-> with shared resets and power supplies, this property is used to identify
-> the hubs with which these are shared.
-> 
-> GL3523 has built-in 5V to 3.3V and 5V to 1.2V regulators, which serves
-> power to the USB HUB, it uses 5V power regulator.
-> 
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> ---
-> V6: fix the description of the regulators
-> Updated the commit message for regulator updates.
-> add reviewed by Conor Dooley
-> [1] https://lore.kernel.org/all/20231130053130.21966-2-linux.amoon@gmail.com/
-> v5: upgrade peer-hub description : Conor Dooley
-> [0] https://www.genesyslogic.com.tw/en/product_view.php?show=67 [Block Diagram]
-> v4: Fix the description of peer-hub and update the commit message.
-> Schematics of the Odroid N2+
-> https://dn.odroid.com/S922X/ODROID-N2/Schematic/odroid-n2_rev0.6_20210121.pdf
-> V3: fix the dt_binding_check error, added new example for Genesys GL3523
-> v2: added Genesys GL3523 binding
-> v1: none
-> ---
->  .../bindings/usb/genesys,gl850g.yaml          | 65 +++++++++++++++++--
->  1 file changed, 61 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> index ee08b9c3721f..c6f63a69396d 100644
-> --- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> +++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> @@ -9,9 +9,6 @@ title: Genesys Logic USB hub controller
->  maintainers:
->    - Icenowy Zheng <uwu@icenowy.me>
->  
-> -allOf:
-> -  - $ref: usb-device.yaml#
-> -
->  properties:
->    compatible:
->      enum:
-> @@ -27,12 +24,46 @@ properties:
->  
->    vdd-supply:
->      description:
-> -      the regulator that provides 3.3V core power to the hub.
-> +      The regulator that provides 3.3V or 5.0V core power to the hub.
-> +
-> +  peer-hub:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      For onboard hub controllers that support USB 3.x and USB 2.0 hubs
-> +      with shared resets and power supplies, this property is used to identify
-> +      the hubs with which these are shared.
->  
->  required:
->    - compatible
->    - reg
->  
-> +allOf:
-> +  - $ref: usb-device.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - usb5e3,608
-> +    then:
-> +      properties:
-> +        peer-hub: false
-> +        vdd-supply: false
-> +        reset-gpios: true
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - usb5e3,610
-> +              - usb5e3,620
-> +    then:
-> +      properties:
-> +        peer-hub: true
-> +        vdd-supply: true
-> +        reset-gpios: true
+Hi,
 
-No need for this if schema. The default is they are allowed.
+This small series has some fixes for the PCIe nodes in Qcom DTS.
 
-Rob
+- Mani
+
+Manivannan Sadhasivam (3):
+  ARM: dts: qcom: Use "pcie" as the node name instead of "pci"
+  arm64: dts: qcom: Use "pcie" as the node name instead of "pci"
+  arm64: dts: qcom: sa8775p: Add missing space between node name and
+    braces
+
+ arch/arm/boot/dts/qcom/qcom-apq8064.dtsi           | 2 +-
+ arch/arm/boot/dts/qcom/qcom-ipq4019-ap.dk04.1.dtsi | 2 +-
+ arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi           | 2 +-
+ arch/arm/boot/dts/qcom/qcom-ipq8064.dtsi           | 6 +++---
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi              | 2 +-
+ arch/arm64/boot/dts/qcom/ipq8074.dtsi              | 4 ++--
+ arch/arm64/boot/dts/qcom/msm8998.dtsi              | 2 +-
+ arch/arm64/boot/dts/qcom/qcs404.dtsi               | 2 +-
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi              | 4 ++--
+ arch/arm64/boot/dts/qcom/sc7280.dtsi               | 2 +-
+ arch/arm64/boot/dts/qcom/sc8180x.dtsi              | 8 ++++----
+ arch/arm64/boot/dts/qcom/sdm845.dtsi               | 4 ++--
+ arch/arm64/boot/dts/qcom/sm8150.dtsi               | 4 ++--
+ arch/arm64/boot/dts/qcom/sm8250.dtsi               | 6 +++---
+ arch/arm64/boot/dts/qcom/sm8350.dtsi               | 4 ++--
+ arch/arm64/boot/dts/qcom/sm8450.dtsi               | 4 ++--
+ arch/arm64/boot/dts/qcom/sm8550.dtsi               | 4 ++--
+ 17 files changed, 31 insertions(+), 31 deletions(-)
+
+-- 
+2.25.1
+
 
