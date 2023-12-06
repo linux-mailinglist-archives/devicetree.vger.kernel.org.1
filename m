@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-22441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5ADB58076A9
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 18:34:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B1B98076B0
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 18:36:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 065D21F210DA
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 17:34:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E09511C20ADC
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 17:36:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95C42697B8;
-	Wed,  6 Dec 2023 17:34:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9F126A01E;
+	Wed,  6 Dec 2023 17:36:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lTuXn0Zt"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="erFTzDZr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BD23122
-	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 09:33:57 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-40b2ddab817so312165e9.3
-        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 09:33:57 -0800 (PST)
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 016C9D50
+	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 09:35:57 -0800 (PST)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-54bfa9b3ffaso60357a12.1
+        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 09:35:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701884036; x=1702488836; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701884156; x=1702488956; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=r5kmQ0svcDs85kacFzSY2HfHtu574WUvMMh1hv/48Ms=;
-        b=lTuXn0Zto6grWCezCpyKUpFyiDTDHPCSAw/Ywo5BQ1gvusv12oNtNCiafN8mFNAuiI
-         Nwqoo2M10BFUvsNkJaIKeZJMf3EKX2pcUGekLkchkuSIGXBPLfFk7S0xKKrVAjFZQtYP
-         S8qj3dTwYGyTmQx60+/Z7MQHXlXbUUyQHnj+b6HHIQQGVEEZMS7Ss2w7Le64/7nziuhY
-         79eu+Hd1O7wLkJ9JzIX2TSXZgmAgDECXMmAMCPrebkKbOOMtQqvdRIp/oVGylj3K0gf2
-         1DHkeMRpt8KPsPulyQIwDkhUa9CpE5STSohGLQ2W/Bp3eZt091n2tkkNt2mQ4elBn8B5
-         dPxg==
+        bh=5gdPFt8BdmSDXII3E32UP5ZmZMEA7jETxyKZk3XrFV8=;
+        b=erFTzDZrb5EDYjHe5m5pIvj61XP9WqJqeumqMSpvIL9KKdbN2seBoNzxQ7/1nWLPR8
+         5uwWknJSj3VGgF9QZbc4R7KyZCRRHuRepzLSAUha/efbAiHDDncKGUaZdlH287W6gEec
+         Bzhscb0yTz418SNcaxFApeJJ+vTPIP0Yjs60HUAiy6AJN7JO0ecsLBml3gIjhG/wYOcG
+         Nk+hc5jOWZdR2bzbwnpAGC2d2zBPyv2bh+TovKo+S5hJ7jGs7iTqutSn1jAgEDcuWCpP
+         5XAwqf660xcD7ed2I37HDXCeFweUZeqth7N5Wi5hA5VnUwyC7cPK4Eyev4N+U2k8romR
+         +0uw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701884036; x=1702488836;
+        d=1e100.net; s=20230601; t=1701884156; x=1702488956;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=r5kmQ0svcDs85kacFzSY2HfHtu574WUvMMh1hv/48Ms=;
-        b=JymMgWqBDRIezytzd0SiAHmnFcp7hzpIoPjBKuX+qwgqMXffxG0bBa4LUgXf8oxaJZ
-         irOpCXZ9ymaAMQIYjd8GIlhQVZ+cM1njDXVyQ6LMYY0OI2nPxoVJxdVJBJwb/P4ykMXS
-         2gmvkwhYczVMBe1dhzP5K5INP4qEqh4dfP7VtwYHBDAxrlEuynQfhcHarY9OHDVWBgzh
-         cZIiBJiXQ9gcF4No1XUkN3ZupvhsRgPCGqRx8H3Jaqnxol2DLGvNrmyiidhdj8VaVj2a
-         IRYri/zrE5fMvVAe0sEg662dcQU1wVW//TFUOT/l8aUa5iiLRHPcXWe7kxuXWSCKyHMf
-         60Jw==
-X-Gm-Message-State: AOJu0YxqyVg08RnB0y4gL9eqQWrY2otwSDn8Xwo+HR6UgKqBPvig8wfW
-	MntEU5D1IPj8mAImwNJFIViXkQ==
-X-Google-Smtp-Source: AGHT+IF50AUMyrHT4YEt9gLoJnSQfVIDxMn6Vizx7xXcjY8ScWOXMtpZl141mKyejfQgE7WENoKDYg==
-X-Received: by 2002:a7b:c8c4:0:b0:40c:1834:507e with SMTP id f4-20020a7bc8c4000000b0040c1834507emr860539wml.102.1701884035582;
-        Wed, 06 Dec 2023 09:33:55 -0800 (PST)
+        bh=5gdPFt8BdmSDXII3E32UP5ZmZMEA7jETxyKZk3XrFV8=;
+        b=ie2qM9PQ30JwAWbaYwKm7RhbcsOvluXIkYXw9rtmKIOORT/n4wwGxIq4/GnfWZvQ2s
+         ESW72UBOcXlMxsg3KJOHumVM6VG34AwdR45f81+8SDZ/MvyyD7hBFLzCtbGb4iqEmARg
+         fIF6/uiEx2UQCT7mEIqgWwSrDybndN+yVEARQNE43v5Ey1MNqU2rWjxQDpZW7qc6GDHx
+         OBwYjGfwLaRn7+/n8B9JPBJF7Sp8lsCmmD/hfk/04jT+xiMMz9t92NTJrJKijZ2XL3aV
+         qHPKQj4o5Y4jhBEGUdIxelnyYqDwEeMYLhTeqfSf2To5iDAHnN5EmTf85jP8hqQNTW8l
+         pjAw==
+X-Gm-Message-State: AOJu0YxgDICCcP+7mhfYLjHwYMOR+NbblvBwVFOVXmwI2M6RPbrrVau9
+	UhS2mlIswNiKvW3OunBR8fwyIA==
+X-Google-Smtp-Source: AGHT+IErqATdwEIlZ3NSGTprM7HJykavuFniKFr5YhXv0PkeVLHBLZ+4qOrkqp3q7goWYCRNBFUdPw==
+X-Received: by 2002:a17:906:aac5:b0:a1c:6dfd:1480 with SMTP id kt5-20020a170906aac500b00a1c6dfd1480mr748849ejb.136.1701884156395;
+        Wed, 06 Dec 2023 09:35:56 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id v9-20020a05600c444900b0040b3632e993sm313928wmn.46.2023.12.06.09.33.54
+        by smtp.gmail.com with ESMTPSA id le14-20020a170907170e00b009fc42f37970sm203581ejc.171.2023.12.06.09.35.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Dec 2023 09:33:55 -0800 (PST)
-Message-ID: <7d30acd6-1f00-47d1-b7ed-05e7bdab119c@linaro.org>
-Date: Wed, 6 Dec 2023 18:33:53 +0100
+        Wed, 06 Dec 2023 09:35:55 -0800 (PST)
+Message-ID: <cfd9cbc6-5f66-4929-9afb-3a572e93e8ae@linaro.org>
+Date: Wed, 6 Dec 2023 18:35:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,19 +62,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] memory: brcmstb_dpfe: introduce version-specific
- compatible strings
+Subject: Re: [PATCH 2/6] dt-bindings: pwm: samsung: add specific compatible
+ for Tesla FSD
 Content-Language: en-US
-To: Florian Fainelli <florian.fainelli@broadcom.com>,
- Markus Mayer <mmayer@broadcom.com>, Rob Herring <robh+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
- Device Tree Mailing List <devicetree@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <20231205184741.3092376-1-mmayer@broadcom.com>
- <20231205184741.3092376-3-mmayer@broadcom.com>
- <7844ca22-df53-458d-9e3b-7b0758a80455@linaro.org>
- <cb1d5118-b4f6-46b3-814b-2edf16372d01@broadcom.com>
+To: Thierry Reding <thierry.reding@gmail.com>
+Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Wim Van Sebroeck
+ <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>,
+ linux-fsd@tesla.com, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+ linux-serial@vger.kernel.org, linux-watchdog@vger.kernel.org
+References: <20231205092229.19135-1-krzysztof.kozlowski@linaro.org>
+ <20231205092229.19135-3-krzysztof.kozlowski@linaro.org>
+ <ZXCeWmEO3PJiK0m5@orome.fritz.box>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -120,50 +125,42 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <cb1d5118-b4f6-46b3-814b-2edf16372d01@broadcom.com>
+In-Reply-To: <ZXCeWmEO3PJiK0m5@orome.fritz.box>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/12/2023 17:19, Florian Fainelli wrote:
-> 
-> 
-> On 12/6/2023 3:09 AM, Krzysztof Kozlowski wrote:
->> On 05/12/2023 19:47, Markus Mayer wrote:
->>> Introduce compatible strings brcm,dpfe-cpu-v1 through brcm,dpfe-cpu-v3
->>> to the Broadcom DPFE driver.
+On 06/12/2023 17:16, Thierry Reding wrote:
+> On Tue, Dec 05, 2023 at 10:22:25AM +0100, Krzysztof Kozlowski wrote:
+>> Tesla FSD is a derivative of Samsung Exynos SoC, thus just like the
+>> others it reuses several devices from older designs.  Historically we
+>> kept the old (block's) compatible only.  This works fine and there is no
+>> bug here, however guidelines expressed in
+>> Documentation/devicetree/bindings/writing-bindings.rst state that:
+>> 1. Compatibles should be specific.
+>> 2. We should add new compatibles in case of bugs or features.
 >>
->> No, why?
+>> Add Tesla FSD compatible specific to be used with an existing fallback.
 >>
->>>
->>> Signed-off-by: Markus Mayer <mmayer@broadcom.com>
->>> ---
->>>   drivers/memory/brcmstb_dpfe.c | 6 ++++++
->>>   1 file changed, 6 insertions(+)
->>>
->>> diff --git a/drivers/memory/brcmstb_dpfe.c b/drivers/memory/brcmstb_dpfe.c
->>> index a7ab3d377206..66876b409e59 100644
->>> --- a/drivers/memory/brcmstb_dpfe.c
->>> +++ b/drivers/memory/brcmstb_dpfe.c
->>> @@ -924,6 +924,12 @@ static const struct of_device_id brcmstb_dpfe_of_match[] = {
->>>   	{ .compatible = "brcm,bcm7271-dpfe-cpu", .data = &dpfe_api_old_v2 },
->>>   	{ .compatible = "brcm,bcm7278-dpfe-cpu", .data = &dpfe_api_old_v2 },
->>>   	{ .compatible = "brcm,bcm7211-dpfe-cpu", .data = &dpfe_api_new_v2 },
->>> +
->>> +	/* Match specific DCPU versions */
->>> +	{ .compatible = "brcm,dpfe-cpu-v1", .data = &dpfe_api_old_v2 },
->>> +	{ .compatible = "brcm,dpfe-cpu-v2", .data = &dpfe_api_new_v2 },
->>> +	{ .compatible = "brcm,dpfe-cpu-v3", .data = &dpfe_api_v3 },
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 >>
->> Pointless change.
+>> ---
+>>
+>> I propose to take the patch through Samsung SoC (me). See cover letter
+>> for explanation.
+>> ---
+>>  Documentation/devicetree/bindings/pwm/pwm-samsung.yaml | 1 +
+>>  1 file changed, 1 insertion(+)
 > 
-> Is it possible to ask you as a maintainer to stop having those knee jerk 
-> reactions and try to understand things a bit better, or simply request a 
-> better explanation from the submitter?
+> You point to the guidelines that say we should have specific compatible> strings, but then the string that you add seems very generic. Now, I'm
+> obviously not an expert on Tesla hardware, but just FSD seems to be
+> quite generic according to the internet. It seems like the chip derived
+> from Samsung used to be known as AP3/HW3, but there's now also AP4/HW4,
+> so I wonder if those differ in some way and if these shouldn't include
+> some sort of version/generation number.
 
-I asked: "Why?". None of the commits explain the rationale behind the
-change. None of them say why such change is needed. They all repeat what
-the patch is doing, which is pretty easy to see from the diff. The
-commit must answer the trickiest question: why are we doing this?
+That's the compatible chosen that time for entire platform, as a
+consensus, for all SoC components. Thus the PWM compatible is as
+specific as it can get.
 
 Best regards,
 Krzysztof
