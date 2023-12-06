@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-22218-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22215-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80F76806D4D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 12:05:11 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83945806D41
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 12:04:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B27881C20A11
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 11:05:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A66421C20A29
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 11:04:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 092F030D11;
-	Wed,  6 Dec 2023 11:05:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 247FE30CFC;
+	Wed,  6 Dec 2023 11:04:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BXge2c/g"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="La5qusJX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0287DE
-	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 03:02:39 -0800 (PST)
-Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-3316bb1303bso479685f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 03:02:39 -0800 (PST)
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4208119B7
+	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 03:03:13 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-3316d3d11e1so339596f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 03:03:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701860544; x=1702465344; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701860589; x=1702465389; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=EexcMWgdiK3biCzULTz+PkOjCv/ro+p5TLQhAtIHvmc=;
-        b=BXge2c/gCRB62XpEnj2agfX9neZqMEZGBoU42eY4vbFBDCG7zr9a+hx4jj7Ix3iYpU
-         lLmwefvSlSoIeOeZsG3T148yBO8EY4krTJG3Qyd0WJweEy+ud9j8FYjOoWNUPyUhq5I3
-         5kkfVsQHqwNVaDJ8aAyQ77xRKDbbJ21hYPKcHAG565GW0uXAG7tWXrTxqU7Nnmu81jEL
-         CC+bDzPIS/gHrcl40rDtEn8X/bcnZ+Se6Tk7JsEa9y91Qaq0lZsFm++4AZyTxVYq378s
-         16Ui3rZQbxGD5Gv4j/OI2kyc86WcpX+1YXxXQqS33f9PukGskZ0LzP9i9RRzZv6eqdlp
-         /jcg==
+        bh=TvIeZKCZ/iXdfcWBsHuAC4swO+sFcgH/SVXdldNcogE=;
+        b=La5qusJXRIQ1f/2hmMgrvptru1yS8J/a0K173d9hdZl62NFzJNPdR2CQa3tFGpQZc6
+         LYrGBWuBRKCpm+n8QbG/91uc1w9hIKCQynLJR+AjXj2bHJB5p4UuO7gUsQAThAKMUusD
+         AmWFGGUl15ckx97PjB3DDa+7ImI9Xe+sYCIlJO6PUtHyiFhAzlc/ZRTWegFAp/y4fnsE
+         Aoq9odpZzyPDZ8NUj0I4V+S5uoIQHpVWSzYk1tCM2j9t8TrS82SIiHeNVrW9QG09k+EX
+         ZyocERM0hPHX5Asc5jaGWdFKZvrQwJ7pkcN5Q5woKfYKLEzecsg837xzUjljHyQGH/+f
+         pC1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701860544; x=1702465344;
+        d=1e100.net; s=20230601; t=1701860589; x=1702465389;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EexcMWgdiK3biCzULTz+PkOjCv/ro+p5TLQhAtIHvmc=;
-        b=or0pTBFIE4PNVuyDvVP2kihxeqyAIOPCtFdWMYsIt9bWonD4uVMZ1KnS07HZ2QcghN
-         XK8S5zI+amUODS5+oMj+Mdp3Vju+tbpISTixhH4/fABaDRHoEozXI54dWhTNuHQPmdmG
-         aOaNtYkx0pT4B+b0hKv0zr+7Om64ilz7i+pLLG1X7O7IOGQ8DWRwowYZ6eM6SW5BnyZ2
-         ExxGbAb064PYa2KWJKU9wCZCPonDiA02sYPrkb3SJpEa/3IYbMZoIV4sviFWWzuMY0VS
-         JUrpPv+58bIw9oIGDyp37ifiRdTWMsALW/jn096QBdDCWdYPho3YvH+gnWo/waLN70/V
-         lMRQ==
-X-Gm-Message-State: AOJu0Yy2CujdCZCOtfI+Mt3NtrICuyEKrTJ0jTH5QJc0/9DVYcdvC8Jk
-	t4xqc0uFHyd+eZqNiAvRpBgGNA==
-X-Google-Smtp-Source: AGHT+IE3BQXjskTbgXE6b4Sc2a0dYbWjr4Q6R8hJ6wbxDPG96elKJBnVr9cDqROkXSs2DotTKfFu/w==
-X-Received: by 2002:adf:e545:0:b0:332:f81d:8dac with SMTP id z5-20020adfe545000000b00332f81d8dacmr469802wrm.67.1701860544568;
-        Wed, 06 Dec 2023 03:02:24 -0800 (PST)
+        bh=TvIeZKCZ/iXdfcWBsHuAC4swO+sFcgH/SVXdldNcogE=;
+        b=CvKOTOhVFW7E3fQj5ncSqnh8sCBoDvTJUX//zTYOITAnB4mDThPSLGQ3VXwGBAcWuM
+         4El1NuLiwr4ik9hK3rjxOBEo9bc0mCxovohi29q9JO/+4movpQzjwh2b2DGPb6/8kDd0
+         3JuRRzj4vn6llVMX5pRSIHVurT/14tKJ5eti/wBYOAljRVqVFR2RYmfckGchekTWw/L/
+         /3CRm6I6R97CK1WDwPddIBgMs1CmsD06PLkz93xG46/+5UeI7mpWUA+OFJyEi2azXtVl
+         yDMR644RPEO84rjK/mE8aN/bhf27APOn+FArNnHj95CQ5xs6OVmV9CEsJL5EIb9/+lAt
+         ALqA==
+X-Gm-Message-State: AOJu0YxfhjoMWtrFRoOWmVq9l5gOaWS79AXRC8Ds+X4EpTtZ4p0vVSI5
+	HhinHDQRSoKWRG+0SlcEF0ATFw==
+X-Google-Smtp-Source: AGHT+IF/NEr9Mf6vPGtKJNh2zlrnNAC1iTbKgLOzR4RCuy2YvYdgrjQo7GR5v1BtgWeP7rea7HEKOA==
+X-Received: by 2002:a5d:40d0:0:b0:333:411e:3e97 with SMTP id b16-20020a5d40d0000000b00333411e3e97mr418380wrq.57.1701860589130;
+        Wed, 06 Dec 2023 03:03:09 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id ba18-20020a0560001c1200b00333479734a7sm8669148wrb.99.2023.12.06.03.02.23
+        by smtp.gmail.com with ESMTPSA id ba18-20020a0560001c1200b00333479734a7sm8669148wrb.99.2023.12.06.03.03.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Dec 2023 03:02:24 -0800 (PST)
-Message-ID: <f1e4bd2b-b72c-43ab-91e0-facfb17b45df@linaro.org>
-Date: Wed, 6 Dec 2023 12:02:23 +0100
+        Wed, 06 Dec 2023 03:03:08 -0800 (PST)
+Message-ID: <6d58e60d-c85b-47a7-840e-47711ad208d5@linaro.org>
+Date: Wed, 6 Dec 2023 12:03:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,14 +62,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: lcdif: Properly describe the i.MX23
+Subject: Re: [PATCH] ASoC: dt-bindings: fsl,xcvr: Adjust the number of
  interrupts
 Content-Language: en-US
-To: Fabio Estevam <festevam@gmail.com>, marex@denx.de
-Cc: stefan@agner.ch, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, dri-devel@lists.freedesktop.org,
+To: Fabio Estevam <festevam@gmail.com>, broonie@kernel.org
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, viorel.suman@nxp.com, linux-sound@vger.kernel.org,
  devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
-References: <20231205184748.2103321-1-festevam@gmail.com>
+References: <20231205202015.2118980-1-festevam@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -115,65 +115,60 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231205184748.2103321-1-festevam@gmail.com>
+In-Reply-To: <20231205202015.2118980-1-festevam@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/12/2023 19:47, Fabio Estevam wrote:
+On 05/12/2023 21:20, Fabio Estevam wrote:
 > From: Fabio Estevam <festevam@denx.de>
 > 
-> i.MX23 has two LCDIF interrupts instead of a single one like other
-> i.MX devices.
+> Unlike i.MX8MP, i.MX93 has two XCVR interrupts.
 > 
-> Take this into account for properly describing the i.MX23 LCDIF
-> interrupts.
+> Describe the two interrupts for the i.MX93 to fix the following
+> dt-schema warning:
 > 
-> This fixes the following dt-schema warning:
-> 
-> imx23-olinuxino.dtb: lcdif@80030000: interrupts: [[46], [45]] is too long
-> 	from schema $id: http://devicetree.org/schemas/display/fsl,lcdif.yaml#
+> imx93-11x11-evk.dtb: xcvr@42680000: interrupts: [[0, 203, 4], [0, 204, 4]] is too long
+> 	from schema $id: http://devicetree.org/schemas/sound/fsl,xcvr.yaml#
 > 
 > Signed-off-by: Fabio Estevam <festevam@denx.de>
 > ---
-> Changes since v1:
-> - Fix typo in commit log (i.MX23 has two LCDIF interrupts).
+>  .../devicetree/bindings/sound/fsl,xcvr.yaml    | 18 +++++++++++++++++-
+>  1 file changed, 17 insertions(+), 1 deletion(-)
 > 
->  .../devicetree/bindings/display/fsl,lcdif.yaml   | 16 +++++++++++++++-
->  1 file changed, 15 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-> index fc11ab5fc465..c4228b893766 100644
-> --- a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-> +++ b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-> @@ -51,7 +51,10 @@ properties:
->      minItems: 1
+> diff --git a/Documentation/devicetree/bindings/sound/fsl,xcvr.yaml b/Documentation/devicetree/bindings/sound/fsl,xcvr.yaml
+> index 799b362ba498..2db69a953afa 100644
+> --- a/Documentation/devicetree/bindings/sound/fsl,xcvr.yaml
+> +++ b/Documentation/devicetree/bindings/sound/fsl,xcvr.yaml
+> @@ -38,7 +38,10 @@ properties:
+>        - const: txfifo
 >  
 >    interrupts:
 > -    maxItems: 1
 > +    items:
-> +      - description: LCDIF DMA interrupt
-> +      - description: LCDIF Error interrupt
+> +      - description: WAKEUPMIX Audio XCVR Interrupt 1
+> +      - description: WAKEUPMIX Audio XCVR Interrupt 2
 > +    minItems: 1
 >  
->    power-domains:
->      maxItems: 1
-> @@ -131,6 +134,17 @@ allOf:
->      then:
->        required:
->          - power-domains
+>    clocks:
+>      items:
+> @@ -78,6 +81,19 @@ required:
+>    - dma-names
+>    - resets
+>  
+> +allOf:
 > +  - if:
 > +      properties:
 > +        compatible:
 > +          contains:
 > +            enum:
-> +              - fsl,imx23-lcdif
+> +              - fsl,imx93-xcvr
 > +    then:
 > +      properties:
 > +        interrupts:
 > +          minItems: 2
 > +          maxItems: 2
 
-Either missing else: or update of other variants to limit interrupts to 1.
+Same comment as your lcdif. Why all devices support now two interrupts?
 
 Best regards,
 Krzysztof
