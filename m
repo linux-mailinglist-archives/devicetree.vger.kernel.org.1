@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-22227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22228-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A79EF806D9D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 12:14:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67038806D9E
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 12:16:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CB2641C20996
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 11:14:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 17435281BC9
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 11:16:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05D2C315AD;
-	Wed,  6 Dec 2023 11:14:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6870315BB;
+	Wed,  6 Dec 2023 11:16:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jxw/tr49"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RkrszQg3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E311CB9
-	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 03:14:16 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-40c0a03eb87so38365335e9.3
-        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 03:14:16 -0800 (PST)
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDEFCB9
+	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 03:16:36 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-40c2308faedso2530775e9.1
+        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 03:16:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701861255; x=1702466055; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701861395; x=1702466195; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=kng9q6jpBte2BpPZTnl8p488FNIB6Sdaf7AheLEsVcg=;
-        b=jxw/tr49k3EIbbvvpcLcYy6sqWMbR3Ai1soOtHdqrXODUP4/tXSn6ptq5EX74Ps4uP
-         PLt6NR+4I8XaJamDGsWFlJmoNCghVX3oRKFNyCyQJ8vo46RAv+uSOsSd2ER91pdFbwQv
-         BQpukzwV3pU/ca1twxKlumGA2QxAc1ftabLZUD5ZnN6jN2duERCWoxSxS/l/TxyFlBAV
-         JJdFzzp9+rri4lrVqV8JBgb0MQrM0G/PjK2Qkc0ZvFThhon8/j2ThsUH/lEr9pu3vJaq
-         zXTwkO6NzplKTh0FmiJgP/bQULfBEyfhVGZrIdiCxIU6xeuPdUx5YLd/TsWPO59qOeFp
-         ha5A==
+        bh=lQy1yqLIhtdVTjzhd73bELJGP9Mk5TCXTzpoe5Yb6ho=;
+        b=RkrszQg3EhnJ4HRE5Xv21N9+K6MjYu3Jar/7YRm7hA4gaWVm2geAXotqa7hp0x9K67
+         BzQNnN05YZAeZkHn+FKJ27zZg2AYaiuAydr4pgsH84AH64xGH2lxcOjnhptV3DhRzDG/
+         3D70EQhuKw+KZhkM8dPVtMizfQoBn3TCUf1yYl4Bk0T86SYxKvTQilqNFK4XznWxOdaz
+         ZaMHGfKF5yqa+BVuho+gBRCBXbAI25e7lv9GvbK8P2IMUpEeJ2e0Tkao6CYt4N21CGMk
+         nJLD0DQwWRCWYHmYcvGYe/EAAYlRDEhzNEEAnl6obrZ8C+4VbFo8VcM11CrwcI3/QaPt
+         US0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701861255; x=1702466055;
+        d=1e100.net; s=20230601; t=1701861395; x=1702466195;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kng9q6jpBte2BpPZTnl8p488FNIB6Sdaf7AheLEsVcg=;
-        b=Csql8NeLhkEjCQSPWG52iS/byhf/IRyDXNjd225hj32PzSLe6bFKwqDfETiszXJZfp
-         cE1v6/ZcLraai0NArvFTEuh9YWIexQY9L3gS4j8aqXbXkMNUVDLVA/S189lSqlxibESm
-         f4O6L4bv2MqomgSNQw8VwMRza1j/qF9DCtGAIwLAiEx6de7Gc9smnPdmUE/87wJXuzBz
-         pVCYdkeaaJB8F+Kvt6Q1ErVw6Soqarix35xYD66aOK5RRZYCUtd8dhr6woS9KBR/vz8o
-         RPzVwA2+NuN1djZSUO17YSJG6dGVVtlz8TJ+YghVe+ZlDVjBRkKcu2gtfG0Pp8vA+M0P
-         AtRg==
-X-Gm-Message-State: AOJu0YxMvZGQTr4i//VR3Eo5bcUooTALqFjGE/ch/zqf0EB9C0eGOsTC
-	p/O9g0+fmgVin5d0dhibU2JCuw==
-X-Google-Smtp-Source: AGHT+IFle3hthZsc58JUStmaiUdSx3Jra8GBvZQfPPSsDJguhowXoIr17J/jCxoeg+OXKa5QGL85RA==
-X-Received: by 2002:a05:600c:1f0c:b0:40b:5e1c:2fa3 with SMTP id bd12-20020a05600c1f0c00b0040b5e1c2fa3mr237592wmb.51.1701861255375;
-        Wed, 06 Dec 2023 03:14:15 -0800 (PST)
+        bh=lQy1yqLIhtdVTjzhd73bELJGP9Mk5TCXTzpoe5Yb6ho=;
+        b=IynMVQPhqbz/UveFBJcbmXsymv/ghvCLgzQ7zPe8ccAB956UEDubFJpGT/Wy9leTW+
+         qyNEkkGaABBy8DIh+qYkQLp6iW3xUbhC6ktme56WQImizqo0v+mEsvzm+AwjN84H94mc
+         etWNnmLaLDeaJPXf5ANu6T5Cbb7sWoii9BxG8t71XseaXN/en1luU4KG+0K3YfQHFnYt
+         2cvce1Kz/3StfyEN1/m6W9Jk39pTUXVarYMHBZSXjKAmk5f2BZhMTKZtHqoXjlsIdEu7
+         mv2AaS7lp/8nicBV2K+vxE9bDlKDUleu/5md69dnh9uCdA2qkvntKyFGQBKu4NEJIF+v
+         zf0Q==
+X-Gm-Message-State: AOJu0YwdlFzRX9qyJHwPs846KzRMeAeBTaZKwTQrgvsly25NztH4eAzM
+	M/4avZRTaC0fcbNzpYDlIFC9sw==
+X-Google-Smtp-Source: AGHT+IHmPdeNsJoLoK1kHoXKi4Dhj0UyCdjmV+akrc7dSxcBW1O+qH7AQO5r1kzLlqLeow62ppSXrw==
+X-Received: by 2002:a05:600c:220a:b0:40b:5e59:c557 with SMTP id z10-20020a05600c220a00b0040b5e59c557mr424603wml.129.1701861395227;
+        Wed, 06 Dec 2023 03:16:35 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id j37-20020a05600c1c2500b0040b3515cdf8sm21645411wms.7.2023.12.06.03.14.14
+        by smtp.gmail.com with ESMTPSA id az39-20020a05600c602700b0040c1c269264sm1706232wmb.40.2023.12.06.03.16.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Dec 2023 03:14:15 -0800 (PST)
-Message-ID: <28531f53-3213-4d12-b4c8-d91cfd0461d5@linaro.org>
-Date: Wed, 6 Dec 2023 12:14:14 +0100
+        Wed, 06 Dec 2023 03:16:34 -0800 (PST)
+Message-ID: <a5d8b8e2-8d6a-45ae-ab92-18695a76ba53@linaro.org>
+Date: Wed, 6 Dec 2023 12:16:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,15 +62,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/4] memory: brcmstb_dpfe: support DPFE API v4
+Subject: Re: [PATCH 1/2] dt-bindings: media: Remove K3 Family Prefix from
+ Compatible
 Content-Language: en-US
-To: Markus Mayer <mmayer@broadcom.com>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
- Device Tree Mailing List <devicetree@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <20231205184741.3092376-1-mmayer@broadcom.com>
+To: "Brnich, Brandon" <b-brnich@ti.com>,
+ Geert Uytterhoeven <geert@linux-m68k.org>,
+ "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ Sebastian Fricke <sebastian.fricke@collabora.com>,
+ Nas Chung <nas.chung@chipsnmedia.com>
+Cc: "Menon, Nishanth" <nm@ti.com>, "Etheridge, Darren" <detheridge@ti.com>
+References: <5240cd51831a471f859a0440f5405c51@ti.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -116,29 +118,28 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231205184741.3092376-1-mmayer@broadcom.com>
+In-Reply-To: <5240cd51831a471f859a0440f5405c51@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/12/2023 19:47, Markus Mayer wrote:
-> It has become necessary to distinguish between the various DPFE API
-> versions by version number. Having just chip-specific compatible strings
-> and one generic version is no longer meeting our needs.
+On 05/12/2023 19:19, Brnich, Brandon wrote:
+> Hello Krzysztof,
 > 
-> Also, a new DPFE API version, v4, needs to be supported by the driver.
+>> On 04/12/2023 19:14, Brandon Brnich wrote:
+>>> K3 family prefix is not included in other TI compatible strings.
+>>> Remove this prefix to keep naming convention consistent.
+>>>
+>>> Fixes: de4b9f7e371a ("dt-bindings: media: wave5: add yaml devicetree
+>>> bindings")
+>>
+>> This change breaks the ABI, so does it mean it was not yet released?
 > 
-> As a result, an intermediate compatible string format is being
+> This driver has not yet made it into releases. It currently resides in linux-next. 
 
-Introducing new SoC does not justify this. It's not correlated, not
-related. Stop using some fake arguments to introduce something which we
-do not want: versions.
+Why nothing in commit changelog or cover letter explains it? Then you
+get obvious questions...
 
-> introduced: brcm,dpfe-cpu-v<N> where <N> represents the API version
-> number. This is more specific than the catch-all "brcm,dpfe-cpu" and
-> more generic than chip-specific compatible strings, such as
-> "brcm,bcm7271-dpfe-cpu".
 
-NAK
 
 Best regards,
 Krzysztof
