@@ -1,68 +1,54 @@
-Return-Path: <devicetree+bounces-22297-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22298-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11793807100
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 14:38:27 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D786880710A
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 14:42:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 344B71C20EAF
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 13:38:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5F316B20E1E
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 13:42:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2ACE39FFF;
-	Wed,  6 Dec 2023 13:38:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A52B39FF1;
+	Wed,  6 Dec 2023 13:42:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28AC9D50;
-	Wed,  6 Dec 2023 05:38:19 -0800 (PST)
-Received: by mail-oo1-f41.google.com with SMTP id 006d021491bc7-58d06bfadf8so4780276eaf.1;
-        Wed, 06 Dec 2023 05:38:19 -0800 (PST)
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 707AAC7;
+	Wed,  6 Dec 2023 05:42:47 -0800 (PST)
+Received: by mail-oi1-f175.google.com with SMTP id 5614622812f47-3b8958b32a2so4220841b6e.2;
+        Wed, 06 Dec 2023 05:42:47 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701869898; x=1702474698;
+        d=1e100.net; s=20230601; t=1701870166; x=1702474966;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=wXJLPYyl6Xf8EJB98w2kLHC6dz7zDdmjsJDaz1+tWDQ=;
-        b=bJRRh14wQkJ7+C15rKWoxLLgZOB1xQeyCaqxJr+cBnJMrXCFwBcbCeoFVoMrkv2spd
-         ZPloG6uLUbAA8XmAzTaqVK0HuozEXbg3nhd3NRPCuGgE8pfKuRzivaE7hPgSPy2DjwHg
-         sl9zYltBJFtbapkiAPOqKq5ALxnhdnCFMTntL8ewW9fJFSvvdochMAUjRYDlO5+rTNQs
-         R5D+ug9iZ/BzNF87w+tJUjvr25/87dxRdhUYoSQ4iURC/AW/VlWIwEfylCsCqNUYa0Cb
-         ZeM8YeAO+q1w5E/od+VD5SX5Qt3/VnhOXKmFzA+tfZQWoBvusCi4e7T5yXpcB+lbHkyl
-         knQQ==
-X-Gm-Message-State: AOJu0YzBwwaONAqp8CA+aflP7fSqLLNcEBhjvl631aT0erEri5SAb3WG
-	Zdew7g6ijuFjaTxC7pTYCg==
-X-Google-Smtp-Source: AGHT+IF/LAcnj1J3TR60tozX4/oUnmK8PyZL0iXhjSaODyz/Go3KIoK2mX4OzhZOy/BkcsaB8Zqq1g==
-X-Received: by 2002:a4a:9197:0:b0:58e:3275:3e4b with SMTP id d23-20020a4a9197000000b0058e32753e4bmr752179ooh.19.1701869898302;
-        Wed, 06 Dec 2023 05:38:18 -0800 (PST)
+        bh=uLzpQ4fOC8RLmPkow4CQkCwl/Mdnw93sW11GlybnYgs=;
+        b=ZH4AezgBVO9Cg+oP++6voEmQ5G67m7jKi7sUbRFbAf/BJABErhbodQYu0LOGidapUX
+         wNP2/FdaP+/muzCAdhzMADkjOH006IbE+dGDpMp8y7gkFaygUc4Le1P4xx86beqY3hz3
+         Q75pSVKPtsrxlKEjNn3bvd0aKe03yVUpOE5V7hfVtzfCctWNdU3l2+f64mTDdzcEeS0Z
+         ESwrmqveYKrZUVOnCpXQk6TBAGobJuxHLHsxS/bHU708tUAn0/7DNliIymdGeULpmPRO
+         duB0jTysqO2WoXdZY0+5BDKTs1zil8fqAgT/JzJdLLtQQ0fAnrjLMAluUakOHHhb7v3k
+         Yniw==
+X-Gm-Message-State: AOJu0YykRCxkFm5NdaH/KI10B9fGtXhzYQRg5+E21MkXpao05P5EUyd5
+	bhouG0UO6OU9l1Bk6sPotQ==
+X-Google-Smtp-Source: AGHT+IE7PnaaolCnZdgfvQMGg6RBkpYWak6PaCEiL9P2gMCYQYxnLE6AEQWyIP3OQXfLn3puL5Lwpw==
+X-Received: by 2002:a05:6808:1410:b0:3b8:63aa:826f with SMTP id w16-20020a056808141000b003b863aa826fmr1470443oiv.25.1701870166732;
+        Wed, 06 Dec 2023 05:42:46 -0800 (PST)
 Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id v14-20020a4a8c4e000000b005840b5783a1sm2764109ooj.43.2023.12.06.05.38.16
+        by smtp.gmail.com with ESMTPSA id o27-20020a05680803db00b003b8388ffaffsm2544248oie.41.2023.12.06.05.42.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Dec 2023 05:38:17 -0800 (PST)
-Received: (nullmailer pid 1955863 invoked by uid 1000);
-	Wed, 06 Dec 2023 13:38:16 -0000
-Date: Wed, 6 Dec 2023 07:38:16 -0600
+        Wed, 06 Dec 2023 05:42:46 -0800 (PST)
+Received: (nullmailer pid 1999706 invoked by uid 1000);
+	Wed, 06 Dec 2023 13:42:45 -0000
+Date: Wed, 6 Dec 2023 07:42:45 -0600
 From: Rob Herring <robh@kernel.org>
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>, 
-	Sean Wang <sean.wang@mediatek.com>, Mark Lee <Mark-MC.Lee@mediatek.com>, 
-	Lorenzo Bianconi <lorenzo@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Andrew Lunn <andrew@lunn.ch>, 
-	Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
-	Alexander Couzens <lynxis@fe80.eu>, Qingfang Deng <dqfext@gmail.com>, 
-	SkyLake Huang <SkyLake.Huang@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org
-Subject: Re: [RFC PATCH v2 7/8] dt-bindings: net: mediatek,net: fix and
- complete mt7988-eth binding
-Message-ID: <20231206133816.GA1914715-robh@kernel.org>
-References: <cover.1701826319.git.daniel@makrotopia.org>
- <567c6aaa64ecb4872056bc0105c70153fd9d9b50.1701826319.git.daniel@makrotopia.org>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Bjorn Andersson <andersson@kernel.org>, linux-kernel@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>, Andy Gross <agross@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawn.guo@linaro.org>, Marc Zyngier <maz@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, linux-arm-msm@vger.kernel.org, Marijn Suijten <marijn.suijten@somainline.org>
+Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: Allow
+ #power-domain-cells
+Message-ID: <170187016332.1999400.6374393677018050947.robh@kernel.org>
+References: <20231129-topic-mpmbindingspd-v2-1-acbe909ceee1@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,258 +57,30 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <567c6aaa64ecb4872056bc0105c70153fd9d9b50.1701826319.git.daniel@makrotopia.org>
+In-Reply-To: <20231129-topic-mpmbindingspd-v2-1-acbe909ceee1@linaro.org>
 
-On Wed, Dec 06, 2023 at 01:45:02AM +0000, Daniel Golle wrote:
-> Complete support for MT7988 which comes with 3 MACs, SRAM for DMA
-> descriptors and uses a dedicated PCS for the SerDes units.
+
+On Wed, 29 Nov 2023 20:12:31 +0100, Konrad Dybcio wrote:
+> MPM provides a single genpd. Allow #power-domain-cells = <0>.
 > 
-> Fixes: c94a9aabec36 ("dt-bindings: net: mediatek,net: add mt7988-eth binding")
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> Fixes: 54fc9851c0e0 ("dt-bindings: interrupt-controller: Add Qualcomm MPM support")
+> Acked-by: Shawn Guo <shawn.guo@linaro.org>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
->  .../devicetree/bindings/net/mediatek,net.yaml | 148 +++++++++++++++++-
->  1 file changed, 146 insertions(+), 2 deletions(-)
+> Changes since v1:
+> - Add this property to the example
+> - Pick up tags
 > 
-> diff --git a/Documentation/devicetree/bindings/net/mediatek,net.yaml b/Documentation/devicetree/bindings/net/mediatek,net.yaml
-> index 030d106bc7d3f..ca0667c51c1c2 100644
-> --- a/Documentation/devicetree/bindings/net/mediatek,net.yaml
-> +++ b/Documentation/devicetree/bindings/net/mediatek,net.yaml
-> @@ -28,7 +28,10 @@ properties:
->        - ralink,rt5350-eth
->  
->    reg:
-> -    maxItems: 1
-> +    minItems: 1
-> +    items:
-> +      - description: Base of registers used to program the ethernet controller
-> +      - description: SRAM region used for DMA descriptors
+> Link to v1: https://lore.kernel.org/linux-arm-msm/20230308011705.291337-1-konrad.dybcio@linaro.org/#t
+> 
+> Marc/Krzysztof, can we still pick this up for 6.7?
+> It's been stale for quite a while..
+> ---
+>  Documentation/devicetree/bindings/interrupt-controller/qcom,mpm.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
 
-Is this a dedicated SRAM for this purpose, or a common one partitioned 
-up. mmio-sram and a phandle is how to do the latter.
+Applied, thanks!
 
->  
->    clocks: true
->    clock-names: true
-> @@ -115,6 +118,9 @@ allOf:
->                - mediatek,mt7623-eth
->      then:
->        properties:
-> +        reg:
-> +          maxItems: 1
-> +
->          interrupts:
->            maxItems: 3
->  
-> @@ -149,6 +155,9 @@ allOf:
->                - mediatek,mt7621-eth
->      then:
->        properties:
-> +        reg:
-> +          maxItems: 1
-> +
->          interrupts:
->            maxItems: 1
->  
-> @@ -174,6 +183,9 @@ allOf:
->              const: mediatek,mt7622-eth
->      then:
->        properties:
-> +        reg:
-> +          maxItems: 1
-> +
->          interrupts:
->            maxItems: 3
->  
-> @@ -215,6 +227,9 @@ allOf:
->              const: mediatek,mt7629-eth
->      then:
->        properties:
-> +        reg:
-> +          maxItems: 1
-> +
->          interrupts:
->            maxItems: 3
->  
-> @@ -257,6 +272,9 @@ allOf:
->              const: mediatek,mt7981-eth
->      then:
->        properties:
-> +        reg:
-> +          maxItems: 1
-> +
->          interrupts:
->            minItems: 4
->  
-> @@ -295,6 +313,9 @@ allOf:
->              const: mediatek,mt7986-eth
->      then:
->        properties:
-> +        reg:
-> +          maxItems: 1
-> +
->          interrupts:
->            minItems: 4
->  
-> @@ -333,8 +354,13 @@ allOf:
->              const: mediatek,mt7988-eth
->      then:
->        properties:
-> +        reg:
-> +          maxItems: 2
-
-Don't need maxItems here. That's already the max.
-
-> +          minItems: 2
-> +
->          interrupts:
->            minItems: 4
-> +          maxItems: 4
->  
->          clocks:
->            minItems: 24
-> @@ -368,7 +394,7 @@ allOf:
->              - const: top_netsys_warp_sel
->  
->  patternProperties:
-> -  "^mac@[0-1]$":
-> +  "^mac@[0-2]$":
->      type: object
->      unevaluatedProperties: false
->      allOf:
-> @@ -382,6 +408,9 @@ patternProperties:
->        reg:
->          maxItems: 1
->  
-> +      phys:
-> +        maxItems: 1
-> +
->      required:
->        - reg
->        - compatible
-> @@ -559,3 +588,118 @@ examples:
->          };
->        };
->      };
-> +
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/clock/mediatek,mt7988-clk.h>
-
-
-Why is fixing the binding needing a new example? Is this example really 
-different enough to justify a whole other example?
-
-> +
-> +    soc {
-> +      #address-cells = <2>;
-> +      #size-cells = <2>;
-> +
-> +      ethernet@15100000 {
-> +        compatible = "mediatek,mt7988-eth";
-> +        reg = <0 0x15100000 0 0x80000>, <0 0x15400000 0 0x380000>;
-> +        interrupts = <GIC_SPI 196 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 197 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 198 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 199 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +        clocks = <&ethsys CLK_ETHDMA_XGP1_EN>,
-> +                 <&ethsys CLK_ETHDMA_XGP2_EN>,
-> +                 <&ethsys CLK_ETHDMA_XGP3_EN>,
-> +                 <&ethsys CLK_ETHDMA_FE_EN>,
-> +                 <&ethsys CLK_ETHDMA_GP2_EN>,
-> +                 <&ethsys CLK_ETHDMA_GP1_EN>,
-> +                 <&ethsys CLK_ETHDMA_GP3_EN>,
-> +                 <&ethsys CLK_ETHDMA_ESW_EN>,
-> +                 <&ethsys CLK_ETHDMA_CRYPT0_EN>,
-> +                 <&ethwarp CLK_ETHWARP_WOCPU2_EN>,
-> +                 <&ethwarp CLK_ETHWARP_WOCPU1_EN>,
-> +                 <&ethwarp CLK_ETHWARP_WOCPU0_EN>,
-> +                 <&topckgen CLK_TOP_ETH_GMII_SEL>,
-> +                 <&topckgen CLK_TOP_ETH_REFCK_50M_SEL>,
-> +                 <&topckgen CLK_TOP_ETH_SYS_200M_SEL>,
-> +                 <&topckgen CLK_TOP_ETH_SYS_SEL>,
-> +                 <&topckgen CLK_TOP_ETH_XGMII_SEL>,
-> +                 <&topckgen CLK_TOP_ETH_MII_SEL>,
-> +                 <&topckgen CLK_TOP_NETSYS_SEL>,
-> +                 <&topckgen CLK_TOP_NETSYS_500M_SEL>,
-> +                 <&topckgen CLK_TOP_NETSYS_PAO_2X_SEL>,
-> +                 <&topckgen CLK_TOP_NETSYS_SYNC_250M_SEL>,
-> +                 <&topckgen CLK_TOP_NETSYS_PPEFB_250M_SEL>,
-> +                 <&topckgen CLK_TOP_NETSYS_WARP_SEL>;
-> +
-> +        clock-names = "xgp1", "xgp2", "xgp3", "fe", "gp2", "gp1",
-> +                      "gp3", "esw", "crypto",
-> +                      "ethwarp_wocpu2", "ethwarp_wocpu1",
-> +                      "ethwarp_wocpu0", "top_eth_gmii_sel",
-> +                      "top_eth_refck_50m_sel", "top_eth_sys_200m_sel",
-> +                      "top_eth_sys_sel", "top_eth_xgmii_sel",
-> +                      "top_eth_mii_sel", "top_netsys_sel",
-> +                      "top_netsys_500m_sel", "top_netsys_pao_2x_sel",
-> +                      "top_netsys_sync_250m_sel",
-> +                      "top_netsys_ppefb_250m_sel",
-> +                      "top_netsys_warp_sel";
-> +        assigned-clocks = <&topckgen CLK_TOP_NETSYS_2X_SEL>,
-> +                          <&topckgen CLK_TOP_NETSYS_GSW_SEL>,
-> +                          <&topckgen CLK_TOP_USXGMII_SBUS_0_SEL>,
-> +                          <&topckgen CLK_TOP_USXGMII_SBUS_1_SEL>,
-> +                          <&topckgen CLK_TOP_SGM_0_SEL>,
-> +                          <&topckgen CLK_TOP_SGM_1_SEL>;
-> +        assigned-clock-parents = <&apmixedsys CLK_APMIXED_NET2PLL>,
-> +                                 <&topckgen CLK_TOP_NET1PLL_D4>,
-> +                                 <&topckgen CLK_TOP_NET1PLL_D8_D4>,
-> +                                 <&topckgen CLK_TOP_NET1PLL_D8_D4>,
-> +                                 <&apmixedsys CLK_APMIXED_SGMPLL>,
-> +                                 <&apmixedsys CLK_APMIXED_SGMPLL>;
-> +        mediatek,ethsys = <&ethsys>;
-> +        mediatek,infracfg = <&topmisc>;
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        mac@0 {
-> +          compatible = "mediatek,eth-mac";
-> +          reg = <0>;
-> +          phy-mode = "internal"; /* CPU port of built-in 1GE switch */
-> +
-> +          fixed-link {
-> +            speed = <10000>;
-> +            full-duplex;
-> +            pause;
-> +          };
-> +        };
-> +
-> +        mac@1 {
-> +          compatible = "mediatek,eth-mac";
-> +          reg = <1>;
-> +          phy-handle = <&int_2p5g_phy>;
-> +        };
-> +
-> +        mac@2 {
-> +          compatible = "mediatek,eth-mac";
-> +          reg = <2>;
-> +          pcs-handle = <&usxgmiisys0>;
-> +          phy-handle = <&phy0>;
-> +        };
-> +
-> +        mdio_bus: mdio-bus {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +
-> +          /* external PHY */
-> +          phy0: ethernet-phy@0 {
-> +            reg = <0>;
-> +            compatible = "ethernet-phy-ieee802.3-c45";
-> +          };
-> +
-> +          /* internal 2.5G PHY */
-> +          int_2p5g_phy: ethernet-phy@15 {
-> +            reg = <15>;
-> +            compatible = "ethernet-phy-ieee802.3-c45";
-> +            phy-mode = "internal";
-> +          };
-> +        };
-> +      };
-> +    };
-> -- 
-> 2.43.0
 
