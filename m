@@ -1,278 +1,215 @@
-Return-Path: <devicetree+bounces-22413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22408-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C95198074C8
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 17:20:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DC9B8074AE
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 17:16:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 79143281D3D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 16:20:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 092731F20FCA
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 16:16:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AD3246540;
-	Wed,  6 Dec 2023 16:20:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01A724652F;
+	Wed,  6 Dec 2023 16:16:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="wyFHeQ65"
 X-Original-To: devicetree@vger.kernel.org
-X-Greylist: delayed 386 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 06 Dec 2023 08:20:05 PST
-Received: from pegase1.c-s.fr (pegase1.c-s.fr [93.17.236.30])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FF9618D
-	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 08:20:05 -0800 (PST)
-Received: from localhost (mailhub3.si.c-s.fr [192.168.12.233])
-	by localhost (Postfix) with ESMTP id 4SljBX2kFZz9vCD;
-	Wed,  6 Dec 2023 17:13:40 +0100 (CET)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from pegase1.c-s.fr ([192.168.12.234])
-	by localhost (pegase1.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 3FYUCo95Fuy9; Wed,  6 Dec 2023 17:13:40 +0100 (CET)
-Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
-	by pegase1.c-s.fr (Postfix) with ESMTP id 4SljBR3YHLz9vCL;
-	Wed,  6 Dec 2023 17:13:35 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-	by messagerie.si.c-s.fr (Postfix) with ESMTP id 766AF8B768;
-	Wed,  6 Dec 2023 17:13:35 +0100 (CET)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from messagerie.si.c-s.fr ([127.0.0.1])
-	by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
-	with ESMTP id v283c70XfHb5; Wed,  6 Dec 2023 17:13:35 +0100 (CET)
-Received: from PO20335.idsi0.si.c-s.fr (unknown [192.168.233.46])
-	by messagerie.si.c-s.fr (Postfix) with ESMTP id EA1F58B774;
-	Wed,  6 Dec 2023 17:13:34 +0100 (CET)
-From: Christophe Leroy <christophe.leroy@csgroup.eu>
-To: Michael Ellerman <mpe@ellerman.id.au>,
-	Nicholas Piggin <npiggin@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>
-Cc: Christophe Leroy <christophe.leroy@csgroup.eu>,
-	linux-kernel@vger.kernel.org,
-	linuxppc-dev@lists.ozlabs.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v1 4/4] powerpc: Stop using of_root
-Date: Wed,  6 Dec 2023 17:13:35 +0100
-Message-ID: <b2f23f982ef414f0eaf7c55ccb79f30bec3c86cd.1701878821.git.christophe.leroy@csgroup.eu>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <e6cf01d41502b15e688b6f5aa5c3b68c62b8ac64.1701878821.git.christophe.leroy@csgroup.eu>
-References: <e6cf01d41502b15e688b6f5aa5c3b68c62b8ac64.1701878821.git.christophe.leroy@csgroup.eu>
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B95A9122;
+	Wed,  6 Dec 2023 08:16:13 -0800 (PST)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B6GFSLJ010708;
+	Wed, 6 Dec 2023 10:15:28 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1701879328;
+	bh=aaEOnLvVa7qfwFIn7wOtUQ9a7L3RjZtWVhy9LotV1y4=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=wyFHeQ653VSHz5cy2RH/tJzTLkUK3dDtom6lStSJbZwufmD2646cXCxAKdbIBAR4i
+	 +F+6IP+afRDXzm4mKfwdSiuNoXwfTi7ltsHeeKLxXFblrRwTt8P5jM53IrH5aTgHKJ
+	 d+nXGWdzUWMDCHtbquX+rrNUjbkWyDmncQVWbc+E=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B6GFSGb093935
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 6 Dec 2023 10:15:28 -0600
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 6
+ Dec 2023 10:15:27 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 6 Dec 2023 10:15:28 -0600
+Received: from [10.249.36.163] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B6GFQqs123291;
+	Wed, 6 Dec 2023 10:15:26 -0600
+Message-ID: <8328bec9-a963-4f8a-ae03-a531749a30db@ti.com>
+Date: Wed, 6 Dec 2023 10:15:26 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1701879211; l=7716; i=christophe.leroy@csgroup.eu; s=20211009; h=from:subject:message-id; bh=77K0delwMi3OukRKKy6/1eRhfB22ltpHavBgqxRwed0=; b=FikTP9d7zk0WKhQnlHzOxXVSIGyQ2yiTKRltLPzyysffyCZU06/ORHO/bhHbHJxpiDyUN9IB7 HXx+K1oL00MD2Li2OjqP0XRY+7WMLtTspSWxZUMVgMBxwdcbi2Fl0cV
-X-Developer-Key: i=christophe.leroy@csgroup.eu; a=ed25519; pk=HIzTzUj91asvincQGOFx6+ZF5AoUuP9GdOtQChs7Mm0=
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 01/10] dt-bindings: gpu: Add PowerVR Series5 SGX GPUs
+To: Conor Dooley <conor@kernel.org>,
+        "H. Nikolaus Schaller"
+	<hns@goldelico.com>
+CC: Frank Binns <frank.binns@imgtec.com>,
+        Donald Robson
+	<donald.robson@imgtec.com>,
+        Matt Coster <matt.coster@imgtec.com>, Adam Ford
+	<aford173@gmail.com>,
+        Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
+        Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard
+	<mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        =?UTF-8?Q?Beno=C3=AEt_Cousson?=
+	<bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>, Nishanth Menon
+	<nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo
+	<kristo@kernel.org>, Paul Cercueil <paul@crapouillou.net>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-sunxi@lists.linux.dev>, <linux-omap@vger.kernel.org>,
+        <linux-mips@vger.kernel.org>
+References: <20231204182245.33683-1-afd@ti.com>
+ <20231204182245.33683-2-afd@ti.com>
+ <CFF198DA-5C42-425E-86F4-759629489ECB@goldelico.com>
+ <cb590a13-e0ff-49d9-8583-be613ad50dc5@ti.com>
+ <FE0DBA5E-95A5-4C27-9F69-D1D8BDF56EC3@goldelico.com>
+ <20231206-wolverine-paprika-0674ca01e1f2@spud>
+Content-Language: en-US
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <20231206-wolverine-paprika-0674ca01e1f2@spud>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Replace all usages of of_root by of_find_node_by_path("/")
+On 12/6/23 10:02 AM, Conor Dooley wrote:
+> On Tue, Dec 05, 2023 at 07:04:05PM +0100, H. Nikolaus Schaller wrote:
+>>> Am 05.12.2023 um 18:33 schrieb Andrew Davis <afd@ti.com>:
+>>>
+>>> On 12/5/23 2:17 AM, H. Nikolaus Schaller wrote:
+>>>>> +          - enum:
+>>>>> +              - ti,omap3430-gpu # Rev 121
+>>>>> +              - ti,omap3630-gpu # Rev 125
+>>>> Is the "Rev 121" and "Rev 125" a property of the SoC integration (clock/reset/power
+>>>> hookup etc.) or of the integrated SGX core?
+>>>
+>>> The Rev is a property of the SGX core, not the SoC integration.
+>>
+>> Then, it should belong there and not be a comment of the ti,omap*-gpu record.
+>> In this way it does not seem to be a proper hardware description.
+>>
+>> BTW: there are examples where the revision is part of the compatible string, even
+>> if the (Linux) driver makes no use of it:
+>>
+>> drivers/net/ethernet/xilinx/xilinx_emaclite.c
+> 
+> AFAICT these Xilinx devices that put the revisions in the compatible are
+> a different case - they're "soft" IP intended for use in the fabric of
+> an FPGA, and assigning a device specific compatible there does not make
+> sense.
+> 
+> In this case it appears that the revision is completely known once you
+> see "ti,omap3630-gpu", so encoding the extra "121" into the compatible
+> string is not required.
+> 
+>>
+>>> But it seems that
+>>> compatible string is being used to define both (as we see being debated in the other
+>>> thread on this series).
+>>>
+>>>> In my understanding the Revs are different variants of the SGX core (errata
+>>>> fixes, instruction set, pipeline size etc.). And therefore the current driver code
+>>>> has to be configured by some macros to handle such cases.
+>>>> So the Rev should IMHO be part of the next line:
+>>>>> +          - const: img,powervr-sgx530
+>>>> +          - enum:
+>>>> +              - img,powervr-sgx530-121
+>>>> +              - img,powervr-sgx530-125
+>>>> We have a similar definition in the openpvrsgx code.
+>>>> Example: compatible = "ti,omap3-sgx530-121", "img,sgx530-121", "img,sgx530";
+>>>> (I don't mind about the powervr- prefix).
+>>>> This would allow a generic and universal sgx driver (loaded through just matching
+>>>> "img,sgx530") to handle the errata and revision specifics at runtime based on the
+>>>> compatible entry ("img,sgx530-121") and know about SoC integration ("ti,omap3-sgx530-121").
+> 
+> The "raw" sgx530 compatible does not seem helpful if the sgx530-121 or
+> sgx530-125 compatibles are also required to be present for the driver to
+> actually function. The revision specific compatibles I would not object
+> to, but everything in here has different revisions anyway - does the
+> same revision actually appear in multiple devices? If it doesn't then I
+> don't see any value in the suffixed compatibles either.
+> 
 
-Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
----
- arch/powerpc/kernel/secure_boot.c        |  8 ++++++--
- arch/powerpc/kexec/ranges.c              |  8 +++++---
- arch/powerpc/mm/drmem.c                  | 10 +++++-----
- arch/powerpc/mm/numa.c                   |  6 ++++--
- arch/powerpc/platforms/52xx/efika.c      |  4 +++-
- arch/powerpc/platforms/pasemi/pci.c      |  4 +++-
- arch/powerpc/platforms/pseries/lparcfg.c |  6 +++++-
- arch/powerpc/platforms/pseries/setup.c   | 12 +++++++++---
- 8 files changed, 40 insertions(+), 18 deletions(-)
+Everything here has different revisions because any device that uses
+the same revision can also use the same base compatible string. For
+instance AM335x SoCs use the SGX530 revision 125, same as OMAP3630,
+so I simply reuse that compatible in their DT as you can see in
+patch [5/10]. I didn't see the need for a new compatible string
+for identical (i.e. "compatible") IP and integration.
 
-diff --git a/arch/powerpc/kernel/secure_boot.c b/arch/powerpc/kernel/secure_boot.c
-index f9af305d9579..9e0efb657f39 100644
---- a/arch/powerpc/kernel/secure_boot.c
-+++ b/arch/powerpc/kernel/secure_boot.c
-@@ -32,8 +32,10 @@ bool is_ppc_secureboot_enabled(void)
- 	if (enabled)
- 		goto out;
- 
--	if (!of_property_read_u32(of_root, "ibm,secure-boot", &secureboot))
-+	node = of_find_node_by_path("/");
-+	if (!of_property_read_u32(node, "ibm,secure-boot", &secureboot))
- 		enabled = (secureboot > 1);
-+	of_node_put(node);
- 
- out:
- 	pr_info("Secure boot mode %s\n", enabled ? "enabled" : "disabled");
-@@ -54,8 +56,10 @@ bool is_ppc_trustedboot_enabled(void)
- 	if (enabled)
- 		goto out;
- 
--	if (!of_property_read_u32(of_root, "ibm,trusted-boot", &trustedboot))
-+	node = of_find_node_by_path("/");
-+	if (!of_property_read_u32(node, "ibm,trusted-boot", &trustedboot))
- 		enabled = (trustedboot > 0);
-+	of_node_put(node);
- 
- out:
- 	pr_info("Trusted boot mode %s\n", enabled ? "enabled" : "disabled");
-diff --git a/arch/powerpc/kexec/ranges.c b/arch/powerpc/kexec/ranges.c
-index fb3e12f15214..33b780049aaf 100644
---- a/arch/powerpc/kexec/ranges.c
-+++ b/arch/powerpc/kexec/ranges.c
-@@ -385,14 +385,16 @@ int add_opal_mem_range(struct crash_mem **mem_ranges)
- int add_reserved_mem_ranges(struct crash_mem **mem_ranges)
- {
- 	int n_mem_addr_cells, n_mem_size_cells, i, len, cells, ret = 0;
-+	struct device_node *root = of_find_node_by_path("/");
- 	const __be32 *prop;
- 
--	prop = of_get_property(of_root, "reserved-ranges", &len);
-+	prop = of_get_property(root, "reserved-ranges", &len);
-+	n_mem_addr_cells = of_n_addr_cells(root);
-+	n_mem_size_cells = of_n_size_cells(root);
-+	of_node_put(root);
- 	if (!prop)
- 		return 0;
- 
--	n_mem_addr_cells = of_n_addr_cells(of_root);
--	n_mem_size_cells = of_n_size_cells(of_root);
- 	cells = n_mem_addr_cells + n_mem_size_cells;
- 
- 	/* Each reserved range is an (address,size) pair */
-diff --git a/arch/powerpc/mm/drmem.c b/arch/powerpc/mm/drmem.c
-index fde7790277f7..c110ab8fa8a3 100644
---- a/arch/powerpc/mm/drmem.c
-+++ b/arch/powerpc/mm/drmem.c
-@@ -393,17 +393,17 @@ static const __be32 *of_get_usable_memory(struct device_node *dn)
- int walk_drmem_lmbs(struct device_node *dn, void *data,
- 		    int (*func)(struct drmem_lmb *, const __be32 **, void *))
- {
-+	struct device_node *root = of_find_node_by_path("/");
- 	const __be32 *prop, *usm;
- 	int ret = -ENODEV;
- 
--	if (!of_root)
-+	if (!root)
- 		return ret;
- 
- 	/* Get the address & size cells */
--	of_node_get(of_root);
--	n_root_addr_cells = of_n_addr_cells(of_root);
--	n_root_size_cells = of_n_size_cells(of_root);
--	of_node_put(of_root);
-+	n_root_addr_cells = of_n_addr_cells(root);
-+	n_root_size_cells = of_n_size_cells(root);
-+	of_node_put(root);
- 
- 	if (init_drmem_lmb_size(dn))
- 		return ret;
-diff --git a/arch/powerpc/mm/numa.c b/arch/powerpc/mm/numa.c
-index f6c4ace3b221..a490724e84ad 100644
---- a/arch/powerpc/mm/numa.c
-+++ b/arch/powerpc/mm/numa.c
-@@ -1111,7 +1111,7 @@ static void __init setup_node_data(int nid, u64 start_pfn, u64 end_pfn)
- 
- static void __init find_possible_nodes(void)
- {
--	struct device_node *rtas;
-+	struct device_node *rtas, *root;
- 	const __be32 *domains = NULL;
- 	int prop_length, max_nodes;
- 	u32 i;
-@@ -1132,10 +1132,12 @@ static void __init find_possible_nodes(void)
- 	 * If the LPAR is migratable, new nodes might be activated after a LPM,
- 	 * so we should consider the max number in that case.
- 	 */
--	if (!of_get_property(of_root, "ibm,migratable-partition", NULL))
-+	root = of_find_node_by_path("/");
-+	if (!of_get_property(root, "ibm,migratable-partition", NULL))
- 		domains = of_get_property(rtas,
- 					  "ibm,current-associativity-domains",
- 					  &prop_length);
-+	of_node_put(root);
- 	if (!domains) {
- 		domains = of_get_property(rtas, "ibm,max-associativity-domains",
- 					&prop_length);
-diff --git a/arch/powerpc/platforms/52xx/efika.c b/arch/powerpc/platforms/52xx/efika.c
-index aa82e6b437f3..37a67120f257 100644
---- a/arch/powerpc/platforms/52xx/efika.c
-+++ b/arch/powerpc/platforms/52xx/efika.c
-@@ -195,8 +195,10 @@ static void __init efika_setup_arch(void)
- 
- static int __init efika_probe(void)
- {
--	const char *model = of_get_property(of_root, "model", NULL);
-+	struct device_node *root = of_find_node_by_path("/");
-+	const char *model = of_get_property(root, "model", NULL);
- 
-+	of_node_put(root);
- 	if (model == NULL)
- 		return 0;
- 	if (strcmp(model, "EFIKA5K2"))
-diff --git a/arch/powerpc/platforms/pasemi/pci.c b/arch/powerpc/platforms/pasemi/pci.c
-index f27d31414737..60f990a336c4 100644
---- a/arch/powerpc/platforms/pasemi/pci.c
-+++ b/arch/powerpc/platforms/pasemi/pci.c
-@@ -270,16 +270,18 @@ static int __init pas_add_bridge(struct device_node *dev)
- 
- void __init pas_pci_init(void)
- {
-+	struct device_node *root = of_find_node_by_path("/");
- 	struct device_node *np;
- 	int res;
- 
- 	pci_set_flags(PCI_SCAN_ALL_PCIE_DEVS);
- 
--	np = of_find_compatible_node(of_root, NULL, "pasemi,rootbus");
-+	np = of_find_compatible_node(root, NULL, "pasemi,rootbus");
- 	if (np) {
- 		res = pas_add_bridge(np);
- 		of_node_put(np);
- 	}
-+	of_node_put(root);
- }
- 
- void __iomem *__init pasemi_pci_getcfgaddr(struct pci_dev *dev, int offset)
-diff --git a/arch/powerpc/platforms/pseries/lparcfg.c b/arch/powerpc/platforms/pseries/lparcfg.c
-index 1c151d77e74b..f73c4d1c26af 100644
---- a/arch/powerpc/platforms/pseries/lparcfg.c
-+++ b/arch/powerpc/platforms/pseries/lparcfg.c
-@@ -346,9 +346,13 @@ static int read_rtas_lpar_name(struct seq_file *m)
-  */
- static int read_dt_lpar_name(struct seq_file *m)
- {
-+	struct device_node *root = of_find_node_by_path("/");
- 	const char *name;
-+	int ret;
- 
--	if (of_property_read_string(of_root, "ibm,partition-name", &name))
-+	ret = of_property_read_string(root, "ibm,partition-name", &name);
-+	of_node_put(root);
-+	if (ret)
- 		return -ENOENT;
- 
- 	seq_printf(m, "partition_name=%s\n", name);
-diff --git a/arch/powerpc/platforms/pseries/setup.c b/arch/powerpc/platforms/pseries/setup.c
-index ecea85c74c43..284a6fa04b0c 100644
---- a/arch/powerpc/platforms/pseries/setup.c
-+++ b/arch/powerpc/platforms/pseries/setup.c
-@@ -1029,9 +1029,11 @@ static void __init pseries_add_hw_description(void)
- 		return;
- 	}
- 
--	if (of_property_read_bool(of_root, "ibm,powervm-partition") ||
--	    of_property_read_bool(of_root, "ibm,fw-net-version"))
-+	dn = of_find_node_by_path("/");
-+	if (of_property_read_bool(dn, "ibm,powervm-partition") ||
-+	    of_property_read_bool(dn, "ibm,fw-net-version"))
- 		seq_buf_printf(&ppc_hw_desc, "hv:phyp ");
-+	of_node_put(dn);
- }
- 
- /*
-@@ -1091,7 +1093,11 @@ static void pseries_power_off(void)
- 
- static int __init pSeries_probe(void)
- {
--	if (!of_node_is_type(of_root, "chrp"))
-+	struct device_node *root = of_find_node_by_path("/");
-+	bool ret = of_node_is_type(root, "chrp");
-+
-+	of_node_put(root);
-+	if (!ret)
- 		return 0;
- 
- 	/* Cell blades firmware claims to be chrp while it's not. Until this
--- 
-2.41.0
+The first device to use that IP/revision combo gets the named
+compatible, all others re-use the same compatible where possible.
 
+Andrew
+
+>>>> And user-space can be made to load the right firmware variant based on "img,sgx530-121"
+>>>> I don't know if there is some register which allows to discover the revision long
+>>>> before the SGX subsystem is initialized and the firmware is up and running.
+>>>> What I know is that it is possible to read out the revision after starting the firmware
+>>>> but it may just echo the version number of the firmware binary provided from user-space.
+>>>
+>>> We should be able to read out the revision (register EUR_CR_CORE_REVISION), the problem is
+>>> today the driver is built for a given revision at compile time.
+>>
+>> Yes, that is something we had planned to get rid of for a long time by using different compatible
+>> strings and some variant specific struct like many others drivers are doing it.
+>> But it was a to big task so nobody did start with it.
+>>
+>>> That is a software issue,
+>>> not something that we need to encode in DT. While the core ID (SGX5xx) can be also detected
+>>> (EUR_CR_CORE_ID), the location of that register changes, and so it does need encoded in
+>>> DT compatible.
+>>
+>> Ok, I didn't know about such registers as there is not much public information available.
+>> Fair enough, there are some error reports about in different forums.
+>>
+>> On the other hand we then must read out this register in more or less early initialization
+>> stages. Even if we know this information to be static and it could be as simple as a list
+>> of compatible strings in the driver.
+>>
+>>> The string "ti,omap3430-gpu" tells us the revision if we cannot detect it (as in the current
+>>> driver), and the SoC integration is generic anyway (just a reg and interrupt).
+>>
+>> It of course tells, but may need a translation table that needs to be maintained in a
+>> different format. Basically the same what the comments show in a non-machine readable
+>> format.
+>>
+>> I just wonder why the specific version can or should not become simply part of the DTS
+>> and needs this indirection.
+>>
+>> Basically it is a matter of openness for future (driver) development and why it needs
+>> careful decisions.
+>>
+>> So in other words: I would prefer to see the comments about versions encoded in the device
+>> tree binary to make it machine readable.
+> 
+> It's already machine readable if it is invariant on an SoC given the
+> patch had SoC-specific compatibles.
+> 
 
