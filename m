@@ -1,147 +1,117 @@
-Return-Path: <devicetree+bounces-22444-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22445-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B79E8076BA
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 18:37:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77AE48076C4
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 18:39:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 016F21F211E0
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 17:37:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B31F282019
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 17:39:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FB716A018;
-	Wed,  6 Dec 2023 17:37:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eR0IQyF+"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B92D6A031;
+	Wed,  6 Dec 2023 17:39:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BC52364B2;
-	Wed,  6 Dec 2023 17:37:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C073BC433C8;
-	Wed,  6 Dec 2023 17:37:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701884226;
-	bh=RwGl1RcbRMFQzj6CBreX5lxtcFVvuIjpzUngRG0hqos=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=eR0IQyF+WPhSu4l5rp7kF48UTVIGmAiTFX/GMhnMPr0B0/ZVqF++kGvQNdoDpe+as
-	 zBJQw36pOwMnt9UxEvj74ihTS9/HKIhX1RIlEnF/TYlmqmDPXqtWmn68iYoYW2XL+w
-	 CvF6iT4uJmozZrYFNjHZc6IcH+t0PqmEl8A2hc+IPcLoINiAmobLlS/8+TOc7ZL7PW
-	 SWwf6qcGPKUNI+GKVDwsxdcew8exJFK4HP+qmiOteQRomkA0RYU3hSrqaamwrK4SrN
-	 DYWZ7b6bPIyIc4cNzl634W55cdqpIlKeYB1xBJfPNOF2VE10OCDoMHcbhqj4K97uXZ
-	 BHMccci2Ama6g==
-Date: Wed, 6 Dec 2023 17:36:58 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Abdel Alkuor <alkuor@gmail.com>
-Cc: krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org, lars@metafoo.de,
- conor+dt@kernel.org, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] iio: temperature: Add support for AMS AS6200
-Message-ID: <20231206173658.57b00a49@jic23-huawei>
-In-Reply-To: <ZW6IArKhx4KvxyTD@abdel>
-References: <20231202041651.719963-1-alkuor@gmail.com>
-	<20231202041651.719963-2-alkuor@gmail.com>
-	<20231204135014.15ea47b6@jic23-huawei>
-	<ZW6IArKhx4KvxyTD@abdel>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.38; x86_64-pc-linux-gnu)
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29891D40
+	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 09:39:12 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rAvrJ-0001zC-1c; Wed, 06 Dec 2023 18:38:53 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rAvrH-00E0m4-Ce; Wed, 06 Dec 2023 18:38:51 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rAvrH-00FdlK-32; Wed, 06 Dec 2023 18:38:51 +0100
+Date: Wed, 6 Dec 2023 18:38:50 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Alexandre Mergnat <amergnat@baylibre.com>
+Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Jitao Shi <jitao.shi@mediatek.com>, CK Hu <ck.hu@mediatek.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, dri-devel@lists.freedesktop.org,
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-pwm@vger.kernel.org
+Subject: Re: [PATCH 12/18] dt-bindings: pwm: add binding for mt8365 SoC
+Message-ID: <20231206173850.s6dndsjeeuy3sjan@pengutronix.de>
+References: <20231023-display-support-v1-0-5c860ed5c33b@baylibre.com>
+ <20231023-display-support-v1-12-5c860ed5c33b@baylibre.com>
+ <20231023214411.sbrdqgethas25rkd@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ywtlv6jlyscfsmgx"
+Content-Disposition: inline
+In-Reply-To: <20231023214411.sbrdqgethas25rkd@pengutronix.de>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Mon, 4 Dec 2023 21:16:34 -0500
-Abdel Alkuor <alkuor@gmail.com> wrote:
 
-> On Mon, Dec 04, 2023 at 01:50:14PM +0000, Jonathan Cameron wrote:
-> > On Fri,  1 Dec 2023 23:16:51 -0500
-> > Abdel Alkuor <alkuor@gmail.com> wrote:
-> >   
-> > > as6200 is a high accuracy temperature sensor of 0.0625C with a range
-> > > between -40 to 125 Celsius degrees.
-> > > 
-> > > The driver implements the alert trigger event in comparator mode where
-> > > consecutive faults are converted into periods, high/low temperature
-> > > thresholds require to be above/below the set limit for n seconds for
-> > > the alert to be triggered/cleared. The alert is only cleared when the
-> > > current temperature is below the low temperature threshold for n seconds.
-> > > 
-> > > The driver supports the following:
-> > > - show available sampling frequencey
-> > > - read/write sampling frequency
-> > > - read raw temperature
-> > > - read scaling factor
-> > > - read/write temperature period that needs to be met for low/high
-> > >   temperature thresholds to trigger an alert
-> > > - show available temperature period thresholds
-> > > - buffer trigger
-> > > - temperature alert event trigger  
-> > 
-> > Hi Abdel,
-> > 
-> > A few comments inline. Looking good in general.
-> >  
-> Hi Jonathon,
-> 
-> Thank you for your time. I have a couple _silly_ questions about the tag
-> and returning from if else. Other than that, your comments will be addressed
-> in v3.
-> > > 
-> > > Datasheet: https://ams.com/documents/20143/36005/AS6200_DS000449_4-00.pdf
-> > >   
-> > 
-> > No blank line here.  Tags block (and Datasheet is a tag) never has blank lines
-> > as that breaks some existing tooling.
-> >   
-> Understood. 
-> 
-> P.S. when running checkpatch.pl on this patch, I get the following warning:
-> 
-> WARNING: Unknown link reference 'Datasheet:', use 'Link:' or 'Closes:' instead
-> 
-> should I use Link instead?
+--ywtlv6jlyscfsmgx
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Nah. Just ignore checkpatch. :)
+Hello,
 
-Also, if just accepting a comment, no need to say so.  Assumption of reviewer
-is that if you keep quiet on a particular comment you will have it fixed in next
-version.  Crop out that section of the email and only keep the bits that
-you want the reviewer to see your comments on.
+On Mon, Oct 23, 2023 at 11:44:11PM +0200, Uwe Kleine-K=F6nig wrote:
+> On Mon, Oct 23, 2023 at 04:40:12PM +0200, Alexandre Mergnat wrote:
+> > Display PWM for MT8365 is compatible with MT8183. Then, add MT8365 bind=
+ing
+> > along with MT8183 SoC.
+> >=20
+> > Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+>=20
+> Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+>=20
+> What is the merge plan here? Should the whole series go in via drm?
 
-Hopefully I've cropped it appropriately!
+I'll assume that Alexandre will send out a new round of this series and
+this patch isn't supposed to be applied as is to the pwm tree. So I'm
+marking this patch as "changes requested" in our patchwork.
 
-> > > Signed-off-by: Abdel Alkuor <alkuor@gmail.com>
-> > > +	if (info == IIO_EV_INFO_VALUE) {
-> > > +		*val = sign_extend32(FIELD_GET(AS6200_TEMP_MASK, tmp), 11);
-> > > +		ret = IIO_VAL_INT;  
-> > return here.
-> >   
-> > > +	} else {
-> > > +		cf = FIELD_GET(AS6200_CONFIG_CF, tmp);
-> > > +		cr = FIELD_GET(AS6200_CONFIG_CR, tmp);
-> > > +		*val = as6200_temp_thresh_periods[cr][cf][0];
-> > > +		*val2 = as6200_temp_thresh_periods[cr][cf][1];
-> > > +		ret = IIO_VAL_INT_PLUS_MICRO;  
-> > 
-> > and here.  If there is nothing more to be done, it simplifies the code
-> > flow being read to just return as quick as possible.
-> >  
-> I did it as you mentioned, and when running check_patch.pl, it gives back a
-> warning that else is not needed here because of the return in the if
-> statement. So I opted into using ret instead, should I remove the else or ignore
-> the warning?
+Best regards
+Uwe
 
-Dropping the else is fine or take the view it's wrong and ignore it.
-Checkpatch is providing hints and suggestions on where to double check.
-There is no requirement to accept it's suggestions if you feel the
-code ends up less readable.
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
 
-> > > +	}
-> > > +
-> > > +	return ret;
+--ywtlv6jlyscfsmgx
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmVwsaoACgkQj4D7WH0S
+/k4hSggAle3BHyJ1MVsRw1KxYXPxxCujjOlC/iVTOF+lNCnkFIgsBCP3LIGUb/Vw
+5cmRVOyQP9gr52PMZeQo7aa3eMxhZqixVS3FbEWppG6kPVCE2RwP6CV7SfP7N3Hp
+VjKdzXifWVgRH366u/RaWoVuLftZvofZFYMTtF24KxoH0r40anqojRtJYYLwy/np
+NDqAUYu3WNdjYKWsNa1s1PBSlasbG0B7bcAP5RfRuJXoTuTssx2XxrbjLcpu3Zhr
+jPMxcBS60BO81t/LYCTMHDz6RNHpacGnRHTeWbnUaZm1SuHpyFuRGSAfIBkAmDGX
+DXzkv8oxnnoFs+g0fj0LuxnlSkXixg==
+=95Im
+-----END PGP SIGNATURE-----
+
+--ywtlv6jlyscfsmgx--
 
