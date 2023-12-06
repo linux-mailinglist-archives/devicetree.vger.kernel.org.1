@@ -1,98 +1,164 @@
-Return-Path: <devicetree+bounces-22422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA46E807592
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 17:45:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF17B8075A5
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 17:48:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4A5BFB20A5F
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 16:45:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D1DB1C20F24
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 16:48:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B1433FE3B;
-	Wed,  6 Dec 2023 16:45:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF47448CE1;
+	Wed,  6 Dec 2023 16:48:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HuR24vb/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EaxK1idd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E22A21FBC
-	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 16:45:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6345FC433C7;
-	Wed,  6 Dec 2023 16:45:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701881124;
-	bh=P064BleAcaaGYhhLYVjCCsTlgPSnJdkpYELnbMw15OQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HuR24vb/Pb1Pbt9Itc3plkdQp03Y6Tb4sEZVG1gMg+gQtRCd1T75ZKfVN5qvVAEAd
-	 wNEwEBl/EIKXg0auBxpidjXNEN7qHuzHfAFrvSh8lzbJnNOmLcrvmH39HHncVJ0HNJ
-	 X+vjTBpvYbe631vKNhFBsNtEcW3cRsijHQPB8EvSJ9W6s6r2Twnf7UA46q5ek+HNbK
-	 6Bd9o2P9svh3VLEtqbX7Rbos43lggpFKy7a2FCRWR1YOPwLUZ9Aa+2cSn8K4eQrPjH
-	 Jyo5sSj9fpCF19kvQzYLiFhicP7ImdLYCNGVB5M3a+vmcMvePrxDE930n17fyT4r80
-	 l4kaWOls3Jx+g==
-Date: Wed, 6 Dec 2023 16:45:18 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Sia Jee Heng <jeeheng.sia@starfivetech.com>
-Cc: kernel@esmil.dk, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	krzk@kernel.org, conor+dt@kernel.org, paul.walmsley@sifive.com,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	daniel.lezcano@linaro.org, tglx@linutronix.de, anup@brainfault.org,
-	gregkh@linuxfoundation.org, jirislaby@kernel.org,
-	michal.simek@amd.com, michael.zhu@starfivetech.com,
-	drew@beagleboard.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	leyfoon.tan@starfivetech.com
-Subject: Re: [PATCH v3 0/6] Initial device tree support for StarFive JH8100
- SoC
-Message-ID: <20231206-sizzling-whoopee-9e2a6755cd05@spud>
-References: <20231201121410.95298-1-jeeheng.sia@starfivetech.com>
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C5E3FA;
+	Wed,  6 Dec 2023 08:48:10 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-50be24167efso6062022e87.3;
+        Wed, 06 Dec 2023 08:48:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701881288; x=1702486088; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=WGSzAZDHU/n9n4Kl/KgrYsUZ99ohOk5K4a9HJ2xbUCo=;
+        b=EaxK1idd2SlFs/60Z5wj/1EyJxXOuMvGDZoBxHrA0BaMFswSL8CIfsVFlg9V4wge/7
+         vQsM6bXfZJyUjB3A5NNIJqlx38ouRUIJ3DjyR+9eXvHDjlPS4yxzKfPW+4jcGhJR1UOs
+         n1bJ0eznGhjL2zlcNwAzOYp5jzflA75x4G4hIhcXeWH6IUYpl/DWxiLtJp99ElGmYJCV
+         p3R/9EMpMv2PbX35EXly56LF5e3D77MWwGhWIs5oX6Mr02SXoqxKxeQ9LS0Pex0wO/y+
+         jLCEklPN/0lRFoKL9JjomKO4ilkjFj9w03YKIA6k70ZUcutPiUffon3PSz+tPIu8v/tI
+         M5Tw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701881288; x=1702486088;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WGSzAZDHU/n9n4Kl/KgrYsUZ99ohOk5K4a9HJ2xbUCo=;
+        b=HIKrYLyoneuqZu1mpXXZAcRZNYJL//mEfkaMXFgPPaeJRR++WrmXKrNL6r3XNCyNQA
+         tN4rKJuAjGRVGfHtbDq74KFKHSOQlUXthwJ7C34r7ZockmoT/cexyh12gmFioqNzbPvU
+         0FZ+0hPTPd9lw5LbnjwGS2Y9rXoOKAKo8B9vu1wj0XiiLJBeSIc93lqZyTahPLLlTdFp
+         woB5GKgJLUcnbL8JLOAg6h7fozvzQmIRKpEuHR4dcTTlqDNQO5GxczSb/N4tOV+Ix1Lz
+         TUxrGeWf4QXEFP/IqusqQ2o6KUIhuf2uCzhfHCUjo8C4Tlvun+zXUplE8t1EvQshdQ6Q
+         XF3Q==
+X-Gm-Message-State: AOJu0YzTevaXQLbS8romBEgj9/lV/aamPwaqf9jUPDj1Qv/K/jP5UoN9
+	bHl0pb5cKpsWueooFLs4B2c=
+X-Google-Smtp-Source: AGHT+IGGsCsfCn951B9opx/elkmniv97coLdGTP1IxFSUUNeCLwVpJYe73n4VNAi886eyirSlSS2Sg==
+X-Received: by 2002:ac2:5928:0:b0:50b:fdc0:acbb with SMTP id v8-20020ac25928000000b0050bfdc0acbbmr390516lfi.138.1701881288167;
+        Wed, 06 Dec 2023 08:48:08 -0800 (PST)
+Received: from mobilestation ([178.176.56.174])
+        by smtp.gmail.com with ESMTPSA id n16-20020ac242d0000000b0050bde64af5esm1442481lfl.174.2023.12.06.08.48.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Dec 2023 08:48:07 -0800 (PST)
+Date: Wed, 6 Dec 2023 19:48:05 +0300
+From: Serge Semin <fancer.lancer@gmail.com>
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
+	Russell King <linux@armlinux.org.uk>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Jose Abreu <joabreu@synopsys.com>, Jose Abreu <Jose.Abreu@synopsys.com>, 
+	Tomer Maimon <tmaimon77@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, openbmc@lists.ozlabs.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 09/16] net: mdio: Add Synopsys DW XPCS
+ management interface support
+Message-ID: <cv6oo27tqbfst3jrgtkg7bcxmeshadtzoomn2xgnzh2arz4nwy@wq5k7oygto6n>
+References: <20231205103559.9605-1-fancer.lancer@gmail.com>
+ <20231205103559.9605-10-fancer.lancer@gmail.com>
+ <20231205133205.3309ab91@device.home>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="mvCQXmL2zJOZIJ4J"
-Content-Disposition: inline
-In-Reply-To: <20231201121410.95298-1-jeeheng.sia@starfivetech.com>
-
-
---mvCQXmL2zJOZIJ4J
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20231205133205.3309ab91@device.home>
 
-On Fri, Dec 01, 2023 at 08:14:04PM +0800, Sia Jee Heng wrote:
-> StarFive JH8100 SoC consists of 4 RISC-V performance Cores (Dubhe-90) and
-> 2 RISC-V energy efficient cores (Dubhe-80). It also features various
-> interfaces such as DDR4, Gbit-Ether, CAN, USB 3.2, SD/MMC, etc., making it
-> ideal for high-performance computing scenarios.
->=20
-> This patch series introduces initial SoC DTSI support for the StarFive
-> JH8100 SoC. The relevant dt-binding documentation has been updated
-> accordingly. Below is the list of IP blocks added in the initial SoC DTSI,
-> which can be used for booting via initramfs on FPGA:
+Hi Maxime,
 
-This all seems okay to me. I'll need an ack from Emil though before I
-can pick it up.
+On Tue, Dec 05, 2023 at 01:32:05PM +0100, Maxime Chevallier wrote:
+> Hi Serge,
+> 
+> On Tue,  5 Dec 2023 13:35:30 +0300
+> Serge Semin <fancer.lancer@gmail.com> wrote:
+> 
+> > Synopsys DesignWare XPCS IP-core can be synthesized with the device CSRs
+> > being accessible over MCI or APB3 interface instead of the MDIO bus (see
+> > the CSR_INTERFACE HDL parameter). Thus all the PCS registers can be just
+> > memory mapped and be a subject of standard MMIO operations of course
+> > taking into account the way the Clause C45 CSRs mapping is defined. This
+> > commit is about adding a device driver for the DW XPCS Management
+> > Interface platform device and registering it in the framework of the
+> > kernel MDIO subsystem.
+> > 
+> > DW XPCS platform device is supposed to be described by the respective
+> > compatible string "snps,dw-xpcs-mi", CSRs memory space and optional
+> > peripheral bus clock source. Note depending on the INDIRECT_ACCESS DW XPCS
+> > IP-core synthesize parameter the memory-mapped reg-space can be
+> > represented as either directly or indirectly mapped Clause 45 space. In
+> > the former case the particular address is determined based on the MMD
+> > device and the registers offset (5 + 16 bits all together) within the
+> > device reg-space. In the later case there is only 256 lower address bits
+> > are utilized for the registers mapping. The upper bits are supposed to be
+> > written into the respective viewport CSR in order to reach the entire C45
+> > space.
+> 
 
-Thanks,
-Conor.
+> Too bad the mdio-regmap driver can't be re-used here, it would deal
+> with reg width for you, for example. I guess the main reason would be
+> the direct vs indirect accesses ?
 
+Right, it's one of the reasons. I could have used the mdio-regmap
+here, but that would have meant to implement an additional abstraction
+layer: regspace<->regmap<->mdio-regmap<->mii_bus, instead of just
+regspace<->mii_bus. This would have also required to patch the
+mdio-remap module somehow in order to have the c45 ops supported. It
+would have been much easier to do before the commit 99d5fe9c7f3d ("net:
+mdio: Remove support for building C45 muxed addresses"). But since
+then MDIO reg-address has no longer had muxed dev-address. Of course I
+could have got it back to the mdio-regmap driver only, mix the C22/C45
+address in the regmap 'addr' argument, then extract the MMD (for C45)
+and reg addresses from the regmap IO ops argument and perform the
+respective MMIO access. But as you can see it is much hardware and
+would cause additional steps for the address translations, than
+just directly implement the C22/C45 IO ops and register the MDIO bus
+for them. I couldn't find much benefits to follow that road, sorry.
 
---mvCQXmL2zJOZIJ4J
-Content-Type: application/pgp-signature; name="signature.asc"
+> 
+> I do have a comment tough :
+> 
+> [...]
+> 
+> > +static inline ptrdiff_t dw_xpcs_mmio_addr_format(int dev, int reg)
+> > +{
+> > +	return FIELD_PREP(0x1f0000, dev) | FIELD_PREP(0xffff, reg);
+> > +}
+> > +
+> > +static inline u16 dw_xpcs_mmio_addr_page(ptrdiff_t csr)
+> > +{
+> > +	return FIELD_GET(0x1fff00, csr);
+> > +}
+> > +
+> > +static inline ptrdiff_t dw_xpcs_mmio_addr_offset(ptrdiff_t csr)
+> > +{
+> > +	return FIELD_GET(0xff, csr);
+> > +}
+> 
 
------BEGIN PGP SIGNATURE-----
+> You shouldn't use inline in C files, only in headers.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZXClHQAKCRB4tDGHoIJi
-0nNvAP4yMSbYutcx19sUnchUK4oprRmm58ZSWOHLFlwc38O6IgD6A+QJdSBMlToS
-DL2kVUQR6O7/8oliZG8v92JpZ4zIGAM=
-=Sstp
------END PGP SIGNATURE-----
+Could you please clarify why? I failed to find such requirement in the
+coding style doc. Moreover there are multiple examples of using the
+static-inline-ers in the C files in the kernel including the net/mdio
+subsystem.
 
---mvCQXmL2zJOZIJ4J--
+-Serge(y)
+
+> 
+> Maxime
 
