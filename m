@@ -1,122 +1,387 @@
-Return-Path: <devicetree+bounces-22496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22498-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4500E807BA4
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 23:46:17 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53570807C86
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 00:44:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB7551F217C8
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 22:46:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B4D2EB210E9
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 23:44:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EB04182C4;
-	Wed,  6 Dec 2023 22:46:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17598328AF;
+	Wed,  6 Dec 2023 23:44:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DBITz3Ev"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JPifSw5j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 727302F51
-	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 22:46:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EFD94C433CC;
-	Wed,  6 Dec 2023 22:46:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701902772;
-	bh=8X83r5OTQETJP3BACOnnNmvlcihfILbuzFscWCAxC/E=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=DBITz3Evb8Pwetp5R1BX/tFnkZoyAtKKUV/uWrwF7tABe7ICWL3lGLG9fGeJRNEh2
-	 hIAMeKvSoWhjBrD4nKn2NWSbVgPCWdnY9ceLFo7AAlnHqqdp1hfdZol1ciWCOeWYRk
-	 OxJiPudSZ6CT+S/HHLd/56imUBovQ5/bcBj8n6KOEXm5dPqchdhBXKnOhyxFt8n8Da
-	 B6sgEDnIXTEZnSf/qI77+lTdDMC0NljfrbIakg8olJFkf2/GQl81wNy4SxqGPNRcmd
-	 1AYuSo/VkMYO6IPK9N0CA0G4+84nrBd/W5FIjMfgoq+sr0CILC8JN9Fkl4P5lghfGK
-	 YzrPfzXhS0Qbg==
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-50bfd7be487so31240e87.0;
-        Wed, 06 Dec 2023 14:46:11 -0800 (PST)
-X-Gm-Message-State: AOJu0YxxielvOk4tzptiIZEbRZ5p7eH80M3dYbMyI1fJbTcePWGaf7En
-	8dauot9twohfk8lhgR1unH1iolK2DVN8EaBQMQ==
-X-Google-Smtp-Source: AGHT+IETBh4KfKssDYyvEIq/NaALVdw46jfGTFoCN6msOKDqdRYDMgd6Fi1n8WkusjpxfTjwzi1IHW56DDYo3kVPYHI=
-X-Received: by 2002:a05:6512:2251:b0:50b:f0df:57bb with SMTP id
- i17-20020a056512225100b0050bf0df57bbmr1074743lfu.49.1701902769936; Wed, 06
- Dec 2023 14:46:09 -0800 (PST)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AE46C6;
+	Wed,  6 Dec 2023 15:44:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1701906257; x=1733442257;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=eriwFjI3LNv4Js6dYZ339bbItfpw+p66ws9NjKsufBg=;
+  b=JPifSw5jbe5g4tlKdLQF3bShiBfSaOlCXeeyPxUn0Jim8/u8ySmxkcei
+   siQaFx5MNM5HY3/HfLXbbgD6Ol3o21d4PJslDweuCH/QXV4oGr8m69CWc
+   ADnSEl5GY7xCJOVwQD16HaC5EiT59EkwZ64O5XDnuVmSUeO4xWQiC7cZ8
+   92N42/n6anG0nTYxqV5U5jKUmzerqXGsQOXKkVajg2kJw57i8w5+lJ+5z
+   sQc8a5hbN7P1V8+glO/cXdz8tbdHxLG12RwCpAA7Yj0y8Hl/xHwOwxpGp
+   j+rwNbqxPXM/9Q988aBenLZ5/4nL6AwnMpn1pm+KCP2lcIQjmjZpcu9VD
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="373634455"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; 
+   d="scan'208";a="373634455"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Dec 2023 15:44:16 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="1018737712"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; 
+   d="scan'208";a="1018737712"
+Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
+  by fmsmga006.fm.intel.com with ESMTP; 06 Dec 2023 15:44:09 -0800
+Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rB1Yk-000Bb4-30;
+	Wed, 06 Dec 2023 23:44:06 +0000
+Date: Thu, 7 Dec 2023 07:43:14 +0800
+From: kernel test robot <lkp@intel.com>
+To: Yunfei Dong <yunfei.dong@mediatek.com>,
+	Jeffrey Kardatzke <jkardatzke@google.com>,
+	=?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado <nfraprado@collabora.com>,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	Hans Verkuil <hverkuil@xs4all.nl>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+	Nathan Hebert <nhebert@chromium.org>
+Cc: oe-kbuild-all@lists.linux.dev, Chen-Yu Tsai <wenst@chromium.org>,
+	Yong Wu <yong.wu@mediatek.com>, Hsin-Yi Wang <hsinyi@chromium.org>,
+	Fritz Koenig <frkoenig@chromium.org>,
+	Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>,
+	Yunfei Dong <yunfei.dong@mediatek.com>,
+	Sumit Semwal <sumit.semwal@linaro.org>,
+	Brian Starkey <Brian.Starkey@arm.com>,
+	John Stultz <jstultz@google.com>,
+	"T . J . Mercier" <tjmercier@google.com>,
+	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH] media: medkatek: vcodec: support tee decoder
+Message-ID: <202312070717.a86rODYn-lkp@intel.com>
+References: <20231206081538.17056-21-yunfei.dong@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231130191815.2421978-1-robh@kernel.org> <CAOMZO5AZNz1cRg+aYQjDmpZ75ATJQUTWmC5mx+vgaYcBL6M+2w@mail.gmail.com>
- <CAL_JsqKLFpPo8xTh_vgWvDXSY5J8tQJZh9SrkW2EiK5V_ZNeeA@mail.gmail.com> <CAJ+vNU1DiFbQivka8gA1URiLMD2mWJnWSdn-77bEo8Uz0Liqcg@mail.gmail.com>
-In-Reply-To: <CAJ+vNU1DiFbQivka8gA1URiLMD2mWJnWSdn-77bEo8Uz0Liqcg@mail.gmail.com>
-From: Rob Herring <robh@kernel.org>
-Date: Wed, 6 Dec 2023 16:45:57 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJmK5UDN_xKjJHac1L4Wsrx1GLDmeek5=K7gm=W9XPkOw@mail.gmail.com>
-Message-ID: <CAL_JsqJmK5UDN_xKjJHac1L4Wsrx1GLDmeek5=K7gm=W9XPkOw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8mm-venice: Fix PCI bus nodes
-To: Tim Harvey <tharvey@gateworks.com>
-Cc: Fabio Estevam <festevam@gmail.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, NXP Linux Team <linux-imx@nxp.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231206081538.17056-21-yunfei.dong@mediatek.com>
 
-On Tue, Dec 5, 2023 at 12:13=E2=80=AFPM Tim Harvey <tharvey@gateworks.com> =
-wrote:
->
-> On Thu, Nov 30, 2023 at 2:33=E2=80=AFPM Rob Herring <robh@kernel.org> wro=
-te:
-> >
-> > On Thu, Nov 30, 2023 at 1:28=E2=80=AFPM Fabio Estevam <festevam@gmail.c=
-om> wrote:
-> > >
-> > > Hi Rob,
-> > >
-> > > On Thu, Nov 30, 2023 at 4:18=E2=80=AFPM Rob Herring <robh@kernel.org>=
- wrote:
-> > > >
-> > > > The imx8mm-venice boards PCI bus nodes are a complete mess. The
-> > > > unit-addresses are wrong. The PCI bridge nodes are incomplete missi=
-ng
-> > > > "device_type" and "ranges" and just wrong for "#address-cells" and
-> > > > "#size-cells" values.
-> > > >
-> > > > All of these issues are reported warnings if anyone bothered to pay
-> > > > attention. Sigh.
->
-> Rob,
->
-> Sorry about that. At the time the dt was submitted there were still so
-> many dt warnings it wasn't very clear what was a legitimate issue and
-> the PCI bindings are not that easy to understand.
->
-> > >
-> > > The warnings are gone in linux-next:
-> > >
-> > > https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/c=
-ommit/arch/arm64/boot/dts/freescale?h=3Dnext-20231130&id=3Dd61c5068729a76a6=
-183a897bcad4bf26e8d3d674
-> >
-> > Linux-next is wrong. The ethernet device should have a node name of
-> > 'ethernet'. The 'pcie' node name and 'device_type =3D "pci"' is for PCI
-> > buses/bridges only.
->
-> So as Fabio has tried to fix this with a patch that landed in
-> linux-next this patch won't apply. I'll submit one that covers your
-> changes.
+Hi Yunfei,
 
-Thanks.
+kernel test robot noticed the following build errors:
 
-> It's always been unfortunate to have to have this level of detail in a
-> device-tree just to allow boot firmware to populate the mac address of
-> a PCI ethernet device.
+[auto build test ERROR on media-tree/master]
+[also build test ERROR on linus/master v6.7-rc4 next-20231206]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-More unfortunate are incomplete h/w designs lacking the MAC address. :(
+url:    https://github.com/intel-lab-lkp/linux/commits/Yunfei-Dong/media-medkatek-vcodec-support-tee-decoder/20231206-201843
+base:   git://linuxtv.org/media_tree.git master
+patch link:    https://lore.kernel.org/r/20231206081538.17056-21-yunfei.dong%40mediatek.com
+patch subject: [PATCH] media: medkatek: vcodec: support tee decoder
+config: arm64-defconfig (https://download.01.org/0day-ci/archive/20231207/202312070717.a86rODYn-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231207/202312070717.a86rODYn-lkp@intel.com/reproduce)
 
-Not really any way around it I think if you want something that works
-for any device and any number of devices.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202312070717.a86rODYn-lkp@intel.com/
 
-Rob
+All errors (new ones prefixed by >>):
+
+   drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c: In function 'fops_vcodec_release':
+>> drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c:313:16: error: 'struct mtk_vcodec_dec_ctx' has no member named 'is_secure_playback'
+     313 |         if (ctx->is_secure_playback)
+         |                ^~
+>> drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c:314:17: error: implicit declaration of function 'mtk_vcodec_dec_optee_release'; did you mean 'mtk_vcodec_dec_release'? [-Werror=implicit-function-declaration]
+     314 |                 mtk_vcodec_dec_optee_release(dev->optee_private);
+         |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         |                 mtk_vcodec_dec_release
+>> drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c:314:49: error: 'struct mtk_vcodec_dec_dev' has no member named 'optee_private'
+     314 |                 mtk_vcodec_dec_optee_release(dev->optee_private);
+         |                                                 ^~
+   drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c: In function 'mtk_vcodec_probe':
+>> drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c:472:15: error: implicit declaration of function 'mtk_vcodec_dec_optee_private_init'; did you mean 'mtk_vcodec_dec_queue_init'? [-Werror=implicit-function-declaration]
+     472 |         ret = mtk_vcodec_dec_optee_private_init(dev);
+         |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         |               mtk_vcodec_dec_queue_init
+   cc1: some warnings being treated as errors
+
+
+vim +313 drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c
+
+   291	
+   292	static int fops_vcodec_release(struct file *file)
+   293	{
+   294		struct mtk_vcodec_dec_dev *dev = video_drvdata(file);
+   295		struct mtk_vcodec_dec_ctx *ctx = fh_to_dec_ctx(file->private_data);
+   296	
+   297		mtk_v4l2_vdec_dbg(0, ctx, "[%d] decoder", ctx->id);
+   298		mutex_lock(&dev->dev_mutex);
+   299	
+   300		/*
+   301		 * Call v4l2_m2m_ctx_release before mtk_vcodec_dec_release. First, it
+   302		 * makes sure the worker thread is not running after vdec_if_deinit.
+   303		 * Second, the decoder will be flushed and all the buffers will be
+   304		 * returned in stop_streaming.
+   305		 */
+   306		v4l2_m2m_ctx_release(ctx->m2m_ctx);
+   307		mtk_vcodec_dec_release(ctx);
+   308	
+   309		v4l2_fh_del(&ctx->fh);
+   310		v4l2_fh_exit(&ctx->fh);
+   311		v4l2_ctrl_handler_free(&ctx->ctrl_hdl);
+   312	
+ > 313		if (ctx->is_secure_playback)
+ > 314			mtk_vcodec_dec_optee_release(dev->optee_private);
+   315	
+   316		mtk_vcodec_dbgfs_remove(dev, ctx->id);
+   317		list_del_init(&ctx->list);
+   318		kfree(ctx);
+   319		mutex_unlock(&dev->dev_mutex);
+   320		return 0;
+   321	}
+   322	
+   323	static const struct v4l2_file_operations mtk_vcodec_fops = {
+   324		.owner		= THIS_MODULE,
+   325		.open		= fops_vcodec_open,
+   326		.release	= fops_vcodec_release,
+   327		.poll		= v4l2_m2m_fop_poll,
+   328		.unlocked_ioctl	= video_ioctl2,
+   329		.mmap		= v4l2_m2m_fop_mmap,
+   330	};
+   331	
+   332	static void mtk_vcodec_dec_get_chip_name(struct mtk_vcodec_dec_dev *vdec_dev)
+   333	{
+   334		struct device *dev = &vdec_dev->plat_dev->dev;
+   335	
+   336		if (of_device_is_compatible(dev->of_node, "mediatek,mt8173-vcodec-dec"))
+   337			vdec_dev->chip_name = MTK_VDEC_MT8173;
+   338		else if (of_device_is_compatible(dev->of_node, "mediatek,mt8183-vcodec-dec"))
+   339			vdec_dev->chip_name = MTK_VDEC_MT8183;
+   340		else if (of_device_is_compatible(dev->of_node, "mediatek,mt8192-vcodec-dec"))
+   341			vdec_dev->chip_name = MTK_VDEC_MT8192;
+   342		else if (of_device_is_compatible(dev->of_node, "mediatek,mt8195-vcodec-dec"))
+   343			vdec_dev->chip_name = MTK_VDEC_MT8195;
+   344		else if (of_device_is_compatible(dev->of_node, "mediatek,mt8186-vcodec-dec"))
+   345			vdec_dev->chip_name = MTK_VDEC_MT8186;
+   346		else if (of_device_is_compatible(dev->of_node, "mediatek,mt8188-vcodec-dec"))
+   347			vdec_dev->chip_name = MTK_VDEC_MT8188;
+   348		else
+   349			vdec_dev->chip_name = MTK_VDEC_INVAL;
+   350	}
+   351	
+   352	static int mtk_vcodec_probe(struct platform_device *pdev)
+   353	{
+   354		struct mtk_vcodec_dec_dev *dev;
+   355		struct video_device *vfd_dec;
+   356		phandle rproc_phandle;
+   357		enum mtk_vcodec_fw_type fw_type;
+   358		int i, ret;
+   359	
+   360		dev = devm_kzalloc(&pdev->dev, sizeof(*dev), GFP_KERNEL);
+   361		if (!dev)
+   362			return -ENOMEM;
+   363	
+   364		INIT_LIST_HEAD(&dev->ctx_list);
+   365		dev->plat_dev = pdev;
+   366	
+   367		mtk_vcodec_dec_get_chip_name(dev);
+   368		if (dev->chip_name == MTK_VDEC_INVAL) {
+   369			dev_err(&pdev->dev, "Failed to get decoder chip name");
+   370			return -EINVAL;
+   371		}
+   372	
+   373		dev->vdec_pdata = of_device_get_match_data(&pdev->dev);
+   374		if (!of_property_read_u32(pdev->dev.of_node, "mediatek,vpu",
+   375					  &rproc_phandle)) {
+   376			fw_type = VPU;
+   377		} else if (!of_property_read_u32(pdev->dev.of_node, "mediatek,scp",
+   378						 &rproc_phandle)) {
+   379			fw_type = SCP;
+   380		} else {
+   381			dev_dbg(&pdev->dev, "Could not get vdec IPI device");
+   382			return -ENODEV;
+   383		}
+   384		dma_set_max_seg_size(&pdev->dev, UINT_MAX);
+   385	
+   386		dev->fw_handler = mtk_vcodec_fw_select(dev, fw_type, DECODER);
+   387		if (IS_ERR(dev->fw_handler))
+   388			return PTR_ERR(dev->fw_handler);
+   389	
+   390		ret = mtk_vcodec_init_dec_resources(dev);
+   391		if (ret) {
+   392			dev_err(&pdev->dev, "Failed to init dec resources");
+   393			goto err_dec_pm;
+   394		}
+   395	
+   396		if (IS_VDEC_LAT_ARCH(dev->vdec_pdata->hw_arch)) {
+   397			dev->core_workqueue =
+   398				alloc_ordered_workqueue("core-decoder",
+   399							WQ_MEM_RECLAIM | WQ_FREEZABLE);
+   400			if (!dev->core_workqueue) {
+   401				dev_dbg(&pdev->dev, "Failed to create core workqueue");
+   402				ret = -EINVAL;
+   403				goto err_res;
+   404			}
+   405		}
+   406	
+   407		for (i = 0; i < MTK_VDEC_HW_MAX; i++)
+   408			mutex_init(&dev->dec_mutex[i]);
+   409		mutex_init(&dev->dev_mutex);
+   410		spin_lock_init(&dev->irqlock);
+   411	
+   412		snprintf(dev->v4l2_dev.name, sizeof(dev->v4l2_dev.name), "%s",
+   413			"[/MTK_V4L2_VDEC]");
+   414	
+   415		ret = v4l2_device_register(&pdev->dev, &dev->v4l2_dev);
+   416		if (ret) {
+   417			dev_err(&pdev->dev, "v4l2_device_register err=%d", ret);
+   418			goto err_core_workq;
+   419		}
+   420	
+   421		vfd_dec = video_device_alloc();
+   422		if (!vfd_dec) {
+   423			dev_err(&pdev->dev, "Failed to allocate video device");
+   424			ret = -ENOMEM;
+   425			goto err_dec_alloc;
+   426		}
+   427		vfd_dec->fops		= &mtk_vcodec_fops;
+   428		vfd_dec->ioctl_ops	= &mtk_vdec_ioctl_ops;
+   429		vfd_dec->release	= video_device_release;
+   430		vfd_dec->lock		= &dev->dev_mutex;
+   431		vfd_dec->v4l2_dev	= &dev->v4l2_dev;
+   432		vfd_dec->vfl_dir	= VFL_DIR_M2M;
+   433		vfd_dec->device_caps	= V4L2_CAP_VIDEO_M2M_MPLANE |
+   434				V4L2_CAP_STREAMING;
+   435	
+   436		snprintf(vfd_dec->name, sizeof(vfd_dec->name), "%s",
+   437			MTK_VCODEC_DEC_NAME);
+   438		video_set_drvdata(vfd_dec, dev);
+   439		dev->vfd_dec = vfd_dec;
+   440		platform_set_drvdata(pdev, dev);
+   441	
+   442		dev->m2m_dev_dec = v4l2_m2m_init(&mtk_vdec_m2m_ops);
+   443		if (IS_ERR((__force void *)dev->m2m_dev_dec)) {
+   444			dev_err(&pdev->dev, "Failed to init mem2mem dec device");
+   445			ret = PTR_ERR((__force void *)dev->m2m_dev_dec);
+   446			goto err_dec_alloc;
+   447		}
+   448	
+   449		dev->decode_workqueue =
+   450			alloc_ordered_workqueue(MTK_VCODEC_DEC_NAME,
+   451				WQ_MEM_RECLAIM | WQ_FREEZABLE);
+   452		if (!dev->decode_workqueue) {
+   453			dev_err(&pdev->dev, "Failed to create decode workqueue");
+   454			ret = -EINVAL;
+   455			goto err_event_workq;
+   456		}
+   457	
+   458		if (dev->vdec_pdata->is_subdev_supported) {
+   459			ret = of_platform_populate(pdev->dev.of_node, NULL, NULL,
+   460						   &pdev->dev);
+   461			if (ret) {
+   462				dev_err(&pdev->dev, "Main device of_platform_populate failed.");
+   463				goto err_reg_cont;
+   464			}
+   465		} else {
+   466			set_bit(MTK_VDEC_CORE, dev->subdev_bitmap);
+   467		}
+   468	
+   469		atomic_set(&dev->dec_active_cnt, 0);
+   470		memset(dev->vdec_racing_info, 0, sizeof(dev->vdec_racing_info));
+   471		mutex_init(&dev->dec_racing_info_mutex);
+ > 472		ret = mtk_vcodec_dec_optee_private_init(dev);
+   473		if (ret) {
+   474			dev_err(&pdev->dev, "Failed to init svp private.");
+   475			goto err_reg_cont;
+   476		}
+   477	
+   478		ret = video_register_device(vfd_dec, VFL_TYPE_VIDEO, -1);
+   479		if (ret) {
+   480			dev_err(&pdev->dev, "Failed to register video device");
+   481			goto err_reg_cont;
+   482		}
+   483	
+   484		if (dev->vdec_pdata->uses_stateless_api) {
+   485			v4l2_disable_ioctl(vfd_dec, VIDIOC_DECODER_CMD);
+   486			v4l2_disable_ioctl(vfd_dec, VIDIOC_TRY_DECODER_CMD);
+   487	
+   488			dev->mdev_dec.dev = &pdev->dev;
+   489			strscpy(dev->mdev_dec.model, MTK_VCODEC_DEC_NAME,
+   490				sizeof(dev->mdev_dec.model));
+   491	
+   492			media_device_init(&dev->mdev_dec);
+   493			dev->mdev_dec.ops = &mtk_vcodec_media_ops;
+   494			dev->v4l2_dev.mdev = &dev->mdev_dec;
+   495	
+   496			ret = v4l2_m2m_register_media_controller(dev->m2m_dev_dec, dev->vfd_dec,
+   497								 MEDIA_ENT_F_PROC_VIDEO_DECODER);
+   498			if (ret) {
+   499				dev_err(&pdev->dev, "Failed to register media controller");
+   500				goto err_dec_mem_init;
+   501			}
+   502	
+   503			ret = media_device_register(&dev->mdev_dec);
+   504			if (ret) {
+   505				dev_err(&pdev->dev, "Failed to register media device");
+   506				goto err_media_reg;
+   507			}
+   508	
+   509			dev_dbg(&pdev->dev, "media registered as /dev/media%d", vfd_dec->minor);
+   510		}
+   511	
+   512		mtk_vcodec_dbgfs_init(dev, false);
+   513		dev_dbg(&pdev->dev, "decoder registered as /dev/video%d", vfd_dec->minor);
+   514	
+   515		return 0;
+   516	
+   517	err_media_reg:
+   518		v4l2_m2m_unregister_media_controller(dev->m2m_dev_dec);
+   519	err_dec_mem_init:
+   520		video_unregister_device(vfd_dec);
+   521	err_reg_cont:
+   522		if (dev->vdec_pdata->uses_stateless_api)
+   523			media_device_cleanup(&dev->mdev_dec);
+   524		destroy_workqueue(dev->decode_workqueue);
+   525	err_event_workq:
+   526		v4l2_m2m_release(dev->m2m_dev_dec);
+   527	err_dec_alloc:
+   528		v4l2_device_unregister(&dev->v4l2_dev);
+   529	err_core_workq:
+   530		if (IS_VDEC_LAT_ARCH(dev->vdec_pdata->hw_arch))
+   531			destroy_workqueue(dev->core_workqueue);
+   532	err_res:
+   533		if (!dev->vdec_pdata->is_subdev_supported)
+   534			pm_runtime_disable(dev->pm.dev);
+   535	err_dec_pm:
+   536		mtk_vcodec_fw_release(dev->fw_handler);
+   537		return ret;
+   538	}
+   539	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
