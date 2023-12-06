@@ -1,302 +1,206 @@
-Return-Path: <devicetree+bounces-22210-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22209-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07BDE806D2E
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 12:01:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF4D1806D27
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 12:00:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2AC551C20895
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 11:01:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 749931F2167F
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 11:00:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02B4F3066F;
-	Wed,  6 Dec 2023 11:01:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B78F43066F;
+	Wed,  6 Dec 2023 11:00:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Aud7xUpj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 86AB02136
-	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 03:00:13 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 301161474
-	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 03:00:59 -0800 (PST)
-Received: from e110455-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id D73A33F5A1
-	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 03:00:12 -0800 (PST)
-Date: Wed, 6 Dec 2023 10:59:38 +0000
-From: Liviu Dudau <Liviu.Dudau@arm.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Boris Brezillon <boris.brezillon@collabora.com>,
-	dri-devel@lists.freedesktop.org,
-	"Marty E . Plummer" <hanetzer@startmail.com>,
-	=?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
-	Nicolas Boichat <drinkcat@chromium.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Faith Ekstrand <faith.ekstrand@collabora.com>,
-	Daniel Stone <daniels@collabora.com>,
-	Steven Price <steven.price@arm.com>,
-	Robin Murphy <robin.murphy@arm.com>, kernel@collabora.com,
-	Heiko Stuebner <heiko@sntech.de>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 13/14] dt-bindings: gpu: mali-valhall-csf: Add support
- for Arm Mali CSF GPUs
-Message-ID: <ZXBUGhL6utV15-Yx@e110455-lin.cambridge.arm.com>
-References: <20231204173313.2098733-1-boris.brezillon@collabora.com>
- <20231204173313.2098733-14-boris.brezillon@collabora.com>
- <20231205204827.GA3761421-robh@kernel.org>
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E79B1FF1;
+	Wed,  6 Dec 2023 02:59:58 -0800 (PST)
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id D896C660576A;
+	Wed,  6 Dec 2023 10:59:54 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1701860396;
+	bh=HoPHOhlV5xjupYlTbEAUED1Io4kwS+bA2h3iDVkbUWc=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=Aud7xUpjM8bRjM7zomse72JYlZAIPri/6RIp9o0ijL/8LGxHF+BIayERr9Sakoevn
+	 b4uXHgp5w5WVDSltP2n2DpVpy83vXk46pKB3JVTAYXIApp+W9sAYmM8wUWdmrpPvUd
+	 nXRN7BdRwYPFnjWK3Ug4RlUI8biuHmBbHPrW67zo4RRGKjfDzcDCY1bEBLxkyTk15V
+	 7E2USSxoKh6efRjxybRqYk0NfNF1U0zLXhvglR6loxxeFi4wEHMrsrl0xqoQkyylHG
+	 TwxA3q/FkZQs3xeBGESjLQEfJdpiHjHiEqa9G+m7jtYK2DIYINdVMeIP3nfJ8F5AuB
+	 /kd33Us9uCKfQ==
+Message-ID: <3e72bff6-9f4d-4cd4-845e-b065f1233ec6@collabora.com>
+Date: Wed, 6 Dec 2023 11:59:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231205204827.GA3761421-robh@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/4] dt-bindings: clock: mediatek: add clock
+ controllers of MT7988
+Content-Language: en-US
+To: Daniel Golle <daniel@makrotopia.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Sabrina Dubroca <sd@queasysnail.net>, Jianhui Zhao <zhaojh329@gmail.com>,
+ Chen-Yu Tsai <wenst@chromium.org>, "Garmin.Chang"
+ <Garmin.Chang@mediatek.com>, Sam Shih <sam.shih@mediatek.com>,
+ Frank Wunderlich <frank-w@public-files.de>,
+ Dan Carpenter <dan.carpenter@linaro.org>,
+ James Liao <jamesjj.liao@mediatek.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ netdev@vger.kernel.org
+References: <23bc89d407e7797e97b703fa939b43bfe79296ce.1701823757.git.daniel@makrotopia.org>
+ <def05aac79ddff872d3e56698b736cb445f14116.1701823757.git.daniel@makrotopia.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <def05aac79ddff872d3e56698b736cb445f14116.1701823757.git.daniel@makrotopia.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Rob,
-
-Thanks for reviewing this!
-
-On Tue, Dec 05, 2023 at 02:48:27PM -0600, Rob Herring wrote:
-> On Mon, Dec 04, 2023 at 06:33:06PM +0100, Boris Brezillon wrote:
-> > From: Liviu Dudau <liviu.dudau@arm.com>
-> > 
-> > Arm has introduced a new v10 GPU architecture that replaces the Job Manager
-> > interface with a new Command Stream Frontend. It adds firmware driven
-> > command stream queues that can be used by kernel and user space to submit
-> > jobs to the GPU.
-> > 
-> > Add the initial schema for the device tree that is based on support for
-> > RK3588 SoC. The minimum number of clocks is one for the IP, but on Rockchip
-> > platforms they will tend to expose the semi-independent clocks for better
-> > power management.
-> > 
-> > v3:
-> > - Cleanup commit message to remove redundant text
-> > - Added opp-table property and re-ordered entries
-> > - Clarified power-domains and power-domain-names requirements for RK3588.
-> > - Cleaned up example
-> > 
-> > Note: power-domains and power-domain-names requirements for other platforms
-> > are still work in progress, hence the bindings are left incomplete here.
-> > 
-> > v2:
-> > - New commit
-> > 
-> > Signed-off-by: Liviu Dudau <liviu.dudau@arm.com>
-> > Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: Conor Dooley <conor+dt@kernel.org>
-> > Cc: devicetree@vger.kernel.org
-> > ---
-> >  .../bindings/gpu/arm,mali-valhall-csf.yaml    | 147 ++++++++++++++++++
-> >  1 file changed, 147 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
-> > new file mode 100644
-> > index 000000000000..d72de094c8ea
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
-> > @@ -0,0 +1,147 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/gpu/arm,mali-valhall-csf.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: ARM Mali Valhall GPU
-> > +
-> > +maintainers:
-> > +  - Liviu Dudau <liviu.dudau@arm.com>
-> > +  - Boris Brezillon <boris.brezillon@collabora.com>
-> > +
-> > +properties:
-> > +  $nodename:
-> > +    pattern: '^gpu@[a-f0-9]+$'
-> > +
-> > +  compatible:
-> > +    oneOf:
+Il 06/12/23 01:57, Daniel Golle ha scritto:
+> Add various clock controllers found in the MT7988 SoC to existing
+> bindings (if applicable) and add files for the new ethwarp, mcusys
+> and xfi-pll clock controllers not previously present in any SoC.
 > 
-> Don't need oneOf.
-
-This has come up on the review of the previous version. We're planning on adding support for more
-SoCs once the initial panthor driver gets merged, but I don't think it's worth advertising it now.
-Krzyszof raised the same point and then agreed to keep it, as seen here[1].
-
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> ---
+> v3:
+>   * move clock bindings to clock folder
+>   * drop ti,syscon-reset from bindings and example
+>   * merge mcusys with topckgen bindings
 > 
-> > +      - items:
-> > +          - enum:
-> > +              - rockchip,rk3588-mali
-> > +          - const: arm,mali-valhall-csf   # Mali Valhall GPU model/revision is fully discoverable
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    items:
-> > +      - description: Job interrupt
-> > +      - description: MMU interrupt
-> > +      - description: GPU interrupt
-> > +
-> > +  interrupt-names:
-> > +    items:
-> > +      - const: job
-> > +      - const: mmu
-> > +      - const: gpu
-> > +
-> > +  clocks:
-> > +    minItems: 1
-> > +    maxItems: 3
+> v2:
+>   * dropped unused labels
+>   * add 'type: object' declaration for reset-controller found in new
+>     ethwarp controller and represented as ti,syscon-reset
+>   * rebase on top of
+>     "dt-bindings: arm: mediatek: move ethsys controller & convert to DT schema"
 > 
-> The function of each clock based on just the names below aren't too 
-> evident. 'core' is, but then what is 'stacks'? Please add some 
-> descriptions.
+>   .../arm/mediatek/mediatek,infracfg.yaml       |  1 +
+>   .../bindings/clock/mediatek,apmixedsys.yaml   |  1 +
+>   .../bindings/clock/mediatek,ethsys.yaml       |  1 +
+>   .../clock/mediatek,mt7988-ethwarp.yaml        | 49 +++++++++++++++++++
+>   .../clock/mediatek,mt7988-xfi-pll.yaml        | 48 ++++++++++++++++++
+>   .../bindings/clock/mediatek,topckgen.yaml     |  2 +
+>   .../bindings/net/pcs/mediatek,sgmiisys.yaml   | 13 +++--
+>   7 files changed, 112 insertions(+), 3 deletions(-)
+>   create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt7988-ethwarp.yaml
+>   create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt7988-xfi-pll.yaml
 > 
-The names match the hardware architecture, where the core clock powers
-most of the GPU, the 'stacks' clock is for shader core stacks and the
-'coregroup' is used by stacks and tilers. All this is defined as "logical
-power domains" and the implementer of the IP can decide to map them to
-individual physical power domains or to group everything into a minimum of
-one power domain. Hence the flexibility in describing the hardware.
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.yaml
+> index ea98043c6ba3d..230b5188a88db 100644
+> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.yaml
+> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.yaml
+> @@ -30,6 +30,7 @@ properties:
+>                 - mediatek,mt7629-infracfg
+>                 - mediatek,mt7981-infracfg
+>                 - mediatek,mt7986-infracfg
+> +              - mediatek,mt7988-infracfg
+>                 - mediatek,mt8135-infracfg
+>                 - mediatek,mt8167-infracfg
+>                 - mediatek,mt8173-infracfg
+> diff --git a/Documentation/devicetree/bindings/clock/mediatek,apmixedsys.yaml b/Documentation/devicetree/bindings/clock/mediatek,apmixedsys.yaml
+> index 372c1d744bc27..685535846cbb7 100644
+> --- a/Documentation/devicetree/bindings/clock/mediatek,apmixedsys.yaml
+> +++ b/Documentation/devicetree/bindings/clock/mediatek,apmixedsys.yaml
+> @@ -22,6 +22,7 @@ properties:
+>             - mediatek,mt7622-apmixedsys
+>             - mediatek,mt7981-apmixedsys
+>             - mediatek,mt7986-apmixedsys
+> +          - mediatek,mt7988-apmixedsys
+>             - mediatek,mt8135-apmixedsys
+>             - mediatek,mt8173-apmixedsys
+>             - mediatek,mt8516-apmixedsys
+> diff --git a/Documentation/devicetree/bindings/clock/mediatek,ethsys.yaml b/Documentation/devicetree/bindings/clock/mediatek,ethsys.yaml
+> index 94d42c8647777..f9cddacc2eae1 100644
+> --- a/Documentation/devicetree/bindings/clock/mediatek,ethsys.yaml
+> +++ b/Documentation/devicetree/bindings/clock/mediatek,ethsys.yaml
+> @@ -22,6 +22,7 @@ properties:
+>                 - mediatek,mt7629-ethsys
+>                 - mediatek,mt7981-ethsys
+>                 - mediatek,mt7986-ethsys
+> +              - mediatek,mt7988-ethsys
+>             - const: syscon
+>         - items:
+>             - const: mediatek,mt7623-ethsys
+> diff --git a/Documentation/devicetree/bindings/clock/mediatek,mt7988-ethwarp.yaml b/Documentation/devicetree/bindings/clock/mediatek,mt7988-ethwarp.yaml
+> new file mode 100644
+> index 0000000000000..9b919a155eb13
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/mediatek,mt7988-ethwarp.yaml
+> @@ -0,0 +1,49 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/mediatek/mediatek,mt7988-ethwarp.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek MT7988 ethwarp Controller
+> +
+> +maintainers:
+> +  - Daniel Golle <daniel@makrotopia.org>
+> +
+> +description:
+> +  The Mediatek MT7988 ethwarp controller provides clocks and resets for the
+> +  Ethernet related subsystems found the MT7988 SoC.
+> +  The clock values can be found in <dt-bindings/clock/mt*-clk.h>.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: mediatek,mt7988-ethwarp
+> +      - const: syscon
+> +      - const: simple-mfd
 
-As for describing what the function of each power domain is, I'm afraid we
-need to keep it at "matches the architecture" for now and I will look into
-what more information can be added later. At the high level, the more
-power domains you have the more you can fine tune the power consumption of
-the GPU.
+No, this is not a mfd, I say.
 
-> I expect there is better visibility into what's correct here than we had 
-> on earlier h/w. IOW, I don't want to see different clocks for every SoC. 
-> Same applies to power-domains.
+Prove me wrong! :-)
 
-Afraid that's up to the SoC implementation to decide how they wire the
-power domains. Hardware is capable to automatically powering up the domains
-needed, as long as the relevant clocks are provided.
+..snip..
 
-Best regards,
-Liviu
+> diff --git a/Documentation/devicetree/bindings/net/pcs/mediatek,sgmiisys.yaml b/Documentation/devicetree/bindings/net/pcs/mediatek,sgmiisys.yaml
+> index 66a95191bd776..68632cda334bd 100644
+> --- a/Documentation/devicetree/bindings/net/pcs/mediatek,sgmiisys.yaml
+> +++ b/Documentation/devicetree/bindings/net/pcs/mediatek,sgmiisys.yaml
+> @@ -15,15 +15,22 @@ description:
+>   
+>   properties:
+>     compatible:
+> -    items:
+> -      - enum:
+> +    oneOf:
+> +      - items:
+> +        - enum:
+>             - mediatek,mt7622-sgmiisys
+>             - mediatek,mt7629-sgmiisys
+>             - mediatek,mt7981-sgmiisys_0
+>             - mediatek,mt7981-sgmiisys_1
+>             - mediatek,mt7986-sgmiisys_0
+>             - mediatek,mt7986-sgmiisys_1
+> -      - const: syscon
+> +        - const: syscon
+> +      - items:
+> +        - enum:
+> +          - mediatek,mt7988-sgmiisys_0
+> +          - mediatek,mt7988-sgmiisys_1
+> +        - const: syscon
+> +        - const: simple-mfd
 
-> 
-> > +
-> > +  clock-names:
-> > +    minItems: 1
-> > +    items:
-> > +      - const: core
-> > +      - const: coregroup
-> > +      - const: stacks
-> > +
-> > +  mali-supply: true
-> > +
-> > +  operating-points-v2: true
-> > +  opp-table:
-> > +    type: object
-> > +
-> > +  power-domains:
-> > +    minItems: 1
-> > +    maxItems: 5
-> > +
-> > +  power-domain-names:
-> > +    minItems: 1
-> > +    maxItems: 5
-> > +
-> > +  sram-supply: true
-> > +
-> > +  "#cooling-cells":
-> > +    const: 2
-> > +
-> > +  dynamic-power-coefficient:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description:
-> > +      A u32 value that represents the running time dynamic
-> > +      power coefficient in units of uW/MHz/V^2. The
-> > +      coefficient can either be calculated from power
-> > +      measurements or derived by analysis.
-> > +
-> > +      The dynamic power consumption of the GPU is
-> > +      proportional to the square of the Voltage (V) and
-> > +      the clock frequency (f). The coefficient is used to
-> > +      calculate the dynamic power as below -
-> > +
-> > +      Pdyn = dynamic-power-coefficient * V^2 * f
-> > +
-> > +      where voltage is in V, frequency is in MHz.
-> > +
-> > +  dma-coherent: true
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - interrupt-names
-> > +  - clocks
-> > +  - mali-supply
-> > +
-> > +additionalProperties: false
-> > +
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: rockchip,rk3588-mali
-> > +    then:
-> > +      properties:
-> > +        clocks:
-> > +          minItems: 3
-> > +	power-domains:
-> > +	  maxItems: 1
-> > +	power-domain-names: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/rockchip,rk3588-cru.h>
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    #include <dt-bindings/power/rk3588-power.h>
-> > +
-> > +    gpu: gpu@fb000000 {
-> > +        compatible = "rockchip,rk3588-mali", "arm,mali-valhall-csf";
-> > +        reg = <0xfb000000 0x200000>;
-> > +        interrupts = <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH 0>,
-> > +                     <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH 0>,
-> > +                     <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH 0>;
-> > +        interrupt-names = "job", "mmu", "gpu";
-> > +        clock-names = "core", "coregroup", "stacks";
-> > +        clocks = <&cru CLK_GPU>, <&cru CLK_GPU_COREGROUP>,
-> > +                 <&cru CLK_GPU_STACKS>;
-> > +        power-domains = <&power RK3588_PD_GPU>;
-> > +        operating-points-v2 = <&gpu_opp_table>;
-> > +        mali-supply = <&vdd_gpu_s0>;
-> > +        sram-supply = <&vdd_gpu_mem_s0>;
-> > +    };
-> > +
-> > +    gpu_opp_table: opp-table {
-> > +        compatible = "operating-points-v2";
-> > +        opp-300000000 {
-> > +            opp-hz = /bits/ 64 <300000000>;
-> > +            opp-microvolt = <675000 675000 850000>;
-> > +        };
-> > +        opp-400000000 {
-> > +            opp-hz = /bits/ 64 <400000000>;
-> > +            opp-microvolt = <675000 675000 850000>;
-> > +        };
-> > +    };
-> > +
-> > +...
-> > -- 
-> > 2.43.0
-> > 
+Same.
 
--- 
-====================
-| I would like to |
-| fix the world,  |
-| but they're not |
-| giving me the   |
- \ source code!  /
-  ---------------
-    ¯\_(ツ)_/¯
+Cheers,
+Angelo
 
