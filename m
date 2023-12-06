@@ -1,112 +1,246 @@
-Return-Path: <devicetree+bounces-22456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE237807728
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 18:58:33 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB9FC807731
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 19:00:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 91ADC1F212A4
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 17:58:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7BB77B20EA5
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 18:00:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA1296DD11;
-	Wed,  6 Dec 2023 17:58:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFB446DD1D;
+	Wed,  6 Dec 2023 18:00:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="0HbX49In"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G7Y8wjq7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DFE2D42;
-	Wed,  6 Dec 2023 09:58:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=3ZZNNhGyoTwRHgS/bMWVfX3vw+ZZ4cEePiAqrrIcnwM=; b=0HbX49InVIrrypsWfM0ZmrDswH
-	hUiEYIwZ/X0y6/g3n9MfR/Xe2G5AdEZwo+6WoFCG9muiQqjrdSwuIWlOmpA/dcAwSSIDNPabftXNo
-	uUNE6oM3plQH/R0YwGvoVXykOm1A4uJeGpKeG2xQ6OpBt4v6vuNKuyUgCJLK2gEMd+nzY3h0O6rqU
-	lVYOBys6d13VTBf1WTZRBZfPGgizzwR9LYBtitOMb3NgrraS95ziohm/QKnnBx5eXCTQ1NEWNAn6r
-	jZStgPtTaO+kCOGSkHoMhAr3HpiHeQ3UkPTPRTIclBzQAngtVpzIr9Moie2tqITHv3pZ/w+4X8vqF
-	3QJptGVQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:56612)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1rAw9w-0000E0-0u;
-	Wed, 06 Dec 2023 17:58:08 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1rAw9w-0002uo-Va; Wed, 06 Dec 2023 17:58:08 +0000
-Date: Wed, 6 Dec 2023 17:58:08 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc: Daniel Golle <daniel@makrotopia.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chunfeng Yun <chunfeng.yun@mediatek.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Mark Lee <Mark-MC.Lee@mediatek.com>,
-	Lorenzo Bianconi <lorenzo@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Alexander Couzens <lynxis@fe80.eu>,
-	Qingfang Deng <dqfext@gmail.com>,
-	SkyLake Huang <SkyLake.Huang@mediatek.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org
-Subject: Re: [RFC PATCH v2 5/8] net: pcs: add driver for MediaTek USXGMII PCS
-Message-ID: <ZXC2MFn7pVX/KNmJ@shell.armlinux.org.uk>
-References: <cover.1701826319.git.daniel@makrotopia.org>
- <3cd8af5e44554c2db2d7898494ee813967206bd9.1701826319.git.daniel@makrotopia.org>
- <20231206105838.069ae288@device.home>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F7886D1D2;
+	Wed,  6 Dec 2023 18:00:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8437C433C8;
+	Wed,  6 Dec 2023 18:00:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701885628;
+	bh=MsDm6ySBk7Gn55vOi86nxzClQi3SSWxVXbvoAoJ6ceM=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=G7Y8wjq7QNhQqxOlpgNHOYbIusAelAxuhGLduCV/KAOL6A65APHP9Xj7/F7kjSiqy
+	 Bw/vC4pAQpURiRKx2AawNrySguLYu9bvoSZJrrAgNrjtIitMwpi3JXAlrBAxpvsAB2
+	 tvI5PF9AjvS4Q0HXkxCEPBn1ErWkRh34z9kwuPwfFIrug/Y315FT4fXbCC7fAqhj4T
+	 2nDAlIdstbvKtSvLNaqIy+TDbxDsNqYnsm1YSxd4V6NfQPC/ZaT5BSJJd5Ca6R6XG2
+	 yc8BPnLeSOsDP05rlBi4GJJun0zz+F9oZDY03Wo1a90qqCsdDTU0Kp+evYX+p/VLnJ
+	 gOwsOPOc7wvdw==
+Date: Wed, 6 Dec 2023 18:00:20 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Li peiyu <579lpy@gmail.com>
+Cc: javier.carrasco.cruz@gmail.com, lars@metafoo.de, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 3/4] iio: humidity: Add driver for ti HDC302x
+ humidity sensors
+Message-ID: <20231206180020.3f48652a@jic23-huawei>
+In-Reply-To: <20231206135123.559547-1-579lpy@gmail.com>
+References: <20231206134655.559474-1-579lpy@gmail.com>
+	<20231206135123.559547-1-579lpy@gmail.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231206105838.069ae288@device.home>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Wed, Dec 06, 2023 at 10:58:38AM +0100, Maxime Chevallier wrote:
-> On Wed, 6 Dec 2023 01:44:38 +0000
-> Daniel Golle <daniel@makrotopia.org> wrote:
-> > +	/* Read USXGMII link status */
-> > +	state->link = FIELD_GET(RG_PCS_RX_LINK_STATUS,
-> > +				mtk_r32(mpcs, RG_PCS_RX_STATUS0));
-> > +
-> > +	/* Continuously repeat re-configuration sequence until link comes up */
-> > +	if (!state->link) {
-> > +		mtk_usxgmii_pcs_config(pcs, mpcs->neg_mode,
-> > +				       state->interface, NULL, false);
-> > +		return;
+On Wed,  6 Dec 2023 21:51:23 +0800
+Li peiyu <579lpy@gmail.com> wrote:
+
+> Add support for HDC302x integrated capacitive based relative
+> humidity (RH) and temperature sensor.
+> This driver supports reading values, reading the maximum and
+> minimum of values and controlling the integrated heater of
+> the sensor.
 > 
-> .pcs_get_state() isn't called only for link state polling,but also when querying
-> the link state from ethtool, from phylink_ethtool_ksettings_get().
-> 
-> As mtk_usxgmii_pcs_config triggers a pcs reset and reconfiguration, won't this disrupt
-> the link ? 
+> Co-developed-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+> Signed-off-by: Li peiyu <579lpy@gmail.com>
 
-Highly likely if there's a race, but note that mtk_usxgmii_pcs_config()
-only gets called if the link is *down*. I guess some IPs need a bit of
-kicking to work properly.
+Hi.
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+A few minor comments inline from a fresh thread through.
+
+Jonathan
+
+>  hts221-y := hts221_core.o \
+> diff --git a/drivers/iio/humidity/hdc3020.c b/drivers/iio/humidity/hdc3020.c
+> new file mode 100644
+> index 000000000000..8575eb00775e
+> --- /dev/null
+> +++ b/drivers/iio/humidity/hdc3020.c
+> @@ -0,0 +1,468 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * hdc3020.c - Support for the TI HDC3020,HDC3021 and HDC3022
+> + * temperature + relative humidity sensors
+> + *
+> + * Copyright (C) 2023
+> + *
+> + * Datasheet: https://www.ti.com/lit/ds/symlink/hdc3020.pdf
+> + */
+> +
+> +#include <linux/module.h>
+> +#include <linux/init.h>
+> +#include <linux/i2c.h>
+> +#include <linux/bitops.h>
+> +#include <linux/crc8.h>
+> +#include <linux/delay.h>
+> +#include <linux/mutex.h>
+> +#include <linux/cleanup.h>
+
+This block should be in alphabetical order. (IIO convention, other bits
+of the kernel use other weird ordering rules!)
+
+J
+> +struct hdc3020_data {
+> +	struct i2c_client *client;
+> +	/*
+> +	 * Ensure that only one operation can communicate with the device
+> +	 * at the same time.
+Why? What is being protected.  State changes on device perhaps?  Good
+to give more detail as it makes it easier to check the lock is used correctly
+in the future.
+
+> +	 */
+> +	struct mutex lock;
+> +};
+> +
+> +static const int hdc3020_heater_vals[] = {0, 1, 0x3FFF};
+> +
+> +static const struct iio_chan_spec hdc3020_channels[] = {
+> +	{
+> +		.type = IIO_TEMP,
+> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
+> +		BIT(IIO_CHAN_INFO_SCALE) | BIT(IIO_CHAN_INFO_PEAK) |
+> +		BIT(IIO_CHAN_INFO_TROUGH) | BIT(IIO_CHAN_INFO_OFFSET),
+> +	},
+> +	{
+> +		.type = IIO_HUMIDITYRELATIVE,
+> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
+> +		BIT(IIO_CHAN_INFO_SCALE) | BIT(IIO_CHAN_INFO_PEAK) |
+> +		BIT(IIO_CHAN_INFO_TROUGH) | BIT(IIO_CHAN_INFO_OFFSET),
+> +	},
+> +	{
+> +		/*
+> +		 * For setting the internal heater, which can be switched on to
+> +		 * prevent or remove any condensation that may develop when the
+> +		 * ambient environment approaches its dew point temperature.
+> +		 */
+> +		.type = IIO_CURRENT,
+> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
+> +		.info_mask_separate_available = 1,
+
+This takes the same bits as info_mask_separate.
+So BIT(IIO_CHAN_INFO_RAW) which is probably 1 but I haven't checked.  
+> +		.output = 1,
+> +	},
+> +};
+
+> +static int hdc3020_read_raw(struct iio_dev *indio_dev,
+> +			    struct iio_chan_spec const *chan, int *val,
+> +			    int *val2, long mask)
+> +{
+> +	struct hdc3020_data *data = iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_RAW: {
+
+Odd indent.  One table to many for the following few lines.
+
+> +			guard(mutex)(&data->lock);
+> +			ret = hdc3020_read_measurement(data, chan->type, val);
+> +			if (ret < 0)
+> +				return ret;
+> +
+> +			return IIO_VAL_INT;
+> +	}
+>
+> +	case IIO_CHAN_INFO_SCALE:
+> +		*val2 = 65536;
+> +		if (chan->type == IIO_TEMP)
+> +			*val = 175;
+> +		else
+> +			*val = 100;
+> +		return IIO_VAL_FRACTIONAL;
+> +
+> +	case IIO_CHAN_INFO_OFFSET:
+> +		if (chan->type == IIO_TEMP)
+> +			*val = 16852;
+
+Seems backwards to check the type, but not deal with
+it being wrong.  Check the inverse and return an error.
+
+		if (chan->type != IIO_TEMP)
+			return -EINVAL;
+
+		*val = ...
+
+> +		return IIO_VAL_INT;
+> +	}
+> +
+> +	return -EINVAL;
+> +}
+
+> +
+> +static int hdc3020_probe(struct i2c_client *client)
+> +{
+> +	struct iio_dev *indio_dev;
+> +	struct hdc3020_data *data;
+> +	int ret;
+> +
+> +	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C))
+> +		return -EOPNOTSUPP;
+> +
+> +	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*data));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	data = iio_priv(indio_dev);
+> +	data->client = client;
+> +	mutex_init(&data->lock);
+> +
+> +	crc8_populate_msb(hdc3020_crc8_table, HDC3020_CRC8_POLYNOMIAL);
+> +
+> +	indio_dev->name = "hdc3020";
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+> +	indio_dev->info = &hdc3020_info;
+> +	indio_dev->channels = hdc3020_channels;
+> +	indio_dev->num_channels = ARRAY_SIZE(hdc3020_channels);
+> +
+> +	ret = hdc3020_write_bytes(data, HDC3020_S_AUTO_10HZ_MOD0, 2);
+> +	if (ret)
+> +		return dev_err_probe(&client->dev, ret,
+> +				     "Unable to set up measurement\n");
+> +
+> +	ret = devm_add_action_or_reset(&data->client->dev, hdc3020_stop, data);
+> +	if (ret)
+> +		return dev_err_probe(&client->dev, ret,
+> +				     "Failed to add device\n");
+
+This isn't adding the device... So the error message needs an update.
+It's vanishingly unlikely to actually happen, so fine to not have a message
+at all for this one.
+
+> +
+> +	ret = devm_iio_device_register(&data->client->dev, indio_dev);
+> +	if (ret)
+> +		return dev_err_probe(&client->dev, ret,
+> +				     "Failed to add device\n");
+> +
+> +	return 0;
+> +}
+
 
