@@ -1,179 +1,200 @@
-Return-Path: <devicetree+bounces-22459-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22460-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFA5580778D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 19:26:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF5CB8077B0
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 19:42:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 873D11F21074
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 18:26:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3F82828217B
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 18:42:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 651E74184A;
-	Wed,  6 Dec 2023 18:26:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B53D736D;
+	Wed,  6 Dec 2023 18:42:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TKb/E3hC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oVX1bmez"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-xd33.google.com (mail-io1-xd33.google.com [IPv6:2607:f8b0:4864:20::d33])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C773122;
-	Wed,  6 Dec 2023 10:26:44 -0800 (PST)
-Received: by mail-io1-xd33.google.com with SMTP id ca18e2360f4ac-7b6e9f335dcso2390239f.1;
-        Wed, 06 Dec 2023 10:26:44 -0800 (PST)
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B04484
+	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 10:42:09 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-40c0fc1cf3dso1282215e9.0
+        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 10:42:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701887203; x=1702492003; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1701888127; x=1702492927; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=/ZySKQCUH2RPxJ6tJdSkxJbwaT6/swy656+RmrGV9Kg=;
-        b=TKb/E3hCKNvdTGEVHRBSH3EGiwRrO1Li5kThVkzbUz3rY1/r3Txc+UbB5zVWfjaSLB
-         kngPK1ZRnb2Fyut7Lu+C1o3hDEdN/WFKiwXjm0qLSZZ8IraaAeoZKzad+NKRH9+kM9zV
-         CvCHo0UYHF/esnxovM5YloNrlyynJJmDXWfZ+vQbWsPFtpVEEwfo9axt77yS4w6y3dcN
-         GYThyfpbBvPjZMgmb7X5UMzP6qbo9N6eIs/o24b/w4jJQ3wDBuV++DAnfOUqL0YlLoqd
-         f+7hgAvBaAYgzm1NF3v75gWjkGTJjFPJX0htoz88D0fepLejbJLiiPgY6+AfhIx0OnpR
-         b/Ow==
+        bh=VzeJ6XwirV2k7HJ4J6NHGgSQp6vEqG9SdErK5BEFGLQ=;
+        b=oVX1bmezOVzMWl0gDRaJHrbry4QRfjMZDoBPaB7EtATM4s6/RuP4xmJYzE+SjBtlko
+         Otew4rXKaV0vEJk1RO0LJbEcks7/6gZ21WNu7cn5fbpZPFTfcZkxnzc4sKuTiMx1QbbX
+         Xv4q/R1ZipG5TkJICkOiNW9/Ejb3j6h5HT9hpr3OD0rtiyTh8LREIcXFNCyRD8LfZyuH
+         SmbXPx++8/yGJRSuV5H0/A0KC8Eo1yaxFb+1UoXy5ioWeLPA+D5/oeW1amcQMxCYVY68
+         6ok6GNYOstanWGRC7O1JFNAlN/nJ37LFu7RM6dAzLikRj4+G8lbf/7eowWXfWNIgKR25
+         R/3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701887203; x=1702492003;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1701888127; x=1702492927;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/ZySKQCUH2RPxJ6tJdSkxJbwaT6/swy656+RmrGV9Kg=;
-        b=EbfYjoCtFj8MkWc1a6/sMaTscLqgEJ2SfeQJDFkJpQKpb/knWbAm6kemyxoBOejnET
-         o1i2WDlke6MRyyacztXmIbCnf+6nxjuJCHG0cT2r/QBAhNR1kMvR/A744DjKgLS2q4NP
-         YRfQBJns7watvIzbT3G30pz4LYF4nzcmTMtXi7LLq37ZefL9i9FBLq7Vz9melB6LoBAT
-         OCGWM5mNav3G6ZclJGsRWTDjI8kY2vP8sA9nj+D6416q4WFewLuN4KUNmgFTTv4HvqzM
-         9ur211F0OvfGEOct+YxZQueo6IVnD1OGRzS/wTRUd2tj/OTLbetLGS8lzqYDVwRcNeqq
-         affQ==
-X-Gm-Message-State: AOJu0Yy9wH9f6nK94rX4pPJLFTPuHaXL+ZWoDLAfsuzMCm5e8qMa10wU
-	JcvDZX6VtIZ07IIBDf9F1Po=
-X-Google-Smtp-Source: AGHT+IE6PzZN0GIbW9nhkBhrktDqmhUZc6UrKi9VtszWP0ZuOdttejlhzjzvWT7tR5TZYs8u772HPA==
-X-Received: by 2002:a05:6e02:12a2:b0:35d:6aa4:d5d8 with SMTP id f2-20020a056e0212a200b0035d6aa4d5d8mr1673892ilr.37.1701887203568;
-        Wed, 06 Dec 2023 10:26:43 -0800 (PST)
-Received: from ?IPV6:2001:470:42c4:101:3fb7:1e39:b284:286f? ([2001:470:42c4:101:3fb7:1e39:b284:286f])
-        by smtp.gmail.com with ESMTPSA id j29-20020a02cb1d000000b00468f1305e4esm84031jap.21.2023.12.06.10.26.41
+        bh=VzeJ6XwirV2k7HJ4J6NHGgSQp6vEqG9SdErK5BEFGLQ=;
+        b=FtSnlmMiifr6J1vhcJ5tM90+akc4p/9jCciq/gFtXI7p5+hNxGkxoxYFuDrAW7JkOo
+         SFcByVGHMdwYB+n2S3BGwLxsblFguqjGbzzaMRBdNxTCS0+ygDajF0kBWQJZFBwutcUk
+         bTI+Sz3Y9MnoJZozEevz8rgNdVUXGG87Azf8YDmiqvHkQqrSu5N1sCnEzedUv1ZSPk2c
+         02PW1c/Pf4S7naO3BacSxnENqZmKZD9nhtsFbaMtHPiOrX/TJkYjA63SjVoO9tlx1qOo
+         5t20O2MQyW9IwbsCtozetHHhvhla8RUhLZygAub/1UK6F/wKV2J63C0PhFXM3ByE2kWB
+         MmcQ==
+X-Gm-Message-State: AOJu0YxxIOo0Faw6NiF0Nkbg91tPIwT/KPhcV2FI+im9DQeQDJrREmDS
+	fFVDBIyPmqo1i0enWCR7LhBsXg==
+X-Google-Smtp-Source: AGHT+IFN1GaltS99IEHl3S2aVcQn637GUwUeeuKE7VlU09FVROPOoPtHusQR1gcsfdJsS3Z9CNxkQg==
+X-Received: by 2002:a05:600c:4712:b0:40b:5e21:d349 with SMTP id v18-20020a05600c471200b0040b5e21d349mr946578wmo.82.1701888127480;
+        Wed, 06 Dec 2023 10:42:07 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id kj9-20020a170907764900b00a1d61183006sm277582ejc.83.2023.12.06.10.42.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Dec 2023 10:26:43 -0800 (PST)
-Message-ID: <d38540c5-79a8-0582-87b9-0e99bf3044d5@gmail.com>
-Date: Wed, 6 Dec 2023 11:26:40 -0700
+        Wed, 06 Dec 2023 10:42:07 -0800 (PST)
+Message-ID: <ae0758f3-ccc5-49a2-a37a-42925f4b0944@linaro.org>
+Date: Wed, 6 Dec 2023 19:42:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [RESEND PATCH] arm64: dts: rockchip: Add PCIe pinctrls to Turing
- RK1
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 4/4] iio: humidity: Add TI HDC302x support
 Content-Language: en-US
-To: =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
- Rob Herring <robh+dt@kernel.org>
-Cc: linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- =?UTF-8?Q?Daniel_Kukie=c5=82a?= <daniel@kukiela.pl>,
- Sven Rademakers <sven.rademakers@gmail.com>, Joshua Riek <jjriek@verizon.net>
-References: <20231205202900.4617-1-CFSworks@gmail.com>
- <3331042.e9J7NaK4W3@diego>
-From: Sam Edwards <cfsworks@gmail.com>
-In-Reply-To: <3331042.e9J7NaK4W3@diego>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+To: Li peiyu <579lpy@gmail.com>, jic23@kernel.org
+Cc: javier.carrasco.cruz@gmail.com, lars@metafoo.de, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231206134655.559474-1-579lpy@gmail.com>
+ <20231206135148.559564-1-579lpy@gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231206135148.559564-1-579lpy@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 06/12/2023 14:51, Li peiyu wrote:
+> Add device tree bindings for HDC3020/HDC3021/HDC3022 humidity and
+> temperature sensors.
 
-
-On 12/6/23 07:55, Heiko Stübner wrote:
-> Am Dienstag, 5. Dezember 2023, 21:28:59 CET schrieb Sam Edwards:
->> The RK3588 PCIe 3.0 controller seems to have unpredictable behavior when
->> no CLKREQ/PERST/WAKE pins are configured in the pinmux. In particular, it
->> will sometimes (varying between specific RK3588 chips, not over time) shut
->> off the DBI block, and reads to this range will instead stall
->> indefinitely.
->>
->> When this happens, it will prevent Linux from booting altogether. The
->> PCIe driver will stall the CPU core once it attempts to read the version
->> information from the DBI range.
->>
->> Fix this boot hang by adding the correct pinctrl configuration to the
->> PCIe 3.0 device node, which is the proper thing to do anyway. While
->> we're at it, also add the necessary configuration to the PCIe 2.0 node,
->> which may or may not fix the equivalent problem over there -- but is the
->> proper thing to do anyway. :)
->>
->> Fixes: 2806a69f3fef6 ("arm64: dts: rockchip: Add Turing RK1 SoM support")
->> Signed-off-by: Sam Edwards <CFSworks@gmail.com>
->> ---
->>   .../arm64/boot/dts/rockchip/rk3588-turing-rk1.dtsi | 14 ++------------
->>   1 file changed, 2 insertions(+), 12 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-turing-rk1.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-turing-rk1.dtsi
->> index 9570b34aca2e..129f14dbd42f 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3588-turing-rk1.dtsi
->> +++ b/arch/arm64/boot/dts/rockchip/rk3588-turing-rk1.dtsi
->> @@ -214,7 +214,7 @@ rgmii_phy: ethernet-phy@1 {
->>   &pcie2x1l1 {
->>   	linux,pci-domain = <1>;
->>   	pinctrl-names = "default";
->> -	pinctrl-0 = <&pcie2_reset>;
->> +	pinctrl-0 = <&pcie30x1m1_pins>;
->>   	reset-gpios = <&gpio4 RK_PA2 GPIO_ACTIVE_HIGH>;
->>   	status = "okay";
->>   };
->> @@ -226,7 +226,7 @@ &pcie30phy {
->>   &pcie3x4 {
->>   	linux,pci-domain = <0>;
->>   	pinctrl-names = "default";
->> -	pinctrl-0 = <&pcie3_reset>;
->> +	pinctrl-0 = <&pcie30x4m1_pins>;
-
-Hi Heiko,
-
-> 
-> also, why are you throwing out the pinctrl for the reset pin.
-> That seems not related to the regular pins and you could instead just do
-> 
-> +	pinctrl-0 = <&pcie30x4m1_pins>, <&pcie3_reset>;
-
-The pcie30x4m1_pins def does include pinmuxing `4 RK_PB6` to the DW 
-controller already. The v2 patch should probably instead remove the 
-reset-gpios property, since an out-of-band GPIO reset is not needed when 
-the controller can do it.
-
-I'm still looking into the story with the PCIe 2.0 pins, since 2.0x1's 
-PERST# is definitely 4A2. I'll ask around and try to find out where the 
-corresponding CLKREQ# is going.
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching.
 
 > 
-> Thanks
-> Heiko
+> Signed-off-by: Li peiyu <579lpy@gmail.com>
+> ---
 
-Likewise,
-Sam
+Where is the changelog? It was here.
 
+This patch looks worse than it was before.
+
+
+>  .../bindings/iio/humidity/ti,hdc3020.yaml     | 55 +++++++++++++++++++
+>  1 file changed, 55 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml
 > 
->>   	reset-gpios = <&gpio4 RK_PB6 GPIO_ACTIVE_HIGH>;
->>   	vpcie3v3-supply = <&vcc3v3_pcie30>;
->>   	status = "okay";
->> @@ -245,17 +245,7 @@ hym8563_int: hym8563-int {
->>   		};
->>   	};
->>   
->> -	pcie2 {
->> -		pcie2_reset: pcie2-reset {
->> -			rockchip,pins = <4 RK_PA2 RK_FUNC_GPIO &pcfg_pull_none>;
->> -		};
->> -	};
->> -
->>   	pcie3 {
->> -		pcie3_reset: pcie3-reset {
->> -			rockchip,pins = <4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
->> -		};
->> -
->>   		vcc3v3_pcie30_en: pcie3-reg {
->>   			rockchip,pins = <2 RK_PC5 RK_FUNC_GPIO &pcfg_pull_none>;
->>   		};
->>
-> 
-> 
-> 
-> 
+> diff --git a/Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml b/Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml
+> new file mode 100644
+> index 000000000000..f04b09fdca5e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml
+> @@ -0,0 +1,55 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/humidity/ti,hdc3020.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: HDC3020/HDC3021/HDC3022 humidity and temperature iio sensors
+> +
+> +maintainers:
+> +  - Li peiyu <579lpy@gmail.com>
+> +  - Javier Carrasco <javier.carrasco.cruz@gmail.com>
+> +
+> +description:
+> +  https://www.ti.com/lit/ds/symlink/hdc3020.pdf
+> +
+> +  The HDC302x is an integrated capacitive based relative humidity (RH)
+> +  and temperature sensor.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - ti,hdc3021
+> +              - ti,hdc3022
+> +          - const: ti,hdc3020
+> +      - items:
+
+Drop items
+
+> +          - const: ti,hdc3020
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  vdd-supply: true
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+
+How did you respond to Jonathan's feedback?
+
+
+Best regards,
+Krzysztof
+
 
