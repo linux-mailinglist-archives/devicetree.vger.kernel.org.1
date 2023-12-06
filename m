@@ -1,280 +1,110 @@
-Return-Path: <devicetree+bounces-22317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22312-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 892078071A5
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 15:02:30 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07550807189
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 15:01:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0C7CC1F216DE
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 14:02:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 78E11B20E3B
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 14:01:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C39C3D38C;
-	Wed,  6 Dec 2023 14:02:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31BB73C6A6;
+	Wed,  6 Dec 2023 14:01:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="5imwtgs1"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="Ijs/uQ4z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 519CDD5E;
-	Wed,  6 Dec 2023 06:02:04 -0800 (PST)
-Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3B6Dna5q025367;
-	Wed, 6 Dec 2023 15:01:49 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	selector1; bh=e5JQ/h42L5uhpTPt24TWXUIHpp+cXePsoRZw+56u2lo=; b=5i
-	mwtgs1qjhM5lwuFBgF6aiYFMF8iEhU9A9aiPKwX5nmik+2+KtsHowQiros+6b0LW
-	QcgI4HZ7UBX73lzxbZb/OBj8vSXPov2QKC7AOIHgysQE0rAgJ1hhzRltvbMUllYx
-	kbRskP+D83Hr6sBKOm1yTgn5WJpjp+lXkKKCzHIN+RWOlndPJiTpLMLE6bNKWMEp
-	Ze4XpoC8fVxkgL+lD/W+ysdyuiMJGs0bVP0HvhnXB851Kkw7SY7Zf4N49y9+an6Q
-	/DLK/jXqIR5Y6r4keCzAMmXIKfIws/KZ0RLCqxbZ0MFPryo5GY9q4XViTxhq77L2
-	v0/+7RlayxIb1RoESYYA==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3utd2jkb6v-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 06 Dec 2023 15:01:49 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 50772100053;
-	Wed,  6 Dec 2023 15:01:49 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 475FF233C77;
-	Wed,  6 Dec 2023 15:01:49 +0100 (CET)
-Received: from localhost (10.201.21.240) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 6 Dec
- 2023 15:01:48 +0100
-From: <gabriel.fernandez@foss.st.com>
-To: Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
-	<sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Gabriel Fernandez <gabriel.fernandez@foss.st.com>
-CC: <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v5 5/5] arm64: dts: st: add rcc support in stm32mp251
-Date: Wed, 6 Dec 2023 15:00:29 +0100
-Message-ID: <20231206140029.492906-6-gabriel.fernandez@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231206140029.492906-1-gabriel.fernandez@foss.st.com>
-References: <20231206140029.492906-1-gabriel.fernandez@foss.st.com>
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 629ED181;
+	Wed,  6 Dec 2023 06:01:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1701871276; x=1733407276;
+  h=from:subject:date:message-id:mime-version:
+   content-transfer-encoding:to:cc;
+  bh=5Ojpykwp5n32ovbWNydkDxf3PhvVwsu4WWztxh/jFRw=;
+  b=Ijs/uQ4zG1bQszD3MlfEKmrGZdRuhqoPC+Qfcwcp0+E4KAvckEWvefuU
+   z5b135Rl8Dfp2RHTXT4mPECGSG0Y+Ss59euTYYybUugGWdGuoV6Tz9fxx
+   htbZE0N6KMI/0OcYzJnHPq/YbrbCpsFmzmLAmebA6MgDAG9XMD993oflV
+   SU2mOqg+BDw6pFqmeOvuUk0LNFQ7zAVb2JiWGRcmaollvhn7tlPAZt3a4
+   sR/iJKeSDhaO3g/on/JaPy8Am9ru2PULYNjBM0AnVZJ7DyNKtasDUIztl
+   dUnYtK661WGSvjTxtn3vu9qeuoBlQnZWVqmJQ4R9fAefnyggDwguynH1H
+   A==;
+X-IronPort-AV: E=Sophos;i="6.04,255,1695679200"; 
+   d="scan'208";a="34361963"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 06 Dec 2023 15:01:11 +0100
+Received: from [127.0.1.1] (herburgerg-w2.tq-net.de [10.122.52.145])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id ADD45280075;
+	Wed,  6 Dec 2023 15:01:11 +0100 (CET)
+From: Gregor Herburger <gregor.herburger@ew.tq-group.com>
+Subject: [PATCH 0/2] TQMLX2160A support
+Date: Wed, 06 Dec 2023 15:01:00 +0100
+Message-Id: <20231206-for-ml-tqmlx2160a-v1-0-622e41ae4d8e@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-06_11,2023-12-06_01,2023-05-22_02
+X-B4-Tracking: v=1; b=H4sIAJx+cGUC/x3MTQqAIBBA4avErBvQiSy6SrSQGmugX40QwrsnL
+ b/Fey8E9sIBuuIFz48EOfYMXRYwLnafGWXKBlJUaVIG3eFxW/G+tjWSNsqiaZmpql2jxwlyd3p
+ 2Ev9nP6T0AQqiErZjAAAA
+To: Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Li Yang <leoyang.li@nxp.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com, 
+ gregor.herburger@ew.tq-group.com
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1701871271; l=1357;
+ i=gregor.herburger@ew.tq-group.com; s=20230829; h=from:subject:message-id;
+ bh=30w689X+AivyuyJWGuS58hCBzyRFRC9wW8+XkL3J6yM=;
+ b=/lxbtoCvkTi+jEwVHgxKrx9jtr2/yzaPS7UdPM7Gu3+ZHdcTafW0adFgEoNBUP3h8kJpPS5mG
+ 3gmMI4aus6NBtJFJ5JAY06tDZEy6f87fU74oaI08pKYyrkH+xHEj46W
+X-Developer-Key: i=gregor.herburger@ew.tq-group.com; a=ed25519;
+ pk=+eRxwX7ikXwazcRjlOjj2/tbDmfVZdDLoW+xLZbQ4h4=
 
-From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+Hi,
 
-Add RCC support to manage clocks and resets on the STM32MP251.
+this series adds initial support for the TQMLX2160A SoM on MBLX2160a
+baseboard. The various supported Serdes Configurations are added with
+overlay files.
 
-Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+Patch 1 adds the compatible to dt bindings
+Patch 2 adds the dts files
+
 ---
- arch/arm64/boot/dts/st/stm32mp251.dtsi | 59 ++++++++++++++------------
- 1 file changed, 31 insertions(+), 28 deletions(-)
+Gregor Herburger (2):
+      dt-bindings: arm: fsl: Add TQ-Systems LX2160A based boards
+      arm64: dts: freescale: add fsl-lx2160a-mblx2160a board
 
-diff --git a/arch/arm64/boot/dts/st/stm32mp251.dtsi b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-index 124403f5f1f4..dfbdb3a773e4 100644
---- a/arch/arm64/boot/dts/st/stm32mp251.dtsi
-+++ b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-@@ -3,7 +3,9 @@
-  * Copyright (C) STMicroelectronics 2023 - All Rights Reserved
-  * Author: Alexandre Torgue <alexandre.torgue@foss.st.com> for STMicroelectronics.
-  */
-+#include <dt-bindings/clock/st,stm32mp25-rcc.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/reset/st,stm32mp25-rcc.h>
- 
- / {
- 	#address-cells = <2>;
-@@ -35,22 +37,10 @@ arm_wdt: watchdog {
- 	};
- 
- 	clocks {
--		ck_flexgen_08: ck-flexgen-08 {
-+		clk_rcbsec: clk-rcbsec {
- 			#clock-cells = <0>;
- 			compatible = "fixed-clock";
--			clock-frequency = <100000000>;
--		};
--
--		ck_flexgen_51: ck-flexgen-51 {
--			#clock-cells = <0>;
--			compatible = "fixed-clock";
--			clock-frequency = <200000000>;
--		};
--
--		ck_icn_ls_mcu: ck-icn-ls-mcu {
--			#clock-cells = <0>;
--			compatible = "fixed-clock";
--			clock-frequency = <200000000>;
-+			clock-frequency = <64000000>;
- 		};
- 	};
- 
-@@ -122,7 +112,7 @@ usart2: serial@400e0000 {
- 				compatible = "st,stm32h7-uart";
- 				reg = <0x400e0000 0x400>;
- 				interrupts = <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH>;
--				clocks = <&ck_flexgen_08>;
-+				clocks = <&rcc CK_KER_USART2>;
- 				status = "disabled";
- 			};
- 
-@@ -131,7 +121,7 @@ sdmmc1: mmc@48220000 {
- 				arm,primecell-periphid = <0x00353180>;
- 				reg = <0x48220000 0x400>, <0x44230400 0x8>;
- 				interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>;
--				clocks = <&ck_flexgen_51>;
-+				clocks = <&rcc CK_KER_SDMMC1 >;
- 				clock-names = "apb_pclk";
- 				cap-sd-highspeed;
- 				cap-mmc-highspeed;
-@@ -140,6 +130,19 @@ sdmmc1: mmc@48220000 {
- 			};
- 		};
- 
-+		rcc: clock-controller@44200000 {
-+			compatible = "st,stm32mp25-rcc";
-+			reg = <0x44200000 0x10000>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			clock-names = "hse", "hsi", "msi", "lse", "lsi";
-+			clocks = <&scmi_clk CK_SCMI_HSE>,
-+				<&scmi_clk CK_SCMI_HSI>,
-+				<&scmi_clk CK_SCMI_MSI>,
-+				<&scmi_clk CK_SCMI_LSE>,
-+				<&scmi_clk CK_SCMI_LSI>;
-+		};
-+
- 		syscfg: syscon@44230000 {
- 			compatible = "st,stm32mp25-syscfg", "syscon";
- 			reg = <0x44230000 0x10000>;
-@@ -158,7 +161,7 @@ gpioa: gpio@44240000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x0 0x400>;
--				clocks = <&ck_icn_ls_mcu>;
-+				clocks = <&scmi_clk CK_SCMI_GPIOA>;
- 				st,bank-name = "GPIOA";
- 				status = "disabled";
- 			};
-@@ -169,7 +172,7 @@ gpiob: gpio@44250000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x10000 0x400>;
--				clocks = <&ck_icn_ls_mcu>;
-+				clocks = <&scmi_clk CK_SCMI_GPIOB>;
- 				st,bank-name = "GPIOB";
- 				status = "disabled";
- 			};
-@@ -180,7 +183,7 @@ gpioc: gpio@44260000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x20000 0x400>;
--				clocks = <&ck_icn_ls_mcu>;
-+				clocks = <&scmi_clk CK_SCMI_GPIOC>;
- 				st,bank-name = "GPIOC";
- 				status = "disabled";
- 			};
-@@ -191,7 +194,7 @@ gpiod: gpio@44270000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x30000 0x400>;
--				clocks = <&ck_icn_ls_mcu>;
-+				clocks = <&scmi_clk CK_SCMI_GPIOD>;
- 				st,bank-name = "GPIOD";
- 				status = "disabled";
- 			};
-@@ -202,7 +205,7 @@ gpioe: gpio@44280000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x40000 0x400>;
--				clocks = <&ck_icn_ls_mcu>;
-+				clocks = <&scmi_clk CK_SCMI_GPIOE>;
- 				st,bank-name = "GPIOE";
- 				status = "disabled";
- 			};
-@@ -213,7 +216,7 @@ gpiof: gpio@44290000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x50000 0x400>;
--				clocks = <&ck_icn_ls_mcu>;
-+				clocks = <&scmi_clk CK_SCMI_GPIOF>;
- 				st,bank-name = "GPIOF";
- 				status = "disabled";
- 			};
-@@ -224,7 +227,7 @@ gpiog: gpio@442a0000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x60000 0x400>;
--				clocks = <&ck_icn_ls_mcu>;
-+				clocks = <&scmi_clk CK_SCMI_GPIOG>;
- 				st,bank-name = "GPIOG";
- 				status = "disabled";
- 			};
-@@ -235,7 +238,7 @@ gpioh: gpio@442b0000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x70000 0x400>;
--				clocks = <&ck_icn_ls_mcu>;
-+				clocks = <&scmi_clk CK_SCMI_GPIOH>;
- 				st,bank-name = "GPIOH";
- 				status = "disabled";
- 			};
-@@ -246,7 +249,7 @@ gpioi: gpio@442c0000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x80000 0x400>;
--				clocks = <&ck_icn_ls_mcu>;
-+				clocks = <&scmi_clk CK_SCMI_GPIOI>;
- 				st,bank-name = "GPIOI";
- 				status = "disabled";
- 			};
-@@ -257,7 +260,7 @@ gpioj: gpio@442d0000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x90000 0x400>;
--				clocks = <&ck_icn_ls_mcu>;
-+				clocks = <&scmi_clk CK_SCMI_GPIOJ>;
- 				st,bank-name = "GPIOJ";
- 				status = "disabled";
- 			};
-@@ -268,7 +271,7 @@ gpiok: gpio@442e0000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0xa0000 0x400>;
--				clocks = <&ck_icn_ls_mcu>;
-+				clocks = <&scmi_clk CK_SCMI_GPIOK>;
- 				st,bank-name = "GPIOK";
- 				status = "disabled";
- 			};
-@@ -287,7 +290,7 @@ gpioz: gpio@46200000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0 0x400>;
--				clocks = <&ck_icn_ls_mcu>;
-+				clocks = <&scmi_clk CK_SCMI_GPIOZ>;
- 				st,bank-name = "GPIOZ";
- 				st,bank-ioport = <11>;
- 				status = "disabled";
+ Documentation/devicetree/bindings/arm/fsl.yaml     |  10 +
+ arch/arm64/boot/dts/freescale/Makefile             |  26 ++
+ .../freescale/fsl-lx2160a-tqmlx2160a-mblx2160a.dts | 338 +++++++++++++++++++++
+ .../fsl-lx2160a-tqmlx2160a-mblx2160a_12_x_x.dtso   |  29 ++
+ .../fsl-lx2160a-tqmlx2160a-mblx2160a_14_x_x.dtso   |  17 ++
+ .../fsl-lx2160a-tqmlx2160a-mblx2160a_x_11_x.dtso   |  49 +++
+ .../fsl-lx2160a-tqmlx2160a-mblx2160a_x_7_x.dtso    |  55 ++++
+ .../fsl-lx2160a-tqmlx2160a-mblx2160a_x_8_x.dtso    |  47 +++
+ .../boot/dts/freescale/fsl-lx2160a-tqmlx2160a.dtsi |  97 ++++++
+ 9 files changed, 668 insertions(+)
+---
+base-commit: 8728c14129df7a6e29188a2e737b4774fb200953
+change-id: 20231206-for-ml-tqmlx2160a-68ee235f71cd
+
+Best regards,
 -- 
-2.25.1
+TQ-Systems GmbH | Mühlstraße 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht München, HRB 105018
+Geschäftsführer: Detlef Schneider, Rüdiger Stahl, Stefan Schneider
+https://www.tq-group.com/
 
 
