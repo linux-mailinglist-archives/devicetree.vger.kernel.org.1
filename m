@@ -1,190 +1,533 @@
-Return-Path: <devicetree+bounces-22281-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3693807023
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 13:47:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDA1F807075
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 14:00:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A5D7A281C49
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 12:47:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3DE561F21500
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 13:00:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 290352CCDA;
-	Wed,  6 Dec 2023 12:47:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6E813714C;
+	Wed,  6 Dec 2023 13:00:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WDDojk5n"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="u7F4JYzL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-xf33.google.com (mail-qv1-xf33.google.com [IPv6:2607:f8b0:4864:20::f33])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5B35D3
-	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 04:47:26 -0800 (PST)
-Received: by mail-qv1-xf33.google.com with SMTP id 6a1803df08f44-67abd1879c0so21526146d6.2
-        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 04:47:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701866846; x=1702471646; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=n4HaoseseFRfpAOsa7GPwOZAfsJ+SNvW7lTiyiT6xZA=;
-        b=WDDojk5nnfqvjKfIagrNhoMnc0xRQ3ADDpucyZmznWEFnKzT6E4mtkS6ZoUNOPv5YK
-         z5W4QtybCsVXG/FEwgWHHgNaoP7SxP6sD7uG2oeEVLnqBn3ilIV7NT/MHSCjBvCzqb6k
-         wHDc6/iRGPujeEpNTH0EHxdeyAOMHU51Dfe2MG6HiWLUpBSR7huvfYoRTsMvyj/HNdV4
-         CvK3qvVmotCQ8Pn3BG9BD0OwwDd7QLPjr63Lb4GLCtvRDttEnVL6zFBAtsuZr3ZhjqBt
-         XylJugLZyzNerRrtq/RoXex2tRYsU6oC9gMclM9uBqQIXs2vg39OTokhIkUn3amUARED
-         awhw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701866846; x=1702471646;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=n4HaoseseFRfpAOsa7GPwOZAfsJ+SNvW7lTiyiT6xZA=;
-        b=Z5g63OlYRyGZM5CV3c3Wbw9hSY3MlK+qEOrOx4qfE2ZD7wwyPItVrvrTBBPdT6lI84
-         6BdKCjQWKbwUNgzaVIWrMeJ3+FgKRpqHt5ZHmAJTb2Xj+0uZqSLfCefOp4xz6h7PeSaU
-         yy9OgJ5s6enarvKJMi+BPseveM5xpSUqzA9t+pYPc7ziqgYHHg6H6Lg9V3J/YkH90TJj
-         xq4ZhcwCJlhj6Y7bs50chSt1Hr45BVz338GB6BPBproZvxHrybc44q1Qll5dUjCj5vTt
-         n5exuWswTLHdOSfKMDbl8ABf5IQ/xevJg+Wh1CqJyehw7mUxuJvuJhQTFW8IYVF8YRzA
-         093g==
-X-Gm-Message-State: AOJu0Yw+Ucy5wVQ2vBzMG3N2/Haf/DTH5AOdGgpBwMELGJdqfMfErBEe
-	6/aq8w0IQYmr0puWO2q6oOte7z+5GBie57915M6TSA==
-X-Google-Smtp-Source: AGHT+IHOfpL6BkZMMtxBr2eS7p+xlelrNL7BgzbEdDInmIpBIHdd4PBiyT6fKU1Lhyo6KKA5y6PSRh/1nAPz2rJNaUc=
-X-Received: by 2002:ad4:551d:0:b0:67a:3967:4b09 with SMTP id
- pz29-20020ad4551d000000b0067a39674b09mr650650qvb.8.1701866845831; Wed, 06 Dec
- 2023 04:47:25 -0800 (PST)
+X-Greylist: delayed 590 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 06 Dec 2023 05:00:32 PST
+Received: from out-184.mta0.migadu.com (out-184.mta0.migadu.com [91.218.175.184])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93A301A2
+	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 05:00:32 -0800 (PST)
+Message-ID: <46ad8c2b-5be2-4cfd-b771-a8d95a5b5d8f@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1701867038;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=XRS4/UnuIWnZockarEAvkGkUjCCyPjOVl0T9XNNaWNc=;
+	b=u7F4JYzLxlvxxRManbPQXPqB+5u+xuX0STtkUCBUN3CuyW9lX24PhJImRS2SRd8mDiQNV6
+	S7wWqMi6CZJXGraONux1bZiDr5wd8d09tGpNkYqDOxd94faY3dXzbo6Bl+AClkcREdEt4I
+	12B0tXZkUokVzZ8bRIX0pH81zjm5dtc=
+Date: Wed, 6 Dec 2023 20:50:29 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231201160925.3136868-1-peter.griffin@linaro.org>
- <20231201160925.3136868-15-peter.griffin@linaro.org> <CGME20231202004026epcas5p4d3947d7bb99e54f70ca37272cfdc5e55@epcas5p4.samsung.com>
- <CAPLW+4kBOWFPx3Hr-=UoLWvRxCorzBY9RCOiBhfkKcU0LAa21Q@mail.gmail.com>
- <000001da24c0$0b83aab0$228b0010$@samsung.com> <71972f4f-b5ac-484a-8a09-0b74bd7c623b@linaro.org>
-In-Reply-To: <71972f4f-b5ac-484a-8a09-0b74bd7c623b@linaro.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Wed, 6 Dec 2023 12:47:14 +0000
-Message-ID: <CADrjBPqTdmEqD_4fcPqz0wBYqgPG8nPr2reXp5=s=bRRtLKXsg@mail.gmail.com>
-Subject: Re: [PATCH v5 14/20] pinctrl: samsung: Add gs101 SoC pinctrl configuration
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Alim Akhtar <alim.akhtar@samsung.com>, Sam Protsenko <semen.protsenko@linaro.org>, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org, 
-	tomasz.figa@gmail.com, s.nawrocki@samsung.com, linus.walleij@linaro.org, 
-	wim@linux-watchdog.org, linux@roeck-us.net, catalin.marinas@arm.com, 
-	will@kernel.org, arnd@arndb.de, olof@lixom.net, gregkh@linuxfoundation.org, 
-	jirislaby@kernel.org, cw00.choi@samsung.com, tudor.ambarus@linaro.org, 
-	andre.draszik@linaro.org, saravanak@google.com, willmcvicker@google.com, 
-	soc@kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-watchdog@vger.kernel.org, kernel-team@android.com, 
-	linux-serial@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Subject: Re: [v3 1/6] dt-bindings: display: Add yamls for JH7110 display
+ system
+To: Keith Zhao <keith.zhao@starfivetech.com>, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org
+Cc: aou@eecs.berkeley.edu, tzimmermann@suse.de, paul.walmsley@sifive.com,
+ mripard@kernel.org, xingyu.wu@starfivetech.com, jack.zhu@starfivetech.com,
+ palmer@dabbelt.com, krzysztof.kozlowski+dt@linaro.org,
+ william.qiu@starfivetech.com, shengyang.chen@starfivetech.com,
+ changhuang.liang@starfivetech.com
+References: <20231204123315.28456-1-keith.zhao@starfivetech.com>
+ <20231204123315.28456-2-keith.zhao@starfivetech.com>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Sui Jingfeng <sui.jingfeng@linux.dev>
+In-Reply-To: <20231204123315.28456-2-keith.zhao@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
 
-Hi Krzysztof / Sam,
+Hi,
 
-On Wed, 6 Dec 2023 at 11:38, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+
+On 2023/12/4 20:33, Keith Zhao wrote:
+> StarFive SoCs JH7110 display system:
+> dc controller, hdmi controller,
+> encoder, vout syscon.
 >
-> On 02/12/2023 02:36, Alim Akhtar wrote:
-> >
-> >>
-> >> On Fri, Dec 1, 2023 at 10:11=E2=80=AFAM Peter Griffin <peter.griffin@l=
-inaro.org>
-> >> wrote:
-> >>>
-> >>> Add support for the pin-controller found on the gs101 SoC used in
-> >>> Pixel 6 phones.
-> >>>
-> >>> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-> >>> ---
-> >>>  .../pinctrl/samsung/pinctrl-exynos-arm64.c    | 159 ++++++++++++++++=
-++
-> >>>  drivers/pinctrl/samsung/pinctrl-exynos.c      |   2 +
-> >>>  drivers/pinctrl/samsung/pinctrl-exynos.h      |  34 ++++
-> >>>  drivers/pinctrl/samsung/pinctrl-samsung.c     |   2 +
-> >>>  drivers/pinctrl/samsung/pinctrl-samsung.h     |   1 +
-> >>>  5 files changed, 198 insertions(+)
-> >>>
-> >>> diff --git a/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c
-> >>> b/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c
-> >>> index cb965cf93705..e1a0668ecb16 100644
-> >>> --- a/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c
-> >>> +++ b/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c
-> >>> @@ -796,3 +796,162 @@ const struct samsung_pinctrl_of_match_data
-> >> fsd_of_data __initconst =3D {
-> >>>         .ctrl           =3D fsd_pin_ctrl,
-> >>>         .num_ctrl       =3D ARRAY_SIZE(fsd_pin_ctrl),
-> >>>  };
-> >>> +
-> >>> +/*
-> >>> + * bank type for non-alive type
-> >>> + * (CON bit field: 4, DAT bit field: 1, PUD bit field: 4, DRV bit
-> >>> +field: 4)
-> >>> + * (CONPDN bit field: 2, PUDPDN bit field: 4)  */ static struct
-> >>> +samsung_pin_bank_type gs101_bank_type_off  =3D {
-> >>> +       .fld_width =3D { 4, 1, 4, 4, 2, 4, },
-> >>> +       .reg_offset =3D { 0x00, 0x04, 0x08, 0x0c, 0x10, 0x14, }, };
-> >>
-> >> This is just the same as exynos850_bank_type_off (100% duplication).
-> >> Here is what I suggest. Now that it's obvious there is some common pla=
-tform
-> >> for moder Exynos SoCs, and it's probably Exynos9, I'd suggest next cou=
-rse of
-> >> action (if maintainers agree):
-> >>   1. Remove this one
-> >>   2. Rename exynos850_bank_type_off to exynos9_bank_type_off
-> >>   3. Use it for both gs101 and exynos850
-> >>
-> >> Does it make sense?
-> >>
-> > My opinion is to reuse exynos850 for gs101 (wherever applicable), same =
-philosophy was historically followed in this file.
-> > That way (using exynos850 for gs101) things will be simple.
-> > Adding exynos9_* is not adding any benefit, rather it create confusion.
+> add the path of yaml file in MAINTAINERS
 >
-> I don't see much value in renaming exynos850 bank type to exynos9
-> considering:
-> 1. We don't really know the bank types for all of Exynos9xxx SoCs,
-> 2. Exynos7885 also uses Exynos850 bank types. Exynos7885 was much
-> earlier than Exynos9xxx family.
+> Signed-off-by: Keith Zhao <keith.zhao@starfivetech.com>
+> ---
+>   .../starfive/starfive,display-subsystem.yaml  | 104 ++++++++++++++++
+>   .../starfive/starfive,dsi-encoder.yaml        |  92 ++++++++++++++
+>   .../starfive/starfive,jh7110-dc8200.yaml      | 113 ++++++++++++++++++
+>   .../starfive/starfive,jh7110-inno-hdmi.yaml   |  82 +++++++++++++
+>   .../soc/starfive/starfive,jh7110-syscon.yaml  |   1 +
+>   MAINTAINERS                                   |   7 ++
+>   6 files changed, 399 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/display/starfive/starfive,display-subsystem.yaml
+>   create mode 100644 Documentation/devicetree/bindings/display/starfive/starfive,dsi-encoder.yaml
+>   create mode 100644 Documentation/devicetree/bindings/display/starfive/starfive,jh7110-dc8200.yaml
+>   create mode 100644 Documentation/devicetree/bindings/display/starfive/starfive,jh7110-inno-hdmi.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/display/starfive/starfive,display-subsystem.yaml b/Documentation/devicetree/bindings/display/starfive/starfive,display-subsystem.yaml
+> new file mode 100644
+> index 000000000000..d5ebdba3fb36
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/starfive/starfive,display-subsystem.yaml
+> @@ -0,0 +1,104 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/starfive/starfive,display-subsystem.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Starfive JH7110 Soc Display SubSystem
+> +
+> +maintainers:
+> +  - Keith Zhao <keith.zhao@starfivetech.com>
+> +  - ShengYang Chen <shengyang.chen@starfivetech.com>
+> +
+> +description:
+> +  This is the bindings documentation for the JH7110 Soc Display Subsystem that
+> +  includes front-end video data capture, display controller and display
+> +  interface. such as HDMI and MIPI.
+> +
+> +  JH7110 display pipeline have several components as below description,
+> +  multi display controllers and corresponding physical interfaces.
+> +  For different display scenarios, pipe0 and pipe1 maybe binding to different
+> +  encoder. for example,
+> +
+> +  pipe0 binding to HDMI for primary display,
+> +  pipe1 binding to DSI for external display.
+> +
+> +          +------------------------------+
+> +          |                              |
+> +          |                              |
+> +  +----+  |   +-------------------+      |   +-------+   +------+   +------+
+> +  |    +----->+  dc controller 0  +--->----->+HDMICtl| ->+ PHY  +-->+PANEL0+
+> +  |AXI |  |   +-------------------+      |   +-------+   +------+   +------+
+> +  |    |  |                              |
+> +  |    |  |                              |
+> +  |    |  |                              |
+> +  |    |  |                              |
+> +  |APB |  |   +-------------------+         +---------+    +------+  +-------+
+> +  |    +----->+  dc controller 1  +--->---->+ dsiTx   +--->+DPHY  +->+ PANEL1+
+> +  |    |  |   +-------------------+         +---------+    +------+  +-------+
+> +  +----+  |                              |
+> +          +------------------------------+
+> +
+> +
+> +properties:
+> +  compatible:
+> +    const: starfive,display-subsystem
+> +
+> +  clocks:
+> +    items:
+> +      - description: Clock for display system noc bus.
+> +      - description: Core clock for display controller.
+> +      - description: Clock for axi bus to access ddr.
+> +      - description: Clock for ahb bus to R/W the phy regs.
+> +
+> +  clock-names:
+> +    items:
+> +      - const: noc_bus
+> +      - const: dc_core
+> +      - const: axi_core
+> +      - const: ahb
+> +
+> +  resets:
+> +    items:
+> +      - description: Reset for axi bus.
+> +      - description: Reset for ahb bus.
+> +      - description: Core reset of display controller.
+> +
+> +  reset-names:
+> +    items:
+> +      - const: axi
+> +      - const: ahb
+> +      - const: core
+> +
+> +  ports:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    items:
+> +      maxItems: 1
+> +    description:
+> +      Should contain a list of phandles pointing to display interface port
+> +      of dc-controller devices.
+> +
+> +required:
+> +  - compatible
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +  - reset-names
+> +  - ports
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    display-subsystem {
+> +        compatible = "starfive,display-subsystem";
+> +        ports = <&dc_out>;
+> +
+> +        clocks = <&syscrg 60>,
+> +               <&voutcrg 4>,
+> +               <&voutcrg 5>,
+> +               <&voutcrg 6>;
+> +        clock-names = "noc_bus", "dc_core", "axi_core", "ahb";
+> +        resets = <&voutcrg 0>, <&voutcrg 1>, <&voutcrg 2>;
+> +        reset-names = "axi", "ahb", "core";
+> +    };
+> diff --git a/Documentation/devicetree/bindings/display/starfive/starfive,dsi-encoder.yaml b/Documentation/devicetree/bindings/display/starfive/starfive,dsi-encoder.yaml
+> new file mode 100644
+> index 000000000000..2cc0ad8e65ba
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/starfive/starfive,dsi-encoder.yaml
+> @@ -0,0 +1,92 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/starfive/starfive,dsi-encoder.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: starfive jh7110 soc Encoder
+> +
+> +maintainers:
+> +  - Keith Zhao <keith.zhao@starfivetech.com>
+> +
+> +description:
+> +  Device-Tree bindings for simple encoder.
+> +  Simple encoder driver only has basic functionality.
+> +  the hardware of dc8200 has 2 output interface, use
+> +  syscon to select which one to be used.
+> +
+> +properties:
+> +  compatible:
+> +    const: starfive,dsi-encoder
+> +
+> +  starfive,syscon:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    items:
+> +      - items:
+> +          - description: phandle to syscon that select crtc output.
+> +          - description: Offset of crtc selection
+> +          - description: Shift of crtc selection
+> +    description:
+> +      A phandle to syscon with two arguments that configure select output.
+> +      The argument one is the offset of crtc selection, the
+> +      argument two is the shift of crtc selection.
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          The first port should be the input coming from the associated dc channel.
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          The second port should be the output coming from the associated bridge.
+> +
+> +    required:
+> +      - port@0
+> +      - port@1
+> +
+> +required:
+> +  - compatible
+> +  - ports
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +        dssctrl: dssctrl@295b0000 {
+> +            compatible = "starfive,jh7110-vout-syscon", "syscon";
+> +            reg = <0x295b0000 0x90>;
+> +        };
+> +
+> +        dsi_encoder: dsi_encoder {
+> +            compatible = "starfive,dsi-encoder";
+> +            starfive,syscon = <&dssctrl 0x8 0x12>;
+> +
+> +            ports {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +                /* input */
+> +                port@0 {
+> +                    #address-cells = <1>;
+> +                    #size-cells = <0>;
+> +                    reg = <0>;
+> +                    dsi_input0:endpoint@0 {
+> +                        reg = <0>;
+> +                        remote-endpoint = <&dc_out_dpi1>;
+> +                    };
+> +                };
+> +                /* output */
+> +                port@1 {
+> +                    reg = <1>;
+> +                    #address-cells = <1>;
+> +                    #size-cells = <0>;
+> +                    dsi_out:endpoint {
+> +                        remote-endpoint = <&mipi_in>;
+> +                    };
+> +                };
+> +            };
+> +        };
+> diff --git a/Documentation/devicetree/bindings/display/starfive/starfive,jh7110-dc8200.yaml b/Documentation/devicetree/bindings/display/starfive/starfive,jh7110-dc8200.yaml
+> new file mode 100644
+> index 000000000000..0b083effec02
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/starfive/starfive,jh7110-dc8200.yaml
+> @@ -0,0 +1,113 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/starfive/starfive,jh7110-dc8200.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: StarFive display controller
+> +
+> +description:
+> +  The StarFive SoC uses the display controller based on Verisilicon IP
+> +  to transfer the image data from a video memory buffer to an external
+> +  LCD interface.
+> +
+> +maintainers:
+> +  - Keith Zhao <keith.zhao@starfivetech.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: starfive,jh7110-dc8200
+> +
+> +  reg:
+> +    minItems: 1
+> +    items:
+> +      - description:
+> +          host interface
+> +      - description:
+> +          display physical base address and length.
+> +
+> +  interrupts:
+> +    items:
+> +      - description: The interrupt will be generated when DC finish one frame
+> +
+> +  clocks:
+> +    items:
+> +      - description: Pixel clock for display channel 0.
+> +      - description: Pixel clock for display channel 1.
+> +      - description: Pixel clock from hdmi.
+> +      - description: Pixel clock for soc .
+> +  clock-names:
+> +    items:
+> +      - const: channel0
+> +      - const: channel1
+> +      - const: hdmi_tx
+> +      - const: dc_parent
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          channel 0 output
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          channel 1 output
+> +
+> +    required:
+> +      - port@0
+> +      - port@1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - ports
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    dc8200: lcd-controller@29400000 {
+> +        compatible = "starfive,jh7110-dc8200";
+> +        reg = <0x29400000 0x100>, <0x29400800 0x2000>;
+> +        interrupts = <95>;
+> +        clocks = <&voutcrg 7>,
+> +               <&voutcrg 8>,
+> +               <&voutcrg 9>,
+> +               <&voutcrg 10>;
+> +        clock-names = "channel0", "channel1","hdmi_tx", "dc_parent";
+> +
+> +        crtc_out: ports {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            dc_out0: port@0 {
+> +                reg = <0>;
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                dc_out_dpi0: endpoint@0 {
+> +                    reg = <0>;
+> +                    remote-endpoint = <&hdmi_in_dc>;
+> +                };
+> +
+> +            };
+> +
+> +            dc_out1: port@1 {
+> +                reg = <1>;
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                dc_out_dpi1: endpoint@1 {
+> +                    reg = <1>;
+> +                    remote-endpoint = <&dsi_input0>;
+> +                };
+> +
+> +            };
+> +          };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/display/starfive/starfive,jh7110-inno-hdmi.yaml b/Documentation/devicetree/bindings/display/starfive/starfive,jh7110-inno-hdmi.yaml
+> new file mode 100644
+> index 000000000000..3640d97ab789
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/starfive/starfive,jh7110-inno-hdmi.yaml
+> @@ -0,0 +1,82 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/starfive/starfive,jh7110-inno-hdmi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Starfive JH7110 HDMI controller
+> +
+> +description:
+> +  The StarFive JH7110 SoC uses the HDMI signal transmiter based on innosilicon IP
 
-Thanks Alim and Krzysztof for your input.
+'transmiter' -> 'transmitter'
 
-Exynos7885 (Exynos 8 family) using Exynos850 bank types looks like a
-mistake to me. I found some downstream code for 7885, and it doesn't
-look like selecting a filter was supported downstream [1] [2]. As Sam
-confirmed this hardware is present on e850 downstream, so 7885 and
-e850 have different hardware at least for these banks.
 
-As the EXYNOS850_PIN_BANK_EINTW macro is being used by Exynos850,
-exynosautov9 and exynos7885 using a generic macro with gs101 doesn't
-look possible (I have no way to find out these filter register
-offsets, or if those platforms actually have these registers).
-
-Therefore I propose:
-1. For bank types that match exactly use exynos850 versions
-2. For bank types which have fltcon_offset we add a new macro
-EXYNOS9_PIN_BANK_EINTW like it exists in this series or
-GS101_PIN_BANK_EINTW if people prefer that
-
-That still leaves us in the rather unfortunate position that if
-Exynos850 wants selectable filter support then it wouldn't be using
-the EXYNOS850_PIN_BANK_EINTW macro. But I suggest we cross that bridge
-if/when Sam decides to support selectable filters on e850. We could do
-some sort of macro renaming, but what we rename it to though I have no
-idea EXYNOS7885_blah or EXYNOSAUTOV9_blah.
-
-@Chanho do you know if ExynosAutov9 supports selectable filters on alive ba=
-nks?
-
-regards,
-
-Peter
-
-[1] https://github.com/samsungexynos7885/android_kernel_samsung_universal78=
-85/blob/android-9.0/drivers/pinctrl/samsung/pinctrl-exynos.c#L1696
-[2] https://github.com/samsungexynos7885/android_kernel_samsung_universal78=
-85/blob/android-9.0/drivers/pinctrl/samsung/pinctrl-exynos.h#L108
+> +  to generate HDMI signal from its input and transmit the signal to the screen.
+> +
+> +maintainers:
+> +  - Keith Zhao <keith.zhao@starfivetech.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: "starfive,jh7110-inno-hdmi"
+> +
+> +  reg:
+> +    minItems: 1
+> +
+> +  interrupts:
+> +    items:
+> +      - description: The HDMI hot plug detection interrupt.
+> +
+> +  clocks:
+> +    items:
+> +      - description: System clock of HDMI module.
+> +      - description: Mclk clock of HDMI audio.
+> +      - description: Bclk clock of HDMI audio.
+> +
+> +  clock-names:
+> +    items:
+> +      - const: sysclk
+> +      - const: mclk
+> +      - const: bclk
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  '#sound-dai-cells':
+> +    const: 0
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/properties/port
+> +    description:
+> +      Should contain a remote endpoint phandle of display controller device.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +  - '#sound-dai-cells'
+> +  - port
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    hdmi: hdmi@29590000 {
+> +        compatible = "starfive,jh7110-inno-hdmi";
+> +        reg = <0x29590000 0x4000>;
+> +        interrupts = <99>;
+> +        clocks = <&voutcrg 17>,
+> +               <&voutcrg 15>,
+> +               <&voutcrg 16>;
+> +        clock-names = "sysclk", "mclk","bclk";
+> +        resets = <&voutcrg 9>;
+> +        #sound-dai-cells = <0>;
+> +        hdmi_in: port {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            hdmi_in_dc: endpoint@0 {
+> +                reg = <0>;
+> +                remote-endpoint = <&dc_out_hdmi>;
+> +            };
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml b/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
+> index 0039319e91fe..cf9b657d0e8a 100644
+> --- a/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
+> +++ b/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
+> @@ -24,6 +24,7 @@ properties:
+>             - enum:
+>                 - starfive,jh7110-aon-syscon
+>                 - starfive,jh7110-stg-syscon
+> +              - starfive,jh7110-vout-syscon
+>             - const: syscon
+>   
+>     reg:
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 7b151710e8c5..7caaadb83f3f 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -6881,6 +6881,13 @@ T:	git git://anongit.freedesktop.org/drm/drm-misc
+>   F:	Documentation/devicetree/bindings/display/ste,mcde.yaml
+>   F:	drivers/gpu/drm/mcde/
+>   
+> +DRM DRIVERS FOR STARFIVE
+> +M:	Keith Zhao <keith.zhao@starfivetech.com>
+> +L:	dri-devel@lists.freedesktop.org
+> +S:	Maintained
+> +T:	git git://anongit.freedesktop.org/drm/drm-misc
+> +F:	Documentation/devicetree/bindings/display/starfive/
+> +
+>   DRM DRIVER FOR TI DLPC3433 MIPI DSI TO DMD BRIDGE
+>   M:	Jagan Teki <jagan@amarulasolutions.com>
+>   S:	Maintained
 
