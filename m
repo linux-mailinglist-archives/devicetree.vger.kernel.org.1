@@ -1,149 +1,217 @@
-Return-Path: <devicetree+bounces-22162-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22163-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7080E806B1B
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 10:56:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D26DE806B26
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 10:58:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 26DEC1F2125D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 09:56:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 024021C20930
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 09:58:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 265261DDC8;
-	Wed,  6 Dec 2023 09:56:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E27D91DDF6;
+	Wed,  6 Dec 2023 09:58:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="E4sSHAHN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCCA0FA;
-	Wed,  6 Dec 2023 01:56:44 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-	by ex01.ufhost.com (Postfix) with ESMTP id C6B9C24E2B7;
-	Wed,  6 Dec 2023 17:56:36 +0800 (CST)
-Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 6 Dec
- 2023 17:56:36 +0800
-Received: from [192.168.125.88] (183.27.97.199) by EXMBX171.cuchost.com
- (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 6 Dec
- 2023 17:56:35 +0800
-Message-ID: <0447c983-ee90-475e-9356-ad451f32da1d@starfivetech.com>
-Date: Wed, 6 Dec 2023 17:53:23 +0800
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66CFFFA;
+	Wed,  6 Dec 2023 01:58:46 -0800 (PST)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 3BB97240008;
+	Wed,  6 Dec 2023 09:58:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1701856724;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=dasdfMtvb5/6F6Xl6tXdAQvmSib+B8MTu7AZcbGRRpI=;
+	b=E4sSHAHNbk/P25tK9GlNW898yfNEPsTTCpuSOrvNg3FDLAQa5H2MB8BRBjjdZkmc8iyIaA
+	b6odeZBloX3O6K431Gft6l8bCm/hcnvr2+z/XM6Lahwsh4AtTFk85mbSpf7X6rzHKvMVt6
+	3umP9OEFpwaUVhEVEAcTVj0ieLjeJiNgKnvgJ0VctBblzzer+uzeuVxsOuDH5U9LF9cI2Q
+	zzti/EjMfrFKZsIUnuinTx9zodpPb9o4h+HfB7PROhWn5RHP3LpKUYtFXinRhxwNKJWX1+
+	/fEfRmLP4XlanmKXIT1XLFJfuEOYBwF14EvjJt38ClTdAVVQVxjpVi8R93acjg==
+Date: Wed, 6 Dec 2023 10:58:38 +0100
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+ <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Felix Fietkau <nbd@nbd.name>,
+ John Crispin <john@phrozen.org>, Sean Wang <sean.wang@mediatek.com>, Mark
+ Lee <Mark-MC.Lee@mediatek.com>, Lorenzo Bianconi <lorenzo@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, Andrew Lunn <andrew@lunn.ch>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Russell King
+ <linux@armlinux.org.uk>, Alexander Couzens <lynxis@fe80.eu>, Qingfang Deng
+ <dqfext@gmail.com>, SkyLake Huang <SkyLake.Huang@mediatek.com>, Philipp
+ Zabel <p.zabel@pengutronix.de>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-phy@lists.infradead.org
+Subject: Re: [RFC PATCH v2 5/8] net: pcs: add driver for MediaTek USXGMII
+ PCS
+Message-ID: <20231206105838.069ae288@device.home>
+In-Reply-To: <3cd8af5e44554c2db2d7898494ee813967206bd9.1701826319.git.daniel@makrotopia.org>
+References: <cover.1701826319.git.daniel@makrotopia.org>
+	<3cd8af5e44554c2db2d7898494ee813967206bd9.1701826319.git.daniel@makrotopia.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 0/2] Add waveshare 7inch touchscreen panel support
-Content-Language: en-US
-To: Stefan Wahren <wahrenst@gmx.net>, <devicetree@vger.kernel.org>,
-	<dri-devel@lists.freedesktop.org>
-CC: <neil.armstrong@linaro.org>, <quic_jesszhan@quicinc.com>,
-	<sam@ravnborg.org>, <airlied@gmail.com>, <daniel@ffwll.ch>,
-	<maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
-	<tzimmermann@suse.de>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<florian.fainelli@broadcom.com>, <bcm-kernel-feedback-list@broadcom.com>,
-	<thierry.reding@gmail.com>, <changhuang.liang@starfivetech.com>,
-	<keith.zhao@starfivetech.com>, <jack.zhu@starfivetech.com>,
-	<linux-rpi-kernel@lists.infradead.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20231124104451.44271-1-shengyang.chen@starfivetech.com>
- <dab03c60-caa9-47e3-9dac-fa499227b67b@gmx.net>
-From: Shengyang Chen <shengyang.chen@starfivetech.com>
-In-Reply-To: <dab03c60-caa9-47e3-9dac-fa499227b67b@gmx.net>
-Content-Type: text/plain; charset="UTF-8"
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX171.cuchost.com
- (172.16.6.91)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-GND-Sasl: maxime.chevallier@bootlin.com
 
-Hi, Stefan
+Hello Daniel,
 
-Thanks for your comment and review
+On Wed, 6 Dec 2023 01:44:38 +0000
+Daniel Golle <daniel@makrotopia.org> wrote:
 
-On 2023/11/24 22:54, Stefan Wahren wrote:
-> Hi Shengyang,
->=20
-> [fix address of Emma]
->=20
-> Am 24.11.23 um 11:44 schrieb Shengyang Chen:
->> This patchset adds waveshare 7inch touchscreen panel support
->> for the StarFive JH7110 SoC.
->>
->> Patch 1 add new compatible for the raspberrypi panel driver and its dt=
--binding.
->> Patch 2 add new display mode and new probing process for raspberrypi p=
-anel driver.
->>
->> Waveshare 7inch touchscreen panel is a kind of raspberrypi panel
->> which can be drived by raspberrypi panel driver.
->>
->> The series has been tested on the VisionFive 2 board.
-> surprisingly i was recently working on the official Raspberry Pi
-> touchscreen and was able to get it running the new way.
->=20
-> What do i mean with the new way. There is almost nothing special to the
-> Raspberry Pi touchscreen, so we should try to use/extend existing
-> components like:
->=20
-> CONFIG_DRM_PANEL_SIMPLE
-> CONFIG_TOUCHSCREEN_EDT_FT5X06
-> CONFIG_DRM_TOSHIBA_TC358762
->=20
-> The only special part is the Attiny on the connector PCB which requires=
-:
->=20
-> CONFIG_REGULATOR_RASPBERRYPI_TOUCHSCREEN_ATTINY
->=20
-> So the whole point is to avoid writing monolitic drivers for simple
-> panel like that.
->=20
-> There is a WIP branch based on top of Linux 6.7-rcX, which should
-> demonstrate this approach [1]. Unfortunately it is not ready for
-> upstreaming, but it has been tested on a Raspberry Pi 3 B Plus. Maybe
-> this is helpful for your case.
->=20
-> Actually i consider panel-raspberrypi-touchscreen.c as a dead end, whic=
-h
-> shouldn't be extended.
->=20
-> Btw there are already DT overlays in mainline which seems to use the
-> Raspberry Pi 7inch panel (without touch function yet) [2].
->=20
-> [1] - https://github.com/lategoodbye/rpi-zero/commits/v6.7-7inch-ts
-> [2] -
-> https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/commit=
-/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x-rpidsi.dtso?h=3Dv6=
-.6.2&id=3D6b4da1354fd81adace0cda448c77d8f2a47d8474
->=20
+> Add driver for USXGMII PCS found in the MediaTek MT7988 SoC and supporting
+> USXGMII, 10GBase-R and 5GBase-R interface modes. In order to support
+> Cisco SGMII, 1000Base-X and 2500Base-X via the also present LynxI PCS
+> create a wrapped PCS taking care of the components shared between the
+> new USXGMII PCS and the legacy LynxI PCS.
+> 
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> ---
 
-Thank you very much for your advice. We will try this method before makin=
-g new patch.
-This method will be used if its verified in our soc.
-If there is any problem, we may continue to contact. Thanks a lot.
+[...]
 
->>
->> Shengyang Chen (2):
->> =C2=A0=C2=A0 dt-bindings: display: panel: raspberrypi: Add compatible =
-property for
->> =C2=A0=C2=A0=C2=A0=C2=A0 waveshare 7inch touchscreen panel
->> =C2=A0=C2=A0 gpu: drm: panel: raspberrypi: add new display mode and ne=
-w probing
->> =C2=A0=C2=A0=C2=A0=C2=A0 process
->>
->> =C2=A0 .../panel/raspberrypi,7inch-touchscreen.yaml=C2=A0 |=C2=A0 4 +-
->> =C2=A0 .../drm/panel/panel-raspberrypi-touchscreen.c | 99 ++++++++++++=
-++++---
->> =C2=A0 2 files changed, 91 insertions(+), 12 deletions(-)
->>
->=20
+> +
+> +static int mtk_usxgmii_pcs_config(struct phylink_pcs *pcs, unsigned int neg_mode,
+> +				  phy_interface_t interface,
+> +				  const unsigned long *advertising,
+> +				  bool permit_pause_to_mac)
+> +{
+> +	struct mtk_usxgmii_pcs *mpcs = pcs_to_mtk_usxgmii_pcs(pcs);
+> +	unsigned int an_ctrl = 0, link_timer = 0, xfi_mode = 0, adapt_mode = 0;
+> +	bool mode_changed = false;
 
+Reverse christmas tree ordering can be used here (longest lines first)
 
-thanks
+> +
+> +	if (interface == PHY_INTERFACE_MODE_USXGMII) {
+> +		an_ctrl = FIELD_PREP(USXGMII_AN_SYNC_CNT, 0x1FF) | USXGMII_AN_ENABLE;
+> +		link_timer = FIELD_PREP(USXGMII_LINK_TIMER_IDLE_DETECT, 0x7B) |
+> +			     FIELD_PREP(USXGMII_LINK_TIMER_COMP_ACK_DETECT, 0x7B) |
+> +			     FIELD_PREP(USXGMII_LINK_TIMER_AN_RESTART, 0x7B);
+> +		xfi_mode = FIELD_PREP(USXGMII_XFI_RX_MODE, USXGMII_XFI_MODE_10G) |
+> +			   FIELD_PREP(USXGMII_XFI_TX_MODE, USXGMII_XFI_MODE_10G);
+> +	} else if (interface == PHY_INTERFACE_MODE_10GBASER) {
+> +		an_ctrl = FIELD_PREP(USXGMII_AN_SYNC_CNT, 0x1FF);
+> +		link_timer = FIELD_PREP(USXGMII_LINK_TIMER_IDLE_DETECT, 0x7B) |
+> +			     FIELD_PREP(USXGMII_LINK_TIMER_COMP_ACK_DETECT, 0x7B) |
+> +			     FIELD_PREP(USXGMII_LINK_TIMER_AN_RESTART, 0x7B);
+> +		xfi_mode = FIELD_PREP(USXGMII_XFI_RX_MODE, USXGMII_XFI_MODE_10G) |
+> +			   FIELD_PREP(USXGMII_XFI_TX_MODE, USXGMII_XFI_MODE_10G);
+> +		adapt_mode = USXGMII_RATE_UPDATE_MODE;
+> +	} else if (interface == PHY_INTERFACE_MODE_5GBASER) {
+> +		an_ctrl = FIELD_PREP(USXGMII_AN_SYNC_CNT, 0xFF);
+> +		link_timer = FIELD_PREP(USXGMII_LINK_TIMER_IDLE_DETECT, 0x3D) |
+> +			     FIELD_PREP(USXGMII_LINK_TIMER_COMP_ACK_DETECT, 0x3D) |
+> +			     FIELD_PREP(USXGMII_LINK_TIMER_AN_RESTART, 0x3D);
+> +		xfi_mode = FIELD_PREP(USXGMII_XFI_RX_MODE, USXGMII_XFI_MODE_5G) |
+> +			   FIELD_PREP(USXGMII_XFI_TX_MODE, USXGMII_XFI_MODE_5G);
+> +		adapt_mode = USXGMII_RATE_UPDATE_MODE;
+> +	} else {
+> +		return -EINVAL;
+> +	}
+> +
+> +	adapt_mode |= FIELD_PREP(USXGMII_RATE_ADAPT_MODE, USXGMII_RATE_ADAPT_MODE_X1);
+> +
+> +	if (mpcs->interface != interface) {
+> +		mpcs->interface = interface;
+> +		mode_changed = true;
+> +	}
+> +
+> +	mtk_usxgmii_reset(mpcs);
+> +
+> +	/* Setup USXGMII AN ctrl */
+> +	mtk_m32(mpcs, RG_PCS_AN_CTRL0,
+> +		USXGMII_AN_SYNC_CNT | USXGMII_AN_ENABLE,
+> +		an_ctrl);
+> +
+> +	mtk_m32(mpcs, RG_PCS_AN_CTRL2,
+> +		USXGMII_LINK_TIMER_IDLE_DETECT |
+> +		USXGMII_LINK_TIMER_COMP_ACK_DETECT |
+> +		USXGMII_LINK_TIMER_AN_RESTART,
+> +		link_timer);
+> +
+> +	mpcs->neg_mode = neg_mode;
+> +
+> +	/* Gated MAC CK */
+> +	mtk_m32(mpcs, RG_PHY_TOP_SPEED_CTRL1,
+> +		USXGMII_MAC_CK_GATED, USXGMII_MAC_CK_GATED);
+> +
+> +	/* Enable interface force mode */
+> +	mtk_m32(mpcs, RG_PHY_TOP_SPEED_CTRL1,
+> +		USXGMII_IF_FORCE_EN, USXGMII_IF_FORCE_EN);
+> +
+> +	/* Setup USXGMII adapt mode */
+> +	mtk_m32(mpcs, RG_PHY_TOP_SPEED_CTRL1,
+> +		USXGMII_RATE_UPDATE_MODE | USXGMII_RATE_ADAPT_MODE,
+> +		adapt_mode);
+> +
+> +	/* Setup USXGMII speed */
+> +	mtk_m32(mpcs, RG_PHY_TOP_SPEED_CTRL1,
+> +		USXGMII_XFI_RX_MODE | USXGMII_XFI_TX_MODE,
+> +		xfi_mode);
+> +
+> +	usleep_range(1, 10);
+> +
+> +	/* Un-gated MAC CK */
+> +	mtk_m32(mpcs, RG_PHY_TOP_SPEED_CTRL1, USXGMII_MAC_CK_GATED, 0);
+> +
+> +	usleep_range(1, 10);
+> +
+> +	/* Disable interface force mode for the AN mode */
+> +	if (an_ctrl & USXGMII_AN_ENABLE)
+> +		mtk_m32(mpcs, RG_PHY_TOP_SPEED_CTRL1, USXGMII_IF_FORCE_EN, 0);
+> +
+> +	return mode_changed;
+> +}
+> +
 
-Best Regards,
-Shengyang
+[...]
+
+> +static void mtk_usxgmii_pcs_get_state(struct phylink_pcs *pcs,
+> +				      struct phylink_link_state *state)
+> +{
+> +	struct mtk_usxgmii_pcs *mpcs = pcs_to_mtk_usxgmii_pcs(pcs);
+> +
+> +	/* Refresh USXGMII link status by toggling RG_PCS_AN_STATUS_UPDATE */
+> +	mtk_m32(mpcs, RG_PCS_RX_STATUS0, RG_PCS_RX_STATUS_UPDATE,
+> +		RG_PCS_RX_STATUS_UPDATE);
+> +	ndelay(1020);
+> +	mtk_m32(mpcs, RG_PCS_RX_STATUS0, RG_PCS_RX_STATUS_UPDATE, 0);
+> +	ndelay(1020);
+> +
+> +	/* Read USXGMII link status */
+> +	state->link = FIELD_GET(RG_PCS_RX_LINK_STATUS,
+> +				mtk_r32(mpcs, RG_PCS_RX_STATUS0));
+> +
+> +	/* Continuously repeat re-configuration sequence until link comes up */
+> +	if (!state->link) {
+> +		mtk_usxgmii_pcs_config(pcs, mpcs->neg_mode,
+> +				       state->interface, NULL, false);
+> +		return;
+
+.pcs_get_state() isn't called only for link state polling,but also when querying
+the link state from ethtool, from phylink_ethtool_ksettings_get().
+
+As mtk_usxgmii_pcs_config triggers a pcs reset and reconfiguration, won't this disrupt
+the link ? 
+
+Thanks,
+
+Maxime
 
