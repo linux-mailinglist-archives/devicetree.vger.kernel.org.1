@@ -1,118 +1,315 @@
-Return-Path: <devicetree+bounces-22070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22071-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B37C806538
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 03:43:59 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1F9080653B
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 03:44:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7BFF31C210F6
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 02:43:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 498E01F20FDA
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 02:44:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF0C9EC9;
-	Wed,  6 Dec 2023 02:43:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51A2FEC9;
+	Wed,  6 Dec 2023 02:44:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EAqMPUCv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="otbeRDrl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DD29129
-	for <devicetree@vger.kernel.org>; Tue,  5 Dec 2023 18:43:55 -0800 (PST)
-Received: by mail-ot1-x333.google.com with SMTP id 46e09a7af769-6d8750718adso3265676a34.0
-        for <devicetree@vger.kernel.org>; Tue, 05 Dec 2023 18:43:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701830634; x=1702435434; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lNRQu6oyNFbpjA1kqXJBdLfx5S4cnvF7XoM5bFKpgiE=;
-        b=EAqMPUCveYO/eZ54ipPErWC5iEbotaNLUUVvcJgaSu9ze9ecSZ4ONnhqM9y07GG9Ft
-         TcnwYTIMGWzuxz+ERjoEYKh9XTiVw6WWEvh0hhm5h9PWGLnZedMAtsrVHy0aoNHKHK2d
-         RasIXMHz1OlwIi8IEUUBWgEAsfLtYpsyomBuSOj+oX69gVbd9yKPdWAZP1w1U7XFrHWS
-         XeOimAE8bkESfmShVRCEvIfvADXuM0Wko+sSgIw/MfEOzj2mx5IhUETqrmq5JejPMMPj
-         zTrx2ZZZWsE72LdAjL/2qUZK778bYQxTJFdfOKfAo4EXMWHdlcxdLGXwuxFeRVaV2y3k
-         38oA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701830634; x=1702435434;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lNRQu6oyNFbpjA1kqXJBdLfx5S4cnvF7XoM5bFKpgiE=;
-        b=gZUxlkwCdt7Vak7ARM0uadWzgj7kOSER0Tw0UgCjwDt3iaytE3X+/9m8vQ482tqGs6
-         wxng5aszRSRGTWiOWgK7rIqY25TIics2v0lejABooCCZOnUWuEd3eUjAqYgVvRX3aiEH
-         G/rFuNs4UBDxJHzDzN29mUA91WsiV6g3+6N53oSdMFqN1FnwoEuPdrwA37sFSLMI71nf
-         bok2yNMx2cIiEH1mVHF7xMsofS2iSPxqvyaP2jZouSLAKxALXMgVnYwrJp6W2hMzXlVR
-         OMnBQ+WR4m9lca6z1bcj9PTJCIfKevci9LSg2pWPpQeQZjdsbo+d0OzRDKshTDUyoBS9
-         Xh+g==
-X-Gm-Message-State: AOJu0YzeG2QgUAk+HsvF99F7rNZgtgY0iuB+VeueKxo8jZAEqW8O17CC
-	x55J44iVE/43YDgckmSP44r25dBh+mT33RLj1a0iQrX/ivc=
-X-Google-Smtp-Source: AGHT+IE/01zByJdpwb+ejZn+nZCVZSSt1bpaoOMo+UVjmmFQ7HJnu/gZHm4xhXcv1QQlqg3R+sMuh9ZUGzC3iN8jO+4=
-X-Received: by 2002:a05:6358:5921:b0:16e:5950:67c with SMTP id
- g33-20020a056358592100b0016e5950067cmr474038rwf.25.1701830633962; Tue, 05 Dec
- 2023 18:43:53 -0800 (PST)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35E151879
+	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 02:44:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A27AC433C8;
+	Wed,  6 Dec 2023 02:43:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701830642;
+	bh=2WCrzjk6sg9ZN4wNGQp/yrOmOx4mghiSWunWQXbn6fA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=otbeRDrlE1bRmPTpEzl385JvvSW/zdTsJI7vLYztAuUt2lihA/7RD/K0lNtQL2rz8
+	 dOOMHJIQrvheoARXYontSS8vzblEzOFzjQKIPMs5b95o93bj6dAjd5323+2zWpEDJa
+	 XTDHxaXXzOQ8LSsQeUoM72zCYgWlfQGUFSxB6Hn/T2uYU471E2/BV7CCqQ3r5c8bYM
+	 x6I9+CZwUJXAP1thyzPWfoQ8DA3XsapHZV1DUvFcYtYVn/hD4A7HCbqPshVc7lSrWt
+	 4CnGkIjU5fETjcM/qlEEYNlomv6AwkvoiCO3jaWmjxgQFof6AOBm1a+DOB+95zUe7p
+	 +n34Eaz/2/vew==
+Date: Wed, 6 Dec 2023 10:43:55 +0800
+From: Shawn Guo <shawnguo@kernel.org>
+To: Frieder Schrempf <frieder@fris.de>
+Cc: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Rob Herring <robh+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Frieder Schrempf <frieder.schrempf@kontron.de>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Gregor Herburger <gregor.herburger@ew.tq-group.com>,
+	Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+	Marek Vasut <marex@denx.de>, NXP Linux Team <linux-imx@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Philippe Schenker <philippe.schenker@toradex.com>,
+	Tim Harvey <tharvey@gateworks.com>
+Subject: Re: [PATCH v2 02/14] arm64: dts: imx8mm-kontron: Add DL
+ (Display-Line) overlay with LVDS support
+Message-ID: <20231206024355.GM236001@dragon>
+References: <20231130161657.556483-1-frieder@fris.de>
+ <20231130161657.556483-3-frieder@fris.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231206012831.2179356-1-festevam@gmail.com>
-In-Reply-To: <20231206012831.2179356-1-festevam@gmail.com>
-From: Adam Ford <aford173@gmail.com>
-Date: Tue, 5 Dec 2023 20:43:42 -0600
-Message-ID: <CAHCN7xLiSpYN4BF4MGWdUypKf0YLaCsAq1RfSeo1xTOyAiyXkw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: display: adi,adv75xx: Document #sound-dai-cells
-To: Fabio Estevam <festevam@gmail.com>
-Cc: Laurent.pinchart@ideasonboard.com, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	Fabio Estevam <festevam@denx.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231130161657.556483-3-frieder@fris.de>
 
-On Tue, Dec 5, 2023 at 7:28=E2=80=AFPM Fabio Estevam <festevam@gmail.com> w=
-rote:
->
-> From: Fabio Estevam <festevam@denx.de>
->
-> When using audio from ADV7533 or ADV7535 and describing the audio
-> card via simple-audio-card, the '#sound-dai-cells' needs to be passed.
->
-> Document the '#sound-dai-cells' property to fix the following
-> dt-schema warning:
->
-
-Thanks for doing that.
-
-> imx8mn-beacon-kit.dtb: hdmi@3d: '#sound-dai-cells' does not match any of =
-the regexes: 'pinctrl-[0-9]+'
->         from schema $id: http://devicetree.org/schemas/display/bridge/adi=
-,adv7533.yaml#
->
-
-Acked-by: Adam Ford <aford173@gmail.com>
-
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
+On Thu, Nov 30, 2023 at 05:16:02PM +0100, Frieder Schrempf wrote:
+> From: Frieder Schrempf <frieder.schrempf@kontron.de>
+> 
+> The Kontron Electronics DL i.MX8MM consists of the BL i.MX8MM board
+> and a 7" LVDS panel. Provide an overlay that enables the panel.
+> 
+> Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
 > ---
->  .../devicetree/bindings/display/bridge/adi,adv7533.yaml        | 3 +++
->  1 file changed, 3 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/display/bridge/adi,adv7533=
-.yaml b/Documentation/devicetree/bindings/display/bridge/adi,adv7533.yaml
-> index 987aa83c2649..e15ae072922e 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/adi,adv7533.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/adi,adv7533.yaml
-> @@ -89,6 +89,9 @@ properties:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      enum: [ 1, 2, 3, 4 ]
->
-> +  '#sound-dai-cells':
-> +    const: 0
+> Changes for v2:
+> * Rework DSI mux GPIO logic to be compatible with overlay
+> ---
+>  arch/arm64/boot/dts/freescale/Makefile        |   4 +
+>  .../boot/dts/freescale/imx8mm-kontron-dl.dtso | 200 ++++++++++++++++++
+>  2 files changed, 204 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-kontron-dl.dtso
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+> index 300049037eb0b..e08024797721a 100644
+> --- a/arch/arm64/boot/dts/freescale/Makefile
+> +++ b/arch/arm64/boot/dts/freescale/Makefile
+> @@ -166,6 +166,10 @@ dtb-$(CONFIG_ARCH_MXC) += imx8ulp-evk.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx93-11x11-evk.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxla.dtb
+>  
+> +imx8mm-kontron-dl-dtbs			:= imx8mm-kontron-bl.dtb imx8mm-kontron-dl.dtbo
 > +
->    ports:
->      description:
->        The ADV7533/35 has two video ports and one audio port.
-> --
-> 2.34.1
->
+> +dtb-$(CONFIG_ARCH_MXC) += imx8mm-kontron-dl.dtb
+> +
+>  imx8mm-venice-gw72xx-0x-imx219-dtbs	:= imx8mm-venice-gw72xx-0x.dtb imx8mm-venice-gw72xx-0x-imx219.dtbo
+>  imx8mm-venice-gw72xx-0x-rpidsi-dtbs	:= imx8mm-venice-gw72xx-0x.dtb imx8mm-venice-gw72xx-0x-rpidsi.dtbo
+>  imx8mm-venice-gw72xx-0x-rs232-rts-dtbs	:= imx8mm-venice-gw72xx-0x.dtb imx8mm-venice-gw72xx-0x-rs232-rts.dtbo
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-kontron-dl.dtso b/arch/arm64/boot/dts/freescale/imx8mm-kontron-dl.dtso
+> new file mode 100644
+> index 0000000000000..c6369072577e0
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-kontron-dl.dtso
+> @@ -0,0 +1,200 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2023 Kontron Electronics GmbH
+> + */
+> +
+> +/dts-v1/;
+> +/plugin/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include "imx8mm-pinfunc.h"
+> +
+> +&{/} {
+> +	compatible = "kontron,imx8mm-bl", "kontron,imx8mm-sl", "fsl,imx8mm";
+> +
+> +	backlight: backlight {
+> +		compatible = "pwm-backlight";
+> +		pwms = <&pwm1 0 50000 0>;
+> +		brightness-levels = <0 100>;
+> +		num-interpolated-steps = <100>;
+> +		default-brightness-level = <100>;
+> +	};
+> +
+> +	panel {
+> +		compatible = "panel-lvds";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_panel>;
+> +		backlight = <&backlight>;
+> +		data-mapping = "vesa-24";
+> +		enable-gpios = <&gpio3 19 GPIO_ACTIVE_HIGH>;
+> +		height-mm = <86>;
+> +		width-mm = <154>;
+> +
+> +		panel-timing {
+> +			clock-frequency = <51200000>;
+> +			hactive = <1024>;
+> +			vactive = <600>;
+> +			hsync-len = <1>;
+> +			hfront-porch = <160>;
+> +			hback-porch = <160>;
+> +			vsync-len = <1>;
+> +			vfront-porch = <12>;
+> +			vback-porch = <23>;
+> +		};
+> +
+> +		port {
+> +			panel_out_bridge: endpoint {
+> +				remote-endpoint = <&bridge_out_panel>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&dsi_mux_sel_hdmi {
+> +	status = "disabled";
+> +};
+> +
+> +&dsi_mux_sel_lvds {
+> +	status = "okay";
+> +};
+> +
+> +&dsi_out_bridge {
+> +	remote-endpoint = <&bridge_in_dsi_lvds>;
+> +};
+> +
+> +&gpio3 {
+> +	panel_rst {
+> +		gpio-hog;
+> +		gpios = <20 GPIO_ACTIVE_HIGH>;
+> +		output-high;
+> +		line-name = "panel-reset";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_panel_rst>;
+> +	};
+> +
+> +	panel_stby {
+> +		gpio-hog;
+> +		gpios = <21 GPIO_ACTIVE_HIGH>;
+> +		output-high;
+> +		line-name = "panel-standby";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_panel_stby>;
+> +	};
+> +
+> +	panel_hinv {
+> +		gpio-hog;
+> +		gpios = <24 GPIO_ACTIVE_HIGH>;
+> +		output-high;
+> +		line-name = "panel-horizontal-invert";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_panel_hinv>;
+> +	};
+> +
+> +	panel_vinv {
+> +		gpio-hog;
+> +		gpios = <25 GPIO_ACTIVE_HIGH>;
+> +		output-low;
+> +		line-name = "panel-vertical-invert";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_panel_vinv>;
+> +	};
+> +};
+> +
+> +&hdmi {
+> +	status = "disabled";
+> +};
+> +
+> +&i2c2 {
+> +	clock-frequency = <400000>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_i2c2>;
+> +	status = "okay";
+> +
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +
+> +	gt911@5d {
+> +		compatible = "goodix,gt928";
+> +		reg = <0x5d>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_touch>;
+> +		interrupt-parent = <&gpio3>;
+> +		interrupts = <22 8>;
+> +		reset-gpios = <&gpio3 23 0>;
+> +		irq-gpios = <&gpio3 22 0>;
+> +	};
+> +};
+> +
+> +&lvds {
+> +	status = "okay";
+> +
+> +	ports {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		port@2 {
+> +			reg = <2>;
+
+Have a newline between properties and child node.
+
+> +			bridge_out_panel: endpoint {
+> +				remote-endpoint = <&panel_out_bridge>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&pwm1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_pwm1>;
+> +	status = "okay";
+> +};
+> +
+> +&iomuxc {
+> +	pinctrl_panel_rst: panelrstgrp {
+> +		fsl,pins = <
+> +			MX8MM_IOMUXC_SAI5_RXC_GPIO3_IO20		0x19
+> +		>;
+> +	};
+> +
+> +	pinctrl_panel_stby: panelstbygrp {
+> +		fsl,pins = <
+> +			MX8MM_IOMUXC_SAI5_RXD0_GPIO3_IO21		0x19
+> +		>;
+> +	};
+> +
+> +	pinctrl_panel_hinv: panelhinvgrp {
+> +		fsl,pins = <
+> +			MX8MM_IOMUXC_SAI5_RXD3_GPIO3_IO24		0x19
+> +		>;
+> +	};
+> +
+> +	pinctrl_panel_vinv: panelvinvgrp {
+> +		fsl,pins = <
+> +			MX8MM_IOMUXC_SAI5_MCLK_GPIO3_IO25		0x19
+> +		>;
+> +	};
+> +
+> +	pinctrl_i2c2: i2c2grp {
+
+Could you sort the pinctrl nodes alphabetically?
+
+Shawn
+
+> +		fsl,pins = <
+> +			MX8MM_IOMUXC_I2C2_SCL_I2C2_SCL			0x40000083
+> +			MX8MM_IOMUXC_I2C2_SDA_I2C2_SDA			0x40000083
+> +		>;
+> +	};
+> +
+> +	pinctrl_pwm1: pwm1grp {
+> +		fsl,pins = <
+> +			MX8MM_IOMUXC_SPDIF_EXT_CLK_PWM1_OUT		0x6
+> +		>;
+> +	};
+> +
+> +	pinctrl_panel: panelgrp {
+> +		fsl,pins = <
+> +			MX8MM_IOMUXC_SAI5_RXFS_GPIO3_IO19		0x19
+> +		>;
+> +	};
+> +
+> +	pinctrl_touch: touchgrp {
+> +		fsl,pins = <
+> +			MX8MM_IOMUXC_SAI5_RXD1_GPIO3_IO22		0x19
+> +			MX8MM_IOMUXC_SAI5_RXD2_GPIO3_IO23		0x19
+> +		>;
+> +	};
+> +};
+> -- 
+> 2.43.0
+> 
 
