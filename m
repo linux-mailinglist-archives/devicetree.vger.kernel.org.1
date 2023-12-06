@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-22211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22218-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8CF0806D32
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 12:02:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80F76806D4D
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 12:05:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6DD451F211B4
-	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 11:02:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B27881C20A11
+	for <lists+devicetree@lfdr.de>; Wed,  6 Dec 2023 11:05:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BF9930674;
-	Wed,  6 Dec 2023 11:02:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 092F030D11;
+	Wed,  6 Dec 2023 11:05:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="INDI4F6G"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BXge2c/g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33EE219BB
-	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 03:01:35 -0800 (PST)
-Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-332fd78fa9dso567225f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 03:01:35 -0800 (PST)
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0287DE
+	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 03:02:39 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-3316bb1303bso479685f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 03:02:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701860466; x=1702465266; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1701860544; x=1702465344; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=u7VWu46RJcWVBaO3VsBmAuO5ZqODdSZUgUmBKc59vt4=;
-        b=INDI4F6GdRe3tYpNBWJAU40DCIrJAKidpfeGK68r35Ix38QvjXpKfYVN0LOuTOX/Xm
-         8FoGNfZnPAPL/HBD3Eoh4V6I3+2i4noynBzb6mqCYVn/LBEHiDwYWOMVxoWtzNVe8XnM
-         A/97HdcAy60IZCaBD6STYevm8HS8aQ29QW+Jy1zRH4HwR25Q7mufduVwnwdEc6NFPSLq
-         paKc/ea4TAJP5WkfBmXW6R5CE52BdNOSTsLf46wPlrFFApaJ4Rnly08jN1t9qmCE41NW
-         3rkk6mmV+DBrZcXI4zQgH9ZqVsbgmMgL3X7B3yjpNyehLs/X9fmXRE0jh2gBZcWTqcV3
-         Ap0Q==
+        bh=EexcMWgdiK3biCzULTz+PkOjCv/ro+p5TLQhAtIHvmc=;
+        b=BXge2c/gCRB62XpEnj2agfX9neZqMEZGBoU42eY4vbFBDCG7zr9a+hx4jj7Ix3iYpU
+         lLmwefvSlSoIeOeZsG3T148yBO8EY4krTJG3Qyd0WJweEy+ud9j8FYjOoWNUPyUhq5I3
+         5kkfVsQHqwNVaDJ8aAyQ77xRKDbbJ21hYPKcHAG565GW0uXAG7tWXrTxqU7Nnmu81jEL
+         CC+bDzPIS/gHrcl40rDtEn8X/bcnZ+Se6Tk7JsEa9y91Qaq0lZsFm++4AZyTxVYq378s
+         16Ui3rZQbxGD5Gv4j/OI2kyc86WcpX+1YXxXQqS33f9PukGskZ0LzP9i9RRzZv6eqdlp
+         /jcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701860466; x=1702465266;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1701860544; x=1702465344;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=u7VWu46RJcWVBaO3VsBmAuO5ZqODdSZUgUmBKc59vt4=;
-        b=ZR8zLfC0frYZczhAHo4Epw/D661qGYKH3DSPeoW7IgrSoP1gXb2YXUb15BVF6Qrztk
-         iDAho7jf3Glw4ajcHEyxcZmnEITACZhIt8YVKs0S6XzYCuhqGTZmEvnZGUDhvcFuOBwc
-         KEQ2GHNwSPlgs3IAUEo8zfy8w3WlvoKukkBGn97psXJZ4kuFjq54C5eCYeQ04MGSKIXU
-         x/hUf1TKQDVlCuJmWjsNsK78QkCP/VI0AQFSdlsHkfaxR3272RLHIBvNdHvLIKkk4eNm
-         rGJl81GPwEvs2o676G4rrFhrkak4N7ls2mlZA12rYnwJFPDqvO9QSZByj0UCqbUD4uyp
-         tWfg==
-X-Gm-Message-State: AOJu0YwIxXmyAB/fGiJPjF86Bo82DyuMW8+y4vjjTs/W+NakKLlGWLay
-	WBu4dA7dGGkfVasBTnouaxKPTA==
-X-Google-Smtp-Source: AGHT+IFJ4h7uhrpbkcPJAPfSbR2scO6garrpGpd5o2EOhJAO81DWTuGxrkeMgAyRPEqm5mww8jQCpg==
-X-Received: by 2002:a5d:65c5:0:b0:333:3b0d:457f with SMTP id e5-20020a5d65c5000000b003333b0d457fmr185038wrw.218.1701860466400;
-        Wed, 06 Dec 2023 03:01:06 -0800 (PST)
+        bh=EexcMWgdiK3biCzULTz+PkOjCv/ro+p5TLQhAtIHvmc=;
+        b=or0pTBFIE4PNVuyDvVP2kihxeqyAIOPCtFdWMYsIt9bWonD4uVMZ1KnS07HZ2QcghN
+         XK8S5zI+amUODS5+oMj+Mdp3Vju+tbpISTixhH4/fABaDRHoEozXI54dWhTNuHQPmdmG
+         aOaNtYkx0pT4B+b0hKv0zr+7Om64ilz7i+pLLG1X7O7IOGQ8DWRwowYZ6eM6SW5BnyZ2
+         ExxGbAb064PYa2KWJKU9wCZCPonDiA02sYPrkb3SJpEa/3IYbMZoIV4sviFWWzuMY0VS
+         JUrpPv+58bIw9oIGDyp37ifiRdTWMsALW/jn096QBdDCWdYPho3YvH+gnWo/waLN70/V
+         lMRQ==
+X-Gm-Message-State: AOJu0Yy2CujdCZCOtfI+Mt3NtrICuyEKrTJ0jTH5QJc0/9DVYcdvC8Jk
+	t4xqc0uFHyd+eZqNiAvRpBgGNA==
+X-Google-Smtp-Source: AGHT+IE3BQXjskTbgXE6b4Sc2a0dYbWjr4Q6R8hJ6wbxDPG96elKJBnVr9cDqROkXSs2DotTKfFu/w==
+X-Received: by 2002:adf:e545:0:b0:332:f81d:8dac with SMTP id z5-20020adfe545000000b00332f81d8dacmr469802wrm.67.1701860544568;
+        Wed, 06 Dec 2023 03:02:24 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id ba18-20020a0560001c1200b00333479734a7sm8669148wrb.99.2023.12.06.03.01.05
+        by smtp.gmail.com with ESMTPSA id ba18-20020a0560001c1200b00333479734a7sm8669148wrb.99.2023.12.06.03.02.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Dec 2023 03:01:05 -0800 (PST)
-Message-ID: <f7e1b02a-f8fe-45d4-8bed-2773b68335f9@linaro.org>
-Date: Wed, 6 Dec 2023 12:01:05 +0100
+        Wed, 06 Dec 2023 03:02:24 -0800 (PST)
+Message-ID: <f1e4bd2b-b72c-43ab-91e0-facfb17b45df@linaro.org>
+Date: Wed, 6 Dec 2023 12:02:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,15 +62,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] Input: Add Himax HX83102J touchscreen driver
+Subject: Re: [PATCH v2] dt-bindings: lcdif: Properly describe the i.MX23
+ interrupts
 Content-Language: en-US
-To: Allen_Lin <allencl_lin@hotmail.com>, dmitry.torokhov@gmail.com,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- jikos@kernel.org, benjamin.tissoires@redhat.com,
- linux-input@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231206103546.808680-1-allencl_lin@hotmail.com>
- <TY0PR06MB56119F0D60142F4C1435767C9E84A@TY0PR06MB5611.apcprd06.prod.outlook.com>
+To: Fabio Estevam <festevam@gmail.com>, marex@denx.de
+Cc: stefan@agner.ch, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
+References: <20231205184748.2103321-1-festevam@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -116,32 +115,65 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <TY0PR06MB56119F0D60142F4C1435767C9E84A@TY0PR06MB5611.apcprd06.prod.outlook.com>
+In-Reply-To: <20231205184748.2103321-1-festevam@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/12/2023 11:35, Allen_Lin wrote:
-> Add a new driver for Himax  touchscreen series touchscreen controllers.
-> This driver supports Himax IC using the SPI interface to
-> acquire HID packets.
+On 05/12/2023 19:47, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
 > 
-> Signed-off-by: Allen_Lin <allencl_lin@hotmail.com>
+> i.MX23 has two LCDIF interrupts instead of a single one like other
+> i.MX devices.
+> 
+> Take this into account for properly describing the i.MX23 LCDIF
+> interrupts.
+> 
+> This fixes the following dt-schema warning:
+> 
+> imx23-olinuxino.dtb: lcdif@80030000: interrupts: [[46], [45]] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/fsl,lcdif.yaml#
+> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
 > ---
-> v1 -> v2: Fix kernel test robot build warnings
-> Signed-off-by: Allen_Lin <allencl_lin@hotmail.com>
-> ---
->  MAINTAINERS                    |    2 +
->  drivers/hid/Kconfig            |    9 +-
->  drivers/hid/Makefile           |    2 +-
->  drivers/hid/hid-himax-83102j.c | 3175 ++++++++++++++++++++++++++++++++
->  drivers/hid/hid-himax-83102j.h |  923 ++++++++++
->  5 files changed, 4109 insertions(+), 2 deletions(-)
->  create mode 100644 drivers/hid/hid-himax-83102j.c
->  create mode 100644 drivers/hid/hid-himax-83102j.h
+> Changes since v1:
+> - Fix typo in commit log (i.MX23 has two LCDIF interrupts).
+> 
+>  .../devicetree/bindings/display/fsl,lcdif.yaml   | 16 +++++++++++++++-
+>  1 file changed, 15 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+> index fc11ab5fc465..c4228b893766 100644
+> --- a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+> +++ b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+> @@ -51,7 +51,10 @@ properties:
+>      minItems: 1
+>  
+>    interrupts:
+> -    maxItems: 1
+> +    items:
+> +      - description: LCDIF DMA interrupt
+> +      - description: LCDIF Error interrupt
+> +    minItems: 1
+>  
+>    power-domains:
+>      maxItems: 1
+> @@ -131,6 +134,17 @@ allOf:
+>      then:
+>        required:
+>          - power-domains
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - fsl,imx23-lcdif
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          minItems: 2
+> +          maxItems: 2
 
-Implement review from v1.
-
-NAK
+Either missing else: or update of other variants to limit interrupts to 1.
 
 Best regards,
 Krzysztof
