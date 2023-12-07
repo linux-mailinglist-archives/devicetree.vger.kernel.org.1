@@ -1,165 +1,156 @@
-Return-Path: <devicetree+bounces-22847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22848-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C57D8808FC4
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 19:22:56 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91E92809008
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 19:36:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7B3301F21127
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 18:22:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B00E11C20A3A
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 18:36:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4375E4D5B9;
-	Thu,  7 Dec 2023 18:22:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Stw1Yw4T"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62E604EB2A;
+	Thu,  7 Dec 2023 18:36:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32A4A10E3;
-	Thu,  7 Dec 2023 10:22:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1701973369; x=1733509369;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=iCLUUaatBfqlkyFZ3lf+30TefpNxCMzpAtCl5N7SoO4=;
-  b=Stw1Yw4TkjgCTLJDqe2i5JsTqevnEexP1rhYHCL68CIJvCMfhQnwy2vF
-   b0LSn2xFSl6mAE47fz3oSRvpj9zSTPzo9slAeKuAqXOq5q/Pay3fF5QgF
-   wnkSGOS/oIXC+ezkUFWrSvVCbP2Wj9DvmEd/3MmyFwM6kdiB7W4UkER3i
-   uTevKBENTAutR4pbM1ADPLfLwlxGPLBLdgwkYH3S8TsNkRrXw86YmuKXs
-   YfEDTU6qRYkKgmOsbtm5qHuPvNpt3zoBwrY0lV7x5yJP/RzoW4dSiNh3T
-   d4rAHuaSFq0+6w8Hspwe+ZSnItTAjs5AiAL4jiDArTeVwx/iZaQuSUrd8
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="458597352"
-X-IronPort-AV: E=Sophos;i="6.04,258,1695711600"; 
-   d="scan'208";a="458597352"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Dec 2023 10:22:48 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="895233228"
-X-IronPort-AV: E=Sophos;i="6.04,258,1695711600"; 
-   d="scan'208";a="895233228"
-Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
-  by orsmga004.jf.intel.com with ESMTP; 07 Dec 2023 10:22:42 -0800
-Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rBJ1E-000CfP-0N;
-	Thu, 07 Dec 2023 18:22:40 +0000
-Date: Fri, 8 Dec 2023 02:22:00 +0800
-From: kernel test robot <lkp@intel.com>
-To: Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu,
-	chao.wei@sophgo.com, conor@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
-	palmer@dabbelt.com, paul.walmsley@sifive.com,
-	richardcochran@gmail.com, robh+dt@kernel.org, sboyd@kernel.org,
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com,
-	guoren@kernel.org, jszhang@kernel.org, inochiama@outlook.com,
-	samuel.holland@sifive.com
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Chen Wang <unicorn_wang@outlook.com>
-Subject: Re: [PATCH v5 3/4] clk: sophgo: Add SG2042 clock generator driver
-Message-ID: <202312080254.Vka7cUVe-lkp@intel.com>
-References: <975f9995584dfa8af751e96a1f4d2c7991551a35.1701938395.git.unicorn_wang@outlook.com>
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C0C81711;
+	Thu,  7 Dec 2023 10:36:17 -0800 (PST)
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3B7FRV7S008686;
+	Thu, 7 Dec 2023 13:35:50 -0500
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3utd13snpd-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 07 Dec 2023 13:35:50 -0500 (EST)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 3B7IZmQY024170
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 7 Dec 2023 13:35:48 -0500
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Thu, 7 Dec 2023
+ 13:35:47 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Thu, 7 Dec 2023 13:35:47 -0500
+Received: from work.ad.analog.com (HYB-hERzalRezfV.ad.analog.com [10.65.205.129])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 3B7IZSpv015039;
+	Thu, 7 Dec 2023 13:35:31 -0500
+From: Marcelo Schmitt <marcelo.schmitt@analog.com>
+To: <apw@canonical.com>, <joe@perches.com>, <dwaipayanray1@gmail.com>,
+        <lukas.bulwahn@gmail.com>, <paul.cercueil@analog.com>,
+        <Michael.Hennerich@analog.com>, <lars@metafoo.de>, <jic23@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <dan.carpenter@linaro.org>,
+        <marcelo.schmitt1@gmail.com>
+CC: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3 00/13] Add support for AD7091R-2/-4/-8
+Date: Thu, 7 Dec 2023 15:35:27 -0300
+Message-ID: <cover.1701971344.git.marcelo.schmitt1@gmail.com>
+X-Mailer: git-send-email 2.30.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <975f9995584dfa8af751e96a1f4d2c7991551a35.1701938395.git.unicorn_wang@outlook.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: 1SsenXRjwrZh6ziueMLV-vekFJJVkksa
+X-Proofpoint-GUID: 1SsenXRjwrZh6ziueMLV-vekFJJVkksa
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-02_01,2023-11-30_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0 mlxscore=0
+ spamscore=0 phishscore=0 adultscore=0 malwarescore=0 priorityscore=1501
+ mlxlogscore=999 suspectscore=0 bulkscore=0 impostorscore=0 clxscore=1011
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2311290000
+ definitions=main-2312070154
 
-Hi Chen,
+From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
 
-kernel test robot noticed the following build errors:
+----------------- Updates -----------------
 
-[auto build test ERROR on b85ea95d086471afb4ad062012a4d73cd328fa86]
+Applied all changes suggested to the previous series.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Chen-Wang/dt-bindings-soc-sophgo-Add-Sophgo-system-control-module/20231207-165948
-base:   b85ea95d086471afb4ad062012a4d73cd328fa86
-patch link:    https://lore.kernel.org/r/975f9995584dfa8af751e96a1f4d2c7991551a35.1701938395.git.unicorn_wang%40outlook.com
-patch subject: [PATCH v5 3/4] clk: sophgo: Add SG2042 clock generator driver
-config: i386-buildonly-randconfig-002-20231208 (https://download.01.org/0day-ci/archive/20231208/202312080254.Vka7cUVe-lkp@intel.com/config)
-compiler: clang version 16.0.4 (https://github.com/llvm/llvm-project.git ae42196bc493ffe877a7e3dff8be32035dea4d07)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231208/202312080254.Vka7cUVe-lkp@intel.com/reproduce)
+I tried to better explain the changes but, since there is a fair amount of
+rework in ad7091-base and ad7091r5, it may be hard to get the reasoning for the
+early patches before looking at the patch for ad7091r8.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202312080254.Vka7cUVe-lkp@intel.com/
+Change log v2 -> v3:
+- Split alert fix patch into 2 fix patches and one alignment cleanup patch
+- Corrected Fixes tag format
+- Moved MAINTAINERS update to the end of the series
+- Reworded some commit messages to provide context and make their goal clearer
+- Removed erroneous gmail sign off
+- Created container struct to store chip_info, regmap_config, and callbacks
+  specific to each ADC design
+- Created callbacks for chip specific tasks such as setting device operation mode
+- Dropped the chip type enum struct
+- Applied suggestions related to device tree documentation
+- Added __aligned to list the of checkpatch attribute notes
+- Other code style tidy ups.
 
-All errors (new ones prefixed by >>):
+I see regmap's interface for reading device registers under /sys/kernel/debug/regmap/.
+I can read all registers but can't write to any of them unless I force define
+REGMAP_ALLOW_WRITE_DEBUGFS.
 
->> drivers/clk/sophgo/clk-sophgo-sg2042.c:1273:13: error: call to undeclared function 'kzalloc'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-           clk_data = kzalloc(struct_size(clk_data, onecell_data.hws, num_clks), GFP_KERNEL);
-                      ^
-   drivers/clk/sophgo/clk-sophgo-sg2042.c:1273:13: note: did you mean 'vzalloc'?
-   include/linux/vmalloc.h:141:14: note: 'vzalloc' declared here
-   extern void *vzalloc(unsigned long size) __alloc_size(1);
-                ^
->> drivers/clk/sophgo/clk-sophgo-sg2042.c:1273:11: error: incompatible integer to pointer conversion assigning to 'struct sg2042_clk_data *' from 'int' [-Wint-conversion]
-           clk_data = kzalloc(struct_size(clk_data, onecell_data.hws, num_clks), GFP_KERNEL);
-                    ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/clk/sophgo/clk-sophgo-sg2042.c:1293:2: error: call to undeclared function 'kfree'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-           kfree(clk_data);
-           ^
-   drivers/clk/sophgo/clk-sophgo-sg2042.c:1349:2: error: call to undeclared function 'kfree'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-           kfree(clk_data);
-           ^
-   4 errors generated.
+When testing events for this driver I often write to device registers
+to set different rising/falling thresholds. I do something like this:
+# echo 0x17 0x100 > /sys/kernel/debug/iio/iio:device0/direct_reg_access
 
+I tried read/writing to files under iio:device events directory but always
+get segmentation fault. I must be forgetting to implement something.
+What am I missing?
 
-vim +/kzalloc +1273 drivers/clk/sophgo/clk-sophgo-sg2042.c
+Thanks
+Marcelo
 
-  1256	
-  1257	static int __init sg2042_clk_init_clk_data(
-  1258		struct device_node *node,
-  1259		int num_clks,
-  1260		struct sg2042_clk_data **pp_clk_data)
-  1261	{
-  1262		int ret = 0;
-  1263		struct sg2042_clk_data *clk_data = NULL;
-  1264		struct device_node *np_syscon;
-  1265	
-  1266		np_syscon = of_parse_phandle(node, "sophgo,system-ctrl", 0);
-  1267		if (!np_syscon) {
-  1268			pr_err("failed to get system-ctrl node\n");
-  1269			ret = -EINVAL;
-  1270			goto error_out;
-  1271		}
-  1272	
-> 1273		clk_data = kzalloc(struct_size(clk_data, onecell_data.hws, num_clks), GFP_KERNEL);
-  1274		if (!clk_data) {
-  1275			ret = -ENOMEM;
-  1276			goto error_out;
-  1277		}
-  1278	
-  1279		clk_data->regmap_syscon = device_node_to_regmap(np_syscon);
-  1280		if (IS_ERR_OR_NULL(clk_data->regmap_syscon)) {
-  1281			pr_err("cannot get regmap_syscon %ld\n", PTR_ERR(clk_data->regmap_syscon));
-  1282			ret = -ENODEV;
-  1283			goto cleanup;
-  1284		}
-  1285		clk_data->iobase_syscon = of_iomap(np_syscon, 0);
-  1286		clk_data->iobase = of_iomap(node, 0);
-  1287		clk_data->onecell_data.num = num_clks;
-  1288	
-  1289		*pp_clk_data = clk_data;
-  1290		return ret;
-  1291	
-  1292	cleanup:
-> 1293		kfree(clk_data);
-  1294	
-  1295	error_out:
-  1296		return ret;
-  1297	}
-  1298	
+----------------- Context -----------------
+
+This series adds support for AD7091R-2/-4/-8 ADCs which can do single shot
+or sequenced readings. Threshold events are also supported.
+Overall, AD7091R-2/-4/-8 are very similar to AD7091R-5 except they use SPI interface.
+
+Changes have been tested with raspberrypi and eval board on raspberrypi kernel
+6.7-rc3 from raspberrypi fork.
+Link: https://wiki.analog.com/resources/tools-software/linux-drivers/iio-adc/ad7091r8
+
+Marcelo Schmitt (13):
+  scripts: checkpatch: Add __aligned to the list of attribute notes
+  iio: adc: ad7091r: Populate device driver data field
+  iio: adc: ad7091r: Set alert bit in config register
+  iio: adc: ad7091r: Align arguments to function call parenthesis
+  iio: adc: ad7091r: Move generic AD7091R code to base driver and header
+    file
+  iio: adc: ad7091r: Move chip init data to container struct
+  iio: adc: ad7091r: Set device mode through chip_info callback
+  iio: adc: ad7091r: Enable internal vref if external vref is not
+    supplied
+  iio: adc: ad7091r: Add chip_info callback to get conversion result
+    channel
+  dt-bindings: iio: Add AD7091R-8
+  iio: adc: Split AD7091R-5 config symbol
+  iio: adc: Add support for AD7091R-8
+  MAINTAINERS: Add MAINTAINERS entry for AD7091R
+
+ .../bindings/iio/adc/adi,ad7091r8.yaml        |  99 +++++++
+ MAINTAINERS                                   |  12 +
+ drivers/iio/adc/Kconfig                       |  16 ++
+ drivers/iio/adc/Makefile                      |   4 +-
+ drivers/iio/adc/ad7091r-base.c                | 141 ++++------
+ drivers/iio/adc/ad7091r-base.h                |  78 +++++-
+ drivers/iio/adc/ad7091r5.c                    | 119 ++++----
+ drivers/iio/adc/ad7091r8.c                    | 261 ++++++++++++++++++
+ scripts/checkpatch.pl                         |   1 +
+ 9 files changed, 597 insertions(+), 134 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7091r8.yaml
+ create mode 100644 drivers/iio/adc/ad7091r8.c
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.42.0
+
 
