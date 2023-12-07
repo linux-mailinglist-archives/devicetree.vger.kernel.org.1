@@ -1,136 +1,142 @@
-Return-Path: <devicetree+bounces-22501-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22502-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB8D7807CC6
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 01:10:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2806807CFD
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 01:17:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E1C341C209BB
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 00:10:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6F6ACB210AA
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 00:17:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B8FB7E;
-	Thu,  7 Dec 2023 00:10:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40F08362;
+	Thu,  7 Dec 2023 00:17:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=jms.id.au header.i=@jms.id.au header.b="MsHH/5/X"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WZQgv/W9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1FD6C9;
-	Wed,  6 Dec 2023 16:10:31 -0800 (PST)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-a1db99cd1b2so39048566b.2;
-        Wed, 06 Dec 2023 16:10:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google; t=1701907830; x=1702512630; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=0yA9MR91ePkju7nca9/BkZnzwRCmKruvRUqc9sHYXbs=;
-        b=MsHH/5/Xy6Z3/Tr5lIykZlGOZkaj7OPoaGdULgJnfFqHl12OByDx4jwlePDSUd8iyg
-         kmcDfyBW04/+j4wmizL4OGBHXdt/bOzZLcaOGU0YbRr4b2d04CuLc3989RSAWlYThd0m
-         6Rb6em8v9oapDoxSQi2Wpq140tzGpOBgURIJY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701907830; x=1702512630;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0yA9MR91ePkju7nca9/BkZnzwRCmKruvRUqc9sHYXbs=;
-        b=OoSpZmb/2jnrOz3c4UJkgg1ygX9x7DdruLIG3zsaRjBtQMMuT/RO5+rlrXumtfErGe
-         xk9lthoFOxYVpHDm7CEA9HP4HKe/hSPq8BL/6uV+afnrxCXghHcrO5hw3L3pB0ZKw3sC
-         nhRcrEhQVFXitvy4PW6lpkMYdRas9d3McBViVCLRByUaz8/pc0itZthT2OsPEX7w4c52
-         UwEKpfWu1AHOt+rD6d2oBf5UmPCAxAQcoSh8pJXuKkVcNol8blsZVaiOED3s7VWGXndv
-         YLSBN0PjSs40NDFgMr04l6pEm/LQXNPrSBOITE3pojIx3Dfw1fD7Vibsnpve0K5xJ4FW
-         KRog==
-X-Gm-Message-State: AOJu0YyMzEA2akLxoaOCqusjUj6VT6e9M3LbEW4P7+uOQpr1zXF7z+xF
-	DptZWnBmOYcLdxxCJK/FbLgiZVoeSl5ygc/Z+QtZFzP0bMw=
-X-Google-Smtp-Source: AGHT+IEYmwT9MlyD95aEzDWmDlAFWtRHjJrEZFs5P5trbXnhy2s8EqkN0CnnoHwWcsvNS/RlitpXI3l8AyRaB8YCmZc=
-X-Received: by 2002:a17:906:d104:b0:a19:a19b:422f with SMTP id
- b4-20020a170906d10400b00a19a19b422fmr730295ejz.154.1701907830244; Wed, 06 Dec
- 2023 16:10:30 -0800 (PST)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93D0F1A5;
+	Wed,  6 Dec 2023 16:17:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1701908235; x=1733444235;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=fB13dmwJjMECWyaEkSjqxu5l+yl9pd/z0TjHdRhOt2A=;
+  b=WZQgv/W9lMqOTwtjhOks0aP5b/hiIRUmd67OTKJBoFWcZvimATlCXl1d
+   d7AcwA34AXh5T/4zUyLF59GKI9wfX7euTcmoOzTpDtFj8A/KpsEFM7Fm7
+   7djSnfXbo1DigfS6srZlDRJt6NQ97q59oQYoIyPm/v/DCQf60eoOAoFBT
+   oxBYDiGKXFlsTCxUo1nuHWhG+t1kEblmDj6V23sQq+soe5FBPEn4T3yvF
+   x9N+MdFkihsR6tnw05nHfZOc4x4dZK7nEN6PcsY8AM7Jha6Gn+2DCNWhk
+   er1KdMvHlRs6sX5KVVb1hjoR/TadNceihtuOu5ENGXVR455v3I2YS22tc
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="393021653"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; 
+   d="scan'208";a="393021653"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Dec 2023 16:17:15 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="944827102"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; 
+   d="scan'208";a="944827102"
+Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
+  by orsmga005.jf.intel.com with ESMTP; 06 Dec 2023 16:17:11 -0800
+Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rB24j-000Bcc-14;
+	Thu, 07 Dec 2023 00:17:09 +0000
+Date: Thu, 7 Dec 2023 08:16:59 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jim Liu <jim.t90615@gmail.com>, JJLIU0@nuvoton.com,
+	krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org,
+	andy@kernel.org, robh+dt@kernel.org, conor+dt@kernel.org,
+	KWLIU@nuvoton.com
+Cc: oe-kbuild-all@lists.linux.dev, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	openbmc@lists.ozlabs.org
+Subject: Re: [PATCH v8 3/3] gpio: nuvoton: Add Nuvoton NPCM sgpio driver
+Message-ID: <202312070733.GNrG7abU-lkp@intel.com>
+References: <20231206014530.1600151-4-jim.t90615@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231206155316.4181813-1-peteryin.openbmc@gmail.com> <20231206155316.4181813-3-peteryin.openbmc@gmail.com>
-In-Reply-To: <20231206155316.4181813-3-peteryin.openbmc@gmail.com>
-From: Joel Stanley <joel@jms.id.au>
-Date: Thu, 7 Dec 2023 10:40:17 +1030
-Message-ID: <CACPK8XepWC+KUaYr8nQJ9ggkX5n=aQzT_U5+u_N86=LthkbwDw@mail.gmail.com>
-Subject: Re: [PATCH v6 2/2] ARM: dts: aspeed: Harma: Add Facebook Harma
- (AST2600) BMC
-To: Peter Yin <peteryin.openbmc@gmail.com>
-Cc: patrick@stwcx.xyz, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231206014530.1600151-4-jim.t90615@gmail.com>
 
-On Thu, 7 Dec 2023 at 02:25, Peter Yin <peteryin.openbmc@gmail.com> wrote:
->
-> Add linux device tree entry related to
-> Harma specific devices connected to BMC SoC.
+Hi Jim,
 
-This isn't a very helpful commit message. Convention is to mention
-what the system is to give context; eg "The SuperCorp Machine1
-multi-node server system uses an AST2600 BMC".
+kernel test robot noticed the following build warnings:
 
-> +&mac3 {
-> +       status = "okay";
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&pinctrl_rmii4_default>;
-> +       no-hw-checksum;
-> +       use-ncsi;
-> +       ncsi-ctrl,start-redo-probe;
-> +       ncsi-ctrl,no-channel-monitor;
-> +       mlx,multi-host;
-> +       ncsi-package = <1>;
-> +       ncsi-channel = <1>;
-> +       ncsi-rexmit = <1>;
-> +       ncsi-timeout = <2>;
+[auto build test WARNING on brgl/gpio/for-next]
+[also build test WARNING on robh/for-next linus/master v6.7-rc4 next-20231206]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-These properties are not supported by the kernel. It seems Facebook
-uses them in their machines, it would be great if you contributed
-support for them to mainline.
+url:    https://github.com/intel-lab-lkp/linux/commits/Jim-Liu/dt-bindings-gpio-add-NPCM-sgpio-driver-bindings/20231206-095724
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux.git gpio/for-next
+patch link:    https://lore.kernel.org/r/20231206014530.1600151-4-jim.t90615%40gmail.com
+patch subject: [PATCH v8 3/3] gpio: nuvoton: Add Nuvoton NPCM sgpio driver
+config: nios2-randconfig-r131-20231207 (https://download.01.org/0day-ci/archive/20231207/202312070733.GNrG7abU-lkp@intel.com/config)
+compiler: nios2-linux-gcc (GCC) 13.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20231207/202312070733.GNrG7abU-lkp@intel.com/reproduce)
 
-If not, please drop the properties.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202312070733.GNrG7abU-lkp@intel.com/
 
-> +
-> +&gpio0 {
-> +       pinctrl-names = "default";
-> +       gpio-line-names =
-> +       /*A0-A7*/       "","","","","","","","",
-> +       /*B0-B7*/       "","","","",
-> +                       "FM_BMC_MUX_CS_SPI_SEL_0","FM_ID_LED_N","","",
-> +       /*C0-C7*/       "","","","","","","","",
-> +       /*D0-D7*/       "","","SOL_UART_SET","","","","","",
-> +       /*E0-E7*/       "","","","","","","","",
-> +       /*F0-F7*/       "","","","","","","","",
-> +       /*G0-G7*/       "","","","","","","","",
-> +       /*H0-H7*/       "","","","","","","","",
-> +       /*I0-I7*/       "","","","","","","","",
-> +       /*J0-J7*/       "","","","","","","","",
-> +       /*K0-K7*/       "","","","","","","","",
-> +       /*L0-L7*/       "","","","","","","","",
-> +       /*M0-M7*/       "","","","","","","","",
-> +       /*N0-N7*/       "LED_POSTCODE_0","LED_POSTCODE_1",
-> +                       "LED_POSTCODE_2","LED_POSTCODE_3",
-> +                       "LED_POSTCODE_4","LED_POSTCODE_5",
-> +                       "LED_POSTCODE_6","LED_POSTCODE_7",
-> +       /*O0-O7*/       "","","","","","","","",
-> +       /*P0-P7*/       "FP_SYS_PWRBTN_IN_N","BMC_SYS_PWRBTN_OUT_N",
+sparse warnings: (new ones prefixed by >>)
+>> drivers/gpio/gpio-npcm-sgpio.c:150:17: sparse: sparse: incorrect type in argument 1 (different base types) @@     expected struct device const *dev @@     got int @@
+   drivers/gpio/gpio-npcm-sgpio.c:150:17: sparse:     expected struct device const *dev
+   drivers/gpio/gpio-npcm-sgpio.c:150:17: sparse:     got int
+>> drivers/gpio/gpio-npcm-sgpio.c:150:17: sparse: sparse: incorrect type in argument 1 (different base types) @@     expected struct device const *dev @@     got int @@
+   drivers/gpio/gpio-npcm-sgpio.c:150:17: sparse:     expected struct device const *dev
+   drivers/gpio/gpio-npcm-sgpio.c:150:17: sparse:     got int
+>> drivers/gpio/gpio-npcm-sgpio.c:152:16: sparse: sparse: Using plain integer as NULL pointer
+>> drivers/gpio/gpio-npcm-sgpio.c:534:20: sparse: sparse: incorrect type in initializer (different modifiers) @@     expected unsigned int *sft_clk @@     got unsigned int const * @@
+   drivers/gpio/gpio-npcm-sgpio.c:534:20: sparse:     expected unsigned int *sft_clk
+   drivers/gpio/gpio-npcm-sgpio.c:534:20: sparse:     got unsigned int const *
+>> drivers/gpio/gpio-npcm-sgpio.c:535:20: sparse: sparse: incorrect type in initializer (different modifiers) @@     expected unsigned int *clk_sel @@     got unsigned int const * @@
+   drivers/gpio/gpio-npcm-sgpio.c:535:20: sparse:     expected unsigned int *clk_sel
+   drivers/gpio/gpio-npcm-sgpio.c:535:20: sparse:     got unsigned int const *
+   drivers/gpio/gpio-npcm-sgpio.c:540:20: sparse: sparse: incorrect type in initializer (different modifiers) @@     expected unsigned int *sft_clk @@     got unsigned int const * @@
+   drivers/gpio/gpio-npcm-sgpio.c:540:20: sparse:     expected unsigned int *sft_clk
+   drivers/gpio/gpio-npcm-sgpio.c:540:20: sparse:     got unsigned int const *
+   drivers/gpio/gpio-npcm-sgpio.c:541:20: sparse: sparse: incorrect type in initializer (different modifiers) @@     expected unsigned int *clk_sel @@     got unsigned int const * @@
+   drivers/gpio/gpio-npcm-sgpio.c:541:20: sparse:     expected unsigned int *clk_sel
+   drivers/gpio/gpio-npcm-sgpio.c:541:20: sparse:     got unsigned int const *
 
-Is this machine going to run openbmc?
+vim +150 drivers/gpio/gpio-npcm-sgpio.c
 
-We have a set of documented properties for GPIOs such as the power button:
+   134	
+   135	static void __iomem *bank_reg(struct npcm_sgpio *gpio,
+   136				      const struct npcm_sgpio_bank *bank,
+   137				      const enum npcm_sgpio_reg reg)
+   138	{
+   139		switch (reg) {
+   140		case READ_DATA:
+   141			return gpio->base + bank->rdata_reg;
+   142		case WRITE_DATA:
+   143			return gpio->base + bank->wdata_reg;
+   144		case EVENT_CFG:
+   145			return gpio->base + bank->event_config;
+   146		case EVENT_STS:
+   147			return gpio->base + bank->event_status;
+   148		default:
+   149			/* actually if code runs to here, it's an error case */
+ > 150			dev_WARN(true, "Getting here is an error condition");
+   151		}
+ > 152		return 0;
+   153	}
+   154	
 
-https://github.com/openbmc/docs/blob/master/designs/device-tree-gpio-naming.md
-
-If you intentionally do not want to follow this scheme, please mention
-why in your commit message.
-
-Cheers,
-
-Joel
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
