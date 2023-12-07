@@ -1,126 +1,100 @@
-Return-Path: <devicetree+bounces-22887-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22888-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0393809208
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 21:05:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 825B980921B
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 21:15:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73A7F281511
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 20:05:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B40D11C20979
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 20:15:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FA945024F;
-	Thu,  7 Dec 2023 20:05:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KsPhzS8o"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B1CB50259;
+	Thu,  7 Dec 2023 20:15:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F88242A9C;
-	Thu,  7 Dec 2023 20:05:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7B9DC433C8;
-	Thu,  7 Dec 2023 20:05:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701979527;
-	bh=ZuLoiw1NYaGVr+kvGugUqnXifo1hF2+hifnZiWIiLTE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KsPhzS8oX8ysFJbnZcJ+Sln6ssoSMvSW4666hoJMvzrpoBYgDKy876U+qPa+DO7lc
-	 wSYZ2KxMCbuRxto9EmMWEGrQEExy28T8b6C50EOyaxdadUImJ+1BGr9JB3vfrqRN2x
-	 6Nz77vSGqPDje88XjsYkH1VqdjkyOQi5NZLMNch7FlFjM50GHoQdfBZSZBY5YXtCS7
-	 hxdMGu+amX57xLlXgDWRBZa36KwIguVoXe49LdnuPcmbQ7CP5Zgm3d1ZymOAsmkUgM
-	 K1Fbdzlq4lXU6eQzoZsx+h1Q0J9ZJiUyF9P8oCc0EPPA4LFRW2NV08KZ7RriIpli9r
-	 7h4Hqx9UJZX/g==
-Date: Thu, 7 Dec 2023 20:05:21 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH v3 5/5] hwmon: Add support for Amphenol ChipCap 2
-Message-ID: <04475f91-bdce-4677-894c-74c2bb8233d9@sirena.org.uk>
-References: <20231020-topic-chipcap2-v3-0-5b3bb50a5f0b@gmail.com>
- <20231020-topic-chipcap2-v3-5-5b3bb50a5f0b@gmail.com>
+Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61528170F;
+	Thu,  7 Dec 2023 12:15:18 -0800 (PST)
+Received: by mail-ot1-f49.google.com with SMTP id 46e09a7af769-6d9e179b217so402185a34.0;
+        Thu, 07 Dec 2023 12:15:18 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701980117; x=1702584917;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ytNDdKy1mnEm3e+yRbuE/HnHivt5uF3IXJRUZqNhUno=;
+        b=mEa0a6rzS1oeICoVtcbftTkkjs341I0HaON9WkC5oS+ilW4BTpjvvAlMbjZmtc7P+r
+         8d8TeFDbnhtPH/wAEC1to4Ce/SkDY0omOVRJjBAF3ysAgRWiSwyu/FCst/Zeqiwd1JJD
+         yqeAzJFYE8OAx3i8JR2OpUDycclC4OftS3T3DMKu5U2wvlCN4FXM/LjyveyIzVQHd6LH
+         zoRW2r/nLCWW8bXFmO3Dt7Fe8N0/YpglxGX1KMA5RAJ7z+Yb77xwDb83svvcS4FD7M7O
+         QOyhRUS41jwZeLyQINBO3t6NHWLMaUTbehJzKYJfNXIhwdGd/E1x3HqD/Ajyj3YXzXTJ
+         AlRA==
+X-Gm-Message-State: AOJu0YzX77qTx0j0OLLYmQlGpuW44n3qtqxENWMjKcJ5/hxA8OI2Tflu
+	qiIXTAq/9VbElyNoEsnzp9d//eEYew==
+X-Google-Smtp-Source: AGHT+IFFpMDZK/yIr6hZpE4r1FjYZtPYedvtJwcGCyDCOPoNAYk8TdQZMuSyWAZEu2Vjduf1L9uMfA==
+X-Received: by 2002:a05:6830:124e:b0:6d9:d144:c9a9 with SMTP id s14-20020a056830124e00b006d9d144c9a9mr2599082otp.22.1701980117581;
+        Thu, 07 Dec 2023 12:15:17 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id l16-20020a9d7350000000b006d9d3d0e145sm84403otk.10.2023.12.07.12.15.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Dec 2023 12:15:16 -0800 (PST)
+Received: (nullmailer pid 3350191 invoked by uid 1000);
+	Thu, 07 Dec 2023 20:15:16 -0000
+Date: Thu, 7 Dec 2023 14:15:16 -0600
+From: Rob Herring <robh@kernel.org>
+To: Christophe Leroy <christophe.leroy@csgroup.eu>
+Cc: Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, Frank Rowand <frowand.list@gmail.com>, linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v1 3/4] powerpc/machdep: Define 'compatibles' property in
+ ppc_md and use it
+Message-ID: <20231207201516.GA3348285-robh@kernel.org>
+References: <e6cf01d41502b15e688b6f5aa5c3b68c62b8ac64.1701878821.git.christophe.leroy@csgroup.eu>
+ <9da79892e7ff433095a7bf42e86aef02ab86b5c1.1701878821.git.christophe.leroy@csgroup.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="skxAi3lmk/Z+j09s"
-Content-Disposition: inline
-In-Reply-To: <20231020-topic-chipcap2-v3-5-5b3bb50a5f0b@gmail.com>
-X-Cookie: Two is company, three is an orgy.
-
-
---skxAi3lmk/Z+j09s
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <9da79892e7ff433095a7bf42e86aef02ab86b5c1.1701878821.git.christophe.leroy@csgroup.eu>
 
-On Thu, Dec 07, 2023 at 08:44:55PM +0100, Javier Carrasco wrote:
+On Wed, Dec 06, 2023 at 05:13:34PM +0100, Christophe Leroy wrote:
+> Most probe functions that do not use the 'compatible' string do
+> nothing else than checking whether the machine is compatible with
+> one of the strings in a NULL terminated table of strings.
+> 
+> Define that table of strings in ppc_md structure and check it directly
+> from probe_machine() instead of using ppc_md.probe() for that.
+> 
+> Keep checking in ppc_md.probe() only for more complex probing.
+> 
+> All .compatible could be replaced with a single element NULL
+> terminated list but that's not worth the churn. Can be do incrementaly
+> in follow-up patches.
+> 
+> Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
+> ---
+>  arch/powerpc/include/asm/machdep.h            |  1 +
+>  arch/powerpc/kernel/setup-common.c            |  2 ++
+>  arch/powerpc/platforms/40x/ppc40x_simple.c    |  9 +++------
+>  arch/powerpc/platforms/512x/mpc512x_generic.c |  4 +---
+>  arch/powerpc/platforms/52xx/lite5200.c        | 10 +---------
+>  arch/powerpc/platforms/52xx/mpc5200_simple.c  | 10 +---------
+>  arch/powerpc/platforms/83xx/mpc830x_rdb.c     | 10 +---------
+>  arch/powerpc/platforms/83xx/mpc831x_rdb.c     | 10 +---------
+>  arch/powerpc/platforms/83xx/mpc837x_rdb.c     | 10 +---------
+>  arch/powerpc/platforms/85xx/corenet_generic.c |  2 +-
+>  arch/powerpc/platforms/85xx/tqm85xx.c         | 10 +---------
+>  11 files changed, 14 insertions(+), 64 deletions(-)
 
-> +       if (regulator_is_enabled(data->regulator)) {
-> +               ret = regulator_disable(data->regulator);
-> +               if (ret < 0)
-> +                       return ret;
-> +
-> +               msleep(CC2_POWER_CYCLE_MS); /* ensure a clean power cycle */
-> +       }
-> +
-> +       ret = regulator_enable(data->regulator);
-> +       if (ret < 0)
-> +               return ret;
+> -/*
+> - * Called very early, MMU is off, device-tree isn't unflattened
+> - */
 
-This is very buggy.  A consumer should only disable a regulator if it
-itself enabled that regulator (or it *requires* an exclusive regulator
-which isn't a good fit here), and there's no guarantee that disabling a
-regulator will actually result in a power off.  Either the board might
-not physically or through constraints permit the state to change or
-another user may have enabled the regulator.  The driver needs to keep
-track of if it enabled the regulator and only disable it as many times
-as it enabled it.
+Certainly an out of date comment as the unflattened API was being 
+called.
 
-For this usage with trying to bounce the power of the regulator you can
-keep track of the actual power state of the supply by listening to
-notifications, and should possibly just keep the regulator disabled when
-it's not actively in use (if no alarm is active or measurement in
-progress?).
-
-> +	data->regulator = devm_regulator_get_optional(dev, "vdd");
-
-Does the device *really* work without power?  The datasheet appears to
-suggest that the device has a non-optional supply Vdd
-
-   https://f.hubspotusercontent40.net/hubfs/9035299/Documents/AAS-916-127J-Telaire-ChipCap2-022118-web.pdf
-
-(there's also a Vcore pin but that appears to be for connecting a
-decoupling capacitor rather than a supply).
-
-In general _optional() should only be used for supplies which may be
-physically absent.
-
---skxAi3lmk/Z+j09s
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmVyJYAACgkQJNaLcl1U
-h9ATSwf/VyDbhFanh416hXAS3NUyE1fY08GL8xlMZYwm6c+DHomBU3JouF6321Vc
-l3r+wim6gRhaVqclmbACV9Tew2hRz3UpOWzWt02GcYoR6UmMz/AvVMopvPVtIZdW
-ew+dcD+8L8NC1Ivl6chszVD01u0CHHPFdmVlvkASkKVhKXKtC3DdZm3E4aopZSgf
-PSS1iGmWasrxCpNgfet5ea/TIdlQlMEWwGkXrqMbJXEXO5VazmNMAhOsnwG2pB2e
-1gdcZKJtFRPl3D3HJ/BruMY0IcZAFMAs5F0MnR6Oy04EWxi8tq7AWsC1SpYbAiZ3
-mdJ8HCV04qAIPFr1iWDLBmyWvW1hAw==
-=hTAC
------END PGP SIGNATURE-----
-
---skxAi3lmk/Z+j09s--
+Reviewed-by: Rob Herring <robh@kernel.org>
 
