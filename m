@@ -1,153 +1,233 @@
-Return-Path: <devicetree+bounces-22909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D3F58096AA
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 00:40:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 648378096D3
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 00:57:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8E61E1C20AD4
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 23:40:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 19C4828200F
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 23:57:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FA125731A;
-	Thu,  7 Dec 2023 23:40:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A93F5732B;
+	Thu,  7 Dec 2023 23:57:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="ABsxg7sn"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ybilJOTf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40B481718
-	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 15:40:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1701992402;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=xg11osurhuZW+ExEnJSQ2VKUNQ2I4+/joQa17Mg9pp4=;
-	b=ABsxg7snlChiiiWgKuZu0hsMJJhgWsPeCOowPS/UsFYqunxkWQcmjHHpxy6k2YPI0HTBdv
-	Z8+N8GVrq+1CozpTaEW2XgeCLIMPkoctwJ34Adm6FG2luPXaEOSd8hUUjvq2k4ll37mXbY
-	lMbhTgrPuMmayHFyhLsW70BIxSqUMLk=
-Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com
- [209.85.208.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-590-xAFCM0ssPGabHe4Bj602PQ-1; Thu, 07 Dec 2023 18:40:00 -0500
-X-MC-Unique: xAFCM0ssPGabHe4Bj602PQ-1
-Received: by mail-ed1-f72.google.com with SMTP id 4fb4d7f45d1cf-54c77e011baso777432a12.2
-        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 15:40:00 -0800 (PST)
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFEB21716
+	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 15:57:01 -0800 (PST)
+Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2c9fbb846b7so16476071fa.2
+        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 15:57:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1701993420; x=1702598220; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RCO9xsQmxA+zz0fLWQyERmhIN174RlFcf3T1BFbUB/o=;
+        b=ybilJOTfi6Qq6HOs3agWBEkiMRV0Y2uZFVcKZUC7tnrN4cWIMarvy/1ryJ535V0PeH
+         YJztKRz3P7tkmE70gcPJjyYr/cYSrD+N3wIlg5fAaoDMgXtFptasvGCvAhtcQHMlHlkX
+         /1c1O2LIHX0/N4cVsHYzSyoXqRYgvHGkVV5WivnHL0gI5Gzk5MpKXAx9GJYn/2UyymfQ
+         ZSS9EnLLDnJDbL+kPFRi9sNdEqXNT38raVUC7GBL7j/QCsLtT4KZ+MAjNe2Eros5NoWW
+         L2Ukg6FKlG62/YDeGHiyWKDdcEpEiAYusz/9rXGTkbFuz9qsGBX0rNd3sQfv0ZGZrx1D
+         8yPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701992399; x=1702597199;
-        h=content-transfer-encoding:mime-version:message-id:date:references
-         :in-reply-to:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1701993420; x=1702598220;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=xg11osurhuZW+ExEnJSQ2VKUNQ2I4+/joQa17Mg9pp4=;
-        b=YlsfTx+TNCIjr//KpVMfQcN5B1vL7KLQlngOjQKjQs5hi8u6NPlW1NCtp9S8bX3Vmm
-         zqchfHDx6sO+Uqy0RowWMLfGHwC1LYvhZjqZC1HFW+VJajbSiCG39hyMVYDhdKFWWd4q
-         sOfm1XzuSFQKSeZ9Z/oMZ61Y7BVIxzglQNtgtKP7Uzal1hnlwXA56f5yvAf21YIuuu4u
-         0O8wl7vOY8272nXm23PPt4WN9zUQtmia4JnGTF5jVNwIQjw9uRvfvY0dhC+TzH9V2dOP
-         sy1H49YLXLUeATElwh6g5YFgkzYkvrK2fiGcPVUOPlNUnDay5D8ZxIjO7eGlshqJg7/Y
-         rBxQ==
-X-Gm-Message-State: AOJu0YyzOORhsMm2GCVYFcMpKCjWsIRB2wWRWumgL4nMvNmEDS44pA0N
-	Vb3r6g3+AeIuJvl/3kqy1x/j1m4QQnDw2LuqiOtq5p5kIdesv0Se3taxR+DuxHFAzoNsGcY1MRq
-	9RNbgEDksjuvjX9udtf5UYw==
-X-Received: by 2002:a50:8d0f:0:b0:54c:7833:c111 with SMTP id s15-20020a508d0f000000b0054c7833c111mr2654163eds.36.1701992399579;
-        Thu, 07 Dec 2023 15:39:59 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHONLQX5QD7kpaVJvn8DPKveQlpsowHFBYDxpIMAEK33ea6TyJJupLCP9XwWuJZegmCPjXkaQ==
-X-Received: by 2002:a50:8d0f:0:b0:54c:7833:c111 with SMTP id s15-20020a508d0f000000b0054c7833c111mr2654157eds.36.1701992399265;
-        Thu, 07 Dec 2023 15:39:59 -0800 (PST)
-Received: from localhost ([84.236.194.198])
-        by smtp.gmail.com with ESMTPSA id dn20-20020a05640222f400b0054cc22af09esm299697edb.46.2023.12.07.15.39.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Dec 2023 15:39:58 -0800 (PST)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>, Ard Biesheuvel
- <ardb@kernel.org>, devicetree@vger.kernel.org, Sergio Lopez
- <slp@redhat.com>, Sima Vetter <daniel.vetter@ffwll.ch>, Hector Martin
- <marcan@marcan.st>, Andrew Worsley <amworsley@gmail.com>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, Frank
- Rowand <frowand.list@gmail.com>
-Subject: Re: [RFC PATCH] of/platform: Disable sysfb if a simple-framebuffer
- node is found
-In-Reply-To: <20231207173037.GA2944721-robh@kernel.org>
-References: <87jzqi59bt.fsf@minerva.mail-host-address-is-not-set>
- <CAL_JsqJM9+cbNviwuKGB5+3YbyAP3UH+TxCxsU5nUtX-iRGP2w@mail.gmail.com>
- <CAMj1kXG7Xyk0ys9j-XRo7Rr8gYz1qJE8fFSixBOwVbm-pjeX+A@mail.gmail.com>
- <874jhj1fm3.fsf@minerva.mail-host-address-is-not-set>
- <58672ab8-99bf-4a2a-af79-031d1e8fcba0@suse.de>
- <87fs0mxlyp.fsf@minerva.mail-host-address-is-not-set>
- <CAL_JsqJbZ736iV+bRbSNNaimkbJLpB9MbeKLSct16Yi67ttFcw@mail.gmail.com>
- <87a5qqxq56.fsf@minerva.mail-host-address-is-not-set>
- <CAL_Jsq+7AwuLt9pfX0zr8g=65zSVLUFzFds82ENaspEFQNK=gg@mail.gmail.com>
- <87zfyqvtpx.fsf@minerva.mail-host-address-is-not-set>
- <20231207173037.GA2944721-robh@kernel.org>
-Date: Fri, 08 Dec 2023 00:39:57 +0100
-Message-ID: <87cyvhh99u.fsf@minerva.mail-host-address-is-not-set>
+        bh=RCO9xsQmxA+zz0fLWQyERmhIN174RlFcf3T1BFbUB/o=;
+        b=XN6OfUtrobDrkO6iMuY+y99wMqxLeQWtrWWCrAa4VRke9WWdYiWZuhgcr613pUgMcF
+         TncrH3t849gQKO5xnicg0w3mmac+GR5B44F7wJf8ypZZk3vYgHUGGcTidNqqtiWktgAe
+         vx9lkaf5XDbGpMmPM4+tz+nB4T+lH/3eHHaWRnldsb5U3znUU4TLYFQyueBPOCml46L4
+         I2zGiUh50Iq2rTHHlXCEw+MnONqlODpNIYtfCOlBT7XBUUdfqr5b175XLZOlDQE85VJZ
+         vp4IsTLxlsblOjjhtg68sz1OYlzfPxKOJk0cgf7uR2vsG99y2GSdWpsTzOYRyElNC8Br
+         x28A==
+X-Gm-Message-State: AOJu0YwZEhUE/j/QmCdXLylRJNR2myktsT7fZW6v36uCoNVD+Vs522yj
+	n5nO/rjZeNIPMTEPJd75swV8132LB1RjcfGMQmG1lQ==
+X-Google-Smtp-Source: AGHT+IEyjluygHw09UGFMiMZ7prFJI/6OqOyKXgeBZFa+o49V2RIKm3uf5+Bs9y/AtDjTBYcfpIqB8tU7KDM9R6mvRk=
+X-Received: by 2002:a2e:9859:0:b0:2c9:f962:48f1 with SMTP id
+ e25-20020a2e9859000000b002c9f96248f1mr1616613ljj.96.1701993420060; Thu, 07
+ Dec 2023 15:57:00 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+References: <cover.1701971344.git.marcelo.schmitt1@gmail.com> <53d55f3195b15bd8d47387e296036730ea270770.1701971344.git.marcelo.schmitt1@gmail.com>
+In-Reply-To: <53d55f3195b15bd8d47387e296036730ea270770.1701971344.git.marcelo.schmitt1@gmail.com>
+From: David Lechner <dlechner@baylibre.com>
+Date: Thu, 7 Dec 2023 17:56:48 -0600
+Message-ID: <CAMknhBEFnTUm9FPK-74+GkJs2d80dS+Q9WeGTxd3Ajs-JJGcdA@mail.gmail.com>
+Subject: Re: [PATCH v3 10/13] dt-bindings: iio: Add AD7091R-8
+To: Marcelo Schmitt <marcelo.schmitt@analog.com>
+Cc: apw@canonical.com, joe@perches.com, dwaipayanray1@gmail.com, 
+	lukas.bulwahn@gmail.com, paul.cercueil@analog.com, 
+	Michael.Hennerich@analog.com, lars@metafoo.de, jic23@kernel.org, 
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	dan.carpenter@linaro.org, marcelo.schmitt1@gmail.com, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Rob Herring <robh@kernel.org> writes:
-
-> On Mon, Dec 04, 2023 at 05:05:30PM +0100, Javier Martinez Canillas wrote:
->> Rob Herring <robh@kernel.org> writes:
->>=20
->> > On Mon, Dec 4, 2023 at 3:39=E2=80=AFAM Javier Martinez Canillas
->> > <javierm@redhat.com> wrote:
->> >> Rob Herring <robh@kernel.org> writes:
->> >> > On Fri, Dec 1, 2023 at 4:21=E2=80=AFAM Javier Martinez Canillas
->>=20
->> [...]
->>=20
->> >>
->> >> > However, there might be one other issue with that and this fix. The=
- DT
->> >> > simplefb can have resources such as clocks and regulators. With
->> >> > fw_devlink, the driver won't probe until those dependencies are met.
->> >> > So if you want the framebuffer console up early, then you may want =
-to
->> >> > register the EFI framebuffer first and then handoff to the DT simpl=
-efb
->> >> > when it probes (rather than registering the device).
->> >> >
->> >> > But I agree, probably better to take this patch now and have those
->> >> > quirks instead of flat out not working.
->> >> >
->> >>
->> >> If we do that what's the plan? Are you thinking about merging this pa=
-tch
->> >> through your OF tree or do you want to go through drm-misc with your =
-ack?
->> >
->> > I can take it. Do we need this in 6.7 and stable?
->> >
->>=20
->> IMO this can wait for v6.8 since is not a fix for a change introduced in
->> the v6.7 merge window and something that only happens on a very specific
->> setup (DT systems booting with u-boot EFI and providing an EFI-GOP table=
-).
->>=20
->> Also the -rc cycle is already in -rc5, so it seems risky to push a change
->> at this point. And distros can pick the patch if want to have it earlier.
+On Thu, Dec 7, 2023 at 12:42=E2=80=AFPM Marcelo Schmitt
+<marcelo.schmitt@analog.com> wrote:
 >
-> Okay, I've applied it for 6.8.
+> Add device tree documentation for AD7091R-8.
 >
-
-Great, thanks a lot.
-
-> Rob
+> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+> ---
+>  .../bindings/iio/adc/adi,ad7091r8.yaml        | 99 +++++++++++++++++++
+>  1 file changed, 99 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7091r=
+8.yaml
 >
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7091r8.yaml =
+b/Documentation/devicetree/bindings/iio/adc/adi,ad7091r8.yaml
+> new file mode 100644
+> index 000000000000..02320778f225
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7091r8.yaml
+> @@ -0,0 +1,99 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/adi,ad7091r8.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices AD7091R8 8-Channel 12-Bit ADC
+> +
+> +maintainers:
+> +  - Marcelo Schmitt <marcelo.schmitt@analog.com>
+> +
+> +description: |
+> +  Analog Devices AD7091R-8 8-Channel 12-Bit ADC
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/AD=
+7091R-2_7091R-4_7091R-8.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,ad7091r2
+> +      - adi,ad7091r4
+> +      - adi,ad7091r8
+> +
+> +  reg:
+> +    maxItems: 1
+> +
 
---=20
-Best regards,
+Missing other supplies? Like vdd-supply and vdrive-supply?
 
-Javier Martinez Canillas
-Core Platforms
-Red Hat
+> +  vref-supply: true
 
+refin-supply might be a better name to match the datasheet pin name.
+
+> +
+> +  adi,conversion-start-gpios:
+
+gpios usually don't get a vendor prefix do they?
+
+convst-gpios could be a better name to match the pin name on the datasheet.
+
+> +    description:
+> +      GPIO connected to the CONVST pin.
+> +      This logic input is used to initiate conversions on the analog
+> +      input channels.
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+
+A description of what the interrupt is attached to (ALERT/BUSY/GPO0
+pin) would be helpful.
+
+> +
+> +patternProperties:
+> +  "^channel@[0-7]$":
+> +    $ref: adc.yaml
+> +    type: object
+> +    description: Represents the external channels which are connected to=
+ the ADC.
+> +
+> +    properties:
+> +      reg:
+> +        minimum: 0
+> +        maximum: 7
+
+Shouldn't this be:
+
+        items:
+          - minimum: 0
+            maximum: 7
+
+> +
+> +    required:
+> +      - reg
+
+Missing `unevaluatedProperties: false` for channels?
+
+Bigger picture: since no other properties besides `reg` are included
+here, do we actually need channel nodes?
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - adi,conversion-start-gpios
+> +
+> +allOf:
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +  # AD7091R-2 does not have ALERT/BUSY/GPO pin
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - adi,ad7091r4
+> +              - adi,ad7091r8
+> +    then:
+> +      properties:
+> +        interrupts: true
+
+Interrupts is already true. Maybe better to only match chips without
+interrupts and set false?
+
+> +    else:
+> +      properties:
+> +        interrupts: false
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    spi {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        adc@0 {
+> +                compatible =3D "adi,ad7091r8";
+> +                reg =3D <0x0>;
+> +                spi-max-frequency =3D <45454545>;
+> +                vref-supply =3D <&adc_vref>;
+> +                adi,conversion-start-gpios =3D <&gpio 25 GPIO_ACTIVE_LOW=
+>;
+> +                reset-gpios =3D <&gpio 27 GPIO_ACTIVE_LOW>;
+> +                interrupts =3D <22 IRQ_TYPE_EDGE_FALLING>;
+> +                interrupt-parent =3D <&gpio>;
+> +        };
+> +    };
+> +...
+> --
+> 2.42.0
+>
+>
 
