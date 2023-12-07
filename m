@@ -1,89 +1,47 @@
-Return-Path: <devicetree+bounces-22651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22652-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCD2180853D
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 11:13:16 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB608808541
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 11:13:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2563D283D17
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 10:13:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BFCE4B21E2B
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 10:13:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D98AE35880;
-	Thu,  7 Dec 2023 10:13:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06F0A358A0;
+	Thu,  7 Dec 2023 10:13:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ciHMHUep"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="BDmFw378"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5C04D6D
-	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 02:13:04 -0800 (PST)
-Received: by mail-yb1-xb2a.google.com with SMTP id 3f1490d57ef6-dae7cc31151so777666276.3
-        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 02:13:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701943984; x=1702548784; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=e3B67B1TYSjUdt6Cc8K4XbRIZ1QzqkY0WH6+puDGmn4=;
-        b=ciHMHUepSltr4g56V7l6mEs/NQDP3xPGlRjPxmgeIFK9L3OwSp/sA8/mHv8AUxjiYS
-         e38OTUXVtymi0rj3uhgT6ZMNS5pLylLhBx+FW4FO75IRJDqh2PAI8rf6k26iJfCAmMsl
-         ImCm1tuuvvmeQ9v3D9vBEw1iVv9ZoQ+h5E7X5aGpyB9/kb50VxEK8xILiauHQGXpVGA7
-         T9m64BQZp16DqTYhAZZm6ylqgK92grDQZ59BWN+nOi5RW2X75smZM6vf0pwk5ufyGROk
-         a3X5ENF7ZA7wwstyrHaT+fAxZsq3JIJUXOVQa2RO0xLMcMduq/X1EUyDcGQqzLUeavSo
-         /HWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701943984; x=1702548784;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=e3B67B1TYSjUdt6Cc8K4XbRIZ1QzqkY0WH6+puDGmn4=;
-        b=CYLCWYBRkT5yi6AaAY5PZNW7CyTaVTzrpKDtCpyliES8k4I/k7qIkkGW3/AUKTKmrF
-         mvpaO0J2fPw3LedyabAmnsMW+1oiyQAibZ2H2yskQ/KFbRFVdpepccwHNpa3NL6Jc7n/
-         4SByWHx6Ify06wQqbXmTqoZFLIGUORnwbYpTApJj+CBNufE4qZ5jI3B6huTEoCqb4S0z
-         XR6BHXIPAcm9rgrDN/fzBgrOtIY+rMECPaWmFVaQvrghdQ9zTYXPhla5JkCVfhkRS8Jt
-         1eAnSxeQVSxwlABksaYMwyogQbB8kn5dKW6lgxD9VxWyQvOtUDsiqYIWVhUG+hIrQWMo
-         3Ujw==
-X-Gm-Message-State: AOJu0YwXiyezwL8mHOdEcblYveUh6Zsd0k4x7VWLictyN2Rju//z4fUd
-	P+l/EVvZE0j/KQaq2xJ2v+mL
-X-Google-Smtp-Source: AGHT+IFNn1HUFDtLCOGTeA3m9Ta/i3bQvpYxwVgKKLYlxLDmi9pfv/W/T/9B2nxE7SkRSL3QSWQJtw==
-X-Received: by 2002:a25:243:0:b0:db5:4503:6de5 with SMTP id 64-20020a250243000000b00db545036de5mr1932607ybc.60.1701943983997;
-        Thu, 07 Dec 2023 02:13:03 -0800 (PST)
-Received: from thinkpad ([117.248.6.133])
-        by smtp.gmail.com with ESMTPSA id l13-20020a0cc20d000000b0067a22bb8d57sm373453qvh.56.2023.12.07.02.12.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Dec 2023 02:13:03 -0800 (PST)
-Date: Thu, 7 Dec 2023 15:42:52 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Johan Hovold <johan@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Krishna Chaitanya Chundru <quic_krichai@quicinc.com>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, quic_vbadigan@quicinc.com,
-	quic_ramkri@quicinc.com, quic_nitegupt@quicinc.com,
-	quic_skananth@quicinc.com, quic_vpernami@quicinc.com,
-	quic_parass@quicinc.com
-Subject: Re: [PATCH v3 1/3] dt-bindings: phy: qcom,qmp: Add PCIe
- qcom,refclk-always-on property
-Message-ID: <20231207101252.GJ2932@thinkpad>
-References: <78815f1b-7390-40de-8afd-ac71806f4051@linaro.org>
- <24fae40a-453b-b14c-923f-88758a246aa7@quicinc.com>
- <20231201060716.GJ4009@thinkpad>
- <166d307e-7d1b-48b5-90db-9b6df01d87c2@linaro.org>
- <20231201111033.GL4009@thinkpad>
- <f844cd1e-7e4f-4836-bc9a-2e1ed13f064f@linaro.org>
- <20231201123054.GM4009@thinkpad>
- <3a7376aa-18a2-41cb-a4c9-680e735ce75b@linaro.org>
- <20231206131009.GD12802@thinkpad>
- <ZXGVjY9gYMD6-xFJ@hovoldconsulting.com>
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B8E7133;
+	Thu,  7 Dec 2023 02:13:27 -0800 (PST)
+Received: from ideasonboard.com (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9FA2A669;
+	Thu,  7 Dec 2023 11:12:43 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1701943963;
+	bh=yRxRJIsGsjJnSzRFJvxEIn+tjGWal6ayTLW6aZNHnT4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BDmFw378qIbsdLrGcDWdH5yAosiIoiHh8McyRa3k+fBb2sNlJjmuMEWYDVqD/DbSd
+	 EfKnKZfN2crrWGOXJxdx1MkCJe4pdc1A249qu+aSiIli029Bl/mwka/V5047SpPkrt
+	 aJm1iprDGBAjqw5ACCpUXw/zHYYtmRinQJ1A7j18=
+Date: Thu, 7 Dec 2023 11:13:21 +0100
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Dave Stevenson <dave.stevenson@raspberrypi.com>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org, 
+	Kieran Bingham <kieran.bingham@ideasonboard.com>, devicetree@vger.kernel.org, 
+	Lee Jackson <lee.jackson@arducam.com>, Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v5 1/2] media: dt-bindings: Add OmniVision OV64A40
+Message-ID: <ecrdq6a2y6uymnzp63vfo7kxnft6eonqgmbkgew3z4iaucfbjg@hu2ws54mqwea>
+References: <20231206155900.123904-1-jacopo.mondi@ideasonboard.com>
+ <20231206155900.123904-2-jacopo.mondi@ideasonboard.com>
+ <ZXGW8iyoQpIXUa1E@kekkonen.localdomain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,31 +50,142 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZXGVjY9gYMD6-xFJ@hovoldconsulting.com>
+In-Reply-To: <ZXGW8iyoQpIXUa1E@kekkonen.localdomain>
 
-On Thu, Dec 07, 2023 at 10:51:09AM +0100, Johan Hovold wrote:
-> On Wed, Dec 06, 2023 at 06:40:09PM +0530, Manivannan Sadhasivam wrote:
-> 
-> > OK. How about, "qcom,broken-refclk"? This reflects the fact that the default
-> > refclk operation is broken on this platform, so the OS should be prepared for
-> > it (by keeping it always on).
-> 
-> Shouldn't that be
-> 
-> 	qcom,broken-clkreq
-> 
-> since its the CLKREQ# signal used to request REFCLK that is broken, not
-> the REFCLK itself?
-> 
+Hi Sakari
 
-Darn... You are right. I got carried away by the initial property name. Thanks
-for spotting!
+On Thu, Dec 07, 2023 at 09:57:06AM +0000, Sakari Ailus wrote:
+> Hi Jacopo,
+>
+> On Wed, Dec 06, 2023 at 04:58:59PM +0100, Jacopo Mondi wrote:
+> > Add bindings for OmniVision OV64A40.
+> >
+> > Co-developed-by: Lee Jackson <lee.jackson@arducam.com>
+> > Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> > ---
+> >  .../bindings/media/i2c/ovti,ov64a40.yaml      | 97 +++++++++++++++++++
+> >  1 file changed, 97 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov64a40.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov64a40.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov64a40.yaml
+> > new file mode 100644
+> > index 000000000000..e6c9d540a2dd
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov64a40.yaml
+> > @@ -0,0 +1,97 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/media/i2c/ovti,ov64a40.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: OmniVision OV64A40 Image Sensor
+> > +
+> > +maintainers:
+> > +  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/media/video-interface-devices.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: ovti,ov64a40
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +
+> > +  avdd-supply:
+> > +    description: Analog voltage supply, 2.8 volts
+> > +
+> > +  dvdd-supply:
+> > +    description: Digital core voltage supply, 1.1 volts
+> > +
+> > +  dovdd-supply:
+> > +    description: Digital I/O voltage supply, 1.8 volts
+> > +
+> > +  powerdown-gpios:
+> > +    maxItems: 1
+> > +
+> > +  reset-gpios:
+> > +    maxItems: 1
+> > +
+> > +  port:
+> > +    $ref: /schemas/graph.yaml#/$defs/port-base
+> > +    additionalProperties: false
+> > +
+> > +    properties:
+> > +      endpoint:
+> > +        $ref: /schemas/media/video-interfaces.yaml#
+> > +        additionalProperties: false
+> > +
+> > +        properties:
+> > +          bus-type:
+> > +            enum:
+> > +              - 1 # MIPI CSI-2 C-PHY
+> > +              - 4 # MIPI CSI-2 D-PHY
+> > +          data-lanes: true
+> > +          link-frequencies: true
+> > +          clock-noncontinuous: true
+> > +          remote-endpoint: true
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - clocks
+> > +  - port
+> > +
+> > +unevaluatedProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +      #include <dt-bindings/gpio/gpio.h>
+> > +
+> > +      i2c {
+> > +          #address-cells = <1>;
+> > +          #size-cells = <0>;
+> > +
+> > +          camera@36 {
+> > +              compatible = "ovti,ov64a40";
+> > +              reg = <0x36>;
+> > +              clocks = <&camera_clk>;
+> > +              dovdd-supply = <&vgen4_reg>;
+> > +              avdd-supply = <&vgen3_reg>;
+> > +              dvdd-supply = <&vgen2_reg>;
+> > +              powerdown-gpios = <&gpio1 9 GPIO_ACTIVE_HIGH>;
+> > +              reset-gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
+> > +              rotation = <180>;
+> > +              orientation = <2>;
+> > +
+> > +              port {
+> > +                  endpoint {
+> > +                      remote-endpoint = <&mipi_csi2_in>;
+> > +                      bus-type = <4>;
+> > +                      data-lanes = <1 2 3 4>;
+>
+> This is missing link-frequencies.
+>
 
-- Mani
+I was not sure about this, in facts.
 
-> Johan
+Bindings are about HW while link-frequencies is only about restricting
+how the driver configures the sensor. Thus, I've not listed it as
+mandatory however the driver mandates its presence.
 
--- 
-மணிவண்ணன் சதாசிவம்
+Should I make it mandatory in bindings ?
+
+> > +                  };
+> > +              };
+> > +          };
+> > +      };
+> > +
+> > +...
+>
+> --
+> Regards,
+>
+> Sakari Ailus
 
