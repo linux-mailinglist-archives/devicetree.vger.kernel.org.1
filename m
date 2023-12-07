@@ -1,166 +1,380 @@
-Return-Path: <devicetree+bounces-22597-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22598-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D10E4808328
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 09:37:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 725BD808333
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 09:37:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8E6151F22055
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 08:37:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E8F791F224B8
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 08:37:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D312199AF;
-	Thu,  7 Dec 2023 08:37:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31EBF21A00;
+	Thu,  7 Dec 2023 08:37:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LPU7iEth"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="TK3CG10R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D919310CA
-	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 00:37:05 -0800 (PST)
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-40c09d0b045so8290145e9.0
-        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 00:37:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701938224; x=1702543024; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wYs69xXZlHmN4BtZOXwLM54QypaMcf+nQokJKri3ijo=;
-        b=LPU7iEthF5NoMqNpS6CprbMqNi06UVzvsgRdUAHnRNvNp3BYvsRtMioFbdtROgkoze
-         jlywig8AONMKvmN5pijxKMDaYJfHhXkblDWQsZhO+wxyNwJ6V+MiRD4Zmx/KvWehVOTc
-         11Iw6fIidpYTwtbEFTruMHT7pT7kBqgvQDkkm3LraGmLnEaEVcpWG0L6n2q0UEkJsqm7
-         9gzwOP+t81t62p7IdgXZPXKFVgVkAKrWRTsnvPOTwe5s33OHczmQYGwpw3PX1bv35Pov
-         djvPXlaUeb7KPZzn7Cc9Umn9wbbz7je+Z+6x3YsQmK61mgXQrahkuOeqoIQwNWAbyBZN
-         FWsw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701938224; x=1702543024;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wYs69xXZlHmN4BtZOXwLM54QypaMcf+nQokJKri3ijo=;
-        b=wIwANZyuE9+02VOkh/1dDLq1BhNdEpy8vN2JXw+JRjTCYLDavvSwwtWp2tUGKVAmtp
-         dWCZkS7tccFCjtOlKuM1rDUKW+qr1qAP/PKS+HgQ96CObf1kEsImI6r81xhR/E1oYaj1
-         fby4cXPSwLmZ7ZLoWsDO1JYvlU7tNnGBn2Dz5laN1sk6g16OxFvWDGWSuaML56dlBr7Y
-         pgrm2Fw6o0cfENwcZswLz7T3uGWAbQjDwhX18eom1wbpJsRik28qinU8oMcZNHS84rvB
-         Om8Pp2fh8OyhaPlch0D9L0B4DlG69LlawW9K82SKdLEdbVf7EhB5OANC2DecWYKa8oRa
-         8AEQ==
-X-Gm-Message-State: AOJu0YxG8nlk+1Wrosg1ZxWtqEoM81iGApdZgzVbKRd72llwsnx7Grp5
-	IfQJ1ZXxVMgy4H6ZTp04G++r/Q==
-X-Google-Smtp-Source: AGHT+IEZM0WTY4yISFckyJwcHme1JOHmXmhI9zk5Rr+mNwvHSEZrXani0wDFpqr5/6jctcjovrB/ww==
-X-Received: by 2002:a05:600c:214a:b0:40c:2307:e133 with SMTP id v10-20020a05600c214a00b0040c2307e133mr728018wml.168.1701938224351;
-        Thu, 07 Dec 2023 00:37:04 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id ek10-20020a05600c3eca00b0040b3d33ab55sm1149728wmb.47.2023.12.07.00.37.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Dec 2023 00:37:03 -0800 (PST)
-Message-ID: <39094951-6ecb-4948-8be5-7ab13dd5269b@linaro.org>
-Date: Thu, 7 Dec 2023 09:37:02 +0100
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11olkn2010.outbound.protection.outlook.com [40.92.20.10])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F6EDD7E;
+	Thu,  7 Dec 2023 00:37:35 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JESCDiGF4/MV7hrr/AkUeswWki+zrXBgwvlQiphg/LENLUuzn8I0NGjS+Mf2/j0AtBtro3yUW66wk8lD+2VkUQa8o+VEKm1ph0JDjX4b7NqWZi2yrDaQLbbcFq7I1cUoaAVn/8wk2Qyw4w6dc3M2o6pgMLzu3rf0ukywO/oJJPiChpOfp4x9nf3fXZT7UqPL8RSrtQlv7rsSrHnI5jwFoqMWjkf2hPhVyx2vzemk2nEejUCUUFSzCvywGBrT0jPDcJiLxyR7SepXR/QfIt8hTkZxekFdvGz+iPaNfXQ3nk5XvGewIJ3rtAbnMqOVN/z0hvhksMtHEUR2bAbLpUq7gQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=YLSjQyBFEdYSwFCbl2Lfi51J4l1r+mCS4c9dYk52QTA=;
+ b=ULR+/Pc1G2JNYzBtIC07AHIlKblSMRz6STqbEjK7aeZ8nxRBlcp4G01FMj1QiHOhgURSiIU+4wEYFklHGRRPL/oFqiF1u3Un3yziFQftXjhT2Kuz5tAqasblNAW13DsL3w8CstBOhO51F5NEgA65RK3GVZITG8MIjpFJviEA7R7naEgr4PsJvBOhUVzls8aJyujSmB7AFQ7PGTylsv9Enb6Qr1CguaJBwvRINCTwXtJigrKFpy3JhmFIvcHtCX6D2nml9B5SW7Biz1fldMUuniAVeue094Gj6KyBk0S+9fjto0bOPFt5AcVO2ixs+kIqgnxFiKkzLZMxVG7WdicsNQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=YLSjQyBFEdYSwFCbl2Lfi51J4l1r+mCS4c9dYk52QTA=;
+ b=TK3CG10RpVmh0Ahjskd+iwjNyVJIZC+mxT4nc0e6vT+j/eG5XGUqlqgvWWukOXoy9X1seXCJYMzdAT8bDROB+yfJmnfRGxk6yJfwbZE3aK+rKYAWWUSDgjjRpI3wxa/kSMveB6kI3e8BpQhEVtGW6OInzZHs5GulnxQ+IILxLD0V3RCqsot6GhpxVERzY0e5oqSgVuY0iJ0aNoOcahST0N3gXKW1FNnXJZ2qJ4LrFJtACLt/ZTeA0rJTLB+UD5GrznrhWT0/wY+fCsexsxuDDoX2jrI5adCmVOn6cnIade8r8ZCQNzy9mttFCSRbwK9zL2rUKZRjlvhlIlQiJJqoTQ==
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
+ by LV2PR20MB4582.namprd20.prod.outlook.com (2603:10b6:408:17e::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.27; Thu, 7 Dec
+ 2023 08:37:33 +0000
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::55b:c350:980:ad8]) by IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::55b:c350:980:ad8%6]) with mapi id 15.20.7046.024; Thu, 7 Dec 2023
+ 08:37:33 +0000
+From: Inochi Amaoto <inochiama@outlook.com>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chao Wei <chao.wei@sophgo.com>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Inochi Amaoto <inochiama@outlook.com>
+Cc: Jisheng Zhang <jszhang@kernel.org>,
+	Liu Gui <kenneth.liu@sophgo.com>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	qiujingbao.dlmu@gmail.com,
+	dlan@gentoo.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: [PATCH v3 1/4] dt-bindings: clock: sophgo: Add clock controller of CV1800 series SoC
+Date: Thu,  7 Dec 2023 16:37:26 +0800
+Message-ID:
+ <IA1PR20MB4953637E7A6C121D7A700F1CBB8BA@IA1PR20MB4953.namprd20.prod.outlook.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <IA1PR20MB495376DBED8EE897FE11A2B7BB8BA@IA1PR20MB4953.namprd20.prod.outlook.com>
+References: <IA1PR20MB495376DBED8EE897FE11A2B7BB8BA@IA1PR20MB4953.namprd20.prod.outlook.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TMN: [bc0+3z3C4BYwHN8UsIFYbHzjUmZHde5KGbdko0rKFAc=]
+X-ClientProxiedBy: TY2PR0101CA0010.apcprd01.prod.exchangelabs.com
+ (2603:1096:404:92::22) To IA1PR20MB4953.namprd20.prod.outlook.com
+ (2603:10b6:208:3af::19)
+X-Microsoft-Original-Message-ID:
+ <20231207083730.874690-1-inochiama@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 5/8] dt-bindings: input: Convert da906{1,2,3} onkey to
- json-schema
-Content-Language: en-US
-To: Biju Das <biju.das.jz@bp.renesas.com>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Support Opensource <support.opensource@diasemi.com>,
- linux-input@vger.kernel.org, devicetree@vger.kernel.org,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- Biju Das <biju.das.au@gmail.com>, linux-renesas-soc@vger.kernel.org
-References: <20231206155740.5278-1-biju.das.jz@bp.renesas.com>
- <20231206155740.5278-6-biju.das.jz@bp.renesas.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231206155740.5278-6-biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|LV2PR20MB4582:EE_
+X-MS-Office365-Filtering-Correlation-Id: fa1cc889-91ab-4f64-7dfb-08dbf6ffc18f
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	bGYuilr8yf8yoRauRJOKRq1AQT2KT6048RscugYaymw6zUpIdy5TNSyhsQzLuF5L0qbFvoguEW5Ld7EBJ+X5FjhMMgrjsZHETqtYBHEvSTEiY/Jggq9/sRPjDncTxSfhiy7pPleQj6h26bqgfaAcVxFHHxhuhk6R6A5EjGDzCqw/A6O9M64nnQbtX4/cvEqz+Hx0iDqIpkJCrKCkGaH3MOPZ9Vjbh3OTJtf/CjlupAcsPQaC/bRV/Tjm3k3zZ064S2z70FbbHdOcpJgJd+1xRi6TJfmsEPdxBwCrLNoDvIMyvbPM7NBsaUe0DLxUKjPRpoUyNzKigZ+CWt0SjXvd4fHYSQNxKm6Pw/80LppvKNgqPvNFj4WoU0lfUSM2AUD7/lQFQ7ltu5eKshKLRcc84JfQHn7n0szjn2PWkEOy24oClF3cuKX9gf/45bVlVOGpNqy5g7UsC9opP18ilm2mufZGFR6U8SqqA4a+0tpuEQsSBkYNRrrZvFAEgA5IrOzrPfSnBztFiQ6NlJvOE9CtxkXxH9MHH6L6H9luvH4LJ6wX3Q2mNWM9uBQ9nxebxIfewYb7ZgWPwDdwe1mBi1naQcgiJJqKY6pefCNTNnkuYagaVYCbNmhzgXSy8sCDN+tS
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?CSogsXByw7LVaN2tmE2B1B0KbJMKiDKO303tG5f7Qt52R7MmaZl6genkZGm/?=
+ =?us-ascii?Q?Ka5ij28y2vXe37euosZ/M2xsXQ5w+n20WtUOwZnx9/QDmH06oCh6FMgqV158?=
+ =?us-ascii?Q?vU0B0jhTKIY4vDSYWsusgG4fA6P1lbXZ9RQmTUR83had8a5rEIeePHy8BAzR?=
+ =?us-ascii?Q?k9tbwddm3ZosYnUVIw/sxjE/3t4uiLMlTp1hWPsfPUoynOWp8e2SQlDxdanz?=
+ =?us-ascii?Q?7U4CsziC6f4Xa7A7/LDja3vXficViI6uWoiz4pUkTIW0OWzsFHoYijwZQ/OV?=
+ =?us-ascii?Q?4607Ox9S0uOe9BS60C4IIEb8TKEJSOXAxSiKj2xG9HIGcB21sW6AabMyYsrr?=
+ =?us-ascii?Q?WX48IfXQeRzpU0YlX1Ni3jpW4kk9a68UDOEBkNgf2jeL94Neqems1nxH1lNn?=
+ =?us-ascii?Q?+A5JoPixSPWhCo/oFqo5ZMzMdxZYdf2Fin85nW/QMga4UIUi2XH1mpiE6u8K?=
+ =?us-ascii?Q?jmSGT1XVoZb5aGts/06lETdnxXlNTDBdCxgYzsBY+o1tO9/3Q6KpRsO2yUOC?=
+ =?us-ascii?Q?nP8UTbzlwL1XVdl03SKCkNgcOZza3nryJc43bS0941/svHk3PXL1let5hKta?=
+ =?us-ascii?Q?zvXgdJYtuoQot3kpFRC15ZrqQDblCK+Y80jfZeM8I4W79i4ygD2f0ldqBsKS?=
+ =?us-ascii?Q?WQb4nN6YK0JexU9/biOOI/ViSN4A8pJSi93jTOhasQlx2HbIjUJdwGcWdxjc?=
+ =?us-ascii?Q?LCSUbiH6hRtGDQc720c1kBIYrq/GJWEancLAkItvuBY4JyNfWbNcx4inYDEL?=
+ =?us-ascii?Q?dcSzOJpTECFoyvXWz57pNZrrVOLJMoTlZPRZaI8r5uBzzkVUlOinM8oYNR8P?=
+ =?us-ascii?Q?RF+AIFkjuSGDDXeND44RcZykdGjNfP/LbXJc5fgb8fSxLNbktzY4mWYh2dn4?=
+ =?us-ascii?Q?FOm4ECZcIDz5UzQtvRdgWYg5rKosRDcjVQC0iM969mjmVqUUxrZh5C++wQ+F?=
+ =?us-ascii?Q?jRWwwa4FcK7617CHzydy7w/8NrsbwLhAYmPuoKb1syA5Q6ZxpCFdUOcoVcZU?=
+ =?us-ascii?Q?ujiL3iW0vhrbtJUAiQFyjqMkvbhUvK3PjNC9Movihp++brpBvAWdnT6nBgRf?=
+ =?us-ascii?Q?NyJ8y22GLyeUwl777xeJaja562UN5W2Ze8zea8O+vbCHemdAq0FEkRBNqpwh?=
+ =?us-ascii?Q?0g7yh4+wkJaYlP3HIyq1Qs5Wx8tB3KIGEXTmXlr14N3w8wjU1DVJXuhQm9OV?=
+ =?us-ascii?Q?jPJjbD4/1DYdjdqfhfeANQa4jG1n+TYQKCawcSgxWpuHcRB/l9+/++RF+Gk?=
+ =?us-ascii?Q?=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fa1cc889-91ab-4f64-7dfb-08dbf6ffc18f
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Dec 2023 08:37:33.0090
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR20MB4582
 
-On 06/12/2023 16:57, Biju Das wrote:
-> Convert the da906{1,2,3} onkey device tree binding documentation to
-> json-schema.
-> 
-> Update MAINTAINERS entries, description and onkey property by
-> referring to dlg,da9062-onkey binding file.
-> 
+Add definition for the clock controller of the CV1800 series SoC.
 
-...
+For CV181X, it has a clock that CV180X does not have. To avoid misuse,
+also add a compatible string to identify CV181X series SoC.
 
-> +---
-> +$id: http://devicetree.org/schemas/input/dlg,da9062-onkey.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Dialog DA9061/62/63 OnKey Module
-> +
-> +maintainers:
-> +  - Biju Das <biju.das.jz@bp.renesas.com>
-> +
-> +description: |
-> +  This module is part of the DA9061/DA9062/DA9063. For more details about entire
-> +  DA9062 and DA9061 chips see Documentation/devicetree/bindings/mfd/da9062.txt
-> +  For DA9063 see Documentation/devicetree/bindings/mfd/dlg,da9063.yaml
-> +
-> +  This module provides the KEY_POWER event.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
+Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+Link: https://github.com/milkv-duo/duo-files/blob/main/hardware/CV1800B/CV1800B-CV1801B-Preliminary-Datasheet-full-en.pdf
+---
+ .../bindings/clock/sophgo,cv1800-clk.yaml     |  46 +++++
+ include/dt-bindings/clock/sophgo,cv1800.h     | 176 ++++++++++++++++++
+ 2 files changed, 222 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/sophgo,cv1800-clk.yaml
+ create mode 100644 include/dt-bindings/clock/sophgo,cv1800.h
 
-Drop items
-
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/clock/sophgo,cv1800-clk.yaml b/Documentation/devicetree/bindings/clock/sophgo,cv1800-clk.yaml
+new file mode 100644
+index 000000000000..c1dc24673c0d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/sophgo,cv1800-clk.yaml
+@@ -0,0 +1,46 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/sophgo,cv1800-clk.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Sophgo CV1800 Series Clock Controller
++
++maintainers:
++  - Inochi Amaoto <inochiama@outlook.com>
++
++properties:
++  compatible:
++    enum:
++      - sophgo,cv1800-clk
++      - sophgo,cv1810-clk
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  "#clock-cells":
++    const: 1
++    description:
++      See <dt-bindings/clock/sophgo,cv1800.h> for valid indices.
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - "#clock-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    clock-controller@3002000 {
++        compatible = "sophgo,cv1800-clk";
++        reg = <0x03002000 0x1000>;
++        clocks = <&osc>;
++        #clock-cells = <1>;
++    };
++
++...
+diff --git a/include/dt-bindings/clock/sophgo,cv1800.h b/include/dt-bindings/clock/sophgo,cv1800.h
+new file mode 100644
+index 000000000000..cfbeca25a650
+--- /dev/null
++++ b/include/dt-bindings/clock/sophgo,cv1800.h
+@@ -0,0 +1,176 @@
++/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
++/*
++ * Copyright (C) 2023 Sophgo Ltd.
++ */
++
++#ifndef __DT_BINDINGS_SOPHGO_CV1800_CLK_H__
++#define __DT_BINDINGS_SOPHGO_CV1800_CLK_H__
++
++#define CLK_MPLL			0
++#define CLK_TPLL			1
++#define CLK_FPLL			2
++#define CLK_MIPIMPLL			3
++#define CLK_A0PLL			4
++#define CLK_DISPPLL			5
++#define CLK_CAM0PLL			6
++#define CLK_CAM1PLL			7
++
++#define CLK_MIPIMPLL_D3			8
++#define CLK_CAM0PLL_D2			9
++#define CLK_CAM0PLL_D3			10
++
++#define CLK_TPU				11
++#define CLK_TPU_FAB			12
++#define CLK_AHB_ROM			13
++#define CLK_DDR_AXI_REG			14
++#define CLK_RTC_25M			15
++#define CLK_SRC_RTC_SYS_0		16
++#define CLK_TEMPSEN			17
++#define CLK_SARADC			18
++#define CLK_EFUSE			19
++#define CLK_APB_EFUSE			20
++#define CLK_DEBUG			21
++#define CLK_AP_DEBUG			22
++#define CLK_XTAL_MISC			23
++#define CLK_AXI4_EMMC			24
++#define CLK_EMMC			25
++#define CLK_EMMC_100K			26
++#define CLK_AXI4_SD0			27
++#define CLK_SD0				28
++#define CLK_SD0_100K			29
++#define CLK_AXI4_SD1			30
++#define CLK_SD1				31
++#define CLK_SD1_100K			32
++#define CLK_SPI_NAND			33
++#define CLK_ETH0_500M			34
++#define CLK_AXI4_ETH0			35
++#define CLK_ETH1_500M			36
++#define CLK_AXI4_ETH1			37
++#define CLK_APB_GPIO			38
++#define CLK_APB_GPIO_INTR		39
++#define CLK_GPIO_DB			40
++#define CLK_AHB_SF			41
++#define CLK_AHB_SF1			42
++#define CLK_A24M			43
++#define CLK_AUDSRC			44
++#define CLK_APB_AUDSRC			45
++#define CLK_SDMA_AXI			46
++#define CLK_SDMA_AUD0			47
++#define CLK_SDMA_AUD1			48
++#define CLK_SDMA_AUD2			49
++#define CLK_SDMA_AUD3			50
++#define CLK_I2C				51
++#define CLK_APB_I2C			52
++#define CLK_APB_I2C0			53
++#define CLK_APB_I2C1			54
++#define CLK_APB_I2C2			55
++#define CLK_APB_I2C3			56
++#define CLK_APB_I2C4			57
++#define CLK_APB_WDT			58
++#define CLK_PWM_SRC			59
++#define CLK_PWM				60
++#define CLK_SPI				61
++#define CLK_APB_SPI0			62
++#define CLK_APB_SPI1			63
++#define CLK_APB_SPI2			64
++#define CLK_APB_SPI3			65
++#define CLK_1M				66
++#define CLK_CAM0_200			67
++#define CLK_PM				68
++#define CLK_TIMER0			69
++#define CLK_TIMER1			70
++#define CLK_TIMER2			71
++#define CLK_TIMER3			72
++#define CLK_TIMER4			73
++#define CLK_TIMER5			74
++#define CLK_TIMER6			75
++#define CLK_TIMER7			76
++#define CLK_UART0			77
++#define CLK_APB_UART0			78
++#define CLK_UART1			79
++#define CLK_APB_UART1			80
++#define CLK_UART2			81
++#define CLK_APB_UART2			82
++#define CLK_UART3			83
++#define CLK_APB_UART3			84
++#define CLK_UART4			85
++#define CLK_APB_UART4			86
++#define CLK_APB_I2S0			87
++#define CLK_APB_I2S1			88
++#define CLK_APB_I2S2			89
++#define CLK_APB_I2S3			90
++#define CLK_AXI4_USB			91
++#define CLK_APB_USB			92
++#define CLK_USB_125M			93
++#define CLK_USB_33K			94
++#define CLK_USB_12M			95
++#define CLK_AXI4			96
++#define CLK_AXI6			97
++#define CLK_DSI_ESC			98
++#define CLK_AXI_VIP			99
++#define CLK_SRC_VIP_SYS_0		100
++#define CLK_SRC_VIP_SYS_1		101
++#define CLK_SRC_VIP_SYS_2		102
++#define CLK_SRC_VIP_SYS_3		103
++#define CLK_SRC_VIP_SYS_4		104
++#define CLK_CSI_BE_VIP			105
++#define CLK_CSI_MAC0_VIP		106
++#define CLK_CSI_MAC1_VIP		107
++#define CLK_CSI_MAC2_VIP		108
++#define CLK_CSI0_RX_VIP			109
++#define CLK_CSI1_RX_VIP			110
++#define CLK_ISP_TOP_VIP			111
++#define CLK_IMG_D_VIP			112
++#define CLK_IMG_V_VIP			113
++#define CLK_SC_TOP_VIP			114
++#define CLK_SC_D_VIP			115
++#define CLK_SC_V1_VIP			116
++#define CLK_SC_V2_VIP			117
++#define CLK_SC_V3_VIP			118
++#define CLK_DWA_VIP			119
++#define CLK_BT_VIP			120
++#define CLK_DISP_VIP			121
++#define CLK_DSI_MAC_VIP			122
++#define CLK_LVDS0_VIP			123
++#define CLK_LVDS1_VIP			124
++#define CLK_PAD_VI_VIP			125
++#define CLK_PAD_VI1_VIP			126
++#define CLK_PAD_VI2_VIP			127
++#define CLK_CFG_REG_VIP			128
++#define CLK_VIP_IP0			129
++#define CLK_VIP_IP1			130
++#define CLK_VIP_IP2			131
++#define CLK_VIP_IP3			132
++#define CLK_IVE_VIP			133
++#define CLK_RAW_VIP			134
++#define CLK_OSDC_VIP			135
++#define CLK_CAM0_VIP			136
++#define CLK_AXI_VIDEO_CODEC		137
++#define CLK_VC_SRC0			138
++#define CLK_VC_SRC1			139
++#define CLK_VC_SRC2			140
++#define CLK_H264C			141
++#define CLK_APB_H264C			142
++#define CLK_H265C			143
++#define CLK_APB_H265C			144
++#define CLK_JPEG			145
++#define CLK_APB_JPEG			146
++#define CLK_CAM0			147
++#define CLK_CAM1			148
++#define CLK_WGN				149
++#define CLK_WGN0			150
++#define CLK_WGN1			151
++#define CLK_WGN2			152
++#define CLK_KEYSCAN			153
++#define CLK_CFG_REG_VC			154
++#define CLK_C906_0			155
++#define CLK_C906_1			156
++#define CLK_A53				157
++#define CLK_CPU_AXI0			158
++#define CLK_CPU_GIC			159
++#define CLK_XTAL_AP			160
++
++// Only for CV181x
++#define CLK_DISP_SRC_VIP		161
++
++#endif /* __DT_BINDINGS_SOPHGO_CV1800_CLK_H__ */
+--
+2.43.0
 
 
