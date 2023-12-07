@@ -1,160 +1,123 @@
-Return-Path: <devicetree+bounces-22551-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22552-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35BCC808217
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 08:42:59 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D63A80822C
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 08:55:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CFCCC1F21FEF
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 07:42:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD9941C2036D
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 07:55:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4DE51A28E;
-	Thu,  7 Dec 2023 07:42:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AD181A738;
+	Thu,  7 Dec 2023 07:55:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W5yzTgP0"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="oiHr5UhJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3188010CE;
-	Wed,  6 Dec 2023 23:42:48 -0800 (PST)
-Received: by mail-yb1-xb2f.google.com with SMTP id 3f1490d57ef6-db538b07865so736637276.2;
-        Wed, 06 Dec 2023 23:42:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701934967; x=1702539767; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xATSf1mKGxc0Izf+E9mhfmBLrFa4vSy5SZKU8hVo4UI=;
-        b=W5yzTgP0N2bsHepRah5qef9B83T2h6grd2YDMNZawM63Ngv4SXkFJCGNcLsJte2x9k
-         MqwiDGrkO57/p6IPIVJO9uN3dpDXifIYJluoNYSXi+i48p2lVKnDEGfL7bBFiIyDRuay
-         S+xs72Z/bP9IRQP/qdZGAoXxuLAOrbQzX1ZtpmNwfQ3jqu6SPRAsFA/bUbzf35pGQi1r
-         Dng3gbkdEbcwjx+v2mZIUlYrMTUE5yQ+77sP5MsZ7/yuEhg6Qj6aiU/w0R05oJgPtaoS
-         yMkRRASxt9r/GWCrYYJt2NhmlMGJ1TJXByPLPUQXjkbeIBUbWNxJXoFbCsFaQVCHQl6M
-         Z4NQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701934967; x=1702539767;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xATSf1mKGxc0Izf+E9mhfmBLrFa4vSy5SZKU8hVo4UI=;
-        b=EGwiGjh7YK5A3FYLyAQfihlrl8z+uSrN2bEcMP5Uuh41w6n0XkkoptjrwpUt2m9Xys
-         GYxX5GiGw3XDhLk/PSZI0Yev+8HSIlTXAZBy4hUH7yQImFlxf4X1fPJrBP8QGRQ3QtyD
-         Z5TXkkQ7Y/kqKN/yloPpoldxBCFMVL7Y+oljE5JTcihXzNHSB9Ir8tWZtqtjvBMSm6RV
-         TxSdw9nmSxBQ7nKSIRgfpFrMwsOzE7kpOFAkQCfgO5m739pJrbE7lqw5D1MZSB6XV2kN
-         UwWdwuCT4MASoppEZnB1wUo4zZuUauTseUrZF57N+V6FD+61sdJnLEteJpEm4DiEFUYh
-         7qKQ==
-X-Gm-Message-State: AOJu0YwYas63chUfzaQ2qY9wpmmcKxrwmNNo3YZv0c3mPx1Lzxl6h/vo
-	IImUynLuVQGG84fr9W6ifDd3wnaG3LIKSZtE19I=
-X-Google-Smtp-Source: AGHT+IEW0mODy37dFWhUY4yRWuukw0NSZavDDe4/boxu94cJxA4p9htNWyfWPlcrhg//95Max1io8ZK1yfKK130e4J8=
-X-Received: by 2002:a25:d60a:0:b0:db7:dacf:ed70 with SMTP id
- n10-20020a25d60a000000b00db7dacfed70mr1970234ybg.81.1701934967186; Wed, 06
- Dec 2023 23:42:47 -0800 (PST)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5F1B110;
+	Wed,  6 Dec 2023 23:55:13 -0800 (PST)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3B762Iul009026;
+	Thu, 7 Dec 2023 07:55:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=bEnqWaDav/f7/bZPa3m2u29tJOB/87eh9G7oILjM5Pk=;
+ b=oiHr5UhJHY+XCJMc2dOHGBWd9xI74ZezY8RZQHOsueounbwctMEQu6z6/W82YQF//iC4
+ b6yTELZH5lf+S0RwxJu2Qrqbp3XnC4cDQ8EPRbQSfC+ewtdn8rYXPjWGK7edhEEZUdvL
+ u4E2rFOvAncCDJZLfsJJABETcHlqeuGsENs8+Ey+BQtBSLeyE5SPCWmsPNNNuQsEJBdG
+ Xhwu9VIsdfA47YVZtt01oggZgDvHPdvxlMWSjP4I+9xxFk1pGAJgR8H+KcuMdM4yb60T
+ PY+YW6CWYxmrggODnpbq1HlRNeLRvvQRxve8np/xJpLxIV6L3tBT/Spz9/c3dM7sw7LJ YQ== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3utrwq2ews-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 07 Dec 2023 07:55:10 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3B77t9Sh031655
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 7 Dec 2023 07:55:09 GMT
+Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 6 Dec
+ 2023 23:55:06 -0800
+Message-ID: <2c91c34f-6ee9-4f34-863e-c26b0107f6d3@quicinc.com>
+Date: Thu, 7 Dec 2023 15:55:04 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1700644483.git.zhoubinbin@loongson.cn>
-In-Reply-To: <cover.1700644483.git.zhoubinbin@loongson.cn>
-From: Binbin Zhou <zhoubb.aaron@gmail.com>
-Date: Thu, 7 Dec 2023 13:42:36 +0600
-Message-ID: <CAMpQs4KJpXotjhZO9tt_jQn+4HDkwros-=9hvDcys-Z5LGsmxA@mail.gmail.com>
-Subject: Re: [PATCH v5 0/2] New driver for the Loongson LS2X APB DMA Controller
-To: Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Huacai Chen <chenhuacai@loongson.cn>, Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org, Huacai Chen <chenhuacai@kernel.org>, 
-	loongson-kernel@lists.loongnix.cn, Xuerui Wang <kernel@xen0n.name>, 
-	loongarch@lists.linux.dev, Yingkun Meng <mengyingkun@loongson.cn>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 1/2] dt-bindings: pinctrl: qcom: Add SM4450 pinctrl
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <linus.walleij@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20231206020840.33228-1-quic_tengfan@quicinc.com>
+ <20231206020840.33228-2-quic_tengfan@quicinc.com>
+ <006c3c39-5266-4177-ae7f-263af5f0821c@linaro.org>
+From: Tengfei Fan <quic_tengfan@quicinc.com>
+In-Reply-To: <006c3c39-5266-4177-ae7f-263af5f0821c@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 1IZZSB5iSE9z6-IUVdLEWPSdjMM4vFe4
+X-Proofpoint-GUID: 1IZZSB5iSE9z6-IUVdLEWPSdjMM4vFe4
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-07_05,2023-12-06_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 impostorscore=0
+ adultscore=0 lowpriorityscore=0 bulkscore=0 mlxlogscore=978 malwarescore=0
+ suspectscore=0 mlxscore=0 priorityscore=1501 clxscore=1015 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2311290000
+ definitions=main-2312070063
 
-On Wed, Nov 22, 2023 at 3:27=E2=80=AFPM Binbin Zhou <zhoubinbin@loongson.cn=
-> wrote:
->
-> Hi all:
->
-> This patchset introduces you to the LS2X apbdma controller.
->
-> The Loongson LS2X APB DMA controller is available on Loongson-2K chips.
-> It is a single-channel, configurable DMA controller IP core based on the
-> AXI bus, whose main function is to integrate DMA functionality on a chip
-> dedicated to carrying data between memory and peripherals in APB bus
-> (e.g. nand).
 
-Hi Vinod:
 
-Gentle ping. Any comments on this series of patches?
+在 12/6/2023 5:04 PM, Krzysztof Kozlowski 写道:
+> On 06/12/2023 03:08, Tengfei Fan wrote:
+>> Add device tree binding Documentation details for Qualcomm SM4450
+>> TLMM device.
+>>
+>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+>> ---
+>>   .../bindings/pinctrl/qcom,sm4450-tlmm.yaml    | 151 ++++++++++++++++++
+>>   1 file changed, 151 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml
+>>
+> 
+> There was no reason to drop my review tag here. You did not explain why
+> it had to be dropped and changing indentation on example is for sure not
+> the case.
+> 
+> Please read submitting-patches before posting new patches to mailing list.
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> Best regards,
+> Krzysztof
+> 
+Hi Krzysztof,
+I read submitting-patches.rst today. Like you said that I shouldn't drop 
+your review tag due to change indentation. This is my fault.
+Thank you again for your patient reviw and explanation.
 
-Thanks.
-Binbin
->
-> Thanks.
->
-> ----
-> V5:
-> patch(2/2):
->  - Rebase on dmaengine/next;
->  - Annotate struct ls2x_dma_sg with __counted_by;
->  - .remove()->.remove_new();
->  - Drop duplicate assignments in ls2x_dma_chan_init().
->
-> Link to V4:
-> https://lore.kernel.org/all/cover.1691647870.git.zhoubinbin@loongson.cn/
->
-> V4:
-> patch(2/2)
->   - Drop linux/of_device.h;
->   - Meaningful parameter name for ls2x_dma_fill_desc(): i->sg_index;
->   - Check the slave config and reject invalid configurations;
->   - Update data width handle;
->   - Use generic xlate: of_dma_xlate_by_chan_id().
->
-> Link to V3:
-> https://lore.kernel.org/dmaengine/cover.1689075791.git.zhoubinbin@loongso=
-n.cn/
->
-> V3:
-> patch(1/2)
->   - Add clocks property;
->   - Drop dma-channels property, for we are single-channel dmac.
-> patch(2/2)
->   - Add clk support.
->
-> Link to V2:
-> https://lore.kernel.org/dmaengine/cover.1686192243.git.zhoubinbin@loongso=
-n.cn/
->
-> V2:
-> patch(1/2)
->   - Minor changes from Conor;
->   - Add Reviewed-by tag.
-> patch(2/2)
->   - Fix build errors from lkp@intel.com.
->
-> Link to V1:
-> https://lore.kernel.org/dmaengine/cover.1685448898.git.zhoubinbin@loongso=
-n.cn/
->
-> Binbin Zhou (2):
->   dt-bindings: dmaengine: Add Loongson LS2X APB DMA controller
->   dmaengine: ls2x-apb: new driver for the Loongson LS2X APB DMA
->     controller
->
->  .../bindings/dma/loongson,ls2x-apbdma.yaml    |  62 ++
->  MAINTAINERS                                   |   7 +
->  drivers/dma/Kconfig                           |  14 +
->  drivers/dma/Makefile                          |   1 +
->  drivers/dma/ls2x-apb-dma.c                    | 705 ++++++++++++++++++
->  5 files changed, 789 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/dma/loongson,ls2x-a=
-pbdma.yaml
->  create mode 100644 drivers/dma/ls2x-apb-dma.c
->
-> --
-> 2.39.3
->
+submitting-patches.rst:
+By offering my Reviewed-by: tag, I state that:
+(c) While there may be things that could be improved with this
+     submission, I believe that it is, at this time, (1) a
+     worthwhile modification to the kernel, and (2) free of known
+     issues which would argue against its inclusion.
+
+-- 
+Thx and BRs,
+Tengfei Fan
 
