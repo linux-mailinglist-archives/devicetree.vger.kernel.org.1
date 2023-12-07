@@ -1,82 +1,104 @@
-Return-Path: <devicetree+bounces-22904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B65A8094CF
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 22:40:36 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C488B809588
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 23:45:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8A202820A6
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 21:40:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 73F801F2127A
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 22:45:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BFE6840C9;
-	Thu,  7 Dec 2023 21:40:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF47E4EB52;
+	Thu,  7 Dec 2023 22:45:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="vKruNvuT"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="FXrxwxAi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 729A51727;
-	Thu,  7 Dec 2023 13:40:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=cHb2MmXIvwkbnnHzcw6cJDjztQsevODKkzVNn/O3NHA=; b=vKruNvuTa46KQACj0l4AdOG/mB
-	ldZrQ4NjSze1gnS+qVrp675Roal2FKEQUijTvsJNd8ppMPx5bTnjvT/QNGKnMD9fGPVOR7nnAsFzQ
-	C7ekhMIW5eyucghEIGxLj4mD45QhGQI24jiWRstGJchHbjFj+K0FdUhb76BFt6tnzTQg=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rBM6d-002MMJ-Jj; Thu, 07 Dec 2023 22:40:27 +0100
-Date: Thu, 7 Dec 2023 22:40:27 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: MD Danish Anwar <danishanwar@ti.com>
-Cc: Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Tero Kristo <kristo@kernel.org>, srk@ti.com, r-gunasekaran@ti.com
-Subject: Re: [PATCH 3/3] arm64: dts: ti: k3-am642-evm: add overlay for icssg1
- 2nd port
-Message-ID: <fe6499b3-fbda-4e2d-9b5e-92cc60d3a79c@lunn.ch>
-References: <20231207081917.340167-1-danishanwar@ti.com>
- <20231207081917.340167-4-danishanwar@ti.com>
+Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com [IPv6:2607:f8b0:4864:20::834])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 470A110CF
+	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 14:45:17 -0800 (PST)
+Received: by mail-qt1-x834.google.com with SMTP id d75a77b69052e-42598c2b0b7so38301cf.1
+        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 14:45:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1701989116; x=1702593916; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HkuIzoN396jqYT+Pk75+VoEYaTQnHg5zkQllCC1Stfc=;
+        b=FXrxwxAifDQYaC3srMRdQ/4dqB/2siC0IOSk7q6n4KnMbt13LhSkjVCZXhSnwlWmFy
+         E3RM+tdfjp3TiEgMae+a36yuxNHll6DSgxTRg5VbbTm2QPE234OivE9/ariGhsmL6mpT
+         F13FRGqrYOk7dVkXmzweaBFdAAh5H5tXAxExGOuzf1XhWGEO34DsJ5xVNIWq8fSK/rNO
+         1e75YWz0u4+iVi7xrW1sAbV+0ZMs903cSBUsMy4TDoyTA93+6IxgkMSHpvZh59/DvG4Z
+         e03CjW+jLZjJZrCp1cnl9glLH3NzPjr9U5Mf+QQP3L7XVzzR7qkmrSSHEmGwfwIbG4ej
+         8nPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701989116; x=1702593916;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=HkuIzoN396jqYT+Pk75+VoEYaTQnHg5zkQllCC1Stfc=;
+        b=Qb1fzyopj70HtEO0rvgyVB5q2sDp0hJbkmn06xFLrogwd18ER10NtiTOO8XRCr0fFF
+         jDWVoQejOc6bDs58Y+3NTPJrIWVFWvmS0TzaiyZ0IWN2NilaMMnUE5BmL6/8g9VhzAU+
+         7DAiyWxYipBczcVNt8Z6BqdAzxzOpOLZ0Qh6HrLQGD2xvjwsVhFKXTdTn4esDWBgrt1m
+         I6pEdVfo8F2svlRVE/QoMJ1pp/eorXPzVpXmB2RhlQnVcm29CTl+TVReLFdlWyx8mi9z
+         Gh4KEf53n/pnvsDOwSaldwVFZXOkwMVoefneN3nHlIveXmN/8MqY1oAX6HvNOs2MhLDB
+         5wSQ==
+X-Gm-Message-State: AOJu0YxLRGyMSU5WF2ULjD66NxxwyT+W4YAdtx0VkmCjwS3K+lyfgf4N
+	saE6UI8+1NZZJQnJA1i6S6GYp9n53N8Ux2eKkeKNCw==
+X-Google-Smtp-Source: AGHT+IH2Ee5fQ2BMKGV5V0CAb7d7P5bahZSNARWtZJJA7pnbKyLDlUQTzvbGMsPydmQi6PxASuAciYGntOuuhoIaNAo=
+X-Received: by 2002:a05:622a:413:b0:423:98a3:422 with SMTP id
+ n19-20020a05622a041300b0042398a30422mr39958qtx.11.1701989116154; Thu, 07 Dec
+ 2023 14:45:16 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231207081917.340167-4-danishanwar@ti.com>
+References: <20231111014933.1934562-1-davidai@google.com> <20231111014933.1934562-2-davidai@google.com>
+ <865y231jvj.wl-maz@kernel.org>
+In-Reply-To: <865y231jvj.wl-maz@kernel.org>
+From: Saravana Kannan <saravanak@google.com>
+Date: Thu, 7 Dec 2023 14:44:36 -0800
+Message-ID: <CAGETcx9-n0z5buWgtLZ+6VxW2jEko1GWzkGtGhFiZEq-x_G4nw@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: cpufreq: add virtual cpufreq device
+To: Marc Zyngier <maz@kernel.org>
+Cc: David Dai <davidai@google.com>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Viresh Kumar <viresh.kumar@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Sudeep Holla <sudeep.holla@arm.com>, Quentin Perret <qperret@google.com>, 
+	Masami Hiramatsu <mhiramat@google.com>, Will Deacon <will@kernel.org>, 
+	Peter Zijlstra <peterz@infradead.org>, Vincent Guittot <vincent.guittot@linaro.org>, 
+	Oliver Upton <oliver.upton@linux.dev>, Dietmar Eggemann <dietmar.eggemann@arm.com>, 
+	Pavan Kondeti <quic_pkondeti@quicinc.com>, Gupta Pankaj <pankaj.gupta@amd.com>, 
+	Mel Gorman <mgorman@suse.de>, kernel-team@android.com, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> +	mdio-mux-2 {
-> +		compatible = "mdio-mux-multiplexer";
-> +		mux-controls = <&mdio_mux>;
-> +		mdio-parent-bus = <&icssg1_mdio>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		mdio@0 {
-> +			reg = <0x0>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			icssg1_phy2: ethernet-phy@3 {
-> +				reg = <3>;
-> +				tx-internal-delay-ps = <250>;
-> +				rx-internal-delay-ps = <2000>;
-> +			};
-> +		};
+On Wed, Nov 15, 2023 at 12:49=E2=80=AFAM Marc Zyngier <maz@kernel.org> wrot=
+e:
+>
+> On Sat, 11 Nov 2023 01:49:29 +0000,
+> David Dai <davidai@google.com> wrote:
+> >
+> > Adding bindings to represent a virtual cpufreq device.
+> >
+> > Virtual machines may expose MMIO regions for a virtual cpufreq device
+> > for guests to read frequency information or to request frequency
+> > selection. The virtual cpufreq device has an individual controller for
+> > each frequency domain.
+>
+> I would really refrain form having absolute frequencies here. A
+> virtual machine can be migrated, and there are *zero* guarantees that
+> the target system has the same clock range as the source.
+>
+> This really should be a relative number, much like the capacity. That,
+> at least, can be migrated across systems.
 
-That looks odd. A mux generally has > 1 mdio bus. Otherwise its not
-really a mux.
+There's nothing in this patch that mandates absolute frequency.
+In true KVM philosophy, we leave it to the VMM to decide.
 
-And this mux hardware exists all the time right? So it should be in
-the .dtsi file.
-
-	Andrew
+-Saravana
 
