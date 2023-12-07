@@ -1,197 +1,130 @@
-Return-Path: <devicetree+bounces-22644-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22645-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AC22808509
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 10:57:20 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2248A808518
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 11:03:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ACD3D1C21C98
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 09:57:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 861791F2223E
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 10:03:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCD163527F;
-	Thu,  7 Dec 2023 09:57:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 398AA35287;
+	Thu,  7 Dec 2023 10:03:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Vyr2VsSw"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Gz4ZqZBZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 692FAD6D;
-	Thu,  7 Dec 2023 01:57:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1701943033; x=1733479033;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Jej5Ld6eP+dZtZXHnQ9Z9Uwwzz3coTmf8kqkVZReWjo=;
-  b=Vyr2VsSwZ0Cd7pqSH8SPQ4w9kQSN95ljimoEOkaCDMx1QwF2RmptKPP5
-   Yj0jx5PzB8cYpyas/WZu1b8y9/3PQiJBADPY8dVWB4wVri2QLbkkryRyr
-   NoO0GK5OJKxt9wKPauCw0cx8iOrkEqzzoym5fC7P6nr3aDdOTotmAPhVD
-   0gnD9DYWE1g1SldyaVaAzK0QnoUXg8nfnQ6+dGZDdymzNFng/07y4RFvM
-   hPf4SsgmPLpth7FIE4B+mQWPQ9C1SkI30tSdXL9IJkzVJvQS6i7rmAN46
-   wXpPpaa4KX9pqXK4ARFEIxkpZaWwO/f3QaHFI1P6NdzSIzX1LkT+PiQdb
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="1311668"
-X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; 
-   d="scan'208";a="1311668"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Dec 2023 01:57:12 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="800684471"
-X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; 
-   d="scan'208";a="800684471"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Dec 2023 01:57:08 -0800
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id 2F4B311FB50;
-	Thu,  7 Dec 2023 11:57:06 +0200 (EET)
-Date: Thu, 7 Dec 2023 09:57:06 +0000
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	devicetree@vger.kernel.org, Lee Jackson <lee.jackson@arducam.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v5 1/2] media: dt-bindings: Add OmniVision OV64A40
-Message-ID: <ZXGW8iyoQpIXUa1E@kekkonen.localdomain>
-References: <20231206155900.123904-1-jacopo.mondi@ideasonboard.com>
- <20231206155900.123904-2-jacopo.mondi@ideasonboard.com>
+Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D79EA121
+	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 02:03:13 -0800 (PST)
+Received: by mail-oi1-x22c.google.com with SMTP id 5614622812f47-3b9b5b254e2so104723b6e.1
+        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 02:03:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701943393; x=1702548193; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=a/6NKxYPfPBd6UjlWEZ+IDHt+KKqu6eYK0FQHf+KHN4=;
+        b=Gz4ZqZBZz/UjGt1ungC0RdJKX9Lea+iuKskzv8kevISTKN9atD6Cec/uj4BHwberaE
+         NAICI5AgqTrI0kmPz0RuzKuQDRNYft5Nxiq+81TtRvbtGvAwrG6aDbVdk1zGpSDVODve
+         EoFKdeF+FbK06TcYzcXH2uDms4We3ifNE5pEZfs7DcJNUt+abMUmjT67j2Kne3aEPV9z
+         zJbtbo1cv85vxWvIWTAlzWHvF71czc9H05Qq5g4VAhXHCFmVqenlXtgWoG9mcgq0EPex
+         f/HrGMGHkpgh5MbxXx6Ch3z1Wok2EGfcHsPgQUirDDdCMC9Sku3X2mBrYeRDKTmoB1Pl
+         ITXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701943393; x=1702548193;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=a/6NKxYPfPBd6UjlWEZ+IDHt+KKqu6eYK0FQHf+KHN4=;
+        b=pJKdDc/ugL/LoI/ZJFxkwaD0+/erV0ecf6HtC4ymnXH+XA6j+DfbbYnP0KUnfT61LS
+         gGH0lB/sdLuHgna+2Rx8+efmBPYigv5KEEhVhIxPCin+tbRnCPnUIK7a6cTeIfR3Vwa8
+         tmkaokGByvmAYeQILvVDw97xBRfohvmMF91F+b6S33vP9lOXYsRYelTXVCXIyfks6Xb0
+         R4QbhGlwIkM3n+y0SWwdnrgJHBczq/WhVpy0q30AkkjkbtfdqlIi2buiC+efGZn9KpYw
+         Iv1tEUhzYBAoCxzy68ihKOu498gaZbF84xcMjiFp/ngpfySneU0CHSLJMt+eZEuqZwEi
+         wUOw==
+X-Gm-Message-State: AOJu0Yy0rP/kvuHF1Gkbp1NIuUaBt2UyR0Z+hP75JPN2p1n+b6EqAp1p
+	ugbhFzJjPCJpmt9RQJWN36ygrSGaF+k=
+X-Google-Smtp-Source: AGHT+IEyIEl4zWGvugAdqRQLKUaF7IeMFFhcBz2gO3aAaRaaqJ5WQxPoSEUK1IZOkgBs7R91kOaYNg==
+X-Received: by 2002:a05:6358:5925:b0:16e:b5d:43ce with SMTP id g37-20020a056358592500b0016e0b5d43cemr5036859rwf.0.1701943393073;
+        Thu, 07 Dec 2023 02:03:13 -0800 (PST)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:492a:db3d:eb42:de92])
+        by smtp.gmail.com with ESMTPSA id t8-20020a63b708000000b005b4b70738e5sm781385pgf.8.2023.12.07.02.03.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Dec 2023 02:03:12 -0800 (PST)
+From: Fabio Estevam <festevam@gmail.com>
+To: srinivas.kandagatla@linaro.org
+Cc: robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: [PATCH RESEND v2] dt-bindings: nvmem: mxs-ocotp: Document fsl,ocotp
+Date: Thu,  7 Dec 2023 07:03:06 -0300
+Message-Id: <20231207100306.2492505-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231206155900.123904-2-jacopo.mondi@ideasonboard.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Jacopo,
+From: Fabio Estevam <festevam@denx.de>
 
-On Wed, Dec 06, 2023 at 04:58:59PM +0100, Jacopo Mondi wrote:
-> Add bindings for OmniVision OV64A40.
-> 
-> Co-developed-by: Lee Jackson <lee.jackson@arducam.com>
-> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  .../bindings/media/i2c/ovti,ov64a40.yaml      | 97 +++++++++++++++++++
->  1 file changed, 97 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov64a40.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov64a40.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov64a40.yaml
-> new file mode 100644
-> index 000000000000..e6c9d540a2dd
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov64a40.yaml
-> @@ -0,0 +1,97 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/ovti,ov64a40.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: OmniVision OV64A40 Image Sensor
-> +
-> +maintainers:
-> +  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> +
-> +allOf:
-> +  - $ref: /schemas/media/video-interface-devices.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: ovti,ov64a40
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  avdd-supply:
-> +    description: Analog voltage supply, 2.8 volts
-> +
-> +  dvdd-supply:
-> +    description: Digital core voltage supply, 1.1 volts
-> +
-> +  dovdd-supply:
-> +    description: Digital I/O voltage supply, 1.8 volts
-> +
-> +  powerdown-gpios:
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: /schemas/media/video-interfaces.yaml#
-> +        additionalProperties: false
-> +
-> +        properties:
-> +          bus-type:
-> +            enum:
-> +              - 1 # MIPI CSI-2 C-PHY
-> +              - 4 # MIPI CSI-2 D-PHY
-> +          data-lanes: true
-> +          link-frequencies: true
-> +          clock-noncontinuous: true
-> +          remote-endpoint: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - port
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +      #include <dt-bindings/gpio/gpio.h>
-> +
-> +      i2c {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +
-> +          camera@36 {
-> +              compatible = "ovti,ov64a40";
-> +              reg = <0x36>;
-> +              clocks = <&camera_clk>;
-> +              dovdd-supply = <&vgen4_reg>;
-> +              avdd-supply = <&vgen3_reg>;
-> +              dvdd-supply = <&vgen2_reg>;
-> +              powerdown-gpios = <&gpio1 9 GPIO_ACTIVE_HIGH>;
-> +              reset-gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
-> +              rotation = <180>;
-> +              orientation = <2>;
-> +
-> +              port {
-> +                  endpoint {
-> +                      remote-endpoint = <&mipi_csi2_in>;
-> +                      bus-type = <4>;
-> +                      data-lanes = <1 2 3 4>;
+Both imx23.dtsi and imx28.dtsi describe the OCOTP nodes in
+the format:
 
-This is missing link-frequencies.
+compatible = "fsl,imx28-ocotp", "fsl,ocotp";
 
-> +                  };
-> +              };
-> +          };
-> +      };
-> +
-> +...
+Document the "fsl,ocotp" entry to fix the following schema
+warning:
 
+efuse@8002c000: compatible: ['fsl,imx23-ocotp', 'fsl,ocotp'] is too long
+from schema $id: http://devicetree.org/schemas/nvmem/mxs-ocotp.yaml#
+
+Fixes: 2c504460f502 ("dt-bindings: nvmem: Convert MXS OCOTP to json-schema")
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+Resending it as it was sent two months ago and it was still not applied.
+
+Changes since v1:
+- Added Fixes tag. (Conor)
+
+ Documentation/devicetree/bindings/nvmem/mxs-ocotp.yaml | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/nvmem/mxs-ocotp.yaml b/Documentation/devicetree/bindings/nvmem/mxs-ocotp.yaml
+index f43186f98607..d9287be89877 100644
+--- a/Documentation/devicetree/bindings/nvmem/mxs-ocotp.yaml
++++ b/Documentation/devicetree/bindings/nvmem/mxs-ocotp.yaml
+@@ -15,9 +15,11 @@ allOf:
+ 
+ properties:
+   compatible:
+-    enum:
+-      - fsl,imx23-ocotp
+-      - fsl,imx28-ocotp
++    items:
++      - enum:
++          - fsl,imx23-ocotp
++          - fsl,imx28-ocotp
++      - const: fsl,ocotp
+ 
+   reg:
+     maxItems: 1
+@@ -35,7 +37,7 @@ unevaluatedProperties: false
+ examples:
+   - |
+     ocotp: efuse@8002c000 {
+-        compatible = "fsl,imx28-ocotp";
++        compatible = "fsl,imx28-ocotp", "fsl,ocotp";
+         #address-cells = <1>;
+         #size-cells = <1>;
+         reg = <0x8002c000 0x2000>;
 -- 
-Regards,
+2.34.1
 
-Sakari Ailus
 
