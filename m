@@ -1,280 +1,239 @@
-Return-Path: <devicetree+bounces-22807-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22809-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C88B808DB6
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 17:45:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA3D1808DBD
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 17:47:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0850A1F2140A
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 16:45:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 652C92817E0
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 16:47:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF8DD47F61;
-	Thu,  7 Dec 2023 16:45:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AB9D46BBE;
+	Thu,  7 Dec 2023 16:47:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="LsaB8DkW"
+	dkim=pass (1024-bit key) header.d=subdimension.ro header.i=@subdimension.ro header.b="pdufaVZe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B134310DD;
-	Thu,  7 Dec 2023 08:45:08 -0800 (PST)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B7Gir8Y100151;
-	Thu, 7 Dec 2023 10:44:53 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1701967493;
-	bh=fKj4eskkWBpEmYcedXJacCYbYGeG95u0kbhWvov2nuw=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=LsaB8DkWctdkKNOTGWiZNEO5cw06DQv1BtTOBPx5ySuS71vayUtdanXC+GRT3NXlT
-	 eaXkXtdUAh+rUnH1DqvFYDvdfthHlxMS/qo2MEZXDH9UMID19sjt7MvxKgndRX21AE
-	 yPlByfG7JePLH/KKxrU6Y2yeYO9At6r3uCK6K64A=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B7GirG9038428
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 7 Dec 2023 10:44:53 -0600
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 7
- Dec 2023 10:44:53 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 7 Dec 2023 10:44:53 -0600
-Received: from [10.249.40.136] ([10.249.40.136])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B7Giqa6049310;
-	Thu, 7 Dec 2023 10:44:52 -0600
-Message-ID: <b913dc5d-0dc1-478b-b4ca-cc049c3df58d@ti.com>
-Date: Thu, 7 Dec 2023 10:44:52 -0600
+Received: from mail.subdimension.ro (unknown [IPv6:2a01:7e01:e001:1d1::2])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6877110D1;
+	Thu,  7 Dec 2023 08:47:41 -0800 (PST)
+Received: from localhost.localdomain (unknown [188.24.94.216])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by mail.subdimension.ro (Postfix) with ESMTPSA id 96D1428EE6F;
+	Thu,  7 Dec 2023 16:47:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=subdimension.ro;
+	s=skycaves; t=1701967659;
+	bh=Gtb+0owkXFeYs1nFwSaAIZKUGamCMAfqYYJIbP08rDg=;
+	h=From:To:Cc:Subject:Date;
+	b=pdufaVZepOM0QlVtfe3TlmudNasU2eiAHvZypW2DIsJ+5OdramSdzMKWLc5jd0tg8
+	 X7YfdBk0Nefp6eMYcWBUd0f95gh5e96Un0c7I8b9BsaR07UXn/5ta8NMzKWrW8tCZp
+	 nn1G0TiSdw2ImubD9IZum2dSeYpd0uHMaHU8ldbo=
+From: Petre Rodan <petre.rodan@subdimension.ro>
+To: linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: Petre Rodan <petre.rodan@subdimension.ro>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	linux-kernel-mentees@lists.linuxfoundation.org,
+	Jonathan Cameron <jic23@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v8 1/2] dt-bindings: iio: pressure: add honeywell,hsc030
+Date: Thu,  7 Dec 2023 18:46:28 +0200
+Message-ID: <20231207164634.11998-1-petre.rodan@subdimension.ro>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: ti: k3-am642-evm: add overlay for icssg1
- 2nd port
-Content-Language: en-US
-To: "Anwar, Md Danish" <a0501179@ti.com>, Nishanth Menon <nm@ti.com>,
-        MD
- Danish Anwar <danishanwar@ti.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>, Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring
-	<robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        Tero
- Kristo <kristo@kernel.org>, <srk@ti.com>, <r-gunasekaran@ti.com>
-References: <20231207081917.340167-1-danishanwar@ti.com>
- <20231207081917.340167-4-danishanwar@ti.com>
- <20231207132758.wbfn7timsqevdjpu@mortuary>
- <7323e86b-939a-4fd0-aac8-07fa47e00c9d@ti.com>
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <7323e86b-939a-4fd0-aac8-07fa47e00c9d@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 
-On 12/7/23 8:06 AM, Anwar, Md Danish wrote:
-> On 12/7/2023 6:57 PM, Nishanth Menon wrote:
->> On 13:49-20231207, MD Danish Anwar wrote:
->>> The am642-evm doesn't allow to enable 2 x CPSW3g ports and 2 x ICSSG1 ports
->>> all together, so base k3-am642-evm.dts enables by default 2 x CPSW3g ports
->>> and 1 x ICSSG1 ports, but it also possible to support 1 x CPSW3g ports and
->>> 2 x ICSSG1 ports configuration.
->>>
->>> This patch adds overlay to support 1 x CPSW3g ports and 2 x ICSSG1 ports
->>> configuration:
->>> - disable 2nd CPSW3g port
->>> - update CPSW3g pinmuxes to not use RGMII2
->>> - disable mdio-mux-1 and define mdio-mux-2 to route ICSSG1 MDIO to the
->>>    shared DP83869 PHY
->>> - add and enable ICSSG1 RGMII2 pinmuxes
->>> - enable ICSSG1 MII1 port
->>>
->>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
->>> ---
->>>   arch/arm64/boot/dts/ti/Makefile               |  2 +
->>>   .../dts/ti/k3-am642-evm-icssg1-dualemac.dtso  | 80 +++++++++++++++++++
->>>   arch/arm64/boot/dts/ti/k3-am642-evm.dts       |  2 +-
->>>   3 files changed, 83 insertions(+), 1 deletion(-)
->>>   create mode 100644 arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-dualemac.dtso
->>>
->>> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
->>> index 5ef49b02c71f..99a4dce47f02 100644
->>> --- a/arch/arm64/boot/dts/ti/Makefile
->>> +++ b/arch/arm64/boot/dts/ti/Makefile
->>> @@ -35,12 +35,14 @@ dtb-$(CONFIG_ARCH_K3) += k3-am62x-sk-csi2-imx219.dtbo
->>>   dtb-$(CONFIG_ARCH_K3) += k3-am62x-sk-hdmi-audio.dtbo
->>>   
->>>   # Boards with AM64x SoC
->>> +k3-am642-evm-icssg1-dtbs := k3-am642-evm.dtb k3-am642-evm-icssg1-dualemac.dtbo
->>
->> Why not handle this for CONFIG_OF_ALL_DTBS alone? See commit
->> b0044823a6607e535fdb083c89f487fbf183b171
->>
-> 
-> I'll have to look into this.
-> 
-> I am merging this k3-am642-evm-icssg1-dualemac.dtbo with
-> k3-am642-evm.dtb because when I had posted patches for AM65x DTS, Andrew
-> had commented [1] saying we should not leave orphan dtbos and every dtbo
-> should be applied over some dtb by using `dtb- +=`.
-> 
+Adds binding for digital Honeywell TruStability HSC and SSC series
+pressure and temperature sensors.
+Communication is one way. The sensor only requires 4 bytes worth of
+clock pulses on both i2c and spi in order to push the data out.
+The i2c address is hardcoded and depends on the part number.
+There is no additional GPIO control.
+driver is based on iio/togreg
 
-And my comment on not having orphan DTBOs is still true. But that was back
-in September, we now have a new way of accomplishing that without needing
-to produce a bunch of temporary combined DTB files, which is what Nishanth
-is pointing out with CONFIG_OF_ALL_DTBS.
+Datasheet:
+https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/trustability-hsc-series/documents/sps-siot-trustability-hsc-series-high-accuracy-board-mount-pressure-sensors-50099148-a-en-ciid-151133.pdf [HSC]
+Datasheet:
+https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/trustability-ssc-series/documents/sps-siot-trustability-ssc-series-standard-accuracy-board-mount-pressure-sensors-50099533-a-en-ciid-151134.pdf [SSC]
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Petre Rodan <petre.rodan@subdimension.ro>
+---
+v2: - fix yaml struct
+    - cleanup based on Krzysztof's review
+v3: - rename range_str -> honeywell,pressure-triplet to define the string
+       containing the pressure range, measurement unit and type
+    - honeywell,pmax-pascal becomes uint32
+v4: - added enum to honeywell,transfer-function
+v5: - removed pmin-pascal, pmax-pascal $ref
+    - added pmin-pascal, pmax-pascal constraints
+v6: - no change
+v7: - no change
+v8: - no change, driver is now based on iio/togreg
+---
+ .../iio/pressure/honeywell,hsc030pa.yaml      | 142 ++++++++++++++++++
+ 1 file changed, 142 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml
 
-So, no need for `k3-am642-evm-icssg1.dtb`, you can add the overlay target
-directly, then create a fake target to test DTBO application by adding to
-the `dtb- += ` lines below.
+diff --git a/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml b/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml
+new file mode 100644
+index 000000000000..65a24ed67b3c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml
+@@ -0,0 +1,142 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/pressure/honeywell,hsc030pa.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Honeywell TruStability HSC and SSC pressure sensor series
++
++description: |
++  support for Honeywell TruStability HSC and SSC digital pressure sensor
++  series.
++
++  These sensors have either an I2C, an SPI or an analog interface. Only the
++  digital versions are supported by this driver.
++
++  There are 118 models with different pressure ranges available in each family.
++  The vendor calls them "HSC series" and "SSC series". All of them have an
++  identical programming model but differ in pressure range, unit and transfer
++  function.
++
++  To support different models one needs to specify the pressure range as well
++  as the transfer function. Pressure range can either be provided via
++  pressure-triplet (directly extracted from the part number) or in case it's
++  a custom chip via numerical range limits converted to pascals.
++
++  The transfer function defines the ranges of raw conversion values delivered
++  by the sensor. pmin-pascal and pmax-pascal corespond to the minimum and
++  maximum pressure that can be measured.
++
++  Please note that in case of an SPI-based sensor, the clock signal should not
++  exceed 800kHz and the MOSI signal is not required.
++
++  Specifications about the devices can be found at:
++  https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/trustability-hsc-series/documents/sps-siot-trustability-hsc-series-high-accuracy-board-mount-pressure-sensors-50099148-a-en-ciid-151133.pdf
++  https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/trustability-ssc-series/documents/sps-siot-trustability-ssc-series-standard-accuracy-board-mount-pressure-sensors-50099533-a-en-ciid-151134.pdf
++
++maintainers:
++  - Petre Rodan <petre.rodan@subdimension.ro>
++
++properties:
++  compatible:
++    const: honeywell,hsc030pa
++
++  reg:
++    maxItems: 1
++
++  honeywell,transfer-function:
++    description: |
++      Transfer function which defines the range of valid values delivered by
++      the sensor.
++      0 - A, 10% to 90% of 2^14
++      1 - B, 5% to 95% of 2^14
++      2 - C, 5% to 85% of 2^14
++      3 - F, 4% to 94% of 2^14
++    enum: [0, 1, 2, 3]
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++  honeywell,pressure-triplet:
++    description: |
++      Case-sensitive five character string that defines pressure range, unit
++      and type as part of the device nomenclature. In the unlikely case of a
++      custom chip, set to "NA" and provide pmin-pascal and pmax-pascal.
++    enum: [001BA, 1.6BA, 2.5BA, 004BA, 006BA, 010BA, 1.6MD, 2.5MD, 004MD,
++           006MD, 010MD, 016MD, 025MD, 040MD, 060MD, 100MD, 160MD, 250MD,
++           400MD, 600MD, 001BD, 1.6BD, 2.5BD, 004BD, 2.5MG, 004MG, 006MG,
++           010MG, 016MG, 025MG, 040MG, 060MG, 100MG, 160MG, 250MG, 400MG,
++           600MG, 001BG, 1.6BG, 2.5BG, 004BG, 006BG, 010BG, 100KA, 160KA,
++           250KA, 400KA, 600KA, 001GA, 160LD, 250LD, 400LD, 600LD, 001KD,
++           1.6KD, 2.5KD, 004KD, 006KD, 010KD, 016KD, 025KD, 040KD, 060KD,
++           100KD, 160KD, 250KD, 400KD, 250LG, 400LG, 600LG, 001KG, 1.6KG,
++           2.5KG, 004KG, 006KG, 010KG, 016KG, 025KG, 040KG, 060KG, 100KG,
++           160KG, 250KG, 400KG, 600KG, 001GG, 015PA, 030PA, 060PA, 100PA,
++           150PA, 0.5ND, 001ND, 002ND, 004ND, 005ND, 010ND, 020ND, 030ND,
++           001PD, 005PD, 015PD, 030PD, 060PD, 001NG, 002NG, 004NG, 005NG,
++           010NG, 020NG, 030NG, 001PG, 005PG, 015PG, 030PG, 060PG, 100PG,
++           150PG, NA]
++    $ref: /schemas/types.yaml#/definitions/string
++
++  honeywell,pmin-pascal:
++    description: |
++      Minimum pressure value the sensor can measure in pascal.
++      To be specified only if honeywell,pressure-triplet is set to "NA".
++
++  honeywell,pmax-pascal:
++    description: |
++      Maximum pressure value the sensor can measure in pascal.
++      To be specified only if honeywell,pressure-triplet is set to "NA".
++
++  vdd-supply:
++    description:
++      Provide VDD power to the sensor (either 3.3V or 5V depending on the chip)
++
++  spi-max-frequency:
++    maximum: 800000
++
++required:
++  - compatible
++  - reg
++  - honeywell,transfer-function
++  - honeywell,pressure-triplet
++
++additionalProperties: false
++
++dependentSchemas:
++  honeywell,pmin-pascal:
++    properties:
++      honeywell,pressure-triplet:
++        const: NA
++  honeywell,pmax-pascal:
++    properties:
++      honeywell,pressure-triplet:
++        const: NA
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        pressure@28 {
++            compatible = "honeywell,hsc030pa";
++            reg = <0x28>;
++            honeywell,transfer-function = <0>;
++            honeywell,pressure-triplet = "030PA";
++        };
++    };
++  - |
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        pressure@0 {
++            compatible = "honeywell,hsc030pa";
++            reg = <0>;
++            spi-max-frequency = <800000>;
++            honeywell,transfer-function = <0>;
++            honeywell,pressure-triplet = "NA";
++            honeywell,pmin-pascal = <0>;
++            honeywell,pmax-pascal = <200000>;
++        };
++    };
++...
+-- 
+2.41.0
 
-Andrew
-
-> Due to this I am applying the overlay on k3-am642-evm.dtb and creating
-> new dtb k3-am642-evm-icssg1.dtb which can be used when both ICSSG1 ports
-> are needed to be enabled.
-> 
-> [1] https://lore.kernel.org/all/ca832fe3-d5cf-b075-324b-50da40794bb7@ti.com/
-> 
->>>   dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
->>>   dtb-$(CONFIG_ARCH_K3) += k3-am642-phyboard-electra-rdk.dtb
->>>   dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
->>>   dtb-$(CONFIG_ARCH_K3) += k3-am642-tqma64xxl-mbax4xxl.dtb
->>>   dtb-$(CONFIG_ARCH_K3) += k3-am64-tqma64xxl-mbax4xxl-sdcard.dtbo
->>>   dtb-$(CONFIG_ARCH_K3) += k3-am64-tqma64xxl-mbax4xxl-wlan.dtbo
->>> +dtb-$(CONFIG_ARCH_K3) += k3-am642-evm-icssg1.dtb
->>>   
->>>   # Boards with AM65x SoC
->>>   k3-am654-gp-evm-dtbs := k3-am654-base-board.dtb k3-am654-base-board-rocktech-rk101-panel.dtbo
->>> diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-dualemac.dtso b/arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-dualemac.dtso
->>> new file mode 100644
->>> index 000000000000..6f33290c1ad6
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-dualemac.dtso
->>> @@ -0,0 +1,80 @@
->>> +// SPDX-License-Identifier: GPL-2.0
->>> +/**
->>> + * DT overlay for enabling 2nd ICSSG1 port on AM642 EVM
->>> + *
->>> + * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
->>> + */
->>> +
->>> +/dts-v1/;
->>> +/plugin/;
->>> +
->>> +#include <dt-bindings/gpio/gpio.h>
->>> +#include "k3-pinctrl.h"
->>> +
->>> +&{/} {
->>> +	aliases {
->>> +		ethernet1 = "/icssg1-eth/ethernet-ports/port@0";
->>> +		ethernet2 = "/icssg1-eth/ethernet-ports/port@1";
->>
->> I don't understand what you are overriding here. isn't patch #2 in your
->> series already introducing this in the base dts?
->>
-> 
-> Sorry, My bad. I will remove this in v2.
-> 
->>> +	};
->>> +
->>> +	mdio-mux-2 {
->>> +		compatible = "mdio-mux-multiplexer";
->>> +		mux-controls = <&mdio_mux>;
->>> +		mdio-parent-bus = <&icssg1_mdio>;
->>> +		#address-cells = <1>;
->>> +		#size-cells = <0>;
->>> +
->>> +		mdio@0 {
->>> +			reg = <0x0>;
->>> +			#address-cells = <1>;
->>> +			#size-cells = <0>;
->>> +
->>> +			icssg1_phy2: ethernet-phy@3 {
->>> +				reg = <3>;
->>> +				tx-internal-delay-ps = <250>;
->>> +				rx-internal-delay-ps = <2000>;
->>> +			};
->>> +		};
->>> +	};
->>> +};
->>> +
->>> +&main_pmx0 {
->>> +	icssg1_rgmii2_pins_default: icssg1-rgmii2-default-pins {
->>> +		pinctrl-single,pins = <
->>> +			AM64X_IOPAD(0x0108, PIN_INPUT, 2) /* (W11) PRG1_PRU1_GPO0.RGMII2_RD0 */
->>> +			AM64X_IOPAD(0x010c, PIN_INPUT, 2) /* (V11) PRG1_PRU1_GPO1.RGMII2_RD1 */
->>> +			AM64X_IOPAD(0x0110, PIN_INPUT, 2) /* (AA12) PRG1_PRU1_GPO2.RGMII2_RD2 */
->>> +			AM64X_IOPAD(0x0114, PIN_INPUT, 2) /* (Y12) PRG1_PRU1_GPO3.RGMII2_RD3 */
->>> +			AM64X_IOPAD(0x0120, PIN_INPUT, 2) /* (U11) PRG1_PRU1_GPO6.RGMII2_RXC */
->>> +			AM64X_IOPAD(0x0118, PIN_INPUT, 2) /* (W12) PRG1_PRU1_GPO4.RGMII2_RX_CTL */
->>> +			AM64X_IOPAD(0x0134, PIN_OUTPUT, 2) /* (AA10) PRG1_PRU1_GPO11.RGMII2_TD0 */
->>> +			AM64X_IOPAD(0x0138, PIN_OUTPUT, 2) /* (V10) PRG1_PRU1_GPO12.RGMII2_TD1 */
->>> +			AM64X_IOPAD(0x013c, PIN_OUTPUT, 2) /* (U10) PRG1_PRU1_GPO13.RGMII2_TD2 */
->>> +			AM64X_IOPAD(0x0140, PIN_OUTPUT, 2) /* (AA11) PRG1_PRU1_GPO14.RGMII2_TD3 */
->>> +			AM64X_IOPAD(0x0148, PIN_OUTPUT, 2) /* (Y10) PRG1_PRU1_GPO16.RGMII2_TXC */
->>> +			AM64X_IOPAD(0x0144, PIN_OUTPUT, 2) /* (Y11) PRG1_PRU1_GPO15.RGMII2_TX_CTL */
->>> +		>;
->>> +	};
->>> +};
->>> +
->>> +&cpsw3g {
->>> +	pinctrl-0 = <&rgmii1_pins_default>;
->>> +};
->>> +
->>> +&cpsw_port2 {
->>> +	status = "disabled";
->>> +};
->>> +
->>> +&mdio_mux_1 {
->>> +	status = "disabled";
->>> +};
->>> +
->>> +&icssg1_eth {
->>> +	pinctrl-0 = <&icssg1_rgmii1_pins_default &icssg1_rgmii2_pins_default>;
->>
->> Grrr... No! I have been cleaning up after you folks and you folks should
->> take notice.
->>
->> pinctrl-0 = <&icssg1_rgmii1_pins_default>, <&icssg1_rgmii2_pins_default>;
->>
-> 
-> Sorry, I was not aware of this. I will change it in v2.
-> 
->>
->>> +};
->>> +
->>> +&icssg1_emac1 {
->>> +	status = "okay";
->>> +	phy-handle = <&icssg1_phy2>;
->>> +	phy-mode = "rgmii-id";
->>> +};
->>> diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
->>> index 04d1c0602d31..90867090e725 100644
->>> --- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
->>> +++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
->>> @@ -203,7 +203,7 @@ mdio_mux: mux-controller {
->>>   		mux-gpios = <&exp1 12 GPIO_ACTIVE_HIGH>;
->>>   	};
->>>   
->>> -	mdio-mux-1 {
->>> +	mdio_mux_1: mdio-mux-1 {
->>
->> Commit message doesn't warn me for this change.
-> 
-> Sure. I will add details of this in commit message saying `Add label
-> name 'mdio_mux_1' for 'mdio-mux-1' node so that the node 'mdio-mux-1'
-> can be disabled in the overlay using the label name.`
-> 
->>>   		compatible = "mdio-mux-multiplexer";
->>>   		mux-controls = <&mdio_mux>;
->>>   		mdio-parent-bus = <&cpsw3g_mdio>;
->>> -- 
->>> 2.34.1
->>>
->>
-> 
 
