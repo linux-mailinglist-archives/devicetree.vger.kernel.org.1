@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-22795-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22796-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1041B808D62
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 17:30:44 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3444808D67
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 17:31:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 94386B20AA1
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 16:30:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7ACDFB20CCE
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 16:31:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E20D43AC30;
-	Thu,  7 Dec 2023 16:30:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A851A46BB1;
+	Thu,  7 Dec 2023 16:31:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oVtNFFK5"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SYGY3LQY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62AC412D
-	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 08:30:35 -0800 (PST)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-a1f47f91fc0so69235566b.0
-        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 08:30:35 -0800 (PST)
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9858D10C3
+	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 08:31:32 -0800 (PST)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-a1db6816177so151977666b.0
+        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 08:31:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701966634; x=1702571434; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=aH8L5iYycb6NEgoUEHg7eEXR2z1JZijDqP8DXtCGrpM=;
-        b=oVtNFFK5TAlDHJcvX+7v0jrWjZPy46GQKsQZaEO5Y8O5Z4cwub8odEKfziLbiP/jId
-         N1GwTfKBfQqZJGOOzVVt9VGemEmyJVIU7WeMwknysOHi9zYJi//oH2zEOJJjGA2SQRVY
-         7KMGzTbZM9o3mUH+Sld/jzFp/otimvnyEH+S6fC0vcQgYwAXGuXx+7bNj+Yq8huD5L8O
-         gH1cxw0A0mrjsO+x4v2q+IQ2o+3IcCXC4pnLiaWcac4TlDf3ZbKFXURO45/qsq/7eK7A
-         lHEkvJWRGNnwVhSzEy9hg0lrGyvDMI6MFiR/ocRujIE/YYEEMPIJdEjZduND3RVPxrjn
-         seyQ==
+        d=linaro.org; s=google; t=1701966691; x=1702571491; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=cOoOFWyjj8c8wProhSysHMiw8x6245X5XYVMi74y9Wc=;
+        b=SYGY3LQYkkZ7WBcbaI4D/TJhGI161WzwJ5xM6Ve8xiCxoygjJDNbTOknoHP3xjKn+f
+         SOS65Zzf9V419UiXZV+cNJk92BHhFsBmW8OBsSc6kDosGsroPqKq1IQN66KTcmTfYuhL
+         66ox3pUo1vTOusonXAiKW0Dg95v/0NipaEAlCb+wR881vuA/FP39V1twtKH/ZOmrc8t3
+         vfZ6lsU7HbLQi9c0W31DywneJfQSvaVtoJY36KzXIymhfna8XYWuDff7QU7YDKTl352j
+         DTy6JHTOllQionZfGTuOBig/7lRFInGofHmroHugmy/6dLs5Hu1MSHXze35LUq8oF+3e
+         57pA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701966634; x=1702571434;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aH8L5iYycb6NEgoUEHg7eEXR2z1JZijDqP8DXtCGrpM=;
-        b=EsI1x1heCaRirgMwE8adOlh8i5iyJaVSpMzQMi+ATKfcVrmK1WEHYGXy08KRzbyiaS
-         UoyumJ4pOkIgIVdXRoWA3M3nMJLKenVl177CNXBN070DKuwYFZrQtHVBMV238YHz4o5Y
-         Gq/js8w1uNTrU5x4e+vTgCDqHUbP3dhyjpK8OdWhu9JqTUMumogOpN7Mi/55z3DdfKwR
-         MK/5YxW8y+gAvu6uddIhHa20hgVblMzTxHY/r+gJesgHuaubA82E83rx/4+eQQ9CXhQ9
-         HOotC77UbujN8bW9P86SsjW9Ly5zNb/qp+xNStbdzw3WkWpkW+UHn3n0QlIQGDno6oNW
-         KaIw==
-X-Gm-Message-State: AOJu0YyCHmCY7PW1mVCFmPt+i9BVzxXa6fd0irfkL31COEHUqMvakLO3
-	OrlCfJvJe4/m1YUHDZ/iOu6W0A==
-X-Google-Smtp-Source: AGHT+IHL1Nm74LJFaPCxLG+b7LDX3qVevuIVuycV6XXz9SYj9Q4USZCqelhHWLaXZw3aOHE/rLDmNw==
-X-Received: by 2002:a17:906:2b11:b0:a19:a19b:55fd with SMTP id a17-20020a1709062b1100b00a19a19b55fdmr2008031ejg.141.1701966633762;
-        Thu, 07 Dec 2023 08:30:33 -0800 (PST)
+        d=1e100.net; s=20230601; t=1701966691; x=1702571491;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cOoOFWyjj8c8wProhSysHMiw8x6245X5XYVMi74y9Wc=;
+        b=IkDewbbKlNcNjokcrG1K4JdHJlok3o4yOieOr4rZONIr/HwXDWmXZcFTLdxb9cbRTC
+         lz5WLLnQH5CxBcsRdviETrKv+qeDe9SnGFfJO3NT6kY2DW/L+xDRX7wZ5lA5yuSHQPFI
+         ymIzAX6OsJYwdlxTGkm15xKm8G2NMKzxK9QGuIC79MFZwFs2tZY70DGfh6oNXmKXo5x+
+         DHRAewgQ23F3+PfJaNVAICDpWbXsbXeCYDViL6bwOVTf88DJnLH7JlW8lO7UAfp0xENK
+         Z5M+Plas3bJcPurIhM4trdfvMn304RCEQ+4XjJtbBIsECWNV75B6x65bs+epeomkNiwW
+         d9dA==
+X-Gm-Message-State: AOJu0YwDn4iWLmTk/wZ9k1IaW//UtzhPtUWNHfylbzIvnTtrfHHVfR/W
+	NiNeUnDcdgzUEHtk6GnOL/WRpQ==
+X-Google-Smtp-Source: AGHT+IFYA6fuwC8Yt963r2LxO5z7E9Du8USSZmtfjOAyT73mKblgzyZwx3ahRT+91rmiKT5pedWWmg==
+X-Received: by 2002:a17:906:d298:b0:a16:3410:3d47 with SMTP id ay24-20020a170906d29800b00a1634103d47mr1292304ejb.8.1701966691020;
+        Thu, 07 Dec 2023 08:31:31 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id d8-20020a170906040800b00a1d01b11498sm1016758eja.24.2023.12.07.08.30.32
+        by smtp.gmail.com with ESMTPSA id d8-20020a170906040800b00a1d01b11498sm1016758eja.24.2023.12.07.08.31.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Dec 2023 08:30:33 -0800 (PST)
-Message-ID: <619a2497-3b6d-48af-8888-a50c16d66880@linaro.org>
-Date: Thu, 7 Dec 2023 17:30:31 +0100
+        Thu, 07 Dec 2023 08:31:30 -0800 (PST)
+Message-ID: <306ae775-0c1c-4739-bc7d-44f8ae784968@linaro.org>
+Date: Thu, 7 Dec 2023 17:31:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,13 +62,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: usb: nxp,ptn5110: Fix typo in the title
-To: Fabio Estevam <festevam@gmail.com>, gregkh@linuxfoundation.org
-Cc: jun.li@nxp.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- Fabio Estevam <festevam@denx.de>
-References: <20231207160634.2646285-1-festevam@gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp-phy:
+ Document X1E80100 compatible
 Content-Language: en-US
+To: Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Johan Hovold <johan@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231201-x1e80100-phy-combo-v1-0-6938ec41f3ac@linaro.org>
+ <20231201-x1e80100-phy-combo-v1-1-6938ec41f3ac@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -115,21 +122,17 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231207160634.2646285-1-festevam@gmail.com>
+In-Reply-To: <20231201-x1e80100-phy-combo-v1-1-6938ec41f3ac@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 07/12/2023 17:06, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
+On 07/12/2023 14:16, Abel Vesa wrote:
+> Add the X1E80100 compatible to the list.
 > 
-> The word 'Controller' is misspelled.
-> 
-> Fix it.
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
 
-Could be concise and still informative: Fix the misspelled "Controller"
-word. 1 Line instead of 3.
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
