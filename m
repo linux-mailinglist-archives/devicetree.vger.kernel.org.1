@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-22613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22614-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B0B1808409
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 10:16:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E20CF808415
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 10:18:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DAA7928407D
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 09:16:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 167271F2271C
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 09:17:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2913B32C65;
-	Thu,  7 Dec 2023 09:16:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 041F232C6B;
+	Thu,  7 Dec 2023 09:17:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LftpGe4k"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vffDI6vj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31D2290
-	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 01:16:07 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2c9fe0b5b28so5968251fa.1
-        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 01:16:07 -0800 (PST)
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE25119A
+	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 01:17:46 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-3333fbbeab9so644825f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 01:17:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701940565; x=1702545365; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=/jtw8bR+eSXUrbhqVswSV4Dt02dW2sSE0ic4EqSjmiM=;
-        b=LftpGe4kB2EpEg62im6n2wd6bheq4IuF43oKYsm7BRyVTH0/Cjzhlwcg2WCBBO45zF
-         wAO6f5HyfLvhdgTfCrKqnuxpvCfJrDqEvtaRGm2+62dT9EDRSGY9aOB0J3mHhDowPa5d
-         kTcd7zdHtSMglRIwJz5SFfVBCqNIMAmL7VjDC+3tDqa5xWkqCgVu29wmLIR6i9NLkzmu
-         LzvzOF0LGx2eguYzFFQhe5S3mRYUjq7L93/4L+kf/9hl6St3BIWMZSY5WmFJSZjW9O+R
-         MhX5Y75bn0VJJiI09WxCyUCFAJkXATESd006v0hoiEuQcETC8dAEl5DiUQmhBRuSx/qP
-         Lfdw==
+        d=linaro.org; s=google; t=1701940665; x=1702545465; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AO3dUHFmMUJibGLF84Z8UQoMJMwJfjERRL1gItn7HhY=;
+        b=vffDI6vjwXZI2jfiopixpgnQnOR2cclYz3dEjiRPmci0rrV/GmBHosMVIFvjHMt8ow
+         fouXbnKsvDJwJtoJ69ZtIp6xgq5S1KRtVowwGmQ5Krrwve1V2RTyXaOtkGjDcKIQhHDO
+         86E8FrCrz8dXfeB3QuhpB/C+4tTjGuZsYQMdhqsT9baP6RTw0qjWcBvWImYl4X3W45j4
+         PNZE/2h7zKS9oDGxM+mQD3kd0clqwcitxNqyUUMFZFV8d3OyMtARYFaPHSkrDJ68c6n/
+         my/JUIIHadX61xWmKWHbbVXCxyJ/UhAV4M8M29wHWtlWYhPkYwJQtAhXWC84Xud7l5HV
+         KLng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701940565; x=1702545365;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/jtw8bR+eSXUrbhqVswSV4Dt02dW2sSE0ic4EqSjmiM=;
-        b=MXeU4AjbuJ+p/dhpLen5nFYH5N5UW1wAADnhoaT0rQzYmd8QIcTVtlRG9i5UVA053M
-         CPkf7i6HZ6nBY4+OJuPUEiK9fiY7EPtPHUF4iIdrdkJZLgZ75QjtcqdeF6yrOQrM4NbM
-         X4Wn2w8/u4Qx4JdoX4uUQb6P09OiAU1vF/pSte4xT3YbQcVDKwKB9K20mjknEZgzJkks
-         ffH3iwrTLv8dQI6p2CZm7LeG68eIF28obSItbzrYxW+AePnaPIzn0iWkvIWaGFo6Mflu
-         vnZTIolt37Eqw5ZE10n0bobpfulp9R/Tgb5pzykKiMwDpWdXSp1/AJe/fYV3CM0mqo6G
-         CzOg==
-X-Gm-Message-State: AOJu0Ywuy48RkoseSU1qCyMfl0Iv8toaNheDsccBVXYBzxnOIvkpb+pO
-	yWd+dXTyhKlfFQgUexbFSMKdyg==
-X-Google-Smtp-Source: AGHT+IF+QmCXVRpmfe5rddin1T7yfbFia5ooQtzQnYTCpnRFwLHKUlPXYNCPYIPpf5ZjWIgE5sh8eA==
-X-Received: by 2002:a2e:8e95:0:b0:2c9:f6af:300a with SMTP id z21-20020a2e8e95000000b002c9f6af300amr1259007ljk.39.1701940565416;
-        Thu, 07 Dec 2023 01:16:05 -0800 (PST)
+        d=1e100.net; s=20230601; t=1701940665; x=1702545465;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AO3dUHFmMUJibGLF84Z8UQoMJMwJfjERRL1gItn7HhY=;
+        b=KbXDAhLYAk7Hc7HDyJDFD4XFiflnQQRg3prll5p9bWFg0pNc2wisJQ4KZPeCxBQQRR
+         RYaJ1p/CEfQT3KbyKxWtaaVWoKM9aT0aTMBIbOZy4uaP1rk1JFhVWSQMsOgKQOtiYe0f
+         2id4C+cyl0IA8vY6MfXAdzNo/5udB8+3VDvi3w24jMz/XDagRaY2ABlH5oa5pQX+O+tn
+         YUCyS9CLzjwwhP4+VqqOcAVd2KZ5u0RLAZvNv8xAb1wQb6k+Wb/LvjSscRzrB/Ihcioi
+         XBkuONyWELgOSseeYKbMRZC8P7nQSULVtkWcrGADEjrvEfHCtlaAC1qTC+7Pq7lGkKJ2
+         a2XA==
+X-Gm-Message-State: AOJu0YyVCF0mGRlrOGmkqbS7iMGq6XX9lFCEdFCQb3mnuX7y2c7IEn2c
+	lJbSsRBJgxwbILRbYweF7HO8IHfUWLGW0zGAx0M=
+X-Google-Smtp-Source: AGHT+IGxEB/wp1xiiH+joExyyg//ZgzSxLecPrEx8/IhzbV8R0wT5Mq7vAvKTO3+jYdd8RVKJcYgJA==
+X-Received: by 2002:a5d:44cf:0:b0:333:91f:462b with SMTP id z15-20020a5d44cf000000b00333091f462bmr1283174wrr.55.1701940665180;
+        Thu, 07 Dec 2023 01:17:45 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id d14-20020adff2ce000000b0033349de2622sm903603wrp.94.2023.12.07.01.16.03
+        by smtp.gmail.com with ESMTPSA id d14-20020adff2ce000000b0033349de2622sm903603wrp.94.2023.12.07.01.17.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Dec 2023 01:16:04 -0800 (PST)
-Message-ID: <22597bf1-b623-4c5d-b230-c2054c4c13b5@linaro.org>
-Date: Thu, 7 Dec 2023 10:16:02 +0100
+        Thu, 07 Dec 2023 01:17:44 -0800 (PST)
+Message-ID: <d69fd83f-a8be-4663-8fad-1750b0e80d24@linaro.org>
+Date: Thu, 7 Dec 2023 10:17:43 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,27 +62,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/8] Convert DA906{1,2} bindings to json-schema
-To: Biju Das <biju.das.jz@bp.renesas.com>, Lee Jones <lee@kernel.org>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Support Opensource <support.opensource@diasemi.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>,
- Steve Twiss <stwiss.opensource@diasemi.com>,
- "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- "biju.das.au" <biju.das.au@gmail.com>,
- "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
-References: <20231206155740.5278-1-biju.das.jz@bp.renesas.com>
- <874165ae-c7a2-4f04-825a-aa9d6f4d4cb3@linaro.org>
- <TYCPR01MB11269663E4EE04920195D708D868BA@TYCPR01MB11269.jpnprd01.prod.outlook.com>
+Subject: Re: [PATCH v3 1/4] dt-bindings: clock: sophgo: Add clock controller
+ of CV1800 series SoC
 Content-Language: en-US
+To: Inochi Amaoto <inochiama@outlook.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chao Wei <chao.wei@sophgo.com>,
+ Chen Wang <unicorn_wang@outlook.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
+Cc: Jisheng Zhang <jszhang@kernel.org>, Liu Gui <kenneth.liu@sophgo.com>,
+ Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+ qiujingbao.dlmu@gmail.com, dlan@gentoo.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org
+References: <IA1PR20MB495376DBED8EE897FE11A2B7BB8BA@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <IA1PR20MB4953637E7A6C121D7A700F1CBB8BA@IA1PR20MB4953.namprd20.prod.outlook.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -129,37 +125,21 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <TYCPR01MB11269663E4EE04920195D708D868BA@TYCPR01MB11269.jpnprd01.prod.outlook.com>
+In-Reply-To: <IA1PR20MB4953637E7A6C121D7A700F1CBB8BA@IA1PR20MB4953.namprd20.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 07/12/2023 10:01, Biju Das wrote:
-> Hi Krzysztof Kozlowski, Lee Jones,
+On 07/12/2023 09:37, Inochi Amaoto wrote:
+> Add definition for the clock controller of the CV1800 series SoC.
 > 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Sent: Thursday, December 7, 2023 8:38 AM
->> Subject: Re: [PATCH v4 0/8] Convert DA906{1,2} bindings to json-schema
->>
->> On 06/12/2023 16:57, Biju Das wrote:
->>> Convert the below bindings to json-schema
->>> 1) DA906{1,2} mfd bindings
->>> 2) DA906{1,2,3} onkey bindings
->>> 3) DA906{1,2,3} thermal bindings
->>>
->>> Also add fallback for DA9061 watchdog device and document
->>> DA9063 watchdog device.
->>
->> Please explain here dependencies and make clear merging strategy. The
->> patches cannot be taken independently.
+> For CV181X, it has a clock that CV180X does not have. To avoid misuse,
+> also add a compatible string to identify CV181X series SoC.
 > 
-> Rob mentioned it needs to be taken through MFD tree. See [1]
-> 
+> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+> Link: https://github.com/milkv-duo/duo-files/blob/main/hardware/CV1800B/CV1800B-CV1801B-Preliminary-Datasheet-full-en.pdf
+> ---
 
-This I know, but you must explain it here - not in my reply, but in the
-cover letter. No one will remember what was agreed days ago, not
-mentioning that not everyone could read Rob's message. So how anyone
-reading your cover letter could know it?
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
