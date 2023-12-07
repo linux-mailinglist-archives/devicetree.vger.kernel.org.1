@@ -1,160 +1,93 @@
-Return-Path: <devicetree+bounces-22865-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22866-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D595809105
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 20:08:06 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA05780910F
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 20:10:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 14696B20ACE
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 19:08:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 58AC2B20B53
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 19:10:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D57B84F5F7;
-	Thu,  7 Dec 2023 19:07:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E0D14F5E1;
+	Thu,  7 Dec 2023 19:10:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="kgzskMW/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DRqd+z8m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9737A10DC;
-	Thu,  7 Dec 2023 11:07:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1701976071; x=1733512071;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ieJEkuMKhcAdLylW1AUSXkjLtQT7yen+rjsrcCv2Ujc=;
-  b=kgzskMW/3jukR6TzUl0mJOaRdE4iWCJVIFLxzK2Qx4bETHg4W0bdjkcg
-   fpyiYqjAmV65Je+Rw+6MXo/XiZZrxil4oibO8XvSJLfebGfpBeW6poS6x
-   MNQNo1TGR/l+9WGJl8yIB2/8X+obo2sWylZGDT6gkN36Bs7uBEDp90sbx
-   uvY1IGrEM8C8xXcc3EqT7iW9zxdy8qo417Fpu2OYX1Iae2ExMGaVgjZAw
-   ADpZeJZAagU6Std/cyYa72JKSjer4GSfhV5FW6hymKr8gGgI08df9bgHH
-   d9pVfcgpChth6E796MThHDzLIjBxm0aR73q8jMj2ZA4XIFmOIpbazuNA3
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="15843127"
-X-IronPort-AV: E=Sophos;i="6.04,258,1695711600"; 
-   d="scan'208";a="15843127"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Dec 2023 11:07:51 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="721582135"
-X-IronPort-AV: E=Sophos;i="6.04,258,1695711600"; 
-   d="scan'208";a="721582135"
-Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
-  by orsmga003.jf.intel.com with ESMTP; 07 Dec 2023 11:07:45 -0800
-Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rBJio-000Cib-0A;
-	Thu, 07 Dec 2023 19:07:42 +0000
-Date: Fri, 8 Dec 2023 03:07:00 +0800
-From: kernel test robot <lkp@intel.com>
-To: Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu,
-	chao.wei@sophgo.com, conor@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
-	palmer@dabbelt.com, paul.walmsley@sifive.com,
-	richardcochran@gmail.com, robh+dt@kernel.org, sboyd@kernel.org,
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com,
-	guoren@kernel.org, jszhang@kernel.org, inochiama@outlook.com,
-	samuel.holland@sifive.com
-Cc: oe-kbuild-all@lists.linux.dev, Chen Wang <unicorn_wang@outlook.com>
-Subject: Re: [PATCH v5 3/4] clk: sophgo: Add SG2042 clock generator driver
-Message-ID: <202312080230.uE0e0ycK-lkp@intel.com>
-References: <975f9995584dfa8af751e96a1f4d2c7991551a35.1701938395.git.unicorn_wang@outlook.com>
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60FCA10DC
+	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 11:10:48 -0800 (PST)
+Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2c9f9db9567so13507421fa.3
+        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 11:10:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701976246; x=1702581046; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OfswJHbbaE8lthgCuxsCEF+7HdLrX0KCYICyRwFYL8Q=;
+        b=DRqd+z8mWcy9cSBAJFc7XovxoM6gE47GuGITuKPQK4NkbBOVry5J6gPE5gfcD7lwWi
+         WEbLXO3DL86Lbj9d5q23MNd9tTDTZC8Mr8KaAEt4r6uQvnySUNmNuu4RYzP6kJ4UI8mN
+         XkqfyYS6hm7YZfnvTc4641eYzQ/UUuHa1xBsTOIe82yQ5BIS89bO3wIE+lPe0juZC6Jx
+         rikzEimLdfdtjE5VLlpagn4OC1KYSVaV28sMGdmAXaYmO9++Hn7K7gSfPut3utapgvRL
+         42WyR44zjJ+bsH8VtCk024ehGbooNIlnpJmAxokVqUTKRNgTYfPNOlRBMuAfJODG8F4C
+         gpfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701976246; x=1702581046;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OfswJHbbaE8lthgCuxsCEF+7HdLrX0KCYICyRwFYL8Q=;
+        b=PXC4dUvuYUTfihQS+cEjOv55UwtIA84ZzbWXQwfm2LRFwLuIpL58Kst5EW6DNrDvg8
+         geKErFV2OvP6EoCEQSVstYG5vshFsVSi5XbyAaL+3CXgCMS2ufZFF/aGlzXJ9is2O6oG
+         u0aLaC0HOgbkgm5chxbyfZ70VePZHbt/wzQibSqQsebbWlkfdHt5u+Y8kuL6g3klcdXD
+         D/XounIHj+p38MzUccbibxc8hdZxdXZbJYTXjQNel+i2EWcncFQVjbP1kjY1BLiywG6V
+         Phul05CWup4j4kACv+L8K5FoxOdWJpoYHlS8Ew9BcWS0lLdVipA9onVC79M9a2UPHeTN
+         wp4A==
+X-Gm-Message-State: AOJu0YxdgnlM3rlPjMkTXY4rFoZzoB/1z239GLmh8DeFEW/nkV4sW597
+	unbEG1rxyGXTxcfV/1aC27SiuQ==
+X-Google-Smtp-Source: AGHT+IHHZzDwVjEoqj5L0COX7ANyUFp8QKEMmxG3cMwdjoXkbsmuUH84Uxh48VDZssIMNDNTOto8AQ==
+X-Received: by 2002:a2e:9991:0:b0:2c9:c8f4:1c0c with SMTP id w17-20020a2e9991000000b002c9c8f41c0cmr1649768lji.32.1701976246456;
+        Thu, 07 Dec 2023 11:10:46 -0800 (PST)
+Received: from [172.30.205.181] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id o18-20020a2e9b52000000b002c9f75a48fcsm23408ljj.16.2023.12.07.11.10.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 07 Dec 2023 11:10:45 -0800 (PST)
+Message-ID: <014a4a44-0da2-49e9-ab1c-f4cc1ca2e218@linaro.org>
+Date: Thu, 7 Dec 2023 20:10:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <975f9995584dfa8af751e96a1f4d2c7991551a35.1701938395.git.unicorn_wang@outlook.com>
-
-Hi Chen,
-
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on b85ea95d086471afb4ad062012a4d73cd328fa86]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Chen-Wang/dt-bindings-soc-sophgo-Add-Sophgo-system-control-module/20231207-165948
-base:   b85ea95d086471afb4ad062012a4d73cd328fa86
-patch link:    https://lore.kernel.org/r/975f9995584dfa8af751e96a1f4d2c7991551a35.1701938395.git.unicorn_wang%40outlook.com
-patch subject: [PATCH v5 3/4] clk: sophgo: Add SG2042 clock generator driver
-config: arc-randconfig-002-20231208 (https://download.01.org/0day-ci/archive/20231208/202312080230.uE0e0ycK-lkp@intel.com/config)
-compiler: arc-elf-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231208/202312080230.uE0e0ycK-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202312080230.uE0e0ycK-lkp@intel.com/
-
-All error/warnings (new ones prefixed by >>):
-
-   drivers/clk/sophgo/clk-sophgo-sg2042.c: In function 'sg2042_clk_init_clk_data':
->> drivers/clk/sophgo/clk-sophgo-sg2042.c:1273:20: error: implicit declaration of function 'kzalloc'; did you mean 'vzalloc'? [-Werror=implicit-function-declaration]
-    1273 |         clk_data = kzalloc(struct_size(clk_data, onecell_data.hws, num_clks), GFP_KERNEL);
-         |                    ^~~~~~~
-         |                    vzalloc
->> drivers/clk/sophgo/clk-sophgo-sg2042.c:1273:18: warning: assignment to 'struct sg2042_clk_data *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
-    1273 |         clk_data = kzalloc(struct_size(clk_data, onecell_data.hws, num_clks), GFP_KERNEL);
-         |                  ^
->> drivers/clk/sophgo/clk-sophgo-sg2042.c:1293:9: error: implicit declaration of function 'kfree'; did you mean 'vfree'? [-Werror=implicit-function-declaration]
-    1293 |         kfree(clk_data);
-         |         ^~~~~
-         |         vfree
-   cc1: some warnings being treated as errors
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] interconnect: qcom: Add MSM8909 interconnect provider
+ driver
+To: kernel test robot <lkp@intel.com>,
+ Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
+ Georgi Djakov <djakov@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Adam Skladowski <a39.skl@gmail.com>
+References: <20231206-icc-msm8909-v1-2-fe0dd632beff@kernkonzept.com>
+ <202312071325.M9cg1wry-lkp@intel.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <202312071325.M9cg1wry-lkp@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
 
-vim +1273 drivers/clk/sophgo/clk-sophgo-sg2042.c
 
-  1256	
-  1257	static int __init sg2042_clk_init_clk_data(
-  1258		struct device_node *node,
-  1259		int num_clks,
-  1260		struct sg2042_clk_data **pp_clk_data)
-  1261	{
-  1262		int ret = 0;
-  1263		struct sg2042_clk_data *clk_data = NULL;
-  1264		struct device_node *np_syscon;
-  1265	
-  1266		np_syscon = of_parse_phandle(node, "sophgo,system-ctrl", 0);
-  1267		if (!np_syscon) {
-  1268			pr_err("failed to get system-ctrl node\n");
-  1269			ret = -EINVAL;
-  1270			goto error_out;
-  1271		}
-  1272	
-> 1273		clk_data = kzalloc(struct_size(clk_data, onecell_data.hws, num_clks), GFP_KERNEL);
-  1274		if (!clk_data) {
-  1275			ret = -ENOMEM;
-  1276			goto error_out;
-  1277		}
-  1278	
-  1279		clk_data->regmap_syscon = device_node_to_regmap(np_syscon);
-  1280		if (IS_ERR_OR_NULL(clk_data->regmap_syscon)) {
-  1281			pr_err("cannot get regmap_syscon %ld\n", PTR_ERR(clk_data->regmap_syscon));
-  1282			ret = -ENODEV;
-  1283			goto cleanup;
-  1284		}
-  1285		clk_data->iobase_syscon = of_iomap(np_syscon, 0);
-  1286		clk_data->iobase = of_iomap(node, 0);
-  1287		clk_data->onecell_data.num = num_clks;
-  1288	
-  1289		*pp_clk_data = clk_data;
-  1290		return ret;
-  1291	
-  1292	cleanup:
-> 1293		kfree(clk_data);
-  1294	
-  1295	error_out:
-  1296		return ret;
-  1297	}
-  1298	
+On 12/7/23 07:06, kernel test robot wrote:
+> Hi Stephan,
+> 
+> kernel test robot noticed the following build errors:
+(.remove -> .remove_new)
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Konrad
 
