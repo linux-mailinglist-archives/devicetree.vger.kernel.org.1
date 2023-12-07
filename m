@@ -1,143 +1,104 @@
-Return-Path: <devicetree+bounces-22639-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22640-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FFC78084D8
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 10:39:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3346E8084DB
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 10:41:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1AF1C282B0E
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 09:39:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1183283402
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 09:41:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70E5635263;
-	Thu,  7 Dec 2023 09:39:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F1D335263;
+	Thu,  7 Dec 2023 09:41:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zyxoKG+f"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ETxJbbta"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D125CAC
-	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 01:39:43 -0800 (PST)
-Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-334b2ffaa3eso682598f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 01:39:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701941982; x=1702546782; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=sDEG22soV9/sv5O+2rWHT+MElR4n7sYwHVS8rbYswEg=;
-        b=zyxoKG+fT6osxklPD05mNHoVv1F3RK02jWx5J7jMwtM2j+rnG3IDNc0/KFGuUPk78+
-         JK1oJ/SXivmljhERxcu+1SAj0ZDlnJ0mc/R7cs+FX3+Nf1RYrL0w+6+aEuu88cpf2dAR
-         TqtUTn+Kv8kWYztGKO4DBBFBpHt5Ns9h65eiYJ5hFCQwe3O//sW1TYkSB5eyhPsLWgJu
-         uSrBLCsmOw8AWIawKxho6OBXL/pFRRQZ3v9FxuYl+2zJl4QEfKbC+yumG47EnMIpPO8y
-         ckWSKlyiOs6uDDzuMLAPuTYrbBzcwbid4IOQKpAigRADwuHqIOmB3RZmz7EUICvNEK54
-         ALUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701941982; x=1702546782;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sDEG22soV9/sv5O+2rWHT+MElR4n7sYwHVS8rbYswEg=;
-        b=JvahEfVT06rayHVT9avrjsxDYhVJ7b0JW5RjwJ1+jNnuSZrtnenbIq7DB8nPM8jHGo
-         hAiQaJlGY/ejnsWxkOgje4dLGKDDoSuAxTORMai9bWTz0ZbX7rEQx7b0yszasnxm5vtH
-         qDF6XQUCpvAs7GsZLhbARaOpGSOyloFgrqvgt+8e77hjfQZeX6pbe3/1MTPF1A8TjXhH
-         oiCiyqrqqKjHJFe/asS0tvL5oCK+1noP6OGHbn+GOhqNsJLKF7VaxfxmAtqVF+Px7ttQ
-         J9sb3ykslXfLU8KlLE3yQUqToJTi3bDDHcStKaO0JBYQ7dAFHXliJSvQO/HfyqRnTPAq
-         sDHA==
-X-Gm-Message-State: AOJu0YxPLjwdUNPWp0uBadsU4xyyyVgYK8C23DJ7uQS53hvijGIxI+IZ
-	qXv13GFyhvXyZVnkQuIPXaBPVQ==
-X-Google-Smtp-Source: AGHT+IHvf8Yd7ScNXngFZQTc6LbO8p0Lobd2ne6I7Q0CSTVhm6zYQep3gWEqsr5XaBG1u3q+rZ84/w==
-X-Received: by 2002:adf:f50c:0:b0:333:145e:f529 with SMTP id q12-20020adff50c000000b00333145ef529mr1184834wro.33.1701941982435;
-        Thu, 07 Dec 2023 01:39:42 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id x17-20020adff651000000b003333c2c313bsm952293wrp.100.2023.12.07.01.39.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Dec 2023 01:39:42 -0800 (PST)
-Message-ID: <f5f66934-f919-4550-ade9-d00ae8958040@linaro.org>
-Date: Thu, 7 Dec 2023 10:39:40 +0100
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 532291E4B1
+	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 09:41:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E1FDC433C7;
+	Thu,  7 Dec 2023 09:41:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701942089;
+	bh=Y3CgmiwT0nwbzFuDeivLJTvO+yngal+TXRGUMoTsXPU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ETxJbbtaTcAlVygNymX7fa0IBfzVOw9h7RMRHsVrgMJFO7/DHXEU3p3oom2RCJ7nB
+	 DTvXd/3xXSrX6AqQ/D2HFanevLa8heMRQTHls/M5iC05CULgq2qIp4VuEvnaYA1+Cq
+	 IrSHdWT8H72lI5VlF07dpKZHgvmeJnLx1ZsoH7v6TNxJrGLQElGu7vyhZFUew1/r9B
+	 lTFVH5XVuMJnL9MYrV4UQq/WAfrh8T7k/UNBc82JPHz+5qqfDi6QQiI3coWf0cU7I1
+	 MDxfdYQKsXpOP0af4lwEOtmfrxNIzKuO5UshxuV27+9qpZ5zyDvjiYFItSNjmG8w9d
+	 oLtwNBwfx7H5A==
+Date: Thu, 7 Dec 2023 10:41:26 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, 
+	Dario Binacchi <dario.binacchi@amarulasolutions.com>, linux-kernel@vger.kernel.org, 
+	Amarula patchwork <linux-amarula@amarulasolutions.com>, michael@amarulasolutions.com, Conor Dooley <conor+dt@kernel.org>, 
+	Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>, 
+	Jessica Zhang <quic_jesszhan@quicinc.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Sam Ravnborg <sam@ravnborg.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v4 07/10] dt-bindings: display: panel: Add Ilitek ili9805
+ panel controller
+Message-ID: <3tddld7exqsjaulhblyrp3x52sxgnmt3tn3elqv23dihlro27u@zi5w5tpmpo3l>
+References: <20231205105341.4100896-1-dario.binacchi@amarulasolutions.com>
+ <20231205105341.4100896-8-dario.binacchi@amarulasolutions.com>
+ <20231206143345.GA2093703-robh@kernel.org>
+ <a437b0d7-5669-45c1-b54d-ce028a57efdb@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/4] arm64: dts: qcom: msm8996: Fix 'in-ports' is a
- required property
-Content-Language: en-US
-To: Mao Jinlong <quic_jinlmao@quicinc.com>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
- Yuanfang Zhang <quic_yuanfang@quicinc.com>,
- Tao Zhang <quic_taozha@quicinc.com>
-References: <20231206141502.27016-1-quic_jinlmao@quicinc.com>
- <20231206141502.27016-3-quic_jinlmao@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231206141502.27016-3-quic_jinlmao@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="glic6emmr37gh3aw"
+Content-Disposition: inline
+In-Reply-To: <a437b0d7-5669-45c1-b54d-ce028a57efdb@linaro.org>
 
-On 06/12/2023 15:14, Mao Jinlong wrote:
-> Add the inport of funnel@3023000 to fix 'in-ports' is a required property
-> warning.
-> 
-> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/msm8996.dtsi | 21 +++++++++++++++++++++
->  1 file changed, 21 insertions(+)
-> 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+--glic6emmr37gh3aw
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
-Krzysztof
+On Thu, Dec 07, 2023 at 10:29:12AM +0100, Krzysztof Kozlowski wrote:
+> On 06/12/2023 15:33, Rob Herring wrote:
+> > On Tue, Dec 05, 2023 at 11:52:54AM +0100, Dario Binacchi wrote:
+> >> From: Michael Trimarchi <michael@amarulasolutions.com>
+> >>
+> >> Add documentation for "ilitek,ili9805" panel.
+> >>
+> >> Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
+> >> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> >=20
+> > Where's Krzysztof's Reviewed-by?
+>=20
+> If only there was a tool which would solve problem of collecting tags...
+> Easy to use one command for applying tags from mailing list, so one's
+> review will not be lost thus people will not waste effort doing review
+> second time. How was it? a4? b4? c4?
 
+FWIW, a lot of people still don't know about b4, or a relying on
+features/workflows not supported by b4.
+
+Maxime
+
+--glic6emmr37gh3aw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZXGTRgAKCRDj7w1vZxhR
+xdd2AQCabCWZ6Xj4jdOlLg8F46quQFKp6kMwULbiCwnB4i00LgEA2eD7fEPp6v6d
+1bPIomhtjcluNkZkByoriyToApxs5Q4=
+=tGcR
+-----END PGP SIGNATURE-----
+
+--glic6emmr37gh3aw--
 
