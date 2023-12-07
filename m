@@ -1,109 +1,113 @@
-Return-Path: <devicetree+bounces-22698-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22699-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E4108087DE
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 13:35:48 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAF198087FA
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 13:38:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F9781C21E8D
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 12:35:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 69F30B21645
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 12:38:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B89737D37;
-	Thu,  7 Dec 2023 12:35:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0649037D0C;
+	Thu,  7 Dec 2023 12:38:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LGDczdMO"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="BWy5jkpB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBBA510EC;
-	Thu,  7 Dec 2023 04:35:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1701952533; x=1733488533;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=AxuJODfeSyZXtb5X5FLkqlPIc2Wt4J6QcOdZzYwKh/Y=;
-  b=LGDczdMOyHE4VcOk81Aeg7E3So6POyeAatZJ3xZ2V/HiPJNS+jRubBS4
-   QqXPRIELVHGJruhv0IYD+muPo275WUR/x2cQL+FrwIOYUEzRPyJjiB2Gy
-   IVDbvm6+KuV/jnPBuZnZfbXqtKajeA2T0z6PmziL3buCq5zm6ai0rZyHv
-   V25LA0oLy2tw8f6NaaFZgvIT2m4VW/oVqXSqdP3oRsJK2+w+W6EHvpzki
-   eHquABXyDQWsS8+UcdFJU+ZHfxU9kq5hWZSiiDyEWNAz7ympX/PhzMNhR
-   3sxF1UpraWQ1bXOyik8vM5HB4MjpPpwzbNucczDaXRWLAqRWZ3pTJl65p
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="460711669"
-X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; 
-   d="scan'208";a="460711669"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Dec 2023 04:35:32 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="747950280"
-X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; 
-   d="scan'208";a="747950280"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Dec 2023 04:35:28 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1rBDbA-00000002bBU-3Czz;
-	Thu, 07 Dec 2023 14:35:24 +0200
-Date: Thu, 7 Dec 2023 14:35:24 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Lino Sanfilippo <LinoSanfilippo@gmx.de>
-Cc: Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-	Lukas Wunner <lukas@wunner.de>,
-	Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	"brenda.streiff@ni.com" <brenda.streiff@ni.com>,
-	Crescent CY Hsieh <crescentcy.hsieh@moxa.com>,
-	Tomas Paukrt <tomaspaukrt@email.cz>
-Subject: Re: [PATCH 1/2] dt-bindings: serial: rs485: add rs485-mux-gpios
- binding
-Message-ID: <ZXG8DI8diij72fBR@smile.fi.intel.com>
-References: <20231120151056.148450-1-linux@rasmusvillemoes.dk>
- <20231120151056.148450-2-linux@rasmusvillemoes.dk>
- <20231122145344.GA18949@wunner.de>
- <3b8548b1-b8a9-0c9e-4040-5cfda06a85c6@gmx.de>
- <ec66d25162de4cbc92720df1e7008fe8@dh-electronics.com>
- <5c140498-69e3-4187-8703-db0c41e7ca89@gmx.de>
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF0E310F0;
+	Thu,  7 Dec 2023 04:38:01 -0800 (PST)
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 4B8BC660738E;
+	Thu,  7 Dec 2023 12:37:59 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1701952680;
+	bh=4FannGmPzD8CTNLgg1c0SxMxDgNTQfia5dxSGdeJOck=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=BWy5jkpBBuyQgLvhL5xgoDA6sGW8Hh0NrDwPp+9690sCYRgTkbe5jzuTtvVauJv9C
+	 E6zkCC1unRdDhsh1YjP7p8wIVi+MoxzXbDeHBbw+ZXr4wKpzUafWyqZh7wqlOOoPcN
+	 wN5Oer8NUorVHwS6sW9Y6l5LNMaddcevFU9eeMEZfUz8TUECdMcmOQYINpQ2EwHc9b
+	 2hwAbOQ6UYUT3nPYB2vDne/g0l17Kf8Nd0vknwqR5R1YQqP02jE21d+wEzp50D90Uv
+	 8a9LZBfe93dhdYQyW+vcV5fJ07yNtMvAvcBBFTRpzSFaN5V5Yno2ijptpi2/rLOLKo
+	 kwsqlGAEKKI/A==
+Message-ID: <6c7c65a1-1398-43fc-8036-d901e8bc0934@collabora.com>
+Date: Thu, 7 Dec 2023 13:37:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5c140498-69e3-4187-8703-db0c41e7ca89@gmx.de>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/2] mmc: mediatek: extend number of tuning steps
+Content-Language: en-US
+To: Axe Yang <axe.yang@mediatek.com>,
+ Chaotian Jing <chaotian.jing@mediatek.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, Wenbin Mei <wenbin.mei@mediatek.com>
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org,
+ Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20231207063535.29546-1-axe.yang@mediatek.com>
+ <20231207063535.29546-3-axe.yang@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20231207063535.29546-3-axe.yang@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Dec 06, 2023 at 04:42:53PM +0100, Lino Sanfilippo wrote:
-> On 27.11.23 13:14, Christoph Niedermaier wrote:
-> > From: Lino Sanfilippo [mailto:LinoSanfilippo@gmx.de]
-> > Sent: Sunday, November 26, 2023 12:40 AM
-
-...
-
-> > RS-485 (2-wire NO RX_DURING_TX): rs485->flags = SER_RS485_ENABLED|SER_RS485_MODE_HALF_DUPLEX
-> > RS-485 (2-wire RX_DURING_TX):    rs485->flags = SER_RS485_ENABLED|SER_RS485_MODE_HALF_DUPLEX|SER_RS485_RX_DURING_TX
+Il 07/12/23 07:35, Axe Yang ha scritto:
+> Previously, during the MSDC calibration process, a full clock cycle
+> actually not be covered, which in some cases didn't yield the best
+> results and could cause CRC errors. This problem is particularly
+> evident when MSDC is used as an SDIO host. In fact, MSDC support
+> tuning up to a maximum of 64 steps, but by default, the step number
+> is 32. By increase the tuning step, we are more likely to cover more
+> parts of a clock cycle, and get better calibration result.
 > 
-> I think we can omit the SER_RS485_MODE_HALF_DUPLEX flag if we assume that
-> a missing SER_RS485_MODE_FULL_DUPLEX means half duplex (i.e. controlling
-> the RTS line).
+> To illustrate, when tuning 32 steps, if the obtained window has a hole
+> near the middle, like this: 0xffc07ff (hex), then the selected delay
+> will be the 6 (counting from right to left).
+> 
+> (32 <- 1)
+> 1111 1111 1100 0000 0000 0111 11(1)1 1111
+> 
+> However, if we tune 64 steps, the window obtained may look like this:
+> 0xfffffffffffc07ff. The final selected delay will be 44, which is
+> safer as it is further away from the hole:
+> 
+> (64 <- 1)
+> 1111 ... (1)111 1111 1111 1111 1111 1100 0000 0000 0111 1111 1111
+> 
+> In this case, delay 6 selected through 32 steps tuning is obviously
+> not optimal, and this delay is closer to the hole, using it would
+> easily cause CRC problems.
+> 
+> As per mesaurements taken on mediatek SoC platform, the tuning phase
+> will take:
+> 	eMMC	- 32 steps: ~3ms
+> 		- 64 steps: ~6ms
+> 	SDIO	- 32 steps: ~4ms
+> 		- 64 steos: ~7ms
+> Tuning more steps won't prolong boot times by any meaningful amount
+> of time, so for SD/SDIO the default tuning steps will be adjust to
+> 64. But for eMMC, it is still preferred to use 32 steps tuning as
+> otherwise there would be performance lose when accessing the RPMB
+> partition(requiring retuning each time).
+> 
+> You can configure property "mediatek,tuning-step" in MSDC dts node
+> to adjust the step number.
+> 
+> Signed-off-by: Axe Yang <axe.yang@mediatek.com>
 
-You should be very careful on these assumptions, i.e. one must to check _all_
-existing user space tools (at least that are in use / supplied by main distros)
-on how they behave.
-
--- 
-With Best Regards,
-Andy Shevchenko
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
 
 
