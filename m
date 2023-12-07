@@ -1,55 +1,54 @@
-Return-Path: <devicetree+bounces-22888-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22889-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 825B980921B
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 21:15:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8467080921D
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 21:16:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B40D11C20979
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 20:15:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B5EF41C2094C
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 20:16:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B1CB50259;
-	Thu,  7 Dec 2023 20:15:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D970350250;
+	Thu,  7 Dec 2023 20:16:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61528170F;
-	Thu,  7 Dec 2023 12:15:18 -0800 (PST)
-Received: by mail-ot1-f49.google.com with SMTP id 46e09a7af769-6d9e179b217so402185a34.0;
-        Thu, 07 Dec 2023 12:15:18 -0800 (PST)
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCB541710;
+	Thu,  7 Dec 2023 12:16:00 -0800 (PST)
+Received: by mail-ot1-f47.google.com with SMTP id 46e09a7af769-6d9d1962bbbso884264a34.3;
+        Thu, 07 Dec 2023 12:16:00 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701980117; x=1702584917;
+        d=1e100.net; s=20230601; t=1701980160; x=1702584960;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ytNDdKy1mnEm3e+yRbuE/HnHivt5uF3IXJRUZqNhUno=;
-        b=mEa0a6rzS1oeICoVtcbftTkkjs341I0HaON9WkC5oS+ilW4BTpjvvAlMbjZmtc7P+r
-         8d8TeFDbnhtPH/wAEC1to4Ce/SkDY0omOVRJjBAF3ysAgRWiSwyu/FCst/Zeqiwd1JJD
-         yqeAzJFYE8OAx3i8JR2OpUDycclC4OftS3T3DMKu5U2wvlCN4FXM/LjyveyIzVQHd6LH
-         zoRW2r/nLCWW8bXFmO3Dt7Fe8N0/YpglxGX1KMA5RAJ7z+Yb77xwDb83svvcS4FD7M7O
-         QOyhRUS41jwZeLyQINBO3t6NHWLMaUTbehJzKYJfNXIhwdGd/E1x3HqD/Ajyj3YXzXTJ
-         AlRA==
-X-Gm-Message-State: AOJu0YzX77qTx0j0OLLYmQlGpuW44n3qtqxENWMjKcJ5/hxA8OI2Tflu
-	qiIXTAq/9VbElyNoEsnzp9d//eEYew==
-X-Google-Smtp-Source: AGHT+IFFpMDZK/yIr6hZpE4r1FjYZtPYedvtJwcGCyDCOPoNAYk8TdQZMuSyWAZEu2Vjduf1L9uMfA==
-X-Received: by 2002:a05:6830:124e:b0:6d9:d144:c9a9 with SMTP id s14-20020a056830124e00b006d9d144c9a9mr2599082otp.22.1701980117581;
-        Thu, 07 Dec 2023 12:15:17 -0800 (PST)
+        bh=5cQkDdnzepc6At1PDW9suBRg6vKVDLjVoo/BJeFLK1g=;
+        b=Sd4rwBwKEW9DkhWkoNcxrhM+uHT3ZpKc2za/ehgHYyYH8cBStbtPZUZs8827KinQa2
+         VBQrxhS58zzzCzAtVG0haU8YvR6qinqxdEFKr9iq7qPNzJmZpIv/CVxRb9ho1HCNZ/Qw
+         /KnG2NKj9OWQsXd9Bm2SLoK/3BJcQ3UkS7D50Na0DMLmLSjDEDx9DDX1bf1Zd0dn6RYT
+         JW8p9twOlof6r6bnjx1BzByFIm/RQrCStEJMEMbjpIoY6eSAyjgVRS5YmRKN7PQ2JpIK
+         pEONR7zi4mYb+2oFeHU6NGY2eneQZvg4pk0XGIVp74TDJXaQZobrx4Og/h19EQy0X8t/
+         6LYA==
+X-Gm-Message-State: AOJu0Yz9RTuRPycT3sRYtbtqr30YkHI+Lh/f4mKr+9emrTsi85qsG0En
+	6mq6lrrurVl6X8OEfYNSWV6fFMnQag==
+X-Google-Smtp-Source: AGHT+IFa/J/UWM9ONWck/IBcMt0yTQGD1q3vexfwZIVq0OcVUIh+Jxedgy1LdSaEjeGZFUduSZ6QrA==
+X-Received: by 2002:a9d:6d85:0:b0:6d8:7ffc:d878 with SMTP id x5-20020a9d6d85000000b006d87ffcd878mr2821370otp.16.1701980160090;
+        Thu, 07 Dec 2023 12:16:00 -0800 (PST)
 Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id l16-20020a9d7350000000b006d9d3d0e145sm84403otk.10.2023.12.07.12.15.16
+        by smtp.gmail.com with ESMTPSA id r17-20020a056830135100b006d98106678esm83811otq.18.2023.12.07.12.15.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Dec 2023 12:15:16 -0800 (PST)
-Received: (nullmailer pid 3350191 invoked by uid 1000);
-	Thu, 07 Dec 2023 20:15:16 -0000
-Date: Thu, 7 Dec 2023 14:15:16 -0600
+        Thu, 07 Dec 2023 12:15:59 -0800 (PST)
+Received: (nullmailer pid 3350935 invoked by uid 1000);
+	Thu, 07 Dec 2023 20:15:58 -0000
+Date: Thu, 7 Dec 2023 14:15:58 -0600
 From: Rob Herring <robh@kernel.org>
 To: Christophe Leroy <christophe.leroy@csgroup.eu>
 Cc: Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, Frank Rowand <frowand.list@gmail.com>, linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 3/4] powerpc/machdep: Define 'compatibles' property in
- ppc_md and use it
-Message-ID: <20231207201516.GA3348285-robh@kernel.org>
+Subject: Re: [PATCH v1 4/4] powerpc: Stop using of_root
+Message-ID: <20231207201558.GB3348285-robh@kernel.org>
 References: <e6cf01d41502b15e688b6f5aa5c3b68c62b8ac64.1701878821.git.christophe.leroy@csgroup.eu>
- <9da79892e7ff433095a7bf42e86aef02ab86b5c1.1701878821.git.christophe.leroy@csgroup.eu>
+ <b2f23f982ef414f0eaf7c55ccb79f30bec3c86cd.1701878821.git.christophe.leroy@csgroup.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,43 +57,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <9da79892e7ff433095a7bf42e86aef02ab86b5c1.1701878821.git.christophe.leroy@csgroup.eu>
+In-Reply-To: <b2f23f982ef414f0eaf7c55ccb79f30bec3c86cd.1701878821.git.christophe.leroy@csgroup.eu>
 
-On Wed, Dec 06, 2023 at 05:13:34PM +0100, Christophe Leroy wrote:
-> Most probe functions that do not use the 'compatible' string do
-> nothing else than checking whether the machine is compatible with
-> one of the strings in a NULL terminated table of strings.
-> 
-> Define that table of strings in ppc_md structure and check it directly
-> from probe_machine() instead of using ppc_md.probe() for that.
-> 
-> Keep checking in ppc_md.probe() only for more complex probing.
-> 
-> All .compatible could be replaced with a single element NULL
-> terminated list but that's not worth the churn. Can be do incrementaly
-> in follow-up patches.
+On Wed, Dec 06, 2023 at 05:13:35PM +0100, Christophe Leroy wrote:
+> Replace all usages of of_root by of_find_node_by_path("/")
 > 
 > Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
 > ---
->  arch/powerpc/include/asm/machdep.h            |  1 +
->  arch/powerpc/kernel/setup-common.c            |  2 ++
->  arch/powerpc/platforms/40x/ppc40x_simple.c    |  9 +++------
->  arch/powerpc/platforms/512x/mpc512x_generic.c |  4 +---
->  arch/powerpc/platforms/52xx/lite5200.c        | 10 +---------
->  arch/powerpc/platforms/52xx/mpc5200_simple.c  | 10 +---------
->  arch/powerpc/platforms/83xx/mpc830x_rdb.c     | 10 +---------
->  arch/powerpc/platforms/83xx/mpc831x_rdb.c     | 10 +---------
->  arch/powerpc/platforms/83xx/mpc837x_rdb.c     | 10 +---------
->  arch/powerpc/platforms/85xx/corenet_generic.c |  2 +-
->  arch/powerpc/platforms/85xx/tqm85xx.c         | 10 +---------
->  11 files changed, 14 insertions(+), 64 deletions(-)
-
-> -/*
-> - * Called very early, MMU is off, device-tree isn't unflattened
-> - */
-
-Certainly an out of date comment as the unflattened API was being 
-called.
+>  arch/powerpc/kernel/secure_boot.c        |  8 ++++++--
+>  arch/powerpc/kexec/ranges.c              |  8 +++++---
+>  arch/powerpc/mm/drmem.c                  | 10 +++++-----
+>  arch/powerpc/mm/numa.c                   |  6 ++++--
+>  arch/powerpc/platforms/52xx/efika.c      |  4 +++-
+>  arch/powerpc/platforms/pasemi/pci.c      |  4 +++-
+>  arch/powerpc/platforms/pseries/lparcfg.c |  6 +++++-
+>  arch/powerpc/platforms/pseries/setup.c   | 12 +++++++++---
+>  8 files changed, 40 insertions(+), 18 deletions(-)
 
 Reviewed-by: Rob Herring <robh@kernel.org>
 
