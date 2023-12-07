@@ -1,252 +1,152 @@
-Return-Path: <devicetree+bounces-22518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22519-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 551CD808017
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 06:21:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6FBA80802B
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 06:28:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8651E1C209C6
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 05:21:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 510A91F21394
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 05:28:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACAC010965;
-	Thu,  7 Dec 2023 05:21:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 621E210A20;
+	Thu,  7 Dec 2023 05:28:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="LCNdqvkk"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SlKTAiHg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C50D10E7;
-	Wed,  6 Dec 2023 21:21:13 -0800 (PST)
-X-UUID: 6d141b4694c011eea5db2bebc7c28f94-20231207
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=utKiulZ4UeB0jjmnBABZ5jIy2pn3SDZWABNtpqnuktQ=;
-	b=LCNdqvkkAPdH9gjJYCAvZM/nAYQLo0q4m9buV3fb7bhV0wzr79awWbRVbtz55Wji/13jlQRJ8CUtwpiJy+jQ1Tjx3KFpJ9drhvRzREc8CyCDO8mdiRqtRrFPwrnKKt/90wqbOZ87lfMKbiEWE5jH5G2njG4/N7mYgT7mS2AI2Ek=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.35,REQID:62cdf3ca-9a7b-414c-b4c0-50526e7dad57,IP:0,U
-	RL:25,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTI
-	ON:release,TS:0
-X-CID-META: VersionHash:5d391d7,CLOUDID:978662fd-4a48-46e2-b946-12f04f20af8c,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:
-	NO,DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
-X-UUID: 6d141b4694c011eea5db2bebc7c28f94-20231207
-Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw01.mediatek.com
-	(envelope-from <zhi.mao@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 576576200; Thu, 07 Dec 2023 13:21:07 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Thu, 7 Dec 2023 13:21:05 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Thu, 7 Dec 2023 13:21:04 +0800
-From: Zhi Mao <zhi.mao@mediatek.com>
-To: <mchehab@kernel.org>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>
-CC: <shengnan.wang@mediatek.com>, <yaya.chang@mediatek.com>,
-	<10572168@qq.com>, <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	<yunkec@chromium.org>, <conor+dt@kernel.org>, <matthias.bgg@gmail.com>,
-	<angelogioacchino.delregno@collabora.com>, <jacopo.mondi@ideasonboard.com>,
-	<sakari.ailus@linux.intel.com>, <zhi.mao@mediatek.com>,
-	<hverkuil-cisco@xs4all.nl>, <heiko@sntech.de>, <jernej.skrabec@gmail.com>,
-	<macromorgan@hotmail.com>, <linus.walleij@linaro.org>,
-	<laurent.pinchart@ideasonboard.com>, <hdegoede@redhat.com>,
-	<tomi.valkeinen@ideasonboard.com>, <gerald.loacker@wolfvision.net>,
-	<andy.shevchenko@gmail.com>, <bingbu.cao@intel.com>,
-	<dan.scally@ideasonboard.com>, <linux-media@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>
-Subject: [PATCH 2/2] media: dt-bindings: media: i2c: Document GC08A3 bindings
-Date: Thu, 7 Dec 2023 13:20:16 +0800
-Message-ID: <20231207052016.25954-3-zhi.mao@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231207052016.25954-1-zhi.mao@mediatek.com>
-References: <20231207052016.25954-1-zhi.mao@mediatek.com>
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11333D53
+	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 21:28:20 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-3332e351670so521575f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 21:28:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701926898; x=1702531698; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=P/w8d4bx85GCzG3q+XMNSr3H2oW0ZXJ+JkTmbFE6i40=;
+        b=SlKTAiHgnD1ZCmZC7CNQolawMayWBfo/d2VTdQfQqMkCcj9ODW7cYpZiRaU2n3gvD0
+         8bc4nzAJCFgKZc0gPmG34Dv7iHYLF+eMLG2QQRN0B7V+Re8L5p5P+zDSawTfpmcpanDn
+         cwLhsrsRDQd7vs5WltPkNWnSWiY6UILCYzFRZ/bBTnWWVN2hDJbaBPK2/vdORYlEtpok
+         9JOp3xN06eUJ7yHK+53sK1PG2BBk+ZYOZGLT31YVYRdGSkJit/JdBLNnjI8+vI0AkQih
+         Txbnhxv7BMNLHSa1q1dHFvIIZOSC3I/xBo71PAOqEjW6ETvGjUptty8SRlepI21i9kiw
+         LoMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701926898; x=1702531698;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=P/w8d4bx85GCzG3q+XMNSr3H2oW0ZXJ+JkTmbFE6i40=;
+        b=gSNIsXZkpLGEIWvOTPHc8CpNNRQToWJWbYXlvkl6sFocOuSu0T7bEa8eH9pFMW5jGG
+         g6hgBSMbmdRDCWuuHNrzfvxuUh8EDwa6fGcSkWJkvWtdz5CyWdsFSsgQ37w9JHjmBW32
+         WUtbRR3wwPMGT5jqliMOaLq3dtDJnkqzTfRVcnEJAdvuBAoJYlE8+BJZS7vcbP0F/MWS
+         BMRF/Tm480q/oDMU0+bOfTVyGfIbrGjpSQbtiN5h8Ngtkl9AEEkjK/N7MA2kgoALC51B
+         vUe/Jddmu4GCtFWSh6QHHuuG+nQTtEsVVkIOrrNSFfCX1U32k6yrSSeGsuUwWi98hHZk
+         bcTg==
+X-Gm-Message-State: AOJu0Yyxn/3CxZ2LMQbR716LIdKr/sGkoRM0ZEY5/IJjt8z3noin6D1C
+	wbK/xTUpig7yl4aN1sXnLeu2hw==
+X-Google-Smtp-Source: AGHT+IE21IJuS8tBsselAAGayu4ujjz1P+t5qXxU0Ss8ACQiY5yyBYE/DI31YW+Ox7NMislqtWHqQA==
+X-Received: by 2002:adf:a355:0:b0:333:2fd2:7665 with SMTP id d21-20020adfa355000000b003332fd27665mr518094wrb.86.1701926898494;
+        Wed, 06 Dec 2023 21:28:18 -0800 (PST)
+Received: from localhost ([102.36.222.112])
+        by smtp.gmail.com with ESMTPSA id i15-20020adfe48f000000b0033344e2522dsm453279wrm.37.2023.12.06.21.28.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Dec 2023 21:28:18 -0800 (PST)
+Date: Thu, 7 Dec 2023 08:28:15 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: oe-kbuild@lists.linux.dev, Kamel Bouhara <kamel.bouhara@bootlin.com>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Marco Felsch <m.felsch@pengutronix.de>,
+	Jeff LaBundy <jeff@labundy.com>
+Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
+	catalin.popescu@leica-geosystems.com,
+	mark.satterthwaite@touchnetix.com, bartp@baasheep.co.uk,
+	hannah.rossiter@touchnetix.com,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	bsp-development.geo@leica-geosystems.com,
+	Kamel Bouhara <kamel.bouhara@bootlin.com>
+Subject: Re: [PATCH v4 3/3] Input: Add TouchNetix axiom i2c touchscreen driver
+Message-ID: <6f8e3b64-5b21-4a50-8680-063ef7a93bdb@suswa.mountain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--5.435300-8.000000
-X-TMASE-MatchedRID: XAa2d/45j8SuhCBFl/b63gPZZctd3P4B9l9p8mNlkgk1LB46LFAAkkd0
-	Rzx07LDV96TYN1fO8g6y9AsAxk+TJQAwGIAo3Shb71Wx2uUbPLdbAoaK+wS4jee+ZCR6qEmPGAg
-	eo2y7APLoZcBNClQRIQGZLfTlpw3f9GlJz+74uGzr/EBmiNuXt/ZCh7IN8a4Ai093rJhkH8B0Ly
-	3sNBQaM6F8BNmSAz+6Zd7aQCHVPPQfE8yM4pjsDxZ4ylU2GwzAxEHRux+uk8jHUU+U0ACZwA/YF
-	L0mDf+MJZNBa6CeO+zb0JcacqI9akktgCd2BrHinqg/VrSZEiM=
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--5.435300-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP:
-	47693002D59BB255A4E63C0C116B38D62A591E8EDE2CB8672FDBAF65BCD97B702000:8
-X-MTK: N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231204140505.2838916-4-kamel.bouhara@bootlin.com>
 
-Add YAML device tree binding for GC08A3 CMOS image sensor,
-and the relevant MAINTAINERS entries.
+Hi Kamel,
 
-Signed-off-by: Zhi Mao <zhi.mao@mediatek.com>
----
- .../bindings/media/i2c/galaxycore,gc08a3.yaml | 127 ++++++++++++++++++
- .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
- 2 files changed, 129 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/i2c/galaxycore,gc08a3.yaml
+kernel test robot noticed the following build warnings:
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/galaxycore,gc08a3.yaml b/Documentation/devicetree/bindings/media/i2c/galaxycore,gc08a3.yaml
-new file mode 100644
-index 000000000000..1802ff1c8a12
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/galaxycore,gc08a3.yaml
-@@ -0,0 +1,127 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright (c) 2020 MediaTek Inc.
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/galaxycore,gc08a3.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: GalaxyCore gc08a3 1/4" 8M Pixel MIPI CSI-2 sensor
-+
-+maintainers:
-+  - Zhi Mao <zhi.mao@mediatek.com>
-+
-+description:
-+  The gc08a3 is a raw image sensor with an MIPI CSI-2 image data
-+  interface and CCI (I2C compatible) control bus. The output format
-+  is raw Bayer.
-+
-+properties:
-+  compatible:
-+    const: galaxycore,gc08a3
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    description:
-+      External clock for the sensor.
-+    maxItems: 1
-+
-+  clock-frequency:
-+    description:
-+      Frequency of the clock in Hz.
-+
-+  dovdd-supply: true
-+
-+  avdd-supply: true
-+
-+  dvdd-supply: true
-+
-+  enable-gpios:
-+    description: Reference to the GPIO connected to the RESETB pin. Active low.
-+    maxItems: 1
-+
-+  port:
-+    $ref: /schemas/graph.yaml#/$defs/port-base
-+    additionalProperties: false
-+    description:
-+      Output port node, single endpoint describing the CSI-2 transmitter.
-+
-+    properties:
-+      endpoint:
-+        $ref: /schemas/media/video-interfaces.yaml#
-+        unevaluatedProperties: false
-+
-+        properties:
-+          data-lanes:
-+            oneOf:
-+              - items:
-+                  - const: 1
-+                  - const: 2
-+                  - const: 3
-+                  - const: 4
-+              - items:
-+                  - const: 1
-+                  - const: 2
-+
-+          link-frequencies: true
-+
-+        required:
-+          - data-lanes
-+          - link-frequencies
-+
-+    required:
-+      - endpoint
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - clock-frequency
-+  - dovdd-supply
-+  - avdd-supply
-+  - dvdd-supply
-+  - enable-gpios
-+  - port
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        sensor0@31 {
-+            status = "okay";
-+            compatible = "galaxycore,gc08a3";
-+            reg = <0x31>;
-+
-+            clocks = <&gc08a3_clk>;
-+            clock-names = "xvclk";
-+            clock-frequency = <24000000>;
-+
-+            enable-gpios = <&pio 19 GPIO_ACTIVE_HIGH>;
-+
-+            avdd-supply = <&gc08a3_avdd>;
-+            dovdd-supply = <&ogc08a3_dovdd>;
-+            dvdd-supply = <&gc08a3_dvdd>;
-+
-+            port {
-+                sensor0_out_2: endpoint {
-+                    data-lanes = <1 2 3 4>;
-+                    link-frequencies = /bits/ 64 <336000000 207000000>;
-+                    remote-endpoint = <&seninf_csi_port_0_in_2>;
-+                };
-+            };
-+        };
-+
-+    };
-+
-+...
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index b752f8902367..1a16a94fb202 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -502,6 +502,8 @@ patternProperties:
-     description: Fujitsu Ltd.
-   "^fxtec,.*":
-     description: FX Technology Ltd.
-+  "^galaxycore,.*":
-+    description: GalaxyCore Inc.
-   "^gardena,.*":
-     description: GARDENA GmbH
-   "^gateway,.*":
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Kamel-Bouhara/dt-bindings-vendor-prefixes-Add-TouchNetix-AS/20231204-222017
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git next
+patch link:    https://lore.kernel.org/r/20231204140505.2838916-4-kamel.bouhara%40bootlin.com
+patch subject: [PATCH v4 3/3] Input: Add TouchNetix axiom i2c touchscreen driver
+config: i386-randconfig-r071-20231206 (https://download.01.org/0day-ci/archive/20231207/202312070608.vxtNAYhk-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20231207/202312070608.vxtNAYhk-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+| Closes: https://lore.kernel.org/r/202312070608.vxtNAYhk-lkp@intel.com/
+
+smatch warnings:
+drivers/input/touchscreen/touchnetix_axiom.c:565 axiom_i2c_probe() warn: passing zero to 'PTR_ERR'
+
+vim +/PTR_ERR +565 drivers/input/touchscreen/touchnetix_axiom.c
+
+a9f3450f06a026 Kamel Bouhara 2023-12-04  536  static int axiom_i2c_probe(struct i2c_client *client)
+a9f3450f06a026 Kamel Bouhara 2023-12-04  537  {
+a9f3450f06a026 Kamel Bouhara 2023-12-04  538  	struct device *dev = &client->dev;
+a9f3450f06a026 Kamel Bouhara 2023-12-04  539  	struct input_dev *input_dev;
+a9f3450f06a026 Kamel Bouhara 2023-12-04  540  	struct axiom_data *ts;
+a9f3450f06a026 Kamel Bouhara 2023-12-04  541  	u32 startup_delay_ms;
+a9f3450f06a026 Kamel Bouhara 2023-12-04  542  	u32 poll_interval;
+a9f3450f06a026 Kamel Bouhara 2023-12-04  543  	int target;
+a9f3450f06a026 Kamel Bouhara 2023-12-04  544  	int error;
+a9f3450f06a026 Kamel Bouhara 2023-12-04  545  
+a9f3450f06a026 Kamel Bouhara 2023-12-04  546  	ts = devm_kzalloc(dev, sizeof(*ts), GFP_KERNEL);
+a9f3450f06a026 Kamel Bouhara 2023-12-04  547  	if (!ts)
+a9f3450f06a026 Kamel Bouhara 2023-12-04  548  		return -ENOMEM;
+a9f3450f06a026 Kamel Bouhara 2023-12-04  549  
+a9f3450f06a026 Kamel Bouhara 2023-12-04  550  	ts->client = client;
+a9f3450f06a026 Kamel Bouhara 2023-12-04  551  	i2c_set_clientdata(client, ts);
+a9f3450f06a026 Kamel Bouhara 2023-12-04  552  	ts->dev = dev;
+a9f3450f06a026 Kamel Bouhara 2023-12-04  553  
+a9f3450f06a026 Kamel Bouhara 2023-12-04  554  	ts->reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
+a9f3450f06a026 Kamel Bouhara 2023-12-04  555  	if (IS_ERR(ts->reset_gpio))
+a9f3450f06a026 Kamel Bouhara 2023-12-04  556  		return dev_err_probe(dev, PTR_ERR(ts->reset_gpio), "failed to get reset GPIO\n");
+a9f3450f06a026 Kamel Bouhara 2023-12-04  557  
+a9f3450f06a026 Kamel Bouhara 2023-12-04  558  	if (ts->reset_gpio)
+a9f3450f06a026 Kamel Bouhara 2023-12-04  559  		axiom_reset(ts->reset_gpio);
+a9f3450f06a026 Kamel Bouhara 2023-12-04  560  
+a9f3450f06a026 Kamel Bouhara 2023-12-04  561  	ts->vddi = devm_regulator_get_optional(dev, "VDDI");
+a9f3450f06a026 Kamel Bouhara 2023-12-04  562  	if (!IS_ERR(ts->vddi)) {
+a9f3450f06a026 Kamel Bouhara 2023-12-04  563  		error = regulator_enable(ts->vddi);
+a9f3450f06a026 Kamel Bouhara 2023-12-04  564  		if (error)
+a9f3450f06a026 Kamel Bouhara 2023-12-04 @565  			return dev_err_probe(&client->dev, PTR_ERR(ts->vddi),
+                                                                                                   ^^^^^^^^^^^^^^^^^^
+s/PTR_ERR(ts->vddi)/error/
+
+a9f3450f06a026 Kamel Bouhara 2023-12-04  566  					     "Failed to enable VDDI regulator\n");
+a9f3450f06a026 Kamel Bouhara 2023-12-04  567  	}
+a9f3450f06a026 Kamel Bouhara 2023-12-04  568  
+
 -- 
-2.25.1
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
 
