@@ -1,72 +1,65 @@
-Return-Path: <devicetree+bounces-22643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22644-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C7518084F0
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 10:50:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AC22808509
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 10:57:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC06B2839C1
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 09:50:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ACD3D1C21C98
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 09:57:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CABD635270;
-	Thu,  7 Dec 2023 09:50:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCD163527F;
+	Thu,  7 Dec 2023 09:57:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MHXPpKQX"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Vyr2VsSw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A52DC1E489;
-	Thu,  7 Dec 2023 09:50:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D5B0C433CB;
-	Thu,  7 Dec 2023 09:50:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701942621;
-	bh=YzfxSDFRzoSe+GPPF5UuUyQYbQJvr9Enxd0o7o5jPHw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MHXPpKQXNg1pjrxlf+/vHYiq9+FKp+oLoG9ASwloceCLg8aaYwtTfaAwvxhn4XvS1
-	 DDLjyxmy6a7zqgWmqaqwBIMNlH4Z0lyJ9e19DBmJLP9KTjs/7bIHknLni1a2EWehPK
-	 /D/EXii6OkGi6Y+6YLz3Fp7eYYw2AoHHAwyEv4GCpmENzrAuWGmrGaLXeyxsTGNoim
-	 ly3l4lZOdcwtem6tDSDM36aw6K6rsY7UaIMvgPSJgEDfebhwrO22E2eWEE1mXj7Pb3
-	 jFXIHA6NuKLi/s/nGnz+sloz2UT8/kceEzhR4E+nk+lK/lAERZqbxiFD+J/Y3gBBOt
-	 t2lxQPYABvoTg==
-Received: from johan by xi.lan with local (Exim 4.96.2)
-	(envelope-from <johan@kernel.org>)
-	id 1rBB2D-0008FF-0j;
-	Thu, 07 Dec 2023 10:51:09 +0100
-Date: Thu, 7 Dec 2023 10:51:09 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Krishna Chaitanya Chundru <quic_krichai@quicinc.com>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 692FAD6D;
+	Thu,  7 Dec 2023 01:57:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1701943033; x=1733479033;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Jej5Ld6eP+dZtZXHnQ9Z9Uwwzz3coTmf8kqkVZReWjo=;
+  b=Vyr2VsSwZ0Cd7pqSH8SPQ4w9kQSN95ljimoEOkaCDMx1QwF2RmptKPP5
+   Yj0jx5PzB8cYpyas/WZu1b8y9/3PQiJBADPY8dVWB4wVri2QLbkkryRyr
+   NoO0GK5OJKxt9wKPauCw0cx8iOrkEqzzoym5fC7P6nr3aDdOTotmAPhVD
+   0gnD9DYWE1g1SldyaVaAzK0QnoUXg8nfnQ6+dGZDdymzNFng/07y4RFvM
+   hPf4SsgmPLpth7FIE4B+mQWPQ9C1SkI30tSdXL9IJkzVJvQS6i7rmAN46
+   wXpPpaa4KX9pqXK4ARFEIxkpZaWwO/f3QaHFI1P6NdzSIzX1LkT+PiQdb
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="1311668"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; 
+   d="scan'208";a="1311668"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Dec 2023 01:57:12 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="800684471"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; 
+   d="scan'208";a="800684471"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Dec 2023 01:57:08 -0800
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id 2F4B311FB50;
+	Thu,  7 Dec 2023 11:57:06 +0200 (EET)
+Date: Thu, 7 Dec 2023 09:57:06 +0000
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, quic_vbadigan@quicinc.com,
-	quic_ramkri@quicinc.com, quic_nitegupt@quicinc.com,
-	quic_skananth@quicinc.com, quic_vpernami@quicinc.com,
-	quic_parass@quicinc.com
-Subject: Re: [PATCH v3 1/3] dt-bindings: phy: qcom,qmp: Add PCIe
- qcom,refclk-always-on property
-Message-ID: <ZXGVjY9gYMD6-xFJ@hovoldconsulting.com>
-References: <20231127-refclk_always_on-v3-1-26d969fa8f1d@quicinc.com>
- <78815f1b-7390-40de-8afd-ac71806f4051@linaro.org>
- <24fae40a-453b-b14c-923f-88758a246aa7@quicinc.com>
- <20231201060716.GJ4009@thinkpad>
- <166d307e-7d1b-48b5-90db-9b6df01d87c2@linaro.org>
- <20231201111033.GL4009@thinkpad>
- <f844cd1e-7e4f-4836-bc9a-2e1ed13f064f@linaro.org>
- <20231201123054.GM4009@thinkpad>
- <3a7376aa-18a2-41cb-a4c9-680e735ce75b@linaro.org>
- <20231206131009.GD12802@thinkpad>
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	devicetree@vger.kernel.org, Lee Jackson <lee.jackson@arducam.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v5 1/2] media: dt-bindings: Add OmniVision OV64A40
+Message-ID: <ZXGW8iyoQpIXUa1E@kekkonen.localdomain>
+References: <20231206155900.123904-1-jacopo.mondi@ideasonboard.com>
+ <20231206155900.123904-2-jacopo.mondi@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,20 +68,130 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231206131009.GD12802@thinkpad>
+In-Reply-To: <20231206155900.123904-2-jacopo.mondi@ideasonboard.com>
 
-On Wed, Dec 06, 2023 at 06:40:09PM +0530, Manivannan Sadhasivam wrote:
+Hi Jacopo,
 
-> OK. How about, "qcom,broken-refclk"? This reflects the fact that the default
-> refclk operation is broken on this platform, so the OS should be prepared for
-> it (by keeping it always on).
+On Wed, Dec 06, 2023 at 04:58:59PM +0100, Jacopo Mondi wrote:
+> Add bindings for OmniVision OV64A40.
+> 
+> Co-developed-by: Lee Jackson <lee.jackson@arducam.com>
+> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>  .../bindings/media/i2c/ovti,ov64a40.yaml      | 97 +++++++++++++++++++
+>  1 file changed, 97 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov64a40.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov64a40.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov64a40.yaml
+> new file mode 100644
+> index 000000000000..e6c9d540a2dd
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov64a40.yaml
+> @@ -0,0 +1,97 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/ovti,ov64a40.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: OmniVision OV64A40 Image Sensor
+> +
+> +maintainers:
+> +  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> +
+> +allOf:
+> +  - $ref: /schemas/media/video-interface-devices.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: ovti,ov64a40
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  avdd-supply:
+> +    description: Analog voltage supply, 2.8 volts
+> +
+> +  dvdd-supply:
+> +    description: Digital core voltage supply, 1.1 volts
+> +
+> +  dovdd-supply:
+> +    description: Digital I/O voltage supply, 1.8 volts
+> +
+> +  powerdown-gpios:
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      endpoint:
+> +        $ref: /schemas/media/video-interfaces.yaml#
+> +        additionalProperties: false
+> +
+> +        properties:
+> +          bus-type:
+> +            enum:
+> +              - 1 # MIPI CSI-2 C-PHY
+> +              - 4 # MIPI CSI-2 D-PHY
+> +          data-lanes: true
+> +          link-frequencies: true
+> +          clock-noncontinuous: true
+> +          remote-endpoint: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - port
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +      #include <dt-bindings/gpio/gpio.h>
+> +
+> +      i2c {
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +
+> +          camera@36 {
+> +              compatible = "ovti,ov64a40";
+> +              reg = <0x36>;
+> +              clocks = <&camera_clk>;
+> +              dovdd-supply = <&vgen4_reg>;
+> +              avdd-supply = <&vgen3_reg>;
+> +              dvdd-supply = <&vgen2_reg>;
+> +              powerdown-gpios = <&gpio1 9 GPIO_ACTIVE_HIGH>;
+> +              reset-gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
+> +              rotation = <180>;
+> +              orientation = <2>;
+> +
+> +              port {
+> +                  endpoint {
+> +                      remote-endpoint = <&mipi_csi2_in>;
+> +                      bus-type = <4>;
+> +                      data-lanes = <1 2 3 4>;
 
-Shouldn't that be
+This is missing link-frequencies.
 
-	qcom,broken-clkreq
+> +                  };
+> +              };
+> +          };
+> +      };
+> +
+> +...
 
-since its the CLKREQ# signal used to request REFCLK that is broken, not
-the REFCLK itself?
+-- 
+Regards,
 
-Johan
+Sakari Ailus
 
