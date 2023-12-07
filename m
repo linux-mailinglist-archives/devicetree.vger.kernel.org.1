@@ -1,155 +1,248 @@
-Return-Path: <devicetree+bounces-22823-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22824-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D664C808E44
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 18:12:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78F8E808E46
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 18:12:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8AFAA1F210A0
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 17:12:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 22BB21F210D9
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 17:12:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17246481CA;
-	Thu,  7 Dec 2023 17:12:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2A23481CB;
+	Thu,  7 Dec 2023 17:12:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bXlGR5U8"
+	dkim=pass (2048-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="qp8mDFiu";
+	dkim=permerror (0-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="anIFPgBF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9B4A44C9E;
-	Thu,  7 Dec 2023 17:12:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78BA1C433C8;
-	Thu,  7 Dec 2023 17:11:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701969120;
-	bh=IyPtYmm7UMjttoaV79y97U5M1AiSkAlE5kldVFOD7Qs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bXlGR5U81hQG84IDZlqVXL/s9801dWDL095ZFx6khDpmnlS5vYR0mLR2RERobBupI
-	 p9x5SnV/kz9Fw1lJKA0DyAUQ4IeqAuOADwtARkANfI2BYoJcYrMOAfBxh6XR27g5kM
-	 Fg+7+O28Z7VuCtlEpxBjUjrTMWP84oeOU1Ft82B8km0jwLcwcy9mrEKa5BDbWXnKKA
-	 tmF05vs6YzrD/YswILYhOCbjQcdoPYTM9orr8IpctqwFS8bpJ4tShbyHF1uNLdXU03
-	 irtTIXv/nz8xPwyPUfRkSTHWgS8sxDM/VOxzqq/TKJWZLNsOKN4v8iwN6aYNFurntD
-	 R/slSm6O/emCA==
-Date: Thu, 7 Dec 2023 17:11:55 +0000
-From: Lee Jones <lee@kernel.org>
-To: Andreas Kemnade <andreas@kemnade.info>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, bcousson@baylibre.com, tony@atomide.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-omap@vger.kernel.org
-Subject: Re: [PATCH v3 2/6] twl-core: add power off implementation for twl603x
-Message-ID: <20231207171155.GG111411@google.com>
-References: <20231203222903.343711-1-andreas@kemnade.info>
- <20231203222903.343711-3-andreas@kemnade.info>
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.50])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 523281703;
+	Thu,  7 Dec 2023 09:12:28 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1701969146; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=WlDpJqaFilDIrpYaAaXn5KWgiW96Bhr7iMx7QTSotm0BFuuvpQFvRVDmX3grbJInyu
+    1FzHswsnEO7rXo+fweNrMxc2LllZJYOy31CzspFgTWWZp3PYk/UrsdcPmAYNmTalOK+1
+    YmR3dUYQivnPZ7GFTNutZOwW108+Q9dG7PwyVOcwARsq2QGiL6QgxNFmST0EFeuq3LXH
+    4IOwMLoSxTXiWre3wFYe1JSQz9th+YnXQrHEgpxlPOadCjsHWM1XF9UqU1B5KMVlTWQf
+    WRXt4iC3Xplvqq5C2cKOkmCJ6PPHUW+GdIIdhDG4kaOoZIHX3CME3hQIabdlF3+q+rFS
+    IkPA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1701969146;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=wg6wN9zlVSXlR+Rtz/C9diKOkif1ZOSm/YVWWFvcg/A=;
+    b=GOLiPKgfSiH31zOsAaY2yogrwwR0UxX6sJO4LDUzpR9R3Xoq/mZsTRne9t4NTK1iwT
+    BaJqcFJH0+fl0dUm8zSS0aY/DWKUEO2oB4Kcg+I+U4rcVLLwf7WuUYLbHjRHE4WF1YQ+
+    kTmn7Po6GoSgInbpoS47XQ0h2fFJqDIccq5uYGC9+Tr39Yrs8o6SFehx0ajU1LejuwPL
+    0dg5MqohCku+IVkjtyXS2Zk0wMhA3cFAP9UwhTi+EURLvKorskx9ofijnWa4gwbupK2F
+    sBlOJLUW906QEFA948iUGdN4Ag1obfHjF0vvFO4t0dFTzNyoeAGyhX9xsAvpN7VYQ0dQ
+    DbeA==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1701969146;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=wg6wN9zlVSXlR+Rtz/C9diKOkif1ZOSm/YVWWFvcg/A=;
+    b=qp8mDFiuZit9dUcxGqwYbKHfcOvcC/zp85tuVzOr8OcZOyvuTdMeNXJ5OoIrb2dMJ4
+    o8AQxJAhTeYUQhiG4fOm6P4iaHj3hbclGiASAjSpkt3sMcWv/VlirUoBkcbZo7Xt67Ro
+    DRjihNw8Vjfqd0V/0q34pRIUth2+TczNialbjnCOXqMHqL0k5GjbepRGHMvbNBkkPaha
+    2ziJSZbrrHOE8Znb6bGzR4FDlWjWoDgJNGvS6O0Knm6u+OFr1rrw8sBYLDlWsYElLNPL
+    HBb3q4Nal3vygriDirr2wd2gVeYCDJ3A3gbQ6ohaT3uXDBNr3gp0hZaM/1fWRR60hHoJ
+    hDmw==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1701969146;
+    s=strato-dkim-0003; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=wg6wN9zlVSXlR+Rtz/C9diKOkif1ZOSm/YVWWFvcg/A=;
+    b=anIFPgBFKnqGeb8r+q5czCBhvD0kWDN6DL78HQNUqEz81yPhxbEJweNeBi8A6LE0k1
+    aHqNCBN37oukhiYpUqCQ==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4peA8paF1A=="
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 49.10.0 SBL|AUTH)
+    with ESMTPSA id 58bb61zB7HCQA7s
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+	(Client did not present a certificate);
+    Thu, 7 Dec 2023 18:12:26 +0100 (CET)
+Date: Thu, 7 Dec 2023 18:12:19 +0100
+From: Stephan Gerhold <stephan@gerhold.net>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 03/10] soc: qcom: spm: add support for voltage
+ regulator
+Message-ID: <ZXH88_nwT_3g6MS9@gerhold.net>
+References: <20231207130703.3322321-1-dmitry.baryshkov@linaro.org>
+ <20231207130703.3322321-4-dmitry.baryshkov@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231203222903.343711-3-andreas@kemnade.info>
+In-Reply-To: <20231207130703.3322321-4-dmitry.baryshkov@linaro.org>
+Content-Transfer-Encoding: 7bit
 
-On Sun, 03 Dec 2023, Andreas Kemnade wrote:
-
-> If the system-power-controller property is there, enable power off.
-> Implementation is based on a Linux v3.0 vendor kernel.
+On Thu, Dec 07, 2023 at 04:06:56PM +0300, Dmitry Baryshkov wrote:
+> The SPM / SAW2 device also provides a voltage regulator functionality
+> with optional AVS (Adaptive Voltage Scaling) support. The exact register
+> sequence and voltage ranges differs from device to device.
 > 
-> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
+There is some overlap here with the spmi_saw_set_vdd() functionality in
+qcom_spmi-regulator.c, at least for the SoCs with SPMI PMICs (e.g.
+MSM8974 etc). You don't add support for these in this patch series yet
+but I think it would be good to clarify how we would expect to handle
+those. In other words:
+
+ - Would we handle them in qcom_spmi-regulator.c and keep the code in
+   the spm.c driver only for the non-SPMI platforms?
+
+ - Should we add this in a SSBI regulator driver instead for consistency?
+
+ - Or should we move the existing functionality in qcom_spmi-regulator.c
+   to here?
+
 > ---
->  drivers/mfd/twl-core.c  | 28 ++++++++++++++++++++++++++++
->  include/linux/mfd/twl.h |  1 +
->  2 files changed, 29 insertions(+)
+>  drivers/soc/qcom/spm.c | 221 ++++++++++++++++++++++++++++++++++++++++-
+>  include/soc/qcom/spm.h |   9 ++
+>  2 files changed, 225 insertions(+), 5 deletions(-)
 > 
-> diff --git a/drivers/mfd/twl-core.c b/drivers/mfd/twl-core.c
-> index 6e384a79e3418..f3982d18008d1 100644
-> --- a/drivers/mfd/twl-core.c
-> +++ b/drivers/mfd/twl-core.c
-> @@ -124,6 +124,11 @@
->  #define TWL6030_BASEADD_RSV		0x0000
->  #define TWL6030_BASEADD_ZERO		0x0000
->  
-> +/* some fields in TWL6030_PHOENIX_DEV_ON */
-
-My preference is for proper grammar in comments please.
-
-"Some"
-
-What is TWL6030_PHOENIX_DEV_ON?  A register?
-
-> +#define TWL6030_APP_DEVOFF		BIT(0)
-> +#define TWL6030_CON_DEVOFF		BIT(1)
-> +#define TWL6030_MOD_DEVOFF		BIT(2)
-> +
->  /* Few power values */
->  #define R_CFG_BOOT			0x05
->  
-> @@ -687,6 +692,20 @@ static void twl_remove(struct i2c_client *client)
->  	twl_priv->ready = false;
+> diff --git a/drivers/soc/qcom/spm.c b/drivers/soc/qcom/spm.c
+> index 2f0b1bfe7658..595e2afb2141 100644
+> --- a/drivers/soc/qcom/spm.c
+> +++ b/drivers/soc/qcom/spm.c
+> [...]
+> @@ -238,6 +273,181 @@ void spm_set_low_power_mode(struct spm_driver_data *drv,
+>  	spm_register_write_sync(drv, SPM_REG_SPM_CTL, ctl_val);
 >  }
 >  
-> +static void twl6030_power_off(void)
+> +static int spm_set_voltage_sel(struct regulator_dev *rdev, unsigned int selector)
 > +{
-> +	int err;
-> +	u8 val;
+> +	struct spm_driver_data *drv = rdev_get_drvdata(rdev);
 > +
-> +	err = twl_i2c_read_u8(TWL_MODULE_PM_MASTER, &val, TWL6030_PHOENIX_DEV_ON);
-> +	if (err)
-> +		return;
+> +	drv->volt_sel = selector;
 > +
-> +	val |= TWL6030_APP_DEVOFF | TWL6030_CON_DEVOFF | TWL6030_MOD_DEVOFF;
-> +	twl_i2c_write_u8(TWL_MODULE_PM_MASTER, val, TWL6030_PHOENIX_DEV_ON);
+> +	/* Always do the SAW register writes on the corresponding CPU */
+> +	return smp_call_function_single(drv->reg_cpu, drv->reg_data->set_vdd, drv, true);
 > +}
 > +
+> +static int spm_get_voltage_sel(struct regulator_dev *rdev)
+> +{
+> +	struct spm_driver_data *drv = rdev_get_drvdata(rdev);
 > +
->  static struct of_dev_auxdata twl_auxdata_lookup[] = {
->  	OF_DEV_AUXDATA("ti,twl4030-gpio", 0, "twl4030-gpio", NULL),
->  	{ /* sentinel */ },
-> @@ -852,6 +871,15 @@ twl_probe(struct i2c_client *client)
->  			goto free;
->  	}
->  
-> +	if (twl_class_is_6030()) {
-
-Is this check required?
-
-> +		if (of_device_is_system_power_controller(node)) {
-
-Shouldn't this cover it?
-
-> +			if (!pm_power_off)
-> +				pm_power_off = twl6030_power_off;
-> +			else
-> +				dev_warn(&client->dev, "Poweroff callback already assigned\n");
-
-Can this happen?  Why would anyone care if it did?
-
-> +		}
+> +	return drv->volt_sel;
+> +}
+> +
+> +static const struct regulator_ops spm_reg_ops = {
+> +	.set_voltage_sel	= spm_set_voltage_sel,
+> +	.get_voltage_sel	= spm_get_voltage_sel,
+> +	.list_voltage		= regulator_list_voltage_linear_range,
+> +	.set_voltage_time_sel	= regulator_set_voltage_time_sel,
+> +};
+> +
+> +static void smp_set_vdd_v1_1(void *data)
+> +{
+> +	struct spm_driver_data *drv = data;
+> +	unsigned int vctl, data0, data1, avs_ctl, sts;
+> +	unsigned int vlevel, volt_sel;
+> +	bool avs_enabled;
+> +
+> +	volt_sel = drv->volt_sel;
+> +	vlevel = volt_sel | 0x80; /* band */
+> +
+> +	avs_ctl = spm_register_read(drv, SPM_REG_AVS_CTL);
+> +	vctl = spm_register_read(drv, SPM_REG_VCTL);
+> +	data0 = spm_register_read(drv, SPM_REG_PMIC_DATA_0);
+> +	data1 = spm_register_read(drv, SPM_REG_PMIC_DATA_1);
+> +
+> +	avs_enabled = avs_ctl & SPM_1_1_AVS_CTL_AVS_ENABLED;
+> +
+> +	/* If AVS is enabled, switch it off during the voltage change */
+> +	if (avs_enabled) {
+> +		avs_ctl &= ~SPM_1_1_AVS_CTL_AVS_ENABLED;
+> +		spm_register_write(drv, SPM_REG_AVS_CTL, avs_ctl);
 > +	}
 > +
->  	status = of_platform_populate(node, NULL, twl_auxdata_lookup,
->  				      &client->dev);
->  
-> diff --git a/include/linux/mfd/twl.h b/include/linux/mfd/twl.h
-> index c062d91a67d92..85dc406173dba 100644
-> --- a/include/linux/mfd/twl.h
-> +++ b/include/linux/mfd/twl.h
-> @@ -461,6 +461,7 @@ static inline int twl6030_mmc_card_detect(struct device *dev, int slot)
->  
->  #define TWL4030_PM_MASTER_GLOBAL_TST		0xb6
->  
-> +#define TWL6030_PHOENIX_DEV_ON                  0x06
->  /*----------------------------------------------------------------------*/
->  
->  /* Power bus message definitions */
-> -- 
-> 2.39.2
-> 
+> +	/* Kick the state machine back to idle */
+> +	spm_register_write(drv, SPM_REG_RST, 1);
+> +
+> +	vctl = FIELD_SET(vctl, SPM_VCTL_VLVL, vlevel);
+> +	data0 = FIELD_SET(data0, SPM_PMIC_DATA_0_VLVL, vlevel);
+> +	data1 = FIELD_SET(data1, SPM_PMIC_DATA_1_MIN_VSEL, volt_sel);
+> +	data1 = FIELD_SET(data1, SPM_PMIC_DATA_1_MAX_VSEL, volt_sel);
+> +
+> +	spm_register_write(drv, SPM_REG_VCTL, vctl);
+> +	spm_register_write(drv, SPM_REG_PMIC_DATA_0, data0);
+> +	spm_register_write(drv, SPM_REG_PMIC_DATA_1, data1);
+> +
+> +	if (read_poll_timeout_atomic(spm_register_read,
+> +				     sts, sts == vlevel,
+> +				     1, 200, false,
+> +				     drv, SPM_REG_STS1)) {
+> +		dev_err_ratelimited(drv->dev, "timeout setting the voltage (%x %x)!\n", sts, vlevel);
+> +		goto enable_avs;
+> +	}
+> +
+> +	if (avs_enabled) {
+> +		unsigned int max_avs = volt_sel;
+> +		unsigned int min_avs = max(max_avs, 4U) - 4;
+> +
+> +		avs_ctl = FIELD_SET(avs_ctl, SPM_AVS_CTL_MIN_VLVL, min_avs);
+> +		avs_ctl = FIELD_SET(avs_ctl, SPM_AVS_CTL_MAX_VLVL, max_avs);
+> +		spm_register_write(drv, SPM_REG_AVS_CTL, avs_ctl);
+> +	}
+> +
+> +enable_avs:
+> +	if (avs_enabled) {
+> +		avs_ctl |= SPM_1_1_AVS_CTL_AVS_ENABLED;
+> +		spm_register_write(drv, SPM_REG_AVS_CTL, avs_ctl);
+> +	}
+> +}
+> +
+> +static int spm_get_cpu(struct device *dev)
+> +{
+> +	int cpu;
+> +	bool found;
+> +
+> +	for_each_possible_cpu(cpu) {
+> +		struct device_node *cpu_node, *saw_node;
+> +
+> +		cpu_node = of_cpu_device_node_get(cpu);
+> +		if (!cpu_node)
+> +			continue;
+> +
+> +		saw_node = of_parse_phandle(cpu_node, "qcom,saw", 0);
+> +		found = (saw_node == dev->of_node);
+> +		of_node_put(saw_node);
+> +		of_node_put(cpu_node);
+> +
+> +		if (found)
+> +			return cpu;
+> +	}
+> +
+> +	/* L2 SPM is not bound to any CPU, tie it to CPU0 */
 
--- 
-Lee Jones [李琼斯]
+Is this necessary? I would kind of expect that it's only important that
+this doesn't happen in parallel on multiple CPUs. The lock in the
+regulator core should already ensure that, though. It's somewhat
+expensive to schedule on other cores, especially if they are currently
+idle and power collapsed.
+
+I don't have too much experience with these really old platforms but at
+least on MSM8916 I can't think of any reason that would make the CPU0
+more special for the L2 cache than the others (MSM8916 has the regulator
+stuff only in the L2 SAW since there is just one CPU power rail).
+
+Thanks,
+Stephan
 
