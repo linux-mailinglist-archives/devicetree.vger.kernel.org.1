@@ -1,303 +1,168 @@
-Return-Path: <devicetree+bounces-22879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22880-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0560B809186
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 20:35:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABCFC8091AE
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 20:45:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8A2BBB20B8D
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 19:35:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DBA851C20433
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 19:45:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFFA542A89;
-	Thu,  7 Dec 2023 19:35:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E9484F89A;
+	Thu,  7 Dec 2023 19:45:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="m3ApS3NN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mwtQ2fJC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2052.outbound.protection.outlook.com [40.107.104.52])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 048E310E3;
-	Thu,  7 Dec 2023 11:35:41 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gZ5xrWo8Ziy4xNaBrJ0WMycyKU8P2pshvJHTX7fUzxT0TOBNmkarZrcx/PE1GlVn0F1K5Zb/SjZH44sqeUapc73ED4veOHjI8e6Cbluv0TjlMijbi/wruzG8lKahV4U1q583jFU6SZnPaGjJpinFq4+teR3WaWIZ52qXIo0tJs6/RdVgntyvuAXdNTxsXttXAq4r4OTELbuekwM/kjFYZvuPQQwPRp1iKU6McdjTmc5hYkVe2SqIYpAnJWYJv7Y3VDFGNNgdqnaWxNNB/itH96VERYvQEd9NmmQFcFvKQek1Ok7uwRMJulThAEcCvsukEP+8fxO0QIylYtHMX49Tfw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3w0xFwXv5Kh/M+ZbnE7nYkzJC8jEbr5oxENekrjRIHA=;
- b=AcdMDOChK3AIFAUm6uNnLNcHsnhqnyOz0DNEN20CWg9i46i2s0O++8Saquof7svvscHKkfYViGnnsfpUHT8JG9J190A+Hwj/6YpBf8rZfVOLLkG1M8Pd6ilp3eTVf6XOG82ConHpcR8a7Qc5LAkHb2Vp8rR4CbxRNBzduMieZ/sE9ML5zIVLfAt2JuxABHwDGeY/fNUvcZic+QgyQmFY34wVsXi+3sMSmyI9Y7QGm/PUfCSFDZgHg7ROkgwtpF6mwiEimYI4ZcaxdpbP8lJfFh0hSAkRetPJbPhy4uPswi3jDM3XinpSvDK5VDOjMdQFDHC/sYP3SEnCXLdDOUnM1Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3w0xFwXv5Kh/M+ZbnE7nYkzJC8jEbr5oxENekrjRIHA=;
- b=m3ApS3NNardYmknrQ4IOwolU9SOtgC5Da7CyRrSGVZ4BFP3jZaYtnIX+X0EtULzvTdl9KN3Sio4y77ECccQpgXKfGnLugfNhy/ez1T0n6gQIQI+s2vbaWfpZVA+HcX3dlpSbADm91qa7X/uRTjZZXitNYE/vQcPdPXa67PfsULo=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM6PR04MB4838.eurprd04.prod.outlook.com (2603:10a6:20b:4::16)
- by DU0PR04MB9635.eurprd04.prod.outlook.com (2603:10a6:10:31f::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.27; Thu, 7 Dec
- 2023 19:35:38 +0000
-Received: from AM6PR04MB4838.eurprd04.prod.outlook.com
- ([fe80::95f5:5118:258f:ee40]) by AM6PR04MB4838.eurprd04.prod.outlook.com
- ([fe80::95f5:5118:258f:ee40%6]) with mapi id 15.20.7068.026; Thu, 7 Dec 2023
- 19:35:38 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: helgaas@kernel.org,
-	manivannan.sadhasivam@linaro.org
-Cc: Frank.li@nxp.com,
-	bhelgaas@google.com,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	festevam@gmail.com,
-	hongxing.zhu@nxp.com,
-	imx@lists.linux.dev,
-	kernel@pengutronix.de,
-	krzysztof.kozlowski+dt@linaro.org,
-	kw@linux.com,
-	l.stach@pengutronix.de,
-	linux-arm-kernel@lists.infradead.org,
-	linux-imx@nxp.com,
-	linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	lpieralisi@kernel.org,
-	robh@kernel.org,
-	s.hauer@pengutronix.de,
-	shawnguo@kernel.org
-Subject: [PATCH v2 9/9] PCI: imx6: Add iMX95 PCIe support
-Date: Thu,  7 Dec 2023 14:34:30 -0500
-Message-Id: <20231207193430.431994-10-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231207193430.431994-1-Frank.Li@nxp.com>
-References: <20231207193430.431994-1-Frank.Li@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR03CA0348.namprd03.prod.outlook.com
- (2603:10b6:a03:39c::23) To AM6PR04MB4838.eurprd04.prod.outlook.com
- (2603:10a6:20b:4::16)
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77C971708;
+	Thu,  7 Dec 2023 11:44:58 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-33339d843b9so1390341f8f.0;
+        Thu, 07 Dec 2023 11:44:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701978296; x=1702583096; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ODAetODriyWLBfgRxIkO8WbZl5Xnc+DQSeFmQhVOOfE=;
+        b=mwtQ2fJCGaOBUihlXTy6Mm9J2opYFcAi0j5wpep1PNZfQlSLo3K5kCm4WL3rknrnty
+         ZkYlHJ7okryA5RTyletWyNN+FF3EysLKjeFzHWWt1jLk1MySRLH/ikKTEkxJf1dDCh8J
+         3z/OeaUPVomLgcYMeqC9l+JiGM3dAIqvLvef3rfF4ZlpiotD+3aNjaTsByQFYowBQr+Q
+         tFWjtW9ijbmSNvsdTpU47hjVhRGzSg7lu3WiO87Dt+VRyNtoZ2fSiScq88Lm2mcNVrUN
+         7mCfubkK2XI3t9k/Vk+OefjSjJpzJor/EzX2fCkf1K9SapbkflbH/BACGfiy7yQTGiCt
+         2IIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701978296; x=1702583096;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ODAetODriyWLBfgRxIkO8WbZl5Xnc+DQSeFmQhVOOfE=;
+        b=xIg4SiydDA/yJTlYmd87M3qeuN+1x3L/SZaauiO6pE9FqVI27sAeRCE06oQiVfc5fV
+         V2zCtd8pQ3HQWBrC3c7HSwzbQxe8krX8usdglOMrqJKKV2VmA+R+YOBsmLyfWQR15gKj
+         fkZoIa0YNULatPnn1bSDpWa47qzszV1Xd0wkLgsjjvrxFZzMxHBI7JjkkuSmGMv9+rB2
+         0Jx0Sy5a+PNQx2/4w13E52425JEOalK/O7VUohxUHnd4rPFoPqZVH40Tx2ayn53Ru69J
+         UULqI1YYn7PerFKAyQYlJtUNN8ILZh84adT+X/rdG3PLu72miAnOyXqR9Guma22tLm1r
+         WA8w==
+X-Gm-Message-State: AOJu0Yzf9/FCY5C9nDsp3QjGi4R7EI0kqo5HzdkobE7IhSpFHMJy95A+
+	H78fSHMCEmUZBV2Bf/E8tFBemffDQ19K1w==
+X-Google-Smtp-Source: AGHT+IEY2oIagu+Gj4Fc690185mHBpl72OF3xWeYIgdW9IRLOipVSo3AgwWTxX+yW8CdKMy0EFx3gA==
+X-Received: by 2002:adf:ed06:0:b0:333:380f:2d2d with SMTP id a6-20020adfed06000000b00333380f2d2dmr2203658wro.92.1701978296277;
+        Thu, 07 Dec 2023 11:44:56 -0800 (PST)
+Received: from [127.0.1.1] (2a02-8389-41cf-e200-1de9-f6cf-eef8-174f.cable.dynamic.v6.surfer.at. [2a02:8389:41cf:e200:1de9:f6cf:eef8:174f])
+        by smtp.gmail.com with ESMTPSA id rr17-20020a170907899100b00a1d457954d6sm127364ejc.75.2023.12.07.11.44.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Dec 2023 11:44:55 -0800 (PST)
+From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Subject: [PATCH v3 0/5] hwmon: Add support for Amphenol ChipCap 2
+Date: Thu, 07 Dec 2023 20:44:50 +0100
+Message-Id: <20231020-topic-chipcap2-v3-0-5b3bb50a5f0b@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM6PR04MB4838:EE_|DU0PR04MB9635:EE_
-X-MS-Office365-Filtering-Correlation-Id: a3f11c98-16a9-403a-c433-08dbf75bb0b7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	BQ4kC5XRf/tJUL/+BnsGdBmRU6jtePjV6SLzHm+iTl4bibz7C8cgfawxYMuV+3EOzR+kcdqtZTs5Qv87zdXzwEI1N4OsOj1UG24m7I3XhNvSCk02r8HSZPW2EMepFZelxWK9ipaJGqPhbhJ+6NZoO19hFQZA79JW9UaDA5hTP9CuYVSxP2804jrTChY7tfF7zmj9Vsg9vjDyWgHx/gNo4rxJRvN2Yp+ZUJw3cZhypdqGyGxf7GuchkPHKF9KCerN3MGOV2wu0mDZ7tQiiWxh0BAo0XS3XEmunsyhJVF9w/7MM7ERzPrSi/EdH4rzEVxlMI7D1uPAZCqHwYVT/JqakdplbwILkGE1fC8m7WZQ9DKA0Pj+Gk97oG6YYljC2CsqoKRc2ID0vbVM3zI4vGt0wboIvBfgVSu5tlmI+X+1fyUDSd9uGPtYowDhqGFkT+tLJ2p/i43UcHju5RADMCF7JBk2ofr7PF9hlldIWfBbdaVX1F9Nurq/BHf3gFf0fTkTfoCzvEdNpZkihDbicrPnOtd8rWJVfe+nb5VRI87Pt6yLVg1d0jD6yfy0uv9YA0Dux6wrsHR+gmnATtqXc9ZJ6v9FJ32TmYZLMUHa57MgPygDdDgPJU4tkJGSUtNc0oRp
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4838.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(376002)(346002)(136003)(39860400002)(366004)(230922051799003)(186009)(64100799003)(451199024)(1800799012)(52116002)(6512007)(38100700002)(66556008)(66476007)(66946007)(316002)(6666004)(6486002)(1076003)(2616005)(26005)(6506007)(83380400001)(478600001)(8936002)(8676002)(4326008)(2906002)(7416002)(5660300002)(86362001)(41300700001)(36756003)(38350700005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?Z50KeWAXX/MnVvabhbxc5DVaxEqUz3qtC4xNu8CnpxSvRx/Jzk7N4lbZP7DA?=
- =?us-ascii?Q?bzpesEHfz31Z8HvqFT2BCKaJmnZ01DeSTNLOYozRCqV4XnL9FwAfPpTo6kbb?=
- =?us-ascii?Q?e9fBElqbyqmtI7I9qBV8WLNdHe4LIe55TctajxVa0OBN6+++24HSSO8fWvaz?=
- =?us-ascii?Q?hDVEtm1VJiyIULaIiWIK9jm+nYFXSBtBT99PZKylb/SA65FhJk96EC4VtgL4?=
- =?us-ascii?Q?kVVuIn/ZmqzTPCvVIqVG38k3hscFw6RRr6Ni99/nHU1WXs2o+m6kyp5HJbme?=
- =?us-ascii?Q?qP5VQtwmNTI0+kXWbt5MsPBkAan8iXRM67pnqO5C3vuxi/gE/AEtSY8jbBvE?=
- =?us-ascii?Q?VHcxY8FVHUX/p/CcdzUbVM5cXjXLm19IwNtEjc9lCvPnmz/+FZVHDo8lDfGL?=
- =?us-ascii?Q?2Lnq5LyutDmWI8NsCqt+XH3zsGlWNCSpiI2uXTBCDmK0EKNRoLSb9bY8fT6I?=
- =?us-ascii?Q?6MP1+jYj85Ji1+e0RGWub+NbCvHZ18515TJouiV+LrBIkQ3E5QfgrcX8SzH5?=
- =?us-ascii?Q?mC5jRTQUw++RCKtcBnKtxOyPJP93szJXkgb/3TDCSqX5C4/y1JaC9O6DqR84?=
- =?us-ascii?Q?+AzMF4waoaRMIZ3uENN3qRiK8ojRda1/RWvTJKcnB0BhoPmMn+mBbajE865e?=
- =?us-ascii?Q?dOGzCiCVIZROJ02S+NyWZry8hSetroIAbNno9kEnizU4ftUXsPpXWHRpJCzy?=
- =?us-ascii?Q?+EM21xmmGLCN3/M2yS6McOD7rlU/0l4qlZs14bvHyxsqYrAKfAE29TRgxxNp?=
- =?us-ascii?Q?R1PLzXHIrH5PgCcjdSQl+9jSCk/rNKkiFv/2mFgBOYoYwMcaBcrLxFt9NNMh?=
- =?us-ascii?Q?U7Pf2klsDOv7RPr5MZASMT88k2dlPX4m/3oVDnuResQcM9SvWvS9xfT07Wyz?=
- =?us-ascii?Q?eFS9BXW0qQlhaRmeYGoPsPhB0Fy6180PZjv+z3subwHUq5CLumySMjszAz0I?=
- =?us-ascii?Q?RpxSJ7hop9p5rbtW/AVsKL+IVaAoZNRlDzTIVIBMc+XXNph6qlG6fsJ1ARW2?=
- =?us-ascii?Q?6bi6Ku6OT2gjYRk8Wn8ow6xoLbenx2acBS2+yi84S6fVA3cZSz5Nl8XOO6vV?=
- =?us-ascii?Q?oJtYjbJNetbKdRMpduZdUL9FjNBcr+D263pRP/kEkk4MJfR1uEUZTfjis0fT?=
- =?us-ascii?Q?taOowNahOHm53al9WxepFDhloBMrI0pKFi0H84bQ9ruMsjrkGFWuBVfKGp7q?=
- =?us-ascii?Q?HmGuL2Y7Ug9qMnykjAOLyAqkH3nGoSSrF6wougGD1d8NjA59zwv6ahJLl2Vt?=
- =?us-ascii?Q?sSOh8PDJimS0iLjHG5ZkiPZxp2ttqJz++TZBkfaidOnLSfYgK+26nETwex3U?=
- =?us-ascii?Q?cTTYXn6+OFW8k0JxCSGcDGytZPjI4p5vdHkLOTHIruYRTXJfc8exZhyv/3DE?=
- =?us-ascii?Q?RXaaQSx9zxRXbnR4yKJu1E/9LQawKDQOBgOZ17V0u5ATFhmgTM+wUxOyzahk?=
- =?us-ascii?Q?u7802zWCMjW73Qw60HlHv/fdzPACrIKECPWq72nbAnYdqvwbl45aXBLqLyaj?=
- =?us-ascii?Q?B4fv+IrMgaQVzGieDs5avDAg1iRnkXxuhuR5GOGNGl0hZ45F6NjqVMdf6YCU?=
- =?us-ascii?Q?mCJLCZd9mJaLe+JWIBA=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a3f11c98-16a9-403a-c433-08dbf75bb0b7
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4838.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Dec 2023 19:35:38.4565
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: CWW7inJO+s28Ekan1E1hmJC5o5WqSKgJpBB7OVUerhTSih3hGUJAi/HWTVm248thmAdOUCceGGCPt6bUKIm5sQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR04MB9635
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALIgcmUC/32NzQ6CMBAGX4X0bE27/AiefA/joWwX2ERo0xKiI
+ by7hZMXPc5u5ptVRApMUVyzVQRaOLKbEuSnTOBgpp4k28QCFORagZKz84wSB/ZoPEgCWzd1WeQ
+ KQSSpNZFkG8yEw66NJs4U9ocP1PHrKN0fiQeOswvvI7zo/fqzsWippKovBNoWrSZ760fDzzO6U
+ exTC/zXIeldiTmUTVV1tv3Wt237AKficcQEAQAA
+To: Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>, 
+ Guenter Roeck <linux@roeck-us.net>, Jonathan Corbet <corbet@lwn.net>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org, 
+ linux-doc@vger.kernel.org, Javier Carrasco <javier.carrasco.cruz@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1701978294; l=3636;
+ i=javier.carrasco.cruz@gmail.com; s=20230509; h=from:subject:message-id;
+ bh=rzfCYZubHRyLXBqxD4RJvarNpshkMo3wb+FzrsdmjT0=;
+ b=d1MiuSSrcZZjuwogYhweoMFAajaYPRinrkRv5R2LXalXOEGN9roQFIwGNJ73610Lg3zosMPC+
+ vS9+NRmwwZdCwTgVsmZFQyu+uSTMlGEG4b/a2QqGWmWRcuD0mArFRK3
+X-Developer-Key: i=javier.carrasco.cruz@gmail.com; a=ed25519;
+ pk=tIGJV7M+tCizagNijF0eGMBGcOsPD+0cWGfKjl4h6K8=
 
-Add iMX95 PCIe basic root complex function support.
+This series adds support and documentation for the Amphenol ChipCap 2
+humidity and temperature sensor in its digital version.
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
+This I2C device provides 14-bit humidity and temperature measurements as
+well as low (minimum) and high (maximum) humidity alarms. A ready signal
+is also available to reduce delays while fetching data.
+
+The proposed driver implements the logic to perform measurements with
+and without the ready signal, EEPROM configuration and alarm signaling.
+
+The features this driver does not support (I2C address and command
+window length modification) have been documented in the "Known Issues"
+section.
+
+The complete supported functionality has been tested with a CC2D33S
+sensor (a 'sleep' device) connected to a Raspberry Pi Zero 2 w.
+Different device tree node definitions (with and without regulator,
+ready and/or alarm signals) have been positively tested.
+
+The non-sleep measurement mechanism has been inferred from the first
+measurement, which is carried out automatically and it is common for all
+part numbers. Any testing or improvements with a non-sleep device is
+more than welcome.
+
+The tests have also covered the properties added to the hwmon core to
+account for minimum and maximum humidity alarms.
+
+Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
 ---
- drivers/pci/controller/dwc/pci-imx6.c | 85 +++++++++++++++++++++++++--
- 1 file changed, 80 insertions(+), 5 deletions(-)
+Changes in v3:
+- ABI: sysfs-class-hwmon: documented humidity min/max alarms.
+- General: reorder patches (bindings first to remove checkpatch
+  warnings).
+- General: remove part number wildcards and use real part numbers.
+- chipcap2.c: improve error path in probe function.
+- chipcap2.c: fix error handling if regulator could not be registered.
+- chipcap2.c: use absolute values for hysteresis (for both ABI
+  compatibility and simplicity).
+- chipcap2.c: minor code-style fixes and variable renaming.
+- Link to v2: https://lore.kernel.org/r/20231020-topic-chipcap2-v2-0-f5c325966fdb@gmail.com
 
-diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
-index 4e55b629d4efb..670d8d410febf 100644
---- a/drivers/pci/controller/dwc/pci-imx6.c
-+++ b/drivers/pci/controller/dwc/pci-imx6.c
-@@ -43,6 +43,25 @@
- #define IMX8MQ_GPR12_PCIE2_CTRL_DEVICE_TYPE	GENMASK(11, 8)
- #define IMX8MQ_PCIE2_BASE_ADDR			0x33c00000
- 
-+#define IMX95_PCIE_PHY_GEN_CTRL			0x0
-+#define IMX95_PCIE_REF_USE_PAD			BIT(17)
-+
-+#define IMX95_PCIE_PHY_MPLLA_CTRL		0x10
-+#define IMX95_PCIE_PHY_MPLL_STATE		BIT(30)
-+
-+#define IMX95_PCIE_SS_RW_REG_0			0xf0
-+#define IMX95_PCIE_REF_CLKEN			BIT(23)
-+#define IMX95_PCIE_PHY_CR_PARA_SEL		BIT(9)
-+
-+#define IMX95_PE0_GEN_CTRL_1			0x1050
-+#define IMX95_PCIE_DEVICE_TYPE			GENMASK(3, 0)
-+
-+#define IMX95_PE0_GEN_CTRL_3			0x1058
-+#define IMX95_PCIE_LTSSM_EN			BIT(0)
-+
-+#define IMX95_PE0_PM_STS			0x1064
-+#define IMX95_PCIE_PM_LINKST_IN_L2		BIT(14)
-+
- #define to_imx6_pcie(x)	dev_get_drvdata((x)->dev)
- 
- enum imx6_pcie_variants {
-@@ -53,6 +72,7 @@ enum imx6_pcie_variants {
- 	IMX8MQ,
- 	IMX8MM,
- 	IMX8MP,
-+	IMX95,
- 	IMX8MQ_EP,
- 	IMX8MM_EP,
- 	IMX8MP_EP,
-@@ -79,6 +99,7 @@ struct imx6_pcie_drvdata {
- 	u32 flags;
- 	int dbi_length;
- 	const char *gpr;
-+	u32 pf_lut_offset;
- 	const u32 ltssm_off;
- 	const u32 ltssm_mask;
- 	const u32 mode_off[IMX6_PCIE_MAX_INSTANCES];
-@@ -182,6 +203,24 @@ static unsigned int imx6_pcie_grp_offset(const struct imx6_pcie *imx6_pcie)
- 	return imx6_pcie->controller_id == 1 ? IOMUXC_GPR16 : IOMUXC_GPR14;
- }
- 
-+static int imx95_pcie_init_phy(struct imx6_pcie *imx6_pcie)
-+{
-+	regmap_update_bits(imx6_pcie->iomuxc_gpr,
-+			IMX95_PCIE_SS_RW_REG_0,
-+			IMX95_PCIE_PHY_CR_PARA_SEL,
-+			IMX95_PCIE_PHY_CR_PARA_SEL);
-+
-+	regmap_update_bits(imx6_pcie->iomuxc_gpr,
-+			   IMX95_PCIE_PHY_GEN_CTRL,
-+			   IMX95_PCIE_REF_USE_PAD, 0);
-+	regmap_update_bits(imx6_pcie->iomuxc_gpr,
-+			   IMX95_PCIE_SS_RW_REG_0,
-+			   IMX95_PCIE_REF_CLKEN,
-+			   IMX95_PCIE_REF_CLKEN);
-+
-+	return 0;
-+}
-+
- static void imx6_pcie_configure_type(struct imx6_pcie *imx6_pcie)
- {
- 	const struct imx6_pcie_drvdata *drvdata = imx6_pcie->drvdata;
-@@ -589,6 +628,7 @@ static int imx6_pcie_enable_ref_clk(struct imx6_pcie *imx6_pcie)
- 				   IMX6Q_GPR1_PCIE_REF_CLK_EN, 1 << 16);
- 		break;
- 	case IMX7D:
-+	case IMX95:
- 		break;
- 	case IMX8MM:
- 	case IMX8MM_EP:
-@@ -732,10 +772,19 @@ static int imx6_pcie_deassert_core_reset(struct imx6_pcie *imx6_pcie)
- {
- 	struct dw_pcie *pci = imx6_pcie->pci;
- 	struct device *dev = pci->dev;
-+	u32 val;
- 
- 	reset_control_deassert(imx6_pcie->pciephy_reset);
- 
- 	switch (imx6_pcie->drvdata->variant) {
-+	case IMX95:
-+		/* Polling the MPLL_STATE */
-+		if (regmap_read_poll_timeout(imx6_pcie->iomuxc_gpr,
-+					IMX95_PCIE_PHY_MPLLA_CTRL, val,
-+					val & IMX95_PCIE_PHY_MPLL_STATE,
-+					10, 10000))
-+			dev_err(dev, "PCIe PLL lock timeout\n");
-+		break;
- 	case IMX7D:
- 		/* Workaround for ERR010728, failure of PCI-e PLL VCO to
- 		 * oscillate, especially when cold.  This turns off "Duty-cycle
-@@ -1343,12 +1392,27 @@ static int imx6_pcie_probe(struct platform_device *pdev)
- 		return PTR_ERR(imx6_pcie->turnoff_reset);
- 	}
- 
-+	if (imx6_pcie->drvdata->gpr) {
- 	/* Grab GPR config register range */
--	imx6_pcie->iomuxc_gpr =
--		 syscon_regmap_lookup_by_compatible(imx6_pcie->drvdata->gpr);
--	if (IS_ERR(imx6_pcie->iomuxc_gpr)) {
--		dev_err(dev, "unable to find iomuxc registers\n");
--		return PTR_ERR(imx6_pcie->iomuxc_gpr);
-+		imx6_pcie->iomuxc_gpr =
-+			 syscon_regmap_lookup_by_compatible(imx6_pcie->drvdata->gpr);
-+		if (IS_ERR(imx6_pcie->iomuxc_gpr))
-+			return dev_err_probe(dev, PTR_ERR(imx6_pcie->iomuxc_gpr),
-+					     "unable to find iomuxc registers\n");
-+	}
-+
-+	if (imx6_pcie->drvdata->pf_lut_offset) {
-+		void __iomem *off = pci->dbi_base + imx6_pcie->drvdata->pf_lut_offset;
-+		static struct regmap_config regmap_config = {
-+			.reg_bits = 32,
-+			.val_bits = 32,
-+			.reg_stride = 4,
-+		};
-+
-+		imx6_pcie->iomuxc_gpr = devm_regmap_init_mmio(dev, off, &regmap_config);
-+		if (IS_ERR(imx6_pcie->iomuxc_gpr))
-+			return dev_err_probe(dev, PTR_ERR(imx6_pcie->iomuxc_gpr),
-+					     "unable to find iomuxc registers\n");
- 	}
- 
- 	/* Grab PCIe PHY Tx Settings */
-@@ -1506,6 +1570,16 @@ static const struct imx6_pcie_drvdata drvdata[] = {
- 		.mode_off[0] = IOMUXC_GPR12,
- 		.mode_mask[0] = IMX6Q_GPR12_DEVICE_TYPE,
- 	},
-+	[IMX95] = {
-+		.variant = IMX8MP,
-+		.flags = IMX6_PCIE_FLAG_HAS_CLK_AUX,
-+		.pf_lut_offset = 0x40000,
-+		.ltssm_off = IMX95_PE0_GEN_CTRL_3,
-+		.ltssm_mask = IMX95_PCIE_LTSSM_EN,
-+		.mode_off[0]  = IMX95_PE0_GEN_CTRL_1,
-+		.mode_mask[0] = IMX95_PCIE_DEVICE_TYPE,
-+		.init_phy = imx95_pcie_init_phy,
-+	},
- 	[IMX8MQ_EP] = {
- 		.variant = IMX8MQ_EP,
- 		.flags = IMX6_PCIE_FLAG_HAS_CLK_AUX |
-@@ -1546,6 +1620,7 @@ static const struct of_device_id imx6_pcie_of_match[] = {
- 	{ .compatible = "fsl,imx8mq-pcie", .data = &drvdata[IMX8MQ], },
- 	{ .compatible = "fsl,imx8mm-pcie", .data = &drvdata[IMX8MM], },
- 	{ .compatible = "fsl,imx8mp-pcie", .data = &drvdata[IMX8MP], },
-+	{ .compatible = "fsl,imx95-pcie", .data = &drvdata[IMX95], },
- 	{ .compatible = "fsl,imx8mq-pcie-ep", .data = &drvdata[IMX8MQ_EP], },
- 	{ .compatible = "fsl,imx8mm-pcie-ep", .data = &drvdata[IMX8MM_EP], },
- 	{ .compatible = "fsl,imx8mp-pcie-ep", .data = &drvdata[IMX8MP_EP], },
+Changes in v2:
+- vendor-prefixes: full company name in the vendor description (Krzystof
+  Kozlowski)
+- chipcap2.c: proper i2c_device_id table, coding style fixes, cleaner
+  error path in the probe function (Krzystof Kozlowski)
+- dt-bindings: per-item description and lowercase names (Krzystof
+  Kozlowski)
+- MAINTAINERS: fix manufacturer name (Krzystof Kozlowski)
+- Link to v1: https://lore.kernel.org/r/20231020-topic-chipcap2-v1-0-087e21d4b1ed@gmail.com
+
+---
+Javier Carrasco (5):
+      dt-bindings: vendor-prefixes: add Amphenol
+      hwmon: (core) Add support for humidity min/max alarm
+      ABI: sysfs-class-hwmon: add descriptions for humidity min/max alarms
+      dt-bindings: hwmon: Add Amphenol ChipCap 2
+      hwmon: Add support for Amphenol ChipCap 2
+
+ Documentation/ABI/testing/sysfs-class-hwmon        |   18 +
+ .../bindings/hwmon/amphenol,chipcap2.yaml          |   74 ++
+ .../devicetree/bindings/vendor-prefixes.yaml       |    2 +
+ Documentation/hwmon/chipcap2.rst                   |   73 ++
+ Documentation/hwmon/index.rst                      |    1 +
+ MAINTAINERS                                        |    8 +
+ drivers/hwmon/Kconfig                              |   10 +
+ drivers/hwmon/Makefile                             |    1 +
+ drivers/hwmon/chipcap2.c                           | 1040 ++++++++++++++++++++
+ drivers/hwmon/hwmon.c                              |    2 +
+ include/linux/hwmon.h                              |    4 +
+ 11 files changed, 1233 insertions(+)
+---
+base-commit: 33cc938e65a98f1d29d0a18403dbbee050dcad9a
+change-id: 20231020-topic-chipcap2-e2d8985430c2
+
+Best regards,
 -- 
-2.34.1
+Javier Carrasco <javier.carrasco.cruz@gmail.com>
 
 
