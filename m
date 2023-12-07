@@ -1,106 +1,150 @@
-Return-Path: <devicetree+bounces-22554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C306080824A
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 09:00:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EEF9808258
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 09:01:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 021981C21355
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 08:00:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AF2331F218AA
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 08:01:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 306441DFEE;
-	Thu,  7 Dec 2023 08:00:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFB2B1DFEF;
+	Thu,  7 Dec 2023 08:01:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ilPCaLe3"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="aSV3DkBh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41CEBB2;
-	Thu,  7 Dec 2023 00:00:11 -0800 (PST)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3B76Igpp028697;
-	Thu, 7 Dec 2023 08:00:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=lGjg+eMB7ihoQUbzm2j98upCYMWjjJlXLBUfI58OJP4=;
- b=ilPCaLe3G8fTRmgELV/+eppm5dcISeKA12S/8uAm3k0rRSOYmjWaPSlEKnEv1hSHJQ7T
- jU3iBnZ+PYlj9wjJs0hsh9YMdQILLJ2QnR/BMrL2HoHlaCsQ35vWZe8MJ1xYQxTxdihF
- KNpYGmvvaudPZnaFhlKW5vvUyHJnW1D8dUMIgtsiyx08GKEvrn1JJrHObmUOPlREZk9y
- hCP8fEOopB2HL47rn3Z0T9mU0mgz6aA0ytyA9LnGMf6fPn6AUUghxPjfL4QBO4BScQVV
- ZmFLEklgnsoAkKbMY0BV4NGc6YJPBxtEFiEY0l4adrCTLP8/D20A28s+ZGJQwWdz3tQ3 Hw== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3utuhfa09x-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 07 Dec 2023 08:00:08 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3B7807Ln005793
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 7 Dec 2023 08:00:07 GMT
-Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 7 Dec
- 2023 00:00:04 -0800
-Message-ID: <775026a4-82d1-4369-9d22-c33a031a8f70@quicinc.com>
-Date: Thu, 7 Dec 2023 15:59:59 +0800
+Received: from m12.mail.163.com (m12.mail.163.com [220.181.12.216])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 679CA10CE;
+	Thu,  7 Dec 2023 00:01:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=rcRLl
+	amB9MT/I4Ai66VgiB8ZFN6GxQyGTKvo6+ftATo=; b=aSV3DkBhflEyKZDhmi0Dy
+	tQ3tV89nyXiirS4zUZCuNBOFKnCMQTDfOg12fs9EYWCnLGlQqlokyYBorEh5cN6L
+	TM94wutS7ArfnIsfmgAFteIJe3i4aoCTIGhiT+Q5Dt1kD1dLU5yXtrFCyylaSRPF
+	/s+dPdn8+k4FMFycMaD41M=
+Received: from ProDesk.. (unknown [58.22.7.114])
+	by zwqz-smtp-mta-g4-0 (Coremail) with SMTP id _____wDHnz+Fe3FlfTmcEw--.45757S2;
+	Thu, 07 Dec 2023 16:00:09 +0800 (CST)
+From: Andy Yan <andyshrk@163.com>
+To: heiko@sntech.de
+Cc: hjc@rock-chips.com,
+	dri-devel@lists.freedesktop.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	robh+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	sebastian.reichel@collabora.com,
+	kever.yang@rock-chips.com,
+	chris.obbard@collabora.com,
+	Andy Yan <andy.yan@rock-chips.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>
+Subject: [PATCH v4 03/17] drm/rockchip: vop2: set half_block_en bit in all mode
+Date: Thu,  7 Dec 2023 16:00:03 +0800
+Message-Id: <20231207080003.651992-1-andyshrk@163.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20231207075906.651771-1-andyshrk@163.com>
+References: <20231207075906.651771-1-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 0/2] pinctl: qcom: sm4450: Add SM4450 pinctrl driver
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <linus.walleij@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20231206020840.33228-1-quic_tengfan@quicinc.com>
- <957060a5-1d99-4dee-a83d-004622e79262@linaro.org>
-From: Tengfei Fan <quic_tengfan@quicinc.com>
-In-Reply-To: <957060a5-1d99-4dee-a83d-004622e79262@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: GYy-VF-8Jx1yM5filw1g7EFapqgOzPYd
-X-Proofpoint-GUID: GYy-VF-8Jx1yM5filw1g7EFapqgOzPYd
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-07_06,2023-12-06_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1015
- priorityscore=1501 bulkscore=0 impostorscore=0 adultscore=0
- lowpriorityscore=0 mlxscore=0 mlxlogscore=486 phishscore=0 suspectscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311290000 definitions=main-2312070063
+X-CM-TRANSID:_____wDHnz+Fe3FlfTmcEw--.45757S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxXF47Jry8CFWrGw4Utr47urg_yoW5uFW7pr
+	47ArWDKr4Dtr1jgFZ7JrZ8ZF4akws7Ka17XrZ8KwnYqrW3K3yDW3WkKr9rArZ8tryfuFW8
+	XFn3ArW7urWIyF7anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jSa0PUUUUU=
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbBEA0-XmVOA0WjhgAAs0
 
+From: Andy Yan <andy.yan@rock-chips.com>
 
+At first we thought the half_block_en bit in AFBCD_CTRL register
+only work in afbc mode. But the fact is that it control the line
+buffer in all mode(afbc/tile/linear), so we need configure it in
+all case.
 
-在 12/6/2023 4:59 PM, Krzysztof Kozlowski 写道:
-> On 06/12/2023 03:08, Tengfei Fan wrote:
->> Add SM4450 pinctrl driver for support enable uart console.
->>
->> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
->> ---
->> v5 -> v6:
->>    - squash the fixups into the newly added driver
->>    - drop reviewed-by due to update patch as new comments
-> 
-> Really? Why? What exactly changed in the patch you dropped my review?
-> 
-> Best regards,
-> Krzysztof
-> 
-There was a wrong understanging of reviewed-by tag before. reviewed-by 
-tag will be added again in the next version patch series.
+As the cluster windows of rk3568 only supports afbc format
+so is therefore not affected.
 
+Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+Reviewed-by: Sascha Hauer <s.hauer@pengutronix.de>
+---
 
+(no changes since v1)
+
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 25 ++++++++++++++------
+ 1 file changed, 18 insertions(+), 7 deletions(-)
+
+diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+index 57784d0a22a6..639dfebc6bd1 100644
+--- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
++++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+@@ -521,6 +521,18 @@ static bool rockchip_vop2_mod_supported(struct drm_plane *plane, u32 format,
+ 	return vop2_convert_afbc_format(format) >= 0;
+ }
+ 
++/*
++ * 0: Full mode, 16 lines for one tail
++ * 1: half block mode, 8 lines one tail
++ */
++static bool vop2_half_block_enable(struct drm_plane_state *pstate)
++{
++	if (pstate->rotation & (DRM_MODE_ROTATE_270 | DRM_MODE_ROTATE_90))
++		return false;
++	else
++		return true;
++}
++
+ static u32 vop2_afbc_transform_offset(struct drm_plane_state *pstate,
+ 				      bool afbc_half_block_en)
+ {
+@@ -1144,6 +1156,7 @@ static void vop2_plane_atomic_update(struct drm_plane *plane,
+ 	bool rotate_90 = pstate->rotation & DRM_MODE_ROTATE_90;
+ 	struct rockchip_gem_object *rk_obj;
+ 	unsigned long offset;
++	bool half_block_en;
+ 	bool afbc_en;
+ 	dma_addr_t yrgb_mst;
+ 	dma_addr_t uv_mst;
+@@ -1236,6 +1249,7 @@ static void vop2_plane_atomic_update(struct drm_plane *plane,
+ 	dsp_info = (dsp_h - 1) << 16 | ((dsp_w - 1) & 0xffff);
+ 
+ 	format = vop2_convert_format(fb->format->format);
++	half_block_en = vop2_half_block_enable(pstate);
+ 
+ 	drm_dbg(vop2->drm, "vp%d update %s[%dx%d->%dx%d@%dx%d] fmt[%p4cc_%s] addr[%pad]\n",
+ 		vp->id, win->data->name, actual_w, actual_h, dsp_w, dsp_h,
+@@ -1243,6 +1257,9 @@ static void vop2_plane_atomic_update(struct drm_plane *plane,
+ 		&fb->format->format,
+ 		afbc_en ? "AFBC" : "", &yrgb_mst);
+ 
++	if (vop2_cluster_window(win))
++		vop2_win_write(win, VOP2_WIN_AFBC_HALF_BLOCK_EN, half_block_en);
++
+ 	if (afbc_en) {
+ 		u32 stride;
+ 
+@@ -1283,13 +1300,7 @@ static void vop2_plane_atomic_update(struct drm_plane *plane,
+ 		vop2_win_write(win, VOP2_WIN_AFBC_UV_SWAP, uv_swap);
+ 		vop2_win_write(win, VOP2_WIN_AFBC_AUTO_GATING_EN, 0);
+ 		vop2_win_write(win, VOP2_WIN_AFBC_BLOCK_SPLIT_EN, 0);
+-		if (pstate->rotation & (DRM_MODE_ROTATE_270 | DRM_MODE_ROTATE_90)) {
+-			vop2_win_write(win, VOP2_WIN_AFBC_HALF_BLOCK_EN, 0);
+-			transform_offset = vop2_afbc_transform_offset(pstate, false);
+-		} else {
+-			vop2_win_write(win, VOP2_WIN_AFBC_HALF_BLOCK_EN, 1);
+-			transform_offset = vop2_afbc_transform_offset(pstate, true);
+-		}
++		transform_offset = vop2_afbc_transform_offset(pstate, half_block_en);
+ 		vop2_win_write(win, VOP2_WIN_AFBC_HDR_PTR, yrgb_mst);
+ 		vop2_win_write(win, VOP2_WIN_AFBC_PIC_SIZE, act_info);
+ 		vop2_win_write(win, VOP2_WIN_AFBC_TRANSFORM_OFFSET, transform_offset);
 -- 
-Thx and BRs,
-Tengfei Fan
+2.34.1
+
 
