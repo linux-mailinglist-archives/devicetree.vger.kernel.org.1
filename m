@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-22808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22810-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16EEB808DBC
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 17:47:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C470808DC2
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 17:48:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 99C98B20CD2
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 16:47:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B0B21C20B19
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 16:48:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E686F46BB5;
-	Thu,  7 Dec 2023 16:47:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B699481B8;
+	Thu,  7 Dec 2023 16:48:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kNNk5muL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nqIEuZXN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFF7F10E9
-	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 08:47:27 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-54c7744a93fso1655082a12.2
-        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 08:47:27 -0800 (PST)
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 034A710CB
+	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 08:48:38 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-54c77e0832cso1528005a12.0
+        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 08:48:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701967646; x=1702572446; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701967716; x=1702572516; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=WIpY+iOc8xlG/Ufo4e3WYr29UIUy4AtlpTZcCRBGqXU=;
-        b=kNNk5muLIEE21GhtCfxgOGLyC5auJxG4aAdRKiJ/+EkPVgH+csInDvxi0YiHaOtWGa
-         RhuzUA5UNQwC/ftmW0QmwK3NmCuqoNtlsmunRiSxiYMHOOWCilxGStCpELg1MuiKD88+
-         suupRTwAHwHIznVEB2TnhBNggNGyP+/3nTwzEdE2K06XfnbGR7Uakb5MTLxkh3XVA/WT
-         cvTqYsNoIPu3cJS8t+PeKJRlS4JjRBlKGFOL0MU6s8ZsDdzdatz3p3ex2fY/m5jrSl5U
-         caR5caaJjL3K46Kp2MI/mb+grjUEbmV/xoUQCZgR9U2RR3D/8cumU1yJTvKg8235TUh2
-         VQjQ==
+        bh=A7OsVkU3zQRUxoo/NWEHhG9Knpz7q1rdKpZVAowJ3Ro=;
+        b=nqIEuZXNjSnBkSe3bg58Su4QRJwULJ9wXKKZWmoYfYexdNFhZQBTTd5m0mGcoh9Yek
+         LzOcr6f0viT8ACxjNwLzLjV15uGBYm87n+/IMNfY34Wxj+UleEksGUvP+H7/g5gj7nHV
+         BmkSjCk9QGmjf6uOo6u2EXwvHS8FpOOOAK2lyjFHhySLtIQmkOr4CEBLN1KGvSKBHc9l
+         ILWOGWzL8YukoYdN1yQDMEwloAWeWd/CiwZiKWIeIYBiWPRZ6aonMCB1adKEJZelqHcJ
+         t1icxZJuuhGl6ZfWa+QLDw/eKXPdHZl/bItbUZU8seGwgkC3F0z1HcM9XLG49NFrHT/u
+         Jrfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701967646; x=1702572446;
+        d=1e100.net; s=20230601; t=1701967716; x=1702572516;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WIpY+iOc8xlG/Ufo4e3WYr29UIUy4AtlpTZcCRBGqXU=;
-        b=wDiqi71h5y/AQvZmnFCUBZNDfYphplqMFtE7DMFJ5eYz+fP8A+3JZrRev9Gemt2P8y
-         3v84eVbal6sYKy41qsNVTrUTYf9vce0qlJADTbjQAE7QN6T8QxWAc59B3c4XiwtQ2U3L
-         zM7C5S43NwknH0OQSeJv12Qjx5bEDn9BLg6b5RHu8pKM+cAcIta0rGRV9oqMKtqRK1NS
-         DiYhfbyjwcA86mI1YpCwOEJIJy4weaKkt/zf2Oi/uo1+kc8elyc8SXjvJqXm83Az4n2R
-         YnU4HfNBMuUb3n/9ENnNMFN1lsht1edAoIJCzkQhNf56WRfyUFz0q/Lfk20q54q+1eSO
-         nS1g==
-X-Gm-Message-State: AOJu0Yw40AHv6Rj6qIcXpEb+Rnf38Al9LXUya8/oXLGAk91QPb3APhT7
-	O2V1gCyMnPT8zsiB+Ul5KPOtcw==
-X-Google-Smtp-Source: AGHT+IEklBn6PcAgTDdJ0AIBu0/uDv4ArnBggbt9v9e5DX+ZtAsY3FnNzGfqypOSIIBf8XzLWyDzYg==
-X-Received: by 2002:a05:6402:1bc4:b0:54a:fb41:14c with SMTP id ch4-20020a0564021bc400b0054afb41014cmr1612161edb.36.1701967646052;
-        Thu, 07 Dec 2023 08:47:26 -0800 (PST)
+        bh=A7OsVkU3zQRUxoo/NWEHhG9Knpz7q1rdKpZVAowJ3Ro=;
+        b=P4/qX7SVRvnFgHJkcnNUxPe9W0DdhdjYdMqYqN+8feK6SSo203oXj2fjqK0kkGQcjr
+         sFzmYqByf+3EDIeO3HXzEIT1ecEorr3Hg7h/sPocQy2I9M0uXXaqbfwoQI8tj39JvrIG
+         gq89R0VmcigQUN2UlAnxT1TkmKvmuT7EDsLIOT312GP8EzjIXIFW/fpUIMJUYIn4p3Wz
+         2bAHCSfe1JTST5rOCyp00sJ5S1JeDhwuhdjte35TwAthssco70TtTlpzHfE/jchvxf7G
+         0uhwdOMBgszDqIzQvZ7umOmvfn4zjh//GGGzMuMwUZ6fKLorjAuMv8XPSzEMN5NLn20w
+         AFyQ==
+X-Gm-Message-State: AOJu0YwbetmgrqFpKSh4BpfDclylQS83nw5020q5EZ1UKZAFHzdcTbhL
+	A9s4O20LJIgR3wFvhqK3eY1ZlA==
+X-Google-Smtp-Source: AGHT+IEh6uQHy/vljbUsr9meFu5f28gV1bgKaIfu9oYdaqdhVf4QBeawR8BNdwxb6WQDRd5b8JH0+g==
+X-Received: by 2002:a50:9f2f:0:b0:54c:81c5:758a with SMTP id b44-20020a509f2f000000b0054c81c5758amr1762169edf.75.1701967716510;
+        Thu, 07 Dec 2023 08:48:36 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id dc14-20020a056402310e00b0054cfb16de51sm22918edb.3.2023.12.07.08.47.24
+        by smtp.gmail.com with ESMTPSA id dc14-20020a056402310e00b0054cfb16de51sm22918edb.3.2023.12.07.08.48.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Dec 2023 08:47:25 -0800 (PST)
-Message-ID: <972ce4e2-b0db-4e2f-918f-221a756dd0e3@linaro.org>
-Date: Thu, 7 Dec 2023 17:47:23 +0100
+        Thu, 07 Dec 2023 08:48:36 -0800 (PST)
+Message-ID: <efa6d078-aba9-465a-9040-79250d886b9f@linaro.org>
+Date: Thu, 7 Dec 2023 17:48:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,18 +62,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: phy: qcom: snps-eusb2: Document the
- X1E80100 compatible
+Subject: Re: [PATCH] dt-bindings: usb: genesys,gl850g: Document 'peer-hub'
 Content-Language: en-US
-To: Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231122-phy-qualcomm-eusb2-x1e80100-v2-1-3ba9a8e5ade4@linaro.org>
+To: Fabio Estevam <festevam@gmail.com>, gregkh@linuxfoundation.org
+Cc: uwu@icenowy.me, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ Fabio Estevam <festevam@denx.de>
+References: <20231207124217.2530457-1-festevam@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -119,22 +114,23 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231122-phy-qualcomm-eusb2-x1e80100-v2-1-3ba9a8e5ade4@linaro.org>
+In-Reply-To: <20231207124217.2530457-1-festevam@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 07/12/2023 13:49, Abel Vesa wrote:
-> Add the X1E80100 compatible to the list of supported PHYs.
+On 07/12/2023 13:42, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
-> Changes in v2:
-> - dropped the dedicated compatible from the driver (use fallback instead)
-> - documented the compatible as working with the sm8550 fallback one
-> - Link to v1: https://lore.kernel.org/r/20231122-phy-qualcomm-eusb2-x1e80100-v1-0-ce0991161847@linaro.org
-> ---
+> The 'peer-hub' is a valid property for the hub.
+> 
+> Document it to fix the following dt-schema warning:
+> 
+> imx8mp-debix-som-a-bmb-08.dtb: hub@1: 'peer-hub' does not match any of the regexes: 'pinctrl-[0-9]+'
+> 	from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
+> 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
