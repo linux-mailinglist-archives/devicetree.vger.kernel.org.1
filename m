@@ -1,123 +1,169 @@
-Return-Path: <devicetree+bounces-22552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22575-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D63A80822C
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 08:55:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B0618082AC
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 09:15:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD9941C2036D
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 07:55:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 576D51C21961
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 08:15:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AD181A738;
-	Thu,  7 Dec 2023 07:55:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41ED51E4B2;
+	Thu,  7 Dec 2023 08:15:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="oiHr5UhJ"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="JmmOp7v+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5F1B110;
-	Wed,  6 Dec 2023 23:55:13 -0800 (PST)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3B762Iul009026;
-	Thu, 7 Dec 2023 07:55:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=bEnqWaDav/f7/bZPa3m2u29tJOB/87eh9G7oILjM5Pk=;
- b=oiHr5UhJHY+XCJMc2dOHGBWd9xI74ZezY8RZQHOsueounbwctMEQu6z6/W82YQF//iC4
- b6yTELZH5lf+S0RwxJu2Qrqbp3XnC4cDQ8EPRbQSfC+ewtdn8rYXPjWGK7edhEEZUdvL
- u4E2rFOvAncCDJZLfsJJABETcHlqeuGsENs8+Ey+BQtBSLeyE5SPCWmsPNNNuQsEJBdG
- Xhwu9VIsdfA47YVZtt01oggZgDvHPdvxlMWSjP4I+9xxFk1pGAJgR8H+KcuMdM4yb60T
- PY+YW6CWYxmrggODnpbq1HlRNeLRvvQRxve8np/xJpLxIV6L3tBT/Spz9/c3dM7sw7LJ YQ== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3utrwq2ews-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 07 Dec 2023 07:55:10 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3B77t9Sh031655
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 7 Dec 2023 07:55:09 GMT
-Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 6 Dec
- 2023 23:55:06 -0800
-Message-ID: <2c91c34f-6ee9-4f34-863e-c26b0107f6d3@quicinc.com>
-Date: Thu, 7 Dec 2023 15:55:04 +0800
+Received: from m12.mail.163.com (m12.mail.163.com [220.181.12.217])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 39440110;
+	Thu,  7 Dec 2023 00:15:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=PU5zt
+	QGenpctCMZfYqfAf9LCbmtxHDSN+kd7IKKdbdQ=; b=JmmOp7v+BMo8r0exoD/AC
+	KgfvTeIuO375D+UjCcwfPL+arfEtWXK6iZVQl9AF3YxXfnSnnT6JCb/kKbBUXaPN
+	Ff2Zpnw0/OWltsIH7J4GPnTgo00GH+9KagwJbInaArsWElDdDPyUe0xiiSmJwzAj
+	+aXjRiVD5abBsmfN6BMUgs=
+Received: from ProDesk.. (unknown [58.22.7.114])
+	by zwqz-smtp-mta-g5-4 (Coremail) with SMTP id _____wDnDypMe3FlBlEFCg--.42141S2;
+	Thu, 07 Dec 2023 15:59:12 +0800 (CST)
+From: Andy Yan <andyshrk@163.com>
+To: heiko@sntech.de
+Cc: hjc@rock-chips.com,
+	dri-devel@lists.freedesktop.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	robh+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	sebastian.reichel@collabora.com,
+	kever.yang@rock-chips.com,
+	chris.obbard@collabora.com,
+	Andy Yan <andy.yan@rock-chips.com>
+Subject: [PATCH v4 00/17] Add VOP2 support on rk3588
+Date: Thu,  7 Dec 2023 15:59:06 +0800
+Message-Id: <20231207075906.651771-1-andyshrk@163.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/2] dt-bindings: pinctrl: qcom: Add SM4450 pinctrl
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <linus.walleij@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20231206020840.33228-1-quic_tengfan@quicinc.com>
- <20231206020840.33228-2-quic_tengfan@quicinc.com>
- <006c3c39-5266-4177-ae7f-263af5f0821c@linaro.org>
-From: Tengfei Fan <quic_tengfan@quicinc.com>
-In-Reply-To: <006c3c39-5266-4177-ae7f-263af5f0821c@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 1IZZSB5iSE9z6-IUVdLEWPSdjMM4vFe4
-X-Proofpoint-GUID: 1IZZSB5iSE9z6-IUVdLEWPSdjMM4vFe4
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-07_05,2023-12-06_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 impostorscore=0
- adultscore=0 lowpriorityscore=0 bulkscore=0 mlxlogscore=978 malwarescore=0
- suspectscore=0 mlxscore=0 priorityscore=1501 clxscore=1015 phishscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2311290000
- definitions=main-2312070063
+X-CM-TRANSID:_____wDnDypMe3FlBlEFCg--.42141S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxCrW7tr4UAr4UWry5KFW5GFg_yoWrCw47p3
+	95Cry5XrWxCFW2qrs3tw1rCrWftanrAay7Gws3G3ZIv3W3KF1UKwnIg3Z5Zr9rWr1xZFy2
+	kF4UJ347Wr42vr7anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jrcTPUUUUU=
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbBEgs-XmVOA0WqfQACsA
 
+From: Andy Yan <andy.yan@rock-chips.com>
 
+This patch sets aims at enable the VOP2 support on rk3588.
 
-在 12/6/2023 5:04 PM, Krzysztof Kozlowski 写道:
-> On 06/12/2023 03:08, Tengfei Fan wrote:
->> Add device tree binding Documentation details for Qualcomm SM4450
->> TLMM device.
->>
->> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
->> ---
->>   .../bindings/pinctrl/qcom,sm4450-tlmm.yaml    | 151 ++++++++++++++++++
->>   1 file changed, 151 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml
->>
-> 
-> There was no reason to drop my review tag here. You did not explain why
-> it had to be dropped and changing indentation on example is for sure not
-> the case.
-> 
-> Please read submitting-patches before posting new patches to mailing list.
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> Best regards,
-> Krzysztof
-> 
-Hi Krzysztof,
-I read submitting-patches.rst today. Like you said that I shouldn't drop 
-your review tag due to change indentation. This is my fault.
-Thank you again for your patient reviw and explanation.
+Main feature of VOP2 on rk3588:
+Four video ports:
+VP0 Max 4096x2160
+VP1 Max 4096x2160
+VP2 Max 4096x2160
+VP3 Max 2048x1080
 
-submitting-patches.rst:
-By offering my Reviewed-by: tag, I state that:
-(c) While there may be things that could be improved with this
-     submission, I believe that it is, at this time, (1) a
-     worthwhile modification to the kernel, and (2) free of known
-     issues which would argue against its inclusion.
+4 4K Cluster windows with AFBC/line RGB and AFBC-only YUV support
+4 4K Esmart windows with line RGB/YUV support
+
+The current version support all the 8 windows with all the suppported
+plane format.
+
+And we don't have a upstreamed encoder/connector(HDMI/DP) for rk3588
+yet, Cristian from collabora is working on adding upstream support for
+HDMI on rk3588.
+
+My current test(1080P/4KP60) is runing with a HDMI driver pick from
+downstream bsp kernel.
+
+A branch based on linux-6.7 rc4 containing all the series and
+HDMI driver(not compatible with mainline rk3568 hdmi) picked
+from downstream bsp kernel is available [0].
+
+[0]https://github.com/andyshrk/linux/commits/rk3588-vop2-upstream-linux-6.7-rc4-2023-12-07
+
+Changes in v4:
+- fix the POST_BUF_EMPTY irq when set mode
+- use full stop at all the description's end.
+- address Krzysztof's review about dt-binding in v3
+- keep all VOP2_FEATURE_HAS_xxx macros increase in order.
+- address Sascha's review about debugfs
+- Add const for rockchip,rk3588-iommu compatible
+
+Changes in v3:
+- split from the vop2 driver patch
+- put bool variable yuv_overlay next to other bool variable
+- define macro for RK3568_OVL_CTRL__YUV_MODE
+- just write RK3568_OVL_CTRL register once in function
+  vop2_setup_layer_mixer
+- constrain properties in allOf:if:then
+- some description updates
+- change the subject as Krzysztof suggested, and add his ACK
+- add braces for x in macro vop2_output_if_is_yyy(x)
+- clear the bits of a mask before setting it in rk3588_set_intf_mux
+- add more comments.
+- put regs dump info in vop2_data
+
+Changes in v2:
+- fix errors when running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+- split form vop driver patch
+- add rk3588_ prefix for functions which are rk3588 only
+- make some calculation as fixed value and keep calculation formula as
+  comment
+- check return value for some cru calculation functions.
+- check return value for syscon_regmap_lookup_by_phandle
+- add NV20/NV30 for esmart plane
+
+Andy Yan (17):
+  drm/rockchip: move output interface related definition to
+    rockchip_drm_drv.h
+  Revert "drm/rockchip: vop2: Use regcache_sync() to fix suspend/resume"
+  drm/rockchip: vop2: set half_block_en bit in all mode
+  drm/rockchip: vop2: clear afbc en and transform bit for cluster window
+    at linear mode
+  drm/rockchip: vop2: Add write mask for VP config done
+  drm/rockchip: vop2: Set YUV/RGB overlay mode
+  drm/rockchip: vop2: set bg dly and prescan dly at vop2_post_config
+  drm/rockchip: vop2: rename grf to sys_grf
+  dt-bindings: soc: rockchip: add rk3588 vop/vo syscon
+  dt-bindings: display: vop2: Add rk3588 support
+  dt-bindings: rockchip,vop2: Add more endpoint definition
+  drm/rockchip: vop2: Add support for rk3588
+  drm/rockchip: vop2: rename VOP_FEATURE_OUTPUT_10BIT to
+    VOP2_VP_FEATURE_OUTPUT_10BIT
+  drm/rockchip: vop2: Add debugfs support
+  dt-bindings: iommu: rockchip: Add Rockchip RK3588
+  arm64: dts: rockchip: Add vop on rk3588
+  MAINTAINERS: Add myself as a reviewer for rockchip drm
+
+ .../display/rockchip/rockchip-vop2.yaml       | 100 ++-
+ .../bindings/iommu/rockchip,iommu.yaml        |  11 +-
+ .../devicetree/bindings/soc/rockchip/grf.yaml |   2 +
+ MAINTAINERS                                   |   1 +
+ arch/arm64/boot/dts/rockchip/rk3588s.dtsi     |  96 +++
+ .../gpu/drm/rockchip/analogix_dp-rockchip.c   |   1 -
+ drivers/gpu/drm/rockchip/cdn-dp-core.c        |   1 -
+ .../gpu/drm/rockchip/dw-mipi-dsi-rockchip.c   |   1 -
+ drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c   |   1 -
+ drivers/gpu/drm/rockchip/inno_hdmi.c          |   1 -
+ drivers/gpu/drm/rockchip/rk3066_hdmi.c        |   1 -
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.h   |  18 +
+ drivers/gpu/drm/rockchip/rockchip_drm_vop.h   |  12 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c  | 761 +++++++++++++++++-
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.h  | 111 ++-
+ drivers/gpu/drm/rockchip/rockchip_lvds.c      |   1 -
+ drivers/gpu/drm/rockchip/rockchip_rgb.c       |   1 -
+ drivers/gpu/drm/rockchip/rockchip_vop2_reg.c  | 414 +++++++++-
+ include/dt-bindings/soc/rockchip,vop2.h       |   4 +
+ 19 files changed, 1441 insertions(+), 97 deletions(-)
 
 -- 
-Thx and BRs,
-Tengfei Fan
+2.34.1
+
 
