@@ -1,167 +1,234 @@
-Return-Path: <devicetree+bounces-22693-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22694-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB1808087BC
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 13:30:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 543768087C7
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 13:33:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 29160B21A68
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 12:30:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B471282FBB
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 12:33:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BA1C3D0A3;
-	Thu,  7 Dec 2023 12:30:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C2392D786;
+	Thu,  7 Dec 2023 12:33:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pLFKcJrC"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Rz8pi5yV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7627D6D
-	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 04:30:39 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-40c09d62b70so10528665e9.1
-        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 04:30:39 -0800 (PST)
+Received: from mail-oo1-xc2b.google.com (mail-oo1-xc2b.google.com [IPv6:2607:f8b0:4864:20::c2b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB25AD5C;
+	Thu,  7 Dec 2023 04:33:43 -0800 (PST)
+Received: by mail-oo1-xc2b.google.com with SMTP id 006d021491bc7-58ce8513da1so322975eaf.2;
+        Thu, 07 Dec 2023 04:33:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701952238; x=1702557038; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Xhsn3xQMJRBpqNaxhkufvdhrsoGP0x7afgw68pSy+Vk=;
-        b=pLFKcJrC7Umczk6BKXpKgPryQzmcx8DkFlhudEFsN+Z6h+CktjduSf7dv4Lc2PCaX0
-         Zmv28pi7X/BmkBQfuYDbwbOhWO6Tg8VMe0hC1saW5vHWcL1npOQoPa6tqxED+K0EUhjz
-         mx0+iVRjS1itMZh5RJ+MzLjTYHV8BZhFDpjLXmlBOJsDWiyf1ur0uqDjf5Odyp5YHmP8
-         U/SfH/eVSlQhC4T53D5LxT3NndbfTRiz9WMkG/2YThAhcyDqZFcY/64mlB9ZihiWsvsZ
-         K29kSEVFNpEpmI9WRj1n7avijR+yRR4CAZnX5GnCd5XQc3BUDZgTGBNeJBKWSE50eRMY
-         8+hQ==
+        d=gmail.com; s=20230601; t=1701952423; x=1702557223; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=eoyF50C90+byNneOw67lraz5w5fqAkMLns+7xoj94Cw=;
+        b=Rz8pi5yVV5X79T1Yez2j0uZYHI/gmkHZkfKOD9ZZlKQcOQpkXYXaB9LlZrKCwgLWdS
+         3ivpmDrPmoOwgakbf9qtR1Lwx0tCKTze93ONEyyx+QykcyrtEVA2H6mQ8b9yR27PDdV/
+         5NKs1/9ZvnQy8gGfmJOb0mCW31qxE9jekaziOB6by2TO9LR8/KVxnAr9umI6In0cJDio
+         OHFT5g3uqu8M0uqkZUdttxfrylqDbdH2mj442dFgC/bTm4m/DmV1SYjn26sOLGEUQg6X
+         KVHZrgP9UIlKoadsWoirk7tQoKnNEcG0P7GPsBOzvXbT2tOTbGvyMpS8tv7vxQnKw77U
+         qDuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701952238; x=1702557038;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Xhsn3xQMJRBpqNaxhkufvdhrsoGP0x7afgw68pSy+Vk=;
-        b=sP9tdrmxZ0rXOKQuQ0iysNMFSo+PEanGoJIGz60MqVqmg4t2qOFb064GpExsk0f0Hu
-         1IEHABzkXlEO1QauDF3bz8B5J/u2CFoyAkaal41bCmQZprzs2lt+dkVoX8BvuI1Hf/nD
-         UjFTFQnfseOd8tP+dJKohtXj1KnNPqb8RIOYydliGN7Msbz+JY9juL7MqRBes0SY8dnM
-         Az10KSm8JNr4lVowtQxgcXWSiP5DjnxeYcWjqNAvy4cq0D3EV5DBdFwE0/5/U0FA1QQx
-         AaKktWq3N1mPmkz2A53SU2qQIZE2B4rFlrMRuraCzEoZLBinzWof/DsglP9WoLqcOf72
-         zpWA==
-X-Gm-Message-State: AOJu0Yy0T8+XKOmUrpB/Z59029UT3/SH4P8KEGz4WQTWKLAHFolEodnN
-	0f1LLoh4nrySq0jz7aBb66/F9Q==
-X-Google-Smtp-Source: AGHT+IHR93A1+XbSqEKL0Zq3OPwfawDHLkqfkbOHegUzDi+LE57mKz8KJf6kRcl2/+wYKxjcunAWrg==
-X-Received: by 2002:a05:600c:46d1:b0:40c:305d:4af4 with SMTP id q17-20020a05600c46d100b0040c305d4af4mr8615wmo.179.1701952238100;
-        Thu, 07 Dec 2023 04:30:38 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id u17-20020a05600c19d100b0040c1c269264sm1818451wmq.40.2023.12.07.04.30.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Dec 2023 04:30:37 -0800 (PST)
-Message-ID: <129e3a8b-5e91-424a-8ff8-b015d5175f1a@linaro.org>
-Date: Thu, 7 Dec 2023 13:30:35 +0100
+        d=1e100.net; s=20230601; t=1701952423; x=1702557223;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eoyF50C90+byNneOw67lraz5w5fqAkMLns+7xoj94Cw=;
+        b=Lw1pBjtyeWYT5MaLzlIxQRCai6PvZuaJmdqNolOdTHWuZGpxzIy7Fl18sFBTWWsGMZ
+         jzzu8gprciVZ0/ufmLIfRnnOkeH9sylRqiRC+rwmagU7F1zEm5IPiklJIGA/pckHSsjd
+         2k1DwfCpD48FFIj/ep89W8d2rRhVmL5v086udBHhGVRCDfa44iydVsWMOTcWM6pEXLcP
+         V9NY481Kd0JaboNK01jtCj2CKdA2KKoxKRvvYdDOGQ81sAmrc6OgqCGHmq+U9/N68d77
+         VupFXTCMRHI0CA0ItD3Nd5AfW/ul70rMp/cKrJ7grLWLyGCvXU/SLUWaTBC4S6LGad4u
+         L7TA==
+X-Gm-Message-State: AOJu0YyOpuic+yskJHW0NK6fVC+DY2eebuT2YSyU7VmJExevIQmcxias
+	kA6U1fac54T0uHrXWke1z5Dp+i/+iCdVrWrnZ0JvHpi++QZNQQ==
+X-Google-Smtp-Source: AGHT+IFS8NwFi5sJw7amN4YsRotWSEY7Uv9GR7UCo3iJnNkSK0NiiYeAUIhB/yWzq4W+sEwWpOCZYlM6kE4su+J5LnI=
+X-Received: by 2002:a05:6820:1ac8:b0:58d:6ea3:8fc with SMTP id
+ bu8-20020a0568201ac800b0058d6ea308fcmr2905570oob.2.1701952422933; Thu, 07 Dec
+ 2023 04:33:42 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] media: i2c: Add GC08A3 image sensor driver
-Content-Language: en-US
-To: Sakari Ailus <sakari.ailus@linux.intel.com>,
- Zhi Mao <zhi.mao@mediatek.com>
-Cc: mchehab@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, shengnan.wang@mediatek.com,
- yaya.chang@mediatek.com, 10572168@qq.com,
- Project_Global_Chrome_Upstream_Group@mediatek.com, yunkec@chromium.org,
- conor+dt@kernel.org, matthias.bgg@gmail.com,
- angelogioacchino.delregno@collabora.com, jacopo.mondi@ideasonboard.com,
- hverkuil-cisco@xs4all.nl, heiko@sntech.de, jernej.skrabec@gmail.com,
- macromorgan@hotmail.com, linus.walleij@linaro.org,
- laurent.pinchart@ideasonboard.com, hdegoede@redhat.com,
- tomi.valkeinen@ideasonboard.com, gerald.loacker@wolfvision.net,
- andy.shevchenko@gmail.com, bingbu.cao@intel.com,
- dan.scally@ideasonboard.com, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20231207052016.25954-1-zhi.mao@mediatek.com>
- <20231207052016.25954-2-zhi.mao@mediatek.com>
- <ZXGtqwjYruBQVaUr@kekkonen.localdomain>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
- m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
- HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
- XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
- mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
- v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
- cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
- rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
- qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
- aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
- gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
- dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
- NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
- hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
- oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
- H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
- yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
- 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
- 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
- +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
- FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
- 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
- DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
- oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
- 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
- Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
- qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
- /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
- qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
- EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
- KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
- fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ZXGtqwjYruBQVaUr@kekkonen.localdomain>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20231204144429.45197-1-linux.amoon@gmail.com> <20231204144429.45197-2-linux.amoon@gmail.com>
+ <20231206135311.GA2043711-robh@kernel.org> <CANAwSgTS0ZSFPv4x803pCLEpjH5imh8vEoWpbiJRH14Sy3GZww@mail.gmail.com>
+ <21673bfd-bb87-4c7d-a53f-337c263f3a00@linaro.org>
+In-Reply-To: <21673bfd-bb87-4c7d-a53f-337c263f3a00@linaro.org>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Thu, 7 Dec 2023 18:03:25 +0530
+Message-ID: <CANAwSgSo37B0zg-xjrmqndSZ5SbyB3m27_wRsqqN9WTONooeiw@mail.gmail.com>
+Subject: Re: [PATCH v6 1/2] dt-bindings: usb: Add the binding example for the
+ Genesys Logic GL3523 hub
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Icenowy Zheng <uwu@icenowy.me>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	linux-amlogic@lists.infradead.org, Conor Dooley <conor.dooley@microchip.com>, 
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 07/12/2023 12:34, Sakari Ailus wrote:
->> +	ret = gc08a3_parse_fwnode(dev);
->> +	if (ret)
->> +		return ret;
->> +
->> +	gc08a3 = devm_kzalloc(dev, sizeof(*gc08a3), GFP_KERNEL);
->> +	if (!gc08a3)
->> +		return -ENOMEM;
->> +
->> +	gc08a3->dev = dev;
->> +
->> +	gc08a3->xclk = devm_clk_get(dev, NULL);
->> +	if (IS_ERR(gc08a3->xclk))
->> +		return dev_err_probe(dev, PTR_ERR(gc08a3->xclk),
->> +					 "failed to get xclk\n");
->> +
->> +	ret = clk_set_rate(gc08a3->xclk, GC08A3_DEFAULT_CLK_FREQ);
-> 
-> Please see:
-> <URL:https://hverkuil.home.xs4all.nl/spec/driver-api/camera-sensor.html#devicetree>.
+Hi Krzysztof
 
+On Thu, 7 Dec 2023 at 14:00, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 06/12/2023 18:14, Anand Moon wrote:
+> > Hi Rob,
+> >
+> > On Wed, 6 Dec 2023 at 19:23, Rob Herring <robh@kernel.org> wrote:
+> >>
+> >> On Mon, Dec 04, 2023 at 08:14:25PM +0530, Anand Moon wrote:
+> >>> Add the binding example for the USB3.1 Genesys Logic GL3523
+> >>> integrates with USB 3.1 Gen 1 Super Speed and USB 2.0 High-Speed
+> >>> hub.
+> >>>
+> >>> For onboard hub controllers that support USB 3.x and USB 2.0 hubs
+> >>> with shared resets and power supplies, this property is used to identify
+> >>> the hubs with which these are shared.
+> >>>
+> >>> GL3523 has built-in 5V to 3.3V and 5V to 1.2V regulators, which serves
+> >>> power to the USB HUB, it uses 5V power regulator.
+> >>>
+> >>> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> >>> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> >>> ---
+> >>> V6: fix the description of the regulators
+> >>> Updated the commit message for regulator updates.
+> >>> add reviewed by Conor Dooley
+> >>> [1] https://lore.kernel.org/all/20231130053130.21966-2-linux.amoon@gmail.com/
+> >>> v5: upgrade peer-hub description : Conor Dooley
+> >>> [0] https://www.genesyslogic.com.tw/en/product_view.php?show=67 [Block Diagram]
+> >>> v4: Fix the description of peer-hub and update the commit message.
+> >>> Schematics of the Odroid N2+
+> >>> https://dn.odroid.com/S922X/ODROID-N2/Schematic/odroid-n2_rev0.6_20210121.pdf
+> >>> V3: fix the dt_binding_check error, added new example for Genesys GL3523
+> >>> v2: added Genesys GL3523 binding
+> >>> v1: none
+> >>> ---
+> >>>  .../bindings/usb/genesys,gl850g.yaml          | 65 +++++++++++++++++--
+> >>>  1 file changed, 61 insertions(+), 4 deletions(-)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> >>> index ee08b9c3721f..c6f63a69396d 100644
+> >>> --- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> >>> +++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> >>> @@ -9,9 +9,6 @@ title: Genesys Logic USB hub controller
+> >>>  maintainers:
+> >>>    - Icenowy Zheng <uwu@icenowy.me>
+> >>>
+> >>> -allOf:
+> >>> -  - $ref: usb-device.yaml#
+> >>> -
+> >>>  properties:
+> >>>    compatible:
+> >>>      enum:
+> >>> @@ -27,12 +24,46 @@ properties:
+> >>>
+> >>>    vdd-supply:
+> >>>      description:
+> >>> -      the regulator that provides 3.3V core power to the hub.
+> >>> +      The regulator that provides 3.3V or 5.0V core power to the hub.
+> >>> +
+> >>> +  peer-hub:
+> >>> +    $ref: /schemas/types.yaml#/definitions/phandle
+> >>> +    description:
+> >>> +      For onboard hub controllers that support USB 3.x and USB 2.0 hubs
+> >>> +      with shared resets and power supplies, this property is used to identify
+> >>> +      the hubs with which these are shared.
+> >>>
+> >>>  required:
+> >>>    - compatible
+> >>>    - reg
+> >>>
+> >>> +allOf:
+> >>> +  - $ref: usb-device.yaml#
+> >>> +  - if:
+> >>> +      properties:
+> >>> +        compatible:
+> >>> +          contains:
+> >>> +            enum:
+> >>> +              - usb5e3,608
+> >>> +    then:
+> >>> +      properties:
+> >>> +        peer-hub: false
+> >>> +        vdd-supply: false
+> >>> +        reset-gpios: true
+> >>> +
+> >>> +  - if:
+> >>> +      properties:
+> >>> +        compatible:
+> >>> +          contains:
+> >>> +            enum:
+> >>> +              - usb5e3,610
+> >>> +              - usb5e3,620
+> >>> +    then:
+> >>> +      properties:
+> >>> +        peer-hub: true
+> >>> +        vdd-supply: true
+> >>> +        reset-gpios: true
+> >>
+> >> No need for this if schema. The default is they are allowed.
+> >>
+> >
+> > If I move reset-gpios to required, I observe the below warning.
+> >
+> >   DTC_CHK Documentation/devicetree/bindings/usb/maxim,max33359.example.dtb
+> > /home/alarm/linux-amlogic-5.y-devel/Documentation/devicetree/bindings/usb/usb-device.example.dtb:
+> > hub@1: 'reset-gpio' is a required property
+> >         from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
+>
+> Where are the properties defined? If you open the binding you see:
+> nowhere. You cannot define properties in some variant with "true".
+> Please define all of them in top-level and only narrow/constrain when
+> applicable.
+>
+What I meant is the example below, required meant applicable for both
+the binding
+But it shows me the above warning.
 
-Oh, that's cool it was documented!
+required:
+  - compatible
+  - reg
+  - reset-gpio
 
-The canonical link would be:
-https://www.kernel.org/doc/html/latest/driver-api/media/camera-sensor.html#devicetree
+allOf:
+  - $ref: usb-device.yaml#
+  - if:
+      properties:
+        compatible:
+          contains:
+            enum:
+              - usb5e3,608
+    then:
+      properties:
+        peer-hub: false
+        vdd-supply: false
 
+  - if:
+      properties:
+        compatible:
+          contains:
+            enum:
+              - usb5e3,610
+              - usb5e3,620
+    then:
+      properties:
+        peer-hub: true
+        vdd-supply: true
 
+additionalProperties: false
 
-Best regards,
-Krzysztof
+>
+> Best regards,
+> Krzysztof
+>
 
+Thanks
+-Anand
 
