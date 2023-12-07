@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-22745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22746-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 232208089A8
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 14:59:29 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77DB38089AA
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 14:59:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9AAD8B2100D
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 13:59:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 99E491C20B63
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 13:59:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34D6640C15;
-	Thu,  7 Dec 2023 13:59:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC5CE40C18;
+	Thu,  7 Dec 2023 13:59:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Kguz4/fu"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="p3zZRoWT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FCDA10C2
-	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 05:59:19 -0800 (PST)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-a1e35c2807fso117702066b.3
-        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 05:59:19 -0800 (PST)
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D2B310E4
+	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 05:59:25 -0800 (PST)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-a1d93da3eb7so111014166b.0
+        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 05:59:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701957557; x=1702562357; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701957563; x=1702562363; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7VhlyBWvF7AIoVEFkeguiWcyevvA3s/p0d2qIlxEjZs=;
-        b=Kguz4/fuc6LUoJRsR6A3tv/BQlQXkU3J34ehskL29d5wqT2wK/zYLuL6nDiF/wcwxW
-         S3irIOLTOB0V94bpPP1/aLPIxQGKjaZfm+p6PefzIcSpnKtgSeQPg8zV8MCivCyxArKq
-         B0Ej81Tq9FaU0ybwa2zb6ntpM7TjkaA6kZjprre/MEKsUIcen+PVFLRDkjUhSI8S37n1
-         h4gndGLMGa03XafU+2HlQF5s2+12pIwFqLsFPt+SYYrRYQTUCZ3eHjkKMv9SnqA94vK/
-         0E8kZkxvezbCSio1GuLc3y2VASq6dOWRLUjMzSjNH9W2Q+EtDQoPTHohUssp/Ej5ZtPm
-         2wmg==
+        bh=DPsXzDV6JwRzL+DkmxcZw8UT7hkVmirSZphsQjqScdM=;
+        b=p3zZRoWT+5BPMHhpA9+027npLYlo26hdVmd3vQBYeqXKUppEntlPVChWra3edq5l8f
+         mmdBkt6uphxOu10J9bE6lfsgsyNPLzjruhcnvacBn0eBX2bPg73zrt8lqXjQdieWB2jS
+         sAaVXVDTGB1ofbt/usg8cW94SlYXswG1XFmjzTv21pcK/OrovRMgvkAAuKtA/Pj+maLA
+         CFrTaLY/1MVS01L55Z7FZriYUWjjF7BkHWk1UIFhXCZPUUkW1xQkUlOvslrmlOU/Io3+
+         7JpEkxDUEV13iDLqY7xOd2b9XkIpDUDRZZAe6+RPHNlYODhtqJ01jmTLdhc6AIdlB00Q
+         qHiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701957557; x=1702562357;
+        d=1e100.net; s=20230601; t=1701957563; x=1702562363;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7VhlyBWvF7AIoVEFkeguiWcyevvA3s/p0d2qIlxEjZs=;
-        b=YX6rcHZL5cjX0sED7xmrDbEKFZ8NcnuafV4mpPbgbbVaGyoZnd/YnPOfxrGvggXsTk
-         hJm0kwuLJvf0NjcSM+/E8DrG+n0rPfzvhIe4izJLzDGSUH5Bwfhuf6qLXECFL8Lck7S4
-         51X108wPn8MW2CC0GzSWazLdvUdSlWKI7opnfa026mBmxaw5igGmtTEO7sxiSzszqYdh
-         pil91b9BBOEbTc7++9SccTPfqSno+yIlXQFIiYY6QNHYdcMJT4tRVUMx8BuP/M42lj9C
-         DfYAB7+tm2Zy4FBCpmTmm4yYnuoqwtYNSV8SEFsKYdrk/A0mONpf1gmNcauXcV4eKEj1
-         RONw==
-X-Gm-Message-State: AOJu0YwCL1qzu1lZ3HIVtxo42K12L4UpD5cOljK/nojBwv3uAtQ5wBLC
-	o15UASXy+cFadYj0QMEYZJS4Bw==
-X-Google-Smtp-Source: AGHT+IEYp9b7k1FORx7g2rfSjj+pfN9bs/dh9ZJ93LUU7vowlT3yy5r0Hb/HxFY2GePWkcmZjtPiJw==
-X-Received: by 2002:a17:906:54:b0:9dc:2291:d384 with SMTP id 20-20020a170906005400b009dc2291d384mr1453346ejg.22.1701957557563;
-        Thu, 07 Dec 2023 05:59:17 -0800 (PST)
+        bh=DPsXzDV6JwRzL+DkmxcZw8UT7hkVmirSZphsQjqScdM=;
+        b=xOIcXV01H0dnc5QbqyE0TT74rFO6xFkVit5+WQnzd/1e9vOKeMGxipvE6E3dVxpWB7
+         xuG+OPlWXmq7oBmKek0Fp9C2jfL0eaVQXW89E4mW3lng97iMgRwpviavOUygCCS1bnWQ
+         CHeBaNFV/hwUUZv6ObXdx5ZrgGF7HZ/gAcuvD31q7Q9VSahuBwYuza/LymFIGhVzUV2B
+         X74/ZZw7DajlPS0ECTv1nxHgwxogH6N3Wcdq1PSQ0Tg7CLHQkRKDyXJXyVZXb6rKQU35
+         DPp2VI4+CaYDifBfS58hCOhVa2Exj6O6GXoSYgeKIw0tWK/RQrMDdDnlattG7W8MJ6fv
+         vODQ==
+X-Gm-Message-State: AOJu0Yz7nICkxcDFevtLdUs6g7DNGlIazkc3n4AOZly6YZpvd0M5yjCk
+	LZC91L1jqeHAUsJOyspML8OOpw==
+X-Google-Smtp-Source: AGHT+IEGg1k3SmI1U5aCP2MjuWWrbFJl0vb0yBlDXRdmkLar6JTn7VT590KhI918BLH0/PGYLLYTaQ==
+X-Received: by 2002:a17:906:2b46:b0:9dd:7ccf:77f8 with SMTP id b6-20020a1709062b4600b009dd7ccf77f8mr1222275ejg.20.1701957563649;
+        Thu, 07 Dec 2023 05:59:23 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id l26-20020a170906a41a00b00a1da2c9b06asm862918ejz.42.2023.12.07.05.59.15
+        by smtp.gmail.com with ESMTPSA id l26-20020a170906a41a00b00a1da2c9b06asm862918ejz.42.2023.12.07.05.59.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Dec 2023 05:59:17 -0800 (PST)
-Message-ID: <c0a52b65-f8da-4b11-9955-59860a27e17b@linaro.org>
-Date: Thu, 7 Dec 2023 14:59:15 +0100
+        Thu, 07 Dec 2023 05:59:23 -0800 (PST)
+Message-ID: <1a5019f2-6b32-4960-b494-50434d7659f0@linaro.org>
+Date: Thu, 7 Dec 2023 14:59:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,6 +75,7 @@ Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
  linux-kernel@vger.kernel.org
 References: <20231205084835.15871-1-krzysztof.kozlowski@linaro.org>
  <ZW8DFbz3DqthC6fU@kekkonen.localdomain>
+ <ZW8Mz3OWE1ELlFRC@kekkonen.localdomain>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -120,46 +121,49 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ZW8DFbz3DqthC6fU@kekkonen.localdomain>
+In-Reply-To: <ZW8Mz3OWE1ELlFRC@kekkonen.localdomain>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/12/2023 12:01, Sakari Ailus wrote:
-> Hi Krzysztof,
-> 
-> Thanks for the patch.
-> 
-> On Tue, Dec 05, 2023 at 09:48:35AM +0100, Krzysztof Kozlowski wrote:
->> Bindings and Linux driver require two link frequencies, so correct the
->> example:
+On 05/12/2023 12:43, Sakari Ailus wrote:
+> On Tue, Dec 05, 2023 at 11:01:41AM +0000, Sakari Ailus wrote:
+>> Hi Krzysztof,
 >>
->>   ov8856.example.dtb: camera@10: port:endpoint:link-frequencies:0: [360000000] is too short
+>> Thanks for the patch.
 >>
->> Fixes: 066a94e28a23 ("media: dt-bindings: media: Use graph and video-interfaces schemas")
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>  Documentation/devicetree/bindings/media/i2c/ov8856.yaml | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
+>> On Tue, Dec 05, 2023 at 09:48:35AM +0100, Krzysztof Kozlowski wrote:
+>>> Bindings and Linux driver require two link frequencies, so correct the
+>>> example:
+>>>
+>>>   ov8856.example.dtb: camera@10: port:endpoint:link-frequencies:0: [360000000] is too short
+>>>
+>>> Fixes: 066a94e28a23 ("media: dt-bindings: media: Use graph and video-interfaces schemas")
+>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> ---
+>>>  Documentation/devicetree/bindings/media/i2c/ov8856.yaml | 2 +-
+>>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/media/i2c/ov8856.yaml b/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
+>>> index 57f5e48fd8e0..bd1a55d767e7 100644
+>>> --- a/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
+>>> +++ b/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
+>>> @@ -126,7 +126,7 @@ examples:
+>>>                  wcam_out: endpoint {
+>>>                      remote-endpoint = <&mipi_in_wcam>;
+>>>                      data-lanes = <1 2 3 4>;
+>>> -                    link-frequencies = /bits/ 64 <360000000>;
+>>> +                    link-frequencies = /bits/ 64 <360000000 180000000>;
 >>
->> diff --git a/Documentation/devicetree/bindings/media/i2c/ov8856.yaml b/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
->> index 57f5e48fd8e0..bd1a55d767e7 100644
->> --- a/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
->> +++ b/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
->> @@ -126,7 +126,7 @@ examples:
->>                  wcam_out: endpoint {
->>                      remote-endpoint = <&mipi_in_wcam>;
->>                      data-lanes = <1 2 3 4>;
->> -                    link-frequencies = /bits/ 64 <360000000>;
->> +                    link-frequencies = /bits/ 64 <360000000 180000000>;
+>> There indeed seems to be a problem with the example as far as the bindings
+>> are concerned but the primary issue seems to be in the bindings. Both of
+>> these frequencies have significance from driver point of view only while
+>> the device itself supports a (wider) range.
+>>
+>> How about removing maxItems and items from the bindings instead?
 > 
-> There indeed seems to be a problem with the example as far as the bindings
-> are concerned but the primary issue seems to be in the bindings. Both of
-> these frequencies have significance from driver point of view only while
-> the device itself supports a (wider) range.
-> 
-> How about removing maxItems and items from the bindings instead?
+> There's also a similar issue with lanes: 1, 2 and 4 are supported.
 
-Yeah, it makes sense.
+ack
 
 Best regards,
 Krzysztof
