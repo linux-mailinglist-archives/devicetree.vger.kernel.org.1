@@ -1,160 +1,172 @@
-Return-Path: <devicetree+bounces-22618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22619-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E5D5808442
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 10:20:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2727D808447
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 10:20:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 22184B21E0D
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 09:20:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 88A1B1F2280A
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 09:20:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A833F33091;
-	Thu,  7 Dec 2023 09:20:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E633D33091;
+	Thu,  7 Dec 2023 09:20:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sv2QlZb+"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="o+U0hRHA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C52E32C76;
-	Thu,  7 Dec 2023 09:20:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 799F6C433C7;
-	Thu,  7 Dec 2023 09:20:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701940804;
-	bh=nl+7zRM+RUou0hee7Fw3E82iCj4CZDlgNOvJ1QEoImg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sv2QlZb+Ob2LJQaMP7IvnHXktcQOXq3LyiBJd+WHY3aNDCVRrPmmsXjbd4sThhsWO
-	 Mv2qjo9pUGyudeNAvyNSFUmY/lYDmpqW13Hc43AahvCQiQdTaCP07u/aS4zapvGQux
-	 +zY5i/GLh0RNXMRL5KTtWzsaxu+TjnNwM1gErk4xdSbeqvzlbBhz2X0QnyhbqHD94N
-	 vj+hHSQ9gpLcZegPXaMgbUywNkAgWTTYCvKRbuK4BkzOpUjke1o5/ZZh9WeiDXVMig
-	 E0hqdib+4jKIQ4V4GOaa5Zi52YOvhzBGyzVEULYeGXsPYGfPhJSDJcJjSMyVGXb1f0
-	 Zww7wMw+b4LsQ==
-Date: Thu, 7 Dec 2023 10:20:01 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc: Andrew Davis <afd@ti.com>, Frank Binns <frank.binns@imgtec.com>, 
-	Donald Robson <donald.robson@imgtec.com>, Matt Coster <matt.coster@imgtec.com>, 
-	Adam Ford <aford173@gmail.com>, Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	=?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>, Tony Lindgren <tony@atomide.com>, Nishanth Menon <nm@ti.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
-	Paul Cercueil <paul@crapouillou.net>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, linux-omap@vger.kernel.org, linux-mips@vger.kernel.org
-Subject: Re: [PATCH RFC 01/10] dt-bindings: gpu: Add PowerVR Series5 SGX GPUs
-Message-ID: <6gpehpoz54f5lxhmvirqbfwmq7dpgiroy27cljpvu66wtn7aqy@lgrh7wysyxnp>
-References: <20231204182245.33683-1-afd@ti.com>
- <20231204182245.33683-2-afd@ti.com>
- <23livt5mcc64bb6lkeec2uxp5cyn4wfekwaj6wzrjnrkndvwgj@6tveqglqpr4v>
- <B3A1B8A7-0363-4ECB-AFBF-576FECA569FA@goldelico.com>
- <vawv2mwhonuyvgmp7uox4rfgdcjwg5fa7hmbcfgl3wiase6e4p@tyavpclppfvu>
- <6BC60156-89E2-4734-BD00-B49A9A6C1D7A@goldelico.com>
+Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2129.outbound.protection.outlook.com [40.107.113.129])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED78619BE;
+	Thu,  7 Dec 2023 01:20:34 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=mPUvRoi2egXEfsJ/JDqu14PiMQSsg+HuTJW0Blh0nYzumEd4NrFLA/4XOGTyaIagD7waZc22StL0xJ7GVLR0qk6hpqiM5gAbktl2JY/iONaaMTuU3gKiJ94es2mAk3i6apc1nPOR9BSdHWqGhHM0fjqOV/0R5MFB0DPQy5auxsbA06EA3UxZHOVFT/ptdqml/RNWF8yoJDYKkCkG90qA5Qj97thTbVXN+XFvFNm34U8seWUGqsgod474yXlZ7UxpbbLAtzeTdQhH1wwytVKyPSuEYDMMvgIAffZp+4SqQJZqDkH6KCR1DsrDZOLrb/7wk+xFIHPOSndFUFjpfqAZVA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6ib2YzR9Wpct9tY0xDR3Hn7RrCTAdU80Q7P33OF5nT4=;
+ b=K7w+KSLtdrnTFkU0UUM7QBbF3dN4goTg9evQplI7NMtBPFoSP1PfK8Ly3pe7HaH/Bo7yC82ipmhLd4F+FeOW7pk7EfqPFv0yauLKOo0D3OZ3kibqp9cT4+2xjnyM/CWchgpjTilwCvRE5nL/WnN2+Inny7LXkkdfzsvc33ANLmugNd8Wl3pFe49S8Jy1dIB/F155KdvOMiIvJf0SLarraRCqB7oFjoRc07yLTS1Dd9AilWA09TFxqughwZRmWjahkOR2ZQrZO2hGTgzhfQKantxDBjgry0XxfJbpftTHFXhFANI2uzuAr9/4WAohIosc7LCuQYO+/ZRypkdax/n1cw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6ib2YzR9Wpct9tY0xDR3Hn7RrCTAdU80Q7P33OF5nT4=;
+ b=o+U0hRHAmitgPw9uer46OWv0HByG6yUsLSz1eFlYOuZ0XLpc+7G+/vNj3Jtb9mgGPQ/YiCKdT1QGeiLBmstqLOpIMrvdIpjSfrKeMf59ZMGXfv2yEHfsvZSOmCwYNiYS/9pW1EPBSlRZhO8w7q1pHz1cZvUuhR1XP7xm+i9N6MA=
+Received: from TYCPR01MB11269.jpnprd01.prod.outlook.com
+ (2603:1096:400:3c0::10) by OSZPR01MB6312.jpnprd01.prod.outlook.com
+ (2603:1096:604:ec::10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.34; Thu, 7 Dec
+ 2023 09:20:31 +0000
+Received: from TYCPR01MB11269.jpnprd01.prod.outlook.com
+ ([fe80::4af6:b31a:8826:51ac]) by TYCPR01MB11269.jpnprd01.prod.outlook.com
+ ([fe80::4af6:b31a:8826:51ac%6]) with mapi id 15.20.7091.010; Thu, 7 Dec 2023
+ 09:20:31 +0000
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Lee Jones
+	<lee@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
+	<robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+CC: Support Opensource <support.opensource@diasemi.com>, "Rafael J. Wysocki"
+	<rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui
+	<rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, Steve Twiss
+	<stwiss.opensource@diasemi.com>, "linux-input@vger.kernel.org"
+	<linux-input@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-pm@vger.kernel.org"
+	<linux-pm@vger.kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, biju.das.au
+	<biju.das.au@gmail.com>, "linux-renesas-soc@vger.kernel.org"
+	<linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH v4 0/8] Convert DA906{1,2} bindings to json-schema
+Thread-Topic: [PATCH v4 0/8] Convert DA906{1,2} bindings to json-schema
+Thread-Index: AQHaKFz3HbsQIYu8ikSsYixCn8jyCrCdgLMAgAAE/aCAAAWVAIAAAQQA
+Date: Thu, 7 Dec 2023 09:20:31 +0000
+Message-ID:
+ <TYCPR01MB112691F7F57F976F813072E14868BA@TYCPR01MB11269.jpnprd01.prod.outlook.com>
+References: <20231206155740.5278-1-biju.das.jz@bp.renesas.com>
+ <874165ae-c7a2-4f04-825a-aa9d6f4d4cb3@linaro.org>
+ <TYCPR01MB11269663E4EE04920195D708D868BA@TYCPR01MB11269.jpnprd01.prod.outlook.com>
+ <22597bf1-b623-4c5d-b230-c2054c4c13b5@linaro.org>
+In-Reply-To: <22597bf1-b623-4c5d-b230-c2054c4c13b5@linaro.org>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYCPR01MB11269:EE_|OSZPR01MB6312:EE_
+x-ms-office365-filtering-correlation-id: 2fa977a2-3284-470c-be88-08dbf705c29f
+x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ 1++CPJAy7kh01+BErFL7Bbc/yGaGLQeygCUfLJnlXb87uS/TL8ohF5R1l+RJYC1P7YoJc2048mGT8dy+02IQkgCnP7zIIweyY9Scstt4savyDlZUjFjQegVIjvi23uM7lcJ7KMFcZHnRErwUEg21R3aBL3pt0KhClpFtNNbRHRa/bY3OQWoo2dwUUfCDHyS9zqnAmg/J7riHFwEBKf7ARDhoRTPKgVm+Bf/DxQwuF2RcQWgCqszhKDLCVr7Ry6Sqm7U5TfPni4MbAjIoUBcO950X8N3tVeJuhqXmAm+LznouSboLzIjHdkhJnFuLO6rN+QxdtcgkDrVM923oe9xx8Omg21ICqZ6QFckU+R92osUhg12LHnoqSShcrv90bVWPLLO232RQ39z0SgFOWOnItji853uNKWnxEs/xkYQOS5/ZEdZVC8L0OHKZR2dq4sHCGSEkRwCLzVdEmggSBn61mSm6L9f41SIcKH+tZcasGWWnV83i+lvV5ibbwk2rGPO2XZ9txtEWF3Gyn1c6uyDt9vh/D+GCIsua5a4yg+yKWUzuvwThWZ9xIRcD3pkNaRvU5Kz1u1fIfQ+pLjlmaL4XVBZC3YJPHc9+K4Jm37UQxMiCLGKx4yjXimy2IHFvCpFu
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB11269.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(376002)(39860400002)(396003)(366004)(346002)(230922051799003)(64100799003)(451199024)(186009)(1800799012)(38070700009)(55016003)(316002)(7696005)(478600001)(6506007)(52536014)(53546011)(26005)(122000001)(4326008)(71200400001)(8676002)(64756008)(83380400001)(8936002)(110136005)(76116006)(66946007)(54906003)(66446008)(66476007)(66556008)(38100700002)(7416002)(86362001)(9686003)(2906002)(41300700001)(33656002)(5660300002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?eXhEYW5lSUg0R210VzMzaXRYYjNuckFNTXNwNVhyV3FEem9ZWkhtYUFGbnhC?=
+ =?utf-8?B?ZHpGUm11NEtiYnlkWGk4KzI1ZlUrMVRadHdjbGljYjljaDVZRUg1QjdINGVH?=
+ =?utf-8?B?aXlGS0FNdkc0VUsrYS9Ld3NmdGh3dlkwYkk1ZHBmekdCU2pLYXJTRVJySHBJ?=
+ =?utf-8?B?aXRZVzBVb2QwcHlPbnRJclZqRDBraTJYeFZEUnYxZlpRamt6V2Z1NDAvZERI?=
+ =?utf-8?B?UHZDSncvbFVtU2lVMmg1NnVwUlJXTlBZZ1NyVGxQazNUK2MzQ0p2T0t4Mk5U?=
+ =?utf-8?B?Q1NJcWExZ3pXVUpRelRXSG1DNlRYbEVyWEplK3ZBckhhYUF4YnU1NEhWSjk2?=
+ =?utf-8?B?MGpPSE1lOEZCUUQ3bmUvMlpNNlVUbzh3WkFqY3I1ak1qRGpjaGpiMk5UQS8w?=
+ =?utf-8?B?eURBbU9WZFFpSUd2R1dWZ051bWUzdkVnUDBFa09lUk1uYXZJTVEwbmtldnJw?=
+ =?utf-8?B?OWhsbHJZYXEveHYwdU92K1JOZmNMc0RJSzNWbGh2dStmcnZxLzRmOUxmM1lp?=
+ =?utf-8?B?QVpkU2J5NGZ3QW4wbytXT0NPM0VzcGp1WnM5MkE4c09kU2lrZG5HSGJOM1NU?=
+ =?utf-8?B?Tm44N09pN1RnZUxOUGFTN3ZUekJ3dWxJMysrRzJtYWRLVU93aE5RcEh6NmpU?=
+ =?utf-8?B?QVJCWGx3emYwcVV5MVgyTHY1L2FVakZGR3BIV29rMHJVbHY1aWtVNWMvQnJ0?=
+ =?utf-8?B?MTY5QzIzcEtPMzZqME43ZlZ6QUNPUkd5bGdvR3QvcUlDY2FUb2h3NitaWTIv?=
+ =?utf-8?B?RXpHeGFhMjFQbGxkeFBTbElCWWlITUxNQnZYK2xhamxDQjhSY3BwMmhSMzE3?=
+ =?utf-8?B?dkQwclNrdFBYa1M1RHE2VElDZ0wvVGhoZjNnczFwbkNFcnVHcVg1eVh4T3A5?=
+ =?utf-8?B?bHBra1JMS0I5Y0hybnNpMkpqa09vaUtwS0lpT2puRjRUK2RjTFY3L0dsUWRT?=
+ =?utf-8?B?VTlZNXFOTlBJNVR0Vmo5c2x6ZGt1QXczZDI5Unc3UXlRVXgySmZ6YmxUTHpB?=
+ =?utf-8?B?bWtqZUdoNnZDbTRHV0pHcHV6YWhjQkMwQVZmRGQ2WSsrYUNZUFF4MEVaaXEz?=
+ =?utf-8?B?WlhHUUFJUDhvbHRSNzRnYk1iakZvWnM2Q0dhdk9FMVhNT0dPM2l2NXBjWGMr?=
+ =?utf-8?B?WGRlVVp1QkprL3VHK0tHK0hhdGFUaHhuTmN5T2p3QVBtTTZhbEVqUWVydHNh?=
+ =?utf-8?B?SDBWbGFoejdXNmdFZzVDbHl2VUVKU05rYWdLSlpkbFdWNHk2c3oyQ1JSdXVP?=
+ =?utf-8?B?SVpuSWlkMTNhZXJTd3RWWjVPQkhaT0FhTXZJS3kyY3ZaVy90MGlUWVVUNW1a?=
+ =?utf-8?B?Nk5INjRraEdQaXhPRGh6azB6YWNaQVM4WDdtZDZXU1pNZk8wZmZLSUZvWlBu?=
+ =?utf-8?B?TFdYWmRYbjlXYW42ZWhqWVNRbHBmYWR2ZHM2U1ZmRld6bm9GV2V4V0lRMnQx?=
+ =?utf-8?B?RkFmZnoxU2ZVNDQ4d1hMNlBQYUNBbzU1aTdNTzFrL1FWcGtlK1NDd1Vka0ZU?=
+ =?utf-8?B?REVaUHlVOTRZb0tJM2NvWTlCM1QvdlZ2RGtuQXBSMnNvbTVpZEtkV09JcUZP?=
+ =?utf-8?B?SmVSanNQMk53Qm5UT0lpU21Xb1Y1SXNqbTdZK1hETTFUVmtKWmhYazgyN3FC?=
+ =?utf-8?B?eFBGc1B2YjdMRVJHT2dPRWVKOWNod2xmbmd5Tmgza3JhS294dS90T1crQUVU?=
+ =?utf-8?B?Wm1idlFzczlIekRsaitqUGUzbURQeWVhZmxGTUYzd3lvbHdPeVlleHJ4YklH?=
+ =?utf-8?B?akhqZHBVWFM5azRxNUt5UUxHd3ZsS2UxQjQ5b0Urcy9VeXpkc3BXczFuRzNq?=
+ =?utf-8?B?TWRqRHd3RVNDNGQ0OFBzbEh4WTkwa09EQlBSV0lJcWlDbzhrQXRwanl2Wkpw?=
+ =?utf-8?B?bm52azc3LzVrQUJ6SDA5MUZLd3RQZEhpR0VDM1dJM1lFdFdnWXhGdU94T0Zr?=
+ =?utf-8?B?Z3FVamYrMGpUOXVwTEZuWGpDcHVMWmNnclg3QUw0VmhvZTRJNTZRWDNlV1RU?=
+ =?utf-8?B?WWw2VFNIU1d5Y0lwcFAyYldVOGZPR2drdGFNMW16RjNvaEkySHJSOXlqVW1H?=
+ =?utf-8?B?dE10b0FXN0E0ZHIyeGUyY04xSGRlaWhBVEYzT1NtM2F4STEvZERrQU83RzJi?=
+ =?utf-8?B?VGZCTzBzUml6eGpPQ0gxaHZhMjFvMVlQOThTR2NRaDZneDEwdjNwelZTZDlL?=
+ =?utf-8?B?Tnc9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="at7ezwmqtv5cf653"
-Content-Disposition: inline
-In-Reply-To: <6BC60156-89E2-4734-BD00-B49A9A6C1D7A@goldelico.com>
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB11269.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2fa977a2-3284-470c-be88-08dbf705c29f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Dec 2023 09:20:31.4782
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: REu65XMKg6NKHA0Jn7byW6l2W07avekNikgDn9hDh+7AuLWuNNg4wpNgHLsO+kxyh4/g/vxcwSkB9wFskp6I619Zxmyn02gXicDheXEN/uY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSZPR01MB6312
 
-
---at7ezwmqtv5cf653
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Dec 05, 2023 at 02:50:08PM +0100, H. Nikolaus Schaller wrote:
-> Hi,
->=20
-> > Am 05.12.2023 um 14:29 schrieb Maxime Ripard <mripard@kernel.org>:
-> >=20
-> > Hi,
-> >=20
-> > On Tue, Dec 05, 2023 at 09:18:58AM +0100, H. Nikolaus Schaller wrote:
-> >>> Am 05.12.2023 um 07:57 schrieb Maxime Ripard <mripard@kernel.org>:
-> >>>=20
-> >>> On Mon, Dec 04, 2023 at 12:22:36PM -0600, Andrew Davis wrote:
-> >>>> The Imagination PowerVR Series5 "SGX" GPU is part of several SoCs fr=
-om
-> >>>> multiple vendors. Describe how the SGX GPU is integrated in these So=
-C,
-> >>>> including register space and interrupts. Clocks, reset, and power do=
-main
-> >>>> information is SoC specific.
-> >>>>=20
-> >>>> Signed-off-by: Andrew Davis <afd@ti.com>
-> >>>> ---
-> >>>> .../devicetree/bindings/gpu/img,powervr.yaml  | 69 +++++++++++++++++=
---
-> >>>> 1 file changed, 63 insertions(+), 6 deletions(-)
-> >>>=20
-> >>> I think it would be best to have a separate file for this, img,sgx.ya=
-ml
-> >>> maybe?
-> >>=20
-> >> Why?
-> >=20
-> > Because it's more convenient?
->=20
-> Is it?
-
-It's for a separate architecture, with a separate driver, maintained out
-of tree by a separate community, with a separate set of requirements as
-evidenced by the other thread. And that's all fine in itself, but
-there's very little reason to put these two bindings in the same file.
-
-We could also turn this around, why is it important that it's in the
-same file?
-
-> >> The whole family of IMG GPUs is PowerVR and SGX and Rogue are generati=
-ons 5 and 6++:
-> >>=20
-> >> https://en.wikipedia.org/wiki/PowerVR
-> >=20
-> > That's not really relevant as far as bindings go.
->=20
-> But maybe for choosing binding file names. Well they are machine readable
-> but sometimes humans work with them.
-
-Heh. It's something that can also be easily grepped, and the name is
-never going to reflect all the compatibles in a binding so it's what
-you'll end up doing anyway. But feel free to suggest another name to
-avoid the confusion.
-
-> > We have multiple
-> > binding files for devices of the same generation, or single bindings
-> > covering multiple generations.
-> >=20
-> > The important part is that every compatible is documented. It doesn't
-> > really matter how or where.
->=20
-> Yes, and that is why I would find it more convenient to have a single
-> "img,powervr.yaml" for all variations unless it becomes filled with
-> unrelated stuff (which isn't as far as I see).
-
-Again, hard disagree there.
-
-Maxime
-
---at7ezwmqtv5cf653
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZXGOQQAKCRDj7w1vZxhR
-xbE8AQCZfNo9oCxq0vvLhGlgv/lmiS2j6lzTN0TCD3qEYXuWvgEA8HDEG22nAn5t
-tKqxvYUa7HNULBEgPKYPdGXjaC67bgw=
-=r0f1
------END PGP SIGNATURE-----
-
---at7ezwmqtv5cf653--
+SGkgS3J6eXN6dG9mIEtvemxvd3NraSwNCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0K
+PiBGcm9tOiBLcnp5c3p0b2YgS296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5v
+cmc+DQo+IFNlbnQ6IFRodXJzZGF5LCBEZWNlbWJlciA3LCAyMDIzIDk6MTYgQU0NCj4gU3ViamVj
+dDogUmU6IFtQQVRDSCB2NCAwLzhdIENvbnZlcnQgREE5MDZ7MSwyfSBiaW5kaW5ncyB0byBqc29u
+LXNjaGVtYQ0KPiANCj4gT24gMDcvMTIvMjAyMyAxMDowMSwgQmlqdSBEYXMgd3JvdGU6DQo+ID4g
+SGkgS3J6eXN6dG9mIEtvemxvd3NraSwgTGVlIEpvbmVzLA0KPiA+DQo+ID4+IC0tLS0tT3JpZ2lu
+YWwgTWVzc2FnZS0tLS0tDQo+ID4+IEZyb206IEtyenlzenRvZiBLb3psb3dza2kgPGtyenlzenRv
+Zi5rb3psb3dza2lAbGluYXJvLm9yZz4NCj4gPj4gU2VudDogVGh1cnNkYXksIERlY2VtYmVyIDcs
+IDIwMjMgODozOCBBTQ0KPiA+PiBTdWJqZWN0OiBSZTogW1BBVENIIHY0IDAvOF0gQ29udmVydCBE
+QTkwNnsxLDJ9IGJpbmRpbmdzIHRvDQo+ID4+IGpzb24tc2NoZW1hDQo+ID4+DQo+ID4+IE9uIDA2
+LzEyLzIwMjMgMTY6NTcsIEJpanUgRGFzIHdyb3RlOg0KPiA+Pj4gQ29udmVydCB0aGUgYmVsb3cg
+YmluZGluZ3MgdG8ganNvbi1zY2hlbWENCj4gPj4+IDEpIERBOTA2ezEsMn0gbWZkIGJpbmRpbmdz
+DQo+ID4+PiAyKSBEQTkwNnsxLDIsM30gb25rZXkgYmluZGluZ3MNCj4gPj4+IDMpIERBOTA2ezEs
+MiwzfSB0aGVybWFsIGJpbmRpbmdzDQo+ID4+Pg0KPiA+Pj4gQWxzbyBhZGQgZmFsbGJhY2sgZm9y
+IERBOTA2MSB3YXRjaGRvZyBkZXZpY2UgYW5kIGRvY3VtZW50DQo+ID4+PiBEQTkwNjMgd2F0Y2hk
+b2cgZGV2aWNlLg0KPiA+Pg0KPiA+PiBQbGVhc2UgZXhwbGFpbiBoZXJlIGRlcGVuZGVuY2llcyBh
+bmQgbWFrZSBjbGVhciBtZXJnaW5nIHN0cmF0ZWd5LiBUaGUNCj4gPj4gcGF0Y2hlcyBjYW5ub3Qg
+YmUgdGFrZW4gaW5kZXBlbmRlbnRseS4NCj4gPg0KPiA+IFJvYiBtZW50aW9uZWQgaXQgbmVlZHMg
+dG8gYmUgdGFrZW4gdGhyb3VnaCBNRkQgdHJlZS4gU2VlIFsxXQ0KPiA+DQo+IA0KPiBUaGlzIEkg
+a25vdywgYnV0IHlvdSBtdXN0IGV4cGxhaW4gaXQgaGVyZSAtIG5vdCBpbiBteSByZXBseSwgYnV0
+IGluIHRoZQ0KPiBjb3ZlciBsZXR0ZXIuIE5vIG9uZSB3aWxsIHJlbWVtYmVyIHdoYXQgd2FzIGFn
+cmVlZCBkYXlzIGFnbywgbm90DQo+IG1lbnRpb25pbmcgdGhhdCBub3QgZXZlcnlvbmUgY291bGQg
+cmVhZCBSb2IncyBtZXNzYWdlLiBTbyBob3cgYW55b25lDQo+IHJlYWRpbmcgeW91ciBjb3ZlciBs
+ZXR0ZXIgY291bGQga25vdyBpdD8NCg0KQWdyZWVkLCBXaWxsIG1lbnRpb24gaXQgaW4gY292ZXIg
+bGV0dGVyLg0KDQpDaGVlcnMsDQpCaWp1DQo=
 
