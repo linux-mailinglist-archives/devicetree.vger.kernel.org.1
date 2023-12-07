@@ -1,89 +1,137 @@
-Return-Path: <devicetree+bounces-22906-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22907-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EECB9809676
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 00:13:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4687480967F
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 00:18:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A44DA281FA9
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 23:13:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E598C1F2116C
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 23:18:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 133264B152;
-	Thu,  7 Dec 2023 23:13:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D236F4F8B1;
+	Thu,  7 Dec 2023 23:18:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="XTMB/ie0"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="MV1LYsc0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a02:c205:3004:2154::1])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AACD91712;
-	Thu,  7 Dec 2023 15:13:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:Content-Type:
-	MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=YDjuHr+EiLsC36JvvpPN8T8VswhgDUJmDxpL1zCg9Yo=; b=XTMB/ie0P9ynAj6SNJb6fr5brI
-	CKBhczXqgQi0FPzECQNQxmvWxaRtj+z7UdYWjBFrZzGO/xnO9xK+SOwstcfgg0awdsT1ip6kf8blN
-	JxNtS1XjUTknJ/T2luHtEh56MW6Ymut/yDaasoJSm8quG5wcDlVKfLiYFYc9uPenwA8gVERyL0MJY
-	EXLzG4WO5jXVM1fW1RGg/yvnbRtjVIX3TsAiNJx2HPCCzvNI5W8AKfMYZBrGeVX698FA6P/8BXz3C
-	dy8+/MSt6gqaQgOdJKa+wE7Ihs9pPilSRDHlF6Rx0ni2IOpCLfG5mM3kx34l2wUfjgMkplfE7TsY2
-	HRWPcOFw==;
-Received: from p200301077700c3001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:107:7700:c300:1a3d:a2ff:febf:d33a] helo=aktux)
-	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <andreas@kemnade.info>)
-	id 1rBNYk-0079Mb-K2; Fri, 08 Dec 2023 00:13:34 +0100
-Date: Fri, 8 Dec 2023 00:13:32 +0100
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Lee Jones <lee@kernel.org>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, bcousson@baylibre.com, tony@atomide.com,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-omap@vger.kernel.org
-Subject: Re: [PATCH v3 5/6] mfd: twl4030-power: accept standard property for
- power controller
-Message-ID: <20231208001332.1f9e062f@aktux>
-In-Reply-To: <20231207171341.GH111411@google.com>
-References: <20231203222903.343711-1-andreas@kemnade.info>
-	<20231203222903.343711-6-andreas@kemnade.info>
-	<20231207171341.GH111411@google.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 519221717
+	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 15:18:22 -0800 (PST)
+Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2cb20b965dbso2321421fa.1
+        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 15:18:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1701991100; x=1702595900; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2qVgIXXI2cMw2ajdOYKgvt4GH6JzHiU0pdSvnaX1mW4=;
+        b=MV1LYsc0sqYLrqubyZ9BgfYCovQ7NwnwTnHIfEkR7xBQXJNRRSsuyRNhOOpkF3dJLP
+         yyujvvp/NHVZte/5SzZrq1TEIU4DQyh0W0aH6t+o+Bpeq41KrkTrOU0P6T0y+r7PfL5V
+         5obuwdRjan4mYXCSji+IM6vlDnFtVOar44FXk0rfPmV3Wp9vaOwnHny9ttKqSd+pSrmn
+         Q6ee6/2w8uQ/VcEwY0K/CpfjaLy2ubXnFsFHYJG1Pn5RSjlBzUwevT6q3EiMBkInwL+9
+         LPWqx75VmSpWeCZZ+ReIVgXTXTIhr0l8CPoqLAaazvQOi0j4FkzqWQoglR8O1voUbZK0
+         Aj1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701991100; x=1702595900;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2qVgIXXI2cMw2ajdOYKgvt4GH6JzHiU0pdSvnaX1mW4=;
+        b=XBeI+2UE+Xy9dL/ry58fmiVPoayAgLQl8V/LZo4ivov11n/qOmPo7rEOAqLCrNEOhF
+         maTES8fSMZXarT3TySyrW2kkNoFEgRwGgzNkTB03ZRKemLiFh21x5ePEfdGh4jxhto8T
+         CRYTKrAik6aQPzy/O2OcpejpbBFocE++Mz1eXa1hcDJkEjLQ0ksLwT9Vrk5vbbo1yuQ6
+         G7qPIHEF+PnHdk7YQ6oRmk16ZwSBO+thLwnIHfgICiOAyX8NyHayoH0XbiiOnz35UhCW
+         4hX0tYmnovBohvh86svLzzZIMkUeJvbmgV7DwrNonJ65199AacPe+L+arTQMc1xzohAB
+         RDNg==
+X-Gm-Message-State: AOJu0YzESJ7DNwNp7XRTxXtRGFe5Bk+YG+d5TRxZjHD53/T+GUoesmzh
+	Ix/bTmHgtU2SwCpjBXOEw+WEbEkzCRG3J1EIGha6ww==
+X-Google-Smtp-Source: AGHT+IHQ1Cpr4EU0uoWT4gxeah7NnQJz57yCMLaVX91YLu7zNGMJ28UWG2gIa8fDxSMey7KqGONBMNrBP01R9tlIPsE=
+X-Received: by 2002:a2e:3608:0:b0:2c9:f4e4:3206 with SMTP id
+ d8-20020a2e3608000000b002c9f4e43206mr932197lja.38.1701991099990; Thu, 07 Dec
+ 2023 15:18:19 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <cover.1701971344.git.marcelo.schmitt1@gmail.com> <14973feb4c0f4ad01a0e5047407c93ce9b9e5463.1701971344.git.marcelo.schmitt1@gmail.com>
+In-Reply-To: <14973feb4c0f4ad01a0e5047407c93ce9b9e5463.1701971344.git.marcelo.schmitt1@gmail.com>
+From: David Lechner <dlechner@baylibre.com>
+Date: Thu, 7 Dec 2023 17:18:09 -0600
+Message-ID: <CAMknhBHCYicEL_xhumBQMUm=HBVb=7dLrYsK8Zj2o7RodvMarw@mail.gmail.com>
+Subject: Re: [PATCH v3 02/13] iio: adc: ad7091r: Populate device driver data field
+To: Marcelo Schmitt <marcelo.schmitt@analog.com>
+Cc: apw@canonical.com, joe@perches.com, dwaipayanray1@gmail.com, 
+	lukas.bulwahn@gmail.com, paul.cercueil@analog.com, 
+	Michael.Hennerich@analog.com, lars@metafoo.de, jic23@kernel.org, 
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	dan.carpenter@linaro.org, marcelo.schmitt1@gmail.com, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, 7 Dec 2023 17:13:41 +0000
-Lee Jones <lee@kernel.org> wrote:
+On Thu, Dec 7, 2023 at 12:38=E2=80=AFPM Marcelo Schmitt
+<marcelo.schmitt@analog.com> wrote:
+>
+> Set device driver data so it can be retrieved when handling alert
+> events, avoiding null pointer dereference.
+>
+> Fixes: ca69300173b6 ("iio: adc: Add support for AD7091R5 ADC")
+> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+> ---
+>  drivers/iio/adc/ad7091r-base.c | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/drivers/iio/adc/ad7091r-base.c b/drivers/iio/adc/ad7091r-bas=
+e.c
+> index 8e252cde735b..0f192fbecbd4 100644
+> --- a/drivers/iio/adc/ad7091r-base.c
+> +++ b/drivers/iio/adc/ad7091r-base.c
+> @@ -232,6 +232,7 @@ int ad7091r_probe(struct device *dev, const char *nam=
+e,
+>         iio_dev->channels =3D chip_info->channels;
+>
+>         if (irq) {
+> +               dev_set_drvdata(st->dev, iio_dev);
+>                 ret =3D devm_request_threaded_irq(dev, irq, NULL,
+>                                 ad7091r_event_handler,
+>                                 IRQF_TRIGGER_FALLING | IRQF_ONESHOT, name=
+, st);
+> --
+> 2.42.0
+>
+>
 
-> On Sun, 03 Dec 2023, Andreas Kemnade wrote:
-> 
-> > Instead of only accepting the ti specific properties accept also
-> > the standard property. For uniformity, search in the parent node  
-> 
-> Search 'in' the parent node or 'from' the parent node?
-> 
-> Where is the property?
-> 
-The idea was to have the device tree property at the same place for all
-twl family devices. So no distinction for these devices needed
-in the bindings. It is in the main node.
+Instead of introducing a new relationship between iio_dev and st, why
+not pass iio_dev to devm_request_threaded_irq() instead of st and then
+use iio_priv() to get st in ad7091r_event_handler?
 
-I guess today this twl4030-power subnode would not be accepted nowadays
-and the compatible would be some kind of flag in the parent.
+diff --git a/drivers/iio/adc/ad7091r-base.c b/drivers/iio/adc/ad7091r-base.=
+c
+index 8e252cde735b..0e5d3d2e9c98 100644
+--- a/drivers/iio/adc/ad7091r-base.c
++++ b/drivers/iio/adc/ad7091r-base.c
+@@ -174,8 +174,8 @@ static const struct iio_info ad7091r_info =3D {
 
-> > for the tag. The code for powering of is also isolated from the  
-> 
-> Should this be "off"?
-> 
-yes, of course.
-
-Regards,
-Andreas
+ static irqreturn_t ad7091r_event_handler(int irq, void *private)
+ {
+-    struct ad7091r_state *st =3D (struct ad7091r_state *) private;
+-    struct iio_dev *iio_dev =3D dev_get_drvdata(st->dev);
++    struct iio_dev *iio_dev =3D private;
++    struct ad7091r_state *st =3D iio_priv(iio_dev);
+     unsigned int i, read_val;
+     int ret;
+     s64 timestamp =3D iio_get_time_ns(iio_dev);
+@@ -234,7 +234,7 @@ int ad7091r_probe(struct device *dev, const char *name,
+     if (irq) {
+         ret =3D devm_request_threaded_irq(dev, irq, NULL,
+                 ad7091r_event_handler,
+-                IRQF_TRIGGER_FALLING | IRQF_ONESHOT, name, st);
++                IRQF_TRIGGER_FALLING | IRQF_ONESHOT, name, iio_dev);
+         if (ret)
+             return ret;
+     }
 
