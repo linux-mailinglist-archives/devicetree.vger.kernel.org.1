@@ -1,109 +1,109 @@
-Return-Path: <devicetree+bounces-22527-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22529-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA5888080BE
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 07:33:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69B798080CC
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 07:35:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5424EB20CE2
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 06:33:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 25B37281668
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 06:35:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F5F3D311;
-	Thu,  7 Dec 2023 06:33:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF58C134D3;
+	Thu,  7 Dec 2023 06:35:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="UyEHbQ3G"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="VNDOLM4u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCE0610D
-	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 22:33:09 -0800 (PST)
-Received: by mail-pl1-x633.google.com with SMTP id d9443c01a7336-1d098b87eeeso5029415ad.0
-        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 22:33:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1701930789; x=1702535589; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=wT1sxbADQW/P3RnIhNKOoErO0PmyPZLTD+XFv+Dmqmw=;
-        b=UyEHbQ3G97jRdvJlhnkuLkVFge4RX+VfDBId0Vb2UG/4erwy1wziiWRXKDPpofG3ZS
-         g+xnAcqGCchiTvxxGtyN3KV14yN0XorQ0sxZVoEoplk/RQLoY6lAIrBnqfArYdmvn7zB
-         MkTd7Mq0OuOTD2ulaq6jiEfOvL1RmTjW9P7oRrZy++LHz2W9FUeVAbE6P5RjNU1vsUE7
-         wrvYk1IYQ1iN5oPySDwT1zpJilI3KFZ09A2diqDrILhRORXGAc5LE8Jzufal/u8tDLtc
-         hJGOv1+DNQRARGQWXV5pevTWNOJT9A7nNW6ABNkgcffezEnIj+M+bUKG0YMu/wAOgVSM
-         mAfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701930789; x=1702535589;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wT1sxbADQW/P3RnIhNKOoErO0PmyPZLTD+XFv+Dmqmw=;
-        b=N5BECWZ7LmD/NQzLCCJL2zxyObz9a/h6Jn8S40dO9HGyXoZ+kGukP19USD/ncTXI9B
-         4RJ0Ur9LaLKml+jzc9S4bWqCy7clwnOBh576BjidXG2ko4WJ4F3vng4Kf2APe8YM944m
-         m/afPyeohq+SuwuBQZCV9/mAm7K56/I43XM7CdYGcdcbWZmfGn2Y2PdVQkkbsZ4i22y7
-         Ix/iZvqx1XDaBTaJaOlzkFIbhiPJEWyV8hgGQiQETsyjEwjH9kXRxSEXTN5I9MPzqT1s
-         syTI28fyzvNwsadSt0BN4AqcV9OL9UnqRpSESK4/yml9YNFwm7LX+hwtvCh0XLpbQpWd
-         pYXg==
-X-Gm-Message-State: AOJu0YzKmdkKO2hxtQZTInbOEB9bqkvDYJv5SJPsib22fBdAYAbzZ7HD
-	+vWKsMs5SeUOk8H/n0ajhtgZeQ==
-X-Google-Smtp-Source: AGHT+IGmAPvOgFD2LOhm3MP0gbls/N07AmNDX56j2zJ3nzhmHoKF8tEd2y6A6nIQCZgMGdF4lq5yNA==
-X-Received: by 2002:a17:902:db01:b0:1d0:bc5f:ce62 with SMTP id m1-20020a170902db0100b001d0bc5fce62mr1982325plx.107.1701930789101;
-        Wed, 06 Dec 2023 22:33:09 -0800 (PST)
-Received: from x1 ([2601:1c2:1800:f680:c2eb:f39a:190b:4379])
-        by smtp.gmail.com with ESMTPSA id s15-20020a170902b18f00b001d0acd4e707sm520880plr.176.2023.12.06.22.33.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Dec 2023 22:33:08 -0800 (PST)
-Date: Wed, 6 Dec 2023 22:33:05 -0800
-From: Drew Fustini <dfustini@baylibre.com>
-To: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc: Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>, Conor Dooley <conor@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Jason Kridner <jkridner@beagleboard.org>,
-	Robert Nelson <robertcnelson@beagleboard.org>,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v8 2/4] riscv: dts: thead: Add TH1520 mmc controllers and
- sdhci clock
-Message-ID: <ZXFnIWcAlJ5d/SE1@x1>
-References: <20231206-th1520_mmc_dts-v8-0-69220e373e8f@baylibre.com>
- <20231206-th1520_mmc_dts-v8-2-69220e373e8f@baylibre.com>
- <CAJM55Z_jRhJLLQg9_OzJ_UeqaoqByu_BgxmwtVRUK2Z+qEKZxg@mail.gmail.com>
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADB67D7E;
+	Wed,  6 Dec 2023 22:35:48 -0800 (PST)
+X-UUID: d6cc320894ca11eeba30773df0976c77-20231207
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=1Upr25vEguertkhwfGF+tea8+auuicN+7Yo0Ew+WXUc=;
+	b=VNDOLM4uq5kOIFzxKkumbHtgXBYuLh9E8Zm6FzSSDoOQpT8w6gLv8cfhuzVnhxPbzCyGSkv2dma4IMWqBCiuLajiNeYhuLq+rtlHzKO+rZWqsGHYQVUifP6YzpdBNZ0ZEtSkEiB4lasqRVEliiEkMFDofmhSY752IdQBv+VLFHM=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.35,REQID:eba906a8-d548-4db8-b82f-4e39ebeed144,IP:0,U
+	RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+	:release,TS:-5
+X-CID-META: VersionHash:5d391d7,CLOUDID:0beae4bc-2ac7-4da2-9f94-677a477649d9,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+	DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: d6cc320894ca11eeba30773df0976c77-20231207
+Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw02.mediatek.com
+	(envelope-from <axe.yang@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1076372996; Thu, 07 Dec 2023 14:35:40 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Thu, 7 Dec 2023 14:35:38 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Thu, 7 Dec 2023 14:35:37 +0800
+From: Axe Yang <axe.yang@mediatek.com>
+To: Chaotian Jing <chaotian.jing@mediatek.com>, Ulf Hansson
+	<ulf.hansson@linaro.org>, Rob Herring <robh+dt@kernel.org>, "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, "Wenbin
+ Mei" <wenbin.mei@mediatek.com>
+CC: <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Axe Yang
+	<axe.yang@mediatek.com>
+Subject: [PATCH v4 0/2] mmc: mediatek: add support for 64-steps tuning 
+Date: Thu, 7 Dec 2023 14:35:33 +0800
+Message-ID: <20231207063535.29546-1-axe.yang@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAJM55Z_jRhJLLQg9_OzJ_UeqaoqByu_BgxmwtVRUK2Z+qEKZxg@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-AS-Result: No-10--7.560700-8.000000
+X-TMASE-MatchedRID: gUuz9Ogq75XyTBeqcpWTVjPDkSOzeDWWc3ewuwbSaG74JyR+b5tvoMIZ
+	XeWgC5H4MNtd4b5keZYEoCN5ygO+keG9zoNFX6PtcFEiuPxHjsXizg6lQ0NagVwpnAAvAwazYjN
+	VHAF7/x2VMlcqqHWd7aBVvEjzNBpCHxPMjOKY7A+Wlioo2ZbGwdmzcdRxL+xwKrauXd3MZDWCtu
+	rRWuLXZFTRjqgjX5vkHnbm84W0zu1SxdSdZ8QKZ+kY/8nj1oos
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--7.560700-8.000000
+X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-SNTS-SMTP:
+	9B3128BC62A2FEE6AE006376D6BA995C3A25A8BBC567435E09939EC57DB75A0F2000:8
+X-MTK: N
 
-On Wed, Dec 06, 2023 at 04:10:28AM -0600, Emil Renner Berthing wrote:
-> Drew Fustini wrote:
-> > Add node for the fixed reference clock used for emmc and sdio nodes.
-> > Add emmc node for the 1st dwcmshc instance which is typically connected
-> > to an eMMC device. Add sdio0 node for the 2nd dwcmshc instance which is
-> > typically connected to microSD slot. Add sdio1 node for the 3rd dwcmshc
-> > instance which is typically connected to an SDIO WiFi module. The node
-> > names are based on Table 1-2 C910/C906 memory map in the TH1520 System
-> > User Manual.
-> >
-> > Link: https://git.beagleboard.org/beaglev-ahead/beaglev-ahead/-/tree/main/docs
-> > Signed-off-by: Drew Fustini <dfustini@baylibre.com>
-> 
-> Thanks! The rest of the patches look good too, but I don't really have
-> a schematic
-> to do proper review.
-> 
-> Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Change in v4:
+- for SD/SDIO, tune 64 steps by default
+- reduce some breaks to improve code readability
 
-Thanks for reviewing. The BeagleV-Ahead board is open source hardware so
-there is the full schematic and PCB layout in:
-https://git.beagleboard.org/beaglev-ahead/beaglev-ahead
+Change in v3:
+- use BIT_ULL() instead of BIT() to avoid potential left shift operations
+  that could cause exceed boundary problem on 32-bit platforms
 
-Drew
+Change in v2:
+- move the change made to document to the front
+- change mediatek,tune-step dts property type to enum for better scalability
+
+Axe Yang (2):
+  dt-bindings: mmc: mtk-sd: add tuning steps related property
+  mmc: mediatek: extend number of tuning steps
+
+ .../devicetree/bindings/mmc/mtk-sd.yaml       |   9 +
+ drivers/mmc/host/mtk-sd.c                     | 158 ++++++++++++------
+ 2 files changed, 119 insertions(+), 48 deletions(-)
+
+-- 
+2.18.0
+
 
