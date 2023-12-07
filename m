@@ -1,129 +1,132 @@
-Return-Path: <devicetree+bounces-22703-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22704-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E209D808836
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 13:45:28 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5BF8808853
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 13:49:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9AFBD283346
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 12:45:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 680281F226E6
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 12:49:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1285A3D0AB;
-	Thu,  7 Dec 2023 12:45:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1071F3D0D4;
+	Thu,  7 Dec 2023 12:49:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="AYYZcis+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="veldLWTR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FEB810FD;
-	Thu,  7 Dec 2023 04:45:03 -0800 (PST)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B7CiaKR079764;
-	Thu, 7 Dec 2023 06:44:36 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1701953076;
-	bh=FT29/MEgoF20b26cgNWY0vHBInmsXB7G0qXWX5N+ekI=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=AYYZcis+us8F4X4DWoZ10oyonBh8TbLHEeLUN54hFXfaFNxA0+ilpwkXE3QWzP/vX
-	 mlGuvHNe7blKHu38WIvqd7KQ/0mz+ZXheVoQTQOT/TTR/8s0zf8VxOoLHs+qCmITSx
-	 kE91xFtnoh1JAhdVgwhMr54aDwZaElRAGEo3OJNY=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B7CiavZ103079
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 7 Dec 2023 06:44:36 -0600
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 7
- Dec 2023 06:44:35 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 7 Dec 2023 06:44:35 -0600
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B7CiZaA068373;
-	Thu, 7 Dec 2023 06:44:35 -0600
-Date: Thu, 7 Dec 2023 06:44:35 -0600
-From: Nishanth Menon <nm@ti.com>
-To: Brandon Brnich <b-brnich@ti.com>
-CC: <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Nas
- Chung <nas.chung@chipsnmedia.com>,
-        Jackson Lee <jackson.lee@chipsnmedia.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Sebastian Fricke
-	<sebastian.fricke@collabora.com>,
-        Dafna Hirschfeld
-	<dafna.hirschfeld@collabora.com>,
-        Robert Beckett <bob.beckett@collabora.com>,
-        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-        Geert Uytterhoeven
-	<geert@linux-m68k.org>,
-        Darren Etheridge <detheridge@ti.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: media: Remove K3 Family Prefix from
- Compatible
-Message-ID: <20231207124435.yqqtgdhl4dfvmmhc@overtly>
-References: <20231206185254.1748473-1-b-brnich@ti.com>
- <20231206185254.1748473-2-b-brnich@ti.com>
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0BD010C4
+	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 04:49:18 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-54bfa9b3ffaso1255535a12.1
+        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 04:49:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701953357; x=1702558157; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ewcCC5I9quh+IScx7/WwbynVZPmtW1TJ0aMAySdLq98=;
+        b=veldLWTRpL3w8RsQ1LnflRzCYDfBtWPwu3kD/xiyAOLaqM742Rrc/+5TYb5oUs35Q5
+         QkejVnAUepE4UH/IKl+cF2iB+CHNXMZGsK59T7YBCuDp5tac4iZgkuxexsPJEphkpRk4
+         pgAVRe2X3/hA8C0kHYIJA7rXQot3YLzKE+5CMmLyTCua2cBNkTHv/e9CnAMJ0SzTkxsg
+         ibyujDsV4aIYbZQyWojM68LwFv4AXFUuTNSH6u2Sw0EjJuq1wHb+NqkyjDT1Jl4yDFGf
+         e1ifGgR+deK/mgmSWpW0zgKhMsvxaeZiObyxDpgkyAtPWejbZG16V7NdM/fvkW0m+Eep
+         j5tg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701953357; x=1702558157;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ewcCC5I9quh+IScx7/WwbynVZPmtW1TJ0aMAySdLq98=;
+        b=ZkDWi0GX4uPO+PunWVEa6HRGZRwZi/7CXCe9Sjl3X27SOwpNo1mKn+kJdeI1tQPbf7
+         f73QtO8ToBkp+qHrj6CQHmiKoQpKbcTIz2q8ssx/aeMKBLb7oasyzC9gFZuQMANOsjZ/
+         ekgB85zmV3Njz6KBmJbk6u/OUiN958x1nS3uP7RiKr+36RF/N6wQ+F/YVptHC5LJj5sQ
+         bRPH724AFS9bAfqqXbXUEEeMHENMhdaFiZCAtpX4TqlLDihyvtIooSABDmNgUCLpiDvh
+         vy+HmnXvfrhOaP2wt8gW89uYTu6bI9PiBq8igDd6EQ0v0UD1lLW/YvJhv7wUrilxXPh4
+         vnWA==
+X-Gm-Message-State: AOJu0Yx+lB9tvWvBixmAWlaAqLPpO5geuqUoJLblXefWESd0+KfF1dp6
+	KS3awM+xBxKWmPkj/2BNCk8ldw==
+X-Google-Smtp-Source: AGHT+IEIAxZFdmx/s3Jy2bRHV0dHvEoeKVHqKLkG1wyUTQE962o1Ihr+87Emnf0MK8GH2q3GIqxMlQ==
+X-Received: by 2002:a50:a6d6:0:b0:54c:4837:9a9f with SMTP id f22-20020a50a6d6000000b0054c48379a9fmr1570716edc.70.1701953357235;
+        Thu, 07 Dec 2023 04:49:17 -0800 (PST)
+Received: from [127.0.1.1] ([82.79.186.233])
+        by smtp.gmail.com with ESMTPSA id q30-20020a50cc9e000000b0054b1360dd03sm757834edi.58.2023.12.07.04.49.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Dec 2023 04:49:16 -0800 (PST)
+From: Abel Vesa <abel.vesa@linaro.org>
+Date: Thu, 07 Dec 2023 14:49:10 +0200
+Subject: [PATCH v2] dt-bindings: phy: qcom: snps-eusb2: Document the
+ X1E80100 compatible
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20231206185254.1748473-2-b-brnich@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20231122-phy-qualcomm-eusb2-x1e80100-v2-1-3ba9a8e5ade4@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAEW/cWUC/42OQQ6CMBBFr0K6dkynKKIr72FYtGWgTUqLrRAI4
+ e5WTuDyvcV/f2OJoqXEHsXGIs022eAziFPBtJG+J7BtZia4KBGFgNGs8J6k02EYgKakBCxINUf
+ OoaxaqaWqu/YqWF5QMhGoKL02ecNPzmU5RursciRfTWZj0yfE9Xgw48/+F5sROGji9ztihfXl9
+ nTWyxjOIfas2ff9C9hQRw7cAAAA
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Abel Vesa <abel.vesa@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1279; i=abel.vesa@linaro.org;
+ h=from:subject:message-id; bh=4k813iq1YF243IH2N4xldDb319+rcBPdboFxnx//Dck=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBlcb9H1sKM3NbYG3YUetp0CSTKK/tqkdsgIGZA0
+ q9OCw7Lgd6JAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZXG/RwAKCRAbX0TJAJUV
+ VmFGD/sEeHJbe98utJbRyRmNIE2AUOhjEk1mo/7zwwHI1o6zZ/hpeQ7t6eGglJ7owBFZ57PW6xz
+ epxya4cNRSaozzkZMX8+Q/LzDW4pB5Y/y7T/cbZ3JKQT4XN0ZKsZ9cwPXUXmWaWz0lVvC7ZLNTT
+ BPrMqUrQeqsNKw03/0kQCgVGHtvnezYFkPw+gxFfzTuYSE8rn/wz+1sDCC8jUuwkqptdPGVp3l4
+ ozDhIo0p4SOGP69sV5hBat071S213zdwvUe1sz/pC6HqF+Pu36AnfztThrkj5j8QwN2pIjfdmDp
+ P3zwobXU9NKt+KTDkeaUwoksgEtFtXx5yFwBozSNoAReVlp09jv3sSPK/k/V0G1Ce5oUOl5qIk/
+ 5jU9rsQ6Z+Hz4sFI3gvhD8a6L/3k+JB90JgJgA4nra5KvoxVJsvC4wtXWtt+neAql6dVKYheEIJ
+ Xi0KTafiX8jspGcS9BMt6HVgeVcJUkhYvLyo2bEo7bXMZbrEfkqf8H69GCfK87mKDAXW4Ad04f/
+ 83YiUUHJ59fxIF6Eju0RVg5/V+3a7LOIXIMvv8DpCkLLFVAwiFr91ywi+0a5Rc4AWni/VWxlTC3
+ A1JWaCENNcL+mwJy3iPzIua3F5qMRDa3cBGIroZWc0wzywXwvbCeQxmO8xeonI8s4WqnvBz02pf
+ eXfqXrybMFi+J5Q==
+X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
+ fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
-On 12:52-20231206, Brandon Brnich wrote:
-> K3 family prefix is not included in other TI compatible strings. Remove 
-> this prefix to keep naming convention consistent.
-> 
-> Fixes: de4b9f7e371a ("dt-bindings: media: wave5: add yaml devicetree bindings")
-> Reported-by: Geert Uytterhoeven <geert@linux-m68k.org>
-> Closes: https://lore.kernel.org/all/CAMuHMdUYOq=q1j=d+Eac28hthOUAaNUkuvxmRu-mUN1pLKq69g@mail.gmail.com/
-> Signed-off-by: Brandon Brnich <b-brnich@ti.com>
-> ---
-> 
->  Bindings currently reside in linux-next, meaning that the ABI will not be
->  broken with the removal of K3 prefix. Important to get this merged in
->  prior to being moved to master so that K3 prefix does not need to be
->  permanately included.
-> 
->  Documentation/devicetree/bindings/media/cnm,wave521c.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/cnm,wave521c.yaml b/Documentation/devicetree/bindings/media/cnm,wave521c.yaml
-> index 6d5569e77b7a..471840e858c9 100644
-> --- a/Documentation/devicetree/bindings/media/cnm,wave521c.yaml
-> +++ b/Documentation/devicetree/bindings/media/cnm,wave521c.yaml
-> @@ -17,7 +17,7 @@ properties:
->    compatible:
->      items:
->        - enum:
-> -          - ti,k3-j721s2-wave521c
-> +          - ti,j721s2-wave521c
->        - const: cnm,wave521c
+Add the X1E80100 compatible to the list of supported PHYs.
 
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
+Changes in v2:
+- dropped the dedicated compatible from the driver (use fallback instead)
+- documented the compatible as working with the sm8550 fallback one
+- Link to v1: https://lore.kernel.org/r/20231122-phy-qualcomm-eusb2-x1e80100-v1-0-ce0991161847@linaro.org
+---
+ Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Apologies, I just noticed. you failed to update the vpu example for the
-same in the bindings doc.
+diff --git a/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.yaml
+index 8f5d7362046c..b82f7f5731ed 100644
+--- a/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-phy.yaml
+@@ -19,6 +19,7 @@ properties:
+           - enum:
+               - qcom,sdx75-snps-eusb2-phy
+               - qcom,sm8650-snps-eusb2-phy
++              - qcom,x1e80100-snps-eusb2-phy
+           - const: qcom,sm8550-snps-eusb2-phy
+       - const: qcom,sm8550-snps-eusb2-phy
+ 
 
->  
->    reg:
-> -- 
-> 2.34.1
-> 
+---
+base-commit: 629a3b49f3f957e975253c54846090b8d5ed2e9b
+change-id: 20231122-phy-qualcomm-eusb2-x1e80100-36dacab8fd52
 
+Best regards,
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Abel Vesa <abel.vesa@linaro.org>
+
 
