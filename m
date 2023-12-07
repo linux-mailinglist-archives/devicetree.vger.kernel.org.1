@@ -1,124 +1,123 @@
-Return-Path: <devicetree+bounces-22738-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22739-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C13DA80894A
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 14:36:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D48A808965
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 14:44:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A956281E5E
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 13:36:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E0072825D8
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 13:43:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C472640BFC;
-	Thu,  7 Dec 2023 13:36:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32B3E40BF8;
+	Thu,  7 Dec 2023 13:43:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NnYaHdj6"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="XPQhOsEx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A27393D0DD;
-	Thu,  7 Dec 2023 13:36:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 093C0C433C8;
-	Thu,  7 Dec 2023 13:36:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701956160;
-	bh=mFp8ParZIu7BFVIzOTUQQcSiCU1gOg9JVYkNdX0stLc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NnYaHdj6Pmizr43mxvzX8DdtfGzQbuNgm01szEtBlMZEwikYTje4vBkFBRMeo/0M0
-	 hy4Ij2Kh5sCnscX9Dzkc4YVPr3I3ZZxRHFRoO3DoecbSQt0L4YU9KODGQNWynZ+Itn
-	 J3QbXMd3C7yzkXMFQRHYxUsyjI+BEvzNzqQtUf7BThkUrk5ZoM0svG+nSG3B1RWBhL
-	 MS06NU+56eWf1rdzFOzV9mcUfOqPnrOKN1JVqaGHSFPkPhNXVD55iDCDpTMosZS9lz
-	 SbKy5wtY3PYRa+ybl+c78d+a4y+1T51ofkdLP1fdrNN9/lHWyYHeMrpqcKNfXmp7WU
-	 OHx7NNGxvVrfA==
-Received: from johan by xi.lan with local (Exim 4.96.2)
-	(envelope-from <johan@kernel.org>)
-	id 1rBEYb-0000T6-0T;
-	Thu, 07 Dec 2023 14:36:49 +0100
-Date: Thu, 7 Dec 2023 14:36:49 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Krishna Chaitanya Chundru <quic_krichai@quicinc.com>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, quic_vbadigan@quicinc.com,
-	quic_ramkri@quicinc.com, quic_nitegupt@quicinc.com,
-	quic_skananth@quicinc.com, quic_vpernami@quicinc.com,
-	quic_parass@quicinc.com
-Subject: Re: [PATCH v3 1/3] dt-bindings: phy: qcom,qmp: Add PCIe
- qcom,refclk-always-on property
-Message-ID: <ZXHKcToXzTgoDCLW@hovoldconsulting.com>
-References: <166d307e-7d1b-48b5-90db-9b6df01d87c2@linaro.org>
- <20231201111033.GL4009@thinkpad>
- <f844cd1e-7e4f-4836-bc9a-2e1ed13f064f@linaro.org>
- <20231201123054.GM4009@thinkpad>
- <3a7376aa-18a2-41cb-a4c9-680e735ce75b@linaro.org>
- <20231206131009.GD12802@thinkpad>
- <ZXGVjY9gYMD6-xFJ@hovoldconsulting.com>
- <20231207101252.GJ2932@thinkpad>
- <ZXHDCNosx8PCUzao@hovoldconsulting.com>
- <20231207132032.GL2932@thinkpad>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ADB2D54;
+	Thu,  7 Dec 2023 05:43:50 -0800 (PST)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B7DhhoH067822;
+	Thu, 7 Dec 2023 07:43:43 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1701956623;
+	bh=/FQO++Y5swUkctZSmrGpa24HWk4rIJeD9rWaIjxBst8=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=XPQhOsExUkD7inCNDDaCJb5As8nrZu+DUP/LgFIJyCEZkJwT8pT20p8AvoJJ7batB
+	 lcQKZkoOAfPgYhLSXwaa9Kfme+0CGbuXUrFDAcwSyb8AMDqgbsS8aKgXTwsehIkRiv
+	 f8kqx+t4JWzjWUhOppipQBB0na1+CQ7ULWcxw2do=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B7DhhDs074417
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 7 Dec 2023 07:43:43 -0600
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 7
+ Dec 2023 07:43:43 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 7 Dec 2023 07:43:43 -0600
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B7Dhhmd037794;
+	Thu, 7 Dec 2023 07:43:43 -0600
+Date: Thu, 7 Dec 2023 07:43:43 -0600
+From: Nishanth Menon <nm@ti.com>
+To: "Anwar, Md Danish" <a0501179@ti.com>
+CC: MD Danish Anwar <danishanwar@ti.com>,
+        Vignesh Raghavendra
+	<vigneshr@ti.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        Tero Kristo <kristo@kernel.org>, <srk@ti.com>, <r-gunasekaran@ti.com>
+Subject: Re: [PATCH 2/3] arm64: dts: ti: k3-am642-evm: add ICSSG1 Ethernet
+ support
+Message-ID: <20231207134343.ufiy2owik5kn3y2r@degrease>
+References: <20231207081917.340167-1-danishanwar@ti.com>
+ <20231207081917.340167-3-danishanwar@ti.com>
+ <20231207131818.3n7z64ve6izatlvs@unchanged>
+ <f83f21c0-3f5f-4069-abab-2b47e371d3bd@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20231207132032.GL2932@thinkpad>
+In-Reply-To: <f83f21c0-3f5f-4069-abab-2b47e371d3bd@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Thu, Dec 07, 2023 at 06:50:32PM +0530, Manivannan Sadhasivam wrote:
-> On Thu, Dec 07, 2023 at 02:05:12PM +0100, Johan Hovold wrote:
-> > On Thu, Dec 07, 2023 at 03:42:52PM +0530, Manivannan Sadhasivam wrote:
-> > > On Thu, Dec 07, 2023 at 10:51:09AM +0100, Johan Hovold wrote:
-
-> > > > Shouldn't that be
-> > > > 
-> > > > 	qcom,broken-clkreq
-> > > > 
-> > > > since its the CLKREQ# signal used to request REFCLK that is broken, not
-> > > > the REFCLK itself?
-> > > > 
-> > > 
-> > > Darn... You are right. I got carried away by the initial property name. Thanks
-> > > for spotting!
+On 18:58-20231207, Anwar, Md Danish wrote:
+[...]
+> >> +
+> >>  	memory@80000000 {
+> >>  		bootph-all;
+> >>  		device_type = "memory";
+> >> @@ -229,6 +234,70 @@ transceiver2: can-phy1 {
+> >>  		max-bitrate = <5000000>;
+> >>  		standby-gpios = <&exp1 9 GPIO_ACTIVE_HIGH>;
+> >>  	};
+> >> +
+> >> +	icssg1_eth: icssg1-eth {
+> >> +		compatible = "ti,am642-icssg-prueth";
+> >> +		pinctrl-names = "default";
+> >> +		pinctrl-0 = <&icssg1_rgmii1_pins_default>;
+> >> +
+> >> +		sram = <&oc_sram>;
+> >> +		ti,prus = <&pru1_0>, <&rtu1_0>, <&tx_pru1_0>, <&pru1_1>, <&rtu1_1>, <&tx_pru1_1>;
+> >> +		firmware-name = "ti-pruss/am65x-sr2-pru0-prueth-fw.elf",
+> >> +				"ti-pruss/am65x-sr2-rtu0-prueth-fw.elf",
+> >> +				"ti-pruss/am65x-sr2-txpru0-prueth-fw.elf",
+> >> +				"ti-pruss/am65x-sr2-pru1-prueth-fw.elf",
+> >> +				"ti-pruss/am65x-sr2-rtu1-prueth-fw.elf",
+> >> +				"ti-pruss/am65x-sr2-txpru1-prueth-fw.elf";
 > > 
-> > Thinking some more on this after hitting send: It may still be wrong
-> > with a 'broken-clkreq' property in the PHY instead of in the controller
-> > (or endpoint).
+> > Umm... am65x??? is that a typo? I'd rather keep it am64x here and drop
+> > that sr2 thing. Tomorrow there will be a custom bug on am64 and then we
+> > will have to respin this again.
 > > 
-> > Could there not be other ways to handle a broken clkreq signal so that
-> > this really should be a decision made by the OS, for example, to disable
-> > L1 substates and clock PM?
 > 
-> One has to weigh the power consumption between keeping refclk always on and
-> disabling L1SS. Chaitanya, can you measure power consumption in both cases?
-
-Sure, my point was just that that's a policy decision and not something
-that should be encoded in the devicetree (as was initially proposed).
-
-And that the right place for the renamed property is not necessarily in
-the PHY node either.
-
-> > Simply leaving the refclk always on in the PHY seems like a bit of a
-> > hack and I'm not even sure that can be considered correct.
+> No Nishant, this is not a typo. Both AM64x and AM65x use the same ICSSG
+> firmwares. We only have am65x-sr2-* firmwares and they are used by both
+> AM64x and AM65x and that is why I have kept the firmware-name here in dt
+> same as the files that we load on the pru cores.
 > 
-> I wouldn't agree it is a hack, even though it may sound like one. The option to
-> keep refclk always on in the PHY is precisely there for usecase like this.
 
-I just skimmed the spec so perhaps I'm missing something, but there's
-definitely wordings in there that explicitly says that L1 PM substates
-must not be enabling unless you have a functioning CLKREQ# signal.
+SoCs are different. The hardware as a result is different as well. In
+fact, you do have a different compatible to distinguish the two. Some
+day, there will be an erratum that is different and we will be stuck
+with abi breakage across distros. So, unless you can explain why this
+scenario will never occur, I don't buy the argument this will survive
+long term.
 
-Johan
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
