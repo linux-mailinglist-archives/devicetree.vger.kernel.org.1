@@ -1,190 +1,280 @@
-Return-Path: <devicetree+bounces-22806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9AB8808DB0
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 17:42:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C88B808DB6
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 17:45:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 675B81F212CF
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 16:42:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0850A1F2140A
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 16:45:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A95744C73;
-	Thu,  7 Dec 2023 16:42:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF8DD47F61;
+	Thu,  7 Dec 2023 16:45:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="tNXpzAqc"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="LsaB8DkW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2118.outbound.protection.outlook.com [40.107.113.118])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 602B610D1;
-	Thu,  7 Dec 2023 08:42:48 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=COrywJh3lNGURlLIgVkeyOAV+855Xmm0NN2OX5DJXULJZyPvzwM2kcQc9BaG2TmFOS1vPHe7HCKnzyei7/c2BBlmmSiudhJUdL7zUjxaIPc5hsZy0WPlkDk4KnC3P1tKuof+oVVONCUIt7Q44K093vlm1m5DUdAPQbnGTsyKBmnlL22WjAxQuhEU94O4P8GAfmHzfBT2FRF7MUzccral4OLzbWuu3e/ZUp2RmPF2pawb/hoioM8M+4g8/MShhlHeOlFsyERa/SQp1bm4qe2Ew+zx1RHdB1Dof+dPc1uTJXjUSqBiaZ8JZwejXi3bzfHIL0+0GVtjfuJeVfS8gnYQlA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YC6Q6XcaUTkq/j8h/M2vTlTVBqjyO51+Z8lOLiKB1Zk=;
- b=nYmTRVPz46bffKiKHBXpQr8F8tXnBt0XZ/7sPvAm4rMIE/fIzU5MQfTDKzfw7DmdAMrwEeymOQKX+9bTJ+s8dlBJOk9egI0k/DeddT+U6ig8DX0C7UYNeuvw/itklm0X/79wqqoKl6sTGE0Hya/J0LEcvzZ+SpJWTqFIg6+5/AXF4bMSi3iZQgoPhAKU9/UoxYowI5sxDDVhteFSCCt5ztv6BpTT0/VXhtMVol5iF8gxt7q1eLqU0gwl/PzpsOWrWWvb1Dvr3yqXlGM8qKou+c7xWsWhfjkTeiXABCgqKMVFCeHORj3X3pU2MpJ5GzArDDfl3FWDspRKTR9eaHF9Kw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YC6Q6XcaUTkq/j8h/M2vTlTVBqjyO51+Z8lOLiKB1Zk=;
- b=tNXpzAqcNuOoG8mOtw0u9yjaRMTaAfFh20siBc6EDugzmd3IzghyhRbvlL42z7qzuGomwf4GXFoDI3OwiQHF6CU9u7LfOAIB40Rcw65qX7aUMyG/OgKbOoO3saDzy+FIbqnPXN6KPTsq5jBQ25jtzhOkCqdpnguOakoq50mIYAY=
-Received: from TYCPR01MB11269.jpnprd01.prod.outlook.com
- (2603:1096:400:3c0::10) by TYCPR01MB11939.jpnprd01.prod.outlook.com
- (2603:1096:400:3e3::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.34; Thu, 7 Dec
- 2023 16:42:45 +0000
-Received: from TYCPR01MB11269.jpnprd01.prod.outlook.com
- ([fe80::4af6:b31a:8826:51ac]) by TYCPR01MB11269.jpnprd01.prod.outlook.com
- ([fe80::4af6:b31a:8826:51ac%6]) with mapi id 15.20.7091.010; Thu, 7 Dec 2023
- 16:42:45 +0000
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Dmitry Torokhov
-	<dmitry.torokhov@gmail.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
-	<conor+dt@kernel.org>
-CC: Support Opensource <support.opensource@diasemi.com>,
-	"linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, Geert Uytterhoeven
-	<geert+renesas@glider.be>, Prabhakar Mahadev Lad
-	<prabhakar.mahadev-lad.rj@bp.renesas.com>, biju.das.au
-	<biju.das.au@gmail.com>, "linux-renesas-soc@vger.kernel.org"
-	<linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH v4 5/8] dt-bindings: input: Convert da906{1,2,3} onkey to
- json-schema
-Thread-Topic: [PATCH v4 5/8] dt-bindings: input: Convert da906{1,2,3} onkey to
- json-schema
-Thread-Index: AQHaKF0EkoKNlmsKwk+KaIIYLixCu7CdgF8AgACHZlA=
-Date: Thu, 7 Dec 2023 16:42:45 +0000
-Message-ID:
- <TYCPR01MB11269D1B6D2183207BD84381A868BA@TYCPR01MB11269.jpnprd01.prod.outlook.com>
-References: <20231206155740.5278-1-biju.das.jz@bp.renesas.com>
- <20231206155740.5278-6-biju.das.jz@bp.renesas.com>
- <39094951-6ecb-4948-8be5-7ab13dd5269b@linaro.org>
-In-Reply-To: <39094951-6ecb-4948-8be5-7ab13dd5269b@linaro.org>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYCPR01MB11269:EE_|TYCPR01MB11939:EE_
-x-ms-office365-filtering-correlation-id: cf782eae-e10e-4932-f61e-08dbf7438a34
-x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- eAb3N8exXGozHaGOUJKx61un1q6dURgVMvvDTDPILEMJEBLIq9hYxTpc8Rac0QPFN7g00Sa41TAtqvLjssxyby6FdC/R0f0MLpDooyrwRX8AJndbW+aUb8MshY2cZtEbCTs/K34EcXePrQgEF9Vi6i1WQDdrq9ULYCf3aKT8tzsQCIvK3ANtAc+C+PLRAFxE7tcaN+HrshC3tSdIY+iNk8psMx7UxJy2OnblWjkgBaD1bgxzlq6I0IM0lDptFHohR1b1kY3ETwkIDSqjZN/FShqQxKP4Pt9OVIV+SjqG7aKlk713EbRHaqW5tkeK88Y9BENZoONcGRuWs0cv2uYv4neHMjHnPxrxCzMeN+huRlmEySpzH+/ftdSLLtxNaaSdnE6jbVAirMNiRMsRECtGW8aOIDGmeiyNU7vNPyCWUYYpGs0CaORytFan8A/jTxv5sbqw/q098CBtEJnv6Z4c1kFrXHMXhGsLgpGlf/7VhXLTJkyQTHbKs9/nTH11O1j9jLjH9/4wsEHtxwYdwVTud3TqI+daDdL53XkoJt2Zc+VIp5fFmajAsKID7rvz3Mt9SFV9KKTa+XPs7h3jJSxD9+QGBu4VAFXIgMYmarPbXNffgmTgL+sP9EDEJyQt2KtZ
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB11269.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(346002)(366004)(376002)(136003)(39860400002)(230922051799003)(186009)(1800799012)(64100799003)(451199024)(41300700001)(7416002)(38100700002)(5660300002)(86362001)(2906002)(33656002)(122000001)(6506007)(53546011)(71200400001)(26005)(7696005)(478600001)(8676002)(52536014)(66946007)(76116006)(4326008)(66556008)(66476007)(64756008)(9686003)(110136005)(54906003)(83380400001)(66446008)(316002)(8936002)(38070700009)(55016003);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?tyae5uT4AC0eyiQAPWRlvdN6s7+GkOfTzu5H2fkFCxVZUY9MuYnh+fnGPRg/?=
- =?us-ascii?Q?1keo3XE6FKmb6TuaTm4qY3M/p4zQGaDY8dGubnL0zLX7QvvkWC9aMwqdO5KA?=
- =?us-ascii?Q?pXyyVvXB5NGMCz0IGvNh7x9jmoUVDMwD9jF41oRs3PlfYjReiVjOKl2k7mSk?=
- =?us-ascii?Q?iR2xn7ZdWT0TPljbT5P8kdmKgqJJhSj5Lzy0UMJMFl2L+XO4+ah5aZVw8wWj?=
- =?us-ascii?Q?1XnMFBIYDoWKgA60S/G2FCDdZd130moqJTW+6vQ8iH7k0OimBcaeDPazKDwa?=
- =?us-ascii?Q?kBK6Pp8UZFhDLalJ96ZXdCu3J5PwqD1uudNlmeyWYVBUM8MuHcSmvnqUQ116?=
- =?us-ascii?Q?PMD1C0Ms6ueB77dajv9s39bW/8KjUY2JQerJujld/nAo4+ML0FnuIZaPlxkR?=
- =?us-ascii?Q?oOoLzc1ctBVreIEAb6AP94Fpoue3tJWhShk8HDZ+vrlEXvZyx0LpvNdiWjec?=
- =?us-ascii?Q?LrlLeSZS98Cu+ne3UTJWTkJSblbda09l6esi5e5YlbdOx1DZ9NMZyEeKpuaD?=
- =?us-ascii?Q?zOdNWiw0QVo9ZQZWXYFnf/bHmwVz3IY61JUy5r5w4MvO6dP+XjCg5pG9YW+3?=
- =?us-ascii?Q?MOPKjlzfD0PjMpYL46mIQjgzmi/YIIam6J6ouFI7pdFn2QPk7kQFyUOJ+jqU?=
- =?us-ascii?Q?/52SkFbgCOm0FKdSyg6ckNoHPc9mfvGTAnc4NohelyioldZpBtgUWEoJPLzG?=
- =?us-ascii?Q?3QkJnMkqOqXcw9T2sZlB7glhD0hrLYIeKyI9XxwwTJLGHaSpAXkXakh5ipHS?=
- =?us-ascii?Q?LTJ0FuvKLpJUq5YGH19PsmVjscPI2qHM6qqGXjr2Bbx1wIaiI8iJC6I4R5dw?=
- =?us-ascii?Q?En23kmSNDLZdo8iHfk6a9UQtsRCOCUHItWWLfcI7SlPaSge1Tve0q8SV5FDV?=
- =?us-ascii?Q?2oOaB0rd+L97oX9ix49eKyACWMnce24EC2hA/VQBiM+CmtXxV+FvvKA8BNvo?=
- =?us-ascii?Q?jVFKvNMnbLSau4uwSlxzUJ2c3YEhIVX7QfHfKII0FdLDXD6GJ+KP0fuM9F8Z?=
- =?us-ascii?Q?GK74/UolWiN/ETYUB1scVijE+8wSKFHACYqcd3X0GN1dbYzifBs6mXWMCbfF?=
- =?us-ascii?Q?lP8KAd/lz5bFW9dOHr3SZqF8F4NI1BL/cOTqnHjNuYIK7aYgqbzEaRZKb0vD?=
- =?us-ascii?Q?GyJ4P6XgtcojVhoEaJdO1HyHg7283JtlFqJnF3VRxsjFy6DHkr/tVMDpG602?=
- =?us-ascii?Q?n4If2SJzgO8zW8jlnKxvIVNVTntliCAobqKzsB7YUrpS9z3w1sHuxNOPJEuT?=
- =?us-ascii?Q?jawZ6aHRot8SDytJCLbqesjfpoULj/tpLBio/doWAO4FCKH5nQ4goRlwcEoZ?=
- =?us-ascii?Q?jGbMmpE649/+2+LTWhns2lVaYj9rmXUrpX5OGV6eZGVQMnS88yuIMCc4lAVC?=
- =?us-ascii?Q?8N1MAWyVJxRMpbg26eyVR/z4af6YEXbPf3Xo7fB/s3VA8l1JgjVj4eo50OA6?=
- =?us-ascii?Q?2cC2kquVJIp8dGEn9T92jph0GLm3kyAnb9e51hpdQHg9yCO5ZuQYMsndnBPt?=
- =?us-ascii?Q?55KTcxJ39Sl8L0RJBA5/048PMJBkZjS+qmbeNH610Nc2VcNUlXPuMHoaqCr+?=
- =?us-ascii?Q?cpvqs+EKeqw6mNoT3d1xdyx08nffWt40N+QLb4KvQewbALB/LQwmOIQQTZK8?=
- =?us-ascii?Q?1Q=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B134310DD;
+	Thu,  7 Dec 2023 08:45:08 -0800 (PST)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B7Gir8Y100151;
+	Thu, 7 Dec 2023 10:44:53 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1701967493;
+	bh=fKj4eskkWBpEmYcedXJacCYbYGeG95u0kbhWvov2nuw=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=LsaB8DkWctdkKNOTGWiZNEO5cw06DQv1BtTOBPx5ySuS71vayUtdanXC+GRT3NXlT
+	 eaXkXtdUAh+rUnH1DqvFYDvdfthHlxMS/qo2MEZXDH9UMID19sjt7MvxKgndRX21AE
+	 yPlByfG7JePLH/KKxrU6Y2yeYO9At6r3uCK6K64A=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B7GirG9038428
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 7 Dec 2023 10:44:53 -0600
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 7
+ Dec 2023 10:44:53 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 7 Dec 2023 10:44:53 -0600
+Received: from [10.249.40.136] ([10.249.40.136])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B7Giqa6049310;
+	Thu, 7 Dec 2023 10:44:52 -0600
+Message-ID: <b913dc5d-0dc1-478b-b4ca-cc049c3df58d@ti.com>
+Date: Thu, 7 Dec 2023 10:44:52 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB11269.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cf782eae-e10e-4932-f61e-08dbf7438a34
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Dec 2023 16:42:45.6551
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: i6quPAXmlOJWSknKWovwTXtA27asHmVIi+8ybZ8xN3BBRtWqrxAb9IcjE2QhqPvwLv0BS9tkVkTWwALIefafh8noOwkybgEHBCHSiGI6FrM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB11939
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] arm64: dts: ti: k3-am642-evm: add overlay for icssg1
+ 2nd port
+Content-Language: en-US
+To: "Anwar, Md Danish" <a0501179@ti.com>, Nishanth Menon <nm@ti.com>,
+        MD
+ Danish Anwar <danishanwar@ti.com>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring
+	<robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        Tero
+ Kristo <kristo@kernel.org>, <srk@ti.com>, <r-gunasekaran@ti.com>
+References: <20231207081917.340167-1-danishanwar@ti.com>
+ <20231207081917.340167-4-danishanwar@ti.com>
+ <20231207132758.wbfn7timsqevdjpu@mortuary>
+ <7323e86b-939a-4fd0-aac8-07fa47e00c9d@ti.com>
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <7323e86b-939a-4fd0-aac8-07fa47e00c9d@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Krzysztof Kozlowski,
+On 12/7/23 8:06 AM, Anwar, Md Danish wrote:
+> On 12/7/2023 6:57 PM, Nishanth Menon wrote:
+>> On 13:49-20231207, MD Danish Anwar wrote:
+>>> The am642-evm doesn't allow to enable 2 x CPSW3g ports and 2 x ICSSG1 ports
+>>> all together, so base k3-am642-evm.dts enables by default 2 x CPSW3g ports
+>>> and 1 x ICSSG1 ports, but it also possible to support 1 x CPSW3g ports and
+>>> 2 x ICSSG1 ports configuration.
+>>>
+>>> This patch adds overlay to support 1 x CPSW3g ports and 2 x ICSSG1 ports
+>>> configuration:
+>>> - disable 2nd CPSW3g port
+>>> - update CPSW3g pinmuxes to not use RGMII2
+>>> - disable mdio-mux-1 and define mdio-mux-2 to route ICSSG1 MDIO to the
+>>>    shared DP83869 PHY
+>>> - add and enable ICSSG1 RGMII2 pinmuxes
+>>> - enable ICSSG1 MII1 port
+>>>
+>>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+>>> ---
+>>>   arch/arm64/boot/dts/ti/Makefile               |  2 +
+>>>   .../dts/ti/k3-am642-evm-icssg1-dualemac.dtso  | 80 +++++++++++++++++++
+>>>   arch/arm64/boot/dts/ti/k3-am642-evm.dts       |  2 +-
+>>>   3 files changed, 83 insertions(+), 1 deletion(-)
+>>>   create mode 100644 arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-dualemac.dtso
+>>>
+>>> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+>>> index 5ef49b02c71f..99a4dce47f02 100644
+>>> --- a/arch/arm64/boot/dts/ti/Makefile
+>>> +++ b/arch/arm64/boot/dts/ti/Makefile
+>>> @@ -35,12 +35,14 @@ dtb-$(CONFIG_ARCH_K3) += k3-am62x-sk-csi2-imx219.dtbo
+>>>   dtb-$(CONFIG_ARCH_K3) += k3-am62x-sk-hdmi-audio.dtbo
+>>>   
+>>>   # Boards with AM64x SoC
+>>> +k3-am642-evm-icssg1-dtbs := k3-am642-evm.dtb k3-am642-evm-icssg1-dualemac.dtbo
+>>
+>> Why not handle this for CONFIG_OF_ALL_DTBS alone? See commit
+>> b0044823a6607e535fdb083c89f487fbf183b171
+>>
+> 
+> I'll have to look into this.
+> 
+> I am merging this k3-am642-evm-icssg1-dualemac.dtbo with
+> k3-am642-evm.dtb because when I had posted patches for AM65x DTS, Andrew
+> had commented [1] saying we should not leave orphan dtbos and every dtbo
+> should be applied over some dtb by using `dtb- +=`.
+> 
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Sent: Thursday, December 7, 2023 8:37 AM
-> Subject: Re: [PATCH v4 5/8] dt-bindings: input: Convert da906{1,2,3} onke=
-y
-> to json-schema
->=20
-> On 06/12/2023 16:57, Biju Das wrote:
-> > Convert the da906{1,2,3} onkey device tree binding documentation to
-> > json-schema.
-> >
-> > Update MAINTAINERS entries, description and onkey property by
-> > referring to dlg,da9062-onkey binding file.
-> >
->=20
-> ...
->=20
-> > +---
-> > +$id:
-> > +
-> > +title: Dialog DA9061/62/63 OnKey Module
-> > +
-> > +maintainers:
-> > +  - Biju Das <biju.das.jz@bp.renesas.com>
-> > +
-> > +description: |
-> > +  This module is part of the DA9061/DA9062/DA9063. For more details
-> > +about entire
-> > +  DA9062 and DA9061 chips see
-> > +Documentation/devicetree/bindings/mfd/da9062.txt
-> > +  For DA9063 see
-> > +Documentation/devicetree/bindings/mfd/dlg,da9063.yaml
-> > +
-> > +  This module provides the KEY_POWER event.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - items:
->=20
-> Drop items
+And my comment on not having orphan DTBOs is still true. But that was back
+in September, we now have a new way of accomplishing that without needing
+to produce a bunch of temporary combined DTB files, which is what Nishanth
+is pointing out with CONFIG_OF_ALL_DTBS.
 
-Agreed.
+So, no need for `k3-am642-evm-icssg1.dtb`, you can add the overlay target
+directly, then create a fake target to test DTBO application by adding to
+the `dtb- += ` lines below.
 
-Cheers,
-Biju
+Andrew
 
->=20
->=20
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> Best
-> regards, Krzysztof
-
+> Due to this I am applying the overlay on k3-am642-evm.dtb and creating
+> new dtb k3-am642-evm-icssg1.dtb which can be used when both ICSSG1 ports
+> are needed to be enabled.
+> 
+> [1] https://lore.kernel.org/all/ca832fe3-d5cf-b075-324b-50da40794bb7@ti.com/
+> 
+>>>   dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
+>>>   dtb-$(CONFIG_ARCH_K3) += k3-am642-phyboard-electra-rdk.dtb
+>>>   dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
+>>>   dtb-$(CONFIG_ARCH_K3) += k3-am642-tqma64xxl-mbax4xxl.dtb
+>>>   dtb-$(CONFIG_ARCH_K3) += k3-am64-tqma64xxl-mbax4xxl-sdcard.dtbo
+>>>   dtb-$(CONFIG_ARCH_K3) += k3-am64-tqma64xxl-mbax4xxl-wlan.dtbo
+>>> +dtb-$(CONFIG_ARCH_K3) += k3-am642-evm-icssg1.dtb
+>>>   
+>>>   # Boards with AM65x SoC
+>>>   k3-am654-gp-evm-dtbs := k3-am654-base-board.dtb k3-am654-base-board-rocktech-rk101-panel.dtbo
+>>> diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-dualemac.dtso b/arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-dualemac.dtso
+>>> new file mode 100644
+>>> index 000000000000..6f33290c1ad6
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-dualemac.dtso
+>>> @@ -0,0 +1,80 @@
+>>> +// SPDX-License-Identifier: GPL-2.0
+>>> +/**
+>>> + * DT overlay for enabling 2nd ICSSG1 port on AM642 EVM
+>>> + *
+>>> + * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
+>>> + */
+>>> +
+>>> +/dts-v1/;
+>>> +/plugin/;
+>>> +
+>>> +#include <dt-bindings/gpio/gpio.h>
+>>> +#include "k3-pinctrl.h"
+>>> +
+>>> +&{/} {
+>>> +	aliases {
+>>> +		ethernet1 = "/icssg1-eth/ethernet-ports/port@0";
+>>> +		ethernet2 = "/icssg1-eth/ethernet-ports/port@1";
+>>
+>> I don't understand what you are overriding here. isn't patch #2 in your
+>> series already introducing this in the base dts?
+>>
+> 
+> Sorry, My bad. I will remove this in v2.
+> 
+>>> +	};
+>>> +
+>>> +	mdio-mux-2 {
+>>> +		compatible = "mdio-mux-multiplexer";
+>>> +		mux-controls = <&mdio_mux>;
+>>> +		mdio-parent-bus = <&icssg1_mdio>;
+>>> +		#address-cells = <1>;
+>>> +		#size-cells = <0>;
+>>> +
+>>> +		mdio@0 {
+>>> +			reg = <0x0>;
+>>> +			#address-cells = <1>;
+>>> +			#size-cells = <0>;
+>>> +
+>>> +			icssg1_phy2: ethernet-phy@3 {
+>>> +				reg = <3>;
+>>> +				tx-internal-delay-ps = <250>;
+>>> +				rx-internal-delay-ps = <2000>;
+>>> +			};
+>>> +		};
+>>> +	};
+>>> +};
+>>> +
+>>> +&main_pmx0 {
+>>> +	icssg1_rgmii2_pins_default: icssg1-rgmii2-default-pins {
+>>> +		pinctrl-single,pins = <
+>>> +			AM64X_IOPAD(0x0108, PIN_INPUT, 2) /* (W11) PRG1_PRU1_GPO0.RGMII2_RD0 */
+>>> +			AM64X_IOPAD(0x010c, PIN_INPUT, 2) /* (V11) PRG1_PRU1_GPO1.RGMII2_RD1 */
+>>> +			AM64X_IOPAD(0x0110, PIN_INPUT, 2) /* (AA12) PRG1_PRU1_GPO2.RGMII2_RD2 */
+>>> +			AM64X_IOPAD(0x0114, PIN_INPUT, 2) /* (Y12) PRG1_PRU1_GPO3.RGMII2_RD3 */
+>>> +			AM64X_IOPAD(0x0120, PIN_INPUT, 2) /* (U11) PRG1_PRU1_GPO6.RGMII2_RXC */
+>>> +			AM64X_IOPAD(0x0118, PIN_INPUT, 2) /* (W12) PRG1_PRU1_GPO4.RGMII2_RX_CTL */
+>>> +			AM64X_IOPAD(0x0134, PIN_OUTPUT, 2) /* (AA10) PRG1_PRU1_GPO11.RGMII2_TD0 */
+>>> +			AM64X_IOPAD(0x0138, PIN_OUTPUT, 2) /* (V10) PRG1_PRU1_GPO12.RGMII2_TD1 */
+>>> +			AM64X_IOPAD(0x013c, PIN_OUTPUT, 2) /* (U10) PRG1_PRU1_GPO13.RGMII2_TD2 */
+>>> +			AM64X_IOPAD(0x0140, PIN_OUTPUT, 2) /* (AA11) PRG1_PRU1_GPO14.RGMII2_TD3 */
+>>> +			AM64X_IOPAD(0x0148, PIN_OUTPUT, 2) /* (Y10) PRG1_PRU1_GPO16.RGMII2_TXC */
+>>> +			AM64X_IOPAD(0x0144, PIN_OUTPUT, 2) /* (Y11) PRG1_PRU1_GPO15.RGMII2_TX_CTL */
+>>> +		>;
+>>> +	};
+>>> +};
+>>> +
+>>> +&cpsw3g {
+>>> +	pinctrl-0 = <&rgmii1_pins_default>;
+>>> +};
+>>> +
+>>> +&cpsw_port2 {
+>>> +	status = "disabled";
+>>> +};
+>>> +
+>>> +&mdio_mux_1 {
+>>> +	status = "disabled";
+>>> +};
+>>> +
+>>> +&icssg1_eth {
+>>> +	pinctrl-0 = <&icssg1_rgmii1_pins_default &icssg1_rgmii2_pins_default>;
+>>
+>> Grrr... No! I have been cleaning up after you folks and you folks should
+>> take notice.
+>>
+>> pinctrl-0 = <&icssg1_rgmii1_pins_default>, <&icssg1_rgmii2_pins_default>;
+>>
+> 
+> Sorry, I was not aware of this. I will change it in v2.
+> 
+>>
+>>> +};
+>>> +
+>>> +&icssg1_emac1 {
+>>> +	status = "okay";
+>>> +	phy-handle = <&icssg1_phy2>;
+>>> +	phy-mode = "rgmii-id";
+>>> +};
+>>> diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+>>> index 04d1c0602d31..90867090e725 100644
+>>> --- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+>>> +++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+>>> @@ -203,7 +203,7 @@ mdio_mux: mux-controller {
+>>>   		mux-gpios = <&exp1 12 GPIO_ACTIVE_HIGH>;
+>>>   	};
+>>>   
+>>> -	mdio-mux-1 {
+>>> +	mdio_mux_1: mdio-mux-1 {
+>>
+>> Commit message doesn't warn me for this change.
+> 
+> Sure. I will add details of this in commit message saying `Add label
+> name 'mdio_mux_1' for 'mdio-mux-1' node so that the node 'mdio-mux-1'
+> can be disabled in the overlay using the label name.`
+> 
+>>>   		compatible = "mdio-mux-multiplexer";
+>>>   		mux-controls = <&mdio_mux>;
+>>>   		mdio-parent-bus = <&cpsw3g_mdio>;
+>>> -- 
+>>> 2.34.1
+>>>
+>>
+> 
 
