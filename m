@@ -1,138 +1,236 @@
-Return-Path: <devicetree+bounces-22510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5D09807F10
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 04:09:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 776D2807F56
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 04:52:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7D9691F213A8
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 03:09:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 22A541F210C7
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 03:52:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0969F1877;
-	Thu,  7 Dec 2023 03:09:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="UPAsSRh1"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A02D0525C;
+	Thu,  7 Dec 2023 03:52:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com [IPv6:2607:f8b0:4864:20::834])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE36519E
-	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 19:09:46 -0800 (PST)
-Received: by mail-qt1-x834.google.com with SMTP id d75a77b69052e-4258b6df295so159201cf.0
-        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 19:09:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1701918585; x=1702523385; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8KonfnbxwpH3x3CnjOO6Ekc8vtvdBCrnjbKjN44bF6c=;
-        b=UPAsSRh1vo8nGHfs9k024dfH2iM8PMgAA03+Se8jTuMMMUpTHs+/a9vU6g1cA+6gKM
-         L7/g5rCZA8WO2Xn3fgYyhVIsJRUHHLcWJHtvOm+JeoDZF4F1IucuTCArQnFk1aAd/hwE
-         9oyqWJR0H5NQNPUjHE5eMR1T5z4DkHEODUOPk/KPzLT7Kyb03jLzV9WZQ1GSYieJpFH3
-         NrakQKA70/AX3B33RTtjb23YhVecsO0sd+AaNfnIf5tszxDXM8aWaUVDDYZQy8S+6Imp
-         c7SsrELIcCkpB/Ct9g+cZad8r9bMXUySU0QRwVVmW+f4+SirvQmodEyzpU1frZH8T/Ot
-         wwrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701918585; x=1702523385;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8KonfnbxwpH3x3CnjOO6Ekc8vtvdBCrnjbKjN44bF6c=;
-        b=UEq/nYEF8Ypete5RjVRYMcHM3oxublu6+GEaikhRCm8BeP6SOq3cUnvl/Kn0NYSe88
-         Yo1pUGi567lhVBJWnvYoX7QXDied6AvsJCf9Li4k54OwoEXC2w0MK2j1sRw0mS6frFXh
-         ZmkuxRtQRS3WEVzFETdoKnlQmum0JVc6VbFZiTPKMj1R4duJMXOVpfPQJGBgZ12hBtJz
-         pigyN3UchyY8kqLYvTIe1kxJ8tZdrA3ItAIa/pMb36/QxQNiaetGI58H2SyETYJ8EMUn
-         8fsNZmz7TOoiROin/xEXC7FK+72cJjeOWal306SP5YmpPM0MXcHQnsAlZqGzD6TLbJ25
-         bRYw==
-X-Gm-Message-State: AOJu0YwTmi8E4JhIIIdYBYybVjc6ghQaC/ceKtqgEwotRdaoyC2qWeOi
-	hE7Mjf1u4Yg9KkqFibpSJkx0tDI596ZUYdI1nqPbmw==
-X-Google-Smtp-Source: AGHT+IHmC2Uvlc1PpPCCKnWzQ2+wlWdVLitp/t35SGYTLb9vq9VLkXz76RklY+9U+4ePYTBrzENcbeKOcDj5pVG/+xQ=
-X-Received: by 2002:ac8:4255:0:b0:425:75cf:90e9 with SMTP id
- r21-20020ac84255000000b0042575cf90e9mr398357qtm.22.1701918585052; Wed, 06 Dec
- 2023 19:09:45 -0800 (PST)
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68A7FD71;
+	Wed,  6 Dec 2023 19:52:22 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+	by fd01.gateway.ufhost.com (Postfix) with ESMTP id 2DB5481EA;
+	Thu,  7 Dec 2023 11:52:10 +0800 (CST)
+Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 7 Dec
+ 2023 11:52:09 +0800
+Received: from [192.168.125.88] (183.27.97.199) by EXMBX171.cuchost.com
+ (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 7 Dec
+ 2023 11:52:08 +0800
+Message-ID: <53b992e8-1b36-4540-a993-fde8e550faf9@starfivetech.com>
+Date: Thu, 7 Dec 2023 11:48:56 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231130174126.688486-1-herve.codina@bootlin.com> <20231206171540.GA2697853-robh@kernel.org>
-In-Reply-To: <20231206171540.GA2697853-robh@kernel.org>
-From: Saravana Kannan <saravanak@google.com>
-Date: Wed, 6 Dec 2023 19:09:06 -0800
-Message-ID: <CAGETcx-F8G3dcN-VTMrbya_=19zXP=S2ORA_qZqy+yND7S41_Q@mail.gmail.com>
-Subject: Re: [PATCH 0/2] Synchronize DT overlay removal with devlink removals
-To: Rob Herring <robh@kernel.org>
-Cc: Herve Codina <herve.codina@bootlin.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Frank Rowand <frowand.list@gmail.com>, Lizhi Hou <lizhi.hou@amd.com>, Max Zhen <max.zhen@amd.com>, 
-	Sonal Santan <sonal.santan@amd.com>, Stefano Stabellini <stefano.stabellini@xilinx.com>, 
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>, 
-	Horatiu Vultur <horatiu.vultur@microchip.com>, 
-	Steen Hegelund <steen.hegelund@microchip.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/2] dt-bindings: display: panel: raspberrypi: Add
+ compatible property for waveshare 7inch touchscreen panel
+Content-Language: en-US
+To: Conor Dooley <conor@kernel.org>
+CC: <devicetree@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+	<neil.armstrong@linaro.org>, <quic_jesszhan@quicinc.com>, <sam@ravnborg.org>,
+	<airlied@gmail.com>, <daniel@ffwll.ch>, <maarten.lankhorst@linux.intel.com>,
+	<mripard@kernel.org>, <tzimmermann@suse.de>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<florian.fainelli@broadcom.com>, <bcm-kernel-feedback-list@broadcom.com>,
+	<eric@anholt.net>, <thierry.reding@gmail.com>,
+	<changhuang.liang@starfivetech.com>, <keith.zhao@starfivetech.com>,
+	<jack.zhu@starfivetech.com>, <linux-rpi-kernel@lists.infradead.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20231124104451.44271-1-shengyang.chen@starfivetech.com>
+ <20231124104451.44271-2-shengyang.chen@starfivetech.com>
+ <20231124-lesser-sinister-7f9cd7b80e35@spud>
+ <2d48e460-e46e-431f-bd7b-e34ebe73a40c@starfivetech.com>
+ <20231206-isolating-smoked-b490952029d0@spud>
+From: Shengyang Chen <shengyang.chen@starfivetech.com>
+In-Reply-To: <20231206-isolating-smoked-b490952029d0@spud>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX171.cuchost.com
+ (172.16.6.91)
+X-YovoleRuleAgent: yovoleflag
 
-On Wed, Dec 6, 2023 at 9:15=E2=80=AFAM Rob Herring <robh@kernel.org> wrote:
->
-> On Thu, Nov 30, 2023 at 06:41:07PM +0100, Herve Codina wrote:
-> > Hi,
->
-> +Saravana for comment
+Hi, Conor
 
-I'll respond to this within a week -- very swamped at the moment. The
-main thing I want to make sure is that we don't cause an indirect
-deadlock with this wait(). I'll go back and look at why we added the
-work queue and then check for device/devlink locking issues.
+thanks for comment
 
--Saravana
+On 2023/12/6 23:40, Conor Dooley wrote:
+> On Wed, Dec 06, 2023 at 05:43:48PM +0800, Shengyang Chen wrote:
+>> Hi, Conor
+>> 
+>> On 2023/11/24 20:31, Conor Dooley wrote:
+>> > On Fri, Nov 24, 2023 at 06:44:50PM +0800, Shengyang Chen wrote:
+>> >> The waveshare 7inch touchscreen panel is a kind of raspberrypi pi
+>> >> panel
+>> > 
+>> > Can you be more specific about what "is a kind of rpi panel" means?
+>> > Are they using identical chips as controllers or something like that?
+>> > 
+>> 
+>> Wareshare panel has same i2c slave address and registers address with 
+>> the original raspberry pi panel. They both use Atmel firmware and they
+>> got same reg id. It can be operated by using the driver of raspberry pi driver
+>> after some change of the code. So I suppose it may be a kind of raspberry pi panel 
+>> and discribe it in this way. It's my own judgement. Sorry about that.
+>> Maybe just like Dave said, It cloned the behaviour of the raspberri pi panel.
+>> I will change the discribtion in next version to not make other confused.
+>> 
+>> By the way, we will try Stefan's method before next version. 
+>> The method we used in this patch may be abandoned if Stefan's method is verified in our platform.
+>> At that time yaml may also be changed to fit new method.
+> 
+> I don't know what Stefan's approach is, but I do not think that a
+> bindings patch should be dropped. The waveshare might be a clone, but it
+> is a distinct device. If the same driver can control both, then the
+> compatible setups that should be permitted are:
+> compatible = "raspberrypi,7inch-touchscreen-panel";
+> and
+> compatible = "waveshare,7inch-touchscreen-panel", "raspberrypi,7inch-touchscreen-panel";
+> 
+> Cheers,
+> Conor.
+> 
 
->
-> Looks okay to me though.
->
-> >
-> > In the following sequence:
-> >   of_platform_depopulate(); /* Remove devices from a DT overlay node */
-> >   of_overlay_remove(); /* Remove the DT overlay node itself */
-> >
-> > Some warnings are raised by __of_changeset_entry_destroy() which  was
-> > called from of_overlay_remove():
-> >   ERROR: memory leak, expected refcount 1 instead of 2 ...
-> >
-> > The issue is that, during the device devlink removals triggered from th=
-e
-> > of_platform_depopulate(), jobs are put in a workqueue.
-> > These jobs drop the reference to the devices. When a device is no more
-> > referenced (refcount =3D=3D 0), it is released and the reference to its
-> > of_node is dropped by a call to of_node_put().
-> > These operations are fully correct except that, because of the
-> > workqueue, they are done asynchronously with respect to function calls.
-> >
-> > In the sequence provided, the jobs are run too late, after the call to
-> > __of_changeset_entry_destroy() and so a missing of_node_put() call is
-> > detected by __of_changeset_entry_destroy().
-> >
-> > This series fixes this issue introducing device_link_wait_removal() in
-> > order to wait for the end of jobs execution (patch 1) and using this
-> > function to synchronize the overlay removal with the end of jobs
-> > execution (patch 2).
-> >
-> > Best regards,
-> > Herv=C3=A9
-> >
-> > Herve Codina (2):
-> >   driver core: Introduce device_link_wait_removal()
-> >   of: overlay: Synchronize of_overlay_remove() with the devlink removal=
-s
-> >
-> >  drivers/base/core.c    | 26 +++++++++++++++++++++++---
-> >  drivers/of/overlay.c   |  6 ++++++
-> >  include/linux/device.h |  1 +
-> >  3 files changed, 30 insertions(+), 3 deletions(-)
-> >
-> > --
-> > 2.42.0
-> >
+Here is our consideration of this submit:
+
+Although Waveshare panel reuse the driver of raspberry pi panel, they are different in probing process
+and panel parameters.
+we try to use compatible and data to distinguish these two panel
+
+Here are the reference
+driver part:
+https://elixir.bootlin.com/linux/v6.7-rc3/source/drivers/gpu/drm/panel/panel-simple.c
+dt-binding part:
+https://elixir.bootlin.com/linux/v6.7-rc3/source/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+
+
+For example:
+
+in driver part:
+
+in drivers/gpu/drm/panel/panel-simple.c:#in line 4189
+----------------------------------------------------------------------------------
+we can got different compatible with its own data.
+================================================
+static const struct of_device_id platform_of_match[] = {			//the of_match array list
+	{
+		.compatible = "ampire,am-1280800n3tzqw-t00h",
+		.data = &ampire_am_1280800n3tzqw_t00h,		//we define our panel parameter or special panel function, which can distinguish different panels
+	}, {
+		.compatible = "ampire,am-480272h3tmqw-t01h",
+		.data = &ampire_am_480272h3tmqw_t01h,
+	}, 
+...
+...
+}
+===============================================
+
+in drivers/gpu/drm/panel/panel-simple.c:#in line 4611
+----------------------------------------------------------------------------------
+we can use the generic probing process to probe our driver
+after getting its own data.
+================================================
+static int panel_simple_platform_probe(struct platform_device *pdev)
+{
+	const struct panel_desc *desc;
+
+	desc = of_device_get_match_data(&pdev->dev);			//we get our panel parameter
+	if (!desc)
+		return -ENODEV;
+
+	return panel_simple_probe(&pdev->dev, desc);			//probe with returned data
+}
+
+
+
+================================================
+
+in yamel part:
+
+in /Documentation/devicetree/bindings/display/panel/panel-simple.yaml#in line 33
+----------------------------------------------------------------------------------
+We refer to this approach, adding our compatible to the yaml of raspberry pi panel
+================================================
+
+properties:
+  compatible:
+    enum:
+    # compatible must be listed in alphabetical order, ordered by compatible.
+    # The description in the comment is mandatory for each compatible.
+
+        # Ampire AM-1280800N3TZQW-T00H 10.1" WQVGA TFT LCD panel
+      - ampire,am-1280800n3tzqw-t00h
+        # Ampire AM-480272H3TMQW-T01H 4.3" WQVGA TFT LCD panel
+      - ampire,am-480272h3tmqw-t01h
+================================================
+
+
+
+If we use Stenfan's method, we can reuse the code of panel-simple.c
+we may submit our patch to
+/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+/drivers/gpu/drm/panel/panel-simple.c
+as a new panel porting. That may less confuse.
+
+
+here is Stenfan's method:
+[1] - https://github.com/lategoodbye/rpi-zero/commits/v6.7-7inch-ts
+[2] -
+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/commit/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx-0x-rpidsi.dtso?h=v6.6.2&id=6b4da1354fd81adace0cda448c77d8f2a47d8474
+
+
+Thanks
+
+Best Regards,
+Shengyang
+
+
+>> >> and it can be drived by panel-raspberrypi-touchscreen.c.
+>> >> Add compatible property for it.
+>> >> 
+>> >> Signed-off-by: Keith Zhao <keith.zhao@starfivetech.com>
+>> >> Signed-off-by: Shengyang Chen <shengyang.chen@starfivetech.com>
+>> >> ---
+>> >>  .../bindings/display/panel/raspberrypi,7inch-touchscreen.yaml | 4 +++-
+>> >>  1 file changed, 3 insertions(+), 1 deletion(-)
+>> >> 
+>> >> diff --git a/Documentation/devicetree/bindings/display/panel/raspberrypi,7inch-touchscreen.yaml b/Documentation/devicetree/bindings/display/panel/raspberrypi,7inch-touchscreen.yaml
+>> >> index 22a083f7bc8e..e4e6cb4d4e5b 100644
+>> >> --- a/Documentation/devicetree/bindings/display/panel/raspberrypi,7inch-touchscreen.yaml
+>> >> +++ b/Documentation/devicetree/bindings/display/panel/raspberrypi,7inch-touchscreen.yaml
+>> >> @@ -22,7 +22,9 @@ description: |+
+>> >>  
+>> >>  properties:
+>> >>    compatible:
+>> >> -    const: raspberrypi,7inch-touchscreen-panel
+>> >> +    enum:
+>> >> +      - raspberrypi,7inch-touchscreen-panel
+>> >> +      - waveshare,7inch-touchscreen-panel
+>> >>  
+>> >>    reg:
+>> >>      const: 0x45
+>> >> -- 
+>> >> 2.17.1
+>> >> 
+>> 
+>> 
+>> thanks.
+>> 
+>> Best Regards,
+>> Shengyang
+>> 
+
 
