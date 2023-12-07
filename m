@@ -1,57 +1,58 @@
-Return-Path: <devicetree+bounces-22533-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22534-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A358180815C
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 08:08:13 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27D4F808160
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 08:08:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47C662813D4
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 07:08:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5E1C9B21153
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 07:08:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0715114F64;
-	Thu,  7 Dec 2023 07:08:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AC2F16409;
+	Thu,  7 Dec 2023 07:08:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="YQkAT+Nx"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="pfhuARPm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8C53D5E
-	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 23:08:01 -0800 (PST)
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-54c9116d05fso723257a12.3
-        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 23:08:01 -0800 (PST)
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 559FAD7F
+	for <devicetree@vger.kernel.org>; Wed,  6 Dec 2023 23:08:04 -0800 (PST)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-54c1cd8d239so754013a12.0
+        for <devicetree@vger.kernel.org>; Wed, 06 Dec 2023 23:08:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1701932880; x=1702537680; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=TVyclZazJvX0BLnaExZFu9C3yH6+5Ao3su3cId334Q4=;
-        b=YQkAT+Nxdj3his7EyWpn1VUSiZ7ie8RiRYyZQ4gQKDDZ8OfTB3L/IeHEp/Lbd0LxDu
-         Be2zYwp/3MbEjlgeuwDsALXmMr5MebJkB7r80DPjB58ulbuFAvhzToO1KUqhnkvfLjRb
-         s1FuZVZp4HKAHR5QMicQlX483eg/y+yApoHpiyIfnZRWcq8cIvak/jeEO3ZCSC/tzEln
-         gmSp/ScUAbavTL9nVCZZwJKpDHBTkQFUlK6OZCo6cIzHg5uWgHXJ16N2ePjN6QiTLlHS
-         kgrRNRmX9ozJTwmNRRm+GUDtJufuJNIKV1Ns154h1ecEJLdmvPwio7F2OaSangP1Z96D
-         6hfg==
+        d=tuxon.dev; s=google; t=1701932883; x=1702537683; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bUZ+Xi6iPmzuyCXXhpAA62gGUIVrLESrpvXoWFTaEuQ=;
+        b=pfhuARPm3GVHnoU/4zDsTaU9G0Nrv9BxUZo/odlaf10z7EsmErfaRLzJXlSI3yXK0y
+         2TXrP4VEB5/otvxhuWEU7U7+eOeerlhImW+7gf7KcpIBbDPLJYau3t8obFTEiOi5XgsU
+         GjOi2aLjbVjagj3aupFMbcNlwpEBrn9EBJqigBYTSgTvXUzS5M+0UtEXo0ZNnaoYhkyt
+         tWOP7PRdLSSM1nGDse237gAV+7JqI+BFV7QJrHAG+N+0MmdPjB0e15UPQvPWwCh+k3Ub
+         9I6jdqTis/NwQqm5T/f38nYjwhT82CvsJGNscZtEM8Qd5hcc/CInsziPy6gWSYVxZAti
+         uvOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701932880; x=1702537680;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TVyclZazJvX0BLnaExZFu9C3yH6+5Ao3su3cId334Q4=;
-        b=P8cvaz5sNogeIqE5mSnKcdcLMdrozhyQ4aqT5aIyBRujONj6SoTdIri34Ewbiq/QN1
-         r0+l/Ou866TphJUBcKXhQym6/thYMRgfWabHaVRdLvKJTL0LzLWl5XfI+0KJBuU8jWTM
-         AW7bgWqRkS5Alra5AA05K8H3+KLBJMN1OxlXl2fQW8XOjFV+i8M5nEfNNV8YGi3QaPUz
-         BzGBNJn2cv3NP7f4KWrHchM6KJ6T9rdCdcLWXU2tTZNGuMsbJDXNdpU3oy2wc7FcLXWJ
-         aCvlFtXg5hM9OouaO2hE0NqDzoXSZ1UwTAkLnk6PwFcae4NnUPl+0IjyEvRVBCKEISDe
-         9khw==
-X-Gm-Message-State: AOJu0Yy7+4djQSh3hpWpee0TTbv/9uZBOC26AIYsdb1eV02lLLCoxvZn
-	NSQVuXjZvNLZ1b4KhOy9Vl1PLA==
-X-Google-Smtp-Source: AGHT+IEC0FkV7t0JGk/8vCkIjlrSN99fzjy/K71uEAV88dEq3aC+gkR+brEZ3swbNQIpMT1WiCCaHw==
-X-Received: by 2002:a05:6402:176b:b0:54c:4837:9fd8 with SMTP id da11-20020a056402176b00b0054c48379fd8mr565439edb.47.1701932880051;
-        Wed, 06 Dec 2023 23:08:00 -0800 (PST)
+        d=1e100.net; s=20230601; t=1701932883; x=1702537683;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=bUZ+Xi6iPmzuyCXXhpAA62gGUIVrLESrpvXoWFTaEuQ=;
+        b=fOnrW/wExOS8TAQ/1oXULLRzJlzIMrF0KvxwhCVW56KZZz8tbpF/qO6NSdpeSACXdg
+         m3Jg49IM3dXG7j6Ua52p8DFAo5V6jnWOvHdUDk9sO4pFTpJgY4X313ekus/80jbDva8d
+         w8S5R11uIOvGWj1rm4HcpiPeZz2xE5Yq5RuNfqMZhdeNUqDSv908IwSQvUVNpL5LZTu0
+         JJnF3tMu8/Sxn3hz0VpzJK2EdQLxbxXjYBISub+BMdm9JHJJvzcc6eiSwpFJzHjQ+uR0
+         52phC7PWoNY5K5tb0t9TAgvy7BcTbY0nt3aJau51jkcG65mEEB+XsVk4nv80QCH3XL62
+         qEGg==
+X-Gm-Message-State: AOJu0YzoWXu6Rz1pqupcukHbisPHEAMRzVJO/FKeVPdQ2PlYYSkQh8/Z
+	C768O6N9Wuwy1zg8m7nIwU7kvQ==
+X-Google-Smtp-Source: AGHT+IFYgHoezyMBS5pVMBDpau8vEgCGmmvXZ2I9QTiAtdjmWuM1kvPNgWs04XfPEI5GdV69KGuAkA==
+X-Received: by 2002:a50:8ad8:0:b0:54c:d1d5:7682 with SMTP id k24-20020a508ad8000000b0054cd1d57682mr523483edk.22.1701932882708;
+        Wed, 06 Dec 2023 23:08:02 -0800 (PST)
 Received: from claudiu-X670E-Pro-RS.. ([82.78.167.22])
-        by smtp.gmail.com with ESMTPSA id b41-20020a509f2c000000b0054cb88a353dsm420818edf.14.2023.12.06.23.07.58
+        by smtp.gmail.com with ESMTPSA id b41-20020a509f2c000000b0054cb88a353dsm420818edf.14.2023.12.06.23.08.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Dec 2023 23:07:59 -0800 (PST)
+        Wed, 06 Dec 2023 23:08:02 -0800 (PST)
 From: Claudiu <claudiu.beznea@tuxon.dev>
 X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
 To: s.shtylyov@omp.ru,
@@ -76,10 +77,12 @@ Cc: linux-renesas-soc@vger.kernel.org,
 	linux-clk@vger.kernel.org,
 	linux-gpio@vger.kernel.org,
 	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: [PATCH v2 00/11] renesas: rzg3s: Add support for Ethernet
-Date: Thu,  7 Dec 2023 09:06:49 +0200
-Message-Id: <20231207070700.4156557-1-claudiu.beznea.uj@bp.renesas.com>
+Subject: [PATCH v2 01/11] clk: renesas: rzg2l-cpg: Check reset monitor registers
+Date: Thu,  7 Dec 2023 09:06:50 +0200
+Message-Id: <20231207070700.4156557-2-claudiu.beznea.uj@bp.renesas.com>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20231207070700.4156557-1-claudiu.beznea.uj@bp.renesas.com>
+References: <20231207070700.4156557-1-claudiu.beznea.uj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,61 +93,134 @@ Content-Transfer-Encoding: 8bit
 
 From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-Hi,
+The hardware manual of both RZ/G2L and RZ/G3S specifies that the reset
+monitor registers need to be interrogated when the reset signals are
+toggled (chapters "Procedures for Supplying and Stopping Reset Signals"
+and "Procedure for Activating Modules"). Without this, there is a chance
+that different modules (e.g., Ethernet) to not be ready after their reset
+signal is toggled, leading to failures (on probe or resume from deep sleep
+states).
 
-Series adds Ethernet support for Renesas RZ/G3S.
-Along with it preparatory cleanups and fixes were included.
+The same indications are available for RZ/V2M for TYPE-B reset controls.
 
-Patches 1-2 are clock specific.
-Patches 3-7 are pinctrl specific.
-Patches 8-11 are device tree specific.
-
-It is expected that patches will be integrated though Geert's tree.
-
-Thank you,
-Claudiu Beznea
+Fixes: ef3c613ccd68 ("clk: renesas: Add CPG core wrapper for RZ/G2L SoC")
+Fixes: 8090bea32484 ("clk: renesas: rzg2l: Add support for RZ/V2M reset monitor reg")
+Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+---
 
 Changes in v2:
-- patches 1/14 and 14/14 from v1 were integrated thus, didn't include
-  them in this version
-- dropped patch 3/14 "clk: renesas: rzg2l-cpg: Add support for MSTOP"
-  from v1 and associated changes; a follow up will be done on it after
-  the current series will be accepted
-- addressed review comments
-- fixed typos in commit title and description
-- collected tags
-- removed IEN functinality form patch 6/12 and added it in a separate patch
-  (patch 7/12)
-- patch 11/14] "arm64: renesas: rzg3s-smarc-som: Invert the logic for
-  SW_SD2_EN macro from" from v1 was replaced by patch 10/11 in this
-  version "arm64: renesas: rzg3s-smarc-som: Use switches' names
-  to select on-board functionalities"
+- adapted for CPG versions with monbit (e.g., RZ/V2M)
+- added a fixes tag for RZ/V2M
+- fixed typos in commit description
 
-Claudiu Beznea (11):
-  clk: renesas: rzg2l-cpg: Check reset monitor registers
-  clk: renesas: r9a08g045-cpg: Add clock and reset support for ETH0 and
-    ETH1
-  pinctrl: renesas: rzg2l: Move arg and index in the main function block
-  pinctrl: renesas: rzg2l: Add pin configuration support for pinmux
-    groups
-  pinctrl: renesas: rzg2l: Add support to select power source for
-    Ethernet pins
-  pinctrl: renesas: rzg2l: Add output enable support
-  pinctrl: renesas: rzg2l: Add input enable to the Ethernet pins
-  dt-bindings: net: renesas,etheravb: Document RZ/G3S support
-  arm64: renesas: r9a08g045: Add the Ethernet nodes
-  arm64: renesas: rzg3s-smarc-som: Use switches' names to select
-    on-board functionalities
-  arm64: dts: renesas: rzg3s-smarc-som: Enable the Ethernet interfaces
+ drivers/clk/renesas/rzg2l-cpg.c | 59 ++++++++++++++++++++++++---------
+ 1 file changed, 44 insertions(+), 15 deletions(-)
 
- .../bindings/net/renesas,etheravb.yaml        |   1 +
- arch/arm64/boot/dts/renesas/r9a08g045.dtsi    |  38 ++++
- .../boot/dts/renesas/rzg3s-smarc-som.dtsi     | 173 ++++++++++++++++--
- drivers/clk/renesas/r9a08g045-cpg.c           |  10 +
- drivers/clk/renesas/rzg2l-cpg.c               |  59 ++++--
- drivers/pinctrl/renesas/pinctrl-rzg2l.c       | 164 +++++++++++++++--
- 6 files changed, 398 insertions(+), 47 deletions(-)
-
+diff --git a/drivers/clk/renesas/rzg2l-cpg.c b/drivers/clk/renesas/rzg2l-cpg.c
+index 3189c3167ba8..1424fe78f09f 100644
+--- a/drivers/clk/renesas/rzg2l-cpg.c
++++ b/drivers/clk/renesas/rzg2l-cpg.c
+@@ -1416,12 +1416,27 @@ static int rzg2l_cpg_assert(struct reset_controller_dev *rcdev,
+ 	struct rzg2l_cpg_priv *priv = rcdev_to_priv(rcdev);
+ 	const struct rzg2l_cpg_info *info = priv->info;
+ 	unsigned int reg = info->resets[id].off;
+-	u32 value = BIT(info->resets[id].bit) << 16;
++	u32 mask = BIT(info->resets[id].bit);
++	s8 monbit = info->resets[id].monbit;
++	u32 value = mask << 16;
+ 
+ 	dev_dbg(rcdev->dev, "assert id:%ld offset:0x%x\n", id, CLK_RST_R(reg));
+ 
+ 	writel(value, priv->base + CLK_RST_R(reg));
+-	return 0;
++
++	if (info->has_clk_mon_regs) {
++		reg = CLK_MRST_R(reg);
++	} else if (monbit >= 0) {
++		reg = CPG_RST_MON;
++		mask = BIT(monbit);
++	} else {
++		/* Wait for at least one cyc le of the RCLK clock (@ ca. 32 kHz) */
++		udelay(35);
++		return 0;
++	}
++
++	return readl_poll_timeout_atomic(priv->base + reg, value,
++					 value & mask, 10, 200);
+ }
+ 
+ static int rzg2l_cpg_deassert(struct reset_controller_dev *rcdev,
+@@ -1430,14 +1445,28 @@ static int rzg2l_cpg_deassert(struct reset_controller_dev *rcdev,
+ 	struct rzg2l_cpg_priv *priv = rcdev_to_priv(rcdev);
+ 	const struct rzg2l_cpg_info *info = priv->info;
+ 	unsigned int reg = info->resets[id].off;
+-	u32 dis = BIT(info->resets[id].bit);
+-	u32 value = (dis << 16) | dis;
++	u32 mask = BIT(info->resets[id].bit);
++	s8 monbit = info->resets[id].monbit;
++	u32 value = (mask << 16) | mask;
+ 
+ 	dev_dbg(rcdev->dev, "deassert id:%ld offset:0x%x\n", id,
+ 		CLK_RST_R(reg));
+ 
+ 	writel(value, priv->base + CLK_RST_R(reg));
+-	return 0;
++
++	if (info->has_clk_mon_regs) {
++		reg = CLK_MRST_R(reg);
++	} else if (monbit >= 0) {
++		reg = CPG_RST_MON;
++		mask = BIT(monbit);
++	} else {
++		/* Wait for at least one cycle of the RCLK clock (@ ca. 32 kHz) */
++		udelay(35);
++		return 0;
++	}
++
++	return readl_poll_timeout_atomic(priv->base + reg, value,
++					 !(value & mask), 10, 200);
+ }
+ 
+ static int rzg2l_cpg_reset(struct reset_controller_dev *rcdev,
+@@ -1449,9 +1478,6 @@ static int rzg2l_cpg_reset(struct reset_controller_dev *rcdev,
+ 	if (ret)
+ 		return ret;
+ 
+-	/* Wait for at least one cycle of the RCLK clock (@ ca. 32 kHz) */
+-	udelay(35);
+-
+ 	return rzg2l_cpg_deassert(rcdev, id);
+ }
+ 
+@@ -1460,18 +1486,21 @@ static int rzg2l_cpg_status(struct reset_controller_dev *rcdev,
+ {
+ 	struct rzg2l_cpg_priv *priv = rcdev_to_priv(rcdev);
+ 	const struct rzg2l_cpg_info *info = priv->info;
+-	unsigned int reg = info->resets[id].off;
+-	u32 bitmask = BIT(info->resets[id].bit);
+ 	s8 monbit = info->resets[id].monbit;
++	unsigned int reg;
++	u32 bitmask;
+ 
+ 	if (info->has_clk_mon_regs) {
+-		return !!(readl(priv->base + CLK_MRST_R(reg)) & bitmask);
++		reg = CLK_MRST_R(info->resets[id].off);
++		bitmask = BIT(info->resets[id].bit);
+ 	} else if (monbit >= 0) {
+-		u32 monbitmask = BIT(monbit);
+-
+-		return !!(readl(priv->base + CPG_RST_MON) & monbitmask);
++		reg = CPG_RST_MON;
++		bitmask = BIT(monbit);
++	} else {
++		return -ENOTSUPP;
+ 	}
+-	return -ENOTSUPP;
++
++	return !!(readl(priv->base + reg) & bitmask);
+ }
+ 
+ static const struct reset_control_ops rzg2l_cpg_reset_ops = {
 -- 
 2.39.2
 
