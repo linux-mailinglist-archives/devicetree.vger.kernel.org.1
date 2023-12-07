@@ -1,220 +1,237 @@
-Return-Path: <devicetree+bounces-22678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22679-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A82C80867A
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 12:13:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4600080868A
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 12:19:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8BB2B1C21EA4
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 11:13:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C221EB21590
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 11:19:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE53137D27;
-	Thu,  7 Dec 2023 11:13:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABCF937D1F;
+	Thu,  7 Dec 2023 11:19:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kM4dzzm1"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FnUKOhGS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3682310C7;
-	Thu,  7 Dec 2023 03:13:33 -0800 (PST)
-Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-33349b3f99aso793160f8f.0;
-        Thu, 07 Dec 2023 03:13:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701947611; x=1702552411; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Q04tsDqW57p+9vja5pX6TrNQSbK8g1Bln9Plrgyuq6U=;
-        b=kM4dzzm1Q96yJPfi5/n3CtcsgGRfqZae3BPdExx52Qs7Jy8wEgJeV9F7Efk17iHEIq
-         ba+bz10FfUmU30qJciqp/czI1Ycq3gbGsqZIGgcXB7PB2wILPJzdLgk4kBp/Nu8PYaKT
-         d+xI36+MCvDUZerHvRU8FtNVabrcys5ZHPrK3tx0OWgW1Cs0qGNx4fm6afm8qaAYZgfO
-         kn8i7HNS+7CKoZT/OtNrvUnGL/XKTBdimkYPmHpYjyZnSHlah2T6VtYwzzKBY53PFJ/I
-         g7objuiZENH11jUa2q/S2lSlBQaB5igRP/K4CqxofzNkX5IR0aI45jP3PxJxsgKQ4BTR
-         HTrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701947611; x=1702552411;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Q04tsDqW57p+9vja5pX6TrNQSbK8g1Bln9Plrgyuq6U=;
-        b=L5FWGl+vgdQCMnLphqBdvoo0gzCwWIjvvG3kP3eZ30qPjOExNZEpM5/dzZEp8+USYj
-         uhrl0luCrjhjXxXpbZJw4DihrIzK+pDPRHlcIudcIAoAoogRbLYFP+4x6crU5Ya5KVnY
-         zEll7psa7tCJADla5JTa3HVUXQWSbQp5L4jCEsXmi0unVrxb6qGJnB1TckTWasqpN81v
-         jiDd/br2pw2XysxJFvQ75uMktMfe2MjYErRxMxz9nmKvXbMazQMET7jmx8c8TbPcbQFV
-         LrlbkQANoHhbibbrnauQB2LhtsczPJJ9DbFASoanyPM5QAItvQJvjhPMf4P/R1MTtlgx
-         RF+A==
-X-Gm-Message-State: AOJu0YxWMcT1veqyYk6aOf9/qCk5GT/97hL9WOSaOR8Sx8UzS4ckK1gG
-	25L465Ael18/jZvMAPK0bLk=
-X-Google-Smtp-Source: AGHT+IGIblJChk3/pL0IMI6XnShQv+MynmhlcXWEswXA1HuxUjijixn0Wu0k1c5gVDlynwzhuQkODQ==
-X-Received: by 2002:a05:6000:1946:b0:332:d504:c131 with SMTP id e6-20020a056000194600b00332d504c131mr1266173wry.44.1701947611659;
-        Thu, 07 Dec 2023 03:13:31 -0800 (PST)
-Received: from eichest-laptop.toradex.int ([2a02:168:af72:0:5036:93fe:290b:56de])
-        by smtp.gmail.com with ESMTPSA id b10-20020a5d550a000000b003333541a5bdsm1166096wrv.80.2023.12.07.03.13.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Dec 2023 03:13:29 -0800 (PST)
-From: Stefan Eichenberger <eichest@gmail.com>
-To: nick@shmanahar.org,
-	dmitry.torokhov@gmail.com,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	nicolas.ferre@microchip.com,
-	alexandre.belloni@bootlin.com,
-	claudiu.beznea@tuxon.dev,
-	linus.walleij@linaro.org
-Cc: linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Stefan Eichenberger <stefan.eichenberger@toradex.com>
-Subject: [PATCH v1 2/2] Input: atmel_mxt_ts - support poweroff in suspend
-Date: Thu,  7 Dec 2023 12:13:00 +0100
-Message-Id: <20231207111300.80581-3-eichest@gmail.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20231207111300.80581-1-eichest@gmail.com>
-References: <20231207111300.80581-1-eichest@gmail.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2344710C7;
+	Thu,  7 Dec 2023 03:18:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1701947937; x=1733483937;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=KpCkwtM8v0D/JavgXTicH7KGII6cWM7x/f5YccMhmTA=;
+  b=FnUKOhGSvFN5xmzNicHGnGz4KKD8JiVDR8lFN0Q6iPwrE/maMwYRGkEu
+   2GCL3cnX6T10j5S0DA3K6U6c+8Bso2YpB2v0XCyIDIO0weMUdCs6BDbss
+   DyNsKaz79f+jv+yzoh3n84jlnAxIP9Ry0VjDDGDC/cKyONmALT+cam67s
+   WT8YFXZIxabeOUbLXibUqbbopribx/EKxq2D4DxD76mOKQ6hXr3HGUVDG
+   XhvqlXwCZd+gVAPjdDmEfJORJ0aMPAWzPQiDJLadQqmFtSGsgoPu2Arqq
+   l/XvrrM9GiWN1v+SWCCn7s0ww1SHT9geqkd7w7z+PGXHrufnoaDRB5QJ8
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="1320466"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; 
+   d="scan'208";a="1320466"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Dec 2023 03:18:56 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="805984277"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; 
+   d="scan'208";a="805984277"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Dec 2023 03:18:53 -0800
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id DD4D911FB50;
+	Thu,  7 Dec 2023 13:18:49 +0200 (EET)
+Date: Thu, 7 Dec 2023 11:18:49 +0000
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	devicetree@vger.kernel.org, Lee Jackson <lee.jackson@arducam.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v5 1/2] media: dt-bindings: Add OmniVision OV64A40
+Message-ID: <ZXGqGWfoMtsoKut-@kekkonen.localdomain>
+References: <20231206155900.123904-1-jacopo.mondi@ideasonboard.com>
+ <20231206155900.123904-2-jacopo.mondi@ideasonboard.com>
+ <ZXGW8iyoQpIXUa1E@kekkonen.localdomain>
+ <ecrdq6a2y6uymnzp63vfo7kxnft6eonqgmbkgew3z4iaucfbjg@hu2ws54mqwea>
+ <ZXGf1-2_oM_OEtvB@kekkonen.localdomain>
+ <pc776i6etbnxiarwupmeoonst727do5ikv6iezcg2xubk3hvgf@oppiffiaijwk>
+ <ZXGlVcZUtFSaTr9w@kekkonen.localdomain>
+ <agjyony5paibc57dvov64qvfm64h7lcsyp32rydx3uyq2ssouz@a5kflmaxbfp5>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <agjyony5paibc57dvov64qvfm64h7lcsyp32rydx3uyq2ssouz@a5kflmaxbfp5>
 
-From: Stefan Eichenberger <stefan.eichenberger@toradex.com>
+On Thu, Dec 07, 2023 at 12:05:07PM +0100, Jacopo Mondi wrote:
+> On Thu, Dec 07, 2023 at 10:58:29AM +0000, Sakari Ailus wrote:
+> > Hi Jacopo,
+> >
+> > On Thu, Dec 07, 2023 at 11:42:35AM +0100, Jacopo Mondi wrote:
+> > > Hi Sakari
+> > >
+> > > On Thu, Dec 07, 2023 at 10:35:03AM +0000, Sakari Ailus wrote:
+> > > > Hi Jacopo,
+> > > >
+> > > > On Thu, Dec 07, 2023 at 11:13:21AM +0100, Jacopo Mondi wrote:
+> > > > > Hi Sakari
+> > > > >
+> > > > > On Thu, Dec 07, 2023 at 09:57:06AM +0000, Sakari Ailus wrote:
+> > > > > > Hi Jacopo,
+> > > > > >
+> > > > > > On Wed, Dec 06, 2023 at 04:58:59PM +0100, Jacopo Mondi wrote:
+> > > > > > > Add bindings for OmniVision OV64A40.
+> > > > > > >
+> > > > > > > Co-developed-by: Lee Jackson <lee.jackson@arducam.com>
+> > > > > > > Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> > > > > > > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> > > > > > > ---
+> > > > > > >  .../bindings/media/i2c/ovti,ov64a40.yaml      | 97 +++++++++++++++++++
+> > > > > > >  1 file changed, 97 insertions(+)
+> > > > > > >  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov64a40.yaml
+> > > > > > >
+> > > > > > > diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov64a40.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov64a40.yaml
+> > > > > > > new file mode 100644
+> > > > > > > index 000000000000..e6c9d540a2dd
+> > > > > > > --- /dev/null
+> > > > > > > +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov64a40.yaml
+> > > > > > > @@ -0,0 +1,97 @@
+> > > > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > > > > +%YAML 1.2
+> > > > > > > +---
+> > > > > > > +$id: http://devicetree.org/schemas/media/i2c/ovti,ov64a40.yaml#
+> > > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > > > +
+> > > > > > > +title: OmniVision OV64A40 Image Sensor
+> > > > > > > +
+> > > > > > > +maintainers:
+> > > > > > > +  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> > > > > > > +
+> > > > > > > +allOf:
+> > > > > > > +  - $ref: /schemas/media/video-interface-devices.yaml#
+> > > > > > > +
+> > > > > > > +properties:
+> > > > > > > +  compatible:
+> > > > > > > +    const: ovti,ov64a40
+> > > > > > > +
+> > > > > > > +  reg:
+> > > > > > > +    maxItems: 1
+> > > > > > > +
+> > > > > > > +  clocks:
+> > > > > > > +    maxItems: 1
+> > > > > > > +
+> > > > > > > +  avdd-supply:
+> > > > > > > +    description: Analog voltage supply, 2.8 volts
+> > > > > > > +
+> > > > > > > +  dvdd-supply:
+> > > > > > > +    description: Digital core voltage supply, 1.1 volts
+> > > > > > > +
+> > > > > > > +  dovdd-supply:
+> > > > > > > +    description: Digital I/O voltage supply, 1.8 volts
+> > > > > > > +
+> > > > > > > +  powerdown-gpios:
+> > > > > > > +    maxItems: 1
+> > > > > > > +
+> > > > > > > +  reset-gpios:
+> > > > > > > +    maxItems: 1
+> > > > > > > +
+> > > > > > > +  port:
+> > > > > > > +    $ref: /schemas/graph.yaml#/$defs/port-base
+> > > > > > > +    additionalProperties: false
+> > > > > > > +
+> > > > > > > +    properties:
+> > > > > > > +      endpoint:
+> > > > > > > +        $ref: /schemas/media/video-interfaces.yaml#
+> > > > > > > +        additionalProperties: false
+> > > > > > > +
+> > > > > > > +        properties:
+> > > > > > > +          bus-type:
+> > > > > > > +            enum:
+> > > > > > > +              - 1 # MIPI CSI-2 C-PHY
+> > > > > > > +              - 4 # MIPI CSI-2 D-PHY
+> > > > > > > +          data-lanes: true
+> > > > > > > +          link-frequencies: true
+> > > > > > > +          clock-noncontinuous: true
+> > > > > > > +          remote-endpoint: true
+> > > > > > > +
+> > > > > > > +required:
+> > > > > > > +  - compatible
+> > > > > > > +  - reg
+> > > > > > > +  - clocks
+> > > > > > > +  - port
+> > > > > > > +
+> > > > > > > +unevaluatedProperties: false
+> > > > > > > +
+> > > > > > > +examples:
+> > > > > > > +  - |
+> > > > > > > +      #include <dt-bindings/gpio/gpio.h>
+> > > > > > > +
+> > > > > > > +      i2c {
+> > > > > > > +          #address-cells = <1>;
+> > > > > > > +          #size-cells = <0>;
+> > > > > > > +
+> > > > > > > +          camera@36 {
+> > > > > > > +              compatible = "ovti,ov64a40";
+> > > > > > > +              reg = <0x36>;
+> > > > > > > +              clocks = <&camera_clk>;
+> > > > > > > +              dovdd-supply = <&vgen4_reg>;
+> > > > > > > +              avdd-supply = <&vgen3_reg>;
+> > > > > > > +              dvdd-supply = <&vgen2_reg>;
+> > > > > > > +              powerdown-gpios = <&gpio1 9 GPIO_ACTIVE_HIGH>;
+> > > > > > > +              reset-gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
+> > > > > > > +              rotation = <180>;
+> > > > > > > +              orientation = <2>;
+> > > > > > > +
+> > > > > > > +              port {
+> > > > > > > +                  endpoint {
+> > > > > > > +                      remote-endpoint = <&mipi_csi2_in>;
+> > > > > > > +                      bus-type = <4>;
+> > > > > > > +                      data-lanes = <1 2 3 4>;
+> > > > > >
+> > > > > > This is missing link-frequencies.
+> > > > > >
+> > > > >
+> > > > > I was not sure about this, in facts.
+> > > > >
+> > > > > Bindings are about HW while link-frequencies is only about restricting
+> > > > > how the driver configures the sensor. Thus, I've not listed it as
+> > > > > mandatory however the driver mandates its presence.
+> > > > >
+> > > > > Should I make it mandatory in bindings ?
+> > > >
+> > > > See
+> > > > <URL:https://hverkuil.home.xs4all.nl/spec/driver-api/camera-sensor.html#handling-clocks>.
+> > > >
+> > > > IOW it's about the driver, too, but only secondarily.
+> > > >
+> > >
+> > > Should link-frequencies be made mandatory by video-interfaces.yaml if
+> > > the bus type is CSI-2 (D-PHY as well as C-PHY I presume ?)
+> >
+> > Works for me. There are certainly old bindings that don't have it at all so
+> > there would be warnings. Some drivers support just a single frequency,
+> > that's often the case with register list based drivers so things work just
+> > fine until someone goes and adds another to support a different system.
+> >
+> 
+> mmm, with a single link freq what the would be the point of specifying it
+> in dts ? Maybe making it mandatory for everyone is not the best idea..
 
-Add a new device tree property to indicate that the device should be
-powered off in suspend mode. We have a shared regulator that powers the
-display, a USB hub and some other peripherals. The maxtouch doesn't
-normally disable the regulator in suspend mode, so our extra peripherals
-stay powered on. This is not desirable as it consumes more power. With
-this patch we add the option to disable the regulator in suspend mode
-for the maxtouch and accept the longer initialisation time.
+Because DT describes devices, not drivers?
 
-Signed-off-by: Stefan Eichenberger <stefan.eichenberger@toradex.com>
----
- drivers/input/touchscreen/atmel_mxt_ts.c | 72 ++++++++++++++++++------
- 1 file changed, 55 insertions(+), 17 deletions(-)
-
-diff --git a/drivers/input/touchscreen/atmel_mxt_ts.c b/drivers/input/touchscreen/atmel_mxt_ts.c
-index 20094b9899f0..7caa0d317d30 100644
---- a/drivers/input/touchscreen/atmel_mxt_ts.c
-+++ b/drivers/input/touchscreen/atmel_mxt_ts.c
-@@ -317,6 +317,7 @@ struct mxt_data {
- 	struct gpio_desc *reset_gpio;
- 	struct gpio_desc *wake_gpio;
- 	bool use_retrigen_workaround;
-+	bool poweroff_in_suspend;
- 
- 	/* Cached parameters from object table */
- 	u16 T5_address;
-@@ -2799,15 +2800,18 @@ static int mxt_configure_objects(struct mxt_data *data,
- 			dev_warn(dev, "Error %d updating config\n", error);
- 	}
- 
--	if (data->multitouch) {
--		error = mxt_initialize_input_device(data);
--		if (error)
--			return error;
--	} else {
--		dev_warn(dev, "No touch object detected\n");
--	}
-+	/* If input device is not already registered */
-+	if (!data->input_dev) {
-+		if (data->multitouch) {
-+			error = mxt_initialize_input_device(data);
-+			if (error)
-+				return error;
-+		} else {
-+			dev_warn(dev, "No touch object detected\n");
-+		}
- 
--	mxt_debug_init(data);
-+		mxt_debug_init(data);
-+	}
- 
- 	return 0;
- }
-@@ -3328,6 +3332,8 @@ static int mxt_probe(struct i2c_client *client)
- 		msleep(MXT_RESET_INVALID_CHG);
- 	}
- 
-+	data->poweroff_in_suspend = device_property_read_bool(&client->dev,
-+							       "atmel,poweroff-in-suspend");
- 	/*
- 	 * Controllers like mXT1386 have a dedicated WAKE line that could be
- 	 * connected to a GPIO or to I2C SCL pin, or permanently asserted low.
-@@ -3390,12 +3396,21 @@ static int mxt_suspend(struct device *dev)
- 	if (!input_dev)
- 		return 0;
- 
--	mutex_lock(&input_dev->mutex);
-+	if (!device_may_wakeup(dev) && data->poweroff_in_suspend) {
-+		if (data->reset_gpio)
-+			gpiod_set_value(data->reset_gpio, 1);
- 
--	if (input_device_enabled(input_dev))
--		mxt_stop(data);
-+		regulator_bulk_disable(ARRAY_SIZE(data->regulators),
-+				data->regulators);
-+		data->T44_address = 0;
-+	} else {
-+		mutex_lock(&input_dev->mutex);
-+
-+		if (input_device_enabled(input_dev))
-+			mxt_stop(data);
- 
--	mutex_unlock(&input_dev->mutex);
-+		mutex_unlock(&input_dev->mutex);
-+	}
- 
- 	disable_irq(data->irq);
- 
-@@ -3411,14 +3426,37 @@ static int mxt_resume(struct device *dev)
- 	if (!input_dev)
- 		return 0;
- 
--	enable_irq(data->irq);
-+	if (!device_may_wakeup(dev) && data->poweroff_in_suspend) {
-+		int ret;
- 
--	mutex_lock(&input_dev->mutex);
-+		ret = regulator_bulk_enable(ARRAY_SIZE(data->regulators),
-+				data->regulators);
-+		if (ret) {
-+			dev_err(dev, "failed to enable regulators: %d\n",
-+					ret);
-+			return ret;
-+		}
-+		msleep(MXT_BACKUP_TIME);
- 
--	if (input_device_enabled(input_dev))
--		mxt_start(data);
-+		if (data->reset_gpio) {
-+			/* Wait a while and then de-assert the RESET GPIO line */
-+			msleep(MXT_RESET_GPIO_TIME);
-+			gpiod_set_value(data->reset_gpio, 0);
-+			msleep(MXT_RESET_INVALID_CHG);
-+		}
- 
--	mutex_unlock(&input_dev->mutex);
-+		/* This also enables the irq again */
-+		mxt_initialize(data);
-+	} else {
-+		enable_irq(data->irq);
-+
-+		mutex_lock(&input_dev->mutex);
-+
-+		if (input_device_enabled(input_dev))
-+			mxt_start(data);
-+
-+		mutex_unlock(&input_dev->mutex);
-+	}
- 
- 	return 0;
- }
 -- 
-2.40.1
-
+Sakari Ailus
 
