@@ -1,60 +1,61 @@
-Return-Path: <devicetree+bounces-22584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91D878082E7
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 09:23:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 222DA8082EB
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 09:24:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E25B28336C
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 08:23:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4507C1C21B60
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 08:24:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9620210FA;
-	Thu,  7 Dec 2023 08:23:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FA782DF92;
+	Thu,  7 Dec 2023 08:24:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pIG5gtRA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zjZ/587C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EE77C6
-	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 00:23:47 -0800 (PST)
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-40c07ed92fdso7277255e9.3
-        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 00:23:47 -0800 (PST)
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF704C6
+	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 00:24:43 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-40c236624edso7392135e9.1
+        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 00:24:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701937426; x=1702542226; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9IIO9873MnUjYDWrO8IkuU/36xiBULfRgmqcuNEoo3A=;
-        b=pIG5gtRATiGR67smv0SIn4Zdl+mcp18aB5feBN05mSmjQTHySqxU/EfMLTcLJUTIZf
-         J8cG08fHI2hXZlIFtATY19IN7VVruVC3okaPv3wGx9Hc3K+RNfQ17NfFEbPB+5sl07Cv
-         FrvPziBupkczMG58VHPEdsfsiAJHqEZSscm6/7iinQZ7MoUOpfNms0ob+uWsn1an3U+A
-         9OOYgb/sYeQEePpyyJodo0oEkF3NvSnA0X5MbSC9BnIZtYHa/BIHoQQDyqk4SXghLuRZ
-         VaW7PaGxr0geT75/gb1mBlEV/DaGch8uDJnQtLF/oebaYYuPpSvCWd/qii0hnWoxbarT
-         TKBA==
+        d=linaro.org; s=google; t=1701937482; x=1702542282; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=KyoplbVSScRANahbTFEO4gb7TxK2Dx2/SzeNBhNRRPg=;
+        b=zjZ/587C2rEBYowxNe90g+UBaWmiOx32Veq7PrdQkfFEiUXqCf1yJokqt4UnfvScMA
+         iKWKmkpSS15GXFuEn9PId3BGkrB1Nu5rrc1B3HFNgugZu/sUtaLyCME/1lqMhbOL867v
+         WjfoBHMH7RDKs+6meOCe0yXVJnrCUjllE58y8RNs+Wd0WIPbS5UayxHweiEdl37YqIMu
+         XTQs/InnRs4pxvkN8dmwchfi7VidZJ7HQD01ClWGZlU+jtM0H9F/gUeIkvx8xSAOw4Og
+         nmA81kXzNxFnZAKnvFLIeao4rYDnpxgHmG8JJXRChipYpHUUJ0xiTWvHCFilthGecJzE
+         P2GQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701937426; x=1702542226;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9IIO9873MnUjYDWrO8IkuU/36xiBULfRgmqcuNEoo3A=;
-        b=Z8fZMqmhrscq3epWvivujAJSK0rqMuWNx0Z8N9H1521je0J8S3WPqReRvvZ0z9PbqQ
-         FY04m0fUkMs8OFOJkTVBtPGRkxhPVwAjXJHFOVHYuUz6asps9AV8qHuF3Jgnm+F28/uk
-         qgmiaquwRfosrzr+TAUp1nQXcIiX0fa+RgsUfWlywMRfP0GRjBvjMkkcsKsaDbdpOLyH
-         ia8ixc+c/hQBlufgOZlVmQ2WLEVxErk71Y43e67DzUXxBcNM6KF8nCLc8dD5vevhYIQL
-         3+WR5eo1NN8DfJ3ogohsn7sZrWhiqV1N5LSpIJdZPIjtXGt8YphxMxS+Ziunn+3UscZf
-         Z5+w==
-X-Gm-Message-State: AOJu0YwsYiFb0m7jsxUJ1/Y2wfeFt/bV3PD1FiAusswNmWBaePpG6BcX
-	u52tJW0b+kD++mFEZCc7BU40sg==
-X-Google-Smtp-Source: AGHT+IEZZ77Si2Rch/NVJLpDVaVcnc6cmbJQHa/B0LHFoA9fzugp+5LEnSr+7KRoILy25YSvgzmbaQ==
-X-Received: by 2002:a05:600c:154e:b0:40b:380e:2c9e with SMTP id f14-20020a05600c154e00b0040b380e2c9emr1249711wmg.34.1701937425217;
-        Thu, 07 Dec 2023 00:23:45 -0800 (PST)
+        d=1e100.net; s=20230601; t=1701937482; x=1702542282;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KyoplbVSScRANahbTFEO4gb7TxK2Dx2/SzeNBhNRRPg=;
+        b=j12NvV4f/U+8xwRrXqqHKVGf7SYFIEJeQDx68aODlUjly6wSablBa4uyBp27I9QNfU
+         llbQO8j1hTJssJduhvhPBfBbBpl0P8GKvo3IKm63KQT+ePFgR1YaXw2hYIQwJjjf0PVT
+         sGp1NVFD9iyDBrj2y0tHUkXUmxp7TuPIkg2+Bdf4RQPBBZ7c2QYkBg9LpdRPxfQmBVYT
+         ng1xqiKTA6VBjP5sflzuhHD7UVlbRx95oS65BGJXonyVjVdK/CYQjKTzJM8nYNhku2mD
+         OiDeLSD7oo3+SB6ExWOXRJQ0fBkDGdeqyliCpsbaB/eKm8jfRHJTZsKjRGF9TKFY/kAK
+         39VA==
+X-Gm-Message-State: AOJu0YzneK1XdnOveY436R0PXEKR62/fhA5LmSWRCvOz1AWYlyFibcd+
+	pY0Z4/erBWEnPMePA63QpI/o7g==
+X-Google-Smtp-Source: AGHT+IFz/RgqhQtMH84fS24lpX7KlAytok+eBN0G5pG+ICsu/QO/kQIYfol+2t8xBzIkDd965GyXBg==
+X-Received: by 2002:a05:600c:1e05:b0:40c:a5d:860d with SMTP id ay5-20020a05600c1e0500b0040c0a5d860dmr1332476wmb.169.1701937482274;
+        Thu, 07 Dec 2023 00:24:42 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id i8-20020a05600c354800b004083729fc14sm1144817wmq.20.2023.12.07.00.23.43
+        by smtp.gmail.com with ESMTPSA id i8-20020a05600c354800b004083729fc14sm1144817wmq.20.2023.12.07.00.24.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Dec 2023 00:23:44 -0800 (PST)
-Message-ID: <0c1211e5-95a0-4caf-bc59-4a453fcf011a@linaro.org>
-Date: Thu, 7 Dec 2023 09:23:41 +0100
+        Thu, 07 Dec 2023 00:24:41 -0800 (PST)
+Message-ID: <857491d6-6360-4ed2-b38c-0477b75b19f7@linaro.org>
+Date: Thu, 7 Dec 2023 09:24:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,6 +66,7 @@ User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v6 1/2] dt-bindings: interrupt-controller:
  loongson,liointc: Fix dtbs_check warning for reg-names
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Binbin Zhou <zhoubinbin@loongson.cn>, Binbin Zhou
  <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>,
  Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>,
@@ -76,7 +78,7 @@ Cc: Huacai Chen <chenhuacai@kernel.org>, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
 References: <cover.1701933946.git.zhoubinbin@loongson.cn>
  <fde4d43ab25ad2a936c1b50ab7ed292345fcd32c.1701933946.git.zhoubinbin@loongson.cn>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ <0c1211e5-95a0-4caf-bc59-4a453fcf011a@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -121,35 +123,38 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <fde4d43ab25ad2a936c1b50ab7ed292345fcd32c.1701933946.git.zhoubinbin@loongson.cn>
+In-Reply-To: <0c1211e5-95a0-4caf-bc59-4a453fcf011a@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 07/12/2023 08:29, Binbin Zhou wrote:
-> As we know, the Loongson-2K0500 is a single-core CPU, and the
-> core1-related register (isr1) does not exist. So "reg" and "reg-names"
-> should be set to "minItems 2"(main nad isr0).
+On 07/12/2023 09:23, Krzysztof Kozlowski wrote:
+> On 07/12/2023 08:29, Binbin Zhou wrote:
+>> As we know, the Loongson-2K0500 is a single-core CPU, and the
+>> core1-related register (isr1) does not exist. So "reg" and "reg-names"
+>> should be set to "minItems 2"(main nad isr0).
+>>
+>> This fixes dtbs_check warning:
+>>
+>> DTC_CHK arch/loongarch/boot/dts/loongson-2k0500-ref.dtb
+>> arch/loongarch/boot/dts/loongson-2k0500-ref.dtb: interrupt-controller@1fe11400: reg-names: ['main', 'isr0'] is too short
+>>         From schema: Documentation/devicetree/bindings/interrupt-controller/loongson,liointc.yaml
+>> arch/loongarch/boot/dts/loongson-2k0500-ref.dtb: interrupt-controller@1fe11400: Unevaluated properties are not allowed ('reg-names' was unexpected)
+>>         From schema: Documentation/devicetree/bindings/interrupt-controller/loongson,liointc.yaml
+>> arch/loongarch/boot/dts/loongson-2k0500-ref.dtb: interrupt-controller@1fe11400: reg: [[0, 534844416, 0, 64], [0, 534843456, 0, 8]] is too short
+>>         From schema: Documentation/devicetree/bindings/interrupt-controller/loongson,liointc.yaml
+>> arch/loongarch/boot/dts/loongson-2k0500-ref.dtb: interrupt-controller@1fe11440: reg-names: ['main', 'isr0'] is too short
+>>         From schema: Documentation/devicetree/bindings/interrupt-controller/loongson,liointc.yaml
+>>
+>> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+>> Acked-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
+>> Reviewed-by: Huacai Chen <chenhuacai@loongson.cn>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
 > 
-> This fixes dtbs_check warning:
+> Where? Point me to exact email on lore.
 > 
-> DTC_CHK arch/loongarch/boot/dts/loongson-2k0500-ref.dtb
-> arch/loongarch/boot/dts/loongson-2k0500-ref.dtb: interrupt-controller@1fe11400: reg-names: ['main', 'isr0'] is too short
->         From schema: Documentation/devicetree/bindings/interrupt-controller/loongson,liointc.yaml
-> arch/loongarch/boot/dts/loongson-2k0500-ref.dtb: interrupt-controller@1fe11400: Unevaluated properties are not allowed ('reg-names' was unexpected)
->         From schema: Documentation/devicetree/bindings/interrupt-controller/loongson,liointc.yaml
-> arch/loongarch/boot/dts/loongson-2k0500-ref.dtb: interrupt-controller@1fe11400: reg: [[0, 534844416, 0, 64], [0, 534843456, 0, 8]] is too short
->         From schema: Documentation/devicetree/bindings/interrupt-controller/loongson,liointc.yaml
-> arch/loongarch/boot/dts/loongson-2k0500-ref.dtb: interrupt-controller@1fe11440: reg-names: ['main', 'isr0'] is too short
->         From schema: Documentation/devicetree/bindings/interrupt-controller/loongson,liointc.yaml
-> 
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> Acked-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
-> Reviewed-by: Huacai Chen <chenhuacai@loongson.cn>
-> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Where? Point me to exact email on lore.
-
-Didn't we already talk some time ago about fake reviews?
+Ah, I see at v4, it's ok:
+https://lore.kernel.org/all/170015648721.2522214.13442341316883618917.robh@kernel.org/
 
 Best regards,
 Krzysztof
