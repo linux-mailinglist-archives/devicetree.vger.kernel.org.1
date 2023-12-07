@@ -1,96 +1,96 @@
-Return-Path: <devicetree+bounces-22767-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22768-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C839E808AE9
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 15:43:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B1B1808AF4
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 15:46:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 840C0B21399
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 14:43:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 228A01C20AA6
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 14:46:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A87E381A8;
-	Thu,  7 Dec 2023 14:43:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61BEF3D0D4;
+	Thu,  7 Dec 2023 14:46:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i5ABAqzB"
+	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="dS8xskov"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AEF12D7A4;
-	Thu,  7 Dec 2023 14:43:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C18C1C433C8;
-	Thu,  7 Dec 2023 14:43:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701960222;
-	bh=T2pHHPrWdgufzNO/CKTT1kJEuRLZWujqjBSnGMiCqLg=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=i5ABAqzBGRStFVAPvsTx7m7C1mUruXHLHhJpOjskz8pKaCcBoM6jWwKotQyjhEYiT
-	 BPRbNUJr+hNG17Ga/Bv1ZfZ98xVyonIB6s74lZKbFLnW54xKC6X54r5JVb6YT5p23r
-	 NPFUgJajT248hblpnwoC3tWCtY/rpz2m6t+osEWGjpIw3lxjEBOnYU2MB1GQ5lUY1c
-	 DxP0nUHM0bb7scYXkcY7eFsLBNhizcU4gMXR4ZVghI0qas6DoU6zqrsfVy093RaHXd
-	 s8gryfL70faLnBRbE9zBQrdapKc6ndIRbiFxTLyg9ZOgfMDtoBLV5/UNy50800565u
-	 JdmC7VXAjwK3g==
-Date: Thu, 7 Dec 2023 15:43:36 +0100
-From: Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
-To: Sjoerd Simons <sjoerd@collabora.com>
-Cc: kernel@collabora.com, stable@vger.kernel.org, Andrew Lunn
- <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>, Gregory Clement
- <gregory.clement@bootlin.com>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] arm64: dts: armada-3720-turris-mox: set irq type
- for RTC
-Message-ID: <20231207154336.5bf6272e@dellmb>
-In-Reply-To: <20231128213536.3764212-4-sjoerd@collabora.com>
-References: <20231128213536.3764212-1-sjoerd@collabora.com>
-	<20231128213536.3764212-4-sjoerd@collabora.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BB75A3;
+	Thu,  7 Dec 2023 06:46:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
+	:Date:subject:date:message-id:reply-to;
+	bh=iUUDZHVt3az3SXfC7sYwpPvzPdIHPFC7thViDztCq4Q=; b=dS8xskovguqOJ5eUSKQ+62Po/P
+	kV9OVE13U7QhQeBWaEK68kRxetwAlRFvhyFqRzvR1ZQ6NMBtpuXbIa05JaPMnZrB/iCQnSQ+HIgwT
+	pY14sCKkUJxU5fihmDEbheVTVoJ2/F8ja91gTre/shIXyGn2Ca8dqQuXaJf7BcJkB9WQ=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:35438 helo=pettiford)
+	by mail.hugovil.com with esmtpa (Exim 4.92)
+	(envelope-from <hugo@hugovil.com>)
+	id 1rBFdx-0006Pv-TO; Thu, 07 Dec 2023 09:46:26 -0500
+Date: Thu, 7 Dec 2023 09:46:25 -0500
+From: Hugo Villeneuve <hugo@hugovil.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+ kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+ leoyang.li@nxp.com, robh@kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Hugo
+ Villeneuve <hvilleneuve@dimonoff.com>
+Message-Id: <20231207094625.01d081092dd60ddc504d7f7b@hugovil.com>
+In-Reply-To: <6035c4cc-afe1-456d-a4d0-16992da09a2e@linaro.org>
+References: <20231206160303.33185-1-hugo@hugovil.com>
+	<20231206160303.33185-3-hugo@hugovil.com>
+	<6035c4cc-afe1-456d-a4d0-16992da09a2e@linaro.org>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Level: 
+Subject: Re: [PATCH 2/3] dt-bindings: arm: fsl: add Dimonoff gateway EVK
+ board
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 
-On Tue, 28 Nov 2023 22:35:06 +0100
-Sjoerd Simons <sjoerd@collabora.com> wrote:
+On Thu, 7 Dec 2023 09:32:38 +0100
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-> The rtc on the mox shares its interrupt line with the moxtet bus. Set
-> the interrupt type to be consistent between both devices. This ensures
-> correct setup of the interrupt line regardless of probing order.
->=20
-> Signed-off-by: Sjoerd Simons <sjoerd@collabora.com>
-> Cc: stable@vger.kernel.org # v6.2+
-> Fixes: 21aad8ba615e ("arm64: dts: armada-3720-turris-mox: Add missing int=
-errupt for RTC")
->=20
-> ---
->=20
-> (no changes since v1)
->=20
->  arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts b/arc=
-h/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-> index 9eab2bb22134..805ef2d79b40 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-> +++ b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-> @@ -130,7 +130,7 @@ rtc@6f {
->  		compatible =3D "microchip,mcp7940x";
->  		reg =3D <0x6f>;
->  		interrupt-parent =3D <&gpiosb>;
-> -		interrupts =3D <5 0>; /* GPIO2_5 */
-> +		interrupts =3D <5 IRQ_TYPE_EDGE_FALLING>; /* GPIO2_5 */
->  	};
->  };
-> =20
+> On 06/12/2023 17:03, Hugo Villeneuve wrote:
+> > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > 
+> > Add DT compatible string for Dimonoff gateway EVK board based on a
+> > Variscite VAR-SOM-NANO with a NXP MX8MN nano CPU.
+> > 
+> > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > ---
+> >  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+> > index cd87d1afe7b7..e445d65d6f17 100644
+> > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> > @@ -1025,6 +1025,7 @@ properties:
+> >        - description: Variscite VAR-SOM-MX8MN based boards
+> >          items:
+> >            - enum:
+> > +              - dimonoff,dimonoff-gateway-evk # i.MX8MN Dimonoff Gateway EVK Board
+> 
+> Company name appears twice, which is not really helpful. What's the true
+> name? Gateway EVK? Then keep only this.
+> 
+> Best regards,
+> Krzysztof
 
-Reviewed-by: Marek Beh=C3=BAn <kabel@kernel.org>
+Ok, will do for V2.
+
+Thank you,
+Hugo Villeneuve
 
