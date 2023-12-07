@@ -1,76 +1,92 @@
-Return-Path: <devicetree+bounces-22785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22786-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53A97808BBF
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 16:26:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1330808BC4
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 16:27:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F0E2D1F2133E
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 15:26:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D3941C20969
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 15:27:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB7F644C82;
-	Thu,  7 Dec 2023 15:25:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20B4044C86;
+	Thu,  7 Dec 2023 15:27:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jLNIWoTM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TgL9KtdY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 898D53AC2D;
-	Thu,  7 Dec 2023 15:25:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E33CFC433C7;
-	Thu,  7 Dec 2023 15:25:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F196040BFC;
+	Thu,  7 Dec 2023 15:27:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D5FDC433C7;
+	Thu,  7 Dec 2023 15:27:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701962756;
-	bh=QSRLw7yztCghjyxb/KELP29iYZGlYvVKvP/F2T64Jww=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=jLNIWoTMMlZNrMRCUjmXid2FCoRKOegMarVWk3xLK4aTFV6FBlgv5y9ie8gZ3gbjf
-	 HVy1/YRb6I6hDXuOKp/2fMWHBZKzcwJZzNkVUiXibUjyVLsXfjZaOp0/uPsLciony/
-	 bPDSlMOC4YH6hhKUJ0YA54GWz29VI+hQKM339jK2I8ACK55mC2wtoIv/CAiBg0wesQ
-	 IjgWPLDNFODIZUsAlrxz91CR4kOzWxn4SfQFXsbJ6YeCvaZ/Gc1rsHDl87NCLtDxLa
-	 Hyww8vRbvCLV66RcyTFs6hRxZws4Kh4tjak3En96dfuEfX5vKidCiRhJjyE24K2iP1
-	 hcqEppM2IsqTA==
-From: Lee Jones <lee@kernel.org>
-To: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
- Johan Hovold <johan+linaro@kernel.org>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, inux-arm-msm@vger.kernel.org, 
- linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20231130171940.12391-1-johan+linaro@kernel.org>
-References: <20231130171940.12391-1-johan+linaro@kernel.org>
-Subject: Re: (subset) [PATCH] dt-bindings: leds: qcom,spmi-flash-led: fix
- example node name
-Message-Id: <170196275366.99959.4254922896810354041.b4-ty@kernel.org>
-Date: Thu, 07 Dec 2023 15:25:53 +0000
+	s=k20201202; t=1701962869;
+	bh=WuHw8xBDQ4YPG0E788n4gpBGlBKTZtk7wXdWqhrweF4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TgL9KtdYlG4PFBVAkV/sg39gPBkBc1aKidxwfqYRrzk2ZA4RHPcOPy0HGyeZso8Z9
+	 bhTJU6U4hfQspY18LbEMb55CsfoESrH1Tg1OqsgRGFNMxO62AlQRTGZZXNuSo/sbAK
+	 wgoumdqFMPTxtnbfsBKet6cgEgWu/Lh16lt5PMi/wfTyaBqDvOuW3KJ0chfmEWDSo9
+	 bpe9/6+b75Tzpp6pHxxT1hlnHTVzvXVXlked6bsW6oetQnPGFgjpBZHaxXuGle+8h4
+	 RgooKFeqnIWvdCRijDdkC3u+hFpn747kWtx/08ovW73iluc+N74sD1qPEZv1+Jvbnq
+	 h5hls87q6xxfQ==
+Received: from johan by xi.lan with local (Exim 4.96.2)
+	(envelope-from <johan@kernel.org>)
+	id 1rBGIp-0000q6-1V;
+	Thu, 07 Dec 2023 16:28:39 +0100
+Date: Thu, 7 Dec 2023 16:28:39 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Krishna Kurapati <quic_kriskura@quicinc.com>
+Cc: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Wesley Cheng <quic_wcheng@quicinc.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	cros-qcom-dts-watchers@chromium.org, linux-usb@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, quic_ppratap@quicinc.com,
+	quic_jackp@quicinc.com
+Subject: Re: [PATCH v2 2/6] usb: dwc3: qcom: Rename hs_phy_irq to
+ qusb2_phy_irq
+Message-ID: <ZXHkpwji_AzXMjfm@hovoldconsulting.com>
+References: <20231204100950.28712-1-quic_kriskura@quicinc.com>
+ <20231204100950.28712-3-quic_kriskura@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.12.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231204100950.28712-3-quic_kriskura@quicinc.com>
 
-On Thu, 30 Nov 2023 18:19:40 +0100, Johan Hovold wrote:
-> The led controller is a child of an SPMI PMIC, which in turn sits on an
-> SPMI bus.
+On Mon, Dec 04, 2023 at 03:39:46PM +0530, Krishna Kurapati wrote:
+> For wakeup to work, driver needs to enable interrupts that depict what is
+> happening on th DP/DM lines. On QUSB targets, this is identified by
+
+typo: the
+
+> qusb2_phy whereas on SoCs using Femto PHY, separate {dp,dm}_hs_phy_irq's
+> are used instead.
 > 
-> While at it, add some newline separators to improve readability.
-> 
-> 
+> The implementation incorrectly names qusb2_phy interrupts as "hs_phy_irq".
+> Clean this up so that driver would be using only qusb2/(dp & dm) for wakeup
+> purposes.
 
-Applied, thanks!
+Here too you should say something about why this won't break any systems
+booting using an older devicetree. Specifically, the QUSB2 PHY interrupt
+has never been armed on any system running mainline as those bits never
+made it upstream.
 
-[1/1] dt-bindings: leds: qcom,spmi-flash-led: fix example node name
-      commit: e9a3374e5c545e5eade4623098b958d2f4073455
+So an alternative to this could also be to just drop the QUSB2 PHY
+interrupt handling from this driver for now.
 
---
-Lee Jones [李琼斯]
-
+Johan
 
