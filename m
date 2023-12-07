@@ -1,166 +1,130 @@
-Return-Path: <devicetree+bounces-22689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22690-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D25DB8086DF
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 12:41:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A2B968086E6
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 12:44:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0CD621C20D8A
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 11:41:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D40881C21EF9
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 11:44:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72BA637D25;
-	Thu,  7 Dec 2023 11:41:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CD6D381B7;
+	Thu,  7 Dec 2023 11:44:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="jhWgCEqH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58063A3;
-	Thu,  7 Dec 2023 03:41:10 -0800 (PST)
-Received: from i53875b61.versanet.de ([83.135.91.97] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1rBCkW-000248-Ve; Thu, 07 Dec 2023 12:41:01 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Rob Herring <robh+dt@kernel.org>, Sam Edwards <cfsworks@gmail.com>
-Cc: linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Daniel =?utf-8?B?S3VraWXFgmE=?= <daniel@kukiela.pl>,
- Sven Rademakers <sven.rademakers@gmail.com>, Joshua Riek <jjriek@verizon.net>
-Subject:
- Re: [RESEND PATCH] arm64: dts: rockchip: Add PCIe pinctrls to Turing RK1
-Date: Thu, 07 Dec 2023 12:41:00 +0100
-Message-ID: <2369165.PYKUYFuaPT@diego>
-In-Reply-To: <d38540c5-79a8-0582-87b9-0e99bf3044d5@gmail.com>
-References:
- <20231205202900.4617-1-CFSworks@gmail.com> <3331042.e9J7NaK4W3@diego>
- <d38540c5-79a8-0582-87b9-0e99bf3044d5@gmail.com>
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18696D62;
+	Thu,  7 Dec 2023 03:44:23 -0800 (PST)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 2E88C552;
+	Thu,  7 Dec 2023 12:43:39 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1701949419;
+	bh=2eBgXKrtGTI6s0zhnBrqy98IpYIehd77KoVQgt41igA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jhWgCEqHnzhTR+DYLhEtPAprd5WoybKj6DGFTp+jzSiAyNrd34fiR9laof9MTqlAA
+	 tpaWNIo7lTI6Mco0ZPbVxtnxMyVMTPrqCils3w85gk2ykXKYZnB3NP+nM1F8ocPD3t
+	 RDUSnB8dgiXJXhl2RnmGYCFexrPLhfZ48J6u9LJQ=
+Date: Thu, 7 Dec 2023 13:44:26 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Zhi Mao <zhi.mao@mediatek.com>, mchehab@kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, shengnan.wang@mediatek.com,
+	yaya.chang@mediatek.com, 10572168@qq.com,
+	Project_Global_Chrome_Upstream_Group@mediatek.com,
+	yunkec@chromium.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	jacopo.mondi@ideasonboard.com, sakari.ailus@linux.intel.com,
+	hverkuil-cisco@xs4all.nl, heiko@sntech.de, jernej.skrabec@gmail.com,
+	macromorgan@hotmail.com, linus.walleij@linaro.org,
+	hdegoede@redhat.com, tomi.valkeinen@ideasonboard.com,
+	gerald.loacker@wolfvision.net, andy.shevchenko@gmail.com,
+	bingbu.cao@intel.com, dan.scally@ideasonboard.com,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v2 0/2] media: i2c: Add support for GC08A3 sensor
+Message-ID: <20231207114426.GA6104@pendragon.ideasonboard.com>
+References: <20231207052016.25954-1-zhi.mao@mediatek.com>
+ <c8e0ff23-9464-441d-bcaa-485a3eca0fcd@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <c8e0ff23-9464-441d-bcaa-485a3eca0fcd@linaro.org>
 
-Am Mittwoch, 6. Dezember 2023, 19:26:40 CET schrieb Sam Edwards:
->=20
-> On 12/6/23 07:55, Heiko St=FCbner wrote:
-> > Am Dienstag, 5. Dezember 2023, 21:28:59 CET schrieb Sam Edwards:
-> >> The RK3588 PCIe 3.0 controller seems to have unpredictable behavior wh=
-en
-> >> no CLKREQ/PERST/WAKE pins are configured in the pinmux. In particular,=
- it
-> >> will sometimes (varying between specific RK3588 chips, not over time) =
-shut
-> >> off the DBI block, and reads to this range will instead stall
-> >> indefinitely.
-> >>
-> >> When this happens, it will prevent Linux from booting altogether. The
-> >> PCIe driver will stall the CPU core once it attempts to read the versi=
-on
-> >> information from the DBI range.
-> >>
-> >> Fix this boot hang by adding the correct pinctrl configuration to the
-> >> PCIe 3.0 device node, which is the proper thing to do anyway. While
-> >> we're at it, also add the necessary configuration to the PCIe 2.0 node,
-> >> which may or may not fix the equivalent problem over there -- but is t=
-he
-> >> proper thing to do anyway. :)
-> >>
-> >> Fixes: 2806a69f3fef6 ("arm64: dts: rockchip: Add Turing RK1 SoM suppor=
-t")
-> >> Signed-off-by: Sam Edwards <CFSworks@gmail.com>
-> >> ---
-> >>   .../arm64/boot/dts/rockchip/rk3588-turing-rk1.dtsi | 14 ++----------=
-=2D-
-> >>   1 file changed, 2 insertions(+), 12 deletions(-)
-> >>
-> >> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-turing-rk1.dtsi b/arc=
-h/arm64/boot/dts/rockchip/rk3588-turing-rk1.dtsi
-> >> index 9570b34aca2e..129f14dbd42f 100644
-> >> --- a/arch/arm64/boot/dts/rockchip/rk3588-turing-rk1.dtsi
-> >> +++ b/arch/arm64/boot/dts/rockchip/rk3588-turing-rk1.dtsi
-> >> @@ -214,7 +214,7 @@ rgmii_phy: ethernet-phy@1 {
-> >>   &pcie2x1l1 {
-> >>   	linux,pci-domain =3D <1>;
-> >>   	pinctrl-names =3D "default";
-> >> -	pinctrl-0 =3D <&pcie2_reset>;
-> >> +	pinctrl-0 =3D <&pcie30x1m1_pins>;
-> >>   	reset-gpios =3D <&gpio4 RK_PA2 GPIO_ACTIVE_HIGH>;
-> >>   	status =3D "okay";
-> >>   };
-> >> @@ -226,7 +226,7 @@ &pcie30phy {
-> >>   &pcie3x4 {
-> >>   	linux,pci-domain =3D <0>;
-> >>   	pinctrl-names =3D "default";
-> >> -	pinctrl-0 =3D <&pcie3_reset>;
-> >> +	pinctrl-0 =3D <&pcie30x4m1_pins>;
->=20
-> Hi Heiko,
->=20
-> >=20
-> > also, why are you throwing out the pinctrl for the reset pin.
-> > That seems not related to the regular pins and you could instead just do
-> >=20
-> > +	pinctrl-0 =3D <&pcie30x4m1_pins>, <&pcie3_reset>;
->=20
-> The pcie30x4m1_pins def does include pinmuxing `4 RK_PB6` to the DW=20
-> controller already. The v2 patch should probably instead remove the=20
-> reset-gpios property, since an out-of-band GPIO reset is not needed when=
-=20
-> the controller can do it.
+On Thu, Dec 07, 2023 at 09:19:01AM +0100, Krzysztof Kozlowski wrote:
+> On 07/12/2023 06:20, Zhi Mao wrote:
+> > This series adds YAML DT binding and V4L2 sub-device driver for Galaxycore's
+> > GC08A3 8-megapixel 10-bit RAW CMOS 1/4" sensor, with an MIPI CSI-2 image data
+> > interface and the I2C control bus.
+> > 
+> > The driver is implemented with V4L2 framework.
+> >  - Async registered as a V4L2 sub-device.
+> >  - As the first component of camera system including Seninf, ISP pipeline.
+> >  - A media entity that provides one source pad in common.
+> >  - Used in camera features on ChromeOS application.
+> > 
+> > Also this driver supports following features:
+> >  - manual exposure and analog gain control support
+> >  - vertical blanking control support
+> >  - test pattern support
+> >  - media controller support
+> >  - runtime PM support
+> >  - support resolution: 3264x2448@30fps, 1920x1080@60fps
+> > 
+> > Previous versions of this patch-set can be found here:
+> >  v1: https://lore.kernel.org/linux-media/20231123115104.32094-1-zhi.mao@mediatek.com/
+> > 
+> > Changes of v2 mainly address comments from Krzysztof/Rob Herring&Conor Dooley.
+> > Compared to v1:
+> >   - Fix some review comments  
+> 
+> What exactly fixed? This cannot be that vague!
 
-yep, also because of the reset-gpios the pinctrl/gpio driver will mux the
-pin to gpio function even though the pinctrl would've set if the pcie-
-function before that.
+Detailed changelogs are very useful for reviewers, and they should
+ideally be recorded for each patch, not just in the cover letter. It's
+not as difficult and time consuming as it sounds, here's how I usually
+handle it when working on a patch series (the explanation is meant more
+for Zhi Mao than Krzysztof :-)).
 
-So I'm really in favor of not mixing the two concepts :-)
-When setting the pins, the reset-gpio should be gone and vice-versa.
+When taking review comments into account, I will take the comments one
+by one, and update the code accordingly. I then compile-test the change,
+and apply it as a new 'fixup' commit:
 
-> I'm still looking into the story with the PCIe 2.0 pins, since 2.0x1's=20
-> PERST# is definitely 4A2. I'll ask around and try to find out where the=20
-> corresponding CLKREQ# is going.
+$ git commit -a --edit --fixup <id of the commit being fixed>
 
-Yeah, I tried reading up in the TRM but it was really hard following
-which pin-group actually goes to which controller and the naming
-definitly does not help :-) .
+In the editor, I type a single line to describe the change.
 
+The procedure is repeated for all review comments on all patches. When
+I'm done, I test the final result, and then rebase the branch to
+*squash* all the fixups with the original patch. git opens a text editor
+with all the commit messages of the fixups being concatenated after the
+commit message of the original patch. I edit that manually to format it
+as a changelog, but adding
 
-Heiko
+---
+Changes since vX:
 
+manually, and follow with the one-line descriptions of all the changes.
 
+This is a fast process, it's much easier and faster to record a one-line
+description of each change as I go along than trying to write a
+changelog manually at the end, remembering all the changes I've made.
 
-> >>   	reset-gpios =3D <&gpio4 RK_PB6 GPIO_ACTIVE_HIGH>;
-> >>   	vpcie3v3-supply =3D <&vcc3v3_pcie30>;
-> >>   	status =3D "okay";
-> >> @@ -245,17 +245,7 @@ hym8563_int: hym8563-int {
-> >>   		};
-> >>   	};
-> >>  =20
-> >> -	pcie2 {
-> >> -		pcie2_reset: pcie2-reset {
-> >> -			rockchip,pins =3D <4 RK_PA2 RK_FUNC_GPIO &pcfg_pull_none>;
-> >> -		};
-> >> -	};
-> >> -
-> >>   	pcie3 {
-> >> -		pcie3_reset: pcie3-reset {
-> >> -			rockchip,pins =3D <4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
-> >> -		};
-> >> -
-> >>   		vcc3v3_pcie30_en: pcie3-reg {
-> >>   			rockchip,pins =3D <2 RK_PC5 RK_FUNC_GPIO &pcfg_pull_none>;
-> >>   		};
-> >>
-> >=20
-> >=20
-> >=20
-> >=20
->=20
+Krzysztof, if you plan to make a talk about tooling for Linux kernel
+contributors, similar to your excellent talk at LPC about tooling for
+maintainers, this is something you could include :-)
 
+-- 
+Regards,
 
-
-
+Laurent Pinchart
 
