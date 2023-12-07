@@ -1,114 +1,137 @@
-Return-Path: <devicetree+bounces-22794-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22795-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A3B0808CF4
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 17:14:08 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1041B808D62
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 17:30:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C9C7D1C209F9
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 16:14:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 94386B20AA1
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 16:30:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2FF04654C;
-	Thu,  7 Dec 2023 16:14:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E20D43AC30;
+	Thu,  7 Dec 2023 16:30:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SSoaGx3L"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oVtNFFK5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5A064652B
-	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 16:14:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0D36C433C7;
-	Thu,  7 Dec 2023 16:13:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701965643;
-	bh=0t/eBv95Pg8oVbfN+OcqNWdQmDY6gQl2gRnvLvTEUt0=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=SSoaGx3LQmdlvJ1siocln3lh9sMW1Rqfgf/ARQZ4m8c3U7ltSlmR/I1HmiZLu1U4G
-	 t9Q6oZz5g6ZmIF31e0Ouv1cMYSBFE0Fd4cJWohWWJDG0EyQ3pbxxokvwcIhEdF8Zkq
-	 CPdSnQaaf0SmScf7E+V1oSUak+bW9FiB3kxI9eNyKwsw1e2ZoZjww532xcKrG+GVUU
-	 3yDT+bxbkPErsY0ouSpqSxzrV+MB/0pe02F9QX6ZkiQn6RwMPF/LHc7PSs+ElIgxTZ
-	 cDJNSilb44uQHm/EBR6nYQCUFHWNb4Yq7bnGLCZonRfQX5U2kBhVmarlv5JGKQ7Af7
-	 QpA6R2NNxvo5Q==
-From: Michael Walle <mwalle@kernel.org>
-To: tony@atomide.com
-Cc: Laurent.pinchart@ideasonboard.com,
-	airlied@gmail.com,
-	andrzej.hajda@intel.com,
-	conor+dt@kernel.org,
-	daniel@ffwll.ch,
-	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	ivo.g.dimitrov.75@gmail.com,
-	jernej.skrabec@gmail.com,
-	jonas@kwiboo.se,
-	krzysztof.kozlowski+dt@linaro.org,
-	maarten.lankhorst@linux.intel.com,
-	merlijn@wizzup.org,
-	mripard@kernel.org,
-	neil.armstrong@linaro.org,
-	pavel@ucw.cz,
-	philipp@uvos.xyz,
-	rfoss@kernel.org,
-	robh+dt@kernel.org,
-	sam@ravnborg.org,
-	simhavcs@gmail.com,
-	sre@kernel.org,
-	tzimmermann@suse.de,
-	Michael Walle <mwalle@kernel.org>
-Subject: Re: [PATCH v2 10/10] drm/bridge: tc358775: Configure hs_rate and lp_rate
-Date: Thu,  7 Dec 2023 17:13:52 +0100
-Message-Id: <20231207161352.2634438-1-mwalle@kernel.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231202075514.44474-11-tony@atomide.com>
-References: <20231202075514.44474-11-tony@atomide.com>
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62AC412D
+	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 08:30:35 -0800 (PST)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-a1f47f91fc0so69235566b.0
+        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 08:30:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701966634; x=1702571434; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=aH8L5iYycb6NEgoUEHg7eEXR2z1JZijDqP8DXtCGrpM=;
+        b=oVtNFFK5TAlDHJcvX+7v0jrWjZPy46GQKsQZaEO5Y8O5Z4cwub8odEKfziLbiP/jId
+         N1GwTfKBfQqZJGOOzVVt9VGemEmyJVIU7WeMwknysOHi9zYJi//oH2zEOJJjGA2SQRVY
+         7KMGzTbZM9o3mUH+Sld/jzFp/otimvnyEH+S6fC0vcQgYwAXGuXx+7bNj+Yq8huD5L8O
+         gH1cxw0A0mrjsO+x4v2q+IQ2o+3IcCXC4pnLiaWcac4TlDf3ZbKFXURO45/qsq/7eK7A
+         lHEkvJWRGNnwVhSzEy9hg0lrGyvDMI6MFiR/ocRujIE/YYEEMPIJdEjZduND3RVPxrjn
+         seyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701966634; x=1702571434;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aH8L5iYycb6NEgoUEHg7eEXR2z1JZijDqP8DXtCGrpM=;
+        b=EsI1x1heCaRirgMwE8adOlh8i5iyJaVSpMzQMi+ATKfcVrmK1WEHYGXy08KRzbyiaS
+         UoyumJ4pOkIgIVdXRoWA3M3nMJLKenVl177CNXBN070DKuwYFZrQtHVBMV238YHz4o5Y
+         Gq/js8w1uNTrU5x4e+vTgCDqHUbP3dhyjpK8OdWhu9JqTUMumogOpN7Mi/55z3DdfKwR
+         MK/5YxW8y+gAvu6uddIhHa20hgVblMzTxHY/r+gJesgHuaubA82E83rx/4+eQQ9CXhQ9
+         HOotC77UbujN8bW9P86SsjW9Ly5zNb/qp+xNStbdzw3WkWpkW+UHn3n0QlIQGDno6oNW
+         KaIw==
+X-Gm-Message-State: AOJu0YyCHmCY7PW1mVCFmPt+i9BVzxXa6fd0irfkL31COEHUqMvakLO3
+	OrlCfJvJe4/m1YUHDZ/iOu6W0A==
+X-Google-Smtp-Source: AGHT+IHL1Nm74LJFaPCxLG+b7LDX3qVevuIVuycV6XXz9SYj9Q4USZCqelhHWLaXZw3aOHE/rLDmNw==
+X-Received: by 2002:a17:906:2b11:b0:a19:a19b:55fd with SMTP id a17-20020a1709062b1100b00a19a19b55fdmr2008031ejg.141.1701966633762;
+        Thu, 07 Dec 2023 08:30:33 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id d8-20020a170906040800b00a1d01b11498sm1016758eja.24.2023.12.07.08.30.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 07 Dec 2023 08:30:33 -0800 (PST)
+Message-ID: <619a2497-3b6d-48af-8888-a50c16d66880@linaro.org>
+Date: Thu, 7 Dec 2023 17:30:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: usb: nxp,ptn5110: Fix typo in the title
+To: Fabio Estevam <festevam@gmail.com>, gregkh@linuxfoundation.org
+Cc: jun.li@nxp.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ Fabio Estevam <festevam@denx.de>
+References: <20231207160634.2646285-1-festevam@gmail.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231207160634.2646285-1-festevam@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-> The hs_rate and lp_rate may be used by the dsi host for timing
-> calculations. The tc358775 has a maximum bit rate of 1 Gbps/lane,
-> tc358765 has maximurate of 800 Mbps per lane.
+On 07/12/2023 17:06, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
 > 
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
-> ---
->  drivers/gpu/drm/bridge/tc358775.c | 5 +++++
->  1 file changed, 5 insertions(+)
+> The word 'Controller' is misspelled.
 > 
-> diff --git a/drivers/gpu/drm/bridge/tc358775.c b/drivers/gpu/drm/bridge/tc358775.c
-> --- a/drivers/gpu/drm/bridge/tc358775.c
-> +++ b/drivers/gpu/drm/bridge/tc358775.c
-> @@ -636,6 +636,11 @@ static int tc_attach_host(struct tc_data *tc)
->  	dsi->format = MIPI_DSI_FMT_RGB888;
->  	dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
->  		MIPI_DSI_MODE_LPM;
-> +	if (tc->type == TC358765)
-> +		dsi->hs_rate = 800000000;
+> Fix it.
 
-It's not clear to me whether this is the data rate or the frequency. From
-the kernel doc:
+Could be concise and still informative: Fix the misspelled "Controller"
+word. 1 Line instead of 3.
 
- * @hs_rate: maximum lane frequency for high speed mode in hertz, this should
- * be set to the real limits of the hardware, zero is only accepted for
- * legacy drivers
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-The tc358775 datasheet lists 1Gbps per lane, which corresponds to a 500MHz DSI
-clock frequency. Not sure how that would correspond to the "maximum lane
-frequency" above. I guess the wording of the comment is just misleading and
-the value is the data rate of the lane.
+Best regards,
+Krzysztof
 
-> +	else
-> +		dsi->hs_rate = 1000000000;
-> +	dsi->lp_rate = 10000000;
-
-That I didn't found in the datasheet. Just a T_min_rx (minimum pulse width
-response) which is 20ns. But there are no more details on this.
-
--michael
 
