@@ -1,182 +1,160 @@
-Return-Path: <devicetree+bounces-22634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EC468084B9
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 10:31:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 949428084C8
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 10:36:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2A5502839C2
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 09:31:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1E89281B32
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 09:36:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E67134545;
-	Thu,  7 Dec 2023 09:31:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 196D43455D;
+	Thu,  7 Dec 2023 09:36:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QBXRsV2o"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="XO5nacc4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 043E132C61;
-	Thu,  7 Dec 2023 09:31:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20DE0C433C8;
-	Thu,  7 Dec 2023 09:31:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701941483;
-	bh=ic0z5MdiV/0Is1elWTXze/Uq9YLCT3pb49zs6lpdupM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QBXRsV2obUFdVvgOkKaTQaGJdzTrnhg9uSomhvsreRT8HRHyc5IG+RMnyWtyzvZpb
-	 f3GdVQvOTZ9gkuxJLMI83k4bELO1q4xaViHGbpt7ZmZEOqicjc3wqx3clO2sgBNsfZ
-	 rV946/t9MsngKplwyDm0tMpjkfbYstmcymvkQDL+942ZbTuaaDQbJg7HH3oUqVYAJ6
-	 9oQiTWxwzjNyCUxnuTX62sBPbCtXyLJ80kT4O408PLO/zLcUTwYGsO3ro106Y1xPUX
-	 dtpHUO10E6Gy8eIxVOgLDweVqaJrguuBu1Qd7IP0bYqnVZJTVUaND7gjEQq4BTvHEz
-	 z4SDPBma0Wxhg==
-Date: Thu, 7 Dec 2023 15:01:12 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Manikanta Maddireddy <mmaddireddy@nvidia.com>
-Cc: bhelgaas@google.com, thierry.reding@gmail.com, petlozup@nvidia.com,
-	rafael.j.wysocki@intel.com, lpieralisi@kernel.org, robh@kernel.org,
-	jeffy.chen@rock-chips.com, krzysztof.kozlowski+dt@linaro.org,
-	jonathanh@nvidia.com, dmitry.osipenko@collabora.com,
-	viresh.kumar@linaro.org, gregkh@linuxfoundation.org,
-	steven.price@arm.com, kw@linux.com, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
-	vidyas@nvidia.com
-Subject: Re: [RFC,v14 4/5] arm64: tegra: Add PCIe port node with PCIe WAKE#
- for C1 controller
-Message-ID: <20231207093112.GH2932@thinkpad>
-References: <20230208111645.3863534-1-mmaddireddy@nvidia.com>
- <20230208111645.3863534-5-mmaddireddy@nvidia.com>
- <20231206153627.GJ12802@thinkpad>
- <c86e8f75-f74a-491e-9ac0-2431a6ec4b80@nvidia.com>
- <20231207075952.GG2932@thinkpad>
- <6e282e1b-39d2-4a08-bdd4-a9d02b2b7f74@nvidia.com>
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BF68DD;
+	Thu,  7 Dec 2023 01:35:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1701941758; x=1733477758;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=zk1dhT6C/KZSArTdzP/p5wqb9G2bfeL3f7SYtKcXyCo=;
+  b=XO5nacc41r26Idi/nmianp+cUzaFk893BFOyqYjB6mO0xE4U7H6DonqD
+   VFCPPhmpI0yX82UX0nYRn+2zQnMx0LKFJNfFR/GVEsmmnnc5V9RYZukbC
+   6AZvb3gz+lfYKzBQ8waveLAzUs8Yom1bCreUwdQYtG6+4w0owtwK0y+Ey
+   XkH+uvNY+/F5oamSmMOcAakgQZGLMu04OFaLAFddk5eaBp+9Xg7jfWn5T
+   ATeoKUU4g7QW3cK5zhCLtnqysOPuRUVxARmuRKzN9UgiyEuQrF5ZJxLPl
+   QZQkNatDzNgJtqpuiaDZRqweZ4Wjif1KSO8BXmOui4lm9FVHYzUUBHO/L
+   A==;
+X-CSE-ConnectionGUID: l1+X6HrHTViYXQWuY+0knA==
+X-CSE-MsgGUID: 3jqu90UXQHGGuQa2OlUe8A==
+X-ThreatScanner-Verdict: Negative
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; 
+   d="asc'?scan'208";a="12923027"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 07 Dec 2023 02:35:57 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 7 Dec 2023 02:35:33 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex01.mchp-main.com (10.10.85.143)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Thu, 7 Dec 2023 02:35:29 -0700
+Date: Thu, 7 Dec 2023 09:34:59 +0000
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Shengyang Chen <shengyang.chen@starfivetech.com>
+CC: Conor Dooley <conor@kernel.org>, <devicetree@vger.kernel.org>,
+	<dri-devel@lists.freedesktop.org>, <neil.armstrong@linaro.org>,
+	<quic_jesszhan@quicinc.com>, <sam@ravnborg.org>, <airlied@gmail.com>,
+	<daniel@ffwll.ch>, <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
+	<tzimmermann@suse.de>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<florian.fainelli@broadcom.com>, <bcm-kernel-feedback-list@broadcom.com>,
+	<eric@anholt.net>, <thierry.reding@gmail.com>,
+	<changhuang.liang@starfivetech.com>, <keith.zhao@starfivetech.com>,
+	<jack.zhu@starfivetech.com>, <linux-rpi-kernel@lists.infradead.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1 1/2] dt-bindings: display: panel: raspberrypi: Add
+ compatible property for waveshare 7inch touchscreen panel
+Message-ID: <20231207-dullness-deprive-ece2d47ff69d@wendy>
+References: <20231124104451.44271-1-shengyang.chen@starfivetech.com>
+ <20231124104451.44271-2-shengyang.chen@starfivetech.com>
+ <20231124-lesser-sinister-7f9cd7b80e35@spud>
+ <2d48e460-e46e-431f-bd7b-e34ebe73a40c@starfivetech.com>
+ <20231206-isolating-smoked-b490952029d0@spud>
+ <53b992e8-1b36-4540-a993-fde8e550faf9@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="LKkffefepue30ywv"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <6e282e1b-39d2-4a08-bdd4-a9d02b2b7f74@nvidia.com>
+In-Reply-To: <53b992e8-1b36-4540-a993-fde8e550faf9@starfivetech.com>
 
-On Thu, Dec 07, 2023 at 02:23:46PM +0530, Manikanta Maddireddy wrote:
-> 
-> On 07-12-2023 13:29, Manivannan Sadhasivam wrote:
-> > External email: Use caution opening links or attachments
-> > 
-> > 
-> > On Thu, Dec 07, 2023 at 12:54:04PM +0530, Manikanta Maddireddy wrote:
-> > > On 06-12-2023 21:06, Manivannan Sadhasivam wrote:
-> > > > External email: Use caution opening links or attachments
-> > > > 
-> > > > 
-> > > > On Wed, Feb 08, 2023 at 04:46:44PM +0530, Manikanta Maddireddy wrote:
-> > > > > Add PCIe port node under the PCIe controller-1 device tree node to support
-> > > > > PCIe WAKE# interrupt for WiFi.
-> > > > > 
-> > > > > Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
-> > > > > ---
-> > > > > 
-> > > > > Changes in v14:
-> > > > > New patch in the series to support PCIe WAKE# in NVIDIA Jetson AGX Orin.
-> > > > > 
-> > > > >    .../dts/nvidia/tegra234-p3737-0000+p3701-0000.dts     | 11 +++++++++++
-> > > > >    1 file changed, 11 insertions(+)
-> > > > > 
-> > > > > diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
-> > > > > index 8a9747855d6b..9c89be263141 100644
-> > > > > --- a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
-> > > > > +++ b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
-> > > > > @@ -2147,6 +2147,17 @@ pcie@14100000 {
-> > > > > 
-> > > > >                         phys = <&p2u_hsio_3>;
-> > > > >                         phy-names = "p2u-0";
-> > > > > +
-> > > > > +                     pci@0,0 {
-> > > > > +                             reg = <0x0000 0 0 0 0>;
-> > > > > +                             #address-cells = <3>;
-> > > > > +                             #size-cells = <2>;
-> > > > > +                             ranges;
-> > > > > +
-> > > > > +                             interrupt-parent = <&gpio>;
-> > > > > +                             interrupts = <TEGRA234_MAIN_GPIO(L, 2) IRQ_TYPE_LEVEL_LOW>;
-> > > > > +                             interrupt-names = "wakeup";
-> > > > WAKE# should be part of the PCIe controller, not device. And the interrupt name
-> > > > should be "wake".
-> > > > 
-> > > > - Mani
-> > > Hi,
-> > > 
-> > > Please refer to the discussion in below link, WAKE# is per PCI bridge.
-> > > https://patchwork.ozlabs.org/project/linux-pci/patch/20171226020806.32710-2-jeffy.chen@rock-chips.com/
-> > > 
-> > PCIe Host controller (RC) usually represents host bridge + PCI-PCI bridge. We do
-> > not represent the PCI-PCI bridge in devicetree for any platforms, but only RC as
-> > a whole.
-> > 
-> > Moreover, PERST# is already defined in RC node. So it becomes confusing if
-> > WAKE# is defined in a child node representing bridge.
-> > 
-> > So please move WAKE# to RC node.
-> > 
-> > - Mani
-> 
-> Hi,
-> 
-> We can define PCI-PCI bridge in device tree, refer to below device tree
-> which has 3 ports under a controller,
-> with PERST#(reset-gpios) defined per port.
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/apple/t8103.dtsi#n749
-> 
+--LKkffefepue30ywv
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Hmm. For RCs with single bridge, we never defined a DT node (atleast on Qcom
-platforms). But I think it is the time to fix them.
+On Thu, Dec 07, 2023 at 11:48:56AM +0800, Shengyang Chen wrote:
+> Hi, Conor
+>=20
+> thanks for comment
+>=20
+> On 2023/12/6 23:40, Conor Dooley wrote:
+> > On Wed, Dec 06, 2023 at 05:43:48PM +0800, Shengyang Chen wrote:
+> >> Hi, Conor
+> >>=20
+> >> On 2023/11/24 20:31, Conor Dooley wrote:
+> >> > On Fri, Nov 24, 2023 at 06:44:50PM +0800, Shengyang Chen wrote:
+> >> >> The waveshare 7inch touchscreen panel is a kind of raspberrypi pi
+> >> >> panel
+> >> >=20
+> >> > Can you be more specific about what "is a kind of rpi panel" means?
+> >> > Are they using identical chips as controllers or something like that?
+> >> >=20
+> >>=20
+> >> Wareshare panel has same i2c slave address and registers address with=
+=20
+> >> the original raspberry pi panel. They both use Atmel firmware and they
+> >> got same reg id. It can be operated by using the driver of raspberry p=
+i driver
+> >> after some change of the code. So I suppose it may be a kind of raspbe=
+rry pi panel=20
+> >> and discribe it in this way. It's my own judgement. Sorry about that.
+> >> Maybe just like Dave said, It cloned the behaviour of the raspberri pi=
+ panel.
+> >> I will change the discribtion in next version to not make other confus=
+ed.
+> >>=20
+> >> By the way, we will try Stefan's method before next version.=20
+> >> The method we used in this patch may be abandoned if Stefan's method i=
+s verified in our platform.
+> >> At that time yaml may also be changed to fit new method.
+> >=20
+> > I don't know what Stefan's approach is, but I do not think that a
+> > bindings patch should be dropped. The waveshare might be a clone, but it
+> > is a distinct device. If the same driver can control both, then the
+> > compatible setups that should be permitted are:
+> > compatible =3D "raspberrypi,7inch-touchscreen-panel";
+> > and
+> > compatible =3D "waveshare,7inch-touchscreen-panel", "raspberrypi,7inch-=
+touchscreen-panel";
 
-> Also, of_pci_setup_wake_irq() in below patch is parsing "wakeup" from PCI
-> bridge, not from the host bridge.
-> https://patchwork.ozlabs.org/project/linux-pci/patch/20230208111645.3863534-4-mmaddireddy@nvidia.com/
-> 
+> If we use Stenfan's method, we can reuse the code of panel-simple.c
+> we may submit our patch to
+> /Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> /drivers/gpu/drm/panel/panel-simple.c
+> as a new panel porting. That may less confuse.
 
-I didn't say that WAKE# should be parsed from host bridge, it doesn't make
-sense. But I get your point.
+As long as you provide a specific compatible, and not re-use the rpi
+one, that's fine. It just sounded like you were intending to reuse that
+here, but from this message it seems like I misunderstood.
 
-> If a controller has only one port it has to define a PCI bridge under
-> controller device tree node and
-> add wakeup interrupt property, refer to below patch from original author.
-> 
-> https://www.spinics.net/lists/linux-pci/msg135569.html
-> 
+Thanks,
+Conor.
 
-Yes, I agree. Thanks for the clarification.
+--LKkffefepue30ywv
+Content-Type: application/pgp-signature; name="signature.asc"
 
-- Mani
+-----BEGIN PGP SIGNATURE-----
 
-> Thanks,
-> Manikanta
-> > 
-> > > I carried wakeup name defined in previous version, but wake seems to be
-> > > sufficient.
-> > > 
-> > > Thanks,
-> > > Manikanta
-> > > > > +                     };
-> > > > >                 };
-> > > > > 
-> > > > >                 pcie@14160000 {
-> > > > > --
-> > > > > 2.25.1
-> > > > > 
-> > > > --
-> > > > மணிவண்ணன் சதாசிவம்
-> > --
-> > மணிவண்ணன் சதாசிவம்
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZXGRvwAKCRB4tDGHoIJi
+0uepAPsFO121yBy+oxhB7OSau+AELQyXEwausDJX8GujOigD2wD+NWi8eCcUWndt
+3hUdUUgCa3P8sLTU12m5hwaHq3cJ9Qo=
+=bdsy
+-----END PGP SIGNATURE-----
 
--- 
-மணிவண்ணன் சதாசிவம்
+--LKkffefepue30ywv--
 
