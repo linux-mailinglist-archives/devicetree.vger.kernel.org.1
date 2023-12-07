@@ -1,253 +1,122 @@
-Return-Path: <devicetree+bounces-22735-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22736-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57D0780892B
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 14:28:58 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E86D4808940
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 14:33:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8745F1C20B1A
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 13:28:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8918BB20DBE
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 13:33:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 407FE40BE1;
-	Thu,  7 Dec 2023 13:28:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED39140BF0;
+	Thu,  7 Dec 2023 13:33:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="hPuqZeCV"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="d29IBFFj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EA4910C2;
-	Thu,  7 Dec 2023 05:28:50 -0800 (PST)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B7DSg8U088476;
-	Thu, 7 Dec 2023 07:28:42 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1701955722;
-	bh=/5NiPeOwKeZeuXHPBA3DDOgaR5OojWTWXq4pk+eKwtE=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=hPuqZeCVagrSbPixUnZXekOTKmg/P4JgOV4UZy8nbVK5vv7u2xI58rt4BiEanMc+w
-	 th0KkpV3b4RGpub96Viiz1j6PZbvBuk2W7F0Jhtf0v5+P6ayE8FcMuiU8RCiJmvung
-	 yT1XUUNf/j5la48jdTXaWmamMU6yauzOEZKejJ+4=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B7DSglL062799
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 7 Dec 2023 07:28:42 -0600
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 7
- Dec 2023 07:28:41 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 7 Dec 2023 07:28:41 -0600
-Received: from [10.249.135.225] ([10.249.135.225])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B7DSbS2010715;
-	Thu, 7 Dec 2023 07:28:38 -0600
-Message-ID: <f83f21c0-3f5f-4069-abab-2b47e371d3bd@ti.com>
-Date: Thu, 7 Dec 2023 18:58:37 +0530
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96CC6D5E
+	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 05:33:45 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-33339d843b9so970629f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 05:33:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701956024; x=1702560824; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wOjuvQ1knDsOf99mi3hFggOSmu3Whc7MN8Fp35NQ1P8=;
+        b=d29IBFFja8GOlr7TD5iaQ1dAGpzoPVT7meFpiFFPx5MK6N0VwJIBYd7EB+PxJDc4pF
+         KqAW9oPgnS5BRlOTVP6BpR9rDYzETzBB3J3qJdKM82fGOqjTg6fX7zYraeUaT7GxCQUa
+         QK1y2zxxynWuBEXYANutgdLUoYXl/KudC4/RzdKEa0ogZcmlZgdVIoZxv4gfzunrl/8h
+         6vKlMYQbYEhjdtxzAOT2c/KPpQSCytYetG7RIMk51cs+t55oMXUl3zMh+sBgkh2RwbpU
+         tFxP3IuZ0GcxY8NvvPHpNzR1H60k1+enzOjvj7bpyz0E7P+SpI9fnZMxcE/1LMN/FFWD
+         0xZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701956024; x=1702560824;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wOjuvQ1knDsOf99mi3hFggOSmu3Whc7MN8Fp35NQ1P8=;
+        b=w1hn0eyOQLxBp/XMKgkVfubiTGd0fdXWn5/ZNtlvYBCi/1Mls6NMrWHC42oGs7P0j8
+         147JE9Pne7ok8DPPDfou5q0dqt1dC3nWNi/dSepstRpaQtrdR9xJRDkS5HKHsCkqoAvX
+         H+9TdgmhFFatSjSh8s+abJ5K0Hs0jkpDlB5IuLYCcZ8VqpTqzNfrk0YwBJf2e9ds7oWX
+         eWa/ybeuQ2ObnSIAKr8rG63UjSwOllmjpiJZF0HvpDxDqHzSqVibzjzAiZR8aUGQbknF
+         lmJ7ICzgzTs9XYanw9IHbNvX9QyV6wv0wvG9mZSx82qbMaOoyhccClPQEO3WovkgJE72
+         wCLw==
+X-Gm-Message-State: AOJu0YwxWc1yg6+LSyp1eMRoeKzujBXqk+dL3lAM8HchcW8SMbeL6T/v
+	l4Q3bTsD8b4wFY0oqu8j+JrOqA==
+X-Google-Smtp-Source: AGHT+IEl9KbxTbmb8n+WvISyxYm/HTeQm70dDUbz9cfV9RUKa1Wk27SjB9FMgD9xanu+1rN8Jo3LOw==
+X-Received: by 2002:adf:ec0c:0:b0:333:2fd2:5d30 with SMTP id x12-20020adfec0c000000b003332fd25d30mr1678939wrn.98.1701956024085;
+        Thu, 07 Dec 2023 05:33:44 -0800 (PST)
+Received: from [127.0.1.1] ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id p6-20020adfcc86000000b00333371c7382sm1471548wrj.72.2023.12.07.05.33.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Dec 2023 05:33:43 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Thierry Reding <thierry.reding@gmail.com>, 
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Jiri Slaby <jirislaby@kernel.org>, 
+ Wim Van Sebroeck <wim@linux-watchdog.org>, 
+ Guenter Roeck <linux@roeck-us.net>, linux-fsd@tesla.com, 
+ linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, 
+ linux-serial@vger.kernel.org, linux-watchdog@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20231205092229.19135-1-krzysztof.kozlowski@linaro.org>
+References: <20231205092229.19135-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 0/6] dt-bindings: samsung: continued - add specific
+ compatibles for Tesla FSD Hi,
+Message-Id: <170195602173.92721.14927713507913101589.b4-ty@linaro.org>
+Date: Thu, 07 Dec 2023 14:33:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] arm64: dts: ti: k3-am642-evm: add ICSSG1 Ethernet
- support
-Content-Language: en-US
-To: Nishanth Menon <nm@ti.com>, MD Danish Anwar <danishanwar@ti.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>, Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring
-	<robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        Tero
- Kristo <kristo@kernel.org>, <srk@ti.com>, <r-gunasekaran@ti.com>
-References: <20231207081917.340167-1-danishanwar@ti.com>
- <20231207081917.340167-3-danishanwar@ti.com>
- <20231207131818.3n7z64ve6izatlvs@unchanged>
-From: "Anwar, Md Danish" <a0501179@ti.com>
-In-Reply-To: <20231207131818.3n7z64ve6izatlvs@unchanged>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Mailer: b4 0.12.3
 
-On 12/7/2023 6:48 PM, Nishanth Menon wrote:
-> On 13:49-20231207, MD Danish Anwar wrote:
->> ICSSG1 provides dual Gigabit Ethernet support with proper FW loaded.
->>
->> The ICSSG1 MII0 (RGMII1) has DP83869 PHY attached to it. The ICSSG1 shares
->> MII1 (RGMII2) PHY DP83869 with CPSW3g and it's assigned by default to
->> CPSW3g. The MDIO access to MII1 (RGMII2) PHY DP83869 is controlled by MDIO
->> bus switch and also assigned to CPSW3g. Therefore the ICSSG1 MII1 (RGMII2)
->> port is kept disable and ICSSG1 is enabled in single MAC mode by
->> default.
->>
->> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
->> ---
->>  arch/arm64/boot/dts/ti/k3-am642-evm.dts | 105 ++++++++++++++++++++++++
->>  1 file changed, 105 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
->> index 8c5651d2cf5d..04d1c0602d31 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
->> +++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
->> @@ -34,6 +34,11 @@ aliases {
->>  		ethernet1 = &cpsw_port2;
->>  	};
->>  
->> +	aliases {
->> +		ethernet2 = &icssg1_emac0;
->> +		ethernet3 = &icssg1_emac1;
->> +	};
+
+On Tue, 05 Dec 2023 10:22:23 +0100, Krzysztof Kozlowski wrote:
+> Merging
+> =======
+> I propose to take entire patchset through my tree (Samsung SoC), because:
+> 1. I already took similar work this cycle:
+>    https://lore.kernel.org/all/169997520487.6747.17671551558724027958.b4-ty@linaro.org/
+> 2. Two new SoCs are coming (Google GS101 and ExynosAutov920) and they might
+>    touch the same lines.  It is reasonable for me to take the bindings for the new
+>    SoCs, to have clean `make dtbs_check` on the new DTS.
+> 3. Having it together helps me to have clean `make dtbs_check` within my tree
+>    on the existing DTS.
+> 4. No drivers are affected by this change.
 > 
-> Why another aliases section?
-> 
+> [...]
 
-Sorry, My bad. I had created these patches a while back when there was
-no alias section in this dts file, and applied them directly here. I
-didn't notice the already existing alias section. I will remove this
-aliases section and move these two aliases two the above section in v2.
+Applied, thanks!
 
->> +
->>  	memory@80000000 {
->>  		bootph-all;
->>  		device_type = "memory";
->> @@ -229,6 +234,70 @@ transceiver2: can-phy1 {
->>  		max-bitrate = <5000000>;
->>  		standby-gpios = <&exp1 9 GPIO_ACTIVE_HIGH>;
->>  	};
->> +
->> +	icssg1_eth: icssg1-eth {
->> +		compatible = "ti,am642-icssg-prueth";
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&icssg1_rgmii1_pins_default>;
->> +
->> +		sram = <&oc_sram>;
->> +		ti,prus = <&pru1_0>, <&rtu1_0>, <&tx_pru1_0>, <&pru1_1>, <&rtu1_1>, <&tx_pru1_1>;
->> +		firmware-name = "ti-pruss/am65x-sr2-pru0-prueth-fw.elf",
->> +				"ti-pruss/am65x-sr2-rtu0-prueth-fw.elf",
->> +				"ti-pruss/am65x-sr2-txpru0-prueth-fw.elf",
->> +				"ti-pruss/am65x-sr2-pru1-prueth-fw.elf",
->> +				"ti-pruss/am65x-sr2-rtu1-prueth-fw.elf",
->> +				"ti-pruss/am65x-sr2-txpru1-prueth-fw.elf";
-> 
-> Umm... am65x??? is that a typo? I'd rather keep it am64x here and drop
-> that sr2 thing. Tomorrow there will be a custom bug on am64 and then we
-> will have to respin this again.
-> 
+[1/6] dt-bindings: i2c: exynos5: add specific compatible for Tesla FSD
+      https://git.kernel.org/krzk/linux/c/7677fdbc036b93a882f660ca2484a6807e72f0be
+[2/6] dt-bindings: pwm: samsung: add specific compatible for Tesla FSD
+      https://git.kernel.org/krzk/linux/c/edb32ec3cea79b518e6af841ecb01c839818f562
+[3/6] dt-bindings: serial: samsung: add specific compatible for Tesla FSD
+      https://git.kernel.org/krzk/linux/c/921f4f1db7f5bf6798349db8a4382c032f144b98
+[4/6] dt-bindings: samsung: exynos-pmu: add specific compatible for Tesla FSD
+      https://git.kernel.org/krzk/linux/c/54772f1d61cd99ea1ed0febd4187bf24ef63bccd
+[5/6] dt-bindings: watchdog: samsung: add specific compatible for Tesla FSD
+      https://git.kernel.org/krzk/linux/c/bf1e24c5330af06b2f7f1a166a1011d8d48e8651
+[6/6] arm64: dts: fsd: add specific compatibles for Tesla FSD
+      https://git.kernel.org/krzk/linux/c/5f257922c5948c58669346d5cda371632108f266
 
-No Nishant, this is not a typo. Both AM64x and AM65x use the same ICSSG
-firmwares. We only have am65x-sr2-* firmwares and they are used by both
-AM64x and AM65x and that is why I have kept the firmware-name here in dt
-same as the files that we load on the pru cores.
-
->> +
->> +		ti,pruss-gp-mux-sel = <2>,	/* MII mode */
->> +				      <2>,
->> +				      <2>,
->> +				      <2>,	/* MII mode */
->> +				      <2>,
->> +				      <2>;
->> +
->> +		ti,mii-g-rt = <&icssg1_mii_g_rt>;
->> +		ti,mii-rt = <&icssg1_mii_rt>;
->> +		ti,iep = <&icssg1_iep0>,  <&icssg1_iep1>;
->> +
->> +		interrupt-parent = <&icssg1_intc>;
->> +		interrupts = <24 0 2>, <25 1 3>;
->> +		interrupt-names = "tx_ts0", "tx_ts1";
->> +
->> +		dmas = <&main_pktdma 0xc200 15>, /* egress slice 0 */
->> +		       <&main_pktdma 0xc201 15>, /* egress slice 0 */
->> +		       <&main_pktdma 0xc202 15>, /* egress slice 0 */
->> +		       <&main_pktdma 0xc203 15>, /* egress slice 0 */
->> +		       <&main_pktdma 0xc204 15>, /* egress slice 1 */
->> +		       <&main_pktdma 0xc205 15>, /* egress slice 1 */
->> +		       <&main_pktdma 0xc206 15>, /* egress slice 1 */
->> +		       <&main_pktdma 0xc207 15>, /* egress slice 1 */
->> +		       <&main_pktdma 0x4200 15>, /* ingress slice 0 */
->> +		       <&main_pktdma 0x4201 15>; /* ingress slice 1 */
->> +		dma-names = "tx0-0", "tx0-1", "tx0-2", "tx0-3",
->> +			    "tx1-0", "tx1-1", "tx1-2", "tx1-3",
->> +			    "rx0", "rx1";
->> +
->> +		ethernet-ports {
->> +			#address-cells = <1>;
->> +			#size-cells = <0>;
->> +			icssg1_emac0: port@0 {
->> +				reg = <0>;
->> +				phy-handle = <&icssg1_phy1>;
->> +				phy-mode = "rgmii-id";
->> +				ti,syscon-rgmii-delay = <&main_conf 0x4110>;
->> +				/* Filled in by bootloader */
->> +				local-mac-address = [00 00 00 00 00 00];
->> +			};
->> +			icssg1_emac1: port@1 {
->> +				reg = <1>;
->> +				ti,syscon-rgmii-delay = <&main_conf 0x4114>;
->> +				/* Filled in by bootloader */
->> +				local-mac-address = [00 00 00 00 00 00];
->> +				status = "disabled";
->> +			};
->> +		};
->> +	};
->>  };
->>  
->>  &main_pmx0 {
->> @@ -383,6 +452,30 @@ ddr_vtt_pins_default: ddr-vtt-default-pins {
->>  			AM64X_IOPAD(0x0030, PIN_OUTPUT_PULLUP, 7) /* (L18) OSPI0_CSN1.GPIO0_12 */
->>  		>;
->>  	};
->> +
->> +	icssg1_mdio1_pins_default: icssg1-mdio1-default-pins {
->> +		pinctrl-single,pins = <
->> +			AM64X_IOPAD(0x015c, PIN_OUTPUT, 0) /* (Y6) PRG1_MDIO0_MDC */
->> +			AM64X_IOPAD(0x0158, PIN_INPUT, 0) /* (AA6) PRG1_MDIO0_MDIO */
->> +		>;
->> +	};
->> +
->> +	icssg1_rgmii1_pins_default: icssg1-rgmii1-default-pins{
->> +		pinctrl-single,pins = <
->> +			AM64X_IOPAD(0x00b8, PIN_INPUT, 2) /* (Y7) PRG1_PRU0_GPO0.PRG1_RGMII1_RD0 */
->> +			AM64X_IOPAD(0x00bc, PIN_INPUT, 2) /* (U8) PRG1_PRU0_GPO1.PRG1_RGMII1_RD1 */
->> +			AM64X_IOPAD(0x00c0, PIN_INPUT, 2) /* (W8) PRG1_PRU0_GPO2.PRG1_RGMII1_RD2 */
->> +			AM64X_IOPAD(0x00c4, PIN_INPUT, 2) /* (V8) PRG1_PRU0_GPO3.PRG1_RGMII1_RD3 */
->> +			AM64X_IOPAD(0x00d0, PIN_INPUT, 2) /* (AA7) PRG1_PRU0_GPO6.PRG1_RGMII1_RXC */
->> +			AM64X_IOPAD(0x00c8, PIN_INPUT, 2) /* (Y8) PRG1_PRU0_GPO4.PRG1_RGMII1_RX_CTL */
->> +			AM64X_IOPAD(0x00e4, PIN_INPUT, 2) /* (AA8) PRG1_PRU0_GPO11.PRG1_RGMII1_TD0 */
->> +			AM64X_IOPAD(0x00e8, PIN_INPUT, 2) /* (U9) PRG1_PRU0_GPO12.PRG1_RGMII1_TD1 */
->> +			AM64X_IOPAD(0x00ec, PIN_INPUT, 2) /* (W9) PRG1_PRU0_GPO13.PRG1_RGMII1_TD2 */
->> +			AM64X_IOPAD(0x00f0, PIN_INPUT, 2) /* (AA9) PRG1_PRU0_GPO14.PRG1_RGMII1_TD3 */
->> +			AM64X_IOPAD(0x00f8, PIN_INPUT, 2) /* (V9) PRG1_PRU0_GPO16.PRG1_RGMII1_TXC */
->> +			AM64X_IOPAD(0x00f4, PIN_INPUT, 2) /* (Y9) PRG1_PRU0_GPO15.PRG1_RGMII1_TX_CTL */
->> +		>;
->> +	};
->>  };
->>  
->>  &main_uart0 {
->> @@ -731,3 +824,15 @@ &main_mcan1 {
->>  	pinctrl-0 = <&main_mcan1_pins_default>;
->>  	phys = <&transceiver2>;
->>  };
->> +
->> +&icssg1_mdio {
->> +	status = "okay";
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&icssg1_mdio1_pins_default>;
->> +
->> +	icssg1_phy1: ethernet-phy@0 {
->> +		reg = <0xf>;
->> +		tx-internal-delay-ps = <250>;
->> +		rx-internal-delay-ps = <2000>;
->> +	};
->> +};
->> -- 
->> 2.34.1
->>
-> 
-
+Best regards,
 -- 
-Thanks and Regards,
-Md Danish Anwar
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
