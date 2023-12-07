@@ -1,61 +1,34 @@
-Return-Path: <devicetree+bounces-22686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22687-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12C508086BF
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 12:30:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 881FF8086C5
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 12:31:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A5EBA1F2271C
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 11:30:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 30E0D1F22711
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 11:31:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AD9937D30;
-	Thu,  7 Dec 2023 11:30:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TMgvhwU0"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44A4E37D34;
+	Thu,  7 Dec 2023 11:31:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8E1810B
-	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 03:30:30 -0800 (PST)
-Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-5d3d5b10197so5413797b3.2
-        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 03:30:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701948630; x=1702553430; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=g6q4WDwdBGnjml+5eYgd3QDalQW3uJ07fD6FI7/knxo=;
-        b=TMgvhwU0kWDRMk+6AuNNKQ9ogensEz/SqkJIUNkM5oOZRj8NBSMz0SJWMc/ml9lAJ9
-         O7KjeKU63gzJixkJNoUFQI8u0p6fnG/ywHdioLgCN8i/ycPuUL4tg7x4xMOur6t13MRB
-         A8opBwq2CS813x6qeg8KS1exToKh+lfHAP2lAXSQ1bZTFWPaJd83VIQe7x5Wk1+DnqdQ
-         2F2OL6aJ05Ujk/ZWB91hfje56l0eeOwFmQTvuICEHg6aiohpT/qgX4g2Y5MRg+5lJonA
-         jlgmYF3YzuHy/Kvbhix2V4nUmxwbZmM8mnIgJfvTK3SZgwwujbHPMt/Q8dVUc+qLwFTb
-         d+GQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701948630; x=1702553430;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=g6q4WDwdBGnjml+5eYgd3QDalQW3uJ07fD6FI7/knxo=;
-        b=MPpy9YBAPHVq0C9u9YFecIkVYSx1HamxRNE3q8kWi0D0cX/Sc0jR8twrrfV7CqJTy9
-         ITyxZaqNMqsEMMhcu1kcSXsuJexvM+VqZWmGFogYwoWDOFdM+Rxxu7TwluKX5pO7wNIX
-         Nz2i3+/pULtlgDWUlEH2zHi3aboCFPX+z1WVpF9a+ja6zfYJ2PZHLL5u/JJw8k43huTk
-         kb4TfAiWGMgKmnHjm+m1tn01XjXUtfeXRxrgLRFuPX2EYmOQmO7FRuR2RGE/cAeRdPcy
-         i7K+RDU8ZH01kflv5ju5lXEKUaDhFYwetIb6HuMu7ShR4zWmRterLoePUHXKDGreR523
-         zKEQ==
-X-Gm-Message-State: AOJu0Ywu1FKOjM4bhdA3mQfb5iZ+BrrTOiwDqN+1OYS6VaVn43FCJHnk
-	iKmksFKi8ARJoCLT9luj25IHRA==
-X-Google-Smtp-Source: AGHT+IEFIy7YvehhnYQ+9UNjhaSCyrZhwFI5h/22/oROd5dD77gPNDGqvwLUYIU3TUuYWQbM7w7VdA==
-X-Received: by 2002:a81:7808:0:b0:5ca:e4a6:bb47 with SMTP id t8-20020a817808000000b005cae4a6bb47mr2179326ywc.35.1701948629850;
-        Thu, 07 Dec 2023 03:30:29 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id p3-20020a0dff03000000b005d7647af8ccsm322836ywf.114.2023.12.07.03.30.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Dec 2023 03:30:29 -0800 (PST)
-Message-ID: <c864f62e-0ac2-4e5e-83d3-28e493a6f6c0@linaro.org>
-Date: Thu, 7 Dec 2023 12:30:25 +0100
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 666DDA3;
+	Thu,  7 Dec 2023 03:31:46 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+	by ex01.ufhost.com (Postfix) with ESMTP id 9F85524E317;
+	Thu,  7 Dec 2023 19:31:44 +0800 (CST)
+Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 7 Dec
+ 2023 19:31:44 +0800
+Received: from [192.168.60.132] (180.164.60.184) by EXMBX061.cuchost.com
+ (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 7 Dec
+ 2023 19:31:46 +0800
+Message-ID: <580e13ab-a73e-4ce7-999a-8a8685faf2dd@starfivetech.com>
+Date: Thu, 7 Dec 2023 19:31:43 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,110 +36,118 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: phy: realtek: Add Realtek DHC RTD SoC
- PCIe PHY
-To: =?UTF-8?B?VFlfQ2hhbmdb5by15a2Q6YC4XQ==?= <tychang@realtek.com>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- =?UTF-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= <stanley_chang@realtek.com>
-References: <20231201105207.11786-1-tychang@realtek.com>
- <20231201105207.11786-2-tychang@realtek.com>
- <01946883-e008-4b4c-8e2a-a73787ad9f23@linaro.org>
- <5e57f7b0f54d4a8aa52ed6e15a9af9f5@realtek.com>
+Subject: Re: [v3 4/6] drm/vs: Add KMS crtc&plane
 Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <5e57f7b0f54d4a8aa52ed6e15a9af9f5@realtek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+To: Icenowy Zheng <uwu@icenowy.me>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "dri-devel@lists.freedesktop.org"
+	<dri-devel@lists.freedesktop.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-riscv@lists.infradead.org"
+	<linux-riscv@lists.infradead.org>
+CC: "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>, "suijingfeng@loongson.cn"
+	<suijingfeng@loongson.cn>, "tzimmermann@suse.de" <tzimmermann@suse.de>,
+	"paul.walmsley@sifive.com" <paul.walmsley@sifive.com>, "mripard@kernel.org"
+	<mripard@kernel.org>, Xingyu Wu <xingyu.wu@starfivetech.com>, Jack Zhu
+	<jack.zhu@starfivetech.com>, "palmer@dabbelt.com" <palmer@dabbelt.com>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	William Qiu <william.qiu@starfivetech.com>, Shengyang Chen
+	<shengyang.chen@starfivetech.com>, Changhuang Liang
+	<changhuang.liang@starfivetech.com>
+References: <20231204123315.28456-1-keith.zhao@starfivetech.com>
+ <20231204123315.28456-5-keith.zhao@starfivetech.com>
+ <7acd5af8fd4c5bf6ee0614f72cf6cb6751c89dc3.camel@icenowy.me>
+From: Keith Zhao <keith.zhao@starfivetech.com>
+In-Reply-To: <7acd5af8fd4c5bf6ee0614f72cf6cb6751c89dc3.camel@icenowy.me>
+Content-Type: text/plain; charset="UTF-8"
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX061.cuchost.com
+ (172.16.6.61)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: quoted-printable
 
-On 07/12/2023 11:10, TY_Chang[張子逸] wrote:
-> Hi Krzysztof,
-> 
-> Thank you for the review.
-> 
->> On 01/12/2023 11:52, Tzuyi Chang wrote:
->>> +  "#phy-cells":
->>> +    const: 0
->>> +
->>> +  nvmem-cells:
->>> +    maxItems: 1
->>> +    description:
->>> +      Phandle to nvmem cell that contains 'Tx swing trim'
->>> +      tuning parameter value for PCIe phy.
->>> +
->>> +  nvmem-cell-names:
->>> +    items:
->>> +      - const: tx_swing_trim
->>> +
->>> +  realtek,pcie-syscon:
->>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>> +    description: phandle of syscon used to control PCIe MDIO register.
->>
->> Why this does not have reg property but syscon? This looks hacky.
->>
-> 
-> Our PCIe PHY driver needs to access two registers:
-> 1. PCIe MDIO register: Utilized for configuring the PCIe PHY.
-> 2. PCIe MAC Link Control and Link Status Register: Use to get the current
->   link speed for calibration purposes.
-> 
-> Both these registers reside within the PCIe controller registers. The PCIe
-> driver has mapped these register address region, so I use regmap to access
-> these registers.
 
-Hm, isn't in such case PCIe PHY a child of the PCIe controller? How is
-it with resources, like power domains or regulators?
 
-Best regards,
-Krzysztof
+On 2023/12/7 16:41, Icenowy Zheng wrote:
+> =E5=9C=A8 2023-12-04=E6=98=9F=E6=9C=9F=E4=B8=80=E7=9A=84 20:33 +0800=EF=
+=BC=8CKeith Zhao=E5=86=99=E9=81=93=EF=BC=9A
+> *snip*
+>=20
+>> +static void update_cursor_plane(struct vs_dc *dc, struct vs_plane
+>> *plane,
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct drm_plane *drm_plane,
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct drm_atomic_state *drm_st=
+ate)
+>> +{
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct drm_plane_state *sta=
+te =3D
+>> drm_atomic_get_new_plane_state(drm_state,
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+>> =C2=A0 drm_plane);
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct vs_plane_state *plan=
+e_state =3D
+>> to_vs_plane_state(state);
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct drm_framebuffer *drm=
+_fb =3D state->fb;
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct dc_hw_cursor cursor;
+>> +
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0cursor.address =3D plane_st=
+ate->dma_addr[0];
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0cursor.x =3D state->crtc_x;
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0cursor.y =3D state->crtc_y;
+>=20
+> From my experiments on poking with registers on T-Head TH1520 (also
+> uses DC8200 display controller and a similar driver), the DC8200
+> hardware have a different definition of cursor position X and Y with
+> the CRTC plane state.
+>=20
+> For CRTC plane state, hot_x and hot_y are only provided as reference,
+> and the cursor should be displayed with its (0,0) drawn to (crtc_x,
+> crtc_y) ([XY]_crtc are values specified in CRTC state, the right part
+> of the assignments here), when the cursor is moved to (0,0) but the hot
+> point is not (0,0), it could be negative.
+>=20
+> However, for DC8200 registers definition, cursor XY position could not
+> be negative -- the cursor will disappear then; because in its
+> definition, the cursor XY position should be where the cursor is
+> pointing to, instead of its (0,0). DC8200 will draw (0,0) of the cursor
+> to (x - hot_x, y - hot_y). So to met the expectation of the KMS plane
+> settings, the DC8200 position should be set to (crtc_x + hot_x, crtc_y
+> + hot_y) instead. Thus these two lines of code should be:
+>=20
+> ```
+>         cursor.x =3D state->crtc_x + drm_fb->hot_x;
+>         cursor.y =3D state->crtc_y + drm_fb->hot_y;
+> ```
+>=20
+>=20
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0cursor.hot_x =3D drm_fb->ho=
+t_x;
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0cursor.hot_y =3D drm_fb->ho=
+t_y;
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0cursor.display_id =3D to_vs=
+_display_id(dc, state->crtc);
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0update_cursor_size(state, &=
+cursor);
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0cursor.enable =3D true;
+>> +
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0dc_hw_update_cursor(&dc->hw=
+, cursor.display_id, &cursor);
+>> +}
+> *snip
+hello Icenowy:
+you are deep understanding on dc8200.
+by the way of practice
+I tested this change on the debian desktop, is there a way to compare the=
+ cursor behavior change?
+Thanks
+
+
 
 
