@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-22589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22590-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78CB3808302
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 09:31:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F03E1808306
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 09:31:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 08949B21B39
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 08:31:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A16FD283A9D
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 08:31:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5668B2E41D;
-	Thu,  7 Dec 2023 08:31:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EB6F30345;
+	Thu,  7 Dec 2023 08:31:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cI3K+R/4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="f10oyLmb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6466710C3
-	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 00:30:57 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-40bd5eaa66cso9554815e9.2
-        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 00:30:57 -0800 (PST)
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 097FBD3
+	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 00:31:34 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-40b2ddab817so7467155e9.3
+        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 00:31:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701937856; x=1702542656; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1701937892; x=1702542692; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=WTzXQNsS2mIsN6TvHGWC3pqbbK1bz2KgqFUJnXezVuU=;
-        b=cI3K+R/49Ig0K0pGvSmy/tTVDDpHXq/wkCC9fZOkHi4pyt8/+pvtTQdNPnRJM7iFyB
-         gILLD2jVgl1FDUKefbN3obBpPv7sdJpDFNYuPLekYFszFEtt2Tg7XdoC8y/O42m/McFP
-         QW3nisBbzKtOxkuy4xIB9tnCgOLfhoqOA3ZTg8ZTbEaSXZV/mN1gb60/4uY6omVPDf0l
-         Pq3Wb7+Nx2xzO5iCFgNYM5eDtvZ8FAvAGKeL6nva7bDgGg7pwIJwp8r0M6NzDkngSMf6
-         ezJSi6XDXXavh9KWmJlhHfKANygZmmG0V+Glu8+koMNJKP9pdcHbHCCh/5+GVnXDNbSy
-         YYzw==
+        bh=Mify/VU5KCQbnFhxVgp4wIC4+Rif/22iFObnI3ZfwK8=;
+        b=f10oyLmboMft7XjgtbwOkWppm2yF3Yq4hmdOF0xvnIoSTS06p6OQbDRVshFle0BhTa
+         ajogD9PIlXYPCz7oYlm3lPHTIfvdq1b2aLI2QbjsbjJn+ZPgkWwe198Dhu34AbeE03vs
+         /Q2d9DrWvobCV7cHwx4kIANHlwW91vHX47AemKOigQH2Yz6XqUFXFlgprPIX+efnW6IU
+         YkMkVd4MfJU/3GT9bTMst66zU5UOtI2NzVUOCDJGFVmXZGgTdgLanQxlsH1NwqhrGz+D
+         3Yx7r1I1nDio57WkoO1G5aOKgLwdlychKkgzBzizKuzYEI2z6Uol1CQSpOZoNrhkLHaY
+         h1vA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701937856; x=1702542656;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1701937892; x=1702542692;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WTzXQNsS2mIsN6TvHGWC3pqbbK1bz2KgqFUJnXezVuU=;
-        b=Pal7UGJsTmtcozWR0u79glvhssZeBhoGzWV14YphPA/zJvF89vWmbMfI+QG//D0bIW
-         t9qdGPEXp9H+leqHYxYF9nX2wHG7PPdL1rbd1RLTcfDoAHxHtlmuJSXaMfq6IlbVeIMo
-         uBstpj1NlkU45uJzd/w+yvEJ17GCxP8i4LYHBQyXHpFAbqjHmK2zXgheiTxAtKGDtD3X
-         I+sAec1wmtTxk0h681GrAEbpeKubIwdE6LJ9bvgKEjyvN2uDodzCl86PwwYC6WAEwQnV
-         yFt7B0TYIRNd+EamwgY1ylwhb5xYaombq9btcWF9bAZGpIMlDkj7FKXNyEvZ5K9puixO
-         dZLQ==
-X-Gm-Message-State: AOJu0Yy+0eOFgHItdbtQd9tiw9Uwp9f4rKlaIkyV6ByTXPoWDtagl6Vo
-	aVKamdbot0p56ZuHIkk1bWGuLg==
-X-Google-Smtp-Source: AGHT+IEo2aCQ8O9WRe7RuUdijrAQlE+X+jnd1x3hSn2IYltXIAwo6B4ySRl3/TXDBInts0l0yPIMQw==
-X-Received: by 2002:a05:600c:501e:b0:40b:5e21:dd1e with SMTP id n30-20020a05600c501e00b0040b5e21dd1emr1376392wmr.76.1701937855838;
-        Thu, 07 Dec 2023 00:30:55 -0800 (PST)
+        bh=Mify/VU5KCQbnFhxVgp4wIC4+Rif/22iFObnI3ZfwK8=;
+        b=NFOQvWyZIcOAz85xsY2wMLoh+51uO6skcQqRiCL8fgdEYvIqYVvTiwEkZCUHrhQyNs
+         84iKm6ak1ue/+VsOVBZmcyyiiuucpjNqTBrOMLCz7Ko9i0fJOPz0swTAfOI5pjKxEplR
+         byS/ur4Xroydy4Hg+KBBNwHI8QOp4xaBC00Oqnyp6Ujii2LxCHTpxDYSKk7Go+fZMOmU
+         JVq5cWPFt11a7iQAXSeETNId0KyXHtfG73DBhGurfTLDoXz489CM241+88LnmB7prJ5c
+         t6Df2/CYjoBdmaQBKTazmoiFmxyPry6G4aeQySrdubwl6TDrUPzUBv2/WNsJ2CjMNfCO
+         D3Og==
+X-Gm-Message-State: AOJu0YxWAufdLs9P3sfj2JHlzzNfydGJGnOBWWfeoGZ+OaPaVfjPr5H0
+	sorRnObKuHYdTPm2OQeyR0b27w==
+X-Google-Smtp-Source: AGHT+IEX9cNIiRtgJaVRhOo0ASgm009uBiFRzUYlDOIuMog6xIZIk09Xh7ILeBtyJIV/g8XvnSr9mQ==
+X-Received: by 2002:a05:600c:474c:b0:40b:5e59:da8c with SMTP id w12-20020a05600c474c00b0040b5e59da8cmr1266858wmo.159.1701937892511;
+        Thu, 07 Dec 2023 00:31:32 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id ek10-20020a05600c3eca00b0040b3d33ab55sm1149728wmb.47.2023.12.07.00.30.53
+        by smtp.gmail.com with ESMTPSA id ek10-20020a05600c3eca00b0040b3d33ab55sm1149728wmb.47.2023.12.07.00.31.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Dec 2023 00:30:55 -0800 (PST)
-Message-ID: <09321ab0-30a0-4700-bf2d-9a3286412c44@linaro.org>
-Date: Thu, 7 Dec 2023 09:30:53 +0100
+        Thu, 07 Dec 2023 00:31:32 -0800 (PST)
+Message-ID: <fc4820bf-39bf-4caf-ade4-7d4ec071e1ac@linaro.org>
+Date: Thu, 7 Dec 2023 09:31:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,25 +62,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 8/9] dt-bindings: imx6q-pcie: Add imx95 pcie compatible
- string
+Subject: Re: [PATCH] dt-bindings: serial: imx: Properly describe the i.MX1
+ interrupts
 Content-Language: en-US
-To: Frank Li <Frank.Li@nxp.com>, imx@lists.linux.dev,
- Richard Zhu <hongxing.zhu@nxp.com>, Lucas Stach <l.stach@pengutronix.de>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
- "open list:PCI DRIVER FOR IMX6" <linux-pci@vger.kernel.org>,
- "moderated list:PCI DRIVER FOR IMX6" <linux-arm-kernel@lists.infradead.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-References: <20231206155903.566194-1-Frank.Li@nxp.com>
- <20231206155903.566194-9-Frank.Li@nxp.com>
+To: Fabio Estevam <festevam@gmail.com>, gregkh@linuxfoundation.org
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, linux-serial@vger.kernel.org,
+ devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
+References: <20231206162841.2326201-1-festevam@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,17 +115,23 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231206155903.566194-9-Frank.Li@nxp.com>
+In-Reply-To: <20231206162841.2326201-1-festevam@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/12/2023 16:59, Frank Li wrote:
-> From: Richard Zhu <hongxing.zhu@nxp.com>
+On 06/12/2023 17:28, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
 > 
-> Add i.MX95 PCIe "fsl,imx95-pcie" compatible string.
+> i.MX1 has three UART interrupts instead of a single one like other
+> i.MX devices.
+> 
+> Take this into account for properly describing the i.MX1 UART
+> interrupts.
+> 
+> This fixes the following dt-schema warning:
 > 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
