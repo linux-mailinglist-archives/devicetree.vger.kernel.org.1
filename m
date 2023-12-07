@@ -1,127 +1,131 @@
-Return-Path: <devicetree+bounces-22770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22771-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43FD3808B15
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 15:53:08 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87950808B1A
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 15:54:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7410F1C20A8E
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 14:53:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1E734B20ACE
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 14:54:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 426E544367;
-	Thu,  7 Dec 2023 14:53:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8CC241C88;
+	Thu,  7 Dec 2023 14:54:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HAeke04R"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="RiCon1ze"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8008BC3
+	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 06:54:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1701960846; x=1733496846;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=wTQrTKs9wXY1+dXqWaXNtaGtOAsoE2h+0UMf7GJODcY=;
+  b=RiCon1zeg/2ZBPYPWnrQHaYDVAs7eTmW0xx1xq5xd+IsXaoTs5uUidj8
+   HWO4oay0Yc7XJJ57xLTfoLCHbsiWMprhHgqAt3h7jYPNEvAgsj7RNJWVV
+   eFdedknyStZNIeOxpo1ghOks1j7UYpFwrWeMYeOIZ7ReBmiDUGXLtzk5g
+   TJS4dGDx4OOPgPAH1b/HaQrUbFGRfERmtzGw0HHlAC5uBnKzf4zL5gMP0
+   WP+9j9yp+lyieQzLW9kOL8xIkiHLSarzhjz2WwfH/2orJzNPEyo+GwC1N
+   2MYC1gUOaid5xiiyyUl7B+dOQpXZ3h2WMtOOHbg/nNaOcJ7WmHHzeKV0P
+   A==;
+X-IronPort-AV: E=Sophos;i="6.04,256,1695679200"; 
+   d="scan'208";a="34386677"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 07 Dec 2023 15:54:04 +0100
+Received: from steina-w.tq-net.de (steina-w.tq-net.de [10.123.53.18])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F2DE41C88;
-	Thu,  7 Dec 2023 14:53:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF562C433CA;
-	Thu,  7 Dec 2023 14:53:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701960783;
-	bh=mz3CTM06zZ00I601O+2CjhckI+2+PyBKpVHj/pfINUI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HAeke04RAgpKG+7kiqstjVxdiaIWQU5vESnHB1sCh1BgtiQ+Z/fmSoQpiZuu+ainR
-	 dYt39Akt3+8z7R3b0BKdIgOPoEtV4DLxo6ayMOZj8U9Y8rss2L/1vnWIpiCdVGrTOV
-	 R3UW4xchXyfGJaiyxmXNHsHRJP4ODZa139j/Xvn4b2K2JloKyYNT22R+n0GyAgCgNX
-	 OkU59sdQLdy/ZsrLDk/yUaHIG84rn2w2bxW7xCNRDxXS7lXoYs/eLFZv84RWdHhiUW
-	 z49J9hyOlzh8a1DgvFBwaZqYdpXwkc7jq/C5oOdSLZd1M2aGWfkk26dywWt4YPlzDV
-	 +mexkgy9oQSlA==
-Received: from johan by xi.lan with local (Exim 4.96.2)
-	(envelope-from <johan@kernel.org>)
-	id 1rBFlB-0000hI-0F;
-	Thu, 07 Dec 2023 15:53:53 +0100
-Date: Thu, 7 Dec 2023 15:53:53 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Krishna Kurapati <quic_kriskura@quicinc.com>
-Cc: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
+	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 8502F280075;
+	Thu,  7 Dec 2023 15:54:04 +0100 (CET)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Wesley Cheng <quic_wcheng@quicinc.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	cros-qcom-dts-watchers@chromium.org, linux-usb@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, quic_ppratap@quicinc.com,
-	quic_jackp@quicinc.com
-Subject: Re: [PATCH v2 0/6] Refine USB interrupt vectors on Qualcomm platforms
-Message-ID: <ZXHcgZLGCScLVg1O@hovoldconsulting.com>
-References: <20231204100950.28712-1-quic_kriskura@quicinc.com>
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	linux@ew.tq-group.com,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 1/1] arm64: dts: imx8m*-tqma8m*: Add chassis-type
+Date: Thu,  7 Dec 2023 15:54:01 +0100
+Message-Id: <20231207145401.2102898-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231204100950.28712-1-quic_kriskura@quicinc.com>
+Content-Transfer-Encoding: 8bit
 
-On Mon, Dec 04, 2023 at 03:39:44PM +0530, Krishna Kurapati wrote:
-> Qualcomm targets define the following interrupts for usb wakeup:
-> {dp/dm}_hs_phy_irq, hs_phy_irq, pwr_event, ss_phy_irq.
-> 
-> But QUSB2 Phy based targets have another interrupt which gets triggered
-> in response to J/K states on dp/dm pads. Its functionality is replaced
-> by dp/dm interrupts on Femto/m31/eusb2 phy based targets for wakeup
-> purposes. Exceptions are some targets like SDM845/SDM670/SM6350 where
-> dp/dm irq's are used although they are qusb2 phy targets.
-> 
-> Currently in QUSB2 Phy based DT's, te qusb2_phy interrupt is named and
-> used as "hs_phy_irq" when in fact it is a different interrupt (used by
-> HW validation folks for debug purposes and not used on any downstream
-> target qusb/non-qusb).
-> 
-> On some non-QUSB2 targets (like sm8450/sm8550), the pwr_event IRQ was
-> named as hs_phy_irq and actual pwr_event_irq was skipped.
-> 
-> This series tries to address the discrepancies in the interrupt numbering
-> adding the missing interrupts and correcting the existing ones.
-> 
-> This series has been compared with downstream counter part and hw specifics
-> to ensure the numbering is right. Since there is not functionality change
-> the code has been only compile tested.
+Device tree specification 0.4 defines an optional, but recommended
+'chassis-type' property. Add it to TQMa8M* based board files.
 
-This is a good summary.
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+ arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts   | 1 +
+ arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts   | 1 +
+ arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts | 1 +
+ arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dts     | 1 +
+ 4 files changed, 4 insertions(+)
 
-> Changes in v2:
-> Removed additional compatibles added for different targets in v1.
-> Specified permuations of interrupts possible for QC targets and regrouped
-> interrupts for most of the DT's.
-> 
-> Rebased on top of wakeup interrupts fixes by Johan Hovold:
-> https://patchwork.kernel.org/project/linux-arm-msm/cover/20231120164331.8116-1-johan+linaro@kernel.org/
-> 
-> Link to v1: (providing patchwork link since threading was broken in v1)
-> https://patchwork.kernel.org/project/linux-arm-msm/cover/20231122191259.3021-1-quic_kriskura@quicinc.com/
-> 
-> Krishna Kurapati (6):
->   dt-bindings: usb: dwc3: Clean up hs_phy_irq in bindings
->   usb: dwc3: qcom: Rename hs_phy_irq to qusb2_phy_irq
->   arm64: dts: qcom: Fix hs_phy_irq for QUSB2 targets
->   arm64: dts: qcom: Fix hs_phy_irq for non-QUSB2 targets
->   arm64: dts: qcom: Fix hs_phy_irq for SDM670/SDM845/SM6350
->   arm64: dts: qcom: Add missing interrupts for qcs404/ipq5332
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts b/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts
+index 8c6dbcd4c83c..8aa268d4f571 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts
+@@ -13,6 +13,7 @@
+ / {
+ 	model = "TQ-Systems GmbH i.MX8MM TQMa8MxML on MBa8Mx";
+ 	compatible = "tq,imx8mm-tqma8mqml-mba8mx", "tq,imx8mm-tqma8mqml", "fsl,imx8mm";
++	chassis-type = "embedded";
+ 
+ 	aliases {
+ 		eeprom0 = &eeprom3;
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts b/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts
+index 061b8eea89f8..7180f3342298 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts
+@@ -11,6 +11,7 @@
+ / {
+ 	model = "TQ-Systems GmbH i.MX8MN TQMa8MxNL on MBa8Mx";
+ 	compatible = "tq,imx8mn-tqma8mqnl-mba8mx", "tq,imx8mn-tqma8mqnl", "fsl,imx8mn";
++	chassis-type = "embedded";
+ 
+ 	aliases {
+ 		eeprom0 = &eeprom3;
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
+index 99fcf0ff639d..8234c92b55df 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
+@@ -15,6 +15,7 @@
+ / {
+ 	model = "TQ-Systems i.MX8MPlus TQMa8MPxL on MBa8MPxL";
+ 	compatible = "tq,imx8mp-tqma8mpql-mba8mpxl", "tq,imx8mp-tqma8mpql", "fsl,imx8mp";
++	chassis-type = "embedded";
+ 
+ 	chosen {
+ 		stdout-path = &uart4;
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dts b/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dts
+index aa0dfdcec7a4..87fde6510734 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dts
+@@ -11,6 +11,7 @@
+ / {
+ 	model = "TQ-Systems GmbH i.MX8MQ TQMa8MQ on MBa8Mx";
+ 	compatible = "tq,imx8mq-tqma8mq-mba8mx", "tq,imx8mq-tqma8mq", "fsl,imx8mq";
++	chassis-type = "embedded";
+ 
+ 	aliases {
+ 		eeprom0 = &eeprom3;
+-- 
+2.34.1
 
-You're still mixing USB binding/driver and DT updates, which is what we
-want for most subsystems, but not for USB.
-
-For the next version, please split it in two series as these will go in
-through two different maintainer trees.
-
-You can link to the driver/binding series from the devicetree series and
-mention to Bjorn that it should not be merged before the bindings are
-in.
-
-And please use lore for any links instead of patchwork.
-
-Johan
 
