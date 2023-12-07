@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-22593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7075580830E
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 09:33:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FE89808310
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 09:34:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EED90B21A12
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 08:33:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D04681C21714
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 08:34:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 641F914268;
-	Thu,  7 Dec 2023 08:33:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27AAB14268;
+	Thu,  7 Dec 2023 08:34:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PSf+Zt69"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="O6vwmG7r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92DFAC6
-	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 00:33:42 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-50bf69afa99so460312e87.3
-        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 00:33:42 -0800 (PST)
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6158E126
+	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 00:34:30 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-40c09d0b045so8268745e9.0
+        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 00:34:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701938021; x=1702542821; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701938069; x=1702542869; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=COAE9Nv1oDGzI/1W67jHTeQKpKS0tc6tRbUu2KoOADU=;
-        b=PSf+Zt696EXsPNRPfQMoT8zxXtfNTivTrZZbI+d+OIJ8VzCmEldego2MKqMavqMhhf
-         9TSzKIN+tYeCnSq7gJ8aA4PskVVjUh4pB1CBIhidpUq+8xiJvc9AI8glC2vIJRYL8EL2
-         IJbK4AvhBNhw3q+KVcyCdTg+S7yYt24JXV6WuRpdSLjSkQ2BaavX2+bM3ad3i5kHd0wj
-         fmxwnV9hOWWeaSuZMHzyWEvQYELzz7HGhuiuuBmTWtbjNfazzW9UQ2KgmFS7eeyyOUTw
-         PUhftzDBe84Yhsw+rPTbVpWe048B8Rr16aPYvhO4GuLnJhyW5N/fySWO/5cV93iCYscw
-         OXJg==
+        bh=iKq5vTeMC+FO5jE6qqeDHhaZsY5YE6hVHTOkS21kHCc=;
+        b=O6vwmG7ryq8tPHyQtnWT5Rmz0t/8zSqPQQrfITXkqHAR/YjtxlvA1UWICelCspjJvK
+         HGc9okpOLogHHiUCRzMd75+3t+QiarCJab9TxZshpJotrBIXHYl2ujnQev77NMkjvjEy
+         PRt4C8V89VKc2f44BiHmIY4Z4dl7JxUJsxOH4E9WJs486czMXYT4l7Xd74Sp9Yp9d0C0
+         oVRfDhLJUmmSkNfk81dUca0PXij3WzxcVnuWAyAKDB07bZDCd5dyDvlzb2LBp/p1tuNN
+         AmXX1E4l8ke5B7Bk0F5QkeOfqw/PFK+mJlF1ONNcU8/WDeoGI26gwTNPodip5tq6sT9W
+         DJLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701938021; x=1702542821;
+        d=1e100.net; s=20230601; t=1701938069; x=1702542869;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=COAE9Nv1oDGzI/1W67jHTeQKpKS0tc6tRbUu2KoOADU=;
-        b=WQXu9qwy/1utfR/PTZDRJ/voiwAITdMb/CZCHFJgQORByYCbPoAlcxXcmv/+CT+V6T
-         WjeRJwNEiW2+AhK0mdsMCuRPvvJP9eBGtF9tuyyCM89KyL5x9MG/PJr4uW1mKrlMd/wp
-         5HT+1mXP/l13XJNa2ww3+FJKdCa2du0q2y6SRMvKpHYNGwjPA1gL5pu5Y+GrSRq855dE
-         2cIvLD0nuyTMYKNmjVFwgLqSLjQ+KNxahLxsaFc4owMsMXcTSMaboV8jdkZFOJmzrXg3
-         BBU/ytpMsrEMhAYuGsy1hfHAYEyp1ko5DEjqY80VQpRIOt/q4Qjlqf7ofmt/I7VCnefg
-         rXWA==
-X-Gm-Message-State: AOJu0YxaOAkCgnBzw1rnj6EpiJhZLKUE/V6QUXIExzhd+NcoAfwmsjfV
-	YF9g+KEnLFduyqVNDPUwVlTlluqmQO64EWjCysk=
-X-Google-Smtp-Source: AGHT+IGOe4TPdR8e2H83fOuaS4PTs50TpZlzJyeIKfAlYCz8C81pXk7rsYGEU1O2IjvzA5Aye34f7g==
-X-Received: by 2002:ac2:5ec4:0:b0:50b:fe5a:732f with SMTP id d4-20020ac25ec4000000b0050bfe5a732fmr1392591lfq.10.1701938020728;
-        Thu, 07 Dec 2023 00:33:40 -0800 (PST)
+        bh=iKq5vTeMC+FO5jE6qqeDHhaZsY5YE6hVHTOkS21kHCc=;
+        b=GduPTDFcptpn3uG1ey2gm9r+CWFNQaoi0aA6ZNItmwotJexrNd31tTdLUTqYQZ3LM3
+         z1h5y+MGACUb5Yu0Mox/s+CSHXaCUWebxRUG6ZVOdACPGRt+r11S9xviN9BQDgAsDfZ+
+         kBu8zR01wvrlGGXeC4e1gCsdo8HRAeAWCWCU5sQwBLGGfRIoel7J2XrhXnt1b0WDtTVu
+         uwMyCQiGCeWXh7X0zDz652F7s1itCmEPn9w6nGEqEM1xj/6Ks3KCF08HnNG8Si9j8B/T
+         dVuQoEqwj4+I7TvbzwqdiDxWEK86U9wiavmrPL772bxsI7rukg70r3CASciBtS8kXjwP
+         RHCw==
+X-Gm-Message-State: AOJu0Yy8obkYJWypjvznzz4gegGBhscb/OA0t4hYUhw3MDBPj8CV1p+Q
+	Su4oDb83TbfYADikkZ2Vo5zBrA==
+X-Google-Smtp-Source: AGHT+IE7wOtN8GZJOMYuvObriXyuGQvehRnDdTzLtDHvxdZ1LSx+92WwolmCtjcq3chpfQgH78gqeQ==
+X-Received: by 2002:a05:600c:1c93:b0:409:3f53:c9c7 with SMTP id k19-20020a05600c1c9300b004093f53c9c7mr993314wms.35.1701938068791;
+        Thu, 07 Dec 2023 00:34:28 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id ek10-20020a05600c3eca00b0040b3d33ab55sm1149728wmb.47.2023.12.07.00.33.39
+        by smtp.gmail.com with ESMTPSA id ek10-20020a05600c3eca00b0040b3d33ab55sm1149728wmb.47.2023.12.07.00.34.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Dec 2023 00:33:40 -0800 (PST)
-Message-ID: <50dc382a-4829-4a14-8c52-9aa1f073002f@linaro.org>
-Date: Thu, 7 Dec 2023 09:33:38 +0100
+        Thu, 07 Dec 2023 00:34:28 -0800 (PST)
+Message-ID: <4ca8d82e-5bee-4727-8f7c-54ceadf1a10e@linaro.org>
+Date: Thu, 7 Dec 2023 09:34:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,18 +62,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: freescale: introduce dimonoff-gateway-evk
- board
+Subject: Re: [PATCH v4 1/8] dt-bindings: mfd: da9062: Update watchdog
+ description
 Content-Language: en-US
-To: Hugo Villeneuve <hugo@hugovil.com>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, shawnguo@kernel.org,
- s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
- linux-imx@nxp.com, leoyang.li@nxp.com, robh@kernel.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- Hugo Villeneuve <hvilleneuve@dimonoff.com>
-References: <20231206160303.33185-1-hugo@hugovil.com>
- <20231206160303.33185-4-hugo@hugovil.com>
+To: Biju Das <biju.das.jz@bp.renesas.com>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Support Opensource <support.opensource@diasemi.com>,
+ devicetree@vger.kernel.org, Geert Uytterhoeven <geert+renesas@glider.be>,
+ Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+ Biju Das <biju.das.au@gmail.com>, linux-renesas-soc@vger.kernel.org
+References: <20231206155740.5278-1-biju.das.jz@bp.renesas.com>
+ <20231206155740.5278-2-biju.das.jz@bp.renesas.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -119,59 +120,26 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231206160303.33185-4-hugo@hugovil.com>
+In-Reply-To: <20231206155740.5278-2-biju.das.jz@bp.renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/12/2023 17:03, Hugo Villeneuve wrote:
-> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+On 06/12/2023 16:57, Biju Das wrote:
+> Update watchdog description by referring to dlg,da9062-watchdog binding
+> file.
 > 
-> The Dimonoff gateway EVK board is based on a Variscite
-> VAR-SOM-NANO, with a NXP MX8MN nano CPU and also based on a Symphony
-> mx8mn EVK.
+> Update MAINTAINERS entries.
 > 
-> Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 > ---
->  arch/arm64/boot/dts/freescale/Makefile        |   1 +
->  .../freescale/imx8mn-dimonoff-gateway-evk.dts | 159 ++++++++++++++++++
->  2 files changed, 160 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-dimonoff-gateway-evk.dts
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> index d22e4f4f886d..1f29215ea9bb 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -97,6 +97,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-tqma8mqml-mba8mx-lvds-tm070jvhg33.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mn-beacon-kit.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mn-bsh-smm-s2.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mn-bsh-smm-s2pro.dtb
-> +dtb-$(CONFIG_ARCH_MXC) += imx8mn-dimonoff-gateway-evk.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mn-evk.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mn-ddr3l-evk.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mn-ddr4-evk.dtb
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mn-dimonoff-gateway-evk.dts b/arch/arm64/boot/dts/freescale/imx8mn-dimonoff-gateway-evk.dts
-> new file mode 100644
-> index 000000000000..c4572be437bd
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8mn-dimonoff-gateway-evk.dts
-> @@ -0,0 +1,159 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright 2022 DimOnOff
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/usb/pd.h>
-> +#include "imx8mn-var-som-symphony.dts"
-> +
-> +/ {
-> +	model = "DimOnOff Gateway EVK board";
-> +	compatible = "dimonoff,dimonoff-gateway-evk", "variscite,var-som-mx8mn", "fsl,imx8mn";
-
-Please wrap at 80, like Coding Style asks. Checkpatch is not coding style.
-
-With wrapping and alignment:
+> v4:
+>  Merged with patch#8 from v2.
+> v3:
+>  New patch
+> ---
+>  Documentation/devicetree/bindings/mfd/da9062.txt | 2 +-
+>  MAINTAINERS                                      | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
