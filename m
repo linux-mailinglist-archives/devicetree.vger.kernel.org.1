@@ -1,949 +1,141 @@
-Return-Path: <devicetree+bounces-22782-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22783-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B54EF808BAA
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 16:20:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05458808BB0
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 16:22:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D81591C2039E
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 15:20:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 30C641C20896
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 15:22:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A317B44C78;
-	Thu,  7 Dec 2023 15:20:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B340044C79;
+	Thu,  7 Dec 2023 15:22:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uXHrmLmG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="X0FbQR8D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87C1B446D6
-	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 15:20:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1363C433C8;
-	Thu,  7 Dec 2023 15:20:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701962446;
-	bh=Gx8sz2eVSZ1HcaXgJaOB0w/q57DRCo4xFJwZYrTqS9E=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uXHrmLmG5+Gfu6lGBgMwyOC7etjAbkeJpwb6T693Ly+Be3e97cAWeNXDAMQHam4W5
-	 R1itLbjRxuVnV1mxPW5nnkBsllmepjY+Qp/970z4K3sfVFEASX+BaELy61F52QjHZf
-	 1Omm0UogS8ID5QE9fSrrMyluzb1XTXEm+xdIXq2+kxifF6GGqEVBTJC9TreCURO0pP
-	 TCBso0KS4P52/13r15T19EXomLszw8GpYDB05xF6Hy3DLCKph1hNZ7nYGqKhHMXvSY
-	 CJ0wy1Hb9o8uIAG/3LtU/hS0usZaUeTNSVcnpW7NpheLPUk5Pdc2NAhrQwzmgZYS/4
-	 TYqijSN1jYqfw==
-Date: Thu, 7 Dec 2023 15:20:41 +0000
-From: Lee Jones <lee@kernel.org>
-To: Shawn Anastasio <sanastasio@raptorengineering.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Georgy Yakovlev <Georgy.Yakovlev@sony.com>,
-	Timothy Pearson <tpearson@raptorengineering.com>
-Subject: Re: [PATCH v2 2/2] mfd: sie-cronos-cpld: Add driver for Sony Cronos
- CPLD
-Message-ID: <20231207152041.GF8867@google.com>
-References: <cover.1701203916.git.sanastasio@raptorengineering.com>
- <05fae4dfc455e44a9eda7da447e86a3f34ee395e.1701203916.git.sanastasio@raptorengineering.com>
+Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DC6C19A
+	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 07:22:13 -0800 (PST)
+Received: by mail-ot1-x331.google.com with SMTP id 46e09a7af769-6d9d84019c5so561190a34.3
+        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 07:22:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701962532; x=1702567332; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zbxtT8utWMQUhybNg4dQ162bvjOQGcXfeB3SVqpE3QY=;
+        b=X0FbQR8DcFJds7MYeLBKWsqqhYEwYaOIiqw2hnzNGRnobeXgpr+zdzC1V7EqRWLPp9
+         8WoZxV8VJ2MliCGY4ULaZ+y5KfVa6qhBooV9Dpbr9hje5GhBWb3a87tNwSG2msdjEUlR
+         RsYT1a6/lA/HjioyzTxR1bJ7vfwOvZsNsIcug35SUrO9LprlLUJK6Mh9ejKtv0iqw+vB
+         G8ELcIhzHvO1qBFAt+GD7xRPWzafrZX3SZmxPzGNTvNvHBw1LPri9jgAWFS8uSiLudVi
+         gW3mehCKQyge2H630Tu9RL8uOnkEK6HAPPrOhOitIGaRhvPJgKnEeh5MXXD4/MlYUJ/d
+         kSlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701962532; x=1702567332;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zbxtT8utWMQUhybNg4dQ162bvjOQGcXfeB3SVqpE3QY=;
+        b=GgbibuCdw9hCZB64F/3iSsR0KTH5Eo0JRCtvKl3vul6Ue11L5bulaP1vgBr6XtaQfJ
+         JbFsv7FQgLurvCclZj5JFr2mqgFmS+m6FWlTUFjYH56pPt9Q8wXLEbTFA8PXmnxqfVUO
+         PPsjs/LbEEccOGZqnOyptpSRYhtXRMYYg2+rTnfNwRP4L0getdHyHjyTBbwUb0sRaUS6
+         tPR16xmns1pQHW0NYL5fsc3/9xc44nSYn7ZgSY+6swvhEIh5hHrCPa29hn55FH09rOZ2
+         9zjebLpLhM+igxvHBheYWm9dQMoiRcEyH4FaNSZh0Gif98NgsTzexLJQj4YYsiJPU4eP
+         SusQ==
+X-Gm-Message-State: AOJu0Yxmtpbo+Z1VsDHoncJd4JWxMaaZ+774STZ+xxKu9FrpM1tJiGE6
+	WJICJSoNjuePk1qvEd5Y/uMqRA==
+X-Google-Smtp-Source: AGHT+IF78xa8Fo4wWEfGyJ7/I6WNpcltup+AtB/U2yY92tCSSQjYEAspQ8kt2NelTrJbr7GtZSbaoA==
+X-Received: by 2002:a9d:4d82:0:b0:6d9:d307:a63b with SMTP id u2-20020a9d4d82000000b006d9d307a63bmr1939852otk.15.1701962532692;
+        Thu, 07 Dec 2023 07:22:12 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id f30-20020a4a921e000000b0058d76e8ce0dsm279703ooh.36.2023.12.07.07.22.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 07 Dec 2023 07:22:12 -0800 (PST)
+Message-ID: <8e82dae7-342e-4985-b052-29778afe4b31@linaro.org>
+Date: Thu, 7 Dec 2023 16:22:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <05fae4dfc455e44a9eda7da447e86a3f34ee395e.1701203916.git.sanastasio@raptorengineering.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] dt-bindings: arm: fsl: add Dimonoff gateway EVK
+ board
+Content-Language: en-US
+To: Hugo Villeneuve <hugo@hugovil.com>, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, shawnguo@kernel.org,
+ s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+ linux-imx@nxp.com, leoyang.li@nxp.com, robh@kernel.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ Hugo Villeneuve <hvilleneuve@dimonoff.com>
+References: <20231207150519.1264808-1-hugo@hugovil.com>
+ <20231207150519.1264808-3-hugo@hugovil.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
+ m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
+ HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
+ XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
+ mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
+ v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
+ cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
+ rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
+ qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
+ aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
+ gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
+ dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
+ NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
+ hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
+ oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
+ H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
+ yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
+ 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
+ 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
+ +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
+ FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
+ 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
+ DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
+ oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
+ 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
+ Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
+ qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
+ /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
+ qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
+ EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
+ KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
+ fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231207150519.1264808-3-hugo@hugovil.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, 28 Nov 2023, Shawn Anastasio wrote:
-
-> From: Timothy Pearson <tpearson@raptorengineering.com>
+On 07/12/2023 16:05, Hugo Villeneuve wrote:
+> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 > 
-> The Sony Cronos Platform Controller CPLD is a multi-purpose platform
-> controller that provides both a watchdog timer and an LED controller for
-> the Sony Interactive Entertainment Cronos x86 server platform. As both
-> functions are provided by the same CPLD, a multi-function device is
-> exposed as the parent of both functions.
+> Add DT compatible string for Dimonoff gateway EVK board based on a
+> Variscite VAR-SOM-NANO with a NXP MX8MN nano CPU.
 > 
-> Signed-off-by: Timothy Pearson <tpearson@raptorengineering.com>
-> Signed-off-by: Shawn Anastasio <sanastasio@raptorengineering.com>
+> Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 > ---
-> Changes in v2:
->   - Change SIE to Sony (SIE's parent company) to be more consistent
->   with how other subsidiaries are treated in the kernel
->   - Fix build issue under !CONFIG_OF discovered by kernel test robot
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
 
-Does this driver work without Device Tree?
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Why can't you just drop the of_match_ptr()?
+Best regards,
+Krzysztof
 
->   by guarding definition of `cronos_cpld_dt_ids` as is done in other
->   drivers.
-> 
->  MAINTAINERS                               |   7 +
->  drivers/mfd/Kconfig                       |  11 +
->  drivers/mfd/Makefile                      |   1 +
->  drivers/mfd/sony-cronos-cpld.c            | 591 ++++++++++++++++++++++
->  include/linux/mfd/sony/cronos/core.h      |  17 +
->  include/linux/mfd/sony/cronos/registers.h |  59 +++
->  6 files changed, 686 insertions(+)
->  create mode 100644 drivers/mfd/sony-cronos-cpld.c
->  create mode 100644 include/linux/mfd/sony/cronos/core.h
->  create mode 100644 include/linux/mfd/sony/cronos/registers.h
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 6c4cce45a09d..623681826820 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -19932,6 +19932,13 @@ S:	Maintained
->  F:	drivers/ssb/
->  F:	include/linux/ssb/
-> 
-> +SONY CRONOS CPLD DRIVER
-> +M:	Georgy Yakovlev <Georgy.Yakovlev@sony.com>
-
-Are they aware of this?
-
-They do not appear to be in the submission path.
-
-> +S:	Maintained
-
-This should probably be Supported.
-
-> +F:	Documentation/devicetree/bindings/mfd/sony,cronos-cpld.yaml
-> +F:	drivers/mfd/sony-cronos-cpld.c
-> +F:	include/linux/mfd/sony/cronos/
-> +
->  SONY IMX208 SENSOR DRIVER
->  M:	Sakari Ailus <sakari.ailus@linux.intel.com>
->  L:	linux-media@vger.kernel.org
-> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-> index 90ce58fd629e..27f28fbbc7cc 100644
-> --- a/drivers/mfd/Kconfig
-> +++ b/drivers/mfd/Kconfig
-> @@ -2217,6 +2217,17 @@ config MFD_QCOM_PM8008
->  	  under it in the device tree. Additional drivers must be enabled in
->  	  order to use the functionality of the device.
-> 
-> +config MFD_SONY_CRONOS_CPLD
-> +	tristate "Sony Cronos CPLD Support"
-> +	select MFD_CORE
-> +	select REGMAP_I2C
-> +	depends on I2C
-> +	help
-> +      Support for the Sony Cronos system control CPLDs. Additional drivers must
-> +      be enabled in order to use the functionality of the device, including LED
-> +      control and the system watchdog. The controller itself is a custom design
-> +      tailored to the specific needs of the Sony Cronos hardware platform.
-> +
->  menu "Multimedia Capabilities Port drivers"
->  	depends on ARCH_SA1100
-> 
-> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-> index c66f07edcd0e..be9974f0fe9c 100644
-> --- a/drivers/mfd/Makefile
-> +++ b/drivers/mfd/Makefile
-> @@ -284,3 +284,4 @@ rsmu-i2c-objs			:= rsmu_core.o rsmu_i2c.o
->  rsmu-spi-objs			:= rsmu_core.o rsmu_spi.o
->  obj-$(CONFIG_MFD_RSMU_I2C)	+= rsmu-i2c.o
->  obj-$(CONFIG_MFD_RSMU_SPI)	+= rsmu-spi.o
-> +obj-$(CONFIG_MFD_SONY_CRONOS_CPLD)	+= sony-cronos-cpld.o
-> diff --git a/drivers/mfd/sony-cronos-cpld.c b/drivers/mfd/sony-cronos-cpld.c
-> new file mode 100644
-> index 000000000000..569793cd9697
-> --- /dev/null
-> +++ b/drivers/mfd/sony-cronos-cpld.c
-> @@ -0,0 +1,591 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * I2C device driver for Sony Cronos CPLDs
-
-This is not an I2C device driver.
-
-> + * Copyright (C) 2015-2017  Dialog Semiconductor
-> + * Copyright (C) 2022  Raptor Engineering, LLC
-
-No changes since 2022?
-
-> + */
-> +
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/init.h>
-> +#include <linux/device.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/regmap.h>
-> +#include <linux/mfd/core.h>
-> +#include <linux/i2c.h>
-> +#include <linux/mfd/sony/cronos/core.h>
-> +#include <linux/mfd/sony/cronos/registers.h>
-
-Alphabetical.
-
-> +static struct resource cronos_wdt_resources[] = {
-> +};
-> +
-> +static struct resource cronos_led_resources[] = {
-> +};
-
-What is the point of these?
-
-> +static const struct mfd_cell cronos_cpld_devs[] = {
-> +	{
-> +		.name          = "cronos-watchdog",
-> +		.num_resources = ARRAY_SIZE(cronos_wdt_resources),
-> +		.resources     = cronos_wdt_resources,
-> +		.of_compatible = "sony,cronos-watchdog",
-> +	},
-> +	{
-> +		.name          = "cronos-leds",
-> +		.id            = 1,
-
-Why are you manually numbering them?
-
-> +		.num_resources = ARRAY_SIZE(cronos_led_resources),
-> +		.resources     = cronos_led_resources,
-> +		.of_compatible = "sony,cronos-leds",
-> +	},
-> +};
-> +
-> +static ssize_t payload_power_show(struct device *dev, struct device_attribute *attr, char *buf)
-> +{
-> +	unsigned int payloadpower_val = 0;
-
-Ironically, the "_val" provides no value here.
-
-> +	int ret = -EIO;
-
-Why is this being pre-initialised?  Same throughout.
-
-> +	struct sony_cronos_cpld *chip = dev_get_drvdata(dev);
-
-Move this line to the top - same throughout.
-
-> +	ret = regmap_read(chip->regmap, CRONOS_CPLD_PAYLOAD_POWER_CTL_REG, &payloadpower_val);
-> +	if (ret < 0)
-
-if (ret) is fine.  For all cases below too.
-
-> +		return ret;
-> +
-> +	return snprintf(buf, PAGE_SIZE, "0x%02x\n", payloadpower_val);
-
-sysfs_emit().  For all cases below too.
-
-> +}
-> +
-> +static ssize_t payload_power_store(struct device *dev,
-> +				   struct device_attribute *attr,
-> +				   const char *buf, size_t len)
-> +{
-> +	u8 val = 0;
-> +	int ret = -EIO;
-> +	struct sony_cronos_cpld *chip = dev_get_drvdata(dev);
-> +
-> +	if (kstrtou8(buf, 0, &val))
-> +		return -EINVAL;
-> +
-> +	ret = regmap_write(chip->regmap, CRONOS_CPLD_PAYLOAD_POWER_CTL_REG, val);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to write value 0x%02x to address 0x%02x",
-> +			val, CRONOS_CPLD_PAYLOAD_POWER_CTL_REG);
-
-Why dump an error messages here and not in other places?
-
-I suggest they are dropped.
-
-> +		return ret;
-> +	}
-> +	return len;
-> +}
-> +
-> +
-> +static ssize_t bmc_flash_show(struct device *dev, struct device_attribute *attr, char *buf)
-> +{
-> +	unsigned int bmcflash_val = 0;
-> +	int ret = -EIO;
-> +	struct sony_cronos_cpld *chip = dev_get_drvdata(dev);
-> +
-> +	ret = regmap_read(chip->regmap, CRONOS_CPLD_BMC_BOOT_FLASH_SELECT_REG, &bmcflash_val);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return snprintf(buf, PAGE_SIZE, "0x%02x\n", bmcflash_val);
-> +}
-> +
-> +static ssize_t bmc_flash_store(struct device *dev,
-> +			       struct device_attribute *attr,
-> +			       const char *buf, size_t len)
-> +{
-> +	u8 val = 0;
-> +	int ret = -EIO;
-> +	struct sony_cronos_cpld *chip = dev_get_drvdata(dev);
-> +
-> +	if (kstrtou8(buf, 0, &val))
-> +		return -EINVAL;
-> +
-> +	ret = regmap_write(chip->regmap, CRONOS_CPLD_BMC_BOOT_FLASH_SELECT_REG, val);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to write value 0x%02x to address 0x%02x",
-> +			val, CRONOS_CPLD_BMC_BOOT_FLASH_SELECT_REG);
-> +		return ret;
-> +	}
-> +	return len;
-> +}
-> +
-> +
-> +static ssize_t switch_reset_show(struct device *dev, struct device_attribute *attr, char *buf)
-> +{
-> +	unsigned int switchreset_val = 0;
-> +	int ret = -EIO;
-> +	struct sony_cronos_cpld *chip = dev_get_drvdata(dev);
-> +
-> +	ret = regmap_read(chip->regmap, CRONOS_CPLD_SWITCH_RESET_CMD_REG, &switchreset_val);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return snprintf(buf, PAGE_SIZE, "0x%02x\n", switchreset_val);
-> +}
-> +
-> +static ssize_t switch_reset_store(struct device *dev,
-> +				  struct device_attribute *attr,
-> +				  const char *buf, size_t len)
-> +{
-> +	unsigned int switchreset_val = 0;
-> +	u8 val = -EINVAL;
-> +	int ret = -EIO;
-> +	struct sony_cronos_cpld *chip = dev_get_drvdata(dev);
-> +
-> +	if (kstrtou8(buf, 0, &val))
-> +		return -EINVAL;
-> +
-> +	if (val != 1)
-> +		return -EINVAL;
-> +
-> +	ret = regmap_read(chip->regmap, CRONOS_CPLD_SWITCH_RESET_CMD_REG, &switchreset_val);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = regmap_write(chip->regmap, CRONOS_CPLD_SWITCH_RESET_CMD_REG, switchreset_val);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to write value 0x%02x to address 0x%02x",
-> +				switchreset_val, CRONOS_CPLD_SWITCH_RESET_CMD_REG);
-> +		return ret;
-> +	}
-> +	return len;
-> +}
-> +
-> +
-> +static ssize_t switch_flash_show(struct device *dev, struct device_attribute *attr, char *buf)
-> +{
-> +	unsigned int switchflash_val = 0;
-> +	int ret = -EIO;
-> +	struct sony_cronos_cpld *chip = dev_get_drvdata(dev);
-> +
-> +	ret = regmap_read(chip->regmap, CRONOS_CPLD_SWITCH_BOOT_FLASH_SELECT_REG, &switchflash_val);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return snprintf(buf, PAGE_SIZE, "0x%02x\n", switchflash_val);
-> +}
-> +
-> +static ssize_t switch_flash_store(struct device *dev,
-> +				  struct device_attribute *attr,
-> +				  const char *buf, size_t len)
-> +{
-> +	u8 val = 0;
-> +	int ret = -EIO;
-> +	struct sony_cronos_cpld *chip = dev_get_drvdata(dev);
-> +
-> +	if (kstrtou8(buf, 0, &val))
-> +		return -EINVAL;
-> +
-> +	ret = regmap_write(chip->regmap, CRONOS_CPLD_SWITCH_BOOT_FLASH_SELECT_REG, val);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to write value 0x%02x to address 0x%02x",
-> +			val, CRONOS_CPLD_SWITCH_BOOT_FLASH_SELECT_REG);
-> +		return ret;
-> +	}
-> +	return len;
-> +}
-> +
-> +
-> +static ssize_t uart_mux_show(struct device *dev, struct device_attribute *attr, char *buf)
-> +{
-> +	unsigned int uartmux_val = 0;
-> +	int ret = -EIO;
-> +	struct sony_cronos_cpld *chip = dev_get_drvdata(dev);
-> +
-> +	ret = regmap_read(chip->regmap, CRONOS_CPLD_UART_MUX_REG, &uartmux_val);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return snprintf(buf, PAGE_SIZE, "0x%02x\n", uartmux_val);
-> +}
-> +
-> +static ssize_t uart_mux_store(struct device *dev,
-> +			      struct device_attribute *attr,
-> +			      const char *buf, size_t len)
-> +{
-> +	u8 val = 0;
-> +	int ret = -EIO;
-> +	struct sony_cronos_cpld *chip = dev_get_drvdata(dev);
-> +
-> +	if (kstrtou8(buf, 0, &val))
-> +		return -EINVAL;
-> +
-> +	ret = regmap_write(chip->regmap, CRONOS_CPLD_UART_MUX_REG, val);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to write value 0x%02x to address 0x%02x",
-> +			val, CRONOS_CPLD_UART_MUX_REG);
-> +		return ret;
-> +	}
-> +	return len;
-> +}
-> +
-> +
-> +static ssize_t led_get_brightness(struct sony_cronos_cpld *chip, unsigned int reg, char *buf)
-> +{
-> +	unsigned int brightness_val;
-> +	int ret = -EIO;
-> +
-> +	ret = regmap_read(chip->regmap, reg, &brightness_val);
-> +	if (ret != 0)
-> +		return ret;
-> +
-> +	return snprintf(buf, PAGE_SIZE, "0x%02x\n", brightness_val);
-> +}
-> +
-> +static ssize_t led_set_brightness(struct sony_cronos_cpld *chip, unsigned int reg, const char *buf,
-> +	size_t len)
-> +{
-> +	u8 val = 0;
-> +	int ret = -EIO;
-> +
-> +	if (kstrtou8(buf, 0, &val))
-> +		return -EINVAL;
-> +
-> +	ret = regmap_update_bits(chip->regmap, reg, CRONOS_CPLD_LEDS_BRIGHTNESS_SET_MASK, val);
-> +	if (ret) {
-> +		dev_err(chip->dev, "Failed to write value 0x%02x to address 0x%02x", val, reg);
-> +		return ret;
-> +	}
-> +	return len;
-> +}
-> +
-> +static ssize_t brightness_red_show(struct device *dev, struct device_attribute *attr, char *buf)
-> +{
-> +	struct sony_cronos_cpld *chip = dev_get_drvdata(dev);
-> +
-> +	return led_get_brightness(chip, CRONOS_CPLD_BRIGHTNESS_RED_REG, buf);
-> +}
-> +
-> +static ssize_t brightness_red_store(struct device *dev,
-> +				    struct device_attribute *attr,
-> +				    const char *buf, size_t len)
-> +{
-> +	struct sony_cronos_cpld *chip = dev_get_drvdata(dev);
-> +
-> +	return led_set_brightness(chip, CRONOS_CPLD_BRIGHTNESS_RED_REG, buf, len);
-> +}
-> +
-> +static ssize_t brightness_green_show(struct device *dev, struct device_attribute *attr, char *buf)
-> +{
-> +	struct sony_cronos_cpld *chip = dev_get_drvdata(dev);
-> +
-> +	return led_get_brightness(chip, CRONOS_CPLD_BRIGHTNESS_GREEN_REG, buf);
-> +}
-> +
-> +static ssize_t brightness_green_store(struct device *dev,
-> +				    struct device_attribute *attr,
-> +				    const char *buf, size_t len)
-> +{
-> +	struct sony_cronos_cpld *chip = dev_get_drvdata(dev);
-> +
-> +	return led_set_brightness(chip, CRONOS_CPLD_BRIGHTNESS_GREEN_REG, buf, len);
-> +}
-> +
-> +static ssize_t brightness_blue_show(struct device *dev, struct device_attribute *attr, char *buf)
-> +{
-> +	struct sony_cronos_cpld *chip = dev_get_drvdata(dev);
-> +
-> +	return led_get_brightness(chip, CRONOS_CPLD_BRIGHTNESS_BLUE_REG, buf);
-> +}
-> +
-> +static ssize_t brightness_blue_store(struct device *dev,
-> +				    struct device_attribute *attr,
-> +				    const char *buf, size_t len)
-> +{
-> +	struct sony_cronos_cpld *chip = dev_get_drvdata(dev);
-> +
-> +	return led_set_brightness(chip, CRONOS_CPLD_BRIGHTNESS_BLUE_REG, buf, len);
-> +}
-
-All of the LED related code should be in the LED driver.
-
-> +
-> +
-
-No double line spacings.
-
-> +static ssize_t revision_show(struct device *dev, struct device_attribute *attr, char *buf)
-> +{
-> +	u16 revision = 0;
-> +	int ret = -EIO;
-> +	struct sony_cronos_cpld *chip = dev_get_drvdata(dev);
-> +
-> +	ret = regmap_bulk_read(chip->regmap, CRONOS_CPLD_REVISION_LOW_REG, &revision, 2);
-> +	if (ret)
-> +		return -EIO;
-> +
-> +	return snprintf(buf, PAGE_SIZE, "0x%04x\n", revision);
-> +}
-> +
-> +static ssize_t device_id_show(struct device *dev, struct device_attribute *attr, char *buf)
-> +{
-> +	u16 device_id = 0;
-> +	int ret = -EIO;
-> +	struct sony_cronos_cpld *chip = dev_get_drvdata(dev);
-> +
-> +	ret = regmap_bulk_read(chip->regmap, CRONOS_CPLD_DEVICE_ID_LOW_REG, &device_id, 2);
-> +	if (ret)
-> +		return -EIO;
-> +
-> +	return snprintf(buf, PAGE_SIZE, "0x%04x\n", device_id);
-> +}
-> +
-> +static ssize_t bmc_mac_show(struct device *dev, struct device_attribute *attr, char *buf)
-> +{
-> +	u8 bmc_mac[6];
-> +	int ret = -EIO;
-> +	struct sony_cronos_cpld *chip = dev_get_drvdata(dev);
-> +
-> +	ret = regmap_bulk_read(chip->regmap, CRONOS_CPLD_BMC_MAC_LOW_REG, bmc_mac, 6);
-> +	if (ret)
-> +		return -EIO;
-> +
-> +	return snprintf(buf, PAGE_SIZE, "%pM\n", bmc_mac);
-> +}
-> +
-> +static ssize_t status_2_show(struct device *dev, struct device_attribute *attr, char *buf)
-> +{
-> +	unsigned int last_boot = 0;
-> +	int ret = -EIO;
-> +	struct sony_cronos_cpld *chip = dev_get_drvdata(dev);
-> +
-> +	ret = regmap_read(chip->regmap, CRONOS_CPLD_STATUS_2_REG, &last_boot);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return snprintf(buf, PAGE_SIZE, "0x%02x\n", last_boot);
-> +}
-> +
-> +
-> +static DEVICE_ATTR_RO(revision);
-> +static DEVICE_ATTR_RO(device_id);
-> +static DEVICE_ATTR_RO(bmc_mac);
-> +static DEVICE_ATTR_RO(status_2);
-> +
-> +static DEVICE_ATTR_RW(uart_mux);
-> +static DEVICE_ATTR_RW(switch_flash);
-> +static DEVICE_ATTR_RW(switch_reset);
-> +static DEVICE_ATTR_RW(bmc_flash);
-> +static DEVICE_ATTR_RW(payload_power);
-> +
-> +static DEVICE_ATTR_RW(brightness_red);
-> +static DEVICE_ATTR_RW(brightness_green);
-> +static DEVICE_ATTR_RW(brightness_blue);
-
-'\n'
-
-> +static struct attribute *cronos_cpld_sysfs_entries[] = {
-> +	&dev_attr_revision.attr,
-> +	&dev_attr_device_id.attr,
-> +	&dev_attr_bmc_mac.attr,
-> +	&dev_attr_status_2.attr,
-> +	&dev_attr_uart_mux.attr,
-> +	&dev_attr_switch_flash.attr,
-> +	&dev_attr_switch_reset.attr,
-> +	&dev_attr_bmc_flash.attr,
-> +	&dev_attr_payload_power.attr,
-> +	&dev_attr_brightness_red.attr,
-> +	&dev_attr_brightness_green.attr,
-> +	&dev_attr_brightness_blue.attr,
-> +	NULL,
-> +};
-
-These all need to be documented or dropped.
-
-Please read:
-
-  Documentation/filesystems/sysfs.rst
-
-And do:
-
-  `find Documentation -name *sysfs*`
-
-> +static const struct attribute_group cronos_cpld_attr_group = {
-> +	.attrs	= cronos_cpld_sysfs_entries,
-> +};
-> +
-> +static int sony_cronos_get_device_type(struct sony_cronos_cpld *chip)
-> +{
-> +	int device_id;
-> +	int byte;
-
-Introduce 2 variables and do all of the bit manipulation at the bottom.
-
-> +	int ret;
-> +
-> +	ret = regmap_read(chip->regmap, CRONOS_CPLD_DEVICE_ID_HIGH_REG, &byte);
-> +	if (ret < 0) {
-> +		dev_err(chip->dev, "Cannot read chip ID.\n");
-> +		return -EIO;
-> +	}
-
-Spread these out with '\n's.
-
-> +	device_id = byte << 8;
-> +	ret = regmap_read(chip->regmap, CRONOS_CPLD_DEVICE_ID_LOW_REG, &byte);
-> +	if (ret < 0) {
-> +		dev_err(chip->dev, "Cannot read chip ID.\n");
-> +		return -EIO;
-> +	}
-> +	device_id |= byte;
-> +	if (device_id != CRONOS_CPLD_DEVICE_ID) {
-> +		dev_err(chip->dev, "Invalid device ID: 0x%04x\n", device_id);
-
-"Unsupported"
-
-> +		return -ENODEV;
-> +	}
-> +
-> +	dev_info(chip->dev,
-> +		 "Device detected (device-ID: 0x%04X)\n",
-> +		 device_id);
-
-Why line break here?  The lines above are way longer.
-
-> +	return ret;
-> +}
-> +
-> +static bool cronos_cpld_is_writeable_reg(struct device *dev, unsigned int reg)
-> +{
-> +	switch (reg) {
-> +	case CRONOS_CPLD_BRIGHTNESS_RED_REG:
-> +	case CRONOS_CPLD_BRIGHTNESS_GREEN_REG:
-> +	case CRONOS_CPLD_BRIGHTNESS_BLUE_REG:
-> +	case CRONOS_LEDS_SMC_STATUS_REG:
-> +	case CRONOS_LEDS_SWITCH_STATUS_REG:
-> +	case CRONOS_LEDS_CCM1_STATUS_REG:
-> +	case CRONOS_LEDS_CCM2_STATUS_REG:
-> +	case CRONOS_LEDS_CCM3_STATUS_REG:
-> +	case CRONOS_LEDS_CCM4_STATUS_REG:
-> +	case CRONOS_LEDS_CCM_POWER_REG:
-> +
-> +	case CRONOS_WDT_CTL_REG:
-> +	case CRONOS_WDT_CLR_REG:
-> +
-> +	case CRONOS_CPLD_UART_MUX_REG:
-> +	case CRONOS_CPLD_SWITCH_BOOT_FLASH_SELECT_REG:
-> +	case CRONOS_CPLD_SWITCH_RESET_CMD_REG:
-> +	case CRONOS_CPLD_BMC_BOOT_FLASH_SELECT_REG:
-> +	case CRONOS_CPLD_PAYLOAD_POWER_CTL_REG:
-> +		return true;
-> +	default:
-> +		return false;
-> +	}
-> +}
-> +
-> +static bool cronos_cpld_is_readable_reg(struct device *dev, unsigned int reg)
-> +{
-> +	switch (reg) {
-> +	case CRONOS_CPLD_REVISION_HIGH_REG:
-> +	case CRONOS_CPLD_REVISION_LOW_REG:
-> +	case CRONOS_CPLD_DEVICE_ID_HIGH_REG:
-> +	case CRONOS_CPLD_DEVICE_ID_LOW_REG:
-> +
-> +	case CRONOS_CPLD_BRIGHTNESS_RED_REG:
-> +	case CRONOS_CPLD_BRIGHTNESS_GREEN_REG:
-> +	case CRONOS_CPLD_BRIGHTNESS_BLUE_REG:
-> +	case CRONOS_LEDS_SMC_STATUS_REG:
-> +	case CRONOS_LEDS_SWITCH_STATUS_REG:
-> +	case CRONOS_LEDS_CCM1_STATUS_REG:
-> +	case CRONOS_LEDS_CCM2_STATUS_REG:
-> +	case CRONOS_LEDS_CCM3_STATUS_REG:
-> +	case CRONOS_LEDS_CCM4_STATUS_REG:
-> +	case CRONOS_LEDS_CCM_POWER_REG:
-> +
-> +	case CRONOS_WDT_CTL_REG:
-> +	case CRONOS_WDT_CLR_REG:
-> +
-> +	case CRONOS_CPLD_STATUS_2_REG:
-> +	case CRONOS_CPLD_UART_MUX_REG:
-> +	case CRONOS_CPLD_SWITCH_BOOT_FLASH_SELECT_REG:
-> +	case CRONOS_CPLD_SWITCH_RESET_CMD_REG:
-> +	case CRONOS_CPLD_BMC_BOOT_FLASH_SELECT_REG:
-> +	case CRONOS_CPLD_PAYLOAD_POWER_CTL_REG:
-> +
-> +	case CRONOS_CPLD_BMC_MAC_LOW_REG ... CRONOS_CPLD_BMC_MAC_HIGH_REG:
-> +		return true;
-> +	default:
-> +		return false;
-> +	}
-> +}
-> +
-> +static bool cronos_cpld_is_volatile_reg(struct device *dev, unsigned int reg)
-> +{
-> +	switch (reg) {
-> +	case CRONOS_CPLD_REVISION_HIGH_REG:
-> +	case CRONOS_CPLD_REVISION_LOW_REG:
-> +
-> +	case CRONOS_CPLD_SWITCH_BOOT_FLASH_SELECT_REG:
-> +	case CRONOS_CPLD_SWITCH_RESET_CMD_REG:
-> +	case CRONOS_CPLD_BMC_BOOT_FLASH_SELECT_REG:
-> +	case CRONOS_CPLD_PAYLOAD_POWER_CTL_REG:
-> +
-> +	case CRONOS_WDT_CTL_REG:
-> +	case CRONOS_WDT_CLR_REG:
-> +		return true;
-> +	default:
-> +		return false;
-> +	}
-> +}
-> +
-> +static struct regmap_config cronos_cpld_regmap_config = {
-> +	.reg_bits = 8,
-> +	.val_bits = 8,
-> +	.max_register = CRONOS_CPLD_REVISION_HIGH_REG,
-> +	.writeable_reg = cronos_cpld_is_writeable_reg,
-> +	.readable_reg = cronos_cpld_is_readable_reg,
-> +	.volatile_reg = cronos_cpld_is_volatile_reg,
-> +	.use_single_read = true,
-> +	.use_single_write = true,
-> +	.cache_type = REGCACHE_RBTREE,
-
-This is being phased out for the Maple Tree.
-
-> +};
-> +
-> +#ifdef CONFIG_OF
-
-These are ugly and shouldn't be required.
-
-> +static const struct of_device_id cronos_cpld_dt_ids[] = {
-> +	{ .compatible = "sony,cronos-cpld", },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, cronos_cpld_dt_ids);
-> +#endif
-> +
-> +static int sony_cronos_i2c_probe(struct i2c_client *i2c)
-> +{
-> +	struct sony_cronos_cpld *chip;
-
-Chip is wrong here.  This should be ddata.
-
-> +	const struct of_device_id *match;
-> +	const struct mfd_cell *cell;
-
-Why do you need this?
-
-> +	const struct regmap_config *config;
-> +	int cell_num;
-> +	int ret;
-> +
-> +	chip = devm_kzalloc(&i2c->dev, sizeof(*chip), GFP_KERNEL);
-> +	if (!chip)
-> +		return -ENOMEM;
-> +
-> +	if (i2c->dev.of_node) {
-> +		match = of_match_node(cronos_cpld_dt_ids, i2c->dev.of_node);
-
-Why are you doing this?
-
-> +		if (!match)
-> +			return -EINVAL;
-> +	}
-> +
-> +	i2c_set_clientdata(i2c, chip);
-
-Do this *after* the struct has been populated.
-
-> +	chip->dev = &i2c->dev;
-> +
-> +	cell = cronos_cpld_devs;
-> +	cell_num = ARRAY_SIZE(cronos_cpld_devs);
-> +	config = &cronos_cpld_regmap_config;
-
-This is bananas.  Why the intermediary variables?
-
-> +	chip->regmap = devm_regmap_init_i2c(i2c, config);
-> +	if (IS_ERR(chip->regmap)) {
-> +		ret = PTR_ERR(chip->regmap);
-> +		dev_err(chip->dev, "Failed to allocate register map: %d\n",
-> +			ret);
-> +		return ret;
-
-dev_err_probe()
-
-> +	}
-> +
-> +	ret = sony_cronos_get_device_type(chip);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = mfd_add_devices(chip->dev, PLATFORM_DEVID_NONE, cell,
-
-Why not AUTO?
-
-> +			      cell_num, NULL, 0, NULL);
-> +	if (ret) {
-> +		dev_err(chip->dev, "Cannot register child devices\n");
-> +		return ret;
-> +	}
-> +
-> +	/* Add sysfs */
-
-This doesn't add anything.
-
-> +	ret = sysfs_create_group(&chip->dev->kobj, &cronos_cpld_attr_group);
-> +	if (ret)
-> +		dev_err(chip->dev, "Failed to create sysfs entries\n");
-> +
-> +	return ret;
-> +}
-> +
-> +static void sony_cronos_i2c_remove(struct i2c_client *i2c)
-> +{
-> +	struct sony_cronos_cpld *chip = i2c_get_clientdata(i2c);
-> +
-> +	sysfs_remove_group(&chip->dev->kobj, &cronos_cpld_attr_group);
-> +	mfd_remove_devices(chip->dev);
-
-Use devm_* instead.
-
-> +}
-> +
-> +static struct i2c_driver sony_cronos_i2c_driver = {
-> +	.driver = {
-> +		.name = "sony-cronos",
-
-It's 'cpld' everywhere else.  Why the change of heart?
-
-> +		.of_match_table = of_match_ptr(cronos_cpld_dt_ids),
-> +	},
-> +	.probe    = sony_cronos_i2c_probe,
-> +	.remove   = sony_cronos_i2c_remove,
-> +};
-> +
-
-Remove this line.
-
-> +module_i2c_driver(sony_cronos_i2c_driver);
-> +
-> +MODULE_DESCRIPTION("Core device driver for sony Cronos CPLDs");
-
-First mention of Core too.
-
-"Sony"
-
-> +MODULE_AUTHOR("Raptor Engineering, LLC <support@raptorengineering.com>");
-
-Your 'support' department did not author this driver.
-
-> +MODULE_LICENSE("GPL");
-> diff --git a/include/linux/mfd/sony/cronos/core.h b/include/linux/mfd/sony/cronos/core.h
-> new file mode 100644
-> index 000000000000..6f80b90af5ca
-> --- /dev/null
-> +++ b/include/linux/mfd/sony/cronos/core.h
-> @@ -0,0 +1,17 @@
-> +/* SPDX-License-Identifier: GPL-2.0-or-later */
-> +/*
-> + * Copyright (C) 2015-2017  Dialog Semiconductor
-> + * Copyright (C) 2022  Raptor Engineering, LLC
-> + */
-> +
-> +#ifndef __MFD_SONY_CRONOS_CORE_H__
-> +#define __MFD_SONY_CRONOS_CORE_H__
-> +
-> +#include <linux/mfd/sony/cronos/registers.h>
-> +
-> +struct sony_cronos_cpld {
-> +	struct device *dev;
-> +	struct regmap *regmap;
-> +};
-> +
-> +#endif /* __MFD_SONY_CRONOS_H__ */
-> diff --git a/include/linux/mfd/sony/cronos/registers.h b/include/linux/mfd/sony/cronos/registers.h
-> new file mode 100644
-> index 000000000000..2bcc3cf17fe5
-> --- /dev/null
-> +++ b/include/linux/mfd/sony/cronos/registers.h
-> @@ -0,0 +1,59 @@
-> +/* SPDX-License-Identifier: GPL-2.0-or-later */
-> +/*
-> + * Copyright (C) 2015-2017  Dialog Semiconductor
-> + * Copyright (C) 2022  Raptor Engineering, LLC
-> + */
-> +
-> +#ifndef __SONY_CRONOS_H__
-> +#define __SONY_CRONOS_H__
-> +
-> +#define CRONOS_CPLD_DEVICE_ID		0x0134
-> +
-> +/*
-> + * Registers and control masks / values
-> + */
-> +
-> +#define CRONOS_CPLD_REVISION_HIGH_REG			0x73
-> +#define CRONOS_CPLD_REVISION_LOW_REG			0x72
-> +#define CRONOS_CPLD_DEVICE_ID_HIGH_REG			0x71
-> +#define CRONOS_CPLD_DEVICE_ID_LOW_REG			0x70
-> +
-> +#define CRONOS_CPLD_BRIGHTNESS_RED_REG			0x17
-> +#define CRONOS_CPLD_BRIGHTNESS_GREEN_REG		0x18
-> +#define CRONOS_CPLD_BRIGHTNESS_BLUE_REG			0x19
-> +
-> +#define CRONOS_CPLD_LEDS_BRIGHTNESS_SET_MASK		0x7F
-> +#define CRONOS_LEDS_MAX_BRIGHTNESS			0x7F
-> +
-> +#define CRONOS_LEDS_SMC_STATUS_REG			0x10
-> +#define CRONOS_LEDS_SWITCH_STATUS_REG			0x11
-> +
-> +#define CRONOS_LEDS_CCM1_STATUS_REG			0x15
-> +#define CRONOS_LEDS_CCM2_STATUS_REG			0x13
-> +#define CRONOS_LEDS_CCM3_STATUS_REG			0x12
-> +#define CRONOS_LEDS_CCM4_STATUS_REG			0x14
-> +
-> +#define CRONOS_LEDS_CCM_POWER_REG			0x16
-> +
-> +#define CRONOS_CPLD_UART_MUX_REG			0x0e
-> +#define CRONOS_CPLD_SWITCH_BOOT_FLASH_SELECT_REG	0x00
-> +#define CRONOS_CPLD_SWITCH_RESET_CMD_REG		0x01
-> +#define CRONOS_CPLD_BMC_BOOT_FLASH_SELECT_REG		0x02
-> +#define CRONOS_CPLD_PAYLOAD_POWER_CTL_REG		0x0a
-> +#define CRONOS_CPLD_BMC_MAC_LOW_REG			0x30
-> +#define CRONOS_CPLD_BMC_MAC_HIGH_REG			0x35
-> +
-> +#define CRONOS_WDT_CLR_REG		0x03
-> +#define CRONOS_WDT_CTL_REG		0x0c
-> +
-> +#define CRONOS_CPLD_STATUS_2_REG	0x05
-> +
-> +#define CRONOS_WDT_CLR_VAL		0xc3
-> +#define CRONOS_WDT_ENABLE_MASK		0x80
-> +#define CRONOS_WDT_ENABLE_VAL		0x80
-> +#define CRONOS_WDT_DISABLE_VAL		0x00
-> +#define CRONOS_WDT_TIMEOUT_MASK		0x07
-> +#define CRONOS_WDT_CTL_RESET_VAL	0x00
-> +
-> +
-> +#endif /* __SONY_CRONOS_H__ */
-> --
-> 2.30.2
-> 
-
--- 
-Lee Jones [李琼斯]
 
