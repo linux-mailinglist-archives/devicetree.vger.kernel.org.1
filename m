@@ -1,153 +1,98 @@
-Return-Path: <devicetree+bounces-22827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22828-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74D8E808E6C
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 18:15:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32461808E74
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 18:18:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07C40281546
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 17:15:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DA5EC2813BC
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 17:18:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13EEF48CC0;
-	Thu,  7 Dec 2023 17:15:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Uryj+pFN"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 664FF48CDC;
+	Thu,  7 Dec 2023 17:18:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E745B45978;
-	Thu,  7 Dec 2023 17:15:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26AC0C433C8;
-	Thu,  7 Dec 2023 17:15:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701969328;
-	bh=/NZy2kf75bJHAraLx4pRXvEeYyqAAqrTseqq1t9//Z4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Uryj+pFN/z19lqg/7cEn4xKACWxpDihfcbOk/XC7lpDOzL+WX5z5VlVKW/3cvc+s4
-	 NnYm2WFY7rSGpPSslqD1J6I3Wpr1chYU20ZNrbVvFkl2993ctJ7h/psl1WiexVzUjD
-	 8YGtfVufiZ5612U10APSlebah/U99YbyjvEdSPCgjfnElDbT0UYOawzzgTCkqdmJ2m
-	 ET+dOj3b6u51JOd/VhhorhTNoRSjmL4GcqgEbKzGpzxePYQSnCSqCXQbtGaITrMvcA
-	 hKG2dqxFyUBsO9mrBFlgazs0xmbU8WLuGrDy5M8ZlrJTb9Ehndy63JZSb5e9thcvci
-	 dhCJS1KngpLuQ==
-Date: Thu, 7 Dec 2023 17:15:23 +0000
-From: Conor Dooley <conor@kernel.org>
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 669661716;
+	Thu,  7 Dec 2023 09:18:00 -0800 (PST)
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.96.2)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1rBI0L-00045r-2T;
+	Thu, 07 Dec 2023 17:17:42 +0000
+Date: Thu, 7 Dec 2023 17:17:38 +0000
+From: Daniel Golle <daniel@makrotopia.org>
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Maxime Ripard <mripard@kernel.org>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] media: dt-bindings: ov8856: decouple lanes and link
- frequency from driver
-Message-ID: <20231207-antics-tummy-5316e38477de@spud>
-References: <20231207142356.100453-1-krzysztof.kozlowski@linaro.org>
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Sabrina Dubroca <sd@queasysnail.net>,
+	Jianhui Zhao <zhaojh329@gmail.com>,
+	Chen-Yu Tsai <wenst@chromium.org>,
+	"Garmin.Chang" <Garmin.Chang@mediatek.com>,
+	Sam Shih <sam.shih@mediatek.com>,
+	Frank Wunderlich <frank-w@public-files.de>,
+	Dan Carpenter <dan.carpenter@linaro.org>,
+	James Liao <jamesjj.liao@mediatek.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org
+Subject: Re: [PATCH v3 2/4] dt-bindings: clock: mediatek: add clock
+ controllers of MT7988
+Message-ID: <ZXH-Mq_DlW5Oodwt@makrotopia.org>
+References: <23bc89d407e7797e97b703fa939b43bfe79296ce.1701823757.git.daniel@makrotopia.org>
+ <def05aac79ddff872d3e56698b736cb445f14116.1701823757.git.daniel@makrotopia.org>
+ <3e72bff6-9f4d-4cd4-845e-b065f1233ec6@collabora.com>
+ <ZXBs9GOOOlZrMuSW@makrotopia.org>
+ <64ee48fc-4f77-48cc-b235-c9fb2b10afc4@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="OSYC6STl8ciQnFnr"
-Content-Disposition: inline
-In-Reply-To: <20231207142356.100453-1-krzysztof.kozlowski@linaro.org>
-
-
---OSYC6STl8ciQnFnr
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <64ee48fc-4f77-48cc-b235-c9fb2b10afc4@linaro.org>
 
-On Thu, Dec 07, 2023 at 03:23:56PM +0100, Krzysztof Kozlowski wrote:
-> The data lanes and link frequency were set to match exiting Linux driver
-> limitations, however bindings should be independent of chosen Linux
-> driver support.
->=20
-> Decouple these properties from the driver to match what is actually
-> supported by the hardware.
->=20
-> This also fixes DTS example:
->=20
->   ov8856.example.dtb: camera@10: port:endpoint:link-frequencies:0: [36000=
-0000] is too short
->=20
-> Fixes: 066a94e28a23 ("media: dt-bindings: media: Use graph and video-inte=
-rfaces schemas")
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->=20
-> ---
->=20
-> Changes in v2:
-> 1. Rework approach: decouple bindings from driver instead of fixing
->    DTS example (Sakari)
+On Thu, Dec 07, 2023 at 06:03:44PM +0100, Krzysztof Kozlowski wrote:
+> On 06/12/2023 13:45, Daniel Golle wrote:
+> >>> +properties:
+> >>> +  compatible:
+> >>> +    items:
+> >>> +      - const: mediatek,mt7988-ethwarp
+> >>> +      - const: syscon
+> >>> +      - const: simple-mfd
+> >>
+> >> No, this is not a mfd, I say.
+> >>
+> >> Prove me wrong! :-)
+> > 
+> > https://github.com/dangowrt/linux/blob/mt7988-for-next/arch/arm64/boot/dts/mediatek/mt7988a.dtsi#L564
+> > 
+> > The 'simple-mfd' compatible is required to have the Linux
+> > kernel probe drivers for sub-nodes -- several drivers will act on
+> > the different aspects of the circuit exposed at this memory range.
+> > From what I understand, this is the definition of a MFD.
+> 
+> We know what is MFD, so no need to teach us. We expect you to look at
+> this. You do not have subnodes, so MFD is pointless. Showing DTSI means
+> nothing except that you did not test your bindings.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Sorry, I simply wasn't aware that this is what I'm being asked for.
+Is the device a MFD? - Yes it is.
 
-Cheers,
-Conor.
-
-> ---
->  .../devicetree/bindings/media/i2c/ov8856.yaml | 21 +++++++++++--------
->  1 file changed, 12 insertions(+), 9 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ov8856.yaml b/Do=
-cumentation/devicetree/bindings/media/i2c/ov8856.yaml
-> index 57f5e48fd8e0..71102a71cf81 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
-> @@ -67,19 +67,22 @@ properties:
-> =20
->          properties:
->            data-lanes:
-> -            description: |-
-> -              The driver only supports four-lane operation.
-> -            items:
-> -              - const: 1
-> -              - const: 2
-> -              - const: 3
-> -              - const: 4
-> +            oneOf:
-> +              - items:
-> +                  - const: 1
-> +              - items:
-> +                  - const: 1
-> +                  - const: 2
-> +              - items:
-> +                  - const: 1
-> +                  - const: 2
-> +                  - const: 3
-> +                  - const: 4
-> =20
->            link-frequencies:
->              description: Frequencies listed are driver, not h/w limitati=
-ons.
-> -            maxItems: 2
->              items:
-> -              enum: [ 360000000, 180000000 ]
-> +              enum: [ 1440000000, 720000000, 360000000, 180000000 ]
-> =20
->          required:
->            - link-frequencies
-> --=20
-> 2.34.1
->=20
-
---OSYC6STl8ciQnFnr
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZXH9qwAKCRB4tDGHoIJi
-0hyzAP9aNR0uAwPrTbmO+v6W10FcAGLU1UTX15VyHl6zTw/+zwD7BNYOXpLbWO6V
-oavXs+cccjna3l+eCE+iR8mzZg9kRgg=
-=+455
------END PGP SIGNATURE-----
-
---OSYC6STl8ciQnFnr--
+In this case the child node would be a 'ti,syscon-reset' which doesn't
+have YAML bindings. Should I include it as object without $ref or do I
+need to convert ti,syscon-reset.txt to yaml first, and then reference
+it as child node in the MFD?
 
