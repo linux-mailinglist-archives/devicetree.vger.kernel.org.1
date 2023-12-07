@@ -1,102 +1,89 @@
-Return-Path: <devicetree+bounces-22750-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22755-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C657C808A2B
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 15:17:45 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A18AB808A66
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 15:24:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 029BB1C20868
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 14:17:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D12AF1C209AE
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 14:23:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DE8041234;
-	Thu,  7 Dec 2023 14:17:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADAAA41C91;
+	Thu,  7 Dec 2023 14:23:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Hk6K+MZl"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ufIpyYe9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-x112a.google.com (mail-yw1-x112a.google.com [IPv6:2607:f8b0:4864:20::112a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF0921991
-	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 06:17:22 -0800 (PST)
-Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-5d3644ca426so7873607b3.1
-        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 06:17:22 -0800 (PST)
+Received: from mail-yw1-x1136.google.com (mail-yw1-x1136.google.com [IPv6:2607:f8b0:4864:20::1136])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBDB2387B
+	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 06:23:45 -0800 (PST)
+Received: by mail-yw1-x1136.google.com with SMTP id 00721157ae682-5d226f51f71so8004377b3.3
+        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 06:23:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701958642; x=1702563442; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701959025; x=1702563825; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=bsCcuGLo2J2I6ix+dXxn7SDWpUwAIlNPbaC4IivWIA8=;
-        b=Hk6K+MZlCrBOJJDwgyumD2wg5DmNF82fqjyHW0SDGmzbrpjcmTPpeNyXN8UEL9dk6E
-         naiq1grlAHhLSJvQlapEAxJojBDwtMLTjWcxCARqsVIlaTOPgNrlkReyzGG/37icBL8a
-         EfJ+APQPxxTaNOBp6HgOWpe8ZSSVc6LOwla/8oHCb7Ayv6FBkNrgh7hrLBS1cA5Ircqv
-         /bM5r1kztB9QQkaCG/yPkc8QjhAUSGd2PSE+scPTQlsarPjFlsK7wtwTCyAVAITRwBgS
-         kRjsqgr8GMz6vpcjf5ynIV1lirq5/LwiggWcYgqwpRS/i6AcaEXOJz+jfBaP1YplDL3I
-         XZBg==
+        bh=5PB4SuKTXi3vWYEdpE3Wie0ciKcRwFmeYXUm8A8+YSs=;
+        b=ufIpyYe9GDd8dEyr8zpspxsaSSvdm6Sy4L8Kj9Ep/ED62/5X5OJIqfxtE3ykFfrOZn
+         jigiBFCZt47BbnW2iaz50jbfjdSOymPM1Nrjin+gFuHZcJjLurpnUf4gv8JzwRLX1vgB
+         DkYY1nj8mSU+sLsb2bYeaejVhU+ppHb81ExNRvvmvFebmh9u9RTutU8YjPxtz5t0zRVy
+         eQUKbDXeIwkAa3Q2td9Baau4VbwePPY9rTyPonIn+NHtaLUUV/005f977N7GAiwG/uCh
+         mf6fLV4BBgtu28T77v0Qbzq4dgZx1JG/Cg85ZxRNrw3368D6HyLhsZ7Ng7g/uAHb4dWQ
+         BoJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701958642; x=1702563442;
+        d=1e100.net; s=20230601; t=1701959025; x=1702563825;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=bsCcuGLo2J2I6ix+dXxn7SDWpUwAIlNPbaC4IivWIA8=;
-        b=EJ6UzvGrbYn7mX8E3zwqjCH61KHAI5NA/kqvaJykInKklL4V+iC+hlgoJNTQsQpt7g
-         5JqRBLa9lpd57iAaYmLpLO4XV4+adNFoLLStphfHrPDJo3+b7yDxRFRT7aS8z09PaGBO
-         rhnB/WaIx5dGXfjLzbOmITUcBzFoUh1e3Uz5UUJ6vw+7HS2wdB+O58jX85xFijMfem2x
-         mmzdRt7sCXRA6XNRY4+bU3DaV1hjdUNU9p2Q0EvylPn7orvDzee7riAwn6cewGk8vUlz
-         efTW16j1g6CbRavh1MDDuq7jRslI9xCahZOGqYwyUSu+xqh+szMoEQ+UFfAuFgrTnKrb
-         GWpQ==
-X-Gm-Message-State: AOJu0YwhMWxghDvV5XYfqgHsiqudgLGt7EJh13QDgAkHe+NiXir1Hw7i
-	4wX7M2wFcIP26w2nG1FFEkjOTBncpcvaZgPMiQwmrA==
-X-Google-Smtp-Source: AGHT+IEBRQ4AL/XFd1LTfykGK68U5ukkx7PsrewbOYUyuvwi8DZONr9x4L/XICW9RDrsS4gnNobATSOqQIlk4jIDe8A=
-X-Received: by 2002:a05:690c:c0d:b0:59d:d85e:795d with SMTP id
- cl13-20020a05690c0c0d00b0059dd85e795dmr2665100ywb.51.1701958641855; Thu, 07
- Dec 2023 06:17:21 -0800 (PST)
+        bh=5PB4SuKTXi3vWYEdpE3Wie0ciKcRwFmeYXUm8A8+YSs=;
+        b=fMdA0Hc9XsLed1tkevRQflTFJqZlspdf4NF7ehmAgJhq4rWz/ciYJ9S3FyrY2+J2nj
+         uhBp+hWpAv3wwiT4+zGohXNTXzwpwUXoozRsvDESgb98w5wcz6FZyILHf+wYwTeCdNY3
+         hTh7mJdFDRLsWrgXLlK5tGRqaaRWCgefIjV4F4M4F0ulZkNuiuhIkEU+EKSWZNByq9BU
+         eZkgmYeUBAFS21IrmlVc1jdKebI+UaHm4EhL4aM7p6+rov1Z9yPRy/wsD+PABFxLlaig
+         QQprDqWBErC5BXFY1zxH25ZgXWWxjfi/0Iat20bDSCeFNLOfzf86gL6JqrvcrP7dNxct
+         qq9g==
+X-Gm-Message-State: AOJu0YwVnbxlD6yRXtv2ug/kWjye1UOw1P+vmMiA2+I8OS1vaOqAxpem
+	Xxy2pnAdvJjomfwkJXgNF61doeItXUc7MlvY+4djkA==
+X-Google-Smtp-Source: AGHT+IGfiFTM8GZxS753jZ+JwDwTvVydQKxJP11NtmOlQUFXtGLpBPuy36JI1NK10sQOiZkr4p3dfd2RnJT+bkeuq8Y=
+X-Received: by 2002:a81:b643:0:b0:5d7:1940:dd7a with SMTP id
+ h3-20020a81b643000000b005d71940dd7amr2399911ywk.80.1701959024962; Thu, 07 Dec
+ 2023 06:23:44 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231207063535.29546-1-axe.yang@mediatek.com>
-In-Reply-To: <20231207063535.29546-1-axe.yang@mediatek.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Thu, 7 Dec 2023 15:16:46 +0100
-Message-ID: <CAPDyKFoFexzhQ59O-v1X_QjgztYZbHfQtKqGKsHsnmU6Bf75YQ@mail.gmail.com>
-Subject: Re: [PATCH v4 0/2] mmc: mediatek: add support for 64-steps tuning
-To: Axe Yang <axe.yang@mediatek.com>
-Cc: Chaotian Jing <chaotian.jing@mediatek.com>, Rob Herring <robh+dt@kernel.org>, 
+References: <20231201-x1e80100-phy-combo-v1-0-6938ec41f3ac@linaro.org> <20231201-x1e80100-phy-combo-v1-2-6938ec41f3ac@linaro.org>
+In-Reply-To: <20231201-x1e80100-phy-combo-v1-2-6938ec41f3ac@linaro.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Thu, 7 Dec 2023 16:23:33 +0200
+Message-ID: <CAA8EJprAX3d03t2K1aj-ATW-+pcQH+WuwUNcXZDZj3A1wfRw4A@mail.gmail.com>
+Subject: Re: [PATCH 2/2] phy: qcom-qmp-combo: Add x1e80100 USB/DP combo phys
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Wenbin Mei <wenbin.mei@mediatek.com>, linux-mmc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	Project_Global_Chrome_Upstream_Group@mediatek.com
+	Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 
-On Thu, 7 Dec 2023 at 07:35, Axe Yang <axe.yang@mediatek.com> wrote:
+On Thu, 7 Dec 2023 at 15:16, Abel Vesa <abel.vesa@linaro.org> wrote:
 >
-> Change in v4:
-> - for SD/SDIO, tune 64 steps by default
-> - reduce some breaks to improve code readability
+> The X1E80100 has three copies of an USB/DP compbo PHY, add support for this
+> to the Qualcomm QMP PHY driver.
 >
-> Change in v3:
-> - use BIT_ULL() instead of BIT() to avoid potential left shift operations
->   that could cause exceed boundary problem on 32-bit platforms
->
-> Change in v2:
-> - move the change made to document to the front
-> - change mediatek,tune-step dts property type to enum for better scalability
->
-> Axe Yang (2):
->   dt-bindings: mmc: mtk-sd: add tuning steps related property
->   mmc: mediatek: extend number of tuning steps
->
->  .../devicetree/bindings/mmc/mtk-sd.yaml       |   9 +
->  drivers/mmc/host/mtk-sd.c                     | 158 ++++++++++++------
->  2 files changed, 119 insertions(+), 48 deletions(-)
->
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
+>  drivers/phy/qualcomm/phy-qcom-qmp-combo.c | 170 ++++++++++++++++++++++++++++++
+>  1 file changed, 170 insertions(+)
 
-Applied for next, thanks!
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Kind regards
-Uffe
+-- 
+With best wishes
+Dmitry
 
