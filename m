@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-22811-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22812-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6439808DD1
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 17:49:26 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FA94808E05
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 17:51:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 591C81F21444
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 16:49:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B8327B20CDB
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 16:51:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3171F481A7;
-	Thu,  7 Dec 2023 16:49:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0DCB481B2;
+	Thu,  7 Dec 2023 16:51:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="f0T3pQCH"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="p/2t4Bid"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 141E610EB
-	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 08:49:21 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-54c74b3cd4cso2474583a12.1
-        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 08:49:21 -0800 (PST)
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2D4B10D1
+	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 08:51:44 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-3316c6e299eso1178553f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 08:51:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701967759; x=1702572559; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701967903; x=1702572703; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=eAmoiBYH0QtvUcTXjpXH8egJv7xDYtCFaKPT0u+QyK4=;
-        b=f0T3pQCHC4Q3FBOzULzkNl91XGz7BBwYXgpEbGCp40j1FsSMLIYuF8tYq99FmR3gVD
-         NZDAt2+nkD8jsfts5vFW2besiggPesBi9jMK2Kpm5VDRz2zGX/goaovlPCn7RgIT/alt
-         VuQ0Jnzm/TJpoa+mlMw21OkTjbinF9pXAC40hJWjrMVnV8otgtb8EUlQZjEhgfUg5rRG
-         a1MvnU7EE91clEh7Lb13sIcke0bOeGwxvX2VrBLB8QbA6WYCYO0vKPPkOv8vb2fCNOlK
-         VEKSlEpAzUCmD4AvqRkhq1uxiOPGsJpmuE0O7OOVvckc0P9Ct6FGyp2Q3D1p4tlqdtRV
-         bGEQ==
+        bh=MTJKbj0b933pVvA0SKD+8CJvREMrR15XXO2SwQySs+M=;
+        b=p/2t4BidFsaA37fcMxQh8E6UiT1EGZZ2wFOL+NXCeS2wOSiQJW0BkNOAZKsbPoSdgd
+         XP3lg2Ted0wtmCAwYJjmgnrJqj+oS9NeLQnRSFv00c5SmSoJ2CijIcz8UtXJu55GeBNA
+         +epu7DkhPX3Hh4SLSuuyWJPpSkOqeSpuexBYVSzqVSTOKhoKjB0S3Wig79TKQxmOzl4j
+         qlM/uQO7vkGIlTVPUiFZAROaMgo8nue7N+8piUSQkNwZj9N6q32sf383olqsfgiQA1CK
+         CyB1uzOzA3juGSnBlHmc3v+PWQSyU6IGElHRh+Yz/qJWlop30rvcgQ2foHPF100bhPvC
+         molA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701967759; x=1702572559;
+        d=1e100.net; s=20230601; t=1701967903; x=1702572703;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eAmoiBYH0QtvUcTXjpXH8egJv7xDYtCFaKPT0u+QyK4=;
-        b=ZrHYjUwfMFmziQTGyQUMmyHG7EkE/sdFxkoTI2AltoSUW3Sk23DpYS8416pbhm0Hx6
-         yTOWZaViX7fufg3cmVcd0QUqFJ5Ik1J2m3YTxlkUsQrUJMnrusi/4rFP84URhV1v/gow
-         PyyqsFk9bHBCS5ZtVwf+/+RFXo+3O/XJrvM32TQBN2iwa1KGaClA2o3/ADlFIaPh8Aai
-         zm5uhHR5VMeeeQUnx1KvG0M49VimmyomDxI8B4gmpYdJY6OaacingztobD+NlSFoTt7V
-         aiANKKcG9Lt+EEYmk4QcBwJhguDPnFLateGPsQLX1Ec4g7WE+oLhAkyIhzJaxaPqN/3l
-         5cig==
-X-Gm-Message-State: AOJu0YzRpo8Z764mtRJpTw8sz3A+r+B4i1UzpOlRPDxAKc1Lrc5brCp9
-	Uxx9fVo+ZRtwpUuRss+JF0pp7w==
-X-Google-Smtp-Source: AGHT+IGUIsF+1lGU6p4QYRIZmGqqKSLmQYy32qe05/ZLmop0aLuriMSAiW1AB8ehtvly5WSXWz32zg==
-X-Received: by 2002:aa7:c392:0:b0:54b:523:b062 with SMTP id k18-20020aa7c392000000b0054b0523b062mr5795675edq.12.1701967759533;
-        Thu, 07 Dec 2023 08:49:19 -0800 (PST)
+        bh=MTJKbj0b933pVvA0SKD+8CJvREMrR15XXO2SwQySs+M=;
+        b=rbuRjA6VKbtF4i7SsXJ8ApuuLrJsnPyMJFE2LktYX+CdvQWZ6tf6XbsBA6CiM3hACN
+         x7BjEv5eEuAWdPLrt0QPWN0rVaJJTNiBZKs8iPWoqS/BAvNfumz2r92vq1jrvTTcwBsE
+         +hNCUIAlOC09BlzJp1vUGr13xDGj5gLrq4zFataGzTxhQoHvCnoJpKXXGCTQa4Mm+Kp+
+         4B3rJsPt6nLNWzKAZIFz9Y/ApqS1XwKlyu24e+LVSiXxnBohkxnMRlH+W0WRNA9+v5Fr
+         Dw/nB2RpZqaw8KpAx/FKIPW9rBIN2zk90gF0M2y8h4AEcTqsTAfv+sNiNqkFpHMaLS09
+         L1+A==
+X-Gm-Message-State: AOJu0YyMN8dpWzoL+8KCq8cE4/AR5zCxIVcogeIM52OHmBX0OHl+lyJz
+	lnruSrQZtUk17jsvuJ+ze9VnNQ==
+X-Google-Smtp-Source: AGHT+IEju5TiMO1C6IG9nW568NAPPyf2/ktL9H/BSo36Ki6bFlS84C+847X2dr30/xi4VDZ0qNgjiQ==
+X-Received: by 2002:adf:ce0e:0:b0:333:1449:cce0 with SMTP id p14-20020adfce0e000000b003331449cce0mr1561119wrn.20.1701967903167;
+        Thu, 07 Dec 2023 08:51:43 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id dc14-20020a056402310e00b0054cfb16de51sm22918edb.3.2023.12.07.08.49.17
+        by smtp.gmail.com with ESMTPSA id a16-20020adffad0000000b003333b8eb84fsm55270wrs.113.2023.12.07.08.51.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Dec 2023 08:49:19 -0800 (PST)
-Message-ID: <91637c20-0b04-4fc3-a58d-73fb25e830db@linaro.org>
-Date: Thu, 7 Dec 2023 17:49:17 +0100
+        Thu, 07 Dec 2023 08:51:42 -0800 (PST)
+Message-ID: <b6d3928c-75ba-47a3-93fc-a60729be2e35@linaro.org>
+Date: Thu, 7 Dec 2023 17:51:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,7 +62,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: phy: Add PHY_TYPE_EDP definition
+Subject: Re: [PATCH v3 2/3] dt-bindings: phy: qcom-edp: Add X1E80100 PHY
+ compatibles
 Content-Language: en-US
 To: Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
  Bjorn Andersson <andersson@kernel.org>,
@@ -76,7 +77,7 @@ To: Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
 Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20231122-phy-qualcomm-edp-x1e80100-v3-0-576fc4e9559d@linaro.org>
- <20231122-phy-qualcomm-edp-x1e80100-v3-1-576fc4e9559d@linaro.org>
+ <20231122-phy-qualcomm-edp-x1e80100-v3-2-576fc4e9559d@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -122,17 +123,59 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231122-phy-qualcomm-edp-x1e80100-v3-1-576fc4e9559d@linaro.org>
+In-Reply-To: <20231122-phy-qualcomm-edp-x1e80100-v3-2-576fc4e9559d@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 07/12/2023 11:52, Abel Vesa wrote:
-> Add definition for Embedded DisplayPort (eDP) phy type.
+> The Qualcomm X1E80100 platform has multiple PHYs that can work in both
+> eDP or DP mode, add compatibles for these. New platforms can use the
+> phy-type property to specify which mode the PHY should be configured in.
 > 
 > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 > ---
+>  Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
+> index 6566353f1a02..3341283577ce 100644
+> --- a/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
+> @@ -21,6 +21,7 @@ properties:
+>        - qcom,sc8180x-edp-phy
+>        - qcom,sc8280xp-dp-phy
+>        - qcom,sc8280xp-edp-phy
+> +      - qcom,x1e80100-dp-phy
+>  
+>    reg:
+>      items:
+> @@ -59,6 +60,20 @@ required:
+>  
+>  additionalProperties: false
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Please put it after allOf: block (IOW, allOf: before additonalProperties:)
+
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,x1e80100-dp-phy
+> +    then:
+> +      properties:
+> +        phy-type:
+> +          description: DP (default) or eDP type
+
+Properties must be defined in top-level "properties:" block. In
+allOf:if:then you only disallow them for other variants.
+
+> +          enum: [ 6, 13 ]
+> +          default: 6
+
+Anyway, I was thinking this should be rather argument to phy-cells.
+
 
 Best regards,
 Krzysztof
