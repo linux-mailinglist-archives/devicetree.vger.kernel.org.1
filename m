@@ -1,51 +1,80 @@
-Return-Path: <devicetree+bounces-22571-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22572-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0128808286
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 09:04:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 700E780828B
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 09:05:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8BC711F219F5
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 08:04:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A19241C20A21
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 08:05:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB3471E4A9;
-	Thu,  7 Dec 2023 08:04:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33A991E4A3;
+	Thu,  7 Dec 2023 08:05:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="piEgUb0B"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JiFlbeyN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m15.mail.163.com (m15.mail.163.com [45.254.50.219])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id A8517D73;
-	Thu,  7 Dec 2023 00:04:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:Subject:Date:Message-Id:MIME-Version:
-	Content-Type; bh=JoDdbs1Wrd/5YB34shDi+Os3xSvT1skK3pYG7RWo9/8=;
-	b=piEgUb0B0pJoPEnz/h//4n9PcqCUGXky7twxwiMouZIWRHdqNxC9ccnF56Vto+
-	Oy15MkxM67x+1DvFHTdhVJFkbhEAkwJ9/Z1y7J3PYgwMXKgm7ubTBAeXFMUrEEcQ
-	9UuSJi+LFrhQ9FGEXciAvpqUgzNHuyNoxzpIjxiOVAFfs=
-Received: from ProDesk.. (unknown [58.22.7.114])
-	by zwqz-smtp-mta-g2-3 (Coremail) with SMTP id _____wDnb9JAfHFlkGmwEw--.43967S2;
-	Thu, 07 Dec 2023 16:03:16 +0800 (CST)
-From: Andy Yan <andyshrk@163.com>
-To: heiko@sntech.de
-Cc: hjc@rock-chips.com,
-	dri-devel@lists.freedesktop.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	robh+dt@kernel.org,
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17FE0A9
+	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 00:05:30 -0800 (PST)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-54dccf89cfdso282205a12.0
+        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 00:05:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1701936328; x=1702541128; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2MNjE3SeFK0nJKBmYRJMHyr7VIIHtok8kfFl8JThkGU=;
+        b=JiFlbeyNZXlnUHs/vQrfeU8rOJxEOCjuUkCVxIKZzDMki8vYd+EHucX67OsuSq0oup
+         JKPuJ/Wz20WxJvDo1swi75XK043EvPd94nuVkjxlfteIL/MURHWaL/RNYNyVIwbSs2HG
+         AcwZzOWRAiBMmZo/JCXbEPwZux9OYZ8BEe3aeqOmPe/BI93Hm322mzQUDd7eSLqpGjc6
+         h1sQZUPua1FiQwYzkUXBta0L45ocEzr2iZR/+3o3tKx4jUy2D/zg3Yflwiy/Mtridgae
+         F7Ax+61Ybb5+uSnbB6wniJLh8NT/6z6bHqBjKVIo3Q8WZH/hDxt+MJWFQhcKvNAXGDiM
+         e31A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701936328; x=1702541128;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2MNjE3SeFK0nJKBmYRJMHyr7VIIHtok8kfFl8JThkGU=;
+        b=nYVsWqD7dKynQU+eZr+P3RVUQqwwwsUPjr3zKsNTOXj8Ddu1kUvYQZCV2wl7ILyGux
+         dI7+tpal9WMJkZzGZBZYw7yDYKLdzqZWlvyUznC7vi3z7OPWk1Sc8RIcxC+qFDB4ciuX
+         SxsSteLRJ9rw0qG6oiuflYapEgOqaYSIqdqhGN/lvgOX6tI7l83Rk1D4IGqMCcAxJRp/
+         4l7hSAxrw/gC5b2BNSfNFqK+iZOC8swU7Tt1Q8/Bj5pgXNsV1StWyCfcGBBSra3qgz7S
+         92pTZehsZcBH2kWUDPaBYSrbZoc4gVAUyU4Nao9PdsAz0CsWnaC9AVsjvBHnubKO1zTX
+         skrQ==
+X-Gm-Message-State: AOJu0Yz0+D9j17kuoURHN5qfjl9i9ZunSQG3ZXCODEbb6SJYy1Bl18ka
+	TNJijpnCzaAaAx9fhFCifU0=
+X-Google-Smtp-Source: AGHT+IHGExzVJI0JNZnzMpnT/zA2jwAajmSzwuoeAVX2qr0OGkYdXz3xEXI4GuL+DpEEhlHCu53vFA==
+X-Received: by 2002:a50:baed:0:b0:54b:5f8:2df with SMTP id x100-20020a50baed000000b0054b05f802dfmr1333854ede.9.1701936328261;
+        Thu, 07 Dec 2023 00:05:28 -0800 (PST)
+Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.gmail.com with ESMTPSA id a28-20020a509b5c000000b0054db2b5cd30sm480133edj.38.2023.12.07.00.05.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Dec 2023 00:05:27 -0800 (PST)
+From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= <nfraprado@collabora.com>,
+	Macpaul Lin <macpaul.lin@mediatek.com>,
+	=?UTF-8?q?Bernhard=20Rosenkr=C3=A4nzer?= <bero@baylibre.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Sean Wang <sean.wang@mediatek.com>,
 	devicetree@vger.kernel.org,
-	sebastian.reichel@collabora.com,
-	kever.yang@rock-chips.com,
-	chris.obbard@collabora.com,
-	Andy Yan <andy.yan@rock-chips.com>
-Subject: [PATCH v4 17/17] MAINTAINERS: Add myself as a reviewer for rockchip drm
-Date: Thu,  7 Dec 2023 16:03:02 +0800
-Message-Id: <20231207080302.652839-1-andyshrk@163.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231207075906.651771-1-andyshrk@163.com>
-References: <20231207075906.651771-1-andyshrk@163.com>
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH V3 1/3] dt-bindings: vendor-prefixes: add acelink
+Date: Thu,  7 Dec 2023 09:05:10 +0100
+Message-Id: <20231207080512.3688-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.35.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,41 +83,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wDnb9JAfHFlkGmwEw--.43967S2
-X-Coremail-Antispam: 1Uf129KBjvdXoWrKr1xtF17uw13Gr1fAF4rAFb_yoW3Krg_WF
-	WIq34kXr48CFZ8J3yvk3Z7G3sIyayFyan3Zrn7tw4kAa48XrWDtrZYkr1Ikrn8J3W8KrWq
-	vay3Ga43Cr43ujkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IUnjQ6PUUUUU==
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbBnBs-Xlghl3ZRWwABs1
 
-From: Andy Yan <andy.yan@rock-chips.com>
+From: Rafał Miłecki <rafal@milecki.pl>
 
-As I am familiar with all the details of vop2 display
-architecture, I can help review and test all related
-changes in this subsystem, so add my email here to make
-sure I get CC'd on rockchip drm changes.
+Acelink is a Taiwan company providing network products (routers, access
+points, switches, cameras and more).
 
-Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 ---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-(no changes since v1)
-
- MAINTAINERS | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 788be9ab5b73..e50c47c1d411 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -7158,6 +7158,7 @@ F:	include/linux/platform_data/shmob_drm.h
- DRM DRIVERS FOR ROCKCHIP
- M:	Sandy Huang <hjc@rock-chips.com>
- M:	Heiko Stübner <heiko@sntech.de>
-+M:	Andy Yan <andy.yan@rock-chips.com>
- L:	dri-devel@lists.freedesktop.org
- S:	Maintained
- T:	git git://anongit.freedesktop.org/drm/drm-misc
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 309b94c328c8..503a3caf6fc9 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -39,6 +39,8 @@ patternProperties:
+     description: ShenZhen Asia Better Technology Ltd.
+   "^acbel,.*":
+     description: Acbel Polytech Inc.
++  "^acelink,.*":
++    description: Acelink Technology Co., Ltd.
+   "^acer,.*":
+     description: Acer Inc.
+   "^acme,.*":
 -- 
-2.34.1
+2.35.3
 
 
