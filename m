@@ -1,171 +1,163 @@
-Return-Path: <devicetree+bounces-22746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77DB38089AA
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 14:59:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A54448089C5
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 15:02:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 99E491C20B63
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 13:59:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D58631C20B23
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 14:02:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC5CE40C18;
-	Thu,  7 Dec 2023 13:59:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6790A4122C;
+	Thu,  7 Dec 2023 14:02:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="p3zZRoWT"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="YPat5xI6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D2B310E4
-	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 05:59:25 -0800 (PST)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-a1d93da3eb7so111014166b.0
-        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 05:59:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701957563; x=1702562363; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=DPsXzDV6JwRzL+DkmxcZw8UT7hkVmirSZphsQjqScdM=;
-        b=p3zZRoWT+5BPMHhpA9+027npLYlo26hdVmd3vQBYeqXKUppEntlPVChWra3edq5l8f
-         mmdBkt6uphxOu10J9bE6lfsgsyNPLzjruhcnvacBn0eBX2bPg73zrt8lqXjQdieWB2jS
-         sAaVXVDTGB1ofbt/usg8cW94SlYXswG1XFmjzTv21pcK/OrovRMgvkAAuKtA/Pj+maLA
-         CFrTaLY/1MVS01L55Z7FZriYUWjjF7BkHWk1UIFhXCZPUUkW1xQkUlOvslrmlOU/Io3+
-         7JpEkxDUEV13iDLqY7xOd2b9XkIpDUDRZZAe6+RPHNlYODhtqJ01jmTLdhc6AIdlB00Q
-         qHiw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701957563; x=1702562363;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DPsXzDV6JwRzL+DkmxcZw8UT7hkVmirSZphsQjqScdM=;
-        b=xOIcXV01H0dnc5QbqyE0TT74rFO6xFkVit5+WQnzd/1e9vOKeMGxipvE6E3dVxpWB7
-         xuG+OPlWXmq7oBmKek0Fp9C2jfL0eaVQXW89E4mW3lng97iMgRwpviavOUygCCS1bnWQ
-         CHeBaNFV/hwUUZv6ObXdx5ZrgGF7HZ/gAcuvD31q7Q9VSahuBwYuza/LymFIGhVzUV2B
-         X74/ZZw7DajlPS0ECTv1nxHgwxogH6N3Wcdq1PSQ0Tg7CLHQkRKDyXJXyVZXb6rKQU35
-         DPp2VI4+CaYDifBfS58hCOhVa2Exj6O6GXoSYgeKIw0tWK/RQrMDdDnlattG7W8MJ6fv
-         vODQ==
-X-Gm-Message-State: AOJu0Yz7nICkxcDFevtLdUs6g7DNGlIazkc3n4AOZly6YZpvd0M5yjCk
-	LZC91L1jqeHAUsJOyspML8OOpw==
-X-Google-Smtp-Source: AGHT+IEGg1k3SmI1U5aCP2MjuWWrbFJl0vb0yBlDXRdmkLar6JTn7VT590KhI918BLH0/PGYLLYTaQ==
-X-Received: by 2002:a17:906:2b46:b0:9dd:7ccf:77f8 with SMTP id b6-20020a1709062b4600b009dd7ccf77f8mr1222275ejg.20.1701957563649;
-        Thu, 07 Dec 2023 05:59:23 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id l26-20020a170906a41a00b00a1da2c9b06asm862918ejz.42.2023.12.07.05.59.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Dec 2023 05:59:23 -0800 (PST)
-Message-ID: <1a5019f2-6b32-4960-b494-50434d7659f0@linaro.org>
-Date: Thu, 7 Dec 2023 14:59:22 +0100
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DCD5133;
+	Thu,  7 Dec 2023 06:02:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=KToobrjtx8bHUanPqkeSeV34L1vDgN1VtbwPowRALnQ=; b=YPat5xI6eBrv3+C+YkdTiRJB7M
+	oV0REbgHItkm73igzwfcTnvly7Uml7dcjpEamNWAeRjMqXBTQw3d3R1mRAv6+o4uQ+Lt6430a8xpK
+	KHKXt0HVslE/WcX7slKZPBjXLUh2E+cGPKoeVZ98lZvOvnZ0clx6LrhqkAX1LF9IH4BahjDSiRLNy
+	Qo7Yd7qdtyGvN4PU2IzoZpIHT2gT+yPoThPSt9ZK7CtZUedUCbQQyU6duXRZjkSavIdEf9xMZEEed
+	sHvGlelGiJhSW0txg4yAld9oZ8Aw5t0/2gbxYAeUQvkPUMHaiyolKBUPtw5TddSxwah2zQiY1/X/X
+	3B0wRJzA==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:38332)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1rBExQ-0001AL-0q;
+	Thu, 07 Dec 2023 14:02:28 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1rBExP-0003mi-5N; Thu, 07 Dec 2023 14:02:27 +0000
+Date: Thu, 7 Dec 2023 14:02:27 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Serge Semin <fancer.lancer@gmail.com>
+Cc: Andrew Lunn <andrew@lunn.ch>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Jose Abreu <Jose.Abreu@synopsys.com>,
+	Tomer Maimon <tmaimon77@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	openbmc@lists.ozlabs.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 09/16] net: mdio: Add Synopsys DW XPCS
+ management interface support
+Message-ID: <ZXHQcyZbXwesy0MV@shell.armlinux.org.uk>
+References: <20231205103559.9605-1-fancer.lancer@gmail.com>
+ <20231205103559.9605-10-fancer.lancer@gmail.com>
+ <20231205133205.3309ab91@device.home>
+ <cv6oo27tqbfst3jrgtkg7bcxmeshadtzoomn2xgnzh2arz4nwy@wq5k7oygto6n>
+ <15e6857a-b1d1-465a-945e-6f31edac62fb@lunn.ch>
+ <jqwhgthwxfge6y4nv5mdnojqu76m4pi2mt2x6kwqiuqntcwj67@mewh42eey5ny>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] media: dt-bindings: ov8856: add missing second link
- frequency in example
-Content-Language: en-US
-To: Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Maxime Ripard <mripard@kernel.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231205084835.15871-1-krzysztof.kozlowski@linaro.org>
- <ZW8DFbz3DqthC6fU@kekkonen.localdomain>
- <ZW8Mz3OWE1ELlFRC@kekkonen.localdomain>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ZW8Mz3OWE1ELlFRC@kekkonen.localdomain>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <jqwhgthwxfge6y4nv5mdnojqu76m4pi2mt2x6kwqiuqntcwj67@mewh42eey5ny>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On 05/12/2023 12:43, Sakari Ailus wrote:
-> On Tue, Dec 05, 2023 at 11:01:41AM +0000, Sakari Ailus wrote:
->> Hi Krzysztof,
->>
->> Thanks for the patch.
->>
->> On Tue, Dec 05, 2023 at 09:48:35AM +0100, Krzysztof Kozlowski wrote:
->>> Bindings and Linux driver require two link frequencies, so correct the
->>> example:
->>>
->>>   ov8856.example.dtb: camera@10: port:endpoint:link-frequencies:0: [360000000] is too short
->>>
->>> Fixes: 066a94e28a23 ("media: dt-bindings: media: Use graph and video-interfaces schemas")
->>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> ---
->>>  Documentation/devicetree/bindings/media/i2c/ov8856.yaml | 2 +-
->>>  1 file changed, 1 insertion(+), 1 deletion(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/media/i2c/ov8856.yaml b/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
->>> index 57f5e48fd8e0..bd1a55d767e7 100644
->>> --- a/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
->>> +++ b/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
->>> @@ -126,7 +126,7 @@ examples:
->>>                  wcam_out: endpoint {
->>>                      remote-endpoint = <&mipi_in_wcam>;
->>>                      data-lanes = <1 2 3 4>;
->>> -                    link-frequencies = /bits/ 64 <360000000>;
->>> +                    link-frequencies = /bits/ 64 <360000000 180000000>;
->>
->> There indeed seems to be a problem with the example as far as the bindings
->> are concerned but the primary issue seems to be in the bindings. Both of
->> these frequencies have significance from driver point of view only while
->> the device itself supports a (wider) range.
->>
->> How about removing maxItems and items from the bindings instead?
+On Thu, Dec 07, 2023 at 04:35:47PM +0300, Serge Semin wrote:
+> Hi Andrew
 > 
-> There's also a similar issue with lanes: 1, 2 and 4 are supported.
+> On Wed, Dec 06, 2023 at 06:01:30PM +0100, Andrew Lunn wrote:
+> > The compiler does a better job at deciding what to inline than we
+> > humans do. If you can show the compiler is doing it wrong, then we
+> > might accept them.
+> 
+> In general I would have agreed with you especially if the methods were
+> heavier than what they are:
+> static inline ptrdiff_t dw_xpcs_mmio_addr_format(int dev, int reg)
+> {               
+>         return FIELD_PREP(0x1f0000, dev) | FIELD_PREP(0xffff, reg);
+> }               
+>         
+> static inline u16 dw_xpcs_mmio_addr_page(ptrdiff_t csr)
+> {       
+>         return FIELD_GET(0x1fff00, csr);
+> }       
+> 
+> static inline ptrdiff_t dw_xpcs_mmio_addr_offset(ptrdiff_t csr)
+> {
+>         return FIELD_GET(0xff, csr);
+> }
+> 
+> > But in general, netdev does not like inline in .C
+> > file.
+> 
+> I see. I'll do as you say if you don't change your mind after my
+> reasoning below.
 
-ack
+This isn't Andrew saying it - you seem to have missed the detail that
+"netdev". If Andrew doesn't say it, then DaveM, Jakub or Paolo will.
 
-Best regards,
-Krzysztof
+Have you read the "Inline functions" section in
+Documentation/process/4.Coding.rst ?
 
+> > Also, nothing in MDIO is hot path, it spends a lot of time
+> > waiting for a slow bus. So inline is likely to just bloat the code for
+> > no gain.
+> 
+> I would have been absolutely with you in this matter, if we were talking
+> about a normal MDIO bus. In this case the devices are accessed over
+> the system IO-memory. So the bus isn't that slow.
+> 
+> Regarding the compiler knowing better when to inline the code. Here is
+> what it does with the methods above. If the inline keyword is
+> specified the compiler will inline all three methods. If the keyword isn't
+> specified then dw_xpcs_mmio_addr_format() won't be inlined while the rest
+> two functions will be. So the only part at consideration is the
+> dw_xpcs_mmio_addr_format() method since the rest of the functions are
+> inlined anyway.
+> 
+> The dw_xpcs_mmio_addr_format() function body is of the 5 asm
+> instructions length (on MIPS). Since the function call in this case
+> requires two jump instructions (to function and back), one instruction
+> to save the previous return address on stack and two instructions for
+> the function arguments, the trade-off of having non-inlined function
+> are those five additional instructions on each call. There are four
+> dw_xpcs_mmio_addr_format() calls. So here is what we get in both
+> cases:
+> inlined:     5 func ins * 4 calls = 20 ins
+> non-inlined: (5 func + 1 jump) ins + (1 jump + 1 ra + 2 arg) ins * 4 calls  = 22 ins
+> but seeing the return address needs to be saved anyway in the callers
+> here is what we finally get:
+> non-inlined: (5 func + 1 jump) ins + (1 jump + 2 arg) ins * 4 calls  = 18 ins
+> 
+> So unless I am mistaken in some of the aspects if we have the function
+> non-inlined then we'll save 2 instructions in the object file, but
+> each call would require additional _4_ instructions to execute (2
+> jumps and 2 arg creations), which makes the function execution almost
+> two times longer than it would have been should it was inlined.
+
+Rather than just focusing on instruction count, you also need to
+consider things like branch prediction, prefetching and I-cache
+usage. Modern CPUs don't execute instruction-by-instruction anymore.
+
+It is entirely possible that the compiler is making better choices
+even if it results in more jumps in the code.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
