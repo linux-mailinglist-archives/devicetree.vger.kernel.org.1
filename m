@@ -1,459 +1,146 @@
-Return-Path: <devicetree+bounces-22740-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22741-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1787808969
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 14:45:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82BCC808978
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 14:49:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4259BB20B0A
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 13:45:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B2D5A1C20B24
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 13:49:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B976540BFB;
-	Thu,  7 Dec 2023 13:45:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACC7440C02;
+	Thu,  7 Dec 2023 13:49:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="S82R8Hym"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DEDFD5E;
-	Thu,  7 Dec 2023 05:45:22 -0800 (PST)
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="393100094"
-X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; 
-   d="scan'208";a="393100094"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Dec 2023 05:45:22 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="915589071"
-X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; 
-   d="scan'208";a="915589071"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Dec 2023 05:45:19 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andy@kernel.org>)
-	id 1rBEgn-00000002c3h-1M7R;
-	Thu, 07 Dec 2023 15:45:17 +0200
-Date: Thu, 7 Dec 2023 15:45:17 +0200
-From: Andy Shevchenko <andy@kernel.org>
-To: TY Chang <tychang@realtek.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] Add GPIO support for Realtek DHC(Digital Home
- Center) RTD SoCs.
-Message-ID: <ZXHMbZRXLXGa_tq8@smile.fi.intel.com>
-References: <20231207100723.15015-1-tychang@realtek.com>
- <20231207100723.15015-3-tychang@realtek.com>
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 604DE10C2;
+	Thu,  7 Dec 2023 05:49:24 -0800 (PST)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B7DnDJu093419;
+	Thu, 7 Dec 2023 07:49:13 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1701956953;
+	bh=WfaUI8G9Kw7xD7ihODTl/rr/KLgCLlkJ948Ob9AdpUM=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=S82R8HymbzabOPl6K5p2XZefLK42I9gmZQg56r+XWlp4KgeFDdGeE14x6s3PNmnER
+	 wS0bomgdrW3EHScHeqltr1TR0Ga1muYuJVXRiJBq56xCDj2cglW/OgI5zdXp6NVqe/
+	 Kdx0mluCpWBlWAiRCqwcTbdIHO/2JiDKytyJSh+U=
+Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B7DnDjM012734
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 7 Dec 2023 07:49:13 -0600
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 7
+ Dec 2023 07:49:12 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 7 Dec 2023 07:49:12 -0600
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B7DnCf8020264;
+	Thu, 7 Dec 2023 07:49:12 -0600
+Date: Thu, 7 Dec 2023 07:49:12 -0600
+From: Nishanth Menon <nm@ti.com>
+To: Neha Malcom Francis <n-francis@ti.com>
+CC: "Kumar, Udit" <u-kumar1@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <a-nandan@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <eblanc@baylibre.com>,
+        <jneanne@baylibre.com>, <aseketeli@baylibre.com>,
+        <jpanis@baylibre.com>, <j-luthra@ti.com>, <vaishnav.a@ti.com>,
+        <hnagalla@ti.com>, <devarsht@ti.com>, <sjg@chromium.org>,
+        <trini@konsulko.com>
+Subject: Re: [PATCH v9 6/7] arm64: dts: ti: k3-j721e-sk: Add TPS6594 family
+ PMICs
+Message-ID: <20231207134912.olfhmcz5kkbx47wo@landmine>
+References: <20231205093439.2298296-1-n-francis@ti.com>
+ <20231205093439.2298296-7-n-francis@ti.com>
+ <20231205151647.vh6rlhro7qlwoerc@knelt>
+ <5e22f8cb-1004-4bcc-9bd0-2c30180ba10e@ti.com>
+ <cc2c3e97-e2c6-487b-91a5-c5f5fbe2c3bc@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <20231207100723.15015-3-tychang@realtek.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <cc2c3e97-e2c6-487b-91a5-c5f5fbe2c3bc@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Thu, Dec 07, 2023 at 06:07:23PM +0800, TY Chang wrote:
-> From: Tzuyi Chang <tychang@realtek.com>
+On 11:01-20231207, Neha Malcom Francis wrote:
+> Hi Nishanth, Udit,
 > 
-> This driver enables configuration of GPIO direction, GPIO values, GPIO
-> debounce settings and handles GPIO interrupts.
-
-Why gpio-regmap can't be used?
-
-...
-
-> +struct rtd_gpio_info {
-
-> +	u8			*dir_offset;
-> +	u8			num_dir;
-> +	u8			*dato_offset;
-> +	u8			num_dato;
-> +	u8			*dati_offset;
-> +	u8			num_dati;
-> +	u8			*ie_offset;
-> +	u8			num_ie;
-> +	u8			*dp_offset;
-> +	u8			num_dp;
-> +	u8			*gpa_offset;
-> +	u8			num_gpa;
-> +	u8			*gpda_offset;
-> +	u8			num_gpda;
-> +	u8			*deb_offset;
-> +	u8			num_deb;
-
-A lot of wasted space. Can you group pointers followed by u8 members?
-Note, use `pahole` tool to check the struct layout in C.
-
-> +};
-
-...
-
-> +struct rtd_gpio {
-> +	struct platform_device		*pdev;
-
-Why
-
-	struct device *dev;
-
-is not suffice?
-
-> +	const struct rtd_gpio_info	*info;
-> +	void __iomem			*base;
-> +	void __iomem			*irq_base;
-
-> +	struct gpio_chip		gpio_chip;
-
-Make this to be the first member, it might reduce some code
-(due to pointer arithmetics).
-
-> +	unsigned int			irqs[2];
-> +	spinlock_t			lock;
-> +};
-> +
-> +
-
-One blank line is enough.
-
-...
-
-> +static const struct rtd_gpio_info rtd_iso_gpio_info = {
-> +	.name		= "rtd_iso_gpio",
-> +	.type		= RTD_ISO_GPIO,
-> +	.gpio_base	= 0,
-> +	.num_gpios	= 82,
-> +	.dir_offset	= (u8 []){ 0x0, 0x18, 0x2c },
-> +	.num_dir	= 3,
-> +	.dato_offset	= (u8 []){ 0x4, 0x1c, 0x30 },
-> +	.num_dato	= 3,
-> +	.dati_offset	= (u8 []){ 0x8, 0x20, 0x34 },
-> +	.num_dati	= 3,
-> +	.ie_offset	= (u8 []){ 0xc, 0x24, 0x38 },
-> +	.num_ie		= 3,
-> +	.dp_offset	= (u8 []){ 0x10, 0x28, 0x3c },
-> +	.num_dp		= 3,
-> +	.gpa_offset	= (u8 []){ 0x8, 0xe0, 0x90 },
-> +	.num_gpa	= 3,
-> +	.gpda_offset	= (u8 []){ 0xc, 0xe4, 0x94 },
-> +	.num_gpda	= 3,
-> +	.deb_offset	= (u8 []){ 0x44, 0x48, 0x4c, 0x50, 0x54, 0x58, 0x5c,
-> +				   0x60, 0x64, 0x68, 0x6c },
-> +	.num_deb	= 11,
-
-Use ARRAY_SIZE() from array_size.h for all num_* assignments.
-
-> +};
-
-...
-
-> +static const struct rtd_gpio_info rtd1619_iso_gpio_info = {
-
-Ditto.
-
-> +};
-
-...
-
-> +static const struct rtd_gpio_info rtd1395_iso_gpio_info = {
-
-Ditto.
-
-> +};
-> +
-> +static const struct rtd_gpio_info rtd1295_misc_gpio_info = {
-
-Ditto.
-
-> +};
-> +
-> +static const struct rtd_gpio_info rtd1295_iso_gpio_info = {
-
-Ditto.
-
-> +};
-
-...
-
-> +static int rtd_gpio_dir_offset(struct rtd_gpio *data, unsigned int offset)
-> +{
-> +	int index = offset / 32;
-
-> +	if (index > data->info->num_dir)
-> +		return -EINVAL;
-
-When this conditional can be true?
-Same Q to the similar checks over the code.
-
-> +	return data->info->dir_offset[index];
-> +}
-
-...
-
-> +	if (data->info->type == RTD1295_ISO_GPIO) {
-> +		reg_offset = rtd_gpio_deb_offset(data, 0);
-> +		if (reg_offset < 0)
-> +			return reg_offset;
-> +		shift = 0;
-> +		deb_val += 1;
-> +		write_en = BIT(shift + 3);
-> +	} else if (data->info->type == RTD1295_MISC_GPIO) {
-> +		reg_offset = rtd_gpio_deb_offset(data, 0);
-> +		if (reg_offset < 0)
-> +			return reg_offset;
-> +		shift = (offset >> 4) * 4;
-> +		deb_val += 1;
-> +		write_en = BIT(shift + 3);
-> +	} else {
-> +		reg_offset = rtd_gpio_deb_offset(data, offset);
-> +		if (reg_offset < 0)
-> +			return reg_offset;
-> +		shift = (offset % 8) * 4;
-> +		write_en = BIT(shift + 3);
-> +	}
-
-You should probably have kind of chip_info constant structure that goes via
-driver_data and will have a callback, so, here you will call one and get all
-three at once:
- - register offset;
- - shift
- - updated debounce value
-
-...
-
-> +static int rtd_gpio_get_direction(struct gpio_chip *chip, unsigned int offset)
-> +{
-> +	struct rtd_gpio *data = gpiochip_get_data(chip);
-> +	unsigned long flags;
-> +	int reg_offset;
-> +	u32 val;
-> +
-> +	reg_offset = rtd_gpio_dir_offset(data, offset);
-> +	if (reg_offset < 0)
-> +		return reg_offset;
-
-> +	spin_lock_irqsave(&data->lock, flags);
-
-So, is your IRQ chip going to work with CONFIG_PREEMT_RT?
-
-> +	val = readl_relaxed(data->base + reg_offset);
-
-> +	val &= BIT(offset % 32);
-
-Why this is is under lock?
-
-> +	spin_unlock_irqrestore(&data->lock, flags);
-> +
-> +	return val ? GPIO_LINE_DIRECTION_OUT : GPIO_LINE_DIRECTION_IN;
-> +}
-
-...
-
-> +static int rtd_gpio_set_direction(struct gpio_chip *chip, unsigned int offset, bool out)
-> +{
-
-> +	unsigned long flags;
-
-
-> +	spin_lock_irqsave(&data->lock, flags);
-
-
-> +	spin_unlock_irqrestore(&data->lock, flags);
-
-Consider to utilise guard() / scoped_guard() from cleanup.h.
-
-> +}
-
-...
-
-> +static int rtd_gpio_direction_output(struct gpio_chip *chip, unsigned int offset, int value)
-> +{
-
-> +	chip->set(chip, offset, value);
-
-Why? Can't you call the function by its name directly?
-
-> +
-> +	return rtd_gpio_set_direction(chip, offset, true);
-> +}
-
-...
-
-> +static int rtd_gpio_get(struct gpio_chip *chip, unsigned int offset)
-> +{
-> +	struct rtd_gpio *data = gpiochip_get_data(chip);
-> +	int dir_reg_offset, dat_reg_offset;
-> +	unsigned long flags;
-> +	u32 val;
-> +
-> +	dir_reg_offset = rtd_gpio_dir_offset(data, offset);
-> +	if (dir_reg_offset < 0)
-> +		return dir_reg_offset;
-> +
-> +	spin_lock_irqsave(&data->lock, flags);
-> +
-> +	val = readl_relaxed(data->base + dir_reg_offset);
-> +	val &= BIT(offset % 32);
-
-> +	dat_reg_offset = val ?
-> +			 rtd_gpio_dato_offset(data, offset) : rtd_gpio_dati_offset(data, offset);
-
-Can't you have the direction be cached and already know which offset to use
-even before the lock?
-
-> +	val = readl_relaxed(data->base + dat_reg_offset);
-
-> +	val >>= offset % 32;
-> +	val &= 0x1;
-
-Why were these operations done under the lock?
-
-> +	spin_unlock_irqrestore(&data->lock, flags);
-> +
-> +	return val;
-> +}
-
-...
-
-> +static void rtd_gpio_irq_handle(struct irq_desc *desc)
-> +{
-> +	int (*get_reg_offset)(struct rtd_gpio *gpio, unsigned int offset);
-> +	struct rtd_gpio *data = irq_desc_get_handler_data(desc);
-> +	struct irq_domain *domain = data->gpio_chip.irq.domain;
-> +	struct irq_chip *chip = irq_desc_get_chip(desc);
-> +	unsigned int irq = irq_desc_get_irq(desc);
-> +	int reg_offset;
-> +	u32 status;
-
-> +	int hwirq;
-
-Why signed?
-
-> +	int i;
-> +	int j;
-> +
-> +	chained_irq_enter(chip, desc);
-
-> +	if (irq == data->irqs[0])
-> +		get_reg_offset = &rtd_gpio_gpa_offset;
-> +	else if (irq == data->irqs[1])
-> +		get_reg_offset = &rtd_gpio_gpda_offset;
-
-Can't it be done before entering into chained IRQ handler?
-
-> +	for (i = 0; i < data->info->num_gpios; i = i + 31) {
-
-31 ?!  In any case i += 31 is simply shorter.
-
-> +		reg_offset = get_reg_offset(data, i);
-> +		if (reg_offset < 0)
-> +			return;
-> +
-> +		status = readl_relaxed(data->irq_base + reg_offset) >> 1;
-> +		writel_relaxed(status << 1, data->irq_base + reg_offset);
-
-> +		while (status) {
-> +			j = __ffs(status);
-> +			status &= ~BIT(j);
-
-NIH for_each_set_bit()
-
-> +			hwirq = i + j;
-> +			if (rtd_gpio_check_ie(data, hwirq)) {
-> +				int girq = irq_find_mapping(domain, hwirq);
-> +				u32 irq_type = irq_get_trigger_type(girq);
-> +
-> +				if ((irq == data->irqs[1]) && ((irq_type & IRQ_TYPE_SENSE_MASK) !=
-> +					IRQ_TYPE_EDGE_BOTH))
-> +					break;
-
-> +				generic_handle_irq(girq);
-
-Why you can't use generic_handle_domain_irq()?
-
-> +			}
-> +		}
-> +	}
-> +
-> +	chained_irq_exit(chip, desc);
-> +}
-
-...
-
-> +	u32 mask = BIT(d->hwirq % 32);
-
-Use proper type and getter for hwirq. It's mentioned in the Documentation.
-
-...
-
-> +static const struct irq_chip rtd_gpio_irq_chip = {
-> +	.name = "rtd-gpio",
-> +	.irq_enable = rtd_gpio_enable_irq,
-> +	.irq_disable = rtd_gpio_disable_irq,
-> +	.irq_set_type = rtd_gpio_irq_set_type,
-
-> +	.flags = IRQCHIP_IMMUTABLE,
-
-Is it? You seems missed something to fulfill the immutability requirements.
-Please consult with the Documentation, it's all written there.
-
-> +};
-
-...
-
-> +static const struct of_device_id rtd_gpio_of_matches[] = {
-> +	{ .compatible = "realtek,rtd1295-misc-gpio", .data = &rtd1295_misc_gpio_info },
-> +	{ .compatible = "realtek,rtd1295-iso-gpio", .data = &rtd1295_iso_gpio_info },
-> +	{ .compatible = "realtek,rtd1395-iso-gpio", .data = &rtd1395_iso_gpio_info },
-> +	{ .compatible = "realtek,rtd1619-iso-gpio", .data = &rtd1619_iso_gpio_info },
-> +	{ .compatible = "realtek,rtd1319-iso-gpio", .data = &rtd_iso_gpio_info },
-> +	{ .compatible = "realtek,rtd1619b-iso-gpio", .data = &rtd_iso_gpio_info },
-> +	{ .compatible = "realtek,rtd1319d-iso-gpio", .data = &rtd_iso_gpio_info },
-> +	{ .compatible = "realtek,rtd1315e-iso-gpio", .data = &rtd_iso_gpio_info },
-
-> +	{ },
-
-No comma in the terminator entry.
-
-> +};
-> +MODULE_DEVICE_TABLE(of, rtd_gpio_of_matches);
-
-Move all these closer to its user (struct platform_device below).
-
-...
-
-> +	data->gpio_chip.label = dev_name(&pdev->dev);
-
-dev
-
-...
-
-> +	data->gpio_chip.fwnode = dev_fwnode(&pdev->dev);
-
-dev
-
-But why setting parent device is not suffice?
-
-...
-
-> +static int rtd_gpio_init(void)
-> +{
-> +	return platform_driver_register(&rtd_gpio_platform_driver);
-> +}
-
-> +
-
-Unneeded blank line.
-
-> +subsys_initcall(rtd_gpio_init);
-
-Why? Anything that is not on standard initcall must be justified.
+> On 07/12/23 10:12, Kumar, Udit wrote:
+> > 
+> > On 12/5/2023 8:46 PM, Nishanth Menon wrote:
+> > > On 15:04-20231205, Neha Malcom Francis wrote:
+> > > > This patch adds support for TPS6594 PMIC family on wakeup I2C0 bus.
+> > > > These devices provide regulators (bucks and LDOs), but also GPIOs, a
+> > > > RTC, a watchdog, an ESM (Error Signal Monitor) which monitors the SoC
+> > > > error output signal, and a PFSM (Pre-configurable Finite State Machine)
+> > > > which manages the operational modes of the PMIC.
+> > > > 
+> > > > Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
+> > > > ---
+> > > >   arch/arm64/boot/dts/ti/k3-j721e-sk.dts | 158 +++++++++++++++++++++++++
+> > > >   1 file changed, 158 insertions(+)
+> > > > 
+> > > > diff --git a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
+> > > > b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
+> > > > index 42fe8eee9ec8..e600825f7e78 100644
+> > > > --- a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
+> > > > +++ b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
+> > > > @@ -459,6 +459,13 @@ J721E_IOPAD(0x234, PIN_INPUT, 7) /* (U3)
+> > > > EXT_REFCLK1.GPIO1_12 */
+> > > >   };
+> > > >   &wkup_pmx0 {
+> > > > +    pmic_irq_pins_default: pmic-irq-default-pins {
+> > > > +        bootph-pre-ram;
+> > > > +        pinctrl-single,pins = <
+> > > > +            J721E_WKUP_IOPAD(0x0cc, PIN_INPUT, 7) /* (G28) WKUP_GPIO0_7 */
+> > > > +        >;
+> > > > +    };
+> > > > +
+> > > >       mcu_cpsw_pins_default: mcu-cpsw-default-pins {
+> > > >           pinctrl-single,pins = <
+> > > >               J721E_WKUP_IOPAD(0x84, PIN_INPUT, 0) /* (B24) MCU_RGMII1_RD0 */
+> > > > @@ -560,6 +567,157 @@ eeprom@51 {
+> > > >           compatible = "atmel,24c512";
+> > > >           reg = <0x51>;
+> > > >       };
+> > > > +
+> > > > +    tps659413: pmic@48 {
+> > > > +        bootph-pre-ram;
+> > > only for the leaf nodes. See
+> > > https://libera.irclog.whitequark.org/armlinux/2023-10-19
+> > 
+> > 
+> > AFAIK, please correct me, u-boot still needs in all nodes ?
+> > 
+> 
+> That's what I believe as well, is it better to have only the leaf nodes in
+> kernel and have U-Boot DTSI handle the parent bootph properties? If so I'll
+> send out v10 making change accordingly.
+> 
+
+Yes, u-boot today needs it in all nodes. BUT, u-boot needs to be fixed in
+line to obey the rules of the schema convention that Rob clarified in
+the discussion above.
+
+The other choice is NOT to introduce new bootph properties till u-boot
+is fixed up (this is also why I haven't sent out further updates for
+bootph properties for kernel in this cycle).
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
