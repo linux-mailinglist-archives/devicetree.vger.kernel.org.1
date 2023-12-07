@@ -1,151 +1,126 @@
-Return-Path: <devicetree+bounces-22886-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22887-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFC198091DA
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 20:48:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B0393809208
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 21:05:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B95628181A
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 19:47:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73A7F281511
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 20:05:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1B854F8AE;
-	Thu,  7 Dec 2023 19:47:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FA945024F;
+	Thu,  7 Dec 2023 20:05:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="H2TDXcAP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KsPhzS8o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C1841708
-	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 11:47:51 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-50bee606265so1240505e87.2
-        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 11:47:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701978469; x=1702583269; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=F3WBG6P4B+HyjaL3nLuFPklzfCpTWZN+xQc43lrIQPM=;
-        b=H2TDXcAPWkUd2ujORFK3iwG9wk1Yo3tvYorEwaLAlVtDZ1fZuYcowHfUIwEU15fscN
-         tk+hrigcneRsXH/hXSXk1D8m5d8FZT7FgK5YGnMEzLlHdtXKFlaeovEI8YPUtKwLNLwr
-         jkxRPLDbJqcPKa8heMbfq95MlwrvF4tW9zfgr5M9S5LSb9ccGBari8NF4/ekGDAVBkpN
-         0NqGvoBKl0FNSB0n3ZHudowS2fT44x4O9qLaFLUa6cgqPbNsngAW3HJz2GIx3pOlBQge
-         mefH/y/kYs4K0n7eEv6pCUYmrBkNOD6idQp5lAhpjPPc5Y/YO62hO/Y8tAmA1ex9xDD6
-         TTIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701978469; x=1702583269;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=F3WBG6P4B+HyjaL3nLuFPklzfCpTWZN+xQc43lrIQPM=;
-        b=GXbnNsMrD6kUuVkyTJz2Db7eL0LhK9zWTHd+26jhOOXaUgGNf584rR4WrJQjvy1QwW
-         1Pw3FSnJY9jrG8FITT2T85LqE2XW43R1WpPThqiX7KkEPm2EmUPTdLgC7vmpXRlB8e2c
-         rrgC7edpCGw02/gJnM4ZxNHX7PZGG1kfkSe59qvg7Un6VuOF7demomojzL89eaZmHNoS
-         uBBj1cY+3pj9w2HGaKaCd4VP0wXLE+2sa34Dw7SI1lk6qXmaOCoH7eLsmL23+ivc6qVk
-         +nMKQ8dMy1LMRqN6USBVITAWY6Nz+ALJ700chLKiuaEaDX38QeXY544kQwg0pmcQisGj
-         HSIA==
-X-Gm-Message-State: AOJu0Yy+/vkw6Rtx6zOghvblIXQdCDhhCIZyICJRUsyo0+/CN0IzngtC
-	g7O1HsqeeRJYfQG7LOf3/qyJQw==
-X-Google-Smtp-Source: AGHT+IFgIMwXaG8n6KMWKKM5krd/gIX+69hDdwcMcOcBO9EJj+QioXq77mIeRXK2/1tYXKcWKw5aAA==
-X-Received: by 2002:a05:6512:3b14:b0:50b:f51b:91f7 with SMTP id f20-20020a0565123b1400b0050bf51b91f7mr2494005lfv.103.1701978469277;
-        Thu, 07 Dec 2023 11:47:49 -0800 (PST)
-Received: from [172.30.205.181] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id i38-20020a0565123e2600b0050bf789f501sm29324lfv.11.2023.12.07.11.47.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Dec 2023 11:47:48 -0800 (PST)
-Message-ID: <44c36d3f-dacd-4ca9-b92a-5febdc5d1340@linaro.org>
-Date: Thu, 7 Dec 2023 20:47:46 +0100
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F88242A9C;
+	Thu,  7 Dec 2023 20:05:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7B9DC433C8;
+	Thu,  7 Dec 2023 20:05:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701979527;
+	bh=ZuLoiw1NYaGVr+kvGugUqnXifo1hF2+hifnZiWIiLTE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KsPhzS8oX8ysFJbnZcJ+Sln6ssoSMvSW4666hoJMvzrpoBYgDKy876U+qPa+DO7lc
+	 wSYZ2KxMCbuRxto9EmMWEGrQEExy28T8b6C50EOyaxdadUImJ+1BGr9JB3vfrqRN2x
+	 6Nz77vSGqPDje88XjsYkH1VqdjkyOQi5NZLMNch7FlFjM50GHoQdfBZSZBY5YXtCS7
+	 hxdMGu+amX57xLlXgDWRBZa36KwIguVoXe49LdnuPcmbQ7CP5Zgm3d1ZymOAsmkUgM
+	 K1Fbdzlq4lXU6eQzoZsx+h1Q0J9ZJiUyF9P8oCc0EPPA4LFRW2NV08KZ7RriIpli9r
+	 7h4Hqx9UJZX/g==
+Date: Thu, 7 Dec 2023 20:05:21 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v3 5/5] hwmon: Add support for Amphenol ChipCap 2
+Message-ID: <04475f91-bdce-4677-894c-74c2bb8233d9@sirena.org.uk>
+References: <20231020-topic-chipcap2-v3-0-5b3bb50a5f0b@gmail.com>
+ <20231020-topic-chipcap2-v3-5-5b3bb50a5f0b@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: sm8650: Add DisplayPort device
- nodes
-Content-Language: en-US
-To: Neil Armstrong <neil.armstrong@linaro.org>,
- Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Kuogee Hsieh <quic_khsieh@quicinc.com>,
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231207-topic-sm8650-upstream-dp-v1-0-b762c06965bb@linaro.org>
- <20231207-topic-sm8650-upstream-dp-v1-3-b762c06965bb@linaro.org>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20231207-topic-sm8650-upstream-dp-v1-3-b762c06965bb@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="skxAi3lmk/Z+j09s"
+Content-Disposition: inline
+In-Reply-To: <20231020-topic-chipcap2-v3-5-5b3bb50a5f0b@gmail.com>
+X-Cookie: Two is company, three is an orgy.
 
 
+--skxAi3lmk/Z+j09s
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On 12/7/23 17:37, Neil Armstrong wrote:
-> Declare the displayport controller present on the Qualcomm SM8650 SoC
-> and connected to the USB3/DP Combo PHY.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
-[...]
+On Thu, Dec 07, 2023 at 08:44:55PM +0100, Javier Carrasco wrote:
 
-> +				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-> +					 <&dispcc DISP_CC_MDSS_DPTX0_AUX_CLK>,
-> +					 <&dispcc DISP_CC_MDSS_DPTX0_LINK_CLK>,
-> +					 <&dispcc DISP_CC_MDSS_DPTX0_LINK_INTF_CLK>,
-> +					 <&dispcc DISP_CC_MDSS_DPTX0_PIXEL0_CLK>;
-What about PIXEL1 clocks?
-
-[...]
-
-> +					opp-162000000 {
-> +						opp-hz = /bits/ 64 <162000000>;
-> +						required-opps = <&rpmhpd_opp_low_svs_d1>;
-> +					};
+> +       if (regulator_is_enabled(data->regulator)) {
+> +               ret = regulator_disable(data->regulator);
+> +               if (ret < 0)
+> +                       return ret;
 > +
-> +					opp-270000000 {
-> +						opp-hz = /bits/ 64 <270000000>;
-> +						required-opps = <&rpmhpd_opp_low_svs>;
-> +					};
+> +               msleep(CC2_POWER_CYCLE_MS); /* ensure a clean power cycle */
+> +       }
 > +
-> +					opp-540000000 {
-> +						opp-hz = /bits/ 64 <540000000>;
-> +						required-opps = <&rpmhpd_opp_svs_l1>;
-> +					};
-> +
-> +					opp-810000000 {
-> +						opp-hz = /bits/ 64 <810000000>;
-> +						required-opps = <&rpmhpd_opp_nom>;
-> +					};
-> +				};
-> +			};
->   		};
->   
->   		dispcc: clock-controller@af00000 {
-> @@ -2996,8 +3086,8 @@ dispcc: clock-controller@af00000 {
->   				 <&mdss_dsi0_phy 1>,
->   				 <&mdss_dsi1_phy 0>,
->   				 <&mdss_dsi1_phy 1>,
-> -				 <0>, /* dp0 */
-> -				 <0>,
-> +				 <&usb_dp_qmpphy QMP_USB43DP_DP_LINK_CLK>,
-> +				 <&usb_dp_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>,
->   				 <0>, /* dp1 */
->   				 <0>,
->   				 <0>, /* dp2 */
-I noticed that this is not in line with your mdss patch [1]
-where there are only two DP INTFs available.. Unless all of
-these controllers can work using some sharing/only some at
-one time...
+> +       ret = regulator_enable(data->regulator);
+> +       if (ret < 0)
+> +               return ret;
 
-Konrad
+This is very buggy.  A consumer should only disable a regulator if it
+itself enabled that regulator (or it *requires* an exclusive regulator
+which isn't a good fit here), and there's no guarantee that disabling a
+regulator will actually result in a power off.  Either the board might
+not physically or through constraints permit the state to change or
+another user may have enabled the regulator.  The driver needs to keep
+track of if it enabled the regulator and only disable it as many times
+as it enabled it.
 
-[1] https://lore.kernel.org/all/20231030-topic-sm8650-upstream-mdss-v2-5-43f1887c82b8@linaro.org/
+For this usage with trying to bounce the power of the regulator you can
+keep track of the actual power state of the supply by listening to
+notifications, and should possibly just keep the regulator disabled when
+it's not actively in use (if no alarm is active or measurement in
+progress?).
+
+> +	data->regulator = devm_regulator_get_optional(dev, "vdd");
+
+Does the device *really* work without power?  The datasheet appears to
+suggest that the device has a non-optional supply Vdd
+
+   https://f.hubspotusercontent40.net/hubfs/9035299/Documents/AAS-916-127J-Telaire-ChipCap2-022118-web.pdf
+
+(there's also a Vcore pin but that appears to be for connecting a
+decoupling capacitor rather than a supply).
+
+In general _optional() should only be used for supplies which may be
+physically absent.
+
+--skxAi3lmk/Z+j09s
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmVyJYAACgkQJNaLcl1U
+h9ATSwf/VyDbhFanh416hXAS3NUyE1fY08GL8xlMZYwm6c+DHomBU3JouF6321Vc
+l3r+wim6gRhaVqclmbACV9Tew2hRz3UpOWzWt02GcYoR6UmMz/AvVMopvPVtIZdW
+ew+dcD+8L8NC1Ivl6chszVD01u0CHHPFdmVlvkASkKVhKXKtC3DdZm3E4aopZSgf
+PSS1iGmWasrxCpNgfet5ea/TIdlQlMEWwGkXrqMbJXEXO5VazmNMAhOsnwG2pB2e
+1gdcZKJtFRPl3D3HJ/BruMY0IcZAFMAs5F0MnR6Oy04EWxi8tq7AWsC1SpYbAiZ3
+mdJ8HCV04qAIPFr1iWDLBmyWvW1hAw==
+=hTAC
+-----END PGP SIGNATURE-----
+
+--skxAi3lmk/Z+j09s--
 
