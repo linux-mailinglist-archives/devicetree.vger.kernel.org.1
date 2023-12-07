@@ -1,128 +1,93 @@
-Return-Path: <devicetree+bounces-22772-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22773-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AACC808B1D
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 15:54:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 08E6A808B25
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 15:56:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A9E51C20756
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 14:54:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3951D1C20940
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 14:56:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7752744367;
-	Thu,  7 Dec 2023 14:54:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 208A644376;
+	Thu,  7 Dec 2023 14:56:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Kj5JYHCn"
+	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="AlggyfBF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D4DCAC;
-	Thu,  7 Dec 2023 06:54:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=HZuWJZJT56neic9r6wbg2bseNLCneoOJMEj6j6nq8xM=; b=Kj5JYHCnocsxjpn10612FX5k82
-	XXApSgMi9D34L1+NjQx1nN3zlGdK02Km1aTk/EkiYYLhdkgec/qv8lok6YMXxnHp4TtX8Gs6ewpJz
-	OBOfjFGgABnc8jObbYw1cJmwhFhU67WIg9z21M19wwSNEFZENt9jo6NX4gsrVfw66a70=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rBFlQ-002K3T-Qc; Thu, 07 Dec 2023 15:54:08 +0100
-Date: Thu, 7 Dec 2023 15:54:08 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Serge Semin <fancer.lancer@gmail.com>
-Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Jose Abreu <Jose.Abreu@synopsys.com>,
-	Tomer Maimon <tmaimon77@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	openbmc@lists.ozlabs.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 09/16] net: mdio: Add Synopsys DW XPCS
- management interface support
-Message-ID: <19ebc244-6d79-4e12-8ac4-fcf046106a07@lunn.ch>
-References: <20231205103559.9605-1-fancer.lancer@gmail.com>
- <20231205103559.9605-10-fancer.lancer@gmail.com>
- <20231205133205.3309ab91@device.home>
- <cv6oo27tqbfst3jrgtkg7bcxmeshadtzoomn2xgnzh2arz4nwy@wq5k7oygto6n>
- <15e6857a-b1d1-465a-945e-6f31edac62fb@lunn.ch>
- <jqwhgthwxfge6y4nv5mdnojqu76m4pi2mt2x6kwqiuqntcwj67@mewh42eey5ny>
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1573CD53;
+	Thu,  7 Dec 2023 06:55:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
+	:Date:subject:date:message-id:reply-to;
+	bh=vJ1F8jNsB0iRtVsiRgLfHCveWW7WlQfK/zT4iKBDaXY=; b=AlggyfBFFE2yvgkIArwKAA5t35
+	XAnevOW4jySw3NCegwHWlO0cN7Qwgla9FfLHNeJ7iedgLloXOHj0BVgo32jptMnOKdkW99B8ocH30
+	cMIAFS/0WBy+FVeneDJCFyqKtqZGlIT4lTUbTyNF4SAsldMkysbTiQ4BEeqdzSO/fI/s=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:46564 helo=pettiford)
+	by mail.hugovil.com with esmtpa (Exim 4.92)
+	(envelope-from <hugo@hugovil.com>)
+	id 1rBFn2-0006SD-MV; Thu, 07 Dec 2023 09:55:49 -0500
+Date: Thu, 7 Dec 2023 09:55:48 -0500
+From: Hugo Villeneuve <hugo@hugovil.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+ kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+ leoyang.li@nxp.com, robh@kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Hugo
+ Villeneuve <hvilleneuve@dimonoff.com>
+Message-Id: <20231207095548.d7257f34496e78bf2e8890ad@hugovil.com>
+In-Reply-To: <6035c4cc-afe1-456d-a4d0-16992da09a2e@linaro.org>
+References: <20231206160303.33185-1-hugo@hugovil.com>
+	<20231206160303.33185-3-hugo@hugovil.com>
+	<6035c4cc-afe1-456d-a4d0-16992da09a2e@linaro.org>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <jqwhgthwxfge6y4nv5mdnojqu76m4pi2mt2x6kwqiuqntcwj67@mewh42eey5ny>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Level: 
+Subject: Re: [PATCH 2/3] dt-bindings: arm: fsl: add Dimonoff gateway EVK
+ board
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 
-On Thu, Dec 07, 2023 at 04:35:47PM +0300, Serge Semin wrote:
-> Hi Andrew
-> 
-> On Wed, Dec 06, 2023 at 06:01:30PM +0100, Andrew Lunn wrote:
-> > > > You shouldn't use inline in C files, only in headers.
-> > > 
-> > > Could you please clarify why? I failed to find such requirement in the
-> > > coding style doc. Moreover there are multiple examples of using the
-> > > static-inline-ers in the C files in the kernel including the net/mdio
-> > > subsystem.
+On Thu, 7 Dec 2023 09:32:38 +0100
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+
+> On 06/12/2023 17:03, Hugo Villeneuve wrote:
+> > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 > > 
+> > Add DT compatible string for Dimonoff gateway EVK board based on a
+> > Variscite VAR-SOM-NANO with a NXP MX8MN nano CPU.
+> > 
+> > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > ---
+> >  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+> > index cd87d1afe7b7..e445d65d6f17 100644
+> > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> > @@ -1025,6 +1025,7 @@ properties:
+> >        - description: Variscite VAR-SOM-MX8MN based boards
+> >          items:
+> >            - enum:
+> > +              - dimonoff,dimonoff-gateway-evk # i.MX8MN Dimonoff Gateway EVK Board
 > 
-> > The compiler does a better job at deciding what to inline than we
-> > humans do. If you can show the compiler is doing it wrong, then we
-> > might accept them.
-> 
-> In general I would have agreed with you especially if the methods were
-> heavier than what they are:
-> static inline ptrdiff_t dw_xpcs_mmio_addr_format(int dev, int reg)
-> {               
->         return FIELD_PREP(0x1f0000, dev) | FIELD_PREP(0xffff, reg);
-> }               
->         
-> static inline u16 dw_xpcs_mmio_addr_page(ptrdiff_t csr)
-> {       
->         return FIELD_GET(0x1fff00, csr);
-> }       
-> 
-> static inline ptrdiff_t dw_xpcs_mmio_addr_offset(ptrdiff_t csr)
-> {
->         return FIELD_GET(0xff, csr);
-> }
-> 
-> > But in general, netdev does not like inline in .C
-> > file.
-> 
-> I see. I'll do as you say if you don't change your mind after my
-> reasoning below.
-> 
-> > Also, nothing in MDIO is hot path, it spends a lot of time
-> > waiting for a slow bus. So inline is likely to just bloat the code for
-> > no gain.
-> 
-> I would have been absolutely with you in this matter, if we were talking
-> about a normal MDIO bus. In this case the devices are accessed over
-> the system IO-memory. So the bus isn't that slow.
+> Company name appears twice, which is not really helpful. What's the true
+> name? Gateway EVK? Then keep only this.
 
-O.K, so its not slow. But how often is it used? PHYs tend to get
-polled once a second if interrupts are not used. But is the PCS also
-polled at the same time? Does this optimisation make a noticeable
-difference at once per second? Do you have a requirement that the
-system boots very very fast, and this optimisation makes a difference
-when there is heavier activity on the PCS at boot? Is the saving
-noticeable, when auto-neg takes a little over 1 second.
+Ok, will drop company name for V2.
 
-The best way to make your case is show real world requirements and
-benchmark results.
-
-	  Andrew
+Thank you,
+Hugo
 
