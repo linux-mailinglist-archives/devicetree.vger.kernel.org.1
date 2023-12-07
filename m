@@ -1,256 +1,102 @@
-Return-Path: <devicetree+bounces-22754-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22750-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26D0D808A3D
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 15:20:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C657C808A2B
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 15:17:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A5B291F213E5
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 14:20:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 029BB1C20868
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 14:17:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E92E4184A;
-	Thu,  7 Dec 2023 14:20:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DE8041234;
+	Thu,  7 Dec 2023 14:17:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="OWVdCebD"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Hk6K+MZl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 881F61720
-	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 06:17:56 -0800 (PST)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-a1cdeab6b53so210057366b.1
-        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 06:17:56 -0800 (PST)
+Received: from mail-yw1-x112a.google.com (mail-yw1-x112a.google.com [IPv6:2607:f8b0:4864:20::112a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF0921991
+	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 06:17:22 -0800 (PST)
+Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-5d3644ca426so7873607b3.1
+        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 06:17:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1701958660; x=1702563460; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dDRPnKJoLc1GtAiBypAVTx3BYAZsoeFq7nosJJNba1U=;
-        b=OWVdCebD/p18Sd/Tp2wK3WgVJNIfz1UJFwfoGgW7M0L3/LPqPD0EMPAYPaZxCHEiH2
-         JHVaEObB2Sl1eofaWVQTO4FCPhAHqZOUvwCcaVSQIT0N/G+suyhlCUxiS9hasJEh9CET
-         mxrsYtDOADRAWKN/WbdDui6yuWw4UW61E1/x8=
+        d=linaro.org; s=google; t=1701958642; x=1702563442; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=bsCcuGLo2J2I6ix+dXxn7SDWpUwAIlNPbaC4IivWIA8=;
+        b=Hk6K+MZlCrBOJJDwgyumD2wg5DmNF82fqjyHW0SDGmzbrpjcmTPpeNyXN8UEL9dk6E
+         naiq1grlAHhLSJvQlapEAxJojBDwtMLTjWcxCARqsVIlaTOPgNrlkReyzGG/37icBL8a
+         EfJ+APQPxxTaNOBp6HgOWpe8ZSSVc6LOwla/8oHCb7Ayv6FBkNrgh7hrLBS1cA5Ircqv
+         /bM5r1kztB9QQkaCG/yPkc8QjhAUSGd2PSE+scPTQlsarPjFlsK7wtwTCyAVAITRwBgS
+         kRjsqgr8GMz6vpcjf5ynIV1lirq5/LwiggWcYgqwpRS/i6AcaEXOJz+jfBaP1YplDL3I
+         XZBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701958660; x=1702563460;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dDRPnKJoLc1GtAiBypAVTx3BYAZsoeFq7nosJJNba1U=;
-        b=qOSRj3hZGwyTK0oo+bPcYxB+tM5S3zjGjw6cnn7q4Nbob2NKzVWagqQa+pPQz/pn61
-         wnUgYbK+bqCWAa/Vi1Ip5N7AeNp7U3J3UM/RAihPc54fdkFuyzXAQghsV9KAh1LLaGSM
-         YfmjFxK93GfjCbGcN4YreCYXExnKbT0PUbmFcBZuE2bnGKIy2Rx3Y+dTQzgzKQRBVKq2
-         UyrRvlSZS2GsTWmyxLtVMqZwYUKdxdzYXF4KLxTSOY4YasWKvrxiAeJHRrZfLxHz+BRk
-         FZNehxvm/Opmgsp2Q8OltNs0a/EjDSOCKJs9MpTaF8nZKCS87ltfFoTN1f7QLdPbP1C2
-         00Mg==
-X-Gm-Message-State: AOJu0YyqJwfejfeeo3PT+HfLjXXjJCzhuWY585Z+gwjp3VOY4UXxkdqL
-	P5GLsbUwhDpuMj5lQ1a/M5KTKw==
-X-Google-Smtp-Source: AGHT+IHXPvn6IvoGp2sVl4wkLbXJW425CzuDHmOPxPKav++5GtwF/E6tPuNYsgNO3z6V9+SGZIVv6g==
-X-Received: by 2002:a17:906:185:b0:a1d:d900:271b with SMTP id 5-20020a170906018500b00a1dd900271bmr2514800ejb.2.1701958660547;
-        Thu, 07 Dec 2023 06:17:40 -0800 (PST)
-Received: from localhost.localdomain ([2001:b07:6474:ebbf:9bf:959c:3c66:46c2])
-        by smtp.gmail.com with ESMTPSA id f24-20020a170906c09800b00a1e814b7155sm885421ejz.62.2023.12.07.06.17.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Dec 2023 06:17:40 -0800 (PST)
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To: linux-kernel@vger.kernel.org
-Cc: Amarula patchwork <linux-amarula@amarulasolutions.com>,
-	michael@amarulasolutions.com,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Peng Fan <peng.fan@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v5 10/10] arm64: dts: imx8mn-bsh-smm-s2/pro: add display setup
-Date: Thu,  7 Dec 2023 15:16:39 +0100
-Message-ID: <20231207141723.108004-11-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20231207141723.108004-1-dario.binacchi@amarulasolutions.com>
-References: <20231207141723.108004-1-dario.binacchi@amarulasolutions.com>
+        d=1e100.net; s=20230601; t=1701958642; x=1702563442;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bsCcuGLo2J2I6ix+dXxn7SDWpUwAIlNPbaC4IivWIA8=;
+        b=EJ6UzvGrbYn7mX8E3zwqjCH61KHAI5NA/kqvaJykInKklL4V+iC+hlgoJNTQsQpt7g
+         5JqRBLa9lpd57iAaYmLpLO4XV4+adNFoLLStphfHrPDJo3+b7yDxRFRT7aS8z09PaGBO
+         rhnB/WaIx5dGXfjLzbOmITUcBzFoUh1e3Uz5UUJ6vw+7HS2wdB+O58jX85xFijMfem2x
+         mmzdRt7sCXRA6XNRY4+bU3DaV1hjdUNU9p2Q0EvylPn7orvDzee7riAwn6cewGk8vUlz
+         efTW16j1g6CbRavh1MDDuq7jRslI9xCahZOGqYwyUSu+xqh+szMoEQ+UFfAuFgrTnKrb
+         GWpQ==
+X-Gm-Message-State: AOJu0YwhMWxghDvV5XYfqgHsiqudgLGt7EJh13QDgAkHe+NiXir1Hw7i
+	4wX7M2wFcIP26w2nG1FFEkjOTBncpcvaZgPMiQwmrA==
+X-Google-Smtp-Source: AGHT+IEBRQ4AL/XFd1LTfykGK68U5ukkx7PsrewbOYUyuvwi8DZONr9x4L/XICW9RDrsS4gnNobATSOqQIlk4jIDe8A=
+X-Received: by 2002:a05:690c:c0d:b0:59d:d85e:795d with SMTP id
+ cl13-20020a05690c0c0d00b0059dd85e795dmr2665100ywb.51.1701958641855; Thu, 07
+ Dec 2023 06:17:21 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20231207063535.29546-1-axe.yang@mediatek.com>
+In-Reply-To: <20231207063535.29546-1-axe.yang@mediatek.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Thu, 7 Dec 2023 15:16:46 +0100
+Message-ID: <CAPDyKFoFexzhQ59O-v1X_QjgztYZbHfQtKqGKsHsnmU6Bf75YQ@mail.gmail.com>
+Subject: Re: [PATCH v4 0/2] mmc: mediatek: add support for 64-steps tuning
+To: Axe Yang <axe.yang@mediatek.com>
+Cc: Chaotian Jing <chaotian.jing@mediatek.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Wenbin Mei <wenbin.mei@mediatek.com>, linux-mmc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	Project_Global_Chrome_Upstream_Group@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
 
-From: Michael Trimarchi <michael@amarulasolutions.com>
+On Thu, 7 Dec 2023 at 07:35, Axe Yang <axe.yang@mediatek.com> wrote:
+>
+> Change in v4:
+> - for SD/SDIO, tune 64 steps by default
+> - reduce some breaks to improve code readability
+>
+> Change in v3:
+> - use BIT_ULL() instead of BIT() to avoid potential left shift operations
+>   that could cause exceed boundary problem on 32-bit platforms
+>
+> Change in v2:
+> - move the change made to document to the front
+> - change mediatek,tune-step dts property type to enum for better scalability
+>
+> Axe Yang (2):
+>   dt-bindings: mmc: mtk-sd: add tuning steps related property
+>   mmc: mediatek: extend number of tuning steps
+>
+>  .../devicetree/bindings/mmc/mtk-sd.yaml       |   9 +
+>  drivers/mmc/host/mtk-sd.c                     | 158 ++++++++++++------
+>  2 files changed, 119 insertions(+), 48 deletions(-)
+>
 
-Add the display and nodes required for its operation.
+Applied for next, thanks!
 
-Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-
----
-
-(no changes since v3)
-
-Changes in v3:
-- Replace "synaptics,r63353" compatible with "syna,r63353", as
-  required by vendor-prefixes.yaml.
-- Squash patch [09/11] dt-bindings: ili9805: add compatible string for Tianma TM041XDHG01
-  into [07/11] dt-bindings: display: panel: Add Ilitek ili9805 panel controller.
-
-Changes in v2:
-- Adjust the mipi_dsi node based on the latest patches merged into
-  the mainline in the dtsi files it includes.
-- Added to the series the following patches:
-  - 0001 drm/bridge: Fix bridge disable logic
-  - 0002 drm/bridge: Fix a use case in the bridge disable logic
-  - 0003 samsung-dsim: enter display mode in the enable() callback
-  - 0004 drm: bridge: samsung-dsim: complete the CLKLANE_STOP setting
-
- .../freescale/imx8mn-bsh-smm-s2-common.dtsi   |   1 +
- .../freescale/imx8mn-bsh-smm-s2-display.dtsi  | 121 ++++++++++++++++++
- 2 files changed, 122 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-display.dtsi
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
-index 22a754d438f1..bbb07c650da9 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
-@@ -7,6 +7,7 @@
- /dts-v1/;
- 
- #include "imx8mn.dtsi"
-+#include "imx8mn-bsh-smm-s2-display.dtsi"
- 
- / {
- 	chosen {
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-display.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-display.dtsi
-new file mode 100644
-index 000000000000..f0a924cbe548
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-display.dtsi
-@@ -0,0 +1,121 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2021 BSH
-+ */
-+
-+/ {
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		pwms = <&pwm1 0 700000 0>;	/* 700000 ns = 1337Hz */
-+		brightness-levels = <0 100>;
-+		num-interpolated-steps = <100>;
-+		default-brightness-level = <50>;
-+		status = "okay";
-+	};
-+
-+	reg_3v3_dvdd: regulator-3v3-O3 {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_dvdd>;
-+		regulator-name = "3v3-dvdd-supply";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&gpio1 7 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	reg_v3v3_avdd: regulator-3v3-O2 {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_avdd>;
-+		regulator-name = "3v3-avdd-supply";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&gpio1 5 GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
-+&pwm1 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_bl>;
-+};
-+
-+&lcdif {
-+	status = "okay";
-+	assigned-clocks = <&clk IMX8MN_VIDEO_PLL1>;
-+	assigned-clock-rates = <594000000>;
-+};
-+
-+&pgc_dispmix {
-+	assigned-clocks = <&clk IMX8MN_CLK_DISP_AXI>, <&clk IMX8MN_CLK_DISP_APB>;
-+	assigned-clock-parents = <&clk IMX8MN_SYS_PLL2_1000M>, <&clk IMX8MN_SYS_PLL1_800M>;
-+	assigned-clock-rates = <500000000>, <200000000>;
-+};
-+
-+&mipi_dsi {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+	samsung,esc-clock-frequency = <20000000>;
-+	samsung,pll-clock-frequency = <12000000>;
-+
-+	panel@0 {
-+		compatible = "sharp,ls068b3sx02", "syna,r63353";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_panel>;
-+		reg = <0>;
-+
-+		backlight = <&backlight>;
-+		dvdd-supply = <&reg_3v3_dvdd>;
-+		avdd-supply = <&reg_v3v3_avdd>;
-+		reset-gpios = <&gpio4 29 GPIO_ACTIVE_HIGH>;
-+
-+		port {
-+			panel_in: endpoint {
-+				remote-endpoint = <&mipi_dsi_out>;
-+			};
-+		};
-+
-+	};
-+
-+	ports {
-+		port@1 {
-+			reg = <1>;
-+			mipi_dsi_out: endpoint {
-+				remote-endpoint = <&panel_in>;
-+			};
-+		};
-+	};
-+};
-+
-+&gpu {
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+
-+	/* This is for both PWM and voltage regulators for display */
-+	pinctrl_bl: pwm1grp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_GPIO1_IO01_PWM1_OUT	0x16
-+		>;
-+	};
-+
-+	pinctrl_panel: panelgrp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_SAI3_RXC_GPIO4_IO29	0x16	/* panel reset */
-+		>;
-+	};
-+
-+	pinctrl_dvdd: dvddgrp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_GPIO1_IO07_GPIO1_IO7	0x16	/* VDD 3V3_VO3 */
-+		>;
-+	};
-+
-+	pinctrl_avdd: avddgrp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_GPIO1_IO05_GPIO1_IO5	0x16	/* VDD 3V3_VO2 */
-+		>;
-+	};
-+};
--- 
-2.43.0
-
+Kind regards
+Uffe
 
