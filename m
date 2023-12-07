@@ -1,123 +1,459 @@
-Return-Path: <devicetree+bounces-22739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22740-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D48A808965
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 14:44:04 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1787808969
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 14:45:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E0072825D8
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 13:43:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4259BB20B0A
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 13:45:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32B3E40BF8;
-	Thu,  7 Dec 2023 13:43:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="XPQhOsEx"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B976540BFB;
+	Thu,  7 Dec 2023 13:45:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ADB2D54;
-	Thu,  7 Dec 2023 05:43:50 -0800 (PST)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B7DhhoH067822;
-	Thu, 7 Dec 2023 07:43:43 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1701956623;
-	bh=/FQO++Y5swUkctZSmrGpa24HWk4rIJeD9rWaIjxBst8=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=XPQhOsExUkD7inCNDDaCJb5As8nrZu+DUP/LgFIJyCEZkJwT8pT20p8AvoJJ7batB
-	 lcQKZkoOAfPgYhLSXwaa9Kfme+0CGbuXUrFDAcwSyb8AMDqgbsS8aKgXTwsehIkRiv
-	 f8kqx+t4JWzjWUhOppipQBB0na1+CQ7ULWcxw2do=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B7DhhDs074417
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 7 Dec 2023 07:43:43 -0600
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 7
- Dec 2023 07:43:43 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 7 Dec 2023 07:43:43 -0600
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B7Dhhmd037794;
-	Thu, 7 Dec 2023 07:43:43 -0600
-Date: Thu, 7 Dec 2023 07:43:43 -0600
-From: Nishanth Menon <nm@ti.com>
-To: "Anwar, Md Danish" <a0501179@ti.com>
-CC: MD Danish Anwar <danishanwar@ti.com>,
-        Vignesh Raghavendra
-	<vigneshr@ti.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        Tero Kristo <kristo@kernel.org>, <srk@ti.com>, <r-gunasekaran@ti.com>
-Subject: Re: [PATCH 2/3] arm64: dts: ti: k3-am642-evm: add ICSSG1 Ethernet
- support
-Message-ID: <20231207134343.ufiy2owik5kn3y2r@degrease>
-References: <20231207081917.340167-1-danishanwar@ti.com>
- <20231207081917.340167-3-danishanwar@ti.com>
- <20231207131818.3n7z64ve6izatlvs@unchanged>
- <f83f21c0-3f5f-4069-abab-2b47e371d3bd@ti.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DEDFD5E;
+	Thu,  7 Dec 2023 05:45:22 -0800 (PST)
+X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="393100094"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; 
+   d="scan'208";a="393100094"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Dec 2023 05:45:22 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="915589071"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; 
+   d="scan'208";a="915589071"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Dec 2023 05:45:19 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andy@kernel.org>)
+	id 1rBEgn-00000002c3h-1M7R;
+	Thu, 07 Dec 2023 15:45:17 +0200
+Date: Thu, 7 Dec 2023 15:45:17 +0200
+From: Andy Shevchenko <andy@kernel.org>
+To: TY Chang <tychang@realtek.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] Add GPIO support for Realtek DHC(Digital Home
+ Center) RTD SoCs.
+Message-ID: <ZXHMbZRXLXGa_tq8@smile.fi.intel.com>
+References: <20231207100723.15015-1-tychang@realtek.com>
+ <20231207100723.15015-3-tychang@realtek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <f83f21c0-3f5f-4069-abab-2b47e371d3bd@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20231207100723.15015-3-tychang@realtek.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On 18:58-20231207, Anwar, Md Danish wrote:
-[...]
-> >> +
-> >>  	memory@80000000 {
-> >>  		bootph-all;
-> >>  		device_type = "memory";
-> >> @@ -229,6 +234,70 @@ transceiver2: can-phy1 {
-> >>  		max-bitrate = <5000000>;
-> >>  		standby-gpios = <&exp1 9 GPIO_ACTIVE_HIGH>;
-> >>  	};
-> >> +
-> >> +	icssg1_eth: icssg1-eth {
-> >> +		compatible = "ti,am642-icssg-prueth";
-> >> +		pinctrl-names = "default";
-> >> +		pinctrl-0 = <&icssg1_rgmii1_pins_default>;
-> >> +
-> >> +		sram = <&oc_sram>;
-> >> +		ti,prus = <&pru1_0>, <&rtu1_0>, <&tx_pru1_0>, <&pru1_1>, <&rtu1_1>, <&tx_pru1_1>;
-> >> +		firmware-name = "ti-pruss/am65x-sr2-pru0-prueth-fw.elf",
-> >> +				"ti-pruss/am65x-sr2-rtu0-prueth-fw.elf",
-> >> +				"ti-pruss/am65x-sr2-txpru0-prueth-fw.elf",
-> >> +				"ti-pruss/am65x-sr2-pru1-prueth-fw.elf",
-> >> +				"ti-pruss/am65x-sr2-rtu1-prueth-fw.elf",
-> >> +				"ti-pruss/am65x-sr2-txpru1-prueth-fw.elf";
-> > 
-> > Umm... am65x??? is that a typo? I'd rather keep it am64x here and drop
-> > that sr2 thing. Tomorrow there will be a custom bug on am64 and then we
-> > will have to respin this again.
-> > 
+On Thu, Dec 07, 2023 at 06:07:23PM +0800, TY Chang wrote:
+> From: Tzuyi Chang <tychang@realtek.com>
 > 
-> No Nishant, this is not a typo. Both AM64x and AM65x use the same ICSSG
-> firmwares. We only have am65x-sr2-* firmwares and they are used by both
-> AM64x and AM65x and that is why I have kept the firmware-name here in dt
-> same as the files that we load on the pru cores.
-> 
+> This driver enables configuration of GPIO direction, GPIO values, GPIO
+> debounce settings and handles GPIO interrupts.
 
-SoCs are different. The hardware as a result is different as well. In
-fact, you do have a different compatible to distinguish the two. Some
-day, there will be an erratum that is different and we will be stuck
-with abi breakage across distros. So, unless you can explain why this
-scenario will never occur, I don't buy the argument this will survive
-long term.
+Why gpio-regmap can't be used?
+
+...
+
+> +struct rtd_gpio_info {
+
+> +	u8			*dir_offset;
+> +	u8			num_dir;
+> +	u8			*dato_offset;
+> +	u8			num_dato;
+> +	u8			*dati_offset;
+> +	u8			num_dati;
+> +	u8			*ie_offset;
+> +	u8			num_ie;
+> +	u8			*dp_offset;
+> +	u8			num_dp;
+> +	u8			*gpa_offset;
+> +	u8			num_gpa;
+> +	u8			*gpda_offset;
+> +	u8			num_gpda;
+> +	u8			*deb_offset;
+> +	u8			num_deb;
+
+A lot of wasted space. Can you group pointers followed by u8 members?
+Note, use `pahole` tool to check the struct layout in C.
+
+> +};
+
+...
+
+> +struct rtd_gpio {
+> +	struct platform_device		*pdev;
+
+Why
+
+	struct device *dev;
+
+is not suffice?
+
+> +	const struct rtd_gpio_info	*info;
+> +	void __iomem			*base;
+> +	void __iomem			*irq_base;
+
+> +	struct gpio_chip		gpio_chip;
+
+Make this to be the first member, it might reduce some code
+(due to pointer arithmetics).
+
+> +	unsigned int			irqs[2];
+> +	spinlock_t			lock;
+> +};
+> +
+> +
+
+One blank line is enough.
+
+...
+
+> +static const struct rtd_gpio_info rtd_iso_gpio_info = {
+> +	.name		= "rtd_iso_gpio",
+> +	.type		= RTD_ISO_GPIO,
+> +	.gpio_base	= 0,
+> +	.num_gpios	= 82,
+> +	.dir_offset	= (u8 []){ 0x0, 0x18, 0x2c },
+> +	.num_dir	= 3,
+> +	.dato_offset	= (u8 []){ 0x4, 0x1c, 0x30 },
+> +	.num_dato	= 3,
+> +	.dati_offset	= (u8 []){ 0x8, 0x20, 0x34 },
+> +	.num_dati	= 3,
+> +	.ie_offset	= (u8 []){ 0xc, 0x24, 0x38 },
+> +	.num_ie		= 3,
+> +	.dp_offset	= (u8 []){ 0x10, 0x28, 0x3c },
+> +	.num_dp		= 3,
+> +	.gpa_offset	= (u8 []){ 0x8, 0xe0, 0x90 },
+> +	.num_gpa	= 3,
+> +	.gpda_offset	= (u8 []){ 0xc, 0xe4, 0x94 },
+> +	.num_gpda	= 3,
+> +	.deb_offset	= (u8 []){ 0x44, 0x48, 0x4c, 0x50, 0x54, 0x58, 0x5c,
+> +				   0x60, 0x64, 0x68, 0x6c },
+> +	.num_deb	= 11,
+
+Use ARRAY_SIZE() from array_size.h for all num_* assignments.
+
+> +};
+
+...
+
+> +static const struct rtd_gpio_info rtd1619_iso_gpio_info = {
+
+Ditto.
+
+> +};
+
+...
+
+> +static const struct rtd_gpio_info rtd1395_iso_gpio_info = {
+
+Ditto.
+
+> +};
+> +
+> +static const struct rtd_gpio_info rtd1295_misc_gpio_info = {
+
+Ditto.
+
+> +};
+> +
+> +static const struct rtd_gpio_info rtd1295_iso_gpio_info = {
+
+Ditto.
+
+> +};
+
+...
+
+> +static int rtd_gpio_dir_offset(struct rtd_gpio *data, unsigned int offset)
+> +{
+> +	int index = offset / 32;
+
+> +	if (index > data->info->num_dir)
+> +		return -EINVAL;
+
+When this conditional can be true?
+Same Q to the similar checks over the code.
+
+> +	return data->info->dir_offset[index];
+> +}
+
+...
+
+> +	if (data->info->type == RTD1295_ISO_GPIO) {
+> +		reg_offset = rtd_gpio_deb_offset(data, 0);
+> +		if (reg_offset < 0)
+> +			return reg_offset;
+> +		shift = 0;
+> +		deb_val += 1;
+> +		write_en = BIT(shift + 3);
+> +	} else if (data->info->type == RTD1295_MISC_GPIO) {
+> +		reg_offset = rtd_gpio_deb_offset(data, 0);
+> +		if (reg_offset < 0)
+> +			return reg_offset;
+> +		shift = (offset >> 4) * 4;
+> +		deb_val += 1;
+> +		write_en = BIT(shift + 3);
+> +	} else {
+> +		reg_offset = rtd_gpio_deb_offset(data, offset);
+> +		if (reg_offset < 0)
+> +			return reg_offset;
+> +		shift = (offset % 8) * 4;
+> +		write_en = BIT(shift + 3);
+> +	}
+
+You should probably have kind of chip_info constant structure that goes via
+driver_data and will have a callback, so, here you will call one and get all
+three at once:
+ - register offset;
+ - shift
+ - updated debounce value
+
+...
+
+> +static int rtd_gpio_get_direction(struct gpio_chip *chip, unsigned int offset)
+> +{
+> +	struct rtd_gpio *data = gpiochip_get_data(chip);
+> +	unsigned long flags;
+> +	int reg_offset;
+> +	u32 val;
+> +
+> +	reg_offset = rtd_gpio_dir_offset(data, offset);
+> +	if (reg_offset < 0)
+> +		return reg_offset;
+
+> +	spin_lock_irqsave(&data->lock, flags);
+
+So, is your IRQ chip going to work with CONFIG_PREEMT_RT?
+
+> +	val = readl_relaxed(data->base + reg_offset);
+
+> +	val &= BIT(offset % 32);
+
+Why this is is under lock?
+
+> +	spin_unlock_irqrestore(&data->lock, flags);
+> +
+> +	return val ? GPIO_LINE_DIRECTION_OUT : GPIO_LINE_DIRECTION_IN;
+> +}
+
+...
+
+> +static int rtd_gpio_set_direction(struct gpio_chip *chip, unsigned int offset, bool out)
+> +{
+
+> +	unsigned long flags;
+
+
+> +	spin_lock_irqsave(&data->lock, flags);
+
+
+> +	spin_unlock_irqrestore(&data->lock, flags);
+
+Consider to utilise guard() / scoped_guard() from cleanup.h.
+
+> +}
+
+...
+
+> +static int rtd_gpio_direction_output(struct gpio_chip *chip, unsigned int offset, int value)
+> +{
+
+> +	chip->set(chip, offset, value);
+
+Why? Can't you call the function by its name directly?
+
+> +
+> +	return rtd_gpio_set_direction(chip, offset, true);
+> +}
+
+...
+
+> +static int rtd_gpio_get(struct gpio_chip *chip, unsigned int offset)
+> +{
+> +	struct rtd_gpio *data = gpiochip_get_data(chip);
+> +	int dir_reg_offset, dat_reg_offset;
+> +	unsigned long flags;
+> +	u32 val;
+> +
+> +	dir_reg_offset = rtd_gpio_dir_offset(data, offset);
+> +	if (dir_reg_offset < 0)
+> +		return dir_reg_offset;
+> +
+> +	spin_lock_irqsave(&data->lock, flags);
+> +
+> +	val = readl_relaxed(data->base + dir_reg_offset);
+> +	val &= BIT(offset % 32);
+
+> +	dat_reg_offset = val ?
+> +			 rtd_gpio_dato_offset(data, offset) : rtd_gpio_dati_offset(data, offset);
+
+Can't you have the direction be cached and already know which offset to use
+even before the lock?
+
+> +	val = readl_relaxed(data->base + dat_reg_offset);
+
+> +	val >>= offset % 32;
+> +	val &= 0x1;
+
+Why were these operations done under the lock?
+
+> +	spin_unlock_irqrestore(&data->lock, flags);
+> +
+> +	return val;
+> +}
+
+...
+
+> +static void rtd_gpio_irq_handle(struct irq_desc *desc)
+> +{
+> +	int (*get_reg_offset)(struct rtd_gpio *gpio, unsigned int offset);
+> +	struct rtd_gpio *data = irq_desc_get_handler_data(desc);
+> +	struct irq_domain *domain = data->gpio_chip.irq.domain;
+> +	struct irq_chip *chip = irq_desc_get_chip(desc);
+> +	unsigned int irq = irq_desc_get_irq(desc);
+> +	int reg_offset;
+> +	u32 status;
+
+> +	int hwirq;
+
+Why signed?
+
+> +	int i;
+> +	int j;
+> +
+> +	chained_irq_enter(chip, desc);
+
+> +	if (irq == data->irqs[0])
+> +		get_reg_offset = &rtd_gpio_gpa_offset;
+> +	else if (irq == data->irqs[1])
+> +		get_reg_offset = &rtd_gpio_gpda_offset;
+
+Can't it be done before entering into chained IRQ handler?
+
+> +	for (i = 0; i < data->info->num_gpios; i = i + 31) {
+
+31 ?!  In any case i += 31 is simply shorter.
+
+> +		reg_offset = get_reg_offset(data, i);
+> +		if (reg_offset < 0)
+> +			return;
+> +
+> +		status = readl_relaxed(data->irq_base + reg_offset) >> 1;
+> +		writel_relaxed(status << 1, data->irq_base + reg_offset);
+
+> +		while (status) {
+> +			j = __ffs(status);
+> +			status &= ~BIT(j);
+
+NIH for_each_set_bit()
+
+> +			hwirq = i + j;
+> +			if (rtd_gpio_check_ie(data, hwirq)) {
+> +				int girq = irq_find_mapping(domain, hwirq);
+> +				u32 irq_type = irq_get_trigger_type(girq);
+> +
+> +				if ((irq == data->irqs[1]) && ((irq_type & IRQ_TYPE_SENSE_MASK) !=
+> +					IRQ_TYPE_EDGE_BOTH))
+> +					break;
+
+> +				generic_handle_irq(girq);
+
+Why you can't use generic_handle_domain_irq()?
+
+> +			}
+> +		}
+> +	}
+> +
+> +	chained_irq_exit(chip, desc);
+> +}
+
+...
+
+> +	u32 mask = BIT(d->hwirq % 32);
+
+Use proper type and getter for hwirq. It's mentioned in the Documentation.
+
+...
+
+> +static const struct irq_chip rtd_gpio_irq_chip = {
+> +	.name = "rtd-gpio",
+> +	.irq_enable = rtd_gpio_enable_irq,
+> +	.irq_disable = rtd_gpio_disable_irq,
+> +	.irq_set_type = rtd_gpio_irq_set_type,
+
+> +	.flags = IRQCHIP_IMMUTABLE,
+
+Is it? You seems missed something to fulfill the immutability requirements.
+Please consult with the Documentation, it's all written there.
+
+> +};
+
+...
+
+> +static const struct of_device_id rtd_gpio_of_matches[] = {
+> +	{ .compatible = "realtek,rtd1295-misc-gpio", .data = &rtd1295_misc_gpio_info },
+> +	{ .compatible = "realtek,rtd1295-iso-gpio", .data = &rtd1295_iso_gpio_info },
+> +	{ .compatible = "realtek,rtd1395-iso-gpio", .data = &rtd1395_iso_gpio_info },
+> +	{ .compatible = "realtek,rtd1619-iso-gpio", .data = &rtd1619_iso_gpio_info },
+> +	{ .compatible = "realtek,rtd1319-iso-gpio", .data = &rtd_iso_gpio_info },
+> +	{ .compatible = "realtek,rtd1619b-iso-gpio", .data = &rtd_iso_gpio_info },
+> +	{ .compatible = "realtek,rtd1319d-iso-gpio", .data = &rtd_iso_gpio_info },
+> +	{ .compatible = "realtek,rtd1315e-iso-gpio", .data = &rtd_iso_gpio_info },
+
+> +	{ },
+
+No comma in the terminator entry.
+
+> +};
+> +MODULE_DEVICE_TABLE(of, rtd_gpio_of_matches);
+
+Move all these closer to its user (struct platform_device below).
+
+...
+
+> +	data->gpio_chip.label = dev_name(&pdev->dev);
+
+dev
+
+...
+
+> +	data->gpio_chip.fwnode = dev_fwnode(&pdev->dev);
+
+dev
+
+But why setting parent device is not suffice?
+
+...
+
+> +static int rtd_gpio_init(void)
+> +{
+> +	return platform_driver_register(&rtd_gpio_platform_driver);
+> +}
+
+> +
+
+Unneeded blank line.
+
+> +subsys_initcall(rtd_gpio_init);
+
+Why? Anything that is not on standard initcall must be justified.
 
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+With Best Regards,
+Andy Shevchenko
+
+
 
