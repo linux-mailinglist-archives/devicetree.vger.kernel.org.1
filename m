@@ -1,131 +1,128 @@
-Return-Path: <devicetree+bounces-22771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87950808B1A
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 15:54:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AACC808B1D
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 15:54:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1E734B20ACE
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 14:54:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A9E51C20756
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 14:54:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8CC241C88;
-	Thu,  7 Dec 2023 14:54:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7752744367;
+	Thu,  7 Dec 2023 14:54:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="RiCon1ze"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Kj5JYHCn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8008BC3
-	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 06:54:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1701960846; x=1733496846;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=wTQrTKs9wXY1+dXqWaXNtaGtOAsoE2h+0UMf7GJODcY=;
-  b=RiCon1zeg/2ZBPYPWnrQHaYDVAs7eTmW0xx1xq5xd+IsXaoTs5uUidj8
-   HWO4oay0Yc7XJJ57xLTfoLCHbsiWMprhHgqAt3h7jYPNEvAgsj7RNJWVV
-   eFdedknyStZNIeOxpo1ghOks1j7UYpFwrWeMYeOIZ7ReBmiDUGXLtzk5g
-   TJS4dGDx4OOPgPAH1b/HaQrUbFGRfERmtzGw0HHlAC5uBnKzf4zL5gMP0
-   WP+9j9yp+lyieQzLW9kOL8xIkiHLSarzhjz2WwfH/2orJzNPEyo+GwC1N
-   2MYC1gUOaid5xiiyyUl7B+dOQpXZ3h2WMtOOHbg/nNaOcJ7WmHHzeKV0P
-   A==;
-X-IronPort-AV: E=Sophos;i="6.04,256,1695679200"; 
-   d="scan'208";a="34386677"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 07 Dec 2023 15:54:04 +0100
-Received: from steina-w.tq-net.de (steina-w.tq-net.de [10.123.53.18])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 8502F280075;
-	Thu,  7 Dec 2023 15:54:04 +0100 (CET)
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Rob Herring <robh+dt@kernel.org>,
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D4DCAC;
+	Thu,  7 Dec 2023 06:54:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=HZuWJZJT56neic9r6wbg2bseNLCneoOJMEj6j6nq8xM=; b=Kj5JYHCnocsxjpn10612FX5k82
+	XXApSgMi9D34L1+NjQx1nN3zlGdK02Km1aTk/EkiYYLhdkgec/qv8lok6YMXxnHp4TtX8Gs6ewpJz
+	OBOfjFGgABnc8jObbYw1cJmwhFhU67WIg9z21M19wwSNEFZENt9jo6NX4gsrVfw66a70=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rBFlQ-002K3T-Qc; Thu, 07 Dec 2023 15:54:08 +0100
+Date: Thu, 7 Dec 2023 15:54:08 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Serge Semin <fancer.lancer@gmail.com>
+Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Jose Abreu <Jose.Abreu@synopsys.com>,
+	Tomer Maimon <tmaimon77@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	linux@ew.tq-group.com,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 1/1] arm64: dts: imx8m*-tqma8m*: Add chassis-type
-Date: Thu,  7 Dec 2023 15:54:01 +0100
-Message-Id: <20231207145401.2102898-1-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	openbmc@lists.ozlabs.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 09/16] net: mdio: Add Synopsys DW XPCS
+ management interface support
+Message-ID: <19ebc244-6d79-4e12-8ac4-fcf046106a07@lunn.ch>
+References: <20231205103559.9605-1-fancer.lancer@gmail.com>
+ <20231205103559.9605-10-fancer.lancer@gmail.com>
+ <20231205133205.3309ab91@device.home>
+ <cv6oo27tqbfst3jrgtkg7bcxmeshadtzoomn2xgnzh2arz4nwy@wq5k7oygto6n>
+ <15e6857a-b1d1-465a-945e-6f31edac62fb@lunn.ch>
+ <jqwhgthwxfge6y4nv5mdnojqu76m4pi2mt2x6kwqiuqntcwj67@mewh42eey5ny>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <jqwhgthwxfge6y4nv5mdnojqu76m4pi2mt2x6kwqiuqntcwj67@mewh42eey5ny>
 
-Device tree specification 0.4 defines an optional, but recommended
-'chassis-type' property. Add it to TQMa8M* based board files.
+On Thu, Dec 07, 2023 at 04:35:47PM +0300, Serge Semin wrote:
+> Hi Andrew
+> 
+> On Wed, Dec 06, 2023 at 06:01:30PM +0100, Andrew Lunn wrote:
+> > > > You shouldn't use inline in C files, only in headers.
+> > > 
+> > > Could you please clarify why? I failed to find such requirement in the
+> > > coding style doc. Moreover there are multiple examples of using the
+> > > static-inline-ers in the C files in the kernel including the net/mdio
+> > > subsystem.
+> > 
+> 
+> > The compiler does a better job at deciding what to inline than we
+> > humans do. If you can show the compiler is doing it wrong, then we
+> > might accept them.
+> 
+> In general I would have agreed with you especially if the methods were
+> heavier than what they are:
+> static inline ptrdiff_t dw_xpcs_mmio_addr_format(int dev, int reg)
+> {               
+>         return FIELD_PREP(0x1f0000, dev) | FIELD_PREP(0xffff, reg);
+> }               
+>         
+> static inline u16 dw_xpcs_mmio_addr_page(ptrdiff_t csr)
+> {       
+>         return FIELD_GET(0x1fff00, csr);
+> }       
+> 
+> static inline ptrdiff_t dw_xpcs_mmio_addr_offset(ptrdiff_t csr)
+> {
+>         return FIELD_GET(0xff, csr);
+> }
+> 
+> > But in general, netdev does not like inline in .C
+> > file.
+> 
+> I see. I'll do as you say if you don't change your mind after my
+> reasoning below.
+> 
+> > Also, nothing in MDIO is hot path, it spends a lot of time
+> > waiting for a slow bus. So inline is likely to just bloat the code for
+> > no gain.
+> 
+> I would have been absolutely with you in this matter, if we were talking
+> about a normal MDIO bus. In this case the devices are accessed over
+> the system IO-memory. So the bus isn't that slow.
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts   | 1 +
- arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts   | 1 +
- arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts | 1 +
- arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dts     | 1 +
- 4 files changed, 4 insertions(+)
+O.K, so its not slow. But how often is it used? PHYs tend to get
+polled once a second if interrupts are not used. But is the PCS also
+polled at the same time? Does this optimisation make a noticeable
+difference at once per second? Do you have a requirement that the
+system boots very very fast, and this optimisation makes a difference
+when there is heavier activity on the PCS at boot? Is the saving
+noticeable, when auto-neg takes a little over 1 second.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts b/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts
-index 8c6dbcd4c83c..8aa268d4f571 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts
-@@ -13,6 +13,7 @@
- / {
- 	model = "TQ-Systems GmbH i.MX8MM TQMa8MxML on MBa8Mx";
- 	compatible = "tq,imx8mm-tqma8mqml-mba8mx", "tq,imx8mm-tqma8mqml", "fsl,imx8mm";
-+	chassis-type = "embedded";
- 
- 	aliases {
- 		eeprom0 = &eeprom3;
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts b/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts
-index 061b8eea89f8..7180f3342298 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts
-@@ -11,6 +11,7 @@
- / {
- 	model = "TQ-Systems GmbH i.MX8MN TQMa8MxNL on MBa8Mx";
- 	compatible = "tq,imx8mn-tqma8mqnl-mba8mx", "tq,imx8mn-tqma8mqnl", "fsl,imx8mn";
-+	chassis-type = "embedded";
- 
- 	aliases {
- 		eeprom0 = &eeprom3;
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
-index 99fcf0ff639d..8234c92b55df 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
-@@ -15,6 +15,7 @@
- / {
- 	model = "TQ-Systems i.MX8MPlus TQMa8MPxL on MBa8MPxL";
- 	compatible = "tq,imx8mp-tqma8mpql-mba8mpxl", "tq,imx8mp-tqma8mpql", "fsl,imx8mp";
-+	chassis-type = "embedded";
- 
- 	chosen {
- 		stdout-path = &uart4;
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dts b/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dts
-index aa0dfdcec7a4..87fde6510734 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dts
-@@ -11,6 +11,7 @@
- / {
- 	model = "TQ-Systems GmbH i.MX8MQ TQMa8MQ on MBa8Mx";
- 	compatible = "tq,imx8mq-tqma8mq-mba8mx", "tq,imx8mq-tqma8mq", "fsl,imx8mq";
-+	chassis-type = "embedded";
- 
- 	aliases {
- 		eeprom0 = &eeprom3;
--- 
-2.34.1
+The best way to make your case is show real world requirements and
+benchmark results.
 
+	  Andrew
 
