@@ -1,324 +1,149 @@
-Return-Path: <devicetree+bounces-22582-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22583-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56F248082D5
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 09:21:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 160088082E4
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 09:23:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7E595B21B21
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 08:21:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0214AB21B2B
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 08:23:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02FF32D61F;
-	Thu,  7 Dec 2023 08:21:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D9ED28E04;
+	Thu,  7 Dec 2023 08:23:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gsZOY8Zn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tyuz9Frz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5DE71BD1
-	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 00:21:44 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-40c26a45b2dso3609145e9.1
-        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 00:21:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701937303; x=1702542103; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=fPwpR6cjf4gl+iJ2edVyQ5QVngSHrLLuTQ/c3n689y0=;
-        b=gsZOY8Zn0ideRDd9HHr79zcFHqDozcDbDOTgxAquY5gEHSO6V6fJ12fPPM6PzpDp7v
-         +NZM4sNSM6oQQ4IAmi+i1MnF7gJswiy/jrbHifYDhqIHeLLPayCSxOCeLwaFxYF+Pa9e
-         bKv7roa50OmlW6vXvM4r9G3fWTt2gBc3HcFc3AIp1zpVDZ7N5hmoTXrRUmVn0In9jAUd
-         n/XsGyZP9DhYUEJ6TlekI5bdoA2BmdrjURPwT2RNoRaJGxdlQuj3aiV8tVdxtLUgE+y5
-         3vhXthn0qAymrygnYQqyO/DrCPYd2HQHuUI0nTJwtECJczJt+ExqPTJPTsD//QkU5Oax
-         LiUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701937303; x=1702542103;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fPwpR6cjf4gl+iJ2edVyQ5QVngSHrLLuTQ/c3n689y0=;
-        b=PDuaWPLTU0BdbX9Tk1g7/ZHBx+YWaywqdpGECvWPiaAul1KYEBkz8M394m8YF9qjl9
-         dYMC7Drqn2gXWlSOmJ+3WD7dj+g2aGuOfW/XAF484CC5V8dexuMFySJWTS0uma7DCOO8
-         LZ4DBZ7GBaEMlSorCGyEkLdyHZDi1+FbUJbByFt4TPoqASFEaup77zYI2JuHvnIdIg1e
-         Y02jM2w4huoNIZB5VIcvINrtMGnAmAF1LdTocVclCNWF01ZgeN0cojPHKGpTEtju0DaG
-         SA/q+5ezl3KjtEuWpoAERwjTEVrTy+vy8gQn/QTOOH4DSFTnXMDk/5LIZHp1YvPzafCS
-         TMQA==
-X-Gm-Message-State: AOJu0Yz1qw4rHbIOH4fs43Y4tQlSe58IrHpM3Qvy9pJfkKEdJqfcoj2Q
-	37TQcx7gbLJEwgvzzgoDOKWUag==
-X-Google-Smtp-Source: AGHT+IGG7QLYaH+Oo1cYq79KdJYAiV++XaIXXAxgTVSDkn3fzotgBZNT5mlR7KvgyOGB6p+b8hzpww==
-X-Received: by 2002:a05:600c:d4:b0:40c:2698:db59 with SMTP id u20-20020a05600c00d400b0040c2698db59mr535004wmm.11.1701937303017;
-        Thu, 07 Dec 2023 00:21:43 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id m12-20020a5d4a0c000000b003333a0da243sm777924wrq.81.2023.12.07.00.21.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Dec 2023 00:21:42 -0800 (PST)
-Message-ID: <a7a9a204-cfd2-4510-890d-ce3f72d5fcda@linaro.org>
-Date: Thu, 7 Dec 2023 09:21:39 +0100
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DFBD328A2
+	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 08:23:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EA88C433C7;
+	Thu,  7 Dec 2023 08:23:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701937403;
+	bh=yk6swEfuyRxghN0BW1FvsI13oCfcyxJGSxYDBp8aTtY=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=tyuz9FrzPf/fDcUa6SuBRAN8fJSbKpzRSIOJLn+4UP3+0E9bTArAZfATV8NbM+mxC
+	 dohXtJu2DvNbOrKmaOUUzPvAGk0GYdYvSOmTHH6n3dkgQ/lI+2OVhO9QIwTBp1vsUx
+	 zvKRhzKhUpBdieUNlU/jN+OGPfZC8pot9sXkJarO6S3SqX3Ey2uW9pVb9RBrsIn/Zs
+	 AUkBnDErFb7DIpvNRvMm94UI6rnPSz1Pnr8GbO9vdXPstayATdEciaMoy1bqIcVJ/M
+	 ZwwoD9WUvfLFfC48qxmkijrZXAqVui1BH5zRQVVPe80bPbYIYekocIIspBrXS/uHk7
+	 lZ62rlOPt6XMQ==
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a1f0616a15bso21411966b.2;
+        Thu, 07 Dec 2023 00:23:23 -0800 (PST)
+X-Gm-Message-State: AOJu0Yye7lgrcquOUDCPV+X74ovk1qhv1qtY7s/Ge8yJsZ+snLou11Qm
+	vkYYKM+LFbvv9FyczQsp5CLWVnHXlKwzWxQxQlI=
+X-Google-Smtp-Source: AGHT+IFoCVyTLoIcwyDXDm0QqN3KpaIFbMYwNQTGB8nrfNWHSaJALJpdmDtfjqP8/m/GwnGLNHBEYi0kUL0Ufd0kiUM=
+X-Received: by 2002:a17:906:1017:b0:a1e:42e1:293d with SMTP id
+ 23-20020a170906101700b00a1e42e1293dmr818321ejm.94.1701937402114; Thu, 07 Dec
+ 2023 00:23:22 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] media: dt-bindings: media: i2c: Document GC08A3
- bindings
-To: Zhi Mao <zhi.mao@mediatek.com>, mchehab@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org
-Cc: shengnan.wang@mediatek.com, yaya.chang@mediatek.com, 10572168@qq.com,
- Project_Global_Chrome_Upstream_Group@mediatek.com, yunkec@chromium.org,
- conor+dt@kernel.org, matthias.bgg@gmail.com,
- angelogioacchino.delregno@collabora.com, jacopo.mondi@ideasonboard.com,
- sakari.ailus@linux.intel.com, hverkuil-cisco@xs4all.nl, heiko@sntech.de,
- jernej.skrabec@gmail.com, macromorgan@hotmail.com, linus.walleij@linaro.org,
- laurent.pinchart@ideasonboard.com, hdegoede@redhat.com,
- tomi.valkeinen@ideasonboard.com, gerald.loacker@wolfvision.net,
- andy.shevchenko@gmail.com, bingbu.cao@intel.com,
- dan.scally@ideasonboard.com, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20231207052016.25954-1-zhi.mao@mediatek.com>
- <20231207052016.25954-3-zhi.mao@mediatek.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231207052016.25954-3-zhi.mao@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20231206-th1520_mmc_dts-v8-0-69220e373e8f@baylibre.com> <20231206-th1520_mmc_dts-v8-2-69220e373e8f@baylibre.com>
+In-Reply-To: <20231206-th1520_mmc_dts-v8-2-69220e373e8f@baylibre.com>
+From: Guo Ren <guoren@kernel.org>
+Date: Thu, 7 Dec 2023 16:23:10 +0800
+X-Gmail-Original-Message-ID: <CAJF2gTTnhBZWZxad8=+9W38WL7sRFmugxAyDDzK=BUPK44q4qA@mail.gmail.com>
+Message-ID: <CAJF2gTTnhBZWZxad8=+9W38WL7sRFmugxAyDDzK=BUPK44q4qA@mail.gmail.com>
+Subject: Re: [PATCH v8 2/4] riscv: dts: thead: Add TH1520 mmc controllers and
+ sdhci clock
+To: Drew Fustini <dfustini@baylibre.com>
+Cc: Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Jisheng Zhang <jszhang@kernel.org>, Fu Wei <wefu@redhat.com>, 
+	Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Jason Kridner <jkridner@beagleboard.org>, Robert Nelson <robertcnelson@beagleboard.org>, 
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 07/12/2023 06:20, Zhi Mao wrote:
-> Add YAML device tree binding for GC08A3 CMOS image sensor,
-> and the relevant MAINTAINERS entries.
-> 
-> Signed-off-by: Zhi Mao <zhi.mao@mediatek.com>
+On Wed, Dec 6, 2023 at 4:09=E2=80=AFPM Drew Fustini <dfustini@baylibre.com>=
+ wrote:
+>
+> Add node for the fixed reference clock used for emmc and sdio nodes.
+> Add emmc node for the 1st dwcmshc instance which is typically connected
+> to an eMMC device. Add sdio0 node for the 2nd dwcmshc instance which is
+> typically connected to microSD slot. Add sdio1 node for the 3rd dwcmshc
+> instance which is typically connected to an SDIO WiFi module. The node
+> names are based on Table 1-2 C910/C906 memory map in the TH1520 System
+> User Manual.
+>
+> Link: https://git.beagleboard.org/beaglev-ahead/beaglev-ahead/-/tree/main=
+/docs
+> Signed-off-by: Drew Fustini <dfustini@baylibre.com>
 > ---
->  .../bindings/media/i2c/galaxycore,gc08a3.yaml | 127 ++++++++++++++++++
->  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
->  2 files changed, 129 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/galaxycore,gc08a3.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/galaxycore,gc08a3.yaml b/Documentation/devicetree/bindings/media/i2c/galaxycore,gc08a3.yaml
-> new file mode 100644
-> index 000000000000..1802ff1c8a12
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/galaxycore,gc08a3.yaml
-> @@ -0,0 +1,127 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright (c) 2020 MediaTek Inc.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/galaxycore,gc08a3.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>  arch/riscv/boot/dts/thead/th1520.dtsi | 34 +++++++++++++++++++++++++++++=
++++++
+>  1 file changed, 34 insertions(+)
+>
+> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/=
+thead/th1520.dtsi
+> index ba4d2c673ac8..8b915e206f3a 100644
+> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
+> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
+> @@ -146,6 +146,13 @@ uart_sclk: uart-sclk-clock {
+>                 #clock-cells =3D <0>;
+>         };
+>
+> +       sdhci_clk: sdhci-clock {
+> +               compatible =3D "fixed-clock";
+> +               clock-frequency =3D <198000000>;
+> +               clock-output-names =3D "sdhci_clk";
+> +               #clock-cells =3D <0>;
+> +       };
 > +
-> +title: GalaxyCore gc08a3 1/4" 8M Pixel MIPI CSI-2 sensor
+>         soc {
+>                 compatible =3D "simple-bus";
+>                 interrupt-parent =3D <&plic>;
+> @@ -304,6 +311,33 @@ dmac0: dma-controller@ffefc00000 {
+>                         status =3D "disabled";
+>                 };
+>
+> +               emmc: mmc@ffe7080000 {
+> +                       compatible =3D "thead,th1520-dwcmshc";
+> +                       reg =3D <0xff 0xe7080000 0x0 0x10000>;
+> +                       interrupts =3D <62 IRQ_TYPE_LEVEL_HIGH>;
+> +                       clocks =3D <&sdhci_clk>;
+> +                       clock-names =3D "core";
+> +                       status =3D "disabled";
+> +               };
 > +
-> +maintainers:
-> +  - Zhi Mao <zhi.mao@mediatek.com>
+> +               sdio0: mmc@ffe7090000 {
+> +                       compatible =3D "thead,th1520-dwcmshc";
+> +                       reg =3D <0xff 0xe7090000 0x0 0x10000>;
+> +                       interrupts =3D <64 IRQ_TYPE_LEVEL_HIGH>;
+> +                       clocks =3D <&sdhci_clk>;
+> +                       clock-names =3D "core";
+> +                       status =3D "disabled";
+> +               };
 > +
-> +description:
-> +  The gc08a3 is a raw image sensor with an MIPI CSI-2 image data
-> +  interface and CCI (I2C compatible) control bus. The output format
-> +  is raw Bayer.
+> +               sdio1: mmc@ffe70a0000 {
+> +                       compatible =3D "thead,th1520-dwcmshc";
+> +                       reg =3D <0xff 0xe70a0000 0x0 0x10000>;
+> +                       interrupts =3D <71 IRQ_TYPE_LEVEL_HIGH>;
+> +                       clocks =3D <&sdhci_clk>;
+> +                       clock-names =3D "core";
+> +                       status =3D "disabled";
+> +               };
 > +
-> +properties:
-> +  compatible:
-> +    const: galaxycore,gc08a3
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    description:
-> +      External clock for the sensor.
-> +    maxItems: 1
+>                 timer0: timer@ffefc32000 {
+>                         compatible =3D "snps,dw-apb-timer";
+>                         reg =3D <0xff 0xefc32000 0x0 0x14>;
+>
+> --
+> 2.34.1
+>
+Reviewed-by: Guo Ren <guoren@kernel.org>
 
-Items must be defined or just drop the property. How did it even appear?
-Who asked for this? Your changelog is so vague that anything can happen
-with this code and you will claim "it was review fix". No, you must
-explain the changes.
-
-Go back to previous review and implement all the changes requested.
-
-> +
-> +  clock-frequency:
-> +    description:
-> +      Frequency of the clock in Hz.
-
-Drop property
-
-
-> +
-> +  dovdd-supply: true
-> +
-> +  avdd-supply: true
-> +
-> +  dvdd-supply: true
-> +
-> +  enable-gpios:
-> +    description: Reference to the GPIO connected to the RESETB pin. Active low.
-
-That's not enable, but reset-gpios.
-
-> +    maxItems: 1
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> +    additionalProperties: false
-> +    description:
-> +      Output port node, single endpoint describing the CSI-2 transmitter.
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: /schemas/media/video-interfaces.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          data-lanes:
-> +            oneOf:
-> +              - items:
-> +                  - const: 1
-> +                  - const: 2
-> +                  - const: 3
-> +                  - const: 4
-> +              - items:
-> +                  - const: 1
-> +                  - const: 2
-> +
-> +          link-frequencies: true
-> +
-> +        required:
-> +          - data-lanes
-> +          - link-frequencies
-> +
-> +    required:
-> +      - endpoint
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - clock-frequency
-> +  - dovdd-supply
-> +  - avdd-supply
-> +  - dvdd-supply
-> +  - enable-gpios
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        sensor0@31 {
-> +            status = "okay";
-
-Drop. Do you see it anywhere in the bindings examples?
-
-> +            compatible = "galaxycore,gc08a3";
-> +            reg = <0x31>;
-> +
-> +            clocks = <&gc08a3_clk>;
-> +            clock-names = "xvclk";
-
-Drop
-
-> +            clock-frequency = <24000000>;
-
-Drop
-
-> +
-> +            enable-gpios = <&pio 19 GPIO_ACTIVE_HIGH>;
-> +
-> +            avdd-supply = <&gc08a3_avdd>;
-> +            dovdd-supply = <&ogc08a3_dovdd>;
-> +            dvdd-supply = <&gc08a3_dvdd>;
-> +
-> +            port {
-> +                sensor0_out_2: endpoint {
-> +                    data-lanes = <1 2 3 4>;
-> +                    link-frequencies = /bits/ 64 <336000000 207000000>;
-> +                    remote-endpoint = <&seninf_csi_port_0_in_2>;
-> +                };
-> +            };
-> +        };
-> +
-
-Drop stray blank line.
-
-> +    };
-> +
-> +...
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> index b752f8902367..1a16a94fb202 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -502,6 +502,8 @@ patternProperties:
->      description: Fujitsu Ltd.
->    "^fxtec,.*":
->      description: FX Technology Ltd.
-> +  "^galaxycore,.*":
-> +    description: GalaxyCore Inc.
-
-That's a duplicated patch... how many of this people are going to send?
-
-Drop and rebase on top of previous work of people.
-
-
-Best regards,
-Krzysztof
-
+--=20
+Best Regards
+ Guo Ren
 
