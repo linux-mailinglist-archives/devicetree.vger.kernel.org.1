@@ -1,93 +1,99 @@
-Return-Path: <devicetree+bounces-22773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22774-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08E6A808B25
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 15:56:04 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E5E1808B47
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 16:01:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3951D1C20940
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 14:56:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EF5D0B20C2B
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 15:01:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 208A644376;
-	Thu,  7 Dec 2023 14:56:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F3764437D;
+	Thu,  7 Dec 2023 15:01:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="AlggyfBF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lft6Crf0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1573CD53;
-	Thu,  7 Dec 2023 06:55:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
-	:Date:subject:date:message-id:reply-to;
-	bh=vJ1F8jNsB0iRtVsiRgLfHCveWW7WlQfK/zT4iKBDaXY=; b=AlggyfBFFE2yvgkIArwKAA5t35
-	XAnevOW4jySw3NCegwHWlO0cN7Qwgla9FfLHNeJ7iedgLloXOHj0BVgo32jptMnOKdkW99B8ocH30
-	cMIAFS/0WBy+FVeneDJCFyqKtqZGlIT4lTUbTyNF4SAsldMkysbTiQ4BEeqdzSO/fI/s=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:46564 helo=pettiford)
-	by mail.hugovil.com with esmtpa (Exim 4.92)
-	(envelope-from <hugo@hugovil.com>)
-	id 1rBFn2-0006SD-MV; Thu, 07 Dec 2023 09:55:49 -0500
-Date: Thu, 7 Dec 2023 09:55:48 -0500
-From: Hugo Villeneuve <hugo@hugovil.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
- kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
- leoyang.li@nxp.com, robh@kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Hugo
- Villeneuve <hvilleneuve@dimonoff.com>
-Message-Id: <20231207095548.d7257f34496e78bf2e8890ad@hugovil.com>
-In-Reply-To: <6035c4cc-afe1-456d-a4d0-16992da09a2e@linaro.org>
-References: <20231206160303.33185-1-hugo@hugovil.com>
-	<20231206160303.33185-3-hugo@hugovil.com>
-	<6035c4cc-afe1-456d-a4d0-16992da09a2e@linaro.org>
-X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7282235288
+	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 15:01:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0AB1EC433C8;
+	Thu,  7 Dec 2023 15:01:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701961281;
+	bh=H87zHVmCe+jqZ2NARd18JXpG7Y44ERHIWR/UhuPD8do=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=lft6Crf045fUHN+P9f0kN+NFh+F4Dn7AEuAhMIl4svHc5TCJORp+pcAc8RriMmRTC
+	 6tlfcZebullGTKh0LGVfuKSqTkt+LHsA2PyD8d2/RIZOUfAHaUVhVv1KW+UMeU+34c
+	 2NZ5CPVnU7lfbJ9RTjmMAdborks2BoOLqgy2/5pCUPlvQKXKalzmJRJrd4a4fzlwzv
+	 RBPrVG5mJCcIw1r/sDanEEsmsXi3MHdXuT1DehMZkkZlgeHmJuOuaWhrplNMdVbV7E
+	 s96N6YJr0Pbv3rKsLFq6X9vd/9p68nkthO4/rTNYH0sl9RwydOdBaXrXb47MPRT6zk
+	 gucvhLk6EU/+A==
+From: Michael Walle <mwalle@kernel.org>
+To: tony@atomide.com
+Cc: Laurent.pinchart@ideasonboard.com,
+	airlied@gmail.com,
+	andrzej.hajda@intel.com,
+	conor+dt@kernel.org,
+	daniel@ffwll.ch,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	ivo.g.dimitrov.75@gmail.com,
+	jernej.skrabec@gmail.com,
+	jonas@kwiboo.se,
+	krzysztof.kozlowski+dt@linaro.org,
+	maarten.lankhorst@linux.intel.com,
+	merlijn@wizzup.org,
+	mripard@kernel.org,
+	neil.armstrong@linaro.org,
+	pavel@ucw.cz,
+	philipp@uvos.xyz,
+	rfoss@kernel.org,
+	robh+dt@kernel.org,
+	sam@ravnborg.org,
+	simhavcs@gmail.com,
+	sre@kernel.org,
+	tzimmermann@suse.de,
+	Michael Walle <mwalle@kernel.org>
+Subject: Re: [PATCH v2 07/10] drm/bridge: tc358775: Add burst and low-power modes
+Date: Thu,  7 Dec 2023 16:01:04 +0100
+Message-Id: <20231207150104.2633528-1-mwalle@kernel.org>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20231202075514.44474-8-tony@atomide.com>
+References: <20231202075514.44474-8-tony@atomide.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
-X-Spam-Level: 
-Subject: Re: [PATCH 2/3] dt-bindings: arm: fsl: add Dimonoff gateway EVK
- board
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-On Thu, 7 Dec 2023 09:32:38 +0100
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-
-> On 06/12/2023 17:03, Hugo Villeneuve wrote:
-> > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > 
-> > Add DT compatible string for Dimonoff gateway EVK board based on a
-> > Variscite VAR-SOM-NANO with a NXP MX8MN nano CPU.
-> > 
-> > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > ---
-> >  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > index cd87d1afe7b7..e445d65d6f17 100644
-> > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > @@ -1025,6 +1025,7 @@ properties:
-> >        - description: Variscite VAR-SOM-MX8MN based boards
-> >          items:
-> >            - enum:
-> > +              - dimonoff,dimonoff-gateway-evk # i.MX8MN Dimonoff Gateway EVK Board
+> Burst and low-power modes are supported both for tc358765 and tc358775.
 > 
-> Company name appears twice, which is not really helpful. What's the true
-> name? Gateway EVK? Then keep only this.
+> Signed-off-by: Tony Lindgren <tony@atomide.com>
+> ---
+>  drivers/gpu/drm/bridge/tc358775.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/bridge/tc358775.c b/drivers/gpu/drm/bridge/tc358775.c
+> --- a/drivers/gpu/drm/bridge/tc358775.c
+> +++ b/drivers/gpu/drm/bridge/tc358775.c
+> @@ -619,7 +619,8 @@ static int tc_attach_host(struct tc_data *tc)
+>  
+>  	dsi->lanes = tc->num_dsi_lanes;
+>  	dsi->format = MIPI_DSI_FMT_RGB888;
+> -	dsi->mode_flags = MIPI_DSI_MODE_VIDEO;
+> +	dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
+> +		MIPI_DSI_MODE_LPM;
 
-Ok, will drop company name for V2.
+Could you align it with the equal sign of the former line?
 
-Thank you,
-Hugo
+Reviewed-by: Michael Walle <mwalle@kernel.org>
+Tested-by: Michael Walle <mwalle@kernel.org>
+
+-michael
 
