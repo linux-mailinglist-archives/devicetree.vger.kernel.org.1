@@ -1,226 +1,139 @@
-Return-Path: <devicetree+bounces-22515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22516-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA318807FFF
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 06:10:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22AB6808012
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 06:20:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7E03B2819D1
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 05:10:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D240D2812B2
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 05:20:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2DEE10796;
-	Thu,  7 Dec 2023 05:10:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 415271095F;
+	Thu,  7 Dec 2023 05:20:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="hIeOLnZJ"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="omfW4h7Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 359B1D44;
-	Wed,  6 Dec 2023 21:10:37 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B75AT0c077218;
-	Wed, 6 Dec 2023 23:10:29 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1701925829;
-	bh=iP+g/I8yA4NofAFT2YlcQSRPdT6ZK1QM6d3BX+2pB1g=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=hIeOLnZJOzpmLgTIy0aziyHVdkURvHx210+Paz+hV/R49zHG6BZLLFU/ZD3xVcp9L
-	 05j55ACNNZXdHNA+o+EsTkKbwktD/WdxICbLoY99CALD3gYe1P+qeADBOZeZfqyFKF
-	 mPGJS3blN6bCKxtNZEVJRafV2S2pV00EQuAtxZBI=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B75ATIs024140
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 6 Dec 2023 23:10:29 -0600
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 6
- Dec 2023 23:10:29 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 6 Dec 2023 23:10:29 -0600
-Received: from [172.24.227.36] (a0497641-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [172.24.227.36])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B75AN16032413;
-	Wed, 6 Dec 2023 23:10:24 -0600
-Message-ID: <48ede2d2-29b8-4c92-940c-ac28f9d7c10f@ti.com>
-Date: Thu, 7 Dec 2023 10:40:23 +0530
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE887D44;
+	Wed,  6 Dec 2023 21:20:32 -0800 (PST)
+X-UUID: 550ae12494c011eea5db2bebc7c28f94-20231207
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=5m/cIwP+brAek9B1DG5tmgUso+IIGyZtwTuV1i3LYJA=;
+	b=omfW4h7QxT70qel36iU4Wihvk0oPsejyJNTVhFP7Cc+Qc+YAKlW6a/Iv6N5FP3JlJCqk4B2GLdma5yLaJvS0jykKqZc6POiZb12iamUKJmgYrP/yiTX8qUrwowOb20Cb6gs2/sV9I3bXtKUEqjTARLNAb9ppcuQoS4YyxzqyAwU=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.35,REQID:be150ecd-027b-4031-be6a-0f047f74b19a,IP:0,U
+	RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+	N:release,TS:-25
+X-CID-META: VersionHash:5d391d7,CLOUDID:0c8562fd-4a48-46e2-b946-12f04f20af8c,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+	DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-UUID: 550ae12494c011eea5db2bebc7c28f94-20231207
+Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw01.mediatek.com
+	(envelope-from <zhi.mao@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1328425573; Thu, 07 Dec 2023 13:20:27 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Thu, 7 Dec 2023 13:20:25 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Thu, 7 Dec 2023 13:20:24 +0800
+From: Zhi Mao <zhi.mao@mediatek.com>
+To: <mchehab@kernel.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>
+CC: <shengnan.wang@mediatek.com>, <yaya.chang@mediatek.com>,
+	<10572168@qq.com>, <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	<yunkec@chromium.org>, <conor+dt@kernel.org>, <matthias.bgg@gmail.com>,
+	<angelogioacchino.delregno@collabora.com>, <jacopo.mondi@ideasonboard.com>,
+	<sakari.ailus@linux.intel.com>, <zhi.mao@mediatek.com>,
+	<hverkuil-cisco@xs4all.nl>, <heiko@sntech.de>, <jernej.skrabec@gmail.com>,
+	<macromorgan@hotmail.com>, <linus.walleij@linaro.org>,
+	<laurent.pinchart@ideasonboard.com>, <hdegoede@redhat.com>,
+	<tomi.valkeinen@ideasonboard.com>, <gerald.loacker@wolfvision.net>,
+	<andy.shevchenko@gmail.com>, <bingbu.cao@intel.com>,
+	<dan.scally@ideasonboard.com>, <linux-media@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>
+Subject: [PATCH v2 0/2] media: i2c: Add support for GC08A3 sensor 
+Date: Thu, 7 Dec 2023 13:20:14 +0800
+Message-ID: <20231207052016.25954-1-zhi.mao@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 5/7] arm64: dts: ti: k3-am69-sk: Add support for
- TPS6594 PMIC
-To: "Kumar, Udit" <u-kumar1@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <a-nandan@ti.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <eblanc@baylibre.com>,
-        <jneanne@baylibre.com>, <aseketeli@baylibre.com>,
-        <jpanis@baylibre.com>, <j-luthra@ti.com>, <vaishnav.a@ti.com>,
-        <hnagalla@ti.com>, <devarsht@ti.com>
-References: <20231205093439.2298296-1-n-francis@ti.com>
- <20231205093439.2298296-6-n-francis@ti.com>
- <5eecd094-bc14-4257-bbe9-1e20aabd38f7@ti.com>
-Content-Language: en-US
-From: Neha Malcom Francis <n-francis@ti.com>
-In-Reply-To: <5eecd094-bc14-4257-bbe9-1e20aabd38f7@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain
+X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-AS-Result: No-10--11.953300-8.000000
+X-TMASE-MatchedRID: 44Hc/KaCvIQtlu2PjaXfUW3NvezwBrVmQPCPzycuBFOl4EP+dy+wBAwF
+	qajp21ReNJCQfPeJOQovXSnelSgBMJlIfdN/LTrGdE/dhjO8a+RqYquCrLrVwhHfiujuTbedduS
+	l0OECBiYax6DXJKFg8UH+8sLaZoS5D0VXqQ1iI8djVtAwIy+afu+aBTJJYa54DFK34uTYNp9DTK
+	YgguDfmv85PXnIyicNzNny9LCRSYPNwJnbTIxiVe7KTDtx8CggKhNpTcvbdUKbKItl61J/yZ+in
+	TK0bC9eKrauXd3MZDVG0JUmJbystNn10BTO+noGPJvW94tofC0ats+ZN43x2ecHhVDiw4YD
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--11.953300-8.000000
+X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-SNTS-SMTP:
+	ACC8CC612608CD163EB92DB6552FA7018104EB61AB51DBB62DC05E34EAF8B6202000:8
+X-MTK: N
 
-Hi Udit,
+This series adds YAML DT binding and V4L2 sub-device driver for Galaxycore's
+GC08A3 8-megapixel 10-bit RAW CMOS 1/4" sensor, with an MIPI CSI-2 image data
+interface and the I2C control bus.
 
-On 07/12/23 10:29, Kumar, Udit wrote:
-> 
-> On 12/5/2023 3:04 PM, Neha Malcom Francis wrote:
->> This patch adds support for TPS6594 PMIC on wkup I2C0 bus. This device
->> provides regulators (bucks and LDOs), but also GPIOs, a RTC, a watchdog,
->> an ESM (Error Signal Monitor) which monitors the SoC error output
->> signal, and a PFSM (Pre-configurable Finite State Machine) which manages
->> the operational modes of the PMIC.
->>
->> Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
->> Tested-by: Manorit Chawdhry <m-chawdhry@ti.com>
->> ---
->>   arch/arm64/boot/dts/ti/k3-am69-sk.dts | 100 ++++++++++++++++++++++++++
->>   1 file changed, 100 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts 
->> b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
->> index 9868c7049bfb..dec27acb4e96 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am69-sk.dts
->> +++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
->> @@ -431,6 +431,17 @@ J784S4_IOPAD(0x000, PIN_INPUT, 7) /* (AN35) 
->> EXTINTN.GPIO0_0 */
->>       };
->>   };
->> +&wkup_pmx1 {
->> +    status = "okay";
->> +
->> +    pmic_irq_pins_default: pmic-irq-default-pins {
->> +        pinctrl-single,pins = <
->> +            /* (AA37) MCU_ADC1_AIN4.WKUP_GPIO0_83 */
->> +            J784S4_WKUP_IOPAD(0x12c, PIN_INPUT, 7)
->> +        >;
->> +    };
->> +};
-> 
-> Could you re check this pin mux
-> 
-> wkup_pmx1 is defined as reg = <0x00 0x4301c038 0x00 0x02c>;
-> 
-> LTM, this is above wrt given size
-> 
+The driver is implemented with V4L2 framework.
+ - Async registered as a V4L2 sub-device.
+ - As the first component of camera system including Seninf, ISP pipeline.
+ - A media entity that provides one source pad in common.
+ - Used in camera features on ChromeOS application.
 
-You're right it must be in wkup_pmx2. Thanks for catching this!
+Also this driver supports following features:
+ - manual exposure and analog gain control support
+ - vertical blanking control support
+ - test pattern support
+ - media controller support
+ - runtime PM support
+ - support resolution: 3264x2448@30fps, 1920x1080@60fps
 
-> 
->> +
->>   &wkup_pmx2 {
->>       bootph-all;
->>       wkup_uart0_pins_default: wkup-uart0-default-pins {
->> @@ -631,6 +642,95 @@ eeprom@51 {
->>           compatible = "atmel,24c512";
->>           reg = <0x51>;
->>       };
->> +
->> +    tps659413: pmic@48 {
->> +        compatible = "ti,tps6594-q1";
->> +        reg = <0x48>;
->> +        system-power-controller;
->> +        pinctrl-names = "default";
->> +        pinctrl-0 = <&pmic_irq_pins_default>;
->> +        interrupt-parent = <&wkup_gpio0>;
->> +        interrupts = <39 IRQ_TYPE_EDGE_FALLING>;
->> +        ti,primary-pmic;
->> +
->> +        gpio-controller;
->> +        #gpio-cells = <2>;
->> +
->> +        buck12-supply = <&vsys_3v3>;
->> +        buck3-supply = <&vsys_3v3>;
->> +        buck4-supply = <&vsys_3v3>;
->> +        buck5-supply = <&vsys_3v3>;
->> +        ldo1-supply = <&vsys_3v3>;
->> +        ldo2-supply = <&vsys_3v3>;
->> +        ldo3-supply = <&vsys_3v3>;
->> +        ldo4-supply = <&vsys_3v3>;
->> +
->> +        regulators {
->> +            bucka12: buck12 {
->> +                regulator-name = "vdd_ddr_1v1";
->> +                regulator-min-microvolt = <1100000>;
->> +                regulator-max-microvolt = <1100000>;
->> +                regulator-boot-on;
->> +                regulator-always-on;
->> +            };
->> +
->> +            bucka3: buck3 {
->> +                regulator-name = "vdd_ram_0v85";
->> +                regulator-min-microvolt = <850000>;
->> +                regulator-max-microvolt = <850000>;
->> +                regulator-boot-on;
->> +                regulator-always-on;
->> +            };
->> +
->> +            bucka4: buck4 {
->> +                regulator-name = "vdd_io_1v8";
->> +                regulator-min-microvolt = <1800000>;
->> +                regulator-max-microvolt = <1800000>;
->> +                regulator-boot-on;
->> +                regulator-always-on;
->> +            };
->> +
->> +            bucka5: buck5 {
->> +                regulator-name = "vdd_mcu_0v85";
->> +                regulator-min-microvolt = <850000>;
->> +                regulator-max-microvolt = <850000>;
->> +                regulator-boot-on;
->> +                regulator-always-on;
->> +            };
->> +
->> +            ldoa1: ldo1 {
->> +                regulator-name = "vdd_mcuio_1v8";
->> +                regulator-min-microvolt = <1800000>;
->> +                regulator-max-microvolt = <1800000>;
->> +                regulator-boot-on;
->> +                regulator-always-on;
->> +            };
->> +
->> +            ldoa2: ldo2 {
->> +                regulator-name = "vdd_mcuio_3v3";
->> +                regulator-min-microvolt = <3300000>;
->> +                regulator-max-microvolt = <3300000>;
->> +                regulator-boot-on;
->> +                regulator-always-on;
->> +            };
->> +
->> +            ldoa3: ldo3 {
->> +                regulator-name = "vds_dll_0v8";
->> +                regulator-min-microvolt = <800000>;
->> +                regulator-max-microvolt = <800000>;
->> +                regulator-boot-on;
->> +                regulator-always-on;
->> +            };
->> +
->> +            ldoa4: ldo4 {
->> +                regulator-name = "vda_mcu_1v8";
->> +                regulator-min-microvolt = <1800000>;
->> +                regulator-max-microvolt = <1800000>;
->> +                regulator-boot-on;
->> +                regulator-always-on;
->> +            };
->> +        };
->> +    };
->>   };
->>   &wkup_gpio0 {
+Previous versions of this patch-set can be found here:
+ v1: https://lore.kernel.org/linux-media/20231123115104.32094-1-zhi.mao@mediatek.com/
+
+Changes of v2 mainly address comments from Krzysztof/Rob Herring&Conor Dooley.
+Compared to v1:
+  - Fix some review comments  
+  - Add reviewed-by for sensor driver
+  - Fix some build-error and warning message 
+ 
+Thanks
+
+
+Zhi Mao (2):
+  media: i2c: Add GC08A3 image sensor driver
+  media: dt-bindings: media: i2c: Document GC08A3 bindings
+
+ .../bindings/media/i2c/galaxycore,gc08a3.yaml |  127 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
+ drivers/media/i2c/Kconfig                     |   14 +
+ drivers/media/i2c/Makefile                    |    1 +
+ drivers/media/i2c/gc08a3.c                    | 1888 +++++++++++++++++
+ 5 files changed, 2032 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/galaxycore,gc08a3.yaml
+ create mode 100644 drivers/media/i2c/gc08a3.c
 
 -- 
-Thanking You
-Neha Malcom Francis
+2.25.1
+
+
+
 
