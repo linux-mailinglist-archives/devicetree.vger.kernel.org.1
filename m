@@ -1,250 +1,193 @@
-Return-Path: <devicetree+bounces-22654-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22655-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDEDE80855D
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 11:25:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0D39808565
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 11:28:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 92F541F21566
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 10:25:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9DFD4284116
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 10:28:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4585E36B07;
-	Thu,  7 Dec 2023 10:25:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 802E937D01;
+	Thu,  7 Dec 2023 10:28:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="vWpXT8Us"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="beVI/smy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C53713D;
-	Thu,  7 Dec 2023 02:25:01 -0800 (PST)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id E6DC2669;
-	Thu,  7 Dec 2023 11:24:17 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1701944658;
-	bh=oGMWlxxRV6p3mFDaJ3TGXPEn3FbTBvg3/evgd3+y/Ko=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=vWpXT8UsiteCEzkEtzoX10adYyeEX6urlEu+KOlHBcjaDk5VGq8rGJ8BqOCE/3GBR
-	 A8ORGLRJ/bnMcvNEsZdXBOoYvMgtiooFJn7bMpCObyZkhv/ebpeCSvmxaifFjDBH3O
-	 ksV/e2TPK5L34V/sT/OPysbbUrbkgsDWyMhAGZVk=
-Date: Thu, 7 Dec 2023 12:25:05 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Zhi Mao <zhi.mao@mediatek.com>, mchehab@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, shengnan.wang@mediatek.com,
-	yaya.chang@mediatek.com, 10572168@qq.com,
-	Project_Global_Chrome_Upstream_Group@mediatek.com,
-	yunkec@chromium.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	jacopo.mondi@ideasonboard.com, sakari.ailus@linux.intel.com,
-	hverkuil-cisco@xs4all.nl, heiko@sntech.de, jernej.skrabec@gmail.com,
-	macromorgan@hotmail.com, linus.walleij@linaro.org,
-	hdegoede@redhat.com, tomi.valkeinen@ideasonboard.com,
-	gerald.loacker@wolfvision.net, andy.shevchenko@gmail.com,
-	bingbu.cao@intel.com, dan.scally@ideasonboard.com,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 1/2] media: dt-bindings: media: i2c: Document GC08A3
- bindings
-Message-ID: <20231207102505.GI29417@pendragon.ideasonboard.com>
-References: <20231123115104.32094-1-zhi.mao@mediatek.com>
- <20231123115104.32094-2-zhi.mao@mediatek.com>
- <20231123-magical-rupture-83251807e995@spud>
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2E03132
+	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 02:28:13 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-332f90a375eso734610f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 02:28:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701944892; x=1702549692; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=hLBYCsu9d8WmaQTQcfobdTHi3f2NWL6EdzvNFiXeOFw=;
+        b=beVI/smy18lRud3CUcKCjxOP0a4n4ZzdeqD8nhXOf3tHOUKdOCfB1n0aH54a3rxwIH
+         uYBLuwpCk2PJbGgeiggRJZX5tubeu6rfkYa87XTwFjMqwBoT4j4hDtbQccKp9qMlB5k0
+         ZD+TwZnm5VtAcmCQyEY+FTruVBy5OyJVfY6iXnN2la2OEe+z7WGJ2Sc3bMA+vCLy3icX
+         CQ7qTPNnGaAX0bhq6hey98hgYCf3ZzjIAPo9aFrzmI4sWlZBsZZyJ2VSCdM7WtFsYBOA
+         n0cHj1ggpR3gO2Hwl1/qGHz6Rd5bEw3Qx/HpJsXltTRm5JIBFDarDmbwx6QocdassnJd
+         krHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701944892; x=1702549692;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hLBYCsu9d8WmaQTQcfobdTHi3f2NWL6EdzvNFiXeOFw=;
+        b=fcwFwOZGBGtgsJHuZvT8iLKMfGbu3xrlhL15RdqdDUtRkOuR8uVwSsRyLcLGlO3q4a
+         KK6JarZdOsdDc0reBQiENSV9y461jh7YnNiX0i6sKd5n3STIZQExAChTa32BKYHBLRsJ
+         HWPtl6Iww9hV1DAPnlxryYsOzfIn8OUoAOvdngQkzgip7Ehx48BHCaR7wZU+FIfRp7f1
+         VNpQ1CVIujX2BI9XIiAqTblCFLYrujT4RwX0jY7ZEQZkCZzVKjAN6ZU8NQzBF4s8ZI8N
+         7csBCGlb/n0r1/9OzUiY9Su+y5+BPaHGMqdujclhx6iEFz7sWzWXjJfixj8xlg3on0Sl
+         WQuQ==
+X-Gm-Message-State: AOJu0YxIQ9Og6ZqQEGYfjUJcnGRHujEUPl3zQ8a/klRcgLSoGn6fSA5N
+	UiXedo/RqIQvznT78C30D8mG1A==
+X-Google-Smtp-Source: AGHT+IFxtgcZ9BWWTaiGAX12un0qVcpcHQm3BrfMx0yMmvlbVwvLRsso141EN2lpYKSjr3UiJJkaFQ==
+X-Received: by 2002:a5d:688d:0:b0:333:3fc7:f2b3 with SMTP id h13-20020a5d688d000000b003333fc7f2b3mr1589969wru.35.1701944892241;
+        Thu, 07 Dec 2023 02:28:12 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id d2-20020adfe2c2000000b003333d2c6420sm1073412wrj.74.2023.12.07.02.28.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Dec 2023 02:28:11 -0800 (PST)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v3 0/5] ASoC: codecs: add support for WCD939x Codec
+Date: Thu, 07 Dec 2023 11:28:03 +0100
+Message-Id: <20231207-topic-sm8650-upstream-wcd939x-codec-v3-0-6df9585ec7c8@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20231123-magical-rupture-83251807e995@spud>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADSecWUC/5XNsQ6CMBSF4Vchnb2G3hYEJ9/DOJT2Ak2EkhYRQ
+ 3h3C4tx0/E/w3cWFshbCuycLMzTZIN1fQxxSJhuVd8QWBObYYqCcxQwusFqCF2RZyk8hjB6Uh0
+ 8tSlFOYN2hjRomdc58irLjGRRGjzVdt5frrfYrQ2j86/9dOLb+p8/cUgBuZHKlHjKDV3utlfeH
+ Z1v2HYw4QfFlP+GYkRLSabgssJMqS90Xdc3pcF7ZCwBAAA=
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+ Banajit Goswami <bgoswami@quicinc.com>, Andy Gross <agross@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>
+Cc: linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org, 
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4100;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=kcGuLbZl5aneodJLsCPYh6Dc/XYF3ek5bDn5E1Ya4bw=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlcZ44o63KoaGOJ3a6jMhKpCsbV0QE4pJ6LDsBTL2C
+ OIjVn4qJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZXGeOAAKCRB33NvayMhJ0ZsrD/
+ 42E7eGy9DDA8l7Cu4mN1o9QO5v6Ex0NBfyf1lYn/Z62pZMVoo0wonrkASGIeZ9+65kUeIim6RLwrPf
+ zAgEmf56jO08zz7/Yo68NehVzPfZnu87CT1DAgGhD2uugm6pSxhKFPIUcMCJKEQet2imD1w7G+2fYf
+ gqHtCXrVqi3MRM8kKsotnI/uTdAVjfNdBhSkv6pNOO5DEfGGkDQz0eH0k1nzwc3wp1cvx9N/5htNP2
+ iQFBoqMeP6ggYsUfbrUW7ds2Z0fCDYJXqZ5VLZOIw8BITe8ZpNmXU2XbmqlqC8I6W6BJHYhaq2xBuS
+ mEqaupHQjf0kkTjx9Xmt6XGWjKIaoxhLJHajytxZHNojCLd9XNEKMb+THcNLSGnNjS5wEoRe2K3wSM
+ eMF38D9l4NgBfVBiwnnL5MMdoamrOVaSK+5GRePeHgo+AUCgYqNkINBDuzrWCIGnCxpDBcX+GkNrNd
+ b/svKUCk3B62GzqcIL1tO0UYfLCBqscGGNy4YxoRczxG57zaLVBlsli1Zut1eo6xNo1Knl0UyclWGL
+ h0i8p6CeH6DwY6Z0blpBoM3XwZud3yIGARa1zc6vs0/WGDfyKceSEPe9PPMvSdscAO5KLupy8V8uMh
+ P/+kuakLo5qsFqsK4Z4stUhFS/Okhnbhx7XECvAMr5NOOtIc28aSvlb9eMSQ==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-On Thu, Nov 23, 2023 at 05:31:35PM +0000, Conor Dooley wrote:
-> On Thu, Nov 23, 2023 at 07:51:03PM +0800, Zhi Mao wrote:
-> > Add YAML device tree binding for GC08A3 CMOS image sensor, 
-> > and the relevant MAINTAINERS entries.
-> > 
-> > Signed-off-by: Zhi Mao <zhi.mao@mediatek.com>
-> 
-> Please test your bindings.
-> 
-> > ---
-> >  .../bindings/media/i2c/galaxycore,gc08a3.yaml | 128 ++++++++++++++++++
-> >  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
-> >  2 files changed, 130 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/galaxycore,gc08a3.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/galaxycore,gc08a3.yaml b/Documentation/devicetree/bindings/media/i2c/galaxycore,gc08a3.yaml
-> > new file mode 100644
-> > index 000000000000..089ea321da91
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/i2c/galaxycore,gc08a3.yaml
-> > @@ -0,0 +1,128 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/media/i2c/galaxycore,gc08a3.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: GalaxyCore gc08a3 1/4" 8M Pixel MIPI CSI-2 sensor
-> > +
-> > +maintainers:
-> > +  - Zhi Mao <zhi.mao@mediatek.com>
-> > +
-> > +description: |-
-> 
-> The |- is not needed, you have no formatting to preserve.
-> 
-> > +  The gc08a3 is a raw image sensor with an MIPI CSI-2 image data
-> > +  interface and CCI (I2C compatible) control bus. The output format
-> > +  is raw Bayer.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: GalaxyCore,gc08a3
-> 
-> Please remove the capitals.
-> 
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: Reference to the mclk clock.
-> 
-> Pointless, just use maxItems: 1.
-> 
-> > +
-> > +  assigned-clocks:
-> > +    maxItems: 1
-> > +
-> > +  assigned-clock-rates:
-> > +    maxItems: 1
-> > +
-> > +  enable-gpios:
-> > +    description: Reference to the GPIO connected to the RESETB pin. Active low.
-> > +    maxItems: 1
-> > +
+Add the main WCD9390/WCD9395 Audio Codec driver to support:
+- 4 ADC inputs for up to 5 Analog Microphones
+- 4 DMIC inputs for up to 8 Digital Microphones
+- 4 Microphone BIAS
+- Stereo Headphone output
+- Mono EAR output
+- MBHC engine for Headset Detection
 
-If that's the RESETB pin, it should be reset-gpios.
+This adds:
+- bindings
+- MBHC changes to support Type-C muc
+- Soundwire Slave driver
+- Code driver
 
-> > +  vddio-supply:
-> > +    description: Definition of the regulator used for the VDDIO power supply.
-> > +
-> > +  vdda-supply:
-> > +    description: Definition of the regulator used for the VDDA power supply.
-> > +
-> > +  vddd-supply:
-> > +    description: Definition of the regulator used for the VDDD power supply.
-> 
-> These descriptions can all be replaced with "foo-supply: true" IMO.
-> 
-> > +  port:
-> > +    $ref: /schemas/graph.yaml#/$defs/port-base
-> > +    unevaluatedProperties: false
-> > +
-> > +    properties:
-> > +      endpoint:
-> > +        $ref: /schemas/media/video-interfaces.yaml#
-> > +        unevaluatedProperties: false
-> > +
-> > +        properties:
-> > +          data-lanes:
-> > +            oneOf:
-> > +              - items:
-> > +                  - const: 1
-> > +                  - const: 2
-> > +                  - const: 3
-> > +                  - const: 4
-> > +              - items:
-> > +                  - const: 1
-> > +                  - const: 2
-> > +
-> > +          link-frequencies: true
-> > +
-> > +        required:
-> > +          - data-lanes
-> > +          - link-frequencies
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - clocks
-> 
-> > +  - assigned-clocks
-> > +  - assigned-clock-rates
-> 
-> Why are these required?
-> 
-> > +  - vddio-supply
-> > +  - vdda-supply
-> > +  - vddd-supply
-> > +  - port
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +
-> > +    i2c {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        sensor0@2 {
-> > +            status = "okay";
-> > +            compatible = "GalaxyCore,gc08a3";
-> > +            reg = <0x31>;
-> > +
-> > +            clocks = <&topckgen CLK_TOP_CAMTG>,
-> > +                <&topckgen CLK_TOP_UNIVPLL_192M_D8>;
-> > +            clock-names = "xvclk", "freq_mux";
-> > +            clock-frequency = <24000000>;
-> > +
-> > +            assigned-clocks = <&topckgen CLK_TOP_CAMTG>,
-> > +                    <&topckgen CLK_TOP_UNIVPLL_192M_D8>;
-> > +            assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_192M_D8>;
-> > +            assigned-clock-rates = <0>, <24000000>;
-> > +
-> > +            enable-gpios = <&pio 19 GPIO_ACTIVE_HIGH>;
-> > +
-> > +            pinctrl-names = "default";
-> > +            pinctrl-0 = <&camera_pins_cam0>;
-> > +
-> > +            avdd-supply = <&mt6359_vfe28_ldo_reg>;
-> > +
-> > +            port {
-> > +                sensor0_out_2: endpoint {
-> > +                    data-lanes = <1 2 3 4>;
-> > +                    link-frequencies = /bits/ 64 <336000000 207000000>;
-> > +                    remote-endpoint = <&seninf_csi_port_0_in_2>;
-> > +                };
-> > +            };
-> > +        };
-> > +
-> > +    };
-> > +
-> > +...
-> > diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> > index 309b94c328c8..a0bbec0bfee2 100644
-> > --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> > +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> > @@ -502,6 +502,8 @@ patternProperties:
-> >      description: Fujitsu Ltd.
-> >    "^fxtec,.*":
-> >      description: FX Technology Ltd.
-> > +  "^GalaxyCore,.*":
-> > +    description: GalaxyCore Inc.
-> >    "^gardena,.*":
-> >      description: GARDENA GmbH
-> >    "^gateway,.*":
+The USB Mux subsystem support will be submitted separalety
+since it's a functionally separate subsystem connected over
+I2C with it's own reset signal.
 
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v3:
+- Fixed W=1 and smatch warnings reported by lkp & Dan Carpenter
+- Fixed dependency on CONFIG_TYPEC and added guards to not build type-c related code when disabled
+- Collected review on second bindings patch
+- Link to v2: https://lore.kernel.org/r/20231201-topic-sm8650-upstream-wcd939x-codec-v2-0-94ed814b25aa@linaro.org
+
+Changes in v2:
+- Bindings:
+  - Dropped all references to "Slave" or "Host" terminology when possible
+  - Collected review for first patch
+  - Added wcd9395 as fallback of wcd9390
+  - Fixes typos errors
+- MBHC:
+  - Dropped all references to "Slave" or "Host" terminology when possible
+  - Fixed EXPORT_SYMBOL into EXPORT_SYMBOL_GPL
+  - Fixed typo in commit message
+- Soundwire Devices driver
+  - Dropped all references to "Slave" or "Host" terminology when possible
+  - Dropped comments and unused code
+  - Reworked wcd939x_swr_get_current_bank()
+  - Added comments to wcd9390_interrupt_callback()
+  - Reworked regmap's wcd939x_readonly/volatile_register checks
+  - Added comments explaining while bind/unbind are empty
+  - Added comment on SDW_SLAVE_ENTRY meaning
+  - Added more register fields defines
+  - Style fixes
+- Codec driver
+  - Dropped all references to "Slave" or "Host" terminology when possible
+  - Added MICB_BIAS_ values enum and used them in the code
+  - Moved zdet_param to the top
+  - Added TLV data for ear_pa_gain and used it
+  - Defined as much as possible every bit field used on/from register
+  - Replaced 1/0 to true/false when writing to single bit fields
+  - Replaced for loop on all bits with ffs(), simplified code
+  - Simplified MICB fields handling code
+  - Reworked and simplified wcd939x_get/set_compander and other kcontrol get/setters
+  - Reworked and simplified MHGC impedance/zdet/qval code, dropped dead code
+  - Added comments on wcd939x_wd_handle_irq() utility
+  - Added comment on the interrupt handling architecture
+- I've not moved common code yet, I'll probably do later since it would alter wcd939x code
+- Link to v1: https://lore.kernel.org/r/20231123-topic-sm8650-upstream-wcd939x-codec-v1-0-21d4ad9276de@linaro.org
+
+---
+Neil Armstrong (5):
+      ASoC: dt-bindings: qcom,wcd938x: move out common properties
+      ASoC: dt-bindings: document WCD939x Audio Codec
+      ASoC: codec: wcd-mbhc-v2: add support when connected behind an USB-C audio mux
+      ASoC: codecs: Add WCD939x Soundwire devices driver
+      ASoC: codecs: Add WCD939x Codec driver
+
+ .../devicetree/bindings/sound/qcom,wcd938x.yaml    |   81 +-
+ .../bindings/sound/qcom,wcd939x-sdw.yaml           |   69 +
+ .../devicetree/bindings/sound/qcom,wcd939x.yaml    |   96 +
+ .../bindings/sound/qcom,wcd93xx-common.yaml        |   95 +
+ sound/soc/codecs/Kconfig                           |   19 +
+ sound/soc/codecs/Makefile                          |    7 +
+ sound/soc/codecs/wcd-clsh-v2.h                     |    1 +
+ sound/soc/codecs/wcd-mbhc-v2.c                     |   95 +-
+ sound/soc/codecs/wcd-mbhc-v2.h                     |    3 +
+ sound/soc/codecs/wcd939x-sdw.c                     | 1584 +++++++++
+ sound/soc/codecs/wcd939x.c                         | 3666 ++++++++++++++++++++
+ sound/soc/codecs/wcd939x.h                         |  983 ++++++
+ 12 files changed, 6604 insertions(+), 95 deletions(-)
+---
+base-commit: 07b677953b9dca02928be323e2db853511305fa9
+change-id: 20231123-topic-sm8650-upstream-wcd939x-codec-c46f621b55d4
+
+Best regards,
 -- 
-Regards,
+Neil Armstrong <neil.armstrong@linaro.org>
 
-Laurent Pinchart
 
