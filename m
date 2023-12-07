@@ -1,95 +1,149 @@
-Return-Path: <devicetree+bounces-22757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22758-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12692808A76
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 15:26:07 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E03D4808A97
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 15:30:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B06CA1F212E0
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 14:26:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 806F8B20E3B
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 14:30:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56F6041C98;
-	Thu,  7 Dec 2023 14:26:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m6mSC/cj"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1E253B78B;
+	Thu,  7 Dec 2023 14:30:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2240239AC5;
-	Thu,  7 Dec 2023 14:25:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59D73C433C7;
-	Thu,  7 Dec 2023 14:25:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701959158;
-	bh=BB8B5e3lcX0yXeV5twd8WMzv2yRfLB0d40M15sMzN1U=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=m6mSC/cjKDFaqugND65JRTmW92mbljTgTTmg6CGaAWNF0WL82rxgt67mmfiMxerqK
-	 rJ4P489cZCnC7C3g2l5oP7kQ2XzO/AXyIRNsDzFY/Sj44qg6AfCgNI8qMpNpWvkdho
-	 rqqiksxl7IPdOkeJKAnFsIKaBo5BPRYalNd6/B6/N3Wd+oZM40WlVLf1S4+8eXvq4T
-	 pbJzP4yk44WEsLM8O6Kx2S123xf+VKdn9YNvZDyA89Rsa+d9MKgQmX9RazBaFt6HNp
-	 suPFRquwASN0RSww3bbJSYv1LpBkuG+objnLfTJWlYzwIGw7esFaBIx4YcQB4x9d7a
-	 7uEGlhVRRzmDg==
-Date: Thu, 7 Dec 2023 14:25:50 +0000
-From: Lee Jones <lee@kernel.org>
-To: Dan Carpenter <dan.carpenter@linaro.org>
-Cc: oe-kbuild@lists.linux.dev,
-	Anjelique Melendez <quic_amelende@quicinc.com>, pavel@ucw.cz,
-	thierry.reding@gmail.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	agross@kernel.org, andersson@kernel.org, lkp@intel.com,
-	oe-kbuild-all@lists.linux.dev, luca.weiss@fairphone.com,
-	konrad.dybcio@linaro.org, u.kleine-koenig@pengutronix.de,
-	quic_subbaram@quicinc.com, quic_gurus@quicinc.com,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v7 4/7] leds: rgb: leds-qcom-lpg: Add support for PPG
- through single SDAM
-Message-ID: <20231207142550.GD8867@google.com>
-References: <20231130013615.14287-5-quic_amelende@quicinc.com>
- <17a8a637-3477-41fe-959f-7784cf6d6b2e@suswa.mountain>
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E09B4126;
+	Thu,  7 Dec 2023 06:30:34 -0800 (PST)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+	by fd01.gateway.ufhost.com (Postfix) with ESMTP id 232777FD3;
+	Thu,  7 Dec 2023 22:30:32 +0800 (CST)
+Received: from EXMBX072.cuchost.com (172.16.6.82) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 7 Dec
+ 2023 22:30:32 +0800
+Received: from localhost.localdomain (202.188.176.82) by EXMBX072.cuchost.com
+ (172.16.6.82) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 7 Dec
+ 2023 22:30:24 +0800
+From: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
+To: Jonathan Corbet <corbet@lwn.net>, Will Deacon <will@kernel.org>, "Mark
+ Rutland" <mark.rutland@arm.com>, Rob Herring <robh+dt@kernel.org>, "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, Dan Williams <dan.j.williams@intel.com>, "Ilkka
+ Koskinen" <ilkka@os.amperecomputing.com>, Jonathan Cameron
+	<Jonathan.Cameron@huawei.com>, Dave Jiang <dave.jiang@intel.com>
+CC: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>, Ley Foon Tan
+	<leyfoon.tan@starfivetech.com>, <linux-doc@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<devicetree@vger.kernel.org>
+Subject: [PATCH v5 0/3] StarFive's StarLink PMU Support
+Date: Thu, 7 Dec 2023 22:29:37 +0800
+Message-ID: <20231207142940.1794032-1-jisheng.teoh@starfivetech.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <17a8a637-3477-41fe-959f-7784cf6d6b2e@suswa.mountain>
+Content-Type: text/plain
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX072.cuchost.com
+ (172.16.6.82)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, 30 Nov 2023, Dan Carpenter wrote:
+Changes since v4:
+- Add Reviewed-by tag from Conor to dt-bindings.
+- Add Documentation/admin-guide/perf/starfive_starlink_pmu.rst.
+- Rework starfive_starlink_pmu.c based on Jonathan's comment.
 
-> Hi Anjelique,
-> 
-> kernel test robot noticed the following build warnings:
-> 
-> https://git-scm.com/docs/git-format-patch#_base_tree_information]
-> 
-> url:    https://github.com/intel-lab-lkp/linux/commits/Anjelique-Melendez/dt-bindings-soc-qcom-Add-qcom-pbs-bindings/20231130-094701
-> base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-> patch link:    https://lore.kernel.org/r/20231130013615.14287-5-quic_amelende%40quicinc.com
-> patch subject: [PATCH v7 4/7] leds: rgb: leds-qcom-lpg: Add support for PPG through single SDAM
-> config: csky-randconfig-r071-20231130 (https://download.01.org/0day-ci/archive/20231130/202311302200.RcTP9m0Y-lkp@intel.com/config)
-> compiler: csky-linux-gcc (GCC) 13.2.0
-> reproduce: (https://download.01.org/0day-ci/archive/20231130/202311302200.RcTP9m0Y-lkp@intel.com/reproduce)
-> 
-> If you fix the issue in a separate patch/commit (i.e. not just a new version of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Reported-by: Dan Carpenter <error27@gmail.com>
-> | Closes: https://lore.kernel.org/r/202311302200.RcTP9m0Y-lkp@intel.com/
-> 
-> smatch warnings:
-> drivers/leds/rgb/leds-qcom-lpg.c:1055 lpg_pattern_set() error: uninitialized symbol 'lo_pause'.
-> drivers/leds/rgb/leds-qcom-lpg.c:1056 lpg_pattern_set() error: uninitialized symbol 'hi_pause'.
+Changes since v3:
+- Change dt-bindings filename along with the compatible field to
+   "starfive,jh8100-starlink-pmu" with SOC specific naming
+   convention.
+- Drop unused label defined in examples section in dt-bindings.
+- Update compatible field in starfive_starlink_pmu.c to the
+  aforementioned.
 
-FYI, I'll not review this set until these are fixed.
+Changes since v2:
+- Change compatible field from generic "starfive,starlink-pmu"
+   to "starfive,starlink-500-pmu" with specific IP versioning
+   in bindings and driver.
+- Fix warning '-Wmissing-prototypes' reported by kernel test robot,
+   by appending static to starlink_pmu_set_event_period() in
+   starfive_starlink_pmu.c.
 
--- 
-Lee Jones [李琼斯]
+Changes since v1:
+- Change 'depends on SOC_STARFIVE' to 'depends on ARCH_STARFIVE'
+   in Kconfig
+
+----
+
+This patch series adds support for StarFive's Starlink Performance
+Monitor Unit(PMU).
+StarFive's StarLink PMU integrates one or more CPU cores with
+a shared L3 memory system. The PMU supports overflow interrupt,
+up to 16 programmable 64bit event counters, and an independent
+64bit cycle counter.
+StarLink PMU is accessed via MMIO.
+
+Example Perf stat output:
+[root@user]# perf stat -a -e /starfive_starlink_pmu/cycles/ \
+        -e /starfive_starlink_pmu/read_miss/ \
+        -e /starfive_starlink_pmu/read_hit/ \
+        -e /starfive_starlink_pmu/release_request/  \
+        -e /starfive_starlink_pmu/write_hit/ \
+        -e /starfive_starlink_pmu/write_miss/ \
+        -e /starfive_starlink_pmu/write_request/ \
+        -e /starfive_starlink_pmu/writeback/ \
+        -e /starfive_starlink_pmu/read_request/ \
+        -- openssl speed rsa2048
+Doing 2048 bits private rsa's for 10s: 5 2048 bits private RSA's in
+2.84s
+Doing 2048 bits public rsa's for 10s: 169 2048 bits public RSA's in
+2.42s
+version: 3.0.11
+built on: Tue Sep 19 13:02:31 2023 UTC
+options: bn(64,64)
+CPUINFO: N/A
+                  sign    verify    sign/s verify/s
+rsa 2048 bits 0.568000s 0.014320s      1.8     69.8
+/////////
+ Performance counter stats for 'system wide':
+
+         649991998      starfive_starlink_pmu/cycles/
+           1009690      starfive_starlink_pmu/read_miss/
+           1079750      starfive_starlink_pmu/read_hit/
+           2089405      starfive_starlink_pmu/release_request/
+               129      starfive_starlink_pmu/write_hit/
+                70      starfive_starlink_pmu/write_miss/
+               194      starfive_starlink_pmu/write_request/
+            150080      starfive_starlink_pmu/writeback/
+           2089423      starfive_starlink_pmu/read_request/
+
+      27.062755678 seconds time elapsed
+
+Ji Sheng Teoh (3):
+  perf: starfive: Add StarLink PMU support
+  dt-bindings: perf: starfive: Add JH8100 StarLink PMU
+  docs: perf: Add description for StarFive's StarLink PMU
+
+ Documentation/admin-guide/perf/index.rst      |   1 +
+ .../perf/starfive_starlink_pmu.rst            |  46 ++
+ .../perf/starfive,jh8100-starlink-pmu.yaml    |  46 ++
+ drivers/perf/Kconfig                          |   9 +
+ drivers/perf/Makefile                         |   1 +
+ drivers/perf/starfive_starlink_pmu.c          | 643 ++++++++++++++++++
+ 6 files changed, 746 insertions(+)
+ create mode 100644 Documentation/admin-guide/perf/starfive_starlink_pmu.=
+rst
+ create mode 100644 Documentation/devicetree/bindings/perf/starfive,jh810=
+0-starlink-pmu.yaml
+ create mode 100644 drivers/perf/starfive_starlink_pmu.c
+
+--=20
+2.25.1
+
 
