@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-22591-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22592-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35C7D808309
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 09:32:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5611180830C
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 09:32:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D63F21F219EF
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 08:32:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7ECA71C216A2
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 08:32:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44ABF21A00;
-	Thu,  7 Dec 2023 08:32:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7A271119B;
+	Thu,  7 Dec 2023 08:32:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iq4sdmCb"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ubXSvhMp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9762D3
-	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 00:31:59 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-332c0c32d19so766718f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 00:31:59 -0800 (PST)
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E45CFD3
+	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 00:32:41 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-40c0e7b8a9bso9574275e9.3
+        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 00:32:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701937918; x=1702542718; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701937960; x=1702542760; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=rw0ExSlKVnYAPNUWQI/+k0xGsrQynVxsT48O7DCL/qc=;
-        b=iq4sdmCba4KKxhk3oyB9emP+j76LATPtEH2leT8Yjra/U2XLALS5YI5PrJHae3hMzJ
-         Koi1YByul+ipSRUZBMJ7bMJ5goEvCT2AQkCQwJ0DyzNW0Oh/5C4n5vb2ysNJIH/ygEkc
-         JENg/16EQ0MLW6afFssWVXvL753FRJSsFPszBW3X6YSfIHgIX25tw/2FZaywEpzv2MDH
-         5M3/SWRdn9PMWzCFXP04/GqBVV6l2AZ191YiXIdUYPlv0FAgguBfkk3ng3PGyrjE/tk9
-         ghxz42AsFmtupb5nhtcOdmjnusosxiLd0arAT6zkTK7A47wWmtgSdiW7pyDofDtwFlHd
-         /jWA==
+        bh=jP0gDysAiEEglgpl+M3nEgLoGdVziIrT41pXVX6kKSc=;
+        b=ubXSvhMphlJ9Undred2ijf+dQT/5LpelVwCrbxMiB/DkMU7ULAxI1TdQPdvrQX1XEc
+         +u9pWg2yQrjZW8vB8m4lmZCSR0eThGU38ENoPWmTxoWE91A2L0yZIqqhLZE4w8zpK0nb
+         M9aespfvJusaMkObDh7NERSDbeYGw1S3VWYbVKnz2RvwnWZ3w9QTNfmVpKTjyvuGXu6S
+         BXFlQ3kOC65bVBbsGxXbwnJgc+HvYOnC52VHkq96MfWY5/atu5Vpx1pyNdYCtJM75HrF
+         t7Rp63i5mk4mdveKmoy+WumIUnyZh7a0O0+pPV5SUqb3WJBLMeSbq6hVUUpsNjifZm7W
+         S2XQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701937918; x=1702542718;
+        d=1e100.net; s=20230601; t=1701937960; x=1702542760;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rw0ExSlKVnYAPNUWQI/+k0xGsrQynVxsT48O7DCL/qc=;
-        b=LtboJGwgmX93yX09Eq9Ub+S1jm+kfprZtXWDaUEYQUR8cxlCK3urR3kFBUhBLVuoDe
-         nSacDDDAMN92xpdlwIyYd6E+ZrMSaDpoQUM2EHJ7725Avb0OFpiLoQpyq703DmAlKkb5
-         PtshpFKd+eY4uLR3Y2LvrBvzqxL16wLANiXryciErPcQpo156Y8ky4PWgLTjnvXdsf9M
-         JTHfs2PzopV/5erGAhap6INwq90bjqB29/4sNlZvk+6sFGBzTNj3OT+t7qxuk0cTsS+2
-         6E2cAPcSU13oBgSbuEFAFMnUkCNMzTPlWKVeWEMPNg9v0emrFUpU7GRF70Tfh9WnODnX
-         8EEA==
-X-Gm-Message-State: AOJu0YxKygK7qxKN6C68Y4mtwA7/IuHeiixDoStPY/GtHUGGeQ79CHOf
-	MVr9aRDKBz4hJya5JS9qnD4Xsw==
-X-Google-Smtp-Source: AGHT+IGBdeanixj4cJPskmLkAZXTF9t9ClevO/6Z7J7TFr/xvAtg6lRX7WM5IEWW+7wd7uNwZlkXHg==
-X-Received: by 2002:a05:600c:3103:b0:40b:5e21:bdbe with SMTP id g3-20020a05600c310300b0040b5e21bdbemr1271362wmo.77.1701937918328;
-        Thu, 07 Dec 2023 00:31:58 -0800 (PST)
+        bh=jP0gDysAiEEglgpl+M3nEgLoGdVziIrT41pXVX6kKSc=;
+        b=cSdJhsdG+0qpRRkyIavUrFj5GRYawNqGZn6PbI54HjnQefYx6Jml5zGqGZKWSz4fRZ
+         lU3MuGR1Nz2OevlXmUNBYcAccodbZSOb71ASGl6D0wAa0itsc4SObml1PaClYs4Q3ELI
+         FnLa1c8iv28P9j4d+CJGGm73UNP3Ss628aWD4La6lrI6Kcz/pZxGf0f8aRzwkVt2Wgsu
+         VVuePIfjkmX0JrDMgKvP7Ws9eXUhp6hyUuOErOc/Qp1NVJrizDCdd06IfVZm4nbKLdgs
+         lETM+pvFZNXS+MRhdQW7dHfhgZy4b/EFCClK9xOJWIzSwwSVpEChDTwk22yWE9adU31W
+         loYg==
+X-Gm-Message-State: AOJu0YwRItWUzJbVEWFuIThCVWQyp/O1LDRQJVI1mzabUdboqP+3q6aC
+	Zy82yQGACdoKF70aojzwnN0Fww==
+X-Google-Smtp-Source: AGHT+IFLpIferlQPCxvJMKLbp0/195oJfIr4u8VF8VYz61XNcqR/Sm6u3/q+bucjoPmakO8Kj5XfMA==
+X-Received: by 2002:a05:600c:5408:b0:40b:5e59:ccdb with SMTP id he8-20020a05600c540800b0040b5e59ccdbmr1440927wmb.188.1701937960471;
+        Thu, 07 Dec 2023 00:32:40 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id ek10-20020a05600c3eca00b0040b3d33ab55sm1149728wmb.47.2023.12.07.00.31.56
+        by smtp.gmail.com with ESMTPSA id ek10-20020a05600c3eca00b0040b3d33ab55sm1149728wmb.47.2023.12.07.00.32.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Dec 2023 00:31:57 -0800 (PST)
-Message-ID: <127e9801-2ce3-45d6-b6a5-238faa97f57a@linaro.org>
-Date: Thu, 7 Dec 2023 09:31:56 +0100
+        Thu, 07 Dec 2023 00:32:40 -0800 (PST)
+Message-ID: <6035c4cc-afe1-456d-a4d0-16992da09a2e@linaro.org>
+Date: Thu, 7 Dec 2023 09:32:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,7 +62,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: add dimonoff
+Subject: Re: [PATCH 2/3] dt-bindings: arm: fsl: add Dimonoff gateway EVK board
 Content-Language: en-US
 To: Hugo Villeneuve <hugo@hugovil.com>, robh+dt@kernel.org,
  krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, shawnguo@kernel.org,
@@ -72,7 +72,7 @@ Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org,
  Hugo Villeneuve <hvilleneuve@dimonoff.com>
 References: <20231206160303.33185-1-hugo@hugovil.com>
- <20231206160303.33185-2-hugo@hugovil.com>
+ <20231206160303.33185-3-hugo@hugovil.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -118,20 +118,33 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231206160303.33185-2-hugo@hugovil.com>
+In-Reply-To: <20231206160303.33185-3-hugo@hugovil.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 06/12/2023 17:03, Hugo Villeneuve wrote:
 > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 > 
-> Add vendor prefix for Dimonoff, which provides
-> IoT smart solutions and custom engineering services.
+> Add DT compatible string for Dimonoff gateway EVK board based on a
+> Variscite VAR-SOM-NANO with a NXP MX8MN nano CPU.
 > 
 > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 > ---
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+> index cd87d1afe7b7..e445d65d6f17 100644
+> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> @@ -1025,6 +1025,7 @@ properties:
+>        - description: Variscite VAR-SOM-MX8MN based boards
+>          items:
+>            - enum:
+> +              - dimonoff,dimonoff-gateway-evk # i.MX8MN Dimonoff Gateway EVK Board
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Company name appears twice, which is not really helpful. What's the true
+name? Gateway EVK? Then keep only this.
 
 Best regards,
 Krzysztof
