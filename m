@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-22743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22744-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 919C9808993
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 14:55:06 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A43F58089A4
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 14:58:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 49CB7282902
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 13:55:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 43D63B20F14
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 13:58:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D295940C0B;
-	Thu,  7 Dec 2023 13:55:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 568A53D0DD;
+	Thu,  7 Dec 2023 13:57:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sYozApNS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XQXhZ6g9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99AADD5E
-	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 05:54:59 -0800 (PST)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-a1b75f59a12so116469766b.3
-        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 05:54:59 -0800 (PST)
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AC1010C2
+	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 05:57:56 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-40c2308faedso10186065e9.1
+        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 05:57:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701957298; x=1702562098; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701957474; x=1702562274; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=VJ9hXHlrIBM/3jPxvXf6fAHASy5vMq82OUvhHyJRLCk=;
-        b=sYozApNSuGX2V5P1lnsKdERkbvTG+4fbpvjriLflLFNluhlMbiLBUsuL8/M0wCilp7
-         S0tkEqQ2Mnwp4OQT++CtpyeFE21Ix2qc3ULEpQN0DAwjzZx2ACBMtxihqym9SBeKirH2
-         x/e7fSTgZmeXA5XwPBRwQuLESneOsZHCEyD4hX3k4/A4eJN3Cg3CiH/n9fmA9Fu4rgo4
-         4WQKFyhGoYNmVvcICSigbCAyoMH2BWe87j2YOEgNbWY94ydIQ56F2/t4+QzfjC771a1+
-         ITRPrAxrFzWdOvveyZEqGBV8ZUy06ULhYmwQcFolVB1DO03dMH2FNhC6B1/5+fn/e3jN
-         8J4Q==
+        bh=8nrtmbZhihcOTPQj1ObH2wiKry//e3Y22NpcOn65kr4=;
+        b=XQXhZ6g9coiRNMpV4rD9izYORkKtS1cwaTqY5ylAACyaltozXvLahQ1l63nbH0lH6n
+         zTHl0sAazVgwUF4mPr5jnCxwyLMIDxHFhv6ztgS8HH9O9REDx/yxT0ye+lG/0hTn0ioZ
+         UO/VC4smbAjNaEuer9BpVGDFSnrfTWApwrtaa3Ien7VFTlvaQ+EIl5Ip0XdViharawXL
+         qImSA2PuayZogc7knRwe+GBg3q3SQp8lCUAnwNWnCWgg7WIEnCwNp3QR7FAqIPt9JQwi
+         G7lM+DgEYrzsqYOzKql3yJhx2yhL9GQgR8kWjYLLX+rVu77dgeELvl3Q75FywhuDW6AH
+         WrRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701957298; x=1702562098;
+        d=1e100.net; s=20230601; t=1701957474; x=1702562274;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VJ9hXHlrIBM/3jPxvXf6fAHASy5vMq82OUvhHyJRLCk=;
-        b=jClKv7JbqyZf7tmVsQ1peR02PziRCGbv5bAMnUjI88p3BaBjD2RsBc4vF9pvK0/18J
-         my95GgyICX7dXCXd8uaY/v1lsXJ7xZnSd3Xz+VTC2yVrDcdPM8upFASXpRFS1qqwiFH+
-         0zrjQVu6bsZnLav9Rk7Nj83CI3kVlJlXIgjcgu9BBA484qy3uyaqZt2HyCpyQowOps1H
-         AsuqSsbHkni5R5chQXQi1m3y62ejldn833hb7V9osM4G84wH6C64+/q4aGe1iKlIedyx
-         +ioY+wxqhl4k1DqLBlGZl4wjVrlkpZyK4f10bgHYBoNqdwAabLKFsxpdWdTpwHVsDAbs
-         3mqg==
-X-Gm-Message-State: AOJu0Yy9VvGdj4k71SwLGGe+8E/gg+6A7FEP9dCROysiaMIFMIaaKYS+
-	/Hy8zWDPK4EnKL2zlk14VAAtkg==
-X-Google-Smtp-Source: AGHT+IE2LvaYsytYUpFN0WDUyMB9++h0rWbP9V5eOinvkhD/nT4mKOI0w9aJH5FBDfy6rf5+AQLWNw==
-X-Received: by 2002:a17:906:104c:b0:a1d:b924:1044 with SMTP id j12-20020a170906104c00b00a1db9241044mr706249ejj.27.1701957298121;
-        Thu, 07 Dec 2023 05:54:58 -0800 (PST)
+        bh=8nrtmbZhihcOTPQj1ObH2wiKry//e3Y22NpcOn65kr4=;
+        b=nI8vsf3GhPWeh7PJkkpsZs2B3S86rjqfrYDxTY79R7HlDmDjpVYLAn+fJ1siNXGGjY
+         E1bwYqkdIddg1J2CqV+4aNU00afvYCGieSFaz9B8gupGy8IFXOgIlKq0VinlYhhN+Z8m
+         zgoZ7yHu83KhTrBJYUvxIweOklpE8o6xmz3/eHg3c4J4YfvoxzIRhX90US61NrONcQQd
+         N4J00FS4NZPauP5uweXovfnleHWv6NWTHIuRjERODPvZYMLKixfXbXJh7yAgH/tRlIHL
+         XI4uwOwF1HS7Ryf3iXDLhVPxWHLm4C/m3dWKd5qgmhbvTmcHvBxYoUGY7mUd+tLmQxYy
+         wwSg==
+X-Gm-Message-State: AOJu0YwQIpJoat3FxX/XDcUTLIJhWhaoQSZdA8srKP5fMO3OW8hBiqZ+
+	XYdAmvt+0fpfkZsmm84P5gKsuw==
+X-Google-Smtp-Source: AGHT+IHqqInOQ5qDNJvhTUWJE0UqL+fwaB/8swjT5x7qI7S+Tc7pOZR7ccApV7T601DsEd9hagw/DQ==
+X-Received: by 2002:a05:600c:54f1:b0:40c:838:a695 with SMTP id jb17-20020a05600c54f100b0040c0838a695mr1407049wmb.174.1701957474585;
+        Thu, 07 Dec 2023 05:57:54 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id md21-20020a170906ae9500b00a1d18c142eesm860581ejb.59.2023.12.07.05.54.56
+        by smtp.gmail.com with ESMTPSA id l26-20020a170906a41a00b00a1da2c9b06asm862918ejz.42.2023.12.07.05.57.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Dec 2023 05:54:56 -0800 (PST)
-Message-ID: <dd22f0fb-e07b-4bd4-bd6a-cf2d8a5687fc@linaro.org>
-Date: Thu, 7 Dec 2023 14:54:55 +0100
+        Thu, 07 Dec 2023 05:57:54 -0800 (PST)
+Message-ID: <526bfe1e-7f6a-4402-80d6-2c97a1e3198e@linaro.org>
+Date: Thu, 7 Dec 2023 14:57:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,17 +62,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: gpio: realtek: Add realtek,rtd-gpio
+Subject: Re: [PATCH] dt-bindings: marvell: move MMP boards to common marvell
+ directory
 Content-Language: en-US
-To: TY Chang <tychang@realtek.com>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Andy Shevchenko <andy@kernel.org>,
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Gregory Clement <gregory.clement@bootlin.com>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-References: <20231207100723.15015-1-tychang@realtek.com>
- <20231207100723.15015-2-tychang@realtek.com>
+References: <20231201132306.60753-1-krzysztof.kozlowski@linaro.org>
+ <1e25e2f4-e4b9-4219-a9c2-cb6230a62549@lunn.ch>
+ <a44b7bb2-34ac-45ab-84c6-630d604f1bcf@linaro.org>
+ <5d511e31-8ff5-4c23-a65e-8660833a9799@lunn.ch>
+ <944c02f5-d0e6-4367-bb4d-b366054b3e4e@linaro.org>
+ <9c50d09e-98a0-416f-b779-9cf39d1a94b5@lunn.ch>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -118,89 +124,74 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231207100723.15015-2-tychang@realtek.com>
+In-Reply-To: <9c50d09e-98a0-416f-b779-9cf39d1a94b5@lunn.ch>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 07/12/2023 11:07, TY Chang wrote:
-> From: Tzuyi Chang <tychang@realtek.com>
+On 01/12/2023 17:17, Andrew Lunn wrote:
+> On Fri, Dec 01, 2023 at 03:38:36PM +0100, Krzysztof Kozlowski wrote:
+>> On 01/12/2023 15:34, Andrew Lunn wrote:
+>>> On Fri, Dec 01, 2023 at 03:21:05PM +0100, Krzysztof Kozlowski wrote:
+>>>> On 01/12/2023 14:51, Andrew Lunn wrote:
+>>>>> On Fri, Dec 01, 2023 at 02:23:06PM +0100, Krzysztof Kozlowski wrote:
+>>>>>> Marvell board bindings are spread over arm/marvell/ and arm/mrvl/
+>>>>>> directories.  Move MMP board bindings from the latter to the former, to
+>>>>>> keep all of them together.
+>>>>>
+>>>>> Hi Krzysztof
+>>>>>
+>>>>> Did you test get_maintainers.pl? MMP has a different maintainer to
+>>>>> many of the other Marvell SoCs. We want emails going to the correct
+>>>>> Maintainers, and ideally not spamming the others.
+>>>>
+>>>> The old binding was not referenced in MAINTAINERS, at least I could not
+>>>> find it.
+>>>> My change does not affect status quo - orphaned files.
+>>>>
+>>>> OTOH, some entries like Orion list specific files. Others like Marvell
+>>>> list entire directory, which is their mistake in the first place.
+>>>>
+>>>> There is a mess in this approach, but the mess exists before my patch.
+>>>
+>>> I think these moved files will now match:
+>>>
+>>> ARM/Marvell Kirkwood and Armada 370, 375, 38x, 39x, XP, 3700, 7K/8K, CN9130 SOC support
+>>> M:      Andrew Lunn <andrew@lunn.ch>
+>>> M:      Gregory Clement <gregory.clement@bootlin.com>
+>>> M:      Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
+>>> L:      linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+>>> S:      Maintained
+>>> T:      git git://git.kernel.org/pub/scm/linux/kernel/git/gclement/mvebu.git
+>>> F:      Documentation/devicetree/bindings/arm/marvell/
+>>>
+>>> But these files are not Gregory or my problem.
+>>
+>> Yeah, that's what I meant by listing entire directory.
+>>
+>>>
+>>> If they were orphaned before, i would prefer they are either orphaned
+>>> after the move, or associated to the correct maintainer. Being
+>>> associated to the wrong maintainers is worse than having no
+>>> maintainers at all.
+>>
+>> I can add this to existing maintainers entry. Which one? I see only two
+>> ARM/Marvell.
 > 
-> Add the device tree bindings for the Realtek DHC(Digital Home Center)
-> RTD SoCs GPIO controllers.
+> MMP SUPPORT
+> R:      Lubomir Rintel <lkundrak@v3.sk>
+> L:      linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+> S:      Odd Fixes
+> T:      git git://git.kernel.org/pub/scm/linux/kernel/git/lkundrak/linux-mmp.git
+> F:      arch/arm/boot/dts/marvell/mmp*
+> F:      arch/arm/mach-mmp/
+> F:      include/linux/soc/mmp/
 > 
-> Signed-off-by: Tzuyi Chang <tychang@realtek.com>
-> ---
-> v2 to v3 change:
->     1. Remove generic compatible and use SoC-specific compatible instead.
-> v1 to v2 change:
->     1. Add description for DHC RTD SoCs.
->     2. Revise the compatible names.
->     3. Add descriptions for reg and interrupts properties.
-> ---
->  .../bindings/gpio/realtek,rtd-gpio.yaml       | 69 +++++++++++++++++++
->  1 file changed, 69 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/realtek,rtd-gpio.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/gpio/realtek,rtd-gpio.yaml b/Documentation/devicetree/bindings/gpio/realtek,rtd-gpio.yaml
-> new file mode 100644
-> index 000000000000..984e7dbd322e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/realtek,rtd-gpio.yaml
-> @@ -0,0 +1,69 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2023 Realtek Semiconductor Corporation
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpio/realtek,rtd-gpio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Realtek DHC GPIO controller
-> +
-> +maintainers:
-> +  - Tzuyi Chang <tychang@realtek.com>
-> +
-> +description:
-> +  The GPIO controller is designed for the Realtek DHC (Digital Home Center)
-> +  RTD series SoC family, which are high-definition media processor SoCs.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - realtek,rtd1295-misc-gpio
-> +      - realtek,rtd1295-iso-gpio
-> +      - realtek,rtd1395-iso-gpio
-> +      - realtek,rtd1619-iso-gpio
-> +      - realtek,rtd1319-iso-gpio
-> +      - realtek,rtd1619b-iso-gpio
-> +      - realtek,rtd1319d-iso-gpio
-> +      - realtek,rtd1315e-iso-gpio
+> But you also need to modify the ARM/Marvell Kirkwood and ... so that
+> it excludes these MMP files.
 
-If there is going to be resend, please order this list alphanumerically.
-
-> +
-> +  reg:
-> +    items:
-> +      - description: GPIO controller registers
-> +      - description: GPIO interrupt registers
-> +
-
-...
-
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    gpio@100 {
-> +      compatible = "realtek,rtd1319d-iso-gpio";
-> +      reg = <0x100 0x100>,
-> +            <0x000 0x0b0>;
-
-That's odd. Why order is decreasing? Isn't 0x0 the address of the SoC
-(soc@0)?
-
-It is, btw, 0x0, not 0x000. The same for 0x0b0 -> 0xb0, unless you want
-to pad to full word.
+Let's make it then in subdirectory? There are like 20 items from
+Marvell/Kirkwood, so I imagine all apply to it. At least currently they
+are applying.
 
 Best regards,
 Krzysztof
