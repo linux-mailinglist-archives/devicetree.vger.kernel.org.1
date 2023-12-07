@@ -1,386 +1,135 @@
-Return-Path: <devicetree+bounces-22799-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22801-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50ACC808D84
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 17:37:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 450D5808D97
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 17:37:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF18D1F213DF
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 16:37:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ECE7E281684
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 16:37:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 498F047F46;
-	Thu,  7 Dec 2023 16:37:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CFC647F5A;
+	Thu,  7 Dec 2023 16:37:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jsyj37ME"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mV4ucfrW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08BE3433B9;
-	Thu,  7 Dec 2023 16:37:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E549AC433C8;
-	Thu,  7 Dec 2023 16:36:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1701967020;
-	bh=uEkhnjutevPAm25NTL1T2cWhqwdWKvVdlSIRkmlGW/Y=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Jsyj37MEnASgngEkCP3344dgv2GrsxWSHtLxGIEQ/9s34NVdpLZRLsrsE4SDgS/JA
-	 mc0317PwgDtwwTkAmP1RRbW2adquZpiIjXkasmLtRvPXC2aWNm84ZPwzHvAr7rlaf5
-	 saUt9oxzpmL7T4dlWIyTkKHTxYRWbFlr1aSBc5WFZCIAjAa1hzlERxP/WU+nfjM2pi
-	 Kz3xB8FnCtmKl54BEDbYAPychlzI+6X5VexA7iyRJr6swM1JcI5YU8YYqygaIuDWOk
-	 fBMNDfDiXd0CNir523/P9MwQWIjetgdg7JUg78tjgXgg4nopVpVj5qfFMvMV7fX/al
-	 S6KkDeyCeQ88A==
-Date: Thu, 7 Dec 2023 16:36:44 +0000
-From: Lee Jones <lee@kernel.org>
-To: Yoshinori Sato <ysato@users.sourceforge.jp>
-Cc: linux-sh@vger.kernel.org, Damien Le Moal <dlemoal@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Rich Felker <dalias@libc.org>,
-	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
-	Helge Deller <deller@gmx.de>, Heiko Stuebner <heiko@sntech.de>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Randy Dunlap <rdunlap@infradead.org>, Arnd Bergmann <arnd@arndb.de>,
-	Hyeonggon Yoo <42.hyeyoo@gmail.com>,
-	David Rientjes <rientjes@google.com>,
-	Vlastimil Babka <vbabka@suse.cz>, Baoquan He <bhe@redhat.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Stephen Rothwell <sfr@canb.auug.org.au>,
-	Guo Ren <guoren@kernel.org>,
-	Javier Martinez Canillas <javierm@redhat.com>,
-	Azeem Shaikh <azeemshaikh38@gmail.com>,
-	Palmer Dabbelt <palmer@rivosinc.com>, Bin Meng <bmeng@tinylab.org>,
-	Max Filippov <jcmvbkbc@gmail.com>, Tom Rix <trix@redhat.com>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Jacky Huang <ychuang3@nuvoton.com>,
-	Lukas Bulwahn <lukas.bulwahn@gmail.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	Michael Karcher <kernel@mkarcher.dialup.fu-berlin.de>,
-	Sergey Shtylyov <s.shtylyov@omp.ru>,
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-	linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	linux-pci@vger.kernel.org, linux-serial@vger.kernel.org,
-	linux-fbdev@vger.kernel.org
-Subject: Re: [DO NOT MERGE v5 23/37] mfd: sm501: Convert platform_data to OF
- property
-Message-ID: <20231207163644.GB111411@google.com>
-References: <cover.1701768028.git.ysato@users.sourceforge.jp>
- <68532082074b0c8fe9945b481678aab77520f517.1701768028.git.ysato@users.sourceforge.jp>
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BAE310F3
+	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 08:37:30 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-40c0a074e71so11963125e9.1
+        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 08:37:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701967048; x=1702571848; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=QHPdC8oASRump8lliefjp+VWx5EqaK9zM/MQaDjAajM=;
+        b=mV4ucfrW9wptvGNc+9fzSZUE6HXLdfTBCbfpXfmQLXViLTqd//tU+OKjE54qOvrJ6f
+         RDDBDcvOWU/ZAzOmRjgLmSEG8w8C7wcL9L3UvlHVvaa4yfYmPNlOPJG7YT80w1T1JqGr
+         HJl2dwVGJOBDZfCzsZ7Ym2UAC/UgGYtWdBcfvqJYnFMJ90XRjtfAy0lqo39A/Yh8HZqM
+         yNQDWSLQUH05R8/R3sS9Xurk7fhe8nvi+tJyOK7II/80EdE3gxltco5f/RHz8f2JHZti
+         lSSjkvW+657U7l8/pwhBKJPKnF/lCN3xBB17+diF4kZXNwGZAV9qYjvR+Ri6rhsJuSvE
+         fycQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701967048; x=1702571848;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QHPdC8oASRump8lliefjp+VWx5EqaK9zM/MQaDjAajM=;
+        b=cdDdcQiazt9IiByOgptPiNiVSCe/rTNqSQKdJanEJiDqVxkMNEFO/71CqBYJMDHECN
+         1kik74O4hhi4g3s980wmDmbTQJ5AIS656/uZVkzArFezMM7UcHybsymG+SaW+4FKt0zz
+         UhF5Qc+wanIG6i7KWj6p8AGP7R0TC5jCrdgOGInv8KCS2Ar7TpqI7xhV+nt526TlkZdf
+         a2j14B0WtmdvU5v9GBTgXFcm+W8mIRhn+ZlHEJ3DjgnkLOGJQMGZC6ZcD5cvEGXLtkz2
+         oQAHEdl9gosdSu+v8FYFzCFdDG5axPMOKgM8lGLKykiwtameDRviHi6ZMPwZn2MzT8jo
+         at1w==
+X-Gm-Message-State: AOJu0YzM+N3+oovfN3+FojTZ6EkAxfsGiqZwlJxLDLdchwyTIKDRfAjI
+	WF0ddiBt05iX4BgjZP4tCeC/6g==
+X-Google-Smtp-Source: AGHT+IECup8lerGo7s57uB+PYd5IipnuMCyZOc5WNaL7TCPdJGJcwc1h0hxkWIrWeL4zEkuayTbOoQ==
+X-Received: by 2002:a05:600c:3144:b0:40b:4812:22e2 with SMTP id h4-20020a05600c314400b0040b481222e2mr1703251wmo.11.1701967048113;
+        Thu, 07 Dec 2023 08:37:28 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id r5-20020a05600c35c500b004080f0376a0sm175424wmq.42.2023.12.07.08.37.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Dec 2023 08:37:27 -0800 (PST)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH 0/3] arm64: qcom: sm8650: add support for DisplayPort
+ Controller
+Date: Thu, 07 Dec 2023 17:37:16 +0100
+Message-Id: <20231207-topic-sm8650-upstream-dp-v1-0-b762c06965bb@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <68532082074b0c8fe9945b481678aab77520f517.1701768028.git.ysato@users.sourceforge.jp>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALz0cWUC/x3MPQqAMAxA4atIZgNtxR+8ijjUmmoGtTQqQvHuF
+ sdveC+BUGQS6IsEkW4WPvYMXRbgVrsvhDxng1Gm0ka1eB6BHcrWNbXCK8gZyW44B7ST9k5PXrm
+ 2gZyHSJ6ffz2M7/sBJqqDj2oAAAA=
+To: Rob Clark <robdclark@gmail.com>, 
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, 
+ Marijn Suijten <marijn.suijten@somainline.org>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kuogee Hsieh <quic_khsieh@quicinc.com>, 
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1244;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=DEk4ut9+Eb2hTaXLTn1gbajtsrPpbY3ybidbDLfSO9Q=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlcfTF8nxT5gy3VCqOv83+EH5YSHq5f3Ed4xnl1LWe
+ ZxBTOLeJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZXH0xQAKCRB33NvayMhJ0ZPiD/
+ 9QHLYS27pZ9P60USW8oJeQkpKWQjoQgC+eO7xx3SzfI+MhRT9RJvkGfp1hWx1FGPoQ/YP3ybHuKFzZ
+ du3eCISSqUDhdcHiGyTKQp3TU+5EfGCyHk6CJBgJwZdrNDFjalZwNqFxg5lxTBdSFjS++Y0+Oc2E5v
+ N+dQzxs84pmHQXQxc/ZmgvtqWYFBINQ9ncOpNt1CFIo7fYT29OtzPL70Fmz71HWndOkri7dp7N2FBg
+ PX6MKINs1IYdKejUuPRllLcPD/x6d8wBqsfIM0oSjOQ2HLKGsvuGRQsbThbjl0fjt0kqMwZ5hWSHbf
+ kw9hPoO4OMp/Ne7JipYvLEAlk72leZI7AjYv6xHNkrnBV1Sj5nWiYW5Iq9k2yv0a0c0Nmibc2NVJ0h
+ hSfHurZfTIhqFE5gAYNYmE/9efCZBVas0cUZgGi+y8V2uq57DAjymJQECJsCJ6lzbwlQ0y99935u7p
+ Rgd4fRXvPAlgrWZDd2keO0/t5MbM5iegD2NAxHMqflhJTKLKUVNDWRxmALC9cswBSVjl+se9i2dn0Y
+ ZfwA6JlGmLxWsyc31WJovzYUfiseZKo2Ly82uZVPQJf6M/5QOxVlNIHPE3yEn3a//ekJi2Rcvq7bnK
+ V2Nc9jAGz6JOKrn3/sBCYJyWjDbVzMhUvmkSYdW4lgW3sxcUYeugMAJP1llw==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-On Tue, 05 Dec 2023, Yoshinori Sato wrote:
+This adds support for the DisplayPort Controller found in the SM8650
+SoC, but it requires a specific compatible because the registers offsets
+has changed since SM8550.
 
-> Various parameters of SM501 can be set using platform_data,
-> so parameters cannot be passed in the DeviceTree target.
-> Expands the parameters set in platform_data so that they can be
-> specified using DeviceTree properties.
-> 
-> Signed-off-by: Yoshinori Sato <ysato@users.sourceforge.jp>
-> ---
->  drivers/mfd/sm501.c           | 99 +++++++++++++++++++++++++++++++++++
->  drivers/video/fbdev/sm501fb.c | 82 +++++++++++++++++++++++++++++
->  2 files changed, 181 insertions(+)
-> 
-> diff --git a/drivers/mfd/sm501.c b/drivers/mfd/sm501.c
-> index 28027982cf69..f0104fdf0f34 100644
-> --- a/drivers/mfd/sm501.c
-> +++ b/drivers/mfd/sm501.c
-> @@ -1370,6 +1370,99 @@ static int sm501_init_dev(struct sm501_devdata *sm)
->  	return 0;
->  }
->  
-> +static void sm501_of_read_reg_init(struct device_node *np,
-> +				   const char *propname, struct sm501_reg_init *val)
-> +{
-> +	u32 u32_val[2];
+This also updates the SM8650 MDSS bindings to allow a displayport subnode,
+and adds the necessary changes in the SM8650 DTSI to declare the DisplayPort
+Controller.
 
-Encoding the size of the variable in the variable name is odd.
+Dependencies:
+- DT: https://lore.kernel.org/all/20231130-topic-sm8650-upstream-dt-v5-0-b25fb781da52@linaro.org/
 
-> +
-> +	if (!of_property_read_u32_array(np, propname, u32_val, sizeof(u32_val))) {
-> +		val->set = u32_val[0];
-> +		val->mask = u32_val[1];
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Neil Armstrong (3):
+      dt-bindings: display: msm: dp-controller: document SM8650 compatible
+      drm/msm/dp: Add DisplayPort controller for SM8650
+      arm64: dts: qcom: sm8650: Add DisplayPort device nodes
 
-Masks and register values stored as DT properties?  This is generally
-not permitted.  Please seek counsel from the DT maintainers.
+ .../bindings/display/msm/dp-controller.yaml        |   1 +
+ .../bindings/display/msm/qcom,sm8650-mdss.yaml     |   6 ++
+ arch/arm64/boot/dts/qcom/sm8650.dtsi               | 120 ++++++++++++++++++++-
+ drivers/gpu/drm/msm/dp/dp_display.c                |   6 ++
+ 4 files changed, 131 insertions(+), 2 deletions(-)
+---
+base-commit: 9ea914fd2cc702e8be88c0666d4df3e58ffe8131
+change-id: 20231207-topic-sm8650-upstream-dp-ab1fc1bf0c76
 
-> +	}
-> +}
-> +
-> +/* Read GPIO I2C configuration */
-> +static int sm501_parse_dt_gpio_i2c(struct device *dev, struct sm501_platdata *plat,
-> +				   struct device_node *np)
-> +{
-> +	struct sm501_platdata_gpio_i2c *gpio_i2c_p;
-> +	struct property *prop;
-> +	u32 gpio_i2c[5];
-
-Why 5?  Please define all magic numbers.
-
-> +	const __be32 *p;
-> +	unsigned int i;
-> +	u32 i2c_nr;
-> +
-> +	prop = of_find_property(np, "smi,gpio-i2c", NULL);
-> +	if (!prop)
-> +		return 0;
-> +
-> +	i2c_nr = of_property_count_u32_elems(np, "smi,gpio-i2c");
-
-Why do you need both of these probing functions?  What does
-of_property_count_u32_elems() return if smi,gpio-i2c doesn't exist?
-
-> +	/* GPIO I2C define 5 words per channel. */
-> +	if (i2c_nr % 5)
-> +		return -EINVAL;
-> +	i2c_nr /= 5;
-
-'\n'
-
-> +	plat->gpio_i2c = devm_kzalloc(dev, sizeof(*plat->gpio_i2c) * i2c_nr,
-> +				      GFP_KERNEL);
-> +	if (!plat->gpio_i2c)
-> +		return -ENOMEM;
-> +
-> +	plat->gpio_i2c_nr = i2c_nr;
-> +	gpio_i2c_p = plat->gpio_i2c;
-
-What's the purpose of this intermediary variable?
-
-> +
-> +	for (; i2c_nr > 0; i2c_nr--) {
-
-You can define 'p' in here, right?
-
-> +		for (i = 0; i < ARRAY_SIZE(gpio_i2c); i++) {
-> +			p = of_prop_next_u32(prop, p, &gpio_i2c[i]);
-> +			if (!p)
-> +				return -EINVAL;
-> +		}
-> +		gpio_i2c_p->bus_num = gpio_i2c[0];
-> +		gpio_i2c_p->pin_sda = gpio_i2c[1];
-> +		gpio_i2c_p->pin_scl = gpio_i2c[2];
-> +		gpio_i2c_p->udelay  = gpio_i2c[3];
-> +		gpio_i2c_p->timeout = gpio_i2c[4];
-
-I'm not even going to ask.  I'll leave this to the DT maintainers.
-
-> +		gpio_i2c_p++;
-> +	}
-> +	return 0;
-> +}
-> +
-> +/* Build platform_data from OF property */
-> +static int sm501_parse_dt(struct sm501_devdata *sm, struct device_node *np)
-> +{
-> +	struct sm501_platdata *plat;
-> +	u32 u32_val;
-> +	int ret;
-> +
-> +	plat = devm_kzalloc(sm->dev, sizeof(*plat), GFP_KERNEL);
-> +	if (!plat)
-> +		return -ENOMEM;
-> +
-> +	plat->init = devm_kzalloc(sm->dev, sizeof(*plat->init), GFP_KERNEL);
-
-Why not grab all of the memory at once?
-
-Maybe make this 'init' thing a non-pointer.
-
-> +	if (!plat->init)
-> +		return -ENOMEM;
-> +
-> +	if (!of_property_read_u32(np, "smi,devices", &u32_val))
-> +		plat->init->devices = u32_val;
-
-What happens if you do:
-
-	of_property_read_u32(np, "smi,devices", &plat->init->devices);
-
-> +	if (!of_property_read_u32(np, "smi,mclk", &u32_val))
-> +		plat->init->mclk = u32_val;
-> +	if (!of_property_read_u32(np, "smi,m1xclk", &u32_val))
-> +		plat->init->m1xclk = u32_val;
-> +
-> +	sm501_of_read_reg_init(np, "smi,misc-timing", &plat->init->misc_timing);
-> +	sm501_of_read_reg_init(np, "smi,misc-control", &plat->init->misc_control);
-> +	sm501_of_read_reg_init(np, "smi,gpio-low", &plat->init->gpio_low);
-> +	sm501_of_read_reg_init(np, "smi,gpio-high", &plat->init->gpio_high);
-> +
-> +	if (IS_ENABLED(CONFIG_MFD_SM501_GPIO) &&
-> +	    (plat->init->devices & SM501_USE_GPIO)) {
-
-That's over-bracketed, right?
-
-plat->init->devices is a bit mask of enable devices stored in DT?
-
-Okay, I think this is going to need a lot of work on the DT side.
-
-Leaving the review here for now.
-
-> +		ret = sm501_parse_dt_gpio_i2c(sm->dev, plat, np);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +	sm->platdata = plat;
-> +	return 0;
-> +}
-> +
->  static int sm501_plat_probe(struct platform_device *dev)
->  {
->  	struct sm501_devdata *sm;
-> @@ -1406,6 +1499,12 @@ static int sm501_plat_probe(struct platform_device *dev)
->  		goto err_res;
->  	}
->  
-> +	if (IS_ENABLED(CONFIG_OF) && dev->dev.of_node) {
-> +		ret = sm501_parse_dt(sm, dev->dev.of_node);
-> +		if (ret)
-> +			goto err_res;
-> +	}
-> +
->  	platform_set_drvdata(dev, sm);
->  
->  	sm->regs = ioremap(sm->io_res->start, resource_size(sm->io_res));
-> diff --git a/drivers/video/fbdev/sm501fb.c b/drivers/video/fbdev/sm501fb.c
-> index d6fdc1737cd2..d35285819d28 100644
-> --- a/drivers/video/fbdev/sm501fb.c
-> +++ b/drivers/video/fbdev/sm501fb.c
-> @@ -1932,6 +1932,82 @@ static int sm501fb_start_one(struct sm501fb_info *info,
->  	return 0;
->  }
->  
-> +#if defined(CONFIG_OF)
-> +/* parse CRT / panel configuration */
-> +static struct sm501_platdata_fbsub *dt_fbsub(struct device *dev,
-> +					     struct device_node *np,
-> +					     const char *name)
-> +{
-> +	struct sm501_platdata_fbsub *fbsub = NULL;
-> +	struct fb_videomode *def_mode = NULL;
-> +	struct device_node *child;
-> +	const void *p_edid;
-> +	u32 flags = 0;
-> +	u32 bpp = 0;
-> +	int len;
-> +
-> +	child = of_get_child_by_name(np, name);
-> +	if (child == NULL)
-> +		return NULL;
-> +
-> +	p_edid = of_get_property(child, "edid", &len);
-> +	if (p_edid && len == EDID_LENGTH) {
-> +		struct fb_monspecs *specs;
-> +		u8 *edid;
-> +
-> +		edid = kmemdup(p_edid, EDID_LENGTH, GFP_KERNEL);
-> +		if (edid) {
-> +			specs = kzalloc(sizeof(*specs), GFP_KERNEL);
-> +			if (specs) {
-> +				fb_edid_to_monspecs(edid, specs);
-> +				def_mode = specs->modedb;
-> +			}
-> +		}
-> +		kfree(edid);
-> +	}
-> +
-> +	of_property_read_u32(child, "bpp", &bpp);
-> +
-> +	/* If flags property is obtained, fbsub is returned. */
-> +	if (!of_property_read_u32(child, "smi,flags", &flags)) {
-> +		fbsub = devm_kzalloc(dev, sizeof(*fbsub), GFP_KERNEL);
-> +		if (fbsub) {
-> +			fbsub->def_mode = def_mode;
-> +			fbsub->def_bpp = bpp;
-> +			fbsub->flags = flags;
-> +		}
-> +	}
-> +	return fbsub;
-> +}
-> +
-> +/* Build platform_data from OF property */
-> +static struct sm501_platdata_fb *pdata_from_dt(struct device *dev, struct device_node *np)
-> +{
-> +	enum sm501_fb_routing fb_route = SM501_FB_OWN;
-> +	struct sm501_platdata_fb *pdata = NULL;
-> +	struct sm501_platdata_fbsub *fb_crt;
-> +	struct sm501_platdata_fbsub *fb_pnl;
-> +	unsigned int flags = 0;
-> +
-> +	if (of_property_read_bool(np, "route-crt-panel"))
-> +		fb_route = SM501_FB_CRT_PANEL;
-> +	if (of_property_read_bool(np, "swap-fb-endian"))
-> +		flags = SM501_FBPD_SWAP_FB_ENDIAN;
-> +	fb_crt = dt_fbsub(dev, np, "crt");
-> +	fb_pnl = dt_fbsub(dev, np, "panel");
-> +	if (fb_crt || fb_pnl) {
-> +		pdata = devm_kzalloc(dev, sizeof(*pdata), GFP_KERNEL);
-> +		if (pdata) {
-> +			pdata->fb_route = fb_route;
-> +			pdata->flags = flags;
-> +			pdata->fb_crt = fb_crt;
-> +			pdata->fb_pnl = fb_pnl;
-> +		}
-> +	}
-> +	return pdata;
-> +}
-> +#endif
-> +
->  static int sm501fb_probe(struct platform_device *pdev)
->  {
->  	struct sm501fb_info *info;
-> @@ -1974,6 +2050,12 @@ static int sm501fb_probe(struct platform_device *pdev)
->  				if (info->edid_data)
->  					found = 1;
->  			}
-> +			/* Get platform data compatible configuration */
-> +			if (!found) {
-> +				info->pdata = pdata_from_dt(dev, np);
-> +				if (info->pdata)
-> +					found = 1;
-> +			}
->  		}
->  #endif
->  		if (!found) {
-> -- 
-> 2.39.2
-> 
-
+Best regards,
 -- 
-Lee Jones [李琼斯]
+Neil Armstrong <neil.armstrong@linaro.org>
+
 
