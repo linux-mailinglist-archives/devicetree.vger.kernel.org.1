@@ -1,109 +1,129 @@
-Return-Path: <devicetree+bounces-22702-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22703-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C12FB80880F
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 13:42:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E209D808836
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 13:45:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E9CD51F22584
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 12:42:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9AFBD283346
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 12:45:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 352C53D0A4;
-	Thu,  7 Dec 2023 12:42:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1285A3D0AB;
+	Thu,  7 Dec 2023 12:45:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hgnqVnZe"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="AYYZcis+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EACD2D5E;
-	Thu,  7 Dec 2023 04:42:27 -0800 (PST)
-Received: by mail-pg1-x530.google.com with SMTP id 41be03b00d2f7-5c67fdbe7d4so111328a12.0;
-        Thu, 07 Dec 2023 04:42:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701952947; x=1702557747; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=kBoD0NAlVPKWgZXNfYVQBHK6l1V4ZPm2HAkRoJxe6G8=;
-        b=hgnqVnZeE/zo6bn7psD1QLEF3sod0mgeeNVUWn9ogmm7yACZRYyX0SbYFQPUamx5Am
-         QcEl4GWxT/N/KuYzJXYciDRDi4dHBuRgfbc8Kt0XGJChEnBBRmLY+RQa/udMMkOUiowj
-         owj+O1hj4RHC/WDsslxaAqoDBQ/LjnBLCGjfpCON0qmUfsmZOLRo4Mrrq9pmQ0G0nHh4
-         9juHB3mzGVB4Ojr70iA9I4ed/s+fcPIEFF7WqCEnMsPv2IRZZ/kiDyQg+0ofM3VRVCE8
-         ncrVjGqW5WEOUccymbzHKmzCP38Ab88EVSwjcuRRKU6LqstDf6kLDrcA/v9393DNcFhA
-         9PFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701952947; x=1702557747;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kBoD0NAlVPKWgZXNfYVQBHK6l1V4ZPm2HAkRoJxe6G8=;
-        b=biRsa0aU92NjAQPzVpm6d55JgCdjYg59Xs7DZalogzvpiu4jcsIm72ztLJHidhcEJf
-         Rywa6+5SGWtzbvu42u1/OYci2+KEkV6JZ4fOijCyBgBpvnsdWAMc1fTyzWsy/KioCw9E
-         0teb0a5E7X9OQKqB82Hmk4Ku/BFriLxJCcqg/2zrS2y4n0Wng2F7HOaa433TAr9S/v60
-         AJdr3cKfFOKjwa1t01B6pH4R8BCM/YiF3zFUwsbA75CJoSmYrA17bnX+Q5ryUMhx93Tg
-         7iOqzc8uTB8bf+3B4+Q/Rw/EHGNmLy7THvYD0d4pQc2Kgi7LvRKOBogWP3hJRuhJiTay
-         /7fg==
-X-Gm-Message-State: AOJu0YwT3mKQ4rkhcSw0cHLEtLCADO1QXS5jjuEvGuyOcsxaVtddfJGW
-	iEQ6k2/jT202XJNdgT4mLAU=
-X-Google-Smtp-Source: AGHT+IFH6AJFYpAebsuV5dy8XuNU7aXMCnYbBJkNaIgFkUfJ8ynJX2GLPLJDDjo0NDNpIg6Zl5tSEw==
-X-Received: by 2002:a05:6a21:188:b0:18f:c8e7:ac9f with SMTP id le8-20020a056a21018800b0018fc8e7ac9fmr5160633pzb.3.1701952947301;
-        Thu, 07 Dec 2023 04:42:27 -0800 (PST)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:492a:db3d:eb42:de92])
-        by smtp.gmail.com with ESMTPSA id pw10-20020a17090b278a00b002867594de40sm1263064pjb.14.2023.12.07.04.42.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Dec 2023 04:42:26 -0800 (PST)
-From: Fabio Estevam <festevam@gmail.com>
-To: gregkh@linuxfoundation.org
-Cc: uwu@icenowy.me,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH] dt-bindings: usb: genesys,gl850g: Document 'peer-hub'
-Date: Thu,  7 Dec 2023 09:42:17 -0300
-Message-Id: <20231207124217.2530457-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FEB810FD;
+	Thu,  7 Dec 2023 04:45:03 -0800 (PST)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B7CiaKR079764;
+	Thu, 7 Dec 2023 06:44:36 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1701953076;
+	bh=FT29/MEgoF20b26cgNWY0vHBInmsXB7G0qXWX5N+ekI=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=AYYZcis+us8F4X4DWoZ10oyonBh8TbLHEeLUN54hFXfaFNxA0+ilpwkXE3QWzP/vX
+	 mlGuvHNe7blKHu38WIvqd7KQ/0mz+ZXheVoQTQOT/TTR/8s0zf8VxOoLHs+qCmITSx
+	 kE91xFtnoh1JAhdVgwhMr54aDwZaElRAGEo3OJNY=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B7CiavZ103079
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 7 Dec 2023 06:44:36 -0600
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 7
+ Dec 2023 06:44:35 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 7 Dec 2023 06:44:35 -0600
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B7CiZaA068373;
+	Thu, 7 Dec 2023 06:44:35 -0600
+Date: Thu, 7 Dec 2023 06:44:35 -0600
+From: Nishanth Menon <nm@ti.com>
+To: Brandon Brnich <b-brnich@ti.com>
+CC: <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Nas
+ Chung <nas.chung@chipsnmedia.com>,
+        Jackson Lee <jackson.lee@chipsnmedia.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Sebastian Fricke
+	<sebastian.fricke@collabora.com>,
+        Dafna Hirschfeld
+	<dafna.hirschfeld@collabora.com>,
+        Robert Beckett <bob.beckett@collabora.com>,
+        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+        Geert Uytterhoeven
+	<geert@linux-m68k.org>,
+        Darren Etheridge <detheridge@ti.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: media: Remove K3 Family Prefix from
+ Compatible
+Message-ID: <20231207124435.yqqtgdhl4dfvmmhc@overtly>
+References: <20231206185254.1748473-1-b-brnich@ti.com>
+ <20231206185254.1748473-2-b-brnich@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20231206185254.1748473-2-b-brnich@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-From: Fabio Estevam <festevam@denx.de>
+On 12:52-20231206, Brandon Brnich wrote:
+> K3 family prefix is not included in other TI compatible strings. Remove 
+> this prefix to keep naming convention consistent.
+> 
+> Fixes: de4b9f7e371a ("dt-bindings: media: wave5: add yaml devicetree bindings")
+> Reported-by: Geert Uytterhoeven <geert@linux-m68k.org>
+> Closes: https://lore.kernel.org/all/CAMuHMdUYOq=q1j=d+Eac28hthOUAaNUkuvxmRu-mUN1pLKq69g@mail.gmail.com/
+> Signed-off-by: Brandon Brnich <b-brnich@ti.com>
+> ---
+> 
+>  Bindings currently reside in linux-next, meaning that the ABI will not be
+>  broken with the removal of K3 prefix. Important to get this merged in
+>  prior to being moved to master so that K3 prefix does not need to be
+>  permanately included.
+> 
+>  Documentation/devicetree/bindings/media/cnm,wave521c.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/cnm,wave521c.yaml b/Documentation/devicetree/bindings/media/cnm,wave521c.yaml
+> index 6d5569e77b7a..471840e858c9 100644
+> --- a/Documentation/devicetree/bindings/media/cnm,wave521c.yaml
+> +++ b/Documentation/devicetree/bindings/media/cnm,wave521c.yaml
+> @@ -17,7 +17,7 @@ properties:
+>    compatible:
+>      items:
+>        - enum:
+> -          - ti,k3-j721s2-wave521c
+> +          - ti,j721s2-wave521c
+>        - const: cnm,wave521c
 
-The 'peer-hub' is a valid property for the hub.
 
-Document it to fix the following dt-schema warning:
+Apologies, I just noticed. you failed to update the vpu example for the
+same in the bindings doc.
 
-imx8mp-debix-som-a-bmb-08.dtb: hub@1: 'peer-hub' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
+>  
+>    reg:
+> -- 
+> 2.34.1
+> 
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
- Documentation/devicetree/bindings/usb/genesys,gl850g.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-index ee08b9c3721f..37cf5249e526 100644
---- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-+++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-@@ -29,6 +29,11 @@ properties:
-     description:
-       the regulator that provides 3.3V core power to the hub.
- 
-+  peer-hub:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      phandle to the peer hub on the controller.
-+
- required:
-   - compatible
-   - reg
 -- 
-2.34.1
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
