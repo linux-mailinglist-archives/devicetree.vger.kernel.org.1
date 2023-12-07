@@ -1,126 +1,141 @@
-Return-Path: <devicetree+bounces-22555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22553-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B8CD808250
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 09:01:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6ACE808245
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 09:00:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EA62C1F219B5
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 08:01:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6272D1F217C8
+	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 08:00:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 828CA1DFDD;
-	Thu,  7 Dec 2023 08:01:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7807B1B27A;
+	Thu,  7 Dec 2023 08:00:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="J8JRw9ln"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="isIq0Z1Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m15.mail.163.com (m15.mail.163.com [45.254.50.220])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 31318B2;
-	Thu,  7 Dec 2023 00:00:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=pekM+
-	FGyDCtPmb0jWNTPyTz93vTz66hJl88mKNFM3+k=; b=J8JRw9ln8ws6z8vKQ/tx0
-	JtIFggwwsjn6fZSlESWSWk8jh3H/8AOQhZ0OLNInm/KTcvB4y++3u1nswgDrTsDj
-	2ylbuPbD91EQcBImI/NgUkJSLYZKHWc8x1R3yGDOt6yWbTfG4fVu0cr/Mnly6VdB
-	ieV+C+5mgFbtjSH4u8zjqM=
-Received: from ProDesk.. (unknown [58.22.7.114])
-	by zwqz-smtp-mta-g0-2 (Coremail) with SMTP id _____wDX_1p4e3FlH_C_DA--.43713S2;
-	Thu, 07 Dec 2023 15:59:55 +0800 (CST)
-From: Andy Yan <andyshrk@163.com>
-To: heiko@sntech.de
-Cc: hjc@rock-chips.com,
-	dri-devel@lists.freedesktop.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	robh+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	sebastian.reichel@collabora.com,
-	kever.yang@rock-chips.com,
-	chris.obbard@collabora.com,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>
-Subject: [PATCH v4 02/17] Revert "drm/rockchip: vop2: Use regcache_sync() to fix suspend/resume"
-Date: Thu,  7 Dec 2023 15:59:50 +0800
-Message-Id: <20231207075950.651931-1-andyshrk@163.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231207075906.651771-1-andyshrk@163.com>
-References: <20231207075906.651771-1-andyshrk@163.com>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B4AB12E57;
+	Thu,  7 Dec 2023 08:00:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECB39C433C7;
+	Thu,  7 Dec 2023 07:59:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1701936004;
+	bh=I681gHWMUSa0Ipi09gdgntlBhUESlz33stQ0H29C43o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=isIq0Z1Zo2xyN9yQmONswOxPpZI/SHW+J6RK13AEY+reg6kdXEMFUqnajpRgxtE9p
+	 TVYV2YD6CTK7DynnWBIwybKrVQ+38vg/j7jZCv11QEbzPwCzaZ1fi+hcB6G0rl91Ww
+	 08D9+pnkkOBNUsF5+VBm5Uj0XtODYcCoArh+EJ7AZ2e7fmO0Eql9hVbjrMqW1zhXjH
+	 bK/3tBQ4GkxuG34ULsud3h/+pMxbP54UdhZf+J3talfW3WZGQ2DML9ie2Kx5FPixLU
+	 qoUKVBMRgBug4xnCswBjbfrpWFqO7gU0LBsRgvmAHzWVlPr13yWRaedbNqyiPYr7BV
+	 Dz88b1LGr7pgg==
+Date: Thu, 7 Dec 2023 13:29:52 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Manikanta Maddireddy <mmaddireddy@nvidia.com>
+Cc: bhelgaas@google.com, thierry.reding@gmail.com, petlozup@nvidia.com,
+	rafael.j.wysocki@intel.com, lpieralisi@kernel.org, robh@kernel.org,
+	jeffy.chen@rock-chips.com, krzysztof.kozlowski+dt@linaro.org,
+	jonathanh@nvidia.com, dmitry.osipenko@collabora.com,
+	viresh.kumar@linaro.org, gregkh@linuxfoundation.org,
+	steven.price@arm.com, kw@linux.com, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
+	vidyas@nvidia.com
+Subject: Re: [RFC,v14 4/5] arm64: tegra: Add PCIe port node with PCIe WAKE#
+ for C1 controller
+Message-ID: <20231207075952.GG2932@thinkpad>
+References: <20230208111645.3863534-1-mmaddireddy@nvidia.com>
+ <20230208111645.3863534-5-mmaddireddy@nvidia.com>
+ <20231206153627.GJ12802@thinkpad>
+ <c86e8f75-f74a-491e-9ac0-2431a6ec4b80@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wDX_1p4e3FlH_C_DA--.43713S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7Cw1rGr1xXF4xCFy7tr45trb_yoW8Cw4UpF
-	W7AryYqr4IgFWjqw1kJFWUZFWYyrsFyayfCrn7G3WS9rnxKrnakrn8GF15ZFn8Ar1xur42
-	yFn7ta47CFW7uFJanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jo4E_UUUUU=
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbBEB0-XmVOA0Wh6AAAsI
+In-Reply-To: <c86e8f75-f74a-491e-9ac0-2431a6ec4b80@nvidia.com>
 
-From: Andy Yan <andy.yan@rock-chips.com>
+On Thu, Dec 07, 2023 at 12:54:04PM +0530, Manikanta Maddireddy wrote:
+> 
+> On 06-12-2023 21:06, Manivannan Sadhasivam wrote:
+> > External email: Use caution opening links or attachments
+> > 
+> > 
+> > On Wed, Feb 08, 2023 at 04:46:44PM +0530, Manikanta Maddireddy wrote:
+> > > Add PCIe port node under the PCIe controller-1 device tree node to support
+> > > PCIe WAKE# interrupt for WiFi.
+> > > 
+> > > Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
+> > > ---
+> > > 
+> > > Changes in v14:
+> > > New patch in the series to support PCIe WAKE# in NVIDIA Jetson AGX Orin.
+> > > 
+> > >   .../dts/nvidia/tegra234-p3737-0000+p3701-0000.dts     | 11 +++++++++++
+> > >   1 file changed, 11 insertions(+)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
+> > > index 8a9747855d6b..9c89be263141 100644
+> > > --- a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
+> > > +++ b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
+> > > @@ -2147,6 +2147,17 @@ pcie@14100000 {
+> > > 
+> > >                        phys = <&p2u_hsio_3>;
+> > >                        phy-names = "p2u-0";
+> > > +
+> > > +                     pci@0,0 {
+> > > +                             reg = <0x0000 0 0 0 0>;
+> > > +                             #address-cells = <3>;
+> > > +                             #size-cells = <2>;
+> > > +                             ranges;
+> > > +
+> > > +                             interrupt-parent = <&gpio>;
+> > > +                             interrupts = <TEGRA234_MAIN_GPIO(L, 2) IRQ_TYPE_LEVEL_LOW>;
+> > > +                             interrupt-names = "wakeup";
+> > WAKE# should be part of the PCIe controller, not device. And the interrupt name
+> > should be "wake".
+> > 
+> > - Mani
+> Hi,
+> 
+> Please refer to the discussion in below link, WAKE# is per PCI bridge.
+> https://patchwork.ozlabs.org/project/linux-pci/patch/20171226020806.32710-2-jeffy.chen@rock-chips.com/
+> 
 
-This reverts commit b63a553e8f5aa6574eeb535a551817a93c426d8c.
+PCIe Host controller (RC) usually represents host bridge + PCI-PCI bridge. We do
+not represent the PCI-PCI bridge in devicetree for any platforms, but only RC as
+a whole.
 
-regcache_sync will try to reload the configuration in regcache to
-hardware, but the registers of 4 Cluster windows and Esmart1/2/3 on
-the upcoming rk3588 can not be set successfully before internal PD
-power on.
+Moreover, PERST# is already defined in RC node. So it becomes confusing if
+WAKE# is defined in a child node representing bridge.
 
-Also it's better to keep the hardware register as it is before we really
-enable it.
+So please move WAKE# to RC node.
 
-So let's revert this version, and keep the first version:
-commit afa965a45e01 ("drm/rockchip: vop2: fix suspend/resume")
+- Mani
 
-Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
-Reviewed-by: Sascha Hauer <s.hauer@pengutronix.de>
----
+> I carried wakeup name defined in previous version, but wake seems to be
+> sufficient.
+> 
+> Thanks,
+> Manikanta
+> > 
+> > > +                     };
+> > >                };
+> > > 
+> > >                pcie@14160000 {
+> > > --
+> > > 2.25.1
+> > > 
+> > --
+> > மணிவண்ணன் சதாசிவம்
 
-(no changes since v1)
-
- drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 10 +++++++---
- 1 file changed, 7 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-index 312da5783362..57784d0a22a6 100644
---- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-+++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-@@ -217,6 +217,8 @@ struct vop2 {
- 	struct vop2_win win[];
- };
- 
-+static const struct regmap_config vop2_regmap_config;
-+
- static struct vop2_video_port *to_vop2_video_port(struct drm_crtc *crtc)
- {
- 	return container_of(crtc, struct vop2_video_port, crtc);
-@@ -883,7 +885,11 @@ static void vop2_enable(struct vop2 *vop2)
- 		return;
- 	}
- 
--	regcache_sync(vop2->map);
-+	ret = regmap_reinit_cache(vop2->map, &vop2_regmap_config);
-+	if (ret) {
-+		drm_err(vop2->drm, "failed to reinit cache: %d\n", ret);
-+		return;
-+	}
- 
- 	if (vop2->data->soc_id == 3566)
- 		vop2_writel(vop2, RK3568_OTP_WIN_EN, 1);
-@@ -913,8 +919,6 @@ static void vop2_disable(struct vop2 *vop2)
- 
- 	pm_runtime_put_sync(vop2->dev);
- 
--	regcache_mark_dirty(vop2->map);
--
- 	clk_disable_unprepare(vop2->aclk);
- 	clk_disable_unprepare(vop2->hclk);
- }
 -- 
-2.34.1
-
+மணிவண்ணன் சதாசிவம்
 
