@@ -1,269 +1,322 @@
-Return-Path: <devicetree+bounces-23265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23266-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB07380A90D
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 17:34:00 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB58D80A94A
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 17:37:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6CF431F211D5
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 16:34:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A03621F21114
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 16:37:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F7F420334;
-	Fri,  8 Dec 2023 16:33:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D3451118F;
+	Fri,  8 Dec 2023 16:37:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OzSTCVHh"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="RZrtlVhD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BC5319A4;
-	Fri,  8 Dec 2023 08:33:48 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-50be9e6427dso2398844e87.1;
-        Fri, 08 Dec 2023 08:33:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702053226; x=1702658026; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=pxwrq+h8nplXaFB//isAgca+iL1KixWEf6Q6TqoQFaU=;
-        b=OzSTCVHhqGZZK7hSL8n1G66JJx3GhKdFLHQ3bJ3ThwKd091kmcEzWT+GGd4RRddEOl
-         GaRSOuXDo1UWb+Io40cBc4GJ7JvWiuJGa1zjiiJXDDqoN9VuRLXh53GXXD1hEB5x6FVL
-         8XSrNMhl+89e2oI+gNG7R88hY0zmeJ+NyVQBIvGAe0lmo+WxSfhyTEuUCma1p7SEqKqx
-         ZblkTgdmRIWqxgCCO41gCqsnfWhP3e6MRLwiJfvrTzy/B7FTyj9MffOxvHodDNuhoHJF
-         pIxurUfFoDM9XZ8+y0SLJE0I1QzoDYQAAlLGCbNjOjLLBDuhfVtg21bq0tR49T6MY91T
-         2WvA==
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB2B21FEC
+	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 08:37:25 -0800 (PST)
+Received: from mail-lf1-f72.google.com (mail-lf1-f72.google.com [209.85.167.72])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 1CF8B3F65A
+	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 16:37:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1702053444;
+	bh=YT/kV/Dp30PwQaDY0JCP+r7zoJhVpxRRZO8hjSNjj3s=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=RZrtlVhDDbvMW/NephNnD2KMXX1x+OdI8VxxF+C6dRoCGXLX5S3LaiL9EsSHEMsAd
+	 zLDHY1MkpTa4t+juVpC+FyXrYeIwstlRrnPHZYNW5hx3750ZurQarheUPTACH3+hM/
+	 a74ywjs90BI+7H/HGQm8qW7Oy3YzdcX1gag/UlZgQJXn30FjUto7b2DrF7Am70bhDC
+	 K6zWj5eLswg0BrNRimLhAnwsLGQ3CZMOe6zR9+m9mkhr6w0oP+uDBedssYISD8JPWr
+	 89zjx0SvU95txbcCitgxCUc75FwcqrzoqEEcRYDQhJKFV2rYOFyZEBat6AT5faO+iE
+	 JbxlRBwG4tkSw==
+Received: by mail-lf1-f72.google.com with SMTP id 2adb3069b0e04-50c21153bc2so1508711e87.2
+        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 08:37:24 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702053226; x=1702658026;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pxwrq+h8nplXaFB//isAgca+iL1KixWEf6Q6TqoQFaU=;
-        b=lWGqQjGKNCXFOu+xI+YJV/3RmPK/wxo21TRrTf1r6ynTPm07159AHOMgUYOrlC5I3N
-         KjxIwhy7A2gIWJNOy/8RV+ML0veTDMhNVVx+igsgnrRMV6Bm7XqoPUgDaioSDyZzizI2
-         lwyyt38esgKVdh3HvG9nfE3f2HHw4A2TFhmlG6+aXz1AEhvKYMfcsfiUM1A7V1mvnn62
-         P/k8Ie/1AOoNhfFcQb/lAhbaSQlPpITEnA5P7xW+/i5Ky1t4JA/VuLhuychf8uHFwcZD
-         y0lY8wGPWb0ZbIH0DRjgTtoVNgpJlsgV0abcGqtCCmWLkVyjpZsLwYRR7e53fgr71E/v
-         D8/A==
-X-Gm-Message-State: AOJu0YzJAeaXnyaB9QxbnKEk1MuzgBPJ9ghmCCqhBK7TwhiaGFYNWBQk
-	wNitWqfZ1kiUCJEZIMZ2YiU=
-X-Google-Smtp-Source: AGHT+IGgQKJL0HHO/Evrk7hLdKF/K41Ygp/TVwBLtCjh/+/dieukARYnSOLhKDT1T+59M4U8FY8Rbg==
-X-Received: by 2002:a19:2d45:0:b0:50b:f411:9985 with SMTP id t5-20020a192d45000000b0050bf4119985mr87342lft.17.1702053225818;
-        Fri, 08 Dec 2023 08:33:45 -0800 (PST)
-Received: from skbuf ([188.27.185.68])
-        by smtp.gmail.com with ESMTPSA id a15-20020a50c30f000000b0054bde4df7f0sm941078edb.66.2023.12.08.08.33.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Dec 2023 08:33:45 -0800 (PST)
-Date: Fri, 8 Dec 2023 18:33:43 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Serge Semin <fancer.lancer@gmail.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Jose Abreu <Jose.Abreu@synopsys.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Tomer Maimon <tmaimon77@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	openbmc@lists.ozlabs.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 10/16] net: pcs: xpcs: Add generic DW XPCS
- MDIO-device support
-Message-ID: <20231208163343.5s74bmirfna3o7yw@skbuf>
-References: <20231205103559.9605-1-fancer.lancer@gmail.com>
- <20231205103559.9605-11-fancer.lancer@gmail.com>
- <20231205111351.xjjuwpbf7kwg3vuh@skbuf>
- <uivunnjv5vi3w3fkc5w2f4lem5bingrgajgjfsu2ih7fuhz6hd@3naeubr5spak>
- <20231205122316.ihhpklv222f5giz3@skbuf>
- <nflj4ajgx3byqhwna2eslldwulbbafmcwba4dwgxo65o5c7pmj@zbgqt2zje4ix>
+        d=1e100.net; s=20230601; t=1702053443; x=1702658243;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YT/kV/Dp30PwQaDY0JCP+r7zoJhVpxRRZO8hjSNjj3s=;
+        b=DNPd15HUBA1YrLdz8xV05DhbZRWbyarpPuAU5j3FWqes1AgPrdOX+CDCueHpcsIvSx
+         7I55rnTZT9xGmWoAk4QAG3y/wU/wot2Y5Jcu370Wjz5Qge/+nNV02UKuRFa/oGl58OM+
+         ASCWuk9TaPDo0v9p5Y66gcq1hbrruJKgAVCkZ6Wig2Y6OcDUhSiw3UQYcSBgTSblwWWw
+         p93Olc6l4yQ37FbAPkBFjmqFk/t5EE6JzotV8JXK8DLjUmsINa1pQlwq+lr5+ee2L3Gs
+         nSw1bGLGKIii8dGSPBBCZSBKb12px3eyz2i/pdIoP8LEeT7KtzrQ2G1x3Fb6P0cxLSDh
+         IlgQ==
+X-Gm-Message-State: AOJu0Yz6PPhUB842a0DOboCJIgi2iaqNY+YrMLe4tIh34ZXZNhasxr17
+	ZPqq08bJ+w7PUG6Hegp/iqRh9AhQWdDZRc0w4obSO9xd43F4XF3ACu80J53KYpFxCcY5oyOR556
+	dPbGOjGAbiqthrsiW4prHQdcXm/5RkErDbyn/jcqBEhjc/5exRPVMPbg=
+X-Received: by 2002:ac2:598a:0:b0:50b:f7c6:2f72 with SMTP id w10-20020ac2598a000000b0050bf7c62f72mr84578lfn.106.1702053443518;
+        Fri, 08 Dec 2023 08:37:23 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHsNnO1XfYSlnYp1dZD6tNH65TwHmtLaUUmeoX2IT5o0GoT7vAF3CO6XD1zyHCOiQ5LVIYfVi1131QZ4wUZCFs=
+X-Received: by 2002:ac2:598a:0:b0:50b:f7c6:2f72 with SMTP id
+ w10-20020ac2598a000000b0050bf7c62f72mr84575lfn.106.1702053443189; Fri, 08 Dec
+ 2023 08:37:23 -0800 (PST)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 8 Dec 2023 08:37:21 -0800
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <20231206115000.295825-8-jeeheng.sia@starfivetech.com>
+References: <20231206115000.295825-1-jeeheng.sia@starfivetech.com> <20231206115000.295825-8-jeeheng.sia@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <nflj4ajgx3byqhwna2eslldwulbbafmcwba4dwgxo65o5c7pmj@zbgqt2zje4ix>
+Mime-Version: 1.0
+Date: Fri, 8 Dec 2023 08:37:21 -0800
+Message-ID: <CAJM55Z-FXV-Go4yj_AJyU4pRC0msHqTCT3q24HkNtBTWW9rAgA@mail.gmail.com>
+Subject: Re: [PATCH v1 07/16] dt-bindings: clock: Add StarFive JH8100
+ System-North-West clock and reset generator
+To: Sia Jee Heng <jeeheng.sia@starfivetech.com>, kernel@esmil.dk, conor@kernel.org, 
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
+	mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de, 
+	emil.renner.berthing@canonical.com, hal.feng@starfivetech.com, 
+	xingyu.wu@starfivetech.com
+Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+	leyfoon.tan@starfivetech.com
+Content-Type: text/plain; charset="UTF-8"
 
-On Fri, Dec 08, 2023 at 05:11:20PM +0300, Serge Semin wrote:
-> My idea was to reuse the mdio_device which has already been created
-> either by means of the MDIO-bus OF-subnode or by means of the MDIO-bus
-> board_info infrastructure (can be utilized in the SJA1105 or Wangxun
-> Tx GBE). The xpcs_create() method then either probes the device on the MDIO
-> bus and gets ID from there, or just uses the custom IDs based on the
-> OF compatible match table or on the platform_data. If no MDIO-device
-> was created my patchset is supposed to preserve the previous
-> semantics: create MDIO-device, probe the device on the MDIO-bus, get
-> device IDs from there. See the next patch for more details:
-> https://lore.kernel.org/netdev/20231205103559.9605-11-fancer.lancer@gmail.com/
-> 
-> > That was attempted a while ago by
-> > Sean Anderson with the Lynx PCS. Are you aware of the fact that even in
-> > the good case in which binding the driver actually works, the user can
-> > then come along and unbind it from the PCS device, and phylink isn't
-> > prepared to handle that, so it will crash the kernel upon the next
-> > phylink_pcs call?
-> 
-> To be honest I didn't consider the driver bind/unbind option. But my
-> case a bit different. DW XPCS MDIO-device is supposed to be created
-> automatically by means of the DW XPCS MI driver from the DT-nodes
-> hierarchy like this:
-> mdio@1f05d000 {
-> 	compatible = "snps,dw-xpcs-mi";
-> 	reg = <0 0x1f05d000 0 0x1000>;
-> 
-> 	xgmac_pcs: ethernet-pcs@0 {
-> 		compatible = "snps,dw-xpcs";
-> 		reg = <0>;
-> 	};
-> };
-> The platform-device is created for the mdio@1f05d000 node for which
-> the DW XPCS MI driver is loaded, which calls the
-> devm_of_mdiobus_register() in the probe() method which registers the
-> MDIO-bus and then creates the MDIO-device from the ethernet-pcs@0
-> node. The DW XPCS MDIO-device driver is attached to that MDIO-device
-> then. In such model the PCS can be supplied to the DW *MAC via the
-> "pcs-handle = &xgmac_pcs" property.
-> 
-> Regarding the current semantics it's preserved in the framework of the
-> xpcs_create_byaddr() method (former xpcs_create_mdiodev()) by means of
-> the next code snippet:
->         if (mdiobus_is_registered_device(bus, addr)) {
->                 mdiodev = bus->mdio_map[addr];
->                 mdio_device_get(mdiodev);
->         } else {
->                 mdiodev = mdio_device_create(bus, addr);
->                 if (IS_ERR(mdiodev))
->                         return ERR_CAST(mdiodev);
->         }
-> Device can be automatically created if before registering the MDIO-bus
-> the xpcs_create_byaddr() caller registered the MDIO-device board info
-> by means of the mdiobus_register_board_info() method. In addition to
-> that it's now possible to supply some custom data (custom device IDs
-> in my implementation) to the XPCS driver by means of the
-> mdio_board_info.platform_data field. See the next patch for
-> reference:
-> https://lore.kernel.org/netdev/20231205103559.9605-14-fancer.lancer@gmail.com
-> 
-> So what the difference with the Lynx PCS is that in my case the
-> MDIO-device is created automatically as a result of the DW XPCS MI
-> MDIO-bus registration. Additionally I implemented the MDIO-device
-> creation based on the MDIO-board-info, thus there won't be need in the
-> calling mdio_device_create() on each xpcs_create_mdiodev() invocation.
-> The later part isn't that important in the framework of this
-> conversation, but just so you be aware.
+Sia Jee Heng wrote:
+> Add bindings for the System-North-West clock and reset generator
+> (SYSCRG-NW) on JH8100 SoC.
+>
+> Signed-off-by: Sia Jee Heng <jeeheng.sia@starfivetech.com>
+> Reviewed-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
+> ---
+>  .../clock/starfive,jh8100-syscrg-nw.yaml      | 119 ++++++++++++++++++
 
-It's not really different, though. You can connect to the Lynx PCS both
-ways, see dpaa2_pcs_create() which also searches for a pcs-handle before
-calling lynx_pcs_create_fwnode(). What's subtly different is that we
-don't (yet) have "fsl,lynx-pcs" compatible strings in the device tree.
-So the MDIO controller will register the PCS devices as struct phy_device
-(which still have an underlying struct mdio_device). The PCS layer
-connects to the underlying struct mdio_device, and the phy_device on top
-remains unconnected to any phylib/phylink MAC driver. That is confusing,
-I should really get to adding those compatible strings to suppress the
-phy_device creation.
+The JH7110 clocks, the JH8100 system and always-on all follow the Xcrg pattern:
+syscrg
+aoncrg
+stgcrg
+ispcrg
+voutcrg
+etc.
 
-> Regarding the driver bind/unbind. As I said I didn't actually consider
-> that option. On the other hand my DW XPCS MDIO-device driver doesn't
-> do actual probe() or remove(). The only implemented thing is the
-> of_device_id table, which is used to assign PCS and PMA IDs if
-> required based on the DT compatible property. So I can easily drop any
-> MDIO device-driver part and parse the of_device_id table right in the
-> xpcs_create_bynode(). From that perspective my implementation won't
-> differ much from the Lynx PCS design. The only difference will be is
-> the way the MDIO-bus is created and registered. In case of Lynx PCS
-> the bus is created by the MAC-driver itself.
+Is there a reason the north-west, north-east and south-west breaks this pattern?
+I'd have expected them to be called something like
+nwcrg, JH8100_NWCLK_*, JH8100_NWRST_*,
+necrg, JH8100_NECLK_*, JH8100_NERST_* and
+swcrg, JH8100_SWCLK_*, JH8100_SWRST_*
 
-Nope, not true. Follow the pcs-handle in arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi.
+Just like all the other Starfive drivers.
 
-> In my case DW XPCS MI is currently created in the framework of the
-> separate platform driver. Do you think it would be better to follow
-> the Lynx design pattern in order to get rid from the possibility of
-> the DW XPCS MI driver being unbound behind the STMMAC+XPCS couple
-> back?
-
-I think you actually pointed out a flaw in the Lynx PCS design too.
-Actually, it is a larger flaw in the kernel. You can also unbind the
-MDIO bus which holds the phy_device, and phylib (and therefore also
-phylink) won't expect that either, so it will crash.
-
-> In this case the Dw MAC DT-node hierarchy would look like this:
-> 
-> xgmac: ethernet@1f054000 {
-> 	compatible = "snps,dwxgmac";
-> 	reg = <0 0x1f054000 0 0x4000>;
-> 	reg-names = "stmmaceth";
-> 	ranges;
-> 
-> 	...
-> 
-> 	pcs-handle = &xgmac_pcs;
-> 
-> 	// DW XPCS MI to access the DW XPCS attached to the device
-> 	mdio@1f05d000 {
-> 		compatible = "snps,dwmac-mi";
-> 		reg = <0 0x1f05d000 0 0x1000>;
-> 
-> 		xgmac_pcs: ethernet-pcs@0 {
-> 			compatible = "snps,dw-xpcs";
-> 			reg = <0>;
-> 		};
-> 	};
-> 
-> 	// Normal MDIO-bus to access external PHYs (it's also called
-> 	// as SMA - Station Management Agent - by Synopsys)
-> 	mdio {
-> 		compatible = "snps,dwmac-mdio";
-> 		#address-cells = <1>;
-> 		#size-cells = <0>;
-> 	};
-> };
-> 
-> I actually thought to use that hardware description pattern instead,
-> but after some meditation around that I decided that having the DW
-> XPCS device defined separately from the DW MAC node seemed better at
-> least from the code separation point of view. Now I think that it
-> wasn't the best decision. DW XPCS is always attached to the DW XGMAC
-> controller. So it would be more correct having it defined as a
-> sub-node. It would also helped to avoid the platform device driver
-> bind/unbind problem.
-> 
-> What do you think? Should I re-design my patchset to be supporting the
-> design above? (After having conversion with you I am more inclined to
-> do that now than to stick with the currently implemented solution.)
-
-I think that the placement of the "mdio" node as lateral vs subordinate
-to the "ethernet" node would have fixed the issue by mistake. We should
-be looking at it as a structural problem of the kernel instead. Don't
-let it influence what you believe should be the correct design.
-
-> > The pcs-rzn1-miic.c driver puts a device_link to the MAC to at least
-> > tear down the whole thing when the PCS is unbound, which is saner than
-> > crashing the kernel. I don't see the equivalent protection mechanism here?
-> 
-> You are right. I don't have any equivalent protection here. Thanks for
-> suggesting a solution.
-
-I think that a device link between the "ethernet" device and the "mdio"
-device (controller, parent of the PHY or PCS), if the Ethernet is not a
-parent of the MDIO controller, could also solve that. But it would also
-require ACK from PHY maintainers, who may have grander plans to address
-this snag.
-
-> > Can't the xpcs continue to live without a bound driver? Having a
-> > compatible string in the OF description is perfectly fine though,
-> > and should absolutely not preclude that.
-> 
-> As I explained above Dw XPCS device can live without a bound driver
-> because the DW XPCS MDIO-driver doesn't do much but merely gets to be
-> bound based on the of_device_id table. In my case the problem is in
-> the DW XPCS MI driver which indeed can be detached. Please see my
-> long-read text above.
-
-Yeah, common design, common problem.
+>  .../dt-bindings/clock/starfive,jh8100-crg.h   |  45 +++++++
+>  .../dt-bindings/reset/starfive,jh8100-crg.h   |  15 +++
+>  3 files changed, 179 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/starfive,jh8100-syscrg-nw.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/clock/starfive,jh8100-syscrg-nw.yaml b/Documentation/devicetree/bindings/clock/starfive,jh8100-syscrg-nw.yaml
+> new file mode 100644
+> index 000000000000..b16a874828dd
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/starfive,jh8100-syscrg-nw.yaml
+> @@ -0,0 +1,119 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/starfive,jh8100-syscrg-nw.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: StarFive JH8100 System-North-West Clock and Reset Generator
+> +
+> +maintainers:
+> +  - Sia Jee Heng <jeeheng.sia@starfivetech.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: starfive,jh8100-syscrg-nw
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: Main Oscillator (24 MHz)
+> +      - description: APB_BUS clock from SYSCRG
+> +      - description: ISP_2X clock from SYSCRG
+> +      - description: ISP_AXI clock from SYSCRG
+> +      - description: VOUT_ROOT0 clock from SYSCRG
+> +      - description: VOUT_ROOT1 clock from SYSCRG
+> +      - description: VOUT_SCAN_ATS clock from SYSCRG
+> +      - description: VOUT_DC_CORE clock from SYSCRG
+> +      - description: VOUT_AXI clock from SYSCRG
+> +      - description: AXI_400 clock from SYSCRG
+> +      - description: AXI_200 clock from SYSCRG
+> +      - description: Peripheral clock from SYSCRG
+> +      - description: External DVP clock
+> +      - description: External ISP DPHY TAP TCK clock
+> +      - description: External golbal clock
+> +      - description: External i2s_tscko clock
+> +      - description: External VOUT MIPI DPHY TAP TCK
+> +      - description: External VOUT eDP TAP TCK
+> +      - description: External SPI In2 clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: clk_osc
+> +      - const: sys_clk_apb_bus
+> +      - const: sys_clk_isp_2x
+> +      - const: sys_clk_isp_axi
+> +      - const: sys_clk_vout_root0
+> +      - const: sys_clk_vout_root1
+> +      - const: sys_clk_vout_scan_ats
+> +      - const: sys_clk_vout_dc_core
+> +      - const: sys_clk_vout_axi
+> +      - const: sys_clk_axi_400
+> +      - const: sys_clk_axi_200
+> +      - const: sys_clk_perh_root_preosc
+> +      - const: clk_dvp_ext
+> +      - const: clk_isp_dphy_tap_tck_ext
+> +      - const: clk_glb_ext_clk
+> +      - const: clk_i2s_tscko
+> +      - const: clk_vout_mipi_dphy_tap_tck_ext
+> +      - const: clk_vout_edp_tap_tck_ext
+> +      - const: clk_spi_in2_ext
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +    description:
+> +      See <dt-bindings/clock/starfive,jh8100-crg.h> for valid indices.
+> +
+> +  '#reset-cells':
+> +    const: 1
+> +    description:
+> +      See <dt-bindings/reset/starfive,jh8100-crg.h> for valid indices.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - '#clock-cells'
+> +  - '#reset-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/starfive,jh8100-crg.h>
+> +
+> +    clock-controller@123c0000 {
+> +            compatible = "starfive,jh8100-syscrg-nw";
+> +            reg = <0x123c0000 0x10000>;
+> +            clocks = <&clk_osc>, <&syscrg SYSCRG_CLK_APB_BUS>,
+> +                     <&syscrg SYSCRG_CLK_ISP_2X>,
+> +                     <&syscrg SYSCRG_CLK_ISP_AXI>,
+> +                     <&syscrg SYSCRG_CLK_VOUT_ROOT0>,
+> +                     <&syscrg SYSCRG_CLK_VOUT_ROOT1>,
+> +                     <&syscrg SYSCRG_CLK_VOUT_SCAN_ATS>,
+> +                     <&syscrg SYSCRG_CLK_VOUT_DC_CORE>,
+> +                     <&syscrg SYSCRG_CLK_VOUT_AXI>,
+> +                     <&syscrg SYSCRG_CLK_AXI_400>,
+> +                     <&syscrg SYSCRG_CLK_AXI_200>,
+> +                     <&syscrg SYSCRG_CLK_PERH_ROOT_PREOSC>,
+> +                     <&clk_dvp_ext>,
+> +                     <&clk_isp_dphy_tap_tck_ext>,
+> +                     <&clk_glb_ext_clk>,
+> +                     <&clk_i2s_tscko>,
+> +                     <&clk_vout_mipi_dphy_tap_tck_ext>,
+> +                     <&clk_vout_edp_tap_tck_ext>,
+> +                     <&clk_spi_in2_ext>;
+> +            clock-names = "clk_osc", "sys_clk_apb_bus", "sys_clk_isp_2x",
+> +                          "sys_clk_isp_axi", "sys_clk_vout_root0",
+> +                          "sys_clk_vout_root1", "sys_clk_vout_scan_ats",
+> +                          "sys_clk_vout_dc_core", "sys_clk_vout_axi",
+> +                          "sys_clk_axi_400", "sys_clk_axi_200",
+> +                          "sys_clk_perh_root_preosc", "clk_dvp_ext",
+> +                          "clk_isp_dphy_tap_tck_ext", "clk_glb_ext_clk",
+> +                          "clk_i2s_tscko", "clk_vout_mipi_dphy_tap_tck_ext",
+> +                          "clk_vout_edp_tap_tck_ext", "clk_spi_in2_ext";
+> +            #clock-cells = <1>;
+> +            #reset-cells = <1>;
+> +    };
+> diff --git a/include/dt-bindings/clock/starfive,jh8100-crg.h b/include/dt-bindings/clock/starfive,jh8100-crg.h
+> index e5bb588ce798..8417455c2409 100644
+> --- a/include/dt-bindings/clock/starfive,jh8100-crg.h
+> +++ b/include/dt-bindings/clock/starfive,jh8100-crg.h
+> @@ -120,4 +120,49 @@
+>  #define SYSCRG_CLK_NNE_ICG_EN						108
+>
+>  #define SYSCRG_CLK_END							109
+> +
+> +/* SYSCRG_NW_CLK */
+> +#define SYSCRG_NW_CLK_PLL5_DIV2						0
+> +#define SYSCRG_NW_CLK_GCLK5						1
+> +#define SYSCRG_NW_CLK_GPIO_100						2
+> +#define SYSCRG_NW_CLK_GPIO_50						3
+> +#define SYSCRG_NW_CLK_GPIO_150						4
+> +#define SYSCRG_NW_CLK_GPIO_60						5
+> +#define SYSCRG_NW_CLK_IOMUX_WEST_PCLK					6
+> +#define SYSCRG_NW_CLK_I2C6_APB						7
+> +#define SYSCRG_NW_CLK_I2C7_APB						8
+> +#define SYSCRG_NW_CLK_SPI2_APB						9
+> +#define SYSCRG_NW_CLK_SPI2_CORE						10
+> +#define SYSCRG_NW_CLK_SPI2_SCLK_IN					11
+> +#define SYSCRG_NW_CLK_SMBUS1_APB					12
+> +#define SYSCRG_NW_CLK_SMBUS1_CORE					13
+> +#define SYSCRG_NW_CLK_ISP_DVP						14
+> +#define SYSCRG_NW_CLK_ISP_CORE_2X					15
+> +#define SYSCRG_NW_CLK_ISP_AXI						16
+> +#define SYSCRG_NW_CLK_ISP_DPHY_TAP_TCK					17
+> +#define SYSCRG_NW_CLK_FLEXNOC_ISPSLV					18
+> +#define SYSCRG_NW_CLK_VOUT_PIX0						19
+> +#define SYSCRG_NW_CLK_VOUT_PIX1						20
+> +#define SYSCRG_NW_CLK_VOUT_SCAN_ATS					21
+> +#define SYSCRG_NW_CLK_VOUT_DC_CORE					22
+> +#define SYSCRG_NW_CLK_VOUT_APB						23
+> +#define SYSCRG_NW_CLK_VOUT_DSI						24
+> +#define SYSCRG_NW_CLK_VOUT_AHB						25
+> +#define SYSCRG_NW_CLK_VOUT_AXI						26
+> +#define SYSCRG_NW_CLK_VOUT_MIPI_DPHY_TAP_TCK				27
+> +#define SYSCRG_NW_CLK_VOUT_EDP_PHY_TAP_TCK				28
+> +#define SYSCRG_NW_CLK_UART5_CORE_PREOSC					29
+> +#define SYSCRG_NW_CLK_UART5_APB						30
+> +#define SYSCRG_NW_CLK_UART5_CORE					31
+> +#define SYSCRG_NW_CLK_UART6_CORE_PREOSC					32
+> +#define SYSCRG_NW_CLK_UART6_APB						33
+> +#define SYSCRG_NW_CLK_UART6_CORE					34
+> +#define SYSCRG_NW_CLK_SPI2_ICG_EN					35
+> +#define SYSCRG_NW_CLK_SMBUS1_ICG_EN					36
+> +#define SYSCRG_NW_CLK_ISP_ICG_EN					37
+> +#define SYSCRG_NW_CLK_VOUT_ICG_EN					38
+> +#define SYSCRG_NW_CLK_UART5_ICG_EN					39
+> +#define SYSCRG_NW_CLK_UART6_ICG_EN					40
+> +
+> +#define SYSCRG_NW_CLK_END						41
+>  #endif /* __DT_BINDINGS_CLOCK_STARFIVE_JH8100_H__ */
+> diff --git a/include/dt-bindings/reset/starfive,jh8100-crg.h b/include/dt-bindings/reset/starfive,jh8100-crg.h
+> index 3b7b92488e76..8c3a858bdf6a 100644
+> --- a/include/dt-bindings/reset/starfive,jh8100-crg.h
+> +++ b/include/dt-bindings/reset/starfive,jh8100-crg.h
+> @@ -20,4 +20,19 @@
+>
+>  #define SYSCRG_RESET_NR_RESETS					8
+>
+> +/*
+> + * syscrg_nw: assert0
+> + */
+> +#define SYSCRG_NW_RSTN_PRESETN					0
+> +#define SYSCRG_NW_RSTN_SYS_IOMUX_W				1
+> +#define SYSCRG_NW_RSTN_I2C6					2
+> +#define SYSCRG_NW_RSTN_I2C7					3
+> +#define SYSCRG_NW_RSTN_SPI2					4
+> +#define SYSCRG_NW_RSTN_SMBUS1					5
+> +#define SYSCRG_NW_RSTN_UART5					6
+> +#define SYSCRG_NW_RSTN_UART6					7
+> +#define SYSCRG_NW_RSTN_MERAK0_TVSENSOR				8
+> +#define SYSCRG_NW_RSTN_MERAK1_TVSENSOR				9
+> +
+> +#define SYSCRG_NW_RESET_NR_RESETS				10
+>  #endif /* __DT_BINDINGS_RESET_STARFIVE_JH8100_H__ */
+> --
+> 2.34.1
+>
 
