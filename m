@@ -1,159 +1,152 @@
-Return-Path: <devicetree+bounces-23016-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23018-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73618809EDC
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 10:11:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 035C4809EF1
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 10:14:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2BF1D28106F
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 09:11:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B319928110E
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 09:14:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAF9312B83;
-	Fri,  8 Dec 2023 09:10:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3922B1172B;
+	Fri,  8 Dec 2023 09:14:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="oePBDBDJ"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="YGLaoYCW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E34A01989
-	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 01:10:36 -0800 (PST)
-Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-3332efd75c9so1702334f8f.2
-        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 01:10:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1702026635; x=1702631435; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=abIGam56kSZ3DhSDuEO3BjQb5HXWW5MMfEQ3kw2b1bA=;
-        b=oePBDBDJ0hWA47MUtbrdqGt8RXbD6BJlZOhrNvbdepjE2sd1ueDG6RspnS2QDJ0vik
-         w2MQXu87pC/opdB+1sp98DShtYdppLC8UaGWiEyCIeEA8XQOr1Jo/FWf7GAClzaXiJab
-         /wNTXn/yhR6GNjtxCKorxufU/rjkeIDnEoQ3RHIU0rPSpRtSdALJnMOSLd3lIRaR2Hjo
-         3YTXYVjdkYpPGRR0xz0GYTdKb+LMzD9a5nDZLvpU2n+3LGcec0xnyahBf/Z28QXgdcWg
-         25Gh+/JbNRtY5RFF5xAeXZWmyDj8OQ7f4QdPKix+X1u9zridv9IKVPkJiWzyyPz+DQqa
-         y+HA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702026635; x=1702631435;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=abIGam56kSZ3DhSDuEO3BjQb5HXWW5MMfEQ3kw2b1bA=;
-        b=Zdfk0Q6HFZi+mc73De7UX1dUnfULaN1wdzmGKWcvxDm0mOwmW/e4TF9J4704bkfMhm
-         f7CuqVdJJ16Mj6nTtmF3m33bbkoK5o6n6z/fZKZ8PYMcQh51gWeKg9rU8XGzW747pUz3
-         oZX1qnPilI7n9BOtNx0o9TLKwkVifrLPBtfeGrANCx/cxn/ediG72aLOHqb92FqGjB4l
-         6V7wNHARQ7ac/+M8Hr1MpWl/m2NnZY+BH2qwNiP3tjcLGLcbhSPFusA6UB+9WFDviVpY
-         dCYwaVhLm8w1tEzhSAACcV/FaJS+Y1fYlCdL+CPKBtTpKcmwEUe0/0wOmseFc3eIZELq
-         hp1Q==
-X-Gm-Message-State: AOJu0YwKQjcw9BGcozUFRwI5clEaVt/RjhRMwysuDuGjZOgmLcxp4CCA
-	qwVi96f/W60lDlhgsA/4+dVfKQ==
-X-Google-Smtp-Source: AGHT+IEffTxMrB0wVXm8iKV0mWClhcJ3Rprr261syCocmzE/zRP7gqxm1rAxN42bfZ6Xqn9vwOI4fg==
-X-Received: by 2002:a5d:668a:0:b0:333:4635:c914 with SMTP id l10-20020a5d668a000000b003334635c914mr1260391wru.82.1702026635358;
-        Fri, 08 Dec 2023 01:10:35 -0800 (PST)
-Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:b162:2510:4488:c0c3])
-        by smtp.gmail.com with ESMTPSA id a18-20020a5d5092000000b00333415503a7sm1572705wrt.22.2023.12.08.01.10.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Dec 2023 01:10:35 -0800 (PST)
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-To: Marcel Holtmann <marcel@holtmann.org>,
-	Johan Hedberg <johan.hedberg@gmail.com>,
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
-	Rocky Liao <quic_rjliao@quicinc.com>,
-	Alex Elder <elder@linaro.org>,
-	Srini Kandagatla <srinivas.kandagatla@linaro.org>
-Cc: linux-bluetooth@vger.kernel.org,
-	netdev@vger.kernel.org,
+Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2081.outbound.protection.outlook.com [40.107.247.81])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66E1E1703;
+	Fri,  8 Dec 2023 01:14:14 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=PlJ7IX+XTS9TQLwHfCOmmcxW/01b8D8RRHMU0mzt6RdV+WRj20MIZ4x8cZL/a/yOQwywhVfdqfROBJd3ywNxi5vDboaGRf4Cr7gw7lJpoDEQDmLDAs5nKvSKsX1QAuewGWfozEa48uttGFb5GFGQtEWJkZ6gI/hDXjABwh1jeXSXDnO7cg7nZBwWrdmrto1l3kOSrb5q5jMhHrlxcrRDGMsdj9wjUnBucOfoqs6E6qxDvjk4neN/eylzueZuYwzOmxt04gW47HzVzMdhZ6PyJVqZUR+os6yPEqlme3yyusfrhNiUNgy8MKDtPwmW2okiPZi0i2xAqVRMW7HqryPTEA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+kC1w1bXoFTBQGGU4j5WpDm8ytNSiedyJ89xDQ9f0gU=;
+ b=OxMF6/Wyem/6x/STGYFwsmjL2Zhz+tZu3g92mJjzW2ylqNZp6rSrMtWZAM01mXasgnXYVkLO3ZlGzQnxw8DgOuVtyKzn7xVK/ewP4yK+JA4FISZmf1m/8Kj4OoKfBtbP99Yj1kgRDZDRFijpzhYd57JLmXj3JHmaEyF3eNKhFqV5ku5KllD8KHsDRAmclZppeKw88ViX9kUavACCenFFWo7yguGTDS2zUDMo2yeD+U96p23yekEuX6n2EE5HfNnHaEMBvwaUYg43ghf/QDmBRIuBB/VSXwfcNl+OPW0iExMW1cRvEf+BwJ9CY0tT0oceiSKIZAskyoTyZQWTkz2xYg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+kC1w1bXoFTBQGGU4j5WpDm8ytNSiedyJ89xDQ9f0gU=;
+ b=YGLaoYCWOsvseLPfAGnIpdh+M68IYMmLFJCGU2HDYPoZUjfRTi6+OyPqqgdrudUj0rBGHJJf0JUKx8/I+T8j0j7gIi4g9px0U97yWuV05tLIsPudRQxSR1MyuB5h+XwXCeDTb8xFQQ0CpO3/ohKngbJmU5xmAe3ZIYFf6WjGPDU=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AS8PR04MB8404.eurprd04.prod.outlook.com (2603:10a6:20b:3f8::7)
+ by AM8PR04MB7284.eurprd04.prod.outlook.com (2603:10a6:20b:1dc::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.28; Fri, 8 Dec
+ 2023 09:14:11 +0000
+Received: from AS8PR04MB8404.eurprd04.prod.outlook.com
+ ([fe80::3627:208e:4d62:1e2a]) by AS8PR04MB8404.eurprd04.prod.outlook.com
+ ([fe80::3627:208e:4d62:1e2a%6]) with mapi id 15.20.7068.028; Fri, 8 Dec 2023
+ 09:14:11 +0000
+From: Sherry Sun <sherry.sun@nxp.com>
+To: hongxing.zhu@nxp.com,
+	l.stach@pengutronix.de,
+	lpieralisi@kernel.org,
+	kw@linux.com,
+	robh@kernel.org,
+	bhelgaas@google.com,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com
+Cc: linux-imx@nxp.com,
+	linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [RESEND PATCH v2 3/3] Bluetooth: qca: run the power-on/off sequence for QCA6390 too
-Date: Fri,  8 Dec 2023 10:09:36 +0100
-Message-Id: <20231208090936.27769-4-brgl@bgdev.pl>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20231208090936.27769-1-brgl@bgdev.pl>
-References: <20231208090936.27769-1-brgl@bgdev.pl>
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/4] PCI: imx6: Add pci host wakeup support
+Date: Fri,  8 Dec 2023 17:13:51 +0800
+Message-Id: <20231208091355.1417292-1-sherry.sun@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR06CA0006.apcprd06.prod.outlook.com
+ (2603:1096:4:186::19) To AS8PR04MB8404.eurprd04.prod.outlook.com
+ (2603:10a6:20b:3f8::7)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS8PR04MB8404:EE_|AM8PR04MB7284:EE_
+X-MS-Office365-Filtering-Correlation-Id: b65f4cc2-151d-40a7-1488-08dbf7ce0a76
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	ZrXe8j2kBqzXrDliF+KkSy+aN8+GW7qBWkYK50FpDMliEng+VeOiOqffXoJMtBqFxqWdv0wDufRPIxNCgp9YntiG42H19EwHjEIspmo0njutYaKyeqqTE28QrOFDKA4vO/hzXyRiCV3Du+Y40KlGEMC5d7wu4pX3aJREvSGEQ4VdBIPAdfwYdbjCj/z91AhfdLfs+rIRMQG/R8oybXHbDjHfjoxuaWAlOc6YRL+sfqUbweNR5eybcIJJQxdiumTnjvYf7d/XZ2kBYB5zePLWIiErGUSyQpO7LsYyIUyFWfVesa6LUCoRJz9xdLidEncdIyouUlgLirGFzyM7q2SSwMP3E+3skpGybOcOHyfnfK/KeMXjGG7ijTELMliqd2z0EAqJP7kbWt/5+PkQGR7ZMckkKRkLb628AEilyNz+KtzhM6xmSir7xM2WYCNvZ1frizf+Jp9jIecWUFvF0e9zGE5qUKJEH8azxml53BZ0G6vo/WMICBKBZ2JyH39muUjrrL5sleQiuuN+oQQa47OOP0Kmahpd6ztqCpK4NE317j4FaLPyQA/UGUqPKYckJy/2EitPc/DFTaorkhKLUe8MvmtMjflEiRDMumxXzO/0bMPEzTs5WKTnEtq8hiyY+DepIHxv+251ur0JJ0mgAfCKhQ==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8404.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(346002)(376002)(396003)(136003)(366004)(230922051799003)(1800799012)(451199024)(64100799003)(186009)(8936002)(1076003)(26005)(2616005)(52116002)(6506007)(6512007)(5660300002)(6666004)(4326008)(44832011)(41300700001)(2906002)(7416002)(4744005)(6486002)(478600001)(316002)(66946007)(66476007)(66556008)(8676002)(86362001)(36756003)(38100700002)(38350700005)(921008);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?GnJpyv1C38bbYEaiLEqdQSlEENAEJCBxDrVLaSmHhNuHSNoaNCH1s2xlsxyo?=
+ =?us-ascii?Q?9oUJn/u5O1B02RacfdqR0sxxkU0ucVxITOff5b+2X55xjsRLwBaGqlDGz8sq?=
+ =?us-ascii?Q?Cv3rOu3P9ZiIeMIlgO8+yQ/KwhufmikGtBKL6K/wZ6gf6iYpro6TzhRqivOL?=
+ =?us-ascii?Q?hlCISVPvHH/5S2XWkDXhJdNwhmoA5V/0qMTchqRVPICU8riIJ611SuYal5Vy?=
+ =?us-ascii?Q?tT/DB1NYYVlTJITUJSDWQ2ZiZdOALqkHeK70DtQNOiNFRN6oXGksocs3DPpZ?=
+ =?us-ascii?Q?R1YOkCOKChv7/4NnW2vyzb+Z6ufmJQdmR8m9LMTT+gw/KUkhI6liyO3ZsYyj?=
+ =?us-ascii?Q?ItagF2uxKztytGm+O28ZbJGdPz9/KUGPvCzc6DOkJngbeQYrJyr74gVaA5fS?=
+ =?us-ascii?Q?2PLWhyHfaIYzsnBaBpjdGh4mPmE0GAywCJIAqmGabnM1+vTGK4ig9p2rJzER?=
+ =?us-ascii?Q?8olxhIJ8FXTXuKAfjDCnL58+cNs809LIieVi9n6t5JbdUMne/fCXGREUQeTP?=
+ =?us-ascii?Q?H+DzQAE+kS3ytfdKAIkpW1swmYJMlJyk0+HGt/OD5zuo8/PLEMIo0NQ0S4Wi?=
+ =?us-ascii?Q?ID6i43ysmhPEzuAbEysPpWUC6kwWJ+hSMsn84IYxluM3YTZKeucYHqe8hji3?=
+ =?us-ascii?Q?fnOnp+N1mQuq1L/58KSzzoAdBpCjQeiubOO4Vy2rWm2DF6+dGKjWsW0swxth?=
+ =?us-ascii?Q?uobRt/CV0YLdN+fA/WfzhvhCH3JgXWtwHYUt+3720YbQ62RXNH4NTuSC7/d8?=
+ =?us-ascii?Q?EgB0Xgko15MSwdQpcu8EnSEeXxHYCVOu3F7K+VYrbE0WtflhaLH+zSOb4Qf5?=
+ =?us-ascii?Q?bcDwvyZVnHWlvxKaICbx+hD934ogdw6D9CIrGIIXp6gS6ixH3Mf+m3rM9Ybc?=
+ =?us-ascii?Q?/MK4tZaSx6pyL6habTuRdzq0em0dKhYhx/kQe4a79d5gZEF5y/90YcyM5pKA?=
+ =?us-ascii?Q?hwPTadh2uiBvWmPpXC7ERCw4NBU9Ji46zDcvb5Jx3GvFSaWFNSjPNxETjasS?=
+ =?us-ascii?Q?HKtbcPAx+CdDWPfxfd01W9fVDZjZK34lzWgdrXf7bdlwZqbJ+5QwksVKXNU8?=
+ =?us-ascii?Q?Z5cKL+/tTqRlqMoBPfmVmzg6A7qfEArHBG9TIvqyNzsWdw4nHDAUX7w1NGMc?=
+ =?us-ascii?Q?4xX8MaGhCin9VPOI2/hL7aapR9RBB6u1dxV/rG8giPlp/m9+b62ZcQRwd+OT?=
+ =?us-ascii?Q?wWzu0PKHa1LusEIPEPT1XOUckVQT27/YNMTi3ob9nRKhzTJxOTLCwZfsWOsi?=
+ =?us-ascii?Q?6B9EPb7QUAGhIRC/vBv+Nsu0dcR7NZJiFYO/sAqFVB2Tf8LfRikBhxWrEGuW?=
+ =?us-ascii?Q?M9hkCJkae6YwgCVCl/3cBxMuEtwebvlHSjvujiH09uEyd608i+cEAwj2fxy5?=
+ =?us-ascii?Q?es1doFlwL9Tk/ZVmoM+JeO7KBsjQKlQUVDv/gmr/8dosbSSO11xPtrwfBsZ7?=
+ =?us-ascii?Q?4SxRdgWIrhoNApSWkJwrDaKTfLScRzZdgdKmZsFCxC/QxYWKWzXOsIoBov+D?=
+ =?us-ascii?Q?6wJnOkXCUPF+WMJglh3f6+kGatfhmEHASGfSc1VTQa/u1CC5eM5rZ2wqGavw?=
+ =?us-ascii?Q?VEV4o22D/6ZlZoDwuduCYtrbslp3310Ni44a+E51?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b65f4cc2-151d-40a7-1488-08dbf7ce0a76
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8404.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Dec 2023 09:14:11.7758
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: WbXpigSOQiwUpSvARZV3Bfg6weBLAZZ6RYzOMChG0TSPzKth7eS+fKe9xxgLA69qXRKpZkjyY90U+4LDTc+hHQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7284
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Add pci host wakeup feature for imx platforms. The host wake pin is a
+standard feature in the PCIe bus specification, so we can add this
+property under PCI dts node to support the host gpio wakeup feature.
 
-The Bluetooth module on QCA6390 needs to be powered-on by enabling the
-relevant regulators and driving the enable GPIO high. We can reuse the
-power sequence for the WNC models if we add the list of required
-regulators to the OF match data.
+Example of configuring the corresponding dts property under the PCI node:
+    host-wake-gpio = <&gpio5 21 GPIO_ACTIVE_LOW>;
 
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
----
- drivers/bluetooth/hci_qca.c | 14 +++++++++++++-
- 1 file changed, 13 insertions(+), 1 deletion(-)
+Sherry Sun (4):
+  PCI: imx6: Add pci host wakeup support on imx platforms.
+  dt-bindings: imx6q-pcie: Add host-wake-gpio property
+  arm64: dts: imx8mp-evk: add host-wake-gpio property for pci bus
+  arm64: dts: imx8mq-evk: add host-wake-gpio property for pci bus
 
-diff --git a/drivers/bluetooth/hci_qca.c b/drivers/bluetooth/hci_qca.c
-index 35f74f209d1f..b27be08a1f6f 100644
---- a/drivers/bluetooth/hci_qca.c
-+++ b/drivers/bluetooth/hci_qca.c
-@@ -1788,6 +1788,7 @@ static int qca_power_on(struct hci_dev *hdev)
- 	case QCA_WCN6750:
- 	case QCA_WCN6855:
- 	case QCA_WCN7850:
-+	case QCA_QCA6390:
- 		ret = qca_regulator_init(hu);
- 		break;
- 
-@@ -2044,7 +2045,15 @@ static const struct qca_device_data qca_soc_data_qca2066 __maybe_unused = {
- 
- static const struct qca_device_data qca_soc_data_qca6390 __maybe_unused = {
- 	.soc_type = QCA_QCA6390,
--	.num_vregs = 0,
-+	.vregs = (struct qca_vreg []) {
-+		{ "vddio", 20000 },
-+		{ "vddaon", 100000 },
-+		{ "vddpmu", 1250000 },
-+		{ "vddrfa0p9", 200000 },
-+		{ "vddrfa1p3", 400000 },
-+		{ "vddrfa1p9", 400000 },
-+	},
-+	.num_vregs = 6,
- };
- 
- static const struct qca_device_data qca_soc_data_wcn6750 __maybe_unused = {
-@@ -2129,6 +2138,7 @@ static void qca_power_shutdown(struct hci_uart *hu)
- 
- 	case QCA_WCN6750:
- 	case QCA_WCN6855:
-+	case QCA_QCA6390:
- 		gpiod_set_value_cansleep(qcadev->bt_en, 0);
- 		msleep(100);
- 		qca_regulator_disable(qcadev);
-@@ -2276,6 +2286,7 @@ static int qca_serdev_probe(struct serdev_device *serdev)
- 	case QCA_WCN6750:
- 	case QCA_WCN6855:
- 	case QCA_WCN7850:
-+	case QCA_QCA6390:
- 		qcadev->bt_power = devm_kzalloc(&serdev->dev,
- 						sizeof(struct qca_power),
- 						GFP_KERNEL);
-@@ -2386,6 +2397,7 @@ static void qca_serdev_remove(struct serdev_device *serdev)
- 	case QCA_WCN6750:
- 	case QCA_WCN6855:
- 	case QCA_WCN7850:
-+	case QCA_QCA6390:
- 		if (power->vregs_on) {
- 			qca_power_shutdown(&qcadev->serdev_hu);
- 			break;
+ .../bindings/pci/fsl,imx6q-pcie.yaml          |  4 ++
+ arch/arm64/boot/dts/freescale/imx8mp-evk.dts  |  2 +
+ arch/arm64/boot/dts/freescale/imx8mq-evk.dts  |  2 +
+ drivers/pci/controller/dwc/pci-imx6.c         | 69 +++++++++++++++++++
+ 4 files changed, 77 insertions(+)
+
 -- 
-2.40.1
+2.34.1
 
 
