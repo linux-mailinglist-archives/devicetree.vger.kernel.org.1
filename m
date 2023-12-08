@@ -1,110 +1,115 @@
-Return-Path: <devicetree+bounces-23013-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23014-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C734809ED0
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 10:08:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC494809ED9
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 10:10:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5DFFA1C209E7
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 09:08:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 82C671F217CF
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 09:10:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54B16111A3;
-	Fri,  8 Dec 2023 09:08:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3336125BF;
+	Fri,  8 Dec 2023 09:10:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="g0T4xKQw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD3681703
-	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 01:08:12 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rBWpx-0005lS-NY; Fri, 08 Dec 2023 10:07:57 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rBWpv-00ENVi-0n; Fri, 08 Dec 2023 10:07:55 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rBWpu-00GLG5-NU; Fri, 08 Dec 2023 10:07:54 +0100
-Date: Fri, 8 Dec 2023 10:07:54 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>, linux-serial@vger.kernel.org,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>, linux-kernel@vger.kernel.org,
-	Ian Ray <ian.ray@ge.com>, NXP Linux Team <linux-imx@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	kernel@collabora.com, Shawn Guo <shawnguo@kernel.org>,
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E451D172B
+	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 01:10:33 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-50bf37fd2bbso2313484e87.0
+        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 01:10:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1702026632; x=1702631432; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=12BmaJuhbEbncP7+ftMTLuwVOUi9eU3Yjw6BIudZUgw=;
+        b=g0T4xKQwuY/YlPHarRAPgYZlqMl+vNy2vzQmd0TjjyCRW3vOWM6PYBqAYIpnY75m47
+         PLzhwABk8Gus5HZV4JV+l4aB957/j/13L3oJTDFq2oI6APF5OtlROJTdR6Dc9/qhhNQJ
+         FKKNotPAdHUAgNebeRMyTH7XzNqhI+rKymtVGyxu/l6mnzvu3rXDBiCW7/uwbzS9AcGD
+         GbTp3OnwAj34PQNxtzaYH0O6fgnMqC6TghzXBULSye6xHHB1j9mtRg6mPHYnYiU0se4h
+         0Ff6tjDtv8KA2M3WI/cYG4ZzgHwWfOgQUSOcgVwQq66NpRl04XYcFo8XfnQ6n27ZQBAs
+         ZjeA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702026632; x=1702631432;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=12BmaJuhbEbncP7+ftMTLuwVOUi9eU3Yjw6BIudZUgw=;
+        b=NGOSfhKc1S4NE6xKS09q8zoaZMQDSJpbQEqdxzA8yjFusPYFcc9Zc4R+ryf7dfwUjk
+         2GM9Xkvv+2TQz7Jg+j9XMDopILsHkVOakKuMl032v/qfI/crt33aSviQyU2WtHHR+QHt
+         9WgfbDv1vJx3cdRWjd3CZNJdZtUOmPQw2d/qnthJQN9tbVJvSmZMW+Hy5fO+yq/+qB0p
+         ZTd2ztLwAz46dhYnc5/gptmZaRqMmOw+IH2OHmc9xf3CYfYzg5q+JJ0vVc7jZ353RbHP
+         bN268U5cEOCG8EZ0uPMu3jHT0uB19bK07NQhwa6kdweOyLQEXPQH1O3WsqD1RY+VtbjL
+         id4g==
+X-Gm-Message-State: AOJu0YwYjHwE+ecqqvmOgWxnkffMTWq3XPgPbtFGqO7IR5YWVV20/Idf
+	XqJeWzz1zko5qQ7DeNIYfGU45w==
+X-Google-Smtp-Source: AGHT+IEuAvHPJ6MPE6Pyhi39JMfaPxgtraeVoZbvofdAwVPfKIYoAMgYX+RB88hkBR3//GVeQ8tsTA==
+X-Received: by 2002:ac2:5316:0:b0:50b:efe8:f5e8 with SMTP id c22-20020ac25316000000b0050befe8f5e8mr2266675lfh.88.1702026632109;
+        Fri, 08 Dec 2023 01:10:32 -0800 (PST)
+Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:b162:2510:4488:c0c3])
+        by smtp.gmail.com with ESMTPSA id a18-20020a5d5092000000b00333415503a7sm1572705wrt.22.2023.12.08.01.10.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Dec 2023 01:10:31 -0800 (PST)
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+To: Marcel Holtmann <marcel@holtmann.org>,
+	Johan Hedberg <johan.hedberg@gmail.com>,
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCHv5 0/2] Fix imx53-ppd UART configuration
-Message-ID: <20231208090754.fn3bddlum3t7kakn@pengutronix.de>
-References: <20210430175038.103226-1-sebastian.reichel@collabora.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
+	Rocky Liao <quic_rjliao@quicinc.com>,
+	Alex Elder <elder@linaro.org>,
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>
+Cc: linux-bluetooth@vger.kernel.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: [RESEND PATCH v2 0/3] Bluetooth: power-on QCA6390 correctly
+Date: Fri,  8 Dec 2023 10:09:33 +0100
+Message-Id: <20231208090936.27769-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="rhppgyqd7t7ywrip"
-Content-Disposition: inline
-In-Reply-To: <20210430175038.103226-1-sebastian.reichel@collabora.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
 
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
---rhppgyqd7t7ywrip
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Resending with all maintainers in CC.
 
-[Cc +=3D dt maintainers]
+Patch 1 is just a typo fix as we're already touching this bindings. The
+second patch adds more regulator definitions and enforces them for the
+QCA6390 model. The final patch enables the power sequence for the BT
+module of QCA6390 in the hci_qca driver.
 
-On Fri, Apr 30, 2021 at 07:50:36PM +0200, Sebastian Reichel wrote:
-> IMHO PATCHv4 was better, but in the end I don't have strong feelings
-> about this. Btw. I think this patchset is a good demonstration of
-> frustrating upstream kernel development can be considering PATCHv5
-> is basically the same as PATCHv1. Thanks for making us go in
-> circles :(
+v1 -> v2:
+- squashed the two bluetooth patches into one
+- changed the naming convention for the RFA regulators to follow the
+  existing ones
+- added dt-bindings patches
 
-I still like v4 better than v1/v5. I'm sorry for the frustration this
-created on your side.=20
+Bartosz Golaszewski (3):
+  dt-bindings: net: bluetooth: qualcomm: fix a typo
+  dt-bindings: net: bluetooth: qualcomm: add regulators for QCA6390
+  Bluetooth: qca: run the power-on/off sequence for QCA6390 too
 
-I'd ask Greg to reconsider given that dt is less flexible than a sysfs
-knob and otherwise shares all downsides of sysfs (people don't want to
-have to tune that, so a useful default for most cases is important; you
-have to consult documentation to understand how to tune it).
+ .../net/bluetooth/qualcomm-bluetooth.yaml     | 26 ++++++++++++++++++-
+ drivers/bluetooth/hci_qca.c                   | 14 +++++++++-
+ 2 files changed, 38 insertions(+), 2 deletions(-)
 
-Best regards
-Uwe
+-- 
+2.40.1
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---rhppgyqd7t7ywrip
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmVy3OkACgkQj4D7WH0S
-/k6ZMAf/bJ6Do/+Ap+RHZnbjCMELrpCx+6h7f7pnGXD8hqftIz+Ysir0aF+kBCFH
-GdEtc/ct9nQi9SYsT1u18+UFG/roD/WoNLQ72Elr46CopNsRnHBNKmDA/VgS0xW/
-um8qYbF+aEFkyZgS2NKT0bzkjpMSDnNYu2IZQr2keCLmQQAbLOp8bELi3oX2JuJT
-fjHusoMT3abd0ZQm3kY+CUVJ+ROkUl/8yi7TZTnLN0NTH8JSudB1euakrEV0bhOc
-KW6GMif04RK75PWPUunvlrxyPD2Pje2I9G3K6vsp8mXDIffeI5GyhH51wD3YKOe7
-mIaJ6GBw0+ASbVw7fErVyzxIf5SzdQ==
-=BHUP
------END PGP SIGNATURE-----
-
---rhppgyqd7t7ywrip--
 
