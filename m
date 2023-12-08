@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-23311-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23312-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE57980AB17
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 18:47:39 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BC3C80AB2F
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 18:52:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6D9D0B20A53
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 17:47:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A1439B20AF6
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 17:52:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AF553B786;
-	Fri,  8 Dec 2023 17:47:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A06EF3B797;
+	Fri,  8 Dec 2023 17:52:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Z1Y7T3SB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="niO11TFj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50F861729
-	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 09:47:29 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-40b27726369so25158405e9.0
-        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 09:47:29 -0800 (PST)
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE47C1989
+	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 09:52:37 -0800 (PST)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-a1f47f91fc0so234569966b.0
+        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 09:52:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702057648; x=1702662448; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702057956; x=1702662756; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Np+SOTHaDnv55YYl4Vjzn4Jagf19/EDzybWzd9aCpYs=;
-        b=Z1Y7T3SBwc1V6D8+TYdxF0ezcrhcHLoURXkOhJH3xvRfIHUT3t/mN5sRNHWRIfQ1jo
-         ehx5Umm+0Dp8jpJgat1mW9S6WgDndmHhgczL6JzaKTg9YeEpLfjgWSSJymwE7UHdEOgg
-         tGQQNlS44AGfidXukyI72Bctvvzq2o1OF6LR/1jkTE763R8j7rHBc/hnP3fKvqFJHLsg
-         MA0jqPK83EDXzNylQWva/wr4z4FuFU8ozuu+QQA/Vu9q3GKtAzJ/R2AuhbNBosH0Em2k
-         Le3CmWkANf3Tu9l3t/HtLOlG0i/5xELb9bzcuUjU2wmOt2BheQq0E1gkaZcEPViFw+Iz
-         pNeQ==
+        bh=xkhmRAvfj7JG1PYVYwn3xPw0RGuzqBpzvxVYSfgiaFU=;
+        b=niO11TFjeMjKb34ChizWVszeEqJdev+njoZ2At0m1cgBSI1ryyU+pbeVF4+GLj9ozs
+         IAJd5HvqysXzpJ9DZyUAcm0WKlhYGQu1bqwc40n0LZw0of7Qkv+FHUAgMEtB3AhXuQR6
+         KgYLHXety9vNPiPqk5Wyszjkzr5BAgM1xodMVMx95Xhxsz+6fcab7GVrIYr9HJ2RjJyc
+         Gl4HNMyOXk8AkoQTXCPjphi6EtIdXG0+upmOEP6RPAXPhXJmd308fdojRJQiF8mnL2hL
+         KxIquwDpv9Bq4QklmPTM+b83ZpwMIqstDhj8WvrDmivkjv6Rjvb2VNFlYeHEdLHVU+gS
+         edNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702057648; x=1702662448;
+        d=1e100.net; s=20230601; t=1702057956; x=1702662756;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Np+SOTHaDnv55YYl4Vjzn4Jagf19/EDzybWzd9aCpYs=;
-        b=OnQNkHev62s0HMSfP7Z8kxs6xe+q7jYG6XxpiI9107Yn3IkvYcZDeJ7oSDE7hyFjSF
-         nbZdSgLnNlrTp9lBEtH4zWlydFOQBAESJ23q+DHMEQ+qM+2BytJa7vGQg9CKkDXca5Pn
-         xN3gxLW+I3NYW6rQM6INMmM5+7x5NEpM4vgf2gVrS6n4QKfwo1QHNkZD1uqiDFVASl0J
-         7a5WX0kchw/8w/iJ0sku8n/8f0uaTncCtWZ5d4ld1W34ofhyv5LPRvEvvBFIwCZ67+cj
-         R+XGcT1TwUZaLchvwnWmPo+zqlObe/MTvav8EC0FQFcye6Ip8P4OdGj0+STEczTHo3oj
-         1EVg==
-X-Gm-Message-State: AOJu0YzjsJk8NSHvDx0pSKvkBgdy2udJ+MrJP10agKdelnnYrA6FmQir
-	UisoZ4pGag0WmN1osPVz+YIKVQ==
-X-Google-Smtp-Source: AGHT+IGPxX5jLLegwmxilDCRJVLSc/ndQSfBPMsEWBNU3dLz2qDLXleqmKpEJuMpBlR//Du2gVzyFg==
-X-Received: by 2002:a05:600c:2247:b0:40c:19ab:99b1 with SMTP id a7-20020a05600c224700b0040c19ab99b1mr178925wmm.137.1702057647884;
-        Fri, 08 Dec 2023 09:47:27 -0800 (PST)
+        bh=xkhmRAvfj7JG1PYVYwn3xPw0RGuzqBpzvxVYSfgiaFU=;
+        b=V868IhH8EkFVW5v79k9eJ26Mc8mydlKTqFkw/vU+ufrSa9RHbCsRyJy3wx8g7e5tbr
+         fylNkFRMGRC9Xxljx8D/CrsXzYjnVGoIfQRuCekhkBdu7tnZVWrsF6unuGPPeTCvT2NN
+         CHtYTHQYyA9mmXtveEw0SwlRJkhfb9pmNv4xHIRNJF2w5LSWficDuEer5SmhptptFRDK
+         Oq7KYwIrYjxBNuUhYa8oENJGBVQFATwO0oVcm2rJo4P2z2glVIhyc/Zf2UMT3ysg5ArJ
+         Clwcr7DwLvHn4ENCtx31y9h20+5z+VDdNc/ozHSWpqu9YBu7xnK5ZhDMO02l9+llMywJ
+         JkQg==
+X-Gm-Message-State: AOJu0YyQYhWdeNkb0cMdW9XbckPSIaVX2HfLkrg2REgx1if3a5aH+vbd
+	G+njntCWQJTxf5yE7MKihNNmdg==
+X-Google-Smtp-Source: AGHT+IFZRw+6ipWfmU4/QV9prwwth2dduKWLodo8shrbb7og17aCelwekR0lM0ONyzliuZFvR1M39w==
+X-Received: by 2002:a17:906:c20e:b0:9e6:38f2:8439 with SMTP id d14-20020a170906c20e00b009e638f28439mr162651ejz.60.1702057956400;
+        Fri, 08 Dec 2023 09:52:36 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id m11-20020a05600c4f4b00b0040b561924bbsm5829165wmq.21.2023.12.08.09.47.26
+        by smtp.gmail.com with ESMTPSA id rf19-20020a1709076a1300b00a1f75d21bf3sm498896ejc.6.2023.12.08.09.52.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Dec 2023 09:47:27 -0800 (PST)
-Message-ID: <9a6666c1-9049-4a30-8aac-73512eeefc2a@linaro.org>
-Date: Fri, 8 Dec 2023 18:47:26 +0100
+        Fri, 08 Dec 2023 09:52:35 -0800 (PST)
+Message-ID: <1ebb4733-0f1d-46ea-b399-34af7df088ac@linaro.org>
+Date: Fri, 8 Dec 2023 18:52:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,18 +62,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 15/17] dt-bindings: iommu: rockchip: Add Rockchip
- RK3588
+Subject: Re: [PATCH v1 05/16] dt-bindings: clock: Add StarFive JH8100 System
+ clock and reset generator
 Content-Language: en-US
-To: Andy Yan <andyshrk@163.com>, heiko@sntech.de
-Cc: hjc@rock-chips.com, dri-devel@lists.freedesktop.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
- devicetree@vger.kernel.org, sebastian.reichel@collabora.com,
- kever.yang@rock-chips.com, chris.obbard@collabora.com,
- Andy Yan <andy.yan@rock-chips.com>
-References: <20231207075906.651771-1-andyshrk@163.com>
- <20231207080235.652719-1-andyshrk@163.com>
+To: Sia Jee Heng <jeeheng.sia@starfivetech.com>, kernel@esmil.dk,
+ conor@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+ mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
+ emil.renner.berthing@canonical.com, hal.feng@starfivetech.com,
+ xingyu.wu@starfivetech.com
+Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ leyfoon.tan@starfivetech.com
+References: <20231206115000.295825-1-jeeheng.sia@starfivetech.com>
+ <20231206115000.295825-6-jeeheng.sia@starfivetech.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -119,18 +121,119 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231207080235.652719-1-andyshrk@163.com>
+In-Reply-To: <20231206115000.295825-6-jeeheng.sia@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 07/12/2023 09:02, Andy Yan wrote:
-> From: Andy Yan <andy.yan@rock-chips.com>
+On 06/12/2023 12:49, Sia Jee Heng wrote:
+> Add bindings for the System clocks and reset generator
+> (SYSCRG) on JH8100 SoC.
 > 
-> Add a Rockchip RK3588 compatible
-> 
-> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+> Signed-off-by: Sia Jee Heng <jeeheng.sia@starfivetech.com>
+> Reviewed-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
+> ---
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+...
+
+> +  clocks:
+> +    items:
+> +      - description: Main Oscillator (24 MHz)
+> +      - description: External I2S Rx BCLK clock
+> +      - description: External I2S Rx LRCK clock
+> +      - description: External MCLK clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: clk_osc
+> +      - const: clk_i2srx_bclk_ext
+> +      - const: clk_i2srx_lrck_ext
+> +      - const: clk_mclk_ext
+
+Drop clk_ prefixes everywhere.
+
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +    description:
+> +      See <dt-bindings/clock/starfive,jh8100-crg.h> for valid indices.
+> +
+> +  '#reset-cells':
+> +    const: 1
+> +    description:
+> +      See <dt-bindings/reset/starfive-jh8100-crg.h> for valid indices.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - '#clock-cells'
+> +  - '#reset-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/starfive,jh8100-crg.h>
+> +
+> +    clock-controller@126d0000 {
+> +            compatible = "starfive,jh8100-syscrg";
+
+Use 4 spaces for example indentation.
+
+> +            reg = <0x126d0000 0x10000>;
+> +            clocks = <&clk_osc>, <&clk_i2srx_bclk_ext>,
+> +                     <&clk_i2srx_lrck_ext>, <&clk_mclk_ext>;
+> +            clock-names = "clk_osc", "clk_i2srx_bclk_ext",
+> +                          "clk_i2srx_lrck_ext", "clk_mclk_ext";
+> +            #clock-cells = <1>;
+> +            #reset-cells = <1>;
+> +    };
+> diff --git a/include/dt-bindings/clock/starfive,jh8100-crg.h b/include/dt-bindings/clock/starfive,jh8100-crg.h
+> new file mode 100644
+> index 000000000000..e5bb588ce798
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/starfive,jh8100-crg.h
+> @@ -0,0 +1,123 @@
+> +/* SPDX-License-Identifier: GPL-2.0 OR MIT */
+
+How about keeping the same license as binding?
+
+> +/*
+> + * Copyright (C) 2023 StarFive Technology Co., Ltd.
+> + * Sia Jee Heng <jeeheng.sia@starfivetech.com>
+> + *
+> + */
+> +
+
+...
+
+> +#define SYSCRG_CLK_NNE_ICG_EN						108
+> +
+> +#define SYSCRG_CLK_END							109
+
+Drop from binding header.
+
+> +#endif /* __DT_BINDINGS_CLOCK_STARFIVE_JH8100_H__ */
+
+...
+
+> + */
+> +#define SYSCRG_RSTN_SYS_SYSCON					0
+> +#define SYSCRG_RSTN_CLK_MOD					1
+> +#define SYSCRG_RSTN_GPU						2
+> +#define SYSCRG_RSTN_GPU_SPU					3
+> +#define SYSCRG_RSTN_GPU_TVSENSOR				4
+> +#define SYSCRG_RSTN_PPU_OP_NORET_GPU_RESET			5
+> +#define SYSCRG_RSTN_NNE						6
+> +#define SYSCRG_RSTN_HD_AUDIO					7
+> +
+> +#define SYSCRG_RESET_NR_RESETS					8
+
+Drop from binding header.
+
+> +
+> +#endif /* __DT_BINDINGS_RESET_STARFIVE_JH8100_H__ */
 
 Best regards,
 Krzysztof
