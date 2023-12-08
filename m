@@ -1,158 +1,106 @@
-Return-Path: <devicetree+bounces-23298-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23299-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C49AA80AA8D
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 18:20:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BC6280AA98
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 18:21:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 49A3EB20A32
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 17:20:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 033B91F211F3
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 17:21:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC06B38FBB;
-	Fri,  8 Dec 2023 17:20:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0420439846;
+	Fri,  8 Dec 2023 17:21:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="asAvpaBX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx01.omp.ru (mx01.omp.ru [90.154.21.10])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B5C22D40;
-	Fri,  8 Dec 2023 09:19:52 -0800 (PST)
-Received: from [192.168.1.104] (178.176.72.145) by msexch01.omp.ru
- (10.188.4.12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.1258.12; Fri, 8 Dec
- 2023 20:19:49 +0300
-Subject: Re: [PATCH v4 09/22] MIPS: traps: Handle CPU with non standard vint
- offset
-To: Gregory CLEMENT <gregory.clement@bootlin.com>, Paul Burton
-	<paulburton@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	<linux-mips@vger.kernel.org>, Jiaxun Yang <jiaxun.yang@flygoat.com>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-CC: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, Tawfik Bayouk
-	<tawfik.bayouk@mobileye.com>, Alexandre Belloni
-	<alexandre.belloni@bootlin.com>, =?UTF-8?Q?Th=c3=a9o_Lebrun?=
-	<theo.lebrun@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20231208161249.1827174-1-gregory.clement@bootlin.com>
- <20231208161249.1827174-10-gregory.clement@bootlin.com>
-From: Sergey Shtylyov <s.shtylyov@omp.ru>
-Organization: Open Mobile Platform
-Message-ID: <94e4bafb-7c4d-d6bf-7440-f487243a1a59@omp.ru>
-Date: Fri, 8 Dec 2023 20:19:48 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDC4938F80;
+	Fri,  8 Dec 2023 17:21:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EEEAC433C8;
+	Fri,  8 Dec 2023 17:21:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702056088;
+	bh=ryi1+JoVfvgu/u0KzMXd0k5DlGLPr5+GS23H098zLjs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=asAvpaBXzdOpyoA0TtI3pkRNSJhbYdZyq+M5kiBfp3doZzKntMBxjRpQZL/i/E1pW
+	 X9KMj34VwfBlGJe5jJv/TcIY1Rsf1XvdBeVWDQOrTHKuujFDz3MhcAY3sVco58dHET
+	 Ac3nVenKZwcCxdoONX+h7Ap4l8xSIbByhRuDSXyBBaHuTdd781U39IpaUa4nQl+hJ2
+	 aTVhjLoSzphqmmvoY7inlhIOWstPPskRHGUnUMjF+/KT/55bqKHJo0OxKxu2HnlZ4s
+	 jbNXijq5InVNIvpg7bDRGWD/okT2k8pYX5NvvJJEHGbwV2wQmgI9zGECJMnwTni8IR
+	 bfsBNvXrybyrQ==
+Date: Fri, 8 Dec 2023 17:21:22 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Marc Kleine-Budde <mkl@pengutronix.de>
+Cc: linux-riscv@lists.infradead.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Wolfgang Grandegger <wg@grandegger.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, linux-can@vger.kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH RESEND v1 0/7] MPFS clock fixes required for correct CAN
+ clock modeling
+Message-ID: <20231208-overlay-idiom-620c83d2775c@spud>
+References: <20231208-reenter-ajar-b6223e5134b3@spud>
+ <20231208-atonable-cable-24ce1ceec083-mkl@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20231208161249.1827174-10-gregory.clement@bootlin.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: msexch01.omp.ru (10.188.4.12) To msexch01.omp.ru
- (10.188.4.12)
-X-KSE-ServerInfo: msexch01.omp.ru, 9
-X-KSE-AntiSpam-Interceptor-Info: scan successful
-X-KSE-AntiSpam-Version: 6.0.0, Database issued on: 12/08/2023 17:00:03
-X-KSE-AntiSpam-Status: KAS_STATUS_NOT_DETECTED
-X-KSE-AntiSpam-Method: none
-X-KSE-AntiSpam-Rate: 0
-X-KSE-AntiSpam-Info: Lua profiles 181987 [Dec 08 2023]
-X-KSE-AntiSpam-Info: Version: 6.0.0.2
-X-KSE-AntiSpam-Info: Envelope from: s.shtylyov@omp.ru
-X-KSE-AntiSpam-Info: LuaCore: 6 0.3.6 62f5a4619c57459c9a142aa1486ed27913162963
-X-KSE-AntiSpam-Info: {rep_avail}
-X-KSE-AntiSpam-Info: {Tracking_from_domain_doesnt_match_to}
-X-KSE-AntiSpam-Info:
-	d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;omp.ru:7.1.1
-X-KSE-AntiSpam-Info: ApMailHostAddress: 178.176.72.145
-X-KSE-AntiSpam-Info: Rate: 0
-X-KSE-AntiSpam-Info: Status: not_detected
-X-KSE-AntiSpam-Info: Method: none
-X-KSE-AntiSpam-Info: Auth:dmarc=temperror header.from=omp.ru;spf=temperror
- smtp.mailfrom=omp.ru;dkim=none
-X-KSE-Antiphishing-Info: Clean
-X-KSE-Antiphishing-ScanningType: Heuristic
-X-KSE-Antiphishing-Method: None
-X-KSE-Antiphishing-Bases: 12/08/2023 17:07:00
-X-KSE-Antivirus-Interceptor-Info: scan successful
-X-KSE-Antivirus-Info: Clean, bases: 12/8/2023 1:21:00 PM
-X-KSE-Attachment-Filter-Triggered-Rules: Clean
-X-KSE-Attachment-Filter-Triggered-Filters: Clean
-X-KSE-BulkMessagesFiltering-Scan-Result: InTheLimit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="qTXgDU+xTXR37z/4"
+Content-Disposition: inline
+In-Reply-To: <20231208-atonable-cable-24ce1ceec083-mkl@pengutronix.de>
 
-On 12/8/23 7:12 PM, Gregory CLEMENT wrote:
 
-> From: Jiaxun Yang <jiaxun.yang@flygoat.com>
-> 
-> Some BMIPS cpus has none standard start offset for vector interrupts.
-> 
-> Handle those CPUs in vector size calculation and handler setup process.
-> 
-> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
-> ---
->  arch/mips/kernel/traps.c | 32 +++++++++++++++++++++++---------
->  1 file changed, 23 insertions(+), 9 deletions(-)
-> 
-> diff --git a/arch/mips/kernel/traps.c b/arch/mips/kernel/traps.c
-> index ea59d321f713e..651c9ec6265a9 100644
-> --- a/arch/mips/kernel/traps.c
-> +++ b/arch/mips/kernel/traps.c
-> @@ -74,7 +74,6 @@
->  
->  #include "access-helper.h"
->  
-> -#define MAX(a, b) ((a) >= (b) ? (a) : (b))
->  
->  extern void check_wait(void);
->  extern asmlinkage void rollback_handle_int(void);
-> @@ -2005,6 +2004,7 @@ void __noreturn nmi_exception_handler(struct pt_regs *regs)
->  unsigned long ebase;
->  EXPORT_SYMBOL_GPL(ebase);
->  unsigned long exception_handlers[32];
-> +static unsigned long vi_vecbase;
->  unsigned long vi_handlers[64];
->  
->  void reserve_exception_space(phys_addr_t addr, unsigned long size)
-> @@ -2074,7 +2074,7 @@ static void *set_vi_srs_handler(int n, vi_handler_t addr, int srs)
->  		handler = (unsigned long) addr;
->  	vi_handlers[n] = handler;
->  
-> -	b = (unsigned char *)(ebase + 0x200 + n*VECTORSPACING);
-> +	b = (unsigned char *)(vi_vecbase + n*VECTORSPACING);
+--qTXgDU+xTXR37z/4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-   Add spaces around * for consistency please.
+On Fri, Dec 08, 2023 at 06:17:54PM +0100, Marc Kleine-Budde wrote:
+> On 08.12.2023 17:12:22, Conor Dooley wrote:
+> > From: Conor Dooley <conor.dooley@microchip.com>
+> >=20
+> > Resending cos I accidentally only sent the cover letter a few minutes
+> > prior to this series, due to screwing up a dry run of sending.
+> > :clown_face:
+> >=20
+> > While reviewing a CAN clock driver internally for MPFS [1]
+>=20
+> > 1 - Hopefully that'll show up on the lists soon, once we are happy with
+> >   it ourselves.
+>=20
+> A CAN clock driver or a complete CAN driver?
 
-[...]
-> @@ -2370,20 +2370,33 @@ void __init trap_init(void)
->  	extern char except_vec3_generic;
->  	extern char except_vec4;
->  	extern char except_vec3_r4000;
-> -	unsigned long i, vec_size;
-> +	unsigned long i, vec_size, vi_vec_offset;
->  	phys_addr_t ebase_pa;
->  
->  	check_wait();
->  
-> +	if (cpu_has_veic || cpu_has_vint) {
-> +		switch (current_cpu_type()) {
-> +		case CPU_BMIPS3300:
-> +		case CPU_BMIPS4380:
-> +			vi_vec_offset = 0x400;
-> +			break;
-> +		case CPU_BMIPS5000:
-> +			vi_vec_offset = 0x1000;
-> +			break;
-> +		default:
-> +			vi_vec_offset = 0x200;
-> +			break;
-> +		}
-> +		vec_size = vi_vec_offset + VECTORSPACING*64;
+Heh, should have proof read it again in the time afforded to me by the
+accident release of the dry run.. It's the latter, sorry.
 
-   Here as well...
+--qTXgDU+xTXR37z/4
+Content-Type: application/pgp-signature; name="signature.asc"
 
-[...]
+-----BEGIN PGP SIGNATURE-----
 
-MBR, Sergey
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZXNQkgAKCRB4tDGHoIJi
+0iZWAPwNWUowlloTZivBoyo83wk1jjTAlFSA9wYjLGxZhT8cXAD7Bt8TdOacG3dL
+eZWhIXHj1CMUfYoRUaqAPO5bzj51xAk=
+=/P9s
+-----END PGP SIGNATURE-----
+
+--qTXgDU+xTXR37z/4--
 
