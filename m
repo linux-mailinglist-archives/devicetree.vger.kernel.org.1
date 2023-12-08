@@ -1,58 +1,54 @@
-Return-Path: <devicetree+bounces-23139-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23140-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BDF580A5E6
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 15:51:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAECF80A5EA
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 15:51:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A9736B20C93
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 14:51:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 849F0281CA8
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 14:51:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 492141E50B;
-	Fri,  8 Dec 2023 14:51:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 894F1200A7;
+	Fri,  8 Dec 2023 14:51:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qWuyvLCM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EC4pKFyO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28170179A7;
-	Fri,  8 Dec 2023 14:51:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECB29C433C9;
-	Fri,  8 Dec 2023 14:51:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 617911F959;
+	Fri,  8 Dec 2023 14:51:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F34FC433CC;
+	Fri,  8 Dec 2023 14:51:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702047066;
-	bh=SQpHakPT9JqzKdX2icL5N+lKtBj/wLSQWGlTEM4Dl7A=;
+	s=k20201202; t=1702047067;
+	bh=OOSG2z2H6unvPrg8WJZMqPGKC5UIGuJtfqrzdP2lRYI=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=qWuyvLCMN/BsuaUXoYhoLQ5LVed9yAIqxRnRk0V8Gs9JshOFjGvoAW2flAPUo+Y/f
-	 maVAQdXVxMoGBeTzffSt/AM349OygJrC+pgOwyuUU8PotvgkPcTJSEIBRUu8qCJLVe
-	 rgJiFqYLQZMMCeyhQ9hft4s36cmaXgb0fOdqKZ7jO3EUnAUDq4PeixzALDybYQAYhL
-	 j6HNUwg0XANCoDA2o97C/3oppKo2SjsxxED0QTFYm8IjaG6NxGu4p2xC5L7QIoWav8
-	 xys6PERdD6Uf8MJOXB6EF8bm8aM/97eh7cZbHnF8uhYDse0IME3XADQ8JQXRz9GEPK
-	 9LNVxPHKrGOMA==
+	b=EC4pKFyO5VaHe4xsYYtycR5gLba7A0Ij/M6At7MUNL4bgqlu2S7H4fqpH6iPTsUDC
+	 /LDu1p6sgrN5T1LvL+LPTFnnuTOtVDSKvDnTdWXcuP1i2d8eaUIya4aheS24Jqgi9b
+	 942MldcpSRuT+RURtoSR8JsAWkWIASPc6gNOYG/dRGY7lUS+4g9yr10FG31r4P9i7E
+	 MdMNNTlGbMT8R/IjhkbLs/tMxSIR8Z0l5aS9i5+6nfo5Jjtu2X8qg3FU+yZESYn3oG
+	 B6WFasUp2V1+t/qmEMlzOgWSe1jdi+Qyzn58I3KH30GvepgFF7qAIjIhoXcYCeeFKh
+	 OB96OoSR//WJQ==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Andy Gross <agross@kernel.org>,
+To: Johan Hovold <johan+linaro@kernel.org>
+Cc: Andy Gross <agross@kernel.org>,
 	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Lee Jones <lee@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Dang Huynh <danct12@riseup.net>
-Cc: linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
+	cros-qcom-dts-watchers@chromium.org,
+	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	Caleb Connolly <caleb.connolly@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: Re: (subset) [PATCH v2 0/4] Add PM8937 PMIC support
-Date: Fri,  8 Dec 2023 06:55:15 -0800
-Message-ID: <170204733625.342318.3741380066572261384.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH 00/11] ARM/arm64: dts: qcom: fix USB wakeup interrupt types
+Date: Fri,  8 Dec 2023 06:55:17 -0800
+Message-ID: <170204733623.342318.1053426997273097691.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231121-pm8937-v2-0-b0171ab62075@riseup.net>
-References: <20231121-pm8937-v2-0-b0171ab62075@riseup.net>
+In-Reply-To: <20231120164331.8116-1-johan+linaro@kernel.org>
+References: <20231120164331.8116-1-johan+linaro@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,18 +59,21 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Tue, 21 Nov 2023 12:34:58 +0700, Dang Huynh wrote:
-> PM8937 is a power management IC. It is used in various boards with
-> MSM8917, MSM8937, MSM8940 and APQ variants.
+On Mon, 20 Nov 2023 17:43:20 +0100, Johan Hovold wrote:
+> When testing a recent series that addresses resource leaks in the
+> Qualcomm dwc3 glue driver [1], I realised that probe deferral can break
+> wakeup from suspend due to how the wakeup interrupts are currently
+> requested.
 > 
-> This patchset has been tested on Xiaomi Redmi 4X (MSM8940).
+> The following series fixes this by no longer overriding the firmware
+> defined trigger types for the wakeup interrupts:
 > 
-> 
+> [...]
 
 Applied, thanks!
 
-[4/4] soc: qcom: socinfo: Add PM8937 Power IC
-      commit: d50b5cb1a8f7db8ad2dc6a13f0cabedf7a7e1540
+[01/11] ARM: dts: qcom: sdx55: fix USB wakeup interrupt types
+        commit: d0ec3c4c11c3b30e1f2d344973b2a7bf0f986734
 
 Best regards,
 -- 
