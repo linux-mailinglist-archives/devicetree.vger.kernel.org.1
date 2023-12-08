@@ -1,104 +1,70 @@
-Return-Path: <devicetree+bounces-23260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23261-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E4B080A8D9
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 17:27:40 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BECDE80A8EC
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 17:29:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD054281782
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 16:27:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4CE7AB20AF6
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 16:29:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4D8D374EB;
-	Fri,  8 Dec 2023 16:27:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B125374F0;
+	Fri,  8 Dec 2023 16:29:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7744A19A2;
-	Fri,  8 Dec 2023 08:27:31 -0800 (PST)
-Received: by mail-ot1-f54.google.com with SMTP id 46e09a7af769-6d9f514f796so256476a34.3;
-        Fri, 08 Dec 2023 08:27:31 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702052850; x=1702657650;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=o9ER5qIprpwLYgCbIQAvqPacoHFK4xi4mCA2pH+f0WM=;
-        b=YiAYbI9hGXLuDpo/mBPT432mwQk6/f35zQvDWfP2+WCI6dSV9KQXIrkvjFwrtsFjxn
-         qExgaTU409RicCepC5szRM+PXdq53Ef1ICHtwciTVZjHJANFlLQWNaurqwMB5qBnIqrt
-         eK6tFcPuYbGxOh6HizRQgXjsJdf5Vh7ELv6VXumVR3mUyEBaHnPhfu8cAlSdE3OFeXl2
-         dcYf4u9dfQ3Mc2efiii/+3tmwEZ5Rz8UCmB4c/srKCxigh/mWKrjKARi5HR2++udB56J
-         L1PbTY+Ndd+njcjGl3FujNpG76jXaB/gBaYJ9WfBTAcNRe7iStSB16YxRw+WGAPoK4Yf
-         ac3A==
-X-Gm-Message-State: AOJu0YxRbAnFfpzOZiAyvtstH+U5Fd5CRxqGAJISrm8pd8NiV6pgTabG
-	0zzczR0B3rJehnHc9ExLNrLtz/0GMA==
-X-Google-Smtp-Source: AGHT+IGoCBIdUoYHkFT9QQgUxa2omYYXOQwXX4AzFygvyqUJIp41c4SIZsAORINlyDflchYMlvWtxg==
-X-Received: by 2002:a9d:7758:0:b0:6d9:dd14:3a75 with SMTP id t24-20020a9d7758000000b006d9dd143a75mr304450otl.70.1702052850656;
-        Fri, 08 Dec 2023 08:27:30 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id e7-20020a0568301e4700b006d87df1c53dsm339278otj.65.2023.12.08.08.27.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Dec 2023 08:27:30 -0800 (PST)
-Received: (nullmailer pid 1634379 invoked by uid 1000);
-	Fri, 08 Dec 2023 16:27:29 -0000
-Date: Fri, 8 Dec 2023 10:27:29 -0600
-From: Rob Herring <robh@kernel.org>
-To: Peter Chiu <chui-hao.chiu@mediatek.com>
-Cc: Felix Fietkau <nbd@nbd.name>, Lorenzo Bianconi <lorenzo.bianconi@redhat.com>, Ryder Lee <ryder.Lee@mediatek.com>, Evelyn Tsai <evelyn.tsai@mediatek.com>, Shayne Chen <shayne.chen@mediatek.com>, Sam Shih <sam.shih@mediatek.com>, linux-wireless@vger.kernel.org, linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: net: wireless: mt76: add interrupts
- description for MT7986
-Message-ID: <20231208162729.GA1575094-robh@kernel.org>
-References: <20231204091156.6535-1-chui-hao.chiu@mediatek.com>
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEE2E10D8;
+	Fri,  8 Dec 2023 08:29:19 -0800 (PST)
+Received: from i53875b61.versanet.de ([83.135.91.97] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1rBdiz-0000NT-9S; Fri, 08 Dec 2023 17:29:13 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Andy Yan <andyshrk@163.com>
+Cc: hjc@rock-chips.com, dri-devel@lists.freedesktop.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+ devicetree@vger.kernel.org, sebastian.reichel@collabora.com,
+ kever.yang@rock-chips.com, chris.obbard@collabora.com,
+ Andy Yan <andy.yan@rock-chips.com>
+Subject:
+ Re: [PATCH v4 15/17] dt-bindings: iommu: rockchip: Add Rockchip RK3588
+Date: Fri, 08 Dec 2023 17:29:12 +0100
+Message-ID: <4012684.R56niFO833@diego>
+In-Reply-To: <20231207080235.652719-1-andyshrk@163.com>
+References:
+ <20231207075906.651771-1-andyshrk@163.com>
+ <20231207080235.652719-1-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231204091156.6535-1-chui-hao.chiu@mediatek.com>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Mon, Dec 04, 2023 at 05:11:56PM +0800, Peter Chiu wrote:
-> The mt7986 can support four interrupts to distribute the interrupts
-> to different CPUs.
+Am Donnerstag, 7. Dezember 2023, 09:02:35 CET schrieb Andy Yan:
+> From: Andy Yan <andy.yan@rock-chips.com>
 > 
-> Signed-off-by: Peter Chiu <chui-hao.chiu@mediatek.com>
-> ---
-> v2: Change to use description instead of using items.
+> Add a Rockchip RK3588 compatible
+> 
+> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
 
-Not what I said to do...
+Reviewed-by: Heiko Stuebner <heiko@sntech.de>
 
-Let me spell it out:
+In the next iteration, please split this out into a separate patch and send
+it to the iommu+dt maintainers.
 
-  interrupts:
-    minItems: 1
-      items:
-        - description: major interrupt for rings
-        - description: addditional interrupt for ring 19
-        - description: addditional interrupt for ring 4
-        - description: addditional interrupt for ring 5
-
-if:
-  properties:
-    compatible:
-      contains:
-        enum:
-          - mediatek,mt7986-wmac
-then:
-  properties:
-    interrupts:
-      minItems: 4
-else:
-  properties:
-    interrupts:
-      maxItems: 1
+Supporting the iommus on rk3588 can be realized separately and the
+patch needs to go through a separate tree anyway.
 
 
-If there are 4 interrupts then you should always have all 4. It's not 
-some OS config. However, as an ABI, you might want to allow 1. If so, 
-then the if/then should just have the 'maxItems: 1' restriction for the 
-compatibles which only have 1 interrupt in the h/w.
+Thanks
+Heiko
 
-Rob
+
+
 
