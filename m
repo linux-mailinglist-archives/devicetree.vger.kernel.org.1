@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-23314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23315-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94B8C80AB44
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 18:54:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7E3780AB4A
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 18:54:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E44C4B20AB7
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 17:54:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 63A6D1F21300
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 17:54:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DD3B3D0A0;
-	Fri,  8 Dec 2023 17:54:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5F903D0D2;
+	Fri,  8 Dec 2023 17:54:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="P8apxI5k"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Vs2576Gr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 360071738
-	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 09:54:18 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-40c09d62b70so27061655e9.1
-        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 09:54:18 -0800 (PST)
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AB541989
+	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 09:54:32 -0800 (PST)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-a1d450d5c11so306158466b.3
+        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 09:54:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702058056; x=1702662856; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702058071; x=1702662871; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=zN83S2HMjhygpcPRXWNQJO0cZe20Rz67goZmVQARPao=;
-        b=P8apxI5kJoSo3lf19v+0R1HCr0DLHNohniDBgi5OKh6Rjr0+GQZkzS4oCbMRikmzPI
-         CH2G13jxPHo9F64jBGfpaPcm4DXjOAatXZDxFB3DK1fqS0vVI2vnE7bnvRXCbvdxRM31
-         rmUvHrBCvJJxWFUBYbt3Kw5FD1kSTFd49WIc7iXKbGO+vdaKreSYjm0SKSNc8jjD63bO
-         YJNkOCrndas3I+A+9SHV1BfE8eoAFNZRHStWDTBsKItG3fJK1+s3+BxFd2D3cbVvxCfU
-         +fD723JNYUtzivhsonzZe6OU9hfuPWgMX8x1HFPXnVUPpijV4llma0Nw0SEaEBfETefM
-         CUQg==
+        bh=N/l50Eu3vgLBkws92/lHkF1PuXHos1NhG+xsSJryHmc=;
+        b=Vs2576Gr0tod5KQorKAoFK1GepGnYr9Vo6gE/khOmM61kRkuV0EI2UrL90Q6s3jyuI
+         rSS+roYBTp/PnejA9FyFneEomGiepSNs1TD0jiuDf3ArkMOFBue+y1QNHZ+j908zMnVp
+         QjX1zkkt4kmF+DNFHWutOlsqZYJdilGKbEPBhT9uwLTksd1mcpzEHwef1whj3ZVGjhr9
+         UEfBaEzdvrOHZRksiztLy3uOGidlPzOSETszGxv/gM1VXMK0Yyq0OjG83D4NL7qn9mui
+         jNY9/4vuJD8cjRCmvzBrDV6EckrwwK0m5ltaVS96DmPYo1psL1UYBjIi47HC01OK06I9
+         i1bA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702058056; x=1702662856;
+        d=1e100.net; s=20230601; t=1702058071; x=1702662871;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zN83S2HMjhygpcPRXWNQJO0cZe20Rz67goZmVQARPao=;
-        b=IGnMDSWcDbH9s3We5ZAxytqrEeesUhhrTvdvXFVWJsIfA+ObkpFhfieVxQMHunZhmB
-         7qxnq+cjGl8YdnPHstlKyLugpQB627Mi9VOrKGtxH7jUvtPgVFJbD5Sy8E8acN9NN9/L
-         sEvZ9kQnG1WAUzNhlaY7oaCnBG22NkLFqAp8pkaYU9iptHOwkd2JiMUPq/COJV47EE4S
-         vmV0X5N7vMOZG/LpciBB2HlV3uQVbhYdk2LfDn77+yaUN/HRWQxb/EGvT/1nVdA4VKys
-         xYKzOSKx8kSPD0E/kce3LGXMNspJzWc28ZzshcsnkNMP/eSjT3LX+hoJam+wvtJ8UgNw
-         DFNg==
-X-Gm-Message-State: AOJu0YyMswSEN4GleQp3TxJCfeBhM7WlhPXcZqH9CxADfhuUyBIP/AMs
-	jDte3JPAqHDD/jUBIHHSnyKIQg==
-X-Google-Smtp-Source: AGHT+IGEr6Iog/g+SjVM9slHNon70NWB6SkY4EqehomYXO0lemdav5SqkSEIVJxWD4Q4IyrhZUvx3g==
-X-Received: by 2002:a05:600c:378d:b0:40b:3f72:de79 with SMTP id o13-20020a05600c378d00b0040b3f72de79mr144382wmr.5.1702058056605;
-        Fri, 08 Dec 2023 09:54:16 -0800 (PST)
+        bh=N/l50Eu3vgLBkws92/lHkF1PuXHos1NhG+xsSJryHmc=;
+        b=kmcNa2daWaZpMwGIkxkeJSbUNEZuJ8KYrgPUx0Oamo/BifiMtqquPs56a8TadRILCe
+         /2U+fPglhRILDA5/DIKvx7axXWUwgiNFYckIWwdLkr4lmhmcQYZUIUm42+3U5O6/Cr06
+         ycTjTaAY2B0YqMZHlpWe8iG8XZtYcf43vf6WaJTaFl9d2IjuxqY4FjIptw5xFld8fNFT
+         bIEfN5K/Cl2R0eQp2N0lBBoOiBuUBCA99uvMScYahNsvG20G3xloMQDH8te2BJ04x3cR
+         m7hdU00kObmoXdScXAogUIFANis24c+cq18bg9cdvgNt8ADD+jYlw3R7KrUJAPqrRs9w
+         IenQ==
+X-Gm-Message-State: AOJu0Yye2eje/J/5w+WUNz/d4lNqpoT8tfBkEK1HuqKSrcvDDoSv2W2/
+	x6N2YOTeTQyej176TB6abB9Naw==
+X-Google-Smtp-Source: AGHT+IG94OiZeCFKq2Sd7NrNbbYMyW8eU35JvvRjIABB+CeTSGtJrl27SNXpxDnvy4CYJB0KQyFOFw==
+X-Received: by 2002:a17:906:1003:b0:a19:a19b:5609 with SMTP id 3-20020a170906100300b00a19a19b5609mr157363ejm.153.1702058070933;
+        Fri, 08 Dec 2023 09:54:30 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id rf19-20020a1709076a1300b00a1f75d21bf3sm498896ejc.6.2023.12.08.09.54.14
+        by smtp.gmail.com with ESMTPSA id rf19-20020a1709076a1300b00a1f75d21bf3sm498896ejc.6.2023.12.08.09.54.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Dec 2023 09:54:16 -0800 (PST)
-Message-ID: <2e84e91d-ab5a-430c-9871-c2780acdc20d@linaro.org>
-Date: Fri, 8 Dec 2023 18:54:14 +0100
+        Fri, 08 Dec 2023 09:54:30 -0800 (PST)
+Message-ID: <78db9f60-4bca-452d-a8a4-8e70bf97cfb1@linaro.org>
+Date: Fri, 8 Dec 2023 18:54:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,8 +62,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 09/16] dt-bindings: clock: Add StarFive JH8100
- System-North-East clock and reset generator
+Subject: Re: [PATCH v1 11/16] dt-bindings: clock: Add StarFive JH8100
+ System-South-West clock and reset generator
 Content-Language: en-US
 To: Sia Jee Heng <jeeheng.sia@starfivetech.com>, kernel@esmil.dk,
  conor@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
@@ -75,7 +75,7 @@ Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
  leyfoon.tan@starfivetech.com
 References: <20231206115000.295825-1-jeeheng.sia@starfivetech.com>
- <20231206115000.295825-10-jeeheng.sia@starfivetech.com>
+ <20231206115000.295825-12-jeeheng.sia@starfivetech.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -121,20 +121,17 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231206115000.295825-10-jeeheng.sia@starfivetech.com>
+In-Reply-To: <20231206115000.295825-12-jeeheng.sia@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 06/12/2023 12:49, Sia Jee Heng wrote:
-> Add bindings for the System-North-East clock and reset generator
-> (SYSCRG-NE) on JH8100 SoC.
+> Add bindings for the System-South-West clock and reset generator
+> (SYSCRG-SW) on JH8100 SoC.
 > 
 > Signed-off-by: Sia Jee Heng <jeeheng.sia@starfivetech.com>
 > Reviewed-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
 > ---
->  .../clock/starfive,jh8100-syscrg-ne.yaml      | 158 ++++++++++++++++
->  .../dt-bindings/clock/starfive,jh8100-crg.h   | 179 ++++++++++++++++++
->  .../dt-bindings/reset/starfive,jh8100-crg.h   |  61 ++++++
 
 All my previous comments are applicable.
 
