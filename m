@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-23097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23099-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F71780A3BF
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 13:47:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4236880A3C9
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 13:47:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B24428145B
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 12:47:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F077E281934
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 12:47:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A4B9171C3;
-	Fri,  8 Dec 2023 12:47:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8333A1A262;
+	Fri,  8 Dec 2023 12:47:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XPAoOWEo"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zNEqIRwV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13DF910CF
-	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 04:47:01 -0800 (PST)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-a1ceae92ab6so277883566b.0
-        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 04:47:01 -0800 (PST)
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 089A119A6
+	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 04:47:37 -0800 (PST)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-a1ceae92ab6so277950166b.0
+        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 04:47:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702039619; x=1702644419; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702039655; x=1702644455; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=QMCWPUav6uhhvWfe9UyLRspCCYQQnVNrnd88EcKumhs=;
-        b=XPAoOWEoKyH+b2bQz5MW+Swx5JzzmXFZEFMtzHDbbvX20Wef3ATwNazf9koOp9p5/i
-         rj17jaAhD567M96CNbGmXJ8qiZPZW5ZLiHL5kkIIQftEhEfXcIVC04Ckij5gG6GmRXYi
-         s6clgaO905BasRMSwufN1/Hubd/ZhYy9UOPFsvpaXeCrsuAldK0ApOeaqeFZu6hm2M7A
-         oJwK1Y9lW5daMSxsCxs3+M79/j4OMrmd6JH4uQNAMjJhxngSCwBruHYLcVSudGF2Jgof
-         0WPYV02lMs0opKQTwO08ueIp5wwbAD3ZAiEJbdvEIsilsYKHLm1jSjUwjKssHG2lJ+wF
-         DHkA==
+        bh=VlhT9aXObqKi8y1q8htSDfgpqEph1BAVgI/CsorIfkg=;
+        b=zNEqIRwVjj2J9EkVEIJx6MdskGbMlcgY3FEYvzGbmbMRUloHA1wc3JDXW8GP7UMRqY
+         1oPjMqPwXuMxPFfe0s61hGnvR+7mOl6k3fqSDpfgNxSNwXxxNfrM+bIxaxifz/QkRCQ4
+         KMwApj0Gve4CfzwGzRbWSlOOQbx2RRwFN48+JCfzdXeVGYjuzLK605Fz8+NfDwkIJ30X
+         bcC2rF/FVbSegNkOW5HPCr9sbkpKv3w1uqu5D7p6vf+UqQva54Pb6amJy+ll10jGaWX1
+         12mRhP7UonM0Wh16LMx1SuGZrcqy4YdNG9EOsS7Q1xRx1tz5mdTGYt2h3O92w4g5t3PS
+         gaWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702039619; x=1702644419;
+        d=1e100.net; s=20230601; t=1702039655; x=1702644455;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QMCWPUav6uhhvWfe9UyLRspCCYQQnVNrnd88EcKumhs=;
-        b=O9kmWSekoNNGgI2JdlRMPejmpi/S/67dtOyfI4fh2hBEIz8kHiZHlfFc6JEBwYwWPi
-         X76qKX+qvnVd72NDX2nrdFDSfKbOl3v3JtHlpnylZshPlU5CpaqrTuHyp3jRoqax3BQ7
-         U165qknX7WdhoMPkpVlo5gPSv86w5dgyssUmZtVTz3Xip/sSGIL983nkS5kHEeaE6p2S
-         KubY9VVbNnidO/ZAyTOCPUO+UEl1FGAoUxw3LgbKk65ystMb2+oPp2wrRmDwsZe3y6E6
-         Ggewm9o32vk7enyWkpTwspLDJnuhh9VSd6tRfD/INhZijItoa3Z2mGd3saw+AF+Wo8ZJ
-         6zeg==
-X-Gm-Message-State: AOJu0YzdNGTz1R8XPgOikoATc7eR4GNibF3yjXcLi0efjY8gZ6QCXabv
-	cMQp8WFY3AIzoIQQgIHJuU69Cg==
-X-Google-Smtp-Source: AGHT+IFf/7hcKBe115rybS+BVwW7/Vtd1r005VlJ58gXNQexRruEjFHwY9KlJ4L3L6pP5KNn25tFxQ==
-X-Received: by 2002:a17:906:b20b:b0:a19:a1ba:da4c with SMTP id p11-20020a170906b20b00b00a19a1bada4cmr2454750ejz.115.1702039619554;
-        Fri, 08 Dec 2023 04:46:59 -0800 (PST)
+        bh=VlhT9aXObqKi8y1q8htSDfgpqEph1BAVgI/CsorIfkg=;
+        b=ttl9cgp+DO2fw+msrwFOjMbejDR5oys1mDhcXdxByF8ZQSMjJ7KuqurqllqT6zajRs
+         u5r5BUU9fVSmpcyyE9ASww0IVOs0ZhCOMkIUBPWENiqKlK6ueZ5xUuqazg9t4klFWZlP
+         GYM8yPjae+RiDbZ1R9eh6kuoGj9XK1VaDs9kK8gffTGTClhTGV36Z0P3Hzy9icO/82lg
+         nZX1C0lRTYvnvLT9/xd/JHTd4njBC1eN/+xUlG124ugsXW/G5VQHI2KkeC08N4CRVk6L
+         AOGesofF0COtcICCQW/p7wtPMBnz3gbEtLmlULlZyng9wk3es9NoPea5xcncAoOCGAc8
+         wnKg==
+X-Gm-Message-State: AOJu0YwTzX5Npu6z45UbCgOQGPzOLqr671MK90yNgt30Kl5Q1KvQEMaV
+	bty6gqYBjec9H8t+lh7sSshdkA==
+X-Google-Smtp-Source: AGHT+IFn5zsgVdwIup6Zx2HXpwXNh5E7RHsXAsR7yLkQUEQv1ek69g5N9jzZoUdP0pNxBn/K4RrY/Q==
+X-Received: by 2002:a17:906:7f91:b0:9d2:9dbe:a2f9 with SMTP id f17-20020a1709067f9100b009d29dbea2f9mr2565811ejr.50.1702039654613;
+        Fri, 08 Dec 2023 04:47:34 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id tj7-20020a170907c24700b00a1c522990ccsm978114ejc.85.2023.12.08.04.46.57
+        by smtp.gmail.com with ESMTPSA id tj7-20020a170907c24700b00a1c522990ccsm978114ejc.85.2023.12.08.04.47.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Dec 2023 04:46:59 -0800 (PST)
-Message-ID: <29d7c97f-cc98-4f67-9bdc-3005796180c9@linaro.org>
-Date: Fri, 8 Dec 2023 13:46:57 +0100
+        Fri, 08 Dec 2023 04:47:34 -0800 (PST)
+Message-ID: <7f5fd234-f608-477a-9032-9008e5d88c05@linaro.org>
+Date: Fri, 8 Dec 2023 13:47:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,29 +62,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] dt-bindings: phy: qcom-edp: Add X1E80100 PHY
- compatibles
+Subject: Re: [PATCH v1 1/2] dt-bindings: input: atmel,maxtouch: add
+ poweroff-in-suspend property
 Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, Abel Vesa
- <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>, Johan Hovold <johan@kernel.org>,
- linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231122-phy-qualcomm-edp-x1e80100-v3-0-576fc4e9559d@linaro.org>
- <20231122-phy-qualcomm-edp-x1e80100-v3-2-576fc4e9559d@linaro.org>
- <b6d3928c-75ba-47a3-93fc-a60729be2e35@linaro.org>
- <545d3ace-66e5-4470-b3a4-cbdac5ae473d@linaro.org>
- <ab7223a2-9f3f-4c9c-ab97-31512e7a0123@linaro.org>
- <CAA8EJpoboN85bLiayXJgn5iwh+Gn0OtK0aZ26ZJu9H3xkTT2Tw@mail.gmail.com>
- <d9d27fa4-6ede-4958-b717-db425be61068@linaro.org>
- <CAA8EJpq7dB+45fiq2WmkMmSO7KszY0Et_t1gZ9ZvfsSxftpm8g@mail.gmail.com>
- <d885928d-035b-4abd-890b-c9626b925d76@linaro.org>
- <CAA8EJpr+C23evpRWMHatF6ChNvr3G-sAuXOi4e-7Tix23JV=Fg@mail.gmail.com>
+To: Stefan Eichenberger <eichest@gmail.com>
+Cc: nick@shmanahar.org, dmitry.torokhov@gmail.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+ claudiu.beznea@tuxon.dev, linus.walleij@linaro.org,
+ linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Stefan Eichenberger <stefan.eichenberger@toradex.com>
+References: <20231207111300.80581-1-eichest@gmail.com>
+ <20231207111300.80581-2-eichest@gmail.com>
+ <b9868bd4-6f14-4628-88ea-56d06027739e@linaro.org>
+ <ZXMN9EgWRjtJyybr@eichest-laptop>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -130,56 +122,39 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAA8EJpr+C23evpRWMHatF6ChNvr3G-sAuXOi4e-7Tix23JV=Fg@mail.gmail.com>
+In-Reply-To: <ZXMN9EgWRjtJyybr@eichest-laptop>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 08/12/2023 13:35, Dmitry Baryshkov wrote:
->>>>> Same applies to the displayport-controller. It can either drive the DP
->>>>> or eDP output, hardware-wise it is the same.
->>>>
->>>> Therefore what I proposed was correct - the block which uses the phy
->>>> configures its mode. Because this part:
->>>>   "this phy is of this type on this board".
->>>> is not true. The phy is both types.
->>>
->>> But hopefully you don't mean using #phy-cells here. There are no
->>> sub-PHYs or anything like that.
+On 08/12/2023 13:37, Stefan Eichenberger wrote:
+> Hi Krzysztof,
+> 
+> On Thu, Dec 07, 2023 at 05:59:08PM +0100, Krzysztof Kozlowski wrote:
+>> On 07/12/2023 12:12, Stefan Eichenberger wrote:
+>>> diff --git a/Documentation/devicetree/bindings/input/atmel,maxtouch.yaml b/Documentation/devicetree/bindings/input/atmel,maxtouch.yaml
+>>> index c40799355ed7..047a5101341c 100644
+>>> --- a/Documentation/devicetree/bindings/input/atmel,maxtouch.yaml
+>>> +++ b/Documentation/devicetree/bindings/input/atmel,maxtouch.yaml
+>>> @@ -87,6 +87,12 @@ properties:
+>>>        - 2 # ATMEL_MXT_WAKEUP_GPIO
+>>>      default: 0
+>>>  
+>>> +  atmel,poweroff-in-suspend:
+>>> +    description: |
+>>> +      When this property is set, all supplies are turned off when the system is
+>>> +      going to suspend.
 >>
->> I am exactly talking about phy-cells. Look at first example from Abel's
->> code.
+>> You described the desired Linux feature or behavior, not the actual
+>> hardware. The bindings are about the latter, so instead you need to
+>> rephrase the property and its description to match actual hardware
+>> capabilities/features/configuration etc.
 > 
-> I always had an impression that #foo-cells means that there are
-> different units within the major handler. I.e. #clock-cells mean that
-> there are several different clocks, #reset-cells mean that there are
-> several resets, etc.
-> Ok, maybe this is not a perfect description. We need cells to identify
-> a particular instance within the major block. Maybe that sounds more
-> correct.
-
-No, the cells have also meaning of additional arguments. See usage of
-phy-type (not the one here, but the correct one) and PWMs.
-
+> Thanks a lot for the feedback. Would the following be okay as a
+> description?
 > 
-> For the USB+DP PHY we use #phy-cells to select between USB3 and DP
-> PHYs. But for these PHYs we do not have sub-devices, sub-blocks, etc.
-> There is a single PHY which works in either of the modes.
+> vdda and vdd are switched off in suspend mode.
 
-Is it different than case here?
-
-> 
-> Last, but not least, using #phy-cells in this way would create
-> asymmetry with all the other PHYs (and especially other QMP PHYs)
-> present on these platforms.
-
-OK. Is phy-type not something different?
-
-> 
-> If you feel that phy-type is not an appropriate solution, I'd vote for
-> not having the type in DT at all, letting the DP controller determine
-> the proper mode on its own.
-
-Can we do it? That's BTW the best option.
+Are switched by who? Linux driver? Then nothing changed...
 
 Best regards,
 Krzysztof
