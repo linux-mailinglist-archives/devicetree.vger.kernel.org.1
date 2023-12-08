@@ -1,85 +1,130 @@
-Return-Path: <devicetree+bounces-23268-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23269-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EAA880A984
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 17:44:48 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FFEE80A98E
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 17:45:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CEFBF1C20A64
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 16:44:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 20FBEB20B2E
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 16:45:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 304AA1A73B;
-	Fri,  8 Dec 2023 16:44:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ED641C6BD;
+	Fri,  8 Dec 2023 16:45:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A6FE10C0;
-	Fri,  8 Dec 2023 08:44:44 -0800 (PST)
-Received: by mail-ot1-f47.google.com with SMTP id 46e09a7af769-6d9e179b217so1048021a34.0;
-        Fri, 08 Dec 2023 08:44:44 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702053884; x=1702658684;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MQNz+xvqRdVvhqlnaesIupD2ZldVHm05D8bBXCEt6fE=;
-        b=bnEUnLu9z/HvvSg9LYf76G0Opbg12q4r8gQBAzhEPpmFod4HOLl1pbFuUT6EqwtEu6
-         kXAo9HJBWVfMuv6YHqtGLx7WCpzORdrsxNXtMA2HW9W2F9zdD2c0iCNgVxeht+5+4uw/
-         re77XRv8pHt4aJzlyd+GTqJEPOb0gT/lLuN3R2NqNGhQUSrArKzCsnqXSdC63wZ/kGze
-         G72jOieR7ZPzqBp3krrf8KObf2J83eRuaSP9W2Nbcj04QY8Xif0HXX+oDShF3W5FIP7g
-         fCKDvTInIF42CvihB3RxuBgwyCoUt3+MpmtU1a2JnoT47KhSFmtXAbsmRysj6Pjugqdp
-         OUcg==
-X-Gm-Message-State: AOJu0Yy75NfjRN7KbgOOB7iHfxdIlq882h4LDizJrYOk5PBE77vnLz5p
-	brmfkMBkORWqTdyzfcLwuVg1+NJNiQ==
-X-Google-Smtp-Source: AGHT+IEElGzMDgsf5XKgsEJBooUGCELsszhJ/I7kKbKCN+yZO/mIQ5M8oB94icul6SeFg7QJKz8wzw==
-X-Received: by 2002:a9d:6a4a:0:b0:6d9:a5ef:a2c7 with SMTP id h10-20020a9d6a4a000000b006d9a5efa2c7mr372426otn.9.1702053883797;
-        Fri, 08 Dec 2023 08:44:43 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id w26-20020a056830061a00b006ce28044207sm349258oti.58.2023.12.08.08.44.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Dec 2023 08:44:43 -0800 (PST)
-Received: (nullmailer pid 1748007 invoked by uid 1000);
-	Fri, 08 Dec 2023 16:44:41 -0000
-Date: Fri, 8 Dec 2023 10:44:41 -0600
-From: Rob Herring <robh@kernel.org>
-To: Johan Jonker <jbx6244@gmail.com>
-Cc: maarten.lankhorst@linux.intel.com, robh+dt@kernel.org, linux-kernel@vger.kernel.org, heiko@sntech.de, dri-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org, tzimmermann@suse.de, conor+dt@kernel.org, airlied@gmail.com, hjc@rock-chips.com, krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org, daniel@ffwll.ch, linux-arm-kernel@lists.infradead.org, mripard@kernel.org
-Subject: Re: [PATCH v1 1/3] dt-bindings: drm: rockchip: convert
- inno_hdmi-rockchip.txt to yaml
-Message-ID: <170205385847.1747356.13765108616438619401.robh@kernel.org>
-References: <49c6afec-022f-02de-99a0-d409b64da198@gmail.com>
+Received: from mx01.omp.ru (mx01.omp.ru [90.154.21.10])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C09F2198E;
+	Fri,  8 Dec 2023 08:45:32 -0800 (PST)
+Received: from [192.168.1.104] (178.176.72.145) by msexch01.omp.ru
+ (10.188.4.12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.1258.12; Fri, 8 Dec
+ 2023 19:45:21 +0300
+Subject: Re: [PATCH v4 13/22] MIPS: traps: Give more explanations if ebase
+ doesn't belong to KSEG0
+To: Gregory CLEMENT <gregory.clement@bootlin.com>, Paul Burton
+	<paulburton@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	<linux-mips@vger.kernel.org>, Jiaxun Yang <jiaxun.yang@flygoat.com>, Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+CC: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, Tawfik Bayouk
+	<tawfik.bayouk@mobileye.com>, Alexandre Belloni
+	<alexandre.belloni@bootlin.com>, =?UTF-8?Q?Th=c3=a9o_Lebrun?=
+	<theo.lebrun@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20231208161249.1827174-1-gregory.clement@bootlin.com>
+ <20231208161249.1827174-14-gregory.clement@bootlin.com>
+From: Sergey Shtylyov <s.shtylyov@omp.ru>
+Organization: Open Mobile Platform
+Message-ID: <dc3f201b-308c-a2b9-d64c-530fd32f6b9d@omp.ru>
+Date: Fri, 8 Dec 2023 19:45:20 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <49c6afec-022f-02de-99a0-d409b64da198@gmail.com>
+In-Reply-To: <20231208161249.1827174-14-gregory.clement@bootlin.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: msexch01.omp.ru (10.188.4.12) To msexch01.omp.ru
+ (10.188.4.12)
+X-KSE-ServerInfo: msexch01.omp.ru, 9
+X-KSE-AntiSpam-Interceptor-Info: scan successful
+X-KSE-AntiSpam-Version: 6.0.0, Database issued on: 12/08/2023 16:36:06
+X-KSE-AntiSpam-Status: KAS_STATUS_NOT_DETECTED
+X-KSE-AntiSpam-Method: none
+X-KSE-AntiSpam-Rate: 59
+X-KSE-AntiSpam-Info: Lua profiles 181987 [Dec 08 2023]
+X-KSE-AntiSpam-Info: Version: 6.0.0.2
+X-KSE-AntiSpam-Info: Envelope from: s.shtylyov@omp.ru
+X-KSE-AntiSpam-Info: LuaCore: 6 0.3.6 62f5a4619c57459c9a142aa1486ed27913162963
+X-KSE-AntiSpam-Info: {rep_avail}
+X-KSE-AntiSpam-Info: {Tracking_from_domain_doesnt_match_to}
+X-KSE-AntiSpam-Info: {relay has no DNS name}
+X-KSE-AntiSpam-Info: {SMTP from is not routable}
+X-KSE-AntiSpam-Info: {Found in DNSBL: 178.176.72.145 in (user)
+ b.barracudacentral.org}
+X-KSE-AntiSpam-Info: {Found in DNSBL: 178.176.72.145 in (user)
+ dbl.spamhaus.org}
+X-KSE-AntiSpam-Info:
+	d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;omp.ru:7.1.1;127.0.0.199:7.1.2
+X-KSE-AntiSpam-Info: ApMailHostAddress: 178.176.72.145
+X-KSE-AntiSpam-Info: {DNS response errors}
+X-KSE-AntiSpam-Info: Rate: 59
+X-KSE-AntiSpam-Info: Status: not_detected
+X-KSE-AntiSpam-Info: Method: none
+X-KSE-AntiSpam-Info: Auth:dmarc=temperror header.from=omp.ru;spf=temperror
+ smtp.mailfrom=omp.ru;dkim=none
+X-KSE-Antiphishing-Info: Clean
+X-KSE-Antiphishing-ScanningType: Heuristic
+X-KSE-Antiphishing-Method: None
+X-KSE-Antiphishing-Bases: 12/08/2023 16:40:00
+X-KSE-Antivirus-Interceptor-Info: scan successful
+X-KSE-Antivirus-Info: Clean, bases: 12/8/2023 1:21:00 PM
+X-KSE-Attachment-Filter-Triggered-Rules: Clean
+X-KSE-Attachment-Filter-Triggered-Filters: Clean
+X-KSE-BulkMessagesFiltering-Scan-Result: InTheLimit
 
+On 12/8/23 7:12 PM, Gregory CLEMENT wrote:
 
-On Mon, 04 Dec 2023 18:39:03 +0100, Johan Jonker wrote:
-> Convert inno_hdmi-rockchip.txt to yaml.
+> Now that we support having the kernel in XPHYS and not only in KSEG0,
+> the case where ebase doesn't belong to KSEG0 is more likely to
+> occur. However, in this scenariowe encounter a significant and
+
+   Scenario we? :-)
+
+> intimidating stack dump without any explanation. To address this, we
+> should eliminate the uninformative stack dump and replace it with a
+> warning that provides a clear explanation of the issue.
 > 
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
 > ---
+>  arch/mips/kernel/traps.c | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
 > 
-> Note for rob+dt:
->   Used enum to "soon" be able to add "rockchip,rk3128-inno-hdmi"
-> 
-> Changed V1:
->   Rename file to more common layout
->   Add/fix hdmi_out port example
-> ---
->  .../display/rockchip/inno_hdmi-rockchip.txt   |  49 ---------
->  .../display/rockchip/rockchip,inno-hdmi.yaml  | 103 ++++++++++++++++++
->  2 files changed, 103 insertions(+), 49 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/display/rockchip/inno_hdmi-rockchip.txt
->  create mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip,inno-hdmi.yaml
-> 
+> diff --git a/arch/mips/kernel/traps.c b/arch/mips/kernel/traps.c
+> index 68f1dd54cde1c..ec0cebfd2ef7b 100644
+> --- a/arch/mips/kernel/traps.c
+> +++ b/arch/mips/kernel/traps.c
+> @@ -2420,10 +2420,13 @@ void __init trap_init(void)
+>  		 * EVA is special though as it allows segments to be rearranged
+>  		 * and to become uncached during cache error handling.
+>  		 */
+> -		if (!IS_ENABLED(CONFIG_EVA) && !WARN_ON(ebase_pa >= 0x20000000))
+> +		if (!IS_ENABLED(CONFIG_EVA) && ebase_pa < 0x20000000)
+>  			ebase = CKSEG0ADDR(ebase_pa);
+>  		else
+>  			ebase = (unsigned long)phys_to_virt(ebase_pa);
+> +		if (ebase_pa >= 0x20000000)
+> +			pr_warn("ebase(%pa) should better be in KSeg0",
 
-Applied, thanks!
+   I think it's called KSEG0...
 
+[...]
+
+MBR, Sergey
 
