@@ -1,253 +1,273 @@
-Return-Path: <devicetree+bounces-22911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22912-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7991E80972C
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 01:25:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4656D809730
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 01:25:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 253FA1F2119C
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 00:25:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F0A4828206F
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 00:25:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 182A7641;
-	Fri,  8 Dec 2023 00:25:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 255817F;
+	Fri,  8 Dec 2023 00:25:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mXtbziia"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DnExjmS5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-xc2f.google.com (mail-oo1-xc2f.google.com [IPv6:2607:f8b0:4864:20::c2f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42AE819BF;
-	Thu,  7 Dec 2023 16:25:01 -0800 (PST)
-Received: by mail-oo1-xc2f.google.com with SMTP id 006d021491bc7-59063f8455eso741440eaf.3;
-        Thu, 07 Dec 2023 16:25:01 -0800 (PST)
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB6DE1980
+	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 16:25:26 -0800 (PST)
+Received: by mail-yb1-xb2f.google.com with SMTP id 3f1490d57ef6-da819902678so1584603276.1
+        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 16:25:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1701995101; x=1702599901; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1701995126; x=1702599926; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=MSN+KGwjWnynTpdt4z2HpHMekwKnkXSJkY0oqIZKp+Q=;
-        b=mXtbziiaTLKymrhRZLBoQSvAVgt84GLrjsLnABE7Pr7LaIpruPaEMCXrmIpvEkrUzl
-         Ln/alo/ubUSM3EZqsxDTRQrSg65T83nmKRun4+tWFqS5YjBxA+HvwDrUOEDvrjKrMiYR
-         23GZtmGmtXp2P4xsD6Eop0NOhoqG/hF/MEpQ8ka5v3UtV6/vtLLF630jaSpWJBynpNnh
-         ZCaqZg7WG/2ZX/rz5lfAp8bIEAnRJiUtBBP5XXbQJv4it2kPQowmJh+xSqohR3zjEVPA
-         RxzSf96pP2LwqlqiJSRnb2fpx8s/SJOhrKJjO97vDU7eGLvi4wpe968OOd4RlNvFoXka
-         Mjaw==
+        bh=rDSMGTgiHf2SkuY0Aa9R+zvd7FhhJvzB1Jcc2y777kw=;
+        b=DnExjmS5M00J4qBO7u1WZZsGa0L3mAe9iP8JTmaCWcHxZopjZ3X3g6vTecssUL8wiV
+         uWZDH/ptCs5TEsdSVacBTM1whfVk0UiYYICKNvtS9quw2hbV2wqtP9KZv84MtePP+GFo
+         kPVbIe2WqzCTP2upuP4DItDHUkijWxn6u412NArF0k6coH6Af0mgt4exDGX8OymWIUaE
+         5w0KIg0zYnBX0Zp2o4zN9SpHyaqSoepFKlBSxnoEZ+hpeIiFXE6oE1NS7FdXCurYSxCh
+         d5pSm5okOcgmjJLghAHFllnc36QIpTe0fu4Sxl2NLBtCBZZ6LzoW/mI0ew074ZGGR0Av
+         hOkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701995101; x=1702599901;
+        d=1e100.net; s=20230601; t=1701995126; x=1702599926;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=MSN+KGwjWnynTpdt4z2HpHMekwKnkXSJkY0oqIZKp+Q=;
-        b=V3CHJcxHr57pWzMlw2ZD/oPa2pWhgLjevBbkuxwrSpSI8acAe2N8IL8tqZU5BHVHXG
-         Igp8o2Av+UOgyntusHDYl9XbFoXzOCiZb//2q12E4xCYrArq8GjIM6FWzmi3oypvs7fu
-         WE7iI6XdxEAyQqpWdwBONDhh+SZoZ0uoFOVj0QNGmLrr2JtDQqAeJU4S5Cb291ourWtE
-         M8XQEQ3pT/Xi2kV03WxdMbVNNP5Qg5G+AGKP0rtxqWiocIUtb19uEZ2rDovAa+lOIjiN
-         1imA5kG4RS4/dpNJyusK2WvwFUVxJyBPhBMWby7YG7chJxmxS0zwqyUcigo33CedAjsu
-         AzRA==
-X-Gm-Message-State: AOJu0YxTXX5m/mVf2A6cHLx4fxOkIAZqodDRwTov/5abpADylnyFsTHZ
-	F1EAWjHmxyI6rbIhlsC+FlkYFD9kAOLu6rjxOUSdFbPSh4X/Eg==
-X-Google-Smtp-Source: AGHT+IE2udV2rvMrY/grsLbuSgK8URfWOYUoftrCeWOfi0y4igmmQ/GFemj7anYUoOXKfI5XMf4vtFLfWHzvboXtdVQ=
-X-Received: by 2002:a05:6820:1ac8:b0:58d:6ea3:8fc with SMTP id
- bu8-20020a0568201ac800b0058d6ea308fcmr4111694oob.2.1701995100761; Thu, 07 Dec
- 2023 16:25:00 -0800 (PST)
+        bh=rDSMGTgiHf2SkuY0Aa9R+zvd7FhhJvzB1Jcc2y777kw=;
+        b=Lm7yLgOQ/4DUCXvh5BJRyL619ulQTXZj51Gt79JruyK0XhgA5cWx8++fPeE/jxWmoS
+         QlSNQcp0roFzQIM+lrPj4IiGW8I+is19qtxqbJs/Wi/gOFzB/4gLxxthiSeXT38vHJb+
+         jEG2gEU9bDoaCxNyDvRVTKl1tOw8OANnM+JG2lFOZ0Yqj1YJfwVC6oxIhWWoCIQR4m0C
+         1+A+ynaf6RUW0Fd7T0u+DP4j+PN0rrTFx9ZBbku5PDAvS37EiinDjUlCkzVmM3T8YFTE
+         iZRc/qLu0GiKZk+8ooKbKizW6Uxtg+7KoOd5KLkj+f1wGOwIoNZrtPCeUin4iTogRn4Y
+         CsBw==
+X-Gm-Message-State: AOJu0YxKtKpzhxhumDp+X3Q1y3FGA/6Oipisxkm8Sl2hXmn936lMFX1q
+	9u1pUIZqgy7OzZp/o0oPtq2q4TRqgLsUW1GmeBr0yA==
+X-Google-Smtp-Source: AGHT+IGPaZ43RtYA9P7WIT2S4G+0qJ4OeP1i+/+GYqmlAYCKb0x2ue8SWuwQy0ca3m4scUZ8MleyolFrH/HYXEIlaNk=
+X-Received: by 2002:a5b:dc3:0:b0:db7:dacf:2f14 with SMTP id
+ t3-20020a5b0dc3000000b00db7dacf2f14mr3015631ybr.91.1701995125904; Thu, 07 Dec
+ 2023 16:25:25 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231204144429.45197-1-linux.amoon@gmail.com> <20231204144429.45197-2-linux.amoon@gmail.com>
- <20231206135311.GA2043711-robh@kernel.org> <CANAwSgTS0ZSFPv4x803pCLEpjH5imh8vEoWpbiJRH14Sy3GZww@mail.gmail.com>
- <21673bfd-bb87-4c7d-a53f-337c263f3a00@linaro.org> <CANAwSgSo37B0zg-xjrmqndSZ5SbyB3m27_wRsqqN9WTONooeiw@mail.gmail.com>
- <604e653d-c1e2-45c7-b121-8a6b4be5c6bb@linaro.org>
-In-Reply-To: <604e653d-c1e2-45c7-b121-8a6b4be5c6bb@linaro.org>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Fri, 8 Dec 2023 05:54:43 +0530
-Message-ID: <CANAwSgRB=XWo2-40rDru=Zy277-kgGNjozJ8Lxnxgv_4ABB-kg@mail.gmail.com>
-Subject: Re: [PATCH v6 1/2] dt-bindings: usb: Add the binding example for the
- Genesys Logic GL3523 hub
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Icenowy Zheng <uwu@icenowy.me>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	linux-amlogic@lists.infradead.org, Conor Dooley <conor.dooley@microchip.com>, 
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
+References: <20231207130703.3322321-1-dmitry.baryshkov@linaro.org>
+ <20231207130703.3322321-4-dmitry.baryshkov@linaro.org> <ZXH88_nwT_3g6MS9@gerhold.net>
+ <CAA8EJpoV0yEu_tQ9Xep643osXB21Z17yGrJQzwwfV32_voUS0w@mail.gmail.com> <ZXI6aNleedfd7XjT@gerhold.net>
+In-Reply-To: <ZXI6aNleedfd7XjT@gerhold.net>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Fri, 8 Dec 2023 02:25:14 +0200
+Message-ID: <CAA8EJppCnBs1PGA5ON=Wzn4-9pW-mL6tf1gy6JfoYVmL16yg9Q@mail.gmail.com>
+Subject: Re: [PATCH v5 03/10] soc: qcom: spm: add support for voltage regulator
+To: Stephan Gerhold <stephan@gerhold.net>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 
-Hi Krzysztof,
-
-On Thu, 7 Dec 2023 at 18:11, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+On Thu, 7 Dec 2023 at 23:34, Stephan Gerhold <stephan@gerhold.net> wrote:
 >
-> On 07/12/2023 13:33, Anand Moon wrote:
-> > Hi Krzysztof
+> On Thu, Dec 07, 2023 at 10:33:31PM +0200, Dmitry Baryshkov wrote:
+> > On Thu, 7 Dec 2023 at 19:12, Stephan Gerhold <stephan@gerhold.net> wrote:
+> > > On Thu, Dec 07, 2023 at 04:06:56PM +0300, Dmitry Baryshkov wrote:
+> > > > The SPM / SAW2 device also provides a voltage regulator functionality
+> > > > with optional AVS (Adaptive Voltage Scaling) support. The exact register
+> > > > sequence and voltage ranges differs from device to device.
+> > > >
+> > > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > >
+> > > There is some overlap here with the spmi_saw_set_vdd() functionality in
+> > > qcom_spmi-regulator.c, at least for the SoCs with SPMI PMICs (e.g.
+> > > MSM8974 etc). You don't add support for these in this patch series yet
+> > > but I think it would be good to clarify how we would expect to handle
+> > > those. In other words:
+> > >
+> > >  - Would we handle them in qcom_spmi-regulator.c and keep the code in
+> > >    the spm.c driver only for the non-SPMI platforms?
+> > >
+> > >  - Should we add this in a SSBI regulator driver instead for consistency?
+> > >
+> > >  - Or should we move the existing functionality in qcom_spmi-regulator.c
+> > >    to here?
 > >
-> > On Thu, 7 Dec 2023 at 14:00, Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 06/12/2023 18:14, Anand Moon wrote:
-> >>> Hi Rob,
-> >>>
-> >>> On Wed, 6 Dec 2023 at 19:23, Rob Herring <robh@kernel.org> wrote:
-> >>>>
-> >>>> On Mon, Dec 04, 2023 at 08:14:25PM +0530, Anand Moon wrote:
-> >>>>> Add the binding example for the USB3.1 Genesys Logic GL3523
-> >>>>> integrates with USB 3.1 Gen 1 Super Speed and USB 2.0 High-Speed
-> >>>>> hub.
-> >>>>>
-> >>>>> For onboard hub controllers that support USB 3.x and USB 2.0 hubs
-> >>>>> with shared resets and power supplies, this property is used to identify
-> >>>>> the hubs with which these are shared.
-> >>>>>
-> >>>>> GL3523 has built-in 5V to 3.3V and 5V to 1.2V regulators, which serves
-> >>>>> power to the USB HUB, it uses 5V power regulator.
-> >>>>>
-> >>>>> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> >>>>> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> >>>>> ---
-> >>>>> V6: fix the description of the regulators
-> >>>>> Updated the commit message for regulator updates.
-> >>>>> add reviewed by Conor Dooley
-> >>>>> [1] https://lore.kernel.org/all/20231130053130.21966-2-linux.amoon@gmail.com/
-> >>>>> v5: upgrade peer-hub description : Conor Dooley
-> >>>>> [0] https://www.genesyslogic.com.tw/en/product_view.php?show=67 [Block Diagram]
-> >>>>> v4: Fix the description of peer-hub and update the commit message.
-> >>>>> Schematics of the Odroid N2+
-> >>>>> https://dn.odroid.com/S922X/ODROID-N2/Schematic/odroid-n2_rev0.6_20210121.pdf
-> >>>>> V3: fix the dt_binding_check error, added new example for Genesys GL3523
-> >>>>> v2: added Genesys GL3523 binding
-> >>>>> v1: none
-> >>>>> ---
-> >>>>>  .../bindings/usb/genesys,gl850g.yaml          | 65 +++++++++++++++++--
-> >>>>>  1 file changed, 61 insertions(+), 4 deletions(-)
-> >>>>>
-> >>>>> diff --git a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> >>>>> index ee08b9c3721f..c6f63a69396d 100644
-> >>>>> --- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> >>>>> +++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> >>>>> @@ -9,9 +9,6 @@ title: Genesys Logic USB hub controller
-> >>>>>  maintainers:
-> >>>>>    - Icenowy Zheng <uwu@icenowy.me>
-> >>>>>
-> >>>>> -allOf:
-> >>>>> -  - $ref: usb-device.yaml#
-> >>>>> -
-> >>>>>  properties:
-> >>>>>    compatible:
-> >>>>>      enum:
-> >>>>> @@ -27,12 +24,46 @@ properties:
-> >>>>>
-> >>>>>    vdd-supply:
-> >>>>>      description:
-> >>>>> -      the regulator that provides 3.3V core power to the hub.
-> >>>>> +      The regulator that provides 3.3V or 5.0V core power to the hub.
-> >>>>> +
-> >>>>> +  peer-hub:
-> >>>>> +    $ref: /schemas/types.yaml#/definitions/phandle
-> >>>>> +    description:
-> >>>>> +      For onboard hub controllers that support USB 3.x and USB 2.0 hubs
-> >>>>> +      with shared resets and power supplies, this property is used to identify
-> >>>>> +      the hubs with which these are shared.
-> >>>>>
-> >>>>>  required:
-> >>>>>    - compatible
-> >>>>>    - reg
-> >>>>>
-> >>>>> +allOf:
-> >>>>> +  - $ref: usb-device.yaml#
-> >>>>> +  - if:
-> >>>>> +      properties:
-> >>>>> +        compatible:
-> >>>>> +          contains:
-> >>>>> +            enum:
-> >>>>> +              - usb5e3,608
-> >>>>> +    then:
-> >>>>> +      properties:
-> >>>>> +        peer-hub: false
-> >>>>> +        vdd-supply: false
-> >>>>> +        reset-gpios: true
-> >>>>> +
-> >>>>> +  - if:
-> >>>>> +      properties:
-> >>>>> +        compatible:
-> >>>>> +          contains:
-> >>>>> +            enum:
-> >>>>> +              - usb5e3,610
-> >>>>> +              - usb5e3,620
-> >>>>> +    then:
-> >>>>> +      properties:
-> >>>>> +        peer-hub: true
-> >>>>> +        vdd-supply: true
-> >>>>> +        reset-gpios: true
-> >>>>
-> >>>> No need for this if schema. The default is they are allowed.
-> >>>>
-> >>>
-> >>> If I move reset-gpios to required, I observe the below warning.
-> >>>
-> >>>   DTC_CHK Documentation/devicetree/bindings/usb/maxim,max33359.example.dtb
-> >>> /home/alarm/linux-amlogic-5.y-devel/Documentation/devicetree/bindings/usb/usb-device.example.dtb:
-> >>> hub@1: 'reset-gpio' is a required property
-> >>>         from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
-> >>
-> >> Where are the properties defined? If you open the binding you see:
-> >> nowhere. You cannot define properties in some variant with "true".
-> >> Please define all of them in top-level and only narrow/constrain when
-> >> applicable.
-> >>
-> > What I meant is the example below, required meant applicable for both
-> > the binding
-> > But it shows me the above warning.
+> > The spmi_saw_set_vdd() is a definite hack and ideally it should be
+> > dropped. It is not possible, though, existing msm8996 DT uses that
+> > spmi/saw regulator to power on the CPU cores. We have to remain
+> > compatible with that hack.
+> > But my intent is to have all other platforms use the spm.c (and
+> > migrate msm8996 at some point too).
 >
-> My explanation stands... So again:
+> Thanks, sounds reasonable.
 >
-> >> Please define all of them in top-level and only narrow/constrain when
-> >> applicable.
+> >
+> > >
+> > > > ---
+> > > >  drivers/soc/qcom/spm.c | 221 ++++++++++++++++++++++++++++++++++++++++-
+> > > >  include/soc/qcom/spm.h |   9 ++
+> > > >  2 files changed, 225 insertions(+), 5 deletions(-)
+> > > >
+> > > > diff --git a/drivers/soc/qcom/spm.c b/drivers/soc/qcom/spm.c
+> > > > index 2f0b1bfe7658..595e2afb2141 100644
+> > > > --- a/drivers/soc/qcom/spm.c
+> > > > +++ b/drivers/soc/qcom/spm.c
+> > > > [...]
+> > > > @@ -238,6 +273,181 @@ void spm_set_low_power_mode(struct spm_driver_data *drv,
+> > > >       spm_register_write_sync(drv, SPM_REG_SPM_CTL, ctl_val);
+> > > >  }
+> > > >
+> > > > +static int spm_set_voltage_sel(struct regulator_dev *rdev, unsigned int selector)
+> > > > +{
+> > > > +     struct spm_driver_data *drv = rdev_get_drvdata(rdev);
+> > > > +
+> > > > +     drv->volt_sel = selector;
+> > > > +
+> > > > +     /* Always do the SAW register writes on the corresponding CPU */
+> > > > +     return smp_call_function_single(drv->reg_cpu, drv->reg_data->set_vdd, drv, true);
+> > > > +}
+> > > > +
+> > > > +static int spm_get_voltage_sel(struct regulator_dev *rdev)
+> > > > +{
+> > > > +     struct spm_driver_data *drv = rdev_get_drvdata(rdev);
+> > > > +
+> > > > +     return drv->volt_sel;
+> > > > +}
+> > > > +
+> > > > +static const struct regulator_ops spm_reg_ops = {
+> > > > +     .set_voltage_sel        = spm_set_voltage_sel,
+> > > > +     .get_voltage_sel        = spm_get_voltage_sel,
+> > > > +     .list_voltage           = regulator_list_voltage_linear_range,
+> > > > +     .set_voltage_time_sel   = regulator_set_voltage_time_sel,
+> > > > +};
+> > > > +
+> > > > +static void smp_set_vdd_v1_1(void *data)
+> > > > +{
+> > > > +     struct spm_driver_data *drv = data;
+> > > > +     unsigned int vctl, data0, data1, avs_ctl, sts;
+> > > > +     unsigned int vlevel, volt_sel;
+> > > > +     bool avs_enabled;
+> > > > +
+> > > > +     volt_sel = drv->volt_sel;
+> > > > +     vlevel = volt_sel | 0x80; /* band */
+> > > > +
+> > > > +     avs_ctl = spm_register_read(drv, SPM_REG_AVS_CTL);
+> > > > +     vctl = spm_register_read(drv, SPM_REG_VCTL);
+> > > > +     data0 = spm_register_read(drv, SPM_REG_PMIC_DATA_0);
+> > > > +     data1 = spm_register_read(drv, SPM_REG_PMIC_DATA_1);
+> > > > +
+> > > > +     avs_enabled = avs_ctl & SPM_1_1_AVS_CTL_AVS_ENABLED;
+> > > > +
+> > > > +     /* If AVS is enabled, switch it off during the voltage change */
+> > > > +     if (avs_enabled) {
+> > > > +             avs_ctl &= ~SPM_1_1_AVS_CTL_AVS_ENABLED;
+> > > > +             spm_register_write(drv, SPM_REG_AVS_CTL, avs_ctl);
+> > > > +     }
+> > > > +
+> > > > +     /* Kick the state machine back to idle */
+> > > > +     spm_register_write(drv, SPM_REG_RST, 1);
+> > > > +
+> > > > +     vctl = FIELD_SET(vctl, SPM_VCTL_VLVL, vlevel);
+> > > > +     data0 = FIELD_SET(data0, SPM_PMIC_DATA_0_VLVL, vlevel);
+> > > > +     data1 = FIELD_SET(data1, SPM_PMIC_DATA_1_MIN_VSEL, volt_sel);
+> > > > +     data1 = FIELD_SET(data1, SPM_PMIC_DATA_1_MAX_VSEL, volt_sel);
+> > > > +
+> > > > +     spm_register_write(drv, SPM_REG_VCTL, vctl);
+> > > > +     spm_register_write(drv, SPM_REG_PMIC_DATA_0, data0);
+> > > > +     spm_register_write(drv, SPM_REG_PMIC_DATA_1, data1);
+> > > > +
+> > > > +     if (read_poll_timeout_atomic(spm_register_read,
+> > > > +                                  sts, sts == vlevel,
+> > > > +                                  1, 200, false,
+> > > > +                                  drv, SPM_REG_STS1)) {
+> > > > +             dev_err_ratelimited(drv->dev, "timeout setting the voltage (%x %x)!\n", sts, vlevel);
+> > > > +             goto enable_avs;
+> > > > +     }
+> > > > +
+> > > > +     if (avs_enabled) {
+> > > > +             unsigned int max_avs = volt_sel;
+> > > > +             unsigned int min_avs = max(max_avs, 4U) - 4;
+> > > > +
+> > > > +             avs_ctl = FIELD_SET(avs_ctl, SPM_AVS_CTL_MIN_VLVL, min_avs);
+> > > > +             avs_ctl = FIELD_SET(avs_ctl, SPM_AVS_CTL_MAX_VLVL, max_avs);
+> > > > +             spm_register_write(drv, SPM_REG_AVS_CTL, avs_ctl);
+> > > > +     }
+> > > > +
+> > > > +enable_avs:
+> > > > +     if (avs_enabled) {
+> > > > +             avs_ctl |= SPM_1_1_AVS_CTL_AVS_ENABLED;
+> > > > +             spm_register_write(drv, SPM_REG_AVS_CTL, avs_ctl);
+> > > > +     }
+> > > > +}
+> > > > +
+> > > > +static int spm_get_cpu(struct device *dev)
+> > > > +{
+> > > > +     int cpu;
+> > > > +     bool found;
+> > > > +
+> > > > +     for_each_possible_cpu(cpu) {
+> > > > +             struct device_node *cpu_node, *saw_node;
+> > > > +
+> > > > +             cpu_node = of_cpu_device_node_get(cpu);
+> > > > +             if (!cpu_node)
+> > > > +                     continue;
+> > > > +
+> > > > +             saw_node = of_parse_phandle(cpu_node, "qcom,saw", 0);
+> > > > +             found = (saw_node == dev->of_node);
+> > > > +             of_node_put(saw_node);
+> > > > +             of_node_put(cpu_node);
+> > > > +
+> > > > +             if (found)
+> > > > +                     return cpu;
+> > > > +     }
+> > > > +
+> > > > +     /* L2 SPM is not bound to any CPU, tie it to CPU0 */
+> > >
+> > > Is this necessary? I would kind of expect that it's only important that
+> > > this doesn't happen in parallel on multiple CPUs. The lock in the
+> > > regulator core should already ensure that, though. It's somewhat
+> > > expensive to schedule on other cores, especially if they are currently
+> > > idle and power collapsed.
+> >
+> > If I understand correctly, it is the other way around. From the msm
+> > kernels I see that CPU SPM calls are scheduled to be executed only on
+> > the corresponding CPU/core. For L2 we didn't have the CPU, so to keep
+> > the same code path I selected for them to be executed on CPU0. At this
+> > point I'm not even sure if this cpu0 comes from the downstream tree or
+> > not.
+> >
 >
-Apologies, But I have tried this multiple times but have not been able
-to fix the device tree warning
-I have verified that example
-Documentation/devicetree/bindings/usb/genesys,gl850g.example.dts
-generate is correct
+> Hm, does 8064/8960 set any voltages through the L2 SPM at all? From a
+> quick look I see only the core SPMs being used as regulators, the L2 SPM
+> seems to be only used for idling.
+>
+> I found a msm_spm_apcs_set_vdd() [1] but:
+>
+>  - That one skips the smp_call stuff and calls msm_spm_drv_set_vdd()
+>    directly. In other words, there is no scheduling to CPU0.
+>  - It seems to be only used in krait-regulator which is I think
+>    8974-specific?
 
-required:
-  - compatible
-  - reg
-  - reset-gpio
-  - peer-hub
-  - vdd-supply
+Indeed, L2 SAW doesn't seem to be used for voltage setting on 8064.
+Let's drop its regulator completely and add it back if it gets
+required one day.
 
-allOf:
-  - $ref: usb-device.yaml#
-  - if:
-      properties:
-        compatible:
-          contains:
-            enum:
-              - usb5e3,608
-    then:
-      properties:
-        peer-hub: false
-        vdd-supply: false
-
-  - if:
-      properties:
-        compatible:
-          contains:
-            enum:
-              - usb5e3,610
-              - usb5e3,620
-    then:
-      properties:
-        peer-hub: true
-        vdd-supply: true
-
-additionalProperties: false
-
-> Best regards,
-> Krzysztof
+>
+> If you don't need the regulator on the L2 SPM you could just put an
+> error here rather than the CPU0 fallback. Or alternatively I'd try to
+> avoid the smp_call_function_single() for L2 since I don't see why those
+> should need to be called on a specific CPU.
+>
+> Thanks,
+> Stephan
+>
+> [1]: https://git.codelinaro.org/clo/la/kernel/msm/-/blob/LA.AF.1.2.1-08410-8064.0/arch/arm/mach-msm/spm_devices.c#L257
 >
 
-Thanks
--Anand
+--
+With best wishes
+Dmitry
 
