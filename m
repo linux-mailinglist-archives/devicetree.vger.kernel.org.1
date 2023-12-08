@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-23218-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23219-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C2C780A7D1
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 16:49:00 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2042680A7D2
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 16:49:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A9D7B1C20909
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 15:48:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BAEF91F210D8
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 15:49:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1ADB832C8C;
-	Fri,  8 Dec 2023 15:48:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37D8332C92;
+	Fri,  8 Dec 2023 15:48:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Hk0g/rHG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ehKvHWnq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-x32.google.com (mail-oa1-x32.google.com [IPv6:2001:4860:4864:20::32])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 559881724
+Received: from mail-oa1-x2c.google.com (mail-oa1-x2c.google.com [IPv6:2001:4860:4864:20::2c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 006B9172A
 	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 07:48:53 -0800 (PST)
-Received: by mail-oa1-x32.google.com with SMTP id 586e51a60fabf-1fb14047fe7so1570483fac.1
+Received: by mail-oa1-x2c.google.com with SMTP id 586e51a60fabf-1f5d34235dbso1067789fac.0
         for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 07:48:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702050532; x=1702655332; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1702050533; x=1702655333; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=CvGIaRZZrGiaN7WfHKadaS8JLhBTOynXGjwIgWbiLpA=;
-        b=Hk0g/rHGHYSQfcIYm+KV4I2ZCE6NCf3zyUwLnyRwfrIP0NG9M/49zAjm8UddA8EVHN
-         SOF01yYZQiPReOJoxMA0ZBRjv8LC5A8DhFYun8lMyXK2VxtLZNFyedIzpXQsXqZi/V6e
-         79MfHNKQ9Mt06srDPqw8wGPYGSUBYHqi/N3indW85tlH38agtH6FstZLBs8a44+fdK5J
-         v714wkkpirF/CR6YMNMURC+/NboGsqNIsZRFhFpZ3+vuhom2Zg5H+btW5/RuLxcuEHjL
-         VAxRCGcSiEtkuj6zLeOxQO7TQ+zQtQoIZj/3DdE8Co/C6V/gJ9+HsNJyxmjLDjyj+H51
-         6gmQ==
+        bh=+sJJJXTD3ENUousJPpiYIp/VztCtL02D+xzUtCsBqSw=;
+        b=ehKvHWnqc+GAVjlLFhm6y31nL51nUVpAt8YTZgO+S6Di0by/eTkLkDrrb86D0cQv1b
+         gbZAqsMfgoAp0uqqPJ/35Br9MNYebKOrlIE57VLggavm+xfD/ADPXGoEEJfrZMRHlkzw
+         RdyErmmkq6dhnQyZbXWRB2P+YxBKce/oE+V4F4DapXB5H4BOeBApCHs8blSovqVLdC/J
+         kxCY9Xrvbl8ctT79I+jybMKpXWcPvTe56t2hWESHj5riJyX+ztZj4YtvHXcaI4stp/iz
+         5q7uuLbGsVscWNt5A4J1+YfI+zrc3aiJW8tBftKyg2y9HjW7cy/7nMEHl1L+H/FwhMGv
+         4Bcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702050532; x=1702655332;
+        d=1e100.net; s=20230601; t=1702050533; x=1702655333;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=CvGIaRZZrGiaN7WfHKadaS8JLhBTOynXGjwIgWbiLpA=;
-        b=ViIbVIApHcLiBYEhtjFALIWCImROjRCYlFZQ+ra7yBNhz48220QHkQUG50lsivNJ7B
-         X3b5ofpIJ5IKXEfX1ptOH+P4Cxm8dpBScD+GZIwMsB/VEWkUK7DeIMC8SyLaFCwIu5kN
-         9p04D/UrJT8KSJchDgVKKptYJw96cbIcKeT7JNFkmJTTyD1+SasCom1Y1n8z/ftM0WC9
-         VqlNTZYulYiXI5nRhaCq22Q0DXUCBcq+Qvk5fYWfKKEYOn2Yg/bCHZXlgfU/LUch2LG1
-         6Ahrp3gn5jbQku/e3zRJoBavHwXh7f5+btV8WQObhb62oTMync3E///A9PoL42YjNElI
-         5O0A==
-X-Gm-Message-State: AOJu0Yxhh9OPlnuqVtE+tebmlzdHgdRq9DDU3xM//mNC9nIJN5SRyL5D
-	ojjg5w+4GrWvULbJN5yxkMa5VJUdfsA=
-X-Google-Smtp-Source: AGHT+IFcyiv07XisAWrr55TzlRfXp9Mk8AGnaOZAaI0YTkOm5TiqFGi/N32KJ7yt9vjPxevz2v9OTA==
-X-Received: by 2002:a05:6870:4723:b0:1fa:477:8a93 with SMTP id b35-20020a056870472300b001fa04778a93mr511508oaq.24.1702050532411;
+        bh=+sJJJXTD3ENUousJPpiYIp/VztCtL02D+xzUtCsBqSw=;
+        b=HrFmsMQrzpdiFCPRhqX0TUN0JTMWsTkBKYwz5T8xyOQZhzAVK3zvKEielpfyv/UPCd
+         QhGTuIvRx9WyPwHSLI+gPEz33bKbM2B6VZZG8fMz6uLICPWqPG0LAk4JuEgLe7SRZrz8
+         OSj89evNVN6ZddqLz7r2O3Ty2bJLI4caX/DLJH3agKdJdEhtf/yKhCEIpLaedteIsdvW
+         sih8VSaWKxJdV9qaEJFaKyWDt5R1i+4k7Xpkr4TAFWEVgzU3/YyGHip/uW9eUD3lkdyV
+         1rjDCJ1wc7XrRRd/j5nuU54gZrp/dk60bDt3MsZqXOWsRXBV4Gp8sObxkaY+wOef6l9b
+         Xpxg==
+X-Gm-Message-State: AOJu0YwyBjBOK1/t090BL/IQ9uMyfwBvrNzkPwJDfDyf1BKSEUb0njhB
+	2uplcHlobDHu8rmIih8T3crZGNS4kO8=
+X-Google-Smtp-Source: AGHT+IGJhsZaSLxxBlw2I8ajoJKeP/a3CPks6R0804004vPLyNn1UUEcixbC98/jUUDIyfaj5kOqVQ==
+X-Received: by 2002:a05:6870:37ce:b0:1ff:adb:29bc with SMTP id p14-20020a05687037ce00b001ff0adb29bcmr498503oai.26.1702050532999;
         Fri, 08 Dec 2023 07:48:52 -0800 (PST)
 Received: from localhost.localdomain ([75.28.21.198])
-        by smtp.gmail.com with ESMTPSA id os25-20020a0568707d1900b001fb28cd0e9asm444624oab.3.2023.12.08.07.48.51
+        by smtp.gmail.com with ESMTPSA id os25-20020a0568707d1900b001fb28cd0e9asm444624oab.3.2023.12.08.07.48.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Fri, 08 Dec 2023 07:48:52 -0800 (PST)
 From: Chris Morgan <macroalpha82@gmail.com>
@@ -68,9 +68,9 @@ Cc: dri-devel@lists.freedesktop.org,
 	neil.armstrong@linaro.org,
 	jagan@amarulasolutions.com,
 	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH 1/3] drm/panel: st7701: Fix AVCL calculation
-Date: Fri,  8 Dec 2023 09:48:45 -0600
-Message-Id: <20231208154847.130615-2-macroalpha82@gmail.com>
+Subject: [PATCH 2/3] dt-bindings: display: st7701: Add Anbernic RG-ARC panel
+Date: Fri,  8 Dec 2023 09:48:46 -0600
+Message-Id: <20231208154847.130615-3-macroalpha82@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231208154847.130615-1-macroalpha82@gmail.com>
 References: <20231208154847.130615-1-macroalpha82@gmail.com>
@@ -84,35 +84,26 @@ Content-Transfer-Encoding: 8bit
 
 From: Chris Morgan <macromorgan@hotmail.com>
 
-The AVCL register, according to the datasheet, comes in increments
-of -0.2v between -4.4v (represented by 0x0) to -5.0v (represented
-by 0x3). The current calculation is done by adding the defined
-AVCL value in mV to -4400 and then dividing by 200 to get the register
-value. Unfortunately if I subtract -4400 from -4400 I get -8800, which
-divided by 200 gives me -44. If I instead subtract -4400 from -4400
-I get 0, which divided by 200 gives me 0. Based on the datasheet this
-is the expected register value.
-
-Fixes: 83b7a8e7e88e ("drm/panel/panel-sitronix-st7701: Parametrize voltage and timing")
+The RG-ARC panel is a panel specific to the Anbernic RG-ARC. It is 4
+inches in size (diagonally) with a resolution of 480x640.
 
 Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 ---
- drivers/gpu/drm/panel/panel-sitronix-st7701.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../devicetree/bindings/display/panel/sitronix,st7701.yaml       | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/panel/panel-sitronix-st7701.c b/drivers/gpu/drm/panel/panel-sitronix-st7701.c
-index 0459965e1b4f..036ac403ed21 100644
---- a/drivers/gpu/drm/panel/panel-sitronix-st7701.c
-+++ b/drivers/gpu/drm/panel/panel-sitronix-st7701.c
-@@ -288,7 +288,7 @@ static void st7701_init_sequence(struct st7701 *st7701)
- 		   FIELD_PREP(DSI_CMD2_BK1_PWRCTRL2_AVDD_MASK,
- 			      DIV_ROUND_CLOSEST(desc->avdd_mv - 6200, 200)) |
- 		   FIELD_PREP(DSI_CMD2_BK1_PWRCTRL2_AVCL_MASK,
--			      DIV_ROUND_CLOSEST(-4400 + desc->avcl_mv, 200)));
-+			      DIV_ROUND_CLOSEST(-4400 - desc->avcl_mv, 200)));
- 
- 	/* T2D = 0.2us * T2D[3:0] */
- 	ST7701_DSI(st7701, DSI_CMD2_BK1_SPD1,
+diff --git a/Documentation/devicetree/bindings/display/panel/sitronix,st7701.yaml b/Documentation/devicetree/bindings/display/panel/sitronix,st7701.yaml
+index 4dc0cd4a6a77..b348f5bf0a98 100644
+--- a/Documentation/devicetree/bindings/display/panel/sitronix,st7701.yaml
++++ b/Documentation/devicetree/bindings/display/panel/sitronix,st7701.yaml
+@@ -27,6 +27,7 @@ properties:
+   compatible:
+     items:
+       - enum:
++          - anbernic,rg-arc-panel
+           - densitron,dmt028vghmcmi-1a
+           - elida,kd50t048a
+           - techstar,ts8550b
 -- 
 2.34.1
 
