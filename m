@@ -1,429 +1,85 @@
-Return-Path: <devicetree+bounces-23267-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23268-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF8B280A969
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 17:39:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EAA880A984
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 17:44:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0F0B81C209F5
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 16:39:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CEFBF1C20A64
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 16:44:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 622261CF83;
-	Fri,  8 Dec 2023 16:39:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="g1iw5Vod"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 304AA1A73B;
+	Fri,  8 Dec 2023 16:44:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2409719AB
-	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 08:39:45 -0800 (PST)
-Received: from mail-lf1-f71.google.com (mail-lf1-f71.google.com [209.85.167.71])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id DEE2C3F798
-	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 16:39:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1702053583;
-	bh=X3FBlVRSmieKRWm3YZEbOwqJ8jQOpyTa5Fp9gPp0ZWQ=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type;
-	b=g1iw5Vod2pQUgcxfpuHBOUk9O3L6FZrYfGESeePdFHQIkzcLUHJnzqsDIhExsyf77
-	 0IpC4IQvtr9dqcv8zYz0ZqinenrOcCLntLNzvOpZ0FHE4e3sTqvrfooQoDgas45EuB
-	 ZWC2M3gh0buBm8M2tSY6bKNvGZAtYqCNhRTDS2/rI/iIB1GGNbnEHjThCmV6xfY8RJ
-	 YO+Ov8WymLvUwKFUy0EE6sv+VvTv9nm3N76aiP3E1CUdoQqkai6/PIan84QU11rc/2
-	 xaa3WWjF5mxf2LUS5RHjamsvC7PoKx/0Biy1KTMzpYa6meAA23wtJdlXKzUsiKeEY2
-	 y7U2+1Y/PTxow==
-Received: by mail-lf1-f71.google.com with SMTP id 2adb3069b0e04-50bea1c4468so1993995e87.3
-        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 08:39:43 -0800 (PST)
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A6FE10C0;
+	Fri,  8 Dec 2023 08:44:44 -0800 (PST)
+Received: by mail-ot1-f47.google.com with SMTP id 46e09a7af769-6d9e179b217so1048021a34.0;
+        Fri, 08 Dec 2023 08:44:44 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702053583; x=1702658383;
-        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=X3FBlVRSmieKRWm3YZEbOwqJ8jQOpyTa5Fp9gPp0ZWQ=;
-        b=JzDshEVGVqZMCDYG3pPsKO+vMYl0Xf9RdDCoQszW6C+haKm/K0rqWG72BY5C4aAbqo
-         LseZBnDI6EM/P8AQ9nT+e9nSMSDeAZCYyy5BVqjPwRzfbRcfx2A8k3o2QMoq6540AK0N
-         TMok1ZHMgbsQAACBmxd6u50NIQcCZVfJbWpuCc27MACI+0TfYWx2X4mY3yQBUkZ94P+D
-         O404UwojxqaJwi1XTwglSgxhz8n31C/UIIwpXN+vFCdcEWnI2wSZEsPPWf5+ffr4DZ03
-         fNCMtiA+i15hYO8go2+Eq2u1H4YKLslJYpAQUQASze1H80vu7Ia0UcL0Ru28MVBKxU/D
-         XdRw==
-X-Gm-Message-State: AOJu0YxLhp5uSjJZJlK64E2eyKDgYnFn38NvfsEtgKt9RFqUZaZWTPrl
-	UuDBzxmP270cVNdFc8MICihN9jnBO9hjaebdrRJ10tR/0GMXMgvSn5x/9pTP01ERYyUF6iuO2hN
-	6BphjneSTrdBkNkkcRPRVACm072cKm9kBSQmDJhOt/6YFMxG94qUsj18=
-X-Received: by 2002:a19:3854:0:b0:50b:f147:fb00 with SMTP id d20-20020a193854000000b0050bf147fb00mr102262lfj.119.1702053582625;
-        Fri, 08 Dec 2023 08:39:42 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IE5bW25400UVBfGIS8i0bPX7zPe2UTxdrapQghi1M5M8RnSU/7Fy414q7DXW9+Wey7luJ/7it5PMhvR02CjeC8=
-X-Received: by 2002:a19:3854:0:b0:50b:f147:fb00 with SMTP id
- d20-20020a193854000000b0050bf147fb00mr102246lfj.119.1702053582252; Fri, 08
- Dec 2023 08:39:42 -0800 (PST)
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 8 Dec 2023 08:39:41 -0800
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <20231206115000.295825-17-jeeheng.sia@starfivetech.com>
-References: <20231206115000.295825-1-jeeheng.sia@starfivetech.com> <20231206115000.295825-17-jeeheng.sia@starfivetech.com>
+        d=1e100.net; s=20230601; t=1702053884; x=1702658684;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MQNz+xvqRdVvhqlnaesIupD2ZldVHm05D8bBXCEt6fE=;
+        b=bnEUnLu9z/HvvSg9LYf76G0Opbg12q4r8gQBAzhEPpmFod4HOLl1pbFuUT6EqwtEu6
+         kXAo9HJBWVfMuv6YHqtGLx7WCpzORdrsxNXtMA2HW9W2F9zdD2c0iCNgVxeht+5+4uw/
+         re77XRv8pHt4aJzlyd+GTqJEPOb0gT/lLuN3R2NqNGhQUSrArKzCsnqXSdC63wZ/kGze
+         G72jOieR7ZPzqBp3krrf8KObf2J83eRuaSP9W2Nbcj04QY8Xif0HXX+oDShF3W5FIP7g
+         fCKDvTInIF42CvihB3RxuBgwyCoUt3+MpmtU1a2JnoT47KhSFmtXAbsmRysj6Pjugqdp
+         OUcg==
+X-Gm-Message-State: AOJu0Yy75NfjRN7KbgOOB7iHfxdIlq882h4LDizJrYOk5PBE77vnLz5p
+	brmfkMBkORWqTdyzfcLwuVg1+NJNiQ==
+X-Google-Smtp-Source: AGHT+IEElGzMDgsf5XKgsEJBooUGCELsszhJ/I7kKbKCN+yZO/mIQ5M8oB94icul6SeFg7QJKz8wzw==
+X-Received: by 2002:a9d:6a4a:0:b0:6d9:a5ef:a2c7 with SMTP id h10-20020a9d6a4a000000b006d9a5efa2c7mr372426otn.9.1702053883797;
+        Fri, 08 Dec 2023 08:44:43 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id w26-20020a056830061a00b006ce28044207sm349258oti.58.2023.12.08.08.44.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Dec 2023 08:44:43 -0800 (PST)
+Received: (nullmailer pid 1748007 invoked by uid 1000);
+	Fri, 08 Dec 2023 16:44:41 -0000
+Date: Fri, 8 Dec 2023 10:44:41 -0600
+From: Rob Herring <robh@kernel.org>
+To: Johan Jonker <jbx6244@gmail.com>
+Cc: maarten.lankhorst@linux.intel.com, robh+dt@kernel.org, linux-kernel@vger.kernel.org, heiko@sntech.de, dri-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org, tzimmermann@suse.de, conor+dt@kernel.org, airlied@gmail.com, hjc@rock-chips.com, krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org, daniel@ffwll.ch, linux-arm-kernel@lists.infradead.org, mripard@kernel.org
+Subject: Re: [PATCH v1 1/3] dt-bindings: drm: rockchip: convert
+ inno_hdmi-rockchip.txt to yaml
+Message-ID: <170205385847.1747356.13765108616438619401.robh@kernel.org>
+References: <49c6afec-022f-02de-99a0-d409b64da198@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Date: Fri, 8 Dec 2023 08:39:41 -0800
-Message-ID: <CAJM55Z9bik1QttBeFUCfM3N98HWURge7mgV7ohFBq+AsuvtROg@mail.gmail.com>
-Subject: Re: [PATCH v1 16/16] riscv: dts: starfive: jh8100: Add clocks and
- resets nodes
-To: Sia Jee Heng <jeeheng.sia@starfivetech.com>, kernel@esmil.dk, conor@kernel.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
-	mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de, 
-	emil.renner.berthing@canonical.com, hal.feng@starfivetech.com, 
-	xingyu.wu@starfivetech.com
-Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
-	leyfoon.tan@starfivetech.com
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <49c6afec-022f-02de-99a0-d409b64da198@gmail.com>
 
-Sia Jee Heng wrote:
-> Add SYSCRG/SYSCRG-NE/SYSCRG-NW/SYSCRG-SW/AONCRG clock and reset
-> nodes for JH8100 RISC-V SoC.
->
-> Signed-off-by: Sia Jee Heng <jeeheng.sia@starfivetech.com>
-> Reviewed-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
+
+On Mon, 04 Dec 2023 18:39:03 +0100, Johan Jonker wrote:
+> Convert inno_hdmi-rockchip.txt to yaml.
+> 
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 > ---
->  arch/riscv/boot/dts/starfive/jh8100-clk.dtsi | 180 +++++++++++++++++++
->  arch/riscv/boot/dts/starfive/jh8100.dtsi     | 115 ++++++++++++
+> 
+> Note for rob+dt:
+>   Used enum to "soon" be able to add "rockchip,rk3128-inno-hdmi"
+> 
+> Changed V1:
+>   Rename file to more common layout
+>   Add/fix hdmi_out port example
+> ---
+>  .../display/rockchip/inno_hdmi-rockchip.txt   |  49 ---------
+>  .../display/rockchip/rockchip,inno-hdmi.yaml  | 103 ++++++++++++++++++
+>  2 files changed, 103 insertions(+), 49 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/display/rockchip/inno_hdmi-rockchip.txt
+>  create mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip,inno-hdmi.yaml
+> 
 
-Why the split here? I mean why can't the clocks just be in the jh8100.dtsi?
+Applied, thanks!
 
->  2 files changed, 295 insertions(+)
->  create mode 100644 arch/riscv/boot/dts/starfive/jh8100-clk.dtsi
->
-> diff --git a/arch/riscv/boot/dts/starfive/jh8100-clk.dtsi b/arch/riscv/boot/dts/starfive/jh8100-clk.dtsi
-> new file mode 100644
-> index 000000000000..27ba249f523e
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/starfive/jh8100-clk.dtsi
-> @@ -0,0 +1,180 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR MIT
-> +/*
-> + * Copyright (C) 2023 StarFive Technology Co., Ltd.
-> + */
-> +
-> +/ {
-> +	clk_osc: clk_osc {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <24000000>;
-> +	};
-> +
-> +	clk_i2srx_bclk_ext: clk_i2srx_bclk_ext {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <12288000>;
-> +	};
-> +
-> +	clk_i2srx_lrck_ext: clk_i2srx_lrck_ext {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <192000>;
-> +	};
-> +
-> +	clk_mclk_ext: clk_mclk_ext {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <49152000>;
-> +	};
-> +	/* sys-ne */
-> +	clk_usb3_tap_tck_ext: clk_usb3_tap_tck_ext {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <100000000>;
-> +	};
-> +
-> +	clk_glb_ext_clk: clk_glb_ext_clk {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <30000000>;
-> +	};
-> +
-> +	clk_usb1_tap_tck_ext: clk_usb1_tap_tck_ext {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <100000000>;
-> +	};
-> +
-> +	clk_usb2_tap_tck_ext: clk_usb2_tap_tck_ext {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <100000000>;
-> +	};
-> +
-> +	clk_i2s_tscko: clk_i2s_tscko {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <12800000>;
-> +	};
-> +
-> +	clk_typec_tap_tck_ext: clk_typec_tap_tck_ext {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <100000000>;
-> +	};
-> +
-> +	clk_spi_in0_ext: clk_spi_in0_ext {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <100000000>;
-> +	};
-> +
-> +	clk_spi_in1_ext: clk_spi_in1_ext {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <100000000>;
-> +	};
-> +
-> +	clk_spi_in2_ext: clk_spi_in2_ext {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <100000000>;
-> +	};
-> +
-> +	clk_i2stx_bclk_ext: clk_i2stx_bclk_ext {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <12288000>;
-> +	};
-> +
-> +	clk_i2stx_lrck_ext: clk_i2stx_lrck_ext {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <192000>;
-> +	};
-> +	/* sys-nw */
-> +	clk_dvp_ext: clk_dvp_ext {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <150000000>;
-> +	};
-> +
-> +	clk_isp_dphy_tap_tck_ext: clk_isp_dphy_tap_tck_ext {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <100000000>;
-> +	};
-> +
-> +	clk_vout_mipi_dphy_tap_tck_ext: clk_vout_mipi_dphy_tap_tck_ext {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <100000000>;
-> +	};
-> +
-> +	clk_vout_edp_tap_tck_ext: clk_vout_edp_tap_tck_ext {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <100000000>;
-> +	};
-> +
-> +	clk_rtc: clk_rtc {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <32768>;
-> +	};
-> +	/* aon */
-> +	clk_gmac0_rmii_func: clk_gmac0_rmii_func {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <50000000>;
-> +	};
-> +
-> +	clk_gmac0_rgmii_func: clk_gmac0_rgmii_func {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <125000000>;
-> +	};
-> +
-> +	clk_aon50: clk_aon50 {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <50000000>;
-> +	};
-> +
-> +	clk_aon125: clk_aon125 {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <125000000>;
-> +	};
-> +
-> +	clk_aon2000: clk_aon2000 {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <2000000000>;
-> +	};
-> +
-> +	clk_aon200: clk_aon200 {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <200000000>;
-> +	};
-> +
-> +	clk_aon667: clk_isp_aon667 {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <667000000>;
-> +	};
-> +
-> +	clk_i3c_ext: clk_i3c_ext {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <12500000>;
-> +	};
-> +
-> +	clk_espi_ext: clk_espi_ext {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <60000000>;
-> +	};
-> +};
-> diff --git a/arch/riscv/boot/dts/starfive/jh8100.dtsi b/arch/riscv/boot/dts/starfive/jh8100.dtsi
-> index f26aff5c1ddf..9863c61324a0 100644
-> --- a/arch/riscv/boot/dts/starfive/jh8100.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh8100.dtsi
-> @@ -4,6 +4,9 @@
->   */
->
->  /dts-v1/;
-> +#include <dt-bindings/clock/starfive,jh8100-crg.h>
-> +#include <dt-bindings/reset/starfive,jh8100-crg.h>
-> +#include "jh8100-clk.dtsi"
->
->  / {
->  	compatible = "starfive,jh8100";
-> @@ -357,6 +360,104 @@ uart4: serial@121a0000  {
->  			status = "disabled";
->  		};
->
-> +		syscrg_ne: syscrg_ne@12320000 {
-> +			compatible = "starfive,jh8100-syscrg-ne";
-> +			reg = <0x0 0x12320000 0x0 0x10000>;
-> +			clocks = <&clk_osc>, <&syscrg SYSCRG_CLK_AXI_400>,
-> +				 <&syscrg SYSCRG_CLK_VOUT_ROOT0>,
-> +				 <&syscrg SYSCRG_CLK_VOUT_ROOT1>,
-> +				 <&syscrg SYSCRG_CLK_USB_WRAP_480>,
-> +				 <&syscrg SYSCRG_CLK_USB_WRAP_625>,
-> +				 <&syscrg SYSCRG_CLK_USB_WRAP_240>,
-> +				 <&syscrg SYSCRG_CLK_USB_WRAP_60>,
-> +				 <&syscrg SYSCRG_CLK_USB_WRAP_156P25>,
-> +				 <&syscrg SYSCRG_CLK_USB_WRAP_312P5>,
-> +				 <&syscrg SYSCRG_CLK_USB_125M>,
-> +				 <&syscrg_nw SYSCRG_NW_CLK_GPIO_100>,
-> +				 <&syscrg SYSCRG_CLK_PERH_ROOT>, <&syscrg SYSCRG_CLK_MCLK>,
-> +				 <&syscrg SYSCRG_CLK_PERH_ROOT_PREOSC>,
-> +				 <&syscrg SYSCRG_CLK_AHB0>,
-> +				 <&syscrg SYSCRG_CLK_APB_BUS_PER1>,
-> +				 <&syscrg SYSCRG_CLK_APB_BUS_PER2>,
-> +				 <&syscrg SYSCRG_CLK_APB_BUS_PER3>,
-> +				 <&syscrg SYSCRG_CLK_APB_BUS_PER5>,
-> +				 <&syscrg SYSCRG_CLK_VENC_ROOT>,
-> +				 <&syscrg SYSCRG_CLK_SPI_CORE_100>,
-> +				 <&clk_glb_ext_clk>, <&clk_usb3_tap_tck_ext>,
-> +				 <&clk_usb1_tap_tck_ext>, <&clk_usb2_tap_tck_ext>,
-> +				 <&clk_typec_tap_tck_ext>, <&clk_spi_in0_ext>,
-> +				 <&clk_spi_in1_ext>, <&clk_i2stx_bclk_ext>, <&clk_i2stx_lrck_ext>;
-> +			clock-names = "clk_osc", "sys_clk_axi_400",
-> +				      "sys_clk_vout_root0", "sys_clk_vout_root1",
-> +				      "sys_clk_usb_wrap_480", "sys_clk_usb_wrap_625",
-> +				      "sys_clk_usb_wrap_240", "sys_clk_usb_wrap_60",
-> +				      "sys_clk_usb_wrap_156p25", "sys_clk_usb_wrap_312p5",
-> +				      "sys_clk_usb_125m", "sys_nw_clk_gpio_100",
-> +				      "sys_clk_perh_root", "sys_clk_mclk",
-> +				      "sys_clk_perh_root_preosc", "sys_clk_ahb0",
-> +				      "sys_clk_apb_bus_per1", "sys_clk_apb_bus_per2",
-> +				      "sys_clk_apb_bus_per3", "sys_clk_apb_bus_per5",
-> +				      "sys_clk_venc_root", "sys_clk_spi_core_100",
-> +				      "clk_glb_ext_clk", "clk_usb3_tap_tck_ext",
-> +				      "clk_usb1_tap_tck_ext", "clk_usb2_tap_tck_ext",
-> +				      "clk_typec_tap_tck_ext", "clk_spi_in0_ext",
-> +				      "clk_spi_in1_ext", "clk_i2stx_bclk_ext",
-> +				      "clk_i2stx_lrck_ext";
-> +			#clock-cells = <1>;
-> +			#reset-cells = <1>;
-> +		};
-> +
-> +		syscrg_nw: syscrg_nw@123c0000 {
-> +			compatible = "starfive,jh8100-syscrg-nw";
-> +			reg = <0x0 0x123c0000 0x0 0x10000>;
-> +			clocks = <&clk_osc>, <&syscrg SYSCRG_CLK_APB_BUS>,
-> +				 <&syscrg SYSCRG_CLK_ISP_2X>, <&syscrg SYSCRG_CLK_ISP_AXI>,
-> +				 <&syscrg SYSCRG_CLK_VOUT_ROOT0>, <&syscrg SYSCRG_CLK_VOUT_ROOT1>,
-> +				 <&syscrg SYSCRG_CLK_VOUT_SCAN_ATS>,
-> +				 <&syscrg SYSCRG_CLK_VOUT_DC_CORE>, <&syscrg SYSCRG_CLK_VOUT_AXI>,
-> +				 <&syscrg SYSCRG_CLK_AXI_400>, <&syscrg SYSCRG_CLK_AXI_200>,
-> +				 <&syscrg SYSCRG_CLK_PERH_ROOT_PREOSC>,
-> +				 <&clk_dvp_ext>, <&clk_isp_dphy_tap_tck_ext>,
-> +				 <&clk_glb_ext_clk>, <&clk_i2s_tscko>,
-> +				 <&clk_vout_mipi_dphy_tap_tck_ext>, <&clk_vout_edp_tap_tck_ext>,
-> +				 <&clk_spi_in2_ext>;
-> +			clock-names = "clk_osc", "sys_clk_apb_bus",
-> +				      "sys_clk_isp_2x", "sys_clk_isp_axi",
-> +				      "sys_clk_vout_root0", "sys_clk_vout_root1",
-> +				      "sys_clk_vout_scan_ats", "sys_clk_vout_dc_core",
-> +				      "sys_clk_vout_axi", "sys_clk_axi_400",
-> +				      "sys_clk_axi_200", "sys_clk_perh_root_preosc", "clk_dvp_ext",
-> +				      "clk_isp_dphy_tap_tck_ext", "clk_glb_ext_clk",
-> +				      "clk_i2s_tscko", "clk_vout_mipi_dphy_tap_tck_ext",
-> +				      "clk_vout_edp_tap_tck_ext", "clk_spi_in2_ext";
-> +			#clock-cells = <1>;
-> +			#reset-cells = <1>;
-> +		};
-> +
-> +		syscrg: syscrg@126d0000 {
-> +			compatible = "starfive,jh8100-syscrg";
-> +			reg = <0x0 0x126d0000 0x0 0x10000>;
-> +			clocks = <&clk_osc>, <&clk_i2srx_bclk_ext>,
-> +				 <&clk_i2srx_lrck_ext>, <&clk_mclk_ext>;
-> +			clock-names = "clk_osc", "clk_i2srx_bclk_ext",
-> +				      "clk_i2srx_lrck_ext", "clk_mclk_ext";
-> +			#clock-cells = <1>;
-> +			#reset-cells = <1>;
-> +		};
-> +
-> +		syscrg_sw: syscrg_sw@12720000 {
-> +			compatible = "starfive,jh8100-syscrg-sw";
-> +			reg = <0x0 0x12720000 0x0 0x10000>;
-> +			clocks = <&syscrg SYSCRG_CLK_APB_BUS>,
-> +				 <&syscrg SYSCRG_CLK_VDEC_ROOT>,
-> +				 <&syscrg SYSCRG_CLK_FLEXNOC1>;
-> +			clock-names = "sys_clk_apb_bus",
-> +				      "sys_clk_vdec_root",
-> +				      "sys_clk_flexnoc1";
-> +			#clock-cells = <1>;
-> +			#reset-cells = <1>;
-> +		};
-> +
->  		uart5: serial@127d0000  {
->  			compatible = "starfive,jh8100-uart", "cdns,uart-r1p8";
->  			reg = <0x0 0x127d0000 0x0 0x10000>;
-> @@ -374,5 +475,19 @@ uart6: serial@127e0000  {
->  			interrupts = <73>;
->  			status = "disabled";
->  		};
-> +
-> +		aoncrg: aoncrg@1f310000 {
-> +			compatible = "starfive,jh8100-aoncrg";
-> +			reg = <0x0 0x1f310000 0x0 0x10000>;
-> +			clocks = <&clk_osc>, <&clk_gmac0_rmii_func>,
-> +				 <&clk_gmac0_rgmii_func>, <&clk_aon125>,
-> +				 <&clk_aon2000>, <&clk_aon200>,
-> +				 <&clk_aon667>, <&clk_rtc>;
-> +			clock-names = "clk_osc", "clk_gmac0_rmii_func", "clk_gmac0_rgmii_func",
-> +				      "clk_aon125", "clk_aon2000", "clk_aon200",
-> +				      "clk_aon667", "clk_rtc";
-> +			#clock-cells = <1>;
-> +			#reset-cells = <1>;
-> +		};
->  	};
->  };
-> --
-> 2.34.1
->
 
