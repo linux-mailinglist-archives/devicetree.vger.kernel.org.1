@@ -1,97 +1,123 @@
-Return-Path: <devicetree+bounces-23046-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23048-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9057380A11A
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 11:34:45 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7BC680A130
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 11:38:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C1DDE1C20B3A
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 10:34:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 044031C20C6D
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 10:38:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 186A81428C;
-	Fri,  8 Dec 2023 10:34:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 478401094B;
+	Fri,  8 Dec 2023 10:38:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eD4Fc59d"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="kK93Qyvk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E853B19BBF;
-	Fri,  8 Dec 2023 10:34:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCF51C433C8;
-	Fri,  8 Dec 2023 10:34:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702031683;
-	bh=3pZgEJRxT1FI/bA6lGO5jGck7die4pp5hNpMdbV10qI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eD4Fc59dBMH9+k0tKVg2OdsrGLMAEnnzVrR63ff7Eo1pb5VStpCROIqUvTb8Dca/o
-	 b1nKcDuBKzbvjCreJx1VVgyB+SIsU2bMRFp8et7nXmQKF5FmOm38+/FR6qVLhE8CJp
-	 mdonPbssL1BmW6perPgzh0qt0o2UdVXV/h2G6tuTYz7i9RwgJ1efsD18fv1wNo60o1
-	 qzJTKm20QM6m2b89ZAdP9TnQrFgau0Ikw0f+wu48DSomf2nRf1oO1BR5zD3kouo0MA
-	 Wa/aZkqL7wLuRd5qoNptVUVidiRAc36soc6U0cDbTAWE2J8Vgfi7fMVKwixtQ9Wm9O
-	 tA8XX7P8hncnA==
-Date: Fri, 8 Dec 2023 16:04:27 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: PCI: qcom: Correct reset-names property
-Message-ID: <20231208103427.GA15552@thinkpad>
-References: <20231111142006.51883-1-krzysztof.kozlowski@linaro.org>
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 025AD123;
+	Fri,  8 Dec 2023 02:37:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1702031877; x=1733567877;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=7TMZPFXosBz7PqjBl5YlGhmPAW3iNWnMHeI86fag7dg=;
+  b=kK93Qyvkf3gUMOv1ZAZfxPWoxr8BioUAu0irQoKp90OnLDMSQXGmFg8E
+   Pjn9XGuwlS3d9jmGXJWXLxbdwmzAel2L+tsVbaQdv+NUzdi8VSuDdoL2S
+   NoBIPCLZNvH2Wna37xIKAsb6wmhphFAbsBQ0oOnI3jNlRxTxUr/2BLbUu
+   cEskEK1xY9tBDnRO6P0K1aoFGdsuXhO+Pb8Ngd9OhRIDQZk0+584DerHf
+   uzH0CE8aU3volcTE8jmgaMearcdk+3+yjihHJhV2AmXfoQJlwgbhQ15eI
+   wW41ySMg9XgvExhBJnSOaO8CSc6ypg+rwN3k6fZyNk5yi+x3KZLURvDgl
+   A==;
+X-CSE-ConnectionGUID: H3XQVRBZQ2qxsVmz7vJ8Sw==
+X-CSE-MsgGUID: vh62aFwNTVOODghp70fLHA==
+X-ThreatScanner-Verdict: Negative
+X-IronPort-AV: E=Sophos;i="6.04,260,1695711600"; 
+   d="scan'208";a="13315272"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 08 Dec 2023 03:37:49 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 8 Dec 2023 03:37:44 -0700
+Received: from microchip1-OptiPlex-9020.microchip.com (10.10.85.11) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Fri, 8 Dec 2023 03:37:39 -0700
+From: shravan chippa <shravan.chippa@microchip.com>
+To: <green.wan@sifive.com>, <vkoul@kernel.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <palmer@dabbelt.com>,
+	<paul.walmsley@sifive.com>, <conor+dt@kernel.org>
+CC: <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<nagasuresh.relli@microchip.com>, <praveen.kumar@microchip.com>,
+	<shravan.chippa@microchip.com>
+Subject: [PATCH v5 0/4] dma: sf-pdma: various sf-pdma updates for the mpfs platform
+Date: Fri, 8 Dec 2023 16:08:52 +0530
+Message-ID: <20231208103856.3732998-1-shravan.chippa@microchip.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231111142006.51883-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain
 
-On Sat, Nov 11, 2023 at 03:20:06PM +0100, Krzysztof Kozlowski wrote:
-> There is no "resets-names" property, but "reset-names".
-> 
-> Fixes: 075a9d55932e ("dt-bindings: PCI: qcom: Convert to YAML")
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+From: Shravan Chippa <shravan.chippa@microchip.com>
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Changes from V4 -> V5:
 
-- Mani
+Modified commit msg
+Replaced the sf_pdma_of_xlate() function with 
+of_dma_xlate_by_chan_id() 
 
-> ---
->  Documentation/devicetree/bindings/pci/qcom,pcie.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> index eadba38171e1..8bfae8eb79a3 100644
-> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> @@ -88,7 +88,7 @@ properties:
->      minItems: 1
->      maxItems: 12
->  
-> -  resets-names:
-> +  reset-names:
->      minItems: 1
->      maxItems: 12
->  
-> -- 
-> 2.34.1
-> 
+Changes from V3 -> V4:
+
+Removed unnecessary parentheses and extra space Added review tags
+
+Changes from V2 -> V3:
+
+Removed whitespace
+Change naming convention of the macros (modified code as per new macros)
+updated with new API device_get_match_data()
+modified dt-bindings as per the commmets from v2
+modified compatible name string for mpfs platform
+
+Changes from V1 -> V2:
+
+Removed internal review tags
+Commit massages modified.
+Added devicetree patch with new compatible name for mpfs platform
+Added of_dma_controller_free() clenup call in sf_pdma_remove() function
+
+
+V1:
+
+This series does the following
+1. Adds a PolarFire SoC specific compatible and code to support for
+out-of-order dma transfers 
+
+2. Adds generic device tree bindings support by using 
+of_dma_controller_register()
+
+
+Shravan Chippa (4):
+  dmaengine: sf-pdma: Support of_dma_controller_register()
+  dt-bindings: dma: sf-pdma: add new compatible name
+  dmaengine: sf-pdma: add mpfs-pdma compatible name
+  riscv: dts: microchip: add specific compatible for mpfs pdma
+
+ .../bindings/dma/sifive,fu540-c000-pdma.yaml  |  1 +
+ arch/riscv/boot/dts/microchip/mpfs.dtsi       |  2 +-
+ drivers/dma/sf-pdma/sf-pdma.c                 | 44 +++++++++++++++++--
+ drivers/dma/sf-pdma/sf-pdma.h                 |  8 +++-
+ 4 files changed, 50 insertions(+), 5 deletions(-)
 
 -- 
-மணிவண்ணன் சதாசிவம்
+2.34.1
+
 
