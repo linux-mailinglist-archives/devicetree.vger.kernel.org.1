@@ -1,233 +1,253 @@
-Return-Path: <devicetree+bounces-22910-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22911-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 648378096D3
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 00:57:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7991E80972C
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 01:25:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 19C4828200F
-	for <lists+devicetree@lfdr.de>; Thu,  7 Dec 2023 23:57:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 253FA1F2119C
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 00:25:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A93F5732B;
-	Thu,  7 Dec 2023 23:57:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 182A7641;
+	Fri,  8 Dec 2023 00:25:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ybilJOTf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mXtbziia"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFEB21716
-	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 15:57:01 -0800 (PST)
-Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2c9fbb846b7so16476071fa.2
-        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 15:57:01 -0800 (PST)
+Received: from mail-oo1-xc2f.google.com (mail-oo1-xc2f.google.com [IPv6:2607:f8b0:4864:20::c2f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42AE819BF;
+	Thu,  7 Dec 2023 16:25:01 -0800 (PST)
+Received: by mail-oo1-xc2f.google.com with SMTP id 006d021491bc7-59063f8455eso741440eaf.3;
+        Thu, 07 Dec 2023 16:25:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1701993420; x=1702598220; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RCO9xsQmxA+zz0fLWQyERmhIN174RlFcf3T1BFbUB/o=;
-        b=ybilJOTfi6Qq6HOs3agWBEkiMRV0Y2uZFVcKZUC7tnrN4cWIMarvy/1ryJ535V0PeH
-         YJztKRz3P7tkmE70gcPJjyYr/cYSrD+N3wIlg5fAaoDMgXtFptasvGCvAhtcQHMlHlkX
-         /1c1O2LIHX0/N4cVsHYzSyoXqRYgvHGkVV5WivnHL0gI5Gzk5MpKXAx9GJYn/2UyymfQ
-         ZSS9EnLLDnJDbL+kPFRi9sNdEqXNT38raVUC7GBL7j/QCsLtT4KZ+MAjNe2Eros5NoWW
-         L2Ukg6FKlG62/YDeGHiyWKDdcEpEiAYusz/9rXGTkbFuz9qsGBX0rNd3sQfv0ZGZrx1D
-         8yPg==
+        d=gmail.com; s=20230601; t=1701995101; x=1702599901; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=MSN+KGwjWnynTpdt4z2HpHMekwKnkXSJkY0oqIZKp+Q=;
+        b=mXtbziiaTLKymrhRZLBoQSvAVgt84GLrjsLnABE7Pr7LaIpruPaEMCXrmIpvEkrUzl
+         Ln/alo/ubUSM3EZqsxDTRQrSg65T83nmKRun4+tWFqS5YjBxA+HvwDrUOEDvrjKrMiYR
+         23GZtmGmtXp2P4xsD6Eop0NOhoqG/hF/MEpQ8ka5v3UtV6/vtLLF630jaSpWJBynpNnh
+         ZCaqZg7WG/2ZX/rz5lfAp8bIEAnRJiUtBBP5XXbQJv4it2kPQowmJh+xSqohR3zjEVPA
+         RxzSf96pP2LwqlqiJSRnb2fpx8s/SJOhrKJjO97vDU7eGLvi4wpe968OOd4RlNvFoXka
+         Mjaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701993420; x=1702598220;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RCO9xsQmxA+zz0fLWQyERmhIN174RlFcf3T1BFbUB/o=;
-        b=XN6OfUtrobDrkO6iMuY+y99wMqxLeQWtrWWCrAa4VRke9WWdYiWZuhgcr613pUgMcF
-         TncrH3t849gQKO5xnicg0w3mmac+GR5B44F7wJf8ypZZk3vYgHUGGcTidNqqtiWktgAe
-         vx9lkaf5XDbGpMmPM4+tz+nB4T+lH/3eHHaWRnldsb5U3znUU4TLYFQyueBPOCml46L4
-         I2zGiUh50Iq2rTHHlXCEw+MnONqlODpNIYtfCOlBT7XBUUdfqr5b175XLZOlDQE85VJZ
-         vp4IsTLxlsblOjjhtg68sz1OYlzfPxKOJk0cgf7uR2vsG99y2GSdWpsTzOYRyElNC8Br
-         x28A==
-X-Gm-Message-State: AOJu0YwZEhUE/j/QmCdXLylRJNR2myktsT7fZW6v36uCoNVD+Vs522yj
-	n5nO/rjZeNIPMTEPJd75swV8132LB1RjcfGMQmG1lQ==
-X-Google-Smtp-Source: AGHT+IEyjluygHw09UGFMiMZ7prFJI/6OqOyKXgeBZFa+o49V2RIKm3uf5+Bs9y/AtDjTBYcfpIqB8tU7KDM9R6mvRk=
-X-Received: by 2002:a2e:9859:0:b0:2c9:f962:48f1 with SMTP id
- e25-20020a2e9859000000b002c9f96248f1mr1616613ljj.96.1701993420060; Thu, 07
- Dec 2023 15:57:00 -0800 (PST)
+        d=1e100.net; s=20230601; t=1701995101; x=1702599901;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MSN+KGwjWnynTpdt4z2HpHMekwKnkXSJkY0oqIZKp+Q=;
+        b=V3CHJcxHr57pWzMlw2ZD/oPa2pWhgLjevBbkuxwrSpSI8acAe2N8IL8tqZU5BHVHXG
+         Igp8o2Av+UOgyntusHDYl9XbFoXzOCiZb//2q12E4xCYrArq8GjIM6FWzmi3oypvs7fu
+         WE7iI6XdxEAyQqpWdwBONDhh+SZoZ0uoFOVj0QNGmLrr2JtDQqAeJU4S5Cb291ourWtE
+         M8XQEQ3pT/Xi2kV03WxdMbVNNP5Qg5G+AGKP0rtxqWiocIUtb19uEZ2rDovAa+lOIjiN
+         1imA5kG4RS4/dpNJyusK2WvwFUVxJyBPhBMWby7YG7chJxmxS0zwqyUcigo33CedAjsu
+         AzRA==
+X-Gm-Message-State: AOJu0YxTXX5m/mVf2A6cHLx4fxOkIAZqodDRwTov/5abpADylnyFsTHZ
+	F1EAWjHmxyI6rbIhlsC+FlkYFD9kAOLu6rjxOUSdFbPSh4X/Eg==
+X-Google-Smtp-Source: AGHT+IE2udV2rvMrY/grsLbuSgK8URfWOYUoftrCeWOfi0y4igmmQ/GFemj7anYUoOXKfI5XMf4vtFLfWHzvboXtdVQ=
+X-Received: by 2002:a05:6820:1ac8:b0:58d:6ea3:8fc with SMTP id
+ bu8-20020a0568201ac800b0058d6ea308fcmr4111694oob.2.1701995100761; Thu, 07 Dec
+ 2023 16:25:00 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1701971344.git.marcelo.schmitt1@gmail.com> <53d55f3195b15bd8d47387e296036730ea270770.1701971344.git.marcelo.schmitt1@gmail.com>
-In-Reply-To: <53d55f3195b15bd8d47387e296036730ea270770.1701971344.git.marcelo.schmitt1@gmail.com>
-From: David Lechner <dlechner@baylibre.com>
-Date: Thu, 7 Dec 2023 17:56:48 -0600
-Message-ID: <CAMknhBEFnTUm9FPK-74+GkJs2d80dS+Q9WeGTxd3Ajs-JJGcdA@mail.gmail.com>
-Subject: Re: [PATCH v3 10/13] dt-bindings: iio: Add AD7091R-8
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>
-Cc: apw@canonical.com, joe@perches.com, dwaipayanray1@gmail.com, 
-	lukas.bulwahn@gmail.com, paul.cercueil@analog.com, 
-	Michael.Hennerich@analog.com, lars@metafoo.de, jic23@kernel.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	dan.carpenter@linaro.org, marcelo.schmitt1@gmail.com, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+References: <20231204144429.45197-1-linux.amoon@gmail.com> <20231204144429.45197-2-linux.amoon@gmail.com>
+ <20231206135311.GA2043711-robh@kernel.org> <CANAwSgTS0ZSFPv4x803pCLEpjH5imh8vEoWpbiJRH14Sy3GZww@mail.gmail.com>
+ <21673bfd-bb87-4c7d-a53f-337c263f3a00@linaro.org> <CANAwSgSo37B0zg-xjrmqndSZ5SbyB3m27_wRsqqN9WTONooeiw@mail.gmail.com>
+ <604e653d-c1e2-45c7-b121-8a6b4be5c6bb@linaro.org>
+In-Reply-To: <604e653d-c1e2-45c7-b121-8a6b4be5c6bb@linaro.org>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Fri, 8 Dec 2023 05:54:43 +0530
+Message-ID: <CANAwSgRB=XWo2-40rDru=Zy277-kgGNjozJ8Lxnxgv_4ABB-kg@mail.gmail.com>
+Subject: Re: [PATCH v6 1/2] dt-bindings: usb: Add the binding example for the
+ Genesys Logic GL3523 hub
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Icenowy Zheng <uwu@icenowy.me>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	linux-amlogic@lists.infradead.org, Conor Dooley <conor.dooley@microchip.com>, 
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
 	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Dec 7, 2023 at 12:42=E2=80=AFPM Marcelo Schmitt
-<marcelo.schmitt@analog.com> wrote:
+Hi Krzysztof,
+
+On Thu, 7 Dec 2023 at 18:11, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
-> Add device tree documentation for AD7091R-8.
+> On 07/12/2023 13:33, Anand Moon wrote:
+> > Hi Krzysztof
+> >
+> > On Thu, 7 Dec 2023 at 14:00, Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 06/12/2023 18:14, Anand Moon wrote:
+> >>> Hi Rob,
+> >>>
+> >>> On Wed, 6 Dec 2023 at 19:23, Rob Herring <robh@kernel.org> wrote:
+> >>>>
+> >>>> On Mon, Dec 04, 2023 at 08:14:25PM +0530, Anand Moon wrote:
+> >>>>> Add the binding example for the USB3.1 Genesys Logic GL3523
+> >>>>> integrates with USB 3.1 Gen 1 Super Speed and USB 2.0 High-Speed
+> >>>>> hub.
+> >>>>>
+> >>>>> For onboard hub controllers that support USB 3.x and USB 2.0 hubs
+> >>>>> with shared resets and power supplies, this property is used to identify
+> >>>>> the hubs with which these are shared.
+> >>>>>
+> >>>>> GL3523 has built-in 5V to 3.3V and 5V to 1.2V regulators, which serves
+> >>>>> power to the USB HUB, it uses 5V power regulator.
+> >>>>>
+> >>>>> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> >>>>> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> >>>>> ---
+> >>>>> V6: fix the description of the regulators
+> >>>>> Updated the commit message for regulator updates.
+> >>>>> add reviewed by Conor Dooley
+> >>>>> [1] https://lore.kernel.org/all/20231130053130.21966-2-linux.amoon@gmail.com/
+> >>>>> v5: upgrade peer-hub description : Conor Dooley
+> >>>>> [0] https://www.genesyslogic.com.tw/en/product_view.php?show=67 [Block Diagram]
+> >>>>> v4: Fix the description of peer-hub and update the commit message.
+> >>>>> Schematics of the Odroid N2+
+> >>>>> https://dn.odroid.com/S922X/ODROID-N2/Schematic/odroid-n2_rev0.6_20210121.pdf
+> >>>>> V3: fix the dt_binding_check error, added new example for Genesys GL3523
+> >>>>> v2: added Genesys GL3523 binding
+> >>>>> v1: none
+> >>>>> ---
+> >>>>>  .../bindings/usb/genesys,gl850g.yaml          | 65 +++++++++++++++++--
+> >>>>>  1 file changed, 61 insertions(+), 4 deletions(-)
+> >>>>>
+> >>>>> diff --git a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> >>>>> index ee08b9c3721f..c6f63a69396d 100644
+> >>>>> --- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> >>>>> +++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> >>>>> @@ -9,9 +9,6 @@ title: Genesys Logic USB hub controller
+> >>>>>  maintainers:
+> >>>>>    - Icenowy Zheng <uwu@icenowy.me>
+> >>>>>
+> >>>>> -allOf:
+> >>>>> -  - $ref: usb-device.yaml#
+> >>>>> -
+> >>>>>  properties:
+> >>>>>    compatible:
+> >>>>>      enum:
+> >>>>> @@ -27,12 +24,46 @@ properties:
+> >>>>>
+> >>>>>    vdd-supply:
+> >>>>>      description:
+> >>>>> -      the regulator that provides 3.3V core power to the hub.
+> >>>>> +      The regulator that provides 3.3V or 5.0V core power to the hub.
+> >>>>> +
+> >>>>> +  peer-hub:
+> >>>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+> >>>>> +    description:
+> >>>>> +      For onboard hub controllers that support USB 3.x and USB 2.0 hubs
+> >>>>> +      with shared resets and power supplies, this property is used to identify
+> >>>>> +      the hubs with which these are shared.
+> >>>>>
+> >>>>>  required:
+> >>>>>    - compatible
+> >>>>>    - reg
+> >>>>>
+> >>>>> +allOf:
+> >>>>> +  - $ref: usb-device.yaml#
+> >>>>> +  - if:
+> >>>>> +      properties:
+> >>>>> +        compatible:
+> >>>>> +          contains:
+> >>>>> +            enum:
+> >>>>> +              - usb5e3,608
+> >>>>> +    then:
+> >>>>> +      properties:
+> >>>>> +        peer-hub: false
+> >>>>> +        vdd-supply: false
+> >>>>> +        reset-gpios: true
+> >>>>> +
+> >>>>> +  - if:
+> >>>>> +      properties:
+> >>>>> +        compatible:
+> >>>>> +          contains:
+> >>>>> +            enum:
+> >>>>> +              - usb5e3,610
+> >>>>> +              - usb5e3,620
+> >>>>> +    then:
+> >>>>> +      properties:
+> >>>>> +        peer-hub: true
+> >>>>> +        vdd-supply: true
+> >>>>> +        reset-gpios: true
+> >>>>
+> >>>> No need for this if schema. The default is they are allowed.
+> >>>>
+> >>>
+> >>> If I move reset-gpios to required, I observe the below warning.
+> >>>
+> >>>   DTC_CHK Documentation/devicetree/bindings/usb/maxim,max33359.example.dtb
+> >>> /home/alarm/linux-amlogic-5.y-devel/Documentation/devicetree/bindings/usb/usb-device.example.dtb:
+> >>> hub@1: 'reset-gpio' is a required property
+> >>>         from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
+> >>
+> >> Where are the properties defined? If you open the binding you see:
+> >> nowhere. You cannot define properties in some variant with "true".
+> >> Please define all of them in top-level and only narrow/constrain when
+> >> applicable.
+> >>
+> > What I meant is the example below, required meant applicable for both
+> > the binding
+> > But it shows me the above warning.
 >
-> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-> ---
->  .../bindings/iio/adc/adi,ad7091r8.yaml        | 99 +++++++++++++++++++
->  1 file changed, 99 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7091r=
-8.yaml
+> My explanation stands... So again:
 >
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7091r8.yaml =
-b/Documentation/devicetree/bindings/iio/adc/adi,ad7091r8.yaml
-> new file mode 100644
-> index 000000000000..02320778f225
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7091r8.yaml
-> @@ -0,0 +1,99 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/adi,ad7091r8.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices AD7091R8 8-Channel 12-Bit ADC
-> +
-> +maintainers:
-> +  - Marcelo Schmitt <marcelo.schmitt@analog.com>
-> +
-> +description: |
-> +  Analog Devices AD7091R-8 8-Channel 12-Bit ADC
-> +  https://www.analog.com/media/en/technical-documentation/data-sheets/AD=
-7091R-2_7091R-4_7091R-8.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,ad7091r2
-> +      - adi,ad7091r4
-> +      - adi,ad7091r8
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-
-Missing other supplies? Like vdd-supply and vdrive-supply?
-
-> +  vref-supply: true
-
-refin-supply might be a better name to match the datasheet pin name.
-
-> +
-> +  adi,conversion-start-gpios:
-
-gpios usually don't get a vendor prefix do they?
-
-convst-gpios could be a better name to match the pin name on the datasheet.
-
-> +    description:
-> +      GPIO connected to the CONVST pin.
-> +      This logic input is used to initiate conversions on the analog
-> +      input channels.
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-
-A description of what the interrupt is attached to (ALERT/BUSY/GPO0
-pin) would be helpful.
-
-> +
-> +patternProperties:
-> +  "^channel@[0-7]$":
-> +    $ref: adc.yaml
-> +    type: object
-> +    description: Represents the external channels which are connected to=
- the ADC.
-> +
-> +    properties:
-> +      reg:
-> +        minimum: 0
-> +        maximum: 7
-
-Shouldn't this be:
-
-        items:
-          - minimum: 0
-            maximum: 7
-
-> +
-> +    required:
-> +      - reg
-
-Missing `unevaluatedProperties: false` for channels?
-
-Bigger picture: since no other properties besides `reg` are included
-here, do we actually need channel nodes?
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - adi,conversion-start-gpios
-> +
-> +allOf:
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> +
-> +  # AD7091R-2 does not have ALERT/BUSY/GPO pin
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - adi,ad7091r4
-> +              - adi,ad7091r8
-> +    then:
-> +      properties:
-> +        interrupts: true
-
-Interrupts is already true. Maybe better to only match chips without
-interrupts and set false?
-
-> +    else:
-> +      properties:
-> +        interrupts: false
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    spi {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        adc@0 {
-> +                compatible =3D "adi,ad7091r8";
-> +                reg =3D <0x0>;
-> +                spi-max-frequency =3D <45454545>;
-> +                vref-supply =3D <&adc_vref>;
-> +                adi,conversion-start-gpios =3D <&gpio 25 GPIO_ACTIVE_LOW=
->;
-> +                reset-gpios =3D <&gpio 27 GPIO_ACTIVE_LOW>;
-> +                interrupts =3D <22 IRQ_TYPE_EDGE_FALLING>;
-> +                interrupt-parent =3D <&gpio>;
-> +        };
-> +    };
-> +...
-> --
-> 2.42.0
+> >> Please define all of them in top-level and only narrow/constrain when
+> >> applicable.
 >
+Apologies, But I have tried this multiple times but have not been able
+to fix the device tree warning
+I have verified that example
+Documentation/devicetree/bindings/usb/genesys,gl850g.example.dts
+generate is correct
+
+required:
+  - compatible
+  - reg
+  - reset-gpio
+  - peer-hub
+  - vdd-supply
+
+allOf:
+  - $ref: usb-device.yaml#
+  - if:
+      properties:
+        compatible:
+          contains:
+            enum:
+              - usb5e3,608
+    then:
+      properties:
+        peer-hub: false
+        vdd-supply: false
+
+  - if:
+      properties:
+        compatible:
+          contains:
+            enum:
+              - usb5e3,610
+              - usb5e3,620
+    then:
+      properties:
+        peer-hub: true
+        vdd-supply: true
+
+additionalProperties: false
+
+> Best regards,
+> Krzysztof
 >
+
+Thanks
+-Anand
 
