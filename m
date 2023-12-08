@@ -1,72 +1,62 @@
-Return-Path: <devicetree+bounces-23204-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23205-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E21E80A731
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 16:18:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FAE980A752
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 16:27:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 092E1281703
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 15:18:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 905471C208F4
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 15:27:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 000272F843;
-	Fri,  8 Dec 2023 15:18:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B336330659;
+	Fri,  8 Dec 2023 15:27:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cmCicHum"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cF1xpExF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56531198C
-	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 07:18:36 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-3333224c7b9so2118924f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 07:18:36 -0800 (PST)
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D453F10DE
+	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 07:27:28 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-50bfa7f7093so2704830e87.0
+        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 07:27:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702048715; x=1702653515; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fDJhAtFw7QNuGAGl9H/scPLTNO01fU317zwwAd+ymrw=;
-        b=cmCicHumTHfM7XCA1bEP2Gwczj6mieywO8Gzo/EamozAXRhnhgoyFWNuJ1YIeX4jIp
-         6KtLV4xAzhuaXGsljiyfwMOz8+RcPZilwQIZAIcOtHO+N1UIfUFRjcPKOf6Rq4PS7aN/
-         uC1hDnYxZz1DcRxgjSw/nKhUPI5ghgtFASVvLvUwNLiedyX6Z6eUX9WYCP1dBaQZsM1W
-         Ms9tkY/ESqUBt+LmxKLakwq2V/KtyphfLhIV2sv9ulDutUO0qNuxwMm5lgjUmjligzwp
-         6w8w1XZOc2XQLNTrfJqwhQVwoOjFw0BPYXunf9KbmcB+6arpLdwXqdR1d6TAfGUeHQbC
-         nI/g==
+        d=linaro.org; s=google; t=1702049247; x=1702654047; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=N9Ak96umiRUkgBSSGvTsmBmpZU1S/LgoTvl404BpOFA=;
+        b=cF1xpExFyleopisP/18L+QnR017G+WokLbsRVzJoF8ilratU1kLA6IjeGpolioxjus
+         yGDUoz1zUzwzgzhhorNCf0L3qYTWJzn27wiHNTjizuuPX+La322Zq2c8Sq3aJ6C+cUsX
+         4eWDvKtIp3GGPwRS0XpYfyLkPm7E9xvqg9T4u5JJD1Ay25eel585E80AwFDUSTNBs5ln
+         5NmQ8JmTghNwFNhhjqpZ03XfjjkZwZhElh0ioM4v7ZgbSVvrr3/O2hnH/jcXf9hXI7G5
+         oQ+YW/iukO3Jmv34qZiGzwl2zqW5JYV5QX7sNXC7cYmtSm4Qkd/2LdFs8y6sIDe6q/b7
+         jW7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702048715; x=1702653515;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=fDJhAtFw7QNuGAGl9H/scPLTNO01fU317zwwAd+ymrw=;
-        b=hig5WQPyBVwnYjkWVpPn8Db2pp3aV3BewZtMHkJIl7hG0XiTmvrXsUsLhRZOfNx7c2
-         hT7IfgOSgv+tiRqDLlrQEYkX//HffYOtawkV6wbX+lOTTisahDCJs1tNu5PCvuPAP/i/
-         2553EYx8WBMkvwtZ8ZVZK1MBJ4V1x9kySR1abr2oGsDEZYYJJytv5+cRMx5sghnjr+eE
-         rCTfNEu49FOM1UvF7KiLLBQ6I0Rn0KL8QwhfMrG8oCKmwCiKdLd+q4ZQ5yBs/SYenmzo
-         EY+YLeks+dmxBEEAsRNclKk4w5H1p42HEkTbbg60gg2d5Y5M9FCH3pMADDL1OJe+ThKt
-         WYKQ==
-X-Gm-Message-State: AOJu0YzyjysH/oDbF9hSKrUrtsPcjYi7IoTpem2dNZ8UPNh8yIhVgAcQ
-	x0WYOs1ydKANPTYgq815arDFug==
-X-Google-Smtp-Source: AGHT+IHVtfBSS4vVLH0cQZZ6RumcjOm6eQYQHcCnYJmcBF3hWLk80BVJqfp3DxIT5UGF1ixTnh6a3A==
-X-Received: by 2002:a5d:53c7:0:b0:32d:87c8:b548 with SMTP id a7-20020a5d53c7000000b0032d87c8b548mr111329wrw.21.1702048714704;
-        Fri, 08 Dec 2023 07:18:34 -0800 (PST)
+        d=1e100.net; s=20230601; t=1702049247; x=1702654047;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=N9Ak96umiRUkgBSSGvTsmBmpZU1S/LgoTvl404BpOFA=;
+        b=ksP3Ofpg4DyD+k5w5SHtxbAhdeYK+e7JpFcdCOuWkVOPaME2xO2tpAcAFDnGMhNiBB
+         t6USWQkH08xeruf+c7FHTw3ToLEdkE3z0BqkhI6fKD/9k+R7atJSCkgtXmg6WURHKIL/
+         UL9HObWawGGsfWpolmqf3nXPOpyC1TG7fVhehShYhRuFhTG6LdiLDgFB9+V6hjtynfHt
+         AIuAtX1gQKfl1eSc0RdWOaM/bWBK1WpksfAZkJ1/zhZVgYK1n4fHwW6n+EW/o4RIWZL2
+         t1eG7Vf3O6aJCMoh5yYPEhNzdByUuuZ5Kj/GxyNB82U8qu9UO/DtOQUw5PDFJlVfTpAY
+         PC+w==
+X-Gm-Message-State: AOJu0YwHhk2eyrsfAf4NrBx3EkUEu3xiDmho68uXTVuOqT8CyBNUvN0M
+	je2aqJfceUknafwxJhNHKptFbQ==
+X-Google-Smtp-Source: AGHT+IEQGeIMrcEK3yigdLhpqxev8fd5skaPLeiQFIISFIgZmapYZOTGsEOyJ+y3hoy1/VtpGBeqQw==
+X-Received: by 2002:a05:6512:969:b0:50b:fcd4:832d with SMTP id v9-20020a056512096900b0050bfcd4832dmr28246lft.113.1702049246906;
+        Fri, 08 Dec 2023 07:27:26 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id w6-20020a5d6806000000b00336103442d2sm825119wru.76.2023.12.08.07.18.33
+        by smtp.gmail.com with ESMTPSA id k40-20020a05600c1ca800b0040b45356b72sm5443533wms.33.2023.12.08.07.27.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Dec 2023 07:18:33 -0800 (PST)
+        Fri, 08 Dec 2023 07:27:26 -0800 (PST)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20231208-s4-dts-v2-0-5a93fa356c5d@amlogic.com>
-References: <20231208-s4-dts-v2-0-5a93fa356c5d@amlogic.com>
-Subject: Re: [PATCH v2 0/2] Add some devices nodes for S4.
-Message-Id: <170204871348.55256.16571594130908656997.b4-ty@linaro.org>
-Date: Fri, 08 Dec 2023 16:18:33 +0100
+Subject: [PATCH 0/2] usb: typec: support Qualcomm WCD939X USB SubSystem
+ Altmode Mux
+Date: Fri, 08 Dec 2023 16:27:22 +0100
+Message-Id: <20231208-topic-sm8650-upstream-wcd939x-usbss-v1-0-91d1ba680fe0@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,49 +65,68 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANo1c2UC/x3NwQ6CMAyA4VchPduk3YIyX8VwmKNqD8CygpIQ3
+ t2F43f5/x1MiorBvdmhyFdN56mCLw2kT5zegjpUgyPn2VGHy5w1oY3dtSVcsy1F4oi/NAQfNlz
+ taYbkKRFz5BsFqKVc5KXbeXn0x/EHUxh7ynUAAAA=
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1352;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=ZeeVqSkTaaQgJLzmJA0ExVUlJclEFNl7UqvmeCA9j3M=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlczXcFUMZx5ZnaqoabAI4uoGQtE70iJUJyz5sMcqa
+ KsvaQUyJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZXM13AAKCRB33NvayMhJ0f+XD/
+ 4jI4EjGZGzMyAGDy1t8HM/OSjx+fyCHtpVcEMTV0lMLYLGCghSzolmCxIwjh/k3sRXozq+oSzimrWh
+ 8LOz1NTKNQIb1Q73p4o/n5x52nk1Wf6jMbC/syxi++d7Z0momVlmd76Vbd6cfh8YpEYRLNBYOCdnkq
+ mPWzQAmjqXvEi4wIRzC1l9bapambk5LXJLGy6jy8QBwpgNE+uXnjMJpvjJ4Ruz8LvX+Jhm6qOCPbup
+ HPd6vOrtPXgUm5+DSi6hWhhMaiCnyV13bX8oCPVE/elwgViL//G/0weMHJnNa7WS97ZvOYY1WTNdh2
+ OAhycLzor8rcDWNEZa2y3KxvlekywVU/1+Qm7OU4mOgs17EMptFaYbFZzYiLFw/p5ETItnL/mAExIC
+ WSamqBNyZTyVTo4fk0Cq4xTC77JZ1YhVp4pFc23t5Qjzbe8+T5Bs63rfEtTm5zOZLEXySgqjlUcB0t
+ JWdGpauuVQme0HkojtLsa/v9TIlwbB3ETL2a6hpV9X10B5QDx6Qwh1yydDfJg0uCz+mW+b1urWE5lU
+ wzvSE4iwf/V4AxnoyAVVj1L7UQ9b/NzH9RQ7GS4+jb+H2g5YtNTaLhDRKrMO8O5Czhd0MjSU43Q4+Y
+ R9zpaxludCOcICiaavxaSkLk72NVvYPF0Kznjzix580hIIaq0W/ERO3AAs9g==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-Hi,
+Qualcomm WCD9390/WCD9395 is a standalone Hi-Fi audio codec IC with a
+functionally separate USB SubSystem for Altmode/Analog Audio Switch
+accessible over an I2C interface.
 
-On Fri, 08 Dec 2023 15:16:25 +0800, Xianwei Zhao wrote:
-> Add some device nodes for SoC S4, including periphs clock controller
-> node, PLL clock controller node, I2C nodes, SPICC node, NAND
-> controller node, Ethernet MAC and PHY node.
-> 
-> Add reserved memory for board AQ222 which is used by ATF.
-> Enable NAND, SPICC nodes for board AQ222.
-> 
-> [...]
+It provides switching USB-C USB2.0 lines between USB and Audio Headphones
+speaker lines, and the USB-C SBU lines between DisplayPort AUX and Audio
+Headphones Microphone/Ground.
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.8/arm64-dt)
+The Audio Headphone and Microphone data path between the Codec and the
+USB-C Mux subsystems are external to the IC, thus requiring DT
+port-endpoint graph description to handle USB-C altmode & orientation
+switching for Audio Accessory Mode.
 
-[1/2] arm64: dts: amlogic: add some device nodes for S4
-      https://git.kernel.org/amlogic/c/528016cd2b52001564792c4a68483d44a6fbedad
-[2/2] arm64: dts: amlogic: enable some nodes for board AQ222
-      https://git.kernel.org/amlogic/c/66fdf773ccffcb5b6673f0a5b6693739e33b5181
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Neil Armstrong (2):
+      dt-bindings: usb: Document WCD939x USB SubSystem Altmode/Analog Audio Switch
+      usb: typec: mux: add Qualcomm WCD939X USB SubSystem Altmode Mux driver
 
-These changes has been applied on the intermediate git tree [1].
+ .../bindings/usb/qcom,wcd939x-usbss.yaml           |  99 +++
+ drivers/usb/typec/mux/Kconfig                      |  10 +
+ drivers/usb/typec/mux/Makefile                     |   1 +
+ drivers/usb/typec/mux/wcd939x-usbss.c              | 779 +++++++++++++++++++++
+ 4 files changed, 889 insertions(+)
+---
+base-commit: bc63de6e6ba0b16652c5fb4b9c9916b9e7ca1f23
+change-id: 20231208-topic-sm8650-upstream-wcd939x-usbss-030c011a1709
 
-The v6.8/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
-
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
+Best regards,
 -- 
-Neil
+Neil Armstrong <neil.armstrong@linaro.org>
 
 
