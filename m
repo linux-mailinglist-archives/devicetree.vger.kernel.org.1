@@ -1,54 +1,49 @@
-Return-Path: <devicetree+bounces-23361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23362-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16A3480AF44
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 23:00:11 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3393A80AFA5
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 23:28:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C635C281C40
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 22:00:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DAC4A1F21188
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 22:28:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05C655915C;
-	Fri,  8 Dec 2023 22:00:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA6AC59160;
+	Fri,  8 Dec 2023 22:27:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jR8r8WfJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FDFD1708;
-	Fri,  8 Dec 2023 14:00:04 -0800 (PST)
-Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-1fa1c3755afso1218403fac.1;
-        Fri, 08 Dec 2023 14:00:04 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702072804; x=1702677604;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LNPRU0FNU7QKtEQcMllHcv0YAtO+zJjy7ZQCkfvhnHc=;
-        b=vQJmI0NuWCt6c90ypigLd0WMXIv1LqhnA56h4uxn8cwqxOKrxZVyaZ0mM/mmqwgQiu
-         UQpUxSDWs7scg+xem+HWMdsdIsI9HiX4RcNSa04wdVeRW/U1T53zHSAv+jB5le8NN3E7
-         atVOuv6xbrz/knzR1EZ7XIwYmyhkt3NxP69vXiR0A3uGFMJ+4HDWbwF26LtXSR0SP+lT
-         ueMr2rlmRYkwmEW4d6APaSqknWRkqt3RDdZQuU16LUN7/z9A5dORDzmJmJj7erKpvre9
-         p090Q6pmKodavEcHUgDR63hp2oV8kn3uvR7MJWtKyd4xHHcnV0aK8BUUYnO5r1YrOZTh
-         9cqg==
-X-Gm-Message-State: AOJu0YwWINU9KU+CnH13ZnkAKhNod7tBMXQIY1Xo+mwcOP+3NUhvx8EU
-	gVfflsM5ZPGrz1Qrkq5Bnw==
-X-Google-Smtp-Source: AGHT+IEZhSY6G/TyluC+ct9+exH9dx3QLmpi6Wrof4HsaI8jDGw2gC+wh0RS4B73rQHe14EDAfUUVg==
-X-Received: by 2002:a05:6870:239f:b0:1fa:df5e:48be with SMTP id e31-20020a056870239f00b001fadf5e48bemr396047oap.15.1702072803500;
-        Fri, 08 Dec 2023 14:00:03 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id ho13-20020a056870498d00b001fb3a053eaesm620436oab.34.2023.12.08.14.00.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Dec 2023 14:00:02 -0800 (PST)
-Received: (nullmailer pid 2876137 invoked by uid 1000);
-	Fri, 08 Dec 2023 22:00:01 -0000
-Date: Fri, 8 Dec 2023 16:00:01 -0600
-From: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Maxime Ripard <mripard@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, devicetree@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>, linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, Sakari Ailus <sakari.ailus@linux.intel.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v3] media: dt-bindings: ov8856: decouple lanes and link
- frequency from driver
-Message-ID: <170207280134.2876077.6594221825258184727.robh@kernel.org>
-References: <20231208195253.130470-1-krzysztof.kozlowski@linaro.org>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A798B1EB24;
+	Fri,  8 Dec 2023 22:27:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9F0DC433C8;
+	Fri,  8 Dec 2023 22:27:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702074479;
+	bh=GeJ8jPpWnuk5wFJ1Qh8x+xE86n20BfQfexL29S2dxSM=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=jR8r8WfJoWWbjMTcWJMOYjLsiELGL8CtkpmzLE+WMtMYtB9mPJY1Epy1GANz1dAYQ
+	 1Y1Y3klNDCiRaiFmfbKu57Ft8qdpsOa8CSXRNi26TFDFp+ShHfCrojvz7+uBXbMsJg
+	 h9wnGZIzCGrt/8X0Bl3I9qmMXKuqk3KrkPlkR++VaZ9TDTXSLMd2HwOdBaOb+aBpEx
+	 yk4C2Y3keM80kAH/+VImWWG50PKyc3G3bMDXEw05NzaD1UApwIHzeskr0sH5JjzEi9
+	 +CSpRoJa8qKnufe1vmDFMmb3AHug/Sds98vopQ5CcuHp9K7i7+t5MjjvQbolzaxg6r
+	 ydh+5zZ2PtRZg==
+Date: Fri, 8 Dec 2023 16:27:57 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Lucas Stach <l.stach@pengutronix.de>, Sherry Sun <sherry.sun@nxp.com>,
+	hongxing.zhu@nxp.com, lpieralisi@kernel.org, kw@linux.com,
+	bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+	kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/4] dt-bindings: imx6q-pcie: Add host-wake-gpio property
+Message-ID: <20231208222757.GA834524@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,38 +52,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231208195253.130470-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20231208205545.GA2675840-robh@kernel.org>
 
+On Fri, Dec 08, 2023 at 02:55:45PM -0600, Rob Herring wrote:
+> ...
 
-On Fri, 08 Dec 2023 20:52:53 +0100, Krzysztof Kozlowski wrote:
-> The data lanes and link frequency were set to match existing Linux driver
-> limitations, however bindings should be independent of chosen Linux
-> driver support.
+> And they should start going into root port nodes rather than the 
+> host bridge node because it's the root ports that correspond to slots 
+> rather than the host bridge. We've just taken shortcuts because many 
+> host bridges only have 1 root port.
 > 
-> Decouple these properties from the driver to match what is actually
-> supported by the hardware.
-> 
-> This also fixes DTS example:
-> 
->   ov8856.example.dtb: camera@10: port:endpoint:link-frequencies:0: [360000000] is too short
-> 
-> Fixes: 066a94e28a23 ("media: dt-bindings: media: Use graph and video-interfaces schemas")
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-> 
-> Changes in v3:
-> 1. Drop link-frequencies entirely (Sakari)
-> 2. Add Conor's ack
-> 
-> Changes in v2:
-> 1. Rework approach: decouple bindings from driver instead of fixing
->    DTS example (Sakari)
-> ---
->  .../devicetree/bindings/media/i2c/ov8856.yaml | 24 +++++++++----------
->  1 file changed, 11 insertions(+), 13 deletions(-)
-> 
+> Note that I'm in the middle of splitting pci-bus.yaml into host bridge, 
+> PCI-PCI bridge (and RP), and common device schemas.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Hooray!  Thanks for working on that; the conflation of host bridge and
+Root Port is a real annoyance.
 
+Bjorn
 
