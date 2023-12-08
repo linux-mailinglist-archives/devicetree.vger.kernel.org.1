@@ -1,154 +1,315 @@
-Return-Path: <devicetree+bounces-22972-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22973-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A8E9809AA8
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 04:47:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16FA0809B0F
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 05:35:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D48C1C20BF2
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 03:47:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8D31F1F212C4
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 04:35:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DE134432;
-	Fri,  8 Dec 2023 03:47:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EABAA136F;
+	Fri,  8 Dec 2023 04:35:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b="YbNpisDT"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Rxd4z6oS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2081.outbound.protection.outlook.com [40.107.6.81])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DCD51723;
-	Thu,  7 Dec 2023 19:47:23 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=egAclo4BGutUuMl/t9XeM0wUSRzmQpLjj1eBtKQiLoeXD0J0jSFRN2+t9A5rQVjDqAcz+kSxYNG+MlwP7EjdtGTN7T4cL5ccmVkNk3i3pPif7qmtvvefAsCQ4qkIi6PZGPuJmQwvmYqpakHp55yWrUa1ZjMzg9SITuM0hJaW8IuROOtfXQVmJ/MXY3c1UmNQHSbbg9fRk1IQlwGpei58e9cxivf1gAst+miuavZDTMqVl8jmqWWqLXy6GVqXNZAz0Um8YtJd37ImlIP4poXXAtDLGORMyWD0s4a1TIQqAQXB4Qd2vWs2zicxpVyoyS9JUtl2EIDx5wrmhV2Kpoz44g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zFsYfTI9dLdrSKC/yXcw0xxtxQedhy79RqMmoNrgj1Q=;
- b=b8GJaX54HERXfyl3Sqoi4SoNO1FiBQmiax/lCWKuBCwt9ikOJv1oxXo2OmL/TnueK/dHcqRgnsVWllKUMbKUL8AeyyAwDcvpe/JLPK3tLvEe4yr6exEL5+u643VUkxT6gBJ9Zp76y0N2LQ0rKhPSgFobCY0f3KXO3Qp8vAl/g0OJVjbWGGzPuwb6BsiUD3fJuAJcRm9rSEKQH+dXA8ybuRvBIdTcEljSxuGTPFuYAhuRxaMTqAdfpvf3e63eYDF2o8Bpv16pR03r73WGyAthABCUIRacWn7zI1TTfd2YxMT8j30+quckPyyw8LCOHUPsQuo5V2AEUkFVcNyOxNtY2Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 195.60.68.100) smtp.rcpttodomain=kernel.org smtp.mailfrom=axis.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=axis.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zFsYfTI9dLdrSKC/yXcw0xxtxQedhy79RqMmoNrgj1Q=;
- b=YbNpisDTO1tFpC+6h+/yKPJA+YXZpVeaeu16I14w4iRjBvnmhlpb9+KGx8jPJ3Du7EgjaAfSWsL36Vzhha4CMheiCphyedaOgJjV4EwuQvH2LniMstpxK6oBtaDAfDe2JOXWpsdXnYtEzKPLuP6WHu8sINlKbEIa8jnRtAeDlDo=
-Received: from AS9PR06CA0581.eurprd06.prod.outlook.com (2603:10a6:20b:486::21)
- by VI1PR02MB5760.eurprd02.prod.outlook.com (2603:10a6:803:131::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.28; Fri, 8 Dec
- 2023 03:47:19 +0000
-Received: from AMS0EPF0000019C.eurprd05.prod.outlook.com
- (2603:10a6:20b:486:cafe::ea) by AS9PR06CA0581.outlook.office365.com
- (2603:10a6:20b:486::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.34 via Frontend
- Transport; Fri, 8 Dec 2023 03:47:19 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 195.60.68.100)
- smtp.mailfrom=axis.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=axis.com;
-Received-SPF: Fail (protection.outlook.com: domain of axis.com does not
- designate 195.60.68.100 as permitted sender) receiver=protection.outlook.com;
- client-ip=195.60.68.100; helo=mail.axis.com;
-Received: from mail.axis.com (195.60.68.100) by
- AMS0EPF0000019C.mail.protection.outlook.com (10.167.16.248) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7068.20 via Frontend Transport; Fri, 8 Dec 2023 03:47:18 +0000
-Received: from SE-MAILARCH01W.axis.com (10.20.40.15) by se-mail02w.axis.com
- (10.20.40.8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 8 Dec
- 2023 04:47:18 +0100
-Received: from se-mail01w.axis.com (10.20.40.7) by SE-MAILARCH01W.axis.com
- (10.20.40.15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 8 Dec
- 2023 04:47:18 +0100
-Received: from se-intmail01x.se.axis.com (10.0.5.60) by se-mail01w.axis.com
- (10.20.40.7) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
- Transport; Fri, 8 Dec 2023 04:47:18 +0100
-Received: from lnxchenhuiz2.sh.cn.axis.com (lnxchenhuiz2.sh.cn.axis.com [192.168.77.59])
-	by se-intmail01x.se.axis.com (Postfix) with ESMTP id B43BCF7F3;
-	Fri,  8 Dec 2023 04:47:17 +0100 (CET)
-Received: from lnxchenhuiz2.sh.cn.axis.com (localhost [127.0.0.1])
-	by lnxchenhuiz2.sh.cn.axis.com (8.17.1.9/8.17.1.9/Debian-2) with ESMTP id 3B83lGg41248431;
-	Fri, 8 Dec 2023 11:47:16 +0800
-Received: (from chenhuiz@localhost)
-	by lnxchenhuiz2.sh.cn.axis.com (8.17.1.9/8.17.1.9/Submit) id 3B83lGOi1248430;
-	Fri, 8 Dec 2023 11:47:16 +0800
-From: Hermes Zhang <Hermes.Zhang@axis.com>
-To: <sre@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <kernel@axis.com>, Hermes Zhang
-	<chenhuiz@axis.com>, Conor Dooley <conor.dooley@microchip.com>,
-	<linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH v4 1/2] dt-bindings: power: supply: bq24190: Add BQ24296 compatible
-Date: Fri, 8 Dec 2023 11:47:07 +0800
-Message-ID: <20231208034708.1248389-2-Hermes.Zhang@axis.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231208034708.1248389-1-Hermes.Zhang@axis.com>
-References: <20231208034708.1248389-1-Hermes.Zhang@axis.com>
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FBFD171C;
+	Thu,  7 Dec 2023 20:34:58 -0800 (PST)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B84Ymis072287;
+	Thu, 7 Dec 2023 22:34:48 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1702010089;
+	bh=GXE8j3kRxjinr3rWA/IknE32Gf+i3arll9kQFRCN3/Q=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=Rxd4z6oSM/1R2VrDEM58pQrKG6YIZ9z8HjTl16XwnBI0ydtKCxDoIXcGTLzb3xNdG
+	 C744GXWuysciUuWlqKoAOC/4n0o6WGwgEYH0nqWmwZmw1qkoF63j4bDIfBY+qnMYZr
+	 P1UdFc0Ly/7jpLpF6Bapcs2vkMPNQx6ffmIZ9UoI=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B84YmJC006043
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 7 Dec 2023 22:34:48 -0600
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 7
+ Dec 2023 22:34:48 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 7 Dec 2023 22:34:48 -0600
+Received: from [10.249.135.225] ([10.249.135.225])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B84YiXB102178;
+	Thu, 7 Dec 2023 22:34:45 -0600
+Message-ID: <502101db-26b2-4a0d-8bb7-6a71a3ab4ca0@ti.com>
+Date: Fri, 8 Dec 2023 10:04:43 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] arm64: dts: ti: k3-am642-evm: add overlay for icssg1
+ 2nd port
+Content-Language: en-US
+To: Andrew Davis <afd@ti.com>, Nishanth Menon <nm@ti.com>,
+        MD Danish Anwar
+	<danishanwar@ti.com>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring
+	<robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        Tero
+ Kristo <kristo@kernel.org>, <srk@ti.com>, <r-gunasekaran@ti.com>
+References: <20231207081917.340167-1-danishanwar@ti.com>
+ <20231207081917.340167-4-danishanwar@ti.com>
+ <20231207132758.wbfn7timsqevdjpu@mortuary>
+ <7323e86b-939a-4fd0-aac8-07fa47e00c9d@ti.com>
+ <b913dc5d-0dc1-478b-b4ca-cc049c3df58d@ti.com>
+From: "Anwar, Md Danish" <a0501179@ti.com>
+In-Reply-To: <b913dc5d-0dc1-478b-b4ca-cc049c3df58d@ti.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AMS0EPF0000019C:EE_|VI1PR02MB5760:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6e5013e6-8c89-4ab0-f0f4-08dbf7a0605d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	tEYsRW0a/BfTTl4Huut7A1xTRDi+vIp/NPSPSbyf0ZbpXR0MPxz/kq8w1s1qIlhehWmaF94Uq1L1YqCCOiST/yfbZ4IemPHX4qkPYNEQWlYA6GZHETRY8/FQi8o3gscoWNpRdSgk8mDY0DFSqfHdkAh8lnMvEV2OXWXuiA9SWiY6wbRpaoS42sQT+XOWnwTVRVMqb7/7RuLx24zv4kwMg7/K0TIv5Lypz3LiKcQnBT4Zm2s7AnbTGCizRmvaOFkRZ+XTbXDJtzmiE1fQ9EqhTuM17GVFLV1Xp3/gopIfcqRK5tt4Z/A4jWRyI2mJrIk1iqRhoEjL3rLnXgwZob0RV3wQHnaCfkv28YucaVvnq4pmguRFMUZI/+zgvkZksMExcHpVeWInHLkoltFN34JowKaoj10+tQpungkbLdu4VAS4n8q5/D57j5hunl0baf9pnz1z6VlnJ+vbNtAaeBGanNaqm7A+L2bk2PQawrpce/LuLWG8jgxBkDV78upI1XesNKaugMoFq73rHdevDDqk73OrkfAw4LPA3vDD/eqZwx2/tXQxIox98hweCo9tlsn743nGih0JYSTlMVJRw9C+QLonE/BJNwiPvanQwsYm7jIZNzvoveYJQt5iKzW/oNIQu9J/HX/6lg5kUQcysmpHMUFe3fWgBtcocQ448Idb2JpLCpve/1i1wbPx+Afhv3vmhBgs3IU1C/b5JybJF6VJ5nA7PJDPdB+bQ4WUC4P6OPp/G0nB2pQAyOX+xJjBBF4Jch7eBb7l8WvQOJhe038hmQ==
-X-Forefront-Antispam-Report:
-	CIP:195.60.68.100;CTRY:SE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.axis.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(376002)(136003)(39850400004)(396003)(346002)(230922051799003)(186009)(82310400011)(64100799003)(451199024)(1800799012)(40470700004)(46966006)(36840700001)(40460700003)(54906003)(42186006)(86362001)(4326008)(8936002)(8676002)(316002)(110136005)(478600001)(70586007)(70206006)(36756003)(41300700001)(2906002)(36860700001)(81166007)(47076005)(356005)(5660300002)(2616005)(26005)(6666004)(1076003)(83380400001)(82740400003)(426003)(336012)(40480700001)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: axis.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Dec 2023 03:47:18.6341
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6e5013e6-8c89-4ab0-f0f4-08dbf7a0605d
-X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=78703d3c-b907-432f-b066-88f7af9ca3af;Ip=[195.60.68.100];Helo=[mail.axis.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	AMS0EPF0000019C.eurprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR02MB5760
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-From: Hermes Zhang <chenhuiz@axis.com>
+On 12/7/2023 10:14 PM, Andrew Davis wrote:
+> On 12/7/23 8:06 AM, Anwar, Md Danish wrote:
+>> On 12/7/2023 6:57 PM, Nishanth Menon wrote:
+>>> On 13:49-20231207, MD Danish Anwar wrote:
+>>>> The am642-evm doesn't allow to enable 2 x CPSW3g ports and 2 x
+>>>> ICSSG1 ports
+>>>> all together, so base k3-am642-evm.dts enables by default 2 x CPSW3g
+>>>> ports
+>>>> and 1 x ICSSG1 ports, but it also possible to support 1 x CPSW3g
+>>>> ports and
+>>>> 2 x ICSSG1 ports configuration.
+>>>>
+>>>> This patch adds overlay to support 1 x CPSW3g ports and 2 x ICSSG1
+>>>> ports
+>>>> configuration:
+>>>> - disable 2nd CPSW3g port
+>>>> - update CPSW3g pinmuxes to not use RGMII2
+>>>> - disable mdio-mux-1 and define mdio-mux-2 to route ICSSG1 MDIO to the
+>>>>    shared DP83869 PHY
+>>>> - add and enable ICSSG1 RGMII2 pinmuxes
+>>>> - enable ICSSG1 MII1 port
+>>>>
+>>>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+>>>> ---
+>>>>   arch/arm64/boot/dts/ti/Makefile               |  2 +
+>>>>   .../dts/ti/k3-am642-evm-icssg1-dualemac.dtso  | 80
+>>>> +++++++++++++++++++
+>>>>   arch/arm64/boot/dts/ti/k3-am642-evm.dts       |  2 +-
+>>>>   3 files changed, 83 insertions(+), 1 deletion(-)
+>>>>   create mode 100644
+>>>> arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-dualemac.dtso
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/ti/Makefile
+>>>> b/arch/arm64/boot/dts/ti/Makefile
+>>>> index 5ef49b02c71f..99a4dce47f02 100644
+>>>> --- a/arch/arm64/boot/dts/ti/Makefile
+>>>> +++ b/arch/arm64/boot/dts/ti/Makefile
+>>>> @@ -35,12 +35,14 @@ dtb-$(CONFIG_ARCH_K3) +=
+>>>> k3-am62x-sk-csi2-imx219.dtbo
+>>>>   dtb-$(CONFIG_ARCH_K3) += k3-am62x-sk-hdmi-audio.dtbo
+>>>>     # Boards with AM64x SoC
+>>>> +k3-am642-evm-icssg1-dtbs := k3-am642-evm.dtb
+>>>> k3-am642-evm-icssg1-dualemac.dtbo
+>>>
+>>> Why not handle this for CONFIG_OF_ALL_DTBS alone? See commit
+>>> b0044823a6607e535fdb083c89f487fbf183b171
+>>>
+>>
+>> I'll have to look into this.
+>>
+>> I am merging this k3-am642-evm-icssg1-dualemac.dtbo with
+>> k3-am642-evm.dtb because when I had posted patches for AM65x DTS, Andrew
+>> had commented [1] saying we should not leave orphan dtbos and every dtbo
+>> should be applied over some dtb by using `dtb- +=`.
+>>
+> 
+> And my comment on not having orphan DTBOs is still true. But that was back
+> in September, we now have a new way of accomplishing that without needing
+> to produce a bunch of temporary combined DTB files, which is what Nishanth
+> is pointing out with CONFIG_OF_ALL_DTBS.
+> 
+> So, no need for `k3-am642-evm-icssg1.dtb`, you can add the overlay target
+> directly, then create a fake target to test DTBO application by adding to
+> the `dtb- += ` lines below.
+> 
+> Andrew
+> 
 
-The BQ24296 is most similar to the BQ24196, but the:
-1. OTG config is split from CHG config (REG01)
-2. ICHG (Fast Charge Current limit) range is smaller (<=3008mA)
-3. NTC fault is simplified to 2 bits
+Sure Andrew. I'll do that and re-spin this series.
 
-Signed-off-by: Hermes Zhang <chenhuiz@axis.com>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
----
+>> Due to this I am applying the overlay on k3-am642-evm.dtb and creating
+>> new dtb k3-am642-evm-icssg1.dtb which can be used when both ICSSG1 ports
+>> are needed to be enabled.
+>>
+>> [1]
+>> https://lore.kernel.org/all/ca832fe3-d5cf-b075-324b-50da40794bb7@ti.com/
+>>
+>>>>   dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
+>>>>   dtb-$(CONFIG_ARCH_K3) += k3-am642-phyboard-electra-rdk.dtb
+>>>>   dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
+>>>>   dtb-$(CONFIG_ARCH_K3) += k3-am642-tqma64xxl-mbax4xxl.dtb
+>>>>   dtb-$(CONFIG_ARCH_K3) += k3-am64-tqma64xxl-mbax4xxl-sdcard.dtbo
+>>>>   dtb-$(CONFIG_ARCH_K3) += k3-am64-tqma64xxl-mbax4xxl-wlan.dtbo
+>>>> +dtb-$(CONFIG_ARCH_K3) += k3-am642-evm-icssg1.dtb
+>>>>     # Boards with AM65x SoC
+>>>>   k3-am654-gp-evm-dtbs := k3-am654-base-board.dtb
+>>>> k3-am654-base-board-rocktech-rk101-panel.dtbo
+>>>> diff --git
+>>>> a/arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-dualemac.dtso
+>>>> b/arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-dualemac.dtso
+>>>> new file mode 100644
+>>>> index 000000000000..6f33290c1ad6
+>>>> --- /dev/null
+>>>> +++ b/arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-dualemac.dtso
+>>>> @@ -0,0 +1,80 @@
+>>>> +// SPDX-License-Identifier: GPL-2.0
+>>>> +/**
+>>>> + * DT overlay for enabling 2nd ICSSG1 port on AM642 EVM
+>>>> + *
+>>>> + * Copyright (C) 2023 Texas Instruments Incorporated -
+>>>> https://www.ti.com/
+>>>> + */
+>>>> +
+>>>> +/dts-v1/;
+>>>> +/plugin/;
+>>>> +
+>>>> +#include <dt-bindings/gpio/gpio.h>
+>>>> +#include "k3-pinctrl.h"
+>>>> +
+>>>> +&{/} {
+>>>> +    aliases {
+>>>> +        ethernet1 = "/icssg1-eth/ethernet-ports/port@0";
+>>>> +        ethernet2 = "/icssg1-eth/ethernet-ports/port@1";
+>>>
+>>> I don't understand what you are overriding here. isn't patch #2 in your
+>>> series already introducing this in the base dts?
+>>>
+>>
+>> Sorry, My bad. I will remove this in v2.
+>>
+>>>> +    };
+>>>> +
+>>>> +    mdio-mux-2 {
+>>>> +        compatible = "mdio-mux-multiplexer";
+>>>> +        mux-controls = <&mdio_mux>;
+>>>> +        mdio-parent-bus = <&icssg1_mdio>;
+>>>> +        #address-cells = <1>;
+>>>> +        #size-cells = <0>;
+>>>> +
+>>>> +        mdio@0 {
+>>>> +            reg = <0x0>;
+>>>> +            #address-cells = <1>;
+>>>> +            #size-cells = <0>;
+>>>> +
+>>>> +            icssg1_phy2: ethernet-phy@3 {
+>>>> +                reg = <3>;
+>>>> +                tx-internal-delay-ps = <250>;
+>>>> +                rx-internal-delay-ps = <2000>;
+>>>> +            };
+>>>> +        };
+>>>> +    };
+>>>> +};
+>>>> +
+>>>> +&main_pmx0 {
+>>>> +    icssg1_rgmii2_pins_default: icssg1-rgmii2-default-pins {
+>>>> +        pinctrl-single,pins = <
+>>>> +            AM64X_IOPAD(0x0108, PIN_INPUT, 2) /* (W11)
+>>>> PRG1_PRU1_GPO0.RGMII2_RD0 */
+>>>> +            AM64X_IOPAD(0x010c, PIN_INPUT, 2) /* (V11)
+>>>> PRG1_PRU1_GPO1.RGMII2_RD1 */
+>>>> +            AM64X_IOPAD(0x0110, PIN_INPUT, 2) /* (AA12)
+>>>> PRG1_PRU1_GPO2.RGMII2_RD2 */
+>>>> +            AM64X_IOPAD(0x0114, PIN_INPUT, 2) /* (Y12)
+>>>> PRG1_PRU1_GPO3.RGMII2_RD3 */
+>>>> +            AM64X_IOPAD(0x0120, PIN_INPUT, 2) /* (U11)
+>>>> PRG1_PRU1_GPO6.RGMII2_RXC */
+>>>> +            AM64X_IOPAD(0x0118, PIN_INPUT, 2) /* (W12)
+>>>> PRG1_PRU1_GPO4.RGMII2_RX_CTL */
+>>>> +            AM64X_IOPAD(0x0134, PIN_OUTPUT, 2) /* (AA10)
+>>>> PRG1_PRU1_GPO11.RGMII2_TD0 */
+>>>> +            AM64X_IOPAD(0x0138, PIN_OUTPUT, 2) /* (V10)
+>>>> PRG1_PRU1_GPO12.RGMII2_TD1 */
+>>>> +            AM64X_IOPAD(0x013c, PIN_OUTPUT, 2) /* (U10)
+>>>> PRG1_PRU1_GPO13.RGMII2_TD2 */
+>>>> +            AM64X_IOPAD(0x0140, PIN_OUTPUT, 2) /* (AA11)
+>>>> PRG1_PRU1_GPO14.RGMII2_TD3 */
+>>>> +            AM64X_IOPAD(0x0148, PIN_OUTPUT, 2) /* (Y10)
+>>>> PRG1_PRU1_GPO16.RGMII2_TXC */
+>>>> +            AM64X_IOPAD(0x0144, PIN_OUTPUT, 2) /* (Y11)
+>>>> PRG1_PRU1_GPO15.RGMII2_TX_CTL */
+>>>> +        >;
+>>>> +    };
+>>>> +};
+>>>> +
+>>>> +&cpsw3g {
+>>>> +    pinctrl-0 = <&rgmii1_pins_default>;
+>>>> +};
+>>>> +
+>>>> +&cpsw_port2 {
+>>>> +    status = "disabled";
+>>>> +};
+>>>> +
+>>>> +&mdio_mux_1 {
+>>>> +    status = "disabled";
+>>>> +};
+>>>> +
+>>>> +&icssg1_eth {
+>>>> +    pinctrl-0 = <&icssg1_rgmii1_pins_default
+>>>> &icssg1_rgmii2_pins_default>;
+>>>
+>>> Grrr... No! I have been cleaning up after you folks and you folks should
+>>> take notice.
+>>>
+>>> pinctrl-0 = <&icssg1_rgmii1_pins_default>,
+>>> <&icssg1_rgmii2_pins_default>;
+>>>
+>>
+>> Sorry, I was not aware of this. I will change it in v2.
+>>
+>>>
+>>>> +};
+>>>> +
+>>>> +&icssg1_emac1 {
+>>>> +    status = "okay";
+>>>> +    phy-handle = <&icssg1_phy2>;
+>>>> +    phy-mode = "rgmii-id";
+>>>> +};
+>>>> diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+>>>> b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+>>>> index 04d1c0602d31..90867090e725 100644
+>>>> --- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+>>>> +++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+>>>> @@ -203,7 +203,7 @@ mdio_mux: mux-controller {
+>>>>           mux-gpios = <&exp1 12 GPIO_ACTIVE_HIGH>;
+>>>>       };
+>>>>   -    mdio-mux-1 {
+>>>> +    mdio_mux_1: mdio-mux-1 {
+>>>
+>>> Commit message doesn't warn me for this change.
+>>
+>> Sure. I will add details of this in commit message saying `Add label
+>> name 'mdio_mux_1' for 'mdio-mux-1' node so that the node 'mdio-mux-1'
+>> can be disabled in the overlay using the label name.`
+>>
+>>>>           compatible = "mdio-mux-multiplexer";
+>>>>           mux-controls = <&mdio_mux>;
+>>>>           mdio-parent-bus = <&cpsw3g_mdio>;
+>>>> -- 
+>>>> 2.34.1
+>>>>
+>>>
+>>
 
-Notes:
-    v2: restructured the code to support bq24296 and add Acked-by tag
-        from Conor
-    v3: handle the match_info in the modern way
-    v4: fix compile errors
-
- Documentation/devicetree/bindings/power/supply/bq24190.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/power/supply/bq24190.yaml b/Documentation/devicetree/bindings/power/supply/bq24190.yaml
-index d3ebc9de8c0b..131b7e57d22f 100644
---- a/Documentation/devicetree/bindings/power/supply/bq24190.yaml
-+++ b/Documentation/devicetree/bindings/power/supply/bq24190.yaml
-@@ -20,6 +20,7 @@ properties:
-       - ti,bq24192
-       - ti,bq24192i
-       - ti,bq24196
-+      - ti,bq24296
- 
-   reg:
-     maxItems: 1
 -- 
-2.39.2
-
+Thanks and Regards,
+Md Danish Anwar
 
