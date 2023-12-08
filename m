@@ -1,128 +1,109 @@
-Return-Path: <devicetree+bounces-23045-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23047-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1925C80A110
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 11:33:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A33B80A121
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 11:35:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C6CDA2818EE
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 10:33:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E8E15281A34
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 10:35:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE9FC1944B;
-	Fri,  8 Dec 2023 10:32:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFB391944C;
+	Fri,  8 Dec 2023 10:35:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Xh8FPfmr"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ni8Bhi8G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BCD93251
-	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 02:32:34 -0800 (PST)
-Received: by mail-pl1-x62b.google.com with SMTP id d9443c01a7336-1d053c45897so17083695ad.2
-        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 02:32:34 -0800 (PST)
+Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D114610C2;
+	Fri,  8 Dec 2023 02:35:12 -0800 (PST)
+Received: by mail-pg1-x52c.google.com with SMTP id 41be03b00d2f7-5c673b01eeeso1412574a12.1;
+        Fri, 08 Dec 2023 02:35:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702031554; x=1702636354; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=YssbbUCPI2cVXvHWriFdE5fhn9Moo9Wlhv3uqYqJSwE=;
-        b=Xh8FPfmrGihDVbvCvqyvLIEkN/nTMwBQbdeBdYzU6vcwaJYth2GHEjduYC1ySt8vFp
-         KhLx1gU+NX7qe7OTGUAO7m+ZsqHuI1zF28JyT+tv23Y7TZbrWMXyfy8StfuyDu29OeOf
-         M6pL/jecgFuW0/zeUsRwWSPSMJNd7YmmeLvdXJoNXYkw3nvbZBr/K4yV0F3QUaU1/pe7
-         2UY7Q433JtjjUM11QY7TVR4aKSb8oqopK9yqGfpDtF5YDvT5TzG0EdvCRgVU7IEfHLZx
-         yMe+ybv/6sCQUeq0OCayMubJCxCdWm4JQ9xSwvvNipPnUF4RsXctGL5sqYHN3g74ZYUV
-         NrYQ==
+        d=gmail.com; s=20230601; t=1702031712; x=1702636512; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RkstX3w9e/qo2fPuZVECh8CFuxP6tqluCbnekESxGuA=;
+        b=ni8Bhi8Ge4pDwjtbGayUd6MUG2fihGf4CZPzIcwk5ppMVtduxV9CZJWD28qn3dT7X0
+         EmuEH6H2A1g2CAXqb61+GG2RIOFPs7L9lOYotTTeVqDw1UwlVE0M8qJ1de7YU2cZ1Dvb
+         HUUJ911iTPRV+C1QOOkYt1s4g9qHT7Io6ANoxwy0PbWMdcU6RJBwwUnkT/D4ZGS8wzDr
+         CjXygPqKN0o2a/wP9iV7XRerNc7LlE63vHh6MThbxzDdpKFSAfNOcPSXfzv7qNaohLh7
+         OtD/pX3jasBNrFw1UjTNHL8DAotosip+b2AgkckOpbCSUK9paywFS8UO0hqrTwGZNzU8
+         MBrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702031554; x=1702636354;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20230601; t=1702031712; x=1702636512;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YssbbUCPI2cVXvHWriFdE5fhn9Moo9Wlhv3uqYqJSwE=;
-        b=lgldCCciX+uWmyaXQ6y0dXjz+acwFib5qZUaet8NCP0cw/R8nzUc8kokOpkupcjMfp
-         rK8R9VTSfZD8zN0fYZRxEdEBxJNh1O3NhLrSdG/7QA1P5t1cZq3ZJNX8cMz5UpXQGgTT
-         u9zK+qMfJAx/R4MSm5NUjzgm7HNRal5KAKM+Cpxw0sfexb7KooowOiPGJkDlLd/6X44i
-         w8Zpi+yXgQBpOrTjQZuNMJ0VnESEOMLV7JWhUPqv6Y3WB0BKoRIf5LqRtAG5PFP1xb07
-         o8/J8PZvlrlmfD4zH0/TQ8kLAV2fXvNnurfqJ5d8Mqst2P5XvGCmAsfB8nZn4iZV9/m5
-         lxqA==
-X-Gm-Message-State: AOJu0Yx+uHz4/OwGkcDA+USHFQBIfGbAhLeISJmCH4T0mGpLVB4rS9yL
-	s7VJvoYR1OlCnSOl0pQwpMxI
-X-Google-Smtp-Source: AGHT+IGNfp9Ep6LAjKWWdk4BU7zk1Hj3bGaTZHBgdMaZGRdi4WR6/bUXwRY+x/gs7QUpuEH3SEgcTQ==
-X-Received: by 2002:a17:903:244e:b0:1cc:53d1:10b8 with SMTP id l14-20020a170903244e00b001cc53d110b8mr4898083pls.50.1702031553834;
-        Fri, 08 Dec 2023 02:32:33 -0800 (PST)
-Received: from thinkpad ([117.216.123.142])
-        by smtp.gmail.com with ESMTPSA id c21-20020a170902b69500b001d1d1ef8be6sm1347559pls.267.2023.12.08.02.32.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Dec 2023 02:32:33 -0800 (PST)
-Date: Fri, 8 Dec 2023 16:02:22 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Marcel Holtmann <marcel@holtmann.org>,
-	Johan Hedberg <johan.hedberg@gmail.com>,
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
-	Rocky Liao <quic_rjliao@quicinc.com>, Alex Elder <elder@linaro.org>,
-	Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-	linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [RESEND PATCH v2 0/3] Bluetooth: power-on QCA6390 correctly
-Message-ID: <20231208103222.GB3008@thinkpad>
-References: <20231208090936.27769-1-brgl@bgdev.pl>
+        bh=RkstX3w9e/qo2fPuZVECh8CFuxP6tqluCbnekESxGuA=;
+        b=bQrrPMP3/T/Ojr2wWRe+BnFdwM8rGOsmwN7avUtpuT9x5Of7JEyAxffqJbkVFbA6c6
+         rNtm6m6xoiIClhq66/aKkVwipu9dKmwSAR2+4RJmu3mNY3uDRY7l1FlHMk18ledrwpjs
+         QoT/zkttYV72rQpT2YMVvv68rkfc2ApppVoWS9rZ7mqa9fGsK/IfqKTpVr6sUzv7m17A
+         TPro/fLIdhFRwt1fnyN+NJuOOFErROL37CzCY+UjTml9tTasTTS6zgab2g5K3qIlrepj
+         Ugc+loOnf1DvDeVfSQbyuKHs97XcHfdiGd5BiK3qQKUfJKXHCxdlO1/AMed5z0CCUffd
+         VWUQ==
+X-Gm-Message-State: AOJu0Yz1T//jeYZ64pag/OgnzP78xaxVDvIF6uG287tNOG9U4mWJNDPR
+	sApqMasWykwoFelksBYjFUw=
+X-Google-Smtp-Source: AGHT+IEhpNDojxW+0Ttl1fp4tHVdUq1V52TPsbSHLo5etmkQs5V52RtMAzIj20+8QJ93iT2CGJKy0w==
+X-Received: by 2002:a05:6a20:e11c:b0:187:c662:9b7e with SMTP id kr28-20020a056a20e11c00b00187c6629b7emr4544880pzb.25.1702031712168;
+        Fri, 08 Dec 2023 02:35:12 -0800 (PST)
+Received: from ?IPV6:2401:4900:6277:8af4:45bc:8bc9:c94a:54d2? ([2401:4900:6277:8af4:45bc:8bc9:c94a:54d2])
+        by smtp.gmail.com with ESMTPSA id c10-20020a170902aa4a00b001b86dd825e7sm1351866plr.108.2023.12.08.02.35.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 08 Dec 2023 02:35:11 -0800 (PST)
+Message-ID: <61053bca-6a6c-4eed-90f8-df43f7c804cb@gmail.com>
+Date: Fri, 8 Dec 2023 16:03:03 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231208090936.27769-1-brgl@bgdev.pl>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1] dt-bindings: input: convert gpio-mouse to json-schema
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ linux-input@vger.kernel.org, devicetree@vger.kernel.org
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Linus Walleij
+ <linus.walleij@linaro.org>, linux-kernel@vger.kernel.org,
+ linux-kernel-mentees@lists.linuxfoundation.org
+References: <20231208075037.114598-1-anshulusr@gmail.com>
+ <c8e4d495-1d4e-40cb-b599-5a01f75f9257@linaro.org>
+From: Anshul Dalal <anshulusr@gmail.com>
+In-Reply-To: <c8e4d495-1d4e-40cb-b599-5a01f75f9257@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Dec 08, 2023 at 10:09:33AM +0100, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> 
-> Resending with all maintainers in CC.
-> 
-> Patch 1 is just a typo fix as we're already touching this bindings. The
-> second patch adds more regulator definitions and enforces them for the
-> QCA6390 model. The final patch enables the power sequence for the BT
-> module of QCA6390 in the hci_qca driver.
-> 
 
-Is bluetooth fully functional without handling WLAN specific resources like
-regulators, enable GPIO? When I checked last time, the chip requires both
-Bluetooth and WLAN resources to become fully operational.
 
-- Mani
+On 12/8/23 15:57, Krzysztof Kozlowski wrote:
+> On 08/12/2023 08:50, Anshul Dalal wrote:
+>> Convert device tree binding documentation for GPIO attached mouse to
+>> json-schema.
+>>
+>> Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
+>> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> You cannot have v1 being already reviewed. This is some newer version.
+> 
+>> ---
+> 
+> Missing changelog.
 
-> v1 -> v2:
-> - squashed the two bluetooth patches into one
-> - changed the naming convention for the RFA regulators to follow the
->   existing ones
-> - added dt-bindings patches
-> 
-> Bartosz Golaszewski (3):
->   dt-bindings: net: bluetooth: qualcomm: fix a typo
->   dt-bindings: net: bluetooth: qualcomm: add regulators for QCA6390
->   Bluetooth: qca: run the power-on/off sequence for QCA6390 too
-> 
->  .../net/bluetooth/qualcomm-bluetooth.yaml     | 26 ++++++++++++++++++-
->  drivers/bluetooth/hci_qca.c                   | 14 +++++++++-
->  2 files changed, 38 insertions(+), 2 deletions(-)
-> 
-> -- 
-> 2.40.1
-> 
-> 
+This is a copy of an earlier patch[1]. Since the patch had been sitting
+idle for past 10 days, I reposed it with the Reviewed-by tags added in.
+Please let me know if this is the right way or if there is need for a
+changelog.
 
--- 
-மணிவண்ணன் சதாசிவம்
+[1]:
+https://lore.kernel.org/lkml/20231126103029.851742-1-anshulusr@gmail.com/
+
+Best regards,
+Anshul
 
