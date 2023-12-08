@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-23305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EE1680AADF
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 18:36:49 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12FD380AAEF
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 18:39:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3E5941F210C4
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 17:36:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B89EA1F21318
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 17:39:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1DDC39AEF;
-	Fri,  8 Dec 2023 17:36:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D5203B2BD;
+	Fri,  8 Dec 2023 17:39:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ol0utiDP"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RGgx0OQN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A999185
-	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 09:36:41 -0800 (PST)
-Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-333630e9e43so2370763f8f.2
-        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 09:36:41 -0800 (PST)
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4EF71732
+	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 09:39:33 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-40c0e7b8a9bso30833425e9.3
+        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 09:39:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702057000; x=1702661800; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702057172; x=1702661972; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=vUFlU9ALa3VjzJGjGvHunIsFPhQPbhxWTv5SYKWNBuM=;
-        b=ol0utiDPWpEDbTOoeVvJJubULBy6cO59wxG5mvNxzCH8H7NDqxVzaNiRW6mNdxc4Bb
-         lmwWPBT1FFYMdpwevA2cR3zN/XGBhyPe/QgdcOVkE/7wr8E4M+PyEvXEbT/eEIS/yioO
-         8vvjy6jUmXz6SbfAlBdzxFM6/oTPYWpGTFQkNX0YTv3T6uSVOrlLjkkIwluku8BiprG7
-         jhNgj0pMAFRlHtqvKtVUkeGO/FPC53+h577wIlrviWZekDqUlhZfM7cBdw9aXr8/Q8ig
-         KfY3MlxVZXnyf8CfVoly+mnD958vE0GWMEDkgT30ly25WP60tl3d6BhtiKtEBJpaln2g
-         vFpg==
+        bh=pQDpiidnDaeTVBSUmlM+WmLTIl7ji6MGKGWh3saO5gQ=;
+        b=RGgx0OQNiWeKJSMpzKwDdxKj4yJ+G8j+f+Sgrr9fqp2st3tFs0kWof0t9qHEDKsVjY
+         WLU1odO7XdMpQ9bLI5XNwNR1UUcB10lBpu6IWj/zfklgny2zGMazU+JMQMiuDZ6HAzEd
+         ED6SF5DwIixLzYXwA/rNjD7bIlbJDcgiINKCqu/0ftCOrhW4qKrHARUA+W16Yh1WZJlp
+         HNaiUQ9yIe7k2zoA+eRaiTeG5Ty48wmBvWdIGJSL9jJBmGXSS7fs9nFzvSsBXpTcTDIz
+         OPv9rtZtU4+Dv7wTn9U51Et6GpQsUF79wK6OXeAyaAOEgXgyKt3fwB9JWTStqwOr36mo
+         beKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702057000; x=1702661800;
+        d=1e100.net; s=20230601; t=1702057172; x=1702661972;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vUFlU9ALa3VjzJGjGvHunIsFPhQPbhxWTv5SYKWNBuM=;
-        b=jQlVlSc05uIRjje0gLDB5GGfVClQyNAr1R1fi3DN1BXixUsbIkyy4scsP7Q6CgJI4p
-         WYFmV4kkeeVvid2WfVFnItDhULmYKo/pSbwddUuN85mP9ZWaQq+Rs4QRsgnMhyI7wZ91
-         Sa53oXi2lZvvIFlA5Dl2cvwCf6OZAf3NjwK2r4Cgsrvm8UqERjrhPmibeB4xnzXlMJmA
-         Y/rlDVOYCE9+HFXesTBoTqN9awaWgkDfrLkzDUrozzDQv1J87DtEhLEBthmr6wvAEep0
-         KpmBH28dNrumDIWhmX45taunXxln/jcM/TOCXFs03ofAPmam4q4jZlin/B4qbP/y5+EZ
-         LFnA==
-X-Gm-Message-State: AOJu0YySOKaexRYUd5WlE0dkq6CdftKlK5NX+2LJjlIp+3Z71zkgZDA/
-	Hdv0rj8YIW3ty3pGVcy1+cgdHg==
-X-Google-Smtp-Source: AGHT+IELBucV79IO73VZZ+1seyYagyVICxbwZuiNsqVW/FJyPLR0UFSIQqw9A7EBO4Y1vr31TJ18rg==
-X-Received: by 2002:adf:f652:0:b0:333:2fd2:3bc9 with SMTP id x18-20020adff652000000b003332fd23bc9mr142934wrp.130.1702056999866;
-        Fri, 08 Dec 2023 09:36:39 -0800 (PST)
+        bh=pQDpiidnDaeTVBSUmlM+WmLTIl7ji6MGKGWh3saO5gQ=;
+        b=Eh778GYSJt3bQ1uCu7HZMf9huuZ9OXcsJ++Lqg3Uqh0kZ7qNG+s23wsscigRA+tldr
+         K+EJ4ffRGcJc/tPR76TGMhMMDeUOmB4ENvM0OcsrRpsGaAmqi/FyBt41L8nl7i5x17+e
+         vBmLMGRK9FTZOJWaToOjPy8Mi+Xl6Wrjd5XI63rsM7QNAV01HaUVgOm/cKfEZhvF2X/5
+         040bo2RQdcJLrDVHjuZXXT0FKJhARtxPPvaJnfakU89gg0egB+Ab/h215jFxzPhVv8fo
+         b2BcXrUaQEuVlFkYsDiZDzSHYaprye0i2VQPLUfYORbvSV6F+NjiUSAia5AqyOPNOO+W
+         VKHA==
+X-Gm-Message-State: AOJu0YzWfbk6CVNc6RdymjENPUDYmYqqDhUIzl7AezrtD6nMQ78qAxUP
+	Ralg1DnvdrTgLQvBDlXNJBTtlw==
+X-Google-Smtp-Source: AGHT+IEBNMKo9LTfkbo6EzE6r/kbin7Gr+L84XoJkGoNJRqvWgDVqH/c8N9EZX9l1MotEBw0Wosp9g==
+X-Received: by 2002:a05:600c:c8:b0:40b:5e59:ccaf with SMTP id u8-20020a05600c00c800b0040b5e59ccafmr195571wmm.144.1702057172125;
+        Fri, 08 Dec 2023 09:39:32 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id d9-20020adfa349000000b003334d9c3b1esm2494910wrb.16.2023.12.08.09.36.37
+        by smtp.gmail.com with ESMTPSA id n21-20020a05600c4f9500b0040b36ad5413sm3424034wmq.46.2023.12.08.09.39.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Dec 2023 09:36:39 -0800 (PST)
-Message-ID: <c98c123f-1c07-4cfd-aeaf-ced7fe08cf42@linaro.org>
-Date: Fri, 8 Dec 2023 18:36:36 +0100
+        Fri, 08 Dec 2023 09:39:31 -0800 (PST)
+Message-ID: <62c75eed-ed8d-4d51-b49d-9ed9c53162ed@linaro.org>
+Date: Fri, 8 Dec 2023 18:39:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,19 +62,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/4] clk: sophgo: Add SG2042 clock generator driver
+Subject: Re: [PATCH v2 2/8] dt-bindings: adc: axi-adc: deprecate 'adi,adc-dev'
 Content-Language: en-US
-To: Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu,
- chao.wei@sophgo.com, conor@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- mturquette@baylibre.com, palmer@dabbelt.com, paul.walmsley@sifive.com,
- richardcochran@gmail.com, robh+dt@kernel.org, sboyd@kernel.org,
- devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com, guoren@kernel.org,
- jszhang@kernel.org, inochiama@outlook.com, samuel.holland@sifive.com
-Cc: Chen Wang <unicorn_wang@outlook.com>
-References: <cover.1701938395.git.unicorn_wang@outlook.com>
- <975f9995584dfa8af751e96a1f4d2c7991551a35.1701938395.git.unicorn_wang@outlook.com>
+To: nuno.sa@analog.com, devicetree@vger.kernel.org, linux-iio@vger.kernel.org
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Frank Rowand <frowand.list@gmail.com>, Jonathan Cameron <jic23@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+References: <20231208-dev-iio-backend-v2-0-5450951895e1@analog.com>
+ <20231208-dev-iio-backend-v2-2-5450951895e1@analog.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -120,19 +119,20 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <975f9995584dfa8af751e96a1f4d2c7991551a35.1701938395.git.unicorn_wang@outlook.com>
+In-Reply-To: <20231208-dev-iio-backend-v2-2-5450951895e1@analog.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 07/12/2023 09:58, Chen Wang wrote:
-> From: Chen Wang <unicorn_wang@outlook.com>
+On 08/12/2023 16:14, Nuno Sa via B4 Relay wrote:
+> From: Nuno Sa <nuno.sa@analog.com>
 > 
-> Add a driver for the SOPHGO SG2042 clock generator.
-> 
-> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
+> 'adi,adc-dev' is now deprecated and must not be used anymore. Hence,
+> also remove it from being required.
 
-Your driver still at v5 has so many build issues... please be sure there
-are no new warnings reported.
+Why did it become suddenly deprecated? Unfortunately the commit msg does
+not tell me more, except copying the code...
+
+If this is result of previous patch, then squash it.
 
 Best regards,
 Krzysztof
