@@ -1,72 +1,83 @@
-Return-Path: <devicetree+bounces-22923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22926-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79F70809785
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 01:44:50 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD3EA809872
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 02:13:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 241E41F213DE
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 00:44:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 965D7281FA1
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 01:13:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B73039D;
-	Fri,  8 Dec 2023 00:44:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A6987FA;
+	Fri,  8 Dec 2023 01:13:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gx81vl4m"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NTgI7d2I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68A76171F
-	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 16:44:27 -0800 (PST)
-Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2c9fe0ef02aso14060211fa.0
-        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 16:44:27 -0800 (PST)
+Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 670841708;
+	Thu,  7 Dec 2023 17:13:10 -0800 (PST)
+Received: by mail-ot1-x329.google.com with SMTP id 46e09a7af769-6d9ac148ca3so1028940a34.0;
+        Thu, 07 Dec 2023 17:13:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1701996265; x=1702601065; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Rzx9Bm824S2wRWYFO7S2MdJvHvf/jzSVekqRFumNr7k=;
-        b=gx81vl4mbnjYuvyTzPM8r+NXJe1fKk7JyIs3MJKI9q5TtkIywPCn9CSFOlROaIWGmW
-         yvcGNSXk31876aDx4MPYAsztBbxCwqcNC13twV7TSOALib6LRGeujh8N6BFUghubdXKF
-         LW+SKElddZtB2nmXjau441qSKJ9llyvWdjLTjM4mzNB3tnSS7NuSa2Ay8uq+7k2tYuT4
-         ZvXASk5YTI6DaSMBZbBRH9f/WNxWYK2Vy0gbt96P2/1GePSyZYfuLsSVoYPR4C9TOO/Y
-         RzoyEcQD+p1hOZp9UStVvPq8wLJFTB81LBalJL2+F1f/TOWGblmPy1/TXtAzx0SvmBms
-         Y+NA==
+        d=gmail.com; s=20230601; t=1701997989; x=1702602789; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=O9CqMmARklhu+aWShYkB4W+scqzZcjMk/LYLPQHxTpw=;
+        b=NTgI7d2I3C8uvqfvt2ycDIYukTvSDBOsVUWuo94JUP8wZfDsIGCpi/FiYIr7dPP99p
+         o5iVu+50Jd0nFuZKDZ8PYiZ+iPRhWE0QFV8EMPt4V9jjn2YT4zGL8FQwUz7uKWXdG7l3
+         PlKl8Ia+iV9cApKyyAn/WujprouqJg0KjQ4L0aEcA0OiW92NrHHq7Fi1GJi5r4XvbDO3
+         +GLcGOfmQSPb/NO3gBWF3TJjBhRfzD9OUFYTNLrLJOixxXQtCusNauR4ELN6RP6/JsKd
+         LJkC/JH+rDNvHyT9pr3lPN4szmts9Uv1Vt9pNkziED7bi1ljT07x/ZhC7VmGyJm47zX+
+         IDkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701996266; x=1702601066;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Rzx9Bm824S2wRWYFO7S2MdJvHvf/jzSVekqRFumNr7k=;
-        b=SPjcJO2jXW4mQlyNYr9RfV6c6+2Xo+ftUzThPgILb1mGhm4/gvPUz2p9yepyEIibhl
-         HBqDgDSi58M4wme2UOeuYvXCEwV8MqhFSOEf+GvAMoACzIYXHC9NOvNO2GVLcsANneR7
-         sbX6MScQArN6QmBTEwU73gnAmeh9LfRJoIQKqSqV9KyERB5TJ5imhLi1ruiH2z8WfaVE
-         mNAKENo3aesCDxNtx5jC0mCnC1kJbnpOsAXZNKFIU4ztOU6jvbsotGZIJjvh03lnUTyF
-         9RqK9QZoOxLYwMQdGS2UvSbMTXopfMeY7LIvqmkln8SLoID2vSR2xjIb5y7hDr0r3JUC
-         m59A==
-X-Gm-Message-State: AOJu0Yz883+kIiaYaJK/KfF9MzSfGrb3AKXSzYEdPn1+ZbgYBIc3feRh
-	8dNROtNYdoCGGWpOEtgItgFXiA==
-X-Google-Smtp-Source: AGHT+IEkooQEzU6pVeFzojl2VJJrOAtyIQajir1ICI20uMrx+iVRPimyAZGrVwQtJd87ZGXaQb4sWg==
-X-Received: by 2002:a2e:3512:0:b0:2c9:f803:7c05 with SMTP id z18-20020a2e3512000000b002c9f8037c05mr35588ljz.1.1701996265804;
-        Thu, 07 Dec 2023 16:44:25 -0800 (PST)
-Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id d1-20020a2eb041000000b002c9f2c7cdecsm82645ljl.22.2023.12.07.16.44.25
+        d=1e100.net; s=20230601; t=1701997989; x=1702602789;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=O9CqMmARklhu+aWShYkB4W+scqzZcjMk/LYLPQHxTpw=;
+        b=UI9OgkM2RjaFxnb8Kzx+Z3d219MWcE8ofw1ZW3O13LhhU4zdwPInXOj/6imjkcsqrq
+         SWZQBEXykK2ufn1/55GEAHCVPjfdv/F1v0dPme0jfUEeDnUnAXYE9AvqqI9PPnWh8FrX
+         DzSHlxUHCHIjc3NVKGPrmWJ1LalL0D4mBfvgHAlwxijviTt9HoRjQ4Z44byF8a5ENEVx
+         D/cBCyU3seOo5nKHkF1z6+dldiYyYg06CciYFTVXk7+kQvSVPJuoSUvI6YJn+7GWQfn6
+         Mq1vwr9p7si++TNT1TQ8bJKX0taBtP0Mg4pwDr2vk0Kq5z5ol7QwfIXgwP38iuXH8Ij/
+         N4kA==
+X-Gm-Message-State: AOJu0YwHq2kFgwBRSbm1jWw/qqwsKGbHKuza2/M/ovjMrJbJqdWgwLNh
+	HXp3GtFzuL6FbJicWpU3EmY=
+X-Google-Smtp-Source: AGHT+IHj76UivPYn5LBdsNNyN1HlcikxOqd5/9AFXqCLTbYyAnf/YPa+czn5QHTd0NUlupNDAZmDYg==
+X-Received: by 2002:a05:6870:b68b:b0:1fb:3700:ee1b with SMTP id cy11-20020a056870b68b00b001fb3700ee1bmr3537230oab.47.1701997989445;
+        Thu, 07 Dec 2023 17:13:09 -0800 (PST)
+Received: from localhost.localdomain ([122.8.183.87])
+        by smtp.gmail.com with ESMTPSA id pq15-20020a0568709c8f00b001fa24002089sm206570oab.30.2023.12.07.17.13.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Dec 2023 16:44:25 -0800 (PST)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v6 11/11] ARM: dts: qcom: ipq8064: drop 'regulator' property from SAW2 devices
-Date: Fri,  8 Dec 2023 03:44:17 +0300
-Message-Id: <20231208004417.3393299-12-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231208004417.3393299-1-dmitry.baryshkov@linaro.org>
-References: <20231208004417.3393299-1-dmitry.baryshkov@linaro.org>
+        Thu, 07 Dec 2023 17:13:09 -0800 (PST)
+From: Chen Wang <unicornxw@gmail.com>
+To: aou@eecs.berkeley.edu,
+	chao.wei@sophgo.com,
+	conor@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	mturquette@baylibre.com,
+	palmer@dabbelt.com,
+	paul.walmsley@sifive.com,
+	richardcochran@gmail.com,
+	robh+dt@kernel.org,
+	sboyd@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	haijiao.liu@sophgo.com,
+	xiaoguang.xing@sophgo.com,
+	guoren@kernel.org,
+	jszhang@kernel.org,
+	inochiama@outlook.com,
+	samuel.holland@sifive.com
+Cc: Chen Wang <unicorn_wang@outlook.com>
+Subject: [PATCH v6 0/4] riscv: sophgo: add clock support for sg2042
+Date: Fri,  8 Dec 2023 09:13:00 +0800
+Message-Id: <cover.1701997033.git.unicorn_wang@outlook.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,40 +86,100 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The SAW2 device should describe the regulator constraints rather than
-just declaring that it has the regulator.
+From: Chen Wang <unicorn_wang@outlook.com>
 
-Drop the 'regulator' property. If/when CPU voltage scaling is
-implemented for this platform, proper regulator nodes show be added
-instead.
+This series adds clock controller support for sophgo sg2042.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Thanks,
+Chen
+
 ---
- arch/arm/boot/dts/qcom/qcom-ipq8064.dtsi | 2 --
- 1 file changed, 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/qcom/qcom-ipq8064.dtsi b/arch/arm/boot/dts/qcom/qcom-ipq8064.dtsi
-index c3677440b786..191d1cb27cb7 100644
---- a/arch/arm/boot/dts/qcom/qcom-ipq8064.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-ipq8064.dtsi
-@@ -589,7 +589,6 @@ acc0: clock-controller@2088000 {
- 		saw0: regulator@2089000 {
- 			compatible = "qcom,saw2";
- 			reg = <0x02089000 0x1000>, <0x02009000 0x1000>;
--			regulator;
- 		};
- 
- 		acc1: clock-controller@2098000 {
-@@ -604,7 +603,6 @@ acc1: clock-controller@2098000 {
- 		saw1: regulator@2099000 {
- 			compatible = "qcom,saw2";
- 			reg = <0x02099000 0x1000>, <0x02009000 0x1000>;
--			regulator;
- 		};
- 
- 		nss_common: syscon@3000000 {
+Changes in v6:
+  The patch series is based on v6.7-rc1. You can simply review or test the
+  patches at the link [7].
+  - fixed some warnings/errors reported by kernel test robot <lkp@intel.com>.
+
+Changes in v5:
+  The patch series is based on v6.7-rc1. You can simply review or test the
+  patches at the link [6].
+  - dt-bindings: improved yaml, such as:
+    - add vendor prefix for system-ctrl property for clock generator.
+    - Add explanation for system-ctrl property.
+  - move sophgo,sg2042-clkgen.yaml to directly under clock folder.
+  - fixed bugs for driver Makefile/Kconfig
+  - continue cleaning-up debug print for driver code.
+
+Changes in v4:
+  The patch series is based on v6.7-rc1. You can simply review or test the
+  patches at the link [5].
+  - dt-bindings: fixed a dt_binding_check error.
+
+Changes in v3:
+  The patch series is based on v6.7-rc1. You can simply review or test the
+  patches at the link [3].
+  - DTS: don't use syscon but define sg2042 specific system control node. More
+    background info can read [4].
+  - Updating minor issues in dt-bindings as per input from reviews.
+
+Changes in v2:
+  The patch series is based on v6.7-rc1. You can simply review or test the
+  patches at the link [2].
+  - Squashed the patch adding clock definitions with the patch adding the
+    binding for the clock controller.
+  - Updating dt-binding for syscon, remove oneOf for property compatible;
+    define clock controller as child of syscon.
+  - DTS changes: merge sg2042-clock.dtsi into sg2042.dtsi; move clock-frequency
+    property of osc to board devicethree due to the oscillator is outside the
+    SoC.
+  - Fixed some bugs in driver code during testing, including removing warnings
+    for rv32_defconfig.
+  - Updated MAINTAINERS info.
+
+Changes in v1:
+  The patch series is based on v6.7-rc1. You can simply review or test the
+  patches at the link [1].
+
+Link: https://github.com/unicornx/linux-riscv/commits/upstream-sg2042-clock-v1 [1]
+Link: https://github.com/unicornx/linux-riscv/commits/upstream-sg2042-clock-v2 [2]
+Link: https://github.com/unicornx/linux-riscv/commits/upstream-sg2042-clock-v3 [3]
+Link: https://lore.kernel.org/linux-riscv/MA0P287MB03329AE180378E1A2E034374FE82A@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM/ [4]
+Link: https://github.com/unicornx/linux-riscv/commits/upstream-sg2042-clock-v4 [5]
+Link: https://github.com/unicornx/linux-riscv/commits/upstream-sg2042-clock-v5 [6]
+Link: https://github.com/unicornx/linux-riscv/commits/upstream-sg2042-clock-v6 [7]
+
+---
+
+Chen Wang (4):
+  dt-bindings: soc: sophgo: Add Sophgo system control module
+  dt-bindings: clock: sophgo: support SG2042
+  clk: sophgo: Add SG2042 clock generator driver
+  riscv: dts: add clock generator for Sophgo SG2042 SoC
+
+ .../bindings/clock/sophgo,sg2042-clkgen.yaml  |   53 +
+ .../soc/sophgo/sophgo,sg2042-sysctrl.yaml     |   34 +
+ MAINTAINERS                                   |    7 +
+ .../boot/dts/sophgo/sg2042-milkv-pioneer.dts  |    4 +
+ arch/riscv/boot/dts/sophgo/sg2042.dtsi        |   79 +
+ drivers/clk/Kconfig                           |    1 +
+ drivers/clk/Makefile                          |    1 +
+ drivers/clk/sophgo/Kconfig                    |    8 +
+ drivers/clk/sophgo/Makefile                   |    2 +
+ drivers/clk/sophgo/clk-sophgo-sg2042.c        | 1356 +++++++++++++++++
+ drivers/clk/sophgo/clk-sophgo-sg2042.h        |  226 +++
+ .../dt-bindings/clock/sophgo,sg2042-clkgen.h  |  169 ++
+ 12 files changed, 1940 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/sophgo,sg2042-clkgen.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/sophgo/sophgo,sg2042-sysctrl.yaml
+ create mode 100644 drivers/clk/sophgo/Kconfig
+ create mode 100644 drivers/clk/sophgo/Makefile
+ create mode 100644 drivers/clk/sophgo/clk-sophgo-sg2042.c
+ create mode 100644 drivers/clk/sophgo/clk-sophgo-sg2042.h
+ create mode 100644 include/dt-bindings/clock/sophgo,sg2042-clkgen.h
+
+
+base-commit: b85ea95d086471afb4ad062012a4d73cd328fa86
 -- 
-2.39.2
+2.25.1
 
 
