@@ -1,99 +1,210 @@
-Return-Path: <devicetree+bounces-23209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23211-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A058E80A76B
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 16:30:10 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CD1180A770
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 16:30:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4097CB20A78
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 15:30:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 54AE4B203AE
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 15:30:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B44CC30667;
-	Fri,  8 Dec 2023 15:30:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6251230CEE;
+	Fri,  8 Dec 2023 15:30:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R13ny3bt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2904010EB;
-	Fri,  8 Dec 2023 07:30:00 -0800 (PST)
-Received: by mail-ot1-f47.google.com with SMTP id 46e09a7af769-6d9e0f0cba9so958093a34.1;
-        Fri, 08 Dec 2023 07:30:00 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702049399; x=1702654199;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=OogF34khlLnZV8L6Y2PLhfIGtr27dXzcAj4zxw0jNhs=;
-        b=voSFnySl8NRDaAmVPK25KHXxPJCHxtmTAwWzdQY1VeHCHJ4J0IqtZ+LGzMo16N3YBC
-         eyJHpEhzeUhgnWHMc9jjkdk7OUAAfk2ENJP2+Jp/s2p3zVi3B6l39QY7X9TdugyPAtb7
-         +CbYitHj5z9UiKbR5CR7qu6roElD/AAe2hbUCXhXFULIMF0Hs4IxWREFqV3QQfiPerPz
-         PiNWDJkok/t0chXq0kmaexMlgBNGoh4YpYBloE/a3Y6fzZi4pgUjWi9tf+bf3DwSuNqd
-         7/QOoCDBKKxiPmtuMADEQsxHw3FgeT+M8oxSahxbNq0ZYCbSbxUHLLgnMe+GrCxGjjxA
-         BQuQ==
-X-Gm-Message-State: AOJu0Yzl1ixjdpGz7e7mZ4MrPa+lKbHno0MIvL/Mo/+Eg9RPMxOOjSfi
-	kkAMmEnhesZnsVspmJbK80xqIYJJCQ==
-X-Google-Smtp-Source: AGHT+IHlU+zhymvBCO7GYBa4opGg5l2gkBYu9nFQXgSbEwJrxGRifoqiHIMty7njHi2XOSBmfTVfEg==
-X-Received: by 2002:a9d:7359:0:b0:6d9:f27c:f540 with SMTP id l25-20020a9d7359000000b006d9f27cf540mr195407otk.63.1702049399339;
-        Fri, 08 Dec 2023 07:29:59 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id o8-20020a9d6d08000000b006d8017dcda9sm325779otp.75.2023.12.08.07.29.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Dec 2023 07:29:58 -0800 (PST)
-Received: (nullmailer pid 1382035 invoked by uid 1000);
-	Fri, 08 Dec 2023 15:29:57 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4288130337;
+	Fri,  8 Dec 2023 15:30:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7409DC433C8;
+	Fri,  8 Dec 2023 15:30:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702049422;
+	bh=RxJt1IRw23UP09MyvDYjKFY8QGbl8CX8IEuwGzGDpgA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=R13ny3btIbS4w0W3novK6XpflowpC1xFiBtWnPtqpUiq1nuPzfTgc9m11amAp63Sx
+	 4jBPZRV2bvycN2CnwcswRVeRoFHk69GyEfJ86HnjqBNVmO6o5Gh4l2CI4xkX7bHL75
+	 /aYuX0NIaZQR1tHtKZ7r3b/WCiWsjgUY0JoayDHYLSEE9A4BF93d3jv0wMsEJGBmPf
+	 QMgdOu2FDSl9qlwZeDtFQGcV07RSH7tXBdh1KLrInT6bq5t8xyMcSv0fwtrvXtsXRY
+	 T2/RxCFooy1qkuds85M1PCsUQ3b27vzg+08G9urJD7lKSSIXVBXW1SwZR+5PGOFrdI
+	 AkM/2hKkTygBg==
+Date: Fri, 8 Dec 2023 15:30:17 +0000
+From: Conor Dooley <conor@kernel.org>
+To: nuno.sa@analog.com
+Cc: devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Frank Rowand <frowand.list@gmail.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Olivier Moysan <olivier.moysan@foss.st.com>
+Subject: Re: [PATCH v2 0/8] iio: add new backend framework
+Message-ID: <20231208-corridor-outfit-ae0314b29186@spud>
+References: <20231208-dev-iio-backend-v2-0-5450951895e1@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Julien Massot <julien.massot@collabora.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, kernel@collabora.com
-In-Reply-To: <20231208143359.469049-2-julien.massot@collabora.com>
-References: <20231208143359.469049-1-julien.massot@collabora.com>
- <20231208143359.469049-2-julien.massot@collabora.com>
-Message-Id: <170204939708.1381969.6269812995556290381.robh@kernel.org>
-Subject: Re: [PATCH v2 1/4] dt-bindings: media: add Maxim MAX96714F GMSL2
- Deserializer
-Date: Fri, 08 Dec 2023 09:29:57 -0600
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="eoSVKmAJ/NfelqU5"
+Content-Disposition: inline
+In-Reply-To: <20231208-dev-iio-backend-v2-0-5450951895e1@analog.com>
 
 
-On Fri, 08 Dec 2023 15:33:56 +0100, Julien Massot wrote:
-> Add DT bindings for Maxim MAX96714F GMSL2 Deserializer.
-> 
-> Signed-off-by: Julien Massot <julien.massot@collabora.com>
+--eoSVKmAJ/NfelqU5
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Fri, Dec 08, 2023 at 04:14:07PM +0100, Nuno Sa via B4 Relay wrote:
+> This series depends on [1] and it only build on top of it. The point is
+> to already speed up the reviewing of the framework. That obviously means
+> that all those pacthes were dropped in v2.
+>=20
+> v1:
+>  https://lore.kernel.org/linux-iio/20231204144925.4fe9922f@jic23-huawei/T=
+/#m222f5175273b81dbfe40b7f0daffcdc67d6cb8ff
+>=20
+> Changes in v2:
+>  - Patch 1-2 and 5
+>    * new patches.
+>  - Patch 6:
+>    * Fixed some docs failures;
+>    * Fixed a legacy 'conv' name in one of the function parameters;
+>    * Added .request_buffer() and .free_buffer() ops;
+>    * Refactored the helper macros;
+>    * Added Olivier as Reviewer.
+>  - Patch 7:
+>    * Use new devm_iio_backend_request_buffer().
+>  - Patch 8:
+>    * Implement new .request_buffer() and .free_buffer() ops;
+>=20
+> Also would like to mention that in v2 I'm experimenting in having the
+> DMA on the backend device (as discussed with David in v1). Does not look
+> to bad but as I said before, I'm not seeing a big issue if we end up
+> having the buffer allocation in the frontend.
+>=20
+> For the bindings folks:
+>=20
+> I'm introducing a new io-backends property in the ad9467 bindings but I'm
+> not sure this is the way to do it. Ideally that new property become a
+> generic schema and I'm guessing I should send a PULL to?
+>=20
+> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/ii=
+o/iio-consumer.yaml
+
+That seems like the right thing to do to me, depending on how widespread
+the use of these backends might be. What is seemingly missing though,
+=66rom this cover and from the bindings patch in the series in particular,
+is an explanation of what the "iio-backends" hardware actually is.
+
+There is some text below, but it does not seem complete to me. Is the
+idea that this "backend" is shared between multiple frontend consumers?
+The one example is described as being "highly focused on ADI usecases"
+
+Thanks,
+Conor.
+
+>=20
+> (Jonathan, if you think that's not the right place, shout now :))
+>=20
+> I'm also deprecating 'adi,adc-dev' as it is not relevant anymore. In the
+> driver code, we are actually breaking ABI but I'm taking a more
+> conservative approach in the bindings. Ideally I would also remove it in
+> the bindings :).
+> =20
+>=20
+> As requested here we have a small diagram that illustrated on e typical
+> usage of the new framework:
+>=20
+>                                            ------------------------------=
+-------------------------
+>  ------------------                        | -----------         --------=
+----      -------  FPGA |
+>  |     ADC        |------------------------| | AXI ADC |---------| DMA CO=
+RE |------| RAM |       |
+>  | (Frontend/IIO) | Serial Data (eg: LVDS) | |(backend)|---------|       =
+   |------|     |       |
+>  |                |------------------------| -----------         --------=
+----      -------       |
+>  ------------------                        ------------------------------=
+-------------------------
+> =20
+> The above is highly focused on ADI usecases. But one can see the idea...
+> The frontend is the real converter and is the one registering and
+> handling all the IIO interfaces. Such a device can then connect to a
+> backend device for further services/configurations. In the above
+> example, the backend device is an high speed core capable of handling
+> the high sample rate of these ADCs so that it can push that data further
+> in the pipeline (typically a DMA core) so the user can process the
+> samples with minimal losses.
+>=20
+> Jonathan, I was also tempted in including the diagram in the source
+> file. Would that be a good idea?
+>=20
+> [1]: https://lore.kernel.org/linux-iio/20231207-iio-backend-prep-v2-0-a4a=
+33bc4d70e@analog.com
+>=20
 > ---
->  .../bindings/media/i2c/maxim,max96714f.yaml   | 163 ++++++++++++++++++
->  1 file changed, 163 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/maxim,max96714f.yaml
-> 
+> Nuno Sa (7):
+>       dt-bindings: adc: ad9467: document io-backend property
+>       dt-bindings: adc: axi-adc: deprecate 'adi,adc-dev'
+>       driver: core: allow modifying device_links flags
+>       iio: buffer-dmaengine: export buffer alloc and free functions
+>       iio: add the IIO backend framework
+>       iio: adc: ad9467: convert to backend framework
+>       iio: adc: adi-axi-adc: move to backend framework
+>=20
+> Olivier Moysan (1):
+>       of: property: add device link support for io-backends
+>=20
+>  .../devicetree/bindings/iio/adc/adi,ad9467.yaml    |   5 +
+>  .../devicetree/bindings/iio/adc/adi,axi-adc.yaml   |   4 +-
+>  MAINTAINERS                                        |   8 +
+>  drivers/base/core.c                                |  14 +-
+>  drivers/iio/Kconfig                                |   5 +
+>  drivers/iio/Makefile                               |   1 +
+>  drivers/iio/adc/Kconfig                            |   3 +-
+>  drivers/iio/adc/ad9467.c                           | 242 +++++++------
+>  drivers/iio/adc/adi-axi-adc.c                      | 379 +++++----------=
+-----
+>  drivers/iio/buffer/industrialio-buffer-dmaengine.c |   6 +-
+>  drivers/iio/industrialio-backend.c                 | 386 +++++++++++++++=
+++++++
+>  drivers/of/property.c                              |   2 +
+>  include/linux/iio/adc/adi-axi-adc.h                |  68 ----
+>  include/linux/iio/backend.h                        |  68 ++++
+>  include/linux/iio/buffer-dmaengine.h               |   4 +-
+>  15 files changed, 727 insertions(+), 468 deletions(-)
+> ---
+> base-commit: 330c0f834ccbdbe6a89da475cb1c56893f3a8363
+> change-id: 20231120-dev-iio-backend-d14b473a1d9f
+> --
+>=20
+> Thanks!
+> - Nuno S=E1
+>=20
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+--eoSVKmAJ/NfelqU5
+Content-Type: application/pgp-signature; name="signature.asc"
 
-yamllint warnings/errors:
+-----BEGIN PGP SIGNATURE-----
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/media/i2c/maxim,max96714f.example.dtb: /example-0/main_i2c2/gmsl-deserializer@28/i2c-gate/gmsl-serializer@40: failed to match any schema with compatible: ['maxim,max96717f']
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZXM2iQAKCRB4tDGHoIJi
+0lgFAP9hVMM+0foMZ39lHZxREYl1j4NJ9VRydAwMC8Q1ls3g1wD9EqYOPQMRXMRx
+vlwyvuGpRHLVuQWvttO+WGitIDvAsQI=
+=kq3S
+-----END PGP SIGNATURE-----
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231208143359.469049-2-julien.massot@collabora.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+--eoSVKmAJ/NfelqU5--
 
