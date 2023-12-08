@@ -1,130 +1,117 @@
-Return-Path: <devicetree+bounces-23269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23271-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FFEE80A98E
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 17:45:42 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D012A80A99B
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 17:47:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 20FBEB20B2E
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 16:45:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 867671F211D2
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 16:47:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ED641C6BD;
-	Fri,  8 Dec 2023 16:45:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0B4E36B14;
+	Fri,  8 Dec 2023 16:47:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="w429hnML"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx01.omp.ru (mx01.omp.ru [90.154.21.10])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C09F2198E;
-	Fri,  8 Dec 2023 08:45:32 -0800 (PST)
-Received: from [192.168.1.104] (178.176.72.145) by msexch01.omp.ru
- (10.188.4.12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.1258.12; Fri, 8 Dec
- 2023 19:45:21 +0300
-Subject: Re: [PATCH v4 13/22] MIPS: traps: Give more explanations if ebase
- doesn't belong to KSEG0
-To: Gregory CLEMENT <gregory.clement@bootlin.com>, Paul Burton
-	<paulburton@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	<linux-mips@vger.kernel.org>, Jiaxun Yang <jiaxun.yang@flygoat.com>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-CC: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, Tawfik Bayouk
-	<tawfik.bayouk@mobileye.com>, Alexandre Belloni
-	<alexandre.belloni@bootlin.com>, =?UTF-8?Q?Th=c3=a9o_Lebrun?=
-	<theo.lebrun@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20231208161249.1827174-1-gregory.clement@bootlin.com>
- <20231208161249.1827174-14-gregory.clement@bootlin.com>
-From: Sergey Shtylyov <s.shtylyov@omp.ru>
-Organization: Open Mobile Platform
-Message-ID: <dc3f201b-308c-a2b9-d64c-530fd32f6b9d@omp.ru>
-Date: Fri, 8 Dec 2023 19:45:20 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 439C9198D;
+	Fri,  8 Dec 2023 08:47:47 -0800 (PST)
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3B8GfGOd008039;
+	Fri, 8 Dec 2023 17:47:31 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=selector1; bh=x2MSP5Q
+	i75jzKXhvK1uOkEyWudp+uieZW3Apd56nqak=; b=w429hnML1chz9C80cpFndXU
+	uK5kPvFd38w33BWt4lNUurLCwMnhhIiFXRYZEpmFixmVFGalkJzS8F3Y0W6B212+
+	WmIJPfp7vHd77rzfJSdZQz5tiI7wIkNcbZ7h3LJ7+lx1F4ABuq/FS3ddkDvZzjCy
+	vp1GVoHrogxFZmtYE0CVUb6m5J0MrWebASRCq70c3Odr1y4bywBS92OOZX7kdv0A
+	uZCYb8tj27yAI5f0Pkj9FfyVXCByeA+2uUwhr+ocfK7ANJkl7rYtSdxz8N8UIWi2
+	gc4aoWupDDwAhgWIinkHB5t0dSuMubWTyE8+P2Gj64E5pZWvLeTThSkukEQwMAA=
+	=
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3utd2pnf0c-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 08 Dec 2023 17:47:31 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 5AC64100056;
+	Fri,  8 Dec 2023 17:47:30 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 53A2623692D;
+	Fri,  8 Dec 2023 17:47:30 +0100 (CET)
+Received: from localhost (10.129.178.213) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 8 Dec
+ 2023 17:47:30 +0100
+From: Alain Volmat <alain.volmat@foss.st.com>
+To: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre
+ Torgue <alexandre.torgue@foss.st.com>,
+        Pierre-Yves MORDRET
+	<pierre-yves.mordret@foss.st.com>,
+        Alain Volmat <alain.volmat@foss.st.com>
+CC: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
+        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 0/7] i2c: stm32f7: enhancements and support for stm32mp25
+Date: Fri, 8 Dec 2023 17:47:09 +0100
+Message-ID: <20231208164719.3584028-1-alain.volmat@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20231208161249.1827174-14-gregory.clement@bootlin.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: msexch01.omp.ru (10.188.4.12) To msexch01.omp.ru
- (10.188.4.12)
-X-KSE-ServerInfo: msexch01.omp.ru, 9
-X-KSE-AntiSpam-Interceptor-Info: scan successful
-X-KSE-AntiSpam-Version: 6.0.0, Database issued on: 12/08/2023 16:36:06
-X-KSE-AntiSpam-Status: KAS_STATUS_NOT_DETECTED
-X-KSE-AntiSpam-Method: none
-X-KSE-AntiSpam-Rate: 59
-X-KSE-AntiSpam-Info: Lua profiles 181987 [Dec 08 2023]
-X-KSE-AntiSpam-Info: Version: 6.0.0.2
-X-KSE-AntiSpam-Info: Envelope from: s.shtylyov@omp.ru
-X-KSE-AntiSpam-Info: LuaCore: 6 0.3.6 62f5a4619c57459c9a142aa1486ed27913162963
-X-KSE-AntiSpam-Info: {rep_avail}
-X-KSE-AntiSpam-Info: {Tracking_from_domain_doesnt_match_to}
-X-KSE-AntiSpam-Info: {relay has no DNS name}
-X-KSE-AntiSpam-Info: {SMTP from is not routable}
-X-KSE-AntiSpam-Info: {Found in DNSBL: 178.176.72.145 in (user)
- b.barracudacentral.org}
-X-KSE-AntiSpam-Info: {Found in DNSBL: 178.176.72.145 in (user)
- dbl.spamhaus.org}
-X-KSE-AntiSpam-Info:
-	d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;omp.ru:7.1.1;127.0.0.199:7.1.2
-X-KSE-AntiSpam-Info: ApMailHostAddress: 178.176.72.145
-X-KSE-AntiSpam-Info: {DNS response errors}
-X-KSE-AntiSpam-Info: Rate: 59
-X-KSE-AntiSpam-Info: Status: not_detected
-X-KSE-AntiSpam-Info: Method: none
-X-KSE-AntiSpam-Info: Auth:dmarc=temperror header.from=omp.ru;spf=temperror
- smtp.mailfrom=omp.ru;dkim=none
-X-KSE-Antiphishing-Info: Clean
-X-KSE-Antiphishing-ScanningType: Heuristic
-X-KSE-Antiphishing-Method: None
-X-KSE-Antiphishing-Bases: 12/08/2023 16:40:00
-X-KSE-Antivirus-Interceptor-Info: scan successful
-X-KSE-Antivirus-Info: Clean, bases: 12/8/2023 1:21:00 PM
-X-KSE-Attachment-Filter-Triggered-Rules: Clean
-X-KSE-Attachment-Filter-Triggered-Filters: Clean
-X-KSE-BulkMessagesFiltering-Scan-Result: InTheLimit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-08_11,2023-12-07_01,2023-05-22_02
 
-On 12/8/23 7:12 PM, Gregory CLEMENT wrote:
+This series first perform enhancements in the way interrupt are handled
+and cleanup in messages.
+Then it adds support for the stm32mp25 which differs in that
+it only has a single irq line for both event/error and has a
+different handling of the FastModePlus.
+Support is then enabled within the stm32mp25 related device-trees.
 
-> Now that we support having the kernel in XPHYS and not only in KSEG0,
-> the case where ebase doesn't belong to KSEG0 is more likely to
-> occur. However, in this scenariowe encounter a significant and
+Changelog:
+v2: - correct st,stm32-i2c.yaml.  Use if then else scheme to indicate
+      number of interrupts / interrupt-names depending on the
+      compatible while keeping the description within the common part
 
-   Scenario we? :-)
+    - correct 2 maybe-uninitialized warnings
+          * ret in stm32f7_i2c_write_fm_plus_bits
+          * irq_error in stm32f7_i2c_probe, move the platform_get_irq
+            within the same if block as devm_request_threaded_irq
 
-> intimidating stack dump without any explanation. To address this, we
-> should eliminate the uninformative stack dump and replace it with a
-> warning that provides a clear explanation of the issue.
-> 
-> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
-> ---
->  arch/mips/kernel/traps.c | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/mips/kernel/traps.c b/arch/mips/kernel/traps.c
-> index 68f1dd54cde1c..ec0cebfd2ef7b 100644
-> --- a/arch/mips/kernel/traps.c
-> +++ b/arch/mips/kernel/traps.c
-> @@ -2420,10 +2420,13 @@ void __init trap_init(void)
->  		 * EVA is special though as it allows segments to be rearranged
->  		 * and to become uncached during cache error handling.
->  		 */
-> -		if (!IS_ENABLED(CONFIG_EVA) && !WARN_ON(ebase_pa >= 0x20000000))
-> +		if (!IS_ENABLED(CONFIG_EVA) && ebase_pa < 0x20000000)
->  			ebase = CKSEG0ADDR(ebase_pa);
->  		else
->  			ebase = (unsigned long)phys_to_virt(ebase_pa);
-> +		if (ebase_pa >= 0x20000000)
-> +			pr_warn("ebase(%pa) should better be in KSeg0",
+Alain Volmat (7):
+  i2c: stm32f7: perform most of irq job in threaded handler
+  i2c: stm32f7: simplify status messages in case of errors
+  dt-bindings: i2c: document st,stm32mp25-i2c compatible
+  i2c: stm32f7: add support for stm32mp25 soc
+  arm64: dts: st: add all 8 i2c nodes on stm32mp251
+  arm64: dts: st: add i2c2/i2c8 pins for stm32mp25
+  arm64: dts: st: add i2c2 / i2c8 properties on stm32mp257f-ev1
 
-   I think it's called KSEG0...
+ .../devicetree/bindings/i2c/st,stm32-i2c.yaml |  28 ++
+ arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi |  36 ++
+ arch/arm64/boot/dts/st/stm32mp251.dtsi        |  96 +++++
+ arch/arm64/boot/dts/st/stm32mp257f-ev1.dts    |  20 ++
+ drivers/i2c/busses/i2c-stm32f7.c              | 334 ++++++++++--------
+ 5 files changed, 357 insertions(+), 157 deletions(-)
 
-[...]
+-- 
+2.25.1
 
-MBR, Sergey
 
