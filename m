@@ -1,121 +1,90 @@
-Return-Path: <devicetree+bounces-23111-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23112-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F225980A48B
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 14:40:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD68880A4AA
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 14:46:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9F28B1F2116E
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 13:40:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7433F1F21431
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 13:46:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 507C61D537;
-	Fri,  8 Dec 2023 13:40:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E95951D552;
+	Fri,  8 Dec 2023 13:45:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="hwp9A3Wr"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="HHxhVN/m"
 X-Original-To: devicetree@vger.kernel.org
 Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48B021706;
-	Fri,  8 Dec 2023 05:40:06 -0800 (PST)
-Received: from localhost.localdomain (zone.collabora.co.uk [167.235.23.81])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F604172B;
+	Fri,  8 Dec 2023 05:45:57 -0800 (PST)
+Received: from notapiano (zone.collabora.co.uk [167.235.23.81])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: nfraprado)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id 0B32A66073AA;
-	Fri,  8 Dec 2023 13:40:01 +0000 (GMT)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 5598D66073AA;
+	Fri,  8 Dec 2023 13:45:52 +0000 (GMT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1702042805;
-	bh=XyWarEWJXpA/T9XhTV+onEShyeWe+9A2yodWAKUFUJI=;
-	h=From:To:Cc:Subject:Date:From;
-	b=hwp9A3WrBnaVFqsUWe+3crnvYWmhKfcMaI94XY4ocrQvK2T0rc8PLVSHNO2jl6QRk
-	 OBiYSCn1CFviR5Nie9vd4o1l1dL8pYZJuPm+qGCAiTVEZT4eRGme+t17/y5YOHq+9l
-	 GLgYDgqP8UgabULhins15CaD/wIgQTRPG5gIN3tP3MMjGjsG22Znbo5IaiNfn0jwQK
-	 eDj0q8BpRMNsaYhpaEBjQdF/NlR9c4zEXzqfrr5vpd+XlHRrjVPDZbJhtYRoMG19SO
-	 YPvJlFcz3bBSD8LhFtMiCZ0+k5JAXaNsmC4D3ghKEWpmbkkRaFoHEzV/6gq+R19xYM
-	 Si0G8GPrtgBkg==
-From: =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= <nfraprado@collabora.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	Shuah Khan <shuah@kernel.org>
-Cc: Mark Brown <broonie@kernel.org>,
-	kernel@collabora.com,
-	=?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= <nfraprado@collabora.com>,
-	Frank Rowand <frowand.list@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-kselftest@vger.kernel.org
-Subject: [PATCH] kselftest: dt: Stop relying on dirname to improve performance
-Date: Fri,  8 Dec 2023 10:39:27 -0300
-Message-ID: <20231208133955.483851-1-nfraprado@collabora.com>
-X-Mailer: git-send-email 2.43.0
+	s=mail; t=1702043156;
+	bh=twSl3vT3zaZOdj4/451frioqLeLg5HRJipbHbe5yGRU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HHxhVN/miACQglCgDJJ8KpCp4r5TuOFV3zlVxcj+i76dTjmr+mUknqzmiXJN46EMo
+	 qos6VZNCBpn1Xrbsulcn5g+07kXLOEw5xckSHHnWsRtuOE/LXvcD3rf29xPswdqhMV
+	 Fmjz7jmp2jqiRMhXfgP4H0/kQ4hxkfDkd+xfpyinLZTNage0D1EnsihwWGv8AHsUJq
+	 aHh1R+XXURD+wKT8PEQIT2G+JxNEoqN27hzVwpC271BwLQxTv8lmJY+MHCdvBU5yhM
+	 HjvRfSDGkrDxHL555YvFqxEswB/WEF76NqWJUvySMXqNQ9+zyqgZLJIxzn72ygSjG+
+	 vmT81RHMKJxgw==
+Date: Fri, 8 Dec 2023 10:45:46 -0300
+From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
+To: Mark Brown <broonie@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
+	Shuah Khan <shuah@kernel.org>, kernelci@lists.linux.dev,
+	kernel@collabora.com, Guenter Roeck <groeck@chromium.org>,
+	Bjorn Andersson <andersson@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH v3 3/3] kselftest: Add new test for detecting unprobed
+ Devicetree devices
+Message-ID: <e9772963-56e8-4465-9c29-3a2955b6f546@notapiano>
+References: <20230828211424.2964562-1-nfraprado@collabora.com>
+ <20230828211424.2964562-4-nfraprado@collabora.com>
+ <310391e8-fdf2-4c2f-a680-7744eb685177@sirena.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <310391e8-fdf2-4c2f-a680-7744eb685177@sirena.org.uk>
 
-When walking directory trees, instead of looking for specific files and
-running dirname to get the parent folder, traverse all folders and
-ignore the ones not containing the desired files. This avoids the need
-to call dirname inside the loop, which gives a big performance boost,
-approximately halving run time: Running locally on a
-mt8192-asurada-spherion, which reports 160 test cases, has gone from
-5.5s to 2.9s, while running remotely with an nfsroot has gone from
-13.5s to 5.5s.
+On Thu, Dec 07, 2023 at 08:18:49PM +0000, Mark Brown wrote:
+> On Mon, Aug 28, 2023 at 05:13:12PM -0400, Nícolas F. R. A. Prado wrote:
+> > Introduce a new kselftest to detect devices that were declared in the
+> > Devicetree, and are expected to be probed by a driver, but weren't.
+> 
+> I've been running this in my personal CI for a little while now and I'm
+> finding it's pretty marginal for the 45 second default timeout in
+> kselftest on some platforms, especially BeagleBone Black though it's not
+> just that.  BBB is both slow and has a comprehensive DT which won't help
+> matters, there's 253 devices.
+> 
+> I'm running it from nfsroot which is going to be part of the problem but
+> shouldn't be too bad since we're mainly dealing with proc and sysfs and
+> hopefully mostly running cached binaries, I'm also using a serial
+> console to get the output which is going to add overhead especially with
+> a large number odevices with length names.  I'm not sure what the best
+> solution is here - a quick glance at the code doesn't ring any alarm
+> bells for me, this may just be a reasonable runtime for the test.
 
-This change has a side-effect, which is that the root DT node now
-also shows in the output, even though it isn't expected to bind to a
-driver. However there shouldn't be a matching driver for the board
-compatible, so the end result will be just an extra skipped test:
+Thanks for reporting this. I've experimented a bit and was able to find an
+effective optimization and CC'ed it to you [1]. Hopefully it is as effective for
+your board and setup as it is for mine. Let me know there.
 
-ok 1 / # SKIP
+[1] https://lore.kernel.org/all/20231208133955.483851-1-nfraprado@collabora.com
 
-Reported-by: Mark Brown <broonie@kernel.org>
-Closes: https://lore.kernel.org/all/310391e8-fdf2-4c2f-a680-7744eb685177@sirena.org.uk
-Fixes: 14571ab1ad21 ("kselftest: Add new test for detecting unprobed Devicetree devices")
-Signed-off-by: NÃ­colas F. R. A. Prado <nfraprado@collabora.com>
-
----
-
- tools/testing/selftests/dt/test_unprobed_devices.sh | 13 +++++++------
- 1 file changed, 7 insertions(+), 6 deletions(-)
-
-diff --git a/tools/testing/selftests/dt/test_unprobed_devices.sh b/tools/testing/selftests/dt/test_unprobed_devices.sh
-index b07af2a4c4de..7fae90293a9d 100755
---- a/tools/testing/selftests/dt/test_unprobed_devices.sh
-+++ b/tools/testing/selftests/dt/test_unprobed_devices.sh
-@@ -33,8 +33,8 @@ if [[ ! -d "${PDT}" ]]; then
- fi
- 
- nodes_compatible=$(
--	for node_compat in $(find ${PDT} -name compatible); do
--		node=$(dirname "${node_compat}")
-+	for node in $(find ${PDT} -type d); do
-+		[ ! -f "${node}"/compatible ] && continue
- 		# Check if node is available
- 		if [[ -e "${node}"/status ]]; then
- 			status=$(tr -d '\000' < "${node}"/status)
-@@ -46,10 +46,11 @@ nodes_compatible=$(
- 
- nodes_dev_bound=$(
- 	IFS=$'\n'
--	for uevent in $(find /sys/devices -name uevent); do
--		if [[ -d "$(dirname "${uevent}")"/driver ]]; then
--			grep '^OF_FULLNAME=' "${uevent}" | sed -e 's|OF_FULLNAME=||'
--		fi
-+	for dev_dir in $(find /sys/devices -type d); do
-+		[ ! -f "${dev_dir}"/uevent ] && continue
-+		[ ! -d "${dev_dir}"/driver ] && continue
-+
-+		grep '^OF_FULLNAME=' "${dev_dir}"/uevent | sed -e 's|OF_FULLNAME=||'
- 	done
- 	)
- 
--- 
-2.43.0
-
+Thanks,
+Nícolas
 
