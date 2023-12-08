@@ -1,89 +1,175 @@
-Return-Path: <devicetree+bounces-23122-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23123-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5311080A568
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 15:27:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93EB480A56D
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 15:28:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F08541F2129B
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 14:27:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C56121C20D2B
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 14:28:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7B031DFD7;
-	Fri,  8 Dec 2023 14:27:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 594251DFF9;
+	Fri,  8 Dec 2023 14:28:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="CAU8odPT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AcKxEqDW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F25F61723;
-	Fri,  8 Dec 2023 06:27:43 -0800 (PST)
-Received: from [100.74.67.65] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: jmassot)
-	by madras.collabora.co.uk (Postfix) with ESMTPSA id E1C966607345;
-	Fri,  8 Dec 2023 14:27:41 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1702045662;
-	bh=efYtITyNsFiFIi+e+l1ojNqpEaMleRUVTqmCOoiQxZQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=CAU8odPTNTAbnHxRPszYtTDVTIt7f/NK4sTez4Mp6MrIyViPy/249UXXtGPRYdZbi
-	 HeZ3/XkUKTC9tkQWkevL1V+JfdQrUBbacYQMzIOnTJc2xqrVEywDT0+emF16C733tD
-	 l2FXxZtRtQXRsq9qLWOF97TN7pU2teyMw4dI58xR6oZIGWLU3gwj8d+1NecEszCIOl
-	 bdo44wLss6/c0dCwVDJ5PNTN3fG/AuX6hDTt0vFhJozumtgVmX54U8Q7ZkxiRK1sbp
-	 XR+Yg9Rk1AZk0BLjUsstd1SazKDwspwX3ZVpZoxg5jox8qzvXetY5RJRsQVld1Z/Tu
-	 ohYSIvAN7VOkw==
-Message-ID: <62893af3-9a11-404a-93b0-1005e5670547@collabora.com>
-Date: Fri, 8 Dec 2023 15:27:38 +0100
+Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com [IPv6:2607:f8b0:4864:20::f29])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81994198C
+	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 06:27:56 -0800 (PST)
+Received: by mail-qv1-xf29.google.com with SMTP id 6a1803df08f44-67adc37b797so11536676d6.1
+        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 06:27:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702045675; x=1702650475; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Y6tktGOmflBDjrD9owZW8jUp+CHgDfz/rbbtd4HS0Vg=;
+        b=AcKxEqDWB30LUoTaGIxcjeHFnrqK0ABDkGOsbov3A8vTm7Yu0yQN4qekM/aJ3VZCTE
+         nLWAGgtMYfDRmp7PU6nIwXuMxNejq7Hfg7LcbWjUXy9v3SnN4oeh6MsrFkxMTFiEQOup
+         AL5QxcW08YlnSsJo9Px8vfcIcnigzDTGsCNdxrw5PzVjlcO4IC+LdDs63y+Wnb59j7jP
+         FrEGejWh+Ywqw9qu/8UU5G62cN6+Sm+jDrU+LIEBik8tIDucfg7YXChDmYlaJKN1fYsZ
+         D1E0HKOOQfN+giKLigY/J6X7KozqnbF7hwSR1JgDKI+RjdRr6OnGCJezZ5X6xFIlxUeb
+         Wjfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702045675; x=1702650475;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Y6tktGOmflBDjrD9owZW8jUp+CHgDfz/rbbtd4HS0Vg=;
+        b=U3pyDMH9wlf02IpgvYY3XX3nel1M3eXLQ19bUAEKc/6mJ5KusIlOTlZ4iQM/SPTXoO
+         JgnSqME286+0v8B5I4/Szrcg512nbCimqElYS0LeQWHk7EyA/dARN+a0fjlsUKj0/u/B
+         XlFa+C8ghwPSIPHzL2dU5nRwxf9t+0QboOCeoFoqL4GcelKsj5fA9K4upo5y/1IOvmUD
+         9EKgtqGQyTGZ7QcQx/kGah5IuRXaLWB2YtZ4nNtuaZC4O2U0kybKOpmWmHsW047QgqBI
+         8kMkZqLutEiat4aUVBhyGvnFW61h6Fkha6KTb2iWEa1QCgI3JvzGYVYnJ+5lFvTRAGjv
+         uI9Q==
+X-Gm-Message-State: AOJu0YxOc1Q+IN+KvXcEbOHDKwPkWuZgh5ABKUrvGx6lsz6iAvMYKRYr
+	73kVJIpeu9zIjM5E01ahieROLb3pfQGue+qc6qAIVg==
+X-Google-Smtp-Source: AGHT+IGbiA6FsS80GfwV+c82tNjaevxVqMuJe5EJncnQTyRiVvDHSd4AgX2BqsQb6YkJ2YjyEjuCQy/avC/S0mz+amg=
+X-Received: by 2002:ad4:5695:0:b0:67a:a721:e150 with SMTP id
+ bd21-20020ad45695000000b0067aa721e150mr16777qvb.125.1702045675625; Fri, 08
+ Dec 2023 06:27:55 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] media: i2c: add MAX96714 driver
-To: devicetree@vger.kernel.org, linux-media@vger.kernel.org
-Cc: kernel@collabora.com
-References: <20231208140217.457609-1-julien.massot@collabora.com>
- <20231208140217.457609-4-julien.massot@collabora.com>
-Content-Language: en-US
-From: Julien Massot <julien.massot@collabora.com>
-In-Reply-To: <20231208140217.457609-4-julien.massot@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20231201160925.3136868-1-peter.griffin@linaro.org>
+ <20231201160925.3136868-13-peter.griffin@linaro.org> <20bf05b9d9ccc5c11ef17500ac7a97c46dd46a9a.camel@linaro.org>
+In-Reply-To: <20bf05b9d9ccc5c11ef17500ac7a97c46dd46a9a.camel@linaro.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Fri, 8 Dec 2023 14:27:44 +0000
+Message-ID: <CADrjBPr_sv29Dc3F-4wVvH_N+qU6509kvHqkyZG==Q1RRpi5gA@mail.gmail.com>
+Subject: Re: [PATCH v5 12/20] clk: samsung: clk-gs101: Add cmu_top, cmu_misc
+ and cmu_apm support
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org, 
+	tomasz.figa@gmail.com, s.nawrocki@samsung.com, linus.walleij@linaro.org, 
+	wim@linux-watchdog.org, linux@roeck-us.net, catalin.marinas@arm.com, 
+	will@kernel.org, arnd@arndb.de, olof@lixom.net, gregkh@linuxfoundation.org, 
+	jirislaby@kernel.org, cw00.choi@samsung.com, alim.akhtar@samsung.com, 
+	tudor.ambarus@linaro.org, semen.protsenko@linaro.org, saravanak@google.com, 
+	willmcvicker@google.com, soc@kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-watchdog@vger.kernel.org, kernel-team@android.com, 
+	linux-serial@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hi Andr=C3=A9,
 
-On 12/8/23 15:02, Julien Massot wrote:
-> This driver handle the MAX96714 deserializer in tunnel mode.
-> The CSI output will replicate all the CSI traffic capture by
-> the remote serializer.
+Thanks for the review
+
+On Mon, 4 Dec 2023 at 17:51, Andr=C3=A9 Draszik <andre.draszik@linaro.org> =
+wrote:
 >
-> Signed-off-by: Julien Massot <julien.massot@collabora.com>
-> ---
->   .../bindings/media/i2c/maxim,max96714f.yaml   | 112 +--
->   MAINTAINERS                                   |   6 +
->   drivers/media/i2c/Kconfig                     |  13 +
->   drivers/media/i2c/Makefile                    |   1 +
->   drivers/media/i2c/max96714.c                  | 945 ++++++++++++++++++
->   5 files changed, 1021 insertions(+), 56 deletions(-)
->   create mode 100644 drivers/media/i2c/max96714.c
+> On Fri, 2023-12-01 at 16:09 +0000, Peter Griffin wrote:
+> > cmu_top is the top level clock management unit which contains PLLs, mux=
+es,
+> > dividers and gates that feed the other clock management units.
+> >
+> > cmu_misc clocks IPs such as Watchdog and cmu_apm clocks ips part of the
+> > APM module.
+> >
+> > Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
+> > Tested-by: Will McVicker <willmcvicker@google.com>
+> > Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> > ---
+> >  drivers/clk/samsung/Makefile    |    1 +
+> >  drivers/clk/samsung/clk-gs101.c | 2495 +++++++++++++++++++++++++++++++
+> >  2 files changed, 2496 insertions(+)
+> >  create mode 100644 drivers/clk/samsung/clk-gs101.c
+> >
+> > diff --git a/drivers/clk/samsung/Makefile b/drivers/clk/samsung/Makefil=
+e
+> > index ebbeacabe88f..3056944a5a54 100644
+> > --- a/drivers/clk/samsung/Makefile
+> > +++ b/drivers/clk/samsung/Makefile
+> > @@ -21,6 +21,7 @@ obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)       +=3D clk-=
+exynos7.o
+> >  obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)        +=3D clk-exynos7885.o
+> >  obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)        +=3D clk-exynos850.o
+> >  obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)        +=3D clk-exynosautov9.o
+> > +obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)        +=3D clk-gs101.o
+> >  obj-$(CONFIG_S3C64XX_COMMON_CLK)     +=3D clk-s3c64xx.o
+> >  obj-$(CONFIG_S5PV210_COMMON_CLK)     +=3D clk-s5pv210.o clk-s5pv210-au=
+dss.o
+> >  obj-$(CONFIG_TESLA_FSD_COMMON_CLK)   +=3D clk-fsd.o
+> > diff --git a/drivers/clk/samsung/clk-gs101.c b/drivers/clk/samsung/clk-=
+gs101.c
+> > new file mode 100644
+> > index 000000000000..6bd233a7ab63
+> > --- /dev/null
+> > +++ b/drivers/clk/samsung/clk-gs101.c
+> > @@ -0,0 +1,2495 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * Copyright (C) 2023 Linaro Ltd.
+> > + * Author: Peter Griffin <peter.griffin@linaro.org>
+> > + *
+> > + * Common Clock Framework support for GS101.
+> > + */
+> > [...]
+> > +
+> > +/* List of parent clocks for Muxes in CMU_TOP: for CMU_HSI0 */
+> > +PNAME(mout_cmu_hsi0_usb31drd_p)      =3D { "oscclk", "dout_shared2_div=
+2" };
+> > +
+> > +PNAME(mout_cmu_hsi0_bus_p)   =3D { "dout_shared0_div4", "dout_shared1_=
+div4",
+> > +                                 "dout_shared2_div2", "dout_shared3_di=
+v2",
+> > +                                 "fout_spare_pll" };
 >
-> diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max96714f.yaml b/Documentation/devicetree/bindings/media/i2c/maxim,max96714f.yaml
-> index 405d02368f64..8a2a06e7e279 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/maxim,max96714f.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/maxim,max96714f.yaml
-> @@ -95,69 +95,69 @@ examples:
->       #include <dt-bindings/media/video-interfaces.h>
->   
->       main_i2c2 {
-> -            #address-cells = <1>;
-...
-I will resend a new version (v2) with dt-binding changes squashed with 
-1/4 dt-bindings: media: add Maxim MAX96714F GMSL2 Deserializer
+> This should also be updated....
+>
+> > [...]
+> > +     MUX(CLK_MOUT_HSI0_BUS, "mout_cmu_hsi0_bus", mout_cmu_hsi0_bus_p,
+> > +         CLK_CON_MUX_MUX_CLKCMU_HSI0_BUS, 0, 3),
+>
+> ...because we have 8 possibilities now.
 
+Interesting, unfortunately there is some discrepancy between the
+documentation again :( All the cmu_top clock parents were authored
+using the cmu_diagrams which only shows the 5 parents listed above.
+Checking the mux register definition it lists 5-7 as being oscclk
+5=3Dosclk
+6=3Dosclk
+7=3Doscclk
 
+Downstream clock implementation lists these oscclk 5-7 as well, so I
+guess we should add them...sigh
+
+> (I didn't check the other parents, but you mentioned you updated field wi=
+dths
+> in other registers, too, so maybe need to double check the parent strings=
+ as well)
+
+Yes I will go through and re-check these parent names again.
+
+Peter
 
