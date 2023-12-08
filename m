@@ -1,54 +1,55 @@
-Return-Path: <devicetree+bounces-23338-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23339-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6813F80ADDC
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 21:31:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A095D80AE05
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 21:37:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2206C2817CD
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 20:31:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4CB311F21283
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 20:37:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE3FA381A0;
-	Fri,  8 Dec 2023 20:31:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A88C839865;
+	Fri,  8 Dec 2023 20:37:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55EAD10E0;
-	Fri,  8 Dec 2023 12:31:31 -0800 (PST)
-Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-6d99c3a3a32so1609470a34.3;
-        Fri, 08 Dec 2023 12:31:31 -0800 (PST)
+Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 804A91700;
+	Fri,  8 Dec 2023 12:37:05 -0800 (PST)
+Received: by mail-oo1-f52.google.com with SMTP id 006d021491bc7-590a2a963baso231674eaf.2;
+        Fri, 08 Dec 2023 12:37:05 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702067490; x=1702672290;
+        d=1e100.net; s=20230601; t=1702067825; x=1702672625;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=v/vkRtHrUIhvNc94dHT+mJMxUllgbpAsI47gfQ/WkWg=;
-        b=UrUOGgaxOZ0waFajGSZz0mNt+fd88JZZxqGK4IKjDHj3/S5PeVU3OLRBL3qSqS4trq
-         LUGKoBJu1SuVH0E6pbGxp9g0IYTa3BHiqGAtUBMg6n9EhILi7kF7F4W5lpZ+uhDsRbfc
-         n37B82P77O3q85PMym1tfPhY+ad7EfKLQdFGrMX3SGxuP28k8Utvhn4n4NXxTUZhcS27
-         GEVhorSyXD575k128S0zLgKDditrQVJsDsLjvVLJZO4CZrWnkrTZQlmODly62GmqmFY/
-         UMpYOpK/B6kbIQmKZm9tb7EzA/UBukSBxW8yojSYgU+n0zJHetbWULTcDqs1AhLH2Yh8
-         Oj8A==
-X-Gm-Message-State: AOJu0YxzXaa1bUQE8YXBH6jUPtgYaSOL6UtGwW1vVixZH/YupOMmW/+D
-	aoEv/xfHDqwGqzTMuZ2rDndNnpFpYQ==
-X-Google-Smtp-Source: AGHT+IGdbIgqxhhBryWL51enlE+vHu8xlkBOQlHT46ZUQRPrYupw+SdR5iu5LYZkdMIkEC4J7Fmh0g==
-X-Received: by 2002:a05:6830:1093:b0:6d9:d689:cd18 with SMTP id y19-20020a056830109300b006d9d689cd18mr635893oto.36.1702067490639;
-        Fri, 08 Dec 2023 12:31:30 -0800 (PST)
+        bh=mtLCjRr60799H2MKwM/QzmmaJzcd7IJTQn1+Afg4EXM=;
+        b=UC7Ngmp/efhZqTJKByfX8S9EBwQf9lMln2azKAWNMz08GWTl/cA+IhoFsNjIU9uxU2
+         fqJPVU5f0Au0VLgIzgmYMGq/mA6F4LF485cLyVYQp0i2uTprY6L/gjyGAO/yVQqdillD
+         3Ob/S0APmBKTSZAcNfHGwsoGuTxlfodrH81pyyntMTgKLYxAaW1pT6WmzHxAlWIyi3qH
+         JgiafG8b1Qctt+GFPty3fHCoPn4Vkoh2Biea05pIldySD3a6HUUbXU0WFQPGX3Xs4ps2
+         bEgQ8qWy/4MQFicwkDtOCzqQson8wpFcpPGsH/2qG0f47wq/uK/7nIRvnDZtkxcsDT0z
+         /9GA==
+X-Gm-Message-State: AOJu0Yy0V28QNLgklgTbse/zWbnat4oAHgGneKWF3s1P/kqh65ihenqf
+	/Rr2wL3XmCeqRSdrnW+UyQ==
+X-Google-Smtp-Source: AGHT+IF6nHBrpdI9PdRJ4tPrY8/hF9C+fJyV7AZgkGumgP+nDJ+h9st1ng57n985M8whf2xhzvAPCg==
+X-Received: by 2002:a05:6820:556:b0:58d:d525:6b68 with SMTP id n22-20020a056820055600b0058dd5256b68mr1039807ooj.7.1702067824630;
+        Fri, 08 Dec 2023 12:37:04 -0800 (PST)
 Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id c9-20020a056830000900b006d87b167c41sm432894otp.8.2023.12.08.12.31.29
+        by smtp.gmail.com with ESMTPSA id n27-20020a4a345b000000b0057e88d4f8aesm440586oof.27.2023.12.08.12.37.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Dec 2023 12:31:30 -0800 (PST)
-Received: (nullmailer pid 2653738 invoked by uid 1000);
-	Fri, 08 Dec 2023 20:31:28 -0000
-Date: Fri, 8 Dec 2023 14:31:28 -0600
+        Fri, 08 Dec 2023 12:37:03 -0800 (PST)
+Received: (nullmailer pid 2661606 invoked by uid 1000);
+	Fri, 08 Dec 2023 20:37:02 -0000
+Date: Fri, 8 Dec 2023 14:37:02 -0600
 From: Rob Herring <robh@kernel.org>
-To: Pintu Kumar <quic_pintu@quicinc.com>
-Cc: linux-kernel@vger.kernel.org, akpm@linux-foundation.org, linux-mm@kvack.org, frowand.list@gmail.com, devicetree@vger.kernel.org, pintu.ping@gmail.com
-Subject: Re: [PATCH] of: reserved_mem: fix error log for reserved mem init
- failure
-Message-ID: <20231208203128.GA2646347-robh@kernel.org>
-References: <20231206151600.26833-1-quic_pintu@quicinc.com>
+To: Suraj Jaiswal <quic_jsuraj@quicinc.com>
+Cc: Andy Gross <agross@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Vinod Koul <vkoul@kernel.org>, kernel@quicinc.com, linux-stm32@st-md-mailman.stormreply.com, Bhupesh Sharma <bhupesh.sharma@linaro.org>, netdev@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>, "David S. Miller" <davem@davemloft.net>, devicetree@vger.kernel.org, Alexandre Torgue <alexandre.torgue@foss.st.com>, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, Jose Abreu <joabreu@synopsys.com>, Rob Herring <robh+dt@kernel.org>, Prasad Sodagudi <psodagud@quicinc.com>, Andrew Halaney <ahalaney@redhat.com>, Conor Dooley <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>, Bjorn Andersson <andersson@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>
+Subject: Re: [PATCH net-next v4 1/3] dt-bindings: net: qcom,ethqos: add
+ binding doc for safety IRQ for sa8775p
+Message-ID: <170206782161.2661547.16311911491075108498.robh@kernel.org>
+References: <cover.1701939695.git.quic_jsuraj@quicinc.com>
+ <87bdedf3c752d339bf7f45a631aa8d5bf5d07763.1701939695.git.quic_jsuraj@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,40 +58,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231206151600.26833-1-quic_pintu@quicinc.com>
+In-Reply-To: <87bdedf3c752d339bf7f45a631aa8d5bf5d07763.1701939695.git.quic_jsuraj@quicinc.com>
 
-On Wed, Dec 06, 2023 at 08:46:00PM +0530, Pintu Kumar wrote:
-> During fdt_init_reserved_mem() when __reserved_mem_init_node()
-> fail we are using pr_info to print error.
+
+On Thu, 07 Dec 2023 14:51:25 +0530, Suraj Jaiswal wrote:
+> Add binding doc for safety IRQ. The safety IRQ will be
+> triggered for ECC, DPP, FSM error.
 > 
-> So, if we change the loglevel to 4 (or below), this error
-> message will be missed.
-> 
-> Thus, change the pr_info to pr_err for fail case.
-> 
-> Signed-off-by: Pintu Kumar <quic_pintu@quicinc.com>
+> Signed-off-by: Suraj Jaiswal <quic_jsuraj@quicinc.com>
 > ---
->  drivers/of/of_reserved_mem.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/net/qcom,ethqos.yaml | 9 ++++++---
+>  Documentation/devicetree/bindings/net/snps,dwmac.yaml  | 6 ++++--
+>  2 files changed, 10 insertions(+), 5 deletions(-)
 > 
-> diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
-> index 7ec94cfcbddb..473665e76b6f 100644
-> --- a/drivers/of/of_reserved_mem.c
-> +++ b/drivers/of/of_reserved_mem.c
-> @@ -334,7 +334,7 @@ void __init fdt_init_reserved_mem(void)
->  		if (err == 0) {
->  			err = __reserved_mem_init_node(rmem);
->  			if (err != 0 && err != -ENOENT) {
-> -				pr_info("node %s compatible matching fail\n",
-> +				pr_err("node %s compatible matching fail\n",
 
-Isn't the message just wrong. If compatible match fails, we return 
-ENOENT. The failure here would be from the init function.
+Reviewed-by: Rob Herring <robh@kernel.org>
 
->  					rmem->name);
->  				if (nomap)
->  					memblock_clear_nomap(rmem->base, rmem->size);
-> -- 
-> 2.17.1
-> 
 
