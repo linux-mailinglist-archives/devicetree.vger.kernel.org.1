@@ -1,125 +1,165 @@
-Return-Path: <devicetree+bounces-23092-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23093-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D4C880A335
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 13:28:42 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07DFB80A355
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 13:35:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E70721F213DF
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 12:28:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A4E8E1F213F0
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 12:35:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F06D41C68F;
-	Fri,  8 Dec 2023 12:28:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4FFC125BD;
+	Fri,  8 Dec 2023 12:35:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aVnVUqtW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vV79CjBb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFB0C1985;
-	Fri,  8 Dec 2023 04:28:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1702038513; x=1733574513;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=If8qLm6cpoDJFIWwu0cUf4BU9e2+2LBt0MRWIQsNk9c=;
-  b=aVnVUqtWrHrDi44OxrYcgZWTiguHAt2kYxGxMqomIIvXVWctorisx/EV
-   OxaqkvesBZDcfwtbd0jfZEHZCkuo7vfE0wsDwUk9mH+xxFCR5iCqoUHd6
-   hpTjrpvVtNGrrxL7umLzfsJjiA4uk7t6iNftGCb71Ut8UXnyLyV1UdDhG
-   0MHJL8r8umivHv9ocyPEVOXFBZEHq0G053jLpuxc408YuZSVXX4uXS6YW
-   +zVWOMPw0PWaKWd3RVwOaGoPimTwBRtR4HHqMr6PfuULNEjQ3Tmv9Loam
-   JF4hcgKQyYeNJJacv3WXkqQ2S7lhiiVYZUacqOPeOzWE+Kn3TUl8jPI1l
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="391569982"
-X-IronPort-AV: E=Sophos;i="6.04,260,1695711600"; 
-   d="scan'208";a="391569982"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Dec 2023 04:28:33 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="775776705"
-X-IronPort-AV: E=Sophos;i="6.04,260,1695711600"; 
-   d="scan'208";a="775776705"
-Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
-  by fmsmga007.fm.intel.com with ESMTP; 08 Dec 2023 04:28:29 -0800
-Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rBZxs-000Dio-1b;
-	Fri, 08 Dec 2023 12:28:20 +0000
-Date: Fri, 8 Dec 2023 20:28:03 +0800
-From: kernel test robot <lkp@intel.com>
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>, apw@canonical.com,
-	joe@perches.com, dwaipayanray1@gmail.com, lukas.bulwahn@gmail.com,
-	paul.cercueil@analog.com, Michael.Hennerich@analog.com,
-	lars@metafoo.de, jic23@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	dan.carpenter@linaro.org, marcelo.schmitt1@gmail.com
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 6/13] iio: adc: ad7091r: Move chip init data to
- container struct
-Message-ID: <202312082022.IOtnLeck-lkp@intel.com>
-References: <f45d5dfde5fc2082ac1fcac18a4a3e9b4b941402.1701971344.git.marcelo.schmitt1@gmail.com>
+Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A24C6198C
+	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 04:35:41 -0800 (PST)
+Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-5cece20f006so19494997b3.3
+        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 04:35:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702038941; x=1702643741; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=GF4BPHYAiYD5N4yRheSGUKFfKbUOf7tXCDFHJS8cLkA=;
+        b=vV79CjBbp1D/VLLWbWXkJImlkRuybeeP8zcWhCY3NuPHKNhr0wQj9gb6qjgSYFpOv8
+         i5XKWinNd8iUTwW8/8QGL6pXj0qMcYtAx/JLMsvbk1ySMaEJOpsVuS+eSv/5FCptutPq
+         CJeIb+Z0adGO6yHkjctDla/l3qHwPr0rOZBWFXXhkts6AO8E2lNDdkaA0q8BrJzX5qHk
+         3sF2HGEUFtOHlHcrzq6zPLVIEKhXQszaW9i3l2kFyUfCP9NKGoMtM2m7vGWta2wrwo5d
+         lOaP9F3acV9Rc78xb3vAMD7q/zzxJbDV0X2tvWvXVUCzyo4LMrz82G0CaHTpAT2ZLfHM
+         qEVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702038941; x=1702643741;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GF4BPHYAiYD5N4yRheSGUKFfKbUOf7tXCDFHJS8cLkA=;
+        b=kuGm7QE5/321wuBpN2wmTCT4+emQep7nHClzNPBVBDTtNSUdxGu9eLxA9JILlxyeAy
+         ucfuF/9wPKBvOJFTnQTcwiDYq5fxNw456E/LrDypadGRNDV4CjxaTDZ9cKzRwn08X8eY
+         7togG1OPWeT/D6hBRM25piMfqy0pRI/3+cwLTmBg351NLKXQzHZaLW5YGSTp1yyosrSo
+         tSNMwcurJBSD/SJfz6+Yu+AJEiUiLt9705QpShWPpHQdw8r78Ui47QOgS6pp4qG5Yx0D
+         VarhKdd6LKEmLQVmjuhP2/9nmvPkkYBZ+VkuaQdUSsK0noNl5ldztZjjmiFo3aZ47MbW
+         8dzg==
+X-Gm-Message-State: AOJu0Yw+IbBZsQFIS5lWIoqzhLyEehyOTqUczx+xqePviyn+R8s5UKpd
+	0g1qxzYRsuKcjmBjVjIpHZmFgyc/ybAbzkMiA5ZWpQ==
+X-Google-Smtp-Source: AGHT+IHjiAfVpGoEX5W6+Qp5O0zy6x7IcQev0y6h80bzgke0FujuZlCuGUYIR8OIaRDTiVrsTrVnDcbA7RwRrpbFc7Q=
+X-Received: by 2002:a05:690c:368a:b0:5d8:67b8:6d13 with SMTP id
+ fu10-20020a05690c368a00b005d867b86d13mr4004640ywb.76.1702038940776; Fri, 08
+ Dec 2023 04:35:40 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f45d5dfde5fc2082ac1fcac18a4a3e9b4b941402.1701971344.git.marcelo.schmitt1@gmail.com>
+References: <20231122-phy-qualcomm-edp-x1e80100-v3-0-576fc4e9559d@linaro.org>
+ <20231122-phy-qualcomm-edp-x1e80100-v3-2-576fc4e9559d@linaro.org>
+ <b6d3928c-75ba-47a3-93fc-a60729be2e35@linaro.org> <545d3ace-66e5-4470-b3a4-cbdac5ae473d@linaro.org>
+ <ab7223a2-9f3f-4c9c-ab97-31512e7a0123@linaro.org> <CAA8EJpoboN85bLiayXJgn5iwh+Gn0OtK0aZ26ZJu9H3xkTT2Tw@mail.gmail.com>
+ <d9d27fa4-6ede-4958-b717-db425be61068@linaro.org> <CAA8EJpq7dB+45fiq2WmkMmSO7KszY0Et_t1gZ9ZvfsSxftpm8g@mail.gmail.com>
+ <d885928d-035b-4abd-890b-c9626b925d76@linaro.org>
+In-Reply-To: <d885928d-035b-4abd-890b-c9626b925d76@linaro.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Fri, 8 Dec 2023 14:35:29 +0200
+Message-ID: <CAA8EJpr+C23evpRWMHatF6ChNvr3G-sAuXOi4e-7Tix23JV=Fg@mail.gmail.com>
+Subject: Re: [PATCH v3 2/3] dt-bindings: phy: qcom-edp: Add X1E80100 PHY compatibles
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, Abel Vesa <abel.vesa@linaro.org>, 
+	Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Abhinav Kumar <quic_abhinavk@quicinc.com>, Johan Hovold <johan@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Marcelo,
+On Fri, 8 Dec 2023 at 14:21, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 08/12/2023 13:17, Dmitry Baryshkov wrote:
+> >>>>>> Anyway, I was thinking this should be rather argument to phy-cells.
+> >>>>> I'm not sure I'm for this, because the results would be:
+> >>>>>
+> >>>>> --- device.dts ---
+> >>>>> &dp_controller0 {
+> >>>>>      phys = <&dp_phy0 PHY_EDP>;
+> >>>>> };
+> >>>>>
+> >>>>> &dp_controller1 {
+> >>>>>      phys = <&dp_phy1 PHY_DP>;
+> >>>>> };
+> >>>>> ------------------
+> >>>>>
+> >>>>> as opposed to:
+> >>>>>
+> >>>>> --- device.dts ---
+> >>>>> &dp_phy0 {
+> >>>>>      phy-type <PHY_EDP>;
+> >>>>> };
+> >>>>>
+> >>>>> &dp_phy1 {
+> >>>>>      phy-type = <PHY_DP>;
+> >>>>> };
+> >>>>> ------------------
+> >>>>
+> >>>> Which is exactly what I proposed/wanted to see.
+> >>>>
+> >>>>>
+> >>>>> i.e., we would be saying "this board is connected to this phy
+> >>>>> instead" vs "this phy is of this type on this board".
+> >>>>>
+> >>>>> While none of them really fit the "same hw, different config"
+> >>>>> situation, I'd vote for the latter one being closer to the
+> >>>>> truth
+> >>>>
+> >>>> Then maybe I miss the bigger picture, but commit msg clearly says:
+> >>>> "multiple PHYs that can work in both eDP or DP mode"
+> >>>>
+> >>>> If this is not the case, describe the hardware correctly in the commit
+> >>>> msg, so people will not ask stupid questions...
+> >>>
+> >>> There are multiple PHYs (each of them at its own address space). Each
+> >>> of the PHYs in question can be used either for the DisplayPort output
+> >>> (directly or through the USB-C) or to drive the eDP panel.
+> >>>
+> >>> Same applies to the displayport-controller. It can either drive the DP
+> >>> or eDP output, hardware-wise it is the same.
+> >>
+> >> Therefore what I proposed was correct - the block which uses the phy
+> >> configures its mode. Because this part:
+> >>   "this phy is of this type on this board".
+> >> is not true. The phy is both types.
+> >
+> > But hopefully you don't mean using #phy-cells here. There are no
+> > sub-PHYs or anything like that.
+>
+> I am exactly talking about phy-cells. Look at first example from Abel's
+> code.
 
-kernel test robot noticed the following build errors:
+I always had an impression that #foo-cells means that there are
+different units within the major handler. I.e. #clock-cells mean that
+there are several different clocks, #reset-cells mean that there are
+several resets, etc.
+Ok, maybe this is not a perfect description. We need cells to identify
+a particular instance within the major block. Maybe that sounds more
+correct.
 
-[auto build test ERROR on jic23-iio/togreg]
-[also build test ERROR on linus/master v6.7-rc4 next-20231208]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+For the USB+DP PHY we use #phy-cells to select between USB3 and DP
+PHYs. But for these PHYs we do not have sub-devices, sub-blocks, etc.
+There is a single PHY which works in either of the modes.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Marcelo-Schmitt/scripts-checkpatch-Add-__aligned-to-the-list-of-attribute-notes/20231208-063850
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
-patch link:    https://lore.kernel.org/r/f45d5dfde5fc2082ac1fcac18a4a3e9b4b941402.1701971344.git.marcelo.schmitt1%40gmail.com
-patch subject: [PATCH v3 6/13] iio: adc: ad7091r: Move chip init data to container struct
-config: arm-randconfig-002-20231208 (https://download.01.org/0day-ci/archive/20231208/202312082022.IOtnLeck-lkp@intel.com/config)
-compiler: clang version 16.0.4 (https://github.com/llvm/llvm-project.git ae42196bc493ffe877a7e3dff8be32035dea4d07)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231208/202312082022.IOtnLeck-lkp@intel.com/reproduce)
+Last, but not least, using #phy-cells in this way would create
+asymmetry with all the other PHYs (and especially other QMP PHYs)
+present on these platforms.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202312082022.IOtnLeck-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/iio/adc/ad7091r5.c:30:3: error: field designator 'name' does not refer to any field in type 'const struct ad7091r_chip_info'
-           .name = "ad7091r-5",
-            ^
-   drivers/iio/adc/ad7091r5.c:37:3: error: field designator 'name' does not refer to any field in type 'const struct ad7091r_chip_info'
-           .name = "ad7091r-5",
-            ^
->> drivers/iio/adc/ad7091r5.c:59:14: error: initializer element is not a compile-time constant
-           .irq_info = ad7091r5_chip_info_irq,
-                       ^~~~~~~~~~~~~~~~~~~~~~
-   3 errors generated.
-
-
-vim +59 drivers/iio/adc/ad7091r5.c
-
-    57	
-    58	static struct ad7091r_init_info ad7091r5_init_info = {
-  > 59		.irq_info = ad7091r5_chip_info_irq,
-    60		.info_no_irq = ad7091r5_chip_info_noirq,
-    61		.regmap_config = &ad7091r_regmap_config,
-    62		.ad7091r_regmap_init = &ad7091r5_regmap_init
-    63	};
-    64	
+If you feel that phy-type is not an appropriate solution, I'd vote for
+not having the type in DT at all, letting the DP controller determine
+the proper mode on its own.
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+With best wishes
+Dmitry
 
