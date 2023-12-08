@@ -1,57 +1,56 @@
-Return-Path: <devicetree+bounces-23212-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23213-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EF0F80A772
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 16:31:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CEA580A77A
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 16:33:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C27C81C20754
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 15:31:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 065AF1F2110A
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 15:33:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7100225D5;
-	Fri,  8 Dec 2023 15:31:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82F5131583;
+	Fri,  8 Dec 2023 15:33:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="TTjqPrRz";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="IG0x/GKv"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="P3POkulq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47BD810F1;
-	Fri,  8 Dec 2023 07:31:05 -0800 (PST)
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1702049463;
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A30F4FB;
+	Fri,  8 Dec 2023 07:33:12 -0800 (PST)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 3C401C0002;
+	Fri,  8 Dec 2023 15:33:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1702049591;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references;
-	bh=kM2gfM4stLx1K6L+3Wj5bEw38BxAF95LAx7kBEjCuto=;
-	b=TTjqPrRzGk9nL8pZrlbLig8nLw0elK3wmLC3t/4aftYWymZ9tjnUWH2smJ+JJWgvEkwj3/
-	9+rkK3i7pnw0wiKFTu8NNb/TGug3LJVtDO/GRzKrssaoxKRcO5DfNKEfOcazgbFQhlXw5i
-	7bueF3+LDojAH5/kP3XhDQ1o6JD6MnCt3Svw+VhHt/dmTaNoR4URC5C2U1DWKl4UTBbWqs
-	/m5NLKj65RFR3hy6qvhE1vn4B6ss3eCwMHpSTuTG+IGp8q7jlqzSHteAtlFZof5PsQIOGP
-	Q9oz3gAjBLoDBxhDvd4qqnJgius0uOmFjDHE7VFIRUy8lQ7wexHMQmVmyn5/PQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1702049463;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=kM2gfM4stLx1K6L+3Wj5bEw38BxAF95LAx7kBEjCuto=;
-	b=IG0x/GKvuLwBqMEc1i1QfOJ2/hxnHDNm8aeL9CD5msZe2NOJs5rU8mlAKByuz+L/sgJT5k
-	nVja4PdTSis57qAg==
-To: James Tai <james.tai@realtek.com>, Marc Zyngier <maz@kernel.org>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	bh=oD6hQGjRHPGPAJTPYER4wE20pgsUUUyk0INf85hKBP8=;
+	b=P3POkulqrVqVh0War2yqLifPkguGVaDtn/7hInk+c0epl4ybhlNgEJ4p71whuftqjedAzt
+	dX6L3fspp/+HA3bcMscfqYucX2aSGvmVjcBMNT315MXShTWjlgWmLxWRDTYUt8ea8ToZWb
+	HzQpOYRbTC7dHcQE0STWiuTSygBzao99aXjzEqdgWuuvqZxHDSy+niITTxnEjA9k7qH8fY
+	MM8AbWm1tRneB5FM3w0NxKsDWPEBuzsJYHakv/xfknd/fygpJO4RWiqdFOOX10pfKosrPk
+	7bY7QkNS5Um8i+NhWRtO7ahdLzaV+ptI1YDx5zz1jLm1k85xCuwJ9VYF/c/NIA==
+From: Gregory CLEMENT <gregory.clement@bootlin.com>
+To: David Heidelberg <david@ixit.cz>, Andrew Lunn <andrew@lunn.ch>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
  <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- James Tai <james.tai@realtek.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, kernel test
- robot <lkp@intel.com>, Dan Carpenter <error27@gmail.com>
-Subject: Re: [PATCH v3 2/6] irqchip: Add interrupt controller support for
- Realtek DHC SoCs
-In-Reply-To: <20231129054339.3054202-3-james.tai@realtek.com>
-References: <20231129054339.3054202-1-james.tai@realtek.com>
- <20231129054339.3054202-3-james.tai@realtek.com>
-Date: Fri, 08 Dec 2023 16:31:02 +0100
-Message-ID: <87cyvgsocp.ffs@tglx>
+ Andre Przywara <andre.przywara@arm.com>, Peter Rosin <peda@axentia.se>,
+ Heiko Stuebner <heiko@sntech.de>, Nick Hawkins <nick.hawkins@hpe.com>,
+ Viresh Kumar <viresh.kumar@linaro.org>, David Heidelberg <david@ixit.cz>
+Cc: Simon Guinot <simon.guinot@sequanux.org>, Wei Xu <xuwei5@hisilicon.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, Enric Balletbo i Serra
+ <eballetbo@gmail.com>, Baruch Siach <baruch@tkos.co.il>, Rob Herring
+ <robh@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 5/5] ARM: dts: marvell: make dts use gpio-fan matrix
+ instead of array
+In-Reply-To: <20231202222934.137191-5-david@ixit.cz>
+References: <20231202222934.137191-1-david@ixit.cz>
+ <20231202222934.137191-5-david@ixit.cz>
+Date: Fri, 08 Dec 2023 16:33:10 +0100
+Message-ID: <87y1e4d809.fsf@BL-laptop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,244 +58,41 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain
+X-GND-Sasl: gregory.clement@bootlin.com
 
-On Wed, Nov 29 2023 at 13:43, James Tai wrote:
-> Realtek DHC (Digital Home Center) SoCs share a common interrupt controller
-> design. This universal interrupt controller driver provides support for
-> various variants within the Realtek DHC SoC family.
+David Heidelberg <david@ixit.cz> writes:
+
+> No functional changes.
 >
-> Each DHC SoC features two sets of extended interrupt controllers, each
-> capable of handling up to 32 interrupts. These expansion controllers are
-> connected to the GIC (Generic Interrupt Controller).
+> Adjust to comply with dt-schema requirements
+> and make possible to validate values.
 >
-> Reported-by: kernel test robot <lkp@intel.com>
-> Reported-by: Dan Carpenter <error27@gmail.com>
-> Closes: https://lore.kernel.org/r/202311201929.2FpvMRlg-lkp@intel.com/
+> Acked-by: Simon Guinot <simon.guinot@sequanux.org>
+> Signed-off-by: David Heidelberg <david@ixit.cz>
 
-These tags are pointless as they are not related to anything in
-tree. You addressed review comments and 0-day fallout, but neither Dan
-nor 0-day reported that the interrupt controller for Realtek DHC SoCs is
-missing.
-
-> +#include "irq-realtek-intc-common.h"
-> +
-> +struct realtek_intc_data;
-
-struct realtek_intc_data is declared in irq-realtek-intc-common.h, so
-what's the point of this forward declaration?
-
-> +static inline unsigned int realtek_intc_get_ints(struct realtek_intc_data *data)
-> +{
-> +	return readl(data->base + data->info->isr_offset);
-> +}
-> +
-> +static inline void realtek_intc_clear_ints_bit(struct realtek_intc_data *data, int bit)
-> +{
-> +	writel(BIT(bit) & ~1, data->base + data->info->isr_offset);
-
-That '& ~1' solves what aside of preventing bit 0 from being written?
-
-> +static int realtek_intc_domain_map(struct irq_domain *d, unsigned int irq, irq_hw_number_t hw)
-> +{
-> +	struct realtek_intc_data *data = d->host_data;
-> +
-> +	irq_set_chip_and_handler(irq, &realtek_intc_chip, handle_level_irq);
-> +	irq_set_chip_data(irq, data);
-> +	irq_set_probe(irq);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct irq_domain_ops realtek_intc_domain_ops = {
-> +	.xlate = irq_domain_xlate_onecell,
-> +	.map = realtek_intc_domain_map,
-
-	.xlate	= irq_domain_xlate_onecell,
-	.map	= realtek_intc_domain_map,
-
-Please.
-
-> +};
-> +
-> +static int realtek_intc_subset(struct device_node *node, struct realtek_intc_data *data, int index)
-> +{
-> +	struct realtek_intc_subset_data *subset_data = &data->subset_data[index];
-> +	const struct realtek_intc_subset_cfg *cfg = &data->info->cfg[index];
-> +	int irq;
-> +
-> +	irq = irq_of_parse_and_map(node, index);
-
-irq_of_parse_and_map() returns an 'unsigned int' where 0 is fail.
-
-> +	if (irq <= 0)
-> +		return irq;
-> +
-> +	subset_data->common = data;
-> +	subset_data->cfg = cfg;
-> +	subset_data->parent_irq = irq;
-> +	irq_set_chained_handler_and_data(irq, realtek_intc_handler, subset_data);
-> +
-> +	return 0;
-> +}
-> +
-> +int realtek_intc_probe(struct platform_device *pdev, const struct realtek_intc_info *info)
-> +{
-> +	struct realtek_intc_data *data;
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node *node = dev->of_node;
-> +	int ret, i;
-> +
-> +	data = devm_kzalloc(dev, struct_size(data, subset_data, info->cfg_num), GFP_KERNEL);
-> +	if (!data)
-> +		return -ENOMEM;
-> +
-> +	data->base = of_iomap(node, 0);
-> +	if (!data->base) {
-> +		ret = -ENOMEM;
-> +		goto out_cleanup;
-
-devm_kzalloc() is automatically cleaned up when the probe function
-fails, so 'return -ENOMEM;' is sufficient.
-
-> +	}
-> +
-> +	data->info = info;
-> +
-> +	raw_spin_lock_init(&data->lock);
-> +
-> +	data->domain = irq_domain_add_linear(node, 32, &realtek_intc_domain_ops, data);
-> +	if (!data->domain) {
-> +		ret = -ENOMEM;
-
-This 'ret = -ENOMEM;' is pointless as the only error code returned in this
-function is -ENOMEM. So you can just return -ENOMEM in the error path, no?
-
-> +		goto out_cleanup;
-> +	}
-> +
-> +	data->subset_data_num = info->cfg_num;
-> +	for (i = 0; i < info->cfg_num; i++) {
-> +		ret = realtek_intc_subset(node, data, i);
-> +		if (ret) {
-> +			WARN(ret, "failed to init subset %d: %d", i, ret);
-> +			ret = -ENOMEM;
-> +			goto out_cleanup;
-
-                if (WARN(ret, "....."))
-                	goto cleanup;
-
-> +		}
-> +	}
-> +
-> +	platform_set_drvdata(pdev, data);
-> +
-> +	return 0;
-> +
-> +out_cleanup:
-> +
-> +	if (data->base)
-> +		iounmap(data->base);
-
-Leaks the irqdomain.
-
-> +
-> +	devm_kfree(dev, data);
-
-Pointless exercise.
-
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL(realtek_intc_probe);
-
-EXPORT_SYMBOL_GPL
-
-> +/**
-> + * realtek_intc_subset_cfg - subset interrupt mask
-> + * @ints_mask: inetrrupt mask
-> + */
-> +struct realtek_intc_subset_cfg {
-> +	unsigned int	ints_mask;
-> +};
-
-The value of a struct wrapping a single 'unsigned int' is? What's wrong
-with using unsigned int (actually you want u32 as this represents a
-hardware mask) directly? Not enough obfuscation, right?
-
-> +/**
-> + * realtek_intc_info - interrupt controller data.
-> + * @isr_offset: interrupt status register offset.
-> + * @umsk_isr_offset: unmask interrupt status register offset.
-> + * @scpu_int_en_offset: interrupt enable register offset.
-> + * @cfg: cfg of the subset.
-> + * @cfg_num: number of cfg.
-
- * @isr_offset:		interrupt status register offset
- * @umsk_isr_offset:	unmask interrupt status register offset
- * @scpu_int_en_offset:	interrupt enable register offset
-
-Can you spot the difference?
-
-Please fix all over the place.
-
-> + */
-> +struct realtek_intc_info {
-> +	const struct realtek_intc_subset_cfg *cfg;
-> +	unsigned int			     isr_offset;
-> +	unsigned int			     umsk_isr_offset;
-> +	unsigned int			     scpu_int_en_offset;
-> +	const u32			     *isr_to_scpu_int_en_mask;
-> +	int				     cfg_num;
-> +};
-> +
-> +/**
-> + * realtek_intc_subset_data - handler of a interrupt source only handles ints
-> + *                            bits in the mask.
-> + * @cfg: cfg of the subset.
-
-Seriously. 'cfg of'? This is a description, so can you spell the words
-out? This is really neither space constraint nor subject to Xitter
-rules. Fix this all over the place please.
-
-> + * @common: common data.
-> + * @parent_irq: interrupt source.
-> + */
-> +struct realtek_intc_subset_data {
-> +	const struct realtek_intc_subset_cfg *cfg;
-> +	struct realtek_intc_data	     *common;
-> +	int				     parent_irq;
-> +};
-> +
-> +/**
-> + * realtek_intc_data - configuration data for realtek interrupt controller driver.
-> + * @base: base of interrupt register
-> + * @info: info of intc
-> + * @domain: interrupt domain
-> + * @lock: lock
-> + * @saved_en: status of interrupt enable
-> + * @subset_data_num: number of subset data
-> + * @subset_data: subset data
-> + */
-> +struct realtek_intc_data {
-> +	void __iomem			*base;
-> +	const struct realtek_intc_info	*info;
-> +	struct irq_domain		*domain;
-> +	struct raw_spinlock		lock;
-> +	unsigned int			saved_en;
-> +	int				subset_data_num;
-> +	struct realtek_intc_subset_data subset_data[];
-> +};
-> +
-> +#define IRQ_ALWAYS_ENABLED U32_MAX
-> +#define DISABLE_INTC (0)
-> +#define CLEAN_INTC_STATUS GENMASK(31, 1)
-
-#define IRQ_ALWAYS_ENABLED	U32_MAX
-#define DISABLE_INTC		(0)
-#define CLEAN_INTC_STATUS	GENMASK(31, 1)
-
-Please, as that makes this readable.
+Applied on mvebu/dt
 
 Thanks,
 
-        tglx
+Gregory
+> ---
+>  arch/arm/boot/dts/marvell/armada-370-rd.dts   |   2 +-
+>  .../marvell/armada-370-seagate-nas-2bay.dts   |   8 +-
+>  .../marvell/armada-370-seagate-nas-4bay.dts   |   8 +-
+>  .../marvell/armada-370-synology-ds213j.dts    |  16 +--
+>  .../dts/marvell/armada-385-synology-ds116.dts |  16 +--
+>  arch/arm/boot/dts/marvell/armada-388-gp.dts   |   4 +-
+>  arch/arm/boot/dts/marvell/kirkwood-dnskw.dtsi |   6 +-
+>  .../marvell/kirkwood-linkstation-6282.dtsi    |   9 +-
+>  .../marvell/kirkwood-linkstation-lswxl.dts    |   9 +-
+>  arch/arm/boot/dts/marvell/kirkwood-lsxl.dtsi  |   9 +-
+>  arch/arm/boot/dts/marvell/kirkwood-ns2max.dts |  18 ++--
+>  .../arm/boot/dts/marvell/kirkwood-ns2mini.dts |  18 ++--
+>  .../boot/dts/marvell/kirkwood-synology.dtsi   | 102 +++++++++---------
+>  .../dts/marvell/mvebu-linkstation-fan.dtsi    |   8 +-
+>  14 files changed, 121 insertions(+), 112 deletions(-)
+-- 
+Gregory Clement, Bootlin
+Embedded Linux and Kernel engineering
+http://bootlin.com
 
