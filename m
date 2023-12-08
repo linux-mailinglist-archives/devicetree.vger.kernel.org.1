@@ -1,99 +1,856 @@
-Return-Path: <devicetree+bounces-23347-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23348-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D65CD80AEE7
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 22:42:41 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A912A80AF08
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 22:55:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 917B62815C7
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 21:42:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA33F1C20C69
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 21:55:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69C315788B;
-	Fri,  8 Dec 2023 21:42:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D69858ABB;
+	Fri,  8 Dec 2023 21:55:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ID3x8OxZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91E13198A;
-	Fri,  8 Dec 2023 13:42:33 -0800 (PST)
-Received: by mail-ot1-f43.google.com with SMTP id 46e09a7af769-6d9dc789f23so1284253a34.3;
-        Fri, 08 Dec 2023 13:42:33 -0800 (PST)
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 154D2171C
+	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 13:55:41 -0800 (PST)
+Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-3333224c7b9so2413225f8f.1
+        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 13:55:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702072539; x=1702677339; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=FjvclqOZQPdp/ySHfQ62/WK4T76lvl+K0DABvIIpwvo=;
+        b=ID3x8OxZu23v1b/XsPieOYJtzIj11gpTNJ/QsaLM1dhPFpMVuu6+FC8fBlgBRHMPwe
+         XHqZ5dDOuyBBNd0AVp8iRZFlMK81VZGP4f082Xy3PG1YSk0csKZ/5YTVO3kqtOls13Wb
+         fdYniWjhs52ggwcKO32LsXjnqO8sdu/I5t/4ITqLkRkZoJYelG+0dKgnHXPN//mkQfsX
+         oex1Ai9RbZyYry7WzB+8pRMH3qyeKqP5cz5J/bsFZf86e1sNpJ8PoTpYLL+iFELCcBBB
+         /nBtn91+SZPwYHcVWWhKhSB10RMYG3oRPfBlErP4fpDf9pRH1FfdnZFHrn+oBtyhKoyR
+         bXUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702071753; x=1702676553;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CAfN68Sm3Ma2VnLB4uj+2M8nBwQbTqyO/LCdJPBLHVk=;
-        b=a4w4GlhL/az785aU+qrXETD6+OL6D6GbWeWjCj7v9QN5fAj60HBfgzgrlk9BZ1pVnx
-         5HFPqXsa5tUnpeTzyILT8WnfA5dQR5PnI60DVH5ovcUDok6LmvO8013aM/9vfSqdx30T
-         upql/dIxXs4gAxJbRZrT9BioimMOt4DFAYtHqFvR32nvH61folMpxxH6PWp0igUsFcrh
-         iXj2CR/UeOhVOnmPxRRCrsc1MDXqXPs0biM3IYNHYw1OScBFV/OdLeuSo0+FZVBqp63e
-         sp+NyXNmjbgh7GdxQTqTGILnhF4eIC7spEE5gUj4XuWCQCh6KfyWC7VgxSHRw+zHbDu0
-         V9fw==
-X-Gm-Message-State: AOJu0Yz0vlOdLJFUGFrmD3ecGgowEbI2fe6r1PaDms9tM/kuwnsszcVf
-	krmv6d3sIaixsozScG7Lcg==
-X-Google-Smtp-Source: AGHT+IEmwxuggTo2ju30Ucv6bYuJd0p/9ogjLzvbfH0HbqDKNhshngTzZpOVDv288xxzAQmTakEB7Q==
-X-Received: by 2002:a05:6870:1b0f:b0:1fb:75a:c415 with SMTP id hl15-20020a0568701b0f00b001fb075ac415mr846554oab.62.1702071752839;
-        Fri, 08 Dec 2023 13:42:32 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id gb8-20020a056870670800b001fb4aaf261csm607175oab.32.2023.12.08.13.42.31
+        d=1e100.net; s=20230601; t=1702072539; x=1702677339;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FjvclqOZQPdp/ySHfQ62/WK4T76lvl+K0DABvIIpwvo=;
+        b=JueJOFFdZVXNagI/1XO2Pxw9hN4/zi9r6GtXR0DFy9S/aN0tR35Ii/Wik9ubQ06J46
+         W4KCdx3ooqLL+Lp2x8fRUINeBwkloxMHUDP0RAa6rH51mEcXfl6XRsXFAX/S2Mlln7tb
+         A09oQ0qV1jKEvDY10hut/Rw+6PTulsWoWycPTm7c+0J7Boip/fLSi5VAJSaJ5kB1WJ+k
+         gPOQaUHE3IXTxHmcHb13Cht62LhS5UoMXxQtSL8qwIFyrrGPeqcq/+nIdIiGALy8zVsI
+         FGJYsi+trPpVcjnZ5fIEM/Yl/Z8DOWtTjBp/wco6ScK4gFDVWqQDIUbCfR0VPSyoMXIA
+         ZIFA==
+X-Gm-Message-State: AOJu0Yx/p07RAzbSgVUj602FOq6I0BjKw2vKE8ccUfrHinGaTMovBhj3
+	LbsNnsmeEjQ6ACKcxwwMmezMzA==
+X-Google-Smtp-Source: AGHT+IFes8ntwMuaHaAbleFhA6O4kz2plWbx/N3J8ah3XVD6nOLd43XlUH10ZQB9yrHrmf7i0TLudA==
+X-Received: by 2002:a05:600c:3ba6:b0:40b:5e21:e27a with SMTP id n38-20020a05600c3ba600b0040b5e21e27amr321653wms.103.1702072539267;
+        Fri, 08 Dec 2023 13:55:39 -0800 (PST)
+Received: from krzk-bin.. ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id r20-20020a05600c459400b0040b349c91acsm6321789wmo.16.2023.12.08.13.55.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Dec 2023 13:42:32 -0800 (PST)
-Received: (nullmailer pid 2852367 invoked by uid 1000);
-	Fri, 08 Dec 2023 21:42:30 -0000
-Date: Fri, 8 Dec 2023 15:42:30 -0600
-From: Rob Herring <robh@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org, Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Jakub Kicinski <kuba@kernel.org>, linux-can@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Paul Walmsley <paul.walmsley@sifive.com>, Albert Ou <aou@eecs.berkeley.edu>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, Daire McNamara <daire.mcnamara@microchip.com>, Wolfgang Grandegger <wg@grandegger.com>, Conor Dooley <conor.dooley@microchip.com>, linux-riscv@lists.infradead.org, Eric Dumazet <edumazet@google.com>, Marc Kleine-Budde <mkl@pengutronix.de>, Palmer Dabbelt <palmer@dabbelt.com>, Paolo Abeni <pabeni@redhat.com>, "David S. Miller" <davem@davemloft.net>
-Subject: Re: [PATCH RESEND v1 2/7] dt-bindings: can: mpfs: add missing
- required clock
-Message-ID: <20231208214230.GA2850699-robh@kernel.org>
-References: <20231208-reenter-ajar-b6223e5134b3@spud>
- <20231208-palpitate-passable-c79bacf2036c@spud>
- <170206026051.2485962.13304186324857333888.robh@kernel.org>
- <20231208-contusion-professed-3b2235f7d3df@spud>
+        Fri, 08 Dec 2023 13:55:38 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Andy Gross <agross@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Stephan Gerhold <stephan@gerhold.net>,
+	Shawn Guo <shawn.guo@linaro.org>,
+	Melody Olvera <quic_molvera@quicinc.com>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Richard Acayan <mailingradian@gmail.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	krishna Lanka <quic_vamslank@quicinc.com>,
+	Rohit Agarwal <quic_rohiagar@quicinc.com>,
+	Iskren Chernev <me@iskren.info>,
+	Martin Botka <martin.botka@somainline.org>,
+	Danila Tikhonov <danila@jiaxyga.com>,
+	Abel Vesa <abel.vesa@linaro.org>,
+	Rajendra Nayak <quic_rjendra@quicinc.com>,
+	linux-arm-msm@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 01/10] dt-bindings: pinctrl: qcom: create common LPASS LPI schema
+Date: Fri,  8 Dec 2023 22:55:25 +0100
+Message-Id: <20231208215534.195854-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231208-contusion-professed-3b2235f7d3df@spud>
+Content-Transfer-Encoding: 8bit
 
-On Fri, Dec 08, 2023 at 07:25:39PM +0000, Conor Dooley wrote:
-> On Fri, Dec 08, 2023 at 12:31:00PM -0600, Rob Herring wrote:
-> > 
-> > On Fri, 08 Dec 2023 17:12:24 +0000, Conor Dooley wrote:
-> > > From: Conor Dooley <conor.dooley@microchip.com>
-> > > 
-> > > The CAN controller on PolarFire SoC has an AHB peripheral clock _and_ a
-> > > CAN bus clock. The bus clock was omitted when the binding was written,
-> > > but is required for operation. Make up for lost time and add it.
-> > > 
-> > > Cautionary tale in adding bindings without having implemented a real
-> > > user for them perhaps.
-> > > 
-> > > Fixes: c878d518d7b6 ("dt-bindings: can: mpfs: document the mpfs CAN controller")
-> > > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> > > ---
-> > >  .../devicetree/bindings/net/can/microchip,mpfs-can.yaml    | 7 +++++--
-> > >  1 file changed, 5 insertions(+), 2 deletions(-)
-> > > 
-> > 
-> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> > 
-> > yamllint warnings/errors:
-> > 
-> > dtschema/dtc warnings/errors:
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/can/microchip,mpfs-can.yaml: properties:clocks: {'maxItems': 2, 'items': [{'description': 'AHB peripheral clock'}, {'description': 'CAN bus clock'}]} should not be valid under {'required': ['maxItems']}
-> > 	hint: "maxItems" is not needed with an "items" list
-> > 	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-> 
-> 
-> Oh dear, me of all people.
+Just like regular TLMM pin controllers in Qualcomm SoCs, the Low Power
+Audio SubSystem (LPASS) Low Power Island (LPI) TLMM blocks share a lot
+of properties, so common part can be moved to separate schema to reduce
+code duplication and make reviewing easier.
 
-Happens to the best of us. :)
+Except the move of common part, this introduces effective changes:
+1. To all LPASS LPI bindings: Reference pinmux-node.yaml in each pin
+   muxing and configuration node, to bring definition of "function" and
+   "pins" properties.
+
+2. qcom,sc7280-lpass-lpi-pinctrl: Reference pinctrl.yaml in top leve.
+
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../pinctrl/qcom,lpass-lpi-common.yaml        | 75 +++++++++++++++++++
+ .../qcom,sc7280-lpass-lpi-pinctrl.yaml        | 49 ++----------
+ .../qcom,sc8280xp-lpass-lpi-pinctrl.yaml      | 49 +-----------
+ .../qcom,sm6115-lpass-lpi-pinctrl.yaml        | 48 +-----------
+ .../qcom,sm8250-lpass-lpi-pinctrl.yaml        | 49 +-----------
+ .../qcom,sm8350-lpass-lpi-pinctrl.yaml        | 49 +-----------
+ .../qcom,sm8450-lpass-lpi-pinctrl.yaml        | 49 +-----------
+ .../qcom,sm8550-lpass-lpi-pinctrl.yaml        | 49 +-----------
+ .../qcom,sm8650-lpass-lpi-pinctrl.yaml        | 49 +-----------
+ 9 files changed, 109 insertions(+), 357 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-common.yaml
+
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-common.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-common.yaml
+new file mode 100644
+index 000000000000..3b5045730471
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-common.yaml
+@@ -0,0 +1,75 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pinctrl/qcom,lpass-lpi-common.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm SoC LPASS LPI TLMM Common Properties
++
++maintainers:
++  - Bjorn Andersson <andersson@kernel.org>
++  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
++  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
++
++description:
++  Common properties for the Top Level Mode Multiplexer pin controllers in the
++  Low Power Audio SubSystem (LPASS) Low Power Island (LPI) of Qualcomm SoCs.
++
++properties:
++  gpio-controller: true
++
++  "#gpio-cells":
++    description:
++      Specifying the pin number and flags, as defined in
++      include/dt-bindings/gpio/gpio.h
++    const: 2
++
++  gpio-ranges:
++    maxItems: 1
++
++required:
++  - gpio-controller
++  - "#gpio-cells"
++  - gpio-ranges
++
++allOf:
++  - $ref: pinctrl.yaml#
++
++additionalProperties: true
++
++$defs:
++  qcom-tlmm-state:
++    properties:
++      drive-strength:
++        enum: [2, 4, 6, 8, 10, 12, 14, 16]
++        default: 2
++        description:
++          Selects the drive strength for the specified pins, in mA.
++
++      slew-rate:
++        enum: [0, 1, 2, 3]
++        default: 0
++        description: |
++          0: No adjustments
++          1: Higher Slew rate (faster edges)
++          2: Lower Slew rate (slower edges)
++          3: Reserved (No adjustments)
++
++      bias-bus-hold: true
++      bias-pull-down: true
++      bias-pull-up: true
++      bias-disable: true
++      input-enable: true
++      output-high: true
++      output-low: true
++
++    required:
++      - pins
++      - function
++
++    allOf:
++      - $ref: pincfg-node.yaml#
++      - $ref: pinmux-node.yaml#
++
++    additionalProperties: true
++
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml
+index 00c5a00e35fc..08801cc4e476 100644
+--- a/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml
+@@ -20,16 +20,6 @@ properties:
+   reg:
+     maxItems: 2
+ 
+-  gpio-controller: true
+-
+-  "#gpio-cells":
+-    description: Specifying the pin number and flags, as defined in
+-      include/dt-bindings/gpio/gpio.h
+-    const: 2
+-
+-  gpio-ranges:
+-    maxItems: 1
+-
+ patternProperties:
+   "-state$":
+     oneOf:
+@@ -45,7 +35,8 @@ $defs:
+     description:
+       Pinctrl node's client devices use subnodes for desired pin configuration.
+       Client device subnodes use below standard properties.
+-    $ref: /schemas/pinctrl/pincfg-node.yaml
++    $ref: qcom,lpass-lpi-common.yaml#/$defs/qcom-tlmm-state
++    unevaluatedProperties: false
+ 
+     properties:
+       pins:
+@@ -68,42 +59,14 @@ $defs:
+           Specify the alternative function to be configured for the specified
+           pins.
+ 
+-      drive-strength:
+-        enum: [2, 4, 6, 8, 10, 12, 14, 16]
+-        default: 2
+-        description:
+-          Selects the drive strength for the specified pins, in mA.
+-
+-      slew-rate:
+-        enum: [0, 1, 2, 3]
+-        default: 0
+-        description: |
+-            0: No adjustments
+-            1: Higher Slew rate (faster edges)
+-            2: Lower Slew rate (slower edges)
+-            3: Reserved (No adjustments)
+-
+-      bias-pull-down: true
+-      bias-pull-up: true
+-      bias-bus-hold: true
+-      bias-disable: true
+-      output-high: true
+-      output-low: true
+-
+-    required:
+-      - pins
+-      - function
+-
+-    additionalProperties: false
+-
+ required:
+   - compatible
+   - reg
+-  - gpio-controller
+-  - "#gpio-cells"
+-  - gpio-ranges
+ 
+-additionalProperties: false
++allOf:
++  - $ref: qcom,lpass-lpi-common.yaml#
++
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sc8280xp-lpass-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sc8280xp-lpass-lpi-pinctrl.yaml
+index a9167dac9ab5..240e6d45cc95 100644
+--- a/Documentation/devicetree/bindings/pinctrl/qcom,sc8280xp-lpass-lpi-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,sc8280xp-lpass-lpi-pinctrl.yaml
+@@ -32,16 +32,6 @@ properties:
+       - const: core
+       - const: audio
+ 
+-  gpio-controller: true
+-
+-  "#gpio-cells":
+-    description: Specifying the pin number and flags, as defined in
+-      include/dt-bindings/gpio/gpio.h
+-    const: 2
+-
+-  gpio-ranges:
+-    maxItems: 1
+-
+ patternProperties:
+   "-state$":
+     oneOf:
+@@ -57,7 +47,8 @@ $defs:
+     description:
+       Pinctrl node's client devices use subnodes for desired pin configuration.
+       Client device subnodes use below standard properties.
+-    $ref: /schemas/pinctrl/pincfg-node.yaml
++    $ref: qcom,lpass-lpi-common.yaml#/$defs/qcom-tlmm-state
++    unevaluatedProperties: false
+ 
+     properties:
+       pins:
+@@ -79,48 +70,16 @@ $defs:
+           Specify the alternative function to be configured for the specified
+           pins.
+ 
+-      drive-strength:
+-        enum: [2, 4, 6, 8, 10, 12, 14, 16]
+-        default: 2
+-        description:
+-          Selects the drive strength for the specified pins, in mA.
+-
+-      slew-rate:
+-        enum: [0, 1, 2, 3]
+-        default: 0
+-        description: |
+-          0: No adjustments
+-          1: Higher Slew rate (faster edges)
+-          2: Lower Slew rate (slower edges)
+-          3: Reserved (No adjustments)
+-
+-      bias-bus-hold: true
+-      bias-pull-down: true
+-      bias-pull-up: true
+-      bias-disable: true
+-      input-enable: true
+-      output-high: true
+-      output-low: true
+-
+-    required:
+-      - pins
+-      - function
+-
+-    additionalProperties: false
+-
+ allOf:
+-  - $ref: pinctrl.yaml#
++  - $ref: qcom,lpass-lpi-common.yaml#
+ 
+ required:
+   - compatible
+   - reg
+   - clocks
+   - clock-names
+-  - gpio-controller
+-  - "#gpio-cells"
+-  - gpio-ranges
+ 
+-additionalProperties: false
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm6115-lpass-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm6115-lpass-lpi-pinctrl.yaml
+index abac3311fc55..f4cf2ce86fcd 100644
+--- a/Documentation/devicetree/bindings/pinctrl/qcom,sm6115-lpass-lpi-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm6115-lpass-lpi-pinctrl.yaml
+@@ -31,16 +31,6 @@ properties:
+     items:
+       - const: audio
+ 
+-  gpio-controller: true
+-
+-  "#gpio-cells":
+-    description: Specifying the pin number and flags, as defined in
+-      include/dt-bindings/gpio/gpio.h
+-    const: 2
+-
+-  gpio-ranges:
+-    maxItems: 1
+-
+ patternProperties:
+   "-state$":
+     oneOf:
+@@ -56,7 +46,8 @@ $defs:
+     description:
+       Pinctrl node's client devices use subnodes for desired pin configuration.
+       Client device subnodes use below standard properties.
+-    $ref: /schemas/pinctrl/pincfg-node.yaml
++    $ref: qcom,lpass-lpi-common.yaml#/$defs/qcom-tlmm-state
++    unevaluatedProperties: false
+ 
+     properties:
+       pins:
+@@ -75,48 +66,17 @@ $defs:
+           Specify the alternative function to be configured for the specified
+           pins.
+ 
+-      drive-strength:
+-        enum: [2, 4, 6, 8, 10, 12, 14, 16]
+-        default: 2
+-        description:
+-          Selects the drive strength for the specified pins, in mA.
+-
+-      slew-rate:
+-        enum: [0, 1, 2, 3]
+-        default: 0
+-        description: |
+-          0: No adjustments
+-          1: Higher Slew rate (faster edges)
+-          2: Lower Slew rate (slower edges)
+-          3: Reserved (No adjustments)
+-
+-      bias-bus-hold: true
+-      bias-pull-down: true
+-      bias-pull-up: true
+-      bias-disable: true
+-      input-enable: true
+-      output-high: true
+-      output-low: true
+-
+-    required:
+-      - pins
+-      - function
+-
+-    additionalProperties: false
+ 
+ allOf:
+-  - $ref: pinctrl.yaml#
++  - $ref: qcom,lpass-lpi-common.yaml#
+ 
+ required:
+   - compatible
+   - reg
+   - clocks
+   - clock-names
+-  - gpio-controller
+-  - "#gpio-cells"
+-  - gpio-ranges
+ 
+-additionalProperties: false
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm8250-lpass-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm8250-lpass-lpi-pinctrl.yaml
+index 4b4be7efc150..750c996c10a7 100644
+--- a/Documentation/devicetree/bindings/pinctrl/qcom,sm8250-lpass-lpi-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm8250-lpass-lpi-pinctrl.yaml
+@@ -30,16 +30,6 @@ properties:
+       - const: core
+       - const: audio
+ 
+-  gpio-controller: true
+-
+-  "#gpio-cells":
+-    description: Specifying the pin number and flags, as defined in
+-      include/dt-bindings/gpio/gpio.h
+-    const: 2
+-
+-  gpio-ranges:
+-    maxItems: 1
+-
+ patternProperties:
+   "-state$":
+     oneOf:
+@@ -55,7 +45,8 @@ $defs:
+     description:
+       Pinctrl node's client devices use subnodes for desired pin configuration.
+       Client device subnodes use below standard properties.
+-    $ref: /schemas/pinctrl/pincfg-node.yaml
++    $ref: qcom,lpass-lpi-common.yaml#/$defs/qcom-tlmm-state
++    unevaluatedProperties: false
+ 
+     properties:
+       pins:
+@@ -78,48 +69,16 @@ $defs:
+           Specify the alternative function to be configured for the specified
+           pins.
+ 
+-      drive-strength:
+-        enum: [2, 4, 6, 8, 10, 12, 14, 16]
+-        default: 2
+-        description:
+-          Selects the drive strength for the specified pins, in mA.
+-
+-      slew-rate:
+-        enum: [0, 1, 2, 3]
+-        default: 0
+-        description: |
+-            0: No adjustments
+-            1: Higher Slew rate (faster edges)
+-            2: Lower Slew rate (slower edges)
+-            3: Reserved (No adjustments)
+-
+-      bias-pull-down: true
+-      bias-pull-up: true
+-      bias-bus-hold: true
+-      bias-disable: true
+-      input-enable: true
+-      output-high: true
+-      output-low: true
+-
+-    required:
+-      - pins
+-      - function
+-
+-    additionalProperties: false
+-
+ allOf:
+-  - $ref: pinctrl.yaml#
++  - $ref: qcom,lpass-lpi-common.yaml#
+ 
+ required:
+   - compatible
+   - reg
+   - clocks
+   - clock-names
+-  - gpio-controller
+-  - "#gpio-cells"
+-  - gpio-ranges
+ 
+-additionalProperties: false
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm8350-lpass-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm8350-lpass-lpi-pinctrl.yaml
+index 2e65ae08dd21..9d782f910b31 100644
+--- a/Documentation/devicetree/bindings/pinctrl/qcom,sm8350-lpass-lpi-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm8350-lpass-lpi-pinctrl.yaml
+@@ -33,16 +33,6 @@ properties:
+       - const: core
+       - const: audio
+ 
+-  gpio-controller: true
+-
+-  "#gpio-cells":
+-    description: Specifying the pin number and flags, as defined in
+-      include/dt-bindings/gpio/gpio.h
+-    const: 2
+-
+-  gpio-ranges:
+-    maxItems: 1
+-
+ patternProperties:
+   "-state$":
+     oneOf:
+@@ -58,7 +48,8 @@ $defs:
+     description:
+       Pinctrl node's client devices use subnodes for desired pin configuration.
+       Client device subnodes use below standard properties.
+-    $ref: /schemas/pinctrl/pincfg-node.yaml
++    $ref: qcom,lpass-lpi-common.yaml#/$defs/qcom-tlmm-state
++    unevaluatedProperties: false
+ 
+     properties:
+       pins:
+@@ -81,48 +72,16 @@ $defs:
+           Specify the alternative function to be configured for the specified
+           pins.
+ 
+-      drive-strength:
+-        enum: [2, 4, 6, 8, 10, 12, 14, 16]
+-        default: 2
+-        description:
+-          Selects the drive strength for the specified pins, in mA.
+-
+-      slew-rate:
+-        enum: [0, 1, 2, 3]
+-        default: 0
+-        description: |
+-          0: No adjustments
+-          1: Higher Slew rate (faster edges)
+-          2: Lower Slew rate (slower edges)
+-          3: Reserved (No adjustments)
+-
+-      bias-bus-hold: true
+-      bias-pull-down: true
+-      bias-pull-up: true
+-      bias-disable: true
+-      input-enable: true
+-      output-high: true
+-      output-low: true
+-
+-    required:
+-      - pins
+-      - function
+-
+-    additionalProperties: false
+-
+ allOf:
+-  - $ref: pinctrl.yaml#
++  - $ref: qcom,lpass-lpi-common.yaml#
+ 
+ required:
+   - compatible
+   - reg
+   - clocks
+   - clock-names
+-  - gpio-controller
+-  - "#gpio-cells"
+-  - gpio-ranges
+ 
+-additionalProperties: false
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm8450-lpass-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm8450-lpass-lpi-pinctrl.yaml
+index 1eefa9aa6a86..e7565592da86 100644
+--- a/Documentation/devicetree/bindings/pinctrl/qcom,sm8450-lpass-lpi-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm8450-lpass-lpi-pinctrl.yaml
+@@ -32,16 +32,6 @@ properties:
+       - const: core
+       - const: audio
+ 
+-  gpio-controller: true
+-
+-  "#gpio-cells":
+-    description: Specifying the pin number and flags, as defined in
+-      include/dt-bindings/gpio/gpio.h
+-    const: 2
+-
+-  gpio-ranges:
+-    maxItems: 1
+-
+ patternProperties:
+   "-state$":
+     oneOf:
+@@ -57,7 +47,8 @@ $defs:
+     description:
+       Pinctrl node's client devices use subnodes for desired pin configuration.
+       Client device subnodes use below standard properties.
+-    $ref: /schemas/pinctrl/pincfg-node.yaml
++    $ref: qcom,lpass-lpi-common.yaml#/$defs/qcom-tlmm-state
++    unevaluatedProperties: false
+ 
+     properties:
+       pins:
+@@ -81,48 +72,16 @@ $defs:
+           Specify the alternative function to be configured for the specified
+           pins.
+ 
+-      drive-strength:
+-        enum: [2, 4, 6, 8, 10, 12, 14, 16]
+-        default: 2
+-        description:
+-          Selects the drive strength for the specified pins, in mA.
+-
+-      slew-rate:
+-        enum: [0, 1, 2, 3]
+-        default: 0
+-        description: |
+-          0: No adjustments
+-          1: Higher Slew rate (faster edges)
+-          2: Lower Slew rate (slower edges)
+-          3: Reserved (No adjustments)
+-
+-      bias-bus-hold: true
+-      bias-pull-down: true
+-      bias-pull-up: true
+-      bias-disable: true
+-      input-enable: true
+-      output-high: true
+-      output-low: true
+-
+-    required:
+-      - pins
+-      - function
+-
+-    additionalProperties: false
+-
+ allOf:
+-  - $ref: pinctrl.yaml#
++  - $ref: qcom,lpass-lpi-common.yaml#
+ 
+ required:
+   - compatible
+   - reg
+   - clocks
+   - clock-names
+-  - gpio-controller
+-  - "#gpio-cells"
+-  - gpio-ranges
+ 
+-additionalProperties: false
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm8550-lpass-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm8550-lpass-lpi-pinctrl.yaml
+index ad5e32130fd7..bf4a72facae1 100644
+--- a/Documentation/devicetree/bindings/pinctrl/qcom,sm8550-lpass-lpi-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm8550-lpass-lpi-pinctrl.yaml
+@@ -37,16 +37,6 @@ properties:
+       - const: core
+       - const: audio
+ 
+-  gpio-controller: true
+-
+-  "#gpio-cells":
+-    description: Specifying the pin number and flags, as defined in
+-      include/dt-bindings/gpio/gpio.h
+-    const: 2
+-
+-  gpio-ranges:
+-    maxItems: 1
+-
+ patternProperties:
+   "-state$":
+     oneOf:
+@@ -62,7 +52,8 @@ $defs:
+     description:
+       Pinctrl node's client devices use subnodes for desired pin configuration.
+       Client device subnodes use below standard properties.
+-    $ref: /schemas/pinctrl/pincfg-node.yaml
++    $ref: qcom,lpass-lpi-common.yaml#/$defs/qcom-tlmm-state
++    unevaluatedProperties: false
+ 
+     properties:
+       pins:
+@@ -85,48 +76,16 @@ $defs:
+           Specify the alternative function to be configured for the specified
+           pins.
+ 
+-      drive-strength:
+-        enum: [2, 4, 6, 8, 10, 12, 14, 16]
+-        default: 2
+-        description:
+-          Selects the drive strength for the specified pins, in mA.
+-
+-      slew-rate:
+-        enum: [0, 1, 2, 3]
+-        default: 0
+-        description: |
+-          0: No adjustments
+-          1: Higher Slew rate (faster edges)
+-          2: Lower Slew rate (slower edges)
+-          3: Reserved (No adjustments)
+-
+-      bias-bus-hold: true
+-      bias-pull-down: true
+-      bias-pull-up: true
+-      bias-disable: true
+-      input-enable: true
+-      output-high: true
+-      output-low: true
+-
+-    required:
+-      - pins
+-      - function
+-
+-    additionalProperties: false
+-
+ allOf:
+-  - $ref: pinctrl.yaml#
++  - $ref: qcom,lpass-lpi-common.yaml#
+ 
+ required:
+   - compatible
+   - reg
+   - clocks
+   - clock-names
+-  - gpio-controller
+-  - "#gpio-cells"
+-  - gpio-ranges
+ 
+-additionalProperties: false
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm8650-lpass-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm8650-lpass-lpi-pinctrl.yaml
+index f5736ed140ee..db7214362301 100644
+--- a/Documentation/devicetree/bindings/pinctrl/qcom,sm8650-lpass-lpi-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm8650-lpass-lpi-pinctrl.yaml
+@@ -32,16 +32,6 @@ properties:
+       - const: core
+       - const: audio
+ 
+-  gpio-controller: true
+-
+-  "#gpio-cells":
+-    description: Specifying the pin number and flags, as defined in
+-      include/dt-bindings/gpio/gpio.h
+-    const: 2
+-
+-  gpio-ranges:
+-    maxItems: 1
+-
+ patternProperties:
+   "-state$":
+     oneOf:
+@@ -57,7 +47,8 @@ $defs:
+     description:
+       Pinctrl node's client devices use subnodes for desired pin configuration.
+       Client device subnodes use below standard properties.
+-    $ref: /schemas/pinctrl/pincfg-node.yaml
++    $ref: qcom,lpass-lpi-common.yaml#/$defs/qcom-tlmm-state
++    unevaluatedProperties: false
+ 
+     properties:
+       pins:
+@@ -80,48 +71,16 @@ $defs:
+           Specify the alternative function to be configured for the specified
+           pins.
+ 
+-      drive-strength:
+-        enum: [2, 4, 6, 8, 10, 12, 14, 16]
+-        default: 2
+-        description:
+-          Selects the drive strength for the specified pins, in mA.
+-
+-      slew-rate:
+-        enum: [0, 1, 2, 3]
+-        default: 0
+-        description: |
+-          0: No adjustments
+-          1: Higher Slew rate (faster edges)
+-          2: Lower Slew rate (slower edges)
+-          3: Reserved (No adjustments)
+-
+-      bias-bus-hold: true
+-      bias-pull-down: true
+-      bias-pull-up: true
+-      bias-disable: true
+-      input-enable: true
+-      output-high: true
+-      output-low: true
+-
+-    required:
+-      - pins
+-      - function
+-
+-    additionalProperties: false
+-
+ allOf:
+-  - $ref: pinctrl.yaml#
++  - $ref: qcom,lpass-lpi-common.yaml#
+ 
+ required:
+   - compatible
+   - reg
+   - clocks
+   - clock-names
+-  - gpio-controller
+-  - "#gpio-cells"
+-  - gpio-ranges
+ 
+-additionalProperties: false
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+-- 
+2.34.1
+
 
