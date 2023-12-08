@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-23308-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23309-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A603980AAFE
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 18:40:52 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B29D080AB12
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 18:46:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2AD851F21272
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 17:40:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3B28CB20BAD
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 17:46:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 542823B2BD;
-	Fri,  8 Dec 2023 17:40:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66C4B3B79F;
+	Fri,  8 Dec 2023 17:46:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="d/Z5EQ5h"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="K1gXoLQi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 838BD19A3
-	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 09:40:41 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-40c2c5a8150so19284285e9.2
-        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 09:40:41 -0800 (PST)
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81CFD172A
+	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 09:46:46 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-40a4848c6e1so28016615e9.1
+        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 09:46:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702057240; x=1702662040; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702057605; x=1702662405; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=oNf690m6EHGUAGO9/ARDGUXkZacN48gEmwCVMqtE7nw=;
-        b=d/Z5EQ5hYoH23ERrWAz0k9pSht6xBsPDAh/PV6RSjL1oY8xJkBQC2XJUabneeCxppP
-         lqK1hQ8d2qpWjl+5NVDJZZpXJuBpIeZvQA8WqbRbH+83AAbpqGUi5XtX4Y4XtWvKrZt7
-         cFdnA6e5R16Le4llEjhSbzfhjFODpI7LaMLUaa9s892b0TxDq75lX+PRN/etPfRRmQyl
-         rnzQ9AO+iusyGPucQueAEYsB5Iy8/S9WFq6TRAaHFGGwC79FXzKzjwaYHiAZH6qfad0J
-         YZYt6Zv24bLvjMIA6OYUGKdr2MobVvyPDhGtmcy10gwLFzLtPkn106FCnBTW9xlm/AgC
-         DxAg==
+        bh=VgDXHztfCADJUTAKOHChM4jQL8m2eqXnxgRSAcP58OY=;
+        b=K1gXoLQiHUvrcII5vKk55xCQjKpnn6APVS6YRT23ZM0hbIwuPDdPZcCymXmkvpfPy4
+         EcOV8uF9XOPBVCYPp2St3HyHwf0WeR7hSJM8HT+jQojYjtqJYAbDIHmaouWCn+TKo1rK
+         rhYmP/bSFgn6iENDde/y3CeNA1KZJ1HZv/KLDIvzizFY/yWJAfdGo5QZrRvPDPl2k/cU
+         mSR6P0vjwZ2m5OCsghnf8h6Bm6XFp42Nco/OQW7KqZmpkIe+Fq+xCcty6XfiYo2MmvvD
+         yNt499fH/cG4InJCbyUwD4o8r8WU3utnnEvSSsqEWD0hNC96Q4lKGorS/9TOJCUTA+ij
+         yFfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702057240; x=1702662040;
+        d=1e100.net; s=20230601; t=1702057605; x=1702662405;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oNf690m6EHGUAGO9/ARDGUXkZacN48gEmwCVMqtE7nw=;
-        b=Ta1Rp2lTzW5kAWZnQgNA/h2uMrD01a5jHvwMxDcWYfAPoVNcTXspr6stDMFuGFVYRD
-         ylWsj8qCHXKEtNelxLOrmC+csaJMNp+lwfN6wibsiZLHlkuqxs3hJVzHFRvmMJjN79TL
-         eGXnpCje8gLz8/W8m4EVaMnYvaoXCpt5oL4ZKUFr9OGA1mi/e3tELkAKRrgSMsFZcEJJ
-         Fshr6GsJDHiPralYzI8OIcYkor5dg07IRmXIdBgCyL/nrAsqSbdaT0/0OKHLYiJpONYI
-         juesPU95PX7Hho253VzBZgbA3iTxvrHDLKl9SS2V31MFxU6AKSg7INAZge6thUuHYCDA
-         h9Zg==
-X-Gm-Message-State: AOJu0Yzarya4RzLr2OUIIXxXMCHUcf9UOYGJihS4el1OkUhnTj8u/16t
-	fpP6tE+AmvIHd4XjFExUF+gAHA==
-X-Google-Smtp-Source: AGHT+IG/4CCIzO87PnkkxDMb07D8NhaMK9ROSpjTQpYQyTpufI6ZGRXb/jb27+07oRj2rdrzxkmFOg==
-X-Received: by 2002:a05:600c:20d:b0:40c:3915:be5a with SMTP id 13-20020a05600c020d00b0040c3915be5amr202333wmi.118.1702057239872;
-        Fri, 08 Dec 2023 09:40:39 -0800 (PST)
+        bh=VgDXHztfCADJUTAKOHChM4jQL8m2eqXnxgRSAcP58OY=;
+        b=u6RLORh+SM7ATQ4gG6/MALmrDEBCXn6Q1ECJb+hKXwV1U57ZmNWRJ/if2YfvuWiSUX
+         oR2xc8n+k5CMKM8QD10xbHpEUCv3/t7LB253jYFimd38YyqjlARxzvlAXSoQrE0QS1SS
+         y3j+DF1Csphl5ynOSC/1zq8hAxrsSpoftvIjcWKxMSjlSQTVPhD7QXUMaIbtgTsVR4YJ
+         mIZbKzApTctIrBNKkFmgaxEDwf+RYbi6X5H6jYL+6c73Yw0LnmzsssKjyG1/WPb/tXEa
+         VWrrBoplGAs8ZDZkqTypLyGoXxSu1osjrVgMD4e1zn9VXFrDtzmbkbgZqtpAFLObHxEF
+         s5jw==
+X-Gm-Message-State: AOJu0Yyl7RExjVdcBvA1L0KloAE42mdg8I8WjrhbPAKD2jP2ilwQ7SXH
+	1zRHCEKT917ebo1z292I3hFrZDCOzM7ra12T3TY=
+X-Google-Smtp-Source: AGHT+IHCX3EqeyPCxrLkG8tXfgVl859gJUVA7CySALWyVqO2ObV4GGDMHy5kCGeUlhcPfiXkmijd2A==
+X-Received: by 2002:a05:600c:228a:b0:40c:2205:e600 with SMTP id 10-20020a05600c228a00b0040c2205e600mr163393wmf.215.1702057604926;
+        Fri, 08 Dec 2023 09:46:44 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id n21-20020a05600c4f9500b0040b36ad5413sm3424034wmq.46.2023.12.08.09.40.38
+        by smtp.gmail.com with ESMTPSA id m11-20020a05600c4f4b00b0040b561924bbsm5829165wmq.21.2023.12.08.09.46.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Dec 2023 09:40:39 -0800 (PST)
-Message-ID: <82817908-1965-4d0a-bd2d-4785bfda45a7@linaro.org>
-Date: Fri, 8 Dec 2023 18:40:38 +0100
+        Fri, 08 Dec 2023 09:46:44 -0800 (PST)
+Message-ID: <0915b94c-596e-4a19-925c-1a5b1d0a3531@linaro.org>
+Date: Fri, 8 Dec 2023 18:46:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,19 +62,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/8] dt-bindings: adc: ad9467: document io-backend
- property
+Subject: Re: [PATCH v4 10/17] dt-bindings: display: vop2: Add rk3588 support
 Content-Language: en-US
-To: nuno.sa@analog.com, devicetree@vger.kernel.org, linux-iio@vger.kernel.org
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Frank Rowand <frowand.list@gmail.com>, Jonathan Cameron <jic23@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-References: <20231208-dev-iio-backend-v2-0-5450951895e1@analog.com>
- <20231208-dev-iio-backend-v2-1-5450951895e1@analog.com>
+To: Andy Yan <andyshrk@163.com>, heiko@sntech.de
+Cc: hjc@rock-chips.com, dri-devel@lists.freedesktop.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+ devicetree@vger.kernel.org, sebastian.reichel@collabora.com,
+ kever.yang@rock-chips.com, chris.obbard@collabora.com,
+ Andy Yan <andy.yan@rock-chips.com>
+References: <20231207075906.651771-1-andyshrk@163.com>
+ <20231207080133.652417-1-andyshrk@163.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -120,40 +118,52 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231208-dev-iio-backend-v2-1-5450951895e1@analog.com>
+In-Reply-To: <20231207080133.652417-1-andyshrk@163.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 08/12/2023 16:14, Nuno Sa via B4 Relay wrote:
-> From: Nuno Sa <nuno.sa@analog.com>
+On 07/12/2023 09:01, Andy Yan wrote:
+> From: Andy Yan <andy.yan@rock-chips.com>
 > 
-> Add a new property to reference IIO backend devices.
-
-This we can see. But why?
-
+> The vop2 on rk3588 is similar to which on rk356x
+> but with 4 video ports and need to reference
+> more grf modules.
 > 
-> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+> 
 > ---
->  Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml
-> index 7aa748d6b7a0..ae74249b4726 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml
-> @@ -44,6 +44,10 @@ properties:
->        Pin that controls the powerdown mode of the device.
->      maxItems: 1
->  
-> +  io-backends:
-> +    description: Phandle to the IIO backend device.
+> Changes in v4:
+> - drop redundant description.
+> - use full stop at all the description's end.
+> - address Krzysztof's review in v3
 
-Looks like standard property. Where is it defined? What is the meaning
-(your description does not tell me anything more than property name and
-its type)
+What changed? Please list specific changes, not just generic "address
+review".
 
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +
+> 
+> Changes in v3:
+> - constrain properties in allOf:if:then
+> - some description updates
+> 
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+---
+
+This is an automated instruction, just in case, because many review tags
+are being ignored. If you know the process, you can skip it (please do
+not feel offended by me posting it here - no bad intentions intended).
+If you do not know the process, here is a short explanation:
+
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tag is "received", when
+provided in a message replied to you on the mailing list. Tools like b4
+can help here. However, there's no need to repost patches *only* to add
+the tags. The upstream maintainer will do that for tags received on the
+version they apply.
+
+https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
 
 Best regards,
 Krzysztof
