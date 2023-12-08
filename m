@@ -1,166 +1,173 @@
-Return-Path: <devicetree+bounces-22989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22991-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F48D809D67
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 08:44:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47987809D7C
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 08:50:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 668C01C20A5D
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 07:44:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 859C2281351
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 07:50:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75591107BC;
-	Fri,  8 Dec 2023 07:44:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BAF810944;
+	Fri,  8 Dec 2023 07:50:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GopQdwN7"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="OEQKhaWS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADB63171D
-	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 23:44:18 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-40c25973988so19343635e9.2
-        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 23:44:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702021457; x=1702626257; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=j6viYjAED+zaKyZuuIRHjuwK/4KOnFqTn4xJBTSzO5k=;
-        b=GopQdwN7pk27k2x1o1zYnJsl2OdXP8r08Zhsv/ce3SYWd66b5Czmt+UiReCK+PcWwx
-         5vRonq3fZmjWNzOhzI77x8jdWFemer7oYct41RmSueoqwDMHPZ+xj6xqi84iZTjyNmW5
-         3yTWJppMMKPbf+4QOdkufuMc3TCBxfwwHyZKv+5gxOv0BGLNsjcTvZoW3c7fbyPO+wmM
-         fGFWJ9SbMwaLSnRAnD1DS00Kxuk9pkNpzhVJ7sDgNSEvx6X+PcA+aZ3XA28ZPHXw/Wjx
-         CwfU/FIB90lWGi+3FSkqsP4Sqa5mu+dOx0ZxqeyonVdnCgySPdhniU/pL6mCiL0pcQmy
-         49nA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702021457; x=1702626257;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=j6viYjAED+zaKyZuuIRHjuwK/4KOnFqTn4xJBTSzO5k=;
-        b=lp78t2erfScefeYKNBP6kKMnNzRLvjhbjC4Y/tfZBoAaeEjfCUqgfA+50XLSERnf3l
-         +jn1LSCnA697LdAlfTTSV45dsRUxUg1eCS1yh7FsrtgLkd2U6/PFbdi9oAem6JG6++3k
-         UMepCYbbETS6cGVsLXMOCiNFyf+mePZ8uHwXdjfjKbXYAVsdnihmlv2T6Lw9FPQDwxus
-         bBVjLvBWSNjNRQ/UX+tR1eJL+4FE9GN1vjbDXJahUep2QP77BQBuUyIIQDogFv+b7FyQ
-         3ytP7U6L02hAg8GkGTpMqKlPrH3BlIxkMEtMceGibbwJWosKvVQ+UdkuLQVIceOUdbtH
-         5OHw==
-X-Gm-Message-State: AOJu0YzaEZtAGRScSrfPJQQT9hfrXVFB8YMhEfMQ5nykRaJSsJVDAICt
-	xK3P4Ril724WXfHPS9bmGW1LBg==
-X-Google-Smtp-Source: AGHT+IFCh3aN+1m1FM4bbKWQGrrkARIdckD3vmtcXuonmBeJvv4hz9BU4T5jSKMaAOO8np+gfY5bTQ==
-X-Received: by 2002:a05:600c:452:b0:40c:314f:5747 with SMTP id s18-20020a05600c045200b0040c314f5747mr594063wmb.112.1702021457026;
-        Thu, 07 Dec 2023 23:44:17 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id ek10-20020a05600c3eca00b0040b3d33ab55sm4208093wmb.47.2023.12.07.23.44.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Dec 2023 23:44:16 -0800 (PST)
-Message-ID: <1a78d453-62a2-410a-a40f-1ff0c2b62e86@linaro.org>
-Date: Fri, 8 Dec 2023 08:44:14 +0100
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38CAD1725
+	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 23:50:24 -0800 (PST)
+Received: from epcas2p1.samsung.com (unknown [182.195.41.53])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20231208075021epoutp0231d9c9d7ccf5be94108bef24f04e7b06~ey9RQhyHV2045920459epoutp02Q
+	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 07:50:21 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20231208075021epoutp0231d9c9d7ccf5be94108bef24f04e7b06~ey9RQhyHV2045920459epoutp02Q
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1702021821;
+	bh=qjbIaClF8yopZN8015RmaLZ6gHoakv4UFGRQz8iXfWk=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=OEQKhaWS+MDNq7cni8S6nTKXwK0ebT2NdV/h/A7COTmm5h0XRtTJJuII0bc6g1BHe
+	 vVazIBZ7ZXv3aTCs3gplcdVZMRdpHOX2dlL4CPmC6JNxex8w48ZiFN8lItkGy0XUnc
+	 BDlC/snh49nnk4sZh6omN/b/BeClr4MFHJCU159U=
+Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
+	epcas2p1.samsung.com (KnoxPortal) with ESMTP id
+	20231208075021epcas2p17b86ea1164128f3701a9151fe832dc1d~ey9QnzfO70844008440epcas2p1W;
+	Fri,  8 Dec 2023 07:50:21 +0000 (GMT)
+Received: from epsmges2p1.samsung.com (unknown [182.195.36.89]) by
+	epsnrtp3.localdomain (Postfix) with ESMTP id 4Smjwr4Hzwz4x9Q0; Fri,  8 Dec
+	2023 07:50:20 +0000 (GMT)
+Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
+	epsmges2p1.samsung.com (Symantec Messaging Gateway) with SMTP id
+	34.D3.10006.CBAC2756; Fri,  8 Dec 2023 16:50:20 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+	epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
+	20231208075019epcas2p4cef1190e41adeaaf47b7763cc86c3d26~ey9PZThlO1013010130epcas2p4p;
+	Fri,  8 Dec 2023 07:50:19 +0000 (GMT)
+Received: from epsmgmc1p1new.samsung.com (unknown [182.195.42.40]) by
+	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20231208075019epsmtrp25d9a523bfebdf6abd2feadc9931e8c3a~ey9PXkPcB0096800968epsmtrp2R;
+	Fri,  8 Dec 2023 07:50:19 +0000 (GMT)
+X-AuditID: b6c32a45-3ebfd70000002716-79-6572cabc38c2
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+	epsmgmc1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	52.00.07368.BBAC2756; Fri,  8 Dec 2023 16:50:19 +0900 (KST)
+Received: from localhost.localdomain (unknown [10.229.9.55]) by
+	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20231208075019epsmtip259e371d900c1f9bba436b2999f5c312e~ey9PFghTm1345613456epsmtip2f;
+	Fri,  8 Dec 2023 07:50:19 +0000 (GMT)
+From: Jaewon Kim <jaewon02.kim@samsung.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Alim Akhtar
+	<alim.akhtar@samsung.com>, Rob Herring <robh+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Tomasz Figa <tomasz.figa@gmail.com>, Sylwester
+	Nawrocki <s.nawrocki@samsung.com>, Linus Walleij <linus.walleij@linaro.org>,
+	Thierry Reding <thierry.reding@gmail.com>, Uwe Kleine-K?nig
+	<u.kleine-koenig@pengutronix.de>, Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
+	linux-serial@vger.kernel.org, Jaewon Kim <jaewon02.kim@samsung.com>
+Subject: [PATCH v3 0/4] Introduce ExynosAutov920 SoC and SADK board
+Date: Fri,  8 Dec 2023 16:45:23 +0900
+Message-ID: <20231208074527.50840-1-jaewon02.kim@samsung.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/2] dt-bindings: usb: Add the binding example for the
- Genesys Logic GL3523 hub
-Content-Language: en-US
-To: Anand Moon <linux.amoon@gmail.com>
-Cc: Rob Herring <robh@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Icenowy Zheng <uwu@icenowy.me>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- linux-amlogic@lists.infradead.org, Conor Dooley
- <conor.dooley@microchip.com>, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231204144429.45197-1-linux.amoon@gmail.com>
- <20231204144429.45197-2-linux.amoon@gmail.com>
- <20231206135311.GA2043711-robh@kernel.org>
- <CANAwSgTS0ZSFPv4x803pCLEpjH5imh8vEoWpbiJRH14Sy3GZww@mail.gmail.com>
- <21673bfd-bb87-4c7d-a53f-337c263f3a00@linaro.org>
- <CANAwSgSo37B0zg-xjrmqndSZ5SbyB3m27_wRsqqN9WTONooeiw@mail.gmail.com>
- <604e653d-c1e2-45c7-b121-8a6b4be5c6bb@linaro.org>
- <CANAwSgRB=XWo2-40rDru=Zy277-kgGNjozJ8Lxnxgv_4ABB-kg@mail.gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CANAwSgRB=XWo2-40rDru=Zy277-kgGNjozJ8Lxnxgv_4ABB-kg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrOJsWRmVeSWpSXmKPExsWy7bCmqe6eU0WpBjNuylk8mLeNzWLN3nNM
+	FvOPnGO1aF68ns1iR8MRVot3c2Us9r7eym4x5c9yJotNj6+xWmye/4fR4vKuOWwWd++uYrSY
+	cX4fk8WZxb3sFq17j7BbHH7Tzmrxc9c8FotVu4Dqbk+czOgg7LFz1l12j02rOtk87lzbw+ax
+	f+4ado/NS+o9+v8aePRtWcXo8XmTXABHVLZNRmpiSmqRQmpecn5KZl66rZJ3cLxzvKmZgaGu
+	oaWFuZJCXmJuqq2Si0+ArltmDtA7SgpliTmlQKGAxOJiJX07m6L80pJUhYz84hJbpdSClJwC
+	8wK94sTc4tK8dL281BIrQwMDI1OgwoTsjPWTF7EWfOaveHzlC0sDYxdvFyMnh4SAicS9TzPY
+	uxi5OIQEdjBKzFz6kwkkISTwiVHi810tiMQ3Rokdsw+ywHRMvLoNqmMvo8Sa3W+hnI+MEusf
+	rmEDqWIT0Jb4vn4xK4gtInCfWeJ1WzVIEbNAO5PEvG8vwUYJCzhLnF/cBGazCKhKzF16CGw3
+	r4CtxJdrJ5kh1slLLN6xnBkiLihxcuYTsHpmoHjz1tnMIEMlBPZwSFxs2gF1n4vEj7OH2SFs
+	YYlXx7dA2VISn9/tZYOw8yXarpyBitdIbFxwiRHCtpeY9XsL0NUcQAs0Jdbv0gcxJQSUJY7c
+	glrLJ9Fx+C87RJhXoqNNCKJRTeL+1HNQw2UkJh1ZyQRhe0hsfN7ADAnRWIm+NRdZJjDKz0Ly
+	zCwkz8xC2LuAkXkVo1hqQXFuemqxUYEhPFKT83M3MYJTtJbrDsbJbz/oHWJk4mA8xCjBwawk
+	wptzPj9ViDclsbIqtSg/vqg0J7X4EKMpMHgnMkuJJucDs0ReSbyhiaWBiZmZobmRqYG5kjjv
+	vda5KUIC6YklqdmpqQWpRTB9TBycUg1Mp5WqbszaZfN5kcAW9yQ28Y1Z6RpTSnd9U82STWiJ
+	lNw16cTLaa+/i6xLtm3e/+dVQWaQ3rG/K2uE08o3ujd9bPsnGHrt1mZVkSbfFxbfGbZUXHzi
+	ets2r1zy071tVvpLL80VOzPvYsvt8niuuaxXTZrrj++bWNxsvMrg+oZUh9vfL/79cdrMlFuL
+	9/29nWWpcy/+K9c8vE20v9+u4nuY5eXr9zav2K695pVh+ozdD72UO+O+B8oo67KsdHdiuHD7
+	+qL9M6c9yLUUW3ZZOlHonHjliWm7dBmTV0RXqMkvZLvUNPNfede0uayeEvYbZK6WvbtZ4Vnn
+	uqpm3vw9Cekfj1t1BNxhuHSs+06PyybeEiWW4oxEQy3mouJEAD5WIXFaBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrOLMWRmVeSWpSXmKPExsWy7bCSvO7uU0WpBne26Fk8mLeNzWLN3nNM
+	FvOPnGO1aF68ns1iR8MRVot3c2Us9r7eym4x5c9yJotNj6+xWmye/4fR4vKuOWwWd++uYrSY
+	cX4fk8WZxb3sFq17j7BbHH7Tzmrxc9c8FotVu4Dqbk+czOgg7LFz1l12j02rOtk87lzbw+ax
+	f+4ado/NS+o9+v8aePRtWcXo8XmTXABHFJdNSmpOZllqkb5dAlfG+smLWAs+81c8vvKFpYGx
+	i7eLkZNDQsBEYuLVbexdjFwcQgK7GSX+7lnDBJGQkVj+rI8NwhaWuN9yhBXEFhJ4zygxdYke
+	iM0moC3xff1iVpBmEYHnzBJn/zxiBkkwC/QzSVzflABiCws4S5xf3MQCYrMIqErMXXoIbAGv
+	gK3El2snmSEWyEss3rGcGSIuKHFy5hMWiDnyEs1bZzNPYOSbhSQ1C0lqASPTKkbJ1ILi3PTc
+	ZMMCw7zUcr3ixNzi0rx0veT83E2M4LjR0tjBeG/+P71DjEwcjIcYJTiYlUR4c87npwrxpiRW
+	VqUW5ccXleakFh9ilOZgURLnNZwxO0VIID2xJDU7NbUgtQgmy8TBKdXAJK+0pGhi8uP4AJGc
+	zhq51domG889eLmufK+z0z6xp/WSyQHFpxfZ2680lb52Wk3sYOzuW8bd3cEhE12u7dHJ4i/i
+	sRfXaqgymCR5M/Pp1NA7isLMWuI39OfofCsXuzB3BdeaXQGaP24k7TqykrNTi9N1h+p7MZuv
+	SjOP3o2PTs1tfMC+/Mm7oEPRJwUu+9gBvTh530zjlX7qdyYz9YaU/TzT9fD00Xmc+0LWam6v
+	ZY71XPRTn/OM+4EfG/Y/2NZwxq6+/OVBcZdnRlXfGX2EPn8MmeNZv/Pp8jJ+ftacWUoLKxIl
+	nJ7KP7opadf+0vZnbekOm0TJKbvdb99m//lRY+kfhquvWWWFS1zKfx9UYinOSDTUYi4qTgQA
+	rDUZbAoDAAA=
+X-CMS-MailID: 20231208075019epcas2p4cef1190e41adeaaf47b7763cc86c3d26
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20231208075019epcas2p4cef1190e41adeaaf47b7763cc86c3d26
+References: <CGME20231208075019epcas2p4cef1190e41adeaaf47b7763cc86c3d26@epcas2p4.samsung.com>
 
-On 08/12/2023 01:24, Anand Moon wrote:
->>>>>
->>>>> If I move reset-gpios to required, I observe the below warning.
->>>>>
->>>>>   DTC_CHK Documentation/devicetree/bindings/usb/maxim,max33359.example.dtb
->>>>> /home/alarm/linux-amlogic-5.y-devel/Documentation/devicetree/bindings/usb/usb-device.example.dtb:
->>>>> hub@1: 'reset-gpio' is a required property
->>>>>         from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
->>>>
->>>> Where are the properties defined? If you open the binding you see:
->>>> nowhere. You cannot define properties in some variant with "true".
->>>> Please define all of them in top-level and only narrow/constrain when
->>>> applicable.
->>>>
->>> What I meant is the example below, required meant applicable for both
->>> the binding
->>> But it shows me the above warning.
->>
->> My explanation stands... So again:
->>
->>>> Please define all of them in top-level and only narrow/constrain when
->>>> applicable.
->>
-> Apologies, But I have tried this multiple times but have not been able
-> to fix the device tree warning
+ExynosAutov920[1] is ARMv8-based automotive-oriented SoC.
+This SoC is the next generation of exynosautov9 and AE(Automotive Enhanced)
+IPs are used for safety.
 
-Did you document all properties in top-level "properties:" block?
+This patchset is the minimal set for ExynosAutov920 SoC and SADK board.
+Currently, ramdisk console is available and Clock, UFS, and USI will be
+added after this patchset.
+
+[1] : https://semiconductor.samsung.com/processor/automotive-processor/exynos-auto-v920
+
+---
+Changes in v3:
+ - Split pinctrl driver change patch  and v920 support patch
+ - Remove 'combine' variable and use offset variable
+ - Fix coding style warning in checkpatch with --strict option
+ - Fix CHECK_DTBS=y waring with W=1 option
+ - dt-binding document merged in v2
+
+Changes in v2:
+ - Rebase to git://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux.git
+             branch : for-v6.8/samsung-bindings-compatibles
+ - Specific exynosautov920 compatible
+ - Add dt-binding patch for pmu, chipid
 
 
-Best regards,
-Krzysztof
+Jaewon Kim (4):
+  arm64: dts: exynos: add initial support for exynosautov920 SoC
+  arm64: dts: exynos: add minimal support for exynosautov920 sadk board
+  pinctrl: samsung: support ExynosAuto GPIO structure
+  pinctrl: samsung: add exynosautov920 pinctrl
+
+ arch/arm64/boot/dts/exynos/Makefile           |    3 +-
+ .../dts/exynos/exynosautov920-pinctrl.dtsi    | 1266 +++++++++++++++++
+ .../boot/dts/exynos/exynosautov920-sadk.dts   |   88 ++
+ .../arm64/boot/dts/exynos/exynosautov920.dtsi |  314 ++++
+ .../pinctrl/samsung/pinctrl-exynos-arm64.c    |  140 ++
+ drivers/pinctrl/samsung/pinctrl-exynos.c      |   99 +-
+ drivers/pinctrl/samsung/pinctrl-exynos.h      |   25 +
+ drivers/pinctrl/samsung/pinctrl-samsung.c     |    5 +
+ drivers/pinctrl/samsung/pinctrl-samsung.h     |   13 +
+ 9 files changed, 1945 insertions(+), 8 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/exynos/exynosautov920-pinctrl.dtsi
+ create mode 100644 arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
+ create mode 100644 arch/arm64/boot/dts/exynos/exynosautov920.dtsi
+
+-- 
+2.43.0
 
 
