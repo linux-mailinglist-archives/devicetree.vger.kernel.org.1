@@ -1,128 +1,221 @@
-Return-Path: <devicetree+bounces-23011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23012-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A90F8809EB9
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 10:03:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB52E809EC4
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 10:06:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 68AFC1F217D6
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 09:03:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C7852817A1
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 09:06:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88D4B111A2;
-	Fri,  8 Dec 2023 09:03:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27BE5111AA;
+	Fri,  8 Dec 2023 09:06:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="N/IR1J3Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF51710F9;
-	Fri,  8 Dec 2023 01:03:33 -0800 (PST)
-X-SpamFilter-By: ArmorX SpamTrap 5.78 with qID 3B893L4f8772529, This message is accepted by code: ctloc85258
-Received: from mail.realtek.com (rtexh36505.realtek.com.tw[172.21.6.25])
-	by rtits2.realtek.com.tw (8.15.2/2.95/5.92) with ESMTPS id 3B893L4f8772529
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 8 Dec 2023 17:03:21 +0800
-Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
- RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.32; Fri, 8 Dec 2023 17:03:21 +0800
-Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
- RTEXMBS04.realtek.com.tw (172.21.6.97) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.7; Fri, 8 Dec 2023 17:03:21 +0800
-Received: from RTEXMBS04.realtek.com.tw ([fe80::40c2:6c24:2df4:e6c7]) by
- RTEXMBS04.realtek.com.tw ([fe80::40c2:6c24:2df4:e6c7%5]) with mapi id
- 15.01.2375.007; Fri, 8 Dec 2023 17:03:21 +0800
-From: =?big5?B?VFlfQ2hhbmdbsWmkbLZoXQ==?= <tychang@realtek.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Linus Walleij
-	<linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        "Andy
- Shevchenko" <andy@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v3 1/2] dt-bindings: gpio: realtek: Add realtek,rtd-gpio
-Thread-Topic: [PATCH v3 1/2] dt-bindings: gpio: realtek: Add realtek,rtd-gpio
-Thread-Index: AQHaKPU7BovJRXVvek6zKcsdpY6YorCdUeOAgAGyNsA=
-Date: Fri, 8 Dec 2023 09:03:20 +0000
-Message-ID: <b3a41f598bc043ce9626b674a92b8da4@realtek.com>
-References: <20231207100723.15015-1-tychang@realtek.com>
- <20231207100723.15015-2-tychang@realtek.com>
- <dd22f0fb-e07b-4bd4-bd6a-cf2d8a5687fc@linaro.org>
-In-Reply-To: <dd22f0fb-e07b-4bd4-bd6a-cf2d8a5687fc@linaro.org>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-x-kse-serverinfo: RTEXMBS04.realtek.com.tw, 9
-x-kse-antispam-interceptor-info: fallback
-x-kse-antivirus-interceptor-info: fallback
-Content-Type: text/plain; charset="big5"
-Content-Transfer-Encoding: base64
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E9B110F9;
+	Fri,  8 Dec 2023 01:06:31 -0800 (PST)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 524531BF203;
+	Fri,  8 Dec 2023 09:06:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1702026389;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=5roaO/aCwaahSO4dVcVLdUYTbvQ3YTQ8egLwSPxt4bM=;
+	b=N/IR1J3YGaG2B3y3zFV5bXYB/qJZnhP4RPeZyLOfqlRuwKanawRdBlJDF22sBUFThQchD7
+	/UVT6ICns1gH9xX1QMFXv8ZaH1zlfWauOJAfcVMP+VFSgBPrb/gxChfVoLoIrqYyHoud3G
+	MygZEk60WMv22KgmDavkfpi6ipk7rOe41YYEHhM+TYwHJsj1pvctPODZfdoHvkefKZ/EF+
+	zYmnXIVNq0qPNA6KLk5sZt7MJHVsCJxr4Wzcc8xQ75qKRx/+rDQMzpQmX5H/ljfy9YbJ/B
+	ArG/ZX6o3Qc17fygz5FLMqiHckunX4p+ZInvovVUq+szi/rumCkGPEXV54t8mw==
+Date: Fri, 8 Dec 2023 10:06:27 +0100
+From: =?UTF-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+ <pabeni@redhat.com>, Jonathan Corbet <corbet@lwn.net>, Luis Chamberlain
+ <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ devicetree@vger.kernel.org, Dent Project <dentproject@linuxfoundation.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH net-next v2 7/8] dt-bindings: net: pse-pd: Add bindings
+ for PD692x0 PSE controller
+Message-ID: <20231208100627.2a78e720@kmaincent-XPS-13-7390>
+In-Reply-To: <20231205162321.4bd165eb@kmaincent-XPS-13-7390>
+References: <20231201-feature_poe-v2-0-56d8cac607fa@bootlin.com>
+ <20231201-feature_poe-v2-7-56d8cac607fa@bootlin.com>
+ <20231204230845.GH981228@pengutronix.de>
+ <20231205063606.GI981228@pengutronix.de>
+ <20231205111501.43f80846@kmaincent-XPS-13-7390>
+ <20231205143123.703589c8@kmaincent-XPS-13-7390>
+ <20231205142147.GL981228@pengutronix.de>
+ <20231205162321.4bd165eb@kmaincent-XPS-13-7390>
+Organization: bootlin
+X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-ServerInfo: RTEXH36505.realtek.com.tw, 9
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-Antivirus-Interceptor-Info: fallback
-X-KSE-AntiSpam-Interceptor-Info: fallback
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: kory.maincent@bootlin.com
 
-SGkgS3J6eXN6dG9mLA0KDQo+PiBkaWZmIC0tZ2l0DQo+PiBhL0RvY3VtZW50YXRpb24vZGV2aWNl
-dHJlZS9iaW5kaW5ncy9ncGlvL3JlYWx0ZWsscnRkLWdwaW8ueWFtbA0KPj4gYi9Eb2N1bWVudGF0
-aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZ3Bpby9yZWFsdGVrLHJ0ZC1ncGlvLnlhbWwNCj4+IG5l
-dyBmaWxlIG1vZGUgMTAwNjQ0DQo+PiBpbmRleCAwMDAwMDAwMDAwMDAuLjk4NGU3ZGJkMzIyZQ0K
-Pj4gLS0tIC9kZXYvbnVsbA0KPj4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRp
-bmdzL2dwaW8vcmVhbHRlayxydGQtZ3Bpby55YW1sDQo+PiBAQCAtMCwwICsxLDY5IEBADQo+PiAr
-IyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogKEdQTC0yLjAgT1IgQlNELTItQ2xhdXNlKSAjIENv
-cHlyaWdodCAyMDIzDQo+PiArUmVhbHRlayBTZW1pY29uZHVjdG9yIENvcnBvcmF0aW9uICVZQU1M
-IDEuMg0KPj4gKy0tLQ0KPj4gKyRpZDogaHR0cDovL2RldmljZXRyZWUub3JnL3NjaGVtYXMvZ3Bp
-by9yZWFsdGVrLHJ0ZC1ncGlvLnlhbWwjDQo+PiArJHNjaGVtYTogaHR0cDovL2RldmljZXRyZWUu
-b3JnL21ldGEtc2NoZW1hcy9jb3JlLnlhbWwjDQo+PiArDQo+PiArdGl0bGU6IFJlYWx0ZWsgREhD
-IEdQSU8gY29udHJvbGxlcg0KPj4gKw0KPj4gK21haW50YWluZXJzOg0KPj4gKyAgLSBUenV5aSBD
-aGFuZyA8dHljaGFuZ0ByZWFsdGVrLmNvbT4NCj4+ICsNCj4+ICtkZXNjcmlwdGlvbjoNCj4+ICsg
-IFRoZSBHUElPIGNvbnRyb2xsZXIgaXMgZGVzaWduZWQgZm9yIHRoZSBSZWFsdGVrIERIQyAoRGln
-aXRhbCBIb21lDQo+PiArQ2VudGVyKQ0KPj4gKyAgUlREIHNlcmllcyBTb0MgZmFtaWx5LCB3aGlj
-aCBhcmUgaGlnaC1kZWZpbml0aW9uIG1lZGlhIHByb2Nlc3NvciBTb0NzLg0KPj4gKw0KPj4gK3By
-b3BlcnRpZXM6DQo+PiArICBjb21wYXRpYmxlOg0KPj4gKyAgICBlbnVtOg0KPj4gKyAgICAgIC0g
-cmVhbHRlayxydGQxMjk1LW1pc2MtZ3Bpbw0KPj4gKyAgICAgIC0gcmVhbHRlayxydGQxMjk1LWlz
-by1ncGlvDQo+PiArICAgICAgLSByZWFsdGVrLHJ0ZDEzOTUtaXNvLWdwaW8NCj4+ICsgICAgICAt
-IHJlYWx0ZWsscnRkMTYxOS1pc28tZ3Bpbw0KPj4gKyAgICAgIC0gcmVhbHRlayxydGQxMzE5LWlz
-by1ncGlvDQo+PiArICAgICAgLSByZWFsdGVrLHJ0ZDE2MTliLWlzby1ncGlvDQo+PiArICAgICAg
-LSByZWFsdGVrLHJ0ZDEzMTlkLWlzby1ncGlvDQo+PiArICAgICAgLSByZWFsdGVrLHJ0ZDEzMTVl
-LWlzby1ncGlvDQo+DQo+SWYgdGhlcmUgaXMgZ29pbmcgdG8gYmUgcmVzZW5kLCBwbGVhc2Ugb3Jk
-ZXIgdGhpcyBsaXN0IGFscGhhbnVtZXJpY2FsbHkuDQo+DQoNCkkgd2lsbCByZXZpc2UgaXQgaW4g
-dGhlIG5leHQgdmVyc2lvbg0KDQo+PiArDQo+PiArICByZWc6DQo+PiArICAgIGl0ZW1zOg0KPj4g
-KyAgICAgIC0gZGVzY3JpcHRpb246IEdQSU8gY29udHJvbGxlciByZWdpc3RlcnMNCj4+ICsgICAg
-ICAtIGRlc2NyaXB0aW9uOiBHUElPIGludGVycnVwdCByZWdpc3RlcnMNCj4+ICsNCj4NCj4uLi4N
-Cj4NCj4+ICsNCj4+ICthZGRpdGlvbmFsUHJvcGVydGllczogZmFsc2UNCj4+ICsNCj4+ICtleGFt
-cGxlczoNCj4+ICsgIC0gfA0KPj4gKyAgICBncGlvQDEwMCB7DQo+PiArICAgICAgY29tcGF0aWJs
-ZSA9ICJyZWFsdGVrLHJ0ZDEzMTlkLWlzby1ncGlvIjsNCj4+ICsgICAgICByZWcgPSA8MHgxMDAg
-MHgxMDA+LA0KPj4gKyAgICAgICAgICAgIDwweDAwMCAweDBiMD47DQo+DQo+VGhhdCdzIG9kZC4g
-V2h5IG9yZGVyIGlzIGRlY3JlYXNpbmc/IElzbid0IDB4MCB0aGUgYWRkcmVzcyBvZiB0aGUgU29D
-IChzb2NAMCk/DQo+DQoNClRoZSBEVFMgdXNlIGluIG91ciBwbGF0Zm9ybSBmb2xsb3dzIHRoaXMg
-c3RydWN0dXJlOg0KDQpzb2NAMCB7DQogICAgcmJ1czogcmJ1c0A5ODAwMDAwMCB7DQoJICAgIC4u
-Lg0KICAgICAgICBpc286IHN5c2NvbkA3MDAwIHsNCgkJICAgIC4uLg0KICAgICAgICAgICAgZ3Bp
-bzogZ3Bpb0AxMDAgew0KICAgICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAicmVhbHRlayxydGQx
-MzE5ZC1pc28tZ3BpbyI7DQogICAgICAgICAgICAgICAgcmVnID0gPDB4MTAwIDB4MTAwPiwNCiAg
-ICAgICAgICAgICAgICAgICAgICA8MHgwMDAgMHgwYjA+Ow0KICAgICAgICAgICAgICAgIGludGVy
-cnVwdC1wYXJlbnQgPSA8Jmlzb19pcnFfbXV4PjsNCiAgICAgICAgICAgICAgICBpbnRlcnJ1cHRz
-ID0gPDE5PiwgPDIwPjsNCiAgICAgICAgICAgICAgICBncGlvLXJhbmdlcyA9IDwmcGluY3RybCAw
-IDAgODI+Ow0KICAgICAgICAgICAgICAgIGdwaW8tY29udHJvbGxlcjsNCiAgICAgICAgICAgICAg
-ICAjZ3Bpby1jZWxscyA9IDwyPjsNCiAgICAgICAgICAgIH07DQogICAgICAgIH07DQogICAgfTsN
-Cn07DQoNClRoZSBiYXNlIGFkZHJlc3MgZm9yIHRoZSBHUElPIGNvbnRyb2xsZXIgaXMgMHg5ODAw
-NzEwMC4gVGhlIHNlY29uZCBsaW5lIG9mDQoncmVnJyByZWZlcnMgdG8gdGhlIEdQSU8gaW50ZXJy
-dXB0IHN0YXR1cyByZWdpc3RlcnMsIHdoaWNoIGFyZSBkaXN0cmlidXRlZA0Kd2l0aGluIHRoZSBy
-YW5nZSBvZiAweDk4MDA3MDAwIHRvIDB4OTgwMDcwQUYuIFdvdWxkIGl0IGJlIGFkdmlzYWJsZSB0
-byBmZXRjaCB0aGUNCnN5c2NvbiBmcm9tIHBhcmVudCBub2RlKGlzbzogc3lzY29uQDcwMDApIHRv
-IGhhbmRsZSB0aGUgR1BJTyBpbnRlcnJ1cHQgc3RhdHVzDQpyZWdpc3RlcnM/DQoNCj5JdCBpcywg
-YnR3LCAweDAsIG5vdCAweDAwMC4gVGhlIHNhbWUgZm9yIDB4MGIwIC0+IDB4YjAsIHVubGVzcyB5
-b3Ugd2FudCB0byBwYWQNCj50byBmdWxsIHdvcmQuDQo+DQoNCkkgd2lsbCByZXZpc2UgaXQgaW4g
-dGhlIG5leHQgdmVyc2lvbi4NCg0KVGhhbmtzLA0KVHp1eWkgQ2hhbmcNCg==
+On Tue, 5 Dec 2023 16:23:21 +0100
+K=C3=B6ry Maincent <kory.maincent@bootlin.com> wrote:
+
+> On Tue, 5 Dec 2023 15:21:47 +0100
+> Oleksij Rempel <o.rempel@pengutronix.de> wrote:
+>=20
+> > On Tue, Dec 05, 2023 at 02:31:23PM +0100, K=C3=B6ry Maincent wrote: =20
+> > > On Tue, 5 Dec 2023 11:15:01 +0100
+> > > K=C3=B6ry Maincent <kory.maincent@bootlin.com> wrote:
+> > >    =20
+> > > > On Tue, 5 Dec 2023 07:36:06 +0100
+> > > > Oleksij Rempel <o.rempel@pengutronix.de> wrote:   =20
+> > >     =20
+> > > > > I would expect a devicetree like this:
+> > > > >=20
+> > > > >         ethernet-pse@3c {
+> > > > > 	  // controller compatible should be precise
+> > > > >           compatible =3D "microchip,pd69210";
+> > > > >           reg =3D <0x3c>;
+> > > > >           #pse-cells =3D <1>;
+> > > > >          =20
+> > > > > 	  managers {
+> > > > > 	    manager@0 {
+> > > > > 	      // manager compatible should be included, since we are
+> > > > > 	      // able to campare it with communication results
+> > > > > 	      compatible =3D "microchip,pd69208t4"
+> > > > > 	      // addressing corresponding to the chip select
+> > > > > addressing reg =3D <0>;
+> > > > >=20
+> > > > > 	      physical-ports {
+> > > > > 	        phys0: port@0 {
+> > > > > 		  // each of physical ports is actually a regulator
+> > > > > =20
+> > >=20
+> > > If this phys0 is a regulator, which device will be the consumer of th=
+is
+> > > regulator? log_port0 as the phys0 regulator consumer seems a bit odd!=
+   =20
+> >=20
+> > Why?
+> >  =20
+> > > A 8P8C node should be the consumer.   =20
+> >=20
+> > PHY is not actual consumer of this regulator. State of the Ethernet PHY
+> > is not related to the power supply. We should deliver power independent
+> > of network interface state. There is no other local consumer we can
+> > use in this case. =20
+>=20
+> Just to be clear, are you saying we should use the regulator framework or=
+ is
+> it simply a way of speaking as it behaves like regulator?
+>=20
+> > > Finally, the devicetree would not know the matrix between logical por=
+t and
+> > > physical port, this would be cleaner.
+> > >=20
+> > > Did I miss something?   =20
+> >=20
+> > In case different PSE suppliers are linked withing the PHY node, we
+> > loose most of information needed for PSE functionality. For example how
+> > we will know if our log_port supports PoE4 and PoE2 mode, or only PoE2.
+> > This information is vital for proper PSE configuration, this is why I
+> > suggested to have logica-ports subnodes. With the price of hawing huge
+> > DT on a switch with 48 ports. =20
+>=20
+> It could be known in the of_pse_control_get() function if there is two
+> phandles in the "pses" parameter. Then we add a new enum c33_pse_mode mem=
+ber
+> in the pse_control struct to store the mode.
+> PoE2 and PoE4 is not a parameter of the logical port, it depends of the n=
+umber
+> of PSE ports wired to an 8P8C connector.=20
+>=20
+> In fact I am also working on the tps23881 driver which aimed to be added =
+to
+> this series soon. In the tps23881 case the logical port can only be confi=
+gured
+> to one physical port. Two physical ports (which mean two logical ports) c=
+an
+> still be used to have PoE4 mode.
+> For PoE4, in the pd692x0 driver we use one logical port (one pse_control-=
+>id)
+> configured to two physical ports but in the tps23881 we will need two log=
+ical
+> ports (two pse_control->id).
+>=20
+> So with the tps23881 driver we will need two phandle in the "pses" parame=
+ter
+> to have PoE4, that's why my proposition seems relevant.
+>=20
+> The same goes with your pse-regulator driver, you can't do PoE4 if two
+> regulators is needed for each two pairs group.
+
+Oleksij, what your thought for the binding I have proposed in the thread.
+For the PoE4 we could add a "pses-poe4" bool property alongside the two pha=
+ndle
+in "pses" property.
+Here is the current binding proposition:
+        ethernet-pse@3c {
+	  // controller compatible should be precise
+          compatible =3D "microchip,pd69210";
+          reg =3D <0x3c>;
+          #pse-cells =3D <1>;
+         =20
+	  managers {
+	    manager@0 {
+	      // manager compatible should be included, since we are
+	      // able to compare it with communication results
+	      compatible =3D "microchip,pd69208t4"
+	      // addressing corresponding to the chip select addressing
+	      reg =3D <0>;
+
+	      physical-ports {
+	        phys_port0: port@0 {
+		  // each of physical ports is actually a regulator
+		  reg =3D <0>;
+		};
+	        phy_port1: port@1 {
+		  reg =3D <1>;
+		};
+	        phy_port2: port@2 {
+		  reg =3D <2>;
+		};
+
+               ...
+	      }
+	    manager@1 {
+            ...
+            };
+          };
+	};
+
+....
+  ethernet-phy@1 {
+    reg =3D <1>;
+    pses-poe4;
+    pses =3D <&phy_port0, &phy_port1>;
+  };
+  ethernet-phy@2 {
+    reg =3D <2>;
+    pses =3D <&phy_port2>;
+  }
+
+Regards,
+--=20
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
