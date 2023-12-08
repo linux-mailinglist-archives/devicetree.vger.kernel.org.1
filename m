@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-23332-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23333-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF16480ADB8
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 21:21:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04B6780ADBA
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 21:21:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A4E13B20B5D
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 20:21:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 287011C20BBE
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 20:21:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9398857327;
-	Fri,  8 Dec 2023 20:21:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BEE15732E;
+	Fri,  8 Dec 2023 20:21:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="T5eddlC9"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="VOJkr8G6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E067E123
-	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 12:21:15 -0800 (PST)
-Received: by mail-pf1-x42d.google.com with SMTP id d2e1a72fcca58-6cea2a38b48so2027529b3a.3
-        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 12:21:15 -0800 (PST)
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C622B1996
+	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 12:21:31 -0800 (PST)
+Received: by mail-pl1-x62f.google.com with SMTP id d9443c01a7336-1d0c4d84bf6so19226945ad.1
+        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 12:21:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1702066875; x=1702671675; darn=vger.kernel.org;
-        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=epCzoGJziSqORlwSzNESZaWe6HbDLJmIkf34nnkeiIE=;
-        b=T5eddlC9kBKDg3QyNxX5Hb1x5fFMI8owhBdL3sFuED2JTmyOw91aoQxVeNNckH5Ow2
-         WMpTavzJNbwRaAMhcPiXCG8Kds77RdcPX0fhUUl5zlGeFKCELqDwfVFaihSc3F67jZ/g
-         OvZs/NDc5uzhpn2oXXC5kGM/PsUn9CLULeC44=
+        d=broadcom.com; s=google; t=1702066891; x=1702671691; darn=vger.kernel.org;
+        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=3KaWEiAEuC8+ABDl/dQ3OOYLF2LAP5T80wh3ZfBH680=;
+        b=VOJkr8G6JubOaQE6ZLeQnz5NZxvoyqBkKH7psbHeibEg4lvbOyGo2UqHTQOhu9HOqu
+         +xPyx1GfBJ/W94PYPob1eg5gq2EYyZXdcTDBHuCbflc0zJImPr1jxsTcylDAjMQWD6AG
+         +uXUlI8T7XLIYkkZBr5Rj1g7cIjnWjzzCYKqc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702066875; x=1702671675;
-        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=epCzoGJziSqORlwSzNESZaWe6HbDLJmIkf34nnkeiIE=;
-        b=UqUjSuQBwMe24ZjMPawAOSsRUrZ3KgNZ4Hb9YxN8mpI6o4kMQu/ZAHfa+dXWUQsxkY
-         eceUw1YOHLjuHlAbpLrSRFSCVmObyJraW+d0PZPUBxj+QimhQYN5mhzWi64k00Ne9egb
-         jmWXtol2L6dROBGGnRSUTvSy2ltS2BLP1lTls/iit43eEbP8vAmUcQBAB40ergttUFf0
-         ydNN68gv7XVBNktf/VNUouuvd2edy5bdJ3KPYtP/To07beRNJozfoSajtPU4P8ksWwsY
-         OCrgN/CXNOOnT4sQqO6w06NTq8xPrUIYd26fJzzfVNFcpcOToIsYqstdWaudc9nAUINi
-         dr5g==
-X-Gm-Message-State: AOJu0YyevV1iy3+bh7XHP5WdrhaXf/OzXXhxbnSR+pifXIobRqEO/nCc
-	YRUp2ROAwiaL+tT8ifl3C0MU3g==
-X-Google-Smtp-Source: AGHT+IGHqGzG7ztvompPiNKslZQCOkPgmaPjXQbqgVhEkAfyD8kbvTZmdFsxyJwNAeVrjJDa/FlK/g==
-X-Received: by 2002:a05:6a00:170a:b0:6cd:faa6:fc4b with SMTP id h10-20020a056a00170a00b006cdfaa6fc4bmr785154pfc.33.1702066875293;
-        Fri, 08 Dec 2023 12:21:15 -0800 (PST)
+        d=1e100.net; s=20230601; t=1702066891; x=1702671691;
+        h=references:in-reply-to:message-id:date:subject:cc:to:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3KaWEiAEuC8+ABDl/dQ3OOYLF2LAP5T80wh3ZfBH680=;
+        b=gMiTHtMAFPBFtWfWWKihceI0breKeeEGAZE95Pg75Z9EPVEanbQNT+SQ7eYDD7oZiO
+         SS8r1a42gA5VBk4GJAA2PhTvCeYD3K01wDO8oCsZDCvMAEGgJq1PLx6aXG1dpZxhraRy
+         pulKVwkaGLHOe8lKtZDourWKbPYIEwE19p8qTgsiT7uBNmJCZoqQOLQ+kDygm+c5IhgR
+         mr/yTAfclIpHdVqFrp9tN+0rErj5T5X73+YFQZ6u3h+nkBVqkFAHQn4WlrP99Ub7Bvyz
+         P/oD6UAWzsqtwX8FOxN7BWP5uglSpr5gdZMbifW9VQeGRvcQiR4CSft66cEHxcuV1Vpp
+         HZMQ==
+X-Gm-Message-State: AOJu0YyjgnW4+Ar5AzmWVYiG49NXAqqxCxNaK6dd1sKlzWOXOqCegeIx
+	jAXprh85WJnZCIZXF1PtOTDrmg==
+X-Google-Smtp-Source: AGHT+IH+nTOgLpRgnuZLYs5BQXNJBtNy9L5TktNY5AwoGQViw82oVKYXe5ga1sI8TztgRgy15ZE8Pw==
+X-Received: by 2002:a17:902:c20d:b0:1d0:3eac:e66 with SMTP id 13-20020a170902c20d00b001d03eac0e66mr574433pll.29.1702066891085;
+        Fri, 08 Dec 2023 12:21:31 -0800 (PST)
 Received: from mail.broadcom.net ([192.19.144.250])
-        by smtp.gmail.com with ESMTPSA id v29-20020a63481d000000b005c19c586cb7sm1952127pga.33.2023.12.08.12.21.12
+        by smtp.gmail.com with ESMTPSA id v29-20020a63481d000000b005c19c586cb7sm1952127pga.33.2023.12.08.12.21.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Dec 2023 12:21:14 -0800 (PST)
+        Fri, 08 Dec 2023 12:21:30 -0800 (PST)
 From: Kamal Dasu <kamal.dasu@broadcom.com>
 To: ulf.hansson@linaro.org,
 	linux-kernel@vger.kernel.org,
@@ -62,51 +62,151 @@ To: ulf.hansson@linaro.org,
 Cc: f.fainelli@gmail.com,
 	bcm-kernel-feedback-list@broadcom.com,
 	Kamal Dasu <kdasu@broadcom.com>
-Subject: [PATCH 1/2] dt-bindings: mmc: brcm,sdhci-brcmstb: Add support for 74165b0
-Date: Fri,  8 Dec 2023 15:21:07 -0500
-Message-Id: <20231208202108.7468-1-kamal.dasu@broadcom.com>
+Subject: [PATCH 2/2] mmc: add new sdhci reset sequence for brcm 74165b0
+Date: Fri,  8 Dec 2023 15:21:08 -0500
+Message-Id: <20231208202108.7468-2-kamal.dasu@broadcom.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20231208202108.7468-1-kamal.dasu@broadcom.com>
+References: <20231208202108.7468-1-kamal.dasu@broadcom.com>
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-	boundary="000000000000822481060c0553de"
+	boundary="000000000000735a1c060c0554cd"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 
---000000000000822481060c0553de
+--000000000000735a1c060c0554cd
 
 From: Kamal Dasu <kdasu@broadcom.com>
 
-With newer sdio controller core used for 74165b0 we need to update
-the compatibility with "brcm,bcm74165b0-sdhci".
+74165b0 shall use a new sdio controller core version which
+requires a different reset sequence. For core reset we use
+sdhci_reset. For CMD and/or DATA reset added a new function
+to also enable SDCHI clocks SDHCI_CLOCK_CARD_EN
+SDHCI_CLOCK_INT_EN along with the SDHCI_RESET_CMD and/or
+SDHCI_RESET_DATA fields.
 
 Signed-off-by: Kamal Dasu <kdasu@broadcom.com>
 ---
- .../devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml          | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/mmc/host/sdhci-brcmstb.c | 69 +++++++++++++++++++++++++++++---
+ 1 file changed, 64 insertions(+), 5 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml b/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml
-index c028039bc477..cec9ff063794 100644
---- a/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml
-+++ b/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml
-@@ -13,6 +13,11 @@ maintainers:
- properties:
-   compatible:
-     oneOf:
-+      - items:
-+          - enum:
-+              - brcm,bcm74165b0-sdhci
-+          - const: brcm,bcm74165-sdhci
-+          - const: brcm,sdhci-brcmstb
-       - items:
-           - enum:
-               - brcm,bcm7216-sdhci
+diff --git a/drivers/mmc/host/sdhci-brcmstb.c b/drivers/mmc/host/sdhci-brcmstb.c
+index c23251bb95f3..3fac471b5b5d 100644
+--- a/drivers/mmc/host/sdhci-brcmstb.c
++++ b/drivers/mmc/host/sdhci-brcmstb.c
+@@ -44,8 +44,13 @@ struct brcmstb_match_priv {
+ 
+ static inline void enable_clock_gating(struct sdhci_host *host)
+ {
++	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
++	struct sdhci_brcmstb_priv *priv = sdhci_pltfm_priv(pltfm_host);
+ 	u32 reg;
+ 
++	if (!(priv->flags & BRCMSTB_PRIV_FLAGS_GATE_CLOCK))
++		return;
++
+ 	reg = sdhci_readl(host, SDHCI_VENDOR);
+ 	reg |= SDHCI_VENDOR_GATE_SDCLK_EN;
+ 	sdhci_writel(host, reg, SDHCI_VENDOR);
+@@ -53,14 +58,54 @@ static inline void enable_clock_gating(struct sdhci_host *host)
+ 
+ static void brcmstb_reset(struct sdhci_host *host, u8 mask)
+ {
+-	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
+-	struct sdhci_brcmstb_priv *priv = sdhci_pltfm_priv(pltfm_host);
+-
+ 	sdhci_and_cqhci_reset(host, mask);
+ 
+ 	/* Reset will clear this, so re-enable it */
+-	if (priv->flags & BRCMSTB_PRIV_FLAGS_GATE_CLOCK)
+-		enable_clock_gating(host);
++	enable_clock_gating(host);
++}
++
++static void brcmstb_sdhci_reset_cmd_data(struct sdhci_host *host, u8 mask)
++{
++	ktime_t timeout;
++	u32 reg;
++	u32 new_mask = (mask &  (SDHCI_RESET_CMD | SDHCI_RESET_DATA)) << 24;
++
++	new_mask |= SDHCI_CLOCK_CARD_EN | SDHCI_CLOCK_INT_EN;
++	reg = sdhci_readl(host, SDHCI_CLOCK_CONTROL);
++	sdhci_writel(host, reg | new_mask, SDHCI_CLOCK_CONTROL);
++
++	/* Wait max 10 ms */
++	timeout = ktime_add_ms(ktime_get(), 10);
++
++	/* hw clears the bit when it's done */
++	while (1) {
++		bool timedout = ktime_after(ktime_get(), timeout);
++
++		if (!(sdhci_readb(host, SDHCI_SOFTWARE_RESET) & mask))
++			break;
++		if (timedout) {
++			pr_err("%s: Reset 0x%x never completed.\n",
++				mmc_hostname(host->mmc), (int)mask);
++			sdhci_err_stats_inc(host, CTRL_TIMEOUT);
++			sdhci_dumpregs(host);
++			return;
++		}
++		udelay(10);
++	}
++}
++
++static void brcmstb_reset_74165b0(struct sdhci_host *host, u8 mask)
++{
++	/* take care of RESET_ALL as usual */
++	if (mask & SDHCI_RESET_ALL)
++		sdhci_and_cqhci_reset(host, SDHCI_RESET_ALL);
++
++	/* cmd and/or data treated differently on this core */
++	if (mask & (SDHCI_RESET_CMD | SDHCI_RESET_DATA))
++		brcmstb_sdhci_reset_cmd_data(host, mask);
++
++	/* Reset will clear this, so re-enable it */
++	enable_clock_gating(host);
+ }
+ 
+ static void sdhci_brcmstb_hs400es(struct mmc_host *mmc, struct mmc_ios *ios)
+@@ -162,6 +207,13 @@ static struct sdhci_ops sdhci_brcmstb_ops_7216 = {
+ 	.set_uhs_signaling = sdhci_brcmstb_set_uhs_signaling,
+ };
+ 
++static const struct sdhci_ops sdhci_brcmstb_ops_74165b0 = {
++	.set_clock = sdhci_brcmstb_set_clock,
++	.set_bus_width = sdhci_set_bus_width,
++	.reset = brcmstb_reset_74165b0,
++	.set_uhs_signaling = sdhci_brcmstb_set_uhs_signaling,
++};
++
+ static struct brcmstb_match_priv match_priv_7425 = {
+ 	.flags = BRCMSTB_MATCH_FLAGS_NO_64BIT |
+ 	BRCMSTB_MATCH_FLAGS_BROKEN_TIMEOUT,
+@@ -179,10 +231,17 @@ static const struct brcmstb_match_priv match_priv_7216 = {
+ 	.ops = &sdhci_brcmstb_ops_7216,
+ };
+ 
++static const struct brcmstb_match_priv match_priv_74165b0 = {
++	.flags = BRCMSTB_MATCH_FLAGS_HAS_CLOCK_GATE,
++	.hs400es = sdhci_brcmstb_hs400es,
++	.ops = &sdhci_brcmstb_ops_74165b0,
++};
++
+ static const struct of_device_id __maybe_unused sdhci_brcm_of_match[] = {
+ 	{ .compatible = "brcm,bcm7425-sdhci", .data = &match_priv_7425 },
+ 	{ .compatible = "brcm,bcm7445-sdhci", .data = &match_priv_7445 },
+ 	{ .compatible = "brcm,bcm7216-sdhci", .data = &match_priv_7216 },
++	{ .compatible = "brcm,bcm74165b0-sdhci", .data = &match_priv_74165b0 },
+ 	{},
+ };
+ 
 -- 
 2.17.1
 
 
---000000000000822481060c0553de
+--000000000000735a1c060c0554cd
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -177,14 +277,14 @@ NxffjNkeAdgfN/SS9S9Rj4WXD7pF1M0Xq8gPLCLyXrx1i2KkYOYJsj0PWlC6VRg6E1xXkYDte0VL
 fAAG4QsETU27E1HBNQyp5zF1PoPCPvq3EnWQnbLgYk+Jz2iwIUwiqwr/bDgxggJtMIICaQIBATBr
 MFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYDVQQDEyhHbG9i
 YWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgw89WX2Pp7ue922QVkwDQYJYIZI
-AWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEICeVhhffZOUpYKRRUpneWuzVcgziavBhjJ8OQvMD
-7GnuMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIzMTIwODIwMjEx
-NVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsGCWCGSAFlAwQB
+AWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIOra37rL6Uv5En3ltlBZPIpPslJliVZVab7H8bm3
+/ee0MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIzMTIwODIwMjEz
+MVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsGCWCGSAFlAwQB
 AjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFlAwQCATANBgkq
-hkiG9w0BAQEFAASCAQB3M9lRA7ZOYJLMnyiGrlSaBJTUzHi64aavZ1txxnqLjC+yDd5hCg1M7uma
-oxuXuVpBaZF1THY/7AwPclmxbTVb3PYNYJuxaGdeOFK2XCYYrbDgTHZj6Wko8K09b+8MWkn8rMBH
-wzXmZfght60TTbkW7h5BWerYhGJp0NgZ8G0d26WTXs9rN5aTrn8AFmx5Y1jIIeG+1VyaA1ip++l5
-pAGQR8rKzmM1amMUddbdviHq8QHV4e6bq1a+PuLpXveCvW63RljIKP5XC4YZl5K3hTPBWEd01GQJ
-AkeuVd4Fm4II6Tnn588TDBqVP46GQ7+ab/Kc3lI4b8vTS+b/rTVPbYKY
---000000000000822481060c0553de--
+hkiG9w0BAQEFAASCAQBhwEPcwJCPWFo0H/DJyuaqidPh/pP9VJzs3vfUDxPQqY0L+1TfOr4y7FX3
+AkkOzIYL9kKeglul8Vc7mEpS8u0NBC6ntXNl71YfJIkmP136asjZqKhHyRFwFFqPKhRry7px+Um0
+LNKf26sstgIM/5ITTJ9rnv3tSXDj7DVv25M2jGlTE+q+wgUE1Mh+EHymhZvoWTC9YP706A/1cC3A
+lcJ5tUFqctwF3fpL0GUGbsQ222IiL+IeDRZKy5qJWQkeg2/Owa+tYID69Fl2E2WDp+l80VLacjXT
+KRHqXyIR6Hhlt6u5/vFPjf9MkKjncnTN+F8WdowMQJtXRFlt94KggiN9
+--000000000000735a1c060c0554cd--
 
