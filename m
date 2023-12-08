@@ -1,181 +1,166 @@
-Return-Path: <devicetree+bounces-23358-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23359-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF1A580AF2E
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 22:56:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFCEF80AF38
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 22:57:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A89A4281586
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 21:56:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 50095281A6C
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 21:57:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A56158AC1;
-	Fri,  8 Dec 2023 21:56:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QVM696iI"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B22258ADE;
+	Fri,  8 Dec 2023 21:57:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F2381D55F
-	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 21:56:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DECF2C433A9;
-	Fri,  8 Dec 2023 21:56:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702072577;
-	bh=lLQ2WDCFYnh09MKNvKahHNehAE3mXonCy/B5T05x9JM=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=QVM696iIcTYOFN+ev+FZUSa0/ixShjERZF+VIKawdd9uLQrXYEX411unpB8wvAZut
-	 kmruEk2LsZ0WrxbnQNh1cKguyfbgpz4yL6P0mVvsSdZx5zs/KagDL3fxtV2oRsRIJQ
-	 UlsYw9d262QTPWJi25GWjm4+bFwH/nrlQLmLRT3IIRyWggljT7BpbMxU2Yt9w25K9F
-	 zaxGru+oEKJN01GxqEMMuhiA1PsKZ86RazkibkaWzpwmX/vd85LqdWk21rDI0l6vtC
-	 Dt2ZGycSZDwEvaHQJjlfn7x7JsAOPJgAjdUAXI43z7EcEOfZja5RCHIoZN0/BaRRub
-	 BiK3mxuFgvy7Q==
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-50bf32c0140so2910507e87.1;
-        Fri, 08 Dec 2023 13:56:17 -0800 (PST)
-X-Gm-Message-State: AOJu0YysPC5ECq/6CB8TyzgOYpusC7QOUeV1Bz6GxuzjrVO2xachGpJV
-	LksDgy+3AhpIL417GPwvRgMyJtoZ75xKjvjKRg==
-X-Google-Smtp-Source: AGHT+IEI2ip3XV4V7TTB5nRPLVsv6tOfk4vWYEqLclmJPsP0iDuLLixjRpN97skNUaRQnS3dh1vfZAeeAx25aEDiGfc=
-X-Received: by 2002:a05:6512:a90:b0:50b:f23d:d804 with SMTP id
- m16-20020a0565120a9000b0050bf23dd804mr338588lfu.77.1702072575996; Fri, 08 Dec
- 2023 13:56:15 -0800 (PST)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 40CCD210C
+	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 13:57:07 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 41AAA106F;
+	Fri,  8 Dec 2023 13:57:52 -0800 (PST)
+Received: from [10.57.83.178] (unknown [10.57.83.178])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CD0CD3F6C4;
+	Fri,  8 Dec 2023 13:57:04 -0800 (PST)
+Message-ID: <9136a4c3-4846-411f-8380-6bcb07c64c67@arm.com>
+Date: Fri, 8 Dec 2023 21:56:37 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231116172859.393744-1-sjg@chromium.org> <20231208150042.GA1278773-robh@kernel.org>
- <CAPnjgZ2i4gvgiUeHPOfHuOdBooV4e=QQEq6iMo0JbDwOS6dCwA@mail.gmail.com>
-In-Reply-To: <CAPnjgZ2i4gvgiUeHPOfHuOdBooV4e=QQEq6iMo0JbDwOS6dCwA@mail.gmail.com>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 8 Dec 2023 15:56:02 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+xMZ8yz4H9D59uCSyX4h5W+4ruGF++=wVA=msXz+Y01A@mail.gmail.com>
-Message-ID: <CAL_Jsq+xMZ8yz4H9D59uCSyX4h5W+4ruGF++=wVA=msXz+Y01A@mail.gmail.com>
-Subject: Re: [PATCH v6 1/3] dt-bindings: mtd: partitions: Add binman compatible
-To: Simon Glass <sjg@chromium.org>
-Cc: devicetree@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>, 
-	linux-mtd@lists.infradead.org, Tom Rini <trini@konsulko.com>, 
-	Michael Walle <mwalle@kernel.org>, U-Boot Mailing List <u-boot@lists.denx.de>, 
-	Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Pratyush Yadav <ptyadav@amazon.de>, 
-	=?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
-	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/5] dt-bindings/perf: Add Arm CoreSight PMU
+To: Rob Herring <robh@kernel.org>
+Cc: will@kernel.org, mark.rutland@arm.com,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ suzuki.poulose@arm.com, ilkka@os.amperecomputing.com, bwicaksono@nvidia.com,
+ YWan@nvidia.com, rwiley@nvidia.com,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+References: <cover.1701793996.git.robin.murphy@arm.com>
+ <bbb4262065cfc906f98165cac074e86dce19599e.1701793996.git.robin.murphy@arm.com>
+ <20231208193352.GA1865260-robh@kernel.org>
+Content-Language: en-GB
+From: Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <20231208193352.GA1865260-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, Dec 8, 2023 at 11:47=E2=80=AFAM Simon Glass <sjg@chromium.org> wrot=
-e:
->
-> Hi Rob,
->
-> On Fri, 8 Dec 2023 at 08:00, Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Thu, Nov 16, 2023 at 10:28:50AM -0700, Simon Glass wrote:
-> > > Add a compatible string for binman, so we can extend fixed-partitions
-> > > in various ways.
-> > >
-> > > Signed-off-by: Simon Glass <sjg@chromium.org>
-> > > ---
-> > >
-> > > (no changes since v5)
-> > >
-> > > Changes in v5:
-> > > - Add #address/size-cells and parternProperties
-> > > - Drop $ref to fixed-partitions.yaml
-> > > - Drop 'select: false'
-> > >
-> > > Changes in v4:
-> > > - Change subject line
-> > >
-> > > Changes in v3:
-> > > - Drop fixed-partition additional compatible string
-> > > - Drop fixed-partitions from the example
-> > > - Mention use of compatible instead of label
-> > >
-> > > Changes in v2:
-> > > - Drop mention of 'enhanced features' in fixed-partitions.yaml
-> > > - Mention Binman input and output properties
-> > > - Use plain partition@xxx for the node name
-> > >
-> > >  .../bindings/mtd/partitions/binman.yaml       | 68 +++++++++++++++++=
-++
-> > >  .../bindings/mtd/partitions/partitions.yaml   |  1 +
-> > >  MAINTAINERS                                   |  5 ++
-> > >  3 files changed, 74 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/=
-binman.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/mtd/partitions/binman.=
-yaml b/Documentation/devicetree/bindings/mtd/partitions/binman.yaml
-> > > new file mode 100644
-> > > index 000000000000..329217550a98
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/mtd/partitions/binman.yaml
-> > > @@ -0,0 +1,68 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > +# Copyright 2023 Google LLC
-> > > +
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/mtd/partitions/binman.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Binman firmware layout
-> > > +
-> > > +maintainers:
-> > > +  - Simon Glass <sjg@chromium.org>
-> > > +
-> > > +description: |
-> > > +  The binman node provides a layout for firmware, used when packagin=
-g firmware
-> > > +  from multiple projects. It is based on fixed-partitions, with some
-> > > +  extensions, but uses 'compatible' to indicate the contents of the =
-node, to
-> > > +  avoid perturbing or confusing existing installations which use 'la=
-bel' for a
-> > > +  particular purpose.
-> > > +
-> > > +  Binman supports properties used as inputs to the firmware-packagin=
-g process,
-> > > +  such as those which control alignment of partitions. This binding =
-addresses
-> > > +  these 'input' properties. For example, it is common for the 'reg' =
-property
-> > > +  (an 'output' property) to be set by Binman, based on the alignment=
- requested
-> > > +  in the input.
-> > > +
-> > > +  Once processing is complete, input properties have mostly served t=
-heir
-> > > +  purpose, at least until the firmware is repacked later, e.g. due t=
-o a
-> > > +  firmware update. The 'fixed-partitions' binding should provide eno=
-ugh
-> > > +  information to read the firmware at runtime, including decompressi=
-on if
-> > > +  needed.
-> >
-> > How is this going to work exactly? binman reads these nodes and then
-> > writes out 'fixed-partitions' nodes. But then you've lost the binman
-> > specifc parts needed for repacking.
->
-> No, they are the same node. I do want the extra information to stick
-> around. So long as it is compatible with fixed-partition as well, this
-> should work OK.
+On 2023-12-08 7:33 pm, Rob Herring wrote:
+> On Tue, Dec 05, 2023 at 04:51:57PM +0000, Robin Murphy wrote:
+>> Add a binding for implementations of the Arm CoreSight Performance
+>> Monitoring Unit Architecture. Not to be confused with CoreSight debug
+>> and trace, the PMU architecture defines a standard MMIO interface for
+>> event counters similar to the CPU PMU architecture, where the
+>> implementation and most of its features are discoverable through ID
+>> registers.
+> 
+> The implementation is separate from the CPU PMU rather than an MMIO view
+> of it. Not really clear in my quick read of the spec.
 
-How can it be both? The partitions node compatible can be either
-'fixed-partitions' or 'binman'.
+Yeah, the architecture seems to have aspirations of being able to 
+describe the CPU PMU, but the main intent of this binding is to 
+accommodate all of the arbitrary MMIO non-CPU things. However that's not 
+to say it *couldn't* ever be used for the memory-mapped view of a CPU's 
+PMU via its external debug interface, if it is suitably compatible. I 
+concur that I'm rather light on description here, but that's mostly 
+because the architecture itself isn't prescriptive - it really is pretty 
+much just an interface to whatever PMU functionality can be made to fit 
+it (and with plenty of imp-def leeway).
 
-In the partition nodes, 'align' for example is allowed for a binman
-partition but not a fixed-partition.
+>> CC: Rob Herring <robh+dt@kernel.org>
+>> CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+>> CC: Conor Dooley <conor+dt@kernel.org>
+>> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+>> ---
+>>   .../bindings/perf/arm,coresight-pmu.yaml      | 39 +++++++++++++++++++
+>>   1 file changed, 39 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/perf/arm,coresight-pmu.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/perf/arm,coresight-pmu.yaml b/Documentation/devicetree/bindings/perf/arm,coresight-pmu.yaml
+>> new file mode 100644
+>> index 000000000000..12c7b28eee35
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/perf/arm,coresight-pmu.yaml
+>> @@ -0,0 +1,39 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/perf/arm,coresight-pmu.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Arm Coresight Performance Monitoring Unit Architecture
+>> +
+>> +maintainers:
+>> +  - Robin Murphy <robin.murphy@arm.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: arm,coresight-pmu
+>> +
+>> +  reg:
+>> +    items:
+>> +      - description: Register page 0
+>> +      - description: Register page 1 (if dual-page extension implemented)
+>> +    minItems: 1
+>> +
+>> +  interrupts:
+>> +    items:
+>> +      - description: Overflow interrupt
+>> +
+>> +  cpus:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> 
+> Don't need a type. Already defined.
 
-Note that the schema may not actually warn on extra properties ATM
-because there are some issues with the schema structure. Since there
-can be nested partittions, that complicates matters. It's been on my
-todo list to fix.
+Ah, I hadn't noticed this was a common property now. Good to know, thanks.
 
+>> +    minItems: 1
+> 
+> 1 is always the minimum.
+> 
+>> +    description: List of CPUs with which the PMU is associated, if applicable
+> 
+> When is it applicable? Presumably when it is associated with only a
+> subset of CPUs?
 
-Rob
+Affinity to one CPU or some subset, for things like tightly coupled 
+accelerators or cluster-level things like DSU, would want explicitly 
+describing, but for interconnects, memory controllers and random other 
+standalone devices usually no meaningful association will exist (either 
+they can be considered affine to no CPUs, or to all of them in an 
+implicit manner).
+
+>> +
+>> +  arm,64-bit-atomic:
+>> +    type: boolean
+>> +    description: Register accesses are single-copy atomic at doubleword granularity
+> 
+> As this is recommended, shouldn't the property be the inverse.
+
+It may be recommended, but in practice I'm convinced it's going to 
+remain the exception. It's mandatory (and thus assumable) for the 64-bit 
+programmers model extension, and effectively moot if only 32-bit or 
+smaller counters are implemented, so it's really only relevant to the 
+in-between case of the standard "32-bit" programmers model with 64-bit 
+(or at least >32-bit) counters, but even then I'd bet most folks are 
+still going to implement those behind an APB interface that ends up with 
+larger accesses split into 32-bit bursts if they're even accepted at 
+all. I'm aware of 3 implementations so far; one I'm not sure how wide 
+the counters are, while the other two have proven to be 64-bit *without* 
+atomic access ;)
+
+> Maybe the standard 'reg-io-width = <4>' would be sufficient here?
+
+Oh, indeed I'd forgotten that was a thing - IIRC in common cases like 
+UARTs it's used to represent a *minimum* access size, whereas here it 
+would represent a maximum, but I imagine that ambiguity may well already 
+exist via other bindings, so as long as that's OK I'm happy to go with 
+it. As above I would still be inclined to make it default to 4 if 
+absent, but permit either 4 or 8 to be specified.
+
+Thanks,
+Robin.
 
