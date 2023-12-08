@@ -1,119 +1,225 @@
-Return-Path: <devicetree+bounces-23279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23280-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CA1B80A9C6
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 17:50:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E98F80A9D2
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 17:52:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23A5E2814C4
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 16:50:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8B362812E8
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 16:52:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E060137D3E;
-	Fri,  8 Dec 2023 16:50:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED08037151;
+	Fri,  8 Dec 2023 16:52:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="ZO1JkcUw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9051419A5;
-	Fri,  8 Dec 2023 08:50:42 -0800 (PST)
-Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-1fa37df6da8so1336962fac.2;
-        Fri, 08 Dec 2023 08:50:42 -0800 (PST)
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EBFA1987
+	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 08:52:42 -0800 (PST)
+Received: from mail-lj1-f198.google.com (mail-lj1-f198.google.com [209.85.208.198])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id C7E883F177
+	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 16:52:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1702054360;
+	bh=/Bd1WbAs6qqomxx2kkYhHR+Yd/EnW7VyJ0zhFUm1arc=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=ZO1JkcUwURDx3F4LyNI7uSYhU7PxBEzR5P2XVkYyNbLYTeEh4jZEae5cVzENfy+aO
+	 t5zDW0EpxXwbVA+mLXu69C55w6rW+bRffLQhur4VaTGgxdoBHfsSpt4m0L9zfn6ixd
+	 /uymLaoTK4jKRe0BCLPhLnZI1fby+reRtiF6Qqm43qpghPQ43wR13VCLIlP9Z3jiVi
+	 eQdfz46SYniD6PHmx1FS9eS3VyzMXkqHRBNiiLmaaWibZ5iptczeE6T+zkpGIgAAyd
+	 OnWMFF/j9l7zdttbMMjF9dFF/+okqRk7ZU+rHIPkQ/UUSV9XhzqkSj5GQeNY7Ln5VL
+	 46mdBfHuxpggQ==
+Received: by mail-lj1-f198.google.com with SMTP id 38308e7fff4ca-2c9fd9c1bc3so19953801fa.3
+        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 08:52:40 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702054242; x=1702659042;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zslPHJWELqvuPLVUnf5bfRnpwdPmFrFwYfLyXUQqu8g=;
-        b=uvEijbN9IBz3v1SF8eFNgGdk2z8RXw+WUIu/KjreDrpGQl0tvDY87e6cRQZyDigSBK
-         FVw6SYiacCjkNCysVMlyIg4awJR01lpFuFFJC1pQ9i24Z6QiTnP7hvFRsWiNko1ECSGL
-         0BpyDKxCzef+79QKxPDk6ip0nEIfUS1xovJcSb9jtuC7Q2xXOYY2679P/hGZBpUC7Da7
-         EuWoKWA2Ubh8odrIWuELr21IXMCAjsFxoITJO/63xgQtpShK8hr3nAtVUXg7mVicKf5G
-         23Wb/CsWgSjKzFjhAk/H6GNzJrIPyoQSo4HLtSsG9qm8V9gibYNsLmNbQ5ugDcGktILA
-         Qbfg==
-X-Gm-Message-State: AOJu0Yxarc3co2GQcs9YOGv/SLJyO8lRD1/xePiIj8tUyaBoGujG7RxS
-	WHIoRB1TlUSA+vRTHuHqVA==
-X-Google-Smtp-Source: AGHT+IE12vKJJ+bpCT5H9fzYNV9g/TpHWr/tAvdxUzQ+u8CD6NZ2D3fh4RxMVFMYiwJ2fS9hPMCOXw==
-X-Received: by 2002:a05:6871:54c:b0:1fb:14cb:c904 with SMTP id t12-20020a056871054c00b001fb14cbc904mr448029oal.3.1702054241804;
-        Fri, 08 Dec 2023 08:50:41 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id gu11-20020a056870ab0b00b001fb3143cc0bsm462961oab.44.2023.12.08.08.50.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Dec 2023 08:50:41 -0800 (PST)
-Received: (nullmailer pid 1766460 invoked by uid 1000);
-	Fri, 08 Dec 2023 16:50:39 -0000
-Date: Fri, 8 Dec 2023 10:50:39 -0600
-From: Rob Herring <robh@kernel.org>
-To: Kyle Tso <kyletso@google.com>
-Cc: krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, linux@roeck-us.net, heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org, badhri@google.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
-Subject: Re: [PATCH v5 1/2] dt-bindings: connector: Add child nodes for
- multiple PD capabilities
-Message-ID: <20231208165039.GA1756077-robh@kernel.org>
-References: <20231205030114.1349089-1-kyletso@google.com>
- <20231205030114.1349089-2-kyletso@google.com>
+        d=1e100.net; s=20230601; t=1702054360; x=1702659160;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/Bd1WbAs6qqomxx2kkYhHR+Yd/EnW7VyJ0zhFUm1arc=;
+        b=E0heb17sVZLdI9IEvfULw3mhNESSH5QLdKzdAqmW+dKmwg2XGUWJAaBuGMFC/n7Pa1
+         wQgnw0j0phH4LXsqkHXN6MynUYZQ50b5IpCxN8/jUlGQRBM8tBYJXwL5jewO5YZGyzvf
+         vLVeEUbC4bka0jzr6iHt+FdOtKttNXG7jDEgoTtJWMbk1Q40pmhy/NTQNAWldMBN9ZAr
+         JM5L2Fbk1O3o5E0YZKo4IPJnf+//YCzlVdHBSx+ChpM8VDIKn1FGbIAwpRmspLQyvYpn
+         xVDqCRps+s3HK5s0nussZp4qy6NwuEH5XY/EBV+tFzD9gTN8kxUZY17VZKHVZjXItYmP
+         ocbg==
+X-Gm-Message-State: AOJu0YwUuduHedxFei1tbWB/FzuowXOaw55WurnsR6ULlb8bDXmqFLSh
+	rquIQFWGiaX3kgQqYfr1VyJ3vOux2uc6lL9kvfNPXOJT3xEBKxfNF54PZV/lOdXLAieeTSkzp+y
+	N4Z8CEfnJNNtccmWKFUXFaak4BnUb3G03AA13c7RE2cKJNA4X33FCm3Q=
+X-Received: by 2002:ac2:4c3a:0:b0:50b:f2f0:2b0f with SMTP id u26-20020ac24c3a000000b0050bf2f02b0fmr83996lfq.133.1702054360229;
+        Fri, 08 Dec 2023 08:52:40 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IE0PijjlqLMVDLUKgcONltdJP4HQSQPKwjj3DWwcCvbfjgx6I0eC4m1N1xg0Tj+6jTQMSHxMH3QI1YkxoNxO2w=
+X-Received: by 2002:ac2:4c3a:0:b0:50b:f2f0:2b0f with SMTP id
+ u26-20020ac24c3a000000b0050bf2f02b0fmr83988lfq.133.1702054359905; Fri, 08 Dec
+ 2023 08:52:39 -0800 (PST)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 8 Dec 2023 08:52:38 -0800
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <20231206115000.295825-1-jeeheng.sia@starfivetech.com>
+References: <20231206115000.295825-1-jeeheng.sia@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231205030114.1349089-2-kyletso@google.com>
+Mime-Version: 1.0
+Date: Fri, 8 Dec 2023 08:52:38 -0800
+Message-ID: <CAJM55Z_nnrFcU6N8ZELUoGLe6Dp358aXH7VGf1i+USbZOsbpnQ@mail.gmail.com>
+Subject: Re: [PATCH v1 00/16] Basic clock and reset support for StarFive
+ JH8100 RISC-V SoC
+To: Sia Jee Heng <jeeheng.sia@starfivetech.com>, kernel@esmil.dk, conor@kernel.org, 
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
+	mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de, 
+	emil.renner.berthing@canonical.com, hal.feng@starfivetech.com, 
+	xingyu.wu@starfivetech.com
+Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+	leyfoon.tan@starfivetech.com
+Content-Type: text/plain; charset="UTF-8"
 
-On Tue, Dec 05, 2023 at 11:01:13AM +0800, Kyle Tso wrote:
-> Commit 662a60102c12 ("usb: typec: Separate USB Power Delivery from USB
-> Type-C") allows userspace to configure the PD of a port by selecting
-> different set of predefined PD capabilities. Define the PD capability
-> sets in DT for better configurability in device modules.
-> 
-> Define an optional child node "capabilities" to contain multiple USB
-> Power Delivery capabilities.
-> 
-> Define child nodes with pattern (e.g. caps-0, caps-1) under
-> "capabilities". Each node contains PDO data of a selectable Power
-> Delivery capability.
-> 
-> Also define common properties for source-pdos, sink-pdos, and
-> op-sink-microwatt that can be referenced.
-> 
-> Signed-off-by: Kyle Tso <kyletso@google.com>
-> ---
-> v4 -> v5:
-> - Fixed DT_CHECK errors
-> 
->  .../bindings/connector/usb-connector.yaml     | 88 +++++++++++++------
->  1 file changed, 59 insertions(+), 29 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> index 7c8a3e8430d3..7945d09d1f59 100644
-> --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> @@ -14,6 +14,8 @@ description:
->    of a USB interface controller or a separate node when it is attached to both
->    MUX and USB interface controller.
->  
-> +$ref: "#/$defs/capabilities"
-> +
->  properties:
->    compatible:
->      oneOf:
-> @@ -67,6 +69,15 @@ properties:
->        model it as a regulator. See bindings/regulator/fixed-regulator.yaml
->  
->    # The following are optional properties for "usb-c-connector".
-> +  source-pdos:
-> +    $ref: "#/$defs/capabilities/properties/source-pdos"
-> +
-> +  sink-pdos:
-> +    $ref: "#/$defs/capabilities/properties/sink-pdos"
-> +
-> +  op-sink-microwatt:
-> +    $ref: "#/$defs/capabilities/properties/op-sink-microwatt"
+Sia Jee Heng wrote:
+> This patch series enabled basic clock & reset support for StarFive
+> JH8100 SoC.
+>
+> This patch series depends on the Initial device tree support for
+> StarFive JH8100 SoC patch series which can be found at below link:
+> https://lore.kernel.org/lkml/20231201121410.95298-1-jeeheng.sia@starfivetech.com/
+>
+> StarFive JH8100 shares a similar clock and reset design with JH7110.
+> To facilitate the reuse of the file and its functionalities, files
+> containing the 'jh71x0' naming convention are renamed to use the
+> 'common' wording. Internal functions that contain the 'jh71x0'
+> naming convention are renamed to use 'starfive.' This is accomplished
+> through patches 1, 2, 3, and 4.
 
-With the $ref above, these aren't needed. But you have to use 
-unevaluatedProperties instead of additionalProperties.
+I'm a little sceptical all this renaming is worth it, but if think it's likely
+that future starfive SoCs can use the same clock drivers I'm ok with it. Just
+know that you'll look a bit silly if your "JH9100" can't use these drivers and
+you'll already need different starfive and starfive-gen2 drivers.
 
-I fixed this up and applied.
-
-Rob
+/Emil
+>
+>
+> Patch 5 adds documentation to describe System (SYSCRG) Clock & Reset
+> binding.
+> Patch 6 adds SYSCRG clock driver.
+>
+> patch 7 adds documentation to describe System-North-West (SYSCRG-NW)
+> Clock & Reset binding.
+> Patch 8 adds SYSCRG-NW clock driver.
+>
+> patch 9 adds documentation to describe System-North-East (SYSCRG-NE)
+> Clock & Reset binding.
+> Patch 10 adds SYSCRG-NE clock driver.
+>
+> patch 11 adds documentation to describe System-South-West (SYSCRG-SW)
+> Clock & Reset binding.
+> Patch 12 adds SYSCRG-SW clock driver.
+>
+> patch 13 adds documentation to describe Always-On (AON)
+> Clock & Reset binding.
+> Patch 14 adds AON clock driver.
+>
+> Patch 15 adds support for the auxiliary reset driver.
+>
+> Patch 16 adds clocks and reset nodes to the JH8100 device tree.
+>
+> Sia Jee Heng (16):
+>   reset: starfive: Rename file name "jh71x0" to "common"
+>   reset: starfive: Convert the word "jh71x0" to "starfive"
+>   clk: starfive: Rename file name "jh71x0" to "common"
+>   clk: starfive: Convert the word "jh71x0" to "starfive"
+>   dt-bindings: clock: Add StarFive JH8100 System clock and reset
+>     generator
+>   clk: starfive: Add JH8100 System clock generator driver
+>   dt-bindings: clock: Add StarFive JH8100 System-North-West clock and
+>     reset generator
+>   clk: starfive: Add JH8100 System-North-West clock generator driver
+>   dt-bindings: clock: Add StarFive JH8100 System-North-East clock and
+>     reset generator
+>   clk: starfive: Add JH8100 System-North-East clock generator driver
+>   dt-bindings: clock: Add StarFive JH8100 System-South-West clock and
+>     reset generator
+>   clk: starfive: Add JH8100 System-South-West clock generator driver
+>   dt-bindings: clock: Add StarFive JH8100 Always-On clock and reset
+>     generator
+>   clk: starfive: Add JH8100 Always-On clock generator driver
+>   reset: starfive: Add StarFive JH8100 reset driver
+>   riscv: dts: starfive: jh8100: Add clocks and resets nodes
+>
+>  .../clock/starfive,jh8100-aoncrg.yaml         |  77 +++
+>  .../clock/starfive,jh8100-syscrg-ne.yaml      | 158 +++++
+>  .../clock/starfive,jh8100-syscrg-nw.yaml      | 119 ++++
+>  .../clock/starfive,jh8100-syscrg-sw.yaml      |  66 ++
+>  .../clock/starfive,jh8100-syscrg.yaml         |  66 ++
+>  MAINTAINERS                                   |  15 +
+>  arch/riscv/boot/dts/starfive/jh8100-clk.dtsi  | 180 ++++++
+>  arch/riscv/boot/dts/starfive/jh8100.dtsi      | 115 ++++
+>  drivers/clk/starfive/Kconfig                  |  49 +-
+>  drivers/clk/starfive/Makefile                 |   3 +-
+>  drivers/clk/starfive/clk-starfive-common.c    | 327 ++++++++++
+>  drivers/clk/starfive/clk-starfive-common.h    | 130 ++++
+>  .../clk/starfive/clk-starfive-jh7100-audio.c  | 127 ++--
+>  drivers/clk/starfive/clk-starfive-jh7100.c    | 503 ++++++++--------
+>  .../clk/starfive/clk-starfive-jh7110-aon.c    |  62 +-
+>  .../clk/starfive/clk-starfive-jh7110-isp.c    |  72 +--
+>  .../clk/starfive/clk-starfive-jh7110-stg.c    |  94 +--
+>  .../clk/starfive/clk-starfive-jh7110-sys.c    | 523 ++++++++--------
+>  .../clk/starfive/clk-starfive-jh7110-vout.c   |  74 +--
+>  drivers/clk/starfive/clk-starfive-jh7110.h    |   4 +-
+>  drivers/clk/starfive/clk-starfive-jh71x0.c    | 327 ----------
+>  drivers/clk/starfive/clk-starfive-jh71x0.h    | 123 ----
+>  drivers/clk/starfive/jh8100/Makefile          |   7 +
+>  drivers/clk/starfive/jh8100/clk-aon.c         | 275 +++++++++
+>  .../clk/starfive/jh8100/clk-starfive-jh8100.h |  11 +
+>  drivers/clk/starfive/jh8100/clk-sys-ne.c      | 566 ++++++++++++++++++
+>  drivers/clk/starfive/jh8100/clk-sys-nw.c      | 268 +++++++++
+>  drivers/clk/starfive/jh8100/clk-sys-sw.c      | 136 +++++
+>  drivers/clk/starfive/jh8100/clk-sys.c         | 455 ++++++++++++++
+>  drivers/reset/starfive/Kconfig                |  14 +-
+>  drivers/reset/starfive/Makefile               |   4 +-
+>  ...rfive-jh71x0.c => reset-starfive-common.c} |  68 +--
+>  .../reset/starfive/reset-starfive-common.h    |  14 +
+>  .../reset/starfive/reset-starfive-jh7100.c    |   4 +-
+>  .../reset/starfive/reset-starfive-jh7110.c    |   8 +-
+>  .../reset/starfive/reset-starfive-jh71x0.h    |  14 -
+>  .../reset/starfive/reset-starfive-jh8100.c    | 102 ++++
+>  .../dt-bindings/clock/starfive,jh8100-crg.h   | 430 +++++++++++++
+>  .../dt-bindings/reset/starfive,jh8100-crg.h   | 127 ++++
+>  ...rfive-jh71x0.h => reset-starfive-common.h} |  10 +-
+>  40 files changed, 4485 insertions(+), 1242 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/clock/starfive,jh8100-aoncrg.yaml
+>  create mode 100644 Documentation/devicetree/bindings/clock/starfive,jh8100-syscrg-ne.yaml
+>  create mode 100644 Documentation/devicetree/bindings/clock/starfive,jh8100-syscrg-nw.yaml
+>  create mode 100644 Documentation/devicetree/bindings/clock/starfive,jh8100-syscrg-sw.yaml
+>  create mode 100644 Documentation/devicetree/bindings/clock/starfive,jh8100-syscrg.yaml
+>  create mode 100644 arch/riscv/boot/dts/starfive/jh8100-clk.dtsi
+>  create mode 100644 drivers/clk/starfive/clk-starfive-common.c
+>  create mode 100644 drivers/clk/starfive/clk-starfive-common.h
+>  delete mode 100644 drivers/clk/starfive/clk-starfive-jh71x0.c
+>  delete mode 100644 drivers/clk/starfive/clk-starfive-jh71x0.h
+>  create mode 100644 drivers/clk/starfive/jh8100/Makefile
+>  create mode 100644 drivers/clk/starfive/jh8100/clk-aon.c
+>  create mode 100644 drivers/clk/starfive/jh8100/clk-starfive-jh8100.h
+>  create mode 100644 drivers/clk/starfive/jh8100/clk-sys-ne.c
+>  create mode 100644 drivers/clk/starfive/jh8100/clk-sys-nw.c
+>  create mode 100644 drivers/clk/starfive/jh8100/clk-sys-sw.c
+>  create mode 100644 drivers/clk/starfive/jh8100/clk-sys.c
+>  rename drivers/reset/starfive/{reset-starfive-jh71x0.c => reset-starfive-common.c} (55%)
+>  create mode 100644 drivers/reset/starfive/reset-starfive-common.h
+>  delete mode 100644 drivers/reset/starfive/reset-starfive-jh71x0.h
+>  create mode 100644 drivers/reset/starfive/reset-starfive-jh8100.c
+>  create mode 100644 include/dt-bindings/clock/starfive,jh8100-crg.h
+>  create mode 100644 include/dt-bindings/reset/starfive,jh8100-crg.h
+>  rename include/soc/starfive/{reset-starfive-jh71x0.h => reset-starfive-common.h} (50%)
+>
+> --
+> 2.34.1
+>
 
