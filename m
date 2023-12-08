@@ -1,267 +1,129 @@
-Return-Path: <devicetree+bounces-23119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D27680A526
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 15:11:34 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFA9D80A54C
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 15:20:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9EC1C1C20B2F
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 14:11:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2A847B20B2E
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 14:20:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3E181DDD5;
-	Fri,  8 Dec 2023 14:11:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C35021DFCC;
+	Fri,  8 Dec 2023 14:20:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QjXWUsLg"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="xqAI9Q7p";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="5/kaQb7/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19A5610EB;
-	Fri,  8 Dec 2023 06:11:26 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-50c04ebe1bbso1991762e87.1;
-        Fri, 08 Dec 2023 06:11:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702044684; x=1702649484; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ofk5EFlKJHCqg0e0b4hwUj6ByVii3nlBz86s3UMME0U=;
-        b=QjXWUsLg24F6bBoLAWT3inePh9UrHcZbukyROPmGhFzA7Closh0Bupoc3TbTti2PbU
-         RSU9dfW/dFxfjct3DqT7TdO5ZUsJhlLqtkxZrKTImVssro9QzrFCIWQjltSMIx90e+Fy
-         d/x1MNDGi9UnTO8v3k429tC3ZXGKatHntO5HLI72CdBPczd/Xw6ujpYp9o57eD1x6Zsq
-         X+3iS4Pi0/Nb3ybQr1UpjTga2ZUfqApbUek129ajr+wd5VIqrzHJ0RtTPxKaA4cxyTxU
-         w1PGAylqrh+HEKlSCBxBeSsktGD0WppwwJlwB1j3Pqg8sMT2Rptb6DKz1wLTAFKI4ABx
-         nssw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702044684; x=1702649484;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ofk5EFlKJHCqg0e0b4hwUj6ByVii3nlBz86s3UMME0U=;
-        b=sRP4F3o8kcNYiRR5lY995q7ToPSB3g1S0HUVEELI9leInltcQFC7lbvVF+vwc12MUK
-         1sElcDOVuyuz0Iq07GnZZD6t/HkwdsKgzIo6kERedVQonEDo4mISdW8JfLZBCjpEPOpy
-         Z2cBITNIpADSKQROFKE9JN3r3P+h7JH4okX5oWjRsNVU+vcPjV/r+ZLYkAKNIxU5WWms
-         3LM33bzSEIIqPxMd+0jzeSfS2ixjJ83xmfS02tcpTpw9p8/iW5HErffcwM/2nRgl45H6
-         Xh+lBn23LFh1v8ATxVq/wv6LQki0Us1oufubRuFwTE3T8LpVB5PFew2umjbdVb0IoQl0
-         R1hg==
-X-Gm-Message-State: AOJu0YwzTnj/8+wFz85TI9iOb4qe4xMKyXV6Z1+cfI6M37fFX5ZIzFgS
-	1/qxLatYoZb5CqPQa3ldlrk=
-X-Google-Smtp-Source: AGHT+IHQoKexKqSk3g1ukd9drV99fhdVEIs2x55bN7mQBgSXsFoh7P9MpUi5tw0wGeY3is7raDfp6A==
-X-Received: by 2002:a05:6512:3c96:b0:50b:c50c:dbc4 with SMTP id h22-20020a0565123c9600b0050bc50cdbc4mr189960lfv.0.1702044683891;
-        Fri, 08 Dec 2023 06:11:23 -0800 (PST)
-Received: from mobilestation ([178.176.56.174])
-        by smtp.gmail.com with ESMTPSA id k4-20020a05651210c400b0050bef21a012sm226400lfg.191.2023.12.08.06.11.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Dec 2023 06:11:23 -0800 (PST)
-Date: Fri, 8 Dec 2023 17:11:20 +0300
-From: Serge Semin <fancer.lancer@gmail.com>
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
-	Russell King <linux@armlinux.org.uk>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Jose Abreu <joabreu@synopsys.com>, Jose Abreu <Jose.Abreu@synopsys.com>, 
-	Maxime Chevallier <maxime.chevallier@bootlin.com>, Tomer Maimon <tmaimon77@gmail.com>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, openbmc@lists.ozlabs.org, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 10/16] net: pcs: xpcs: Add generic DW XPCS
- MDIO-device support
-Message-ID: <nflj4ajgx3byqhwna2eslldwulbbafmcwba4dwgxo65o5c7pmj@zbgqt2zje4ix>
-References: <20231205103559.9605-1-fancer.lancer@gmail.com>
- <20231205103559.9605-11-fancer.lancer@gmail.com>
- <20231205111351.xjjuwpbf7kwg3vuh@skbuf>
- <uivunnjv5vi3w3fkc5w2f4lem5bingrgajgjfsu2ih7fuhz6hd@3naeubr5spak>
- <20231205122316.ihhpklv222f5giz3@skbuf>
+Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFFD8171D;
+	Fri,  8 Dec 2023 06:20:07 -0800 (PST)
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1702045206;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=xflaWiDw7kr8d/dlbv/fd4pzj3NI4pM3Ha1Gv1hGpME=;
+	b=xqAI9Q7p3eiImDPsYb3EgsmFw2FY4OUext9dxB4kvC+RGzJDOzzxV8/A1wrZAtU/f5dKS8
+	MaZPEr64Dqr691qS0QXo/2FsEo+hSSEU/blc0/lmaDDaTSS13dyEDHpBmd7lR2wQ61VTXO
+	5kevTVfzsbLzZh1XBlIOGO32ogydca3CgoFIBnw14Ia/+6AQzLdqhGWiEsa+PUsUFc7e9e
+	Bep+2+JbDnQPz32EFRTOl09He+JIs74SI23GBxDA/zIYiGwR1Df/FUHbkCOaLCw5xnXKx7
+	gkVTiApYhHW+vhswvyD3q/4YUfbMYl1ikBVJiWP/Kqmq9BqLeGFSsm0/78i+Hw==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1702045206;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=xflaWiDw7kr8d/dlbv/fd4pzj3NI4pM3Ha1Gv1hGpME=;
+	b=5/kaQb7/CisTC8SQuhbs5tQNRgtR1GoYBHF2P6cjQpotgD6wB8Rrfhb6lX+oh5uEnpcYP9
+	VVagnqz7i2+sTyDA==
+To: Binbin Zhou <zhoubinbin@loongson.cn>, Binbin Zhou
+ <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>, Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Huacai Chen <chenhuacai@kernel.org>, loongson-kernel@lists.loongnix.cn,
+ devicetree@vger.kernel.org, Thomas Bogendoerfer
+ <tsbogend@alpha.franken.de>, Jiaxun Yang <jiaxun.yang@flygoat.com>,
+ linux-mips@vger.kernel.org, lvjianmin@loongson.cn, WANG Xuerui
+ <git@xen0n.name>, loongarch@lists.linux.dev, linux-kernel@vger.kernel.org,
+ Binbin Zhou <zhoubinbin@loongson.cn>
+Subject: Re: [PATCH v5 4/5] irqchip/loongson-liointc: Fix
+ 'loongson,parent_int_map' parse
+In-Reply-To: <fc9b3afaf8826fd437ba91397eb7fa231db2c05c.1700449792.git.zhoubinbin@loongson.cn>
+References: <cover.1700449792.git.zhoubinbin@loongson.cn>
+ <fc9b3afaf8826fd437ba91397eb7fa231db2c05c.1700449792.git.zhoubinbin@loongson.cn>
+Date: Fri, 08 Dec 2023 15:20:06 +0100
+Message-ID: <87lea4srmx.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231205122316.ihhpklv222f5giz3@skbuf>
+Content-Type: text/plain
 
-Hi Vladimir
+On Mon, Nov 20 2023 at 17:06, Binbin Zhou wrote:
 
-On Tue, Dec 05, 2023 at 02:23:16PM +0200, Vladimir Oltean wrote:
-> On Tue, Dec 05, 2023 at 02:35:46PM +0300, Serge Semin wrote:
-> > Omg, thank you very much for testing the series straight away and
-> > sorry for the immediate trouble it caused. I'll need some more time
-> > for investigation. I'll get back to this topic a bit later on this
-> > week.
-> 
-> Don't worry, I got suspicious when I was CCed to review only a one-line
-> change in patch 11/16. It's never about that one line, is it?)
+$Subject: s/parse/parsing/
 
-Right. I should have added you to the list of recipients of the entire
-series since the patchset changes more than that. The bug you caught
-brightly highlights my mistake. I'll make sure you are in the list.
-I'll add Jiawen and Mengyuan there too since the driver under their
-maintenance is also affected. Hopefully they'll get to test the series
-too.
+> In keeping with naming standards, 'loongson,parent_int_map' is renamed
+> to 'loongson,parent-int-map'. But for the driver, we need to make sure
+> that both forms can be parsed.
 
-> 
-> Anyway, the NULL dev->p is a symptom of device_add() not having been
-> called, most likely from mdio_device_register().
+Please keep changelogs in neutral or imperative tone:
 
-Absolutely right. I thought that mdio_device_create() having the
-device_initialize() method called was enough for the device_attach()
-function being happy. It turns out it wasn't and I missed that the
-device_private instance is allocated only on the device registration.
-So I'll need to call mdio_device_register() after all, if I get to
-preserve the current design of the solution.
+  For backwards compatibility it is required to parse the original
+  string too.
 
-> 
-> I'll be honest and say that I still don't quite understand what you're
-> trying to achieve. You're trying to bind the hardcoded mdio_devices
-> created by xpcs_create() to a driver? 
+Makes it entirely clear what this is about without 'we'. See also:
 
-My idea was to reuse the mdio_device which has already been created
-either by means of the MDIO-bus OF-subnode or by means of the MDIO-bus
-board_info infrastructure (can be utilized in the SJA1105 or Wangxun
-Tx GBE). The xpcs_create() method then either probes the device on the MDIO
-bus and gets ID from there, or just uses the custom IDs based on the
-OF compatible match table or on the platform_data. If no MDIO-device
-was created my patchset is supposed to preserve the previous
-semantics: create MDIO-device, probe the device on the MDIO-bus, get
-device IDs from there. See the next patch for more details:
-https://lore.kernel.org/netdev/20231205103559.9605-11-fancer.lancer@gmail.com/
+  https://www.kernel.org/doc/html/latest/process/submitting-patches.rst 
 
-> That was attempted a while ago by
-> Sean Anderson with the Lynx PCS. Are you aware of the fact that even in
-> the good case in which binding the driver actually works, the user can
-> then come along and unbind it from the PCS device, and phylink isn't
-> prepared to handle that, so it will crash the kernel upon the next
-> phylink_pcs call?
+> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> Acked-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
+> Reviewed-by: Huacai Chen <chenhuacai@loongson.cn>
+> ---
+>  drivers/irqchip/irq-loongson-liointc.c | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/irqchip/irq-loongson-liointc.c b/drivers/irqchip/irq-loongson-liointc.c
+> index e4b33aed1c97..add2e0a955b8 100644
+> --- a/drivers/irqchip/irq-loongson-liointc.c
+> +++ b/drivers/irqchip/irq-loongson-liointc.c
+> @@ -330,6 +330,7 @@ static int __init liointc_of_init(struct device_node *node,
+>  	bool have_parent = FALSE;
+>  	int sz, i, index, revision, err = 0;
+>  	struct resource res;
+> +	const char *prop_name = "loongson,parent-int-map";
 
-To be honest I didn't consider the driver bind/unbind option. But my
-case a bit different. DW XPCS MDIO-device is supposed to be created
-automatically by means of the DW XPCS MI driver from the DT-nodes
-hierarchy like this:
-mdio@1f05d000 {
-	compatible = "snps,dw-xpcs-mi";
-	reg = <0 0x1f05d000 0 0x1000>;
+Please don't glue variables randomly into the declaration section:
 
-	xgmac_pcs: ethernet-pcs@0 {
-		compatible = "snps,dw-xpcs";
-		reg = <0>;
-	};
-};
-The platform-device is created for the mdio@1f05d000 node for which
-the DW XPCS MI driver is loaded, which calls the
-devm_of_mdiobus_register() in the probe() method which registers the
-MDIO-bus and then creates the MDIO-device from the ethernet-pcs@0
-node. The DW XPCS MDIO-device driver is attached to that MDIO-device
-then. In such model the PCS can be supplied to the DW *MAC via the
-"pcs-handle = &xgmac_pcs" property.
+  https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#variable-declarations
 
-Regarding the current semantics it's preserved in the framework of the
-xpcs_create_byaddr() method (former xpcs_create_mdiodev()) by means of
-the next code snippet:
-        if (mdiobus_is_registered_device(bus, addr)) {
-                mdiodev = bus->mdio_map[addr];
-                mdio_device_get(mdiodev);
-        } else {
-                mdiodev = mdio_device_create(bus, addr);
-                if (IS_ERR(mdiodev))
-                        return ERR_CAST(mdiodev);
-        }
-Device can be automatically created if before registering the MDIO-bus
-the xpcs_create_byaddr() caller registered the MDIO-device board info
-by means of the mdiobus_register_board_info() method. In addition to
-that it's now possible to supply some custom data (custom device IDs
-in my implementation) to the XPCS driver by means of the
-mdio_board_info.platform_data field. See the next patch for
-reference:
-https://lore.kernel.org/netdev/20231205103559.9605-14-fancer.lancer@gmail.com
+>  	if (!of_device_is_compatible(node, "loongson,liointc-2.0")) {
+>  		index = 0;
+> @@ -350,8 +351,12 @@ static int __init liointc_of_init(struct device_node *node,
+>  	if (!have_parent)
+>  		return -ENODEV;
+>  
+> +	if (!of_find_property(node, prop_name, &i))
+> +		/* Fallback to 'loongson,parent_int_map'. */
+> +		prop_name = "loongson,parent_int_map";
 
-So what the difference with the Lynx PCS is that in my case the
-MDIO-device is created automatically as a result of the DW XPCS MI
-MDIO-bus registration. Additionally I implemented the MDIO-device
-creation based on the MDIO-board-info, thus there won't be need in the
-calling mdio_device_create() on each xpcs_create_mdiodev() invocation.
-The later part isn't that important in the framework of this
-conversation, but just so you be aware.
+This lacks curly brackets:
 
-Regarding the driver bind/unbind. As I said I didn't actually consider
-that option. On the other hand my DW XPCS MDIO-device driver doesn't
-do actual probe() or remove(). The only implemented thing is the
-of_device_id table, which is used to assign PCS and PMA IDs if
-required based on the DT compatible property. So I can easily drop any
-MDIO device-driver part and parse the of_device_id table right in the
-xpcs_create_bynode(). From that perspective my implementation won't
-differ much from the Lynx PCS design. The only difference will be is
-the way the MDIO-bus is created and registered. In case of Lynx PCS
-the bus is created by the MAC-driver itself. In my case DW XPCS MI is
-currently created in the framework of the separate platform driver. Do
-you think it would be better to follow the Lynx design pattern in
-order to get rid from the possibility of the DW XPCS MI driver being
-unbound behind the STMMAC+XPCS couple back?
+  https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#bracket-rules
 
-In this case the Dw MAC DT-node hierarchy would look like this:
+>  	sz = of_property_read_variable_u32_array(node,
+> -						"loongson,parent_int_map",
+> +						prop_name,
+>  						&parent_int_map[0],
+>  						LIOINTC_NUM_PARENT,
+>  						LIOINTC_NUM_PARENT);
 
-xgmac: ethernet@1f054000 {
-	compatible = "snps,dwxgmac";
-	reg = <0 0x1f054000 0 0x4000>;
-	reg-names = "stmmaceth";
-	ranges;
+Thanks,
 
-	...
-
-	pcs-handle = &xgmac_pcs;
-
-	// DW XPCS MI to access the DW XPCS attached to the device
-	mdio@1f05d000 {
-		compatible = "snps,dwmac-mi";
-		reg = <0 0x1f05d000 0 0x1000>;
-
-		xgmac_pcs: ethernet-pcs@0 {
-			compatible = "snps,dw-xpcs";
-			reg = <0>;
-		};
-	};
-
-	// Normal MDIO-bus to access external PHYs (it's also called
-	// as SMA - Station Management Agent - by Synopsys)
-	mdio {
-		compatible = "snps,dwmac-mdio";
-		#address-cells = <1>;
-		#size-cells = <0>;
-	};
-};
-
-I actually thought to use that hardware description pattern instead,
-but after some meditation around that I decided that having the DW
-XPCS device defined separately from the DW MAC node seemed better at
-least from the code separation point of view. Now I think that it
-wasn't the best decision. DW XPCS is always attached to the DW XGMAC
-controller. So it would be more correct having it defined as a
-sub-node. It would also helped to avoid the platform device driver
-bind/unbind problem.
-
-What do you think? Should I re-design my patchset to be supporting the
-design above? (After having conversion with you I am more inclined to
-do that now than to stick with the currently implemented solution.)
-
-> 
-> The pcs-rzn1-miic.c driver puts a device_link to the MAC to at least
-> tear down the whole thing when the PCS is unbound, which is saner than
-> crashing the kernel. I don't see the equivalent protection mechanism here?
-
-You are right. I don't have any equivalent protection here. Thanks for
-suggesting a solution.
-
-> 
-> Can't the xpcs continue to live without a bound driver? Having a
-> compatible string in the OF description is perfectly fine though,
-> and should absolutely not preclude that.
-
-As I explained above Dw XPCS device can live without a bound driver
-because the DW XPCS MDIO-driver doesn't do much but merely gets to be
-bound based on the of_device_id table. In my case the problem is in
-the DW XPCS MI driver which indeed can be detached. Please see my
-long-read text above.
-
--Serge(y)
+        tglx
 
