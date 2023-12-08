@@ -1,150 +1,108 @@
-Return-Path: <devicetree+bounces-23320-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23321-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0B2280AB9D
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 19:07:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A3AC80AC15
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 19:31:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D2B991C20A29
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 18:07:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DEE002819F0
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 18:31:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D946041C9E;
-	Fri,  8 Dec 2023 18:07:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YdRQYyHI"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FA90249F4;
+	Fri,  8 Dec 2023 18:31:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DF11198D;
-	Fri,  8 Dec 2023 10:07:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1702058836; x=1733594836;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=k3i428SfmhgbbGxwTnZmXhIRi1dfQ6MQmf1eOjd45OQ=;
-  b=YdRQYyHII0f4qsc4Bq9gdrptLdduA0Jx2+ocksGQ6SB19zcGTdUs6edi
-   w8a7Js4TZuyXuBTMyPRN1HAG9o49CxVKEPEBRG+pcrpkJfvt4yYkWF3iR
-   Yak5YlixWAbeJ27Omclp5qOwTiNCfqHKir64NWHVGgOpTmefbWijDwbYf
-   ZERMO+eAWu5+EpByVWWMqr5ts5eele+UENASl1uniroejUY9DdFQYZ01Z
-   f7XMivQ37dbb7SBUS0Tdzr7yIi4aiU/XKpZLIXvTs7KnAW3zRHvvfFXFu
-   gRBJx8oc15BXBv7/EX8++aia1zkIfDhDCfILM3MCHUUHFPEcCDHD03Y94
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10918"; a="425575369"
-X-IronPort-AV: E=Sophos;i="6.04,261,1695711600"; 
-   d="scan'208";a="425575369"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Dec 2023 10:07:15 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10918"; a="801182284"
-X-IronPort-AV: E=Sophos;i="6.04,261,1695711600"; 
-   d="scan'208";a="801182284"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Dec 2023 10:07:12 -0800
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id 06CC811F995;
-	Fri,  8 Dec 2023 20:07:10 +0200 (EET)
-Date: Fri, 8 Dec 2023 18:07:09 +0000
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Maxime Ripard <mripard@kernel.org>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] media: dt-bindings: ov8856: decouple lanes and link
- frequency from driver
-Message-ID: <ZXNbTUg3QrCwKBpp@kekkonen.localdomain>
-References: <20231207142356.100453-1-krzysztof.kozlowski@linaro.org>
+Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B174BD;
+	Fri,  8 Dec 2023 10:31:03 -0800 (PST)
+Received: by mail-ot1-f54.google.com with SMTP id 46e09a7af769-6d9f7af8918so218560a34.0;
+        Fri, 08 Dec 2023 10:31:03 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702060262; x=1702665062;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=v+yJeduNngKCWy3/DH0y84rogwCflce9ufqE8UYu448=;
+        b=DTZWEvGkrzLRVyFaf2n1WVyiGQFjsweGp3Gj2cuBhEKA85U/g2mjBA9ZaICa72S0E8
+         W26fuAQgdKhZ0VIr0Uvlt5xRsIPKzdrfhKhBAEF2E2YYg09TdYbHM94QbD7ougo3g0Bv
+         uBrpSkQLCccLYUtHSBWxfOSb8n0hjSogSyR9a5KtHT+uG5x1Plc3J6U6DWAjyMKecWGA
+         IbpIIgH4iJgW8MC/qXVA290UTny5ho6b/+QCJ1H92LYq+FOtJS49eZ6ImDYlb4la74PK
+         aMBnxcnZGH2BwMyL1Mft0NZTj1aoTGcSy3/N1GC/2D82F9KrUlJ6FJRAMcYLE4gc7m/7
+         CCrQ==
+X-Gm-Message-State: AOJu0Yxlvsv6aTOM1rHC3XDS30O0NntO+L3zEY7VsXHSiqA9HCfV8Obp
+	HI8k5CNbSi6GTay6kIpChg==
+X-Google-Smtp-Source: AGHT+IHXtCU+Df3narf9EUnnld4MDBZ1SkRhwu+ygUAtS6Zf9h8UB7gij98jquMR2wdiE98NTVaiyA==
+X-Received: by 2002:a05:6870:7029:b0:1fb:75b:2fd4 with SMTP id u41-20020a056870702900b001fb075b2fd4mr579114oae.107.1702060262327;
+        Fri, 08 Dec 2023 10:31:02 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id hb5-20020a056870780500b001fb1e0a25e8sm507468oab.26.2023.12.08.10.31.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Dec 2023 10:31:01 -0800 (PST)
+Received: (nullmailer pid 2485978 invoked by uid 1000);
+	Fri, 08 Dec 2023 18:31:00 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231207142356.100453-1-krzysztof.kozlowski@linaro.org>
+From: Rob Herring <robh@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>, Jakub Kicinski <kuba@kernel.org>, linux-can@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Paul Walmsley <paul.walmsley@sifive.com>, Albert Ou <aou@eecs.berkeley.edu>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, Daire McNamara <daire.mcnamara@microchip.com>, Wolfgang Grandegger <wg@grandegger.com>, Conor Dooley <conor.dooley@microchip.com>, linux-riscv@lists.infradead.org, Eric Dumazet <edumazet@google.com>, Marc Kleine-Budde <mkl@pengutronix.de>, Palmer Dabbelt <palmer@dabbelt.com>, Paolo Abeni <pabeni@redhat.com>, "David S. Miller" <davem@davemloft.net>
+In-Reply-To: <20231208-palpitate-passable-c79bacf2036c@spud>
+References: <20231208-reenter-ajar-b6223e5134b3@spud>
+ <20231208-palpitate-passable-c79bacf2036c@spud>
+Message-Id: <170206026051.2485962.13304186324857333888.robh@kernel.org>
+Subject: Re: [PATCH RESEND v1 2/7] dt-bindings: can: mpfs: add missing
+ required clock
+Date: Fri, 08 Dec 2023 12:31:00 -0600
 
-Hi Krzysztof,
 
-Thanks for the update.
-
-On Thu, Dec 07, 2023 at 03:23:56PM +0100, Krzysztof Kozlowski wrote:
-> The data lanes and link frequency were set to match exiting Linux driver
-> limitations, however bindings should be independent of chosen Linux
-> driver support.
+On Fri, 08 Dec 2023 17:12:24 +0000, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
 > 
-> Decouple these properties from the driver to match what is actually
-> supported by the hardware.
+> The CAN controller on PolarFire SoC has an AHB peripheral clock _and_ a
+> CAN bus clock. The bus clock was omitted when the binding was written,
+> but is required for operation. Make up for lost time and add it.
 > 
-> This also fixes DTS example:
+> Cautionary tale in adding bindings without having implemented a real
+> user for them perhaps.
 > 
->   ov8856.example.dtb: camera@10: port:endpoint:link-frequencies:0: [360000000] is too short
-> 
-> Fixes: 066a94e28a23 ("media: dt-bindings: media: Use graph and video-interfaces schemas")
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
+> Fixes: c878d518d7b6 ("dt-bindings: can: mpfs: document the mpfs CAN controller")
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 > ---
+>  .../devicetree/bindings/net/can/microchip,mpfs-can.yaml    | 7 +++++--
+>  1 file changed, 5 insertions(+), 2 deletions(-)
 > 
-> Changes in v2:
-> 1. Rework approach: decouple bindings from driver instead of fixing
->    DTS example (Sakari)
-> ---
->  .../devicetree/bindings/media/i2c/ov8856.yaml | 21 +++++++++++--------
->  1 file changed, 12 insertions(+), 9 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ov8856.yaml b/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
-> index 57f5e48fd8e0..71102a71cf81 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
-> @@ -67,19 +67,22 @@ properties:
->  
->          properties:
->            data-lanes:
-> -            description: |-
-> -              The driver only supports four-lane operation.
-> -            items:
-> -              - const: 1
-> -              - const: 2
-> -              - const: 3
-> -              - const: 4
-> +            oneOf:
-> +              - items:
-> +                  - const: 1
-> +              - items:
-> +                  - const: 1
-> +                  - const: 2
-> +              - items:
-> +                  - const: 1
-> +                  - const: 2
-> +                  - const: 3
-> +                  - const: 4
->  
->            link-frequencies:
->              description: Frequencies listed are driver, not h/w limitations.
 
-This should be dropped, too.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> -            maxItems: 2
->              items:
-> -              enum: [ 360000000, 180000000 ]
-> +              enum: [ 1440000000, 720000000, 360000000, 180000000 ]
+yamllint warnings/errors:
 
-These frequencies are listed in the datasheet but they're just an
-example---the sensor hardware isn't limited to these, the resulting
-frequency on the CSI-2 bus is simply up to the external clock frequency and
-PLL configuration. I'd remove the values here altogether.
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/can/microchip,mpfs-can.yaml: properties:clocks: {'maxItems': 2, 'items': [{'description': 'AHB peripheral clock'}, {'description': 'CAN bus clock'}]} should not be valid under {'required': ['maxItems']}
+	hint: "maxItems" is not needed with an "items" list
+	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
 
->  
->          required:
->            - link-frequencies
+doc reference errors (make refcheckdocs):
 
--- 
-Regards,
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231208-palpitate-passable-c79bacf2036c@spud
 
-Sakari Ailus
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
