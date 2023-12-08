@@ -1,274 +1,182 @@
-Return-Path: <devicetree+bounces-23085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23086-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 406B980A2EF
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 13:16:59 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D279280A2F3
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 13:17:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E03311F2137C
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 12:16:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 886202817DF
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 12:17:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BC5E1C283;
-	Fri,  8 Dec 2023 12:16:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DD221C283;
+	Fri,  8 Dec 2023 12:17:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OipLCJ+k"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IXTkkBOA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8768D1987
-	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 04:16:49 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-333630e9e43so2021390f8f.2
-        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 04:16:49 -0800 (PST)
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 340231995
+	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 04:17:27 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-54c64316a22so2721735a12.0
+        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 04:17:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702037808; x=1702642608; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=3IGQsu1vJQMbo69tBMgGWpNsiQddO4zHQRIZGR7LoHg=;
-        b=OipLCJ+kStFlVSGivHQiYKrEWWemyY6tRLO9Sq2AK7Rr4+hWnx9NrMxqdW/syw8hQR
-         LqnhYqIX9+9LRRcgb+F6Au3OxwV8nf6iwTN52Ckfqk2MmxJyYXb6PpCNKK+MASbjMpEo
-         Y12WMneBjUpAzEI76qOdnfegvJVwStaYKEmuCf2xTK+DvZfl8PN/lMiobynmw18pKfaN
-         P+wnmI7qXa0ICjmxQ1M19fOWCteb+0YgTl3brLq8FkYsMxHbaAAC+lipvgNjWRZC0g6s
-         5kPmL7lys2nBkoBC915mIQ6fiRnObchGRvE4Wca+kUruYqJd1yWmO8IvcpsJPveMPBg+
-         L7pA==
+        d=linaro.org; s=google; t=1702037845; x=1702642645; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9izsQCcCd1CE106RU+2IMRNg5srUJ2uTg6mjoa3meQA=;
+        b=IXTkkBOAOf2ak1C5FnlQMiXlEqpS73XacO2su4MDrtLxjFh+dzCk+9oEBjokpbRTCR
+         rttJSNz/PGp8ammd6PckrAiKQyneBUTUfzRjOwEc7pRsP+TrWuhriKP5xwVd/XVgnmrU
+         m3GngLGbUd9lJLweGaHaPLlMBBb2rNsX9bxq0NN1bE8TFTrX40DS9mz6ZWhgnacVKeOH
+         o3ITWo57aQeseCl8DV51ZOFntSGL5lskdy0RQy6gdgyQYeMM3rPXYdggp2qTs2cpGr7y
+         WH1At4jJ2lqo+2qQLc3+Xl4925FRD0egtbLI7LsFZ33luCLlpjQ9TAXVQCE0J9XyWTIo
+         fwDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702037808; x=1702642608;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3IGQsu1vJQMbo69tBMgGWpNsiQddO4zHQRIZGR7LoHg=;
-        b=tKKYhVu+NLAjY9lrKi2SacOOtpjbdynIpq9Cp7tcSPdv3DEu1BX+nVfaf7SvWnWkTj
-         6xjB7DSSn/NL6Xo7jvx4qSKqlC0xEt+wI17Qsvs1HaF99XKWgQshKvf+m7hl9wm0qudc
-         qNIQSePRCRB0imaxxbUL2j/Asz2C1SlHoVVn2hSpIqFaL5IvTo0SNwhnAB/HLxc7ETs3
-         m/Wv68THFwVZ61Y+xyjBcolsOgzikhMk/UScrozIW2N6N0yhzpdzZey9VMYq+Mjw/pim
-         cXzNlre7izUTyXygdv1xDd343iSZUsmy9anTbiNL/V/ct9QAZQyJ0WyQJ+Owpd/CdX7y
-         rbow==
-X-Gm-Message-State: AOJu0YwLzcqrn+8tbpdXW072BtgogMoimpHUGmK9o7OFtr3D44rTDOjg
-	Z2yOXJ6MF0TbdxRfEPY2M0E4gg==
-X-Google-Smtp-Source: AGHT+IEMGZcYeTWbQirg0EcsaVOhC4OIZ6XlAwOw9E/uotiYomFPyW6VCwV/xLkgD4TBT064ePZPNw==
-X-Received: by 2002:a5d:4d49:0:b0:334:b174:9a14 with SMTP id a9-20020a5d4d49000000b00334b1749a14mr1514761wru.50.1702037807788;
-        Fri, 08 Dec 2023 04:16:47 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id p1-20020adfe601000000b0033334df1259sm1930875wrm.20.2023.12.08.04.16.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Dec 2023 04:16:47 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Fri, 08 Dec 2023 13:16:45 +0100
-Subject: [PATCH v2] arm64: dts: qcom: sm8650: Add DisplayPort device nodes
+        d=1e100.net; s=20230601; t=1702037845; x=1702642645;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9izsQCcCd1CE106RU+2IMRNg5srUJ2uTg6mjoa3meQA=;
+        b=OnHJJ5BhjFa2AsZmu7nHBZNrL73pC/kFgNd78rfk3n8L0cxF4UDDy4Ohsi1ASi/R0M
+         Va+QBdDEZBqf7RRSdAXVglAqr8pMaKi2W5Ms5eftvOrmMkzoBpJq7+uQeKlOQPfYAuZg
+         T2hQzOKqN/boA1xLm9F4lbCbsJe5QtN7YYlNQBexpUsImtg8yU8uINwGOOJ7MjgRuqAl
+         qtQLcF8j+tZCpH3Nx/SbdJdjQAqspFMUokMijQMkqbImW7a77AfAhtAwMnUsRgL5pwpN
+         yc+sTTLTWXGgM5KhJ6Mkqgjpki557YJXtzApfpUeHCm4ERT6Fqv+4QrP7Cg812zcW3W4
+         /WZQ==
+X-Gm-Message-State: AOJu0YwkwY3kW58vwsyggokA66KMR6BrBmI/fKVR7UIRZzsqLrhA31uo
+	q+QlcJhcvNZf0i6+OlQLhumAtQ==
+X-Google-Smtp-Source: AGHT+IER6W/fDD1Ek54GW5WjcFgQL6SdwO+xnVfxaF8Xad512jmtPAkd6aZarE3UM1Co7yJt/QXdKg==
+X-Received: by 2002:a50:85cc:0:b0:54f:5278:c2e2 with SMTP id q12-20020a5085cc000000b0054f5278c2e2mr16131edh.63.1702037845686;
+        Fri, 08 Dec 2023 04:17:25 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id o29-20020a509b1d000000b0054ca1d90410sm790428edi.85.2023.12.08.04.17.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 08 Dec 2023 04:17:25 -0800 (PST)
+Message-ID: <2e688f4e-11d7-4f8e-b8ec-58f4a97304a8@linaro.org>
+Date: Fri, 8 Dec 2023 13:17:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 1/2] dt-bindings: usb: Add the binding example for the
+ Genesys Logic GL3523 hub
+Content-Language: en-US
+To: Anand Moon <linux.amoon@gmail.com>
+Cc: Rob Herring <robh@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Icenowy Zheng <uwu@icenowy.me>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ linux-amlogic@lists.infradead.org, Conor Dooley
+ <conor.dooley@microchip.com>, linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231204144429.45197-1-linux.amoon@gmail.com>
+ <20231204144429.45197-2-linux.amoon@gmail.com>
+ <20231206135311.GA2043711-robh@kernel.org>
+ <CANAwSgTS0ZSFPv4x803pCLEpjH5imh8vEoWpbiJRH14Sy3GZww@mail.gmail.com>
+ <21673bfd-bb87-4c7d-a53f-337c263f3a00@linaro.org>
+ <CANAwSgSo37B0zg-xjrmqndSZ5SbyB3m27_wRsqqN9WTONooeiw@mail.gmail.com>
+ <604e653d-c1e2-45c7-b121-8a6b4be5c6bb@linaro.org>
+ <CANAwSgRB=XWo2-40rDru=Zy277-kgGNjozJ8Lxnxgv_4ABB-kg@mail.gmail.com>
+ <1a78d453-62a2-410a-a40f-1ff0c2b62e86@linaro.org>
+ <CANAwSgTy4N7Q8e0OQLsFRkRDWksTSbkOetKQGygaqsQ8++U1_g@mail.gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <CANAwSgTy4N7Q8e0OQLsFRkRDWksTSbkOetKQGygaqsQ8++U1_g@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20231208-topic-sm8650-upstream-dp-v2-1-69dab3d074e4@linaro.org>
-X-B4-Tracking: v=1; b=H4sIACwJc2UC/42NQQ6CMBBFr0Jm7Zi2hqKuuIdh0ZYCkwhtpkg0p
- He3cgKX7yX//R2SZ/IJ7tUO7DdKFJYC6lSBm8wyeqS+MCihLlKJBtcQyWGar7oW+IppZW9m7CM
- aKwcn7SBco6HMI/uB3kf60RWeKK2BP8fTJn/2j+gmUaBttHJC33RtbfukxXA4Bx6hyzl/AayZ9
- ynBAAAA
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4416;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=kOCvkPLlhPEG/JnikF90pED2iti8kSKJ83SgUBzZTxc=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlcwkuqP+jlemcECarZ3ZTC6PfD1TN15rZvEQJoLA4
- CoLOUxiJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZXMJLgAKCRB33NvayMhJ0UouD/
- wPJEHSTBdcYnhPmTrAS2yAh52G3rkupj1ymmp5fg8tOuMM7ze386TP2f3i8EGZ8O6UWxjSi0QafbRu
- KJcefLBkObxeiR0tShvkZHuYniaGs1PECAj/lYL8mqsL9IXuZcnpyw8XNrhys5kzOEj9xY8H+UkoLS
- 6XT4krWjNJEiC4821RxffsMYMVzIyZXL9wmIzMcw/gIBO0h1W/gJ+RlNEYIzYo/HTEmGxvb/UL8e+G
- MMhYWgD/GrD1rAWoDQj2gT++ozqVjs9EB2M9CD4Xo4/55at4gcuevNSyIixyZfa6TMxJjUns5gbE5c
- j4W5BIlppzLF2R1YbKea6giUr9V42MA2L8boTt+JYHtVG2lcH/O2Tz5zKaPgW4RcJQ3o82Chi7vcpi
- nRAPuFPUXJWg/SHnuUWYref0MX+qXBcnvbMtdoFeU5pXMl9HIIJgTuHzmqNpaUJZeEjdrxrBK/cBVc
- vc/VKYWsPMMX68IBKA0sLAD0k4vFWzYC2PDTNICKHugVMt7rLJhcvcZU3esJpMraLnjYfca3DT2acY
- ynuWCRjRk0prze4e+NpzV2PHOrq7drMBdtuO712glv3ZUm5cMijCYA3BRIBsEzD+yFCKF3LhvtmymC
- 2HWLEPQXbOBC7VRHBCzonwhtrw3DVX5scowA/ucuu3M0HL21jPipN1RpefFg==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-Declare the displayport controller present on the Qualcomm SM8650 SoC
-and connected to the USB3/DP Combo PHY.
+On 08/12/2023 12:19, Anand Moon wrote:
+> Hi Krzysztof,
+> 
+> On Fri, 8 Dec 2023 at 13:14, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 08/12/2023 01:24, Anand Moon wrote:
+>>>>>>>
+>>>>>>> If I move reset-gpios to required, I observe the below warning.
+>>>>>>>
+>>>>>>>   DTC_CHK Documentation/devicetree/bindings/usb/maxim,max33359.example.dtb
+>>>>>>> /home/alarm/linux-amlogic-5.y-devel/Documentation/devicetree/bindings/usb/usb-device.example.dtb:
+>>>>>>> hub@1: 'reset-gpio' is a required property
+>>>>>>>         from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
+>>>>>>
+>>>>>> Where are the properties defined? If you open the binding you see:
+>>>>>> nowhere. You cannot define properties in some variant with "true".
+>>>>>> Please define all of them in top-level and only narrow/constrain when
+>>>>>> applicable.
+>>>>>>
+>>>>> What I meant is the example below, required meant applicable for both
+>>>>> the binding
+>>>>> But it shows me the above warning.
+>>>>
+>>>> My explanation stands... So again:
+>>>>
+>>>>>> Please define all of them in top-level and only narrow/constrain when
+>>>>>> applicable.
+>>>>
+>>> Apologies, But I have tried this multiple times but have not been able
+>>> to fix the device tree warning
+>>
+>> Did you document all properties in top-level "properties:" block?
+>>
+> Yes, I have,
+> 
+> Can you suggest a couple of examples to follow?
+> I looked at some of the YAML files but could not fix my issue.
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
-Dependencies:
-- DT: https://lore.kernel.org/all/20231130-topic-sm8650-upstream-dt-v5-0-b25fb781da52@linaro.org/
----
-Changes in v2:
-- Dropped applied patches
-- Fixed regs size
-- Fixed power domain
-- Fixed subnodes order
-- Link to v1: https://lore.kernel.org/r/20231207-topic-sm8650-upstream-dp-v1-0-b762c06965bb@linaro.org
----
- arch/arm64/boot/dts/qcom/sm8650.dtsi | 120 ++++++++++++++++++++++++++++++++++-
- 1 file changed, 118 insertions(+), 2 deletions(-)
+99% of bindings. Look also at example-schema.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-index d1442b100e79..2e6ee5d89e01 100644
---- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-@@ -2781,6 +2781,14 @@ dpu_intf2_out: endpoint {
- 							remote-endpoint = <&mdss_dsi1_in>;
- 						};
- 					};
-+
-+					port@2 {
-+						reg = <2>;
-+
-+						dpu_intf0_out: endpoint {
-+							remote-endpoint = <&mdss_dp0_in>;
-+						};
-+					};
- 				};
- 
- 				mdp_opp_table: opp-table {
-@@ -2982,6 +2990,88 @@ mdss_dsi1_phy: phy@ae97000 {
- 
- 				status = "disabled";
- 			};
-+
-+			mdss_dp0: displayport-controller@af54000 {
-+				compatible = "qcom,sm8650-dp";
-+				reg = <0 0xaf54000 0 0x104>,
-+				      <0 0xaf54200 0 0xc0>,
-+				      <0 0xaf55000 0 0x770>,
-+				      <0 0xaf56000 0 0x9c>,
-+				      <0 0xaf57000 0 0x9c>;
-+
-+				interrupts-extended = <&mdss 12>;
-+
-+				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-+					 <&dispcc DISP_CC_MDSS_DPTX0_AUX_CLK>,
-+					 <&dispcc DISP_CC_MDSS_DPTX0_LINK_CLK>,
-+					 <&dispcc DISP_CC_MDSS_DPTX0_LINK_INTF_CLK>,
-+					 <&dispcc DISP_CC_MDSS_DPTX0_PIXEL0_CLK>;
-+				clock-names = "core_iface",
-+					      "core_aux",
-+					      "ctrl_link",
-+					      "ctrl_link_iface",
-+					      "stream_pixel";
-+
-+				assigned-clocks = <&dispcc DISP_CC_MDSS_DPTX0_LINK_CLK_SRC>,
-+						  <&dispcc DISP_CC_MDSS_DPTX0_PIXEL0_CLK_SRC>;
-+				assigned-clock-parents = <&usb_dp_qmpphy QMP_USB43DP_DP_LINK_CLK>,
-+							 <&usb_dp_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>;
-+
-+				operating-points-v2 = <&dp_opp_table>;
-+
-+				power-domains = <&rpmhpd RPMHPD_MMCX>;
-+
-+				phys = <&usb_dp_qmpphy QMP_USB43DP_DP_PHY>;
-+				phy-names = "dp";
-+
-+				#sound-dai-cells = <0>;
-+
-+				status = "disabled";
-+
-+				dp_opp_table: opp-table {
-+					compatible = "operating-points-v2";
-+
-+					opp-162000000 {
-+						opp-hz = /bits/ 64 <162000000>;
-+						required-opps = <&rpmhpd_opp_low_svs_d1>;
-+					};
-+
-+					opp-270000000 {
-+						opp-hz = /bits/ 64 <270000000>;
-+						required-opps = <&rpmhpd_opp_low_svs>;
-+					};
-+
-+					opp-540000000 {
-+						opp-hz = /bits/ 64 <540000000>;
-+						required-opps = <&rpmhpd_opp_svs_l1>;
-+					};
-+
-+					opp-810000000 {
-+						opp-hz = /bits/ 64 <810000000>;
-+						required-opps = <&rpmhpd_opp_nom>;
-+					};
-+				};
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					port@0 {
-+						reg = <0>;
-+
-+						mdss_dp0_in: endpoint {
-+							remote-endpoint = <&dpu_intf0_out>;
-+						};
-+					};
-+
-+					port@1 {
-+						reg = <1>;
-+
-+						mdss_dp0_out: endpoint {
-+						};
-+					};
-+				};
-+			};
- 		};
- 
- 		dispcc: clock-controller@af00000 {
-@@ -2996,8 +3086,8 @@ dispcc: clock-controller@af00000 {
- 				 <&mdss_dsi0_phy 1>,
- 				 <&mdss_dsi1_phy 0>,
- 				 <&mdss_dsi1_phy 1>,
--				 <0>, /* dp0 */
--				 <0>,
-+				 <&usb_dp_qmpphy QMP_USB43DP_DP_LINK_CLK>,
-+				 <&usb_dp_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>,
- 				 <0>, /* dp1 */
- 				 <0>,
- 				 <0>, /* dp2 */
-@@ -3054,6 +3144,32 @@ usb_dp_qmpphy: phy@88e8000 {
- 			#phy-cells = <1>;
- 
- 			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					usb_dp_qmpphy_out: endpoint {
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					usb_dp_qmpphy_usb_ss_in: endpoint {
-+					};
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+
-+					usb_dp_qmpphy_dp_in: endpoint {
-+					};
-+				};
-+			};
- 		};
- 
- 		usb_1: usb@a6f8800 {
-
----
-base-commit: 4f6dbd119dad99dfdc5051b7a1bd123cc479e5ee
-change-id: 20231207-topic-sm8650-upstream-dp-ab1fc1bf0c76
+You can also attach here complete patch for fast look / short review.
 
 Best regards,
--- 
-Neil Armstrong <neil.armstrong@linaro.org>
+Krzysztof
 
 
