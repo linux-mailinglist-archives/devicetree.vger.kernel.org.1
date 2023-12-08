@@ -1,93 +1,97 @@
-Return-Path: <devicetree+bounces-23166-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23168-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9F4E80A689
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 16:06:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7541A80A699
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 16:08:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 753CD2816CB
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 15:06:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 224A11F213AD
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 15:08:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77BE4208B2;
-	Fri,  8 Dec 2023 15:06:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02343208C1;
+	Fri,  8 Dec 2023 15:08:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uR4aYLxz"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="OQSBdrjy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A11120327;
-	Fri,  8 Dec 2023 15:06:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05F28C433C8;
-	Fri,  8 Dec 2023 15:06:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702047983;
-	bh=rxRMtllWNkL0CjKiOAHwkiWZrBIno2pyvADUXOndwAs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uR4aYLxzEuSQWQ02ya3aKNE4hsTOV2Rut8TUh4to6KvWemYgfg24xu8J5go4Vl+Vl
-	 JcO1oFKUoiN7MW18zZ0ikmZSw7dY2njCC586BBr42zHBi+TJIouGMZluYwCp+TQPxB
-	 bBy/bLNyvBsXildL7uaXKCLqeL9mKwmwMUWA70X3fkqwRdMRs/6JI+00GzQQK8MPt3
-	 Z/9X5kokMVkoCcCbilWFtjago8hgcSP3p5pwa0Ra55C6v2XQXICZ/ghZjEz/h7wCmU
-	 JIH0GUPvbPI+v1gBWIpYzbTe7gyGJyoB1f6j4WqhgdoO2xphZdYzZXPJF0Y8Scs2RZ
-	 /Fv30OwT+NaIQ==
-Date: Fri, 8 Dec 2023 15:06:18 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH v3 4/5] dt-bindings: hwmon: Add Amphenol ChipCap 2
-Message-ID: <20231208-freebase-headlock-9125c4ae6ce1@spud>
-References: <20231020-topic-chipcap2-v3-0-5b3bb50a5f0b@gmail.com>
- <20231020-topic-chipcap2-v3-4-5b3bb50a5f0b@gmail.com>
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0D76199A;
+	Fri,  8 Dec 2023 07:08:03 -0800 (PST)
+Received: from umang.jain (unknown [103.251.226.108])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5467E512;
+	Fri,  8 Dec 2023 16:07:19 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1702048040;
+	bh=XdE5oS+/0plOEZHGfKkHkn9BwZSH6QN5Lw//bCz3XJE=;
+	h=From:To:Cc:Subject:Date:From;
+	b=OQSBdrjy6cHooeV9AJTuEHYNizuvW912lQ2KtBflkt2DxTsgYk1qErrkivVwW3c6H
+	 U1xu1uEKOlc5QsuhmschNb0lKTB9zWGjWWAVkNEu3wwXB1uJmcQ2CV8OgwNK8gpkz9
+	 USjAi+O4UsPk++q6JnqdjnsDyyZnKH1WyRVi1ktQ=
+From: Umang Jain <umang.jain@ideasonboard.com>
+To: devicetree@vger.kernel.org,
+	linux-media@vger.kernel.org
+Cc: "Paul J . Murphy" <paul.j.murphy@intel.com>,
+	Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Umang Jain <umang.jain@ideasonboard.com>
+Subject: [PATCH v3 0/8] media: Sony IMX335 improvements
+Date: Fri,  8 Dec 2023 20:37:46 +0530
+Message-ID: <20231208150756.124720-1-umang.jain@ideasonboard.com>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="4aU2mKqCAe/AIpR/"
-Content-Disposition: inline
-In-Reply-To: <20231020-topic-chipcap2-v3-4-5b3bb50a5f0b@gmail.com>
+Content-Transfer-Encoding: 8bit
 
+The Sony IMX335 is not yet compatible with libcamera, as it is missing
+the get selection API call.
 
---4aU2mKqCAe/AIpR/
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+It also misses a way to describe how to power on the sensor.
 
-On Thu, Dec 07, 2023 at 08:44:54PM +0100, Javier Carrasco wrote:
-> Add device tree bindings and an example for the ChipCap 2 humidity
-> and temperature sensor.
->=20
-> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Now that I've got this camera functioning on Debix-SOM and Pi5, I expect
+to be able to do quite a bit more cleanup to the code here. But these
+patches should already be valid for consideration.
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+The series provides the bindings required to reference the power
+supplies, and then performs some initial clean up to the driver for
+error reporting before adding the regulator enablement, implementing the
+get_selection api (as well as set selection, which returns the static
+configuration) and restricts the hblanking to match the configuration.
 
-Cheers,
-Conor.
+v3:
+ - Remove #define and use ARRAY_SIZE(imx335_supply_name) directly in 4/8
+ - Add two new patches for 10-bit mode(7/8) and multiple link frequency
+   support(8/8)
 
+v2:
+ - Supplies are no longer 'required'
+ - media: i2c: imx335: Fix logging line endings - New patch
+ - line endings are fixed
+ - error paths are handled for the regulator in imx335_power_on
+ - set_selection is defined alongside get_selection
 
---4aU2mKqCAe/AIpR/
-Content-Type: application/pgp-signature; name="signature.asc"
+Kieran Bingham (6):
+  media: dt-bindings: media: imx335: Add supply bindings
+  media: i2c: imx335: Fix logging line endings
+  media: i2c: imx335: Improve configuration error reporting
+  media: i2c: imx335: Enable regulator supplies
+  media: i2c: imx335: Implement get selection API
+  media: i2c: imx335: Fix hblank min/max values
 
------BEGIN PGP SIGNATURE-----
+Umang Jain (2):
+  media: i2c: imx335: Support 2592x1940 10-bit mode
+  media: i2c: imx335: Support multiple link frequency
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZXMw6gAKCRB4tDGHoIJi
-0kunAQDl/6ji5ewuFJDegO/MbpUBGL9+a+JAYzdBR23V2icdxgD+IpA10/vOn5Lk
-pE5W0DqzmbBhbQMOMsm0hPTuxbViBQU=
-=LPfj
------END PGP SIGNATURE-----
+ .../bindings/media/i2c/sony,imx335.yaml       |  13 +
+ drivers/media/i2c/imx335.c                    | 297 ++++++++++++++----
+ 2 files changed, 257 insertions(+), 53 deletions(-)
 
---4aU2mKqCAe/AIpR/--
+-- 
+2.41.0
+
 
