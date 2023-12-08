@@ -1,136 +1,123 @@
-Return-Path: <devicetree+bounces-22913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5309E80975D
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 01:39:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEF0B809771
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 01:44:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7ECDF1C203BC
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 00:39:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2BD881C20BF3
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 00:44:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B7B5366;
-	Fri,  8 Dec 2023 00:39:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81F32380;
+	Fri,  8 Dec 2023 00:44:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=163.com header.i=@163.com header.b="Pkg70MCX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hLXrYOQh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m13111.mail.163.com (m13111.mail.163.com [220.181.13.111])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id AE340D5B;
-	Thu,  7 Dec 2023 16:39:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Date:From:Subject:Content-Type:MIME-Version:
-	Message-ID; bh=wVZroXje9JPyqCEI+vYosxj/dxnQewo6InLWjjZw5v8=; b=P
-	kg70MCX2p3NQ7NZ3You167adVwFdeqcCQqziMjW6WIQUcW/MrnNLzvMj1Ldp5wd3
-	rOwLirUh6KSFLhqN0oraOxFqEoBLHNNK8Bo35I2pzlpv0L++Hc5LKJIEvD89TEdk
-	pZN5aAUK1EGX1unK97JbaCFDSoTHL70LweV1DQwAYA=
-Received: from andyshrk$163.com ( [58.22.7.114] ) by ajax-webmail-wmsvr111
- (Coremail) ; Fri, 8 Dec 2023 08:37:32 +0800 (CST)
-Date: Fri, 8 Dec 2023 08:37:32 +0800 (CST)
-From: "Andy Yan" <andyshrk@163.com>
-To: "Keith Zhao" <keith.zhao@starfivetech.com>
-Cc: "Maxime Ripard" <mripard@kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>, 
-	"tzimmermann@suse.de" <tzimmermann@suse.de>, 
-	"airlied@gmail.com" <airlied@gmail.com>, 
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, 
-	"William Qiu" <william.qiu@starfivetech.com>, 
-	"Xingyu Wu" <xingyu.wu@starfivetech.com>, 
-	"paul.walmsley@sifive.com" <paul.walmsley@sifive.com>, 
-	"aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>, 
-	"palmer@dabbelt.com" <palmer@dabbelt.com>, 
-	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>, 
-	"Shengyang Chen" <shengyang.chen@starfivetech.com>, 
-	"Jack Zhu" <jack.zhu@starfivetech.com>, 
-	"Changhuang Liang" <changhuang.liang@starfivetech.com>, 
-	"maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>, 
-	"suijingfeng@loongson.cn" <suijingfeng@loongson.cn>
-Subject: Re:Re: [v3 5/6] drm/vs: Add hdmi driver
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20230109(dcb5de15)
- Copyright (c) 2002-2023 www.mailtech.cn 163com
-In-Reply-To: <e0b84511-dbb4-46fa-9465-713369232f6f@starfivetech.com>
-References: <20231204123315.28456-1-keith.zhao@starfivetech.com>
- <20231204123315.28456-6-keith.zhao@starfivetech.com>
- <esetsiqgqpk35zue4c6aq7l6zn4kezhxkqqa7ompaz2vhdy3lr@4d5awfqgs2ss>
- <94a1f9fc-82fb-4a04-a44b-f9b20c2bdfdd@starfivetech.com>
- <abdl6kmighvpwojvafq443q7grn6w3abwpvw7zwbna4jvtsvjf@fa42rv46n2wh>
- <40cdd3c7-174e-4611-9ea6-22cb56d1f62b@starfivetech.com>
- <e90142d.44b1.18c43833b63.Coremail.andyshrk@163.com>
- <e0b84511-dbb4-46fa-9465-713369232f6f@starfivetech.com>
-X-NTES-SC: AL_Qu2bA/WSukAu5CmRYekXn0kXhec2W8Czvvgg34JRP5k0pSvH9zwjQkBPMHnb0fmxFwmhjyeZXxZVyNx9baRkdJ+gj36WGcDp2oT4pJM2WKDm
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 410A8121
+	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 16:44:20 -0800 (PST)
+Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2ca03103155so18249571fa.0
+        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 16:44:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1701996258; x=1702601058; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1X9LMB+oVPng9ws8U342EyKjkvqeAQn5jzp3ck1U/W8=;
+        b=hLXrYOQhJgcHO9gmabKuRP9XQ10PsVBJlpHMYUegGWUDhlT6eokpuWV5xOuC2/LXTN
+         dBaip4YmoGwP7ahY6TL08fgOyA5J87Upw0aGIwD3aUBtb5bYUPL9waAYVLzj409Yg2li
+         jErPp2ywOwiU0teyROPFlC5Yq7mKBr8G/byyYRszbjfWTNLt+0zD184AW21Mi0fMdCTP
+         0GGi2nGqb7Gs9mdvnhrZ+E+D8v3Teid1XYWqTkkwChGqmB679X1grAXS1qrFfkXBtBfR
+         cXgd//iMBDudhWD67JnVCRb5/UDSfKI8XGpOwaGTs5yHZp+aIJD1hkGKhItigluQ/xxr
+         qpsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1701996258; x=1702601058;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1X9LMB+oVPng9ws8U342EyKjkvqeAQn5jzp3ck1U/W8=;
+        b=Llc0Z5tC/O/l/3gsjoz3NO6HT8/oeku4We4MfDb+/USPITmGIVcG1/DxU0eaQ7xuis
+         Ui8MCFOaCeVLFSd2w+gSaM/yrfwUPpHGbdv/UGZ5d3wvUW2pwwyUFy0SQX9l9RqdeVEq
+         bCXLTIzjOmDqPIgV6b/RlU0G3sCTEUdojSQUr+ZHzLlZ+jqOGSGycsRdJhV7fqOII6ZU
+         GhmGJeaUbS958agnObdhp3UewtCAE2NoBs8YKPUZVA+h7p/5Hh5ab+0U5ZnhC1x4yRvh
+         Go+bnnrRqq7/iTu02uSMRBg1LxHr0Y0qxRMUnhRbwfcxu0SirZ5If2VO2ER94WowiFgL
+         kiuw==
+X-Gm-Message-State: AOJu0YyHIkQkaWoepcGemH0AD6j1z7EDa/ywbS41QPzsvjIqyT8dCyws
+	uwU2h7FDhcOtVQ4naFG/vgZpIw==
+X-Google-Smtp-Source: AGHT+IHJq3hSl2GMpuUmsaGxbHysQQfeUdmZcunbGnlDTNaGhjwyo+gl874n630YSiarhtoJyzq5MA==
+X-Received: by 2002:a05:6512:eaa:b0:50c:c15:a77 with SMTP id bi42-20020a0565120eaa00b0050c0c150a77mr1522724lfb.112.1701996258370;
+        Thu, 07 Dec 2023 16:44:18 -0800 (PST)
+Received: from umbar.unikie.fi ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id d1-20020a2eb041000000b002c9f2c7cdecsm82645ljl.22.2023.12.07.16.44.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Dec 2023 16:44:17 -0800 (PST)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v6 00/11] soc: qcom: spm: add support for SPM regulator
+Date: Fri,  8 Dec 2023 03:44:06 +0300
+Message-Id: <20231208004417.3393299-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <43e42269.314.18c46dbb4c5.Coremail.andyshrk@163.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:b8GowAD3nyZNZXJl274QAA--.45410W
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbBEghAXmVOA1F28AACs5
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+Content-Transfer-Encoding: 8bit
 
-SGkgS2V0aO+8mgoKCgoKCgrlnKggMjAyMy0xMi0wNyAxODo0ODoxM++8jCJLZWl0aCBaaGFvIiA8
-a2VpdGguemhhb0BzdGFyZml2ZXRlY2guY29tPiDlhpnpgZPvvJoKPgo+Cj5PbiAyMDIzLzEyLzcg
-MTc6MDIsIEFuZHkgWWFuIHdyb3RlOgo+PiAKPj4gCj4+IAo+PiAKPj4gSGkgS2VpdGjvvJoKPj4g
-Cj4+IAo+PiAKPj4gCj4+IAo+PiAKPj4gCj4+IAo+PiAKPj4gCj4+IAo+PiBBdCAyMDIzLTEyLTA2
-IDIyOjExOjMzLCAiS2VpdGggWmhhbyIgPGtlaXRoLnpoYW9Ac3RhcmZpdmV0ZWNoLmNvbT4gd3Jv
-dGU6Cj4+Pgo+Pj4KPj4+T24gMjAyMy8xMi82IDIwOjU2LCBNYXhpbWUgUmlwYXJkIHdyb3RlOgo+
-Pj4+IE9uIFdlZCwgRGVjIDA2LCAyMDIzIGF0IDA4OjAyOjU1UE0gKzA4MDAsIEtlaXRoIFpoYW8g
-d3JvdGU6Cj4+Pj4+ID4+ICtzdGF0aWMgY29uc3Qgc3RydWN0IG9mX2RldmljZV9pZCBzdGFyZml2
-ZV9oZG1pX2R0X2lkc1tdID0gewo+Pj4+PiA+PiArCXsgLmNvbXBhdGlibGUgPSAic3RhcmZpdmUs
-amg3MTEwLWlubm8taGRtaSIsfSwKPj4+Pj4gPiAKPj4+Pj4gPiBTbyBpdCdzIGlubm8gaGRtaSwg
-anVzdCBsaWtlIFJvY2tjaGlwIHRoZW4/Cj4+Pj4+ID4gCj4+Pj4+ID4gVGhpcyBzaG91bGQgYmUg
-YSBjb21tb24gZHJpdmVyLgo+Pj4+Pgo+Pj4+PiBSb2NrY2hpcCBoYXMgYSBpbm5vIGhkbWkgSVAu
-IGFuZCBTdGFyZml2ZSBoYXMgYSBpbm5vIGhkbWkgSVAuCj4+Pj4+IGJ1dCB0aGUgaGFyZXdhd3Jl
-IGRpZmZlcmVuY2Ugb2YgdGhlbSBpcyBiaWcgLCBpdCBpcyBub3QgZWFzeSB0byB1c2UgdGhlIGNv
-bW1vbiBkcml2ZXIKPj4+Pj4gbWF5YmUgaSBuZWVkIHRoZSBpbm5vIGhkbWkgdmVyc2lvbiBoZXJl
-IHRvIG1ha2UgYSBkaXN0aW5jdGlvbgo+Pj4+IAo+Pj4+IEkganVzdCBoYWQgYSBsb29rIGF0IHRo
-ZSByb2NrY2hpcCBoZWFkZXIgZmlsZTogYWxsIHRoZSByZWdpc3RlcnMgYnV0IHRoZQo+Pj4+IFNU
-QVJGSVZFXyogb25lcyBhcmUgaWRlbnRpY2FsLgo+Pj4+IAo+Pj4+IFRoZXJlJ3Mgbm8gbmVlZCB0
-byBoYXZlIHR3byBpZGVudGljYWwgZHJpdmVycyB0aGVuLCBwbGVhc2UgdXNlIHRoZQo+Pj4+IHJv
-Y2tjaGlwIGRyaXZlciBpbnN0ZWFkLgo+Pj4+IAo+Pj4+IE1heGltZQo+Pj4KPj4+b2ssIGhhdmUg
-YSBzaW1wbGUgdGVzdCAsIGVkaWQgY2FuIGdldCAuIGkgd2lsbCBjb250aW51ZSAKPj4gCj4+IE1h
-eWJlIHlvdSBjYW4gdGFrZSBkcml2ZXJzL2dwdS9kcm0vYnJpZGdlL3N5bm9wc3lzL2R3LWhkbWkg
-YXMgYSByZWZlcmVuY2XvvIwgdGhpcwo+PiBpcyBhbHNvIGEgaGRtaSBpcCB1c2VkIGJ5IHJvY2tj
-aGlwL21lc29uL3N1bnhpL2p6L2lteOOAggo+PiBXZSBmaW5hbGx5IG1ha2UgaXQgc2hhcmUgb25l
-IGRyaXZlcuOAggo+Pj4KPmhpIEFuZHk6Cj4KPmR3X2hkbWkgc2VlbXMgYSBnb29kIGNob2ljZSAs
-IGl0IGNhbiBoYW5kbGUgaW5ubyBoZG1pIGhhcmR3YXJlIGJ5IGRlZmluZSBpdHMgZHdfaGRtaV9w
-bGF0X2RhdGEuCj5kb2VzIGl0IG1lYW5zIGkgY2FuIHdyaXRlIG93biBkcml2ZXIgZmlsZXMgc3Vj
-aCBhcyhkd19oZG1pLXN0YXJmaXZlLmMpIGJhc2VkIG9uIGR3X2hkbWkgaW5zdGVhZCBvZiBhZGQg
-cGxhdF9kYXRhIGluIGlubm9faGRtaS5jCj4KCkkgdGhpbmsgdGhlIHByb2Nlc3MgbWF5YmUgbGlr
-ZSB0aGlz77yaCgoxLiBzcGxpdCB0aGUgaW5ub19oZG1pLmMgdW5kZXIgcm9ja2NoaXAgdG8gIGlu
-bm9faGRtaS5jKHRoZSBjb21tb24gcGFydCksIGlubm9faGRtaS1yb2NrY2hpcC5jKHRoZSBzb2Mg
-c3BlY2lmaWMgcGFydCkKMi4gbW92ZSB0aGUgY29tbW9uIHBhcnQgaW5ub19oZG1pLmMgdG8gZHJp
-dmVycy9ncHUvZHJtL2JyaWRnZS9pbm5vc2lsaWNvbi8KMy4gYWRkIHN0YXJ0Zml2ZSBzcGVjaWZp
-YyBwYXJ0LCBpbm5vX2hkbWktc3RhcnRmaXZlLmMKCmJlbGxvdyBnaXQgbG9nIGZyb20ga2VybmVs
-IHRocmVlIHNob3cgaG93IHdlIGNvbnZlcnQgIGR3X2hkbWkgdG8gYSBjb21tb24gZHJpdmVyOiAK
-CgoKMTJiOWYyMDRlODA0IGRybTogYnJpZGdlL2R3X2hkbWk6IGFkZCByb2NrY2hpcCByazMyODgg
-c3VwcG9ydAo3NGFmOWU0ZDAzYjggZHQtYmluZGluZ3M6IEFkZCBkb2N1bWVudGF0aW9uIGZvciBy
-b2NrY2hpcCBkdyBoZG1pCmQzNDZjMTRlZWVhOSBkcm06IGJyaWRnZS9kd19oZG1pOiBhZGQgZnVu
-Y3Rpb24gZHdfaGRtaV9waHlfZW5hYmxlX3NwYXJlCmE0ZDNiOGIwNTBkNSBkcm06IGJyaWRnZS9k
-d19oZG1pOiBjbGVhciBpMmNtcGh5X3N0YXQwIHJlZyBpbiBoZG1pX3BoeV93YWl0X2kyY19kb25l
-CjYzMmQwMzViYWNlMiBkcm06IGJyaWRnZS9kd19oZG1pOiBhZGQgbW9kZV92YWxpZCBzdXBwb3J0
-CjBjZDlkMTQyODMyMiBkcm06IGJyaWRnZS9kd19oZG1pOiBhZGQgc3VwcG9ydCBmb3IgbXVsdGkt
-Ynl0ZSByZWdpc3RlciB3aWR0aCBhY2Nlc3MKY2QxNTIzOTM5NjdlIGR0LWJpbmRpbmdzOiBhZGQg
-ZG9jdW1lbnQgZm9yIGR3X2hkbWkKYjIxZjRiNjU4ZGY4IGRybTogaW14OiBpbXgtaGRtaTogbW92
-ZSBpbXgtaGRtaSB0byBicmlkZ2UvZHdfaGRtaQphYWE3NTdhMDkyYzIgZHJtOiBpbXg6IGlteC1o
-ZG1pOiBzcGxpdCBwaHkgY29uZmlndXJhdGlvbiB0byBwbGF0Zm9ybSBkcml2ZXIKM2QxYjM1YTNk
-OWYzIGRybTogaW14OiBpbXgtaGRtaTogY29udmVydCBpbXgtaGRtaSB0byBkcm1fYnJpZGdlIG1v
-ZGUKYzJjMzg0ODg1MWE3IGRybTogaW14OiBpbXgtaGRtaTogcmV0dXJuIGRlZmVyIGlmIGNhbid0
-IGdldCBkZGMgaTJjIGFkYXB0ZXIKYjU4NzgzMzkzM2RlIGRybTogaW14OiBpbXgtaGRtaTogbWFr
-ZSBjaGVja3BhdGNoIGhhcHB5CgoKPlRoYW5rcyBmb3IgcG9pbnRpbmcgdGhpcyBvdXQhISEKPgo+
-Pj4KPj4+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPj4+
-bGludXgtcmlzY3YgbWFpbGluZyBsaXN0Cj4+PmxpbnV4LXJpc2N2QGxpc3RzLmluZnJhZGVhZC5v
-cmcKPj4+aHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1y
-aXNjdgo+Cj5fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+
-bGludXgtcmlzY3YgbWFpbGluZyBsaXN0Cj5saW51eC1yaXNjdkBsaXN0cy5pbmZyYWRlYWQub3Jn
-Cj5odHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LXJpc2N2
-Cg==
+The apq8064 rework to use cacheinfo takes more than expected, so I've
+spanwed this series. It is an excerpt of the APQ8064 cpufreq series
+[1], so it it continues the version numbering for those patches.
+
+The Subsystem Power Manager (SPM) / SPM AutoVoltageScaling Wrapper2
+(SAW2) are hardware blocks used on some of Qualcomm platforms to handle
+the voltage rails. It does this by bypassing RPM and directly
+interfacing the PMIC. Extend current SPM driver to export this
+regulator.
+
+[1] https://lore.kernel.org/linux-arm-msm/20230827115033.935089-1-dmitry.baryshkov@linaro.org/
+
+Changes since v5:
+- Added patch that moves SPM structs out of the header file
+- Removed support for L2 SAW regulator (Stephan Gerhold).
+  msm8960/apq8064 do not use this SAW2 to manage this regulator and
+  other platforms will need changes anyway.
+
+Dmitry Baryshkov (11):
+  dt-bindings: soc: qcom: merge qcom,saw2.txt into qcom,spm.yaml
+  dt-bindings: soc: qcom: qcom,saw2: define optional regulator node
+  soc: qcom: spm: remove driver-internal structures from the driver API
+  soc: qcom: spm: add support for voltage regulator
+  ARM: dts: qcom: apq8064: rename SAW nodes to power-manager
+  ARM: dts: qcom: apq8064: declare SAW2 regulators
+  ARM: dts: qcom: msm8960: declare SAW2 regulators
+  ARM: dts: qcom: apq8084: drop 'regulator' property from SAW2 device
+  ARM: dts: qcom: msm8974: drop 'regulator' property from SAW2 device
+  ARM: dts: qcom: ipq4019: drop 'regulator' property from SAW2 devices
+  ARM: dts: qcom: ipq8064: drop 'regulator' property from SAW2 devices
+
+ .../devicetree/bindings/arm/msm/qcom,saw2.txt |  58 ----
+ .../qcom/{qcom,spm.yaml => qcom,saw2.yaml}    |  39 ++-
+ arch/arm/boot/dts/qcom/qcom-apq8064.dtsi      |  32 ++-
+ arch/arm/boot/dts/qcom/qcom-apq8084.dtsi      |   1 -
+ arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi      |   5 -
+ arch/arm/boot/dts/qcom/qcom-ipq8064.dtsi      |   2 -
+ arch/arm/boot/dts/qcom/qcom-msm8960.dtsi      |  12 +-
+ arch/arm/boot/dts/qcom/qcom-msm8974.dtsi      |   1 -
+ drivers/soc/qcom/spm.c                        | 254 +++++++++++++++++-
+ include/soc/qcom/spm.h                        |  23 +-
+ 10 files changed, 317 insertions(+), 110 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,saw2.txt
+ rename Documentation/devicetree/bindings/soc/qcom/{qcom,spm.yaml => qcom,saw2.yaml} (57%)
+
+-- 
+2.39.2
+
 
