@@ -1,120 +1,156 @@
-Return-Path: <devicetree+bounces-23060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23061-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6804880A1BA
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 12:03:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D31380A1C1
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 12:04:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B5477B20AF1
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 11:03:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BC61A1C20952
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 11:04:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E5AC19BAE;
-	Fri,  8 Dec 2023 11:03:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37ACA19BB2;
+	Fri,  8 Dec 2023 11:04:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="doa+Coj+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="O6pwzduE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE01510CF
-	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 03:03:10 -0800 (PST)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-a1db99cd1b2so256396066b.2
-        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 03:03:10 -0800 (PST)
+Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 110A910EB
+	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 03:04:30 -0800 (PST)
+Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-5d4f71f7e9fso18577397b3.0
+        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 03:04:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702033389; x=1702638189; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bEwLnBOC/qdcYM4M+jPElLEilL4x4aw3f3zZi3BYaWQ=;
-        b=doa+Coj+S0iYPDMY+khMzcfynSwHMm2+DmVz/RZyvFyB/4jKJO8QmFVxU71/INY3Q8
-         SffTS0LWw57mmOPtJ7O+ZmelHeN4FhFKITxqfL3tYZ2Sk3CqbZ2muWHmYj/ZQEeLQ3us
-         yAd4s7wI2BL+MTtGH0jHlFtVHiIx7E3zoU9u6fDYHW/92MeFtssvMj+wgWThuKQZhdP/
-         5mGKIAbioVlsiiN9u8Wb2p398qpVGWWTwVhZqD4ZFDkCzeMz+J7kKK8tP4X+LRpNkXdz
-         dZIbi+KtYAICSu7JsyM32BqV5GAhEjzeQhxeNJ43vQKTfjCQRiyGS/iTJIfv45Pptqfe
-         e07A==
+        d=linaro.org; s=google; t=1702033469; x=1702638269; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=tmWSiLFpH5ilop9PgBwEvCl5zyYcl/sRlYRMt6cwB08=;
+        b=O6pwzduEgfLIEYMWLFQAi2lxdt0lTx/zb4zr52eBLiWuoFV8V7WptdD3WuIgGxovL9
+         wZz9hJJaBbMyJhAFNhr0QBV0T6X1Cc0YHHhqP5fO2zCVkB4Lr3BT8WRAqhr+uiUj4pI2
+         LOGvvicm1RnWfcWW+0UEAtikHmBFdhM6GPbxjeRU9x1DZ6oovsQ3zRl2xWYeCk5G1YeF
+         hVz3QpurKLy1fUVXizgdpJ4qUs+3aJ/55waeN8GESHBAMejfah1nPPOl/d2CKdD97/kI
+         vjgeenHJ0GECd2EcR44Nn0cDL4yZeL6lwx1f9uzxjYu7Dn1L1cvet9gjuJKQOsVxDjh4
+         P0xA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702033389; x=1702638189;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bEwLnBOC/qdcYM4M+jPElLEilL4x4aw3f3zZi3BYaWQ=;
-        b=QfRIsjFl8yzOOjG7EQgH2lid6gy9V+jfOM8fbG5P2U8xS8lVJJN0baE/LZC/ny9868
-         o6MvUecIlcSgpw8Zie1FU2cZV9KBahIASoPzzWdABqLGr1OdNiUNztO7R7tbuSuLNV6j
-         s6VXD6nbJwv9SUgavoLptTZvhFVck+Rbhxt6Ut3U0RRUxEZx2aLJBls1fKZ7ossX9uJU
-         SyTF9YKM52m2TYtztdzoRQ8BePQ9pqEMIpyHZ/hV8NLRJMuT3m6sTvgomuKnat4lTw2o
-         dwXcyiMOqszMezbtMjqwZ+sese+I0jyWBHqwDIOdLuyJ4pSYFjS8et3Ec2AAm+G3PL7o
-         6KVQ==
-X-Gm-Message-State: AOJu0YyepNbrz26CjA4OCZIoHM22lKoDlnLWiVSKjoc4oxdH5tr4I3xW
-	DCuOAfGf+DGQAe+5I+NVWns4rA==
-X-Google-Smtp-Source: AGHT+IEUCMIetzDx1rq/yfoOzbKLkqMRhi9m4z8qeP/XugdovkyE4akMeKajgqnm0Gd5Eej4Ijodhw==
-X-Received: by 2002:a17:906:81c4:b0:a19:a19b:4254 with SMTP id e4-20020a17090681c400b00a19a19b4254mr1634063ejx.191.1702033389036;
-        Fri, 08 Dec 2023 03:03:09 -0800 (PST)
-Received: from [192.168.1.195] ([5.133.47.210])
-        by smtp.gmail.com with ESMTPSA id tm6-20020a170907c38600b00a1db955c809sm862184ejc.73.2023.12.08.03.03.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Dec 2023 03:03:08 -0800 (PST)
-From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To: Alexandre TORGUE <alexandre.torgue@foss.st.com>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
- Fabrice Gasnier <fabrice.gasnier@foss.st.com>, 
- Patrick Delaunay <patrick.delaunay@foss.st.com>
-Cc: Arnd Bergmann <arnd@arndb.de>, 
- Bjorn Andersson <quic_bjorande@quicinc.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- Geert Uytterhoeven <geert+renesas@glider.be>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Marek Szyprowski <m.szyprowski@samsung.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>, 
- Peng Fan <peng.fan@nxp.com>, Udit Kumar <u-kumar1@ti.com>, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
-In-Reply-To: <20231117143338.1173475-1-patrick.delaunay@foss.st.com>
-References: <20231117143338.1173475-1-patrick.delaunay@foss.st.com>
-Subject: Re: (subset) [PATCH 0/4] stm32: add support for STM32MP25 BSEC to
- control OTP data
-Message-Id: <170203338747.19730.10941929995611139048.b4-ty@linaro.org>
-Date: Fri, 08 Dec 2023 11:03:07 +0000
+        d=1e100.net; s=20230601; t=1702033469; x=1702638269;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tmWSiLFpH5ilop9PgBwEvCl5zyYcl/sRlYRMt6cwB08=;
+        b=ELnsorl1TMmxM5L2J5DTO+oAJpW1iYas69HR1knQt3FaOjlayjSkHtHENutoDFfuw4
+         ECPRfXn04XoiiryqRuLRO9cmKd26bpJpiHeOtikcMr56IvCc1TPWcl3CG/YnY4uSzYqo
+         BQ1yiRGB9fdoueFMhjE5egL3zWUOP9ankyKaKJdDBUqYA4Av4zJfs6sLiBeBzsDGd1IE
+         1ddmP4HSvSeEQZOPYd55KotQnXZ0B/HD0qwsQ6foSQlwNrJG/CKGX+DyvNr6i7wbXULq
+         9g8YmFbNDeuLm7a1TmniQxJIwe37bFAGp0+qHgDNNQx3yGM5frmTlJVLNccBzkCHaPo4
+         dk8w==
+X-Gm-Message-State: AOJu0Yza7M+Lvs2ZalrVaEV5zyrdiRxLZrr7K9lpgW3zyuwYe9+GC2Jd
+	VuAfrkFMDnilvyVrkCZnuFg3rrKvS+JUMfuMe0ZF9w==
+X-Google-Smtp-Source: AGHT+IGCB8quVSHKY0fmnpid8nxEPOPtVtmvqpR1rpFARtS3Ovn3+gVCYD81mAQa7wkJ4TWtjHLTA0qrGC8SKmGeTt4=
+X-Received: by 2002:a81:4312:0:b0:5da:2235:493 with SMTP id
+ q18-20020a814312000000b005da22350493mr3478692ywa.10.1702033469187; Fri, 08
+ Dec 2023 03:04:29 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.2
+References: <20231122-phy-qualcomm-edp-x1e80100-v3-0-576fc4e9559d@linaro.org>
+ <20231122-phy-qualcomm-edp-x1e80100-v3-2-576fc4e9559d@linaro.org>
+ <b6d3928c-75ba-47a3-93fc-a60729be2e35@linaro.org> <545d3ace-66e5-4470-b3a4-cbdac5ae473d@linaro.org>
+ <ab7223a2-9f3f-4c9c-ab97-31512e7a0123@linaro.org>
+In-Reply-To: <ab7223a2-9f3f-4c9c-ab97-31512e7a0123@linaro.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Fri, 8 Dec 2023 13:04:18 +0200
+Message-ID: <CAA8EJpoboN85bLiayXJgn5iwh+Gn0OtK0aZ26ZJu9H3xkTT2Tw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/3] dt-bindings: phy: qcom-edp: Add X1E80100 PHY compatibles
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, Abel Vesa <abel.vesa@linaro.org>, 
+	Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Abhinav Kumar <quic_abhinavk@quicinc.com>, Johan Hovold <johan@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
+On Fri, 8 Dec 2023 at 09:47, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 07/12/2023 20:16, Konrad Dybcio wrote:
+> >
+> >
+> > On 12/7/23 17:51, Krzysztof Kozlowski wrote:
+> >
+> > [...]
+> >
+> >>> +allOf:
+> >>> +  - if:
+> >>> +      properties:
+> >>> +        compatible:
+> >>> +          contains:
+> >>> +            enum:
+> >>> +              - qcom,x1e80100-dp-phy
+> >>> +    then:
+> >>> +      properties:
+> >>> +        phy-type:
+> >>> +          description: DP (default) or eDP type
+> >>
+> >> Properties must be defined in top-level "properties:" block. In
+> >> allOf:if:then you only disallow them for other variants.
+> >>
+> >>> +          enum: [ 6, 13 ]
+> >>> +          default: 6
+> >>
+> >> Anyway, I was thinking this should be rather argument to phy-cells.
+> > I'm not sure I'm for this, because the results would be:
+> >
+> > --- device.dts ---
+> > &dp_controller0 {
+> >      phys = <&dp_phy0 PHY_EDP>;
+> > };
+> >
+> > &dp_controller1 {
+> >      phys = <&dp_phy1 PHY_DP>;
+> > };
+> > ------------------
+> >
+> > as opposed to:
+> >
+> > --- device.dts ---
+> > &dp_phy0 {
+> >      phy-type <PHY_EDP>;
+> > };
+> >
+> > &dp_phy1 {
+> >      phy-type = <PHY_DP>;
+> > };
+> > ------------------
+>
+> Which is exactly what I proposed/wanted to see.
+>
+> >
+> > i.e., we would be saying "this board is connected to this phy
+> > instead" vs "this phy is of this type on this board".
+> >
+> > While none of them really fit the "same hw, different config"
+> > situation, I'd vote for the latter one being closer to the
+> > truth
+>
+> Then maybe I miss the bigger picture, but commit msg clearly says:
+> "multiple PHYs that can work in both eDP or DP mode"
+>
+> If this is not the case, describe the hardware correctly in the commit
+> msg, so people will not ask stupid questions...
 
-On Fri, 17 Nov 2023 15:33:33 +0100, Patrick Delaunay wrote:
-> Non volatile memory area is available on STM32MP25 with OTP in BSEC.
-> 
-> The 12 Kbits of OTP (effective) for STM32MP25x SoC Family
-> are organized into the following regions:
-> - lower OTP (OTP0 to OTP127) = 4096 lower OTP bits,
->   bitwise (1-bit) programmable
-> - mid OTP (OTP128 to OTP255) = 4096 middle OTP bits,
->   bulk (32-bit) programmable
-> - upper OTP (OTP256 to OTP383) = 4096 upper OTP bits,
->   bulk (32-bit) programmable,
->   only accessible when BSEC is in closed state.
-> 
-> [...]
+There are multiple PHYs (each of them at its own address space). Each
+of the PHYs in question can be used either for the DisplayPort output
+(directly or through the USB-C) or to drive the eDP panel.
 
-Applied, thanks!
+Same applies to the displayport-controller. It can either drive the DP
+or eDP output, hardware-wise it is the same.
 
-[1/4] dt-bindings: nvmem: add new stm32mp25 compatible for stm32-romem
-      commit: d062d18d0e30e46e88a3b0f9fb2549393b7d7adf
-[2/4] nvmem: stm32: add support for STM32MP25 BSEC to control OTP data
-      commit: 2015e5f4d01fb76fca69047f870035e214d6d2d0
-
-Best regards,
 -- 
-Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-
+With best wishes
+Dmitry
 
