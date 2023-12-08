@@ -1,210 +1,302 @@
-Return-Path: <devicetree+bounces-23211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23212-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CD1180A770
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 16:30:29 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EF0F80A772
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 16:31:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 54AE4B203AE
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 15:30:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C27C81C20754
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 15:31:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6251230CEE;
-	Fri,  8 Dec 2023 15:30:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7100225D5;
+	Fri,  8 Dec 2023 15:31:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R13ny3bt"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="TTjqPrRz";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="IG0x/GKv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4288130337;
-	Fri,  8 Dec 2023 15:30:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7409DC433C8;
-	Fri,  8 Dec 2023 15:30:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702049422;
-	bh=RxJt1IRw23UP09MyvDYjKFY8QGbl8CX8IEuwGzGDpgA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=R13ny3btIbS4w0W3novK6XpflowpC1xFiBtWnPtqpUiq1nuPzfTgc9m11amAp63Sx
-	 4jBPZRV2bvycN2CnwcswRVeRoFHk69GyEfJ86HnjqBNVmO6o5Gh4l2CI4xkX7bHL75
-	 /aYuX0NIaZQR1tHtKZ7r3b/WCiWsjgUY0JoayDHYLSEE9A4BF93d3jv0wMsEJGBmPf
-	 QMgdOu2FDSl9qlwZeDtFQGcV07RSH7tXBdh1KLrInT6bq5t8xyMcSv0fwtrvXtsXRY
-	 T2/RxCFooy1qkuds85M1PCsUQ3b27vzg+08G9urJD7lKSSIXVBXW1SwZR+5PGOFrdI
-	 AkM/2hKkTygBg==
-Date: Fri, 8 Dec 2023 15:30:17 +0000
-From: Conor Dooley <conor@kernel.org>
-To: nuno.sa@analog.com
-Cc: devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Olivier Moysan <olivier.moysan@foss.st.com>
-Subject: Re: [PATCH v2 0/8] iio: add new backend framework
-Message-ID: <20231208-corridor-outfit-ae0314b29186@spud>
-References: <20231208-dev-iio-backend-v2-0-5450951895e1@analog.com>
+Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47BD810F1;
+	Fri,  8 Dec 2023 07:31:05 -0800 (PST)
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1702049463;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=kM2gfM4stLx1K6L+3Wj5bEw38BxAF95LAx7kBEjCuto=;
+	b=TTjqPrRzGk9nL8pZrlbLig8nLw0elK3wmLC3t/4aftYWymZ9tjnUWH2smJ+JJWgvEkwj3/
+	9+rkK3i7pnw0wiKFTu8NNb/TGug3LJVtDO/GRzKrssaoxKRcO5DfNKEfOcazgbFQhlXw5i
+	7bueF3+LDojAH5/kP3XhDQ1o6JD6MnCt3Svw+VhHt/dmTaNoR4URC5C2U1DWKl4UTBbWqs
+	/m5NLKj65RFR3hy6qvhE1vn4B6ss3eCwMHpSTuTG+IGp8q7jlqzSHteAtlFZof5PsQIOGP
+	Q9oz3gAjBLoDBxhDvd4qqnJgius0uOmFjDHE7VFIRUy8lQ7wexHMQmVmyn5/PQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1702049463;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=kM2gfM4stLx1K6L+3Wj5bEw38BxAF95LAx7kBEjCuto=;
+	b=IG0x/GKvuLwBqMEc1i1QfOJ2/hxnHDNm8aeL9CD5msZe2NOJs5rU8mlAKByuz+L/sgJT5k
+	nVja4PdTSis57qAg==
+To: James Tai <james.tai@realtek.com>, Marc Zyngier <maz@kernel.org>, Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ James Tai <james.tai@realtek.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, kernel test
+ robot <lkp@intel.com>, Dan Carpenter <error27@gmail.com>
+Subject: Re: [PATCH v3 2/6] irqchip: Add interrupt controller support for
+ Realtek DHC SoCs
+In-Reply-To: <20231129054339.3054202-3-james.tai@realtek.com>
+References: <20231129054339.3054202-1-james.tai@realtek.com>
+ <20231129054339.3054202-3-james.tai@realtek.com>
+Date: Fri, 08 Dec 2023 16:31:02 +0100
+Message-ID: <87cyvgsocp.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="eoSVKmAJ/NfelqU5"
-Content-Disposition: inline
-In-Reply-To: <20231208-dev-iio-backend-v2-0-5450951895e1@analog.com>
+Content-Type: text/plain
 
+On Wed, Nov 29 2023 at 13:43, James Tai wrote:
+> Realtek DHC (Digital Home Center) SoCs share a common interrupt controller
+> design. This universal interrupt controller driver provides support for
+> various variants within the Realtek DHC SoC family.
+>
+> Each DHC SoC features two sets of extended interrupt controllers, each
+> capable of handling up to 32 interrupts. These expansion controllers are
+> connected to the GIC (Generic Interrupt Controller).
+>
+> Reported-by: kernel test robot <lkp@intel.com>
+> Reported-by: Dan Carpenter <error27@gmail.com>
+> Closes: https://lore.kernel.org/r/202311201929.2FpvMRlg-lkp@intel.com/
 
---eoSVKmAJ/NfelqU5
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+These tags are pointless as they are not related to anything in
+tree. You addressed review comments and 0-day fallout, but neither Dan
+nor 0-day reported that the interrupt controller for Realtek DHC SoCs is
+missing.
 
-On Fri, Dec 08, 2023 at 04:14:07PM +0100, Nuno Sa via B4 Relay wrote:
-> This series depends on [1] and it only build on top of it. The point is
-> to already speed up the reviewing of the framework. That obviously means
-> that all those pacthes were dropped in v2.
->=20
-> v1:
->  https://lore.kernel.org/linux-iio/20231204144925.4fe9922f@jic23-huawei/T=
-/#m222f5175273b81dbfe40b7f0daffcdc67d6cb8ff
->=20
-> Changes in v2:
->  - Patch 1-2 and 5
->    * new patches.
->  - Patch 6:
->    * Fixed some docs failures;
->    * Fixed a legacy 'conv' name in one of the function parameters;
->    * Added .request_buffer() and .free_buffer() ops;
->    * Refactored the helper macros;
->    * Added Olivier as Reviewer.
->  - Patch 7:
->    * Use new devm_iio_backend_request_buffer().
->  - Patch 8:
->    * Implement new .request_buffer() and .free_buffer() ops;
->=20
-> Also would like to mention that in v2 I'm experimenting in having the
-> DMA on the backend device (as discussed with David in v1). Does not look
-> to bad but as I said before, I'm not seeing a big issue if we end up
-> having the buffer allocation in the frontend.
->=20
-> For the bindings folks:
->=20
-> I'm introducing a new io-backends property in the ad9467 bindings but I'm
-> not sure this is the way to do it. Ideally that new property become a
-> generic schema and I'm guessing I should send a PULL to?
->=20
-> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/ii=
-o/iio-consumer.yaml
+> +#include "irq-realtek-intc-common.h"
+> +
+> +struct realtek_intc_data;
 
-That seems like the right thing to do to me, depending on how widespread
-the use of these backends might be. What is seemingly missing though,
-=66rom this cover and from the bindings patch in the series in particular,
-is an explanation of what the "iio-backends" hardware actually is.
+struct realtek_intc_data is declared in irq-realtek-intc-common.h, so
+what's the point of this forward declaration?
 
-There is some text below, but it does not seem complete to me. Is the
-idea that this "backend" is shared between multiple frontend consumers?
-The one example is described as being "highly focused on ADI usecases"
+> +static inline unsigned int realtek_intc_get_ints(struct realtek_intc_data *data)
+> +{
+> +	return readl(data->base + data->info->isr_offset);
+> +}
+> +
+> +static inline void realtek_intc_clear_ints_bit(struct realtek_intc_data *data, int bit)
+> +{
+> +	writel(BIT(bit) & ~1, data->base + data->info->isr_offset);
+
+That '& ~1' solves what aside of preventing bit 0 from being written?
+
+> +static int realtek_intc_domain_map(struct irq_domain *d, unsigned int irq, irq_hw_number_t hw)
+> +{
+> +	struct realtek_intc_data *data = d->host_data;
+> +
+> +	irq_set_chip_and_handler(irq, &realtek_intc_chip, handle_level_irq);
+> +	irq_set_chip_data(irq, data);
+> +	irq_set_probe(irq);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct irq_domain_ops realtek_intc_domain_ops = {
+> +	.xlate = irq_domain_xlate_onecell,
+> +	.map = realtek_intc_domain_map,
+
+	.xlate	= irq_domain_xlate_onecell,
+	.map	= realtek_intc_domain_map,
+
+Please.
+
+> +};
+> +
+> +static int realtek_intc_subset(struct device_node *node, struct realtek_intc_data *data, int index)
+> +{
+> +	struct realtek_intc_subset_data *subset_data = &data->subset_data[index];
+> +	const struct realtek_intc_subset_cfg *cfg = &data->info->cfg[index];
+> +	int irq;
+> +
+> +	irq = irq_of_parse_and_map(node, index);
+
+irq_of_parse_and_map() returns an 'unsigned int' where 0 is fail.
+
+> +	if (irq <= 0)
+> +		return irq;
+> +
+> +	subset_data->common = data;
+> +	subset_data->cfg = cfg;
+> +	subset_data->parent_irq = irq;
+> +	irq_set_chained_handler_and_data(irq, realtek_intc_handler, subset_data);
+> +
+> +	return 0;
+> +}
+> +
+> +int realtek_intc_probe(struct platform_device *pdev, const struct realtek_intc_info *info)
+> +{
+> +	struct realtek_intc_data *data;
+> +	struct device *dev = &pdev->dev;
+> +	struct device_node *node = dev->of_node;
+> +	int ret, i;
+> +
+> +	data = devm_kzalloc(dev, struct_size(data, subset_data, info->cfg_num), GFP_KERNEL);
+> +	if (!data)
+> +		return -ENOMEM;
+> +
+> +	data->base = of_iomap(node, 0);
+> +	if (!data->base) {
+> +		ret = -ENOMEM;
+> +		goto out_cleanup;
+
+devm_kzalloc() is automatically cleaned up when the probe function
+fails, so 'return -ENOMEM;' is sufficient.
+
+> +	}
+> +
+> +	data->info = info;
+> +
+> +	raw_spin_lock_init(&data->lock);
+> +
+> +	data->domain = irq_domain_add_linear(node, 32, &realtek_intc_domain_ops, data);
+> +	if (!data->domain) {
+> +		ret = -ENOMEM;
+
+This 'ret = -ENOMEM;' is pointless as the only error code returned in this
+function is -ENOMEM. So you can just return -ENOMEM in the error path, no?
+
+> +		goto out_cleanup;
+> +	}
+> +
+> +	data->subset_data_num = info->cfg_num;
+> +	for (i = 0; i < info->cfg_num; i++) {
+> +		ret = realtek_intc_subset(node, data, i);
+> +		if (ret) {
+> +			WARN(ret, "failed to init subset %d: %d", i, ret);
+> +			ret = -ENOMEM;
+> +			goto out_cleanup;
+
+                if (WARN(ret, "....."))
+                	goto cleanup;
+
+> +		}
+> +	}
+> +
+> +	platform_set_drvdata(pdev, data);
+> +
+> +	return 0;
+> +
+> +out_cleanup:
+> +
+> +	if (data->base)
+> +		iounmap(data->base);
+
+Leaks the irqdomain.
+
+> +
+> +	devm_kfree(dev, data);
+
+Pointless exercise.
+
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL(realtek_intc_probe);
+
+EXPORT_SYMBOL_GPL
+
+> +/**
+> + * realtek_intc_subset_cfg - subset interrupt mask
+> + * @ints_mask: inetrrupt mask
+> + */
+> +struct realtek_intc_subset_cfg {
+> +	unsigned int	ints_mask;
+> +};
+
+The value of a struct wrapping a single 'unsigned int' is? What's wrong
+with using unsigned int (actually you want u32 as this represents a
+hardware mask) directly? Not enough obfuscation, right?
+
+> +/**
+> + * realtek_intc_info - interrupt controller data.
+> + * @isr_offset: interrupt status register offset.
+> + * @umsk_isr_offset: unmask interrupt status register offset.
+> + * @scpu_int_en_offset: interrupt enable register offset.
+> + * @cfg: cfg of the subset.
+> + * @cfg_num: number of cfg.
+
+ * @isr_offset:		interrupt status register offset
+ * @umsk_isr_offset:	unmask interrupt status register offset
+ * @scpu_int_en_offset:	interrupt enable register offset
+
+Can you spot the difference?
+
+Please fix all over the place.
+
+> + */
+> +struct realtek_intc_info {
+> +	const struct realtek_intc_subset_cfg *cfg;
+> +	unsigned int			     isr_offset;
+> +	unsigned int			     umsk_isr_offset;
+> +	unsigned int			     scpu_int_en_offset;
+> +	const u32			     *isr_to_scpu_int_en_mask;
+> +	int				     cfg_num;
+> +};
+> +
+> +/**
+> + * realtek_intc_subset_data - handler of a interrupt source only handles ints
+> + *                            bits in the mask.
+> + * @cfg: cfg of the subset.
+
+Seriously. 'cfg of'? This is a description, so can you spell the words
+out? This is really neither space constraint nor subject to Xitter
+rules. Fix this all over the place please.
+
+> + * @common: common data.
+> + * @parent_irq: interrupt source.
+> + */
+> +struct realtek_intc_subset_data {
+> +	const struct realtek_intc_subset_cfg *cfg;
+> +	struct realtek_intc_data	     *common;
+> +	int				     parent_irq;
+> +};
+> +
+> +/**
+> + * realtek_intc_data - configuration data for realtek interrupt controller driver.
+> + * @base: base of interrupt register
+> + * @info: info of intc
+> + * @domain: interrupt domain
+> + * @lock: lock
+> + * @saved_en: status of interrupt enable
+> + * @subset_data_num: number of subset data
+> + * @subset_data: subset data
+> + */
+> +struct realtek_intc_data {
+> +	void __iomem			*base;
+> +	const struct realtek_intc_info	*info;
+> +	struct irq_domain		*domain;
+> +	struct raw_spinlock		lock;
+> +	unsigned int			saved_en;
+> +	int				subset_data_num;
+> +	struct realtek_intc_subset_data subset_data[];
+> +};
+> +
+> +#define IRQ_ALWAYS_ENABLED U32_MAX
+> +#define DISABLE_INTC (0)
+> +#define CLEAN_INTC_STATUS GENMASK(31, 1)
+
+#define IRQ_ALWAYS_ENABLED	U32_MAX
+#define DISABLE_INTC		(0)
+#define CLEAN_INTC_STATUS	GENMASK(31, 1)
+
+Please, as that makes this readable.
 
 Thanks,
-Conor.
 
->=20
-> (Jonathan, if you think that's not the right place, shout now :))
->=20
-> I'm also deprecating 'adi,adc-dev' as it is not relevant anymore. In the
-> driver code, we are actually breaking ABI but I'm taking a more
-> conservative approach in the bindings. Ideally I would also remove it in
-> the bindings :).
-> =20
->=20
-> As requested here we have a small diagram that illustrated on e typical
-> usage of the new framework:
->=20
->                                            ------------------------------=
--------------------------
->  ------------------                        | -----------         --------=
-----      -------  FPGA |
->  |     ADC        |------------------------| | AXI ADC |---------| DMA CO=
-RE |------| RAM |       |
->  | (Frontend/IIO) | Serial Data (eg: LVDS) | |(backend)|---------|       =
-   |------|     |       |
->  |                |------------------------| -----------         --------=
-----      -------       |
->  ------------------                        ------------------------------=
--------------------------
-> =20
-> The above is highly focused on ADI usecases. But one can see the idea...
-> The frontend is the real converter and is the one registering and
-> handling all the IIO interfaces. Such a device can then connect to a
-> backend device for further services/configurations. In the above
-> example, the backend device is an high speed core capable of handling
-> the high sample rate of these ADCs so that it can push that data further
-> in the pipeline (typically a DMA core) so the user can process the
-> samples with minimal losses.
->=20
-> Jonathan, I was also tempted in including the diagram in the source
-> file. Would that be a good idea?
->=20
-> [1]: https://lore.kernel.org/linux-iio/20231207-iio-backend-prep-v2-0-a4a=
-33bc4d70e@analog.com
->=20
-> ---
-> Nuno Sa (7):
->       dt-bindings: adc: ad9467: document io-backend property
->       dt-bindings: adc: axi-adc: deprecate 'adi,adc-dev'
->       driver: core: allow modifying device_links flags
->       iio: buffer-dmaengine: export buffer alloc and free functions
->       iio: add the IIO backend framework
->       iio: adc: ad9467: convert to backend framework
->       iio: adc: adi-axi-adc: move to backend framework
->=20
-> Olivier Moysan (1):
->       of: property: add device link support for io-backends
->=20
->  .../devicetree/bindings/iio/adc/adi,ad9467.yaml    |   5 +
->  .../devicetree/bindings/iio/adc/adi,axi-adc.yaml   |   4 +-
->  MAINTAINERS                                        |   8 +
->  drivers/base/core.c                                |  14 +-
->  drivers/iio/Kconfig                                |   5 +
->  drivers/iio/Makefile                               |   1 +
->  drivers/iio/adc/Kconfig                            |   3 +-
->  drivers/iio/adc/ad9467.c                           | 242 +++++++------
->  drivers/iio/adc/adi-axi-adc.c                      | 379 +++++----------=
------
->  drivers/iio/buffer/industrialio-buffer-dmaengine.c |   6 +-
->  drivers/iio/industrialio-backend.c                 | 386 +++++++++++++++=
-++++++
->  drivers/of/property.c                              |   2 +
->  include/linux/iio/adc/adi-axi-adc.h                |  68 ----
->  include/linux/iio/backend.h                        |  68 ++++
->  include/linux/iio/buffer-dmaengine.h               |   4 +-
->  15 files changed, 727 insertions(+), 468 deletions(-)
-> ---
-> base-commit: 330c0f834ccbdbe6a89da475cb1c56893f3a8363
-> change-id: 20231120-dev-iio-backend-d14b473a1d9f
-> --
->=20
-> Thanks!
-> - Nuno S=E1
->=20
-
---eoSVKmAJ/NfelqU5
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZXM2iQAKCRB4tDGHoIJi
-0lgFAP9hVMM+0foMZ39lHZxREYl1j4NJ9VRydAwMC8Q1ls3g1wD9EqYOPQMRXMRx
-vlwyvuGpRHLVuQWvttO+WGitIDvAsQI=
-=kq3S
------END PGP SIGNATURE-----
-
---eoSVKmAJ/NfelqU5--
+        tglx
 
