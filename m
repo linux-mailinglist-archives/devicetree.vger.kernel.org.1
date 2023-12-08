@@ -1,65 +1,79 @@
-Return-Path: <devicetree+bounces-23052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23054-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F78F80A144
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 11:38:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFB0680A17E
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 11:52:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2A71F281A24
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 10:38:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 94FF31F21410
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 10:52:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B528010971;
-	Fri,  8 Dec 2023 10:38:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 015FF199BD;
+	Fri,  8 Dec 2023 10:52:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="zctloH8A"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NbuRrBrT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06D23213A;
-	Fri,  8 Dec 2023 02:38:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1702031925; x=1733567925;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=YqtwfEJlrD8L5HAaw7G5HYRJskztVsmoK7bidkNMsB4=;
-  b=zctloH8AEKC14aTjLPffN5LArbkrK1k4hk39Lr3lgocidQfo+bno4cs/
-   kR3KZZYwby8eeOcyVcmLfIUMslm7zYl91yTve7jpGVeE0kEY7H+kmL+gj
-   CLcaOztcTG3gwAjubhAO3D1iXaA3Qm0d9JN2lk+h7KfPUCVHEvt/kjnzt
-   Q5DsWx+OAZIplA0aQGusK7ztD+Jm98CpuC3ffkucuZ54uIK9lZXMy5QtW
-   ev3J0o7XH0MKVKQWH39fXdD01Dh/G4rIpF92faoXsTPj5+qMawJts3r8N
-   PMvsiPWGAqFMFxEsac/aaoO6bap2cxfjdAlfIZAw49N4fnSXMToRYH8VO
-   w==;
-X-CSE-ConnectionGUID: Cvz3gSbpStiroKFn2Lwqew==
-X-CSE-MsgGUID: P2J285XTS/SOK+VrfSFpng==
-X-ThreatScanner-Verdict: Negative
-X-IronPort-AV: E=Sophos;i="6.04,260,1695711600"; 
-   d="scan'208";a="13864092"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 08 Dec 2023 03:38:40 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 8 Dec 2023 03:38:11 -0700
-Received: from microchip1-OptiPlex-9020.microchip.com (10.10.85.11) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Fri, 8 Dec 2023 03:38:06 -0700
-From: shravan chippa <shravan.chippa@microchip.com>
-To: <green.wan@sifive.com>, <vkoul@kernel.org>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <palmer@dabbelt.com>,
-	<paul.walmsley@sifive.com>, <conor+dt@kernel.org>
-CC: <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<nagasuresh.relli@microchip.com>, <praveen.kumar@microchip.com>,
-	<shravan.chippa@microchip.com>, Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v5 4/4] riscv: dts: microchip: add specific compatible for mpfs pdma
-Date: Fri, 8 Dec 2023 16:08:56 +0530
-Message-ID: <20231208103856.3732998-5-shravan.chippa@microchip.com>
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7C13172D
+	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 02:52:03 -0800 (PST)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-a1ceae92ab6so261229666b.0
+        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 02:52:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702032722; x=1702637522; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=11veHRxQhePRmTa5CrJ3aUmZgsLlL/GI3AnVt9qonDk=;
+        b=NbuRrBrTa3g7wYBGRmnyliJ0l2qBse6XpnP/d4+rlSS3MzgMC85XNu9b+wCu6TWgXT
+         imtUQObgZw9O8jkWCioJ0DJf6tn9lRZ1i3XpcmnehOtl+nqmIzAJ8QHH8n/OGDZ6T32i
+         z5qHrxaq5ddfRyzJJiC3EcIl/acbrL1dLjhZiX9G98xXh2ywznkmj2cDxJMOvOi+5yPR
+         UYuNS9mYoX0MFALjnKiVL3KedAUzGmaItX4/0M7iKXLaEmdQTY4eqBma07Zgp/OkO8wO
+         OW0rx5sIyzOAP02MSo0uJJlC7AYEWu+HGYC7Mf2G7OONEtFN9BYoKyH2RGRgCDuFElUO
+         ZDQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702032722; x=1702637522;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=11veHRxQhePRmTa5CrJ3aUmZgsLlL/GI3AnVt9qonDk=;
+        b=wSX6Nxr67dqnPYssxffgPmkYrk9Qoj8w291WLz1c+wwx6LjYNMR5CXXMlz+LcDVrE9
+         t8bFoOpGdapQMbV3/Y9rVMD2WPT6TggmJjW8E3bGXfq7g6CrmPueyzyTgS4F9YftW/WO
+         sMbgyfIvgua4Xs8zjjTODL6PIri8djHMsvfZJMdVVPDtYc2LhE4hTgBA2sEZKnCVWt/W
+         TMr/+hzU7tQ2CnEQUyjdcrWrBTvqwTgFNd+b9M8pVKecGsGNs8+6hcfQgFIHaALZEohf
+         0yBVDMhCP8HOUPFQAoVKHj6o7pMjV54TPcLRZv9EcubhFxpEA8q18ost1t2BUa5ClVXi
+         fXZQ==
+X-Gm-Message-State: AOJu0YwJlNlVOVszozxkTS2TDSY6vT+b98Iqqwnt6ycLzA0QB8xAV638
+	24uTXwyz1ulRqsWQvP0ciPKSLQ==
+X-Google-Smtp-Source: AGHT+IFy/oY2zqBZqwRcRdiTxU/NBEEy892xMZAtSwzJby17iOVNew42umLhhA8HnKertNw0LYCfyw==
+X-Received: by 2002:a17:907:9518:b0:a1c:cd3b:4c2a with SMTP id ew24-20020a170907951800b00a1ccd3b4c2amr2129103ejc.72.1702032722112;
+        Fri, 08 Dec 2023 02:52:02 -0800 (PST)
+Received: from krzk-bin.. ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id tx17-20020a1709078e9100b00a1b75e0e061sm849976ejc.130.2023.12.08.02.52.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Dec 2023 02:52:01 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v3 1/4] dt-bindings: PCI: qcom: adjust iommu-map for different SoC
+Date: Fri,  8 Dec 2023 11:51:52 +0100
+Message-Id: <20231208105155.36097-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231208103856.3732998-1-shravan.chippa@microchip.com>
-References: <20231208103856.3732998-1-shravan.chippa@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,31 +81,45 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 
-From: Shravan Chippa <shravan.chippa@microchip.com>
+The PCIe controller on SDX55 has five entries in its iommu-map, MSM8998
+has one and SDM845 has sixteen, so allow wider number of items to fix
+dtbs_check warnings like:
 
-Add specific compatible for PolarFire SoC for The SiFive PDMA driver
+  qcom-sdx55-mtp.dtb: pcie@1c00000: iommu-map: [[0, 21, 512, 1], [256, 21, 513, 1],
+    [512, 21, 514, 1], [768, 21, 515, 1], [1024, 21, 516, 1]] is too long
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Shravan Chippa <shravan.chippa@microchip.com>
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 ---
- arch/riscv/boot/dts/microchip/mpfs.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/riscv/boot/dts/microchip/mpfs.dtsi b/arch/riscv/boot/dts/microchip/mpfs.dtsi
-index a6faf24f1dba..e3e9c5b2b33c 100644
---- a/arch/riscv/boot/dts/microchip/mpfs.dtsi
-+++ b/arch/riscv/boot/dts/microchip/mpfs.dtsi
-@@ -236,7 +236,7 @@ plic: interrupt-controller@c000000 {
- 		};
+Please take the patch via PCI tree.
+
+Changes in v3:
+1. None
+
+Changes in v2:
+1. Add Acs/Rb.
+---
+ Documentation/devicetree/bindings/pci/qcom,pcie.yaml | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+index 9dbc07dfd48f..5056da499f04 100644
+--- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
++++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+@@ -66,7 +66,8 @@ properties:
+     maxItems: 8
  
- 		pdma: dma-controller@3000000 {
--			compatible = "sifive,fu540-c000-pdma", "sifive,pdma0";
-+			compatible = "microchip,mpfs-pdma", "sifive,pdma0";
- 			reg = <0x0 0x3000000 0x0 0x8000>;
- 			interrupt-parent = <&plic>;
- 			interrupts = <5 6>, <7 8>, <9 10>, <11 12>;
+   iommu-map:
+-    maxItems: 2
++    minItems: 1
++    maxItems: 16
+ 
+   # Common definitions for clocks, clock-names and reset.
+   # Platform constraints are described later.
 -- 
 2.34.1
 
