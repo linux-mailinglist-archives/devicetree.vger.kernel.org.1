@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-23089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BA2480A30B
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 13:19:54 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D651780A313
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 13:21:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A1BA2817EF
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 12:19:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 76E6AB20BE4
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 12:21:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5FD11BDFD;
-	Fri,  8 Dec 2023 12:19:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C20F1C2A3;
+	Fri,  8 Dec 2023 12:21:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zcZY/Wek"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IgFYXOiJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B32421727
-	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 04:19:46 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-54cdef4c913so6468374a12.1
-        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 04:19:46 -0800 (PST)
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D2C7198D
+	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 04:21:02 -0800 (PST)
+Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2c9f572c4c5so28753501fa.2
+        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 04:21:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702037985; x=1702642785; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702038060; x=1702642860; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=p7Q0jIy5Hwwfpljci5ENjNCx1g8ktoPzNOllrH9T7p0=;
-        b=zcZY/WekxvFvoMUq1uBtgDQXD9O3wYiwbSOjjGTP+xUTXhjNyzCorXmKt6u9Nb3DiP
-         oeZBn4i+ocTBN7abXl2i8bSNJCT2SDXoBsQFwmUygX2WQxjND7oLTcNnu8+9Pc4bko+M
-         6dCea6KAw0s1QQmDpdmKAyEqF7eZZ79yh40u6m+kg8BU0UeRpInDVAqxQRp1AsmQ4GX/
-         PfapUnnIdqI+jprayZw++ZuYRcjHtU3WShvFF3y3Q2oBA1tyWGeGczbenqv0ruWLB0pL
-         zRQ8/eRHogW0oV6lbHeONVc1jbP9B/qQ8Raw0nOuWw2hwx3MF+9rgx5k6sgMfzD490m7
-         VnHA==
+        bh=pl0clnwrD65PTyvZ51AXFWygx4cIxP6ccg197Ec+HPE=;
+        b=IgFYXOiJRduaqhdL7d8MG02RwhYaXCTYi0psb3soRWlrsx1PYp+atZAH9syrXKY7Oa
+         qhgzWxd7OT5Ydo047GMrx+3Kvo3Fw6UJgEi4iV7MARFokwE+QEAn4LgH5rF23xXBhGJ3
+         L//TAlN1LDNEfs4AUA0UfHmneVx1kOD+/vvb/8z2yZ/eN68zKwoBiLJrTDGaGbgJM/l8
+         dt8ps/27pQGVW99gGcp9zONVZt1xgS/equL5+Ru1GXiemMyXKhdavmTMQKG420ViXf/C
+         ND0OifQ1U9LTe98jy7VdC4nJyd6dydv0pt1a6Z/Uz4tWd5ZugJzlSfuZ6OabDLGR+/B3
+         QBYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702037985; x=1702642785;
+        d=1e100.net; s=20230601; t=1702038060; x=1702642860;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=p7Q0jIy5Hwwfpljci5ENjNCx1g8ktoPzNOllrH9T7p0=;
-        b=MDretSfPcmLqXo5TXqL5DoK22KKyrJXaEnyHbtdUwJ6y+kk1Ue+qCXEh9VizU9QBci
-         QkZ/egbGICjgPe7j1pWn4QDeMpkL8I8E2KrS6XXVzzWfIEie7dDinDz2KnoUEcRLorlq
-         vwjivykVjzMcN2GMvMkjDbAHhhNu60S9IMfIPKdLNWjiVxr4zWYVuYT8j1N1QT2iq9Md
-         jzMbp/JPYxzDPql3pINg8Z9oKR9DDGc6HkZvwt3mFtXBMDk5s21rzZLHRdPusu4XrnDY
-         Qv/NPxZ01s2bi1wBHe7VCCxU1KL1CbRtIeyrD8CghOAqK+tvZNFaGBS+7U/Ba5dEKUzD
-         MmZA==
-X-Gm-Message-State: AOJu0YyXqJ36J8as/eeMTvelCLuKGdL1H9nJhOJJJ0HykYNejZRJ+27I
-	Flfi13IFJw0fIdbLM+PyItWB0w==
-X-Google-Smtp-Source: AGHT+IEIcBP1EFEPziMOH6dqV9KBvAOBKEjySYoMG5Yjgth6YHz7m5tIhTbJy3wglEU0p/iSa68CzQ==
-X-Received: by 2002:a17:906:1c9:b0:a1d:1fb9:da08 with SMTP id 9-20020a17090601c900b00a1d1fb9da08mr34035ejj.8.1702037985223;
-        Fri, 08 Dec 2023 04:19:45 -0800 (PST)
+        bh=pl0clnwrD65PTyvZ51AXFWygx4cIxP6ccg197Ec+HPE=;
+        b=EWu9Lt40glnToKee1QzoIwPmoUbT0pUCbO2nLUs/3d/56Kg8AvycwRWHkUW1fx/a5N
+         XE2w+6vHTnsd94PgzPQfWPPMUVSKecqCZYMcQZbmOaSxFcYeh0KR5gA/FTRJo+qZKNP2
+         f09ZHMW592udPnOCA7XPCAc8whgPjX+UmxHo81OoelkOYF62ISGhZiioBrzBPXIvskHI
+         KraGluEIdqVJG2jOWNS6/o6+nv3Hxa6WDWAfDmkcbLyJ2muWGIrgGu7MQU3YGOco0JFq
+         HcxAAgp37NHho6kqRXT3p9RHA1VnLfuyP7VbFyggvwHm6zbu5AoGbPkEK/zXIWBAzaRI
+         UTCQ==
+X-Gm-Message-State: AOJu0Yw9RE/FCeL+jViXJjyGp0+9dqeG/mSaHQNnZNIW6TOIgkrLeiWZ
+	PLD41aSscAIZ3WVTD/gOVMZdrA==
+X-Google-Smtp-Source: AGHT+IER4YlgGGyKEHV9dQr5tdof58Pqyht6yuF2QXUJoFt24Q9DtS/qCkLD1Wd5t4lITLKwjr/tWA==
+X-Received: by 2002:a2e:361a:0:b0:2ca:24c:e252 with SMTP id d26-20020a2e361a000000b002ca024ce252mr2846721lja.91.1702038060334;
+        Fri, 08 Dec 2023 04:21:00 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id he43-20020a1709073dab00b00a1e21893a26sm936349ejc.222.2023.12.08.04.19.43
+        by smtp.gmail.com with ESMTPSA id he43-20020a1709073dab00b00a1e21893a26sm936349ejc.222.2023.12.08.04.20.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Dec 2023 04:19:44 -0800 (PST)
-Message-ID: <3e92295f-3c8b-4699-bf50-0fc2b43ddf1b@linaro.org>
-Date: Fri, 8 Dec 2023 13:19:43 +0100
+        Fri, 08 Dec 2023 04:20:59 -0800 (PST)
+Message-ID: <d885928d-035b-4abd-890b-c9626b925d76@linaro.org>
+Date: Fri, 8 Dec 2023 13:20:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,21 +62,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: gpio: realtek: Add realtek,rtd-gpio
+Subject: Re: [PATCH v3 2/3] dt-bindings: phy: qcom-edp: Add X1E80100 PHY
+ compatibles
 Content-Language: en-US
-To: =?UTF-8?B?VFlfQ2hhbmdb5by15a2Q6YC4XQ==?= <tychang@realtek.com>,
- Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
- <brgl@bgdev.pl>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20231207100723.15015-1-tychang@realtek.com>
- <20231207100723.15015-2-tychang@realtek.com>
- <dd22f0fb-e07b-4bd4-bd6a-cf2d8a5687fc@linaro.org>
- <b3a41f598bc043ce9626b674a92b8da4@realtek.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, Abel Vesa
+ <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, Johan Hovold <johan@kernel.org>,
+ linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231122-phy-qualcomm-edp-x1e80100-v3-0-576fc4e9559d@linaro.org>
+ <20231122-phy-qualcomm-edp-x1e80100-v3-2-576fc4e9559d@linaro.org>
+ <b6d3928c-75ba-47a3-93fc-a60729be2e35@linaro.org>
+ <545d3ace-66e5-4470-b3a4-cbdac5ae473d@linaro.org>
+ <ab7223a2-9f3f-4c9c-ab97-31512e7a0123@linaro.org>
+ <CAA8EJpoboN85bLiayXJgn5iwh+Gn0OtK0aZ26ZJu9H3xkTT2Tw@mail.gmail.com>
+ <d9d27fa4-6ede-4958-b717-db425be61068@linaro.org>
+ <CAA8EJpq7dB+45fiq2WmkMmSO7KszY0Et_t1gZ9ZvfsSxftpm8g@mail.gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -122,50 +128,69 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <b3a41f598bc043ce9626b674a92b8da4@realtek.com>
+In-Reply-To: <CAA8EJpq7dB+45fiq2WmkMmSO7KszY0Et_t1gZ9ZvfsSxftpm8g@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 08/12/2023 10:03, TY_Chang[張子逸] wrote:
-
-> 
-> The DTS use in our platform follows this structure:
-> 
-> soc@0 {
->     rbus: rbus@98000000 {
-> 	    ...
->         iso: syscon@7000 {
-> 		    ...
->             gpio: gpio@100 {
->                 compatible = "realtek,rtd1319d-iso-gpio";
->                 reg = <0x100 0x100>,
->                       <0x000 0x0b0>;
->                 interrupt-parent = <&iso_irq_mux>;
->                 interrupts = <19>, <20>;
->                 gpio-ranges = <&pinctrl 0 0 82>;
->                 gpio-controller;
->                 #gpio-cells = <2>;
->             };
->         };
->     };
-> };
-> 
-> The base address for the GPIO controller is 0x98007100. The second line of
-> 'reg' refers to the GPIO interrupt status registers, which are distributed
-> within the range of 0x98007000 to 0x980070AF. 
-
-Ah, ok.
-
-> Would it be advisable to fetch the
-> syscon from parent node(iso: syscon@7000) to handle the GPIO interrupt status
-> registers?
-
-If these are GPIO interrupts then current description is fine.
-
-> 
->> It is, btw, 0x0, not 0x000. The same for 0x0b0 -> 0xb0, unless you want to pad
->> to full word.
+On 08/12/2023 13:17, Dmitry Baryshkov wrote:
+>>>>>> Anyway, I was thinking this should be rather argument to phy-cells.
+>>>>> I'm not sure I'm for this, because the results would be:
+>>>>>
+>>>>> --- device.dts ---
+>>>>> &dp_controller0 {
+>>>>>      phys = <&dp_phy0 PHY_EDP>;
+>>>>> };
+>>>>>
+>>>>> &dp_controller1 {
+>>>>>      phys = <&dp_phy1 PHY_DP>;
+>>>>> };
+>>>>> ------------------
+>>>>>
+>>>>> as opposed to:
+>>>>>
+>>>>> --- device.dts ---
+>>>>> &dp_phy0 {
+>>>>>      phy-type <PHY_EDP>;
+>>>>> };
+>>>>>
+>>>>> &dp_phy1 {
+>>>>>      phy-type = <PHY_DP>;
+>>>>> };
+>>>>> ------------------
+>>>>
+>>>> Which is exactly what I proposed/wanted to see.
+>>>>
+>>>>>
+>>>>> i.e., we would be saying "this board is connected to this phy
+>>>>> instead" vs "this phy is of this type on this board".
+>>>>>
+>>>>> While none of them really fit the "same hw, different config"
+>>>>> situation, I'd vote for the latter one being closer to the
+>>>>> truth
+>>>>
+>>>> Then maybe I miss the bigger picture, but commit msg clearly says:
+>>>> "multiple PHYs that can work in both eDP or DP mode"
+>>>>
+>>>> If this is not the case, describe the hardware correctly in the commit
+>>>> msg, so people will not ask stupid questions...
+>>>
+>>> There are multiple PHYs (each of them at its own address space). Each
+>>> of the PHYs in question can be used either for the DisplayPort output
+>>> (directly or through the USB-C) or to drive the eDP panel.
+>>>
+>>> Same applies to the displayport-controller. It can either drive the DP
+>>> or eDP output, hardware-wise it is the same.
 >>
+>> Therefore what I proposed was correct - the block which uses the phy
+>> configures its mode. Because this part:
+>>   "this phy is of this type on this board".
+>> is not true. The phy is both types.
+> 
+> But hopefully you don't mean using #phy-cells here. There are no
+> sub-PHYs or anything like that.
+
+I am exactly talking about phy-cells. Look at first example from Abel's
+code.
 
 Best regards,
 Krzysztof
