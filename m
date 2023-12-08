@@ -1,52 +1,58 @@
-Return-Path: <devicetree+bounces-23067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23068-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AA4780A286
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 12:47:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 017D780A292
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 12:49:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EEEACB20AD7
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 11:47:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7A4ECB20AC7
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 11:49:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB5631B292;
-	Fri,  8 Dec 2023 11:47:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A87051BDCE;
+	Fri,  8 Dec 2023 11:49:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9184311D
-	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 03:47:09 -0800 (PST)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 356A91720
+	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 03:49:27 -0800 (PST)
 Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
 	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rBZJz-0004XI-NA; Fri, 08 Dec 2023 12:47:07 +0100
+	id 1rBZLw-0005Wy-0d; Fri, 08 Dec 2023 12:49:08 +0100
 Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
 	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rBZJw-00EPCy-74; Fri, 08 Dec 2023 12:47:04 +0100
+	id 1rBZLt-00EPDB-Se; Fri, 08 Dec 2023 12:49:05 +0100
 Received: from pza by lupine with local (Exim 4.96)
 	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rBZJw-0006NC-0S;
-	Fri, 08 Dec 2023 12:47:04 +0100
-Message-ID: <92ac0bc4c43fa70ff4bcba44ba4382c0c8ebfb75.camel@pengutronix.de>
-Subject: Re: [PATCH v9 2/4] pwm: opencores: Add PWM driver support
+	id 1rBZLt-0006SD-2c;
+	Fri, 08 Dec 2023 12:49:05 +0100
+Message-ID: <95ef7a9fa76bf3d6fd17c9fbf00d7d561883765c.camel@pengutronix.de>
+Subject: Re: [PATCH 3/9] PCI: imx6: Simplify reset handling by using by
+ using *_FLAG_HAS_*_RESET
 From: Philipp Zabel <p.zabel@pengutronix.de>
-To: William Qiu <william.qiu@starfivetech.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-pwm@vger.kernel.org
-Cc: Emil Renner Berthing <kernel@esmil.dk>, Rob Herring
- <robh+dt@kernel.org>,  Thierry Reding <thierry.reding@gmail.com>, Krzysztof
+To: Frank Li <Frank.li@nxp.com>
+Cc: imx@lists.linux.dev, Richard Zhu <hongxing.zhu@nxp.com>, Lucas Stach
+ <l.stach@pengutronix.de>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ Krzysztof =?UTF-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, Rob Herring
+ <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,  Krzysztof
  Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?=
- <u.kleine-koenig@pengutronix.de>, Hal Feng <hal.feng@starfivetech.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
-Date: Fri, 08 Dec 2023 12:47:04 +0100
-In-Reply-To: <20231208094209.1910934-3-william.qiu@starfivetech.com>
-References: <20231208094209.1910934-1-william.qiu@starfivetech.com>
-	 <20231208094209.1910934-3-william.qiu@starfivetech.com>
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,  Sascha Hauer
+ <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
+ "open list:PCI DRIVER FOR IMX6" <linux-pci@vger.kernel.org>, "moderated
+ list:PCI DRIVER FOR IMX6" <linux-arm-kernel@lists.infradead.org>, "open
+ list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+Date: Fri, 08 Dec 2023 12:49:05 +0100
+In-Reply-To: <ZXH8guDh+pLbg0Tn@lizhi-Precision-Tower-5810>
+References: <20231206155903.566194-1-Frank.Li@nxp.com>
+	 <20231206155903.566194-4-Frank.Li@nxp.com>
+	 <e314466b31dd8e88212ae5d7ac2fecf26b851829.camel@pengutronix.de>
+	 <ZXH8guDh+pLbg0Tn@lizhi-Precision-Tower-5810>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.46.4-2 
@@ -61,51 +67,24 @@ X-SA-Exim-Mail-From: p.zabel@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi William,
-
-On Fr, 2023-12-08 at 17:42 +0800, William Qiu wrote:
-> Add driver for OpenCores PWM Controller. And add compatibility code
-> which based on StarFive SoC.
+On Do, 2023-12-07 at 12:10 -0500, Frank Li wrote:
+> On Wed, Dec 06, 2023 at 05:52:23PM +0100, Philipp Zabel wrote:
+[...]
+> > I wonder whether we should just defer the check whether apps/pciephy
+> > resets should be used to the device tree validation, and make this an
+> > unconditional call to get an optional reset control:
+> >=20
+> > 	imx6_pcie->apps_reset =3D devm_reset_control_get_optional_exclusive(de=
+v, "apps");
 >=20
-> Co-developed-by: Hal Feng <hal.feng@starfivetech.com>
-> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
-> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
-> ---
-[...]
-> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-> index 4b956d661755..d87e1bb350ba 100644
-> --- a/drivers/pwm/Kconfig
-> +++ b/drivers/pwm/Kconfig
-> @@ -444,6 +444,18 @@ config PWM_NTXEC
->  	  controller found in certain e-book readers designed by the original
->  	  design manufacturer Netronix.
-> =20
-> +config PWM_OCORES
-> +	tristate "OpenCores PWM support"
-> +	depends on HAS_IOMEM && OF
-> +	depends on COMMON_CLK && RESET_CONTROLLER
+> I think double check here is neccesary. No sure if dts file version
+> binding yaml was exactly matched driver. Sometime user use old version dt=
+s.=20
+> Double check here will help identify the dts problem.=20
 
-There is no need for reset consumers to depend on RESET_CONTROLLER.
+Makes sense to me,
 
-[...]
-> diff --git a/drivers/pwm/pwm-ocores.c b/drivers/pwm/pwm-ocores.c
-> new file mode 100644
-> index 000000000000..996ca3805901
-> --- /dev/null
-> +++ b/drivers/pwm/pwm-ocores.c
-> @@ -0,0 +1,229 @@
-[...]
-> +static int ocores_pwm_probe(struct platform_device *pdev)
-> +{
-[...]
-> +	ddata->rst =3D devm_reset_control_get_optional_exclusive(dev, NULL);
-
-Missing error handling.
-
-> +	reset_control_deassert(ddata->rst);
-
-Missing error handling.
-
+Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
 
 regards
 Philipp
