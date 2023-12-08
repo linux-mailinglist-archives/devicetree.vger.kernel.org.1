@@ -1,100 +1,96 @@
-Return-Path: <devicetree+bounces-23124-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23125-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BB3180A58C
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 15:33:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1B0480A593
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 15:34:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CF5841F2148B
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 14:33:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DBAE71C20DB8
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 14:34:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 132D51A72E;
-	Fri,  8 Dec 2023 14:33:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30E3C1B29D;
+	Fri,  8 Dec 2023 14:34:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="v9/gjCb5";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="7KgWsTdQ"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Yz5zf475"
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D65C1712;
-	Fri,  8 Dec 2023 06:33:16 -0800 (PST)
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1702045994;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=1ifPekkHiXm+lcwtuf5lbbYNKF0qvQaOPaFCAVY6Z3g=;
-	b=v9/gjCb5yzOa/MONNnVonsIQDXSguuXkH6dOQXz1HZQnwcireIC9FcfuhQAiVx1BzFbNwk
-	tJv2phQFVrHSaw7Dkzi1yU2JEL4P7E7Y63i5IYfTOXyJX5a1SmwYz7Ludayt6yCTremiSi
-	8+13LSJoMNwgznljoHKKeHY1tsyAJ4fX5m0TSpP64E3lYouhrVMhG67yBo5ghxr29pCOD8
-	7ExhXhQ8KfNxPKNGnLjI2zlhPmJqXLeApI0Cl7WPxSS1JkVFZv7vw/RW9Lwb+hJ6EWXdkA
-	ZGpcr7zV8VqaaTZL+p549o4Ed8khn9o4NnXZm168z7pvEVy4dvu916MGnUoMfA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1702045994;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=1ifPekkHiXm+lcwtuf5lbbYNKF0qvQaOPaFCAVY6Z3g=;
-	b=7KgWsTdQrZJiDvbEvccaBFpNsVcf/LlEosW+NC3hpa9G7kMBm+bf9ksp/OmQSoU6EpCoU+
-	W+nlmI1tJxHN8lDQ==
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, Andy Gross
- <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Marc Zyngier
- <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Shawn Guo <shawn.guo@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Konrad Dybcio <konrad.dybcio@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Bryan O'Donoghue
- <bryan.odonoghue@linaro.org>
-Subject: Re: [PATCH v7 0/2] Resolve MPM register space situation
-In-Reply-To: <20230328-topic-msgram_mpm-v7-0-6ee2bfeaac2c@linaro.org>
-References: <20230328-topic-msgram_mpm-v7-0-6ee2bfeaac2c@linaro.org>
-Date: Fri, 08 Dec 2023 15:33:13 +0100
-Message-ID: <87il58sr12.ffs@tglx>
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A490B173B;
+	Fri,  8 Dec 2023 06:34:34 -0800 (PST)
+Received: from stla-brain-8255-1.home (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: jmassot)
+	by madras.collabora.co.uk (Postfix) with ESMTPSA id 296666607377;
+	Fri,  8 Dec 2023 14:34:33 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1702046073;
+	bh=LZVCAsCUnDL0KeLYlgde5y7S5stjtAOpob5t+fOLuI4=;
+	h=From:To:Cc:Subject:Date:From;
+	b=Yz5zf475kCZdlg0MgRs59/Ct6YMN+G68OTSeQTTrshiU99FiNq9vrr/KAr+SigmE9
+	 QWJilMoGaIQamNdfwtRbVY7eq17LTvgf6GML8gBDVdUuYte9B75tlV3MLIx3GLQWTr
+	 NSE+xw3jjudHUoIN4IlHLlbmJwnrftrAPdGIr5sOU5qnyUfm5QTX1nlmUzwkQOCtnE
+	 La+v5WPWlQQbOzxosxkUCiBuMxg5kzUv2d5IRUbeoxHfOms0uBtNIYmn4A5tsNPwp7
+	 rCrjkoOauw06aZkLU/j6//lYj3Q7JWScS2o8Vtfn2Z0FteaRZVee0XoFo32Bj/IrrN
+	 2tSKe5YAp45zg==
+From: Julien Massot <julien.massot@collabora.com>
+To: devicetree@vger.kernel.org,
+	linux-media@vger.kernel.org
+Cc: kernel@collabora.com,
+	Julien Massot <julien.massot@collabora.com>
+Subject: [PATCH v2 0/4] Add support for MAX96714F and MAX96717F GMSL2 ser/des
+Date: Fri,  8 Dec 2023 15:33:55 +0100
+Message-ID: <20231208143359.469049-1-julien.massot@collabora.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 
-Konrad!
 
-On Mon, Nov 27 2023 at 16:52, Konrad Dybcio wrote:
+Change in v2:
+- move dt-binding changes from 3/4 to 1/4
 
-This list of version changes is useful, but seriously not on top of the
-cover letter. It makes me scroll down 60 lines to find the real meat.
+Hi,
 
-<SNIP>
+These patches add support for Maxim MAX96714F deserializer and
+MAX96717F serializer.
 
-> Depends on resolution of https://github.com/devicetree-org/dt-schema/issues/104
+MAX96714F has one GMSL2 input port and one CSI2 4 lanes output port,
+MAX96717F has one CSI2 input port and one GMSL2 output port.
 
-Is this resolved? I can't figure out from this non-format whether this
-belongs to V1 or to the actual cover letter...
+The drivers support the tunnel mode where all the
+CSI2 traffic coming from an imager is replicated through the deserializer
+output port.
 
-> The MPM (and some other things, irrelevant to this patchset) resides
-> (as far as the ARM cores are concerned, anyway) in a MMIO-mapped region
-> that's a portion of the RPM (low-power management core)'s RAM, known
-> as the RPM Message RAM. Representing this relation in the Device Tree
-> creates some challenges, as one would either have to treat a memory
-> region as a bus, map nodes in a way such that their reg-s would be
-> overlapping, or supply the nodes with a slice of that region.
->
-> This series implements the third option, by adding a qcom,rpm-msg-ram
-> property, which has been used for some drivers poking into this region
-> before. Bindings ABI compatibility is preserved through keeping the
-> "normal" (a.k.a read the reg property and map that region) way of
-> passing the register space.
->
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Both MAX96714F and MAX96717F are limited to a 3Gbps forward link rate
+leaving a maximum of 2.6Gbps for the video payload.
 
-Signed-off-by on the cover letter is completely meaningless.
+Julien Massot (4):
+  dt-bindings: media: add Maxim MAX96714F GMSL2 Deserializer
+  dt-bindings: media: add Maxim MAX96717F GMSL2 Serializer
+  media: i2c: add MAX96714 driver
+  media: i2c: add MAX96717 driver
 
-Thanks,
+ .../bindings/media/i2c/maxim,max96714f.yaml   |  163 +++
+ .../bindings/media/i2c/maxim,max96717f.yaml   |  144 +++
+ MAINTAINERS                                   |   12 +
+ drivers/media/i2c/Kconfig                     |   26 +
+ drivers/media/i2c/Makefile                    |    2 +
+ drivers/media/i2c/max96714.c                  |  945 ++++++++++++++++
+ drivers/media/i2c/max96717.c                  | 1003 +++++++++++++++++
+ 7 files changed, 2295 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/maxim,max96714f.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/maxim,max96717f.yaml
+ create mode 100644 drivers/media/i2c/max96714.c
+ create mode 100644 drivers/media/i2c/max96717.c
 
-        tglx
+-- 
+2.43.0
+
 
