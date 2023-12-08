@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-23088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23089-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFCFE80A303
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 13:18:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BA2480A30B
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 13:19:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 487D6B20C6A
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 12:18:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A1BA2817EF
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 12:19:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86EEC1C296;
-	Fri,  8 Dec 2023 12:18:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5FD11BDFD;
+	Fri,  8 Dec 2023 12:19:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="x8LaE5n+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zcZY/Wek"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EF2619A0
-	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 04:18:02 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-54c1cd8d239so2814687a12.0
-        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 04:18:01 -0800 (PST)
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B32421727
+	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 04:19:46 -0800 (PST)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-54cdef4c913so6468374a12.1
+        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 04:19:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702037880; x=1702642680; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702037985; x=1702642785; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=wgne8jfuv4ytpfcfNboMQl6PQ6PgOyvGX4p3ndjzRIU=;
-        b=x8LaE5n+jgW4jQluoChfkLj2gG4ajnmV7mP2zrLjAvtDFaI42WUpsVeLyeBwNud9nv
-         n72dWN+Owxa30ayEhi/bYKhxumn+mLRhHB+QBvNpnfmlUrTKXNaV99zJw4DSuA4wSwG/
-         iByRh13cByD9UTUkGH67JdXdLm6XVfaaPD5D8ua/yXmWJidyKnmFMpsNv8IrW/zaJmxN
-         gAJQlgoglw3AZHFIIkX9FjtZpBZX6MngCd627MqHsz7kvT+nYOSmyPKPKL2QsKmGV74U
-         uZKUm6Kv243XmQpvYuQ1hSIjMozVVebes5cpRd4NevAZJ5xJhHiVYxCL9GMxUfg+nsBT
-         FeJg==
+        bh=p7Q0jIy5Hwwfpljci5ENjNCx1g8ktoPzNOllrH9T7p0=;
+        b=zcZY/WekxvFvoMUq1uBtgDQXD9O3wYiwbSOjjGTP+xUTXhjNyzCorXmKt6u9Nb3DiP
+         oeZBn4i+ocTBN7abXl2i8bSNJCT2SDXoBsQFwmUygX2WQxjND7oLTcNnu8+9Pc4bko+M
+         6dCea6KAw0s1QQmDpdmKAyEqF7eZZ79yh40u6m+kg8BU0UeRpInDVAqxQRp1AsmQ4GX/
+         PfapUnnIdqI+jprayZw++ZuYRcjHtU3WShvFF3y3Q2oBA1tyWGeGczbenqv0ruWLB0pL
+         zRQ8/eRHogW0oV6lbHeONVc1jbP9B/qQ8Raw0nOuWw2hwx3MF+9rgx5k6sgMfzD490m7
+         VnHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702037880; x=1702642680;
+        d=1e100.net; s=20230601; t=1702037985; x=1702642785;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wgne8jfuv4ytpfcfNboMQl6PQ6PgOyvGX4p3ndjzRIU=;
-        b=V1voSZNW9FG5SKvyaO+BiJlqVBonZMQIECIXN20zRdQeged4qlge/9cNt0EKJmDa/q
-         v2Ni2Sfy49TFRJvoHQ5P6DoIzIJLUCgyLbM4gHS3hxL1NzsH6eaZbIJJILm5aohMIGGP
-         NZkxqBkJdZNs3HUxfhv/qatVPw/7h/1AqTYKrNlwO9bVju3atqqErT7VF1rIK6Xy5imA
-         HI7sA9tWc78+E2JKMGVUuXSZdIASeFjqpvm4VQPkA+bOl2pNeh6+TOI+DvgfOh3n1+ut
-         Fxxer9Edrf82GhoorKXbmdHZECQMk+ZBms9bwA5ybb1PTClQQGkb8R7hrl7i37KZG7uU
-         sT2g==
-X-Gm-Message-State: AOJu0YyDQcLts8mVQuR13MiA0mtMCvjqEy+1A0zK6fXgBmrskjls+Q3t
-	SCzCGSEuTQ7JMQ6m6rfJYJkjpw==
-X-Google-Smtp-Source: AGHT+IE5mm9M0WWE4uEledG8cubJBa0sU3xgeZ/S2appl4lxKPZsg4b42mDhYcH+wYRiHysvOmUfsw==
-X-Received: by 2002:a50:c2ca:0:b0:54c:4837:9fe1 with SMTP id u10-20020a50c2ca000000b0054c48379fe1mr8018edf.56.1702037880419;
-        Fri, 08 Dec 2023 04:18:00 -0800 (PST)
+        bh=p7Q0jIy5Hwwfpljci5ENjNCx1g8ktoPzNOllrH9T7p0=;
+        b=MDretSfPcmLqXo5TXqL5DoK22KKyrJXaEnyHbtdUwJ6y+kk1Ue+qCXEh9VizU9QBci
+         QkZ/egbGICjgPe7j1pWn4QDeMpkL8I8E2KrS6XXVzzWfIEie7dDinDz2KnoUEcRLorlq
+         vwjivykVjzMcN2GMvMkjDbAHhhNu60S9IMfIPKdLNWjiVxr4zWYVuYT8j1N1QT2iq9Md
+         jzMbp/JPYxzDPql3pINg8Z9oKR9DDGc6HkZvwt3mFtXBMDk5s21rzZLHRdPusu4XrnDY
+         Qv/NPxZ01s2bi1wBHe7VCCxU1KL1CbRtIeyrD8CghOAqK+tvZNFaGBS+7U/Ba5dEKUzD
+         MmZA==
+X-Gm-Message-State: AOJu0YyXqJ36J8as/eeMTvelCLuKGdL1H9nJhOJJJ0HykYNejZRJ+27I
+	Flfi13IFJw0fIdbLM+PyItWB0w==
+X-Google-Smtp-Source: AGHT+IEIcBP1EFEPziMOH6dqV9KBvAOBKEjySYoMG5Yjgth6YHz7m5tIhTbJy3wglEU0p/iSa68CzQ==
+X-Received: by 2002:a17:906:1c9:b0:a1d:1fb9:da08 with SMTP id 9-20020a17090601c900b00a1d1fb9da08mr34035ejj.8.1702037985223;
+        Fri, 08 Dec 2023 04:19:45 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id o29-20020a509b1d000000b0054ca1d90410sm790428edi.85.2023.12.08.04.17.58
+        by smtp.gmail.com with ESMTPSA id he43-20020a1709073dab00b00a1e21893a26sm936349ejc.222.2023.12.08.04.19.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Dec 2023 04:18:00 -0800 (PST)
-Message-ID: <cbf0b9a6-2752-4ab5-ab21-af28e87fc1e6@linaro.org>
-Date: Fri, 8 Dec 2023 13:17:58 +0100
+        Fri, 08 Dec 2023 04:19:44 -0800 (PST)
+Message-ID: <3e92295f-3c8b-4699-bf50-0fc2b43ddf1b@linaro.org>
+Date: Fri, 8 Dec 2023 13:19:43 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,22 +62,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/4] dt-bindings: PCI: qcom: correct clocks for SM8150
+Subject: Re: [PATCH v3 1/2] dt-bindings: gpio: realtek: Add realtek,rtd-gpio
 Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Bjorn Helgaas
- <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Rob Herring <robh@kernel.org>,
+To: =?UTF-8?B?VFlfQ2hhbmdb5by15a2Q6YC4XQ==?= <tychang@realtek.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
+ <brgl@bgdev.pl>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>,
- linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-References: <20231208105155.36097-1-krzysztof.kozlowski@linaro.org>
- <20231208105155.36097-3-krzysztof.kozlowski@linaro.org>
- <CAA8EJpqKM45=6R0fHjDjNWfZpR-QxRoJo-ioB-t-WT188jpqnA@mail.gmail.com>
+ Conor Dooley <conor+dt@kernel.org>
+Cc: "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20231207100723.15015-1-tychang@realtek.com>
+ <20231207100723.15015-2-tychang@realtek.com>
+ <dd22f0fb-e07b-4bd4-bd6a-cf2d8a5687fc@linaro.org>
+ <b3a41f598bc043ce9626b674a92b8da4@realtek.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -123,61 +122,50 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAA8EJpqKM45=6R0fHjDjNWfZpR-QxRoJo-ioB-t-WT188jpqnA@mail.gmail.com>
+In-Reply-To: <b3a41f598bc043ce9626b674a92b8da4@realtek.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 08/12/2023 12:09, Dmitry Baryshkov wrote:
-> On Fri, 8 Dec 2023 at 12:52, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> PCI node in Qualcomm SM8150 should have exactly 8 clocks, including the
->> ref clock.
->>
->> Suggested-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>
->> ---
->>
->> Please take the patch via PCI tree.
->>
->> Changes in v3:
->> 1. New patch: Split from sc8180x change.
->> 2. Add refclk as explained here:
->>    https://lore.kernel.org/all/20231121065440.GB3315@thinkpad/
->> ---
->>  .../devicetree/bindings/pci/qcom,pcie.yaml    | 26 +++++++++++++++++++
->>  1 file changed, 26 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
->> index 5214bf7a9045..a93ab3b54066 100644
->> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
->> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
->> @@ -559,6 +559,32 @@ allOf:
->>            contains:
->>              enum:
->>                - qcom,pcie-sm8150
->> +    then:
->> +      properties:
->> +        clocks:
->> +          minItems: 8
->> +          maxItems: 8
->> +        clock-names:
->> +          items:
->> +            - const: pipe # PIPE clock
->> +            - const: aux # Auxiliary clock
->> +            - const: cfg # Configuration clock
->> +            - const: bus_master # Master AXI clock
->> +            - const: bus_slave # Slave AXI clock
->> +            - const: slave_q2a # Slave Q2A clock
->> +            - const: tbu # PCIe TBU clock
->> +            - const: ref # REFERENCE clock
+On 08/12/2023 10:03, TY_Chang[張子逸] wrote:
+
 > 
-> Can we change the order of the tbu and ref clocks and fold this into
-> the sc810x case?
+> The DTS use in our platform follows this structure:
+> 
+> soc@0 {
+>     rbus: rbus@98000000 {
+> 	    ...
+>         iso: syscon@7000 {
+> 		    ...
+>             gpio: gpio@100 {
+>                 compatible = "realtek,rtd1319d-iso-gpio";
+>                 reg = <0x100 0x100>,
+>                       <0x000 0x0b0>;
+>                 interrupt-parent = <&iso_irq_mux>;
+>                 interrupts = <19>, <20>;
+>                 gpio-ranges = <&pinctrl 0 0 82>;
+>                 gpio-controller;
+>                 #gpio-cells = <2>;
+>             };
+>         };
+>     };
+> };
+> 
+> The base address for the GPIO controller is 0x98007100. The second line of
+> 'reg' refers to the GPIO interrupt status registers, which are distributed
+> within the range of 0x98007000 to 0x980070AF. 
 
-I prefer not, because this is an ABI-concern and we are supposed to keep
-things stable.
+Ah, ok.
+
+> Would it be advisable to fetch the
+> syscon from parent node(iso: syscon@7000) to handle the GPIO interrupt status
+> registers?
+
+If these are GPIO interrupts then current description is fine.
+
+> 
+>> It is, btw, 0x0, not 0x000. The same for 0x0b0 -> 0xb0, unless you want to pad
+>> to full word.
+>>
 
 Best regards,
 Krzysztof
