@@ -1,97 +1,156 @@
-Return-Path: <devicetree+bounces-23076-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23077-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DB5E80A2A0
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 12:50:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E18FF80A2BE
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 12:57:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AEA44B206AE
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 11:50:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6E2511F21116
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 11:57:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2EA01BDDB;
-	Fri,  8 Dec 2023 11:50:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4958B1BDE5;
+	Fri,  8 Dec 2023 11:57:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="hySjRIgH"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="R2mRJT89"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6509D1987;
-	Fri,  8 Dec 2023 03:50:10 -0800 (PST)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B8Bo3Ka011187;
-	Fri, 8 Dec 2023 05:50:03 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1702036203;
-	bh=z/HdheVg4NZlQLFmjj8lf9ipxkpe78gQ323+8PfLC3c=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=hySjRIgH4gnPzvLM6v0lnK8JVS3rMpgdLP3rxocbYI+dklrIcc/gqaZVzxm9p5eI4
-	 T/OO3/1wavP+yESs+ix8oQduUiGM+8h9E3cSA2R62pqKvkQkJ8UusD4k6qe3zGBThp
-	 tL+4wzLfM4o2R+LwnYM9Omr4IyIDgL99CuE+TUzY=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B8Bo30s034347
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 8 Dec 2023 05:50:03 -0600
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 8
- Dec 2023 05:50:02 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 8 Dec 2023 05:50:02 -0600
-Received: from a0497641-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (a0497641-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [172.24.227.36])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B8BnJPS085375;
-	Fri, 8 Dec 2023 05:49:57 -0600
-From: Neha Malcom Francis <n-francis@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <a-nandan@ti.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <eblanc@baylibre.com>,
-        <jneanne@baylibre.com>, <aseketeli@baylibre.com>,
-        <jpanis@baylibre.com>, <u-kumar1@ti.com>, <j-luthra@ti.com>,
-        <vaishnav.a@ti.com>, <hnagalla@ti.com>, <devarsht@ti.com>,
-        <n-francis@ti.com>
-Subject: [PATCH v10 7/7] DONOTMERGE: arm64: defconfig: Enable TPS6594 PMIC for J7 devices
-Date: Fri, 8 Dec 2023 17:19:19 +0530
-Message-ID: <20231208114919.3429562-8-n-francis@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231208114919.3429562-1-n-francis@ti.com>
-References: <20231208114919.3429562-1-n-francis@ti.com>
+Received: from IND01-BMX-obe.outbound.protection.outlook.com (mail-bmxind01olkn2083.outbound.protection.outlook.com [40.92.103.83])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8BFDC3;
+	Fri,  8 Dec 2023 03:57:38 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=n9MMsDnOsw9Ru+bCHLDlc/0OkihQLtMy4Yt+gcADReFSNlxleYGxajTAIWdUdfjp+HcBuCgjcyLB3Vx2leWs2TeNXKhhlrHqQmp/pewnPCeI3cTyQiiZVij+a/xRwRPXLBd7ymdD0GMkRv9cAKrE49DMN7EM5ymEUY/N2Fw/1RFQhQfZDNvLlcSIZTkBh9vbEQrowuot3+0TypjS6/QnoGEL+SGu3zx1nGCjfJvagA1jVFgUwuPVx3v7wywIh0CnF/1kEB83IH09cI3f+F0eMGlrFneONiqGXKpyED/WSimcTMQVKM5RiwzU9yfT5FWbIHUVKVtHSLEp1OOgfgIPfw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=f8tChMfbis9BLYzxg91Q49qgx5PBOXP1MXBlC9WdBtQ=;
+ b=XFO0oFOrmFRLR0/klqLzpu7OUxQlCNO0S0B3icXJDijfLJfUhPxr3LSON1oZFn4P87wSvZrpGhpCKmvkyUQ+5KNba69S9+Voz2A6xoyg28x67hI5MWMmAsLn9dzJ+rOhFOrw5K4gS+Tg/G6WvHh8+NALJr+CicgnMUe1jp6A+aewObVy6cGaynjwBRjkLYEkJM7NgqM/Z429Nl/cCU84hTsMgAH9/O9DPyAz3z2IOxxZclEMKgOWW325SIQDzbo3FUZ6czBXuO5vHY1weN7b0ivsgM8fl3pWQLg2L6Y6lLuBRf+kwtg9iHRCZrQKRusgCzTZax1AWLshJbZaesuiXQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=f8tChMfbis9BLYzxg91Q49qgx5PBOXP1MXBlC9WdBtQ=;
+ b=R2mRJT89PxEbSqtN8QxgcFyrfurgghAi+zCmurs5ckNAZMUbONupxfG1iR1v2juNyH+F3xpNFFbWFVZepPfmkh/0fIRb9RHgheZSz3U1/kDirdzLEbfE+piElBe5+syst0G61O4tPo7I5xrEaPhb998/qCVsl0nRPC8+zt+Rk0j7+a1nUGLgZrS54von7kxMNoiJQDbLrODcD/Tdwtf2FHplW4s/SJKsQZ8avWzTQkdnqCMKxiVU9LDR7pP1oLliFxwr7qTUQ8fHUfNTcp7gaOF9Enrc3rnefekLmHHLXlhw0KjVaPDI0ledADe4wzpq2vRKUbtTzOlgHEWyaU2Gcw==
+Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:ab::5) by
+ PN0P287MB2020.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:1bd::12) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7068.28; Fri, 8 Dec 2023 11:57:30 +0000
+Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
+ ([fe80::b1a7:eee7:e903:9ef3]) by MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
+ ([fe80::b1a7:eee7:e903:9ef3%7]) with mapi id 15.20.7068.028; Fri, 8 Dec 2023
+ 11:57:30 +0000
+Message-ID:
+ <MA0P287MB0332C1ACD7BB3607694F9E05FE8AA@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
+Date: Fri, 8 Dec 2023 19:57:21 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 0/4] riscv: sophgo: add clock support for sg2042
+To: Conor Dooley <conor@kernel.org>
+Cc: Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu,
+ chao.wei@sophgo.com, krzysztof.kozlowski+dt@linaro.org,
+ mturquette@baylibre.com, palmer@dabbelt.com, paul.walmsley@sifive.com,
+ richardcochran@gmail.com, robh+dt@kernel.org, sboyd@kernel.org,
+ devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com, guoren@kernel.org,
+ jszhang@kernel.org, inochiama@outlook.com, samuel.holland@sifive.com
+References: <cover.1701997033.git.unicorn_wang@outlook.com>
+ <MA0P287MB0332EEB2858B8B39F151CECAFE8AA@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
+ <20231208-item-rubbing-e32503c6cdcf@spud>
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <20231208-item-rubbing-e32503c6cdcf@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-TMN: [uCwqi5fXIf2X+6tVIkwMCCdO4ndt7W0C]
+X-ClientProxiedBy: TYCP286CA0224.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:3c5::8) To MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:ab::5)
+X-Microsoft-Original-Message-ID:
+ <62ea0685-ec50-4640-b1a6-ab3eea049c2c@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MA0P287MB0332:EE_|PN0P287MB2020:EE_
+X-MS-Office365-Filtering-Correlation-Id: dae4a89c-5e02-46d0-de33-08dbf7e4da8e
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	BWcZfKPVySd2NWieCMpym5ERHm0Ub7O9xuXElZKGHu3BB9YzBds/wuO4IPZMQhYh1FoAPYLvupNBAjc3yuCAJXqJjqJm1mjB0zyiGUKaE3MU6fU14ADJeqv4is+uPBl5fJ0/Y282Z8R1kZ/pYZ3X5CgiAAc26b9ka7W52P0iMh8gNlQvU3yWcpQCIpCj2d4wi480wIg56rCPQzt7I1murmAxT311frsHorgGYyz9JzjM2apP6jHp0/ldw+Oqrv32OJ3i+uGa/KfRjJuaBHGaQ/kU9Q8WorXGiHTwPd8t6TQNah2wjWnbobFVcJp417hnZijYv2Sup+lQ9Gt+699ENV1aY/r0bFMk4SCPJHzZRLTnnWcZ114ia/ITnpcY4Mn5qvABwyPJ5AjKJNDH1uLXCsrMA4F94VpJFlMnLnPqARJgulhCA1zhd99A7kHKBWX9cnP06rts13x+ScgsxagkcirG2pnnxfCuNqAGtjaSICn6IWlgKx/YQtXmZaLgPtdrZdkehCNEANdlxflxd3ZMUSSjdVlnhwTqQIX88qupg5Gmfrwv8j3XfShsRcHWLtbr
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?cy9RbTJnVlJVN0hjSzFPRmZiN1R3M2VGRS9DVTRVcUpySmRJZ3AwTjFtRzA4?=
+ =?utf-8?B?WTA0SHh3RFE4Um1UUm9JOXRBTDErUVExRkJtWWd5WHRVSEdqcVhGVU5oMnM4?=
+ =?utf-8?B?NmFKRFJBV21TM3BvaEtSUlF5R3dxYzdTQitnN09lMlI2Z0VEd3lXWWVkeTQx?=
+ =?utf-8?B?RVZCVTVGK21kUFR6K3hSMW5aa2NjMnA1aHhYd014akNtU29IWGVqUThWenRs?=
+ =?utf-8?B?dE1xR0VkakRDV1NGUlFXYmtCQ3JCUmN3SmpJWnJ4Qmh4K2UyTXdDUVFGekVs?=
+ =?utf-8?B?Unloa3hFeVdIdXpYWlQ0ZVRDSDhka0NoRXNoZnVJU1piWkx3d2ZGTUJTT1Iw?=
+ =?utf-8?B?aEg1OUd1cnhNK0V4N0JwM3d2eEpyRmRkck93eE5oMFBqeFFnbHRiRzl3S1Nk?=
+ =?utf-8?B?RzUrY3R2N0h3NjFVa3U5Qmo1Q3o2bnlnK2RJWVJiVmlFSkloTjdIZ29PaU5s?=
+ =?utf-8?B?RU5SZ01vVEtpQklONjBrMGxXYm4vZFpJVTRzc0ExMEI3cFJRSzhSKzlFdEpI?=
+ =?utf-8?B?amtoK0RjNEtONDN3WDZmYVF2WjdRc1NkSDhCNCt6L3YyRzRjaCtLeUVCYkI3?=
+ =?utf-8?B?YUVSbkhDUFNhSEdmT1hJWGp2alM0Sy8vbHMrNzg5dXpkU0hEVkJBTVpFMTln?=
+ =?utf-8?B?cEFnaG9PZlgyYjc5SmhqUG9UcXhMeUExZ2VjOVVVVVZOTWNESjlhWjFyYVMr?=
+ =?utf-8?B?Y1NHK2xQbnJERFpsVVBvQnJtOEdUekpKZlgvTDdpK3NQUXVOL3BlU0c4MkVU?=
+ =?utf-8?B?T3ZCKzF5UUI4WlkrSTJlNDFHWFJGLzhXZ0VWN1gwa3lOMEh5NzRiSzl4MUE5?=
+ =?utf-8?B?aERmWWVaOXlNNjhPU21QSHhaMGVBQmhNU0NsOERiWFBqeEVuUU5CbVdoNDU1?=
+ =?utf-8?B?Q3ArTnJKeTUvN1RqbnQyU0pBaDd3Ty9mRkdxSEl1V2kxbGxadmo3R3F6dGZw?=
+ =?utf-8?B?N2FXdEdPUWlJbGhNTDJzSk0wUzRsTHJmMmtTZjNuSEVTVXhrSnIzdmpVcHdR?=
+ =?utf-8?B?MHdLUWNpZU0yd3UydUFzQzU4M3hQTVRqeWJLeWpTWUZLMnRHdXpHR09FSTdN?=
+ =?utf-8?B?aGxxV0I2aTlHK1VCY2pRNWdDR2lSMklOdEpQN2dGSHF5QWhBd0xUY1cxZHBa?=
+ =?utf-8?B?SFhyUlR6ZzJVcjFVLzF2WXRsaloycjg4THh1QXZjSTZpbzR2NVFYL2pkckxw?=
+ =?utf-8?B?N3BqWmJNMnVVYWwzVkZ2QkdVekdBYnozM2UwUW5WR0VpUDQxR0YrcG5sWmpY?=
+ =?utf-8?B?MzFWUnVBQlBpTmNyekJ0aVJKK2tLRHpJamFNbVR2QnF2dTY2NmZjMzBQaCtU?=
+ =?utf-8?B?QS82VWhUeWRxbkpPdjErWU5JaFptZXQ3TUhuL1hETzdpd0xZMGc0MStpZUtl?=
+ =?utf-8?B?OTBxSWI4c3JQcnNvT3BCQ2hFbDM5SnZLWkV4c21wY1BEWmw1R3FjVGxUaTY2?=
+ =?utf-8?B?Z1BjckltV3V5Z2J0alNaeC9SQlhlMVFVcG9QbmplamlLMTh5bHRDaUgxRy9x?=
+ =?utf-8?B?c1JmblhzclZUVldPNmgxakJjYURrWWZIRjdLVmhoWGRkS0pyNFplWTcxdWJY?=
+ =?utf-8?B?VWFkL3BKTlJwTGliOGFoNk5qc1pvWW15cXV3TDc1WGlkTzNVOUdSbEhLS3BC?=
+ =?utf-8?Q?lCTirazxsVCwfHPHlSLdZlo2n5aEeScWU5kfF+bICXMY=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: dae4a89c-5e02-46d0-de33-08dbf7e4da8e
+X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Dec 2023 11:57:30.0588
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN0P287MB2020
 
-J7 (J721E-EVM, J721E-SK, J721S2, AM68-SK, J784S4, AM69-SK) devices use
-TPS6594x PMIC (interfaced over I2C) to power the SoC and various other
-peripherals on the board [1].
 
-Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
----
- arch/arm64/configs/defconfig | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On 2023/12/8 18:30, Conor Dooley wrote:
+> On Fri, Dec 08, 2023 at 06:11:10PM +0800, Chen Wang wrote:
+>> On 2023/12/8 9:13, Chen Wang wrote:
+>>> From: Chen Wang <unicorn_wang@outlook.com>
+>>>
+>>> This series adds clock controller support for sophgo sg2042.
+>>>
+>>> Thanks,
+>>> Chen
+>>>
+>>> ---
+>> Hi，Conor，
+>>
+>> Can you please have a review of this patch?
+> Chief, you sent this patch only the other day, please give people some
+> time. I, at least, have an MMO addiction to feed in my spare time
+> alongside reviewing patches.
+Okay, no rush. :)
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index be89fa9e6468..a4b84b21b0df 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -729,7 +729,7 @@ CONFIG_MFD_SEC_CORE=y
- CONFIG_MFD_SL28CPLD=y
- CONFIG_RZ_MTU3=y
- CONFIG_MFD_TPS65219=y
--CONFIG_MFD_TPS6594_I2C=m
-+CONFIG_MFD_TPS6594_I2C=y
- CONFIG_MFD_TI_AM335X_TSCADC=m
- CONFIG_MFD_ROHM_BD718XX=y
- CONFIG_MFD_WCD934X=m
--- 
-2.34.1
+Christmas is coming soon. I wish you a happy holiday in advance.
 
+>> And I'm not sure if you are ok to pick up this patch so it can be merged
+>> into the next v6.8?
+> Stephen is the maintainer for clock drivers. I do pick things up and
+> send them to him as PRs when it makes life easier, but usually that's
+> after other people have reviewed the clock driver itself.
+>
+> Thanks,
+> Conor.
+>
 
