@@ -1,145 +1,107 @@
-Return-Path: <devicetree+bounces-23329-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23330-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EDE380AD5A
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 20:53:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3142180AD7C
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 21:04:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC2201C20C70
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 19:53:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E07EC2817CE
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 20:04:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 390035101C;
-	Fri,  8 Dec 2023 19:53:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34F7F56463;
+	Fri,  8 Dec 2023 20:04:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="q28ZqfaE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WOVNZuLt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3445E1729
-	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 11:52:59 -0800 (PST)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-a1f47f91fc0so247582166b.0
-        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 11:52:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702065177; x=1702669977; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=AQL2QzATtB7HD48YvHn7NcHvaYuNjHniWUH7CLZRyog=;
-        b=q28ZqfaEwMhMnkIACRBvhMKYc7sq9t129BEObLiuPPtKE3Y6d1ulb+oBKs1EO1jEFL
-         daKqChtF42XGLxSHB36hVQm8XCDDxFAPF8wHphZyF/RSMtBLGWUfgvXRcTdL3OP22rCl
-         2EGoVSWYShNkjAvv2T84WgHp1aK4CHX2dUC+kgsszqUm0TbOlL+pmJfkKK00pdJEbhBX
-         DB5Rjga7WjgB4pxYCVBwKA6UdXoPfj9SBIfqqvHzkPH3DggCIvoIH7SjhsY2cNqDvLOE
-         u8vIVEJTFFaqidzBtvpNN3eQ3L2RdiHYLB9ZqPWgtL1YBweLf2ljw1qKXreebDW9/28e
-         q8yQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702065177; x=1702669977;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=AQL2QzATtB7HD48YvHn7NcHvaYuNjHniWUH7CLZRyog=;
-        b=L9LWqvsgNrmzKIuwl8GtdoxIYT0cPAcqeUrZAtXr+miH9WSVvxhCsNVsvh2iEdhWKH
-         B2nOq7tjMv/XSHzq5J176eyk5GIid94ozfuHatfJHL5r8DrDrMkwGvza6NlrpLjnki8Q
-         lFYQnK8H6xQG3xIpdE4WkNAgkPF0LzuQnsAbbOLtnIdW8C1xhTYzegyyJUX7P5DmYo2f
-         HOXnUzISNc9S+1cH4azSmMEWNlgWkxb2AqRyvIeu9GcDMrrbYCGxs3MPRae719uLoNvj
-         WNkAK4lJz/8zxKDAInFazgyfOdWlXs4UhWTDbubphHoT9NjB/nfjnP9vLJfM6oybR9LV
-         xWpw==
-X-Gm-Message-State: AOJu0YwXP9g8Wadx03XPFnPchiXpAqfrfPiMQ53VKB4BqPOMLpzb54NX
-	HPWq3fYbS9X2asiADJmXqf8KqA==
-X-Google-Smtp-Source: AGHT+IF8UxKogiHQOCSLgyU2Q+4VTW/vNSAnLHzakwQyvd9TFf30yQ25fUjFYq7YQAinGnNjCOiKyQ==
-X-Received: by 2002:a17:906:3289:b0:9c4:54c6:8030 with SMTP id 9-20020a170906328900b009c454c68030mr246504ejw.6.1702065177641;
-        Fri, 08 Dec 2023 11:52:57 -0800 (PST)
-Received: from krzk-bin.. ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id vu6-20020a170907a64600b00a1d61183006sm1339333ejc.83.2023.12.08.11.52.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Dec 2023 11:52:57 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 127D84F601;
+	Fri,  8 Dec 2023 20:04:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4782C433C7;
+	Fri,  8 Dec 2023 20:04:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702065871;
+	bh=dAzTKis/A168Bq4izb0pTdVXcvwbLPWwjZhbjyGsfuo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WOVNZuLtre13kBHgee4m2/HCdLbvfRd1C1jVy8YMKKwP7MMWca0oI/drSpeiVxYA6
+	 d0LAbuKH3mFEpct4nl2L0b8av5Ow5koo0UDmh9UgFhOP+DVBfG2nP5N0tR8sboReaY
+	 mzPU/LM0PrPw8axcAzodwT5pjvtKfDrMYWlGUBYSWQLYWfmgVt3ZKEA8N2qkajdR9q
+	 sEQa6D0oUosCDitw3268nUaQTbX7ppmAr5dK1heV605xNr9bhdO8OWsNcjjTOqoch6
+	 yy41038aEt2+gqOQs7YShU9VmIUGDCI8cZSLrdW5cLADPB2qVeTN4okZyp0VFvMsVM
+	 lAVXGb7aruChg==
+Date: Fri, 8 Dec 2023 21:04:25 +0100
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Alain Volmat <alain.volmat@foss.st.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v3] media: dt-bindings: ov8856: decouple lanes and link frequency from driver
-Date: Fri,  8 Dec 2023 20:52:53 +0100
-Message-Id: <20231208195253.130470-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Pierre-Yves MORDRET <pierre-yves.mordret@foss.st.com>,
+	Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/7] i2c: stm32f7: perform most of irq job in threaded
+ handler
+Message-ID: <20231208200425.zli2j6b4lt4shasn@zenone.zhora.eu>
+References: <20231208164719.3584028-1-alain.volmat@foss.st.com>
+ <20231208164719.3584028-2-alain.volmat@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231208164719.3584028-2-alain.volmat@foss.st.com>
 
-The data lanes and link frequency were set to match existing Linux driver
-limitations, however bindings should be independent of chosen Linux
-driver support.
+Hi Alain,
 
-Decouple these properties from the driver to match what is actually
-supported by the hardware.
+On Fri, Dec 08, 2023 at 05:47:10PM +0100, Alain Volmat wrote:
+> The irq handling is currently split between the irq handler
+> and the threaded irq handler.  Some of the handling (such as
+> dma related stuffs) done within the irq handler might sleep or
+> take some time leading to issues if the kernel is built with
+> realtime constraints.  In order to fix that, perform an overall
+> rework to perform most of the job within the threaded handler
+> and only keep fifo access in the non threaded handler.
+> 
+> Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
 
-This also fixes DTS example:
+quite a difficult review because this git diff algorithm makes it
+difficult to read throuhg.
 
-  ov8856.example.dtb: camera@10: port:endpoint:link-frequencies:0: [360000000] is too short
+But it looks like just a copy paste from to
+stm32f7_i2c_isr_event() to stm32f7_i2c_isr_event_thread() of the
+STM32F7_I2C_ISR_NACKF, STM32F7_I2C_ISR_STOPF, STM32F7_I2C_ISR_TC
+and STM32F7_I2C_ISR_TCR.
 
-Fixes: 066a94e28a23 ("media: dt-bindings: media: Use graph and video-interfaces schemas")
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
+[...]
 
-Changes in v3:
-1. Drop link-frequencies entirely (Sakari)
-2. Add Conor's ack
+> +static irqreturn_t stm32f7_i2c_isr_event_thread(int irq, void *data)
+> +{
+> +	struct stm32f7_i2c_dev *i2c_dev = data;
+> +	struct stm32f7_i2c_msg *f7_msg = &i2c_dev->f7_msg;
+> +	struct stm32_i2c_dma *dma = i2c_dev->dma;
+> +	void __iomem *base = i2c_dev->base;
+> +	u32 status, mask;
+> +	int ret;
+> +
+> +	if (!i2c_dev->master_mode)
+> +		return stm32f7_i2c_slave_isr_event(i2c_dev);
+> +
+> +	status = readl_relaxed(i2c_dev->base + STM32F7_I2C_ISR);
 
-Changes in v2:
-1. Rework approach: decouple bindings from driver instead of fixing
-   DTS example (Sakari)
----
- .../devicetree/bindings/media/i2c/ov8856.yaml | 24 +++++++++----------
- 1 file changed, 11 insertions(+), 13 deletions(-)
+looks to me like this readl_relaxed is read too many times during
+the whole irq handling.
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/ov8856.yaml b/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
-index 57f5e48fd8e0..816dac9c6f60 100644
---- a/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
-@@ -67,19 +67,17 @@ properties:
- 
-         properties:
-           data-lanes:
--            description: |-
--              The driver only supports four-lane operation.
--            items:
--              - const: 1
--              - const: 2
--              - const: 3
--              - const: 4
--
--          link-frequencies:
--            description: Frequencies listed are driver, not h/w limitations.
--            maxItems: 2
--            items:
--              enum: [ 360000000, 180000000 ]
-+            oneOf:
-+              - items:
-+                  - const: 1
-+              - items:
-+                  - const: 1
-+                  - const: 2
-+              - items:
-+                  - const: 1
-+                  - const: 2
-+                  - const: 3
-+                  - const: 4
- 
-         required:
-           - link-frequencies
--- 
-2.34.1
+Reviewed-by: Andi Shyti <andi.shyti@kernel.org>
 
+Thanks,
+Andi
 
