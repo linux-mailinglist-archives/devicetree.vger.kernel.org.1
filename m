@@ -1,131 +1,158 @@
-Return-Path: <devicetree+bounces-23296-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23298-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA58B80AA82
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 18:18:29 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C49AA80AA8D
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 18:20:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 69B5DB20A3B
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 17:18:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 49A3EB20A32
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 17:20:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9139E38FB8;
-	Fri,  8 Dec 2023 17:18:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XTN1OraN"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC06B38FBB;
+	Fri,  8 Dec 2023 17:20:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D668374D0;
-	Fri,  8 Dec 2023 17:18:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4D8CC433C8;
-	Fri,  8 Dec 2023 17:18:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702055902;
-	bh=Kc7uelFawHwlMJKzZxh7jjyeuIEBs1vkMVBFyYyPMiQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=XTN1OraNA7eSPCEyq1kLdSWN6SSMUuz2HbLoSN/5gSzGCcpiyxaNiaikhaZoOXRUd
-	 afShQB43Gc+YqQGwigycAMXDnqFtQzufpmXuImT0e7LFRmuo7qS2B43KN/y8dV4D/o
-	 Ebi/n3VH3aCSYoF8lyoGJBrBYJxJuenWXV2zhTKoc9AeTldliLol5BwNC4BZsmkfj7
-	 jYbLaPOdBvkLGpr+Ver2Bht9HLZh3ZTNUPPhm15x5Q0J039GPTspwxSKTZ8zlUKCcT
-	 lmmL1ecqGAH9FqVDEsUKOoKmi11o457R4XwdiFJ+iQ0EYQbzFG110IoEY6Ft1+S00Y
-	 B0iWlVM3yb8ZQ==
-Message-ID: <d2e4e887-5b82-40de-aef9-f5f6a228fbd3@kernel.org>
-Date: Fri, 8 Dec 2023 18:18:20 +0100
+Received: from mx01.omp.ru (mx01.omp.ru [90.154.21.10])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B5C22D40;
+	Fri,  8 Dec 2023 09:19:52 -0800 (PST)
+Received: from [192.168.1.104] (178.176.72.145) by msexch01.omp.ru
+ (10.188.4.12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.1258.12; Fri, 8 Dec
+ 2023 20:19:49 +0300
+Subject: Re: [PATCH v4 09/22] MIPS: traps: Handle CPU with non standard vint
+ offset
+To: Gregory CLEMENT <gregory.clement@bootlin.com>, Paul Burton
+	<paulburton@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	<linux-mips@vger.kernel.org>, Jiaxun Yang <jiaxun.yang@flygoat.com>, Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+CC: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, Tawfik Bayouk
+	<tawfik.bayouk@mobileye.com>, Alexandre Belloni
+	<alexandre.belloni@bootlin.com>, =?UTF-8?Q?Th=c3=a9o_Lebrun?=
+	<theo.lebrun@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20231208161249.1827174-1-gregory.clement@bootlin.com>
+ <20231208161249.1827174-10-gregory.clement@bootlin.com>
+From: Sergey Shtylyov <s.shtylyov@omp.ru>
+Organization: Open Mobile Platform
+Message-ID: <94e4bafb-7c4d-d6bf-7440-f487243a1a59@omp.ru>
+Date: Fri, 8 Dec 2023 20:19:48 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/4] media: i2c: add MAX96714 driver
+In-Reply-To: <20231208161249.1827174-10-gregory.clement@bootlin.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
-To: Julien Massot <julien.massot@collabora.com>, devicetree@vger.kernel.org,
- linux-media@vger.kernel.org
-Cc: kernel@collabora.com
-References: <20231208143359.469049-1-julien.massot@collabora.com>
- <20231208143359.469049-4-julien.massot@collabora.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20231208143359.469049-4-julien.massot@collabora.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: msexch01.omp.ru (10.188.4.12) To msexch01.omp.ru
+ (10.188.4.12)
+X-KSE-ServerInfo: msexch01.omp.ru, 9
+X-KSE-AntiSpam-Interceptor-Info: scan successful
+X-KSE-AntiSpam-Version: 6.0.0, Database issued on: 12/08/2023 17:00:03
+X-KSE-AntiSpam-Status: KAS_STATUS_NOT_DETECTED
+X-KSE-AntiSpam-Method: none
+X-KSE-AntiSpam-Rate: 0
+X-KSE-AntiSpam-Info: Lua profiles 181987 [Dec 08 2023]
+X-KSE-AntiSpam-Info: Version: 6.0.0.2
+X-KSE-AntiSpam-Info: Envelope from: s.shtylyov@omp.ru
+X-KSE-AntiSpam-Info: LuaCore: 6 0.3.6 62f5a4619c57459c9a142aa1486ed27913162963
+X-KSE-AntiSpam-Info: {rep_avail}
+X-KSE-AntiSpam-Info: {Tracking_from_domain_doesnt_match_to}
+X-KSE-AntiSpam-Info:
+	d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;omp.ru:7.1.1
+X-KSE-AntiSpam-Info: ApMailHostAddress: 178.176.72.145
+X-KSE-AntiSpam-Info: Rate: 0
+X-KSE-AntiSpam-Info: Status: not_detected
+X-KSE-AntiSpam-Info: Method: none
+X-KSE-AntiSpam-Info: Auth:dmarc=temperror header.from=omp.ru;spf=temperror
+ smtp.mailfrom=omp.ru;dkim=none
+X-KSE-Antiphishing-Info: Clean
+X-KSE-Antiphishing-ScanningType: Heuristic
+X-KSE-Antiphishing-Method: None
+X-KSE-Antiphishing-Bases: 12/08/2023 17:07:00
+X-KSE-Antivirus-Interceptor-Info: scan successful
+X-KSE-Antivirus-Info: Clean, bases: 12/8/2023 1:21:00 PM
+X-KSE-Attachment-Filter-Triggered-Rules: Clean
+X-KSE-Attachment-Filter-Triggered-Filters: Clean
+X-KSE-BulkMessagesFiltering-Scan-Result: InTheLimit
 
-On 08/12/2023 15:33, Julien Massot wrote:
-> This driver handle the MAX96714 deserializer in tunnel mode.
-> The CSI output will replicate all the CSI traffic capture by
-> the remote serializer.
+On 12/8/23 7:12 PM, Gregory CLEMENT wrote:
+
+> From: Jiaxun Yang <jiaxun.yang@flygoat.com>
 > 
-> Signed-off-by: Julien Massot <julien.massot@collabora.com>
+> Some BMIPS cpus has none standard start offset for vector interrupts.
+> 
+> Handle those CPUs in vector size calculation and handler setup process.
+> 
+> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
+> ---
+>  arch/mips/kernel/traps.c | 32 +++++++++++++++++++++++---------
+>  1 file changed, 23 insertions(+), 9 deletions(-)
+> 
+> diff --git a/arch/mips/kernel/traps.c b/arch/mips/kernel/traps.c
+> index ea59d321f713e..651c9ec6265a9 100644
+> --- a/arch/mips/kernel/traps.c
+> +++ b/arch/mips/kernel/traps.c
+> @@ -74,7 +74,6 @@
+>  
+>  #include "access-helper.h"
+>  
+> -#define MAX(a, b) ((a) >= (b) ? (a) : (b))
+>  
+>  extern void check_wait(void);
+>  extern asmlinkage void rollback_handle_int(void);
+> @@ -2005,6 +2004,7 @@ void __noreturn nmi_exception_handler(struct pt_regs *regs)
+>  unsigned long ebase;
+>  EXPORT_SYMBOL_GPL(ebase);
+>  unsigned long exception_handlers[32];
+> +static unsigned long vi_vecbase;
+>  unsigned long vi_handlers[64];
+>  
+>  void reserve_exception_space(phys_addr_t addr, unsigned long size)
+> @@ -2074,7 +2074,7 @@ static void *set_vi_srs_handler(int n, vi_handler_t addr, int srs)
+>  		handler = (unsigned long) addr;
+>  	vi_handlers[n] = handler;
+>  
+> -	b = (unsigned char *)(ebase + 0x200 + n*VECTORSPACING);
+> +	b = (unsigned char *)(vi_vecbase + n*VECTORSPACING);
 
-...
+   Add spaces around * for consistency please.
 
-> +static int max96714_get_hw_resources(struct max96714_priv *priv)
-> +{
-> +	struct device *dev = &priv->client->dev;
-> +
-> +	priv->regmap = devm_regmap_init_i2c(priv->client,
-> +					    &max96714_regmap_config);
-> +	if (IS_ERR(priv->regmap))
-> +		return PTR_ERR(priv->regmap);
-> +
-> +	priv->gpiod_pwdn = devm_gpiod_get_optional(&priv->client->dev, "enable",
-> +						   GPIOD_OUT_HIGH);
-> +	if (IS_ERR(priv->gpiod_pwdn))
-> +		return dev_err_probe(dev, PTR_ERR(priv->gpiod_pwdn),
+[...]
+> @@ -2370,20 +2370,33 @@ void __init trap_init(void)
+>  	extern char except_vec3_generic;
+>  	extern char except_vec4;
+>  	extern char except_vec3_r4000;
+> -	unsigned long i, vec_size;
+> +	unsigned long i, vec_size, vi_vec_offset;
+>  	phys_addr_t ebase_pa;
+>  
+>  	check_wait();
+>  
+> +	if (cpu_has_veic || cpu_has_vint) {
+> +		switch (current_cpu_type()) {
+> +		case CPU_BMIPS3300:
+> +		case CPU_BMIPS4380:
+> +			vi_vec_offset = 0x400;
+> +			break;
+> +		case CPU_BMIPS5000:
+> +			vi_vec_offset = 0x1000;
+> +			break;
+> +		default:
+> +			vi_vec_offset = 0x200;
+> +			break;
+> +		}
+> +		vec_size = vi_vec_offset + VECTORSPACING*64;
 
-A powerdown GPIO is not an enable GPIO. Please use correct name - see
-gpio-consumers-common.yaml
+   Here as well...
 
-The same applies to other patch and potentially all others...
+[...]
 
-
-Best regards,
-Krzysztof
-
+MBR, Sergey
 
