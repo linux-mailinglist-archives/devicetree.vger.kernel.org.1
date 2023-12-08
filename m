@@ -1,137 +1,209 @@
-Return-Path: <devicetree+bounces-23324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23325-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 151B880AD22
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 20:34:03 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88B9F80AD2D
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 20:37:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B536D1F20FC7
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 19:34:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6930CB20BF8
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 19:37:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D15464CB51;
-	Fri,  8 Dec 2023 19:33:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABFDC4CB4D;
+	Fri,  8 Dec 2023 19:37:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nx5QLKoS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86C8F1706
-	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 11:33:54 -0800 (PST)
-Received: by mail-ot1-f46.google.com with SMTP id 46e09a7af769-6d9d84019c5so1476327a34.3
-        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 11:33:54 -0800 (PST)
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12EEA1734
+	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 11:37:15 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-40c39e936b4so1449765e9.1
+        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 11:37:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702064233; x=1702669033; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=S/wYLxzvaIWrvwXXlhk8RVTXkUjgKIJV8Rq7ARVCREI=;
+        b=nx5QLKoSF3K/0JzHTJH6Jpz2yiFO6vj+BMq30vB+1PIXUWnRmP8uB6rv7Qj3jM782v
+         qKccfLVGBtV12zxsIdsjxVylEQzazD+f9GkfA0mo0/HjMOcjlOuaQ8y8SPK9h9pg784z
+         Z114SjCwvDemmReF3InMhvu3XYNb5Ba+GjkfCFKbIBQXjy1Xk0wWSYdPNMOBIOR1H7ly
+         2Lixur5io4aY3aVytFdECAN6/cwYO0cw3qzkpWX+KU767Dz440J4wARr1hcm0V/XOnxx
+         aMQ8P877lnOiz5fvSou/2IHl0BpeZM5XbXw2m/vt0BRx1ch1LuJQbpRJVhll8E+JZ4hW
+         crjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702064034; x=1702668834;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20230601; t=1702064233; x=1702669033;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Oqo9icAaSlVtxrUGZjVxMOlk/ymN9rKIb4gZCsRpiFA=;
-        b=wBBgLw6+PYj2SmeSnllFOIuBab84r66jaiiXLb8sU4pqmAEVjjyfAPNoTZ1mXYZV/6
-         g6rtxItQ94AYXr0PPR6gVUbDRtEyHR+Mtrp8kQ9t6IVHrH201RDx6dY6wU8+J0indgaS
-         gbYkSufZ3mbm4gmLCWt8UB+aPKd6k5vUCZTj+PlPDs7A+UXSgVSAjDUP8c3XLlwsRgU0
-         /4DQDZOtRzCTS27F7+X1LE784bQH8pgEZdpcnPl+CUcCefElc4qvHaSMThFocZ5Slk9O
-         vTlE18dYxbI/peDMZ1/io7DWolQ7WV+hB+JaXdRfMfsbbKbX29CguVv1pOQw1+HX8Roy
-         tThQ==
-X-Gm-Message-State: AOJu0YxSHSan9jmxJOw2uPM+JVE2phhugkDDNjxGtMQxZ2dHzP3fMqi8
-	P0StvUqAIQuVi5+itPePsA==
-X-Google-Smtp-Source: AGHT+IE/dDxFubN4E3N7zuWpM+y2vsjkv2WsE66ZKs5e6R2qn67dewWBtrS7VxeyLz0+wJuta0yWVA==
-X-Received: by 2002:a9d:7518:0:b0:6d9:ebaf:a5fa with SMTP id r24-20020a9d7518000000b006d9ebafa5famr552624otk.54.1702064033829;
-        Fri, 08 Dec 2023 11:33:53 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id eu25-20020a0568303d1900b006d99d4ad6d1sm409451otb.59.2023.12.08.11.33.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Dec 2023 11:33:53 -0800 (PST)
-Received: (nullmailer pid 2572104 invoked by uid 1000);
-	Fri, 08 Dec 2023 19:33:52 -0000
-Date: Fri, 8 Dec 2023 13:33:52 -0600
-From: Rob Herring <robh@kernel.org>
-To: Robin Murphy <robin.murphy@arm.com>
-Cc: will@kernel.org, mark.rutland@arm.com, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, suzuki.poulose@arm.com, ilkka@os.amperecomputing.com, bwicaksono@nvidia.com, YWan@nvidia.com, rwiley@nvidia.com, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH 4/5] dt-bindings/perf: Add Arm CoreSight PMU
-Message-ID: <20231208193352.GA1865260-robh@kernel.org>
-References: <cover.1701793996.git.robin.murphy@arm.com>
- <bbb4262065cfc906f98165cac074e86dce19599e.1701793996.git.robin.murphy@arm.com>
+        bh=S/wYLxzvaIWrvwXXlhk8RVTXkUjgKIJV8Rq7ARVCREI=;
+        b=rdHBhphdx7jhgHqbvQ25mL2L7uVbZaLeuvfJmSHp4foatHDitI0vZ2AJH0pAAFU7Qd
+         lwzQgY/YpNkBJs6DmCdfPrWRhlwdJiItumuwqG6T3zxPI49eTKwFcJnotnsYxQDoYPO5
+         E77Iaib3BtO2oOeM9w+4wSdRsZ/b3yzxuAFl/iQHY5Exl0sILYWY+q+BG/Xjn0TGbPzg
+         hQ78AXkHjVQvNfQEiSNXR4YUlCA/P2E12o/STMZKF7P9NrxUKInG8KM3zr7Es5+tH+Ms
+         54a7AhHUcYEA8QOwzKxBIFxlepgGyiAMQH+GCaqqYuuIu12F3NU4v+qqksLz6xyHnQyj
+         +1uA==
+X-Gm-Message-State: AOJu0YzyK712iE2DeAH3z2+nH2JhsuSW6C1JSo6pUU2+K1gCtzOAsduS
+	A2oYhobaVJy5kaq3hAb+rDfIhQ==
+X-Google-Smtp-Source: AGHT+IHUIrQp8Rbx+yUpeu6a7wLaCy2uVwr7ShS4VFCMjALg2WZda5UaY/g5di89zubm8Lt48KyA+Q==
+X-Received: by 2002:a7b:ce89:0:b0:40c:373a:a10 with SMTP id q9-20020a7bce89000000b0040c373a0a10mr134809wmj.145.1702064233357;
+        Fri, 08 Dec 2023 11:37:13 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id g9-20020a05600c310900b0040c3953cda5sm707897wmo.45.2023.12.08.11.37.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 08 Dec 2023 11:37:12 -0800 (PST)
+Message-ID: <ce8a7040-2667-4046-8542-f698bd8a9af1@linaro.org>
+Date: Fri, 8 Dec 2023 20:37:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <bbb4262065cfc906f98165cac074e86dce19599e.1701793996.git.robin.murphy@arm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] media: dt-bindings: ov8856: decouple lanes and link
+ frequency from driver
+To: Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Maxime Ripard <mripard@kernel.org>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231207142356.100453-1-krzysztof.kozlowski@linaro.org>
+ <ZXNbTUg3QrCwKBpp@kekkonen.localdomain>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <ZXNbTUg3QrCwKBpp@kekkonen.localdomain>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Dec 05, 2023 at 04:51:57PM +0000, Robin Murphy wrote:
-> Add a binding for implementations of the Arm CoreSight Performance
-> Monitoring Unit Architecture. Not to be confused with CoreSight debug
-> and trace, the PMU architecture defines a standard MMIO interface for
-> event counters similar to the CPU PMU architecture, where the
-> implementation and most of its features are discoverable through ID
-> registers.
-
-The implementation is separate from the CPU PMU rather than an MMIO view 
-of it. Not really clear in my quick read of the spec.
-
-> CC: Rob Herring <robh+dt@kernel.org>
-> CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> CC: Conor Dooley <conor+dt@kernel.org>
-> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
-> ---
->  .../bindings/perf/arm,coresight-pmu.yaml      | 39 +++++++++++++++++++
->  1 file changed, 39 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/perf/arm,coresight-pmu.yaml
+On 08/12/2023 19:07, Sakari Ailus wrote:
+> Hi Krzysztof,
 > 
-> diff --git a/Documentation/devicetree/bindings/perf/arm,coresight-pmu.yaml b/Documentation/devicetree/bindings/perf/arm,coresight-pmu.yaml
-> new file mode 100644
-> index 000000000000..12c7b28eee35
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/perf/arm,coresight-pmu.yaml
-> @@ -0,0 +1,39 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/perf/arm,coresight-pmu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Arm Coresight Performance Monitoring Unit Architecture
-> +
-> +maintainers:
-> +  - Robin Murphy <robin.murphy@arm.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: arm,coresight-pmu
-> +
-> +  reg:
-> +    items:
-> +      - description: Register page 0
-> +      - description: Register page 1 (if dual-page extension implemented)
-> +    minItems: 1
-> +
-> +  interrupts:
-> +    items:
-> +      - description: Overflow interrupt
-> +
-> +  cpus:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> Thanks for the update.
+> 
+> On Thu, Dec 07, 2023 at 03:23:56PM +0100, Krzysztof Kozlowski wrote:
+>> The data lanes and link frequency were set to match exiting Linux driver
+>> limitations, however bindings should be independent of chosen Linux
+>> driver support.
+>>
+>> Decouple these properties from the driver to match what is actually
+>> supported by the hardware.
+>>
+>> This also fixes DTS example:
+>>
+>>   ov8856.example.dtb: camera@10: port:endpoint:link-frequencies:0: [360000000] is too short
+>>
+>> Fixes: 066a94e28a23 ("media: dt-bindings: media: Use graph and video-interfaces schemas")
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>
+>> ---
+>>
+>> Changes in v2:
+>> 1. Rework approach: decouple bindings from driver instead of fixing
+>>    DTS example (Sakari)
+>> ---
+>>  .../devicetree/bindings/media/i2c/ov8856.yaml | 21 +++++++++++--------
+>>  1 file changed, 12 insertions(+), 9 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/media/i2c/ov8856.yaml b/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
+>> index 57f5e48fd8e0..71102a71cf81 100644
+>> --- a/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
+>> +++ b/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
+>> @@ -67,19 +67,22 @@ properties:
+>>  
+>>          properties:
+>>            data-lanes:
+>> -            description: |-
+>> -              The driver only supports four-lane operation.
+>> -            items:
+>> -              - const: 1
+>> -              - const: 2
+>> -              - const: 3
+>> -              - const: 4
+>> +            oneOf:
+>> +              - items:
+>> +                  - const: 1
+>> +              - items:
+>> +                  - const: 1
+>> +                  - const: 2
+>> +              - items:
+>> +                  - const: 1
+>> +                  - const: 2
+>> +                  - const: 3
+>> +                  - const: 4
+>>  
+>>            link-frequencies:
+>>              description: Frequencies listed are driver, not h/w limitations.
+> 
+> This should be dropped, too.
 
-Don't need a type. Already defined.
+Ack, I forgot.
 
-> +    minItems: 1
+> 
+>> -            maxItems: 2
+>>              items:
+>> -              enum: [ 360000000, 180000000 ]
+>> +              enum: [ 1440000000, 720000000, 360000000, 180000000 ]
+> 
+> These frequencies are listed in the datasheet but they're just an
+> example---the sensor hardware isn't limited to these, the resulting
+> frequency on the CSI-2 bus is simply up to the external clock frequency and
+> PLL configuration. I'd remove the values here altogether.
 
-1 is always the minimum.
+Hm, are you sure? Isn't it quite difficult to program device to any
+frequency? But if that's not the case here, I can drop it.
 
-> +    description: List of CPUs with which the PMU is associated, if applicable
 
-When is it applicable? Presumably when it is associated with only a 
-subset of CPUs?
+Best regards,
+Krzysztof
 
-> +
-> +  arm,64-bit-atomic:
-> +    type: boolean
-> +    description: Register accesses are single-copy atomic at doubleword granularity
-
-As this is recommended, shouldn't the property be the inverse.
-
-Maybe the standard 'reg-io-width = <4>' would be sufficient here?
-
-Rob
 
