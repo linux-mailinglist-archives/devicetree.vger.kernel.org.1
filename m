@@ -1,95 +1,214 @@
-Return-Path: <devicetree+bounces-23233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23234-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59AF180A838
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 17:08:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6052B80A84F
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 17:13:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8B6381C20C24
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 16:08:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 914F61C2096F
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 16:13:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C71CB37171;
-	Fri,  8 Dec 2023 16:08:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 643733714F;
+	Fri,  8 Dec 2023 16:12:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="HAGejE4u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C02FF1738;
-	Fri,  8 Dec 2023 08:08:11 -0800 (PST)
-Received: from i53875b61.versanet.de ([83.135.91.97] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1rBdOQ-0000BK-RJ; Fri, 08 Dec 2023 17:07:58 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Andy Yan <andyshrk@163.com>
-Cc: hjc@rock-chips.com, dri-devel@lists.freedesktop.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
- devicetree@vger.kernel.org, sebastian.reichel@collabora.com,
- kever.yang@rock-chips.com, chris.obbard@collabora.com,
- Andy Yan <andy.yan@rock-chips.com>
-Subject: Re: [PATCH v4 00/17] Add VOP2 support on rk3588
-Date: Fri, 08 Dec 2023 17:07:57 +0100
-Message-ID: <8765245.NyiUUSuA9g@diego>
-In-Reply-To: <20231207075906.651771-1-andyshrk@163.com>
-References: <20231207075906.651771-1-andyshrk@163.com>
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CDD91985;
+	Fri,  8 Dec 2023 08:12:54 -0800 (PST)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 70EC820016;
+	Fri,  8 Dec 2023 16:12:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1702051973;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=teHJUSCBCGpkoHDcgROECyXoWTtx2qAUTOMUinH7J78=;
+	b=HAGejE4uH9xUq9HnSzerpzLeS6bVkuWG2bjpdTIFrAUsr58vFE7CRuXnM2auuqAN4yzb4C
+	WXYMF3DPbSJYqiqC+rwHPF/gICuAzGqMVUw/D000YUw9oeYVIrDfXuhZL5HZAMk9sjCaq9
+	0R21Lfbb/24ZJtCzthB8509HjzgtQUGcSdToEZ81LwgZ3zaGdD0pNHFLGzFj1rZ1MWm/Ku
+	OB0mowveJfmvW+w8ROfWVw6Spt18sEOsQ5kzN0b8p/kDU+kTWa231G7qvwjiWIa7VFQ0H9
+	YhrfT/2mhsyJvy9nixjBM5ISbGJnfaMGpkCr5LK1RLHZ+S2HOE5eoRl3krPFUQ==
+From: Gregory CLEMENT <gregory.clement@bootlin.com>
+To: Paul Burton <paulburton@kernel.org>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	linux-mips@vger.kernel.org,
+	Jiaxun Yang <jiaxun.yang@flygoat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Vladimir  Kondratiev <vladimir.kondratiev@mobileye.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	=?UTF-8?q?Th=C3=A9o=20Lebrun?= <theo.lebrun@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Gregory CLEMENT <gregory.clement@bootlin.com>
+Subject: [PATCH v4 00/22] Add support for the Mobileye EyeQ5 SoC
+Date: Fri,  8 Dec 2023 17:12:16 +0100
+Message-ID: <20231208161249.1827174-1-gregory.clement@bootlin.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: gregory.clement@bootlin.com
 
-Hi Andy,
+Hello,
 
-Am Donnerstag, 7. Dezember 2023, 08:59:06 CET schrieb Andy Yan:
-> From: Andy Yan <andy.yan@rock-chips.com>
-> 
-> This patch sets aims at enable the VOP2 support on rk3588.
-> 
-> Main feature of VOP2 on rk3588:
-> Four video ports:
-> VP0 Max 4096x2160
-> VP1 Max 4096x2160
-> VP2 Max 4096x2160
-> VP3 Max 2048x1080
-> 
-> 4 4K Cluster windows with AFBC/line RGB and AFBC-only YUV support
-> 4 4K Esmart windows with line RGB/YUV support
-> 
-> The current version support all the 8 windows with all the suppported
-> plane format.
-> 
-> And we don't have a upstreamed encoder/connector(HDMI/DP) for rk3588
-> yet, Cristian from collabora is working on adding upstream support for
-> HDMI on rk3588.
-> 
-> My current test(1080P/4KP60) is runing with a HDMI driver pick from
-> downstream bsp kernel.
-> 
-> A branch based on linux-6.7 rc4 containing all the series and
-> HDMI driver(not compatible with mainline rk3568 hdmi) picked
-> from downstream bsp kernel is available [0].
-> 
-> [0]https://github.com/andyshrk/linux/commits/rk3588-vop2-upstream-linux-6.7-rc4-2023-12-07
-> 
-> Changes in v4:
-> - fix the POST_BUF_EMPTY irq when set mode
-> - use full stop at all the description's end.
-> - address Krzysztof's review about dt-binding in v3
-> - keep all VOP2_FEATURE_HAS_xxx macros increase in order.
-> - address Sascha's review about debugfs
-> - Add const for rockchip,rk3588-iommu compatible
+The EyeQ5 SoC from Mobileye is based on the MIPS I6500 architecture
+and features multiple controllers such as the classic UART, I2C, SPI,
+as well as CAN-FD, PCIe, Octal/Quad SPI Flash interface, Gigabit
+Ethernet, MIPI CSI-2, and eMMC 5.1. It also includes a Hardware
+Security Module, Functional Safety Hardware, and MJPEG encoder.
 
-very nice, the error messages on "mode changes" are gone now.
-Display and even combination with panthor still work of my rk3588-board
+One peculiarity of this SoC is that the physical address of the DDDR
+exceeds 32 bits. Given that the architecture is 64 bits, this is not
+an issue, but it requires some changes in how the mips64 is currently
+managed during boot.
 
-Tested-by: Heiko Stuebner <heiko@sntech.de>
+In this forth version there are now minor changes, mainly fixes for
+warning during build reported by build bot or find by myself when
+testing the mips32 build. I also made some modification in the
+/board-eyeq5.config and thanks to the setting of SPARSMEM I don't have
+any more the error message during boot when using low memory at
+0x40000000.
 
+To build and test the kernel, we need to run the following commands:
 
+make 64r6el_defconfig BOARDS=eyeq5
+make vmlinuz.itb
 
+Changelog:
+
+ v3 -> v4:
+
+ - Fix build warning in "MIPS: Get rid of CONFIG_NO_EXCEPT_FILL":
+   check that we are in 64bit mode before using KSEG0 that exist only
+   in this mode.
+
+ - Modify "MIPS: spaces: Define a couple of handy macros" to be
+   buildable in 32bit mode.
+
+ - Use correct format specifier to print address in "MIPS: traps: Give
+   more explanations if ebase doesn't belong to KSEG0"
+
+ - In "MIPS: generic: Add support for Mobileye EyeQ5",remove
+   CONFIG_ZBOOT_LOAD_ADDRESS from board-eyeq5.config, (as well as
+   CONFIG_USE_XKPHYS that does not exist anymore) and add
+   CONFIG_SPARSEMEM_MANUAL to enable SPRASMEM.
+
+v2 -> v3
+
+ - Added more reviewed-by and acked-by tags
+
+ - Fix sorting for cpus entries in
+
+ - Fix indentation issue in Documentation/devicetree/bindings/mips/mobileye.yaml
+
+ v1 -> v2
+
+ - Added reviewed-by and acked-by tags
+
+ - Fix typos reported
+
+ - In patch 15 use 'img' vendor string instead of mti
+
+ - In patch 16 modify licence
+
+ - In patch 17 give more explanations about the block usage.
+
+ - In patch 18, remove _ in node names, don't use anymore
+   CONFIG_BUILTIN_DTB in Makefile, remove macro, modify licence.
+
+ - In patch 19 remove most of the bootargs and only keeps earlycon. I
+   also split the memory in 2 part in the device tree.
+
+ - Integrate the series from Jiaxun Yang
+   https://lore.kernel.org/linux-mips/20231027221106.405666-1-jiaxun.yang@flygoat.com/
+
+  They are patches 2 to 6 and 8 to 12
+
+  Then I added patch 7 to fix the cache issue visible on the Mobileye
+  platform, I also add patch 13 to improve warning message when ebase
+  doesn't belong to KSEG0
+
+Regards,
+
+Gregory
+
+Gregory CLEMENT (13):
+  MIPS: compressed: Use correct instruction for 64 bit code
+  MIPS: spaces: Define a couple of handy macros
+  MIPS: Fix cache issue with mips_cps_core_entry
+  MIPS: traps: Give more explanations if ebase doesn't belong to KSEG0
+  dt-bindings: Add vendor prefix for Mobileye Vision Technologies Ltd.
+  dt-bindings: mips: cpus: Sort the entries
+  dt-bindings: mips: cpu: Add I-Class I6500 Multiprocessor Core
+  dt-bindings: mips: Add bindings for Mobileye SoCs
+  dt-bindings: mfd: syscon: Document EyeQ5 OLB
+  MIPS: mobileye: Add EyeQ5 dtsi
+  MIPS: mobileye: Add EPM5 device tree
+  MIPS: generic: Add support for Mobileye EyeQ5
+  MAINTAINERS: Add entry for Mobileye MIPS SoCs
+
+Jiaxun Yang (9):
+  MIPS: Export higher/highest relocation functions in uasm
+  MIPS: genex: Fix except_vec_vi for kernel in XKPHYS
+  MIPS: Fix set_uncached_handler for ebase in XKPHYS
+  MIPS: Refactor mips_cps_core_entry implementation
+  MIPS: Allow kernel base to be set from Kconfig for all platforms
+  MIPS: traps: Handle CPU with non standard vint offset
+  MIPS: Avoid unnecessary reservation of exception space
+  MIPS: traps: Enhance memblock ebase allocation process
+  MIPS: Get rid of CONFIG_NO_EXCEPT_FILL
+
+ .../devicetree/bindings/mfd/syscon.yaml       |   1 +
+ .../devicetree/bindings/mips/cpus.yaml        |  13 +-
+ .../devicetree/bindings/mips/mobileye.yaml    |  32 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |  12 +
+ arch/mips/Kconfig                             |  26 +-
+ arch/mips/boot/compressed/head.S              |   4 +-
+ arch/mips/boot/dts/Makefile                   |   1 +
+ arch/mips/boot/dts/mobileye/Makefile          |   4 +
+ arch/mips/boot/dts/mobileye/eyeq5-epm5.dts    |  24 ++
+ .../boot/dts/mobileye/eyeq5-fixed-clocks.dtsi | 292 ++++++++++++++++++
+ arch/mips/boot/dts/mobileye/eyeq5.dtsi        | 134 ++++++++
+ arch/mips/configs/generic/board-eyeq5.config  |  41 +++
+ arch/mips/generic/Kconfig                     |  15 +
+ arch/mips/generic/Platform                    |   2 +
+ arch/mips/generic/board-epm5.its.S            |  24 ++
+ arch/mips/include/asm/addrspace.h             |   5 +
+ arch/mips/include/asm/mach-generic/spaces.h   |   2 +
+ arch/mips/include/asm/mips-cm.h               |   1 +
+ arch/mips/include/asm/smp-cps.h               |   4 +-
+ arch/mips/include/asm/traps.h                 |   1 -
+ arch/mips/include/asm/uasm.h                  |   2 +
+ arch/mips/kernel/cps-vec.S                    | 110 +++----
+ arch/mips/kernel/cpu-probe.c                  |   5 -
+ arch/mips/kernel/cpu-r3k-probe.c              |   2 -
+ arch/mips/kernel/genex.S                      |  19 +-
+ arch/mips/kernel/head.S                       |   7 +-
+ arch/mips/kernel/smp-cps.c                    | 171 ++++++++--
+ arch/mips/kernel/traps.c                      |  90 ++++--
+ arch/mips/mm/uasm.c                           |   6 +-
+ 30 files changed, 893 insertions(+), 159 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mips/mobileye.yaml
+ create mode 100644 arch/mips/boot/dts/mobileye/Makefile
+ create mode 100644 arch/mips/boot/dts/mobileye/eyeq5-epm5.dts
+ create mode 100644 arch/mips/boot/dts/mobileye/eyeq5-fixed-clocks.dtsi
+ create mode 100644 arch/mips/boot/dts/mobileye/eyeq5.dtsi
+ create mode 100644 arch/mips/configs/generic/board-eyeq5.config
+ create mode 100644 arch/mips/generic/board-epm5.its.S
+
+-- 
+2.42.0
 
 
