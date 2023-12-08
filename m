@@ -1,126 +1,116 @@
-Return-Path: <devicetree+bounces-22932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-22933-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFD90809888
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 02:19:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 826EC80989D
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 02:25:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CD3728211F
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 01:19:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D6F4281290
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 01:25:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41E5F15B3;
-	Fri,  8 Dec 2023 01:19:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A23E5110A;
+	Fri,  8 Dec 2023 01:25:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="E9thBKFL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CnltOroD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C4B3170C
-	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 17:19:04 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-40c339d2b88so709795e9.3
-        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 17:19:04 -0800 (PST)
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F2CC171E
+	for <devicetree@vger.kernel.org>; Thu,  7 Dec 2023 17:25:23 -0800 (PST)
+Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2c9bd3ec4f6so18369561fa.2
+        for <devicetree@vger.kernel.org>; Thu, 07 Dec 2023 17:25:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1701998342; x=1702603142; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1701998721; x=1702603521; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=NYzwSCPqiLl7k8qbCaz0m1NIvdf+DIxXUY3+wg3ee94=;
-        b=E9thBKFL18i+pJ5L25jNA6tVkGftyHb3+sNN/BHAu5MicLbZH0Xpc1hYWF4o/aXbUX
-         oNlO1TDm3jroN6PodcwQqAeVhHItH2IOFrkGaDzoG1OhRfKZulOtNMsVAbyIoRXwT/Yg
-         7SoCeTZvOMWKhVpLn52ot2it0o3pd9p00BzaRmU3rliZMCPmN+Iq2QAUGnDLLrOWJRq4
-         ie+brBLyJ8i4rHoDqoqzll9+tEhIZ+/O9GHQs6T6dygsIzAVav5cRg2+whSkDr1y1cLM
-         9UwN3VW6hGrigR48VGkM+J2CYQP18eVlfKQEnVrPPQPM3/QtYvM3jb6pJceTNYbQ/ZTn
-         FQRQ==
+        bh=/z8ttjuthA9TvzbZIjtwgrrvCWpxqoAfEEPAXm+j5bk=;
+        b=CnltOroDgJbdxJrIbtpO8VIY3iNY3BRG4niewFN/JOgGGQD45HnB9xOR/LBIiAGqhB
+         kca/A169opJrx4uDR4k4kTuKIbCufI2NnBbGekM8O5bNDvAJz1WI0/b1KTJ9b6ETerqT
+         h4RqMNL0SSlXIJxe3D4h+gGJ9Y2HLqgi9i936SLcr+pCwGJgRfaSLQZwRnsckL3I0mT3
+         xy0GEopU9vfR13JlUIABMWTXECyndINzP948Gcs8iH2joCh8LiBaSTbj6sM5z18+VQic
+         SSLVtNcQiQyZC911vLvnRQWcHvu//kzxptHGvpgR85YEeYtTmPhBm4GNk1eL2s3hnYIj
+         y+rA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701998342; x=1702603142;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1701998721; x=1702603521;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=NYzwSCPqiLl7k8qbCaz0m1NIvdf+DIxXUY3+wg3ee94=;
-        b=vH6mMKUbvKDAg5GSFtBjLAdKIOdiVNXMlRol7lovJD5g28kAUarwVHNOyXkw+4IJvg
-         qLspiu0y5IyIMIYIDnyN2yWy9IcHUoFB6wJ4fzPhwoxmJD5/mWBQhlEejblKTtEXP6c7
-         tw24bugq67HddIVIr8L/drjAl6nKCrpfRzjOeGQTMz+nrvBfF4SmgNB4SgbETJ4GSkok
-         RkeoxQgFZPs7kw2MG6h7CDChHtwwvDtQKoeu43ZjDvkxrKINyC0LbaO+F6BpMnboh7b8
-         miSpi2eW5vCDO7iMHJwHjBwC8tb6TSnRHmpv9+zVcv1tWkP9R1ZygR51lxBK14QgpPc1
-         d05g==
-X-Gm-Message-State: AOJu0YzbJhqjYUjsjNpfw/TG39ygGIlyCPT1U/TRbvzzhe9idhBi9sTZ
-	c/HBIJ4/a/aioSSVpj2nBa+YIyKzSvwh+3DzzEeANw==
-X-Google-Smtp-Source: AGHT+IG+m5ndDrZYwAjGiJo+XbvTuXbn4cv9JA7hIaiio0HiC93zA6LGU2W0vDdt642q9QLDRGH9i6qmYPagNCY64U4=
-X-Received: by 2002:a05:600c:246:b0:40b:5e59:da8d with SMTP id
- 6-20020a05600c024600b0040b5e59da8dmr2133389wmj.160.1701998342457; Thu, 07 Dec
- 2023 17:19:02 -0800 (PST)
+        bh=/z8ttjuthA9TvzbZIjtwgrrvCWpxqoAfEEPAXm+j5bk=;
+        b=Jbja03bDD59Hu1orswtFZ5ONvY0yguMXOvRiIz+4Bgryrp9jkLhc7v0z8Jhno9IXZL
+         +hAcYSG2vgXEGlL78WaBRhxbSrVdObR83mjJiS4IU82ENHDXnNgC2z1M2p+1y8cOdQB+
+         2NCM2+n+2CtXxTudVe1Nbs3a/C4vflxm1jYU9y4/HyCzchWzdmw7QqurX2Dz1n5smjuQ
+         ysFu4vozkH8SnxbyBgIrYYsXiALRDKU41uPhGHmiFhCCISAm7HVsxk6OPb8Os3TTWnjh
+         EeUccJGhGRQGsDEHTw9DVVoZDpEIjHpOW7P27oFIVwgDJSKEKysXbY2KRQNDtfb6oSgD
+         xO8A==
+X-Gm-Message-State: AOJu0Ywgh+V6BjhVcQdtJqUGpExgCPSobE7fos1GDMToaa6GxUqZ6jDQ
+	oZvhEI48ZwtqFcIWBJeyvUovRA==
+X-Google-Smtp-Source: AGHT+IED1aYK3F3bcWEyFFjhG4PnuYCSof6Qej8fBdgpS3Q3VImntL1MaQ3H87zPoqDDxO/1vki0ng==
+X-Received: by 2002:a2e:a407:0:b0:2c9:feda:3923 with SMTP id p7-20020a2ea407000000b002c9feda3923mr1320753ljn.77.1701998721804;
+        Thu, 07 Dec 2023 17:25:21 -0800 (PST)
+Received: from umbar.unikie.fi ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id g26-20020a2ea4ba000000b002c9f58169a8sm88639ljm.120.2023.12.07.17.25.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Dec 2023 17:25:21 -0800 (PST)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Rob Clark <robdclark@gmail.com>,
+	Abhinav Kumar <quic_abhinavk@quicinc.com>,
+	Sean Paul <sean@poorly.run>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kuogee Hsieh <quic_khsieh@quicinc.com>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	freedreno@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH 0/3] arm64: qcom: sm8650: add support for DisplayPort Controller
+Date: Fri,  8 Dec 2023 04:25:19 +0300
+Message-Id: <170199868358.3399536.1110149612486448094.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20231207-topic-sm8650-upstream-dp-v1-0-b762c06965bb@linaro.org>
+References: <20231207-topic-sm8650-upstream-dp-v1-0-b762c06965bb@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231111014933.1934562-1-davidai@google.com> <20231111014933.1934562-3-davidai@google.com>
- <20231115062932.vz2tyg6wgux5lx6t@vireshk-i7>
-In-Reply-To: <20231115062932.vz2tyg6wgux5lx6t@vireshk-i7>
-From: David Dai <davidai@google.com>
-Date: Fri, 8 Dec 2023 10:18:51 +0900
-Message-ID: <CABN1KCKfCWB6fVAuMSN9AdJOe-zueNMPFUdDnKLcq-uetz2ZFQ@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] cpufreq: add virtual-cpufreq driver
-To: Viresh Kumar <viresh.kumar@linaro.org>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Sudeep Holla <sudeep.holla@arm.com>, Saravana Kannan <saravanak@google.com>, 
-	Quentin Perret <qperret@google.com>, Masami Hiramatsu <mhiramat@google.com>, Will Deacon <will@kernel.org>, 
-	Peter Zijlstra <peterz@infradead.org>, Vincent Guittot <vincent.guittot@linaro.org>, 
-	Marc Zyngier <maz@kernel.org>, Oliver Upton <oliver.upton@linux.dev>, 
-	Dietmar Eggemann <dietmar.eggemann@arm.com>, Pavan Kondeti <quic_pkondeti@quicinc.com>, 
-	Gupta Pankaj <pankaj.gupta@amd.com>, Mel Gorman <mgorman@suse.de>, kernel-team@android.com, 
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Hi Viresh,
 
-Apologies for the late reply,
+On Thu, 07 Dec 2023 17:37:16 +0100, Neil Armstrong wrote:
+> This adds support for the DisplayPort Controller found in the SM8650
+> SoC, but it requires a specific compatible because the registers offsets
+> has changed since SM8550.
+> 
+> This also updates the SM8650 MDSS bindings to allow a displayport subnode,
+> and adds the necessary changes in the SM8650 DTSI to declare the DisplayPort
+> Controller.
+> 
+> [...]
 
-On Wed, Nov 15, 2023 at 3:29=E2=80=AFPM Viresh Kumar <viresh.kumar@linaro.o=
-rg> wrote:
->
-> On 10-11-23, 17:49, David Dai wrote:
-> > diff --git a/drivers/cpufreq/virtual-cpufreq.c b/drivers/cpufreq/virtua=
-l-cpufreq.c
-> > +static unsigned int virt_cpufreq_set_perf(struct cpufreq_policy *polic=
-y)
-> > +{
-> > +     writel_relaxed(policy->cached_target_freq,
->
-> Drivers shouldn't be using the cached_target_freq directly. Use the targe=
-t freq
-> or index passed from cpufreq core.
+Applied, thanks!
 
-We were trying to avoid rounding to frequency table entries to provide
-more accurate frequency requests. However, we didn't find any
-significant power or performance regressions using the frequencies
-from the table, so I'll send another patch series using your
-suggestion.
+[1/3] dt-bindings: display: msm: dp-controller: document SM8650 compatible
+      https://gitlab.freedesktop.org/lumag/msm/-/commit/157fd368561e
+[2/3] drm/msm/dp: Add DisplayPort controller for SM8650
+      https://gitlab.freedesktop.org/lumag/msm/-/commit/1b2d98bdd7b7
 
->
-> > +static int virt_cpufreq_cpu_exit(struct cpufreq_policy *policy)
-> > +{
-> > +     topology_clear_scale_freq_source(SCALE_FREQ_SOURCE_VIRT, policy->=
-related_cpus);
-> > +     kfree(policy->freq_table);
-> > +     policy->freq_table =3D NULL;
->
-> No need of doing this. Also the order of above two calls is wrong anyway.
-
-Can you clarify this point a bit more? Are you suggesting to just
-remove setting policy->freq_table to NULL and swap the ordering
-freeing the freq_table vs clearing the topology source? I can
-alternatively use dev_pm_opp_free_cpufreq_table to mirror the init.
-
-Thanks,
-David
-
->
-> --
-> viresh
+Best regards,
+-- 
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
