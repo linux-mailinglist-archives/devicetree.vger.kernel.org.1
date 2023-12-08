@@ -1,173 +1,94 @@
-Return-Path: <devicetree+bounces-23228-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23229-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A3DD80A80B
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 17:01:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3615C80A823
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 17:05:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1A3341F21061
-	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 16:01:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E04FE1F21023
+	for <lists+devicetree@lfdr.de>; Fri,  8 Dec 2023 16:05:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC25A347DF;
-	Fri,  8 Dec 2023 16:01:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3774F37177;
+	Fri,  8 Dec 2023 16:05:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="F6b04T2c";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="/Egalgir"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="PEss/u1X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D070B1732;
-	Fri,  8 Dec 2023 08:01:38 -0800 (PST)
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1702051297;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=qvRAzOC1s8CTEnsQtk9rLB7j6MoLVbJs1vS74413VOI=;
-	b=F6b04T2civNLQw/P6s4AjzqPlLxejEuPzBLrsl+3EDPegBJH2cSw9MQ1smQ5Sw29sgPJQu
-	ITzGSWkzHF9HDteBgxCvuKiCROwKwUayT0g5XTT0TV2meAB/hQMDJfPOy5+E6qhvuVdcxz
-	F5h4rv9IjyTf01PH68AhJNVMolCVgX+T9+lF4iqo2ogmyFISaR7ZE58c/FEgr0Ldvm88wA
-	fuJ03avfwq9fqVlsu1VqdbvDFc5IfzeriRwuH5YnME0j4+rgIUvo8xzAw6YYf6aCuz5A6R
-	svKmtinn9ugY0gdh0PrRE0i22zRIx+ijyF9odKxUwrPUGDVK2RqBrnq/aSrTlg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1702051297;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=qvRAzOC1s8CTEnsQtk9rLB7j6MoLVbJs1vS74413VOI=;
-	b=/EgalgirjNm9ep45ZEQnecmn1UAJ6YqdDBfC+cG20lSeVMQLVO8XCGc5FYnuScjwlSzGAe
-	kBHD3v0GQNt+fqCQ==
-To: Yu Chien Peter Lin <peterlin@andestech.com>, acme@kernel.org,
- adrian.hunter@intel.com, ajones@ventanamicro.com,
- alexander.shishkin@linux.intel.com, andre.przywara@arm.com,
- anup@brainfault.org, aou@eecs.berkeley.edu, atishp@atishpatra.org,
- conor+dt@kernel.org, conor.dooley@microchip.com, conor@kernel.org,
- devicetree@vger.kernel.org, dminus@andestech.com, evan@rivosinc.com,
- geert+renesas@glider.be, guoren@kernel.org, heiko@sntech.de,
- irogers@google.com, jernej.skrabec@gmail.com, jolsa@kernel.org,
- jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-perf-users@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev,
- locus84@andestech.com, magnus.damm@gmail.com, mark.rutland@arm.com,
- mingo@redhat.com, n.shubin@yadro.com, namhyung@kernel.org,
- palmer@dabbelt.com, paul.walmsley@sifive.com, peterlin@andestech.com,
- peterz@infradead.org, prabhakar.mahadev-lad.rj@bp.renesas.com,
- rdunlap@infradead.org, robh+dt@kernel.org, samuel@sholland.org,
- sunilvl@ventanamicro.com, tim609@andestech.com, uwu@icenowy.me,
- wens@csie.org, will@kernel.org, ycliang@andestech.com,
- inochiama@outlook.com
-Subject: Re: [PATCH v4 03/13] irqchip/riscv-intc: Introduce Andes hart-level
- interrupt controller
-In-Reply-To: <20231122121235.827122-4-peterlin@andestech.com>
-References: <20231122121235.827122-1-peterlin@andestech.com>
- <20231122121235.827122-4-peterlin@andestech.com>
-Date: Fri, 08 Dec 2023 17:01:36 +0100
-Message-ID: <87y1e4r8db.ffs@tglx>
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0773F198D
+	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 08:05:37 -0800 (PST)
+Received: from mail-lj1-f197.google.com (mail-lj1-f197.google.com [209.85.208.197])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id A172B3F79D
+	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 16:05:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1702051534;
+	bh=NPjAizr1MOai52nap908c7Q+sjbuL1SW7438n8FuRps=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=PEss/u1XOos6DqZ95ESCvKU5ctCEC0VDifWEvOeAmw6IrLgtM8d2jog04lrCdDbzl
+	 MN8Qr95NByVNonE4/4JcLiYhBe4mUlgRh6P5/KVdststG1XTowL81ePnwID3JzGCH0
+	 GT5fmoBE6g+1h8Rdvt+3T09qtxMI7JvdfChQvlzxBsjlbXHm/gWm/vX6iwI067nk+o
+	 fSmSxYDgtXm/VaGeXdcz9RL1c4zrhHjW78nUsP7rh3O4+pmzA2y5Af46X+ZjouSOMP
+	 ScXN9ble6L5zzb0OTVUancjr/CwlXu0ieloXAN2P7rt7n0L0P4qCOjP16Hbosrm3x/
+	 LON/cByiQu4VA==
+Received: by mail-lj1-f197.google.com with SMTP id 38308e7fff4ca-2ca0187da0bso14287611fa.2
+        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 08:05:34 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702051533; x=1702656333;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NPjAizr1MOai52nap908c7Q+sjbuL1SW7438n8FuRps=;
+        b=uNXpOmH1fjcs4TWouyiaNd1+D9Ezov16rGRDsdzbbb64GpdejAJ8vQy70gKUBZvIk8
+         6XwJe0MTfnir8y2M6uyh+1kv/8AgUpelPCLW+asrdrcpBdUf9rfwwPw3t/Vf2315SEQu
+         G9IE8JKAGHNNWI/mfvcv/J+lc6Fgaf89sueetZV1rMIZqyf7Kqt7loHY48ZUxaSKMb8D
+         d78h6lFAoLK3NvzP+fuT0bpY39bNkjwYB0sF+gytu2bt67Y50zCWmuaU35eeIj7vhAjF
+         grG3AnFJgr5MCHudxWG26zQeJP8pxJArFmAijQPvbs6jj0lY3MVzQV2xu2YiIuJoYf7b
+         cflQ==
+X-Gm-Message-State: AOJu0YwI4Bdf6wK1diR2cvB6bzcYgSnxGTH7ndfNsXbM2foBMht3ritw
+	q/W9LzCddccas7X/8uvOt6IpwU8LrJBsUun3sLyXsa/rlM9kV7M58479ChH/UrbzEm2e57f29I8
+	6uvj7PE9aFRrVw4CtB/dIcjoQqkjyq0N7TwFyx+4mp3YhbME7kkdYsb0=
+X-Received: by 2002:a05:6512:4894:b0:50b:ef17:5136 with SMTP id eq20-20020a056512489400b0050bef175136mr42283lfb.154.1702051533066;
+        Fri, 08 Dec 2023 08:05:33 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGgfEA4LBbLEwJ04GKNCXCYVhgqscCJbjoiVfiXJNCGNQMCBQy0BVcPeUSngDtE9hH0oJFzO52hRcf04wYtCO4=
+X-Received: by 2002:a05:6512:4894:b0:50b:ef17:5136 with SMTP id
+ eq20-20020a056512489400b0050bef175136mr42276lfb.154.1702051532771; Fri, 08
+ Dec 2023 08:05:32 -0800 (PST)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 8 Dec 2023 08:05:31 -0800
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <20231201121410.95298-7-jeeheng.sia@starfivetech.com>
+References: <20231201121410.95298-1-jeeheng.sia@starfivetech.com> <20231201121410.95298-7-jeeheng.sia@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain
+Mime-Version: 1.0
+Date: Fri, 8 Dec 2023 08:05:31 -0800
+Message-ID: <CAJM55Z831ucY4QqPTR_0zJVB05UUT4W-3M0CGzvtyPo=AMD=Vw@mail.gmail.com>
+Subject: Re: [PATCH v3 6/6] riscv: dts: starfive: Add initial StarFive JH8100
+ device tree
+To: Sia Jee Heng <jeeheng.sia@starfivetech.com>, kernel@esmil.dk, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, krzk@kernel.org, conor+dt@kernel.org, 
+	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
+	daniel.lezcano@linaro.org, tglx@linutronix.de, conor@kernel.org, 
+	anup@brainfault.org, gregkh@linuxfoundation.org, jirislaby@kernel.org, 
+	michal.simek@amd.com, michael.zhu@starfivetech.com, drew@beagleboard.org
+Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, leyfoon.tan@starfivetech.com
+Content-Type: text/plain; charset="UTF-8"
 
-On Wed, Nov 22 2023 at 20:12, Yu Chien Peter Lin wrote:
-> To share the riscv_intc_domain_map() with the generic RISC-V INTC and
-> ACPI, we add a chip parameter to riscv_intc_init_common(), so it can be
+Sia Jee Heng wrote:
+> Add initial device tree for the StarFive JH8100 RISC-V SoC.
+>
+> Signed-off-by: Sia Jee Heng <jeeheng.sia@starfivetech.com>
+> Reviewed-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
 
-s/we//
+Looks good to me, thanks.
 
-See: Documentation/process/
-
-> passed to the irq_domain_set_info() as private data.
-> diff --git a/drivers/irqchip/irq-riscv-intc.c b/drivers/irqchip/irq-riscv-intc.c
-> index 2fdd40f2a791..30f0036c8978 100644
-> --- a/drivers/irqchip/irq-riscv-intc.c
-> +++ b/drivers/irqchip/irq-riscv-intc.c
-> @@ -17,6 +17,7 @@
->  #include <linux/module.h>
->  #include <linux/of.h>
->  #include <linux/smp.h>
-> +#include <linux/soc/andes/irq.h>
->  
->  static struct irq_domain *intc_domain;
->  
-> @@ -46,6 +47,31 @@ static void riscv_intc_irq_unmask(struct irq_data *d)
->  	csr_set(CSR_IE, BIT(d->hwirq));
->  }
->  
-> +static void andes_intc_irq_mask(struct irq_data *d)
-> +{
-> +	/*
-> +	 * Andes specific S-mode local interrupt causes (hwirq)
-> +	 * are defined as (256 + n) and controlled by n-th bit
-> +	 * of SLIE.
-> +	 */
-> +	unsigned int mask = BIT(d->hwirq % BITS_PER_LONG);
-
-How is this supposed to be correct with BITS_PER_LONG == 64?
-
-> +
-> +	if (d->hwirq < ANDES_SLI_CAUSE_BASE)
-> +		csr_clear(CSR_IE, mask);
-> +	else
-> +		csr_clear(ANDES_CSR_SLIE, mask);
-> +}
-> +
-> +static void andes_intc_irq_unmask(struct irq_data *d)
-> +{
-> +	unsigned int mask = BIT(d->hwirq % BITS_PER_LONG);
-
-Ditto.
-
-> +	if (d->hwirq < ANDES_SLI_CAUSE_BASE)
-> +		csr_set(CSR_IE, mask);
-> +	else
-> +		csr_set(ANDES_CSR_SLIE, mask);
-> +}
-
->  static int riscv_intc_domain_map(struct irq_domain *d, unsigned int irq,
->  				 irq_hw_number_t hwirq)
->  {
-> +	struct irq_chip *chip = d->host_data;
-> +
->  	irq_set_percpu_devid(irq);
-> -	irq_domain_set_info(d, irq, hwirq, &riscv_intc_chip, d->host_data,
-> +	irq_domain_set_info(d, irq, hwirq, chip, d->host_data,
-
-So this sets 'chip_data' to the chip itself. What's the point? Just set
-it to NULL as the chip obviously does not need chip_data at all.
-
->  			    handle_percpu_devid_irq, NULL, NULL);
->  
->  	return 0;
-> @@ -112,11 +147,12 @@ static struct fwnode_handle *riscv_intc_hwnode(void)
->  	return intc_domain->fwnode;
->  }
->  
-> -static int __init riscv_intc_init_common(struct fwnode_handle *fn)
-> +static int __init riscv_intc_init_common(struct fwnode_handle *fn,
-> +					 struct irq_chip *chip)
->  {
->  	int rc;
->  
-> -	intc_domain = irq_domain_create_tree(fn, &riscv_intc_domain_ops, NULL);
-> +	intc_domain = irq_domain_create_tree(fn, &riscv_intc_domain_ops, chip);
->  	if (!intc_domain) {
->  		pr_err("unable to add IRQ domain\n");
->  		return -ENXIO;
-> @@ -138,6 +174,7 @@ static int __init riscv_intc_init(struct device_node *node,
->  {
->  	int rc;
->  	unsigned long hartid;
-> +	struct irq_chip *chip = &riscv_intc_chip;
-
-https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#variable-declarations
-
-Thanks
-
-        tglx
+Acked-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
 
