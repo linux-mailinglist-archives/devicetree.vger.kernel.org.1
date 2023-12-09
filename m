@@ -1,176 +1,292 @@
-Return-Path: <devicetree+bounces-23431-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23432-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 609FC80B442
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 13:39:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD0C980B448
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 13:44:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 053651F21144
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 12:39:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2150D280E98
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 12:44:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A610114283;
-	Sat,  9 Dec 2023 12:39:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E61A614283;
+	Sat,  9 Dec 2023 12:44:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FBIGod2h"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UgWgGt0t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 850F810C7;
-	Sat,  9 Dec 2023 04:39:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1702125561; x=1733661561;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=emTJaGRWW8/RVMnzJWgGpG0OkXjrJdQ7ijyM00lmQPA=;
-  b=FBIGod2hnJKpaWF15+jHxxPYCcuV7PjWWhBgx5vDA9IWSJKnFb7i8795
-   c6gfzjLstQ1MUtGZafGZG/xOu89piJmQCtm5a6+/Oz21QRzvPcDKsN4uI
-   LPepA4z6XBIc0cpPWrd9Eeu+Icix8O8vCKxbldC5ISugWFOn0Qn9T8naR
-   GBynf9Vj3QVepx3X4h7mZWEcq3XSaHpwKvhDwzErvcbYh2q0C9MwHR9w8
-   qGC3zf/c4UewF94Zu6JJuUUOs4DRXN0uQPr/x9S9gizcLb8G9hM5o5dUc
-   eRCBErs8omEXzfGbjo1WfMr85xoPQCtwR5hG/+6FNZe/amA4uFDSp5iwn
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10918"; a="397301440"
-X-IronPort-AV: E=Sophos;i="6.04,263,1695711600"; 
-   d="scan'208";a="397301440"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Dec 2023 04:39:21 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10918"; a="945698958"
-X-IronPort-AV: E=Sophos;i="6.04,263,1695711600"; 
-   d="scan'208";a="945698958"
-Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
-  by orsmga005.jf.intel.com with ESMTP; 09 Dec 2023 04:39:17 -0800
-Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rBwbz-000FLx-05;
-	Sat, 09 Dec 2023 12:39:15 +0000
-Date: Sat, 9 Dec 2023 20:38:38 +0800
-From: kernel test robot <lkp@intel.com>
-To: Christian Marangi <ansuelsmth@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA29AA6
+	for <devicetree@vger.kernel.org>; Sat,  9 Dec 2023 04:44:07 -0800 (PST)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-a1ec87a7631so266016766b.0
+        for <devicetree@vger.kernel.org>; Sat, 09 Dec 2023 04:44:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702125846; x=1702730646; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=QlW1QeOythGiXV9v0OHR4FjhcGgbYTUzhlL3KytwSuw=;
+        b=UgWgGt0tMy0Mg9MZZeCB9MlroGs0z6k1y8mRC99/cjw7cc1H3IsHydznHOAHfZpYog
+         z8dkHk/a9g6zrRHHdTAP3cXcF40pd41A7qHVf6q7ejehIauSmHEz4busFZRS+YVP/sOi
+         T+yfFpwif9xnEuzYPlfsFZ/nV9LXMgh4+M5WS5B43yrCQNENv8YSfW7OvzltE5UJR5Xy
+         WomeXGzxhGXU4j4VAoI6y+ZZR7o0UbLwNdiZYhJZMA4hwp2ItMTdCGd0qbm+fmZJTnBM
+         uNJ67rjdEUxFoKsYEqO8Vg/OkmKLEsaNBeSlnVqDweb7qRrpa8CcJIFjdPaz8DjVvf7s
+         eo8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702125846; x=1702730646;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QlW1QeOythGiXV9v0OHR4FjhcGgbYTUzhlL3KytwSuw=;
+        b=GEy6g7cTbSfpgR/+W3HHHVngnygaX1Py0Qpk9au0HOrbYqG78u3/TT6k3YcPCYvyv8
+         Of+/BxwNt7DPTZVBi/7irwqJALHhTA9fEHqna3hetA1aWc79KlVaKWbs9x2Zi8qo9FUd
+         0+GipcBtSEJlpJWAD8Z/aBPY/0Afss0e2hLRWoht+zP32TWs0ERUTvYOLr+CJRg9Ns2+
+         0MUSvbY9DM3KQAvoNIRO8R1gV3CT7uq5nJSbPNp6862iC/ECo/m1aj7ezp3MlJ7V2C9a
+         uKSnVpXdJ+8o8kgK9Mrb1/sjnlWlrOtBtKpKdw6r2VQT5hNsyDH2imRPUbNBU1gc6MGd
+         rYtA==
+X-Gm-Message-State: AOJu0Yx0V5pRbIQBi5FyeRpet8hqPFDyIh21WzqVh/etp+8D+PuQv9bo
+	t6RPJowZp4stPBHU8W2mqyzmXw==
+X-Google-Smtp-Source: AGHT+IFPrs4abrIuCx7HGhbyV988M7akIWQqbGoMdmPgPd+qDRTQsV0FuJWdwJ7Orr4nunEpO15dnA==
+X-Received: by 2002:a17:906:1812:b0:a0c:46b4:a705 with SMTP id v18-20020a170906181200b00a0c46b4a705mr814349eje.56.1702125845885;
+        Sat, 09 Dec 2023 04:44:05 -0800 (PST)
+Received: from krzk-bin.. ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id ts7-20020a170907c5c700b00a1b65cd1957sm2191829ejc.107.2023.12.09.04.44.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 09 Dec 2023 04:44:05 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org
-Subject: Re: [net-next PATCH 2/2] net: phy: at803x: add LED support for
- qca808x
-Message-ID: <202312092051.FcBofskz-lkp@intel.com>
-References: <20231209014828.28194-2-ansuelsmth@gmail.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] arm64: dts: amlogic: drop redundant status=okay
+Date: Sat,  9 Dec 2023 13:44:01 +0100
+Message-Id: <20231209124401.93814-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231209014828.28194-2-ansuelsmth@gmail.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Christian,
+New device nodes are enabled by default, so no need for status=okay.
 
-kernel test robot noticed the following build errors:
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-[auto build test ERROR on net-next/main]
+---
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Christian-Marangi/net-phy-at803x-add-LED-support-for-qca808x/20231209-095014
-base:   net-next/main
-patch link:    https://lore.kernel.org/r/20231209014828.28194-2-ansuelsmth%40gmail.com
-patch subject: [net-next PATCH 2/2] net: phy: at803x: add LED support for qca808x
-config: arm-randconfig-003-20231209 (https://download.01.org/0day-ci/archive/20231209/202312092051.FcBofskz-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231209/202312092051.FcBofskz-lkp@intel.com/reproduce)
+Tested by comparing decompiled DTBs.
+---
+ arch/arm64/boot/dts/amlogic/meson-axg-s400.dts         | 5 -----
+ arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts      | 1 -
+ arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts     | 1 -
+ arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts      | 1 -
+ arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts   | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi    | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts     | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts        | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi   | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts    | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts     | 1 -
+ arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts       | 1 -
+ 13 files changed, 17 deletions(-)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202312092051.FcBofskz-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from include/linux/bitops.h:68,
-                    from include/linux/log2.h:12,
-                    from include/asm-generic/div64.h:55,
-                    from arch/arm/include/asm/div64.h:107,
-                    from include/linux/math.h:6,
-                    from include/linux/math64.h:6,
-                    from include/linux/time64.h:5,
-                    from include/linux/restart_block.h:10,
-                    from include/linux/thread_info.h:14,
-                    from include/asm-generic/preempt.h:5,
-                    from ./arch/arm/include/generated/asm/preempt.h:1,
-                    from include/linux/preempt.h:79,
-                    from include/linux/spinlock.h:56,
-                    from include/linux/phy.h:15,
-                    from drivers/net/phy/at803x.c:10:
-   drivers/net/phy/at803x.c: In function 'qca808x_led_hw_control_get':
->> drivers/net/phy/at803x.c:2270:25: error: 'TRIGGER_NETDEV_LINK_2500' undeclared (first use in this function); did you mean 'TRIGGER_NETDEV_LINK_1000'?
-    2270 |                 set_bit(TRIGGER_NETDEV_LINK_2500, rules);
-         |                         ^~~~~~~~~~~~~~~~~~~~~~~~
-   arch/arm/include/asm/bitops.h:183:31: note: in definition of macro 'ATOMIC_BITOP'
-     183 |         (__builtin_constant_p(nr) ? ____atomic_##name(nr, p) : _##name(nr,p))
-         |                               ^~
-   drivers/net/phy/at803x.c:2270:17: note: in expansion of macro 'set_bit'
-    2270 |                 set_bit(TRIGGER_NETDEV_LINK_2500, rules);
-         |                 ^~~~~~~
-   drivers/net/phy/at803x.c:2270:25: note: each undeclared identifier is reported only once for each function it appears in
-    2270 |                 set_bit(TRIGGER_NETDEV_LINK_2500, rules);
-         |                         ^~~~~~~~~~~~~~~~~~~~~~~~
-   arch/arm/include/asm/bitops.h:183:31: note: in definition of macro 'ATOMIC_BITOP'
-     183 |         (__builtin_constant_p(nr) ? ____atomic_##name(nr, p) : _##name(nr,p))
-         |                               ^~
-   drivers/net/phy/at803x.c:2270:17: note: in expansion of macro 'set_bit'
-    2270 |                 set_bit(TRIGGER_NETDEV_LINK_2500, rules);
-         |                 ^~~~~~~
-
-
-vim +2270 drivers/net/phy/at803x.c
-
-  2242	
-  2243	static int qca808x_led_hw_control_get(struct phy_device *phydev, u8 index,
-  2244					      unsigned long *rules)
-  2245	{
-  2246		u16 reg;
-  2247		int val;
-  2248	
-  2249		if (index > 2)
-  2250			return -EINVAL;
-  2251	
-  2252		/* Check if we have hw control enabled */
-  2253		if (qca808x_led_hw_control_status(phydev, index))
-  2254			return -EINVAL;
-  2255	
-  2256		reg = QCA808X_MMD7_LED_CTRL(index);
-  2257	
-  2258		val = phy_read_mmd(phydev, MDIO_MMD_AN, reg);
-  2259		if (val & QCA808X_LED_TX_BLINK)
-  2260			set_bit(TRIGGER_NETDEV_TX, rules);
-  2261		if (val & QCA808X_LED_RX_BLINK)
-  2262			set_bit(TRIGGER_NETDEV_RX, rules);
-  2263		if (val & QCA808X_LED_SPEED10_ON)
-  2264			set_bit(TRIGGER_NETDEV_LINK_10, rules);
-  2265		if (val & QCA808X_LED_SPEED100_ON)
-  2266			set_bit(TRIGGER_NETDEV_LINK_100, rules);
-  2267		if (val & QCA808X_LED_SPEED1000_ON)
-  2268			set_bit(TRIGGER_NETDEV_LINK_1000, rules);
-  2269		if (val & QCA808X_LED_SPEED2500_ON)
-> 2270			set_bit(TRIGGER_NETDEV_LINK_2500, rules);
-  2271		if (val & QCA808X_LED_HALF_DUPLEX_ON)
-  2272			set_bit(TRIGGER_NETDEV_HALF_DUPLEX, rules);
-  2273		if (val & QCA808X_LED_FULL_DUPLEX_ON)
-  2274			set_bit(TRIGGER_NETDEV_FULL_DUPLEX, rules);
-  2275	
-  2276		return 0;
-  2277	}
-  2278	
-
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+index df16eead2c80..c8905663bc75 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+@@ -66,7 +66,6 @@ linein: audio-codec-0 {
+ 		VDDA-supply = <&vcc_3v3>;
+ 		VDDP-supply = <&vcc_3v3>;
+ 		VDDD-supply = <&vcc_3v3>;
+-		status = "okay";
+ 		sound-name-prefix = "Linein";
+ 	};
+ 
+@@ -75,14 +74,12 @@ lineout: audio-codec-1 {
+ 		compatible = "everest,es7154";
+ 		VDD-supply = <&vcc_3v3>;
+ 		PVDD-supply = <&vcc_5v>;
+-		status = "okay";
+ 		sound-name-prefix = "Lineout";
+ 	};
+ 
+ 	spdif_dit: audio-codec-2 {
+ 		#sound-dai-cells = <0>;
+ 		compatible = "linux,spdif-dit";
+-		status = "okay";
+ 		sound-name-prefix = "DIT";
+ 	};
+ 
+@@ -91,14 +88,12 @@ dmics: audio-codec-3 {
+ 		compatible = "dmic-codec";
+ 		num-channels = <7>;
+ 		wakeup-delay-ms = <50>;
+-		status = "okay";
+ 		sound-name-prefix = "MIC";
+ 	};
+ 
+ 	spdif_dir: audio-codec-4 {
+ 		#sound-dai-cells = <0>;
+ 		compatible = "linux,spdif-dir";
+-		status = "okay";
+ 		sound-name-prefix = "DIR";
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
+index 0ad0c2b7dfef..4c4550dd4711 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
+@@ -45,7 +45,6 @@ dmics: audio-codec-1 {
+ 		compatible = "dmic-codec";
+ 		num-channels = <2>;
+ 		wakeup-delay-ms = <50>;
+-		status = "okay";
+ 		sound-name-prefix = "MIC";
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
+index 4969a76460fa..9b55982b6a6b 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
+@@ -22,7 +22,6 @@ aliases {
+ 	spdif_dit: audio-codec-1 {
+ 		#sound-dai-cells = <0>;
+ 		compatible = "linux,spdif-dit";
+-		status = "okay";
+ 		sound-name-prefix = "DIT";
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts
+index 8fc2e143cb54..0da386cabe1a 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts
+@@ -22,7 +22,6 @@ aliases {
+ 	spdif_dit: audio-codec-1 {
+ 		#sound-dai-cells = <0>;
+ 		compatible = "linux,spdif-dit";
+-		status = "okay";
+ 		sound-name-prefix = "DIT";
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts
+index ce548b373296..6396f190d703 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts
+@@ -17,7 +17,6 @@ / {
+ 	spdif_dit: audio-codec-1 {
+ 		#sound-dai-cells = <0>;
+ 		compatible = "linux,spdif-dit";
+-		status = "okay";
+ 		sound-name-prefix = "DIT";
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
+index 18f7b730289e..e59c3c92b1e7 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
+@@ -26,7 +26,6 @@ dio2133: analog-amplifier {
+ 	spdif_dit: audio-codec-0 {
+ 		#sound-dai-cells = <0>;
+ 		compatible = "linux,spdif-dit";
+-		status = "okay";
+ 		sound-name-prefix = "DIT";
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts
+index e238f1f10124..f28452b9f00f 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts
+@@ -18,7 +18,6 @@ / {
+ 	spdif_dit: audio-codec-0 {
+ 		#sound-dai-cells = <0>;
+ 		compatible = "linux,spdif-dit";
+-		status = "okay";
+ 		sound-name-prefix = "DIT";
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts
+index 292c718ee19c..591455c50e88 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts
+@@ -18,7 +18,6 @@ / {
+ 	spdif_dit: audio-codec-0 {
+ 		#sound-dai-cells = <0>;
+ 		compatible = "linux,spdif-dit";
+-		status = "okay";
+ 		sound-name-prefix = "DIT";
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
+index e8303089bff6..74df32534231 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
+@@ -21,7 +21,6 @@ chosen {
+ 	spdif_dit: audio-codec-0 {
+ 		#sound-dai-cells = <0>;
+ 		compatible = "linux,spdif-dit";
+-		status = "okay";
+ 		sound-name-prefix = "DIT";
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts
+index e1b74b174915..376760d86766 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts
+@@ -17,7 +17,6 @@ / {
+ 	spdif_dit: audio-codec-0 {
+ 		#sound-dai-cells = <0>;
+ 		compatible = "linux,spdif-dit";
+-		status = "okay";
+ 		sound-name-prefix = "DIT";
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
+index 7d525bdb0e06..ad2dd4ad0a31 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
+@@ -28,7 +28,6 @@ chosen {
+ 	spdif_dit: audio-codec-0 {
+ 		#sound-dai-cells = <0>;
+ 		compatible = "linux,spdif-dit";
+-		status = "okay";
+ 		sound-name-prefix = "DIT";
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
+index 50d49aec41bd..d05dde8da5c5 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
+@@ -37,7 +37,6 @@ memory@0 {
+ 	spdif_dit: audio-codec-0 {
+ 		#sound-dai-cells = <0>;
+ 		compatible = "linux,spdif-dit";
+-		status = "okay";
+ 		sound-name-prefix = "DIT";
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
+index 095579c55f18..109932068dbe 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
+@@ -32,7 +32,6 @@ dmics: audio-codec-1 {
+ 		compatible = "dmic-codec";
+ 		num-channels = <2>;
+ 		wakeup-delay-ms = <50>;
+-		status = "okay";
+ 		sound-name-prefix = "MIC";
+ 	};
+ 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
 
