@@ -1,157 +1,127 @@
-Return-Path: <devicetree+bounces-23388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23389-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86ED880B257
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 07:22:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA60080B25E
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 07:37:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EDDDFB20B6F
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 06:22:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2413D2810F1
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 06:37:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3527F185C;
-	Sat,  9 Dec 2023 06:22:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 426281C03;
+	Sat,  9 Dec 2023 06:37:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="r1XnpDZv"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="yoU5Szgn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1807110F1
-	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 22:22:16 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-40c25973988so29992825e9.2
-        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 22:22:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702102935; x=1702707735; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=qUfLyjWdTxwgSWGMLeNKXLU9SpqRs5Ux+VZkSWWMlxc=;
-        b=r1XnpDZvR5BbJSkXog1a6oa+ELl0zmkSX+fqAPsGYyX3yOSTTrL0/ZW0QT64k3uaGR
-         8yw2Xdfyk18Jlxt7wPTDefIbFvnfW0Id3pSyLRTno5aK1F4s3dXV9wb6Xt4bgjRUG9Fs
-         ESjI5dHX0XFb6gqndmFKyz97tg97Biu851IVNb7Gbxj8WPXkC0HDW1BvvcvTuSfSSzC9
-         VtGh/Yi1RXoJpdqqLjrsBh3D+sqZ+8bf1Dupei92CnUnmrjOBY0DYCCaD4lBQt1EPoI9
-         3JphgjXQRlDMfOCbqrfM0pgtf/NP3vDgf1ARNePBQi6IaahFdjNq5c3K0EQFBGlfdgoD
-         LJyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702102935; x=1702707735;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qUfLyjWdTxwgSWGMLeNKXLU9SpqRs5Ux+VZkSWWMlxc=;
-        b=LaSDBhAQ+JvYU2zZGurjG4xa9qleXx/XpFd4+VVl+jtT96OOKIzbwZ4bCruZntIk2k
-         F4aUBS0d45u4q77LfLl4d6CAYulJAVNMy36Ue7nS2qbapJrrhNtAMAInpvSUHPly6qXa
-         1gcylxT8/2tR1IiMxBQuZH+6qJYrx8A3oU8SamaYlPvddAfQTlk63tTw/ol1LV23Miho
-         YGmk9HsnP9qgjqTS4nGp6IDlziRwcexeU0VcyKcS2D2UHDeD6BFTdkr5IxQwYZx2+Vne
-         vOZyHMUQR1+VZVo9NH8/KRAxF2nY5mrUG8HAXr8z/mMS+JGnVk0es3+Vq6kRVJ+rQcEu
-         DnvQ==
-X-Gm-Message-State: AOJu0YxcV7fzx7LR2x5r3XfpwOLZU29MNGhaSQSugyN9ddRmDa+nYED1
-	TgPT6/W6N/tZ53SPHdlb9uppNg==
-X-Google-Smtp-Source: AGHT+IFFrBy7iaKn0lxful6M0lWyJC8FTunVIKaO+dmv+Xj2upv4u13p3SvmzsaKkvkRJSjMMShrZA==
-X-Received: by 2002:a05:600c:2154:b0:40c:3314:5be6 with SMTP id v20-20020a05600c215400b0040c33145be6mr655398wml.106.1702102934172;
-        Fri, 08 Dec 2023 22:22:14 -0800 (PST)
-Received: from localhost ([102.36.222.112])
-        by smtp.gmail.com with ESMTPSA id l15-20020a05600c1d0f00b003feae747ff2sm7394329wms.35.2023.12.08.22.22.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Dec 2023 22:22:13 -0800 (PST)
-Date: Sat, 9 Dec 2023 09:22:11 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: oe-kbuild@lists.linux.dev, Chen Wang <unicornxw@gmail.com>,
-	aou@eecs.berkeley.edu, chao.wei@sophgo.com, conor@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
-	palmer@dabbelt.com, paul.walmsley@sifive.com,
-	richardcochran@gmail.com, robh+dt@kernel.org, sboyd@kernel.org,
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com,
-	guoren@kernel.org, jszhang@kernel.org, inochiama@outlook.com,
-	samuel.holland@sifive.com
-Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
-	Chen Wang <unicorn_wang@outlook.com>
-Subject: Re: [PATCH v6 3/4] clk: sophgo: Add SG2042 clock generator driver
-Message-ID: <1a6e3fad-cbe2-461d-940c-601ab5197213@suswa.mountain>
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09D6310C9
+	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 22:37:40 -0800 (PST)
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 92EBB87158;
+	Sat,  9 Dec 2023 07:37:36 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1702103857;
+	bh=MZpymaKOZPW5QHysuyYS7rZv+q3Zp4w+2CiG538XAY4=;
+	h=From:To:Cc:Subject:Date:From;
+	b=yoU5Szgn3nrx8zs2v2qDJOxNOnkDwYoDJUBeHJIw6E5et5vBayo7pamKJ90eD+fNd
+	 l/qgKy4RAoZOye01+NznDENRXey3lszyNCggMhnFiEZK4iod9jzbk+oOWVnYxBZu2h
+	 AT6erZDV81OBs1QOe8Ni+Bt/X9ucHugXDCJzZOlz2qrPpotym0WbohFzMTpNBjITXC
+	 7dkbRuNRODEVdKqW0r/iXIXtog6P8xhszgcXMGqZtQlWyL9QCAgDfdWJAReJj506Dx
+	 l9631iGTtIJTiV+VnoDhwQLx1m94551MQqty3FoAONL6ivjlm9qU3t/JAAvsyN+k8f
+	 EvoRfR+BSgxcA==
+From: Marek Vasut <marex@denx.de>
+To: dri-devel@lists.freedesktop.org
+Cc: Elmar Albert <ealbert@data-modul.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Marek Vasut <marex@denx.de>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	David Airlie <airlied@gmail.com>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Liu Ying <victor.liu@nxp.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	devicetree@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: display: simple: Add AUO G156HAN04.0 LVDS display
+Date: Sat,  9 Dec 2023 07:36:59 +0100
+Message-ID: <20231209063714.1381913-1-marex@denx.de>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d1aa4f76f360ebd7b790a4786641f1b0188dbba8.1701997033.git.unicorn_wang@outlook.com>
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-Hi Chen,
+From: Elmar Albert <ealbert@data-modul.com>
 
-kernel test robot noticed the following build warnings:
+Document support for the AUO G156HAN04.0 LVDS display.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Chen-Wang/dt-bindings-soc-sophgo-Add-Sophgo-system-control-module/20231208-091702
-base:   b85ea95d086471afb4ad062012a4d73cd328fa86
-patch link:    https://lore.kernel.org/r/d1aa4f76f360ebd7b790a4786641f1b0188dbba8.1701997033.git.unicorn_wang%40outlook.com
-patch subject: [PATCH v6 3/4] clk: sophgo: Add SG2042 clock generator driver
-config: xtensa-randconfig-r071-20231208 (https://download.01.org/0day-ci/archive/20231208/202312081933.MUdHNASt-lkp@intel.com/config)
-compiler: xtensa-linux-gcc (GCC) 13.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20231208/202312081933.MUdHNASt-lkp@intel.com/reproduce)
+G156HAN04.0 is a Color Active Matrix Liquid Crystal Display composed of
+a TFT LCD panel, a driver circuit, and LED backlight system. The screen
+format is intended to support the 16:9 FHD, 1920(H) x 1080(V) screen
+and 16.7M colors (RGB 8-bits) with LED backlight driving circuit.
+All input signals are LVDS interface compatible.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-| Closes: https://lore.kernel.org/r/202312081933.MUdHNASt-lkp@intel.com/
+G156HAN04.0 is designed for a display unit of notebook style
+personal computer and industrial machine.
 
-smatch warnings:
-drivers/clk/sophgo/clk-sophgo-sg2042.c:1282 sg2042_clk_init_clk_data() warn: passing zero to 'PTR_ERR'
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Elmar Albert <ealbert@data-modul.com>
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Jessica Zhang <quic_jesszhan@quicinc.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Liu Ying <victor.liu@nxp.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Sam Ravnborg <sam@ravnborg.org>
+Cc: Thierry Reding <thierry.reding@gmail.com>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: devicetree@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org
+---
+V2: - Collect AB from Krzysztof
+    - Update to new panel-simple-lvds-dual-ports.yaml
+    - Update commit subject prefix
+    - Add own SoB line
+---
+ .../bindings/display/panel/panel-simple-lvds-dual-ports.yaml    | 2 ++
+ 1 file changed, 2 insertions(+)
 
-vim +/PTR_ERR +1282 drivers/clk/sophgo/clk-sophgo-sg2042.c
-
-7c68ebea1041f9 Chen Wang 2023-12-08  1258  static int __init sg2042_clk_init_clk_data(
-7c68ebea1041f9 Chen Wang 2023-12-08  1259  	struct device_node *node,
-7c68ebea1041f9 Chen Wang 2023-12-08  1260  	int num_clks,
-7c68ebea1041f9 Chen Wang 2023-12-08  1261  	struct sg2042_clk_data **pp_clk_data)
-7c68ebea1041f9 Chen Wang 2023-12-08  1262  {
-7c68ebea1041f9 Chen Wang 2023-12-08  1263  	int ret = 0;
-7c68ebea1041f9 Chen Wang 2023-12-08  1264  	struct sg2042_clk_data *clk_data = NULL;
-7c68ebea1041f9 Chen Wang 2023-12-08  1265  	struct device_node *np_syscon;
-7c68ebea1041f9 Chen Wang 2023-12-08  1266  
-7c68ebea1041f9 Chen Wang 2023-12-08  1267  	np_syscon = of_parse_phandle(node, "sophgo,system-ctrl", 0);
-7c68ebea1041f9 Chen Wang 2023-12-08  1268  	if (!np_syscon) {
-7c68ebea1041f9 Chen Wang 2023-12-08  1269  		pr_err("failed to get system-ctrl node\n");
-7c68ebea1041f9 Chen Wang 2023-12-08  1270  		ret = -EINVAL;
-7c68ebea1041f9 Chen Wang 2023-12-08  1271  		goto error_out;
-7c68ebea1041f9 Chen Wang 2023-12-08  1272  	}
-7c68ebea1041f9 Chen Wang 2023-12-08  1273  
-7c68ebea1041f9 Chen Wang 2023-12-08  1274  	clk_data = kzalloc(struct_size(clk_data, onecell_data.hws, num_clks), GFP_KERNEL);
-7c68ebea1041f9 Chen Wang 2023-12-08  1275  	if (!clk_data) {
-7c68ebea1041f9 Chen Wang 2023-12-08  1276  		ret = -ENOMEM;
-7c68ebea1041f9 Chen Wang 2023-12-08  1277  		goto error_out;
-7c68ebea1041f9 Chen Wang 2023-12-08  1278  	}
-7c68ebea1041f9 Chen Wang 2023-12-08  1279  
-7c68ebea1041f9 Chen Wang 2023-12-08  1280  	clk_data->regmap_syscon = device_node_to_regmap(np_syscon);
-7c68ebea1041f9 Chen Wang 2023-12-08  1281  	if (IS_ERR_OR_NULL(clk_data->regmap_syscon)) {
-7c68ebea1041f9 Chen Wang 2023-12-08 @1282  		pr_err("cannot get regmap_syscon %ld\n", PTR_ERR(clk_data->regmap_syscon));
-
-I don't think device_node_to_regmap() can return NULL, but if it could
-then it shouldn't be handled like this:
-
-https://staticthinking.wordpress.com/2022/08/01/mixing-error-pointers-and-null/
-
-
-7c68ebea1041f9 Chen Wang 2023-12-08  1283  		ret = -ENODEV;
-7c68ebea1041f9 Chen Wang 2023-12-08  1284  		goto cleanup;
-7c68ebea1041f9 Chen Wang 2023-12-08  1285  	}
-7c68ebea1041f9 Chen Wang 2023-12-08  1286  	clk_data->iobase_syscon = of_iomap(np_syscon, 0);
-7c68ebea1041f9 Chen Wang 2023-12-08  1287  	clk_data->iobase = of_iomap(node, 0);
-7c68ebea1041f9 Chen Wang 2023-12-08  1288  	clk_data->onecell_data.num = num_clks;
-7c68ebea1041f9 Chen Wang 2023-12-08  1289  
-7c68ebea1041f9 Chen Wang 2023-12-08  1290  	*pp_clk_data = clk_data;
-7c68ebea1041f9 Chen Wang 2023-12-08  1291  	return ret;
-7c68ebea1041f9 Chen Wang 2023-12-08  1292  
-7c68ebea1041f9 Chen Wang 2023-12-08  1293  cleanup:
-7c68ebea1041f9 Chen Wang 2023-12-08  1294  	kfree(clk_data);
-7c68ebea1041f9 Chen Wang 2023-12-08  1295  
-7c68ebea1041f9 Chen Wang 2023-12-08  1296  error_out:
-7c68ebea1041f9 Chen Wang 2023-12-08  1297  	return ret;
-7c68ebea1041f9 Chen Wang 2023-12-08  1298  }
-
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml
+index a5a596ff8e752..716ece5f39784 100644
+--- a/Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml
++++ b/Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml
+@@ -33,6 +33,8 @@ properties:
+ 
+         # AU Optronics Corporation 13.3" FHD (1920x1080) TFT LCD panel
+       - auo,g133han01
++        # AU Optronics Corporation 15.6" FHD (1920x1080) TFT LCD panel
++      - auo,g156han04
+         # AU Optronics Corporation 18.5" FHD (1920x1080) TFT LCD panel
+       - auo,g185han01
+         # AU Optronics Corporation 19.0" (1280x1024) TFT LCD panel
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.42.0
 
 
