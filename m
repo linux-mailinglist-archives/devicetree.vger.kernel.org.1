@@ -1,146 +1,130 @@
-Return-Path: <devicetree+bounces-23493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23494-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21B1880B63C
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 21:29:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F6E380B658
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 21:51:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BFF191F2106C
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 20:29:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A1FC280D5A
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 20:51:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C8431A727;
-	Sat,  9 Dec 2023 20:29:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEBB11A5B5;
+	Sat,  9 Dec 2023 20:51:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LKWROmca"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XWHaz69E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B41179D0;
-	Sat,  9 Dec 2023 20:29:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF7CAC433C8;
-	Sat,  9 Dec 2023 20:29:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702153782;
-	bh=/f4nL+h729f2HFNSb1HuznrKH1nxHo9UVx5loVYPQ40=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LKWROmcai3xl5k0HAh3O8z+ulrR/D8IaS2izC/Zely4Wt2bLjPt09vOcnvUwt9Dyx
-	 evPQc9YPKTiw+OcYivwUJykQZ8GRaFco5No/GNUk5fzdNQ7i5MzJGmpxe6G8tak5fd
-	 W5jpeDH7n4HA9hb9HqIcPfE9gsFd1RmLOuSF4OA3CbRVtMSpts9O5u4RbmgFW0SHoK
-	 zfTNhnZ6PC3ui8+LgzxL3wRkSFEhF+8YShQuXZPkaCg3ChfD6N4vRZgf2rO+Q7aXy+
-	 wWvQz2eCYj9VirSVzg1IJU5EadK3U8eGEoL0e4lT/zZwY03AWXO1SavKA6ybb1BeE3
-	 yAbAvcIqWztwQ==
-Date: Sat, 9 Dec 2023 20:29:38 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Li peiyu <579lpy@gmail.com>, jic23@kernel.org,
-	javier.carrasco.cruz@gmail.com, lars@metafoo.de, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 4/4] dt-bindings: iio: humidity: Add TI HDC302x support
-Message-ID: <20231209-fleshed-eating-90b4e487139b@spud>
-References: <20231209105217.3630-1-579lpy@gmail.com>
- <20231209105926.3965-1-579lpy@gmail.com>
- <261094ae-b14e-464f-9d01-87a2bbcb40e0@linaro.org>
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD68C10E;
+	Sat,  9 Dec 2023 12:50:57 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-40c2308faedso34858275e9.1;
+        Sat, 09 Dec 2023 12:50:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702155056; x=1702759856; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pMJPi3iIzMIlCjs861+CyhhSUrX7bsn8d7c7Kriq3JY=;
+        b=XWHaz69EJ4RlcPfmlKhwbAH2RtOoNXIy37Pb77HAycSS5Dti/TdQBCBN7mbiw1iYXC
+         tfDbhG5PhgS/VYdj6by1qdPK0cRiLcgcAvy516db5075zh88DBg5hzS34zMeuCLrKG9S
+         u8jZvFNMDaHZkXovf1UVNEBWHb1AfYFtaW4rFwsNzmRzjqjscaku82ED656iTOob9i83
+         RlYgostLjLVkRqgqr5gasMk+XjCx0keOhRJFSfWWttDYe5bj01tqePj4XfTyiCuQbvu5
+         xPG+AszawNVyO6TiBKR+tTXVFGNmHLr9/yHUZKkGULdlmT4rIBupwpRHY6sESSOwzjot
+         2nVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702155056; x=1702759856;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pMJPi3iIzMIlCjs861+CyhhSUrX7bsn8d7c7Kriq3JY=;
+        b=E+yuQgASaM2wKui5saCuDiQb8OHCC/GG2dVmBg5iFGvthiqwhKZf34+r+ttEcDQ9wc
+         nNGep3HkbLWBSjjMmgZW9UIsHny7cMQgqqHjDyYpihgg6KfkGtcskv82n/6JPT8eP5w6
+         VtQp7zltuZ0LRq/cQ74LOD/MsW4HPCVuBMtpTIo//yMeCmzVY+uMx7n0cv5b/i69SRvg
+         VNo9UEDHcEWcvbFMrKu/tLhGVQ/urMVgVDjAp+w9FivUD+2+qHu9XxUuYJbR3DZ6xQ0H
+         7+MMQwvbDFavnVcpnSet2ulE5YxyHoc3ebNYiAlRAvUAhgZrSNLh4EjL5/hJDiqGV4ct
+         78bQ==
+X-Gm-Message-State: AOJu0YxMf4/Hvq1e40isMPpGUvXHNocaWgOKKQQ8XC2+0oxTaUAiNgsX
+	Qo7WmksNBHUOEEtZSEbvIfA=
+X-Google-Smtp-Source: AGHT+IE3XEEBii+B9JkJKs6o8ET+jTzHybvoiVXKO2G9EClU8u3uG0zRe1zismiE6cerLl60ogNGrA==
+X-Received: by 2002:a05:600c:3107:b0:40c:32fa:4f41 with SMTP id g7-20020a05600c310700b0040c32fa4f41mr1048497wmo.142.1702155055686;
+        Sat, 09 Dec 2023 12:50:55 -0800 (PST)
+Received: from [192.168.1.7] ([95.133.122.84])
+        by smtp.gmail.com with ESMTPSA id fa7-20020a05600c518700b0040648217f4fsm9686079wmb.39.2023.12.09.12.50.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 09 Dec 2023 12:50:55 -0800 (PST)
+Message-ID: <da6d2828-41db-4c29-a1aa-024b1fbcc43a@gmail.com>
+Date: Sat, 9 Dec 2023 22:50:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="sMlmX3kZQzkIVEEc"
-Content-Disposition: inline
-In-Reply-To: <261094ae-b14e-464f-9d01-87a2bbcb40e0@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 5/5] input/touchscreen: imagis: add support for
+ IST3032C
+To: Karel Balej <karelb@gimli.ms.mff.cuni.cz>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: =?UTF-8?Q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
+ ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ Karel Balej <balejk@matfyz.cz>
+References: <20231202125948.10345-1-karelb@gimli.ms.mff.cuni.cz>
+ <20231202125948.10345-6-karelb@gimli.ms.mff.cuni.cz>
+ <89f7e7de-c574-49ab-885d-c6d4427fe64f@gmail.com>
+ <CXJAG826ZTNA.2F8WOGVNYADKP@gimli.ms.mff.cuni.cz>
+Content-Language: en-US
+From: Markuss Broks <markuss.broks@gmail.com>
+In-Reply-To: <CXJAG826ZTNA.2F8WOGVNYADKP@gimli.ms.mff.cuni.cz>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+Hi Karel,
 
---sMlmX3kZQzkIVEEc
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Sat, Dec 09, 2023 at 12:49:45PM +0100, Krzysztof Kozlowski wrote:
-> On 09/12/2023 11:59, Li peiyu wrote:
-> > Add device tree bindings for HDC3020/HDC3021/HDC3022 humidity and
-> > temperature sensors.
-> >=20
-> > Signed-off-by: Li peiyu <579lpy@gmail.com>
-> > ---
-> >  .../bindings/iio/humidity/ti,hdc3020.yaml     | 55 +++++++++++++++++++
-> >  1 file changed, 55 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/iio/humidity/ti,h=
-dc3020.yaml
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.=
-yaml b/Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml
-> > new file mode 100644
-> > index 000000000000..f04b09fdca5e
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml
-> > @@ -0,0 +1,55 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/iio/humidity/ti,hdc3020.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: HDC3020/HDC3021/HDC3022 humidity and temperature iio sensors
-> > +
-> > +maintainers:
-> > +  - Li peiyu <579lpy@gmail.com>
-> > +  - Javier Carrasco <javier.carrasco.cruz@gmail.com>
-> > +
-> > +description:
-> > +  https://www.ti.com/lit/ds/symlink/hdc3020.pdf
-> > +
-> > +  The HDC302x is an integrated capacitive based relative humidity (RH)
-> > +  and temperature sensor.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - items:
-> > +          - enum:
-> > +              - ti,hdc3021
-> > +              - ti,hdc3022
-> > +          - const: ti,hdc3020
-> > +      - items:
-> > +          - const: ti,hdc3020
->=20
->=20
-> Three of my comments were ignored.
-
-> Also Conor's tag.
-
-tbh, that's not a problem for me given there were mistakes that I
-overlooked and they persisted into this version.
-
->=20
-> This is a friendly reminder during the review process.
->=20
-> It seems my or other reviewer's previous comments were not fully
-> addressed. Maybe the feedback got lost between the quotes, maybe you
-> just forgot to apply it. Please go back to the previous discussion and
-> either implement all requested changes or keep discussing them.
->=20
-> Thank you.
->=20
+On 12/8/23 23:59, Karel Balej wrote:
+> Markuss,
+>
+> thank you for the review.
+>
+>>> diff --git a/drivers/input/touchscreen/imagis.c b/drivers/input/touchscreen/imagis.c
+>>> index 84a02672ac47..41f28e6e9cb1 100644
+>>> --- a/drivers/input/touchscreen/imagis.c
+>>> +++ b/drivers/input/touchscreen/imagis.c
+>>> @@ -35,6 +35,8 @@
+>>>    #define IST3038B_REG_CHIPID		0x30
+>>>    #define IST3038B_WHOAMI			0x30380b
+>>>    
+>>> +#define IST3032C_WHOAMI			0x32c
+>>> +
+>> Perhaps it should be ordered in alphabetic/alphanumeric order,
+>> alternatively, the chip ID values could be grouped.
+> Here I followed suit and just started a new section for the new chip,
+> except there is only one entry. I do agree that it would be better to
+> sort the chips alphanumerically and I am actually surprised that I
+> didn't do that - but now I see that the chips that you added are not
+> sorted either, so it might be because of that.
+>
+> I propose to definitely swap the order of the sections, putting 32C
+> first, then 38B and 38C at the end (from top to bottom). The chip ID
+> values could then still be grouped in a new section, but I think I would
+> actually prefer to keep them as parts of the respective sections as it
+> is now, although it is in no way a strong preference.
+We could do that, yeah. It is not a problem right now since there's only 
+3 models supported, but it would maker sense and set some order for when 
+we'd have more supported devices.
+>
+> Please let me know whether you agree with this or have a different
+> preference. And if the former, please confirm that I can add your
+> Reviewed-by trailer to the patch modified in such a way.
+Yeah, it's fine.
+>
 > Best regards,
-> Krzysztof
->=20
+> K. B.
 
---sMlmX3kZQzkIVEEc
-Content-Type: application/pgp-signature; name="signature.asc"
+- Markuss
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZXTOMgAKCRB4tDGHoIJi
-0o1pAQCdDy7BQe16dRze7wCtL6IPV2Pa9BuvGhiHdWNts9oWoAEAqeV15oyC0KEa
-QkAjGjjVHrhj+/I3lO+YVdfL3OWzsQo=
-=KLlY
------END PGP SIGNATURE-----
-
---sMlmX3kZQzkIVEEc--
 
