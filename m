@@ -1,58 +1,58 @@
-Return-Path: <devicetree+bounces-23480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23481-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EECD80B59A
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 18:31:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78EEC80B59E
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 18:31:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A9D5280F8E
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 17:31:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A9DE11C208ED
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 17:31:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F39D518E2C;
-	Sat,  9 Dec 2023 17:31:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99B2018AF3;
+	Sat,  9 Dec 2023 17:31:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BbI3AqKd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="W03SVWtK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C58F51FCA
-	for <devicetree@vger.kernel.org>; Sat,  9 Dec 2023 09:31:11 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-54f4fa5002cso2034551a12.1
-        for <devicetree@vger.kernel.org>; Sat, 09 Dec 2023 09:31:11 -0800 (PST)
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2B5D1FF1
+	for <devicetree@vger.kernel.org>; Sat,  9 Dec 2023 09:31:13 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-50be24167efso3591185e87.3
+        for <devicetree@vger.kernel.org>; Sat, 09 Dec 2023 09:31:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702143065; x=1702747865; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702143066; x=1702747866; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=9G7cpU+ukIu1B7V2qz7kc1RiGDNV3d/6SfmS5MXR3hw=;
-        b=BbI3AqKdoF5ucHA6mH67VF12pIDIkHmMWQnKebBNT8GKCQ2JoIc9UkjTgRx8EJhz49
-         mqIKHtNfd5p2tuR/qK0Y7msaRxssnOYQNTZfiAPH4BGjCfW63C1o9t4K9gYjxbLcEojL
-         70pyG2ys9fIPel/MRBp5XEYtP32kYr1FIQVm+me4Olmnl7k59IBeRMd3LVud0/rCeMpv
-         Kg1KSD4iEQW4CR1/rfEH6l5Cfb0zdyB3gSfQWyKe0lZ1nsyg2L5sgCIC46lw02nKriB6
-         GwaSifMS3fcwK3tGU7gtOpZaIiYRdQ9TB17+mNLaNH29EM1LdX6kOyxD6NTyBQz53i1c
-         NwcQ==
+        bh=6UZjoos5Lrfvg2O4a65EpOHTiGlhzjBQV5qkVHxBNkM=;
+        b=W03SVWtKfuj9m52UCGXsQuViMsuA3cOpkbj4d7dWpynHvS4zaB68lgmp8aAQaMWTJN
+         uud2ISUnsSHCUrKpZ4BI47nUBPzMVXsjytDxSO+X0dQVRfbIt/JLozoq3UNhsXFTFI5g
+         MAb6mcFNnruoIzppK9sloM/X3DMspRUo5eL+lhC5/BW7YqA0+F22XPavFXhye6Mg+HNQ
+         QFaQ+gjMrX3M56XVvDcBoWFN0CkTVFx1pxoZHwfdKoIsQgXraPgl9V7BnyxhrDKnu++A
+         OBEUxF3d0wArYWbA+OcztmHatHSefEGGywwarCf2fMbRWz3V80BNUJafuGgJZdRs+nng
+         UYJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702143065; x=1702747865;
+        d=1e100.net; s=20230601; t=1702143066; x=1702747866;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=9G7cpU+ukIu1B7V2qz7kc1RiGDNV3d/6SfmS5MXR3hw=;
-        b=PXzudoJio6Qzg/lYTh/p8RrTc+T8vkRaDGiL08J43UUFi8lKuXOjN9+Dur7eThuRgn
-         l+OSXvqdddOe/Dnhq5PIX8JyPg7tl5Y39YqNNFMSBjN/NxR3hoZblWeoGI6eouJO/Tnr
-         VbObdzxvycgfnCS070oKYR5dpVCyq3ZxRahg+qABPhhGtKguo1m3pfzMPJlwEhTxFu8M
-         opTJriKEkc54kkJws7UhP004U87HOQBDtSF7YmId86ry/BWgfb2Yq20vpwFB/RFm7+r6
-         1NZUxEUaFGqKAUKMxSWxQ5q0mWf/TqSPe3bjRi0Rc9fQc9qqn8uIKalNgKRKJL7AiRo5
-         B3yg==
-X-Gm-Message-State: AOJu0Yz3cPKt75f+xR2vhxq67dok5Pt0sj802q9IxMXG+MkM1LBCk8tK
-	BjCSUH5sURyzSt8XTZT54KLKlM/jaoE71prU2A4=
-X-Google-Smtp-Source: AGHT+IEzPWkzMki8q5Ome70IpK1Tv91BRZgLtWdSdQNa/CjTLYydcL2Yznp39cwNh2g+fdJIMXDhIw==
-X-Received: by 2002:a50:cc99:0:b0:54b:3edc:180 with SMTP id q25-20020a50cc99000000b0054b3edc0180mr1342713edi.11.1702143065319;
-        Sat, 09 Dec 2023 09:31:05 -0800 (PST)
+        bh=6UZjoos5Lrfvg2O4a65EpOHTiGlhzjBQV5qkVHxBNkM=;
+        b=n3Bn/lWmkH0KXKYdPLkEXwS8hDZdSO2XvawDcFRq9eAojbiPJrLVSNDnb6PYRhKikH
+         JZZyOeHSevKGrOg8+YKztG9opEK1Fxqd181ndMymFRp8BWA1ANOwmZxlSfeKFi2DXcyT
+         9yc95Yz/A6EW9TO8kid9YWxhU4Umk5/y4ECks2KaeEx+p32sXICQb5UA6FTupiQ/yiN1
+         puQky1VdVYBoNadFuq+6ocSF2aKQ6dzpkSp5nTFiVBZcAv3TGoCPDTchFd5ZBFd38UqW
+         V+Ly1cEzOZGcHX+FAm8+ImEaVy+XFC2Z+xTySOI6mPY1OFnMkhxIly5u7+2asRIxcJQe
+         IYsg==
+X-Gm-Message-State: AOJu0YwEIOn/9dUYOcAlj+et14MGkOjiz5I7sOeO1LJKr+VcBvqIskHm
+	GJ0IHdd+tQrdTHslSoBQJx3EmQ==
+X-Google-Smtp-Source: AGHT+IHP3UlJX1Cf5/RlhkV3VAQ0WdU6PKC/O09/zrD4dBdZDZby0eqJoIa8WYq9BtgmkF8JfVmhdQ==
+X-Received: by 2002:ac2:4e14:0:b0:50b:f62c:7f27 with SMTP id e20-20020ac24e14000000b0050bf62c7f27mr471930lfr.24.1702143066808;
+        Sat, 09 Dec 2023 09:31:06 -0800 (PST)
 Received: from krzk-bin.. ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id m26-20020a50931a000000b0054ce5c00e74sm1926621eda.88.2023.12.09.09.31.04
+        by smtp.gmail.com with ESMTPSA id m26-20020a50931a000000b0054ce5c00e74sm1926621eda.88.2023.12.09.09.31.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 09 Dec 2023 09:31:04 -0800 (PST)
+        Sat, 09 Dec 2023 09:31:06 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Dinh Nguyen <dinguyen@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
@@ -61,9 +61,9 @@ To: Dinh Nguyen <dinguyen@kernel.org>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 14/15] arm64: dts: socfpga: agilex: add unit address to soc node
-Date: Sat,  9 Dec 2023 18:30:43 +0100
-Message-Id: <20231209173044.257684-14-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 15/15] arm64: dts: socfpga: agilex: drop redundant status
+Date: Sat,  9 Dec 2023 18:30:44 +0100
+Message-Id: <20231209173044.257684-15-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231209173044.257684-1-krzysztof.kozlowski@linaro.org>
 References: <20231209173044.257684-1-krzysztof.kozlowski@linaro.org>
@@ -75,61 +75,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The "soc" node has ranges with addresses, so it is should have unit
-address  to fix dtc W=1 warnings like:
-
-  socfpga_agilex.dtsi:152.6-674.4: Warning (unit_address_vs_reg): /soc: node has a reg or ranges property, but no unit name
+New device nodes are enabled by default.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
 ---
+ arch/arm64/boot/dts/intel/socfpga_n5x_socdk.dts | 1 -
+ 1 file changed, 1 deletion(-)
 
-Not tested.
----
- arch/arm64/boot/dts/intel/socfpga_agilex.dtsi      | 2 +-
- arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts | 2 +-
- arch/arm64/boot/dts/intel/socfpga_n5x_socdk.dts    | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
-index 8792291a0175..76aafa172eb0 100644
---- a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
-+++ b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
-@@ -149,7 +149,7 @@ usbphy0: usbphy {
- 		compatible = "usb-nop-xceiv";
- 	};
- 
--	soc {
-+	soc@0 {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
- 		compatible = "simple-bus";
-diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts b/arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts
-index 1a32840c74e0..d22de06e9839 100644
---- a/arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts
-+++ b/arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts
-@@ -26,7 +26,7 @@ memory@80000000 {
- 		reg = <0 0x80000000 0 0>;
- 	};
- 
--	soc {
-+	soc@0 {
- 		bus@80000000 {
- 			compatible = "simple-bus";
- 			reg = <0x80000000 0x60000000>,
 diff --git a/arch/arm64/boot/dts/intel/socfpga_n5x_socdk.dts b/arch/arm64/boot/dts/intel/socfpga_n5x_socdk.dts
-index de82a552dc26..f2e2346dd3c4 100644
+index f2e2346dd3c4..2d70a92c2090 100644
 --- a/arch/arm64/boot/dts/intel/socfpga_n5x_socdk.dts
 +++ b/arch/arm64/boot/dts/intel/socfpga_n5x_socdk.dts
-@@ -25,7 +25,7 @@ memory@80000000 {
- 		reg = <0 0x80000000 0 0>;
- 	};
- 
--	soc {
-+	soc@0 {
- 		sdram_edac: memory-controller@f87f8000 {
+@@ -30,7 +30,6 @@ sdram_edac: memory-controller@f87f8000 {
  			compatible = "snps,ddrc-3.80a";
  			reg = <0xf87f8000 0x400>;
+ 			interrupts = <0 175 4>;
+-			status = "okay";
+ 		};
+ 	};
+ };
 -- 
 2.34.1
 
