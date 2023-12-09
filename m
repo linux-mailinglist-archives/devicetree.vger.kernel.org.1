@@ -1,182 +1,176 @@
-Return-Path: <devicetree+bounces-23430-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23431-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5411780B40D
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 12:49:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 609FC80B442
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 13:39:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 10C391F21023
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 11:49:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 053651F21144
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 12:39:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA5B41426E;
-	Sat,  9 Dec 2023 11:49:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A610114283;
+	Sat,  9 Dec 2023 12:39:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="R8GvYMAP"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FBIGod2h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4737C10DA
-	for <devicetree@vger.kernel.org>; Sat,  9 Dec 2023 03:49:49 -0800 (PST)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-a06e59384b6so391617666b.1
-        for <devicetree@vger.kernel.org>; Sat, 09 Dec 2023 03:49:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702122587; x=1702727387; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LN9y8AXjG0DFr/S6jLTfBwnvp7Tp9pA4cs0+9j0Dn5g=;
-        b=R8GvYMAPI9eG7Np/j33hZnCaUFQxRq6mZZxsxw9zrWmRCdFau603xApf/wA90ASyC1
-         2kcHwGOnHvfdhX5DVhmpnQ7IUe04sABK2X4CvnBoDVYGs0SySnSvOISHQ57rILHs+CyC
-         L1YtrjpLe/1taEH3g+Gtkc03uJofU0ozhgDnAFxGqYwNz/7/YvfwQqxaVgfrFDLnvxRO
-         srIA7LTMMkhv8/NgVnd7Zf35dvk+M0t7VwBdeFVGEtLvSsaDhuFXHY+e2WZwAjlxuhXr
-         pGnQcwStfpHkKrL1LwOxkE71F2DMmrQ/iniV8GgEqKFyUjs+TjdLVQVTpJlAdpf0nRr+
-         iWPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702122587; x=1702727387;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LN9y8AXjG0DFr/S6jLTfBwnvp7Tp9pA4cs0+9j0Dn5g=;
-        b=B3o4ZcKkvAGf1Te/W/Aq8BCAJhZ2DtTKYzREAKVsEP6hY0n37lRadhJg4+LZKwgNg1
-         1fQ8OTis0AT9l6QFg63QIrRRi1ayc+z+9sz3Juhsf2zKe6U3J95fRWx+77pW52fvQQW8
-         jjqhV7lpJRrnHIrG3uBllRo7dISbnf7W2H5xpTd3h32PoHs9BJo/pKJnISpPqh8St0gi
-         zV4vsuTnKTCDJzUSOSKoTBZJ2kLsq+z2FmHzCX6wq9iiV2II/IqiO73QPrhSufEIdZJM
-         h6pQGmn2rcGmovkceebAa7IxytavVXGFw9hXZAeYi3of4BawDmy0B9CwHY0aamGQQk3f
-         PYxA==
-X-Gm-Message-State: AOJu0YzVd3PQU6ClXNmwOhcf63BX6WhwM9twLuN90HoUJk5LiJcD7UYJ
-	TQ7VOyDERIITs4zueJN5Q1rk2/YSFYH8/1U1W+I=
-X-Google-Smtp-Source: AGHT+IFu57o2kRSyhPNLYvy19AXh3cXNl+VyALVgzOtcYz7CFIX4Dqu8t9pr1VTIHySz2SEA/UGwwg==
-X-Received: by 2002:a17:906:8a66:b0:a1d:a5cd:c732 with SMTP id hy6-20020a1709068a6600b00a1da5cdc732mr679691ejc.106.1702122587457;
-        Sat, 09 Dec 2023 03:49:47 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id vk2-20020a170907cbc200b00a1f76acb08fsm1323844ejc.134.2023.12.09.03.49.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 09 Dec 2023 03:49:47 -0800 (PST)
-Message-ID: <261094ae-b14e-464f-9d01-87a2bbcb40e0@linaro.org>
-Date: Sat, 9 Dec 2023 12:49:45 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 850F810C7;
+	Sat,  9 Dec 2023 04:39:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1702125561; x=1733661561;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=emTJaGRWW8/RVMnzJWgGpG0OkXjrJdQ7ijyM00lmQPA=;
+  b=FBIGod2hnJKpaWF15+jHxxPYCcuV7PjWWhBgx5vDA9IWSJKnFb7i8795
+   c6gfzjLstQ1MUtGZafGZG/xOu89piJmQCtm5a6+/Oz21QRzvPcDKsN4uI
+   LPepA4z6XBIc0cpPWrd9Eeu+Icix8O8vCKxbldC5ISugWFOn0Qn9T8naR
+   GBynf9Vj3QVepx3X4h7mZWEcq3XSaHpwKvhDwzErvcbYh2q0C9MwHR9w8
+   qGC3zf/c4UewF94Zu6JJuUUOs4DRXN0uQPr/x9S9gizcLb8G9hM5o5dUc
+   eRCBErs8omEXzfGbjo1WfMr85xoPQCtwR5hG/+6FNZe/amA4uFDSp5iwn
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10918"; a="397301440"
+X-IronPort-AV: E=Sophos;i="6.04,263,1695711600"; 
+   d="scan'208";a="397301440"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Dec 2023 04:39:21 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10918"; a="945698958"
+X-IronPort-AV: E=Sophos;i="6.04,263,1695711600"; 
+   d="scan'208";a="945698958"
+Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
+  by orsmga005.jf.intel.com with ESMTP; 09 Dec 2023 04:39:17 -0800
+Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rBwbz-000FLx-05;
+	Sat, 09 Dec 2023 12:39:15 +0000
+Date: Sat, 9 Dec 2023 20:38:38 +0800
+From: kernel test robot <lkp@intel.com>
+To: Christian Marangi <ansuelsmth@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org
+Subject: Re: [net-next PATCH 2/2] net: phy: at803x: add LED support for
+ qca808x
+Message-ID: <202312092051.FcBofskz-lkp@intel.com>
+References: <20231209014828.28194-2-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 4/4] dt-bindings: iio: humidity: Add TI HDC302x support
-Content-Language: en-US
-To: Li peiyu <579lpy@gmail.com>, jic23@kernel.org
-Cc: javier.carrasco.cruz@gmail.com, lars@metafoo.de, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-References: <20231209105217.3630-1-579lpy@gmail.com>
- <20231209105926.3965-1-579lpy@gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231209105926.3965-1-579lpy@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231209014828.28194-2-ansuelsmth@gmail.com>
 
-On 09/12/2023 11:59, Li peiyu wrote:
-> Add device tree bindings for HDC3020/HDC3021/HDC3022 humidity and
-> temperature sensors.
-> 
-> Signed-off-by: Li peiyu <579lpy@gmail.com>
-> ---
->  .../bindings/iio/humidity/ti,hdc3020.yaml     | 55 +++++++++++++++++++
->  1 file changed, 55 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml b/Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml
-> new file mode 100644
-> index 000000000000..f04b09fdca5e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml
-> @@ -0,0 +1,55 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/humidity/ti,hdc3020.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: HDC3020/HDC3021/HDC3022 humidity and temperature iio sensors
-> +
-> +maintainers:
-> +  - Li peiyu <579lpy@gmail.com>
-> +  - Javier Carrasco <javier.carrasco.cruz@gmail.com>
-> +
-> +description:
-> +  https://www.ti.com/lit/ds/symlink/hdc3020.pdf
-> +
-> +  The HDC302x is an integrated capacitive based relative humidity (RH)
-> +  and temperature sensor.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - ti,hdc3021
-> +              - ti,hdc3022
-> +          - const: ti,hdc3020
-> +      - items:
-> +          - const: ti,hdc3020
+Hi Christian,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on net-next/main]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Christian-Marangi/net-phy-at803x-add-LED-support-for-qca808x/20231209-095014
+base:   net-next/main
+patch link:    https://lore.kernel.org/r/20231209014828.28194-2-ansuelsmth%40gmail.com
+patch subject: [net-next PATCH 2/2] net: phy: at803x: add LED support for qca808x
+config: arm-randconfig-003-20231209 (https://download.01.org/0day-ci/archive/20231209/202312092051.FcBofskz-lkp@intel.com/config)
+compiler: arm-linux-gnueabi-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231209/202312092051.FcBofskz-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202312092051.FcBofskz-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   In file included from include/linux/bitops.h:68,
+                    from include/linux/log2.h:12,
+                    from include/asm-generic/div64.h:55,
+                    from arch/arm/include/asm/div64.h:107,
+                    from include/linux/math.h:6,
+                    from include/linux/math64.h:6,
+                    from include/linux/time64.h:5,
+                    from include/linux/restart_block.h:10,
+                    from include/linux/thread_info.h:14,
+                    from include/asm-generic/preempt.h:5,
+                    from ./arch/arm/include/generated/asm/preempt.h:1,
+                    from include/linux/preempt.h:79,
+                    from include/linux/spinlock.h:56,
+                    from include/linux/phy.h:15,
+                    from drivers/net/phy/at803x.c:10:
+   drivers/net/phy/at803x.c: In function 'qca808x_led_hw_control_get':
+>> drivers/net/phy/at803x.c:2270:25: error: 'TRIGGER_NETDEV_LINK_2500' undeclared (first use in this function); did you mean 'TRIGGER_NETDEV_LINK_1000'?
+    2270 |                 set_bit(TRIGGER_NETDEV_LINK_2500, rules);
+         |                         ^~~~~~~~~~~~~~~~~~~~~~~~
+   arch/arm/include/asm/bitops.h:183:31: note: in definition of macro 'ATOMIC_BITOP'
+     183 |         (__builtin_constant_p(nr) ? ____atomic_##name(nr, p) : _##name(nr,p))
+         |                               ^~
+   drivers/net/phy/at803x.c:2270:17: note: in expansion of macro 'set_bit'
+    2270 |                 set_bit(TRIGGER_NETDEV_LINK_2500, rules);
+         |                 ^~~~~~~
+   drivers/net/phy/at803x.c:2270:25: note: each undeclared identifier is reported only once for each function it appears in
+    2270 |                 set_bit(TRIGGER_NETDEV_LINK_2500, rules);
+         |                         ^~~~~~~~~~~~~~~~~~~~~~~~
+   arch/arm/include/asm/bitops.h:183:31: note: in definition of macro 'ATOMIC_BITOP'
+     183 |         (__builtin_constant_p(nr) ? ____atomic_##name(nr, p) : _##name(nr,p))
+         |                               ^~
+   drivers/net/phy/at803x.c:2270:17: note: in expansion of macro 'set_bit'
+    2270 |                 set_bit(TRIGGER_NETDEV_LINK_2500, rules);
+         |                 ^~~~~~~
 
 
-Three of my comments were ignored. Also Conor's tag.
+vim +2270 drivers/net/phy/at803x.c
 
-This is a friendly reminder during the review process.
+  2242	
+  2243	static int qca808x_led_hw_control_get(struct phy_device *phydev, u8 index,
+  2244					      unsigned long *rules)
+  2245	{
+  2246		u16 reg;
+  2247		int val;
+  2248	
+  2249		if (index > 2)
+  2250			return -EINVAL;
+  2251	
+  2252		/* Check if we have hw control enabled */
+  2253		if (qca808x_led_hw_control_status(phydev, index))
+  2254			return -EINVAL;
+  2255	
+  2256		reg = QCA808X_MMD7_LED_CTRL(index);
+  2257	
+  2258		val = phy_read_mmd(phydev, MDIO_MMD_AN, reg);
+  2259		if (val & QCA808X_LED_TX_BLINK)
+  2260			set_bit(TRIGGER_NETDEV_TX, rules);
+  2261		if (val & QCA808X_LED_RX_BLINK)
+  2262			set_bit(TRIGGER_NETDEV_RX, rules);
+  2263		if (val & QCA808X_LED_SPEED10_ON)
+  2264			set_bit(TRIGGER_NETDEV_LINK_10, rules);
+  2265		if (val & QCA808X_LED_SPEED100_ON)
+  2266			set_bit(TRIGGER_NETDEV_LINK_100, rules);
+  2267		if (val & QCA808X_LED_SPEED1000_ON)
+  2268			set_bit(TRIGGER_NETDEV_LINK_1000, rules);
+  2269		if (val & QCA808X_LED_SPEED2500_ON)
+> 2270			set_bit(TRIGGER_NETDEV_LINK_2500, rules);
+  2271		if (val & QCA808X_LED_HALF_DUPLEX_ON)
+  2272			set_bit(TRIGGER_NETDEV_HALF_DUPLEX, rules);
+  2273		if (val & QCA808X_LED_FULL_DUPLEX_ON)
+  2274			set_bit(TRIGGER_NETDEV_FULL_DUPLEX, rules);
+  2275	
+  2276		return 0;
+  2277	}
+  2278	
 
-It seems my or other reviewer's previous comments were not fully
-addressed. Maybe the feedback got lost between the quotes, maybe you
-just forgot to apply it. Please go back to the previous discussion and
-either implement all requested changes or keep discussing them.
-
-Thank you.
-
-Best regards,
-Krzysztof
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
