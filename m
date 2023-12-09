@@ -1,130 +1,109 @@
-Return-Path: <devicetree+bounces-23494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23495-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F6E380B658
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 21:51:05 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC98980B66A
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 21:59:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A1FC280D5A
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 20:51:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A0204B20BC7
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 20:59:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEBB11A5B5;
-	Sat,  9 Dec 2023 20:51:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D272E1C68D;
+	Sat,  9 Dec 2023 20:59:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XWHaz69E"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="JIjzUlIx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD68C10E;
-	Sat,  9 Dec 2023 12:50:57 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-40c2308faedso34858275e9.1;
-        Sat, 09 Dec 2023 12:50:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702155056; x=1702759856; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pMJPi3iIzMIlCjs861+CyhhSUrX7bsn8d7c7Kriq3JY=;
-        b=XWHaz69EJ4RlcPfmlKhwbAH2RtOoNXIy37Pb77HAycSS5Dti/TdQBCBN7mbiw1iYXC
-         tfDbhG5PhgS/VYdj6by1qdPK0cRiLcgcAvy516db5075zh88DBg5hzS34zMeuCLrKG9S
-         u8jZvFNMDaHZkXovf1UVNEBWHb1AfYFtaW4rFwsNzmRzjqjscaku82ED656iTOob9i83
-         RlYgostLjLVkRqgqr5gasMk+XjCx0keOhRJFSfWWttDYe5bj01tqePj4XfTyiCuQbvu5
-         xPG+AszawNVyO6TiBKR+tTXVFGNmHLr9/yHUZKkGULdlmT4rIBupwpRHY6sESSOwzjot
-         2nVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702155056; x=1702759856;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pMJPi3iIzMIlCjs861+CyhhSUrX7bsn8d7c7Kriq3JY=;
-        b=E+yuQgASaM2wKui5saCuDiQb8OHCC/GG2dVmBg5iFGvthiqwhKZf34+r+ttEcDQ9wc
-         nNGep3HkbLWBSjjMmgZW9UIsHny7cMQgqqHjDyYpihgg6KfkGtcskv82n/6JPT8eP5w6
-         VtQp7zltuZ0LRq/cQ74LOD/MsW4HPCVuBMtpTIo//yMeCmzVY+uMx7n0cv5b/i69SRvg
-         VNo9UEDHcEWcvbFMrKu/tLhGVQ/urMVgVDjAp+w9FivUD+2+qHu9XxUuYJbR3DZ6xQ0H
-         7+MMQwvbDFavnVcpnSet2ulE5YxyHoc3ebNYiAlRAvUAhgZrSNLh4EjL5/hJDiqGV4ct
-         78bQ==
-X-Gm-Message-State: AOJu0YxMf4/Hvq1e40isMPpGUvXHNocaWgOKKQQ8XC2+0oxTaUAiNgsX
-	Qo7WmksNBHUOEEtZSEbvIfA=
-X-Google-Smtp-Source: AGHT+IE3XEEBii+B9JkJKs6o8ET+jTzHybvoiVXKO2G9EClU8u3uG0zRe1zismiE6cerLl60ogNGrA==
-X-Received: by 2002:a05:600c:3107:b0:40c:32fa:4f41 with SMTP id g7-20020a05600c310700b0040c32fa4f41mr1048497wmo.142.1702155055686;
-        Sat, 09 Dec 2023 12:50:55 -0800 (PST)
-Received: from [192.168.1.7] ([95.133.122.84])
-        by smtp.gmail.com with ESMTPSA id fa7-20020a05600c518700b0040648217f4fsm9686079wmb.39.2023.12.09.12.50.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 09 Dec 2023 12:50:55 -0800 (PST)
-Message-ID: <da6d2828-41db-4c29-a1aa-024b1fbcc43a@gmail.com>
-Date: Sat, 9 Dec 2023 22:50:52 +0200
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26660E5;
+	Sat,  9 Dec 2023 12:59:20 -0800 (PST)
+Received: from mail.denx.de (unknown [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: festevam@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 46A1486F67;
+	Sat,  9 Dec 2023 21:59:17 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1702155557;
+	bh=gQ/HXQgkXMpnniubARRaHA56r7dEGMzZvC/+/oSsEdc=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=JIjzUlIxn58PPddHyK10SL1dva2rQt5QldFDJ7R5VDFU1KPDKs4t5WLEBB+VQt4PI
+	 fCDBPSpXxyWzeNvdP6u7aiv1lJTd++rY07/xr5Ckv+quxAf6/D19L1WJbCiPbZWBCr
+	 GWHL//WmdIPbYBgMvcIrQApQ3nwW5WLkc8+dvMlX/u664nF9v354DvqeXmKxbvh006
+	 /QrOed1zGE7oopa7QWjqaodXJ+5bqR7k9ZbHP11Qo3ApLMg5BT/kFZbh3rus/zylc1
+	 3uDpze8R3puGTg72pxdnQurZRMZs17kHF/uJAAiIKOa/C11kJyo6zNI5Vo56Gh66J2
+	 bvDBFtzUZps/Q==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 5/5] input/touchscreen: imagis: add support for
- IST3032C
-To: Karel Balej <karelb@gimli.ms.mff.cuni.cz>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: =?UTF-8?Q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
- ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- Karel Balej <balejk@matfyz.cz>
-References: <20231202125948.10345-1-karelb@gimli.ms.mff.cuni.cz>
- <20231202125948.10345-6-karelb@gimli.ms.mff.cuni.cz>
- <89f7e7de-c574-49ab-885d-c6d4427fe64f@gmail.com>
- <CXJAG826ZTNA.2F8WOGVNYADKP@gimli.ms.mff.cuni.cz>
-Content-Language: en-US
-From: Markuss Broks <markuss.broks@gmail.com>
-In-Reply-To: <CXJAG826ZTNA.2F8WOGVNYADKP@gimli.ms.mff.cuni.cz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
+Date: Sat, 09 Dec 2023 17:59:17 -0300
+From: Fabio Estevam <festevam@denx.de>
+To: Conor Dooley <conor@kernel.org>
+Cc: Fabio Estevam <festevam@gmail.com>, daniel.lezcano@linaro.org,
+ rafael@kernel.org, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+ conor+dt@kernel.org, linux-pm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: thermal: qoriq-thermal: Adjust
+ fsl,tmu-range min/maxItems
+In-Reply-To: <20231209-singular-tighten-eef5f7909dcd@spud>
+References: <20230928222130.580487-1-festevam@gmail.com>
+ <20231002-unheard-copy-f9dceb6498a9@spud>
+ <CAOMZO5Di6Saq_r2k8AkGeANRvXwwx26U=Vf5-Eu-_2Qhu5sDCw@mail.gmail.com>
+ <20231209-singular-tighten-eef5f7909dcd@spud>
+Message-ID: <a591318fbba10b764075e9395ddd9f7f@denx.de>
+X-Sender: festevam@denx.de
+User-Agent: Roundcube Webmail/1.3.6
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-Hi Karel,
+Hi Conor,
 
-On 12/8/23 23:59, Karel Balej wrote:
-> Markuss,
->
-> thank you for the review.
->
->>> diff --git a/drivers/input/touchscreen/imagis.c b/drivers/input/touchscreen/imagis.c
->>> index 84a02672ac47..41f28e6e9cb1 100644
->>> --- a/drivers/input/touchscreen/imagis.c
->>> +++ b/drivers/input/touchscreen/imagis.c
->>> @@ -35,6 +35,8 @@
->>>    #define IST3038B_REG_CHIPID		0x30
->>>    #define IST3038B_WHOAMI			0x30380b
->>>    
->>> +#define IST3032C_WHOAMI			0x32c
->>> +
->> Perhaps it should be ordered in alphabetic/alphanumeric order,
->> alternatively, the chip ID values could be grouped.
-> Here I followed suit and just started a new section for the new chip,
-> except there is only one entry. I do agree that it would be better to
-> sort the chips alphanumerically and I am actually surprised that I
-> didn't do that - but now I see that the chips that you added are not
-> sorted either, so it might be because of that.
->
-> I propose to definitely swap the order of the sections, putting 32C
-> first, then 38B and 38C at the end (from top to bottom). The chip ID
-> values could then still be grouped in a new section, but I think I would
-> actually prefer to keep them as parts of the respective sections as it
-> is now, although it is in no way a strong preference.
-We could do that, yeah. It is not a problem right now since there's only 
-3 models supported, but it would maker sense and set some order for when 
-we'd have more supported devices.
->
-> Please let me know whether you agree with this or have a different
-> preference. And if the former, please confirm that I can add your
-> Reviewed-by trailer to the patch modified in such a way.
-Yeah, it's fine.
->
-> Best regards,
-> K. B.
+On 09/12/2023 17:23, Conor Dooley wrote:
 
-- Markuss
+> You're adding the constraints and items at the wrong level AFAICT.
+> I think something like the below better matches your constraints?
 
+Thanks for your example.
+
+With your change the fsl,imx93-tmu case works correctly:
+if I pass the number of fsl,tmu-range entries different than 7,
+dt_binding_check correctly complains.
+
+However, if I pass 7 entries to fsl,qoriq-tmu it should complain as it 
+expects 4, but it
+does not.
+
+On top of your patch:
+
+--- a/Documentation/devicetree/bindings/thermal/qoriq-thermal.yaml
++++ b/Documentation/devicetree/bindings/thermal/qoriq-thermal.yaml
+@@ -104,7 +104,7 @@ additionalProperties: false
+  examples:
+    - |
+      tmu@f0000 {
+-        compatible = "fsl,imx93-tmu";
++        compatible = "fsl,qoriq-tmu";
+          reg = <0xf0000 0x1000>;
+          interrupts = <18 2 0 0>;
+          fsl,tmu-range = <0x000a0000 0x00090026 0x0008004a 0x0001006a 0 
+0 0>;
+
+make dt_binding_check DT_SCHEMA_FILES=qoriq-thermal.yaml
+   LINT    Documentation/devicetree/bindings
+   DTEX    
+Documentation/devicetree/bindings/thermal/qoriq-thermal.example.dts
+   CHKDT   Documentation/devicetree/bindings/processed-schema.json
+   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+   DTC_CHK 
+Documentation/devicetree/bindings/thermal/qoriq-thermal.example.dtb
+
+Any suggestions?
+
+Thanks
 
