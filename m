@@ -1,58 +1,58 @@
-Return-Path: <devicetree+bounces-23508-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23509-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4233980B772
-	for <lists+devicetree@lfdr.de>; Sun, 10 Dec 2023 00:21:51 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12F0680B77D
+	for <lists+devicetree@lfdr.de>; Sun, 10 Dec 2023 00:21:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB56A280F75
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 23:21:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8BA24B20AE6
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 23:21:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E8B51F95F;
-	Sat,  9 Dec 2023 23:21:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CDFE1EA8A;
+	Sat,  9 Dec 2023 23:21:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="u8IX79F2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="P7SJgdeB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E91E71BB
-	for <devicetree@vger.kernel.org>; Sat,  9 Dec 2023 15:21:37 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2c9f84533beso36651731fa.1
-        for <devicetree@vger.kernel.org>; Sat, 09 Dec 2023 15:21:37 -0800 (PST)
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE4FED60
+	for <devicetree@vger.kernel.org>; Sat,  9 Dec 2023 15:21:38 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2c9eca5bbaeso39877051fa.3
+        for <devicetree@vger.kernel.org>; Sat, 09 Dec 2023 15:21:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702164096; x=1702768896; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702164097; x=1702768897; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=JgDxAEuhsmBMeANv3N0te/wPGHFbBpN6eVt4De9yE3Y=;
-        b=u8IX79F26AnVEj39zeGc6Uyoirw3WFaciJ9cS5OgF85Vq0SNvgcUP88PepS7m9nNGz
-         Qy7t7fO+OYx7nuftWVuGsImKI28lpjzKI3qx9/DYSTDtEDsDX8XHLQIHT68oj33067GS
-         aYtgExbeWtpjmwlRqlpiC2Oy0NZ1elkL0+8uJsmmi0gT8IuTVrrrd0U7uu0H/wyhMXHh
-         pOw1+/Ur64cndcIziKt0uxsrIkQuRBFj5jLb9HByPGWYRzCmWwb6saqzx+sMtd5SygKY
-         M3tsMhFwYlkuQVqSFmt9+lGNaBmRF2yASvD2gw/BjH7zPOV64jN1VL/xt1BQFhQgW7zu
-         S4kQ==
+        bh=3EHFkEQ27U+4FuL/p3mfN4ceRCyXdPDrWkGkrGBViEo=;
+        b=P7SJgdeBkTnaxq0LaQSeOscyM3xa5Sw/68jJLUADmAlRxy9n4lsOx5BBypXglLMNLa
+         N2yC18jaHp2r1rGXY3nJs/wnulBSoh/F4HaaWKlo9RZ1nOOwb2L+HrVhVPQMPTH3p+xb
+         WIaijbL8H/+NrBagKGiUKzTcVWZn0w14NgT94f9NdpWleYppxW30FKphMulYATHLouSc
+         H1ZLQcT9F9P4KHX6lwKx0Mm4nph/nWMwLW9cgWyrKhZ2aU/Lkja7kCjBmZnEUqACh45r
+         aGBPqVOnIk7YjEblu+q1lxrv8HtP4InpnYTKbt4GqOTIJU/sSew4ePIELvcVPtKW/1FR
+         vGsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702164096; x=1702768896;
+        d=1e100.net; s=20230601; t=1702164097; x=1702768897;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=JgDxAEuhsmBMeANv3N0te/wPGHFbBpN6eVt4De9yE3Y=;
-        b=cV6lynv3ntF/Ruwl6PYKiLVPgbMOEwlvyHoYAGcc3FtbI045/Z731WX8pGfTgKe6Kr
-         3pnT8fIKL8n4bl8JtOWyJiep0nnME5ADPJ5TF85guepMalHFoHIiKd91vnY15xN8VESh
-         ByVHhEfWHJBQGSTplg16zcw1RcxgQXKA8W6H6rz7nh/gcly22uwHkzzZDiP4KEz/zLRT
-         yowNCWR0WCOrIpjfo/T1AB1/piTljqPryQ22HcnrS8NVpeQhvgTzgFiXmbbKpIps8Wwb
-         Kwo5zoauA6EnJAS3O8+lLS3+3tZuAF8CLxzIqX0cskAqy3vY+n6Yq1GWldAP8JO4jkF3
-         it5A==
-X-Gm-Message-State: AOJu0Yzio1mt9VIjsX4psdRNOFyM9Butv2uOi4u1qpaiZVJ7wQtUL811
-	WVeocTJgEnSBj4ZmoWZTeI5IWQ==
-X-Google-Smtp-Source: AGHT+IGUzLLBnvyzByTUcEtcoTK0ECG9194KSNjYB+OpKYDRaX+qfDCUoY7QFKr9d9SKUTVhFBsolA==
-X-Received: by 2002:a2e:94cd:0:b0:2c9:f4ac:ccc6 with SMTP id r13-20020a2e94cd000000b002c9f4acccc6mr704022ljh.46.1702164096346;
-        Sat, 09 Dec 2023 15:21:36 -0800 (PST)
+        bh=3EHFkEQ27U+4FuL/p3mfN4ceRCyXdPDrWkGkrGBViEo=;
+        b=F2oSxIARW1dhkPrhyHpcpQhemHh0vQcJAy9S/Jbf1UcHKirkz4ZI5QfV9Yuov0ER4C
+         vKqkUca/XwtAk8cU9QiJR53bh0xbB8S/dLx507eF2jRhTQIbaX9qPl+MZLt9a9sSL/26
+         ddGVANAVKLhtbDwGtNUI2VGCnzRNuXv02V+IXR9fRjz1TXzBo/b/uoeZRd4bHi0SO4bp
+         TNPl8ZMh4VRKtXO3K42Z3ploejiHSM2NQNVzfx9oPikj/xOhFAkdRVXn9TlWDzpxA1ti
+         bgnrJsngAQRAaJfUxd/9ZTxN82ba6til40T94fPxooJogXB2ALPZ3S3/6dqpbN1UcJ/K
+         fLpg==
+X-Gm-Message-State: AOJu0YycV14g3k+jovm8dhdIiFYePqR0qiRNL+M+cqLdq1UcjMEyJdt4
+	/2c9TD+ZVX/AriBHYXe0ykPpng==
+X-Google-Smtp-Source: AGHT+IEsH7bZJ6NHHzSz3PIsREQmGftXVyk/tvGr+e/b2ZwOpkBLf5rJNw7/z2UcN923vKRyJVZd+g==
+X-Received: by 2002:a05:651c:9:b0:2c9:ec10:2e24 with SMTP id n9-20020a05651c000900b002c9ec102e24mr372894lja.214.1702164097093;
+        Sat, 09 Dec 2023 15:21:37 -0800 (PST)
 Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id z18-20020a2ebe12000000b002c9f59f1748sm685258ljq.7.2023.12.09.15.21.35
+        by smtp.gmail.com with ESMTPSA id z18-20020a2ebe12000000b002c9f59f1748sm685258ljq.7.2023.12.09.15.21.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 09 Dec 2023 15:21:35 -0800 (PST)
+        Sat, 09 Dec 2023 15:21:36 -0800 (PST)
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To: Andy Gross <agross@kernel.org>,
 	Bjorn Andersson <andersson@kernel.org>,
@@ -70,9 +70,9 @@ Cc: Stephen Boyd <swboyd@chromium.org>,
 	devicetree@vger.kernel.org,
 	dri-devel@lists.freedesktop.org,
 	freedreno@lists.freedesktop.org
-Subject: [PATCH 3/9] arm64: dts: qcom: sm8150: make dispcc cast minimal vote on MMCX
-Date: Sun, 10 Dec 2023 02:21:26 +0300
-Message-Id: <20231209232132.3580045-4-dmitry.baryshkov@linaro.org>
+Subject: [PATCH 4/9] arm64: dts: qcom: sm8150-hdk: enable HDMI output
+Date: Sun, 10 Dec 2023 02:21:27 +0300
+Message-Id: <20231209232132.3580045-5-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20231209232132.3580045-1-dmitry.baryshkov@linaro.org>
 References: <20231209232132.3580045-1-dmitry.baryshkov@linaro.org>
@@ -84,28 +84,170 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add required-opps property to the display clock controller. This makes
-it cast minimal vote on the MMCX lane and prevents further 'clock stuck'
-errors when enabling the display.
+Add DSI outputs and link them to the onboard Lontium LT9611 DSI-to-HDMI
+bridge, enabling HDMI output on this board. While adding the display
+resources, also drop the headless ("amd,imageon") compat string from the
+GPU node, since the board now has output.
 
-Fixes: 2ef3bb17c45c ("arm64: dts: qcom: sm8150: Add DISPCC node")
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8150.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/qcom/sm8150-hdk.dts | 128 +++++++++++++++++++++++-
+ 1 file changed, 123 insertions(+), 5 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-index fb41f91cefc6..153c531c1d41 100644
---- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-@@ -3925,6 +3925,7 @@ dispcc: clock-controller@af00000 {
- 				      "dp_phy_pll_link_clk",
- 				      "dp_phy_pll_vco_div_clk";
- 			power-domains = <&rpmhpd SM8150_MMCX>;
-+			required-opps = <&rpmhpd_opp_low_svs>;
- 			#clock-cells = <1>;
- 			#reset-cells = <1>;
- 			#power-domain-cells = <1>;
+diff --git a/arch/arm64/boot/dts/qcom/sm8150-hdk.dts b/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
+index bb161b536da4..6a036f9ba1c9 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
++++ b/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
+@@ -54,6 +54,17 @@ key-vol-up {
+ 			gpios = <&pm8150_gpios 6 GPIO_ACTIVE_LOW>;
+ 		};
+ 	};
++
++	hdmi-out {
++		compatible = "hdmi-connector";
++		type = "a";
++
++		port {
++			hdmi_con: endpoint {
++				remote-endpoint = <&lt9611_out>;
++			};
++		};
++	};
+ };
+ 
+ &apps_rsc {
+@@ -359,12 +370,112 @@ &gmu {
+ 	status = "okay";
+ };
+ 
++&gpi_dma1 {
++	status = "okay";
++};
++
+ &gpu {
+-	/*
+-	 * NOTE: "amd,imageon" makes Adreno start in headless mode, remove it
+-	 * after display support is added on this board.
+-	 */
+-	compatible = "qcom,adreno-640.1", "qcom,adreno", "amd,imageon";
++	status = "okay";
++};
++
++&i2c9 {
++	status = "okay";
++	clock-frequency = <400000>;
++
++	lt9611_codec: hdmi-bridge@3b {
++		compatible = "lontium,lt9611";
++		reg = <0x3b>;
++		#sound-dai-cells = <1>;
++
++		interrupts-extended = <&tlmm 9 IRQ_TYPE_EDGE_FALLING>;
++
++		reset-gpios = <&tlmm 7 GPIO_ACTIVE_HIGH>;
++
++		vdd-supply = <&vreg_s4a_1p8>;
++		vcc-supply = <&vreg_bob>;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&lt9611_irq_pin>;
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				reg = <0>;
++
++				lt9611_a: endpoint {
++					remote-endpoint = <&mdss_dsi0_out>;
++				};
++			};
++
++			port@1 {
++				reg = <1>;
++
++				lt9611_b: endpoint {
++					remote-endpoint = <&mdss_dsi1_out>;
++				};
++			};
++
++			port@2 {
++				reg = <2>;
++
++				lt9611_out: endpoint {
++					remote-endpoint = <&hdmi_con>;
++				};
++			};
++		};
++	};
++};
++
++&mdss {
++	status = "okay";
++};
++
++&mdss_dsi0 {
++	status = "okay";
++	vdda-supply = <&vreg_l3c_1p2>;
++
++	qcom,dual-dsi-mode;
++	qcom,master-dsi;
++
++	ports {
++		port@1 {
++			endpoint {
++				remote-endpoint = <&lt9611_a>;
++				data-lanes = <0 1 2 3>;
++			};
++		};
++	};
++};
++
++&mdss_dsi0_phy {
++	status = "okay";
++	vdds-supply = <&vreg_l5a_0p875>;
++};
++
++&mdss_dsi1 {
++	vdda-supply = <&vreg_l3c_1p2>;
++
++	qcom,dual-dsi-mode;
++
++	/* DSI1 is slave, so use DSI0 clocks */
++	assigned-clock-parents = <&mdss_dsi0_phy 0>, <&mdss_dsi0_phy 1>;
++
++	status = "okay";
++
++	ports {
++		port@1 {
++			endpoint {
++				remote-endpoint = <&lt9611_b>;
++				data-lanes = <0 1 2 3>;
++			};
++		};
++	};
++};
++
++&mdss_dsi1_phy {
++	vdds-supply = <&vreg_l5a_0p875>;
+ 	status = "okay";
+ };
+ 
+@@ -402,6 +513,13 @@ &remoteproc_slpi {
+ 
+ &tlmm {
+ 	gpio-reserved-ranges = <0 4>, <126 4>;
++
++	lt9611_irq_pin: lt9611-irq-state {
++		pins = "gpio9";
++		function = "gpio";
++		bias-disable;
++	};
++
+ };
+ 
+ &uart2 {
 -- 
 2.39.2
 
