@@ -1,60 +1,61 @@
-Return-Path: <devicetree+bounces-23435-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23437-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC5E780B4AE
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 15:00:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A6DE80B4B2
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 15:00:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7149B281061
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 14:00:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 51690281112
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 14:00:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB90314F7C;
-	Sat,  9 Dec 2023 14:00:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13F29154A3;
+	Sat,  9 Dec 2023 14:00:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nD49e90G"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Tt3H48c2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F11AED
-	for <devicetree@vger.kernel.org>; Sat,  9 Dec 2023 06:00:13 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-40c3f68b69aso4067755e9.1
-        for <devicetree@vger.kernel.org>; Sat, 09 Dec 2023 06:00:13 -0800 (PST)
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9AED10F1
+	for <devicetree@vger.kernel.org>; Sat,  9 Dec 2023 06:00:36 -0800 (PST)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-a1ca24776c3so843113666b.0
+        for <devicetree@vger.kernel.org>; Sat, 09 Dec 2023 06:00:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702130411; x=1702735211; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gQwsJ8l2VlvWo7H+w9hc5ZUpbl6j+jBpzd4pR7NxVpg=;
-        b=nD49e90GIaMBxc6GCjTf7//EWUhksx9Rh6Uty6HsbA3tFOXCj96qXmpCII4o5ab5dc
-         vSPTf3qAhI+Vqd5VDpZCkgwLeRoqQJCcgoz3YaJ/Yfg8FRUkjZI6mR3hUvoZna6EQeyn
-         zEpfffZh9TAXX2eywnleX+6/VyUTSO2HOcFNinJlHbgGadY0IQ0VV3GkLG27sZwVtjTR
-         7AK5EYbdMy3YmUhS0RF3QctapcDfseI/dJugdHvGQkue3jS11EJ69+fYzgsw6w+X3/t0
-         HB0xWkqizIQq7tXBrO1rghJ2JZr/fx5/Uw4a1vTZhMA143nZVpmlJOKr/QGx7rkb0l6u
-         UIuA==
+        d=linaro.org; s=google; t=1702130435; x=1702735235; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=LnMLcnjkb1BIc/27S0iNwDJ0c/b6qRVcdQruabcLx60=;
+        b=Tt3H48c20r9rf6i1v7GjVz7t+jZESqRLhj0PumLX47D9fOXt5DIMl8zGHPKyvHM6Cl
+         brMfUxQuspFky8Em4KMRJ1lwEH0GpE245FDH/THJCNwXfQQROwsf1xhFjqleLZIHh0Wu
+         Sd7l8wOO4UBjroot3HJtu9yKMy7ELvJ5hVY/SARdt0TXnuO0j4C0aV9eyarZYWtLU10i
+         PdsnPAcZ+Jm8nC7OrsOz79bNOB3tkMFREtyCZTUpUetmM9/NhfVQU4RFey0EQNgQ/ZV6
+         ss1q5xgVXIdp7rLSfZOlDTvnf1F0UQMMRCOAPn9i88djBYLqKjYRMv/yOg8wAq/FIDy8
+         UE0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702130411; x=1702735211;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gQwsJ8l2VlvWo7H+w9hc5ZUpbl6j+jBpzd4pR7NxVpg=;
-        b=Lmjx6QeofYTLNgJ5Ge0yZIVuEzRbTloQxjLAsZhZIjkRrCYduzna/wjuMZ+yMuXPV/
-         8obkRSdpuZkOGQZTZJPIen7vNNc/LF2nALSTLo/+vgfZ/Ty5v9LWivwMiLBuR1i5R1C7
-         +Oj/3sWjFuBjZ4mr/llSxtj1RJ7SWe+yiOjDkrvipYf0QB764XPMiyGZJLfgwT4xKTSo
-         ewOQkgY6Bm1At5vpDBWgBz7KMFoaJkhXaCNaewbeMkOOHIQEn7sEwCC2u4QK7guofewn
-         rXU+AKaLL+bj9UYPM6EyWX9IP7lH9bAJ6mxrKw6G1MVgouUcpCpCGcN6/KHo5OZ2LcIc
-         wCBQ==
-X-Gm-Message-State: AOJu0YybpxtOW2xX3n7iZOO1rxggfzG10aoDeYUFpCLOcSk8ztNk998U
-	1NSIf6egVtjUwQQFSwlSICcv2Q==
-X-Google-Smtp-Source: AGHT+IGT50LtT0pA6gWgO9rY5MKYnS/Lhu3xlIClGL+8FIocAJ533JvhL12bQOF3qMZFMxGc2n4OCw==
-X-Received: by 2002:a05:600c:3507:b0:40c:3e94:b420 with SMTP id h7-20020a05600c350700b0040c3e94b420mr577022wmq.37.1702130411493;
-        Sat, 09 Dec 2023 06:00:11 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id z4-20020adff1c4000000b003333af25cb2sm4399146wro.66.2023.12.09.06.00.10
+        d=1e100.net; s=20230601; t=1702130435; x=1702735235;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LnMLcnjkb1BIc/27S0iNwDJ0c/b6qRVcdQruabcLx60=;
+        b=SHq3LAhbZNU2ecFwzDrIxkpqotesSDYe+ZKwl5wAefe5b5duxPCxe3a54EkkXOqvsc
+         fJGE9EM5txDDvxsutjoorK7u/1EHgR1XwoyOod66+Ew14KowbNaoGMt6qKBzDDEYVMcB
+         eEEwvnZTpEauazQGZ67XBLzJCQcI5fe1EDMSK/yR5uC+DgTHJ3DMsxRbuthEYpMMDXG2
+         3md2RYAmxduG2NJt42PTDdMQyZxW4TzYLkTz16yFDE02sx2gAO8JJ4OZ/BH+p76/COkg
+         DRaQTynIjyfRwLRBL3SPbgJQ/omutcxf5bey54FrZ4fDcWb4p28r6YK4BDH4dcqiXpc/
+         Kyrg==
+X-Gm-Message-State: AOJu0YzDUnqwAAnShMX0+WtHhbi8glUn05h1hpr4Yze6UDiAZPItvKqL
+	gzM+sghijqsMVGumAAKrYCRq8w==
+X-Google-Smtp-Source: AGHT+IEXr1lXL0lwzMvYm5jiS6MD218fxa0+rOiA5rToq8olz4MZ+/x9svL77Z5q+Gp6YBnv7KJSCw==
+X-Received: by 2002:a17:906:292:b0:a1c:892e:9e68 with SMTP id 18-20020a170906029200b00a1c892e9e68mr1952384ejf.29.1702130434849;
+        Sat, 09 Dec 2023 06:00:34 -0800 (PST)
+Received: from [192.168.36.128] (178235179179.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.179])
+        by smtp.gmail.com with ESMTPSA id mn6-20020a1709077b0600b00a1dbda310f4sm2231561ejc.158.2023.12.09.06.00.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 09 Dec 2023 06:00:11 -0800 (PST)
-Message-ID: <bd62fe7b-3d66-4ade-9aaf-37af449b08c2@linaro.org>
-Date: Sat, 9 Dec 2023 15:00:09 +0100
+        Sat, 09 Dec 2023 06:00:34 -0800 (PST)
+Message-ID: <1c99bb49-51e9-458e-acef-a0615dca95ce@linaro.org>
+Date: Sat, 9 Dec 2023 15:00:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,87 +63,97 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/5] dt-bindings: arm: rockchip: Add Cool Pi 4B
+Subject: Re: [PATCH v7 0/2] Resolve MPM register space situation
+To: Thomas Gleixner <tglx@linutronix.de>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Marc Zyngier <maz@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Shawn Guo <shawn.guo@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+References: <20230328-topic-msgram_mpm-v7-0-6ee2bfeaac2c@linaro.org>
+ <87il58sr12.ffs@tglx>
 Content-Language: en-US
-To: Andy Yan <andyshrk@163.com>, heiko@sntech.de
-Cc: krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-References: <20231209103622.1568289-1-andyshrk@163.com>
- <20231209103748.1568462-1-andyshrk@163.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231209103748.1568462-1-andyshrk@163.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <87il58sr12.ffs@tglx>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 09/12/2023 11:37, Andy Yan wrote:
-> Add Cool Pi 4B, a SBC powered by RK3588S
+On 8.12.2023 15:33, Thomas Gleixner wrote:
+> Konrad!
 > 
-> Signed-off-by: Andy Yan <andyshrk@163.com>
-> ---
+> On Mon, Nov 27 2023 at 16:52, Konrad Dybcio wrote:
 > 
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+> This list of version changes is useful, but seriously not on top of the
+> cover letter. It makes me scroll down 60 lines to find the real meat.
+Ack
+
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> index 5deb66a5c7d9..5de9f3090be1 100644
-> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> @@ -95,6 +95,11 @@ properties:
->            - const: chipspark,rayeager-px2
->            - const: rockchip,rk3066a
->  
-> +      - description: Cool Pi 4 Model B
-> +        items:
-> +          - const: CoolPi 4 Model B
+> <SNIP>
+> 
+>> Depends on resolution of https://github.com/devicetree-org/dt-schema/issues/104
+> 
+> Is this resolved? I can't figure out from this non-format whether this
+> belongs to V1 or to the actual cover letter...
+Yes it has been resolved since
 
-That's not a correct compatible.
+> 
+>> The MPM (and some other things, irrelevant to this patchset) resides
+>> (as far as the ARM cores are concerned, anyway) in a MMIO-mapped region
+>> that's a portion of the RPM (low-power management core)'s RAM, known
+>> as the RPM Message RAM. Representing this relation in the Device Tree
+>> creates some challenges, as one would either have to treat a memory
+>> region as a bus, map nodes in a way such that their reg-s would be
+>> overlapping, or supply the nodes with a slice of that region.
+>>
+>> This series implements the third option, by adding a qcom,rpm-msg-ram
+>> property, which has been used for some drivers poking into this region
+>> before. Bindings ABI compatibility is preserved through keeping the
+>> "normal" (a.k.a read the reg property and map that region) way of
+>> passing the register space.
+>>
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> 
+> Signed-off-by on the cover letter is completely meaningless.
+Yes, I realize that. Blame b4.
 
-Best regards,
-Krzysztof
-
+Konrad
 
