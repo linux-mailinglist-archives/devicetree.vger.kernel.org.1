@@ -1,71 +1,68 @@
-Return-Path: <devicetree+bounces-23461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23466-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E4F080B56E
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 18:16:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 977FC80B582
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 18:30:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 23C5D1F21007
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 17:16:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 47AEE1F2106A
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 17:30:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE28F182AE;
-	Sat,  9 Dec 2023 17:16:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28C8D1864B;
+	Sat,  9 Dec 2023 17:30:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ujyn2XY0"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XQfuoC89"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C8AF10D0
-	for <devicetree@vger.kernel.org>; Sat,  9 Dec 2023 09:16:16 -0800 (PST)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-a1db6c63028so352626066b.2
-        for <devicetree@vger.kernel.org>; Sat, 09 Dec 2023 09:16:16 -0800 (PST)
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82DDB10DA
+	for <devicetree@vger.kernel.org>; Sat,  9 Dec 2023 09:30:49 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-50bfd7be487so3567245e87.0
+        for <devicetree@vger.kernel.org>; Sat, 09 Dec 2023 09:30:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702142174; x=1702746974; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702143048; x=1702747848; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=N//LFsMjuZq4iKtlyMYGCirrn61f3kbX/lE5kaAb5qM=;
-        b=ujyn2XY0s+DUNmoPYucuSF5vT+dDO00Pbd6eWcNLxGEhfLYQWPd3v28noHNgixDjF2
-         noxlZuqRJEt/1yzFr/9AK/Abrty8SCQz6sn2jdFL5gvwMrh1XR1HhrW3IHiVqVQp3D5Q
-         8Rezqht58jXYsHR0XGjNGya/AkWbRQU0L786YsyfMTQ8Rdy9t2Tyi5lGtv70BFlaQz2O
-         ldsKqR/68ErVEwWOEjW7ims0s2lF9uoW89KAUxMhvNIJmAjSnyG4qu1wK8Hczx4I21lN
-         qU0sg965U07p3sw7K7MIy9FrR8wEs4juv68t0jc/kQzZ2BVqtmlAB1O7fyBAsKy/GEJV
-         NO6Q==
+        bh=ho0A//e5nku1XNpPeOxEQX2rLe6R8q7cIXkFFUGZs5k=;
+        b=XQfuoC899DKmgqKuh+tHzDE7HmdiKLtYQ4fCxhj4QzXaPMH5Rk4siM/t937Sbc+EiG
+         e1T2cPaztFiv+I268Af71rCSWUX4AdTqzj/75NLUzUAhlSAmqDVkYlpT6zsO5116rjn2
+         zdZ5v7jKVibbgcU09cUEE/87WHXbBxVtzokxar/lQ2nyKcCsUpxXif0U8h41FbPgQXNV
+         dZhnTDWcw9vnfFKI8AbJOOhZfzS23cn92dGka4aZyipd7I9AKrX/AwmxICThM4G0PmWx
+         kBf1wp1Fg4Do7osu55QfI2k1mtZnewQAeBEtcaAROQKBaxnLlmto+1Uq1YtO96f5+jvU
+         QHyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702142174; x=1702746974;
+        d=1e100.net; s=20230601; t=1702143048; x=1702747848;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=N//LFsMjuZq4iKtlyMYGCirrn61f3kbX/lE5kaAb5qM=;
-        b=UNfxeXOzq59DLWO0FR3/D6S4oOVqxroFzbE3ST8fw3pLIDQPoPLIUZeY4yqb1E/H+0
-         rlg0kGQU9uQMobLEXh7fri35QVfQ5OlcCuOwXhHW0r0GMDWLrKQnPPEbMI39bUaX7Gv1
-         X7WqUKf1wDGCOORgZNtEhC+QpShmPSV67qy1GnETEIAGqXrxz6cnZCpoczN8wvY2mrMb
-         sNvk3QFwtIRbnr7pP03uQSu46c/rT7+dC3dDOvhiJ+XmurgcmjlGa7neo3wYDQLFjlWc
-         xEuIiG+D1fr1E9cxXLWjWcuKxLy4NtSVxJU1xrPmo8RrpoCAMal+AgVZsS0VAR/MKV5s
-         q03Q==
-X-Gm-Message-State: AOJu0Ywrt8Bxs7iSGnSlGlV6jiOivPbBUsXjAdxA40upoxVpzaqDBeh1
-	GjahI/6P72SkshpKMuGniGiHFJlWS1qbE6BkYds=
-X-Google-Smtp-Source: AGHT+IF7lfeoMKj7lrnzHIL0I+1nREKlOADXkHe8mxEUwxT5JLX2SJIZdtAO9m5+CN97p4RIJGzMMg==
-X-Received: by 2002:a17:907:948f:b0:a01:e916:3590 with SMTP id dm15-20020a170907948f00b00a01e9163590mr1054629ejc.75.1702142174592;
-        Sat, 09 Dec 2023 09:16:14 -0800 (PST)
+        bh=ho0A//e5nku1XNpPeOxEQX2rLe6R8q7cIXkFFUGZs5k=;
+        b=V0wNhYqp/324qJ+LPModpgHM+ouObkck58tfiHmVbwmox9CnVHlQYnf8Z7RF0U9rSq
+         pbfIUwqsfsLEeLPZ7jM9rqyGf53jfFMZ09TcgLz2auDJzJ3d3nJTmPt1YiT6uXKEo05Y
+         6OCNnUq8+qhtsBUAHYeVNMRfJpR6rVX5rsRXE7aeNRiPF/3xBIr1RaMPjx7eG8l+RmoX
+         xIHLyGr9s3rrC5fKZ+UZsNEIrIHuXCXJk1z/VF6x1TtElvRUdCubG32oO2H3B+HoOBTZ
+         Qjklgay3sTYX4KS2FQqe7HZcPVbWqI614pUilIBcvzGinUxZkcq/nGHgaMuxQwi+E8ni
+         PSCw==
+X-Gm-Message-State: AOJu0YxMR/fjF+HKp8NejV9uSrGRPtvFvV9KY28aj6JVLTUHNbqEfVJu
+	KDD7FjxKWY2a19T/xxkxxUAJKA==
+X-Google-Smtp-Source: AGHT+IET7Oq0v4OfJpxjjj6CVCaSQsJKZm5hQL+iKxCrZeOieOHs80ikD6xhP3WVTvX3gaMnsgb0XQ==
+X-Received: by 2002:a05:6512:2386:b0:50b:e995:d9e6 with SMTP id c6-20020a056512238600b0050be995d9e6mr969488lfv.93.1702143047640;
+        Sat, 09 Dec 2023 09:30:47 -0800 (PST)
 Received: from krzk-bin.. ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id sf21-20020a1709078a9500b00a1f7cbf28a5sm1179782ejc.106.2023.12.09.09.16.13
+        by smtp.gmail.com with ESMTPSA id m26-20020a50931a000000b0054ce5c00e74sm1926621eda.88.2023.12.09.09.30.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 09 Dec 2023 09:16:14 -0800 (PST)
+        Sat, 09 Dec 2023 09:30:47 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Liviu Dudau <liviu.dudau@arm.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+To: Dinh Nguyen <dinguyen@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] arm64: dts: juno: align thermal zone names with bindings
-Date: Sat,  9 Dec 2023 18:16:12 +0100
-Message-Id: <20231209171612.250868-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 01/15] ARM: dts: socfpga: drop unsupported cdns,page-size and cdns,block-size
+Date: Sat,  9 Dec 2023 18:30:30 +0100
+Message-Id: <20231209173044.257684-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -75,111 +72,108 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Thermal bindings require thermal zone node names to match
-certain patterns:
+cdns,page-size and cdns,block-size are neither documented nor used by
+Linux, so remove them to fix dtbs_check warnings like:
 
-  juno.dtb: thermal-zones: 'big-cluster', 'gpu0', 'gpu1', 'little-cluster', 'pmic', 'soc'
-    do not match any of the regexes: '^[a-zA-Z][a-zA-Z0-9\\-]{1,12}-thermal$', 'pinctrl-[0-9]+'
+  socfpga_arria5_socdk.dtb: flash@0: Unevaluated properties are not allowed ('cdns,block-size', 'cdns,page-size' were unexpected)
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/arm/juno-base.dtsi | 12 ++++++------
- arch/arm64/boot/dts/arm/juno-scmi.dtsi | 12 ++++++------
- 2 files changed, 12 insertions(+), 12 deletions(-)
+ .../arm/boot/dts/intel/socfpga/socfpga_arria10_socdk_qspi.dts | 2 --
+ arch/arm/boot/dts/intel/socfpga/socfpga_arria5_socdk.dts      | 2 --
+ arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_socdk.dts    | 2 --
+ arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_sockit.dts   | 2 --
+ arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_sodia.dts    | 2 --
+ .../boot/dts/intel/socfpga/socfpga_cyclone5_vining_fpga.dts   | 4 ----
+ 6 files changed, 14 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/arm/juno-base.dtsi b/arch/arm64/boot/dts/arm/juno-base.dtsi
-index 8b4d280b1e7e..b897f5542c0a 100644
---- a/arch/arm64/boot/dts/arm/juno-base.dtsi
-+++ b/arch/arm64/boot/dts/arm/juno-base.dtsi
-@@ -747,7 +747,7 @@ scpi_sensors0: sensors {
- 	};
+diff --git a/arch/arm/boot/dts/intel/socfpga/socfpga_arria10_socdk_qspi.dts b/arch/arm/boot/dts/intel/socfpga/socfpga_arria10_socdk_qspi.dts
+index 11ccdc6c2dc6..0434f1c7b665 100644
+--- a/arch/arm/boot/dts/intel/socfpga/socfpga_arria10_socdk_qspi.dts
++++ b/arch/arm/boot/dts/intel/socfpga/socfpga_arria10_socdk_qspi.dts
+@@ -17,8 +17,6 @@ flash0: flash@0 {
+ 		spi-max-frequency = <100000000>;
  
- 	thermal-zones {
--		pmic {
-+		pmic-thermal {
- 			polling-delay = <1000>;
- 			polling-delay-passive = <100>;
- 			thermal-sensors = <&scpi_sensors0 0>;
-@@ -760,7 +760,7 @@ pmic_crit0: trip0 {
- 			};
- 		};
+ 		m25p,fast-read;
+-		cdns,page-size = <256>;
+-		cdns,block-size = <16>;
+ 		cdns,read-delay = <3>;
+ 		cdns,tshsl-ns = <50>;
+ 		cdns,tsd2d-ns = <50>;
+diff --git a/arch/arm/boot/dts/intel/socfpga/socfpga_arria5_socdk.dts b/arch/arm/boot/dts/intel/socfpga/socfpga_arria5_socdk.dts
+index c48385702a85..7342f5942b0d 100644
+--- a/arch/arm/boot/dts/intel/socfpga/socfpga_arria5_socdk.dts
++++ b/arch/arm/boot/dts/intel/socfpga/socfpga_arria5_socdk.dts
+@@ -124,8 +124,6 @@ flash: flash@0 {
+ 		spi-max-frequency = <100000000>;
  
--		soc {
-+		soc-thermal {
- 			polling-delay = <1000>;
- 			polling-delay-passive = <100>;
- 			thermal-sensors = <&scpi_sensors0 3>;
-@@ -773,28 +773,28 @@ soc_crit0: trip0 {
- 			};
- 		};
+ 		m25p,fast-read;
+-		cdns,page-size = <256>;
+-		cdns,block-size = <16>;
+ 		cdns,read-delay = <4>;
+ 		cdns,tshsl-ns = <50>;
+ 		cdns,tsd2d-ns = <50>;
+diff --git a/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_socdk.dts b/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_socdk.dts
+index c7f5fa0ba0f2..d37a982e8571 100644
+--- a/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_socdk.dts
++++ b/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_socdk.dts
+@@ -129,8 +129,6 @@ flash0: flash@0 {
+ 		spi-max-frequency = <100000000>;
  
--		big_cluster_thermal_zone: big-cluster {
-+		big_cluster_thermal_zone: big-cluster-thermal {
- 			polling-delay = <1000>;
- 			polling-delay-passive = <100>;
- 			thermal-sensors = <&scpi_sensors0 21>;
- 			status = "disabled";
- 		};
+ 		m25p,fast-read;
+-		cdns,page-size = <256>;
+-		cdns,block-size = <16>;
+ 		cdns,read-delay = <4>;
+ 		cdns,tshsl-ns = <50>;
+ 		cdns,tsd2d-ns = <50>;
+diff --git a/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_sockit.dts b/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_sockit.dts
+index 3dd99c7c95e0..9e4db7407f1a 100644
+--- a/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_sockit.dts
++++ b/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_sockit.dts
+@@ -174,8 +174,6 @@ flash: flash@0 {
+ 		spi-max-frequency = <100000000>;
  
--		little_cluster_thermal_zone: little-cluster {
-+		little_cluster_thermal_zone: little-cluster-thermal {
- 			polling-delay = <1000>;
- 			polling-delay-passive = <100>;
- 			thermal-sensors = <&scpi_sensors0 22>;
- 			status = "disabled";
- 		};
+ 		m25p,fast-read;
+-		cdns,page-size = <256>;
+-		cdns,block-size = <16>;
+ 		cdns,read-delay = <4>;
+ 		cdns,tshsl-ns = <50>;
+ 		cdns,tsd2d-ns = <50>;
+diff --git a/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_sodia.dts b/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_sodia.dts
+index 2564671fc1c6..ce0d6514eeb5 100644
+--- a/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_sodia.dts
++++ b/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_sodia.dts
+@@ -121,8 +121,6 @@ flash0: flash@0 {
+ 		spi-max-frequency = <100000000>;
  
--		gpu0_thermal_zone: gpu0 {
-+		gpu0_thermal_zone: gpu0-thermal {
- 			polling-delay = <1000>;
- 			polling-delay-passive = <100>;
- 			thermal-sensors = <&scpi_sensors0 23>;
- 			status = "disabled";
- 		};
+ 		m25p,fast-read;
+-		cdns,page-size = <256>;
+-		cdns,block-size = <16>;
+ 		cdns,read-delay = <4>;
+ 		cdns,tshsl-ns = <50>;
+ 		cdns,tsd2d-ns = <50>;
+diff --git a/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_vining_fpga.dts b/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_vining_fpga.dts
+index e0630b0eed03..65f390bf8975 100644
+--- a/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_vining_fpga.dts
++++ b/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_vining_fpga.dts
+@@ -229,8 +229,6 @@ flash@0 {
+ 		spi-max-frequency = <100000000>;
+ 		m25p,fast-read;
  
--		gpu1_thermal_zone: gpu1 {
-+		gpu1_thermal_zone: gpu1-thermal {
- 			polling-delay = <1000>;
- 			polling-delay-passive = <100>;
- 			thermal-sensors = <&scpi_sensors0 24>;
-diff --git a/arch/arm64/boot/dts/arm/juno-scmi.dtsi b/arch/arm64/boot/dts/arm/juno-scmi.dtsi
-index ec85cd2c733c..31929e2377d8 100644
---- a/arch/arm64/boot/dts/arm/juno-scmi.dtsi
-+++ b/arch/arm64/boot/dts/arm/juno-scmi.dtsi
-@@ -76,27 +76,27 @@ scmi_sensors0: protocol@15 {
- 	};
+-		cdns,page-size = <256>;
+-		cdns,block-size = <16>;
+ 		cdns,read-delay = <4>;
+ 		cdns,tshsl-ns = <50>;
+ 		cdns,tsd2d-ns = <50>;
+@@ -246,8 +244,6 @@ flash@1 {
+ 		spi-max-frequency = <100000000>;
+ 		m25p,fast-read;
  
- 	thermal-zones {
--		pmic {
-+		pmic-thermal {
- 			thermal-sensors = <&scmi_sensors0 0>;
- 		};
- 
--		soc {
-+		soc-thermal {
- 			thermal-sensors = <&scmi_sensors0 3>;
- 		};
- 
--		big-cluster {
-+		big-cluster-thermal {
- 			thermal-sensors = <&scmi_sensors0 21>;
- 		};
- 
--		little-cluster {
-+		little-cluster-thermal {
- 			thermal-sensors = <&scmi_sensors0 22>;
- 		};
- 
--		gpu0 {
-+		gpu0-thermal {
- 			thermal-sensors = <&scmi_sensors0 23>;
- 		};
- 
--		gpu1 {
-+		gpu1-thermal {
- 			thermal-sensors = <&scmi_sensors0 24>;
- 		};
- 	};
+-		cdns,page-size = <256>;
+-		cdns,block-size = <16>;
+ 		cdns,read-delay = <4>;
+ 		cdns,tshsl-ns = <50>;
+ 		cdns,tsd2d-ns = <50>;
 -- 
 2.34.1
 
