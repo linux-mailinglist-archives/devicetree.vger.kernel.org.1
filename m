@@ -1,153 +1,299 @@
-Return-Path: <devicetree+bounces-23370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23371-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6DBD80B113
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 01:50:52 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D426F80B125
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 02:01:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 150701C20A03
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 00:50:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3A514B20A6E
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 01:01:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D50A364E;
-	Sat,  9 Dec 2023 00:50:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DF1680B;
+	Sat,  9 Dec 2023 01:01:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FpG2UwM8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HVuErclE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AD511716;
-	Fri,  8 Dec 2023 16:50:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1702083044; x=1733619044;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=i9QEEQKqddCQ+SjwoKUw1jGw26KPrfv+qyu4RfjOEkM=;
-  b=FpG2UwM8GzwWE7EzumEkSHg2I+uowGOcAZiuyB2dvHhhHZAzUAIclciz
-   FfAtOyCNTVDEUZHNKzikTE37uNLZFlFugvt6qG0tYIbujZM/2kMkJ1ujv
-   eWauEylIsfEy/2C+rFapggzomm6tXqDCuEXFl7U6M8F6SyNl9NFM15HcY
-   E29ft3UkpoO77GFrw7Sj3kWoZxs0oivoqS+mM4XccUp8QqBPWg17ROBaY
-   EENigCLzMyqeTINehqazNrZN2LVmiLlp/G84Dt5TvKM5x/OaMsQvw2Yvk
-   D0gD3skVZWky/dvxKZuGVg2jOj6tA9u1jG0YDLitSEYRG/kz1p/MqxHvR
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10918"; a="397276169"
-X-IronPort-AV: E=Sophos;i="6.04,262,1695711600"; 
-   d="scan'208";a="397276169"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Dec 2023 16:50:43 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10918"; a="916136533"
-X-IronPort-AV: E=Sophos;i="6.04,262,1695711600"; 
-   d="scan'208";a="916136533"
-Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
-  by fmsmga001.fm.intel.com with ESMTP; 08 Dec 2023 16:50:40 -0800
-Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rBlYE-000EbZ-2Y;
-	Sat, 09 Dec 2023 00:50:38 +0000
-Date: Sat, 9 Dec 2023 08:50:36 +0800
-From: kernel test robot <lkp@intel.com>
-To: Umang Jain <umang.jain@ideasonboard.com>, devicetree@vger.kernel.org,
-	linux-media@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev,
-	"Paul J . Murphy" <paul.j.murphy@intel.com>,
-	Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Umang Jain <umang.jain@ideasonboard.com>,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 7/8] media: i2c: imx335: Support 2592x1940 10-bit mode
-Message-ID: <202312090803.2jM0Kj0d-lkp@intel.com>
-References: <20231208150756.124720-8-umang.jain@ideasonboard.com>
+Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B89C81723
+	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 17:01:05 -0800 (PST)
+Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-5d7692542beso25844997b3.3
+        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 17:01:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702083665; x=1702688465; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ElaXcfV6dmgzWzzP1M0WxFihXPQM8C12PJOBL/Tp0sE=;
+        b=HVuErclElmHD/KgnB6aCiA2Y9l9gvaSgPN1y7qasGlO+vUaGqUXjVKVNwHC+CdLAuR
+         RjJGtpjNQDUeIeL4HLL9CSDQ0pLgjE/c2vBtH2sZfFL/2NCQaxM+IAmkMWQcedrzFdbJ
+         udeffoMiSLBPuCMQIpbmayzM0el+7Qu+9zRwvgBQMDgx+Jtq/kjSEyCfT1eWlfPTHNUt
+         mTcyQqkGiVTIbrN/NQvnRpyqfN8QTcaBk9SrhhTXE/tBe8kEKHXSBqfFJN5xuDBi7m9g
+         p/04gPTodWNdBRhhk9re3Y+PfgM+PIrCMITdT6LCYt9B0kqdjsrxJVvUzuA05BGNxnKV
+         JRrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702083665; x=1702688465;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ElaXcfV6dmgzWzzP1M0WxFihXPQM8C12PJOBL/Tp0sE=;
+        b=oPTdUwH6Vc5i7ySVuj9is+IVMHRsUKVCR0GJAtFUG1RFBkZxifSkvb89MgnMQcitp8
+         S6Gp2fE0GCk9uYGZJwMOY7zT2KjqMMSp937kD9qMKpV6q9rSor4deV5/jSyz4+9jHaGf
+         AFBn/2X23HX2Km8g/PupyOv0ioQaEje391dMez6Fz9zJTrjZ0OCYyD0YpKePMuLrQyoG
+         8tLsoe73btmUoIa63nwNoPm9fFPXlDl/TiWjmcqutjQoZClYx3LUg9HU5CN8A+LpC/Ed
+         Tbu0nnrWj1qs0mKaWJeWbSCpBu3ZqgQoTxKZ2eF+Kj6Db2lmOUJHh8mRemClaT8kRYUX
+         QWGQ==
+X-Gm-Message-State: AOJu0YxA6bvOi9MPMmRUzhZMiBUrbGIxxUgCqzo9xiD/xK/WOLlH0lF+
+	C/UbA26VmSrqcmPzm5l+SXPF9UlVItkvEZ5RCg7tgA==
+X-Google-Smtp-Source: AGHT+IH5c7drT+7MHmk+IZXb9MS8muJJAtPfMa/43napxTl9DXzmHgSvTulnvFbF7nfeWXmR3prdtkp8JfQyLi6/3nE=
+X-Received: by 2002:a0d:eb02:0:b0:5d4:1a53:861f with SMTP id
+ u2-20020a0deb02000000b005d41a53861fmr925367ywe.1.1702083664866; Fri, 08 Dec
+ 2023 17:01:04 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231208150756.124720-8-umang.jain@ideasonboard.com>
+References: <20231201160925.3136868-1-peter.griffin@linaro.org>
+ <20231201160925.3136868-19-peter.griffin@linaro.org> <CAPLW+4ki_GUAnor4sTanXFLzKrAB9JpxK98PED1fUY-MLCzUdA@mail.gmail.com>
+In-Reply-To: <CAPLW+4ki_GUAnor4sTanXFLzKrAB9JpxK98PED1fUY-MLCzUdA@mail.gmail.com>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Sat, 9 Dec 2023 01:00:53 +0000
+Message-ID: <CADrjBPq-MLBVrW0ju64JdXia+QnDSsKR9+DSi==rkZXokMzt+g@mail.gmail.com>
+Subject: Re: [PATCH v5 18/20] arm64: dts: exynos: google: Add initial Google
+ gs101 SoC support
+To: Sam Protsenko <semen.protsenko@linaro.org>
+Cc: krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org, 
+	mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org, 
+	tomasz.figa@gmail.com, s.nawrocki@samsung.com, linus.walleij@linaro.org, 
+	wim@linux-watchdog.org, linux@roeck-us.net, catalin.marinas@arm.com, 
+	will@kernel.org, arnd@arndb.de, olof@lixom.net, gregkh@linuxfoundation.org, 
+	jirislaby@kernel.org, cw00.choi@samsung.com, alim.akhtar@samsung.com, 
+	tudor.ambarus@linaro.org, andre.draszik@linaro.org, saravanak@google.com, 
+	willmcvicker@google.com, soc@kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-watchdog@vger.kernel.org, kernel-team@android.com, 
+	linux-serial@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Umang,
+Hi Sam,
 
-kernel test robot noticed the following build warnings:
+On Sat, 2 Dec 2023 at 01:54, Sam Protsenko <semen.protsenko@linaro.org> wro=
+te:
+>
+> On Fri, Dec 1, 2023 at 10:11=E2=80=AFAM Peter Griffin <peter.griffin@lina=
+ro.org> wrote:
+> >
+> > Google gs101 SoC is ARMv8 mobile SoC found in the Pixel 6,
+> > (oriole) Pixel 6a (bluejay) and Pixel 6 pro (raven) mobile
+> > phones. It features:
+> > * 4xA55 little cluster
+> > * 2xA76 Mid cluster
+> > * 2xX1 Big cluster
+> >
+> > This commit adds the basic device tree for gs101 (SoC).
+> > Further platform support will be added over time.
 
-[auto build test WARNING on v6.7-rc4]
-[also build test WARNING on linus/master next-20231208]
-[cannot apply to media-tree/master linuxtv-media-stage/master sailus-media-tree/streams]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+[cut]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Umang-Jain/media-dt-bindings-media-imx335-Add-supply-bindings/20231208-230953
-base:   v6.7-rc4
-patch link:    https://lore.kernel.org/r/20231208150756.124720-8-umang.jain%40ideasonboard.com
-patch subject: [PATCH v3 7/8] media: i2c: imx335: Support 2592x1940 10-bit mode
-config: loongarch-allyesconfig (https://download.01.org/0day-ci/archive/20231209/202312090803.2jM0Kj0d-lkp@intel.com/config)
-compiler: loongarch64-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231209/202312090803.2jM0Kj0d-lkp@intel.com/reproduce)
+> > +       spi0_cs_func: spi0-cs-func-pins {
+> > +               samsung,pins =3D "gpp20-3";
+> > +               samsung,pin-function =3D <GS101_PIN_FUNC_3>;
+> > +               samsung,pin-pud =3D <GS101_PIN_PULL_NONE>;
+> > +               samsung,pin-drv =3D <GS101_PIN_DRV_2_5_MA>;
+> > +       };
+> > +};
+> > +
+>
+> Nitpick: this empty line is not needed.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202312090803.2jM0Kj0d-lkp@intel.com/
+Ok will fix
 
-All warnings (new ones prefixed by >>):
+[cut]
 
->> drivers/media/i2c/imx335.c:160: warning: Function parameter or member 'cur_mbus_code' not described in 'imx335'
+> > +
+> > +       aliases {
+> > +               pinctrl0 =3D &pinctrl_gpio_alive;
+> > +               pinctrl1 =3D &pinctrl_far_alive;
+> > +               pinctrl2 =3D &pinctrl_gsacore;
+> > +               pinctrl3 =3D &pinctrl_gsactrl;
+> > +               pinctrl4 =3D &pinctrl_peric0;
+> > +               pinctrl5 =3D &pinctrl_peric1;
+> > +               pinctrl6 =3D &pinctrl_hsi1;
+> > +               pinctrl7 =3D &pinctrl_hsi2;
+> > +               serial0 =3D &serial_0;
+>
+> Please check commit f4324583cd4d ("arm64: dts: exynos: move aliases to
+> board in Exynos850"). At least for Exynos850 the serial alias was
+> moved to the board dts by Krzysztof.
 
+Ok will fix
 
-vim +160 drivers/media/i2c/imx335.c
+>
+> > +       };
+> > +
+> > +       pmu-0 {
+> > +               compatible =3D "arm,cortex-a55-pmu";
+> > +               interrupts =3D <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH &ppi_clus=
+ter0>;
+> > +       };
+> > +
+> > +       pmu-1 {
+> > +               compatible =3D "arm,cortex-a76-pmu";
+> > +               interrupts =3D <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH &ppi_clus=
+ter1>;
+> > +       };
+> > +
+> > +       pmu-2 {
+> > +               compatible =3D "arm,cortex-x1-pmu";
+> > +               interrupts =3D <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH &ppi_clus=
+ter2>;
+> > +       };
+> > +
+> > +       pmu-3 {
+> > +               compatible =3D "arm,dsu-pmu";
+> > +               interrupts =3D <GIC_SPI 257 IRQ_TYPE_LEVEL_HIGH 0>;
+> > +               cpus =3D <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>,
+> > +                      <&cpu4>, <&cpu5>, <&cpu6>, <&cpu7>;
+> > +       };
+> > +
+> > +       /* TODO replace with CCF clock */
+> > +       dummy_clk: oscillator {
+> > +               compatible =3D "fixed-clock";
+> > +               #clock-cells =3D <0>;
+> > +               clock-frequency =3D <12345>;
+> > +               clock-output-names =3D "pclk";
+> > +       };
+>
+> Don't you already have real USI/UART clocks implemented in your clock dri=
+ver?
 
-45d19b5fb9aeab Martina Krasteva 2021-05-27  117  
-45d19b5fb9aeab Martina Krasteva 2021-05-27  118  /**
-45d19b5fb9aeab Martina Krasteva 2021-05-27  119   * struct imx335 - imx335 sensor device structure
-45d19b5fb9aeab Martina Krasteva 2021-05-27  120   * @dev: Pointer to generic device
-45d19b5fb9aeab Martina Krasteva 2021-05-27  121   * @client: Pointer to i2c client
-45d19b5fb9aeab Martina Krasteva 2021-05-27  122   * @sd: V4L2 sub-device
-45d19b5fb9aeab Martina Krasteva 2021-05-27  123   * @pad: Media pad. Only one pad supported
-45d19b5fb9aeab Martina Krasteva 2021-05-27  124   * @reset_gpio: Sensor reset gpio
-84a97de1949593 Kieran Bingham   2023-12-08  125   * @supplies: Regulator supplies to handle power control
-45d19b5fb9aeab Martina Krasteva 2021-05-27  126   * @inclk: Sensor input clock
-45d19b5fb9aeab Martina Krasteva 2021-05-27  127   * @ctrl_handler: V4L2 control handler
-45d19b5fb9aeab Martina Krasteva 2021-05-27  128   * @link_freq_ctrl: Pointer to link frequency control
-45d19b5fb9aeab Martina Krasteva 2021-05-27  129   * @pclk_ctrl: Pointer to pixel clock control
-45d19b5fb9aeab Martina Krasteva 2021-05-27  130   * @hblank_ctrl: Pointer to horizontal blanking control
-45d19b5fb9aeab Martina Krasteva 2021-05-27  131   * @vblank_ctrl: Pointer to vertical blanking control
-45d19b5fb9aeab Martina Krasteva 2021-05-27  132   * @exp_ctrl: Pointer to exposure control
-45d19b5fb9aeab Martina Krasteva 2021-05-27  133   * @again_ctrl: Pointer to analog gain control
-45d19b5fb9aeab Martina Krasteva 2021-05-27  134   * @vblank: Vertical blanking in lines
-45d19b5fb9aeab Martina Krasteva 2021-05-27  135   * @cur_mode: Pointer to current selected sensor mode
-45d19b5fb9aeab Martina Krasteva 2021-05-27  136   * @mutex: Mutex for serializing sensor controls
-45d19b5fb9aeab Martina Krasteva 2021-05-27  137   */
-45d19b5fb9aeab Martina Krasteva 2021-05-27  138  struct imx335 {
-45d19b5fb9aeab Martina Krasteva 2021-05-27  139  	struct device *dev;
-45d19b5fb9aeab Martina Krasteva 2021-05-27  140  	struct i2c_client *client;
-45d19b5fb9aeab Martina Krasteva 2021-05-27  141  	struct v4l2_subdev sd;
-45d19b5fb9aeab Martina Krasteva 2021-05-27  142  	struct media_pad pad;
-45d19b5fb9aeab Martina Krasteva 2021-05-27  143  	struct gpio_desc *reset_gpio;
-84a97de1949593 Kieran Bingham   2023-12-08  144  	struct regulator_bulk_data supplies[ARRAY_SIZE(imx335_supply_name)];
-84a97de1949593 Kieran Bingham   2023-12-08  145  
-45d19b5fb9aeab Martina Krasteva 2021-05-27  146  	struct clk *inclk;
-45d19b5fb9aeab Martina Krasteva 2021-05-27  147  	struct v4l2_ctrl_handler ctrl_handler;
-45d19b5fb9aeab Martina Krasteva 2021-05-27  148  	struct v4l2_ctrl *link_freq_ctrl;
-45d19b5fb9aeab Martina Krasteva 2021-05-27  149  	struct v4l2_ctrl *pclk_ctrl;
-45d19b5fb9aeab Martina Krasteva 2021-05-27  150  	struct v4l2_ctrl *hblank_ctrl;
-45d19b5fb9aeab Martina Krasteva 2021-05-27  151  	struct v4l2_ctrl *vblank_ctrl;
-45d19b5fb9aeab Martina Krasteva 2021-05-27  152  	struct {
-45d19b5fb9aeab Martina Krasteva 2021-05-27  153  		struct v4l2_ctrl *exp_ctrl;
-45d19b5fb9aeab Martina Krasteva 2021-05-27  154  		struct v4l2_ctrl *again_ctrl;
-45d19b5fb9aeab Martina Krasteva 2021-05-27  155  	};
-45d19b5fb9aeab Martina Krasteva 2021-05-27  156  	u32 vblank;
-45d19b5fb9aeab Martina Krasteva 2021-05-27  157  	const struct imx335_mode *cur_mode;
-45d19b5fb9aeab Martina Krasteva 2021-05-27  158  	struct mutex mutex;
-b843d1b4daf24e Umang Jain       2023-12-08  159  	u32 cur_mbus_code;
-45d19b5fb9aeab Martina Krasteva 2021-05-27 @160  };
-45d19b5fb9aeab Martina Krasteva 2021-05-27  161  
+No, not yet, hence the dummy clock.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+[cut]
+
+> > +
+> > +               usi_uart: usi@10a000c0 {
+> > +                       compatible =3D "google,gs101-usi",
+>
+> I can't see this compatible in USI driver. Does it make sense to add it t=
+here?
+
+It is not required at the moment, as it is compatible with
+samsung,exynos850-usi. I don't want to keep adding more patches to
+this series, and then having an endless cycle of nits.
+
+>
+> > +                                    "samsung,exynos850-usi";
+> > +                       reg =3D <0x10a000c0 0x20>;
+> > +                       samsung,sysreg =3D <&sysreg_peric0 0x1020>;
+> > +                       samsung,mode =3D <USI_V2_UART>;
+> > +                       #address-cells =3D <1>;
+> > +                       #size-cells =3D <1>;
+> > +                       ranges;
+> > +                       clocks =3D <&dummy_clk>, <&dummy_clk>;
+>
+> The same concern as above. I think I saw those clocks already
+> implemented in gs101 clock driver.
+
+No, these clocks have not been implemented yet, hence the dummy clock.
+There is no support for cmu_peric0 bank yet in the clock driver.
+
+>
+> > +                       clock-names =3D "pclk", "ipclk";
+> > +                       status =3D "disabled";
+> > +
+> > +                       serial_0: serial@10a00000 {
+> > +                               compatible =3D "google,gs101-uart";
+> > +                               reg =3D <0x10a00000 0xc0>;
+> > +                               reg-io-width =3D <4>;
+> > +                               samsung,uart-fifosize =3D <256>;
+> > +                               interrupts =3D <GIC_SPI 634
+> > +                                             IRQ_TYPE_LEVEL_HIGH 0>;
+> > +                               clocks =3D <&dummy_clk 0>, <&dummy_clk =
+0>;
+>
+> Ditto.
+
+See above
+
+>
+> > +                               clock-names =3D "uart", "clk_uart_baud0=
+";
+> > +                               status =3D "disabled";
+> > +                       };
+> > +               };
+> > +
+> > +               pinctrl_peric1: pinctrl@10c40000 {
+> > +                       compatible =3D "google,gs101-pinctrl";
+> > +                       reg =3D <0x10C40000 0x00001000>;
+> > +                       interrupts =3D <GIC_SPI 644 IRQ_TYPE_LEVEL_HIGH=
+ 0>;
+> > +               };
+> > +
+> > +               sysreg_peric1: syscon@10c20000 {
+> > +                       compatible =3D "google,gs101-peric1-sysreg", "s=
+yscon";
+> > +                       reg =3D <0x10C20000 0x10000>;
+> > +               };
+> > +
+> > +               pinctrl_hsi1: pinctrl@11840000 {
+> > +                       compatible =3D "google,gs101-pinctrl";
+> > +                       reg =3D <0x11840000 0x00001000>;
+> > +                       interrupts =3D <GIC_SPI 471 IRQ_TYPE_LEVEL_HIGH=
+ 0>;
+> > +               };
+> > +
+> > +               pinctrl_hsi2: pinctrl@14440000 {
+> > +                       compatible =3D "google,gs101-pinctrl";
+> > +                       reg =3D <0x14440000 0x00001000>;
+> > +                       interrupts =3D <GIC_SPI 503 IRQ_TYPE_LEVEL_HIGH=
+ 0>;
+> > +               };
+> > +
+> > +               cmu_apm: clock-controller@17400000 {
+> > +                       compatible =3D "google,gs101-cmu-apm";
+> > +                       reg =3D <0x17400000 0x8000>;
+> > +                       #clock-cells =3D <1>;
+> > +
+> > +                       clocks =3D <&ext_24_5m>;
+> > +                       clock-names =3D "oscclk";
+>
+> Doesn't CMU_APM take any clocks from CMU_TOP?
+
+No it doesn't.
+
+>
+> > +               };
+> > +
+> > +               sysreg_apm: syscon@174204e0 {
+> > +                       compatible =3D "google,gs101-apm-sysreg", "sysc=
+on";
+> > +                       reg =3D <0x174204e0 0x1000>;
+> > +               };
+> > +
+> > +               pmu_system_controller: system-controller@17460000 {
+> > +                       compatible =3D "google,gs101-pmu", "syscon";
+> > +                       reg =3D <0x17460000 0x10000>;
+> > +               };
+>
+> Just a suggestion: it might be relatively simple to add syscon-reboot
+> node in pmu_system_controller, and it might just work. One more
+> feature for free! :)
+
+Thanks for the suggestion. I tried that previously and it is not
+included here deliberately because it relies on more than that to be
+functional. Although the register offsets are the same, the PMU
+registers are protected from the kernel and are only write accessible
+via SMC call on this platform. I have patches ready to send out as a
+RFC for that once this initial series is merged and we can discuss
+that then.
+
+regards,
+
+Peter.
 
