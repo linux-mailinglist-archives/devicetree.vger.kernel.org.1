@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-23397-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23398-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6ED9280B2E2
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 08:53:02 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A763580B2E5
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 08:57:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18F941F21099
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 07:53:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2B47FB20AEB
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 07:57:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E43835394;
-	Sat,  9 Dec 2023 07:52:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A310E6AA3;
+	Sat,  9 Dec 2023 07:57:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="h7s1bLBj"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="O8v5Oa37"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF82512E
-	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 23:52:53 -0800 (PST)
-Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-54da61eb366so3656837a12.3
-        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 23:52:53 -0800 (PST)
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C13210CF
+	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 23:57:25 -0800 (PST)
+Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-3335397607dso3339144f8f.1
+        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 23:57:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702108372; x=1702713172; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=OF1zJ7Af2v9xDU7hNVguCKUVdPXqGW4Rh+0MbMHeaWo=;
-        b=h7s1bLBjKVW3a6H0qTgAZQE05hSFYjU3b/NgcmYOXs6Mf8P1affmCs6Sb9Ics6kvUJ
-         jN7j87I4hDkTYJ8jDhdcDpGRU3il6EvVsaaGNG67kEMJEl2dp8aL4AoEPQWUVsm1Wjq3
-         L8kYdUR8qrf96L//+Wq1tK8fNkV0kP+EQveXAPllpaXBf9nkYXoFAtNTaIFrp6jsz+Ge
-         vcxx77iSPriSGInBuh17ks2OXRszV07tRpm20jdt48CiLwDAc7z3MPRhrr1+spB/wHkW
-         i1lBF9jywd3LxvZwTCCOkRJNyK0sNHfXaDDPiv6xNibnmHIDhgwWRxDGLTdJk2LKLf5R
-         eEVw==
+        d=linaro.org; s=google; t=1702108643; x=1702713443; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ab29RUBQYwAV6CIE5BNPpJZkkrD12eVnHwKVcHz+iN8=;
+        b=O8v5Oa378qj8ExN/XZkIbr2F3Tv3eg+YRVr9KCqiEsYglYj4pXWeaslnw2AU7zQGYL
+         folI4sVoU+XorDzqArmXGkLcB8BT0P+iL4LRRiLD2D5v/ttVGeufQXOe1mlFwVCPWyMp
+         kLSRZP+27QoBn2jAQ2qmY9F7Bas5EP1c7EBJGuwW0wQdaTyhgwrlKS7K4lvDgJfbiLEg
+         pk528tBBwIsuPwfysFoqyZcojC6FFu4sK2uDc4k0lY6UaCihmC5kbfLrZax3VVR+Jhi3
+         /w4fbZ5SO4zFxunxhEp/wQJ6Axar2aH/TnJewpwbgQgPk8Ivx6g17BLOPRlDlcxE8/+J
+         F92Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702108372; x=1702713172;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OF1zJ7Af2v9xDU7hNVguCKUVdPXqGW4Rh+0MbMHeaWo=;
-        b=q1Jytzcgzm6QpvGJVInkdykiRKNlcDk3M/d4wdUwZJYERAFTjiiy+509R0p008Mg46
-         VrJStwJRexwNIcLXMVibnoS27ptPFzl0QUfTCv8LXnoQOFvOV31YX4S+jUKTefm3H/Na
-         rLypediqCL571YbI1juHXSQA2USZXf+BwUQpdg3BG8EnqZeysZpSGGDbuiUCCSqBbrvz
-         nn+jn3bdTaZ0ipyFY26FFNQQ+8NAXe8kJ1koxUL1bmy2hHOro8+9ZHwKoQh/BAespY9c
-         Pcc3mStT6+Yl7suGTH5TH/kOnFCk59ntjLqaf4oGSHo/8pEmpjsZuPzVMKgKdt4bOKn0
-         lqZA==
-X-Gm-Message-State: AOJu0Yw2T4CBcbj983N3t7cFQZ1GpfAVuEQOa3wsIXLOzco71vSmy4Py
-	++tCzcbWtkLJJ1VqjTLkIXsm9w==
-X-Google-Smtp-Source: AGHT+IGBUtxEoc4Mfw8vpUpmRu+AU75E7WPox/Mvk5utV2MwIPA1AHgAS/sVKuv44BNPXDuKuZGxLQ==
-X-Received: by 2002:a50:a6ce:0:b0:54c:65c9:287 with SMTP id f14-20020a50a6ce000000b0054c65c90287mr669044edc.27.1702108372197;
-        Fri, 08 Dec 2023 23:52:52 -0800 (PST)
+        d=1e100.net; s=20230601; t=1702108643; x=1702713443;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ab29RUBQYwAV6CIE5BNPpJZkkrD12eVnHwKVcHz+iN8=;
+        b=BF2HppX6s+tOsSHz6B25QFUsgiYk4BQTeKu7IqxXookzyqOTjUpV1zubn+stxHJo4E
+         Nu3QJMqWNyVgFJJra2Vou0H0aRBDp+y/iN4frt6rGoY7bLvELr5BtCj23Z9/8jb0vMhm
+         dNYuqoE5OHFe+ZXrCKC+sAaOY487GL9hVyMq7G5avpm4t7sPUlPgFmSn0tUDlZ2wlG74
+         aimZzHMimK8BDL9Ji/ULwrhucqntBfRYEIe/LkfQ5lzm7mS435uI1KoB5ROYIvYLsGr7
+         El68H3T+cxWp9NuvZgg0ziSJEJi2ct1nOhZQA99uISgS/DDxEM3DbNvwh80ffzkXlHX+
+         7l8g==
+X-Gm-Message-State: AOJu0YxdDO7p1g/GR7EmQCFgpbg/TxPLVuDIYx3wmboRvYCvBi7+IaIG
+	Sbv8og7A/tHsOhYc321oma5EpQ==
+X-Google-Smtp-Source: AGHT+IFnCv2cpocyFJwrsyQtA46Z0yDPvF0huEUTRLKpQ3JDec7kqJaowDRsOHg+sEJ/0kTXfvqiwQ==
+X-Received: by 2002:a5d:408e:0:b0:333:4236:29b5 with SMTP id o14-20020a5d408e000000b00333423629b5mr669954wrp.47.1702108643519;
+        Fri, 08 Dec 2023 23:57:23 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id b42-20020a509f2d000000b0054cc6be8b0bsm1522876edf.32.2023.12.08.23.52.50
+        by smtp.gmail.com with ESMTPSA id q18-20020adff952000000b0033609b71825sm3139789wrr.35.2023.12.08.23.57.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Dec 2023 23:52:51 -0800 (PST)
-Message-ID: <15edf785-3fab-4c0e-a96a-9753c3446370@linaro.org>
-Date: Sat, 9 Dec 2023 08:52:49 +0100
+        Fri, 08 Dec 2023 23:57:23 -0800 (PST)
+Message-ID: <d8be450f-290a-438b-ab0d-97854c7983bd@linaro.org>
+Date: Sat, 9 Dec 2023 08:57:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,18 +62,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [V2, 1/2] dt-bindings: mmc: brcm,sdhci-brcmstb: Add support for
- 74165b0
-To: Kamal Dasu <kamal.dasu@broadcom.com>, ulf.hansson@linaro.org,
- linux-kernel@vger.kernel.org, alcooperx@gmail.com,
- linux-arm-kernel@lists.infradead.org, adrian.hunter@intel.com,
- linux-mmc@vger.kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org
-Cc: f.fainelli@gmail.com, bcm-kernel-feedback-list@broadcom.com,
- Kamal Dasu <kdasu@broadcom.com>
-References: <20231208210230.8191-1-kamal.dasu@broadcom.com>
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: Add binding for AD7380 ADCs
 Content-Language: en-US
+To: David Lechner <dlechner@baylibre.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
+ Michael Hennerich <michael.hennerich@analog.com>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Alexandru Ardelean <alexandru.ardelean@analog.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ linux-kernel@vger.kernel.org
+References: <20231208-ad7380-mainline-v1-0-2b33fe2f44ae@baylibre.com>
+ <20231208-ad7380-mainline-v1-1-2b33fe2f44ae@baylibre.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -120,36 +121,66 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231208210230.8191-1-kamal.dasu@broadcom.com>
+In-Reply-To: <20231208-ad7380-mainline-v1-1-2b33fe2f44ae@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 08/12/2023 22:02, Kamal Dasu wrote:
-> From: Kamal Dasu <kdasu@broadcom.com>
+On 08/12/2023 16:51, David Lechner wrote:
+> This adds a binding specification for the Analog Devices Inc. AD7380
+> family of ADCs.
 > 
-> With newer sdio controller core used for 74165b0 we need to update
-> the compatibility with "brcm,bcm74165b0-sdhci".
-> 
-> Signed-off-by: Kamal Dasu <kdasu@broadcom.com>
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
 > ---
->  Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
+>  .../devicetree/bindings/iio/adc/adi,ad7380.yaml    | 102 +++++++++++++++++++++
+>  MAINTAINERS                                        |   9 ++
+>  2 files changed, 111 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml b/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml
-> index c028039bc477..178d47ed65ca 100644
-> --- a/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml
-> @@ -13,6 +13,10 @@ maintainers:
->  properties:
->    compatible:
->      oneOf:
-> +      - items:
-> +          - enum:
-> +              - brcm,bcm74165b0-sdhci
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml
+> new file mode 100644
+> index 000000000000..e9a0b72cd9d3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml
+> @@ -0,0 +1,102 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/adi,ad7380.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices Simultaneous Sampling Analog to Digital Converters
+> +
+> +maintainers:
+> +  - Michael Hennerich <Michael.Hennerich@analog.com>
+> +  - Nuno Sá <nuno.sa@analog.com>
+> +
+> +description: |
+> +  * https://www.analog.com/en/products/ad7380.html
+> +  * https://www.analog.com/en/products/ad7381.html
+> +  * https://www.analog.com/en/products/ad7383.html
+> +  * https://www.analog.com/en/products/ad7384.html
+> +
+> +$ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,ad7380
+> +      - adi,ad7381
+> +      - adi,ad7383
+> +      - adi,ad7384
+> +
+> +  reg: true
 
-If this is enum, then it should be combined with other enums like that.
-Someone already duplicated this once, so don't make it third time. One
-enum for all your variants with the same fallback.
+maxItems
+(unless 256 items are really possible for this device)
+
+> +
+> +  spi-max-frequency:
+> +    maximum: 80000000
+> +  spi-cpol: true
+> +  spi-cpha: true
+> +
+
 
 Best regards,
 Krzysztof
