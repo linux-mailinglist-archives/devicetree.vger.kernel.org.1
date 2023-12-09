@@ -1,126 +1,131 @@
-Return-Path: <devicetree+bounces-23422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0C3080B3CE
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 11:56:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45DB880B3D0
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 11:57:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E1F371C20939
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 10:56:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F3C94280FD2
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 10:57:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79BFA13AC8;
-	Sat,  9 Dec 2023 10:56:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51D0713AC9;
+	Sat,  9 Dec 2023 10:57:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Na8x32m/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uUnmF7CD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 356E1D1;
-	Sat,  9 Dec 2023 02:56:24 -0800 (PST)
-Received: by mail-pj1-x1041.google.com with SMTP id 98e67ed59e1d1-2886579d59fso2907233a91.1;
-        Sat, 09 Dec 2023 02:56:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702119383; x=1702724183; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EQjKnUKr/6rWL0h9abnt4zIo/7TuTvgvuGycMSFLA9c=;
-        b=Na8x32m/LYhuoiHbrSYm65KQ2ZLixMwxDy70MMtBbrRlthXCt/I3+xjhZ9qxFLyB6J
-         Ts86wtHMl00TQYGHJSQHyzgiQZl/7mjDXKwdvSrcGEcxfH5Z1MgSAe8rgt3pCnCGNjud
-         zdLyGLz6Upb5Fk1jKqG/oqoGKWaa4khOOGCXQBxl6ju7hDTggvmfQEdrJXw41z298P0M
-         UqnTX7W+xgudDQF8rMPTNAylUbMV5qdq5ovF3FuFEoQo8kqPYL8gptllISoPSArr4BSj
-         a2Kv8z8gZOnoJrkyv1cJqeM8oIjXpV7CZjCISQJgM9Rm882v3gYLVZ8r44FcS6SAfEUU
-         3Tiw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702119383; x=1702724183;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EQjKnUKr/6rWL0h9abnt4zIo/7TuTvgvuGycMSFLA9c=;
-        b=kXgJYPcdhVTciyttW5BXJ5kM/Wi/siR80hdjoyYawgco2LXqXkIPqJG6msiTH2L652
-         65YzA5qjq6swWQ1vmxUXds/J81/RnHcY/G8dz8L93twgnWDuunS0b7mNGvEtvSPj5HgO
-         cxE5j9H+yvAJIBxf1YsWlVibDND74CGk+WV903onbp1jrrQXKAsje0Tj8oj/DuwSo1SX
-         l2Cml7SClmSM53WBVMCLL3QV5aK19uOERQRvFgDvKhyvQQvqHV4qEbMF/SSARmkorgGk
-         GQTk7A7/CLZsJKvcPaSV6K2d4Wo8vCuMXpcAJa3wMghf6WwcBSVVkP1/2nLhtA59YDSS
-         1HZw==
-X-Gm-Message-State: AOJu0Yyos9+ClDhRILzaSxB/QbkF+wS8AduYOVgjsqo9W/on2RcVEVhg
-	Wl7reengiwRnzcXMW7Iq+aY=
-X-Google-Smtp-Source: AGHT+IHTLsZFrCzNWQC/KcLVloMG2wD6jN4hlslCQM9FlqbedZjOXCkRLcJMwrwjOzWsN9IMs4ZKjw==
-X-Received: by 2002:a05:6a21:8195:b0:190:2941:7e1f with SMTP id pd21-20020a056a21819500b0019029417e1fmr1471542pzb.9.1702119383331;
-        Sat, 09 Dec 2023 02:56:23 -0800 (PST)
-Received: from dawn-virtual-machine.localdomain ([183.198.111.112])
-        by smtp.gmail.com with ESMTPSA id gu25-20020a056a004e5900b006cbb58301basm3125586pfb.19.2023.12.09.02.56.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 09 Dec 2023 02:56:22 -0800 (PST)
-From: Li peiyu <579lpy@gmail.com>
-To: jic23@kernel.org
-Cc: javier.carrasco.cruz@gmail.com,
-	lars@metafoo.de,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v5 2/4] iio: ABI: document temperature and humidity peak/trough raw attributes
-Date: Sat,  9 Dec 2023 18:56:11 +0800
-Message-Id: <20231209105611.3740-1-579lpy@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231209105217.3630-1-579lpy@gmail.com>
-References: <20231209105217.3630-1-579lpy@gmail.com>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 278C35671;
+	Sat,  9 Dec 2023 10:57:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D6E5C433C8;
+	Sat,  9 Dec 2023 10:57:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702119426;
+	bh=LfIhP/af5BHnpvQo4uP7i1HD6/yJmre7AxHGR/IvG54=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=uUnmF7CDb4lBM7QWDc8vErl87dZFgiju4DLw8Ih0qLnT+w4aVy9wIgenKuUyH/v2X
+	 D5jSkv59gp0NSY/GJSlpq+e+eLxXAn7vEpz/TvH+2I10F0pu6DWDfibGZEgrpKQ2Wl
+	 Q3Uoj7/cYn3Pcq8FWY2nU7XR+nYRwn0m9wgZuMS7gWFzfcglm6ufaPsF7YdZAI5vEC
+	 cCgh34qJJnPXw97CYrqSuaBYUoZCWe8I8z2q+jp6Fc4SUJ1dGpfiIYaBhRTmn1c+mh
+	 hTC5LF7SvezZydDEUnCsv2gCGNwUJ1LiDDf23lCaHQvnUXUoFqVav5Uu/RnnOKEHki
+	 dnSOXEc026jLg==
+Date: Sat, 9 Dec 2023 10:57:01 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	Stefan Eichenberger <eichest@gmail.com>, nick@shmanahar.org,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, nicolas.ferre@microchip.com,
+	alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev,
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Stefan Eichenberger <stefan.eichenberger@toradex.com>
+Subject: Re: [PATCH v1 1/2] dt-bindings: input: atmel,maxtouch: add
+ poweroff-in-suspend property
+Message-ID: <20231209-sizzle-monthly-6e4f3c966b0f@spud>
+References: <20231207111300.80581-1-eichest@gmail.com>
+ <20231207111300.80581-2-eichest@gmail.com>
+ <CACRpkdbSs-vebvchxx-Tg+O5CUF5M3vZf-iytuW=ZECnHb2anA@mail.gmail.com>
+ <ZXOoy8mFdhUQsZAu@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="C72rfSVWvZsQ7rnL"
+Content-Disposition: inline
+In-Reply-To: <ZXOoy8mFdhUQsZAu@google.com>
 
-From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
 
-The in_temp_peak_raw attribute is already in use, but its documentation
-is still missing. The in_humidityrelative_raw must be documented for a
-new iio user that supports this attribute. Add temp and humidityrelative
-use cases.
-When at it, remove an extra blank space in the description.
+--C72rfSVWvZsQ7rnL
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-For users that support minimum values, a new in_<type>_trough_raw
-attribute is required. Add this attribute and document the first uses of
-it for temp and humidityrelative types.
+On Fri, Dec 08, 2023 at 11:37:47PM +0000, Dmitry Torokhov wrote:
+> Hi Linus, Krzysztof,
+>=20
+> On Fri, Dec 08, 2023 at 01:54:21PM +0100, Linus Walleij wrote:
+> > On Thu, Dec 7, 2023 at 12:13=E2=80=AFPM Stefan Eichenberger <eichest@gm=
+ail.com> wrote:
+> >=20
+> > > From: Stefan Eichenberger <stefan.eichenberger@toradex.com>
+> > >
+> > > Add a new property to indicate that the device should be powered off =
+in
+> > > suspend mode.
+> > >
+> > > Signed-off-by: Stefan Eichenberger <stefan.eichenberger@toradex.com>
+> > (...)
+> > > +  atmel,poweroff-in-suspend:
+> > > +    description: |
+> > > +      When this property is set, all supplies are turned off when th=
+e system is
+> > > +      going to suspend.
+> > > +    type: boolean
+> >    wakeup-source:
+> >      type: boolean
+> >=20
+> > As Krzysztof says it seems you are describing an operating system featu=
+re.
+>=20
+> It appears to be an OS feature, but I would argue that it is also a
+> property of a board. It is tempting to say that if DTS defines supplies
+> for the controller we should use them to power off the controller in
+> suspend, otherwise we should use the deep sleep functionality of the
+> controller. But a mere presence of regulators does not indicate if they
+> can actually be powered off in suspend (i.e. if controllers shares power
+> rails with another device that can be a wakeup source), so we need to
+> have additional hints on how OS should behave on a given device.
+>=20
+> On top of that we have regulator framework supplying dummy regulators...
 
-Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
----
- Documentation/ABI/testing/sysfs-bus-iio | 13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
+Simply rephrasing the property might be sufficient? The current one
+sounds making policy decisions with the "should be". Reframing the
+commit message and property description etc in terms of what aspect of
+the hardware the ability to turn off all supplies in suspend comes from
+would make it more acceptable. Pretty much answering the question "why
+can't we try and turn off all supplies on all systems with this device"
+should get things rolling.
 
-diff --git a/Documentation/ABI/testing/sysfs-bus-iio b/Documentation/ABI/testing/sysfs-bus-iio
-index 0d3ec5fc45f2..9d937e29724b 100644
---- a/Documentation/ABI/testing/sysfs-bus-iio
-+++ b/Documentation/ABI/testing/sysfs-bus-iio
-@@ -362,10 +362,21 @@ Description:
- What:		/sys/bus/iio/devices/iio:deviceX/in_accel_x_peak_raw
- What:		/sys/bus/iio/devices/iio:deviceX/in_accel_y_peak_raw
- What:		/sys/bus/iio/devices/iio:deviceX/in_accel_z_peak_raw
-+What:		/sys/bus/iio/devices/iio:deviceX/in_humidityrelative_peak_raw
-+What:		/sys/bus/iio/devices/iio:deviceX/in_temp_peak_raw
- KernelVersion:	2.6.36
- Contact:	linux-iio@vger.kernel.org
- Description:
--		Highest value since some reset condition.  These
-+		Highest value since some reset condition. These
-+		attributes allow access to this and are otherwise
-+		the direct equivalent of the <type>Y[_name]_raw attributes.
-+
-+What:		/sys/bus/iio/devices/iio:deviceX/in_humidityrelative_trough_raw
-+What:		/sys/bus/iio/devices/iio:deviceX/in_temp_trough_raw
-+KernelVersion:	6.7
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Lowest value since some reset condition. These
- 		attributes allow access to this and are otherwise
- 		the direct equivalent of the <type>Y[_name]_raw attributes.
- 
--- 
-2.34.1
+Cheers,
+Conor.
 
+--C72rfSVWvZsQ7rnL
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZXRH/QAKCRB4tDGHoIJi
+0gwwAP0f6ZUlt2hLfY6VvqK/jBmyh55L7p9l4zE7YNlHzIYoAgD/QhPbNUmbRBTQ
+ryYrjWFFE9seO+T3W6rJ5AXJgOQskw8=
+=9hx8
+-----END PGP SIGNATURE-----
+
+--C72rfSVWvZsQ7rnL--
 
