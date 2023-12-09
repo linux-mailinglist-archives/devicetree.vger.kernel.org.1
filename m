@@ -1,63 +1,72 @@
-Return-Path: <devicetree+bounces-23465-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23461-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 239CC80B57A
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 18:17:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E4F080B56E
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 18:16:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C33531F21175
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 17:17:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 23C5D1F21007
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 17:16:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B026D18633;
-	Sat,  9 Dec 2023 17:17:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE28F182AE;
+	Sat,  9 Dec 2023 17:16:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="ArvFm6lM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ujyn2XY0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ip-89-177-23-149.bb.vodafone.cz [89.177.23.149])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69449171D;
-	Sat,  9 Dec 2023 09:17:24 -0800 (PST)
-Received: from newone.lan (unknown [10.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id 1A9B4160684;
-	Sat,  9 Dec 2023 18:17:23 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1702142243;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=782FQFL6moJeZUHorviHUFZpWD40sdDv6r8mZSTquXo=;
-	b=ArvFm6lMFxPxyeDAL644NGjr17lCwlXdScgrmbrFMxe3cRREnzPWYsxzJbSm6CMX/6+Zdd
-	K81VAYmC0VqFe8lra9JLPIf9WLkldQCYuUF8bO0g0jLJXcdkcdkk+QEu4A391HGM084T6a
-	2yrL+R0wam37CaLIXg18Qcyj8D7kRoo=
-From: David Heidelberg <david@ixit.cz>
-To: Rob Herring <robh+dt@kernel.org>,
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C8AF10D0
+	for <devicetree@vger.kernel.org>; Sat,  9 Dec 2023 09:16:16 -0800 (PST)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-a1db6c63028so352626066b.2
+        for <devicetree@vger.kernel.org>; Sat, 09 Dec 2023 09:16:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702142174; x=1702746974; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=N//LFsMjuZq4iKtlyMYGCirrn61f3kbX/lE5kaAb5qM=;
+        b=ujyn2XY0s+DUNmoPYucuSF5vT+dDO00Pbd6eWcNLxGEhfLYQWPd3v28noHNgixDjF2
+         noxlZuqRJEt/1yzFr/9AK/Abrty8SCQz6sn2jdFL5gvwMrh1XR1HhrW3IHiVqVQp3D5Q
+         8Rezqht58jXYsHR0XGjNGya/AkWbRQU0L786YsyfMTQ8Rdy9t2Tyi5lGtv70BFlaQz2O
+         ldsKqR/68ErVEwWOEjW7ims0s2lF9uoW89KAUxMhvNIJmAjSnyG4qu1wK8Hczx4I21lN
+         qU0sg965U07p3sw7K7MIy9FrR8wEs4juv68t0jc/kQzZ2BVqtmlAB1O7fyBAsKy/GEJV
+         NO6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702142174; x=1702746974;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=N//LFsMjuZq4iKtlyMYGCirrn61f3kbX/lE5kaAb5qM=;
+        b=UNfxeXOzq59DLWO0FR3/D6S4oOVqxroFzbE3ST8fw3pLIDQPoPLIUZeY4yqb1E/H+0
+         rlg0kGQU9uQMobLEXh7fri35QVfQ5OlcCuOwXhHW0r0GMDWLrKQnPPEbMI39bUaX7Gv1
+         X7WqUKf1wDGCOORgZNtEhC+QpShmPSV67qy1GnETEIAGqXrxz6cnZCpoczN8wvY2mrMb
+         sNvk3QFwtIRbnr7pP03uQSu46c/rT7+dC3dDOvhiJ+XmurgcmjlGa7neo3wYDQLFjlWc
+         xEuIiG+D1fr1E9cxXLWjWcuKxLy4NtSVxJU1xrPmo8RrpoCAMal+AgVZsS0VAR/MKV5s
+         q03Q==
+X-Gm-Message-State: AOJu0Ywrt8Bxs7iSGnSlGlV6jiOivPbBUsXjAdxA40upoxVpzaqDBeh1
+	GjahI/6P72SkshpKMuGniGiHFJlWS1qbE6BkYds=
+X-Google-Smtp-Source: AGHT+IF7lfeoMKj7lrnzHIL0I+1nREKlOADXkHe8mxEUwxT5JLX2SJIZdtAO9m5+CN97p4RIJGzMMg==
+X-Received: by 2002:a17:907:948f:b0:a01:e916:3590 with SMTP id dm15-20020a170907948f00b00a01e9163590mr1054629ejc.75.1702142174592;
+        Sat, 09 Dec 2023 09:16:14 -0800 (PST)
+Received: from krzk-bin.. ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id sf21-20020a1709078a9500b00a1f7cbf28a5sm1179782ejc.106.2023.12.09.09.16.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 09 Dec 2023 09:16:14 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Liviu Dudau <liviu.dudau@arm.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Andre Przywara <andre.przywara@arm.com>,
-	Baruch Siach <baruch@tkos.co.il>,
-	Patrice Chotard <patrice.chotard@foss.st.com>,
-	David Heidelberg <david@ixit.cz>
-Cc: Thierry Reding <treding@nvidia.com>,
-	Enric Balletbo i Serra <eballetbo@gmail.com>,
-	Alexandre TORGUE <alexandre.torgue@st.com>,
-	Rob Herring <robh@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 3/3] ARM: dts: tegra30-ouya: make dts use gpio-fan matrix instead of array
-Date: Sat,  9 Dec 2023 18:15:41 +0100
-Message-ID: <20231209171653.85468-3-david@ixit.cz>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231209171653.85468-1-david@ixit.cz>
-References: <20231209171653.85468-1-david@ixit.cz>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] arm64: dts: juno: align thermal zone names with bindings
+Date: Sat,  9 Dec 2023 18:16:12 +0100
+Message-Id: <20231209171612.250868-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,33 +75,112 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-No functional changes.
+Thermal bindings require thermal zone node names to match
+certain patterns:
 
-Adjust to comply with dt-schema requirements
-and make possible to validate values.
+  juno.dtb: thermal-zones: 'big-cluster', 'gpu0', 'gpu1', 'little-cluster', 'pmic', 'soc'
+    do not match any of the regexes: '^[a-zA-Z][a-zA-Z0-9\\-]{1,12}-thermal$', 'pinctrl-[0-9]+'
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-Signed-off-by: David Heidelberg <david@ixit.cz>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm/boot/dts/nvidia/tegra30-ouya.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/arm/juno-base.dtsi | 12 ++++++------
+ arch/arm64/boot/dts/arm/juno-scmi.dtsi | 12 ++++++------
+ 2 files changed, 12 insertions(+), 12 deletions(-)
 
-diff --git a/arch/arm/boot/dts/nvidia/tegra30-ouya.dts b/arch/arm/boot/dts/nvidia/tegra30-ouya.dts
-index 7e3de26ca960..c284dd0a55ab 100644
---- a/arch/arm/boot/dts/nvidia/tegra30-ouya.dts
-+++ b/arch/arm/boot/dts/nvidia/tegra30-ouya.dts
-@@ -4611,8 +4611,8 @@ cpu3: cpu@3 {
- 	fan: fan {
- 		compatible = "gpio-fan";
- 		gpios = <&gpio TEGRA_GPIO(J, 2) GPIO_ACTIVE_HIGH>;
--		gpio-fan,speed-map = <0    0
--				      4500 1>;
-+		gpio-fan,speed-map = <0    0>,
-+				     <4500 1>;
- 		#cooling-cells = <2>;
+diff --git a/arch/arm64/boot/dts/arm/juno-base.dtsi b/arch/arm64/boot/dts/arm/juno-base.dtsi
+index 8b4d280b1e7e..b897f5542c0a 100644
+--- a/arch/arm64/boot/dts/arm/juno-base.dtsi
++++ b/arch/arm64/boot/dts/arm/juno-base.dtsi
+@@ -747,7 +747,7 @@ scpi_sensors0: sensors {
  	};
  
+ 	thermal-zones {
+-		pmic {
++		pmic-thermal {
+ 			polling-delay = <1000>;
+ 			polling-delay-passive = <100>;
+ 			thermal-sensors = <&scpi_sensors0 0>;
+@@ -760,7 +760,7 @@ pmic_crit0: trip0 {
+ 			};
+ 		};
+ 
+-		soc {
++		soc-thermal {
+ 			polling-delay = <1000>;
+ 			polling-delay-passive = <100>;
+ 			thermal-sensors = <&scpi_sensors0 3>;
+@@ -773,28 +773,28 @@ soc_crit0: trip0 {
+ 			};
+ 		};
+ 
+-		big_cluster_thermal_zone: big-cluster {
++		big_cluster_thermal_zone: big-cluster-thermal {
+ 			polling-delay = <1000>;
+ 			polling-delay-passive = <100>;
+ 			thermal-sensors = <&scpi_sensors0 21>;
+ 			status = "disabled";
+ 		};
+ 
+-		little_cluster_thermal_zone: little-cluster {
++		little_cluster_thermal_zone: little-cluster-thermal {
+ 			polling-delay = <1000>;
+ 			polling-delay-passive = <100>;
+ 			thermal-sensors = <&scpi_sensors0 22>;
+ 			status = "disabled";
+ 		};
+ 
+-		gpu0_thermal_zone: gpu0 {
++		gpu0_thermal_zone: gpu0-thermal {
+ 			polling-delay = <1000>;
+ 			polling-delay-passive = <100>;
+ 			thermal-sensors = <&scpi_sensors0 23>;
+ 			status = "disabled";
+ 		};
+ 
+-		gpu1_thermal_zone: gpu1 {
++		gpu1_thermal_zone: gpu1-thermal {
+ 			polling-delay = <1000>;
+ 			polling-delay-passive = <100>;
+ 			thermal-sensors = <&scpi_sensors0 24>;
+diff --git a/arch/arm64/boot/dts/arm/juno-scmi.dtsi b/arch/arm64/boot/dts/arm/juno-scmi.dtsi
+index ec85cd2c733c..31929e2377d8 100644
+--- a/arch/arm64/boot/dts/arm/juno-scmi.dtsi
++++ b/arch/arm64/boot/dts/arm/juno-scmi.dtsi
+@@ -76,27 +76,27 @@ scmi_sensors0: protocol@15 {
+ 	};
+ 
+ 	thermal-zones {
+-		pmic {
++		pmic-thermal {
+ 			thermal-sensors = <&scmi_sensors0 0>;
+ 		};
+ 
+-		soc {
++		soc-thermal {
+ 			thermal-sensors = <&scmi_sensors0 3>;
+ 		};
+ 
+-		big-cluster {
++		big-cluster-thermal {
+ 			thermal-sensors = <&scmi_sensors0 21>;
+ 		};
+ 
+-		little-cluster {
++		little-cluster-thermal {
+ 			thermal-sensors = <&scmi_sensors0 22>;
+ 		};
+ 
+-		gpu0 {
++		gpu0-thermal {
+ 			thermal-sensors = <&scmi_sensors0 23>;
+ 		};
+ 
+-		gpu1 {
++		gpu1-thermal {
+ 			thermal-sensors = <&scmi_sensors0 24>;
+ 		};
+ 	};
 -- 
-2.42.0
+2.34.1
 
 
