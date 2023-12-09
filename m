@@ -1,58 +1,58 @@
-Return-Path: <devicetree+bounces-23472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23473-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2815180B58B
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 18:31:07 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5E5680B58E
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 18:31:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C77FB1F21192
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 17:31:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 41DCBB20D00
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 17:31:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD68019442;
-	Sat,  9 Dec 2023 17:31:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 588901865B;
+	Sat,  9 Dec 2023 17:31:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RIHIjysm"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eXs0E3bM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAF0710DA
-	for <devicetree@vger.kernel.org>; Sat,  9 Dec 2023 09:30:57 -0800 (PST)
-Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2ca0c36f5beso39379581fa.1
-        for <devicetree@vger.kernel.org>; Sat, 09 Dec 2023 09:30:57 -0800 (PST)
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE44F1706
+	for <devicetree@vger.kernel.org>; Sat,  9 Dec 2023 09:30:58 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-54f4b31494fso3649277a12.1
+        for <devicetree@vger.kernel.org>; Sat, 09 Dec 2023 09:30:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702143056; x=1702747856; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702143057; x=1702747857; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=oSzsCw66aSx0p8zyn0VK/qCKSJ0A7CHuboWFkgEIMeA=;
-        b=RIHIjysmXSNb68kY08YBUU0DLaTUMCeLCbyULUyRK2ST+CLdFnFDQ76vHEF0LkepSD
-         dPVNh26cYLE+yDni6xjOrdgb1KMFXICOUhS2i3CVa5YQMrZDO1gDFql470Asow23g8Vk
-         eeKM1aEzW1TV5NUpwWQj7llPttN925oYQwYaosTZV/j7BzpbooL7VR6MiVLYs5JSAEUE
-         cVYnw3tJ3OvLaj37wEUv5yH8ik2nkaPD/5bCFMwHz4eq5f+yHZMmr8oOTc5XwQBJ6OQg
-         A1/iJVO1E03fygTfRB5lSwXo94aZn+xHyX9+oRKLZBIt0Tz+Dmp30eucTtnthsIWIiM1
-         dxJQ==
+        bh=nz0+QTmuWJpjrxtMkvTR4cUE7CkcEwzXWpj+dRMFNm0=;
+        b=eXs0E3bM0nbHfDr6A9YGnrBBlcVTET25/SgHQLBlmpdpXZ5JT0TUZ+Aof5U9fmrs6M
+         oE/IXYloFB2NblPqNqg1K8C6Ze0RUZgDYNLXFK+4j1H2AsbaTFZYBaQLXMfuk4Jf8C/P
+         JqSL7oa2IbiDChRFelZaT0Qu17F2e0tcFnSczhIY1Ncuo+K/7+xz7o324KI3zSMjEicT
+         jxt3ub1n+6laZk6lLqKCBQqiguumPaAMqzGUXqDHtWrdc8Q3d7ANGeDyG1+avpPFMCzs
+         EaYUFueKHECxSvk4+Vp2u8LLCR/inbfCNFWWgRnEkfvRnJgS3q022atk+bpeTSjWve5u
+         +P3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702143056; x=1702747856;
+        d=1e100.net; s=20230601; t=1702143057; x=1702747857;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=oSzsCw66aSx0p8zyn0VK/qCKSJ0A7CHuboWFkgEIMeA=;
-        b=Ug2CZYO0+rmm2BQsKmgbtjPHeh+5R25FJQh57CSilow/lEqPgFtkjVtBav4wKyRR2S
-         Z73ReFcQow/TlkEwQKvv4MHfiKaNs6qZvlh+c9dNpCqr7iarf0bIcyOhyqG/sxQsv6RM
-         agBzK8TvM9KJnLzHqPFe2OgqDSsvxOiNOCBQN1+sks+elnZpgnIATUPE4CtK33MnYdmL
-         WKYUKclWomw2S+o57AktIWrIvO7FJN04CaHnxOl1jWcHFvJCqlA9ZkqlTrh9pwAYnLHn
-         KJ1eIimwm9YMC9ijN2fK98m7BnvlEHIF9JIeCpzAKnopVRYd7mdCak+TwjYXjt0EsAvX
-         6bHg==
-X-Gm-Message-State: AOJu0YyVbC3TMIx8jqgMFP4woFYE93/qyhs3bLAdftSBvk5xWbExXcLf
-	h6OP/6lOJ9rOnh/3W3vsjUb7jQ==
-X-Google-Smtp-Source: AGHT+IH37fvpHOxSIqMWeEpJnkik2YGLxE0uj4jQysdexjzsLxTYKLmEYueBZgUiZEBRex6tPwCnpQ==
-X-Received: by 2002:a05:6512:1595:b0:50b:f78a:37c8 with SMTP id bp21-20020a056512159500b0050bf78a37c8mr1124964lfb.95.1702143056120;
-        Sat, 09 Dec 2023 09:30:56 -0800 (PST)
+        bh=nz0+QTmuWJpjrxtMkvTR4cUE7CkcEwzXWpj+dRMFNm0=;
+        b=fHEry7BiFYkDc0oUE0j49DGTGVjdpFMP+dMXYR2//wV3e+oywN8v5VWV0tY3dtMkW3
+         WdrV6Ars/Zs7J/AQSvgqsUGR0GhAHGW6gDD6Ba26KosctZebwg1qKxY3kCWB9SK6+Rfj
+         aZ8XSUxQ3lbEB95sWUqNZcXCLMOnkzhxdE877DDPp6TrkVX6lF6/lw9qe+H2eN+SVGbi
+         4SbPfzSa8WLoA4GwkHQDg629McqFL04Ya6y5UDyWKZBFl0Xo2WkZIRxVV2tYsqqbmsm4
+         9r/IHKJXxTuj889TYBhd4sx/xGZyIfEXOq+6J28Y1eLhVXTyggyzQBFfCesj+0rkuQBW
+         aAyA==
+X-Gm-Message-State: AOJu0YyfZj8aNII4Egb8/Roy87aX2pz20WjytsTz1AwrBl38N+wg95x7
+	GUELso2ALmkfQWDwH+miLMx96A==
+X-Google-Smtp-Source: AGHT+IFUA1879uAgQjnkiufK8G7uVtyFCXn4vdxPJGq07KVbBpUZTzenvszTvQMf5dIP3RRgxsEDQA==
+X-Received: by 2002:a50:8712:0:b0:54c:aa1c:205e with SMTP id i18-20020a508712000000b0054caa1c205emr1855782edb.17.1702143057414;
+        Sat, 09 Dec 2023 09:30:57 -0800 (PST)
 Received: from krzk-bin.. ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id m26-20020a50931a000000b0054ce5c00e74sm1926621eda.88.2023.12.09.09.30.54
+        by smtp.gmail.com with ESMTPSA id m26-20020a50931a000000b0054ce5c00e74sm1926621eda.88.2023.12.09.09.30.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 09 Dec 2023 09:30:55 -0800 (PST)
+        Sat, 09 Dec 2023 09:30:57 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Dinh Nguyen <dinguyen@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
@@ -61,9 +61,9 @@ To: Dinh Nguyen <dinguyen@kernel.org>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 07/15] arm64: dts: socfpga: stratix10: move firmware out of soc node
-Date: Sat,  9 Dec 2023 18:30:36 +0100
-Message-Id: <20231209173044.257684-7-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 08/15] arm64: dts: socfpga: stratix10: add unit address to soc node
+Date: Sat,  9 Dec 2023 18:30:37 +0100
+Message-Id: <20231209173044.257684-8-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231209173044.257684-1-krzysztof.kozlowski@linaro.org>
 References: <20231209173044.257684-1-krzysztof.kozlowski@linaro.org>
@@ -75,65 +75,61 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The "soc" node is supposed to have only MMIO children, so move the
-firmware/svc node to top level to fix dtc W=1 warnings like:
+The "soc" node has ranges with addresses, so it is should have unit
+address  to fix dtc W=1 warnings like:
 
-  socfpga_stratix10.dtsi:625.12-635.5: Warning (simple_bus_reg): /soc@0/firmware: missing or empty reg/ranges property
-
-The node should still be instantiated by drivers/of/platform.c, just
-like in all other platforms.
+  socfpga_stratix10.dtsi:128.6-636.4: Warning (unit_address_vs_reg): /soc: node has a reg or ranges property, but no unit name
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 ---
 
-Not tested
+Not tested.
 ---
- .../boot/dts/altera/socfpga_stratix10.dtsi    | 24 +++++++++----------
- 1 file changed, 12 insertions(+), 12 deletions(-)
+ arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi           | 2 +-
+ arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts      | 2 +-
+ arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_nand.dts | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-index ec086ffcc4a2..59075b958048 100644
+index 59075b958048..072fe20cfca0 100644
 --- a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
 +++ b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-@@ -59,6 +59,18 @@ cpu3: cpu@3 {
+@@ -144,7 +144,7 @@ qspi_clk: qspi-clk {
  		};
  	};
  
-+	firmware {
-+		svc {
-+			compatible = "intel,stratix10-svc";
-+			method = "smc";
-+			memory-region = <&service_reserved>;
-+
-+			fpga_mgr: fpga-mgr {
-+				compatible = "intel,stratix10-soc-fpga-mgr";
-+			};
-+		};
-+	};
-+
- 	fpga-region {
- 		compatible = "fpga-region";
- 		#address-cells = <0x2>;
-@@ -621,18 +633,6 @@ qspi: spi@ff8d2000 {
- 
- 			status = "disabled";
- 		};
--
--		firmware {
--			svc {
--				compatible = "intel,stratix10-svc";
--				method = "smc";
--				memory-region = <&service_reserved>;
--
--				fpga_mgr: fpga-mgr {
--					compatible = "intel,stratix10-soc-fpga-mgr";
--				};
--			};
--		};
+-	soc {
++	soc@0 {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+ 		compatible = "simple-bus";
+diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
+index 5578196a2c9a..26173f0b0051 100644
+--- a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
++++ b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
+@@ -51,7 +51,7 @@ ref_033v: regulator-v-ref {
+ 		regulator-max-microvolt = <330000>;
  	};
  
- 	usbphy0: usbphy0 {
+-	soc {
++	soc@0 {
+ 		eccmgr {
+ 			sdmmca-ecc@ff8c8c00 {
+ 				compatible = "altr,socfpga-s10-sdmmc-ecc",
+diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_nand.dts b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_nand.dts
+index 4e73e6656d72..88e1afdb2583 100644
+--- a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_nand.dts
++++ b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_nand.dts
+@@ -51,7 +51,7 @@ ref_033v: regulator-v-ref {
+ 		regulator-max-microvolt = <330000>;
+ 	};
+ 
+-	soc {
++	soc@0 {
+ 		eccmgr {
+ 			sdmmca-ecc@ff8c8c00 {
+ 				compatible = "altr,socfpga-s10-sdmmc-ecc",
 -- 
 2.34.1
 
