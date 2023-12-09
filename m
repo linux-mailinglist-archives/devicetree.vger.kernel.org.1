@@ -1,102 +1,206 @@
-Return-Path: <devicetree+bounces-23498-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23502-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEAB180B69A
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 22:56:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F1EE80B6A5
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 22:56:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C2D01C20841
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 21:56:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2AD2280FFE
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 21:56:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EEC11D549;
-	Sat,  9 Dec 2023 21:56:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lBoFVRlE"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27B3A1E500;
+	Sat,  9 Dec 2023 21:56:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CCA111F
-	for <devicetree@vger.kernel.org>; Sat,  9 Dec 2023 13:56:07 -0800 (PST)
-Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2ca2573d132so39917111fa.0
-        for <devicetree@vger.kernel.org>; Sat, 09 Dec 2023 13:56:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702158965; x=1702763765; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Iqjo5dHisDRwrhKSHqJTPFQ5wOEs+diDPVCxtZ4wynw=;
-        b=lBoFVRlEXC02haX04GCWKepLwzKRAI0Zw/eE2D/3XnG+7Vk/AbgoBLxnp5qOD2r1YW
-         gccqgB50cmjaRzmPIopaxEX7JhMR19j+6WSALJ+TC+tvuU3UWEyirQHzKBmZOVpk2Eb7
-         DEnQTtWFG7+stBExj4qKIoloWQxyoDTEoVTSoLvu83e44k9pCtxrbw4/X+/M2dfyCuJi
-         w8lPlaZRKJM0ZlyzHw0ydjlHMUkVlcWSHA1m7+EkRIxVFBFBaKucmFxWUC73moTG3g5E
-         /4TH2Z6qchrX12Dh5nXnHODNS2rUnrbG9ghbo0/0zkQvtp2p9OvawWy4i3Xp126NWhOz
-         rOjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702158965; x=1702763765;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Iqjo5dHisDRwrhKSHqJTPFQ5wOEs+diDPVCxtZ4wynw=;
-        b=hlDLtt9HjJn97E782Uj4cETUkVGSrIlAwpKyY0iJ3HJxao8YQDJvOmNA6tTo8zWjNz
-         Q/caW9ri1bmuTmOD+N1zvAbKE5cHC1pX9LPcQoA74JmhC557zqZ5YTX5XNSGpA2/oiSC
-         5929efEPLPVAaST8oq/Z0DWDZ41xj4N0WeTdrHO5CRW3OV190TwP7JdD25W+Q8KLyLww
-         H5g1bIDX4vgxKE2dYpnxMQ/a8V1GVvrOcEyp+O6KHT6mcLYfCOdMQCLwQ9lzLNLGVcB7
-         YA8lhx4i1R04xEfxyxTD+FmPHhtKyZ72LEDntqQMRfVuDFgBnd/ecQ0MGM1mglZW4yrs
-         JgYA==
-X-Gm-Message-State: AOJu0YyVeN8FNA7sa+05kwHDTZAPIWfsNE0D38Itc9DsIO0g90ACNudc
-	+8DQyqnAQRhoAPqcgFa9NS05Ug==
-X-Google-Smtp-Source: AGHT+IFubAjWZ4do8wQKj0af641r5+JD+IPoRZQF6ZK1TTErrrW6ML9sa5dMf7REXgAo6IcdWIKv/g==
-X-Received: by 2002:a2e:8041:0:b0:2ca:cb5:2ed8 with SMTP id p1-20020a2e8041000000b002ca0cb52ed8mr902219ljg.103.1702158965566;
-        Sat, 09 Dec 2023 13:56:05 -0800 (PST)
-Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id e22-20020a2e9856000000b002ca061aa9d1sm665103ljj.88.2023.12.09.13.56.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 09 Dec 2023 13:56:04 -0800 (PST)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH 4/4] arm64: dts: qcom: sm8150: use SoC-specific compat for RPMh stats
-Date: Sun, 10 Dec 2023 00:56:01 +0300
-Message-Id: <20231209215601.3543895-4-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231209215601.3543895-1-dmitry.baryshkov@linaro.org>
-References: <20231209215601.3543895-1-dmitry.baryshkov@linaro.org>
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13BE1103;
+	Sat,  9 Dec 2023 13:56:30 -0800 (PST)
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.96.2)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1rC5Iy-0000AX-1S;
+	Sat, 09 Dec 2023 21:56:13 +0000
+Date: Sat, 9 Dec 2023 21:56:09 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Sabrina Dubroca <sd@queasysnail.net>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Jianhui Zhao <zhaojh329@gmail.com>,
+	Chen-Yu Tsai <wenst@chromium.org>,
+	"Garmin.Chang" <Garmin.Chang@mediatek.com>,
+	Sam Shih <sam.shih@mediatek.com>,
+	Markus Schneider-Pargmann <msp@baylibre.com>,
+	Alexandre Mergnat <amergnat@baylibre.com>,
+	Jiasheng Jiang <jiasheng@iscas.ac.cn>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	Frank Wunderlich <frank-w@public-files.de>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Chanwoo Choi <cw00.choi@samsung.com>,
+	Dan Carpenter <dan.carpenter@linaro.org>,
+	James Liao <jamesjj.liao@mediatek.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org
+Subject: [PATCH v4 3/4] clk: mediatek: Add pcw_chg_shift control
+Message-ID: <28c8ccd234ba311591b6db0de131fde36d3ec409.1702158423.git.daniel@makrotopia.org>
+References: <097e82b0d66570763d64be1715517d8b032fcf95.1702158423.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <097e82b0d66570763d64be1715517d8b032fcf95.1702158423.git.daniel@makrotopia.org>
 
-The SM8150 platform doesn't support DDR sleep stats, so it needs
-SoC-specific compat string for the RPMh stats data.
+From: Sam Shih <sam.shih@mediatek.com>
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Introduce pcw_chg_shfit control to replace hardcoded PCW_CHG_MASK macro.
+This will needed for clocks on the MT7988 SoC.
+
+Signed-off-by: Sam Shih <sam.shih@mediatek.com>
+Signed-off-by: Daniel Golle <daniel@makrotopia.org>
 ---
- arch/arm64/boot/dts/qcom/sm8150.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+v4: always set .pcw_chg_shift if .pcw_chg_reg is used instead of
+    having an if-expression in mtk_pll_set_rate_regs().
+v3: use git --from ...
+v2: no changes
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-index 3cba87e00123..fb41f91cefc6 100644
---- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-@@ -3950,7 +3950,7 @@ aoss_qmp: power-management@c300000 {
- 		};
+ drivers/clk/mediatek/clk-mt6779.c            | 1 +
+ drivers/clk/mediatek/clk-mt8183-apmixedsys.c | 1 +
+ drivers/clk/mediatek/clk-mt8188-apmixedsys.c | 1 +
+ drivers/clk/mediatek/clk-mt8192-apmixedsys.c | 1 +
+ drivers/clk/mediatek/clk-mt8195-apmixedsys.c | 1 +
+ drivers/clk/mediatek/clk-mt8365-apmixedsys.c | 1 +
+ drivers/clk/mediatek/clk-pll.c               | 3 +--
+ drivers/clk/mediatek/clk-pll.h               | 2 ++
+ 8 files changed, 9 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/clk/mediatek/clk-mt6779.c b/drivers/clk/mediatek/clk-mt6779.c
+index ffedb1fe3c672..e66461f341dd3 100644
+--- a/drivers/clk/mediatek/clk-mt6779.c
++++ b/drivers/clk/mediatek/clk-mt6779.c
+@@ -1166,6 +1166,7 @@ static const struct mtk_gate apmixed_clks[] = {
+ 		.pcw_reg = _pcw_reg,					\
+ 		.pcw_shift = _pcw_shift,				\
+ 		.pcw_chg_reg = _pcw_chg_reg,				\
++		.pcw_chg_shift = PCW_CHG_SHIFT,				\
+ 		.div_table = _div_table,				\
+ 	}
  
- 		sram@c3f0000 {
--			compatible = "qcom,rpmh-stats";
-+			compatible = "qcom,sm8150-rpmh-stats";
- 			reg = <0 0x0c3f0000 0 0x400>;
- 		};
+diff --git a/drivers/clk/mediatek/clk-mt8183-apmixedsys.c b/drivers/clk/mediatek/clk-mt8183-apmixedsys.c
+index 2b261c0e2b61d..184e0cd1dde29 100644
+--- a/drivers/clk/mediatek/clk-mt8183-apmixedsys.c
++++ b/drivers/clk/mediatek/clk-mt8183-apmixedsys.c
+@@ -75,6 +75,7 @@ static const struct mtk_gate apmixed_clks[] = {
+ 		.pcw_reg = _pcw_reg,					\
+ 		.pcw_shift = _pcw_shift,				\
+ 		.pcw_chg_reg = _pcw_chg_reg,				\
++		.pcw_chg_shift = PCW_CHG_SHIFT,				\
+ 		.div_table = _div_table,				\
+ 	}
  
+diff --git a/drivers/clk/mediatek/clk-mt8188-apmixedsys.c b/drivers/clk/mediatek/clk-mt8188-apmixedsys.c
+index 41ab4d6896a49..87c5dfa3d1ac4 100644
+--- a/drivers/clk/mediatek/clk-mt8188-apmixedsys.c
++++ b/drivers/clk/mediatek/clk-mt8188-apmixedsys.c
+@@ -53,6 +53,7 @@ static const struct mtk_gate apmixed_clks[] = {
+ 		.pcw_reg = _pcw_reg,					\
+ 		.pcw_shift = _pcw_shift,				\
+ 		.pcw_chg_reg = _pcw_chg_reg,				\
++		.pcw_chg_shift = PCW_CHG_SHIFT,				\
+ 		.en_reg = _en_reg,					\
+ 		.pll_en_bit = _pll_en_bit,				\
+ 	}
+diff --git a/drivers/clk/mediatek/clk-mt8192-apmixedsys.c b/drivers/clk/mediatek/clk-mt8192-apmixedsys.c
+index 3590932acc63a..67bf5ef3f0033 100644
+--- a/drivers/clk/mediatek/clk-mt8192-apmixedsys.c
++++ b/drivers/clk/mediatek/clk-mt8192-apmixedsys.c
+@@ -56,6 +56,7 @@ static const struct mtk_gate apmixed_clks[] = {
+ 		.pcw_reg = _pcw_reg,					\
+ 		.pcw_shift = _pcw_shift,				\
+ 		.pcw_chg_reg = _pcw_chg_reg,				\
++		.pcw_chg_shift = PCW_CHG_SHIFT,				\
+ 		.en_reg = _en_reg,					\
+ 		.pll_en_bit = _pll_en_bit,				\
+ 	}
+diff --git a/drivers/clk/mediatek/clk-mt8195-apmixedsys.c b/drivers/clk/mediatek/clk-mt8195-apmixedsys.c
+index 44a4c85a67ef5..ccd6bac7cb1fc 100644
+--- a/drivers/clk/mediatek/clk-mt8195-apmixedsys.c
++++ b/drivers/clk/mediatek/clk-mt8195-apmixedsys.c
+@@ -54,6 +54,7 @@ static const struct mtk_gate apmixed_clks[] = {
+ 		.pcw_reg = _pcw_reg,					\
+ 		.pcw_shift = _pcw_shift,				\
+ 		.pcw_chg_reg = _pcw_chg_reg,				\
++		.pcw_chg_shift = PCW_CHG_SHIFT,				\
+ 		.en_reg = _en_reg,					\
+ 		.pll_en_bit = _pll_en_bit,				\
+ 	}
+diff --git a/drivers/clk/mediatek/clk-mt8365-apmixedsys.c b/drivers/clk/mediatek/clk-mt8365-apmixedsys.c
+index 9b0bc5daeac06..daddca6db44e7 100644
+--- a/drivers/clk/mediatek/clk-mt8365-apmixedsys.c
++++ b/drivers/clk/mediatek/clk-mt8365-apmixedsys.c
+@@ -39,6 +39,7 @@
+ 		.pcw_reg = _pcw_reg,					\
+ 		.pcw_shift = _pcw_shift,				\
+ 		.pcw_chg_reg = _pcw_chg_reg,				\
++		.pcw_chg_shift = PCW_CHG_SHIFT,				\
+ 		.div_table = _div_table,				\
+ 	}
+ 
+diff --git a/drivers/clk/mediatek/clk-pll.c b/drivers/clk/mediatek/clk-pll.c
+index 513ab6b1b3229..139b01ab8d140 100644
+--- a/drivers/clk/mediatek/clk-pll.c
++++ b/drivers/clk/mediatek/clk-pll.c
+@@ -23,7 +23,6 @@
+ #define CON0_BASE_EN		BIT(0)
+ #define CON0_PWR_ON		BIT(0)
+ #define CON0_ISO_EN		BIT(1)
+-#define PCW_CHG_MASK		BIT(31)
+ 
+ #define AUDPLL_TUNER_EN		BIT(31)
+ 
+@@ -114,7 +113,7 @@ static void mtk_pll_set_rate_regs(struct mtk_clk_pll *pll, u32 pcw,
+ 			pll->data->pcw_shift);
+ 	val |= pcw << pll->data->pcw_shift;
+ 	writel(val, pll->pcw_addr);
+-	chg = readl(pll->pcw_chg_addr) | PCW_CHG_MASK;
++	chg = readl(pll->pcw_chg_addr) | BIT(pll->data->pcw_chg_shift);
+ 	writel(chg, pll->pcw_chg_addr);
+ 	if (pll->tuner_addr)
+ 		writel(val + 1, pll->tuner_addr);
+diff --git a/drivers/clk/mediatek/clk-pll.h b/drivers/clk/mediatek/clk-pll.h
+index f17278ff15d78..84bd8df13e2e5 100644
+--- a/drivers/clk/mediatek/clk-pll.h
++++ b/drivers/clk/mediatek/clk-pll.h
+@@ -22,6 +22,7 @@ struct mtk_pll_div_table {
+ #define HAVE_RST_BAR	BIT(0)
+ #define PLL_AO		BIT(1)
+ #define POSTDIV_MASK	GENMASK(2, 0)
++#define PCW_CHG_SHIFT	31
+ 
+ struct mtk_pll_data {
+ 	int id;
+@@ -48,6 +49,7 @@ struct mtk_pll_data {
+ 	const char *parent_name;
+ 	u32 en_reg;
+ 	u8 pll_en_bit; /* Assume 0, indicates BIT(0) by default */
++	u8 pcw_chg_shift;
+ };
+ 
+ /*
 -- 
-2.39.2
-
+2.43.0
 
