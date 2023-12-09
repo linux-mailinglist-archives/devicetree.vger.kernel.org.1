@@ -1,143 +1,156 @@
-Return-Path: <devicetree+bounces-23406-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23407-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A7BF80B34D
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 09:43:03 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D62E80B359
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 10:05:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CC185B20A7E
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 08:43:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3A3501F2110B
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 09:05:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DF5F79EE;
-	Sat,  9 Dec 2023 08:42:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D4D4CA76;
+	Sat,  9 Dec 2023 09:05:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="f36WZ639"
+	dkim=pass (1024-bit key) header.d=gimli.ms.mff.cuni.cz header.i=@gimli.ms.mff.cuni.cz header.b="OANn2IQI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.smtpout.orange.fr (smtp-22.smtpout.orange.fr [80.12.242.22])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C80510CA
-	for <devicetree@vger.kernel.org>; Sat,  9 Dec 2023 00:42:54 -0800 (PST)
-Received: from [192.168.1.18] ([92.140.202.140])
-	by smtp.orange.fr with ESMTPA
-	id BsvCrcsGt8sqPBsvCrXaRV; Sat, 09 Dec 2023 09:42:52 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1702111372;
-	bh=OL7jJBAHp3+DKzbCvIViVa6sqM1F9KNTat4GEYWo3l4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=f36WZ639mb34IksRNaZ5zgh56e30qvgeiG2HRFdG0qifwbk17zBUE5ybPQoK4APa/
-	 xbOQXM3oS8EEZG3+9TrPSXWbDFOYAUR5Ujf51ci7KTOcppfu5PD05hjq1c+qKtK7Tb
-	 k7G/NoiUyKnWc7qJBprEVoQLjAwaftR///q5FLcljBNG1UdCPBGYsfkABYnL96sAHx
-	 HEUGdL8lF5Zk7GorqLnf2l5dDaMnXSh8iSmxChgR9cf7H+FYQ1lIJtWHlJpXKJh2yT
-	 0HXQqCJjL0cRNQmksacxES8XH3nBxSYeN1RnzG3fpcQDbz7LaMV0Ka6rsnAqOM0Z+u
-	 1owR75wXIe9Xw==
-X-ME-Helo: [192.168.1.18]
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Sat, 09 Dec 2023 09:42:52 +0100
-X-ME-IP: 92.140.202.140
-Message-ID: <02a2787a-1fb9-4238-820b-c3b1e8460e5a@wanadoo.fr>
-Date: Sat, 9 Dec 2023 09:42:49 +0100
+Received: from nikam.ms.mff.cuni.cz (nikam.ms.mff.cuni.cz [195.113.20.16])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A69AE10D9;
+	Sat,  9 Dec 2023 01:05:30 -0800 (PST)
+Received: from gimli.ms.mff.cuni.cz (gimli.ms.mff.cuni.cz [195.113.20.176])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
+	(No client certificate requested)
+	by nikam.ms.mff.cuni.cz (Postfix) with ESMTPS id 11D7328044F;
+	Sat,  9 Dec 2023 10:05:28 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gimli.ms.mff.cuni.cz;
+	s=gen1; t=1702112728;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=gbbyqSK5IuL9LoNBL2boJ6tt8JRfQONwCHbN5+ACzYI=;
+	b=OANn2IQIc3+GqlzMzkV1EAEHwtDFF+uN0vIv2HceSdMIg2QaJ1wV3aHLzOLot7TaNkrxam
+	sisI3ccxswiMrv1FhgKlKm1B6L/l2RYoR9LSMN3cOWEzN+DMR/a3P2DNx8jjsX8Dg3scXU
+	NsEcTnH/OrasVDRlvmPjaoNRXywOjHI=
+Received: from localhost (internet5.mraknet.com [185.200.108.250])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: karelb)
+	by gimli.ms.mff.cuni.cz (Postfix) with ESMTPSA id 997E544B369;
+	Sat,  9 Dec 2023 10:05:27 +0100 (CET)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] usb: typec: mux: add Qualcomm WCD939X USB SubSystem
- Altmode Mux driver
-Content-Language: fr
-To: Neil Armstrong <neil.armstrong@linaro.org>, Andy Gross
- <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231208-topic-sm8650-upstream-wcd939x-usbss-v1-0-91d1ba680fe0@linaro.org>
- <20231208-topic-sm8650-upstream-wcd939x-usbss-v1-2-91d1ba680fe0@linaro.org>
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20231208-topic-sm8650-upstream-wcd939x-usbss-v1-2-91d1ba680fe0@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Sat, 09 Dec 2023 10:05:27 +0100
+Message-Id: <CXJOLS2I8WH7.1IMVJGPUNG4VB@gimli.ms.mff.cuni.cz>
+From: "Karel Balej" <karelb@gimli.ms.mff.cuni.cz>
+Cc: "Conor Dooley" <conor@kernel.org>, "Dmitry Torokhov"
+ <dmitry.torokhov@gmail.com>, "Rob Herring" <robh+dt@kernel.org>, "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Henrik Rydberg" <rydberg@bitmath.org>,
+ <linux-input@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, =?utf-8?q?Duje_Mihanovi=C4=87?=
+ <duje.mihanovic@skole.hr>, <~postmarketos/upstreaming@lists.sr.ht>,
+ <phone-devel@vger.kernel.org>, "Karel Balej" <balejk@matfyz.cz>
+Subject: Re: [PATCH v3 2/5] dt-bindings: input/touchscreen: Add compatible
+ for IST3038B
+To: "Conor Dooley" <conor.dooley@microchip.com>, "Markuss Broks"
+ <markuss.broks@gmail.com>
+References: <20231202125948.10345-1-karelb@gimli.ms.mff.cuni.cz>
+ <20231202125948.10345-3-karelb@gimli.ms.mff.cuni.cz>
+ <20231203-outskirts-reformat-e0a833903841@spud>
+ <0a035c62-9d35-4f85-b1f3-bcb7dea17d52@gmail.com>
+ <20231204-stooge-impotent-fe8d2d9177e4@wendy>
+In-Reply-To: <20231204-stooge-impotent-fe8d2d9177e4@wendy>
 
-Le 08/12/2023 à 16:27, Neil Armstrong a écrit :
-> Qualcomm WCD9390/WCD9395 is a standalone Hi-Fi audio codec IC with a
-> functionally separate USB SubSystem for Altmode/Analog Audio Switch
-> accessible over an I2C interface.
-> 
-> It provides switching USB-C USB2.0 lines between USB and Audio Headphones
-> speaker lines, and the USB-C SBU lines between DisplayPort AUX and Audio
-> Headphones Microphone/Ground.
-> 
-> The Audio Headphone and Microphone data path between the Codec and the
-> USB-C Mux subsystems are external to the IC, thus requiring DT
-> port-endpoint graph description to handle USB-C altmode & orientation
-> switching for Audio Accessory Mode.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
+On Mon Dec 4, 2023 at 1:52 PM CET, Conor Dooley wrote:
+> On Mon, Dec 04, 2023 at 02:40:44PM +0200, Markuss Broks wrote:
+> > On 12/3/23 13:20, Conor Dooley wrote:
+> > > On Sat, Dec 02, 2023 at 01:48:33PM +0100, Karel Balej wrote:
+> > > > From: Markuss Broks <markuss.broks@gmail.com>
+> > > >=20
+> > > > Imagis IST3038B is a variant (firmware?) of Imagis IST3038 IC,
+> > > > add the compatible for it to the IST3038C bindings.
+> > > This one is better, but would be well served by mentioning what
+> > > specifically is different (register addresses or firmware commands?)
+> >=20
+> > I don't think anyone knows this other than Imagis itself. I would guess=
+ it's
+> > different hardware, since register addresses are indeed different, but =
+on
+> > the other hand, there is a possibility that firmware on the MCU could b=
+e
+> > responding to those commands. I suppose "... IST3038B is a hardware var=
+iant
+> > of ... IST3038" would be more correct.
+>
+> Only Imagis might know the specifics, but you (plural) have made driver
+> changes so you know what is different in terms of the programming model.
+> I'm just asking for you to mention how the programming model varies in
+> the commit message. Otherwise I can't know whether you should have added
+> a fallback compatible, without going and reading your driver change. The
+> commit message for the bindings should stand on its own merit in that
+> regard.
+> "Variant" alone does not suffice, as many variants of devices have a
+> compatible programming model, be that for a subset of features or
+> complete compatibility.
+>
+> > The reason why I think it could be firmware-defined is because we have =
+a lot
+> > of variants (30xxA, 30xxB, 30xxC, plain 30xx), and the numbers usually =
+mean
+> > feature level/completeness, e.g. some don't support the touch pressure =
+or
+> > touchkeys, and we don't know what A/B/C/none means.
+>
+> Ultimately whether it is due to firmware or the hardware isn't
+> particular important, just mention what is incompatibly different.
 
-...
+I propose to update the commit description as such:
 
-> +	usbss->sw = typec_switch_register(dev, &sw_desc);
-> +	if (IS_ERR(usbss->sw)) {
-> +		ret = dev_err_probe(dev, PTR_ERR(usbss->sw), "failed to register typec switch\n");
-> +		goto err_regulator_disable;
-> +	}
-> +
-> +	mux_desc.drvdata = usbss;
-> +	mux_desc.fwnode = dev_fwnode(dev);
-> +	mux_desc.set = wcd939x_usbss_mux_set;
-> +
-> +	usbss->mux = typec_mux_register(dev, &mux_desc);
-> +	if (IS_ERR(usbss->mux)) {
-> +		typec_switch_unregister(usbss->sw);
+	Imagis IST3038B is a variant (firmware?) of Imagis IST3038 IC
+	differing from IST3038C in its register interface. Add the
+	compatible for it to the IST3038C bindings.
 
-Already called at the 'err_switch_unregister' label below.
+>
+> Cheers,
+> Conor.
+>
+>
+> > > > Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
+> > > > Signed-off-by: Karel Balej <balejk@matfyz.cz>
+> > > > ---
+> > > >   .../devicetree/bindings/input/touchscreen/imagis,ist3038c.yaml   =
+| 1 +
+> > > >   1 file changed, 1 insertion(+)
+> > > >=20
+> > > > diff --git a/Documentation/devicetree/bindings/input/touchscreen/im=
+agis,ist3038c.yaml b/Documentation/devicetree/bindings/input/touchscreen/im=
+agis,ist3038c.yaml
+> > > > index 0d6b033fd5fb..b5372c4eae56 100644
+> > > > --- a/Documentation/devicetree/bindings/input/touchscreen/imagis,is=
+t3038c.yaml
+> > > > +++ b/Documentation/devicetree/bindings/input/touchscreen/imagis,is=
+t3038c.yaml
+> > > > @@ -18,6 +18,7 @@ properties:
+> > > >     compatible:
+> > > >       enum:
+> > > > +      - imagis,ist3038b
+> > > >         - imagis,ist3038c
+> > > >     reg:
+> > > > --=20
+> > > > 2.43.0
+> > > >=20
+> > - Markuss
 
-> +		ret = dev_err_probe(dev, PTR_ERR(usbss->mux), "failed to register typec mux\n");
-> +		goto err_switch_unregister;
-> +	}
-> +
-> +	i2c_set_clientdata(client, usbss);
-> +
-> +	return 0;
-> +
-> +err_switch_unregister:
-> +	typec_switch_unregister(usbss->sw);
-> +
-> +err_regulator_disable:
-> +	regulator_disable(usbss->vdd_supply);
-> +
-> +err_mux_switch:
-> +	typec_switch_put(usbss->codec_switch);
-> +
-> +err_mux_put:
-> +	typec_mux_put(usbss->codec);
-> +
-> +	return ret;
-> +}
-> +
-> +static void wcd939x_usbss_remove(struct i2c_client *client)
-> +{
-> +	struct wcd939x_usbss *usbss = i2c_get_clientdata(client);
-> +
-> +	typec_mux_unregister(usbss->mux);
-> +	typec_switch_unregister(usbss->sw);
-> +
-> +	regulator_disable(usbss->vdd_supply);
-
-Based on error hadling of the probe: typec_switch_put() missing?
-
-> +
-> +	typec_mux_put(usbss->codec);
-> +}
-
-CJ
-
+Kind regards,
+K. B.
 
