@@ -1,65 +1,73 @@
-Return-Path: <devicetree+bounces-23383-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6BC480B208
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 05:38:05 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86ED880B257
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 07:22:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D6CBC1C20AEF
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 04:38:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EDDDFB20B6F
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 06:22:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D44C1386;
-	Sat,  9 Dec 2023 04:38:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3527F185C;
+	Sat,  9 Dec 2023 06:22:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Th/ykdgP"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="r1XnpDZv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E28E5193;
-	Fri,  8 Dec 2023 20:37:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1702096677; x=1733632677;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=8LR6YwGK/lZtidkiB9axp1TkxjdDo8IofHruUzUBFOQ=;
-  b=Th/ykdgPhwGaARpA/j2Q/JxHpJZzgjeOizTqKLzhMzrgJD3mFwMR7NYm
-   DhikLRAp/AAWHomvG01R9pA8WsGN9e/JN/XGtcJvTE/CLwU9HY++l1gnH
-   H9tC2/9rmyKwARIkq7G4VJBtLjc5Xctx2U85g60uf8ATOSOjw6QPR5zIQ
-   qqduZkKLGzLgo/rP3BbAyVIElBY1AZ+necL4fP9R3EzMOB0n8rfNyqksu
-   jlZ19RXaSINOHrbmTFLcBBNx0ZjvUAL66YZTBebvlwrtuaJ736ktBf5bG
-   hctfHCjaRY7Uz8AaOTktiJKjNCyvWNDpzbYG+9goIo8Wj/GHPtU/rj/IM
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10918"; a="397286863"
-X-IronPort-AV: E=Sophos;i="6.04,262,1695711600"; 
-   d="scan'208";a="397286863"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Dec 2023 20:37:57 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10918"; a="890380587"
-X-IronPort-AV: E=Sophos;i="6.04,262,1695711600"; 
-   d="scan'208";a="890380587"
-Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
-  by fmsmga002.fm.intel.com with ESMTP; 08 Dec 2023 20:37:53 -0800
-Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rBp67-000Eov-2S;
-	Sat, 09 Dec 2023 04:37:51 +0000
-Date: Sat, 9 Dec 2023 12:37:31 +0800
-From: kernel test robot <lkp@intel.com>
-To: Kamal Dasu <kamal.dasu@broadcom.com>, ulf.hansson@linaro.org,
-	linux-kernel@vger.kernel.org, alcooperx@gmail.com,
-	linux-arm-kernel@lists.infradead.org, adrian.hunter@intel.com,
-	linux-mmc@vger.kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, f.fainelli@gmail.com,
-	bcm-kernel-feedback-list@broadcom.com,
-	Kamal Dasu <kdasu@broadcom.com>
-Subject: Re: [PATCH 2/2] mmc: add new sdhci reset sequence for brcm 74165b0
-Message-ID: <202312091235.tzqwgYfT-lkp@intel.com>
-References: <20231208202108.7468-2-kamal.dasu@broadcom.com>
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1807110F1
+	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 22:22:16 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-40c25973988so29992825e9.2
+        for <devicetree@vger.kernel.org>; Fri, 08 Dec 2023 22:22:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702102935; x=1702707735; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=qUfLyjWdTxwgSWGMLeNKXLU9SpqRs5Ux+VZkSWWMlxc=;
+        b=r1XnpDZvR5BbJSkXog1a6oa+ELl0zmkSX+fqAPsGYyX3yOSTTrL0/ZW0QT64k3uaGR
+         8yw2Xdfyk18Jlxt7wPTDefIbFvnfW0Id3pSyLRTno5aK1F4s3dXV9wb6Xt4bgjRUG9Fs
+         ESjI5dHX0XFb6gqndmFKyz97tg97Biu851IVNb7Gbxj8WPXkC0HDW1BvvcvTuSfSSzC9
+         VtGh/Yi1RXoJpdqqLjrsBh3D+sqZ+8bf1Dupei92CnUnmrjOBY0DYCCaD4lBQt1EPoI9
+         3JphgjXQRlDMfOCbqrfM0pgtf/NP3vDgf1ARNePBQi6IaahFdjNq5c3K0EQFBGlfdgoD
+         LJyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702102935; x=1702707735;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qUfLyjWdTxwgSWGMLeNKXLU9SpqRs5Ux+VZkSWWMlxc=;
+        b=LaSDBhAQ+JvYU2zZGurjG4xa9qleXx/XpFd4+VVl+jtT96OOKIzbwZ4bCruZntIk2k
+         F4aUBS0d45u4q77LfLl4d6CAYulJAVNMy36Ue7nS2qbapJrrhNtAMAInpvSUHPly6qXa
+         1gcylxT8/2tR1IiMxBQuZH+6qJYrx8A3oU8SamaYlPvddAfQTlk63tTw/ol1LV23Miho
+         YGmk9HsnP9qgjqTS4nGp6IDlziRwcexeU0VcyKcS2D2UHDeD6BFTdkr5IxQwYZx2+Vne
+         vOZyHMUQR1+VZVo9NH8/KRAxF2nY5mrUG8HAXr8z/mMS+JGnVk0es3+Vq6kRVJ+rQcEu
+         DnvQ==
+X-Gm-Message-State: AOJu0YxcV7fzx7LR2x5r3XfpwOLZU29MNGhaSQSugyN9ddRmDa+nYED1
+	TgPT6/W6N/tZ53SPHdlb9uppNg==
+X-Google-Smtp-Source: AGHT+IFFrBy7iaKn0lxful6M0lWyJC8FTunVIKaO+dmv+Xj2upv4u13p3SvmzsaKkvkRJSjMMShrZA==
+X-Received: by 2002:a05:600c:2154:b0:40c:3314:5be6 with SMTP id v20-20020a05600c215400b0040c33145be6mr655398wml.106.1702102934172;
+        Fri, 08 Dec 2023 22:22:14 -0800 (PST)
+Received: from localhost ([102.36.222.112])
+        by smtp.gmail.com with ESMTPSA id l15-20020a05600c1d0f00b003feae747ff2sm7394329wms.35.2023.12.08.22.22.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Dec 2023 22:22:13 -0800 (PST)
+Date: Sat, 9 Dec 2023 09:22:11 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: oe-kbuild@lists.linux.dev, Chen Wang <unicornxw@gmail.com>,
+	aou@eecs.berkeley.edu, chao.wei@sophgo.com, conor@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+	palmer@dabbelt.com, paul.walmsley@sifive.com,
+	richardcochran@gmail.com, robh+dt@kernel.org, sboyd@kernel.org,
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com,
+	guoren@kernel.org, jszhang@kernel.org, inochiama@outlook.com,
+	samuel.holland@sifive.com
+Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
+	Chen Wang <unicorn_wang@outlook.com>
+Subject: Re: [PATCH v6 3/4] clk: sophgo: Add SG2042 clock generator driver
+Message-ID: <1a6e3fad-cbe2-461d-940c-601ab5197213@suswa.mountain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,49 +76,82 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231208202108.7468-2-kamal.dasu@broadcom.com>
+In-Reply-To: <d1aa4f76f360ebd7b790a4786641f1b0188dbba8.1701997033.git.unicorn_wang@outlook.com>
 
-Hi Kamal,
+Hi Chen,
 
 kernel test robot noticed the following build warnings:
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on soc/for-next linus/master v6.7-rc4 next-20231208]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Kamal-Dasu/mmc-add-new-sdhci-reset-sequence-for-brcm-74165b0/20231209-042222
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20231208202108.7468-2-kamal.dasu%40broadcom.com
-patch subject: [PATCH 2/2] mmc: add new sdhci reset sequence for brcm 74165b0
-config: arc-randconfig-001-20231209 (https://download.01.org/0day-ci/archive/20231209/202312091235.tzqwgYfT-lkp@intel.com/config)
-compiler: arceb-elf-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231209/202312091235.tzqwgYfT-lkp@intel.com/reproduce)
+url:    https://github.com/intel-lab-lkp/linux/commits/Chen-Wang/dt-bindings-soc-sophgo-Add-Sophgo-system-control-module/20231208-091702
+base:   b85ea95d086471afb4ad062012a4d73cd328fa86
+patch link:    https://lore.kernel.org/r/d1aa4f76f360ebd7b790a4786641f1b0188dbba8.1701997033.git.unicorn_wang%40outlook.com
+patch subject: [PATCH v6 3/4] clk: sophgo: Add SG2042 clock generator driver
+config: xtensa-randconfig-r071-20231208 (https://download.01.org/0day-ci/archive/20231208/202312081933.MUdHNASt-lkp@intel.com/config)
+compiler: xtensa-linux-gcc (GCC) 13.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20231208/202312081933.MUdHNASt-lkp@intel.com/reproduce)
 
 If you fix the issue in a separate patch/commit (i.e. not just a new version of
 the same patch/commit), kindly add following tags
 | Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202312091235.tzqwgYfT-lkp@intel.com/
+| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+| Closes: https://lore.kernel.org/r/202312081933.MUdHNASt-lkp@intel.com/
 
-All warnings (new ones prefixed by >>):
+smatch warnings:
+drivers/clk/sophgo/clk-sophgo-sg2042.c:1282 sg2042_clk_init_clk_data() warn: passing zero to 'PTR_ERR'
 
->> drivers/mmc/host/sdhci-brcmstb.c:237:16: warning: initialization discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
-     237 |         .ops = &sdhci_brcmstb_ops_74165b0,
-         |                ^
+vim +/PTR_ERR +1282 drivers/clk/sophgo/clk-sophgo-sg2042.c
+
+7c68ebea1041f9 Chen Wang 2023-12-08  1258  static int __init sg2042_clk_init_clk_data(
+7c68ebea1041f9 Chen Wang 2023-12-08  1259  	struct device_node *node,
+7c68ebea1041f9 Chen Wang 2023-12-08  1260  	int num_clks,
+7c68ebea1041f9 Chen Wang 2023-12-08  1261  	struct sg2042_clk_data **pp_clk_data)
+7c68ebea1041f9 Chen Wang 2023-12-08  1262  {
+7c68ebea1041f9 Chen Wang 2023-12-08  1263  	int ret = 0;
+7c68ebea1041f9 Chen Wang 2023-12-08  1264  	struct sg2042_clk_data *clk_data = NULL;
+7c68ebea1041f9 Chen Wang 2023-12-08  1265  	struct device_node *np_syscon;
+7c68ebea1041f9 Chen Wang 2023-12-08  1266  
+7c68ebea1041f9 Chen Wang 2023-12-08  1267  	np_syscon = of_parse_phandle(node, "sophgo,system-ctrl", 0);
+7c68ebea1041f9 Chen Wang 2023-12-08  1268  	if (!np_syscon) {
+7c68ebea1041f9 Chen Wang 2023-12-08  1269  		pr_err("failed to get system-ctrl node\n");
+7c68ebea1041f9 Chen Wang 2023-12-08  1270  		ret = -EINVAL;
+7c68ebea1041f9 Chen Wang 2023-12-08  1271  		goto error_out;
+7c68ebea1041f9 Chen Wang 2023-12-08  1272  	}
+7c68ebea1041f9 Chen Wang 2023-12-08  1273  
+7c68ebea1041f9 Chen Wang 2023-12-08  1274  	clk_data = kzalloc(struct_size(clk_data, onecell_data.hws, num_clks), GFP_KERNEL);
+7c68ebea1041f9 Chen Wang 2023-12-08  1275  	if (!clk_data) {
+7c68ebea1041f9 Chen Wang 2023-12-08  1276  		ret = -ENOMEM;
+7c68ebea1041f9 Chen Wang 2023-12-08  1277  		goto error_out;
+7c68ebea1041f9 Chen Wang 2023-12-08  1278  	}
+7c68ebea1041f9 Chen Wang 2023-12-08  1279  
+7c68ebea1041f9 Chen Wang 2023-12-08  1280  	clk_data->regmap_syscon = device_node_to_regmap(np_syscon);
+7c68ebea1041f9 Chen Wang 2023-12-08  1281  	if (IS_ERR_OR_NULL(clk_data->regmap_syscon)) {
+7c68ebea1041f9 Chen Wang 2023-12-08 @1282  		pr_err("cannot get regmap_syscon %ld\n", PTR_ERR(clk_data->regmap_syscon));
+
+I don't think device_node_to_regmap() can return NULL, but if it could
+then it shouldn't be handled like this:
+
+https://staticthinking.wordpress.com/2022/08/01/mixing-error-pointers-and-null/
 
 
-vim +/const +237 drivers/mmc/host/sdhci-brcmstb.c
-
-   233	
-   234	static const struct brcmstb_match_priv match_priv_74165b0 = {
-   235		.flags = BRCMSTB_MATCH_FLAGS_HAS_CLOCK_GATE,
-   236		.hs400es = sdhci_brcmstb_hs400es,
- > 237		.ops = &sdhci_brcmstb_ops_74165b0,
-   238	};
-   239	
+7c68ebea1041f9 Chen Wang 2023-12-08  1283  		ret = -ENODEV;
+7c68ebea1041f9 Chen Wang 2023-12-08  1284  		goto cleanup;
+7c68ebea1041f9 Chen Wang 2023-12-08  1285  	}
+7c68ebea1041f9 Chen Wang 2023-12-08  1286  	clk_data->iobase_syscon = of_iomap(np_syscon, 0);
+7c68ebea1041f9 Chen Wang 2023-12-08  1287  	clk_data->iobase = of_iomap(node, 0);
+7c68ebea1041f9 Chen Wang 2023-12-08  1288  	clk_data->onecell_data.num = num_clks;
+7c68ebea1041f9 Chen Wang 2023-12-08  1289  
+7c68ebea1041f9 Chen Wang 2023-12-08  1290  	*pp_clk_data = clk_data;
+7c68ebea1041f9 Chen Wang 2023-12-08  1291  	return ret;
+7c68ebea1041f9 Chen Wang 2023-12-08  1292  
+7c68ebea1041f9 Chen Wang 2023-12-08  1293  cleanup:
+7c68ebea1041f9 Chen Wang 2023-12-08  1294  	kfree(clk_data);
+7c68ebea1041f9 Chen Wang 2023-12-08  1295  
+7c68ebea1041f9 Chen Wang 2023-12-08  1296  error_out:
+7c68ebea1041f9 Chen Wang 2023-12-08  1297  	return ret;
+7c68ebea1041f9 Chen Wang 2023-12-08  1298  }
 
 -- 
 0-DAY CI Kernel Test Service
 https://github.com/intel/lkp-tests/wiki
+
 
