@@ -1,33 +1,34 @@
-Return-Path: <devicetree+bounces-23372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23374-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5862280B164
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 02:22:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22A0580B177
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 02:35:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D0211B20C09
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 01:22:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B98C01F213D0
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 01:35:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A5987FB;
-	Sat,  9 Dec 2023 01:22:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69E327FB;
+	Sat,  9 Dec 2023 01:35:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="e6kBuiHh"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="BwufFL80"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m25471.xmail.ntesmail.com (mail-m25471.xmail.ntesmail.com [103.129.254.71])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5274910F1
-	for <devicetree@vger.kernel.org>; Fri,  8 Dec 2023 17:22:37 -0800 (PST)
+X-Greylist: delayed 496 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 08 Dec 2023 17:35:12 PST
+Received: from mail-m102.netease.com (mail-m102.netease.com [154.81.10.2])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5888610F1;
+	Fri,  8 Dec 2023 17:35:12 -0800 (PST)
 DKIM-Signature: a=rsa-sha256;
-	b=e6kBuiHhF1GSlWML17rFKSqfGmnDq09ZaTAXaNvDKGygV9wCypiD0zyU2rZ19qnZEESh1ECRd0f9rEmwc4eA7S82D25mjAh9PaECbir6pix8wv8WZVufu31Gs6s85KgVI5ZBeDO6MDB14RXomdIy7nOV4/mPnz1eMjvC/uDMYHA=;
+	b=BwufFL80XCbds4b0EwhNO3JkhrzAg11DySk5t/d0z26Lz8b/7R1KMxF3bj8BT+vJDKHTsgAgOehypOhLxtqlQheaA/4ZjRICQ+ZPWZBmJN1cp0YMYWqo2aqLDJ6o+rJ661UMdqq951sRFc9+ln+5nuKNRUeVki9SfQZ2x6JNpe4=;
 	s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=Ksw/7IywGMYWf1AJ9p0S1CUhJTrJL9FdKIXVss4Vfu8=;
+	bh=1bTFE0EmmEHjiY9PXtz3uWCZdBxCozfW+7tytPfM1i0=;
 	h=date:mime-version:subject:message-id:from;
 Received: from [172.16.12.141] (unknown [58.22.7.114])
-	by mail-m12779.qiye.163.com (Hmail) with ESMTPA id 5AAFB780194;
-	Sat,  9 Dec 2023 09:21:54 +0800 (CST)
-Message-ID: <3b35ebad-c951-49a1-bfff-da79b3492ce1@rock-chips.com>
-Date: Sat, 9 Dec 2023 09:21:53 +0800
+	by mail-m12779.qiye.163.com (Hmail) with ESMTPA id 817C3780197;
+	Sat,  9 Dec 2023 09:26:25 +0800 (CST)
+Message-ID: <bbf4d7a5-a6f5-447a-9f3e-1cd6f2acc7c9@rock-chips.com>
+Date: Sat, 9 Dec 2023 09:26:25 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -35,7 +36,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 00/17] Add VOP2 support on rk3588
+Subject: Re: [PATCH v4 15/17] dt-bindings: iommu: rockchip: Add Rockchip
+ RK3588
 Content-Language: en-US
 To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
  Andy Yan <andyshrk@163.com>
@@ -45,80 +47,47 @@ Cc: hjc@rock-chips.com, dri-devel@lists.freedesktop.org,
  devicetree@vger.kernel.org, sebastian.reichel@collabora.com,
  kever.yang@rock-chips.com, chris.obbard@collabora.com
 References: <20231207075906.651771-1-andyshrk@163.com>
- <8765245.NyiUUSuA9g@diego>
+ <20231207080235.652719-1-andyshrk@163.com> <4012684.R56niFO833@diego>
 From: Andy Yan <andy.yan@rock-chips.com>
-In-Reply-To: <8765245.NyiUUSuA9g@diego>
+In-Reply-To: <4012684.R56niFO833@diego>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQkMdSVZDTh9IGhhMQk1JQxpVEwETFh
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkxOHlZIHkIdQh0dTk9MSx1VEwETFh
 	oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSk1PSU5JVUpLS1VKQl
 	kG
-X-HM-Tid: 0a8c4c2aade8b24fkuuu5aafb780194
+X-HM-Tid: 0a8c4c2ed0f4b24fkuuu817c3780197
 X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6OiI6Fjo6DTw3PE4fSx0WSz4h
-	HygaCwxVSlVKTEtJS0NPQkpOSUlNVTMWGhIXVRoVHwJVAhoVOwkUGBBWGBMSCwhVGBQWRVlXWRIL
-	WUFZTkNVSUlVTFVKSk9ZV1kIAVlBSE1NSTcG
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Ky46Sww*HDw9S04JFhg2Sygp
+	Fg0KChFVSlVKTEtJS0NOSkNNSEtLVTMWGhIXVRoVHwJVAhoVOwkUGBBWGBMSCwhVGBQWRVlXWRIL
+	WUFZTkNVSUlVTFVKSk9ZV1kIAVlBSU9DSDcG
 
 Hi Heiko:
 
-On 12/9/23 00:07, Heiko Stübner wrote:
-> Hi Andy,
-> 
-> Am Donnerstag, 7. Dezember 2023, 08:59:06 CET schrieb Andy Yan:
+On 12/9/23 00:29, Heiko Stübner wrote:
+> Am Donnerstag, 7. Dezember 2023, 09:02:35 CET schrieb Andy Yan:
 >> From: Andy Yan <andy.yan@rock-chips.com>
 >>
->> This patch sets aims at enable the VOP2 support on rk3588.
+>> Add a Rockchip RK3588 compatible
 >>
->> Main feature of VOP2 on rk3588:
->> Four video ports:
->> VP0 Max 4096x2160
->> VP1 Max 4096x2160
->> VP2 Max 4096x2160
->> VP3 Max 2048x1080
->>
->> 4 4K Cluster windows with AFBC/line RGB and AFBC-only YUV support
->> 4 4K Esmart windows with line RGB/YUV support
->>
->> The current version support all the 8 windows with all the suppported
->> plane format.
->>
->> And we don't have a upstreamed encoder/connector(HDMI/DP) for rk3588
->> yet, Cristian from collabora is working on adding upstream support for
->> HDMI on rk3588.
->>
->> My current test(1080P/4KP60) is runing with a HDMI driver pick from
->> downstream bsp kernel.
->>
->> A branch based on linux-6.7 rc4 containing all the series and
->> HDMI driver(not compatible with mainline rk3568 hdmi) picked
->> from downstream bsp kernel is available [0].
->>
->> [0]https://github.com/andyshrk/linux/commits/rk3588-vop2-upstream-linux-6.7-rc4-2023-12-07
->>
->> Changes in v4:
->> - fix the POST_BUF_EMPTY irq when set mode
->> - use full stop at all the description's end.
->> - address Krzysztof's review about dt-binding in v3
->> - keep all VOP2_FEATURE_HAS_xxx macros increase in order.
->> - address Sascha's review about debugfs
->> - Add const for rockchip,rk3588-iommu compatible
+>> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
 > 
-> very nice, the error messages on "mode changes" are gone now.
-> Display and even combination with panthor still work of my rk3588-board
+> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
 > 
-> Tested-by: Heiko Stuebner <heiko@sntech.de>
+> In the next iteration, please split this out into a separate patch and send
+> it to the iommu+dt maintainers.
+> 
+> Supporting the iommus on rk3588 can be realized separately and the
+> patch needs to go through a separate tree anyway.
 
-Thanks for your honorable work on this platform, and thanks for you test and review.
-
-So can I add your Tested-by for all this series form PATCH 1~16 in next version?
+Okay, I will split this patch out of this vop2 series, does this mean that
+I also need to split out the iommu dt node as a separate patch from current
+PATCH16 ?
+> 
+> 
+> Thanks
+> Heiko
 > 
 > 
 > 
-> 
-> 
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
 
