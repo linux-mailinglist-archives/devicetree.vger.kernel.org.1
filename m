@@ -1,153 +1,132 @@
-Return-Path: <devicetree+bounces-23426-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23427-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A2CB80B3DA
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 11:59:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78E1980B3F4
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 12:25:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 334821F21085
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 10:59:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0DEAE280FA7
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 11:25:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7CE013ADB;
-	Sat,  9 Dec 2023 10:59:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E69BD13FE6;
+	Sat,  9 Dec 2023 11:25:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="T9xpJtaP"
+	dkim=pass (2048-bit key) header.d=gmx.de header.i=linosanfilippo@gmx.de header.b="ab2hKpIA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-x142.google.com (mail-il1-x142.google.com [IPv6:2607:f8b0:4864:20::142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2432CD1;
-	Sat,  9 Dec 2023 02:59:38 -0800 (PST)
-Received: by mail-il1-x142.google.com with SMTP id e9e14a558f8ab-35d3846fac9so9867995ab.2;
-        Sat, 09 Dec 2023 02:59:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702119577; x=1702724377; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Lm+D5jKJ17HuWeeaSzfoieBbBFG7aIweWno7P45cPZU=;
-        b=T9xpJtaPB+sqe1hG/rSgrzkixG5NOwD96/3hGsvTOul4XeaohRsUk57KkVTwdo2v+s
-         qSYcyVDgAP+fPtmrk7sOA/Ih00NIPFGljWjtzH3vYPKd8jYecJ1SkKww6q2nkM8/hSEV
-         KfxUZadQ4oWG/EoLTFriF7pg+aODTHnlzExWPzmeezqzYuCgZRZfb079zASbyetHUPfR
-         vBbW3IwSTLLjUjod0ZHfnbEqH1yr1q401aCkZqzuwprCsz53bZAMSkZrRMUmI+wNd5kd
-         9x35Onn5nWwPbd0CsJaMomk+6myiTGkj5/nwnpEDuz6S5S1dW5otKmOKzdlADCOCZFX1
-         WgNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702119577; x=1702724377;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Lm+D5jKJ17HuWeeaSzfoieBbBFG7aIweWno7P45cPZU=;
-        b=ZChbZgSoDqXelWCwTFLykhTR0CM0cQW+FeNkf7U48P/jJ9qDEqof8u6Gn59LSTx7o5
-         IYaoAJClqoqdn88n+S+9eUpSWs9J0uwYbpfpgebiA3K/Cf9Bdh8cBVWEB66zs8fMp40M
-         HOQemfDsAw9ba2lJX/A1TwbkZTNx0gNgG/+iuKTQZEKs5Fx7S8SZDCIHOE4HsqvHlmFx
-         e8LUfA46+pbqjGUPbyHcGxcstJn4Fyo1M8QhGTUTmtRd/0s0iK8k1ZUXngDZbsOVP1VH
-         KTiWwcgMB7zfzsmZQRd8CwgKaj0ql67TzeUjfzmIto0PqLMTKk3HCJlyje9mof6XBMmv
-         g83A==
-X-Gm-Message-State: AOJu0Yy8AXp+w2gCWQVqz4HefTyIxEO12cjG+dHXX1MmljqNYCBvIHsu
-	FiKELeBeyT+xRNw8sIsy9pQ=
-X-Google-Smtp-Source: AGHT+IE9oQ66Nh55WRvLQOeBudMCb8IxqZPeNB6jqOGah/nj66T++A18Lc6pG5a326EEdM9rZV+sfQ==
-X-Received: by 2002:a05:6e02:194b:b0:35d:720a:7eaf with SMTP id x11-20020a056e02194b00b0035d720a7eafmr2534435ilu.6.1702119577279;
-        Sat, 09 Dec 2023 02:59:37 -0800 (PST)
-Received: from dawn-virtual-machine.localdomain ([183.198.111.112])
-        by smtp.gmail.com with ESMTPSA id a18-20020a170902ecd200b001cfc1b931a9sm3166912plh.249.2023.12.09.02.59.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 09 Dec 2023 02:59:36 -0800 (PST)
-From: Li peiyu <579lpy@gmail.com>
-To: jic23@kernel.org
-Cc: javier.carrasco.cruz@gmail.com,
-	lars@metafoo.de,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Li peiyu <579lpy@gmail.com>
-Subject: [PATCH v5 4/4] dt-bindings: iio: humidity: Add TI HDC302x support
-Date: Sat,  9 Dec 2023 18:59:26 +0800
-Message-Id: <20231209105926.3965-1-579lpy@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231209105217.3630-1-579lpy@gmail.com>
-References: <20231209105217.3630-1-579lpy@gmail.com>
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A6D0E7;
+	Sat,  9 Dec 2023 03:25:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.de; s=s31663417;
+	t=1702121091; x=1702725891; i=linosanfilippo@gmx.de;
+	bh=85evGRCJ3tCE0nbUckGUxFOChy15m1jRdB9q8Rfhw7U=;
+	h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
+	 In-Reply-To;
+	b=ab2hKpIALjqpW1/N6A3JhJrfll/qcmALE0stPvLHiOAt9HnTo6YO22Y2aShbbJ4a
+	 Hhjx6MqgwcpYCjaacCNOx0IZtR5Q5gekwsl/wJqfK6OT77Xt0qbfRQfzh8gSDR3+h
+	 ArKxyItqZptHfufLmr1gW5gpBG40pOmAO1ZBy+H7aOrMDhgNqttiQ7LBM/iKcZLuj
+	 xKOwY5oit7wYKhsaqq60KirKCs1vg54pjeMj/6wL0SBot+NF1wyQx8L7qRaZXMFjc
+	 9dsP9mhAvkvkq1/+Y2EI1P+G1ypmZjbOXLJmSse9tIbr4blCVzgCJTxhmIokWQVEu
+	 fsNb5gpDWvGCIR9rfQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.2.42] ([84.180.3.177]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1Mlf0K-1rd2jw43BC-00inxw; Sat, 09
+ Dec 2023 12:24:51 +0100
+Message-ID: <f03be8c2-4aef-4949-8797-3998cc7081ec@gmx.de>
+Date: Sat, 9 Dec 2023 12:24:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: serial: rs485: add rs485-mux-gpios
+ binding
+Content-Language: en-US
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+ Lukas Wunner <lukas@wunner.de>, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ "brenda.streiff@ni.com" <brenda.streiff@ni.com>,
+ Crescent CY Hsieh <crescentcy.hsieh@moxa.com>,
+ Tomas Paukrt <tomaspaukrt@email.cz>
+References: <20231120151056.148450-1-linux@rasmusvillemoes.dk>
+ <20231120151056.148450-2-linux@rasmusvillemoes.dk>
+ <20231122145344.GA18949@wunner.de>
+ <3b8548b1-b8a9-0c9e-4040-5cfda06a85c6@gmx.de>
+ <ec66d25162de4cbc92720df1e7008fe8@dh-electronics.com>
+ <5c140498-69e3-4187-8703-db0c41e7ca89@gmx.de>
+ <ZXG8DI8diij72fBR@smile.fi.intel.com>
+From: Lino Sanfilippo <LinoSanfilippo@gmx.de>
+In-Reply-To: <ZXG8DI8diij72fBR@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:BlNMhKf4hOn8nZ5VNdviNti3SIQY3MKvaRGu+LAugRLCx7QQqMT
+ FFnqifRU8Kg2D9NDyUAGq5jkD0KCI9PlanSp/Jx0e3SoULmPRa8ER43IqXMCh/zadPNrwwk
+ urE6NNOTrdD6s4k61J0eMU+LOtsSwbIAIkzSH9NpAZgY/4wGwDMmziLeI2CpMIc/ik7XQkd
+ FEvSd+N9SqtfH6jhI+NPA==
+UI-OutboundReport: notjunk:1;M01:P0:v1c/O4aGaHQ=;zEVAzSrV+86469QKPHUQro+41JV
+ /qoyx8SjuPwLqfJyP6x90+CMDemY2FAq0ESg+srcF7Dgitf3/dVynlwyT6rU9SYfQfCvMTCd4
+ VekXifIwSdvGU8G6mxD2MwpjH6EESwy4KECLfeWy5cRexsnVCfjRtFDHwmwgo7o4v4mLDXz/4
+ RbcCmNhHZ42XhYFc+IRHcHlvXisSZHZZ2lwxQqFE439M8/rZs+6s9/ryNNkTDG+z95G89ET5G
+ BdSzOAM3vl595lH7FcHhEuhQEZ2T0ziGNzYdx9Iw0RpugAMzTju+zHD+PBSBRX1L0AXUnZCpq
+ cHhvT+yThbrL35RGvVQZBVw4rR8xYN0AH1dKSIDBu8QXKne6EBj+vC3G1Q/gWu2odF33rqXmb
+ txPsGqS87bVtgmKUtdpsKuv4fQFw1wpEmnaQtb/wdhDLvYvUylplfLgZDHHSZcO/FKwXfzvu0
+ 6ElximgXokwcd1lqijAWVHosMnSpTl8OJv4P1/rSA+VuvwmyfUL3q/sPrFLZpkZZ/Jr7+o6+d
+ +r8GN0pxz8PLAfWlscKq/iC1u4aJnHRH1nGXb/OE0+FN2wmbtUpow/XMFvDWEWquUvu1Cvrgh
+ Ln5xPC2UT04sMJFrVmlnpGdbjj2m2J5bpKa5JViOJhSfox4lbdNHUnm1O/hJAvYcFlVSArtF/
+ xYXXS/lMFCEAqWF7R8fveABYZOUQpJgJFVnUJbQv+DLGAcU4wFPYRMP0LesLJWCjv5t6ZeO55
+ k/gSe3+GWU3VWq6qAKD7ZfjVKtjuVYh5di1y68WmdbxVOL2mZxYs6btYw3hxnp1jlLUogN/yy
+ 5kbNJVIET6sAkK0nGoFUHgwRm3lH4tWBTrv8rELqqvAfeb8xWDzG2F11Eb1dO8NeaLyelTt9B
+ A1nxEtC1yAUSABKG7kMsqRCdE0xt8Wdtvoz/GhYi/ahUU0/YA72+fWXvGIaCO1YY2Y3JoOSHw
+ 6sfiEovtkyv1dmgC8LUdhGWCjSk=
 
-Add device tree bindings for HDC3020/HDC3021/HDC3022 humidity and
-temperature sensors.
+Hi Andy,
 
-Signed-off-by: Li peiyu <579lpy@gmail.com>
----
- .../bindings/iio/humidity/ti,hdc3020.yaml     | 55 +++++++++++++++++++
- 1 file changed, 55 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml
+On 07.12.23 13:35, Andy Shevchenko wrote:
+> On Wed, Dec 06, 2023 at 04:42:53PM +0100, Lino Sanfilippo wrote:
+>> On 27.11.23 13:14, Christoph Niedermaier wrote:
+>>> From: Lino Sanfilippo [mailto:LinoSanfilippo@gmx.de]
+>>> Sent: Sunday, November 26, 2023 12:40 AM
+>
+> ...
+>
+>>> RS-485 (2-wire NO RX_DURING_TX): rs485->flags =3D SER_RS485_ENABLED|SE=
+R_RS485_MODE_HALF_DUPLEX
+>>> RS-485 (2-wire RX_DURING_TX):    rs485->flags =3D SER_RS485_ENABLED|SE=
+R_RS485_MODE_HALF_DUPLEX|SER_RS485_RX_DURING_TX
+>>
+>> I think we can omit the SER_RS485_MODE_HALF_DUPLEX flag if we assume th=
+at
+>> a missing SER_RS485_MODE_FULL_DUPLEX means half duplex (i.e. controllin=
+g
+>> the RTS line).
+>
+> You should be very careful on these assumptions, i.e. one must to check =
+_all_
+> existing user space tools (at least that are in use / supplied by main d=
+istros)
+> on how they behave.
+>
 
-diff --git a/Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml b/Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml
-new file mode 100644
-index 000000000000..f04b09fdca5e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml
-@@ -0,0 +1,55 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/humidity/ti,hdc3020.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: HDC3020/HDC3021/HDC3022 humidity and temperature iio sensors
-+
-+maintainers:
-+  - Li peiyu <579lpy@gmail.com>
-+  - Javier Carrasco <javier.carrasco.cruz@gmail.com>
-+
-+description:
-+  https://www.ti.com/lit/ds/symlink/hdc3020.pdf
-+
-+  The HDC302x is an integrated capacitive based relative humidity (RH)
-+  and temperature sensor.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - ti,hdc3021
-+              - ti,hdc3022
-+          - const: ti,hdc3020
-+      - items:
-+          - const: ti,hdc3020
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  vdd-supply: true
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        humidity-sensor@47 {
-+            compatible = "ti,hdc3021", "ti,hdc3020";
-+            reg = <0x47>;
-+            vdd-supply = <&vcc_3v3>;
-+        };
-+    };
--- 
-2.34.1
+Until now the DUPLEX flags do not yet exist, so existing userspace applica=
+tions are not
+concerned. Christoph suggested to introduce two flags to distinguish betwe=
+en
+a FULL duplex and a half duplex RS485 mode. My point was that we  do not n=
+eed the flag
+for half duplex, since this would be the default.
+
+BR,
+Lino
 
 
