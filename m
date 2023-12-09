@@ -1,58 +1,58 @@
-Return-Path: <devicetree+bounces-23416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23417-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A502480B3B9
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 11:44:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC1CC80B3BB
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 11:44:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CFFC11C20B25
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 10:44:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 260BB1C2098F
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 10:44:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 129C4134C6;
-	Sat,  9 Dec 2023 10:44:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63911134CC;
+	Sat,  9 Dec 2023 10:44:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BEpQoM0r"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cagHxjVd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4902E10E0
-	for <devicetree@vger.kernel.org>; Sat,  9 Dec 2023 02:44:19 -0800 (PST)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-54cfb03f1a8so3837072a12.2
-        for <devicetree@vger.kernel.org>; Sat, 09 Dec 2023 02:44:19 -0800 (PST)
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F898BC
+	for <devicetree@vger.kernel.org>; Sat,  9 Dec 2023 02:44:20 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-54c846da5e9so2664715a12.3
+        for <devicetree@vger.kernel.org>; Sat, 09 Dec 2023 02:44:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702118658; x=1702723458; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702118659; x=1702723459; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=x4Hqs9/ZrITwFhPupOGW4Vaim70WWGNp01DNqeiJxRM=;
-        b=BEpQoM0rZBzJA0wIlph58J4PbcQHGuwByVDWgaA9l+XxXjuBArPhx3zsgSXr8caxUi
-         wpv1aHqM9suMlLw7+jEWXZUlRVNgXHeU2iot7Avf5ksKhnRhnS7hW7rtwoIlJdQqChas
-         7vyaFaZB5KI/DnkjNMv9qOHTljGF0e1BFfimc2fdWnRXFODvK3XftyM2jFnfE7/V6PQK
-         WH1mmMQkpQs0EsGVd13j5jkLWI/f722FXCPEmPOjK1wDMNslyReS8co5ytlXrqwrNpt/
-         Fz7vn9ZQg9AvtPy03ejzeDDO0YPT+s2fcm158yHHax6mtiuXcIxOhYcGX9w/wQyvI1PZ
-         IpfA==
+        bh=2BCoGI7s/gCFS6PWgnQhz780oAr1iVhq6zVeEGwbfs8=;
+        b=cagHxjVd/RLttyqjkwzTlB0EUOuqFfwhesZlYAG2AgnVEnQFgJ3w3WvHWNe04jxQm2
+         DYnnOUw+U+mVNaolSxd4fCnlkc5XymraNp6rBEKrnuJ6dosBOeyYVIWBc5ZBNPPJKhrc
+         4a3TzEy8vlH+ss45QWUKO4+WqR0krcQpT4k98ALzK18YOSR+DaaohkM397aSHgcsoolu
+         Kx7577t3ox5x2gUHeRcGLFin9tlvM6EjEslP8NnymANBni6OrOaiHJeqTzrwtNekTZV4
+         ZyqukSI6jmr767ch2FTnayf1+FkBAqX+6p4B2/7enhigLB1nROnkZch6JpvuerK9Nt7G
+         +2cQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702118658; x=1702723458;
+        d=1e100.net; s=20230601; t=1702118659; x=1702723459;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=x4Hqs9/ZrITwFhPupOGW4Vaim70WWGNp01DNqeiJxRM=;
-        b=cEAyQ890RpAV1xeyKpqCxClcrwcvJZO/IM/VhiCiH42kBoWGQszo5TNa3erh7H7/4v
-         TfG15x/j/qEvjF9tAERA2IppDKgwHQOlXFz6H16gVQSr+DA7MyGDltU2qT+zTGe6+F5H
-         LICFUS8hheok9XFeDn7+Xwd4fLcBYlKUc7yRAvrX9tcwdrKvzOMMDQoqeKP+O40yvBSC
-         SquXqRjlT/u+6tgrn9NnTPiU/HtkvaXWJ4WFtGRoG43v9TQajA3Im5Ney+PC9A0uIwgj
-         dBfufqiFvE82wExCBkc+T1lREqfwzIrwikE13eI+P6mXiKQAbkLDYj99Ou62QwZAHyBM
-         39xA==
-X-Gm-Message-State: AOJu0YwTWgxU0Nvgz3k//Kqxr+4Hmlt8QskmM114M18c+QnqNmPocmOs
-	bQD4jqrDL3hY9DTFvKksqBXyqQ==
-X-Google-Smtp-Source: AGHT+IEkzNG9N1bAbnaeGgMfxxB2TwMSICgsr4j3JwI3MWSMFxSNj17nraBpbbXjUP70L03CqcJXNA==
-X-Received: by 2002:a50:8a99:0:b0:54b:28e9:b283 with SMTP id j25-20020a508a99000000b0054b28e9b283mr717390edj.14.1702118657731;
-        Sat, 09 Dec 2023 02:44:17 -0800 (PST)
+        bh=2BCoGI7s/gCFS6PWgnQhz780oAr1iVhq6zVeEGwbfs8=;
+        b=VUfR8joVKFAhHryR6XZIlya2z/yaSs9O00c5p3FERdWY7yS9RJospcp707r4kdZyhB
+         7b1OtMzJ8AvzdbnHP6PUjfzphGN6BdOIUP3XeRzJyDIl9zDFuPtQCkYqL9298bVDKUrl
+         48YDqTXUOFU/6RzZBVIUcB0KkZHzTvEeIxxDdy8A8Pomjk46o7DEMAa9T8c6ePWhu3hg
+         1m9I2bxiCFGP/2fBNIGNe3qaHyCtzb9OTMd8NRbk6wiB3HnyYEKboIsjWYxqt+5vR129
+         XN86k5nhWCaDu7HB4O1yefIeGXjDWFfriRU3xERxYUncQ8GIHfT+H60O+3yjrs8ZFjCS
+         N9HA==
+X-Gm-Message-State: AOJu0YzS5wBLRmrB+41YyszLnoCSGjRAMKgnF+NHwXqJbd7DTCauulKl
+	1IfzUjTJPBr3L9moZw94JcoGSw==
+X-Google-Smtp-Source: AGHT+IHKXydt6szGsD9Uw4tFNlKvRW/prO21WATDg6wz6AXTumqPVhK40FOV2/2+4YdghH02q1yM9g==
+X-Received: by 2002:a50:8d12:0:b0:54b:2894:d198 with SMTP id s18-20020a508d12000000b0054b2894d198mr1011540eds.4.1702118659237;
+        Sat, 09 Dec 2023 02:44:19 -0800 (PST)
 Received: from krzk-bin.. ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id eh12-20020a0564020f8c00b00550e21a4f76sm349604edb.8.2023.12.09.02.44.16
+        by smtp.gmail.com with ESMTPSA id eh12-20020a0564020f8c00b00550e21a4f76sm349604edb.8.2023.12.09.02.44.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 09 Dec 2023 02:44:17 -0800 (PST)
+        Sat, 09 Dec 2023 02:44:18 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -64,9 +64,9 @@ To: Rob Herring <robh+dt@kernel.org>,
 	linux-aspeed@lists.ozlabs.org,
 	linux-kernel@vger.kernel.org
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/4] ARM: dts: aspeed: minerva-cmc: correct Mellanox multi-host property
-Date: Sat,  9 Dec 2023 11:44:10 +0100
-Message-Id: <20231209104412.12916-2-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 3/4] ARM: dts: aspeed: yosemite4: correct Mellanox multi-host property
+Date: Sat,  9 Dec 2023 11:44:11 +0100
+Message-Id: <20231209104412.12916-3-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231209104412.12916-1-krzysztof.kozlowski@linaro.org>
 References: <20231209104412.12916-1-krzysztof.kozlowski@linaro.org>
@@ -82,14 +82,23 @@ Content-Transfer-Encoding: 8bit
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva-cmc.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva-cmc.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva-cmc.dts
-index f04ef9063520..29f042a47e96 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva-cmc.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva-cmc.dts
-@@ -51,7 +51,7 @@ &mac3 {
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+index 64075cc41d92..1bd555a6c3ba 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+@@ -88,7 +88,7 @@ &mac2 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_rmii3_default>;
+ 	use-ncsi;
+-	mlx,multi-host;
++	mellanox,multi-host;
+ };
+ 
+ &mac3 {
+@@ -96,7 +96,7 @@ &mac3 {
  	pinctrl-names = "default";
  	pinctrl-0 = <&pinctrl_rmii4_default>;
  	use-ncsi;
