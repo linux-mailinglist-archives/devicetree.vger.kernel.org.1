@@ -1,99 +1,362 @@
-Return-Path: <devicetree+bounces-23496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23500-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8F0B80B698
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 22:56:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA3A980B69E
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 22:56:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ACAABB20AEC
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 21:56:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 561031F2103D
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 21:56:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 958091D522;
-	Sat,  9 Dec 2023 21:56:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DuUk7UQM"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B9581D52C;
+	Sat,  9 Dec 2023 21:56:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3E4C10D
-	for <devicetree@vger.kernel.org>; Sat,  9 Dec 2023 13:56:04 -0800 (PST)
-Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2ca09601127so42066251fa.1
-        for <devicetree@vger.kernel.org>; Sat, 09 Dec 2023 13:56:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702158962; x=1702763762; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=VCiH7VJZwpltElSwE2uiX4KsLg2Kdu2u9uVH8b3tZTE=;
-        b=DuUk7UQMuAzeNfb6th9ygejU/qZKf4rJ0ZBWX7n+m+U5as+45/TdqU1KJoIOhskeO0
-         rzeCL1ofoKX/EfLR3ODm7JGmcF90aaoQAKQ9RswEMVfaOPM9MHaoDO4fs0kfXmvRBM6O
-         yh1xc0tiqvPiXdfz+elT9V9r7DCLDRZsSm0DaXsWQ0LCTXeCJgz37RrFNyB3/G2sbh0z
-         OfwKBTeuXS3gHSmpqlQYXQFZ1lum4xIAEKud1Y5umtJbT3rKaygl71exAuA9+sgQuWiS
-         5r3HIITGntwv6oHS/sX+u/TjHZC6j7tBRnjecosC2Og2VOGmr7JfSoYToqbNJYF3b5HZ
-         UsmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702158962; x=1702763762;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=VCiH7VJZwpltElSwE2uiX4KsLg2Kdu2u9uVH8b3tZTE=;
-        b=pXC6E3bWX8dEYim+W3bYMs/AEakI5IhMk7D8ywp3MWfdgts+0auF4CU1eEWlkc4Guy
-         DTxVX/lkxCSKiycdZg1FrqU/yDKHI7NZvFOS6P9G77mVidqpcsghCMo8NPxqm2G90j3s
-         673m16ciwg7aPCxkkr8NYGkLEhWoqLgbgaJ3PvPYEw4cZQv+9sj791GqqlRl1XuqQ2Qn
-         JCOkKyoESSeyTnKZDD49YoZ+jRtlj1vufQDaOEQiXA/XdDzY0QbyslsjzjlmBfJ8vp6N
-         SWjOwSGXvq4osDOlYa1c6H5RE3SZrZKXdWZZVcQgj595YPcMkOf1DZWZwupoDgCMTEyx
-         TzOQ==
-X-Gm-Message-State: AOJu0Yzm0yyRwb1myKTpbyNMkaQR8wsoQ7V968/8Qw5k0Dg8zfdTLDXz
-	3kxgJxLdnRZTQQExuPTXWvm8xwbHE+dII8nK2IM=
-X-Google-Smtp-Source: AGHT+IG4I7nJ9kJ9XEWjT4j9Uf7hn29TI+AjcVDCvuEEjgVnlt2L/UHjNHdGSl2xJ/noGoVAo+gm0g==
-X-Received: by 2002:a2e:3a09:0:b0:2ca:db6:a13 with SMTP id h9-20020a2e3a09000000b002ca0db60a13mr785573lja.58.1702158962402;
-        Sat, 09 Dec 2023 13:56:02 -0800 (PST)
-Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id e22-20020a2e9856000000b002ca061aa9d1sm665103ljj.88.2023.12.09.13.56.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 09 Dec 2023 13:56:01 -0800 (PST)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH 1/4] dt-bindings: soc: qcom: stats: add compatible for SM8150 platform
-Date: Sun, 10 Dec 2023 00:55:58 +0300
-Message-Id: <20231209215601.3543895-1-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.39.2
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E9F610E;
+	Sat,  9 Dec 2023 13:56:23 -0800 (PST)
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.96.2)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1rC5In-0000A5-29;
+	Sat, 09 Dec 2023 21:56:02 +0000
+Date: Sat, 9 Dec 2023 21:55:58 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Sabrina Dubroca <sd@queasysnail.net>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Jianhui Zhao <zhaojh329@gmail.com>,
+	Chen-Yu Tsai <wenst@chromium.org>,
+	"Garmin.Chang" <Garmin.Chang@mediatek.com>,
+	Sam Shih <sam.shih@mediatek.com>,
+	Markus Schneider-Pargmann <msp@baylibre.com>,
+	Alexandre Mergnat <amergnat@baylibre.com>,
+	Jiasheng Jiang <jiasheng@iscas.ac.cn>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	Frank Wunderlich <frank-w@public-files.de>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Chanwoo Choi <cw00.choi@samsung.com>,
+	Dan Carpenter <dan.carpenter@linaro.org>,
+	James Liao <jamesjj.liao@mediatek.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org
+Subject: [PATCH v4 2/4] dt-bindings: clock: mediatek: add clock controllers
+ of MT7988
+Message-ID: <93025cdb7c31bf413fb2be5a071340073a0679d1.1702158423.git.daniel@makrotopia.org>
+References: <097e82b0d66570763d64be1715517d8b032fcf95.1702158423.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <097e82b0d66570763d64be1715517d8b032fcf95.1702158423.git.daniel@makrotopia.org>
 
-The RPMh stats on the SM8150 platform have 3 stat slots (unlike sdm845),
-but still doesn't have DDR sleep stats (unlike other generic platforms).
-Add SoC-specific compatible string.
+Add various clock controllers found in the MT7988 SoC to existing
+bindings (if applicable) and add files for the new ethwarp, mcusys
+and xfi-pll clock controllers not previously present in any SoC.
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Signed-off-by: Daniel Golle <daniel@makrotopia.org>
 ---
- Documentation/devicetree/bindings/soc/qcom/qcom-stats.yaml | 1 +
- 1 file changed, 1 insertion(+)
+v4:
+ * add subnodes for controllers acting as MFD
 
-diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom-stats.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom-stats.yaml
-index 686a7ef2f48a..9cd75bedc7d2 100644
---- a/Documentation/devicetree/bindings/soc/qcom/qcom-stats.yaml
-+++ b/Documentation/devicetree/bindings/soc/qcom/qcom-stats.yaml
-@@ -21,6 +21,7 @@ properties:
-     enum:
-       - qcom,rpmh-stats
-       - qcom,sdm845-rpmh-stats
-+      - qcom,sm8150-rpmh-stats
-       - qcom,rpm-stats
-       # For older RPM firmware versions with fixed offset for the sleep stats
-       - qcom,apq8084-rpm-stats
+v3:
+ * move clock bindings to clock folder
+ * drop ti,syscon-reset from bindings and example
+ * merge mcusys with topckgen bindings
+
+v2:
+ * dropped unused labels
+ * add 'type: object' declaration for reset-controller found in new
+   ethwarp controller and represented as ti,syscon-reset
+ * rebase on top of
+   "dt-bindings: arm: mediatek: move ethsys controller & convert to DT schema"
+
+ .../arm/mediatek/mediatek,infracfg.yaml       |  1 +
+ .../bindings/clock/mediatek,apmixedsys.yaml   |  1 +
+ .../bindings/clock/mediatek,ethsys.yaml       |  1 +
+ .../clock/mediatek,mt7988-ethwarp.yaml        | 66 +++++++++++++++++++
+ .../clock/mediatek,mt7988-xfi-pll.yaml        | 48 ++++++++++++++
+ .../bindings/clock/mediatek,topckgen.yaml     |  2 +
+ .../bindings/net/pcs/mediatek,sgmiisys.yaml   | 61 ++++++++++++++---
+ 7 files changed, 171 insertions(+), 9 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt7988-ethwarp.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt7988-xfi-pll.yaml
+
+diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.yaml
+index ea98043c6ba3d..230b5188a88db 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.yaml
++++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,infracfg.yaml
+@@ -30,6 +30,7 @@ properties:
+               - mediatek,mt7629-infracfg
+               - mediatek,mt7981-infracfg
+               - mediatek,mt7986-infracfg
++              - mediatek,mt7988-infracfg
+               - mediatek,mt8135-infracfg
+               - mediatek,mt8167-infracfg
+               - mediatek,mt8173-infracfg
+diff --git a/Documentation/devicetree/bindings/clock/mediatek,apmixedsys.yaml b/Documentation/devicetree/bindings/clock/mediatek,apmixedsys.yaml
+index 372c1d744bc27..685535846cbb7 100644
+--- a/Documentation/devicetree/bindings/clock/mediatek,apmixedsys.yaml
++++ b/Documentation/devicetree/bindings/clock/mediatek,apmixedsys.yaml
+@@ -22,6 +22,7 @@ properties:
+           - mediatek,mt7622-apmixedsys
+           - mediatek,mt7981-apmixedsys
+           - mediatek,mt7986-apmixedsys
++          - mediatek,mt7988-apmixedsys
+           - mediatek,mt8135-apmixedsys
+           - mediatek,mt8173-apmixedsys
+           - mediatek,mt8516-apmixedsys
+diff --git a/Documentation/devicetree/bindings/clock/mediatek,ethsys.yaml b/Documentation/devicetree/bindings/clock/mediatek,ethsys.yaml
+index 94d42c8647777..f9cddacc2eae1 100644
+--- a/Documentation/devicetree/bindings/clock/mediatek,ethsys.yaml
++++ b/Documentation/devicetree/bindings/clock/mediatek,ethsys.yaml
+@@ -22,6 +22,7 @@ properties:
+               - mediatek,mt7629-ethsys
+               - mediatek,mt7981-ethsys
+               - mediatek,mt7986-ethsys
++              - mediatek,mt7988-ethsys
+           - const: syscon
+       - items:
+           - const: mediatek,mt7623-ethsys
+diff --git a/Documentation/devicetree/bindings/clock/mediatek,mt7988-ethwarp.yaml b/Documentation/devicetree/bindings/clock/mediatek,mt7988-ethwarp.yaml
+new file mode 100644
+index 0000000000000..e126f3fe0856c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/mediatek,mt7988-ethwarp.yaml
+@@ -0,0 +1,66 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/mediatek,mt7988-ethwarp.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: MediaTek MT7988 ethwarp Controller
++
++maintainers:
++  - Daniel Golle <daniel@makrotopia.org>
++
++description:
++  The Mediatek MT7988 ethwarp controller provides clocks and resets for the
++  Ethernet related subsystems found the MT7988 SoC.
++  The clock values can be found in <dt-bindings/clock/mt*-clk.h>.
++
++properties:
++  compatible:
++    items:
++      - const: mediatek,mt7988-ethwarp
++      - const: syscon
++      - const: simple-mfd
++
++  reg:
++    maxItems: 1
++
++  '#clock-cells':
++    const: 1
++
++  reset-controller:
++    type: object
++    properties:
++      compatible:
++        const: ti,syscon-reset
++
++    # TODO: Convert to DT schema
++    additionalProperties: true
++
++required:
++  - compatible
++  - reg
++  - '#clock-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/reset/ti-syscon.h>
++    soc {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        clock-controller@15031000 {
++            compatible = "mediatek,mt7988-ethwarp", "syscon", "simple-mfd";
++            reg = <0 0x15031000 0 0x1000>;
++            #clock-cells = <1>;
++
++            reset-controller {
++                compatible = "ti,syscon-reset";
++                #reset-cells = <1>;
++                ti,reset-bits = <
++                  0x8 9 0x8 9 0 0 (ASSERT_SET | DEASSERT_CLEAR | STATUS_NONE)
++                >;
++            };
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/clock/mediatek,mt7988-xfi-pll.yaml b/Documentation/devicetree/bindings/clock/mediatek,mt7988-xfi-pll.yaml
+new file mode 100644
+index 0000000000000..fe5e3a70299fd
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/mediatek,mt7988-xfi-pll.yaml
+@@ -0,0 +1,48 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/mediatek,mt7988-xfi-pll.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: MediaTek MT7988 XFI PLL Clock Controller
++
++maintainers:
++  - Daniel Golle <daniel@makrotopia.org>
++
++description:
++  The MediaTek XFI PLL controller provides the 156.25MHz clock for the
++  Ethernet SerDes PHY from the 40MHz top_xtal clock.
++
++properties:
++  compatible:
++    const: mediatek,mt7988-xfi-pll
++
++  reg:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++
++  '#clock-cells':
++    const: 1
++
++required:
++  - compatible
++  - reg
++  - resets
++  - '#clock-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    soc {
++        #address-cells = <2>;
++        #size-cells = <2>;
++        clock-controller@11f40000 {
++            compatible = "mediatek,mt7988-xfi-pll";
++            reg = <0 0x11f40000 0 0x1000>;
++            resets = <&watchdog 16>;
++            #clock-cells = <1>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/clock/mediatek,topckgen.yaml b/Documentation/devicetree/bindings/clock/mediatek,topckgen.yaml
+index 6d087ded7437a..bdf3b55bd56fd 100644
+--- a/Documentation/devicetree/bindings/clock/mediatek,topckgen.yaml
++++ b/Documentation/devicetree/bindings/clock/mediatek,topckgen.yaml
+@@ -37,6 +37,8 @@ properties:
+               - mediatek,mt7629-topckgen
+               - mediatek,mt7981-topckgen
+               - mediatek,mt7986-topckgen
++              - mediatek,mt7988-mcusys
++              - mediatek,mt7988-topckgen
+               - mediatek,mt8167-topckgen
+               - mediatek,mt8183-topckgen
+           - const: syscon
+diff --git a/Documentation/devicetree/bindings/net/pcs/mediatek,sgmiisys.yaml b/Documentation/devicetree/bindings/net/pcs/mediatek,sgmiisys.yaml
+index 66a95191bd776..f5f1fd97c50eb 100644
+--- a/Documentation/devicetree/bindings/net/pcs/mediatek,sgmiisys.yaml
++++ b/Documentation/devicetree/bindings/net/pcs/mediatek,sgmiisys.yaml
+@@ -15,15 +15,22 @@ description:
+ 
+ properties:
+   compatible:
+-    items:
+-      - enum:
+-          - mediatek,mt7622-sgmiisys
+-          - mediatek,mt7629-sgmiisys
+-          - mediatek,mt7981-sgmiisys_0
+-          - mediatek,mt7981-sgmiisys_1
+-          - mediatek,mt7986-sgmiisys_0
+-          - mediatek,mt7986-sgmiisys_1
+-      - const: syscon
++    oneOf:
++      - items:
++          - enum:
++              - mediatek,mt7622-sgmiisys
++              - mediatek,mt7629-sgmiisys
++              - mediatek,mt7981-sgmiisys_0
++              - mediatek,mt7981-sgmiisys_1
++              - mediatek,mt7986-sgmiisys_0
++              - mediatek,mt7986-sgmiisys_1
++          - const: syscon
++      - items:
++          - enum:
++              - mediatek,mt7988-sgmiisys_0
++              - mediatek,mt7988-sgmiisys_1
++          - const: simple-mfd
++          - const: syscon
+ 
+   reg:
+     maxItems: 1
+@@ -35,11 +42,47 @@ properties:
+     description: Invert polarity of the SGMII data lanes
+     type: boolean
+ 
++  pcs:
++    type: object
++    description: HSGMII PCS logic
++    properties:
++      compatible:
++        const: mediatek,mt7988-sgmii
++
++      clocks:
++        maxItems: 3
++        minItems: 3
++
++      clock-names:
++        items:
++          - const: sgmii_sel
++          - const: sgmii_tx
++          - const: sgmii_rx
++
++    required:
++      - compatible
++      - clocks
++      - clock-names
++
++    additionalProperties: false
++
+ required:
+   - compatible
+   - reg
+   - '#clock-cells'
+ 
++if:
++  properties:
++    compatible:
++      contains:
++        enum:
++          - mediatek,mt7988-sgmiisys_0
++          - mediatek,mt7988-sgmiisys_1
++
++then:
++  required:
++    - pcs
++
+ additionalProperties: false
+ 
+ examples:
 -- 
-2.39.2
-
+2.43.0
 
