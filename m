@@ -1,207 +1,108 @@
-Return-Path: <devicetree+bounces-23486-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23487-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA4F980B5CA
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 19:06:24 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3109980B5D4
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 19:14:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 91ABB280FBA
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 18:06:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 974C8B20CB4
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 18:14:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E4AA19471;
-	Sat,  9 Dec 2023 18:06:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NizuPfqW"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DED819478;
+	Sat,  9 Dec 2023 18:14:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06222D1
-	for <devicetree@vger.kernel.org>; Sat,  9 Dec 2023 10:06:17 -0800 (PST)
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-54c9116d05fso4379929a12.3
-        for <devicetree@vger.kernel.org>; Sat, 09 Dec 2023 10:06:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702145175; x=1702749975; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=S92a7fqULbrEMilkRlrKeNQnqm+Il9bmhuzzD2asOkg=;
-        b=NizuPfqWMgVWF4VcEgAx40XFLOAEllWZse4VnaUNpUibeysy2Tnl54KESJiWyHZciP
-         jEyc0QQTls+cBoKfrpLngh2ddcWCv96Yo4SYGcSbhCpVFQzh3d1bDeYakrELp+LWE31o
-         GVn9EQP/1cXom56mSZ0mYcOPOak7K6Ms3+8ZDrLDCoG/44WVL9N2EkhTV/84bgQlAcUe
-         GtyA/lAReRFyvAa1eVqMbML66q8+jHkr+Z0oFwvsXCtdA6j//gfm4IC5kmxIA7seI089
-         8/daFBhQp5Nhq62rC7ip3H02ca3/eto/BsmG6pDdbplGH/4ZBxdfUCxayxwkVCEIREKd
-         Cwyw==
+Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45D1FC2;
+	Sat,  9 Dec 2023 10:14:12 -0800 (PST)
+Received: by mail-ot1-f48.google.com with SMTP id 46e09a7af769-6d9e9f3a3abso1266538a34.3;
+        Sat, 09 Dec 2023 10:14:12 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702145175; x=1702749975;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=S92a7fqULbrEMilkRlrKeNQnqm+Il9bmhuzzD2asOkg=;
-        b=TLi2LeED3HLkJW42QugPowNfcpLaaaiTKXwlsdonNqVl/ejbToUhmw8vZo0MWt7DH1
-         VWHB32YBELYq9AsP/7omJ+0QnzWEf7hu5cas9QTaUJNMTU8GZNdmToEA6ORWhWNaci1M
-         2QH6Ln5rRxXMh1RScZSYOKn9uIgJ18/9ldbhlmZWQ6KR8IiENq1pdbL8aa5lWpZBRoIZ
-         2yA2TkvxE2KfX6b8+W19EmVmtSP+H4WSjeb84s/RTji5iZs+PTnj20Gm0Ww/eg4g8cKW
-         KEklRZueLXDv9sF4eyWsatFyIViS3Vfc8O7RtweDJr1fcTv7HNJiRhnZpvBvdEerG7rR
-         NIsw==
-X-Gm-Message-State: AOJu0YxNPCNJ4QG+rH9PgTot1DmhprW2jOtISUzn/G4OB1Jo+1X/l9Sg
-	Wyax5nI7Mp1cX/KAiAsmIJ1Olg==
-X-Google-Smtp-Source: AGHT+IGL+RUzfiNlVYUbxi/RKdaYhCItlqf4dDEDP5kV2JQ/KdKdV2e0gKg2iTuBh4O/UcwbdVurpw==
-X-Received: by 2002:a50:85c6:0:b0:54c:8890:6ff2 with SMTP id q6-20020a5085c6000000b0054c88906ff2mr670070edh.13.1702145175453;
-        Sat, 09 Dec 2023 10:06:15 -0800 (PST)
-Received: from [192.168.36.128] (178235179179.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.179])
-        by smtp.gmail.com with ESMTPSA id h28-20020a50cddc000000b0054c72a6a07csm1948184edj.84.2023.12.09.10.06.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 09 Dec 2023 10:06:15 -0800 (PST)
-Message-ID: <76f18323-a59e-4724-96ec-6306e5dcd2dc@linaro.org>
-Date: Sat, 9 Dec 2023 19:06:12 +0100
+        d=1e100.net; s=20230601; t=1702145651; x=1702750451;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=G5d03w0HlhTpGtJ6wyqYSsGYLH7rsQTYV63itLXFV8g=;
+        b=eURlC5O4d0C04HrNH5gxhx6oJqOKPkskkKrK+YlnTAqCKt/BqEUkPqWtoaJ03ouAoT
+         xqx07mfOhNE2MNU3mUPpdsbOnYZC7GbX4qWREUlSjvK9GDTYD4BmNzvdTilf9e4t2qt5
+         r1oojgV0FP08vY+Dm+v3BjfoYbPkM5W7WMR3yW10icMpx4kj1ifEmd3Vo2pV5EhLZ0Cz
+         9JzWACiHoHdBTQlY2Yjz2G7oxJOcZHPhnZxjlUDDUZSnFVDr7pvy1upiVUjoQ1AoeXw5
+         u8QsG6x62Vb7jwU56QPgffQHzkJFIeqYpZXCjKUb8squa+OegbtXQBSIf1SDckvIqz1O
+         bgWQ==
+X-Gm-Message-State: AOJu0YzOzEwG9paMWDyh0dLUgbfct9GP1xC3jnxfSIEOHzm16TnX5OzA
+	AqQDh0EasDsSll7ABrsZmQ==
+X-Google-Smtp-Source: AGHT+IGlav0rDJKVQNAn/DjrZw8SZvW5IIiaWNqA37+MFSHe7Ox40MSPatBoD4bGAO59TZhydzaV1Q==
+X-Received: by 2002:a05:6870:3325:b0:1fb:75b:2fc6 with SMTP id x37-20020a056870332500b001fb075b2fc6mr2399447oae.93.1702145651337;
+        Sat, 09 Dec 2023 10:14:11 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id c25-20020a9d4819000000b006d876476f6dsm852704otf.67.2023.12.09.10.14.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 09 Dec 2023 10:14:10 -0800 (PST)
+Received: (nullmailer pid 1553160 invoked by uid 1000);
+	Sat, 09 Dec 2023 18:14:09 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/3] remoteproc: qcom: pas: make region assign more
- generic
-Content-Language: en-US
-To: Neil Armstrong <neil.armstrong@linaro.org>, Andy Gross
- <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Mukesh Ojha <quic_mojha@quicinc.com>
-References: <20231208-topic-sm8650-upstream-remoteproc-v4-0-a96c3e5f0913@linaro.org>
- <20231208-topic-sm8650-upstream-remoteproc-v4-2-a96c3e5f0913@linaro.org>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
- BB/OmIWU6X+LZW6P88ZmHe+KeyABLMP5s1tJNK1j4ntT7mECcWZDzafPWF4F6m4WJOG27kTJ
- HGWdmtO+RvadOVi6CoUDqALsmfS3MUG5Pj2Ne9+0jRg4hEnB92AyF9rW2G3qisFcwPgvatt7
- TXD5E38mLyOPOUyXNj9XpDbt1hNwKQfiidmPh5e7VNAWRnW1iCMMoKqzM1Anzq7e5Afyeifz
- zRcQPLaqrPjnKqZGL2BKQSZDh6NkI5ZLRhhHQf61fkWcUpTp1oDC6jWVfT7hwRVIQLrrNj9G
- MpPzrlN4YuAqKeIer1FMt8cq64ifgTzxHzXsMcUdclzq2LTk2RXaPl6Jg/IXWqUClJHbamSk
- t1bfif3SnmhA6TiNvEpDKPiT3IDs42THU6ygslrBxyROQPWLI9IL1y8S6RtEh8H+NZQWZNzm
- UQ3imZirlPjxZtvz1BtnnBWS06e7x/UEAguj7VHCuymVgpl2Za17d1jj81YN5Rp5L9GXxkV1
- aUEwONM3eCI3qcYm5JNc5X+JthZOWsbIPSC1Rhxz3JmWIwP1udr5E3oNRe9u2LIEq+wH/toH
- kpPDhTeMkvt4KfE5m5ercid9+ZXAqoaYLUL4HCEw+HW0DXcKDwARAQABzShLb25yYWQgRHli
- Y2lvIDxrb25yYWQuZHliY2lvQGxpbmFyby5vcmc+wsGOBBMBCAA4FiEEU24if9oCL2zdAAQV
- R4cBcg5dfFgFAmQ5bqwCGwMFCwkIBwIGFQoJCAsCBBYCAwECHgECF4AACgkQR4cBcg5dfFjO
- BQ//YQV6fkbqQCceYebGg6TiisWCy8LG77zV7DB0VMIWJv7Km7Sz0QQrHQVzhEr3trNenZrf
- yy+o2tQOF2biICzbLM8oyQPY8B///KJTWI2khoB8IJSJq3kNG68NjPg2vkP6CMltC/X3ohAo
- xL2UgwN5vj74QnlNneOjc0vGbtA7zURNhTz5P/YuTudCqcAbxJkbqZM4WymjQhe0XgwHLkiH
- 5LHSZ31MRKp/+4Kqs4DTXMctc7vFhtUdmatAExDKw8oEz5NbskKbW+qHjW1XUcUIrxRr667V
- GWH6MkVceT9ZBrtLoSzMLYaQXvi3sSAup0qiJiBYszc/VOu3RbIpNLRcXN3KYuxdQAptacTE
- mA+5+4Y4DfC3rUSun+hWLDeac9z9jjHm5rE998OqZnOU9aztbd6zQG5VL6EKgsVXAZD4D3RP
- x1NaAjdA3MD06eyvbOWiA5NSzIcC8UIQvgx09xm7dThCuQYJR4Yxjd+9JPJHI6apzNZpDGvQ
- BBZzvwxV6L1CojUEpnilmMG1ZOTstktWpNzw3G2Gis0XihDUef0MWVsQYJAl0wfiv/0By+XK
- mm2zRR+l/dnzxnlbgJ5pO0imC2w0TVxLkAp0eo0LHw619finad2u6UPQAkZ4oj++iIGrJkt5
- Lkn2XgB+IW8ESflz6nDY3b5KQRF8Z6XLP0+IEdLOOARkOW7yEgorBgEEAZdVAQUBAQdAwmUx
- xrbSCx2ksDxz7rFFGX1KmTkdRtcgC6F3NfuNYkYDAQgHwsF2BBgBCAAgFiEEU24if9oCL2zd
- AAQVR4cBcg5dfFgFAmQ5bvICGwwACgkQR4cBcg5dfFju1Q//Xta1ShwL0MLSC1KL1lXGXeRM
- 8arzfyiB5wJ9tb9U/nZvhhdfilEDLe0jKJY0RJErbdRHsalwQCrtq/1ewQpMpsRxXzAjgfRN
- jc4tgxRWmI+aVTzSRpywNahzZBT695hMz81cVZJoZzaV0KaMTlSnBkrviPz1nIGHYCHJxF9r
- cIu0GSIyUjZ/7xslxdvjpLth16H27JCWDzDqIQMtg61063gNyEyWgt1qRSaK14JIH/DoYRfn
- jfFQSC8bffFjat7BQGFz4ZpRavkMUFuDirn5Tf28oc5ebe2cIHp4/kajTx/7JOxWZ80U70mA
- cBgEeYSrYYnX+UJsSxpzLc/0sT1eRJDEhI4XIQM4ClIzpsCIN5HnVF76UQXh3a9zpwh3dk8i
- bhN/URmCOTH+LHNJYN/MxY8wuukq877DWB7k86pBs5IDLAXmW8v3gIDWyIcgYqb2v8QO2Mqx
- YMqL7UZxVLul4/JbllsQB8F/fNI8AfttmAQL9cwo6C8yDTXKdho920W4WUR9k8NT/OBqWSyk
- bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
- nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
- izWDgYvmBE8=
-In-Reply-To: <20231208-topic-sm8650-upstream-remoteproc-v4-2-a96c3e5f0913@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: Rob Herring <robh@kernel.org>
+To: Kamal Dasu <kamal.dasu@broadcom.com>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, adrian.hunter@intel.com, bcm-kernel-feedback-list@broadcom.com, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, ulf.hansson@linaro.org, alcooperx@gmail.com, Kamal Dasu <kdasu@broadcom.com>, f.fainelli@gmail.com
+In-Reply-To: <20231209165816.39044-1-kamal.dasu@broadcom.com>
+References: <20231209165816.39044-1-kamal.dasu@broadcom.com>
+Message-Id: <170214564970.1553144.16154651415666446700.robh@kernel.org>
+Subject: Re: [V3, 1/2] dt-bindings: mmc: brcm,sdhci-brcmstb: Add support
+ for 74165b0
+Date: Sat, 09 Dec 2023 12:14:09 -0600
 
-On 8.12.2023 16:04, Neil Armstrong wrote:
-> The current memory region assign only supports a single
-> memory region.
+
+On Sat, 09 Dec 2023 11:58:15 -0500, Kamal Dasu wrote:
+> From: Kamal Dasu <kdasu@broadcom.com>
 > 
-> But new platforms introduces more regions to make the
-> memory requirements more flexible for various use cases.
-> Those new platforms also shares the memory region between the
-> DSP and HLOS.
+> With newer sdio controller core used for 74165b0 we need to update
+> the compatibility with "brcm,bcm74165b0-sdhci".
 > 
-> To handle this, make the region assign more generic in order
-> to support more than a single memory region and also permit
-> setting the regions permissions as shared.
-> 
-> Reviewed-by: Mukesh Ojha <quic_mojha@quicinc.com>
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Kamal Dasu <kdasu@broadcom.com>
 > ---
-[...]
+>  .../devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml         | 6 ++----
+>  1 file changed, 2 insertions(+), 4 deletions(-)
+> 
 
-> +	for (offset = 0; offset < adsp->region_assign_count; ++offset) {
-> +		struct reserved_mem *rmem = NULL;
-> +
-> +		node = of_parse_phandle(adsp->dev->of_node, "memory-region",
-> +					adsp->region_assign_idx + offset);
-> +		if (node)
-> +			rmem = of_reserved_mem_lookup(node);
-> +		of_node_put(node);
-Shouldn't this only be called when parse_phandle succeeds? (separate
-patch with a fix + cc stable if so?)
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> +		if (!rmem) {
-> +			dev_err(adsp->dev, "unable to resolve shareable memory-region index %d\n",
-> +				offset);
-> +			return -EINVAL;
-> +		}
->  
-> -	perm.vmid = QCOM_SCM_VMID_MSS_MSA;
-> -	perm.perm = QCOM_SCM_PERM_RW;
-> +		if (adsp->region_assign_shared)  {
-> +			perm[0].vmid = QCOM_SCM_VMID_HLOS;
-> +			perm[0].perm = QCOM_SCM_PERM_RW;
-> +			perm[1].vmid = adsp->region_assign_vmid;
-> +			perm[1].perm = QCOM_SCM_PERM_RW;
-> +			perm_size = 2;
-> +		} else {
-> +			perm[0].vmid = adsp->region_assign_vmid;
-> +			perm[0].perm = QCOM_SCM_PERM_RW;
-> +			perm_size = 1;
-> +		}
->  
-> -	adsp->region_assign_phys = rmem->base;
-> -	adsp->region_assign_size = rmem->size;
-> -	adsp->region_assign_perms = BIT(QCOM_SCM_VMID_HLOS);
-> +		adsp->region_assign_phys[offset] = rmem->base;
-> +		adsp->region_assign_size[offset] = rmem->size;
-> +		adsp->region_assign_perms[offset] = BIT(QCOM_SCM_VMID_HLOS);
->  
-> -	ret = qcom_scm_assign_mem(adsp->region_assign_phys,
-> -				  adsp->region_assign_size,
-> -				  &adsp->region_assign_perms,
-I think this should be renamed to region_assign_owner(s)
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml:25:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
 
-> -				  &perm, 1);
-> -	if (ret < 0) {
-> -		dev_err(adsp->dev, "assign memory failed\n");
-> -		return ret;
-> +		ret = qcom_scm_assign_mem(adsp->region_assign_phys[offset],
-> +					  adsp->region_assign_size[offset],
-> +					  &adsp->region_assign_perms[offset],
-> +					  perm, perm_size);
-> +		if (ret < 0) {
-> +			dev_err(adsp->dev, "assign memory %d failed\n", offset);
-> +			return ret;
-> +		}
->  	}
->  
->  	return 0;
-> @@ -629,20 +653,23 @@ static int adsp_assign_memory_region(struct qcom_adsp *adsp)
->  static void adsp_unassign_memory_region(struct qcom_adsp *adsp)
->  {
->  	struct qcom_scm_vmperm perm;
-> +	int offset;
->  	int ret;
->  
-> -	if (!adsp->region_assign_idx)
-> +	if (!adsp->region_assign_idx || adsp->region_assign_shared)
-So when it's *shared*, we don't want to un-assign it?
+dtschema/dtc warnings/errors:
+make[2]: *** Deleting file 'Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.example.dts'
+Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml:25:1: found a tab character that violates indentation
+make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.example.dts] Error 1
+make[2]: *** Waiting for unfinished jobs....
+./Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml:25:1: found a tab character that violates indentation
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml: ignoring, error parsing file
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1424: dt_binding_check] Error 2
+make: *** [Makefile:234: __sub-make] Error 2
 
-Konrad
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231209165816.39044-1-kamal.dasu@broadcom.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
