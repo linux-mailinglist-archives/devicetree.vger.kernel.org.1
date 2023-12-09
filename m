@@ -1,145 +1,153 @@
-Return-Path: <devicetree+bounces-23424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23426-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8C8E80B3D2
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 11:58:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A2CB80B3DA
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 11:59:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8399E281017
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 10:58:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 334821F21085
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 10:59:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D544113AD7;
-	Sat,  9 Dec 2023 10:58:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7CE013ADB;
+	Sat,  9 Dec 2023 10:59:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OEqb5mZY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="T9xpJtaP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFAA05671;
-	Sat,  9 Dec 2023 10:58:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FE68C433C8;
-	Sat,  9 Dec 2023 10:58:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702119507;
-	bh=shMP58WBd4mK4VRt80ZFFRHtI8Ye/dBzaRFSsMTjqDw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OEqb5mZYrDLrOdAlPG2lCYwcYIMg8S6cPlRrWy/l/8nK7b/8GHcmYKieiichGGNXS
-	 aFi8TqjM8GFWA2USvCryR45vGpiJEOeZ5PhD1VoHyWrvQB3jctuxQ3DswAeu10owhI
-	 wvu/GfzVkllpGtzi5FC86agD+1tMKlVBmnNKPX82vTAkPfdHUkQNCaEAbp8yJ+1BiY
-	 wwFomvcW8DUqOXIXuekQi8A6NlqRr/3fKVingsgR0w9My/Ih7n1zTEIOITaRg4wdeE
-	 lb/XNdQ2aHGeBdhTsyAWcZu5ve6Gmku3Xzo7VMjDiQsthR/fKl55f2GYY1ieZpU260
-	 LwRKLN0r8ASZg==
-Date: Sat, 9 Dec 2023 10:58:22 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Karel Balej <karelb@gimli.ms.mff.cuni.cz>
-Cc: Conor Dooley <conor.dooley@microchip.com>,
-	Markuss Broks <markuss.broks@gmail.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-	Karel Balej <balejk@matfyz.cz>
-Subject: Re: [PATCH v3 2/5] dt-bindings: input/touchscreen: Add compatible
- for IST3038B
-Message-ID: <20231209-casing-music-bded1c7b5475@spud>
-References: <20231202125948.10345-1-karelb@gimli.ms.mff.cuni.cz>
- <20231202125948.10345-3-karelb@gimli.ms.mff.cuni.cz>
- <20231203-outskirts-reformat-e0a833903841@spud>
- <0a035c62-9d35-4f85-b1f3-bcb7dea17d52@gmail.com>
- <20231204-stooge-impotent-fe8d2d9177e4@wendy>
- <CXJOLS2I8WH7.1IMVJGPUNG4VB@gimli.ms.mff.cuni.cz>
+Received: from mail-il1-x142.google.com (mail-il1-x142.google.com [IPv6:2607:f8b0:4864:20::142])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2432CD1;
+	Sat,  9 Dec 2023 02:59:38 -0800 (PST)
+Received: by mail-il1-x142.google.com with SMTP id e9e14a558f8ab-35d3846fac9so9867995ab.2;
+        Sat, 09 Dec 2023 02:59:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702119577; x=1702724377; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Lm+D5jKJ17HuWeeaSzfoieBbBFG7aIweWno7P45cPZU=;
+        b=T9xpJtaPB+sqe1hG/rSgrzkixG5NOwD96/3hGsvTOul4XeaohRsUk57KkVTwdo2v+s
+         qSYcyVDgAP+fPtmrk7sOA/Ih00NIPFGljWjtzH3vYPKd8jYecJ1SkKww6q2nkM8/hSEV
+         KfxUZadQ4oWG/EoLTFriF7pg+aODTHnlzExWPzmeezqzYuCgZRZfb079zASbyetHUPfR
+         vBbW3IwSTLLjUjod0ZHfnbEqH1yr1q401aCkZqzuwprCsz53bZAMSkZrRMUmI+wNd5kd
+         9x35Onn5nWwPbd0CsJaMomk+6myiTGkj5/nwnpEDuz6S5S1dW5otKmOKzdlADCOCZFX1
+         WgNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702119577; x=1702724377;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Lm+D5jKJ17HuWeeaSzfoieBbBFG7aIweWno7P45cPZU=;
+        b=ZChbZgSoDqXelWCwTFLykhTR0CM0cQW+FeNkf7U48P/jJ9qDEqof8u6Gn59LSTx7o5
+         IYaoAJClqoqdn88n+S+9eUpSWs9J0uwYbpfpgebiA3K/Cf9Bdh8cBVWEB66zs8fMp40M
+         HOQemfDsAw9ba2lJX/A1TwbkZTNx0gNgG/+iuKTQZEKs5Fx7S8SZDCIHOE4HsqvHlmFx
+         e8LUfA46+pbqjGUPbyHcGxcstJn4Fyo1M8QhGTUTmtRd/0s0iK8k1ZUXngDZbsOVP1VH
+         KTiWwcgMB7zfzsmZQRd8CwgKaj0ql67TzeUjfzmIto0PqLMTKk3HCJlyje9mof6XBMmv
+         g83A==
+X-Gm-Message-State: AOJu0Yy8AXp+w2gCWQVqz4HefTyIxEO12cjG+dHXX1MmljqNYCBvIHsu
+	FiKELeBeyT+xRNw8sIsy9pQ=
+X-Google-Smtp-Source: AGHT+IE9oQ66Nh55WRvLQOeBudMCb8IxqZPeNB6jqOGah/nj66T++A18Lc6pG5a326EEdM9rZV+sfQ==
+X-Received: by 2002:a05:6e02:194b:b0:35d:720a:7eaf with SMTP id x11-20020a056e02194b00b0035d720a7eafmr2534435ilu.6.1702119577279;
+        Sat, 09 Dec 2023 02:59:37 -0800 (PST)
+Received: from dawn-virtual-machine.localdomain ([183.198.111.112])
+        by smtp.gmail.com with ESMTPSA id a18-20020a170902ecd200b001cfc1b931a9sm3166912plh.249.2023.12.09.02.59.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 09 Dec 2023 02:59:36 -0800 (PST)
+From: Li peiyu <579lpy@gmail.com>
+To: jic23@kernel.org
+Cc: javier.carrasco.cruz@gmail.com,
+	lars@metafoo.de,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Li peiyu <579lpy@gmail.com>
+Subject: [PATCH v5 4/4] dt-bindings: iio: humidity: Add TI HDC302x support
+Date: Sat,  9 Dec 2023 18:59:26 +0800
+Message-Id: <20231209105926.3965-1-579lpy@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20231209105217.3630-1-579lpy@gmail.com>
+References: <20231209105217.3630-1-579lpy@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="CZZDMln35Xfb6FgC"
-Content-Disposition: inline
-In-Reply-To: <CXJOLS2I8WH7.1IMVJGPUNG4VB@gimli.ms.mff.cuni.cz>
+Content-Transfer-Encoding: 8bit
 
+Add device tree bindings for HDC3020/HDC3021/HDC3022 humidity and
+temperature sensors.
 
---CZZDMln35Xfb6FgC
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Li peiyu <579lpy@gmail.com>
+---
+ .../bindings/iio/humidity/ti,hdc3020.yaml     | 55 +++++++++++++++++++
+ 1 file changed, 55 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml
 
-On Sat, Dec 09, 2023 at 10:05:27AM +0100, Karel Balej wrote:
-> On Mon Dec 4, 2023 at 1:52 PM CET, Conor Dooley wrote:
-> > On Mon, Dec 04, 2023 at 02:40:44PM +0200, Markuss Broks wrote:
-> > > On 12/3/23 13:20, Conor Dooley wrote:
-> > > > On Sat, Dec 02, 2023 at 01:48:33PM +0100, Karel Balej wrote:
-> > > > > From: Markuss Broks <markuss.broks@gmail.com>
-> > > > >=20
-> > > > > Imagis IST3038B is a variant (firmware?) of Imagis IST3038 IC,
-> > > > > add the compatible for it to the IST3038C bindings.
-> > > > This one is better, but would be well served by mentioning what
-> > > > specifically is different (register addresses or firmware commands?)
-> > >=20
-> > > I don't think anyone knows this other than Imagis itself. I would gue=
-ss it's
-> > > different hardware, since register addresses are indeed different, bu=
-t on
-> > > the other hand, there is a possibility that firmware on the MCU could=
- be
-> > > responding to those commands. I suppose "... IST3038B is a hardware v=
-ariant
-> > > of ... IST3038" would be more correct.
-> >
-> > Only Imagis might know the specifics, but you (plural) have made driver
-> > changes so you know what is different in terms of the programming model.
-> > I'm just asking for you to mention how the programming model varies in
-> > the commit message. Otherwise I can't know whether you should have added
-> > a fallback compatible, without going and reading your driver change. The
-> > commit message for the bindings should stand on its own merit in that
-> > regard.
-> > "Variant" alone does not suffice, as many variants of devices have a
-> > compatible programming model, be that for a subset of features or
-> > complete compatibility.
-> >
-> > > The reason why I think it could be firmware-defined is because we hav=
-e a lot
-> > > of variants (30xxA, 30xxB, 30xxC, plain 30xx), and the numbers usuall=
-y mean
-> > > feature level/completeness, e.g. some don't support the touch pressur=
-e or
-> > > touchkeys, and we don't know what A/B/C/none means.
-> >
-> > Ultimately whether it is due to firmware or the hardware isn't
-> > particular important, just mention what is incompatibly different.
->=20
-> I propose to update the commit description as such:
->=20
-> 	Imagis IST3038B is a variant (firmware?) of Imagis IST3038 IC
-> 	differing from IST3038C in its register interface. Add the
-> 	compatible for it to the IST3038C bindings.
+diff --git a/Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml b/Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml
+new file mode 100644
+index 000000000000..f04b09fdca5e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml
+@@ -0,0 +1,55 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/humidity/ti,hdc3020.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: HDC3020/HDC3021/HDC3022 humidity and temperature iio sensors
++
++maintainers:
++  - Li peiyu <579lpy@gmail.com>
++  - Javier Carrasco <javier.carrasco.cruz@gmail.com>
++
++description:
++  https://www.ti.com/lit/ds/symlink/hdc3020.pdf
++
++  The HDC302x is an integrated capacitive based relative humidity (RH)
++  and temperature sensor.
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - ti,hdc3021
++              - ti,hdc3022
++          - const: ti,hdc3020
++      - items:
++          - const: ti,hdc3020
++
++  interrupts:
++    maxItems: 1
++
++  vdd-supply: true
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        humidity-sensor@47 {
++            compatible = "ti,hdc3021", "ti,hdc3020";
++            reg = <0x47>;
++            vdd-supply = <&vcc_3v3>;
++        };
++    };
+-- 
+2.34.1
 
-
-SGTM. You can add
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-with that commit message update.
-
-Thanks,
-Conor.
-
---CZZDMln35Xfb6FgC
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZXRITgAKCRB4tDGHoIJi
-0mKTAP0RiHYmJl2KkMmHaJTsYwSOJtsQ2l0qxVgrHUXBtSYHCAD/eA8UQ6V5QmRy
-ZRugsrwMlJ2vJ8azdUm9Anq90NWd7wE=
-=g/yN
------END PGP SIGNATURE-----
-
---CZZDMln35Xfb6FgC--
 
