@@ -1,196 +1,108 @@
-Return-Path: <devicetree+bounces-23433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DC8B80B449
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 13:46:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CACC80B458
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 13:56:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 493A02810B8
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 12:46:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B7E361C20A43
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 12:56:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7999214293;
-	Sat,  9 Dec 2023 12:46:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11C0413FE6;
+	Sat,  9 Dec 2023 12:56:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OucDDvk/"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="fBClOUl1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4030CF;
-	Sat,  9 Dec 2023 04:46:30 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-3333074512bso2109310f8f.1;
-        Sat, 09 Dec 2023 04:46:30 -0800 (PST)
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BA4110F1
+	for <devicetree@vger.kernel.org>; Sat,  9 Dec 2023 04:56:07 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-3331752d2b9so2136276f8f.3
+        for <devicetree@vger.kernel.org>; Sat, 09 Dec 2023 04:56:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702125989; x=1702730789; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=xjdryzYl36inEQGef/Je4h5B071Ib3F2VDmAwmitwYo=;
-        b=OucDDvk/KNbR2X0Xbu4A3Up/pTVC3+i4bk49C9TYOvzqA6bOVyfYqqI4poxqLgHTsX
-         wKWMYhv5jiB3T20IZA0/bo/gm7DtrjrhtQ8mbDTqxFBjcMcxIC7nRrRWBYazCosaJKIB
-         1WgieZSZ7aOBTr6PbzogH4BrfATw832FyVdjSCYh3ID3E8E/RmezKF81jWuUjeped3xe
-         8X6jogUIRMdFwyURQeDF/0KGCJiBMSoU4Y00bg1xw/ptyKs57o6+M9ePz+M/aLMlQeod
-         VK4kZphJp2+EvaOwFcfwwcYHtVU5YC20k50P5GUiZXCJb9RNFFsENNcXnWGMaQVqpgk+
-         PJoA==
+        d=tuxon.dev; s=google; t=1702126566; x=1702731366; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=cha3RMhWzFtMx++aeV38CHkj+sIQkrAxTwK2Y8f1WFw=;
+        b=fBClOUl1vwSUpmd269E7sbM99MjyaRlHLLb/IjN4GXKgvqI0jC152vjUkX556PydgJ
+         PK+1KKHPSgXfy6idotwyC2oaa6vYT/b8Wj9i/vfdZo26NDvL/S5U4ejMRaA6qJTgXMCm
+         u/1I8geQXc5QzHcScp7vDEBBNpBqdoC3H4NKbMDlKnmvoTGX33jWA8l7jlPuwLvzYWwr
+         uFSmf4kTGmQlEc4w8Vymzy+9uRnJN6cruTjjetRcIuvLrXq3/JPLIl4bQ2CzkjhIpBtX
+         rFaFFRMMYtvkDtN2eO55bvcD7nvAt5mAVFdif7/SrCcPpOjDctoUiEMo0/AxCm/LMhhU
+         D+Rw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702125989; x=1702730789;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xjdryzYl36inEQGef/Je4h5B071Ib3F2VDmAwmitwYo=;
-        b=XNLgcFFdMOUF2tdNAjPHjYCgCQsejZ1Gcn5qw4R5+XPRVZHGs4qAGZf18SLgX/5CBN
-         e2JobL3lah3m2uba21jj/PIjmsAcSg/JN2f7YFhcryKt8011wCkUSsaA/FJZkTTY3ZGE
-         D+NVYYmiUxtrPX/Qfwhk7uCOASXqrdXRhqySHgfLWSgm+FxFdEppZKqlesEIvQOwnyrR
-         aRnQgJOtGSd3TCwwvTucP+HuJRvtTJrw0Qk6zfBZv5eRaKyfraBsIWmB77bY+HFducU0
-         KaVjiyDja7hhJNXWxy8wiWqvvqbWVRBpC6/2DKcj1tDMRvrMIaNVkgSE+se1y8OhCK+8
-         ISMA==
-X-Gm-Message-State: AOJu0YxF5ZNUYnGuc4h3pvJ7XKblqWl1T0F0VOq39Nlp2L5tR0SgtfTo
-	kQaBCK9CG4QFp6/zPznXP1U=
-X-Google-Smtp-Source: AGHT+IEieSRwwhaURIRh7mltRByGXy6JtzTWhxnklcvsWAvsOtWxPKnn7gd0SkjyFZfvU3/s3j4Auw==
-X-Received: by 2002:a05:600c:748:b0:40c:281a:25ff with SMTP id j8-20020a05600c074800b0040c281a25ffmr783705wmn.101.1702125988658;
-        Sat, 09 Dec 2023 04:46:28 -0800 (PST)
-Received: from Ansuel-xps. (93-34-89-13.ip49.fastwebnet.it. [93.34.89.13])
-        by smtp.gmail.com with ESMTPSA id c11-20020a5d414b000000b0033342f72bf8sm4334859wrq.9.2023.12.09.04.46.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 09 Dec 2023 04:46:28 -0800 (PST)
-Message-ID: <657461a4.5d0a0220.42455.0c13@mx.google.com>
-X-Google-Original-Message-ID: <ZXRhLMemQgponswE@Ansuel-xps.>
-Date: Sat, 9 Dec 2023 13:44:28 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: kernel test robot <lkp@intel.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, oe-kbuild-all@lists.linux.dev,
-	netdev@vger.kernel.org
-Subject: Re: [net-next PATCH 2/2] net: phy: at803x: add LED support for
- qca808x
-References: <20231209014828.28194-2-ansuelsmth@gmail.com>
- <202312092051.FcBofskz-lkp@intel.com>
+        d=1e100.net; s=20230601; t=1702126566; x=1702731366;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cha3RMhWzFtMx++aeV38CHkj+sIQkrAxTwK2Y8f1WFw=;
+        b=qI0xjZQpTI3k3xsyITc/oe0v8tg6ELoKWy3kAu0w8vv8YCdxiMAJwii9KBnX7B3xh8
+         q+ZAVqsZF2KZX+e3bh+OWkn3v0OpuS2202oUA8CNO+/woqjQYAyxLgtqHmZi4H/tzqjB
+         BBTnWtDJrp6oX9Vpsvn8XwfT1FiHCepGUHONMK71DosuqquwtmptQC3AVTN0t6FsxzmY
+         gNLfzo7OkWgr8dXOxZoPIpco9KzvWOgV5yONLKCz8ZhE+2vyXbXXOe44q6gVro7VGlNs
+         A5s3/qdKg8jJn0VKpN69kST114AB50MBNq91HU8H3Q2WExvxF91pbGVhh3z8VRd8QCev
+         gN/g==
+X-Gm-Message-State: AOJu0YztwscS4jigrs23fd+Uc9+gtIQ0ls3hu2VZwD37xs3VMljOo1KZ
+	5FWZtTuaL3EOsQKOePnthbw71g==
+X-Google-Smtp-Source: AGHT+IFa/1Iy1uYNgD7/XRuRkqfr8XdE2KlpmRUzkBTKu7/i/+f7B/CG9Qn+B4AX9jRSTeQk3dMV8w==
+X-Received: by 2002:adf:fdcd:0:b0:333:4052:bfef with SMTP id i13-20020adffdcd000000b003334052bfefmr885370wrs.52.1702126565987;
+        Sat, 09 Dec 2023 04:56:05 -0800 (PST)
+Received: from [192.168.50.4] ([82.78.167.22])
+        by smtp.gmail.com with ESMTPSA id cx7-20020a170907168700b009fc576e26e6sm2159109ejd.80.2023.12.09.04.56.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 09 Dec 2023 04:56:05 -0800 (PST)
+Message-ID: <80cd8878-da98-4093-9fb5-0b702466a17c@tuxon.dev>
+Date: Sat, 9 Dec 2023 14:56:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <202312092051.FcBofskz-lkp@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ARM: dts: microchip: sama5d27_wlsom1_ek: Remove
+ mmc-ddr-3_3v property from sdmmc0 node
+Content-Language: en-US
+To: Mihai Sain <mihai.sain@microchip.com>, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Cc: cristian.birsan@microchip.com
+References: <20231204072537.2991-1-mihai.sain@microchip.com>
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <20231204072537.2991-1-mihai.sain@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sat, Dec 09, 2023 at 08:38:38PM +0800, kernel test robot wrote:
-> Hi Christian,
-> 
-> kernel test robot noticed the following build errors:
-> 
-> [auto build test ERROR on net-next/main]
-> 
-> url:    https://github.com/intel-lab-lkp/linux/commits/Christian-Marangi/net-phy-at803x-add-LED-support-for-qca808x/20231209-095014
-> base:   net-next/main
-> patch link:    https://lore.kernel.org/r/20231209014828.28194-2-ansuelsmth%40gmail.com
-> patch subject: [net-next PATCH 2/2] net: phy: at803x: add LED support for qca808x
-> config: arm-randconfig-003-20231209 (https://download.01.org/0day-ci/archive/20231209/202312092051.FcBofskz-lkp@intel.com/config)
-> compiler: arm-linux-gnueabi-gcc (GCC) 13.2.0
-> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231209/202312092051.FcBofskz-lkp@intel.com/reproduce)
-> 
-> If you fix the issue in a separate patch/commit (i.e. not just a new version of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202312092051.FcBofskz-lkp@intel.com/
-> 
-> All errors (new ones prefixed by >>):
-> 
->    In file included from include/linux/bitops.h:68,
->                     from include/linux/log2.h:12,
->                     from include/asm-generic/div64.h:55,
->                     from arch/arm/include/asm/div64.h:107,
->                     from include/linux/math.h:6,
->                     from include/linux/math64.h:6,
->                     from include/linux/time64.h:5,
->                     from include/linux/restart_block.h:10,
->                     from include/linux/thread_info.h:14,
->                     from include/asm-generic/preempt.h:5,
->                     from ./arch/arm/include/generated/asm/preempt.h:1,
->                     from include/linux/preempt.h:79,
->                     from include/linux/spinlock.h:56,
->                     from include/linux/phy.h:15,
->                     from drivers/net/phy/at803x.c:10:
->    drivers/net/phy/at803x.c: In function 'qca808x_led_hw_control_get':
-> >> drivers/net/phy/at803x.c:2270:25: error: 'TRIGGER_NETDEV_LINK_2500' undeclared (first use in this function); did you mean 'TRIGGER_NETDEV_LINK_1000'?
->     2270 |                 set_bit(TRIGGER_NETDEV_LINK_2500, rules);
->          |                         ^~~~~~~~~~~~~~~~~~~~~~~~
->    arch/arm/include/asm/bitops.h:183:31: note: in definition of macro 'ATOMIC_BITOP'
->      183 |         (__builtin_constant_p(nr) ? ____atomic_##name(nr, p) : _##name(nr,p))
->          |                               ^~
->    drivers/net/phy/at803x.c:2270:17: note: in expansion of macro 'set_bit'
->     2270 |                 set_bit(TRIGGER_NETDEV_LINK_2500, rules);
->          |                 ^~~~~~~
->    drivers/net/phy/at803x.c:2270:25: note: each undeclared identifier is reported only once for each function it appears in
->     2270 |                 set_bit(TRIGGER_NETDEV_LINK_2500, rules);
->          |                         ^~~~~~~~~~~~~~~~~~~~~~~~
->    arch/arm/include/asm/bitops.h:183:31: note: in definition of macro 'ATOMIC_BITOP'
->      183 |         (__builtin_constant_p(nr) ? ____atomic_##name(nr, p) : _##name(nr,p))
->          |                               ^~
->    drivers/net/phy/at803x.c:2270:17: note: in expansion of macro 'set_bit'
->     2270 |                 set_bit(TRIGGER_NETDEV_LINK_2500, rules);
->          |                 ^~~~~~~
-> 
-> 
-> vim +2270 drivers/net/phy/at803x.c
 
-Hi,
-this error is caused by the lack of the commits for the recently added
-support for additional link speed in the netdev LED trigger.
 
-These additional modes has been merged in Lee tree but I guess we need
-an immutable branch for net-next to actually use them?
-
+On 04.12.2023 09:25, Mihai Sain wrote:
+> On board the sdmmc0 interface is wired to a SD Card socket.
+> According with mmc-controller bindings, the mmc-ddr-3_3v property
+> is used for eMMC devices to enable high-speed DDR mode (3.3V I/O).
+> Remove the mmc-ddr-3_3v property from sdmmc0 node.
 > 
->   2242	
->   2243	static int qca808x_led_hw_control_get(struct phy_device *phydev, u8 index,
->   2244					      unsigned long *rules)
->   2245	{
->   2246		u16 reg;
->   2247		int val;
->   2248	
->   2249		if (index > 2)
->   2250			return -EINVAL;
->   2251	
->   2252		/* Check if we have hw control enabled */
->   2253		if (qca808x_led_hw_control_status(phydev, index))
->   2254			return -EINVAL;
->   2255	
->   2256		reg = QCA808X_MMD7_LED_CTRL(index);
->   2257	
->   2258		val = phy_read_mmd(phydev, MDIO_MMD_AN, reg);
->   2259		if (val & QCA808X_LED_TX_BLINK)
->   2260			set_bit(TRIGGER_NETDEV_TX, rules);
->   2261		if (val & QCA808X_LED_RX_BLINK)
->   2262			set_bit(TRIGGER_NETDEV_RX, rules);
->   2263		if (val & QCA808X_LED_SPEED10_ON)
->   2264			set_bit(TRIGGER_NETDEV_LINK_10, rules);
->   2265		if (val & QCA808X_LED_SPEED100_ON)
->   2266			set_bit(TRIGGER_NETDEV_LINK_100, rules);
->   2267		if (val & QCA808X_LED_SPEED1000_ON)
->   2268			set_bit(TRIGGER_NETDEV_LINK_1000, rules);
->   2269		if (val & QCA808X_LED_SPEED2500_ON)
-> > 2270			set_bit(TRIGGER_NETDEV_LINK_2500, rules);
->   2271		if (val & QCA808X_LED_HALF_DUPLEX_ON)
->   2272			set_bit(TRIGGER_NETDEV_HALF_DUPLEX, rules);
->   2273		if (val & QCA808X_LED_FULL_DUPLEX_ON)
->   2274			set_bit(TRIGGER_NETDEV_FULL_DUPLEX, rules);
->   2275	
->   2276		return 0;
->   2277	}
->   2278	
-> 
-> -- 
-> 0-DAY CI Kernel Test Service
-> https://github.com/intel/lkp-tests/wiki
+> Signed-off-by: Mihai Sain <mihai.sain@microchip.com>
 
--- 
-	Ansuel
+Applied to at91-dt, thanks!
+
+> ---
+>  arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1_ek.dts | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1_ek.dts b/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1_ek.dts
+> index e055b9e2fe34..15239834d886 100644
+> --- a/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1_ek.dts
+> +++ b/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1_ek.dts
+> @@ -197,7 +197,6 @@ qspi1_flash: flash@0 {
+>  
+>  &sdmmc0 {
+>  	bus-width = <4>;
+> -	mmc-ddr-3_3v;
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&pinctrl_sdmmc0_default>;
+>  	status = "okay";
 
