@@ -1,189 +1,107 @@
-Return-Path: <devicetree+bounces-23504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23505-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82BD380B6B0
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 23:04:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C85D680B76B
+	for <lists+devicetree@lfdr.de>; Sun, 10 Dec 2023 00:21:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B414A1C2083E
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 22:04:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E86561C2048A
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 23:21:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A26731D6BE;
-	Sat,  9 Dec 2023 22:04:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 215651E52E;
+	Sat,  9 Dec 2023 23:21:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="khakoc0C"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ibkzo2NF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C550510E
-	for <devicetree@vger.kernel.org>; Sat,  9 Dec 2023 14:04:13 -0800 (PST)
-Received: by mail-qv1-xf31.google.com with SMTP id 6a1803df08f44-679dd3055faso20185976d6.0
-        for <devicetree@vger.kernel.org>; Sat, 09 Dec 2023 14:04:13 -0800 (PST)
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBF84121
+	for <devicetree@vger.kernel.org>; Sat,  9 Dec 2023 15:21:35 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-50be24167efso3794535e87.3
+        for <devicetree@vger.kernel.org>; Sat, 09 Dec 2023 15:21:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702159453; x=1702764253; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DDeZCYtXqn2cs2JrwzvomIoxvwFGKvb0D6cCKP3KGx0=;
-        b=khakoc0Cvcr0Ldg58PpaEygTdHWRtTnX8olUjpvUMXkvg0qL+g0/kMMeym6TQROgwV
-         NcajvFh0m++/TJoFoMGrJk4IX7rQQ6Qsulljepzl/4HJyQZ+FCUYgiebbcdC2yb2F/7m
-         oFJrLFPEms7v/FrtYkSbwwl2MdfIlAb9oCUjekWj2LEezJjVBlBrQxq5M32QbEikZRn7
-         PFkE74JYiG3PZF92iLkYBS2eGLj9MFByASo0saDBKZv/5iUmsvQ4xAM2JLyiZY3GZjxD
-         qHsXYcR31sDY6WsPXiAtH2vXAu+RxQaBaOs1id0CfBgg1Uys+EQgnKuRSA1ij1aR3+8D
-         iu8Q==
+        d=linaro.org; s=google; t=1702164093; x=1702768893; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=WmjCJiespktfDpoHlO6IxPKfMmv43AjbntGQXxXslGE=;
+        b=ibkzo2NFGjUb5JZp8ibWsXazxD4VmVjeMEJmx7augH99KVKo1T4dJ6oB8bqK8kA9zV
+         TKDhtgqiq9EX1RmEGHB0Btexw/N8Cznf1yRPMmxiw3co4VlUt28yRwAAzAfkNKB4CQfN
+         byzGEE4XPIa3nbbbuzR7X/UJuSRW7Yu3HTTrqp8TNaUHjPCxW3uhwuG9M7pgt84cPJ00
+         yKcGHUil3p+fiKSms+pcJh06IS1dqaE/aE0LPtA/2u5aoed5BjWJjeXmi78Ay+Qr5TAX
+         Nlv61k8a2DTdWxcg4cnKuYdqAB5LJiBdDxDnX55ZDrGmN4SN//cZQxUQhCkVt4KOlQIC
+         ZsMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702159453; x=1702764253;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DDeZCYtXqn2cs2JrwzvomIoxvwFGKvb0D6cCKP3KGx0=;
-        b=V3v5aU3arHEPIQKAhHwQ66etkCLiOgjXFfzXn739q9jKk0K57RZYAImslb61S0DbmJ
-         nADTF96cMwacWxbkcS5aIjrIQ0kadT0w3krl+zrXbhu3ZotAZxMiMRMXxX7xgfdpU5F1
-         0EvsyBDws25eCpE01xdZYn0wZgwt3l3uCbhI73e518Lcx073ggq4m7PAli62JcuWgN02
-         rz6FGhX/f+g8oOcOPTzlErwOmzfUU/HhjCZtgsUfWTNZSlemI8h5GCitJoqOqATvhrNN
-         eSYabkO/4jDpmGBzRklXSfTzcWVfnRlBrmyASrDEJarCK/zzyeKfXb7SxyNrcV0rucbH
-         hKrg==
-X-Gm-Message-State: AOJu0Yw1NJqkN6WqfEpHlYpX/RWhTmycFoxd5HGgDQa0T/g7+3j+yENS
-	hU2y+zbXRKKlaM96gv/4dWxNRYaiJLR6f8aUmLthhA==
-X-Google-Smtp-Source: AGHT+IGShvGwLPhyao8X9Dj8VhmyqZQEkFRbj4Ak+KHDxcWKcLLYf+Q6tnP2alm19gFUubHvpWgjIuI0akR6N4sAeiY=
-X-Received: by 2002:a0c:c782:0:b0:67a:21aa:6505 with SMTP id
- k2-20020a0cc782000000b0067a21aa6505mr2131602qvj.45.1702159452795; Sat, 09 Dec
- 2023 14:04:12 -0800 (PST)
+        d=1e100.net; s=20230601; t=1702164093; x=1702768893;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WmjCJiespktfDpoHlO6IxPKfMmv43AjbntGQXxXslGE=;
+        b=pwk3r8NhUJzvQJPWMY/DfmMmTJBML/E2BT4gR6bfkrpN60YMrkNh/FgqWEU2DaOg7V
+         tMlDzOAnXyxR2ClwALsTzBYEs4hGAWXHB+2O+FQrGsq6gyxiWbMdFv6o5inQ6ARHwwyN
+         ZVg5G45B7GT9nSiChE6WC2po2I5Sc1KXMjphntTEg6rPxFJ9OtnAoGmjKgwkByd5T7g6
+         rePtAmcyoAS0DtKSTzlcbZNht/XqBPOJJvXkGhRnMPz1N4lFw4u2//DYYBza/vEaRVYZ
+         BZxTvOkJ4J5PzqoIbwjLVIPO7uReYSDdPW+T9fu2LuuSMnQ0HOmck4DOkIyCweaCKKhK
+         TMQQ==
+X-Gm-Message-State: AOJu0YxR3UTty5L+1t+GMPryljU8n3XHqt40hhbUtxbF348ZG6NyctEl
+	0Vu/V23cQw+GAt3jftCzM8ipoA==
+X-Google-Smtp-Source: AGHT+IGGq2lLBGaUklgidwDghWHWXSX4KmawDyQTinlUpnhVtTR24EqdEW5gXak3WOlH/CMagOvxjA==
+X-Received: by 2002:a2e:9012:0:b0:2c9:f427:9e52 with SMTP id h18-20020a2e9012000000b002c9f4279e52mr351296ljg.134.1702164093633;
+        Sat, 09 Dec 2023 15:21:33 -0800 (PST)
+Received: from umbar.unikie.fi ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id z18-20020a2ebe12000000b002c9f59f1748sm685258ljq.7.2023.12.09.15.21.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 09 Dec 2023 15:21:33 -0800 (PST)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Clark <robdclark@gmail.com>,
+	Sean Paul <sean@poorly.run>,
+	Abhinav Kumar <quic_abhinavk@quicinc.com>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Stephen Boyd <swboyd@chromium.org>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	freedreno@lists.freedesktop.org
+Subject: [PATCH 0/9] arm64: dts: qcom: sm8150-hdk: enable display output
+Date: Sun, 10 Dec 2023 02:21:23 +0300
+Message-Id: <20231209232132.3580045-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231201160925.3136868-1-peter.griffin@linaro.org>
- <20231201160925.3136868-20-peter.griffin@linaro.org> <CAPLW+4mOmQM+Hy-kUKn9onU25-ycgj4CWfAK+-vZVH+yw=FhtQ@mail.gmail.com>
-In-Reply-To: <CAPLW+4mOmQM+Hy-kUKn9onU25-ycgj4CWfAK+-vZVH+yw=FhtQ@mail.gmail.com>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Sat, 9 Dec 2023 22:04:01 +0000
-Message-ID: <CADrjBPqWimgbPUZoW1cTs0grL2Kv3rpNMhz=z-c+MUx6h6mTAQ@mail.gmail.com>
-Subject: Re: [PATCH v5 19/20] arm64: dts: exynos: google: Add initial
- Oriole/pixel 6 board support
-To: Sam Protsenko <semen.protsenko@linaro.org>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org, 
-	tomasz.figa@gmail.com, s.nawrocki@samsung.com, linus.walleij@linaro.org, 
-	wim@linux-watchdog.org, linux@roeck-us.net, catalin.marinas@arm.com, 
-	will@kernel.org, arnd@arndb.de, olof@lixom.net, gregkh@linuxfoundation.org, 
-	jirislaby@kernel.org, cw00.choi@samsung.com, alim.akhtar@samsung.com, 
-	tudor.ambarus@linaro.org, andre.draszik@linaro.org, saravanak@google.com, 
-	willmcvicker@google.com, soc@kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-watchdog@vger.kernel.org, kernel-team@android.com, 
-	linux-serial@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi Sam,
+Enable display output on the SM8150 HDK device. This includes HDMI
+output through the onboard DSI-HDMI bridge and DP output on the USB-C
+port.
 
-On Sat, 2 Dec 2023 at 02:28, Sam Protsenko <semen.protsenko@linaro.org> wro=
-te:
->
-> On Fri, Dec 1, 2023 at 10:11=E2=80=AFAM Peter Griffin <peter.griffin@lina=
-ro.org> wrote:
-> >
-> > Add initial board support for the Pixel 6 phone code named Oriole. This
-> > has been tested with a minimal busybox initramfs and boots to a shell.
-> >
-> > Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/exynos/Makefile           |   2 +
-> >  arch/arm64/boot/dts/exynos/google/Makefile    |   4 +
-> >  .../boot/dts/exynos/google/gs101-oriole.dts   | 105 ++++++++++++++++++
-> >  3 files changed, 111 insertions(+)
-> >  create mode 100644 arch/arm64/boot/dts/exynos/google/Makefile
-> >  create mode 100644 arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
-> >
-> > diff --git a/arch/arm64/boot/dts/exynos/Makefile b/arch/arm64/boot/dts/=
-exynos/Makefile
-> > index 6e4ba69268e5..44c24a8ad9e1 100644
-> > --- a/arch/arm64/boot/dts/exynos/Makefile
-> > +++ b/arch/arm64/boot/dts/exynos/Makefile
-> > @@ -1,4 +1,6 @@
-> >  # SPDX-License-Identifier: GPL-2.0
-> > +subdir-y +=3D google
-> > +
-> >  dtb-$(CONFIG_ARCH_EXYNOS) +=3D \
-> >         exynos5433-tm2.dtb              \
-> >         exynos5433-tm2e.dtb             \
-> > diff --git a/arch/arm64/boot/dts/exynos/google/Makefile b/arch/arm64/bo=
-ot/dts/exynos/google/Makefile
-> > new file mode 100644
-> > index 000000000000..0a6d5e1fe4ee
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/exynos/google/Makefile
-> > @@ -0,0 +1,4 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> > +
-> > +dtb-$(CONFIG_ARCH_EXYNOS) +=3D \
-> > +       gs101-oriole.dtb \
-> > diff --git a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts b/arch/=
-arm64/boot/dts/exynos/google/gs101-oriole.dts
-> > new file mode 100644
-> > index 000000000000..6abd00fa337e
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
-> > @@ -0,0 +1,105 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * Oriole Device Tree
-> > + *
-> > + * Copyright 2021-2023 Google,LLC
->
-> Space after comma. Maybe also make this line consistent for all added
-> files. Checking existing files, it's usually spelled "Copyright (C)
-> <years>, Google LLC."
+Dmitry Baryshkov (9):
+  dt-bindings: display: msm: dp: declare compatible string for sm8150
+  arm64: dts: qcom: sm8150: use SoC-specific compat for RPMh stats
+  arm64: dts: qcom: sm8150: make dispcc cast minimal vote on MMCX
+  arm64: dts: qcom: sm8150-hdk: enable HDMI output
+  arm64: dts: qcom: sm8150-hdk: fix SS USB regulators
+  arm64: dts: qcom: sm8150: add DisplayPort controller
+  arm64: dts: qcom: sm8150: add USB-C ports to the USB+DP QMP PHY
+  arm64: dts: qcom: sm8150: add USB-C ports to the OTG USB host
+  arm64: dts: qcom: sm8150-hdk: enable DisplayPort and USB-C altmode
 
-I've made it match the other files I've added in v6 (by removing the
-,). There seems to be a lot of variation upstream as to whether a . is
-used at the end or not so I've left that as it was.
->
-> Btw, I forgot to mention in my review for PATCH #18: please double
-> check the commit message, there are some issues with punctuation
-> there.
+ .../bindings/display/msm/dp-controller.yaml   |   1 +
+ arch/arm64/boot/dts/qcom/sm8150-hdk.dts       | 264 +++++++++++++++++-
+ arch/arm64/boot/dts/qcom/sm8150.dtsi          | 132 ++++++++-
+ 3 files changed, 386 insertions(+), 11 deletions(-)
 
-Ok, I will check it.
+-- 
+2.39.2
 
->
-> > + * Copyright 2023 Linaro Ltd - <peter.griffin@linaro.org>
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include <dt-bindings/gpio/gpio.h>
-> > +#include <dt-bindings/input/input.h>
-> > +#include "gs101-pinctrl.h"
-> > +#include "gs101.dtsi"
-> > +
-> > +/ {
-> > +       model =3D "Oriole";
-> > +       compatible =3D "google,gs101-oriole", "google,gs101";
-> > +
-> > +       aliases {
-> > +               serial0 =3D &serial_0;
-> > +       };
-> > +
-> > +       chosen {
-> > +               /* Bootloader expects bootargs specified otherwise it c=
-rashes */
->
-> Just wanted to say: I think you are doing a great job with this
-> platform, and I can only imagine how hard it can be when you can't
-> actually tinker with the bootloader source code. But I do appreciate
-> that you was able to minimize stuff like earlycon, ect, etc :) And
-> this one actually LGTM.
->
-> Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
-
-Thanks, much appreciated!
-
-regards,
-
-Peter.
 
