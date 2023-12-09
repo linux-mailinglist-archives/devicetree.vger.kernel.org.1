@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-23403-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23404-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1763B80B312
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 09:11:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0EA580B316
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 09:14:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3AE771C208F4
-	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 08:11:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F7201F2110F
+	for <lists+devicetree@lfdr.de>; Sat,  9 Dec 2023 08:14:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C25C3747D;
-	Sat,  9 Dec 2023 08:11:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF345746A;
+	Sat,  9 Dec 2023 08:13:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Pz2a78Dl"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dwMZbdps"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C8BBF1
-	for <devicetree@vger.kernel.org>; Sat,  9 Dec 2023 00:11:47 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-50bf898c43cso2778092e87.1
-        for <devicetree@vger.kernel.org>; Sat, 09 Dec 2023 00:11:47 -0800 (PST)
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6057C11F
+	for <devicetree@vger.kernel.org>; Sat,  9 Dec 2023 00:13:53 -0800 (PST)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-a1d2f89ddabso338343866b.1
+        for <devicetree@vger.kernel.org>; Sat, 09 Dec 2023 00:13:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702109505; x=1702714305; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702109632; x=1702714432; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=UIJ/Q6eMLTeAjhFzDKcuKqAtgXgPEPS5ycS7mozW2x0=;
-        b=Pz2a78DlIRzgMh3BWy+UCNeAniX4FAZTS76mkvea8nNJ2w9CPaauCVmB8T8rBwgbR7
-         cffkTZFGIGjgCIIXcZetFOWAa1zIlVICZl1jHbVUCAsiUlvWnN5uh3w5DfMEreXvvdDG
-         7qr1hcQxDA8tEOkruXJRpG0lHcUlZrixBVSwI0fCmGRX4kOL7UHdLIHnP/Nus8ciKgLW
-         0b2OwsS7oq/0LaEseAYHbQ0eI6tLyHCz/xfLlSDK1j8Y98C3OKYQK1aCOg5WxMxM+lcz
-         8j+2T9HXUkHagdtX8WoAN+9LZgaG8ry9Qxm/qW7SbQTUr22dFhkQ9lD092i3n9+EhlRu
-         W+1g==
+        bh=fjAr92DnrL0zs+si1i+PzqCSe2EUBlULkRf/k0gE4VA=;
+        b=dwMZbdpsWxK4d+KAkcNGHy6LCcqAaZwuaGZtZWdifdqYH/XDKZa7vvMIom7uIux5zo
+         8wYUjUMq4T+iu2JZh4l4cSR6RO6t4sjQjX5s9vAV0PtGcbFZ8vHY/u+CziUrubAv7YpC
+         62EE/CnS2Kiix6Kqhwj0+/o1uFPGEIwEWYo/bsumsu4+4kokKYKbnB7Nd+TpFTLTf09T
+         T7/vUt8GdW0KxQJ6uxj78p5CWBIUiAVX26wPJALd4AMS3k99KcZLhJ44UVDWCIzwU47V
+         EupxA7iA/Z+cpXt3IeChq+nX2MLhCZE/eReii226i9h4dJwA6bDoiiP2kmbt+EH9i4QK
+         UAIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702109505; x=1702714305;
+        d=1e100.net; s=20230601; t=1702109632; x=1702714432;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UIJ/Q6eMLTeAjhFzDKcuKqAtgXgPEPS5ycS7mozW2x0=;
-        b=SIsHCc9x44ucGZ3hv7wg+04HI9g4hec+9CXd0tbdNfjdPJYSec3Y3VKFkESvSZlbpM
-         7Lpx/YIHvw1vBf+6w4cs1viW63XkjBMuJyhZMRNa+CGZrGBpJmfXd25E4zEgkkL2p7lP
-         ksxciH0KDgl+uoirJKTPuMOSLQhgocI3vmXb7028CXcDr16oUC3HuyExvtztgQkSjBWv
-         rsg6WgW8xQoymkTiC/WvKgNTPDz/FSU9ZcANqRCBDlSs2S8JlU+GINYxUsQqZ3B2fWPU
-         UuzKHCm9btWgonI+xl+k8NZy7PGB0PPAInn+dRVsJT+8fEzWNX+BvUyO8A/Nbgx6uLuu
-         Xpmw==
-X-Gm-Message-State: AOJu0Yw9gUe0plV4IYJrLo9cJcfdURys6c5Iv5Bi+NgGKwuScrq/BcYS
-	kL76AI7Aad6TOEpoYArpZiUa/xDMHZAl+vc/oKI=
-X-Google-Smtp-Source: AGHT+IHNowo7b1GM/EuQrc87dFKhD8atK7vzo49lbfkiLTJyl4FKsfSqboMB3Usx7FSxYYoVOPvKCQ==
-X-Received: by 2002:ac2:42c6:0:b0:50c:f16f:5e3 with SMTP id n6-20020ac242c6000000b0050cf16f05e3mr322452lfl.191.1702109505453;
-        Sat, 09 Dec 2023 00:11:45 -0800 (PST)
+        bh=fjAr92DnrL0zs+si1i+PzqCSe2EUBlULkRf/k0gE4VA=;
+        b=EZ0H4xgKrC/ZlRf5kiYx7EEnPbMWtFESPqmEILqy72j8NfrX8tjRjgDOwjiDdhLJOj
+         XmOpYSGM37E4gOVXfAmY3dKJFvpeuTajyMFqmRtlKuH+QgubBYA7pu1U2F7dbWyIh0Ux
+         L5CHX0gfPNy702mN0aYKqQ10RkGGpZI/2bPjHjmAKORcMn+4IC/xaPCAW08OMw7soMkX
+         PaZ9b2bu4YdLygIw3G8sc6hNWRUASvOv5ppsxWL9e7DcPAlwima4z5NMCxdo2DSHcOfq
+         bmtS8awBi8gL9Y2aPvsk1uMRg74IZAEg3TqKdDYw7dF8RpJJ+sThVm+M4YaY0JEDSPMF
+         1y+g==
+X-Gm-Message-State: AOJu0YycvqepYwG6MGrNzeBVXy8a/K1g1v2xjowp/M08K68r4EzA2FAM
+	xaWOdV4CAeyUHyEJSZogq49SGA==
+X-Google-Smtp-Source: AGHT+IHvk8HIFU41nTvKpotEyukpTuRxRqpUH+qfUgaEPXMojyKMGLWAikgk4+jvp23PZRc54sJzxw==
+X-Received: by 2002:a17:906:7854:b0:a19:a19b:78b5 with SMTP id p20-20020a170906785400b00a19a19b78b5mr583127ejm.120.1702109631726;
+        Sat, 09 Dec 2023 00:13:51 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id uv6-20020a170907cf4600b00a1f699e5217sm1684637ejc.135.2023.12.09.00.11.43
+        by smtp.gmail.com with ESMTPSA id uv6-20020a170907cf4600b00a1f699e5217sm1684637ejc.135.2023.12.09.00.13.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 09 Dec 2023 00:11:45 -0800 (PST)
-Message-ID: <1dc8c529-bb30-43f0-a184-ce00b6d5e9b6@linaro.org>
-Date: Sat, 9 Dec 2023 09:11:43 +0100
+        Sat, 09 Dec 2023 00:13:51 -0800 (PST)
+Message-ID: <18264bb4-39da-4777-8aef-5be87f58c2af@linaro.org>
+Date: Sat, 9 Dec 2023 09:13:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,22 +62,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: usb: Document WCD939x USB SubSystem
- Altmode/Analog Audio Switch
+Subject: Re: [PATCH 2/3] dt-bindings: display: st7701: Add Anbernic RG-ARC
+ panel
 Content-Language: en-US
-To: Neil Armstrong <neil.armstrong@linaro.org>, Andy Gross
- <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231208-topic-sm8650-upstream-wcd939x-usbss-v1-0-91d1ba680fe0@linaro.org>
- <20231208-topic-sm8650-upstream-wcd939x-usbss-v1-1-91d1ba680fe0@linaro.org>
+To: Chris Morgan <macroalpha82@gmail.com>, devicetree@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org, linus.walleij@linaro.org, marex@denx.de,
+ conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+ daniel@ffwll.ch, airlied@gmail.com, sam@ravnborg.org,
+ quic_jesszhan@quicinc.com, neil.armstrong@linaro.org,
+ jagan@amarulasolutions.com, Chris Morgan <macromorgan@hotmail.com>
+References: <20231208154847.130615-1-macroalpha82@gmail.com>
+ <20231208154847.130615-3-macroalpha82@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -123,71 +118,20 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231208-topic-sm8650-upstream-wcd939x-usbss-v1-1-91d1ba680fe0@linaro.org>
+In-Reply-To: <20231208154847.130615-3-macroalpha82@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 08/12/2023 16:27, Neil Armstrong wrote:
-> Document the Qualcomm WCD9390/WCD9395 USB SubSystem Altmode/Analog Audio Switch
-> which is a separate USB SubSystem for Altmode/Analog Audio Switch accessible
-> over an I2C interface.
+On 08/12/2023 16:48, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> Since Audio Headphone and Microphone data path between the Codec and the USB-C Mux
-> subsystems are external to the IC, it requires a second port to handle USB-C altmode
-> & orientation switching for Audio Accessory Mode to the Codec SubSystem.
+> The RG-ARC panel is a panel specific to the Anbernic RG-ARC. It is 4
+> inches in size (diagonally) with a resolution of 480x640.
 > 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 > ---
->  .../bindings/usb/qcom,wcd939x-usbss.yaml           | 99 ++++++++++++++++++++++
->  1 file changed, 99 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/qcom,wcd939x-usbss.yaml b/Documentation/devicetree/bindings/usb/qcom,wcd939x-usbss.yaml
-> new file mode 100644
-> index 000000000000..da86b1d119d4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/qcom,wcd939x-usbss.yaml
-> @@ -0,0 +1,99 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/usb/qcom,wcd939x-usbss.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm WCD9380/WCD9385 USB SubSystem Altmode/Analog Audio Switch
-> +
-> +maintainers:
-> +  - Neil Armstrong <neil.armstrong@linaro.org>
-> +
-> +description: |
 
-Do not need '|' unless you need to preserve formatting.
-
-> +  Qualcomm WCD9390/WCD9395 is a standalone Hi-Fi audio codec IC with a functionally
-> +  separate USB SubSystem for Altmode/Analog Audio Switch accessible over an I2C interface.
-
-Please wrap at 80. In other descriptions as well.
-
-> +  The Audio Headphone and Microphone data path between the Codec and the USB-C Mux
-> +  subsystems are external to the IC, thus requiring DT port-endpoint graph description
-> +  to handle USB-C altmode & orientation switching for Audio Accessory Mode.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: qcom,wcd9390-usbss
-> +      - items:
-> +          - const: qcom,wcd9395-usbss
-> +          - const: qcom,wcd9390-usbss
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  reset-gpios: true
-
-This is the only GPIO from common GPIOs which actually needs maxItems.
-Please add maxItems: 1
-
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
