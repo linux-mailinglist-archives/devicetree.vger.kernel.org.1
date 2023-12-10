@@ -1,203 +1,95 @@
-Return-Path: <devicetree+bounces-23616-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23618-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6016B80BBDC
-	for <lists+devicetree@lfdr.de>; Sun, 10 Dec 2023 15:52:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCE1C80BBE6
+	for <lists+devicetree@lfdr.de>; Sun, 10 Dec 2023 16:20:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C6BADB209D5
-	for <lists+devicetree@lfdr.de>; Sun, 10 Dec 2023 14:52:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 214A61C20862
+	for <lists+devicetree@lfdr.de>; Sun, 10 Dec 2023 15:20:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCB1A156F5;
-	Sun, 10 Dec 2023 14:52:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h3/cPbWP"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E52FC15E95;
+	Sun, 10 Dec 2023 15:20:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8AAA156E7;
-	Sun, 10 Dec 2023 14:52:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44411C433C7;
-	Sun, 10 Dec 2023 14:52:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702219970;
-	bh=3/binooFi17goHCXvXfp9GQ4CBOkGguAl3I2yBDFOjo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=h3/cPbWPscFAWlCe5wL/lqpU3Ooy2W8I5e72LHGbXcfNDwJi0vSy6vA1h0qxE3Tkc
-	 hd4MTbqDZOUsmlJ1Bs4oRdsIB/BUsc98SZ8gVo9A4+ZqvLK1nQyGJW7gEtXqui8LQ3
-	 nmKhWv7Q99V6n+3a88+xXVLmxBlEpAlELaP+c2cPfqd+MBM9IrhSgTipljtMg6gZi3
-	 4PCmhcCv3CXrPjC9jDyBv0k/Vm5WYcovBTWHLhc/NZ/Y1xAXco5Ghd/fDbDeikdjrA
-	 j/0DBWzLQG4R+tn4o5FK0w7XuSQE7dQ5F/eXbG4j5C55eQm+E9jTcSynQNUQZ//o/B
-	 +/vKW3AYbja5g==
-Date: Sun, 10 Dec 2023 14:52:45 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Fabio Estevam <festevam@denx.de>
-Cc: Fabio Estevam <festevam@gmail.com>, daniel.lezcano@linaro.org,
-	rafael@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	robh+dt@kernel.org, conor+dt@kernel.org, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3] dt-bindings: thermal: qoriq-thermal: Adjust
- fsl,tmu-range min/maxItems
-Message-ID: <20231210-stimulant-halogen-e3aaca2279c5@spud>
-References: <20230928222130.580487-1-festevam@gmail.com>
- <20231002-unheard-copy-f9dceb6498a9@spud>
- <CAOMZO5Di6Saq_r2k8AkGeANRvXwwx26U=Vf5-Eu-_2Qhu5sDCw@mail.gmail.com>
- <20231209-singular-tighten-eef5f7909dcd@spud>
- <a591318fbba10b764075e9395ddd9f7f@denx.de>
+Received: from mail-m17244.xmail.ntesmail.com (mail-m17244.xmail.ntesmail.com [45.195.17.244])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 382D3F0;
+	Sun, 10 Dec 2023 07:20:37 -0800 (PST)
+Received: from amadeus-Vostro-3710.lan (unknown [113.118.189.146])
+	by mail-m121145.qiye.163.com (Hmail) with ESMTPA id 4F7F08000A2;
+	Sun, 10 Dec 2023 23:20:18 +0800 (CST)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: Andy Gross <agross@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Chukun Pan <amadeus@jmu.edu.cn>
+Subject: [PATCH 1/1] arm64: dts: qcom: ipq8074: add MicroSD node
+Date: Sun, 10 Dec 2023 23:20:15 +0800
+Message-Id: <20231210152015.2243310-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="BJsV5mgfpFyB2h7+"
-Content-Disposition: inline
-In-Reply-To: <a591318fbba10b764075e9395ddd9f7f@denx.de>
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCTUIfVk1NSUJITBgZQkgeTVUTARMWGhIXJBQOD1
+	lXWRgSC1lBWUpKSFVKSkNVSkNCVUpPTVlXWRYaDxIVHRRZQVlPS0hVSkpLSEpDVUpLS1VLWQY+
+X-HM-Tid: 0a8c54509dc1b03akuuu4f7f08000a2
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6OlE6TTo5TjwwFkwPFypKGBcp
+	IxRPCy5VSlVKTEtJSUlKTUpCSUJKVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
+	SFVKSkNVSkNCVUpPTVlXWQgBWUFJT05CNwY+
 
+Enable MicroSD card found on ipq8074 devices.
+Tested fine when SD card IO voltage is 3.3v.
 
---BJsV5mgfpFyB2h7+
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+---
+ arch/arm64/boot/dts/qcom/ipq8074.dtsi | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
 
-On Sat, Dec 09, 2023 at 05:59:17PM -0300, Fabio Estevam wrote:
-> Hi Conor,
->=20
-> On 09/12/2023 17:23, Conor Dooley wrote:
->=20
-> > You're adding the constraints and items at the wrong level AFAICT.
-> > I think something like the below better matches your constraints?
->=20
-> Thanks for your example.
->=20
-> With your change the fsl,imx93-tmu case works correctly:
-> if I pass the number of fsl,tmu-range entries different than 7,
-> dt_binding_check correctly complains.
->=20
-> However, if I pass 7 entries to fsl,qoriq-tmu it should complain as it
-> expects 4, but it
-
-btw, unrelated - minItems seems (from a grep) like it needs to be 2 not
-4.
-
-> does not.
->=20
-> On top of your patch:
->=20
-> --- a/Documentation/devicetree/bindings/thermal/qoriq-thermal.yaml
-> +++ b/Documentation/devicetree/bindings/thermal/qoriq-thermal.yaml
-> @@ -104,7 +104,7 @@ additionalProperties: false
->  examples:
->    - |
->      tmu@f0000 {
-> -        compatible =3D "fsl,imx93-tmu";
-> +        compatible =3D "fsl,qoriq-tmu";
->          reg =3D <0xf0000 0x1000>;
->          interrupts =3D <18 2 0 0>;
->          fsl,tmu-range =3D <0x000a0000 0x00090026 0x0008004a 0x0001006a 0=
- 0
-> 0>;
->=20
-> make dt_binding_check DT_SCHEMA_FILES=3Dqoriq-thermal.yaml
->   LINT    Documentation/devicetree/bindings
->   DTEX
-> Documentation/devicetree/bindings/thermal/qoriq-thermal.example.dts
->   CHKDT   Documentation/devicetree/bindings/processed-schema.json
->   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
->   DTC_CHK
-> Documentation/devicetree/bindings/thermal/qoriq-thermal.example.dtb
->=20
-> Any suggestions?
-
-I dunno. I spent far far longer than I would like to admit trying to fix
-this. Firstly my suggestion here is crap I think and only applies to
-___matrices___. I think it needs to be the way you had it in your diff,
-but I cannot figure out why it doesn't apply the maxItems constraint.
-
-Perhaps Rob or Krzysztof can figure out what we were overlooking.
-The diff in question was something like:
-
-diff --git a/Documentation/devicetree/bindings/thermal/qoriq-thermal.yaml b=
-/Documentation/devicetree/bindings/thermal/qoriq-thermal.yaml
-index 145744027234..50787938d605 100644
---- a/Documentation/devicetree/bindings/thermal/qoriq-thermal.yaml
-+++ b/Documentation/devicetree/bindings/thermal/qoriq-thermal.yaml
-@@ -21,6 +21,7 @@ properties:
-     enum:
-       - fsl,qoriq-tmu
-       - fsl,imx8mq-tmu
-+      - fsl,imx93-tmu
-=20
-   reg:
-     maxItems: 1
-@@ -33,7 +34,15 @@ properties:
-     description: |
-       The values to be programmed into TTRnCR, as specified by the SoC
-       reference manual. The first cell is TTR0CR, the second is TTR1CR, et=
-c.
--    maxItems: 4
-+    minItems: 2
-+    items:
-+      - description: TTR0CR
-+      - description: TTR1CR
-+      - description: TTR2CR
-+      - description: TTR3CR
-+      - description: TTR4CR
-+      - description: TTR5CR
-+      - description: TTR6CR
-=20
-   fsl,tmu-calibration:
-     $ref: /schemas/types.yaml#/definitions/uint32-matrix
-@@ -69,15 +78,30 @@ required:
-   - fsl,tmu-calibration
-   - '#thermal-sensor-cells'
-=20
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: fsl,imx93-tmu
-+    then:
-+      properties:
-+        fsl,tmu-range:
-+          minItems: 7
-+    else:
-+      properties:
-+        fsl,tmu-range:
-+          maxItems: 4
+diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+index a4f7ae35be27..4f23c4459112 100644
+--- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
++++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+@@ -422,6 +422,26 @@ sdhc_1: mmc@7824900 {
+ 			status = "disabled";
+ 		};
+ 
++		sdhc_2: mmc@7864900 {
++			compatible = "qcom,sdhci-msm-v4";
++			reg = <0x7864900 0x500>, <0x7864000 0x800>;
++			reg-names = "hc", "core";
 +
- additionalProperties: false
-=20
- examples:
-   - |
-     tmu@f0000 {
--        compatible =3D "fsl,qoriq-tmu";
-+        compatible =3D "fsl,imx8mq-tmu";
-         reg =3D <0xf0000 0x1000>;
-         interrupts =3D <18 2 0 0>;
--        fsl,tmu-range =3D <0x000a0000 0x00090026 0x0008004a 0x0001006a>;
-+        fsl,tmu-range =3D <0x000a0000 0x00090026 0x0008004a 0x0001006a 0x0=
- 0x0>;
-         fsl,tmu-calibration =3D <0x00000000 0x00000025>,
-                               <0x00000001 0x00000028>,
-                               <0x00000002 0x0000002d>,
++			interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 221 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "hc_irq", "pwr_irq";
++
++			clocks = <&gcc GCC_SDCC2_AHB_CLK>,
++				 <&gcc GCC_SDCC2_APPS_CLK>,
++				 <&xo>;
++			clock-names = "iface", "core", "xo";
++			resets = <&gcc GCC_SDCC2_BCR>;
++			max-frequency = <192000000>;
++			bus-width = <4>;
++
++			status = "disabled";
++		};
++
+ 		blsp_dma: dma-controller@7884000 {
+ 			compatible = "qcom,bam-v1.7.0";
+ 			reg = <0x07884000 0x2b000>;
+-- 
+2.25.1
 
-
---BJsV5mgfpFyB2h7+
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZXXQvQAKCRB4tDGHoIJi
-0miJAQDX/vQBKsTG7TT8JupLwYME+WkVN4QIUKAEhFGaguZAqAEA3msLFrvO/j00
-stHDztSNrHCO4ftHkl6UmATlsCNQiQs=
-=txUP
------END PGP SIGNATURE-----
-
---BJsV5mgfpFyB2h7+--
 
