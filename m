@@ -1,70 +1,45 @@
-Return-Path: <devicetree+bounces-23557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23562-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A424580B9A0
-	for <lists+devicetree@lfdr.de>; Sun, 10 Dec 2023 08:27:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E69680B9BA
+	for <lists+devicetree@lfdr.de>; Sun, 10 Dec 2023 09:04:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 71C5E1C208FF
-	for <lists+devicetree@lfdr.de>; Sun, 10 Dec 2023 07:27:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B5C33280E8F
+	for <lists+devicetree@lfdr.de>; Sun, 10 Dec 2023 08:04:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54FC65253;
-	Sun, 10 Dec 2023 07:26:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9B661FB6;
+	Sun, 10 Dec 2023 08:04:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Rsp3b/cR"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="NZ1OZTNY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB217B7;
-	Sat,  9 Dec 2023 23:26:51 -0800 (PST)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BA7FlpX006873;
-	Sun, 10 Dec 2023 07:26:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	qcppdkim1; bh=epupJxbLnE3q/89ZQF8hZ0X0NAXOB0INxckkyrikmMQ=; b=Rs
-	p3b/cR0iQDAbdRLPYPIhSo72xeEjvNiaOWnbnusidEFUa2/0hiEZaH/J+rVuiOf4
-	4YaSGteEENu7NjEFmT9cKj4uhGNBnP4BRWcY5BJAIYSanNNDdVOISvViByrEUHOU
-	kH3LMpqq8Wl4I2nfZjL0tf1akdGH8Fl0hun31ryM5bLbfofoFM99Nx7+RsbwbKX6
-	3zQ5lFowNk9z3OUFw2xQscMQHbRgsqcszSnCG2Y4lLOg9Zsc0uIyzZxc+4ZoB1IR
-	0cHKCd6ATqqRibcB9jT6G4SFKjMLEqQWQvy2pqlgbxIsKHpVqzIpd57tVE6J3Thy
-	ZIHy+X+W0Ply0pLqUYNw==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uvney13k1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 10 Dec 2023 07:26:46 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BA7QkLJ005586
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 10 Dec 2023 07:26:46 GMT
-Received: from hu-jinlmao-lv.qualcomm.com (10.49.16.6) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Sat, 9 Dec 2023 23:26:45 -0800
-From: Mao Jinlong <quic_jinlmao@quicinc.com>
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: Mao Jinlong <quic_jinlmao@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Tingwei Zhang
-	<quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        "Tao
- Zhang" <quic_taozha@quicinc.com>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v4 4/4] arm64: dts: qcom: Fix coresight warnings in in-ports and out-ports
-Date: Sat, 9 Dec 2023 23:26:31 -0800
-Message-ID: <20231210072633.4243-5-quic_jinlmao@quicinc.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20231210072633.4243-1-quic_jinlmao@quicinc.com>
-References: <20231210072633.4243-1-quic_jinlmao@quicinc.com>
+Received: from m12.mail.163.com (m12.mail.163.com [220.181.12.196])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id D7027EB;
+	Sun, 10 Dec 2023 00:04:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=DWuK7
+	1f3+NV0Gd1BFFX8qr8YW0N0cWWpxbjMeAHzcQM=; b=NZ1OZTNYoGyBB+9Oo4f4w
+	2eHe3QGXC4vA0cnrZYn6sO4sjUVtx2/PfUYpC4vBjV/tOxdgp3i5DOzRDnh5CwtI
+	CzJt7f05GoBbohM47A+T1e4nM8BUdYAnMw6dvzH0aEhx7rCU07V0jWSboULuvJP2
+	1zDV4h1ctridTQNNUI+NVI=
+Received: from ProDesk.. (unknown [58.22.7.114])
+	by zwqz-smtp-mta-g3-0 (Coremail) with SMTP id _____wDXH6LDcHVlo_JkAg--.25492S2;
+	Sun, 10 Dec 2023 16:03:20 +0800 (CST)
+From: Andy Yan <andyshrk@163.com>
+To: heiko@sntech.de
+Cc: krzysztof.kozlowski+dt@linaro.org,
+	robh+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	Andy Yan <andyshrk@163.com>
+Subject: [PATCH v2 0/5] Add 2 rk3588 based boards from Cool Pi
+Date: Sun, 10 Dec 2023 16:03:13 +0800
+Message-Id: <20231210080313.1667013-1-andyshrk@163.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,134 +47,44 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 6gzPLLVnvpMt_Buzv5zayHgUCoo32ffr
-X-Proofpoint-ORIG-GUID: 6gzPLLVnvpMt_Buzv5zayHgUCoo32ffr
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 bulkscore=0
- impostorscore=0 mlxlogscore=729 mlxscore=0 phishscore=0 spamscore=0
- malwarescore=0 lowpriorityscore=0 clxscore=1015 suspectscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2312100063
+X-CM-TRANSID:_____wDXH6LDcHVlo_JkAg--.25492S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWrKFWkCw15JF4xXF43KFyUJrb_yoW8Jr43pw
+	s3CrZ8tFZ7WFy7XFZIqw1kCrs5Awn5Jay0vrsxXFy2kryagr1DArnagwnxZ3srG3W7ZFWU
+	CF1kKrW7Kr1UXF7anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0p_Z2adUUUUU=
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/1tbiqAtCXmVOA3fo1QAAsd
 
-When a node is only one in port or one out port, address-cells and
-size-cells are not required in in-ports and out-ports. And the number
-and reg of the port need to be removed.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sdm845.dtsi |  5 +----
- arch/arm64/boot/dts/qcom/sm8150.dtsi |  5 +----
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 24 ++++--------------------
- 3 files changed, 6 insertions(+), 28 deletions(-)
+This series add support for rk3588s based SBC Cool Pi 4B
+and rk3588 based board Cool Pi CM5 EVB
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index bf5e6eb9d313..c4dbca4c15f2 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -3545,11 +3545,8 @@ etf_out: endpoint {
- 			};
- 
- 			in-ports {
--				#address-cells = <1>;
--				#size-cells = <0>;
- 
--				port@1 {
--					reg = <1>;
-+				port {
- 					etf_in: endpoint {
- 						remote-endpoint =
- 						  <&merge_funnel_out>;
-diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-index 97623af13464..7bae3bc6af06 100644
---- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-@@ -2957,11 +2957,8 @@ replicator1_out: endpoint {
- 			};
- 
- 			in-ports {
--				#address-cells = <1>;
--				#size-cells = <0>;
- 
--				port@1 {
--					reg = <1>;
-+				port {
- 					replicator1_in: endpoint {
- 						remote-endpoint = <&replicator_out1>;
- 					};
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index be970472f6c4..fa4e8887d53b 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -3095,11 +3095,8 @@ tpda@6004000 {
- 			clock-names = "apb_pclk";
- 
- 			out-ports {
--				#address-cells = <1>;
--				#size-cells = <0>;
- 
--				port@0 {
--					reg = <0>;
-+				port {
- 					tpda_out_funnel_qatb: endpoint {
- 						remote-endpoint = <&funnel_qatb_in_tpda>;
- 					};
-@@ -3142,11 +3139,7 @@ funnel_qatb_out_funnel_in0: endpoint {
- 			};
- 
- 			in-ports {
--				#address-cells = <1>;
--				#size-cells = <0>;
--
--				port@0 {
--					reg = <0>;
-+				port {
- 					funnel_qatb_in_tpda: endpoint {
- 						remote-endpoint = <&tpda_out_funnel_qatb>;
- 					};
-@@ -3355,11 +3348,8 @@ etf_out: endpoint {
- 			};
- 
- 			in-ports {
--				#address-cells = <1>;
--				#size-cells = <0>;
- 
--				port@0 {
--					reg = <0>;
-+				port {
- 					etf_in_funnel_swao_out: endpoint {
- 						remote-endpoint = <&funnel_swao_out_etf>;
- 					};
-@@ -3443,8 +3433,6 @@ funnel@6c2d000 {
- 			clock-names = "apb_pclk";
- 
- 			out-ports {
--				#address-cells = <1>;
--				#size-cells = <0>;
- 				port {
- 					tpdm_mm_out_tpda9: endpoint {
- 						remote-endpoint = <&tpda_9_in_tpdm_mm>;
-@@ -3710,11 +3698,7 @@ funnel_apss_merg_out_funnel_in1: endpoint {
- 			};
- 
- 			in-ports {
--				#address-cells = <1>;
--				#size-cells = <0>;
--
--				port@0 {
--					reg = <0>;
-+				port {
- 					funnel_apss_merg_in_funnel_apss: endpoint {
- 					remote-endpoint = <&funnel_apss_out_funnel_apss_merg>;
- 					};
+Changes in v2:
+- change board compatible from "CoolPi 4 Model B" to "coolpi,pi-4b" for
+  Cool Pi 4B
+- change board compatible from "CoolPi CM5 EVB" to "coolpi,pi-cm5-evb"
+  for Cool Pi CM5 EVB
+- drop ununnecessary property status = "okay" for gpio-led
+- drop ununnecessary blank line
+- change node name to rtc for hym8563
+
+Andy Yan (5):
+  dt-bindings: vendor-prefixes: Add Cool Pi
+  dt-bindings: arm: rockchip: Add Cool Pi 4B
+  arm64: dts: rockchip: Add support for rk3588s based board Cool Pi 4B
+  dt-bindings: arm: rockchip: Add Cool Pi CM5 EVB
+  arm64: dts: rockchip: Add support for rk3588 based board Cool Pi CM5
+    EVB
+
+ .../devicetree/bindings/arm/rockchip.yaml     |  10 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   2 +
+ .../dts/rockchip/rk3588-coolpi-cm5-evb.dts    | 887 ++++++++++++++++++
+ .../boot/dts/rockchip/rk3588s-coolpi-4b.dts   | 840 +++++++++++++++++
+ 5 files changed, 1741 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-coolpi-cm5-evb.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-coolpi-4b.dts
+
 -- 
-2.41.0
+2.34.1
 
 
