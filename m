@@ -1,137 +1,101 @@
-Return-Path: <devicetree+bounces-23551-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5591480B97A
-	for <lists+devicetree@lfdr.de>; Sun, 10 Dec 2023 07:58:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3A4980B99C
+	for <lists+devicetree@lfdr.de>; Sun, 10 Dec 2023 08:18:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B0951F20FD6
-	for <lists+devicetree@lfdr.de>; Sun, 10 Dec 2023 06:58:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 82606280EA6
+	for <lists+devicetree@lfdr.de>; Sun, 10 Dec 2023 07:18:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EEE81FDE;
-	Sun, 10 Dec 2023 06:58:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87B8F4439;
+	Sun, 10 Dec 2023 07:18:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=jookia.org header.i=@jookia.org header.b="b146ZfDa"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Otc6hUtQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-174.mta0.migadu.com (out-174.mta0.migadu.com [IPv6:2001:41d0:1004:224b::ae])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 159A311D
-	for <devicetree@vger.kernel.org>; Sat,  9 Dec 2023 22:58:00 -0800 (PST)
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jookia.org; s=key1;
-	t=1702191478;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=EoNS6T0MV9zITQlR4jI0JjLb6a5bjnl4oZPYRjA6uV0=;
-	b=b146ZfDaRGZjaCQHb0nwPQeTWsGdsKNOaAb/nV5UrMlRWh8GrLGPnorqtvszNwYZJI8MSl
-	Ux/rfc8PEgvf7cez6yPIqsRSxFyagp76BYC66ho+SeRY3KmvnsU2gF5bR8n29fINqcAIxP
-	VH8plD6AD5zQT+abjBWCWYTODFLadNv+wYEE0DtQH54Tv2A4AgjUPeeAI+mPcLe+09oDJM
-	adLn35UKs5fSyv+9/M2GVFnN+CWisr6f2OqieAzydmAoiPhOIerf22JVns83uFSsBIsz3n
-	RUmM8OJixo/8pYENAdRuC04ciz7nTYfJ09HtcbSrcVBYxL0bmLYmwXN/RqOAGg==
-From: John Watts <contact@jookia.org>
-Date: Sun, 10 Dec 2023 17:55:55 +1100
-Subject: [PATCH RFC v5 7/7] dt-bindings: display: panel: add Fascontek
- FS035VG158 panel
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 929FDC1;
+	Sat,  9 Dec 2023 23:18:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1702192717; x=1733728717;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=XEDe53FhnKOoAuCE2jD8tTR9AUPAF2wP57RC8AH32QQ=;
+  b=Otc6hUtQny9PcQb+GQUCcbex4rKmBmFDggyfkmNbGMhzf4PAi64BM5F2
+   AUu54FnOij32AL2BIXPythSSIGxizDzgafjzX2ZSN9V6hxTKmafdhnKzJ
+   ydYO38Pqhlu0E4BPwDdXMfqddMV1WGiwoZiZelOm2gZadBJsJBaJmUTh+
+   IiTZog4HPUVq7cNzQsrPLC0O6JA3bXqu1SfaeI5VZYVhuem2Qwr9DjU3F
+   DUxuKywsGAuNyON3yCtjVKy+yLgPZlztx69HR8KTsbUVbVxTNnt8BdajL
+   K8BoZwrzaspH1Qw8o1uK9JL4r9lbcAQtdyBs8y6j6zmi9h1kk2+Pjs5Af
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10919"; a="13236063"
+X-IronPort-AV: E=Sophos;i="6.04,265,1695711600"; 
+   d="scan'208";a="13236063"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Dec 2023 23:18:37 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10919"; a="776266363"
+X-IronPort-AV: E=Sophos;i="6.04,265,1695711600"; 
+   d="scan'208";a="776266363"
+Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
+  by fmsmga007.fm.intel.com with ESMTP; 09 Dec 2023 23:18:33 -0800
+Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rCE59-000GWT-1h;
+	Sun, 10 Dec 2023 07:18:31 +0000
+Date: Sun, 10 Dec 2023 15:18:30 +0800
+From: kernel test robot <lkp@intel.com>
+To: Andy Yan <andyshrk@163.com>, heiko@sntech.de
+Cc: oe-kbuild-all@lists.linux.dev, krzysztof.kozlowski+dt@linaro.org,
+	robh+dt@kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, Andy Yan <andyshrk@163.com>
+Subject: Re: [PATCH 3/5] arm64: dts: rockchip: Add support for rk3588s based
+ board CoolPi 4B
+Message-ID: <202312101526.ApwoImlf-lkp@intel.com>
+References: <20231209103802.1568552-1-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231210-fs035vg158-v5-7-d75adc75571f@jookia.org>
-References: <20231210-fs035vg158-v5-0-d75adc75571f@jookia.org>
-In-Reply-To: <20231210-fs035vg158-v5-0-d75adc75571f@jookia.org>
-To: dri-devel@lists.freedesktop.org
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
- Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Paul Cercueil <paul@crapouillou.net>, 
- Christophe Branchereau <cbranchereau@gmail.com>, 
- John Watts <contact@jookia.org>, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231209103802.1568552-1-andyshrk@163.com>
 
-This is a small 3.5" 640x480 IPS LCD panel.
+Hi Andy,
 
-Signed-off-by: John Watts <contact@jookia.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../display/panel/fascontek,fs035vg158.yaml        | 56 ++++++++++++++++++++++
- 1 file changed, 56 insertions(+)
+kernel test robot noticed the following build errors:
 
-diff --git a/Documentation/devicetree/bindings/display/panel/fascontek,fs035vg158.yaml b/Documentation/devicetree/bindings/display/panel/fascontek,fs035vg158.yaml
-new file mode 100644
-index 000000000000..d13c4bd26de4
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/panel/fascontek,fs035vg158.yaml
-@@ -0,0 +1,56 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/panel/fascontek,fs035vg158.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Fascontek FS035VG158 3.5" (640x480 pixels) 24-bit IPS LCD panel
-+
-+maintainers:
-+  - John Watts <contact@jookia.org>
-+
-+allOf:
-+  - $ref: panel-common.yaml#
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+
-+properties:
-+  compatible:
-+    const: fascontek,fs035vg158
-+
-+  spi-3wire: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - port
-+  - power-supply
-+  - reset-gpios
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        panel@0 {
-+            compatible = "fascontek,fs035vg158";
-+            reg = <0>;
-+
-+            spi-3wire;
-+            spi-max-frequency = <3125000>;
-+
-+            reset-gpios = <&gpe 2 GPIO_ACTIVE_LOW>;
-+
-+            backlight = <&backlight>;
-+            power-supply = <&vcc>;
-+
-+            port {
-+                panel_input: endpoint {
-+                    remote-endpoint = <&panel_output>;
-+                };
-+            };
-+        };
-+    };
+[auto build test ERROR on rockchip/for-next]
+[also build test ERROR on robh/for-next linus/master v6.7-rc4 next-20231208]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Andy-Yan/dt-bindings-vendor-prefixes-Add-Cool-Pi/20231209-184214
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git for-next
+patch link:    https://lore.kernel.org/r/20231209103802.1568552-1-andyshrk%40163.com
+patch subject: [PATCH 3/5] arm64: dts: rockchip: Add support for rk3588s based board CoolPi 4B
+config: arm64-defconfig (https://download.01.org/0day-ci/archive/20231210/202312101526.ApwoImlf-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231210/202312101526.ApwoImlf-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202312101526.ApwoImlf-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> Error: arch/arm64/boot/dts/rockchip/rk3588s-coolpi-4b.dts:696.1-7 Label or path hdmi0 not found
+   FATAL ERROR: Syntax error parsing input tree
 
 -- 
-2.43.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
