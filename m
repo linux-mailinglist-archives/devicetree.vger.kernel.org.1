@@ -1,68 +1,68 @@
-Return-Path: <devicetree+bounces-23634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9AF380BE3B
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 00:36:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 485DC80BE42
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 00:37:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 637B21F20F21
-	for <lists+devicetree@lfdr.de>; Sun, 10 Dec 2023 23:36:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E68AB1F20CA5
+	for <lists+devicetree@lfdr.de>; Sun, 10 Dec 2023 23:37:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABC361DFEA;
-	Sun, 10 Dec 2023 23:36:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFDA31DFF5;
+	Sun, 10 Dec 2023 23:37:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lJTndi+i"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZMt0DB1Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-x2a.google.com (mail-oa1-x2a.google.com [IPv6:2001:4860:4864:20::2a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16ABAF4
-	for <devicetree@vger.kernel.org>; Sun, 10 Dec 2023 15:36:37 -0800 (PST)
-Received: by mail-oa1-x2a.google.com with SMTP id 586e51a60fabf-1fb04b2251bso2803063fac.0
-        for <devicetree@vger.kernel.org>; Sun, 10 Dec 2023 15:36:37 -0800 (PST)
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 245FFF4
+	for <devicetree@vger.kernel.org>; Sun, 10 Dec 2023 15:37:37 -0800 (PST)
+Received: by mail-pj1-x102f.google.com with SMTP id 98e67ed59e1d1-28a1625b503so3328403a91.2
+        for <devicetree@vger.kernel.org>; Sun, 10 Dec 2023 15:37:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702251396; x=1702856196; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702251456; x=1702856256; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=wwhdaI8XBubSIfRfAPI160DRLkTYdL3p80yUVHWP+lE=;
-        b=lJTndi+iTR1mYF+vqJ2971iNv1s0v7W1CsqA33HteKDeGoo1NLcOD/EcI6GMXSMTCe
-         DlSqcLTDBCa0DyX6YM7RxgoF7JldUTXElfAZyM5p/kBCxXUBXuw+sgkhcg86rOO1xILm
-         VQqkJlBxVWw0GNygw3FFXD7UqZ0NqkzP9Jsz3HbC4WqSGZheCwOa/FvWPu/tJCcTfhaS
-         StsNaqRrrMaYC2Vi7e9bvuyGuQT0uw86HB26rSLCcEIbLW93UMuBQfUbVmeobdk5OxCw
-         rn2/m+hVUmV9vb3AIB9Xrjrya5gSnRpjq2DQsMdI+o0I5L13mat5hum5V1C+Ik2HPryD
-         dUJA==
+        bh=ktrngxJslvgVofvGRW3XnDoVArwbSMEwYrvNDYxqRMM=;
+        b=ZMt0DB1Q5u/VunX6/Rvk8gpBiwSPBrENgKzbmODOnncUGcdkh5DCbWUhre+jDkRakt
+         CBjK8novtFlEmzpQJUQrMgiRZv5tBVPuWp4Zc3Hx9Wx70ftNBNw57ZdF5jOur/y6fNh1
+         Zo0w+91EDn7mPuWQeqK+Li0SrCfwSeH43cnajwANU+X67meTrbmqIz88Yvsl5YUYdAfw
+         wBhkGcMCqqr1y2PUoxD/qNiADxqTa3e0JSjXjfMNed/bQ/F6Tlq0hdzaoi12xiYwr1/x
+         SOCLcL6TJ08o96zDB/XxpSm803FLIpa3GwqUm28YtfyWcwZaAXCU1CyztJbKtDNHPANS
+         k4Qw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702251396; x=1702856196;
+        d=1e100.net; s=20230601; t=1702251456; x=1702856256;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=wwhdaI8XBubSIfRfAPI160DRLkTYdL3p80yUVHWP+lE=;
-        b=rX9gx+OlOMcPsWeYA0Do9WKLyKLeHtD/9muxHP1eKMy5Xk/ZskXrAggzDjTo4XgKSp
-         WIRsuG7E3InCZgwfGiHnRltc9sbIzTeDCmQPfddeLfcklvKBngk4YgQ22f/DcuMIUhdK
-         VnjZpK9MkAkNfV5SWuZ9UhwrBzwJN8IpRqcZy/oJzkNfXv+XsFRyMpSG3L7Nbg4NuCQJ
-         yNS6fSD/n+v+YjMjpDPQksPZ0slZm53NIJ9BgB1tJo39HVtftxvyACXGF3oIGkjJUCxq
-         4SwfkEUY8+mLKN23bL6TDqLqkASJd65Y65eeAHbYAnBdx0u1e5+WX6HsA5Mg10Szj/Je
-         4qvg==
-X-Gm-Message-State: AOJu0YygoRzoE2GbvmXokpKnCcJJ5lN407k0ViUsM4cbC+D9bX46EFVv
-	mcUmas4BCSt3vreQjtZUWCOWjegTwGj5g1T3pwcuKQ==
-X-Google-Smtp-Source: AGHT+IGBq7mUtyfHbN3TWy9RKPBEUdVZWqEc908zIBJVoQI53SI1IAvfmzEwWNQNMlm9DsxGtd8LX7ARxtptPsEGI7s=
-X-Received: by 2002:a05:6870:4f13:b0:1fb:75a:de7a with SMTP id
- xi19-20020a0568704f1300b001fb075ade7amr4086371oab.104.1702251395847; Sun, 10
- Dec 2023 15:36:35 -0800 (PST)
+        bh=ktrngxJslvgVofvGRW3XnDoVArwbSMEwYrvNDYxqRMM=;
+        b=ucJiti5cU1QUGGd06y4oCd2ABKbPg9tmAcGX8zjVN1+r7cg3p1VBt7Znd3kyXhgqr8
+         UI/MRSEejsWZBJGuzGMQl2KXeQW2wEd+zfgG9lIV/kv1YJS0UIRqNwdaE4cUzK5uDsLO
+         j06PuuV4o8JCmXCNp6qtsx2sCzNTxQAwr8+EFscH7F4YTF5/czigPaUKWi93HPLGMsmR
+         Heh8XlO63/OPTYFgakkjhsar+oralaXRDGPELbGm0KJxz4GYCH413j17LldqT0HssPxh
+         hmpJ9qR6TD2uSKDCo6TxBjMb3Q5V0RctZBxRzRDR5q21oOsJz6F9OJdp8z74p0vXNtNj
+         FmrQ==
+X-Gm-Message-State: AOJu0YxMyTCvD2qjgjVv1hs00UewD9pbZfGV62hM7SPF0XkD+NcpWW1G
+	b5KL45dwSVq1xjgsJLkAv3YebKXCYGSgCeSNh1Lu7w==
+X-Google-Smtp-Source: AGHT+IGLsgr8i/Ys8RGtN0SYISZJUKEzU9RuUMU3J9K3efZNFIaGcYANt6ADR27OrFr246GC+h9HKAnCTaXxkKGU5BA=
+X-Received: by 2002:a17:90a:db08:b0:286:6cc1:7803 with SMTP id
+ g8-20020a17090adb0800b002866cc17803mr2455327pjv.70.1702251456635; Sun, 10 Dec
+ 2023 15:37:36 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231209233106.147416-1-peter.griffin@linaro.org> <20231209233106.147416-13-peter.griffin@linaro.org>
-In-Reply-To: <20231209233106.147416-13-peter.griffin@linaro.org>
+References: <20231209233106.147416-1-peter.griffin@linaro.org> <20231209233106.147416-16-peter.griffin@linaro.org>
+In-Reply-To: <20231209233106.147416-16-peter.griffin@linaro.org>
 From: Sam Protsenko <semen.protsenko@linaro.org>
-Date: Sun, 10 Dec 2023 17:36:24 -0600
-Message-ID: <CAPLW+4nuYHbLuLX=HGsDz6WYtZV3P7yBEmhCXbLW2M+dF1asow@mail.gmail.com>
-Subject: Re: [PATCH v6 12/20] clk: samsung: clk-gs101: Add cmu_top, cmu_misc
- and cmu_apm support
+Date: Sun, 10 Dec 2023 17:37:25 -0600
+Message-ID: <CAPLW+4nUT8Nf9zC6UrAMJ_OpLNqe7JWxKy7xp1+_+emNgG4qkA@mail.gmail.com>
+Subject: Re: [PATCH v6 15/20] watchdog: s3c2410_wdt: Update QUIRK macros to
+ use BIT macro
 To: Peter Griffin <peter.griffin@linaro.org>
 Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
 	mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org, 
@@ -82,19 +82,40 @@ Content-Transfer-Encoding: quoted-printable
 On Sat, Dec 9, 2023 at 5:31=E2=80=AFPM Peter Griffin <peter.griffin@linaro.=
 org> wrote:
 >
-> cmu_top is the top level clock management unit which contains PLLs, muxes=
-,
-> dividers and gates that feed the other clock management units.
+> Update the remaining QUIRK macros to use the BIT macro.
 >
-> cmu_misc clocks IPs such as Watchdog and cmu_apm clocks ips part of the
-> APM module.
->
-> Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
-> Tested-by: Will McVicker <willmcvicker@google.com>
 > Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
 > ---
 
 Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
 
-[snip]
+>  drivers/watchdog/s3c2410_wdt.c | 10 +++++-----
+>  1 file changed, 5 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/watchdog/s3c2410_wdt.c b/drivers/watchdog/s3c2410_wd=
+t.c
+> index 7ecb762a371d..b7a03668f743 100644
+> --- a/drivers/watchdog/s3c2410_wdt.c
+> +++ b/drivers/watchdog/s3c2410_wdt.c
+> @@ -107,11 +107,11 @@
+>   * DBGACK_MASK bit disables the watchdog outputs when the SoC is in debu=
+g mode.
+>   * Debug mode is determined by the DBGACK CPU signal.
+>   */
+> -#define QUIRK_HAS_WTCLRINT_REG                 (1 << 0)
+> -#define QUIRK_HAS_PMU_MASK_RESET               (1 << 1)
+> -#define QUIRK_HAS_PMU_RST_STAT                 (1 << 2)
+> -#define QUIRK_HAS_PMU_AUTO_DISABLE             (1 << 3)
+> -#define QUIRK_HAS_PMU_CNT_EN                   (1 << 4)
+> +#define QUIRK_HAS_WTCLRINT_REG                 BIT(0)
+> +#define QUIRK_HAS_PMU_MASK_RESET               BIT(1)
+> +#define QUIRK_HAS_PMU_RST_STAT                 BIT(2)
+> +#define QUIRK_HAS_PMU_AUTO_DISABLE             BIT(3)
+> +#define QUIRK_HAS_PMU_CNT_EN                   BIT(4)
+>  #define QUIRK_HAS_DBGACK_BIT                   BIT(5)
+>
+>  /* These quirks require that we have a PMU register map */
+> --
+> 2.43.0.472.g3155946c3a-goog
+>
 
