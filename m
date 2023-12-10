@@ -1,212 +1,106 @@
-Return-Path: <devicetree+bounces-23544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23545-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 509F880B8DC
-	for <lists+devicetree@lfdr.de>; Sun, 10 Dec 2023 05:27:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F26FA80B965
+	for <lists+devicetree@lfdr.de>; Sun, 10 Dec 2023 07:49:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 69730B20A34
-	for <lists+devicetree@lfdr.de>; Sun, 10 Dec 2023 04:27:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A14F5280D84
+	for <lists+devicetree@lfdr.de>; Sun, 10 Dec 2023 06:49:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDC4E15AC;
-	Sun, 10 Dec 2023 04:27:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="Db78pJd3"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85BE51FDE;
+	Sun, 10 Dec 2023 06:48:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR01-DB5-obe.outbound.protection.outlook.com (mail-db5eur01on2041.outbound.protection.outlook.com [40.107.15.41])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E4C8ED;
-	Sat,  9 Dec 2023 20:27:20 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BCA3041fGUlAMXkNQCdfsefNwJ/+bJ+oF1pr++Zegr0hK/GQZKGFpaHfhQ0zm58CWhE8f+0LcneZ4YwhnpbavuQOjIMK7YB32XrdGXwKMLG3Et3gBbbjRlXNSsS32ft2h7w1KpUFkIs3RJ53mJneXa2PvV3cY2XDGZ1RofosyAvac/dxcTaS6wrh0NYoqL1u1tKSClz+W0xg67/BvHg+eCSnqEWbNBlsRLTBWZk32ihGjze0A3semsWm3d4jzvWwS/NHEW59Se4Z0b3eqjozA0zGBQjDLYS3/OPaRI651pytkKrIXDUdSddATYlMSjIPG8SmDdoQeZ0Mp9mpim6JLA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dhxP/+YfK1EojN3WvQpqzj+3bWaV3MAugyGXQ+zOAqI=;
- b=SDi2KmQGPD7ECB0gRW2HAtcr8tVo7CBIXCzpSggv9Ug/p4SA2pxiCzQIIDe7HV8ggkh17ne5ET2m9S0i3mthJ8TOuJ99N3SprLqL93rGO6T8XIWmsNAzeRThUq4E/rev3nqHAaKIA1wlvp1U1QFXnjq2waG7B77Uafu9OcwpipK8IAZEgdLyC87CchwmL4RNAHT2LUusJ928+CLyFgkyp2Ipy5FobD/K44eXZDB08QYGrZSolJAvp9t8r791HEISAvvr+RVL8IM40UAoIyn6vceaLvXmwXLqTrMlLssxZUVcefLRO6+aoZcuR9YXYq7DHfX/Z0Xb/zfZxCLWdO2tOg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dhxP/+YfK1EojN3WvQpqzj+3bWaV3MAugyGXQ+zOAqI=;
- b=Db78pJd3PkOgAT1rjC9wtvU2F+2OcyJU5A+xDLnJgB5lA8UYa0+0OKhk4CGICaVwfG0o86VEx1od97vDM8VdeBZk472sjDvXdfpC3EVb/Mz4rQcHlMT7++H+VZny8N99MS93leVh1XQ4kqlpMrSImxPZw2vdaFMD9qpTugza6ys=
-Received: from DB7PR04MB5146.eurprd04.prod.outlook.com (2603:10a6:10:23::16)
- by PA4PR04MB7917.eurprd04.prod.outlook.com (2603:10a6:102:cd::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.30; Sun, 10 Dec
- 2023 04:27:17 +0000
-Received: from DB7PR04MB5146.eurprd04.prod.outlook.com
- ([fe80::709e:6876:7df0:fc30]) by DB7PR04MB5146.eurprd04.prod.outlook.com
- ([fe80::709e:6876:7df0:fc30%7]) with mapi id 15.20.7068.030; Sun, 10 Dec 2023
- 04:27:17 +0000
-From: Xu Yang <xu.yang_2@nxp.com>
-To: Conor Dooley <conor@kernel.org>
-CC: Frank Li <frank.li@nxp.com>, "will@kernel.org" <will@kernel.org>,
-	"mark.rutland@arm.com" <mark.rutland@arm.com>, "robh+dt@kernel.org"
-	<robh+dt@kernel.org>, "krzysztof.kozlowski+dt@linaro.org"
-	<krzysztof.kozlowski+dt@linaro.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "shawnguo@kernel.org" <shawnguo@kernel.org>,
-	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>, "kernel@pengutronix.de"
-	<kernel@pengutronix.de>, "festevam@gmail.com" <festevam@gmail.com>,
-	"john.g.garry@oracle.com" <john.g.garry@oracle.com>, "jolsa@kernel.org"
-	<jolsa@kernel.org>, "namhyung@kernel.org" <namhyung@kernel.org>,
-	"irogers@google.com" <irogers@google.com>, dl-linux-imx <linux-imx@nxp.com>,
-	"mike.leach@linaro.org" <mike.leach@linaro.org>, "leo.yan@linaro.org"
-	<leo.yan@linaro.org>, "peterz@infradead.org" <peterz@infradead.org>,
-	"mingo@redhat.com" <mingo@redhat.com>, "acme@kernel.org" <acme@kernel.org>,
-	"alexander.shishkin@linux.intel.com" <alexander.shishkin@linux.intel.com>,
-	"adrian.hunter@intel.com" <adrian.hunter@intel.com>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-perf-users@vger.kernel.org"
-	<linux-perf-users@vger.kernel.org>
-Subject: RE: [EXT] Re: [PATCH v2 1/4] dt-bindings: perf: fsl-imx-ddr: Add
- i.MX95 compatible
-Thread-Topic: [EXT] Re: [PATCH v2 1/4] dt-bindings: perf: fsl-imx-ddr: Add
- i.MX95 compatible
-Thread-Index: AQHaKbNLbV9si+3atU615KFz+VRTyrCfelqAgAJ0bsA=
-Date: Sun, 10 Dec 2023 04:27:16 +0000
-Message-ID:
- <DB7PR04MB51468DB108F3003AF52CDDDA8C88A@DB7PR04MB5146.eurprd04.prod.outlook.com>
-References: <20231208085402.2106904-1-xu.yang_2@nxp.com>
- <20231208-depress-smuggler-f3069487a067@spud>
-In-Reply-To: <20231208-depress-smuggler-f3069487a067@spud>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DB7PR04MB5146:EE_|PA4PR04MB7917:EE_
-x-ms-office365-filtering-correlation-id: bea4020b-3a59-4b7c-ad84-08dbf9384aa7
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- LkKoEydtrOJq+F0270yeBqvRt3HuXimhHCGS/ZY/dB+fEQXBS83v5qszDg3hvqljYDb31Qp4QBail+t90i6HH+ZZdNLco19UySQHqlGQvm7iBl04ee1MeS9hOTL0ffkwetKe8GEBqxiPZ82lzuuLzlIMwrCktTt/3HQyvF2ixsFoJPBRaZOwBtycgt0v39GHm6ah0p2qltBlDRuz0AYVkc7eKNwOhqMe2DLU9gW2Pq1wP3uXiCsfulkYSmrJqCZ1DwPn5uEC60v4Vf/FevPpFbWgo2j6U2cJ9tqSwtODsQm5rt1nlFXAZqZFm4hL5EYP3L8UDMq/WyxywXNE4E67qp3uljuNREyHia3ykDlMPc8Mb2WXAYnu9rnW6knjm3/qIdzUzTXmsoBLvwPQG5IsTA1UUKW5ZV7d83IzMJZgAhgg1f3z7cOeJVVmwj3YLaDna8Nw6ri8stFDraKuPYwn9Fucw/gIXo4xPlhNxGyGwEiLTQXwGye5kHTLfAT+bb6jxpp4BAwE3XZWFCHF4bbNl0yJW/+OHwiP1l8oGl3wHWuUkwtz9epv3+ngpbxuRdce+z/4ScRQZEGuVCg8GR9S74Bg4MbXV56NtbmlJx0QZ38=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR04MB5146.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(376002)(346002)(396003)(136003)(366004)(230922051799003)(1800799012)(186009)(451199024)(64100799003)(9686003)(26005)(45080400002)(966005)(478600001)(6506007)(71200400001)(7696005)(83380400001)(7416002)(2906002)(5660300002)(41300700001)(6916009)(54906003)(64756008)(66446008)(66476007)(66556008)(66946007)(76116006)(4326008)(8676002)(8936002)(52536014)(316002)(38100700002)(122000001)(38070700009)(86362001)(33656002)(55016003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?g3OtttApcfnc/iyeZZE4n3E0rE2HkdSQRUCFXXDZUgtvetcEPcs9RtV++Oru?=
- =?us-ascii?Q?eBgNXel0z2lxonycxJxJn4ZT4ALglyP8htCCbir+rm4B1Vx8XbUzesvVxXqI?=
- =?us-ascii?Q?jN5+QDBkr8XCH7ahaaL7FPQif3zbgXpoI1YKHQaoDGcRK5pZpXg6MUSAZVOk?=
- =?us-ascii?Q?jnZqqI7sykzCMJxGd1HDHeRW6YLYdPs3lMjDGF9WyZsaxLaxD1HpnXm8zW1T?=
- =?us-ascii?Q?LIfU1aQwJEGmb8DdGuqmUS13+q1HNRnfCu1SS43jGBPO5PPNS5crnn7BjO9+?=
- =?us-ascii?Q?C9UaGUEzy3aNqxXnAUJRuuJX27D7eoXUGQy6Iw9jU4RAuUc11MTPEgVGVM4r?=
- =?us-ascii?Q?6MTAojS2zjJC85nayLioR9JRx21bznWX6tirV4Ue6haXMkU49WUEKfGIhWaD?=
- =?us-ascii?Q?YVZ/l2FqEY4Sl3/AjflvybG9BYMPKwq3Azu/iT1FkTBPz4h3W4f7NAq9ZpEe?=
- =?us-ascii?Q?2wULkg/9RIzCQwrDeVwr7y+JRNrQcfHcT3sRNY76/8cIyVMcES+oIV2kfLnq?=
- =?us-ascii?Q?skGrOyoZuxOySkrBgiafmT1iNnA9S8jDRc8s8Jqvd5H4Nl6rlZHKSzlZskwp?=
- =?us-ascii?Q?c4xVZOrunAg17FD+lI/G7U7HKCjirL2oYxGcmjsouGoLzrsUgkCaCAEACUTK?=
- =?us-ascii?Q?9qjl+Xj3hpb2TJbrNNFdbdbvkeBTbruj0SdOg92AUDmjfJGi44eGKcDi4IH6?=
- =?us-ascii?Q?xJHu9+fqcZJn5bUtK8ZZzlK4urj5YwqJJYRBIdiAoM5xU0FwzSCylGVKVDyU?=
- =?us-ascii?Q?5LvgCZBA9BdEhSBLGdP6Z6ff4OiJ+aYBdgRenwzd4/eE3m+8eXraGugtexur?=
- =?us-ascii?Q?eLJBPt33ZXaA+xBan/Y75CkRJGd60CgmoQWHI0dVZ0kmEL5/i7WlRFO+RVOo?=
- =?us-ascii?Q?T2fpPpo0Ci9gl348W/k+MBbzh8LAGrTpZ+Tep2WFiBDGB/OUs9TaUZ5g+9Be?=
- =?us-ascii?Q?E5W7n2UOuxt+TDVyuc7zJ4ZUcFCQlG3imHU4nhW2526vebOFtfNUyoZ/f7Ae?=
- =?us-ascii?Q?8dlClAjh8Y2/POCa8F0cQaNdzK2DXJoih0euWmlQoPUZ5pqvBqniWhsQqnuo?=
- =?us-ascii?Q?8L9br6qGGaEeobafqFh+qM+80dPCe3hFiGtWjE4gIQ/8kIvnAOlKkLkpPra3?=
- =?us-ascii?Q?cBI8HN9o0y4MQhrNxRwUHqbyZ1CX2EDEx3i/XUvxXFpfymAWRQWplZXArvtQ?=
- =?us-ascii?Q?t0FSmEyr9ZGqnWagq+hH1x/q3OPrj6Y5HzzcNQRstanmi7MWHYxWZmmwr5qT?=
- =?us-ascii?Q?z52WiLtZsdTVs+t8j3s1/7KrZfn99z2WBF6D8CmVSoPbBMp56VPrbPQXfXPY?=
- =?us-ascii?Q?tr2lH4rGo7y6li2+floL2xiUobHPOKK4J3UWMfxZw6G+ThjDA15mBo44+iUA?=
- =?us-ascii?Q?NygfkLjHrXbRTX62RYhDnvC73pOJYXt13DH/ez2OdyQE9HQGHOsYeIvM5qpJ?=
- =?us-ascii?Q?ThsT6JgiH90PgavkEhcRz8hSKyEn85MrCwNYyqe2m6R71F/rEO5x/wjvRmU9?=
- =?us-ascii?Q?mMM9I5Bv/qElGQuDufs7WgGQkOzrXV2DvjbgVIdeJctOPBijZCo5/CHIdRRl?=
- =?us-ascii?Q?mSFJ0esieugt7/uwzwc=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 66D8AB8;
+	Sat,  9 Dec 2023 22:48:54 -0800 (PST)
+Received: from loongson.cn (unknown [112.20.109.254])
+	by gateway (Coremail) with SMTP id _____8DxVuhUX3VlmkxAAA--.28032S3;
+	Sun, 10 Dec 2023 14:48:52 +0800 (CST)
+Received: from [192.168.100.8] (unknown [112.20.109.254])
+	by localhost.localdomain (Coremail) with SMTP id AQAAf8DxkN1NX3VldDNaAA--.5375S3;
+	Sun, 10 Dec 2023 14:48:47 +0800 (CST)
+Message-ID: <93b41b72-a6ac-4d7f-95f0-ba42399729fc@loongson.cn>
+Date: Sun, 10 Dec 2023 14:48:45 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DB7PR04MB5146.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bea4020b-3a59-4b7c-ad84-08dbf9384aa7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Dec 2023 04:27:16.8988
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: eXZ+Wyb9KCVPM2yetNqEJO/MdLyu6ASBHHaiTGssm8kZXLVmFZG9/UBp6WWczNxfqcToevYfvItcP9wU2iRDHQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7917
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFT PATCH 1/2] stmmac: dwmac-loongson: drop useless check for
+ compatible fallback
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>, jiaxun.yang@flygoat.com,
+ Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Jose Abreu <joabreu@synopsys.com>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Maxime Coquelin
+ <mcoquelin.stm32@gmail.com>, devicetree@vger.kernel.org,
+ linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+ netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org
+References: <20230616103127.285608-1-krzysztof.kozlowski@linaro.org>
+ <20230616-activity-shed-be3c13e5ac71@spud>
+From: Yanteng Si <siyanteng@loongson.cn>
+In-Reply-To: <20230616-activity-shed-be3c13e5ac71@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:AQAAf8DxkN1NX3VldDNaAA--.5375S3
+X-CM-SenderInfo: pvl1t0pwhqwqxorr0wxvrqhubq/
+X-Coremail-Antispam: 1Uk129KBj9xXoWrZw1DGF4fJr1fAry5Aw15KFX_yoWDtwcEkF
+	WfW3s7KrWIqFWDXwsYkFZ3tr90gF1qyF15Ary8Xwn2gwn5AFWkA3ykCryIq343XFWrCFsx
+	uF1xAwnrCr12kosvyTuYvTs0mTUanT9S1TB71UUUU17qnTZGkaVYY2UrUUUUj1kv1TuYvT
+	s0mT0YCTnIWjqI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUI
+	cSsGvfJTRUUUbTAYFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20x
+	vaj40_Wr0E3s1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxS
+	w2x7M28EF7xvwVC0I7IYx2IY67AKxVW8JVW5JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxV
+	W8JVWxJwA2z4x0Y4vEx4A2jsIE14v26r4j6F4UM28EF7xvwVC2z280aVCY1x0267AKxVW8
+	JVW8Jr1ln4kS14v26r1q6r43M2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2
+	x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1q6rW5
+	McIj6I8E87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lc7
+	CjxVAaw2AFwI0_GFv_Wryl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1l
+	4IxYO2xFxVAFwI0_Jw0_GFylx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxV
+	WUGVWUWwC2zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAF
+	wI0_Gr0_Xr1lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcI
+	k0rVWUJVWUCwCI42IY6I8E87Iv67AKxVW8JVWxJwCI42IY6I8E87Iv6xkF7I0E14v26r4j
+	6r4UJbIYCTnIWIevJa73UjIFyTuYvjxUShiSDUUUU
 
-Hi Conor,
 
-> On Fri, Dec 08, 2023 at 04:53:59PM +0800, Xu Yang wrote:
-> > i.MX95 has a DDR pmu. This will add a compatible for it.
->=20
-> On v1 we had a discussion because the commit message wasn't clear about
-> whether or not the device was compatible with existing ones. For some
-> reason, the v2 patch _removes_ information from the commit message
-> rather than tries to explain.
-> This [1] message of yours, that I didn't get a chance to reply to before
-> you sent this new version, seems to say that there should be an
-> imx93-ddr-pmu fallback.
-
-Thanks for your comments.=20
-
-Just read my previous comment in [1] and found I made a mistake.
-Now I'll try to clarify it here.
-
-Imx95 and imx93 have different AXI filter configuration. I need a=20
-compatible for imx95 since the driver cannot differentiate them.=20
-
-Then I need to consider below two options:
-1. compatible =3D "fsl,imx95-ddr-pmu", "fsl,imx93-ddr-pmu"
-2. compatible =3D "fsl,imx95-ddr-pmu"
-
-Both of them work correctly on imx95. When I make changes in
-driver for imx95, imx93 is not affected.
-
-For basic functions, imx95 is compatible with imx93. I select the 2rd
-form for simplicity. If the first form is optimal, I can change it in next
-version.
-
+在 2023/6/17 02:52, Conor Dooley 写道:
+> On Fri, Jun 16, 2023 at 12:31:26PM +0200, Krzysztof Kozlowski wrote:
+>> Device binds to proper PCI ID (LOONGSON, 0x7a03), already listed in DTS,
+>> so checking for some other compatible does not make sense.  It cannot be
+>> bound to unsupported platform.
+>>
+>> Drop useless, incorrect (space in between) and undocumented compatible.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Might be worth noting that dropping it is required to allow the
+> new loongarch dts stuff to be functional with a sane set of compatibles.
+>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Thank you Krzysztof for your work. when I am
+adding more devices support to stmmac, I found that your
+two patches seemed to be forgotten.
+Thomas, Jiaxun. Can the two patches get an Acked-by?
+My stmmac patch thread:
+<https://lore.kernel.org/loongarch/cover.1699533745.git 
+.siyanteng@loongson.cn/T/#md3108d29a5efe71b27f4c5ccf5d0217571bf6586>
 Thanks,
-Xu Yang
+Yanteng
 
->=20
+>
 > Cheers,
 > Conor.
->=20
-> 1 -
-> https://lore.kernel.org/all/DB7PR04MB514668A8B172CD1A2187BC408C84A@DB7PR0=
-4MB5146.eurprd04.prod.outlook.com/
->=20
-> >
-> > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
-> >
-> > ---
-> > Changes in v2:
-> >  - no changes
-> > ---
-> >  Documentation/devicetree/bindings/perf/fsl-imx-ddr.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/perf/fsl-imx-ddr.yaml b/=
-Documentation/devicetree/bindings/perf/fsl-imx-
-> ddr.yaml
-> > index e9fad4b3de68..1bc7bf1c8368 100644
-> > --- a/Documentation/devicetree/bindings/perf/fsl-imx-ddr.yaml
-> > +++ b/Documentation/devicetree/bindings/perf/fsl-imx-ddr.yaml
-> > @@ -20,6 +20,7 @@ properties:
-> >            - fsl,imx8mn-ddr-pmu
-> >            - fsl,imx8mp-ddr-pmu
-> >            - fsl,imx93-ddr-pmu
-> > +          - fsl,imx95-ddr-pmu
-> >        - items:
-> >            - enum:
-> >                - fsl,imx8mm-ddr-pmu
-> > --
-> > 2.34.1
-> >
+
 
