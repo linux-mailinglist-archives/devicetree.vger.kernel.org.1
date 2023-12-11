@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-23751-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23752-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A514480C3FE
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 10:11:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9ED180C400
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 10:11:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D555D1C2031F
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 09:11:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 054FC1C20919
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 09:11:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8B7621102;
-	Mon, 11 Dec 2023 09:11:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28D0C210E7;
+	Mon, 11 Dec 2023 09:11:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zzcUrgkf"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uO4R5yiq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30664101
-	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 01:11:02 -0800 (PST)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-a1caddd6d28so520568266b.1
-        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 01:11:02 -0800 (PST)
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DC1B107
+	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 01:11:03 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-548ce39b101so5932688a12.2
+        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 01:11:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702285860; x=1702890660; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=16Y97N2Zs2q5DemT+pvvkP6HBQRqCQUx1elGsFbReb4=;
-        b=zzcUrgkfy5fzppOdAQ+Q/D9Rsp/jrSn3j7VHUdD8qXWkahScON9aFyTmXLBxDheDPt
-         WJ5Z2OzVsNlaQ/+mltGlMuevyFb3aG5B+JIMl0PZQzLWIQClW9DiiI/aT34igRoydlE9
-         wqF3dnU2L++M8bKPEHQRcz0tBR6YMkUyd7J8CPB8WTBITwwlopRc0421xT5AmMRWKIaI
-         K4ku8Idbs0UrhhWCLzXA/PAwXmnAFA9PAKshge9JMGW0PNG7IlKmabnxyx56FrHDWcQn
-         y++vsittgnKjsVN89Lp3tyuinjFVfldSDB/pmXkaLacqTwZDYlG6bgGgMcQjJIJd++vH
-         Yaig==
+        d=linaro.org; s=google; t=1702285862; x=1702890662; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HGouB7DBUgP+sHo1OBLeSkpLv2XvLAUt66/Q542b3cg=;
+        b=uO4R5yiqNSh9ecIHSUa0+qXjWOTR/PmC9LFjyrgmcNvDt4/kKNh2Y09GH2ujV14GKi
+         DNAwob8XvYIvQS2QtQZ5hYhVZFNWJp83aou6aMDru7ZhZ1XfxtKk5ftHfOIO7eHE/As9
+         F75KKDMJt0Ypo9O0IuC5SIO5GlnQ5mFpZlq8PEMxP3M8kYz4ES6nvqvBpcji0u0ERCls
+         exZls38X7+FfuluHWr5xCQf0hKEUVtRJTucOsPH6Td8pog723VVKrbMudHJey4x1LFQ/
+         ZfWY+vYDOHQUNUkDj3taIsPKibP5yjjmLpbcUBVz6hKTuTD06U7125dr9VPBdAAb+Xg3
+         oSRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702285860; x=1702890660;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=16Y97N2Zs2q5DemT+pvvkP6HBQRqCQUx1elGsFbReb4=;
-        b=WRdQAunLQ9YROGawagXGXGxlB2TRKF5Zs+uVHLcFjKTfJ2zo/VdgzL3uLCxXTa1s+q
-         K8cMaeP+YrS2m4NvTWT2KbYg8KXugjv2YqQDr7rEsP00ch/uJ3NcTgQ99AwCuBHAtjY2
-         xZRgBwQPnAsel4ZdVtHKhbfwKlnQHOs7YqH9OEu12Ve8B+Nb5Mgeoti+FPaYVTTB2aIy
-         yYyETmF6/+Ng9uFFSocGKzwDppQWameXd2UEcA7RXdkqWgjC6ppRgje1mxPO7BwcMjGz
-         AYIke/7pdyi00v8UEvHo1L2gXj+ND0DeF5Me2z0Z1d2r7mMA/bkwqoKrGL4IxBtZUeFj
-         3hfg==
-X-Gm-Message-State: AOJu0YyCkm+ayH1vfpW4m2p7DWCuAKn+OV9OTLos8bglhpgt/k40EVw6
-	P+8a4BmEqczcWwyE6tMRqZaX6RMslpyEo8KheTY=
-X-Google-Smtp-Source: AGHT+IHCiPPY2JFl1amGy8X+EJhT7H5xd0/zN/T4kqF/x2ke/2EyfmYrrngPX25VcqF9hxSaWVxCGw==
-X-Received: by 2002:a17:907:d307:b0:a19:a19b:420b with SMTP id vg7-20020a170907d30700b00a19a19b420bmr1748301ejc.118.1702285860566;
-        Mon, 11 Dec 2023 01:11:00 -0800 (PST)
+        d=1e100.net; s=20230601; t=1702285862; x=1702890662;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HGouB7DBUgP+sHo1OBLeSkpLv2XvLAUt66/Q542b3cg=;
+        b=SfLxH5eqaPyJ0Y2bsJbV6gNj/BHZr+DM+w1A65L8HmlYfr9/UxzMKlb0qFSSUboQOV
+         2HbkwBekCUjoAzYGpj9kDCBbwGm6a0MAauCpUd+7pI57m6rtdCdP+8B1VhLonA80ESdC
+         53GvV2+odSJ/kNkgnHZ8BT9RgUxJMupufYyZ6BxRcL4Eoud/XuhYhKmm06b0Q4szLJfe
+         Y9jXwprwjD2zpo5sV0moIJi4txsEvbFlPHQPDD8sDEu80JCk46UhuoN0wYSNM7UknUPp
+         1ErL6YJQElQkRILyi9nFD0R7ugXPOuobOJ7SyML+hOf5QRr/he1ZpHd5cH2FqoIHQ/LC
+         kPZQ==
+X-Gm-Message-State: AOJu0YzRGu+yGhpmGeYsuxHBJvtAijBw5Tu8OUDokele7hhJBHFs8u6i
+	oIntaQTEIMhRqSDwAX7CX0M/U7X6loLx6bQYVbM=
+X-Google-Smtp-Source: AGHT+IGJ3IxIkmlUZaQ0sCypwZ6kGdCUXWzDXFZsC24/6Wo6HTOFjXW4kyia0EZrkwQQJ8T4d20rew==
+X-Received: by 2002:a17:906:738d:b0:a19:a19b:426f with SMTP id f13-20020a170906738d00b00a19a19b426fmr1044681ejl.218.1702285862110;
+        Mon, 11 Dec 2023 01:11:02 -0800 (PST)
 Received: from [192.168.36.128] (178235179179.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.179])
-        by smtp.gmail.com with ESMTPSA id t15-20020a1709060c4f00b00a1f78a97063sm3572927ejf.153.2023.12.11.01.10.59
+        by smtp.gmail.com with ESMTPSA id vx6-20020a170907a78600b00a1e852ab3f0sm4569290ejc.15.2023.12.11.01.11.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Dec 2023 01:11:00 -0800 (PST)
-Message-ID: <3ba4da84-a17e-47ae-8958-2484cd6cbea0@linaro.org>
-Date: Mon, 11 Dec 2023 10:10:58 +0100
+        Mon, 11 Dec 2023 01:11:01 -0800 (PST)
+Message-ID: <48a7c36e-2fa2-4be6-970d-a4a301fdf8f7@linaro.org>
+Date: Mon, 11 Dec 2023 10:11:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,16 +62,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] soc: qcom: stats: don't crash if DDR offset contains
- invalid data
+Subject: Re: [PATCH 3/4] soc: qcom: stats: support SM8150 platform
+Content-Language: en-US
 To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
  Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
 References: <20231209215601.3543895-1-dmitry.baryshkov@linaro.org>
- <20231209215601.3543895-2-dmitry.baryshkov@linaro.org>
-Content-Language: en-US
+ <20231209215601.3543895-3-dmitry.baryshkov@linaro.org>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -109,27 +107,18 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20231209215601.3543895-2-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20231209215601.3543895-3-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 9.12.2023 22:55, Dmitry Baryshkov wrote:
-> The stats ram on sm8150 platform contains invalid data at the
-> DDR_DYNAMIC_OFFSET. Most likely this is because the platform didn't
-> support DDR sleep stats.
-Interesting. Can you read back DDR_DYNAMIC_OFFSET on 8350/8280 and
-see if 8150 has correct data in there?
-
-> However this platform uses generic
-> "qcom,rpmh-stats" compatible, which implies presense of the DDR data.
-> Add safety net to prevent old DTB files from crashing the
-> qcom,rpmh-stats driver.
-Yeah I'dve never thought there would be garbage in there..
-
-I'd advocate for simply not doing anything wrt sleep stats if DDR
-stats are unavailable though. The QMP handle can stay, as there
-may (I don't know) be more data available that we want to export
-through this driver.
+On 9.12.2023 22:56, Dmitry Baryshkov wrote:
+> On SM8150 the RPMh stats have 3 data records, but no DDR sleep stats,
+> which demands platform-specific compatible and data.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+I don't think it makes sense considering the driver could detect the
+presence (or possibility of presence) of DDR stats at runtime.
 
 Konrad
 
