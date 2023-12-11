@@ -1,114 +1,95 @@
-Return-Path: <devicetree+bounces-23783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23784-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AE8A80C4D4
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 10:38:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1989780C4F7
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 10:43:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 46CB7280F69
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 09:38:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B9A461F2060D
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 09:43:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4E9D21372;
-	Mon, 11 Dec 2023 09:38:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75A24219E5;
+	Mon, 11 Dec 2023 09:43:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mSClpMA8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F240DB3;
-	Mon, 11 Dec 2023 01:38:05 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-	by fd01.gateway.ufhost.com (Postfix) with ESMTP id 3733424DC13;
-	Mon, 11 Dec 2023 17:38:04 +0800 (CST)
-Received: from EXMBX062.cuchost.com (172.16.6.62) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 11 Dec
- 2023 17:38:03 +0800
-Received: from EXMBX066.cuchost.com (172.16.7.66) by EXMBX062.cuchost.com
- (172.16.6.62) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 11 Dec
- 2023 17:38:03 +0800
-Received: from EXMBX066.cuchost.com ([fe80::5947:9245:907e:339f]) by
- EXMBX066.cuchost.com ([fe80::5947:9245:907e:339f%17]) with mapi id
- 15.00.1497.044; Mon, 11 Dec 2023 17:38:03 +0800
-From: JeeHeng Sia <jeeheng.sia@starfivetech.com>
-To: Conor Dooley <conor.dooley@microchip.com>
-CC: Shengyu Qu <wiagn233@outlook.com>, "kernel@esmil.dk" <kernel@esmil.dk>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"krzk@kernel.org" <krzk@kernel.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "paul.walmsley@sifive.com" <paul.walmsley@sifive.com>,
-	"palmer@dabbelt.com" <palmer@dabbelt.com>, "aou@eecs.berkeley.edu"
-	<aou@eecs.berkeley.edu>, "daniel.lezcano@linaro.org"
-	<daniel.lezcano@linaro.org>, "tglx@linutronix.de" <tglx@linutronix.de>,
-	"conor@kernel.org" <conor@kernel.org>, "anup@brainfault.org"
-	<anup@brainfault.org>, "gregkh@linuxfoundation.org"
-	<gregkh@linuxfoundation.org>, "jirislaby@kernel.org" <jirislaby@kernel.org>,
-	"michal.simek@amd.com" <michal.simek@amd.com>, Michael Zhu
-	<michael.zhu@starfivetech.com>, "drew@beagleboard.org"
-	<drew@beagleboard.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-riscv@lists.infradead.org"
-	<linux-riscv@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, Leyfoon Tan <leyfoon.tan@starfivetech.com>
-Subject: RE: [PATCH v3 6/6] riscv: dts: starfive: Add initial StarFive JH8100
- device tree
-Thread-Topic: [PATCH v3 6/6] riscv: dts: starfive: Add initial StarFive JH8100
- device tree
-Thread-Index: AQHaJFAfN2r53q/6u0mikZZoJRWxOLCez+mAgASMRMD//+TAgIAAoXXw
-Date: Mon, 11 Dec 2023 09:38:03 +0000
-Message-ID: <b3690246eb1e48428238ceb26b046297@EXMBX066.cuchost.com>
-References: <20231201121410.95298-1-jeeheng.sia@starfivetech.com>
- <20231201121410.95298-7-jeeheng.sia@starfivetech.com>
- <TY3P286MB2611F70A3D61788E556C8A30988AA@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
- <358bcdb3f0ab4a7b9d6bbe17ca1a696d@EXMBX066.cuchost.com>
- <20231211-submerge-vegan-244889f1751c@wendy>
-In-Reply-To: <20231211-submerge-vegan-244889f1751c@wendy>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-ms-exchange-transport-fromentityheader: Hosted
-x-yovoleruleagent: yovoleflag
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com [IPv6:2607:f8b0:4864:20::1130])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79409E5
+	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 01:43:33 -0800 (PST)
+Received: by mail-yw1-x1130.google.com with SMTP id 00721157ae682-5d77a1163faso32682947b3.0
+        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 01:43:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702287812; x=1702892612; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=lz/5LWYQ9vCAAHEW2rZf7mB1bPXiSim9HfJVePMJeJA=;
+        b=mSClpMA8GLjez7TY1LH9D6wNOisuedNwz0pmO2WNsnFGX7kJXZlbMoSVwe2B+zKUqA
+         PSeiRQM2YnoNR28UPoFh5JmPHpF+HmJp7St3FNc0Ka1ZvIpdBLPgY6fYMvZe1SEc8Ul0
+         x6ZUypYkF/3+Ojk73VPrfQxgKbBA6pjnHr9oPipmrTbryFMw3Ah9UzvEurx3feyeDG5L
+         uPJ/LLFbBp/Z9+A61iW2o4NJkzwVgRiOs+2/C5gEWzOABoutJXeWgpmrAXrX6upcUZVx
+         BWUnygqcHdkTneSZEtGv/nyfK8lcQKJQnTItxcLDJvKUCZev1+zXGBdE3/SfOdo0WmOw
+         97dg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702287812; x=1702892612;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lz/5LWYQ9vCAAHEW2rZf7mB1bPXiSim9HfJVePMJeJA=;
+        b=W0Sb1y+s7zJSV5aIrTCjhlcIoR1tGlggqesyY2ZUX/8HmTNJB+X7DrNkQLcQmAHR34
+         77SUCED4FF4jtE5eMQknMaNptw3SbbDr3hVbSR21mtJLZI6cPzTFl2KRAcVF+l+T3QMF
+         icrW+pJWrp7riyh9uGP0AzuAQR4nrXF2Zn37bSvCVudsIZqvbg6BmODzHrYxi5lCUgfY
+         dlK1UGDSXrk0VZQLzBWHZoiy1VKHZCLaJUCnr9/C60sHVL+8Kk1d12nANmdnjzj/Jw8o
+         39+u3a8w5UlKYgm04PQjhHQTt+8PTTmaWbHowSH+dV78BSH7dt0fwbbK7o9wCFwyGSJ/
+         tQrg==
+X-Gm-Message-State: AOJu0Yw7k38LuB5nYsWQ/sDS9xJ1VREAui4wcvtOYtBEMRtkt4bLtYBW
+	DECIY3fh/+qs7NR1FLn+ffAVPUZPQP7sH2OKkkxZ+A==
+X-Google-Smtp-Source: AGHT+IEKi4Ku7IRu6pWDKJCzVJ/s4jXBemHFpwX7Qi6OsSaHMOkdXf7oYlo/rHGhVxs3rgPskGaX5yCo9la8aH1bJJo=
+X-Received: by 2002:a81:c206:0:b0:5de:9003:7737 with SMTP id
+ z6-20020a81c206000000b005de90037737mr2480793ywc.50.1702287812712; Mon, 11 Dec
+ 2023 01:43:32 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20231209215601.3543895-1-dmitry.baryshkov@linaro.org>
+ <20231209215601.3543895-3-dmitry.baryshkov@linaro.org> <48a7c36e-2fa2-4be6-970d-a4a301fdf8f7@linaro.org>
+In-Reply-To: <48a7c36e-2fa2-4be6-970d-a4a301fdf8f7@linaro.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Mon, 11 Dec 2023 11:43:21 +0200
+Message-ID: <CAA8EJpqw+hC05QP1mWkA-SsKEehjp7ipb_HzUW2nyWjqZ8WkXQ@mail.gmail.com>
+Subject: Re: [PATCH 3/4] soc: qcom: stats: support SM8150 platform
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-
-
-> -----Original Message-----
-> From: Conor Dooley <conor.dooley@microchip.com>
-> Sent: Monday, December 11, 2023 3:59 PM
-> To: JeeHeng Sia <jeeheng.sia@starfivetech.com>
-> Cc: Shengyu Qu <wiagn233@outlook.com>; kernel@esmil.dk; robh+dt@kernel.or=
-g; krzysztof.kozlowski+dt@linaro.org;
-> krzk@kernel.org; conor+dt@kernel.org; paul.walmsley@sifive.com; palmer@da=
-bbelt.com; aou@eecs.berkeley.edu;
-> daniel.lezcano@linaro.org; tglx@linutronix.de; conor@kernel.org; anup@bra=
-infault.org; gregkh@linuxfoundation.org;
-> jirislaby@kernel.org; michal.simek@amd.com; Michael Zhu <michael.zhu@star=
-fivetech.com>; drew@beagleboard.org;
-> devicetree@vger.kernel.org; linux-riscv@lists.infradead.org; linux-kernel=
-@vger.kernel.org; Leyfoon Tan
-> <leyfoon.tan@starfivetech.com>
-> Subject: Re: [PATCH v3 6/6] riscv: dts: starfive: Add initial StarFive JH=
-8100 device tree
->=20
-> On Mon, Dec 11, 2023 at 01:38:06AM +0000, JeeHeng Sia wrote:
+On Mon, 11 Dec 2023 at 11:11, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>
+> On 9.12.2023 22:56, Dmitry Baryshkov wrote:
+> > On SM8150 the RPMh stats have 3 data records, but no DDR sleep stats,
+> > which demands platform-specific compatible and data.
 > >
-> > > From: Shengyu Qu <wiagn233@outlook.com>
-> > > Sent: Friday, December 8, 2023 8:09 PM
->=20
-> > > Does the dubhe-80 cores actually support vector? Or vector support
-> > >
-> > > doesn't exist on actual silicon?
->=20
-> > We don't have a use case for vector application in JH8100
->=20
-> I am sorry, but I am not clear on what this means. Do the CPUs on
-> the JH8100 support vector or not?
-The JH8100 CPU does not support vector operation.
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > ---
+> I don't think it makes sense considering the driver could detect the
+> presence (or possibility of presence) of DDR stats at runtime.
+
+No, it can not really. We have safety nets for checking the offset
+value and then checking the magic number. But I'd prefer to be
+explicit here. It's not that the 'invalid' data at this offset is 0 or
+~0.
+So, I'd prefer to be explicit here.
+
+Actually we probably should have used SoC compat entries from the
+beginning, even if looks ridiculous for such small thing.
+
+-- 
+With best wishes
+Dmitry
 
