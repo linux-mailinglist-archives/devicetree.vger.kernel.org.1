@@ -1,50 +1,75 @@
-Return-Path: <devicetree+bounces-23923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23924-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9D3480CCCF
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 15:04:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6768680CE23
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 15:18:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3E61CB20DCD
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 14:04:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 21BEF281CDA
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 14:18:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77B61482F8;
-	Mon, 11 Dec 2023 14:04:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA28F487AE;
+	Mon, 11 Dec 2023 14:18:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="eraxT1UA"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DWteeA9G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADAC34C3B;
-	Mon, 11 Dec 2023 06:04:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=Oq7uN0UA4e29OD1T/vJ5LTgmVczpGSvVwmcHIE/xouM=; b=eraxT1UAAa6Sj6qX+sOaBE8kHv
-	fce9Pos6BoTdmvZDq+hOl4chP+zWCLsbnvjLCgt6qaMBnYfO3mHSY/2WcMU7Q9qZdHAyLKebQ8nVn
-	52Vc0fgtZKOmHXVqHDAxJA1qV94bRxsow/e/230BJgXz3O2lMmI6DnyZU6SjtWZvfKIQ=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rCgsq-002coy-7j; Mon, 11 Dec 2023 15:03:44 +0100
-Date: Mon, 11 Dec 2023 15:03:44 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Yanteng Si <siyanteng@loongson.cn>
-Cc: tsbogend@alpha.franken.de, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	peppe.cavallaro@st.com, alexandre.torgue@foss.st.com,
-	joabreu@synopsys.com, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, mcoquelin.stm32@gmail.com,
-	devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-	chenhuacai@loongson.cn, netdev@vger.kernel.org,
-	loongarch@lists.linux.dev, chris.chenfeiyang@gmail.com
-Subject: Re: [PATCH v1 net 1/3] stmmac: dwmac-loongson: Make sure MDIO is
- initialized before use
-Message-ID: <0fb4ecea-9db9-4cea-b8f0-3f3b210b1ced@lunn.ch>
-References: <cover.1702289232.git.siyanteng@loongson.cn>
- <b6059c83049c7a4c97b2c9dfd348b198a8ec1b14.1702289232.git.siyanteng@loongson.cn>
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62CA9212F;
+	Mon, 11 Dec 2023 06:17:53 -0800 (PST)
+Received: by mail-pl1-x631.google.com with SMTP id d9443c01a7336-1d03bcf27e9so26945025ad.0;
+        Mon, 11 Dec 2023 06:17:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702304273; x=1702909073; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yQCSZCHRZifXrm2rHeeJVxoyk1kBTheYDBk9lmCNOio=;
+        b=DWteeA9G9+KWL1JJ5nyOscj1KRl3rN/30VZq1cON/fFiRpJdS4ngFCo1kKKb2wXzI8
+         koUYTRiuaO5t3nigev7a46Jc6n6b5GsYxUTuDOz5bGbEaVK0jTtgj4pGl/YyytOc/zlr
+         PWUwSJl49ruIwmKvd3PWRVK+aQOpup5jF9EPyESDGBhVWav2pNS+lfVy6sJcyroInjbk
+         R3yI0OUlXJbk+7IUoz4y/9EC4W4nqxomhBKJ9uAcsoHrbvbFYiV+4zr/qfczf2Y0AtGY
+         a+ItubsUhoTuK7gF1KqwF8t2ZqzvLAjRuy0ANUVLNBrcCY8SHn6eWf7MNGE+86vndsrB
+         LjAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702304273; x=1702909073;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=yQCSZCHRZifXrm2rHeeJVxoyk1kBTheYDBk9lmCNOio=;
+        b=myIwWmw/lU3Rlzr2ezxK6ruDQHh0ED+U2oSbxCW5B+dBtsfs4gEdCVHnWzlDV+9dV3
+         qVoj97BXFMfzMvIzP3s93I8tnIpIVABTWGiCzY4M7J7HY4a0/AWBdlqeDW0cqKxXebji
+         uTY99wzNu2cI0geGVL4gKn4JmLMzTe831xwUEl5orJl5kBiwDu0EbJ/uVPzCREM16n3/
+         ZSwxTQPdyL2XuA6iH2ZQIBTW6WuwwHgrigUSpw5zmxqWpIvYtUvcnEUMa1fJTD62eF9o
+         4XGYbSMcs+eVfut1lM8ubWfSUef9GN4dWgE0BegPwrjf3fhktY3EdbcHYQglfozTEutw
+         kC0g==
+X-Gm-Message-State: AOJu0YzUGhhN68GD8q2oVZMWSIp1bACNvR8AcqZ2M273sZB/ufqSCvaz
+	w06ujFDXz7yjARPWpiY5n+0=
+X-Google-Smtp-Source: AGHT+IGgbLZWtCsbqHPS5cp/C5+jKiGs3bIxlGTixkc0tac/6iObkizX9mZzNwEHQcFHKHYBel0W6w==
+X-Received: by 2002:a17:90b:1191:b0:286:c105:2373 with SMTP id gk17-20020a17090b119100b00286c1052373mr1896361pjb.45.1702304272647;
+        Mon, 11 Dec 2023 06:17:52 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id l17-20020a17090aaa9100b0028593e9eaadsm8462569pjq.31.2023.12.11.06.17.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Dec 2023 06:17:52 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Mon, 11 Dec 2023 06:17:51 -0800
+From: Guenter Roeck <linux@roeck-us.net>
+To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+Cc: patrick@stwcx.xyz, Jean Delvare <jdelvare@suse.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Jonathan Corbet <corbet@lwn.net>, linux-i2c@vger.kernel.org,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v7 1/2] dt-bindings: hwmon: Add lltc ltc4286 driver
+ bindings
+Message-ID: <a71eae64-680a-414a-84e1-709c27a90d0a@roeck-us.net>
+References: <20231123015440.199822-1-Delphine_CC_Chiu@Wiwynn.com>
+ <20231123015440.199822-2-Delphine_CC_Chiu@Wiwynn.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,17 +78,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <b6059c83049c7a4c97b2c9dfd348b198a8ec1b14.1702289232.git.siyanteng@loongson.cn>
+In-Reply-To: <20231123015440.199822-2-Delphine_CC_Chiu@Wiwynn.com>
 
-On Mon, Dec 11, 2023 at 06:33:11PM +0800, Yanteng Si wrote:
-> Generic code will use mdio. If it is not initialized before use,
-> the kernel will Oops.
+On Thu, Nov 23, 2023 at 09:54:36AM +0800, Delphine CC Chiu wrote:
+> Add a device tree bindings for ltc4286 device.
 > 
-> Fixes: 30bba69d7db4 ("stmmac: pci: Add dwmac support for Loongson")
-> Signed-off-by: Yanteng Si <siyanteng@loongson.cn>
-> Signed-off-by: Feiyang Chen <chenfeiyang@loongson.cn>
+> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@Wiwynn.com>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Applied.
 
-    Andrew
+Thanks,
+Guenter
 
