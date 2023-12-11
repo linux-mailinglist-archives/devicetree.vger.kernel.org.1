@@ -1,108 +1,164 @@
-Return-Path: <devicetree+bounces-23736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23737-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72E7D80C2EC
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 09:20:28 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F324480C2F4
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 09:24:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CCD3DB2077E
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 08:20:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9EBB41F20FB2
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 08:24:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DDC920B36;
-	Mon, 11 Dec 2023 08:20:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B29120B3B;
+	Mon, 11 Dec 2023 08:24:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="hywGTI6R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 669A5E5;
-	Mon, 11 Dec 2023 00:20:19 -0800 (PST)
-Received: by mail-ot1-f54.google.com with SMTP id 46e09a7af769-6d9f7af8918so1846548a34.0;
-        Mon, 11 Dec 2023 00:20:19 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702282818; x=1702887618;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=X70dnLMW4EGZmNUCbaymENDJWJzKWVaikH9lFWWn4e4=;
-        b=Ds36Cgr9i94aXhL7BXK821wmGrZKwu7oHliIQaS7n5ydCEcffuJCMy4+az+dhrToDN
-         sPEVM12L6p5gtfqPMZJNyV3AadizAXeU+GesRM86elr6MdmIFK99GurxHWIgNa5a1l7C
-         A76u7P+M64dBXFvjEKXK6mN+koV0YXT+hcUwRv6GvHELEGp5BZyIVOCtLA6EZqb/3OWU
-         +3uYsgDnwk5EdZ23I13bVT93hJF1/GzTevSPFAV5i8RNYmi+/AsLhxa0Wb5GxF6IhMgm
-         gEizcPIP+d6CiFz28Y5h5FC71bdLJtVQMgyamqc50gNLL5B78Y/SwfN80XkM/4H2+3eb
-         0plw==
-X-Gm-Message-State: AOJu0YwuiweHUIqo9UYCEf7daqQcrp/qUXKy02gGxvr17mW0BZxHGzh4
-	pj5TD/KRc7EeByjuYdODBw==
-X-Google-Smtp-Source: AGHT+IEpHlX5EqpS08UtKaozsgHbMxD/r857ExlfYfeaTrWUPThkSeZY78lbRo8zxUU4fvhZVeNUug==
-X-Received: by 2002:a9d:68c6:0:b0:6da:c0d:90fb with SMTP id i6-20020a9d68c6000000b006da0c0d90fbmr1630420oto.6.1702282818598;
-        Mon, 11 Dec 2023 00:20:18 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id en12-20020a056830488c00b006d9fcb44e00sm1119600otb.32.2023.12.11.00.20.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Dec 2023 00:20:18 -0800 (PST)
-Received: (nullmailer pid 1310035 invoked by uid 1000);
-	Mon, 11 Dec 2023 08:20:16 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14216E5
+	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 00:24:42 -0800 (PST)
+Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
+	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20231211082439epoutp04e452f08b3ae194f153b35ef63b71f05d~fuXEoi9BT0577105771epoutp04R
+	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 08:24:39 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20231211082439epoutp04e452f08b3ae194f153b35ef63b71f05d~fuXEoi9BT0577105771epoutp04R
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1702283079;
+	bh=1QHsgPv06bRps25jxYuFz/UImpThxn0lF7/XtP8wrO8=;
+	h=Date:Subject:To:From:In-Reply-To:References:From;
+	b=hywGTI6REwCiJgl5LvrLG+SrCKqn2Fd9b2fl1QzRoSSf9Dysfrg5pAf1e5h2cat5s
+	 I7ChKDVaQk73kkrDDuOZLGjIQxNXjulrgQM9Iao959n7UWEMo3DZ7OJO64ixmhUfa2
+	 ETPe9cbj5UDEYzrPrtYNRNuMlJQWwGJxrRwsVc78=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+	epcas2p2.samsung.com (KnoxPortal) with ESMTP id
+	20231211082439epcas2p2541bfba26e777f97f5f530d988e5e19a~fuXEPI00A0332003320epcas2p2X;
+	Mon, 11 Dec 2023 08:24:39 +0000 (GMT)
+Received: from epsmgec2p1-new.samsung.com (unknown [182.195.36.68]) by
+	epsnrtp2.localdomain (Postfix) with ESMTP id 4SpZY26128z4x9Py; Mon, 11 Dec
+	2023 08:24:38 +0000 (GMT)
+Received: from epcas2p3.samsung.com ( [182.195.41.55]) by
+	epsmgec2p1-new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	26.B6.18994.647C6756; Mon, 11 Dec 2023 17:24:38 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+	epcas2p2.samsung.com (KnoxPortal) with ESMTPA id
+	20231211082438epcas2p2bedc2e4d9e640cac4832aecbdbcbbd4c~fuXDP6Xof0332003320epcas2p2P;
+	Mon, 11 Dec 2023 08:24:38 +0000 (GMT)
+Received: from epsmgmc1p1new.samsung.com (unknown [182.195.42.40]) by
+	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20231211082438epsmtrp1fe72969afb90d74c9bcf2cfc689c06df~fuXDO7iWu2131721317epsmtrp1g;
+	Mon, 11 Dec 2023 08:24:38 +0000 (GMT)
+X-AuditID: b6c32a4d-9f7ff70000004a32-69-6576c74685cf
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+	epsmgmc1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	69.CC.07368.647C6756; Mon, 11 Dec 2023 17:24:38 +0900 (KST)
+Received: from [10.229.8.168] (unknown [10.229.8.168]) by
+	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20231211082437epsmtip13574ccbcc7ea834f56fcc0fedefd9476~fuXC55wLW2620926209epsmtip1b;
+	Mon, 11 Dec 2023 08:24:37 +0000 (GMT)
+Message-ID: <4bc0bd93-130d-1293-eca6-46cf9ba85cd9@samsung.com>
+Date: Mon, 11 Dec 2023 17:24:37 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Xinhu Wu <xinhu.wu@unisoc.com>
-Cc: surong.pang@unisoc.com, zhang.lyra@gmail.com, bruce.chen@unisoc.com, heikki.krogerus@linux.intel.com, orsonzhai@gmail.com, xinhuwu.unisoc@gmail.com, baolin.wang@linux.alibaba.com, zhiyong.liu@unisoc.com, krzysztof.kozlowski+dt@linaro.org, linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org, teng.zhang1@unisoc.com, devicetree@vger.kernel.org, peak.yang@unisoc.com, gregkh@linuxfoundation.org, xingxing.luo@unisoc.com, conor+dt@kernel.org, robh+dt@kernel.org
-In-Reply-To: <20231211074120.27958-3-xinhu.wu@unisoc.com>
-References: <20231211074120.27958-1-xinhu.wu@unisoc.com>
- <20231211074120.27958-3-xinhu.wu@unisoc.com>
-Message-Id: <170228281685.1310019.14783806901713791242.robh@kernel.org>
-Subject: Re: [PATCH V2 2/2] dt-bindings: usb: Add an Spreadtrum pmic typec
- yaml
-Date: Mon, 11 Dec 2023 02:20:16 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+	Thunderbird/102.11.0
+Subject: Re: [PATCH] dt-bindings: pinctrl: samsung: correct ExynosAutov920
+ wake-up compatibles
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Tomasz Figa
+	<tomasz.figa@gmail.com>, Sylwester Nawrocki <s.nawrocki@samsung.com>, Alim
+	Akhtar <alim.akhtar@samsung.com>, Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+From: Jaewon Kim <jaewon02.kim@samsung.com>
+In-Reply-To: <a441ca43-8631-4a6a-b828-6d744fce5aee@linaro.org>
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrFJsWRmVeSWpSXmKPExsWy7bCmua7b8bJUg/1fdSwezNvGZrFm7zkm
+	i/lHzrFa7H29ld1iyp/lTBabHl9jtdg8/w+jxeVdc9gsZpzfx2TRuvcIu8XhN+2sFqt2/WF0
+	4PHYOesuu8emVZ1sHneu7WHz2Lyk3qNvyypGj8+b5ALYorJtMlITU1KLFFLzkvNTMvPSbZW8
+	g+Od403NDAx1DS0tzJUU8hJzU22VXHwCdN0yc4BuVFIoS8wpBQoFJBYXK+nb2RTll5akKmTk
+	F5fYKqUWpOQUmBfoFSfmFpfmpevlpZZYGRoYGJkCFSZkZ7xvnMtecJu9YvOau4wNjDPZuhg5
+	OSQETCSaty5j6WLk4hAS2MMo8W3JbGYI5xOjRNvy++wQzjdGiTd/f8C13Dp2GqplL6PEukkX
+	mCCc14wSVw7OYAap4hWwk2jet58VxGYRUJVYPW8yO0RcUOLkzCcsILaoQLRE67L7YFOFBRIk
+	tnz8BVbPLCAucevJfLChIgJnmCVmrbvNCJJgE9CW+L5+MVgRJ9CCW89WsUM0yEtsfzsH7HAJ
+	gZUcEgeWvmWHuNVF4uWqFkYIW1ji1fEtUHEpiZf9bVB2vkTblTNQdo3ExgWXoOrtJRad+QkU
+	5wBaoCmxfpc+iCkhoCxx5BYLxFo+iY7Df9khwrwSHW1CEI1qEvennoMGlozEpCMrmSBsD4nr
+	D06wQcKqgUlizdkfbBMYFWYhBcssJO/PQvLZLIQjFjCyrGKUSi0ozk1PTTYqMNTNSy2HR3ly
+	fu4mRnAi1vLdwfh6/V+9Q4xMHIyHGCU4mJVEeGWOFKcK8aYkVlalFuXHF5XmpBYfYjQFRtBE
+	ZinR5HxgLsgriTc0sTQwMTMzNDcyNTBXEue91zo3RUggPbEkNTs1tSC1CKaPiYNTqoFJ6tVC
+	W1/XrIuT5xhx3H3StYlzzteiU+/kDCQb58c4XQ9nkAvfn+V67ci7TweYAualBk5s6Xxnub1/
+	zuodel/FhCZMV89r/5Xpw+ISmhLzQ616x0Gjg5qJftNe2THd9dFybfcw+no5xJnVwLbggfux
+	zweXZmpX/H+/UIXjReq9N8knVhxr59jC/L+tWmT7/+8vhDuUl0wwux0kLmNfrqppG/+2xDlM
+	4OHP/DmbbOdHhepotG9dvyo2/pm39q3Dl/sCHHRk/dge7/9wy3Dll7vtm9PvP1G6sEd6Oft/
+	TnttZQOuij07k82NF65imDrzgMkmtuObQxSl+zie+C4U2RknpVk1+etZx5u6AjuDf65QYinO
+	SDTUYi4qTgQA4h2jgE0EAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupikeLIzCtJLcpLzFFi42LZdlhJTtfteFmqwdTtfBYP5m1js1iz9xyT
+	xfwj51gt9r7eym4x5c9yJotNj6+xWmye/4fR4vKuOWwWM87vY7Jo3XuE3eLwm3ZWi1W7/jA6
+	8HjsnHWX3WPTqk42jzvX9rB5bF5S79G3ZRWjx+dNcgFsUVw2Kak5mWWpRfp2CVwZ7xvnshfc
+	Zq/YvOYuYwPjTLYuRk4OCQETiVvHTrN0MXJxCAnsZpTomnKHESIhI7H8WR9UkbDE/ZYjrBBF
+	LxklXn07zQSS4BWwk2jet58VxGYRUJVYPW8yO0RcUOLkzCcsILaoQLTE6s8XwGqEBRIktnz8
+	BWYzC4hL3HoynwlkqIjAOWaJ7RO+sENsaGCS2Pj3H1g3m4C2xPf1i8E6OIG23Xq2ih2i20yi
+	a2sXI4QtL7H97RzmCYyCs5Asn4VkySwkLbOQtCxgZFnFKJlaUJybnptsWGCYl1quV5yYW1ya
+	l66XnJ+7iREcXVoaOxjvzf+nd4iRiYPxEKMEB7OSCK/MkeJUId6UxMqq1KL8+KLSnNTiQ4zS
+	HCxK4ryGM2anCAmkJ5akZqemFqQWwWSZODilGphm3q3yNO5h2Lld+/rUs4l2O6+s0Wa+3eEZ
+	uNCvKzD12fMpgn3he+W7V/00kK/8ticsWWVC+tbplwL+HjjJxOP41fe6ia/AAc7dJe98rgu3
+	5QWWLs0MSnxp/4v5Xfe69lK/CV2KD0/O/DBp2U2eDc/L9edeW6bOqhIeFdM04RjjApUF2jPf
+	M250i7o7s2pn7pm/lx4UFiXXpD5/8qHtTM38378ztHLOP5S8vV6g+0uo2X/7M21ceVInzllO
+	TmWNyBEyC+Y95KlTFHL25KLbK98cCWm5qtQcqv3bqErssoxT35l4Ze4VKzwrtto2HFE5cqVy
+	/SM1F7+nhk29fq8bwzNyhZmXBLyy1Wt5H2pSLKjEUpyRaKjFXFScCAAJSu7WHQMAAA==
+X-CMS-MailID: 20231211082438epcas2p2bedc2e4d9e640cac4832aecbdbcbbd4c
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20231210133927epcas2p3e2633ad371b03d5ab19f9b44118fcb58
+References: <CGME20231210133927epcas2p3e2633ad371b03d5ab19f9b44118fcb58@epcas2p3.samsung.com>
+	<20231210133915.42112-1-krzysztof.kozlowski@linaro.org>
+	<c63bd0b3-ecb2-d4c6-2147-43f19c1dcfee@samsung.com>
+	<a441ca43-8631-4a6a-b828-6d744fce5aee@linaro.org>
 
 
-On Mon, 11 Dec 2023 15:41:20 +0800, Xinhu Wu wrote:
-> Add device tree binding Documentation details for
-> Spreadtrum pmic typec driver
-> 
-> Signed-off-by: Xinhu Wu <xinhu.wu@unisoc.com>
-> ---
->  .../bindings/usb/sprd,pmic_typec.yaml         | 65 +++++++++++++++++++
->  1 file changed, 65 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/sprd,pmic_typec.yaml
-> 
+On 23. 12. 11. 16:34, Krzysztof Kozlowski wrote:
+> On 11/12/2023 03:18, Jaewon Kim wrote:
+>> On 23. 12. 10. 22:39, Krzysztof Kozlowski wrote:
+>>> ExynosAutov920 SoC wake-up pin controller has different register layout
+>>> than Exynos7, thus it should not be marked as compatible.  Neither DTS
+>>> nor Linux driver was merged yet, so the change does not impact ABI.
+>>>
+>>> Cc: Jaewon Kim <jaewon02.kim@samsung.com>
+>>> Fixes: 904140fa4553 ("dt-bindings: pinctrl: samsung: use Exynos7 fallbacks for newer wake-up controllers")
+>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>
+>>>
+>> It is reasonable.
+>>
+>> I will also fix this in v4 patch.
+>>
+>>
+>> Reviewed-by:Jaewon Kim <jaewon02.kim@samsung.com>
+> Please send correct tags so I won't need to manually fix them. Otherwise
+> they get ignored by b4.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Thanks Krzysztof
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/usb/sprd,pmic_typec.yaml:28:18: [error] syntax error: mapping values are not allowed here (syntax)
+I miss space. I will check it again next time.
 
-dtschema/dtc warnings/errors:
-make[2]: *** Deleting file 'Documentation/devicetree/bindings/usb/sprd,pmic_typec.example.dts'
-Documentation/devicetree/bindings/usb/sprd,pmic_typec.yaml:28:18: mapping values are not allowed in this context
-make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/usb/sprd,pmic_typec.example.dts] Error 1
-make[2]: *** Waiting for unfinished jobs....
-./Documentation/devicetree/bindings/usb/sprd,pmic_typec.yaml:28:18: mapping values are not allowed in this context
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/sprd,pmic_typec.yaml: ignoring, error parsing file
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1424: dt_binding_check] Error 2
-make: *** [Makefile:234: __sub-make] Error 2
+>
+> Best regards,
+> Krzysztof
+>
+>
+>
 
-doc reference errors (make refcheckdocs):
+Thanks
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231211074120.27958-3-xinhu.wu@unisoc.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Jaewon Kim
 
 
