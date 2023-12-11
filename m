@@ -1,109 +1,120 @@
-Return-Path: <devicetree+bounces-23818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FB8E80C6CF
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 11:38:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1635580C6D9
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 11:39:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CF7451C209D8
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 10:38:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4530D1C20F17
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 10:39:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D12F2554A;
-	Mon, 11 Dec 2023 10:38:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aGjojkRK"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 645472554B;
+	Mon, 11 Dec 2023 10:39:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7EC091;
-	Mon, 11 Dec 2023 02:38:12 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-50c04ebe1bbso4168466e87.1;
-        Mon, 11 Dec 2023 02:38:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702291091; x=1702895891; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZIWZGkYaLiXvO5c8m4S1KNqDxAm4uSiDYBVHbWNi0Xk=;
-        b=aGjojkRKhEiNlXURQcZZ1+Gt845Rm7Pyj7G9KVlSNZSqgAJL7ZA6OMP9L7z7cWWW5X
-         +5Zma5M6ON5BWcjKf5M71Bk1+PlhgJVmfQ5gQ4HIIORDzgvHWUZy5w7zbhyjGXaHN+JC
-         7CcRd2kRVQvTRMGBstb0mSs8ALQvQQ1RdpmKg2WsUX7AUYGJxvtfYKBgQ/jN4vE4cVK8
-         ImU9Hhg5EPvELTQ9ClqhqHkiuF34TjFUumqRSo+tqGg/tpQgZR+wxsai6DDXSXnMESpY
-         5QeWtwraPgn2GHQpNZP1IWgwwJ8Emt/glDfpILo3qBydtHqwGNACFS7VSyO1qcWAoOYs
-         4AlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702291091; x=1702895891;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZIWZGkYaLiXvO5c8m4S1KNqDxAm4uSiDYBVHbWNi0Xk=;
-        b=nKR58tAa1m2fyiTB9FynUqCME6BT9BLEvbynNVbe8Zo1JTWYYfMhGfK70OnwAJJM0+
-         YQBpsvBHiYL6ezSQ6H/6P3xUQO0cyDvhLyUx8801cYWV90m42gPs7R2AIMNAbkvTzvFf
-         BvKeFvZF2NJ4O2o9xF8QSPlQCf7UbU0fV/x9GjC8qsTLRiZYy8HxtJ37QktkTHZF/XSj
-         h5IvpSt5bvuAhRW7xW7Ya/v9ZFJlx3WURyUOqjFAcJwFciMusGKGAjzOT/GcgiW+HoE1
-         ompZP7xB7j21bory7WKCPJeRFa/kHm6NISbAQUCa5nS4IXr2kYBrEio3pJrVDX6UNGFU
-         IV1A==
-X-Gm-Message-State: AOJu0YxkKzRPDOitPimxj0pvHnecWGfxOhQ68Pql0BduU+SBCHQK7NJf
-	8+PiReWEZwNL49j1PxYYuuOdCztc825+DETq9xM=
-X-Google-Smtp-Source: AGHT+IH4PNWvt6tBdwhsThANC4nGzclaoIAF9vXPA6oGnAJcKp+qYKIkkbYewPVr9w5TYoQtIEbxGx80LcG9uTZ0AME=
-X-Received: by 2002:a05:6512:3da9:b0:50b:f776:1d72 with SMTP id
- k41-20020a0565123da900b0050bf7761d72mr3429278lfv.24.1702291090714; Mon, 11
- Dec 2023 02:38:10 -0800 (PST)
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFFD0A9;
+	Mon, 11 Dec 2023 02:39:49 -0800 (PST)
+X-SpamFilter-By: ArmorX SpamTrap 5.78 with qID 3BBAboiQ72682855, This message is accepted by code: ctloc85258
+Received: from mail.realtek.com (rtexh36506.realtek.com.tw[172.21.6.27])
+	by rtits2.realtek.com.tw (8.15.2/2.95/5.92) with ESMTPS id 3BBAboiQ72682855
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 11 Dec 2023 18:37:50 +0800
+Received: from RTEXMBS02.realtek.com.tw (172.21.6.95) by
+ RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.17; Mon, 11 Dec 2023 18:37:50 +0800
+Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
+ RTEXMBS02.realtek.com.tw (172.21.6.95) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.7; Mon, 11 Dec 2023 18:37:50 +0800
+Received: from RTEXMBS04.realtek.com.tw ([fe80::40c2:6c24:2df4:e6c7]) by
+ RTEXMBS04.realtek.com.tw ([fe80::40c2:6c24:2df4:e6c7%5]) with mapi id
+ 15.01.2375.007; Mon, 11 Dec 2023 18:37:50 +0800
+From: =?utf-8?B?SnlhbiBDaG91IFvlkajoirflrold?= <jyanchou@realtek.com>
+To: Adrian Hunter <adrian.hunter@intel.com>,
+        "ulf.hansson@linaro.org"
+	<ulf.hansson@linaro.org>,
+        "jh80.chung@samsung.com" <jh80.chung@samsung.com>,
+        "riteshh@codeaurora.org" <riteshh@codeaurora.org>,
+        "robh+dt@kernel.org"
+	<robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org"
+	<krzysztof.kozlowski+dt@linaro.org>
+CC: "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "asutoshd@codeaurora.org"
+	<asutoshd@codeaurora.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "briannorris@chromium.org"
+	<briannorris@chromium.org>,
+        "doug@schmorgal.com" <doug@schmorgal.com>,
+        "tonyhuang.sunplus@gmail.com" <tonyhuang.sunplus@gmail.com>,
+        "abel.vesa@linaro.org" <abel.vesa@linaro.org>,
+        "william.qiu@starfivetech.com"
+	<william.qiu@starfivetech.com>
+Subject: RE: [PATCH v7][2/4] mmc: Add Synopsys DesignWare mmc cmdq host driver
+Thread-Topic: [PATCH v7][2/4] mmc: Add Synopsys DesignWare mmc cmdq host
+ driver
+Thread-Index: AQHaHFq+bFd/3O/jHUaixlBEulhIvbCPjA6AgArwJkD//6DXgIAJ4hcQ
+Date: Mon, 11 Dec 2023 10:37:49 +0000
+Message-ID: <49d0b19c5ec741638e41ee6f970d057b@realtek.com>
+References: <20231121091101.5540-1-jyanchou@realtek.com>
+ <20231121091101.5540-3-jyanchou@realtek.com>
+ <655c5964-0917-4021-b254-7917b368b05f@intel.com>
+ <7b4b7219c2b6430b9c320c8d9ac1cc8b@realtek.com>
+ <8e7b6ac2-9d92-4f37-97c4-ae295f7cdbd4@intel.com>
+In-Reply-To: <8e7b6ac2-9d92-4f37-97c4-ae295f7cdbd4@intel.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+x-kse-serverinfo: RTEXMBS02.realtek.com.tw, 9
+x-kse-antispam-interceptor-info: fallback
+x-kse-antivirus-interceptor-info: fallback
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231206134655.559474-1-579lpy@gmail.com> <20231206135148.559564-1-579lpy@gmail.com>
- <ae0758f3-ccc5-49a2-a37a-42925f4b0944@linaro.org>
-In-Reply-To: <ae0758f3-ccc5-49a2-a37a-42925f4b0944@linaro.org>
-From: peiyu li <579lpy@gmail.com>
-Date: Mon, 11 Dec 2023 18:37:32 +0800
-Message-ID: <CAELPsEZEMY27wuQWKQJ5k1qyU9ZvsiT0Lqzqy-MJy69A4v5S_g@mail.gmail.com>
-Subject: Re: [PATCH v4 4/4] iio: humidity: Add TI HDC302x support
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, jic23@kernel.org
-Cc: Javier Carrasco <javier.carrasco.cruz@gmail.com>, lars@metafoo.de, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-KSE-AntiSpam-Interceptor-Info: fallback
 
-On Thu, Dec 7, 2023 at 2:42=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
-> > +---
-> > +$id: http://devicetree.org/schemas/iio/humidity/ti,hdc3020.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: HDC3020/HDC3021/HDC3022 humidity and temperature iio sensors
-> > +
-> > +maintainers:
-> > +  - Li peiyu <579lpy@gmail.com>
-> > +  - Javier Carrasco <javier.carrasco.cruz@gmail.com>
-> > +
-> > +description:
-> > +  https://www.ti.com/lit/ds/symlink/hdc3020.pdf
-> > +
-> > +  The HDC302x is an integrated capacitive based relative humidity (RH)
-> > +  and temperature sensor.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - items:
-> > +          - enum:
-> > +              - ti,hdc3021
-> > +              - ti,hdc3022
-> > +          - const: ti,hdc3020
-> > +      - items:
->
-> Drop items
-
-Does that mean just drop the "items" tag or drop the whole items with
-"- const: ti,hdc3020"?
-
-Thanks,
-Li peiyu
+SGkgQWRyaWFuLA0KDQo+Pj4+ICsNCj4+Pj4gK3N0YXRpYyBpcnFyZXR1cm5fdCBkd19tY2lfY3Fl
+X2ludGVycnVwdChpbnQgaXJxLCB2b2lkICpkZXZfaWQpIHsNCj4+Pj4gKyAgICAgc3RydWN0IGR3
+X21jaSAqaG9zdCA9IGRldl9pZDsNCj4+Pj4gKyAgICAgc3RydWN0IG1tY19ob3N0ICptbWMgPSBo
+b3N0LT5zbG90LT5tbWM7DQo+Pj4+ICsgICAgIHN0cnVjdCBjcWhjaV9ob3N0ICpjcV9ob3N0ID0g
+TlVMTDsNCj4+Pj4gKyAgICAgaW50IGNtZF9lcnJvciA9IDAsIGRhdGFfZXJyb3IgPSAwOw0KPj4+
+PiArDQo+Pj4+ICsgICAgIGlmIChob3N0LT5wZGF0YSAmJiAoaG9zdC0+cGRhdGEtPmNhcHMyICYg
+TU1DX0NBUDJfQ1FFKSkNCj4+Pj4gKyAgICAgICAgICAgICBjcV9ob3N0ID0gbW1jLT5jcWVfcHJp
+dmF0ZTsNCj4+Pj4gKw0KPj4+PiArICAgICBkd19tY2lfZ2V0X2ludChob3N0KTsNCj4+Pj4gKw0K
+Pj4+PiArICAgICBpZiAoaG9zdC0+cGRhdGEgJiYgKGhvc3QtPnBkYXRhLT5jYXBzMiAmIE1NQ19D
+QVAyX0NRRSkpIHsNCj4+Pj4gKyAgICAgICAgICAgICBpZiAoIW1tYy0+Y3FlX29uICYmICFjcV9o
+b3N0LT5hY3RpdmF0ZWQpDQo+Pj4NCj4+PiBTaG91bGRuJ3QgcmVhbGx5IGxvb2sgYXQgaW50ZXJu
+YWxzIGxpa2UgbW1jLT5jcWVfb24gb3IgY3FfaG9zdC0+YWN0aXZhdGVkLg0KPj4+IFRoZXJlIGFy
+ZSB0aGUgY3FoY2lfaG9zdF9vcHMgLT5lbmFibGUoKSBhbmQgLT5kaXNhYmxlKCkgY2FsbGJhY2tz
+IHRvDQo+Pj4ga2VlcCB0cmFjayBvZiB3aGV0aGVyIGNxaGNpIGlzIGV4cGVjdGluZyBpbnRlcnJ1
+cHRzLg0KPj4NCj4+IERvZXMgdGhpcyBtZWFucyB3ZSBuZWVkIHRvIHVzZSBjcWhjaV9ob3N0X29w
+cyAtPmVuYWJsZSgpIGFuZA0KPj4gLT5kaXNhYmxlKCkgY2FsbGJhY2tzIGluc3RlYWQgb2YgbW1j
+LT5jcWVfb24gJiYgIWNxX2hvc3QtPmFjdGl2YXRlZD8NCj5UaGFua3MuDQo+DQo+WWVzLiAgLT5l
+bmFibGUoKSBpcyBhbHdheXMgY2FsbGVkIGJlZm9yZSBjcWhjaSBvcGVyYXRpb24gYW5kIC0+ZGlz
+YWJsZSgpIGJlZm9yZQ0KPm5vbi1jcWhjaSBvcGVyYXRpb24sIHNvIHRoZXkgY2FuIGJlIHVzZWQg
+dG8gZGV0ZXJtaW5lIGlmIGFuIGludGVycnVwdCBpcyBmb3INCj5jcWhjaS4NCg0KVGhhbmtzIGZv
+ciB5b3VyIGFkdmljZSwgYW5kIEkgZ290IHlvdXIgcG9pbnQgZm9yIGNhbGxpbmcgY3FoY2lfaG9z
+dF9vcHMgLT5lbmFibGUoKQ0KDQphbmQgLT5kaXNhYmxlKCkgY2FsbGJhY2tzLCBidXQgdGhlIHJl
+YXNvbiB3ZSB1c2VkICIgaWYgKCFtbWMtPmNxZV9vbiAmJiAhY3FfaG9zdC0+YWN0aXZhdGVkKSAi
+DQoNCmlzIHRoYXQgd2hlbiBzZW5kaW5nIGNvbW1hbmQgbGlrZSBjbWQwLCAxLCA3LCA4Li4uIGlu
+IG1tY19pbml0X2NhcmQgYmVmb3JlIG1tY19jbWRxX2VuYWJsZSwNCg0Kd2UgbmVlZCB0byB1c2Ug
+aW50ZXJydXB0IGluIGxlZ2FjeSBtb2RlLCBpdCBpcyBtdWNoIGJldHRlciB0byB3cml0ZSBpbiB0
+aGlzIHdheT8NCg0KKwlldmVudHMgPSBtY2lfcmVhZHcoaG9zdCwgTk9STUFMX0lOVF9TVEFUX1Ip
+Ow0KLSAJaWYgKGhvc3QtPnBkYXRhICYmIChob3N0LT5wZGF0YS0+Y2FwczIgJiBNTUNfQ0FQMl9D
+UUUpKSB7DQotIAkJaWYgKCFtbWMtPmNxZV9vbiAmJiAhY3FfaG9zdC0+YWN0aXZhdGVkKQ0KKwlp
+ZiAobW1jLT5jYXBzMiAmIE1NQ19DQVAyX0NRRSkgew0KKwkJaWYgKCEoZXZlbnRzICYgQ1FFX0VW
+RU5UKSkNCgkJCWR3X21jaV9jbHJfc2lnbmFsX2ludChob3N0KTsNCg0KVXNpbmcgQ1FFX0VWRU5U
+IHRvIGRldGVybWluZSB3aGV0aGVyIENvbW1hbmQgUXVldWUgZW5hYmxlIG9yIG5vdC4NCg0KTWFu
+eSB0aGFua3MuDQoNCkJlc3QgUmVnYXJkcywNCkp5YW4NCg==
 
