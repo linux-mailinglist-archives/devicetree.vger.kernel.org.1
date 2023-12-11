@@ -1,113 +1,155 @@
-Return-Path: <devicetree+bounces-23690-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23691-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5079780C0A9
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 06:24:29 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD39280C0D0
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 06:47:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 80E371C20840
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 05:24:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 519EC1F20F0E
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 05:47:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC2B61CA9A;
-	Mon, 11 Dec 2023 05:24:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56E371CABE;
+	Mon, 11 Dec 2023 05:47:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="GvFI3s8/"
+	dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b="TTDV+tzN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E387FC3;
-	Sun, 10 Dec 2023 21:24:21 -0800 (PST)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BB3T42R013989;
-	Mon, 11 Dec 2023 05:24:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=BSoh5DNo4RPdGyiQXkB5TaMxmdd0nuO8yq4OLyw7zZc=; b=Gv
-	FI3s8/04Wgx5X2sQ/cRny7rUx9fJebDdVCWf/HXNZUOHRQ1U6fc6nmgDbr1CezRX
-	NL4/QrddtNjJfBEecbPYMHJLttgjV2gPTb16loRrwe2xGy30ftuBn1OrX0EHoAwp
-	xbS7/8n58eZqp9QPXOsiAW352wzKngMnpdMokLXFbvDpTCSbP9yF8VfJ4696XjpZ
-	zYvHeVAMq1tjpliY5rwoTM3Qxryjihv3Nzgl95QuUXRt35xMekzplYgbIXXFbrSA
-	WJi0PdJbMeCjBCDcV6PHDAldeg8KPgKA6iMW4ijkiUXlgagjJAs82GX3FpmT3OXz
-	evx06I+3ulw7JjGqXnbA==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uvnk5tb5c-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 11 Dec 2023 05:24:06 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BB5O58C017881
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 11 Dec 2023 05:24:05 GMT
-Received: from [10.216.5.30] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Sun, 10 Dec
- 2023 21:23:54 -0800
-Message-ID: <ff71793b-eab1-4dc2-b58a-fc2d34b2d0d9@quicinc.com>
-Date: Mon, 11 Dec 2023 10:53:49 +0530
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2077.outbound.protection.outlook.com [40.107.255.77])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1782D9;
+	Sun, 10 Dec 2023 21:47:36 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=NmZzyxwXJdSVxGAVncw6Ys3MeCCMkMyd09O6IvrVtMimEug/OjIyiTRHFXCGOFo5pgqC2+swsSnpmR1s7jTTr4Gf4cdJNl4dvsXuNBStXVflGH4JMvb9V6CYXj7D6XNiOQ11yDXwkRyv7ZXDu6sFz1ErImjtRm1Ht3O+/JA4woNy4RneCU4fPYOyoiN0ynKAQvM3rP2Xl8+3PFy7dp+UJ1/yr3M8lRewYUqE1jPoQHAp2py+wto9ejQk6CNzpzy/sEqFVxfl/NBFD6bhrhCuW6tZk6Lald7sdWNrsBFsQP7J6qa4mGc61p2UFEiuJiWAy/9pRb82FVNsx8KOqbzYJQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=QXxakjvTI779Au1LcBAD7L7pqq0cduo+wQstHyYpkt4=;
+ b=QARVwXfOJmPwFR8ZaubtB0MDvEQslThP0myv9N8+8FxxVgxefmeBRPdeY8NgEuXBlynEnbpXLoMTNoVK6GvDmrGa3vkLezf7U3yHor9Gwg1Rn/+LBLSSFv6SIKK58JuvgjOr9C4dC3FX/QqIlGKasBeo1uBZKHnm7E94Nck5R2t9g1vWrAymbW2VGBCXXDtBPekgajw6MOZTXXu7zf9M6WzZC512SjLI7UiQIcMBK+o1Qz1gtQ11a4XGVurRtPTHNz7Jv8n8UaGc2RZWxSN8Gwh53ngTRR7ZPKqJ9FR/RFNxc/WIa3pXBF6xnZVMqZ3UDE2mVTSx/oHARoLOajvIPw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 211.20.1.79) smtp.rcpttodomain=stwcx.xyz smtp.mailfrom=wiwynn.com; dmarc=fail
+ (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=wiwynn.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QXxakjvTI779Au1LcBAD7L7pqq0cduo+wQstHyYpkt4=;
+ b=TTDV+tzN6MOuhw0klg7p5Am+buZw14+rvtmhyR2WvUBTF+A0VYmNyP0uJE4FhxgAmQQmnQpQh7SbyAYc34gJQMOX0y07+wgRAVt4N04YFqhyt6xkq9G0ww/4w1tTdedq8maoG8NnTfnwQevQJ+8shPGzuVFwvrT1fDqD9E+wPa/+4mplZFfIS6zCquyMqYwaE3G+nWp1vUFffvXsc2e6fwUVf+BzjUXfIQyyVZ0FlU3+x96COtrWllOffPzWcK3kl2LVsSqs7qz2vi+IpGko1KzfOf1BsbiWR6mbUME8D4ljt/RwfPOMpoekqGZ7+x6u/etR8Hck7LeGlpQxy5h5AA==
+Received: from SG2PR02CA0049.apcprd02.prod.outlook.com (2603:1096:4:54::13) by
+ JH0PR04MB7071.apcprd04.prod.outlook.com (2603:1096:990:34::7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7068.32; Mon, 11 Dec 2023 05:47:33 +0000
+Received: from HK2PEPF00006FAF.apcprd02.prod.outlook.com
+ (2603:1096:4:54:cafe::6a) by SG2PR02CA0049.outlook.office365.com
+ (2603:1096:4:54::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.32 via Frontend
+ Transport; Mon, 11 Dec 2023 05:47:33 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
+ smtp.mailfrom=wiwynn.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=wiwynn.com;
+Received-SPF: Fail (protection.outlook.com: domain of wiwynn.com does not
+ designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
+ client-ip=211.20.1.79; helo=localhost.localdomain;
+Received: from localhost.localdomain (211.20.1.79) by
+ HK2PEPF00006FAF.mail.protection.outlook.com (10.167.8.5) with Microsoft SMTP
+ Server id 15.20.7091.18 via Frontend Transport; Mon, 11 Dec 2023 05:47:32
+ +0000
+From: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+To: patrick@stwcx.xyz
+Cc: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 00/14] Add i2c-mux and eeprom devices for Meta Yosemite 4
+Date: Mon, 11 Dec 2023 13:47:15 +0800
+Message-Id: <20231211054730.208588-1-Delphine_CC_Chiu@wiwynn.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v4 1/3] dt-bindings: net: qcom,ethqos: add
- binding doc for safety IRQ for sa8775p
-Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-        "David S. Miller"
-	<davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
-	<kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu
-	<joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>, <netdev@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Prasad Sodagudi
-	<psodagud@quicinc.com>,
-        Andrew Halaney <ahalaney@redhat.com>
-CC: <kernel@quicinc.com>
-References: <cover.1701939695.git.quic_jsuraj@quicinc.com>
- <87bdedf3c752d339bf7f45a631aa8d5bf5d07763.1701939695.git.quic_jsuraj@quicinc.com>
- <0af91794-69d6-459a-8566-c8c408489f2b@linaro.org>
-From: Suraj Jaiswal <quic_jsuraj@quicinc.com>
-In-Reply-To: <0af91794-69d6-459a-8566-c8c408489f2b@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Os34XW_GzOcrfJPdr_qXjunD5rB5DdhM
-X-Proofpoint-GUID: Os34XW_GzOcrfJPdr_qXjunD5rB5DdhM
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=731
- priorityscore=1501 malwarescore=0 spamscore=0 mlxscore=0
- lowpriorityscore=0 clxscore=1015 adultscore=0 phishscore=0 impostorscore=0
- suspectscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2312110042
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: HK2PEPF00006FAF:EE_|JH0PR04MB7071:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 506195b1-7c89-4d98-f291-08dbfa0cab7a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	LKt4lEXifW/cSuH6/KQrV/7F6lcP3/TBN+K12/lh+1UaLopFt1/n2Q2JsnvEB+aSayikuoPlekOaP4nHhGP29+Vserx+kTYn9rWgnUtujJ2p9zitIol/xd0A9sT5L2DgAA51jHGN3pdsO2oPLiSLG+kMZS9URaKz0U6TVD3Aoqvz5EABQjbq8X/IcicDZnqQ2BYqQ3fY6F7GcTaQNBImLjXExMkIt4b7fyXdrpL4vI0Tdv2DdQ9oIZ3FBI6dlgG++nX/ErxTQMsq19ncqofh2ItHLWWzJ4rxsPemq//1QAByKAXyRSX5xi+8f3zDAu/KwZq0mP1JxFpfMw2i3IgaHCRDemzJDebOjSmmeoI1xelzcTjsBsBx8Vf+Hd+bHzLtEZSu8sgUoZlYaL2N6F64zjo1fCAgafsbmoVhX62VaKsfV5lGgouCiwT5KTqDbiu7Q7uAN/yNfP7FSWBGP6TEthtH9cry7zv1gq9qOqaoIHfgIEdWHt0/wuicxRSNIkjFPYVAjIvnZQ2CtZJqRO1zHCRbZGWglfFelYucwMq3T0PxNPw8C3gWSapZ2p5IT0QyiHyyANkCSHPD6przUnZ4OBpiGcU+tKxg7eNeXNqnGOmnZoTDjcnCborFOcj675OYDkE+bvMQTBZPckoO2KI6bxy3jK4aatdwTaGnqjqQTO1J59c0qfmiuBek0B6saUIg6eJvSnADNAFUHoTFel339Q==
+X-Forefront-Antispam-Report:
+	CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230031)(6069001)(4636009)(376002)(396003)(346002)(136003)(39850400004)(230922051799003)(64100799003)(1800799012)(186009)(82310400011)(451199024)(46966006)(36840700001)(86362001)(316002)(36736006)(356005)(40480700001)(82740400003)(81166007)(36860700001)(47076005)(41300700001)(336012)(26005)(83380400001)(956004)(2616005)(1076003)(6486002)(6512007)(6506007)(36756003)(6666004)(2906002)(478600001)(7416002)(70586007)(70206006)(6916009)(54906003)(8936002)(4326008)(9316004)(8676002)(5660300002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: wiwynn.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2023 05:47:32.4382
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 506195b1-7c89-4d98-f291-08dbfa0cab7a
+X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
+X-MS-Exchange-CrossTenant-AuthSource:
+	HK2PEPF00006FAF.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR04MB7071
 
-Sure . will expand below .
+Changelog:
+  - v3
+    - Correct patch for revising gpio name
+  - v2
+    - Revise mx31790 fan tach config
+    - Add mctp config for NIC
+    - Support mux to cpld
+    - Revise gpio name
+  - v1
+    - Add gpio and eeprom behind i2c-mux
+    - Remove redundant idle-state setting for i2c-mux
+    - Enable adc 15, wdt2,spi gpio for yosemite4 use
+    - Revise quad mode to dual mode to avoid WP pin influnece the SPI
+    - Revise power sensor adm1281 for yosemite4 schematic change
+    - Add gpio pca9506 I/O expander for yosemite4 use
+    - remove space for adm1272 compatible
+    - enable interrupt setting for pca9555
+    - add eeprom for yosemite4 medusa board/BSM use
+    - remove temperature sensor for yosemite4 schematic change
+    - add power sensor for power module reading
+    - Revise adc128d818 adc mode for yosemite4 schematic change
+    - Revise ina233 for yosemite4 schematic change
+    - Remove idle state setting for yosemite4 NIC connection
+    - Initialize bmc gpio state
+    - Revise mx31790 fan tach config
+    - Add mctp config for NIC
+    - Support mux to cpld
+    - Revise gpio name
 
+Delphine CC Chiu (14):
+  ARM: dts: aspeed: yosemite4: Revise i2c-mux devices
+  ARM: dts: aspeed: yosemite4: Enable adc15
+  ARM: dts: aspeed: yosemite4: Enable spi-gpio setting
+  ARM: dts: aspeed: yosemite4: Enable watchdog2
+  ARM: dts: aspeed: yosemite4: Revise quad mode to dual mode
+  ARM: dts: aspeed: yosemite4: Revise power sensor adm1281 for schematic
+    change
+  ARM: dts: aspeed: yosemite4: Add gpio pca9506
+  ARM: dts: aspeed: yosemite4: Revise i2c11 and i2c12 schematic change
+  ARM: dts: aspeed: yosemite4: Revise i2c14 and i2c15 schematic change
+  ARM: dts: aspeed: yosemite4: Initialize bmc gpio state
+  ARM: dts: aspeed: yosemite4: Revise mx31790 fan tach config
+  ARM: dts: aspeed: yosemite4: add mctp config for NIC
+  ARM: dts: aspeed: yosemite4: support mux to cpld
+  ARM: dts: aspeed: yosemite4: Revise gpio name
 
-On 12/9/2023 11:17 PM, Konrad Dybcio wrote:
-> On 7.12.2023 10:21, Suraj Jaiswal wrote:
->> Add binding doc for safety IRQ. The safety IRQ will be
->> triggered for ECC, DPP, FSM error.
-> ECC is widely understood, but the DPP and FSM acronyms could be
-> expanded..
-> 
-> Konrad
+ .../aspeed/aspeed-bmc-facebook-yosemite4.dts  | 1215 +++++++++++++++--
+ 1 file changed, 1091 insertions(+), 124 deletions(-)
+
+-- 
+2.25.1
+
 
