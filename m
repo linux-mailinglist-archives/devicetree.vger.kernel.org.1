@@ -1,133 +1,167 @@
-Return-Path: <devicetree+bounces-23722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 472C980C25C
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 08:49:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72B8D80C265
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 08:53:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 763091C208A7
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 07:49:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1D4821F20F0B
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 07:53:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72FC5208D3;
-	Mon, 11 Dec 2023 07:49:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53B9C208DE;
+	Mon, 11 Dec 2023 07:53:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="Mp5ZAgZF"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="fubGD19R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05654FD;
-	Sun, 10 Dec 2023 23:49:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1702280979; x=1733816979;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=nfzaV3vxtQAyCNR+jzMcM2jLOcbWTkwcukLDVw5CIyg=;
-  b=Mp5ZAgZFQ/8wEASqX3LMiyEOC3Cn7R+/943BHWWRZN2W8J7T6D1BGvy8
-   Ei0HULTG6vphONKW29Pqgs+1RIchC7Ojq4ETs91HELZdkr6trPKFf7Mm7
-   iPC1HiYUFzjdHElITLdVJu/v59fQMKhrYbWj1gX5EExo1UdVQRYWyMX2F
-   JthsrMjR24vsoKlEn5NdECC2Gs/PDeMjQm+ynScTevY/hIlAXKx2USTgF
-   WkS9gZuMnkKbY5kwxK5na41gAHF08VhDDPYiQeJawvW4a9DmmleZgwMY5
-   OSYLoX6lhXthmNZDGnSLHGA/lGQ+uY+hEneJQv+4XCk6M4FHYmoER1chM
-   w==;
-X-IronPort-AV: E=Sophos;i="6.04,267,1695679200"; 
-   d="scan'208";a="34423846"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 11 Dec 2023 08:49:36 +0100
-Received: from steina-w.localnet (steina-w.tq-net.de [10.123.53.18])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 88432280075;
-	Mon, 11 Dec 2023 08:49:36 +0100 (CET)
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, Paul Elder <paul.elder@ideasonboard.com>
-Cc: kieran.bingham@ideasonboard.com, tomi.valkeinen@ideasonboard.com, umang.jain@ideasonboard.com, aford173@gmail.com, Paul Elder <paul.elder@ideasonboard.com>
-Subject: Re: [PATCH v4 00/11] media: rkisp1: Add support for i.MX8MP
-Date: Mon, 11 Dec 2023 08:49:37 +0100
-Message-ID: <5998504.lOV4Wx5bFT@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <5184188.e9J7NaK4W3@steina-w>
-References: <20231129092759.242641-1-paul.elder@ideasonboard.com> <5184188.e9J7NaK4W3@steina-w>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D93A208A2;
+	Mon, 11 Dec 2023 07:53:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09D9FC433C8;
+	Mon, 11 Dec 2023 07:53:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1702281206;
+	bh=V8JRc6Ds9R+nfWjTNmn6P57m/pgKhuSAd3+p3IiUTT4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fubGD19Rqj07XtqVgVZ6xm8zGDYR07xLruxRhpoH5eLvvyRCAy1xkVpGg1149abmV
+	 AjJ15TJVSbNY0hc56DN2vB1wbdkNy+74/e0KrBFBOARyWBtokCrEJfYDzD5j5sv60P
+	 63w1MiZyTaHPxJ+93eNNz4AuiP6zbZX5Nct8nHTc=
+Date: Mon, 11 Dec 2023 08:53:24 +0100
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Xinhu Wu <xinhu.wu@unisoc.com>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, orsonzhai@gmail.com,
+	baolin.wang@linux.alibaba.com, zhang.lyra@gmail.com,
+	heikki.krogerus@linux.intel.com, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	xinhuwu.unisoc@gmail.com, zhiyong.liu@unisoc.com,
+	peak.yang@unisoc.com, teng.zhang1@unisoc.com, bruce.chen@unisoc.com,
+	surong.pang@unisoc.com, xingxing.luo@unisoc.com
+Subject: Re: [PATCH V2 1/2] usb: typec: Support sprd_pmic_typec driver
+Message-ID: <2023121122-jelly-password-6eac@gregkh>
+References: <20231211074120.27958-1-xinhu.wu@unisoc.com>
+ <20231211074120.27958-2-xinhu.wu@unisoc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231211074120.27958-2-xinhu.wu@unisoc.com>
 
-Hi,
+On Mon, Dec 11, 2023 at 03:41:19PM +0800, Xinhu Wu wrote:
+> +config TYPEC_SPRD_PMIC
+> +	tristate "SPRD Serials PMICs Typec Controller"
+> +	help
+> +	  Say Y or M here if your system has a SPRD PMIC Type-C port controller.
+> +
+> +	  If you choose to build this driver as a dynamically linked module, the
+> +	  module will be called sprd_pmic_typec.ko.
+> +	  SPRD_PMIC_TYPEC notify usb, phy, charger, and analog audio to proceed
+> +	  with work
 
-Am Mittwoch, 29. November 2023, 11:58:39 CET schrieb Alexander Stein:
-> Hi Paul,
->=20
-> thanks for the series.
->=20
-> Am Mittwoch, 29. November 2023, 10:27:48 CET schrieb Paul Elder:
-> > This series extends the rkisp1 driver to support the ISP found in the
-> > NXP i.MX8MP SoC.
-> >=20
-> > The ISP IP cores in the Rockchip RK3399 (known as the "Rockchip ISP1")
-> > and in the NXP i.MX8MP have the same origin, and have slightly diverged
-> > over time as they are now independently developed (afaik) by Rockchip
-> > and VeriSilicon. The latter is marketed under the name "ISP8000Nano",
-> > and is close enough to the RK3399 ISP that it can easily be supported by
-> > the same driver.
-> >=20
-> > The last two patches add support for UYVY output format, which can be
-> > implemented on the ISP version in the i.MX8MP but not in the one in the
-> > RK3399.
-> >=20
-> > This version of the series specifically has been tested on a Polyhex
-> > Debix model A with an imx219 (Raspberry Pi cam v2).
->=20
-> I've created a setup on TQMa8MPxL/MBa8MPxL and a Sony IMX327 sensor for a
-> while now. I can stream 1080p video at 45 FPS to HDMI output without any
-> special configuration.
+I do not understand these last two lines, are you sure they are correct?
 
-Just for the records. the 45 FPS limit is introduced by (HDMI) output. Usin=
-g a=20
-gstreamer testsink "outpu", I can run at 60 FPS.
+> +
+> +
 
-Best regards,
-Alexander
-
-> Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
->=20
-> > Laurent Pinchart (2):
-> >   media: rkisp1: Add and use rkisp1_has_feature() macro
-> >   media: rkisp1: Configure gasket on i.MX8MP
-> >=20
-> > Paul Elder (9):
-> >   media: rkisp1: Support setting memory stride for main path
-> >   media: rkisp1: Support devices lacking self path
-> >   media: rkisp1: Support devices lacking dual crop
-> >   media: rkisp1: Fix RSZ_CTRL bits for i.MX8MP
-> >   dt-bindings: media: rkisp1: Add i.MX8MP ISP to compatible
-> >   media: rkisp1: Add match data for i.MX8MP ISP
-> >   media: rkisp1: Shift DMA buffer addresses on i.MX8MP
-> >   media: rkisp1: Add YC swap capability
-> >   media: rkisp1: Add UYVY as an output format
-> > =20
-> >  .../bindings/media/rockchip-isp1.yaml         |  37 ++++-
-> >  .../platform/rockchip/rkisp1/rkisp1-capture.c | 128 ++++++++++++-----
-> >  .../platform/rockchip/rkisp1/rkisp1-common.h  |  35 ++++-
-> >  .../platform/rockchip/rkisp1/rkisp1-dev.c     |  66 +++++++--
-> >  .../platform/rockchip/rkisp1/rkisp1-isp.c     | 131 +++++++++++++++++-
-> >  .../platform/rockchip/rkisp1/rkisp1-regs.h    |  32 +++++
-> >  .../platform/rockchip/rkisp1/rkisp1-resizer.c |  27 ++--
-> >  include/uapi/linux/rkisp1-config.h            |   2 +
-> >  8 files changed, 398 insertions(+), 60 deletions(-)
+Nit, only one blank line is needed here.
 
 
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+> +static irqreturn_t sprd_pmic_typec_interrupt(int irq, void *data)
+> +{
+> +	struct sprd_pmic_typec *sc = data;
+> +	u32 event;
+> +	int ret;
+> +
+> +	dev_info(sc->dev, "%s enter line %d\n", __func__, __LINE__);
 
+debugging information?  Please remove.
 
+> +	ret = regmap_read(sc->regmap, sc->base + SC27XX_INT_MASK, &event);
+> +	if (ret)
+> +		return ret;
+> +
+> +	event &= sc->var_data->event_mask;
+> +
+> +	ret = regmap_read(sc->regmap, sc->base + SC27XX_STATUS, &sc->state);
+> +	if (ret)
+> +		goto clear_ints;
+> +
+> +	sc->state &= sc->var_data->state_mask;
+> +
+> +	if (event & SC27XX_ATTACH_INT) {
+> +		ret = sprd_pmic_typec_connect(sc, sc->state);
+> +		if (ret)
+> +			dev_warn(sc->dev, "failed to register partner\n");
+> +	} else if (event & SC27XX_DETACH_INT) {
+> +		sprd_pmic_typec_disconnect(sc, sc->state);
+> +	}
+> +
+> +clear_ints:
+> +	regmap_write(sc->regmap, sc->base + sc->var_data->int_clr, event);
+> +
+> +	dev_info(sc->dev, "now works as DRP and is in %d state, event %d\n",
+> +		sc->state, event);
+
+When drivers work properly, they are quiet, please never spam the kernel
+log for normal operations.
+
+> +static ssize_t
+> +sprd_pmic_typec_cc_polarity_role_show(struct device *dev, struct device_attribute *attr,
+> +		char *buf)
+> +{
+> +	struct sprd_pmic_typec *sc = dev_get_drvdata(dev);
+> +
+> +	return snprintf(buf, 5, "%s\n", sprd_pmic_typec_cc_polarity_roles[sc->cc_polarity]);
+
+sysfs_emit() please.
+
+> +}
+> +static DEVICE_ATTR_RO(sprd_pmic_typec_cc_polarity_role);
+
+Where is this new sysfs file documented?
+
+> +	ret = sysfs_create_groups(&sc->dev->kobj, sprd_pmic_typec_groups);
+
+You just raced with userspace and lost, and better yet:
+
+> +	if (ret < 0)
+> +		dev_err(sc->dev, "failed to create cc_polarity %d\n", ret);
+
+You do not even clean up properly here.
+
+Please use the default groups for the driver and it should work just
+fine.
+
+> +	ret = sprd_pmic_typec_set_rtrim(sc);
+> +	if (ret < 0) {
+> +		dev_err(sc->dev, "failed to set typec rtrim %d\n", ret);
+> +		goto error;
+> +	}
+> +
+> +	ret = devm_request_threaded_irq(sc->dev, sc->irq, NULL,
+> +					sprd_pmic_typec_interrupt,
+> +					IRQF_EARLY_RESUME | IRQF_ONESHOT,
+> +					dev_name(sc->dev), sc);
+
+Are you sure you can use devm_() here?
+
+> +static int sprd_pmic_typec_remove(struct platform_device *pdev)
+> +{
+> +	struct sprd_pmic_typec *sc = platform_get_drvdata(pdev);
+> +
+> +	sysfs_remove_groups(&sc->dev->kobj, sprd_pmic_typec_groups);
+
+Again, should not be needed if you use the default groups of the
+platform driver.
+
+thanks,
+
+greg k-h
 
