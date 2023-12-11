@@ -1,104 +1,109 @@
-Return-Path: <devicetree+bounces-23901-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23900-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94FFD80CA57
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 14:00:15 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EAFE80CA56
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 14:00:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4EFDC281CDA
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 13:00:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2424FB20F01
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 13:00:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 898E63D389;
-	Mon, 11 Dec 2023 13:00:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="UmL/T4PV"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E92193D385;
+	Mon, 11 Dec 2023 13:00:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92704AF;
-	Mon, 11 Dec 2023 05:00:05 -0800 (PST)
-Received: from umang.jain (unknown [103.251.226.68])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 4DE6D922;
-	Mon, 11 Dec 2023 13:59:17 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1702299559;
-	bh=WTcqtedw6uyiI/7EwNje1R8hFvkCGvnX3Wg05wUWeOQ=;
-	h=From:To:Cc:Subject:Date:From;
-	b=UmL/T4PVqkf4QlJUW9289S86Uzf9h1KP3mdch5XlkM6EWzuP7qXBXk7sFK6MacrbC
-	 cdjaKvGWt0PzpVSBa2Gm83TxNxCEONc7KPyr7zVTdGGN1IJmI+l/xVmdoChsYhL/4M
-	 jb0iJaiEq6VqAZLICcNRGBG0f8829yZtZeRDhV1g=
-From: Umang Jain <umang.jain@ideasonboard.com>
-To: devicetree@vger.kernel.org,
-	linux-media@vger.kernel.org
-Cc: "Paul J . Murphy" <paul.j.murphy@intel.com>,
-	Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Umang Jain <umang.jain@ideasonboard.com>
-Subject: [PATCH v4 0/7] media: Sony IMX335 improvements
-Date: Mon, 11 Dec 2023 18:29:42 +0530
-Message-ID: <20231211125950.108092-1-umang.jain@ideasonboard.com>
-X-Mailer: git-send-email 2.41.0
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 121F0B8;
+	Mon, 11 Dec 2023 04:59:57 -0800 (PST)
+Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-dbc1efc23f7so3431329276.2;
+        Mon, 11 Dec 2023 04:59:57 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702299596; x=1702904396;
+        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0C2ieL1JqrNcU7KA76mZIHd+67WjieYCcgN34Ch4tRg=;
+        b=FH4rOogtiFI21jaPdLT7B+4y71ezdjgwwk6omSwfJWJYHUUqjpI00R8ga8rlTTJiCt
+         4j+qHmPK/W1NOAaTlWci0Kw+3VeEJMe1BF4xMxTtq4Deqr9LLE7cp9ud/eeFGOW5xBFe
+         Z6BHYooU+Bf4PPfYUokFcmORzKmOeEH/CuGfsWJowQg5UNpGnxnQgSmrnXkIhiahPi4C
+         YuWkrLDEN5BGXcSrwHsRiJUUwRP1V47f39Iqaf3UGojjrnabsMXSR/hu9Vh6GOC9Jq9a
+         N/cye9PzwsHEv7lwh/qQfQqg7Dul4XcTvgILHQl5njn3TwYXKzuwLJCpBJdFlHZdQvHV
+         nvfQ==
+X-Gm-Message-State: AOJu0YwkEuJCOerSlXEdRoWu04J79IISLX8H1/k0T/+jWf8BBo/T2wgK
+	WJbnVGHTm5S0SQ3ZsPyT0nt4wKAlZY5scA==
+X-Google-Smtp-Source: AGHT+IGcGTlztEh1npgsyKNR9Ju4JSAHZ7JnUI0dtAnaXLlJPaoNk6nJhg9yKysPNGVVuSRJD9Fuew==
+X-Received: by 2002:a05:6902:150:b0:db9:6ad7:1abb with SMTP id p16-20020a056902015000b00db96ad71abbmr2408972ybh.12.1702299596074;
+        Mon, 11 Dec 2023 04:59:56 -0800 (PST)
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com. [209.85.219.171])
+        by smtp.gmail.com with ESMTPSA id a12-20020a25938c000000b00d9ac1f0e23csm2469641ybm.56.2023.12.11.04.59.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Dec 2023 04:59:55 -0800 (PST)
+Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-da077db5145so3458878276.0;
+        Mon, 11 Dec 2023 04:59:55 -0800 (PST)
+X-Received: by 2002:a25:6b4d:0:b0:db4:25b7:5f8b with SMTP id
+ o13-20020a256b4d000000b00db425b75f8bmr2070527ybm.63.1702299595000; Mon, 11
+ Dec 2023 04:59:55 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 11 Dec 2023 13:59:43 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUqbbjRpkStD7JGQ0r9hfR-sgx23FKGDASofX87AzaEcA@mail.gmail.com>
+Message-ID: <CAMuHMdUqbbjRpkStD7JGQ0r9hfR-sgx23FKGDASofX87AzaEcA@mail.gmail.com>
+Subject: dt-validate crash on <foo>-gpio
+To: Rob Herring <robh+dt@kernel.org>
+Cc: "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
+	Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
-The Sony IMX335 is not yet compatible with libcamera, as it is missing
-the get selection API call.
+Hi Rob,
 
-It also misses a way to describe how to power on the sensor.
+When running "make dtbs_check" on a DTB in the Renesas BSP, I ran into
+the following backtrace:
 
-Now that I've got this camera functioning on Debix-SOM and Pi5, I expect
-to be able to do quite a bit more cleanup to the code here. But these
-patches should already be valid for consideration.
+    Traceback (most recent call last):
+      File "dt-validate", line 8, in <module>
+        sys.exit(main())
+      File "dt-schema/dtschema/dtb_validate.py", line 144, in main
+        sg.check_dtb(filename)
+      File "dt-schema/dtschema/dtb_validate.py", line 87, in check_dtb
+        dt = self.validator.decode_dtb(f.read())
+      File "dt-schema/dtschema/validator.py", line 491, in decode_dtb
+        return [dtschema.dtb.fdt_unflatten(self, dtb)]
+      File "dt-schema/dtschema/dtb.py", line 483, in fdt_unflatten
+        fixup_gpios(dt)
+      File "dt-schema/dtschema/dtb.py", line 373, in fixup_gpios
+        fixup_gpios(v)
+      File "dt-schema/dtschema/dtb.py", line 373, in fixup_gpios
+        fixup_gpios(v)
+      File "dt-schema/dtschema/dtb.py", line 373, in fixup_gpios
+        fixup_gpios(v)
+      File "dt-schema/dtschema/dtb.py", line 378, in fixup_gpios
+        val = v[0]
+    TypeError: 'bool' object is not subscriptable
 
-The series provides the bindings required to reference the power
-supplies, and then performs some initial clean up to the driver for
-error reporting before adding the regulator enablement, implementing the
-get_selection api (as well as set selection, which returns the static
-configuration) and restricts the hblanking to match the configuration.
+Turns out the issue is triggered by the presence of a (non-documented)
+boolean "no-use-gpio" property.
 
-v4:
- - Fixed kernel test bot warning in Patch 7/7:
-   drivers/media/i2c/imx335.c:160: warning: Function parameter or member 'cur_mbus_code' not described in 'imx335'
- - Dropped "[PATCH v3 8/8] media: i2c: imx335: Support multiple link frequency"
-   from series, as the general timing register should also be programmed in
-   conjunction (which was missing). Currently under investigation, will
-   be posted as separate patch.
+Apparently anything that matches "*-gpio" is treated as having a list of
+GPIO specifiers, causing a crash if that does not turn out to be true...
+While the introduction of a "no-use-gpio" boolean property might not
+survive public review, it would be good if the tooling wouldn't crash
+on it.
 
-v3:
- - Remove #define and use ARRAY_SIZE(imx335_supply_name) directly in 4/8
- - Add two new patches for 10-bit mode(7/8) and multiple link frequency
-   support(8/8)
+Thanks!
 
-v2:
- - Supplies are no longer 'required'
- - media: i2c: imx335: Fix logging line endings - New patch
- - line endings are fixed
- - error paths are handled for the regulator in imx335_power_on
- - set_selection is defined alongside get_selection
+Gr{oetje,eeting}s,
 
-Kieran Bingham (6):
-  media: dt-bindings: media: imx335: Add supply bindings
-  media: i2c: imx335: Fix logging line endings
-  media: i2c: imx335: Improve configuration error reporting
-  media: i2c: imx335: Enable regulator supplies
-  media: i2c: imx335: Implement get selection API
-  media: i2c: imx335: Fix hblank min/max values
-
-Umang Jain (1):
-  media: i2c: imx335: Support 2592x1940 10-bit mode
-
- .../bindings/media/i2c/sony,imx335.yaml       |  13 ++
- drivers/media/i2c/imx335.c                    | 211 +++++++++++++++---
- 2 files changed, 191 insertions(+), 33 deletions(-)
+                        Geert
 
 -- 
-2.41.0
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
