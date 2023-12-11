@@ -1,143 +1,172 @@
-Return-Path: <devicetree+bounces-24072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24073-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B93980DD9D
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 22:55:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9C8280DDAF
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 22:59:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CB3C31F21497
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 21:55:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E023282559
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 21:59:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DAC654FB6;
-	Mon, 11 Dec 2023 21:55:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A09DE55763;
+	Mon, 11 Dec 2023 21:59:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dHF7Ptiu"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="Qo4c+GTa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15DFAC3
-	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 13:55:02 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-40c2bb872e2so46365905e9.3
-        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 13:55:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702331700; x=1702936500; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7mgP/kJVA/ZYImcB08xx+XPAry/0hMKTQ2XL6BrYUkk=;
-        b=dHF7PtiuKltvmOBV3Oh+cJ9HpJaw/2mh8IVUg+dA2ioSlLBdALVic5NEUg4RKlE41a
-         fuEOeWiAgIf2PTuTOxbfRNi1vYtwWS9P0LS7HTBXLYqi21k296yOUc9WEPkiYvA1TUd8
-         0of6ot4Pwb6X1MEHZ+lOSI11EzAt8g3tphYYbdLfGbJKB40VFSSmBNtaCIdS/UMK9AId
-         4QOoZ9bCERa8kf610fR+ITh3Qqdlm6wg0weqNoKhcWhKNZT7dMLn3hrrHk+GI8EY1QLd
-         3ZhGCeMncM2U2tz4MK6PKcpGd+2BebqZeXlHAAru2nngwzcNOZqc2f3gRvJTvC+TRFPJ
-         95Sg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702331700; x=1702936500;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7mgP/kJVA/ZYImcB08xx+XPAry/0hMKTQ2XL6BrYUkk=;
-        b=O6p6Oz5JrhdHi7ngysjhPbUMAwbmT8Pumr8RdB3I18ULrr5qW6mokiUjAin+luViIX
-         QD4X8GrdqR1XicGSIGGbBbk2itOozZFK/9y/B7k89IBY3nobYmpSaopLWmbYkK6Jiz2x
-         cO3xV8bCuFpkCviwutka0lyzmgQrYJGwiY879hhs+bFpn+f+KTJRO7YGaVBulTf3etpB
-         LJi8raZLNv+IV7LwzANSO55D17wY6taUwWUh+HGItlqKxD2RlSkYXDvbxkzm9uagZL9g
-         p02WiXHzaTlmDp5fhgsKM0IxyaDkaePAlab8+zoqBBT0OMB6TKRo5tPXxGIKZI+a4Kga
-         EGlg==
-X-Gm-Message-State: AOJu0YxAAeVOxuO96712G/gSWeOUuL+7tAp2+RNSjFDGhf0+ASqhprAq
-	UIi2nvxBVqgmNrxD40uR7Xw+3g==
-X-Google-Smtp-Source: AGHT+IHNC4G2fIyJOuc3vJxwekzI61Uf29+D39emIUtTIUV20K6KsGCCqtTyNl60lX4ZdCdrRJ5rWg==
-X-Received: by 2002:a05:600c:25a:b0:40c:3e5d:e801 with SMTP id 26-20020a05600c025a00b0040c3e5de801mr1074692wmj.148.1702331700431;
-        Mon, 11 Dec 2023 13:55:00 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id g17-20020a05600c311100b0040c4535f1a2sm6256366wmo.39.2023.12.11.13.54.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Dec 2023 13:54:59 -0800 (PST)
-Message-ID: <42e5e092-37fb-4425-9684-8ee6441391fc@linaro.org>
-Date: Mon, 11 Dec 2023 22:54:58 +0100
+Received: from EUR02-VI1-obe.outbound.protection.outlook.com (mail-vi1eur02on2075.outbound.protection.outlook.com [40.107.241.75])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 964DBA1;
+	Mon, 11 Dec 2023 13:59:27 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=L1SFcMxq5kj0fLeqW1j0+PviXvg/qrw7S7N66Zv6X/G8sYLU5Cwax8vA83lwJNbUHaAFEe1Cwl6KUO9i2mBUHrPrSrF/Lk3G0vUoZhfeqJaZ79FstzVTd6Fm8cwEg50fPNr6NxWNDgiXCxHGs29hXDf/s9SjgMXynC9JsqdVURScG/Efg8BxXrF7EPVnwBURhNiyNNvGwPgMih9Unk2/bZQ71bUz251oVtY6uDeTWW3bbaN4Zyuid+MkrFdJnbwduby5AqAzz/37C9enYYRCyn6/sN4Ay9r9O+iGq1sNjJlq+ueEB7hGBRTU8Q50sZ1vZNFVEc6pSt0jRODE9Y9syA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=nkPmbDvnpjyM31CpLAYNJzBvlFlaahKGd2OBOlmTQMM=;
+ b=H3cTEWSRffUVgxW6rdGSzXcPiRYimWnAW2OG9ZE8qbUYwl2IcLE0xha28McNSgFnqV/DV8BYzY8Lf+ASrDwTmh2vizrZbi6OukLcoeG96MTpn4Sf0SBdKXLy8EhduN8xe1bdNCEIg6qHb2HE6k0aeZiUwvpl/3yRA95fABsYPnv3quXYobnU1/bHGhsR5owDp1mN4xjqeQ8I/xfEATQUCqiA/cJW3CHwdSkK8xvRewIf+VvcmO+ok/BT0eXkZMfMfh0Cy8O25/XwCY7U8jHGqx7OV65XDLVVB6R7q4reXGONxXoHBbYabpCPD/VAvGWuCUwKbJ/3zRU2ZmFkaAgBwQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nkPmbDvnpjyM31CpLAYNJzBvlFlaahKGd2OBOlmTQMM=;
+ b=Qo4c+GTac0R/M8iI221I+gPbKDswFzxfgGJZEhZ78VfWo8CIuJurpKpa859+L+seBO04Fe7b5OSIdACAomlsDHmzwJiCjKlRTZSUl/wU6AWkfRcZV1j2LWjNHfrjuHoZc9boUCrqwguwSd0/K4KWpDrqYU/B/VSP2726Ptppdgk=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from VI1PR04MB4845.eurprd04.prod.outlook.com (2603:10a6:803:51::30)
+ by AM9PR04MB7569.eurprd04.prod.outlook.com (2603:10a6:20b:2d8::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.33; Mon, 11 Dec
+ 2023 21:59:24 +0000
+Received: from VI1PR04MB4845.eurprd04.prod.outlook.com
+ ([fe80::dfaa:e869:45eb:76e5]) by VI1PR04MB4845.eurprd04.prod.outlook.com
+ ([fe80::dfaa:e869:45eb:76e5%6]) with mapi id 15.20.7068.031; Mon, 11 Dec 2023
+ 21:59:18 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: frank.li@nxp.com
+Cc: bhelgaas@google.com,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	festevam@gmail.com,
+	helgaas@kernel.org,
+	hongxing.zhu@nxp.com,
+	imx@lists.linux.dev,
+	kernel@pengutronix.de,
+	krzysztof.kozlowski+dt@linaro.org,
+	kw@linux.com,
+	l.stach@pengutronix.de,
+	linux-arm-kernel@lists.infradead.org,
+	linux-imx@nxp.com,
+	linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	lpieralisi@kernel.org,
+	manivannan.sadhasivam@linaro.org,
+	robh@kernel.org,
+	s.hauer@pengutronix.de,
+	shawnguo@kernel.org
+Subject: [PATCH v3 00/13] PCI: imx6: Clean up and add imx95 pci support
+Date: Mon, 11 Dec 2023 16:58:29 -0500
+Message-Id: <20231211215842.134823-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR03CA0009.namprd03.prod.outlook.com
+ (2603:10b6:a03:33a::14) To VI1PR04MB4845.eurprd04.prod.outlook.com
+ (2603:10a6:803:51::30)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/9] dt-bindings: display: msm: dp: declare compatible
- string for sm8150
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Clark <robdclark@gmail.com>,
- Sean Paul <sean@poorly.run>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Stephen Boyd <swboyd@chromium.org>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org
-References: <20231209232132.3580045-1-dmitry.baryshkov@linaro.org>
- <20231209232132.3580045-2-dmitry.baryshkov@linaro.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231209232132.3580045-2-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VI1PR04MB4845:EE_|AM9PR04MB7569:EE_
+X-MS-Office365-Filtering-Correlation-Id: c449b642-dff6-4887-c91f-08dbfa946c71
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	/VVlY993bQ0H1PmMgx7rCWLih4YYbUAe1j+ZGjV8zE8s2jbmrBVPTpAF+qmRRHsjhiwMiMV0BtjG9wsVkfhLNDX9NkairKxuKsI13+99v35hLWb+SF2ZnzFY3rI69e1lhcWvxWpvassj4adCyBc8rZFnSul0+x2KxC4yu17yfqiKmREU/0PUTFOw6gwIjErBMHEplWvBkjOZ8MO9ofaqCqDN7kZTp5TW0I59ca4Rp0b8BaX+TE1P0vKle3ER+LUfSBwc/sumgMDtN+Yc03jPpsHuWYMiyl8DjlJdMLzcNw2X0ot7Ool4/jCxB/cD7HRJ+hfObzXRewFmqGZ69Wo8nw9IFy1mAiV4dIT4hUNhBITJKwI+K2T4zlNTgqMQUoxRfLqEZzdAbNVBRdJrcoptTYXClR1AH49fKyatlPx0v6K0iQgg1mPzepg2CM8akQGUH71jrUo3dUzFE3VIsNuE++Lw7gH3cpKbySeHLZPqObCZonumS3G9fXJ44Ja71OgBPP1MrR+yD/6s0tNqR0wtPNQUcyEuh07TCT5VhP0uJRdkCeR45wcSHeYS7XFXeI7Ru/u/LzAi+sxHn2IxE2FEeq+8HXiEPhGw2U11gGnnyk4v6xjxhSx5KFGCalLI/xdQ
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB4845.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(136003)(396003)(346002)(366004)(376002)(230922051799003)(451199024)(1800799012)(186009)(64100799003)(1076003)(26005)(2616005)(6666004)(6506007)(6512007)(52116002)(83380400001)(5660300002)(7416002)(41300700001)(2906002)(478600001)(6486002)(8676002)(8936002)(4326008)(66946007)(66556008)(316002)(34206002)(37006003)(66476007)(86362001)(38100700002)(36756003)(38350700005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?6d//fEzbyXFM0MnTcyNYJuP2PbTNk0FzTO2bCwBszHymvrVwODqvTyj/5V8X?=
+ =?us-ascii?Q?CrgqAASfIGkI38Mo//P9vlHW1M7BGHApeQTCVjwB+Wm/60q1BY+g5hU3rukZ?=
+ =?us-ascii?Q?VEHxSFSCfOJVjj6x+gvSr5EMoAhSt7DvMZm7MzsppsDInHO7DJdtI6jLnysj?=
+ =?us-ascii?Q?ND9EkqtLgta93nv80C+ZVp5yzl5BnMmwrUv4ZHJCJp3WblUQXbvRtjnIdYNm?=
+ =?us-ascii?Q?HsFbSdxt/Kz6GrVDziCHZ3MD2JgnJnRRheOefOWRrvoZcNVSvyaaCswaG1dG?=
+ =?us-ascii?Q?PQ1mh4iVZ5iucEI7fEiQhNo56CXqx+5ZXfLjpMglz0I+r1TugOaPeTYdRGJz?=
+ =?us-ascii?Q?/+DaEI3ZigT1RModwlF5a5pJjrtzTBznAyEYNZXK4qZ73c8P2zd6ZlhhVFsq?=
+ =?us-ascii?Q?xOe1m/B9Fq8VvvIzOg82m4q8u2VC/uZ04x2aplRjiiQnESs4b+KKBEdmufGD?=
+ =?us-ascii?Q?gsIOoW5rM1UJgj5NY+UL3pumvGrlxVwxCRFNiCktd3NbglZW4hDU3tLe1+0o?=
+ =?us-ascii?Q?fyJyn08tbekqenMkhp/K4hpy4HiKM2wt0YmHKyQiDtERl3H6F/ozExuFp3v5?=
+ =?us-ascii?Q?4YWU1bB8F6zDgv/S31JBBpIx1BtSt2RWqlqflyBLR2pGoypmOtnAdtUvHd2a?=
+ =?us-ascii?Q?knsbA/8fwf0hhXUsAulZRWd04cYibrDK4cJcEQG469IaRBVj9Lhb+TZ6QMXk?=
+ =?us-ascii?Q?Zt6NVhrbZqD/CX1NDLIISomzAahHv7T3y+m1CEEzIy/KGyqYuYfwsQsNtXej?=
+ =?us-ascii?Q?IpiOMrzEiKoz8zvFtc+dN2v3VBfTH+cHh8fRbZ6g92fsLrcw0qGq2DniS8kc?=
+ =?us-ascii?Q?cw3CaFntS3rlkw3xDbTAyDDv5d6f1cS3HdFo48noj/7PQEwJt0i/IesI37tW?=
+ =?us-ascii?Q?TIOPJQq6E9c+MPO36RPxGIeXNLnzVbR2WtqhP8BJ07ziBaUG7wH/j3Pql93O?=
+ =?us-ascii?Q?n68jHNV8s4xXG0Njzg5WcfGHB2XpjSsjHZONakssJ5aDJvFW8nZ7Kt/NiBpl?=
+ =?us-ascii?Q?C/0ZePns8eV9NX/w8/ip+mGzzgaD+A2CNUNaYYbGSYKgWnZPGG1p45IhtEbn?=
+ =?us-ascii?Q?rXHNFA2b81biGUtAbfXeeu2Dd8NjNFHFzRIq9ksexYXxpwcIzr5Mvf5ITrai?=
+ =?us-ascii?Q?oUCQRss1GZgfqHFI/gC3Nt/Ex1Eav3dn5zvUThHEsVr43YfoLku31R1oO1og?=
+ =?us-ascii?Q?Za3f7O8bR+D7ErXDW6+xv8jOOOz+gnjN7VwR9dQzjE9OqpFsZE7gUutR/VaI?=
+ =?us-ascii?Q?/wh5V5LqxVO6XxS1UY+OxJ+XHvuQIRyHqyKILyKA/B45lHMZWmaXKJLT47xU?=
+ =?us-ascii?Q?cnPy/ejwduvSdkvxgKPC5gsEsIKgLv57z+d/KE1GMmi2WY9lr4T1UgUORuoL?=
+ =?us-ascii?Q?Rv8nFPtnd3MrvLQUm97WPDxxC3oDT/RcOv5DCcNgGZVtJGddHvYFVjpSxTBA?=
+ =?us-ascii?Q?0nS/MF6NQJY1Gdp7QqKfgsm+yceMHN6zpjxY1d6SpwXmkndOLeaPiJUikO4n?=
+ =?us-ascii?Q?r9UqWOGBdESkarU4G6v4LfdpF6rTroR0++aSsphGaAYqpXvdxpTncBeyzJtr?=
+ =?us-ascii?Q?h0ZqmdIg8DwFVK/7ClYejbbnPAegszSn034FSjNT?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c449b642-dff6-4887-c91f-08dbfa946c71
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB4845.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2023 21:59:18.7923
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: /XkAIXc9S8UwBQTM9rXAnYMf/zFYDobdvsmM5broeoSFe/ClWmGZq+CK2fa374qEsvWKrIFKn1N0QXCdwGPLhw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB7569
 
-On 10/12/2023 00:21, Dmitry Baryshkov wrote:
-> Add compatible string for the DisplayPort controller found on the
-> Qualcomm SM8150 platform.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
+first 6 patches use drvdata: flags to simplify some switch-case code.
+Improve maintaince and easy to read code.
 
+Then add imx95 basic pci host function.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+follow two patch do endpoint code clean up.
+Then add imx95 basic endpont function.
 
-Best regards,
-Krzysztof
+Compared with v2, added EP function support and some fixes,  please change
+notes at each patches.
+
+Frank Li (12):
+  PCI: imx6: Simplify clock handling by using HAS_CLK_* bitmask
+  PCI: imx6: Simplify phy handling by using by using
+    IMX6_PCIE_FLAG_HAS_PHY
+  PCI: imx6: Simplify reset handling by using by using
+    *_FLAG_HAS_*_RESET
+  PCI: imx6: Using "linux,pci-domain" as slot ID
+  PCI: imx6: Simplify ltssm_enable() by using ltssm_off and ltssm_mask
+  PCI: imx6: Simplify configure_type() by using mode_off and mode_mask
+  PCI: imx6: Simplify switch-case logic by involve init_phy callback
+  PCI: imx6: Add iMX95 PCIe support
+  PCI: imx6: Clean up get addr_space code
+  PCI: imx6: Add epc_features in imx6_pcie_drvdata
+  dt-bindings: imx6q-pcie: Add iMX95 pcie endpoint compatible string
+  PCI: imx6: Add iMX95 Endpoint (EP) function support
+
+Richard Zhu (1):
+  dt-bindings: imx6q-pcie: Add imx95 pcie compatible string
+
+ .../bindings/pci/fsl,imx6q-pcie-ep.yaml       |  20 +
+ .../bindings/pci/fsl,imx6q-pcie.yaml          |  18 +
+ drivers/pci/controller/dwc/pci-imx6.c         | 578 +++++++++++-------
+ 3 files changed, 393 insertions(+), 223 deletions(-)
+
+-- 
+2.34.1
 
 
