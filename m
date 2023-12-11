@@ -1,157 +1,141 @@
-Return-Path: <devicetree+bounces-24015-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24016-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 526D680D4BF
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 18:55:59 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AE3180D4C1
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 18:57:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E6F8EB21513
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 17:55:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 04F8D281963
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 17:57:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63D424EB58;
-	Mon, 11 Dec 2023 17:55:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 252004EB5A;
+	Mon, 11 Dec 2023 17:57:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wy+XZfm/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FyOzqIsV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42B824EB34;
-	Mon, 11 Dec 2023 17:55:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCCD5C433CA;
-	Mon, 11 Dec 2023 17:55:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 044AC495C0;
+	Mon, 11 Dec 2023 17:57:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D215EC433CA;
+	Mon, 11 Dec 2023 17:57:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702317350;
-	bh=TDsZZcW//Yjkn4AZvJmsYsqi1Yqt03hg0vEJ8F1Khno=;
+	s=k20201202; t=1702317425;
+	bh=27X4w9e1qWEYMIbF+OREzOmYAdGnUayZxwtJ7vuH6tI=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=Wy+XZfm/xBwdGjaMO0iafORqU7AYUAKBrpmfPhZnS63W2LD+9lIUmmY85M7iDotZV
-	 RUUIwg0POXN4Tkdavv6UXUiOqqIzFni8VQZhDxQXeupY9UVawI9v08XKg2gq0caO+p
-	 bb/oY/p81QaSRDsWLnEdSbbaXi5FUQWA3fN2rcUuikHcWh1dLUY3aINV97NKCubO1y
-	 l1tEo9YR5UB1hVIpFdg/ivykxGAYb0eRvemLSdGk5XfxND1zVPvoEgRkS3FVf/9l7S
-	 zVh3HSiOyx1yr1oE8BoiPzfD3sQ8wFq0jjsCHcAeefrs846eDBoTAiVYXqLGpWcnwo
-	 b9f2qqc7TPtxw==
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-50bdec453c8so5633504e87.3;
-        Mon, 11 Dec 2023 09:55:50 -0800 (PST)
-X-Gm-Message-State: AOJu0YyLwFCyWuctzlW9fzX+J6DSrjCi45cu081ACeOFixmvpNgPC2AV
-	KKcTdsOTobn3vI5bNHtGG82xlRREQ9jGiF+fcA==
-X-Google-Smtp-Source: AGHT+IEv/8aN3PfaLGZ9JYm4t5UMDrJAklhI4W9r08evSljkXdLA6kO7mL8YfS3YKHyNIbwwq6+C5bGH+jkLyGQVaN8=
-X-Received: by 2002:a05:6512:2242:b0:50b:f812:b313 with SMTP id
- i2-20020a056512224200b0050bf812b313mr2431265lfu.77.1702317348971; Mon, 11 Dec
- 2023 09:55:48 -0800 (PST)
+	b=FyOzqIsVzgmL7GusKSzeVR5GTJZAuDw6Hs8BlqA61e29Ph9LvBHnfaoUW3QGjBtLV
+	 HibH3MHj3zGIkTX6UPN5ml1EUEdH+CJAq/HIwWoX4Z4ogiK33OgnF0hf97VODkjb+W
+	 0REqg27TRYFcVIjbVop/AtpUS8FvEhWVoQOkw0x7mMkCAYYez+omQzVDA6FZJlBRej
+	 2sXTNlpbS0hVz8Qyv/ZEIQfdHPb/DOF4ZUu5qP69TMTKmHUZrRPVgobsARIPpudp8u
+	 GZSI6dmXiso0T9SbLadr2vaRUeu5SB/OsZL4qsAgyupO2P7/deIXOktFti9kJ5HplU
+	 m78dpaYYpEwKQ==
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-50bfa5a6cffso5418938e87.0;
+        Mon, 11 Dec 2023 09:57:05 -0800 (PST)
+X-Gm-Message-State: AOJu0YxjMKW6QQ0VupxdbQKexiQX8H6o5B9sGEsGXRe538Xx+ZmEoD8D
+	CmSiRdsRPd46HoGbpiK8szMIs+1OlDbAyCyPNQ==
+X-Google-Smtp-Source: AGHT+IFMrHyHRF+aoP9bK6xkMRkJgXmBAt5pmRe09xl8SvC/OWvXlucg2leD7g4aC+cEZFTOSwyflLvEBn2qh2/Nxrk=
+X-Received: by 2002:a05:6512:2806:b0:50c:2254:9f58 with SMTP id
+ cf6-20020a056512280600b0050c22549f58mr2216119lfb.11.1702317424052; Mon, 11
+ Dec 2023 09:57:04 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231125-topic-6115icc-v3-0-bd8907b8cfd7@linaro.org> <20231125-topic-6115icc-v3-2-bd8907b8cfd7@linaro.org>
-In-Reply-To: <20231125-topic-6115icc-v3-2-bd8907b8cfd7@linaro.org>
+References: <20231129065305.70364-1-guomengqi3@huawei.com> <20231129065305.70364-2-guomengqi3@huawei.com>
+In-Reply-To: <20231129065305.70364-2-guomengqi3@huawei.com>
 From: Rob Herring <robh+dt@kernel.org>
-Date: Mon, 11 Dec 2023 11:55:36 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+FNYS-Ue1NQgDW_0D_NgONfsJj4Q-nzFWHHXpm0Ka=_Q@mail.gmail.com>
-Message-ID: <CAL_Jsq+FNYS-Ue1NQgDW_0D_NgONfsJj4Q-nzFWHHXpm0Ka=_Q@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] interconnect: qcom: Add SM6115 interconnect
- provider driver
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Georgi Djakov <djakov@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Marijn Suijten <marijn.suijten@somainline.org>, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
-	Konrad Dybcio <konradybcio@kernel.org>
+Date: Mon, 11 Dec 2023 11:56:50 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+y8VsCLBgCsMPMeAbSgPvLs_iHqa4F6S=Cdh81tnjxcg@mail.gmail.com>
+Message-ID: <CAL_Jsq+y8VsCLBgCsMPMeAbSgPvLs_iHqa4F6S=Cdh81tnjxcg@mail.gmail.com>
+Subject: Re: [PATCH RESEND v6 1/2] dmaengine: Add HiSilicon Ascend SDMA engine support
+To: Guo Mengqi <guomengqi3@huawei.com>
+Cc: vkoul@kernel.org, dmaengine@vger.kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Nov 29, 2023 at 8:41=E2=80=AFAM Konrad Dybcio <konrad.dybcio@linaro=
-.org> wrote:
+On Wed, Nov 29, 2023 at 12:57=E2=80=AFAM Guo Mengqi <guomengqi3@huawei.com>=
+ wrote:
 >
-> Add a driver for managing NoC providers on SM6115.
+> This patch adds a driver for HiSilicon Ascend SDMA engine.
 >
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> The DMA controller can do transfers between device and memory
+> or memory to memory. Currently, the controller only support
+> single copy. Drives can pass a substreamid to the DMA engine,
+> which will enable transfers in user-space addresses.
+>
+> Signed-off-by: Guo Mengqi <guomengqi3@huawei.com>
 > ---
->  drivers/interconnect/qcom/Kconfig  |    9 +
->  drivers/interconnect/qcom/Makefile |    2 +
->  drivers/interconnect/qcom/sm6115.c | 1427 ++++++++++++++++++++++++++++++=
-++++++
->  3 files changed, 1438 insertions(+)
+>  drivers/dma/Kconfig            |   9 +
+>  drivers/dma/Makefile           |   1 +
+>  drivers/dma/hisi-ascend-sdma.c | 788 +++++++++++++++++++++++++++++++++
+>  3 files changed, 798 insertions(+)
+>  create mode 100644 drivers/dma/hisi-ascend-sdma.c
 >
-> diff --git a/drivers/interconnect/qcom/Kconfig b/drivers/interconnect/qco=
-m/Kconfig
-> index 4d15ce2dab16..697f96c49f6f 100644
-> --- a/drivers/interconnect/qcom/Kconfig
-> +++ b/drivers/interconnect/qcom/Kconfig
-> @@ -191,6 +191,15 @@ config INTERCONNECT_QCOM_SDX75
->           This is a driver for the Qualcomm Network-on-Chip on sdx75-base=
-d
->           platforms.
+> diff --git a/drivers/dma/Kconfig b/drivers/dma/Kconfig
+> index 70ba506dabab..974a00e528ae 100644
+> --- a/drivers/dma/Kconfig
+> +++ b/drivers/dma/Kconfig
+> @@ -244,6 +244,15 @@ config FSL_RAID
+>           the capability to offload memcpy, xor and pq computation
+>           for raid5/6.
 >
-> +config INTERCONNECT_QCOM_SM6115
-> +       tristate "Qualcomm SM6115 interconnect driver"
-> +       depends on INTERCONNECT_QCOM
-> +       depends on QCOM_SMD_RPM
-> +       select INTERCONNECT_QCOM_SMD_RPM
+> +config HISI_ASCEND_SDMA
+> +       tristate "HiSilicon Ascend SDMA Engine support"
+> +       depends on ARCH_HISI && ARM64 || COMPILE_TEST
+> +       depends on IOMMU_API && OF && IOMMU_SVA
+> +       select DMA_ENGINE
+> +       select DMA_VIRTUAL_CHANNELS
 > +       help
-> +         This is a driver for the Qualcomm Network-on-Chip on sm6115-bas=
-ed
-> +         platforms.
+> +         Enable support for HiSilicon Ascend SDMA engine.
 > +
->  config INTERCONNECT_QCOM_SM6350
->         tristate "Qualcomm SM6350 interconnect driver"
->         depends on INTERCONNECT_QCOM_RPMH_POSSIBLE
-> diff --git a/drivers/interconnect/qcom/Makefile b/drivers/interconnect/qc=
-om/Makefile
-> index 3a8a6ef67543..704846165022 100644
-> --- a/drivers/interconnect/qcom/Makefile
-> +++ b/drivers/interconnect/qcom/Makefile
-> @@ -24,6 +24,7 @@ qnoc-sdm845-objs                      :=3D sdm845.o
->  qnoc-sdx55-objs                                :=3D sdx55.o
->  qnoc-sdx65-objs                                :=3D sdx65.o
->  qnoc-sdx75-objs                                :=3D sdx75.o
-> +qnoc-sm6115-objs                       :=3D sm6115.o
->  qnoc-sm6350-objs                       :=3D sm6350.o
->  qnoc-sm8150-objs                       :=3D sm8150.o
->  qnoc-sm8250-objs                       :=3D sm8250.o
-> @@ -55,6 +56,7 @@ obj-$(CONFIG_INTERCONNECT_QCOM_SDM845) +=3D qnoc-sdm845=
-.o
->  obj-$(CONFIG_INTERCONNECT_QCOM_SDX55) +=3D qnoc-sdx55.o
->  obj-$(CONFIG_INTERCONNECT_QCOM_SDX65) +=3D qnoc-sdx65.o
->  obj-$(CONFIG_INTERCONNECT_QCOM_SDX75) +=3D qnoc-sdx75.o
-> +obj-$(CONFIG_INTERCONNECT_QCOM_SM6115) +=3D qnoc-sm6115.o
->  obj-$(CONFIG_INTERCONNECT_QCOM_SM6350) +=3D qnoc-sm6350.o
->  obj-$(CONFIG_INTERCONNECT_QCOM_SM8150) +=3D qnoc-sm8150.o
->  obj-$(CONFIG_INTERCONNECT_QCOM_SM8250) +=3D qnoc-sm8250.o
-> diff --git a/drivers/interconnect/qcom/sm6115.c b/drivers/interconnect/qc=
-om/sm6115.c
+>  config HISI_DMA
+>         tristate "HiSilicon DMA Engine support"
+>         depends on ARCH_HISI || COMPILE_TEST
+> diff --git a/drivers/dma/Makefile b/drivers/dma/Makefile
+> index 83553a97a010..0b736c54407b 100644
+> --- a/drivers/dma/Makefile
+> +++ b/drivers/dma/Makefile
+> @@ -82,6 +82,7 @@ obj-$(CONFIG_XGENE_DMA) +=3D xgene-dma.o
+>  obj-$(CONFIG_ST_FDMA) +=3D st_fdma.o
+>  obj-$(CONFIG_FSL_DPAA2_QDMA) +=3D fsl-dpaa2-qdma/
+>  obj-$(CONFIG_INTEL_LDMA) +=3D lgm/
+> +obj-$(CONFIG_HISI_ASCEND_SDMA) +=3D hisi-ascend-sdma.o
+>
+>  obj-y +=3D mediatek/
+>  obj-y +=3D qcom/
+> diff --git a/drivers/dma/hisi-ascend-sdma.c b/drivers/dma/hisi-ascend-sdm=
+a.c
 > new file mode 100644
-> index 000000000000..c49a83c87739
+> index 000000000000..74560b1fdca5
 > --- /dev/null
-> +++ b/drivers/interconnect/qcom/sm6115.c
-> @@ -0,0 +1,1427 @@
+> +++ b/drivers/dma/hisi-ascend-sdma.c
+> @@ -0,0 +1,788 @@
 > +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2021, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2022, Qualcomm Innovation Center, Inc. All rights reser=
-ved.
-> + * Copyright (c) 2023, Linaro Limited
-> + */
+> +/* Copyright(c) 2019-2022 HiSilicon Limited. */
 > +
-> +#include <dt-bindings/interconnect/qcom,sm6115.h>
-> +#include <linux/clk.h>
-> +#include <linux/device.h>
-> +#include <linux/interconnect-provider.h>
-> +#include <linux/io.h>
+> +#include <linux/kernel.h>
 > +#include <linux/module.h>
+> +#include <linux/dmaengine.h>
+> +#include <linux/slab.h>
+> +#include "virt-dma.h"
+> +#include <linux/init.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/of.h>
+> +#include <linux/of_address.h>
 > +#include <linux/of_device.h>
 
 You probably don't need this header and the implicit includes it makes
 are dropped now in linux-next. Please check what you actually need and
 make them explicit.
 
-> +#include <linux/of_platform.h>
-
-Also probably not needed. Please double check.
+of_address.h is also probably not needed. Double check.
 
 Rob
 
