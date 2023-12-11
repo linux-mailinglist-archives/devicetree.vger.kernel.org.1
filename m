@@ -1,50 +1,62 @@
-Return-Path: <devicetree+bounces-23841-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23842-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFDCD80C7C7
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 12:17:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A0E780C7CD
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 12:19:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B2672816C7
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 11:17:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 26ECC281696
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 11:19:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35EFF35895;
-	Mon, 11 Dec 2023 11:17:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEDBC358A5;
+	Mon, 11 Dec 2023 11:19:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Y8DiaeX3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hl4yLjD0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E0DEB0;
-	Mon, 11 Dec 2023 03:17:07 -0800 (PST)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3BBBGknS085705;
-	Mon, 11 Dec 2023 05:16:46 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1702293406;
-	bh=fylZgBVW8i6eYuwRT+zXtBdya0Mm/BLDF11KB2kf4O8=;
-	h=Date:CC:Subject:To:References:From:In-Reply-To;
-	b=Y8DiaeX3iSpym58Lh2kBXEH2LoZDuNmRm1bYguvcqqSycOnXhlucl7CdxWx8FqgUp
-	 P1vnM1VY3GTziiuSHEJtWCpY/ihet01OyKIhRfb/OWMLkIqRkfGD4dkPh9ax+OQz7S
-	 0P4vE81r9VzjRa+3lF1NsMClEGUi6HyRBZyY3RBg=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3BBBGkb0071434
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 11 Dec 2023 05:16:46 -0600
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 11
- Dec 2023 05:16:45 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 11 Dec 2023 05:16:45 -0600
-Received: from [172.24.227.9] (uda0492258.dhcp.ti.com [172.24.227.9])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3BBBGfgw063959;
-	Mon, 11 Dec 2023 05:16:42 -0600
-Message-ID: <750c2b6b-8f24-4b86-996f-6f50cf46d81b@ti.com>
-Date: Mon, 11 Dec 2023 16:46:41 +0530
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4C14CF
+	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 03:19:40 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-40c41b43e1eso15860155e9.1
+        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 03:19:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702293579; x=1702898379; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7pZPdZp6957k6C1NFCMTL6mm1rsB1Mx6NLsmieoSb4Q=;
+        b=hl4yLjD04Vb7BahGs6dSi/TFdTjeQaWuzf/WzJfD2PzO4VpvHcJy2eREeh3I06Zcuj
+         Kqwqj2Gs/73TWt4bfPF2tGujeBkI7859fYbblNeXsLpL0Jec+cmhVj2DfYAfS2dyXhps
+         pDnjC5HPxLEjj6yEa5rKlZjufn6N8Gg/xo9mDwXzwBNJW21psta7Wb4z7foBGT/uojXk
+         U+6wHH435LSwCh/CB4qgmr6/tuMX6q1T9SIqX4+T4zklJOHtlIxij2TDMqs9lDVmga4t
+         /cFL1duJK1tgAOq1COiAOvGFmt9u4sbdL2BgZNtnpSm9+FIADpLkz5nZQ7TbH0YN9A3Z
+         4CLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702293579; x=1702898379;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=7pZPdZp6957k6C1NFCMTL6mm1rsB1Mx6NLsmieoSb4Q=;
+        b=bvWFwSlW7u8uAgFhP8XPZezXpOncJhJx47nhu65BxmmwH/4n0D7vkB9fyoszX/Slq4
+         en5qFVt+LYqSeOqAivxcdfwffyb+oRiLIznXeiBnmWQ5T2MHsbaoWvYYtudvBCUsttNs
+         pHiTTD9EZ5qT2G2foSqbxeFEvXLnr9OVwCMX6BzdyIUSiyU7/cr+/Vk7/ymr/uG4XxkF
+         NEiMbJZzWxv2snMh3a4kM6k8rYj1kqI2yHUR1T6wWn91l2AoqYeL0Wu3qzBPpMzXd45C
+         IvNtUvYBS41gSllyeWeP4zsWtgxW8o0Q5ioaEagG4K+M51xSepofYZe+HCeMJF43pzy9
+         +Omw==
+X-Gm-Message-State: AOJu0YyYXJPPTtDeMdF1ncAKKygt44afNgaGkRxDX8u/7c1020Gt4G50
+	SHL8aDc+Ag++MWuEPvN2FgsaMQ==
+X-Google-Smtp-Source: AGHT+IFhW7zhl+mrlfS6rhFqzVBgcXUus3YQCkHiFyDCopoJBuSiE5WNhXTl94dw0BFYn8zKpX1AGg==
+X-Received: by 2002:a05:600c:3d8b:b0:40b:5e4a:406b with SMTP id bi11-20020a05600c3d8b00b0040b5e4a406bmr1938322wmb.139.1702293579015;
+        Mon, 11 Dec 2023 03:19:39 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:302e:e0c2:d42c:cb23? ([2a01:e0a:982:cbb0:302e:e0c2:d42c:cb23])
+        by smtp.gmail.com with ESMTPSA id z20-20020a05600c0a1400b004064e3b94afsm15042877wmp.4.2023.12.11.03.19.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Dec 2023 03:19:38 -0800 (PST)
+Message-ID: <5d77a476-06ee-4319-8e20-eef1c6ad51c6@linaro.org>
+Date: Mon, 11 Dec 2023 12:19:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,59 +64,137 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-CC: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <r-gunasekaran@ti.com>,
-        <srk@ti.com>, <s-vadapalli@ti.com>
-Subject: Re: [PATCH v2 1/2] arm64: dts: ti: k3-j721e-evm: Add overlay for
- PCIE0 Endpoint Mode
-Content-Language: en-US
-To: Andrew Davis <afd@ti.com>
-References: <20231115085204.3578616-1-s-vadapalli@ti.com>
- <20231115085204.3578616-2-s-vadapalli@ti.com>
- <c50f5dc2-8ab8-4213-a809-fcd4cd18589d@ti.com>
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-In-Reply-To: <c50f5dc2-8ab8-4213-a809-fcd4cd18589d@ti.com>
-Content-Type: text/plain; charset="UTF-8"
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v4 2/3] remoteproc: qcom: pas: make region assign more
+ generic
+Content-Language: en-US, fr
+To: Konrad Dybcio <konrad.dybcio@linaro.org>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Mukesh Ojha <quic_mojha@quicinc.com>
+References: <20231208-topic-sm8650-upstream-remoteproc-v4-0-a96c3e5f0913@linaro.org>
+ <20231208-topic-sm8650-upstream-remoteproc-v4-2-a96c3e5f0913@linaro.org>
+ <76f18323-a59e-4724-96ec-6306e5dcd2dc@linaro.org>
+ <374addd2-e336-4625-9e0c-45e5efe1eb47@linaro.org>
+ <b4b0ed80-eed5-4045-8ceb-5b507c77e4e2@linaro.org>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <b4b0ed80-eed5-4045-8ceb-5b507c77e4e2@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hello Andrew,
-
-On 05/12/23 21:43, Andrew Davis wrote:
-> On 11/15/23 2:52 AM, Siddharth Vadapalli wrote:
->> Add overlay to enable the PCIE0 instance of PCIe on J721E-EVM in
->> Endpoint mode of operation.
+On 11/12/2023 10:54, Konrad Dybcio wrote:
+> On 11.12.2023 10:37, Neil Armstrong wrote:
+>> On 09/12/2023 19:06, Konrad Dybcio wrote:
+>>> On 8.12.2023 16:04, Neil Armstrong wrote:
+>>>> The current memory region assign only supports a single
+>>>> memory region.
+>>>>
+>>>> But new platforms introduces more regions to make the
+>>>> memory requirements more flexible for various use cases.
+>>>> Those new platforms also shares the memory region between the
+>>>> DSP and HLOS.
+>>>>
+>>>> To handle this, make the region assign more generic in order
+>>>> to support more than a single memory region and also permit
+>>>> setting the regions permissions as shared.
+>>>>
+>>>> Reviewed-by: Mukesh Ojha <quic_mojha@quicinc.com>
+>>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>>>> ---
+>>> [...]
+>>>
+>>>> +    for (offset = 0; offset < adsp->region_assign_count; ++offset) {
+>>>> +        struct reserved_mem *rmem = NULL;
+>>>> +
+>>>> +        node = of_parse_phandle(adsp->dev->of_node, "memory-region",
+>>>> +                    adsp->region_assign_idx + offset);
+>>>> +        if (node)
+>>>> +            rmem = of_reserved_mem_lookup(node);
+>>>> +        of_node_put(node);
+>>> Shouldn't this only be called when parse_phandle succeeds? (separate
+>>> patch with a fix + cc stable if so?)
 >>
->> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
->> ---
->>   arch/arm64/boot/dts/ti/Makefile               |  3 ++
->>   .../boot/dts/ti/k3-j721e-evm-pcie0-ep.dtso    | 53 +++++++++++++++++++
->>   2 files changed, 56 insertions(+)
->>   create mode 100644 arch/arm64/boot/dts/ti/k3-j721e-evm-pcie0-ep.dtso
->>
->> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
->> index 77a347f9f47d..5620db44d4dc 100644
->> --- a/arch/arm64/boot/dts/ti/Makefile
->> +++ b/arch/arm64/boot/dts/ti/Makefile
->> @@ -66,6 +66,8 @@ dtb-$(CONFIG_ARCH_K3) += k3-j7200-evm.dtb
->>   k3-j721e-evm-dtbs := k3-j721e-common-proc-board.dtb
->> k3-j721e-evm-quad-port-eth-exp.dtbo
->>   dtb-$(CONFIG_ARCH_K3) += k3-j721e-beagleboneai64.dtb
->>   dtb-$(CONFIG_ARCH_K3) += k3-j721e-evm.dtb
->> +k3-j721e-evm-pcie0-ep-dtbs := k3-j721e-evm.dtb k3-j721e-evm-pcie0-ep.dtbo
->> +dtb-$(CONFIG_ARCH_K3) += k3-j721e-evm-pcie0-ep.dtb
+>> It's not a bug, it was added like that because of_node_put() already
+>> checks for a NULL pointer:
+>> https://elixir.bootlin.com/linux/v6.7-rc5/source/drivers/of/dynamic.c#L45
+> Ack
 > 
-> Do you really need to produce this pre-combined DTB file? If you would rather
-> just the overlay produced which could be applied at load-time (I prefer this),
-> then you should do as Jai has done[0]. Add just the overlay, and test its
-> application using a dummy target.
+>>
+>>>
+>>>> +        if (!rmem) {
+>>>> +            dev_err(adsp->dev, "unable to resolve shareable memory-region index %d\n",
+>>>> +                offset);
+>>>> +            return -EINVAL;
+>>>> +        }
+>>>>    -    perm.vmid = QCOM_SCM_VMID_MSS_MSA;
+>>>> -    perm.perm = QCOM_SCM_PERM_RW;
+>>>> +        if (adsp->region_assign_shared)  {
+>>>> +            perm[0].vmid = QCOM_SCM_VMID_HLOS;
+>>>> +            perm[0].perm = QCOM_SCM_PERM_RW;
+>>>> +            perm[1].vmid = adsp->region_assign_vmid;
+>>>> +            perm[1].perm = QCOM_SCM_PERM_RW;
+>>>> +            perm_size = 2;
+>>>> +        } else {
+>>>> +            perm[0].vmid = adsp->region_assign_vmid;
+>>>> +            perm[0].perm = QCOM_SCM_PERM_RW;
+>>>> +            perm_size = 1;
+>>>> +        }
+>>>>    -    adsp->region_assign_phys = rmem->base;
+>>>> -    adsp->region_assign_size = rmem->size;
+>>>> -    adsp->region_assign_perms = BIT(QCOM_SCM_VMID_HLOS);
+>>>> +        adsp->region_assign_phys[offset] = rmem->base;
+>>>> +        adsp->region_assign_size[offset] = rmem->size;
+>>>> +        adsp->region_assign_perms[offset] = BIT(QCOM_SCM_VMID_HLOS);
+>>>>    -    ret = qcom_scm_assign_mem(adsp->region_assign_phys,
+>>>> -                  adsp->region_assign_size,
+>>>> -                  &adsp->region_assign_perms,
+>>> I think this should be renamed to region_assign_owner(s)
+>>
+>> Why ? this bitfield is names "perms" everywhere qcom_scm_assign_mem is used
+> And IMO that's not correct - there's the qcom_scm_vmperm.perm field which
+> is oneOf r/w/x/rw/rwx and this one is filled with ORed BIT()-ed elements
+> allowed in qcom_scm_vmperm.vmid (QCOM_SCM_VMID_...)
 
-Thank you for pointing it out. I will implement your suggestion and post the v3
-series.
+Ok right I just use the same namings as in rmtfs_mem, fastrpc & ath10k/qmi,
+but indeed the qcom_scm_assign_mem() 3rd param name is srcvm but doc says "vmid for current set of owners",
+so yeah it could be named owners.
 
--- 
-Regards,
-Siddharth.
+I'll send a v5 with the rename.
+
+Neil
+
+
+> 
+> Konrad
+
 
