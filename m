@@ -1,167 +1,125 @@
-Return-Path: <devicetree+bounces-23740-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23742-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC1AD80C36F
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 09:40:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9960580C3B8
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 09:57:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 26CEB1C2042D
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 08:40:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 55E8D280C8B
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 08:57:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C0D620DF3;
-	Mon, 11 Dec 2023 08:40:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5544A20DFF;
+	Mon, 11 Dec 2023 08:57:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xmWdoWxJ"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="MUR6rhpA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F373FA0
-	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 00:40:44 -0800 (PST)
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-54ba86ae133so3925183a12.2
-        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 00:40:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702284043; x=1702888843; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8WHfXsMSBzIil3vhzGR0vYJMqSWAgjj/PiuOMlAKQdE=;
-        b=xmWdoWxJb7NcmQORf3mhRyqp5fBwD9vB7+jLYofpaa7TMazRbQb4myuLuqqvYenTsZ
-         r7ou58xrwdVn8MZ7QJUBKLW5C6g7WbpFcmWRoRkXNZvQebDa52/PtvS83fbsc9Izs4tL
-         ojUb3eSWsS1VITxKkViHRfFniEzoeJQ5nyzyyO5iHa34bBCiIZOCoZim5BLTERfIdKO1
-         J9pxYhwq1+RCfrhDckvEnMaIM5rBF+bFhrBNq5EES0tx29+x4Yli63N81aK3nW5NQYPt
-         6hMnEDVlAnrDFCftqH3wDPChmKmdcEUMivZCimkJ/dcpzGFxd6cgQjdbnFy4K3sfrfPw
-         hcBQ==
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D06F9A0
+	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 00:57:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1702285025;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=5LTIUKaVC1eazTIk2UXuAlOz9lK8/aeDlO+nHP2T/TQ=;
+	b=MUR6rhpAjRggdqy5w8t7/cJeAQiry/8ODTVRXM4+b4exeY5Ds6lgkSWZ/D7Xa+GCAGWC9J
+	mthXopepeYlwF8xLaQMWqp/o2s23BGPWpS9Mq6l5oez/B9lxtjWYXWhfFkqCxTOgSDTkWN
+	1C3Z53K6wFV3YLoQBzY7Wn7rGnw6fPw=
+Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
+ [209.85.221.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-257-lIFWKQydPdSHiiNzdIZk1g-1; Mon, 11 Dec 2023 03:57:03 -0500
+X-MC-Unique: lIFWKQydPdSHiiNzdIZk1g-1
+Received: by mail-wr1-f69.google.com with SMTP id ffacd0b85a97d-33343bb5dc2so3573698f8f.0
+        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 00:57:02 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702284043; x=1702888843;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8WHfXsMSBzIil3vhzGR0vYJMqSWAgjj/PiuOMlAKQdE=;
-        b=Dbc9dpx5OMvqvdMASG9K3YZBv2orTeohnlPZevFk4WAVxNeQJw7d347q2BDhD1VKvf
-         qTpaD3bG2pJtm5Ggd56FcsOvxEeU3LBBxIWf18DiqLjWoYsCeYNKc68KLI9BHXn5M1Bk
-         +cOyXxjoaICTOde2VRxGqL6T2fUn4U8xaEtH2jML6Epq7FHMBRWYFrIi4BYl9AEloFda
-         OUJn7pQ8Y2UnxNf4lhYmejZSKLuKERzzdOyA0Cs4Jcq+h9fw7Mq33Pji2/gL2ZAZb1Mc
-         nQJUaL5Yt5O9WuwqDQ9GaEsNLbiSSJl5O4cxh7/yRSwL4b3KbFtL4AbqE6ycbxVQAsdb
-         HqWw==
-X-Gm-Message-State: AOJu0YzP5rpmgDuiVQ6cVo1jgXOpTEGYFfuWYc3Z2lWiAcYPDqza4f4c
-	BNNKsnn7usFKVOmhWpIOjLMwzA==
-X-Google-Smtp-Source: AGHT+IF64K0QJF6TSoo0bL/zIfLzd/TJ4LUK6Q16W4r6xL17AU4KXSPEjd3vvv3X3QBo0csjqxoprg==
-X-Received: by 2002:a50:9e2d:0:b0:54c:5e18:50e6 with SMTP id z42-20020a509e2d000000b0054c5e1850e6mr2346907ede.42.1702284043366;
-        Mon, 11 Dec 2023 00:40:43 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id cx14-20020a05640222ae00b0054cb07a17ebsm3395959edb.31.2023.12.11.00.40.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Dec 2023 00:40:42 -0800 (PST)
-Message-ID: <4e032b2c-eed8-475b-ba10-5fdb2156e4d0@linaro.org>
-Date: Mon, 11 Dec 2023 09:40:41 +0100
+        d=1e100.net; s=20230601; t=1702285022; x=1702889822;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5LTIUKaVC1eazTIk2UXuAlOz9lK8/aeDlO+nHP2T/TQ=;
+        b=R5mB2rD7Z5HMCcMU+/1sGCtlOsZSyQzQz5m+yYcRmhXTPwNd5DssflBvlY1HFx9IcQ
+         gQMmOpsWBwhuoJMFzOaQco87LO0lnbtHkiBdo/Vh6CuA+7qevTkVVihU8zecnPgc25SO
+         VUKd9JllEuMdVojekCaBDC3Cx8nQxpHCZsj7SjJiKGRr4Cb91Vj1tmB2X1Yb8SpxQacv
+         ew0ZOU5LyARYw7ehAwMqK3YLuxJgiy9FXNTqtUvCQNlaHm4v17osoAhxo6PYJ5LtVO1N
+         v6EAwqLIOh/Lbl/lq9U6y83lQL/rXG8cfMgF+GW0FLZ8Yiw+P2+ed9Q50pCkLHtAoHlv
+         mMmg==
+X-Gm-Message-State: AOJu0YyrGefGuhOqngePTtM+dneaOdJvd477GAHKDRkXTiKZzbR0lB4S
+	xo7elk8ShsWcv0Lov6K0YJiepTRqiFWzgfDEDtSfFPrdU0X3pal6GNGGruGaAqlxrJ0gW25/SMG
+	vqGyIxCf3rvkFXLQkr5TZTg==
+X-Received: by 2002:a5d:4e04:0:b0:333:5448:a524 with SMTP id p4-20020a5d4e04000000b003335448a524mr1817804wrt.70.1702285022063;
+        Mon, 11 Dec 2023 00:57:02 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFsh9Yv6nd25XsjfPOninxctIiTaXU4lHFkIdNF81q3d42Ndazl+E7oJqr0sqZiOlOLBOy/Qw==
+X-Received: by 2002:a5d:4e04:0:b0:333:5448:a524 with SMTP id p4-20020a5d4e04000000b003335448a524mr1817786wrt.70.1702285021772;
+        Mon, 11 Dec 2023 00:57:01 -0800 (PST)
+Received: from localhost ([2a01:e0a:b25:f902::ff])
+        by smtp.gmail.com with ESMTPSA id k15-20020adfb34f000000b003334a1e92dasm8142312wrd.70.2023.12.11.00.57.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Dec 2023 00:57:01 -0800 (PST)
+Date: Mon, 11 Dec 2023 09:57:01 +0100
+From: Maxime Ripard <mripard@redhat.com>
+To: lpieralisi@kernel.org, robh@kernel.org, kw@linux.com, 
+	bhelgaas@google.com
+Cc: Siddharth Vadapalli <s-vadapalli@ti.com>, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, vigneshr@ti.com, tjoseph@cadence.com, 
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, r-gunasekaran@ti.com, danishanwar@ti.com, srk@ti.com, nm@ti.com
+Subject: Re: [PATCH v13 0/5] PCI: add 4x lane support for pci-j721e
+ controllers
+Message-ID: <isttx4vp7warwowlz46oo7y2zex7xuizfvovfse3yb4ww72e6u@nuev2jbkhnhw>
+References: <20231128054402.2155183-1-s-vadapalli@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] arm64: dts: qcom: ipq8074: add MicroSD node
-Content-Language: en-US
-To: Chukun Pan <amadeus@jmu.edu.cn>, Andy Gross <agross@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231210152015.2243310-1-amadeus@jmu.edu.cn>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231210152015.2243310-1-amadeus@jmu.edu.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="hiyobel5xvyda7mp"
+Content-Disposition: inline
+In-Reply-To: <20231128054402.2155183-1-s-vadapalli@ti.com>
 
-On 10/12/2023 16:20, Chukun Pan wrote:
-> Enable MicroSD card found on ipq8074 devices.
-> Tested fine when SD card IO voltage is 3.3v.
-> 
-> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
-> ---
->  arch/arm64/boot/dts/qcom/ipq8074.dtsi | 20 ++++++++++++++++++++
->  1 file changed, 20 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-> index a4f7ae35be27..4f23c4459112 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-> @@ -422,6 +422,26 @@ sdhc_1: mmc@7824900 {
->  			status = "disabled";
->  		};
->  
-> +		sdhc_2: mmc@7864900 {
-> +			compatible = "qcom,sdhci-msm-v4";
 
-That's deprecated.
+--hiyobel5xvyda7mp
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> +			reg = <0x7864900 0x500>, <0x7864000 0x800>;
-> +			reg-names = "hc", "core";
-> +
-> +			interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 221 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "hc_irq", "pwr_irq";
-> +
-> +			clocks = <&gcc GCC_SDCC2_AHB_CLK>,
-> +				 <&gcc GCC_SDCC2_APPS_CLK>,
-> +				 <&xo>;
-> +			clock-names = "iface", "core", "xo";
-> +			resets = <&gcc GCC_SDCC2_BCR>;
-> +			max-frequency = <192000000>;
-> +			bus-width = <4>;
-> +
-> +			status = "disabled";
+Hi Bjorn, Krzysztof, Lorenzo, Rob,
 
-No board users?
+On Tue, Nov 28, 2023 at 11:13:57AM +0530, Siddharth Vadapalli wrote:
+> This series adds support to the pci-j721e PCIe controller for up to 4x La=
+ne
+> configuration supported by TI's J784S4 SoC. Bindings are also added for
+> the num-lanes property which shall be used by the driver. The compatible
+> for J784S4 SoC is added.
+>=20
+> This series is based on linux-next tagged next-20231128.
 
-Best regards,
-Krzysztof
+These patches have been floating around for a long time (v12 was almost
+identical and was submitted back in April, without any review back then
+already [1]), and it looks like reviewers are happy with it.
+
+Could you merge them to get them in 6.8?
+
+Thanks!
+Maxime
+
+1: https://lore.kernel.org/lkml/20230401112633.2406604-1-a-verma1@ti.com/
+
+--hiyobel5xvyda7mp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZXbO0AAKCRDj7w1vZxhR
+xSCJAQCMVu4ns7BPOUOOt9ZXTqgjvASN082LC9xcB5COxIfLsQEArbDg/9j4+RST
+/VDJ4u2ctcM4T8k/v3JMo23lk/ShmAA=
+=8qsX
+-----END PGP SIGNATURE-----
+
+--hiyobel5xvyda7mp--
 
 
