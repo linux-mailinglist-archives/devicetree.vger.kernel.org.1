@@ -1,131 +1,87 @@
-Return-Path: <devicetree+bounces-24018-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24019-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C245580D4CD
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 18:58:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DD6480D52D
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 19:21:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7BCAC281A04
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 17:58:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA6CE281945
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 18:21:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D13074F1EA;
-	Mon, 11 Dec 2023 17:58:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A676151018;
+	Mon, 11 Dec 2023 18:21:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KGkwdOOX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M1Zd+Oo6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF49D4EB4D;
-	Mon, 11 Dec 2023 17:58:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FD38C433CA;
-	Mon, 11 Dec 2023 17:58:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 875684E1D2;
+	Mon, 11 Dec 2023 18:21:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDD3CC433CA;
+	Mon, 11 Dec 2023 18:21:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702317517;
-	bh=CoHFrQIbWUopxi/6NgF+s3ej3i0E535vo1y3uKwUONI=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=KGkwdOOXQeZxUl2el0v0YWwYVoi7gi7Aamf2+dyFcQKl3O89T0YT5Hllft2JrxnyM
-	 vf678b32fIUcgYZ101sZuLq6sieHZvk6hThA3qadTWSOrWY8/Uj18t8nvR1KZIA2II
-	 GJeharLzqWTlo3hLUk/iYP4aGCmryIf6ai5pPbvBY2SUbA6aERZ4F6/EjEFYk8H1Kf
-	 bYq5e7IGA8j4FIFcEdRC65BYh9PXePZ/tX3J3zJ06/oDcHFuaStGjWvwNm/MvZWaHW
-	 g+0wvR/cXepPQt9FrkLTaXY+D9ak+tdvwxOit+Mxw2AprsJosvlacxVmbJ5PKAQxZL
-	 83FBLpuGGUQ8g==
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-50bfa5a6cffso5420919e87.0;
-        Mon, 11 Dec 2023 09:58:37 -0800 (PST)
-X-Gm-Message-State: AOJu0Yy4UQfewqBYw9v4yWl9Upwf5SrbwxXE0LcGlbvPI+o/ZSMyEPCa
-	wVG8uiqtlfMQnANEpVBJK3gg4djASrWmsaSRZw==
-X-Google-Smtp-Source: AGHT+IFhGfMMJKtekSGjF4bprgaJXphTzPGrMTvLkiHMAAyx3r/eZQMCNlyfs1fqyBwdkL9hb0l0Gns5aka9u+xU/uo=
-X-Received: by 2002:a05:6512:2804:b0:50d:14b2:287a with SMTP id
- cf4-20020a056512280400b0050d14b2287amr2351763lfb.25.1702317515423; Mon, 11
- Dec 2023 09:58:35 -0800 (PST)
+	s=k20201202; t=1702318877;
+	bh=yx7x9HZRw2fNrttJxMedeCqy6X82RJq3KdEf+5K1eTo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=M1Zd+Oo6uaDJ/62he6wzYZJ1pWsfJV3i7CeKrJIC0TwLvyk3HX41TUyhrpOeOjoIa
+	 7q9KZzHZQCxSkG2FEduM0F0iZA7B3eOKMaodUDUyKOHPvvMIs6mTSggVJKRNfaqLgo
+	 /DPTGulIAvJhyzdFLh0WMMSmciI6KQJo72yYXQ+IWy3jStBBr3N3KxLxaNQbtOPzkc
+	 8jd666vX+7C6Ulsv/NmzZ4YQK/5kyQ/HmdOFLCpgsQW4dOUEQ7JP+RhyFOZKVldeyV
+	 zK1p+NMbo8gjvSke9/3HcEd5Rvz814uLTN20WaagehllWPQY/xMAJJ6HD79Zdsk4kR
+	 VI0DHtRWyxmnA==
+Date: Mon, 11 Dec 2023 18:21:12 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Li peiyu <579lpy@gmail.com>
+Cc: jic23@kernel.org, javier.carrasco.cruz@gmail.com, lars@metafoo.de,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 4/4] dt-bindings: iio: humidity: Add TI HDC302x support
+Message-ID: <20231211-tackiness-imprecise-685882c9c318@spud>
+References: <20231211122201.9598-1-579lpy@gmail.com>
+ <20231211123101.9868-1-579lpy@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231122-x1e80100-clk-tcsrcc-v1-0-43078c6d6452@linaro.org> <20231122-x1e80100-clk-tcsrcc-v1-2-43078c6d6452@linaro.org>
-In-Reply-To: <20231122-x1e80100-clk-tcsrcc-v1-2-43078c6d6452@linaro.org>
-From: Rob Herring <robh+dt@kernel.org>
-Date: Mon, 11 Dec 2023 11:58:23 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLO60Gmn6y=D+ZxKgoxRP9=jcZL9S8LuUgp=4HvAmvWzQ@mail.gmail.com>
-Message-ID: <CAL_JsqLO60Gmn6y=D+ZxKgoxRP9=jcZL9S8LuUgp=4HvAmvWzQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] clk: qcom: Add TCSR clock driver for x1e80100
-To: Abel Vesa <abel.vesa@linaro.org>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Rajendra Nayak <quic_rjendra@quicinc.com>, 
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="XvxZv93uMWHkmLEq"
+Content-Disposition: inline
+In-Reply-To: <20231211123101.9868-1-579lpy@gmail.com>
+
+
+--XvxZv93uMWHkmLEq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Nov 22, 2023 at 7:42=E2=80=AFAM Abel Vesa <abel.vesa@linaro.org> wr=
-ote:
->
-> The TCSR clock controller found on X1E80100 provides refclks
-> for PCIE, USB and UFS. Add clock driver for it.
->
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
->  drivers/clk/qcom/Kconfig           |   8 +
->  drivers/clk/qcom/Makefile          |   1 +
->  drivers/clk/qcom/tcsrcc-x1e80100.c | 295 +++++++++++++++++++++++++++++++=
-++++++
->  3 files changed, 304 insertions(+)
->
-> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
-> index ad1acd9b7426..6ed9c89d9070 100644
-> --- a/drivers/clk/qcom/Kconfig
-> +++ b/drivers/clk/qcom/Kconfig
-> @@ -1116,4 +1116,12 @@ config SM_VIDEOCC_8450
->           SM8450 devices.
->           Say Y if you want to support video devices and functionality su=
-ch as
->           video encode/decode.
-> +
-> +config X1E_TCSRCC_80100
-> +       tristate "X1E80100 TCSR Clock Controller"
-> +       depends on ARM64 || COMPILE_TEST
-> +       select QCOM_GDSC
-> +       help
-> +         Support for the TCSR clock controller on X1E80100 devices.
-> +         Say Y if you want to use peripheral devices such as SD/UFS.
->  endif
-> diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
-> index 17edd73f9839..4931a1470137 100644
-> --- a/drivers/clk/qcom/Makefile
-> +++ b/drivers/clk/qcom/Makefile
-> @@ -140,3 +140,4 @@ obj-$(CONFIG_SPMI_PMIC_CLKDIV) +=3D clk-spmi-pmic-div=
-.o
->  obj-$(CONFIG_KPSS_XCC) +=3D kpss-xcc.o
->  obj-$(CONFIG_QCOM_HFPLL) +=3D hfpll.o
->  obj-$(CONFIG_KRAITCC) +=3D krait-cc.o
-> +obj-$(CONFIG_X1E_TCSRCC_80100) +=3D tcsrcc-x1e80100.o
-> diff --git a/drivers/clk/qcom/tcsrcc-x1e80100.c b/drivers/clk/qcom/tcsrcc=
--x1e80100.c
-> new file mode 100644
-> index 000000000000..2ec142c3d1f9
-> --- /dev/null
-> +++ b/drivers/clk/qcom/tcsrcc-x1e80100.c
-> @@ -0,0 +1,295 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2022, Qualcomm Innovation Center, Inc. All rights reser=
-ved.
-> + * Copyright (c) 2023, Linaro Limited
-> + */
-> +
-> +#include <linux/clk-provider.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
+On Mon, Dec 11, 2023 at 08:31:01PM +0800, Li peiyu wrote:
+> Add device tree bindings for HDC3020/HDC3021/HDC3022 humidity and
+> temperature sensors.
+>=20
+> Signed-off-by: Li peiyu <579lpy@gmail.com>
 
-You probably don't need this header and the implicit includes it makes
-are dropped now in linux-next. Please check what you actually need and
-make them explicit.
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-Rob
+Cheers,
+Conor.
+
+
+--XvxZv93uMWHkmLEq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZXdTGAAKCRB4tDGHoIJi
+0mybAP4/anKKpEIWu6vRV5nw3jDFZuvaVLsMfF3wPGeStQQbsQEA7/JiBzEV3Z/N
+ZVjWE55zSqdEbI6XQms9Hq4XvLovDwg=
+=RvtZ
+-----END PGP SIGNATURE-----
+
+--XvxZv93uMWHkmLEq--
 
