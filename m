@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-23792-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23793-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55C2680C561
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 10:59:10 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9ED4F80C566
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 10:59:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6EABF1C2097D
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 09:59:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0A66DB20EAD
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 09:59:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5480421A16;
-	Mon, 11 Dec 2023 09:59:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13B2122063;
+	Mon, 11 Dec 2023 09:59:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Bq2xxpud"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cbG3JN1V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B8B6B7
-	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 01:59:03 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-33340c50af9so4422448f8f.3
-        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 01:59:03 -0800 (PST)
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E0FBC2
+	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 01:59:43 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-50c0478f970so4314061e87.3
+        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 01:59:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702288742; x=1702893542; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=+8ZYGpDqXB7DKk7WEUaqFLKAG8Tztk8Kini09NyiSQw=;
-        b=Bq2xxpudojIRDR9Axi0Zynr7a6N+FxOhR+CodkBmuIwUxWsC5Mqy6G89z4y6zNenqX
-         h9gJMuHnHtdyigi0qTPiSGZuch1h9w/0P88TxdCg6ModcHuIEvFolIERF+1P4a7GQlUF
-         e4T93f9dKzpbqLH0p3vA3yWcLuDuGP3vjST83P/4rG+g3jBnKVopN9AYdYUfIfnUd0+M
-         jSOYGr1pqBaPetfZy8JhQOqimavhkY7poLWsd2Tx9uROn1lCGCjn5spp8FKlJ9UkdqSa
-         2Uf+PPHzkWvGOzv1pVmPowgn4uZzuWK1l2XgoW3HyKOVP6c3EuSRHuJ5gJFZct/pnJsY
-         jCQA==
+        d=linaro.org; s=google; t=1702288781; x=1702893581; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TrsCqshSjsTSdy6d+qAdh426B28GZvtLzocuNRs4ZKY=;
+        b=cbG3JN1VVAc568X1tmHXgXLFTCpqAonE+cgYsvgUlTBCQ7GgQKREhT1vMq81gwFzOz
+         DnsG6XFdn8ipuvC5TFNHrGlNBx5j5QvBXYbkBzcT+mYRF/4h+icJBSlnp+5oavGDiPgR
+         KAj2OriYcN83DkktKRFpyraC6QKwKR94tQlkBk9Fs0AXoJNeyBLjBIQ1+iKC8Z82cFIv
+         Z0WfhcPb6HlpMbObQixbD8U6XWCa6lJleNQrEiW/PY+vrYpjZ1Ckb514EZgA3UrLkwRH
+         3STd4HGmqcpFBuJB3ym7m54Xo2Bj2CIJhXmzJTXOLJ/ZDWzdWZmNoUtS0CpL8sFDc+JA
+         qQvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702288742; x=1702893542;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+8ZYGpDqXB7DKk7WEUaqFLKAG8Tztk8Kini09NyiSQw=;
-        b=PqGmDOiIKUNMnW6fR0HVdhsqcqJZlaO0q43zZFMmY53MdagZrKGlNWnnrcQDpNZ183
-         FkjgYXj5yGDeCtL0lGdxRVhtsQWC/BL8Se+51Yf322Q2WBRdQxFd687pdLnIaX5qoiJN
-         gDa+YA0qMGPYb3B1KUgwl5UAU5bMFQwVCr7psaYFwMSN/AVO/cisNcxFCFkBPJ85FJGj
-         YGjyXgbRevbrzqFYFhKQmFokKWiaU1dm+2BbfjMG1xQ9WgJf7qq+XieG4owC0qmfVRX2
-         qOQs8cj89aQjNAefjm1o217dqL7xZgzrHo8nm4Wr0lRfJWHfQLfV4Tw590zx3LoccGC6
-         ZSvA==
-X-Gm-Message-State: AOJu0Yxbsf+hx8AIdBusVicj5T4A0Z9HTAR/qrhNOgabdMP5zfSnq3Ha
-	DFl5CMYjA8ONdmzDvEKkqosrmw==
-X-Google-Smtp-Source: AGHT+IH0EDdrIWl1aQW1z4Yjlt3s2DKMEUoxlEu8XgspXqBEWQPoRn+4E7spd9DDtbuNjgEnAgCdnQ==
-X-Received: by 2002:a05:6000:1b06:b0:334:b160:7e00 with SMTP id f6-20020a0560001b0600b00334b1607e00mr1483847wrz.151.1702288741937;
-        Mon, 11 Dec 2023 01:59:01 -0800 (PST)
+        d=1e100.net; s=20230601; t=1702288781; x=1702893581;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TrsCqshSjsTSdy6d+qAdh426B28GZvtLzocuNRs4ZKY=;
+        b=Bx6Q8snV5GqJUYqQpz5CXpI0KipP4wlM9y1nWpD48fC/0G6sv1SM+pbXkNeWxGl/ud
+         HALG+4HyWQHc2WHKe1zF3yGQuFZmY02wCbuN8xxBLHtZENAliL1N5BAmctjkaB9QPfJL
+         uq1fHp9DhPNokm1ltddGuQQu1AH3F2wWd6+ab7j9UmefAHgiToiTTI5EHlieGox0DiLY
+         cgHoGfmcVE3LnrtZ6z4aAqpGXxXAWHaOxhRdnbflLQTKD2Ie4kBw0p3pncp3y1lhGIRL
+         DrL8oSqY1ii2tdX81AJSFbFz1t+2sEh7T3JyjCjOE6WbXt6Q1T8Ui9YpbObfbGIxIqXQ
+         /KAQ==
+X-Gm-Message-State: AOJu0YxFQvowpB5loyrMoFWjpDeInWLgVoIAUMmV8PFJdvqWWvUj1Oub
+	GAtwSc9P42W6izwmHr4Y6k96CA==
+X-Google-Smtp-Source: AGHT+IEeSWH47eB906OxPP0nBv3rfdTdiDsUUutsxojiPGhTO2R0zX7h3zvgDxFnNDaERE8MCMMgeQ==
+X-Received: by 2002:a05:6512:10ce:b0:50c:e4c:2f5a with SMTP id k14-20020a05651210ce00b0050c0e4c2f5amr2335551lfg.96.1702288781347;
+        Mon, 11 Dec 2023 01:59:41 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id g12-20020adfa48c000000b003335eded7f5sm8206605wrb.68.2023.12.11.01.59.00
+        by smtp.gmail.com with ESMTPSA id g12-20020adfa48c000000b003335eded7f5sm8206605wrb.68.2023.12.11.01.59.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Dec 2023 01:59:01 -0800 (PST)
-Message-ID: <f61a9382-a2b9-44a8-a33e-4c4f8d6cae50@linaro.org>
-Date: Mon, 11 Dec 2023 10:58:59 +0100
+        Mon, 11 Dec 2023 01:59:40 -0800 (PST)
+Message-ID: <d432c419-3622-47b5-aa2e-2eea18e4eee5@linaro.org>
+Date: Mon, 11 Dec 2023 10:59:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,17 +62,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/5] arm64: dts: rockchip: Add support for rk3588 based
- board Cool Pi CM5 EVB
-To: Andy Yan <andyshrk@163.com>
-Cc: heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-References: <20231210080313.1667013-1-andyshrk@163.com>
- <20231210080629.1667589-1-andyshrk@163.com>
- <2b58450a-1bde-424b-ab69-a3834914522c@linaro.org>
- <14ab4c8c.4fa1.18c58488bf2.Coremail.andyshrk@163.com>
+Subject: Re: [PATCH 1/2] dt-bindings: interconnect: qcom,msm8998-bwmon: Add
+ SM6115 bwmon instance
 Content-Language: en-US
+To: Konrad Dybcio <konrad.dybcio@linaro.org>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Georgi Djakov <djakov@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231209-topic-6115iccdt-v1-0-f62da62b7276@linaro.org>
+ <20231209-topic-6115iccdt-v1-1-f62da62b7276@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -119,33 +119,19 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <14ab4c8c.4fa1.18c58488bf2.Coremail.andyshrk@163.com>
+In-Reply-To: <20231209-topic-6115iccdt-v1-1-f62da62b7276@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 11/12/2023 10:49, Andy Yan wrote:
->>> +
->>> +	backlight: backlight {
->>> +		compatible = "pwm-backlight";
->>> +		power-supply = <&vcc12v_dcin>;
->>> +		pwms = <&pwm2 0 25000 0>;
->>> +		enable-gpios = <&gpio4 RK_PA3 GPIO_ACTIVE_HIGH>;
->>> +		pinctrl-names = "default";
->>> +		pinctrl-0 = <&bl_en>;
->>> +		status = "okay";
->>
->> This is a friendly reminder during the review process.
->>
->> It seems my or other reviewer's previous comments were not fully
->> addressed. Maybe the feedback got lost between the quotes, maybe you
->> just forgot to apply it. Please go back to the previous discussion and
->> either implement all requested changes or keep discussing them.
+On 11/12/2023 10:23, Konrad Dybcio wrote:
+> SM6115 has a single BWMONv4 intance for CPU. Document it.
 > 
-> Yes， it seems that the comments were lost， I didn't get any comments about PATCH 5 in my V1.
-> Anyway, I will check this patch again, and fix the issue I find by myself.
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-I don't have to repeat the same comment for every same thing to fix.
-It's your task to fix all occurrences of the same issue.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
