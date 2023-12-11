@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-23809-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23810-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C04A80C669
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 11:26:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D8C5E80C66D
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 11:26:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CB2CE1F214C1
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 10:26:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8438C1F2128A
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 10:26:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B0DB24B32;
-	Mon, 11 Dec 2023 10:26:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71C1A24B34;
+	Mon, 11 Dec 2023 10:26:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MsDVDkN0"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="O9r7lI46"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7173AC3
-	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 02:26:09 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-40c39ef63d9so19926255e9.3
-        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 02:26:09 -0800 (PST)
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AC1CDB
+	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 02:26:22 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-40c32df9174so34826425e9.3
+        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 02:26:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702290368; x=1702895168; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702290381; x=1702895181; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=n2btn1TXIdRL90YK9bKoqfxU9s763ksK+ait2erqVOo=;
-        b=MsDVDkN0RgIMYh+0veu4mOezDm0b7ip7rqcD2eguLM5hi6+y96mKpIvSMUrjmCvYqx
-         O6t89hES4WEZaN6V9Ei5WZA7886baAex0ftviNyL9WZQ2sKIsEEQ1r3dv2gPLUAiCKV5
-         +KyM5ralAAq/HGwekNsctwQknBO1AtzJ9Z5gFngvZx64MFwqb5ivzwJu0OL8Hvpkv5P4
-         jrfJHBLlf6DllS7YtP/L6KvFWTFLu4xE1357dJBjRHVHTxxLXYI/cwUMPraVr6rIm5Xt
-         CYEnDew6vn7qtAF+igosUU5/yvoTA7lsVTRHaxRfUfBUGrBZT/bIWiE89eV/nBRpOo+J
-         PSRg==
+        bh=NvrzwS9Z+pdTaNvSMUaBxE+3d/ASHasz+gLmGR1t53E=;
+        b=O9r7lI46HUncwpNrqz5DBfdcRK0OA9K3RwZv29WD1JoWMuAnAT2omj1ZPD+sXnbR8a
+         FJQhI9jCTBnqGjVmdXh/hke6EPT9jeua8By7w4LJ95dt1Ojoixnyyte/wJzirc5omC7W
+         JmXvJlB0vtqzqmgjtDoaeoypA/lb7A59vMI+NQ9/Jifh6pBZ8rgHmLmYZr4R+vgA9m7p
+         gZHrMxLF7uQc1xjfM7DgRGog32trgy7v9guXcf71tEdYKy2dTXt6Lbg51kR1g02MWp3A
+         t7MlWK/ISvdWlg9p5eluq7bHpjLp89CvltCCb0ux1ibMEM11rFeOu121wUn3WeJKwsf8
+         0cEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702290368; x=1702895168;
+        d=1e100.net; s=20230601; t=1702290381; x=1702895181;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=n2btn1TXIdRL90YK9bKoqfxU9s763ksK+ait2erqVOo=;
-        b=UIHUpk3TJJ2OClhsVZt3K4vdv76h8/knfcOGO+5Wul7H6YNqmshYnGfZajaRYOZumR
-         /JwvLDA+sEIH1e6idbKe4bY9mSV8ZauVdxrFx8r63o43PTpMxAh1txpLbYs9hNKQ58ss
-         nwFNA7SrTznkuoD52S0xEDkY4z/x3WUYmPAev+GeanNvmAXF+jPyWXUW7AP1yY6hd6qH
-         ZHHibCqfDKNWCezVBB2055RZRs/fciFizkt9dHaYhlWev2mitID54RCybUvUDRlsbXVK
-         65tyDtGdtlahXFzJMD0ge3GG2TprWy7vTP42FkINMrpLoZe7B/IHfYQEZKQQbOqcrvCo
-         Mahw==
-X-Gm-Message-State: AOJu0YyXbROs3bVTTox82B6I4U2+hXo8/ZLrSi3TPEXb6vdZrnbc0qBg
-	X5oOLPTV3aonFY2xMNTtjpPInw==
-X-Google-Smtp-Source: AGHT+IHQJULIJOM8Kxa+TaN7YpI1Yd8nvOxyDK88VFuNJR5Ll0HyxhXm136b7HIWX7tkU1GqQe7Vww==
-X-Received: by 2002:a7b:c416:0:b0:40c:2e1c:8f7f with SMTP id k22-20020a7bc416000000b0040c2e1c8f7fmr1909361wmi.143.1702290367893;
-        Mon, 11 Dec 2023 02:26:07 -0800 (PST)
+        bh=NvrzwS9Z+pdTaNvSMUaBxE+3d/ASHasz+gLmGR1t53E=;
+        b=T63LG/R49t8IfD84rA+fY33d+6O+CkFtIHOtqkJvE3revzYEYkDLzDjL+Z2KTz6uQI
+         DFEZjM2t7HvZWxNywvbXtWFwAtMYqG2mGpRSyDfXK4mnPvtPIJIJzGdMxb10xadG2hJd
+         4PMpRWRa0FvACVxh1VyIUkmLxiPG+2dwFJsIJjcokG1LyLRZi6hEE+Pr6OGI7Ti8v77L
+         XLcf+XUnPqcpPgrynNVVpFDEbXz+I3N9rk44lx3Wih6XP06OvrpNK1bslh/SwU8LdpHr
+         S+4pl5ZihgrW7AeONLlil8xmoUTHK+I3/f6bU4Ix+EZoKkQpFKTAANX/1s7bjOBc0jZb
+         k0/Q==
+X-Gm-Message-State: AOJu0YzxLSQCLN3eLjNn/NqcybX+2F/EMIPxtpd6lA9YO8gtb5E596V8
+	EnF1Bq26CHvU6Y8vlJE/525XQA==
+X-Google-Smtp-Source: AGHT+IHWKyXE9VyULmwkpfSEzOyzrsDaNA5pcnTMQEtRPb2XDBccidoGkIMJkE7h2VFkfMey8CzZFg==
+X-Received: by 2002:a1c:7c17:0:b0:40b:5e21:c5a5 with SMTP id x23-20020a1c7c17000000b0040b5e21c5a5mr1447441wmc.115.1702290381226;
+        Mon, 11 Dec 2023 02:26:21 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id r20-20020a05600c35d400b0040b538047b4sm14815328wmq.3.2023.12.11.02.26.06
+        by smtp.gmail.com with ESMTPSA id r20-20020a05600c35d400b0040b538047b4sm14815328wmq.3.2023.12.11.02.26.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Dec 2023 02:26:07 -0800 (PST)
-Message-ID: <eafc8adc-d43c-43e6-9561-6e1482545317@linaro.org>
-Date: Mon, 11 Dec 2023 11:26:06 +0100
+        Mon, 11 Dec 2023 02:26:20 -0800 (PST)
+Message-ID: <26ae0c48-c0b3-46d1-9768-dcc4ba3fae0f@linaro.org>
+Date: Mon, 11 Dec 2023 11:26:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,7 +62,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/7] dt-bindings: arm: qcom,ids: add SoC ID for QCS8550
+Subject: Re: [PATCH v2 5/7] soc: qcom: socinfo: add SoC Info support for the
+ QCS8550 platform
 Content-Language: en-US
 To: Tengfei Fan <quic_tengfan@quicinc.com>, agross@kernel.org,
  andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
@@ -70,7 +71,7 @@ To: Tengfei Fan <quic_tengfan@quicinc.com>, agross@kernel.org,
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, kernel@quicinc.com
 References: <20231207092801.7506-1-quic_tengfan@quicinc.com>
- <20231207092801.7506-5-quic_tengfan@quicinc.com>
+ <20231207092801.7506-6-quic_tengfan@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -116,12 +117,12 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231207092801.7506-5-quic_tengfan@quicinc.com>
+In-Reply-To: <20231207092801.7506-6-quic_tengfan@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 07/12/2023 10:27, Tengfei Fan wrote:
-> Add the ID for the Qualcomm QCS8550 SoC.
+> Add SoC Info support for the QCS8550 platform.
 > 
 > Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
 > ---
