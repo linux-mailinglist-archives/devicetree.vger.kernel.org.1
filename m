@@ -1,102 +1,116 @@
-Return-Path: <devicetree+bounces-23804-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B920880C63E
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 11:21:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA37180C64B
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 11:23:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 786B21F21029
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 10:21:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6EC421F20F98
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 10:23:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11D16249FF;
-	Mon, 11 Dec 2023 10:20:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C0EE24B21;
+	Mon, 11 Dec 2023 10:23:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VObXoy5G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9F25591;
-	Mon, 11 Dec 2023 02:20:52 -0800 (PST)
-Received: from loongson.cn (unknown [112.20.109.254])
-	by gateway (Coremail) with SMTP id _____8CxhfCD4nZllAEAAA--.38S3;
-	Mon, 11 Dec 2023 18:20:51 +0800 (CST)
-Received: from localhost.localdomain (unknown [112.20.109.254])
-	by localhost.localdomain (Coremail) with SMTP id AQAAf8Cxjd6A4nZlgnBbAA--.7604S2;
-	Mon, 11 Dec 2023 18:20:49 +0800 (CST)
-From: Yanteng Si <siyanteng@loongson.cn>
-To: andrew@lunn.ch,
-	tsbogend@alpha.franken.de
-Cc: Yanteng Si <siyanteng@loongson.cn>,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	peppe.cavallaro@st.com,
-	alexandre.torgue@foss.st.com,
-	joabreu@synopsys.com,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	mcoquelin.stm32@gmail.com,
-	devicetree@vger.kernel.org,
-	linux-mips@vger.kernel.org,
-	chenhuacai@loongson.cn,
-	netdev@vger.kernel.org,
-	loongarch@lists.linux.dev,
-	chris.chenfeiyang@gmail.com
-Subject: [PATCH v1 net 0/3] Some bug fixes
-Date: Mon, 11 Dec 2023 18:20:32 +0800
-Message-Id: <cover.1702289232.git.siyanteng@loongson.cn>
-X-Mailer: git-send-email 2.31.4
+Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C702018D
+	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 02:23:03 -0800 (PST)
+Received: by mail-qk1-x72a.google.com with SMTP id af79cd13be357-77f3d75dafeso259401385a.0
+        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 02:23:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702290182; x=1702894982; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=8uwL1lLxX1dFaUiWFiQrXZhQs3hhD/dlzqmlkyytJpw=;
+        b=VObXoy5GmaHZsOWqlwAdp9QVI/50PLwml3dlWF+7GalOLOwh9KU+k6Hl8eaxLfgBoF
+         FeE+vA9sLhMdiyYHOAWWfVb0hJBb2aM34vWORFdS7ipsCJ9YNUB50+wrr8kslc/l6I2N
+         ba3PcDB+88xAo7huLJGtog5B4Fw5GR99HKozERZUyQRlzhX8XCW5go9PEEqi+iMqVIyQ
+         Ck0XnOAOWd4INk37P5gYjHMmZlkV2N9IkJdONdet3CulSGhz8fWTiKcS4hi3NnmR/W+y
+         oWpCzUKhouK//48q0+Hrot3p2mC3ALGi2psuBBgiz0CaLyXeNlDgYsChM2791+JuQxoI
+         Y+wg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702290182; x=1702894982;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8uwL1lLxX1dFaUiWFiQrXZhQs3hhD/dlzqmlkyytJpw=;
+        b=gMl6ZVnitSDoZ7PWGG1osPkEC15XfEjzokRGEK/kyt2sAe5oJj8u8Laj5WmP3in06I
+         Ei5UeboPTuka8PdRrbwKvx9hwRhE5T6uNijcVKx3OD5jLgo/IzM5Aw4DPyl4QziWUiuf
+         kNoFVfUthZsgSHfhzDHhamiZTr3M9GEFKEBH4MZcDSkgrxbTMyKN7AgW5mDezSMFgjGE
+         tQWFLD/LPF1CLb+dzuLV0qLr50xARyniPsjInpyMRzdlObPqKQRNvGVvZIYpdOVGTZeg
+         8qaIiGiJkXfSbG3BNgJ9CBsW8CcNDXdDM/dUZmZlSV04ak0b9Jzr2MBtKLoUZjtZWihi
+         34mw==
+X-Gm-Message-State: AOJu0Yy8LFL1KW6STgz09TiVebHhgWIHGisG9WMPmOw0JnZqMnu+LNJK
+	HjwzMydcdOlJB7fqVNHX8tJR/OC7cERqZAC41mef5w==
+X-Google-Smtp-Source: AGHT+IHqP/co+Erp1KyVxk9Vrb7BjW2fZ076cQiX9m6z1AAqfzfzOVELbNhXJDqCOlCh75GXJdg46xQJtROICe7jQ3I=
+X-Received: by 2002:ad4:50c3:0:b0:67a:c8e4:e692 with SMTP id
+ e3-20020ad450c3000000b0067ac8e4e692mr5048288qvq.100.1702290182193; Mon, 11
+ Dec 2023 02:23:02 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:AQAAf8Cxjd6A4nZlgnBbAA--.7604S2
-X-CM-SenderInfo: pvl1t0pwhqwqxorr0wxvrqhubq/
-X-Coremail-Antispam: 1Uk129KBj9xXoWrtrW5GFy8tF1kXrW5AF43urX_yoWfWFX_CF
-	Z3K348GF4fWFW7J3s29Fs8Zr1agrWDG3W5CFW5JF4fW39rtrnxZrWUCFZ7WF17WFWa9rs3
-	Jr4vgr1rCwn7WosvyTuYvTs0mTUanT9S1TB71UUUUbDqnTZGkaVYY2UrUUUUj1kv1TuYvT
-	s0mT0YCTnIWjqI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUI
-	cSsGvfJTRUUUbSxYFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20x
-	vaj40_Wr0E3s1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxS
-	w2x7M28EF7xvwVC0I7IYx2IY67AKxVW5JVW7JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxV
-	W8JVWxJwA2z4x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E14v2
-	6r4UJVWxJr1ln4kS14v26r1q6r43M2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12
-	xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1q
-	6rW5McIj6I8E87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64
-	vIr41lc7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_
-	Jr0_Gr1l4IxYO2xFxVAFwI0_Jw0_GFylx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8Gjc
-	xK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0
-	cI8IcVAFwI0_Gr0_Xr1lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8V
-	AvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVW8JVWxJwCI42IY6I8E87Iv6xkF7I0E
-	14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxUstxhDUUUU
+References: <20231209233106.147416-1-peter.griffin@linaro.org>
+ <20231209233106.147416-15-peter.griffin@linaro.org> <9ffd229e-cf1b-4508-ba74-d5a000c54582@linaro.org>
+In-Reply-To: <9ffd229e-cf1b-4508-ba74-d5a000c54582@linaro.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Mon, 11 Dec 2023 10:22:51 +0000
+Message-ID: <CADrjBPrWQ9EUDDqZ6Nxr-z93rzZf0sJVVFVZk58s1ErmkUJpMw@mail.gmail.com>
+Subject: Re: [PATCH v6 14/20] watchdog: s3c2410_wdt: Add support for WTCON
+ register DBGACK_MASK bit
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org, 
+	tomasz.figa@gmail.com, s.nawrocki@samsung.com, linus.walleij@linaro.org, 
+	wim@linux-watchdog.org, linux@roeck-us.net, catalin.marinas@arm.com, 
+	will@kernel.org, arnd@arndb.de, olof@lixom.net, gregkh@linuxfoundation.org, 
+	jirislaby@kernel.org, cw00.choi@samsung.com, alim.akhtar@samsung.com, 
+	tudor.ambarus@linaro.org, andre.draszik@linaro.org, 
+	semen.protsenko@linaro.org, saravanak@google.com, willmcvicker@google.com, 
+	soc@kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-watchdog@vger.kernel.org, kernel-team@android.com, 
+	linux-serial@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-* Put Krzysztof's patch into my thread, pick Conor's Reviewed-by
-  tag and Jiaxun's Acked-by tag.(prev version is RFC patch)
+Hi folks,
 
-* I fixed an Oops related to mdio, mainly to ensure that
-  mdio is initialized before use, because it will be used
-  in a series of patches I am working on.
+On Sun, 10 Dec 2023 at 14:24, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 10/12/2023 00:31, Peter Griffin wrote:
+> > The WDT uses the CPU core signal DBGACK to determine whether the SoC
+> > is running in debug mode or not. If the DBGACK signal is asserted and
+> > DBGACK_MASK bit is enabled, then WDT output and interrupt is masked
+> > (disabled).
+> >
+> > Presence of the DBGACK_MASK bit is determined by adding a new
+> > QUIRK_HAS_DBGACK_BIT quirk. Also update to use BIT macro to avoid
+> > checkpatch --strict warnings.
+> >
+> > Tested-by: Will McVicker <willmcvicker@google.com>
+> > Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
+> > Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+>
+> Guenter, Wim,
+>
+> The watchdog patches are kind of independent, except that bindings has
+> conflicting re-organization which I took via my Samsung SoC tree. If it
+> is fine with you, please provide acks or review and I will take the
+> watchdog changes.
+>
 
-see <https://lore.kernel.org/loongarch/cover.1699533745.git.siyanteng@loongson.cn/T/#t>
+Just to add, without the Watchdog gs101 changes the system will reset
+after ~60 seconds, as the bootloader is left running by the
+bootloader. So it would be nice to get patches in as well if possible.
 
+regards,
 
-Krzysztof Kozlowski (2):
-  stmmac: dwmac-loongson: drop useless check for compatible fallback
-  MIPS: dts: loongson: drop incorrect dwmac fallback compatible
-
-Yanteng Si (1):
-  stmmac: dwmac-loongson: Make sure MDIO is initialized before use
-
- .../boot/dts/loongson/loongson64-2k1000.dtsi  |  3 +--
- arch/mips/boot/dts/loongson/ls7a-pch.dtsi     |  3 +--
- .../ethernet/stmicro/stmmac/dwmac-loongson.c  | 19 ++++++-------------
- 3 files changed, 8 insertions(+), 17 deletions(-)
-
--- 
-2.31.4
-
+Peter.
 
