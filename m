@@ -1,110 +1,108 @@
-Return-Path: <devicetree+bounces-24062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24063-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECA1680DBD7
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 21:42:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB0C480DBD9
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 21:42:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7D4EDB20EB6
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 20:42:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 955151F214B1
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 20:42:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 921CF53E3B;
-	Mon, 11 Dec 2023 20:42:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08F6B53E3D;
+	Mon, 11 Dec 2023 20:42:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7F79D6;
-	Mon, 11 Dec 2023 12:42:10 -0800 (PST)
-Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-1faecf57bedso3489012fac.3;
-        Mon, 11 Dec 2023 12:42:10 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702327330; x=1702932130;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=DFKQb/7yTTyqP+WONQNsPnQPZNy6QiIP6BOSliRozLg=;
-        b=qbtDXrEYb0KufNqIcKtyyPgy/5LUEqF4teDklozOdAvC+aulDWhdghFjMpMDgp7GD9
-         XHT9kJS7WrjBXCY4YjRHqkGz+3g5NcP0upSW+Pjhb21PHJ18Mp6sQ846f+kZ9OEGlXvq
-         vVP93AVv9E7RIF9BQhSltQF7CeNSSMDGhJJzJq6DBX83ZpPKsip7V1Ero0jK0/AaYtaT
-         kcdPxx+zxf+KNE4soUid2LQNNYl2uJKA/gcl7b5dMYd2uxTesMXPnDu4vCXRMeoJP+Wt
-         JV/FBxiAGwygzN2OIOmpOwo5UgZEBKmWep53og/RilhPUPcfNSL8F+cgBCW89JduJ+uH
-         Gqwg==
-X-Gm-Message-State: AOJu0YwMP66+a5OH5Hlamp4Si8BKZJKAnH3wB5ud3fnIl0hwUnHVfKdj
-	EfYw0sjVnU9o0i9m47LkVg==
-X-Google-Smtp-Source: AGHT+IERzgL6eT6297cLEdH1ofw1Mjm0oIzNAtg0LSFt/ya3Ieo/FesvjdPlj5Ed946IaU5+wZT0RQ==
-X-Received: by 2002:a05:6870:f155:b0:1fb:412:c2eb with SMTP id l21-20020a056870f15500b001fb0412c2ebmr6180027oac.50.1702327329989;
-        Mon, 11 Dec 2023 12:42:09 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id gy16-20020a056870289000b001fb1bf9f5ddsm2656238oab.21.2023.12.11.12.42.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Dec 2023 12:42:09 -0800 (PST)
-Received: (nullmailer pid 2870910 invoked by uid 1000);
-	Mon, 11 Dec 2023 20:42:08 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AAA8E9
+	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 12:42:19 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rCn6S-0005UC-35; Mon, 11 Dec 2023 21:42:12 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rCn6Q-00FBGh-SY; Mon, 11 Dec 2023 21:42:10 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rCn6Q-0018Fb-Iq; Mon, 11 Dec 2023 21:42:10 +0100
+Date: Mon, 11 Dec 2023 21:42:10 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Nylon Chen <nylon.chen@sifive.com>
+Cc: linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
+	aou@eecs.berkeley.edu, thierry.reding@gmail.com,
+	emil.renner.berthing@canonical.com, vincent.chen@sifive.com,
+	greentime.hu@sifive.com, zong.li@sifive.com, nylon7717@gmail.com
+Subject: Re: [v5 1/2] riscv: dts: sifive: unleashed/unmatched: Remove PWM
+ controlled LED's active-low properties
+Message-ID: <20231211204210.ioeyyufiz646ht5j@pengutronix.de>
+References: <20231024101902.6689-1-nylon.chen@sifive.com>
+ <20231024101902.6689-2-nylon.chen@sifive.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>, netdev@vger.kernel.org, devicetree@vger.kernel.org, Russell King <linux@armlinux.org.uk>, Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Florian Fainelli <f.fainelli@gmail.com>, Eric Dumazet <edumazet@google.com>, Heiner Kallweit <hkallweit1@gmail.com>, Jakub Kicinski <kuba@kernel.org>, linux-kernel@vger.kernel.org, Paolo Abeni <pabeni@redhat.com>, "David S. Miller" <davem@davemloft.net>
-In-Reply-To: <20231211192318.16450-3-ansuelsmth@gmail.com>
-References: <20231211192318.16450-1-ansuelsmth@gmail.com>
- <20231211192318.16450-3-ansuelsmth@gmail.com>
-Message-Id: <170232732808.2870894.17994101779465776370.robh@kernel.org>
-Subject: Re: [net-next RFC PATCH v2 3/4] dt-bindings: net: Document QCA808x
- PHYs
-Date: Mon, 11 Dec 2023 14:42:08 -0600
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ii53zkpujb4nxf65"
+Content-Disposition: inline
+In-Reply-To: <20231024101902.6689-2-nylon.chen@sifive.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
 
-On Mon, 11 Dec 2023 20:23:17 +0100, Christian Marangi wrote:
-> Add Documentation for QCA808x PHYs for the additional LED configuration
-> for this PHY.
-> 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> ---
-> Changes v2:
-> - Fix License warning from checkpatch
-> - Drop redundant Description phrase
-> - Improve commit tile
-> - Drop special property (generalized)
-> 
->  .../devicetree/bindings/net/qca,qca808x.yaml  | 58 +++++++++++++++++++
->  1 file changed, 58 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/qca,qca808x.yaml
-> 
+--ii53zkpujb4nxf65
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+On Tue, Oct 24, 2023 at 06:19:01PM +0800, Nylon Chen wrote:
+> This removes the active-low properties of the PWM-controlled LEDs in
+> the HiFive Unmatched device tree.
+>=20
+> The reference is hifive-unleashed-a00.pdf[0] and hifive-unmatched-schemat=
+ics-v3.pdf[1].
+>=20
+> Link: https://sifive.cdn.prismic.io/sifive/c52a8e32-05ce-4aaf-95c8-7bf845=
+3f8698_hifive-unleashed-a00-schematics-1.pdf [0]
+> Link: https://sifive.cdn.prismic.io/sifive/6a06d6c0-6e66-49b5-8e9e-e68ce7=
+6f4192_hifive-unmatched-schematics-v3.pdf [1]
 
-yamllint warnings/errors:
+IMHO the commit log should mention that the driver got inversion wrong
+and so both dts and driver need adaption.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/qca,qca808x.yaml: 'anyOf' conditional failed, one must be fixed:
-	'properties' is a required property
-	'patternProperties' is a required property
-	hint: Metaschema for devicetree binding documentation
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+Otherwise looks fine to me.
 
-doc reference errors (make refcheckdocs):
+Best regards
+Uwe
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231211192318.16450-3-ansuelsmth@gmail.com
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+--ii53zkpujb4nxf65
+Content-Type: application/pgp-signature; name="signature.asc"
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+-----BEGIN PGP SIGNATURE-----
 
-pip3 install dtschema --upgrade
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmV3dCEACgkQj4D7WH0S
+/k6tVAf7Bj1RKTbaCo6ITu+NYR1r155+J1T19OHpefrybgzQXZ2X+LaixXbycEk/
+bkGT88XTQVJSmNlu5Af1zKpOF/Uqs3XZovcEPiipnTGQFW/cuQfys/Yryxr1/9ei
+DssK8PavR+upBKmz2n0Amhh5gISU75gAGgExhTDMV4atIrlopAl0zGQUSphCFaLQ
+u+HfMiBhG18K6hfk/tsA1KYf8v/bzg2DZ9rArCSycr8/8BqSUO1R6SAWlrSUWRrU
+I+JfkIFJNWwP1sXz0i9+tAoOKYCgcLdtqLBbi9QT5vYcKSVig+m5h/3ofeJMu9Tw
+B9IcMycyPSaYA56AqG1k79Mv021yUg==
+=KPhB
+-----END PGP SIGNATURE-----
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+--ii53zkpujb4nxf65--
 
