@@ -1,79 +1,133 @@
-Return-Path: <devicetree+bounces-23932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23933-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBD8E80CF02
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 16:04:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA23480CF21
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 16:12:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7F0781F218B1
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 15:04:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 652E0281CBC
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 15:12:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 493974A99A;
-	Mon, 11 Dec 2023 15:04:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DF6E4AF69;
+	Mon, 11 Dec 2023 15:12:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F22xU4oE"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Sm95cUOR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20F634A986;
-	Mon, 11 Dec 2023 15:04:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C608DC433C9;
-	Mon, 11 Dec 2023 15:04:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702307073;
-	bh=e6CXrMobZvPrjdB6OvAR3xnF7KHYIQZ/dEC/uDNZ1bM=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=F22xU4oEYxG9GvfWb/KYdQEu9zL+aWcYtzSFP6Xv4l0GCVu0RApN2VSCYZwMF/mgX
-	 CrnZPkFZgZtjdLiZc3jhvUffq03e282SGutNa8ipxbY64rmhpvT7ZYlnUvNULZWQXU
-	 FadEwMg4CiKr7Ksy7EtaEnLdSJWgQf5aWgVhJqfQKaZjPEPaM9BrjdWTr7R+mWPIwB
-	 hCWQLDFrr02bwgHD3xGzPDX+49UGrBsjAr1Ok+jAr4bp11b0YqLxlJnPqSMndF7LbR
-	 OERgEgGwPrfUX4+bgtOl+V7U2ZY0m/lExGe9lfKMLe0ar+Fs+oduOoWPtYU+JcLKUD
-	 Z5qQ1iyJz6gNw==
-From: Vinod Koul <vkoul@kernel.org>
-To: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
- conor+dt@kernel.org, Mohan Kumar <mkumard@nvidia.com>
-Cc: thierry.reding@gmail.com, jonathanh@nvidia.com, 
- dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20231128071615.31447-1-mkumard@nvidia.com>
-References: <20231128071615.31447-1-mkumard@nvidia.com>
-Subject: Re: [RESEND PATCH V2 0/2] Support dma channel mask
-Message-Id: <170230707042.319997.2049992718193941560.b4-ty@kernel.org>
-Date: Mon, 11 Dec 2023 20:34:30 +0530
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A7EBDC;
+	Mon, 11 Dec 2023 07:12:41 -0800 (PST)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 86562E0010;
+	Mon, 11 Dec 2023 15:12:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1702307560;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=oFE6C0z8xKaeOiZweTxKpiLysfvHtTDmjwGQsIGoKvY=;
+	b=Sm95cUORL9q+npJNEYxgVyXxreLziHzhozNYrvKqDq4fiV8Oo8G1fV1lSqxgzBpDmp0Zji
+	iDaBgZ8YljiOxQhZgGSo0MNcLS8bWk2gTpJ9FOH+oHXYBCevzl3ULB+8Gf6DGeEDXVU/K9
+	BuyBrCTzkOt1dAqmL5FvwvZW6U8wdBWuXwMAzL7rmy1gtXnAKvj6Ba37JOkGyCEoPQeQDc
+	3mT7oK3s90ZycJ4FIwSDeg4sQ1Yu7NrJnHnjju+zjuoCiN8PaOCcmreEmvaz3GmTmHXiNl
+	HV9XSwdkUB/Jggo926EdmdCEcR82GL049n4y0HwjvsJp/YTOEjXqVnoVoAhkxg==
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jens Axboe <axboe@kernel.dk>,
+	Davidlohr Bueso <dave@stgolabs.net>,
+	Ard Biesheuvel <ardb@kernel.org>
+Cc: Romain Gantois <romain.gantois@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Herve Codina <herve.codina@bootlin.com>,
+	linux-mtd@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-block@vger.kernel.org,
+	linux-efi@vger.kernel.org
+Subject: [RFC PATCH 0/6] Add GPT parser to MTD layer
+Date: Mon, 11 Dec 2023 16:12:36 +0100
+Message-ID: <20231211151244.289349-1-romain.gantois@bootlin.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.3
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: romain.gantois@bootlin.com
 
+Hello everyone,
 
-On Tue, 28 Nov 2023 12:46:13 +0530, Mohan Kumar wrote:
-> To reserve the dma channel using dma-channel-mask property for Tegra
-> platforms.
-> 
-> Mohan Kumar (2):
->   dt-bindings: dma: Add dma-channel-mask to nvidia,tegra210-adma
->   dmaengine: tegra210-adma: Support dma-channel-mask property
-> 
-> [...]
+MTD devices were historically partitioned using fixed partitions schemes
+defined in the kernel device tree or on the cmdline. More recently, a bunch
+of dynamic parsers have been introduced, allowing partitioning information
+to be stored in-band. However, unlike disks, parsers for MTD devices do not
+support runtime discovery of the partition format. This format is instead
+named in the device-tree using a compatible string.
 
-Applied, thanks!
+The GUID Partition Table is one of the most common ways of partitioning a
+block device. As of now, there is no support in the MTD layer for parsing
+GPT tables. Indeed, use cases for layouts like GPT on raw Flash devices are
+rare, and for good reason since these partitioning schemes are sensitive to
+bad blocks in strategic locations such as LBA 2.  Moreover, they do not
+allow proper wear-leveling to be performed on the full span of the device.
 
-[1/2] dt-bindings: dma: Add dma-channel-mask to nvidia,tegra210-adma
-      commit: d95fcb78e7f263f909ce492c3882a704067dc534
-[2/2] dmaengine: tegra210-adma: Support dma-channel-mask property
-      commit: 25b636225a0816eac20b02fcb37daf6c722d0bed
+However, allowing GPT to be used on MTD devices can be practical in some
+cases. In the context of an A/B OTA upgrade that can act on either NOR of
+eMMC devices, having the same partition table format for both kinds of
+devices can simplify the task of the update software.
 
-Best regards,
+This series adds a fully working MTD GPT parser to the kernel. Use of the
+parser is restricted to NOR flash devices, since NAND flashes are too
+susceptible to bad blocks. To ensure coherence and code-reuse between
+subsystems, I've factored device-agnostic code from the block layer GPT
+parser and moved it to a new generic library in lib/gpt.c. No functional
+change is intended in the block layer parser.
+
+I understand that this can seem like a strange feature for MTD devices, but
+with the restriction to NOR devices, the partition table can be fairly
+reliable. Moreover, this addition fits nicely into the MTD parser model.
+Please tell me what you think.
+
+Best Regards,
+
+Romain
+
+Romain Gantois (6):
+  block: partitions: efi: Move efi.h header to include/linux/gpt.h
+  block: partitions: efi: Fix some style issues
+  block: partitions: efi: Separate out GPT-specific code
+  block: partitions: efi: Move GPT-specific code to a new library
+  drivers: mtd: introduce GPT parser for NOR flash devices
+  dt-bindings: mtd: add GPT partition bindings
+
+ .../bindings/mtd/partitions/gpt.yaml          |  41 ++
+ .../bindings/mtd/partitions/partitions.yaml   |   1 +
+ MAINTAINERS                                   |   4 +-
+ block/partitions/Kconfig                      |   2 +-
+ block/partitions/efi.c                        | 478 +++---------------
+ block/partitions/msdos.c                      |   2 +-
+ drivers/mtd/parsers/Kconfig                   |  10 +
+ drivers/mtd/parsers/Makefile                  |   1 +
+ drivers/mtd/parsers/gpt.c                     | 222 ++++++++
+ include/linux/efi.h                           |  18 +
+ block/partitions/efi.h => include/linux/gpt.h |  72 ++-
+ lib/Kconfig                                   |   3 +
+ lib/Makefile                                  |   3 +
+ lib/gpt.c                                     | 342 +++++++++++++
+ 14 files changed, 777 insertions(+), 422 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mtd/partitions/gpt.yaml
+ create mode 100644 drivers/mtd/parsers/gpt.c
+ rename block/partitions/efi.h => include/linux/gpt.h (61%)
+ create mode 100644 lib/gpt.c
+
 -- 
-~Vinod
-
+2.43.0
 
 
