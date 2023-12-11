@@ -1,157 +1,186 @@
-Return-Path: <devicetree+bounces-24009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24010-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F80A80D458
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 18:46:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 779A280D46A
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 18:49:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B11651C21637
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 17:46:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A92AB1C2163E
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 17:49:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C80C4E633;
-	Mon, 11 Dec 2023 17:45:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 965764EB30;
+	Mon, 11 Dec 2023 17:48:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="siz1Izml"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GKH4TrH6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34DF74E1C0;
-	Mon, 11 Dec 2023 17:45:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2C71C433C8;
-	Mon, 11 Dec 2023 17:45:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 777764E633;
+	Mon, 11 Dec 2023 17:48:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF2B6C433CD;
+	Mon, 11 Dec 2023 17:48:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702316756;
-	bh=O7wjFCJQlMWHBmegNZT1hxTWnkBth0ZVbCZUnv29/lw=;
+	s=k20201202; t=1702316935;
+	bh=9m905vifP5HBvlgj99tWmhjIICwDtm6qjhVzOXp83xE=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=siz1Izml3pxtqg7z6WiQUs5+dXCMkv1u/VDIhoWyfA4LlmfO8X334fiSq4xlsydzW
-	 kgmseEhhpvnpyEudgGwmIgDWQRZ5m0i/280tEYjQbGTmV0wAgjlH9GnveMzhhnxen0
-	 P4gxfzYlUJjbTGVTFB2BM8d2+3uvcQ8uoUsLRCR35eeE7SyZtl3h+4m6ZiFaXv9ZPM
-	 MYfOIlIznWeUlNcubiLjOgonzXjRhN5h+JS531Tu7mdGHwywfQ+GZ995nwaHNTp7Zf
-	 Y6jLp2JUq+tu/J/6RI2bNB752rH9PGqSILroGKdZ8q+66GCWDEQ0FhIKD0m10rsgGw
-	 5ndum0w0LRS+A==
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2c9f099cf3aso71215661fa.1;
-        Mon, 11 Dec 2023 09:45:56 -0800 (PST)
-X-Gm-Message-State: AOJu0Yxitm9euZwgLpT1HLyi3PkNWQ9wdpreiG53XOmgi5T0r7b2Al4P
-	+2LmVhIs2f216C/fCV2A1Vz/Pf/aPl25RIh89w==
-X-Google-Smtp-Source: AGHT+IGAdABMDRq4vTTJBpK5U/6vD+zrpbpPPjjj1jukQ1ZAJnbCUkfAC9Da5KG1CLO16tfEBQkodtzt3t8iWp163mg=
-X-Received: by 2002:ac2:4d91:0:b0:50b:f87a:66a9 with SMTP id
- g17-20020ac24d91000000b0050bf87a66a9mr2390805lfe.110.1702316754903; Mon, 11
- Dec 2023 09:45:54 -0800 (PST)
+	b=GKH4TrH6FHRI5gusQzMsH77d3V0M3/itnmYsCdzAx+dn1nw/4WbOlHYi0LzDb9tKY
+	 sLsi/JApn1pyOIg9VcT/J/Pq4ky/wPwCgwkEaQ0vBnEOdD5MqebGzG3KTvHRH1XF7n
+	 v8aetIeM0ToBiMywzmbi+WFfbF7m5Qcu+25d3qs7ur8NpKH1NGW9+MncmDckM9BKrX
+	 Xa7Js63x95/+ofEgKB7x0ALARN1UYr4Qrqz9I5PiRgWXzvN44V3H27OBdO0+CFUDdi
+	 /f/3QMgXRcX58PvXgEgowUSgZ8CBQi2XwRhRgLblHMamY6je8noBxUmywf7Xdda49M
+	 2Va6TC7iFE5nQ==
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-50bffb64178so5618942e87.2;
+        Mon, 11 Dec 2023 09:48:55 -0800 (PST)
+X-Gm-Message-State: AOJu0YxSgS73nZNTjhr6q3Sg19bQkBEvYoC3SPJ6zv1ppVrDE4sY9AYN
+	K23j5WllYpw/dpAX0rdafn962d3/RO+qodsBEg==
+X-Google-Smtp-Source: AGHT+IGn2Rj6s+Pbjh0z7FeFihgdozANftzWs+gyFN8lbLgY/Y4lXq/BTUcWCIB7vqtgGxnTT8kVxLnjDCJS1W5wJa8=
+X-Received: by 2002:a05:6512:3156:b0:50b:f279:c9b with SMTP id
+ s22-20020a056512315600b0050bf2790c9bmr1990684lfi.61.1702316934101; Mon, 11
+ Dec 2023 09:48:54 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231206-icc-msm8909-v1-0-fe0dd632beff@kernkonzept.com> <20231206-icc-msm8909-v1-2-fe0dd632beff@kernkonzept.com>
-In-Reply-To: <20231206-icc-msm8909-v1-2-fe0dd632beff@kernkonzept.com>
+References: <IA1PR20MB495376DBED8EE897FE11A2B7BB8BA@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <IA1PR20MB4953C7AC3FEEDE191FA0845ABB8BA@IA1PR20MB4953.namprd20.prod.outlook.com>
+In-Reply-To: <IA1PR20MB4953C7AC3FEEDE191FA0845ABB8BA@IA1PR20MB4953.namprd20.prod.outlook.com>
 From: Rob Herring <robh+dt@kernel.org>
-Date: Mon, 11 Dec 2023 11:45:42 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqL0wxBRE7umsD3CXaskcrK7Pp7y2POaUNWAxGqeSc0tgQ@mail.gmail.com>
-Message-ID: <CAL_JsqL0wxBRE7umsD3CXaskcrK7Pp7y2POaUNWAxGqeSc0tgQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] interconnect: qcom: Add MSM8909 interconnect provider driver
-To: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
-Cc: Georgi Djakov <djakov@kernel.org>, Andy Gross <agross@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+Date: Mon, 11 Dec 2023 11:48:42 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+1y3mdfzLwr3sdeOGkRHaEPJo0Gr=g4Y6dAX=5AfTdfA@mail.gmail.com>
+Message-ID: <CAL_Jsq+1y3mdfzLwr3sdeOGkRHaEPJo0Gr=g4Y6dAX=5AfTdfA@mail.gmail.com>
+Subject: Re: [PATCH v3 2/4] clk: sophgo: Add CV1800 series clock controller driver
+To: Inochi Amaoto <inochiama@outlook.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Adam Skladowski <a39.skl@gmail.com>
+	Chao Wei <chao.wei@sophgo.com>, Chen Wang <unicorn_wang@outlook.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Jisheng Zhang <jszhang@kernel.org>, 
+	Liu Gui <kenneth.liu@sophgo.com>, 
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>, qiujingbao.dlmu@gmail.com, 
+	dlan@gentoo.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Dec 6, 2023 at 8:35=E2=80=AFAM Stephan Gerhold
-<stephan.gerhold@kernkonzept.com> wrote:
+On Thu, Dec 7, 2023 at 2:37=E2=80=AFAM Inochi Amaoto <inochiama@outlook.com=
+> wrote:
 >
-> From: Adam Skladowski <a39.skl@gmail.com>
+> Add driver for CV1800 series clock controller.
 >
-> Add driver for interconnect busses found in MSM8909 based platforms.
-> The topology consists of three NoCs that are partially controlled by a
-> RPM processor.
->
-> In the downstream/vendor kernel from Qualcomm there is an additional
-> "mm-snoc". However, it doesn't have a separate RPM clock assigned. It
-> looks like this is actually the same NoC in hardware and the "mm-snoc"
-> was only defined to assign a different "qcom,util-fact". In mainline we
-> can represent this by assigning the equivalent "ab_coeff" to all the
-> nodes that are part of "mm-snoc" downstream.
->
-> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
-> [Stephan: Drop separate mm-snoc that exists downstream since it's
->  actually the same NoC as SNoC in hardware, add qos_offset for BIMC,
->  add ab_coeff for mm-snoc nodes and BIMC]
-> Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+> Link: https://github.com/milkv-duo/duo-files/blob/main/hardware/CV1800B/C=
+V180X-Clock-v1.xlsx
+> Link: https://github.com/milkv-duo/duo-files/blob/main/hardware/CV1800B/C=
+V1800B-CV1801B-Preliminary-Datasheet-full-en.pdf
 > ---
->  drivers/interconnect/qcom/Kconfig   |    9 +
->  drivers/interconnect/qcom/Makefile  |    2 +
->  drivers/interconnect/qcom/msm8909.c | 1329 +++++++++++++++++++++++++++++=
-++++++
->  3 files changed, 1340 insertions(+)
+>  drivers/clk/Kconfig                    |    1 +
+>  drivers/clk/Makefile                   |    1 +
+>  drivers/clk/sophgo/Kconfig             |   12 +
+>  drivers/clk/sophgo/Makefile            |    7 +
+>  drivers/clk/sophgo/clk-cv1800.c        | 1574 ++++++++++++++++++++++++
+>  drivers/clk/sophgo/clk-cv1800.h        |  123 ++
+>  drivers/clk/sophgo/clk-cv18xx-common.c |   76 ++
+>  drivers/clk/sophgo/clk-cv18xx-common.h |   85 ++
+>  drivers/clk/sophgo/clk-cv18xx-ip.c     |  894 ++++++++++++++
+>  drivers/clk/sophgo/clk-cv18xx-ip.h     |  266 ++++
+>  drivers/clk/sophgo/clk-cv18xx-pll.c    |  465 +++++++
+>  drivers/clk/sophgo/clk-cv18xx-pll.h    |   79 ++
+>  12 files changed, 3583 insertions(+)
+>  create mode 100644 drivers/clk/sophgo/Kconfig
+>  create mode 100644 drivers/clk/sophgo/Makefile
+>  create mode 100644 drivers/clk/sophgo/clk-cv1800.c
+>  create mode 100644 drivers/clk/sophgo/clk-cv1800.h
+>  create mode 100644 drivers/clk/sophgo/clk-cv18xx-common.c
+>  create mode 100644 drivers/clk/sophgo/clk-cv18xx-common.h
+>  create mode 100644 drivers/clk/sophgo/clk-cv18xx-ip.c
+>  create mode 100644 drivers/clk/sophgo/clk-cv18xx-ip.h
+>  create mode 100644 drivers/clk/sophgo/clk-cv18xx-pll.c
+>  create mode 100644 drivers/clk/sophgo/clk-cv18xx-pll.h
 >
-> diff --git a/drivers/interconnect/qcom/Kconfig b/drivers/interconnect/qco=
-m/Kconfig
-> index 4d15ce2dab16..ad03182b0587 100644
-> --- a/drivers/interconnect/qcom/Kconfig
-> +++ b/drivers/interconnect/qcom/Kconfig
-> @@ -8,6 +8,15 @@ config INTERCONNECT_QCOM
->  config INTERCONNECT_QCOM_BCM_VOTER
->         tristate
->
-> +config INTERCONNECT_QCOM_MSM8909
-> +       tristate "Qualcomm MSM8909 interconnect driver"
-> +       depends on INTERCONNECT_QCOM
-> +       depends on QCOM_SMD_RPM
-> +       select INTERCONNECT_QCOM_SMD_RPM
-> +       help
-> +         This is a driver for the Qualcomm Network-on-Chip on msm8909-ba=
-sed
-> +         platforms.
-> +
->  config INTERCONNECT_QCOM_MSM8916
->         tristate "Qualcomm MSM8916 interconnect driver"
->         depends on INTERCONNECT_QCOM
-> diff --git a/drivers/interconnect/qcom/Makefile b/drivers/interconnect/qc=
-om/Makefile
-> index 3a8a6ef67543..69eaddccd4f1 100644
-> --- a/drivers/interconnect/qcom/Makefile
-> +++ b/drivers/interconnect/qcom/Makefile
-> @@ -4,6 +4,7 @@ obj-$(CONFIG_INTERCONNECT_QCOM) +=3D interconnect_qcom.o
->
->  interconnect_qcom-y                    :=3D icc-common.o
->  icc-bcm-voter-objs                     :=3D bcm-voter.o
-> +qnoc-msm8909-objs                      :=3D msm8909.o
->  qnoc-msm8916-objs                      :=3D msm8916.o
->  qnoc-msm8939-objs                      :=3D msm8939.o
->  qnoc-msm8974-objs                      :=3D msm8974.o
-> @@ -35,6 +36,7 @@ qnoc-x1e80100-objs                    :=3D x1e80100.o
->  icc-smd-rpm-objs                       :=3D smd-rpm.o icc-rpm.o icc-rpm-=
-clocks.o
->
->  obj-$(CONFIG_INTERCONNECT_QCOM_BCM_VOTER) +=3D icc-bcm-voter.o
-> +obj-$(CONFIG_INTERCONNECT_QCOM_MSM8909) +=3D qnoc-msm8909.o
->  obj-$(CONFIG_INTERCONNECT_QCOM_MSM8916) +=3D qnoc-msm8916.o
->  obj-$(CONFIG_INTERCONNECT_QCOM_MSM8939) +=3D qnoc-msm8939.o
->  obj-$(CONFIG_INTERCONNECT_QCOM_MSM8974) +=3D qnoc-msm8974.o
-> diff --git a/drivers/interconnect/qcom/msm8909.c b/drivers/interconnect/q=
-com/msm8909.c
+> diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
+> index c30d0d396f7a..514343934fda 100644
+> --- a/drivers/clk/Kconfig
+> +++ b/drivers/clk/Kconfig
+> @@ -499,6 +499,7 @@ source "drivers/clk/rockchip/Kconfig"
+>  source "drivers/clk/samsung/Kconfig"
+>  source "drivers/clk/sifive/Kconfig"
+>  source "drivers/clk/socfpga/Kconfig"
+> +source "drivers/clk/sophgo/Kconfig"
+>  source "drivers/clk/sprd/Kconfig"
+>  source "drivers/clk/starfive/Kconfig"
+>  source "drivers/clk/sunxi/Kconfig"
+> diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
+> index ed71f2e0ee36..eeae7ae93f89 100644
+> --- a/drivers/clk/Makefile
+> +++ b/drivers/clk/Makefile
+> @@ -119,6 +119,7 @@ obj-$(CONFIG_ARCH_ROCKCHIP)         +=3D rockchip/
+>  obj-$(CONFIG_COMMON_CLK_SAMSUNG)       +=3D samsung/
+>  obj-$(CONFIG_CLK_SIFIVE)               +=3D sifive/
+>  obj-y                                  +=3D socfpga/
+> +obj-y                                  +=3D sophgo/
+>  obj-$(CONFIG_PLAT_SPEAR)               +=3D spear/
+>  obj-y                                  +=3D sprd/
+>  obj-$(CONFIG_ARCH_STI)                 +=3D st/
+> diff --git a/drivers/clk/sophgo/Kconfig b/drivers/clk/sophgo/Kconfig
 > new file mode 100644
-> index 000000000000..81335476aa51
+> index 000000000000..d67009fa749f
 > --- /dev/null
-> +++ b/drivers/interconnect/qcom/msm8909.c
-> @@ -0,0 +1,1329 @@
-> +// SPDX-License-Identifier: GPL-2.0
+> +++ b/drivers/clk/sophgo/Kconfig
+> @@ -0,0 +1,12 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +# common clock support for SOPHGO SoC family.
 > +
+> +config CLK_SOPHGO_CV1800
+> +       tristate "Support for the Sophgo CV1800 series SoCs clock control=
+ler"
+> +       default m
+> +       depends on ARCH_SOPHGO || COMPILE_TEST
+> +       help
+> +         This driver supports clock controller of Sophgo CV18XX series S=
+oC.
+> +         The driver require a 25MHz Oscillator to function generate cloc=
+k.
+> +         It includes PLLs, common clock function and some vendor clock f=
+or
+> +         IPs of CV18XX series SoC
+> diff --git a/drivers/clk/sophgo/Makefile b/drivers/clk/sophgo/Makefile
+> new file mode 100644
+> index 000000000000..a50320764200
+> --- /dev/null
+> +++ b/drivers/clk/sophgo/Makefile
+> @@ -0,0 +1,7 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +obj-$(CONFIG_CLK_SOPHGO_CV1800)        +=3D clk-sophgo-cv1800.o
+> +
+> +clk-sophgo-cv1800-y            +=3D clk-cv1800.o
+> +clk-sophgo-cv1800-y            +=3D clk-cv18xx-common.o
+> +clk-sophgo-cv1800-y            +=3D clk-cv18xx-ip.o
+> +clk-sophgo-cv1800-y            +=3D clk-cv18xx-pll.o
+> diff --git a/drivers/clk/sophgo/clk-cv1800.c b/drivers/clk/sophgo/clk-cv1=
+800.c
+> new file mode 100644
+> index 000000000000..8176ee672190
+> --- /dev/null
+> +++ b/drivers/clk/sophgo/clk-cv1800.c
+> @@ -0,0 +1,1574 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2023 Inochi Amaoto <inochiama@outlook.com>
+> + */
+> +
+> +#include <linux/clk-provider.h>
 > +#include <linux/clk.h>
-> +#include <linux/device.h>
-> +#include <linux/interconnect-provider.h>
-> +#include <linux/io.h>
+> +#include <linux/clkdev.h>
+> +#include <linux/kernel.h>
 > +#include <linux/module.h>
 
+> +#include <linux/of_address.h>
 > +#include <linux/of_device.h>
-> +#include <linux/of_platform.h>
 
 You probably don't need these 2 headers and the implicit includes it
 makes are dropped now in linux-next. Please check what you actually
