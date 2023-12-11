@@ -1,173 +1,161 @@
-Return-Path: <devicetree+bounces-23883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23884-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAEC980C95C
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 13:18:29 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13BE180C999
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 13:22:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6706C281C77
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 12:18:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC3BD1F216E7
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 12:22:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB4F73A29C;
-	Mon, 11 Dec 2023 12:18:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D7D13B28E;
+	Mon, 11 Dec 2023 12:22:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CKE3WHOf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dPiAiuLx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 108078E;
-	Mon, 11 Dec 2023 04:18:22 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-40c0fc1cf3dso46256905e9.0;
-        Mon, 11 Dec 2023 04:18:21 -0800 (PST)
+Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17819194;
+	Mon, 11 Dec 2023 04:22:37 -0800 (PST)
+Received: by mail-pl1-x641.google.com with SMTP id d9443c01a7336-1d0897e99e0so24342115ad.3;
+        Mon, 11 Dec 2023 04:22:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702297100; x=1702901900; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=QiV4Bcxzf25dJHNqzSbQoSLWzyN0MNcOZek8LpkVKp8=;
-        b=CKE3WHOfp5JHMH3wQiwlKMtmgOyh3UmLdClzIG4DNSMGuuVDKLAHXJ/UJx3XkbQ7bo
-         WeTck7iVJ8luuXg6o9GmVCRaKgg7iVdi1E73wyk82jGTKHaff3PhNnYurPf9NEJCyiC6
-         PFHwYSnPH+j/hzL5Z5mwc3HjJyfdmVDEYREy2aaRw4/yTmsUakyAaDwqDA9Ghe8Wag6q
-         d3wLCwcpJ5N4u0BSj98u/oPOq8ePZr81SnmN/1F0P3DHt0dLYbI71t3Z6nWNyHq+PvbQ
-         a74BcdpuPm2MRRGd9eo7qjk4T4bwJkp8b5t+Nb7pMJFnj8x8gEztFyN5MFTy/5WHLW11
-         bMjw==
+        d=gmail.com; s=20230601; t=1702297356; x=1702902156; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IQcvSnsM7JavnmPF12NfssHoIsVHQjXItCQk6VIN4nQ=;
+        b=dPiAiuLx4laXNeDcu9kXZYQE5UFQ5fA+6/rVysXt+iGPdmPPi4u9WrI49lij4r7ztF
+         VV0XenvdSQrkT3e8AvuZXXOsxMdE3E70i7H5SqYap6WyxksMm6ZEDqmiUxguqVFybRQE
+         BbRlhPbDhh+JjhPjhq7sQY1KihTRcnlgBx+U/n/xXq06KFMpUsDSM88H05Vm8uJj+8oX
+         yqfLYOmk+1jDtu8C9Tke3TsZbV15lFrHPYIzZ2K9YmJnyKOPpCV2ZIfxa81/fnqlj7Gn
+         coN3eGKla3H98UyBFgcXHY1TEG+UG7ZVggghqfpA0yw8V8iFE5EPRPrtqSPhP+ft2pJX
+         Vdiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702297100; x=1702901900;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QiV4Bcxzf25dJHNqzSbQoSLWzyN0MNcOZek8LpkVKp8=;
-        b=bcePS31RzEcIoW0aLcsWH7oq4FmID9XsZtYyL2JOZYpqqC4rlbmBzC1OQecFXxKZ+o
-         YC6bQ+OaBiYN+AnJJHMc8T2jM5AHTBk6FlBwjGNmRZl911MKFHaC1UW/WaIf6RUK0rtp
-         tc/Oi3r1amQc5ZDIWCeGG0g5nJ3xi+vUzdqTsCA7nQtK3l2Ma/nAvn1rrQkBzjOpJM1B
-         sQqlQjo4t8zMZzbgY/efTDyGbYMhTQv0eW3YP41kXNEFPttQbGIzfUb6BfF8/iBWvv9A
-         JTr1UEa5ld3ieasgWKrFiDLNQH4CCv6GLluYB+PUBD2rS46VkZIj2d2tVFZ8JzsGXRk5
-         dZKw==
-X-Gm-Message-State: AOJu0Yy5hOEhg7n82f4+2BhY9nEMEH7PG91NG/Hcutrx73PfMtqJ1j4U
-	nTw7EcDBPjNiqa++8kt9acs=
-X-Google-Smtp-Source: AGHT+IE6K37AePv5EZZBztKb3nE9ejxdrzxZNJcnN083N38EoiRyMtue+Eo9A0d+n4EwUgjzIx50KQ==
-X-Received: by 2002:a05:600c:81b:b0:40b:5e59:c590 with SMTP id k27-20020a05600c081b00b0040b5e59c590mr2083036wmp.186.1702297100030;
-        Mon, 11 Dec 2023 04:18:20 -0800 (PST)
-Received: from Ansuel-xps. (93-34-89-13.ip49.fastwebnet.it. [93.34.89.13])
-        by smtp.gmail.com with ESMTPSA id b1-20020a05600c4e0100b00405959469afsm12923793wmq.3.2023.12.11.04.18.18
+        d=1e100.net; s=20230601; t=1702297356; x=1702902156;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IQcvSnsM7JavnmPF12NfssHoIsVHQjXItCQk6VIN4nQ=;
+        b=BZ8nVXZuoBZTh5DRuDI+KVqs2ykvoIljGhrQ6N83sUumPcIKbHfpfqbAPI5dJp0vYE
+         w4IGFm0KUb6EReS8n9xkv7klyGotssi4DoEw7AoOxvZADBxZK9koqF0kU7YVpyNB5RaM
+         ejMxSm9IEMeDNnvCEcm94r/KKvk0LY3/Z30YCkeHiFHq0pmX0ooMQn1vWEdw8gI619lQ
+         G73mKvRGsBx6On/pXQ2DGUXLcDAZCPTUJZlIySMSkY+s1j8WCkI5qVy0rz84GSxoYmQc
+         ZDGw2qA3gdXR38yqCaiuwVmBjNFf2+DYdDI8xwjIefPT4O1j7EjCmpfwME9CjZSYiqWm
+         PBNA==
+X-Gm-Message-State: AOJu0YzLfkU8XUEJfWXEj+PJUpe8kNmqxMrjHAme9jcclSlRvZHkxrR8
+	+fLG0E9mpzAH+6bIu6dmcxdpq84q7XAzWB+Y
+X-Google-Smtp-Source: AGHT+IGeVtrJ6el2C/T3eyYfdtyjBM1zxk7RCTju5WCHZQlolTyy8ERUrHvD/rnl2zQwLLa6EuK9Xg==
+X-Received: by 2002:a17:902:6b0a:b0:1ce:5f67:cfd3 with SMTP id o10-20020a1709026b0a00b001ce5f67cfd3mr2005190plk.18.1702297355707;
+        Mon, 11 Dec 2023 04:22:35 -0800 (PST)
+Received: from dawn-virtual-machine.localdomain ([183.198.110.72])
+        by smtp.gmail.com with ESMTPSA id w13-20020a170902a70d00b001cf6453b237sm6494068plq.236.2023.12.11.04.22.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Dec 2023 04:18:19 -0800 (PST)
-Message-ID: <6576fe0b.050a0220.e99f3.b2b5@mx.google.com>
-X-Google-Original-Message-ID: <ZXb-CAFPxqA5v4Ff@Ansuel-xps.>
-Date: Mon, 11 Dec 2023 13:18:16 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [net-next PATCH 1/2] dt-bindings: Document QCA808x PHYs
-References: <20231209014828.28194-1-ansuelsmth@gmail.com>
- <b855eceb-05f4-4376-be62-2301d42575e7@linaro.org>
+        Mon, 11 Dec 2023 04:22:35 -0800 (PST)
+From: Li peiyu <579lpy@gmail.com>
+To: jic23@kernel.org
+Cc: javier.carrasco.cruz@gmail.com,
+	lars@metafoo.de,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Li peiyu <579lpy@gmail.com>
+Subject: [PATCH v6 0/4] iio: humidity: Add driver for ti HDC302x humidity sensors
+Date: Mon, 11 Dec 2023 20:22:01 +0800
+Message-Id: <20231211122201.9598-1-579lpy@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b855eceb-05f4-4376-be62-2301d42575e7@linaro.org>
+Content-Transfer-Encoding: 8bit
 
-On Mon, Dec 11, 2023 at 11:19:50AM +0100, Krzysztof Kozlowski wrote:
-> On 09/12/2023 02:48, Christian Marangi wrote:
-> > Add Documentation for QCA808x PHYs for the additional property for the
-> > active high LED setting and also document the LED configuration for this
-> > PHY.
-> > 
-> 
-> Please use subject prefixes matching the subsystem. You can get them for
-> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-> your patch is touching.
->
+Add support for HDC302x integrated capacitive based relative
+humidity (RH) and temperature sensor.
+This driver supports reading values, reading the maximum and
+minimum of values and controlling the integrated heater of
+the sensor.
 
-Yes sorry.
+Signed-off-by: Li peiyu <579lpy@gmail.com>
+---
+changes in v6:
+	sensor driver:
+	  - Drop offset for humidity channel.
+	  - Use put_unaligned_be16 to assign the 14-bit heater value.
+	  - Remove error message if devm_action_or_reset() fails.
+	  - Add eror message if devm_iio_device_register() fails.
+	dt-bindings:
+	  - remove items before "- const: ti,hdc3020".
+	  - add vdd-supply to required.
+changes in v5:
+	iio ABI:
+	  - Document _TROUGH as an info element.
+	sensor driver:
+	  - Correct heater enable/disable commands
+	  - Rearrang header files in alphabetical order.
+	  - Change .info_mask_separate to BIT(IIO_CHAN_INFO_RAW). 
+	  - Add details to mutex comment.
+	  - Add error handling for chan->type in read_raw call.
+	  - Remove error message for devm_iio_device_register.
+changes in v4:
+	iio core:
+	  - Add an IIO_CHAN_INFO_TROUGH modifier for minimum values.
+	iio ABI:
+	  - Document the new _TROUGH modifier.
+	sensor driver:
+	  - Add MAINTAINERS.
+	  - Use new IIO_CHAN_INFO_TROUGH modifier.
+	  - Support the complete heater range.
+	  - Remove measurement values from the data structure.
+	  - Use guard(mutex)(...), make the code simpler
+	  - Removed buffer mode and direct mode conversion code
+	  - Minor coding-style fixes.
+	dt-bindings:
+	  - removed unnecessary example
+	  - add vdd-supply to the example
+changes in v3:
+	sensor driver:
+	  - Removed the custom ABI
+	  - Give up calculating values in the driver
+	  - Use read_avail callback to get available parameters
+	  - Changed the scope of the lock to make the code more concise
+	  - Fixed the code format issue
+	dt-bindings:
+	  - Use a fallback compatible
+changes in v2:
+	sensor driver:
+	  - Added static modification to global variables
+	  - change the methord to read peak value
+	dt-bindings:
+	  - change the maintainers to me.
+	  - hdc3020,hdc3021,hdc3022 are compatible,I've changed the dirver.
+	  - change the node name to humidity-sensor.
 
-> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> > ---
-> >  .../devicetree/bindings/net/qca,qca808x.yaml  | 66 +++++++++++++++++++
-> >  1 file changed, 66 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/net/qca,qca808x.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/qca,qca808x.yaml b/Documentation/devicetree/bindings/net/qca,qca808x.yaml
-> > new file mode 100644
-> > index 000000000000..73cfff357311
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/net/qca,qca808x.yaml
-> > @@ -0,0 +1,66 @@
-> > +# SPDX-License-Identifier: GPL-2.0+
-> 
-> Dual license as checkpath and writing-bindings ask.
-> 
+---
+Javier Carrasco (2):
+      iio: core: introduce trough modifier for minimum values
+      iio: ABI: document temperature and humidity peak/trough raw attributes
 
-Oh didn't notice the warning.
+Li peiyu (2):
+      dt-bindings: iio: humidity: Add TI HDC302x support
+      iio: humidity: Add driver for TI HDC302x humidity sensors
 
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/net/qca,qca808x.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Qualcomm Atheros QCA808X PHY
-> > +
-> > +maintainers:
-> > +  - Christian Marangi <ansuelsmth@gmail.com>
-> > +
-> > +description:
-> > +  Bindings for Qualcomm Atheros QCA808X PHYs
-> 
-> Drop "Bindings for" and then entire sentence seems not useful.
-> 
+ Documentation/ABI/testing/sysfs-bus-iio            |  13 +-
+ .../bindings/iio/humidity/ti,hdc3020.yaml          |  55 +++
+ MAINTAINERS                                        |   8 +
+ drivers/iio/humidity/Kconfig                       |  12 +
+ drivers/iio/humidity/Makefile                      |   1 +
+ drivers/iio/humidity/hdc3020.c                     | 473 +++++++++++++++++++++
+ drivers/iio/industrialio-core.c                    |   1 +
+ include/linux/iio/types.h                          |   1 +
+ 8 files changed, 563 insertions(+), 1 deletion(-)
+ ---
+base-commit: 33cc938e65a98f1d29d0a18403dbbee050dcad9a
 
-Was following the pattern used for other qcom PHY. Ok will drop!
-
-> > +
-> > +  QCA808X PHYs can have up to 3 LEDs attached.
-> > +  All 3 LEDs are disabled by default.
-> > +  2 LEDs have dedicated pins with the 3rd LED having the
-> > +  double function of Interrupt LEDs/GPIO or additional LED.
-> > +
-> > +  By default this special PIN is set to LED function.
-> > +
-> > +allOf:
-> > +  - $ref: ethernet-phy.yaml#
-> > +
-> > +select:
-> > +  properties:
-> > +    compatible:
-> > +      contains:
-> > +        enum:
-> > +          - ethernet-phy-id004d.d101
-> 
-> I have impression that this is continuation of some other patchset...
-> Anyway, id004d.d101 is specific to QCA808x?
-> 
-
-I used enum assuming eventually more qca808x PHY will come... Yes that
-ID is specific and it's the id of QCA8081. Better to use const?
-
-> > +  required:
-> > +    - compatible
-> > +
-> > +properties:
-> > +  qca,led-active-high:
-> > +    description: Set all the LEDs to active high to be turned on.
-> > +    type: boolean
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
-
--- 
-	Ansuel
+Best regards,
 
