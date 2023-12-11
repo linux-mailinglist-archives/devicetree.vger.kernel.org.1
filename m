@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-23776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23777-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B36C80C4A9
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 10:32:08 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0886080C4AF
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 10:32:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B2C61C209A4
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 09:32:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EEC80B20DB9
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 09:32:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C972321362;
-	Mon, 11 Dec 2023 09:32:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C9F221362;
+	Mon, 11 Dec 2023 09:32:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="w1ZiqDTy"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QxTQMvdS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60627182
-	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 01:31:53 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-54f49c10c37so5852100a12.0
-        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 01:31:53 -0800 (PST)
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83C61B3
+	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 01:32:37 -0800 (PST)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-551437d5344so452891a12.1
+        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 01:32:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702287112; x=1702891912; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702287156; x=1702891956; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=HrEl5KkQV5CRnIeGIwjh83HLlHUTyfPdnpwHLDull+I=;
-        b=w1ZiqDTy4W9pB3/hx8wgolwftgXJdLqcgL6yDI3bZSjR9H8lMaoMlNfMLyvPz/x4Ff
-         y68SeGrWUmXEUais2YR4qQNCxUalTaYgDxGRivwbnCWHEalqzJcrRq/JvLhyE0GAhbQn
-         d/delYZrd7Bx+lbR6FwD5C5Xc3vqRiwJ2IWdQu/tGDrWKwUpjg6N6QFsAZGMuCZe6Aqx
-         WRtrmDZw6pP8eTZuTEkxWIgd2/YwEi8gxQD/OmZECwqYwLqFOY4IuUm4f0LCpipJw9W8
-         I+tZoj5QgjIsKYkNVBEUYkZ+pNKzwAlIXQGnSrQAmocBAn6y2c+HNzcxj6/nQbwrJ/l1
-         /kaA==
+        bh=Evs09/6k73KyXkgYK1JEf7mGFvrx7/4lLZO2BKMDAFQ=;
+        b=QxTQMvdSlw1OPbAMXuyemkzGLbU5nLzZos/JJjO1vGQMRt/a4U1P/akiJGLQjI2td0
+         tFrQN9kc6rEwDPPfG9ZjrYg8O2Qx4i3fBH5Ac7xbLuvHTTeemDibuEXoAopckyKkWETF
+         B8b1Pr8kbHDzgYUCorgQEOTx3q+HQm/N1gPqulV88KDVAzSZpxVp0nn4TcuVLWI77iB9
+         KZWeBeA3l11uYFwUO6DmCdM7Sh9quSDEtyUAq8DAAoIVbbL0M0lyh+LxgRm0AuN5YBLv
+         LgLpJU7eMyT7GjVCykutdOIqJLNypWp22gxwfKiIlkOS0T0n9dCw1EojN0CVMXI/PLKm
+         qlXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702287112; x=1702891912;
+        d=1e100.net; s=20230601; t=1702287156; x=1702891956;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HrEl5KkQV5CRnIeGIwjh83HLlHUTyfPdnpwHLDull+I=;
-        b=WtKMHC7R5AbLkxJpS9Fe4xEnZyc4CHONMmIxKrqM5OwQOC1TEClwiSOLzb6QJ+AwNh
-         mEMvYcdPI0/1i0aRI/7FjZk5G3W+e6ya5VLwuVv6vcSI2ujP4hWBjdDYCWuKmRJTNO1j
-         1IOOWPdGi+mBrlxjo+o+NEzAicHht/GJRE3uHD3eiA4eZwDoeMal84kOoI+y+3R+J6sw
-         PNmCnkXtVm34811rM6AQ2M6SYvnj1FYrCK4fsrZwj1n2uJ5UI/yXuSo4QBhM636goAAD
-         A5Jh3FYTSHOs+IpPIesdeSyZXWvXPdysD0JXuMZMKrQ0YXv+GUNBvMfCuDNfOvWzB3z6
-         wTyw==
-X-Gm-Message-State: AOJu0YzW8WHy5ygozh2gu068VX6Jyid8Yz8fUT2YOb91Ia9evFB+wg1L
-	dPB1tFkZ8U45yR3gaZ3wZ/SKMA==
-X-Google-Smtp-Source: AGHT+IGSswPotcNTHcYQWNYzCYEhEm1JkpxzPgamm+RnvrG/anSbUXgsotjNRbZtYcyrofrxc3zWEQ==
-X-Received: by 2002:a50:d7d4:0:b0:54c:542d:3afb with SMTP id m20-20020a50d7d4000000b0054c542d3afbmr5099784edj.36.1702287111765;
-        Mon, 11 Dec 2023 01:31:51 -0800 (PST)
+        bh=Evs09/6k73KyXkgYK1JEf7mGFvrx7/4lLZO2BKMDAFQ=;
+        b=F+n/tGBBMQRij4MTsmYv3ULFQCkaiTL5Aeza5ru18bQj2uh2b2ux4iVdwoHugsozGD
+         rONpwUqyBfRZhvqW58ofyrFIDCIGIJjUCNl+zdXZ0PxR9EebSa9tK9KvboVoTpXwBKEf
+         Um3rPowQY5QhgS+q8HwY9b+YpYrNFMSkNvL+Zxm6paID/aDmq7lCGSHUAQz6Li1P8b3u
+         e0hsDl1ST569wayUNownBch/OzpZ49zDAUbFAGFsGwOqZe7lfU/aW7yM6H4dk+VXLsP0
+         RVqO5ByP2QdQ1AWkC7dFbspo0VES/Qust+zSzTII2Pkk1mVhuc5DkM2kxmvqNws/cdes
+         /vGw==
+X-Gm-Message-State: AOJu0YzYQkb9WQrTrn5x7txy6w1bUr8qCqc8Nwvd4dzcbFRK1O2Ja6D+
+	uifJZkvEqi78mYCUTglt8chSzA==
+X-Google-Smtp-Source: AGHT+IEsnUU8CoeaC4IgXUrFX+IHGQRId9VcHIaLEwLJ3zDtX07PIlOCaJ1XJCJw2WCi4ECUGBK44g==
+X-Received: by 2002:a50:c945:0:b0:54c:60f0:7511 with SMTP id p5-20020a50c945000000b0054c60f07511mr2589981edh.35.1702287155891;
+        Mon, 11 Dec 2023 01:32:35 -0800 (PST)
 Received: from [192.168.36.128] (178235179179.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.179])
-        by smtp.gmail.com with ESMTPSA id cm27-20020a0564020c9b00b0054db088c437sm3445802edb.27.2023.12.11.01.31.50
+        by smtp.gmail.com with ESMTPSA id cm27-20020a0564020c9b00b0054db088c437sm3445802edb.27.2023.12.11.01.32.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Dec 2023 01:31:51 -0800 (PST)
-Message-ID: <92ae6379-5126-4a02-ad30-b5dd43d4d251@linaro.org>
-Date: Mon, 11 Dec 2023 10:31:50 +0100
+        Mon, 11 Dec 2023 01:32:35 -0800 (PST)
+Message-ID: <caef9439-883b-43f2-afa8-0f3918ce5876@linaro.org>
+Date: Mon, 11 Dec 2023 10:32:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,7 +62,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/9] arm64: dts: qcom: sm8150-hdk: enable HDMI output
+Subject: Re: [PATCH 5/9] arm64: dts: qcom: sm8150-hdk: fix SS USB regulators
 Content-Language: en-US
 To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
  Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
@@ -76,7 +76,7 @@ Cc: Stephen Boyd <swboyd@chromium.org>, David Airlie <airlied@gmail.com>,
  devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
  freedreno@lists.freedesktop.org
 References: <20231209232132.3580045-1-dmitry.baryshkov@linaro.org>
- <20231209232132.3580045-5-dmitry.baryshkov@linaro.org>
+ <20231209232132.3580045-6-dmitry.baryshkov@linaro.org>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -113,29 +113,21 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20231209232132.3580045-5-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20231209232132.3580045-6-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 10.12.2023 00:21, Dmitry Baryshkov wrote:
-> Add DSI outputs and link them to the onboard Lontium LT9611 DSI-to-HDMI
-> bridge, enabling HDMI output on this board. While adding the display
-> resources, also drop the headless ("amd,imageon") compat string from the
-> GPU node, since the board now has output.
+> The SM8150-HDK uses two different regulators to power up SuperSpeed USB
+> PHYs. The L5A regulator is used for the second USB host, while the first
+> (OTG) USB host uses different regulator, L18A. Fix the regulator for the
+> usb_1 QMPPHY and (to remove possible confusion) drop the
+> usb_ss_dp_core_1/_2 labels.
 > 
+> Fixes: 0ab1b2d10afe ("arm64: dts: qcom: add sm8150 hdk dts")
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
-[...]
-
-
-> +
-> +	lt9611_irq_pin: lt9611-irq-state {
-> +		pins = "gpio9";
-> +		function = "gpio";
-> +		bias-disable;
-No drive-strength?
-
-Otherwise lokos good at a glance!
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
 
