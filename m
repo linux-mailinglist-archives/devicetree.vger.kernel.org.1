@@ -1,152 +1,150 @@
-Return-Path: <devicetree+bounces-24054-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24055-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9393B80DAFF
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 20:40:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C2A480DB05
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 20:42:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3DA631F217D6
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 19:40:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CD468281F18
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 19:42:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8186F52F9D;
-	Mon, 11 Dec 2023 19:39:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C492537E4;
+	Mon, 11 Dec 2023 19:42:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pMRThIHW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YxVRi77t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51D1948CCD;
-	Mon, 11 Dec 2023 19:39:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82E18C433C7;
-	Mon, 11 Dec 2023 19:39:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702323596;
-	bh=PB/1LjMlbOLdYSx6h/CttvsBAJYkMBl4EgLNAVM+0NM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=pMRThIHWlCgpM9f5d/EToo3kDlgm/TRAm4Kc++HtMUN4yCodfPUlqvvpawj+vDlJr
-	 82mB8KzshRqPW4exaT/1ChCHxSeVhigCp5rYW5wZB5hGxdBqLnjFA29f9twijH1h0m
-	 6r2tKnLm3hIwO3SX6QyvLY/wmcKV3FAvcaJjAeWjB6nz8KxXgj9TXzl09qa8roGPNY
-	 4KCNvqTrkQQ6vcjDnecMvxg9DcsWletKgegX9ju0oTb5ZTToCURmKF3s/TctqG/SAM
-	 ZxPgJJaa3VHGKF6tkzHMiCV7VJO7sg0XYts+grju8YnI6CVsGTWZzpSSKQbx84L49D
-	 vsqkUujRsKF4A==
-Date: Mon, 11 Dec 2023 19:39:50 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Li peiyu <579lpy@gmail.com>
-Cc: javier.carrasco.cruz@gmail.com, lars@metafoo.de, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 0/4] iio: humidity: Add driver for ti HDC302x
- humidity sensors
-Message-ID: <20231211193950.7d4d012f@jic23-huawei>
-In-Reply-To: <20231211122201.9598-1-579lpy@gmail.com>
-References: <20231211122201.9598-1-579lpy@gmail.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.38; x86_64-pc-linux-gnu)
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA214D0;
+	Mon, 11 Dec 2023 11:42:11 -0800 (PST)
+Received: by mail-pl1-x62c.google.com with SMTP id d9443c01a7336-1d0a7b72203so42640855ad.2;
+        Mon, 11 Dec 2023 11:42:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702323731; x=1702928531; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=B8Nrxh5KFaB53RrFC7+uu6+AWVDGPPyGb9UygQv+cfo=;
+        b=YxVRi77ttGS0KjUbhQK6pTsfKfFtTZvbY5nPwZZiScu7ArhHaytZwY17lnZ8rtmDbx
+         VWS5AyRiVixWt/grsHWkNrInQBrMamEzfbF8PU1hfsM2E3FoMT1tjgXKdgG5LldndxsC
+         qoBYRQbdcu0BtH1BeooRfSYO9wqVhUPenvQ54NN4o62iW6sxgHLmysTkEcth6NvjUSSY
+         G+9dNa8Ox3/tkoV5SbS9+nspdJ7fri1dyNNm+JQCaeQvvplApsDDNEhiNXO5Ylcmpezg
+         HntbixLLAT1WTAe5+lhepp+lG9i9hfjNM7GYWSulxXGEzZ7Qn8nVKWBsk3a+6aCgsdUK
+         Gmcw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702323731; x=1702928531;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=B8Nrxh5KFaB53RrFC7+uu6+AWVDGPPyGb9UygQv+cfo=;
+        b=GgWhwxav0QABoZdMJLI37ih6tY+mZiMasqzMIm46FhAQqYxm63ngRVJQnNU2gDDs86
+         88f2zPQYj+h/4do9LYTj+1y91HTPuEin981O6bCLfkaiNL6EBQm9zGpMwWY8bfCfNbLC
+         Oum2Q5VHiin9Xatgja0SMR/P559iaEAMfvpO+8HJ4YJGcP4CKbJqhRB12CDv3om20QjT
+         zdsE7vcoxNmNV3ErlhSEpOi2ZZDAp/EPj0MDv3KgHKg03/hAh1ctM86eDfNPZ+MRYUuZ
+         RK8bXNWBrcqKhBJQHKCOjd6MvFXwzxxnxEGR31ODaR3VhxRxuOWyXORMPevhXG5u6a7x
+         tO3Q==
+X-Gm-Message-State: AOJu0Yy+14lwqdk+MUR/6n1s1eU0hAVM3aLbu4SWI6yvqo5ofoQEeG2u
+	6I7rBc7bKXTt8Wcss9yZ3+kEh0m/qUM=
+X-Google-Smtp-Source: AGHT+IE1J1kcAjkwLeIB1dR6s+RZsjtXDy6CxgSIzm6Q+ds5pY4Nnxsc6PzZpXIGvL0pIAqPnPAOPQ==
+X-Received: by 2002:a17:90a:578b:b0:286:c37f:d1b1 with SMTP id g11-20020a17090a578b00b00286c37fd1b1mr3739637pji.41.1702323731328;
+        Mon, 11 Dec 2023 11:42:11 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id g5-20020a17090a128500b00262eb0d141esm7179428pja.28.2023.12.11.11.42.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Dec 2023 11:42:10 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <b327d7e4-35fb-4b1e-bde2-267bba918df6@roeck-us.net>
+Date: Mon, 11 Dec 2023 11:42:09 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/3] dt-bindings: arm: hwmon: gpio-fan: Convert txt
+ bindings to yaml
+Content-Language: en-US
+To: David Heidelberg <david@ixit.cz>
+Cc: Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231209171653.85468-1-david@ixit.cz>
+ <08ecf10d-03c4-4025-8809-475fb5ee76a9@roeck-us.net>
+ <9b67ad11-c55c-4695-9439-2a9c5d6c1e45@ixit.cz>
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <9b67ad11-c55c-4695-9439-2a9c5d6c1e45@ixit.cz>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On Mon, 11 Dec 2023 20:22:01 +0800
-Li peiyu <579lpy@gmail.com> wrote:
+On 12/11/23 11:28, David Heidelberg wrote:
+> Nothing, as I was working on others ARM-related bindings, it just sneaked in. Good catch.
+> 
+> Should I resend with adjusted name or can this by done by quick adjust before the merge?
+> 
 
-> Add support for HDC302x integrated capacitive based relative
-> humidity (RH) and temperature sensor.
-> This driver supports reading values, reading the maximum and
-> minimum of values and controlling the integrated heater of
-> the sensor.
-> 
-> Signed-off-by: Li peiyu <579lpy@gmail.com>
-Series applied to the togreg branch of iio.git but initially
-that's just pushed out as testing to let 0-day see if it can find
-anything we missed.
+No need to resend. I'll fix that up, assuming you get a Reviewed-by: tag from a dt
+maintainer.
 
-Thanks!
+Guenter
 
-Jonathan
-
-> ---
-> changes in v6:
-> 	sensor driver:
-> 	  - Drop offset for humidity channel.
-> 	  - Use put_unaligned_be16 to assign the 14-bit heater value.
-> 	  - Remove error message if devm_action_or_reset() fails.
-> 	  - Add eror message if devm_iio_device_register() fails.
-> 	dt-bindings:
-> 	  - remove items before "- const: ti,hdc3020".
-> 	  - add vdd-supply to required.
-> changes in v5:
-> 	iio ABI:
-> 	  - Document _TROUGH as an info element.
-> 	sensor driver:
-> 	  - Correct heater enable/disable commands
-> 	  - Rearrang header files in alphabetical order.
-> 	  - Change .info_mask_separate to BIT(IIO_CHAN_INFO_RAW). 
-> 	  - Add details to mutex comment.
-> 	  - Add error handling for chan->type in read_raw call.
-> 	  - Remove error message for devm_iio_device_register.
-> changes in v4:
-> 	iio core:
-> 	  - Add an IIO_CHAN_INFO_TROUGH modifier for minimum values.
-> 	iio ABI:
-> 	  - Document the new _TROUGH modifier.
-> 	sensor driver:
-> 	  - Add MAINTAINERS.
-> 	  - Use new IIO_CHAN_INFO_TROUGH modifier.
-> 	  - Support the complete heater range.
-> 	  - Remove measurement values from the data structure.
-> 	  - Use guard(mutex)(...), make the code simpler
-> 	  - Removed buffer mode and direct mode conversion code
-> 	  - Minor coding-style fixes.
-> 	dt-bindings:
-> 	  - removed unnecessary example
-> 	  - add vdd-supply to the example
-> changes in v3:
-> 	sensor driver:
-> 	  - Removed the custom ABI
-> 	  - Give up calculating values in the driver
-> 	  - Use read_avail callback to get available parameters
-> 	  - Changed the scope of the lock to make the code more concise
-> 	  - Fixed the code format issue
-> 	dt-bindings:
-> 	  - Use a fallback compatible
-> changes in v2:
-> 	sensor driver:
-> 	  - Added static modification to global variables
-> 	  - change the methord to read peak value
-> 	dt-bindings:
-> 	  - change the maintainers to me.
-> 	  - hdc3020,hdc3021,hdc3022 are compatible,I've changed the dirver.
-> 	  - change the node name to humidity-sensor.
+> David
 > 
-> ---
-> Javier Carrasco (2):
->       iio: core: introduce trough modifier for minimum values
->       iio: ABI: document temperature and humidity peak/trough raw attributes
+> On 11/12/2023 15:34, Guenter Roeck wrote:
+>> On Sat, Dec 09, 2023 at 06:15:39PM +0100, David Heidelberg wrote:
+>>> Convert fan devices connected to GPIOs to the YAML syntax.
+>>>
+>>> Signed-off-by: David Heidelberg <david@ixit.cz>
+>> I keep wondering: What does this have to do with arm (in the subject) ?
+>>
+>> Guenter
 > 
-> Li peiyu (2):
->       dt-bindings: iio: humidity: Add TI HDC302x support
->       iio: humidity: Add driver for TI HDC302x humidity sensors
-> 
->  Documentation/ABI/testing/sysfs-bus-iio            |  13 +-
->  .../bindings/iio/humidity/ti,hdc3020.yaml          |  55 +++
->  MAINTAINERS                                        |   8 +
->  drivers/iio/humidity/Kconfig                       |  12 +
->  drivers/iio/humidity/Makefile                      |   1 +
->  drivers/iio/humidity/hdc3020.c                     | 473 +++++++++++++++++++++
->  drivers/iio/industrialio-core.c                    |   1 +
->  include/linux/iio/types.h                          |   1 +
->  8 files changed, 563 insertions(+), 1 deletion(-)
->  ---
-> base-commit: 33cc938e65a98f1d29d0a18403dbbee050dcad9a
-> 
-> Best regards,
 
 
