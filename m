@@ -1,27 +1,27 @@
-Return-Path: <devicetree+bounces-23835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23836-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7814380C77E
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 11:58:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7636380C79A
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 12:05:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 07682B20F5E
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 10:58:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2EE3B2813B1
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 11:05:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE9C32D620;
-	Mon, 11 Dec 2023 10:58:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDC5A2D625;
+	Mon, 11 Dec 2023 11:05:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEE982D618
-	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 10:58:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E9F0C433C7;
-	Mon, 11 Dec 2023 10:58:38 +0000 (UTC)
-Message-ID: <705ce6b0-e945-404c-8014-38881a01fbca@xs4all.nl>
-Date: Mon, 11 Dec 2023 11:58:36 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A53552D606
+	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 11:05:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1A52C433C8;
+	Mon, 11 Dec 2023 11:05:28 +0000 (UTC)
+Message-ID: <ce2110bf-a16a-45ae-979b-7e41be2896cd@xs4all.nl>
+Date: Mon, 11 Dec 2023 12:05:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -29,8 +29,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3,03/21] v4l2: verify secure dmabufs are used in secure
- queue
+Subject: Re: [PATCH v3,04/21] v4l: add documentation for secure memory flag
 Content-Language: en-US, nl
 To: Yunfei Dong <yunfei.dong@mediatek.com>,
  Jeffrey Kardatzke <jkardatzke@google.com>,
@@ -52,72 +51,63 @@ Cc: Chen-Yu Tsai <wenst@chromium.org>, Yong Wu <yong.wu@mediatek.com>,
  linux-mediatek@lists.infradead.org,
  Project_Global_Chrome_Upstream_Group@mediatek.com
 References: <20231206081538.17056-1-yunfei.dong@mediatek.com>
- <20231206081538.17056-4-yunfei.dong@mediatek.com>
+ <20231206081538.17056-5-yunfei.dong@mediatek.com>
 From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-In-Reply-To: <20231206081538.17056-4-yunfei.dong@mediatek.com>
+In-Reply-To: <20231206081538.17056-5-yunfei.dong@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 06/12/2023 09:15, Yunfei Dong wrote:
 > From: Jeffrey Kardatzke <jkardatzke@google.com>
 > 
-> Verfies in the dmabuf implementations that if the secure memory flag is
-
-Verfies -> Verifies
-
-> set for a queue that the dmabuf submitted to the queue is unmappable.
+> Adds documentation for V4L2_MEMORY_FLAG_SECURE.
 > 
 > Signed-off-by: Jeffrey Kardatzke <jkardatzke@google.com>
 > Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
 > ---
->  drivers/media/common/videobuf2/videobuf2-dma-contig.c | 6 ++++++
->  drivers/media/common/videobuf2/videobuf2-dma-sg.c     | 6 ++++++
->  2 files changed, 12 insertions(+)
+>  Documentation/userspace-api/media/v4l/buffer.rst | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/media/common/videobuf2/videobuf2-dma-contig.c b/drivers/media/common/videobuf2/videobuf2-dma-contig.c
-> index 3d4fd4ef5310..ad58ef8dc231 100644
-> --- a/drivers/media/common/videobuf2/videobuf2-dma-contig.c
-> +++ b/drivers/media/common/videobuf2/videobuf2-dma-contig.c
-> @@ -710,6 +710,12 @@ static int vb2_dc_map_dmabuf(void *mem_priv)
->  		return -EINVAL;
->  	}
+> diff --git a/Documentation/userspace-api/media/v4l/buffer.rst b/Documentation/userspace-api/media/v4l/buffer.rst
+> index 52bbee81c080..a5a7d1c72d53 100644
+> --- a/Documentation/userspace-api/media/v4l/buffer.rst
+> +++ b/Documentation/userspace-api/media/v4l/buffer.rst
+> @@ -696,7 +696,7 @@ enum v4l2_memory
 >  
-> +	/* verify the dmabuf is secure if we are in secure mode */
-> +	if (buf->vb->vb2_queue->secure_mem && sg_page(sgt->sgl)) {
-
-This needs a bit more explanation. I guess that for secure memory
-sg_page returns NULL?
-
-> +		pr_err("secure queue requires secure dma_buf");
-> +		return -EINVAL;
-> +	}
+>  .. _memory-flags:
+>  
+> -Memory Consistency Flags
+> +Memory Flags
+>  ------------------------
+>  
+>  .. raw:: latex
+> @@ -728,6 +728,12 @@ Memory Consistency Flags
+>  	only if the buffer is used for :ref:`memory mapping <mmap>` I/O and the
+>  	queue reports the :ref:`V4L2_BUF_CAP_SUPPORTS_MMAP_CACHE_HINTS
+>  	<V4L2-BUF-CAP-SUPPORTS-MMAP-CACHE-HINTS>` capability.
+> +    * .. _`V4L2-MEMORY-FLAG-SECURE`:
 > +
->  	/* checking if dmabuf is big enough to store contiguous chunk */
->  	contig_size = vb2_dc_get_contiguous_size(sgt);
->  	if (contig_size < buf->size) {
-> diff --git a/drivers/media/common/videobuf2/videobuf2-dma-sg.c b/drivers/media/common/videobuf2/videobuf2-dma-sg.c
-> index 28f3fdfe23a2..55428c73c380 100644
-> --- a/drivers/media/common/videobuf2/videobuf2-dma-sg.c
-> +++ b/drivers/media/common/videobuf2/videobuf2-dma-sg.c
-> @@ -564,6 +564,12 @@ static int vb2_dma_sg_map_dmabuf(void *mem_priv)
->  		return -EINVAL;
->  	}
->  
-> +	/* verify the dmabuf is secure if we are in secure mode */
-> +	if (buf->vb->vb2_queue->secure_mem && !sg_dma_secure(sgt->sgl)) {
+> +      - ``V4L2_MEMORY_FLAG_SECURE``
+> +      - 0x00000002
+> +      - DMA bufs passed into the queue will be validated to ensure they were
+> +	allocated from a secure dma-heap.
 
-I can't find the sg_dma_secure function. I suspect this patch series
-depends on another series?
+Hmm, that needs a bit more work. How about:
 
-> +		pr_err("secure queue requires secure dma_buf");
-> +		return -EINVAL;
-> +	}
-> +
->  	buf->dma_sgt = sgt;
->  	buf->vaddr = NULL;
->  
+- The queued buffers are expected to be in secure memory. If not, an error will be
+  returned. This flag can only be used with ``V4L2_MEMORY_DMABUF``. Typically
+  secure buffers are allocated using a secure dma-heap. This flag can only be
+  specified if the ``V4L2_BUF_CAP_SUPPORTS_SECURE_MEM`` is set.
+
+In addition, the title of this table is currently "Memory Consistency Flags": that
+should be renamed to "Memory Flags".
 
 Regards,
 
 	Hans
+
+>  
+>  .. raw:: latex
+>  
+
 
