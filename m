@@ -1,103 +1,112 @@
-Return-Path: <devicetree+bounces-23960-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23961-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BA4380D111
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 17:20:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 351DD80D116
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 17:21:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0E3F7B20DE6
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 16:20:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 66CF81C210EA
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 16:21:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A93B4C62D;
-	Mon, 11 Dec 2023 16:20:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IhwDGvMD"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE34E4C62D;
+	Mon, 11 Dec 2023 16:21:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6C724C612;
-	Mon, 11 Dec 2023 16:20:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43A08C433C7;
-	Mon, 11 Dec 2023 16:20:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702311610;
-	bh=tgoKaQNovHS9RWp3+K6M2LkRytAhgXwHG6PjpqOenpU=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=IhwDGvMDayZhO/ouKOmDaaOJzNx/xwMIjs9YhcTCcKs+t6IObyGFBnqQRsygnWr3/
-	 g8LzhS5VFgM9/a6Dce6Uqb/y5hcsD/2R2ap+NbMQGlvJjQLhjbPNJhppNcVSCciB/p
-	 YDlLzd8uaya95w/+DaKbPa55aUs7hW0YF1bx49uOY4HFCG7BbjKNGpN808LQ0EZOnP
-	 4FgU7ocVEVgoDDxqI0DE5Uf5KKImlv0jsMu9OZpuxGPCCa8fAL9Hsk1uTR67sGVzpr
-	 pRSmAieOqPpI3s4IwjjaxlyX31RaEMJa1bdhhOfpeERwX+9iNrSoCpHy+3JQU9Ish3
-	 f9k5ov4vq0YYA==
-From: Mark Brown <broonie@kernel.org>
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
- Banajit Goswami <bgoswami@quicinc.com>, Liam Girdwood <lgirdwood@gmail.com>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
- alsa-devel@alsa-project.org, linux-sound@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>
-In-Reply-To: <20231129113014.38837-1-krzysztof.kozlowski@linaro.org>
-References: <20231129113014.38837-1-krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH 1/4] ASoC: dt-bindings: qcom,lpass-rx-macro: Add SM8650
- LPASS RX
-Message-Id: <170231160677.85457.6870068020415164910.b4-ty@kernel.org>
-Date: Mon, 11 Dec 2023 16:20:06 +0000
+Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97380B4;
+	Mon, 11 Dec 2023 08:21:29 -0800 (PST)
+Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-1eb39505ba4so2791852fac.0;
+        Mon, 11 Dec 2023 08:21:29 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702311689; x=1702916489;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=348QJQptRlElLNB1tIjm1p1XzL85PcSJzURBK+WTJok=;
+        b=lQP5METhNOS+DVkzXJlq9AjePD9tjlVA0ThEiGgx27+/cdB19z3NEDnF1ajNXR5CBV
+         /Ao+nX/rUTTAKXTNaIHqY/o/bB408tW27HM3e0/uzWznANiNmFd09CHgWGwzvxhjAghY
+         2t7DDfyHb5i9yZAY8/nd8viUna616/qQafpM3aGfWYb7uLHyJn3IiZFHFoqD6Lqggplp
+         pR6nCnE5FPGhLuz3Qzym3o6enTCn1FH3cO0BYNY7YLk/t4902ZliVv7oiDR/fzgZ6bWD
+         GS93iHbQmRCScqpnS1j2IQq55/vKLE/el8gQmmu507Sl2R8Vv+6PSOk6se/bJiTj8hgH
+         moHQ==
+X-Gm-Message-State: AOJu0YxqjdrcxsuIzwHsIHLc/xMxX32wV8knO9qZhM4fdMXHOQF+HtNw
+	Vhig18ONM3PZUmWgLMpdQQ==
+X-Google-Smtp-Source: AGHT+IG4LPuDJKeXoC293asrqjuZQ2jvok4fn8Mx9ppkj4Ewou+tIJ9vo6O+pLBKP5opTLtBKO0hng==
+X-Received: by 2002:a05:6870:82a0:b0:1fb:75b:99a4 with SMTP id q32-20020a05687082a000b001fb075b99a4mr6481626oae.83.1702311688423;
+        Mon, 11 Dec 2023 08:21:28 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id fw25-20020a056870081900b001fadabf6626sm2507717oab.23.2023.12.11.08.21.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Dec 2023 08:21:27 -0800 (PST)
+Received: (nullmailer pid 2365869 invoked by uid 1000);
+	Mon, 11 Dec 2023 16:21:26 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-5c066
+From: Rob Herring <robh@kernel.org>
+To: Romain Gantois <romain.gantois@bootlin.com>
+Cc: Vignesh Raghavendra <vigneshr@ti.com>, Davidlohr Bueso <dave@stgolabs.net>, linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Rob Herring <robh+dt@kernel.org>, Ard Biesheuvel <ardb@kernel.org>, linux-block@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>, Herve Codina <herve.codina@bootlin.com>, Jens Axboe <axboe@kernel.dk>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-efi@vger.kernel.org, Richard Weinberger <richard@nod.at>
+In-Reply-To: <20231211151244.289349-7-romain.gantois@bootlin.com>
+References: <20231211151244.289349-1-romain.gantois@bootlin.com>
+ <20231211151244.289349-7-romain.gantois@bootlin.com>
+Message-Id: <170231168656.2365852.16098091734582168376.robh@kernel.org>
+Subject: Re: [RFC PATCH 6/6] dt-bindings: mtd: add GPT partition bindings
+Date: Mon, 11 Dec 2023 10:21:26 -0600
 
-On Wed, 29 Nov 2023 12:30:11 +0100, Krzysztof Kozlowski wrote:
-> Add bindings for Qualcomm SM8650 Low Power Audio SubSystem (LPASS) RX
-> macro codec, which looks like compatible with earlier SM8550.
+
+On Mon, 11 Dec 2023 16:12:42 +0100, Romain Gantois wrote:
+> Allow parsing GPT layouts on MTD devices.
 > 
+> Signed-off-by: Romain Gantois <romain.gantois@bootlin.com>
+> ---
+>  .../bindings/mtd/partitions/gpt.yaml          | 41 +++++++++++++++++++
+>  .../bindings/mtd/partitions/partitions.yaml   |  1 +
+>  2 files changed, 42 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/gpt.yaml
 > 
 
-Applied to
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/mtd/partitions/gpt.yaml:11:1: [error] syntax error: could not find expected ':' (syntax)
 
-Thanks!
+dtschema/dtc warnings/errors:
+make[2]: *** Deleting file 'Documentation/devicetree/bindings/mtd/partitions/gpt.example.dts'
+Documentation/devicetree/bindings/mtd/partitions/gpt.yaml:11:1: could not find expected ':'
+make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/mtd/partitions/gpt.example.dts] Error 1
+make[2]: *** Waiting for unfinished jobs....
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/partitions/partitions.yaml:
+while scanning a simple key
+  in "<unicode string>", line 10, column 1
+could not find expected ':'
+  in "<unicode string>", line 11, column 1
+./Documentation/devicetree/bindings/mtd/partitions/gpt.yaml:11:1: could not find expected ':'
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/partitions/gpt.yaml: ignoring, error parsing file
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1424: dt_binding_check] Error 2
+make: *** [Makefile:234: __sub-make] Error 2
 
-[1/4] ASoC: dt-bindings: qcom,lpass-rx-macro: Add SM8650 LPASS RX
-      commit: 0bfa20b18acbcdd133d41e04e07a2d78bcc04bc5
-[2/4] ASoC: dt-bindings: qcom,lpass-tx-macro: Add SM8650 LPASS TX
-      commit: 5a5085c9ce381f92399c755be6deaf1d76ad57e8
-[3/4] ASoC: dt-bindings: qcom,lpass-va-macro: Add SM8650 LPASS VA
-      commit: f243ef746d0ace20fe092fc1ee9987ecf003f7a4
-[4/4] ASoC: dt-bindings: qcom,lpass-wsa-macro: Add SM8650 LPASS WSA
-      commit: ab8921e1da8fdca14192c44775151f50c1cdb763
+doc reference errors (make refcheckdocs):
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231211151244.289349-7-romain.gantois@bootlin.com
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+pip3 install dtschema --upgrade
 
-Thanks,
-Mark
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
