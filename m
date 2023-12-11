@@ -1,161 +1,175 @@
-Return-Path: <devicetree+bounces-23646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23647-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8039F80BF1C
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 03:29:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FFD980BF33
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 03:37:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D522DB2080C
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 02:29:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C17FA1C20889
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 02:37:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C23B7125DA;
-	Mon, 11 Dec 2023 02:29:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F83911CAD;
+	Mon, 11 Dec 2023 02:37:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="sfdCbo4M"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Fwc8nMCN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCE41BD
-	for <devicetree@vger.kernel.org>; Sun, 10 Dec 2023 18:29:26 -0800 (PST)
-Received: from epcas2p1.samsung.com (unknown [182.195.41.53])
-	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20231211022924epoutp0255a4d37ca335daa68a05cc634aa39cd3~fpg5ooGJd2022420224epoutp02Y
-	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 02:29:24 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20231211022924epoutp0255a4d37ca335daa68a05cc634aa39cd3~fpg5ooGJd2022420224epoutp02Y
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1702261765;
-	bh=9PZVF+Izd/fOscHxPgBInDtGjFKMvs6YTcTU/inrFa4=;
-	h=Date:Subject:To:From:In-Reply-To:References:From;
-	b=sfdCbo4MtCPRblJ/9jt2GCLxDEW96f8kJp9jq5EAB9FCjvFKtW34JVaO191dNUzWF
-	 xeAYjA15ES6iqRGmekXgujpIcd3O4DEmpkLS6SQR/g6FUiYSWA3kkxX5Bb/wFJDOPL
-	 mhBcnmUTPQ4w7H1EIVGUC81ECzQKUG1rXkPiQaus=
-Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
-	epcas2p1.samsung.com (KnoxPortal) with ESMTP id
-	20231211022924epcas2p1381bb2c10e34ff95d5d9a9a677bdf61f~fpg5a_D7x1667216672epcas2p1-;
-	Mon, 11 Dec 2023 02:29:24 +0000 (GMT)
-Received: from epsmgec2p1.samsung.com (unknown [182.195.36.97]) by
-	epsnrtp4.localdomain (Postfix) with ESMTP id 4SpQg81jPsz4x9QF; Mon, 11 Dec
-	2023 02:29:24 +0000 (GMT)
-Received: from epcas2p3.samsung.com ( [182.195.41.55]) by
-	epsmgec2p1.samsung.com (Symantec Messaging Gateway) with SMTP id
-	1E.95.08648.40476756; Mon, 11 Dec 2023 11:29:24 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-	epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
-	20231211022923epcas2p39263deafcd69ab8a00cae7c851bd4d81~fpg4dvKMh2462424624epcas2p3j;
-	Mon, 11 Dec 2023 02:29:23 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20231211022923epsmtrp2042e9716f8f9b573c1ef099ec722a5c7~fpg4c_XSy1413214132epsmtrp2j;
-	Mon, 11 Dec 2023 02:29:23 +0000 (GMT)
-X-AuditID: b6c32a43-721fd700000021c8-12-657674046aeb
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	22.FA.08755.30476756; Mon, 11 Dec 2023 11:29:23 +0900 (KST)
-Received: from [10.229.8.168] (unknown [10.229.8.168]) by
-	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20231211022923epsmtip1df473844cd00b069666697ad1500d674~fpg4KnSPk1130311303epsmtip1h;
-	Mon, 11 Dec 2023 02:29:23 +0000 (GMT)
-Message-ID: <df677a28-284f-4f80-afa7-9bf71bc8ce2e@samsung.com>
-Date: Mon, 11 Dec 2023 11:26:33 +0900
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2E3C106;
+	Sun, 10 Dec 2023 18:37:51 -0800 (PST)
+Received: by mail-yb1-xb2c.google.com with SMTP id 3f1490d57ef6-d9caf5cc948so3846094276.0;
+        Sun, 10 Dec 2023 18:37:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702262270; x=1702867070; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rG4sHl1+Rg4Z/xgVyvuBLnRm0lugzakZ3vwchsyrEQc=;
+        b=Fwc8nMCNVsTokkj9WvE4jzKr8MGrYqc/fiUlx5BNpxjYBV/jw5nJwkMcYGroVS7THL
+         z4MM/luHfId1fzNuu9E1cmjms9+NY9OP+moKi/wDWf5lk2i4FE8Q7zcCjEiOZ7hPW0jN
+         68Y2TadfXn15bJnaOwU5CSvP2vDibsJuzvvFAuu7aZDyVDRoMpJlpXVOl4IU40a2Ynke
+         IsOOZBK+MyythyQMf+Gum1GwWOus3QeO4qwOckvFnmkE3g/Mm+DhbuL/J/ihJ8gVYGqH
+         PquQYiWoHQ6tCyWPC3VxgkYzE9CFmynl1OXdWee5uuuRXe4s6vASm5vdt9FLlFDtNXm8
+         vJNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702262270; x=1702867070;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rG4sHl1+Rg4Z/xgVyvuBLnRm0lugzakZ3vwchsyrEQc=;
+        b=sw14j2c3BYFMVQhAXgflLdPmhu/7u3wVC7zR//FF+Eqea56P2hzelZhmRoN5hSAGhR
+         8lzWsKb27a7Wd/Vktnpfw/57PQ2lC6CKe0oUS1UfGAoJj5tD6FFL7BMAg/2RxYvWYwAW
+         VGV8FPt/BsmHrXC+KVS5KW/+MhrkNji4VjKHcXbtZRZYiQRK2EDiV7uLGXTT7VWMuPsV
+         DAtlUW/tVXYUI79YNGA+Ni6njpsY8FntvMCxyHWCby9fFYSNVUxYR/jVaq6iZGYt+2Wn
+         4gYYJnQp8yH91Ud5Ayf/OEWNK9ZZe5hb7HliPb2uFG6TifTehc1ykAxT0RRr4gjwTh+2
+         0MEg==
+X-Gm-Message-State: AOJu0Yybu6UjG1YTGdibRfUyLmutD5EbI1RACVhPdT17XvQvK5/2Gs0R
+	V6RkQ6v9YJiQ/epU3/LUXnaf4k7IDWsgU2xPdMBLf2qq5h/Xwg==
+X-Google-Smtp-Source: AGHT+IF5P/iRJXIlAzvwBf7PlGge0Qd7ZNb+KBmDfz5v6QcSS3pTlCPdnzoEou5vtd60K+6uQEkZ2WmQPidVPiSRUjA=
+X-Received: by 2002:a25:5f02:0:b0:dbc:6a10:5186 with SMTP id
+ t2-20020a255f02000000b00dbc6a105186mr1240189ybb.41.1702262270533; Sun, 10 Dec
+ 2023 18:37:50 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
-	Thunderbird/102.11.0
-Subject: Re: [PATCH] dt-bindings: samsung: exynos-sysreg: combine
- exynosautov920 with other enum
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Rob Herring
-	<robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-From: Jaewon Kim <jaewon02.kim@samsung.com>
-In-Reply-To: <20231210134834.43943-1-krzysztof.kozlowski@linaro.org>
-Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrEJsWRmVeSWpSXmKPExsWy7bCmuS5LSVmqwbwzXBYP5m1js1iz9xyT
-	xfwj51gt+l48ZLbY+3oru8Wmx9dYLS7vmsNmMeP8PiaL1r1H2B04PTat6mTzuHNtD5vH5iX1
-	Hn1bVjF6fN4kF8AalW2TkZqYklqkkJqXnJ+SmZduq+QdHO8cb2pmYKhraGlhrqSQl5ibaqvk
-	4hOg65aZA3SPkkJZYk4pUCggsbhYSd/Opii/tCRVISO/uMRWKbUgJafAvECvODG3uDQvXS8v
-	tcTK0MDAyBSoMCE7Y+7UlcwFs3gqtu3sZ2xg/MPRxcjJISFgIrF83jO2LkYuDiGBHYwSTRde
-	MEI4nxglHt69C5X5xijR0/mTDaZlWs8GqKq9jBKvvm6Ecl4zSkxsns0CUsUrYCfxds1lJhCb
-	RUBV4u31x8wQcUGJkzOfgNWICkRLtC67DzZVWCBJ4v/MCawgNrOAuMStJ/OZQIaKCLxmkvh2
-	+xRYgk1AW+L7+sVgNqeAi0TD9WNMEA3yEtvfzmEGaZAQ6OWQmH/6KtStLhJ3fk9mhLCFJV4d
-	38IOYUtJfH63F6omX6LtyhmoeI3ExgWXoOrtJWb93gK0jANogabE+l36IKaEgLLEkVssEGv5
-	JDoO/2WHCPNKdLQJQTSqSdyfeg5quIzEpCMrmSBsD4lD7Z9YIGE1nVFi/a+fTBMYFWYhBcss
-	JO/PQvLZLIQjFjCyrGIUSy0ozk1PTTYqMIRHd3J+7iZGcGLVct7BeGX+P71DjEwcjIcYJTiY
-	lUR4ZY4UpwrxpiRWVqUW5ccXleakFh9iNAVGzkRmKdHkfGBqzyuJNzSxNDAxMzM0NzI1MFcS
-	573XOjdFSCA9sSQ1OzW1ILUIpo+Jg1OqgWmp76Ybbi1pC7asO6HVFFgoqxykOUF5l/ehY8mf
-	LNJuVxw5smva4xN5XOU6r/ckp+fM81gZOF98ybzDHg45h3yXncpf1dJyz0Hu8k3JBc/MM856
-	s+5b/1/6YO30aQKfezuC/IR0C70fPjxz0llh34RDplzHfjYv1vXraZt2eI2hysxMw1vy8ump
-	rEWctevvhU/2e89ozHQru7Vp4csDLS1XSyTZ+CepMnvlNh2/lWNv89f8/I/LcxiuuZxTXrF+
-	18OJXMk3bn37E6Hsl73yud15vi3biqbMNS/JVnR8+PfG7R05us8/ci19p3O3MMLHYt71Z709
-	P1bv39PL8aJ/UW2uk9H7RfP13Y8/3PBoU5mrEktxRqKhFnNRcSIAte9CWDUEAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrGLMWRmVeSWpSXmKPExsWy7bCSnC5zSVmqwZNbShYP5m1js1iz9xyT
-	xfwj51gt+l48ZLbY+3oru8Wmx9dYLS7vmsNmMeP8PiaL1r1H2B04PTat6mTzuHNtD5vH5iX1
-	Hn1bVjF6fN4kF8AaxWWTkpqTWZZapG+XwJUxd+pK5oJZPBXbdvYzNjD+4ehi5OSQEDCRmNaz
-	gbGLkYtDSGA3o8SR5h52iISMxPJnfWwQtrDE/ZYjrBBFLxklntxezgyS4BWwk3i75jITiM0i
-	oCrx9vpjqLigxMmZT1hAbFGBaInVny+wgtjCAkkS/2dOALOZBcQlbj2ZzwQyVETgNZPEpL3t
-	7BAbpjNKdP74zwhSxSagLfF9/WKwDk4BF4mG68eYILrNJLq2djFC2PIS29/OYZ7AKDgLyfJZ
-	SJbMQtIyC0nLAkaWVYySqQXFuem5xYYFhnmp5XrFibnFpXnpesn5uZsYwVGjpbmDcfuqD3qH
-	GJk4GA8xSnAwK4nwyhwpThXiTUmsrEotyo8vKs1JLT7EKM3BoiTOK/6iN0VIID2xJDU7NbUg
-	tQgmy8TBKdXAlMKYemkOm7tQ58kneRZZ6zz3L3a9cJfB3vGU8VvfrBTBbNc5T2ZKLCg15Zru
-	d4LvNgeb3cmalcn1Me5zTERmdGZ5mzh9LD2gMsX340oehvUHzuW773gy44yr86rAEzKFy7mm
-	nsh+N9tObmL5zxNZHlMlTm0XSelKLewI49oYwK+xLtFdaM6iT7c+3Jgu86jN/D3b1g5Z9rP7
-	dzjPcF4SoZs137r8jXZsVfSMbennt3DEH7R/efPZ/pJJbg/zXz12+J/Hd2pqrNGHsJs/LA2V
-	p/hz26xuy3lz8brpC42ju1PWGf++mLkgPoT9T0bW4+Pf3pwWkjjkWJ7RFFC+4EGBZtzk0v4F
-	Pxd3HzHzrq1eqsRSnJFoqMVcVJwIABBTUhkJAwAA
-X-CMS-MailID: 20231211022923epcas2p39263deafcd69ab8a00cae7c851bd4d81
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20231210134852epcas2p4166a413502a742b6f558d7b55bd36ae6
-References: <CGME20231210134852epcas2p4166a413502a742b6f558d7b55bd36ae6@epcas2p4.samsung.com>
-	<20231210134834.43943-1-krzysztof.kozlowski@linaro.org>
+References: <cover.1700449792.git.zhoubinbin@loongson.cn> <fc9b3afaf8826fd437ba91397eb7fa231db2c05c.1700449792.git.zhoubinbin@loongson.cn>
+ <87lea4srmx.ffs@tglx>
+In-Reply-To: <87lea4srmx.ffs@tglx>
+From: Binbin Zhou <zhoubb.aaron@gmail.com>
+Date: Mon, 11 Dec 2023 08:37:39 +0600
+Message-ID: <CAMpQs4+dLk5KG3L0vF4ZBGqbCLKWtCCkQz4wER3yKfsii5GeEA@mail.gmail.com>
+Subject: Re: [PATCH v5 4/5] irqchip/loongson-liointc: Fix 'loongson,parent_int_map'
+ parse
+To: Thomas Gleixner <tglx@linutronix.de>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Huacai Chen <chenhuacai@kernel.org>, loongson-kernel@lists.loongnix.cn, 
+	devicetree@vger.kernel.org, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+	Jiaxun Yang <jiaxun.yang@flygoat.com>, linux-mips@vger.kernel.org, lvjianmin@loongson.cn, 
+	WANG Xuerui <git@xen0n.name>, loongarch@lists.linux.dev, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
-On 23. 12. 10. 22:48, Krzysztof Kozlowski wrote:
-> No need to create a new enum every time we bring-up new SoC.
+On Fri, Dec 8, 2023 at 10:20=E2=80=AFPM Thomas Gleixner <tglx@linutronix.de=
+> wrote:
 >
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-
-Reviewed-by: Jaewon Kim <jaewon02.kim@samsung.com>
-
-
->   .../bindings/soc/samsung/samsung,exynos-sysreg.yaml        | 7 ++-----
->   1 file changed, 2 insertions(+), 5 deletions(-)
+> On Mon, Nov 20 2023 at 17:06, Binbin Zhou wrote:
 >
-> diff --git a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
-> index 2de4301a467d..b00f25482fec 100644
-> --- a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
-> +++ b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
-> @@ -17,6 +17,8 @@ properties:
->                 - samsung,exynos3-sysreg
->                 - samsung,exynos4-sysreg
->                 - samsung,exynos5-sysreg
-> +              - samsung,exynosautov920-peric0-sysreg
-> +              - samsung,exynosautov920-peric1-sysreg
->                 - tesla,fsd-cam-sysreg
->                 - tesla,fsd-fsys0-sysreg
->                 - tesla,fsd-fsys1-sysreg
-> @@ -50,11 +52,6 @@ properties:
->                 - samsung,exynosautov9-peric1-sysreg
->             - const: samsung,exynosautov9-sysreg
->             - const: syscon
-> -      - items:
-> -          - enum:
-> -              - samsung,exynosautov920-peric0-sysreg
-> -              - samsung,exynosautov920-peric1-sysreg
-> -          - const: syscon
->   
->     reg:
->       maxItems: 1
+> $Subject: s/parse/parsing/
+>
+> > In keeping with naming standards, 'loongson,parent_int_map' is renamed
+> > to 'loongson,parent-int-map'. But for the driver, we need to make sure
+> > that both forms can be parsed.
+>
+> Please keep changelogs in neutral or imperative tone:
+>
+>   For backwards compatibility it is required to parse the original
+>   string too.
+>
+> Makes it entirely clear what this is about without 'we'. See also:
+>
+>   https://www.kernel.org/doc/html/latest/process/submitting-patches.rst
+>
+> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> > Acked-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
+> > Reviewed-by: Huacai Chen <chenhuacai@loongson.cn>
+> > ---
+> >  drivers/irqchip/irq-loongson-liointc.c | 7 ++++++-
+> >  1 file changed, 6 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/irqchip/irq-loongson-liointc.c b/drivers/irqchip/i=
+rq-loongson-liointc.c
+> > index e4b33aed1c97..add2e0a955b8 100644
+> > --- a/drivers/irqchip/irq-loongson-liointc.c
+> > +++ b/drivers/irqchip/irq-loongson-liointc.c
+> > @@ -330,6 +330,7 @@ static int __init liointc_of_init(struct device_nod=
+e *node,
+> >       bool have_parent =3D FALSE;
+> >       int sz, i, index, revision, err =3D 0;
+> >       struct resource res;
+> > +     const char *prop_name =3D "loongson,parent-int-map";
+>
+> Please don't glue variables randomly into the declaration section:
+>
+>   https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#vari=
+able-declarations
+>
+> >       if (!of_device_is_compatible(node, "loongson,liointc-2.0")) {
+> >               index =3D 0;
+> > @@ -350,8 +351,12 @@ static int __init liointc_of_init(struct device_no=
+de *node,
+> >       if (!have_parent)
+> >               return -ENODEV;
+> >
+> > +     if (!of_find_property(node, prop_name, &i))
+> > +             /* Fallback to 'loongson,parent_int_map'. */
+> > +             prop_name =3D "loongson,parent_int_map";
+>
+> This lacks curly brackets:
+>
+>   https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#brac=
+ket-rules
+
+Hi Thomas:
+
+Thanks for the detailed review.
+
+Rob suggested in the V5 patchset to remove the
+'loongson,parent-int-map' renaming operation as an ABI breakage[1]. I
+had tried to explain that the driver would be compatible with the
+parsing of both naming styles[2], but unfortunately did not get a
+response from Rob.
+As a result, I removed the renaming-related patches in the V6
+patchset, including this one[3].
+
+However, how the 'loongson,parent-int-map' renaming operation is
+finally going to be handled needs to be decided together, and if it
+remains needed, I will fix the above issue and submit it as part of
+the V7 patchset.
+
+[1]: https://lore.kernel.org/all/20231127182836.GA2150516-robh@kernel.org/
+[2]: https://lore.kernel.org/all/CAMpQs4LSTV6PgZSuyQx2Nq+87OHxSa=3D-Wz5nbhF=
+VsmmvHubQFQ@mail.gmail.com/
+[3]: https://lore.kernel.org/all/cover.1701933946.git.zhoubinbin@loongson.c=
+n/
+
+Thanks.
+Binbin
+>
+> >       sz =3D of_property_read_variable_u32_array(node,
+> > -                                             "loongson,parent_int_map"=
+,
+> > +                                             prop_name,
+> >                                               &parent_int_map[0],
+> >                                               LIOINTC_NUM_PARENT,
+> >                                               LIOINTC_NUM_PARENT);
+>
+> Thanks,
+>
+>         tglx
 
