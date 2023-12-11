@@ -1,87 +1,166 @@
-Return-Path: <devicetree+bounces-24019-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24036-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DD6480D52D
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 19:21:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5DA880D784
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 19:39:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA6CE281945
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 18:21:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B3C41F21B40
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 18:39:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A676151018;
-	Mon, 11 Dec 2023 18:21:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 450C953E0E;
+	Mon, 11 Dec 2023 18:37:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M1Zd+Oo6"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="Nwd2dXZB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 875684E1D2;
-	Mon, 11 Dec 2023 18:21:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDD3CC433CA;
-	Mon, 11 Dec 2023 18:21:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702318877;
-	bh=yx7x9HZRw2fNrttJxMedeCqy6X82RJq3KdEf+5K1eTo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=M1Zd+Oo6uaDJ/62he6wzYZJ1pWsfJV3i7CeKrJIC0TwLvyk3HX41TUyhrpOeOjoIa
-	 7q9KZzHZQCxSkG2FEduM0F0iZA7B3eOKMaodUDUyKOHPvvMIs6mTSggVJKRNfaqLgo
-	 /DPTGulIAvJhyzdFLh0WMMSmciI6KQJo72yYXQ+IWy3jStBBr3N3KxLxaNQbtOPzkc
-	 8jd666vX+7C6Ulsv/NmzZ4YQK/5kyQ/HmdOFLCpgsQW4dOUEQ7JP+RhyFOZKVldeyV
-	 zK1p+NMbo8gjvSke9/3HcEd5Rvz814uLTN20WaagehllWPQY/xMAJJ6HD79Zdsk4kR
-	 VI0DHtRWyxmnA==
-Date: Mon, 11 Dec 2023 18:21:12 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Li peiyu <579lpy@gmail.com>
-Cc: jic23@kernel.org, javier.carrasco.cruz@gmail.com, lars@metafoo.de,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 4/4] dt-bindings: iio: humidity: Add TI HDC302x support
-Message-ID: <20231211-tackiness-imprecise-685882c9c318@spud>
-References: <20231211122201.9598-1-579lpy@gmail.com>
- <20231211123101.9868-1-579lpy@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22CBA51C53;
+	Mon, 11 Dec 2023 18:37:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C577C433C9;
+	Mon, 11 Dec 2023 18:37:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1702319865;
+	bh=cZE452f8YPHdbVsA+b1uc/h5DbUGuVzHmCdJDexVwh8=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=Nwd2dXZBJ/Kx7vpDivH+Cr6uifbJvhM4q5Mphx6LOgB+ksyVYRlT6Bpt9vVzFyi37
+	 KEa4pn7vpkmL31i99WMPlC6KReisDZOTw1vh5T6aJ9LqyBiXQScgyLNbWLck6mOY07
+	 lNyTn12uOcvz4Orvj9FEZSZq8t6Ywy5MpRle4TIM=
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: stable@vger.kernel.org
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	patches@lists.linux.dev,
+	Rob Herring <robh+dt@kernel.org>,
+	Frank Rowand <frowand.list@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	devicetree@vger.kernel.org,
+	Lee Jones <lee.jones@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Sasha Levin <sashal@kernel.org>
+Subject: [PATCH 5.10 17/97] of: base: Fix some formatting issues and provide missing descriptions
+Date: Mon, 11 Dec 2023 19:21:20 +0100
+Message-ID: <20231211182020.542156072@linuxfoundation.org>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20231211182019.802717483@linuxfoundation.org>
+References: <20231211182019.802717483@linuxfoundation.org>
+User-Agent: quilt/0.67
+X-stable: review
+X-Patchwork-Hint: ignore
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="XvxZv93uMWHkmLEq"
-Content-Disposition: inline
-In-Reply-To: <20231211123101.9868-1-579lpy@gmail.com>
+Content-Transfer-Encoding: 8bit
+
+5.10-stable review patch.  If anyone has any objections, please let me know.
+
+------------------
+
+From: Lee Jones <lee.jones@linaro.org>
+
+[ Upstream commit 3637d49e11219512920aca8b8ccd0994be33fa8b ]
+
+Fixes the following W=1 kernel build warning(s):
+
+ drivers/of/base.c:315: warning: Function parameter or member 'cpun' not described in '__of_find_n_match_cpu_property'
+ drivers/of/base.c:315: warning: Function parameter or member 'prop_name' not described in '__of_find_n_match_cpu_property'
+ drivers/of/base.c:315: warning: Function parameter or member 'cpu' not described in '__of_find_n_match_cpu_property'
+ drivers/of/base.c:315: warning: Function parameter or member 'thread' not described in '__of_find_n_match_cpu_property'
+ drivers/of/base.c:315: warning: expecting prototype for property holds the physical id of the(). Prototype was for __of_find_n_match_cpu_property() instead
+ drivers/of/base.c:1139: warning: Function parameter or member 'match' not described in 'of_find_matching_node_and_match'
+ drivers/of/base.c:1779: warning: Function parameter or member 'np' not described in '__of_add_property'
+ drivers/of/base.c:1779: warning: Function parameter or member 'prop' not described in '__of_add_property'
+ drivers/of/base.c:1800: warning: Function parameter or member 'np' not described in 'of_add_property'
+ drivers/of/base.c:1800: warning: Function parameter or member 'prop' not described in 'of_add_property'
+ drivers/of/base.c:1849: warning: Function parameter or member 'np' not described in 'of_remove_property'
+ drivers/of/base.c:1849: warning: Function parameter or member 'prop' not described in 'of_remove_property'
+ drivers/of/base.c:2137: warning: Function parameter or member 'dn' not described in 'of_console_check'
+ drivers/of/base.c:2137: warning: Function parameter or member 'name' not described in 'of_console_check'
+ drivers/of/base.c:2137: warning: Function parameter or member 'index' not described in 'of_console_check'
+
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Frank Rowand <frowand.list@gmail.com>
+Cc: "David S. Miller" <davem@davemloft.net>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Lee Jones <lee.jones@linaro.org>
+Signed-off-by: Rob Herring <robh@kernel.org>
+Link: https://lore.kernel.org/r/20210318104036.3175910-5-lee.jones@linaro.org
+Stable-dep-of: d79972789d17 ("of: dynamic: Fix of_reconfig_get_state_change() return value documentation")
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/of/base.c | 16 +++++++++++-----
+ 1 file changed, 11 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/of/base.c b/drivers/of/base.c
+index a44a0e7ba2510..fa45a681267cd 100644
+--- a/drivers/of/base.c
++++ b/drivers/of/base.c
+@@ -305,7 +305,7 @@ bool __weak arch_match_cpu_phys_id(int cpu, u64 phys_id)
+ 	return (u32)phys_id == cpu;
+ }
+ 
+-/**
++/*
+  * Checks if the given "prop_name" property holds the physical id of the
+  * core/thread corresponding to the logical cpu 'cpu'. If 'thread' is not
+  * NULL, local thread number within the core is returned in it.
+@@ -1128,7 +1128,7 @@ EXPORT_SYMBOL(of_match_node);
+  *			will; typically, you pass what the previous call
+  *			returned. of_node_put() will be called on it
+  *	@matches:	array of of device match structures to search in
+- *	@match		Updated to point at the matches entry which matched
++ *	@match:		Updated to point at the matches entry which matched
+  *
+  *	Returns a node pointer with refcount incremented, use
+  *	of_node_put() on it when done.
+@@ -1779,6 +1779,8 @@ EXPORT_SYMBOL(of_count_phandle_with_args);
+ 
+ /**
+  * __of_add_property - Add a property to a node without lock operations
++ * @np:		Caller's Device Node
++ * @prob:	Property to add
+  */
+ int __of_add_property(struct device_node *np, struct property *prop)
+ {
+@@ -1800,6 +1802,8 @@ int __of_add_property(struct device_node *np, struct property *prop)
+ 
+ /**
+  * of_add_property - Add a property to a node
++ * @np:		Caller's Device Node
++ * @prob:	Property to add
+  */
+ int of_add_property(struct device_node *np, struct property *prop)
+ {
+@@ -1844,6 +1848,8 @@ int __of_remove_property(struct device_node *np, struct property *prop)
+ 
+ /**
+  * of_remove_property - Remove a property from a node.
++ * @np:		Caller's Device Node
++ * @prob:	Property to remove
+  *
+  * Note that we don't actually remove it, since we have given out
+  * who-knows-how-many pointers to the data using get-property.
+@@ -2130,9 +2136,9 @@ EXPORT_SYMBOL_GPL(of_alias_get_highest_id);
+ 
+ /**
+  * of_console_check() - Test and setup console for DT setup
+- * @dn - Pointer to device node
+- * @name - Name to use for preferred console without index. ex. "ttyS"
+- * @index - Index to use for preferred console.
++ * @dn: Pointer to device node
++ * @name: Name to use for preferred console without index. ex. "ttyS"
++ * @index: Index to use for preferred console.
+  *
+  * Check if the given device node matches the stdout-path property in the
+  * /chosen node. If it does then register it as the preferred console and return
+-- 
+2.42.0
 
 
---XvxZv93uMWHkmLEq
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, Dec 11, 2023 at 08:31:01PM +0800, Li peiyu wrote:
-> Add device tree bindings for HDC3020/HDC3021/HDC3022 humidity and
-> temperature sensors.
->=20
-> Signed-off-by: Li peiyu <579lpy@gmail.com>
-
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-Cheers,
-Conor.
-
-
---XvxZv93uMWHkmLEq
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZXdTGAAKCRB4tDGHoIJi
-0mybAP4/anKKpEIWu6vRV5nw3jDFZuvaVLsMfF3wPGeStQQbsQEA7/JiBzEV3Z/N
-ZVjWE55zSqdEbI6XQms9Hq4XvLovDwg=
-=RvtZ
------END PGP SIGNATURE-----
-
---XvxZv93uMWHkmLEq--
 
