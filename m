@@ -1,104 +1,127 @@
-Return-Path: <devicetree+bounces-23885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23886-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E30BD80C9BA
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 13:27:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E82480C9BD
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 13:28:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7D905B20DAD
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 12:27:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DAFE3281B36
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 12:28:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 023583B2AB;
-	Mon, 11 Dec 2023 12:27:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9619E3B28E;
+	Mon, 11 Dec 2023 12:28:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mheZ+JDS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13C86CE;
-	Mon, 11 Dec 2023 04:27:41 -0800 (PST)
-Received: from i53875b61.versanet.de ([83.135.91.97] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1rCfNp-00087M-1j; Mon, 11 Dec 2023 13:27:37 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Andy Yan <andyshrk@163.com>
-Cc: krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Andy Yan <andyshrk@163.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v3 4/5] dt-bindings: arm: rockchip: Add Cool Pi CM5 EVB
-Date: Mon, 11 Dec 2023 13:27:36 +0100
-Message-ID: <3203387.BEx9A2HvPv@diego>
-In-Reply-To: <20231211105023.1779786-1-andyshrk@163.com>
-References:
- <20231211104915.1779476-1-andyshrk@163.com>
- <20231211105023.1779786-1-andyshrk@163.com>
+Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 563C01BE;
+	Mon, 11 Dec 2023 04:27:58 -0800 (PST)
+Received: by mail-pg1-x543.google.com with SMTP id 41be03b00d2f7-5ca29c131ebso59554a12.0;
+        Mon, 11 Dec 2023 04:27:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702297677; x=1702902477; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lh2d4eIQQpeZhqaTpIu7fiK0w7WGTGpR/zV0sJF4iLA=;
+        b=mheZ+JDSfPxyfrUeBR/ZCpUThmxNTY1GBijL+IQH4SyQmZLz9S5rEBzTnQmzyQ20xO
+         KpbkpXNm4LYitYZfYnbmdzW/WNqQvT5vk5x7ERl3DHImThRLl8i/WPgN2frog9+mxzjv
+         bjO+VMFH0iFUSC7YxWOpszS4r0wtN9LC4vbLY0IEJJC1ZlfY1Wf5WA7EdgrS77h7MLtg
+         P9/S4kPgaj/PJlB7Y7EkpmmBJpnMnEjumNs6FEV50YiAgbtcY4WBD6h/hVa4JLWIu7IB
+         sWIoul0sOHqrfz6qGCzAKz0Nfn0cRCcD7LJVuEf9xkl7PIvCIFKqBPl04agYXrxSva6O
+         PHBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702297677; x=1702902477;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lh2d4eIQQpeZhqaTpIu7fiK0w7WGTGpR/zV0sJF4iLA=;
+        b=YWYpLaUkOobZNA1ZCuqdcGE4/uzx3TulIti3EfgoRwP4WG1MxXHZNIhG//A/SNJ2s0
+         OCjhwO5K296NI0t8f6Xkk3UiqeGHWsV6aBbgE+IZHJzImtulXRJkgsCHw+fovCGu7KnQ
+         OuiXwjekECfSrhCrV6hvkpHIFYPesMPcZzcmjeP8XT+M1JvrXc3veZwrPmLRIzGcNZvV
+         cEzFahIHpkdkSCPFTr5uv4nFJfbNPiA/w9mBGY7Se45lUKImkWquMsrdpV/+igVcU4o6
+         0+vjZdJJ+9tddR+MKE5kU78redPS1QOGA8/3aQxsOkAVFiDqiOkgZN7N168PZzAQltpZ
+         Ze7Q==
+X-Gm-Message-State: AOJu0YxkHHLIyN3e2o1bmxR0RCL5JhqwXMjE4cOF6xv0sdoPVJsgyhVB
+	4YyCk8KN7TVdbpo3tLreuVmPJnfYhkVVgGG5
+X-Google-Smtp-Source: AGHT+IE1TEJ++VWCi9AftDuGLa6dUkkntlusw+w0FMs/RT6hY2YzCnxHcDlZcQ1gRnxhwHFnlHCVBw==
+X-Received: by 2002:a17:90a:d407:b0:27c:f309:f381 with SMTP id r7-20020a17090ad40700b0027cf309f381mr3117162pju.6.1702297677385;
+        Mon, 11 Dec 2023 04:27:57 -0800 (PST)
+Received: from dawn-virtual-machine.localdomain ([183.198.110.72])
+        by smtp.gmail.com with ESMTPSA id r11-20020a17090ad40b00b002868f5c2847sm6834746pju.7.2023.12.11.04.27.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Dec 2023 04:27:56 -0800 (PST)
+From: Li peiyu <579lpy@gmail.com>
+To: jic23@kernel.org
+Cc: javier.carrasco.cruz@gmail.com,
+	lars@metafoo.de,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v6 1/4] iio: core: introduce trough info element for minimum values
+Date: Mon, 11 Dec 2023 20:27:47 +0800
+Message-Id: <20231211122747.9723-1-579lpy@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20231211122201.9598-1-579lpy@gmail.com>
+References: <20231211122201.9598-1-579lpy@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
 
-Hi Andy,
+From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
 
-Am Montag, 11. Dezember 2023, 11:50:23 CET schrieb Andy Yan:
-> Add Cool Pi CM5 EVB, a board powered by RK3588
-> 
-> Signed-off-by: Andy Yan <andyshrk@163.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+The IIO_CHAN_INFO_PEAK info element is used for maximum values and
+currently there is no equivalent for minimum values. Instead of
+overloading the existing peak info element, a new info element can
+be added.
 
-I just realized your mention of this being a som + baseboard combination
-in the previous version.
+In principle there is no need to add a _TROUGH_SCALE element as the
+scale will be the same as the one required for INFO_PEAK, which in
+turn is sometimes omitted if a single scale for peaks and raw values
+is required.
 
-In that case the compatible really should reflect that.
+Add an IIO_CHAN_INFO_TROUGH info element for minimum values.
 
-      - description: Cool Pi Compute Module 5(CM5) EVB
-        items:
-          - const: coolpi,pi-cm5-evb
-          - const: coolpi,pi-cm5
-          - const: rockchip,rk3588
+Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+---
+ drivers/iio/industrialio-core.c | 1 +
+ include/linux/iio/types.h       | 1 +
+ 2 files changed, 2 insertions(+)
 
-Similar to how all the other som + baseboard combinations do it
-(Edgeble neural modules, engicam px30, Thebroma-SoMs).
-
-
-Thanks
-Heiko
-
-> ---
-> 
-> (no changes since v2)
-> 
-> Changes in v2:
-> - change board compatible from "CoolPi CM5 EVB" to "coolpi,pi-cm5-evb"
-> 
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> index 11d03035f3db..4da83bbd642a 100644
-> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> @@ -95,6 +95,11 @@ properties:
->            - const: chipspark,rayeager-px2
->            - const: rockchip,rk3066a
->  
-> +      - description: Cool Pi Compute Module 5(CM5) EVB
-> +        items:
-> +          - const: coolpi,pi-cm5-evb
-> +          - const: rockchip,rk3588
-> +
->        - description: Cool Pi 4 Model B
->          items:
->            - const: coolpi,pi-4b
-> 
-
-
-
+diff --git a/drivers/iio/industrialio-core.c b/drivers/iio/industrialio-core.c
+index f6a123d397db..9a85752124dd 100644
+--- a/drivers/iio/industrialio-core.c
++++ b/drivers/iio/industrialio-core.c
+@@ -184,6 +184,7 @@ static const char * const iio_chan_info_postfix[] = {
+ 	[IIO_CHAN_INFO_THERMOCOUPLE_TYPE] = "thermocouple_type",
+ 	[IIO_CHAN_INFO_CALIBAMBIENT] = "calibambient",
+ 	[IIO_CHAN_INFO_ZEROPOINT] = "zeropoint",
++	[IIO_CHAN_INFO_TROUGH] = "trough_raw",
+ };
+ /**
+  * iio_device_id() - query the unique ID for the device
+diff --git a/include/linux/iio/types.h b/include/linux/iio/types.h
+index 117bde7d6ad7..d89982c98368 100644
+--- a/include/linux/iio/types.h
++++ b/include/linux/iio/types.h
+@@ -68,6 +68,7 @@ enum iio_chan_info_enum {
+ 	IIO_CHAN_INFO_THERMOCOUPLE_TYPE,
+ 	IIO_CHAN_INFO_CALIBAMBIENT,
+ 	IIO_CHAN_INFO_ZEROPOINT,
++	IIO_CHAN_INFO_TROUGH,
+ };
+ 
+ #endif /* _IIO_TYPES_H_ */
+-- 
+2.34.1
 
 
