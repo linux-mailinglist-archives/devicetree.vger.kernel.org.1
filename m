@@ -1,183 +1,103 @@
-Return-Path: <devicetree+bounces-23959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23960-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B51680D0F0
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 17:16:33 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BA4380D111
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 17:20:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3D9321C21511
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 16:16:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0E3F7B20DE6
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 16:20:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DF2C4CB2B;
-	Mon, 11 Dec 2023 16:16:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A93B4C62D;
+	Mon, 11 Dec 2023 16:20:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="PgGsrP7Z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IhwDGvMD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B904A10A;
-	Mon, 11 Dec 2023 08:16:19 -0800 (PST)
-Received: from localhost.localdomain (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 10EA9C58;
-	Mon, 11 Dec 2023 17:15:32 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1702311332;
-	bh=rOpcjX3AkytQEmoVxgtaf0suJRVXCs4uEXxd2+tGuWU=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=PgGsrP7ZTiZFcWODuJMPvo83CAvLvPXbFgcfiR2WEGpW7EOIUxMZGeE2peRPzUhec
-	 Y1azIQInY0Khazw+LQtBLsaO9suWqxlVM3QdpYgcw2XvM+eJu2Dxwaat0Wq4B78zqE
-	 GOmNR15Rc9FrXK9aC56SMPU21DyKMFLNeAgPcsz8=
-From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-To: Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-	linux-media@vger.kernel.org,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	devicetree@vger.kernel.org,
-	Lee Jackson <lee.jackson@arducam.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v6 1/2] media: dt-bindings: Add OmniVision OV64A40
-Date: Mon, 11 Dec 2023 17:16:04 +0100
-Message-ID: <20231211161605.52601-2-jacopo.mondi@ideasonboard.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20231211161605.52601-1-jacopo.mondi@ideasonboard.com>
-References: <20231211161605.52601-1-jacopo.mondi@ideasonboard.com>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6C724C612;
+	Mon, 11 Dec 2023 16:20:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43A08C433C7;
+	Mon, 11 Dec 2023 16:20:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702311610;
+	bh=tgoKaQNovHS9RWp3+K6M2LkRytAhgXwHG6PjpqOenpU=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=IhwDGvMDayZhO/ouKOmDaaOJzNx/xwMIjs9YhcTCcKs+t6IObyGFBnqQRsygnWr3/
+	 g8LzhS5VFgM9/a6Dce6Uqb/y5hcsD/2R2ap+NbMQGlvJjQLhjbPNJhppNcVSCciB/p
+	 YDlLzd8uaya95w/+DaKbPa55aUs7hW0YF1bx49uOY4HFCG7BbjKNGpN808LQ0EZOnP
+	 4FgU7ocVEVgoDDxqI0DE5Uf5KKImlv0jsMu9OZpuxGPCCa8fAL9Hsk1uTR67sGVzpr
+	 pRSmAieOqPpI3s4IwjjaxlyX31RaEMJa1bdhhOfpeERwX+9iNrSoCpHy+3JQU9Ish3
+	 f9k5ov4vq0YYA==
+From: Mark Brown <broonie@kernel.org>
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+ Banajit Goswami <bgoswami@quicinc.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
+ alsa-devel@alsa-project.org, linux-sound@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>
+In-Reply-To: <20231129113014.38837-1-krzysztof.kozlowski@linaro.org>
+References: <20231129113014.38837-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 1/4] ASoC: dt-bindings: qcom,lpass-rx-macro: Add SM8650
+ LPASS RX
+Message-Id: <170231160677.85457.6870068020415164910.b4-ty@kernel.org>
+Date: Mon, 11 Dec 2023 16:20:06 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-5c066
 
-Add bindings for OmniVision OV64A40.
+On Wed, 29 Nov 2023 12:30:11 +0100, Krzysztof Kozlowski wrote:
+> Add bindings for Qualcomm SM8650 Low Power Audio SubSystem (LPASS) RX
+> macro codec, which looks like compatible with earlier SM8550.
+> 
+> 
 
-Co-developed-by: Lee Jackson <lee.jackson@arducam.com>
-Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Applied to
 
----
-v5->v6:
-- Make link-frequencies mandatory as requested by Sakari
----
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
- .../bindings/media/i2c/ovti,ov64a40.yaml      | 101 ++++++++++++++++++
- 1 file changed, 101 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov64a40.yaml
+Thanks!
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov64a40.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov64a40.yaml
-new file mode 100644
-index 000000000000..659c41a2ce7c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov64a40.yaml
-@@ -0,0 +1,101 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/ovti,ov64a40.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: OmniVision OV64A40 Image Sensor
-+
-+maintainers:
-+  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-+
-+allOf:
-+  - $ref: /schemas/media/video-interface-devices.yaml#
-+
-+properties:
-+  compatible:
-+    const: ovti,ov64a40
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  avdd-supply:
-+    description: Analog voltage supply, 2.8 volts
-+
-+  dvdd-supply:
-+    description: Digital core voltage supply, 1.1 volts
-+
-+  dovdd-supply:
-+    description: Digital I/O voltage supply, 1.8 volts
-+
-+  powerdown-gpios:
-+    maxItems: 1
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+  port:
-+    $ref: /schemas/graph.yaml#/$defs/port-base
-+    additionalProperties: false
-+
-+    properties:
-+      endpoint:
-+        $ref: /schemas/media/video-interfaces.yaml#
-+        additionalProperties: false
-+
-+        properties:
-+          bus-type:
-+            enum:
-+              - 1 # MIPI CSI-2 C-PHY
-+              - 4 # MIPI CSI-2 D-PHY
-+          data-lanes: true
-+          link-frequencies: true
-+          clock-noncontinuous: true
-+          remote-endpoint: true
-+
-+        required:
-+          - link-frequencies
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - port
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+      #include <dt-bindings/gpio/gpio.h>
-+
-+      i2c {
-+          #address-cells = <1>;
-+          #size-cells = <0>;
-+
-+          camera@36 {
-+              compatible = "ovti,ov64a40";
-+              reg = <0x36>;
-+              clocks = <&camera_clk>;
-+              dovdd-supply = <&vgen4_reg>;
-+              avdd-supply = <&vgen3_reg>;
-+              dvdd-supply = <&vgen2_reg>;
-+              powerdown-gpios = <&gpio1 9 GPIO_ACTIVE_HIGH>;
-+              reset-gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
-+              rotation = <180>;
-+              orientation = <2>;
-+
-+              port {
-+                  endpoint {
-+                      remote-endpoint = <&mipi_csi2_in>;
-+                      bus-type = <4>;
-+                      data-lanes = <1 2 3 4>;
-+                      link-frequencies = /bits/ 64 <456000000>;
-+                  };
-+              };
-+          };
-+      };
-+
-+...
---
-2.41.0
+[1/4] ASoC: dt-bindings: qcom,lpass-rx-macro: Add SM8650 LPASS RX
+      commit: 0bfa20b18acbcdd133d41e04e07a2d78bcc04bc5
+[2/4] ASoC: dt-bindings: qcom,lpass-tx-macro: Add SM8650 LPASS TX
+      commit: 5a5085c9ce381f92399c755be6deaf1d76ad57e8
+[3/4] ASoC: dt-bindings: qcom,lpass-va-macro: Add SM8650 LPASS VA
+      commit: f243ef746d0ace20fe092fc1ee9987ecf003f7a4
+[4/4] ASoC: dt-bindings: qcom,lpass-wsa-macro: Add SM8650 LPASS WSA
+      commit: ab8921e1da8fdca14192c44775151f50c1cdb763
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
