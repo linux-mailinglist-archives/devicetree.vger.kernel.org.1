@@ -1,139 +1,132 @@
-Return-Path: <devicetree+bounces-23939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23940-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A7BF80CF37
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 16:13:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D744480CF8A
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 16:30:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05968281CAC
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 15:13:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8D1B21F213B6
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 15:30:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 813D74AF6C;
-	Mon, 11 Dec 2023 15:12:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FC054B5AE;
+	Mon, 11 Dec 2023 15:30:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="eH/hVFqX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KYfQtKQq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5443E11F;
-	Mon, 11 Dec 2023 07:12:53 -0800 (PST)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 29B90E000F;
-	Mon, 11 Dec 2023 15:12:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1702307572;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=YFRNTXiHpB5q4OBf51HMQ0MXG7WMAPuA7YrMIImpGe0=;
-	b=eH/hVFqXLeGU/34uyK7mc9EgkXkva33CrQszVtV40e1/5u6zGyGh9h36e4GlExYnIYOOHh
-	+FEJ1Q7arcqVy235e191ce9lFPMVqL302sckpRP2VeKq7Y9d9WFAsh9mBxRC82//Ef7t0x
-	AbRDSZmDH8bl8BhgULMlAkSLZNByGPttTtIxJc7poOMK3XuErAyfjYaN7GAumSJtRmjUu+
-	PB3e6PZSdQP3ctZgagW5pPmILOl/EVMhN+3Er7BTjn0QFEWILCfLmQ1p1ETYt2a7NPcbAT
-	5+b4qBtrDNqT6EUmLDIH71QbQF3tzOle1vR7RX+xk/LkFxO5e383G23QUMe8Kw==
-From: Romain Gantois <romain.gantois@bootlin.com>
-To: Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 575843B184;
+	Mon, 11 Dec 2023 15:30:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0802C433C8;
+	Mon, 11 Dec 2023 15:30:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702308633;
+	bh=/Q/CO2qks8dFDHzFLXjWAPDdN+fTVkPHlrET0acGnpo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KYfQtKQqfbt28442XHv+EFC1AIN9ykQs7HiHfK60S/GFWPuNrPR21RFeG3odtUkj1
+	 PQdLGeQ7Dj9r9gomv7Y96bzm6rEEb67gBL2swNErG64/tjOWml+uGFCNDutqFUuWYs
+	 bKBc92oC+gJTZ0cfo7pFXmwpv39v4hvlCtH6EU8vp21o/fwt1yuuSsG9ltmFSw8owj
+	 pjY2vBqTtpgm49TFlcShfsiAXfzygLabIQUSGpeLeOaEHtxso6Pa10H7OrmwC9fNMf
+	 3KGgA+dzYMGZmEjxO0FYuwqeOOiSuZv9xx39lZD6s2m40mGFrGCHxmzsic+6dFyIe0
+	 ymi88cjfcV9Ng==
+Date: Mon, 11 Dec 2023 15:30:24 +0000
+From: Will Deacon <will@kernel.org>
+To: Robin Murphy <robin.murphy@arm.com>
+Cc: Joerg Roedel <joro@8bytes.org>, Christoph Hellwig <hch@lst.de>,
+	Vineet Gupta <vgupta@kernel.org>,
+	Russell King <linux@armlinux.org.uk>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Huacai Chen <chenhuacai@kernel.org>,
+	WANG Xuerui <kernel@xen0n.name>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Hanjun Guo <guohanjun@huawei.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	"K. Y. Srinivasan" <kys@microsoft.com>,
+	Haiyang Zhang <haiyangz@microsoft.com>,
+	Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>,
+	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
+	David Woodhouse <dwmw2@infradead.org>,
+	Lu Baolu <baolu.lu@linux.intel.com>,
+	Niklas Schnelle <schnelle@linux.ibm.com>,
+	Matthew Rosato <mjrosato@linux.ibm.com>,
+	Gerald Schaefer <gerald.schaefer@linux.ibm.com>,
+	Jean-Philippe Brucker <jean-philippe@linaro.org>,
 	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jens Axboe <axboe@kernel.dk>,
-	Davidlohr Bueso <dave@stgolabs.net>,
-	Ard Biesheuvel <ardb@kernel.org>
-Cc: Romain Gantois <romain.gantois@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Herve Codina <herve.codina@bootlin.com>,
-	linux-mtd@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-block@vger.kernel.org,
-	linux-efi@vger.kernel.org
-Subject: [RFC PATCH 6/6] dt-bindings: mtd: add GPT partition bindings
-Date: Mon, 11 Dec 2023 16:12:42 +0100
-Message-ID: <20231211151244.289349-7-romain.gantois@bootlin.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20231211151244.289349-1-romain.gantois@bootlin.com>
-References: <20231211151244.289349-1-romain.gantois@bootlin.com>
+	Frank Rowand <frowand.list@gmail.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Jason Gunthorpe <jgg@ziepe.ca>, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-acpi@vger.kernel.org,
+	iommu@lists.linux.dev, devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/7] ACPI/IORT: Handle memory address size limits as
+ limits
+Message-ID: <20231211153023.GA26048@willie-the-truck>
+References: <cover.1701268753.git.robin.murphy@arm.com>
+ <2ae6199a9cf035c1defd42e48675b827f41cdc95.1701268753.git.robin.murphy@arm.com>
+ <20231211132757.GE25681@willie-the-truck>
+ <91b22090-485f-49c9-a536-849fd7f92f8e@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: romain.gantois@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <91b22090-485f-49c9-a536-849fd7f92f8e@arm.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 
-Allow parsing GPT layouts on MTD devices.
+On Mon, Dec 11, 2023 at 03:01:27PM +0000, Robin Murphy wrote:
+> On 2023-12-11 1:27 pm, Will Deacon wrote:
+> > On Wed, Nov 29, 2023 at 05:43:00PM +0000, Robin Murphy wrote:
+> > > Return the Root Complex/Named Component memory address size limit as an
+> > > inclusive limit value, rather than an exclusive size.  This saves us
+> > > having to special-case 64-bit overflow, and simplifies our caller too.
+> > > 
+> > > Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+> > > ---
+> > >   drivers/acpi/arm64/dma.c  |  9 +++------
+> > >   drivers/acpi/arm64/iort.c | 18 ++++++++----------
+> > >   include/linux/acpi_iort.h |  4 ++--
+> > >   3 files changed, 13 insertions(+), 18 deletions(-)
+> > 
+> > [...]
+> > 
+> > > diff --git a/drivers/acpi/arm64/iort.c b/drivers/acpi/arm64/iort.c
+> > > index 6496ff5a6ba2..eb64d8e17dd1 100644
+> > > --- a/drivers/acpi/arm64/iort.c
+> > > +++ b/drivers/acpi/arm64/iort.c
+> > > @@ -1367,7 +1367,7 @@ int iort_iommu_configure_id(struct device *dev, const u32 *input_id)
+> > >   { return -ENODEV; }
+> > >   #endif
+> > > -static int nc_dma_get_range(struct device *dev, u64 *size)
+> > > +static int nc_dma_get_range(struct device *dev, u64 *limit)
+> > >   {
+> > >   	struct acpi_iort_node *node;
+> > >   	struct acpi_iort_named_component *ncomp;
+> > > @@ -1384,13 +1384,12 @@ static int nc_dma_get_range(struct device *dev, u64 *size)
+> > >   		return -EINVAL;
+> > >   	}
+> > > -	*size = ncomp->memory_address_limit >= 64 ? U64_MAX :
+> > > -			1ULL<<ncomp->memory_address_limit;
+> > > +	*limit = (1ULL << ncomp->memory_address_limit) - 1;
+> > 
+> > The old code handled 'ncomp->memory_address_limit >= 64' -- why is it safe
+> > to drop that? You mention it in the cover letter, so clearly I'm missing
+> > something!
+> 
+> Because an unsigned shift by 64 or more generates 0 (modulo 2^64), thus
+> subtracting 1 results in the correct all-bits-set value for an inclusive
+> 64-bit limit.
 
-Signed-off-by: Romain Gantois <romain.gantois@bootlin.com>
----
- .../bindings/mtd/partitions/gpt.yaml          | 41 +++++++++++++++++++
- .../bindings/mtd/partitions/partitions.yaml   |  1 +
- 2 files changed, 42 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mtd/partitions/gpt.yaml
+Oh, I'd have thought you'd have gotten one of those "left shift count >=
+width of type" warnings if you did that.
 
-diff --git a/Documentation/devicetree/bindings/mtd/partitions/gpt.yaml b/Documentation/devicetree/bindings/mtd/partitions/gpt.yaml
-new file mode 100644
-index 000000000000..3c538562e3e5
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mtd/partitions/gpt.yaml
-@@ -0,0 +1,41 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mtd/partitions/gpt.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: GUID Partition Table (GPT)
-+
-+description: The GPT format is commonly used on block devices to describe a
-+partitioning scheme. It mainly consists of a Legacy or Protective MBR for
-+backwards compatibility, a primary GPT header with an array of Partition Table
-+Entries, and a backup header with a backup array of PTEs. This partition table
-+format can be used on MTD devices, specifically NOR flash devices, since NAND
-+flashes are susceptible to bad blocks which could easily corrupt the GPT layout.
-+Logical Block Addresses (LBAs) are defined to target 512-byte blocks.
-+
-+maintainers:
-+  - Romain Gantois <romain.gantois@bootlin.com>
-+
-+select: false
-+
-+properties:
-+  compatible:
-+    const: gpt
-+
-+  '#address-cells': false
-+
-+  '#size-cells': false
-+
-+required:
-+  - compatible
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    flash@0 {
-+      partitions {
-+        compatible = "gpt";
-+      };
-+    };
-diff --git a/Documentation/devicetree/bindings/mtd/partitions/partitions.yaml b/Documentation/devicetree/bindings/mtd/partitions/partitions.yaml
-index 1dda2c80747b..f2b1565d5d0a 100644
---- a/Documentation/devicetree/bindings/mtd/partitions/partitions.yaml
-+++ b/Documentation/devicetree/bindings/mtd/partitions/partitions.yaml
-@@ -18,6 +18,7 @@ oneOf:
-   - $ref: brcm,bcm4908-partitions.yaml
-   - $ref: brcm,bcm947xx-cfe-partitions.yaml
-   - $ref: fixed-partitions.yaml
-+  - $ref: gpt.yaml
-   - $ref: linksys,ns-partitions.yaml
-   - $ref: qcom,smem-part.yaml
-   - $ref: redboot-fis.yaml
--- 
-2.43.0
-
+Will
 
