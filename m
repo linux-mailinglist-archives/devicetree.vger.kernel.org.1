@@ -1,125 +1,110 @@
-Return-Path: <devicetree+bounces-23909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1DC380CA88
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 14:08:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F17F380CA8D
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 14:09:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 49862B20FC5
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 13:08:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B05D280F87
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 13:09:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD9E73D966;
-	Mon, 11 Dec 2023 13:08:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="f7uMfnvr"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A56E3D969;
+	Mon, 11 Dec 2023 13:09:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C3A8C4;
-	Mon, 11 Dec 2023 05:08:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1702300088; x=1733836088;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=in3Ml1ewom3HGY0wz6izynRQKJrC6Dqyh0PwUcWn9Uc=;
-  b=f7uMfnvr53n7jcC2+5ny90xOQkZdJa+M55RCeP/ziqZwTd9YJAd7x8i+
-   kjqDQGu692rDYdhVhtuKF047hvoA1wglqYEI6fk1inXjU75oK+EKH/ZZp
-   TughlxiF+nqLSPvIKCG1Aqm1mVzHfWUg08KD+DtQmKvuCGj3El4zPqprY
-   7/RdliaV0jXybz4HwibKTkdIL/wkHXGqwADkERlEQ4R1tFzv4wB6m+Z/V
-   DdcVH3sfqMmas/jFcUjOWmyPkWiSBTk1uZMvy3VxZWMibQOFGogDyMAxz
-   fspyMlK3D7F5NYtBpqE/pNGHSZF0/dyPnku8FKEIQ26Btv4lflyrty/U4
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10920"; a="374802667"
-X-IronPort-AV: E=Sophos;i="6.04,267,1695711600"; 
-   d="scan'208";a="374802667"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Dec 2023 05:08:07 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10920"; a="1104469655"
-X-IronPort-AV: E=Sophos;i="6.04,267,1695711600"; 
-   d="scan'208";a="1104469655"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Dec 2023 05:08:03 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1rCg0u-00000004mmq-0OoA;
-	Mon, 11 Dec 2023 15:08:00 +0200
-Date: Mon, 11 Dec 2023 15:07:59 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Lino Sanfilippo <LinoSanfilippo@gmx.de>
-Cc: Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-	Lukas Wunner <lukas@wunner.de>,
-	Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	"brenda.streiff@ni.com" <brenda.streiff@ni.com>,
-	Crescent CY Hsieh <crescentcy.hsieh@moxa.com>,
-	Tomas Paukrt <tomaspaukrt@email.cz>
-Subject: Re: [PATCH 1/2] dt-bindings: serial: rs485: add rs485-mux-gpios
- binding
-Message-ID: <ZXcJr4VS_uGr_6TV@smile.fi.intel.com>
-References: <20231120151056.148450-1-linux@rasmusvillemoes.dk>
- <20231120151056.148450-2-linux@rasmusvillemoes.dk>
- <20231122145344.GA18949@wunner.de>
- <3b8548b1-b8a9-0c9e-4040-5cfda06a85c6@gmx.de>
- <ec66d25162de4cbc92720df1e7008fe8@dh-electronics.com>
- <5c140498-69e3-4187-8703-db0c41e7ca89@gmx.de>
- <fe28eb93-daa1-41af-a005-f21aa87e1984@gmx.de>
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28141AF;
+	Mon, 11 Dec 2023 05:08:59 -0800 (PST)
+Received: from i53875b61.versanet.de ([83.135.91.97] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1rCg1k-0008Ku-TG; Mon, 11 Dec 2023 14:08:52 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ robh+dt@kernel.org, robin.murphy@arm.com, devicetree@vger.kernel.org,
+ iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ Andy Yan <andyshrk@163.com>
+Cc: Andy Yan <andy.yan@rock-chips.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, joro@8bytes.org,
+ will@kernel.org
+Subject: Re: [PATCH] dt-bindings: iommu: rockchip: Add Rockchip RK3588
+Date: Mon, 11 Dec 2023 14:08:51 +0100
+Message-ID: <5370401.0VBMTVartN@diego>
+In-Reply-To: <20231209015038.1457967-1-andyshrk@163.com>
+References: <20231209015038.1457967-1-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <fe28eb93-daa1-41af-a005-f21aa87e1984@gmx.de>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Sat, Dec 09, 2023 at 12:47:47PM +0100, Lino Sanfilippo wrote:
-> On 06.12.23 16:42, Lino Sanfilippo wrote:
+Hi Andy,
 
-> >>>> Crescent CY Hsieh (+cc) is in parallel trying to add an RS-422 mode bit
-> >>>> to struct serial_rs485:
-> >>>>
-> >>>> https://lore.kernel.org/all/20231121095122.15948-1-crescentcy.hsieh@moxa.com/
-> >>>>
-> >>>
-> >>> That new flag was suggested by me instead of using SER_RS422_ENABLED, which
-> >>> would mostly be redundant to SER_RS485_ENABLED.
+Am Samstag, 9. Dezember 2023, 02:50:38 CET schrieb Andy Yan:
+> From: Andy Yan <andy.yan@rock-chips.com>
 > 
-> A cleaner solution would probably be to not handle RS422 with the RS485 settings at
-> all, but to introduce another set of ioctls to set and read it.
+> Add a Rockchip RK3588 compatible
 > 
-> An own RS422 structure like
-> 
-> struct serial_rs422 {
-> 	__u32	flags;
-> #define SER_RS422_ENABLED		(1 << 0)
-> #define SER_RS422_TERMINATE_BUS		(1 << 1)
-> };
-> 
-> 
-> could be used as the parameter for these new ioctls.
-> 
-> Any comments on this?
+> I split it from the vop2 patch series as suggested by Heiko[0]
 
-I have (maybe not so constructive) a comment. Please, at all means try to not
-extend the existing serial data structures, we have too many ones with too many
-fields already. For user space, though, one may use unions and flags, but for
-internal ones it might be better ways, I think.
+correct, but something with the addresses did go wrong
 
--- 
-With Best Regards,
-Andy Shevchenko
+# scripts/get_maintainer.pl -f Documentation/devicetree/bindings/iommu/
+lists among the other people especially:
+
+Joerg Roedel <joro@8bytes.org> (maintainer:IOMMU SUBSYSTEM)
+Will Deacon <will@kernel.org> (maintainer:IOMMU SUBSYSTEM)
+
+as the maintainers for the iommu subsystem and I don't see them
+in the recipient list.
+
+
+Heiko
+
+
+
+> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> [0]https://patchwork.kernel.org/project/dri-devel/patch/20231207080235.652719-1-andyshrk@163.com/
+> 
+> ---
+> 
+>  .../devicetree/bindings/iommu/rockchip,iommu.yaml     | 11 ++++++++---
+>  1 file changed, 8 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml b/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml
+> index ba9124f721f1..621dde0e45d8 100644
+> --- a/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml
+> +++ b/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml
+> @@ -19,9 +19,14 @@ description: |+
+>  
+>  properties:
+>    compatible:
+> -    enum:
+> -      - rockchip,iommu
+> -      - rockchip,rk3568-iommu
+> +    oneOf:
+> +      - enum:
+> +          - rockchip,iommu
+> +          - rockchip,rk3568-iommu
+> +      - items:
+> +          - enum:
+> +              - rockchip,rk3588-iommu
+> +          - const: rockchip,rk3568-iommu
+>  
+>    reg:
+>      items:
+> 
+
+
 
 
 
