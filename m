@@ -1,61 +1,62 @@
-Return-Path: <devicetree+bounces-23767-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23768-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D82480C46D
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 10:24:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD11B80C46E
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 10:24:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3925F28154E
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 09:24:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 795FE1F21216
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 09:24:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C302921349;
-	Mon, 11 Dec 2023 09:24:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08B9A2134F;
+	Mon, 11 Dec 2023 09:24:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="S3P3i2nW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fhVa6+It"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44965FC
-	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 01:24:05 -0800 (PST)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-a1db6816177so524328966b.0
-        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 01:24:05 -0800 (PST)
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16C6DFE
+	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 01:24:07 -0800 (PST)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-a1ef2f5ed02so444206966b.1
+        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 01:24:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702286644; x=1702891444; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=n6oPnCa6DBd3f+98xEuauxtAQ1S8sjdrlrHr9RLCgoc=;
-        b=S3P3i2nW/PzkYyUhyscxVrRRRNPniGFuPVnWaRkF+99ZXAeVo8U6uZGflK/hSxP2xv
-         zhK1Oz5NSZgaWhqGmMrXwyTtDkTeTNPBSr2ZWRHWvenSadTvVQuGj9eiwyI9AQUqbZRV
-         UZ3bJJb2/FjbN+EZDB8Qcex6y47Vt3pMKylrzGGpRrGTU5ADBT983h4t2v8qSlJfILDg
-         pd5UGKXTvpVzQ72sQkHzct8SxVbD/6Mm446tzPbZzbu1rBcpDV2FrN2/1nz+n6CjPrZa
-         8apumfPRpUIvJCazJvaxCi4OagqexcMZwufhm6aUjiyPWbQtTd4RtrG6nbcplG70OPGf
-         D3aQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702286644; x=1702891444;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1702286645; x=1702891445; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=n6oPnCa6DBd3f+98xEuauxtAQ1S8sjdrlrHr9RLCgoc=;
-        b=v24y2ktdtpcXdCiKcPDlMotFhJ50q2FHtH1GPPJ+2Nhnik4RRXKLEsVoKyliRJjivL
-         oKfSpNjcejxs/8TFUI2d9LIkf2hlc5yTZKz2rtuvOG/qJidatJ8kIWTLZ5YFMZ5m42CT
-         kn57kvv05KwQROADzH4Lxmtjl/YQmEMGpAC3JQ9x3tYNuHTAEGPNxWnoVorcYQYeMlvy
-         BogUeko3+SxYlzSDGb/tydreNmVZpeXIEENI+o+ajCRzTJuULKsl6Tvy4lazpD1p6DW4
-         tMXK1Ji8bExSnMMb7N5vLrlodaREkxpHS7R2Jz3G8x4dZgcRYXs/xJGoT5HeFacH4xDK
-         ecvA==
-X-Gm-Message-State: AOJu0Yz1Tt5OSQze1HmkWKPGXG6r3bO4gHKJf7bb28i28UIW3CPIs++M
-	Q4y8l3COxodlPT8yz58j1yRT3w==
-X-Google-Smtp-Source: AGHT+IGgfdy95mNKY3dcynCeXmQN85L2HtJqH+pLYpK7S/8dLAYGnPh0D4hxqe5RKWN0arN/imiGYA==
-X-Received: by 2002:a17:906:7f90:b0:a19:a19b:422d with SMTP id f16-20020a1709067f9000b00a19a19b422dmr1161332ejr.152.1702286643623;
-        Mon, 11 Dec 2023 01:24:03 -0800 (PST)
+        bh=wn0vmS+DlZFfx9caCjg1W7hM4xi3LW9kbH1lruHFYM8=;
+        b=fhVa6+It0JMXd/jjVk0rRNBKbtb2bDM+CBXPtE0xK9LWIz4gfkYlLqpISWvP5sUC5a
+         FVKGllofsmZxgxU07jN3+pQ1EliTVEBfA2xA5ntQRfqHNwf2WBg1aeda2tycVhqDkuTE
+         p+mcV0CKg62EilS5HYCP2ZQQPCO/Qrjhx5j8Uvjg0DF/xTNfxGDkzJvnUt+tJAHGekAZ
+         CojFa3jdqCha/sbQ6YEhIYluaqKmShlKJdyRDBVdYHlddF/S95sH7fpepAlA8x7YkhZ3
+         MmS8gSFhVe3W+nRrMEtkU0yikTnWjZSclcFFjYgOSqZWY1jZ/fUhMKuq0FSYODel/clc
+         Z4zg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702286645; x=1702891445;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wn0vmS+DlZFfx9caCjg1W7hM4xi3LW9kbH1lruHFYM8=;
+        b=ZJny5kxJP+8QtUQgP+mMCAa3DSV9ylS5/rUJWNUMMsRcJ/bFW4oEHnR6RvBqhW6Alz
+         5Dv/waNGTcbegnVALKf80aAHVJxoJ2UAHyUXtdMwh2/LFcRsq5BgDmkX2N9iOpUq9xNY
+         q0j28ClLGfwmOJP+b6mH6ITYoCtIY3On2cCW9gS9vyk3Hniz1YKRISuUc3WF56Kq0RZG
+         TqMYcQNu4TWtrfwvTjjXu1UQrMJrzP8vz9m4r9NAaaCG06I9vAXN2umkFakJP8sNc1YR
+         f6gnhSv8bio6fHI7MeR05FsTF7EHXo5NhQtAapUns6K1ttotKk8W0FQtPD1CR/RaSBeo
+         2VQA==
+X-Gm-Message-State: AOJu0Yx9zRvq0FJqkUsajkHxyR5Vil0c5cRjK5GKSy285uCtLsiHDvGF
+	Tscwi3azP1qLsl+2Sb8AKuyS1Q==
+X-Google-Smtp-Source: AGHT+IFw56eFBCLAYXPgrXfR+4po1IIGRgaiClklQGaZVuleC5pauurJOuMcBMmBsMTXqq1S4uSJlQ==
+X-Received: by 2002:a17:906:f753:b0:a19:a1ba:8cdf with SMTP id jp19-20020a170906f75300b00a19a1ba8cdfmr1955220ejb.125.1702286645634;
+        Mon, 11 Dec 2023 01:24:05 -0800 (PST)
 Received: from [10.167.154.1] (178235179179.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.179])
-        by smtp.gmail.com with ESMTPSA id tb21-20020a1709078b9500b009ad89697c86sm4570248ejc.144.2023.12.11.01.24.02
+        by smtp.gmail.com with ESMTPSA id tb21-20020a1709078b9500b009ad89697c86sm4570248ejc.144.2023.12.11.01.24.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Dec 2023 01:24:03 -0800 (PST)
+        Mon, 11 Dec 2023 01:24:05 -0800 (PST)
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Subject: [PATCH 0/2] Enable interconnect on SM6115
-Date: Mon, 11 Dec 2023 10:23:57 +0100
-Message-Id: <20231209-topic-6115iccdt-v1-0-f62da62b7276@linaro.org>
+Date: Mon, 11 Dec 2023 10:23:58 +0100
+Subject: [PATCH 1/2] dt-bindings: interconnect: qcom,msm8998-bwmon: Add
+ SM6115 bwmon instance
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,9 +65,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAC3VdmUC/x2NQQqEMAwAvyI5G0grW9j9inioMV0DUqXVZUH8u
- 8HjDAxzQpWiUuHTnFDkp1XXbODaBniO+SuokzF48p3z9MZ93ZQxOPdS5mlHCpRIfEjEHVg1xio
- 4lph5ti4fy2JyK5L0/2z64bpuLEHcs3YAAAA=
+Message-Id: <20231209-topic-6115iccdt-v1-1-f62da62b7276@linaro.org>
+References: <20231209-topic-6115iccdt-v1-0-f62da62b7276@linaro.org>
+In-Reply-To: <20231209-topic-6115iccdt-v1-0-f62da62b7276@linaro.org>
 To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
  Georgi Djakov <djakov@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
@@ -77,41 +78,35 @@ Cc: Marijn Suijten <marijn.suijten@somainline.org>,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1702286641; l=973;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1702286641; l=921;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=tmsSXzF1KmW91De4zWGI6eXCqf+wYJAGd6SC/NqLLho=;
- b=eFsjoUSM1mxD8XDpzXhccY/co+PmWuuma5IMOq5vVzDBMlkYUsSrVMAZwcrqtqbhojfrgbRW+
- NIQBQwnkEG5Cps5M01s17AGP2BNwcjzuWtTErvTi3NbqEFQPIKLafRm
+ bh=uoFy81O4yXaBoZ14IfFvS77gswFxZ0y4ucvu/5N+9NU=;
+ b=Lo7Y7n07+eqt/vVZg2bMFag6ynbxLC6bxQwLgZq1AfXMi72k7breiL3owOIJKg7oO2hudqng7
+ nQA7i75Hlc2D7xUYVl7hlBzvePyoaouSEVOaWRTh60rrzfk88J/O7eZ
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
-The SM6115 interconnect driver has been merged now. Add nodes required
-to make use of it.
-
-Patch 1 for icc, patch 2 for qcom.
-
-Likely depends on patch 3/ (qcm2290 BWMON compatible) from [1].
-
-The required bindings changes are available over at an immutable k.org/
-djakov/icc.git/icc-sm6115.
-
-[1] https://lore.kernel.org/linux-arm-msm/20231125-topic-rb1_feat-v3-3-4cbb567743bb@linaro.org/
+SM6115 has a single BWMONv4 intance for CPU. Document it.
 
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
-Konrad Dybcio (2):
-      dt-bindings: interconnect: qcom,msm8998-bwmon: Add SM6115 bwmon instance
-      arm64: dts: qcom: sm6115: Hook up interconnects
+ Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
- .../bindings/interconnect/qcom,msm8998-bwmon.yaml  |   1 +
- arch/arm64/boot/dts/qcom/sm6115.dtsi               | 277 +++++++++++++++++++++
- 2 files changed, 278 insertions(+)
----
-base-commit: 206dd8f44be8930e25cd6c82873f21ae659abec9
-change-id: 20231209-topic-6115iccdt-060f0e26f0c3
+diff --git a/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml b/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml
+index a88cea732370..05067e197abe 100644
+--- a/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml
++++ b/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml
+@@ -30,6 +30,7 @@ properties:
+               - qcom,sc7280-cpu-bwmon
+               - qcom,sc8280xp-cpu-bwmon
+               - qcom,sdm845-cpu-bwmon
++              - qcom,sm6115-cpu-bwmon
+               - qcom,sm6350-llcc-bwmon
+               - qcom,sm8250-cpu-bwmon
+               - qcom,sm8550-cpu-bwmon
 
-Best regards,
 -- 
-Konrad Dybcio <konrad.dybcio@linaro.org>
+2.43.0
 
 
