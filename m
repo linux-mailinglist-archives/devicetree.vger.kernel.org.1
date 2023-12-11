@@ -1,32 +1,32 @@
-Return-Path: <devicetree+bounces-23826-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23829-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A160280C731
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 11:50:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52D5D80C736
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 11:50:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D13651C209BB
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 10:50:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F05571F2114F
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 10:50:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05DB72577A;
-	Mon, 11 Dec 2023 10:50:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C166A2D60D;
+	Mon, 11 Dec 2023 10:50:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="ZD/35LIy"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="OFFeQj3G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m15.mail.163.com (m15.mail.163.com [45.254.50.220])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id D001B137;
-	Mon, 11 Dec 2023 02:50:09 -0800 (PST)
+Received: from m12.mail.163.com (m12.mail.163.com [220.181.12.217])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 8099AD5;
+	Mon, 11 Dec 2023 02:50:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=/xwBX
-	qSLSCI3iN3pBYQypMi6PTCbu6TA//aRm1MKyQ4=; b=ZD/35LIygaAej53WfA1cv
-	4BvJ5x1xdveGz2MzZhSIA7GFbfFeGrMGONha8YUqmPYIrKhezFobMid9FjxKSiKa
-	ciKmecJ4RhG2qz45rLBjrKGIScMpxA/CYsP1R+zLnjUagL0F/UBWreE2P/r8WCVZ
-	SL0Gm6PuSz7NxJSTBC4rKY=
+	s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=nNmAy
+	t5R/FqSzYRKUKMJgqk+9Njbt4i+66funeH8Iu4=; b=OFFeQj3G/4k7sOcimvwFN
+	TcyQ/ibqBV9CZb1xnFBhRWrloTK3oN+97l0yLf/52T1i8QT4jv2ije2MPetT2KMV
+	mILc/TdPfSTXZ1NZrSXqSPOOrToLwq0zR+MwcAd73TnULMZMKefeI+7dUyyP7KW6
+	40mK0enb6tKlGzbJgbTFwI=
 Received: from ProDesk.. (unknown [58.22.7.114])
-	by zwqz-smtp-mta-g2-2 (Coremail) with SMTP id _____wC332gs6XZlaZl1BA--.11857S2;
-	Mon, 11 Dec 2023 18:49:20 +0800 (CST)
+	by zwqz-smtp-mta-g5-2 (Coremail) with SMTP id _____wCXXxpC6XZldAV8FQ--.8760S2;
+	Mon, 11 Dec 2023 18:49:41 +0800 (CST)
 From: Andy Yan <andyshrk@163.com>
 To: heiko@sntech.de
 Cc: krzysztof.kozlowski+dt@linaro.org,
@@ -35,11 +35,14 @@ Cc: krzysztof.kozlowski+dt@linaro.org,
 	linux-kernel@vger.kernel.org,
 	linux-rockchip@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org,
-	Andy Yan <andyshrk@163.com>
-Subject: [PATCH v3 0/5] Add 2 rk3588 based boards from Cool Pi
-Date: Mon, 11 Dec 2023 18:49:15 +0800
-Message-Id: <20231211104915.1779476-1-andyshrk@163.com>
+	Andy Yan <andyshrk@163.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v3 1/5] dt-bindings: vendor-prefixes: Add Cool Pi
+Date: Mon, 11 Dec 2023 18:49:37 +0800
+Message-Id: <20231211104937.1779595-1-andyshrk@163.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20231211104915.1779476-1-andyshrk@163.com>
+References: <20231211104915.1779476-1-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -47,47 +50,38 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wC332gs6XZlaZl1BA--.11857S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7Kw1rCr45Ww4UurW7Cr4UJwb_yoW8GF4rpw
-	s3CrZ8GFn7GFy7XrZIqwn7Crs3Awn5tay0vrsxXFy2kr9xKFyDAF1SgwnxZ3srG3WxZayU
-	GF1kKF47Gr1DXaUanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0p_uc_UUUUUU=
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbBEBJDXmVOA4yg9wAAss
+X-CM-TRANSID:_____wCXXxpC6XZldAV8FQ--.8760S2
+X-Coremail-Antispam: 1Uf129KBjvdXoW7JF13Jr1Uuw4UWr1rWF15Jwb_yoWfArb_Xa
+	1xAw1DZF43JF4Fgw4vyF4xG345Aw12kr9ru3WrtayDCF12yrZrGa97t345Zw1xCF43uas8
+	Crs3GrWDGrnrGjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7sRA4SrUUUUUU==
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbBEhJDXmVOA4yoWwABsL
 
+Add vendor prefix for Cool Pi(https://cool-pi.com/)
 
-This series add support for rk3588s based SBC Cool Pi 4B
-and rk3588 based board Cool Pi CM5 EVB
+Signed-off-by: Andy Yan <andyshrk@163.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Changes in v3:
-- drop ununnecessary property status = "okay" for rtc
-- drop ununnecessary property status = "okay" for backlight
-- reorder some nodes alphabetical
-- drop ununnecessary blank line
+---
 
-Changes in v2:
-- change board compatible from "CoolPi 4 Model B" to "coolpi,pi-4b"
-- drop ununnecessary property status = "okay" for gpio-led
-- drop ununnecessary blank line
-- change node name to rtc for hym8563
-- change board compatible from "CoolPi CM5 EVB" to "coolpi,pi-cm5-evb"
+(no changes since v1)
 
-Andy Yan (5):
-  dt-bindings: vendor-prefixes: Add Cool Pi
-  dt-bindings: arm: rockchip: Add Cool Pi 4B
-  arm64: dts: rockchip: Add support for rk3588s based board Cool Pi 4B
-  dt-bindings: arm: rockchip: Add Cool Pi CM5 EVB
-  arm64: dts: rockchip: Add support for rk3588 based board Cool Pi CM5
-    EVB
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
- .../devicetree/bindings/arm/rockchip.yaml     |  10 +
- .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
- arch/arm64/boot/dts/rockchip/Makefile         |   2 +
- .../dts/rockchip/rk3588-coolpi-cm5-evb.dts    | 879 ++++++++++++++++++
- .../boot/dts/rockchip/rk3588s-coolpi-4b.dts   | 823 ++++++++++++++++
- 5 files changed, 1716 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-coolpi-cm5-evb.dts
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-coolpi-4b.dts
-
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 309b94c328c8..ddbba46fcbad 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -294,6 +294,8 @@ patternProperties:
+     description: CompuLab Ltd.
+   "^congatec,.*":
+     description: congatec GmbH
++  "^coolpi,.*":
++    description: cool-pi.com
+   "^coreriver,.*":
+     description: CORERIVER Semiconductor Co.,Ltd.
+   "^corpro,.*":
 -- 
 2.34.1
 
