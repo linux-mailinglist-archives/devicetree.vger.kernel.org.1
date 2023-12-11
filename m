@@ -1,200 +1,135 @@
-Return-Path: <devicetree+bounces-23842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23843-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A0E780C7CD
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 12:19:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A0A980C81B
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 12:36:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 26ECC281696
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 11:19:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0A6AA1F210B0
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 11:36:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEDBC358A5;
-	Mon, 11 Dec 2023 11:19:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E990374E3;
+	Mon, 11 Dec 2023 11:35:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hl4yLjD0"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WGGJk1c7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4C14CF
-	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 03:19:40 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-40c41b43e1eso15860155e9.1
-        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 03:19:40 -0800 (PST)
+Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67BBCCF
+	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 03:35:51 -0800 (PST)
+Received: by mail-ot1-x333.google.com with SMTP id 46e09a7af769-6d9dbe224bbso3105938a34.2
+        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 03:35:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702293579; x=1702898379; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7pZPdZp6957k6C1NFCMTL6mm1rsB1Mx6NLsmieoSb4Q=;
-        b=hl4yLjD04Vb7BahGs6dSi/TFdTjeQaWuzf/WzJfD2PzO4VpvHcJy2eREeh3I06Zcuj
-         Kqwqj2Gs/73TWt4bfPF2tGujeBkI7859fYbblNeXsLpL0Jec+cmhVj2DfYAfS2dyXhps
-         pDnjC5HPxLEjj6yEa5rKlZjufn6N8Gg/xo9mDwXzwBNJW21psta7Wb4z7foBGT/uojXk
-         U+6wHH435LSwCh/CB4qgmr6/tuMX6q1T9SIqX4+T4zklJOHtlIxij2TDMqs9lDVmga4t
-         /cFL1duJK1tgAOq1COiAOvGFmt9u4sbdL2BgZNtnpSm9+FIADpLkz5nZQ7TbH0YN9A3Z
-         4CLg==
+        d=linaro.org; s=google; t=1702294550; x=1702899350; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=3+ol3M0pI923ab1AudTOkH9Yk0elXff3QjFR/FfpQ+Q=;
+        b=WGGJk1c7M18qvL4n2xbBWmEYa7iFKyV9K3sIYodQ6a71isMqFLgpYdBFi4x01RZoSu
+         2l7lulbF2wqazudhwWOAnV/mf5haM1MRXX3BW3I9sA+71I8d0WPUqfMYFqa5AlIyGCEe
+         2Mh1o9Lc/A4i2l77Yj8kC+sPWbOIhH+aK/u/URcGRAlgP6XLD4cemBb6mvJeDmA0CMqO
+         bGBOzmBKJLdDQK6Utnm2wFNe+DpQeoPnYubq7g1PgOn860D7wNd1JBsQMUlCjyBG8JNN
+         EOqjvimOKNUb2l56uTonbxNDjxn+1dCqyBxbNi57W9i+OgMuRUaBjAUVmBTinb6MjeGp
+         pUdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702293579; x=1702898379;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=7pZPdZp6957k6C1NFCMTL6mm1rsB1Mx6NLsmieoSb4Q=;
-        b=bvWFwSlW7u8uAgFhP8XPZezXpOncJhJx47nhu65BxmmwH/4n0D7vkB9fyoszX/Slq4
-         en5qFVt+LYqSeOqAivxcdfwffyb+oRiLIznXeiBnmWQ5T2MHsbaoWvYYtudvBCUsttNs
-         pHiTTD9EZ5qT2G2foSqbxeFEvXLnr9OVwCMX6BzdyIUSiyU7/cr+/Vk7/ymr/uG4XxkF
-         NEiMbJZzWxv2snMh3a4kM6k8rYj1kqI2yHUR1T6wWn91l2AoqYeL0Wu3qzBPpMzXd45C
-         IvNtUvYBS41gSllyeWeP4zsWtgxW8o0Q5ioaEagG4K+M51xSepofYZe+HCeMJF43pzy9
-         +Omw==
-X-Gm-Message-State: AOJu0YyYXJPPTtDeMdF1ncAKKygt44afNgaGkRxDX8u/7c1020Gt4G50
-	SHL8aDc+Ag++MWuEPvN2FgsaMQ==
-X-Google-Smtp-Source: AGHT+IFhW7zhl+mrlfS6rhFqzVBgcXUus3YQCkHiFyDCopoJBuSiE5WNhXTl94dw0BFYn8zKpX1AGg==
-X-Received: by 2002:a05:600c:3d8b:b0:40b:5e4a:406b with SMTP id bi11-20020a05600c3d8b00b0040b5e4a406bmr1938322wmb.139.1702293579015;
-        Mon, 11 Dec 2023 03:19:39 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:302e:e0c2:d42c:cb23? ([2a01:e0a:982:cbb0:302e:e0c2:d42c:cb23])
-        by smtp.gmail.com with ESMTPSA id z20-20020a05600c0a1400b004064e3b94afsm15042877wmp.4.2023.12.11.03.19.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Dec 2023 03:19:38 -0800 (PST)
-Message-ID: <5d77a476-06ee-4319-8e20-eef1c6ad51c6@linaro.org>
-Date: Mon, 11 Dec 2023 12:19:37 +0100
+        d=1e100.net; s=20230601; t=1702294550; x=1702899350;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3+ol3M0pI923ab1AudTOkH9Yk0elXff3QjFR/FfpQ+Q=;
+        b=BwOxvQBIcK6UUBvJ+SmOel6nRc98RawNbylx7hEVoW6u3/aiVw1aE41jepcm6uHYsk
+         4UQKcliKZwvVzwpd4bnovL+1yTCH32nwdw2Z1VIbHOWxuG9FpVQqip9Ez8vKvw4yFZjk
+         wfCHJoMQA8rVBl5v00Q/yHd9V9DBRlGxseypOIGagsE55W7FEDq17oMPNIERrZRg0Yb/
+         IOPZknwklusJmGr0uG5w0EswRx6j8vYs6vXxG74YSVZiEMu2pFC9ZomYgA9CtsMYVDLy
+         ldGi7ENuQm66W9dM9kOqibV05NBtzsw6QmMQWOH0XEf94b0687sE383jcadGYrStxeX0
+         W7nQ==
+X-Gm-Message-State: AOJu0YxQA9W0/HZTMIkB0czi1uO7DExsyyr/xano7cmvFVkIrB2J2YJj
+	wDrN4gXDU3asOl8VqYu7qGF74+Oecg1pdyafOFeaOQ==
+X-Google-Smtp-Source: AGHT+IHTYmAfw9EOKQEvoYukSWVGhGDG8tJXoV6ZROee3fmhULu+p3ewmCTzn6+wQmwMRXs/CvGuxxavXhD0mKv36pQ=
+X-Received: by 2002:a05:6830:c7:b0:6d8:74e2:7ccc with SMTP id
+ x7-20020a05683000c700b006d874e27cccmr4344434oto.39.1702294550628; Mon, 11 Dec
+ 2023 03:35:50 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v4 2/3] remoteproc: qcom: pas: make region assign more
- generic
-Content-Language: en-US, fr
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Mukesh Ojha <quic_mojha@quicinc.com>
-References: <20231208-topic-sm8650-upstream-remoteproc-v4-0-a96c3e5f0913@linaro.org>
- <20231208-topic-sm8650-upstream-remoteproc-v4-2-a96c3e5f0913@linaro.org>
- <76f18323-a59e-4724-96ec-6306e5dcd2dc@linaro.org>
- <374addd2-e336-4625-9e0c-45e5efe1eb47@linaro.org>
- <b4b0ed80-eed5-4045-8ceb-5b507c77e4e2@linaro.org>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <b4b0ed80-eed5-4045-8ceb-5b507c77e4e2@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20231209233106.147416-1-peter.griffin@linaro.org>
+ <20231209233106.147416-14-peter.griffin@linaro.org> <46c9c8b4-942d-4f6f-a6cc-00158314d5e5@linaro.org>
+In-Reply-To: <46c9c8b4-942d-4f6f-a6cc-00158314d5e5@linaro.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Mon, 11 Dec 2023 11:35:39 +0000
+Message-ID: <CADrjBPr6k-j=swq8zJfOjaYQW7hvWCTXj2ZZQT6V+QUtjEYOcg@mail.gmail.com>
+Subject: Re: [PATCH v6 13/20] pinctrl: samsung: Add gs101 SoC pinctrl configuration
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org, 
+	tomasz.figa@gmail.com, s.nawrocki@samsung.com, linus.walleij@linaro.org, 
+	wim@linux-watchdog.org, linux@roeck-us.net, catalin.marinas@arm.com, 
+	will@kernel.org, arnd@arndb.de, olof@lixom.net, gregkh@linuxfoundation.org, 
+	jirislaby@kernel.org, cw00.choi@samsung.com, alim.akhtar@samsung.com, 
+	tudor.ambarus@linaro.org, andre.draszik@linaro.org, 
+	semen.protsenko@linaro.org, saravanak@google.com, willmcvicker@google.com, 
+	soc@kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-watchdog@vger.kernel.org, kernel-team@android.com, 
+	linux-serial@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 11/12/2023 10:54, Konrad Dybcio wrote:
-> On 11.12.2023 10:37, Neil Armstrong wrote:
->> On 09/12/2023 19:06, Konrad Dybcio wrote:
->>> On 8.12.2023 16:04, Neil Armstrong wrote:
->>>> The current memory region assign only supports a single
->>>> memory region.
->>>>
->>>> But new platforms introduces more regions to make the
->>>> memory requirements more flexible for various use cases.
->>>> Those new platforms also shares the memory region between the
->>>> DSP and HLOS.
->>>>
->>>> To handle this, make the region assign more generic in order
->>>> to support more than a single memory region and also permit
->>>> setting the regions permissions as shared.
->>>>
->>>> Reviewed-by: Mukesh Ojha <quic_mojha@quicinc.com>
->>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->>>> ---
->>> [...]
->>>
->>>> +    for (offset = 0; offset < adsp->region_assign_count; ++offset) {
->>>> +        struct reserved_mem *rmem = NULL;
->>>> +
->>>> +        node = of_parse_phandle(adsp->dev->of_node, "memory-region",
->>>> +                    adsp->region_assign_idx + offset);
->>>> +        if (node)
->>>> +            rmem = of_reserved_mem_lookup(node);
->>>> +        of_node_put(node);
->>> Shouldn't this only be called when parse_phandle succeeds? (separate
->>> patch with a fix + cc stable if so?)
->>
->> It's not a bug, it was added like that because of_node_put() already
->> checks for a NULL pointer:
->> https://elixir.bootlin.com/linux/v6.7-rc5/source/drivers/of/dynamic.c#L45
-> Ack
-> 
->>
->>>
->>>> +        if (!rmem) {
->>>> +            dev_err(adsp->dev, "unable to resolve shareable memory-region index %d\n",
->>>> +                offset);
->>>> +            return -EINVAL;
->>>> +        }
->>>>    -    perm.vmid = QCOM_SCM_VMID_MSS_MSA;
->>>> -    perm.perm = QCOM_SCM_PERM_RW;
->>>> +        if (adsp->region_assign_shared)  {
->>>> +            perm[0].vmid = QCOM_SCM_VMID_HLOS;
->>>> +            perm[0].perm = QCOM_SCM_PERM_RW;
->>>> +            perm[1].vmid = adsp->region_assign_vmid;
->>>> +            perm[1].perm = QCOM_SCM_PERM_RW;
->>>> +            perm_size = 2;
->>>> +        } else {
->>>> +            perm[0].vmid = adsp->region_assign_vmid;
->>>> +            perm[0].perm = QCOM_SCM_PERM_RW;
->>>> +            perm_size = 1;
->>>> +        }
->>>>    -    adsp->region_assign_phys = rmem->base;
->>>> -    adsp->region_assign_size = rmem->size;
->>>> -    adsp->region_assign_perms = BIT(QCOM_SCM_VMID_HLOS);
->>>> +        adsp->region_assign_phys[offset] = rmem->base;
->>>> +        adsp->region_assign_size[offset] = rmem->size;
->>>> +        adsp->region_assign_perms[offset] = BIT(QCOM_SCM_VMID_HLOS);
->>>>    -    ret = qcom_scm_assign_mem(adsp->region_assign_phys,
->>>> -                  adsp->region_assign_size,
->>>> -                  &adsp->region_assign_perms,
->>> I think this should be renamed to region_assign_owner(s)
->>
->> Why ? this bitfield is names "perms" everywhere qcom_scm_assign_mem is used
-> And IMO that's not correct - there's the qcom_scm_vmperm.perm field which
-> is oneOf r/w/x/rw/rwx and this one is filled with ORed BIT()-ed elements
-> allowed in qcom_scm_vmperm.vmid (QCOM_SCM_VMID_...)
+Hi Krzysztof,
 
-Ok right I just use the same namings as in rmtfs_mem, fastrpc & ath10k/qmi,
-but indeed the qcom_scm_assign_mem() 3rd param name is srcvm but doc says "vmid for current set of owners",
-so yeah it could be named owners.
+Thanks for the review.
 
-I'll send a v5 with the rename.
+On Sun, 10 Dec 2023 at 13:56, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 10/12/2023 00:30, Peter Griffin wrote:
+> > Add support for the pin-controller found on the gs101 SoC used in
+> > Pixel 6 phones.
+> >
+> > Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> > ---
+>
+>
+> > diff --git a/drivers/pinctrl/samsung/pinctrl-exynos.c b/drivers/pinctrl/samsung/pinctrl-exynos.c
+> > index 6b58ec84e34b..3834bf953178 100644
+> > --- a/drivers/pinctrl/samsung/pinctrl-exynos.c
+> > +++ b/drivers/pinctrl/samsung/pinctrl-exynos.c
+> > @@ -468,6 +468,8 @@ static const struct of_device_id exynos_wkup_irq_ids[] = {
+> >                       .data = &exynos7_wkup_irq_chip },
+> >       { .compatible = "samsung,exynosautov9-wakeup-eint",
+> >                       .data = &exynos7_wkup_irq_chip },
+> > +     { .compatible = "google,gs101-wakeup-eint",
+> > +                     .data = &exynos7_wkup_irq_chip },
+>
+> You don't need it.
 
-Neil
+OK will drop
 
+>
+> >       { }
+> >  };
+> >
+> > diff --git a/drivers/pinctrl/samsung/pinctrl-samsung.c b/drivers/pinctrl/samsung/pinctrl-samsung.c
+> > index 79babbb39ced..b8d549fe38cb 100644
+> > --- a/drivers/pinctrl/samsung/pinctrl-samsung.c
+> > +++ b/drivers/pinctrl/samsung/pinctrl-samsung.c
+> > @@ -1321,6 +1321,8 @@ static const struct of_device_id samsung_pinctrl_dt_match[] = {
+> >               .data = &exynosautov9_of_data },
+> >       { .compatible = "tesla,fsd-pinctrl",
+> >               .data = &fsd_of_data },
+> > +     { .compatible = "google,gs101-pinctrl",
+> > +             .data = &gs101_of_data },
+>
+> Place it somewhere alphabetically. Probably before tesla.
 
-> 
-> Konrad
+Will fix. FYI I was intending to put it at the top ('g' before 's')
+that also matches the ordering everywhere else e.g. in the YAML docs
+etc.
 
+regards,
+
+Peter
 
