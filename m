@@ -1,179 +1,124 @@
-Return-Path: <devicetree+bounces-23876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23872-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E21980C93B
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 13:15:50 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 862C780C931
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 13:14:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E8F712816DE
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 12:15:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8FF9BB20E8F
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 12:14:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81A4339AE5;
-	Mon, 11 Dec 2023 12:15:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 728C63986D;
+	Mon, 11 Dec 2023 12:14:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=163.com header.i=@163.com header.b="nS7LVNS5"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="SG4QWu6F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m1345.mail.163.com (m1345.mail.163.com [220.181.13.45])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id C9750106;
-	Mon, 11 Dec 2023 04:15:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Date:From:Subject:Content-Type:MIME-Version:
-	Message-ID; bh=lEZaOA2vBpaMILd1AhiuL/u56MvtHmU4/WI7bGGCbWo=; b=n
-	S7LVNS5D/nuLqajYCCJuZ5YUQx4fMMuUV5E/ldt7eDYsxza0JFgssmUt1k7+dL9J
-	VioShIoL+Ssf1hWS57SgpzHdOL+miktJIVlqV8Rkvtgg9bmKeLsftZfn+TKx++Pn
-	/rUsyb1hpHZsX/2a4qD3ilQmQMHiNKfBU4oNRNaSmk=
-Received: from andyshrk$163.com ( [58.22.7.114] ) by ajax-webmail-wmsvr45
- (Coremail) ; Mon, 11 Dec 2023 20:13:11 +0800 (CST)
-Date: Mon, 11 Dec 2023 20:13:11 +0800 (CST)
-From: "Andy Yan" <andyshrk@163.com>
-To: "Keith Zhao" <keith.zhao@starfivetech.com>
-Cc: "Maxime Ripard" <mripard@kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>, 
-	"tzimmermann@suse.de" <tzimmermann@suse.de>, 
-	"airlied@gmail.com" <airlied@gmail.com>, 
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, 
-	"William Qiu" <william.qiu@starfivetech.com>, 
-	"Xingyu Wu" <xingyu.wu@starfivetech.com>, 
-	"paul.walmsley@sifive.com" <paul.walmsley@sifive.com>, 
-	"aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>, 
-	"palmer@dabbelt.com" <palmer@dabbelt.com>, 
-	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>, 
-	"Shengyang Chen" <shengyang.chen@starfivetech.com>, 
-	"Jack Zhu" <jack.zhu@starfivetech.com>, 
-	"Changhuang Liang" <changhuang.liang@starfivetech.com>, 
-	"maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>, 
-	"suijingfeng@loongson.cn" <suijingfeng@loongson.cn>
-Subject: Re:Re: [v3 5/6] drm/vs: Add hdmi driver
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20230109(dcb5de15)
- Copyright (c) 2002-2023 www.mailtech.cn 163com
-In-Reply-To: <2dc5ea49-9a5f-484a-98dc-1b35b79d0945@starfivetech.com>
-References: <20231204123315.28456-6-keith.zhao@starfivetech.com>
- <esetsiqgqpk35zue4c6aq7l6zn4kezhxkqqa7ompaz2vhdy3lr@4d5awfqgs2ss>
- <94a1f9fc-82fb-4a04-a44b-f9b20c2bdfdd@starfivetech.com>
- <abdl6kmighvpwojvafq443q7grn6w3abwpvw7zwbna4jvtsvjf@fa42rv46n2wh>
- <40cdd3c7-174e-4611-9ea6-22cb56d1f62b@starfivetech.com>
- <e90142d.44b1.18c43833b63.Coremail.andyshrk@163.com>
- <e0b84511-dbb4-46fa-9465-713369232f6f@starfivetech.com>
- <43e42269.314.18c46dbb4c5.Coremail.andyshrk@163.com>
- <e1c362dc-8aac-4d13-9356-8b7ccae4727f@starfivetech.com>
- <5a79a4b9.1bd7.18c4773c1ea.Coremail.andyshrk@163.com>
- <xevxqusbizjfs4qt5rufhntd3vd656o2smocvivvulzceh3aeu@uuihphhat5wi>
- <2dc5ea49-9a5f-484a-98dc-1b35b79d0945@starfivetech.com>
-X-NTES-SC: AL_Qu2bAP6SuU8i5ySQZ+kXn0kXhec2W8Czvvgg34JRP5k0hynnwAEvc0JFOEPk/d2MNhKrjSWXaid/wONHUYtdeq1DMTXAp1Gpuf4Y7OS0tykj
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44C34CF;
+	Mon, 11 Dec 2023 04:14:40 -0800 (PST)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id D62221C0004;
+	Mon, 11 Dec 2023 12:14:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1702296879;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=li3fkgdd1h7/PzgJbhx3icmAeCcuFW9T2WdfuNDW6JQ=;
+	b=SG4QWu6FXf80+rGPX80bz9b7PZQ9sx8IfQdWv1GfVP67U5CttsGLVDrc4zg9sQdfh0L/NQ
+	p4b/6qXSiKg3WDzYOh6RO8ctKDzpIfVkyTGMSOR94ZVGORCxB8570y2PVrj911u3NuFLkp
+	L5bu/xMxtLx48F9JIYXQ18XbhN/drNU6qKtPALyMf54AQ7yTaGe6ahY6C5eSROZBNj6Fdt
+	BLvjTRnrg2DAlNLPUHnj3vjqP5n8iKEBopTU7dvsxKuv4nWiy8O0Ydrj6GoLkW0j/BTLlK
+	zbE76kdp/+rwdSIrUtsGS/yJ9d9KihJo93ALyaok6ZG5JF1oyOAk02/IQD3x9A==
+From: Kamel Bouhara <kamel.bouhara@bootlin.com>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Henrik Rydberg <rydberg@bitmath.org>,
+	linux-input@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Marco Felsch <m.felsch@pengutronix.de>,
+	Jeff LaBundy <jeff@labundy.com>
+Cc: catalin.popescu@leica-geosystems.com,
+	mark.satterthwaite@touchnetix.com,
+	bartp@baasheep.co.uk,
+	hannah.rossiter@touchnetix.com,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	bsp-development.geo@leica-geosystems.com,
+	Kamel Bouhara <kamel.bouhara@bootlin.com>
+Subject: [PATCH v5 0/3] Input: Add TouchNetix axiom touchscreen driver
+Date: Mon, 11 Dec 2023 13:14:26 +0100
+Message-ID: <20231211121430.1689139-1-kamel.bouhara@bootlin.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <6f7acc9d.5648.18c58cba9be.Coremail.andyshrk@163.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:LcGowAD3P57X_HZlPJosAA--.56797W
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/1tbiqAxDXmVOA45baQABss
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: kamel.bouhara@bootlin.com
 
-SGkgS2VpdGjvvJoKCuWcqCAyMDIzLTEyLTExIDE4OjI0OjM177yMIktlaXRoIFpoYW8iIDxrZWl0
-aC56aGFvQHN0YXJmaXZldGVjaC5jb20+IOWGmemBk++8mgo+aGkgTWF4aW1lOgo+aGkgQW5keToK
-Pgo+T24gMjAyMy8xMi84IDE3OjE0LCBNYXhpbWUgUmlwYXJkIHdyb3RlOgo+PiBIaSwKPj4gCj4+
-IE9uIEZyaSwgRGVjIDA4LCAyMDIzIGF0IDExOjIzOjM3QU0gKzA4MDAsIEFuZHkgWWFuIHdyb3Rl
-Ogo+Pj4g5ZyoIDIwMjMtMTItMDggMTE6MDA6MzHvvIwiS2VpdGggWmhhbyIgPGtlaXRoLnpoYW9A
-c3RhcmZpdmV0ZWNoLmNvbT4g5YaZ6YGT77yaCj4+PiA+Cj4+PiA+Cj4+PiA+T24gMjAyMy8xMi84
-IDg6MzcsIEFuZHkgWWFuIHdyb3RlOgo+Pj4gPj4gSGkgS2V0aO+8mgo+Pj4gPj4gCj4+PiA+PiAK
-Pj4+ID4+IAo+Pj4gPj4gCj4+PiA+PiAKPj4+ID4+IAo+Pj4gPj4g5ZyoIDIwMjMtMTItMDcgMTg6
-NDg6MTPvvIwiS2VpdGggWmhhbyIgPGtlaXRoLnpoYW9Ac3RhcmZpdmV0ZWNoLmNvbT4g5YaZ6YGT
-77yaCj4+PiA+Pj4KPj4+ID4+Pgo+Pj4gPj4+T24gMjAyMy8xMi83IDE3OjAyLCBBbmR5IFlhbiB3
-cm90ZToKPj4+ID4+Pj4gCj4+PiA+Pj4+IAo+Pj4gPj4+PiAKPj4+ID4+Pj4gCj4+PiA+Pj4+IEhp
-IEtlaXRo77yaCj4+PiA+Pj4+IAo+Pj4gPj4+PiAKPj4+ID4+Pj4gCj4+PiA+Pj4+IAo+Pj4gPj4+
-PiAKPj4+ID4+Pj4gCj4+PiA+Pj4+IAo+Pj4gPj4+PiAKPj4+ID4+Pj4gCj4+PiA+Pj4+IAo+Pj4g
-Pj4+PiAKPj4+ID4+Pj4gQXQgMjAyMy0xMi0wNiAyMjoxMTozMywgIktlaXRoIFpoYW8iIDxrZWl0
-aC56aGFvQHN0YXJmaXZldGVjaC5jb20+IHdyb3RlOgo+Pj4gPj4+Pj4KPj4+ID4+Pj4+Cj4+PiA+
-Pj4+Pk9uIDIwMjMvMTIvNiAyMDo1NiwgTWF4aW1lIFJpcGFyZCB3cm90ZToKPj4+ID4+Pj4+PiBP
-biBXZWQsIERlYyAwNiwgMjAyMyBhdCAwODowMjo1NVBNICswODAwLCBLZWl0aCBaaGFvIHdyb3Rl
-Ogo+Pj4gPj4+Pj4+PiA+PiArc3RhdGljIGNvbnN0IHN0cnVjdCBvZl9kZXZpY2VfaWQgc3RhcmZp
-dmVfaGRtaV9kdF9pZHNbXSA9IHsKPj4+ID4+Pj4+Pj4gPj4gKwl7IC5jb21wYXRpYmxlID0gInN0
-YXJmaXZlLGpoNzExMC1pbm5vLWhkbWkiLH0sCj4+PiA+Pj4+Pj4+ID4gCj4+PiA+Pj4+Pj4+ID4g
-U28gaXQncyBpbm5vIGhkbWksIGp1c3QgbGlrZSBSb2NrY2hpcCB0aGVuPwo+Pj4gPj4+Pj4+PiA+
-IAo+Pj4gPj4+Pj4+PiA+IFRoaXMgc2hvdWxkIGJlIGEgY29tbW9uIGRyaXZlci4KPj4+ID4+Pj4+
-Pj4KPj4+ID4+Pj4+Pj4gUm9ja2NoaXAgaGFzIGEgaW5ubyBoZG1pIElQLiBhbmQgU3RhcmZpdmUg
-aGFzIGEgaW5ubyBoZG1pIElQLgo+Pj4gPj4+Pj4+PiBidXQgdGhlIGhhcmV3YXdyZSBkaWZmZXJl
-bmNlIG9mIHRoZW0gaXMgYmlnICwgaXQgaXMgbm90IGVhc3kgdG8gdXNlIHRoZSBjb21tb24gZHJp
-dmVyCj4+PiA+Pj4+Pj4+IG1heWJlIGkgbmVlZCB0aGUgaW5ubyBoZG1pIHZlcnNpb24gaGVyZSB0
-byBtYWtlIGEgZGlzdGluY3Rpb24KPj4+ID4+Pj4+PiAKPj4+ID4+Pj4+PiBJIGp1c3QgaGFkIGEg
-bG9vayBhdCB0aGUgcm9ja2NoaXAgaGVhZGVyIGZpbGU6IGFsbCB0aGUgcmVnaXN0ZXJzIGJ1dCB0
-aGUKPj4+ID4+Pj4+PiBTVEFSRklWRV8qIG9uZXMgYXJlIGlkZW50aWNhbC4KPj4+ID4+Pj4+PiAK
-Pj4+ID4+Pj4+PiBUaGVyZSdzIG5vIG5lZWQgdG8gaGF2ZSB0d28gaWRlbnRpY2FsIGRyaXZlcnMg
-dGhlbiwgcGxlYXNlIHVzZSB0aGUKPj4+ID4+Pj4+PiByb2NrY2hpcCBkcml2ZXIgaW5zdGVhZC4K
-Pj4+ID4+Pj4+PiAKPj4+ID4+Pj4+PiBNYXhpbWUKPj4+ID4+Pj4+Cj4+PiA+Pj4+Pm9rLCBoYXZl
-IGEgc2ltcGxlIHRlc3QgLCBlZGlkIGNhbiBnZXQgLiBpIHdpbGwgY29udGludWUgCj4+PiA+Pj4+
-IAo+Pj4gPj4+PiBNYXliZSB5b3UgY2FuIHRha2UgZHJpdmVycy9ncHUvZHJtL2JyaWRnZS9zeW5v
-cHN5cy9kdy1oZG1pIGFzIGEgcmVmZXJlbmNl77yMIHRoaXMKPj4+ID4+Pj4gaXMgYWxzbyBhIGhk
-bWkgaXAgdXNlZCBieSByb2NrY2hpcC9tZXNvbi9zdW54aS9qei9pbXjjgIIKPj4+ID4+Pj4gV2Ug
-ZmluYWxseSBtYWtlIGl0IHNoYXJlIG9uZSBkcml2ZXLjgIIKPj4+ID4+Pj4+Cj4+PiA+Pj5oaSBB
-bmR5Ogo+Pj4gPj4+Cj4+PiA+Pj5kd19oZG1pIHNlZW1zIGEgZ29vZCBjaG9pY2UgLCBpdCBjYW4g
-aGFuZGxlIGlubm8gaGRtaSBoYXJkd2FyZSBieSBkZWZpbmUgaXRzIGR3X2hkbWlfcGxhdF9kYXRh
-Lgo+Pj4gPj4+ZG9lcyBpdCBtZWFucyBpIGNhbiB3cml0ZSBvd24gZHJpdmVyIGZpbGVzIHN1Y2gg
-YXMoZHdfaGRtaS1zdGFyZml2ZS5jKSBiYXNlZCBvbiBkd19oZG1pIGluc3RlYWQgb2YgYWRkIHBs
-YXRfZGF0YSBpbiBpbm5vX2hkbWkuYwo+Pj4gPj4+Cj4+PiA+PiAKPj4+ID4+IEkgdGhpbmsgdGhl
-IHByb2Nlc3MgbWF5YmUgbGlrZSB0aGlz77yaCj4+PiA+PiAKPj4+ID4+IDEuIHNwbGl0IHRoZSBp
-bm5vX2hkbWkuYyB1bmRlciByb2NrY2hpcCB0byAgaW5ub19oZG1pLmModGhlIGNvbW1vbiBwYXJ0
-KSwgaW5ub19oZG1pLXJvY2tjaGlwLmModGhlIHNvYyBzcGVjaWZpYyBwYXJ0KQo+Pj4gPj4gMi4g
-bW92ZSB0aGUgY29tbW9uIHBhcnQgaW5ub19oZG1pLmMgdG8gZHJpdmVycy9ncHUvZHJtL2JyaWRn
-ZS9pbm5vc2lsaWNvbi8KPj4+ID4+IDMuIGFkZCBzdGFydGZpdmUgc3BlY2lmaWMgcGFydCwgaW5u
-b19oZG1pLXN0YXJ0Zml2ZS5jCj4+PiA+PiAKPj4+ID4+IGJlbGxvdyBnaXQgbG9nIGZyb20ga2Vy
-bmVsIHRocmVlIHNob3cgaG93IHdlIGNvbnZlcnQgIGR3X2hkbWkgdG8gYSBjb21tb24gZHJpdmVy
-OiAKPj4+ID4+IAo+Pj4gPj4gCj4+PiA+PiAKPj4+ID4+IDEyYjlmMjA0ZTgwNCBkcm06IGJyaWRn
-ZS9kd19oZG1pOiBhZGQgcm9ja2NoaXAgcmszMjg4IHN1cHBvcnQKPj4+ID4+IDc0YWY5ZTRkMDNi
-OCBkdC1iaW5kaW5nczogQWRkIGRvY3VtZW50YXRpb24gZm9yIHJvY2tjaGlwIGR3IGhkbWkKPj4+
-ID4+IGQzNDZjMTRlZWVhOSBkcm06IGJyaWRnZS9kd19oZG1pOiBhZGQgZnVuY3Rpb24gZHdfaGRt
-aV9waHlfZW5hYmxlX3NwYXJlCj4+PiA+PiBhNGQzYjhiMDUwZDUgZHJtOiBicmlkZ2UvZHdfaGRt
-aTogY2xlYXIgaTJjbXBoeV9zdGF0MCByZWcgaW4gaGRtaV9waHlfd2FpdF9pMmNfZG9uZQo+Pj4g
-Pj4gNjMyZDAzNWJhY2UyIGRybTogYnJpZGdlL2R3X2hkbWk6IGFkZCBtb2RlX3ZhbGlkIHN1cHBv
-cnQKPj4+ID4+IDBjZDlkMTQyODMyMiBkcm06IGJyaWRnZS9kd19oZG1pOiBhZGQgc3VwcG9ydCBm
-b3IgbXVsdGktYnl0ZSByZWdpc3RlciB3aWR0aCBhY2Nlc3MKPj4+ID4+IGNkMTUyMzkzOTY3ZSBk
-dC1iaW5kaW5nczogYWRkIGRvY3VtZW50IGZvciBkd19oZG1pCj4+PiA+PiBiMjFmNGI2NThkZjgg
-ZHJtOiBpbXg6IGlteC1oZG1pOiBtb3ZlIGlteC1oZG1pIHRvIGJyaWRnZS9kd19oZG1pCj4+PiA+
-PiBhYWE3NTdhMDkyYzIgZHJtOiBpbXg6IGlteC1oZG1pOiBzcGxpdCBwaHkgY29uZmlndXJhdGlv
-biB0byBwbGF0Zm9ybSBkcml2ZXIKPj4+ID4+IDNkMWIzNWEzZDlmMyBkcm06IGlteDogaW14LWhk
-bWk6IGNvbnZlcnQgaW14LWhkbWkgdG8gZHJtX2JyaWRnZSBtb2RlCj4+PiA+PiBjMmMzODQ4ODUx
-YTcgZHJtOiBpbXg6IGlteC1oZG1pOiByZXR1cm4gZGVmZXIgaWYgY2FuJ3QgZ2V0IGRkYyBpMmMg
-YWRhcHRlcgo+Pj4gPj4gYjU4NzgzMzkzM2RlIGRybTogaW14OiBpbXgtaGRtaTogbWFrZSBjaGVj
-a3BhdGNoIGhhcHB5Cj4+PiA+PiAKPj4+ID5oaSBBbmR5Ogo+Pj4gPkkgZ290IHlvdSBtZWFucywg
-Cj4+PiA+YXMgSSBkb24ndCBoYXZlIGEgcm9ja2NoaXAgYm9hcmQgb24gaGFuZCAsIHRvIHNwbGl0
-IHRoZSBpbm5vX2hkbWkuYyBjYW4gbm90IGJlIHRlc3RlZC4KPj4+ID4KPj4+ID5ob3cgYWRvdXQg
-dGhpcyBpZGVhOgo+Pj4gPjHjgIFzcGxpdCB0aGUgc3RhcmZpdmVfaGRtaS5jIHVuZGVyIHZlcmlz
-aWxpY2lvbiB0byAgaW5ub19oZG1pLmModGhlIGNvbW1vbiBwYXJ0KSwgaW5ub19oZG1pLXN0YXJm
-aXZlLmModGhlIHNvYyBzcGVjaWZpYyBwYXJ0KQo+Pj4gPjIuIG1vdmUgdGhlIGNvbW1vbiBwYXJ0
-IGlubm9faGRtaS5jIHRvIGRyaXZlcnMvZ3B1L2RybS9icmlkZ2UvaW5ub3NpbGljb24vCj4+PiA+
-My4gSW4gdGhlIGZ1dHVyZSwgaW5ubyBoZG1pLmMgdW5kZXIgcm9ja2NoaXAgd2lsbCByZXVzZSB0
-aGUgcHVibGljIGRyaXZlci4KPj4+IAo+Pj4gSSBhbSBub3Qgc3VyZSBpZiBkcm0gbWFpbnRhaW5l
-cnMgYXJlIGhhcHB5IHdpdGggdGhpc+OAggo+PiAKPj4gTm90IHJlYWxseSwgbm8uCj4+IAo+PiBC
-ZWNhdXNlIHdlIHdvdWxkIHN0aWxsIGhhdmUgdHdvIGRyaXZlcnMgZm9yIHRoZSBzYW1lIGNvbnRy
-b2xsZXIsIGFuZCBhCj4+IGNvbW1vbiBvbmUgdGhhdCBoYXZlbid0IHJlYWxseSBiZWVuIHRlc3Rl
-ZCBvbiBhbnl0aGluZyBidXQgYSBzaW5nbGUKPj4gcGxhdGZvcm0uIFNvIGFyZ3VhYmx5IGEgd29y
-c2Ugc2l0dWF0aW9uIHRoYW4gd2hhdCB5b3Ugd2VyZSBzdWdnZXN0aW5nIGluCj4+IHRoZSBmaXJz
-dCBwbGFjZS4KPj4gCj4+IFRoZSBiZXN0IHNvbHV0aW9uIHdvdWxkIGJlIHRvIGZpbmQgc29tZW9u
-ZSB3aXRoIGEgUm9ja2NoaXAgYm9hcmQgdG8gdGVzdAo+PiB5b3VyIGNoYW5nZXMsIG9yIHRvIGdl
-dCBvbmUgaWYgaXQncyBkb2FibGUgc28geW91IGNhbiB0ZXN0IHlvdXJzZWxmLgo+Cj5vayBJIHdp
-bGwgYWxzbyB0cnkgdG8gYnV5IGEgUm9ja2NoaXAgMzAzNiBib2FyZCBmb3Igc2VsZi10ZXN0Lgo+
-QWNjb3JkaW5nIHRvIHRoZSBjb21taXQgbG9nIGlkZWEgcHJvdmlkZWQgYnkgQW5keSBiZWZvcmUs
-IG1ha2UgdGhlIGlubm9faGRtaSBkcml2ZXIgY29tbW9uIG1vZHVsZS4KCkkgZmluYWxseSAgbWFr
-ZSBteSByazMwMzYgYmFzZWQga3lsaW4gYm9hcmQgYm9vdHVwIO+8iHVzZSBhIGxpbnV4IDQuNCBk
-b3duc3RyZWFtIGJzcO+8jEkgd2lsbCBmaW5kIHRpbWUgdG8gdHJ5IGJvb3QKaXQgd2l0aCBtYWlu
-bGluZe+8ieOAgiBTbyBJIGNhbiBoZWxwIGRvIHRoZSB0ZXN0IGZvciByb2NrY2hpcCBzaWRl44CC
-CgpJdCBzZWVtcyBub3QgdGhhdCBlYXN5IHRvIGJ1eSBhIHJrMzAzNiBiYXNlZCBib2FyZCBmcm9t
-IG1hcmtldCBub3fjgIIKCj4KPndvdWxkIHRoZSBzdGVwcyBiZSBvaz8gKGlmIEkgdGVzdGVkIHJv
-Y2tjaGlwIGFuZCBzdGFyaWZ2ZSBwYXNzKQo+MS4gc3BsaXQgdGhlIGlubm9faGRtaS5jIHVuZGVy
-IHJvY2tjaGlwIHRvICBpbm5vX2hkbWkuYyh0aGUgY29tbW9uIHBhcnQpLCBpbm5vX2hkbWktcm9j
-a2NoaXAuYyh0aGUgc29jIHNwZWNpZmljIHBhcnQpCj4yLiBtb3ZlIHRoZSBjb21tb24gcGFydCBp
-bm5vX2hkbWkuYyB0byBkcml2ZXJzL2dwdS9kcm0vYnJpZGdlL2lubm9zaWxpY29uLwo+My4gYWRk
-IHN0YXJ0Zml2ZSBzcGVjaWZpYyBwYXJ0LCBpbm5vX2hkbWktc3RhcnRmaXZlLmMKPgo+VGhhbmtz
-Cj4+IAo+PiBNYXhpbWUK
+Add a new driver for the TouchNetix's axiom family of
+touchscreen controller. This driver only support i2c
+and can be later adapted for SPI and USB support.
+
+---
+Changes in v2:
+ - Add device tree binding documentation
+ - Move core functions in axiom_i2c as we only care about i2c support now
+ - Use static function when required
+ - Use syntax dev_err_probe()
+ - Add an hardware based reset
+
+Changes in v3:
+ - Remove irq-gpios property in dt-binding
+ - Use a generic node name
+ - Fix issues reported in https://lore.kernel.org/oe-kbuild-all/202310100300.oAC2M62R-lkp@intel.com/
+
+Changes in v4:
+ - Cleanup unused headers and macros
+ - Use standard kernel type
+ - Namespace structures and functions
+ - Use packed struct when possible to avoid bitfield operators
+ - Fix missing break when address is found in axiom_populate_target_address()
+ - Split reads in two steps for the reports, first length then report
+   itself so we only read required bytes
+ - Get poll-interval from devicetree
+ - Add VDDI/VDDA regulators
+ - Add a startup delay of 110 ms required after VDDA/VDDI is applied
+ - Remove axiom_i2c_write() as it is no more used
+
+Changes in v5:
+ - Fix wrong message constructed in axiom_i2c_read
+ - Delay required between i2c reads is >= 250us
+ - Do not split report reading in two phases as we'll
+   have to wait 500us
+ - Use lower-case in properties names
+ - Make regulators properties are required in dt-binding
+ - Fix bug report: https://lore.kernel.org/lkml/202312051457.y3N1q3sZ-lkp@intel.com/
+ - Fix bug report: https://lore.kernel.org/lkml/6f8e3b64-5b21-4a50-8680-063ef7a93bdb@suswa.mountain/
+
+Kamel Bouhara (3):
+  dt-bindings: vendor-prefixes: Add TouchNetix AS
+  dt-bindings: input: Add TouchNetix axiom touchscreen
+  Input: Add TouchNetix axiom i2c touchscreen driver
+
+ .../input/touchscreen/touchnetix,ax54a.yaml   |  64 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   7 +
+ drivers/input/touchscreen/Kconfig             |  12 +
+ drivers/input/touchscreen/Makefile            |   1 +
+ drivers/input/touchscreen/touchnetix_axiom.c  | 667 ++++++++++++++++++
+ 6 files changed, 753 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/touchnetix,ax54a.yaml
+ create mode 100644 drivers/input/touchscreen/touchnetix_axiom.c
+
+--
+2.25.1
+
 
