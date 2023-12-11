@@ -1,130 +1,109 @@
-Return-Path: <devicetree+bounces-23817-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23818-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D52C80C6B3
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 11:34:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FB8E80C6CF
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 11:38:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 01E1F1F21294
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 10:34:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CF7451C209D8
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 10:38:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F3D025558;
-	Mon, 11 Dec 2023 10:34:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D12F2554A;
+	Mon, 11 Dec 2023 10:38:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aGjojkRK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3F29BD7;
-	Mon, 11 Dec 2023 02:34:13 -0800 (PST)
-Received: from loongson.cn (unknown [112.20.109.254])
-	by gateway (Coremail) with SMTP id _____8Cxueij5XZlTQIAAA--.44S3;
-	Mon, 11 Dec 2023 18:34:11 +0800 (CST)
-Received: from localhost.localdomain (unknown [112.20.109.254])
-	by localhost.localdomain (Coremail) with SMTP id AQAAf8Dx_y+d5XZlRXRbAA--.5580S3;
-	Mon, 11 Dec 2023 18:34:08 +0800 (CST)
-From: Yanteng Si <siyanteng@loongson.cn>
-To: andrew@lunn.ch,
-	tsbogend@alpha.franken.de
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	peppe.cavallaro@st.com,
-	alexandre.torgue@foss.st.com,
-	joabreu@synopsys.com,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	mcoquelin.stm32@gmail.com,
-	devicetree@vger.kernel.org,
-	linux-mips@vger.kernel.org,
-	chenhuacai@loongson.cn,
-	netdev@vger.kernel.org,
-	loongarch@lists.linux.dev,
-	chris.chenfeiyang@gmail.com,
-	Yanteng Si <siyanteng@loongson.cn>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Jiaxun Yang <jiaxun.yang@flygoat.com>
-Subject: [PATCH v1 net 3/3] MIPS: dts: loongson: drop incorrect dwmac fallback compatible
-Date: Mon, 11 Dec 2023 18:33:54 +0800
-Message-Id: <a3c895063983e4ce023093f04bb9911fa01bcc55.1702289232.git.siyanteng@loongson.cn>
-X-Mailer: git-send-email 2.31.4
-In-Reply-To: <cover.1702289232.git.siyanteng@loongson.cn>
-References: <cover.1702289232.git.siyanteng@loongson.cn>
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7EC091;
+	Mon, 11 Dec 2023 02:38:12 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-50c04ebe1bbso4168466e87.1;
+        Mon, 11 Dec 2023 02:38:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702291091; x=1702895891; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZIWZGkYaLiXvO5c8m4S1KNqDxAm4uSiDYBVHbWNi0Xk=;
+        b=aGjojkRKhEiNlXURQcZZ1+Gt845Rm7Pyj7G9KVlSNZSqgAJL7ZA6OMP9L7z7cWWW5X
+         +5Zma5M6ON5BWcjKf5M71Bk1+PlhgJVmfQ5gQ4HIIORDzgvHWUZy5w7zbhyjGXaHN+JC
+         7CcRd2kRVQvTRMGBstb0mSs8ALQvQQ1RdpmKg2WsUX7AUYGJxvtfYKBgQ/jN4vE4cVK8
+         ImU9Hhg5EPvELTQ9ClqhqHkiuF34TjFUumqRSo+tqGg/tpQgZR+wxsai6DDXSXnMESpY
+         5QeWtwraPgn2GHQpNZP1IWgwwJ8Emt/glDfpILo3qBydtHqwGNACFS7VSyO1qcWAoOYs
+         4AlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702291091; x=1702895891;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZIWZGkYaLiXvO5c8m4S1KNqDxAm4uSiDYBVHbWNi0Xk=;
+        b=nKR58tAa1m2fyiTB9FynUqCME6BT9BLEvbynNVbe8Zo1JTWYYfMhGfK70OnwAJJM0+
+         YQBpsvBHiYL6ezSQ6H/6P3xUQO0cyDvhLyUx8801cYWV90m42gPs7R2AIMNAbkvTzvFf
+         BvKeFvZF2NJ4O2o9xF8QSPlQCf7UbU0fV/x9GjC8qsTLRiZYy8HxtJ37QktkTHZF/XSj
+         h5IvpSt5bvuAhRW7xW7Ya/v9ZFJlx3WURyUOqjFAcJwFciMusGKGAjzOT/GcgiW+HoE1
+         ompZP7xB7j21bory7WKCPJeRFa/kHm6NISbAQUCa5nS4IXr2kYBrEio3pJrVDX6UNGFU
+         IV1A==
+X-Gm-Message-State: AOJu0YxkKzRPDOitPimxj0pvHnecWGfxOhQ68Pql0BduU+SBCHQK7NJf
+	8+PiReWEZwNL49j1PxYYuuOdCztc825+DETq9xM=
+X-Google-Smtp-Source: AGHT+IH4PNWvt6tBdwhsThANC4nGzclaoIAF9vXPA6oGnAJcKp+qYKIkkbYewPVr9w5TYoQtIEbxGx80LcG9uTZ0AME=
+X-Received: by 2002:a05:6512:3da9:b0:50b:f776:1d72 with SMTP id
+ k41-20020a0565123da900b0050bf7761d72mr3429278lfv.24.1702291090714; Mon, 11
+ Dec 2023 02:38:10 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:AQAAf8Dx_y+d5XZlRXRbAA--.5580S3
-X-CM-SenderInfo: pvl1t0pwhqwqxorr0wxvrqhubq/
-X-Coremail-Antispam: 1Uk129KBj93XoW7Kr4xJry7GFyxXF17CF1xJFc_yoW8Cr45pr
-	17Can2kr1fur1Syrn5JFW8WF4xCFZ8KFsI9FsrGr1UWasIq3Wjvr1fJF4ftrs8ZFWrXayF
-	93y8WrWUGF48CabCm3ZEXasCq-sJn29KB7ZKAUJUUUUA529EdanIXcx71UUUUU7KY7ZEXa
-	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
-	0xBIdaVrnRJUUUBvb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
-	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
-	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Ar0_tr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
-	0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAF
-	wI0_Gr1j6F4UJwAaw2AFwI0_Jw0_GFyle2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2
-	xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_
-	Wrv_ZF1lYx0Ex4A2jsIE14v26F4j6r4UJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2
-	Ij64vIr41lc7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Y
-	z7v_Jr0_Gr1l4IxYO2xFxVAFwI0_Jw0_GFylx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x
-	8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE
-	2Ix0cI8IcVAFwI0_Ar0_tr1lIxAIcVC0I7IYx2IY6xkF7I0E14v26F4j6r4UJwCI42IY6x
-	AIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Cr0_Gr1UMIIF0xvEx4A2jsIE
-	c7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07jDl1kUUUUU=
+References: <20231206134655.559474-1-579lpy@gmail.com> <20231206135148.559564-1-579lpy@gmail.com>
+ <ae0758f3-ccc5-49a2-a37a-42925f4b0944@linaro.org>
+In-Reply-To: <ae0758f3-ccc5-49a2-a37a-42925f4b0944@linaro.org>
+From: peiyu li <579lpy@gmail.com>
+Date: Mon, 11 Dec 2023 18:37:32 +0800
+Message-ID: <CAELPsEZEMY27wuQWKQJ5k1qyU9ZvsiT0Lqzqy-MJy69A4v5S_g@mail.gmail.com>
+Subject: Re: [PATCH v4 4/4] iio: humidity: Add TI HDC302x support
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, jic23@kernel.org
+Cc: Javier Carrasco <javier.carrasco.cruz@gmail.com>, lars@metafoo.de, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Thu, Dec 7, 2023 at 2:42=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> > +---
+> > +$id: http://devicetree.org/schemas/iio/humidity/ti,hdc3020.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: HDC3020/HDC3021/HDC3022 humidity and temperature iio sensors
+> > +
+> > +maintainers:
+> > +  - Li peiyu <579lpy@gmail.com>
+> > +  - Javier Carrasco <javier.carrasco.cruz@gmail.com>
+> > +
+> > +description:
+> > +  https://www.ti.com/lit/ds/symlink/hdc3020.pdf
+> > +
+> > +  The HDC302x is an integrated capacitive based relative humidity (RH)
+> > +  and temperature sensor.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      - items:
+> > +          - enum:
+> > +              - ti,hdc3021
+> > +              - ti,hdc3022
+> > +          - const: ti,hdc3020
+> > +      - items:
+>
+> Drop items
 
-Device binds to proper PCI ID (LOONGSON, 0x7a03), already listed in DTS,
-so checking for some other compatible does not make sense.  It cannot be
-bound to unsupported platform.
+Does that mean just drop the "items" tag or drop the whole items with
+"- const: ti,hdc3020"?
 
-Drop useless, incorrect (space in between) and undocumented compatible.
-
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Yanteng Si <siyanteng@loongson.cn>
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-Acked-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
----
- arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi | 3 +--
- arch/mips/boot/dts/loongson/ls7a-pch.dtsi          | 3 +--
- 2 files changed, 2 insertions(+), 4 deletions(-)
-
-diff --git a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
-index f878f47e4501..ee3e2153dd13 100644
---- a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
-+++ b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
-@@ -130,8 +130,7 @@ gmac@3,0 {
- 				compatible = "pci0014,7a03.0",
- 						   "pci0014,7a03",
- 						   "pciclass0c0320",
--						   "pciclass0c03",
--						   "loongson, pci-gmac";
-+						   "pciclass0c03";
- 
- 				reg = <0x1800 0x0 0x0 0x0 0x0>;
- 				interrupts = <12 IRQ_TYPE_LEVEL_LOW>,
-diff --git a/arch/mips/boot/dts/loongson/ls7a-pch.dtsi b/arch/mips/boot/dts/loongson/ls7a-pch.dtsi
-index 7c69e8245c2f..cce9428afc41 100644
---- a/arch/mips/boot/dts/loongson/ls7a-pch.dtsi
-+++ b/arch/mips/boot/dts/loongson/ls7a-pch.dtsi
-@@ -193,8 +193,7 @@ gmac@3,0 {
- 				compatible = "pci0014,7a03.0",
- 						   "pci0014,7a03",
- 						   "pciclass020000",
--						   "pciclass0200",
--						   "loongson, pci-gmac";
-+						   "pciclass0200";
- 
- 				reg = <0x1800 0x0 0x0 0x0 0x0>;
- 				interrupts = <12 IRQ_TYPE_LEVEL_HIGH>,
--- 
-2.31.4
-
+Thanks,
+Li peiyu
 
