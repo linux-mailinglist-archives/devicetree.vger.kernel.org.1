@@ -1,75 +1,81 @@
-Return-Path: <devicetree+bounces-23893-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23890-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 479D680C9DB
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 13:31:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 447AB80C9D3
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 13:31:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E5A521F2179E
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 12:31:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EBD411F217A1
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 12:31:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 020123BB5D;
-	Mon, 11 Dec 2023 12:31:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C82B63B7B2;
+	Mon, 11 Dec 2023 12:31:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eWKXsBsu"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vxupRBh7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-x142.google.com (mail-il1-x142.google.com [IPv6:2607:f8b0:4864:20::142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8CBED6;
-	Mon, 11 Dec 2023 04:31:16 -0800 (PST)
-Received: by mail-il1-x142.google.com with SMTP id e9e14a558f8ab-35d67870032so29671835ab.2;
-        Mon, 11 Dec 2023 04:31:16 -0800 (PST)
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D007CD
+	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 04:31:12 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-40c317723a8so34849545e9.3
+        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 04:31:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702297876; x=1702902676; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702297871; x=1702902671; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=NGwunGJa5PSMMdSBBgJ2iR2Blfg2YE5Rj86DYV29NQs=;
-        b=eWKXsBsuorYEHabM7uqM49fz5TCIJHDCuut39OAh2yC5fyOsuS4/5R2LjkGZNhE8VN
-         NYeg3Bi8M1OUcAolpT+e6XzYyusc8K8uKJYBTrPbPk7oNC9httTG+WEkMzscKDHW6uum
-         LiWsl4P+LnJwEcczVWAu9Ql97dnm3xDnbNzXtBpwUGKp1YZBWRw5DeSOvPkimJ0F++Ow
-         ffDJcPqGNEWXFe4fJ+4L0z5+D3HcAE/NnyQ2PHPgFzokDObOSJIiarc2w11JnNyqKZJa
-         olWTQpFH7qsUTqq/fD8Cr5wJgRL27Xq04GNfyK4xjxHBHYxJo/pMPsbvw89haYipGpSb
-         HVaw==
+        bh=RN91HNt5gkaIzgOq9vwezVCDXB7gy5tWKyJ+X5HCihA=;
+        b=vxupRBh7oWaVum5aI/uqEZr806fwfYVCJbKUZO/I3zPkWBWDAmzKDb4uTtVXlNpI7X
+         J1AMwupmvG8qoxCn6xN9FX41zbmSbeR8b1n3V1T6+Nr6Zpiu0quObzAi3YrEFH2aDB81
+         gc1EYa0zcGArRzZgm+EaL7f3ZKPo4QOWYMHHXv1w3rWLGzUEk6Gix+0UtEk/60U7m8oW
+         3iBK/UUBhrDbj6tHFlcWoNczROKI/EgVdTgrGP79j+sPc1x5Kc72f7IBN1ATrcxScmJU
+         8FNGSFGkRsDOlfOKkXYAe4/9xjvLf6iBfnR4RNigN4xnUU2lyhLnpR1fw72YqTjjoxrs
+         PIyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702297876; x=1702902676;
+        d=1e100.net; s=20230601; t=1702297871; x=1702902671;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=NGwunGJa5PSMMdSBBgJ2iR2Blfg2YE5Rj86DYV29NQs=;
-        b=Wmh6YhzdXoSysgZKzzI/zavvxL70XVGqeOflJuKAfSxStLY4Vs/4Bqg4UfwBnhdzor
-         mZWO7KuaK5hatVciJ34ignc+It6U5Yr5F4VEIy5IWp7rrEAJ5b577x+ITOrxYKCpr1Co
-         p353zOYnueP6m2IyGD4KtngYQgjd6fYFueiC77F7qSBG/B6nR7P6q/aC3/pX/waT9pqW
-         azI4dTCLrUf7PyIx9VGP6MbRmPEumOwloJOWbcCaiDGcuDZoCBLE6o80AZeTX62dpqje
-         VrGJJDGuYckkf4NWD5Ie5oRtN+saaf8/jpX2i1mPJEjY57DQ3AnVFbmfRjYmmcJy9Fk2
-         Vmvw==
-X-Gm-Message-State: AOJu0YxTiJx32YyVhOwJ2x9u8nsKXSn8Bme0VUI2eqy0JA5vEW0y6k95
-	jyoUqE3oQMNWoyFdFN0X3Kg=
-X-Google-Smtp-Source: AGHT+IEojdDDlZ16/tI1Zewg03VN4WKuCd+HfBRAM0E/usNSGJsIRsYMW3ov6/E91Jn7Q9+ked/ONg==
-X-Received: by 2002:a05:6e02:160b:b0:35d:59a2:2b8 with SMTP id t11-20020a056e02160b00b0035d59a202b8mr8403850ilu.88.1702297875666;
-        Mon, 11 Dec 2023 04:31:15 -0800 (PST)
-Received: from dawn-virtual-machine.localdomain ([183.198.110.72])
-        by smtp.gmail.com with ESMTPSA id k21-20020aa788d5000000b006ce79876f9csm6150925pff.82.2023.12.11.04.31.10
+        bh=RN91HNt5gkaIzgOq9vwezVCDXB7gy5tWKyJ+X5HCihA=;
+        b=iprT+0q57TcAEaTjBPZTk7GD1j5tVtetBbaS7i8F1tfgM64dnE6PByFv1Mai/64lbl
+         QH3Zkjg092hrrgyoU/AYrm8TrCzq47kA2Pu9cVTCeljWu3I35U96IQ4NDhyFEgFyCd68
+         89vlUuZEjJu4GktmSAIEuXkSLpS4IXiToaJgIGl5IeKu9y4WV230gM6quWj6fZbR4iOD
+         gVvPbedwlx5bY06Bo69pAflRNSPsU/Zu4qopp0KPm6JEwHolTutnQNynKLWc9BF7X1lg
+         3ffE99rwxb2s84g96FpRZjjoQgTW+Ki4aXROvk3OPP2lc9z1YVkQuFyOZ3RXMwirfBCP
+         znLQ==
+X-Gm-Message-State: AOJu0Yx2QlLCzFfQaF42z2pVNQaeejtD996TN8SS9J2kkTpKBp+zt+ut
+	fijFPEF/PXVjBMzNokFmsR6cmA==
+X-Google-Smtp-Source: AGHT+IGe0TsF6kU3cIp8ndlWh7qt+klx3I1j7J1zNAl229HSG1N5Cw5CH8QU9alImW7ATLvT821E1g==
+X-Received: by 2002:a7b:c389:0:b0:40c:3820:f004 with SMTP id s9-20020a7bc389000000b0040c3820f004mr2353363wmj.132.1702297870759;
+        Mon, 11 Dec 2023 04:31:10 -0800 (PST)
+Received: from krzk-bin.. ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id s5-20020a05600c384500b0040b632f31d2sm12932313wmr.5.2023.12.11.04.31.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Dec 2023 04:31:15 -0800 (PST)
-From: Li peiyu <579lpy@gmail.com>
-To: jic23@kernel.org
-Cc: javier.carrasco.cruz@gmail.com,
-	lars@metafoo.de,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	linux-iio@vger.kernel.org,
+        Mon, 11 Dec 2023 04:31:10 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Banajit Goswami <bgoswami@quicinc.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	alsa-devel@alsa-project.org,
+	linux-sound@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Li peiyu <579lpy@gmail.com>
-Subject: [PATCH v6 4/4] dt-bindings: iio: humidity: Add TI HDC302x support
-Date: Mon, 11 Dec 2023 20:31:01 +0800
-Message-Id: <20231211123101.9868-1-579lpy@gmail.com>
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 2/4] ASoC: dt-bindings: qcom,lpass-rx-macro: Add X1E80100 LPASS TX
+Date: Mon, 11 Dec 2023 13:31:02 +0100
+Message-Id: <20231211123104.72963-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231211122201.9598-1-579lpy@gmail.com>
-References: <20231211122201.9598-1-579lpy@gmail.com>
+In-Reply-To: <20231211123104.72963-1-krzysztof.kozlowski@linaro.org>
+References: <20231211123104.72963-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,89 +84,29 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add device tree bindings for HDC3020/HDC3021/HDC3022 humidity and
-temperature sensors.
+Add bindings for Qualcomm X1E80100 SoC Low Power Audio SubSystem (LPASS)
+TX macro codec, which looks like compatible with earlier SM8550.
 
-Signed-off-by: Li peiyu <579lpy@gmail.com>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
-changes in v6:
-  - remove items before "- const: ti,hdc3020".
-  - add vdd-supply to required.
-changes in v4:
-  - removed unnecessary example.
-  - add vdd-supply to the example.
-changes in v3:
-  - Use a fallback compatible.
-changes in v2:
-  - change the maintainers to me.
-  - hdc3020,hdc3021,hdc3022 are compatible,I've changed the dirver.
-  - change the node name to humidity-sensor.
+ .../devicetree/bindings/sound/qcom,lpass-tx-macro.yaml        | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
- .../bindings/iio/humidity/ti,hdc3020.yaml     | 55 +++++++++++++++++++
- 1 file changed, 55 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml
-
-diff --git a/Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml b/Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml
-new file mode 100644
-index 000000000000..7f6d0f9edc75
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml
-@@ -0,0 +1,55 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/humidity/ti,hdc3020.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: HDC3020/HDC3021/HDC3022 humidity and temperature iio sensors
-+
-+maintainers:
-+  - Li peiyu <579lpy@gmail.com>
-+  - Javier Carrasco <javier.carrasco.cruz@gmail.com>
-+
-+description:
-+  https://www.ti.com/lit/ds/symlink/hdc3020.pdf
-+
-+  The HDC302x is an integrated capacitive based relative humidity (RH)
-+  and temperature sensor.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
+diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml
+index cee79ac42a33..3e2ae16c6aba 100644
+--- a/Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml
++++ b/Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml
+@@ -20,7 +20,9 @@ properties:
+           - qcom,sm8550-lpass-tx-macro
+           - qcom,sc8280xp-lpass-tx-macro
+       - items:
+-          - const: qcom,sm8650-lpass-tx-macro
 +          - enum:
-+              - ti,hdc3021
-+              - ti,hdc3022
-+          - const: ti,hdc3020
-+      - const: ti,hdc3020
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  vdd-supply: true
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - vdd-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        humidity-sensor@47 {
-+            compatible = "ti,hdc3021", "ti,hdc3020";
-+            reg = <0x47>;
-+            vdd-supply = <&vcc_3v3>;
-+        };
-+    };
++              - qcom,sm8650-lpass-tx-macro
++              - qcom,x1e80100-lpass-tx-macro
+           - const: qcom,sm8550-lpass-tx-macro
+ 
+   reg:
 -- 
 2.34.1
 
