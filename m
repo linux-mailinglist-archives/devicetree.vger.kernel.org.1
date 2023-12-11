@@ -1,179 +1,112 @@
-Return-Path: <devicetree+bounces-24065-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24066-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 619D880DC00
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 21:50:01 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8054B80DC3C
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 21:59:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 92FAC1C214E0
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 20:50:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 36AD81F21AC8
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 20:59:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7799A5466D;
-	Mon, 11 Dec 2023 20:49:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC3D15467D;
+	Mon, 11 Dec 2023 20:59:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="rVWHF2nb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96FEEBE
-	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 12:49:56 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rCnDs-0001wT-1G; Mon, 11 Dec 2023 21:49:52 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rCnDr-00FBHA-DA; Mon, 11 Dec 2023 21:49:51 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rCnDr-0018OB-3U; Mon, 11 Dec 2023 21:49:51 +0100
-Date: Mon, 11 Dec 2023 21:49:50 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Nylon Chen <nylon.chen@sifive.com>
-Cc: linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
-	aou@eecs.berkeley.edu, thierry.reding@gmail.com,
-	emil.renner.berthing@canonical.com, vincent.chen@sifive.com,
-	greentime.hu@sifive.com, zong.li@sifive.com, nylon7717@gmail.com
-Subject: Re: [v5 2/2] pwm: sifive: change the PWM controlled LED algorithm
-Message-ID: <20231211204950.fkaqsnpzb6kixqf2@pengutronix.de>
-References: <20231024101902.6689-1-nylon.chen@sifive.com>
- <20231024101902.6689-3-nylon.chen@sifive.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45F829F;
+	Mon, 11 Dec 2023 12:59:45 -0800 (PST)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3BBKxSEu093980;
+	Mon, 11 Dec 2023 14:59:28 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1702328368;
+	bh=89+/klxrnTcqSR0Bnfjj/VnKLHSu2li17RgQISGwZ4w=;
+	h=From:To:CC:Subject:Date;
+	b=rVWHF2nbBDyzfqsLEqcOMrYiagMbgEudNI8tIT07OEazHzXgfcfGdlPUZFH/bnotK
+	 QaB4EB1+74f4e+zrTGk0fwP5OAFVAOvJTsqq+WUGCxalBnSQxb/7FAo7Mcz+ARKMjQ
+	 VikG0E2WyC+tdOZxOrSOd1wwThZzs1YKhXhJTBEo=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3BBKxScV121635
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 11 Dec 2023 14:59:28 -0600
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 11
+ Dec 2023 14:59:28 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 11 Dec 2023 14:59:27 -0600
+Received: from udba0500997.dhcp.ti.com (udba0500997.dhcp.ti.com [128.247.81.249])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3BBKxRo6003825;
+	Mon, 11 Dec 2023 14:59:27 -0600
+From: Brandon Brnich <b-brnich@ti.com>
+To: <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Nas
+ Chung <nas.chung@chipsnmedia.com>,
+        Jackson Lee <jackson.lee@chipsnmedia.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Sebastian Fricke
+	<sebastian.fricke@collabora.com>,
+        Dafna Hirschfeld
+	<dafna.hirschfeld@collabora.com>,
+        Robert Beckett <bob.beckett@collabora.com>,
+        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+        Geert Uytterhoeven
+	<geert@linux-m68k.org>
+CC: Nishanth Menon <nm@ti.com>, Darren Etheridge <detheridge@ti.com>,
+        Brandon
+ Brnich <b-brnich@ti.com>
+Subject: [PATCH v3 0/2] Update Wave521c Compatible for TI Devices
+Date: Mon, 11 Dec 2023 14:59:18 -0600
+Message-ID: <20231211205920.698939-1-b-brnich@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="u262zj72p5ucybub"
-Content-Disposition: inline
-In-Reply-To: <20231024101902.6689-3-nylon.chen@sifive.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+
+Hello All, 
+
+There has been ongoing discussion[1] surrounding the issue of having K3 
+prefix included in the compatible for dt bindings. This series removes this
+prefix from both the device tree binding as well as the driver. Updating
+the binding will not break the ABI at this point as the driver is still
+only in linux-next.
+
+Changes in v3:
+- Update example in dt bindings to match new compatible
+
+Changes in v2:
+- Include more context surrounding patch
+- Fix style issues addressed by Krzysztof
+
+[1] https://lore.kernel.org/all/20231201063309.tingjc3cjhsqb6r7@confusing/
 
 
---u262zj72p5ucybub
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Brandon Brnich (2):
+  dt-bindings: media: Remove K3 Family Prefix from Compatible
+  media: chips-media: wave5: Remove K3 References
 
-Hello Nylon,
+ Documentation/devicetree/bindings/media/cnm,wave521c.yaml | 4 ++--
+ drivers/media/platform/chips-media/wave5/wave5-vpu.c      | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-On Tue, Oct 24, 2023 at 06:19:02PM +0800, Nylon Chen wrote:
-> The `frac` variable represents the pulse inactive time, and the result
-> of this algorithm is the pulse active time. Therefore, we must reverse th=
-e result.
->=20
-> The reference is SiFive FU740-C000 Manual[0]
->=20
-> Link: https://sifive.cdn.prismic.io/sifive/1a82e600-1f93-4f41-b2d8-86ed8b=
-16acba_fu740-c000-manual-v1p6.pdf [0]
->=20
-> Signed-off-by: Nylon Chen <nylon.chen@sifive.com>
-> Signed-off-by: Vincent Chen <vincent.chen@sifive.com>
-> ---
->  drivers/pwm/pwm-sifive.c | 10 ++++++----
->  1 file changed, 6 insertions(+), 4 deletions(-)
->=20
-> diff --git a/drivers/pwm/pwm-sifive.c b/drivers/pwm/pwm-sifive.c
-> index eabddb7c7820..353c2342fbf1 100644
-> --- a/drivers/pwm/pwm-sifive.c
-> +++ b/drivers/pwm/pwm-sifive.c
-> @@ -101,7 +101,7 @@ static void pwm_sifive_update_clock(struct pwm_sifive=
-_ddata *ddata,
-> =20
->  	/* As scale <=3D 15 the shift operation cannot overflow. */
->  	num =3D (unsigned long long)NSEC_PER_SEC << (PWM_SIFIVE_CMPWIDTH + scal=
-e);
-> -	ddata->real_period =3D div64_ul(num, rate);
-> +	ddata->real_period =3D DIV_ROUND_UP_ULL(num, rate);
+-- 
+2.34.1
 
-It's unclear to me, why you changed that.
-
->  	dev_dbg(ddata->chip.dev,
->  		"New real_period =3D %u ns\n", ddata->real_period);
->  }
-> @@ -121,13 +121,14 @@ static int pwm_sifive_get_state(struct pwm_chip *ch=
-ip, struct pwm_device *pwm,
->  		state->enabled =3D false;
-> =20
->  	state->period =3D ddata->real_period;
-> +
-> +	duty =3D (1U << PWM_SIFIVE_CMPWIDTH) - 1 - duty;
-
-I would have placed that directly after
-
-	duty =3D readl(...);
-
-which then also influences
-
-	state->enabled =3D duty > 0;
-
-(as it should?).
-
->  	state->duty_cycle =3D
->  		(u64)duty * ddata->real_period >> PWM_SIFIVE_CMPWIDTH;
-> -	state->polarity =3D PWM_POLARITY_INVERSED;
-> +	state->polarity =3D PWM_POLARITY_NORMAL;
-> =20
->  	return 0;
->  }
-> -
->  static int pwm_sifive_apply(struct pwm_chip *chip, struct pwm_device *pw=
-m,
->  			    const struct pwm_state *state)
->  {
-> @@ -139,7 +140,7 @@ static int pwm_sifive_apply(struct pwm_chip *chip, st=
-ruct pwm_device *pwm,
->  	int ret =3D 0;
->  	u32 frac;
-> =20
-> -	if (state->polarity !=3D PWM_POLARITY_INVERSED)
-> +	if (state->polarity !=3D PWM_POLARITY_NORMAL)
->  		return -EINVAL;
-> =20
->  	cur_state =3D pwm->state;
-> @@ -158,6 +159,7 @@ static int pwm_sifive_apply(struct pwm_chip *chip, st=
-ruct pwm_device *pwm,
->  	num =3D (u64)duty_cycle * (1U << PWM_SIFIVE_CMPWIDTH);
->  	frac =3D DIV64_U64_ROUND_CLOSEST(num, state->period);
->  	/* The hardware cannot generate a 100% duty cycle */
-> +	frac =3D (1U << PWM_SIFIVE_CMPWIDTH) - 1 - frac;
->  	frac =3D min(frac, (1U << PWM_SIFIVE_CMPWIDTH) - 1);
-
-frac can only be > (1U << PWM_SIFIVE_CMPWIDTH) - 1 if an overflow
-happend the line above. Is that what you want here?
-
->  	mutex_lock(&ddata->lock);
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---u262zj72p5ucybub
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmV3de4ACgkQj4D7WH0S
-/k5Qzwf+LxNerZNq1fsWhPxwliLRort8Hzk5VF2VeREIjSWu6hPHY5Uu2Jx/wumV
-bnRMjYJaLsgFWf6NS4NPrAUTKmsika76v2c6AcQdWtRpc/1xlEwsVrX4nZMruAzv
-mBmCPb5zqeDf4X4LhIR7Y1oAFejSg/uyVY1WDABJzbqt8Z/E4JHXIsxB4C6eqfl3
-bC+q7XOlWu6C6YO3/fsZ/A7W9o+S1/mFMkyggloi5YJyjhn75SqG6IYvE9wsOOQX
-LnRHy2LITZlrzGRIukkQvPIfPWgCaSESmsXIJR0mi0KyCMPd/p2ttcDM6o2y27JM
-4sCF7nZA15bQcx6WfqQyQwexbDoy+A==
-=WoBu
------END PGP SIGNATURE-----
-
---u262zj72p5ucybub--
 
