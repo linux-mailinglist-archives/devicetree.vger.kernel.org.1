@@ -1,119 +1,143 @@
-Return-Path: <devicetree+bounces-23868-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23869-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD87F80C8EA
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 13:03:12 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EFDD80C916
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 13:11:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0264A1C209B4
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 12:03:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 16B7DB20E51
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 12:11:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AAED38F9A;
-	Mon, 11 Dec 2023 12:03:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 075A939845;
+	Mon, 11 Dec 2023 12:11:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="LauqVCWn"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cJrhGm0m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87F3C2695;
-	Mon, 11 Dec 2023 04:02:51 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3BBC2W2g078891;
-	Mon, 11 Dec 2023 06:02:32 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1702296152;
-	bh=r4l2TpIecJ6incJwPZiirAr4p9X+dR1dJYdpttah6uA=;
-	h=Date:CC:Subject:To:References:From:In-Reply-To;
-	b=LauqVCWnMw593PVx/DA6GMwPCzP76UR7p51z+d7ppkz9BXpj7yjZYgga7BsAitml8
-	 e14u5tReyVMz5aBjRAL5UQ+qtG8niaNwLVmezNZqf7mGB2XkIitVgXAeKZ9u562lAw
-	 zqF66VlPKJimHPrrzTCh+277r8TbNkJjy7yCSTo8=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3BBC2WUQ006625
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 11 Dec 2023 06:02:32 -0600
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 11
- Dec 2023 06:02:31 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 11 Dec 2023 06:02:31 -0600
-Received: from [172.24.227.9] (uda0492258.dhcp.ti.com [172.24.227.9])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3BBC2R57116266;
-	Mon, 11 Dec 2023 06:02:28 -0600
-Message-ID: <4c033e0c-a453-4d30-814a-fda401ae82db@ti.com>
-Date: Mon, 11 Dec 2023 17:32:27 +0530
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68AFFA9;
+	Mon, 11 Dec 2023 04:11:46 -0800 (PST)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BBC97TA008390;
+	Mon, 11 Dec 2023 12:11:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=jfSzZRJ
+	apzDvSXGI50ehotgDMLNecCaroJgqyOMV6Qs=; b=cJrhGm0mEvhEk5qS41PdNTg
+	nXIUv/ZYFb+7KLlax1mrMhE5qTjLirn17jvtLAYbgUHw1tXcMTOsyw3vlxy2nVPJ
+	m/d3JXsGjSUj7yZOT6DDkUL4hyJ9jmckk1Hf3Dx6jldMxlTT+L/lIljdseG167Cs
+	LP4JICAPLOicwO2WEZzUsn2ME5jtrCuQQA0qmbTdQ/V6kKageBmTqwIIVBPTcr96
+	HPFd5EScqYhigR4Xm966wZzDde9Xb1Z541LiYoqIEQBYpIWhIyLns7uF3m9MdynK
+	JrRJhxGsZ82M4OzP0oGuNrJKrSWHovh/mhL3WJWNR951G9Q4+3fYQoZSMNsyc+g=
+	=
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ux25xg053-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 11 Dec 2023 12:11:39 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BBCBcVI011749
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 11 Dec 2023 12:11:38 GMT
+Received: from hu-kriskura-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Mon, 11 Dec 2023 04:11:33 -0800
+From: Krishna Kurapati <quic_kriskura@quicinc.com>
+To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        Johan Hovold <johan@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+CC: <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>,
+        Krishna Kurapati
+	<quic_kriskura@quicinc.com>
+Subject: [PATCH v3 0/2] Refine USB interrupt vectors on Qualcomm platforms
+Date: Mon, 11 Dec 2023 17:41:22 +0530
+Message-ID: <20231211121124.4194-1-quic_kriskura@quicinc.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-CC: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <r-gunasekaran@ti.com>,
-        <srk@ti.com>, <s-vadapalli@ti.com>
-Subject: Re: [PATCH v2 1/2] arm64: dts: ti: k3-j721e-evm: Add overlay for
- PCIE0 Endpoint Mode
-Content-Language: en-US
-To: Andrew Davis <afd@ti.com>
-References: <20231115085204.3578616-1-s-vadapalli@ti.com>
- <20231115085204.3578616-2-s-vadapalli@ti.com>
- <c50f5dc2-8ab8-4213-a809-fcd4cd18589d@ti.com>
- <750c2b6b-8f24-4b86-996f-6f50cf46d81b@ti.com>
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-In-Reply-To: <750c2b6b-8f24-4b86-996f-6f50cf46d81b@ti.com>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: x_vb-P2GzOmAT0sLOJMFL79WA-rBgnxf
+X-Proofpoint-GUID: x_vb-P2GzOmAT0sLOJMFL79WA-rBgnxf
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 mlxscore=0
+ suspectscore=0 phishscore=0 malwarescore=0 bulkscore=0 adultscore=0
+ priorityscore=1501 clxscore=1015 spamscore=0 lowpriorityscore=0
+ mlxlogscore=894 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2312110098
 
+Qualcomm targets define the following interrupts for usb wakeup:
+{dp/dm}_hs_phy_irq, hs_phy_irq, pwr_event, ss_phy_irq.
 
+But QUSB2 Phy based targets have another interrupt which gets triggered
+in response to J/K states on dp/dm pads. Its functionality is replaced
+by dp/dm interrupts on Femto/m31/eusb2 phy based targets for wakeup
+purposes. Exceptions are some targets like SDM845/SDM670/SM6350 where
+dp/dm irq's are used although they are qusb2 phy targets.
 
-On 11/12/23 16:46, Siddharth Vadapalli wrote:
-> Hello Andrew,
-> 
-> On 05/12/23 21:43, Andrew Davis wrote:
->> On 11/15/23 2:52 AM, Siddharth Vadapalli wrote:
->>> Add overlay to enable the PCIE0 instance of PCIe on J721E-EVM in
->>> Endpoint mode of operation.
->>>
->>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
->>> ---
->>>   arch/arm64/boot/dts/ti/Makefile               |  3 ++
->>>   .../boot/dts/ti/k3-j721e-evm-pcie0-ep.dtso    | 53 +++++++++++++++++++
->>>   2 files changed, 56 insertions(+)
->>>   create mode 100644 arch/arm64/boot/dts/ti/k3-j721e-evm-pcie0-ep.dtso
->>>
->>> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
->>> index 77a347f9f47d..5620db44d4dc 100644
->>> --- a/arch/arm64/boot/dts/ti/Makefile
->>> +++ b/arch/arm64/boot/dts/ti/Makefile
->>> @@ -66,6 +66,8 @@ dtb-$(CONFIG_ARCH_K3) += k3-j7200-evm.dtb
->>>   k3-j721e-evm-dtbs := k3-j721e-common-proc-board.dtb
->>> k3-j721e-evm-quad-port-eth-exp.dtbo
->>>   dtb-$(CONFIG_ARCH_K3) += k3-j721e-beagleboneai64.dtb
->>>   dtb-$(CONFIG_ARCH_K3) += k3-j721e-evm.dtb
->>> +k3-j721e-evm-pcie0-ep-dtbs := k3-j721e-evm.dtb k3-j721e-evm-pcie0-ep.dtbo
->>> +dtb-$(CONFIG_ARCH_K3) += k3-j721e-evm-pcie0-ep.dtb
->>
->> Do you really need to produce this pre-combined DTB file? If you would rather
->> just the overlay produced which could be applied at load-time (I prefer this),
->> then you should do as Jai has done[0]. Add just the overlay, and test its
->> application using a dummy target.
-> 
-> Thank you for pointing it out. I will implement your suggestion and post the v3
-> series.
+Currently in QUSB2 Phy based DT's, te qusb2_phy interrupt is named and
+used as "hs_phy_irq" when in fact it is a different interrupt (used by
+HW validation folks for debug purposes and not used on any downstream
+target qusb/non-qusb).
 
-I have posted the v3 series at:
-https://lore.kernel.org/r/20231211115535.1264353-1-s-vadapalli@ti.com/
+On some non-QUSB2 targets (like sm8450/sm8550), the pwr_event IRQ was
+named as hs_phy_irq and actual pwr_event_irq was skipped.
 
-> 
+This series tries to address the discrepancies in the interrupt numbering
+adding the missing interrupts and correcting the existing ones.
+
+This series has been compared with downstream counter part and hw specifics
+to ensure the numbering is right. Since there is not functionality change
+the code has been only compile tested.
+
+Changes in v3:
+Separated out the DT changes and pushed only bindings and driver update.
+Modified order of irq descriptions to match them with permutations defined.
+Fixed nitpicks mentioned by reviewers in v2.
+
+Changes in v2:
+Removed additional compatibles added for different targets in v1.
+Specified permuations of interrupts possible for QC targets and regrouped
+interrupts for most of the DT's.
+
+Link to v2:
+https://lore.kernel.org/all/20231204100950.28712-1-quic_kriskura@quicinc.com/
+
+Link to v1: (providing patchwork link since threading was broken in v1)
+https://patchwork.kernel.org/project/linux-arm-msm/cover/20231122191259.3021-1-quic_kriskura@quicinc.com/
+
+Krishna Kurapati (2):
+  dt-bindings: usb: dwc3: Clean up hs_phy_irq in bindings
+  usb: dwc3: qcom: Rename hs_phy_irq to qusb2_phy_irq
+
+ .../devicetree/bindings/usb/qcom,dwc3.yaml    | 138 ++++++++----------
+ drivers/usb/dwc3/dwc3-qcom.c                  |  22 +--
+ 2 files changed, 70 insertions(+), 90 deletions(-)
 
 -- 
-Regards,
-Siddharth.
+2.42.0
+
 
