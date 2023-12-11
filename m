@@ -1,115 +1,89 @@
-Return-Path: <devicetree+bounces-23787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23788-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 064B180C520
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 10:46:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB61280C539
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 10:50:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 355521C209F1
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 09:46:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EBC871C202E8
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 09:50:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77278219F1;
-	Mon, 11 Dec 2023 09:46:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72DDA219FE;
+	Mon, 11 Dec 2023 09:50:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AQ/fGjd9"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=163.com header.i=@163.com header.b="RBWlbPA9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91C13CB
-	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 01:46:43 -0800 (PST)
-Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-5d05ff42db0so40229447b3.2
-        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 01:46:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702288003; x=1702892803; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ceCUCLPLXDWP9zuR7v88iAKVRPzXXELnTgB4Os6l22g=;
-        b=AQ/fGjd9sDjd3HVML4PO5m6XqonbJweLzw3M2pSZgDtwdJGIMlIKdjnpKiHadXN/Ze
-         MB1jhiEiA/r5bXluEb3Pc5NuIYcQnJj4VCUNCri5C+R5GbfEFFOx/rYzuCME9QTpfiT0
-         9UIwoenQFC623BAwPFjEJTaStvlR/jOHibEsirAESWTOTqD2rI08GyysBFSC+FI5UQe3
-         OyQ+QCcC5q2nXgnFIwRZJQxvofhyNvMU8bjiKmpER12xrwxQJYiyMU6NnUCoWlLJC55M
-         X8L9yuQQwID0nzpuLK2z4DKqiB41GlY18k9sx2KancFcA4QLHwIYsXkounQeJQ47V/6N
-         jEIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702288003; x=1702892803;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ceCUCLPLXDWP9zuR7v88iAKVRPzXXELnTgB4Os6l22g=;
-        b=g22to2JAI0UTk/mHPY1sPNFAMP+v/nhxDUIDtAotui1qqytW92U5HQTmtR22sXBdYO
-         uKt7zShTUjm7wRE2b804+geY3ETOGy+z1g/DhrPlPRjzuyECzzIK2Y1csERy2JA0dRHK
-         e7gCIZEDazr4J0e+mWCSXyB/IlvP3i7ZhM1lnn1dIMvURVCXrkHbXCv1Sswlc0U7U8Ry
-         dfZXi46kvKZwsXu6L3Q9HinvX/Z1LzTeR58nlhFX5F6XM4mktqaaOk2W7nth/uDa7ISk
-         4CwFUtMqDK1WIDEPeIGMwGlz7jXwIOw026VFWovCk3DofHsET+eB5SuQMN3x9PszZfG4
-         mevQ==
-X-Gm-Message-State: AOJu0Yw11n13SFGeDJuJVzwom2f7xtAIlawLDcLCyfzkIJrWHpg/99tg
-	9ceYJtVpErqZTZ9c3MclNX6n3T/BQlydVnw1M6D7Fg==
-X-Google-Smtp-Source: AGHT+IFOa8DSXLPHUigw9G0yCtlmvsBIW84hlWI/2hqEX9J672xst4rq91Q4Tzd92Qk+L8dSWiirXnvbHK1KGoEHH7M=
-X-Received: by 2002:a81:d550:0:b0:5d4:20bc:403 with SMTP id
- l16-20020a81d550000000b005d420bc0403mr3018887ywj.2.1702288002808; Mon, 11 Dec
- 2023 01:46:42 -0800 (PST)
+Received: from m1345.mail.163.com (m1345.mail.163.com [220.181.13.45])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0A14E8E;
+	Mon, 11 Dec 2023 01:50:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Date:From:Subject:Content-Type:MIME-Version:
+	Message-ID; bh=Le9S3rlswY7wsWpZpFPJ1/zOzeuR21eJrjPWtQDnFmw=; b=R
+	BWlbPA99UveIgqwBMNsovL7c9E9Qjxlt7FC/oDBdkpzkh2wknCpH9RQu8bIPbiq1
+	7AJILkrhd+a07N6G9vDSylwE+q56fk/K48Vx1K2LNDYPQT0xSi+sEPYADuvWymDJ
+	1L8QIDVu/8l+8vxJY1TT0q9PZS4pHQagY9tpI5UBI8=
+Received: from andyshrk$163.com ( [58.22.7.114] ) by ajax-webmail-wmsvr45
+ (Coremail) ; Mon, 11 Dec 2023 17:49:58 +0800 (CST)
+Date: Mon, 11 Dec 2023 17:49:58 +0800 (CST)
+From: "Andy Yan" <andyshrk@163.com>
+To: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
+Cc: heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org
+Subject: Re:Re: [PATCH v2 5/5] arm64: dts: rockchip: Add support for rk3588
+ based board Cool Pi CM5 EVB
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20230109(dcb5de15)
+ Copyright (c) 2002-2023 www.mailtech.cn 163com
+In-Reply-To: <2b58450a-1bde-424b-ab69-a3834914522c@linaro.org>
+References: <20231210080313.1667013-1-andyshrk@163.com>
+ <20231210080629.1667589-1-andyshrk@163.com>
+ <2b58450a-1bde-424b-ab69-a3834914522c@linaro.org>
+X-NTES-SC: AL_Qu2bAP6Tt0ki7iabbOkXn0kXhec2W8Czvvgg34JRP5k0hynnwAEvc0JFOEPk/d2MNhKrjSWXaid/wONHUYtdeq32EJv2by2Fsmbt0bCXqxA3
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231209232132.3580045-1-dmitry.baryshkov@linaro.org>
- <20231209232132.3580045-10-dmitry.baryshkov@linaro.org> <7d459b20-80f5-4d9a-88b0-9e5769d1d9be@linaro.org>
-In-Reply-To: <7d459b20-80f5-4d9a-88b0-9e5769d1d9be@linaro.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 11 Dec 2023 11:46:31 +0200
-Message-ID: <CAA8EJpqpdvV6-Yxf7njg2srqEyiWJiF3fUGFi1XYBAPvUN3SOg@mail.gmail.com>
-Subject: Re: [PATCH 9/9] arm64: dts: qcom: sm8150-hdk: enable DisplayPort and
- USB-C altmode
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
-	Abhinav Kumar <quic_abhinavk@quicinc.com>, Marijn Suijten <marijn.suijten@somainline.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Stephen Boyd <swboyd@chromium.org>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	freedreno@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
+Message-ID: <14ab4c8c.4fa1.18c58488bf2.Coremail.andyshrk@163.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID:LcGowADH_mtG23ZleJAsAA--.19192W
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/1tbiqApDXmVOA4wwdAACsd
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
 
-On Mon, 11 Dec 2023 at 11:33, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->
-> On 10.12.2023 00:21, Dmitry Baryshkov wrote:
-> > Enable the USB-C related functionality for the USB-C port on this board.
-> > This includes OTG, PowerDelivery and DP AltMode. Also enable the
-> > DisplayPort itself.
-> >
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> [...]
->
-> > +&pm8150b_typec {
-> > +     status = "okay";
-> > +
-> > +     vdd-pdphy-supply = <&vreg_l2a_3p1>;
-> > +
-> > +     connector {
-> > +             compatible = "usb-c-connector";
-> > +
-> > +             power-role = "source";
-> > +             data-role = "dual";
-> > +             self-powered;
-> > +
-> > +             source-pdos = <PDO_FIXED(5000, 3000,
-> > +                                      PDO_FIXED_DUAL_ROLE |
-> > +                                      PDO_FIXED_USB_COMM |
-> > +                                      PDO_FIXED_DATA_SWAP)>;
-> > +
-> > +             altmodes {
-> > +                     displayport {
-> > +                             svid = <0xff01>;
-> /bits/ 16?
-
-Ugh, yes.
-
--- 
-With best wishes
-Dmitry
+CkhpIEtyenlzenRvZu+8mgoKQXQgMjAyMy0xMi0xMCAxOToxMjoxNSwgIktyenlzenRvZiBLb3ps
+b3dza2kiIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+IHdyb3RlOgo+T24gMTAvMTIv
+MjAyMyAwOTowNiwgQW5keSBZYW4gd3JvdGU6Cj4+IENvb2wgUGkgQ001IEVWQiBpcyBhIGJvYXJk
+IGJhc2VkIG9uIHJrMzU4OC4KPj4gCj4+IFNwZWNpZmljYXRpb246Cj4+IC0gUm9ja2NoaXAgUksz
+NTg4Cj4+IC0gTFBERFI0IDIvNC84LzE2IEdCCj4+IC0gVEYgc2NhcmQgc2xvdAo+PiAtIGVNTUMg
+OC8zMi82NC8xMjggR0IgbW9kdWxlCj4+IC0gR2lnYWJpdCBldGhlcm5ldCB4IDEgd2l0aCBQSFkg
+WVQ4NTMxCj4+IC0gR2lnYWJpdCBldGhlcm5ldCB4IDEgZHJpdmVkIGJ5IFBDSUUgd2l0aCBZVDY4
+MDFTCj4+IC0gSERNSSBUeXBlIEEgb3V0IHggMgo+PiAtIEhETUkgVHlwZSBEIGluIHggMQo+PiAt
+IFVTQiAyLjAgSG9zdCB4IDIKPj4gLSBVU0IgMy4wIE9URyB4IDEKPj4gLSBVU0IgMy4wIEhvc3Qg
+eCAxCj4+IC0gUENJRSBNLjIgRSBLZXkgZm9yIFdpcmVsZXNzIGNvbm5lY3Rpb24KPj4gLSBQQ0lF
+IE0uMiBNIEtleSBmb3IgTlZNRSBjb25uZWN0aW9uCj4+IC0gNDAgcGluIGhlYWRlcgo+Cj4KPj4g
+Kwo+PiArCWJhY2tsaWdodDogYmFja2xpZ2h0IHsKPj4gKwkJY29tcGF0aWJsZSA9ICJwd20tYmFj
+a2xpZ2h0IjsKPj4gKwkJcG93ZXItc3VwcGx5ID0gPCZ2Y2MxMnZfZGNpbj47Cj4+ICsJCXB3bXMg
+PSA8JnB3bTIgMCAyNTAwMCAwPjsKPj4gKwkJZW5hYmxlLWdwaW9zID0gPCZncGlvNCBSS19QQTMg
+R1BJT19BQ1RJVkVfSElHSD47Cj4+ICsJCXBpbmN0cmwtbmFtZXMgPSAiZGVmYXVsdCI7Cj4+ICsJ
+CXBpbmN0cmwtMCA9IDwmYmxfZW4+Owo+PiArCQlzdGF0dXMgPSAib2theSI7Cj4KPlRoaXMgaXMg
+YSBmcmllbmRseSByZW1pbmRlciBkdXJpbmcgdGhlIHJldmlldyBwcm9jZXNzLgo+Cj5JdCBzZWVt
+cyBteSBvciBvdGhlciByZXZpZXdlcidzIHByZXZpb3VzIGNvbW1lbnRzIHdlcmUgbm90IGZ1bGx5
+Cj5hZGRyZXNzZWQuIE1heWJlIHRoZSBmZWVkYmFjayBnb3QgbG9zdCBiZXR3ZWVuIHRoZSBxdW90
+ZXMsIG1heWJlIHlvdQo+anVzdCBmb3Jnb3QgdG8gYXBwbHkgaXQuIFBsZWFzZSBnbyBiYWNrIHRv
+IHRoZSBwcmV2aW91cyBkaXNjdXNzaW9uIGFuZAo+ZWl0aGVyIGltcGxlbWVudCBhbGwgcmVxdWVz
+dGVkIGNoYW5nZXMgb3Iga2VlcCBkaXNjdXNzaW5nIHRoZW0uCgpZZXPvvIwgaXQgc2VlbXMgdGhh
+dCB0aGUgY29tbWVudHMgd2VyZSBsb3N077yMIEkgZGlkbid0IGdldCBhbnkgY29tbWVudHMgYWJv
+dXQgUEFUQ0ggNSBpbiBteSBWMS4KQW55d2F5LCBJIHdpbGwgY2hlY2sgdGhpcyBwYXRjaCBhZ2Fp
+biwgYW5kIGZpeCB0aGUgaXNzdWUgSSBmaW5kIGJ5IG15c2VsZi4KPgo+VGhhbmsgeW91Lgo+Cj5C
+ZXN0IHJlZ2FyZHMsCj5Lcnp5c3p0b2YKPgo+Cj5fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwo+bGludXgtYXJtLWtlcm5lbCBtYWlsaW5nIGxpc3QKPmxpbnV4
+LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZwo+aHR0cDovL2xpc3RzLmluZnJhZGVhZC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hcm0ta2VybmVsCg==
 
