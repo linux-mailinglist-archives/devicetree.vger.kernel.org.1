@@ -1,116 +1,234 @@
-Return-Path: <devicetree+bounces-23805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA37180C64B
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 11:23:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 736B380C65C
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 11:24:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6EC421F20F98
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 10:23:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9EE4C1C209DA
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 10:24:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C0EE24B21;
-	Mon, 11 Dec 2023 10:23:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VObXoy5G"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF5A124A0C;
+	Mon, 11 Dec 2023 10:24:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C702018D
-	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 02:23:03 -0800 (PST)
-Received: by mail-qk1-x72a.google.com with SMTP id af79cd13be357-77f3d75dafeso259401385a.0
-        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 02:23:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702290182; x=1702894982; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=8uwL1lLxX1dFaUiWFiQrXZhQs3hhD/dlzqmlkyytJpw=;
-        b=VObXoy5GmaHZsOWqlwAdp9QVI/50PLwml3dlWF+7GalOLOwh9KU+k6Hl8eaxLfgBoF
-         FeE+vA9sLhMdiyYHOAWWfVb0hJBb2aM34vWORFdS7ipsCJ9YNUB50+wrr8kslc/l6I2N
-         ba3PcDB+88xAo7huLJGtog5B4Fw5GR99HKozERZUyQRlzhX8XCW5go9PEEqi+iMqVIyQ
-         Ck0XnOAOWd4INk37P5gYjHMmZlkV2N9IkJdONdet3CulSGhz8fWTiKcS4hi3NnmR/W+y
-         oWpCzUKhouK//48q0+Hrot3p2mC3ALGi2psuBBgiz0CaLyXeNlDgYsChM2791+JuQxoI
-         Y+wg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702290182; x=1702894982;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8uwL1lLxX1dFaUiWFiQrXZhQs3hhD/dlzqmlkyytJpw=;
-        b=gMl6ZVnitSDoZ7PWGG1osPkEC15XfEjzokRGEK/kyt2sAe5oJj8u8Laj5WmP3in06I
-         Ei5UeboPTuka8PdRrbwKvx9hwRhE5T6uNijcVKx3OD5jLgo/IzM5Aw4DPyl4QziWUiuf
-         kNoFVfUthZsgSHfhzDHhamiZTr3M9GEFKEBH4MZcDSkgrxbTMyKN7AgW5mDezSMFgjGE
-         tQWFLD/LPF1CLb+dzuLV0qLr50xARyniPsjInpyMRzdlObPqKQRNvGVvZIYpdOVGTZeg
-         8qaIiGiJkXfSbG3BNgJ9CBsW8CcNDXdDM/dUZmZlSV04ak0b9Jzr2MBtKLoUZjtZWihi
-         34mw==
-X-Gm-Message-State: AOJu0Yy8LFL1KW6STgz09TiVebHhgWIHGisG9WMPmOw0JnZqMnu+LNJK
-	HjwzMydcdOlJB7fqVNHX8tJR/OC7cERqZAC41mef5w==
-X-Google-Smtp-Source: AGHT+IHqP/co+Erp1KyVxk9Vrb7BjW2fZ076cQiX9m6z1AAqfzfzOVELbNhXJDqCOlCh75GXJdg46xQJtROICe7jQ3I=
-X-Received: by 2002:ad4:50c3:0:b0:67a:c8e4:e692 with SMTP id
- e3-20020ad450c3000000b0067ac8e4e692mr5048288qvq.100.1702290182193; Mon, 11
- Dec 2023 02:23:02 -0800 (PST)
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C16D0D7;
+	Mon, 11 Dec 2023 02:24:43 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+	by ex01.ufhost.com (Postfix) with ESMTP id AD49D24E2D5;
+	Mon, 11 Dec 2023 18:24:36 +0800 (CST)
+Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 11 Dec
+ 2023 18:24:36 +0800
+Received: from [192.168.1.115] (180.164.60.184) by EXMBX061.cuchost.com
+ (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 11 Dec
+ 2023 18:24:36 +0800
+Message-ID: <2dc5ea49-9a5f-484a-98dc-1b35b79d0945@starfivetech.com>
+Date: Mon, 11 Dec 2023 18:24:35 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231209233106.147416-1-peter.griffin@linaro.org>
- <20231209233106.147416-15-peter.griffin@linaro.org> <9ffd229e-cf1b-4508-ba74-d5a000c54582@linaro.org>
-In-Reply-To: <9ffd229e-cf1b-4508-ba74-d5a000c54582@linaro.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Mon, 11 Dec 2023 10:22:51 +0000
-Message-ID: <CADrjBPrWQ9EUDDqZ6Nxr-z93rzZf0sJVVFVZk58s1ErmkUJpMw@mail.gmail.com>
-Subject: Re: [PATCH v6 14/20] watchdog: s3c2410_wdt: Add support for WTCON
- register DBGACK_MASK bit
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org, 
-	tomasz.figa@gmail.com, s.nawrocki@samsung.com, linus.walleij@linaro.org, 
-	wim@linux-watchdog.org, linux@roeck-us.net, catalin.marinas@arm.com, 
-	will@kernel.org, arnd@arndb.de, olof@lixom.net, gregkh@linuxfoundation.org, 
-	jirislaby@kernel.org, cw00.choi@samsung.com, alim.akhtar@samsung.com, 
-	tudor.ambarus@linaro.org, andre.draszik@linaro.org, 
-	semen.protsenko@linaro.org, saravanak@google.com, willmcvicker@google.com, 
-	soc@kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-watchdog@vger.kernel.org, kernel-team@android.com, 
-	linux-serial@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [v3 5/6] drm/vs: Add hdmi driver
+Content-Language: en-US
+To: Maxime Ripard <mripard@kernel.org>, Andy Yan <andyshrk@163.com>
+CC: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+	"tzimmermann@suse.de" <tzimmermann@suse.de>, "airlied@gmail.com"
+	<airlied@gmail.com>, "krzysztof.kozlowski+dt@linaro.org"
+	<krzysztof.kozlowski+dt@linaro.org>, William Qiu
+	<william.qiu@starfivetech.com>, Xingyu Wu <xingyu.wu@starfivetech.com>,
+	"paul.walmsley@sifive.com" <paul.walmsley@sifive.com>,
+	"aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>, "palmer@dabbelt.com"
+	<palmer@dabbelt.com>, "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+	Shengyang Chen <shengyang.chen@starfivetech.com>, Jack Zhu
+	<jack.zhu@starfivetech.com>, Changhuang Liang
+	<changhuang.liang@starfivetech.com>, "maarten.lankhorst@linux.intel.com"
+	<maarten.lankhorst@linux.intel.com>, "suijingfeng@loongson.cn"
+	<suijingfeng@loongson.cn>
+References: <20231204123315.28456-6-keith.zhao@starfivetech.com>
+ <esetsiqgqpk35zue4c6aq7l6zn4kezhxkqqa7ompaz2vhdy3lr@4d5awfqgs2ss>
+ <94a1f9fc-82fb-4a04-a44b-f9b20c2bdfdd@starfivetech.com>
+ <abdl6kmighvpwojvafq443q7grn6w3abwpvw7zwbna4jvtsvjf@fa42rv46n2wh>
+ <40cdd3c7-174e-4611-9ea6-22cb56d1f62b@starfivetech.com>
+ <e90142d.44b1.18c43833b63.Coremail.andyshrk@163.com>
+ <e0b84511-dbb4-46fa-9465-713369232f6f@starfivetech.com>
+ <43e42269.314.18c46dbb4c5.Coremail.andyshrk@163.com>
+ <e1c362dc-8aac-4d13-9356-8b7ccae4727f@starfivetech.com>
+ <5a79a4b9.1bd7.18c4773c1ea.Coremail.andyshrk@163.com>
+ <xevxqusbizjfs4qt5rufhntd3vd656o2smocvivvulzceh3aeu@uuihphhat5wi>
+From: Keith Zhao <keith.zhao@starfivetech.com>
+In-Reply-To: <xevxqusbizjfs4qt5rufhntd3vd656o2smocvivvulzceh3aeu@uuihphhat5wi>
 Content-Type: text/plain; charset="UTF-8"
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX061.cuchost.com
+ (172.16.6.61)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: quoted-printable
 
-Hi folks,
+hi Maxime:
+hi Andy:
 
-On Sun, 10 Dec 2023 at 14:24, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 10/12/2023 00:31, Peter Griffin wrote:
-> > The WDT uses the CPU core signal DBGACK to determine whether the SoC
-> > is running in debug mode or not. If the DBGACK signal is asserted and
-> > DBGACK_MASK bit is enabled, then WDT output and interrupt is masked
-> > (disabled).
-> >
-> > Presence of the DBGACK_MASK bit is determined by adding a new
-> > QUIRK_HAS_DBGACK_BIT quirk. Also update to use BIT macro to avoid
-> > checkpatch --strict warnings.
-> >
-> > Tested-by: Will McVicker <willmcvicker@google.com>
-> > Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
-> > Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
->
-> Guenter, Wim,
->
-> The watchdog patches are kind of independent, except that bindings has
-> conflicting re-organization which I took via my Samsung SoC tree. If it
-> is fine with you, please provide acks or review and I will take the
-> watchdog changes.
->
+On 2023/12/8 17:14, Maxime Ripard wrote:
+> Hi,
+>=20
+> On Fri, Dec 08, 2023 at 11:23:37AM +0800, Andy Yan wrote:
+>> =E5=9C=A8 2023-12-08 11:00:31=EF=BC=8C"Keith Zhao" <keith.zhao@starfiv=
+etech.com> =E5=86=99=E9=81=93=EF=BC=9A
+>> >
+>> >
+>> >On 2023/12/8 8:37, Andy Yan wrote:
+>> >> Hi Keth=EF=BC=9A
+>> >>=20
+>> >>=20
+>> >>=20
+>> >>=20
+>> >>=20
+>> >>=20
+>> >> =E5=9C=A8 2023-12-07 18:48:13=EF=BC=8C"Keith Zhao" <keith.zhao@star=
+fivetech.com> =E5=86=99=E9=81=93=EF=BC=9A
+>> >>>
+>> >>>
+>> >>>On 2023/12/7 17:02, Andy Yan wrote:
+>> >>>>=20
+>> >>>>=20
+>> >>>>=20
+>> >>>>=20
+>> >>>> Hi Keith=EF=BC=9A
+>> >>>>=20
+>> >>>>=20
+>> >>>>=20
+>> >>>>=20
+>> >>>>=20
+>> >>>>=20
+>> >>>>=20
+>> >>>>=20
+>> >>>>=20
+>> >>>>=20
+>> >>>>=20
+>> >>>> At 2023-12-06 22:11:33, "Keith Zhao" <keith.zhao@starfivetech.com=
+> wrote:
+>> >>>>>
+>> >>>>>
+>> >>>>>On 2023/12/6 20:56, Maxime Ripard wrote:
+>> >>>>>> On Wed, Dec 06, 2023 at 08:02:55PM +0800, Keith Zhao wrote:
+>> >>>>>>> >> +static const struct of_device_id starfive_hdmi_dt_ids[] =3D=
+ {
+>> >>>>>>> >> +	{ .compatible =3D "starfive,jh7110-inno-hdmi",},
+>> >>>>>>> >=20
+>> >>>>>>> > So it's inno hdmi, just like Rockchip then?
+>> >>>>>>> >=20
+>> >>>>>>> > This should be a common driver.
+>> >>>>>>>
+>> >>>>>>> Rockchip has a inno hdmi IP. and Starfive has a inno hdmi IP.
+>> >>>>>>> but the harewawre difference of them is big , it is not easy t=
+o use the common driver
+>> >>>>>>> maybe i need the inno hdmi version here to make a distinction
+>> >>>>>>=20
+>> >>>>>> I just had a look at the rockchip header file: all the register=
+s but the
+>> >>>>>> STARFIVE_* ones are identical.
+>> >>>>>>=20
+>> >>>>>> There's no need to have two identical drivers then, please use =
+the
+>> >>>>>> rockchip driver instead.
+>> >>>>>>=20
+>> >>>>>> Maxime
+>> >>>>>
+>> >>>>>ok, have a simple test , edid can get . i will continue=20
+>> >>>>=20
+>> >>>> Maybe you can take drivers/gpu/drm/bridge/synopsys/dw-hdmi as a r=
+eference=EF=BC=8C this
+>> >>>> is also a hdmi ip used by rockchip/meson/sunxi/jz/imx=E3=80=82
+>> >>>> We finally make it share one driver=E3=80=82
+>> >>>>>
+>> >>>hi Andy:
+>> >>>
+>> >>>dw_hdmi seems a good choice , it can handle inno hdmi hardware by d=
+efine its dw_hdmi_plat_data.
+>> >>>does it means i can write own driver files such as(dw_hdmi-starfive=
+.c) based on dw_hdmi instead of add plat_data in inno_hdmi.c
+>> >>>
+>> >>=20
+>> >> I think the process maybe like this=EF=BC=9A
+>> >>=20
+>> >> 1. split the inno_hdmi.c under rockchip to  inno_hdmi.c(the common =
+part), inno_hdmi-rockchip.c(the soc specific part)
+>> >> 2. move the common part inno_hdmi.c to drivers/gpu/drm/bridge/innos=
+ilicon/
+>> >> 3. add startfive specific part, inno_hdmi-startfive.c
+>> >>=20
+>> >> bellow git log from kernel three show how we convert  dw_hdmi to a =
+common driver:=20
+>> >>=20
+>> >>=20
+>> >>=20
+>> >> 12b9f204e804 drm: bridge/dw_hdmi: add rockchip rk3288 support
+>> >> 74af9e4d03b8 dt-bindings: Add documentation for rockchip dw hdmi
+>> >> d346c14eeea9 drm: bridge/dw_hdmi: add function dw_hdmi_phy_enable_s=
+pare
+>> >> a4d3b8b050d5 drm: bridge/dw_hdmi: clear i2cmphy_stat0 reg in hdmi_p=
+hy_wait_i2c_done
+>> >> 632d035bace2 drm: bridge/dw_hdmi: add mode_valid support
+>> >> 0cd9d1428322 drm: bridge/dw_hdmi: add support for multi-byte regist=
+er width access
+>> >> cd152393967e dt-bindings: add document for dw_hdmi
+>> >> b21f4b658df8 drm: imx: imx-hdmi: move imx-hdmi to bridge/dw_hdmi
+>> >> aaa757a092c2 drm: imx: imx-hdmi: split phy configuration to platfor=
+m driver
+>> >> 3d1b35a3d9f3 drm: imx: imx-hdmi: convert imx-hdmi to drm_bridge mod=
+e
+>> >> c2c3848851a7 drm: imx: imx-hdmi: return defer if can't get ddc i2c =
+adapter
+>> >> b587833933de drm: imx: imx-hdmi: make checkpatch happy
+>> >>=20
+>> >hi Andy:
+>> >I got you means,=20
+>> >as I don't have a rockchip board on hand , to split the inno_hdmi.c c=
+an not be tested.
+>> >
+>> >how adout this idea:
+>> >1=E3=80=81split the starfive_hdmi.c under verisilicion to  inno_hdmi.=
+c(the common part), inno_hdmi-starfive.c(the soc specific part)
+>> >2. move the common part inno_hdmi.c to drivers/gpu/drm/bridge/innosil=
+icon/
+>> >3. In the future, inno hdmi.c under rockchip will reuse the public dr=
+iver.
+>>=20
+>> I am not sure if drm maintainers are happy with this=E3=80=82
+>=20
+> Not really, no.
+>=20
+> Because we would still have two drivers for the same controller, and a
+> common one that haven't really been tested on anything but a single
+> platform. So arguably a worse situation than what you were suggesting i=
+n
+> the first place.
+>=20
+> The best solution would be to find someone with a Rockchip board to tes=
+t
+> your changes, or to get one if it's doable so you can test yourself.
 
-Just to add, without the Watchdog gs101 changes the system will reset
-after ~60 seconds, as the bootloader is left running by the
-bootloader. So it would be nice to get patches in as well if possible.
+ok I will also try to buy a Rockchip 3036 board for self-test.
+According to the commit log idea provided by Andy before, make the inno_h=
+dmi driver common module.
 
-regards,
+would the steps be ok? (if I tested rockchip and starifve pass)
+1. split the inno_hdmi.c under rockchip to  inno_hdmi.c(the common part),=
+ inno_hdmi-rockchip.c(the soc specific part)
+2. move the common part inno_hdmi.c to drivers/gpu/drm/bridge/innosilicon=
+/
+3. add startfive specific part, inno_hdmi-startfive.c
 
-Peter.
+Thanks
+>=20
+> Maxime
 
