@@ -1,112 +1,98 @@
-Return-Path: <devicetree+bounces-24067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24069-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE2D680DC3F
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 22:00:04 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08ED480DC54
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 22:02:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1259D1C21564
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 21:00:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 85D5FB214D4
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 21:02:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2368454BC0;
-	Mon, 11 Dec 2023 21:00:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C56554BCC;
+	Mon, 11 Dec 2023 21:02:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="fT5m72Yx"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="P/w7G0Wj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C79B2CD;
-	Mon, 11 Dec 2023 12:59:57 -0800 (PST)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3BBKxhKC129492;
-	Mon, 11 Dec 2023 14:59:43 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1702328383;
-	bh=/zH9ezNaAZm7yjXTnoBaCKXNFia2jSA2fWzEY7U5mD8=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=fT5m72YxdNiEWIyBCoMQrtjmbYM3EIIGgy2pMG1HKrj5OkFNwnkHL1hcCIbsBRtup
-	 AhYqcx1XiHaxFkGWDEGCrd3bsn5QJsWCjSZ4y6gco+sH3PHYiIDuzVfrJ0b5Jm87tm
-	 OalaeJ9OGWvMxcVRyt0Naa51SfA5OMDsLWBYEXIg=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3BBKxhQI037280
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 11 Dec 2023 14:59:43 -0600
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 11
- Dec 2023 14:59:43 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 11 Dec 2023 14:59:43 -0600
-Received: from udba0500997.dhcp.ti.com (udba0500997.dhcp.ti.com [128.247.81.249])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3BBKxRo8003825;
-	Mon, 11 Dec 2023 14:59:43 -0600
-From: Brandon Brnich <b-brnich@ti.com>
-To: <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Nas
- Chung <nas.chung@chipsnmedia.com>,
-        Jackson Lee <jackson.lee@chipsnmedia.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Sebastian Fricke
-	<sebastian.fricke@collabora.com>,
-        Dafna Hirschfeld
-	<dafna.hirschfeld@collabora.com>,
-        Robert Beckett <bob.beckett@collabora.com>,
-        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-        Geert Uytterhoeven
-	<geert@linux-m68k.org>
-CC: Nishanth Menon <nm@ti.com>, Darren Etheridge <detheridge@ti.com>,
-        Brandon
- Brnich <b-brnich@ti.com>
-Subject: [PATCH v3 2/2] media: chips-media: wave5: Remove K3 References
-Date: Mon, 11 Dec 2023 14:59:20 -0600
-Message-ID: <20231211205920.698939-3-b-brnich@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231211205920.698939-1-b-brnich@ti.com>
-References: <20231211205920.698939-1-b-brnich@ti.com>
+Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A74BCBE
+	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 13:02:33 -0800 (PST)
+Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-5d2d0661a8dso49361077b3.2
+        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 13:02:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702328553; x=1702933353; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cZfsZrrRBlZwfErbKCDlnyMZePAWlHxlE0E9UWOYGmQ=;
+        b=P/w7G0WjSFdG4l3M3g02vvLEnBwqml1AyvE2NiC1NCLAynYfl1BMPYI3oV+Ch/cMDk
+         tI9Jb9aSKXXSvTPAJO6QG5J8jHRWZ8kZ0zWUf9Lzgjo7kjeUEyQZo51b+YVri6SqOLUT
+         ZLWZHQWvLskk05QRZsBxBrcHngBOi2nLjxH0dLomEeeHv84Q9IhAcr9kzQlCJ8YFYRoF
+         TNv7sjkbbL0JrrhylrAYlK0u+vEFl5wXqBWMzdgk0KST6a8Wc3aIdro35AcA2Xyx3JW9
+         joFnb7/ESr+prdztc5JC//6ur24+npmd9CDLu3dJzjZ9jyccf2WotzpNsC5k9qrm7F5G
+         gxTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702328553; x=1702933353;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=cZfsZrrRBlZwfErbKCDlnyMZePAWlHxlE0E9UWOYGmQ=;
+        b=eOvmHfmqUtLUW9G7wX/l/0pfRrvjD986iCaaPW7sFlFfKUaP0B5C7bp5RuTTHuu9b8
+         LvrOml4mGSwG6zOAmieJx0PhRbCLkOgNiXJdDgoPYMsasiGQx7YOd0NDXh53Ssb0JbX+
+         0gx2yhSpbmHmFEBkCtfRexkV7gGhlqfGYC4OYaa6KRFfhZtrKYOwgQPrftCFEGDx7Fcs
+         nKdOnpkyNZP2qegJi+DvEqGEPkKL0coUwwI7akELhXrMXEX835E09zXj8hIQR/8bnxy1
+         0FYLZb79+pxBZLaidzA9eTADNSQVKjgHmFPJ9MmSy0SLWAC7d7ceeJorHc9f3kdKWQN1
+         1yOg==
+X-Gm-Message-State: AOJu0YyXhkZVWLr4rd/BUDEh6m/2blcsKa6+Xovp2TVaGtUysIPxSvK8
+	OrTqLCqGY5G4WNmJpPXsJ93IzhJ3QJ9iRrDd+jlDsg==
+X-Google-Smtp-Source: AGHT+IEx7mNSHR0hv8E+Jx+J+xIQnLDD997azEZuKMXEYCvggtMUMZoyCLaTgxmHG3TvQOqT3+BfMVSbsiM6LZX48/o=
+X-Received: by 2002:a0d:f842:0:b0:5d7:1940:b377 with SMTP id
+ i63-20020a0df842000000b005d71940b377mr3838384ywf.67.1702328552858; Mon, 11
+ Dec 2023 13:02:32 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20231211162331.435900-1-peter.griffin@linaro.org> <20231211162331.435900-10-peter.griffin@linaro.org>
+In-Reply-To: <20231211162331.435900-10-peter.griffin@linaro.org>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Mon, 11 Dec 2023 22:02:21 +0100
+Message-ID: <CACRpkda8LJS+9dPQFqQLFDbj=gvJ9rKSu=ECczDB4QUv+FZgnw@mail.gmail.com>
+Subject: Re: [PATCH v7 09/16] pinctrl: samsung: Add gs101 SoC pinctrl configuration
+To: Peter Griffin <peter.griffin@linaro.org>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org, 
+	tomasz.figa@gmail.com, s.nawrocki@samsung.com, wim@linux-watchdog.org, 
+	linux@roeck-us.net, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, 
+	olof@lixom.net, gregkh@linuxfoundation.org, jirislaby@kernel.org, 
+	cw00.choi@samsung.com, alim.akhtar@samsung.com, tudor.ambarus@linaro.org, 
+	andre.draszik@linaro.org, semen.protsenko@linaro.org, saravanak@google.com, 
+	willmcvicker@google.com, soc@kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-watchdog@vger.kernel.org, kernel-team@android.com, 
+	linux-serial@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Change compatible string to match dt bindings for TI devices. K3 family
-prefix should not be included as it deviates from naming convention.
+On Mon, Dec 11, 2023 at 5:24=E2=80=AFPM Peter Griffin <peter.griffin@linaro=
+.org> wrote:
 
-Fixes: 9707a6254a8a ("media: chips-media: wave5: Add the v4l2 layer")
-Reported-by: Geert Uytterhoeven <geert@linux-m68k.org>
-Closes: https://lore.kernel.org/all/CAMuHMdUYOq=q1j=d+Eac28hthOUAaNUkuvxmRu-mUN1pLKq69g@mail.gmail.com/
-Signed-off-by: Brandon Brnich <b-brnich@ti.com>
----
- drivers/media/platform/chips-media/wave5/wave5-vpu.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> Add support for the pin-controller found on the gs101 SoC used in
+> Pixel 6 phones.
+>
+> Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
+> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
 
-diff --git a/drivers/media/platform/chips-media/wave5/wave5-vpu.c b/drivers/media/platform/chips-media/wave5/wave5-vpu.c
-index bfe4caa79cc9..0d90b5820bef 100644
---- a/drivers/media/platform/chips-media/wave5/wave5-vpu.c
-+++ b/drivers/media/platform/chips-media/wave5/wave5-vpu.c
-@@ -272,7 +272,7 @@ static const struct wave5_match_data ti_wave521c_data = {
- };
- 
- static const struct of_device_id wave5_dt_ids[] = {
--	{ .compatible = "ti,k3-j721s2-wave521c", .data = &ti_wave521c_data },
-+	{ .compatible = "ti,j721s2-wave521c", .data = &ti_wave521c_data },
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, wave5_dt_ids);
--- 
-2.34.1
+Looks good to me.
+Acked-by: Linus Walleij <linus.walleij@linaro.org>
 
+I expect Krzysztof to merge this when he feels it is ready and
+send to me by pull request.
+
+Yours,
+Linus Walleij
 
