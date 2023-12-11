@@ -1,362 +1,187 @@
-Return-Path: <devicetree+bounces-24013-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24014-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B7E680D4AB
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 18:53:27 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 870E680D4B9
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 18:54:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BE5C01C2176A
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 17:53:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 15763B214DE
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 17:54:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E0F04EB58;
-	Mon, 11 Dec 2023 17:53:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAE984EB3E;
+	Mon, 11 Dec 2023 17:54:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="DH+5WqBI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="plAAiuvh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BE981995
-	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 09:53:06 -0800 (PST)
-Received: by mail-yb1-xb34.google.com with SMTP id 3f1490d57ef6-dbc1efc23f7so3782222276.2
-        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 09:53:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1702317185; x=1702921985; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=z1kYwpn/4RRiTYfgxP4Z+0TS9Lkq3RtxeVaveQei1nk=;
-        b=DH+5WqBIFaY+w7lwtIS/qRzYCbfBqEkw2oxCshL/9/ff+RalcT/SK8BIZJrAxdoCes
-         wUVmDPa5t45RUVl1ybcf4KHVafUjb7jZFmmb7Ql8MRGHoEve+HFYxp0Vis+C9nH1/WaK
-         L+ozNMQQ1du4m/BQ26vqndOJMth+UU3lTc7Dc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702317185; x=1702921985;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=z1kYwpn/4RRiTYfgxP4Z+0TS9Lkq3RtxeVaveQei1nk=;
-        b=spNlqNpvF565148dbNBi9f3EJKzD+R+fJR+wV01gqQlT5RdAYinSkHh04yJs4TDtCe
-         MStERHjQyRhcjHQkmWPQkkgrAoiEDMOz8HKRoclOsfASQLzbtVhKpV2heGcU4dkHq1RE
-         s7kX6ENz31R6EV57KI1ev9x3buSIrg9/47v2+4MCXQj5eBfme3tm0JvgVoIIRTWVbw9i
-         x8K0BWw2cnLILRd0INGUwf5//4+VJbEG/qALT1HMLR9+3K0gqnzbHOXdIP5MflR7AB1S
-         yQl5JTTS8iZ5TrZISMLke7a8ei/yN+hWvWvXW+VsSdZ62fI7oeVaR9QQS9gNvLVv4zpY
-         Ekzg==
-X-Gm-Message-State: AOJu0YwPE6BcPUS0f9xTS1jtveo274EIoP7iaoiOqHY5lUbBUGGknwNM
-	5iE37Ml7cb8Qfl+5C9fcz6T9Ajbi4w21ChxBofDk1A==
-X-Google-Smtp-Source: AGHT+IFJkIGl3bY2Xlq63CmKGEYpGlFd0kMox2Ikbmn5tqvBTEGLeZPhoS9YDszOKT0dLkTHJU3Qe8+2l32oswYZYF0=
-X-Received: by 2002:a25:76cb:0:b0:db7:dad0:76ca with SMTP id
- r194-20020a2576cb000000b00db7dad076camr3075678ybc.102.1702317184840; Mon, 11
- Dec 2023 09:53:04 -0800 (PST)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BED1F495C0
+	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 17:54:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 320BEC433CB;
+	Mon, 11 Dec 2023 17:54:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702317279;
+	bh=VhOZevBYxgpOhWMJVI4ylnjAowG5TlTM6iqFjlI60UU=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=plAAiuvhB8/I/HPxx72m1izcox9S8pBBt35UwHguqzoFwLI8lT6AWPXQtjM3YcQ7e
+	 IQ6M798PQHv8fJtJ1S8MQHLSR7eqgOnXATQJkABGwXZC9M4TMXyLdWCheSQ68tLQ6t
+	 5G6cShOUObjmAXp+XyiJHSli+XrHhsHo9Vnk41+OslPs39tlRrHL8qI0Ice7X5eFhO
+	 nLlao7XQrvHBpGMlMh9NYa4lxLNi9kizl5dY9ljwkBqmiXYuqDRjwizQfimr/5sUrA
+	 YsgDBNJXVwJB8H10O91/mMutyhVKiVvBZBltG3Qc9CDRrwi5RRxwqj1FbzZgsgyUac
+	 YEzXT3JzDcT1g==
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2ca0715f0faso65886241fa.0;
+        Mon, 11 Dec 2023 09:54:39 -0800 (PST)
+X-Gm-Message-State: AOJu0Yyl9yoeUlXOU3iiFrv7jMvYxmeANyN7eQKlyjO71yvg+CR8uPy+
+	/e2DYvJuGCnkyQ0ua093GqpWFnQwVNb0kNKGBg==
+X-Google-Smtp-Source: AGHT+IGDP8YJSUf3mRcHf/dTgho4Et9I/62IVaAx+3E12Y8YlqdA24xaDa0UutL0Xy9xotdWR0raSnVdzI5CVc2b2us=
+X-Received: by 2002:a05:6512:32ac:b0:50b:e4a7:948 with SMTP id
+ q12-20020a05651232ac00b0050be4a70948mr2241742lfe.126.1702317277404; Mon, 11
+ Dec 2023 09:54:37 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230926194242.2732127-1-sjg@chromium.org> <20230926194242.2732127-2-sjg@chromium.org>
- <BN9PR11MB5483FF3039913334C7EA83E1E6AEA@BN9PR11MB5483.namprd11.prod.outlook.com>
- <CAMj1kXFG92NpL7T7YocOup0xLKyopt3MnSCp0RL8cLzozzJz7A@mail.gmail.com>
- <BN9PR11MB548303B09536EB1577472029E6B3A@BN9PR11MB5483.namprd11.prod.outlook.com>
- <CAPnjgZ36t8g7E=0MSJyaV8-QKv9RVYe47Jd5E=NU-mFM4LWBQA@mail.gmail.com>
- <CAMj1kXHAEeK7x2f13k_JV3Xcw61nNLasyvXQf+mKwKekQ48EpQ@mail.gmail.com>
- <BN9PR11MB548334E0DA6495C438FBFDE1E6BBA@BN9PR11MB5483.namprd11.prod.outlook.com>
- <BN9PR11MB548314DDE8D4C9503103D51CE6BBA@BN9PR11MB5483.namprd11.prod.outlook.com>
- <CAMj1kXHbM+ArLgNZgnmiok4gOfv6QLYxzyB9OCwfhEkJ2xGK_g@mail.gmail.com> <BN9PR11MB5483C2FBCD07DE61DCCDB523E6BCA@BN9PR11MB5483.namprd11.prod.outlook.com>
-In-Reply-To: <BN9PR11MB5483C2FBCD07DE61DCCDB523E6BCA@BN9PR11MB5483.namprd11.prod.outlook.com>
-From: Simon Glass <sjg@chromium.org>
-Date: Mon, 11 Dec 2023 10:52:20 -0700
-Message-ID: <CAPnjgZ0ngqCyC36QVAFWu07p+7SHNQhsuo0MYstTawnbDEEmLw@mail.gmail.com>
-Subject: Re: [PATCH v7 2/2] schemas: Add some common reserved-memory usages
-To: "Chiu, Chasel" <chasel.chiu@intel.com>
-Cc: Ard Biesheuvel <ardb@kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
-	Rob Herring <robh@kernel.org>, "Tan, Lean Sheng" <sheng.tan@9elements.com>, 
-	lkml <linux-kernel@vger.kernel.org>, Dhaval Sharma <dhaval@rivosinc.com>, 
-	"Brune, Maximilian" <maximilian.brune@9elements.com>, Yunhui Cui <cuiyunhui@bytedance.com>, 
-	"Dong, Guo" <guo.dong@intel.com>, Tom Rini <trini@konsulko.com>, 
-	ron minnich <rminnich@gmail.com>, "Guo, Gua" <gua.guo@intel.com>, 
-	"linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>, U-Boot Mailing List <u-boot@lists.denx.de>
+References: <20231116162330.1144983-1-jisheng.teoh@starfivetech.com> <20231116162330.1144983-2-jisheng.teoh@starfivetech.com>
+In-Reply-To: <20231116162330.1144983-2-jisheng.teoh@starfivetech.com>
+From: Rob Herring <robh+dt@kernel.org>
+Date: Mon, 11 Dec 2023 11:54:25 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+AMbwR64YwtugJ=WC-No0eBUejf3v4YbSB8h7x+uf3wA@mail.gmail.com>
+Message-ID: <CAL_Jsq+AMbwR64YwtugJ=WC-No0eBUejf3v4YbSB8h7x+uf3wA@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] perf: starfive: Add StarLink PMU support
+To: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
+Cc: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thomas Gleixner <tglx@linutronix.de>, Peter Zijlstra <peterz@infradead.org>, 
+	Ley Foon Tan <leyfoon.tan@starfivetech.com>, linux-arm-kernel@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On Thu, Nov 16, 2023 at 10:24=E2=80=AFAM Ji Sheng Teoh
+<jisheng.teoh@starfivetech.com> wrote:
+>
+> This patch adds support for StarFive's StarLink PMU (Performance
+> Monitor Unit). StarLink PMU integrates one or more CPU cores with
+> a shared L3 memory system. The PMU supports overflow interrupt,
+> up to 16 programmable 64bit event counters, and an independent
+> 64bit cycle counter. StarLink PMU is accessed via MMIO.
+>
+> Example Perf stat output:
+> [root@user]# perf stat -a -e /starfive_starlink_pmu/cycles/ \
+>         -e /starfive_starlink_pmu/read_miss/ \
+>         -e /starfive_starlink_pmu/read_hit/ \
+>         -e /starfive_starlink_pmu/release_request/  \
+>         -e /starfive_starlink_pmu/write_hit/ \
+>         -e /starfive_starlink_pmu/write_miss/ \
+>         -e /starfive_starlink_pmu/write_request/ \
+>         -e /starfive_starlink_pmu/writeback/ \
+>         -e /starfive_starlink_pmu/read_request/ \
+>         -- openssl speed rsa2048
+> Doing 2048 bits private rsa's for 10s: 5 2048 bits private RSA's in
+> 2.84s
+> Doing 2048 bits public rsa's for 10s: 169 2048 bits public RSA's in
+> 2.42s
+> version: 3.0.11
+> built on: Tue Sep 19 13:02:31 2023 UTC
+> options: bn(64,64)
+> CPUINFO: N/A
+>                   sign    verify    sign/s verify/s
+> rsa 2048 bits 0.568000s 0.014320s      1.8     69.8
+> /////////
+>  Performance counter stats for 'system wide':
+>
+>          649991998      starfive_starlink_pmu/cycles/
+>            1009690      starfive_starlink_pmu/read_miss/
+>            1079750      starfive_starlink_pmu/read_hit/
+>            2089405      starfive_starlink_pmu/release_request/
+>                129      starfive_starlink_pmu/write_hit/
+>                 70      starfive_starlink_pmu/write_miss/
+>                194      starfive_starlink_pmu/write_request/
+>             150080      starfive_starlink_pmu/writeback/
+>            2089423      starfive_starlink_pmu/read_request/
+>
+>       27.062755678 seconds time elapsed
+>
+> Signed-off-by: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
+> ---
+>  drivers/perf/Kconfig                 |   9 +
+>  drivers/perf/Makefile                |   1 +
+>  drivers/perf/starfive_starlink_pmu.c | 654 +++++++++++++++++++++++++++
+>  include/linux/cpuhotplug.h           |   1 +
+>  4 files changed, 665 insertions(+)
+>  create mode 100644 drivers/perf/starfive_starlink_pmu.c
+>
+> diff --git a/drivers/perf/Kconfig b/drivers/perf/Kconfig
+> index 273d67ecf6d2..41278742ef88 100644
+> --- a/drivers/perf/Kconfig
+> +++ b/drivers/perf/Kconfig
+> @@ -86,6 +86,15 @@ config RISCV_PMU_SBI
+>           full perf feature support i.e. counter overflow, privilege mode
+>           filtering, counter configuration.
+>
+> +config STARFIVE_STARLINK_PMU
+> +       depends on ARCH_STARFIVE
+> +       bool "StarFive StarLink PMU"
+> +       help
+> +          Provide support for StarLink Performance Monitor Unit.
+> +          StarLink Performance Monitor Unit integrates one or more cores=
+ with
+> +          an L3 memory system. The L3 cache events are added into perf e=
+vent
+> +          subsystem, allowing monitoring of various L3 cache perf events=
+.
+> +
+>  config ARM_PMU_ACPI
+>         depends on ARM_PMU && ACPI
+>         def_bool y
+> diff --git a/drivers/perf/Makefile b/drivers/perf/Makefile
+> index 16b3ec4db916..e2153aee1e04 100644
+> --- a/drivers/perf/Makefile
+> +++ b/drivers/perf/Makefile
+> @@ -15,6 +15,7 @@ obj-$(CONFIG_QCOM_L3_PMU) +=3D qcom_l3_pmu.o
+>  obj-$(CONFIG_RISCV_PMU) +=3D riscv_pmu.o
+>  obj-$(CONFIG_RISCV_PMU_LEGACY) +=3D riscv_pmu_legacy.o
+>  obj-$(CONFIG_RISCV_PMU_SBI) +=3D riscv_pmu_sbi.o
+> +obj-$(CONFIG_STARFIVE_STARLINK_PMU) +=3D starfive_starlink_pmu.o
+>  obj-$(CONFIG_THUNDERX2_PMU) +=3D thunderx2_pmu.o
+>  obj-$(CONFIG_XGENE_PMU) +=3D xgene_pmu.o
+>  obj-$(CONFIG_ARM_SPE_PMU) +=3D arm_spe_pmu.o
+> diff --git a/drivers/perf/starfive_starlink_pmu.c b/drivers/perf/starfive=
+_starlink_pmu.c
+> new file mode 100644
+> index 000000000000..272896ab1ade
+> --- /dev/null
+> +++ b/drivers/perf/starfive_starlink_pmu.c
+> @@ -0,0 +1,654 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * StarFive's StarLink PMU driver
+> + *
+> + * Copyright (C) 2023 StarFive Technology Co., Ltd.
+> + *
+> + * Author: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
+> + *
+> + */
+> +
+> +#define STARLINK_PMU_PDEV_NAME "starfive_starlink_pmu"
+> +#define pr_fmt(fmt)    STARLINK_PMU_PDEV_NAME ": " fmt
+> +
+> +#include <linux/bitmap.h>
+> +#include <linux/cpu_pm.h>
+> +#include <linux/io.h>
+> +#include <linux/irq.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
 
-On Tue, 28 Nov 2023 at 13:31, Chiu, Chasel <chasel.chiu@intel.com> wrote:
->
->
->
->
-> > -----Original Message-----
-> > From: Ard Biesheuvel <ardb@kernel.org>
-> > Sent: Tuesday, November 28, 2023 10:08 AM
-> > To: Chiu, Chasel <chasel.chiu@intel.com>
-> > Cc: Simon Glass <sjg@chromium.org>; devicetree@vger.kernel.org; Mark Rutland
-> > <mark.rutland@arm.com>; Rob Herring <robh@kernel.org>; Tan, Lean Sheng
-> > <sheng.tan@9elements.com>; lkml <linux-kernel@vger.kernel.org>; Dhaval
-> > Sharma <dhaval@rivosinc.com>; Brune, Maximilian
-> > <maximilian.brune@9elements.com>; Yunhui Cui <cuiyunhui@bytedance.com>;
-> > Dong, Guo <guo.dong@intel.com>; Tom Rini <trini@konsulko.com>; ron minnich
-> > <rminnich@gmail.com>; Guo, Gua <gua.guo@intel.com>; linux-
-> > acpi@vger.kernel.org; U-Boot Mailing List <u-boot@lists.denx.de>
-> > Subject: Re: [PATCH v7 2/2] schemas: Add some common reserved-memory
-> > usages
-> >
-> > You are referring to a 2000 line patch so it is not 100% clear where to look tbh.
-> >
-> >
-> > On Tue, 21 Nov 2023 at 19:37, Chiu, Chasel <chasel.chiu@intel.com> wrote:
-> > >
-> > >
-> > > In PR, UefiPayloadPkg/Library/FdtParserLib/FdtParserLib.c, line 268 is for
-> > related example code.
-> > >
-> >
-> > That refers to a 'memory-allocation' node, right? How does that relate to the
-> > 'reserved-memory' node?
-> >
-> > And crucially, how does this clarify in which way "runtime-code" and "runtime-
-> > data" reservations are being used?
-> >
-> > Since the very beginning of this discussion, I have been asking repeatedly for
-> > examples that describe the wider context in which these reservations are used.
-> > The "runtime" into runtime-code and runtime-data means that these regions have
-> > a special significance to the operating system, not just to the next bootloader
-> > stage. So I want to understand exactly why it is necessary to describe these
-> > regions in a way where the operating system might be expected to interpret this
-> > information and act upon it.
-> >
->
->
-> I think runtime code and data today are mainly for supporting UEFI runtime services - some BIOS functions for OS to utilize, OS may follow below ACPI spec to treat them as reserved range:
-> https://uefi.org/specs/ACPI/6.5/15_System_Address_Map_Interfaces.html#uefi-memory-types-and-mapping-to-acpi-address-range-types
->
-> Like I mentioned earlier, that PR is still in early phase and has not reflected all the required changes yet, but the idea is to build gEfiMemoryTypeInformationGuid HOB from FDT reserved-memory nodes.
-> UEFI generic Payload has DxeMain integrated, however Memory Types are platform-specific, for example, some platforms may need bigger runtime memory for their implementation, that's why we want such FDT reserved-memory node to tell DxeMain.
->
-> The Payload flow will be like this:
->   Payload creates built-in default MemoryTypes table ->
->     FDT reserved-memory node to override if required (this also ensures the same memory map cross boots so ACPI S4 works) ->
->       Build gEfiMemoryTypeInformationGuid HOB by "platfom specific" MemoryTypes Table ->
->         DxeMain/GCD to consume this MemoryTypes table and setup memory service ->
->           Install memory types table to UEFI system table.Configuration table...
->
-> Note: if Payload built-in default MemoryTypes table works fine for the platform, then FDT reserved-memory node does not need to provide such 'usage' compatible strings. (optional)
-> This FDT node could allow flexibility/compatibility without rebuilding Payload binary.
->
-> Not sure if I answered all your questions, please highlight which area you need more information.
+You probably don't need this header and the implicit includes it makes
+are dropped now in linux-next. Please check what you actually need and
+make them explicit.
 
-Any more thoughts on this? If not, I would like to see this patch
-applied, please.
-
-Regards,
-Simon
-
-
->
-> Thanks,
-> Chasel
->
->
-> >
-> > >
-> > > > -----Original Message-----
-> > > > From: Chiu, Chasel
-> > > > Sent: Tuesday, November 21, 2023 10:34 AM
-> > > > To: Ard Biesheuvel <ardb@kernel.org>; Simon Glass <sjg@chromium.org>
-> > > > Cc: devicetree@vger.kernel.org; Mark Rutland <mark.rutland@arm.com>;
-> > > > Rob Herring <robh@kernel.org>; Tan, Lean Sheng
-> > > > <sheng.tan@9elements.com>; lkml <linux-kernel@vger.kernel.org>;
-> > > > Dhaval Sharma <dhaval@rivosinc.com>; Brune, Maximilian
-> > > > <maximilian.brune@9elements.com>; Yunhui Cui
-> > > > <cuiyunhui@bytedance.com>; Dong, Guo <guo.dong@intel.com>; Tom Rini
-> > > > <trini@konsulko.com>; ron minnich <rminnich@gmail.com>; Guo, Gua
-> > > > <gua.guo@intel.com>; linux-acpi@vger.kernel.org; U-Boot Mailing List
-> > > > <u- boot@lists.denx.de>; Chiu, Chasel <chasel.chiu@intel.com>
-> > > > Subject: RE: [PATCH v7 2/2] schemas: Add some common reserved-memory
-> > > > usages
-> > > >
-> > > >
-> > > > Hi Ard,
-> > > >
-> > > > Here is the POC PR for your reference:
-> > > > https://github.com/tianocore/edk2/pull/4969/files#diff-
-> > > >
-> > ccebabae5274b21634723a2111ee0de11bed6cfe8cb206ef9e263d9c5f926a9cR26
-> > > > 8
-> > > > Please note that this PR is still in early phase and expected to
-> > > > have significant changes.
-> > > >
-> > > > The idea is that payload entry will create
-> > > > gEfiMemoryTypeInformationGuid HOB with payload default memory types
-> > > > and allow FDT to override if correspond node present.
-> > > > Please let me know if you have questions or suggestions.
-> > > >
-> > > > Thanks,
-> > > > Chasel
-> > > >
-> > > >
-> > > > > -----Original Message-----
-> > > > > From: Ard Biesheuvel <ardb@kernel.org>
-> > > > > Sent: Tuesday, November 21, 2023 8:42 AM
-> > > > > To: Simon Glass <sjg@chromium.org>
-> > > > > Cc: Chiu, Chasel <chasel.chiu@intel.com>;
-> > > > > devicetree@vger.kernel.org; Mark Rutland <mark.rutland@arm.com>;
-> > > > > Rob Herring <robh@kernel.org>; Tan, Lean Sheng
-> > > > > <sheng.tan@9elements.com>; lkml <linux-kernel@vger.kernel.org>;
-> > > > > Dhaval Sharma <dhaval@rivosinc.com>; Brune, Maximilian
-> > > > > <maximilian.brune@9elements.com>; Yunhui Cui
-> > > > > <cuiyunhui@bytedance.com>; Dong, Guo <guo.dong@intel.com>; Tom
-> > > > > Rini <trini@konsulko.com>; ron minnich <rminnich@gmail.com>; Guo,
-> > > > > Gua <gua.guo@intel.com>; linux- acpi@vger.kernel.org; U-Boot
-> > > > > Mailing List <u-boot@lists.denx.de>
-> > > > > Subject: Re: [PATCH v7 2/2] schemas: Add some common
-> > > > > reserved-memory usages
-> > > > >
-> > > > > On Mon, 20 Nov 2023 at 21:12, Simon Glass <sjg@chromium.org> wrote:
-> > > > > >
-> > > > > > Hi,
-> > > > > >
-> > > > > > On Mon, 13 Nov 2023 at 11:09, Chiu, Chasel <chasel.chiu@intel.com>
-> > wrote:
-> > > > > > >
-> > > > > > >
-> > > > > > > Hi Ard,
-> > > > > > >
-> > > > > > > Please see my reply below inline.
-> > > > > > >
-> > > > > > > Thanks,
-> > > > > > > Chasel
-> > > > > > >
-> > > > > > >
-> > > > > > > > -----Original Message-----
-> > > > > > > > From: Ard Biesheuvel <ardb@kernel.org>
-> > > > > > > > Sent: Saturday, November 11, 2023 3:04 AM
-> > > > > > > > To: Chiu, Chasel <chasel.chiu@intel.com>
-> > > > > > > > Cc: Simon Glass <sjg@chromium.org>;
-> > > > > > > > devicetree@vger.kernel.org; Mark Rutland
-> > > > > > > > <mark.rutland@arm.com>; Rob Herring <robh@kernel.org>; Tan,
-> > > > > > > > Lean Sheng <sheng.tan@9elements.com>; lkml
-> > > > > > > > <linux-kernel@vger.kernel.org>; Dhaval Sharma
-> > > > > > > > <dhaval@rivosinc.com>; Brune, Maximilian
-> > > > > > > > <maximilian.brune@9elements.com>; Yunhui Cui
-> > > > > > > > <cuiyunhui@bytedance.com>; Dong, Guo <guo.dong@intel.com>;
-> > > > > > > > Tom Rini <trini@konsulko.com>; ron minnich
-> > > > > > > > <rminnich@gmail.com>; Guo, Gua <gua.guo@intel.com>; linux-
-> > > > > > > > acpi@vger.kernel.org; U-Boot Mailing List
-> > > > > > > > <u-boot@lists.denx.de>
-> > > > > > > > Subject: Re: [PATCH v7 2/2] schemas: Add some common
-> > > > > > > > reserved-memory usages
-> > > > > > > >
-> > > > > > > > On Sat, 11 Nov 2023 at 04:20, Chiu, Chasel
-> > > > > > > > <chasel.chiu@intel.com>
-> > > > wrote:
-> > > > > > > > >
-> > > > > > > > >
-> > > > > > > > > Just sharing some usage examples from UEFI/EDK2 scenario.
-> > > > > > > > > To support ACPI S4/Hibernation, memory map must be
-> > > > > > > > > consistent before entering and after resuming from S4, in
-> > > > > > > > > this case payload may need to know previous memory map
-> > > > > > > > > from bootloader (currently generic payload cannot access
-> > > > > > > > > platform/bootloader specific non-volatile data, thus could
-> > > > > > > > > not save/restore memory map
-> > > > > > > > > information)
-> > > > > > > >
-> > > > > > > > So how would EDK2 reconstruct the entire EFI memory map from
-> > > > > > > > just these unannotated /reserved-memory nodes? The EFI
-> > > > > > > > memory map contains much more information than that, and all
-> > > > > > > > of it has to match the pre-hibernate situation, right? Can you given an
-> > example?
-> > > > > > >
-> > > > > > >
-> > > > > > > Here we listed only typically memory types that may change
-> > > > > > > cross different
-> > > > > platforms.
-> > > > > > > Reserved memory type already can be handled by reserved-memory
-> > > > > > > node,
-> > > > > and rest of the types usually no need to change cross platforms
-> > > > > thus currently we could rely on default in generic payload.
-> > > > > > > In the future if we see a need to add new memory types we will
-> > > > > > > discuss and
-> > > > > add it to FDT schema.
-> > > > > > >
-> > > > > > >
-> > > > > > >
-> > > > > > > >
-> > > > > > > > > Another usage is to support binary model which generic
-> > > > > > > > > payload is a prebuilt
-> > > > > > > > binary compatible for all platforms/configurations, however
-> > > > > > > > the payload default memory map might not always work for all
-> > > > > > > > the configurations and we want to allow bootloader to
-> > > > > > > > override payload default
-> > > > > memory map without recompiling.
-> > > > > > > > >
-> > > > > > > >
-> > > > > > > > Agreed. But can you explain how a EDK2 payload might make
-> > > > > > > > meaningful use of 'runtime-code' regions provided via DT  by
-> > > > > > > > the
-> > > > > > > > non-EDK2 platform init? Can you give an example?
-> > > > > > >
-> > > > > > >
-> > > > > > > Runtime-code/data is used by UEFI payload for booting UEFI OS
-> > > > > > > which
-> > > > > required UEFI runtime services.
-> > > > > > > Platform Init will select some regions from the usable memory
-> > > > > > > and assign it to
-> > > > > runtime-code/data for UPL to consume. Or assign same
-> > > > > runtime-code/data from previous boot.
-> > > > > > > If UEFI OS is not supported, PlatformInit may not need to
-> > > > > > > provide runtime-code/data regions to payload. (always
-> > > > > > > providing runtime-code/data should be supported too)
-> > > > > > >
-> > > > > > >
-> > > > > > > >
-> > > > > > > > > Under below assumption:
-> > > > > > > > >         FDT OS impact has been evaluated and taken care by
-> > > > > > > > > relevant
-> > > > > > > > experts/stakeholders.
-> > > > > > > > > Reviewed-by: Chasel Chiu <chasel.chiu@intel.com>
-> > > > > > > > >
-> > > > > > > >
-> > > > > > > > I am sorry but I don't know what 'FDT OS impact' means. We
-> > > > > > > > are talking about a firmware-to-firmware abstraction that
-> > > > > > > > has the potential to leak into the OS visible interface.
-> > > > > > > >
-> > > > > > > > I am a maintainer in the Tianocore project myself, so it
-> > > > > > > > would help if you could explain who these relevant experts
-> > > > > > > > and stakeholders are. Was this discussed on the edk2-devel
-> > > > > > > > mailing list? If so, apologies for missing it but I may not have been cc'ed
-> > perhaps?
-> > > > > > >
-> > > > > > >
-> > > > > > >
-> > > > > > >
-> > > > > > > I'm not familiar with FDT OS, also I do not know if who from
-> > > > > > > edk2-devel were
-> > > > > supporting FDT OS, I think Simon might be able to connect FDT OS
-> > > > > experts/stakeholders.
-> > > > > > > We are mostly focusing on payload firmware phase
-> > > > > > > implementation in
-> > > > > > > edk2 (and other payloads too), however, since we have aligned
-> > > > > > > the payload FDT and OS FDT months ago, I'm assuming FDT OS
-> > > > > > > impact must be there and we need (or already done?) FDT OS
-> > > > > > > experts to support it. (again, maybe Simon could share more
-> > > > > > > information about FDT OS)
-> > > > > > >
-> > > > > > > In edk2 such FDT schema is UefiPayloadPkg internal usage only
-> > > > > > > and payload
-> > > > > entry will convert FDT into HOB thus we expected the most of the
-> > > > > edk2 generic code are no-touch/no impact, that's why we only had
-> > > > > small group
-> > > > > (UefiPayloadPkg) discussion.
-> > > > > > > Ard, if you are aware of any edk2 code that's for supporting
-> > > > > > > FDT OS, please let
-> > > > > us know and we can discuss if those code were impacted or not.
-> > > > > >
-> > > > > > We discussed this and just to clarify, 'FDT OS' is not a special
-> > > > > > OS, it is just Linux.
-> > > > > >
-> > > > > > So, with the above, are we all on the same page? Can the patch
-> > > > > > be applied, perhaps? If not, what other discussion is needed?
-> > > > > >
-> > > > >
-> > > > > An example of how a platform-init/payload combination would make
-> > > > > meaningful use of such runtime-code/data regions.
+Rob
 
