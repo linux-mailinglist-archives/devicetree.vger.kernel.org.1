@@ -1,141 +1,163 @@
-Return-Path: <devicetree+bounces-24016-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24017-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AE3180D4C1
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 18:57:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD7A280D4C8
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 18:58:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 04F8D281963
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 17:57:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD81B1C208D8
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 17:58:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 252004EB5A;
-	Mon, 11 Dec 2023 17:57:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47FC64F1E0;
+	Mon, 11 Dec 2023 17:58:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FyOzqIsV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ym5MwTGe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 044AC495C0;
-	Mon, 11 Dec 2023 17:57:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D215EC433CA;
-	Mon, 11 Dec 2023 17:57:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702317425;
-	bh=27X4w9e1qWEYMIbF+OREzOmYAdGnUayZxwtJ7vuH6tI=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=FyOzqIsVzgmL7GusKSzeVR5GTJZAuDw6Hs8BlqA61e29Ph9LvBHnfaoUW3QGjBtLV
-	 HibH3MHj3zGIkTX6UPN5ml1EUEdH+CJAq/HIwWoX4Z4ogiK33OgnF0hf97VODkjb+W
-	 0REqg27TRYFcVIjbVop/AtpUS8FvEhWVoQOkw0x7mMkCAYYez+omQzVDA6FZJlBRej
-	 2sXTNlpbS0hVz8Qyv/ZEIQfdHPb/DOF4ZUu5qP69TMTKmHUZrRPVgobsARIPpudp8u
-	 GZSI6dmXiso0T9SbLadr2vaRUeu5SB/OsZL4qsAgyupO2P7/deIXOktFti9kJ5HplU
-	 m78dpaYYpEwKQ==
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-50bfa5a6cffso5418938e87.0;
-        Mon, 11 Dec 2023 09:57:05 -0800 (PST)
-X-Gm-Message-State: AOJu0YxjMKW6QQ0VupxdbQKexiQX8H6o5B9sGEsGXRe538Xx+ZmEoD8D
-	CmSiRdsRPd46HoGbpiK8szMIs+1OlDbAyCyPNQ==
-X-Google-Smtp-Source: AGHT+IFMrHyHRF+aoP9bK6xkMRkJgXmBAt5pmRe09xl8SvC/OWvXlucg2leD7g4aC+cEZFTOSwyflLvEBn2qh2/Nxrk=
-X-Received: by 2002:a05:6512:2806:b0:50c:2254:9f58 with SMTP id
- cf6-20020a056512280600b0050c22549f58mr2216119lfb.11.1702317424052; Mon, 11
- Dec 2023 09:57:04 -0800 (PST)
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF80FCD;
+	Mon, 11 Dec 2023 09:57:56 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-40b5155e154so55892165e9.3;
+        Mon, 11 Dec 2023 09:57:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702317475; x=1702922275; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=wYKSJ2l3/7Ewha/gT1ScFG6FBTutwPomIDS5R6uY778=;
+        b=Ym5MwTGeE8YE6Wa29SglxoszQ4v5RFUclnKE6xTGGnwHq+UE8ZWFpYbUr1docIiy1V
+         fEK2v0Iu94XBPVfB6PlI+6H0omRdby8HJgy+GVrxNVVyck9a35ZzoEq/vOLcz9O/kLjb
+         D+KKS5CuEdDVGb2J6SSHkgmh/ACoo7f0J1ONfDStEWW4/vCyLm7SnHRx7oIi4xK6sGwp
+         qCad/uKrFTUsZek4MxV4VUTqFhCE7HhPawBNbV1qz2a3RgSAjowaF2H/XxZdzKDukIo3
+         fhbTPA4brHiK+zah7y+6b2saHe5ellncJO0CphyS0G+B9pZ/9GMSsXKPw8EEUmimkTCn
+         ALqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702317475; x=1702922275;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wYKSJ2l3/7Ewha/gT1ScFG6FBTutwPomIDS5R6uY778=;
+        b=w4Io3RETbttqm6IMuDDplJPnDqA7qTPcv+Cvm6kTQnNpmcl6uGYB2jPxbhnzR7EwaW
+         mQ98OGqAGFK+0i0wmcOOkpFK1HeQ3g4BkqoON/4mSaye1szd/m3wsoxbkS4o/iC1I404
+         /NMQjege5T2d0buYQIfSjE+WZlvZNvfsEuL3RW8Se+oBKP+Fvk4NBBouKKrQiGC2PVCv
+         OJ1wyn1BuAUwkYhK9dOj3cr1Ib6wL1u64PeCQITNSUBgpH/o/IFXr2wUmGmmOTAWdwL/
+         8QEp+mxC1bo/btLYDgQHAbOUM6240p41tioZDBlsLLludy5aUZr5p5MC5k8wODRQIn1S
+         TVWQ==
+X-Gm-Message-State: AOJu0YypnylH1JR0/pkEJRnTsRFQbS/OYA4ioWVQz/cU0xSiyLwpL2yh
+	nu2C/IkQkRLvDwxxOjXOUE2eDLITztE=
+X-Google-Smtp-Source: AGHT+IEg3L3pPefnALqwZK+c/kYFSt7/PmeOBRRMNF0qjacTIuHa3pTrzWGFXCqoTZPCv8mt9vjefA==
+X-Received: by 2002:a05:600c:5248:b0:40c:3e0a:692e with SMTP id fc8-20020a05600c524800b0040c3e0a692emr1989294wmb.232.1702317474580;
+        Mon, 11 Dec 2023 09:57:54 -0800 (PST)
+Received: from Ansuel-xps. (93-34-89-13.ip49.fastwebnet.it. [93.34.89.13])
+        by smtp.gmail.com with ESMTPSA id iv19-20020a05600c549300b0040b397787d3sm10147623wmb.24.2023.12.11.09.57.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Dec 2023 09:57:53 -0800 (PST)
+Message-ID: <65774da1.050a0220.bd430.2025@mx.google.com>
+X-Google-Original-Message-ID: <ZXdNnsqUxlecXIF8@Ansuel-xps.>
+Date: Mon, 11 Dec 2023 18:57:50 +0100
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next PATCH 1/2] dt-bindings: Document QCA808x PHYs
+References: <20231209014828.28194-1-ansuelsmth@gmail.com>
+ <242759d9-327d-4fde-b2a0-24566cf5bf25@lunn.ch>
+ <65772f36.050a0220.678b6.ef84@mx.google.com>
+ <74b7fc4f-88d2-41c0-8d98-6530f0fc2d70@lunn.ch>
+ <657744b5.050a0220.dfa0d.11a4@mx.google.com>
+ <2698eda5-af84-494f-844b-2ea87aa510d2@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231129065305.70364-1-guomengqi3@huawei.com> <20231129065305.70364-2-guomengqi3@huawei.com>
-In-Reply-To: <20231129065305.70364-2-guomengqi3@huawei.com>
-From: Rob Herring <robh+dt@kernel.org>
-Date: Mon, 11 Dec 2023 11:56:50 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+y8VsCLBgCsMPMeAbSgPvLs_iHqa4F6S=Cdh81tnjxcg@mail.gmail.com>
-Message-ID: <CAL_Jsq+y8VsCLBgCsMPMeAbSgPvLs_iHqa4F6S=Cdh81tnjxcg@mail.gmail.com>
-Subject: Re: [PATCH RESEND v6 1/2] dmaengine: Add HiSilicon Ascend SDMA engine support
-To: Guo Mengqi <guomengqi3@huawei.com>
-Cc: vkoul@kernel.org, dmaengine@vger.kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2698eda5-af84-494f-844b-2ea87aa510d2@lunn.ch>
 
-On Wed, Nov 29, 2023 at 12:57=E2=80=AFAM Guo Mengqi <guomengqi3@huawei.com>=
- wrote:
+On Mon, Dec 11, 2023 at 06:49:02PM +0100, Andrew Lunn wrote:
+> On Mon, Dec 11, 2023 at 06:19:46PM +0100, Christian Marangi wrote:
+> > On Mon, Dec 11, 2023 at 04:54:12PM +0100, Andrew Lunn wrote:
+> > > > Mhhh with a generic property and LED core or phylib handling it... How
+> > > > it would work applying that setting on PHY side?
+> > > 
+> > > Add a .led_set_polarity callback to the PHY driver structure?
+> > > 
+> > > Take a look at other LED drivers. Does anything similar already exist?
+> > > It is unlikely that PHYs are the only sort of LED to have a polarity.
+> > >
+> > 
+> > Interesting topic... With a quick grep on Documentation for polarity of
+> > high, I can't find any use of it...
+> 
+> As i said, active-high is the default. So there is no need to specify
+> it. But if you look in Documentation/devicetree/binding/leds for
+> 'active-low' you will find a few examples.
 >
-> This patch adds a driver for HiSilicon Ascend SDMA engine.
->
-> The DMA controller can do transfers between device and memory
-> or memory to memory. Currently, the controller only support
-> single copy. Drives can pass a substreamid to the DMA engine,
-> which will enable transfers in user-space addresses.
->
-> Signed-off-by: Guo Mengqi <guomengqi3@huawei.com>
-> ---
->  drivers/dma/Kconfig            |   9 +
->  drivers/dma/Makefile           |   1 +
->  drivers/dma/hisi-ascend-sdma.c | 788 +++++++++++++++++++++++++++++++++
->  3 files changed, 798 insertions(+)
->  create mode 100644 drivers/dma/hisi-ascend-sdma.c
->
-> diff --git a/drivers/dma/Kconfig b/drivers/dma/Kconfig
-> index 70ba506dabab..974a00e528ae 100644
-> --- a/drivers/dma/Kconfig
-> +++ b/drivers/dma/Kconfig
-> @@ -244,6 +244,15 @@ config FSL_RAID
->           the capability to offload memcpy, xor and pq computation
->           for raid5/6.
->
-> +config HISI_ASCEND_SDMA
-> +       tristate "HiSilicon Ascend SDMA Engine support"
-> +       depends on ARCH_HISI && ARM64 || COMPILE_TEST
-> +       depends on IOMMU_API && OF && IOMMU_SVA
-> +       select DMA_ENGINE
-> +       select DMA_VIRTUAL_CHANNELS
-> +       help
-> +         Enable support for HiSilicon Ascend SDMA engine.
-> +
->  config HISI_DMA
->         tristate "HiSilicon DMA Engine support"
->         depends on ARCH_HISI || COMPILE_TEST
-> diff --git a/drivers/dma/Makefile b/drivers/dma/Makefile
-> index 83553a97a010..0b736c54407b 100644
-> --- a/drivers/dma/Makefile
-> +++ b/drivers/dma/Makefile
-> @@ -82,6 +82,7 @@ obj-$(CONFIG_XGENE_DMA) +=3D xgene-dma.o
->  obj-$(CONFIG_ST_FDMA) +=3D st_fdma.o
->  obj-$(CONFIG_FSL_DPAA2_QDMA) +=3D fsl-dpaa2-qdma/
->  obj-$(CONFIG_INTEL_LDMA) +=3D lgm/
-> +obj-$(CONFIG_HISI_ASCEND_SDMA) +=3D hisi-ascend-sdma.o
->
->  obj-y +=3D mediatek/
->  obj-y +=3D qcom/
-> diff --git a/drivers/dma/hisi-ascend-sdma.c b/drivers/dma/hisi-ascend-sdm=
-a.c
-> new file mode 100644
-> index 000000000000..74560b1fdca5
-> --- /dev/null
-> +++ b/drivers/dma/hisi-ascend-sdma.c
-> @@ -0,0 +1,788 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/* Copyright(c) 2019-2022 HiSilicon Limited. */
-> +
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/dmaengine.h>
-> +#include <linux/slab.h>
-> +#include "virt-dma.h"
-> +#include <linux/init.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/of.h>
-> +#include <linux/of_address.h>
-> +#include <linux/of_device.h>
 
-You probably don't need this header and the implicit includes it makes
-are dropped now in linux-next. Please check what you actually need and
-make them explicit.
+Yes I was searching more and I just notice active-low and led-active-low
+usage for bcm6358.
 
-of_address.h is also probably not needed. Double check.
+> > Also main problem is that the thing is controlled globally and not per
+> > LED. (can be handled internally to the driver with some priv and check
+> > magic)
+> 
+> Ah, missed that. Marvell PHYs have polarity per LED.
+> 
+> It would be better to describe this correctly, so one property at a
+> higher level. We can then in the future add an 'active-low' property
+> per PHY.
+> 
+> > Is it worth to impemement the additional API to control this? And I
+> > guess a egenric binding should be added to ethernet-phy? Or should it be
+> > added to LEDs?
+> 
+> Since it is above individual LEDs, i would not add it to the generic
+> LED binding. But it could go inside the leds object of
+> ethernet-phy.yaml.
+> 
+>            leds {
+>                 #address-cells = <1>;
+>                 #size-cells = <0>;
+> 
+> 		active-low;
+> 
+>                 led@0 {
+>                     reg = <0>;
+>                     color = <LED_COLOR_ID_WHITE>;
+>                     function = LED_FUNCTION_LAN;
+>                     default-state = "keep";
+>                 };
+>
 
-Rob
+Ok! And I guess the additional API will (initially to be later expanded
+for other usage?) take this value and call the set polarity based on
+this correct? 
+
+bool active_low = of_property_read_bool(leds_node, "active-low");
+
+.led_set_polarity(struct phy_device *phydev, bool active_low);
+
+
+Maybe a more flexible approach might be scan for both. (either in leds
+node or in the led subnode)
+
+.led_set_polarity(struct phy_device *phydev, int index, bool active_low);
+
+Where index is -1 if it's global and the led index if it's in the led
+node?
+
+PHY driver will know what to ignore/use as I can't immagine to have a
+PHY that have both global and per LED polarity. What do you think?
+
+-- 
+	Ansuel
 
