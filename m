@@ -1,133 +1,183 @@
-Return-Path: <devicetree+bounces-23958-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23959-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42D9980D0B8
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 17:13:56 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B51680D0F0
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 17:16:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AE290B20E36
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 16:13:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3D9321C21511
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 16:16:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C40D4C602;
-	Mon, 11 Dec 2023 16:13:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DF2C4CB2B;
+	Mon, 11 Dec 2023 16:16:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="PgGsrP7Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2FBA98E;
-	Mon, 11 Dec 2023 08:13:45 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 44658FEC;
-	Mon, 11 Dec 2023 08:14:31 -0800 (PST)
-Received: from [10.57.85.194] (unknown [10.57.85.194])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7959B3F738;
-	Mon, 11 Dec 2023 08:13:39 -0800 (PST)
-Message-ID: <ae904525-66e7-4702-925d-0d42481cd354@arm.com>
-Date: Mon, 11 Dec 2023 16:13:38 +0000
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B904A10A;
+	Mon, 11 Dec 2023 08:16:19 -0800 (PST)
+Received: from localhost.localdomain (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 10EA9C58;
+	Mon, 11 Dec 2023 17:15:32 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1702311332;
+	bh=rOpcjX3AkytQEmoVxgtaf0suJRVXCs4uEXxd2+tGuWU=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=PgGsrP7ZTiZFcWODuJMPvo83CAvLvPXbFgcfiR2WEGpW7EOIUxMZGeE2peRPzUhec
+	 Y1azIQInY0Khazw+LQtBLsaO9suWqxlVM3QdpYgcw2XvM+eJu2Dxwaat0Wq4B78zqE
+	 GOmNR15Rc9FrXK9aC56SMPU21DyKMFLNeAgPcsz8=
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+	linux-media@vger.kernel.org,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	devicetree@vger.kernel.org,
+	Lee Jackson <lee.jackson@arducam.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v6 1/2] media: dt-bindings: Add OmniVision OV64A40
+Date: Mon, 11 Dec 2023 17:16:04 +0100
+Message-ID: <20231211161605.52601-2-jacopo.mondi@ideasonboard.com>
+X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20231211161605.52601-1-jacopo.mondi@ideasonboard.com>
+References: <20231211161605.52601-1-jacopo.mondi@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/7] ACPI/IORT: Handle memory address size limits as
- limits
-Content-Language: en-GB
-To: Mark Rutland <mark.rutland@arm.com>, Will Deacon <will@kernel.org>
-Cc: Joerg Roedel <joro@8bytes.org>, Christoph Hellwig <hch@lst.de>,
- Vineet Gupta <vgupta@kernel.org>, Russell King <linux@armlinux.org.uk>,
- Catalin Marinas <catalin.marinas@arm.com>,
- Huacai Chen <chenhuacai@kernel.org>, WANG Xuerui <kernel@xen0n.name>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, Hanjun Guo
- <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@arm.com>,
- "K. Y. Srinivasan" <kys@microsoft.com>,
- Haiyang Zhang <haiyangz@microsoft.com>, Wei Liu <wei.liu@kernel.org>,
- Dexuan Cui <decui@microsoft.com>,
- Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
- David Woodhouse <dwmw2@infradead.org>, Lu Baolu <baolu.lu@linux.intel.com>,
- Niklas Schnelle <schnelle@linux.ibm.com>,
- Matthew Rosato <mjrosato@linux.ibm.com>,
- Gerald Schaefer <gerald.schaefer@linux.ibm.com>,
- Jean-Philippe Brucker <jean-philippe@linaro.org>,
- Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
- Marek Szyprowski <m.szyprowski@samsung.com>, Jason Gunthorpe <jgg@ziepe.ca>,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-acpi@vger.kernel.org, iommu@lists.linux.dev, devicetree@vger.kernel.org
-References: <cover.1701268753.git.robin.murphy@arm.com>
- <2ae6199a9cf035c1defd42e48675b827f41cdc95.1701268753.git.robin.murphy@arm.com>
- <20231211132757.GE25681@willie-the-truck>
- <91b22090-485f-49c9-a536-849fd7f92f8e@arm.com>
- <20231211153023.GA26048@willie-the-truck>
- <ZXctTJ-q9e1FPBhH@FVFF77S0Q05N.cambridge.arm.com>
-From: Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <ZXctTJ-q9e1FPBhH@FVFF77S0Q05N.cambridge.arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 2023-12-11 3:39 pm, Mark Rutland wrote:
-> On Mon, Dec 11, 2023 at 03:30:24PM +0000, Will Deacon wrote:
->> On Mon, Dec 11, 2023 at 03:01:27PM +0000, Robin Murphy wrote:
->>> On 2023-12-11 1:27 pm, Will Deacon wrote:
->>>> On Wed, Nov 29, 2023 at 05:43:00PM +0000, Robin Murphy wrote:
->>>>> Return the Root Complex/Named Component memory address size limit as an
->>>>> inclusive limit value, rather than an exclusive size.  This saves us
->>>>> having to special-case 64-bit overflow, and simplifies our caller too.
->>>>>
->>>>> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
->>>>> ---
->>>>>    drivers/acpi/arm64/dma.c  |  9 +++------
->>>>>    drivers/acpi/arm64/iort.c | 18 ++++++++----------
->>>>>    include/linux/acpi_iort.h |  4 ++--
->>>>>    3 files changed, 13 insertions(+), 18 deletions(-)
->>>>
->>>> [...]
->>>>
->>>>> diff --git a/drivers/acpi/arm64/iort.c b/drivers/acpi/arm64/iort.c
->>>>> index 6496ff5a6ba2..eb64d8e17dd1 100644
->>>>> --- a/drivers/acpi/arm64/iort.c
->>>>> +++ b/drivers/acpi/arm64/iort.c
->>>>> @@ -1367,7 +1367,7 @@ int iort_iommu_configure_id(struct device *dev, const u32 *input_id)
->>>>>    { return -ENODEV; }
->>>>>    #endif
->>>>> -static int nc_dma_get_range(struct device *dev, u64 *size)
->>>>> +static int nc_dma_get_range(struct device *dev, u64 *limit)
->>>>>    {
->>>>>    	struct acpi_iort_node *node;
->>>>>    	struct acpi_iort_named_component *ncomp;
->>>>> @@ -1384,13 +1384,12 @@ static int nc_dma_get_range(struct device *dev, u64 *size)
->>>>>    		return -EINVAL;
->>>>>    	}
->>>>> -	*size = ncomp->memory_address_limit >= 64 ? U64_MAX :
->>>>> -			1ULL<<ncomp->memory_address_limit;
->>>>> +	*limit = (1ULL << ncomp->memory_address_limit) - 1;
->>>>
->>>> The old code handled 'ncomp->memory_address_limit >= 64' -- why is it safe
->>>> to drop that? You mention it in the cover letter, so clearly I'm missing
->>>> something!
->>>
->>> Because an unsigned shift by 64 or more generates 0 (modulo 2^64), thus
->>> subtracting 1 results in the correct all-bits-set value for an inclusive
->>> 64-bit limit.
->>
->> Oh, I'd have thought you'd have gotten one of those "left shift count >=
->> width of type" warnings if you did that.
-> 
-> I think you'll get a UBSAN splat, but here the compiler doesn't know what
-> 'ncomp->memory_address_limit' will be and so doesn't produce a compile-time
-> warning.
-> 
-> Regardless, it's undefined behaviour.
+Add bindings for OmniVision OV64A40.
 
-Urgh, you're right... I double-checked 6.5.7.4 in the standard but 
-managed to miss 6.5.7.3. So yeah, even though "4 << 62" or "2 << 63" are 
-well-defined here, "1  << 64" isn't, dang. Thanks, funky old ISAs which 
-did weird things for crazy large shifts and have no relevance to this 
-code :(
+Co-developed-by: Lee Jackson <lee.jackson@arducam.com>
+Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Cheers,
-Robin.
+---
+v5->v6:
+- Make link-frequencies mandatory as requested by Sakari
+---
+
+ .../bindings/media/i2c/ovti,ov64a40.yaml      | 101 ++++++++++++++++++
+ 1 file changed, 101 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov64a40.yaml
+
+diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov64a40.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov64a40.yaml
+new file mode 100644
+index 000000000000..659c41a2ce7c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov64a40.yaml
+@@ -0,0 +1,101 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/ovti,ov64a40.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: OmniVision OV64A40 Image Sensor
++
++maintainers:
++  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
++
++allOf:
++  - $ref: /schemas/media/video-interface-devices.yaml#
++
++properties:
++  compatible:
++    const: ovti,ov64a40
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  avdd-supply:
++    description: Analog voltage supply, 2.8 volts
++
++  dvdd-supply:
++    description: Digital core voltage supply, 1.1 volts
++
++  dovdd-supply:
++    description: Digital I/O voltage supply, 1.8 volts
++
++  powerdown-gpios:
++    maxItems: 1
++
++  reset-gpios:
++    maxItems: 1
++
++  port:
++    $ref: /schemas/graph.yaml#/$defs/port-base
++    additionalProperties: false
++
++    properties:
++      endpoint:
++        $ref: /schemas/media/video-interfaces.yaml#
++        additionalProperties: false
++
++        properties:
++          bus-type:
++            enum:
++              - 1 # MIPI CSI-2 C-PHY
++              - 4 # MIPI CSI-2 D-PHY
++          data-lanes: true
++          link-frequencies: true
++          clock-noncontinuous: true
++          remote-endpoint: true
++
++        required:
++          - link-frequencies
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - port
++
++unevaluatedProperties: false
++
++examples:
++  - |
++      #include <dt-bindings/gpio/gpio.h>
++
++      i2c {
++          #address-cells = <1>;
++          #size-cells = <0>;
++
++          camera@36 {
++              compatible = "ovti,ov64a40";
++              reg = <0x36>;
++              clocks = <&camera_clk>;
++              dovdd-supply = <&vgen4_reg>;
++              avdd-supply = <&vgen3_reg>;
++              dvdd-supply = <&vgen2_reg>;
++              powerdown-gpios = <&gpio1 9 GPIO_ACTIVE_HIGH>;
++              reset-gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
++              rotation = <180>;
++              orientation = <2>;
++
++              port {
++                  endpoint {
++                      remote-endpoint = <&mipi_csi2_in>;
++                      bus-type = <4>;
++                      data-lanes = <1 2 3 4>;
++                      link-frequencies = /bits/ 64 <456000000>;
++                  };
++              };
++          };
++      };
++
++...
+--
+2.41.0
+
 
