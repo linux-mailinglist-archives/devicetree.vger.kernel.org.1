@@ -1,107 +1,176 @@
-Return-Path: <devicetree+bounces-23762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23763-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31B4F80C437
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 10:16:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A61080C440
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 10:17:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E0952281750
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 09:16:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 24A03281428
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 09:17:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F22372111A;
-	Mon, 11 Dec 2023 09:16:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16A262110F;
+	Mon, 11 Dec 2023 09:17:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GZloR6y+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VERLiVu8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F2EEF2
-	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 01:16:20 -0800 (PST)
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-40c3f68b79aso19183175e9.0
-        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 01:16:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702286178; x=1702890978; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SjMxzyRwkdL/2AYzzLiQnqwjdltPGTpYZH9r0TugZAM=;
-        b=GZloR6y+M7Z60APO3QUOW4xIm0X/Jg0uiJ411BfyVn4bRErMDmMsq4MiZhbPDVFukb
-         jUNXZ0XxohOaS1kSIrpgKPJ/xAYiJrY3BuafxqecWp0PvL8U1s7FtPw5+KCFe5L+mL15
-         DAd4EpLPgUGl1kCZMxgiD4/j0HIqbzjHNWjmTjxUdcwq74MPFBONB14maZw3a9//BiME
-         0WkwEgpGlpj1y9412F2aVV03eR6jeJoqj6nVs0s2ArtQwyuvYxvpgNGVpHBXPnZCUzW5
-         rSN5A/Kx8VMjsztRaJKAcGMGoyyx/qYnqAFinEIHyo5aVV2Ck3ulUFO0m6gpNKJb++Kx
-         iatg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702286178; x=1702890978;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SjMxzyRwkdL/2AYzzLiQnqwjdltPGTpYZH9r0TugZAM=;
-        b=PRztZRFiBGjxkmiQ9a7SQEZwqE67lL0jplbbcsNUhye0GvDFhRy7f/CqOlcRmtRfVc
-         IU02WcIgkI7d8Y4ybanq25TnEsAAWOL4rLtVfBR/9L1xtvmyP0ZlOFPYUGJ+w/juJVNL
-         8alnIpvkREgGLfL9Sbxs2B/lAdoISnfoZISMqyf+OBmn0pesGSvvRmvA9IF/4ZmxJ8zw
-         RTCwNjGMdZYUu0yfD9Z4wudXRoyvypygAlJ4NMM5hbVnHHY+S54LOh23hjUEnA5fHG4u
-         1iqCT5MQPRzeclQ2aexx1CEvY9PBbY3lzePhlNBAufPRElupe7yxvqgZft3OF3VDi1tm
-         /ejg==
-X-Gm-Message-State: AOJu0YxL+TfzD9Fi1+D7dR/22vaP8IyaTY1uHplC0c0goMuTcORP4NLY
-	/blqxqmd58FUSw9Zmd8sVbI+/Q==
-X-Google-Smtp-Source: AGHT+IGqUFHwBiG4qbbgxDSACeXDifjNebaZ+jVC5Fhm47uH9wX7VT0O54VgSxVi0RX0nkInjt3V5A==
-X-Received: by 2002:a05:600c:4f4d:b0:40b:5e21:dd34 with SMTP id m13-20020a05600c4f4d00b0040b5e21dd34mr2438020wmq.98.1702286178694;
-        Mon, 11 Dec 2023 01:16:18 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id bd19-20020a05600c1f1300b0040839fcb217sm12398470wmb.8.2023.12.11.01.16.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Dec 2023 01:16:18 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: dri-devel@lists.freedesktop.org, Marek Vasut <marex@denx.de>
-Cc: Elmar Albert <ealbert@data-modul.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>, 
- David Airlie <airlied@gmail.com>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Liu Ying <victor.liu@nxp.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
- Sam Ravnborg <sam@ravnborg.org>, Thierry Reding <thierry.reding@gmail.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org
-In-Reply-To: <20231209063714.1381913-1-marex@denx.de>
-References: <20231209063714.1381913-1-marex@denx.de>
-Subject: Re: [PATCH v2 1/2] dt-bindings: display: simple: Add AUO
- G156HAN04.0 LVDS display
-Message-Id: <170228617769.2409693.256554551788540699.b4-ty@linaro.org>
-Date: Mon, 11 Dec 2023 10:16:17 +0100
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF09721108
+	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 09:17:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17C87C433C8;
+	Mon, 11 Dec 2023 09:17:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702286236;
+	bh=3DRr76vsMjQmUB0iJJgnCoQ01erPxOksC+4UfHqUH3Q=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VERLiVu8OMxZF78W22i668Gh9BGJyqmAv3SlcX9jB31SUTsoeK5hPMLdcSPsAn1lR
+	 LA1gKILI6LWd8PuzoFgBke+7Fi6Bwf3PyhZZam4cDOVNmVkGJKhyL7HR6Pt51xkfR9
+	 X2NeunEU5anXJ7SZrLcuVCjYA+ndzNYFwNRwBRrfqaV8UX6rID+xLX39zh7xsMGzJY
+	 3D6ABrNC6PiNu5tjGqLkUWvjOIY8TNqZfQcg9asOjrFCV/WP2GCFWqTxOx+S4TbWHp
+	 AE4KursphCTxiICxoVmS6NfsCOMUgBn6Ro6Poe4fUo/ORyAsWquT/Brq85SyPdAgfv
+	 iOD6kkxrOS1Sw==
+Date: Mon, 11 Dec 2023 10:17:13 +0100
+From: "mripard@kernel.org" <mripard@kernel.org>
+To: Keith Zhao <keith.zhao@starfivetech.com>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>, "tzimmermann@suse.de" <tzimmermann@suse.de>, 
+	"airlied@gmail.com" <airlied@gmail.com>, 
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, William Qiu <william.qiu@starfivetech.com>, 
+	Xingyu Wu <xingyu.wu@starfivetech.com>, "paul.walmsley@sifive.com" <paul.walmsley@sifive.com>, 
+	"aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>, "palmer@dabbelt.com" <palmer@dabbelt.com>, 
+	Shengyang Chen <shengyang.chen@starfivetech.com>, Jack Zhu <jack.zhu@starfivetech.com>, 
+	Changhuang Liang <changhuang.liang@starfivetech.com>, 
+	"maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>, "suijingfeng@loongson.cn" <suijingfeng@loongson.cn>
+Subject: Re: [v3 3/6] drm/vs: Register DRM device
+Message-ID: <gmgldrcdtglkvcdsxgympq3gg4dhc5tvbpmqusjh4k56sovxfs@cnmmidh5ar3i>
+References: <20231204123315.28456-1-keith.zhao@starfivetech.com>
+ <20231204123315.28456-4-keith.zhao@starfivetech.com>
+ <12c6097a723b9208f6da89207867b32102237fbc.camel@pengutronix.de>
+ <5e10fbd8-2299-4fdd-b9ac-5ca71af07012@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.3
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="bkz35ijar7vq2nws"
+Content-Disposition: inline
+In-Reply-To: <5e10fbd8-2299-4fdd-b9ac-5ca71af07012@starfivetech.com>
+
+
+--bkz35ijar7vq2nws
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
 Hi,
 
-On Sat, 09 Dec 2023 07:36:59 +0100, Marek Vasut wrote:
-> Document support for the AUO G156HAN04.0 LVDS display.
-> 
-> G156HAN04.0 is a Color Active Matrix Liquid Crystal Display composed of
-> a TFT LCD panel, a driver circuit, and LED backlight system. The screen
-> format is intended to support the 16:9 FHD, 1920(H) x 1080(V) screen
-> and 16.7M colors (RGB 8-bits) with LED backlight driving circuit.
-> All input signals are LVDS interface compatible.
-> 
-> [...]
+On Mon, Dec 11, 2023 at 05:00:04PM +0800, Keith Zhao wrote:
+> >> +static int vs_drm_device_init_clocks(struct vs_drm_device *priv)
+> >> +{
+> >> +	struct drm_device *dev =3D &priv->base;
+> >> +	struct platform_device *pdev =3D to_platform_device(dev->dev);
+> >> +	struct device_node *of_node =3D pdev->dev.of_node;
+> >> +	struct clk *clock;
+> >> +	unsigned int i;
+> >> +	int ret;
+> >> +
+> >> +	if (dev_get_platdata(&pdev->dev) || !of_node)
+> >> +		return 0;
+> >> +
+> >> +	priv->nrsts =3D ARRAY_SIZE(priv->rst_vout);
+> >> +	for (int i =3D 0; i < priv->nrsts; ++i)
+> >> +		priv->rst_vout[i].id =3D vout_resets[i];
+> >> +	ret =3D devm_reset_control_bulk_get_shared(dev->dev, priv->nrsts,
+> >> +						 priv->rst_vout);
+> >=20
+> > I would request resets and clocks in _probe().
+>=20
+> >=20
+> > If component_bind_all() returns -EPROBE_DEFER because of a still
+> > missing DSI panel backlight or similar, this doesn't have to be done
+> > multiple times.
+> I got what you mean. component_bind_all should be done multiple times
+>  to prevent the dsi panel driver from lagging load.
 
-Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
+No. component_bind_all only needs to be called once.
 
-[1/2] dt-bindings: display: simple: Add AUO G156HAN04.0 LVDS display
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=bf7f730dea3125b2272ad7268f59e8992c5b7822
-[2/2] drm/panel: simple: Add AUO G156HAN04.0 LVDS display support
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=9e52d5c808215b0033cdbeca72700b1e401ea987
+> in my drm subsystem , there are 2 pipeline=20
+>=20
+>           +------------------------------+
+>           |                              |
+>           |                              |
+>   +----+  |   +-------------------+      |   +-------+   +------+   +----=
+--+
+>   |    +----->+  dc controller 0  +--->----->+HDMICtl| ->+ PHY  +-->+PANE=
+L0+
+>   |AXI |  |   +-------------------+      |   +-------+   +------+   +----=
+--+
+>   |    |  |                              |
+>   |    |  |                              |
+>   |    |  |                              |
+>   |    |  |                              |
+>   |APB |  |   +-------------------+         +---------+    +------+  +---=
+----+
+>   |    +----->+  dc controller 1  +--->---->+ dsiTx   +--->+DPHY  +->+ PA=
+NEL1+
+>   |    |  |   +-------------------+         +---------+    +------+  +---=
+----+
+>   +----+  |                              |
+>           +------------------------------+
+>=20
+>=20
+> component_bind_all will bind the hdmi encoder and dsi encoder .
+> binding the hdmi encoder will always return ok .
+>=20
+> binging the dsi encoder has a question :
+> I used the panel-raspberrypi-touchscreen.c as panel driver ,=20
+> this driver is a i2c device and it use a i2c command to read reg ID
+> if read success , it will do drm_panel_add.=20
+>=20
+> if I disconnect the panel ,it will not do drm_panel_add.
+> dsiTx will fail to find panel , The consequence is that the inputbridge c=
+annot be created ,=20
+> also outputbridge cannot be created.
+> for encoder bind , it will fail to find the input bridge of dsi.
+> Under this premise, although returning -EPROBE_DEFER allows bind to be ex=
+ecuted multiple times,=20
+> the final result is that the entire bind fails.
+>=20
+> returning -EPROBE_DEFER can solve panel driver from lagging load ,=20
+> but for no panel case , it will destory all pipeline (include hdmi and ds=
+i).
 
--- 
-Neil
+Yes, that's expected.
 
+> I did two things:
+> late_initcall_sync(vs_drm_init); to make sure the panel drive has been pr=
+obed;
+> dsi encoder bind always return ok to make sure hdmi pipeline ok at lease.
+> component_bind_all do once .=20
+
+You should have a look at
+https://www.kernel.org/doc/html/latest/gpu/drm-kms-helpers.html#special-car=
+e-with-mipi-dsi-bridges
+
+Maxime
+
+--bkz35ijar7vq2nws
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZXbTmQAKCRDj7w1vZxhR
+xQHPAQCylA9kRgEfrYTE6OzhkygvQTdGGHErAxmL8yhuByRUwwD/Wc/ZX3xr5vXw
+ne/WnWgySlRDdV2OlSa6fGu2NH7K+wE=
+=M8pE
+-----END PGP SIGNATURE-----
+
+--bkz35ijar7vq2nws--
 
