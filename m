@@ -1,114 +1,110 @@
-Return-Path: <devicetree+bounces-23840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23841-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A65480C7B2
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 12:09:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BFDCD80C7C7
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 12:17:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C96B62816AD
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 11:09:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B2672816C7
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 11:17:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2F1E347B0;
-	Mon, 11 Dec 2023 11:09:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35EFF35895;
+	Mon, 11 Dec 2023 11:17:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KykgmI5c"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Y8DiaeX3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-x1136.google.com (mail-yw1-x1136.google.com [IPv6:2607:f8b0:4864:20::1136])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59776D7
-	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 03:09:46 -0800 (PST)
-Received: by mail-yw1-x1136.google.com with SMTP id 00721157ae682-5d3d5b10197so35776647b3.2
-        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 03:09:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702292985; x=1702897785; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=PhJsxpUpZ7XgpcqIqxxRBw654ENRDk0ZPdEH2SQUoSE=;
-        b=KykgmI5c+SkXuwLET8IdlNtAw3yPGR2F2EOZXm0/y7c2fgEYXipMjOLSucwwlimUwA
-         m43zIuRAYfYxRVIwogd3mSERNt3e5WGMLAy21eGzVKJiainV3+9ea46J19+zk9G+Wy0b
-         7ZZ3zq9kJjn/r7OPXK32NND8R6b6kCDaQzrZYj5s2QKk2YaDjCfdtqOncPxCgVQm1qU5
-         jsLAv9YQlok1z3KlpM1xKJ4q0XaZULS8il9nSiGtSANC//XvVYxjIqiQroiBmvJRQtcY
-         vaNw93rQopqlrcYlQ65wwbXlkJwGseyO7Epvpw0c6XLd9HRF/gcNE6wnd6eAnHGAgv4a
-         yJzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702292985; x=1702897785;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PhJsxpUpZ7XgpcqIqxxRBw654ENRDk0ZPdEH2SQUoSE=;
-        b=APVFsb4EP0tdg+sV0kC76WhM2E8S3gDK3AC5xSN4X12BLPR6YD1LIE52pd+Xw96kLu
-         154K1XkNaZpAmn8cGYzk0oeTulFqwhpKGZCX006bJewc+t29gA3Nr75gn8/gZ7ozwcEx
-         M+JHmTugSkZ2+NqDUroDzuo1qoXy3tsb2YyzGkB3P1QUSlZqAX5L7myqkUfVUt2NLWwS
-         L89SRdk18S5/dD94C+z3cpJ+IFLbgIAf9yr3ZbwDf1W2r1+SuiUW22L+D3siQbH5tcOs
-         m//C3gTZFllHVgvIbAgl9UIqyS9tIOPWUecyEloqQKMJVh024TFU65vZbJ42bQ0Jrqb9
-         rLvQ==
-X-Gm-Message-State: AOJu0YxIEasOItyOW4EmQyI5PnpukH6RyZpOhOIHQHwF0QyLiUE5N1Qt
-	7eCfAcghyWP+DTOYoOREk689bcw8jb3cHSxg5m9TkQ==
-X-Google-Smtp-Source: AGHT+IH+1eXJKaJbPI4IGR1cC9SIY48i2Db6G6EhUnlBgyTPoR6YhcTGiNgp0UZ1SAxXVV23F5fJ4Fi4zMCykmLzzI8=
-X-Received: by 2002:a81:83d0:0:b0:5d7:6ab7:3a22 with SMTP id
- t199-20020a8183d0000000b005d76ab73a22mr3000722ywf.10.1702292985558; Mon, 11
- Dec 2023 03:09:45 -0800 (PST)
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E0DEB0;
+	Mon, 11 Dec 2023 03:17:07 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3BBBGknS085705;
+	Mon, 11 Dec 2023 05:16:46 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1702293406;
+	bh=fylZgBVW8i6eYuwRT+zXtBdya0Mm/BLDF11KB2kf4O8=;
+	h=Date:CC:Subject:To:References:From:In-Reply-To;
+	b=Y8DiaeX3iSpym58Lh2kBXEH2LoZDuNmRm1bYguvcqqSycOnXhlucl7CdxWx8FqgUp
+	 P1vnM1VY3GTziiuSHEJtWCpY/ihet01OyKIhRfb/OWMLkIqRkfGD4dkPh9ax+OQz7S
+	 0P4vE81r9VzjRa+3lF1NsMClEGUi6HyRBZyY3RBg=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3BBBGkb0071434
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 11 Dec 2023 05:16:46 -0600
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 11
+ Dec 2023 05:16:45 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 11 Dec 2023 05:16:45 -0600
+Received: from [172.24.227.9] (uda0492258.dhcp.ti.com [172.24.227.9])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3BBBGfgw063959;
+	Mon, 11 Dec 2023 05:16:42 -0600
+Message-ID: <750c2b6b-8f24-4b86-996f-6f50cf46d81b@ti.com>
+Date: Mon, 11 Dec 2023 16:46:41 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231209215601.3543895-1-dmitry.baryshkov@linaro.org>
- <20231209215601.3543895-3-dmitry.baryshkov@linaro.org> <48a7c36e-2fa2-4be6-970d-a4a301fdf8f7@linaro.org>
- <CAA8EJpqw+hC05QP1mWkA-SsKEehjp7ipb_HzUW2nyWjqZ8WkXQ@mail.gmail.com> <730b81ae-1fc5-4d23-9a18-04d41e40a579@linaro.org>
-In-Reply-To: <730b81ae-1fc5-4d23-9a18-04d41e40a579@linaro.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 11 Dec 2023 13:09:34 +0200
-Message-ID: <CAA8EJpo+bwByDQcZaunC4Q__3P7oFcaRUqxY3car9krhpxMMkg@mail.gmail.com>
-Subject: Re: [PATCH 3/4] soc: qcom: stats: support SM8150 platform
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+CC: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <r-gunasekaran@ti.com>,
+        <srk@ti.com>, <s-vadapalli@ti.com>
+Subject: Re: [PATCH v2 1/2] arm64: dts: ti: k3-j721e-evm: Add overlay for
+ PCIE0 Endpoint Mode
+Content-Language: en-US
+To: Andrew Davis <afd@ti.com>
+References: <20231115085204.3578616-1-s-vadapalli@ti.com>
+ <20231115085204.3578616-2-s-vadapalli@ti.com>
+ <c50f5dc2-8ab8-4213-a809-fcd4cd18589d@ti.com>
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+In-Reply-To: <c50f5dc2-8ab8-4213-a809-fcd4cd18589d@ti.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Mon, 11 Dec 2023 at 12:46, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->
-> On 11.12.2023 10:43, Dmitry Baryshkov wrote:
-> > On Mon, 11 Dec 2023 at 11:11, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
-> >>
-> >> On 9.12.2023 22:56, Dmitry Baryshkov wrote:
-> >>> On SM8150 the RPMh stats have 3 data records, but no DDR sleep stats,
-> >>> which demands platform-specific compatible and data.
-> >>>
-> >>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> >>> ---
-> >> I don't think it makes sense considering the driver could detect the
-> >> presence (or possibility of presence) of DDR stats at runtime.
-> >
-> > No, it can not really. We have safety nets for checking the offset
-> > value and then checking the magic number. But I'd prefer to be
-> > explicit here. It's not that the 'invalid' data at this offset is 0 or
-> > ~0.
-> > So, I'd prefer to be explicit here.
-> I'd say we're quite covered:
->
-> if (ddr_stats_offset)
->         if (offset is within the range) // your latest patchset
->                 if (ddr_stats_magic)
->                         if (entries)
->                                 "show stats"
->                         else
->                                 "show nothing"
->                 else
->                         "no ddr stats"
->         else
->                 "no ddr stats"
-> else
->         "no ddr stats"
->
-> Konrad
+Hello Andrew,
 
-I'd say, too many ifs. I'd prefer to have it disabled for this platform.
+On 05/12/23 21:43, Andrew Davis wrote:
+> On 11/15/23 2:52 AM, Siddharth Vadapalli wrote:
+>> Add overlay to enable the PCIE0 instance of PCIe on J721E-EVM in
+>> Endpoint mode of operation.
+>>
+>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+>> ---
+>>   arch/arm64/boot/dts/ti/Makefile               |  3 ++
+>>   .../boot/dts/ti/k3-j721e-evm-pcie0-ep.dtso    | 53 +++++++++++++++++++
+>>   2 files changed, 56 insertions(+)
+>>   create mode 100644 arch/arm64/boot/dts/ti/k3-j721e-evm-pcie0-ep.dtso
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+>> index 77a347f9f47d..5620db44d4dc 100644
+>> --- a/arch/arm64/boot/dts/ti/Makefile
+>> +++ b/arch/arm64/boot/dts/ti/Makefile
+>> @@ -66,6 +66,8 @@ dtb-$(CONFIG_ARCH_K3) += k3-j7200-evm.dtb
+>>   k3-j721e-evm-dtbs := k3-j721e-common-proc-board.dtb
+>> k3-j721e-evm-quad-port-eth-exp.dtbo
+>>   dtb-$(CONFIG_ARCH_K3) += k3-j721e-beagleboneai64.dtb
+>>   dtb-$(CONFIG_ARCH_K3) += k3-j721e-evm.dtb
+>> +k3-j721e-evm-pcie0-ep-dtbs := k3-j721e-evm.dtb k3-j721e-evm-pcie0-ep.dtbo
+>> +dtb-$(CONFIG_ARCH_K3) += k3-j721e-evm-pcie0-ep.dtb
+> 
+> Do you really need to produce this pre-combined DTB file? If you would rather
+> just the overlay produced which could be applied at load-time (I prefer this),
+> then you should do as Jai has done[0]. Add just the overlay, and test its
+> application using a dummy target.
+
+Thank you for pointing it out. I will implement your suggestion and post the v3
+series.
+
 -- 
-With best wishes
-Dmitry
+Regards,
+Siddharth.
 
