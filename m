@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-24070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24071-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0454180DC67
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 22:04:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DAF6B80DC99
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 22:09:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 99885B2159B
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 21:04:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 73ED0B216E8
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 21:09:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 891D154BDB;
-	Mon, 11 Dec 2023 21:04:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6CA354BE9;
+	Mon, 11 Dec 2023 21:09:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NA347zc2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xu8xxnqK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88A40E3
-	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 13:04:24 -0800 (PST)
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-40c29f7b068so46784785e9.0
-        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 13:04:24 -0800 (PST)
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D73D2D1
+	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 13:09:49 -0800 (PST)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-a1caddd6d28so616127866b.1
+        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 13:09:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702328663; x=1702933463; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702328988; x=1702933788; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=1VJwf/w6fkHyk+xs1XmYp5JUo8idocif+WMIfFGik04=;
-        b=NA347zc2LQgZGN3iq/J3nt1TpWueQa8wCjxz3YJloocQJU1um+FF/fi3BiAoLK3Kq9
-         qHXmVFcvTcv8RxcJK7LKDOlfRTro8nr5mCnCtquXl7hNla78VfXP22wF+BLgCEDasIB8
-         ekiifdsPb91MYXPGzRyVhuQIeftVX4IGVOu0FmetcCD40yw/zkDo41+usrGKEQinrIJa
-         HfodP4rDOp35XE13TXTHH1A4pyyKhwEM7xE3p24tJk9fPuGX9hYICsRvbrBxGqF/v1bx
-         +7pwQzQSzh5599Dkdp04A//ranuF9/1JINMtxVv556HXmrmN1xeWkpDQRrGRkSJDMV3s
-         8xbw==
+        bh=dAAx5PIGDJyUq6BTZlcC3XmRS7TEr/fRVnTl8w59dds=;
+        b=xu8xxnqKMR2COTnzQvBUDDT0AGbzypBnEcs8R1HDkLB3xu3MjhfvZ9IeIuLq6avZgw
+         wIZgvIsppiPmra+OgyS/ax8Q7EVF3lx1UkjlbWctZl/ZN9aB5DS7ofphAo2GKSii/Sij
+         KoEQpBKySaFtrHKhfkMojNh2ZfJh3mPfuvLbYYNGaQ9kXhiDQOdEMerwGYFr6+5//Opu
+         rm4WV8rO6cMrdiA/KujsNPsFSQc08hP/JIDdN0atfqRpkYD5Dq8p8AGYX22OiRKJZMJ/
+         KOdVbUeA5YevJwlbMWZTlOlC8rBLIUhI6gF5GnPW4RmCjqJdj36ph4N/Cfug81Cx/TXe
+         zfBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702328663; x=1702933463;
+        d=1e100.net; s=20230601; t=1702328988; x=1702933788;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1VJwf/w6fkHyk+xs1XmYp5JUo8idocif+WMIfFGik04=;
-        b=LKOxnITiAB2FvU2929XAudrCXL7PtNmlQVcmLHhRK1UpWQpCV9sAv7FaSO/bZvDyUA
-         Dh2n1YsCxiRjdvcw+GK2nn3LyB/bCaDCt/JuPhYXL6oOCM3Xq5OYXVK0dUqrHrmtT/SJ
-         OJXEsgGHrc6jxoNnSI7Hsa8b467d2JLJjQ9NhLvAb5ZtNL/9s14gVr2E1tnAl+KzBb2X
-         F/QvINsjMGlRGMBIobOHU9WYf2bnvYzdjXYztSr/AG//McPOivYUdV6mbJ7DxYqXtVHK
-         txbMRReTy7Ey5JaOatyBJ3lkuA9AImZWO1CUrelU3k8nZVntYsoFjlpeSh8zpVPMxwuo
-         88VA==
-X-Gm-Message-State: AOJu0Yz7f06nJKRNRYc8ZMK9Q/7igBNzkbuHUxp6SMVuO6NeCBzSCkUk
-	Su00X3V9T3iO+Zzt+Vf/1zgg7Q==
-X-Google-Smtp-Source: AGHT+IGN8vXNBLURqjT2m3Zy2tvV1EUBWNDOcb9RtN/Tj+G8As7BU31KEhqWes76xvjNmPoDXAtZRw==
-X-Received: by 2002:a05:600c:4d0e:b0:40b:4476:cd31 with SMTP id u14-20020a05600c4d0e00b0040b4476cd31mr2398112wmp.13.1702328662976;
-        Mon, 11 Dec 2023 13:04:22 -0800 (PST)
+        bh=dAAx5PIGDJyUq6BTZlcC3XmRS7TEr/fRVnTl8w59dds=;
+        b=JzuLw82MAIeoa7AHm4YuyNRt0ecuroOvUZoBj6vM/FSSYwgLs3IVgrvUbMJvbCjYw7
+         Icavh5MzVgB3gR6Y+Gh/T3H3SriU5OzRr9wYI/uons/NeZYgvookZui2rmSt8JzI4prs
+         +hyrLKFhN6eOEeXcIgLXnAYkNO1PRFWkmismEy9LTx1jM5iKXyAPpu+LBLGJZ9WdJ7Qm
+         SSYgJVEmig2c2WIcgiGE9BXvoXTPPiBMYd8FXqR1YzNAO7MZ16ulgLsTs4KPOCW75RfP
+         sxbGoBQsWVAnEL0IS+A/D5BPhRWLLd12qYhmqTWnpuOo9lwf4yTxCsSnMBmjcDiREoH2
+         bqmw==
+X-Gm-Message-State: AOJu0YzERbo9wG6Kmo61NAzs5RVVnYpkhGrdqGOcsiwO3Nd6ruBDl88y
+	1sgsNaOIrDMkc87GkJrWlVpMdw==
+X-Google-Smtp-Source: AGHT+IG9SBF6+CmrwfsAkjvtahJ/I4dANtlMvyRjB3aV/pMA0GECdyYXg5qy175J5G5XcNmQ4jqeVQ==
+X-Received: by 2002:a17:906:c78e:b0:a19:9b79:8b63 with SMTP id cw14-20020a170906c78e00b00a199b798b63mr1721569ejb.116.1702328988214;
+        Mon, 11 Dec 2023 13:09:48 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id c17-20020a05600c0a5100b0040b4fca8620sm16499239wmq.37.2023.12.11.13.04.21
+        by smtp.gmail.com with ESMTPSA id ci13-20020a170906c34d00b00a0988d69549sm5262726ejb.189.2023.12.11.13.09.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Dec 2023 13:04:22 -0800 (PST)
-Message-ID: <9d5b3921-a412-4089-8335-d522f8c9fae1@linaro.org>
-Date: Mon, 11 Dec 2023 22:04:20 +0100
+        Mon, 11 Dec 2023 13:09:47 -0800 (PST)
+Message-ID: <6adbb83e-3997-4b47-945d-0bc1f87d6c99@linaro.org>
+Date: Mon, 11 Dec 2023 22:09:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,25 +62,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: media: Remove K3 Family Prefix from
- Compatible
+Subject: Re: [PATCH 1/9] dt-bindings: display: msm: dp: declare compatible
+ string for sm8150
 Content-Language: en-US
-To: Brandon Brnich <b-brnich@ti.com>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Nas Chung <nas.chung@chipsnmedia.com>,
- Jackson Lee <jackson.lee@chipsnmedia.com>,
- Hans Verkuil <hverkuil-cisco@xs4all.nl>,
- Sebastian Fricke <sebastian.fricke@collabora.com>,
- Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
- Robert Beckett <bob.beckett@collabora.com>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Nishanth Menon <nm@ti.com>, Darren Etheridge <detheridge@ti.com>
-References: <20231211205920.698939-1-b-brnich@ti.com>
- <20231211205920.698939-2-b-brnich@ti.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Clark <robdclark@gmail.com>,
+ Sean Paul <sean@poorly.run>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Stephen Boyd <swboyd@chromium.org>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org
+References: <20231209232132.3580045-1-dmitry.baryshkov@linaro.org>
+ <20231209232132.3580045-2-dmitry.baryshkov@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,24 +123,18 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231211205920.698939-2-b-brnich@ti.com>
+In-Reply-To: <20231209232132.3580045-2-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 11/12/2023 21:59, Brandon Brnich wrote:
-> K3 family prefix is not included in other TI compatible strings. Remove
-> this prefix to keep naming convention consistent.
+On 10/12/2023 00:21, Dmitry Baryshkov wrote:
+> Add compatible string for the DisplayPort controller found on the
+> Qualcomm SM8150 platform.
 > 
-> Fixes: de4b9f7e371a ("dt-bindings: media: wave5: add yaml devicetree bindings")
-> Reported-by: Geert Uytterhoeven <geert@linux-m68k.org>
-> Closes: https://lore.kernel.org/all/CAMuHMdUYOq=q1j=d+Eac28hthOUAaNUkuvxmRu-mUN1pLKq69g@mail.gmail.com/
-> Signed-off-by: Brandon Brnich <b-brnich@ti.com>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->  V2 -> V3: Update compatible in example
 
-I guess this was the reason for dropping the tags.
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
