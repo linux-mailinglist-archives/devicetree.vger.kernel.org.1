@@ -1,72 +1,66 @@
-Return-Path: <devicetree+bounces-23942-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23943-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84FEC80CFBA
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 16:37:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 31EB580CFBD
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 16:37:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E0882821B0
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 15:37:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DFCAA28204B
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 15:37:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76F894BA86;
-	Mon, 11 Dec 2023 15:36:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="b62EpURe"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D76494BA8B;
+	Mon, 11 Dec 2023 15:37:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB6BAEA;
-	Mon, 11 Dec 2023 07:36:53 -0800 (PST)
-Received: by mail-pj1-x1036.google.com with SMTP id 98e67ed59e1d1-289d988a947so3208760a91.0;
-        Mon, 11 Dec 2023 07:36:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702309013; x=1702913813; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=USiT5zfWilvoWlYRpLxV0vec/h5b4ak4/V2ZKe4xVlU=;
-        b=b62EpURe3zNDPlAAm0F5wmAktCroF8e3pe5hVUub3eSPDAWySVzj9wxJsD1tZ5rJLy
-         EL44PIqdMurmRKdiB5SH0fKRxdyjxsrqJ/bMLIk+oLWr+8VqIiyx5jHK3MDnuJ/Z1jcK
-         r5B2opYAiIsUwz84NCjCQ1hHjCRgfZjccU0xBTCKAqrZB7lDGj3rQ5KTBx9H8ahdRyp5
-         F54jsh841wnuLw9vj7eClpMS1s0e4mq6CMTNh+tuukJPQkNB8Xov/rtfxyLg3xRILy8z
-         s09M3X1y5SQiXde/U+A3IdnmnfIUp9UqWFOsoRWcyXLyWUwBVw0xAfSOerfPtpdpa1k7
-         vhSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702309013; x=1702913813;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=USiT5zfWilvoWlYRpLxV0vec/h5b4ak4/V2ZKe4xVlU=;
-        b=E0qV9EZ3Lzzhm4kMnq3u99OqKngd8LMjq1ZkbygI6aYtyOZIodsgQFPeoBqKk9ffb0
-         dSxr007qtSrSJWofnMG8x1cQS2x6wNAzpBLR5Lyeoizad9l4L0d+C9fvBqbwrK0m0cQN
-         xXF/V4U1Hs9Td74bTLdKkMDYY32yG326wQXMK/NsdfxwutMn/cGz2D7YrjqwvUEX0cly
-         jCsbhIhldEJgs7XKvFled2ntRPpnkJYNy72JE7zkDNciQ/qzFPW+m/kW//NcQqHis3I4
-         IA54uCSU/kYfnGkE257CJoceUN5Wo8SO8mQaSTNKBj1aqy9D61Zrn6eBg6pvRWbiKM0c
-         fhww==
-X-Gm-Message-State: AOJu0YxH/L0o/6BdYVc/iSOkQFXRcRpuR1ofXLSwOaHVtxKAG2Ntp6O1
-	8S3N3qXUY8fplc0tikI0o7o=
-X-Google-Smtp-Source: AGHT+IFrEVKWi+zYA8gCfiKXv8HpzXw6apf0j+ypYDF+rHce9v4xF3sSLkbrymdGw3rd6aJuBljing==
-X-Received: by 2002:a17:90b:4c0d:b0:286:6cc1:2cbd with SMTP id na13-20020a17090b4c0d00b002866cc12cbdmr2207441pjb.71.1702309013269;
-        Mon, 11 Dec 2023 07:36:53 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id b1-20020a170902d30100b001cf96a0e4e6sm6793789plc.242.2023.12.11.07.36.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Dec 2023 07:36:52 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Mon, 11 Dec 2023 07:36:51 -0800
-From: Guenter Roeck <linux@roeck-us.net>
-To: nuno.sa@analog.com
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 29FDFE4;
+	Mon, 11 Dec 2023 07:37:30 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 61CBBFEC;
+	Mon, 11 Dec 2023 07:38:16 -0800 (PST)
+Received: from FVFF77S0Q05N.cambridge.arm.com (FVFF77S0Q05N.cambridge.arm.com [10.1.34.127])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 86C763F738;
+	Mon, 11 Dec 2023 07:37:25 -0800 (PST)
+Date: Mon, 11 Dec 2023 15:37:20 +0000
+From: Mark Rutland <mark.rutland@arm.com>
+To: Robin Murphy <robin.murphy@arm.com>
+Cc: Will Deacon <will@kernel.org>, Joerg Roedel <joro@8bytes.org>,
+	Christoph Hellwig <hch@lst.de>, Vineet Gupta <vgupta@kernel.org>,
+	Russell King <linux@armlinux.org.uk>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Huacai Chen <chenhuacai@kernel.org>,
+	WANG Xuerui <kernel@xen0n.name>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Hanjun Guo <guohanjun@huawei.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	"K. Y. Srinivasan" <kys@microsoft.com>,
+	Haiyang Zhang <haiyangz@microsoft.com>,
+	Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>,
+	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
+	David Woodhouse <dwmw2@infradead.org>,
+	Lu Baolu <baolu.lu@linux.intel.com>,
+	Niklas Schnelle <schnelle@linux.ibm.com>,
+	Matthew Rosato <mjrosato@linux.ibm.com>,
+	Gerald Schaefer <gerald.schaefer@linux.ibm.com>,
+	Jean-Philippe Brucker <jean-philippe@linaro.org>,
 	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>
-Subject: Re: [PATCH v3 2/2] hwmon: ltc4282: add support for the LTC4282 chip
-Message-ID: <a0eb6cb4-b8af-4a6f-8888-fa18f8f1d188@roeck-us.net>
-References: <20231205-ltc4282-support-v3-0-e0877b281bc2@analog.com>
- <20231205-ltc4282-support-v3-2-e0877b281bc2@analog.com>
+	Frank Rowand <frowand.list@gmail.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Jason Gunthorpe <jgg@ziepe.ca>, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-acpi@vger.kernel.org,
+	iommu@lists.linux.dev, devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/7] ACPI/IORT: Handle memory address size limits as
+ limits
+Message-ID: <ZXcssPaaDtqADKp6@FVFF77S0Q05N.cambridge.arm.com>
+References: <cover.1701268753.git.robin.murphy@arm.com>
+ <2ae6199a9cf035c1defd42e48675b827f41cdc95.1701268753.git.robin.murphy@arm.com>
+ <20231211132757.GE25681@willie-the-truck>
+ <91b22090-485f-49c9-a536-849fd7f92f8e@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,46 +69,101 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231205-ltc4282-support-v3-2-e0877b281bc2@analog.com>
+In-Reply-To: <91b22090-485f-49c9-a536-849fd7f92f8e@arm.com>
 
-On Tue, Dec 05, 2023 at 04:22:56PM +0100, Nuno Sa via B4 Relay wrote:
-> From: Nuno Sa <nuno.sa@analog.com>
+On Mon, Dec 11, 2023 at 03:01:27PM +0000, Robin Murphy wrote:
+> On 2023-12-11 1:27 pm, Will Deacon wrote:
+> > On Wed, Nov 29, 2023 at 05:43:00PM +0000, Robin Murphy wrote:
+> > > Return the Root Complex/Named Component memory address size limit as an
+> > > inclusive limit value, rather than an exclusive size.  This saves us
+> > > having to special-case 64-bit overflow, and simplifies our caller too.
+> > > 
+> > > Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+> > > ---
+> > >   drivers/acpi/arm64/dma.c  |  9 +++------
+> > >   drivers/acpi/arm64/iort.c | 18 ++++++++----------
+> > >   include/linux/acpi_iort.h |  4 ++--
+> > >   3 files changed, 13 insertions(+), 18 deletions(-)
+> > 
+> > [...]
+> > 
+> > > diff --git a/drivers/acpi/arm64/iort.c b/drivers/acpi/arm64/iort.c
+> > > index 6496ff5a6ba2..eb64d8e17dd1 100644
+> > > --- a/drivers/acpi/arm64/iort.c
+> > > +++ b/drivers/acpi/arm64/iort.c
+> > > @@ -1367,7 +1367,7 @@ int iort_iommu_configure_id(struct device *dev, const u32 *input_id)
+> > >   { return -ENODEV; }
+> > >   #endif
+> > > -static int nc_dma_get_range(struct device *dev, u64 *size)
+> > > +static int nc_dma_get_range(struct device *dev, u64 *limit)
+> > >   {
+> > >   	struct acpi_iort_node *node;
+> > >   	struct acpi_iort_named_component *ncomp;
+> > > @@ -1384,13 +1384,12 @@ static int nc_dma_get_range(struct device *dev, u64 *size)
+> > >   		return -EINVAL;
+> > >   	}
+> > > -	*size = ncomp->memory_address_limit >= 64 ? U64_MAX :
+> > > -			1ULL<<ncomp->memory_address_limit;
+> > > +	*limit = (1ULL << ncomp->memory_address_limit) - 1;
+> > 
+> > The old code handled 'ncomp->memory_address_limit >= 64' -- why is it safe
+> > to drop that? You mention it in the cover letter, so clearly I'm missing
+> > something!
 > 
-> The LTC4282 hot swap controller allows a board to be safely inserted and
-> removed from a live backplane. Using one or more external N-channel pass
-> transistors, board supply voltage and inrush current are ramped up at an
-> adjustable rate. An I2C interface and onboard ADC allows for monitoring
-> of board current, voltage, power, energy and fault status.
+> Because an unsigned shift by 64 or more generates 0 (modulo 2^64), 
+
+I'm pretty sure that regardless of whether a type is signed, shifting more than
+the type's width is undefined behaviour. That causes GCC to scream at compile
+time:
+
+|   CC      arch/arm64/kernel/setup.o
+| arch/arm64/kernel/setup.c: In function 'shift_test':
+| arch/arm64/kernel/setup.c:295:20: warning: left shift count >= width of type [-Wshift-count-overflow]
+|   295 |         return 1UL << 64;
+|       |                    ^~
+
+... and a UBSAN splat:
+
+| ================================================================================
+| UBSAN: shift-out-of-bounds in arch/arm64/kernel/setup.c:295:13
+| shift exponent 64 is too large for 64-bit type 'long unsigned int'
+| CPU: 0 PID: 0 Comm: swapper Not tainted 6.7.0-rc1-00005-g06034455cb74-dirty #3
+| Call trace:
+|  dump_backtrace+0x90/0xe8
+|  show_stack+0x18/0x24
+|  dump_stack_lvl+0x48/0x60
+|  dump_stack+0x18/0x24
+|  __ubsan_handle_shift_out_of_bounds+0x114/0x244
+|  shift_test+0x24/0x34
+|  setup_arch+0x238/0x68c
+|  start_kernel+0x70/0x610
+|  __primary_switched+0xbc/0xc4
+| ================================================================================
+
+Mark.
+
+> thus
+> subtracting 1 results in the correct all-bits-set value for an inclusive
+> 64-bit limit.
 > 
-> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
-> ---
-> +
-
-> +power1_good		Power considered good
-
-I really don't like this attribute. Like the ones below it is non-standard
-and invisible for standard applications. On top of that, I think it isn't
-really related to "power" but to the output voltage. What does it actually
-report that isn't included in the FET faults ?
-
-
-> +fet_short_fault		FET short alarm
-> +fet_bad_fault		FET bad alarm
-
-Those attributes have little value since they are not standard attributes
-and won't be seen by standard applications. On top of that, it is not clear
-(not documented) what the attribute actually reports. I assume it is
-associated with the output voltage, i.e., in0, but that is just an
-assumption.
-
-What do you think about introducing a standard inX_fault attribute ?
-It would not be as specific as short/bad, but I think it would be more
-useful and we could add it to the ABI.
-
-> +fault_logs_reset	Clears all the Logged Faults
-
-What exactly does that do that is user visible ?
-
-Thanks,
-Guenter
+> Thanks,
+> Robin.
+> 
+> > >   	return 0;
+> > >   }
+> > > -static int rc_dma_get_range(struct device *dev, u64 *size)
+> > > +static int rc_dma_get_range(struct device *dev, u64 *limit)
+> > >   {
+> > >   	struct acpi_iort_node *node;
+> > >   	struct acpi_iort_root_complex *rc;
+> > > @@ -1408,8 +1407,7 @@ static int rc_dma_get_range(struct device *dev, u64 *size)
+> > >   		return -EINVAL;
+> > >   	}
+> > > -	*size = rc->memory_address_limit >= 64 ? U64_MAX :
+> > > -			1ULL<<rc->memory_address_limit;
+> > > +	*limit = (1ULL << rc->memory_address_limit) - 1;
+> > 
+> > Same thing here.
+> > 
+> > Will
 
