@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-23799-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23800-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9135380C58C
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 11:04:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AFDB80C599
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 11:06:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 13B921F2103B
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 10:04:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C8B571F20F8E
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 10:06:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5717622080;
-	Mon, 11 Dec 2023 10:04:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E36522078;
+	Mon, 11 Dec 2023 10:06:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aSeGrvRn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BPCTv0x5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D633D7
-	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 02:04:40 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-40c25973988so45467915e9.2
-        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 02:04:40 -0800 (PST)
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3750CD2
+	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 02:06:13 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-40c3ca9472dso22343975e9.2
+        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 02:06:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702289078; x=1702893878; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1702289171; x=1702893971; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZDYzYjg4W65ME6TOcbpcncJ0InbxR0OV1YB0ej6DADE=;
-        b=aSeGrvRnrPAKGZAlT7MjMNw4Xs42UQvDbCzPF4Pei2HlvbnNQTgikgTd0e5nVj/hO5
-         3idjDIAWhFodv+YyM9VGMRBEUtE7tn4WvrBb+KUDxutOwunmZz/HLiPULTS+gJjGbZJc
-         Vo0cRh7LZHyB/Rh9M2SQTCcrdcgF4Tdoen/wKpIKsn8ZToe6wUqkZDO6RhQlOcvkGNS9
-         Uo5WBqMf9td1cNAYKlqMn2/BuUPq4N0lPozZ8fEpxT/SJXJdWnTuFEOa+14TrE3AHnyO
-         8C/qhYPfI49SDShF0HxmYV9zxO8uN4fjopY0m2ECnuTrXtu60EbwUl8zgZ9pYMII0aIc
-         MNTw==
+        bh=dweN6hcC4xdtDuh2HCZYd5ulQCZ11ggf8uho7v/8KPs=;
+        b=BPCTv0x5JMJFEEI5Yc8SWu20bmdR9UYR+oq6hJH4JuHzrDp1cUeLDu1dBmiei3G+Tp
+         5t4cfTBGswSaLyg6+CNh/lMQ8bOJ1n1qQc9Ys0JLjvGSSekxucS9SlcI1H6Too3Z+zoP
+         4S6U0d8x0b3+of3cdKhtrTRw27HKqaMkKpzkOSInUNawlVl1KPAJD/4qAFDtswr5W3xL
+         WF3yMmT3xQIGg6Yl6WkxAI0kge8OjvFjg/bgjbtdimn+9AaBOAqp6f/idKqK+aEGeNcN
+         Lmt3seak6VmuDeKm4n+toYQeIOF5+L+vNen5tknHNFpJYPSZl9VzB1q+KEHBbvENB2JH
+         x3Tw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702289078; x=1702893878;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1702289171; x=1702893971;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZDYzYjg4W65ME6TOcbpcncJ0InbxR0OV1YB0ej6DADE=;
-        b=iUy5CDke6btCKqZ8H+mAkr/+JCGfQS02pHAE53U3MaOJsojMB49kkHJQC0YiCWxmHt
-         twRRnWt2AL72/32WzrTRIZkF+iypXtgy9RhW7r63FHqZfmjXhWoGh5qjOLku+wD5NEr9
-         EcyB8NhB8OpAf71oMsHF6Dgcz4y/FyHnvy3sPpUCG/VXBzjy708dNg6hnHxokxmHa7L0
-         /AVzBapCLNDC0ygXZUD3BT3y1H7bSjlSrHXTklaLZclym1N1G84tDADtUrTiczYvr++/
-         qblb6Q8GSwgZwNJBEOnDrCLK5qWGd1syekUFFGJ+lGXILNldwbgl8/1tEIzyyruzFs8y
-         2/Iw==
-X-Gm-Message-State: AOJu0Yyhb/zYuTjOxnSMKBWqOoTXvT6SkIe0thaW3cN+W8pKjXf0+2F6
-	XD407LtaMlpk98OoQxZ7plaB4w==
-X-Google-Smtp-Source: AGHT+IE0dV7BSy46sVt4u21TlIr/PdsH70TJr1heJ6rIZjNGvDu3Jgo5EbbsUC7CpoZ+1PWUdEOwRw==
-X-Received: by 2002:a05:600c:1503:b0:40c:3624:fc40 with SMTP id b3-20020a05600c150300b0040c3624fc40mr2239056wmg.15.1702289078660;
-        Mon, 11 Dec 2023 02:04:38 -0800 (PST)
+        bh=dweN6hcC4xdtDuh2HCZYd5ulQCZ11ggf8uho7v/8KPs=;
+        b=eyUNdnAkbJ6WV0QJ22+ylq9rm5WwfYAjArSwZgQX6ExW1sa77d0Po6QiBkYuS/7s5M
+         ywjyH/dGbBbnCgLePKZ0MzN9HlBeYjQMklV6T47hF66MxaNYlIhvXL1CQoN8ceYI8Ev7
+         xPRYewz9ll0zFR9au+LigVohSdqWPInnBS+wajD7cF/lZfRp4hxtSLVc6CKG+EiGsm/y
+         C4O9ZqqFyrhnJaqCtzlMPkLR4RcYFzEpVFIenVEr1L+zpvqR5VUrZTOZq3d6NCAMigTR
+         39X7qWKTlPGQLWw8fAMGAVQP7CzTgIGq5pQzD1JuN3TjnD0zNxlY5nz0c9i+ufl79P+v
+         MRIQ==
+X-Gm-Message-State: AOJu0Yxm/WqQ1Q9QXHdCaTISjpH09urId2Jtshjqn+iPXVSXsfBRmmqS
+	BiLUkngbR8sxFEsxd0Za6OyEmw==
+X-Google-Smtp-Source: AGHT+IH41AsduGCPUUvheD1DhHvD5Y2tiqJlr5B9J9DeZzXNU11RyjwG9G7beGY528cPspH8RLueeQ==
+X-Received: by 2002:a05:600c:1e20:b0:40c:3daf:52f4 with SMTP id ay32-20020a05600c1e2000b0040c3daf52f4mr1356923wmb.185.1702289171642;
+        Mon, 11 Dec 2023 02:06:11 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id j25-20020a05600c1c1900b004076f522058sm14781799wms.0.2023.12.11.02.04.37
+        by smtp.gmail.com with ESMTPSA id j25-20020a05600c1c1900b004076f522058sm14781799wms.0.2023.12.11.02.06.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Dec 2023 02:04:38 -0800 (PST)
-Message-ID: <68a12f8b-3941-4555-a2a8-3f4f3409d8fd@linaro.org>
-Date: Mon, 11 Dec 2023 11:04:37 +0100
+        Mon, 11 Dec 2023 02:06:11 -0800 (PST)
+Message-ID: <3b53b6c4-96e6-4129-912e-82b8ab9b2269@linaro.org>
+Date: Mon, 11 Dec 2023 11:06:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,20 +62,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/4] dt-bindings: PCI: qcom: correct clocks for SC8180x
+Subject: Re: [PATCH v1 2/2] dt-bindings: watchdog: starfive,jh7100-wdt: Add
+ compatible for JH8100
 Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Rob Herring <robh@kernel.org>,
+To: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>,
+ Xingyu Wu <xingyu.wu@starfivetech.com>,
+ Samin Guo <samin.guo@starfivetech.com>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
+ <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>,
- linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231208105155.36097-1-krzysztof.kozlowski@linaro.org>
- <20231208105155.36097-2-krzysztof.kozlowski@linaro.org>
- <7f890553-5278-4bc3-9f72-a5a60d9596ea@linaro.org>
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Ley Foon Tan <leyfoon.tan@starfivetech.com>,
+ linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231209142723.2060196-1-jisheng.teoh@starfivetech.com>
+ <20231209142723.2060196-3-jisheng.teoh@starfivetech.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -121,39 +122,76 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <7f890553-5278-4bc3-9f72-a5a60d9596ea@linaro.org>
+In-Reply-To: <20231209142723.2060196-3-jisheng.teoh@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 09/12/2023 18:38, Konrad Dybcio wrote:
-> On 8.12.2023 11:51, Krzysztof Kozlowski wrote:
->> PCI node in Qualcomm SC8180x DTS has 8 clocks:
->>
->>   sc8180x-primus.dtb: pci@1c00000: 'oneOf' conditional failed, one must be fixed:
->>     ['pipe', 'aux', 'cfg', 'bus_master', 'bus_slave', 'slave_q2a', 'ref', 'tbu'] is too short
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>
->> ---
-> [...]
+On 09/12/2023 15:27, Ji Sheng Teoh wrote:
+> Add "starfive,jh8100-wdt" compatible string for StarFive's JH8100
+> watchdog.
+> Since JH8100 watchdog only has 1 reset signal, update binding
+> document to support one reset for "starfive,jh8100-wdt" compatible.
 > 
->> +          items:
->> +            - const: pipe # PIPE clock
->> +            - const: aux # Auxiliary clock
->> +            - const: cfg # Configuration clock
->> +            - const: bus_master # Master AXI clock
->> +            - const: bus_slave # Slave AXI clock
->> +            - const: slave_q2a # Slave Q2A clock
->> +            - const: ref # REFERENCE clock
->> +            - const: tbu # PCIe TBU clock
-> Are we sure this one is actually necessary? Or is it just for the
-> SMMU debug peripheral? [1] Would be nice to test if it works
-> normally (unused clk shutdown / forced shutdown of this one might
-> be necessary in case it's on from XBL) and during a PCIe-related
-> SMMU fault.
+> Signed-off-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
+> Signed-off-by: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
+> ---
+>  .../watchdog/starfive,jh7100-wdt.yaml         | 29 ++++++++++++++-----
+>  1 file changed, 21 insertions(+), 8 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/starfive,jh7100-wdt.yaml b/Documentation/devicetree/bindings/watchdog/starfive,jh7100-wdt.yaml
+> index 68f3f6fd08a6..eec182317219 100644
+> --- a/Documentation/devicetree/bindings/watchdog/starfive,jh7100-wdt.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/starfive,jh7100-wdt.yaml
+> @@ -19,14 +19,12 @@ description:
+>    isn't cleared, the watchdog will reset the system unless the watchdog
+>    reset is disabled.
+>  
+> -allOf:
+> -  - $ref: watchdog.yaml#
+> -
+>  properties:
+>    compatible:
+>      enum:
+>        - starfive,jh7100-wdt
+>        - starfive,jh7110-wdt
+> +      - starfive,jh8100-wdt
+>  
+>    reg:
+>      maxItems: 1
+> @@ -44,11 +42,6 @@ properties:
+>        - const: apb
+>        - const: core
+>  
+> -  resets:
 
-I did not validate whether the list is actually correct with datasheets,
-but aligned it to DTS. I don't have the hardware to test.
+No, keep it here with min/maxItems.
+
+> -    items:
+> -      - description: APB reset
+> -      - description: Core reset
+> -
+>  required:
+>    - compatible
+>    - reg
+> @@ -56,6 +49,26 @@ required:
+>    - clock-names
+>    - resets
+>  
+> +allOf:
+> +  - $ref: watchdog.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - starfive,jh8100-wdt
+> +    then:
+> +      properties:
+> +        resets:
+> +          items:
+> +            - description: Watchdog reset
+
+Why is it called "Watchdog"? How is it different from "Core"?
 
 Best regards,
 Krzysztof
