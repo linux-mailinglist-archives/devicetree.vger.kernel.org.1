@@ -1,414 +1,217 @@
-Return-Path: <devicetree+bounces-23845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23741-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB45580C83D
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 12:42:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3030580C3B2
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 09:54:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 818C8281C23
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 11:42:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB121280CF0
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 08:54:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0528738DC8;
-	Mon, 11 Dec 2023 11:42:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2028220DFC;
+	Mon, 11 Dec 2023 08:54:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="oeFs6qrQ"
+	dkim=pass (1024-bit key) header.d=maquefel.me header.i=@maquefel.me header.b="SR37aMgO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFD5CBA
-	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 03:42:19 -0800 (PST)
-Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
-	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20231211114217epoutp0389657345cf057abc9a026703d8857c62~fxDoSbEXm0397103971epoutp03Z
-	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 11:42:17 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20231211114217epoutp0389657345cf057abc9a026703d8857c62~fxDoSbEXm0397103971epoutp03Z
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1702294937;
-	bh=XoAvqTdk5kaf7nCihnVXE8nDb9SYdgoT9hIxCHdPJ2Q=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=oeFs6qrQXMzsZXjvZkuueLXApUclEAT2j5Lk3gr9skbIOCCUiAXKDEgYJ+THWOC+F
-	 ySAf5izVy+fUBDx2nr/E+4d4Yq2ReD3OLYi5y0/eG1yoKfQ8cEgXoVI8341dt8FpBf
-	 v/5zTv1uqHhQHH7Z8NxTbLtdnIesf32ABq9+PQ8g=
-Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
-	epcas2p2.samsung.com (KnoxPortal) with ESMTP id
-	20231211114217epcas2p2ec0065aec6bb6512c4caf7d431bda313~fxDntD-ns1416514165epcas2p2e;
-	Mon, 11 Dec 2023 11:42:17 +0000 (GMT)
-Received: from epsmges2p3.samsung.com (unknown [182.195.36.69]) by
-	epsnrtp1.localdomain (Postfix) with ESMTP id 4Spfx44MFwz4x9Pp; Mon, 11 Dec
-	2023 11:42:16 +0000 (GMT)
-Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
-	epsmges2p3.samsung.com (Symantec Messaging Gateway) with SMTP id
-	D9.26.10022.895F6756; Mon, 11 Dec 2023 20:42:16 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-	epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
-	20231211114216epcas2p300bbf4c592d495991c6cc2d96e0b1f85~fxDmqLczW2486024860epcas2p3C;
-	Mon, 11 Dec 2023 11:42:16 +0000 (GMT)
-Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
-	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20231211114216epsmtrp1cb9e7b8590a47fab43111b9f3eab7827~fxDmn2Gsa0416704167epsmtrp1Y;
-	Mon, 11 Dec 2023 11:42:16 +0000 (GMT)
-X-AuditID: b6c32a47-bfdfa70000002726-1b-6576f598991f
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-	epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	3B.D5.08817.795F6756; Mon, 11 Dec 2023 20:42:15 +0900 (KST)
-Received: from localhost.localdomain (unknown [10.229.9.55]) by
-	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20231211114215epsmtip2ffc263fdc9ff52df6b44a81bd6058682~fxDmUOKKO0860908609epsmtip2g;
-	Mon, 11 Dec 2023 11:42:15 +0000 (GMT)
-From: Jaewon Kim <jaewon02.kim@samsung.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Alim Akhtar
-	<alim.akhtar@samsung.com>, Rob Herring <robh+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Tomasz Figa <tomasz.figa@gmail.com>, Sylwester
-	Nawrocki <s.nawrocki@samsung.com>, Linus Walleij <linus.walleij@linaro.org>,
-	Thierry Reding <thierry.reding@gmail.com>, Uwe Kleine-K?nig
-	<u.kleine-koenig@pengutronix.de>, Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
-	linux-serial@vger.kernel.org, Jaewon Kim <jaewon02.kim@samsung.com>
-Subject: [PATCH v4 2/2] pinctrl: samsung: add exynosautov920 pinctrl
-Date: Mon, 11 Dec 2023 20:41:45 +0900
-Message-ID: <20231211114145.106255-3-jaewon02.kim@samsung.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20231211114145.106255-1-jaewon02.kim@samsung.com>
+X-Greylist: delayed 466 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 11 Dec 2023 00:54:09 PST
+Received: from forward502c.mail.yandex.net (forward502c.mail.yandex.net [178.154.239.210])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68556B6
+	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 00:54:09 -0800 (PST)
+Received: from mail-nwsmtp-smtp-production-main-46.myt.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-46.myt.yp-c.yandex.net [IPv6:2a02:6b8:c12:1094:0:640:693f:0])
+	by forward502c.mail.yandex.net (Yandex) with ESMTP id 977B360CDC;
+	Mon, 11 Dec 2023 11:46:20 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-46.myt.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id JkcC8DO3TW20-0oEbutPF;
+	Mon, 11 Dec 2023 11:46:19 +0300
+X-Yandex-Fwd: 1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maquefel.me; s=mail;
+	t=1702284380; bh=o/5+fGuRY7DOud/kege/N+ubbXe9cB3BAulUWwReNd0=;
+	h=References:Date:In-Reply-To:Cc:To:From:Subject:Message-ID;
+	b=SR37aMgOrMFzHNlf4h6xaBmjzPHoGabICCJN6hemGQbTrKlBLVSU82kLF9KE4t+qC
+	 kUJ10s/XZK3fkjhgnKKb91/pOipPnrZO4ld3bkBOuSt9kCSXbEVcz7WJ7ppcGhavSI
+	 KyAm6lgIAnHlvx2XTfIGK8Es/thlGhzqTXRqF66w=
+Authentication-Results: mail-nwsmtp-smtp-production-main-46.myt.yp-c.yandex.net; dkim=pass header.i=@maquefel.me
+Message-ID: <e3a1a55de6616bb4b2507751d89c61f8f7326cad.camel@maquefel.me>
+Subject: Re: [PATCH v5 06/39] dt-bindings: soc: Add Cirrus EP93xx
+From: Nikita Shubin <nikita.shubin@maquefel.me>
+To: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	 <conor+dt@kernel.org>, Alexander Sverdlin <alexander.sverdlin@gmail.com>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Date: Mon, 11 Dec 2023 14:46:19 +0300
+In-Reply-To: <20231127201818.GA2966449-robh@kernel.org>
+References: <20231122-ep93xx-v5-0-d59a76d5df29@maquefel.me>
+	 <20231122-ep93xx-v5-6-d59a76d5df29@maquefel.me>
+	 <20231127201818.GA2966449-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+User-Agent: Evolution 3.48.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrCJsWRmVeSWpSXmKPExsWy7bCmqe6Mr2WpBgvXyVk8mLeNzWLN3nNM
-	FvOPnGO1aF68ns1iR8MRVot3c2Us9r7eym4x5c9yJotNj6+xWmye/4fR4vKuOWwWd++uYrSY
-	cX4fk8WZxb3sFq17j7BbHH7Tzmrxc9c8FotVu4Dqbk+czOgg7LFz1l12j02rOtk87lzbw+ax
-	f+4ado/NS+o9+v8aePRtWcXo8XmTXABHVLZNRmpiSmqRQmpecn5KZl66rZJ3cLxzvKmZgaGu
-	oaWFuZJCXmJuqq2Si0+ArltmDtA7SgpliTmlQKGAxOJiJX07m6L80pJUhYz84hJbpdSClJwC
-	8wK94sTc4tK8dL281BIrQwMDI1OgwoTsjCe97WwFfYkVN7/+YGtgPBPUxcjJISFgItE48Spz
-	FyMXh5DADkaJeVMa2SGcT4wSHzvaoJxvjBKrFu1jhGn58mITK0RiL6PEk75djBDOR0aJh4e+
-	gFWxCWhLfF+/mBXEFhG4zyzxuq0apIhZoJ1JYt63lyxdjBwcwgIuEueaikFqWARUJV7/uc0M
-	YvMK2Ekc3/WHBWKbvMTiHcvB4pwC9hInNz5igqgRlDg58wlYDTNQTfPW2WBPSAhc4JDYu+k7
-	O0Szi8Tm1gNQtrDEq+NboGwpiZf9bVB2vkTblTNQdo3ExgWXoN60l1h05ic7yJ3MApoS63fp
-	g5gSAsoSR25BreWT6Dj8lx0izCvR0SYE0agmcX/qOTYIW0Zi0pGVTBC2h8Su3rsskKCaxChx
-	88sBpgmMCrOQfDMLyTezEBYvYGRexSiWWlCcm55abFRgDI/h5PzcTYzg5K3lvoNxxtsPeocY
-	mTgYDzFKcDArifDKHClOFeJNSaysSi3Kjy8qzUktPsRoCgzricxSosn5wPyRVxJvaGJpYGJm
-	ZmhuZGpgriTOe691boqQQHpiSWp2ampBahFMHxMHp1QDk7fV9mTrS0+ZObRXHndzV3kuvK/1
-	x7bYfSGab7L/3T80Szjl8UypheUrcndq51Zkid80CF4vLHRmYbbj9QOfZnc8CrF26XcNf35M
-	/46oX2jzhmSrY3eSPGZu3RYZM/Hmpf/yP4oips9uqz6reKDx4TmVya5OKeK7njmFOs58Wlfr
-	td/n+K7nepcrNTVdZ16XldR2EDYOd9g78ckmKYb15559OLxw2aI7F4v3+jBqlTJeUzhbPydp
-	6SbVsuKil/WeUydcmnggPFbPn8NF43Pcf+/F2d0nNbZNLykTeGUUPrPYfUGnYM03iWNBdun7
-	Qv/On6KWoLRh6vKSgim860+Wm//pXh3ds26BfO39iusmK5RYijMSDbWYi4oTATBQFQRnBAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupjkeLIzCtJLcpLzFFi42LZdlhJXnf617JUg/mLrCwezNvGZrFm7zkm
-	i/lHzrFaNC9ez2axo+EIq8W7uTIWe19vZbeY8mc5k8Wmx9dYLTbP/8NocXnXHDaLu3dXMVrM
-	OL+PyeLM4l52i9a9R9gtDr9pZ7X4uWsei8WqXUB1tydOZnQQ9tg56y67x6ZVnWwed67tYfPY
-	P3cNu8fmJfUe/X8NPPq2rGL0+LxJLoAjissmJTUnsyy1SN8ugSvjSW87W0FfYsXNrz/YGhjP
-	BHUxcnJICJhIfHmxiRXEFhLYzSgx6X0xRFxGYvmzPjYIW1jifssRoBouoJr3jBKft39iBEmw
-	CWhLfF+/GCwhIvCcWeLsn0fMIAlmgX4mieubEroYOTiEBVwkzjWBDWURUJV4/ec2WAmvgJ3E
-	8V1/WCAWyEss3rEcLM4pYC9xcuMjJoiD7CTmfdzNClEvKHFy5hMWiPHyEs1bZzNPYBSYhSQ1
-	C0lqASPTKkbJ1ILi3PTcYsMCo7zUcr3ixNzi0rx0veT83E2M4CjT0trBuGfVB71DjEwcjIcY
-	JTiYlUR4ZY4UpwrxpiRWVqUW5ccXleakFh9ilOZgURLn/fa6N0VIID2xJDU7NbUgtQgmy8TB
-	KdXAtLXW9EbXsrNzn8Vp/v7V5MLezd7oln0pyvYnZ9s8oz32b5blzD0pd2/BBbbaiMTTRi9n
-	WPH8tW1iv7mauT912ob4lSfPbV936dfBKcJGC7ZM+B7YnOQoZ6uV+uBy7IoOltZw86qlETfs
-	7shH3vqrwF56OubMDHGPwKqj3564W/rsVdIqfD/t+TfjC+4OT5j6vTwO7Pb7tDCls0JU6pfn
-	tC31Zu2qHkt5Skr6Di6b1v/6vF77PL2Ie9PPSL5LqLglKxsyrSr+3R37CbzPBeLYIlt0f7N+
-	M/sjt01Z6InAmc0ZXuJCt7KXBM74O/sy//o0vtnGNmsWJhcKppatOXDPiP/tsqD27VMF9AVV
-	dBd/VmIpzkg01GIuKk4EAFvf4JshAwAA
-X-CMS-MailID: 20231211114216epcas2p300bbf4c592d495991c6cc2d96e0b1f85
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20231211114216epcas2p300bbf4c592d495991c6cc2d96e0b1f85
-References: <20231211114145.106255-1-jaewon02.kim@samsung.com>
-	<CGME20231211114216epcas2p300bbf4c592d495991c6cc2d96e0b1f85@epcas2p3.samsung.com>
 
-Add pinctrl data for ExynosAutov920 SoC.
-It has a newly applied pinctrl register layer for ExynosAuto series.
-
-Pinctrl data for ExynosAutoV920 SoC.
- - GPA0,GPA1 (10): External wake up interrupt
- - GPQ0 (2): SPMI (PMIC I/F)
- - GPB0,GPB1,GPB2,GPB3,GPB4,GPB5,GPB6 (47): I2S Audio
- - GPH0,GPH1,GPH2,GPH3,GPH4,GPH5,GPH6,GPH8 (49): PCIE, UFS, Ethernet
- - GPG0,GPG1,GPG2,GPG3,GPG4,GPG5 (29): General purpose
- - GPP0,GPP1,GPP2,GPP3,GPP4,GPP5,GPP6,GPP7,GPP8,GPP9,GPP10 (77): USI
-
-Signed-off-by: Jaewon Kim <jaewon02.kim@samsung.com>
----
- .../pinctrl/samsung/pinctrl-exynos-arm64.c    | 140 ++++++++++++++++++
- drivers/pinctrl/samsung/pinctrl-exynos.c      |  23 ++-
- drivers/pinctrl/samsung/pinctrl-exynos.h      |  25 ++++
- drivers/pinctrl/samsung/pinctrl-samsung.c     |   2 +
- drivers/pinctrl/samsung/pinctrl-samsung.h     |   1 +
- 5 files changed, 190 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c b/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c
-index cb965cf93705..a998c296dd05 100644
---- a/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c
-+++ b/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c
-@@ -796,3 +796,143 @@ const struct samsung_pinctrl_of_match_data fsd_of_data __initconst = {
- 	.ctrl		= fsd_pin_ctrl,
- 	.num_ctrl	= ARRAY_SIZE(fsd_pin_ctrl),
- };
-+
-+/* pin banks of exynosautov920 pin-controller 0 (ALIVE) */
-+static const struct samsung_pin_bank_data exynosautov920_pin_banks0[] = {
-+	EXYNOSV920_PIN_BANK_EINTW(8, 0x0000, "gpa0", 0x18, 0x24, 0x28),
-+	EXYNOSV920_PIN_BANK_EINTW(2, 0x1000, "gpa1", 0x18, 0x20, 0x24),
-+	EXYNOS850_PIN_BANK_EINTN(2, 0x2000, "gpq0"),
-+};
-+
-+/* pin banks of exynosautov920 pin-controller 1 (AUD) */
-+static const struct samsung_pin_bank_data exynosautov920_pin_banks1[] = {
-+	EXYNOSV920_PIN_BANK_EINTG(7, 0x0000, "gpb0", 0x18, 0x24, 0x28),
-+	EXYNOSV920_PIN_BANK_EINTG(6, 0x1000, "gpb1", 0x18, 0x24, 0x28),
-+	EXYNOSV920_PIN_BANK_EINTG(8, 0x2000, "gpb2", 0x18, 0x24, 0x28),
-+	EXYNOSV920_PIN_BANK_EINTG(8, 0x3000, "gpb3", 0x18, 0x24, 0x28),
-+	EXYNOSV920_PIN_BANK_EINTG(8, 0x4000, "gpb4", 0x18, 0x24, 0x28),
-+	EXYNOSV920_PIN_BANK_EINTG(5, 0x5000, "gpb5", 0x18, 0x24, 0x28),
-+	EXYNOSV920_PIN_BANK_EINTG(5, 0x6000, "gpb6", 0x18, 0x24, 0x28),
-+};
-+
-+/* pin banks of exynosautov920 pin-controller 2 (HSI0) */
-+static const struct samsung_pin_bank_data exynosautov920_pin_banks2[] = {
-+	EXYNOSV920_PIN_BANK_EINTG(6, 0x0000, "gph0", 0x18, 0x24, 0x28),
-+	EXYNOSV920_PIN_BANK_EINTG(2, 0x1000, "gph1", 0x18, 0x20, 0x24),
-+};
-+
-+/* pin banks of exynosautov920 pin-controller 3 (HSI1) */
-+static const struct samsung_pin_bank_data exynosautov920_pin_banks3[] = {
-+	EXYNOSV920_PIN_BANK_EINTG(7, 0x000, "gph8", 0x18, 0x24, 0x28),
-+};
-+
-+/* pin banks of exynosautov920 pin-controller 4 (HSI2) */
-+static const struct samsung_pin_bank_data exynosautov920_pin_banks4[] = {
-+	EXYNOSV920_PIN_BANK_EINTG(8, 0x0000, "gph3", 0x18, 0x24, 0x28),
-+	EXYNOSV920_PIN_BANK_EINTG(7, 0x1000, "gph4", 0x18, 0x24, 0x28),
-+	EXYNOSV920_PIN_BANK_EINTG(8, 0x2000, "gph5", 0x18, 0x24, 0x28),
-+	EXYNOSV920_PIN_BANK_EINTG(7, 0x3000, "gph6", 0x18, 0x24, 0x28),
-+};
-+
-+/* pin banks of exynosautov920 pin-controller 5 (HSI2UFS) */
-+static const struct samsung_pin_bank_data exynosautov920_pin_banks5[] = {
-+	EXYNOSV920_PIN_BANK_EINTG(4, 0x000, "gph2", 0x18, 0x20, 0x24),
-+};
-+
-+/* pin banks of exynosautov920 pin-controller 6 (PERIC0) */
-+static const struct samsung_pin_bank_data exynosautov920_pin_banks6[] = {
-+	EXYNOSV920_PIN_BANK_EINTG(8, 0x0000, "gpp0", 0x18, 0x24, 0x28),
-+	EXYNOSV920_PIN_BANK_EINTG(8, 0x1000, "gpp1", 0x18, 0x24, 0x28),
-+	EXYNOSV920_PIN_BANK_EINTG(8, 0x2000, "gpp2", 0x18, 0x24, 0x28),
-+	EXYNOSV920_PIN_BANK_EINTG(5, 0x3000, "gpg0", 0x18, 0x24, 0x28),
-+	EXYNOSV920_PIN_BANK_EINTG(8, 0x4000, "gpp3", 0x18, 0x24, 0x28),
-+	EXYNOSV920_PIN_BANK_EINTG(4, 0x5000, "gpp4", 0x18, 0x20, 0x24),
-+	EXYNOSV920_PIN_BANK_EINTG(4, 0x6000, "gpg2", 0x18, 0x20, 0x24),
-+	EXYNOSV920_PIN_BANK_EINTG(4, 0x7000, "gpg5", 0x18, 0x20, 0x24),
-+	EXYNOSV920_PIN_BANK_EINTG(3, 0x8000, "gpg3", 0x18, 0x20, 0x24),
-+	EXYNOSV920_PIN_BANK_EINTG(5, 0x9000, "gpg4", 0x18, 0x24, 0x28),
-+};
-+
-+/* pin banks of exynosautov920 pin-controller 7 (PERIC1) */
-+static const struct samsung_pin_bank_data exynosautov920_pin_banks7[] = {
-+	EXYNOSV920_PIN_BANK_EINTG(8, 0x0000, "gpp5",  0x18, 0x24, 0x28),
-+	EXYNOSV920_PIN_BANK_EINTG(5, 0x1000, "gpp6",  0x18, 0x24, 0x28),
-+	EXYNOSV920_PIN_BANK_EINTG(4, 0x2000, "gpp10", 0x18, 0x20, 0x24),
-+	EXYNOSV920_PIN_BANK_EINTG(8, 0x3000, "gpp7",  0x18, 0x24, 0x28),
-+	EXYNOSV920_PIN_BANK_EINTG(4, 0x4000, "gpp8",  0x18, 0x20, 0x24),
-+	EXYNOSV920_PIN_BANK_EINTG(4, 0x5000, "gpp11", 0x18, 0x20, 0x24),
-+	EXYNOSV920_PIN_BANK_EINTG(4, 0x6000, "gpp9",  0x18, 0x20, 0x24),
-+	EXYNOSV920_PIN_BANK_EINTG(4, 0x7000, "gpp12", 0x18, 0x20, 0x24),
-+	EXYNOSV920_PIN_BANK_EINTG(8, 0x8000, "gpg1",  0x18, 0x24, 0x28),
-+};
-+
-+static const struct samsung_retention_data exynosautov920_retention_data __initconst = {
-+	.regs	 = NULL,
-+	.nr_regs = 0,
-+	.value	 = 0,
-+	.refcnt	 = &exynos_shared_retention_refcnt,
-+	.init	 = exynos_retention_init,
-+};
-+
-+static const struct samsung_pin_ctrl exynosautov920_pin_ctrl[] = {
-+	{
-+		/* pin-controller instance 0 ALIVE data */
-+		.pin_banks	= exynosautov920_pin_banks0,
-+		.nr_banks	= ARRAY_SIZE(exynosautov920_pin_banks0),
-+		.eint_wkup_init	= exynos_eint_wkup_init,
-+		.suspend	= exynos_pinctrl_suspend,
-+		.resume		= exynos_pinctrl_resume,
-+		.retention_data	= &exynosautov920_retention_data,
-+	}, {
-+		/* pin-controller instance 1 AUD data */
-+		.pin_banks	= exynosautov920_pin_banks1,
-+		.nr_banks	= ARRAY_SIZE(exynosautov920_pin_banks1),
-+	}, {
-+		/* pin-controller instance 2 HSI0 data */
-+		.pin_banks	= exynosautov920_pin_banks2,
-+		.nr_banks	= ARRAY_SIZE(exynosautov920_pin_banks2),
-+		.eint_gpio_init	= exynos_eint_gpio_init,
-+		.suspend	= exynos_pinctrl_suspend,
-+		.resume		= exynos_pinctrl_resume,
-+	}, {
-+		/* pin-controller instance 3 HSI1 data */
-+		.pin_banks	= exynosautov920_pin_banks3,
-+		.nr_banks	= ARRAY_SIZE(exynosautov920_pin_banks3),
-+		.eint_gpio_init	= exynos_eint_gpio_init,
-+		.suspend	= exynos_pinctrl_suspend,
-+		.resume		= exynos_pinctrl_resume,
-+	}, {
-+		/* pin-controller instance 4 HSI2 data */
-+		.pin_banks	= exynosautov920_pin_banks4,
-+		.nr_banks	= ARRAY_SIZE(exynosautov920_pin_banks4),
-+		.eint_gpio_init	= exynos_eint_gpio_init,
-+		.suspend	= exynos_pinctrl_suspend,
-+		.resume		= exynos_pinctrl_resume,
-+	}, {
-+		/* pin-controller instance 5 HSI2UFS data */
-+		.pin_banks	= exynosautov920_pin_banks5,
-+		.nr_banks	= ARRAY_SIZE(exynosautov920_pin_banks5),
-+		.eint_gpio_init	= exynos_eint_gpio_init,
-+		.suspend	= exynos_pinctrl_suspend,
-+		.resume		= exynos_pinctrl_resume,
-+	}, {
-+		/* pin-controller instance 6 PERIC0 data */
-+		.pin_banks	= exynosautov920_pin_banks6,
-+		.nr_banks	= ARRAY_SIZE(exynosautov920_pin_banks6),
-+		.eint_gpio_init	= exynos_eint_gpio_init,
-+		.suspend	= exynos_pinctrl_suspend,
-+		.resume		= exynos_pinctrl_resume,
-+	}, {
-+		/* pin-controller instance 7 PERIC1 data */
-+		.pin_banks	= exynosautov920_pin_banks7,
-+		.nr_banks	= ARRAY_SIZE(exynosautov920_pin_banks7),
-+		.eint_gpio_init	= exynos_eint_gpio_init,
-+		.suspend	= exynos_pinctrl_suspend,
-+		.resume		= exynos_pinctrl_resume,
-+	},
-+};
-+
-+const struct samsung_pinctrl_of_match_data exynosautov920_of_data __initconst = {
-+	.ctrl		= exynosautov920_pin_ctrl,
-+	.num_ctrl	= ARRAY_SIZE(exynosautov920_pin_ctrl),
-+};
-diff --git a/drivers/pinctrl/samsung/pinctrl-exynos.c b/drivers/pinctrl/samsung/pinctrl-exynos.c
-index 77f747e629f7..934426d61a6f 100644
---- a/drivers/pinctrl/samsung/pinctrl-exynos.c
-+++ b/drivers/pinctrl/samsung/pinctrl-exynos.c
-@@ -267,7 +267,10 @@ static irqreturn_t exynos_eint_gpio_irq(int irq, void *data)
- 	unsigned int svc, group, pin;
- 	int ret;
- 
--	svc = readl(bank->eint_base + EXYNOS_SVC_OFFSET);
-+	if (bank->eint_con_offset)
-+		svc = readl(bank->eint_base + EXYNOSAUTO_SVC_OFFSET);
-+	else
-+		svc = readl(bank->eint_base + EXYNOS_SVC_OFFSET);
- 	group = EXYNOS_SVC_GROUP(svc);
- 	pin = svc & EXYNOS_SVC_NUM_MASK;
- 
-@@ -476,6 +479,22 @@ static const struct exynos_irq_chip exynos7_wkup_irq_chip __initconst = {
- 	.set_eint_wakeup_mask = exynos_pinctrl_set_eint_wakeup_mask,
- };
- 
-+static const struct exynos_irq_chip exynosautov920_wkup_irq_chip __initconst = {
-+	.chip = {
-+		.name = "exynosautov920_wkup_irq_chip",
-+		.irq_unmask = exynos_irq_unmask,
-+		.irq_mask = exynos_irq_mask,
-+		.irq_ack = exynos_irq_ack,
-+		.irq_set_type = exynos_irq_set_type,
-+		.irq_set_wake = exynos_wkup_irq_set_wake,
-+		.irq_request_resources = exynos_irq_request_resources,
-+		.irq_release_resources = exynos_irq_release_resources,
-+	},
-+	.eint_wake_mask_value = &eint_wake_mask_value,
-+	.eint_wake_mask_reg = EXYNOS5433_EINT_WAKEUP_MASK,
-+	.set_eint_wakeup_mask = exynos_pinctrl_set_eint_wakeup_mask,
-+};
-+
- /* list of external wakeup controllers supported */
- static const struct of_device_id exynos_wkup_irq_ids[] = {
- 	{ .compatible = "samsung,s5pv210-wakeup-eint",
-@@ -488,6 +507,8 @@ static const struct of_device_id exynos_wkup_irq_ids[] = {
- 			.data = &exynos7_wkup_irq_chip },
- 	{ .compatible = "samsung,exynosautov9-wakeup-eint",
- 			.data = &exynos7_wkup_irq_chip },
-+	{ .compatible = "samsung,exynosautov920-wakeup-eint",
-+			.data = &exynosautov920_wkup_irq_chip },
- 	{ }
- };
- 
-diff --git a/drivers/pinctrl/samsung/pinctrl-exynos.h b/drivers/pinctrl/samsung/pinctrl-exynos.h
-index 3ac52c2cf998..305cb1d31de4 100644
---- a/drivers/pinctrl/samsung/pinctrl-exynos.h
-+++ b/drivers/pinctrl/samsung/pinctrl-exynos.h
-@@ -31,6 +31,7 @@
- #define EXYNOS7_WKUP_EMASK_OFFSET	0x900
- #define EXYNOS7_WKUP_EPEND_OFFSET	0xA00
- #define EXYNOS_SVC_OFFSET		0xB08
-+#define EXYNOSAUTO_SVC_OFFSET		0xF008
- 
- /* helpers to access interrupt service register */
- #define EXYNOS_SVC_GROUP_SHIFT		3
-@@ -140,6 +141,30 @@
- 		.name		= id				\
- 	}
- 
-+#define EXYNOSV920_PIN_BANK_EINTG(pins, reg, id, con_offs, mask_offs, pend_offs)	\
-+	{							\
-+		.type			= &exynos850_bank_type_off,	\
-+		.pctl_offset		= reg,				\
-+		.nr_pins		= pins,				\
-+		.eint_type		= EINT_TYPE_GPIO,		\
-+		.eint_con_offset	= con_offs,			\
-+		.eint_mask_offset	= mask_offs,			\
-+		.eint_pend_offset	= pend_offs,			\
-+		.name			= id				\
-+	}
-+
-+#define EXYNOSV920_PIN_BANK_EINTW(pins, reg, id, con_offs, mask_offs, pend_offs)	\
-+	{							\
-+		.type			= &exynos850_bank_type_alive,	\
-+		.pctl_offset		= reg,				\
-+		.nr_pins		= pins,				\
-+		.eint_type		= EINT_TYPE_WKUP,		\
-+		.eint_con_offset	= con_offs,			\
-+		.eint_mask_offset	= mask_offs,			\
-+		.eint_pend_offset	= pend_offs,			\
-+		.name			= id				\
-+	}
-+
- /**
-  * struct exynos_weint_data: irq specific data for all the wakeup interrupts
-  * generated by the external wakeup interrupt controller.
-diff --git a/drivers/pinctrl/samsung/pinctrl-samsung.c b/drivers/pinctrl/samsung/pinctrl-samsung.c
-index 362e99566919..47fb72fad8eb 100644
---- a/drivers/pinctrl/samsung/pinctrl-samsung.c
-+++ b/drivers/pinctrl/samsung/pinctrl-samsung.c
-@@ -1322,6 +1322,8 @@ static const struct of_device_id samsung_pinctrl_dt_match[] = {
- 		.data = &exynos850_of_data },
- 	{ .compatible = "samsung,exynosautov9-pinctrl",
- 		.data = &exynosautov9_of_data },
-+	{ .compatible = "samsung,exynosautov920-pinctrl",
-+		.data = &exynosautov920_of_data },
- 	{ .compatible = "tesla,fsd-pinctrl",
- 		.data = &fsd_of_data },
- #endif
-diff --git a/drivers/pinctrl/samsung/pinctrl-samsung.h b/drivers/pinctrl/samsung/pinctrl-samsung.h
-index 789358bcd9c5..987086fa0d1d 100644
---- a/drivers/pinctrl/samsung/pinctrl-samsung.h
-+++ b/drivers/pinctrl/samsung/pinctrl-samsung.h
-@@ -362,6 +362,7 @@ extern const struct samsung_pinctrl_of_match_data exynos7_of_data;
- extern const struct samsung_pinctrl_of_match_data exynos7885_of_data;
- extern const struct samsung_pinctrl_of_match_data exynos850_of_data;
- extern const struct samsung_pinctrl_of_match_data exynosautov9_of_data;
-+extern const struct samsung_pinctrl_of_match_data exynosautov920_of_data;
- extern const struct samsung_pinctrl_of_match_data fsd_of_data;
- extern const struct samsung_pinctrl_of_match_data s3c64xx_of_data;
- extern const struct samsung_pinctrl_of_match_data s3c2412_of_data;
--- 
-2.43.0
+SGVsbG8gUm9iZXJ0IQoKT24gTW9uLCAyMDIzLTExLTI3IGF0IDE0OjE4IC0wNjAwLCBSb2IgSGVy
+cmluZyB3cm90ZToKPiBPbiBXZWQsIE5vdiAyMiwgMjAyMyBhdCAxMTo1OTo0NEFNICswMzAwLCBO
+aWtpdGEgU2h1YmluIHdyb3RlOgo+ID4gQWRkIGRldmljZSB0cmVlIGJpbmRpbmdzIGZvciB0aGUg
+Q2lycnVzIExvZ2ljIEVQOTN4eCBTb0MuCj4gPiAKPiA+IFNpZ25lZC1vZmYtYnk6IE5pa2l0YSBT
+aHViaW4gPG5pa2l0YS5zaHViaW5AbWFxdWVmZWwubWU+Cj4gPiAtLS0KPiA+IMKgLi4uL2JpbmRp
+bmdzL2FybS9jaXJydXMvY2lycnVzLGVwOTMwMS55YW1swqDCoMKgwqDCoMKgwqDCoCB8IDM4ICsr
+KysrKysrKysKPiAKPiA+IMKgLi4uL2JpbmRpbmdzL3NvYy9jaXJydXMvY2lycnVzLGVwOTMwMS1z
+eXNjb24ueWFtbMKgIHwgODMKPiA+ICsrKysrKysrKysrKysrKysrKysrKysKPiA+IMKgaW5jbHVk
+ZS9kdC1iaW5kaW5ncy9zb2MvY2lycnVzLGVwOTMwMS1zeXNjb24uaMKgwqDCoMKgIHwgNDYKPiA+
+ICsrKysrKysrKysrKwo+IAo+IFRoaXMgbG9va3MgbGlrZSBpdCBpcyBtb3N0bHkgY2xvY2tzLiBJ
+J2QgcHV0IGl0IGluIGJpbmRpbmdzL2Nsb2NrLwo+IGFuZCAKPiBpbmNsdWRlL2R0LWJpbmRpbmdz
+L2Nsb2NrLyBpbnN0ZWFkLgo+IAo+ID4gwqAzIGZpbGVzIGNoYW5nZWQsIDE2NyBpbnNlcnRpb25z
+KCspCj4gPiAKPiA+IGRpZmYgLS1naXQKPiA+IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2Jp
+bmRpbmdzL2FybS9jaXJydXMvY2lycnVzLGVwOTMwMS55YW1sCj4gPiBiL0RvY3VtZW50YXRpb24v
+ZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vY2lycnVzL2NpcnJ1cyxlcDkzMDEueWFtbAo+ID4gbmV3
+IGZpbGUgbW9kZSAxMDA2NDQKPiA+IGluZGV4IDAwMDAwMDAwMDAwMC4uOTdkZDhiNmFlZmE5Cj4g
+PiAtLS0gL2Rldi9udWxsCj4gPiArKysKPiA+IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2Jp
+bmRpbmdzL2FybS9jaXJydXMvY2lycnVzLGVwOTMwMS55YW1sCj4gPiBAQCAtMCwwICsxLDM4IEBA
+Cj4gPiArIyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogR1BMLTIuMC1vbmx5IE9SIEJTRC0yLUNs
+YXVzZQo+ID4gKyVZQU1MIDEuMgo+ID4gKy0tLQo+ID4gKyRpZDogaHR0cDovL2RldmljZXRyZWUu
+b3JnL3NjaGVtYXMvYXJtL2NpcnJ1cy9jaXJydXMsZXA5MzAxLnlhbWwjCj4gPiArJHNjaGVtYTog
+aHR0cDovL2RldmljZXRyZWUub3JnL21ldGEtc2NoZW1hcy9jb3JlLnlhbWwjCj4gPiArCj4gPiAr
+dGl0bGU6IENpcnJ1cyBMb2dpYyBFUDkzeHggcGxhdGZvcm1zCj4gPiArCj4gPiArZGVzY3JpcHRp
+b246Cj4gPiArwqAgVGhlIEVQOTN4eCBTb0MgaXMgYSBBUk12NFQtYmFzZWQgd2l0aCAyMDAgTUh6
+IEFSTTkgQ1BVLgo+ID4gKwo+ID4gK21haW50YWluZXJzOgo+ID4gK8KgIC0gQWxleGFuZGVyIFN2
+ZXJkbGluIDxhbGV4YW5kZXIuc3ZlcmRsaW5AZ21haWwuY29tPgo+ID4gK8KgIC0gTmlraXRhIFNo
+dWJpbiA8bmlraXRhLnNodWJpbkBtYXF1ZWZlbC5tZT4KPiA+ICsKPiA+ICtwcm9wZXJ0aWVzOgo+
+ID4gK8KgICRub2RlbmFtZToKPiA+ICvCoMKgwqAgY29uc3Q6ICcvJwo+ID4gK8KgIGNvbXBhdGli
+bGU6Cj4gPiArwqDCoMKgIG9uZU9mOgo+ID4gK8KgwqDCoMKgwqAgLSBkZXNjcmlwdGlvbjogVGhl
+IFRTLTcyNTAgaXMgYSBjb21wYWN0LCBmdWxsLWZlYXR1cmVkCj4gPiBTaW5nbGUgQm9hcmQgQ29t
+cHV0ZXIgKFNCQykKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqAgYmFzZWQgdXBvbiB0aGUgQ2lycnVz
+IEVQOTMwMiBBUk05IENQVQo+IAo+IFdyYXAgbGluZXMgYXQgODAgdW5sZXNzIHRoZXJlJ3Mgc29t
+ZSBhZHZhbnRhZ2UgdG8gZ29pbmcgdG8gMTAwLiBIZXJlIAo+IHRoZXJlIGlzIG5vdC4KPiAKPiA+
+ICvCoMKgwqDCoMKgwqDCoCBpdGVtczoKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqAgLSBjb25zdDog
+dGVjaG5vbG9naWMsdHM3MjUwCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgIC0gY29uc3Q6IGNpcnJ1
+cyxlcDkzMDEKPiA+ICsKPiA+ICvCoMKgwqDCoMKgIC0gZGVzY3JpcHRpb246IFRoZSBMaWViaGVy
+ciBCSzMgaXMgYSBkZXJpdmF0ZSBmcm9tIHRzNzI1MAo+ID4gYm9hcmQKPiA+ICvCoMKgwqDCoMKg
+wqDCoCBpdGVtczoKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqAgLSBjb25zdDogbGllYmhlcnIsYmsz
+Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgIC0gY29uc3Q6IGNpcnJ1cyxlcDkzMDEKPiA+ICsKPiA+
+ICvCoMKgwqDCoMKgIC0gZGVzY3JpcHRpb246IEVEQjMwMiBpcyBhbiBldmFsdWF0aW9uIGJvYXJk
+IGJ5IENpcnJ1cwo+ID4gTG9naWMsCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgIGJhc2VkIG9uIGEg
+Q2lycnVzIExvZ2ljIEVQOTMwMiBDUFUKPiA+ICvCoMKgwqDCoMKgwqDCoCBpdGVtczoKPiA+ICvC
+oMKgwqDCoMKgwqDCoMKgwqAgLSBjb25zdDogY2lycnVzLGVkYjkzMDIKPiA+ICvCoMKgwqDCoMKg
+wqDCoMKgwqAgLSBjb25zdDogY2lycnVzLGVwOTMwMQo+ID4gKwo+ID4gK2FkZGl0aW9uYWxQcm9w
+ZXJ0aWVzOiB0cnVlCj4gPiBkaWZmIC0tZ2l0Cj4gPiBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJl
+ZS9iaW5kaW5ncy9zb2MvY2lycnVzL2NpcnJ1cyxlcDkzMDEtCj4gPiBzeXNjb24ueWFtbAo+ID4g
+Yi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mvc29jL2NpcnJ1cy9jaXJydXMsZXA5
+MzAxLQo+ID4gc3lzY29uLnlhbWwKPiA+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0Cj4gPiBpbmRleCAw
+MDAwMDAwMDAwMDAuLjI4M2NmMjM4NmQ5NQo+ID4gLS0tIC9kZXYvbnVsbAo+ID4gKysrIGIvRG9j
+dW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3NvYy9jaXJydXMvY2lycnVzLGVwOTMwMS0K
+PiA+IHN5c2Nvbi55YW1sCj4gPiBAQCAtMCwwICsxLDgzIEBACj4gPiArIyBTUERYLUxpY2Vuc2Ut
+SWRlbnRpZmllcjogR1BMLTIuMC1vbmx5IE9SIEJTRC0yLUNsYXVzZQo+ID4gKyVZQU1MIDEuMgo+
+ID4gKy0tLQo+ID4gKyRpZDoKPiA+IGh0dHA6Ly9kZXZpY2V0cmVlLm9yZy9zY2hlbWFzL3NvYy9j
+aXJydXMvY2lycnVzLGVwOTMwMS1zeXNjb24ueWFtbCMKPiA+ICskc2NoZW1hOiBodHRwOi8vZGV2
+aWNldHJlZS5vcmcvbWV0YS1zY2hlbWFzL2NvcmUueWFtbCMKPiA+ICsKPiA+ICt0aXRsZTogQ2ly
+cnVzIExvZ2ljIEVQOTN4eCBQbGF0Zm9ybXMgU3lzdGVtIENvbnRyb2xsZXIKPiA+ICsKPiA+ICtt
+YWludGFpbmVyczoKPiA+ICvCoCAtIEFsZXhhbmRlciBTdmVyZGxpbiA8YWxleGFuZGVyLnN2ZXJk
+bGluQGdtYWlsLmNvbT4KPiA+ICvCoCAtIE5pa2l0YSBTaHViaW4gPG5pa2l0YS5zaHViaW5AbWFx
+dWVmZWwubWU+Cj4gPiArCj4gPiArcHJvcGVydGllczoKPiA+ICvCoCBjb21wYXRpYmxlOgo+ID4g
+K8KgwqDCoCBvbmVPZjoKPiA+ICvCoMKgwqDCoMKgIC0gaXRlbXM6Cj4gPiArwqDCoMKgwqDCoMKg
+wqDCoMKgIC0gZW51bToKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAtIGNpcnJ1cyxl
+cDkzMDItc3lzY29uCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgLSBjaXJydXMsZXA5
+MzA3LXN5c2Nvbgo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC0gY2lycnVzLGVwOTMx
+Mi1zeXNjb24KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAtIGNpcnJ1cyxlcDkzMTUt
+c3lzY29uCj4gCj4gVGhlIHJlZ2lzdGVycyBvZiB0aGVzZSBhcmUgYWxsIHRoZSBzYW1lIGFzIChv
+ciBhIHN1cGVyc2V0IG9mKSB0aGUgCj4gRVA5MzAxPyBUaGF0J3Mgd2hhdCB5b3UgYXJlIGNsYWlt
+aW5nLiBQZXJoYXBzIGFscmVhZHkgZGlzY3Vzc2VkLCBidXQgCj4gdGhlcmUncyBubyBibHVyYiBo
+ZXJlIHRvIGV4cGxhaW4gdGhlIHJlbGF0aW9uc2hpcC4KPiAKPiAnc3lzY29uJyBpcyBhIExpbnV4
+IHRlcm0uIElzIHRoaXMgYmxvY2sgcmVhbGx5IGNhbGxlZCB0aGlzPwoKQ2l0aW5nIGRvY3VtZW50
+YXRpb246CgoiVGhlIFN5c3RlbSBDb250cm9sbGVyIChTeXNjb24pIHByb3ZpZGVzOgrigKIgQ2xv
+Y2sgY29udHJvbArigKIgUG93ZXIgbWFuYWdlbWVudArigKIgU3lzdGVtIGNvbmZpZ3VyYXRpb24g
+bWFuYWdlbWVudApUaGVzZSBjZW50cmFsIHJlc291cmNlcyBhcmUgY29udHJvbGxlZCBieSBhIHNl
+dCBvZiBzb2Z0d2FyZS1sb2NrZWQKcmVnaXN0ZXJzLCB3aGljaCBjYW4gYmUKdXNlZCB0byBwcmV2
+ZW50IGFjY2lkZW50YWwgYWNjZXNzZXMuIFN5c2NvbiBnZW5lcmF0ZXMgdGhlIHZhcmlvdXMgYnVz
+CmFuZCBwZXJpcGhlcmFsCmNsb2NrcyBhbmQgY29udHJvbHMgdGhlIHN5c3RlbSBzdGFydHVwIGNv
+bmZpZ3VyYXRpb24uIgoKSSdsbCBwdXQgdGhlIGZvbGxvd2luZyBpbnRvIGRlc2NyaXB0aW9uOgoK
+IkNlbnRyYWwgcmVzb3VyY2VzIGFyZSBjb250cm9sbGVkIGJ5IGEgc2V0IG9mIHNvZnR3YXJlLWxv
+Y2tlZApyZWdpc3RlcnMsIHdoaWNoIGNhbiBiZSB1c2VkIHRvIHByZXZlbnQgYWNjaWRlbnRhbCBh
+Y2Nlc3Nlcy4gU3lzY29uCmdlbmVyYXRlcyB0aGUgdmFyaW91cyBidXMgYW5kIHBlcmlwaGVyYWwg
+Y2xvY2tzIGFuZCBjb250cm9scyB0aGUgc3lzdGVtCnN0YXJ0dXAgY29uZmlndXJhdGlvbi4KCiAg
+VGhlIFN5c3RlbSBDb250cm9sbGVyIChTeXNjb24pIHByb3ZpZGVzOgogIC0gQ2xvY2sgY29udHJv
+bAogIC0gUG93ZXIgbWFuYWdlbWVudAogIC0gU3lzdGVtIGNvbmZpZ3VyYXRpb24gbWFuYWdlbWVu
+dAoKU3lzY29uIHJlZ2lzdGVycyBhcmUgY29tbW9uIGZvciBhbGwgRVA5M3h4IFNvQydzLCB0aHJv
+dWdoIHNvbWUgYWN0dWFsCnBlcmlwaGVyYWwgbWF5IGJlIG1pc3NpbmcgZGVwZW5kaW5nIG9uIGFj
+dHVhbCBTb0MgbW9kZWwuIgoKPiAKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqAgLSBjb25zdDogY2ly
+cnVzLGVwOTMwMS1zeXNjb24KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqAgLSBjb25zdDogc3lzY29u
+Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgIC0gY29uc3Q6IHNpbXBsZS1tZmQKPiA+ICvCoMKgwqDC
+oMKgIC0gaXRlbXM6Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgIC0gY29uc3Q6IGNpcnJ1cyxlcDkz
+MDEtc3lzY29uCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgIC0gY29uc3Q6IHN5c2Nvbgo+ID4gK8Kg
+wqDCoMKgwqDCoMKgwqDCoCAtIGNvbnN0OiBzaW1wbGUtbWZkCj4gCj4gRG9lc24ndCBsb29rIGxp
+a2UgYW4gc2ltcGxlLW1mZCB0byBtZS4gWW91IGRvbid0IGhhdmUgaW5kZXBlbmRlbnQKPiBjaGls
+ZCAKPiBibG9ja3Mgd2hpY2ggZG9uJ3QgZGVwZW5kIG9uIHRoZSBwYXJlbnQgbm9kZS4KPiAKPiA+
+ICsKPiA+ICvCoCByZWc6Cj4gPiArwqDCoMKgIG1heEl0ZW1zOiAxCj4gPiArCj4gPiArwqAgIiNj
+bG9jay1jZWxscyI6Cj4gPiArwqDCoMKgIGNvbnN0OiAxCj4gPiArCj4gPiArwqAgY2xvY2tzOgo+
+ID4gK8KgwqDCoCBpdGVtczoKPiA+ICvCoMKgwqDCoMKgIC0gZGVzY3JpcHRpb246IHJlZmVyZW5j
+ZSBjbG9jawo+ID4gKwo+ID4gK3BhdHRlcm5Qcm9wZXJ0aWVzOgo+ID4gK8KgICdecGlucy0nOgo+
+ID4gK8KgwqDCoCB0eXBlOiBvYmplY3QKPiA+ICvCoMKgwqAgZGVzY3JpcHRpb246IHBpbiBub2Rl
+Cj4gPiArwqDCoMKgICRyZWY6IC9zY2hlbWFzL3BpbmN0cmwvcGlubXV4LW5vZGUueWFtbAo+ID4g
+Kwo+ID4gK8KgwqDCoCBwcm9wZXJ0aWVzOgo+ID4gK8KgwqDCoMKgwqAgZnVuY3Rpb246Cj4gPiAr
+wqDCoMKgwqDCoMKgwqAgZW51bTogWyBzcGksIGFjOTcsIGkycywgcHdtLCBrZXlwYWQsIHBhdGEs
+IGxjZCwgZ3BpbyBdCj4gPiArCj4gPiArwqDCoMKgwqDCoCBncm91cHM6Cj4gPiArwqDCoMKgwqDC
+oMKgwqAgZW51bTogWyBzc3AsIGFjOTcsIGkyc19vbl9zc3AsIGkyc19vbl9hYzk3LCBwd20xLAo+
+ID4gZ3BpbzFhZ3JwLAo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBncGlvMmFn
+cnAsIGdwaW8zYWdycCwgZ3BpbzRhZ3JwLCBncGlvNmFncnAsCj4gPiBncGlvN2FncnAsCj4gPiAr
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHJhc3Rlcm9uc2RyYW0wZ3JwLCByYXN0ZXJv
+bnNkcmFtM2dycCwga2V5cGFkZ3JwLAo+ID4gaWRlZ3JwIF0KPiA+ICsKPiA+ICvCoMKgwqAgcmVx
+dWlyZWQ6Cj4gPiArwqDCoMKgwqDCoCAtIGZ1bmN0aW9uCj4gPiArwqDCoMKgwqDCoCAtIGdyb3Vw
+cwo+ID4gKwo+ID4gK8KgwqDCoCB1bmV2YWx1YXRlZFByb3BlcnRpZXM6IGZhbHNlCj4gPiArCj4g
+PiArcmVxdWlyZWQ6Cj4gPiArwqAgLSBjb21wYXRpYmxlCj4gPiArwqAgLSByZWcKPiA+ICvCoCAt
+ICIjY2xvY2stY2VsbHMiCj4gPiArwqAgLSBjbG9ja3MKPiA+ICsKPiA+ICthZGRpdGlvbmFsUHJv
+cGVydGllczogZmFsc2UKPiA+ICsKPiA+ICtleGFtcGxlczoKPiA+ICvCoCAtIHwKPiA+ICvCoMKg
+wqAgc3lzY29uQDgwOTMwMDAwIHsKPiA+ICvCoMKgwqDCoMKgIGNvbXBhdGlibGUgPSAiY2lycnVz
+LGVwOTMwMS1zeXNjb24iLAo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oCAic3lzY29uIiwgInNpbXBsZS1tZmQiOwo+ID4gK8KgwqDCoMKgwqAgcmVnID0gPDB4ODA5MzAw
+MDAgMHgxMDAwPjsKPiA+ICsKPiA+ICvCoMKgwqDCoMKgICNjbG9jay1jZWxscyA9IDwxPjsKPiA+
+ICvCoMKgwqDCoMKgIGNsb2NrcyA9IDwmeHRhbGk+Owo+ID4gKwo+ID4gK8KgwqDCoMKgwqAgc3Bp
+X2RlZmF1bHRfcGluczogcGlucy1zcGkgewo+ID4gK8KgwqDCoMKgwqDCoMKgIGZ1bmN0aW9uID0g
+InNwaSI7Cj4gPiArwqDCoMKgwqDCoMKgwqAgZ3JvdXBzID0gInNzcCI7Cj4gPiArwqDCoMKgwqDC
+oCB9Owo+ID4gK8KgwqDCoCB9Owo+ID4gZGlmZiAtLWdpdCBhL2luY2x1ZGUvZHQtYmluZGluZ3Mv
+c29jL2NpcnJ1cyxlcDkzMDEtc3lzY29uLmgKPiA+IGIvaW5jbHVkZS9kdC1iaW5kaW5ncy9zb2Mv
+Y2lycnVzLGVwOTMwMS1zeXNjb24uaAo+ID4gbmV3IGZpbGUgbW9kZSAxMDA2NDQKPiA+IGluZGV4
+IDAwMDAwMDAwMDAwMC4uNmJiOGY1MzJlN2QwCj4gPiAtLS0gL2Rldi9udWxsCj4gPiArKysgYi9p
+bmNsdWRlL2R0LWJpbmRpbmdzL3NvYy9jaXJydXMsZXA5MzAxLXN5c2Nvbi5oCj4gPiBAQCAtMCww
+ICsxLDQ2IEBACj4gPiArLyogU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IChHUEwtMi4wIE9SIE1J
+VCkgKi8KPiA+ICsjaWZuZGVmIERUX0JJTkRJTkdTX0NJUlJVU19FUDkzWFhfQ0xPQ0tfSAo+ID4g
+KyNkZWZpbmUgRFRfQklORElOR1NfQ0lSUlVTX0VQOTNYWF9DTE9DS19ICj4gPiArCj4gPiArI2Rl
+ZmluZSBFUDkzWFhfQ0xLX1BMTDHCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoDAKPiA+
+ICsjZGVmaW5lIEVQOTNYWF9DTEtfUExMMsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+MQo+ID4gKwo+ID4gKyNkZWZpbmUgRVA5M1hYX0NMS19GQ0xLwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqAyCj4gPiArI2RlZmluZSBFUDkzWFhfQ0xLX0hDTEvCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoDMKPiA+ICsjZGVmaW5lIEVQOTNYWF9DTEtfUENMS8KgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgNAo+ID4gKwo+ID4gKyNkZWZpbmUgRVA5M1hYX0NMS19VQVJU
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqA1Cj4gPiArI2RlZmluZSBFUDkzWFhfQ0xL
+X1NQScKgwqDCoMKgwqDCoMKgwqDCoDYKPiA+ICsjZGVmaW5lIEVQOTNYWF9DTEtfUFdNwqDCoMKg
+wqDCoMKgwqDCoMKgNwo+ID4gKyNkZWZpbmUgRVA5M1hYX0NMS19VU0LCoMKgwqDCoMKgwqDCoMKg
+wqA4Cj4gPiArCj4gPiArI2RlZmluZSBFUDkzWFhfQ0xLX00yTTDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoDkKPiA+ICsjZGVmaW5lIEVQOTNYWF9DTEtfTTJNMcKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgMTAKPiA+ICsKPiA+ICsjZGVmaW5lIEVQOTNYWF9DTEtfTTJQMMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgMTEKPiA+ICsjZGVmaW5lIEVQOTNYWF9DTEtf
+TTJQMcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgMTIKPiA+ICsjZGVmaW5lIEVQOTNY
+WF9DTEtfTTJQMsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgMTMKPiA+ICsjZGVmaW5l
+IEVQOTNYWF9DTEtfTTJQM8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgMTQKPiA+ICsj
+ZGVmaW5lIEVQOTNYWF9DTEtfTTJQNMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgMTUK
+PiA+ICsjZGVmaW5lIEVQOTNYWF9DTEtfTTJQNcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgMTYKPiA+ICsjZGVmaW5lIEVQOTNYWF9DTEtfTTJQNsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgMTcKPiA+ICsjZGVmaW5lIEVQOTNYWF9DTEtfTTJQN8KgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgMTgKPiA+ICsjZGVmaW5lIEVQOTNYWF9DTEtfTTJQOMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgMTkKPiA+ICsjZGVmaW5lIEVQOTNYWF9DTEtfTTJQOcKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgMjAKPiA+ICsKPiA+ICsjZGVmaW5lIEVQOTNYWF9D
+TEtfVUFSVDHCoMKgwqDCoMKgwqDCoDIxCj4gPiArI2RlZmluZSBFUDkzWFhfQ0xLX1VBUlQywqDC
+oMKgwqDCoMKgwqAyMgo+ID4gKyNkZWZpbmUgRVA5M1hYX0NMS19VQVJUM8KgwqDCoMKgwqDCoMKg
+MjMKPiA+ICsKPiA+ICsjZGVmaW5lIEVQOTNYWF9DTEtfQURDwqDCoMKgwqDCoMKgwqDCoMKgMjQK
+PiA+ICsjZGVmaW5lIEVQOTNYWF9DTEtfQURDX0VOwqDCoMKgwqDCoMKgMjUKPiA+ICsKPiA+ICsj
+ZGVmaW5lIEVQOTNYWF9DTEtfS0VZUEFEwqDCoMKgwqDCoMKgMjYKPiA+ICsKPiA+ICsjZGVmaW5l
+IEVQOTNYWF9DTEtfVklERU/CoMKgwqDCoMKgwqDCoDI3Cj4gPiArCj4gPiArI2RlZmluZSBFUDkz
+WFhfQ0xLX0kyU19NQ0xLwqDCoMKgwqAyOAo+ID4gKyNkZWZpbmUgRVA5M1hYX0NMS19JMlNfU0NM
+S8KgwqDCoMKgMjkKPiA+ICsjZGVmaW5lIEVQOTNYWF9DTEtfSTJTX0xSQ0xLwqDCoMKgMzAKPiA+
+ICsKPiA+ICsjZW5kaWYgLyogRFRfQklORElOR1NfQ0lSUlVTX0VQOTNYWF9DTE9DS19IICovCj4g
+PiAKPiA+IC0tIAo+ID4gMi40MS4wCj4gPiAKCg==
 
 
