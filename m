@@ -1,181 +1,148 @@
-Return-Path: <devicetree+bounces-24001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BC4380D40C
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 18:37:01 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE47580D419
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 18:38:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D4DDA2820F0
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 17:36:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 46057B2151B
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 17:38:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8806D4E60D;
-	Mon, 11 Dec 2023 17:36:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98B3D4E60D;
+	Mon, 11 Dec 2023 17:38:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="loMjJRWM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fELCK3KF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63A804E1AD;
-	Mon, 11 Dec 2023 17:36:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B601C43397;
-	Mon, 11 Dec 2023 17:36:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B98F4E601
+	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 17:38:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5D83C433C7
+	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 17:38:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702316215;
-	bh=jnf9dg13SzBYTXr+GBpBiKbCKE+W4egIWCJCCgVUAwg=;
+	s=k20201202; t=1702316280;
+	bh=RM8J1fRi5eccOG6cdSuf5vFHLYEKAAR1q1WmQ5fdUhY=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=loMjJRWMoMUGhMgm+YrnxZIpLCV3bDvtka0s23uKcX4z16ASC0s+UuYVJHGeBIYIB
-	 N27ZdO+4F8Lawqz9kb2Luwv9DyGq9QaTgPhpxI9eRVt5CsaJ/8hXk/1FrinkdTkG2l
-	 6DkZXddgjOC/nFXYY5q29djDfkZBGH+J+BAfsiySfpReSSCj43HJsZ98xx7K7bowh9
-	 XTlgW15lmK6opKpi3nU9cVIARat90LwpmncgYWKqsZuE8dv7mkglGhaEryRg2Soeal
-	 I1BlECQqH9HuKD3JA8HOwUOv2Bv48o7Cu4IgQR9V5VwfHj28+3s95m0s9ceGCoV8ju
-	 oWcQ6PJw8bn4w==
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-50be3611794so5575609e87.0;
-        Mon, 11 Dec 2023 09:36:55 -0800 (PST)
-X-Gm-Message-State: AOJu0YzzOzvob9fUgTBTHuY2N5lt+aYjf8lB+d3p76MnrLK6nXxdsepD
-	k8DQhRcTK/6iwXYaGWMtYBpHGjs4GZ/6J5WSPA==
-X-Google-Smtp-Source: AGHT+IHTBVeYuUBoGJIP6ycY2EOkZoObSSDfVZqLhoI3Lxe7oVt2ihkbRec/l/L5HGnrywwvadEcHP4hGnXcj/srfPU=
-X-Received: by 2002:a05:6512:68a:b0:50d:15be:f07e with SMTP id
- t10-20020a056512068a00b0050d15bef07emr2866329lfe.74.1702316213414; Mon, 11
- Dec 2023 09:36:53 -0800 (PST)
+	b=fELCK3KFxdx7lldkj0syY4n+7+IDCHwjtiPgP5xMXa2bHBSTKY7CadJq201kwooIR
+	 Z2NW07VXANkVno35IBshrqMGzavOdfd2Tw8Fl9v9jWh7Sdp1Ox1Qo4mtBa8QJUeicy
+	 o+s+e7ws1pUuChnQmHWFifemr+GWEyKOgFDtK9505wPwIYiGTSjSHfIzgz5tKF4emt
+	 xjVPIpifsqPgRq7rjoEin8t9Ce90DY2EC/n3aT3ny65UlbuvlmU10uWk0z8uOVYkBm
+	 xJuHibsxMSZtlvEZ72m+jQeB3zoHCZgRlFsagl6TADc55/zbwIy9sE4QXFZFy2MiAU
+	 EiObRtnLwmlVg==
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2c9f413d6b2so59155521fa.1
+        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 09:38:00 -0800 (PST)
+X-Gm-Message-State: AOJu0YzfGU0xvrtN2GEt62BYogJKx5j+paJaPwtZvwUnL9z/PInXwn3x
+	LwQNPX+09TpkxQHQl5PYp+0h2pdCsmaHRfTpVw==
+X-Google-Smtp-Source: AGHT+IGU6zc/IkMGLCnjAcu3MrW8oETYAeR1jpLpwg1PYbcbe672FORhlQSw1Oenjd6QCwC10tnJtiMkcqHDuwRnSog=
+X-Received: by 2002:a05:6512:3441:b0:50b:c977:106a with SMTP id
+ j1-20020a056512344100b0050bc977106amr1180039lfr.51.1702316279139; Mon, 11 Dec
+ 2023 09:37:59 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <097e82b0d66570763d64be1715517d8b032fcf95.1702158423.git.daniel@makrotopia.org>
- <879b5bbcb165aa3f059a41218142b27e5f64597f.1702158423.git.daniel@makrotopia.org>
-In-Reply-To: <879b5bbcb165aa3f059a41218142b27e5f64597f.1702158423.git.daniel@makrotopia.org>
+References: <20230920171009.3193296-1-l.stach@pengutronix.de> <20230920171009.3193296-2-l.stach@pengutronix.de>
+In-Reply-To: <20230920171009.3193296-2-l.stach@pengutronix.de>
 From: Rob Herring <robh+dt@kernel.org>
-Date: Mon, 11 Dec 2023 11:36:41 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJVY3-UneaoUNt6aGa2kU_3EVAwxJfY_mYZPyp=L=Bjtw@mail.gmail.com>
-Message-ID: <CAL_JsqJVY3-UneaoUNt6aGa2kU_3EVAwxJfY_mYZPyp=L=Bjtw@mail.gmail.com>
-Subject: Re: [PATCH v4 4/4] clk: mediatek: add drivers for MT7988 SoC
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Sabrina Dubroca <sd@queasysnail.net>, Jianhui Zhao <zhaojh329@gmail.com>, 
-	Chen-Yu Tsai <wenst@chromium.org>, "Garmin.Chang" <Garmin.Chang@mediatek.com>, 
-	Sam Shih <sam.shih@mediatek.com>, Markus Schneider-Pargmann <msp@baylibre.com>, 
-	Alexandre Mergnat <amergnat@baylibre.com>, Jiasheng Jiang <jiasheng@iscas.ac.cn>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
-	Frank Wunderlich <frank-w@public-files.de>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Chanwoo Choi <cw00.choi@samsung.com>, Dan Carpenter <dan.carpenter@linaro.org>, 
-	James Liao <jamesjj.liao@mediatek.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	netdev@vger.kernel.org
+Date: Mon, 11 Dec 2023 11:37:46 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJmyeFNpRt9bkjzXJ+w3WED4eLokmzdfP4fR=9dZGr1QA@mail.gmail.com>
+Message-ID: <CAL_JsqJmyeFNpRt9bkjzXJ+w3WED4eLokmzdfP4fR=9dZGr1QA@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] drm/bridge: imx: add driver for HDMI TX Parallel
+ Video Interface
+To: Lucas Stach <l.stach@pengutronix.de>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Liu Ying <victor.liu@nxp.com>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Frieder Schrempf <frieder.schrempf@kontron.de>, Adam Ford <aford173@gmail.com>, 
+	Luca Ceresoli <luca.ceresoli@bootlin.com>, Richard Leitner <richard.leitner@skidata.com>, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, patchwork-lst@pengutronix.de, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, NXP Linux Team <linux-imx@nxp.com>, Sandor Yu <sandor.yu@nxp.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, Dec 9, 2023 at 3:56=E2=80=AFPM Daniel Golle <daniel@makrotopia.org>=
- wrote:
+On Wed, Sep 20, 2023 at 12:10=E2=80=AFPM Lucas Stach <l.stach@pengutronix.d=
+e> wrote:
 >
-> From: Sam Shih <sam.shih@mediatek.com>
+> This IP block is found in the HDMI subsystem of the i.MX8MP SoC. It has a
+> full timing generator and can switch between different video sources. On
+> the i.MX8MP however the only supported source is the LCDIF. The block
+> just needs to be powered up and told about the polarity of the video
+> sync signals to act in bypass mode.
 >
-> Add APMIXED, ETH, INFRACFG and TOPCKGEN clock drivers which are
-> typical MediaTek designs.
->
-> Also add driver for XFIPLL clock generating the 156.25MHz clock for
-> the XFI SerDes. It needs an undocumented software workaround and has
-> an unknown internal design.
->
-> Signed-off-by: Sam Shih <sam.shih@mediatek.com>
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com> (v2)
+> Tested-by: Marek Vasut <marex@denx.de> (v1)
+> Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com> (v2)
+> Tested-by: Richard Leitner <richard.leitner@skidata.com> (v2)
+> Tested-by: Frieder Schrempf <frieder.schrempf@kontron.de> (v2)
 > ---
-> v4:
->  * make use of existing GATE_MTK_FLAGS macro
->  * reformat to max. 100 columns
->  * cosmetics
+>  drivers/gpu/drm/bridge/imx/Kconfig           |   7 +
+>  drivers/gpu/drm/bridge/imx/Makefile          |   1 +
+>  drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c | 206 +++++++++++++++++++
+>  3 files changed, 214 insertions(+)
+>  create mode 100644 drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c
 >
-> v3: use git --from ...
-> v2: no changes
+> diff --git a/drivers/gpu/drm/bridge/imx/Kconfig b/drivers/gpu/drm/bridge/=
+imx/Kconfig
+> index 9fae28db6aa7..3a4e663d922a 100644
+> --- a/drivers/gpu/drm/bridge/imx/Kconfig
+> +++ b/drivers/gpu/drm/bridge/imx/Kconfig
+> @@ -3,6 +3,13 @@ if ARCH_MXC || COMPILE_TEST
+>  config DRM_IMX_LDB_HELPER
+>         tristate
 >
->
->  drivers/clk/mediatek/Kconfig               |   9 +
->  drivers/clk/mediatek/Makefile              |   5 +
->  drivers/clk/mediatek/clk-mt7988-apmixed.c  | 102 +++++++
->  drivers/clk/mediatek/clk-mt7988-eth.c      | 133 +++++++++
->  drivers/clk/mediatek/clk-mt7988-infracfg.c | 274 +++++++++++++++++
->  drivers/clk/mediatek/clk-mt7988-topckgen.c | 325 +++++++++++++++++++++
->  drivers/clk/mediatek/clk-mt7988-xfipll.c   |  78 +++++
->  7 files changed, 926 insertions(+)
->  create mode 100644 drivers/clk/mediatek/clk-mt7988-apmixed.c
->  create mode 100644 drivers/clk/mediatek/clk-mt7988-eth.c
->  create mode 100644 drivers/clk/mediatek/clk-mt7988-infracfg.c
->  create mode 100644 drivers/clk/mediatek/clk-mt7988-topckgen.c
->  create mode 100644 drivers/clk/mediatek/clk-mt7988-xfipll.c
->
-> diff --git a/drivers/clk/mediatek/Kconfig b/drivers/clk/mediatek/Kconfig
-> index 48b42d11111cd..70a005e7e1b18 100644
-> --- a/drivers/clk/mediatek/Kconfig
-> +++ b/drivers/clk/mediatek/Kconfig
-> @@ -423,6 +423,15 @@ config COMMON_CLK_MT7986_ETHSYS
->           This driver adds support for clocks for Ethernet and SGMII
->           required on MediaTek MT7986 SoC.
->
-> +config COMMON_CLK_MT7988
-> +       tristate "Clock driver for MediaTek MT7988"
-> +       depends on ARCH_MEDIATEK || COMPILE_TEST
-> +       select COMMON_CLK_MEDIATEK
-> +       default ARCH_MEDIATEK
+> +config DRM_IMX8MP_HDMI_PVI
+> +       tristate "Freescale i.MX8MP HDMI PVI bridge support"
+> +       depends on OF
 > +       help
-> +         This driver supports MediaTek MT7988 basic clocks and clocks
-> +         required for various periperals found on this SoC.
+> +         Choose this to enable support for the internal HDMI TX Parallel
+> +         Video Interface found on the Freescale i.MX8MP SoC.
 > +
->  config COMMON_CLK_MT8135
->         tristate "Clock driver for MediaTek MT8135"
->         depends on (ARCH_MEDIATEK && ARM) || COMPILE_TEST
-> diff --git a/drivers/clk/mediatek/Makefile b/drivers/clk/mediatek/Makefil=
-e
-> index dbeaa5b41177d..eeccfa039896f 100644
-> --- a/drivers/clk/mediatek/Makefile
-> +++ b/drivers/clk/mediatek/Makefile
-> @@ -62,6 +62,11 @@ obj-$(CONFIG_COMMON_CLK_MT7986) +=3D clk-mt7986-apmixe=
-d.o
->  obj-$(CONFIG_COMMON_CLK_MT7986) +=3D clk-mt7986-topckgen.o
->  obj-$(CONFIG_COMMON_CLK_MT7986) +=3D clk-mt7986-infracfg.o
->  obj-$(CONFIG_COMMON_CLK_MT7986_ETHSYS) +=3D clk-mt7986-eth.o
-> +obj-$(CONFIG_COMMON_CLK_MT7988) +=3D clk-mt7988-apmixed.o
-> +obj-$(CONFIG_COMMON_CLK_MT7988) +=3D clk-mt7988-topckgen.o
-> +obj-$(CONFIG_COMMON_CLK_MT7988) +=3D clk-mt7988-infracfg.o
-> +obj-$(CONFIG_COMMON_CLK_MT7988) +=3D clk-mt7988-eth.o
-> +obj-$(CONFIG_COMMON_CLK_MT7988) +=3D clk-mt7988-xfipll.o
->  obj-$(CONFIG_COMMON_CLK_MT8135) +=3D clk-mt8135-apmixedsys.o clk-mt8135.=
-o
->  obj-$(CONFIG_COMMON_CLK_MT8167) +=3D clk-mt8167-apmixedsys.o clk-mt8167.=
-o
->  obj-$(CONFIG_COMMON_CLK_MT8167_AUDSYS) +=3D clk-mt8167-aud.o
-> diff --git a/drivers/clk/mediatek/clk-mt7988-apmixed.c b/drivers/clk/medi=
-atek/clk-mt7988-apmixed.c
+>  config DRM_IMX8QM_LDB
+>         tristate "Freescale i.MX8QM LVDS display bridge"
+>         depends on OF
+> diff --git a/drivers/gpu/drm/bridge/imx/Makefile b/drivers/gpu/drm/bridge=
+/imx/Makefile
+> index 8e2ebf3399a1..be9b4f9adb50 100644
+> --- a/drivers/gpu/drm/bridge/imx/Makefile
+> +++ b/drivers/gpu/drm/bridge/imx/Makefile
+> @@ -1,4 +1,5 @@
+>  obj-$(CONFIG_DRM_IMX_LDB_HELPER) +=3D imx-ldb-helper.o
+> +obj-$(CONFIG_DRM_IMX8MP_HDMI_PVI) +=3D imx8mp-hdmi-pvi.o
+>  obj-$(CONFIG_DRM_IMX8QM_LDB) +=3D imx8qm-ldb.o
+>  obj-$(CONFIG_DRM_IMX8QXP_LDB) +=3D imx8qxp-ldb.o
+>  obj-$(CONFIG_DRM_IMX8QXP_PIXEL_COMBINER) +=3D imx8qxp-pixel-combiner.o
+> diff --git a/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c b/drivers/gpu/d=
+rm/bridge/imx/imx8mp-hdmi-pvi.c
 > new file mode 100644
-> index 0000000000000..02eb6354b01a8
+> index 000000000000..5ccd70c98187
 > --- /dev/null
-> +++ b/drivers/clk/mediatek/clk-mt7988-apmixed.c
-> @@ -0,0 +1,102 @@
-> +// SPDX-License-Identifier: GPL-2.0
+> +++ b/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c
+> @@ -0,0 +1,206 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +
 > +/*
-> + * Copyright (c) 2023 MediaTek Inc.
-> + * Author: Sam Shih <sam.shih@mediatek.com>
-> + * Author: Xiufeng Li <Xiufeng.Li@mediatek.com>
+> + * Copyright (C) 2022 Pengutronix, Lucas Stach <kernel@pengutronix.de>
 > + */
 > +
-> +#include <linux/clk-provider.h>
-> +#include <linux/of.h>
-
-> +#include <linux/of_address.h>
+> +#include <drm/drm_atomic_helper.h>
+> +#include <drm/drm_bridge.h>
+> +#include <drm/drm_crtc.h>
+> +#include <linux/bitfield.h>
+> +#include <linux/io.h>
+> +#include <linux/module.h>
 > +#include <linux/of_device.h>
 
-You probably don't need these 2 headers and the implicit includes
-of_device.h makes are dropped now in linux-next. Please check what you
-actually need and make them explicit.
+You probably don't need this header and the implicit includes it makes
+are dropped now in linux-next. Please check what you actually need and
+make them explicit.
 
 Rob
 
