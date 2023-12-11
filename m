@@ -1,79 +1,133 @@
-Return-Path: <devicetree+bounces-23721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23722-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA02980C25A
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 08:49:11 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 472C980C25C
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 08:49:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EACF41C208DC
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 07:49:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 763091C208A7
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 07:49:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC68A208D1;
-	Mon, 11 Dec 2023 07:49:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72FC5208D3;
+	Mon, 11 Dec 2023 07:49:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=163.com header.i=@163.com header.b="n3kXz7fQ"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="Mp5ZAgZF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m1345.mail.163.com (m1345.mail.163.com [220.181.13.45])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 47A3FF2;
-	Sun, 10 Dec 2023 23:49:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Date:From:Subject:Content-Type:MIME-Version:
-	Message-ID; bh=3xGAux2eUESAR4VcoWBAruvy8wC4zTo5nWdivW8esro=; b=n
-	3kXz7fQ4QMYCO83TzQucwdIYp27tDnT7ljY64uZ4w//UHJlhmZeQpIw+PQjZkYJV
-	NwtT9gsqi/jkJze9Mak68rowRbKO5o+XU668yao3rtPjBdQS02GM99lyY/QCJQOa
-	Hyhq2y3c/h0XBxVax9echZebfGonQ5EkM9r5hfr944=
-Received: from andyshrk$163.com ( [58.22.7.114] ) by ajax-webmail-wmsvr45
- (Coremail) ; Mon, 11 Dec 2023 15:48:46 +0800 (CST)
-Date: Mon, 11 Dec 2023 15:48:46 +0800 (CST)
-From: "Andy Yan" <andyshrk@163.com>
-To: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
-Cc: heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org
-Subject: Re:Re: [PATCH v2 3/5] arm64: dts: rockchip: Add support for rk3588s
- based board Cool Pi 4B
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20230109(dcb5de15)
- Copyright (c) 2002-2023 www.mailtech.cn 163com
-In-Reply-To: <32b6437f-0e56-439d-8ebb-465e5230b18f@linaro.org>
-References: <20231210080313.1667013-1-andyshrk@163.com>
- <20231210080547.1667421-1-andyshrk@163.com>
- <32b6437f-0e56-439d-8ebb-465e5230b18f@linaro.org>
-X-NTES-SC: AL_Qu2bAP6Tv0Ep4CedYOkXn0kXhec2W8Czvvgg34JRP5k0hynnwAEvc0JFOEPk/d2MNhKrjSWXaid/wONHUYtdeq1GtiWLO/5Xrzrjm5TAIkYZ
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05654FD;
+	Sun, 10 Dec 2023 23:49:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1702280979; x=1733816979;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=nfzaV3vxtQAyCNR+jzMcM2jLOcbWTkwcukLDVw5CIyg=;
+  b=Mp5ZAgZFQ/8wEASqX3LMiyEOC3Cn7R+/943BHWWRZN2W8J7T6D1BGvy8
+   Ei0HULTG6vphONKW29Pqgs+1RIchC7Ojq4ETs91HELZdkr6trPKFf7Mm7
+   iPC1HiYUFzjdHElITLdVJu/v59fQMKhrYbWj1gX5EExo1UdVQRYWyMX2F
+   JthsrMjR24vsoKlEn5NdECC2Gs/PDeMjQm+ynScTevY/hIlAXKx2USTgF
+   WkS9gZuMnkKbY5kwxK5na41gAHF08VhDDPYiQeJawvW4a9DmmleZgwMY5
+   OSYLoX6lhXthmNZDGnSLHGA/lGQ+uY+hEneJQv+4XCk6M4FHYmoER1chM
+   w==;
+X-IronPort-AV: E=Sophos;i="6.04,267,1695679200"; 
+   d="scan'208";a="34423846"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 11 Dec 2023 08:49:36 +0100
+Received: from steina-w.localnet (steina-w.tq-net.de [10.123.53.18])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 88432280075;
+	Mon, 11 Dec 2023 08:49:36 +0100 (CET)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, Paul Elder <paul.elder@ideasonboard.com>
+Cc: kieran.bingham@ideasonboard.com, tomi.valkeinen@ideasonboard.com, umang.jain@ideasonboard.com, aford173@gmail.com, Paul Elder <paul.elder@ideasonboard.com>
+Subject: Re: [PATCH v4 00/11] media: rkisp1: Add support for i.MX8MP
+Date: Mon, 11 Dec 2023 08:49:37 +0100
+Message-ID: <5998504.lOV4Wx5bFT@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <5184188.e9J7NaK4W3@steina-w>
+References: <20231129092759.242641-1-paul.elder@ideasonboard.com> <5184188.e9J7NaK4W3@steina-w>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <21f982a7.3c52.18c57d99625.Coremail.andyshrk@163.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:LcGowAD3X0PfvnZlA3QsAA--.16084W
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/1tbiqAJDXmVOA4n0hgABsl
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-CkhpIEtyenlzenRvZu+8mgoKQXQgMjAyMy0xMi0xMCAxOToxMzoyNiwgIktyenlzenRvZiBLb3ps
-b3dza2kiIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+IHdyb3RlOgo+T24gMTAvMTIv
-MjAyMyAwOTowNSwgQW5keSBZYW4gd3JvdGU6Cj4+IENvb2xQaSA0QiBpcyBhIHJrMzU4OHMgYmFz
-ZWQgU0JDLgo+PiBTcGVjaWZpY2F0aW9uOgo+PiAtIFJvY2tjaGlwIFJLMzU4OFMKPj4gLSBMUERE
-UjQgMi80LzgvMTYgR0IKPj4gLSBURiBzY2FyZCBzbG90Cj4KPi4uLgo+Cj4+ICsmaTJjNiB7Cj4+
-ICsJcGluY3RybC1uYW1lcyA9ICJkZWZhdWx0IjsKPj4gKwlwaW5jdHJsLTAgPSA8JmkyYzZtM194
-ZmVyPjsKPj4gKwlzdGF0dXMgPSAib2theSI7Cj4+ICsKPj4gKwloeW04NTYzOiBydGNANTEgewo+
-PiArCQljb21wYXRpYmxlID0gImhhb3l1LGh5bTg1NjMiOwo+PiArCQlyZWcgPSA8MHg1MT47Cj4+
-ICsJCSNjbG9jay1jZWxscyA9IDwwPjsKPj4gKwkJY2xvY2stZnJlcXVlbmN5ID0gPDMyNzY4PjsK
-Pj4gKwkJY2xvY2stb3V0cHV0LW5hbWVzID0gImh5bTg1NjMiOwo+PiArCQlwaW5jdHJsLW5hbWVz
-ID0gImRlZmF1bHQiOwo+PiArCQlwaW5jdHJsLTAgPSA8Jmh5bTg1NjNfaW50PjsKPj4gKwkJaW50
-ZXJydXB0LXBhcmVudCA9IDwmZ3BpbzA+Owo+PiArCQlpbnRlcnJ1cHRzID0gPFJLX1BCMCBJUlFf
-VFlQRV9MRVZFTF9MT1c+Owo+PiArCQlzdGF0dXMgPSAib2theSI7Cj4KPk15IGNvbW1lbnRzIGFi
-b3V0IHJlZHVuZGFudCBzdGF0dWVzIGFwcGxpZXMgdG8gYWxsIHBsYWNlcywgbm90IG9ubHkgdG8K
-Pm9uZSBzcGVjaWZpYyBwbGFjZS4uLgoKU29ycnkgZm9yIHRoYXTvvIwgSSB3aWxsIGZpeCBpbiBW
-MwoKPgo+QmVzdCByZWdhcmRzLAo+S3J6eXN6dG9mCj4KPgo+X19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KPmxpbnV4LWFybS1rZXJuZWwgbWFpbGluZyBsaXN0
-Cj5saW51eC1hcm0ta2VybmVsQGxpc3RzLmluZnJhZGVhZC5vcmcKPmh0dHA6Ly9saXN0cy5pbmZy
-YWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYXJtLWtlcm5lbAo=
+Hi,
+
+Am Mittwoch, 29. November 2023, 11:58:39 CET schrieb Alexander Stein:
+> Hi Paul,
+>=20
+> thanks for the series.
+>=20
+> Am Mittwoch, 29. November 2023, 10:27:48 CET schrieb Paul Elder:
+> > This series extends the rkisp1 driver to support the ISP found in the
+> > NXP i.MX8MP SoC.
+> >=20
+> > The ISP IP cores in the Rockchip RK3399 (known as the "Rockchip ISP1")
+> > and in the NXP i.MX8MP have the same origin, and have slightly diverged
+> > over time as they are now independently developed (afaik) by Rockchip
+> > and VeriSilicon. The latter is marketed under the name "ISP8000Nano",
+> > and is close enough to the RK3399 ISP that it can easily be supported by
+> > the same driver.
+> >=20
+> > The last two patches add support for UYVY output format, which can be
+> > implemented on the ISP version in the i.MX8MP but not in the one in the
+> > RK3399.
+> >=20
+> > This version of the series specifically has been tested on a Polyhex
+> > Debix model A with an imx219 (Raspberry Pi cam v2).
+>=20
+> I've created a setup on TQMa8MPxL/MBa8MPxL and a Sony IMX327 sensor for a
+> while now. I can stream 1080p video at 45 FPS to HDMI output without any
+> special configuration.
+
+Just for the records. the 45 FPS limit is introduced by (HDMI) output. Usin=
+g a=20
+gstreamer testsink "outpu", I can run at 60 FPS.
+
+Best regards,
+Alexander
+
+> Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+>=20
+> > Laurent Pinchart (2):
+> >   media: rkisp1: Add and use rkisp1_has_feature() macro
+> >   media: rkisp1: Configure gasket on i.MX8MP
+> >=20
+> > Paul Elder (9):
+> >   media: rkisp1: Support setting memory stride for main path
+> >   media: rkisp1: Support devices lacking self path
+> >   media: rkisp1: Support devices lacking dual crop
+> >   media: rkisp1: Fix RSZ_CTRL bits for i.MX8MP
+> >   dt-bindings: media: rkisp1: Add i.MX8MP ISP to compatible
+> >   media: rkisp1: Add match data for i.MX8MP ISP
+> >   media: rkisp1: Shift DMA buffer addresses on i.MX8MP
+> >   media: rkisp1: Add YC swap capability
+> >   media: rkisp1: Add UYVY as an output format
+> > =20
+> >  .../bindings/media/rockchip-isp1.yaml         |  37 ++++-
+> >  .../platform/rockchip/rkisp1/rkisp1-capture.c | 128 ++++++++++++-----
+> >  .../platform/rockchip/rkisp1/rkisp1-common.h  |  35 ++++-
+> >  .../platform/rockchip/rkisp1/rkisp1-dev.c     |  66 +++++++--
+> >  .../platform/rockchip/rkisp1/rkisp1-isp.c     | 131 +++++++++++++++++-
+> >  .../platform/rockchip/rkisp1/rkisp1-regs.h    |  32 +++++
+> >  .../platform/rockchip/rkisp1/rkisp1-resizer.c |  27 ++--
+> >  include/uapi/linux/rkisp1-config.h            |   2 +
+> >  8 files changed, 398 insertions(+), 60 deletions(-)
+
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
+
 
