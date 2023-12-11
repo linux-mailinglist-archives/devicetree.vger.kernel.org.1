@@ -1,163 +1,131 @@
-Return-Path: <devicetree+bounces-24017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24018-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD7A280D4C8
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 18:58:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C245580D4CD
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 18:58:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD81B1C208D8
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 17:58:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7BCAC281A04
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 17:58:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47FC64F1E0;
-	Mon, 11 Dec 2023 17:58:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D13074F1EA;
+	Mon, 11 Dec 2023 17:58:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ym5MwTGe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KGkwdOOX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF80FCD;
-	Mon, 11 Dec 2023 09:57:56 -0800 (PST)
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-40b5155e154so55892165e9.3;
-        Mon, 11 Dec 2023 09:57:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702317475; x=1702922275; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=wYKSJ2l3/7Ewha/gT1ScFG6FBTutwPomIDS5R6uY778=;
-        b=Ym5MwTGeE8YE6Wa29SglxoszQ4v5RFUclnKE6xTGGnwHq+UE8ZWFpYbUr1docIiy1V
-         fEK2v0Iu94XBPVfB6PlI+6H0omRdby8HJgy+GVrxNVVyck9a35ZzoEq/vOLcz9O/kLjb
-         D+KKS5CuEdDVGb2J6SSHkgmh/ACoo7f0J1ONfDStEWW4/vCyLm7SnHRx7oIi4xK6sGwp
-         qCad/uKrFTUsZek4MxV4VUTqFhCE7HhPawBNbV1qz2a3RgSAjowaF2H/XxZdzKDukIo3
-         fhbTPA4brHiK+zah7y+6b2saHe5ellncJO0CphyS0G+B9pZ/9GMSsXKPw8EEUmimkTCn
-         ALqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702317475; x=1702922275;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wYKSJ2l3/7Ewha/gT1ScFG6FBTutwPomIDS5R6uY778=;
-        b=w4Io3RETbttqm6IMuDDplJPnDqA7qTPcv+Cvm6kTQnNpmcl6uGYB2jPxbhnzR7EwaW
-         mQ98OGqAGFK+0i0wmcOOkpFK1HeQ3g4BkqoON/4mSaye1szd/m3wsoxbkS4o/iC1I404
-         /NMQjege5T2d0buYQIfSjE+WZlvZNvfsEuL3RW8Se+oBKP+Fvk4NBBouKKrQiGC2PVCv
-         OJ1wyn1BuAUwkYhK9dOj3cr1Ib6wL1u64PeCQITNSUBgpH/o/IFXr2wUmGmmOTAWdwL/
-         8QEp+mxC1bo/btLYDgQHAbOUM6240p41tioZDBlsLLludy5aUZr5p5MC5k8wODRQIn1S
-         TVWQ==
-X-Gm-Message-State: AOJu0YypnylH1JR0/pkEJRnTsRFQbS/OYA4ioWVQz/cU0xSiyLwpL2yh
-	nu2C/IkQkRLvDwxxOjXOUE2eDLITztE=
-X-Google-Smtp-Source: AGHT+IEg3L3pPefnALqwZK+c/kYFSt7/PmeOBRRMNF0qjacTIuHa3pTrzWGFXCqoTZPCv8mt9vjefA==
-X-Received: by 2002:a05:600c:5248:b0:40c:3e0a:692e with SMTP id fc8-20020a05600c524800b0040c3e0a692emr1989294wmb.232.1702317474580;
-        Mon, 11 Dec 2023 09:57:54 -0800 (PST)
-Received: from Ansuel-xps. (93-34-89-13.ip49.fastwebnet.it. [93.34.89.13])
-        by smtp.gmail.com with ESMTPSA id iv19-20020a05600c549300b0040b397787d3sm10147623wmb.24.2023.12.11.09.57.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Dec 2023 09:57:53 -0800 (PST)
-Message-ID: <65774da1.050a0220.bd430.2025@mx.google.com>
-X-Google-Original-Message-ID: <ZXdNnsqUxlecXIF8@Ansuel-xps.>
-Date: Mon, 11 Dec 2023 18:57:50 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [net-next PATCH 1/2] dt-bindings: Document QCA808x PHYs
-References: <20231209014828.28194-1-ansuelsmth@gmail.com>
- <242759d9-327d-4fde-b2a0-24566cf5bf25@lunn.ch>
- <65772f36.050a0220.678b6.ef84@mx.google.com>
- <74b7fc4f-88d2-41c0-8d98-6530f0fc2d70@lunn.ch>
- <657744b5.050a0220.dfa0d.11a4@mx.google.com>
- <2698eda5-af84-494f-844b-2ea87aa510d2@lunn.ch>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF49D4EB4D;
+	Mon, 11 Dec 2023 17:58:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FD38C433CA;
+	Mon, 11 Dec 2023 17:58:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702317517;
+	bh=CoHFrQIbWUopxi/6NgF+s3ej3i0E535vo1y3uKwUONI=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=KGkwdOOXQeZxUl2el0v0YWwYVoi7gi7Aamf2+dyFcQKl3O89T0YT5Hllft2JrxnyM
+	 vf678b32fIUcgYZ101sZuLq6sieHZvk6hThA3qadTWSOrWY8/Uj18t8nvR1KZIA2II
+	 GJeharLzqWTlo3hLUk/iYP4aGCmryIf6ai5pPbvBY2SUbA6aERZ4F6/EjEFYk8H1Kf
+	 bYq5e7IGA8j4FIFcEdRC65BYh9PXePZ/tX3J3zJ06/oDcHFuaStGjWvwNm/MvZWaHW
+	 g+0wvR/cXepPQt9FrkLTaXY+D9ak+tdvwxOit+Mxw2AprsJosvlacxVmbJ5PKAQxZL
+	 83FBLpuGGUQ8g==
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-50bfa5a6cffso5420919e87.0;
+        Mon, 11 Dec 2023 09:58:37 -0800 (PST)
+X-Gm-Message-State: AOJu0Yy4UQfewqBYw9v4yWl9Upwf5SrbwxXE0LcGlbvPI+o/ZSMyEPCa
+	wVG8uiqtlfMQnANEpVBJK3gg4djASrWmsaSRZw==
+X-Google-Smtp-Source: AGHT+IFhGfMMJKtekSGjF4bprgaJXphTzPGrMTvLkiHMAAyx3r/eZQMCNlyfs1fqyBwdkL9hb0l0Gns5aka9u+xU/uo=
+X-Received: by 2002:a05:6512:2804:b0:50d:14b2:287a with SMTP id
+ cf4-20020a056512280400b0050d14b2287amr2351763lfb.25.1702317515423; Mon, 11
+ Dec 2023 09:58:35 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2698eda5-af84-494f-844b-2ea87aa510d2@lunn.ch>
+References: <20231122-x1e80100-clk-tcsrcc-v1-0-43078c6d6452@linaro.org> <20231122-x1e80100-clk-tcsrcc-v1-2-43078c6d6452@linaro.org>
+In-Reply-To: <20231122-x1e80100-clk-tcsrcc-v1-2-43078c6d6452@linaro.org>
+From: Rob Herring <robh+dt@kernel.org>
+Date: Mon, 11 Dec 2023 11:58:23 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLO60Gmn6y=D+ZxKgoxRP9=jcZL9S8LuUgp=4HvAmvWzQ@mail.gmail.com>
+Message-ID: <CAL_JsqLO60Gmn6y=D+ZxKgoxRP9=jcZL9S8LuUgp=4HvAmvWzQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] clk: qcom: Add TCSR clock driver for x1e80100
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Rajendra Nayak <quic_rjendra@quicinc.com>, 
+	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Dec 11, 2023 at 06:49:02PM +0100, Andrew Lunn wrote:
-> On Mon, Dec 11, 2023 at 06:19:46PM +0100, Christian Marangi wrote:
-> > On Mon, Dec 11, 2023 at 04:54:12PM +0100, Andrew Lunn wrote:
-> > > > Mhhh with a generic property and LED core or phylib handling it... How
-> > > > it would work applying that setting on PHY side?
-> > > 
-> > > Add a .led_set_polarity callback to the PHY driver structure?
-> > > 
-> > > Take a look at other LED drivers. Does anything similar already exist?
-> > > It is unlikely that PHYs are the only sort of LED to have a polarity.
-> > >
-> > 
-> > Interesting topic... With a quick grep on Documentation for polarity of
-> > high, I can't find any use of it...
-> 
-> As i said, active-high is the default. So there is no need to specify
-> it. But if you look in Documentation/devicetree/binding/leds for
-> 'active-low' you will find a few examples.
+On Wed, Nov 22, 2023 at 7:42=E2=80=AFAM Abel Vesa <abel.vesa@linaro.org> wr=
+ote:
 >
-
-Yes I was searching more and I just notice active-low and led-active-low
-usage for bcm6358.
-
-> > Also main problem is that the thing is controlled globally and not per
-> > LED. (can be handled internally to the driver with some priv and check
-> > magic)
-> 
-> Ah, missed that. Marvell PHYs have polarity per LED.
-> 
-> It would be better to describe this correctly, so one property at a
-> higher level. We can then in the future add an 'active-low' property
-> per PHY.
-> 
-> > Is it worth to impemement the additional API to control this? And I
-> > guess a egenric binding should be added to ethernet-phy? Or should it be
-> > added to LEDs?
-> 
-> Since it is above individual LEDs, i would not add it to the generic
-> LED binding. But it could go inside the leds object of
-> ethernet-phy.yaml.
-> 
->            leds {
->                 #address-cells = <1>;
->                 #size-cells = <0>;
-> 
-> 		active-low;
-> 
->                 led@0 {
->                     reg = <0>;
->                     color = <LED_COLOR_ID_WHITE>;
->                     function = LED_FUNCTION_LAN;
->                     default-state = "keep";
->                 };
+> The TCSR clock controller found on X1E80100 provides refclks
+> for PCIE, USB and UFS. Add clock driver for it.
 >
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
+>  drivers/clk/qcom/Kconfig           |   8 +
+>  drivers/clk/qcom/Makefile          |   1 +
+>  drivers/clk/qcom/tcsrcc-x1e80100.c | 295 +++++++++++++++++++++++++++++++=
+++++++
+>  3 files changed, 304 insertions(+)
+>
+> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
+> index ad1acd9b7426..6ed9c89d9070 100644
+> --- a/drivers/clk/qcom/Kconfig
+> +++ b/drivers/clk/qcom/Kconfig
+> @@ -1116,4 +1116,12 @@ config SM_VIDEOCC_8450
+>           SM8450 devices.
+>           Say Y if you want to support video devices and functionality su=
+ch as
+>           video encode/decode.
+> +
+> +config X1E_TCSRCC_80100
+> +       tristate "X1E80100 TCSR Clock Controller"
+> +       depends on ARM64 || COMPILE_TEST
+> +       select QCOM_GDSC
+> +       help
+> +         Support for the TCSR clock controller on X1E80100 devices.
+> +         Say Y if you want to use peripheral devices such as SD/UFS.
+>  endif
+> diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
+> index 17edd73f9839..4931a1470137 100644
+> --- a/drivers/clk/qcom/Makefile
+> +++ b/drivers/clk/qcom/Makefile
+> @@ -140,3 +140,4 @@ obj-$(CONFIG_SPMI_PMIC_CLKDIV) +=3D clk-spmi-pmic-div=
+.o
+>  obj-$(CONFIG_KPSS_XCC) +=3D kpss-xcc.o
+>  obj-$(CONFIG_QCOM_HFPLL) +=3D hfpll.o
+>  obj-$(CONFIG_KRAITCC) +=3D krait-cc.o
+> +obj-$(CONFIG_X1E_TCSRCC_80100) +=3D tcsrcc-x1e80100.o
+> diff --git a/drivers/clk/qcom/tcsrcc-x1e80100.c b/drivers/clk/qcom/tcsrcc=
+-x1e80100.c
+> new file mode 100644
+> index 000000000000..2ec142c3d1f9
+> --- /dev/null
+> +++ b/drivers/clk/qcom/tcsrcc-x1e80100.c
+> @@ -0,0 +1,295 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2022, Qualcomm Innovation Center, Inc. All rights reser=
+ved.
+> + * Copyright (c) 2023, Linaro Limited
+> + */
+> +
+> +#include <linux/clk-provider.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
 
-Ok! And I guess the additional API will (initially to be later expanded
-for other usage?) take this value and call the set polarity based on
-this correct? 
+You probably don't need this header and the implicit includes it makes
+are dropped now in linux-next. Please check what you actually need and
+make them explicit.
 
-bool active_low = of_property_read_bool(leds_node, "active-low");
-
-.led_set_polarity(struct phy_device *phydev, bool active_low);
-
-
-Maybe a more flexible approach might be scan for both. (either in leds
-node or in the led subnode)
-
-.led_set_polarity(struct phy_device *phydev, int index, bool active_low);
-
-Where index is -1 if it's global and the led index if it's in the led
-node?
-
-PHY driver will know what to ignore/use as I can't immagine to have a
-PHY that have both global and per LED polarity. What do you think?
-
--- 
-	Ansuel
+Rob
 
