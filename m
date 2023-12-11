@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-24036-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24038-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5DA880D784
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 19:39:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55D9080D809
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 19:42:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B3C41F21B40
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 18:39:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 130A2280FAB
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 18:42:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 450C953E0E;
-	Mon, 11 Dec 2023 18:37:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D7E251C3D;
+	Mon, 11 Dec 2023 18:42:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="Nwd2dXZB"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="lDXHt19R"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22CBA51C53;
-	Mon, 11 Dec 2023 18:37:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C577C433C9;
-	Mon, 11 Dec 2023 18:37:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDD24FC06;
+	Mon, 11 Dec 2023 18:42:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60C9AC433C8;
+	Mon, 11 Dec 2023 18:42:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1702319865;
-	bh=cZE452f8YPHdbVsA+b1uc/h5DbUGuVzHmCdJDexVwh8=;
+	s=korg; t=1702320120;
+	bh=CuvhuqL1aJ7h162lUqS6wsuwMKlUnLkTh/K7vzIY1wk=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Nwd2dXZBJ/Kx7vpDivH+Cr6uifbJvhM4q5Mphx6LOgB+ksyVYRlT6Bpt9vVzFyi37
-	 KEa4pn7vpkmL31i99WMPlC6KReisDZOTw1vh5T6aJ9LqyBiXQScgyLNbWLck6mOY07
-	 lNyTn12uOcvz4Orvj9FEZSZq8t6Ywy5MpRle4TIM=
+	b=lDXHt19RGSnsB9Ful1i5hzsKh6JgcFgSL6aP+bh94qM/52rxDf+1DIR5Di1g+PhZA
+	 BiaC3cIsbBLHygS0BGRF2VWH12IMIQC3swD2/XBjxY0h23XkFCOhDS1C/vZxmqYSAn
+	 yFo2Oxfs7LQEYlWDBTNg2OjatGrrqn98IzI/c/JA=
 From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To: stable@vger.kernel.org
 Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
@@ -40,12 +40,12 @@ Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Lee Jones <lee.jones@linaro.org>,
 	Rob Herring <robh@kernel.org>,
 	Sasha Levin <sashal@kernel.org>
-Subject: [PATCH 5.10 17/97] of: base: Fix some formatting issues and provide missing descriptions
-Date: Mon, 11 Dec 2023 19:21:20 +0100
-Message-ID: <20231211182020.542156072@linuxfoundation.org>
+Subject: [PATCH 5.4 13/67] of: base: Fix some formatting issues and provide missing descriptions
+Date: Mon, 11 Dec 2023 19:21:57 +0100
+Message-ID: <20231211182015.661069620@linuxfoundation.org>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20231211182019.802717483@linuxfoundation.org>
-References: <20231211182019.802717483@linuxfoundation.org>
+In-Reply-To: <20231211182015.049134368@linuxfoundation.org>
+References: <20231211182015.049134368@linuxfoundation.org>
 User-Agent: quilt/0.67
 X-stable: review
 X-Patchwork-Hint: ignore
@@ -57,7 +57,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-5.10-stable review patch.  If anyone has any objections, please let me know.
+5.4-stable review patch.  If anyone has any objections, please let me know.
 
 ------------------
 
@@ -97,10 +97,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 11 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/of/base.c b/drivers/of/base.c
-index a44a0e7ba2510..fa45a681267cd 100644
+index 5c97366628b13..4032814133fe6 100644
 --- a/drivers/of/base.c
 +++ b/drivers/of/base.c
-@@ -305,7 +305,7 @@ bool __weak arch_match_cpu_phys_id(int cpu, u64 phys_id)
+@@ -367,7 +367,7 @@ bool __weak arch_match_cpu_phys_id(int cpu, u64 phys_id)
  	return (u32)phys_id == cpu;
  }
  
@@ -109,7 +109,7 @@ index a44a0e7ba2510..fa45a681267cd 100644
   * Checks if the given "prop_name" property holds the physical id of the
   * core/thread corresponding to the logical cpu 'cpu'. If 'thread' is not
   * NULL, local thread number within the core is returned in it.
-@@ -1128,7 +1128,7 @@ EXPORT_SYMBOL(of_match_node);
+@@ -1190,7 +1190,7 @@ EXPORT_SYMBOL(of_match_node);
   *			will; typically, you pass what the previous call
   *			returned. of_node_put() will be called on it
   *	@matches:	array of of device match structures to search in
@@ -118,7 +118,7 @@ index a44a0e7ba2510..fa45a681267cd 100644
   *
   *	Returns a node pointer with refcount incremented, use
   *	of_node_put() on it when done.
-@@ -1779,6 +1779,8 @@ EXPORT_SYMBOL(of_count_phandle_with_args);
+@@ -1853,6 +1853,8 @@ EXPORT_SYMBOL(of_count_phandle_with_args);
  
  /**
   * __of_add_property - Add a property to a node without lock operations
@@ -127,7 +127,7 @@ index a44a0e7ba2510..fa45a681267cd 100644
   */
  int __of_add_property(struct device_node *np, struct property *prop)
  {
-@@ -1800,6 +1802,8 @@ int __of_add_property(struct device_node *np, struct property *prop)
+@@ -1874,6 +1876,8 @@ int __of_add_property(struct device_node *np, struct property *prop)
  
  /**
   * of_add_property - Add a property to a node
@@ -136,7 +136,7 @@ index a44a0e7ba2510..fa45a681267cd 100644
   */
  int of_add_property(struct device_node *np, struct property *prop)
  {
-@@ -1844,6 +1848,8 @@ int __of_remove_property(struct device_node *np, struct property *prop)
+@@ -1918,6 +1922,8 @@ int __of_remove_property(struct device_node *np, struct property *prop)
  
  /**
   * of_remove_property - Remove a property from a node.
@@ -145,7 +145,7 @@ index a44a0e7ba2510..fa45a681267cd 100644
   *
   * Note that we don't actually remove it, since we have given out
   * who-knows-how-many pointers to the data using get-property.
-@@ -2130,9 +2136,9 @@ EXPORT_SYMBOL_GPL(of_alias_get_highest_id);
+@@ -2203,9 +2209,9 @@ EXPORT_SYMBOL_GPL(of_alias_get_highest_id);
  
  /**
   * of_console_check() - Test and setup console for DT setup
