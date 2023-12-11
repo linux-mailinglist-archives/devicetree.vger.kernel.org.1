@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-23772-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23773-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39D8380C490
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 10:29:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 488CC80C497
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 10:30:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 69BE31C2090D
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 09:29:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7695D1C2098D
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 09:30:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 275D921357;
-	Mon, 11 Dec 2023 09:29:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 677942135A;
+	Mon, 11 Dec 2023 09:30:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CDQTswnT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sIbMPzNC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58333F5
-	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 01:29:36 -0800 (PST)
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-54c7744a93fso5912674a12.2
-        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 01:29:36 -0800 (PST)
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC2ABE3
+	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 01:30:37 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-54da61eb366so5637088a12.3
+        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 01:30:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702286975; x=1702891775; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702287036; x=1702891836; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=79EgeYCkyCKvn/OBzhQRhk5MkzP9XFW19UfY2+j2XKY=;
-        b=CDQTswnT+1dx+XouOBuNGkim+zWN7+1sU879Y4xiJYkPYMRNxklx0Hj/Dri10xt1bW
-         vJflQRAdOOw3qPTydkOYK9oA13c8PSj5GYGEw7Hb2xHYxX0U5dTRK6MaR5jSSycZcFXn
-         ID4jVt97dX1vxiYRFYQBfXe+fLHTPZ8SAInRa8XaiZzEH2YvLa1tkX5U2yIUb1UxUEwB
-         +myx3DdviFxn0C36/w1AKMGPB3+CctSBN3EjqV98w0BdYMxw7JKVoNPOAacvWPzEOOty
-         uytTXPzRZ1/lJinLy4esU4Z50y2TWF7ZAA3ew4NDHbKw+kI9qM7EXocVukmZHZY0nNhv
-         Ot0Q==
+        bh=1jD0szHRhibQFEVIxAfnXZoJSQM4U+eTwaiaduB3d/Q=;
+        b=sIbMPzNCgqnp462rGbbK5rIy3Le45iMYnMEkvuOvbWo6hdN64hsTBqTwkJwOHkZ5Cb
+         t0idz86QwoxQt+o/cWOXH9j4Rr1wJ3XZHCN1XjxR5OFq5A74N4XW4IDKNqWTuxngB1dk
+         1WzQHESB2KPuZsARGNR8SrAXqt0Mu+oKgSrbM7F5+ROVFzNilVbNTih1W8UJsWhYyCxA
+         j/7i+2e0sqF7hsBeJ69O346HrkU2dmN3pKKK+eRGEXDLHLBycouXHZ/fhPO24Aw7mH6v
+         uA5WNQJLhlmdK90Fot2Zh0vQk8vPMAKN2mItBD+pexfB4LzPLjRuQBn5bSRDzS+GFh1n
+         r1aA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702286975; x=1702891775;
+        d=1e100.net; s=20230601; t=1702287036; x=1702891836;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=79EgeYCkyCKvn/OBzhQRhk5MkzP9XFW19UfY2+j2XKY=;
-        b=TZuHo1SmHqnjdGzH21i1V3WM3nY+ChxSocwqGeVrxiG5ezpEo+CkZFny0maG5IIQ8N
-         yVyiGXKn89Ichttg9fvl6h7kjwYfQgt9AexC0ZYfv9/lbk4UbXh6UfQ7Ku+iktH4EFMA
-         CyNQTY5Em7UQaGRyTvv6uWH/2Zdbrfvc6xJ56JOo71e/NHJ5+a3tCWDJFSCDUMOEOHBc
-         fNuetw2Ti5cl1xokLPq/RmKopBSTInLee1Lp2Tu6gRwEOlsn9Uj3AbLgxObDiG0feIOT
-         jsKH0+UWvAmCmdJF9G5LDQwtD3kXDhjqu/WOooRB5S50gOa4UB230Ut0F87YuuHg9VQe
-         UBJg==
-X-Gm-Message-State: AOJu0YyYilxGJtec5wtRngkQDyrjlxGT57IC4FUMHXvqVH8E6uuxCo1s
-	cG417UaQo+IqkJp/h/5VG5Lw3w==
-X-Google-Smtp-Source: AGHT+IGzOR48/XHbDWNVCHEXOISHKkxYEPM0zBQxIaHy1hcDhfzPMLLA21971qfvNrlp38ESOSdW2w==
-X-Received: by 2002:a05:6402:5c2:b0:550:e341:8eaf with SMTP id n2-20020a05640205c200b00550e3418eafmr1559565edx.1.1702286974786;
-        Mon, 11 Dec 2023 01:29:34 -0800 (PST)
+        bh=1jD0szHRhibQFEVIxAfnXZoJSQM4U+eTwaiaduB3d/Q=;
+        b=IRrxmSoyID+hjF4j3tNVCOEWJ+nbNepIhbqFdBn9+T8L/6iGcaAd5C4wQXLnniGwkD
+         WKL2lfmEpfInZ5OlfqIvNkIW99yqDEk17QMT4pJVaAVmvCxnsx7V63ismmbTOgoCwxnK
+         r2t48jxY1RMClNhhvqiQJXdSw8XXaWyeiYtNXi6BZDvCkIMim7M1pZ6js0zKhmSOLjtE
+         JBrgVfSXnsPyRqNENKhfzh2UZ9Qm+k8CEDGXMVnEUycORis0E6YF7+CtJFAnJ3V+WfQ6
+         kaLF0b3ggg26GPjA2BURtoHQcHU7g345VLyJMV+B12bqdstWa2MeFpLFxR9NBGZc483o
+         a4eg==
+X-Gm-Message-State: AOJu0YyaRwMgn962tSH7f/55SuPaxXal2MoLhPRDJcL7CUatzsegF0Rn
+	LmJZfWm4A2oQHZkCUINCzefDag==
+X-Google-Smtp-Source: AGHT+IFXtZpjrnlbBecYKwg53c8yz8h2m1IZ1LY9fLpFgvEHtkesQuQxC7Vg0DiDLGcjWMWexPRJjA==
+X-Received: by 2002:a50:c907:0:b0:54c:e43f:e1e1 with SMTP id o7-20020a50c907000000b0054ce43fe1e1mr3099265edh.35.1702287036284;
+        Mon, 11 Dec 2023 01:30:36 -0800 (PST)
 Received: from [192.168.36.128] (178235179179.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.179])
-        by smtp.gmail.com with ESMTPSA id cm27-20020a0564020c9b00b0054db088c437sm3445802edb.27.2023.12.11.01.29.32
+        by smtp.gmail.com with ESMTPSA id cm27-20020a0564020c9b00b0054db088c437sm3445802edb.27.2023.12.11.01.30.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Dec 2023 01:29:34 -0800 (PST)
-Message-ID: <0b5e5f46-0af8-4367-a39e-08b8c3f03327@linaro.org>
-Date: Mon, 11 Dec 2023 10:29:31 +0100
+        Mon, 11 Dec 2023 01:30:35 -0800 (PST)
+Message-ID: <3712b09c-53e4-418f-a2cd-79231dceea10@linaro.org>
+Date: Mon, 11 Dec 2023 10:30:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,20 +62,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: Add pm8010 regulators for sm8550
- boards
+Subject: Re: [PATCH 2/9] arm64: dts: qcom: sm8150: use SoC-specific compat for
+ RPMh stats
 Content-Language: en-US
-To: quic_fenglinw@quicinc.com, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, kernel@quicinc.com
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, quic_collinsd@quicinc.com,
- quic_subbaram@quicinc.com, quic_jprakash@quicinc.com
-References: <20231211-pm8010-regulator-v1-0-571e05fb4ecc@quicinc.com>
- <20231211-pm8010-regulator-v1-4-571e05fb4ecc@quicinc.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Stephen Boyd <swboyd@chromium.org>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org
+References: <20231209232132.3580045-1-dmitry.baryshkov@linaro.org>
+ <20231209232132.3580045-3-dmitry.baryshkov@linaro.org>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -112,23 +114,19 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20231211-pm8010-regulator-v1-4-571e05fb4ecc@quicinc.com>
+In-Reply-To: <20231209232132.3580045-3-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 11.12.2023 04:17, Fenglin Wu via B4 Relay wrote:
-> From: Fenglin Wu <quic_fenglinw@quicinc.com>
+On 10.12.2023 00:21, Dmitry Baryshkov wrote:
+> The SM8150 platform doesn't support DDR sleep stats, so it needs
+> SoC-specific compat string for the RPMh stats data.
 > 
-> Add PM8010 regulator device nodes for sm8550-mtp and sm8550-qrd boards.
-> 
-> Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
-Please create separate commits with board name prefixes:
-
-arm64: dts: qcom: sm8550-mtp:
-arm64: dts: qcom: sm8550-qrd:
-
-Otherwise lgtm
+Not a fan, see my comments over at [1].
 
 Konrad
+
+[1] https://lore.kernel.org/linux-arm-msm/20231209215601.3543895-1-dmitry.baryshkov@linaro.org/T/#t
 
