@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-23726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23731-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0F6080C28C
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 09:02:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4786780C2A4
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 09:04:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 41D2B280D2C
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 08:02:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02D54280D8D
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 08:04:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DCA020B08;
-	Mon, 11 Dec 2023 08:02:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B39220B1C;
+	Mon, 11 Dec 2023 08:04:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kko6Qg+g"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jmWQ4uG5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 997F2CD
-	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 00:02:25 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-40c41df5577so11508055e9.0
-        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 00:02:25 -0800 (PST)
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F97DD5
+	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 00:04:05 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-40b27726369so44664075e9.0
+        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 00:04:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702281744; x=1702886544; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702281844; x=1702886644; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=0ohjdS2lh4PtfLwuBaqxeFU/IkgcGqJLyyhGAuYcTAc=;
-        b=kko6Qg+gH71px2Lhh3y9NBW3TDSDc4L2PQBT53e438j15TPsSFiuzw4pxqPY6IN9Tv
-         CGTv43ltGMX4zu3vdvjo+ZIzSOHzW29qRGOPoIGJezXjSxV+cjFP7i3u1JoOvDm5M85a
-         HGdcpMOM0I6g/D+kP4da3LjA4GpcRHAQFodgw6Ws12UXKzKc2bLtYdEpu+CcWojnh+7+
-         nssARzEc8lZ4CrxnDUTQCX5aiD4OZ6eHYnfshXoKGyAXsdW6oSLEQ9dikpM9skKZaGEv
-         pmb63Vp/GcsMmPUwiUx/11hooQIyuNZHwmWpKCE/uDhg7T7Una/hjNa89QcPx5Tqjfz5
-         +vHw==
+        bh=4X844S4gQ3q6FO7d+ISC3qroJ9OqVpigsE30Kp2i1EI=;
+        b=jmWQ4uG5HSznrnkkBDbzMNJUBhPj6wNPpCb2KMjec7r6EI9XZ8vWAZ0fq359qaLXvi
+         vR80zT313avXEqIBFhsG2mmIsssnRwRUasbXApBUq4o742trkjjjnsnSswiyu0YadQNv
+         OeliSZPCP/jWYVWG00rCcdVzDbwiAoNwHTMSQU9dtx5VX2R/Sy16wVzbeGxfW69SBJJW
+         Syb13qV4TMJVMq1Uc2au7Q9wemc4dRmJYE0mbQKJlspY5dZ5Ba86kHHE5ew7ziUvzUqd
+         fS/3sPH8tI7U2swa4AGcv5CtM9SYb7S5glPhIWFuDFzshhevT0bBxcTJaPF7b3Khogfx
+         mqJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702281744; x=1702886544;
+        d=1e100.net; s=20230601; t=1702281844; x=1702886644;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0ohjdS2lh4PtfLwuBaqxeFU/IkgcGqJLyyhGAuYcTAc=;
-        b=cW3g73CjXMcP3FpZb5qPNKEJgvawMT+kvz6G0F20mb57Di5cnh1wEh65nHJb1v/cbm
-         e2WI3jRMnNHvL9mtHbTvfI/bPAUqdSra+UBBYBkycC4q8C+T6r6vMAA0ct+uWuneAfoI
-         iGj0huzpWSaOTdVpQs3+LauIoMCZwny8FkZvTTFdYcTzCPvjEa86VbMaEM7PRaWpJsza
-         rOvvJl6moV6+pT7+QqwYJ+V+5oMy3iggS9CYJkLTK0ADrDgKMThk0Xsij6/SF7lC23Ju
-         5j40vU9QUI9FSXjc0mvDMFti2nQK1sivgVdY8t20Rv45qcu4hF6Ve0HbUAEdxTndNIoD
-         2USw==
-X-Gm-Message-State: AOJu0YwHW0bJUSReBhKnHJjN8DA3+KzLeBOEteM/iBZlL5Z5PIpmzx11
-	gLKuxq9N1DvjQ5TcmwzevMR0wA==
-X-Google-Smtp-Source: AGHT+IFCG2lQgMv7GTd7JUhFUQYuER7adDnZ9xqNzU0DhVJSEXaPMG5QjgUGyp87H+w0/tez5qZsCA==
-X-Received: by 2002:a05:600c:3b06:b0:40b:5e22:2e8 with SMTP id m6-20020a05600c3b0600b0040b5e2202e8mr894578wms.84.1702281744099;
-        Mon, 11 Dec 2023 00:02:24 -0800 (PST)
+        bh=4X844S4gQ3q6FO7d+ISC3qroJ9OqVpigsE30Kp2i1EI=;
+        b=EL3jMZA/JbNJMg1ih8yWKtwk7DML8bHpjt+wW5NJa0BIzShalopRnfBzz7AhGsc9/3
+         MYeQB72leATTk6uDmIWl7brxyJ3R51gE/0Ed6d8R79cnWzhJUiHO8q7iMGN4RAJaBr1+
+         BevghNqX8mfoiLut5cq/NjrKArt2BaiCKPPNTRoIw7ZYJJ29dSV+K/iiwKkYvTL8uh5D
+         RTd+SGJOEiW0PRwYMz4/s1OIMnrgTjFPdDbT9Qo8aWutmcKZ3URNaI33E/9WvSFVN5lU
+         7xESabU0NFHMHPyedmPUn+6BEV6GYUHAaKzBvKOfcdhuXE6YiWb6vfmFw+iC75rGLhv0
+         dUOQ==
+X-Gm-Message-State: AOJu0YyujfUnTNgxFsG4+7yV9ssL1Qt69EFV0Xu0pLAz4/JO0O//K+Ov
+	kDitAqXmQ5nGAIbN4liksZqZJQ==
+X-Google-Smtp-Source: AGHT+IGWl4ZndXMqtUrJiuOaCIcekxuZKSwk43cQUeMDLX00AtYT07c82Zs4ZMrVYTwV3quRfG7JOg==
+X-Received: by 2002:a05:600c:141:b0:40c:426b:fd22 with SMTP id w1-20020a05600c014100b0040c426bfd22mr965958wmm.135.1702281843606;
+        Mon, 11 Dec 2023 00:04:03 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id s18-20020adfea92000000b0033342d2bf02sm7857177wrm.25.2023.12.11.00.02.22
+        by smtp.gmail.com with ESMTPSA id s18-20020adfea92000000b0033342d2bf02sm7857177wrm.25.2023.12.11.00.04.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Dec 2023 00:02:23 -0800 (PST)
-Message-ID: <48764dba-5033-4dd6-9125-03dd9a178054@linaro.org>
-Date: Mon, 11 Dec 2023 09:02:21 +0100
+        Mon, 11 Dec 2023 00:04:03 -0800 (PST)
+Message-ID: <1f59a4f5-7082-4a36-806e-2fff4d1e5d7d@linaro.org>
+Date: Mon, 11 Dec 2023 09:04:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,19 +62,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: phy: mediatek: tphy: add a property
- for force-mode switch
+Subject: Re: [PATCH v2 08/14] ARM: dts: aspeed: yosemite4: Revise i2c11 and
+ i2c12 schematic change
 Content-Language: en-US
-To: Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>,
- Rob Herring <robh+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Macpaul Lin <macpaul.lin@mediatek.com>
-References: <20231211025624.28991-1-chunfeng.yun@mediatek.com>
+To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+References: <20231211024947.3990898-1-Delphine_CC_Chiu@wiwynn.com>
+ <20231211024947.3990898-9-Delphine_CC_Chiu@wiwynn.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -120,21 +119,130 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231211025624.28991-1-chunfeng.yun@mediatek.com>
+In-Reply-To: <20231211024947.3990898-9-Delphine_CC_Chiu@wiwynn.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 11/12/2023 03:56, Chunfeng Yun wrote:
-> Due to some old SoCs with shared t-phy between usb3 and pcie only support
-> force-mode switch, and shared and non-shared t-phy may exist at the same
-> time on a SoC, can't use compatible to distinguish between shared and
-> non-shared t-phy, add a property to supported it.
-> Currently, only support switch from default pcie mode to usb3 mode.
-> But now prefer to use "mediatek,syscon-type" on new SoC as far as possible.
-> 
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+On 11/12/2023 03:49, Delphine CC Chiu wrote:
+> Revise i2c11 and i2c12 schematic change:
+> - remove space for adm1272 compatible
+> - enable interrupt setting for pca9555
+> - add eeprom for yosemite4 medusa board/BSM use
+> - remove temperature sensor for yosemite4 schematic change
+> - add power sensor for power module reading
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+You should split your patch into several, per one logical change.
+
+
+> 
+> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+> ---
+>  .../aspeed/aspeed-bmc-facebook-yosemite4.dts  | 118 ++++++++++++++----
+>  1 file changed, 93 insertions(+), 25 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+> index da413325ce30..ccb5ecd8d9a6 100644
+> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+> @@ -821,41 +821,94 @@ imux29: i2c@1 {
+>  &i2c11 {
+>  	status = "okay";
+>  	power-sensor@10 {
+> -		compatible = "adi, adm1272";
+> +		compatible = "adi,adm1272";
+>  		reg = <0x10>;
+>  	};
+>  
+>  	power-sensor@12 {
+> -		compatible = "adi, adm1272";
+> +		compatible = "adi,adm1272";
+>  		reg = <0x12>;
+>  	};
+>  
+> -	gpio@20 {
+> +	gpio_ext1: pca9555@20 {
+
+That's not a correct change. You replace good code with bad.
+
+>  		compatible = "nxp,pca9555";
+> -		reg = <0x20>;
+> +		pinctrl-names = "default";
+>  		gpio-controller;
+>  		#gpio-cells = <2>;
+> -	};
+> -
+> -	gpio@21 {
+> +		reg = <0x20>;
+> +		interrupt-parent = <&gpio0>;
+> +		interrupts = <94 IRQ_TYPE_LEVEL_LOW>;
+> +		gpio-line-names =
+> +		"P48V_OCP_GPIO1","P48V_OCP_GPIO2",
+> +		"P48V_OCP_GPIO3","FAN_BOARD_0_REVISION_0_R",
+> +		"FAN_BOARD_0_REVISION_1_R","FAN_BOARD_1_REVISION_0_R",
+> +		"FAN_BOARD_1_REVISION_1_R","RST_MUX_R_N",
+> +		"RST_LED_CONTROL_FAN_BOARD_0_N","RST_LED_CONTROL_FAN_BOARD_1_N",
+> +		"RST_IOEXP_FAN_BOARD_0_N","RST_IOEXP_FAN_BOARD_1_N",
+> +		"PWRGD_LOAD_SWITCH_FAN_BOARD_0_R","PWRGD_LOAD_SWITCH_FAN_BOARD_1_R",
+> +		"","";
+> +	};
+> +
+> +	gpio_ext2: pca9555@21 {
+
+Nope
+
+>  		compatible = "nxp,pca9555";
+> -		reg = <0x21>;
+> +		pinctrl-names = "default";
+>  		gpio-controller;
+>  		#gpio-cells = <2>;
+> -	};
+> -
+> -	gpio@22 {
+> +		reg = <0x21>;
+> +		interrupt-parent = <&gpio0>;
+> +		interrupts = <94 IRQ_TYPE_LEVEL_LOW>;
+> +		gpio-line-names =
+> +		"DELTA_MODULE_TYPE","VSENSE_ERR_VDROP_R",
+> +		"EN_P48V_AUX_0","EN_P48V_AUX_1",
+> +		"MEDUSA_BOARD_REV_0","MEDUSA_BOARD_REV_1",
+> +		"MEDUSA_BOARD_REV_2","MEDUSA_BOARD_TYPE",
+> +		"HSC_OCP_SLOT_ODD_GPIO1","HSC_OCP_SLOT_ODD_GPIO2",
+> +		"HSC_OCP_SLOT_ODD_GPIO3","HSC_OCP_SLOT_EVEN_GPIO1",
+> +		"HSC_OCP_SLOT_EVEN_GPIO2","HSC_OCP_SLOT_EVEN_GPIO3",
+> +		"ADC_TYPE_0_R","ADC_TYPE_1_R";
+> +	};
+> +
+> +	gpio_ext3: pca9555@22 {
+
+Nope
+
+>  		compatible = "nxp,pca9555";
+> -		reg = <0x22>;
+> +		pinctrl-names = "default";
+>  		gpio-controller;
+>  		#gpio-cells = <2>;
+> -	};
+> -
+> -	gpio@23 {
+> +		reg = <0x22>;
+> +		interrupt-parent = <&gpio0>;
+> +		interrupts = <94 IRQ_TYPE_LEVEL_LOW>;
+> +		gpio-line-names =
+> +		"CARD_TYPE_SLOT1","CARD_TYPE_SLOT2",
+> +		"CARD_TYPE_SLOT3","CARD_TYPE_SLOT4",
+> +		"CARD_TYPE_SLOT5","CARD_TYPE_SLOT6",
+> +		"CARD_TYPE_SLOT7","CARD_TYPE_SLOT8",
+> +		"OC_P48V_HSC_0_N","FLT_P48V_HSC_0_N",
+> +		"PWRGD_P12V_AUX_1","OC_P48V_HSC_1_N",
+> +		"FLT_P48V_HSC_1_N","PWRGD_P12V_AUX_1",
+> +		"MEDUSA_ADC_EFUSE_TYPE_R","P12V_HSC_TYPE";
+> +	};
+> +
+> +	gpio_ext4: pca9555@23 {
+
+Nope
+
+
 
 Best regards,
 Krzysztof
