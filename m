@@ -1,153 +1,99 @@
-Return-Path: <devicetree+bounces-23711-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23712-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 592F880C1F8
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 08:34:50 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74E4B80C1FF
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 08:36:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 13899280D73
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 07:34:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EB8EEB20957
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 07:36:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20FDF2030A;
-	Mon, 11 Dec 2023 07:34:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEC8C20310;
+	Mon, 11 Dec 2023 07:36:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KcBnmb+i"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BLCdW7ef"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99A30F2
-	for <devicetree@vger.kernel.org>; Sun, 10 Dec 2023 23:34:40 -0800 (PST)
-Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-3333074512bso2642015f8f.1
-        for <devicetree@vger.kernel.org>; Sun, 10 Dec 2023 23:34:40 -0800 (PST)
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09A95F2
+	for <devicetree@vger.kernel.org>; Sun, 10 Dec 2023 23:36:25 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-40c0e7b8a9bso53913255e9.3
+        for <devicetree@vger.kernel.org>; Sun, 10 Dec 2023 23:36:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702280078; x=1702884878; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1B9M3ivj0hin/IwQCfivGV6M+zrF5Su1X0x53Rly3MY=;
-        b=KcBnmb+iy6bjUxPyk0ybmvWHaBHaXjohqLIq9mhPyX1p2SJDM9em15eJQ61epl5fXk
-         XGgYF7g1xEshqDb5JdJxFmPw0F9QjsBdTWW4gn9vyG/W88DV0ViD7olY6ArybpcAqFIA
-         DUWWbq3y5evcvPTZ9fO4jim89awO8/xT5r748DfZ1ihXbp1xC7n+sveDISeM9JkvdbRB
-         OUYD4o8cgmb7KWlCWmh5gzhtPEJscCt0La4dIz1grgpA8taI7VgS2qyP0JW4SD+AN1ZH
-         EmDJvdgT6HmQnc9CulpKZekZmwM1IlNYXY0BSNHwurAAZ5caZqbbXgAx7qkWz7NlIQME
-         gmyA==
+        d=linaro.org; s=google; t=1702280183; x=1702884983; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2YHBWFSpjhw0+JPItFiuftFwl12od6x19Q3Kp1H3E6I=;
+        b=BLCdW7efF2tjpduz+TWYaE9woLpNDYKcrX2wH+l9JJAYZ/rdYKH2CPjyRTJl6TYke/
+         eM7OwIYX7IVqwmND0ZRtX8cBrvrVaBcv5h41sto8GK/d5UfLXLmc3qt5EiUf+bd550jm
+         DVT/DpRY+IJRagODb2tGkGJSWqHTx731HO+KmJERi+aebPqiaEOAUOyFuWunzVrZJeCb
+         YdwxJBWfW8lqcNqSr3LkPQCU297oQSFteHAByRHCdQe41TetOBSTrWNJCBIPqjmnh04D
+         v7tL/J0yE8sCu2kUzCjr/GQtHSXIlfigyY61o71goOldx8JaH+kIsTViHDY3V3nEINcV
+         mBgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702280078; x=1702884878;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1B9M3ivj0hin/IwQCfivGV6M+zrF5Su1X0x53Rly3MY=;
-        b=qz7odaTdnXyhyXzJjBAqFpjLI/hoS9ahFvTQplIk6/pfrytk+5v6ACj+T26keY2EO2
-         FYepbsmo2CtnlUpPK7dkqFTuvtZ1G8799pDjUWJmF/IK6HAceND9uHWcwNqXEnf8WCPQ
-         UtFVWA9SmB6jZ6fYQw4Q1e3lAFWvSxQigjAMv2MEyPYPe3aVwN5mWI3s2tMPj5W/Mzgi
-         ASfZxHgDRKP4dOe29xo0Iz6FAo1vpiatEdFJCHqqmolsp1djDyanvEDbWX39Sa/YtxZN
-         NtdjCmoX0twmLfEzf+uD0mqFM51Efypzdf6ewqbW6fLzXry+ztm39fA0oERh2zodCN7+
-         HeiQ==
-X-Gm-Message-State: AOJu0Yw/sRfX2YdGNK8WLU8W27/IyomPmLF+Tdg3UGIW5TMJkDrdCwyn
-	yLO635yE+AblDOnjD0+0ob3VB3BnJrfPpeo2+dM=
-X-Google-Smtp-Source: AGHT+IGVoJA169fh7hxs5BUnAQ4rS1b1QWUhEhKU+BJAdmClOdIaEg44LrjVk9fWAM+JY1nBcdCmDw==
-X-Received: by 2002:a05:600c:287:b0:40b:5e4a:2379 with SMTP id 7-20020a05600c028700b0040b5e4a2379mr1983548wmk.123.1702280078362;
-        Sun, 10 Dec 2023 23:34:38 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id fc17-20020a05600c525100b0040c42681fcesm5126187wmb.15.2023.12.10.23.34.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 10 Dec 2023 23:34:37 -0800 (PST)
-Message-ID: <a441ca43-8631-4a6a-b828-6d744fce5aee@linaro.org>
-Date: Mon, 11 Dec 2023 08:34:36 +0100
+        d=1e100.net; s=20230601; t=1702280183; x=1702884983;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2YHBWFSpjhw0+JPItFiuftFwl12od6x19Q3Kp1H3E6I=;
+        b=PvqVLxOMBAP4FiUe5g8qUvLGST+rMi3jg6GkQyQ1lom1kruUzanWdTboaX5f6zhquQ
+         jw7/ZzpTVzGPeB+7ImDlPaZsxGc5rW1kd2BBs3w4dPswgVzUoOnlxShlChxSsQ8DaBn1
+         L8PslDb/T7ItkNNHNmIWkuemdsnIhtAltruLhZUAapASFSqu5fKOas6GFLggqLwcSWU6
+         EkvCoTnrelLQYskBgtTwhv4ksM6kvrmmPCPM8vGyEmlTYyXKkB0LYlEoLalhTXC4iNqN
+         brf9adrnECqkxScAr1X+/qzeBiVK9qKrj23JoBD+bRQG25GIsYm6TE23Rc4xfyK840OA
+         RHVQ==
+X-Gm-Message-State: AOJu0YwHbNdf8odmDeC5XV4S6p7+jXXLnjb1pSvvonkMzjjJhw+xvfse
+	GGKu+Mfg5mHMs/ap7y5pmmXM5A==
+X-Google-Smtp-Source: AGHT+IHK1+dJ3/6VbSmAjUHE3obgzLfsu3H2LPctpshzkB4sycS+dJ6werIvZjF7MuQxeZLkp64tiw==
+X-Received: by 2002:a05:600c:2289:b0:40c:317b:79f0 with SMTP id 9-20020a05600c228900b0040c317b79f0mr2120989wmf.140.1702280183340;
+        Sun, 10 Dec 2023 23:36:23 -0800 (PST)
+Received: from [127.0.1.1] ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id s10-20020a05600c45ca00b0040c3dcc36e6sm7700311wmo.47.2023.12.10.23.36.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 10 Dec 2023 23:36:22 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Tomasz Figa <tomasz.figa@gmail.com>, 
+ Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, 
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jaewon Kim <jaewon02.kim@samsung.com>, 
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20231210133915.42112-1-krzysztof.kozlowski@linaro.org>
+References: <20231210133915.42112-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] dt-bindings: pinctrl: samsung: correct ExynosAutov920
+ wake-up compatibles
+Message-Id: <170228018218.6375.7978493220422861783.b4-ty@linaro.org>
+Date: Mon, 11 Dec 2023 08:36:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: pinctrl: samsung: correct ExynosAutov920
- wake-up compatibles
-Content-Language: en-US
-To: Jaewon Kim <jaewon02.kim@samsung.com>, Tomasz Figa
- <tomasz.figa@gmail.com>, Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Alim Akhtar <alim.akhtar@samsung.com>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <CGME20231210133927epcas2p3e2633ad371b03d5ab19f9b44118fcb58@epcas2p3.samsung.com>
- <20231210133915.42112-1-krzysztof.kozlowski@linaro.org>
- <c63bd0b3-ecb2-d4c6-2147-43f19c1dcfee@samsung.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <c63bd0b3-ecb2-d4c6-2147-43f19c1dcfee@samsung.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.3
 
-On 11/12/2023 03:18, Jaewon Kim wrote:
-> 
-> On 23. 12. 10. 22:39, Krzysztof Kozlowski wrote:
->> ExynosAutov920 SoC wake-up pin controller has different register layout
->> than Exynos7, thus it should not be marked as compatible.  Neither DTS
->> nor Linux driver was merged yet, so the change does not impact ABI.
->>
->> Cc: Jaewon Kim <jaewon02.kim@samsung.com>
->> Fixes: 904140fa4553 ("dt-bindings: pinctrl: samsung: use Exynos7 fallbacks for newer wake-up controllers")
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>
->>
-> 
-> It is reasonable.
-> 
-> I will also fix this in v4 patch.
-> 
-> 
-> Reviewed-by:Jaewon Kim <jaewon02.kim@samsung.com>
 
-Please send correct tags so I won't need to manually fix them. Otherwise
-they get ignored by b4.
+On Sun, 10 Dec 2023 14:39:15 +0100, Krzysztof Kozlowski wrote:
+> ExynosAutov920 SoC wake-up pin controller has different register layout
+> than Exynos7, thus it should not be marked as compatible.  Neither DTS
+> nor Linux driver was merged yet, so the change does not impact ABI.
+> 
+> 
+
+Applied, thanks!
+
+[1/1] dt-bindings: pinctrl: samsung: correct ExynosAutov920 wake-up compatibles
+      https://git.kernel.org/pinctrl/samsung/c/e1564d6f93496bcea3a6b2110eb54cc08f2aca72
 
 Best regards,
-Krzysztof
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
