@@ -1,110 +1,79 @@
-Return-Path: <devicetree+bounces-23910-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23911-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F17F380CA8D
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 14:09:08 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 207EC80CAAD
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 14:19:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B05D280F87
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 13:09:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B47A8B20E09
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 13:19:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A56E3D969;
-	Mon, 11 Dec 2023 13:09:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B1113D979;
+	Mon, 11 Dec 2023 13:19:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CMU126Iq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28141AF;
-	Mon, 11 Dec 2023 05:08:59 -0800 (PST)
-Received: from i53875b61.versanet.de ([83.135.91.97] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1rCg1k-0008Ku-TG; Mon, 11 Dec 2023 14:08:52 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- robh+dt@kernel.org, robin.murphy@arm.com, devicetree@vger.kernel.org,
- iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
- Andy Yan <andyshrk@163.com>
-Cc: Andy Yan <andy.yan@rock-chips.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, joro@8bytes.org,
- will@kernel.org
-Subject: Re: [PATCH] dt-bindings: iommu: rockchip: Add Rockchip RK3588
-Date: Mon, 11 Dec 2023 14:08:51 +0100
-Message-ID: <5370401.0VBMTVartN@diego>
-In-Reply-To: <20231209015038.1457967-1-andyshrk@163.com>
-References: <20231209015038.1457967-1-andyshrk@163.com>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37BF23D96A;
+	Mon, 11 Dec 2023 13:19:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4CB4AC433C8;
+	Mon, 11 Dec 2023 13:19:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702300778;
+	bh=14b8MaU/hnBaYQlH8lI1a2ICpqFlCvxCCLO/vs+uke4=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=CMU126IqISHpe+SzvvYDAcxghaGz2CDphwzr1Tac6jVTZBK5HfZw8Dz85qvRyNyga
+	 Ke/D7HhAZOau2OkzBpsKX/0gR9QnKKOZjOFO9rnsuzLGmui/92fYFvZ1BB90NOpVrj
+	 y4e/2N+2t1GhEnJuxUPio5eENx/+L5rEyF3GmJIGBq4AvVYhYsQHYuo1SrzzkxebHJ
+	 2XT5yba3fNNxm4fAs5QnQfzc1xTiKocFJXIFrvEUfCptyw2WK8VqnM8wbg7XpZZd8e
+	 m4BgkXKi9IzZXsIg9ji5VjlEHxSgCe7KJfKI1dErIxBOJM4PL8+SdC5KNSX+4s6qJF
+	 21o7/86+3i+PA==
+From: Kalle Valo <kvalo@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: "David S. Miller" <davem@davemloft.net>,  Eric Dumazet
+ <edumazet@google.com>,  Jakub Kicinski <kuba@kernel.org>,  Paolo Abeni
+ <pabeni@redhat.com>,  Rob Herring <robh+dt@kernel.org>,  Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley
+ <conor+dt@kernel.org>,  van Spriel <arend@broadcom.com>,
+  linux-wireless@vger.kernel.org,  netdev@vger.kernel.org,
+  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next] dt-bindings: net: wireless: brcm,bcm4329-fmac:
+ allow local-mac-address
+References: <20231209160505.237843-1-krzysztof.kozlowski@linaro.org>
+Date: Mon, 11 Dec 2023 15:19:32 +0200
+In-Reply-To: <20231209160505.237843-1-krzysztof.kozlowski@linaro.org>
+	(Krzysztof Kozlowski's message of "Sat, 9 Dec 2023 17:05:05 +0100")
+Message-ID: <87a5qgq3kr.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain
 
-Hi Andy,
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
 
-Am Samstag, 9. Dezember 2023, 02:50:38 CET schrieb Andy Yan:
-> From: Andy Yan <andy.yan@rock-chips.com>
-> 
-> Add a Rockchip RK3588 compatible
-> 
-> I split it from the vop2 patch series as suggested by Heiko[0]
-
-correct, but something with the addresses did go wrong
-
-# scripts/get_maintainer.pl -f Documentation/devicetree/bindings/iommu/
-lists among the other people especially:
-
-Joerg Roedel <joro@8bytes.org> (maintainer:IOMMU SUBSYSTEM)
-Will Deacon <will@kernel.org> (maintainer:IOMMU SUBSYSTEM)
-
-as the maintainers for the iommu subsystem and I don't see them
-in the recipient list.
-
-
-Heiko
-
-
-
-> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
-> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> [0]https://patchwork.kernel.org/project/dri-devel/patch/20231207080235.652719-1-andyshrk@163.com/
-> 
+> Some boards come with local-mac-address property.  Allow it, and
+> mac-address as well, to fix dtbs_check warnings like:
+>
+>   apple/t8103-j456.dtb: network@0,0: Unevaluated properties are not allowed ('local-mac-address' was unexpected)
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
-> 
->  .../devicetree/bindings/iommu/rockchip,iommu.yaml     | 11 ++++++++---
->  1 file changed, 8 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml b/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml
-> index ba9124f721f1..621dde0e45d8 100644
-> --- a/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml
-> +++ b/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml
-> @@ -19,9 +19,14 @@ description: |+
->  
->  properties:
->    compatible:
-> -    enum:
-> -      - rockchip,iommu
-> -      - rockchip,rk3568-iommu
-> +    oneOf:
-> +      - enum:
-> +          - rockchip,iommu
-> +          - rockchip,rk3568-iommu
-> +      - items:
-> +          - enum:
-> +              - rockchip,rk3588-iommu
-> +          - const: rockchip,rk3568-iommu
->  
->    reg:
->      items:
-> 
+>  .../devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml  | 5 +++++
+>  1 file changed, 5 insertions(+)
 
+Wireless patches go to wireless-next, not net-next. But no need to
+resend because of this.
 
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
