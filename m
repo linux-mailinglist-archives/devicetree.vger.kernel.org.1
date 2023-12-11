@@ -1,117 +1,153 @@
-Return-Path: <devicetree+bounces-23764-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23771-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3B5180C44B
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 10:18:14 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9563280C481
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 10:26:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D8291F2132C
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 09:18:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 24E0BB20DDD
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 09:26:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3D1421340;
-	Mon, 11 Dec 2023 09:18:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5B7021349;
+	Mon, 11 Dec 2023 09:26:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GLWdKz+4"
+	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="ltLkHTRQ";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="0vUG3E/x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-xf2b.google.com (mail-qv1-xf2b.google.com [IPv6:2607:f8b0:4864:20::f2b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2A0CF3
-	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 01:18:04 -0800 (PST)
-Received: by mail-qv1-xf2b.google.com with SMTP id 6a1803df08f44-67ad531686eso42271646d6.1
-        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 01:18:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702286284; x=1702891084; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=/z0fIrgey0ax47ogB/tuo0R84muzHuQ+ydDig5s54Lc=;
-        b=GLWdKz+4fg8mPDx1ELnuojeEe2T/1XyB36ZvIENuMsR3fCl7ln+rr+pUXcPb2VFVbW
-         sPIw76ndiczt/NSqQ6/l81FNJwxsmSQbIzbgsnGG8kdAZndJRpYXnKH/S1Ej99Yu6koY
-         gPYg/BB8EdJL/2JP1yMVLRaRulrNnBlK95L1XMF8SDIdVaQgYQ4I6TScanJ3XCzTsD6M
-         Jgh39J/dsNCzJ7FmG8n7AwVvvQmP1igOzbuEvsKCkXtXO9ydm1bsBxyJ6SaD+Re4u7ac
-         wnwNX6eyjiVT55sw6buh6HQWTPf5k1QiXf4vxFLAXcSkDHdpnzyCoNVYfX6xlPptDYMB
-         SuHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702286284; x=1702891084;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/z0fIrgey0ax47ogB/tuo0R84muzHuQ+ydDig5s54Lc=;
-        b=QKklv3bZ4owPb3zqK5mOXrouD3uP0uLzqTQmiDlMQunmWKm1qEdpCULWFn+9zsOaLj
-         qTh5GexIisGfm9ohGWK0RhxsW1bP/bLRk+AL5iG9BnKamZk7VKSI5sQ3548BtqiheVYz
-         7RjCk0PAeVMZFSHkA+V6xjH1h7o7spVqPv+se1pH71Kmuo1GgULuiAikrKzlZ7Wwu8u6
-         rTGPMRObwxP+Dmb3ylCgY4JQ9wyp5MvjSIImLBxDfY6zYoPTj7x/vAStJr6OnUwpqkGm
-         YyshzDFio27TSGvkfO0mJp8S4QF9dgu19P4Eq7R5GNRxOMfXvv8vvGILcN23PPvloh6j
-         ywHw==
-X-Gm-Message-State: AOJu0Yw6ywde+DJP/WCDknn7ezunlxb9VpBbCMx0uNKLorlyBOnhwd0Z
-	NHEbEBppX1Vuoqkd2obU/1y83G8hKTFawd2kCGz32w==
-X-Google-Smtp-Source: AGHT+IF2FD/yZWTaJspuz2ZkGnHtLmu9yc29fMOCKmFWdGSQxO5eLtwgHWeyaAYDFzw+Ks+VHIEsnPYl7wNEw90Fzik=
-X-Received: by 2002:ad4:5dec:0:b0:67a:568e:5b10 with SMTP id
- jn12-20020ad45dec000000b0067a568e5b10mr7473425qvb.20.1702286284034; Mon, 11
- Dec 2023 01:18:04 -0800 (PST)
+X-Greylist: delayed 474 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 11 Dec 2023 01:26:09 PST
+Received: from new2-smtp.messagingengine.com (new2-smtp.messagingengine.com [66.111.4.224])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B025B4;
+	Mon, 11 Dec 2023 01:26:09 -0800 (PST)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+	by mailnew.nyi.internal (Postfix) with ESMTP id BBC975803D6;
+	Mon, 11 Dec 2023 04:18:14 -0500 (EST)
+Received: from imap44 ([10.202.2.94])
+  by compute3.internal (MEProxy); Mon, 11 Dec 2023 04:18:14 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:sender:subject:subject:to:to; s=fm2; t=
+	1702286294; x=1702293494; bh=A/DCVjFaGMYmi2WhMoCUU3PEn5wAnq6lCN+
+	5giiP81c=; b=ltLkHTRQRUic1cqalUyRviBoUOuRC7dMlreLaWd2b+OHp5grrqL
+	tdrX7uKZtyx/zNvtC3pe1BYnPCelpW7nbHmAr4opAv/cGT/4x1OTvyfavnVi8YII
+	aom74TCQ8edYvyhjw2n44nkh76QcVFIH2T7gNAlvTQOLfU6ZyS2oGh1Lcok/9g0w
+	//fIaOaVMKw0RySJ3DVqlwDrh13uKGtKEj0nKb6ltTwUxjaUFuDqDV/vxpTYXdlS
+	6ydx1cblz2LTb5ZoUeYJaSvu8A+xwUXePeaNLA6o+/Pc6vHRBacOog79TRMxvZ+y
+	E7EZFTCDDcrCO6CYTLNwPZQqlG3fWaGYm1g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:sender:subject:subject:to:to:x-me-proxy
+	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
+	1702286294; x=1702293494; bh=A/DCVjFaGMYmi2WhMoCUU3PEn5wAnq6lCN+
+	5giiP81c=; b=0vUG3E/xGPNoBYuKcw5mRHhNDLdcw5oLYU6xSMWwnPaBWqkFgGm
+	jt+Lh+L1+qHzc19RoFC1Rg6dBxX7h5HySyJJTkHJNFUnFs0LbSHR+8ufAxGMj+Kb
+	cwrvZ3u5LCH3YF46k91xRr40wl7s6MeYcqglABZ/nY1q/poaBPx+8vE6qRv3gNIz
+	EOeWDJ7ftDEk/MZy0iLTlxCQ+p5wfYgvIU5qXUCsKY2c/OTgnG76JEC7fmeGEYpv
+	Xnoenh+BD/1Dr/VLaCCnViUD0Xw5VKDnllo/aX4wuDrRMwa2pynkp1c5uT8JwmK1
+	2B//noszdkE4gon06cEIf9ylFLoEOhfOzUA==
+X-ME-Sender: <xms:1tN2ZS65lef-ZNRjLMtSmX7o3vxqDAIVvYNZxchXLUQNjyP-5U5Pzw>
+    <xme:1tN2Zb5IfQGktnmdWPvujOHjDTnL_UFhTZy7vgx23pn05Ax1F-C8_MenoD2ao0yk6
+    _5dWxWK1cfs7hEIvbo>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrudelvddgtddvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtgfesthhqredtreerjeenucfhrhhomhepfdfl
+    ihgrgihunhcujggrnhhgfdcuoehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtoh
+    hmqeenucggtffrrghtthgvrhhnpeekleevffehtdeigfekfefhffdtudffvdeuvedtffet
+    heeuiefhgfetleekleekjeenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluh
+    hsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepjhhirgiguhhnrdih
+    rghnghesfhhlhihgohgrthdrtghomh
+X-ME-Proxy: <xmx:1tN2ZRcFO_wiTtf9wHjWypQBhdEolJ50womexLgkYMT62G6kstJBIw>
+    <xmx:1tN2ZfJAy1O0xALLtSIvSXCM2GFvSO-KZC9P9AXg47YdI7bH7q_XNw>
+    <xmx:1tN2ZWLXP0FdipNKYgpMLxIdEsonjAox48onlX9jCJeYG2rm-taKIQ>
+    <xmx:1tN2Za-pKa0tIwg6EcJd263YbfhBNJQnQWEeX-btOduNBcYcpspDWw>
+Feedback-ID: ifd894703:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id F34B736A0075; Mon, 11 Dec 2023 04:18:13 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-1178-geeaf0069a7-fm-20231114.001-geeaf0069
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231209233106.147416-1-peter.griffin@linaro.org>
- <20231209233106.147416-4-peter.griffin@linaro.org> <c2244932-cb2f-423a-bbe6-9ab2b08b9d63@linaro.org>
-In-Reply-To: <c2244932-cb2f-423a-bbe6-9ab2b08b9d63@linaro.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Mon, 11 Dec 2023 09:17:53 +0000
-Message-ID: <CADrjBPpd5mT6SZyPEgxFGy18pr5Gypcwv7aoG4R978d__Pk3LA@mail.gmail.com>
-Subject: Re: [PATCH v6 03/20] dt-bindings: soc: google: exynos-sysreg: add
- dedicated SYSREG compatibles to GS101
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org, 
-	tomasz.figa@gmail.com, s.nawrocki@samsung.com, linus.walleij@linaro.org, 
-	wim@linux-watchdog.org, linux@roeck-us.net, catalin.marinas@arm.com, 
-	will@kernel.org, arnd@arndb.de, olof@lixom.net, gregkh@linuxfoundation.org, 
-	jirislaby@kernel.org, cw00.choi@samsung.com, alim.akhtar@samsung.com, 
-	tudor.ambarus@linaro.org, andre.draszik@linaro.org, 
-	semen.protsenko@linaro.org, saravanak@google.com, willmcvicker@google.com, 
-	soc@kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-watchdog@vger.kernel.org, kernel-team@android.com, 
-	linux-serial@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Message-Id: <9bdcd491-5ee5-48b3-844c-d6c0092bfc73@app.fastmail.com>
+In-Reply-To: <93b41b72-a6ac-4d7f-95f0-ba42399729fc@loongson.cn>
+References: <20230616103127.285608-1-krzysztof.kozlowski@linaro.org>
+ <20230616-activity-shed-be3c13e5ac71@spud>
+ <93b41b72-a6ac-4d7f-95f0-ba42399729fc@loongson.cn>
+Date: Mon, 11 Dec 2023 09:17:54 +0000
+From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
+To: "Yanteng Si" <siyanteng@loongson.cn>,
+ "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
+ "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
+ "Andrew Lunn" <andrew@lunn.ch>, "Conor Dooley" <conor@kernel.org>
+Cc: "Rob Herring" <robh+dt@kernel.org>,
+ "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "Giuseppe Cavallaro" <peppe.cavallaro@st.com>,
+ "Alexandre Torgue" <alexandre.torgue@foss.st.com>,
+ "Jose Abreu" <joabreu@synopsys.com>,
+ "David S . Miller" <davem@davemloft.net>,
+ "Eric Dumazet" <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>,
+ "Paolo Abeni" <pabeni@redhat.com>,
+ "Maxime Coquelin" <mcoquelin.stm32@gmail.com>, devicetree@vger.kernel.org,
+ "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org
+Subject: Re: [RFT PATCH 1/2] stmmac: dwmac-loongson: drop useless check for compatible
+ fallback
+Content-Type: text/plain;charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Hi Krzysztof,
 
-On Sun, 10 Dec 2023 at 13:49, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+
+=E5=9C=A82023=E5=B9=B412=E6=9C=8810=E6=97=A5=E5=8D=81=E4=BA=8C=E6=9C=88 =
+=E4=B8=8A=E5=8D=886:48=EF=BC=8CYanteng Si=E5=86=99=E9=81=93=EF=BC=9A
+> =E5=9C=A8 2023/6/17 02:52, Conor Dooley =E5=86=99=E9=81=93:
+>> On Fri, Jun 16, 2023 at 12:31:26PM +0200, Krzysztof Kozlowski wrote:
+>>> Device binds to proper PCI ID (LOONGSON, 0x7a03), already listed in =
+DTS,
+>>> so checking for some other compatible does not make sense.  It canno=
+t be
+>>> bound to unsupported platform.
+>>>
+>>> Drop useless, incorrect (space in between) and undocumented compatib=
+le.
+>>>
+>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Might be worth noting that dropping it is required to allow the
+>> new loongarch dts stuff to be functional with a sane set of compatibl=
+es.
+>>
+>> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> Thank you Krzysztof for your work. when I am
+> adding more devices support to stmmac, I found that your
+> two patches seemed to be forgotten.
+> Thomas, Jiaxun. Can the two patches get an Acked-by?
+> My stmmac patch thread:
+> <https://lore.kernel.org/loongarch/cover.1699533745.git=20
+> .siyanteng@loongson.cn/T/#md3108d29a5efe71b27f4c5ccf5d0217571bf6586>
+
+Acked-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
+
+Better to resend without RFC :-)
+
+Thanks
+
+> Thanks,
+> Yanteng
 >
-> On 10/12/2023 00:30, Peter Griffin wrote:
-> > GS101 has three different SYSREG controllers, add dedicated
-> > compatibles for them to the documentation.
-> >
-> > Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
-> > Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-> > ---
-> >  .../bindings/soc/samsung/samsung,exynos-sysreg.yaml         | 6 ++++++
-> >  1 file changed, 6 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
-> > index 2de4301a467d..127f4ffde76a 100644
-> > --- a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
-> > +++ b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
-> > @@ -22,6 +22,12 @@ properties:
-> >                - tesla,fsd-fsys1-sysreg
-> >                - tesla,fsd-peric-sysreg
-> >            - const: syscon
-> > +      - items:
-> > +          - enum:
-> > +              - google,gs101-apm-sysreg
-> > +              - google,gs101-peric0-sysreg
-> > +              - google,gs101-peric1-sysreg
->
-> This should be part of the first enum. No need for new list for every
-> new SoC. I'll fix it while applying.
+>>
+>> Cheers,
+>> Conor.
 
-Noted, thanks!
-
-Peter
+--=20
+- Jiaxun
 
