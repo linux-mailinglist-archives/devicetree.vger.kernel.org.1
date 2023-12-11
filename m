@@ -1,109 +1,115 @@
-Return-Path: <devicetree+bounces-23900-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23902-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EAFE80CA56
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 14:00:07 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE50580CA59
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 14:00:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2424FB20F01
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 13:00:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E7E021C20D42
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 13:00:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E92193D385;
-	Mon, 11 Dec 2023 13:00:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 440643D383;
+	Mon, 11 Dec 2023 13:00:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="LfM0MBLh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 121F0B8;
-	Mon, 11 Dec 2023 04:59:57 -0800 (PST)
-Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-dbc1efc23f7so3431329276.2;
-        Mon, 11 Dec 2023 04:59:57 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702299596; x=1702904396;
-        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0C2ieL1JqrNcU7KA76mZIHd+67WjieYCcgN34Ch4tRg=;
-        b=FH4rOogtiFI21jaPdLT7B+4y71ezdjgwwk6omSwfJWJYHUUqjpI00R8ga8rlTTJiCt
-         4j+qHmPK/W1NOAaTlWci0Kw+3VeEJMe1BF4xMxTtq4Deqr9LLE7cp9ud/eeFGOW5xBFe
-         Z6BHYooU+Bf4PPfYUokFcmORzKmOeEH/CuGfsWJowQg5UNpGnxnQgSmrnXkIhiahPi4C
-         YuWkrLDEN5BGXcSrwHsRiJUUwRP1V47f39Iqaf3UGojjrnabsMXSR/hu9Vh6GOC9Jq9a
-         N/cye9PzwsHEv7lwh/qQfQqg7Dul4XcTvgILHQl5njn3TwYXKzuwLJCpBJdFlHZdQvHV
-         nvfQ==
-X-Gm-Message-State: AOJu0YwkEuJCOerSlXEdRoWu04J79IISLX8H1/k0T/+jWf8BBo/T2wgK
-	WJbnVGHTm5S0SQ3ZsPyT0nt4wKAlZY5scA==
-X-Google-Smtp-Source: AGHT+IGcGTlztEh1npgsyKNR9Ju4JSAHZ7JnUI0dtAnaXLlJPaoNk6nJhg9yKysPNGVVuSRJD9Fuew==
-X-Received: by 2002:a05:6902:150:b0:db9:6ad7:1abb with SMTP id p16-20020a056902015000b00db96ad71abbmr2408972ybh.12.1702299596074;
-        Mon, 11 Dec 2023 04:59:56 -0800 (PST)
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com. [209.85.219.171])
-        by smtp.gmail.com with ESMTPSA id a12-20020a25938c000000b00d9ac1f0e23csm2469641ybm.56.2023.12.11.04.59.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Dec 2023 04:59:55 -0800 (PST)
-Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-da077db5145so3458878276.0;
-        Mon, 11 Dec 2023 04:59:55 -0800 (PST)
-X-Received: by 2002:a25:6b4d:0:b0:db4:25b7:5f8b with SMTP id
- o13-20020a256b4d000000b00db425b75f8bmr2070527ybm.63.1702299595000; Mon, 11
- Dec 2023 04:59:55 -0800 (PST)
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55EFCD1;
+	Mon, 11 Dec 2023 05:00:13 -0800 (PST)
+Received: from umang.jain (unknown [103.251.226.68])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 67275C58;
+	Mon, 11 Dec 2023 13:59:20 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1702299565;
+	bh=z/kiy682Dt+Hkip6mn8zt4qO+eGw8bGSkyh8qcwql68=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=LfM0MBLhxg3j2w3rYKk5q/H2G70LXzKtypbsgoo/NCdpovsNsjZMfuFdvzbabrXyG
+	 bacs4rFE+JjgBMyG3h9hE4gi7Z3PUIgtXGYzAB29vIkGV3nZ9t1La82Jub5p55wwab
+	 MDbeMjwqQpLAJaF5/7BUiI2B1ZkTlOhtujrNpPpA=
+From: Umang Jain <umang.jain@ideasonboard.com>
+To: devicetree@vger.kernel.org,
+	linux-media@vger.kernel.org
+Cc: "Paul J . Murphy" <paul.j.murphy@intel.com>,
+	Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	Umang Jain <umang.jain@ideasonboard.com>,
+	Marco Felsch <m.felsch@pengutronix.de>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Wolfram Sang <wsa@kernel.org>,
+	linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
+	linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH v4 1/7] media: dt-bindings: media: imx335: Add supply bindings
+Date: Mon, 11 Dec 2023 18:29:43 +0530
+Message-ID: <20231211125950.108092-2-umang.jain@ideasonboard.com>
+X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20231211125950.108092-1-umang.jain@ideasonboard.com>
+References: <20231211125950.108092-1-umang.jain@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 11 Dec 2023 13:59:43 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUqbbjRpkStD7JGQ0r9hfR-sgx23FKGDASofX87AzaEcA@mail.gmail.com>
-Message-ID: <CAMuHMdUqbbjRpkStD7JGQ0r9hfR-sgx23FKGDASofX87AzaEcA@mail.gmail.com>
-Subject: dt-validate crash on <foo>-gpio
-To: Rob Herring <robh+dt@kernel.org>
-Cc: "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
-	Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-Hi Rob,
+From: Kieran Bingham <kieran.bingham@ideasonboard.com>
 
-When running "make dtbs_check" on a DTB in the Renesas BSP, I ran into
-the following backtrace:
+Add the bindings for the supply references used on the IMX335.
 
-    Traceback (most recent call last):
-      File "dt-validate", line 8, in <module>
-        sys.exit(main())
-      File "dt-schema/dtschema/dtb_validate.py", line 144, in main
-        sg.check_dtb(filename)
-      File "dt-schema/dtschema/dtb_validate.py", line 87, in check_dtb
-        dt = self.validator.decode_dtb(f.read())
-      File "dt-schema/dtschema/validator.py", line 491, in decode_dtb
-        return [dtschema.dtb.fdt_unflatten(self, dtb)]
-      File "dt-schema/dtschema/dtb.py", line 483, in fdt_unflatten
-        fixup_gpios(dt)
-      File "dt-schema/dtschema/dtb.py", line 373, in fixup_gpios
-        fixup_gpios(v)
-      File "dt-schema/dtschema/dtb.py", line 373, in fixup_gpios
-        fixup_gpios(v)
-      File "dt-schema/dtschema/dtb.py", line 373, in fixup_gpios
-        fixup_gpios(v)
-      File "dt-schema/dtschema/dtb.py", line 378, in fixup_gpios
-        val = v[0]
-    TypeError: 'bool' object is not subscriptable
+Reviewed-by: Umang Jain <umang.jain@ideasonboard.com>
+Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
+Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+---
+ .../devicetree/bindings/media/i2c/sony,imx335.yaml  | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-Turns out the issue is triggered by the presence of a (non-documented)
-boolean "no-use-gpio" property.
-
-Apparently anything that matches "*-gpio" is treated as having a list of
-GPIO specifiers, causing a crash if that does not turn out to be true...
-While the introduction of a "no-use-gpio" boolean property might not
-survive public review, it would be good if the tooling wouldn't crash
-on it.
-
-Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
+diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml
+index a167dcdb3a32..106c36ee966d 100644
+--- a/Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml
+@@ -32,6 +32,15 @@ properties:
+     description: Clock frequency from 6 to 27 MHz, 37.125MHz, 74.25MHz
+     maxItems: 1
+ 
++  avdd-supply:
++    description: Analog power supply (2.9V)
++
++  ovdd-supply:
++    description: Interface power supply (1.8V)
++
++  dvdd-supply:
++    description: Digital power supply (1.2V)
++
+   reset-gpios:
+     description: Reference to the GPIO connected to the XCLR pin, if any.
+     maxItems: 1
+@@ -79,6 +88,10 @@ examples:
+             assigned-clock-parents = <&imx335_clk_parent>;
+             assigned-clock-rates = <24000000>;
+ 
++            avdd-supply = <&camera_vdda_2v9>;
++            ovdd-supply = <&camera_vddo_1v8>;
++            dvdd-supply = <&camera_vddd_1v2>;
++
+             port {
+                 imx335: endpoint {
+                     remote-endpoint = <&cam>;
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.41.0
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
