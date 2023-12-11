@@ -1,428 +1,107 @@
-Return-Path: <devicetree+bounces-23990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23992-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DCDE80D385
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 18:18:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 233B480D393
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 18:20:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 41ADD281A75
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 17:18:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 53E3A1C2148E
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 17:20:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B45924D582;
-	Mon, 11 Dec 2023 17:18:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 054C34E63B;
+	Mon, 11 Dec 2023 17:19:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b="ghIb/lgY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Nf8er2OI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0016f401.pphosted.com (mx0b-0016f401.pphosted.com [67.231.156.173])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0BDBBE;
-	Mon, 11 Dec 2023 09:18:08 -0800 (PST)
-Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
-	by mx0b-0016f401.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BBDsDfC019781;
-	Mon, 11 Dec 2023 09:17:59 -0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	pfpt0220; bh=a7nYuK/yV0tdN8rBsNllqrwwqV8uA9tLmy4ZoMvonqM=; b=ghI
-	b/lgY3ufgOSi5I7+4bIkN225I+s+5EcYQ9GRbXE/x6R2GIZxIlLs+InOM6cMm7pX
-	+Y13woNFj+QTMVj/C5eiPw6CSmbWBeS5IpYxlImVRirLPndw2W+fOdaHgzwj9Kqi
-	fwVTfQRVKMI9MmafPF6cpllq65cf4kpT3Gj5OqxfTzo8X39njtzpHUh85sy/33sX
-	TVD+3r2TxJiL08VhP6wPGdNPp0U82q/GuYvuQszyXkCPUBnLtRVWFwde3GILJO+P
-	35hB9SPgsebtvXikLKrqPtCjdE1sQ1/y2VKAWeHhsX/H5X11jfFntGZG6hWIYlLW
-	+HPjN2tId6t0cffa1Tg==
-Received: from dc5-exch02.marvell.com ([199.233.59.182])
-	by mx0b-0016f401.pphosted.com (PPS) with ESMTPS id 3uvrmjnfp0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-	Mon, 11 Dec 2023 09:17:59 -0800 (PST)
-Received: from DC5-EXCH01.marvell.com (10.69.176.38) by DC5-EXCH02.marvell.com
- (10.69.176.39) with Microsoft SMTP Server (TLS) id 15.0.1497.48; Mon, 11 Dec
- 2023 09:17:56 -0800
-Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH01.marvell.com
- (10.69.176.38) with Microsoft SMTP Server id 15.0.1497.48 via Frontend
- Transport; Mon, 11 Dec 2023 09:17:56 -0800
-Received: from dc3lp-swdev041.marvell.com (dc3lp-swdev041.marvell.com [10.6.60.191])
-	by maili.marvell.com (Postfix) with ESMTP id 46E8A3F7068;
-	Mon, 11 Dec 2023 09:17:53 -0800 (PST)
-From: Elad Nachman <enachman@marvell.com>
-To: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <andrew@lunn.ch>, <gregory.clement@bootlin.com>,
-        <sebastian.hesselbarth@gmail.com>, <pali@kernel.org>,
-        <mrkiko.rs@gmail.com>, <chris.packham@alliedtelesis.co.nz>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC: <enachman@marvell.com>, <cyuval@marvell.com>
-Subject: [PATCH v8 3/3] arm64: dts: cn913x: add device trees for COM Express boards
-Date: Mon, 11 Dec 2023 19:17:39 +0200
-Message-ID: <20231211171739.4090179-4-enachman@marvell.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231211171739.4090179-1-enachman@marvell.com>
-References: <20231211171739.4090179-1-enachman@marvell.com>
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A209BD8;
+	Mon, 11 Dec 2023 09:19:51 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-40c19f5f822so26530565e9.1;
+        Mon, 11 Dec 2023 09:19:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702315190; x=1702919990; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=XBkNbk1tNxG/gdCBqT3MOLILfZDJui9Br4+ml00XNfg=;
+        b=Nf8er2OI2UVptobJLQSWhgYoLvbHU+AUCOMURULMHQtKjZCO6k+bymb83dfyoskpD6
+         Az/mEhoFu7YfCHAd3dxyicFukEVh01aRp4jGTSqWbnyTJPgDpp4F0m6gfVwJalbrnXH2
+         s994ZE9NGp4iikMCJU4on9dSBwyXuMq9Qc0iiMM2q6wgmbDeTMUxtegQCzkJsBSy40Xz
+         LLnUXs7os3NvWjCQ7ItZlPjxWYEU+kXweh7JL7EdR5zumcM6Ul+DAqNUq5/N3tvf6+Wl
+         Z3WuD0TBqfqX3hvEUvupvuHkUufWPS9xGJRnYJIwrrCG1ha8kzrGCJrdIcOcfyTup9Zm
+         lEwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702315190; x=1702919990;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XBkNbk1tNxG/gdCBqT3MOLILfZDJui9Br4+ml00XNfg=;
+        b=Ome5g8aBZdMk0ENet2drrKnBXOk2lXlvoxLBmnQl+lFg40G0Xa0nXQYkCUKHMi97PJ
+         J7V6MwpiAmwE3UGoKq5oNgBPJChSUwX2P5hKFsrDQs4qbJKFdC03nJUkc0uXAdwVptM+
+         3rzgbE0o16tSeAPwwLkcBnUoJcqEKsfY7Mc1V749bjp3kLu/sPdnB3pUThi1MIFoW1fy
+         F5N5yeTw00Na+leERvqEMqVKf/oum36QEbWefR8L5lfPXkTL4TICULzI5bd8HUHoy/R/
+         hzs0I2y9hk6jFeohM6jvoG61nu1sWqUAYBsFQaKmHSOld7snGpZZp8JD8xq8zzo7VCS/
+         yefw==
+X-Gm-Message-State: AOJu0Yx7hfJsIcMakeL+dwktskpoRhikSXTL84KqBBKOauxmPO+yaDNJ
+	MQweCTWxE+TYptUJO9yxDuU=
+X-Google-Smtp-Source: AGHT+IGyxy+wtwZZ1G/OOSOEWoM/tjkuTJxBBJDZfOQSTxFaVPEo1+OgEX92tW0fbfPM0YWRIhUIdg==
+X-Received: by 2002:a05:600c:4ca7:b0:40b:5e56:7b66 with SMTP id g39-20020a05600c4ca700b0040b5e567b66mr2288377wmp.175.1702315189743;
+        Mon, 11 Dec 2023 09:19:49 -0800 (PST)
+Received: from Ansuel-xps. (93-34-89-13.ip49.fastwebnet.it. [93.34.89.13])
+        by smtp.gmail.com with ESMTPSA id he10-20020a05600c540a00b0040b3829eb50sm13465507wmb.20.2023.12.11.09.19.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Dec 2023 09:19:49 -0800 (PST)
+Message-ID: <657744b5.050a0220.dfa0d.11a4@mx.google.com>
+X-Google-Original-Message-ID: <ZXdEsqeyKetvyF15@Ansuel-xps.>
+Date: Mon, 11 Dec 2023 18:19:46 +0100
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next PATCH 1/2] dt-bindings: Document QCA808x PHYs
+References: <20231209014828.28194-1-ansuelsmth@gmail.com>
+ <242759d9-327d-4fde-b2a0-24566cf5bf25@lunn.ch>
+ <65772f36.050a0220.678b6.ef84@mx.google.com>
+ <74b7fc4f-88d2-41c0-8d98-6530f0fc2d70@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Proofpoint-GUID: Dm7GSxc8gM-VLeO0Gb21oWqcNWBkaFAb
-X-Proofpoint-ORIG-GUID: Dm7GSxc8gM-VLeO0Gb21oWqcNWBkaFAb
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <74b7fc4f-88d2-41c0-8d98-6530f0fc2d70@lunn.ch>
 
-From: Elad Nachman <enachman@marvell.com>
+On Mon, Dec 11, 2023 at 04:54:12PM +0100, Andrew Lunn wrote:
+> > Mhhh with a generic property and LED core or phylib handling it... How
+> > it would work applying that setting on PHY side?
+> 
+> Add a .led_set_polarity callback to the PHY driver structure?
+> 
+> Take a look at other LED drivers. Does anything similar already exist?
+> It is unlikely that PHYs are the only sort of LED to have a polarity.
+>
 
-Add support for CN9130 and CN9131 COM Express Type 7 CPU
-module boards by Marvell.
-Define these COM Express CPU modules as dtsi and
-provide a dtsi file for a carrier board (Marvell AC5X RD
-COM Express type 7 carrier board).
-This Carrier board only utilizes the PCIe link, hence no
-special device / driver support is provided by this dtsi file.
-Finally, provide a dts file for the com express carrier and
-CPU module combination.
+Interesting topic... With a quick grep on Documentation for polarity of
+high, I can't find any use of it...
 
-These COM Express boards differ from the existing CN913x DB
-boards by the type of ethernet connection (RGMII),
-the type of voltage regulators (not i2c expander based)
-and the USB phy (not UTMI based).
-Note - PHY + RGMII connector is OOB on CPU module.
-CN9131 COM Express board is basically CN9130 COM Express board
-with an additional CP115 I/O co-processor, which in this case
-provides an additional USB host controller on the board.
+Also main problem is that the thing is controlled globally and not per
+LED. (can be handled internally to the driver with some priv and check
+magic)
 
-Signed-off-by: Elad Nachman <enachman@marvell.com>
----
- arch/arm64/boot/dts/marvell/Makefile          |   1 +
- .../dts/marvell/ac5x-rd-carrier-cn9131.dts    |  44 +++++++
- .../boot/dts/marvell/ac5x-rd-carrier.dtsi     |  34 ++++++
- .../dts/marvell/cn9130-db-comexpress.dtsi     |  96 ++++++++++++++++
- .../dts/marvell/cn9131-db-comexpress.dtsi     | 108 ++++++++++++++++++
- 5 files changed, 283 insertions(+)
- create mode 100644 arch/arm64/boot/dts/marvell/ac5x-rd-carrier-cn9131.dts
- create mode 100644 arch/arm64/boot/dts/marvell/ac5x-rd-carrier.dtsi
- create mode 100644 arch/arm64/boot/dts/marvell/cn9130-db-comexpress.dtsi
- create mode 100644 arch/arm64/boot/dts/marvell/cn9131-db-comexpress.dtsi
+Is it worth to impemement the additional API to control this? And I
+guess a egenric binding should be added to ethernet-phy? Or should it be
+added to LEDs?
 
-diff --git a/arch/arm64/boot/dts/marvell/Makefile b/arch/arm64/boot/dts/marvell/Makefile
-index 79ac09b58a89..99b8cb3c49e1 100644
---- a/arch/arm64/boot/dts/marvell/Makefile
-+++ b/arch/arm64/boot/dts/marvell/Makefile
-@@ -26,4 +26,5 @@ dtb-$(CONFIG_ARCH_MVEBU) += cn9132-db.dtb
- dtb-$(CONFIG_ARCH_MVEBU) += cn9132-db-B.dtb
- dtb-$(CONFIG_ARCH_MVEBU) += cn9130-crb-A.dtb
- dtb-$(CONFIG_ARCH_MVEBU) += cn9130-crb-B.dtb
-+dtb-$(CONFIG_ARCH_MVEBU) += ac5x-rd-carrier-cn9131.dtb
- dtb-$(CONFIG_ARCH_MVEBU) += ac5-98dx35xx-rd.dtb
-diff --git a/arch/arm64/boot/dts/marvell/ac5x-rd-carrier-cn9131.dts b/arch/arm64/boot/dts/marvell/ac5x-rd-carrier-cn9131.dts
-new file mode 100644
-index 000000000000..2a0b07000089
---- /dev/null
-+++ b/arch/arm64/boot/dts/marvell/ac5x-rd-carrier-cn9131.dts
-@@ -0,0 +1,44 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2023 Marvell International Ltd.
-+ *
-+ * Device tree for the AC5X RD Type 7 Com Express carrier board,
-+ * Utilizing the CN913x COM Express CPU module board.
-+ * This specific carrier board in this mode of operation (external)
-+ * only maintains a PCIe link with the CPU module,
-+ * which does not require any special DTS definitions.
-+ *
-+ * AC5X RD works here in external mode (switch selectable at the back of the
-+ * board), and connect via an external cable a kit
-+ * which would allow it to use an external CN9131 CPU COM Express module,
-+ * mounted on top of an interposer kit.
-+ *
-+ * So in this case, once the switch is set to external mode as explained above,
-+ * the AC5X RD becomes part of the carrier solution.
-+ *
-+ * When the board boots in the external CPU mode, the internal CPU is disabled,
-+ * and only the switch portion of the SOC acts as a PCIe end-point, Hence there
-+ * is no need to describe this internal (disabled CPU) in the device tree.
-+ *
-+ * There is no CPU booting in this mode on the carrier, only on the
-+ * CN9131 COM Express CPU module.
-+ * What runs the Linux is the CN9131 on the COM Express CPU module,
-+ * And it accesses the switch end-point on the AC5X RD portion of the carrier
-+ * via PCIe.
-+ */
-+
-+#include "cn9131-db-comexpress.dtsi"
-+#include "ac5x-rd-carrier.dtsi"
-+
-+/ {
-+	model = "Marvell Armada AC5X RD COM EXPRESS type 7 carrier board with CN9131 CPU module";
-+	compatible = "marvell,cn9131-ac5x-carrier", "marvell,rd-ac5x-carrier",
-+			"marvell,cn9131-cpu-module", "marvell,cn9131",
-+			"marvell,armada-ap807-quad", "marvell,armada-ap807";
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x2 0x00000000>;
-+	};
-+
-+};
-diff --git a/arch/arm64/boot/dts/marvell/ac5x-rd-carrier.dtsi b/arch/arm64/boot/dts/marvell/ac5x-rd-carrier.dtsi
-new file mode 100644
-index 000000000000..f98629abb58b
---- /dev/null
-+++ b/arch/arm64/boot/dts/marvell/ac5x-rd-carrier.dtsi
-@@ -0,0 +1,34 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2023 Marvell International Ltd.
-+ *
-+ * Device tree for the AC5X RD Type 7 Com Express carrier board,
-+ * This specific board in external mode (see below) only maintains
-+ * a PCIe link with the COM Express CPU module, which does not
-+ * require any special DTS definitions.
-+ *
-+ * AC5X RD can either work as you would expect, as a complete standalone
-+ * box using the internal CPU, or you can move the switch on the back of
-+ * the box to "external" mode, and connect via an external cable a kit
-+ * which would allow it to use an external CPU COM Express module,
-+ * mounted on top of an interposer kit.
-+ *
-+ * So in this case, once the switch is set to external mode as explained above,
-+ * the AC5X RD becomes part of the carrier solution.
-+ * This is a development/reference solution, not a full commercial solution,
-+ * hence it was designed with the flexibility to be configured in different
-+ * modes of operation.
-+ *
-+ * When the board boots in the external CPU mode, the internal CPU is disabled,
-+ * and only the switch portion of the SOC acts as a PCIe end-point, Hence there
-+ * is no need to describe this internal (disabled CPU) in the device tree.
-+ *
-+ * There is no CPU booting in this mode on the carrier,
-+ * only on the COM Express CPU module.
-+ */
-+
-+/ {
-+	model = "Marvell Armada AC5X RD COM EXPRESS type 7 carrier board";
-+	compatible = "marvell,rd-ac5x-carrier";
-+
-+};
-diff --git a/arch/arm64/boot/dts/marvell/cn9130-db-comexpress.dtsi b/arch/arm64/boot/dts/marvell/cn9130-db-comexpress.dtsi
-new file mode 100644
-index 000000000000..028496ebc473
---- /dev/null
-+++ b/arch/arm64/boot/dts/marvell/cn9130-db-comexpress.dtsi
-@@ -0,0 +1,96 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2023 Marvell International Ltd.
-+ *
-+ * Device tree for the CN9130-DB Com Express CPU module board.
-+ */
-+
-+#include "cn9130-db.dtsi"
-+
-+/ {
-+	model = "Marvell Armada CN9130-DB COM EXPRESS type 7 CPU module board";
-+	compatible = "marvell,cn9130-cpu-module", "marvell,cn9130",
-+		     "marvell,armada-ap807-quad", "marvell,armada-ap807";
-+
-+};
-+
-+&ap0_reg_sd_vccq {
-+	regulator-max-microvolt = <1800000>;
-+	states = <1800000 0x1 1800000 0x0>;
-+	/delete-property/ gpios;
-+};
-+
-+&cp0_reg_usb3_vbus0 {
-+	/delete-property/ gpio;
-+};
-+
-+&cp0_reg_usb3_vbus1 {
-+	/delete-property/ gpio;
-+};
-+
-+&cp0_reg_sd_vcc {
-+	status = "disabled";
-+};
-+
-+&cp0_reg_sd_vccq {
-+	status = "disabled";
-+};
-+
-+&cp0_sdhci0 {
-+	status = "disabled";
-+};
-+
-+&cp0_eth0 {
-+	status = "disabled";
-+};
-+
-+&cp0_eth1 {
-+	status = "okay";
-+	phy = <&phy0>;
-+	phy-mode = "rgmii-id";
-+};
-+
-+&cp0_eth2 {
-+	status = "disabled";
-+};
-+
-+&cp0_mdio {
-+	status = "okay";
-+	pinctrl-0 = <&cp0_ge_mdio_pins>;
-+	phy0: ethernet-phy@0 {
-+		status = "okay";
-+	};
-+};
-+
-+&cp0_syscon0 {
-+	cp0_pinctrl: pinctrl {
-+		compatible = "marvell,cp115-standalone-pinctrl";
-+
-+		cp0_ge_mdio_pins: ge-mdio-pins {
-+			marvell,pins = "mpp40", "mpp41";
-+			marvell,function = "ge";
-+		};
-+	};
-+};
-+
-+&cp0_sdhci0 {
-+	status = "disabled";
-+};
-+
-+&cp0_spi1 {
-+	status = "okay";
-+};
-+
-+&cp0_usb3_0 {
-+	status = "okay";
-+	usb-phy = <&cp0_usb3_0_phy0>;
-+	phy-names = "usb";
-+	/delete-property/ phys;
-+};
-+
-+&cp0_usb3_1 {
-+	status = "okay";
-+	usb-phy = <&cp0_usb3_0_phy1>;
-+	phy-names = "usb";
-+	/delete-property/ phys;
-+};
-diff --git a/arch/arm64/boot/dts/marvell/cn9131-db-comexpress.dtsi b/arch/arm64/boot/dts/marvell/cn9131-db-comexpress.dtsi
-new file mode 100644
-index 000000000000..6f3914bcfd01
---- /dev/null
-+++ b/arch/arm64/boot/dts/marvell/cn9131-db-comexpress.dtsi
-@@ -0,0 +1,108 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2023 Marvell International Ltd.
-+ *
-+ * Device tree for the CN9131-DB Com Express CPU module board.
-+ */
-+
-+#include "cn9131-db.dtsi"
-+
-+/ {
-+	model = "Marvell Armada CN9131-DB COM EXPRESS type 7 CPU module board";
-+	compatible = "marvell,cn9131-cpu-module", "marvell,cn9131", "marvell,cn9130",
-+		     "marvell,armada-ap807-quad", "marvell,armada-ap807";
-+
-+};
-+
-+&ap0_reg_sd_vccq {
-+	regulator-max-microvolt = <1800000>;
-+	states = <1800000 0x1 1800000 0x0>;
-+	/delete-property/ gpios;
-+};
-+
-+&cp0_reg_usb3_vbus0 {
-+	/delete-property/ gpio;
-+};
-+
-+&cp0_reg_usb3_vbus1 {
-+	/delete-property/ gpio;
-+};
-+
-+&cp1_reg_usb3_vbus0 {
-+	/delete-property/ gpio;
-+};
-+
-+&cp0_reg_sd_vcc {
-+	status = "disabled";
-+};
-+
-+&cp0_reg_sd_vccq {
-+	status = "disabled";
-+};
-+
-+&cp0_sdhci0 {
-+	status = "disabled";
-+};
-+
-+&cp0_eth0 {
-+	status = "disabled";
-+};
-+
-+&cp0_eth1 {
-+	status = "okay";
-+	phy = <&phy0>;
-+	phy-mode = "rgmii-id";
-+};
-+
-+&cp0_eth2 {
-+	status = "disabled";
-+};
-+
-+&cp0_mdio {
-+	status = "okay";
-+	pinctrl-0 = <&cp0_ge_mdio_pins>;
-+	phy0: ethernet-phy@0 {
-+		status = "okay";
-+	};
-+};
-+
-+&cp0_syscon0 {
-+	cp0_pinctrl: pinctrl {
-+		compatible = "marvell,cp115-standalone-pinctrl";
-+
-+		cp0_ge_mdio_pins: ge-mdio-pins {
-+			marvell,pins = "mpp40", "mpp41";
-+			marvell,function = "ge";
-+		};
-+	};
-+};
-+
-+&cp0_sdhci0 {
-+	status = "disabled";
-+};
-+
-+&cp0_spi1 {
-+	status = "okay";
-+};
-+
-+&cp0_usb3_0 {
-+	status = "okay";
-+	usb-phy = <&cp0_usb3_0_phy0>;
-+	phy-names = "usb";
-+	/delete-property/ phys;
-+};
-+
-+&cp0_usb3_1 {
-+	status = "okay";
-+	usb-phy = <&cp0_usb3_0_phy1>;
-+	phy-names = "usb";
-+	/delete-property/ phys;
-+};
-+
-+&cp1_usb3_1 {
-+	status = "okay";
-+	usb-phy = <&cp1_usb3_0_phy0>;
-+	/* Generic PHY, providing serdes lanes */
-+	phys = <&cp1_comphy3 1>;
-+	phy-names = "usb";
-+};
 -- 
-2.25.1
-
+	Ansuel
 
