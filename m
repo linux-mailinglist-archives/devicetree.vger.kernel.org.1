@@ -1,72 +1,49 @@
-Return-Path: <devicetree+bounces-23946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23947-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6943680CFCA
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 16:41:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62A6880CFDE
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 16:44:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23F85282190
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 15:41:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 938B41C212C8
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 15:44:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD03D4BA96;
-	Mon, 11 Dec 2023 15:41:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D096F4BAB3;
+	Mon, 11 Dec 2023 15:44:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EHYnZp1C"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="mRoIDbTS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43559A1;
-	Mon, 11 Dec 2023 07:41:41 -0800 (PST)
-Received: by mail-pj1-x1030.google.com with SMTP id 98e67ed59e1d1-286e05d9408so3466486a91.1;
-        Mon, 11 Dec 2023 07:41:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702309301; x=1702914101; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Rkgj0xsJjNUuqRFvrTNXcjbvl2FdG5FGdJNlXw/A8P4=;
-        b=EHYnZp1CNmEqN2RE3JJf6mN94RxLmS1QmvLCg3HBlRf9eTKryD4dH+mLfuj/x1WvxX
-         umwPedZ8A3RVnzKT/mBwdN9KbWCMOUeUP0Zm8dduZHjCVxSwdr/Kx70nKW8vNCaevXeS
-         FK1fMoEEy0y5w3a/hyhqTJc4XS8nrc4N6UT1xf0IPdNcvMH6QqUmik6xbccKEbrmCZVx
-         NBnBpBUx+UWpMM4E4rCcGCIT/BDmmHTYWJ73r1wdcJSL8Y+POCTaX4lgHiOuQ0M73ut+
-         rAkvVgZkD7oeSPsNbJeB9w4rr3oRppuu/QPM2JAlYVpjUvr76/eLVGqhVps5ge8VchVF
-         IXZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702309301; x=1702914101;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Rkgj0xsJjNUuqRFvrTNXcjbvl2FdG5FGdJNlXw/A8P4=;
-        b=tWEEHeDaGXJhZIH4fEZZEgyNA1KQ36/90I7Rce2q5TwEEUQnlf60B+VSDCtYGlRVjc
-         zyRX2cPnkFuDv0nJjddJdAYile48Y6tGX0HiKJiGMRb+cAyCiqPRYganwYun54qWQt3b
-         TWl0xEcUFyTMPjNp1J8QFnUrqP43YxOtlNUKZ6y4Pm4//2c5AzooYuWIskCluGUQMUxL
-         ZPaqioKswrBH2HoIobUyj78F/AUvAh87hINydrEmZX8ghI7KVU+iTE5obtYwcyMRS/kU
-         wmKf0f7Is0tOTATmqhxq7kcP1vJ70Cfau6vd5J4II2G8fo15w5VU+3qZPlU6tgAIqIEV
-         rCzw==
-X-Gm-Message-State: AOJu0YxDbpeL89WsudSvd5v8qyZRSS2ezuE6im/2QC9HwWwfjiELdY76
-	pFpfP6kZApEHFxbvylNXzv8=
-X-Google-Smtp-Source: AGHT+IHXuif/A5CNnn4PFgEgh9sAzp142sXqPe6a/S2uXXB5rfBMamdlf3zyD2imWY7HBVwmSAYB7Q==
-X-Received: by 2002:a17:90b:4f88:b0:286:f66a:973b with SMTP id qe8-20020a17090b4f8800b00286f66a973bmr4636263pjb.48.1702309300547;
-        Mon, 11 Dec 2023 07:41:40 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id qc9-20020a17090b288900b00286be9fb3fdsm7234032pjb.40.2023.12.11.07.41.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Dec 2023 07:41:40 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Mon, 11 Dec 2023 07:41:39 -0800
-From: Guenter Roeck <linux@roeck-us.net>
-To: nuno.sa@analog.com
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49F00BD;
+	Mon, 11 Dec 2023 07:44:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=mpoCLQXUg7bSdwQ8Is9a4sXx0Z59ozaHcPkcmMjnjxU=; b=mRoIDbTSG//lHN9jLp0j+Lny17
+	koOqFVmM75/5ks3+8OH//lzhThYciWIVXFOjPPGSZ0e3Q3vmNxl8mpQ8WirT6SdlUsF38cLXiNQpG
+	uCUvz7r3AzulfwKg+QqotYSMMiUcnHD3pZy7+nG2ZfpFPaaWULqxWR58+tWKh7tjRtSc=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rCiRy-002dPp-5x; Mon, 11 Dec 2023 16:44:06 +0100
+Date: Mon, 11 Dec 2023 16:44:06 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>
-Subject: Re: [PATCH v3 2/2] hwmon: ltc4282: add support for the LTC4282 chip
-Message-ID: <7a6a0517-47f8-47df-9e61-44adb60f6135@roeck-us.net>
-References: <20231205-ltc4282-support-v3-0-e0877b281bc2@analog.com>
- <20231205-ltc4282-support-v3-2-e0877b281bc2@analog.com>
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next PATCH 1/2] dt-bindings: Document QCA808x PHYs
+Message-ID: <242759d9-327d-4fde-b2a0-24566cf5bf25@lunn.ch>
+References: <20231209014828.28194-1-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,53 +52,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231205-ltc4282-support-v3-2-e0877b281bc2@analog.com>
+In-Reply-To: <20231209014828.28194-1-ansuelsmth@gmail.com>
 
-On Tue, Dec 05, 2023 at 04:22:56PM +0100, Nuno Sa via B4 Relay wrote:
-> From: Nuno Sa <nuno.sa@analog.com>
-> 
-> The LTC4282 hot swap controller allows a board to be safely inserted and
-> removed from a live backplane. Using one or more external N-channel pass
-> transistors, board supply voltage and inrush current are ramped up at an
-> adjustable rate. An I2C interface and onboard ADC allows for monitoring
-> of board current, voltage, power, energy and fault status.
-> 
-> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
-> ---
-[ ... ]
+> +properties:
+> +  qca,led-active-high:
+> +    description: Set all the LEDs to active high to be turned on.
+> +    type: boolean
 
-> +/* power1_fault */
-> +static SENSOR_DEVICE_ATTR_RO(power1_good, ltc4282_status,
-> +			     LTC4282_POWER_GOOD_MASK);
-> +/* FET faults */
-> +static SENSOR_DEVICE_ATTR_RO(fet_short_fault, ltc4282_status,
-> +			     LTC4282_FET_SHORT_MASK);
-> +static SENSOR_DEVICE_ATTR_RO(fet_bad_fault, ltc4282_status,
-> +			     LTC4282_FET_BAD_STATUS_MASK);
-> +/*
-> + * Fault log failures. These faults might be important in systems where
-> + * auto-retry is not enabled since they will cause the part to latch off until
-> + * they are cleared. Typically that happens when the system admin is close
-> + * enough so he can check what happened and manually clear the faults. Hence, we
-> + * provide an attribute to clear all fauls at once while still capable of
-> + * checking individual faults in debugfs.
-> + */
-> +static SENSOR_DEVICE_ATTR_WO(fault_logs_reset, ltc4282_clear_faults, 0);
-> +
-> +static struct attribute *ltc4282_attrs[] = {
-> +	&sensor_dev_attr_energy1_input.dev_attr.attr,
-> +	&sensor_dev_attr_power1_good.dev_attr.attr,
-> +	&sensor_dev_attr_fet_bad_fault.dev_attr.attr,
-> +	&sensor_dev_attr_fet_short_fault.dev_attr.attr,
-> +	&sensor_dev_attr_fault_logs_reset.dev_attr.attr,
-> +	NULL
-> +};
-> +ATTRIBUTE_GROUPS(ltc4282);
-> +
+I would of expected active high is the default. An active low property
+would make more sense. It should also be a generic property, not a
+vendor property. As such, we either want the phylib core to parse it,
+or the LED core.
 
-Ah, now I see what those are for. Please move all but energy1_input
-to debugfs, including clearing the faults.
-
-Thanks,
-Guenter
+       Andrew
 
