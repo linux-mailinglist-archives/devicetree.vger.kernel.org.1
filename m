@@ -1,132 +1,142 @@
-Return-Path: <devicetree+bounces-23997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C337380D3D8
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 18:32:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BD9180D3E7
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 18:34:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F26EE1C214E7
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 17:32:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8DED281FC6
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 17:34:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A2754E1CD;
-	Mon, 11 Dec 2023 17:32:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA6284E1CD;
+	Mon, 11 Dec 2023 17:34:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WQpYFpDW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KIjtlOXL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 897E4CD
-	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 09:32:03 -0800 (PST)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-a1ec87a7631so429010466b.0
-        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 09:32:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702315922; x=1702920722; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=s/UnhJJFhJv72Mo0GfEYdwGM1aW2h/5wD9gbIJDTJ8E=;
-        b=WQpYFpDWEDJQ4oDo+6PPYIbPSsM7N+e0QXdC5CgSa5Jo88oXRLu031YG2Pn2dX0pR7
-         lg/nVJx92dd0y703E/Y9Pf9z/FL4ChEcp/QneASVNxAiuWWx3kksp00J5CwpFmm7vKKe
-         2qox0moch0OXz2AHkikl6VLxxt3JGT/xGofZYKfhMZzBJXLmnFXa9m4t7R4JdSej906E
-         GzfRKSdfH5kFCNK2qDY8WwNt/NdiTBlQPvK3bZsMEn5JEv+wMJpcKJKMxZdZEd02RWDd
-         Sl0LP2N4ngMbWLGnW5tQu1DOoGUNyyYmFB9yWVQBejb2umYPDF1vDgt+joUAEM/XvLbX
-         TyRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702315922; x=1702920722;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=s/UnhJJFhJv72Mo0GfEYdwGM1aW2h/5wD9gbIJDTJ8E=;
-        b=lzol1t5w2maoNygPNw2Tf9ha+IIXUGzdCrQwC9rVZU1NGWgNvVrcfuhzsc+9zGkBO0
-         S89v5GChZqP2wvV1HBkTOw4dKqcZwSTQwNggDOjjpMfwnAbX6u+UOqPZsmKKLDueZrLK
-         DxeQ0JbqWFhgeVXNr6ck20QezBhP4p4gOl1mZeSDaBxCxz4EZ4lBIR7FZRsaS+3BwHzb
-         X2UvicAGNEziqbWmgKWSiXCmdKniq+eGvmW5cBW+909bj4b36LrozHPPuKRLnQx2bDV2
-         YAb/TbuOg9qsIgypUbaC/oSCYWGbVrIGpiMz7GvUZsNzdhWj7eWMCmfVTMlV2k74LEwa
-         m2YA==
-X-Gm-Message-State: AOJu0YzyH8eKAH9NTz3PZL3ETWTcvB5lZc/n8WjySqLfF5tIBNw1TFYM
-	H9sUN+zwv7ZviDP3BVPSX1eekw==
-X-Google-Smtp-Source: AGHT+IHReIaY/WQ2l+1mkKbAFPvx2OncWPm7jOMW3JeO0fS+svIC6pbCoCqaSAGs6aNZU8LI3n1mXg==
-X-Received: by 2002:a17:907:6d02:b0:a16:3da0:dd36 with SMTP id sa2-20020a1709076d0200b00a163da0dd36mr3238682ejc.48.1702315921972;
-        Mon, 11 Dec 2023 09:32:01 -0800 (PST)
-Received: from [192.168.36.128] (178235179179.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.179])
-        by smtp.gmail.com with ESMTPSA id vu8-20020a170907a64800b00a1d5c52d628sm5087827ejc.3.2023.12.11.09.32.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Dec 2023 09:32:01 -0800 (PST)
-Message-ID: <b7eafdba-5f10-45f1-bed8-55585fb61e94@linaro.org>
-Date: Mon, 11 Dec 2023 18:31:59 +0100
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CECBE4E1C0
+	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 17:34:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5AF33C43395;
+	Mon, 11 Dec 2023 17:34:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702316068;
+	bh=xuX6L1jHorTrNZtjpFIc75B8ypRXxqR2z0Z/exf+Bcc=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=KIjtlOXLZ/5nmD+yo2uenPqJ2aX9ssBIWM7zx7V9mGsNS4dvR6D8aAIpaFDBgT/r+
+	 wCvrgF4StzlkDzjt3do/cB8Ml9zAQyJfXoeVqddjOpo3pkOKvyDvqomizxhhpAT3fh
+	 rzG8LdwxdhzGsWTOvKytoF3vcPxedGlbsj2C2TPNgVi3xrrQSxjBVTpuaXQYZILPDr
+	 Owt92PpG7h2R9rdPdu4WeAmREgjeG5gLlH18dk1z5Z0Y+LmOEd2gzOX3vK4wDsVx9I
+	 iFwdL7SSj0y5Vdk3nDvkGPzjfeJpNdePgxd0MaZgSP5X3Vcf/XbxkKo4AkZuKQ91+7
+	 ezj7eG3+MhM2A==
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-50bfd8d5c77so5402141e87.1;
+        Mon, 11 Dec 2023 09:34:28 -0800 (PST)
+X-Gm-Message-State: AOJu0Yy0t5o4FLu0bA8WzldfPpU9Vd8Qfqu9A0pPJUGJfMRthp+OlQCo
+	zfdTPxS3Mhb4V6kM9iGm2XHkvYhjkaiUrZItaQ==
+X-Google-Smtp-Source: AGHT+IGMURGYLV/Y+ayED33ueZXlH85oU9OGhLmkTdCm4X1g7BaIMGfr4V8LF++R0RHFP+RuG1E0QnZTXRhkxEzjTew=
+X-Received: by 2002:a05:6512:3d05:b0:50b:f776:1d6a with SMTP id
+ d5-20020a0565123d0500b0050bf7761d6amr1293404lfv.1.1702316066602; Mon, 11 Dec
+ 2023 09:34:26 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] ASoC: dt-bindings: qcom,lpass-rx-macro: Add X1E80100
- LPASS RX
-Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Banajit Goswami <bgoswami@quicinc.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- alsa-devel@alsa-project.org, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231211123104.72963-1-krzysztof.kozlowski@linaro.org>
- <20231211-cardstock-elevator-3e19f9d41ac2@spud>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20231211-cardstock-elevator-3e19f9d41ac2@spud>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20231204123315.28456-1-keith.zhao@starfivetech.com> <20231204123315.28456-6-keith.zhao@starfivetech.com>
+In-Reply-To: <20231204123315.28456-6-keith.zhao@starfivetech.com>
+From: Rob Herring <robh@kernel.org>
+Date: Mon, 11 Dec 2023 11:34:14 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJz5pcFwLbh9Jdw1HKLPFgF8ZQdCM18bHO_8R1dtmfx7Q@mail.gmail.com>
+Message-ID: <CAL_JsqJz5pcFwLbh9Jdw1HKLPFgF8ZQdCM18bHO_8R1dtmfx7Q@mail.gmail.com>
+Subject: Re: [v3 5/6] drm/vs: Add hdmi driver
+To: Keith Zhao <keith.zhao@starfivetech.com>
+Cc: devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	aou@eecs.berkeley.edu, suijingfeng@loongson.cn, tzimmermann@suse.de, 
+	paul.walmsley@sifive.com, mripard@kernel.org, xingyu.wu@starfivetech.com, 
+	jack.zhu@starfivetech.com, palmer@dabbelt.com, 
+	krzysztof.kozlowski+dt@linaro.org, william.qiu@starfivetech.com, 
+	shengyang.chen@starfivetech.com, changhuang.liang@starfivetech.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 11.12.2023 18:29, Conor Dooley wrote:
-> On Mon, Dec 11, 2023 at 01:31:01PM +0100, Krzysztof Kozlowski wrote:
->> Add bindings for Qualcomm X1E80100 SoC Low Power Audio SubSystem (LPASS)
->> RX macro codec, which looks like compatible with earlier SM8550.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> I wish you'd send cover letters when you send series of trivial patches
-> like this that could be acked in one go.
-(+1)
+On Mon, Dec 4, 2023 at 6:33=E2=80=AFAM Keith Zhao <keith.zhao@starfivetech.=
+com> wrote:
+>
+> add hdmi driver as encoder and connect
+>
+> Signed-off-by: Keith Zhao <keith.zhao@starfivetech.com>
+> ---
+>  drivers/gpu/drm/verisilicon/Kconfig         |   8 +
+>  drivers/gpu/drm/verisilicon/Makefile        |   1 +
+>  drivers/gpu/drm/verisilicon/starfive_hdmi.c | 849 ++++++++++++++++++++
+>  drivers/gpu/drm/verisilicon/starfive_hdmi.h | 304 +++++++
+>  drivers/gpu/drm/verisilicon/vs_drv.c        |   3 +
+>  drivers/gpu/drm/verisilicon/vs_drv.h        |   4 +
+>  6 files changed, 1169 insertions(+)
+>  create mode 100644 drivers/gpu/drm/verisilicon/starfive_hdmi.c
+>  create mode 100644 drivers/gpu/drm/verisilicon/starfive_hdmi.h
+>
+> diff --git a/drivers/gpu/drm/verisilicon/Kconfig b/drivers/gpu/drm/verisi=
+licon/Kconfig
+> index e10fa97635aa..122c786e3948 100644
+> --- a/drivers/gpu/drm/verisilicon/Kconfig
+> +++ b/drivers/gpu/drm/verisilicon/Kconfig
+> @@ -11,3 +11,11 @@ config DRM_VERISILICON
+>           This driver provides VeriSilicon kernel mode
+>           setting and buffer management. It does not
+>           provide 2D or 3D acceleration.
+> +
+> +config DRM_VERISILICON_STARFIVE_HDMI
+> +       bool "Starfive HDMI extensions"
+> +       depends on DRM_VERISILICON
+> +       help
+> +          This selects support for StarFive soc specific extensions
+> +          for the Innosilicon HDMI driver. If you want to enable
+> +          HDMI on JH7110 based soc, you should select this option.
+> diff --git a/drivers/gpu/drm/verisilicon/Makefile b/drivers/gpu/drm/veris=
+ilicon/Makefile
+> index bf6f2b7ee480..71fadafcee13 100644
+> --- a/drivers/gpu/drm/verisilicon/Makefile
+> +++ b/drivers/gpu/drm/verisilicon/Makefile
+> @@ -6,4 +6,5 @@ vs_drm-objs :=3D vs_dc_hw.o \
+>                 vs_drv.o \
+>                 vs_modeset.o \
+>                 vs_plane.o
+> +vs_drm-$(CONFIG_DRM_VERISILICON_STARFIVE_HDMI) +=3D starfive_hdmi.o
+>  obj-$(CONFIG_DRM_VERISILICON) +=3D vs_drm.o
+> diff --git a/drivers/gpu/drm/verisilicon/starfive_hdmi.c b/drivers/gpu/dr=
+m/verisilicon/starfive_hdmi.c
+> new file mode 100644
+> index 000000000000..aa621db0dee0
+> --- /dev/null
+> +++ b/drivers/gpu/drm/verisilicon/starfive_hdmi.c
+> @@ -0,0 +1,849 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (C) 2023 StarFive Technology Co., Ltd.
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/component.h>
+> +#include <linux/delay.h>
+> +#include <linux/err.h>
+> +#include <linux/hdmi.h>
+> +#include <linux/i2c.h>
+> +#include <linux/irq.h>
+> +#include <linux/media-bus-format.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+> +#include <linux/of_device.h>
 
-Konrad
+You probably don't need this header and the implicit includes it makes
+are dropped now in linux-next. Please check what you actually need and
+make them explicit.
+
+Rob
 
