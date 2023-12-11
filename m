@@ -1,62 +1,61 @@
-Return-Path: <devicetree+bounces-23750-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-23751-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F291380C3F7
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 10:10:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A514480C3FE
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 10:11:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C0541F21415
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 09:10:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D555D1C2031F
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 09:11:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 992DF210F5;
-	Mon, 11 Dec 2023 09:10:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8B7621102;
+	Mon, 11 Dec 2023 09:11:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="otgh9Sge"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zzcUrgkf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DD8BFF
-	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 01:10:26 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-40c48d7a7a7so4926875e9.3
-        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 01:10:26 -0800 (PST)
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30664101
+	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 01:11:02 -0800 (PST)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-a1caddd6d28so520568266b.1
+        for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 01:11:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702285825; x=1702890625; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=e1hHdtNOUKQtimSKcn02EUH8wMvcC3cjPEPTtQNRnlQ=;
-        b=otgh9Sgeq6dYI5vXeUk1tGyj+R+yIbu1K/5gF8gbdpg+ReleRo+VoxO+aRmWHFc2Lc
-         i0tkU3juHpCfOIzIwzCQ+SevYKC096RG5PzWOLnaee5LETNXBd/FdP2B8Brzfr1L2H/P
-         be4pXnU97902b33X3s0uJEdKn4MwL6+5hbnpGjpssq4L+WwklQeT0JqflPssKHGXV6lq
-         CYexZ5r2XvLvcVxfmkz4AkrrDnQVcnqgjkiVp8+Wxy0XKBfm4mqkovMU2ynZptnZPhoL
-         CtIDWZl2QIdMYF67DOwtanb8jcvVuLh6wPT4G03j9xDhF5Qf1reT5FNdt9J3UWwQPfnG
-         kmEg==
+        d=linaro.org; s=google; t=1702285860; x=1702890660; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=16Y97N2Zs2q5DemT+pvvkP6HBQRqCQUx1elGsFbReb4=;
+        b=zzcUrgkfy5fzppOdAQ+Q/D9Rsp/jrSn3j7VHUdD8qXWkahScON9aFyTmXLBxDheDPt
+         WJ5Z2OzVsNlaQ/+mltGlMuevyFb3aG5B+JIMl0PZQzLWIQClW9DiiI/aT34igRoydlE9
+         wqF3dnU2L++M8bKPEHQRcz0tBR6YMkUyd7J8CPB8WTBITwwlopRc0421xT5AmMRWKIaI
+         K4ku8Idbs0UrhhWCLzXA/PAwXmnAFA9PAKshge9JMGW0PNG7IlKmabnxyx56FrHDWcQn
+         y++vsittgnKjsVN89Lp3tyuinjFVfldSDB/pmXkaLacqTwZDYlG6bgGgMcQjJIJd++vH
+         Yaig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702285825; x=1702890625;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=e1hHdtNOUKQtimSKcn02EUH8wMvcC3cjPEPTtQNRnlQ=;
-        b=CTrat14Q0aMCrELvEQfNRd5kBL1xkNAKTXMDDs1dIqkx+LwokH5uPOTEUOXfIkvZoK
-         oCjcunphfIyOO7UprbjLjqfvhGsL/g4JRX6lXY5TLBjL0qeAGd9VnHpiPesgPNzijmru
-         vJgqlp5OVuyfqh7ubLVvMX3xrfUGn97vw2MHdtSmRp3veePs+5vCxsQE+Ih01p25MLtm
-         +9NUNkEF4vGOPPStolG/IG6iWNMaEyS1YeiX0C10mVgEg0PfbOjzqkn+V0e4FQglbxFr
-         lQ84+E91Xg1VwmUpvbzia1cPTgqzLfMWcoz0zoqkx03OZuu2J7ROkxW5sS9BG+YdDQw/
-         nhMw==
-X-Gm-Message-State: AOJu0Yz0itDF1Wael8pmde5ZOs9ESoMejno2lW+bEj7uLyF2PVIlPzEu
-	todBg0gQQSwYFpZEnuaxZ0Vxnw==
-X-Google-Smtp-Source: AGHT+IH64u4s+nNS2hEACtXPcIntf1k/WlEVOEsxu7iP8inZ9hFuymODeAPuiTftKfdWL40tXRirWQ==
-X-Received: by 2002:a05:600c:3411:b0:409:79df:7f9c with SMTP id y17-20020a05600c341100b0040979df7f9cmr2584703wmp.36.1702285824976;
-        Mon, 11 Dec 2023 01:10:24 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:302e:e0c2:d42c:cb23? ([2a01:e0a:982:cbb0:302e:e0c2:d42c:cb23])
-        by smtp.gmail.com with ESMTPSA id u17-20020a05600c19d100b0040c440f9393sm4627069wmq.42.2023.12.11.01.10.23
+        d=1e100.net; s=20230601; t=1702285860; x=1702890660;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=16Y97N2Zs2q5DemT+pvvkP6HBQRqCQUx1elGsFbReb4=;
+        b=WRdQAunLQ9YROGawagXGXGxlB2TRKF5Zs+uVHLcFjKTfJ2zo/VdgzL3uLCxXTa1s+q
+         K8cMaeP+YrS2m4NvTWT2KbYg8KXugjv2YqQDr7rEsP00ch/uJ3NcTgQ99AwCuBHAtjY2
+         xZRgBwQPnAsel4ZdVtHKhbfwKlnQHOs7YqH9OEu12Ve8B+Nb5Mgeoti+FPaYVTTB2aIy
+         yYyETmF6/+Ng9uFFSocGKzwDppQWameXd2UEcA7RXdkqWgjC6ppRgje1mxPO7BwcMjGz
+         AYIke/7pdyi00v8UEvHo1L2gXj+ND0DeF5Me2z0Z1d2r7mMA/bkwqoKrGL4IxBtZUeFj
+         3hfg==
+X-Gm-Message-State: AOJu0YyCkm+ayH1vfpW4m2p7DWCuAKn+OV9OTLos8bglhpgt/k40EVw6
+	P+8a4BmEqczcWwyE6tMRqZaX6RMslpyEo8KheTY=
+X-Google-Smtp-Source: AGHT+IHCiPPY2JFl1amGy8X+EJhT7H5xd0/zN/T4kqF/x2ke/2EyfmYrrngPX25VcqF9hxSaWVxCGw==
+X-Received: by 2002:a17:907:d307:b0:a19:a19b:420b with SMTP id vg7-20020a170907d30700b00a19a19b420bmr1748301ejc.118.1702285860566;
+        Mon, 11 Dec 2023 01:11:00 -0800 (PST)
+Received: from [192.168.36.128] (178235179179.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.179])
+        by smtp.gmail.com with ESMTPSA id t15-20020a1709060c4f00b00a1f78a97063sm3572927ejf.153.2023.12.11.01.10.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Dec 2023 01:10:24 -0800 (PST)
-Message-ID: <449d675f-e98c-4924-ab81-14a139081a97@linaro.org>
-Date: Mon, 11 Dec 2023 10:10:23 +0100
+        Mon, 11 Dec 2023 01:11:00 -0800 (PST)
+Message-ID: <3ba4da84-a17e-47ae-8958-2484cd6cbea0@linaro.org>
+Date: Mon, 11 Dec 2023 10:10:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,74 +63,73 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 2/2] arm64: dts: amlogic: minor whitespace cleanup around
- '='
-Content-Language: en-US, fr
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+Subject: Re: [PATCH 2/4] soc: qcom: stats: don't crash if DDR offset contains
+ invalid data
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
  Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
- Tero Kristo <kristo@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20231124094739.58163-1-krzysztof.kozlowski@linaro.org>
- <20231124094739.58163-2-krzysztof.kozlowski@linaro.org>
- <4150bf8e-a48d-4d16-902f-a95f6489c6f5@linaro.org>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <4150bf8e-a48d-4d16-902f-a95f6489c6f5@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20231209215601.3543895-1-dmitry.baryshkov@linaro.org>
+ <20231209215601.3543895-2-dmitry.baryshkov@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20231209215601.3543895-2-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Hi,
+On 9.12.2023 22:55, Dmitry Baryshkov wrote:
+> The stats ram on sm8150 platform contains invalid data at the
+> DDR_DYNAMIC_OFFSET. Most likely this is because the platform didn't
+> support DDR sleep stats.
+Interesting. Can you read back DDR_DYNAMIC_OFFSET on 8350/8280 and
+see if 8150 has correct data in there?
 
-On 24/11/2023 10:49, Krzysztof Kozlowski wrote:
-> On 24/11/2023 10:47, Krzysztof Kozlowski wrote:
->> The DTS code coding style expects exactly one space before and after '='
->> sign.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
-> 
-> Please ignore, that's duplicated of my previous send.
+> However this platform uses generic
+> "qcom,rpmh-stats" compatible, which implies presense of the DDR data.
+> Add safety net to prevent old DTB files from crashing the
+> qcom,rpmh-stats driver.
+Yeah I'dve never thought there would be garbage in there..
 
-I don't see a previous send, so I'm confused.
-I can apply this patch if you're ok.
+I'd advocate for simply not doing anything wrt sleep stats if DDR
+stats are unavailable though. The QMP handle can stay, as there
+may (I don't know) be more data available that we want to export
+through this driver.
 
-Thanks,
-Neil
-
-> 
-> Best regards,
-> Krzysztof
-> 
-
+Konrad
 
