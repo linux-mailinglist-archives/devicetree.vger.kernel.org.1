@@ -1,187 +1,157 @@
-Return-Path: <devicetree+bounces-24014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24015-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 870E680D4B9
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 18:54:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 526D680D4BF
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 18:55:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 15763B214DE
-	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 17:54:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E6F8EB21513
+	for <lists+devicetree@lfdr.de>; Mon, 11 Dec 2023 17:55:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAE984EB3E;
-	Mon, 11 Dec 2023 17:54:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63D424EB58;
+	Mon, 11 Dec 2023 17:55:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="plAAiuvh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wy+XZfm/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BED1F495C0
-	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 17:54:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 320BEC433CB;
-	Mon, 11 Dec 2023 17:54:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42B824EB34;
+	Mon, 11 Dec 2023 17:55:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCCD5C433CA;
+	Mon, 11 Dec 2023 17:55:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702317279;
-	bh=VhOZevBYxgpOhWMJVI4ylnjAowG5TlTM6iqFjlI60UU=;
+	s=k20201202; t=1702317350;
+	bh=TDsZZcW//Yjkn4AZvJmsYsqi1Yqt03hg0vEJ8F1Khno=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=plAAiuvhB8/I/HPxx72m1izcox9S8pBBt35UwHguqzoFwLI8lT6AWPXQtjM3YcQ7e
-	 IQ6M798PQHv8fJtJ1S8MQHLSR7eqgOnXATQJkABGwXZC9M4TMXyLdWCheSQ68tLQ6t
-	 5G6cShOUObjmAXp+XyiJHSli+XrHhsHo9Vnk41+OslPs39tlRrHL8qI0Ice7X5eFhO
-	 nLlao7XQrvHBpGMlMh9NYa4lxLNi9kizl5dY9ljwkBqmiXYuqDRjwizQfimr/5sUrA
-	 YsgDBNJXVwJB8H10O91/mMutyhVKiVvBZBltG3Qc9CDRrwi5RRxwqj1FbzZgsgyUac
-	 YEzXT3JzDcT1g==
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2ca0715f0faso65886241fa.0;
-        Mon, 11 Dec 2023 09:54:39 -0800 (PST)
-X-Gm-Message-State: AOJu0Yyl9yoeUlXOU3iiFrv7jMvYxmeANyN7eQKlyjO71yvg+CR8uPy+
-	/e2DYvJuGCnkyQ0ua093GqpWFnQwVNb0kNKGBg==
-X-Google-Smtp-Source: AGHT+IGDP8YJSUf3mRcHf/dTgho4Et9I/62IVaAx+3E12Y8YlqdA24xaDa0UutL0Xy9xotdWR0raSnVdzI5CVc2b2us=
-X-Received: by 2002:a05:6512:32ac:b0:50b:e4a7:948 with SMTP id
- q12-20020a05651232ac00b0050be4a70948mr2241742lfe.126.1702317277404; Mon, 11
- Dec 2023 09:54:37 -0800 (PST)
+	b=Wy+XZfm/xBwdGjaMO0iafORqU7AYUAKBrpmfPhZnS63W2LD+9lIUmmY85M7iDotZV
+	 RUUIwg0POXN4Tkdavv6UXUiOqqIzFni8VQZhDxQXeupY9UVawI9v08XKg2gq0caO+p
+	 bb/oY/p81QaSRDsWLnEdSbbaXi5FUQWA3fN2rcUuikHcWh1dLUY3aINV97NKCubO1y
+	 l1tEo9YR5UB1hVIpFdg/ivykxGAYb0eRvemLSdGk5XfxND1zVPvoEgRkS3FVf/9l7S
+	 zVh3HSiOyx1yr1oE8BoiPzfD3sQ8wFq0jjsCHcAeefrs846eDBoTAiVYXqLGpWcnwo
+	 b9f2qqc7TPtxw==
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-50bdec453c8so5633504e87.3;
+        Mon, 11 Dec 2023 09:55:50 -0800 (PST)
+X-Gm-Message-State: AOJu0YyLwFCyWuctzlW9fzX+J6DSrjCi45cu081ACeOFixmvpNgPC2AV
+	KKcTdsOTobn3vI5bNHtGG82xlRREQ9jGiF+fcA==
+X-Google-Smtp-Source: AGHT+IEv/8aN3PfaLGZ9JYm4t5UMDrJAklhI4W9r08evSljkXdLA6kO7mL8YfS3YKHyNIbwwq6+C5bGH+jkLyGQVaN8=
+X-Received: by 2002:a05:6512:2242:b0:50b:f812:b313 with SMTP id
+ i2-20020a056512224200b0050bf812b313mr2431265lfu.77.1702317348971; Mon, 11 Dec
+ 2023 09:55:48 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231116162330.1144983-1-jisheng.teoh@starfivetech.com> <20231116162330.1144983-2-jisheng.teoh@starfivetech.com>
-In-Reply-To: <20231116162330.1144983-2-jisheng.teoh@starfivetech.com>
+References: <20231125-topic-6115icc-v3-0-bd8907b8cfd7@linaro.org> <20231125-topic-6115icc-v3-2-bd8907b8cfd7@linaro.org>
+In-Reply-To: <20231125-topic-6115icc-v3-2-bd8907b8cfd7@linaro.org>
 From: Rob Herring <robh+dt@kernel.org>
-Date: Mon, 11 Dec 2023 11:54:25 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+AMbwR64YwtugJ=WC-No0eBUejf3v4YbSB8h7x+uf3wA@mail.gmail.com>
-Message-ID: <CAL_Jsq+AMbwR64YwtugJ=WC-No0eBUejf3v4YbSB8h7x+uf3wA@mail.gmail.com>
-Subject: Re: [PATCH v4 1/2] perf: starfive: Add StarLink PMU support
-To: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
-Cc: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thomas Gleixner <tglx@linutronix.de>, Peter Zijlstra <peterz@infradead.org>, 
-	Ley Foon Tan <leyfoon.tan@starfivetech.com>, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Date: Mon, 11 Dec 2023 11:55:36 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+FNYS-Ue1NQgDW_0D_NgONfsJj4Q-nzFWHHXpm0Ka=_Q@mail.gmail.com>
+Message-ID: <CAL_Jsq+FNYS-Ue1NQgDW_0D_NgONfsJj4Q-nzFWHHXpm0Ka=_Q@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] interconnect: qcom: Add SM6115 interconnect
+ provider driver
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Georgi Djakov <djakov@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Marijn Suijten <marijn.suijten@somainline.org>, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+	Konrad Dybcio <konradybcio@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Nov 16, 2023 at 10:24=E2=80=AFAM Ji Sheng Teoh
-<jisheng.teoh@starfivetech.com> wrote:
+On Wed, Nov 29, 2023 at 8:41=E2=80=AFAM Konrad Dybcio <konrad.dybcio@linaro=
+.org> wrote:
 >
-> This patch adds support for StarFive's StarLink PMU (Performance
-> Monitor Unit). StarLink PMU integrates one or more CPU cores with
-> a shared L3 memory system. The PMU supports overflow interrupt,
-> up to 16 programmable 64bit event counters, and an independent
-> 64bit cycle counter. StarLink PMU is accessed via MMIO.
+> Add a driver for managing NoC providers on SM6115.
 >
-> Example Perf stat output:
-> [root@user]# perf stat -a -e /starfive_starlink_pmu/cycles/ \
->         -e /starfive_starlink_pmu/read_miss/ \
->         -e /starfive_starlink_pmu/read_hit/ \
->         -e /starfive_starlink_pmu/release_request/  \
->         -e /starfive_starlink_pmu/write_hit/ \
->         -e /starfive_starlink_pmu/write_miss/ \
->         -e /starfive_starlink_pmu/write_request/ \
->         -e /starfive_starlink_pmu/writeback/ \
->         -e /starfive_starlink_pmu/read_request/ \
->         -- openssl speed rsa2048
-> Doing 2048 bits private rsa's for 10s: 5 2048 bits private RSA's in
-> 2.84s
-> Doing 2048 bits public rsa's for 10s: 169 2048 bits public RSA's in
-> 2.42s
-> version: 3.0.11
-> built on: Tue Sep 19 13:02:31 2023 UTC
-> options: bn(64,64)
-> CPUINFO: N/A
->                   sign    verify    sign/s verify/s
-> rsa 2048 bits 0.568000s 0.014320s      1.8     69.8
-> /////////
->  Performance counter stats for 'system wide':
->
->          649991998      starfive_starlink_pmu/cycles/
->            1009690      starfive_starlink_pmu/read_miss/
->            1079750      starfive_starlink_pmu/read_hit/
->            2089405      starfive_starlink_pmu/release_request/
->                129      starfive_starlink_pmu/write_hit/
->                 70      starfive_starlink_pmu/write_miss/
->                194      starfive_starlink_pmu/write_request/
->             150080      starfive_starlink_pmu/writeback/
->            2089423      starfive_starlink_pmu/read_request/
->
->       27.062755678 seconds time elapsed
->
-> Signed-off-by: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
->  drivers/perf/Kconfig                 |   9 +
->  drivers/perf/Makefile                |   1 +
->  drivers/perf/starfive_starlink_pmu.c | 654 +++++++++++++++++++++++++++
->  include/linux/cpuhotplug.h           |   1 +
->  4 files changed, 665 insertions(+)
->  create mode 100644 drivers/perf/starfive_starlink_pmu.c
+>  drivers/interconnect/qcom/Kconfig  |    9 +
+>  drivers/interconnect/qcom/Makefile |    2 +
+>  drivers/interconnect/qcom/sm6115.c | 1427 ++++++++++++++++++++++++++++++=
+++++++
+>  3 files changed, 1438 insertions(+)
 >
-> diff --git a/drivers/perf/Kconfig b/drivers/perf/Kconfig
-> index 273d67ecf6d2..41278742ef88 100644
-> --- a/drivers/perf/Kconfig
-> +++ b/drivers/perf/Kconfig
-> @@ -86,6 +86,15 @@ config RISCV_PMU_SBI
->           full perf feature support i.e. counter overflow, privilege mode
->           filtering, counter configuration.
+> diff --git a/drivers/interconnect/qcom/Kconfig b/drivers/interconnect/qco=
+m/Kconfig
+> index 4d15ce2dab16..697f96c49f6f 100644
+> --- a/drivers/interconnect/qcom/Kconfig
+> +++ b/drivers/interconnect/qcom/Kconfig
+> @@ -191,6 +191,15 @@ config INTERCONNECT_QCOM_SDX75
+>           This is a driver for the Qualcomm Network-on-Chip on sdx75-base=
+d
+>           platforms.
 >
-> +config STARFIVE_STARLINK_PMU
-> +       depends on ARCH_STARFIVE
-> +       bool "StarFive StarLink PMU"
+> +config INTERCONNECT_QCOM_SM6115
+> +       tristate "Qualcomm SM6115 interconnect driver"
+> +       depends on INTERCONNECT_QCOM
+> +       depends on QCOM_SMD_RPM
+> +       select INTERCONNECT_QCOM_SMD_RPM
 > +       help
-> +          Provide support for StarLink Performance Monitor Unit.
-> +          StarLink Performance Monitor Unit integrates one or more cores=
- with
-> +          an L3 memory system. The L3 cache events are added into perf e=
-vent
-> +          subsystem, allowing monitoring of various L3 cache perf events=
-.
+> +         This is a driver for the Qualcomm Network-on-Chip on sm6115-bas=
+ed
+> +         platforms.
 > +
->  config ARM_PMU_ACPI
->         depends on ARM_PMU && ACPI
->         def_bool y
-> diff --git a/drivers/perf/Makefile b/drivers/perf/Makefile
-> index 16b3ec4db916..e2153aee1e04 100644
-> --- a/drivers/perf/Makefile
-> +++ b/drivers/perf/Makefile
-> @@ -15,6 +15,7 @@ obj-$(CONFIG_QCOM_L3_PMU) +=3D qcom_l3_pmu.o
->  obj-$(CONFIG_RISCV_PMU) +=3D riscv_pmu.o
->  obj-$(CONFIG_RISCV_PMU_LEGACY) +=3D riscv_pmu_legacy.o
->  obj-$(CONFIG_RISCV_PMU_SBI) +=3D riscv_pmu_sbi.o
-> +obj-$(CONFIG_STARFIVE_STARLINK_PMU) +=3D starfive_starlink_pmu.o
->  obj-$(CONFIG_THUNDERX2_PMU) +=3D thunderx2_pmu.o
->  obj-$(CONFIG_XGENE_PMU) +=3D xgene_pmu.o
->  obj-$(CONFIG_ARM_SPE_PMU) +=3D arm_spe_pmu.o
-> diff --git a/drivers/perf/starfive_starlink_pmu.c b/drivers/perf/starfive=
-_starlink_pmu.c
+>  config INTERCONNECT_QCOM_SM6350
+>         tristate "Qualcomm SM6350 interconnect driver"
+>         depends on INTERCONNECT_QCOM_RPMH_POSSIBLE
+> diff --git a/drivers/interconnect/qcom/Makefile b/drivers/interconnect/qc=
+om/Makefile
+> index 3a8a6ef67543..704846165022 100644
+> --- a/drivers/interconnect/qcom/Makefile
+> +++ b/drivers/interconnect/qcom/Makefile
+> @@ -24,6 +24,7 @@ qnoc-sdm845-objs                      :=3D sdm845.o
+>  qnoc-sdx55-objs                                :=3D sdx55.o
+>  qnoc-sdx65-objs                                :=3D sdx65.o
+>  qnoc-sdx75-objs                                :=3D sdx75.o
+> +qnoc-sm6115-objs                       :=3D sm6115.o
+>  qnoc-sm6350-objs                       :=3D sm6350.o
+>  qnoc-sm8150-objs                       :=3D sm8150.o
+>  qnoc-sm8250-objs                       :=3D sm8250.o
+> @@ -55,6 +56,7 @@ obj-$(CONFIG_INTERCONNECT_QCOM_SDM845) +=3D qnoc-sdm845=
+.o
+>  obj-$(CONFIG_INTERCONNECT_QCOM_SDX55) +=3D qnoc-sdx55.o
+>  obj-$(CONFIG_INTERCONNECT_QCOM_SDX65) +=3D qnoc-sdx65.o
+>  obj-$(CONFIG_INTERCONNECT_QCOM_SDX75) +=3D qnoc-sdx75.o
+> +obj-$(CONFIG_INTERCONNECT_QCOM_SM6115) +=3D qnoc-sm6115.o
+>  obj-$(CONFIG_INTERCONNECT_QCOM_SM6350) +=3D qnoc-sm6350.o
+>  obj-$(CONFIG_INTERCONNECT_QCOM_SM8150) +=3D qnoc-sm8150.o
+>  obj-$(CONFIG_INTERCONNECT_QCOM_SM8250) +=3D qnoc-sm8250.o
+> diff --git a/drivers/interconnect/qcom/sm6115.c b/drivers/interconnect/qc=
+om/sm6115.c
 > new file mode 100644
-> index 000000000000..272896ab1ade
+> index 000000000000..c49a83c87739
 > --- /dev/null
-> +++ b/drivers/perf/starfive_starlink_pmu.c
-> @@ -0,0 +1,654 @@
+> +++ b/drivers/interconnect/qcom/sm6115.c
+> @@ -0,0 +1,1427 @@
 > +// SPDX-License-Identifier: GPL-2.0-only
 > +/*
-> + * StarFive's StarLink PMU driver
-> + *
-> + * Copyright (C) 2023 StarFive Technology Co., Ltd.
-> + *
-> + * Author: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
-> + *
+> + * Copyright (c) 2021, The Linux Foundation. All rights reserved.
+> + * Copyright (c) 2022, Qualcomm Innovation Center, Inc. All rights reser=
+ved.
+> + * Copyright (c) 2023, Linaro Limited
 > + */
 > +
-> +#define STARLINK_PMU_PDEV_NAME "starfive_starlink_pmu"
-> +#define pr_fmt(fmt)    STARLINK_PMU_PDEV_NAME ": " fmt
-> +
-> +#include <linux/bitmap.h>
-> +#include <linux/cpu_pm.h>
+> +#include <dt-bindings/interconnect/qcom,sm6115.h>
+> +#include <linux/clk.h>
+> +#include <linux/device.h>
+> +#include <linux/interconnect-provider.h>
 > +#include <linux/io.h>
-> +#include <linux/irq.h>
-> +#include <linux/kernel.h>
 > +#include <linux/module.h>
 > +#include <linux/of_device.h>
 
 You probably don't need this header and the implicit includes it makes
 are dropped now in linux-next. Please check what you actually need and
 make them explicit.
+
+> +#include <linux/of_platform.h>
+
+Also probably not needed. Please double check.
 
 Rob
 
