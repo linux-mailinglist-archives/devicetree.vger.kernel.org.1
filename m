@@ -1,185 +1,136 @@
-Return-Path: <devicetree+bounces-24376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F43D80EF11
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 15:44:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E00180EF4F
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 15:50:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C45C281B8C
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 14:44:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 13FD41F21514
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 14:50:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07BED745D6;
-	Tue, 12 Dec 2023 14:44:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60240745D3;
+	Tue, 12 Dec 2023 14:50:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QLJlD/u4"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cd6a9YqG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A7E2EB
-	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 06:44:03 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-40c580ba223so478255e9.3
-        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 06:44:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702392241; x=1702997041; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kWo777MN0DncSazKE0nHt1+1eF9bduFbpo2jm9olN20=;
-        b=QLJlD/u4kNstLRMM1Yq7BbcbNfwFlOU12w5CpnvMUjkaw8V+BnaL3va7gISpdXDNr9
-         BVh8WVuGwUvVrCFK9WcnwFqoZplucDWhuir1iJauRJraD1kyOkc1y88ZRjsQPygJdCbf
-         VU7kfrbBVWo87Y9pq5V2RG8mfzoBMur+wLyGlcLPp1+Al2Qc6yCql/bf2jvLhlD2uDy/
-         4F01uO8xp6ecHjQcDIGX05/w4wkmNau3X45q9snvNh4+97ZS+9qkY976bYUR9HHK29Ux
-         /xH/K9sMgK3K4vhu2laAqYP+5NzSKcS74gvIvT72k9VgSbDbwBor7GK+vwNV0qYRyyYd
-         qMOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702392241; x=1702997041;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=kWo777MN0DncSazKE0nHt1+1eF9bduFbpo2jm9olN20=;
-        b=p4lSJMRKKfyRAd1jRJQob7HDZysUE77cA0uSmPLjiB9gsB2FWk6C3V3Rp+N2wPyd85
-         rB3Rbw26133qDOPTQzuBrzxxcqS7bcgJ1OTFWiok7H9pXbyN28IN7w5bUbhCutBw5EM5
-         Q7PnU55RR/H8K64CsKePg4RdfYE7KVN44uQZKZtbOqDttkOBAASwxKbFBCiPJ5XmT8Sl
-         JZMjsDwDNwKEjS59qqxnTpeIEClJEG6B1ENqqpY4fyzuQlbB1U8yq1ZbunxSRmQ6EeGl
-         4w2l7xZvOwFECycXgpMyfeel12evA91Q2DoMjxgaMFuuEYRj+/MqDl8wx8GQ45j/ugkY
-         BSMA==
-X-Gm-Message-State: AOJu0YwrJjLa/cwgxVk/Vv6DuaJXYKnK3+FmXHprzp7lgaa4GknO9SU6
-	Wh9tpkTG46Jg5Ks2O68LtuCibQ==
-X-Google-Smtp-Source: AGHT+IHgst7o6eFwexZsyUHa+goT+CnzGuTjMsefbGfNNLLVXdOwdtf39J65EYjCP/XeXKI778GUgw==
-X-Received: by 2002:a05:600c:3b9f:b0:40b:5e59:ccac with SMTP id n31-20020a05600c3b9f00b0040b5e59ccacmr3244021wms.141.1702392241514;
-        Tue, 12 Dec 2023 06:44:01 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:5894:fa62:26b4:bf82? ([2a01:e0a:982:cbb0:5894:fa62:26b4:bf82])
-        by smtp.gmail.com with ESMTPSA id bh15-20020a05600c3d0f00b0040b4ccdcffbsm17159922wmb.2.2023.12.12.06.44.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Dec 2023 06:44:01 -0800 (PST)
-Message-ID: <be39f74b-e04f-48c8-acc9-cc818adfc4db@linaro.org>
-Date: Tue, 12 Dec 2023 15:43:59 +0100
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D162D5;
+	Tue, 12 Dec 2023 06:50:38 -0800 (PST)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BCE0CZC011528;
+	Tue, 12 Dec 2023 14:50:35 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id; s=qcppdkim1; bh=kuGSrclxLs/R
+	fD+R4Gphj3d9E+Ib0FPGIH/RFehqR9U=; b=cd6a9YqGyvd+VLC0cZeRpgskozvT
+	q5tOp+MnNGug4JM/J86s+8A1w00PqmgDuGEJNBqd8KtnrbSGZWPIgetCW9rDrhB8
+	Ph6ZgBj5ndf05a80tm5dZAa+z1lXYw09R0FNWj0pGwlAXH7tRS7Xm+yhjfCSjn/a
+	gOKVYx2+ebYhIgF049dAZ3rrB4s/rDxFJWQ2Kz65V2oE1ABkWKX/8kMuS2k56lPu
+	YxCUUUC/DHFZK+hkUuHiwhW+phhl6BHvY5pN8KxNV8mOAKcOjIChY/1GBjNo6UzF
+	aly8ad2K9rOSRrCvb0yphMsGQSi8EwxKsEUvf6nWcoa33UFfXn8FODxb1w==
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uxru2g4da-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 12 Dec 2023 14:50:34 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 3BCEoVpr027241;
+	Tue, 12 Dec 2023 14:50:31 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 3uvhakjjpm-1;
+	Tue, 12 Dec 2023 14:50:31 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 3BCEoVo0027236;
+	Tue, 12 Dec 2023 14:50:31 GMT
+Received: from hu-maiyas-hyd.qualcomm.com (hu-vdadhani-hyd.qualcomm.com [10.213.106.28])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 3BCEoV80027235;
+	Tue, 12 Dec 2023 14:50:31 +0000
+Received: by hu-maiyas-hyd.qualcomm.com (Postfix, from userid 4047106)
+	id D63175001C6; Tue, 12 Dec 2023 20:20:29 +0530 (+0530)
+From: Viken Dadhaniya <quic_vdadhani@quicinc.com>
+To: andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-arm-sm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc: quic_vnivarth@quicinc.com, quic_msavaliy@quicinc.com,
+        quic_vtanuku@quicinc.com, quic_cchiluve@quicinc.com,
+        krzysztof.kozlowski@linaro.org,
+        Viken Dadhaniya <quic_vdadhani@quicinc.com>
+Subject: [V2 RESEND] arm64: dts: qcom: sc7280: add slimbus DT node
+Date: Tue, 12 Dec 2023 20:20:26 +0530
+Message-Id: <20231212145026.20828-1-quic_vdadhani@quicinc.com>
+X-Mailer: git-send-email 2.17.1
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: jnJCdadaVPyuPpQJPng8rJ0JLxUgBKbL
+X-Proofpoint-ORIG-GUID: jnJCdadaVPyuPpQJPng8rJ0JLxUgBKbL
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 mlxscore=0
+ clxscore=1011 priorityscore=1501 suspectscore=0 spamscore=0
+ lowpriorityscore=0 bulkscore=0 mlxlogscore=394 adultscore=0 phishscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2312120113
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v12 2/4] Input: add core support for Goodix Berlin
- Touchscreen IC
-Content-Language: en-US, fr
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: linux-input@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Bastien Nocera <hadess@hadess.net>,
- Hans de Goede <hdegoede@redhat.com>, Henrik Rydberg <rydberg@bitmath.org>,
- Jeff LaBundy <jeff@labundy.com>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231209-topic-goodix-berlin-upstream-initial-v12-0-eaffaeb53fb5@linaro.org>
- <20231209-topic-goodix-berlin-upstream-initial-v12-2-eaffaeb53fb5@linaro.org>
- <ZXVgYuzE6jPPSfnZ@google.com>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <ZXVgYuzE6jPPSfnZ@google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
 
-Hi Dmitry,
+Populate the DTSI node for slimbus instance to be
+used by BT FM client.
 
-On 10/12/2023 07:53, Dmitry Torokhov wrote:
-> Hi Neil,
-> 
-> On Sat, Dec 09, 2023 at 08:33:40AM +0100, Neil Armstrong wrote:
->> Add initial support for the new Goodix "Berlin" touchscreen ICs.
->>
->> These touchscreen ICs support SPI, I2C and I3C interface, up to
->> 10 finger touch, stylus and gestures events.
->>
->> This initial driver is derived from the Goodix goodix_ts_berlin
->> available at [1] and [2] and only supports the GT9916 IC
->> present on the Qualcomm SM8550 MTP & QRD touch panel.
->>
->> The current implementation only supports BerlinD, aka GT9916.
->>
->> Support for advanced features like:
->> - Firmware & config update
->> - Stylus events
->> - Gestures events
->> - Previous revisions support (BerlinA or BerlinB)
->> is not included in current version.
->>
->> The current support will work with currently flashed firmware
->> and config, and bail out if firmware or config aren't flashed yet.
->>
->> [1] https://github.com/goodix/goodix_ts_berlin
->> [2] https://git.codelinaro.org/clo/la/platform/vendor/opensource/touch-drivers
->>
->> Reviewed-by: Jeff LaBundy <jeff@labundy.com>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> 
-> Thank you for resending the patch. I think there is an issue in how you
-> read and parse the data in case of more than 2 fingers. It looks like in
-> that case you are overwriting the checksum form the first 2 and then not
-> reading the new checksum but use some garbage past the touch data. I
-> might be mistaken though...
+Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
+---
+v1 -> v2:
+- change 0x0 -> 0 to reg property.
+- reorder the DT property.
+- change node tag slim_msm to slim.
+---
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 25 +++++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
 
-I carefully inspected the code again, and it's correct, otherwise I would have experimented
-checksum errors, which isn't the case.
-
-First read from goodix_berlin_irq() is GOODIX_BERLIN_IRQ_READ_LEN(2) length in memory:
-
-[GOODIX_BERLIN_IRQ_EVENT_HEAD_LEN][GOODIX_BERLIN_COOR_DATA_CHECKSUM_SIZE][GOODIX_BERLIN_BYTES_PER_POINT * x]
-
-the pre_buf_len goodix_berlin_touch_handler() get is GOODIX_BERLIN_IRQ_READ_LEN(2), the we complete the
-read after the first read, but since the touch checksum is before the touch data, it works because
-we complete the data.
-
-I added some comments to clarify the memory layout and re-ordered the items
-in the GOODIX_BERLIN_IRQ_READ_LEN() macro to show GOODIX_BERLIN_COOR_DATA_CHECKSUM
-is before the GOODIX_BERLIN_BYTES_PER_POINT data.
-
-> 
-> I also believe you are leaking afe_data in case of success. We have the
-> newfangled __free(kfree) from cleanup.h that should help there.
-
-Indeed it was leaking.
-
-> 
-> Another request - we should not have anything in goodix_berlin.h that is
-> not used by the I2C and SPI sub-drivers, so the only thing it should
-> contain is goodix_berlin_probe() declaration and dev_pm_ops. All other
-> defines and definitions should go to goodix_berlin_core.h.
-> 
-> I made a few more cosmetic changes in the attached patch, please
-> consider applying it.
-> 
-> Thanks.
-
-Thanks,
-Neil
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index 04bf85b0399a..9fec8743e19a 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -2528,6 +2528,31 @@
+ 			status = "disabled";
+ 		};
+ 
++		slimbam: dma-controller@3a84000 {
++			compatible = "qcom,bam-v1.7.0";
++			reg = <0 0x03a84000 0 0x20000>;
++			interrupts = <GIC_SPI 164 IRQ_TYPE_LEVEL_HIGH>;
++			#dma-cells = <1>;
++			qcom,controlled-remotely;
++			num-channels  = <31>;
++			qcom,ee = <1>;
++			qcom,num-ees = <2>;
++			iommus = <&apps_smmu 0x1826 0x0>;
++			status = "disabled";
++		};
++
++		slim: slim-ngd@3ac0000 {
++			compatible = "qcom,slim-ngd-v1.5.0";
++			reg = <0 0x03ac0000 0 0x2c000>;
++			interrupts = <GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>;
++			dmas = <&slimbam 3>, <&slimbam 4>;
++			dma-names = "rx", "tx";
++			iommus = <&apps_smmu 0x1826 0x0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			status = "disabled";
++		};
++
+ 		lpass_hm: clock-controller@3c00000 {
+ 			compatible = "qcom,sc7280-lpasshm";
+ 			reg = <0 0x03c00000 0 0x28>;
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+of Code Aurora Forum, hosted by The Linux Foundation
 
 
