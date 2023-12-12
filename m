@@ -1,181 +1,129 @@
-Return-Path: <devicetree+bounces-24500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24501-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36D9080F5CC
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 19:51:51 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A45080F5D6
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 19:54:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B57A2B20E89
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 18:51:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0870DB20DB3
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 18:54:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C6577F561;
-	Tue, 12 Dec 2023 18:51:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77D717F568;
+	Tue, 12 Dec 2023 18:54:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hilZNWnT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="t1ON+Pat"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D89CF210FB;
-	Tue, 12 Dec 2023 18:51:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E49BC433C8;
-	Tue, 12 Dec 2023 18:51:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702407101;
-	bh=dsv616JxuKXa+9HnLUwoLHTRzosx3BRQ5em0FE7Wdi8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hilZNWnTPGBcJppGAc3Ra51k1swo6WEjxlJvulR/NT7rAMgcsyZn/2mMdOXAo8k2u
-	 d6JquEwEOgdE3xHIK+puKGbF64+jG7CZeXdRpV5WtchLQMfpJKfQ3mGPTtq+hzrAKO
-	 W+FWYIRRljOLiGZxqCMYL5Zd9V6ZHihWLlCXNBW+fa87m8A34i2/iNEGp5EM2NxC7k
-	 ozA4yFqRi1JD7wgbWcVyyNufsWwsJcTuboXLSChed8W4MpcxY90j39R2KR/y+Yb+pB
-	 L7qKpIQC2bYh2RuqSpBwZo31nX3CkwmY8kXhtC108ejoPasGyN7GhtiGN9v07SvhfO
-	 4NnphCQGRzcCA==
-Date: Tue, 12 Dec 2023 18:51:32 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: Ninad Palsule <ninad@linux.ibm.com>, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	joel@jms.id.au, andrew@codeconstruct.com.au, peterhuewe@gmx.de,
-	jarkko@kernel.org, jgg@ziepe.ca, keescook@chromium.org,
-	tony.luck@intel.com, gpiccoli@igalia.com,
-	johannes.holland@infineon.com, broonie@kernel.org,
-	patrick.rudolph@9elements.com, vincent@vtremblay.dev,
-	peteryin.openbmc@gmail.com, lakshmiy@us.ibm.com,
-	bhelgaas@google.com, naresh.solanki@9elements.com,
-	alexander.stein@ew.tq-group.com, festevam@denx.de,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-	linux-integrity@vger.kernel.org, linux-hardening@vger.kernel.org,
-	geissonator@yahoo.com
-Subject: Re: [PATCH v1 7/8] tpm: tis-i2c: Add more compatible strings
-Message-ID: <20231212-mouth-choice-40a83caa34ec@spud>
-References: <20231212164004.1683589-1-ninad@linux.ibm.com>
- <20231212164004.1683589-8-ninad@linux.ibm.com>
- <20231212-avid-grill-dbead068fac8@spud>
- <73381bb0-7fa7-4a9e-88df-ab0063058e26@roeck-us.net>
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE2A0E9
+	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 10:54:20 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-50dfac6c0beso3545589e87.2
+        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 10:54:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702407259; x=1703012059; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=YC/WVH3u8zE3lqMQy1sW6oW6rbaFlnYLpBOstsLNgoU=;
+        b=t1ON+Pat9orIqzYCsosWKdEkD3iSFnVmjSeqkERgXpJplFDOkhI/xWOYrmIFwGejW+
+         n7dYEwjBHC3cHe2Uz/9z/JBbQm+/IVQJ/9wHDNg73w8s5yXK5jVOEMvfhfHGatx89SxQ
+         d8j4/P970tggiPEt+301/30oqFY0IJMYR8SzHZ99D0Xn6GvL6fPovwoRlHvpxVbkYhyR
+         Fp/FGV7l6nNV2VFk8iSmn4BUKHtGUHsUumIzqcTw7/yzYLMo3qyoPVEJhU4nkjgkZtan
+         ZlSJblWfeNYrPzeyzRHu0AI1fh36GvJLmwgqAUL9kqLRs9pBcRNgNmPaT1ldyS04TMCV
+         Ds2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702407259; x=1703012059;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YC/WVH3u8zE3lqMQy1sW6oW6rbaFlnYLpBOstsLNgoU=;
+        b=PQyzxYp7U8xReg8N/wD40j3kj1AAPT2tAJiLkRqjCUKO7VIGruYpLbNKOXcelR2PyR
+         BbJh9PCcK2+N8rbTMNlgejORL62aj3R02c4ReKEsOKHta0dYteMuLmWaQGrqnibB5mcm
+         XwVxLG/HzJKLUyP7Kkra7dxbHe5P6ANIkc5dv2XgxdBrJadDzGYvxevrbxAGdti1hrXP
+         au5DH3UqpsJSO5rQ/MpFK/XY2WDNfJF4Cgtkq2Fq0UOh89fcVlhHf3cz913+dxABdc4J
+         uaNFQd3jTMK6rv7mtKtrAo53+69SSemJBVTrTPA3UPwFpewEeCNWackCH2FWvaRPcgcy
+         xWJQ==
+X-Gm-Message-State: AOJu0YwvdmCo8NaYEb/dS7mwGdLZQ1fs6rr6TlRPHSPmEFLsO0WMYlZt
+	QQtZz3bdq0SQmf6ku5KqVOi6gQ==
+X-Google-Smtp-Source: AGHT+IEnn7PgxM33KM5RP1Ci6mhXnj/c2aTqDDpc6C2q6ZUyTtIv2RFBjSuVzvHvDI603NJQeDoz6A==
+X-Received: by 2002:a05:6512:2316:b0:50b:f30b:5499 with SMTP id o22-20020a056512231600b0050bf30b5499mr4430231lfu.80.1702407259047;
+        Tue, 12 Dec 2023 10:54:19 -0800 (PST)
+Received: from krzk-bin.. ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id v20-20020a170906489400b00a1de512fa24sm6617766ejq.191.2023.12.12.10.54.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Dec 2023 10:54:18 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] arm64: dts: qcom: sm8550: add missing two RX Soundwire ports in configuration
+Date: Tue, 12 Dec 2023 19:54:15 +0100
+Message-Id: <20231212185415.228003-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="V9Oj+WVlG5N/W7nM"
-Content-Disposition: inline
-In-Reply-To: <73381bb0-7fa7-4a9e-88df-ab0063058e26@roeck-us.net>
+Content-Transfer-Encoding: 8bit
 
+The Qualcomm SM8550 RX Soundwire port configuration was taken from
+downstream sources ("rx_frame_params_default"), but without two ports.
+Correct the DTS, even though no practical impact was observed.
 
---V9Oj+WVlG5N/W7nM
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-On Tue, Dec 12, 2023 at 10:00:39AM -0800, Guenter Roeck wrote:
-> On Tue, Dec 12, 2023 at 05:15:51PM +0000, Conor Dooley wrote:
-> > On Tue, Dec 12, 2023 at 10:40:03AM -0600, Ninad Palsule wrote:
-> > > From: Joel Stanley <joel@jms.id.au>
-> > >=20
-> > > The NPCT75x TPM is TIS compatible. It has an I2C and SPI interface.
-> > >=20
-> > > https://www.nuvoton.com/products/cloud-computing/security/trusted-pla=
-tform-module-tpm/
-> > >=20
-> > > Add a compatible string for it, and the generic compatible.
-> > >=20
-> > > OpenBMC-Staging-Count: 3
-> >=20
-> > Delete this from every patch that it appears from.
-> >=20
-> > > Signed-off-by: Joel Stanley <joel@jms.id.au>
-> > > Acked-by: Jarkko Sakkinen <jarkko@kernel.org>
-> > > Link: https://lore.kernel.org/r/20220928043957.2636877-4-joel@jms.id.=
-au
-> > > Signed-off-by: Ninad Palsule <ninad@linux.ibm.com>
-> > > ---
-> > >  drivers/char/tpm/tpm_tis_i2c.c | 2 ++
-> > >  1 file changed, 2 insertions(+)
-> > >=20
-> > > diff --git a/drivers/char/tpm/tpm_tis_i2c.c b/drivers/char/tpm/tpm_ti=
-s_i2c.c
-> > > index a897402cc36a..9511c0d50185 100644
-> > > --- a/drivers/char/tpm/tpm_tis_i2c.c
-> > > +++ b/drivers/char/tpm/tpm_tis_i2c.c
-> > > @@ -383,6 +383,8 @@ MODULE_DEVICE_TABLE(i2c, tpm_tis_i2c_id);
-> > >  #ifdef CONFIG_OF
-> > >  static const struct of_device_id of_tis_i2c_match[] =3D {
-> > >  	{ .compatible =3D "infineon,slb9673", },
-> > > +	{ .compatible =3D "nuvoton,npct75x", },
-> > > +	{ .compatible =3D "tcg,tpm-tis-i2c", },
-> >=20
-> > What's the point of the generic compatible if you are adding the device
-> > specific ones to the driver anyway?
-> >=20
->=20
-> $ git grep infineon,slb9673
-> Documentation/devicetree/bindings/trivial-devices.yaml:          - infine=
-on,slb9673
+---
 
-Hmm, this would then need to be moved into the new schema, out of
-trivial devices.
+Not adding fixes table, as I am not able to identify whether this was
+actually a bug.
+---
+ arch/arm64/boot/dts/qcom/sm8550.dtsi | 22 +++++++++++-----------
+ 1 file changed, 11 insertions(+), 11 deletions(-)
 
-> drivers/char/tpm/tpm_tis_i2c.c: { .compatible =3D "infineon,slb9673", },
-> $ git grep nuvoton,npct75x
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dts:            compatibl=
-e =3D "nuvoton,npct75x", "tcg,tpm-tis-i2c";
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts:            compatibl=
-e =3D "nuvoton,npct75x", "tcg,tpm-tis-i2c";
-> $ git grep tcg,tpm-tis-i2c
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dts:            compatibl=
-e =3D "nuvoton,npct75x", "tcg,tpm-tis-i2c";
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts:            compatibl=
-e =3D "nuvoton,npct75x", "tcg,tpm-tis-i2c";
-> arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts:             compatibl=
-e =3D "tcg,tpm-tis-i2c";
+diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+index 17c4f0a7638a..1f06fd33d1ce 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+@@ -2109,18 +2109,18 @@ swr1: soundwire-controller@6ad0000 {
+ 			clock-names = "iface";
+ 			label = "RX";
+ 
+-			qcom,din-ports = <0>;
+-			qcom,dout-ports = <10>;
++			qcom,din-ports = <1>;
++			qcom,dout-ports = <11>;
+ 
+-			qcom,ports-sinterval =		/bits/ 16 <0x03 0x3f 0x1f 0x07 0x00 0x18f 0xff 0xff 0xff 0xff>;
+-			qcom,ports-offset1 =		/bits/ 8 <0x00 0x00 0x0b 0x01 0x00 0x00 0xff 0xff 0xff 0xff>;
+-			qcom,ports-offset2 =		/bits/ 8 <0x00 0x00 0x0b 0x00 0x00 0x00 0xff 0xff 0xff 0xff>;
+-			qcom,ports-hstart =		/bits/ 8 <0xff 0x03 0xff 0xff 0xff 0x08 0xff 0xff 0xff 0xff>;
+-			qcom,ports-hstop =		/bits/ 8 <0xff 0x06 0xff 0xff 0xff 0x08 0xff 0xff 0xff 0xff>;
+-			qcom,ports-word-length =	/bits/ 8 <0x01 0x07 0x04 0xff 0xff 0x0f 0xff 0xff 0xff 0xff>;
+-			qcom,ports-block-pack-mode =	/bits/ 8 <0xff 0x00 0x01 0xff 0xff 0x00 0xff 0xff 0xff 0xff>;
+-			qcom,ports-block-group-count =	/bits/ 8 <0xff 0xff 0xff 0xff 0x00 0x00 0xff 0xff 0xff 0xff>;
+-			qcom,ports-lane-control =	/bits/ 8 <0x01 0x00 0x00 0x00 0x00 0x00 0xff 0xff 0xff 0xff>;
++			qcom,ports-sinterval =		/bits/ 16 <0x03 0x3f 0x1f 0x07 0x00 0x18f 0xff 0xff 0xff 0xff 0xff 0xff>;
++			qcom,ports-offset1 =		/bits/ 8 <0x00 0x00 0x0b 0x01 0x00 0x00 0xff 0xff 0xff 0xff 0xff 0xff>;
++			qcom,ports-offset2 =		/bits/ 8 <0x00 0x00 0x0b 0x00 0x00 0x00 0xff 0xff 0xff 0xff 0xff 0xff>;
++			qcom,ports-hstart =		/bits/ 8 <0xff 0x03 0xff 0xff 0xff 0x08 0xff 0xff 0xff 0xff 0xff 0xff>;
++			qcom,ports-hstop =		/bits/ 8 <0xff 0x06 0xff 0xff 0xff 0x08 0xff 0xff 0xff 0xff 0xff 0xff>;
++			qcom,ports-word-length =	/bits/ 8 <0x01 0x07 0x04 0xff 0xff 0x0f 0xff 0xff 0xff 0xff 0xff 0xff>;
++			qcom,ports-block-pack-mode =	/bits/ 8 <0xff 0x00 0x01 0xff 0xff 0x00 0xff 0xff 0xff 0xff 0xff 0xff>;
++			qcom,ports-block-group-count =	/bits/ 8 <0xff 0xff 0xff 0xff 0x00 0x00 0xff 0xff 0xff 0xff 0xff 0xff>;
++			qcom,ports-lane-control =	/bits/ 8 <0x01 0x00 0x00 0x00 0x00 0x00 0xff 0xff 0xff 0xff 0xff 0xff>;
+ 
+ 			#address-cells = <2>;
+ 			#size-cells = <0>;
+-- 
+2.34.1
 
-pog, undocumented compatibles.
-
-> It looks like at least the generic entry is needed, given that it is quite
-> likely that there is hardware out there using it. Other than that, this
-> makes me wonder: Is there some official guideline describing if and when
-> to use (only) generic devicetree compatible entries and when specific ones
-> may / should / have to be used ? I suspect the answer to your question mi=
-ght
-> simply be "because we did not know better", and it might be helpful to be
-> able to say "please see XXX for details".
-
-To me using generic compatibles is okay when there is another mechanism
-to identify the device. This patch would make more sense if the addition
-of nuvoton,npct75x was omitted and the dt-binding had
-
-properties:
-  compatible:
-    items:
-      - enum:
-          - infineon,slb9673
-          - nuvoton,npct75x
-      - const: tcg,tpm-tis-i2c
-
-And whenever new i2c tpms showed up the device specific compatible was
-added to the bindings and the driver had only* the generic compatible
-static const struct of_device_id of_tis_i2c_match[] =3D {
-	{ .compatible =3D "infineon,slb9673", },
-	{ .compatible =3D "tcg,tpm-tis-i2c", },
-};
-
-* well, and the existing one since that cannot be removed.
-
---V9Oj+WVlG5N/W7nM
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZXirtAAKCRB4tDGHoIJi
-0pVCAP9eEmViq9zfDvETMM5iORAPbi28FpIFeXMWyuql8hUi6AEA94t1EPXiXh8e
-thK7zLOAbzpr0XigoTjBCCrT5zJs5wI=
-=bTRp
------END PGP SIGNATURE-----
-
---V9Oj+WVlG5N/W7nM--
 
