@@ -1,101 +1,132 @@
-Return-Path: <devicetree+bounces-24149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24150-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EBEB80E2CC
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 04:30:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB04980E2E6
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 04:46:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23559282513
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 03:30:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 17C271C218AC
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 03:46:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49E0F6FBC;
-	Tue, 12 Dec 2023 03:30:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="Tsm85U0I"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF34C8F65;
+	Tue, 12 Dec 2023 03:46:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24879B3
-	for <devicetree@vger.kernel.org>; Mon, 11 Dec 2023 19:30:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=7j1q
-	X8z52KuXraBMzAtOl6IRRhMS8zm7c0md0ogC1JY=; b=Tsm85U0Ihvrghwni3NMn
-	6FJXQLRLhowFJi0xEBtulVGh8z30qslr6ON9rRK3zepkNiFLcQmOj493+s8nVLG2
-	DvD5wCsR6pI7pCgu4qbp25F1d7hizSvTysGT7k79n7HdxnS362DONDLPHbd65KBB
-	eTC3mu1xGCdH3vHXDBAMI5oQzx4ff0UdSnebcrOjve69nUniS3/q4xx87aDY5Vbi
-	JClcj5+9ry6F+1ctLfj8EeV6lpgCjyH6Vy5LwRBD/5pGwBzcsbJyXBSxJZEhKDsv
-	Lo0MLXIfWSaY4XQOzN+eoNH6+BY6/m2kwsZcA+dtjgTKmSwhLu7nmos3IzDelBNA
-	LQ==
-Received: (qmail 73350 invoked from network); 12 Dec 2023 04:30:11 +0100
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 12 Dec 2023 04:30:11 +0100
-X-UD-Smtp-Session: l3s3148p1@YxD8qkcMZoUujnuR
-Date: Tue, 12 Dec 2023 04:30:10 +0100
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: linux-renesas-soc@vger.kernel.org
-Cc: devicetree@vger.kernel.org, Johan Hovold <johan@kernel.org>,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 0/3] gnss: ubx: support the reset pin of the Neo-M8
- variant
-Message-ID: <ZXfTwscAltoVY1lV@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	Johan Hovold <johan@kernel.org>, linux-kernel@vger.kernel.org
-References: <20231113005152.10656-1-wsa+renesas@sang-engineering.com>
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5C17AC;
+	Mon, 11 Dec 2023 19:46:07 -0800 (PST)
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.96.2)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1rCtiL-0002os-2z;
+	Tue, 12 Dec 2023 03:45:47 +0000
+Date: Tue, 12 Dec 2023 03:45:42 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chunfeng Yun <chunfeng.yun@mediatek.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
+	Sean Wang <sean.wang@mediatek.com>,
+	Mark Lee <Mark-MC.Lee@mediatek.com>,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Alexander Couzens <lynxis@fe80.eu>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Qingfang Deng <dqfext@gmail.com>,
+	SkyLake Huang <SkyLake.Huang@mediatek.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org
+Subject: [RFC PATCH net-next v3 0/8] Add support for 10G Ethernet SerDes on
+ MT7988
+Message-ID: <cover.1702352117.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="0hj4t0zCQoMhrc7P"
-Content-Disposition: inline
-In-Reply-To: <20231113005152.10656-1-wsa+renesas@sang-engineering.com>
-
-
---0hj4t0zCQoMhrc7P
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Sun, Nov 12, 2023 at 07:51:48PM -0500, Wolfram Sang wrote:
-> The Renesas KingFisher board includes a U-Blox Neo-M8 chip with its
-> reset pin wired to a GPIO. To support that, we need "reset-gpio" support
-> (patches 2+3). But first, simplify regulator handling with a new helper
-> (patch 1).
->=20
-> Changes since v4:
->=20
-> * don't touch reset during open/close. Only deassert it during probe.
->   [patch 3]
+This series aims to add support for GMAC2 and GMAC3 of the MediaTek MT7988 SoC.
+While the vendor SDK stuffs all this into their Ethernet driver, I've tried to
+seperate things into a PHY driver, a PCS driver as well as changes to the
+existing Ethernet and LynxI PCS driver.
 
-Johan, all good now?
+ +--------------+   +----------------+   +------------------+
+ |              +---|  USXGMII PCS   |---+                  |
+ | Ethernet MAC |   +----------------+   | PEXTP SerDes PHY |
+ |              +---|   SGMII PCS    |---+                  |
+ +--------------+   +----------------+   +------------------+
 
-Happy hacking,
+Alltogether this allows using GMAC2 and GMAC3 with all possible interface modes,
+including in-band-status if needed.
 
-   Wolfram
+Note that this series depends on series "dt-bindings: clock: mediatek:
+add MT7988 clock IDs"[1] as well as "dt-bindings: watchdog:
+mediatek,mtk-wdt: add MT7988 watchdog and toprgu"[2] being merged
+before.
 
---0hj4t0zCQoMhrc7P
-Content-Type: application/pgp-signature; name="signature.asc"
+[1]: https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=809031
+[2]: https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=802588
 
------BEGIN PGP SIGNATURE-----
+Changes since RFC v2:
+ - use clk_bulk_* when ever feasible
+ - rework Ethernet <-> PCS driver link, use device_link
+ 
+Changes since RFC v1:
+ - drop patch inhibiting SGMII AN in 2500Base-X mode
+ - make pcs-mtk-lynxi a proper platform driver
+ - ... hence allowing to remove all the wrappers from the usxgmii driver
+ - attach PEXTP to MAC instead of to USXGMII PCS
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmV308IACgkQFA3kzBSg
-KbZuZQ/9GAXoJn55ZidUvDeVt3ZjpXMA6CgQUFZ/CkUK15/EPGxfTQgOvve7E8aC
-giXtMn8psTKmLDvtuy5z91aILF3yEd7CdCy3RvaVkkj7+5bSue82qKGc+E/zGQWH
-6m871dzqG+Gae+xQUM61LkaOUt35yQXosz82fqHO7MP8DQ/3KRowQEhq1MvOioxG
-G+NXtpM7rKEdYRih4esPY19chmR1gxbFIeUnCvuWsGIv3Fl8Y8kfrYRZI8iM6mW3
-/+ILC6c6Ph8X6iI/2QdBcjYwHjYIQRJEtsuaRLOvFuUqLORLAafieswI8pya677X
-tLFpjlkiP2h9TO3RiHhPdbUJ0Qy36Ap+zmKAFk3jagZXLcvUKPG2Wg8OqPGZBWbR
-kcqjHwWbZE8mu6kq8YZzjatsDwumKMBnVxsCT8DEKv4lUtvXsP1NcHHthZStsJas
-RVgEJwV4pI+X49WT5P90cuwKX0/NAHZRPJukloMU/xwQGpFhl8uSWWYjrzaCmxOY
-oL3yWYCftk9y2+MIZvpL5PnLxeugpNWo+AoSAITmsi0Jo+z8kjz8jehTD7m+5c/K
-aPye+2wWCnzul0PB2glhEhAhaejIRKvPP55N6KwvRaUGRMYkKmSJ75Jg/XyHCpy/
-A3B3O/cz4MrDNkMkKQXI8+LmUtVHm0x/OQ23FCCXlNKQLR7Oxws=
-=krY1
------END PGP SIGNATURE-----
+Daniel Golle (8):
+  dt-bindings: phy: mediatek,xfi-pextp: add new bindings
+  phy: add driver for MediaTek pextp 10GE SerDes PHY
+  net: pcs: pcs-mtk-lynxi: add platform driver for MT7988
+  dt-bindings: net: pcs: add bindings for MediaTek USXGMII PCS
+  net: pcs: add driver for MediaTek USXGMII PCS
+  dt-bindings: net: mediatek: remove wrongly added clocks and SerDes
+  dt-bindings: net: mediatek,net: fix and complete mt7988-eth binding
+  net: ethernet: mtk_eth_soc: add paths and SerDes modes for MT7988
 
---0hj4t0zCQoMhrc7P--
+ .../devicetree/bindings/net/mediatek,net.yaml | 180 +++++--
+ .../bindings/net/pcs/mediatek,usxgmii.yaml    |  60 +++
+ .../bindings/phy/mediatek,xfi-pextp.yaml      |  80 +++
+ MAINTAINERS                                   |   3 +
+ drivers/net/ethernet/mediatek/mtk_eth_path.c  | 122 ++++-
+ drivers/net/ethernet/mediatek/mtk_eth_soc.c   | 291 +++++++++--
+ drivers/net/ethernet/mediatek/mtk_eth_soc.h   | 107 +++-
+ drivers/net/pcs/Kconfig                       |  11 +
+ drivers/net/pcs/Makefile                      |   1 +
+ drivers/net/pcs/pcs-mtk-lynxi.c               | 226 ++++++++-
+ drivers/net/pcs/pcs-mtk-usxgmii.c             | 456 ++++++++++++++++++
+ drivers/phy/mediatek/Kconfig                  |  11 +
+ drivers/phy/mediatek/Makefile                 |   1 +
+ drivers/phy/mediatek/phy-mtk-pextp.c          | 361 ++++++++++++++
+ include/linux/pcs/pcs-mtk-lynxi.h             |  11 +
+ include/linux/pcs/pcs-mtk-usxgmii.h           |  27 ++
+ 16 files changed, 1859 insertions(+), 89 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/pcs/mediatek,usxgmii.yaml
+ create mode 100644 Documentation/devicetree/bindings/phy/mediatek,xfi-pextp.yaml
+ create mode 100644 drivers/net/pcs/pcs-mtk-usxgmii.c
+ create mode 100644 drivers/phy/mediatek/phy-mtk-pextp.c
+ create mode 100644 include/linux/pcs/pcs-mtk-usxgmii.h
+
+-- 
+2.43.0
 
