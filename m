@@ -1,84 +1,70 @@
-Return-Path: <devicetree+bounces-24244-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24245-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC27E80E741
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 10:19:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDA6480E79B
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 10:29:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 983DA282B86
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 09:19:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 754DE1F2185D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 09:29:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAEB85813F;
-	Tue, 12 Dec 2023 09:19:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59338584E4;
+	Tue, 12 Dec 2023 09:29:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=8bytes.org header.i=@8bytes.org header.b="abG4gKiv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FTwITWbT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.8bytes.org (mail.8bytes.org [IPv6:2a01:238:42d9:3f00:e505:6202:4f0c:f051])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 03543EE;
-	Tue, 12 Dec 2023 01:19:28 -0800 (PST)
-Received: from 8bytes.org (p4ffe1e67.dip0.t-ipconnect.de [79.254.30.103])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.8bytes.org (Postfix) with ESMTPSA id 985681A4F1D;
-	Tue, 12 Dec 2023 10:19:26 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=8bytes.org;
-	s=default; t=1702372767;
-	bh=bEwFfSnf2RFnsUSszwfjtJnyVAQAG+2ku4jSVsqYtho=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39EFE219F2;
+	Tue, 12 Dec 2023 09:29:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4285AC433CD;
+	Tue, 12 Dec 2023 09:29:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702373391;
+	bh=Ps5ITAFrTNffoKTbdr5QWix/U8BhTCkdC1mM+gT+YJg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=abG4gKivOGRZ/AI3r3S4ykAogD7/67qJfPpecLXixxPdCLvNaaHplc2zY7kr49dVW
-	 //lK3CmDXn8kgeq/V0CZR9ktKlB8X0k+ITJm0ltQTznpuMo6Vb74aQpMwh3nTTGVkp
-	 Vy6AfWo4XcQNBdkAhhR+006eTJRikgSpnu1zxfyJ76UClAzcqQ5x8fI3bS/syUfk5j
-	 4EzlogNC4F5cinu2gbIPFhhEV/M0hyHlrd2XxZSENppE6ttNDQtHQ8JgEKvxnsEjaT
-	 tGQK7YmKPtfzARKk+wVIW1dNCyoJC63TSQbXOzaQtz4LM+81hJrx/weWcfjW4iINH9
-	 K1OBYT39fG51A==
-Date: Tue, 12 Dec 2023 10:19:25 +0100
-From: Joerg Roedel <joro@8bytes.org>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Cc: David Airlie <airlied@gmail.com>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Albert Ou <aou@eecs.berkeley.edu>, asahi@lists.linux.dev,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Danilo Krummrich <dakr@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Dexuan Cui <decui@microsoft.com>, devicetree@vger.kernel.org,
-	dmaengine@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	David Woodhouse <dwmw2@infradead.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Haiyang Zhang <haiyangz@microsoft.com>, iommu@lists.linux.dev,
-	Jon Hunter <jonathanh@nvidia.com>,
-	Karol Herbst <kherbst@redhat.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	"K. Y. Srinivasan" <kys@microsoft.com>,
-	Laxman Dewangan <ldewangan@nvidia.com>, Len Brown <lenb@kernel.org>,
-	linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-hyperv@vger.kernel.org, linux-mips@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-snps-arc@lists.infradead.org,
-	linux-tegra@vger.kernel.org, Russell King <linux@armlinux.org.uk>,
-	Lyude Paul <lyude@redhat.com>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	nouveau@lists.freedesktop.org, Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
+	b=FTwITWbTYw+hFrcKSU3lB/55PJAIeDlBwfdMAWXVb/y6soQ69TLBM42ivf9bSP61/
+	 R/2niqeeprQVU6NLmXITbpY9eS/JpgW1zsPoS4SG1fSmsC/0Fx9LMXlymYxJlMXz9y
+	 6OhCKlYRORSWgUC4hCAh/aw78kN2m5MKCnsf54M/4lBwDZ8TXb8FVT3CLwkqUiMphP
+	 mL5etSzSNlD441R1skIQaiyo6poo9e+C8YEX4NvK2ySPADWZ/cfvMtDvoxKHBoQlwo
+	 72FKMoZ4nh8sdbgr7/FsUIsE/i4Pw/mCfwcFlrn9pi5S6ZS9EQAzA62QbShepCunV+
+	 WsDZ8mMuVzHaw==
+Date: Tue, 12 Dec 2023 09:29:43 +0000
+From: Simon Horman <horms@kernel.org>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh+dt@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
-	Sven Peter <sven@svenpeter.dev>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Vineet Gupta <vgupta@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Wei Liu <wei.liu@kernel.org>, Will Deacon <will@kernel.org>,
-	Lu Baolu <baolu.lu@linux.intel.com>, Christoph Hellwig <hch@lst.de>,
-	Jerry Snitselaar <jsnitsel@redhat.com>,
-	Hector Martin <marcan@marcan.st>, Moritz Fischer <mdf@kernel.org>,
-	Moritz Fischer <moritzf@google.com>, patches@lists.linux.dev,
-	"Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
-	Rob Herring <robh@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Thierry Reding <treding@nvidia.com>
-Subject: Re: [PATCH v2 0/7] IOMMU related FW parsing cleanup
-Message-ID: <ZXglne-jYLXHZbtn@8bytes.org>
-References: <0-v2-16e4def25ebb+820-iommu_fwspec_p1_jgg@nvidia.com>
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chunfeng Yun <chunfeng.yun@mediatek.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
+	Sean Wang <sean.wang@mediatek.com>,
+	Mark Lee <Mark-MC.Lee@mediatek.com>,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Alexander Couzens <lynxis@fe80.eu>,
+	Qingfang Deng <dqfext@gmail.com>,
+	SkyLake Huang <SkyLake.Huang@mediatek.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org
+Subject: Re: [RFC PATCH net-next v3 5/8] net: pcs: add driver for MediaTek
+ USXGMII PCS
+Message-ID: <20231212092943.GS5817@kernel.org>
+References: <cover.1702352117.git.daniel@makrotopia.org>
+ <07845ec900ba41ff992875dce12c622277592c32.1702352117.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,18 +73,84 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <0-v2-16e4def25ebb+820-iommu_fwspec_p1_jgg@nvidia.com>
+In-Reply-To: <07845ec900ba41ff992875dce12c622277592c32.1702352117.git.daniel@makrotopia.org>
 
-On Thu, Dec 07, 2023 at 02:03:07PM -0400, Jason Gunthorpe wrote:
-> Jason Gunthorpe (7):
->   iommu: Remove struct iommu_ops *iommu from arch_setup_dma_ops()
->   iommmu/of: Do not return struct iommu_ops from of_iommu_configure()
->   iommu/of: Use -ENODEV consistently in of_iommu_configure()
->   iommu: Mark dev_iommu_get() with lockdep
->   iommu: Mark dev_iommu_priv_set() with a lockdep
->   acpi: Do not return struct iommu_ops from acpi_iommu_configure_id()
->   iommu/tegra: Use tegra_dev_iommu_get_stream_id() in the remaining
->     places
+On Tue, Dec 12, 2023 at 03:47:47AM +0000, Daniel Golle wrote:
+> Add driver for USXGMII PCS found in the MediaTek MT7988 SoC and supporting
+> USXGMII, 10GBase-R and 5GBase-R interface modes.
+> 
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
 
-Applied, thanks.
+Hi Daniel,
+
+some minor feedback from my side.
+
+...
+
+> diff --git a/drivers/net/pcs/pcs-mtk-usxgmii.c b/drivers/net/pcs/pcs-mtk-usxgmii.c
+
+...
+
+> +static int mtk_usxgmii_pcs_config(struct phylink_pcs *pcs, unsigned int neg_mode,
+> +				  phy_interface_t interface,
+> +				  const unsigned long *advertising,
+> +				  bool permit_pause_to_mac)
+> +{
+> +	struct mtk_usxgmii_pcs *mpcs = pcs_to_mtk_usxgmii_pcs(pcs);
+> +	unsigned int an_ctrl = 0, link_timer = 0, xfi_mode = 0, adapt_mode = 0;
+> +	bool mode_changed = false;
+
+nit: please consider arranging local variables in networking code
+     in reverse xmas tree order - longest line to shortest.
+
+     This may be useful:
+     https://github.com/ecree-solarflare/xmastree
+
+...
+> diff --git a/include/linux/pcs/pcs-mtk-usxgmii.h b/include/linux/pcs/pcs-mtk-usxgmii.h
+> new file mode 100644
+> index 0000000000000..ef936d9c5f116
+> --- /dev/null
+> +++ b/include/linux/pcs/pcs-mtk-usxgmii.h
+> @@ -0,0 +1,27 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +#ifndef __LINUX_PCS_MTK_USXGMII_H
+> +#define __LINUX_PCS_MTK_USXGMII_H
+> +
+> +#include <linux/phylink.h>
+> +
+> +/**
+> + * mtk_usxgmii_select_pcs() - Get MediaTek PCS instance
+> + * @np:		Pointer to device node indentifying a MediaTek USXGMII PCS
+
+nit: identifying
+
+     ./scripts/checkpatch.py --codespell is your friend here.
+
+> + * @mode:	Ethernet PHY interface mode
+> + *
+> + * Return PCS identified by a device node and the PHY interface mode in use
+> + *
+> + * Return:	Pointer to phylink PCS instance of NULL
+> + */
+> +#if IS_ENABLED(CONFIG_PCS_MTK_USXGMII)
+> +struct phylink_pcs *mtk_usxgmii_pcs_get(struct device *dev, struct device_node *np);
+
+nit: The kernel doc above does not match the signature
+     of mtk_usxgmii_pcs_get().
+
+     ./scripts/kernel-doc -none is helpful here.
+
+> +void mtk_usxgmii_pcs_put(struct phylink_pcs *pcs);
+> +#else
+> +static inline struct phylink_pcs *mtk_usxgmii_pcs_get(struct device *dev, struct device_node *np)
+> +{
+> +	return NULL;
+> +}
+> +static inline void mtk_usxgmii_pcs_put(struct phylink_pcs *pcs) { }
+> +#endif /* IS_ENABLED(CONFIG_PCS_MTK_USXGMII) */
+> +
+> +#endif /* __LINUX_PCS_MTK_USXGMII_H */
+> -- 
+> 2.43.0
 
