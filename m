@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-24320-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24308-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5272180EB79
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 13:20:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9886C80EB62
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 13:20:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83BC71C20A33
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 12:20:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 24E351F21222
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 12:20:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DB6D5E0C8;
-	Tue, 12 Dec 2023 12:20:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50EC95E0D9;
+	Tue, 12 Dec 2023 12:20:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="fukKPYDX"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="eIsTuf9D"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D647DD0;
-	Tue, 12 Dec 2023 04:20:10 -0800 (PST)
-X-UUID: c677506498e811eea5db2bebc7c28f94-20231212
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3AA3D5;
+	Tue, 12 Dec 2023 04:20:07 -0800 (PST)
+X-UUID: c66cc80698e811eea5db2bebc7c28f94-20231212
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=MPb3UfJ/F4HQXrrSrfK/t28qw8wKavrHrRjno5lOOAY=;
-	b=fukKPYDXe4S3GCZqZAdH/qp4nuM/KzbHZOl+1oyVzqHAM64RWTD2k5BuozY6Yrkl1Js+vzOWivqspwtRdvO2O34TqAFSAYhWRgTMT8owxcwV5YaNe/eTsqKKrpgeSX6dh9Z+arOMPw/dUfYz7pWIVRdlW0W6RPBfOECBmbO+PAo=;
+	h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=4lXtxRLW2YUA4Wg50wpANF7MKGwStkbHF3oDgsbY6kQ=;
+	b=eIsTuf9DRXBPrpwn+rN+YYCcQ5KFwuT/XDGvaYAX2E+nWYYTHVq/5ZtfTB6KMGa78/yvBCbFC9gt+19S4NZ3DfJJN65SBDaJhccORouBws5L3ldMEDVMY8lS7DR/0wVgZgcpc15LC9lWgLfXbtK7cRYI1p2P0IKuxtuSGf1FFVw=;
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.35,REQID:d4e42f79-d320-42a9-83f3-eb095eddaa87,IP:0,U
+X-CID-O-INFO: VERSION:1.1.35,REQID:c23d5db9-7d0d-42f6-8d8b-5969664cc573,IP:0,U
 	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
 	release,TS:0
-X-CID-META: VersionHash:5d391d7,CLOUDID:8ca8b373-1bd3-4f48-b671-ada88705968c,B
+X-CID-META: VersionHash:5d391d7,CLOUDID:0a7d16bd-2ac7-4da2-9f94-677a477649d9,B
 	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
 	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
 	DKR:0,DKP:0,BRR:0,BRE:0
 X-CID-BVR: 0
 X-CID-BAS: 0,_,0,_
 X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: c677506498e811eea5db2bebc7c28f94-20231212
-Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw01.mediatek.com
+X-UUID: c66cc80698e811eea5db2bebc7c28f94-20231212
+Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw01.mediatek.com
 	(envelope-from <shawn.sung@mediatek.com>)
 	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1914280450; Tue, 12 Dec 2023 20:20:02 +0800
+	with ESMTP id 2088098696; Tue, 12 Dec 2023 20:20:02 +0800
 Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Tue, 12 Dec 2023 20:20:01 +0800
+ 15.2.1118.26; Tue, 12 Dec 2023 20:20:02 +0800
 Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
  mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
  15.2.1118.26 via Frontend Transport; Tue, 12 Dec 2023 20:20:01 +0800
@@ -49,17 +49,17 @@ From: Hsiao Chien Sung <shawn.sung@mediatek.com>
 To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
 	Chun-Kuang Hu <chunkuang.hu@kernel.org>, CK Hu <ck.hu@mediatek.com>
 CC: Philipp Zabel <p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>, "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, Matthias Brugger
+	Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Matthias Brugger
 	<matthias.bgg@gmail.com>, Chen-Yu Tsai <wenst@chromium.org>, Sean Paul
 	<sean@poorly.run>, Fei Shao <fshao@chromium.org>, Bibby Hsieh
 	<bibby.hsieh@mediatek.com>, <dri-devel@lists.freedesktop.org>,
 	<linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	"Hsiao Chien Sung" <shawn.sung@mediatek.com>
-Subject: [PATCH v4 10/17] drm/mediatek: Support more color formats in OVL
-Date: Tue, 12 Dec 2023 20:19:50 +0800
-Message-ID: <20231212121957.19231-11-shawn.sung@mediatek.com>
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>, Hsiao
+ Chien Sung <shawn.sung@mediatek.com>
+Subject: [PATCH v4 11/17] drm/mediatek: Turn off the layers with zero width or height
+Date: Tue, 12 Dec 2023 20:19:51 +0800
+Message-ID: <20231212121957.19231-12-shawn.sung@mediatek.com>
 X-Mailer: git-send-email 2.18.0
 In-Reply-To: <20231212121957.19231-1-shawn.sung@mediatek.com>
 References: <20231212121957.19231-1-shawn.sung@mediatek.com>
@@ -70,86 +70,49 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--4.858200-8.000000
-X-TMASE-MatchedRID: N6Ek0bBNb/E5GkwO9XZv45JAa1C/+FcuEbxKVXd70tXfUZT83lbkEEtH
-	ojrK13E4YW+LSuE6vND+UA6OdqfdiY9oUcx9VMLgFEUknJ/kEl7dB/CxWTRRu+rAZ8KTspSz62l
-	iZc9EiWzgbP91+i7CtRVExQW3pejuw9QMYAEj5Zv1L4LYH+jdFH8WNOUAlF9V1usLfFvCBSaq/z
-	HufHxGjVoL4DB5xh01F0aD5ljt43pMcHZD6gqu7wxMjfifIXfowkvVoA11Twp+3BndfXUhXQ==
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--4.858200-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP: 7E0BD30B751507242B0EAC6B2A6D9844A95C039D2C0DE733BA5CF34BD308532E2000:8
 X-MTK: N
 
-Support more color formats in Overlay.
+We found that IGT (Intel GPU Tool) will try to commit layers with
+zero width or height and lead to undefined behaviors in hardware.
+Disable the layers in such situations.
 
 Signed-off-by: Hsiao Chien Sung <shawn.sung@mediatek.com>
 ---
- drivers/gpu/drm/mediatek/mtk_disp_ovl.c | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ drivers/gpu/drm/mediatek/mtk_disp_ovl_adaptor.c | 2 +-
+ drivers/gpu/drm/mediatek/mtk_ethdr.c            | 7 ++++++-
+ 2 files changed, 7 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_disp_ovl.c b/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
-index 7e217142d0c4..a3f1630af5df 100644
---- a/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
-+++ b/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
-@@ -130,12 +130,20 @@ static const u32 mt8173_formats[] = {
- static const u32 mt8195_formats[] = {
- 	DRM_FORMAT_XRGB8888,
- 	DRM_FORMAT_ARGB8888,
-+	DRM_FORMAT_XRGB2101010,
- 	DRM_FORMAT_ARGB2101010,
- 	DRM_FORMAT_BGRX8888,
- 	DRM_FORMAT_BGRA8888,
-+	DRM_FORMAT_BGRX1010102,
- 	DRM_FORMAT_BGRA1010102,
- 	DRM_FORMAT_ABGR8888,
- 	DRM_FORMAT_XBGR8888,
-+	DRM_FORMAT_XBGR2101010,
-+	DRM_FORMAT_ABGR2101010,
-+	DRM_FORMAT_RGBX8888,
-+	DRM_FORMAT_RGBA8888,
-+	DRM_FORMAT_RGBX1010102,
-+	DRM_FORMAT_RGBA1010102,
- 	DRM_FORMAT_RGB888,
- 	DRM_FORMAT_BGR888,
- 	DRM_FORMAT_RGB565,
-@@ -431,12 +439,16 @@ static unsigned int ovl_fmt_convert(struct mtk_disp_ovl *ovl, unsigned int fmt,
- 		return blend_mode == DRM_MODE_BLEND_COVERAGE ?
- 		       OVL_CON_CLRFMT_ARGB8888 :
- 		       OVL_CON_CLRFMT_PARGB8888;
-+	case DRM_FORMAT_RGBX1010102:
-+	case DRM_FORMAT_RGBA1010102:
-+		return OVL_CON_CLRFMT_ARGB8888;
- 	case DRM_FORMAT_BGRX8888:
- 	case DRM_FORMAT_BGRA8888:
- 		return OVL_CON_BYTE_SWAP |
- 		       (blend_mode == DRM_MODE_BLEND_COVERAGE ?
- 		       OVL_CON_CLRFMT_ARGB8888 :
- 		       OVL_CON_CLRFMT_PARGB8888);
-+	case DRM_FORMAT_BGRX1010102:
- 	case DRM_FORMAT_BGRA1010102:
- 		return OVL_CON_CLRFMT_ARGB8888 | OVL_CON_BYTE_SWAP;
- 	case DRM_FORMAT_XRGB8888:
-@@ -444,6 +456,7 @@ static unsigned int ovl_fmt_convert(struct mtk_disp_ovl *ovl, unsigned int fmt,
- 		return blend_mode == DRM_MODE_BLEND_COVERAGE ?
- 		       OVL_CON_CLRFMT_RGBA8888 :
- 		       OVL_CON_CLRFMT_PARGB8888;
-+	case DRM_FORMAT_XRGB2101010:
- 	case DRM_FORMAT_ARGB2101010:
- 		return OVL_CON_CLRFMT_RGBA8888;
- 	case DRM_FORMAT_XBGR8888:
-@@ -452,6 +465,9 @@ static unsigned int ovl_fmt_convert(struct mtk_disp_ovl *ovl, unsigned int fmt,
- 		       (blend_mode == DRM_MODE_BLEND_COVERAGE ?
- 		       OVL_CON_CLRFMT_RGBA8888 :
- 		       OVL_CON_CLRFMT_PARGB8888);
-+	case DRM_FORMAT_XBGR2101010:
-+	case DRM_FORMAT_ABGR2101010:
-+		return OVL_CON_CLRFMT_RGBA8888 | OVL_CON_BYTE_SWAP;
- 	case DRM_FORMAT_UYVY:
- 		return OVL_CON_CLRFMT_UYVY | OVL_CON_MTX_YUV_TO_RGB;
- 	case DRM_FORMAT_YUYV:
+diff --git a/drivers/gpu/drm/mediatek/mtk_disp_ovl_adaptor.c b/drivers/gpu/drm/mediatek/mtk_disp_ovl_adaptor.c
+index 10d23e76acaa..8789442c039f 100644
+--- a/drivers/gpu/drm/mediatek/mtk_disp_ovl_adaptor.c
++++ b/drivers/gpu/drm/mediatek/mtk_disp_ovl_adaptor.c
+@@ -156,7 +156,7 @@ void mtk_ovl_adaptor_layer_config(struct device *dev, unsigned int idx,
+ 	merge = ovl_adaptor->ovl_adaptor_comp[OVL_ADAPTOR_MERGE0 + idx];
+ 	ethdr = ovl_adaptor->ovl_adaptor_comp[OVL_ADAPTOR_ETHDR0];
+ 
+-	if (!pending->enable) {
++	if (!pending->enable || !pending->width || !pending->height) {
+ 		mtk_merge_stop_cmdq(merge, cmdq_pkt);
+ 		mtk_mdp_rdma_stop(rdma_l, cmdq_pkt);
+ 		mtk_mdp_rdma_stop(rdma_r, cmdq_pkt);
+diff --git a/drivers/gpu/drm/mediatek/mtk_ethdr.c b/drivers/gpu/drm/mediatek/mtk_ethdr.c
+index 73c9e3da56a7..e95331c06815 100644
+--- a/drivers/gpu/drm/mediatek/mtk_ethdr.c
++++ b/drivers/gpu/drm/mediatek/mtk_ethdr.c
+@@ -163,7 +163,12 @@ void mtk_ethdr_layer_config(struct device *dev, unsigned int idx,
+ 	if (idx >= 4)
+ 		return;
+ 
+-	if (!pending->enable) {
++	if (!pending->enable || !pending->width || !pending->height) {
++		/*
++		 * instead of disabling layer with MIX_SRC_CON directly
++		 * set the size to 0 to avoid screen shift due to mixer
++		 * mode switch (hardware behavior)
++		 */
+ 		mtk_ddp_write(cmdq_pkt, 0, &mixer->cmdq_base, mixer->regs, MIX_L_SRC_SIZE(idx));
+ 		return;
+ 	}
 -- 
 2.18.0
 
