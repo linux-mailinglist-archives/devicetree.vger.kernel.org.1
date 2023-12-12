@@ -1,117 +1,338 @@
-Return-Path: <devicetree+bounces-24381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24382-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BF0780EFA3
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 16:07:12 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B6A980EFB8
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 16:10:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2F2621F21514
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 15:07:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 84B74B20DB9
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 15:10:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94DEC745F8;
-	Tue, 12 Dec 2023 15:07:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAF3A75406;
+	Tue, 12 Dec 2023 15:10:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="qq/6QFBI"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="LHHGslb9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAECAEA;
-	Tue, 12 Dec 2023 07:07:07 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3BCF6qhH107908;
-	Tue, 12 Dec 2023 09:06:52 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1702393612;
-	bh=Me9oORsxMQopPTecPbF4yvuVAtNhCNVx6k/ba0DvjgI=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=qq/6QFBIIqtHVx9grsfxeHMz8di6Q3bi/lyF8yrp/GLz5BlB7vGkbVwmz1FQt300G
-	 qLLta5lEa9z6rtjsLsXfdDdeEmpRO2+hki8PZHdyoH6SC9zZiWi7zsJdct+asX2Zkb
-	 UpUAdzWZFRBZG6DwTy89A18VVF/WNsMTipzVunGs=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3BCF6qs0011032
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 12 Dec 2023 09:06:52 -0600
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 12
- Dec 2023 09:06:52 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 12 Dec 2023 09:06:52 -0600
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3BCF6qWV103574;
-	Tue, 12 Dec 2023 09:06:52 -0600
-Date: Tue, 12 Dec 2023 09:06:52 -0600
-From: Nishanth Menon <nm@ti.com>
-To: Brandon Brnich <b-brnich@ti.com>
-CC: <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Nas
- Chung <nas.chung@chipsnmedia.com>,
-        Jackson Lee <jackson.lee@chipsnmedia.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Sebastian Fricke
-	<sebastian.fricke@collabora.com>,
-        Dafna Hirschfeld
-	<dafna.hirschfeld@collabora.com>,
-        Robert Beckett <bob.beckett@collabora.com>,
-        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-        Geert Uytterhoeven
-	<geert@linux-m68k.org>,
-        Darren Etheridge <detheridge@ti.com>
-Subject: Re: [PATCH v3 2/2] media: chips-media: wave5: Remove K3 References
-Message-ID: <20231212150652.54exlr52x2odqxr5@false>
-References: <20231211205920.698939-1-b-brnich@ti.com>
- <20231211205920.698939-3-b-brnich@ti.com>
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4285DB
+	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 07:10:07 -0800 (PST)
+Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2cb21afa6c1so66069151fa.0
+        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 07:10:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1702393806; x=1702998606; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Sgb02zIfWO9XtSI9qBoLEAqXEVat4zbB8qv+HQtNLV8=;
+        b=LHHGslb9jPETtJXQjN4Vk2QASbgCA6FkG3oCg1n9IS1L10xamOppZWjcS9nROeYuQK
+         /q0w3D7SmGzlXRS5oT1MmC7KoFhYYoMkg5ytqDGyoqMqWm+3y2KxEWuQEuaNR/kpcBV0
+         RiWB3f6zW3EGg6KafI44c990/ZuZ0hEaMvCOXByoy9BXGfbKr1pD3AEjuQ+lsNjep5JI
+         RK9RGlOPmFLHyLkmjgx1ApoEpJhnKRGpxmqKcp3cFgTHYrvfKxlYYQDYG3t4w/O/0NEB
+         ZqK/n6FLnDNgHiLWKPo8rImb/0Y9EGyxAZoN7WHh9wBuIuYvrlhOuAa4WI8y05fWhVvT
+         2nAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702393806; x=1702998606;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Sgb02zIfWO9XtSI9qBoLEAqXEVat4zbB8qv+HQtNLV8=;
+        b=sdtLtF6b3nXp7DNL+Btwu28r+ssZU4sKYNFOs4JiT4V/PdDw7vVwZdPcLjy8ipWtdt
+         S8r2Ipb8sEuVPve9CP7+BefHcXAf08lFNabxssRynsojEbYzLAHHrA7hQjmBoayhetRw
+         fT97ZEg0Ymk8TIDKkiGQVED5epadsIXXhi6nf73YKzpphjR60OX/FIss/FCx+S0FxYu6
+         KTlE4xWI/tIf+ouv527l7qUvvKzlNyerC8tsxh+N57rxFdkPm54MKHlKZcAR+Qmi9vID
+         vATRd8zNl4UdP8oUW/TcOKNdD5/r3uZKndy9kYLrN0rUr0cjPU+olGvIBQ4HW/g3wyw/
+         TZnA==
+X-Gm-Message-State: AOJu0YzM47QT+X68qI2Flnta8InZ4D9em0VqlozspsZLVG6jxABxSx2v
+	C/5qXl60yYJgaKGobTh6u//j4u+3ZVxMtGQmvEcsNQ==
+X-Google-Smtp-Source: AGHT+IEnmlxt1GZYnvsKLadBA5gaJL+Mw8J602tleM6Cq/s5xYNH1uxRqd0ikhqf6EblAuUXcVfJtJqyQ/mZTWNqVIM=
+X-Received: by 2002:a2e:9f08:0:b0:2c9:f1a2:c396 with SMTP id
+ u8-20020a2e9f08000000b002c9f1a2c396mr2674735ljk.101.1702393805929; Tue, 12
+ Dec 2023 07:10:05 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20231211205920.698939-3-b-brnich@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20231212104451.22522-1-mitrutzceclan@gmail.com>
+In-Reply-To: <20231212104451.22522-1-mitrutzceclan@gmail.com>
+From: David Lechner <dlechner@baylibre.com>
+Date: Tue, 12 Dec 2023 16:09:55 +0100
+Message-ID: <CAMknhBEfisaSbHhnnei=gT1HZvHNWHrJD3O2y4b_TikkH=v2Ag@mail.gmail.com>
+Subject: Re: [PATCH v8 1/2] dt-bindings: adc: add AD7173
+To: Dumitru Ceclan <mitrutzceclan@gmail.com>
+Cc: linus.walleij@linaro.org, brgl@bgdev.pl, andy@kernel.org, 
+	linux-gpio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, 
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Walle <michael@walle.cc>, Andy Shevchenko <andy.shevchenko@gmail.com>, 
+	Arnd Bergmann <arnd@arndb.de>, ChiaEn Wu <chiaen_wu@richtek.com>, 
+	Niklas Schnelle <schnelle@linux.ibm.com>, =?UTF-8?Q?Leonard_G=C3=B6hrs?= <l.goehrs@pengutronix.de>, 
+	Mike Looijmans <mike.looijmans@topic.nl>, Haibo Chen <haibo.chen@nxp.com>, 
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>, Ceclan Dumitru <dumitru.ceclan@analog.com>, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 14:59-20231211, Brandon Brnich wrote:
-> Change compatible string to match dt bindings for TI devices. K3 family
-> prefix should not be included as it deviates from naming convention.
-> 
-> Fixes: 9707a6254a8a ("media: chips-media: wave5: Add the v4l2 layer")
-> Reported-by: Geert Uytterhoeven <geert@linux-m68k.org>
-> Closes: https://lore.kernel.org/all/CAMuHMdUYOq=q1j=d+Eac28hthOUAaNUkuvxmRu-mUN1pLKq69g@mail.gmail.com/
-> Signed-off-by: Brandon Brnich <b-brnich@ti.com>
+On Tue, Dec 12, 2023 at 11:45=E2=80=AFAM Dumitru Ceclan <mitrutzceclan@gmai=
+l.com> wrote:
+>
+> The AD7173 family offer a complete integrated Sigma-Delta ADC solution
+> which can be used in high precision, low noise single channel application=
+s
+> or higher speed multiplexed applications. The Sigma-Delta ADC is intended
+> primarily for measurement of signals close to DC but also delivers
+> outstanding performance with input bandwidths out to ~10kHz.
+
+As stated in [1], we should try to make complete bindings. I think
+more could be done here to make this more complete. Most notably, the
+gpio-controller binding is missing. Also maybe something is needed to
+describe how the SYNC/ERROR pin is wired up since it can be an input
+or an output with different functions?
+
+[1]: https://www.kernel.org/doc/html/latest/devicetree/bindings/writing-bin=
+dings.html
+
+>
+> Signed-off-by: Dumitru Ceclan <mitrutzceclan@gmail.com>
 > ---
->  drivers/media/platform/chips-media/wave5/wave5-vpu.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/media/platform/chips-media/wave5/wave5-vpu.c b/drivers/media/platform/chips-media/wave5/wave5-vpu.c
-> index bfe4caa79cc9..0d90b5820bef 100644
-> --- a/drivers/media/platform/chips-media/wave5/wave5-vpu.c
-> +++ b/drivers/media/platform/chips-media/wave5/wave5-vpu.c
-> @@ -272,7 +272,7 @@ static const struct wave5_match_data ti_wave521c_data = {
->  };
->  
->  static const struct of_device_id wave5_dt_ids[] = {
-> -	{ .compatible = "ti,k3-j721s2-wave521c", .data = &ti_wave521c_data },
-> +	{ .compatible = "ti,j721s2-wave521c", .data = &ti_wave521c_data },
->  	{ /* sentinel */ }
->  };
->  MODULE_DEVICE_TABLE(of, wave5_dt_ids);
-> -- 
-> 2.34.1
-> 
-Reviewed-by: Nishanth Menon <nm@ti.com>
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+> V7->V8
+>  - include missing fix from V6
+
+Including the cumulative changelog for all revisions would be helpful
+to reviewers who haven't been following closely.
+
+>
+>  .../bindings/iio/adc/adi,ad7173.yaml          | 170 ++++++++++++++++++
+>  1 file changed, 170 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7173.=
+yaml
+>
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml b/=
+Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
+> new file mode 100644
+> index 000000000000..25a5404ee353
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
+> @@ -0,0 +1,170 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2023 Analog Devices Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/adi,ad7173.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices AD7173 ADC
+> +
+> +maintainers:
+> +  - Ceclan Dumitru <dumitru.ceclan@analog.com>
+> +
+> +description: |
+> +  Bindings for the Analog Devices AD717X ADC's. Datasheets for supported=
+ chips:
+> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
+AD7172-2.pdf
+> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
+AD7173-8.pdf
+> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
+AD7175-2.pdf
+> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
+AD7176-2.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,ad7172-2
+> +      - adi,ad7173-8
+> +      - adi,ad7175-2
+> +      - adi,ad7176-2
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+
+Shouldn't this be 2? The datasheet says there is a "Data Output Ready"
+signal on the DOUT/RDY pin and an "Error Output" on the SYNC/ERROR
+pin. Although I could see how RDY could be considered part of the SPI
+bus. In any case, a description explaining what the interrupt is would
+be useful.
+
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +  spi-max-frequency:
+> +    maximum: 20000000
+> +
+> +  refin-supply:
+> +    description: external reference supply, can be used as reference for=
+ conversion.
+> +
+> +  refin2-supply:
+> +    description: external reference supply, can be used as reference for=
+ conversion.
+> +
+> +  avdd-supply:
+> +    description: avdd supply, can be used as reference for conversion.
+
+What about other supplies? AVDD1, AVDD2, IOVDD.
+
+
+> +
+> +patternProperties:
+> +  "^channel@[0-9a-f]$":
+> +    type: object
+> +    $ref: adc.yaml
+> +    unevaluatedProperties: false
+> +
+> +    properties:
+> +      reg:
+> +        minimum: 0
+> +        maximum: 15
+> +
+> +      diff-channels:
+> +        items:
+> +          minimum: 0
+> +          maximum: 31
+
+Do we need to add overrides to limit the maximums for each compatible strin=
+g?
+
+> +
+> +      adi,reference-select:
+> +        description: |
+> +          Select the reference source to use when converting on
+> +          the specific channel. Valid values are:
+> +          refin      : REFIN(+)/REFIN(=E2=88=92).
+> +          refin2     : REFIN2(+)/REFIN2(=E2=88=92)
+> +          refout-avss: REFOUT/AVSS (Internal reference)
+> +          avdd       : AVDD
+> +
+> +          External reference refin2 only available on ad7173-8.
+> +          If not specified, internal reference used.
+> +        enum:
+> +          - refin
+> +          - refin2
+> +          - refout-avss
+> +          - avdd
+> +        default: refout-avss
+
+Missing string type?
+
+> +
+> +    required:
+> +      - reg
+> +      - diff-channels
+
+Individual analog inputs can be used as single-ended or in pairs as
+differential, right? If so, diff-channels should not be required to
+allow for single-ended use.
+
+And we would need to add something like a single-ended-channel
+property to adc.yaml to allow mapping analog input pins to channels
+similar to how diff-channels works, I think (I don't see anything like
+that there already)?
+
+So maybe something like:
+
+oneOf:
+  - required:
+      single-ended-channel
+  - required:
+      diff-channels
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +allOf:
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          not:
+> +            contains:
+> +              const: adi,ad7173-8
+> +    then:
+> +      properties:
+> +        refin2-supply: false
+> +      patternProperties:
+> +        "^channel@[0-9a-f]$":
+> +          properties:
+> +            adi,reference-select:
+> +              enum:
+> +                - refin
+> +                - refout-avss
+> +                - avdd
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    spi {
+> +      #address-cells =3D <1>;
+> +      #size-cells =3D <0>;
+> +
+> +      adc@0 {
+> +        compatible =3D "adi,ad7173-8";
+> +        reg =3D <0>;
+> +
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        interrupts =3D <25 IRQ_TYPE_EDGE_FALLING>;
+> +        interrupt-parent =3D <&gpio>;
+> +        spi-max-frequency =3D <5000000>;
+> +
+> +        refin-supply =3D <&dummy_regulator>;
+> +
+> +        channel@0 {
+> +          reg =3D <0>;
+> +          bipolar;
+> +          diff-channels =3D <0 1>;
+> +          adi,reference-select =3D "refin";
+> +        };
+> +
+> +        channel@1 {
+> +          reg =3D <1>;
+> +          diff-channels =3D <2 3>;
+> +        };
+> +
+> +        channel@2 {
+> +          reg =3D <2>;
+> +          bipolar;
+> +          diff-channels =3D <4 5>;
+> +        };
+> +
+> +        channel@3 {
+> +          reg =3D <3>;
+> +          bipolar;
+> +          diff-channels =3D <6 7>;
+> +        };
+> +
+> +        channel@4 {
+> +          reg =3D <4>;
+> +          diff-channels =3D <8 9>;
+> +          adi,reference-select =3D "avdd";
+> +        };
+> +      };
+> +    };
+> --
+> 2.42.0
+>
+>
 
