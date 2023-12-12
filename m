@@ -1,446 +1,176 @@
-Return-Path: <devicetree+bounces-24276-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24277-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1790D80E907
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 11:24:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 947D480E927
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 11:30:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6935EB20E5E
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 10:24:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E7F0281A69
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 10:30:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CDC15B5A4;
-	Tue, 12 Dec 2023 10:24:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Emua/BKy"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFF5A53815;
+	Tue, 12 Dec 2023 10:30:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DD4DCD
-	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 02:24:29 -0800 (PST)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-a1e35c2807fso726915566b.3
-        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 02:24:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702376668; x=1702981468; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kn8T4geUNDrQxq4SAkCj27jvGjfSNhMK9r+in1Y7ErI=;
-        b=Emua/BKyA4l87879pn59UXf+rQBucTRD4NZ7ISyWtRUY6MaOWq3llXm7zpQAUMOhVq
-         102KHKez0l5MxnullkVxAckUElq+eetzpGNNOnV+P7hVItIN0zqe3Mx3FAncBtFOKKCE
-         XX2mCWsUMltIzvrtP88J3unrsmXIA4Ts9nbFnitFmEZcSH6bi+CWIMzhLa+4Nz5OGqtB
-         eQ4er2+hkn1Gk3g1epLXbWCDzBQGAV6YHie2ulaCqqIVnHRwro2D27CmpUxW1TACbbBR
-         FkkrP8PX4OhqAKjJnErJz3+laulDZLDMLb+CRvO2zYo3syjjSeryKhPMJTLgYJSGsn6/
-         VURA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702376668; x=1702981468;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kn8T4geUNDrQxq4SAkCj27jvGjfSNhMK9r+in1Y7ErI=;
-        b=DF3xLIb13G48gidCtUlhRlOK5etyyhrSizOPanEeBLJeUYhfOI0AxwLJtG0R7HGuCM
-         MgLCCZVufxHd5Xhta69KUkcxQk0Zym16KWb+tS+3ZmZzOFPcVbr4qkBin5nyEY9+ccVK
-         CxXk0l9Zu/tw9KYwgj8P2kZdlkGt3rAmPfcBiYFkGNjCVLCF/sko+vAYQAj5ZGlHtRQy
-         4AeZfBvLFc6j8Bx5vNTnJ5ugmUr3VDb6iwF2mnpVBaoYHHtWkEPPjKTxLU6bOGsEhP+U
-         65k5ZeJ3r4TiKAF/Ag1ClPrGDOuByU4fgIR8QynKKTuEiQmLT4JwyH5hj0g6j5bgeQaS
-         eQ3A==
-X-Gm-Message-State: AOJu0Yz41RSb9kYmYxMoEVfXdUuM5bCY2/Qw4ucnA82pNgUqYM5PGyzt
-	AaRH1xnTfurIlrZsUBFyyBzoKA==
-X-Google-Smtp-Source: AGHT+IGON85hoGNwaEu4lxAmS+AbUhitSDbzT+qME7DDfU5Uaxyh5ORVctoMutfowP6DZ9PITW4y3g==
-X-Received: by 2002:a17:907:7e98:b0:a1c:cd3b:4c2a with SMTP id qb24-20020a1709077e9800b00a1ccd3b4c2amr3824131ejc.72.1702376667950;
-        Tue, 12 Dec 2023 02:24:27 -0800 (PST)
-Received: from [127.0.1.1] ([79.115.23.25])
-        by smtp.gmail.com with ESMTPSA id ga16-20020a1709070c1000b00a1c7f8fe581sm6052801ejc.221.2023.12.12.02.24.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Dec 2023 02:24:27 -0800 (PST)
-From: Abel Vesa <abel.vesa@linaro.org>
-Date: Tue, 12 Dec 2023 12:24:11 +0200
-Subject: [PATCH 2/2] arm64: dts: qcom: x1e80100: Add missing nodes for CRD
+Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3635FAC;
+	Tue, 12 Dec 2023 02:30:34 -0800 (PST)
+Received: from mail.andestech.com (ATCPCS16.andestech.com [10.0.1.222])
+	by Atcsqr.andestech.com with ESMTP id 3BCASoWD093073;
+	Tue, 12 Dec 2023 18:28:50 +0800 (+08)
+	(envelope-from peterlin@andestech.com)
+Received: from APC323 (10.0.12.98) by ATCPCS16.andestech.com (10.0.1.222) with
+ Microsoft SMTP Server id 14.3.498.0; Tue, 12 Dec 2023 18:28:47 +0800
+Date: Tue, 12 Dec 2023 18:28:47 +0800
+From: Yu-Chien Peter Lin <peterlin@andestech.com>
+To: Thomas Gleixner <tglx@linutronix.de>
+CC: <acme@kernel.org>, <adrian.hunter@intel.com>, <ajones@ventanamicro.com>,
+        <alexander.shishkin@linux.intel.com>, <andre.przywara@arm.com>,
+        <anup@brainfault.org>, <aou@eecs.berkeley.edu>,
+        <atishp@atishpatra.org>, <conor+dt@kernel.org>,
+        <conor.dooley@microchip.com>, <conor@kernel.org>,
+        <devicetree@vger.kernel.org>, <dminus@andestech.com>,
+        <evan@rivosinc.com>, <geert+renesas@glider.be>, <guoren@kernel.org>,
+        <heiko@sntech.de>, <irogers@google.com>, <jernej.skrabec@gmail.com>,
+        <jolsa@kernel.org>, <jszhang@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-perf-users@vger.kernel.org>,
+        <linux-renesas-soc@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <linux-sunxi@lists.linux.dev>, <locus84@andestech.com>,
+        <magnus.damm@gmail.com>, <mark.rutland@arm.com>, <mingo@redhat.com>,
+        <n.shubin@yadro.com>, <namhyung@kernel.org>, <palmer@dabbelt.com>,
+        <paul.walmsley@sifive.com>, <peterz@infradead.org>,
+        <prabhakar.mahadev-lad.rj@bp.renesas.com>, <rdunlap@infradead.org>,
+        <robh+dt@kernel.org>, <samuel@sholland.org>,
+        <sunilvl@ventanamicro.com>, <tim609@andestech.com>, <uwu@icenowy.me>,
+        <wens@csie.org>, <will@kernel.org>, <ycliang@andestech.com>,
+        <inochiama@outlook.com>
+Subject: Re: [PATCH v4 03/13] irqchip/riscv-intc: Introduce Andes hart-level
+ interrupt controller
+Message-ID: <ZXg130SN3AOUmx_v@APC323>
+References: <20231122121235.827122-1-peterlin@andestech.com>
+ <20231122121235.827122-4-peterlin@andestech.com>
+ <87y1e4r8db.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231212-x1e80100-dts-missing-nodes-v1-2-1472efec2b08@linaro.org>
-References: <20231212-x1e80100-dts-missing-nodes-v1-0-1472efec2b08@linaro.org>
-In-Reply-To: <20231212-x1e80100-dts-missing-nodes-v1-0-1472efec2b08@linaro.org>
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>, 
- Sibi Sankar <quic_sibis@quicinc.com>, 
- Rajendra Nayak <quic_rjendra@quicinc.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6276; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=XR8LxnOXnvA8HSaw+rQ/XKUf1pREKrP/blFUFB5Df3w=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBleDTXs3AOsZgIEnjk7D0JoQyxmT0g6eGz8p6u9
- dS3psRliiWJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZXg01wAKCRAbX0TJAJUV
- VvBBD/9ZFlMm1un+fFyID/DlOisueviMby2gyRgwRWzek7cRDSdwT7iHDQBKc1U4nCVTeIo52Q6
- Zz+zb0asAuuyLrqJy7/Ve8tYMWla9dj26nY88hm4iHhPBAfGWtUM1B8a0w/IIPOq7FTQnHSDGUr
- 2PViml2aSE83EQBnGhiBCLuziMhQzKA7ZaCOeP0O+NIpbkompo35fKzirQ08k3ZNECwqq4S61JD
- RPdN1dfGMz8SEhY68Spz1CTKgaXMyGxyFrb0FyTy8+yY56guJg50Gnc6VNG+zDblVQvlnj6MYLu
- Hu9pfcdajYTqymCRLCRkufj5XfIZujjWYlJgC7/c1fw86mdbeGVlGyHavYVSB/CW8QvMNafWzTh
- uPXMOgdw9cqvhhErKWn/RzP+BTFlykhfzlg/J5gqaXC1Gx1Mv75Zm7P27LI/uUrfTUfLCUHHh6w
- 27M2obeE7F958VyF7DkyvzzbTnCP5YDW2RTFcaqTACe8k5FyuQUcgULRvIWybmiVQXJUzxy6I36
- A5/KniJEs5LJpeT6tqHSzWpekbnnPGafz0zb6vNbZ2a6g3N1KOZ32V23ZstxrQ7H7JBcDenQKE7
- EHTSd5uWbi1o4hUpAbNZX36/yvvcQJyIRC0PIRckwCHx7K/EDiZOV9tIcuo9cIbUxrTnU5lwZaf
- GwIFZiJsD7/UwNQ==
-X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <87y1e4r8db.ffs@tglx>
+User-Agent: Mutt/2.2.10 (2023-03-25)
+X-DNSRBL: 
+X-SPAM-SOURCE-CHECK: pass
+X-MAIL:Atcsqr.andestech.com 3BCASoWD093073
 
-Add all missing nodes for the X1E80100 CRD reference device.
+Hi Thomas,
 
-Co-developed-by: Sibi Sankar <quic_sibis@quicinc.com>
-Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
-Co-developed-by: Rajendra Nayak <quic_rjendra@quicinc.com>
-Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
- arch/arm64/boot/dts/qcom/x1e80100-crd.dts | 303 ++++++++++++++++++++++++++++++
- 1 file changed, 303 insertions(+)
+On Fri, Dec 08, 2023 at 05:01:36PM +0100, Thomas Gleixner wrote:
+> On Wed, Nov 22 2023 at 20:12, Yu Chien Peter Lin wrote:
+> > To share the riscv_intc_domain_map() with the generic RISC-V INTC and
+> > ACPI, we add a chip parameter to riscv_intc_init_common(), so it can be
+> 
+> s/we//
+> 
+> See: Documentation/process/
+> 
+> > passed to the irq_domain_set_info() as private data.
+> > diff --git a/drivers/irqchip/irq-riscv-intc.c b/drivers/irqchip/irq-riscv-intc.c
+> > index 2fdd40f2a791..30f0036c8978 100644
+> > --- a/drivers/irqchip/irq-riscv-intc.c
+> > +++ b/drivers/irqchip/irq-riscv-intc.c
+> > @@ -17,6 +17,7 @@
+> >  #include <linux/module.h>
+> >  #include <linux/of.h>
+> >  #include <linux/smp.h>
+> > +#include <linux/soc/andes/irq.h>
+> >  
+> >  static struct irq_domain *intc_domain;
+> >  
+> > @@ -46,6 +47,31 @@ static void riscv_intc_irq_unmask(struct irq_data *d)
+> >  	csr_set(CSR_IE, BIT(d->hwirq));
+> >  }
+> >  
+> > +static void andes_intc_irq_mask(struct irq_data *d)
+> > +{
+> > +	/*
+> > +	 * Andes specific S-mode local interrupt causes (hwirq)
+> > +	 * are defined as (256 + n) and controlled by n-th bit
+> > +	 * of SLIE.
+> > +	 */
+> > +	unsigned int mask = BIT(d->hwirq % BITS_PER_LONG);
+> 
+> How is this supposed to be correct with BITS_PER_LONG == 64?
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-index c209ae59c6b5..4f7f83d49847 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-@@ -22,6 +22,72 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	pmic-glink {
-+		compatible = "qcom,x1e80100-pmic-glink", "qcom,pmic-glink";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		connector@0 {
-+			compatible = "usb-c-connector";
-+			reg = <0>;
-+			power-role = "dual";
-+			data-role = "dual";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					pmic_glink_ss0_in: endpoint {
-+						remote-endpoint = <&usb_1_ss0_role_switch>;
-+					};
-+				};
-+			};
-+		};
-+
-+		connector@1 {
-+			compatible = "usb-c-connector";
-+			reg = <1>;
-+			power-role = "dual";
-+			data-role = "dual";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					pmic_glink_ss1_in: endpoint {
-+						remote-endpoint = <&usb_1_ss1_role_switch>;
-+					};
-+				};
-+			};
-+		};
-+
-+		connector@2 {
-+			compatible = "usb-c-connector";
-+			reg = <2>;
-+			power-role = "dual";
-+			data-role = "dual";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					pmic_glink_ss2_in: endpoint {
-+						remote-endpoint = <&usb_1_ss2_role_switch>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+
- 	vph_pwr: vph-pwr-regulator {
- 		compatible = "regulator-fixed";
- 
-@@ -403,10 +469,144 @@ vreg_l3j_0p8: ldo3 {
- 	};
- };
- 
-+&i2c0 {
-+	clock-frequency = <400000>;
-+
-+	status = "okay";
-+
-+	touchpad@15 {
-+		compatible = "hid-over-i2c";
-+		reg = <0x15>;
-+
-+		hid-descr-addr = <0x1>;
-+		interrupts-extended = <&tlmm 3 IRQ_TYPE_LEVEL_LOW>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&tpad_default>;
-+
-+		wakeup-source;
-+	};
-+
-+	keyboard@3a {
-+		compatible = "hid-over-i2c";
-+		reg = <0x3a>;
-+
-+		hid-descr-addr = <0x1>;
-+		interrupts-extended = <&tlmm 67 IRQ_TYPE_LEVEL_LOW>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&kybd_default>;
-+		wakeup-source;
-+	};
-+};
-+
-+&i2c8 {
-+	clock-frequency = <400000>;
-+
-+	status = "okay";
-+
-+	touchscreen@10 {
-+		compatible = "hid-over-i2c";
-+		reg = <0x10>;
-+
-+		hid-descr-addr = <0x1>;
-+		interrupts-extended = <&tlmm 51 IRQ_TYPE_LEVEL_LOW>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&ts0_default>;
-+	};
-+};
-+
-+&mdss {
-+	status = "okay";
-+};
-+
-+&mdss_dp3 {
-+	compatible = "qcom,x1e80100-dp";
-+	/delete-property/ #sound-dai-cells;
-+
-+	data-lanes = <0 1 2 3>;
-+
-+	status = "okay";
-+
-+	aux-bus {
-+		panel {
-+			compatible = "edp-panel";
-+			power-supply = <&vreg_edp_3p3>;
-+
-+			port {
-+				edp_panel_in: endpoint {
-+					remote-endpoint = <&mdss_dp3_out>;
-+				};
-+			};
-+		};
-+	};
-+
-+	ports {
-+		port@1 {
-+			reg = <1>;
-+			mdss_dp3_out: endpoint {
-+				remote-endpoint = <&edp_panel_in>;
-+			};
-+		};
-+	};
-+};
-+
-+&mdss_dp3_phy {
-+	vdda-phy-supply = <&vreg_l3j_0p8>;
-+	vdda-pll-supply = <&vreg_l2j_1p2>;
-+
-+	status = "okay";
-+};
-+
-+&pcie4 {
-+	status = "okay";
-+};
-+
-+&pcie4_phy {
-+	vdda-phy-supply = <&vreg_l3j_0p8>;
-+	vdda-pll-supply = <&vreg_l3e_1p2>;
-+
-+	status = "okay";
-+};
-+
-+&pcie6a {
-+	status = "okay";
-+};
-+
-+&pcie6a_phy {
-+	vdda-phy-supply = <&vreg_l3j_0p8>;
-+	vdda-pll-supply = <&vreg_l2j_1p2>;
-+
-+	status = "okay";
-+};
-+
-+&qupv3_0 {
-+	status = "okay";
-+};
-+
-+&qupv3_1 {
-+	status = "okay";
-+};
-+
- &qupv3_2 {
- 	status = "okay";
- };
- 
-+&remoteproc_adsp {
-+	firmware-name = "qcom/x1e80100/adsp.mbn",
-+			"qcom/x1e80100/adsp_dtb.mbn";
-+
-+	status = "okay";
-+};
-+
-+&remoteproc_cdsp {
-+	firmware-name = "qcom/x1e80100/cdsp.mbn",
-+			"qcom/x1e80100/cdsp_dtb.mbn";
-+
-+	status = "okay";
-+};
-+
- &tlmm {
- 	gpio-reserved-ranges = <34 2>, /* Unused */
- 			       <44 4>, /* SPI (TPM) */
-@@ -418,9 +618,112 @@ edp_reg_en: edp-reg-en-state {
- 		drive-strength = <16>;
- 		bias-disable;
- 	};
-+
-+	kybd_default: kybd-default-state {
-+		int-n-pins {
-+			pins = "gpio67";
-+			function = "gpio";
-+			bias-disable;
-+		};
-+	};
-+
-+	tpad_default: tpad-default-state {
-+		int-n-pins {
-+			pins = "gpio3";
-+			function = "gpio";
-+			bias-disable;
-+		};
-+	};
-+
-+	ts0_default: ts0-default-state {
-+		int-n-pins {
-+			pins = "gpio51";
-+			function = "gpio";
-+			bias-disable;
-+		};
-+
-+		reset-n-pins {
-+			pins = "gpio48";
-+			function = "gpio";
-+			output-high;
-+			drive-strength = <16>;
-+		};
-+	};
- };
- 
- &uart21 {
- 	compatible = "qcom,geni-debug-uart";
- 	status = "okay";
- };
-+
-+&usb_1_ss0_hsphy {
-+	vdd-supply = <&vreg_l2e_0p8>;
-+	vdda12-supply = <&vreg_l3e_1p2>;
-+
-+	status = "okay";
-+};
-+
-+&usb_1_ss0_qmpphy {
-+	status = "okay";
-+};
-+
-+&usb_1_ss0 {
-+	status = "okay";
-+};
-+
-+&usb_1_ss0_dwc3 {
-+	dr_mode = "host";
-+	usb-role-switch;
-+};
-+
-+&usb_1_ss0_role_switch {
-+	remote-endpoint = <&pmic_glink_ss0_in>;
-+};
-+
-+&usb_1_ss1_hsphy {
-+	vdd-supply = <&vreg_l2e_0p8>;
-+	vdda12-supply = <&vreg_l3e_1p2>;
-+
-+	status = "okay";
-+};
-+
-+&usb_1_ss1_qmpphy {
-+	status = "okay";
-+};
-+
-+&usb_1_ss1 {
-+	status = "okay";
-+};
-+
-+&usb_1_ss1_dwc3 {
-+	dr_mode = "host";
-+	usb-role-switch;
-+};
-+
-+&usb_1_ss1_role_switch {
-+	remote-endpoint = <&pmic_glink_ss1_in>;
-+};
-+
-+&usb_1_ss2_hsphy {
-+	vdd-supply = <&vreg_l2e_0p8>;
-+	vdda12-supply = <&vreg_l3e_1p2>;
-+
-+	status = "okay";
-+};
-+
-+&usb_1_ss2_qmpphy {
-+	status = "okay";
-+};
-+
-+&usb_1_ss2 {
-+	status = "okay";
-+};
-+
-+&usb_1_ss2_dwc3 {
-+	dr_mode = "host";
-+	usb-role-switch;
-+};
-+
-+&usb_1_ss2_role_switch {
-+	remote-endpoint = <&pmic_glink_ss2_in>;
-+};
+Yes, I should subtract ANDES_SLI_CAUSE_BASE directly here.
 
--- 
-2.34.1
+> > +
+> > +	if (d->hwirq < ANDES_SLI_CAUSE_BASE)
+> > +		csr_clear(CSR_IE, mask);
+> > +	else
+> > +		csr_clear(ANDES_CSR_SLIE, mask);
+> > +}
+> > +
+> > +static void andes_intc_irq_unmask(struct irq_data *d)
+> > +{
+> > +	unsigned int mask = BIT(d->hwirq % BITS_PER_LONG);
+> 
+> Ditto.
+> 
+> > +	if (d->hwirq < ANDES_SLI_CAUSE_BASE)
+> > +		csr_set(CSR_IE, mask);
+> > +	else
+> > +		csr_set(ANDES_CSR_SLIE, mask);
+> > +}
+> 
+> >  static int riscv_intc_domain_map(struct irq_domain *d, unsigned int irq,
+> >  				 irq_hw_number_t hwirq)
+> >  {
+> > +	struct irq_chip *chip = d->host_data;
+> > +
+> >  	irq_set_percpu_devid(irq);
+> > -	irq_domain_set_info(d, irq, hwirq, &riscv_intc_chip, d->host_data,
+> > +	irq_domain_set_info(d, irq, hwirq, chip, d->host_data,
+> 
+> So this sets 'chip_data' to the chip itself. What's the point? Just set
+> it to NULL as the chip obviously does not need chip_data at all.
 
+Will fix. Thanks.
+
+Best regards,
+Peter Lin
+
+> >  			    handle_percpu_devid_irq, NULL, NULL);
+> >  
+> >  	return 0;
+> > @@ -112,11 +147,12 @@ static struct fwnode_handle *riscv_intc_hwnode(void)
+> >  	return intc_domain->fwnode;
+> >  }
+> >  
+> > -static int __init riscv_intc_init_common(struct fwnode_handle *fn)
+> > +static int __init riscv_intc_init_common(struct fwnode_handle *fn,
+> > +					 struct irq_chip *chip)
+> >  {
+> >  	int rc;
+> >  
+> > -	intc_domain = irq_domain_create_tree(fn, &riscv_intc_domain_ops, NULL);
+> > +	intc_domain = irq_domain_create_tree(fn, &riscv_intc_domain_ops, chip);
+> >  	if (!intc_domain) {
+> >  		pr_err("unable to add IRQ domain\n");
+> >  		return -ENXIO;
+> > @@ -138,6 +174,7 @@ static int __init riscv_intc_init(struct device_node *node,
+> >  {
+> >  	int rc;
+> >  	unsigned long hartid;
+> > +	struct irq_chip *chip = &riscv_intc_chip;
+> 
+> https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#variable-declarations
+> 
+> Thanks
+> 
+>         tglx
 
