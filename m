@@ -1,319 +1,150 @@
-Return-Path: <devicetree+bounces-24130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24128-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 904D380E22B
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 03:47:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C60A80E227
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 03:47:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4475E282D01
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 02:47:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 586CE282C23
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 02:47:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0A333D9F;
-	Tue, 12 Dec 2023 02:47:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="k0IYPNrb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41B8D3D90;
+	Tue, 12 Dec 2023 02:47:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E24DF2;
-	Mon, 11 Dec 2023 18:47:42 -0800 (PST)
-X-UUID: ce307df8989811eeba30773df0976c77-20231212
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=rtUejzwvIPotNfGLjhuGc1HEgpLh9vDQzrSPNUvf5vQ=;
-	b=k0IYPNrbGrJReCD4oJFKlsjFvLywDC4MKkkfkPZXDTNjw/vAz9rwfmaKCzzzU3b8amKK3SCd1lOhAZS1dU7WKc2ns4A71uvc3Fx5eK4KwA9srsigUNJSbDqlJRE6z4FEAwhUH5Lj7Atk5edjAV8u5G2UGoo6NQE7/dGmG9zhFrI=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.35,REQID:f274b442-b30d-493c-ab24-615bd2ecfd80,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:5d391d7,CLOUDID:1d5d10bd-2ac7-4da2-9f94-677a477649d9,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
-	DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: ce307df8989811eeba30773df0976c77-20231212
-Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw02.mediatek.com
-	(envelope-from <yong.wu@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1455109051; Tue, 12 Dec 2023 10:47:35 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Tue, 12 Dec 2023 10:47:34 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Tue, 12 Dec 2023 10:47:33 +0800
-From: Yong Wu <yong.wu@mediatek.com>
-To: Rob Herring <robh+dt@kernel.org>, Sumit Semwal <sumit.semwal@linaro.org>,
-	<christian.koenig@amd.com>, Matthias Brugger <matthias.bgg@gmail.com>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
-	<conor+dt@kernel.org>, Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-	Brian Starkey <Brian.Starkey@arm.com>, John Stultz <jstultz@google.com>,
-	<tjmercier@google.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Yong Wu <yong.wu@mediatek.com>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-media@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-	<linaro-mm-sig@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, <jianjiao.zeng@mediatek.com>,
-	<kuohong.wang@mediatek.com>, Vijayanand Jitta <quic_vjitta@quicinc.com>,
-	Joakim Bech <joakim.bech@linaro.org>, Jeffrey Kardatzke
-	<jkardatzke@google.com>, Nicolas Dufresne <nicolas@ndufresne.ca>,
-	<ckoenig.leichtzumerken@gmail.com>
-Subject: [PATCH v3 7/7] dma_buf: heaps: secure_heap_mtk: Add a new CMA heap
-Date: Tue, 12 Dec 2023 10:46:07 +0800
-Message-ID: <20231212024607.3681-8-yong.wu@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231212024607.3681-1-yong.wu@mediatek.com>
-References: <20231212024607.3681-1-yong.wu@mediatek.com>
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7A93123;
+	Mon, 11 Dec 2023 18:47:26 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+	by ex01.ufhost.com (Postfix) with ESMTP id 00D1424E29B;
+	Tue, 12 Dec 2023 10:47:25 +0800 (CST)
+Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 12 Dec
+ 2023 10:47:24 +0800
+Received: from EXMBX066.cuchost.com (172.16.7.66) by EXMBX168.cuchost.com
+ (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 12 Dec
+ 2023 10:47:24 +0800
+Received: from EXMBX066.cuchost.com ([fe80::5947:9245:907e:339f]) by
+ EXMBX066.cuchost.com ([fe80::5947:9245:907e:339f%17]) with mapi id
+ 15.00.1497.044; Tue, 12 Dec 2023 10:47:24 +0800
+From: JeeHeng Sia <jeeheng.sia@starfivetech.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, "kernel@esmil.dk"
+	<kernel@esmil.dk>, "conor@kernel.org" <conor@kernel.org>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"paul.walmsley@sifive.com" <paul.walmsley@sifive.com>, "palmer@dabbelt.com"
+	<palmer@dabbelt.com>, "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
+	"mturquette@baylibre.com" <mturquette@baylibre.com>, "sboyd@kernel.org"
+	<sboyd@kernel.org>, "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+	"emil.renner.berthing@canonical.com" <emil.renner.berthing@canonical.com>,
+	Hal Feng <hal.feng@starfivetech.com>, Xingyu Wu <xingyu.wu@starfivetech.com>
+CC: "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>, Leyfoon Tan
+	<leyfoon.tan@starfivetech.com>
+Subject: RE: [PATCH v1 05/16] dt-bindings: clock: Add StarFive JH8100 System
+ clock and reset generator
+Thread-Topic: [PATCH v1 05/16] dt-bindings: clock: Add StarFive JH8100 System
+ clock and reset generator
+Thread-Index: AQHaKDp4JclXcVkKt02w6zhm85IHbbCfKBKAgAW3QzA=
+Date: Tue, 12 Dec 2023 02:47:23 +0000
+Message-ID: <090f2d44fc8b4113b5b5e002d15b0675@EXMBX066.cuchost.com>
+References: <20231206115000.295825-1-jeeheng.sia@starfivetech.com>
+ <20231206115000.295825-6-jeeheng.sia@starfivetech.com>
+ <1ebb4733-0f1d-46ea-b399-34af7df088ac@linaro.org>
+In-Reply-To: <1ebb4733-0f1d-46ea-b399-34af7df088ac@linaro.org>
+Accept-Language: en-US, zh-CN
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-ms-exchange-transport-fromentityheader: Hosted
+x-yovoleruleagent: yovoleflag
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
 
-Create a new MediaTek CMA heap from the CMA reserved buffer.
-
-In this heap, When the first allocating buffer, use cma_alloc to prepare
-whole the CMA range, then send its range to TEE to protect and manage.
-For the later allocating, we just adds the cma_used_size.
-
-When SVP done, cma_release will release the buffer, then kernel may
-reuse it.
-
-For the "CMA" secure heap, "struct cma *cma" is a common property, not just
-for MediaTek, so put it into "struct secure_heap" instead of our private
-data.
-
-Signed-off-by: Yong Wu <yong.wu@mediatek.com>
----
- drivers/dma-buf/heaps/Kconfig           |   2 +-
- drivers/dma-buf/heaps/secure_heap.h     |   4 +
- drivers/dma-buf/heaps/secure_heap_mtk.c | 119 +++++++++++++++++++++++-
- 3 files changed, 122 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/dma-buf/heaps/Kconfig b/drivers/dma-buf/heaps/Kconfig
-index 12962189878e..f117d91a0a9d 100644
---- a/drivers/dma-buf/heaps/Kconfig
-+++ b/drivers/dma-buf/heaps/Kconfig
-@@ -21,7 +21,7 @@ config DMABUF_HEAPS_SECURE
- 
- config DMABUF_HEAPS_SECURE_MTK
- 	bool "MediaTek DMA-BUF Secure Heap"
--	depends on DMABUF_HEAPS_SECURE && TEE=y
-+	depends on DMABUF_HEAPS_SECURE && DMA_CMA && TEE=y
- 	help
- 	  Enable secure dma-buf heaps for MediaTek platform. This heap is backed by
- 	  TEE client interfaces. If in doubt, say N.
-diff --git a/drivers/dma-buf/heaps/secure_heap.h b/drivers/dma-buf/heaps/secure_heap.h
-index 374fd276bdd7..9f80edcd3e1f 100644
---- a/drivers/dma-buf/heaps/secure_heap.h
-+++ b/drivers/dma-buf/heaps/secure_heap.h
-@@ -20,6 +20,10 @@ struct secure_heap {
- 
- 	const struct secure_heap_ops *ops;
- 
-+	struct cma		*cma;
-+	unsigned long		cma_paddr;
-+	unsigned long		cma_size;
-+
- 	void			*priv_data;
- };
- 
-diff --git a/drivers/dma-buf/heaps/secure_heap_mtk.c b/drivers/dma-buf/heaps/secure_heap_mtk.c
-index 2c6aaeaf469f..58148120f4ed 100644
---- a/drivers/dma-buf/heaps/secure_heap_mtk.c
-+++ b/drivers/dma-buf/heaps/secure_heap_mtk.c
-@@ -4,9 +4,11 @@
-  *
-  * Copyright (C) 2023 MediaTek Inc.
-  */
-+#include <linux/cma.h>
- #include <linux/dma-buf.h>
- #include <linux/err.h>
- #include <linux/module.h>
-+#include <linux/of_reserved_mem.h>
- #include <linux/slab.h>
- #include <linux/tee_drv.h>
- #include <linux/uuid.h>
-@@ -23,6 +25,13 @@ enum mtk_secure_mem_type {
- 	 * management is inside the TEE.
- 	 */
- 	MTK_SECURE_MEMORY_TYPE_CM_TZ	= 1,
-+	/*
-+	 * MediaTek dynamic chunk memory carved out from CMA.
-+	 * In normal case, the CMA could be used in kernel; When SVP start, we will
-+	 * allocate whole this CMA and pass whole the CMA PA and size into TEE to
-+	 * protect it, then the detail memory management also is inside the TEE.
-+	 */
-+	MTK_SECURE_MEMORY_TYPE_CM_CMA	= 2,
- };
- 
- enum mtk_secure_buffer_tee_cmd {
-@@ -32,6 +41,8 @@ enum mtk_secure_buffer_tee_cmd {
- 	 * [in]  value[0].a: The buffer size.
- 	 *       value[0].b: alignment.
- 	 * [in]  value[1].a: enum mtk_secure_mem_type.
-+	 * [in]  value[2].a: pa base in cma case.
-+	 *       value[2].b: The buffer size in cma case.
- 	 * [out] value[3].a: The secure handle.
- 	 */
- 	MTK_TZCMD_SECMEM_ZALLOC	= 0x10000, /* MTK TEE Command ID Base */
-@@ -52,6 +63,9 @@ struct mtk_secure_heap_data {
- 
- 	const enum mtk_secure_mem_type mem_type;
- 
-+	struct page		*cma_page;
-+	unsigned long		cma_used_size;
-+	struct mutex		lock; /* lock for cma_used_size */
- };
- 
- static int mtk_tee_ctx_match(struct tee_ioctl_version_data *ver, const void *data)
-@@ -126,6 +140,10 @@ static int mtk_tee_secure_memory(struct secure_heap *sec_heap, struct secure_buf
- 	params[1].attr = TEE_IOCTL_PARAM_ATTR_TYPE_VALUE_INPUT;
- 	params[1].u.value.a = data->mem_type;
- 	params[2].attr = TEE_IOCTL_PARAM_ATTR_TYPE_VALUE_INPUT;
-+	if (sec_heap->cma && data->mem_type == MTK_SECURE_MEMORY_TYPE_CM_CMA) {
-+		params[2].u.value.a = sec_heap->cma_paddr;
-+		params[2].u.value.b = sec_heap->cma_size;
-+	}
- 	params[3].attr = TEE_IOCTL_PARAM_ATTR_TYPE_VALUE_OUTPUT;
- 	ret = mtk_tee_service_call(data->tee_ctx, data->tee_session,
- 				   MTK_TZCMD_SECMEM_ZALLOC, params);
-@@ -162,6 +180,48 @@ static void mtk_secure_memory_free(struct secure_heap *sec_heap, struct secure_b
- {
- }
- 
-+static int mtk_secure_memory_cma_allocate(struct secure_heap *sec_heap,
-+					  struct secure_buffer *sec_buf)
-+{
-+	struct mtk_secure_heap_data *data = sec_heap->priv_data;
-+	int ret = 0;
-+	/*
-+	 * Allocate CMA only when allocating buffer for the first time, and just
-+	 * increase cma_used_size at the other time, Actually the memory
-+	 * allocating is within the TEE.
-+	 */
-+	mutex_lock(&data->lock);
-+	if (!data->cma_used_size) {
-+		data->cma_page = cma_alloc(sec_heap->cma, sec_heap->cma_size >> PAGE_SHIFT,
-+					   get_order(PAGE_SIZE), false);
-+		if (!data->cma_page) {
-+			ret = -ENOMEM;
-+			goto out_unlock;
-+		}
-+	} else if (data->cma_used_size + sec_buf->size > sec_heap->cma_size) {
-+		ret = -EINVAL;
-+		goto out_unlock;
-+	}
-+	data->cma_used_size += sec_buf->size;
-+
-+out_unlock:
-+	mutex_unlock(&data->lock);
-+	return ret;
-+}
-+
-+static void mtk_secure_memory_cma_free(struct secure_heap *sec_heap,
-+				       struct secure_buffer *sec_buf)
-+{
-+	struct mtk_secure_heap_data *data = sec_heap->priv_data;
-+
-+	mutex_lock(&data->lock);
-+	data->cma_used_size -= sec_buf->size;
-+	if (!data->cma_used_size)
-+		cma_release(sec_heap->cma, data->cma_page,
-+			    sec_heap->cma_size >> PAGE_SHIFT);
-+	mutex_unlock(&data->lock);
-+}
-+
- static int mtk_secure_heap_init(struct secure_heap *sec_heap)
- {
- 	struct mtk_secure_heap_data *data = sec_heap->priv_data;
-@@ -183,21 +243,76 @@ static struct mtk_secure_heap_data mtk_sec_heap_data = {
- 	.mem_type = MTK_SECURE_MEMORY_TYPE_CM_TZ,
- };
- 
-+static const struct secure_heap_ops mtk_sec_mem_ops_cma = {
-+	.heap_init		= mtk_secure_heap_init,
-+	.memory_alloc		= mtk_secure_memory_cma_allocate,
-+	.memory_free		= mtk_secure_memory_cma_free,
-+	.secure_the_memory	= mtk_tee_secure_memory,
-+	.unsecure_the_memory	= mtk_tee_unsecure_memory,
-+};
-+
-+static struct mtk_secure_heap_data mtk_sec_heap_data_cma = {
-+	.mem_type = MTK_SECURE_MEMORY_TYPE_CM_CMA,
-+};
-+
- static struct secure_heap mtk_secure_heaps[] = {
- 	{
- 		.name		= "secure_mtk_cm",
- 		.ops		= &mtk_sec_mem_ops,
- 		.priv_data	= &mtk_sec_heap_data,
- 	},
-+	{
-+		.name		= "secure_mtk_cma",
-+		.ops		= &mtk_sec_mem_ops_cma,
-+		.priv_data	= &mtk_sec_heap_data_cma,
-+	},
- };
- 
-+static int __init mtk_secure_cma_init(struct reserved_mem *rmem)
-+{
-+	struct mtk_secure_heap_data *data;
-+	struct secure_heap *sec_heap = mtk_secure_heaps, *sec_heap_cma = NULL;
-+	struct cma *sec_cma;
-+	int ret, i;
-+
-+	for (i = 0; i < ARRAY_SIZE(mtk_secure_heaps); i++, sec_heap++) {
-+		data = sec_heap->priv_data;
-+		if (data->mem_type == MTK_SECURE_MEMORY_TYPE_CM_CMA) {
-+			sec_heap_cma = sec_heap;
-+			break;
-+		}
-+	}
-+	if (!sec_heap_cma)
-+		return -EINVAL;
-+
-+	ret = cma_init_reserved_mem(rmem->base, rmem->size, 0, rmem->name,
-+				    &sec_cma);
-+	if (ret) {
-+		pr_err("%s: %s set up CMA fail\n", __func__, rmem->name);
-+		return ret;
-+	}
-+
-+	sec_heap_cma->cma = sec_cma;
-+	sec_heap_cma->cma_paddr = rmem->base;
-+	sec_heap_cma->cma_size = rmem->size;
-+	return 0;
-+}
-+
-+RESERVEDMEM_OF_DECLARE(secure_cma, "mediatek,dynamic-secure-region", mtk_secure_cma_init);
-+
- static int mtk_sec_heap_init(void)
- {
- 	struct secure_heap *sec_heap = mtk_secure_heaps;
-+	struct mtk_secure_heap_data *data;
- 	unsigned int i;
- 
--	for (i = 0; i < ARRAY_SIZE(mtk_secure_heaps); i++, sec_heap++)
--		secure_heap_add(sec_heap);
-+	for (i = 0; i < ARRAY_SIZE(mtk_secure_heaps); i++, sec_heap++) {
-+		data = sec_heap->priv_data;
-+		if (data->mem_type == MTK_SECURE_MEMORY_TYPE_CM_CMA && !sec_heap->cma)
-+			continue;
-+		if (!secure_heap_add(sec_heap))
-+			mutex_init(&data->lock);
-+	}
- 	return 0;
- }
- 
--- 
-2.25.1
-
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS3J6eXN6dG9mIEtvemxv
+d3NraSA8a3J6eXN6dG9mLmtvemxvd3NraUBsaW5hcm8ub3JnPg0KPiBTZW50OiBTYXR1cmRheSwg
+RGVjZW1iZXIgOSwgMjAyMyAxOjUzIEFNDQo+IFRvOiBKZWVIZW5nIFNpYSA8amVlaGVuZy5zaWFA
+c3RhcmZpdmV0ZWNoLmNvbT47IGtlcm5lbEBlc21pbC5kazsgY29ub3JAa2VybmVsLm9yZzsgcm9i
+aCtkdEBrZXJuZWwub3JnOw0KPiBrcnp5c3p0b2Yua296bG93c2tpK2R0QGxpbmFyby5vcmc7IHBh
+dWwud2FsbXNsZXlAc2lmaXZlLmNvbTsgcGFsbWVyQGRhYmJlbHQuY29tOyBhb3VAZWVjcy5iZXJr
+ZWxleS5lZHU7DQo+IG10dXJxdWV0dGVAYmF5bGlicmUuY29tOyBzYm95ZEBrZXJuZWwub3JnOyBw
+LnphYmVsQHBlbmd1dHJvbml4LmRlOyBlbWlsLnJlbm5lci5iZXJ0aGluZ0BjYW5vbmljYWwuY29t
+OyBIYWwgRmVuZw0KPiA8aGFsLmZlbmdAc3RhcmZpdmV0ZWNoLmNvbT47IFhpbmd5dSBXdSA8eGlu
+Z3l1Lnd1QHN0YXJmaXZldGVjaC5jb20+DQo+IENjOiBsaW51eC1yaXNjdkBsaXN0cy5pbmZyYWRl
+YWQub3JnOyBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsgbGludXgta2VybmVsQHZnZXIua2Vy
+bmVsLm9yZzsgbGludXgtY2xrQHZnZXIua2VybmVsLm9yZzsgTGV5Zm9vbiBUYW4NCj4gPGxleWZv
+b24udGFuQHN0YXJmaXZldGVjaC5jb20+DQo+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggdjEgMDUvMTZd
+IGR0LWJpbmRpbmdzOiBjbG9jazogQWRkIFN0YXJGaXZlIEpIODEwMCBTeXN0ZW0gY2xvY2sgYW5k
+IHJlc2V0IGdlbmVyYXRvcg0KPiANCj4gT24gMDYvMTIvMjAyMyAxMjo0OSwgU2lhIEplZSBIZW5n
+IHdyb3RlOg0KPiA+IEFkZCBiaW5kaW5ncyBmb3IgdGhlIFN5c3RlbSBjbG9ja3MgYW5kIHJlc2V0
+IGdlbmVyYXRvcg0KPiA+IChTWVNDUkcpIG9uIEpIODEwMCBTb0MuDQo+ID4NCj4gPiBTaWduZWQt
+b2ZmLWJ5OiBTaWEgSmVlIEhlbmcgPGplZWhlbmcuc2lhQHN0YXJmaXZldGVjaC5jb20+DQo+ID4g
+UmV2aWV3ZWQtYnk6IExleSBGb29uIFRhbiA8bGV5Zm9vbi50YW5Ac3RhcmZpdmV0ZWNoLmNvbT4N
+Cj4gPiAtLS0NCj4gDQo+IC4uLg0KPiANCj4gPiArICBjbG9ja3M6DQo+ID4gKyAgICBpdGVtczoN
+Cj4gPiArICAgICAgLSBkZXNjcmlwdGlvbjogTWFpbiBPc2NpbGxhdG9yICgyNCBNSHopDQo+ID4g
+KyAgICAgIC0gZGVzY3JpcHRpb246IEV4dGVybmFsIEkyUyBSeCBCQ0xLIGNsb2NrDQo+ID4gKyAg
+ICAgIC0gZGVzY3JpcHRpb246IEV4dGVybmFsIEkyUyBSeCBMUkNLIGNsb2NrDQo+ID4gKyAgICAg
+IC0gZGVzY3JpcHRpb246IEV4dGVybmFsIE1DTEsgY2xvY2sNCj4gPiArDQo+ID4gKyAgY2xvY2st
+bmFtZXM6DQo+ID4gKyAgICBpdGVtczoNCj4gPiArICAgICAgLSBjb25zdDogY2xrX29zYw0KPiA+
+ICsgICAgICAtIGNvbnN0OiBjbGtfaTJzcnhfYmNsa19leHQNCj4gPiArICAgICAgLSBjb25zdDog
+Y2xrX2kyc3J4X2xyY2tfZXh0DQo+ID4gKyAgICAgIC0gY29uc3Q6IGNsa19tY2xrX2V4dA0KPiAN
+Cj4gRHJvcCBjbGtfIHByZWZpeGVzIGV2ZXJ5d2hlcmUuDQpOb3RlZC4NCj4gDQo+ID4gKw0KPiA+
+ICsgICcjY2xvY2stY2VsbHMnOg0KPiA+ICsgICAgY29uc3Q6IDENCj4gPiArICAgIGRlc2NyaXB0
+aW9uOg0KPiA+ICsgICAgICBTZWUgPGR0LWJpbmRpbmdzL2Nsb2NrL3N0YXJmaXZlLGpoODEwMC1j
+cmcuaD4gZm9yIHZhbGlkIGluZGljZXMuDQo+ID4gKw0KPiA+ICsgICcjcmVzZXQtY2VsbHMnOg0K
+PiA+ICsgICAgY29uc3Q6IDENCj4gPiArICAgIGRlc2NyaXB0aW9uOg0KPiA+ICsgICAgICBTZWUg
+PGR0LWJpbmRpbmdzL3Jlc2V0L3N0YXJmaXZlLWpoODEwMC1jcmcuaD4gZm9yIHZhbGlkIGluZGlj
+ZXMuDQo+ID4gKw0KPiA+ICtyZXF1aXJlZDoNCj4gPiArICAtIGNvbXBhdGlibGUNCj4gPiArICAt
+IHJlZw0KPiA+ICsgIC0gY2xvY2tzDQo+ID4gKyAgLSBjbG9jay1uYW1lcw0KPiA+ICsgIC0gJyNj
+bG9jay1jZWxscycNCj4gPiArICAtICcjcmVzZXQtY2VsbHMnDQo+ID4gKw0KPiA+ICthZGRpdGlv
+bmFsUHJvcGVydGllczogZmFsc2UNCj4gPiArDQo+ID4gK2V4YW1wbGVzOg0KPiA+ICsgIC0gfA0K
+PiA+ICsgICAgI2luY2x1ZGUgPGR0LWJpbmRpbmdzL2Nsb2NrL3N0YXJmaXZlLGpoODEwMC1jcmcu
+aD4NCj4gPiArDQo+ID4gKyAgICBjbG9jay1jb250cm9sbGVyQDEyNmQwMDAwIHsNCj4gPiArICAg
+ICAgICAgICAgY29tcGF0aWJsZSA9ICJzdGFyZml2ZSxqaDgxMDAtc3lzY3JnIjsNCj4gDQo+IFVz
+ZSA0IHNwYWNlcyBmb3IgZXhhbXBsZSBpbmRlbnRhdGlvbi4NCk5vdGVkDQo+IA0KPiA+ICsgICAg
+ICAgICAgICByZWcgPSA8MHgxMjZkMDAwMCAweDEwMDAwPjsNCj4gPiArICAgICAgICAgICAgY2xv
+Y2tzID0gPCZjbGtfb3NjPiwgPCZjbGtfaTJzcnhfYmNsa19leHQ+LA0KPiA+ICsgICAgICAgICAg
+ICAgICAgICAgICA8JmNsa19pMnNyeF9scmNrX2V4dD4sIDwmY2xrX21jbGtfZXh0PjsNCj4gPiAr
+ICAgICAgICAgICAgY2xvY2stbmFtZXMgPSAiY2xrX29zYyIsICJjbGtfaTJzcnhfYmNsa19leHQi
+LA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICJjbGtfaTJzcnhfbHJja19leHQiLCAi
+Y2xrX21jbGtfZXh0IjsNCj4gPiArICAgICAgICAgICAgI2Nsb2NrLWNlbGxzID0gPDE+Ow0KPiA+
+ICsgICAgICAgICAgICAjcmVzZXQtY2VsbHMgPSA8MT47DQo+ID4gKyAgICB9Ow0KPiA+IGRpZmYg
+LS1naXQgYS9pbmNsdWRlL2R0LWJpbmRpbmdzL2Nsb2NrL3N0YXJmaXZlLGpoODEwMC1jcmcuaCBi
+L2luY2x1ZGUvZHQtYmluZGluZ3MvY2xvY2svc3RhcmZpdmUsamg4MTAwLWNyZy5oDQo+ID4gbmV3
+IGZpbGUgbW9kZSAxMDA2NDQNCj4gPiBpbmRleCAwMDAwMDAwMDAwMDAuLmU1YmI1ODhjZTc5OA0K
+PiA+IC0tLSAvZGV2L251bGwNCj4gPiArKysgYi9pbmNsdWRlL2R0LWJpbmRpbmdzL2Nsb2NrL3N0
+YXJmaXZlLGpoODEwMC1jcmcuaA0KPiA+IEBAIC0wLDAgKzEsMTIzIEBADQo+ID4gKy8qIFNQRFgt
+TGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wIE9SIE1JVCAqLw0KPiANCj4gSG93IGFib3V0IGtl
+ZXBpbmcgdGhlIHNhbWUgbGljZW5zZSBhcyBiaW5kaW5nPw0KU2hvdWxkbid0IGIgYSBwcm9ibGVt
+Lg0KPiANCj4gPiArLyoNCj4gPiArICogQ29weXJpZ2h0IChDKSAyMDIzIFN0YXJGaXZlIFRlY2hu
+b2xvZ3kgQ28uLCBMdGQuDQo+ID4gKyAqIFNpYSBKZWUgSGVuZyA8amVlaGVuZy5zaWFAc3RhcmZp
+dmV0ZWNoLmNvbT4NCj4gPiArICoNCj4gPiArICovDQo+ID4gKw0KPiANCj4gLi4uDQo+IA0KPiA+
+ICsjZGVmaW5lIFNZU0NSR19DTEtfTk5FX0lDR19FTgkJCQkJCTEwOA0KPiA+ICsNCj4gPiArI2Rl
+ZmluZSBTWVNDUkdfQ0xLX0VORAkJCQkJCQkxMDkNCj4gDQo+IERyb3AgZnJvbSBiaW5kaW5nIGhl
+YWRlci4NCkRvIHlvdSBtZWFuIGRvbuKAmXQgZGVmaW5lIHRoZSBudW1iZXIgb2YgY2xrIGluIHRo
+ZSBoZWFkZXI/IEknbGwgaGF2ZSB0byBkZWZpbmUNCkl0IGluIHRoZSBkcml2ZXIgdGhlbi4uDQo+
+IA0KPiA+ICsjZW5kaWYgLyogX19EVF9CSU5ESU5HU19DTE9DS19TVEFSRklWRV9KSDgxMDBfSF9f
+ICovDQo+IA0KPiAuLi4NCj4gDQo+ID4gKyAqLw0KPiA+ICsjZGVmaW5lIFNZU0NSR19SU1ROX1NZ
+U19TWVNDT04JCQkJCTANCj4gPiArI2RlZmluZSBTWVNDUkdfUlNUTl9DTEtfTU9ECQkJCQkxDQo+
+ID4gKyNkZWZpbmUgU1lTQ1JHX1JTVE5fR1BVCQkJCQkJMg0KPiA+ICsjZGVmaW5lIFNZU0NSR19S
+U1ROX0dQVV9TUFUJCQkJCTMNCj4gPiArI2RlZmluZSBTWVNDUkdfUlNUTl9HUFVfVFZTRU5TT1IJ
+CQkJNA0KPiA+ICsjZGVmaW5lIFNZU0NSR19SU1ROX1BQVV9PUF9OT1JFVF9HUFVfUkVTRVQJCQk1
+DQo+ID4gKyNkZWZpbmUgU1lTQ1JHX1JTVE5fTk5FCQkJCQkJNg0KPiA+ICsjZGVmaW5lIFNZU0NS
+R19SU1ROX0hEX0FVRElPCQkJCQk3DQo+ID4gKw0KPiA+ICsjZGVmaW5lIFNZU0NSR19SRVNFVF9O
+Ul9SRVNFVFMJCQkJCTgNCj4gDQo+IERyb3AgZnJvbSBiaW5kaW5nIGhlYWRlci4NCkRvIHlvdSBt
+ZWFuIGRvbuKAmXQgZGVmaW5lIHRoZSBudW1iZXIgb2YgcmVzZXQgaW4gdGhlIGhlYWRlcj8gSSds
+bCBoYXZlIHRvIGRlZmluZQ0KSXQgaW4gdGhlIGRyaXZlciB0aGVuLi4NCj4gDQo+ID4gKw0KPiA+
+ICsjZW5kaWYgLyogX19EVF9CSU5ESU5HU19SRVNFVF9TVEFSRklWRV9KSDgxMDBfSF9fICovDQo+
+IA0KPiBCZXN0IHJlZ2FyZHMsDQo+IEtyenlzenRvZg0KDQo=
 
