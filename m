@@ -1,109 +1,112 @@
-Return-Path: <devicetree+bounces-24493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24494-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26C2B80F540
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 19:10:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB12880F55F
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 19:19:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 582391C20A1C
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 18:10:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 902EB1F214AF
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 18:19:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1ABAC7E77B;
-	Tue, 12 Dec 2023 18:10:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HBhZqSFs"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1B1D7E781;
+	Tue, 12 Dec 2023 18:19:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1172ABC;
-	Tue, 12 Dec 2023 10:09:59 -0800 (PST)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-54ca43031d1so5698597a12.0;
-        Tue, 12 Dec 2023 10:09:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702404597; x=1703009397; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bzHpbohFT6LpAWNTUe1hh6CWPa5rN3o0qmOFe9ThREM=;
-        b=HBhZqSFs4+SVUCbqMTOEmXgA7KeSlfrsdPNA4RDwgvjWdoNjPvRoWAD+0aN2SLKRK/
-         bT2gb3v7Q74k5ePmzOYb+zbQYu2qFB7oPv5V2fFjCn7JGypEQkE/GMXi/aRbdT+BwMr/
-         gIH070wVKbsEN0Ol1e2kmc+hOZUUmCCG5DVaD/xPujjtQfRonwpWzTwH11FM/FdKdJjZ
-         DzkK3kBYBSxuMssXCyNCH04I68m4kVp7FMmNy8LQJhnF4dmsrpCBG28E1xe56fLy8bS+
-         nvSmU2pkRBFvZCPUIEGzYDvNGSf9J9ieb9Ik7Qm3VV+NIl1Ahee+AJl1YqfCmnJhV2y1
-         XOaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702404597; x=1703009397;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bzHpbohFT6LpAWNTUe1hh6CWPa5rN3o0qmOFe9ThREM=;
-        b=Wfo5q+ocHKUwim34fb4HKFRtOu14yuesPFUUHPtCzj7ahUI+wNHnWbU4ZAuPMGeV/Z
-         0sBUndZzRDEEeWhvHWmsSMaksBipVWYCHCWhlXIPM2e9JwZhQ5L5JIWrGXetBbZDJ9Hn
-         G8XQo/qJk7jT8OcfPt6wdjqmyuRt5Erd+vyTiCrycG3gAxkuzE8tpGfybHhHQAdZ90Be
-         8LjhSGB6hnDkJctAhnsfIob20FYVmXqjiBqwALneOgIF23rN9C+/WdO8ktsolO6cqNKG
-         Uji8vsoRYF6sNRak+/2yGvq1nfotKY2MCGPOoTIBUuNe1emp2HkuMJuVIebo41NL7jDO
-         BInA==
-X-Gm-Message-State: AOJu0YykG1mWFHcxdY1stj/GSxiaRMdaXlXXwA1Sj6KA95JPAiAIWkVs
-	9Mv5McnIt909qDgmkUdurgypmEqHEG6hBZDcOPg=
-X-Google-Smtp-Source: AGHT+IEJ+S2gVNDukxKxZq7wUSERI+JIQpfaGwh6jo/cYSszkFlbTba+OH3MZMwKSNWFKwcqQo8KEwSOpUZF6Gy8G3E=
-X-Received: by 2002:a17:907:7d8b:b0:a17:63b1:42a1 with SMTP id
- oz11-20020a1709077d8b00b00a1763b142a1mr4497018ejc.25.1702404597170; Tue, 12
- Dec 2023 10:09:57 -0800 (PST)
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0445E9B
+	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 10:19:30 -0800 (PST)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[IPv6:::1])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <l.stach@pengutronix.de>)
+	id 1rD7Ls-0006nY-1E; Tue, 12 Dec 2023 19:19:28 +0100
+Message-ID: <9089fb993eb0b2b630784e5b91cb88c1ff2f45fb.camel@pengutronix.de>
+Subject: Re: [PATCH 1/3] drm/mxsfb: Add an entry for "fsl,imx8mq-lcdif"
+From: Lucas Stach <l.stach@pengutronix.de>
+To: Fabio Estevam <festevam@gmail.com>, marex@denx.de
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, Fabio Estevam
+	 <festevam@denx.de>, kernel@puri.sm, dri-devel@lists.freedesktop.org, 
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, martink@posteo.de
+Date: Tue, 12 Dec 2023 19:19:25 +0100
+In-Reply-To: <20231211204138.553141-1-festevam@gmail.com>
+References: <20231211204138.553141-1-festevam@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231128005849.19044-6-andre.przywara@arm.com>
- <a14fb458-caf0-4a4a-b76b-c2503b0840d2@gmail.com> <20231211000528.57cb646c@minigeek.lan>
-In-Reply-To: <20231211000528.57cb646c@minigeek.lan>
-From: Maxim Kiselev <bigunclemax@gmail.com>
-Date: Tue, 12 Dec 2023 21:09:45 +0300
-Message-ID: <CALHCpMjz4YiE_=6Cxq7RqF_3qPaw8UCA=6eLy9ZZuofRhr7mcA@mail.gmail.com>
-Subject: Re: [PATCH v3 5/6] thermal: sun8i: add support for H616 THS controller
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: anarsoul@gmail.com, bob@electricworry.net, conor+dt@kernel.org, 
-	daniel.lezcano@linaro.org, devicetree@vger.kernel.org, 
-	jernej.skrabec@gmail.com, krzysztof.kozlowski+dt@linaro.org, 
-	linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org, 
-	linux-sunxi@lists.linux.dev, lukasz.luba@arm.com, martin.botka@somainline.org, 
-	rafael@kernel.org, robh+dt@kernel.org, rui.zhang@intel.com, 
-	samuel@sholland.org, tiny.windzz@gmail.com, wens@csie.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-=D0=BF=D0=BD, 11 =D0=B4=D0=B5=D0=BA. 2023=E2=80=AF=D0=B3. =D0=B2 02:48, And=
-re Przywara <andre.przywara@arm.com>:
->
-> On Sat, 9 Dec 2023 13:44:34 +0300
-> Maksim Kiselev <bigunclemax@gmail.com> wrote:
->
-> Hi Maksim,
->
-> > Hi Martin, Andre.
-> >
-> > May I inquire? Why do we need a separate sun50i_h616_ths_calibrate()
-> > function? Why can't we just extend an existing sun50i_h6_ths_calibrate(=
-)?
-> >
-> > At my glance the calculations in both functions are the same. We just
-> > need to handle a special case for the 4th sensor.
->
-> You seem to be right, they are indeed the same, just written slightly
-> differently. Do you already have any patches that unify that?
+Hi Fabio,
 
-No, I don't have any patches for that yet. But I can do it if you told
-me where to
-send the patch. Should I put it here as a reply?
+Am Montag, dem 11.12.2023 um 17:41 -0300 schrieb Fabio Estevam:
+> From: Fabio Estevam <festevam@denx.de>
+>=20
+> On i.MX6SX, the LCDIF has an associated power domain.
+>=20
+> However, i.MX8MQ does not have an LCDIF power domain.
+>=20
+> imx8mq.dtsi has the following compatible string:
+>=20
+> compatible =3D "fsl,imx8mq-lcdif", "fsl,imx6sx-lcdif";
+>=20
+> which causes the following dt-schema warning:
+>=20
+> imx8mq-evk.dtb: lcd-controller@30320000: 'power-domains' is a required pr=
+operty
+> 	from schema $id: http://devicetree.org/schemas/display/fsl,lcdif.yaml#
+>=20
+> To prevent this problem, add a specific fsl,imx8mq-lcdif entry in
+> the driver to properly handle such a power-domain requirement difference.
+>=20
+I don't really like this series. While we don't make any strong
+guarantees in this way, it breaks booting older kernels with a new DT.
 
-> I don't know if Martin or I find time to do it this week, but we could
-> also optimise this later.
->
-> Cheers,
-> Andre
+As this driver patch shows, there are no actual differences in the IP
+block between i.MX6SX and i.MX8MQ, it's just the SoC integration that's
+different, where in one SoC the controller is located in a power
+domain, while it isn't in another.
 
-Best regards,
-Maksim
+To me this smells like making changes to parts that don't really care
+about those differences. The thing that cares about the difference is
+the DT schema validation and I feel like there must be a better way to
+describe this in the schema than to patch both driver and DT just to
+accommodate a SoC integration difference. Is there a way to make the
+power-domain property not dependent on the IP block, but the machine
+compatible?
+
+Regards,
+Lucas
+
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> ---
+>  drivers/gpu/drm/mxsfb/mxsfb_drv.c | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/drivers/gpu/drm/mxsfb/mxsfb_drv.c b/drivers/gpu/drm/mxsfb/mx=
+sfb_drv.c
+> index b483ef48216a..ac9ce3b45b38 100644
+> --- a/drivers/gpu/drm/mxsfb/mxsfb_drv.c
+> +++ b/drivers/gpu/drm/mxsfb/mxsfb_drv.c
+> @@ -340,6 +340,7 @@ static const struct of_device_id mxsfb_dt_ids[] =3D {
+>  	{ .compatible =3D "fsl,imx23-lcdif", .data =3D &mxsfb_devdata[MXSFB_V3]=
+, },
+>  	{ .compatible =3D "fsl,imx28-lcdif", .data =3D &mxsfb_devdata[MXSFB_V4]=
+, },
+>  	{ .compatible =3D "fsl,imx6sx-lcdif", .data =3D &mxsfb_devdata[MXSFB_V6=
+], },
+> +	{ .compatible =3D "fsl,imx8mq-lcdif", .data =3D &mxsfb_devdata[MXSFB_V6=
+], },
+>  	{ /* sentinel */ }
+>  };
+>  MODULE_DEVICE_TABLE(of, mxsfb_dt_ids);
+
 
