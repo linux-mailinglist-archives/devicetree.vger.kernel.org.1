@@ -1,156 +1,149 @@
-Return-Path: <devicetree+bounces-24238-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24239-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB0B880E6EB
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 09:56:00 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 998EE80E6FA
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 10:01:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 40A23B21054
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 08:55:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 264E6B20F66
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 09:01:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8569643AA5;
-	Tue, 12 Dec 2023 08:55:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5438758116;
+	Tue, 12 Dec 2023 09:01:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="bWViSQ/W";
-	dkim=permerror (0-bit key) header.d=linaro.org header.i=@linaro.org header.b="RMfAAful"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ndUQ1YDJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AECB10A;
-	Tue, 12 Dec 2023 00:55:50 -0800 (PST)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BC8W0X3023252;
-	Tue, 12 Dec 2023 08:55:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:content-type:mime-version:list-id:content-transfer-encoding; s=
-	qcppdkim1; bh=lDPE/Wh8ZqRTx07oUVbXiwpN0yIqml4Pf3dHashn5bE=; b=bW
-	ViSQ/WzhrjABmZ/SeOZc8o1I9kahz/MBn50s8TSRoKAMWVOnbIPva6rQT/8hEjkl
-	oQuy9sm2fSdI8J/1GXqypQDpTHY7dKxcT+WbROcWd/evAmUUv4Y2LP6GB5Gkt3gT
-	QQ3YospkH3SXUMub9Xnq8PGjApQNPx+t8ZW5lWF3GUOLHYKpY8l03H+3p4XX0zOa
-	beJTsDkLIYDXmB7pIj70SFdXPEpNEpo/14Rk4JnDTo6a33C/nH3Pz9W165e83Ie2
-	ndAA32mBXZFgvWroEk3I8B7NUepKqTmhQf+3+mrWFJNvyNCj8NYpjmBCPoXeiFa/
-	ctHrUPipXVzJ/Exffx2w==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uxa8jh7b8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 12 Dec 2023 08:55:39 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BC8tcdr014732
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 12 Dec 2023 08:55:38 GMT
-Received: from hu-omprsing-hyd.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Tue, 12 Dec 2023 00:55:32 -0800
-From: Om Prakash Singh <quic_omprsing@quicinc.com>
-To: quic_omprsing@quicinc.com, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc: neil.armstrong@linaro.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
-        linux-kernel@vger.kernel.org, marijn.suijten@somainline.org,
-        vkoul@kernel.org, cros-qcom-dts-watchers@chromium.org,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH] dt-bindings: crypto: qcom-qce: document the SM8650 crypto engine
-Date: Tue, 12 Dec 2023 14:24:54 +0530
-Message-Id: <20231025-topic-sm8650-upstream-bindings-qce-v1-1-7e30dba20dbf@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231212085454.1238896-1-quic_omprsing@quicinc.com>
-References: <20231212085454.1238896-1-quic_omprsing@quicinc.com>
-Content-Type: text/plain; charset="utf-8"
-X-Patchwork-Submitter: Neil Armstrong <neil.armstrong@linaro.org>
-X-Patchwork-Id: 13435556
-X-Patchwork-Delegate: herbert@gondor.apana.org.au
-Received: from vger.kernel.org (vger.kernel.org [23.128.96.18]) by smtp.lore.kernel.org (Postfix) with ESMTP id 81C94C0032E for <linux-crypto@archiver.kernel.org>; Wed, 25 Oct 2023 07:28:31 +0000 (UTC)
-Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand id S232579AbjJYH2a (ORCPT <rfc822;linux-crypto@archiver.kernel.org>); Wed, 25 Oct 2023 03:28:30 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d]) by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75E15DE for <linux-crypto@vger.kernel.org>; Wed, 25 Oct 2023 00:28:26 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-4083f613272so44979505e9.1 for <linux-crypto@vger.kernel.org>; Wed, 25 Oct 2023 00:28:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google; t=1698218905; x=1698823705; darn=vger.kernel.org; h=cc:to:message-id:content-transfer-encoding:mime-version:subject :date:from:from:to:cc:subject:date:message-id:reply-to; bh=JJ2oRpaoJhce9I8GPs6HN/A2iLP6BscGnxopX3PgLBM=; b=RMfAAfulNGvcxjip3liXEbYW6VGMPpYhK0i00RfK4zZCK2Kxo1E8L5r007nG+t43Ig ZaP9QFFJ3BGlfXEEmA28ckUpebTbOvdwYb77rWLgIYywx26DaM+6hiYP+gI6LOHf7oK3 kYBR/ynzHFeZqoPrywRXIBgKrRn/Y37dsaGEj9LspbRdXhh0KdQGAdShtVfu+dMLnH6J JJGNy8wIxtbut+BErM0XWn8E3OfOz3Hw/xfGN8NhzGzmJdSntLoPTTVXKOte6o8APvtF KyVetCh5wcLze81nvSBmwnfaYs6dQgvkGHkxe7Xk7l5Z5uhwYQkzf4o8kyVdJ/RcayXr em7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=1e100.net; s=20230601; t=1698218905; x=1698823705; h=cc:to:message-id:content-transfer-encoding:mime-version:subject :date:from:x-gm-message-state:from:to:cc:subject:date:message-id :reply-to; bh=JJ2oRpaoJhce9I8GPs6HN/A2iLP6BscGnxopX3PgLBM=; b=WGLmRRc6B2A2DOSHqbeYatw2q0Fype1/JBBbk78GBn//3VP4F5jgU1nXizXXuGj7Tj UAlrjHEC/4zLVpzNzC5UXdYnIW3UXiLtitIeQBsGQT0cX1rIoBA0KZWRJyPHUDABzQLl R79OB31Ak/WA4Cj9LeoIbp6dQkR+F8VIqz2/+deemVGagvgPJeJOEJOBH4erxT3dlK/k noKrD1twSY7GHW134wy8Us25tqOGqAzxd3lx8DE41/Bp+jotVMuEMu1AXH9Vx5PwPQSo 0TmvhKrgffb5jbsxMcdA5PlRATQa6Rdyrt/ibWsE79Qvwy1CXPMF9uR/RVL7QjAwqhbV /9Mg==
-X-Gm-Message-State: AOJu0Yy/rM5A8Olzgwl87vMgLyA2L1OPlqycgDzsn/pm1nEC9zuhrwJu Qj7sIHqvecSBgvcXURqzbT0e4Q==
-X-Google-Smtp-Source: AGHT+IFor3h+dAr5oQsSJ1vHc/MU2j9muM4tBS5eoWssbySl5NgMcsBNmIBjd7BJk1YIpCgKCjIEkg==
-X-Received: by 2002:a05:600c:198a:b0:3fb:a0fc:1ba1 with SMTP id t10-20020a05600c198a00b003fba0fc1ba1mr11964689wmq.35.1698218904902; Wed, 25 Oct 2023 00:28:24 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a]) by smtp.gmail.com with ESMTPSA id r9-20020a05600c320900b0040644e699a0sm18495839wmp.45.2023.10.25.00.28.23 (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256); Wed, 25 Oct 2023 00:28:24 -0700 (PDT)
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C22DB7
+	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 01:01:29 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-40c38e292c8so18337525e9.0
+        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 01:01:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702371688; x=1702976488; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JnGXXRX/LoA3Wi5ltjflr6CxLJue6XIF44P2g9HyreM=;
+        b=ndUQ1YDJya5qjvbjFtjDmLo/YGwxDKlMEv+FDtZvSc7RIzK+Hw4OLu5yj3wLqKUMBm
+         l8fHneODk91o3p42f2X025iNbQa9oJA9V7rZBcniAVLhfGdogLtlO0R0HEDWEQPhC47x
+         VNxrmtguRnnQnyDIMczH6M0kuTthRVUBa/fB16tcLX11+yPAsjQPnIMaDJ6CK23+bVEW
+         blsvSoq8Ou/jA9chvDDactVv2nLfBVqPl4qYEnhf/Np6Zvowzpjv+CMnxfuSurSDslX7
+         Iq7s/QakH6rM7L6pIqwCKKnbUkKHgzFetPlCHRMMA15yeeHHtlXvxPg38xMgZivGZHlu
+         jGuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702371688; x=1702976488;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JnGXXRX/LoA3Wi5ltjflr6CxLJue6XIF44P2g9HyreM=;
+        b=vCXHgRj9ricHsU+JyYtvEaIYDg+k9u7x8KOPp/8Fhl8sDPjtE9nnNtgfwl0cpA9ywr
+         Sm2UzsfjWNfiw73jwIyZRPLq0hC/yz+lLu0tiYE0coWMQ2c4aioxRqKT5BA7le+xbNHO
+         PG9BhFW9WE2AUmVKI0V5X/OAskLga1Fj2K48SYXEsdeQp5ou2JZZYp6Eb/k5KvVC7bf0
+         T6csQ2RM5rcqhZdsAgV29Br1Syi+1PGeaZfE2KNVQzxcTBXgnYiIwexTNbsgdm8SF9dd
+         /753Cc9itjd1db/0zY+/OSIYust8Fyb3miHsDG8mCTpCXmWAnPm36PaM1HbCjbktBkoS
+         PXpg==
+X-Gm-Message-State: AOJu0YwK+CyhR0OiTxrsxDsjt7QGH8dNVPSo8cT3aKOpHI9EKwnZVoF8
+	VXnTuHWMZtsc40K7IfGT2jafRQ==
+X-Google-Smtp-Source: AGHT+IHzGc9ndXsaeQxMiHI1uY7kX+MP+eGDl8JsYH+8qfBiJLUkfPM6+uNX+3ExrX7GOuLJAJC3kw==
+X-Received: by 2002:a1c:720f:0:b0:40b:5e56:7b68 with SMTP id n15-20020a1c720f000000b0040b5e567b68mr2733691wmc.177.1702371687699;
+        Tue, 12 Dec 2023 01:01:27 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id bg16-20020a05600c3c9000b0040c517d090esm1351862wmb.15.2023.12.12.01.01.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Dec 2023 01:01:27 -0800 (PST)
+Message-ID: <cb28ca67-8648-4199-92d0-e3129277b624@linaro.org>
+Date: Tue, 12 Dec 2023 10:01:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1154;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=BOUjaS/EmVt+3/Odcqx3EdTXwZy8c1+gLrnQRALTOxs=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlOMOXdANPwSzrGljuoM1hjjOOdVulE+eo81QTVr/y
- j+OOf0iJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZTjDlwAKCRB33NvayMhJ0WqgEA
- CTcnEC2yItqtgysd1O56cU5W92ZUXW86INCYQjp3ThOJ3nLtWb5K2hvzXSBW4ubWFln70So8vEh5LF
- hgZZB3TdAnmNb7NPrSoaCd3U4VpKLEwZwq7VYqMjQFxcONA5s+N1vWw1EM72aml8JRYDAAeFzJJx1c
- vzszHpHFTDRiWP3co7c8NLlSU0WBYemhNCQ+ozyQ9wZU78pVI0Pp2KNE9F3c1D5Zf1Q4XOUJ6LOnq8
- 5DmD+pPCnhRKniKxuxPgQ79jJUKJcZvd91B0ICIfvRLke4Skaut7WcBhbN7VHhx+99OXB/rcTVZiS7
- qIBx+l62bWffXp+9lhX+DrOD+3kIRwUvNPQYEl+e+182m53WXwCCgtorWdGXEPISNDAT81evKq983o
- iLkycqxxu3vIPu+Tm2iRvIfSG1PSBrboziwCCZMMANDi8/GVXC2hei9yhSKvIm9YbnzIgYsQtEN6pO
- oF9oCXN/5FL4GOkLZumbu95Np5U1roLXe0796nVvUQJ8Wlb/dXoZ6N0cbx60XiOnGF+i0cjnlbMrKF
- ozKO9GjtX21GBKIo6rWy7X4lBU9GdyISFSFH8rDZp8akS6tUVLHaLzMG+gjd/euckYDPUzbEF5eGLw
- 3yV/L+me0mhqnA5imKcj2KN7BFleyf3XTg8u8ipK2TsjFr1uprZjispQgpuw==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp; fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
-Precedence: bulk
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: MFm6lAxEwKdo7n0FGVAGyt2JICeAYwRF
-X-Proofpoint-ORIG-GUID: MFm6lAxEwKdo7n0FGVAGyt2JICeAYwRF
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
- impostorscore=0 clxscore=1011 phishscore=0 spamscore=0 mlxscore=0
- lowpriorityscore=0 bulkscore=0 adultscore=0 priorityscore=1501
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2312120070
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: add Transpeed
+Content-Language: en-US
+To: Andre Przywara <andre.przywara@arm.com>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>
+Cc: Icenowy Zheng <uwu@icenowy.me>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+References: <20231212010859.11571-1-andre.przywara@arm.com>
+ <20231212010859.11571-2-andre.przywara@arm.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231212010859.11571-2-andre.przywara@arm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Neil Armstrong <neil.armstrong@linaro.org>
+On 12/12/2023 02:08, Andre Przywara wrote:
+> This is a name used by some Chinese TV boxes, add it to the bindings.
+> 
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index 309b94c328c84..d9dd3f929cdcf 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -1438,6 +1438,8 @@ patternProperties:
+>      description: Traverse Technologies Australia Pty Ltd
+>    "^tronfy,.*":
+>      description: Tronfy
+> +  "^transpeed,.*":
+> +    description: Transpeed
 
-Document the crypto engine on the SM8650 Platform.
-
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-Acked-by: Rob Herring <robh@kernel.org>
----
-For convenience, a regularly refreshed linux-next based git tree containing
-all the SM8650 related work is available at:
-https://git.codelinaro.org/neil.armstrong/linux/-/tree/topic/sm85650/upstream/integ
----
- Documentation/devicetree/bindings/crypto/qcom-qce.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-
----
-base-commit: fe1998aa935b44ef873193c0772c43bce74f17dc
-change-id: 20231016-topic-sm8650-upstream-bindings-qce-c6ae7eda5cba
+Please keep alphabetical order.
 
 Best regards,
-
-diff --git a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
-index 8e665d910e6e..eeb8a956d7cb 100644
---- a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
-+++ b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
-@@ -48,6 +48,7 @@ properties:
-               - qcom,sm8350-qce
-               - qcom,sm8450-qce
-               - qcom,sm8550-qce
-+              - qcom,sm8650-qce
-           - const: qcom,sm8150-qce
-           - const: qcom,qce
- 
+Krzysztof
 
 
