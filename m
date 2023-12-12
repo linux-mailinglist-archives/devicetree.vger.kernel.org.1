@@ -1,114 +1,188 @@
-Return-Path: <devicetree+bounces-24507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24508-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B72C080F627
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 20:11:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E523F80F62A
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 20:11:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B8041F21510
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 19:11:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5F39A1F21574
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 19:11:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1CC880057;
-	Tue, 12 Dec 2023 19:11:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2EFD81E2D;
+	Tue, 12 Dec 2023 19:11:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="AB8mY2O5"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="H0v2wAht"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93C9B9F;
-	Tue, 12 Dec 2023 11:11:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=zu77ILlFi8UZdCwbbdfAli/r3ogJZ+gYD8KfnKz3Xto=; b=AB8mY2O5mM4iFFqvSp5DxuKAuA
-	3UDwlqlPYgVWn6YxS3AaRoWtBp9CQ68IQ0DuFL02tdbw+EX/7Q9AaDDztULKReD7U0zeTHDb2SiAB
-	Xg7P+/CZ2c9W/af8rDdr8aPb8tjeOcQmIxUL942L/03Y9eh5FOY9CVSHSflzZ1KrEGb2POHKc1+dM
-	2lpJJUYMMtLR9A2lEnef9sftipoOsK6cfi21cm1GJaxExy53Xap7TF+mAgbvnuc9PMVdBb7VQpEK+
-	ofcLhNWqlIRrRXqDQJXBC4Je4I14PQRM4wA1HEEiN50g5f21yZ40gweyU+u3kXzwIDQoZRw3CcnRu
-	bSHtO2jQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:41348)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1rD89y-0007IH-0F;
-	Tue, 12 Dec 2023 19:11:14 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1rD89z-0000h5-Ik; Tue, 12 Dec 2023 19:11:15 +0000
-Date: Tue, 12 Dec 2023 19:11:15 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc: Luo Jie <quic_luoj@quicinc.com>, agross@kernel.org,
-	andersson@kernel.org, konrad.dybcio@linaro.org, davem@davemloft.net,
-	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, andrew@lunn.ch, hkallweit1@gmail.com,
-	robert.marko@sartura.hr, linux-arm-msm@vger.kernel.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, quic_srichara@quicinc.com
-Subject: Re: [PATCH v2 1/5] net: mdio: ipq4019: move eth_ldo_rdy before MDIO
- bus register
-Message-ID: <ZXiwU7XnIeSY1NG4@shell.armlinux.org.uk>
-References: <20231212115151.20016-1-quic_luoj@quicinc.com>
- <20231212115151.20016-2-quic_luoj@quicinc.com>
- <20231212135001.6bf40e4d@device.home>
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5349F9F;
+	Tue, 12 Dec 2023 11:11:34 -0800 (PST)
+Received: from localhost.localdomain (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 40DE266F;
+	Tue, 12 Dec 2023 20:10:46 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1702408246;
+	bh=Mvxpfkt4QJu9OaeGlUiFy6Lp9cfKO2PqutrYstVzaNk=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=H0v2wAhteXh6yTzZQ4JSLud4eHmGonTNc3YT8gvUGMrcJGL3YBCyKutLDX7fa/b7I
+	 Jc8tBokYGPD5vtRgqlBeukUSdvyNA26LANEFgy1KCeyv/IYOTcvImZNFmbsJHojDbM
+	 yaViav3o1FzsWVzIBhlND1hclDNTSKBe4mo2GGiQ=
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+	linux-media@vger.kernel.org,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	devicetree@vger.kernel.org,
+	Lee Jackson <lee.jackson@arducam.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v7 1/2] media: dt-bindings: Add OmniVision OV64A40
+Date: Tue, 12 Dec 2023 20:11:16 +0100
+Message-ID: <20231212191117.133868-2-jacopo.mondi@ideasonboard.com>
+X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20231212191117.133868-1-jacopo.mondi@ideasonboard.com>
+References: <20231212191117.133868-1-jacopo.mondi@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231212135001.6bf40e4d@device.home>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Transfer-Encoding: 8bit
 
-On Tue, Dec 12, 2023 at 01:50:01PM +0100, Maxime Chevallier wrote:
-> Hello,
-> 
-> On Tue, 12 Dec 2023 19:51:46 +0800
-> Luo Jie <quic_luoj@quicinc.com> wrote:
-> > @@ -252,11 +244,32 @@ static int ipq4019_mdio_probe(struct platform_device *pdev)
-> >  	if (IS_ERR(priv->mdio_clk))
-> >  		return PTR_ERR(priv->mdio_clk);
-> >  
-> > -	/* The platform resource is provided on the chipset IPQ5018 */
-> > -	/* This resource is optional */
-> > -	res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
-> > -	if (res)
-> > -		priv->eth_ldo_rdy = devm_ioremap_resource(&pdev->dev, res);
-> > +	/* These platform resources are provided on the chipset IPQ5018 or
-> > +	 * IPQ5332.
-> > +	 */
-> > +	/* This resource are optional */
-> > +	for (index = 0; index < ETH_LDO_RDY_CNT; index++) {
-> > +		res = platform_get_resource(pdev, IORESOURCE_MEM, index + 1);
-> > +		if (res) {
-> > +			priv->eth_ldo_rdy[index] = devm_ioremap(&pdev->dev,
-> > +								res->start,
-> > +								resource_size(res));
-> 
-> You can simplify that sequence by using
-> devm_platform_get_and_ioremap_resource(), which will do both the
-> platform_get_resource and the devm_ioremap at once for you.
+Add bindings for OmniVision OV64A40.
 
-Sadly it can't if resources are optional. __devm_ioremap_resource()
-which will be capped by devm_platform_get_and_ioremap_resource() will
-be passed a NULL 'res', which will lead to:
+Co-developed-by: Lee Jackson <lee.jackson@arducam.com>
+Signed-off-by: Lee Jackson <lee.jackson@arducam.com>
+Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+---
+v6->v7:
+- Make bus-type and data-lanes mandatory
+- Add Lee's Signed-off-by to comply with process
 
-        if (!res || resource_type(res) != IORESOURCE_MEM) {
-                dev_err(dev, "invalid resource %pR\n", res);
-                return IOMEM_ERR_PTR(-EINVAL);
-        }
+v5->v6:
+- Make link-frequencies mandatory as requested by Sakari
+---
+ .../bindings/media/i2c/ovti,ov64a40.yaml      | 103 ++++++++++++++++++
+ 1 file changed, 103 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov64a40.yaml
 
-There isn't an "optional" version of
-devm_platform_get_and_ioremap_resource().
+diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov64a40.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov64a40.yaml
+new file mode 100644
+index 000000000000..2b6143aff391
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov64a40.yaml
+@@ -0,0 +1,103 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/ovti,ov64a40.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: OmniVision OV64A40 Image Sensor
++
++maintainers:
++  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
++
++allOf:
++  - $ref: /schemas/media/video-interface-devices.yaml#
++
++properties:
++  compatible:
++    const: ovti,ov64a40
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  avdd-supply:
++    description: Analog voltage supply, 2.8 volts
++
++  dvdd-supply:
++    description: Digital core voltage supply, 1.1 volts
++
++  dovdd-supply:
++    description: Digital I/O voltage supply, 1.8 volts
++
++  powerdown-gpios:
++    maxItems: 1
++
++  reset-gpios:
++    maxItems: 1
++
++  port:
++    $ref: /schemas/graph.yaml#/$defs/port-base
++    additionalProperties: false
++
++    properties:
++      endpoint:
++        $ref: /schemas/media/video-interfaces.yaml#
++        additionalProperties: false
++
++        properties:
++          bus-type:
++            enum:
++              - 1 # MIPI CSI-2 C-PHY
++              - 4 # MIPI CSI-2 D-PHY
++          data-lanes: true
++          link-frequencies: true
++          clock-noncontinuous: true
++          remote-endpoint: true
++
++        required:
++          - bus-type
++          - data-lanes
++          - link-frequencies
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - port
++
++unevaluatedProperties: false
++
++examples:
++  - |
++      #include <dt-bindings/gpio/gpio.h>
++
++      i2c {
++          #address-cells = <1>;
++          #size-cells = <0>;
++
++          camera@36 {
++              compatible = "ovti,ov64a40";
++              reg = <0x36>;
++              clocks = <&camera_clk>;
++              dovdd-supply = <&vgen4_reg>;
++              avdd-supply = <&vgen3_reg>;
++              dvdd-supply = <&vgen2_reg>;
++              powerdown-gpios = <&gpio1 9 GPIO_ACTIVE_HIGH>;
++              reset-gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
++              rotation = <180>;
++              orientation = <2>;
++
++              port {
++                  endpoint {
++                      remote-endpoint = <&mipi_csi2_in>;
++                      bus-type = <4>;
++                      data-lanes = <1 2 3 4>;
++                      link-frequencies = /bits/ 64 <456000000>;
++                  };
++              };
++          };
++      };
++
++...
+--
+2.41.0
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
