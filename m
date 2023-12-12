@@ -1,429 +1,287 @@
-Return-Path: <devicetree+bounces-24278-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24279-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DABC780E95B
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 11:41:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF2B580E968
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 11:45:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 53A171F213FB
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 10:41:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8969C28168C
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 10:45:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 159A45C09C;
-	Tue, 12 Dec 2023 10:41:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78E6E5C8FF;
+	Tue, 12 Dec 2023 10:45:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="iWp10SHZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TXZFx4aE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [IPv6:2a00:1098:ed:100::25])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 973D79F;
-	Tue, 12 Dec 2023 02:41:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1702377684;
-	bh=Pe5ciwL3SPsQpwVq7FUVuzFvF3mRvfpnvBCGZoOnIj4=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=iWp10SHZ7U0fy9oHiQPf+Bu1hzpR/nvJm0FgbUzaktdMaV6R3gVCxCgnr4aODxZpU
-	 yVo1710KxH7lY9hmjnNH3G6qrnftYxlGoyefqHtNzJnzcD66I5wpSvtqGe8ytUlpkH
-	 fqaobWmBwxW2CJAJhRURjo3BlJ2lkrphPFGeZnfs06EVwpTaSEb5/wG0vAY9G19vvD
-	 g8SrROvGOFLGrLU1yqZerVArOb3FFtYUte5q2HACceZK3cVW4I2adLhUG17uyjwDma
-	 JHnumcJqnxxKnbtqyDIHO/3LC8GkwEyeC0yKFR5ADVBuznHkFsR9+G1eCThsdDYJyf
-	 5PP9iklPRW6pw==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 38DB73781453;
-	Tue, 12 Dec 2023 10:41:23 +0000 (UTC)
-Message-ID: <d5d0d01f-7df1-451a-a4bc-4c85f31b03db@collabora.com>
-Date: Tue, 12 Dec 2023 11:41:22 +0100
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FE87A0;
+	Tue, 12 Dec 2023 02:45:08 -0800 (PST)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-a1f8f470903so311201366b.1;
+        Tue, 12 Dec 2023 02:45:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702377906; x=1702982706; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jDoKshOkT4oCICh2o81EREp905fbii0tDR9Si3tjgWs=;
+        b=TXZFx4aEkbGbnwDXU76390wyQvFqwgKUOEytwEa9STZPVS76aJLLpgWlciCY19cIAd
+         4TfdiUQBU+eYEThjCcoChTVkCix/WVdNHHk2ApkyGCANRcxo99yX7cW9sNWVjCNVYDCR
+         xX1ax1gfCxAhbpA9yBAXRbjgtu2flZ9myVtTXbp22aWazH7UsTZ/k28eEIPPMEl9vPCx
+         IlEFHaL8G75gYLxBHJAhTVbYpifgwsfE10gEqff9Dj8vcFm7ys+fVI9xq2KK33CM297T
+         hfRs2zAbCAJRqbd3nZiA3j/l1cgMQ9v9fDpk7hsd00MRYjD9jaWWCi7yOvXAcKIFj82Y
+         38xg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702377906; x=1702982706;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jDoKshOkT4oCICh2o81EREp905fbii0tDR9Si3tjgWs=;
+        b=QPKceZprUrG//IoAzY61uU1uGjxwDj5YT4UotF7aCVMwsiJMadlkEHQ6omSfQ2Q8R5
+         KiLpunInaoGlFcT1iZ/n7RIW2azXGGe9UbTfetcJkRh25LuAmfGncuCNlFwQuhbrnQ7P
+         HT+0lWxEjkyWQb5xFg8Ty+22j9fISqucHG1oDUYVNimbaoEt7z1s+5FD6xWJEScCBbMk
+         c/yYWdm5LR24MCLEPsrECQAbyZCd8F2ou2M4nyM00jXQG7Of6hTzacHSdpt8FWIjYkt3
+         joqsR1EauDAuHVpfYdowZ2N9bzqOvEzMgid916ezLSJZ8eaPqpnlaGu/jTHBpxm/7VxG
+         5Q2Q==
+X-Gm-Message-State: AOJu0YwPI/8+1sdUf2G1u1RNdiz5RaeHPOWjxTyriYj/hVp6DI287NJz
+	YO6fy0nxldrQ3+q9uv8zSAE=
+X-Google-Smtp-Source: AGHT+IGwmSAFBmPK8BIkBt+jlW7Oce8vXCTkIslcIlDx6vDOikQAgus7RKZh9vRAc+tFlysqi2cZMg==
+X-Received: by 2002:a17:906:230f:b0:a02:a2cc:66b5 with SMTP id l15-20020a170906230f00b00a02a2cc66b5mr3394168eja.76.1702377906245;
+        Tue, 12 Dec 2023 02:45:06 -0800 (PST)
+Received: from HYB-hhAwRlzzMZb.ad.analog.com ([5.2.194.157])
+        by smtp.gmail.com with ESMTPSA id vo10-20020a170907a80a00b00a1d17c92ef3sm6066013ejc.51.2023.12.12.02.45.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Dec 2023 02:45:05 -0800 (PST)
+From: Dumitru Ceclan <mitrutzceclan@gmail.com>
+To: 
+Cc: linus.walleij@linaro.org,
+	brgl@bgdev.pl,
+	andy@kernel.org,
+	linux-gpio@vger.kernel.org,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Walle <michael@walle.cc>,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	ChiaEn Wu <chiaen_wu@richtek.com>,
+	Niklas Schnelle <schnelle@linux.ibm.com>,
+	=?UTF-8?q?Leonard=20G=C3=B6hrs?= <l.goehrs@pengutronix.de>,
+	Mike Looijmans <mike.looijmans@topic.nl>,
+	Haibo Chen <haibo.chen@nxp.com>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	Ceclan Dumitru <dumitru.ceclan@analog.com>,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Dumitru Ceclan <mitrutzceclan@gmail.com>
+Subject: [PATCH v8 1/2] dt-bindings: adc: add AD7173
+Date: Tue, 12 Dec 2023 12:44:35 +0200
+Message-ID: <20231212104451.22522-1-mitrutzceclan@gmail.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH net-next v3 2/8] phy: add driver for MediaTek pextp
- 10GE SerDes PHY
-Content-Language: en-US
-To: Daniel Golle <daniel@makrotopia.org>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Chunfeng Yun
- <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Felix Fietkau <nbd@nbd.name>,
- John Crispin <john@phrozen.org>, Sean Wang <sean.wang@mediatek.com>,
- Mark Lee <Mark-MC.Lee@mediatek.com>, Lorenzo Bianconi <lorenzo@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
- Heiner Kallweit <hkallweit1@gmail.com>, Russell King
- <linux@armlinux.org.uk>, Alexander Couzens <lynxis@fe80.eu>,
- Qingfang Deng <dqfext@gmail.com>, SkyLake Huang
- <SkyLake.Huang@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
- weijie.gao@mediatek.com
-References: <cover.1702352117.git.daniel@makrotopia.org>
- <a58dae1cce1b49093b0ae05159c784a9ec02f058.1702352117.git.daniel@makrotopia.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <a58dae1cce1b49093b0ae05159c784a9ec02f058.1702352117.git.daniel@makrotopia.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Il 12/12/23 04:46, Daniel Golle ha scritto:
-> Add driver for MediaTek's pextp 10 Gigabit/s Ethernet SerDes PHY which
-> can be found in the MT7988 SoC.
-> 
-> The PHY can operates only in PHY_MODE_ETHERNET, the submode is one of
-> PHY_INTERFACE_MODE_* corresponding to the supported modes:
-> 
->   * USXGMII
->   * 10GBase-R
->   * 5GBase-R
->   * 2500Base-X
->   * 1000Base-X
->   * Cisco SGMII (MAC side)
-> 
-> In order to work-around a performance issue present on the first of
-> two PEXTP present in MT7988 special tuning is applied which can be
-> selected by adding the mediatek,usxgmii-performance-errata property to
-> the device tree node.
-> 
-> There is no documentation what-so-ever for the pextp registers and
-> this driver is based on a GPL licensed implementation found in
-> MediaTek's SDK.
-> 
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> ---
+The AD7173 family offer a complete integrated Sigma-Delta ADC solution
+which can be used in high precision, low noise single channel applications
+or higher speed multiplexed applications. The Sigma-Delta ADC is intended
+primarily for measurement of signals close to DC but also delivers
+outstanding performance with input bandwidths out to ~10kHz.
 
-..snip..
+Signed-off-by: Dumitru Ceclan <mitrutzceclan@gmail.com>
+---
+V7->V8
+ - include missing fix from V6
 
-Can anyone from MediaTek **please** define those registers and fields?
+ .../bindings/iio/adc/adi,ad7173.yaml          | 170 ++++++++++++++++++
+ 1 file changed, 170 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
 
-In this form, this driver is pretty obscure and nobody knows what it's doing;
-please remember that, by actually providing a definition for those registers and
-fields, the operation (reliability) of this PHY may be improved and this driver
-will be actually maintainable (and possibly support more than one variation of
-this PHY in the future with less efforts).
-
-MediaTek?
-
-Regards,
-Angelo
-
-> +
-> +	/* Setup operation mode */
-> +	if (is_10g)
-> +		iowrite32(0x00c9071c, pextp->base + 0x9024);
-> +	else
-> +		iowrite32(0x00d9071c, pextp->base + 0x9024);
-> +
-> +	if (is_5g)
-> +		iowrite32(0xaaa5a5aa, pextp->base + 0x2020);
-> +	else
-> +		iowrite32(0xaa8585aa, pextp->base + 0x2020);
-> +
-> +	if (is_2p5g || is_5g || is_10g) {
-> +		iowrite32(0x0c020707, pextp->base + 0x2030);
-> +		iowrite32(0x0e050f0f, pextp->base + 0x2034);
-> +		iowrite32(0x00140032, pextp->base + 0x2040);
-> +	} else {
-> +		iowrite32(0x0c020207, pextp->base + 0x2030);
-> +		iowrite32(0x0e05050f, pextp->base + 0x2034);
-> +		iowrite32(0x00200032, pextp->base + 0x2040);
-> +	}
-> +
-> +	if (is_2p5g || is_10g)
-> +		iowrite32(0x00c014aa, pextp->base + 0x50f0);
-> +	else if (is_5g)
-> +		iowrite32(0x00c018aa, pextp->base + 0x50f0);
-> +	else
-> +		iowrite32(0x00c014ba, pextp->base + 0x50f0);
-> +
-> +	if (is_5g) {
-> +		iowrite32(0x3777812b, pextp->base + 0x50e0);
-> +		iowrite32(0x005c9cff, pextp->base + 0x506c);
-> +		iowrite32(0x9dfafafa, pextp->base + 0x5070);
-> +		iowrite32(0x273f3f3f, pextp->base + 0x5074);
-> +		iowrite32(0xa8883868, pextp->base + 0x5078);
-> +		iowrite32(0x14661466, pextp->base + 0x507c);
-> +	} else {
-> +		iowrite32(0x3777c12b, pextp->base + 0x50e0);
-> +		iowrite32(0x005f9cff, pextp->base + 0x506c);
-> +		iowrite32(0x9d9dfafa, pextp->base + 0x5070);
-> +		iowrite32(0x27273f3f, pextp->base + 0x5074);
-> +		iowrite32(0xa7883c68, pextp->base + 0x5078);
-> +		iowrite32(0x11661166, pextp->base + 0x507c);
-> +	}
-> +
-> +	if (is_2p5g || is_10g) {
-> +		iowrite32(0x0e000aaf, pextp->base + 0x5080);
-> +		iowrite32(0x08080d0d, pextp->base + 0x5084);
-> +		iowrite32(0x02030909, pextp->base + 0x5088);
-> +	} else if (is_5g) {
-> +		iowrite32(0x0e001abf, pextp->base + 0x5080);
-> +		iowrite32(0x080b0d0d, pextp->base + 0x5084);
-> +		iowrite32(0x02050909, pextp->base + 0x5088);
-> +	} else {
-> +		iowrite32(0x0e000eaf, pextp->base + 0x5080);
-> +		iowrite32(0x08080e0d, pextp->base + 0x5084);
-> +		iowrite32(0x02030b09, pextp->base + 0x5088);
-> +	}
-> +
-> +	if (is_5g) {
-> +		iowrite32(0x0c000000, pextp->base + 0x50e4);
-> +		iowrite32(0x04000000, pextp->base + 0x50e8);
-> +	} else {
-> +		iowrite32(0x0c0c0000, pextp->base + 0x50e4);
-> +		iowrite32(0x04040000, pextp->base + 0x50e8);
-> +	}
-> +
-> +	if (is_2p5g || mtk_interface_mode_is_xgmii(interface))
-> +		iowrite32(0x0f0f0c06, pextp->base + 0x50eC);
-> +	else
-> +		iowrite32(0x0f0f0606, pextp->base + 0x50eC);
-> +
-> +	if (is_5g) {
-> +		iowrite32(0x50808c8c, pextp->base + 0x50a8);
-> +		iowrite32(0x18000000, pextp->base + 0x6004);
-> +	} else {
-> +		iowrite32(0x506e8c8c, pextp->base + 0x50a8);
-> +		iowrite32(0x18190000, pextp->base + 0x6004);
-> +	}
-> +
-> +	if (is_10g)
-> +		iowrite32(0x01423342, pextp->base + 0x00f8);
-> +	else if (is_5g)
-> +		iowrite32(0x00a132a1, pextp->base + 0x00f8);
-> +	else if (is_2p5g)
-> +		iowrite32(0x009c329c, pextp->base + 0x00f8);
-> +	else
-> +		iowrite32(0x00fa32fa, pextp->base + 0x00f8);
-> +
-> +	/* Force SGDT_OUT off and select PCS */
-> +	if (mtk_interface_mode_is_xgmii(interface))
-> +		iowrite32(0x80201f20, pextp->base + 0x00f4);
-> +	else
-> +		iowrite32(0x80201f21, pextp->base + 0x00f4);
-> +
-> +	/* Force GLB_CKDET_OUT */
-> +	iowrite32(0x00050c00, pextp->base + 0x0030);
-> +
-> +	/* Force AEQ on */
-> +	iowrite32(0x02002800, pextp->base + 0x0070);
-> +	ndelay(1020);
-> +
-> +	/* Setup DA default value */
-> +	iowrite32(0x00000020, pextp->base + 0x30b0);
-> +	iowrite32(0x00008a01, pextp->base + 0x3028);
-> +	iowrite32(0x0000a884, pextp->base + 0x302c);
-> +	iowrite32(0x00083002, pextp->base + 0x3024);
-> +	if (mtk_interface_mode_is_xgmii(interface)) {
-> +		iowrite32(0x00022220, pextp->base + 0x3010);
-> +		iowrite32(0x0f020a01, pextp->base + 0x5064);
-> +		iowrite32(0x06100600, pextp->base + 0x50b4);
-> +		if (interface == PHY_INTERFACE_MODE_USXGMII)
-> +			iowrite32(0x40704000, pextp->base + 0x3048);
-> +		else
-> +			iowrite32(0x47684100, pextp->base + 0x3048);
-> +	} else {
-> +		iowrite32(0x00011110, pextp->base + 0x3010);
-> +		iowrite32(0x40704000, pextp->base + 0x3048);
-> +	}
-> +
-> +	if (!mtk_interface_mode_is_xgmii(interface) && !is_2p5g)
-> +		iowrite32(0x0000c000, pextp->base + 0x3064);
-> +
-> +	if (interface != PHY_INTERFACE_MODE_10GBASER) {
-> +		iowrite32(0xa8000000, pextp->base + 0x3050);
-> +		iowrite32(0x000000aa, pextp->base + 0x3054);
-> +	} else {
-> +		iowrite32(0x00000000, pextp->base + 0x3050);
-> +		iowrite32(0x00000000, pextp->base + 0x3054);
-> +	}
-> +
-> +	if (mtk_interface_mode_is_xgmii(interface))
-> +		iowrite32(0x00000f00, pextp->base + 0x306c);
-> +	else if (is_2p5g)
-> +		iowrite32(0x22000f00, pextp->base + 0x306c);
-> +	else
-> +		iowrite32(0x20200f00, pextp->base + 0x306c);
-> +
-> +	if (interface == PHY_INTERFACE_MODE_10GBASER && pextp->da_war)
-> +		iowrite32(0x0007b400, pextp->base + 0xa008);
-> +
-> +	if (mtk_interface_mode_is_xgmii(interface))
-> +		iowrite32(0x00040000, pextp->base + 0xa060);
-> +	else
-> +		iowrite32(0x00050000, pextp->base + 0xa060);
-> +
-> +	if (is_10g)
-> +		iowrite32(0x00000001, pextp->base + 0x90d0);
-> +	else if (is_5g)
-> +		iowrite32(0x00000003, pextp->base + 0x90d0);
-> +	else if (is_2p5g)
-> +		iowrite32(0x00000005, pextp->base + 0x90d0);
-> +	else
-> +		iowrite32(0x00000007, pextp->base + 0x90d0);
-> +
-> +	/* Release reset */
-> +	iowrite32(0x0200e800, pextp->base + 0x0070);
-> +	usleep_range(150, 500);
-> +
-> +	/* Switch to P0 */
-> +	iowrite32(0x0200c111, pextp->base + 0x0070);
-> +	ndelay(1020);
-> +	iowrite32(0x0200c101, pextp->base + 0x0070);
-> +	usleep_range(15, 50);
-> +
-> +	if (mtk_interface_mode_is_xgmii(interface)) {
-> +		/* Switch to Gen3 */
-> +		iowrite32(0x0202c111, pextp->base + 0x0070);
-> +	} else {
-> +		/* Switch to Gen2 */
-> +		iowrite32(0x0201c111, pextp->base + 0x0070);
-> +	}
-> +	ndelay(1020);
-> +	if (mtk_interface_mode_is_xgmii(interface))
-> +		iowrite32(0x0202c101, pextp->base + 0x0070);
-> +	else
-> +		iowrite32(0x0201c101, pextp->base + 0x0070);
-> +	usleep_range(100, 500);
-> +	iowrite32(0x00000030, pextp->base + 0x30b0);
-> +	if (mtk_interface_mode_is_xgmii(interface))
-> +		iowrite32(0x80201f00, pextp->base + 0x00f4);
-> +	else
-> +		iowrite32(0x80201f01, pextp->base + 0x00f4);
-> +
-> +	iowrite32(0x30000000, pextp->base + 0x3040);
-> +	usleep_range(400, 1000);
-> +}
-> +
-> +static int mtk_pextp_set_mode(struct phy *phy, enum phy_mode mode, int submode)
-> +{
-> +	struct mtk_pextp_phy *pextp = phy_get_drvdata(phy);
-> +
-> +	if (mode != PHY_MODE_ETHERNET)
-> +		return -EINVAL;
-> +
-> +	switch (submode) {
-> +	case PHY_INTERFACE_MODE_1000BASEX:
-> +	case PHY_INTERFACE_MODE_2500BASEX:
-> +	case PHY_INTERFACE_MODE_SGMII:
-> +	case PHY_INTERFACE_MODE_5GBASER:
-> +	case PHY_INTERFACE_MODE_10GBASER:
-> +	case PHY_INTERFACE_MODE_USXGMII:
-> +		mtk_pextp_setup(pextp, submode);
-> +		return 0;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static int mtk_pextp_reset(struct phy *phy)
-> +{
-> +	struct mtk_pextp_phy *pextp = phy_get_drvdata(phy);
-> +
-> +	reset_control_assert(pextp->reset);
-> +	usleep_range(100, 500);
-> +	reset_control_deassert(pextp->reset);
-> +	usleep_range(1, 10);
-> +
-> +	return 0;
-> +}
-> +
-> +static int mtk_pextp_power_on(struct phy *phy)
-> +{
-> +	struct mtk_pextp_phy *pextp = phy_get_drvdata(phy);
-> +
-> +	return clk_bulk_prepare_enable(MTK_PEXTP_NUM_CLOCKS, pextp->clocks);
-> +}
-> +
-> +static int mtk_pextp_power_off(struct phy *phy)
-> +{
-> +	struct mtk_pextp_phy *pextp = phy_get_drvdata(phy);
-> +
-> +	clk_bulk_disable_unprepare(MTK_PEXTP_NUM_CLOCKS, pextp->clocks);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct phy_ops mtk_pextp_ops = {
-> +	.power_on	= mtk_pextp_power_on,
-> +	.power_off	= mtk_pextp_power_off,
-> +	.set_mode	= mtk_pextp_set_mode,
-> +	.reset		= mtk_pextp_reset,
-> +	.owner		= THIS_MODULE,
-> +};
-> +
-> +static int mtk_pextp_probe(struct platform_device *pdev)
-> +{
-> +	struct device_node *np = pdev->dev.of_node;
-> +	struct phy_provider *phy_provider;
-> +	struct mtk_pextp_phy *pextp;
-> +	struct phy *phy;
-> +
-> +	if (!np)
-> +		return -ENODEV;
-> +
-> +	pextp = devm_kzalloc(&pdev->dev, sizeof(*pextp), GFP_KERNEL);
-> +	if (!pextp)
-> +		return -ENOMEM;
-> +
-> +	pextp->base = devm_of_iomap(&pdev->dev, np, 0, NULL);
-> +	if (!pextp->base)
-> +		return -EIO;
-> +
-> +	pextp->dev = &pdev->dev;
-> +
-> +	pextp->clocks[0].id = "topxtal";
-> +	pextp->clocks[0].clk = devm_clk_get(&pdev->dev, pextp->clocks[0].id);
-> +	if (IS_ERR(pextp->clocks[0].clk))
-> +		return PTR_ERR(pextp->clocks[0].clk);
-> +
-> +	pextp->clocks[1].id = "xfipll";
-> +	pextp->clocks[1].clk = devm_clk_get(&pdev->dev, pextp->clocks[1].id);
-> +	if (IS_ERR(pextp->clocks[1].clk))
-> +		return PTR_ERR(pextp->clocks[1].clk);
-> +
-> +	pextp->reset = devm_reset_control_get_exclusive(&pdev->dev, NULL);
-> +	if (IS_ERR(pextp->reset))
-> +		return PTR_ERR(pextp->reset);
-> +
-> +	pextp->da_war = of_property_read_bool(np, "mediatek,usxgmii-performance-errata");
-> +
-> +	phy = devm_phy_create(&pdev->dev, NULL, &mtk_pextp_ops);
-> +	if (IS_ERR(phy))
-> +		return PTR_ERR(phy);
-> +
-> +	phy_set_drvdata(phy, pextp);
-> +
-> +	phy_provider = devm_of_phy_provider_register(&pdev->dev, of_phy_simple_xlate);
-> +
-> +	return PTR_ERR_OR_ZERO(phy_provider);
-> +}
-> +
-> +static const struct of_device_id mtk_pextp_match[] = {
-> +	{ .compatible = "mediatek,mt7988-xfi-pextp", },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, mtk_pextp_match);
-> +
-> +static struct platform_driver mtk_pextp_driver = {
-> +	.probe = mtk_pextp_probe,
-> +	.driver = {
-> +		.name = "mtk-pextp",
-> +		.of_match_table = mtk_pextp_match,
-> +	},
-> +};
-> +module_platform_driver(mtk_pextp_driver);
-> +
-> +MODULE_DESCRIPTION("MediaTek pextp SerDes PHY driver");
-> +MODULE_AUTHOR("Daniel Golle <daniel@makrotopia.org>");
-> +MODULE_LICENSE("GPL");
-
+diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
+new file mode 100644
+index 000000000000..25a5404ee353
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
+@@ -0,0 +1,170 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright 2023 Analog Devices Inc.
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/adc/adi,ad7173.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Analog Devices AD7173 ADC
++
++maintainers:
++  - Ceclan Dumitru <dumitru.ceclan@analog.com>
++
++description: |
++  Bindings for the Analog Devices AD717X ADC's. Datasheets for supported chips:
++    https://www.analog.com/media/en/technical-documentation/data-sheets/AD7172-2.pdf
++    https://www.analog.com/media/en/technical-documentation/data-sheets/AD7173-8.pdf
++    https://www.analog.com/media/en/technical-documentation/data-sheets/AD7175-2.pdf
++    https://www.analog.com/media/en/technical-documentation/data-sheets/AD7176-2.pdf
++
++properties:
++  compatible:
++    enum:
++      - adi,ad7172-2
++      - adi,ad7173-8
++      - adi,ad7175-2
++      - adi,ad7176-2
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 0
++
++  spi-max-frequency:
++    maximum: 20000000
++
++  refin-supply:
++    description: external reference supply, can be used as reference for conversion.
++
++  refin2-supply:
++    description: external reference supply, can be used as reference for conversion.
++
++  avdd-supply:
++    description: avdd supply, can be used as reference for conversion.
++
++patternProperties:
++  "^channel@[0-9a-f]$":
++    type: object
++    $ref: adc.yaml
++    unevaluatedProperties: false
++
++    properties:
++      reg:
++        minimum: 0
++        maximum: 15
++
++      diff-channels:
++        items:
++          minimum: 0
++          maximum: 31
++
++      adi,reference-select:
++        description: |
++          Select the reference source to use when converting on
++          the specific channel. Valid values are:
++          refin      : REFIN(+)/REFIN(−).
++          refin2     : REFIN2(+)/REFIN2(−)
++          refout-avss: REFOUT/AVSS (Internal reference)
++          avdd       : AVDD
++
++          External reference refin2 only available on ad7173-8.
++          If not specified, internal reference used.
++        enum:
++          - refin
++          - refin2
++          - refout-avss
++          - avdd
++        default: refout-avss
++
++    required:
++      - reg
++      - diff-channels
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++  - if:
++      properties:
++        compatible:
++          not:
++            contains:
++              const: adi,ad7173-8
++    then:
++      properties:
++        refin2-supply: false
++      patternProperties:
++        "^channel@[0-9a-f]$":
++          properties:
++            adi,reference-select:
++              enum:
++                - refin
++                - refout-avss
++                - avdd
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    spi {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      adc@0 {
++        compatible = "adi,ad7173-8";
++        reg = <0>;
++
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        interrupts = <25 IRQ_TYPE_EDGE_FALLING>;
++        interrupt-parent = <&gpio>;
++        spi-max-frequency = <5000000>;
++
++        refin-supply = <&dummy_regulator>;
++
++        channel@0 {
++          reg = <0>;
++          bipolar;
++          diff-channels = <0 1>;
++          adi,reference-select = "refin";
++        };
++
++        channel@1 {
++          reg = <1>;
++          diff-channels = <2 3>;
++        };
++
++        channel@2 {
++          reg = <2>;
++          bipolar;
++          diff-channels = <4 5>;
++        };
++
++        channel@3 {
++          reg = <3>;
++          bipolar;
++          diff-channels = <6 7>;
++        };
++
++        channel@4 {
++          reg = <4>;
++          diff-channels = <8 9>;
++          adi,reference-select = "avdd";
++        };
++      };
++    };
+-- 
+2.42.0
 
 
