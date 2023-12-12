@@ -1,112 +1,120 @@
-Return-Path: <devicetree+bounces-24195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24196-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E45380E567
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 09:05:07 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B746D80E57B
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 09:08:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C026C281572
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 08:05:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EAB0A1C208A8
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 08:08:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCE87179AE;
-	Tue, 12 Dec 2023 08:05:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5216E182DF;
+	Tue, 12 Dec 2023 08:08:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="Ot8zWVvc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ypR8TEwi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02C70B8
-	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 00:04:57 -0800 (PST)
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2CF5116
+	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 00:08:26 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-40c1e3ea2f2so55144265e9.2
+        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 00:08:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702368505; x=1702973305; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=j7Vc7WfA6zO/nZVypNJ5ZSKRNw4vlGrxvFfZBsf6PZE=;
+        b=ypR8TEwi15vwvn3g/orot97Fje5Tu/eDiE672QuyLOJC/zyA/t8BoQfaWZNI1cTKcX
+         G0QY5dxFRxawWLO/uT4YaaVGiO8UiYdGIg5aoxu9PRRAR1EQNs19fcaGpldWwTGLM91w
+         cOEeEs4++AoJeCartG5mpjYHpPLjLToQEYKok3KI5p/ToztrrLq+vlwvGZhFAu/Cep0v
+         w1Gw7Skd+Q3zGb6yitFOHaV77C99gWt6Of7mxPEkmWczlPDWfTsD0GHbjipQ2034MvTz
+         ThT4++/J4RkBpb8U75kcxnZU7lwVy8WNiSdAfe7irgP24wZJhoTLQSqwtwPWrWKMJijD
+         1DyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702368505; x=1702973305;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=j7Vc7WfA6zO/nZVypNJ5ZSKRNw4vlGrxvFfZBsf6PZE=;
+        b=tPjLYPnW583RKZKMP9QCRv1yTsIdUVhomu8/Xub/TvGuvu7w1LvV7hD1uIQYbDCgqJ
+         iHs8k1y+G9kxCspvqq5iwoeQlYLat3WA3luzcfPpYYhIVJBvLGqddZWJzilhF1z6t+Mn
+         G8F0LIhqmFvn3e+So0ufOXEiQBqMSo8fj5TnzirTPPytoAh1yv8SilLjo1ez9BYVzEE+
+         iKm72UYCMR0zqP9qiASfTr1oi5uZtgMK/n50k1aaGS4dKzoEuudF7M08CioiirvRTuqD
+         rrR2wbeHSOs8mYSV3plP5IjQdZ4GYZh9p35zVos2QWR6rZbKe6/gQMueplivhc9wcY56
+         CVdQ==
+X-Gm-Message-State: AOJu0Yyrt5zPjQZjAWnu+lPie7oq65yhC51uI0vrP9IYWfMQRn+3/B1T
+	hKVIbyPLxNVI2IulAinwJdwZ8A==
+X-Google-Smtp-Source: AGHT+IFpC7/sT0VIDkEJ9Oag1ij5lW+BcSQjyEaC79Eoj7mJ9V5d7dc5CmiB4lNlsj8FfFfc2beOKw==
+X-Received: by 2002:a1c:4c07:0:b0:40b:5e1b:54ae with SMTP id z7-20020a1c4c07000000b0040b5e1b54aemr3470007wmf.58.1702368504657;
+        Tue, 12 Dec 2023 00:08:24 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id n10-20020a05600c500a00b004094e565e71sm15609355wmr.23.2023.12.12.00.08.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Dec 2023 00:08:24 -0800 (PST)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH 0/2] ASoC: qcom: add sound card support for SM8650
+Date: Tue, 12 Dec 2023 09:08:18 +0100
+Message-Id: <20231212-topic-sm8650-upstream-snd-card-v1-0-fbfc38471204@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1702368296;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=G71DUn2WG9PuaVBEWzrxCCXiQ0UtyB4Ikn9B9GyIs9Y=;
-	b=Ot8zWVvcAlE9IgfZ75JRx5yteGsu6DlKKOeCuswTBcRKO1YPEgp2uoZYNPlmYQVLyIExPD
-	LpV8oDrpcztVs4u86ol5FWMFDUJ4FlZXUybL04AvpJN7/7kjMrZXdVTV5irMLYprH1w81/
-	v/gzsbigHzh0+xskkL7XsPxxvwa13z4DCENODF5Afgpf2RV5B9nTNIDdvrLc83ZuGH4AOc
-	Od4ZrOrdsvDOmJ1gRbGJsscEQ3lh9XPYAK5Yz/r3jWQtGaCr9EZ10PGm2/hD3k2CPVU5VX
-	0lkURozr0KnCNUyBsLm/EOfhY3pvF7iYX8i5Awf6eIPYp2enI/bLUa07ISippQ==
-Date: Tue, 12 Dec 2023 09:04:55 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
-Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Tim Lunn
- <tim@feathertop.org>, Jagan Teki <jagan@edgeble.ai>, Rob Herring
- <robh+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>
-Subject: Re: [PATCH v2 4/9] ARM: dts: rockchip: rv1126: Add i2c2 nodes
-In-Reply-To: <6efa5eb17d795da024357a12dfb11ac1@manjaro.org>
-References: <20231122122232.952696-1-tim@feathertop.org>
- <4234862.3Lj2Plt8kZ@diego> <8fec049c0b72727086c707dfd9de6dda@manjaro.org>
- <5119280.687JKscXgg@diego> <6efa5eb17d795da024357a12dfb11ac1@manjaro.org>
-Message-ID: <316304f17b7e2641658d0efc867c0603@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPIUeGUC/x3NMQ7CMAxA0atUnrHUGJUCV0EMJnHAQ9PILgip6
+ t0bdXzL/yu4mIrDvVvB5Keuc2kIpw7ih8tbUFMzUE/nQIFwmatG9Ol6GXr8Vl9MeEIvCSNbwjD
+ Ia+TMNOYbtEg1yfo/Bo/ntu1u7ASicAAAAA==
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+ Banajit Goswami <bgoswami@quicinc.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>
+Cc: linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org, 
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=744;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=OrzPyzSnlQ4w2hZz/Baas4f3W1LzsV2V/lHEDAWTjGs=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBleBT2CPZAHiWYnl772ED0TNHbAgYjtuRnkahPbmGn
+ 3VyDLO+JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZXgU9gAKCRB33NvayMhJ0UBCD/
+ 9aS6SDPueYXQWfGRWKZB57ZqiqxFUMnfUecohs0K3A9LsjgvoT4R7lH6F34NLx6LH+WvzRW6pk1TUx
+ 3UoDBwn8tSItLhAVVeMl2CVJASIf/WjJ4yfBJ/h1lSbcrK0w6BbudEgoa8IrWHbvs2hkG4RJKWxyRl
+ wKw6QHOrLYa8tkL+R2KNBq1ncJrCvClS4BKKEuWE1fE/1++ETTHrFA5N83pK/aOmyTgLhxSZVI/e4A
+ jpkOIe6EZ832SoOZqB1R8p9HE92d73wgl6jkTSIY9wGdlvtyGuzwiIoDQvJLrmIdbWXKm2M5dWEoZ3
+ wqQ34Q1SEXvdQRdOXxNh1RvMvNFm2vM4Ustviq0Tq0vDzA7ipLgB/J4PpPK7w66xhchhKCYEqQN2F8
+ GFLAFbRPO4EWOCMNGHL0lDHrma6kQxN0NzNRuys1ZVCgj4iLwWk+y/8Usf2pABq4lZQB3dY+BiuKkb
+ c6BlS2j1VD9GlzdWVVgWRgW9/AC1byA/lpMtuvC7UdbHBwPijaSd9iMPzXvAm8+o+pmY1u6DpphYNU
+ 8p0cQKWqjzRHhWwwhiDRQV2OZPoq+HBSTYWSL6E3C+ufMgyPh+hfynBBUDUplSGC3gt2yeIU6wLgrh
+ qOxB2BpJRdk/+JUqbesJAv1m9D6tXx14XEFPbdEBR3szRjrFgz2NzdQvBUGw==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-On 2023-11-27 14:07, Dragan Simic wrote:
-> On 2023-11-27 12:10, Heiko Stübner wrote:
->> Am Montag, 27. November 2023, 11:55:21 CET schrieb Dragan Simic:
->>> On 2023-11-27 11:50, Heiko Stübner wrote:
->>>> Am Montag, 27. November 2023, 11:43:05 CET schrieb Dragan Simic:
->>>>> Please note there's already an Ethernet alias defined in 
->>>>> rk3399.dtsi,
->>>>> even despite not all RK3399-based devices using the GMAC, for 
->>>>> example
->>>>> the Pinebook Pro.  Perhaps that's something to be fixed as well.
->>>> 
->>>> possibly :-)
->>>> 
->>>> I guess for starters we shouldn't introduce new instances for it.
->>> 
->>> Totally agreed.
->>> 
->>> > All the newer SoCs already have their ethernet alias in the board dts
->>> > (rk356x, rk3568) which came after we also moved the mmc aliases.
->>> 
->>> The base rk3399.dtsi file and the RK3399-based board/device dts(i) 
->>> files
->>> are fine when it comes to the mmc aliases.  I can move forward and 
->>> clean
->>> up the Ethernet alias as well, if you agree?
->> 
->> Yep, we moved mmc aliases a while ago.
->> 
->> So moving the ethernet sounds like the right way forward. So if you 
->> have
->> the time for it, then I'd be quite happy to take patches for that 
->> change.
-> 
-> Great, thanks.  I'll prepare the patches in the next couple of days,
-> and send them over.
+Document the SM8650 sound card using the SM8450 fallback
+and add the SM8650 compatible to the sc8280xp sound card
+driver to use the sm8650 card driver_name like SM8450 & SM8550.
 
-I apologize for the delay, I finally got around to implementing and 
-verifying these patches for the RK3399, RK3368, RK3328 and PX30 SoC 
-dts(i) files. [1]  The way I verified them was to compare the compiled 
-dtb files before and after applying the patches.
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Neil Armstrong (2):
+      ASoC: dt-bindings: qcom,sm8250: document SM8650 sound card
+      ASoC: qcom: sc8280xp: Add support for SM8650
 
-Also, I went ahead and implemented the patches that add ethernet aliases 
-to the RK356x and RK3588 dts board files. [2]  With these patches in 
-place, together with the other patches that have already been accepted, 
-we should have a rather clean situation when it comes to the Rockchip 
-arm64 DT aliases.
+ Documentation/devicetree/bindings/sound/qcom,sm8250.yaml | 1 +
+ sound/soc/qcom/sc8280xp.c                                | 1 +
+ 2 files changed, 2 insertions(+)
+---
+base-commit: bbd220ce4e29ed55ab079007cff0b550895258eb
+change-id: 20231212-topic-sm8650-upstream-snd-card-15eb7afa27f9
 
-[1] 
-https://lore.kernel.org/linux-rockchip/cover.1702366958.git.dsimic@manjaro.org/T/#u
-[2] 
-https://lore.kernel.org/linux-rockchip/cover.1702368023.git.dsimic@manjaro.org/T/#u
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
+
 
