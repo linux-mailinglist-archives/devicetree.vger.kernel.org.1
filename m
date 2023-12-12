@@ -1,386 +1,104 @@
-Return-Path: <devicetree+bounces-24552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24553-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4143A80FAFB
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 00:04:45 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8006B80FB39
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 00:19:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA96F281D42
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 23:04:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 36A851F2187B
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 23:19:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD7B664710;
-	Tue, 12 Dec 2023 23:04:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="LTtkPwAS"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C53D6472A;
+	Tue, 12 Dec 2023 23:19:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2067.outbound.protection.outlook.com [40.107.237.67])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49227D5;
-	Tue, 12 Dec 2023 15:04:21 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iX/cnt96mUGtB6J6oCZQxVFVJvCoy/N7odnljoLN/QDEMDKs9Rikr/tiEnG4GPXwsbqLqXwZcRhBFOQptLwtnySysBPO4R1rWsWafob7kh9pyNEN/rQu1YGLA90YTZjNtivS3oDmBGd6GtuVosYnks6eVorG4JMpEGsIGo945ezO8kVnilF1NRAGIAS9JSRjdNZE6pUoSb4UNXK757hZL28OiwCyW8EMLUfBD837JseUmEm7iTlr7O+3qIb4j4PjuMsCMD41v+ha0AC/9GWi08UzFhjHiwZvs7eJsrm3xyICE4Qfb1G14AT5H1KVYmeEZ2c8PQcgumpwOx9QyM1n5g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WCjSUP0kFmO8ijoS/cG9NVHgbKLNzd/6v6tGWWUpD58=;
- b=mQqdGqK2Dvl0Jb88dbK29AlLxoW3QW0G+vbBYSr3Yqn+DKjS5RiPJHLinqsAc8fOsNBXEejfpWU2lQI6sGc6qJD0v9anI45zqJNBDaVfAGLLNi/wzVQYopBgNCVUi+pPIZt+XC/E8xlR3od+uRITy1MJ9zGJYFYiWS31jxBQ8ld9SzR6asH0fpqhVE/GWzUuG8PZftvXDPeBYCVx1J4GGjonQf19E3pSwM8KMZ0Mvo6Jb5D4tsdgN7mJJRquRzOMgSDAvB+eAmHjZMCgHj+nfu9mYBw5f90KrmSvPZLF9nAM2LNdLFbIXfWF7Q7aDp3OZ9UtbPs7GcSRj0qM65MikA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=gmail.com smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WCjSUP0kFmO8ijoS/cG9NVHgbKLNzd/6v6tGWWUpD58=;
- b=LTtkPwASz+ydsE8jj9FVo5lTzFaBxqhGkNuL9S98Sfs2WyzPDAyexUdxos3qeLMNA+PLRB/YTkOmEUjhp3XbRTmD4DnLQ8U1ohzrFeLD5rmEpf0DsTCiMO+gMdzu6FiN867+3DJKVcVtsSQXBzUMR0H+CcpvsutIxoSHQdrd88o=
-Received: from CY8PR12CA0064.namprd12.prod.outlook.com (2603:10b6:930:4c::10)
- by DS0PR12MB7678.namprd12.prod.outlook.com (2603:10b6:8:135::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.33; Tue, 12 Dec
- 2023 23:04:18 +0000
-Received: from CY4PEPF0000E9D4.namprd03.prod.outlook.com
- (2603:10b6:930:4c:cafe::7a) by CY8PR12CA0064.outlook.office365.com
- (2603:10b6:930:4c::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.26 via Frontend
- Transport; Tue, 12 Dec 2023 23:04:18 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CY4PEPF0000E9D4.mail.protection.outlook.com (10.167.241.147) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7091.26 via Frontend Transport; Tue, 12 Dec 2023 23:04:18 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Tue, 12 Dec
- 2023 17:04:17 -0600
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Tue, 12 Dec
- 2023 17:04:17 -0600
-Received: from xsjtanmays50.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.34 via Frontend
- Transport; Tue, 12 Dec 2023 17:04:16 -0600
-From: Tanmay Shah <tanmay.shah@amd.com>
-To: <jassisinghbrar@gmail.com>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<michal.simek@amd.com>, <shubhrajyoti.datta@amd.com>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, Tanmay Shah <tanmay.shah@amd.com>
-Subject: [PATCH v2] dt-bindings: mailbox: add Versal IPI bindings
-Date: Tue, 12 Dec 2023 15:03:53 -0800
-Message-ID: <20231212230353.888714-1-tanmay.shah@amd.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68A1D10E5;
+	Tue, 12 Dec 2023 15:18:52 -0800 (PST)
+Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-1fb9a22b4a7so3757260fac.3;
+        Tue, 12 Dec 2023 15:18:52 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702423131; x=1703027931;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dHKqe7ViutMSv2g14fY3qwKFW8ZpKD1NFrzggi/tnqo=;
+        b=Rs6ZEHPzKYicHTfKOSn51+TMXeo2OwxOlANZkAxhDGcriN5E8LOMFMhecVtDmdO38b
+         mbSTIFxAgfXpwhCYnS6/lH4xlNltQJ7tWBWqmy/xpYnSSBCFBNCdYe06udT9LrmEmgbq
+         CrjUX+7n/rd91TO7MOiRfbPQslfEgSwJSvBhRJFZXw/B9Of6s3r/5g/mxJGyiMVoI0BY
+         b4U1jtlar/seSY9y3HzWZ02ock3fPiLSNE/PuU+8/URw2uCYtSK9VUdQE+/yMPhJxnk/
+         qcoDYKHCoFwIZFAUXeepa5vgJDBv9nWcicj+UTSJMH4kebxAFWnqR3gh+i9vmvsXoolw
+         V5Pg==
+X-Gm-Message-State: AOJu0YwoZ193osSFHmO3Fkf3wrNFRb4a3qXgoB4LiliDfYaBmvLhZzui
+	iofEw9CXWbnbo9/67VelbIG3dI25OA==
+X-Google-Smtp-Source: AGHT+IFv4gOEOqOwk6rzvt7hf9wkUW77nPHYSBry06DTHS99AsV+CJZnvtS0m+eBpMGwZyA87+qzrg==
+X-Received: by 2002:a05:6870:40ce:b0:1fb:75b:99ba with SMTP id l14-20020a05687040ce00b001fb075b99bamr8188435oal.105.1702423131578;
+        Tue, 12 Dec 2023 15:18:51 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id w5-20020a056830110500b006c619f17669sm2459200otq.74.2023.12.12.15.18.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Dec 2023 15:18:51 -0800 (PST)
+Received: (nullmailer pid 3116408 invoked by uid 1000);
+	Tue, 12 Dec 2023 23:18:50 -0000
+Date: Tue, 12 Dec 2023 17:18:50 -0600
+From: Rob Herring <robh@kernel.org>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Subject: Re: dt-validate crash on <foo>-gpio
+Message-ID: <20231212231850.GA3076602-robh@kernel.org>
+References: <CAMuHMdUqbbjRpkStD7JGQ0r9hfR-sgx23FKGDASofX87AzaEcA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9D4:EE_|DS0PR12MB7678:EE_
-X-MS-Office365-Filtering-Correlation-Id: a51a0163-f11a-4e2a-05cc-08dbfb66ab8d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	MgRcncq247eGxvwJuubNyW4L2lhf8bAgE3l518SwW5W0kw1SnaAJojQvIqz23D5SzmVXaaWrRcCArOHAFjGcmolyB/6vbr7r2hDhpX3iMVnqpmwPfgBpqwINomM16a6vp65vdnpxA+1iUxPqCbeU6nvAevzypXKkEnM7bzNsFHBW5VtE3VvLkKSUsfOPvv7bms0EaclNbd4Cuh6Vu4amG6HxT4lW6FglE64+XkUI0JBlDdCzWs0nX3Y5/b+NkBfN2Yu8U/35gYjrsPCUNEB/Sdjn54CxCFvATf7rE1qI4CP8fEq6S9ojBr7KOCv7o4mMjSOSIhrcnbOaqE4gZ0Cg05UOdZx/5v9E7ws8gVA1HW6+qLCNk44valM1vFSWhIjc1aqsDH5Z+yVxEgoxDM5TBsXiZo86xZSb6Ywnb7xbp4465kww5ii1Fi6BF/ZHWly7sMbFfojtCM995rlqajwagrsPGli7WcpViJcae4gOpH2KO3tTH4lWNswILp+cVA8I3JgcCJiHeML2I0Cj2o/lR8a9wIeddOjPxn9cCxIUpbhGL7pTbtingBD0a6zwNDSEDYsAvSsBZ25pVsuSfbrrdNcTKNeZelVpAXVZvG6R2j/8gxTrSSNcmYPVCnoGv36fsyLWk0bxINLL51Vni4tIVF4+x0OXfLwBx5/qR3bpPElEA8xBTQxX5BPyfDmitBsdQpn9Dj8X3rsLo4GWyDtQnP91ITptUC0GIeczSqKfTXlQZEy3d41OHcfNhSBU6Dtm
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(396003)(39860400002)(136003)(376002)(346002)(230922051799003)(1800799012)(82310400011)(64100799003)(451199024)(186009)(40470700004)(46966006)(36840700001)(6666004)(2906002)(6636002)(70206006)(54906003)(44832011)(356005)(81166007)(36756003)(86362001)(8676002)(4326008)(15650500001)(8936002)(316002)(5660300002)(40480700001)(478600001)(966005)(70586007)(110136005)(40460700003)(1076003)(36860700001)(82740400003)(41300700001)(26005)(336012)(426003)(83380400001)(47076005)(2616005)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Dec 2023 23:04:18.5345
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a51a0163-f11a-4e2a-05cc-08dbfb66ab8d
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CY4PEPF0000E9D4.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7678
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdUqbbjRpkStD7JGQ0r9hfR-sgx23FKGDASofX87AzaEcA@mail.gmail.com>
 
-Add documentation for AMD-Xilinx Versal platform Inter Processor Interrupt
-controller. Versal IPI controller contains buffer-less IPI which do not
-have buffers for message passing. For such IPI channels message buffers
-are not expected and only notification to/from remote agent is expected.
+On Mon, Dec 11, 2023 at 01:59:43PM +0100, Geert Uytterhoeven wrote:
+> Hi Rob,
+> 
+> When running "make dtbs_check" on a DTB in the Renesas BSP, I ran into
+> the following backtrace:
+> 
+>     Traceback (most recent call last):
+>       File "dt-validate", line 8, in <module>
+>         sys.exit(main())
+>       File "dt-schema/dtschema/dtb_validate.py", line 144, in main
+>         sg.check_dtb(filename)
+>       File "dt-schema/dtschema/dtb_validate.py", line 87, in check_dtb
+>         dt = self.validator.decode_dtb(f.read())
+>       File "dt-schema/dtschema/validator.py", line 491, in decode_dtb
+>         return [dtschema.dtb.fdt_unflatten(self, dtb)]
+>       File "dt-schema/dtschema/dtb.py", line 483, in fdt_unflatten
+>         fixup_gpios(dt)
+>       File "dt-schema/dtschema/dtb.py", line 373, in fixup_gpios
+>         fixup_gpios(v)
+>       File "dt-schema/dtschema/dtb.py", line 373, in fixup_gpios
+>         fixup_gpios(v)
+>       File "dt-schema/dtschema/dtb.py", line 373, in fixup_gpios
+>         fixup_gpios(v)
+>       File "dt-schema/dtschema/dtb.py", line 378, in fixup_gpios
+>         val = v[0]
+>     TypeError: 'bool' object is not subscriptable
+> 
+> Turns out the issue is triggered by the presence of a (non-documented)
+> boolean "no-use-gpio" property.
+> 
+> Apparently anything that matches "*-gpio" is treated as having a list of
+> GPIO specifiers, causing a crash if that does not turn out to be true...
+> While the introduction of a "no-use-gpio" boolean property might not
+> survive public review, it would be good if the tooling wouldn't crash
+> on it.
 
-Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
----
+Seems like good discouragement on using unreviewed properties. ;) I'll 
+make a fix.
 
-Changes in v2:
-  - Add versal bindings to existing bindings doc instead of separate
-    file.
-  - Sort required list same as properties list
-  - Add minimum and maximum range for xlnx,ipi-id vendor property
-  - Move vendor property last in the list
-  - Fix description of child node reg property for versal bindings
-  - Change commit text
+In the future, use anything but devicetree@vger for this kind of issue. 
+GH issue, devicetree-spec@vger, IRC are easier for me to see.
 
-depends on: https://lore.kernel.org/linux-arm-kernel/79f65b96-9015-41c4-b4ee-a82526c9eefc@linaro.org/T/#meeacc5c57a9610b19758d313e5b2d17ab470f646
-
- .../mailbox/xlnx,zynqmp-ipi-mailbox.yaml      | 172 ++++++++++++++----
- 1 file changed, 138 insertions(+), 34 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml
-index 8b15a0532120..95146adb9631 100644
---- a/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml
-+++ b/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml
-@@ -8,11 +8,11 @@ title: Xilinx IPI(Inter Processor Interrupt) mailbox controller
- 
- description: |
-   The Xilinx IPI(Inter Processor Interrupt) mailbox controller is to manage
--  messaging between two Xilinx Zynq UltraScale+ MPSoC IPI agents. Each IPI
--  agent owns registers used for notification and buffers for message.
-+  messaging between two Xilinx Zynq UltraScale+ MPSoC and Versal IPI agents.
-+  Each IPI agent owns registers used for notification and buffers for message.
- 
-                +-------------------------------------+
--               | Xilinx ZynqMP IPI Controller        |
-+               | Xilinx IPI Controller               |
-                +-------------------------------------+
-     +--------------------------------------------------+
-   TF-A                   |                     |
-@@ -37,15 +37,13 @@ maintainers:
- 
- properties:
-   compatible:
--    const: xlnx,zynqmp-ipi-mailbox
-+    enum:
-+      - xlnx,zynqmp-ipi-mailbox
-+      - xlnx,versal-ipi-mailbox
- 
-   method:
-     description: |
-       The method of calling the PM-API firmware layer.
--      Permitted values are.
--      - "smc" : SMC #0, following the SMCCC
--      - "hvc" : HVC #0, following the SMCCC
--
-     $ref: /schemas/types.yaml#/definitions/string
-     enum:
-       - smc
-@@ -58,16 +56,26 @@ properties:
-   '#size-cells':
-     const: 2
- 
--  xlnx,ipi-id:
--    description: |
--      Remote Xilinx IPI agent ID of which the mailbox is connected to.
--    $ref: /schemas/types.yaml#/definitions/uint32
-+  reg:
-+    minItems: 1
-+    maxItems: 2
-+
-+  reg-names:
-+    minItems: 1
-+    maxItems: 2
- 
-   interrupts:
-     maxItems: 1
- 
-   ranges: true
- 
-+  xlnx,ipi-id:
-+    description: |
-+      Remote Xilinx IPI agent ID of which the mailbox is connected to.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 0
-+    maximum: 64
-+
- patternProperties:
-   '^mailbox@[0-9a-f]+$':
-     description: Internal ipi mailbox node
-@@ -76,57 +84,116 @@ patternProperties:
-     properties:
- 
-       compatible:
--        const: xlnx,zynqmp-ipi-dest-mailbox
-+        enum:
-+          - xlnx,zynqmp-ipi-dest-mailbox
-+          - xlnx,versal-ipi-dest-mailbox
- 
--      xlnx,ipi-id:
--        description:
--          Remote Xilinx IPI agent ID of which the mailbox is connected to.
--        $ref: /schemas/types.yaml#/definitions/uint32
-+      reg:
-+        minItems: 1
-+        maxItems: 4
-+
-+      reg-names:
-+        minItems: 1
-+        maxItems: 4
- 
-       '#mbox-cells':
-         const: 1
-         description:
-           It contains tx(0) or rx(1) channel IPI id number.
- 
--      reg:
--        maxItems: 4
--
--      reg-names:
--        items:
--          - const: local_request_region
--          - const: local_response_region
--          - const: remote_request_region
--          - const: remote_response_region
-+      xlnx,ipi-id:
-+        description:
-+          Remote Xilinx IPI agent ID of which the mailbox is connected to.
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        minimum: 0
-+        maximum: 64
- 
-     required:
-       - compatible
-       - reg
-       - reg-names
-       - "#mbox-cells"
--
--additionalProperties: false
--
-+      - xlnx,ipi-id
-+
-+    allOf:
-+      - if:
-+          properties:
-+            compatible:
-+              contains:
-+                enum:
-+                  - xlnx,zynqmp-ipi-dest-mailbox
-+        then:
-+          properties:
-+            reg:
-+              items:
-+                - description: Host agent request message buffer
-+                - description: Host agent response message buffer
-+                - description: Remote agent request message buffer
-+                - description: Remote agent response message buffer
-+
-+            reg-names:
-+              items:
-+                - const: local_request_region
-+                - const: local_response_region
-+                - const: remote_request_region
-+                - const: remote_response_region
-+        else:
-+          properties:
-+            reg:
-+              minItems: 1
-+              items:
-+                - description: Remote IPI agent control register
-+                - description: Remote IPI agent optional message buffer
-+
-+            reg-names:
-+              minItems: 1
-+              items:
-+                - const: ctrl
-+                - const: msg
- required:
-   - compatible
--  - interrupts
-   - '#address-cells'
-   - '#size-cells'
-+  - interrupts
-   - xlnx,ipi-id
- 
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - xlnx,versal-ipi-mailbox
-+    then:
-+      properties:
-+        reg:
-+          items:
-+            - description: Host IPI agent control registers
-+            - description: Host IPI agent optional message buffers
-+
-+        reg-names:
-+          items:
-+            - const: ctrl
-+            - const: msg
-+
-+      required:
-+        - reg
-+        - reg-names
-+
-+additionalProperties: false
-+
-+
- examples:
-   - |
-     #include<dt-bindings/interrupt-controller/arm-gic.h>
- 
--    amba {
--      #address-cells = <0x2>;
--      #size-cells = <0x2>;
-+    bus {
-       zynqmp-mailbox {
-         compatible = "xlnx,zynqmp-ipi-mailbox";
-         interrupts = <GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>;
-         xlnx,ipi-id = <0>;
-         #address-cells = <2>;
-         #size-cells = <2>;
--        ranges;
- 
-         mailbox: mailbox@ff9905c0 {
-           compatible = "xlnx,zynqmp-ipi-dest-mailbox";
-@@ -144,4 +211,41 @@ examples:
-       };
-     };
- 
-+  - |
-+    #include<dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    bus {
-+      #address-cells = <2>;
-+      #size-cells = <2>;
-+      zynqmp-mailbox@ff300000 {
-+        compatible = "xlnx,versal-ipi-mailbox";
-+        interrupts = <GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>;
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+        reg = <0x0 0xff300000 0x0 0x1000>,
-+              <0x0 0xff990000 0x0 0x1ff>;
-+        reg-names = "ctrl", "msg";
-+        xlnx,ipi-id = <0>;
-+        ranges;
-+
-+        /* buffered IPI */
-+        mailbox@ff340000 {
-+          compatible = "xlnx,versal-ipi-dest-mailbox";
-+          reg = <0x0 0xff340000 0x0 0x1000>,
-+                <0x0 0xff990400 0x0 0x1ff>;
-+          reg-names = "ctrl", "msg";
-+          #mbox-cells = <1>;
-+          xlnx,ipi-id = <4>;
-+        };
-+
-+        /* bufferless IPI */
-+        mailbox@ff370000 {
-+          compatible = "xlnx,versal-ipi-dest-mailbox";
-+          reg = <0x0 0xff370000 0x0 0x1000>;
-+          reg-names = "ctrl";
-+          #mbox-cells = <1>;
-+          xlnx,ipi-id = <7>;
-+        };
-+      };
-+    };
- ...
-
-base-commit: abb240f7a2bd14567ab53e602db562bb683391e6
-prerequisite-patch-id: 70017c8eaded5fc85749995b9cf093c6c625fab3
--- 
-2.25.1
-
+Rob
 
