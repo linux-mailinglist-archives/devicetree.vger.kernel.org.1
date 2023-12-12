@@ -1,175 +1,85 @@
-Return-Path: <devicetree+bounces-24191-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24192-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC3AF80E550
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 08:59:37 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FFC280E55F
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 09:01:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D4FA1C20823
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 07:59:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3AE5BB20B61
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 08:01:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85135179AC;
-	Tue, 12 Dec 2023 07:59:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BBCF1802F;
+	Tue, 12 Dec 2023 08:01:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="TnO6yorV"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="hQvLYRY9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D438A0;
-	Mon, 11 Dec 2023 23:59:27 -0800 (PST)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BC7udCt003711;
-	Tue, 12 Dec 2023 07:59:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=/seUik955UQWg68KwzoQTWDJHGnHWX+SuCpnFn49NjA=; b=Tn
-	O6yorVxYFZsZ0wnu8CAeL/UOySXIZNCyaaTCjk/dGryIvCdzzeWVmUTRAsLtnXAW
-	UD8bSMFf2avxJ1XVd/Xyodk1y9NJy/4Agfl7YMrOQMDArFp6Z6askchPjoZAXUIY
-	krsMtZGGiVR4SBvJeET7AQMuG8wWTDnxCoN2WCmtiepxnWCeRlB/sSakmS7OUbYQ
-	iiG30vd15LG8LX1lzrqg65sMQHtLRUuvGNZAOR63HHK9OFXFp0Ta6pnKWi6aUDp8
-	mdVGODgWYbWqTv1/X/T2Yoe33Esj2xxo+31jXIrTvyFWXi1AAaVCyq4mMY7kqKbU
-	HZNVdVYGZob1a7zCKkRA==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uxg6xgek4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 12 Dec 2023 07:59:20 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BC7xJFR030966
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 12 Dec 2023 07:59:19 GMT
-Received: from [10.216.17.154] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 11 Dec
- 2023 23:59:14 -0800
-Message-ID: <42fb155b-60b6-bbfb-f52e-cca66ad5b11d@quicinc.com>
-Date: Tue, 12 Dec 2023 13:29:11 +0530
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E879A7
+	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 00:01:43 -0800 (PST)
+From: Dragan Simic <dsimic@manjaro.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1702368101;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=Uw1YrEybevd9HF4xwjYGawuiyd2PZL5+wBt8RL8bJb8=;
+	b=hQvLYRY97Wr1DmQ8FvsixZ7qeSf6hDhGtwl2+lokKwqRKMeUKcy5iHV3qg1me+XWGkr/s8
+	6If/Cjhu0m3ZDZBRNAa/c4mkKvtJpUh2yR/HaHJEbt6nBfekovyouOjRZiKHb2a83RVX4I
+	kJS7bxWdh37d45HNz88inW09KJ86682aXXmElQBvcbO1NSJ/1cD8SITqP2icApPl/X56Pn
+	LEPwuuYAF7bo33D6oZVLNR+smIY0uUzqui5yV+ZgR+uaZhJqgGU7E4f0Sf+FVUwGTG8cDu
+	/ZX3eLTXHsBzihFatKdbMtpYEf6V0rzFORKwLK2Z+RyVDTMiDOzGyGrb7M4x5A==
+To: linux-rockchip@lists.infradead.org
+Cc: heiko@sntech.de,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org
+Subject: [PATCH 0/2] arm64: dts: rockchip: Add ethernet0 aliases to the dts files for RK3566 and RK3588(S) boards
+Date: Tue, 12 Dec 2023 09:01:38 +0100
+Message-Id: <cover.1702368023.git.dsimic@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v3 2/3] arm64: dts: qcom: sc7280: Move video-firmware to
- chrome-common
-To: Luca Weiss <luca.weiss@fairphone.com>,
-        Stanimir Varbanov
-	<stanimir.k.varbanov@gmail.com>,
-        Bryan O'Donoghue
-	<bryan.odonoghue@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Mauro
- Carvalho Chehab <mchehab@kernel.org>,
-        <cros-qcom-dts-watchers@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
-        <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20231201-sc7280-venus-pas-v3-0-bc132dc5fc30@fairphone.com>
- <20231201-sc7280-venus-pas-v3-2-bc132dc5fc30@fairphone.com>
-Content-Language: en-US
-From: Vikash Garodia <quic_vgarodia@quicinc.com>
-In-Reply-To: <20231201-sc7280-venus-pas-v3-2-bc132dc5fc30@fairphone.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: VWlmNUropSG8foccOOtBS8ydXSl6gZIe
-X-Proofpoint-ORIG-GUID: VWlmNUropSG8foccOOtBS8ydXSl6gZIe
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 clxscore=1011
- phishscore=0 mlxlogscore=999 lowpriorityscore=0 spamscore=0 suspectscore=0
- mlxscore=0 bulkscore=0 malwarescore=0 adultscore=0 priorityscore=1501
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2311290000
- definitions=main-2312120061
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On 12/1/2023 3:03 PM, Luca Weiss wrote:
-> If the video-firmware node is present, the venus driver assumes we're on
-> a system that doesn't use TZ for starting venus, like on ChromeOS
-> devices.
-> 
-> Move the video-firmware node to chrome-common.dtsi so we can use venus
-> on a non-ChromeOS devices. We also need to move the secure SID 0x2184
-> for iommu since (on some boards) we cannot touch that.
-> 
-> At the same time also disable the venus node by default in the dtsi,
-> like it's done on other SoCs.
-> 
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+To complete the process started with the migration of the ethernet0 aliases
+from the SoC dtsi files to the board/device dts(i) files, started in [1],
+let's add ethernet0 aliases to the board dts files that had it missing.
+See also [2] for a related discussion.
 
-Reviewed-by: Vikash Garodia <quic_vgarodia@quicinc.com>
+At the same time, let's remove the ethernet0 alias from one SoM dtsi file,
+which doesn't enable the GMAC, and add the same alias back to the dependent
+board dts files, which actually enable the GMAC.
 
-Regards,
-Vikash
-> ---
->  arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi | 11 +++++++++++
->  arch/arm64/boot/dts/qcom/sc7280.dtsi               |  9 +++------
->  2 files changed, 14 insertions(+), 6 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
-> index 5d462ae14ba1..459ff877df54 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
-> @@ -104,6 +104,17 @@ &scm {
->  	dma-coherent;
->  };
->  
-> +&venus {
-> +	iommus = <&apps_smmu 0x2180 0x20>,
-> +		 <&apps_smmu 0x2184 0x20>;
-> +
-> +	status = "okay";
-> +
-> +	video-firmware {
-> +		iommus = <&apps_smmu 0x21a2 0x0>;
-> +	};
-> +};
-> +
->  &watchdog {
->  	status = "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 326897af117a..0ff9a2484096 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -3836,10 +3836,11 @@ venus: video-codec@aa00000 {
->  					<&mmss_noc MASTER_VIDEO_P0 0 &mc_virt SLAVE_EBI1 0>;
->  			interconnect-names = "cpu-cfg", "video-mem";
->  
-> -			iommus = <&apps_smmu 0x2180 0x20>,
-> -				 <&apps_smmu 0x2184 0x20>;
-> +			iommus = <&apps_smmu 0x2180 0x20>;
->  			memory-region = <&video_mem>;
->  
-> +			status = "disabled";
-> +
->  			video-decoder {
->  				compatible = "venus-decoder";
->  			};
-> @@ -3848,10 +3849,6 @@ video-encoder {
->  				compatible = "venus-encoder";
->  			};
->  
-> -			video-firmware {
-> -				iommus = <&apps_smmu 0x21a2 0x0>;
-> -			};
-> -
->  			venus_opp_table: opp-table {
->  				compatible = "operating-points-v2";
->  
-> 
+All these patches result in a rather clean situation when it comes to the
+Rockchip arm64 device-tree aliases.
+
+[1] https://lore.kernel.org/linux-rockchip/cover.1702366958.git.dsimic@manjaro.org/T/#u
+[2] https://lore.kernel.org/linux-rockchip/5119280.687JKscXgg@diego/T/#u
+
+Dragan Simic (2):
+  arm64: dts: rockchip: Add ethernet0 alias to the dts for RK3566 boards
+  arm64: dts: rockchip: Add ethernet0 alias to the dts for RK3588(S)
+    boards
+
+ arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3-io.dts     | 1 +
+ arch/arm64/boot/dts/rockchip/rk3566-roc-pc.dts           | 1 +
+ arch/arm64/boot/dts/rockchip/rk3566-soquartz-blade.dts   | 4 ++++
+ arch/arm64/boot/dts/rockchip/rk3566-soquartz-cm4.dts     | 4 ++++
+ arch/arm64/boot/dts/rockchip/rk3566-soquartz-model-a.dts | 4 ++++
+ arch/arm64/boot/dts/rockchip/rk3566-soquartz.dtsi        | 1 -
+ arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts         | 1 +
+ arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts      | 1 +
+ arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts      | 1 +
+ arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts         | 1 +
+ 10 files changed, 18 insertions(+), 1 deletion(-)
+
 
