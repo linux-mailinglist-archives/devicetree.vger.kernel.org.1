@@ -1,108 +1,126 @@
-Return-Path: <devicetree+bounces-24160-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24163-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 336BE80E386
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 06:09:51 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BA7280E3F0
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 06:43:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DCE951F21C9D
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 05:09:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8FAF1B21A4B
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 05:43:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B289F9FC;
-	Tue, 12 Dec 2023 05:09:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="QJ4jwys/"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 518E315AC5;
+	Tue, 12 Dec 2023 05:43:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1178FCF;
-	Mon, 11 Dec 2023 21:09:41 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3BC58fjn084073;
-	Mon, 11 Dec 2023 23:08:41 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1702357721;
-	bh=yELq1Mi9FQc6Zi7zKHsjrTGWfdpBsQA4h2JwbNMN7Ak=;
-	h=From:To:CC:Subject:Date;
-	b=QJ4jwys/ycHYS5UY2u+BPcf4kI/GcrgXUGoRz2X92XFJtG8jZiNDFk4rjStGPdOwg
-	 FEmKmbRhWQddgyU09fUg+iZ+6Mu8Rhl/RJan7WW4BjDTLdjsAYN+1GrE+xWwA3WYFo
-	 bYpWtQPrrD+UoG57DrmJhafbI6LMV7RWcvRwDjTg=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3BC58fPc023283
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 11 Dec 2023 23:08:41 -0600
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 11
- Dec 2023 23:08:41 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 11 Dec 2023 23:08:41 -0600
-Received: from LT5CG31242FY.dhcp.ti.com (lt5cg31242fy.dhcp.ti.com [10.85.8.120])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3BC58Zhl003698;
-	Mon, 11 Dec 2023 23:08:36 -0600
-From: Shenghao Ding <shenghao-ding@ti.com>
-To: <broonie@kernel.org>, <conor+dt@kernel.org>,
-        <krzysztof.kozlowski@linaro.org>
-CC: <robh+dt@kernel.org>, <andriy.shevchenko@linux.intel.com>,
-        <devicetree@vger.kernel.org>, <lgirdwood@gmail.com>, <perex@perex.cz>,
-        <pierre-louis.bossart@linux.intel.com>, <13916275206@139.com>,
-        <linux-sound@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <liam.r.girdwood@intel.com>, <soyer@irl.hu>, <tiwai@suse.de>,
-        <peeyush@ti.com>, <navada@ti.com>,
-        Shenghao Ding <shenghao-ding@ti.com>
-Subject: [PATCH v1] ASoC: tas2562: remove tas2563 into driver
-Date: Tue, 12 Dec 2023 13:08:31 +0800
-Message-ID: <20231212050831.982-1-shenghao-ding@ti.com>
-X-Mailer: git-send-email 2.33.0.windows.2
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1FF8BD;
+	Mon, 11 Dec 2023 21:43:43 -0800 (PST)
+Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-6d9dadc3dc0so3923875a34.1;
+        Mon, 11 Dec 2023 21:43:43 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702359823; x=1702964623;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=G/kRQnlrmzAaEgbJW/nHYsdkLSYAXxTeBfYcPh2ZwjE=;
+        b=P1XzrPVWGP6ie+YFuOl9VUB0psNVvZrEQgyMWN3DG2OhY/dWMd7lfBZYI1vUF0OG93
+         oOHDnOglvErCBw5uBGbTttnX2ulFWrza9dwocAJ/XbiTnZLy+cGBfdSLwE1l0OiRqDae
+         iamVAcuydQrJbKCSg6bDEkn//6lm10NjQ/JGW9A9mwSkJTAXwGRLlLlBDopkby3KXb1e
+         xKzopaJbfVOd0jRS50HmgdX/ZfCXZz1+LTQJuzQyP/smkXfYqZyI6mhO+vbXEZEh+OpV
+         BBLU9Jdt2AdY1lOGJne/k5Ejplk4g3izXeBvmsdqHecjUEfH9DZ9mzP7+c4xeuXueIRO
+         KsOQ==
+X-Gm-Message-State: AOJu0Yxu9w5JlzxaRhWNkqlfgEXrm949UyuR620x+23jyuJVtabGiU4a
+	Fodjq/b/Q9MtiyZg4SuI7g==
+X-Google-Smtp-Source: AGHT+IHfJVsFVCXlkAo5HjVP5AjAq4xIe1OLORfTZofd6AI7iHeRszHF1WOfLlCCf48/2Or6Rr6kNw==
+X-Received: by 2002:a05:6830:20d9:b0:6d8:49a1:c52b with SMTP id z25-20020a05683020d900b006d849a1c52bmr5865800otq.27.1702359822924;
+        Mon, 11 Dec 2023 21:43:42 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id r6-20020a9d7506000000b006ce2fce83cbsm2071485otk.25.2023.12.11.21.43.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Dec 2023 21:43:41 -0800 (PST)
+Received: (nullmailer pid 39734 invoked by uid 1000);
+	Tue, 12 Dec 2023 05:43:35 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+From: Rob Herring <robh@kernel.org>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Vinod Koul <vkoul@kernel.org>, John Crispin <john@phrozen.org>, Andrew Lunn <andrew@lunn.ch>, 
+	Rob Herring <robh+dt@kernel.org>, Mark Lee <Mark-MC.Lee@mediatek.com>, 
+	devicetree@vger.kernel.org, Alexander Couzens <lynxis@fe80.eu>, netdev@vger.kernel.org, 
+	Chunfeng Yun <chunfeng.yun@mediatek.com>, SkyLake Huang <SkyLake.Huang@mediatek.com>, 
+	Sean Wang <sean.wang@mediatek.com>, Lorenzo Bianconi <lorenzo@kernel.org>, 
+	linux-arm-kernel@lists.infradead.org, 
+	Matthias Brugger <matthias.bgg@gmail.com>, linux-kernel@vger.kernel.org, 
+	linux-phy@lists.infradead.org, Qingfang Deng <dqfext@gmail.com>, 
+	Russell King <linux@armlinux.org.uk>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Paolo Abeni <pabeni@redhat.com>, Jakub Kicinski <kuba@kernel.org>, Felix Fietkau <nbd@nbd.name>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	linux-mediatek@lists.infradead.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Heiner Kallweit <hkallweit1@gmail.com>, Kishon Vijay Abraham I <kishon@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>
+In-Reply-To: <5859da6629b8b6c100eca4062dd193105bf829ba.1702352117.git.daniel@makrotopia.org>
+References: <cover.1702352117.git.daniel@makrotopia.org>
+ <5859da6629b8b6c100eca4062dd193105bf829ba.1702352117.git.daniel@makrotopia.org>
+Message-Id: <170235981509.39662.6730294984307830032.robh@kernel.org>
+Subject: Re: [RFC PATCH net-next v3 6/8] dt-bindings: net: mediatek: remove
+ wrongly added clocks and SerDes
+Date: Mon, 11 Dec 2023 23:43:35 -0600
 
-Remove tas2563 from tas2562, it will be supported in separated driver code.
 
-Signed-off-by: Shenghao Ding <shenghao-ding@ti.com>
----
- sound/soc/codecs/tas2562.c | 3 ---
- 1 file changed, 3 deletions(-)
+On Tue, 12 Dec 2023 03:48:10 +0000, Daniel Golle wrote:
+> Several clocks as well as both sgmiisys phandles were added by mistake
+> to the Ethernet bindings for MT7988.
+> 
+> This happened because the vendor driver which served as a reference
+> uses a high number of syscon phandles to access various parts of the
+> SoC which wasn't acceptable upstream. Hence several parts which have
+> never previously been supported (such SerDes PHY and USXGMII PCS) have
+> been moved to separate drivers which also result in a much more sane
+> device tree.
+> 
+> Quickly align the bindings with the upcoming reality of the drivers
+> actually adding full support for this SoC.
+> 
+> Fixes: c94a9aabec36 ("dt-bindings: net: mediatek,net: add mt7988-eth binding")
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> ---
+>  .../devicetree/bindings/net/mediatek,net.yaml | 32 ++++---------------
+>  1 file changed, 7 insertions(+), 25 deletions(-)
+> 
 
-diff --git a/sound/soc/codecs/tas2562.c b/sound/soc/codecs/tas2562.c
-index 962c2cdfa017..54561ae598b8 100644
---- a/sound/soc/codecs/tas2562.c
-+++ b/sound/soc/codecs/tas2562.c
-@@ -59,7 +59,6 @@ struct tas2562_data {
- 
- enum tas256x_model {
- 	TAS2562,
--	TAS2563,
- 	TAS2564,
- 	TAS2110,
- };
-@@ -721,7 +720,6 @@ static int tas2562_parse_dt(struct tas2562_data *tas2562)
- 
- static const struct i2c_device_id tas2562_id[] = {
- 	{ "tas2562", TAS2562 },
--	{ "tas2563", TAS2563 },
- 	{ "tas2564", TAS2564 },
- 	{ "tas2110", TAS2110 },
- 	{ }
-@@ -770,7 +768,6 @@ static int tas2562_probe(struct i2c_client *client)
- #ifdef CONFIG_OF
- static const struct of_device_id tas2562_of_match[] = {
- 	{ .compatible = "ti,tas2562", },
--	{ .compatible = "ti,tas2563", },
- 	{ .compatible = "ti,tas2564", },
- 	{ .compatible = "ti,tas2110", },
- 	{ },
--- 
-2.34.1
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/net/pcs/mediatek,usxgmii.example.dts:18:18: fatal error: dt-bindings/clock/mediatek,mt7988-clk.h: No such file or directory
+make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/net/pcs/mediatek,usxgmii.example.dtb] Error 1
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/5859da6629b8b6c100eca4062dd193105bf829ba.1702352117.git.daniel@makrotopia.org
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
