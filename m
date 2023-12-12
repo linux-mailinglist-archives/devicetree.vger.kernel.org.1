@@ -1,238 +1,115 @@
-Return-Path: <devicetree+bounces-24528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E78280F77C
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 21:06:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A79A380F78E
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 21:09:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 717921C20D97
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 20:06:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 501BC1F21705
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 20:09:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E50652773;
-	Tue, 12 Dec 2023 20:06:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4578863BEA;
+	Tue, 12 Dec 2023 20:09:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="XEHbhaUP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f54.google.com (mail-oo1-f54.google.com [209.85.161.54])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13ADCB9;
-	Tue, 12 Dec 2023 12:06:44 -0800 (PST)
-Received: by mail-oo1-f54.google.com with SMTP id 006d021491bc7-5913922ab10so600965eaf.1;
-        Tue, 12 Dec 2023 12:06:44 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702411603; x=1703016403;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=R8geil9tvbaN7HFo/6GZKxMiCtuP3jXSKj9KAGFYxaw=;
-        b=GDEsMCkYTXCUUOY+Q7ePkTSVcVWhabWHLMnrgOSrulukGizDjszR8sWFfJsKtilvnR
-         Le3Bqny8OkA7AyhNGztuJBaYdAgMpuOkYagqIrFK3g4iPzb3y9tTWQPLuNYsv6thKPmq
-         N647WoR31+XWfLS1QaFaWBoLemdWM85ZvSex1/d8HfyRrp4oYM4kzBkI1VWJzSSWVT97
-         GF8shdyJvvIubdBsWOxmFYeXQ7uC5Xfw+Ni1wckLOANZGRsaxQ7i9+8QSMmfTwk3g9YR
-         FdZggsFGm5ircDv2UBRb82eMBPWecvcb2AN2LDUNAIzbzYuhaROzqpsHh+yf57QMkx17
-         HwTQ==
-X-Gm-Message-State: AOJu0YxkfAvdaBZ3WgVyzWG7LlPN9sCkbCt8L7jrzT7f6p8MqlPpgJOc
-	TeyqOucRjZt+znBaQVFTdQ==
-X-Google-Smtp-Source: AGHT+IH7jxGi5ypSPpeOqUsvcN4v2uWH6feiDoZUUpsKHHfmeUZ9aMS03ruIyRAily1J5bH3d1LoOg==
-X-Received: by 2002:a05:6820:607:b0:590:97b9:5565 with SMTP id e7-20020a056820060700b0059097b95565mr4906684oow.12.1702411603276;
-        Tue, 12 Dec 2023 12:06:43 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id o14-20020a4a384e000000b0058dc4a5de5bsm2628979oof.14.2023.12.12.12.06.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Dec 2023 12:06:42 -0800 (PST)
-Received: (nullmailer pid 2549596 invoked by uid 1000);
-	Tue, 12 Dec 2023 20:06:41 -0000
-Date: Tue, 12 Dec 2023 14:06:41 -0600
-From: Rob Herring <robh@kernel.org>
-To: Luo Jie <quic_luoj@quicinc.com>
-Cc: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org, davem@davemloft.net, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk, robert.marko@sartura.hr, linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, quic_srichara@quicinc.com
-Subject: Re: [PATCH v2 5/5] dt-bindings: net: ipq4019-mdio: Document ipq5332
- platform
-Message-ID: <20231212200641.GA2331615-robh@kernel.org>
-References: <20231212115151.20016-1-quic_luoj@quicinc.com>
- <20231212115151.20016-6-quic_luoj@quicinc.com>
+Received: from ixit.cz (ip-89-177-23-149.bb.vodafone.cz [89.177.23.149])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5BBCCA;
+	Tue, 12 Dec 2023 12:09:38 -0800 (PST)
+Received: from newone.lan (unknown [10.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by ixit.cz (Postfix) with ESMTPSA id 727A516074E;
+	Tue, 12 Dec 2023 21:09:35 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1702411775;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=YR5tv31E3PULKwDD6cdd9ZvzFe890y7GDGcNtPGOHXs=;
+	b=XEHbhaUPUOqSI1feA5yJXFXHVAxPSMX6n3JA1rJVomrooXonUuUWcAucm+0woS4YlpcXvy
+	DXiehrUkg88bnRZsOL7fEoi8GWm/HTlAr0OsVj8d8j5jhUwZ2S00FBvvwol8VBJCKFcCho
+	lz/0OxthKSjJ4Cf4ZbbtdY2kwF3JR80=
+From: David Heidelberg <david@ixit.cz>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Brian Masney <masneyb@onstation.org>
+Cc: David Heidelberg <david@ixit.cz>,
+	Rob Herring <robh@kernel.org>,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: panel-simple-dsi: move LG 5" HD TFT LCD panel into DSI yaml
+Date: Tue, 12 Dec 2023 21:09:17 +0100
+Message-ID: <20231212200934.99262-1-david@ixit.cz>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231212115151.20016-6-quic_luoj@quicinc.com>
+Content-Transfer-Encoding: 8bit
 
-On Tue, Dec 12, 2023 at 07:51:50PM +0800, Luo Jie wrote:
-> Update the yaml file for the new DTS properties.
-> 
-> 1. cmn-reference-clock for the CMN PLL source clock select.
-> 2. clock-frequency for MDIO clock frequency config.
-> 3. add uniphy AHB & SYS GCC clocks.
-> 4. add reset-gpios for MDIO bus level reset.
-> 
-> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
-> ---
->  .../bindings/net/qcom,ipq4019-mdio.yaml       | 157 +++++++++++++++++-
->  1 file changed, 153 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml b/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml
-> index 3407e909e8a7..9546a6ad7841 100644
-> --- a/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml
-> +++ b/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml
-> @@ -20,6 +20,8 @@ properties:
->            - enum:
->                - qcom,ipq6018-mdio
->                - qcom,ipq8074-mdio
-> +              - qcom,ipq9574-mdio
-> +              - qcom,ipq5332-mdio
->            - const: qcom,ipq4019-mdio
+Originally was in the panel-simple, but belongs to panel-simple-dsi.
 
-A driver can function without knowing about all these new registers and 
-clocks? If not, then it can't be compatible with "qcom,ipq4019-mdio".
+See arch/arm/boot/dts/nvidia/tegra114-roth.dts for more details.
 
->  
->    "#address-cells":
-> @@ -30,19 +32,71 @@ properties:
->  
->    reg:
->      minItems: 1
-> -    maxItems: 2
-> +    maxItems: 5
->      description:
-> -      the first Address and length of the register set for the MDIO controller.
-> -      the second Address and length of the register for ethernet LDO, this second
-> -      address range is only required by the platform IPQ50xx.
-> +      the first Address and length of the register set for the MDIO controller,
-> +      the optional second, third and fourth address and length of the register
-> +      for ethernet LDO, these three address range are required by the platform
-> +      IPQ50xx/IPQ5332/IPQ9574, the last address and length is for the CMN clock
-> +      to select the reference clock.
-> +
-> +  reg-names:
-> +    minItems: 1
-> +    maxItems: 5
->  
->    clocks:
-> +    minItems: 1
->      items:
->        - description: MDIO clock source frequency fixed to 100MHZ
-> +      - description: UNIPHY0 AHB clock source frequency fixed to 100MHZ
-> +      - description: UNIPHY1 AHB clock source frequency fixed to 100MHZ
-> +      - description: UNIPHY0 SYS clock source frequency fixed to 24MHZ
-> +      - description: UNIPHY1 SYS clock source frequency fixed to 24MHZ
+Resolves the following warning:
+```
+arch/arm/boot/dts/tegra114-roth.dt.yaml: panel@0: 'reg' does not match any of the regexes: 'pinctrl-[0-9]+'
+        From schema: Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+```
 
-These are all clock inputs to this h/w block and not some other clocks 
-you want to manage?
+Fixes: 310abcea76e9 ("dt-bindings: display: convert simple lg panels to DT Schema")
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+v2: added Fixes tag (thx to Jessica)
 
->  
->    clock-names:
-> +    minItems: 1
->      items:
->        - const: gcc_mdio_ahb_clk
-> +      - const: gcc_uniphy0_ahb_clk
-> +      - const: gcc_uniphy1_ahb_clk
-> +      - const: gcc_uniphy0_sys_clk
-> +      - const: gcc_uniphy1_sys_clk
+ .../devicetree/bindings/display/panel/panel-simple-dsi.yaml     | 2 ++
+ .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 --
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-"gcc" is presumably the name of the clock controller in QCom chips. 
-Well, the clock source should not be part of the binding. The names 
-should be local for what they are for. So drop 'gcc_'. And '_clk' is 
-also redundant, so drop it too. Unfortunately you are stuck with the 
-name of the 1st entry.
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
+index 73674baea75d..f9160d7bac3c 100644
+--- a/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
++++ b/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
+@@ -42,6 +42,8 @@ properties:
+       - lg,acx467akm-7
+         # LG Corporation 7" WXGA TFT LCD panel
+       - lg,ld070wx3-sl01
++        # LG Corporation 5" HD TFT LCD panel
++      - lg,lh500wx1-sd03
+         # One Stop Displays OSD101T2587-53TS 10.1" 1920x1200 panel
+       - osddisplays,osd101t2587-53ts
+         # Panasonic 10" WUXGA TFT LCD panel
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+index 2021aa82871a..634a10c6f2dd 100644
+--- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
++++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+@@ -212,8 +212,6 @@ properties:
+       - lemaker,bl035-rgb-002
+         # LG 7" (800x480 pixels) TFT LCD panel
+       - lg,lb070wv8
+-        # LG Corporation 5" HD TFT LCD panel
+-      - lg,lh500wx1-sd03
+         # LG LP079QX1-SP0V 7.9" (1536x2048 pixels) TFT LCD panel
+       - lg,lp079qx1-sp0v
+         # LG 9.7" (2048x1536 pixels) TFT LCD panel
+-- 
+2.43.0
 
-> +
-> +  cmn-reference-clock:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - 0   # CMN PLL reference internal 48MHZ
-> +              - 1   # CMN PLL reference external 25MHZ
-> +              - 2   # CMN PLL reference external 31250KHZ
-> +              - 3   # CMN PLL reference external 40MHZ
-> +              - 4   # CMN PLL reference external 48MHZ
-> +              - 5   # CMN PLL reference external 50MHZ
-> +              - 6   # CMN PLL reference internal 96MHZ
-> +
-> +  clock-frequency:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - 12500000
-> +              - 6250000
-> +              - 3125000
-> +              - 1562500
-> +              - 781250
-> +              - 390625
-> +    description:
-> +      The MDIO bus clock that must be output by the MDIO bus hardware,
-> +      only the listed frequecies above can be configured, other frequency
-> +      will cause malfunction. If absent, the default hardware value is used.
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +
-> +  reset-assert-us:
-> +    maxItems: 1
-> +
-> +  reset-deassert-us:
-> +    maxItems: 1
->  
->  required:
->    - compatible
-> @@ -61,6 +115,8 @@ allOf:
->                - qcom,ipq5018-mdio
->                - qcom,ipq6018-mdio
->                - qcom,ipq8074-mdio
-> +              - qcom,ipq5332-mdio
-> +              - qcom,ipq9574-mdio
->      then:
->        required:
->          - clocks
-> @@ -70,6 +126,40 @@ allOf:
->          clocks: false
->          clock-names: false
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,ipq5332-mdio
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 5
-> +          maxItems: 5
-> +        reg-names:
-> +          items:
-> +            - const: mdio
-> +            - const: eth_ldo1
-> +            - const: eth_ldo2
-> +            - const: cmn_blk
-
-Perhaps cmn_blk should come 2nd, so all the variants have the same entry 
-indices. Then you can move this to the top level and just say 'minItems: 
-4' here.
-
-
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,ipq9574-mdio
-> +    then:
-> +      properties:
-> +        reg-names:
-> +          items:
-> +            - const: mdio
-> +            - const: eth_ldo1
-> +            - const: eth_ldo2
-> +            - const: eth_ldo3
-> +            - const: cmn_blk
-
-And 'minItems: 5' here.
-
-The ipq9574 adds the CMN block, but none of the clocks? Weird.
-
-Rob
 
