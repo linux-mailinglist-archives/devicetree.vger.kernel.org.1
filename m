@@ -1,127 +1,107 @@
-Return-Path: <devicetree+bounces-24136-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24137-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D847780E25E
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 03:58:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCDD880E27D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 04:09:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8D4861F21B98
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 02:58:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 97566282374
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 03:09:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 978E94696;
-	Tue, 12 Dec 2023 02:58:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CFF24436;
+	Tue, 12 Dec 2023 03:09:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAC5D83;
-	Mon, 11 Dec 2023 18:58:39 -0800 (PST)
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75F12B5;
+	Mon, 11 Dec 2023 19:09:01 -0800 (PST)
 Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-	by ex01.ufhost.com (Postfix) with ESMTP id 1220B24E296;
-	Tue, 12 Dec 2023 10:58:38 +0800 (CST)
-Received: from EXMBX064.cuchost.com (172.16.6.64) by EXMBX165.cuchost.com
+	by fd01.gateway.ufhost.com (Postfix) with ESMTP id 1F7287FD3;
+	Tue, 12 Dec 2023 11:09:00 +0800 (CST)
+Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX165.cuchost.com
  (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 12 Dec
- 2023 10:58:38 +0800
-Received: from EXMBX066.cuchost.com (172.16.7.66) by EXMBX064.cuchost.com
- (172.16.6.64) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 12 Dec
- 2023 10:58:37 +0800
-Received: from EXMBX066.cuchost.com ([fe80::5947:9245:907e:339f]) by
- EXMBX066.cuchost.com ([fe80::5947:9245:907e:339f%17]) with mapi id
- 15.00.1497.044; Tue, 12 Dec 2023 10:58:37 +0800
-From: JeeHeng Sia <jeeheng.sia@starfivetech.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, "kernel@esmil.dk"
-	<kernel@esmil.dk>, "conor@kernel.org" <conor@kernel.org>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"paul.walmsley@sifive.com" <paul.walmsley@sifive.com>, "palmer@dabbelt.com"
-	<palmer@dabbelt.com>, "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
-	"mturquette@baylibre.com" <mturquette@baylibre.com>, "sboyd@kernel.org"
-	<sboyd@kernel.org>, "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-	"emil.renner.berthing@canonical.com" <emil.renner.berthing@canonical.com>,
-	Hal Feng <hal.feng@starfivetech.com>, Xingyu Wu <xingyu.wu@starfivetech.com>
-CC: "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>, Leyfoon Tan
-	<leyfoon.tan@starfivetech.com>
-Subject: RE: [PATCH v1 16/16] riscv: dts: starfive: jh8100: Add clocks and
- resets nodes
-Thread-Topic: [PATCH v1 16/16] riscv: dts: starfive: jh8100: Add clocks and
- resets nodes
-Thread-Index: AQHaKDqra6wATad1nUKrJTE2u0DzTrCfKVUAgAXSX4A=
-Date: Tue, 12 Dec 2023 02:58:37 +0000
-Message-ID: <62705afb652e416695aa26e3bdb2500e@EXMBX066.cuchost.com>
-References: <20231206115000.295825-1-jeeheng.sia@starfivetech.com>
- <20231206115000.295825-17-jeeheng.sia@starfivetech.com>
- <4dd53599-5e80-4a00-a708-507c9c2e7b6b@linaro.org>
-In-Reply-To: <4dd53599-5e80-4a00-a708-507c9c2e7b6b@linaro.org>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-ms-exchange-transport-fromentityheader: Hosted
-x-yovoleruleagent: yovoleflag
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ 2023 11:09:00 +0800
+Received: from [192.168.125.131] (183.27.97.57) by EXMBX061.cuchost.com
+ (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 12 Dec
+ 2023 11:08:59 +0800
+Message-ID: <e7902994-4558-4f91-b8fe-a768961683b5@starfivetech.com>
+Date: Tue, 12 Dec 2023 11:01:21 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/2] watchdog: starfive-wdt: Add JH8100 watchdog
+ compatible string
+To: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>,
+	<krzysztof.kozlowski@linaro.org>
+CC: <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <leyfoon.tan@starfivetech.com>,
+	<linux-kernel@vger.kernel.org>, <linux-watchdog@vger.kernel.org>,
+	<linux@roeck-us.net>, <robh+dt@kernel.org>, <samin.guo@starfivetech.com>,
+	<wim@linux-watchdog.org>
+References: <84145eba-7877-4dc0-a221-2debb5a40d40@linaro.org>
+ <20231211164700.1590908-1-jisheng.teoh@starfivetech.com>
+Content-Language: en-US
+From: Xingyu Wu <xingyu.wu@starfivetech.com>
+In-Reply-To: <20231211164700.1590908-1-jisheng.teoh@starfivetech.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX061.cuchost.com
+ (172.16.6.61)
+X-YovoleRuleAgent: yovoleflag
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS3J6eXN6dG9mIEtvemxv
-d3NraSA8a3J6eXN6dG9mLmtvemxvd3NraUBsaW5hcm8ub3JnPg0KPiBTZW50OiBTYXR1cmRheSwg
-RGVjZW1iZXIgOSwgMjAyMyAxOjU3IEFNDQo+IFRvOiBKZWVIZW5nIFNpYSA8amVlaGVuZy5zaWFA
-c3RhcmZpdmV0ZWNoLmNvbT47IGtlcm5lbEBlc21pbC5kazsgY29ub3JAa2VybmVsLm9yZzsgcm9i
-aCtkdEBrZXJuZWwub3JnOw0KPiBrcnp5c3p0b2Yua296bG93c2tpK2R0QGxpbmFyby5vcmc7IHBh
-dWwud2FsbXNsZXlAc2lmaXZlLmNvbTsgcGFsbWVyQGRhYmJlbHQuY29tOyBhb3VAZWVjcy5iZXJr
-ZWxleS5lZHU7DQo+IG10dXJxdWV0dGVAYmF5bGlicmUuY29tOyBzYm95ZEBrZXJuZWwub3JnOyBw
-LnphYmVsQHBlbmd1dHJvbml4LmRlOyBlbWlsLnJlbm5lci5iZXJ0aGluZ0BjYW5vbmljYWwuY29t
-OyBIYWwgRmVuZw0KPiA8aGFsLmZlbmdAc3RhcmZpdmV0ZWNoLmNvbT47IFhpbmd5dSBXdSA8eGlu
-Z3l1Lnd1QHN0YXJmaXZldGVjaC5jb20+DQo+IENjOiBsaW51eC1yaXNjdkBsaXN0cy5pbmZyYWRl
-YWQub3JnOyBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsgbGludXgta2VybmVsQHZnZXIua2Vy
-bmVsLm9yZzsgbGludXgtY2xrQHZnZXIua2VybmVsLm9yZzsgTGV5Zm9vbiBUYW4NCj4gPGxleWZv
-b24udGFuQHN0YXJmaXZldGVjaC5jb20+DQo+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggdjEgMTYvMTZd
-IHJpc2N2OiBkdHM6IHN0YXJmaXZlOiBqaDgxMDA6IEFkZCBjbG9ja3MgYW5kIHJlc2V0cyBub2Rl
-cw0KPiANCj4gT24gMDYvMTIvMjAyMyAxMjo1MCwgU2lhIEplZSBIZW5nIHdyb3RlOg0KPiA+IEFk
-ZCBTWVNDUkcvU1lTQ1JHLU5FL1NZU0NSRy1OVy9TWVNDUkctU1cvQU9OQ1JHIGNsb2NrIGFuZCBy
-ZXNldA0KPiA+IG5vZGVzIGZvciBKSDgxMDAgUklTQy1WIFNvQy4NCj4gPg0KPiA+IFNpZ25lZC1v
-ZmYtYnk6IFNpYSBKZWUgSGVuZyA8amVlaGVuZy5zaWFAc3RhcmZpdmV0ZWNoLmNvbT4NCj4gPiBS
-ZXZpZXdlZC1ieTogTGV5IEZvb24gVGFuIDxsZXlmb29uLnRhbkBzdGFyZml2ZXRlY2guY29tPg0K
-PiANCj4gUmVhbGx5PyBMb29rcyBhdXRvbWF0ZWQuLi4gQ2FyZSB0byBwcm92aWRlIGFueSBsaW5r
-cyB0byBlZmZlY3RzIG9mDQo+IGludGVybmFsIHJldmlldz8NCmh0dHBzOi8vZ2l0bGFiLnN0YXJm
-aXZldGVjaC5jb20vamVlaGVuZy5zaWEvbGludXgvLS9jb21taXRzL0pIODEwMF9VcHN0cmVhbS8N
-Cj4gDQo+ID4gLS0tDQo+ID4gIGFyY2gvcmlzY3YvYm9vdC9kdHMvc3RhcmZpdmUvamg4MTAwLWNs
-ay5kdHNpIHwgMTgwICsrKysrKysrKysrKysrKysrKysNCj4gPiAgYXJjaC9yaXNjdi9ib290L2R0
-cy9zdGFyZml2ZS9qaDgxMDAuZHRzaSAgICAgfCAxMTUgKysrKysrKysrKysrDQo+ID4gIDIgZmls
-ZXMgY2hhbmdlZCwgMjk1IGluc2VydGlvbnMoKykNCj4gPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGFy
-Y2gvcmlzY3YvYm9vdC9kdHMvc3RhcmZpdmUvamg4MTAwLWNsay5kdHNpDQo+ID4NCj4gPiBkaWZm
-IC0tZ2l0IGEvYXJjaC9yaXNjdi9ib290L2R0cy9zdGFyZml2ZS9qaDgxMDAtY2xrLmR0c2kgYi9h
-cmNoL3Jpc2N2L2Jvb3QvZHRzL3N0YXJmaXZlL2poODEwMC1jbGsuZHRzaQ0KPiA+IG5ldyBmaWxl
-IG1vZGUgMTAwNjQ0DQo+ID4gaW5kZXggMDAwMDAwMDAwMDAwLi4yN2JhMjQ5ZjUyM2UNCj4gPiAt
-LS0gL2Rldi9udWxsDQo+ID4gKysrIGIvYXJjaC9yaXNjdi9ib290L2R0cy9zdGFyZml2ZS9qaDgx
-MDAtY2xrLmR0c2kNCj4gPiBAQCAtMCwwICsxLDE4MCBAQA0KPiA+ICsvLyBTUERYLUxpY2Vuc2Ut
-SWRlbnRpZmllcjogR1BMLTIuMCBPUiBNSVQNCj4gPiArLyoNCj4gPiArICogQ29weXJpZ2h0IChD
-KSAyMDIzIFN0YXJGaXZlIFRlY2hub2xvZ3kgQ28uLCBMdGQuDQo+ID4gKyAqLw0KPiA+ICsNCj4g
-PiArLyB7DQo+ID4gKwljbGtfb3NjOiBjbGtfb3NjIHsNCj4gDQo+IE5vIHVuZGVyc2NvcmVzIGlu
-IG5vZGUgbmFtZXMuDQpOb3RlZC4NCj4gDQo+ID4gKwkJY29tcGF0aWJsZSA9ICJmaXhlZC1jbG9j
-ayI7DQo+ID4gKwkJI2Nsb2NrLWNlbGxzID0gPDA+Ow0KPiA+ICsJCWNsb2NrLWZyZXF1ZW5jeSA9
-IDwyNDAwMDAwMD47DQo+ID4gKwl9Ow0KPiA+ICsNCj4gDQo+IC4uLg0KPiANCj4gPiBkaWZmIC0t
-Z2l0IGEvYXJjaC9yaXNjdi9ib290L2R0cy9zdGFyZml2ZS9qaDgxMDAuZHRzaSBiL2FyY2gvcmlz
-Y3YvYm9vdC9kdHMvc3RhcmZpdmUvamg4MTAwLmR0c2kNCj4gPiBpbmRleCBmMjZhZmY1YzFkZGYu
-Ljk4NjNjNjEzMjRhMCAxMDA2NDQNCj4gPiAtLS0gYS9hcmNoL3Jpc2N2L2Jvb3QvZHRzL3N0YXJm
-aXZlL2poODEwMC5kdHNpDQo+ID4gKysrIGIvYXJjaC9yaXNjdi9ib290L2R0cy9zdGFyZml2ZS9q
-aDgxMDAuZHRzaQ0KPiA+IEBAIC00LDYgKzQsOSBAQA0KPiA+ICAgKi8NCj4gPg0KPiA+ICAvZHRz
-LXYxLzsNCj4gPiArI2luY2x1ZGUgPGR0LWJpbmRpbmdzL2Nsb2NrL3N0YXJmaXZlLGpoODEwMC1j
-cmcuaD4NCj4gPiArI2luY2x1ZGUgPGR0LWJpbmRpbmdzL3Jlc2V0L3N0YXJmaXZlLGpoODEwMC1j
-cmcuaD4NCj4gPiArI2luY2x1ZGUgImpoODEwMC1jbGsuZHRzaSINCj4gPg0KPiA+ICAvIHsNCj4g
-PiAgCWNvbXBhdGlibGUgPSAic3RhcmZpdmUsamg4MTAwIjsNCj4gPiBAQCAtMzU3LDYgKzM2MCwx
-MDQgQEAgdWFydDQ6IHNlcmlhbEAxMjFhMDAwMCAgew0KPiA+ICAJCQlzdGF0dXMgPSAiZGlzYWJs
-ZWQiOw0KPiA+ICAJCX07DQo+ID4NCj4gPiArCQlzeXNjcmdfbmU6IHN5c2NyZ19uZUAxMjMyMDAw
-MCB7DQo+IA0KPiBjbG9jay1jb250cm9sbGVyQA0KPiANCj4gSnVzdCBvcGVuIHlvdXIgYmluZGlu
-Z3MgYW5kIHRha2UgYSBsb29rIGhvdyBpdCBpcyBkb25lIHRoZXJlLi4uDQo+IA0KPiBUaGlzIGFw
-cGxpZXMgZXZlcnl3aGVyZQ0KPiANCj4gQmVzdCByZWdhcmRzLA0KPiBLcnp5c3p0b2YNCg0K
+On 2023/12/12 0:47, Ji Sheng Teoh wrote:
+> On Mon, 11 Dec 2023 11:06:42 +0100
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> 
+>> On 09/12/2023 15:27, Ji Sheng Teoh wrote:
+>> > Add "starfive,jh8100-wdt" compatible for StarFive's JH8100 watchdog.
+>> > JH8100 watchdog reuses JH7110 register mapping.
+>> > 
+>> > Signed-off-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
+>> > Signed-off-by: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
+>> > ---
+>> >  drivers/watchdog/starfive-wdt.c | 1 +
+>> >  1 file changed, 1 insertion(+)
+>> > 
+>> > diff --git a/drivers/watchdog/starfive-wdt.c
+>> > b/drivers/watchdog/starfive-wdt.c index 5f501b41faf9..31785bb373d5
+>> > 100644 --- a/drivers/watchdog/starfive-wdt.c
+>> > +++ b/drivers/watchdog/starfive-wdt.c
+>> > @@ -581,6 +581,7 @@ static const struct dev_pm_ops
+>> > starfive_wdt_pm_ops = { static const struct of_device_id
+>> > starfive_wdt_match[] = { { .compatible = "starfive,jh7100-wdt",
+>> > .data = &starfive_wdt_jh7100_variant }, { .compatible =
+>> > "starfive,jh7110-wdt", .data = &starfive_wdt_jh7110_variant },
+>> > +	{ .compatible = "starfive,jh8100-wdt", .data =
+>> > &starfive_wdt_jh7110_variant },  
+>> 
+>> Device is compatible, so why not expressing it in the bindings and
+>> dropping this change?
+>> 
+>> Best regards,
+>> Krzysztof
+>> 
+> 
+> Ok, will drop this change.
+> 
+> Thanks,
+> Ji Sheng
+
+Hi Ji Sheng,
+
+You can add the compatible "starfive,jh8100-wdt" in the bindings and add this:
+
+	compatible = "starfive,jh8100-wdt", "starfive,jh7110-wdt";
+
+in the dts. I think it would be better and does not change the driver.
+
+Best regards,
+Xingyu Wu
 
