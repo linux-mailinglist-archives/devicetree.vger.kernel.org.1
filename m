@@ -1,163 +1,105 @@
-Return-Path: <devicetree+bounces-24496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24497-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADC5880F575
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 19:26:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81C1080F586
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 19:28:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B0480B20D91
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 18:26:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AE79C1C20A74
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 18:28:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ECE87E79B;
-	Tue, 12 Dec 2023 18:26:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 573467E78C;
+	Tue, 12 Dec 2023 18:28:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DndZAEzJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22B8ECF
-	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 10:26:07 -0800 (PST)
-Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-2888c80994bso3596090a91.0
-        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 10:26:07 -0800 (PST)
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 610EDD2
+	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 10:28:13 -0800 (PST)
+Received: by mail-pj1-x102d.google.com with SMTP id 98e67ed59e1d1-28ac13259afso204401a91.1
+        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 10:28:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702405693; x=1703010493; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mIut8hQ8z15MtX5ku8n8HTViYJwiZt/tT/lHp4jyYh8=;
+        b=DndZAEzJzPrXmmlbsMew+cKVmdIGI74w/loaDwu9/2rJFuCOq3xcnhMZVnpj5i/Bq8
+         a/9r0Vyg1aardAWlFLwIgIrMN+IrdsKHc5F6k2qs2+BpVjZDH6UCmB1HhfuzkEbC1ni2
+         KdKsMsqb1vEt8dKfGBqDWeIoIbUHxWvVcW+LFrP4mb2BGQABEUuijEXpVuqeIiunh8UA
+         rEIW8403eseKRujplIdYvClURTSbnxMpIrfjclamK+GlDzRl5O0A+Kig9STTcSvVlEY2
+         iF4aoMIBKuEFjd/4KfIIPez0QM5pE0MUo83kIbV9TAk+sdsmV25jxWWmzUqPY5t5S50S
+         2v5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702405566; x=1703010366;
-        h=content-transfer-encoding:mime-version:message-id:date:references
-         :in-reply-to:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1702405693; x=1703010493;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=9lX++N5VCWclr3d1h9X3xvVDF9stHF9vZ8hPgWWAfgI=;
-        b=uRBgJ60JSbCKaYJYPdACcWSOA6pSBwxmcgE2yyTPgZO9c0EtaKzHSG4VXWArYCLYKv
-         jexbebcQnCGAetZjpjIhoouqR2cjPRTThLv+X2t/Iq3QqoFym0BLFOEGHkuKOCyKF9NV
-         eyssyWR+S6TTSBNSmnJwgXhuG/UdbHNxjWPZ/KSluMKl/8hz7h0pa0ArlxwVq+1khG8t
-         lIVA7O4yIHKaPGmIODPtaS+X7mqm8prKY584eG+iJxfGmir4bRm+jOUvmjOsjeYXe4Ln
-         BZFiKVdA6l/+rueacPBxGKVmc2/OFiB/VHA5yoXqgs07SAIG518MtRbrRKEBI1j6JihH
-         YEyg==
-X-Gm-Message-State: AOJu0Ywwp8hMwu0H6aF0xJNZ8YeMx6BDB53Z7hdtzu1sgDgEB7BcFdxj
-	fESfX2Qa1ljyCT6LK+/M7Jo24A==
-X-Google-Smtp-Source: AGHT+IHXCRJ5ZJEeDDrwJnt6AcXXLGoPeX/dvnSsoC0qb9tX2LLEt4DQy55A5U2kLu55LSGfolR+qA==
-X-Received: by 2002:a17:90a:f30e:b0:286:a2a3:1e4f with SMTP id ca14-20020a17090af30e00b00286a2a31e4fmr3120316pjb.64.1702405566516;
-        Tue, 12 Dec 2023 10:26:06 -0800 (PST)
-Received: from localhost (75-172-121-199.tukw.qwest.net. [75.172.121.199])
-        by smtp.gmail.com with ESMTPSA id q30-20020a17090a17a100b0028ac663af16sm1585825pja.23.2023.12.12.10.26.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Dec 2023 10:26:05 -0800 (PST)
-From: Kevin Hilman <khilman@kernel.org>
-To: =?utf-8?Q?Th=C3=A9o?= Lebrun <theo.lebrun@bootlin.com>, Roger Quadros
- <rogerq@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Peter Chen <peter.chen@kernel.org>, Pawel Laszczak <pawell@cadence.com>,
- Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero
- Kristo <kristo@kernel.org>, "Vardhan, Vibhore" <vibhore@ti.com>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- =?utf-8?Q?Gr=C3=A9gory?= Clement <gregory.clement@bootlin.com>, Thomas
- Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 3/6] usb: cdns3-ti: add suspend/resume procedures for J7200
-In-Reply-To: <CX9MMPFL7HAY.NGULD1FN5WPN@tleb-bootlin-xps13-01>
-References: <20231113-j7200-usb-suspend-v1-0-ad1ee714835c@bootlin.com>
- <20231113-j7200-usb-suspend-v1-3-ad1ee714835c@bootlin.com>
- <5080372b-1f48-4cbc-a6c4-8689c28983cb@kernel.org>
- <CWZH66HQZNYM.T623ZOEEE0BK@tleb-bootlin-xps13-01>
- <dad980f3-e032-41e4-a1e4-a16a7f45ff95@kernel.org>
- <CX0GOP07I40N.198G7LJ0HYDBG@tleb-bootlin-xps13-01>
- <bdea68ad-7523-4738-8fa1-b670d81a6b93@kernel.org>
- <CX10D9YX1O1C.30PF317AG065N@tleb-bootlin-xps13-01>
- <3e00b2ad-b58f-4b09-9230-683c58d3bb92@kernel.org>
- <CX15J7B8F8HH.1WZ10OOW31X1H@tleb-bootlin-xps13-01>
- <7h34wxfmwn.fsf@baylibre.com>
- <CX63KP2UPL1N.J9Q344Q06IGP@tleb-bootlin-xps13-01>
- <7hil5odtwl.fsf@baylibre.com>
- <CX9MMPFL7HAY.NGULD1FN5WPN@tleb-bootlin-xps13-01>
-Date: Tue, 12 Dec 2023 10:26:05 -0800
-Message-ID: <7h7cljcm6a.fsf@baylibre.com>
+        bh=mIut8hQ8z15MtX5ku8n8HTViYJwiZt/tT/lHp4jyYh8=;
+        b=GQdSvHPjQwlLOzByc9f8YgfEsvzUL0/aRjuyMQumbWWrsKDz92wv1bgHB0nPYXRwTs
+         HFn4aF7ehw0CEbRXZoFaOUF0c3rmALLSlocoJdx9CO/PZ//JdGJUfXtgRZxvWXW1mLgG
+         mh2iwJ9cBUeuSg8U0po52WLKzlk0/OQJqCtFv1M/y2bKwukDtG2gU9qpfo2m9KhQWEuj
+         WZD1YFz2F6Dg2CT8M/KOJiNgrn63A7IFgu1teGkeCztelx1LK0SQJsn5Elb2T664xCGM
+         k483TmNqE3fqi5cmycL44GIJ1Oazv2R2+DbROrV4HDGQ0XKC0tVkQl99IEJ6jflw4WZC
+         /67A==
+X-Gm-Message-State: AOJu0YxCpnbxee6Sbdq1fkfd0YeVw0jge8/OUpXZk5Lh90x4v/9bJaTg
+	zg5Udicjk/cDdaCDuy09YTeJpMuX6gBEJi4Vf9U=
+X-Google-Smtp-Source: AGHT+IH0DC48Op1TLyyJne6Tp/7pAjJRMKIynuoYfi09BGTPA5eLQUgcAoXihSU+RRu2OAsPRVyEcZhf7WhxQl7+DaA=
+X-Received: by 2002:a17:90a:6345:b0:286:4055:63e0 with SMTP id
+ v5-20020a17090a634500b00286405563e0mr11615556pjs.0.1702405692665; Tue, 12 Dec
+ 2023 10:28:12 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+References: <20231211204138.553141-1-festevam@gmail.com> <9089fb993eb0b2b630784e5b91cb88c1ff2f45fb.camel@pengutronix.de>
+In-Reply-To: <9089fb993eb0b2b630784e5b91cb88c1ff2f45fb.camel@pengutronix.de>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Tue, 12 Dec 2023 15:28:00 -0300
+Message-ID: <CAOMZO5D0rxTmxGZX1Obfm9+t46gW6XpGWDcHDzocQd6p5OokBg@mail.gmail.com>
+Subject: Re: [PATCH 1/3] drm/mxsfb: Add an entry for "fsl,imx8mq-lcdif"
+To: Lucas Stach <l.stach@pengutronix.de>
+Cc: marex@denx.de, devicetree@vger.kernel.org, conor+dt@kernel.org, 
+	Fabio Estevam <festevam@denx.de>, kernel@puri.sm, dri-devel@lists.freedesktop.org, 
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, martink@posteo.de
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Th=C3=A9o Lebrun <theo.lebrun@bootlin.com> writes:
+Hi Lucas,
 
-> Hello,
+On Tue, Dec 12, 2023 at 3:19=E2=80=AFPM Lucas Stach <l.stach@pengutronix.de=
+> wrote:
+
+> I don't really like this series. While we don't make any strong
+> guarantees in this way, it breaks booting older kernels with a new DT.
+
+I thought we needed only to guarantee that old DTs still run with
+newer kernels, not the other way around.
+
+> As this driver patch shows, there are no actual differences in the IP
+> block between i.MX6SX and i.MX8MQ, it's just the SoC integration that's
+> different, where in one SoC the controller is located in a power
+> domain, while it isn't in another.
 >
-> On Sun Nov 26, 2023 at 11:36 PM CET, Kevin Hilman wrote:
->> Th=C3=A9o Lebrun <theo.lebrun@bootlin.com> writes:
->> > On Wed Nov 22, 2023 at 11:23 PM CET, Kevin Hilman wrote:
->> >> Th=C3=A9o Lebrun <theo.lebrun@bootlin.com> writes:
->> >> The point is to signal to the power domain the device is in that it c=
-an
->> >> power on/off.  These IP blocks are (re)used on many different SoCs, so
->> >> the driver should not make any assumptions about what power domain it=
- is
->> >> in (if any.)
->> >
->> > On my platform, when the device is attached to the PD it gets turned o=
-n.
->> > That feels logical to me: if a driver is not RPM aware it "just works".
->>
->> It "just works"... until the domain gets turned off.
->>
->> > Are there platforms where RPM must get enabled for the attached
->> > power-domains to be turned on?
->>
->> Yes, but but more importantly, there are platforms where RPM must get
->> enabled for the power domain to *stay* on.  For example, the power
->> domain might get turned on due to devices probing etc, but as soon as
->> all the RPM-enabled drivers drop their refcount, the domain will turn
->> off.  If there is a device in that domain with a non-RPM enabled driver,
->> that device will be powered off anc cause a crash.
->
-> OK, that makes sense, thanks for taking the time to explain. This topic
-> makes me see two things that I feel are close to being bugs. I'd be
-> curious to get your view on both.
+> To me this smells like making changes to parts that don't really care
+> about those differences. The thing that cares about the difference is
+> the DT schema validation and I feel like there must be a better way to
+> describe this in the schema than to patch both driver and DT just to
+> accommodate a SoC integration difference. Is there a way to make the
+> power-domain property not dependent on the IP block, but the machine
+> compatible?
 
-TL;DR; they are features, not bugs.  ;)
+Yes, this series is all about making dt-schema validation happy.
 
->  - If a device does not use RPM but its children do, it might get its
->    associated power-domain turned off. That forces every single driver
->    that want to stay alive to enable & increment RPM.
->
->    What I naively expect: a genpd with a device attached to it that is
->    not using RPM should mean that it should not be powered off at
->    runtime_suspend. Benefit: no RPM calls in drivers that do not use
->    it, and the behavior is that the genpd associated stays alive "as
->    expected".
+If there is a better alternative, I am all ears.
 
-Your expectation makes sense, but unfortunately, that's not how RPM was
-designed.
+Rob, Krzysztof, Conor
 
-Also remember that we don't really want specific device drivers to know
-which PM domain they are in, or whether they are in a PM domain at
-all. The same IP block can be integrated in different ways across
-different SoCs, even within the same SoC family, and we want the device
-driver to just work.=20=20
+Any suggestions?
 
-For that to work well, any driver that might be in any PM domain should
-add RPM calls.
-
->  - If a device uses RPM & has a refcount strictly positive, its
->    associated power-domain gets turned off either way at suspend_noirq.
->    That feels non-intuitive as well.
->
->    What I naively expect: check for RPM refcounts of attached devices
->    when doing suspend_noirq of power-domains. Benefit: control of what
->    power-domains do from attached devices is done through the RPM API.
-
-I agree that this is non-intuitive from an RPM PoV, but remember that
-RPM was added on top of existing system-wide suspend support.  And from
-a system-wide suspend PoV, it might be non-intuitive that a driver
-thinks it should be active (non-zero refcount) when user just requested
-a system-wide suspend.  Traditionally, when a user requests a
-system-wide suspend, they expect the whole system to shut down.
-
-On real SoCs in real products, power management is not so black and
-white, and I fully understand that, and personally, I'm definitely open
-to not forcing RPM-active devices off in suspend, but that would require
-changes to core code, and remove some assumptions of core code that
-would need to be validated/tested.
-
-Kevin
+Thanks
 
