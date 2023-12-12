@@ -1,112 +1,111 @@
-Return-Path: <devicetree+bounces-24261-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24263-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C72180E85E
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 10:59:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2047680E86D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 11:00:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 028791F212E9
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 09:59:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 51C871C20A64
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 10:00:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 258B859156;
-	Tue, 12 Dec 2023 09:59:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B2BA59163;
+	Tue, 12 Dec 2023 10:00:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Rk79/zp7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Q6L/gxFb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9955A6;
-	Tue, 12 Dec 2023 01:59:18 -0800 (PST)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 89DD2FF803;
-	Tue, 12 Dec 2023 09:59:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1702375156;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=q0/3Sh2eETJdeZKVLmp2oI+wYLwADP2lZuTfmz4YhfQ=;
-	b=Rk79/zp7ossMcvHhiqp98keiVcv2gf1k87JOuYi/QLilq8f6xx+Gh19mWu7nDU4GeYpq5Q
-	lRAq+xxqZKFZMqfm3v4apQZT8Eo9qLKTSvd08PZJt9pgPyMHVvNPn3vGh/gy+jkcjjZu5r
-	wCvV60IHuTJoUZ/9pXNbrDOHs/6pqvz4+6vJDPlffMiVNhwS5sKlSDDoJbM/82dbwdegCM
-	e/wzYFgh3Eyy3Q4vUTWXVi+n7g+kWD2I4tihNRFoZePsrg5xf0CTlntvsMEHd0sUIf5F+a
-	GeETxE6cLFojuL7k1GfrfDLArZPz425zbHBa/uR6Zj/b3legUK3tmLo+C1qbLA==
-Date: Tue, 12 Dec 2023 10:59:14 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Jakub Kicinski <kuba@kernel.org>, Mark Brown <broonie@kernel.org>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Andrew Lunn
- <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Lee Jones <lee@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, Christophe Leroy
- <christophe.leroy@csgroup.eu>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 0/5] Add support for framer infrastructure and PEF2256
- framer
-Message-ID: <20231212105914.7eeb092b@bootlin.com>
-In-Reply-To: <CACRpkdbrH-WWVrVWx6MvReUuUW8tU_J8Mb7nW3G8fJGAoiS38g@mail.gmail.com>
-References: <20231128132534.258459-1-herve.codina@bootlin.com>
-	<17b2f126-f6a4-431c-9e72-56a9c2932a88@sirena.org.uk>
-	<CACRpkda5VMuXccwSBd-DBkM4W7A1E+UfZwBxWqtqxZzKjrqY4A@mail.gmail.com>
-	<511c83d1-d77f-4ac0-927e-91070787bc34@sirena.org.uk>
-	<CACRpkdYmN4318b1wXwUOeFjPN0S2w8M9FpXHOs3LtFa+XoTxVw@mail.gmail.com>
-	<20231128173110.0ccb8f53@kernel.org>
-	<CACRpkdbrH-WWVrVWx6MvReUuUW8tU_J8Mb7nW3G8fJGAoiS38g@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B743CF
+	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 02:00:49 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-40c236624edso55286715e9.1
+        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 02:00:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702375248; x=1702980048; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=cUVZQ/IYwAI6WZvMPjmfLWkKuvHpVKeTYMRhyrONudY=;
+        b=Q6L/gxFb3FmCJ9Rc62yUUHCz1fi1AaxVY2RTavt3qOAr5vqjyj2QUBTBJx8cntZ+5K
+         rfDb9ZN4f9j2sqfO3BEs4oE+gPa/YNgT4U9klHtugGCXvX9LOC+8GhhhJXqvI87IMOoG
+         h8mUxTKwjFgC92zz0c7KMW0jZXVOYAY9TIhrl5QN3ZZ9xpwNGRQKtg90lN2lrmRgSvuW
+         +ogppDyQcpl4L3mSlc8rY0w/2Va21k0KgLIoxjJ2JG3oudl3DK2BgjL+CCCs7/2h1L1W
+         K/6FqI6LKG0WsddRus/6tVzixDjTuTJDO39jBQDtLGKU78FfrUWscYCBdNQsoDp8NMtT
+         6Lgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702375248; x=1702980048;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cUVZQ/IYwAI6WZvMPjmfLWkKuvHpVKeTYMRhyrONudY=;
+        b=Z2U73Ui36ULG5CUJl+v5uxx10wv2TIvg8SCao0lMOy8Q7E51MrI0ySYTTRqGRkDhY0
+         aMhr3AxFeeGB1wrcgv2L9yBobSe2luwRj86k6m51w/jpbwYMokfLMDFr3kzKt1jxwsRD
+         abApS02mrmRrMUDOfPMfRsTjk+JXGRC2qw5qxfAxqGKPRYBWWkYuZOLLssE+KYcrg4Px
+         X4mnztPO8vngRY5wHPLLJ5iNLlsdq+gG498HuPtG06ucYXiMMA2rm6kPB+0Pc23yws0M
+         pJy2bVZO4t71F3kTWnSSuM/USzfzLCTNpnSV+gDYxFhw5psv5kkSBmHsYU3Z4Nk89Dp+
+         t+pQ==
+X-Gm-Message-State: AOJu0YwRgHDHrauIfWLhIl7sh607hFJxShtj66fSiwj9ymYgC0cCDa0I
+	cMbBNe0DoGWfBNucPi8IJUHpmw==
+X-Google-Smtp-Source: AGHT+IFr6GVYhaWHcireeD6R68VAGZ8agMs3iKkgcn39PwSI6e2bDEDPtZaXJL46wJHckm3gPKZT3w==
+X-Received: by 2002:a05:600c:6020:b0:40c:370d:71fc with SMTP id az32-20020a05600c602000b0040c370d71fcmr2490188wmb.85.1702375247780;
+        Tue, 12 Dec 2023 02:00:47 -0800 (PST)
+Received: from krzk-bin.. ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id az27-20020a05600c601b00b0040c34e763ecsm14918912wmb.44.2023.12.12.02.00.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Dec 2023 02:00:47 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Thara Gopinath <thara.gopinath@gmail.com>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S. Miller" <davem@davemloft.net>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+	Anusha Rao <quic_anusha@quicinc.com>,
+	linux-arm-msm@vger.kernel.org,
+	linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/2] dt-bindings: crypto: qcom-qce: constrain clocks for IPQ9574 QCE
+Date: Tue, 12 Dec 2023 11:00:43 +0100
+Message-Id: <20231212100044.26466-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
 
-Hi Linus,
+Binding marks several devices as compatible with IPQ4019 QCE.  They have
+different number of clocks, thus the fallback does not define the
+clock constraints per variant and each specific compatible should have
+its clocks in if:then: section.
 
-On Wed, 29 Nov 2023 15:00:40 +0100
-Linus Walleij <linus.walleij@linaro.org> wrote:
+Add missing clocks description for IPQ9574 QCE.
 
-> On Wed, Nov 29, 2023 at 2:31 AM Jakub Kicinski <kuba@kernel.org> wrote:
-> > On Tue, 28 Nov 2023 15:51:01 +0100 Linus Walleij wrote:  
-> > > > > I thought this thing would be merged primarily into the networking
-> > > > > tree, and I don't know if they do signed tags, I usually create an
-> > > > > immutable branch but that should work just as fine I guess.  
-> > > >
-> > > > Right, I'd expect a signed tag on the immutable branch - it's generally
-> > > > helpful to avoid confusion about the branch actually being immutable.  
-> > >
-> > > Makes sense, best to create that in the netdev tree if possible
-> > > I guess.  
-> >
-> > I think you offered creating the branch / tag in an earlier reply,
-> > that's less work for me so yes please! :)  
-> 
-> OK I fix!
-> 
-> Just waiting for some final reviews to trickle in.
-> 
-> Herve: nag me if it doesn't happen in time!
+Fixes: 1f5ce01d5d71 ("dt-bindings: crypto: qcom-qce: add SoC compatible string for ipq9574")
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/crypto/qcom-qce.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-As you tell me, this is my reminder.
+diff --git a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
+index eeb8a956d7cb..6435708da202 100644
+--- a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
++++ b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
+@@ -97,6 +97,7 @@ allOf:
+               - qcom,crypto-v5.4
+               - qcom,ipq6018-qce
+               - qcom,ipq8074-qce
++              - qcom,ipq9574-qce
+               - qcom,msm8996-qce
+               - qcom,sdm845-qce
+     then:
+-- 
+2.34.1
 
-Best regards,
-Hervé
-
-> 
-> > FWIW I usually put the branches / tags in my personal k.org tree.
-> > I don't wanna pollute the trees for the $many people who fetch
-> > netdev with random tags.  
-> 
-> Aha yeah pin control is relatively small so I just carry misc sync
-> tags there.
-> 
-> Yours,
-> Linus Walleij
 
