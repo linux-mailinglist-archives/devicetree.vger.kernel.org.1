@@ -1,147 +1,110 @@
-Return-Path: <devicetree+bounces-24503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24504-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5FAE80F5FB
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 20:06:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E94580F5FE
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 20:06:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6688B1F21618
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 19:06:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7FB821C208CA
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 19:06:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB0C78004C;
-	Tue, 12 Dec 2023 19:05:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6F3580047;
+	Tue, 12 Dec 2023 19:06:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uCEFcw5Q"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="EfQOr1nW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F3EBAF
-	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 11:05:54 -0800 (PST)
-Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2c9f85eff28so91463271fa.3
-        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 11:05:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702407952; x=1703012752; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Gk+33qG5mMsD2Pf/ecpSWilCtbmUpvnM36Mhb9UlmbE=;
-        b=uCEFcw5QDiHzlB6b0k20dS/kE5sCRrxAFssLu4hzy5SxK66Lx+gnPo1SGxTDRlg29f
-         4a2guomvx2w1eyv7iWyFq55NkNo1Py/3Siq1ZAfMyvjnZEFh9rIleamR3DBxVOpZQx7s
-         IxWkDTgVgAZ/Ge5iZ7ufu6VmeiC4caTx12YDh3ULWdAAa9J5gxOqEW5zcFpq5hl4lLmM
-         iHm6krlWJ38Ocs2R93YE4WMKoMfirKO8F+/iTFxNVLm+N0/5yEevfWaUHlhRuoL/QvfE
-         Mmxqr4ill0w8qBQKF9jkT1ZcgtExfEjNDDqZTyoiJTa6o5v++pPBZ1vl9BsRoujUlUrm
-         RUtQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702407952; x=1703012752;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Gk+33qG5mMsD2Pf/ecpSWilCtbmUpvnM36Mhb9UlmbE=;
-        b=tFQCBNOWB/gwbhiLCwGETq2BN+Dwmxukt13SCLWCdcR4w9TM9Z7WQSkbLlQhDashtQ
-         +oaYKnLzzlieqxkjcKKi1YwzDaUaB0PreMFKnpC4ONvDJwsIgIw1P2D8JqFLiAMl4423
-         4Eim/9/bkkc+NbuSRVAlMyiyFMVLuDj1+9rNyTJfO6xRAbayawAgS7ZXa1BiaLSk4YeY
-         fvw4Z485SIbNsHkg01qF4P1EYmLR7NJMT3qqa+Pk2H3ljDrduBphp3mABMnA1i6U4Oej
-         aoJz1lEjJcNMZ6Oou046kMuLkKWaxy53b0DKPcROPkzYXm7uFS3WJjavfO7ucorKxTfU
-         PpMQ==
-X-Gm-Message-State: AOJu0Yx0QafX7s4RvrIFcIXPqntduUNOa+4bGveD18dLlWwcS3DDBg30
-	738QFH9WxyYCgceAGROz9En6IlOOUfXWPDiGnrE=
-X-Google-Smtp-Source: AGHT+IEukNRKT45tP6/egDMvn/HPARfZoQNQiDW5zwKEdUjpCsk3Wmlf1yqWmQI95KFk3e46O8dt1w==
-X-Received: by 2002:a05:6512:3187:b0:50b:f23f:d691 with SMTP id i7-20020a056512318700b0050bf23fd691mr3617578lfe.136.1702407952556;
-        Tue, 12 Dec 2023 11:05:52 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id tz4-20020a170907c78400b00a1aad4d92dbsm6592547ejc.123.2023.12.12.11.05.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Dec 2023 11:05:52 -0800 (PST)
-Message-ID: <562380aa-4ed5-49de-9c21-e650a3a84a1b@linaro.org>
-Date: Tue, 12 Dec 2023 20:05:50 +0100
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 975D191
+	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 11:06:47 -0800 (PST)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BCH7aDC016534;
+	Tue, 12 Dec 2023 19:06:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=hTY/YUV6KDI+By4u2GZ2L1Q/0EBl5jkKnYeixgDWtis=; b=Ef
+	QOr1nWEXRuE14id5N6XnVvCG/ZWJG6YtkMYPye/DrlFta++awwABn7M4VucTkahC
+	LJZqjZD4+khp4/ywy5UqXTjdyZBKeMoYitHVSC+7R96z2essneFm3AGUms1HTXCi
+	nKk+GiiCtoh8E/r32FTEU40GEOExDWyMWE5Eau3TmgK7NuuSavqlMN3Qfs+4ahez
+	soaejQ9K10MJFk5tn+jP2muz2bytbTPEa92U7sBFIgtIHytyWX9lVIX9TJHFWtwQ
+	3Pek1CfZNTfaV1X3Qfnl0+R8vuurIeml3wE9RNRxK1OcF79LUpW1+UagP7ZQlNrr
+	nJubfe8C0CslxKGM2jqw==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uxctatfpm-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 12 Dec 2023 19:06:44 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BCJ6hiD003108
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 12 Dec 2023 19:06:43 GMT
+Received: from [10.110.26.44] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 12 Dec
+ 2023 11:06:43 -0800
+Message-ID: <1935cb82-648c-f079-8852-d461dc9f8609@quicinc.com>
+Date: Tue, 12 Dec 2023 11:06:42 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: sm8650: drop unneeded assigned-clocks
- from WSA macro
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: DT Query on "New Compatible vs New Property"
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC: <devicetree@vger.kernel.org>,
+        "Prasad Sodagudi (QUIC)"
+	<quic_psodagud@quicinc.com>,
+        <srinivas.kandagatla@linaro.org>, <vincent.guittot@linaro.org>,
+        <ulf.hansson@linaro.org>, <manivannan.sadhasivam@linaro.org>
+References: <be31801e-bb21-426b-f7aa-2b52727de646@quicinc.com>
+ <82115165-6089-4214-b47b-2c2c0dfb8c66@linaro.org>
 Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231212133143.100575-1-krzysztof.kozlowski@linaro.org>
- <52aa1fdb-ebdf-4cef-80d6-6c1b83d626ab@linaro.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <52aa1fdb-ebdf-4cef-80d6-6c1b83d626ab@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+From: Nikunj Kela <quic_nkela@quicinc.com>
+In-Reply-To: <82115165-6089-4214-b47b-2c2c0dfb8c66@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: J-Uq6g2kXow3YLM9Zhw6nWriAcFV8pL2
+X-Proofpoint-ORIG-GUID: J-Uq6g2kXow3YLM9Zhw6nWriAcFV8pL2
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 malwarescore=0
+ lowpriorityscore=0 phishscore=0 impostorscore=0 bulkscore=0 mlxscore=0
+ adultscore=0 suspectscore=0 priorityscore=1501 clxscore=1011
+ mlxlogscore=840 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2312120146
 
-On 12/12/2023 15:41, Konrad Dybcio wrote:
-> 
-> 
-> On 12/12/23 14:31, Krzysztof Kozlowski wrote:
->> Review of v1 patch resulting in commit 58872a54e4a8 ("arm64: dts: qcom:
->> sm8650: add ADSP audio codec macros") pointed to remove unneeded
->> assigned-clock-rates from macro codecs.  One assignment was left in WSA
->> macro codec, so drop it now as it is redundant: these clocks have fixed
->> 19.2 MHz frequency.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> 
-> Thanks, could you also check if they're fixed on older platforms?
-> 
++ Linaro team
 
-Ack. To my understand they should not be needed in none of Audioreach
-platforms (sc8280xp, sm8[45]50), but I can test only sm8550.
+On 12/12/2023 11:01 AM, Krzysztof Kozlowski wrote:
+> On 12/12/2023 18:45, Nikunj Kela wrote:
+>> We are abstracting some resources(ex. clocks) under new firmware on an
+>> existing platform therefore need to make changes in certain drivers to
+>> work with that firmware. We need to make a distinction between two
+>> different variants of the FW. In one case, some resources will be
+>> abstracted while in other case, they won't be abstracted. My query is -
+>> "should we define a new compatible string for the variant with
+>> abstracted resources(in FW) or we should add a new DT property keeping
+>> the compatible same?"
+> Hi,
+>
+> Usually change in the interface or behavior warrants new compatible.
+> Property would be suitable if the same device, e.g. same SoC component
+> with same FW, was configured differently on different boards.
+>
+> Best regards,
+> Krzysztof
 
-Best regards,
-Krzysztof
+Thank you for your prompt response! Will use different compatible as 
+advised.
 
 
