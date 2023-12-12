@@ -1,293 +1,138 @@
-Return-Path: <devicetree+bounces-24214-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24215-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C87E080E5F0
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 09:23:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71ED680E602
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 09:24:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 05E7D1C20F1D
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 08:23:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B23A7281E27
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 08:24:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECA5C20DE8;
-	Tue, 12 Dec 2023 08:22:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28F3118AEB;
+	Tue, 12 Dec 2023 08:22:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lL4gaZcL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KnBaAR5t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EDF6199B7
-	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 08:22:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 31822C32781;
-	Tue, 12 Dec 2023 08:22:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702369326;
-	bh=D8xErp0zejwZpfi8Wd+6nBZxa9LPVk/TpSjAq+BHZns=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=lL4gaZcLi4Nk9HQYvx9D78RlboQ2MfBtJYcquQINp8LoN/W4pMrg9n5LtiwWk4dCU
-	 MP9SM8vyT698yLexR01QR4U9Twj7IXUViSRmXVIxtn7NdUuYWnlNgaExOmR3u7vEjf
-	 OPc1cdxvlGrhF/DRl5du7t9ECNdz4ydLmaznGIM3P3xV6NLhg/udHCSLUIetBsV/8j
-	 3eXGONnjf8QJIX5stubEClXGBzzCdw1c+HbYPQkzK1M2J/tFHD3FqXRWFFz0uw9ixr
-	 K6+hJY8ML3wo9y+VdRIqKinXgkq4j6iNghnfDek338bTFSWthj0zHlHQtmhFNG2iYG
-	 Bv1RBoq2Bdrvg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1F37BC4167B;
-	Tue, 12 Dec 2023 08:22:06 +0000 (UTC)
-From:
- Nikita Shubin via B4 Relay <devnull+nikita.shubin.maquefel.me@kernel.org>
-Date: Tue, 12 Dec 2023 11:20:50 +0300
-Subject: [PATCH v6 33/40] ARM: dts: ep93xx: Add EDB9302 DT
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16CC61BE3
+	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 00:22:41 -0800 (PST)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-54f4f7d082cso5555983a12.0
+        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 00:22:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702369359; x=1702974159; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=eHeIY9hu9qrP31NHtwAZ/zKZXqF7a3OFLF8DkOLrs4o=;
+        b=KnBaAR5tYuS4KzIn2OtIxejFGJvYeb2axDIoMKxZiwZeeHi+QF0Rvp4rSuH4Lyv1oB
+         ZHLPNwt5GqYWlAWWVyzNUzkSWNwP+urV+srr1zh6Jo7u1jSBjbovfSZcB028ZRV7okPd
+         n/bXOFuyVYkjJhSERd6xG3AtrZbVDg63UD0tANPBDBpsXxZZSqtVGLMqPpida65JrFFT
+         MmVh6fUxMxtDPce5wxaWlK1kDhLJ0wdG6Ht8UDDINi0WbS8InbCzisLOkHWkAgLkur+o
+         VNdKaathtfSS2nTDNBBMKDIxTNLOu9oH+3VJHj55VbsQIVEDGPaDZqQs+a1isRApeKno
+         EiEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702369359; x=1702974159;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=eHeIY9hu9qrP31NHtwAZ/zKZXqF7a3OFLF8DkOLrs4o=;
+        b=vMbuPlYedMimQ6B4uWPhHBo2c+9V+L5SvTdLTQMJfyN21PbyV0A80bJOEZ4X79Y3lo
+         oKHJ//7c2z90sfddll73xfAVnzWHxqPND5kA5N+ti2WCFRi1qmJt1w80CkYtBs7sEqJY
+         bbDK5TfpOAsimG4W8mtW/YX6pN85gwwaD+wG5qm3BfAuvY+Nye44WAp0VQ1L/AlWlTpe
+         3G6MNazsfSRqsgzDayhoyYbwaXZjvusFezvBmx2JS13NmCbcjPni2rlN5En8KiKZukIr
+         R7/+ROlptvj0fxwc1ar029KigQcCXjvJA8bWsyUUJech9k8CVssWzmf4KCQGDAsI6X7y
+         49ew==
+X-Gm-Message-State: AOJu0YwWjQcR+aHPI+VUwzV16H+foCcuP2B1nqitEU57WLgrFzfoanDh
+	FrxKr34N+peLBwPMAta5aEty+g==
+X-Google-Smtp-Source: AGHT+IHO7ATLzLT+wGns8Y/8WbVpDg0Jin4FC5z0TFykDC4ceJaED6HrqLsROGR/jPeWDM3yJ75pYA==
+X-Received: by 2002:a50:c94a:0:b0:54c:4837:8b84 with SMTP id p10-20020a50c94a000000b0054c48378b84mr2839586edh.82.1702369359356;
+        Tue, 12 Dec 2023 00:22:39 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id n2-20020a05640205c200b0055122551f98sm2047011edx.6.2023.12.12.00.22.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Dec 2023 00:22:39 -0800 (PST)
+Message-ID: <84c4c331-54b6-4539-a8f2-880fd47ad97b@linaro.org>
+Date: Tue, 12 Dec 2023 09:22:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1] ASoC: tas2562: remove tas2563 into driver
+To: Shenghao Ding <shenghao-ding@ti.com>, broonie@kernel.org,
+ conor+dt@kernel.org
+Cc: robh+dt@kernel.org, andriy.shevchenko@linux.intel.com,
+ devicetree@vger.kernel.org, lgirdwood@gmail.com, perex@perex.cz,
+ pierre-louis.bossart@linux.intel.com, 13916275206@139.com,
+ linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
+ liam.r.girdwood@intel.com, soyer@irl.hu, tiwai@suse.de, peeyush@ti.com,
+ navada@ti.com
+References: <20231212050831.982-1-shenghao-ding@ti.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231212050831.982-1-shenghao-ding@ti.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20231212-ep93xx-v6-33-c307b8ac9aa8@maquefel.me>
-References: <20231212-ep93xx-v6-0-c307b8ac9aa8@maquefel.me>
-In-Reply-To: <20231212-ep93xx-v6-0-c307b8ac9aa8@maquefel.me>
-To: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Andre Przywara <andre.przywara@arm.com>, 
- Nikita Shubin <nikita.shubin@maquefel.me>, 
- Kunihiko Hayashi <hayashi.kunihiko@socionext.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Enric Balletbo i Serra <eballetbo@gmail.com>, 
- Alexander Sverdlin <alexander.sverdlin@gmail.com>
-Cc: Baruch Siach <baruch@tkos.co.il>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, Rob Herring <robh@kernel.org>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Arnd Bergmann <arnd@arndb.de>
-X-Mailer: b4 0.13-dev-e3e53
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1702369322; l=4429;
- i=nikita.shubin@maquefel.me; s=20230718; h=from:subject:message-id;
- bh=KR6AhAHkrEaDtUcRyLyul6gEHO42boKFUOuHc7e+r74=; =?utf-8?q?b=3DP975mHbEaDzx?=
- =?utf-8?q?0iqk6K6KrUHQWm03I2i73dl6+3CctgiN2cYYn38cJ1w5CpL/vGXxCkvtGVdDJrE8?=
- 6+4TpwvXC+HwjQT4bdgolQ7psIaD16UuwOgK6Jt+Cj+vd90McTVN
-X-Developer-Key: i=nikita.shubin@maquefel.me; a=ed25519;
- pk=vqf5YIUJ7BJv3EJFaNNxWZgGuMgDH6rwufTLflwU9ac=
-X-Endpoint-Received:
- by B4 Relay for nikita.shubin@maquefel.me/20230718 with auth_id=65
-X-Original-From: Nikita Shubin <nikita.shubin@maquefel.me>
-Reply-To: <nikita.shubin@maquefel.me>
 
-From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+On 12/12/2023 06:08, Shenghao Ding wrote:
+> Remove tas2563 from tas2562, it will be supported in separated driver code.
+> 
 
-Add device tree for Cirrus EDB9302.
+Why? I was not aware that you duplicate tas2563 in your other patch, so
+that part need explanation. This part as well - why do we want to remove
+its support from the Linux? What about users? After applying this code
+they don't have support for their device!
 
-Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
----
- arch/arm/boot/dts/cirrus/Makefile           |   1 +
- arch/arm/boot/dts/cirrus/ep93xx-edb9302.dts | 182 ++++++++++++++++++++++++++++
- 2 files changed, 183 insertions(+)
-
-diff --git a/arch/arm/boot/dts/cirrus/Makefile b/arch/arm/boot/dts/cirrus/Makefile
-index 211a7e2f2115..e6015983e464 100644
---- a/arch/arm/boot/dts/cirrus/Makefile
-+++ b/arch/arm/boot/dts/cirrus/Makefile
-@@ -4,5 +4,6 @@ dtb-$(CONFIG_ARCH_CLPS711X) += \
- dtb-$(CONFIG_ARCH_CLPS711X) += \
- 	ep7211-edb7211.dtb
- dtb-$(CONFIG_ARCH_EP93XX) += \
-+	ep93xx-edb9302.dtb \
- 	ep93xx-bk3.dtb \
- 	ep93xx-ts7250.dtb
-diff --git a/arch/arm/boot/dts/cirrus/ep93xx-edb9302.dts b/arch/arm/boot/dts/cirrus/ep93xx-edb9302.dts
-new file mode 100644
-index 000000000000..f015c6b8c802
---- /dev/null
-+++ b/arch/arm/boot/dts/cirrus/ep93xx-edb9302.dts
-@@ -0,0 +1,182 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+/*
-+ * Device Tree file for Cirrus Logic EDB9302 board based on EP9302 SoC
-+ */
-+/dts-v1/;
-+#include "ep93xx.dtsi"
-+
-+/ {
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+	compatible = "cirrus,edb9302", "cirrus,ep9301";
-+	model = "cirrus,edb9302";
-+
-+	chosen {
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		/* should be set from ATAGS */
-+		reg = <0x0000000 0x800000>,
-+		      <0x1000000 0x800000>,
-+		      <0x4000000 0x800000>,
-+		      <0x5000000 0x800000>;
-+	};
-+
-+	sound {
-+		compatible = "audio-graph-card2";
-+		label = "EDB93XX";
-+		links = <&i2s_port>;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		led-0 {
-+			label = "grled";
-+			gpios = <&gpio4 0 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+			function = LED_FUNCTION_HEARTBEAT;
-+		};
-+
-+		led-1 {
-+			label = "rdled";
-+			gpios = <&gpio4 1 GPIO_ACTIVE_HIGH>;
-+			function = LED_FUNCTION_FAULT;
-+		};
-+	};
-+};
-+
-+&adc {
-+	status = "okay";
-+};
-+
-+&ebi {
-+	flash@60000000 {
-+		compatible = "cfi-flash";
-+		reg = <0x60000000 0x1000000>;
-+		bank-width = <2>;
-+	};
-+};
-+
-+&eth0 {
-+	phy-handle = <&phy0>;
-+};
-+
-+&gpio0 {
-+	gpio-ranges = <&syscon 0 153 1>,
-+		      <&syscon 1 152 1>,
-+		      <&syscon 2 151 1>,
-+		      <&syscon 3 148 1>,
-+		      <&syscon 4 147 1>,
-+		      <&syscon 5 146 1>,
-+		      <&syscon 6 145 1>,
-+		      <&syscon 7 144 1>;
-+};
-+
-+&gpio1 {
-+	gpio-ranges = <&syscon 0 143 1>,
-+		      <&syscon 1 142 1>,
-+		      <&syscon 2 141 1>,
-+		      <&syscon 3 140 1>,
-+		      <&syscon 4 165 1>,
-+		      <&syscon 5 164 1>,
-+		      <&syscon 6 163 1>,
-+		      <&syscon 7 160 1>;
-+};
-+
-+&gpio2 {
-+	gpio-ranges = <&syscon 0 115 1>;
-+};
-+
-+/* edb9302 doesn't have GPIO Port D present */
-+&gpio3 {
-+	status = "disabled";
-+};
-+
-+&gpio4 {
-+	gpio-ranges = <&syscon 0 97 2>;
-+};
-+
-+&gpio5 {
-+	gpio-ranges = <&syscon 1 170 1>,
-+		      <&syscon 2 169 1>,
-+		      <&syscon 3 168 1>;
-+};
-+
-+&gpio6 {
-+	gpio-ranges = <&syscon 0 87 2>;
-+};
-+
-+&gpio7 {
-+	gpio-ranges = <&syscon 2 199 4>;
-+};
-+
-+&i2s {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2s_on_ac97_pins>;
-+	status = "okay";
-+	i2s_port: port {
-+		i2s_ep: endpoint {
-+			system-clock-direction-out;
-+			frame-master;
-+			bitclock-master;
-+			mclk-fs = <256>;
-+			dai-format = "i2s";
-+			convert-channels = <2>;
-+			convert-sample-format = "s32_le";
-+			remote-endpoint = <&codec_ep>;
-+		};
-+	};
-+};
-+
-+&mdio0 {
-+	phy0: ethernet-phy@1 {
-+		reg = <1>;
-+		device_type = "ethernet-phy";
-+	};
-+};
-+
-+&spi0 {
-+	cs-gpios = <&gpio0 6 GPIO_ACTIVE_LOW
-+		    &gpio0 7 GPIO_ACTIVE_LOW>;
-+	dmas = <&dma1 10 2>, <&dma1 10 1>;
-+	dma-names = "rx", "tx";
-+	status = "okay";
-+
-+	cs4271: codec@0 {
-+		compatible = "cirrus,cs4271";
-+		reg = <0>;
-+		#sound-dai-cells = <0>;
-+		spi-max-frequency = <6000000>;
-+		spi-cpol;
-+		spi-cpha;
-+		reset-gpio = <&gpio0 1 GPIO_ACTIVE_HIGH>;
-+		port {
-+			codec_ep: endpoint {
-+				remote-endpoint = <&i2s_ep>;
-+			};
-+		};
-+	};
-+
-+	at25f1024: eeprom@1 {
-+		compatible = "atmel,at25";
-+		reg = <1>;
-+		address-width = <8>;
-+		size = <0x20000>;
-+		pagesize = <256>;
-+		spi-max-frequency = <20000000>;
-+	};
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
-+
-+&uart1 {
-+	status = "okay";
-+};
-+
-+&usb0 {
-+	status = "okay";
-+};
-+
-
--- 
-2.41.0
+Best regards,
+Krzysztof
 
 
