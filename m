@@ -1,89 +1,190 @@
-Return-Path: <devicetree+bounces-24369-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24371-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FF3B80EDEA
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 14:45:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B970780EE21
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 14:52:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A5E91F2164E
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 13:45:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73D5028140B
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 13:52:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51FAF6EB45;
-	Tue, 12 Dec 2023 13:45:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B46D16F631;
+	Tue, 12 Dec 2023 13:52:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="O8MKjVuT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B3SpP+4W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36FA7F2
-	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 05:44:58 -0800 (PST)
-Received: by mail-pj1-x102c.google.com with SMTP id 98e67ed59e1d1-286f3e0d010so1635127a91.0
-        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 05:44:58 -0800 (PST)
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 022FDB3;
+	Tue, 12 Dec 2023 05:52:21 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-50bf69afa99so7297775e87.3;
+        Tue, 12 Dec 2023 05:52:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702388697; x=1702993497; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zK+fOmyFv7SEFsNbfsgmO8FYtdShMzdiC1Mslmm7OoU=;
-        b=O8MKjVuThLpUI19iJOeH+JNcdC2cQIWCD51zM0OZtbwjmZDCXTZi+BkAxjiRLr/BYz
-         cGFn7PhcecZ2vwmFyX/prl3hdE4A31PSWAp3keZFYZsCfdmptCAKeuMOiXGa33m3UeMe
-         TpOHIOZ6+StQsXpY1C0V2CRk5x62nWmRRSeZ1YyjqRNYHHI+OLopsbPfLx0+N9Lg4Ga5
-         Bz35hd2AoBezs1gZW3Di8WrCcvKsLjtpuq0RAHa+AYNWKp4ddfhGyMB3C4wd90p1EX4W
-         fJNQ7tI/wHIM0g7mwTKi+KGI0zavEFkXl0RN1OOA6d7VNXgWE/Hkyd8DOwNYE3mxGSd3
-         Iv+g==
+        d=gmail.com; s=20230601; t=1702389140; x=1702993940; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=cFnllcfa91c1zJc4Gntywu/a8dFRpUHFeO6CvIvFtu4=;
+        b=B3SpP+4WEDCrXayc3qWvV8daTzwf2cw3SF/DlDxLD1l3+uAa+1ltZRHd1QxGPWo5CY
+         7ic88L33QXDHm1+MG8lKocupTO4QytkT7ApImWXMyudMAXHzycQZ6+8y9mC7vMxdDtw+
+         2d1oJfqT4SpKd8V8RaUKwKc7rVPHijhY3UcnSWpewVrC6oaiUo6R5j2OVMmmmgTjkYuM
+         LY1BnsAyuJFc6aUiaaNh4it6hUgHXyITFRsFH41liG/ka0MIEbKBJITY50xlz0SiwGqD
+         KUFmSj8KUktZzwZAj0SpUH1jIFdeJ5ZWxccV5xWgv2xSwezwKES9tJt/sqZDCIInidvH
+         sOsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702388697; x=1702993497;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zK+fOmyFv7SEFsNbfsgmO8FYtdShMzdiC1Mslmm7OoU=;
-        b=U+TblTIgdQTeM/fGqOYZUUBgwvZ5sX1YskQB0619smJ9/D4Lz0XGmoAu6Uw/hibgBC
-         aKxFG/YVEYR6JZAsErh+2c7bbxAc4wRzazsbrQrs7Wu3Ny4BacvIY0ucf3ip8Q0kjUjw
-         v/Si4dXKgLP2gtsZLiKAzc2ygotuKgsJQCyfNiqPQYACyMr3mUu3Mgs4e3iKSTDIfGkE
-         VK+dh3z2TjQjeYddZRoyvWjwKYVq1UNLx1wmvrv9h5lfgOP/TjNjgiwIyf7bcdn0T5Vu
-         K6I44tRlmb802m9jYyiE8oVgxCOqxA2HWSLS31BpfAX/qYzJQIRzuPoDuP0HZ6aE/OeI
-         lOwA==
-X-Gm-Message-State: AOJu0YwD8UxFtAJxwt7fZI4GeWVb9b4dbhBo/L9nck/bRWmxXKjkYTt9
-	S5WL+oJhQc4r9Q7vg6BMsTh+zN8v8u8fjFT0HOg=
-X-Google-Smtp-Source: AGHT+IGzG7tCoRAkKvTm5hEsXQR0pUE1tZnGcxqPHj3uJpejr36/7lpUf7CCORU80Q78dDojixnV58Ck+iI7MxsgQJM=
-X-Received: by 2002:a17:90a:e010:b0:28a:c703:688f with SMTP id
- u16-20020a17090ae01000b0028ac703688fmr1048174pjy.3.1702388697638; Tue, 12 Dec
- 2023 05:44:57 -0800 (PST)
+        d=1e100.net; s=20230601; t=1702389140; x=1702993940;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cFnllcfa91c1zJc4Gntywu/a8dFRpUHFeO6CvIvFtu4=;
+        b=Em/VQl8OdPiJY42u2OYy/BKLALeF+26O4NmFTKX7bOe+aQe/fEH+E39iDk2qTJoi2s
+         8DVywiHeEmWHI+RSTwWAj3uHAgojgmNFLdpsXWCfTVt419s+RSLD/Oh9UhfgelFTGTU7
+         6BMWaf+JRbnhIbxWlIbqJ+IsnnbnMn21+FgmOQU8EwelLWFJ+ORJZrIwgLvPyOIRDWx/
+         H6nXU7tEVtTffrT3YjLK8uAHkkf0eoxzvLUk/B7/KZjkkvNCvaB3tdDnSjQaJHKeZdva
+         2yMSJmN4oAi7tcFwaqIFOEzJh4F2+DHJ08LLNZZiiReWC387ZUeXNriUvHEa/4wSLbOV
+         DevQ==
+X-Gm-Message-State: AOJu0YzJIYspMCF0wDH1H+lavHHpl/JkZLWp9sqqS+oV/acJl8Df3lBF
+	HY/AJGb6winVyihAAEMXlu4G2o2Lw/c+cg==
+X-Google-Smtp-Source: AGHT+IHQrUXSxuBn29LhUoJX1ePcDGg56snRNXblvB5VLnQAdFUNh09t5mpngpSLdnTnZAS3jpzzfw==
+X-Received: by 2002:a05:6512:3b8d:b0:50c:c8b8:669a with SMTP id g13-20020a0565123b8d00b0050cc8b8669amr3958930lfv.92.1702389139829;
+        Tue, 12 Dec 2023 05:52:19 -0800 (PST)
+Received: from mobilestation ([178.176.56.174])
+        by smtp.gmail.com with ESMTPSA id g4-20020a0565123b8400b0050bfb2a5661sm1363163lfv.103.2023.12.12.05.52.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Dec 2023 05:52:19 -0800 (PST)
+Date: Tue, 12 Dec 2023 16:52:15 +0300
+From: Serge Semin <fancer.lancer@gmail.com>
+To: Andrew Lunn <andrew@lunn.ch>, 
+	"Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: Heiner Kallweit <hkallweit1@gmail.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>, 
+	Jose Abreu <Jose.Abreu@synopsys.com>, Maxime Chevallier <maxime.chevallier@bootlin.com>, 
+	Tomer Maimon <tmaimon77@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, openbmc@lists.ozlabs.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 06/16] net: pcs: xpcs: Avoid creating dummy XPCS
+ MDIO device
+Message-ID: <na6krkoco7pmsl62dfuj2xlrvpsnod74ptpfyy6gv7dzwmowga@mzsiknjian2i>
+References: <20231205103559.9605-1-fancer.lancer@gmail.com>
+ <20231205103559.9605-7-fancer.lancer@gmail.com>
+ <ZW8ASzkC9IFFlxkV@shell.armlinux.org.uk>
+ <rgp33mm4spbpm5tmgxurkhy4is3lz3z62rz64rni2pygteyrit@zwflw2ejdkn7>
+ <e1806c15-757e-4af0-a8be-075aa77918c2@lunn.ch>
+ <ZW840qQMbVRto442@shell.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231117232352.101713-1-lech.perczak@gmail.com>
- <20231206013247.GY236001@dragon> <5b285fdd-9d69-400c-978f-234665fca73e@gmail.com>
-In-Reply-To: <5b285fdd-9d69-400c-978f-234665fca73e@gmail.com>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Tue, 12 Dec 2023 10:44:45 -0300
-Message-ID: <CAOMZO5Bd+mVV0BQPgUD+45M6SKQ-txN7uJTgMrh5wtZXFXZtWw@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: nxp: imx7d-pico: add cpu-supply nodes
-To: Lech Perczak <lech.perczak@gmail.com>
-Cc: Shawn Guo <shawnguo@kernel.org>, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZW840qQMbVRto442@shell.armlinux.org.uk>
 
-Hi Lech,
+Hi Andrew, Russell
 
-On Mon, Dec 11, 2023 at 7:41=E2=80=AFPM Lech Perczak <lech.perczak@gmail.co=
-m> wrote:
+Sorry for the delay with response. I had to refresh my understanding
+of the series since it was created sometime ago and I already managed
+to forget some of its aspects (particularly regarding the MDIO-bus
+PHY-mask semantics).
 
-> Hi Shawn,
->
-> Do you think this could be backported to stable later?
-> OpenWrt and Debian could then pick this change up - I have a pull
-> request open in OpenWrt backporting this.
+On Tue, Dec 05, 2023 at 02:50:58PM +0000, Russell King (Oracle) wrote:
+> On Tue, Dec 05, 2023 at 02:52:24PM +0100, Andrew Lunn wrote:
+> > On Tue, Dec 05, 2023 at 02:31:41PM +0300, Serge Semin wrote:
+> > > On Tue, Dec 05, 2023 at 10:49:47AM +0000, Russell King (Oracle) wrote:
+> > > > On Tue, Dec 05, 2023 at 01:35:27PM +0300, Serge Semin wrote:
+> > > > > If the DW XPCS MDIO devices are either left unmasked for being auto-probed
+> > > > > or explicitly registered in the MDIO subsystem by means of the
+> > > > > mdiobus_register_board_info() method there is no point in creating the
+> > > > > dummy MDIO device instance in order to get the DW XPCS handler since the
+> > > > > MDIO core subsystem will create the device during the MDIO bus
+> > > > > registration procedure.
+> > > > 
+> > > 
+> > > > Please reword this overly long sentence.
+> > > 
+> > > Ok.
+> > > 
+> > > > 
+> > > > If they're left unmasked, what prevents them being created as PHY
+> > > > devices?
+> > > 
+> > > Not sure I fully get what you meant. If they are left unmasked the
+> > > MDIO-device descriptor will be created by the MDIO subsystem anyway.
+> > > What the point in creating another one?
+> > 
 
-As your patch is not a bug fix, it does not qualify to be backported
-to linux-stable.
+> > Saying what Russell said, in a different way:
+> > 
+> > /*
+> >  * Return true if the child node is for a phy. It must either:
+> >  * o Compatible string of "ethernet-phy-idX.X"
+> >  * o Compatible string of "ethernet-phy-ieee802.3-c45"
+> >  * o Compatible string of "ethernet-phy-ieee802.3-c22"
+> >  * o In the white list above (and issue a warning)
+> >  * o No compatibility string
+> >  *
+> >  * A device which is not a phy is expected to have a compatible string
+> >  * indicating what sort of device it is.
+> >  */
+> > bool of_mdiobus_child_is_phy(struct device_node *child)
+> > 
+> > So when walking the bus, if a node is found which fits these criteria,
+> > its assumed to be a PHY. 
+> > 
+> > Anything on the MDIO bus which is not a PHY needs to use a compatible.
+> 
+> Right. I'd actually forgotten about the firmware-based walking, and
+> was thinking more of the non-firmware bus scanning as the commit
+> message was talking about being _unmasked_ and the only mask we have
+> is bus->phy_mask.
 
-Please check the stable kernel rules at:
-https://github.com/torvalds/linux/blob/master/Documentation/process/stable-=
-kernel-rules.rst
+Back then when I was working on the series and up until last week I
+had thought that having a device unmasked in mii_bus->phy_mask was a
+correct way to do for _any_ device including our DW XPCS (which BTW
+looks like a normal C45 PHY and if synthesized with a PMA attached
+could be passed to be handled by the PHY subsystem). Can't remember
+why exactly I came to that thought, but likely it was due to finding
+out examples of having mii_bus->phy_mask uninitialized in some of the
+PCS use-cases, like in drivers/net/dsa/ocelot/felix_vsc9959.c (but in
+case of DW XPCS the mask is always set indeed). Anyway obviously I was
+wrong and PHY-device is supposed to be created only if a device is
+actual PHY and handled by the PHY subsystem drivers. So the correct
+ways to create PHY MDIO-devices are:
+
+1. Call mdiobus_register() with PHY-addresses unmasked
+2. Call of_mdiobus_register() for a DT-node with sub-nodes for which
+of_mdiobus_child_is_phy() returns true.
+
+and the correct ways to create non-PHY MDIO-devices are:
+
+1. Call mdiobus_register() with non-PHY-addresses masked and have
+those non-PHY device registered by mdiobus_register_board_info()
+beforehand.
+2. Call of_mdiobus_register() with DT sub-nodes having specific
+compatible string (based on the of_mdiobus_child_is_phy() semantics).
+
+Only in case of having a non-PHY device registered it's allowed to
+use it in in non-PHY MDIO driver, like PCS, etc. Right?
+
+Please correct me if I am wrong or miss something.
+
+> 
+> It seems to me that this is yet another case of a really confusing
+> commit message making review harder than it needs to be.
+
+From the perspective described above the patch log is indeed partly
+wrong. Sorry about that. I shouldn't have mentioned the mask at all
+but instead just listed two use-cases of creating the non-PHY
+MDIO-devices. I'll fix that in v2.
+
+-Serge(y)
+
+> 
+> -- 
+> RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+> FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+> 
 
