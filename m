@@ -1,136 +1,108 @@
-Return-Path: <devicetree+bounces-24286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2965D80EA3D
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 12:20:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B851D80EA5A
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 12:27:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D538D2820DB
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 11:20:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 72F14281454
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 11:27:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DE335CD3D;
-	Tue, 12 Dec 2023 11:19:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A84D65D487;
+	Tue, 12 Dec 2023 11:27:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l4w1RbhZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ofd9wCxX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0FEE5CD1C;
-	Tue, 12 Dec 2023 11:19:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E49EC433C8;
-	Tue, 12 Dec 2023 11:19:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702379998;
-	bh=wMeP7zt1EIlnBjj2On4ldk4xqwfR7vzMZdJCgjDqPhQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=l4w1RbhZTJq1hPS1YbIpyoowbGlBrDcwQ/sNjMl99Uxkk2T1ciKbIGZDXm5lfQDcY
-	 d9eT9oRncCc6Qx3KsFFwRoXuGYEwu1zZ2SNbOO70yMrbF7PisXpU1YS1SDm8Z6942o
-	 icImNol6zdFl4LarMzYEvT5sQqo+68jt9AXFPEEOS9RvrSVyNsgBvBkSEij67H/FAy
-	 nQdhVFJNofSX1edqYm7O0F1/4DN/bb+JepidRYnwkmRoaYbnoBRbbldXynk/nzx29j
-	 C09JDqHU7P96+oO4rzc3jTx9og1bWYZN9TxwGQHKj/asfWdTrLsEnFAMwGiwy2ALsb
-	 Eblv5dKN+wTRA==
-Date: Tue, 12 Dec 2023 12:19:50 +0100
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Minda Chen <minda.chen@starfivetech.com>
-Cc: Conor Dooley <conor@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Mason Huo <mason.huo@starfivetech.com>,
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Kevin Xie <kevin.xie@starfivetech.com>
-Subject: Re: [PATCH v12 15/21] PCI: microchip: Add event IRQ domain ops to
- struct plda_event
-Message-ID: <ZXhB1kKpElgKx8vm@lpieralisi>
-References: <20231206105839.25805-1-minda.chen@starfivetech.com>
- <20231206105839.25805-16-minda.chen@starfivetech.com>
+Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B4DDD3
+	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 03:27:43 -0800 (PST)
+Received: by mail-pl1-x635.google.com with SMTP id d9443c01a7336-1d03f90b0cbso10185755ad.1
+        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 03:27:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702380463; x=1702985263; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=UVcLWo9qevYj4NVMpda1U8nHLS2CP5f3SkgdbKzdChk=;
+        b=Ofd9wCxXLzxyS8Ja+/Ssg0S6PUQwMAFN9bv7NGUqswLQGkHaGlaZVAK1srsYGfxy5Z
+         WL3fFOgFzD3meH7bd5FWRJwZ3baZH5g/1qX2TYQLVCtfRqhKgNjMOXGFgcXcyqQwVhFc
+         bD8hdAfjxSL0xLWnUXzanDJEjJYA6MpEzbtZcRv1UaFAvo9W4d0fyK/+UfT+LVDDg4nu
+         t+KeSwCUf0rH8dhOkks1neqlXZgkmPlOo8yFZCvu3Goi/8qWIO5nKftnGMd7boGtUBHb
+         QdmeWOop5s5XuLsF80zIF6xXjTlsbLi5N+e+pLDm91uRztXOvHZT7FF057bX4sA55vnX
+         qseg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702380463; x=1702985263;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UVcLWo9qevYj4NVMpda1U8nHLS2CP5f3SkgdbKzdChk=;
+        b=JF5M9AdCitrA/g3oIdmO+XOMLr5u97nrlH7dAfPl+SkdzVprQiBjKvp38PckKKmWk5
+         S5zd45jAi71h33eyPtaC6CxRBnvrYlbESSS0PalargvJhrf/Ki4NNHwbzx0BuO/oFH+v
+         5MVdfNImy9RaGi1ocVMYDpOqauh/Do+EutilN0ldH97CDiFShr7NXYZwwP4WqSeO7d9D
+         OTt+GLnPnH2opTRJ9Q7QuUJJNbBeZEl/6tbKk+Bsh0JkxD4Elr1SXPN4uH0yHwQvJMyp
+         E2XZMSsp6BxDwpXYRktQ6r1dVnBZJAGbgR1PdawqGSD+1JCs00jOC8c23luEZvQuQGwS
+         +/aw==
+X-Gm-Message-State: AOJu0YwCuWfW4z1mRZHSiTwM/iHQ33NRQhj3IClEzVcgVyddM/xjooMu
+	hADnC+dt2Nx7oXGqlbQvtUhHSguMGEA=
+X-Google-Smtp-Source: AGHT+IE7LAy9GV8WyXYbwCWEPuMo6VQhdxFQbU7cfXD/Sg14xwrc4hSVNX0kmqEDX5yFtgiquxQugA==
+X-Received: by 2002:a17:902:ee81:b0:1d0:5efd:35cf with SMTP id a1-20020a170902ee8100b001d05efd35cfmr11080044pld.4.1702380462710;
+        Tue, 12 Dec 2023 03:27:42 -0800 (PST)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:a620:342d:797a:5c59])
+        by smtp.gmail.com with ESMTPSA id w18-20020a170902e89200b001d051725d09sm8415421plg.241.2023.12.12.03.27.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Dec 2023 03:27:42 -0800 (PST)
+From: Fabio Estevam <festevam@gmail.com>
+To: cw00.choi@samsung.com
+Cc: myungjoo.ham@samsung.com,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski@linaro.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	shawnguo@kernel.org,
+	marex@denx.de,
+	hvilleneuve@dimonoff.com,
+	linux-arm-kernel@lists.infradead.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: [PATCH 1/3] dt-bindings: extcon: ptn5150: Describe the USB connector
+Date: Tue, 12 Dec 2023 08:27:27 -0300
+Message-Id: <20231212112729.700987-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231206105839.25805-16-minda.chen@starfivetech.com>
+Content-Transfer-Encoding: 8bit
 
-On Wed, Dec 06, 2023 at 06:58:33PM +0800, Minda Chen wrote:
-> For lack of an MSI controller, The new added PCIe interrupts have to be
-> added to global interrupt event field. PolarFire event domain ops can not
-> be re-used.
+From: Fabio Estevam <festevam@denx.de>
 
-I don't understand what this means, please explain and I will
-add it to the commit log.
+PTN5150 supports USB Type-C connector, so improve the bindings by
+allowing to describe the connector like it is done on nxp,ptn5110.yaml.
 
-> PLDA event domain ops instances will be implemented in later patch.
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+ Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-Future patches don't exist, each commit log is a logical change
-that must make sense on its own, I will remove this sentence.
+diff --git a/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml b/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml
+index d5cfa32ea52d..3837da7416e9 100644
+--- a/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml
++++ b/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml
+@@ -37,6 +37,11 @@ properties:
+       GPIO pin (output) used to control VBUS. If skipped, no such control
+       takes place.
+ 
++  connector:
++    type: object
++    $ref: /schemas/connector/usb-connector.yaml#
++    unevaluatedProperties: false
++
+ required:
+   - compatible
+   - interrupts
+-- 
+2.34.1
 
-Lorenzo
-
-> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  drivers/pci/controller/plda/pcie-microchip-host.c | 6 ++++--
->  drivers/pci/controller/plda/pcie-plda.h           | 1 +
->  2 files changed, 5 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/plda/pcie-microchip-host.c b/drivers/pci/controller/plda/pcie-microchip-host.c
-> index f5e7da242aec..e6dcc572b65b 100644
-> --- a/drivers/pci/controller/plda/pcie-microchip-host.c
-> +++ b/drivers/pci/controller/plda/pcie-microchip-host.c
-> @@ -821,13 +821,15 @@ static const struct plda_event_ops mc_event_ops = {
->  };
->  
->  static const struct plda_event mc_event = {
-> +	.domain_ops        = &mc_event_domain_ops,
->  	.event_ops         = &mc_event_ops,
->  	.request_event_irq = mc_request_event_irq,
->  	.intx_event        = EVENT_LOCAL_PM_MSI_INT_INTX,
->  	.msi_event         = EVENT_LOCAL_PM_MSI_INT_MSI,
->  };
->  
-> -static int plda_pcie_init_irq_domains(struct plda_pcie_rp *port)
-> +static int plda_pcie_init_irq_domains(struct plda_pcie_rp *port,
-> +				      const struct irq_domain_ops *ops)
->  {
->  	struct device *dev = port->dev;
->  	struct device_node *node = dev->of_node;
-> @@ -941,7 +943,7 @@ static int plda_init_interrupts(struct platform_device *pdev,
->  		return -EINVAL;
->  	}
->  
-> -	ret = plda_pcie_init_irq_domains(port);
-> +	ret = plda_pcie_init_irq_domains(port, event->domain_ops);
->  	if (ret) {
->  		dev_err(dev, "failed creating IRQ domains\n");
->  		return ret;
-> diff --git a/drivers/pci/controller/plda/pcie-plda.h b/drivers/pci/controller/plda/pcie-plda.h
-> index df1729095952..820ea16855b5 100644
-> --- a/drivers/pci/controller/plda/pcie-plda.h
-> +++ b/drivers/pci/controller/plda/pcie-plda.h
-> @@ -129,6 +129,7 @@ struct plda_pcie_rp {
->  };
->  
->  struct plda_event {
-> +	const struct irq_domain_ops *domain_ops;
->  	const struct plda_event_ops *event_ops;
->  	int (*request_event_irq)(struct plda_pcie_rp *pcie,
->  				 int event_irq, int event);
-> -- 
-> 2.17.1
-> 
 
