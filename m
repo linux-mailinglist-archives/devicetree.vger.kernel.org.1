@@ -1,147 +1,109 @@
-Return-Path: <devicetree+bounces-24492-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24493-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 385CF80F51D
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 19:00:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26C2B80F540
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 19:10:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 17513B20A30
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 18:00:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 582391C20A1C
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 18:10:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E1807E765;
-	Tue, 12 Dec 2023 18:00:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1ABAC7E77B;
+	Tue, 12 Dec 2023 18:10:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ku12+XF9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HBhZqSFs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47657AD;
-	Tue, 12 Dec 2023 10:00:42 -0800 (PST)
-Received: by mail-ot1-x332.google.com with SMTP id 46e09a7af769-6d9d29a2332so2796043a34.0;
-        Tue, 12 Dec 2023 10:00:42 -0800 (PST)
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1172ABC;
+	Tue, 12 Dec 2023 10:09:59 -0800 (PST)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-54ca43031d1so5698597a12.0;
+        Tue, 12 Dec 2023 10:09:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702404041; x=1703008841; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=OCcCZYfwecxquLlX9Qk4H1uh3FlXglU8cLcEqk1Tg0c=;
-        b=ku12+XF9PILNcNWeB8voRm/7luTldInfD7zImBHinj373nb9vPjiAIjKPUzOQsuOsL
-         jV6prRSa06hGWPmSd7jNVh3HUrbuZQGOECyYTXpPc2WIVFdIPS4oDDenu83acsSTfHIw
-         31cP/fhR+FVBocPdHo0bGMkZvsS12OcbixQWXLBK4oxRV81K4NbKuvvo2ZHmkH3gRuJX
-         XiLX4R5hlmfauJx3ZTv6JzVdPJoKS33uXvBfAtZxRFF6YdIgP2eZC0trIqtNC6GJrYg2
-         cC7889pOr6ccb1O/BaIwgu5Hn234GHZHiWtMSyYZCaCYqvlfPVB9Wfd5RbnuzlFxxXpe
-         nqpg==
+        d=gmail.com; s=20230601; t=1702404597; x=1703009397; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bzHpbohFT6LpAWNTUe1hh6CWPa5rN3o0qmOFe9ThREM=;
+        b=HBhZqSFs4+SVUCbqMTOEmXgA7KeSlfrsdPNA4RDwgvjWdoNjPvRoWAD+0aN2SLKRK/
+         bT2gb3v7Q74k5ePmzOYb+zbQYu2qFB7oPv5V2fFjCn7JGypEQkE/GMXi/aRbdT+BwMr/
+         gIH070wVKbsEN0Ol1e2kmc+hOZUUmCCG5DVaD/xPujjtQfRonwpWzTwH11FM/FdKdJjZ
+         DzkK3kBYBSxuMssXCyNCH04I68m4kVp7FMmNy8LQJhnF4dmsrpCBG28E1xe56fLy8bS+
+         nvSmU2pkRBFvZCPUIEGzYDvNGSf9J9ieb9Ik7Qm3VV+NIl1Ahee+AJl1YqfCmnJhV2y1
+         XOaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702404041; x=1703008841;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1702404597; x=1703009397;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=OCcCZYfwecxquLlX9Qk4H1uh3FlXglU8cLcEqk1Tg0c=;
-        b=PzottFw2sTiLyzesb6rOqmAkaOOojrQYl0Y7Ft1Moo7/F+b+SpVui2hquTF/7X9F41
-         jW4z/8f5x+3GSitPn+jI0PjtO1hiBNOmShini1uuuqXylLmG97Q7bsyg8Kx2vVjmuQs5
-         qSvkmxJFCpoSZ4XREdqskxtdJFuS64Tuv808+2jcb1VBRz3GKcSs41gNOkcTO4STxxa7
-         VLVJw5Pr2wBNOOXfeZPdNuACz/VvpLsmjFHFHCkqzjywBrX4EHem6FjbsZGljZu7iHeO
-         zfxBkCNAzJR6Moz1YqKLUV2mkPkPfp0GDZlQRT+/E2TDb7+dkdm8dSprbWRAnBAC0geE
-         f7Lw==
-X-Gm-Message-State: AOJu0YxqlNpYTk8FxVhCUvyLT7e1pPpO0e633Ts1j9Od12cfMVzL/x5W
-	i1QZaWFd8itcC+prjChsfWc=
-X-Google-Smtp-Source: AGHT+IFkasojfWbcCsVLi+mdn01yWMQKc33PTZwYORTSQpbYEFfSP/VEH4VMucXy6fDJEiz7YllCGw==
-X-Received: by 2002:a05:6830:26ef:b0:6d9:d132:7ff with SMTP id m47-20020a05683026ef00b006d9d13207ffmr3413281otu.15.1702404041554;
-        Tue, 12 Dec 2023 10:00:41 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id e7-20020a056830200700b006d8811cbc3csm2331250otp.29.2023.12.12.10.00.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Dec 2023 10:00:41 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Tue, 12 Dec 2023 10:00:39 -0800
-From: Guenter Roeck <linux@roeck-us.net>
-To: Conor Dooley <conor@kernel.org>
-Cc: Ninad Palsule <ninad@linux.ibm.com>, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	joel@jms.id.au, andrew@codeconstruct.com.au, peterhuewe@gmx.de,
-	jarkko@kernel.org, jgg@ziepe.ca, keescook@chromium.org,
-	tony.luck@intel.com, gpiccoli@igalia.com,
-	johannes.holland@infineon.com, broonie@kernel.org,
-	patrick.rudolph@9elements.com, vincent@vtremblay.dev,
-	peteryin.openbmc@gmail.com, lakshmiy@us.ibm.com,
-	bhelgaas@google.com, naresh.solanki@9elements.com,
-	alexander.stein@ew.tq-group.com, festevam@denx.de,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-	linux-integrity@vger.kernel.org, linux-hardening@vger.kernel.org,
-	geissonator@yahoo.com
-Subject: Re: [PATCH v1 7/8] tpm: tis-i2c: Add more compatible strings
-Message-ID: <73381bb0-7fa7-4a9e-88df-ab0063058e26@roeck-us.net>
-References: <20231212164004.1683589-1-ninad@linux.ibm.com>
- <20231212164004.1683589-8-ninad@linux.ibm.com>
- <20231212-avid-grill-dbead068fac8@spud>
+        bh=bzHpbohFT6LpAWNTUe1hh6CWPa5rN3o0qmOFe9ThREM=;
+        b=Wfo5q+ocHKUwim34fb4HKFRtOu14yuesPFUUHPtCzj7ahUI+wNHnWbU4ZAuPMGeV/Z
+         0sBUndZzRDEEeWhvHWmsSMaksBipVWYCHCWhlXIPM2e9JwZhQ5L5JIWrGXetBbZDJ9Hn
+         G8XQo/qJk7jT8OcfPt6wdjqmyuRt5Erd+vyTiCrycG3gAxkuzE8tpGfybHhHQAdZ90Be
+         8LjhSGB6hnDkJctAhnsfIob20FYVmXqjiBqwALneOgIF23rN9C+/WdO8ktsolO6cqNKG
+         Uji8vsoRYF6sNRak+/2yGvq1nfotKY2MCGPOoTIBUuNe1emp2HkuMJuVIebo41NL7jDO
+         BInA==
+X-Gm-Message-State: AOJu0YykG1mWFHcxdY1stj/GSxiaRMdaXlXXwA1Sj6KA95JPAiAIWkVs
+	9Mv5McnIt909qDgmkUdurgypmEqHEG6hBZDcOPg=
+X-Google-Smtp-Source: AGHT+IEJ+S2gVNDukxKxZq7wUSERI+JIQpfaGwh6jo/cYSszkFlbTba+OH3MZMwKSNWFKwcqQo8KEwSOpUZF6Gy8G3E=
+X-Received: by 2002:a17:907:7d8b:b0:a17:63b1:42a1 with SMTP id
+ oz11-20020a1709077d8b00b00a1763b142a1mr4497018ejc.25.1702404597170; Tue, 12
+ Dec 2023 10:09:57 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231212-avid-grill-dbead068fac8@spud>
+References: <20231128005849.19044-6-andre.przywara@arm.com>
+ <a14fb458-caf0-4a4a-b76b-c2503b0840d2@gmail.com> <20231211000528.57cb646c@minigeek.lan>
+In-Reply-To: <20231211000528.57cb646c@minigeek.lan>
+From: Maxim Kiselev <bigunclemax@gmail.com>
+Date: Tue, 12 Dec 2023 21:09:45 +0300
+Message-ID: <CALHCpMjz4YiE_=6Cxq7RqF_3qPaw8UCA=6eLy9ZZuofRhr7mcA@mail.gmail.com>
+Subject: Re: [PATCH v3 5/6] thermal: sun8i: add support for H616 THS controller
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: anarsoul@gmail.com, bob@electricworry.net, conor+dt@kernel.org, 
+	daniel.lezcano@linaro.org, devicetree@vger.kernel.org, 
+	jernej.skrabec@gmail.com, krzysztof.kozlowski+dt@linaro.org, 
+	linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org, 
+	linux-sunxi@lists.linux.dev, lukasz.luba@arm.com, martin.botka@somainline.org, 
+	rafael@kernel.org, robh+dt@kernel.org, rui.zhang@intel.com, 
+	samuel@sholland.org, tiny.windzz@gmail.com, wens@csie.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Dec 12, 2023 at 05:15:51PM +0000, Conor Dooley wrote:
-> On Tue, Dec 12, 2023 at 10:40:03AM -0600, Ninad Palsule wrote:
-> > From: Joel Stanley <joel@jms.id.au>
-> > 
-> > The NPCT75x TPM is TIS compatible. It has an I2C and SPI interface.
-> > 
-> > https://www.nuvoton.com/products/cloud-computing/security/trusted-platform-module-tpm/
-> > 
-> > Add a compatible string for it, and the generic compatible.
-> > 
-> > OpenBMC-Staging-Count: 3
-> 
-> Delete this from every patch that it appears from.
-> 
-> > Signed-off-by: Joel Stanley <joel@jms.id.au>
-> > Acked-by: Jarkko Sakkinen <jarkko@kernel.org>
-> > Link: https://lore.kernel.org/r/20220928043957.2636877-4-joel@jms.id.au
-> > Signed-off-by: Ninad Palsule <ninad@linux.ibm.com>
-> > ---
-> >  drivers/char/tpm/tpm_tis_i2c.c | 2 ++
-> >  1 file changed, 2 insertions(+)
-> > 
-> > diff --git a/drivers/char/tpm/tpm_tis_i2c.c b/drivers/char/tpm/tpm_tis_i2c.c
-> > index a897402cc36a..9511c0d50185 100644
-> > --- a/drivers/char/tpm/tpm_tis_i2c.c
-> > +++ b/drivers/char/tpm/tpm_tis_i2c.c
-> > @@ -383,6 +383,8 @@ MODULE_DEVICE_TABLE(i2c, tpm_tis_i2c_id);
-> >  #ifdef CONFIG_OF
-> >  static const struct of_device_id of_tis_i2c_match[] = {
-> >  	{ .compatible = "infineon,slb9673", },
-> > +	{ .compatible = "nuvoton,npct75x", },
-> > +	{ .compatible = "tcg,tpm-tis-i2c", },
-> 
-> What's the point of the generic compatible if you are adding the device
-> specific ones to the driver anyway?
-> 
+=D0=BF=D0=BD, 11 =D0=B4=D0=B5=D0=BA. 2023=E2=80=AF=D0=B3. =D0=B2 02:48, And=
+re Przywara <andre.przywara@arm.com>:
+>
+> On Sat, 9 Dec 2023 13:44:34 +0300
+> Maksim Kiselev <bigunclemax@gmail.com> wrote:
+>
+> Hi Maksim,
+>
+> > Hi Martin, Andre.
+> >
+> > May I inquire? Why do we need a separate sun50i_h616_ths_calibrate()
+> > function? Why can't we just extend an existing sun50i_h6_ths_calibrate(=
+)?
+> >
+> > At my glance the calculations in both functions are the same. We just
+> > need to handle a special case for the 4th sensor.
+>
+> You seem to be right, they are indeed the same, just written slightly
+> differently. Do you already have any patches that unify that?
 
-$ git grep infineon,slb9673
-Documentation/devicetree/bindings/trivial-devices.yaml:          - infineon,slb9673
-drivers/char/tpm/tpm_tis_i2c.c: { .compatible = "infineon,slb9673", },
-$ git grep nuvoton,npct75x
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dts:            compatible = "nuvoton,npct75x", "tcg,tpm-tis-i2c";
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts:            compatible = "nuvoton,npct75x", "tcg,tpm-tis-i2c";
-$ git grep tcg,tpm-tis-i2c
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dts:            compatible = "nuvoton,npct75x", "tcg,tpm-tis-i2c";
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts:            compatible = "nuvoton,npct75x", "tcg,tpm-tis-i2c";
-arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts:             compatible = "tcg,tpm-tis-i2c";
+No, I don't have any patches for that yet. But I can do it if you told
+me where to
+send the patch. Should I put it here as a reply?
 
-It looks like at least the generic entry is needed, given that it is quite
-likely that there is hardware out there using it. Other than that, this
-makes me wonder: Is there some official guideline describing if and when
-to use (only) generic devicetree compatible entries and when specific ones
-may / should / have to be used ? I suspect the answer to your question might
-simply be "because we did not know better", and it might be helpful to be
-able to say "please see XXX for details".
+> I don't know if Martin or I find time to do it this week, but we could
+> also optimise this later.
+>
+> Cheers,
+> Andre
 
-Thanks,
-Guenter
+Best regards,
+Maksim
 
