@@ -1,136 +1,160 @@
-Return-Path: <devicetree+bounces-24377-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24378-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E00180EF4F
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 15:50:46 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A541C80EF8B
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 16:02:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 13FD41F21514
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 14:50:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B637C1C20AC0
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 15:02:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60240745D3;
-	Tue, 12 Dec 2023 14:50:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E02E2745F5;
+	Tue, 12 Dec 2023 15:02:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cd6a9YqG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JMA4j4Yj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D162D5;
-	Tue, 12 Dec 2023 06:50:38 -0800 (PST)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BCE0CZC011528;
-	Tue, 12 Dec 2023 14:50:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id; s=qcppdkim1; bh=kuGSrclxLs/R
-	fD+R4Gphj3d9E+Ib0FPGIH/RFehqR9U=; b=cd6a9YqGyvd+VLC0cZeRpgskozvT
-	q5tOp+MnNGug4JM/J86s+8A1w00PqmgDuGEJNBqd8KtnrbSGZWPIgetCW9rDrhB8
-	Ph6ZgBj5ndf05a80tm5dZAa+z1lXYw09R0FNWj0pGwlAXH7tRS7Xm+yhjfCSjn/a
-	gOKVYx2+ebYhIgF049dAZ3rrB4s/rDxFJWQ2Kz65V2oE1ABkWKX/8kMuS2k56lPu
-	YxCUUUC/DHFZK+hkUuHiwhW+phhl6BHvY5pN8KxNV8mOAKcOjIChY/1GBjNo6UzF
-	aly8ad2K9rOSRrCvb0yphMsGQSi8EwxKsEUvf6nWcoa33UFfXn8FODxb1w==
-Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uxru2g4da-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 12 Dec 2023 14:50:34 +0000 (GMT)
-Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 3BCEoVpr027241;
-	Tue, 12 Dec 2023 14:50:31 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 3uvhakjjpm-1;
-	Tue, 12 Dec 2023 14:50:31 +0000
-Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 3BCEoVo0027236;
-	Tue, 12 Dec 2023 14:50:31 GMT
-Received: from hu-maiyas-hyd.qualcomm.com (hu-vdadhani-hyd.qualcomm.com [10.213.106.28])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 3BCEoV80027235;
-	Tue, 12 Dec 2023 14:50:31 +0000
-Received: by hu-maiyas-hyd.qualcomm.com (Postfix, from userid 4047106)
-	id D63175001C6; Tue, 12 Dec 2023 20:20:29 +0530 (+0530)
-From: Viken Dadhaniya <quic_vdadhani@quicinc.com>
-To: andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-arm-sm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc: quic_vnivarth@quicinc.com, quic_msavaliy@quicinc.com,
-        quic_vtanuku@quicinc.com, quic_cchiluve@quicinc.com,
-        krzysztof.kozlowski@linaro.org,
-        Viken Dadhaniya <quic_vdadhani@quicinc.com>
-Subject: [V2 RESEND] arm64: dts: qcom: sc7280: add slimbus DT node
-Date: Tue, 12 Dec 2023 20:20:26 +0530
-Message-Id: <20231212145026.20828-1-quic_vdadhani@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: jnJCdadaVPyuPpQJPng8rJ0JLxUgBKbL
-X-Proofpoint-ORIG-GUID: jnJCdadaVPyuPpQJPng8rJ0JLxUgBKbL
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 mlxscore=0
- clxscore=1011 priorityscore=1501 suspectscore=0 spamscore=0
- lowpriorityscore=0 bulkscore=0 mlxlogscore=394 adultscore=0 phishscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2312120113
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 295FBE3
+	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 07:02:19 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-a22deb95d21so143250666b.3
+        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 07:02:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702393337; x=1702998137; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0oq3UqUgz404bArUef1oQTnL/gxT+Fw1DLV1XoQdvNU=;
+        b=JMA4j4YjveZywlVx+pN8z+6i2SC5tUX4jHYL3NN7GNW5nJimVjoIBRmQzYmZkXvIB8
+         V0284zKPTHk7riiom5Pot8G+jpT1VqOTDTqFqEiiVDrSRAg359TirdlsOAxD2T4Ff6RC
+         PZ/V4x6W1yVWeKUOJRnASlzoA7BBOggXrrUxvqfrGnNC8cZEnH91E4SHRO5xmdJH2x4F
+         pVfRTzNlXQgOOHrkk1GE+ryE77rb3NdWcP65xmqnLjOuovnag06WcD0c6Li9kl/Vp5NN
+         25RkZqfNtDY0Ppmn7yqi1HV+63w+q4sGoU1+8cFfJFPSv1uDJ9mC17i9o01fJ7HJlBHe
+         9ASw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702393337; x=1702998137;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0oq3UqUgz404bArUef1oQTnL/gxT+Fw1DLV1XoQdvNU=;
+        b=OXJ69SgnyMUWAerqnkAvEoO1xtKK+REIvViI/1bpCZGs0RruFUjIrUHt2gPGOKT4aZ
+         9L5xBuUeJhk4p3drhNG84zkDh9dtottd99q3GSYLaYZXC1mg7GCsPeQLJqvmj+d2TzhC
+         im2pNUzMghK0FMKtwTU79CEIX5o77ilVE2KxzJMRVRrYB+xZRLkGURpryq7eKKHGYcuY
+         XdNFHyUGKogJQeGQatVd5bSjZwXqPUYqCcbqpRSLHfwGYfbDO6PsWtS/VhAs2rsq7/Q4
+         ofSJeQdoWfXeGsSykJDeGcJosKSyXGMTK4O/xvCpgdTx5NnHKdiU+xKYHL1aQIvWYLt2
+         wnjg==
+X-Gm-Message-State: AOJu0YzNvrBjuqoC2nbuK44JdwRMbA9vpTtFCwly2PoevjdXAET3yNjx
+	Zi0FRAxO9tqTq2/rwwwcWwpwPA==
+X-Google-Smtp-Source: AGHT+IHzeYlqUUSRvzjj5LcGNfqD+8vGDnxTLM5/pN3olWK23lEeE7t8au8h3kJ3f6WLcP0MqIcR/g==
+X-Received: by 2002:a17:906:32d2:b0:a1a:57e2:2cc4 with SMTP id k18-20020a17090632d200b00a1a57e22cc4mr3193885ejk.52.1702393337502;
+        Tue, 12 Dec 2023 07:02:17 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id tl1-20020a170907c30100b00a1c8d243cf7sm6349748ejc.2.2023.12.12.07.02.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Dec 2023 07:02:16 -0800 (PST)
+Message-ID: <c848f874-3748-4d59-8e78-9ae044fb760a@linaro.org>
+Date: Tue, 12 Dec 2023 16:02:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V2 2/2] arm64: dts: qcom: sc7280: add QCrypto nodes
+Content-Language: en-US
+To: Om Prakash Singh <quic_omprsing@quicinc.com>
+Cc: neil.armstrong@linaro.org, konrad.dybcio@linaro.org, agross@kernel.org,
+ andersson@kernel.org, conor+dt@kernel.org, davem@davemloft.net,
+ devicetree@vger.kernel.org, herbert@gondor.apana.org.au,
+ krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+ linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+ marijn.suijten@somainline.org, robh+dt@kernel.org, vkoul@kernel.org
+References: <20231212133247.1366698-1-quic_omprsing@quicinc.com>
+ <20231212133247.1366698-3-quic_omprsing@quicinc.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231212133247.1366698-3-quic_omprsing@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Populate the DTSI node for slimbus instance to be
-used by BT FM client.
+On 12/12/2023 14:32, Om Prakash Singh wrote:
+> Add the QCE and Crypto BAM DMA nodes.
+> 
+> Signed-off-by: Om Prakash Singh <quic_omprsing@quicinc.com>
+> ---
+> 
+> Changes in V2:
+>   - Update DT node sequence as per register ascending order
 
-Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
----
-v1 -> v2:
-- change 0x0 -> 0 to reg property.
-- reorder the DT property.
-- change node tag slim_msm to slim.
----
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 25 +++++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
+Hm, I don't see it...
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 04bf85b0399a..9fec8743e19a 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -2528,6 +2528,31 @@
- 			status = "disabled";
- 		};
- 
-+		slimbam: dma-controller@3a84000 {
-+			compatible = "qcom,bam-v1.7.0";
-+			reg = <0 0x03a84000 0 0x20000>;
-+			interrupts = <GIC_SPI 164 IRQ_TYPE_LEVEL_HIGH>;
-+			#dma-cells = <1>;
-+			qcom,controlled-remotely;
-+			num-channels  = <31>;
-+			qcom,ee = <1>;
-+			qcom,num-ees = <2>;
-+			iommus = <&apps_smmu 0x1826 0x0>;
-+			status = "disabled";
-+		};
-+
-+		slim: slim-ngd@3ac0000 {
-+			compatible = "qcom,slim-ngd-v1.5.0";
-+			reg = <0 0x03ac0000 0 0x2c000>;
-+			interrupts = <GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>;
-+			dmas = <&slimbam 3>, <&slimbam 4>;
-+			dma-names = "rx", "tx";
-+			iommus = <&apps_smmu 0x1826 0x0>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
- 		lpass_hm: clock-controller@3c00000 {
- 			compatible = "qcom,sc7280-lpasshm";
- 			reg = <0 0x03c00000 0 0x28>;
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
-of Code Aurora Forum, hosted by The Linux Foundation
+>   - Fix DT node properties as per convention
+> 
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 22 ++++++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index 66f1eb83cca7..7b705df21f4e 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -2272,6 +2272,28 @@ ipa: ipa@1e40000 {
+>  			status = "disabled";
+>  		};
+>  
+> +		cryptobam: dma-controller@1dc4000 {
+
+It still looks like not correctly ordered by unit address against other
+nodes in the file.
+
+
+
+
+Best regards,
+Krzysztof
 
 
