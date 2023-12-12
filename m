@@ -1,44 +1,44 @@
-Return-Path: <devicetree+bounces-24209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24204-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C1C280E5F2
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 09:23:33 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0473480E5E0
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 09:22:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D5191C209D3
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 08:23:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 88A1EB20C46
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 08:22:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CCD5487A0;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43C19433DB;
 	Tue, 12 Dec 2023 08:22:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SgDtwm1y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BDROcLLs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFCC124B3A;
-	Tue, 12 Dec 2023 08:22:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 6F3EEC116B6;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F6351A5BE
+	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 08:22:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 81388C116B9;
 	Tue, 12 Dec 2023 08:22:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1702369325;
-	bh=QElf92ve25lXN1JZiFHBfLmXRGqOOHFIk5fOxWOua4A=;
+	bh=0k3URFJZb18PwpzeMhJ7DF35374xGK50doG0S5Yr3LQ=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=SgDtwm1ylXQ5OjvD4I8AE6wXn3vJGLTFDrH6Td+liqzXoyD4uqTkkPjcU3kb7K6vJ
-	 4fZ6ohJBnq07xtabQ9SU3Y1yyfv/hBder37Lr7zvN+UWm44vnQ5jvLBY/FCE8OQQ2V
-	 16WgPuUUn+xK8exKXh66g3DW7CWOMkld3K+IqljFmWFjh7TCFDd1h1Gzo5aYWeoVAx
-	 1uhSvaM1SP8emmJRIdZ5tKys6Y+ZQ6/94NnXx31oaoCncGw6UGigcQnJyWySJvSae0
-	 Znd5gJdadWppy+dXJPXB3PkduwcxIrZNpi7d1Yrwq9cgn2tZmysIgIwBkkk+VE9XJf
-	 iuwKYHZ4d/CLw==
+	b=BDROcLLsTnJcbQihAaE0BHL0Lbyy9V3H9VyuCazvVN0bEju6TwjGQ/ypqBXaHSaHL
+	 UJMkjFVUUjo2U/UjBIpURIcDoW6wFqshhCkuQIuAyMKTz5wIHG75kHV8w8+mCFvf48
+	 fha6LVGFpw20neTCqRjwN/F//iiSMej51mGzxaZIbJ39yzjTisHlMu7hX1WuK4p68j
+	 XJF1SDPQV9mwXLXJuI3mpwvxjNaF8AHtJb8Wnx8NLXp1x5/g+wQG0+IX9ggj2hPOnr
+	 kAt34Zc9D4mOtJK93Yty6L08qxmRMmN8BJyFpiMaGl/CiK1RaDRXGwUIfW4I/WG005
+	 esccW1E6yNufw==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5ECAEC38145;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 71E90C4167D;
 	Tue, 12 Dec 2023 08:22:05 +0000 (UTC)
 From:
  Nikita Shubin via B4 Relay <devnull+nikita.shubin.maquefel.me@kernel.org>
-Date: Tue, 12 Dec 2023 11:20:34 +0300
-Subject: [PATCH v6 17/40] dt-bindings: net: Add Cirrus EP93xx
+Date: Tue, 12 Dec 2023 11:20:36 +0300
+Subject: [PATCH v6 19/40] dt-bindings: mtd: Add ts7200 nand-controller
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -47,25 +47,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20231212-ep93xx-v6-17-c307b8ac9aa8@maquefel.me>
+Message-Id: <20231212-ep93xx-v6-19-c307b8ac9aa8@maquefel.me>
 References: <20231212-ep93xx-v6-0-c307b8ac9aa8@maquefel.me>
 In-Reply-To: <20231212-ep93xx-v6-0-c307b8ac9aa8@maquefel.me>
-To: "David S. Miller" <davem@davemloft.net>, 
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>, 
+To: Miquel Raynal <miquel.raynal@bootlin.com>, 
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ Rob Herring <robh+dt@kernel.org>, 
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
- Alexander Sverdlin <alexander.sverdlin@gmail.com>, 
  Nikita Shubin <nikita.shubin@maquefel.me>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+Cc: linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.13-dev-e3e53
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1702369322; l=2030;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1702369322; l=1633;
  i=nikita.shubin@maquefel.me; s=20230718; h=from:subject:message-id;
- bh=FinMyeys++S17z45OrZP4NQjjACfz96xCTLZUAMWD/g=; =?utf-8?q?b=3D4kPId6aovYi9?=
- =?utf-8?q?t/xaSzCc53zJG4kjo3RX1N/mKlmbt1m0f779yDPF231o9ISVzvge5t1v7SC0QSvF?=
- ZfR4BVZ3B7/aVU1vt2/nbjplYo4OSHOSh34jaOweFodZQ7umj0lR
+ bh=bq2OLT9jIJx+y3Eu11Bq5qmV15g39ulN9ve41TDPTOE=; =?utf-8?q?b=3Derqpr0ElC5jE?=
+ =?utf-8?q?9F+Z6WrURqHV/Erq5JGxnh4+9K7xC4SRBSXL+iAOecOFLHmnBMCm+hszovTlZ1L3?=
+ b7orDvuTDlkjuUU/nvg+is304uxKOLlTD2DNC/NrWIv0UymoUK5i
 X-Developer-Key: i=nikita.shubin@maquefel.me; a=ed25519;
  pk=vqf5YIUJ7BJv3EJFaNNxWZgGuMgDH6rwufTLflwU9ac=
 X-Endpoint-Received:
@@ -75,78 +74,64 @@ Reply-To: <nikita.shubin@maquefel.me>
 
 From: Nikita Shubin <nikita.shubin@maquefel.me>
 
-Add YAML bindings for ep93xx SoC Ethernet Controller.
+Add YAML bindings for ts7200 NAND Controller.
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
 ---
- .../devicetree/bindings/net/cirrus,ep9301-eth.yaml | 59 ++++++++++++++++++++++
- 1 file changed, 59 insertions(+)
+ .../devicetree/bindings/mtd/technologic,nand.yaml  | 45 ++++++++++++++++++++++
+ 1 file changed, 45 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/net/cirrus,ep9301-eth.yaml b/Documentation/devicetree/bindings/net/cirrus,ep9301-eth.yaml
+diff --git a/Documentation/devicetree/bindings/mtd/technologic,nand.yaml b/Documentation/devicetree/bindings/mtd/technologic,nand.yaml
 new file mode 100644
-index 000000000000..ad0915307095
+index 000000000000..f9d87c46094b
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/net/cirrus,ep9301-eth.yaml
-@@ -0,0 +1,59 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++++ b/Documentation/devicetree/bindings/mtd/technologic,nand.yaml
+@@ -0,0 +1,45 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/net/cirrus,ep9301-eth.yaml#
++$id: http://devicetree.org/schemas/mtd/technologic,nand.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: EP93xx SoC Ethernet Controller
++title: Technologic Systems NAND controller
 +
 +maintainers:
-+  - Alexander Sverdlin <alexander.sverdlin@gmail.com>
 +  - Nikita Shubin <nikita.shubin@maquefel.me>
 +
 +allOf:
-+  - $ref: ethernet-controller.yaml#
++  - $ref: nand-controller.yaml
 +
 +properties:
 +  compatible:
 +    oneOf:
-+      - const: cirrus,ep9301-eth
++      - const: technologic,ts7200-nand
 +      - items:
 +          - enum:
-+              - cirrus,ep9302-eth
-+              - cirrus,ep9307-eth
-+              - cirrus,ep9312-eth
-+              - cirrus,ep9315-eth
-+          - const: cirrus,ep9301-eth
++              - technologic,ts7300-nand
++              - technologic,ts7260-nand
++              - technologic,ts7250-nand
++          - const: technologic,ts7200-nand
 +
 +  reg:
-+    items:
-+      - description: The physical base address and size of IO range
-+
-+  interrupts:
-+    items:
-+      - description: Combined signal for various interrupt events
-+
-+  phy-handle: true
-+
-+  mdio:
-+    $ref: mdio.yaml#
-+    unevaluatedProperties: false
-+    description: optional node for embedded MDIO controller
++    maxItems: 1
 +
 +required:
 +  - compatible
 +  - reg
-+  - interrupts
-+  - phy-handle
 +
-+additionalProperties: false
++unevaluatedProperties: false
 +
 +examples:
 +  - |
-+    ethernet@80010000 {
-+        compatible = "cirrus,ep9301-eth";
-+        reg = <0x80010000 0x10000>;
-+        interrupt-parent = <&vic1>;
-+        interrupts = <7>;
-+        phy-handle = <&phy0>;
++    nand-controller@60000000 {
++        compatible = "technologic,ts7200-nand";
++        reg = <0x60000000 0x8000000>;
++        #address-cells = <1>;
++        #size-cells = <0>;
++        nand@0 {
++           reg = <0>;
++        };
 +    };
 
 -- 
