@@ -1,125 +1,155 @@
-Return-Path: <devicetree+bounces-24523-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24524-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BBA080F700
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 20:40:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C20680F710
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 20:42:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 51A691F21569
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 19:40:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA67C1F21505
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 19:42:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2DE363597;
-	Tue, 12 Dec 2023 19:39:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7E0863575;
+	Tue, 12 Dec 2023 19:42:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HQlyHxYf"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="RmUXRvGv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64BF2DB
-	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 11:39:44 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-40c38e292c8so22843415e9.0
-        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 11:39:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702409983; x=1703014783; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HU5RbQo6yU19wzCnPIdhHQhCfrzZV9IA9nmUM54hRn4=;
-        b=HQlyHxYfqYCBAdv2zlps6HS1rwDkrDp8jJZh/rC7aetTGk5pS3PG7m2GK0AU2VE1UY
-         LWsJLMm4Do8IM/3cd1nyIUn6s49TBjFxaj1dDDHdpjH10LxiBKinH1ahcCSCYAlR3yi1
-         9Ig5TBEFIEtWmDdz+iVyiJ7HSYWZAcEK/HeKzzAtuvrPVLWYN9QO+gd3dLMUHug8Cfsr
-         kR5p71O/mtKGSJCu5b2L43PVUoOVKeg6TKhEv0E5+11sSS7Mn5/aa7N8c+2ZRHDhTpnN
-         y2Dp08ZI27f9LSHpav0hNMVw6v4U4CMuuF27DawQ9d05IFhxARhPzWv18EE08iRm1zzn
-         VMiA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702409983; x=1703014783;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HU5RbQo6yU19wzCnPIdhHQhCfrzZV9IA9nmUM54hRn4=;
-        b=AKLsnlBCy8zs0IrpNqQTg3lckzP4mmDYeGI101yrWeUqgD6maCXZrtP3qY4NM9r/eO
-         wy5woR4mJNQLdq9eq1eHd/YheJpUC0Xybq5kLJZLFsK7Ifo7KRr2p5lc7naJhpgDmeSU
-         1c1ciOBbFPMBscGMulHtE6Zcdhfkp/XsoxeomAv8hWe1OuY+2B5UgHsv7DYKvEiiIEea
-         VOlLlJq87CHZ82X0GRJEbZ/+i+9rx+/lPFrPa/GkniFrsez258AEK3hdhdfsvweZPZF+
-         7QPBQhLr3Xp4qOsPcLfAQuaVV4ZodzL3dZhfzWXdHnZwv5WzHB861XvNms1Sj1QODUqu
-         /+Aw==
-X-Gm-Message-State: AOJu0Yy8zzAHOkIDA8VIzJGxzDL2zP/q8frXIqQiaIEL9n7cErIJ/a2x
-	W73J5MfxulPCZsyZUga2njDMdQ==
-X-Google-Smtp-Source: AGHT+IGPurVjTAMMlyJVVpPYaeBs9uu+XLoCG94/B3i6Isrtg80koLVV4yN6mfxoVxf49RaSEPKFpQ==
-X-Received: by 2002:a05:600c:4f41:b0:40c:2d74:b9b with SMTP id m1-20020a05600c4f4100b0040c2d740b9bmr3324675wmq.24.1702409982887;
-        Tue, 12 Dec 2023 11:39:42 -0800 (PST)
-Received: from krzk-bin.. ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id i9-20020a05600c354900b003fee6e170f9sm17345530wmq.45.2023.12.12.11.39.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Dec 2023 11:39:42 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	mturquette@baylibre.com,
-	conor+dt@kernel.org,
-	sboyd@kernel.org,
-	tomasz.figa@gmail.com,
-	s.nawrocki@samsung.com,
-	linus.walleij@linaro.org,
-	wim@linux-watchdog.org,
-	linux@roeck-us.net,
-	catalin.marinas@arm.com,
-	will@kernel.org,
-	arnd@arndb.de,
-	olof@lixom.net,
-	gregkh@linuxfoundation.org,
-	jirislaby@kernel.org,
-	cw00.choi@samsung.com,
-	alim.akhtar@samsung.com,
-	Peter Griffin <peter.griffin@linaro.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	tudor.ambarus@linaro.org,
-	andre.draszik@linaro.org,
-	semen.protsenko@linaro.org,
-	saravanak@google.com,
-	willmcvicker@google.com,
-	soc@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	linux-watchdog@vger.kernel.org,
-	kernel-team@android.com,
-	linux-serial@vger.kernel.org
-Subject: Re: (subset) [PATCH v7 13/16] tty: serial: samsung: Add gs101 compatible and common fifoszdt_serial_drv_data
-Date: Tue, 12 Dec 2023 20:39:18 +0100
-Message-Id: <170240988144.242356.2200926663420450424.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231211162331.435900-14-peter.griffin@linaro.org>
-References: <20231211162331.435900-1-peter.griffin@linaro.org> <20231211162331.435900-14-peter.griffin@linaro.org>
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 705C9A1;
+	Tue, 12 Dec 2023 11:42:19 -0800 (PST)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BCH6Qm0002891;
+	Tue, 12 Dec 2023 19:41:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=UjdXqRSPf/hsBh6oj1SyTOINg6+2c8f3cHQ1cAmvBJU=; b=Rm
+	UXRvGvpYBOoHs5fsn8kRw9geB4pLoYrZg9bpfiB1aTgXfpUhke872NoYMFJmCHgS
+	ue/06YKl5Gi/uKeBn+HzfVrt34uhKKgeKXkr4Kz4a6n8blwczOZrwDRlFU6fXa5K
+	ogMfDBP5+cij8HhF8lUnaIwxOvKF+j0q2R0XwPQUbvsckKB6FGJ8qZT8DV9cWmI4
+	d1HI+IqY6Kn330UZW09ZLeD2pVMW/jG+9JBQ6ftHvKJs4PFN/YC12K8OA1tPzDIJ
+	1h7p8C1orkiGGLg0NKdHAiJfwQ7l+okH5AMfiToVsbYqP1QbJDRHNf++oRP1L/Fe
+	BsQWpysmhtRKNIJrKoJg==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uxnf71bve-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 12 Dec 2023 19:41:46 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BCJfinE028151
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 12 Dec 2023 19:41:44 GMT
+Received: from [10.110.0.246] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 12 Dec
+ 2023 11:41:43 -0800
+Message-ID: <69874f27-46ea-4991-a735-6609233ddb8a@quicinc.com>
+Date: Tue, 12 Dec 2023 11:41:42 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: panel-simple-dsi: move LG 5" HD TFT LCD
+ panel into DSI yaml
+Content-Language: en-US
+To: David Heidelberg <david@ixit.cz>,
+        Neil Armstrong
+	<neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard
+	<mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie
+	<airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20231212175356.72062-1-david@ixit.cz>
+From: Jessica Zhang <quic_jesszhan@quicinc.com>
+In-Reply-To: <20231212175356.72062-1-david@ixit.cz>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: x3ShBaoQjEKp5EOE40M_7PRaTdZldalO
+X-Proofpoint-GUID: x3ShBaoQjEKp5EOE40M_7PRaTdZldalO
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 impostorscore=0
+ spamscore=0 phishscore=0 clxscore=1011 adultscore=0 mlxlogscore=604
+ lowpriorityscore=0 suspectscore=0 malwarescore=0 priorityscore=1501
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2312120150
 
 
-On Mon, 11 Dec 2023 16:23:28 +0000, Peter Griffin wrote:
-> Add serial driver data for Google Tensor gs101 SoC and a common
-> fifoszdt_serial_drv_data that can be used by platforms that specify the
-> samsung,uart-fifosize DT property.
+
+On 12/12/2023 9:53 AM, David Heidelberg wrote:
+> Originally was in the panel-simple, but belongs to panel-simple-dsi.
 > 
-> A corresponding dt-bindings patch updates the yaml to ensure
-> samsung,uart-fifosize is a required property.
+> See arch/arm/boot/dts/nvidia/tegra114-roth.dts for more details.
 > 
-> [...]
+> Fixes:
+> ```
+> arch/arm/boot/dts/tegra114-roth.dt.yaml: panel@0: 'reg' does not match any of the regexes: 'pinctrl-[0-9]+'
+>          From schema: Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> ```
 
-Applied, thanks!
+Hi David,
 
-[13/16] tty: serial: samsung: Add gs101 compatible and common fifoszdt_serial_drv_data
-        https://git.kernel.org/krzk/linux/c/c95f5b21a0eaa4a2701c28e2b209f9a7e09cd4f0
+Would "Fixes: 310abcea76e9 ("dt-bindings: display: convert simple lg 
+panels to DT Schema")" be appropriate here?
 
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Thanks,
+
+Jessica Zhang
+
+> 
+> Signed-off-by: David Heidelberg <david@ixit.cz>
+> ---
+>   .../devicetree/bindings/display/panel/panel-simple-dsi.yaml     | 2 ++
+>   .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 --
+>   2 files changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
+> index 73674baea75d..f9160d7bac3c 100644
+> --- a/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
+> @@ -42,6 +42,8 @@ properties:
+>         - lg,acx467akm-7
+>           # LG Corporation 7" WXGA TFT LCD panel
+>         - lg,ld070wx3-sl01
+> +        # LG Corporation 5" HD TFT LCD panel
+> +      - lg,lh500wx1-sd03
+>           # One Stop Displays OSD101T2587-53TS 10.1" 1920x1200 panel
+>         - osddisplays,osd101t2587-53ts
+>           # Panasonic 10" WUXGA TFT LCD panel
+> diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> index 2021aa82871a..634a10c6f2dd 100644
+> --- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> @@ -212,8 +212,6 @@ properties:
+>         - lemaker,bl035-rgb-002
+>           # LG 7" (800x480 pixels) TFT LCD panel
+>         - lg,lb070wv8
+> -        # LG Corporation 5" HD TFT LCD panel
+> -      - lg,lh500wx1-sd03
+>           # LG LP079QX1-SP0V 7.9" (1536x2048 pixels) TFT LCD panel
+>         - lg,lp079qx1-sp0v
+>           # LG 9.7" (2048x1536 pixels) TFT LCD panel
+> -- 
+> 2.43.0
+> 
 
