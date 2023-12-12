@@ -1,114 +1,55 @@
-Return-Path: <devicetree+bounces-24418-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4385480F2DD
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 17:35:15 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0C4180F32D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 17:36:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F0D52281C5B
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 16:35:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4B1EEB20CAE
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 16:36:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2CC678E63;
-	Tue, 12 Dec 2023 16:35:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 187F478E7B;
+	Tue, 12 Dec 2023 16:36:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EGoV0FXb"
+	dkim=pass (2048-bit key) header.d=emersion.fr header.i=@emersion.fr header.b="WsFtlMCD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B056D28E6;
-	Tue, 12 Dec 2023 16:35:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60FC4C433CA;
-	Tue, 12 Dec 2023 16:35:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702398911;
-	bh=mMmJmC+q52Hml5ofl8CP4lRLUI3hn5sN9ppbWyRuzNQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EGoV0FXbAwukl1l0MwB7ef/rsDx1WCzrP4ggfOmlRwwdxSkUnuZh6YzYwzUSbHYE/
-	 BqAR5kZoq7vFg+i7G3qIVF5ytIOTXKgj/TAVssnIRm7pdCp8C1h2lgbggJiJSPvrBJ
-	 K4qvuJFQQhJ+Z2+u1XNuaSvXgx0c6zgJusk+foLwo1KqNoJgd4e8jCUa1DfJDni3xm
-	 wlu+HGThEnNQ0wai/MuSA9lkd+l4gJ05UHRHNmpYB0l7wr0T6tkJzHx1R6EW9NDOLG
-	 IA38nd1lLu4lAJ+DjyG8M0apsLG19cPwN5KE09/hY2pJnSvbvUiXkdCnmhAXUIKY4U
-	 tQizSL2wR2KLA==
-Date: Tue, 12 Dec 2023 16:35:07 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Jia Jie Ho <jiajie.ho@starfivetech.com>
-Cc: Olivia Mackall <olivia@selenic.com>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: rng: starfive: Add jh8100 compatible
- string
-Message-ID: <20231212-freely-familiar-f19c2e14c417@spud>
-References: <20231212032527.1250617-1-jiajie.ho@starfivetech.com>
- <20231212032527.1250617-2-jiajie.ho@starfivetech.com>
+Received: from mail-4317.proton.ch (mail-4317.proton.ch [185.70.43.17])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 426D91738;
+	Tue, 12 Dec 2023 08:36:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
+	s=protonmail2; t=1702399004; x=1702658204;
+	bh=xQM8Ci95br6UpZv6S/P/yPue9VcluKR7oR4GJe65I2k=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=WsFtlMCDeErknnMmjq7MhuKXRdxIawCITzMkIK57U3gE2v39FzMn8u71o5f5OkEfP
+	 BamfL6xfBjZHQM93MI4ViqRfDLuiA3YOk6oWMkYJ9/3GWX8RrRXH1Rs52gQuitseqZ
+	 iT6q2AeS2MWMcfIOlQ6Pc0u5q47GRX4FUQeavG3+6C3E5sfi0sJF90EVA579039vhG
+	 mg0LHb3jsUhwyqMrpkX9nxJq2xpviqfQ6wgxVell+MNGEN01K7UhrGwlB85L4DjzmY
+	 FVpFmmfVSrSkQNYiYHSTTmGBYQT5PMmfYeKneXZkivzzxkQ8AHg2kJoVHSj4oLv4tQ
+	 Rlj2PK7xD4Gzw==
+Date: Tue, 12 Dec 2023 16:36:35 +0000
+To: Yong Wu <yong.wu@mediatek.com>
+From: Simon Ser <contact@emersion.fr>
+Cc: Rob Herring <robh+dt@kernel.org>, Sumit Semwal <sumit.semwal@linaro.org>, christian.koenig@amd.com, Matthias Brugger <matthias.bgg@gmail.com>, dri-devel@lists.freedesktop.org, John Stultz <jstultz@google.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Jeffrey Kardatzke <jkardatzke@google.com>, Benjamin Gaignard <benjamin.gaignard@collabora.com>, Vijayanand Jitta <quic_vjitta@quicinc.com>, Nicolas Dufresne <nicolas@ndufresne.ca>, jianjiao.zeng@mediatek.com, linux-media@vger.kernel.org, devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, ckoenig.leichtzumerken@gmail.com, linaro-mm-sig@lists.linaro.org, linux-mediatek@lists.infradead.org, Joakim Bech <joakim.bech@linaro.org>, tjmercier@google.com, linux-arm-kernel@lists.infradead.org, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, kuohong.wang@mediatek.com, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/7] dma-buf: heaps: Add secure heap
+Message-ID: <DPBmATfmfvSP8Cwjz99kj_JvCEiAqRfuMFJZEBF2aIgl8NZqWFR66eyPTX1E8bHyOlimBihEE3E80p9bfOJ-0SNu8pwoIzL9gD2Xae6r97g=@emersion.fr>
+In-Reply-To: <20231212024607.3681-1-yong.wu@mediatek.com>
+References: <20231212024607.3681-1-yong.wu@mediatek.com>
+Feedback-ID: 1358184:user:proton
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="wKaAqqtx0HcURug5"
-Content-Disposition: inline
-In-Reply-To: <20231212032527.1250617-2-jiajie.ho@starfivetech.com>
-
-
---wKaAqqtx0HcURug5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Dec 12, 2023 at 11:25:26AM +0800, Jia Jie Ho wrote:
-> Add compatible string for StarFive JH8100 trng.
->=20
-> Signed-off-by: Jia Jie Ho <jiajie.ho@starfivetech.com>
+Is there a chance to pick a better name than "secure" here?
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
-Cheers,
-Conor.
-
-> ---
->  .../devicetree/bindings/rng/starfive,jh7110-trng.yaml       | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/rng/starfive,jh7110-trng.y=
-aml b/Documentation/devicetree/bindings/rng/starfive,jh7110-trng.yaml
-> index 2b76ce25acc4..4639247e9e51 100644
-> --- a/Documentation/devicetree/bindings/rng/starfive,jh7110-trng.yaml
-> +++ b/Documentation/devicetree/bindings/rng/starfive,jh7110-trng.yaml
-> @@ -11,7 +11,11 @@ maintainers:
-> =20
->  properties:
->    compatible:
-> -    const: starfive,jh7110-trng
-> +    oneOf:
-> +      - items:
-> +          - const: starfive,jh8100-trng
-> +          - const: starfive,jh7110-trng
-> +      - const: starfive,jh7110-trng
-> =20
->    reg:
->      maxItems: 1
-> --=20
-> 2.34.1
->=20
-
---wKaAqqtx0HcURug5
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZXiLuwAKCRB4tDGHoIJi
-0uEMAP49L1RqAzELTRn4hY+Ff+rzCrdw6w5GIjrpiqAIxF4yyAEA3Aq4Vbym8J2L
-4Z/yc6Qm/2bLhA2ICyLVlC/hCPfDTQo=
-=0CMW
------END PGP SIGNATURE-----
-
---wKaAqqtx0HcURug5--
+"Secure" is super overloaded, it's not clear at all what it means from
+just the name. Something like "restricted" would be an improvement.
 
