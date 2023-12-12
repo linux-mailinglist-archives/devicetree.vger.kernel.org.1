@@ -1,190 +1,149 @@
-Return-Path: <devicetree+bounces-24371-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24370-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B970780EE21
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 14:52:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA3DB80EE16
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 14:50:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73D5028140B
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 13:52:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 83C2A1F2164E
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 13:50:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B46D16F631;
-	Tue, 12 Dec 2023 13:52:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D4556F623;
+	Tue, 12 Dec 2023 13:50:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B3SpP+4W"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W5p32vTW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 022FDB3;
-	Tue, 12 Dec 2023 05:52:21 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-50bf69afa99so7297775e87.3;
-        Tue, 12 Dec 2023 05:52:21 -0800 (PST)
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EC95109;
+	Tue, 12 Dec 2023 05:49:59 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-336210c34ebso2098926f8f.1;
+        Tue, 12 Dec 2023 05:49:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702389140; x=1702993940; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=cFnllcfa91c1zJc4Gntywu/a8dFRpUHFeO6CvIvFtu4=;
-        b=B3SpP+4WEDCrXayc3qWvV8daTzwf2cw3SF/DlDxLD1l3+uAa+1ltZRHd1QxGPWo5CY
-         7ic88L33QXDHm1+MG8lKocupTO4QytkT7ApImWXMyudMAXHzycQZ6+8y9mC7vMxdDtw+
-         2d1oJfqT4SpKd8V8RaUKwKc7rVPHijhY3UcnSWpewVrC6oaiUo6R5j2OVMmmmgTjkYuM
-         LY1BnsAyuJFc6aUiaaNh4it6hUgHXyITFRsFH41liG/ka0MIEbKBJITY50xlz0SiwGqD
-         KUFmSj8KUktZzwZAj0SpUH1jIFdeJ5ZWxccV5xWgv2xSwezwKES9tJt/sqZDCIInidvH
-         sOsQ==
+        d=gmail.com; s=20230601; t=1702388997; x=1702993797; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=SKCoI3Z14PMDWcBeZWOED9ULYXLkoHexXMA063HaNhM=;
+        b=W5p32vTWRBu7G7SyoHFwo2TH36h6bYjpZTTWZzTaMzwDybSljuhaaiSZ4VhXeMAcqM
+         R9PrSKCMJQjrxbNEQ36zdBsAU1yKXstCu0gTdcws0lthqJLhkqZ0mIV3FwPI7ReH7XKh
+         oD/HwjjZZ06zbiXhDhrhRChfTGM+Vx2h8yZ1FcD2hM2Cb7/JqhMo8GjNZP4x3DCRJkQY
+         E5FsW3MDf7izyx5w5iOvsyn2RtJbduOf+CPJsFLLPdx5U8xNHGLLgbCU2Z64hS+j1A9g
+         vg8CcHMDklYdVnBHq6wFsn9CLy+dFPb1eex/vHpWduIBoTpu4MTulpkniqjvbRlgHaes
+         PT8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702389140; x=1702993940;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cFnllcfa91c1zJc4Gntywu/a8dFRpUHFeO6CvIvFtu4=;
-        b=Em/VQl8OdPiJY42u2OYy/BKLALeF+26O4NmFTKX7bOe+aQe/fEH+E39iDk2qTJoi2s
-         8DVywiHeEmWHI+RSTwWAj3uHAgojgmNFLdpsXWCfTVt419s+RSLD/Oh9UhfgelFTGTU7
-         6BMWaf+JRbnhIbxWlIbqJ+IsnnbnMn21+FgmOQU8EwelLWFJ+ORJZrIwgLvPyOIRDWx/
-         H6nXU7tEVtTffrT3YjLK8uAHkkf0eoxzvLUk/B7/KZjkkvNCvaB3tdDnSjQaJHKeZdva
-         2yMSJmN4oAi7tcFwaqIFOEzJh4F2+DHJ08LLNZZiiReWC387ZUeXNriUvHEa/4wSLbOV
-         DevQ==
-X-Gm-Message-State: AOJu0YzJIYspMCF0wDH1H+lavHHpl/JkZLWp9sqqS+oV/acJl8Df3lBF
-	HY/AJGb6winVyihAAEMXlu4G2o2Lw/c+cg==
-X-Google-Smtp-Source: AGHT+IHQrUXSxuBn29LhUoJX1ePcDGg56snRNXblvB5VLnQAdFUNh09t5mpngpSLdnTnZAS3jpzzfw==
-X-Received: by 2002:a05:6512:3b8d:b0:50c:c8b8:669a with SMTP id g13-20020a0565123b8d00b0050cc8b8669amr3958930lfv.92.1702389139829;
-        Tue, 12 Dec 2023 05:52:19 -0800 (PST)
-Received: from mobilestation ([178.176.56.174])
-        by smtp.gmail.com with ESMTPSA id g4-20020a0565123b8400b0050bfb2a5661sm1363163lfv.103.2023.12.12.05.52.18
+        d=1e100.net; s=20230601; t=1702388997; x=1702993797;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SKCoI3Z14PMDWcBeZWOED9ULYXLkoHexXMA063HaNhM=;
+        b=TygCvJRr9GxBt7j1WPwBUZC7qP5zF36M1x9nurpN9GdyBx0y70ZoGgoMCxVjuif29V
+         YRQTcqgEuyyQdQePhMaYZGoQ8prgv9Ixl0yxH/BXCBhB7FvmS/004hh4EP+9IPQtOHqc
+         f6fNRDd3WXNwLFVEOUgidbL4/dPeYWOpZ/p6UpSQ15c0ctWjJEiJM4fN4VVNNyHW7OJ0
+         7C/p9uigIJeHg7ew8ht/APwJTZVqRNXfDn/vbme04X1Yag5IGVKwf/Sz4X5WDc6ckfNA
+         fKIi4Xrx1hC7uni8cjwPRnnj+vRYztt4qwX1BJL9HJu80RwQZlnqy54GWOTvoEsGovmp
+         ODmQ==
+X-Gm-Message-State: AOJu0YymA7Ix2RTY2J8vCbk7RmxhRXSjCjjfkFEXt0cHmjq0rUYTcRb9
+	naTf7gvO7B+OiMSgk7BiwFg=
+X-Google-Smtp-Source: AGHT+IH/expu4WThuyDgGnB7BZ1cOvTWQKCjCxwbeZirIbU1Ye7mHzV9czSmswpa2qM2d8dm88q0Vw==
+X-Received: by 2002:adf:ee43:0:b0:333:4156:2763 with SMTP id w3-20020adfee43000000b0033341562763mr2326920wro.140.1702388996912;
+        Tue, 12 Dec 2023 05:49:56 -0800 (PST)
+Received: from ?IPv6:2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47? (p200300f6ef1b2000944ccbc71e1c2c47.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47])
+        by smtp.gmail.com with ESMTPSA id s12-20020adf978c000000b003333a0da243sm10994335wrb.81.2023.12.12.05.49.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Dec 2023 05:52:19 -0800 (PST)
-Date: Tue, 12 Dec 2023 16:52:15 +0300
-From: Serge Semin <fancer.lancer@gmail.com>
-To: Andrew Lunn <andrew@lunn.ch>, 
-	"Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: Heiner Kallweit <hkallweit1@gmail.com>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>, 
-	Jose Abreu <Jose.Abreu@synopsys.com>, Maxime Chevallier <maxime.chevallier@bootlin.com>, 
-	Tomer Maimon <tmaimon77@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, openbmc@lists.ozlabs.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 06/16] net: pcs: xpcs: Avoid creating dummy XPCS
- MDIO device
-Message-ID: <na6krkoco7pmsl62dfuj2xlrvpsnod74ptpfyy6gv7dzwmowga@mzsiknjian2i>
-References: <20231205103559.9605-1-fancer.lancer@gmail.com>
- <20231205103559.9605-7-fancer.lancer@gmail.com>
- <ZW8ASzkC9IFFlxkV@shell.armlinux.org.uk>
- <rgp33mm4spbpm5tmgxurkhy4is3lz3z62rz64rni2pygteyrit@zwflw2ejdkn7>
- <e1806c15-757e-4af0-a8be-075aa77918c2@lunn.ch>
- <ZW840qQMbVRto442@shell.armlinux.org.uk>
+        Tue, 12 Dec 2023 05:49:56 -0800 (PST)
+Message-ID: <af8fa90004157fa6b464b5f74335d9cbfa667675.camel@gmail.com>
+Subject: Re: [PATCH v3 2/2] hwmon: ltc4282: add support for the LTC4282 chip
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Guenter Roeck <linux@roeck-us.net>, nuno.sa@analog.com
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-doc@vger.kernel.org, Jean Delvare <jdelvare@suse.com>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>
+Date: Tue, 12 Dec 2023 14:53:00 +0100
+In-Reply-To: <7a6a0517-47f8-47df-9e61-44adb60f6135@roeck-us.net>
+References: <20231205-ltc4282-support-v3-0-e0877b281bc2@analog.com>
+	 <20231205-ltc4282-support-v3-2-e0877b281bc2@analog.com>
+	 <7a6a0517-47f8-47df-9e61-44adb60f6135@roeck-us.net>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZW840qQMbVRto442@shell.armlinux.org.uk>
 
-Hi Andrew, Russell
+On Mon, 2023-12-11 at 07:41 -0800, Guenter Roeck wrote:
+> On Tue, Dec 05, 2023 at 04:22:56PM +0100, Nuno Sa via B4 Relay wrote:
+> > From: Nuno Sa <nuno.sa@analog.com>
+> >=20
+> > The LTC4282 hot swap controller allows a board to be safely inserted an=
+d
+> > removed from a live backplane. Using one or more external N-channel pas=
+s
+> > transistors, board supply voltage and inrush current are ramped up at a=
+n
+> > adjustable rate. An I2C interface and onboard ADC allows for monitoring
+> > of board current, voltage, power, energy and fault status.
+> >=20
+> > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+> > ---
+> [ ... ]
+>=20
+> > +/* power1_fault */
+> > +static SENSOR_DEVICE_ATTR_RO(power1_good, ltc4282_status,
+> > +			=C2=A0=C2=A0=C2=A0=C2=A0 LTC4282_POWER_GOOD_MASK);
+> > +/* FET faults */
+> > +static SENSOR_DEVICE_ATTR_RO(fet_short_fault, ltc4282_status,
+> > +			=C2=A0=C2=A0=C2=A0=C2=A0 LTC4282_FET_SHORT_MASK);
+> > +static SENSOR_DEVICE_ATTR_RO(fet_bad_fault, ltc4282_status,
+> > +			=C2=A0=C2=A0=C2=A0=C2=A0 LTC4282_FET_BAD_STATUS_MASK);
+> > +/*
+> > + * Fault log failures. These faults might be important in systems wher=
+e
+> > + * auto-retry is not enabled since they will cause the part to latch o=
+ff
+> > until
+> > + * they are cleared. Typically that happens when the system admin is c=
+lose
+> > + * enough so he can check what happened and manually clear the faults.
+> > Hence, we
+> > + * provide an attribute to clear all fauls at once while still capable=
+ of
+> > + * checking individual faults in debugfs.
+> > + */
+> > +static SENSOR_DEVICE_ATTR_WO(fault_logs_reset, ltc4282_clear_faults, 0=
+);
+> > +
+> > +static struct attribute *ltc4282_attrs[] =3D {
+> > +	&sensor_dev_attr_energy1_input.dev_attr.attr,
+> > +	&sensor_dev_attr_power1_good.dev_attr.attr,
+> > +	&sensor_dev_attr_fet_bad_fault.dev_attr.attr,
+> > +	&sensor_dev_attr_fet_short_fault.dev_attr.attr,
+> > +	&sensor_dev_attr_fault_logs_reset.dev_attr.attr,
+> > +	NULL
+> > +};
+> > +ATTRIBUTE_GROUPS(ltc4282);
+> > +
+>=20
+> Ah, now I see what those are for. Please move all but energy1_input
+> to debugfs, including clearing the faults.
+>=20
 
-Sorry for the delay with response. I had to refresh my understanding
-of the series since it was created sometime ago and I already managed
-to forget some of its aspects (particularly regarding the MDIO-bus
-PHY-mask semantics).
+I'll reply in the other thread. Just wanted to make it clear (not totally s=
+ure
+it is) that all of those attributes are status stuff and not fault logs. Al=
+l of
+the fault logs where moved to debugfs and I kept this one in here. If this =
+was
+already clear to you, sorry for the noise.
 
-On Tue, Dec 05, 2023 at 02:50:58PM +0000, Russell King (Oracle) wrote:
-> On Tue, Dec 05, 2023 at 02:52:24PM +0100, Andrew Lunn wrote:
-> > On Tue, Dec 05, 2023 at 02:31:41PM +0300, Serge Semin wrote:
-> > > On Tue, Dec 05, 2023 at 10:49:47AM +0000, Russell King (Oracle) wrote:
-> > > > On Tue, Dec 05, 2023 at 01:35:27PM +0300, Serge Semin wrote:
-> > > > > If the DW XPCS MDIO devices are either left unmasked for being auto-probed
-> > > > > or explicitly registered in the MDIO subsystem by means of the
-> > > > > mdiobus_register_board_info() method there is no point in creating the
-> > > > > dummy MDIO device instance in order to get the DW XPCS handler since the
-> > > > > MDIO core subsystem will create the device during the MDIO bus
-> > > > > registration procedure.
-> > > > 
-> > > 
-> > > > Please reword this overly long sentence.
-> > > 
-> > > Ok.
-> > > 
-> > > > 
-> > > > If they're left unmasked, what prevents them being created as PHY
-> > > > devices?
-> > > 
-> > > Not sure I fully get what you meant. If they are left unmasked the
-> > > MDIO-device descriptor will be created by the MDIO subsystem anyway.
-> > > What the point in creating another one?
-> > 
+- Nuno S=C3=A1
+>=20
+>=20
 
-> > Saying what Russell said, in a different way:
-> > 
-> > /*
-> >  * Return true if the child node is for a phy. It must either:
-> >  * o Compatible string of "ethernet-phy-idX.X"
-> >  * o Compatible string of "ethernet-phy-ieee802.3-c45"
-> >  * o Compatible string of "ethernet-phy-ieee802.3-c22"
-> >  * o In the white list above (and issue a warning)
-> >  * o No compatibility string
-> >  *
-> >  * A device which is not a phy is expected to have a compatible string
-> >  * indicating what sort of device it is.
-> >  */
-> > bool of_mdiobus_child_is_phy(struct device_node *child)
-> > 
-> > So when walking the bus, if a node is found which fits these criteria,
-> > its assumed to be a PHY. 
-> > 
-> > Anything on the MDIO bus which is not a PHY needs to use a compatible.
-> 
-> Right. I'd actually forgotten about the firmware-based walking, and
-> was thinking more of the non-firmware bus scanning as the commit
-> message was talking about being _unmasked_ and the only mask we have
-> is bus->phy_mask.
-
-Back then when I was working on the series and up until last week I
-had thought that having a device unmasked in mii_bus->phy_mask was a
-correct way to do for _any_ device including our DW XPCS (which BTW
-looks like a normal C45 PHY and if synthesized with a PMA attached
-could be passed to be handled by the PHY subsystem). Can't remember
-why exactly I came to that thought, but likely it was due to finding
-out examples of having mii_bus->phy_mask uninitialized in some of the
-PCS use-cases, like in drivers/net/dsa/ocelot/felix_vsc9959.c (but in
-case of DW XPCS the mask is always set indeed). Anyway obviously I was
-wrong and PHY-device is supposed to be created only if a device is
-actual PHY and handled by the PHY subsystem drivers. So the correct
-ways to create PHY MDIO-devices are:
-
-1. Call mdiobus_register() with PHY-addresses unmasked
-2. Call of_mdiobus_register() for a DT-node with sub-nodes for which
-of_mdiobus_child_is_phy() returns true.
-
-and the correct ways to create non-PHY MDIO-devices are:
-
-1. Call mdiobus_register() with non-PHY-addresses masked and have
-those non-PHY device registered by mdiobus_register_board_info()
-beforehand.
-2. Call of_mdiobus_register() with DT sub-nodes having specific
-compatible string (based on the of_mdiobus_child_is_phy() semantics).
-
-Only in case of having a non-PHY device registered it's allowed to
-use it in in non-PHY MDIO driver, like PCS, etc. Right?
-
-Please correct me if I am wrong or miss something.
-
-> 
-> It seems to me that this is yet another case of a really confusing
-> commit message making review harder than it needs to be.
-
-From the perspective described above the patch log is indeed partly
-wrong. Sorry about that. I shouldn't have mentioned the mask at all
-but instead just listed two use-cases of creating the non-PHY
-MDIO-devices. I'll fix that in v2.
-
--Serge(y)
-
-> 
-> -- 
-> RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-> FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
-> 
 
