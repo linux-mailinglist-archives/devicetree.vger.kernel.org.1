@@ -1,200 +1,450 @@
-Return-Path: <devicetree+bounces-24385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24384-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5902E80EFE5
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 16:17:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D42480EFDD
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 16:17:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 14731281B72
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 15:17:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 400551C20A63
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 15:17:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 068D575430;
-	Tue, 12 Dec 2023 15:17:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C31EA7541A;
+	Tue, 12 Dec 2023 15:16:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VWtSpChT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aYUyreq7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1602FE9
-	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 07:17:23 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-3332ad5b3e3so5210309f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 07:17:23 -0800 (PST)
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 988F0CA;
+	Tue, 12 Dec 2023 07:16:54 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-40b5155e154so67372105e9.3;
+        Tue, 12 Dec 2023 07:16:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702394241; x=1702999041; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:from:content-language:subject:reply-to:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=W8YuKmgtjcOo5ghSsyfWGTGiBzdewmSb7QQyN9+lne4=;
-        b=VWtSpChT4CAzvi+8IapwWjexgKlzGo1mAGJM2Yhbv0aMXIbW7VL05LRg5mGSb1G7ZT
-         ZRF1/dcCPWz8qAxzSe3BnE2QF//4sw1dkQPvM9SiQ+JhuX161EYnS+MgyHC/fISDMrrG
-         CqS6h/JyhqENKYj7qk1NpueASMwlNdKuX4bkdvMvODrubxm8hvDD7U4YohTm/iwskAX2
-         6Ox/nqRQoWW/yh0LmjuTtKqt5r8m0JVdl1RJMrJ3mOlbGNiYsmv8DXdFMsI1evGAwyjA
-         0DJUFvSYW4HpbFy8RmjFxwE+yCXsio3WiKNvqpzsjIG8acC6273DzYzRNRC/Fhg3LYCs
-         q4mg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702394241; x=1702999041;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:from:content-language:subject:reply-to:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+        d=gmail.com; s=20230601; t=1702394213; x=1702999013; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=W8YuKmgtjcOo5ghSsyfWGTGiBzdewmSb7QQyN9+lne4=;
-        b=MTP/c8i9UU7nkmnB9A3cB6RWDI09g0g9/Vkob4zPvl1jlupK9gqtksDJpcCScn/Y5O
-         ft0dJU6teWtBHF56fNTWbPuHA69W1NwGVB0mBok1thUfz5OsguzHUZyFkz6P6jAuS9tQ
-         kqSLSVc3d+VOKbU6tnLnFFAQk5ccQLA5V3i+jwjJVHXl54XmQhOIg0dFQEDDRlamB+1J
-         swLYVvu+szMqWTbHiK4wqcTsbQalhE86clTevdYIIbGfvQ/Co+E+PFcwDa3sm+MaoH2G
-         5A/a7J/vApfqRtEkLN5AUrrbaSPlV3SSGReazS9spoAnyMCKb6q1QXARRFmpklVI+vam
-         VATQ==
-X-Gm-Message-State: AOJu0Yw53vmr4a4NYSvMfs/CgxeubJfYbtmY/bUS88SUlJR/d4glDeFR
-	iAiYLOlly4HHXVoIeFaFNem82g==
-X-Google-Smtp-Source: AGHT+IGGsq3xnVRIoTD3L1WHLVjpSAuvhAyQXkd/+6NTYT40CZdtbcnUujNBOFj/p2R76gvXkJc/SA==
-X-Received: by 2002:a05:600c:230f:b0:40b:5e59:c576 with SMTP id 15-20020a05600c230f00b0040b5e59c576mr3447915wmo.160.1702394241409;
-        Tue, 12 Dec 2023 07:17:21 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:5894:fa62:26b4:bf82? ([2a01:e0a:982:cbb0:5894:fa62:26b4:bf82])
-        by smtp.gmail.com with ESMTPSA id n10-20020a5d4c4a000000b003333abf3edfsm11015556wrt.47.2023.12.12.07.17.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Dec 2023 07:17:21 -0800 (PST)
-Message-ID: <1de67bcb-1287-4082-b90a-5c68c8bb9aa6@linaro.org>
-Date: Tue, 12 Dec 2023 16:17:20 +0100
+        bh=Puomzrjt5SUW5WOIbHx2z4P43aqw9YO10Gcjn/mwTFU=;
+        b=aYUyreq7AnDYnOEQo002RNK4tVWnjMpElzIUUVrPIcnjmkuotJRkNcP270yn9cbrYZ
+         o4wh01ZSSs7f/Z8aBQpfI6YIS7tqpA9EzyxjueyReapnFoWMJbaESvOJvkyaFMaF1xvg
+         6PFteJMXl2N4pHCcGPzCN1viU2roH3myDW2K5Rsr4Mq+PXfr61Wobvh2ZPgeB3Ieeq0I
+         BcheSHkG3XswAlRAvPUVz2U8aqWRFHCwVGWakPqyVAPy1u4pzRv0aN8OJ9jlw74DXmmQ
+         90mI1nm43eEM5Swr/A7of2vOCy2K4AtLMY7mFthOMhgjyqNV+qP8jHpTKOPclzXLEiiU
+         saoQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702394213; x=1702999013;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Puomzrjt5SUW5WOIbHx2z4P43aqw9YO10Gcjn/mwTFU=;
+        b=Uqwgy2wV2zl66HmNQKqXqVkgkQOvevOehGd4Wj8Qxi0vdFiMRKHl8dL2dwzE29t20P
+         tdCoPHHu8C2OiZkBsFdET+f/9pMZOTrid/jQOU6OckaXnZ+hO7OX+mSsFL6OH6pA7HTD
+         KiKtr0UxUux8PZxDQZpip4ig57l0vKJ0PLoJPKYx0zOr15uV7TOj53ssxB2WLLb+dedD
+         KbsVfLUUt9zA33H1wlHoGH87qtOu4OVul4KtquQM79W525LHV2hKKYoSPU2rTQMWqF9j
+         8zfXtM8hVpdaXw2mY32TTGEXDe0zfc4cpK517zYhF+yt7t6U4zn0tVVfclx1YCG0pLAq
+         y+lA==
+X-Gm-Message-State: AOJu0Yw1ziniMVqJmGNNQjtAWaie/GJ5anJmgmQbgH6esELjztFauQOR
+	3OTfa/LS49nOzeyd8pHKeAQ=
+X-Google-Smtp-Source: AGHT+IGlE0Fq6BbAEeOu6lKLZtxzcjQv99zNrO+z5y0JuNw3rcAs90ZaReQEUxtLM4cBKsDFaA379w==
+X-Received: by 2002:a05:600c:4f4d:b0:40b:5e4a:408a with SMTP id m13-20020a05600c4f4d00b0040b5e4a408amr2991203wmq.170.1702394212695;
+        Tue, 12 Dec 2023 07:16:52 -0800 (PST)
+Received: from ?IPv6:2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47? (p200300f6ef1b2000944ccbc71e1c2c47.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47])
+        by smtp.gmail.com with ESMTPSA id g17-20020a05600c311100b0040c4535f1a2sm8960220wmo.39.2023.12.12.07.16.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Dec 2023 07:16:52 -0800 (PST)
+Message-ID: <c21634252fec82dadd27b1bff69b24d3384acf00.camel@gmail.com>
+Subject: Re: [PATCH 2/2] iio: adc: ad7380: new driver for AD7380 ADCs
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: David Lechner <dlechner@baylibre.com>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Jonathan Cameron <jic23@kernel.org>, Michael Hennerich
+ <michael.hennerich@analog.com>, Nuno =?ISO-8859-1?Q?S=E1?=
+ <nuno.sa@analog.com>, Alexandru Ardelean <alexandru.ardelean@analog.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ linux-kernel@vger.kernel.org, Stefan Popa <stefan.popa@analog.com>
+Date: Tue, 12 Dec 2023 16:19:56 +0100
+In-Reply-To: <20231208-ad7380-mainline-v1-2-2b33fe2f44ae@baylibre.com>
+References: <20231208-ad7380-mainline-v1-0-2b33fe2f44ae@baylibre.com>
+	 <20231208-ad7380-mainline-v1-2-2b33fe2f44ae@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v12 2/4] Input: add core support for Goodix Berlin
- Touchscreen IC
-Content-Language: en-US, fr
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: linux-input@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Bastien Nocera <hadess@hadess.net>,
- Hans de Goede <hdegoede@redhat.com>, Henrik Rydberg <rydberg@bitmath.org>,
- Jeff LaBundy <jeff@labundy.com>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231209-topic-goodix-berlin-upstream-initial-v12-0-eaffaeb53fb5@linaro.org>
- <20231209-topic-goodix-berlin-upstream-initial-v12-2-eaffaeb53fb5@linaro.org>
- <ZXVgYuzE6jPPSfnZ@google.com>
- <be39f74b-e04f-48c8-acc9-cc818adfc4db@linaro.org>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <be39f74b-e04f-48c8-acc9-cc818adfc4db@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
 
-On 12/12/2023 15:43, Neil Armstrong wrote:
-> Hi Dmitry,
-> 
-> On 10/12/2023 07:53, Dmitry Torokhov wrote:
->> Hi Neil,
->>
->> On Sat, Dec 09, 2023 at 08:33:40AM +0100, Neil Armstrong wrote:
->>> Add initial support for the new Goodix "Berlin" touchscreen ICs.
->>>
->>> These touchscreen ICs support SPI, I2C and I3C interface, up to
->>> 10 finger touch, stylus and gestures events.
->>>
->>> This initial driver is derived from the Goodix goodix_ts_berlin
->>> available at [1] and [2] and only supports the GT9916 IC
->>> present on the Qualcomm SM8550 MTP & QRD touch panel.
->>>
->>> The current implementation only supports BerlinD, aka GT9916.
->>>
->>> Support for advanced features like:
->>> - Firmware & config update
->>> - Stylus events
->>> - Gestures events
->>> - Previous revisions support (BerlinA or BerlinB)
->>> is not included in current version.
->>>
->>> The current support will work with currently flashed firmware
->>> and config, and bail out if firmware or config aren't flashed yet.
->>>
->>> [1] https://github.com/goodix/goodix_ts_berlin
->>> [2] https://git.codelinaro.org/clo/la/platform/vendor/opensource/touch-drivers
->>>
->>> Reviewed-by: Jeff LaBundy <jeff@labundy.com>
->>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->>
->> Thank you for resending the patch. I think there is an issue in how you
->> read and parse the data in case of more than 2 fingers. It looks like in
->> that case you are overwriting the checksum form the first 2 and then not
->> reading the new checksum but use some garbage past the touch data. I
->> might be mistaken though...
-> 
-> I carefully inspected the code again, and it's correct, otherwise I would have experimented
-> checksum errors, which isn't the case.
-> 
-> First read from goodix_berlin_irq() is GOODIX_BERLIN_IRQ_READ_LEN(2) length in memory:
-> 
-> [GOODIX_BERLIN_IRQ_EVENT_HEAD_LEN][GOODIX_BERLIN_COOR_DATA_CHECKSUM_SIZE][GOODIX_BERLIN_BYTES_PER_POINT * x]
-> 
-> the pre_buf_len goodix_berlin_touch_handler() get is GOODIX_BERLIN_IRQ_READ_LEN(2), the we complete the
-> read after the first read, but since the touch checksum is before the touch data, it works because
-> we complete the data.
-> 
-> I added some comments to clarify the memory layout and re-ordered the items
-> in the GOODIX_BERLIN_IRQ_READ_LEN() macro to show GOODIX_BERLIN_COOR_DATA_CHECKSUM
-> is before the GOODIX_BERLIN_BYTES_PER_POINT data.
+Hi David,
 
-Ok I was wrong, the checksun is at the end, but since we check the checksum _after_
-reading the missing fingers, the checksum gets read correctly and is always valid.
+minor stuff from me...
 
-The first checksum check is for the header, not the finger data, so it may be
-confusing.
+On Fri, 2023-12-08 at 09:51 -0600, David Lechner wrote:
+> This adds a new driver for the AD7380 family ADCs.
+>=20
+> The driver currently implements basic support for the AD7380, AD7381,
+> AD7383, and AD7384 2-channel differential ADCs. Support for additional
+> single-ended and 4-channel chips that use the same register map as well
+> as additional features of the chip will be added in future patches.
+>=20
+> Co-developed-by: Stefan Popa <stefan.popa@analog.com>
+> Signed-off-by: Stefan Popa <stefan.popa@analog.com>
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> ---
+> =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
+> =C2=A0drivers/iio/adc/Kconfig=C2=A0 |=C2=A0 16 ++
+> =C2=A0drivers/iio/adc/Makefile |=C2=A0=C2=A0 1 +
+> =C2=A0drivers/iio/adc/ad7380.c | 467
+> +++++++++++++++++++++++++++++++++++++++++++++++
+> =C2=A04 files changed, 485 insertions(+)
+>=20
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index e2a998be5879..5a54620a31b8 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -438,6 +438,7 @@ S:	Supported
+> =C2=A0W:=09
+> https://wiki.analog.com/resources/tools-software/linux-drivers/iio-adc/ad=
+738x
+> =C2=A0W:	https://ez.analog.com/linux-software-drivers
+> =C2=A0F:	Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml
+> +F:	drivers/iio/adc/ad7380.c
+> =C2=A0
+> =C2=A0AD7877 TOUCHSCREEN DRIVER
+> =C2=A0M:	Michael Hennerich <michael.hennerich@analog.com>
+> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
+> index 35f9867da12c..cbfd626712e3 100644
+> --- a/drivers/iio/adc/Kconfig
+> +++ b/drivers/iio/adc/Kconfig
+> @@ -122,6 +122,22 @@ config AD7298
+> =C2=A0	=C2=A0 To compile this driver as a module, choose M here: the
+> =C2=A0	=C2=A0 module will be called ad7298.
+> =C2=A0
+> +config AD7380
+> +	tristate "Analog Devices AD7380 ADC driver"
+> +	depends on SPI_MASTER
+> +	select IIO_BUFFER
+> +	select IIO_TRIGGER
+> +	select IIO_TRIGGERED_BUFFER
+> +	help
+> +	=C2=A0 AD7380 is a family of simultaneous sampling ADCs that share the
+> same
+> +	=C2=A0 SPI register map and have similar pinouts.
+> +
+> +	=C2=A0 Say yes here to build support for Analog Devices AD7380 ADC and
+> +	=C2=A0 similar chips.
+> +
+> +	=C2=A0 To compile this driver as a module, choose M here: the module wi=
+ll
+> be
+> +	=C2=A0 called ad7380.
+> +
+> =C2=A0config AD7476
+> =C2=A0	tristate "Analog Devices AD7476 1-channel ADCs driver and other
+> similar devices from AD and TI"
+> =C2=A0	depends on SPI
+> diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
+> index bee11d442af4..e046d8004f41 100644
+> --- a/drivers/iio/adc/Makefile
+> +++ b/drivers/iio/adc/Makefile
+> @@ -16,6 +16,7 @@ obj-$(CONFIG_AD7291) +=3D ad7291.o
+> =C2=A0obj-$(CONFIG_AD7292) +=3D ad7292.o
+> =C2=A0obj-$(CONFIG_AD7298) +=3D ad7298.o
+> =C2=A0obj-$(CONFIG_AD7923) +=3D ad7923.o
+> +obj-$(CONFIG_AD7476) +=3D ad7380.o
+> =C2=A0obj-$(CONFIG_AD7476) +=3D ad7476.o
+> =C2=A0obj-$(CONFIG_AD7606_IFACE_PARALLEL) +=3D ad7606_par.o
+> =C2=A0obj-$(CONFIG_AD7606_IFACE_SPI) +=3D ad7606_spi.o
+> diff --git a/drivers/iio/adc/ad7380.c b/drivers/iio/adc/ad7380.c
+> new file mode 100644
+> index 000000000000..6a5ec59bd1fd
+> --- /dev/null
+> +++ b/drivers/iio/adc/ad7380.c
+> @@ -0,0 +1,467 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Analog Devices AD738x Simultaneous Sampling SAR ADCs
+> + *
+> + * Copyright 2017 Analog Devices Inc.
+> + * Copyright 2023 BayLibre, SAS
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/bitops.h>
+> +#include <linux/cleanup.h>
+> +#include <linux/device.h>
+> +#include <linux/err.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/regmap.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/slab.h>
+> +#include <linux/spi/spi.h>
+> +#include <linux/sysfs.h>
+> +
+> +#include <linux/iio/buffer.h>
+> +#include <linux/iio/iio.h>
+> +#include <linux/iio/sysfs.h>
+> +#include <linux/iio/trigger_consumer.h>
+> +#include <linux/iio/triggered_buffer.h>
+> +
+>=20
 
-I've added a big comment explaining what's done and how the finger data is complete
-and where is the finger data checksum is all cases.
+...
 
-Neil
+> +
+> +static int ad7380_debugfs_reg_access(struct iio_dev *indio_dev, u32 reg,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0 u32 writeval, u32 *readval)
+> +{
+> +	struct ad7380_state *st =3D iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	ret =3D iio_device_claim_direct_mode(indio_dev);
+> +	if (ret)
+> +		return ret;
+> +
 
-> 
->>
->> I also believe you are leaking afe_data in case of success. We have the
->> newfangled __free(kfree) from cleanup.h that should help there.
-> 
-> Indeed it was leaking.
-> 
->>
->> Another request - we should not have anything in goodix_berlin.h that is
->> not used by the I2C and SPI sub-drivers, so the only thing it should
->> contain is goodix_berlin_probe() declaration and dev_pm_ops. All other
->> defines and definitions should go to goodix_berlin_core.h.
->>
->> I made a few more cosmetic changes in the attached patch, please
->> consider applying it.
->>
->> Thanks.
-> 
-> Thanks,
-> Neil
-> 
+potential controversial take: do we really need locking in here? regmap alr=
+eady
+has it's own lock (I think you're not disabling it) and if someone plays wi=
+th
+registers it shouldn't while buffering, well... This is a debug interface s=
+o I
+would probably not worry much. One could anyways for write stuff by going
+directly to regmap :)
+
+That said, fine to be as-is from my side (just wanted to take it out of my
+system :))...
+
+> +	if (readval)
+> +		ret =3D regmap_read(st->regmap, reg, readval);
+> +	else
+> +		ret =3D regmap_write(st->regmap, reg, writeval);
+> +
+> +	iio_device_release_direct_mode(indio_dev);
+> +
+> +	return ret;
+> +}
+> +
+> +static irqreturn_t ad7380_trigger_handler(int irq, void *p)
+> +{
+> +	struct iio_poll_func *pf =3D p;
+> +	struct iio_dev *indio_dev =3D pf->indio_dev;
+> +	struct ad7380_state *st =3D iio_priv(indio_dev);
+> +	struct spi_transfer xfer =3D {
+> +		.bits_per_word =3D st->chip_info-
+> >channels[0].scan_type.realbits,
+> +		.len =3D 4,
+> +		.rx_buf =3D &st->scan_data,
+> +	};
+> +	int ret;
+> +
+> +	ret =3D spi_sync_transfer(st->spi, &xfer, 1);
+> +
+> +	if (ret =3D=3D 0)
+> +		iio_push_to_buffers_with_timestamp(indio_dev, &st->scan_data,
+> +						=C2=A0=C2=A0 pf->timestamp);
+> +
+> +	iio_trigger_notify_done(indio_dev->trig);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int ad7380_read_direct(struct ad7380_state *st,
+> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct iio_chan_spec const *chan, int =
+*val)
+> +{
+> +	struct spi_transfer xfers[] =3D {
+> +		/* toggle CS (no data xfer) to trigger a conversion */
+> +		{
+> +			.speed_hz =3D AD7380_REG_WR_SPEED_HZ,
+> +			.bits_per_word =3D chan->scan_type.realbits,
+> +			.delay =3D {
+> +				.value =3D 190, /* t[CONVERT] */
+> +				.unit =3D SPI_DELAY_UNIT_NSECS,
+> +			},
+> +			.cs_change =3D 1,
+> +			.cs_change_delay =3D {
+> +				.value =3D 10, /* t[CSH] */
+> +				.unit =3D SPI_DELAY_UNIT_NSECS,
+> +			},
+> +		},
+> +		/* then read both channels */
+> +		{
+> +			.speed_hz =3D AD7380_REG_WR_SPEED_HZ,
+> +			.bits_per_word =3D chan->scan_type.realbits,
+> +			.rx_buf =3D &st->rx[0],
+> +			.len =3D 4,
+> +		},
+> +	};
+> +	int ret;
+> +
+> +	ret =3D spi_sync_transfer(st->spi, xfers, ARRAY_SIZE(xfers));
+> +
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	*val =3D sign_extend32(st->rx[chan->scan_index],
+> +			=C2=A0=C2=A0=C2=A0=C2=A0 chan->scan_type.realbits - 1);
+> +
+> +	return IIO_VAL_INT;
+> +}
+> +
+> +static int ad7380_read_raw(struct iio_dev *indio_dev,
+> +			=C2=A0=C2=A0 struct iio_chan_spec const *chan,
+> +			=C2=A0=C2=A0 int *val, int *val2, long info)
+> +{
+> +	struct ad7380_state *st =3D iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	switch (info) {
+> +	case IIO_CHAN_INFO_RAW:
+> +		ret =3D iio_device_claim_direct_mode(indio_dev);
+> +		if (ret)
+> +			return ret;
+> +
+> +		ret =3D ad7380_read_direct(st, chan, val);
+> +		iio_device_release_direct_mode(indio_dev);
+> +
+> +		return ret;
+> +	case IIO_CHAN_INFO_SCALE:
+> +		if (st->vref) {
+> +			ret =3D regulator_get_voltage(st->vref);
+
+nit: I wonder how likely it is for vref to change at runtime...
+
+> +			if (ret < 0)
+> +				return ret;
+> +
+> +			*val =3D ret / 1000;
+> +		} else {
+> +			*val =3D AD7380_INTERNAL_REF_MV;
+> +		}
+> +
+> +		*val2 =3D chan->scan_type.realbits;
+> +
+> +		return IIO_VAL_FRACTIONAL_LOG2;
+> +	}
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +static const struct iio_info ad7380_info =3D {
+> +	.read_raw =3D &ad7380_read_raw,
+> +	.debugfs_reg_access =3D &ad7380_debugfs_reg_access,
+> +};
+> +
+> +static int ad7380_init(struct ad7380_state *st)
+> +{
+> +	int ret;
+> +
+> +	/* perform hard reset */
+> +	ret =3D regmap_update_bits(st->regmap, AD7380_REG_ADDR_CONFIG2,
+> +				 AD7380_CONFIG2_RESET,
+> +				 FIELD_PREP(AD7380_CONFIG2_RESET,
+> +					=C2=A0=C2=A0=C2=A0 AD7380_CONFIG2_RESET_HARD));
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +
+> +	/* select internal or external reference voltage */
+> +	ret =3D regmap_update_bits(st->regmap, AD7380_REG_ADDR_CONFIG1,
+> +				 AD7380_CONFIG1_REFSEL,
+> +				 FIELD_PREP(AD7380_CONFIG1_REFSEL, !!st-
+> >vref));
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	/* SPI 1-wire mode */
+> +	return regmap_update_bits(st->regmap, AD7380_REG_ADDR_CONFIG2,
+> +				=C2=A0 AD7380_CONFIG2_SDO,
+> +				=C2=A0 FIELD_PREP(AD7380_CONFIG2_SDO, 1));
+> +}
+> +
+> +static void ad7380_release_regulator(void *p)
+> +{
+> +	struct regulator *reg =3D p;
+> +
+> +	regulator_disable(reg);
+> +}
+> +
+> +static int ad7380_probe(struct spi_device *spi)
+> +{
+> +	struct iio_dev *indio_dev;
+> +	struct ad7380_state *st;
+> +	const char *str_val;
+> +	int ret;
+> +
+> +	ret =3D device_property_read_string(&spi->dev, "adi,sdo-mode",
+> &str_val);
+> +	if (ret < 0)
+> +		return dev_err_probe(&spi->dev, ret,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0 "Failed to read adi,sdo-mode
+> property\n");
+> +
+> +	if (strcmp(str_val, "1-wire"))
+> +		return dev_err_probe(&spi->dev, -EINVAL,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0 "Only 1-wire SDO is supported\n");
+> +
+> +	indio_dev =3D devm_iio_device_alloc(&spi->dev, sizeof(*st));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	st =3D iio_priv(indio_dev);
+> +	st->spi =3D spi;
+> +	st->chip_info =3D spi_get_device_match_data(spi);
+> +
+
+if (!st->chip_info) ?
+
+> +	st->vref =3D devm_regulator_get_optional(&spi->dev, "refio");
+> +	if (IS_ERR(st->vref)) {
+> +		/*
+> +		 * If there is no REFIO supply, then it means that we are
+> using
+> +		 * the internal 2.5V reference.
+> +		 */
+> +		if (PTR_ERR(st->vref) =3D=3D -ENODEV)
+> +			st->vref =3D NULL;
+> +		else
+> +			return dev_err_probe(&spi->dev, PTR_ERR(st->vref),
+> +					=C2=A0=C2=A0=C2=A0=C2=A0 "Failed to get refio
+> regulator\n");
+> +	}
+> +
+> +	if (st->vref) {
+> +		ret =3D regulator_enable(st->vref);
+> +		if (ret)
+> +			return ret;
+> +
+> +		ret =3D devm_add_action_or_reset(&spi->dev,
+> ad7380_release_regulator,
+> +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 st->vref);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	st->regmap =3D devm_regmap_init(&spi->dev, NULL, st,
+> &ad7380_regmap_config);
+> +	if (IS_ERR(st->regmap))
+> +		return dev_err_probe(&spi->dev, PTR_ERR(st->regmap),
+> +				=C2=A0=C2=A0=C2=A0=C2=A0 "failed to allocate register map\n");
+> +
+
+Could we instead have a custom regmap_bus instead of bypass regmap with
+reg_read() and reg_write()?
+> +
+> +	indio_dev->channels =3D st->chip_info->channels;
+> +	indio_dev->num_channels =3D st->chip_info->num_channels;
+> +	indio_dev->dev.parent =3D &spi->dev;
+
+no need to assign parent (the core does it for you)...
+
+- Nuno S=C3=A1
 
 
