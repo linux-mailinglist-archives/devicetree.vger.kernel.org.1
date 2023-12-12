@@ -1,172 +1,163 @@
-Return-Path: <devicetree+bounces-24495-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24496-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F124B80F566
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 19:20:58 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADC5880F575
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 19:26:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 202741C20C4A
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 18:20:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B0480B20D91
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 18:26:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BDF87E784;
-	Tue, 12 Dec 2023 18:20:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e+Jeyx9W"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ECE87E79B;
+	Tue, 12 Dec 2023 18:26:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-x35.google.com (mail-oa1-x35.google.com [IPv6:2001:4860:4864:20::35])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36016ED;
-	Tue, 12 Dec 2023 10:20:50 -0800 (PST)
-Received: by mail-oa1-x35.google.com with SMTP id 586e51a60fabf-1fb04b2251bso4349155fac.0;
-        Tue, 12 Dec 2023 10:20:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702405249; x=1703010049; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=FDE81kuOGXddlPQChxv8quZusCqlbynJ9UhLrlhz+O8=;
-        b=e+Jeyx9W7qzaLJtHd/wZHGEMW4dXcE7/dQ2i710FPpn+HAlKXUy1kjbmblMG8/agfx
-         ejM/emvS2R2UCv/0sZBryyQpXidPmvHZB3fOcsU8gNu/QWHZ8k/tQUNyOINYETYcUY6y
-         Oe+WjeQMUIwfB1nHjnCl+ZXmGlcE+88/4lWehG1f/HH1CtpNnM5gCapxIhgodIk65Bui
-         1FqYsjToDAfGFAdXOfkT59dq7srh6jsp+rgnC7UHrXccnMaBulGvqyUqmUsyZSOfvIIP
-         QAnjPUMPADgRQV222ovpAVEJ8cJ0WyDcChk0IgvBHl23w3FlPRYZSIkXh6lRzd3U3A9J
-         hOmw==
+Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22B8ECF
+	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 10:26:07 -0800 (PST)
+Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-2888c80994bso3596090a91.0
+        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 10:26:07 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702405249; x=1703010049;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1702405566; x=1703010366;
+        h=content-transfer-encoding:mime-version:message-id:date:references
+         :in-reply-to:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=FDE81kuOGXddlPQChxv8quZusCqlbynJ9UhLrlhz+O8=;
-        b=jhXuFll95DclO0ZZ3xc7s9/VXijzQuWNhnWOwSEHtBg1FXtR+SzKi8WEKLICfNlJJr
-         U/BN4Yvihh3F1IJ9UINIL6SgkwBPBUaTVYKH7ZcDQdrmyP8ODYfFeCAr0OhPMXl5btLw
-         Hhkh3lsmdAE0PsJ2vGgfXAbd6TaWd6lBRhUHo0sDd4pTZTlZJ0w3DcvXBzlDAEkV2guh
-         XNBEY5DJWlIKyrdVggsAW+0BvJ0s23lT8vyB6bRTBzriNI0YfOiDLxwmMAIHy2CtakZq
-         dV/RL7JBmZxTFwsxSecyG8EoejCDtVRx/GFyT7aYNwgZum88iW2CUMcuAo4Ia36BzxTO
-         FyrA==
-X-Gm-Message-State: AOJu0YyyVdgnr1oeccREBRFVZmsTMhGtTP6GhWSGkV3DJtgUYgF30Wmt
-	L5leppOP6THKfcwWYuAj0ys=
-X-Google-Smtp-Source: AGHT+IGXLWFXupo/tm4tBeTHuC5qUcoL4NqHg6JPGuiyBNYPVPEE1uHva1Z0E6nslMmzhakP+HwG5Q==
-X-Received: by 2002:a05:6871:798a:b0:1fb:dc3:782d with SMTP id pb10-20020a056871798a00b001fb0dc3782dmr7720211oac.55.1702405249374;
-        Tue, 12 Dec 2023 10:20:49 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id wd15-20020a056871a58f00b001fb21cee425sm3338823oab.40.2023.12.12.10.20.48
+        bh=9lX++N5VCWclr3d1h9X3xvVDF9stHF9vZ8hPgWWAfgI=;
+        b=uRBgJ60JSbCKaYJYPdACcWSOA6pSBwxmcgE2yyTPgZO9c0EtaKzHSG4VXWArYCLYKv
+         jexbebcQnCGAetZjpjIhoouqR2cjPRTThLv+X2t/Iq3QqoFym0BLFOEGHkuKOCyKF9NV
+         eyssyWR+S6TTSBNSmnJwgXhuG/UdbHNxjWPZ/KSluMKl/8hz7h0pa0ArlxwVq+1khG8t
+         lIVA7O4yIHKaPGmIODPtaS+X7mqm8prKY584eG+iJxfGmir4bRm+jOUvmjOsjeYXe4Ln
+         BZFiKVdA6l/+rueacPBxGKVmc2/OFiB/VHA5yoXqgs07SAIG518MtRbrRKEBI1j6JihH
+         YEyg==
+X-Gm-Message-State: AOJu0Ywwp8hMwu0H6aF0xJNZ8YeMx6BDB53Z7hdtzu1sgDgEB7BcFdxj
+	fESfX2Qa1ljyCT6LK+/M7Jo24A==
+X-Google-Smtp-Source: AGHT+IHXCRJ5ZJEeDDrwJnt6AcXXLGoPeX/dvnSsoC0qb9tX2LLEt4DQy55A5U2kLu55LSGfolR+qA==
+X-Received: by 2002:a17:90a:f30e:b0:286:a2a3:1e4f with SMTP id ca14-20020a17090af30e00b00286a2a31e4fmr3120316pjb.64.1702405566516;
+        Tue, 12 Dec 2023 10:26:06 -0800 (PST)
+Received: from localhost (75-172-121-199.tukw.qwest.net. [75.172.121.199])
+        by smtp.gmail.com with ESMTPSA id q30-20020a17090a17a100b0028ac663af16sm1585825pja.23.2023.12.12.10.26.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Dec 2023 10:20:48 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Tue, 12 Dec 2023 10:20:47 -0800
-From: Guenter Roeck <linux@roeck-us.net>
-To: Conor Dooley <conor@kernel.org>
-Cc: Ninad Palsule <ninad@linux.ibm.com>, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	joel@jms.id.au, andrew@codeconstruct.com.au, peterhuewe@gmx.de,
-	jarkko@kernel.org, jgg@ziepe.ca, keescook@chromium.org,
-	tony.luck@intel.com, gpiccoli@igalia.com,
-	johannes.holland@infineon.com, broonie@kernel.org,
-	patrick.rudolph@9elements.com, vincent@vtremblay.dev,
-	peteryin.openbmc@gmail.com, lakshmiy@us.ibm.com,
-	bhelgaas@google.com, naresh.solanki@9elements.com,
-	alexander.stein@ew.tq-group.com, festevam@denx.de,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-	linux-integrity@vger.kernel.org, linux-hardening@vger.kernel.org,
-	geissonator@yahoo.com
-Subject: Re: [PATCH v1 2/8] dt-bindings: tpm: Add schema for TIS I2C devices
-Message-ID: <874d4416-86e5-48cc-9c84-97357e4caefe@roeck-us.net>
-References: <20231212164004.1683589-1-ninad@linux.ibm.com>
- <20231212164004.1683589-3-ninad@linux.ibm.com>
- <20231212-amusement-elevation-28e42bcccc35@spud>
+        Tue, 12 Dec 2023 10:26:05 -0800 (PST)
+From: Kevin Hilman <khilman@kernel.org>
+To: =?utf-8?Q?Th=C3=A9o?= Lebrun <theo.lebrun@bootlin.com>, Roger Quadros
+ <rogerq@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Peter Chen <peter.chen@kernel.org>, Pawel Laszczak <pawell@cadence.com>,
+ Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero
+ Kristo <kristo@kernel.org>, "Vardhan, Vibhore" <vibhore@ti.com>
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ =?utf-8?Q?Gr=C3=A9gory?= Clement <gregory.clement@bootlin.com>, Thomas
+ Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 3/6] usb: cdns3-ti: add suspend/resume procedures for J7200
+In-Reply-To: <CX9MMPFL7HAY.NGULD1FN5WPN@tleb-bootlin-xps13-01>
+References: <20231113-j7200-usb-suspend-v1-0-ad1ee714835c@bootlin.com>
+ <20231113-j7200-usb-suspend-v1-3-ad1ee714835c@bootlin.com>
+ <5080372b-1f48-4cbc-a6c4-8689c28983cb@kernel.org>
+ <CWZH66HQZNYM.T623ZOEEE0BK@tleb-bootlin-xps13-01>
+ <dad980f3-e032-41e4-a1e4-a16a7f45ff95@kernel.org>
+ <CX0GOP07I40N.198G7LJ0HYDBG@tleb-bootlin-xps13-01>
+ <bdea68ad-7523-4738-8fa1-b670d81a6b93@kernel.org>
+ <CX10D9YX1O1C.30PF317AG065N@tleb-bootlin-xps13-01>
+ <3e00b2ad-b58f-4b09-9230-683c58d3bb92@kernel.org>
+ <CX15J7B8F8HH.1WZ10OOW31X1H@tleb-bootlin-xps13-01>
+ <7h34wxfmwn.fsf@baylibre.com>
+ <CX63KP2UPL1N.J9Q344Q06IGP@tleb-bootlin-xps13-01>
+ <7hil5odtwl.fsf@baylibre.com>
+ <CX9MMPFL7HAY.NGULD1FN5WPN@tleb-bootlin-xps13-01>
+Date: Tue, 12 Dec 2023 10:26:05 -0800
+Message-ID: <7h7cljcm6a.fsf@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231212-amusement-elevation-28e42bcccc35@spud>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Dec 12, 2023 at 05:14:26PM +0000, Conor Dooley wrote:
-> Hey,
-> 
-> On Tue, Dec 12, 2023 at 10:39:58AM -0600, Ninad Palsule wrote:
-> > From: Johannes Holland <johannes.holland@infineon.com>
-> > 
-> > Add a dt schema to support device tree bindings
-> 
-> "Add bindings for..."
-> 
-> > for the generic I2C
-> > physical layer. Refer to the TCG PC Client Platform TPM Profile (PTP)
-> > Specification for TPM 2.0 v1.04 Revision 14.
-> > 
-> > This includes descriptions for the Nuvoton and Infineon devices.
-> > 
-> 
-> > OpenBMC-Staging-Count: 3
-> 
-> I have no idea what this is, but it needs to be removed from the patch.
-> 
-> > Signed-off-by: Johannes Holland <johannes.holland@infineon.com>
-> > Signed-off-by: Joel Stanley <joel@jms.id.au>
-> > Signed-off-by: Ninad Palsule <ninad@linux.ibm.com>
-> > ---
-> >  .../bindings/security/tpm/tpm-tis-i2c.yaml    | 50 +++++++++++++++++++
-> >  1 file changed, 50 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml b/Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml
-> > new file mode 100644
-> > index 000000000000..de1e34065748
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml
-> > @@ -0,0 +1,50 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/security/tpm/tpm-tis-i2c.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: I2C PTP based TPM Devices
-> > +
-> > +maintainers:
-> > +  - Johannes Holland <johannes.holland@infineon.com>
-> > +
-> > +description:
-> > +  Device Tree Bindings for I2C based Trusted Platform Module (TPM).
-> 
-> s/Device Tree Bindings for //. Doesn't dt_binding_check now complain if
-> you have this in a title or description?
-> 
-> > +properties:
-> > +  $nodename:
-> > +    pattern: "^tpm(@[0-9a-f]+)?$"
-> > +
-> > +  compatible:
-> > +    oneOf:
-> > +      - description: Infineon's Trusted Platform Module (TPM) (SLB9673).
-> > +        items:
-> > +          - const: infineon,slb9673
-> > +          - const: tcg,tpm-tis-i2c
-> > +      - description: Nuvoton's Trusted Platform Module (TPM) (NPCT75x).
-> > +        items:
-> > +          - const: nuvoton,npct75x
-> > +          - const: tcg,tpm-tis-i2c
-> 
-> > +      - const: tcg,tpm-tis-i2c
-> 
-> IMO this should be removed and this fallback should only be used in
-> combination with device specific compatibles, like you have here for the
-> infineon and nuvoton devices.
+Th=C3=A9o Lebrun <theo.lebrun@bootlin.com> writes:
 
-As mentioned in my response to the other patch, "only" isn't sufficient
-since the tacoma devicetree file only references the generic entry.
-It would also make support for chips from other vendors unnecessarily
-complex.
+> Hello,
+>
+> On Sun Nov 26, 2023 at 11:36 PM CET, Kevin Hilman wrote:
+>> Th=C3=A9o Lebrun <theo.lebrun@bootlin.com> writes:
+>> > On Wed Nov 22, 2023 at 11:23 PM CET, Kevin Hilman wrote:
+>> >> Th=C3=A9o Lebrun <theo.lebrun@bootlin.com> writes:
+>> >> The point is to signal to the power domain the device is in that it c=
+an
+>> >> power on/off.  These IP blocks are (re)used on many different SoCs, so
+>> >> the driver should not make any assumptions about what power domain it=
+ is
+>> >> in (if any.)
+>> >
+>> > On my platform, when the device is attached to the PD it gets turned o=
+n.
+>> > That feels logical to me: if a driver is not RPM aware it "just works".
+>>
+>> It "just works"... until the domain gets turned off.
+>>
+>> > Are there platforms where RPM must get enabled for the attached
+>> > power-domains to be turned on?
+>>
+>> Yes, but but more importantly, there are platforms where RPM must get
+>> enabled for the power domain to *stay* on.  For example, the power
+>> domain might get turned on due to devices probing etc, but as soon as
+>> all the RPM-enabled drivers drop their refcount, the domain will turn
+>> off.  If there is a device in that domain with a non-RPM enabled driver,
+>> that device will be powered off anc cause a crash.
+>
+> OK, that makes sense, thanks for taking the time to explain. This topic
+> makes me see two things that I feel are close to being bugs. I'd be
+> curious to get your view on both.
 
-Question should in my opinion be if the non-fallback entries are really
-needed.
+TL;DR; they are features, not bugs.  ;)
 
-Thanks,
-Guenter
+>  - If a device does not use RPM but its children do, it might get its
+>    associated power-domain turned off. That forces every single driver
+>    that want to stay alive to enable & increment RPM.
+>
+>    What I naively expect: a genpd with a device attached to it that is
+>    not using RPM should mean that it should not be powered off at
+>    runtime_suspend. Benefit: no RPM calls in drivers that do not use
+>    it, and the behavior is that the genpd associated stays alive "as
+>    expected".
+
+Your expectation makes sense, but unfortunately, that's not how RPM was
+designed.
+
+Also remember that we don't really want specific device drivers to know
+which PM domain they are in, or whether they are in a PM domain at
+all. The same IP block can be integrated in different ways across
+different SoCs, even within the same SoC family, and we want the device
+driver to just work.=20=20
+
+For that to work well, any driver that might be in any PM domain should
+add RPM calls.
+
+>  - If a device uses RPM & has a refcount strictly positive, its
+>    associated power-domain gets turned off either way at suspend_noirq.
+>    That feels non-intuitive as well.
+>
+>    What I naively expect: check for RPM refcounts of attached devices
+>    when doing suspend_noirq of power-domains. Benefit: control of what
+>    power-domains do from attached devices is done through the RPM API.
+
+I agree that this is non-intuitive from an RPM PoV, but remember that
+RPM was added on top of existing system-wide suspend support.  And from
+a system-wide suspend PoV, it might be non-intuitive that a driver
+thinks it should be active (non-zero refcount) when user just requested
+a system-wide suspend.  Traditionally, when a user requests a
+system-wide suspend, they expect the whole system to shut down.
+
+On real SoCs in real products, power management is not so black and
+white, and I fully understand that, and personally, I'm definitely open
+to not forcing RPM-active devices off in suspend, but that would require
+changes to core code, and remove some assumptions of core code that
+would need to be validated/tested.
+
+Kevin
 
