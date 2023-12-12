@@ -1,50 +1,60 @@
-Return-Path: <devicetree+bounces-24374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24375-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C47AC80EEF5
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 15:38:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF2A580EF05
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 15:41:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 480A01F21287
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 14:38:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 889161F215C5
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 14:41:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3D3C7317D;
-	Tue, 12 Dec 2023 14:38:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE12C745CD;
+	Tue, 12 Dec 2023 14:41:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="pEl3cxEK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="v0ai7RS7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 895A2AD;
-	Tue, 12 Dec 2023 06:38:34 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3BCEcEso038593;
-	Tue, 12 Dec 2023 08:38:14 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1702391894;
-	bh=ctToVPkKrvBLP0P0pgqBKS3YfUXmNxUFFmv20f6QKK8=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=pEl3cxEKUk76w139iY+qysWQrkPu65RgOt+0vKW9Hh9jUrSpNR2avfa8TphuW2bs3
-	 MtwHeR7RRQ3FFvcfPHOR3biQTI/ey64VI/8/Fu31UN3blQ3ADiPv25raPU9pafPaRf
-	 FAfUBVGLAeXqTFT86evlNaE+GMezonjdWOkJUZHA=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3BCEcEaX018920
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 12 Dec 2023 08:38:14 -0600
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 12
- Dec 2023 08:38:13 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 12 Dec 2023 08:38:13 -0600
-Received: from [10.247.16.251] (ula0226330.dhcp.ti.com [10.247.16.251])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3BCEad2C063051;
-	Tue, 12 Dec 2023 08:38:13 -0600
-Message-ID: <977d9e00-df57-4b1e-877a-5f9137b2c0d4@ti.com>
-Date: Tue, 12 Dec 2023 08:38:12 -0600
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C524D2
+	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 06:41:08 -0800 (PST)
+Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2c9f85eff28so86524181fa.3
+        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 06:41:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702392067; x=1702996867; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Mt0RJuRzONksksmHKJ5+QxIw2yK885EP6NVJe05HDXw=;
+        b=v0ai7RS7xku8P5+CKAU7nmTK7xVSK176EW1ujOLf0lgeLEFlPFRoKbOj1mLVuxwJmR
+         nnV5PO2Zi2G2051WAzNQcJdtoSBKVijfLTIk5POcE7KC7nJTfbxbXEncLt6kEJGFE0af
+         +HHLQys11GMBf5L1uj6J1Oa1tssiwedQhgroaQNpiOELekcT2eW5LQW5+hs4bRHooJ58
+         fDl08svrsALgf2b3G8kyGnSJ+aIbuJfhWaxq+PT/DeXOqqXgjgJH/3q/kV6f4H3jQBIl
+         CI+MZle2CIVVMEqagkSOGqOBq1Mid2GG3sIO87NCqWk+rpWIwJjfvO2ZDDx/hbV0OKMS
+         SO0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702392067; x=1702996867;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Mt0RJuRzONksksmHKJ5+QxIw2yK885EP6NVJe05HDXw=;
+        b=ZqHyLAztwvemN6zyhSwmnIGGj735/8gd+8cujev+N7jGGIFN+nAKelYkE0N20IJqxg
+         LzpCPaFvy22Qcmw/bcpfWrLwXJBhCDysYZcoUroYljrxdqpd3i3cRp4QNEp91HJ14Fqh
+         VtzU1y8nytn1yAr4KNTUduHwq2qb9HiWpXRL9bJdSrfzGRUBuRiPKluf9tk+wrLmLKXu
+         FRrooeRZ00mEmkzaDQ/lXCg1y078W/vjNrqqVSfLAc9JEJ2MUxci2SxBQsSaXLTjH9GB
+         nQaTsTNDRSM2X4D+th5diX9oA8nWzarhGFzEgNg30nBqvEG3Mw014/bfjji4Wq9KGvOw
+         N05A==
+X-Gm-Message-State: AOJu0YzVo1i1xGbmPTn7u7l9YtwooP54ItUfi58xreQCY5L1n/B43lkG
+	aJ7xBXjt9iuX92VYzub9cyLZ8w==
+X-Google-Smtp-Source: AGHT+IHjmt9N5sHhVDkteIF1PnQFUta/ditveaR0cep4gfy0ZgiiYwB3FbpejBjBcD769GhWHVUzMQ==
+X-Received: by 2002:a2e:9ec4:0:b0:2ca:5e:d16f with SMTP id h4-20020a2e9ec4000000b002ca005ed16fmr2990790ljk.18.1702392066690;
+        Tue, 12 Dec 2023 06:41:06 -0800 (PST)
+Received: from [172.30.205.64] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id t27-20020a2e8e7b000000b002cc21cc7710sm638479ljk.68.2023.12.12.06.41.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Dec 2023 06:41:06 -0800 (PST)
+Message-ID: <52aa1fdb-ebdf-4cef-80d6-6c1b83d626ab@linaro.org>
+Date: Tue, 12 Dec 2023 15:41:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,126 +62,35 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] arm64: dts: ti: k3-j721s2-evm: Add overlay for
- PCIE1 Endpoint Mode
+Subject: Re: [PATCH] arm64: dts: qcom: sm8650: drop unneeded assigned-clocks
+ from WSA macro
 Content-Language: en-US
-To: Siddharth Vadapalli <s-vadapalli@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <r-gunasekaran@ti.com>,
-        <srk@ti.com>
-References: <20231211115535.1264353-1-s-vadapalli@ti.com>
- <20231211115535.1264353-3-s-vadapalli@ti.com>
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20231211115535.1264353-3-s-vadapalli@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231212133143.100575-1-krzysztof.kozlowski@linaro.org>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20231212133143.100575-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 12/11/23 5:55 AM, Siddharth Vadapalli wrote:
-> Add overlay to enable the PCIE1 instance of PCIe on J721S2-EVM in
-> Endpoint mode of operation.
+
+
+On 12/12/23 14:31, Krzysztof Kozlowski wrote:
+> Review of v1 patch resulting in commit 58872a54e4a8 ("arm64: dts: qcom:
+> sm8650: add ADSP audio codec macros") pointed to remove unneeded
+> assigned-clock-rates from macro codecs.  One assignment was left in WSA
+> macro codec, so drop it now as it is redundant: these clocks have fixed
+> 19.2 MHz frequency.
 > 
-> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-> Reviewed-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Reviewed-by: Andrew Davis <afd@ti.com>
+Thanks, could you also check if they're fixed on older platforms?
 
->   arch/arm64/boot/dts/ti/Makefile               |  6 ++-
->   .../boot/dts/ti/k3-j721s2-evm-pcie1-ep.dtso   | 53 +++++++++++++++++++
->   2 files changed, 58 insertions(+), 1 deletion(-)
->   create mode 100644 arch/arm64/boot/dts/ti/k3-j721s2-evm-pcie1-ep.dtso
-> 
-> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-> index c6606b7678a3..52c1dc910308 100644
-> --- a/arch/arm64/boot/dts/ti/Makefile
-> +++ b/arch/arm64/boot/dts/ti/Makefile
-> @@ -76,6 +76,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j721s2-common-proc-board.dtb
->   dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm-gesi-exp-board.dtbo
->   k3-j721s2-evm-dtbs := k3-j721s2-common-proc-board.dtb k3-j721s2-evm-gesi-exp-board.dtbo
->   dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm.dtb
-> +dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm-pcie1-ep.dtbo
->   
->   # Boards with J784s4 SoC
->   dtb-$(CONFIG_ARCH_K3) += k3-am69-sk.dtb
-> @@ -106,6 +107,8 @@ k3-am642-tqma64xxl-mbax4xxl-wlan-dtbs := \
->   	k3-am642-tqma64xxl-mbax4xxl.dtb k3-am64-tqma64xxl-mbax4xxl-wlan.dtbo
->   k3-j721e-evm-pcie0-ep-dtbs := k3-j721e-common-proc-board.dtb \
->   	k3-j721e-evm-pcie0-ep.dtbo
-> +k3-j721s2-evm-pcie1-ep-dtbs := k3-j721s2-common-proc-board.dtb \
-> +	k3-j721s2-evm-pcie1-ep.dtbo
->   dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
->   	k3-am625-beagleplay-csi2-tevi-ov5640.dtb \
->   	k3-am625-sk-csi2-imx219.dtb \
-> @@ -117,7 +120,8 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
->   	k3-am62a7-sk-csi2-ov5640.dtb \
->   	k3-am642-tqma64xxl-mbax4xxl-sdcard.dtb \
->   	k3-am642-tqma64xxl-mbax4xxl-wlan.dtb \
-> -	k3-j721e-evm-pcie0-ep.dtb
-> +	k3-j721e-evm-pcie0-ep.dtb \
-> +	k3-j721s2-evm-pcie1-ep.dtb
->   
->   # Enable support for device-tree overlays
->   DTC_FLAGS_k3-am625-beagleplay += -@
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-evm-pcie1-ep.dtso b/arch/arm64/boot/dts/ti/k3-j721s2-evm-pcie1-ep.dtso
-> new file mode 100644
-> index 000000000000..43568eb67d93
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-evm-pcie1-ep.dtso
-> @@ -0,0 +1,53 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/**
-> + * DT Overlay for enabling PCIE1 instance in Endpoint Configuration with the
-> + * J7 common processor board.
-> + *
-> + * J7 Common Processor Board Product Link: https://www.ti.com/tool/J721EXCPXEVM
-> + *
-> + * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
-> + */
-> +
-> +/dts-v1/;
-> +/plugin/;
-> +
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/soc/ti,sci_pm_domain.h>
-> +
-> +#include "k3-pinctrl.h"
-> +
-> +/*
-> + * Since Root Complex and Endpoint modes are mutually exclusive
-> + * disable Root Complex mode.
-> + */
-> +&pcie1_rc {
-> +	status = "disabled";
-> +};
-> +
-> +&cbass_main {
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +	interrupt-parent = <&gic500>;
-> +
-> +	pcie1_ep: pcie-ep@2910000 {
-> +		compatible = "ti,j7200-pcie-ep", "ti,j721e-pcie-ep";
-> +		reg = <0x00 0x02910000 0x00 0x1000>,
-> +		      <0x00 0x02917000 0x00 0x400>,
-> +		      <0x00 0x0d800000 0x00 0x00800000>,
-> +		      <0x00 0x18000000 0x00 0x08000000>;
-> +		reg-names = "intd_cfg", "user_cfg", "reg", "mem";
-> +		interrupt-names = "link_state";
-> +		interrupts = <GIC_SPI 330 IRQ_TYPE_EDGE_RISING>;
-> +		ti,syscon-pcie-ctrl = <&scm_conf 0x074>;
-> +		max-link-speed = <3>;
-> +		num-lanes = <1>;
-> +		power-domains = <&k3_pds 276 TI_SCI_PD_EXCLUSIVE>;
-> +		clocks = <&k3_clks 276 41>;
-> +		clock-names = "fck";
-> +		max-functions = /bits/ 8 <6>;
-> +		max-virtual-functions = /bits/ 8 <4 4 4 4 0 0>;
-> +		dma-coherent;
-> +		phys = <&serdes0_pcie_link>;
-> +		phy-names = "pcie-phy";
-> +	};
-> +};
+Konrad
 
