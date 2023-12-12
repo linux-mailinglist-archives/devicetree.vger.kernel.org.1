@@ -1,146 +1,138 @@
-Return-Path: <devicetree+bounces-24505-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24506-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91CBC80F602
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 20:07:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47A3F80F61E
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 20:09:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 13B5BB20DAC
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 19:07:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E55FD1F2170B
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 19:09:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A12A68004C;
-	Tue, 12 Dec 2023 19:07:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F7B380055;
+	Tue, 12 Dec 2023 19:09:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="vMLMHfKu"
+	dkim=pass (2048-bit key) header.d=debian.org header.i=@debian.org header.b="amWo4Qg0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DE3491;
-	Tue, 12 Dec 2023 11:07:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=WDyfD09PAON4LZuIakiggNErHuklPdxdPhsExRCINO0=; b=vMLMHfKuWjpOeCgqj+OLSIbKsG
-	WCGncmPzax+s7ErnI8PlwoAcxDgi7JafMKVhEz++U+ZVQ0XP+ohiULCrVXD/1dsSQSk5yjcm0zHBK
-	XJSYcF2axTnD1zNtKD5UhlW9zlwLRjW3JYr1H0mjXegUeu0pkeLE3MwLfePZ5fVAWlL23Am0I3PL5
-	NT+gIKBnCPzCh8jjkzWC4o0487W4InM+Or5UWQfd6BDMvNIV9pIIIE1jc+pWQizWWt+hHLFeDOT09
-	rdDi0N33mI6WDlJ+FmCYpG7ErF4HC1LSmRNgAAZM97w65nNqWkVz7kUwz5Y9zFE6ftvqJdadzd2vK
-	vwdMQbbQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:35082)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1rD85g-0007Hq-0s;
-	Tue, 12 Dec 2023 19:06:48 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1rD85e-0000gA-UH; Tue, 12 Dec 2023 19:06:46 +0000
-Date: Tue, 12 Dec 2023 19:06:46 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Serge Semin <fancer.lancer@gmail.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Jose Abreu <Jose.Abreu@synopsys.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Tomer Maimon <tmaimon77@gmail.com>,
+Received: from stravinsky.debian.org (stravinsky.debian.org [IPv6:2001:41b8:202:deb::311:108])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55A68BD;
+	Tue, 12 Dec 2023 11:09:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=debian.org;
+	s=smtpauto.stravinsky; h=X-Debian-User:In-Reply-To:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description;
+	bh=JOfmT37a1O6ltRt9f24ymIuuDIGdgEf/puwz89pIzfk=; b=amWo4Qg0R+e+2YnuKeDk/37FCs
+	R7MsaQh8Psr8Jr8ybt6AVcOkHAaooWWy/nxORyp9d9cBjBKGpEut52euP4jkhaPP9M0RAUIczQgQ8
+	g2jboNJsJQ1YDcsa/IcqpuhsxogjK+h0ZpPmrYwW1YWfk6o4imK+XBVmcx2RqBOI63jofeWTiBLcS
+	c95yCsK4Bl8lZhw4tHoS9Y9H5nhEJHfqbJ2kA55UQsn/I8FJgUwMQCtrIcP8s79u5F3XVli1YO5iS
+	sbkrxXCjSoqsb3qp3Ism/lqEwyHvBoCNzxC2r5TkvA8SrfK33U7uC5BcODEhYwAvpfA3+Hg4gjmAj
+	cEsqN10w==;
+Received: from authenticated user
+	by stravinsky.debian.org with esmtpsa (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+	(Exim 4.94.2)
+	(envelope-from <kibi@debian.org>)
+	id 1rD885-0068fw-HD; Tue, 12 Dec 2023 19:09:18 +0000
+Date: Tue, 12 Dec 2023 20:09:04 +0100
+From: Cyril Brulebois <kibi@debian.org>
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	openbmc@lists.ozlabs.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 06/16] net: pcs: xpcs: Avoid creating dummy XPCS
- MDIO device
-Message-ID: <ZXivRofyIpvmfOyR@shell.armlinux.org.uk>
-References: <20231205103559.9605-1-fancer.lancer@gmail.com>
- <20231205103559.9605-7-fancer.lancer@gmail.com>
- <ZW8pxM3RvyHJTwqH@shell.armlinux.org.uk>
- <ZW85iBGAAf5RAsN1@shell.armlinux.org.uk>
- <kagwzutwnbpiyc7mmtq7ka3vhffw4fejuti5vepnla74rocruh@tryn6lxhwbjz>
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Mathias Nyman <mathias.nyman@intel.com>,
+	bcm-kernel-feedback-list@broadcom.com, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH V4 0/3] ARM: dts: bcm2711: Add BCM2711 xHCI support
+Message-ID: <20231212190904.igxm2twvftokhdwr@mraw.org>
+Organization: Debian
+References: <20231205200531.8232-1-wahrenst@gmx.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="2mascii7e2qhbhct"
+Content-Disposition: inline
+In-Reply-To: <20231205200531.8232-1-wahrenst@gmx.net>
+X-Debian-User: kibi
+
+
+--2mascii7e2qhbhct
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <kagwzutwnbpiyc7mmtq7ka3vhffw4fejuti5vepnla74rocruh@tryn6lxhwbjz>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Dec 12, 2023 at 06:26:16PM +0300, Serge Semin wrote:
-> I would have used in the first place if it was externally visible, but
-> it's defined as static. Do you suggest to make it global or ...
+Stefan Wahren <wahrenst@gmx.net> (2023-12-05):
+> In contrast to the Raspberry Pi 4, the Compute Module 4 or the IO board
+> does not have a VL805 USB 3.0 host controller, which is connected via
+> PCIe. Instead, the Compute Module provides the built-in
+> xHCI of the BCM2711 SoC.
+>=20
+> Changes in V4:
+> - use "brcm,xhci-brcm-v2" as fallback compatible as suggested by
+>   Conor & Florian
+>=20
+> Changes in V3:
+> - introduce a new compatible for BCM2711 in order to make the
+>   power domain dependency SoC specific, which also results in
+>   a driver change
 
-That would be one option - I didn't make it visible when I introduced it
-beacuse there were no users for it.
+This is still:
 
-> > At some point, we should implement
-> > mdiobus_get_mdiodev() which also deals with the refcount.
-> 
-> ... create mdiobus_get_mdiodev() instead?
-> 
-> * Note in the commit message I mentioned that having a getter would be
-> * better than directly touching the mii_bus instance guts.
+Tested-by: Cyril Brulebois <cyril@debamax.com>
 
-What I'm thinking is:
 
-/**
- * mdiobus_get_mdiodev() - get a mdiodev for the specified bus
- * @bus: mii_bus to get mdio device from
- * @addr: mdio address of mdio device
- *
- * Return the struct mdio_device attached to the MII bus @bus at MDIO
- * address @addr. On success, the refcount on the device will be
- * increased, which must be dropped using mdio_device_put(), and the
- * mdio device returned. Otherwise, returns NULL.
- */
-struct mdio_device *mdiobus_get_mdiodev(struct mii_bus *bus, int addr)
-{
-	struct mdio_device *mdiodev;
+Again, I'm also applying Jim Quinlan's PCIe patch series v8, to be able
+to fully test what happens with USB devices, onboard and behind PCIe:
+  https://lore.kernel.org/all/20231126201946.ffm3bhg5du2xgztv@mraw.org/
 
-	mdiodev = mdiobus_find_device(bus, addr);
-	if (mdiodev)
-		get_device(&mdiodev->dev);
-	return mdiodev;
-}
-EXPORT_SYMBOL(mdiobus_get_mdiodev);
+With the following on a CM4 IO Board, with a Samsung flash drive and a
+USB keyboard connected to onboard USB ports:
+ - CM4 Lite Rev 1.0
+ - CM4 8/32 Rev 1.0
+ - CM4 4/32 Rev 1.1
 
-should do it, and will hold a reference on the mdiodev structure (which
-won't be freed) and also on the mii_bus (since this device is a child
-of the bus device, the parent can't be released until the child has
-been, so struct mii_bus should at least stay around.)
+and using one of the three PCIe-to-USB boards referenced previously,
+connecting another Samsung flash drive on one of its USB ports.
 
-What would help the "the bus driver has been unbound" situation is if
-we took the mdio_lock on the bus, and then set the {read,write}{,_c45}
-functions to dummy stubs when the bus is being unregistered which then
-return e.g. -ENXIO. That will probably make unbinding/unloading all
-MDIO bus drivers safe from kernel oops, although phylib will spit out
-a non-useful backtrace if it tries an access. I don't think there's
-much which can be done about that - I did propose a patch to change
-that behaviour but apparently folk like having it!
+Conclusion: I can see and use onboard USB devices alongside behind-PCIe
+USB devices, either with or without adding otg_mode=3D1 to config.txt.
 
-It isn't perfect - it's racy, but then accessing mdio_map[] is
-inherently racy due to no locking with mdiobus_.*register_device().
-At least if we have everyone using a proper getter function rather
-than directly fiddling with bus->mdio_map[]. We only have one driver
-that accesses it directly at the moment (mscc_ptp):
+On a CM4-based product that uses both onboard USB ports and PCIe-to-USB
+ports, all USB components still work fine (3 RF adapters, 1 modem), with
+or without otg_mode=3D1.
 
-                dev = phydev->mdio.bus->mdio_map[vsc8531->ts_base_addr];
-                phydev = container_of(dev, struct phy_device, mdio);
+(All of this is still with a Debian 12 arm64 user space.)
 
-                return phydev->priv;
 
-and that should really be using mdiobus_get_phy().
+Cheers,
+--=20
+Cyril Brulebois (kibi@debian.org)            <https://debamax.com/>
+D-I release manager -- Release team member -- Freelance Consultant
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+--2mascii7e2qhbhct
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEtg6/KYRFPHDXTPR4/5FK8MKzVSAFAmV4r8wACgkQ/5FK8MKz
+VSBkYg//cI6s0//qpVlGV1kSosOTyG1w3Ze7eLTkFQpsWTE9Cq1zvEiD7Kx/fA/y
+M9BzcNz7nqRWiykkqNXpjPwkFLINb7EPgfYypfXLZbHl39Q4QgfcfsxpW/WDQ9Vw
+6PUNf68xW1HL4zGsZkkKTEeZvsTFULW1SZG8z3//etz1vS0inBRR6l8vNkzKQ44W
+CwzqhrP/glLv/fs/K1Kq+H2ICGbUah4ejdk8thgv6k2C8ASjFrOlyOso/HjAN4hN
+gXYpJgHpCxlcDwpT/75FHcxkuZNCf5IYE+NeaRyNodzml/nCFAe4npfhA8aZlNc2
+Z3T7cKOWNsygKxMiJrYVVGr5Ln304DCp9Ay4WxNFaxXisC9ebk4qDkUKDJKupzzr
+aKJi7nB992Od0g65AgfDWOcxcQFqDHqr3Sw1G/zlTuw/OZugy96H+0EXCkU46eLX
+DcM8zaRy6ITIKq08ZxVdhcYPNXg4dBuxXbXqGS8xUDHKEK4Zsy/ZjnlU5NmwS27p
+Wl/PmS7xGCAtNzjvfCzyFsx4xc6VQ/+EUbkjjaWjT5FeSpmPQND4+M5HuV2ab1Z0
+Ur0C3kfi3S/hcsClOaaakfiRTZhgTLAp4Tj9RGAh9Vbu+5jKOYYz1fyfx2FWjLSE
+q7Jyf53O/0m+IhCasy2nFvK9Qmnmr7Aa/8/Ws8Dx+JPdYEKc50o=
+=w+VB
+-----END PGP SIGNATURE-----
+
+--2mascii7e2qhbhct--
 
