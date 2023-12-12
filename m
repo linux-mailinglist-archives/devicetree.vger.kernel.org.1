@@ -1,58 +1,58 @@
-Return-Path: <devicetree+bounces-24488-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24489-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63FAD80F4E4
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 18:49:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C20680F4E6
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 18:49:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1D497281B9E
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 17:49:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8AA421C20C90
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 17:49:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 104ED7D8B3;
-	Tue, 12 Dec 2023 17:49:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DACAE7D8AD;
+	Tue, 12 Dec 2023 17:49:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kyRNU/NR"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fJ0DqaE+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A889B2
-	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 09:49:25 -0800 (PST)
-Received: by mail-pj1-x102f.google.com with SMTP id 98e67ed59e1d1-28ac70368b9so148105a91.0
-        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 09:49:25 -0800 (PST)
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E84CA1
+	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 09:49:29 -0800 (PST)
+Received: by mail-pl1-x62c.google.com with SMTP id d9443c01a7336-1d072f50a44so13251835ad.0
+        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 09:49:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702403365; x=1703008165; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1702403368; x=1703008168; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=pQmpfl24jbiZt6rB54h6LJ1un8z6RLiJsN5XRgtJKqo=;
-        b=kyRNU/NRULvLJ72tDhEJzH4A0fIkv5FT1EfP8eCj8rAtheuNaTrPl+vKQKVo00vWkp
-         DrnIWNc1v+IxjjycLydHaP33X/nj5RKE9IQNEDH715AL1NhPcvuhItzOgGraPnDZkJLx
-         tFtZsnY068vPTTxEx/qVCAYdedDePLamray27Nu7TsyLSOD27ZKuO4zGmV7G0i3Mk3dC
-         TNb11/Eap20DMvJ7/YI+tKgyYp1ueNSt/cmCk9K1sOSBCfKujDEi8XiaAapXynae/Xcj
-         mby6i+w4+M7if6JMSrFotejBvkUPjZfzvqCz9GJpQT6dwk7UKZEh9ROhhhUhH2KxJo4a
-         TBqQ==
+        bh=9o7hG+Bfuk/8KLgCmYouqOGv10v2ly5d9uYgGYM3biM=;
+        b=fJ0DqaE+QkNGnE0+PsgHBDtv6pIQk+RGUXICb+ZxBJFW7mD7tti6hYGMXnYSLMqHWE
+         AD5aNPL+JwklmorDsCjhf/J9oAiW78dN3S1LJv+FebORpQCgAdvPyEQ86hYqt9obr0kA
+         5t2v77b/6KerltNAU2nADt54ph9csV7fTWNUOSB4AIrT97jcuvBCiIKe3Oi3NrPxe2Fj
+         LOW3gCzDd8NmhhcgBE1PVIiUnxhVlfEghyIMEifDwR06vU9Q+JWyOUJw9ynbPzUYqSbe
+         d5BMoG9HPZc/dJzokXUTOU1cDZgUZVsRpFS0n53fUz4CWjQ/VKe3mVxxbgBeMJQtiaTh
+         bvEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702403365; x=1703008165;
+        d=1e100.net; s=20230601; t=1702403368; x=1703008168;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=pQmpfl24jbiZt6rB54h6LJ1un8z6RLiJsN5XRgtJKqo=;
-        b=vN8pZiQocTK8J1O5B2gBu0mwwkMcUuCzZJLL+ZIEKJ6AnuslkNR8OsQZc0PQbAQo9V
-         RWbRQjtjnSdwrHuABnr4rYd+5satdpcx505e6wgrXQPNR1UM7xYoWMvG52f00hp4WoNY
-         9TsIj1GRRu3gMGDfWpHfKAPNuhOOUMcg32Ih6LMyuYPDL/RwxcseLyEQn9toajByn01B
-         cOrRBt8nhJTy85tCjkBG1m56f9frFfqkM/7topzkh4DcitL8JcZ4NEkGLEYwUcTgiQoV
-         e9qYmnFX82PJACLXBGvZQo5zSUyTlIdMS+b6T0IIkBagwvrvdEEC1jdWUnNKDPelfkWv
-         +BlQ==
-X-Gm-Message-State: AOJu0YyRxHwGLSg4eyZy11RGsW/ArAfML0jJnwQQIfyYCpIfiCqIr5d8
-	3wZo9lSCEVev2xxvdoTP3Ew=
-X-Google-Smtp-Source: AGHT+IG2SSn1o8HA+hFaa2hA+1SRxeubJGVPuyBie7zvn/CPsYY9bHuLwtMmUz4naG7pC7fTvd1j3g==
-X-Received: by 2002:a17:90a:d916:b0:28a:d272:f162 with SMTP id c22-20020a17090ad91600b0028ad272f162mr1166207pjv.2.1702403365027;
-        Tue, 12 Dec 2023 09:49:25 -0800 (PST)
+        bh=9o7hG+Bfuk/8KLgCmYouqOGv10v2ly5d9uYgGYM3biM=;
+        b=eO+gZ7DBMe4Ay4gxb4mfwYdT8ZLvJwbvQOhHtpz+YNsRHUPdkbGYs5VQjuHUwnj9Zw
+         n4LbI3nZc2QB+58T2BHCOLtUrg1uy+MHujLM+YOuILhGUXgMYOuNaQva2/35L2jqTtue
+         YzzaiuuUWGZ0DW+zwjsuwPJQMxGkNmelguIXZZN/WErTWjaFo5B4z36GVSBQNbFwefLa
+         FiDLFXQT8mhI01EDsip8pzebZUb3YdWAx+c9YU64k7Nd4H3lzDt1f+qwA5KOT2GCHBr+
+         IVXoIOMo4fqF3wfMGySUIRjuaVZUHp2M01zV42D5ZSASkEiuADXB1UiCIM3SB4vyWhgI
+         qc4A==
+X-Gm-Message-State: AOJu0YwbpLcrfBwD1vLihqDLigrLedBrAvRMV4bz8ZwXKy14/KlWeaRF
+	uqkno7nzdxRUI3I39mJv0ys=
+X-Google-Smtp-Source: AGHT+IHhgVrGnoO8bb2XxpK9KK0jR2gC/92nT+2wfYcSKrcPYEwEg4lZUnzWzaHJD2LmXHNsLHsuqQ==
+X-Received: by 2002:a17:902:ec89:b0:1d1:cd7f:5428 with SMTP id x9-20020a170902ec8900b001d1cd7f5428mr12212086plg.1.1702403368498;
+        Tue, 12 Dec 2023 09:49:28 -0800 (PST)
 Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:a620:342d:797a:5c59])
-        by smtp.gmail.com with ESMTPSA id w23-20020a170902a71700b001d0c418174fsm3115008plq.117.2023.12.12.09.49.21
+        by smtp.gmail.com with ESMTPSA id w23-20020a170902a71700b001d0c418174fsm3115008plq.117.2023.12.12.09.49.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Dec 2023 09:49:24 -0800 (PST)
+        Tue, 12 Dec 2023 09:49:27 -0800 (PST)
 From: Fabio Estevam <festevam@gmail.com>
 To: cw00.choi@samsung.com
 Cc: myungjoo.ham@samsung.com,
@@ -65,9 +65,9 @@ Cc: myungjoo.ham@samsung.com,
 	hvilleneuve@dimonoff.com,
 	linux-arm-kernel@lists.infradead.org,
 	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH v2 2/3] arm64: dts: imx8mn-var-som-symphony: Describe the USB-C connector
-Date: Tue, 12 Dec 2023 14:48:46 -0300
-Message-Id: <20231212174847.759164-2-festevam@gmail.com>
+Subject: [PATCH v2 3/3] arm64: dts: imx8mp-dhcom-pdk3: Describe the USB-C connector
+Date: Tue, 12 Dec 2023 14:48:47 -0300
+Message-Id: <20231212174847.759164-3-festevam@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231212174847.759164-1-festevam@gmail.com>
 References: <20231212174847.759164-1-festevam@gmail.com>
@@ -84,39 +84,40 @@ From: Fabio Estevam <festevam@denx.de>
 Describe the PTN5150 USB-C connector to improve the devicetree description
 and fix the following dt-schema warning:
 
-imx8mn-var-som-symphony.dtb: typec@3d: 'port' does not match any of the regexes: 'pinctrl-[0-9]+'
+imx8mp-dhcom-pdk3.dtb: typec@3d: 'port' does not match any of the regexes: 'pinctrl-[0-9]+'
 	from schema $id: http://devicetree.org/schemas/extcon/extcon-ptn5150.yaml#
-
+	
 Signed-off-by: Fabio Estevam <festevam@denx.de>
 ---
 Changes since v1:
 - None
 
- .../boot/dts/freescale/imx8mn-var-som-symphony.dts    | 11 ++++++++---
- 1 file changed, 8 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3.dts | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dts b/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dts
-index a6b94d1957c9..f38ee2266b25 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dts
-@@ -128,9 +128,14 @@ extcon_usbotg1: typec@3d {
- 		pinctrl-0 = <&pinctrl_ptn5150>;
- 		status = "okay";
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3.dts b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3.dts
+index b749e28e5ede..fea67a9282f0 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3.dts
+@@ -175,10 +175,14 @@ typec@3d {
+ 				pinctrl-names = "default";
+ 				pinctrl-0 = <&pinctrl_ptn5150>;
  
--		port {
--			typec1_dr_sw: endpoint {
--				remote-endpoint = <&usb1_drd_sw>;
-+		connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
+-				port {
+-
+-					ptn5150_out_ep: endpoint {
+-						remote-endpoint = <&dwc3_0_ep>;
++				connector {
++					compatible = "usb-c-connector";
++					label = "USB-C";
 +
-+			port {
-+				typec1_dr_sw: endpoint {
-+					remote-endpoint = <&usb1_drd_sw>;
-+				};
++					port {
++						ptn5150_out_ep: endpoint {
++							remote-endpoint = <&dwc3_0_ep>;
++						};
+ 					};
+ 				};
  			};
- 		};
- 	};
 -- 
 2.34.1
 
