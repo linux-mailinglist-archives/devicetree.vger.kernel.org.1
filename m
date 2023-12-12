@@ -1,99 +1,111 @@
-Return-Path: <devicetree+bounces-24486-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24487-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DB5380F4D8
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 18:45:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED70080F4E3
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 18:49:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AEF831C20CBB
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 17:45:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9796C1F2152E
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 17:49:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 648A173171;
-	Tue, 12 Dec 2023 17:45:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CFF67D8AC;
+	Tue, 12 Dec 2023 17:49:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hHBEZZCN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KF5rf7ao"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D097AB
-	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 09:45:27 -0800 (PST)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BCHd5GY013110;
-	Tue, 12 Dec 2023 17:45:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:to:cc:from:subject:content-type
-	:content-transfer-encoding; s=qcppdkim1; bh=q5Ido0rDnSC+MzKdy0NJ
-	yb2XOAZMCmtZKHWAkPDrjwI=; b=hHBEZZCNmyiHJ49IpK1b+JDbsunCKmglkzEt
-	a+DDcGqvU5tdrkSsedLV14dTyIsMp7BcYNkN3n6ZERvcdbWePF3FRhZyN7pKM8k/
-	NFDFcb4U7xIf35E0Fjy2/cJKYLbFxF8rr7EprM/C8drAkbUOzO5uWPgaH2rrBz06
-	RNFvuHaxVNJuehQVZXkxsoXJJ+Et1wshhDE6DOG5KrzfK486zhUSiX2J4wGCWR9u
-	sxgLH5jGdc0pC912WGmQcTYYG/rm6VsMgsMMopvhUIR2l3Mbhu3BmjWqJG6G84su
-	BfUOtznSwwS1R847kd9BCQhy5TDEDvbf9lJ5raP330A3EiMB8A==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uxkx59cn3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 12 Dec 2023 17:45:23 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BCHjMit024668
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 12 Dec 2023 17:45:22 GMT
-Received: from [10.110.26.44] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 12 Dec
- 2023 09:45:22 -0800
-Message-ID: <be31801e-bb21-426b-f7aa-2b52727de646@quicinc.com>
-Date: Tue, 12 Dec 2023 09:45:21 -0800
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4335F9D
+	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 09:49:22 -0800 (PST)
+Received: by mail-pg1-x533.google.com with SMTP id 41be03b00d2f7-51f64817809so985220a12.1
+        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 09:49:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702403362; x=1703008162; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=rhtIJYJ5IrHbc4P7are5F0+u6NGnL7LrCMmoPv/s/FQ=;
+        b=KF5rf7aopPMlhmiocYK1M0QME1zBw9/iOVt+4Rl6sSmufBZ3J24q/7ayT36JK5pU/c
+         yxvpFAfGTeWuYncNdEoBHnmk2VaE2YrXYv3kB/qyN1/TYMgAhty3zHmL/hgPivLwa+pT
+         kfwzjmYZAobZPH4O2RlwJ+gVVjN0MWjvPpPldnKfM67XMiTFMsYirLlWsPgYKVWJRxqG
+         bFq6pyO0FYuWSxxStE74YsPw4paNe4mYxC+kBfZtgJP+NhL7iurt28+JxBm1Ye8oCtiK
+         WdI8P2q/pFt4Am62hajb61wYq6nZb6yXXH41oD85vVWG/xmRyXBNwy33k1zBs1EjC+5O
+         rW1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702403362; x=1703008162;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rhtIJYJ5IrHbc4P7are5F0+u6NGnL7LrCMmoPv/s/FQ=;
+        b=snEztPviOhJrDs54OqHqSdVKQ3B2rNbKgSsYgXOpFXDoB3zFg1Y16Q0fcNCuLY6qEf
+         kiPoG68ZDdOmC8kjF7FbTdoVAg/vIePgXjPyhxWEyITQ+WQI4tewR1L++75YbcXXtEbJ
+         ThYfrEoLIMj6uD+4/cSma7AAXeyhtoJ8EVNPMuwAFFzVxqTStd8UwgAcGmTgoI7cNT6W
+         yml26XnqkYs/355hurL3b62kX1F3eTtLY/CfrSKO6Ns7pnN/vtWTyET1SDDrmN70EcsU
+         Fic7UDdTLxrFFlbsCgE7Z0HcQN9AgOfPeu1dKbnSLsRY86Dz8Z9jVAbBdmQGGn4WyawB
+         TTSg==
+X-Gm-Message-State: AOJu0Yyx7Ugrq1TmwSLw6T5U0Fi47e7w8VoDuv2CKXbqv6DfphrWqcBU
+	kZNrIQ6eFXQRaEXPuGEHNnY=
+X-Google-Smtp-Source: AGHT+IH/flFTNCLyqHck0eKYrLllXI1borR+wifYtTutCVWaKl4Vkt9ZCHRr8/4A8Yd0y6v86baAbA==
+X-Received: by 2002:a05:6a20:3d07:b0:18b:3c9b:f196 with SMTP id y7-20020a056a203d0700b0018b3c9bf196mr16607844pzi.1.1702403361685;
+        Tue, 12 Dec 2023 09:49:21 -0800 (PST)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:a620:342d:797a:5c59])
+        by smtp.gmail.com with ESMTPSA id w23-20020a170902a71700b001d0c418174fsm3115008plq.117.2023.12.12.09.49.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Dec 2023 09:49:21 -0800 (PST)
+From: Fabio Estevam <festevam@gmail.com>
+To: cw00.choi@samsung.com
+Cc: myungjoo.ham@samsung.com,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski@linaro.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	shawnguo@kernel.org,
+	marex@denx.de,
+	hvilleneuve@dimonoff.com,
+	linux-arm-kernel@lists.infradead.org,
+	Fabio Estevam <festevam@denx.de>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v2 1/3] dt-bindings: extcon: ptn5150: Describe the USB connector
+Date: Tue, 12 Dec 2023 14:48:45 -0300
+Message-Id: <20231212174847.759164-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Content-Language: en-US
-To: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>,
-        "Prasad Sodagudi (QUIC)"
-	<quic_psodagud@quicinc.com>
-From: Nikunj Kela <quic_nkela@quicinc.com>
-Subject: DT Query on "New Compatible vs New Property"
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: O-hwIrHypSZ6xQ52S3WuhjEacaPl4xvR
-X-Proofpoint-ORIG-GUID: O-hwIrHypSZ6xQ52S3WuhjEacaPl4xvR
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 adultscore=0
- bulkscore=0 impostorscore=0 mlxscore=0 spamscore=0 clxscore=1011
- priorityscore=1501 phishscore=0 lowpriorityscore=0 mlxlogscore=682
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2312120135
+Content-Transfer-Encoding: 8bit
 
-Dear DT maintainers,
+From: Fabio Estevam <festevam@denx.de>
 
-Hope you are doing great. I have a query on DT policy.
+PTN5150 supports USB Type-C connector, so improve the bindings by
+allowing to describe the connector like it is done on nxp,ptn5110.yaml.
 
-We are abstracting some resources(ex. clocks) under new firmware on an 
-existing platform therefore need to make changes in certain drivers to 
-work with that firmware. We need to make a distinction between two 
-different variants of the FW. In one case, some resources will be 
-abstracted while in other case, they won't be abstracted. My query is - 
-"should we define a new compatible string for the variant with 
-abstracted resources(in FW) or we should add a new DT property keeping 
-the compatible same?"
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+---
+Changes since v1:
+- Removed type and unevaluatedProperties: false (Conor).
 
-Thank you in advance.
+ Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Regards,
-
-Nikunj
+diff --git a/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml b/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml
+index d5cfa32ea52d..b3e5c0df0cd7 100644
+--- a/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml
++++ b/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml
+@@ -37,6 +37,9 @@ properties:
+       GPIO pin (output) used to control VBUS. If skipped, no such control
+       takes place.
+ 
++  connector:
++    $ref: /schemas/connector/usb-connector.yaml#
++
+ required:
+   - compatible
+   - interrupts
+-- 
+2.34.1
 
 
