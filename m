@@ -1,84 +1,144 @@
-Return-Path: <devicetree+bounces-24251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A58180E7C3
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 10:33:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BC2C80E7C9
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 10:34:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B58442816C7
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 09:33:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE0341F215A7
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 09:34:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90DA1584FF;
-	Tue, 12 Dec 2023 09:33:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0A42584FF;
+	Tue, 12 Dec 2023 09:34:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="VD8+7Gsm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dziLiuQw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48CD7E3;
-	Tue, 12 Dec 2023 01:33:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1702373598;
-	bh=DngQeOO2YELX/6w8IEVqEz75HCOEMeCfiy2nH1Lvr9A=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=VD8+7GsmaUgBrt67C533y61acmy2sX48b+8+Cw16eKK/vujiDNKieaTiIjnpWUMj/
-	 0/qcOYaznzHmUnSvAiH7kAhjD/52/nTZHP6OiJF9livV+wGcpmDo3SdNb2UK7ziYWw
-	 xp92JreRroH7Ta5xchcWgJG2i+SKMJ4G8236IKX6BkWOXqGg779n803dd5fL4delAk
-	 EqOPEelcZFkDhl5Tm4a9yF9EEDyJfa7VMOpucu7hV4jLqSXtlcTDvNsNcuaeq6FkpA
-	 41gW223RmcuNeDTOZXd8zIttUNoDrSUeUGr8/cOp3FbN0O78R31lSDZ7PTNITNuWMb
-	 hMZi1CMbMw4nQ==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id B4DEA3781423;
-	Tue, 12 Dec 2023 09:33:16 +0000 (UTC)
-Message-ID: <8585cdce-648e-4c27-a769-6441dac77707@collabora.com>
-Date: Tue, 12 Dec 2023 10:33:16 +0100
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 155E1CE;
+	Tue, 12 Dec 2023 01:34:48 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-40c3ceded81so29403505e9.1;
+        Tue, 12 Dec 2023 01:34:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702373686; x=1702978486; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZlLSLEWUd1/iq+JA+Lsz6BXe+7Zz+SmGu5k5JTmZh/M=;
+        b=dziLiuQw8OE8cdPTs5eADjydLM8EhU5N1fIsX4tzG1KXy5nWWxuJ5Njj1X8cAZilB/
+         pyyXrahp4GdZAM83zFLMPL40aDRupV336CaxmyneSlp+T/H1QfhPX2pn2OVYYF2eweYI
+         N0w2t3A+B1vUoUPgbY5AZykEQCahaHOxo2PqTeCxDW8oUV/B8sKDtumemluUeix5zgP8
+         umHMYLzRlFwI3bbjC/An8zq8Polgk0fwtXU4nn7Sj2kTLQ4dMRNQiEoUgJPBH6YAttAG
+         lp8zPlO/AY2wAnM/WhHNSgK3DOAZsSTkxccueCeZUefvx4q2TlWpqhSTy7hzxfRN/isp
+         7rzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702373686; x=1702978486;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZlLSLEWUd1/iq+JA+Lsz6BXe+7Zz+SmGu5k5JTmZh/M=;
+        b=eWOa8tR8IwE3PI4mhLqH1D/7IL62drPq9OmdQUiD3WzGto0PjVWLTf98LtaW0iOuaK
+         BTqbdYkD8kxVB6hlU8ypLLXc6I0NKRvqn4RZxSrmNjhxK1yfyfHV44ZZcwXuIsM6iSeZ
+         HjA20quuUO2Ta1TJlWxHVaMHFoV573xzn5qlSlz0BYSXClYwpAq92sxfupEgBiEJah3h
+         /ufhU879me7E0QaIkXC+A9ztGzvalkCI3FsmYJBc7zuADatsgW31yRyQwza56xtb5PVl
+         2dXAX8nhK/B8Bl03LTEsU08T9ivNsHHpBe/DeMFWv/9jPVl1MDMm+pyHQNwh5D5FtsS5
+         BmSQ==
+X-Gm-Message-State: AOJu0YwIwsT0+Ax1kp+SCdelyVCGFzlFhuj2g8X45NIlmipF6kNRDJ1O
+	ItZbJJ9XrOSP5X9JeZyqAKoDOLajbOM=
+X-Google-Smtp-Source: AGHT+IHxrwrcWxXtPo3h4ISIgbxcwLfR7qEWZg4nkgUwBk3bxp777OAjMiv7o1jlsbYD3G73SDXajQ==
+X-Received: by 2002:a05:600c:601c:b0:40c:3984:4975 with SMTP id az28-20020a05600c601c00b0040c39844975mr2943686wmb.95.1702373685821;
+        Tue, 12 Dec 2023 01:34:45 -0800 (PST)
+Received: from localhost.localdomain (141.red-88-10-53.dynamicip.rima-tde.net. [88.10.53.141])
+        by smtp.gmail.com with ESMTPSA id v6-20020a05600c444600b0040c4886f254sm6009578wmn.13.2023.12.12.01.34.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Dec 2023 01:34:45 -0800 (PST)
+From: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+To: devicetree@vger.kernel.org
+Cc: tglx@linutronix.de,
+	daniel.lezcano@linaro.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	linux-kernel@vger.kernel.org,
+	Rob Herring <robh@kernel.org>
+Subject: [RESEND PATCH v2] dt-bindings: timer: add Ralink SoCs system tick counter
+Date: Tue, 12 Dec 2023 10:34:43 +0100
+Message-Id: <20231212093443.1898591-1-sergio.paracuellos@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/5] dt-bindings: clock: mediatek: add MT7988 clock IDs
-Content-Language: en-US
-To: Daniel Golle <daniel@makrotopia.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Sabrina Dubroca
- <sd@queasysnail.net>, Chen-Yu Tsai <wenst@chromium.org>,
- "Garmin.Chang" <Garmin.Chang@mediatek.com>, Sam Shih
- <sam.shih@mediatek.com>, Frank Wunderlich <frank-w@public-files.de>,
- Dan Carpenter <dan.carpenter@linaro.org>,
- James Liao <jamesjj.liao@mediatek.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- netdev@vger.kernel.org
-References: <152b256d253508cdc7514c0f1c5a9324bde83d46.1702350213.git.daniel@makrotopia.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <152b256d253508cdc7514c0f1c5a9324bde83d46.1702350213.git.daniel@makrotopia.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Il 12/12/23 04:18, Daniel Golle ha scritto:
-> From: Sam Shih <sam.shih@mediatek.com>
-> 
-> Add MT7988 clock dt-bindings for topckgen, apmixedsys, infracfg,
-> ethernet and xfipll subsystem clocks.
-> 
-> Signed-off-by: Sam Shih <sam.shih@mediatek.com>
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Add YAML doc for the system tick counter which is present on Ralink SoCs.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+cc: Daniel Lezcano <daniel.lezcano@linaro.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+---
+Changes in v2 RESEND:
+- Add Daniel Lezcano to CC in the patch itself.
+Changes in v2:
+- Add Rob's Reviewed-by tag.
 
+v1: https://lore.kernel.org/lkml/CAMhs-H_9kAdOfR-RaJWqAq6d3S3DXtKJqWy-EWCu0-ZjWKB9Sw@mail.gmail.com/T/#re9225265416ca8463c5f06d736f9834ae75efe0c
+
+I am sending this with Rob's RB added since I ping for the v1 multiple
+times without response. So I can be missing something or the patch is
+lost for any reason. Thanks!
+
+ .../bindings/timer/ralink,cevt-systick.yaml   | 38 +++++++++++++++++++
+ 1 file changed, 38 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/timer/ralink,cevt-systick.yaml
+
+diff --git a/Documentation/devicetree/bindings/timer/ralink,cevt-systick.yaml b/Documentation/devicetree/bindings/timer/ralink,cevt-systick.yaml
+new file mode 100644
+index 000000000000..59d97feddf4e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/timer/ralink,cevt-systick.yaml
+@@ -0,0 +1,38 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/timer/ralink,cevt-systick.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: System tick counter present in Ralink family SoCs
++
++maintainers:
++  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
++
++properties:
++  compatible:
++    const: ralink,cevt-systick
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    systick@d00 {
++        compatible = "ralink,cevt-systick";
++        reg = <0xd00 0x10>;
++
++        interrupt-parent = <&cpuintc>;
++        interrupts = <7>;
++    };
++...
+-- 
+2.25.1
 
 
