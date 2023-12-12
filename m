@@ -1,565 +1,265 @@
-Return-Path: <devicetree+bounces-24109-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24110-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CCC980E091
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 01:58:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A78BD80E0A1
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 02:01:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 34CEC28268E
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 00:58:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CB19D1C2147C
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 01:01:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0C25647;
-	Tue, 12 Dec 2023 00:58:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=stgolabs.net header.i=@stgolabs.net header.b="CyC8hYrE"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D010639;
+	Tue, 12 Dec 2023 01:01:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bird.elm.relay.mailchannels.net (bird.elm.relay.mailchannels.net [23.83.212.17])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10BFEB5;
-	Mon, 11 Dec 2023 16:58:09 -0800 (PST)
-X-Sender-Id: dreamhost|x-authsender|dave@stgolabs.net
-Received: from relay.mailchannels.net (localhost [127.0.0.1])
-	by relay.mailchannels.net (Postfix) with ESMTP id 6CB2D4C2DF8;
-	Tue, 12 Dec 2023 00:58:09 +0000 (UTC)
-Received: from pdx1-sub0-mail-a241.dreamhost.com (unknown [127.0.0.6])
-	(Authenticated sender: dreamhost)
-	by relay.mailchannels.net (Postfix) with ESMTPA id 0AD7C4C2C22;
-	Tue, 12 Dec 2023 00:58:09 +0000 (UTC)
-ARC-Seal: i=1; s=arc-2022; d=mailchannels.net; t=1702342689; a=rsa-sha256;
-	cv=none;
-	b=eTXXI+d9184680CmhnqF5+JuLdebYACzZuFEKACXTEE3mQuo+bc8AOm1UcEObkTL26YRx4
-	3ES9DXQd2q19zC5Ea/1GznMJPN5qwbNGvTWAgue6GP23VoBNda4Ub44IcYHts2xVbOnaDq
-	UHdEC1e99TEqxsFhJ3O5cY3Pd29z3WmksIb0a7wuiIh5Y6iiSZQqgexLEHYmNQhRl2TB6O
-	O0P8M8NimsFBIyskBXnsUYXd6B3ydTShl+Pp7ZysvMv1Cn2Tziw1asTVu7t5/63BnlEW9I
-	/YNE/AJ0mVwmthqVpGs6rgJmk+UnZqtuBQRUvXKNQDAJOoOyBJ8pasTxdpuooQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mailchannels.net;
-	s=arc-2022; t=1702342689;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=CgfKRMheSkqnl8ntcQN0nmMh5qA42129g0uV+BIM/OI=;
-	b=YUBKV4BYUAfic5ddG347UMFPmZiWaQs4q9B8xxYVvkq6KOamobCO8sZBqy+5P/ckIZObvh
-	nWA0xmWSFRKMad4VmSTa9AS/FN0f2LcuratlRxDjpyRKyFsw6oCES6Htd4c6a3+7EjoAVJ
-	9OVCkNUb7jaAqAoi6HWyNGVTPi5xY+YUsTfOo43aWzKkJs9dgr0P4SyeSrSeP0cM1jAID6
-	yb93YNSjzyb+bZBxzIH6gbLSV3sj8RIKY1dvNBlMD5iz1EJPMr6uf50FqgRTfThws4i511
-	zFTYLqv9Whb3dYN+3j07hv2fTpdWESfdrpanLQYT6OWiPQKlVMcwol442Ig2Hw==
-ARC-Authentication-Results: i=1;
-	rspamd-5749745b69-wvdkh;
-	auth=pass smtp.auth=dreamhost smtp.mailfrom=dave@stgolabs.net
-X-Sender-Id: dreamhost|x-authsender|dave@stgolabs.net
-X-MC-Relay: Neutral
-X-MailChannels-SenderId: dreamhost|x-authsender|dave@stgolabs.net
-X-MailChannels-Auth-Id: dreamhost
-X-Glossy-Share: 6f2289257be685eb_1702342689325_3723607419
-X-MC-Loop-Signature: 1702342689325:4121069608
-X-MC-Ingress-Time: 1702342689325
-Received: from pdx1-sub0-mail-a241.dreamhost.com (pop.dreamhost.com
- [64.90.62.162])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
-	by 100.122.88.203 (trex/6.9.2);
-	Tue, 12 Dec 2023 00:58:09 +0000
-Received: from offworld (unknown [172.56.169.115])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dave@stgolabs.net)
-	by pdx1-sub0-mail-a241.dreamhost.com (Postfix) with ESMTPSA id 4Sq0bM4C2Bz2Z;
-	Mon, 11 Dec 2023 16:58:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stgolabs.net;
-	s=dreamhost; t=1702342688;
-	bh=jX4TX+3XoGz0TKeEzPzBF4bJLhyIn3MnVarrjC/g2HU=;
-	h=Date:From:To:Cc:Subject:Content-Type;
-	b=CyC8hYrEbYouGvlPmpsh5MEDxAdqxPg67IWIJSXZzg9yfupdCVPecJ4SsiBhqdinn
-	 B39EknE9cIrj3JsPaM04Wv1dMe6NbBDNGnVrEQJyQCnRCkzggCv1XRb96i1e8adYCy
-	 ETAa7fgRI2IU9x8LL6T+2c0ogfdtqLrgmnZc5E/8HniNqSEGYYG4Qt0M3JROhfe04C
-	 1+vVCTD3Ep3njjBxSBKnXFdUvfSQqQuqqsNCUTJhQliNL5E0tpjUn8xXqd3+1ViU5R
-	 sK1ULP9fu8KyBzv5qDHWqd68xr7fDCFHrzseYwaxoYDy9JidBMdEDuGPjIsc+2Tc99
-	 xCFXtr2t1ZM4Q==
-Date: Mon, 11 Dec 2023 16:57:57 -0800
-From: Davidlohr Bueso <dave@stgolabs.net>
-To: Romain Gantois <romain.gantois@bootlin.com>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>, 
-	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jens Axboe <axboe@kernel.dk>, Ard Biesheuvel <ardb@kernel.org>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Herve Codina <herve.codina@bootlin.com>, 
-	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-block@vger.kernel.org, linux-efi@vger.kernel.org
-Subject: Re: [RFC PATCH 2/6] block: partitions: efi: Fix some style issues
-Message-ID: <6lhqirdaqmaqk6bpyywmnsj5oon2nvcq2wn6napir5df4md6q3@mu6w5ql45tf7>
-References: <20231211151244.289349-1-romain.gantois@bootlin.com>
- <20231211151244.289349-3-romain.gantois@bootlin.com>
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B286CB;
+	Mon, 11 Dec 2023 17:01:36 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+	by fd01.gateway.ufhost.com (Postfix) with ESMTP id 301A97FFD;
+	Tue, 12 Dec 2023 09:01:24 +0800 (CST)
+Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 12 Dec
+ 2023 09:01:24 +0800
+Received: from EXMBX066.cuchost.com (172.16.7.66) by EXMBX061.cuchost.com
+ (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 12 Dec
+ 2023 09:01:23 +0800
+Received: from EXMBX066.cuchost.com ([fe80::5947:9245:907e:339f]) by
+ EXMBX066.cuchost.com ([fe80::5947:9245:907e:339f%17]) with mapi id
+ 15.00.1497.044; Tue, 12 Dec 2023 09:01:23 +0800
+From: JeeHeng Sia <jeeheng.sia@starfivetech.com>
+To: Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	"kernel@esmil.dk" <kernel@esmil.dk>, "conor@kernel.org" <conor@kernel.org>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"paul.walmsley@sifive.com" <paul.walmsley@sifive.com>, "palmer@dabbelt.com"
+	<palmer@dabbelt.com>, "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
+	"mturquette@baylibre.com" <mturquette@baylibre.com>, "sboyd@kernel.org"
+	<sboyd@kernel.org>, "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>, "Hal
+ Feng" <hal.feng@starfivetech.com>, Xingyu Wu <xingyu.wu@starfivetech.com>
+CC: "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>, Leyfoon Tan
+	<leyfoon.tan@starfivetech.com>
+Subject: RE: [PATCH v1 07/16] dt-bindings: clock: Add StarFive JH8100
+ System-North-West clock and reset generator
+Thread-Topic: [PATCH v1 07/16] dt-bindings: clock: Add StarFive JH8100
+ System-North-West clock and reset generator
+Thread-Index: AQHaKDqBLsc6ZLEdqkC8Pa2wy7o0rrCfEw+AgAXF0LA=
+Date: Tue, 12 Dec 2023 01:01:23 +0000
+Message-ID: <56031a2fadf442e297b1e0ea03777e5f@EXMBX066.cuchost.com>
+References: <20231206115000.295825-1-jeeheng.sia@starfivetech.com>
+ <20231206115000.295825-8-jeeheng.sia@starfivetech.com>
+ <CAJM55Z-FXV-Go4yj_AJyU4pRC0msHqTCT3q24HkNtBTWW9rAgA@mail.gmail.com>
+In-Reply-To: <CAJM55Z-FXV-Go4yj_AJyU4pRC0msHqTCT3q24HkNtBTWW9rAgA@mail.gmail.com>
+Accept-Language: en-US, zh-CN
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-ms-exchange-transport-fromentityheader: Hosted
+x-yovoleruleagent: yovoleflag
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20231211151244.289349-3-romain.gantois@bootlin.com>
-User-Agent: NeoMutt/20231103
 
-On Mon, 11 Dec 2023, Romain Gantois wrote:
-
->The block layer EFI code is quite old and does not perfectly match the
->current kernel coding style. Fix some indentation and trailing whitespace
->issues in efi.c.
-
-I agree that the styling can use some love. However, a few comments below
-where such changes are really unnecessary.
-
-...
-
->@@ -213,7 +212,7 @@ static int is_pmbr_valid(legacy_mbr *mbr, sector_t total_sectors)
->	 */
->	if (ret == GPT_MBR_PROTECTIVE) {
->		sz = le32_to_cpu(mbr->partition_record[part].size_in_lba);
->-		if (sz != (uint32_t) total_sectors - 1 && sz != 0xFFFFFFFF)
->+		if (sz != (uint32_t)total_sectors - 1 && sz != 0xFFFFFFFF)
-
-Like here.
-
->			pr_debug("GPT: mbr size in lba (%u) different than whole disk (%u).\n",
->				 sz, min_t(uint32_t,
->					   total_sectors - 1, 0xFFFFFFFF));
->@@ -235,17 +234,19 @@ static int is_pmbr_valid(legacy_mbr *mbr, sector_t total_sectors)
-> static size_t read_lba(struct parsed_partitions *state,
->		       u64 lba, u8 *buffer, size_t count)
-> {
->-	size_t totalreadcount = 0;
->	sector_t n = lba *
->		(queue_logical_block_size(state->disk->queue) / 512);
->+	size_t totalreadcount = 0;
->+	unsigned char *data;
->+	Sector sect;
->+	int copied;
->
->	if (!buffer || lba > last_lba(state->disk))
->-                return 0;
->+		return 0;
->
->	while (count) {
->-		int copied = 512;
->-		Sector sect;
->-		unsigned char *data = read_part_sector(state, n++, &sect);
->+		copied = 512;
->+		data = read_part_sector(state, n++, &sect);
-
-ditto
-
->		if (!data)
->			break;
->		if (copied > count)
->@@ -253,7 +254,7 @@ static size_t read_lba(struct parsed_partitions *state,
->		memcpy(buffer, data, copied);
->		put_dev_sector(sect);
->		buffer += copied;
->-		totalreadcount +=copied;
->+		totalreadcount += copied;
->		count -= copied;
->	}
->	return totalreadcount;
->@@ -263,7 +264,7 @@ static size_t read_lba(struct parsed_partitions *state,
->  * alloc_read_gpt_entries(): reads partition entries from disk
->  * @state: disk parsed partitions
->  * @gpt: GPT header
->- *
->+ *
->  * Description: Returns ptes on success,  NULL on error.
->  * Allocates space for PTEs based on information found in @gpt.
->  * Notes: remember to free pte when you're done!
->@@ -271,14 +272,14 @@ static size_t read_lba(struct parsed_partitions *state,
-> static gpt_entry *alloc_read_gpt_entries(struct parsed_partitions *state,
->					 gpt_header *gpt)
-> {
->-	size_t count;
->	gpt_entry *pte;
->+	size_t count;
-
-ditto
-
->
->	if (!gpt)
->		return NULL;
->
->	count = (size_t)le32_to_cpu(gpt->num_partition_entries) *
->-                le32_to_cpu(gpt->sizeof_partition_entry);
->+		le32_to_cpu(gpt->sizeof_partition_entry);
->	if (!count)
->		return NULL;
->	pte = kmalloc(count, GFP_KERNEL);
->@@ -286,9 +287,9 @@ static gpt_entry *alloc_read_gpt_entries(struct parsed_partitions *state,
->		return NULL;
->
->	if (read_lba(state, le64_to_cpu(gpt->partition_entry_lba),
->-			(u8 *) pte, count) < count) {
->+		     (u8 *)pte, count) < count) {
->		kfree(pte);
->-                pte=NULL;
->+		pte = NULL;
->		return NULL;
->	}
->	return pte;
->@@ -298,7 +299,7 @@ static gpt_entry *alloc_read_gpt_entries(struct parsed_partitions *state,
->  * alloc_read_gpt_header(): Allocates GPT header, reads into it from disk
->  * @state: disk parsed partitions
->  * @lba: the Logical Block Address of the partition table
->- *
->+ *
->  * Description: returns GPT header on success, NULL on error.   Allocates
->  * and fills a GPT header starting at @ from @state->disk.
->  * Note: remember to free gpt when finished with it.
->@@ -306,16 +307,16 @@ static gpt_entry *alloc_read_gpt_entries(struct parsed_partitions *state,
-> static gpt_header *alloc_read_gpt_header(struct parsed_partitions *state,
->					 u64 lba)
-> {
->+	unsigned int ssz = queue_logical_block_size(state->disk->queue);
->	gpt_header *gpt;
->-	unsigned ssz = queue_logical_block_size(state->disk->queue);
-
-ditto
-
->
->	gpt = kmalloc(ssz, GFP_KERNEL);
->	if (!gpt)
->		return NULL;
->
->-	if (read_lba(state, lba, (u8 *) gpt, ssz) < ssz) {
->+	if (read_lba(state, lba, (u8 *)gpt, ssz) < ssz) {
-
-ditto
-
->		kfree(gpt);
->-                gpt=NULL;
->+		gpt = NULL;
->		return NULL;
->	}
->
->@@ -486,31 +487,31 @@ compare_gpts(gpt_header *pgpt, gpt_header *agpt, u64 lastlba)
->	if (le64_to_cpu(pgpt->my_lba) != le64_to_cpu(agpt->alternate_lba)) {
->		pr_warn("GPT:Primary header LBA != Alt. header alternate_lba\n");
->		pr_warn("GPT:%lld != %lld\n",
->-		       (unsigned long long)le64_to_cpu(pgpt->my_lba),
->-                       (unsigned long long)le64_to_cpu(agpt->alternate_lba));
->+			(unsigned long long)le64_to_cpu(pgpt->my_lba),
->+			(unsigned long long)le64_to_cpu(agpt->alternate_lba));
->		error_found++;
->	}
->	if (le64_to_cpu(pgpt->alternate_lba) != le64_to_cpu(agpt->my_lba)) {
->		pr_warn("GPT:Primary header alternate_lba != Alt. header my_lba\n");
->		pr_warn("GPT:%lld != %lld\n",
->-		       (unsigned long long)le64_to_cpu(pgpt->alternate_lba),
->-                       (unsigned long long)le64_to_cpu(agpt->my_lba));
->+			(unsigned long long)le64_to_cpu(pgpt->alternate_lba),
->+			(unsigned long long)le64_to_cpu(agpt->my_lba));
->		error_found++;
->	}
->	if (le64_to_cpu(pgpt->first_usable_lba) !=
->-            le64_to_cpu(agpt->first_usable_lba)) {
->+	    le64_to_cpu(agpt->first_usable_lba)) {
->		pr_warn("GPT:first_usable_lbas don't match.\n");
->		pr_warn("GPT:%lld != %lld\n",
->-		       (unsigned long long)le64_to_cpu(pgpt->first_usable_lba),
->-                       (unsigned long long)le64_to_cpu(agpt->first_usable_lba));
->+			(unsigned long long)le64_to_cpu(pgpt->first_usable_lba),
->+			(unsigned long long)le64_to_cpu(agpt->first_usable_lba));
->		error_found++;
->	}
->	if (le64_to_cpu(pgpt->last_usable_lba) !=
->-            le64_to_cpu(agpt->last_usable_lba)) {
->+	    le64_to_cpu(agpt->last_usable_lba)) {
->		pr_warn("GPT:last_usable_lbas don't match.\n");
->		pr_warn("GPT:%lld != %lld\n",
->-		       (unsigned long long)le64_to_cpu(pgpt->last_usable_lba),
->-                       (unsigned long long)le64_to_cpu(agpt->last_usable_lba));
->+			(unsigned long long)le64_to_cpu(pgpt->last_usable_lba),
->+			(unsigned long long)le64_to_cpu(agpt->last_usable_lba));
->		error_found++;
->	}
->	if (efi_guidcmp(pgpt->disk_guid, agpt->disk_guid)) {
->@@ -518,27 +519,24 @@ compare_gpts(gpt_header *pgpt, gpt_header *agpt, u64 lastlba)
->		error_found++;
->	}
->	if (le32_to_cpu(pgpt->num_partition_entries) !=
->-            le32_to_cpu(agpt->num_partition_entries)) {
->-		pr_warn("GPT:num_partition_entries don't match: "
->-		       "0x%x != 0x%x\n",
->-		       le32_to_cpu(pgpt->num_partition_entries),
->-		       le32_to_cpu(agpt->num_partition_entries));
->+	    le32_to_cpu(agpt->num_partition_entries)) {
->+		pr_warn("GPT:num_partition_entries don't match: 0x%x != 0x%x\n",
->+			le32_to_cpu(pgpt->num_partition_entries),
->+			le32_to_cpu(agpt->num_partition_entries));
->		error_found++;
->	}
->	if (le32_to_cpu(pgpt->sizeof_partition_entry) !=
->-            le32_to_cpu(agpt->sizeof_partition_entry)) {
->-		pr_warn("GPT:sizeof_partition_entry values don't match: "
->-		       "0x%x != 0x%x\n",
->-                       le32_to_cpu(pgpt->sizeof_partition_entry),
->-		       le32_to_cpu(agpt->sizeof_partition_entry));
->+	    le32_to_cpu(agpt->sizeof_partition_entry)) {
->+		pr_warn("GPT:sizeof_partition_entry values don't match: 0x%x != 0x%x\n",
->+			le32_to_cpu(pgpt->sizeof_partition_entry),
->+			le32_to_cpu(agpt->sizeof_partition_entry));
->		error_found++;
->	}
->	if (le32_to_cpu(pgpt->partition_entry_array_crc32) !=
->-            le32_to_cpu(agpt->partition_entry_array_crc32)) {
->-		pr_warn("GPT:partition_entry_array_crc32 values don't match: "
->-		       "0x%x != 0x%x\n",
->-                       le32_to_cpu(pgpt->partition_entry_array_crc32),
->-		       le32_to_cpu(agpt->partition_entry_array_crc32));
->+	    le32_to_cpu(agpt->partition_entry_array_crc32)) {
->+		pr_warn("GPT:partition_entry_array_crc32 values don't match: 0x%x != 0x%x\n",
->+			le32_to_cpu(pgpt->partition_entry_array_crc32),
->+			le32_to_cpu(agpt->partition_entry_array_crc32));
->		error_found++;
->	}
->	if (le64_to_cpu(pgpt->alternate_lba) != lastlba) {
->@@ -581,20 +579,22 @@ compare_gpts(gpt_header *pgpt, gpt_header *agpt, u64 lastlba)
-> static int find_valid_gpt(struct parsed_partitions *state, gpt_header **gpt,
->			  gpt_entry **ptes)
-> {
->+	sector_t total_sectors = get_capacity(state->disk);
->	int good_pgpt = 0, good_agpt = 0, good_pmbr = 0;
->-	gpt_header *pgpt = NULL, *agpt = NULL;
->+	const struct block_device_operations *fops;
->	gpt_entry *pptes = NULL, *aptes = NULL;
->-	legacy_mbr *legacymbr;
->+	gpt_header *pgpt = NULL, *agpt = NULL;
->	struct gendisk *disk = state->disk;
->-	const struct block_device_operations *fops = disk->fops;
->-	sector_t total_sectors = get_capacity(state->disk);
->+	legacy_mbr *legacymbr;
->	u64 lastlba;
->
->+	fops = disk->fops;
-
-ditto
-
->+
->	if (!ptes)
->		return 0;
->
->	lastlba = last_lba(state->disk);
->-        if (!force_gpt) {
->+	if (!force_gpt) {
->		/* This will be added to the EFI Spec. per Intel after v1.02. */
->		legacymbr = kzalloc(sizeof(*legacymbr), GFP_KERNEL);
->		if (!legacymbr)
->@@ -609,17 +609,17 @@ static int find_valid_gpt(struct parsed_partitions *state, gpt_header **gpt,
->
->		pr_debug("Device has a %s MBR\n",
->			 good_pmbr == GPT_MBR_PROTECTIVE ?
->-						"protective" : "hybrid");
->+			 "protective" : "hybrid");
->	}
->
->	good_pgpt = is_gpt_valid(state, GPT_PRIMARY_PARTITION_TABLE_LBA,
->				 &pgpt, &pptes);
->-        if (good_pgpt)
->+	if (good_pgpt)
->		good_agpt = is_gpt_valid(state,
->					 le64_to_cpu(pgpt->alternate_lba),
->					 &agpt, &aptes);
->-        if (!good_agpt && force_gpt)
->-                good_agpt = is_gpt_valid(state, lastlba, &agpt, &aptes);
->+	if (!good_agpt && force_gpt)
->+		good_agpt = is_gpt_valid(state, lastlba, &agpt, &aptes);
->
->	if (!good_agpt && force_gpt && fops->alternative_gpt_sector) {
->		sector_t agpt_sector;
->@@ -631,39 +631,38 @@ static int find_valid_gpt(struct parsed_partitions *state, gpt_header **gpt,
->						 &agpt, &aptes);
->	}
->
->-        /* The obviously unsuccessful case */
->-        if (!good_pgpt && !good_agpt)
->-                goto fail;
->+	/* The obviously unsuccessful case */
->+	if (!good_pgpt && !good_agpt)
->+		goto fail;
->
->         compare_gpts(pgpt, agpt, lastlba);
->
->-        /* The good cases */
->-        if (good_pgpt) {
->-                *gpt  = pgpt;
->-                *ptes = pptes;
->-                kfree(agpt);
->-                kfree(aptes);
->+	/* The good cases */
->+	if (good_pgpt) {
->+		*gpt  = pgpt;
->+		*ptes = pptes;
->+		kfree(agpt);
->+		kfree(aptes);
->		if (!good_agpt)
->-                        pr_warn("Alternate GPT is invalid, using primary GPT.\n");
->-                return 1;
->-        }
->-        else if (good_agpt) {
->-                *gpt  = agpt;
->-                *ptes = aptes;
->-                kfree(pgpt);
->-                kfree(pptes);
->+			pr_warn("Alternate GPT is invalid, using primary GPT.\n");
->+		return 1;
->+	} else if (good_agpt) {
->+		*gpt  = agpt;
->+		*ptes = aptes;
->+		kfree(pgpt);
->+		kfree(pptes);
->		pr_warn("Primary GPT is invalid, using alternate GPT.\n");
->-                return 1;
->-        }
->+		return 1;
->+	}
->
->- fail:
->-        kfree(pgpt);
->-        kfree(agpt);
->-        kfree(pptes);
->-        kfree(aptes);
->-        *gpt = NULL;
->-        *ptes = NULL;
->-        return 0;
->+fail:
->+	kfree(pgpt);
->+	kfree(agpt);
->+	kfree(pptes);
->+	kfree(aptes);
->+	*gpt = NULL;
->+	*ptes = NULL;
->+	return 0;
-> }
->
-> /**
->@@ -712,10 +711,10 @@ static void utf16_le_to_7bit(const __le16 *in, unsigned int size, u8 *out)
->  */
-> int efi_partition(struct parsed_partitions *state)
-> {
->+	unsigned int ssz = queue_logical_block_size(state->disk->queue) / 512;
->	gpt_header *gpt = NULL;
->	gpt_entry *ptes = NULL;
->	u32 i;
->-	unsigned ssz = queue_logical_block_size(state->disk->queue) / 512;
-
-ditto
-
->
->	if (!find_valid_gpt(state, &gpt, &ptes) || !gpt || !ptes) {
->		kfree(gpt);
->@@ -725,17 +724,17 @@ int efi_partition(struct parsed_partitions *state)
->
->	pr_debug("GUID Partition Table is valid!  Yea!\n");
->
->-	for (i = 0; i < le32_to_cpu(gpt->num_partition_entries) && i < state->limit-1; i++) {
->+	for (i = 0; i < le32_to_cpu(gpt->num_partition_entries) && i < state->limit - 1; i++) {
-
-ditto
-
->		struct partition_meta_info *info;
->-		unsigned label_max;
->+		unsigned int label_max;
->		u64 start = le64_to_cpu(ptes[i].starting_lba);
->		u64 size = le64_to_cpu(ptes[i].ending_lba) -
->-			   le64_to_cpu(ptes[i].starting_lba) + 1ULL;
->+			le64_to_cpu(ptes[i].starting_lba) + 1ULL;
->
->		if (!is_pte_valid(&ptes[i], last_lba(state->disk)))
->			continue;
->
->-		put_partition(state, i+1, start * ssz, size * ssz);
->+		put_partition(state, i + 1, start * ssz, size * ssz);
->
->		/* If this is a RAID volume, tell md */
->		if (!efi_guidcmp(ptes[i].partition_type_guid, PARTITION_LINUX_RAID_GUID))
->diff --git a/include/linux/gpt.h b/include/linux/gpt.h
->index 84b9f36b9e47..633be6bc826c 100644
->--- a/include/linux/gpt.h
->+++ b/include/linux/gpt.h
->@@ -4,7 +4,7 @@
->  * Per Intel EFI Specification v1.02
->  * http://developer.intel.com/technology/efi/efi.htm
->  *
->- * By Matt Domsch <Matt_Domsch@dell.com>  Fri Sep 22 22:15:56 CDT 2000
->+ * By Matt Domsch <Matt_Domsch@dell.com>  Fri Sep 22 22:15:56 CDT 2000
->  *   Copyright 2000,2001 Dell Inc.
->  ************************************************************/
->
->@@ -31,26 +31,26 @@
-> #define GPT_PRIMARY_PARTITION_TABLE_LBA 1
->
-> #define PARTITION_SYSTEM_GUID \
->-    EFI_GUID( 0xC12A7328, 0xF81F, 0x11d2, \
->-              0xBA, 0x4B, 0x00, 0xA0, 0xC9, 0x3E, 0xC9, 0x3B)
->+	EFI_GUID(0xC12A7328, 0xF81F, 0x11d2, \
->+		 0xBA, 0x4B, 0x00, 0xA0, 0xC9, 0x3E, 0xC9, 0x3B)
-> #define LEGACY_MBR_PARTITION_GUID \
->-    EFI_GUID( 0x024DEE41, 0x33E7, 0x11d3, \
->-              0x9D, 0x69, 0x00, 0x08, 0xC7, 0x81, 0xF3, 0x9F)
->+	EFI_GUID(0x024DEE41, 0x33E7, 0x11d3, \
->+		 0x9D, 0x69, 0x00, 0x08, 0xC7, 0x81, 0xF3, 0x9F)
-> #define PARTITION_MSFT_RESERVED_GUID \
->-    EFI_GUID( 0xE3C9E316, 0x0B5C, 0x4DB8, \
->-              0x81, 0x7D, 0xF9, 0x2D, 0xF0, 0x02, 0x15, 0xAE)
->+	EFI_GUID(0xE3C9E316, 0x0B5C, 0x4DB8, \
->+		 0x81, 0x7D, 0xF9, 0x2D, 0xF0, 0x02, 0x15, 0xAE)
-> #define PARTITION_BASIC_DATA_GUID \
->-    EFI_GUID( 0xEBD0A0A2, 0xB9E5, 0x4433, \
->-              0x87, 0xC0, 0x68, 0xB6, 0xB7, 0x26, 0x99, 0xC7)
->+	EFI_GUID(0xEBD0A0A2, 0xB9E5, 0x4433, \
->+		 0x87, 0xC0, 0x68, 0xB6, 0xB7, 0x26, 0x99, 0xC7)
-> #define PARTITION_LINUX_RAID_GUID \
->-    EFI_GUID( 0xa19d880f, 0x05fc, 0x4d3b, \
->-              0xa0, 0x06, 0x74, 0x3f, 0x0f, 0x84, 0x91, 0x1e)
->+	EFI_GUID(0xa19d880f, 0x05fc, 0x4d3b, \
->+		 0xa0, 0x06, 0x74, 0x3f, 0x0f, 0x84, 0x91, 0x1e)
-> #define PARTITION_LINUX_SWAP_GUID \
->-    EFI_GUID( 0x0657fd6d, 0xa4ab, 0x43c4, \
->-              0x84, 0xe5, 0x09, 0x33, 0xc8, 0x4b, 0x4f, 0x4f)
->+	EFI_GUID(0x0657fd6d, 0xa4ab, 0x43c4, \
->+		 0x84, 0xe5, 0x09, 0x33, 0xc8, 0x4b, 0x4f, 0x4f)
-> #define PARTITION_LINUX_LVM_GUID \
->-    EFI_GUID( 0xe6d6d379, 0xf507, 0x44c2, \
->-              0xa2, 0x3c, 0x23, 0x8f, 0x2a, 0x3d, 0xf9, 0x28)
->+	EFI_GUID(0xe6d6d379, 0xf507, 0x44c2, \
->+		 0xa2, 0x3c, 0x23, 0x8f, 0x2a, 0x3d, 0xf9, 0x28)
->
-> typedef struct _gpt_header {
->	__le64 signature;
->@@ -78,7 +78,7 @@ typedef struct _gpt_header {
-> typedef struct _gpt_entry_attributes {
->	u64 required_to_function:1;
->	u64 reserved:47;
->-        u64 type_guid_specific:16;
->+	u64 type_guid_specific:16;
-> } __packed gpt_entry_attributes;
->
-> typedef struct _gpt_entry {
->@@ -87,7 +87,7 @@ typedef struct _gpt_entry {
->	__le64 starting_lba;
->	__le64 ending_lba;
->	gpt_entry_attributes attributes;
->-	__le16 partition_name[72/sizeof(__le16)];
->+	__le16 partition_name[72 / sizeof(__le16)];
-> } __packed gpt_entry;
->
-> typedef struct _gpt_mbr_record {
->@@ -103,7 +103,6 @@ typedef struct _gpt_mbr_record {
->	__le32	size_in_lba;    /* used by EFI - size of pt in LBA */
-> } __packed gpt_mbr_record;
->
->-
-> typedef struct _legacy_mbr {
->	u8 boot_code[440];
->	__le32 unique_mbr_signature;
->--
->2.43.0
->
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogRW1pbCBSZW5uZXIgQmVy
+dGhpbmcgPGVtaWwucmVubmVyLmJlcnRoaW5nQGNhbm9uaWNhbC5jb20+DQo+IFNlbnQ6IFNhdHVy
+ZGF5LCBEZWNlbWJlciA5LCAyMDIzIDEyOjM3IEFNDQo+IFRvOiBKZWVIZW5nIFNpYSA8amVlaGVu
+Zy5zaWFAc3RhcmZpdmV0ZWNoLmNvbT47IGtlcm5lbEBlc21pbC5kazsgY29ub3JAa2VybmVsLm9y
+Zzsgcm9iaCtkdEBrZXJuZWwub3JnOw0KPiBrcnp5c3p0b2Yua296bG93c2tpK2R0QGxpbmFyby5v
+cmc7IHBhdWwud2FsbXNsZXlAc2lmaXZlLmNvbTsgcGFsbWVyQGRhYmJlbHQuY29tOyBhb3VAZWVj
+cy5iZXJrZWxleS5lZHU7DQo+IG10dXJxdWV0dGVAYmF5bGlicmUuY29tOyBzYm95ZEBrZXJuZWwu
+b3JnOyBwLnphYmVsQHBlbmd1dHJvbml4LmRlOyBlbWlsLnJlbm5lci5iZXJ0aGluZ0BjYW5vbmlj
+YWwuY29tOyBIYWwgRmVuZw0KPiA8aGFsLmZlbmdAc3RhcmZpdmV0ZWNoLmNvbT47IFhpbmd5dSBX
+dSA8eGluZ3l1Lnd1QHN0YXJmaXZldGVjaC5jb20+DQo+IENjOiBsaW51eC1yaXNjdkBsaXN0cy5p
+bmZyYWRlYWQub3JnOyBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsgbGludXgta2VybmVsQHZn
+ZXIua2VybmVsLm9yZzsgbGludXgtY2xrQHZnZXIua2VybmVsLm9yZzsgTGV5Zm9vbiBUYW4NCj4g
+PGxleWZvb24udGFuQHN0YXJmaXZldGVjaC5jb20+DQo+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggdjEg
+MDcvMTZdIGR0LWJpbmRpbmdzOiBjbG9jazogQWRkIFN0YXJGaXZlIEpIODEwMCBTeXN0ZW0tTm9y
+dGgtV2VzdCBjbG9jayBhbmQgcmVzZXQgZ2VuZXJhdG9yDQo+IA0KPiBTaWEgSmVlIEhlbmcgd3Jv
+dGU6DQo+ID4gQWRkIGJpbmRpbmdzIGZvciB0aGUgU3lzdGVtLU5vcnRoLVdlc3QgY2xvY2sgYW5k
+IHJlc2V0IGdlbmVyYXRvcg0KPiA+IChTWVNDUkctTlcpIG9uIEpIODEwMCBTb0MuDQo+ID4NCj4g
+PiBTaWduZWQtb2ZmLWJ5OiBTaWEgSmVlIEhlbmcgPGplZWhlbmcuc2lhQHN0YXJmaXZldGVjaC5j
+b20+DQo+ID4gUmV2aWV3ZWQtYnk6IExleSBGb29uIFRhbiA8bGV5Zm9vbi50YW5Ac3RhcmZpdmV0
+ZWNoLmNvbT4NCj4gPiAtLS0NCj4gPiAgLi4uL2Nsb2NrL3N0YXJmaXZlLGpoODEwMC1zeXNjcmct
+bncueWFtbCAgICAgIHwgMTE5ICsrKysrKysrKysrKysrKysrKw0KPiANCj4gVGhlIEpINzExMCBj
+bG9ja3MsIHRoZSBKSDgxMDAgc3lzdGVtIGFuZCBhbHdheXMtb24gYWxsIGZvbGxvdyB0aGUgWGNy
+ZyBwYXR0ZXJuOg0KPiBzeXNjcmcNCj4gYW9uY3JnDQo+IHN0Z2NyZw0KPiBpc3BjcmcNCj4gdm91
+dGNyZw0KPiBldGMuDQo+IA0KPiBJcyB0aGVyZSBhIHJlYXNvbiB0aGUgbm9ydGgtd2VzdCwgbm9y
+dGgtZWFzdCBhbmQgc291dGgtd2VzdCBicmVha3MgdGhpcyBwYXR0ZXJuPw0KPiBJJ2QgaGF2ZSBl
+eHBlY3RlZCB0aGVtIHRvIGJlIGNhbGxlZCBzb21ldGhpbmcgbGlrZQ0KPiBud2NyZywgSkg4MTAw
+X05XQ0xLXyosIEpIODEwMF9OV1JTVF8qLA0KPiBuZWNyZywgSkg4MTAwX05FQ0xLXyosIEpIODEw
+MF9ORVJTVF8qIGFuZA0KPiBzd2NyZywgSkg4MTAwX1NXQ0xLXyosIEpIODEwMF9TV1JTVF8qDQo+
+IA0KPiBKdXN0IGxpa2UgYWxsIHRoZSBvdGhlciBTdGFyZml2ZSBkcml2ZXJzLg0KVW5kZXJzdG9v
+ZCB5b3VyIGNvbmNlcm4uIFdlIGRvbuKAmXQgaGF2ZSB0aGUgaW50ZW50aW9uIHRvIGJyZWFrIHRo
+ZSBwYXR0ZXJuLA0KYnV0IHRoZSByZWFzb24gd2Ugc2tpcCB0aGUgU29DXyBwcmVmaXggaXMgdGhh
+dCB0aGUgU29DIG5hbWVzIHdlcmUgYWxyZWFkeQ0KZGVmaW5lZCBpbiB0aGUgaGVhZGVyIGZpbGUg
+d2l0aCB0aGUgU29DIG5hbWUuDQpIb3dldmVyLCBJIGNhbiBwdXQgaXQgYmFjaywgb2YgY291cnNl
+Lg0KPiANCj4gPiAgLi4uL2R0LWJpbmRpbmdzL2Nsb2NrL3N0YXJmaXZlLGpoODEwMC1jcmcuaCAg
+IHwgIDQ1ICsrKysrKysNCj4gPiAgLi4uL2R0LWJpbmRpbmdzL3Jlc2V0L3N0YXJmaXZlLGpoODEw
+MC1jcmcuaCAgIHwgIDE1ICsrKw0KPiA+ICAzIGZpbGVzIGNoYW5nZWQsIDE3OSBpbnNlcnRpb25z
+KCspDQo+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
+ZGluZ3MvY2xvY2svc3RhcmZpdmUsamg4MTAwLXN5c2NyZy1udy55YW1sDQo+ID4NCj4gPiBkaWZm
+IC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Nsb2NrL3N0YXJmaXZl
+LGpoODEwMC1zeXNjcmctbncueWFtbA0KPiBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5k
+aW5ncy9jbG9jay9zdGFyZml2ZSxqaDgxMDAtc3lzY3JnLW53LnlhbWwNCj4gPiBuZXcgZmlsZSBt
+b2RlIDEwMDY0NA0KPiA+IGluZGV4IDAwMDAwMDAwMDAwMC4uYjE2YTg3NDgyOGRkDQo+ID4gLS0t
+IC9kZXYvbnVsbA0KPiA+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9j
+bG9jay9zdGFyZml2ZSxqaDgxMDAtc3lzY3JnLW53LnlhbWwNCj4gPiBAQCAtMCwwICsxLDExOSBA
+QA0KPiA+ICsjIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wLW9ubHkgT1IgQlNELTIt
+Q2xhdXNlDQo+ID4gKyVZQU1MIDEuMg0KPiA+ICstLS0NCj4gPiArJGlkOiBodHRwOi8vZGV2aWNl
+dHJlZS5vcmcvc2NoZW1hcy9jbG9jay9zdGFyZml2ZSxqaDgxMDAtc3lzY3JnLW53LnlhbWwjDQo+
+ID4gKyRzY2hlbWE6IGh0dHA6Ly9kZXZpY2V0cmVlLm9yZy9tZXRhLXNjaGVtYXMvY29yZS55YW1s
+Iw0KPiA+ICsNCj4gPiArdGl0bGU6IFN0YXJGaXZlIEpIODEwMCBTeXN0ZW0tTm9ydGgtV2VzdCBD
+bG9jayBhbmQgUmVzZXQgR2VuZXJhdG9yDQo+ID4gKw0KPiA+ICttYWludGFpbmVyczoNCj4gPiAr
+ICAtIFNpYSBKZWUgSGVuZyA8amVlaGVuZy5zaWFAc3RhcmZpdmV0ZWNoLmNvbT4NCj4gPiArDQo+
+ID4gK3Byb3BlcnRpZXM6DQo+ID4gKyAgY29tcGF0aWJsZToNCj4gPiArICAgIGNvbnN0OiBzdGFy
+Zml2ZSxqaDgxMDAtc3lzY3JnLW53DQo+ID4gKw0KPiA+ICsgIHJlZzoNCj4gPiArICAgIG1heEl0
+ZW1zOiAxDQo+ID4gKw0KPiA+ICsgIGNsb2NrczoNCj4gPiArICAgIGl0ZW1zOg0KPiA+ICsgICAg
+ICAtIGRlc2NyaXB0aW9uOiBNYWluIE9zY2lsbGF0b3IgKDI0IE1IeikNCj4gPiArICAgICAgLSBk
+ZXNjcmlwdGlvbjogQVBCX0JVUyBjbG9jayBmcm9tIFNZU0NSRw0KPiA+ICsgICAgICAtIGRlc2Ny
+aXB0aW9uOiBJU1BfMlggY2xvY2sgZnJvbSBTWVNDUkcNCj4gPiArICAgICAgLSBkZXNjcmlwdGlv
+bjogSVNQX0FYSSBjbG9jayBmcm9tIFNZU0NSRw0KPiA+ICsgICAgICAtIGRlc2NyaXB0aW9uOiBW
+T1VUX1JPT1QwIGNsb2NrIGZyb20gU1lTQ1JHDQo+ID4gKyAgICAgIC0gZGVzY3JpcHRpb246IFZP
+VVRfUk9PVDEgY2xvY2sgZnJvbSBTWVNDUkcNCj4gPiArICAgICAgLSBkZXNjcmlwdGlvbjogVk9V
+VF9TQ0FOX0FUUyBjbG9jayBmcm9tIFNZU0NSRw0KPiA+ICsgICAgICAtIGRlc2NyaXB0aW9uOiBW
+T1VUX0RDX0NPUkUgY2xvY2sgZnJvbSBTWVNDUkcNCj4gPiArICAgICAgLSBkZXNjcmlwdGlvbjog
+Vk9VVF9BWEkgY2xvY2sgZnJvbSBTWVNDUkcNCj4gPiArICAgICAgLSBkZXNjcmlwdGlvbjogQVhJ
+XzQwMCBjbG9jayBmcm9tIFNZU0NSRw0KPiA+ICsgICAgICAtIGRlc2NyaXB0aW9uOiBBWElfMjAw
+IGNsb2NrIGZyb20gU1lTQ1JHDQo+ID4gKyAgICAgIC0gZGVzY3JpcHRpb246IFBlcmlwaGVyYWwg
+Y2xvY2sgZnJvbSBTWVNDUkcNCj4gPiArICAgICAgLSBkZXNjcmlwdGlvbjogRXh0ZXJuYWwgRFZQ
+IGNsb2NrDQo+ID4gKyAgICAgIC0gZGVzY3JpcHRpb246IEV4dGVybmFsIElTUCBEUEhZIFRBUCBU
+Q0sgY2xvY2sNCj4gPiArICAgICAgLSBkZXNjcmlwdGlvbjogRXh0ZXJuYWwgZ29sYmFsIGNsb2Nr
+DQo+ID4gKyAgICAgIC0gZGVzY3JpcHRpb246IEV4dGVybmFsIGkyc190c2NrbyBjbG9jaw0KPiA+
+ICsgICAgICAtIGRlc2NyaXB0aW9uOiBFeHRlcm5hbCBWT1VUIE1JUEkgRFBIWSBUQVAgVENLDQo+
+ID4gKyAgICAgIC0gZGVzY3JpcHRpb246IEV4dGVybmFsIFZPVVQgZURQIFRBUCBUQ0sNCj4gPiAr
+ICAgICAgLSBkZXNjcmlwdGlvbjogRXh0ZXJuYWwgU1BJIEluMiBjbG9jaw0KPiA+ICsNCj4gPiAr
+ICBjbG9jay1uYW1lczoNCj4gPiArICAgIGl0ZW1zOg0KPiA+ICsgICAgICAtIGNvbnN0OiBjbGtf
+b3NjDQo+ID4gKyAgICAgIC0gY29uc3Q6IHN5c19jbGtfYXBiX2J1cw0KPiA+ICsgICAgICAtIGNv
+bnN0OiBzeXNfY2xrX2lzcF8yeA0KPiA+ICsgICAgICAtIGNvbnN0OiBzeXNfY2xrX2lzcF9heGkN
+Cj4gPiArICAgICAgLSBjb25zdDogc3lzX2Nsa192b3V0X3Jvb3QwDQo+ID4gKyAgICAgIC0gY29u
+c3Q6IHN5c19jbGtfdm91dF9yb290MQ0KPiA+ICsgICAgICAtIGNvbnN0OiBzeXNfY2xrX3ZvdXRf
+c2Nhbl9hdHMNCj4gPiArICAgICAgLSBjb25zdDogc3lzX2Nsa192b3V0X2RjX2NvcmUNCj4gPiAr
+ICAgICAgLSBjb25zdDogc3lzX2Nsa192b3V0X2F4aQ0KPiA+ICsgICAgICAtIGNvbnN0OiBzeXNf
+Y2xrX2F4aV80MDANCj4gPiArICAgICAgLSBjb25zdDogc3lzX2Nsa19heGlfMjAwDQo+ID4gKyAg
+ICAgIC0gY29uc3Q6IHN5c19jbGtfcGVyaF9yb290X3ByZW9zYw0KPiA+ICsgICAgICAtIGNvbnN0
+OiBjbGtfZHZwX2V4dA0KPiA+ICsgICAgICAtIGNvbnN0OiBjbGtfaXNwX2RwaHlfdGFwX3Rja19l
+eHQNCj4gPiArICAgICAgLSBjb25zdDogY2xrX2dsYl9leHRfY2xrDQo+ID4gKyAgICAgIC0gY29u
+c3Q6IGNsa19pMnNfdHNja28NCj4gPiArICAgICAgLSBjb25zdDogY2xrX3ZvdXRfbWlwaV9kcGh5
+X3RhcF90Y2tfZXh0DQo+ID4gKyAgICAgIC0gY29uc3Q6IGNsa192b3V0X2VkcF90YXBfdGNrX2V4
+dA0KPiA+ICsgICAgICAtIGNvbnN0OiBjbGtfc3BpX2luMl9leHQNCj4gPiArDQo+ID4gKyAgJyNj
+bG9jay1jZWxscyc6DQo+ID4gKyAgICBjb25zdDogMQ0KPiA+ICsgICAgZGVzY3JpcHRpb246DQo+
+ID4gKyAgICAgIFNlZSA8ZHQtYmluZGluZ3MvY2xvY2svc3RhcmZpdmUsamg4MTAwLWNyZy5oPiBm
+b3IgdmFsaWQgaW5kaWNlcy4NCj4gPiArDQo+ID4gKyAgJyNyZXNldC1jZWxscyc6DQo+ID4gKyAg
+ICBjb25zdDogMQ0KPiA+ICsgICAgZGVzY3JpcHRpb246DQo+ID4gKyAgICAgIFNlZSA8ZHQtYmlu
+ZGluZ3MvcmVzZXQvc3RhcmZpdmUsamg4MTAwLWNyZy5oPiBmb3IgdmFsaWQgaW5kaWNlcy4NCj4g
+PiArDQo+ID4gK3JlcXVpcmVkOg0KPiA+ICsgIC0gY29tcGF0aWJsZQ0KPiA+ICsgIC0gcmVnDQo+
+ID4gKyAgLSBjbG9ja3MNCj4gPiArICAtIGNsb2NrLW5hbWVzDQo+ID4gKyAgLSAnI2Nsb2NrLWNl
+bGxzJw0KPiA+ICsgIC0gJyNyZXNldC1jZWxscycNCj4gPiArDQo+ID4gK2FkZGl0aW9uYWxQcm9w
+ZXJ0aWVzOiBmYWxzZQ0KPiA+ICsNCj4gPiArZXhhbXBsZXM6DQo+ID4gKyAgLSB8DQo+ID4gKyAg
+ICAjaW5jbHVkZSA8ZHQtYmluZGluZ3MvY2xvY2svc3RhcmZpdmUsamg4MTAwLWNyZy5oPg0KPiA+
+ICsNCj4gPiArICAgIGNsb2NrLWNvbnRyb2xsZXJAMTIzYzAwMDAgew0KPiA+ICsgICAgICAgICAg
+ICBjb21wYXRpYmxlID0gInN0YXJmaXZlLGpoODEwMC1zeXNjcmctbnciOw0KPiA+ICsgICAgICAg
+ICAgICByZWcgPSA8MHgxMjNjMDAwMCAweDEwMDAwPjsNCj4gPiArICAgICAgICAgICAgY2xvY2tz
+ID0gPCZjbGtfb3NjPiwgPCZzeXNjcmcgU1lTQ1JHX0NMS19BUEJfQlVTPiwNCj4gPiArICAgICAg
+ICAgICAgICAgICAgICAgPCZzeXNjcmcgU1lTQ1JHX0NMS19JU1BfMlg+LA0KPiA+ICsgICAgICAg
+ICAgICAgICAgICAgICA8JnN5c2NyZyBTWVNDUkdfQ0xLX0lTUF9BWEk+LA0KPiA+ICsgICAgICAg
+ICAgICAgICAgICAgICA8JnN5c2NyZyBTWVNDUkdfQ0xLX1ZPVVRfUk9PVDA+LA0KPiA+ICsgICAg
+ICAgICAgICAgICAgICAgICA8JnN5c2NyZyBTWVNDUkdfQ0xLX1ZPVVRfUk9PVDE+LA0KPiA+ICsg
+ICAgICAgICAgICAgICAgICAgICA8JnN5c2NyZyBTWVNDUkdfQ0xLX1ZPVVRfU0NBTl9BVFM+LA0K
+PiA+ICsgICAgICAgICAgICAgICAgICAgICA8JnN5c2NyZyBTWVNDUkdfQ0xLX1ZPVVRfRENfQ09S
+RT4sDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgIDwmc3lzY3JnIFNZU0NSR19DTEtfVk9VVF9B
+WEk+LA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICA8JnN5c2NyZyBTWVNDUkdfQ0xLX0FYSV80
+MDA+LA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICA8JnN5c2NyZyBTWVNDUkdfQ0xLX0FYSV8y
+MDA+LA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICA8JnN5c2NyZyBTWVNDUkdfQ0xLX1BFUkhf
+Uk9PVF9QUkVPU0M+LA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICA8JmNsa19kdnBfZXh0PiwN
+Cj4gPiArICAgICAgICAgICAgICAgICAgICAgPCZjbGtfaXNwX2RwaHlfdGFwX3Rja19leHQ+LA0K
+PiA+ICsgICAgICAgICAgICAgICAgICAgICA8JmNsa19nbGJfZXh0X2Nsaz4sDQo+ID4gKyAgICAg
+ICAgICAgICAgICAgICAgIDwmY2xrX2kyc190c2Nrbz4sDQo+ID4gKyAgICAgICAgICAgICAgICAg
+ICAgIDwmY2xrX3ZvdXRfbWlwaV9kcGh5X3RhcF90Y2tfZXh0PiwNCj4gPiArICAgICAgICAgICAg
+ICAgICAgICAgPCZjbGtfdm91dF9lZHBfdGFwX3Rja19leHQ+LA0KPiA+ICsgICAgICAgICAgICAg
+ICAgICAgICA8JmNsa19zcGlfaW4yX2V4dD47DQo+ID4gKyAgICAgICAgICAgIGNsb2NrLW5hbWVz
+ID0gImNsa19vc2MiLCAic3lzX2Nsa19hcGJfYnVzIiwgInN5c19jbGtfaXNwXzJ4IiwNCj4gPiAr
+ICAgICAgICAgICAgICAgICAgICAgICAgICAic3lzX2Nsa19pc3BfYXhpIiwgInN5c19jbGtfdm91
+dF9yb290MCIsDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgInN5c19jbGtfdm91dF9y
+b290MSIsICJzeXNfY2xrX3ZvdXRfc2Nhbl9hdHMiLA0KPiA+ICsgICAgICAgICAgICAgICAgICAg
+ICAgICAgICJzeXNfY2xrX3ZvdXRfZGNfY29yZSIsICJzeXNfY2xrX3ZvdXRfYXhpIiwNCj4gPiAr
+ICAgICAgICAgICAgICAgICAgICAgICAgICAic3lzX2Nsa19heGlfNDAwIiwgInN5c19jbGtfYXhp
+XzIwMCIsDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgInN5c19jbGtfcGVyaF9yb290
+X3ByZW9zYyIsICJjbGtfZHZwX2V4dCIsDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAg
+ImNsa19pc3BfZHBoeV90YXBfdGNrX2V4dCIsICJjbGtfZ2xiX2V4dF9jbGsiLA0KPiA+ICsgICAg
+ICAgICAgICAgICAgICAgICAgICAgICJjbGtfaTJzX3RzY2tvIiwgImNsa192b3V0X21pcGlfZHBo
+eV90YXBfdGNrX2V4dCIsDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgImNsa192b3V0
+X2VkcF90YXBfdGNrX2V4dCIsICJjbGtfc3BpX2luMl9leHQiOw0KPiA+ICsgICAgICAgICAgICAj
+Y2xvY2stY2VsbHMgPSA8MT47DQo+ID4gKyAgICAgICAgICAgICNyZXNldC1jZWxscyA9IDwxPjsN
+Cj4gPiArICAgIH07DQo+ID4gZGlmZiAtLWdpdCBhL2luY2x1ZGUvZHQtYmluZGluZ3MvY2xvY2sv
+c3RhcmZpdmUsamg4MTAwLWNyZy5oIGIvaW5jbHVkZS9kdC1iaW5kaW5ncy9jbG9jay9zdGFyZml2
+ZSxqaDgxMDAtY3JnLmgNCj4gPiBpbmRleCBlNWJiNTg4Y2U3OTguLjg0MTc0NTVjMjQwOSAxMDA2
+NDQNCj4gPiAtLS0gYS9pbmNsdWRlL2R0LWJpbmRpbmdzL2Nsb2NrL3N0YXJmaXZlLGpoODEwMC1j
+cmcuaA0KPiA+ICsrKyBiL2luY2x1ZGUvZHQtYmluZGluZ3MvY2xvY2svc3RhcmZpdmUsamg4MTAw
+LWNyZy5oDQo+ID4gQEAgLTEyMCw0ICsxMjAsNDkgQEANCj4gPiAgI2RlZmluZSBTWVNDUkdfQ0xL
+X05ORV9JQ0dfRU4JCQkJCQkxMDgNCj4gPg0KPiA+ICAjZGVmaW5lIFNZU0NSR19DTEtfRU5ECQkJ
+CQkJCTEwOQ0KPiA+ICsNCj4gPiArLyogU1lTQ1JHX05XX0NMSyAqLw0KPiA+ICsjZGVmaW5lIFNZ
+U0NSR19OV19DTEtfUExMNV9ESVYyCQkJCQkJMA0KPiA+ICsjZGVmaW5lIFNZU0NSR19OV19DTEtf
+R0NMSzUJCQkJCQkxDQo+ID4gKyNkZWZpbmUgU1lTQ1JHX05XX0NMS19HUElPXzEwMAkJCQkJCTIN
+Cj4gPiArI2RlZmluZSBTWVNDUkdfTldfQ0xLX0dQSU9fNTAJCQkJCQkzDQo+ID4gKyNkZWZpbmUg
+U1lTQ1JHX05XX0NMS19HUElPXzE1MAkJCQkJCTQNCj4gPiArI2RlZmluZSBTWVNDUkdfTldfQ0xL
+X0dQSU9fNjAJCQkJCQk1DQo+ID4gKyNkZWZpbmUgU1lTQ1JHX05XX0NMS19JT01VWF9XRVNUX1BD
+TEsJCQkJCTYNCj4gPiArI2RlZmluZSBTWVNDUkdfTldfQ0xLX0kyQzZfQVBCCQkJCQkJNw0KPiA+
+ICsjZGVmaW5lIFNZU0NSR19OV19DTEtfSTJDN19BUEIJCQkJCQk4DQo+ID4gKyNkZWZpbmUgU1lT
+Q1JHX05XX0NMS19TUEkyX0FQQgkJCQkJCTkNCj4gPiArI2RlZmluZSBTWVNDUkdfTldfQ0xLX1NQ
+STJfQ09SRQkJCQkJCTEwDQo+ID4gKyNkZWZpbmUgU1lTQ1JHX05XX0NMS19TUEkyX1NDTEtfSU4J
+CQkJCTExDQo+ID4gKyNkZWZpbmUgU1lTQ1JHX05XX0NMS19TTUJVUzFfQVBCCQkJCQkxMg0KPiA+
+ICsjZGVmaW5lIFNZU0NSR19OV19DTEtfU01CVVMxX0NPUkUJCQkJCTEzDQo+ID4gKyNkZWZpbmUg
+U1lTQ1JHX05XX0NMS19JU1BfRFZQCQkJCQkJMTQNCj4gPiArI2RlZmluZSBTWVNDUkdfTldfQ0xL
+X0lTUF9DT1JFXzJYCQkJCQkxNQ0KPiA+ICsjZGVmaW5lIFNZU0NSR19OV19DTEtfSVNQX0FYSQkJ
+CQkJCTE2DQo+ID4gKyNkZWZpbmUgU1lTQ1JHX05XX0NMS19JU1BfRFBIWV9UQVBfVENLCQkJCQkx
+Nw0KPiA+ICsjZGVmaW5lIFNZU0NSR19OV19DTEtfRkxFWE5PQ19JU1BTTFYJCQkJCTE4DQo+ID4g
+KyNkZWZpbmUgU1lTQ1JHX05XX0NMS19WT1VUX1BJWDAJCQkJCQkxOQ0KPiA+ICsjZGVmaW5lIFNZ
+U0NSR19OV19DTEtfVk9VVF9QSVgxCQkJCQkJMjANCj4gPiArI2RlZmluZSBTWVNDUkdfTldfQ0xL
+X1ZPVVRfU0NBTl9BVFMJCQkJCTIxDQo+ID4gKyNkZWZpbmUgU1lTQ1JHX05XX0NMS19WT1VUX0RD
+X0NPUkUJCQkJCTIyDQo+ID4gKyNkZWZpbmUgU1lTQ1JHX05XX0NMS19WT1VUX0FQQgkJCQkJCTIz
+DQo+ID4gKyNkZWZpbmUgU1lTQ1JHX05XX0NMS19WT1VUX0RTSQkJCQkJCTI0DQo+ID4gKyNkZWZp
+bmUgU1lTQ1JHX05XX0NMS19WT1VUX0FIQgkJCQkJCTI1DQo+ID4gKyNkZWZpbmUgU1lTQ1JHX05X
+X0NMS19WT1VUX0FYSQkJCQkJCTI2DQo+ID4gKyNkZWZpbmUgU1lTQ1JHX05XX0NMS19WT1VUX01J
+UElfRFBIWV9UQVBfVENLCQkJCTI3DQo+ID4gKyNkZWZpbmUgU1lTQ1JHX05XX0NMS19WT1VUX0VE
+UF9QSFlfVEFQX1RDSwkJCQkyOA0KPiA+ICsjZGVmaW5lIFNZU0NSR19OV19DTEtfVUFSVDVfQ09S
+RV9QUkVPU0MJCQkJCTI5DQo+ID4gKyNkZWZpbmUgU1lTQ1JHX05XX0NMS19VQVJUNV9BUEIJCQkJ
+CQkzMA0KPiA+ICsjZGVmaW5lIFNZU0NSR19OV19DTEtfVUFSVDVfQ09SRQkJCQkJMzENCj4gPiAr
+I2RlZmluZSBTWVNDUkdfTldfQ0xLX1VBUlQ2X0NPUkVfUFJFT1NDCQkJCQkzMg0KPiA+ICsjZGVm
+aW5lIFNZU0NSR19OV19DTEtfVUFSVDZfQVBCCQkJCQkJMzMNCj4gPiArI2RlZmluZSBTWVNDUkdf
+TldfQ0xLX1VBUlQ2X0NPUkUJCQkJCTM0DQo+ID4gKyNkZWZpbmUgU1lTQ1JHX05XX0NMS19TUEky
+X0lDR19FTgkJCQkJMzUNCj4gPiArI2RlZmluZSBTWVNDUkdfTldfQ0xLX1NNQlVTMV9JQ0dfRU4J
+CQkJCTM2DQo+ID4gKyNkZWZpbmUgU1lTQ1JHX05XX0NMS19JU1BfSUNHX0VOCQkJCQkzNw0KPiA+
+ICsjZGVmaW5lIFNZU0NSR19OV19DTEtfVk9VVF9JQ0dfRU4JCQkJCTM4DQo+ID4gKyNkZWZpbmUg
+U1lTQ1JHX05XX0NMS19VQVJUNV9JQ0dfRU4JCQkJCTM5DQo+ID4gKyNkZWZpbmUgU1lTQ1JHX05X
+X0NMS19VQVJUNl9JQ0dfRU4JCQkJCTQwDQo+ID4gKw0KPiA+ICsjZGVmaW5lIFNZU0NSR19OV19D
+TEtfRU5ECQkJCQkJNDENCj4gPiAgI2VuZGlmIC8qIF9fRFRfQklORElOR1NfQ0xPQ0tfU1RBUkZJ
+VkVfSkg4MTAwX0hfXyAqLw0KPiA+IGRpZmYgLS1naXQgYS9pbmNsdWRlL2R0LWJpbmRpbmdzL3Jl
+c2V0L3N0YXJmaXZlLGpoODEwMC1jcmcuaCBiL2luY2x1ZGUvZHQtYmluZGluZ3MvcmVzZXQvc3Rh
+cmZpdmUsamg4MTAwLWNyZy5oDQo+ID4gaW5kZXggM2I3YjkyNDg4ZTc2Li44YzNhODU4YmRmNmEg
+MTAwNjQ0DQo+ID4gLS0tIGEvaW5jbHVkZS9kdC1iaW5kaW5ncy9yZXNldC9zdGFyZml2ZSxqaDgx
+MDAtY3JnLmgNCj4gPiArKysgYi9pbmNsdWRlL2R0LWJpbmRpbmdzL3Jlc2V0L3N0YXJmaXZlLGpo
+ODEwMC1jcmcuaA0KPiA+IEBAIC0yMCw0ICsyMCwxOSBAQA0KPiA+DQo+ID4gICNkZWZpbmUgU1lT
+Q1JHX1JFU0VUX05SX1JFU0VUUwkJCQkJOA0KPiA+DQo+ID4gKy8qDQo+ID4gKyAqIHN5c2NyZ19u
+dzogYXNzZXJ0MA0KPiA+ICsgKi8NCj4gPiArI2RlZmluZSBTWVNDUkdfTldfUlNUTl9QUkVTRVRO
+CQkJCQkwDQo+ID4gKyNkZWZpbmUgU1lTQ1JHX05XX1JTVE5fU1lTX0lPTVVYX1cJCQkJMQ0KPiA+
+ICsjZGVmaW5lIFNZU0NSR19OV19SU1ROX0kyQzYJCQkJCTINCj4gPiArI2RlZmluZSBTWVNDUkdf
+TldfUlNUTl9JMkM3CQkJCQkzDQo+ID4gKyNkZWZpbmUgU1lTQ1JHX05XX1JTVE5fU1BJMgkJCQkJ
+NA0KPiA+ICsjZGVmaW5lIFNZU0NSR19OV19SU1ROX1NNQlVTMQkJCQkJNQ0KPiA+ICsjZGVmaW5l
+IFNZU0NSR19OV19SU1ROX1VBUlQ1CQkJCQk2DQo+ID4gKyNkZWZpbmUgU1lTQ1JHX05XX1JTVE5f
+VUFSVDYJCQkJCTcNCj4gPiArI2RlZmluZSBTWVNDUkdfTldfUlNUTl9NRVJBSzBfVFZTRU5TT1IJ
+CQkJOA0KPiA+ICsjZGVmaW5lIFNZU0NSR19OV19SU1ROX01FUkFLMV9UVlNFTlNPUgkJCQk5DQo+
+ID4gKw0KPiA+ICsjZGVmaW5lIFNZU0NSR19OV19SRVNFVF9OUl9SRVNFVFMJCQkJMTANCj4gPiAg
+I2VuZGlmIC8qIF9fRFRfQklORElOR1NfUkVTRVRfU1RBUkZJVkVfSkg4MTAwX0hfXyAqLw0KPiA+
+IC0tDQo+ID4gMi4zNC4xDQo+ID4NCg==
 
