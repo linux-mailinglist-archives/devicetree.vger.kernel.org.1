@@ -1,57 +1,58 @@
-Return-Path: <devicetree+bounces-24287-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24288-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B851D80EA5A
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 12:27:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B835280EA5B
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 12:27:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 72F14281454
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 11:27:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 60D4B1F2171D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 11:27:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A84D65D487;
-	Tue, 12 Dec 2023 11:27:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBEC45D48C;
+	Tue, 12 Dec 2023 11:27:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ofd9wCxX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FPxaZa1x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B4DDD3
-	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 03:27:43 -0800 (PST)
-Received: by mail-pl1-x635.google.com with SMTP id d9443c01a7336-1d03f90b0cbso10185755ad.1
-        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 03:27:43 -0800 (PST)
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6974D2
+	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 03:27:46 -0800 (PST)
+Received: by mail-pl1-x634.google.com with SMTP id d9443c01a7336-1d340f0e5d0so437625ad.1
+        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 03:27:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702380463; x=1702985263; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=UVcLWo9qevYj4NVMpda1U8nHLS2CP5f3SkgdbKzdChk=;
-        b=Ofd9wCxXLzxyS8Ja+/Ssg0S6PUQwMAFN9bv7NGUqswLQGkHaGlaZVAK1srsYGfxy5Z
-         WL3fFOgFzD3meH7bd5FWRJwZ3baZH5g/1qX2TYQLVCtfRqhKgNjMOXGFgcXcyqQwVhFc
-         bD8hdAfjxSL0xLWnUXzanDJEjJYA6MpEzbtZcRv1UaFAvo9W4d0fyK/+UfT+LVDDg4nu
-         t+KeSwCUf0rH8dhOkks1neqlXZgkmPlOo8yFZCvu3Goi/8qWIO5nKftnGMd7boGtUBHb
-         QdmeWOop5s5XuLsF80zIF6xXjTlsbLi5N+e+pLDm91uRztXOvHZT7FF057bX4sA55vnX
-         qseg==
+        d=gmail.com; s=20230601; t=1702380466; x=1702985266; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8leUDfJnX3uZjjRZdLHIUQyp74wSB+sGRHaZ+8nJbmE=;
+        b=FPxaZa1xFZpMizzzT+t0LSzoi9dwFjrge/Sz10ipSRbCdG53ePSZIfiETZCatatCox
+         iPK98PCz9irJwiJkAYttp2/u/k61P76rfDcR1/QiyfrDcj34mp8Q0LTlh4aBQKCyH53H
+         1xyiS6WL+P5tiJHke4b+UeZm0jR9rhyQN6rMC7Ek1wRJyQJzHD2SotO+oe/Ol/KYaNfK
+         zJCnuxcV/cfaH+F5pUTVaivCWWhwHczMbyQ8hCeI45j4WYsi6timjo9sIqOev6J0KKce
+         eLLt6NTChH6ffnwvQpevPOFZtGhfH2LCAc8XyShMbxc0ryKGCVAqqPr7rEAQVu7LLWxz
+         gtFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702380463; x=1702985263;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=UVcLWo9qevYj4NVMpda1U8nHLS2CP5f3SkgdbKzdChk=;
-        b=JF5M9AdCitrA/g3oIdmO+XOMLr5u97nrlH7dAfPl+SkdzVprQiBjKvp38PckKKmWk5
-         S5zd45jAi71h33eyPtaC6CxRBnvrYlbESSS0PalargvJhrf/Ki4NNHwbzx0BuO/oFH+v
-         5MVdfNImy9RaGi1ocVMYDpOqauh/Do+EutilN0ldH97CDiFShr7NXYZwwP4WqSeO7d9D
-         OTt+GLnPnH2opTRJ9Q7QuUJJNbBeZEl/6tbKk+Bsh0JkxD4Elr1SXPN4uH0yHwQvJMyp
-         E2XZMSsp6BxDwpXYRktQ6r1dVnBZJAGbgR1PdawqGSD+1JCs00jOC8c23luEZvQuQGwS
-         +/aw==
-X-Gm-Message-State: AOJu0YwCuWfW4z1mRZHSiTwM/iHQ33NRQhj3IClEzVcgVyddM/xjooMu
-	hADnC+dt2Nx7oXGqlbQvtUhHSguMGEA=
-X-Google-Smtp-Source: AGHT+IE7LAy9GV8WyXYbwCWEPuMo6VQhdxFQbU7cfXD/Sg14xwrc4hSVNX0kmqEDX5yFtgiquxQugA==
-X-Received: by 2002:a17:902:ee81:b0:1d0:5efd:35cf with SMTP id a1-20020a170902ee8100b001d05efd35cfmr11080044pld.4.1702380462710;
-        Tue, 12 Dec 2023 03:27:42 -0800 (PST)
+        d=1e100.net; s=20230601; t=1702380466; x=1702985266;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8leUDfJnX3uZjjRZdLHIUQyp74wSB+sGRHaZ+8nJbmE=;
+        b=ov4VKptqof16bccpQVJPzgzKDeC30S8vin5nZVSgI1fz+JJOwCDwm0Tac/77jsfH5T
+         7Ea2IItTRzHWFwlBMnfPPwL02P+53PJTlIujuEUR2EoAqeYhXwYx4YrU/8wFK14rlJhc
+         VL7VMGpmE4wE9KNdHE0s9issVY+QA+BvQldOy3vYV3+3Q7HPbiQKlClXfX60al2RFesZ
+         AhNpYHUpeWuk5UHC42KC0PaSHOT/FmXOsJtZBLF2XSxaiirzxXl5+t/V2rPEezZ+0qiW
+         jYZXg3JIZhBDgDbGyauVjNkPfI20cTWDLJkrInstH4SQW5nuamlFISI/wSdQXb/eZOKG
+         NL4w==
+X-Gm-Message-State: AOJu0Yzq8LVCw2HzjEJzKYQVl8jO6MMyHStoqIQESETm8N2eYK/Lxklu
+	bM+HV7twzaOZ3AyBg33GkFA=
+X-Google-Smtp-Source: AGHT+IHtM3055x/5R8BSIFghKr1Pomm4PKH60rlO1Ie1n9oP2J/aL7k+VyeiFbAx6d8I+4sWLOwLdQ==
+X-Received: by 2002:a17:902:f684:b0:1d3:4125:725d with SMTP id l4-20020a170902f68400b001d34125725dmr509603plg.2.1702380466123;
+        Tue, 12 Dec 2023 03:27:46 -0800 (PST)
 Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:a620:342d:797a:5c59])
-        by smtp.gmail.com with ESMTPSA id w18-20020a170902e89200b001d051725d09sm8415421plg.241.2023.12.12.03.27.39
+        by smtp.gmail.com with ESMTPSA id w18-20020a170902e89200b001d051725d09sm8415421plg.241.2023.12.12.03.27.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Dec 2023 03:27:42 -0800 (PST)
+        Tue, 12 Dec 2023 03:27:45 -0800 (PST)
 From: Fabio Estevam <festevam@gmail.com>
 To: cw00.choi@samsung.com
 Cc: myungjoo.ham@samsung.com,
@@ -64,10 +65,12 @@ Cc: myungjoo.ham@samsung.com,
 	hvilleneuve@dimonoff.com,
 	linux-arm-kernel@lists.infradead.org,
 	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH 1/3] dt-bindings: extcon: ptn5150: Describe the USB connector
-Date: Tue, 12 Dec 2023 08:27:27 -0300
-Message-Id: <20231212112729.700987-1-festevam@gmail.com>
+Subject: [PATCH 2/3] arm64: dts: imx8mn-var-som-symphony: Describe the USB-C connector
+Date: Tue, 12 Dec 2023 08:27:28 -0300
+Message-Id: <20231212112729.700987-2-festevam@gmail.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20231212112729.700987-1-festevam@gmail.com>
+References: <20231212112729.700987-1-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,30 +81,39 @@ Content-Transfer-Encoding: 8bit
 
 From: Fabio Estevam <festevam@denx.de>
 
-PTN5150 supports USB Type-C connector, so improve the bindings by
-allowing to describe the connector like it is done on nxp,ptn5110.yaml.
+Describe the PTN5150 USB-C connector to improve the devicetree description
+and fix the following dt-schema warning:
+
+imx8mn-var-som-symphony.dtb: typec@3d: 'port' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/extcon/extcon-ptn5150.yaml#
 
 Signed-off-by: Fabio Estevam <festevam@denx.de>
 ---
- Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
+ .../boot/dts/freescale/imx8mn-var-som-symphony.dts    | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml b/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml
-index d5cfa32ea52d..3837da7416e9 100644
---- a/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml
-+++ b/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml
-@@ -37,6 +37,11 @@ properties:
-       GPIO pin (output) used to control VBUS. If skipped, no such control
-       takes place.
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dts b/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dts
+index a6b94d1957c9..f38ee2266b25 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dts
+@@ -128,9 +128,14 @@ extcon_usbotg1: typec@3d {
+ 		pinctrl-0 = <&pinctrl_ptn5150>;
+ 		status = "okay";
  
-+  connector:
-+    type: object
-+    $ref: /schemas/connector/usb-connector.yaml#
-+    unevaluatedProperties: false
+-		port {
+-			typec1_dr_sw: endpoint {
+-				remote-endpoint = <&usb1_drd_sw>;
++		connector {
++			compatible = "usb-c-connector";
++			label = "USB-C";
 +
- required:
-   - compatible
-   - interrupts
++			port {
++				typec1_dr_sw: endpoint {
++					remote-endpoint = <&usb1_drd_sw>;
++				};
+ 			};
+ 		};
+ 	};
 -- 
 2.34.1
 
