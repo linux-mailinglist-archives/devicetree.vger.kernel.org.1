@@ -1,45 +1,45 @@
-Return-Path: <devicetree+bounces-24314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24315-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22DEF80EB69
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 13:20:27 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC5B380EB70
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 13:20:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 51A5B1C20AD7
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 12:20:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5C499B20DBF
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 12:20:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A73485EE76;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF92D5EE77;
 	Tue, 12 Dec 2023 12:20:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="sNHKt1qE"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="OIEbJsAG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3312AED;
-	Tue, 12 Dec 2023 04:20:10 -0800 (PST)
-X-UUID: c60dd12098e811eeba30773df0976c77-20231212
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5AEEC3;
+	Tue, 12 Dec 2023 04:20:09 -0800 (PST)
+X-UUID: c6ccf47498e811eea5db2bebc7c28f94-20231212
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=RWVos3ttma+ouGUpqkowB6aiHNm3iis8v3nPP5nxLek=;
-	b=sNHKt1qEZDijnm5ZKrZMBmqosskfDxLvBgwJoYtaUXtKJ5TTHqjaw2tmGaX343+V0Xruar65JvahX59G8PDcRrttDEKdES3jVU8EODllnz9eGETBvUM7P+V6ASoiGRTD+4z/3XBY8srlNEDwL8RLKz+aQXj/ZTrvSulh+rZ4o3Q=;
+	h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=6ySY1u/YNaA7jfhX55xp0CtWVrzD0erxT1NWG3Ec/Vo=;
+	b=OIEbJsAG8If+T82xYPUBlgMMcstui73Dbqn9SEvN+8rRZU2HYibvLcB9rpFBInAlveVG1WxEJpeIZnfkUukI8pPT193NurNO4/lgd9Z2HKZuF7gO1V3cOkBmQlu49oQ/0H6jKcWBiqCJEatLbKxWiqaEg9qJOlyay3u7YAsu9bQ=;
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.35,REQID:41375495-af01-497d-9d39-cd7791029042,IP:0,U
+X-CID-O-INFO: VERSION:1.1.35,REQID:b8749653-df68-4fb8-9bbc-43700a6fcc63,IP:0,U
 	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
 	release,TS:0
-X-CID-META: VersionHash:5d391d7,CLOUDID:00fd94fd-4a48-46e2-b946-12f04f20af8c,B
+X-CID-META: VersionHash:5d391d7,CLOUDID:373b1c61-c89d-4129-91cb-8ebfae4653fc,B
 	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
 	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
 	DKR:0,DKP:0,BRR:0,BRE:0
 X-CID-BVR: 0
 X-CID-BAS: 0,_,0,_
 X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: c60dd12098e811eeba30773df0976c77-20231212
-Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw02.mediatek.com
+X-UUID: c6ccf47498e811eea5db2bebc7c28f94-20231212
+Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw01.mediatek.com
 	(envelope-from <shawn.sung@mediatek.com>)
 	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 511087762; Tue, 12 Dec 2023 20:20:01 +0800
+	with ESMTP id 594440457; Tue, 12 Dec 2023 20:20:03 +0800
 Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
- mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
+ MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
  15.2.1118.26; Tue, 12 Dec 2023 20:20:01 +0800
 Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
@@ -49,17 +49,17 @@ From: Hsiao Chien Sung <shawn.sung@mediatek.com>
 To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
 	Chun-Kuang Hu <chunkuang.hu@kernel.org>, CK Hu <ck.hu@mediatek.com>
 CC: Philipp Zabel <p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Matthias Brugger
+	Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>, "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, Matthias Brugger
 	<matthias.bgg@gmail.com>, Chen-Yu Tsai <wenst@chromium.org>, Sean Paul
 	<sean@poorly.run>, Fei Shao <fshao@chromium.org>, Bibby Hsieh
 	<bibby.hsieh@mediatek.com>, <dri-devel@lists.freedesktop.org>,
 	<linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>, Hsiao
- Chien Sung <shawn.sung@mediatek.com>
-Subject: [PATCH v4 07/17] drm/mediatek: Support alpha blending in Mixer
-Date: Tue, 12 Dec 2023 20:19:47 +0800
-Message-ID: <20231212121957.19231-8-shawn.sung@mediatek.com>
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	"Hsiao Chien Sung" <shawn.sung@mediatek.com>
+Subject: [PATCH v4 08/17] drm/mediatek: Support alpha blending in display driver
+Date: Tue, 12 Dec 2023 20:19:48 +0800
+Message-ID: <20231212121957.19231-9-shawn.sung@mediatek.com>
 X-Mailer: git-send-email 2.18.0
 In-Reply-To: <20231212121957.19231-1-shawn.sung@mediatek.com>
 References: <20231212121957.19231-1-shawn.sung@mediatek.com>
@@ -70,81 +70,49 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain
+X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-AS-Result: No-10--6.676900-8.000000
+X-TMASE-MatchedRID: uP1aVdOuidn2fv0LTPfvM6MVgdN9w+TCG9Itfzsy8/Xvnm3ZesFzgvKC
+	81FnsF5IrUhQzMxACbp+6n5OByhL/9S/P7msP4phXP5rFAucBUF9LQinZ4QefPcjNeVeWlqY+gt
+	Hj7OwNO31Kzk40dEY9ZuHU9bZjqh9ETalZivxO7S1Qc3P+ghxGHPWA7TjQr4H
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--6.676900-8.000000
+X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-SNTS-SMTP:
+	430A300697861B49F3FF941E41A8CF8D528CC0377473359CF40861FC00E808A82000:8
 X-MTK: N
 
-Support premultiply and coverage alpha blending in
-Mixer.
+Support alpha blending by adding correct blend mode and
+alpha property in plane initialization.
 
 Signed-off-by: Hsiao Chien Sung <shawn.sung@mediatek.com>
 ---
- drivers/gpu/drm/mediatek/mtk_ethdr.c | 26 +++++++++++++++++++-------
- 1 file changed, 19 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/mediatek/mtk_drm_plane.c | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_ethdr.c b/drivers/gpu/drm/mediatek/mtk_ethdr.c
-index 73dc4da3ba3b..73c9e3da56a7 100644
---- a/drivers/gpu/drm/mediatek/mtk_ethdr.c
-+++ b/drivers/gpu/drm/mediatek/mtk_ethdr.c
-@@ -5,6 +5,7 @@
- 
- #include <drm/drm_fourcc.h>
- #include <drm/drm_framebuffer.h>
-+#include <drm/drm_blend.h>
- #include <linux/clk.h>
- #include <linux/component.h>
- #include <linux/of_device.h>
-@@ -35,6 +36,7 @@
- #define MIX_SRC_L0_EN				BIT(0)
- #define MIX_L_SRC_CON(n)		(0x28 + 0x18 * (n))
- #define NON_PREMULTI_SOURCE			(2 << 12)
-+#define PREMULTI_SOURCE				(3 << 12)
- #define MIX_L_SRC_SIZE(n)		(0x30 + 0x18 * (n))
- #define MIX_L_SRC_OFFSET(n)		(0x34 + 0x18 * (n))
- #define MIX_FUNC_DCM0			0x120
-@@ -153,7 +155,8 @@ void mtk_ethdr_layer_config(struct device *dev, unsigned int idx,
- 	struct mtk_plane_pending_state *pending = &state->pending;
- 	unsigned int offset = (pending->x & 1) << 31 | pending->y << 16 | pending->x;
- 	unsigned int align_width = ALIGN_DOWN(pending->width, 2);
--	unsigned int alpha_con = 0;
-+	unsigned int mix_con = NON_PREMULTI_SOURCE;
-+	bool replace_src_a = false;
- 
- 	dev_dbg(dev, "%s+ idx:%d", __func__, idx);
- 
-@@ -165,19 +168,28 @@ void mtk_ethdr_layer_config(struct device *dev, unsigned int idx,
- 		return;
+diff --git a/drivers/gpu/drm/mediatek/mtk_drm_plane.c b/drivers/gpu/drm/mediatek/mtk_drm_plane.c
+index 9208f03b3f8c..dfd81172a940 100644
+--- a/drivers/gpu/drm/mediatek/mtk_drm_plane.c
++++ b/drivers/gpu/drm/mediatek/mtk_drm_plane.c
+@@ -349,6 +349,17 @@ int mtk_plane_init(struct drm_device *dev, struct drm_plane *plane,
+ 			DRM_INFO("Create rotation property failed\n");
  	}
  
--	if (state->base.fb && state->base.fb->format->has_alpha)
--		alpha_con = MIXER_ALPHA_AEN | MIXER_ALPHA;
-+	mix_con |= MIXER_ALPHA_AEN | (state->base.alpha & MIXER_ALPHA);
- 
--	mtk_mmsys_mixer_in_config(priv->mmsys_dev, idx + 1, alpha_con ? false : true,
--				  DEFAULT_9BIT_ALPHA,
-+	if (state->base.pixel_blend_mode != DRM_MODE_BLEND_COVERAGE)
-+		mix_con |= PREMULTI_SOURCE;
++	err = drm_plane_create_alpha_property(plane);
++	if (err)
++		DRM_ERROR("failed to create property: alpha\n");
 +
-+	if (state->base.pixel_blend_mode == DRM_MODE_BLEND_PIXEL_NONE ||
-+	    (state->base.fb && !state->base.fb->format->has_alpha)) {
-+		/*
-+		 * Mixer doesn't support CONST_BLD mode,
-+		 * use a trick to make the output equivalent
-+		 */
-+		replace_src_a = true;
-+	}
++	err = drm_plane_create_blend_mode_property(plane,
++						   BIT(DRM_MODE_BLEND_PREMULTI) |
++						   BIT(DRM_MODE_BLEND_COVERAGE) |
++						   BIT(DRM_MODE_BLEND_PIXEL_NONE));
++	if (err)
++		DRM_ERROR("failed to create property: blend_mode\n");
 +
-+	mtk_mmsys_mixer_in_config(priv->mmsys_dev, idx + 1, replace_src_a, MIXER_ALPHA,
- 				  pending->x & 1 ? MIXER_INX_MODE_EVEN_EXTEND :
- 				  MIXER_INX_MODE_BYPASS, align_width / 2 - 1, cmdq_pkt);
+ 	drm_plane_helper_add(plane, &mtk_plane_helper_funcs);
  
- 	mtk_ddp_write(cmdq_pkt, pending->height << 16 | align_width, &mixer->cmdq_base,
- 		      mixer->regs, MIX_L_SRC_SIZE(idx));
- 	mtk_ddp_write(cmdq_pkt, offset, &mixer->cmdq_base, mixer->regs, MIX_L_SRC_OFFSET(idx));
--	mtk_ddp_write_mask(cmdq_pkt, alpha_con, &mixer->cmdq_base, mixer->regs, MIX_L_SRC_CON(idx),
--			   0x1ff);
-+	mtk_ddp_write(cmdq_pkt, mix_con, &mixer->cmdq_base, mixer->regs, MIX_L_SRC_CON(idx));
- 	mtk_ddp_write_mask(cmdq_pkt, BIT(idx), &mixer->cmdq_base, mixer->regs, MIX_SRC_CON,
- 			   BIT(idx));
- }
+ 	return 0;
 -- 
 2.18.0
 
