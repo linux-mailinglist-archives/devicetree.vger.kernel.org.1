@@ -1,132 +1,111 @@
-Return-Path: <devicetree+bounces-24366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72A5980EDB7
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 14:33:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E431280EDD1
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 14:41:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1C3B91F21219
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 13:33:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F7562814CA
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 13:41:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0094761FBC;
-	Tue, 12 Dec 2023 13:33:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="PLRdA2CF"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2570B61FCC;
+	Tue, 12 Dec 2023 13:41:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C228ED;
-	Tue, 12 Dec 2023 05:33:31 -0800 (PST)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BCCZ8Rs017060;
-	Tue, 12 Dec 2023 13:33:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	qcppdkim1; bh=oVr8YV32TzNcJ7vwe+veBUyJhWy6NHBxNHXdbsJpJjU=; b=PL
-	RdA2CFaFkyD6ZClv0FLo96Uc6gdNPkWuVrrw0Xx+5KdyD+L+gNrmsewHoLE2VJf+
-	a6gkDDgWSqjVjS3K3Mn2WZ/90J1q7s2dVv38O6bqeil2t1dgUFQWXd39Nt3+9G0A
-	bF/5l66VjItqpK+UHlA8LRtca1E9nXjyzE0oDLIkwcL1EsDczbXbpF2JBHc4hIPV
-	7woWITOnEP6aKSG1Do8oBFUpfUPuiB7Q4dHvM4M+nj4m4ZZnTiO8aA6x0qb4DrNI
-	vSA0JCfNlVaTv7fb3oMvV7py7PxOgQNMvSxoPSBCZVEIXnlIRwjEN49aORIC7AjI
-	6FBJbEOkGCFajL18l1iw==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uxepkhc2a-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 12 Dec 2023 13:33:24 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BCDXNMQ007444
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 12 Dec 2023 13:33:23 GMT
-Received: from hu-omprsing-hyd.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Tue, 12 Dec 2023 05:33:18 -0800
-From: Om Prakash Singh <quic_omprsing@quicinc.com>
-To: <quic_omprsing@quicinc.com>
-CC: <neil.armstrong@linaro.org>, <konrad.dybcio@linaro.org>,
-        <agross@kernel.org>, <andersson@kernel.org>, <conor+dt@kernel.org>,
-        <davem@davemloft.net>, <devicetree@vger.kernel.org>,
-        <herbert@gondor.apana.org.au>, <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-crypto@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <marijn.suijten@somainline.org>,
-        <robh+dt@kernel.org>, <vkoul@kernel.org>
-Subject: [PATCH V2 2/2] arm64: dts: qcom: sc7280: add QCrypto nodes
-Date: Tue, 12 Dec 2023 19:02:47 +0530
-Message-ID: <20231212133247.1366698-3-quic_omprsing@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231212133247.1366698-1-quic_omprsing@quicinc.com>
-References: <20231212133247.1366698-1-quic_omprsing@quicinc.com>
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C06083
+	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 05:41:13 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rD30Z-00082t-R9; Tue, 12 Dec 2023 14:41:11 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rD30Y-00FLvm-Ut; Tue, 12 Dec 2023 14:41:10 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rD30Y-001eXK-LH; Tue, 12 Dec 2023 14:41:10 +0100
+Date: Tue, 12 Dec 2023 14:41:10 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Heiko Thiery <heiko.thiery@gmail.com>
+Cc: Michael Walle <michael@walle.cc>, devicetree@vger.kernel.org,
+	Shawn Guo <shawnguo@kernel.org>,
+	Shengjiu Wang <shengjiu.wang@nxp.com>, linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Joakim Zhang <qiangqing.zhang@nxp.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	linux-arm-kernel@lists.infradead.org,
+	Lucas Stach <l.stach@pengutronix.de>
+Subject: Re: [PATCH v2] arm64: dts: imx8mq-kontron-pitx-imx8m: remove
+ vqmmc-supply node
+Message-ID: <20231212134110.cijyajgwljkzovvo@pengutronix.de>
+References: <20210914072627.24173-1-heiko.thiery@gmail.com>
+ <449f718706fd5af03190bdda986de37aa8fa14e3.camel@pengutronix.de>
+ <79fb60ea9a002ea553a92ea08b28b866@walle.cc>
+ <2dc72116ec935a5a5d7a1a176868b7af7ff3227c.camel@pengutronix.de>
+ <9e3d52c297ed024594a1e610a5cf61b2@walle.cc>
+ <CAEyMn7aYYkGZ1Eawd=yazdKeBuHVQc=3F7PnHSCSRyYCu=CJ9A@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Z8eSrau29sVmXH87K2oQWUyN1hU0cXQA
-X-Proofpoint-ORIG-GUID: Z8eSrau29sVmXH87K2oQWUyN1hU0cXQA
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 clxscore=1015
- malwarescore=0 adultscore=0 lowpriorityscore=0 phishscore=0
- priorityscore=1501 bulkscore=0 mlxlogscore=895 spamscore=0 impostorscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2312120104
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="i6pn3jy546wilcvi"
+Content-Disposition: inline
+In-Reply-To: <CAEyMn7aYYkGZ1Eawd=yazdKeBuHVQc=3F7PnHSCSRyYCu=CJ9A@mail.gmail.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Add the QCE and Crypto BAM DMA nodes.
 
-Signed-off-by: Om Prakash Singh <quic_omprsing@quicinc.com>
----
+--i6pn3jy546wilcvi
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Changes in V2:
-  - Update DT node sequence as per register ascending order
-  - Fix DT node properties as per convention
+Hello Heiko,
 
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+On Tue, Sep 14, 2021 at 11:37:04AM +0200, Heiko Thiery wrote:
+> dependency between emmc and PMIC. Debian 11 unfortunately does not
+> have a driver enabled for the PMIC used and therefore cannot
+> initialize the emmc driver.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 66f1eb83cca7..7b705df21f4e 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -2272,6 +2272,28 @@ ipa: ipa@1e40000 {
- 			status = "disabled";
- 		};
- 
-+		cryptobam: dma-controller@1dc4000 {
-+			compatible = "qcom,bam-v1.7.4", "qcom,bam-v1.7.0";
-+			reg = <0x0 0x01dc4000 0x0 0x28000>;
-+			interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
-+			#dma-cells = <1>;
-+			qcom,ee = <0>;
-+			qcom,controlled-remotely;
-+			iommus = <&apps_smmu 0x4e4 0x0011>,
-+				 <&apps_smmu 0x4e6 0x0011>;
-+		};
-+
-+		crypto: crypto@1dfa000 {
-+			compatible = "qcom,sc7280-qce", "qcom,sm8150-qce", "qcom,qce";
-+			reg = <0x0 0x01dfa000 0x0 0x6000>;
-+			dmas = <&cryptobam 4>, <&cryptobam 5>;
-+			dma-names = "rx", "tx";
-+			iommus = <&apps_smmu 0x4e4 0x0011>,
-+				 <&apps_smmu 0x4e4 0x0011>;
-+			interconnects = <&aggre2_noc MASTER_CRYPTO 0 &mc_virt SLAVE_EBI1 0>;
-+			interconnect-names = "memory";
-+		};
-+
- 		tcsr_mutex: hwlock@1f40000 {
- 			compatible = "qcom,tcsr-mutex";
- 			reg = <0 0x01f40000 0 0x20000>;
--- 
-2.25.1
+Updating to Debian 12 should give you a kernel that supports the
+pfuze100 driver. (But I guess you know that, because it was enabled by
+someone named Heiko Thiery. :-)
 
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--i6pn3jy546wilcvi
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmV4YvUACgkQj4D7WH0S
+/k7eowf/WRMWV6oinxGen8cTbmAkwjcyvIyn5YbMeEH9Lh+gEEjgFCasG+4WICBJ
+FgwwdJuaNeiYJ3pQDRaBeDk7i9X3dgQkkOt/QbQ14N2GH8L+T7GKs9W81/uF0xTh
+WBDWJWzw+2CSe1pn+jK8jLF991ufcyji/z14RSu1FWIIauxa/NhX9oFeQ2Mc2wF4
+mdwK3MoZQWPIaSvsloEVtohQZbTHMdC57BuqcjwccnYs4PhNGravZpT0vWlFlZXK
+MhkizVsZ6sEBv7oOFVXS/F0m7E/6xWpm5jCDyidpua2GYDnYA1b3HaNsv5N9/Z4K
+GAdDOfJSjZLX9itx/YyGfgkmZbZx5A==
+=D+nl
+-----END PGP SIGNATURE-----
+
+--i6pn3jy546wilcvi--
 
