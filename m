@@ -1,357 +1,701 @@
-Return-Path: <devicetree+bounces-24118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49C7080E15D
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 03:22:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4098080E1E6
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 03:31:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA4471F21C14
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 02:22:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B020A1F21D04
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 02:31:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D10A715AE;
-	Tue, 12 Dec 2023 02:22:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5583C64A;
+	Tue, 12 Dec 2023 02:29:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="F13V4JiF"
+	dkim=pass (1024-bit key) header.d=jms.id.au header.i=@jms.id.au header.b="Rk3vCJac"
 X-Original-To: devicetree@vger.kernel.org
-Received: from IND01-MAX-obe.outbound.protection.outlook.com (mail-maxind01olkn2055.outbound.protection.outlook.com [40.92.102.55])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89D82B8;
-	Mon, 11 Dec 2023 18:22:42 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GuILh3tRQzNktIumG4eeRvz3yEo/cDWeheUD2+06lbfpG0UgK+8n7HEZR57lFTpwJE0lG9f8mIY+AiRofwZyrZ53ZUaK1J7RHiciau66mZie4OIcglDTuKd1Vej6bnBhyRbPaa//HAHdUNdnuQIla89VLVJmeV/Ac+MnH3Uj16JXFULqOkOchvJJD4DkmKzpN6gMVA2c2LngQgakvVqKBzn08aZoPTnPpAjnOs/VcCYPFer+AdhPolW0Ie3Qivao19I0NP8oDN3vHx4rY7hyoMeUMYi9TusqIE2RGytgCaaUVRk7uD9vShfRFTSRyl5Z2vnx/gRXfZZxsLGTxo0/Iw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cPKeCWKaj5tmjJt6v4upASNpNHZbRxdrlrygQWDO5mg=;
- b=c1w22ilSQYZwNRBuW9c7x7pNyP0FA0vCnumBKDmJQaoAH4QF+nm4yFuABC6Xkwi1fMgGyiX4X1WWR9TnQ2J1E8bpI6dhhRDk7widzGKAFrK/ZaeJJsHTA+zO6u7KLfVVr/Vy4fV3RbNbxovkpjlzkA1HPohY7MZmv3P5KSqd0JelKEFbobpJcOvy05igxRF2VjBF2YQoNCutSaXzjn6zVRRBwjhUxWgsqB68Xt9kC7Dj9Xdgw7+quWuoOf+f0SJNmZsOIP+ek0b1LB3D9bWxJOroUZwitZ4rEQC8JV+ufefUGVR2+ThKygUrai7VW7fNkoCq5m29ihFK0Dv2PlibDg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cPKeCWKaj5tmjJt6v4upASNpNHZbRxdrlrygQWDO5mg=;
- b=F13V4JiF3DzpaO4ZjqLTTvgOce7EcsQdJaiL20y5aukl2GEQQyacLUwht/sEixpKgeOayqNO7ubsEcwMK6EB9FPAtpZxAB/zz9wqoXQL/FMnZmefSsZEjOFdTmJjiEh2bO+65XT18ZfsVXVQXSM+ogKlcI2I4M0LCC3oEU3DPNlrmvGvkmHYqTTmwzbedZIavSPv42XY+kwhYz8ravt9oycY3ER2FkZBPkQcwwgzmJ/H559piAqzT2Gme5CdruvHDKXFzh+a2VYidOEP8pP1nl+uhaqL3SXWj5YZOWCGmi8u23CL1HzXfc+Z5nyJFVr1WjcpMGkGijN4GgR1jOqEYA==
-Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:ab::5) by
- MA0P287MB0019.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:5c::8) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7068.33; Tue, 12 Dec 2023 02:22:33 +0000
-Received: from MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
- ([fe80::b1a7:eee7:e903:9ef3]) by MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
- ([fe80::b1a7:eee7:e903:9ef3%7]) with mapi id 15.20.7068.033; Tue, 12 Dec 2023
- 02:22:33 +0000
-Message-ID:
- <MA0P287MB0332A937E4DF0044594B19CCFE8EA@MA0P287MB0332.INDP287.PROD.OUTLOOK.COM>
-Date: Tue, 12 Dec 2023 10:22:28 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 3/4] clk: sophgo: Add SG2042 clock generator driver
-To: Conor Dooley <conor@kernel.org>, Chen Wang <unicornxw@gmail.com>
-Cc: aou@eecs.berkeley.edu, chao.wei@sophgo.com,
- krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
- palmer@dabbelt.com, paul.walmsley@sifive.com, richardcochran@gmail.com,
- robh+dt@kernel.org, sboyd@kernel.org, devicetree@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org, haijiao.liu@sophgo.com,
- xiaoguang.xing@sophgo.com, guoren@kernel.org, jszhang@kernel.org,
- inochiama@outlook.com, samuel.holland@sifive.com
-References: <cover.1701997033.git.unicorn_wang@outlook.com>
- <d1aa4f76f360ebd7b790a4786641f1b0188dbba8.1701997033.git.unicorn_wang@outlook.com>
- <20231208-opposite-stand-fc92fbaaed9c@spud>
-From: Chen Wang <unicorn_wang@outlook.com>
-In-Reply-To: <20231208-opposite-stand-fc92fbaaed9c@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TMN: [aTkwQRM4CyC17V6ryJRnCZ5mOkLvd7kA]
-X-ClientProxiedBy: SG2PR01CA0180.apcprd01.prod.exchangelabs.com
- (2603:1096:4:28::36) To MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:ab::5)
-X-Microsoft-Original-Message-ID:
- <dab00686-bee1-49c3-a35a-75b23a824722@outlook.com>
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9B2B10E6;
+	Mon, 11 Dec 2023 18:29:15 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-40c2c5a8150so48136515e9.2;
+        Mon, 11 Dec 2023 18:29:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jms.id.au; s=google; t=1702348153; x=1702952953; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=c3/O2bOCMvIPD26EPX7q58jz6Wb52iFUgUWfAqCj8EA=;
+        b=Rk3vCJacSrWx1t80H7eKJMwYkvlu4MGu0On1Vpv5IOMmFuIFiTl96qLZTzijp7SJGx
+         slyipDdu5MWpeQ6zvk5NVa8rmMU/HbPBjwqeDDzjvPiVI27OUDdkf/2NEgnXw2cWbX+n
+         MKdqdu7fTAc/NDNZXutDNVYvhKd6i6r976Rlw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702348153; x=1702952953;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=c3/O2bOCMvIPD26EPX7q58jz6Wb52iFUgUWfAqCj8EA=;
+        b=SwwrIp8uUYO+KSZqquuS6rAgJLXVT9Ffi9w6lSB2ZAjTIyDSGeDToBuW3nVXaes8Xd
+         9RpRMhwvHIiG6o5YyeN7gP+Kii5EsVn1ybf34ONBDVaOlsdx24u/8saN7RUAPkTov3By
+         tA79Fcne4t/8A9+AX52ZpXZEUmjWMPnJSujfs7j/NUw9AN6YWT3AwaVO0DsEo2xGGtet
+         SSsCM1YPvHQMhqT3dccTVz25Xco17RvF/1PKLwQbqCnEIeeIE/e+MtlEPGzlvpsc/0qK
+         bpoPBaUBynGLKhi7l9Dk+2wa6EXx9tnOOMd5IKT/2ITF1/0cRKHs+9iqQE5qn4vD4p9q
+         lmTA==
+X-Gm-Message-State: AOJu0Yy/9mYQQasAYq0x/2osrj6gWL1wMQgIzKcnbrNwrpyRwQb1DO+q
+	mX3+yfLVF5vTqZ6hsRx0PPsgPbKO4T0qCsQkFx4=
+X-Google-Smtp-Source: AGHT+IG834/1rgSOMj78cSfVHFrNZusC7+eevaxEHUBQZ+3PySBubE1silX2hArWsVVW2sOqfsCkE/q9cSpyHzIvvWU=
+X-Received: by 2002:a05:600c:240d:b0:40b:5e59:ea01 with SMTP id
+ 13-20020a05600c240d00b0040b5e59ea01mr2937341wmp.160.1702348153266; Mon, 11
+ Dec 2023 18:29:13 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MA0P287MB0332:EE_|MA0P287MB0019:EE_
-X-MS-Office365-Filtering-Correlation-Id: 763bf2b3-6590-4ed8-baec-08dbfab932a8
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	XhFr9rwa+cs/N9Zp/X1cvGVf7rVfKwNQBj7NZ2ObVci45jQun5qBoFW5LMc1L3GpK+XucUbwE2a8V+ljYv/mDxfgoHytLWJ69FxfxLnXSPuEuRJ0r2yxQkacQIZcIC3NI0eWr/xidlGzExk/2CBsHws677uUuuBA28MJgkeMH1x9O3qHaIVlEqkUd/DHs5032nGdbVxYE7t235hzBpN7E+32I1Kw+oBiF6IGwOJqsGTfssNIqBOZZ5eD0npcoVTaphIGDtvzu5evBfSLBncc/e3rhEs7nTMCeH/Y6wuTqu4jP8EUikVjN4/z0tCfKo3+dsos9QaJGRRUvNMWj1nBv2jDuwyNlJku4552h7evQBQPJTceBI1sGRjJDYR83cVEW3CFkI3R2f4DzVj5u26lBQN3AEgdpeAVeZur1ii49jSFR4Z3l4h/Z1mmDDOUcSIWE1YoYkrZM4ky2tCJK8cpnA3T53t1gEPXIIvAYB1CdfKrbv6+4fWRfHSxM2E26Yu8Mn7d35BLBS3+k4tZT6wMoEFQlxvlRz6SBOmQ6d49CNFxGgRBN3nucMX1Xp/qLyos8FsbXP1VpThcFmJf3Gj+emkKJd2jhfWOXQ+oU2ztEg4=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?bVdPamV1bk5YRzNncnJlRWd6czA0alAyc3pFWWZtU0dIMm5NVzFwazI1ZHBK?=
- =?utf-8?B?YWs1eC81WHhVbERSWnZSSEJyYmhRRm1rditoY3BIa1dpdDZwMkFQbGtiZWN6?=
- =?utf-8?B?TkN3TU1IN0p6U20yMlNhbU1HMGFIazRuZ2Y3djhpeWY4di94cGlZQmtHaEJa?=
- =?utf-8?B?bTdvdlhCb20vdkcxRDlpMjlmT1hSTFpuajJLT3pXaG51TlNvOGJhMlQ4OFZJ?=
- =?utf-8?B?d2xFbUR5bGZXZ1dNNlMxMnVFZy9qbVg0ZkRBb0RLN2JHVURhNTk0L0htbm01?=
- =?utf-8?B?TU9Qa1JwNVpwaHBGaEZaTGNXbzFpSmRoNEtJcTVib0NFQTN3QnRQMS8yazZa?=
- =?utf-8?B?OWt6Umg2OHVqV0ordGZWYW9NaGM4eUx3bEN4a3BqV2dLclBIT3NML3J0Sm5J?=
- =?utf-8?B?RUxicEJ3SG1ZOTRIZHRPRUUyd0lCSG04dnh1NjdYOWxRcFBnL0ViZC8wRzRM?=
- =?utf-8?B?Y21sK0x4aS9MWlFtaEVMckN0YkNkd2lNOG1idGx4V2tnTnZPaStQdy9mNDF4?=
- =?utf-8?B?Z0xsZ2NwL1hURzJGSmROUzZvbmxiVHZSK1NqT1NZSkVWS3c3ZXlSSkxRM1lX?=
- =?utf-8?B?MFo0aGFrbDY3UnR1bG9ZWVN2dVRjbzVvVHVubjk5ejRQUm5hWEdVYXNreXgy?=
- =?utf-8?B?RDR2Qk5jUnIweGx0d1ZyN01SbEVZVVZyTUJ0cHhuV2pqTnlUNWtDSU1jWEVV?=
- =?utf-8?B?TVR2Ti9abCs4Uys3Q2FsNWIyTEhsS0VPUG5PL2sybmdPT1FJL0RtYVU2OWx5?=
- =?utf-8?B?bWI4UjB4bmJ0dldRQnN6djFSbEFBZlBnQVM0MEJIQSt0TTJCVmJoZzR2dXFL?=
- =?utf-8?B?WExjZFFZaVFReU56RjRVUjR6QlRudUxxaC9YSFNzWUdSNk9vWEFGdHdUVEtR?=
- =?utf-8?B?MERZN1IwOWwyQ3JGQUQxelBjeHJtaXB4eXJKYzI2cjM3ODJESEdIWXozaURY?=
- =?utf-8?B?cDlESHZqYzkyS0YxUG41T2hLV0pBWUE3L2FOKzBUZ3l0Zis3QlpJWnpuaDhE?=
- =?utf-8?B?TEFHMDFETnVIeXlaQlAxQVcySmNYbWF6WDdtZC9lZWRWaHgxOHhsSXQwSVZ2?=
- =?utf-8?B?R2QybkxZUEJnTk5vYlpSaUxSSzgrd0ptMFNlS0R2Vjk0Y29pQy9DdnA3K2dY?=
- =?utf-8?B?YzFZeXcySThQT0tzbmI1KzdMYXU2SDRleEh0Z2phNXBNbklPVVVjVWZQYWFa?=
- =?utf-8?B?aVM1RGh4eERPaHBJRjg3eVBDeTJLT1RFcSttZFJXMWoyazZkVFJaWGhWWXlG?=
- =?utf-8?B?aGFQZmc5eFQwRTNhdEQzZXdPUk1uUVNPWWhzYjNUNjFWd2pROGxrZXJwYTF3?=
- =?utf-8?B?KytTSlQxS0J0dDBVSjBrYU5EOURkZGdMR01tdThKdDkvaUgwQmh3K25XR3dh?=
- =?utf-8?B?Zk1WTWdyTGNmUjRkVnFUUWN0YTQ4MTdPODlGOGNPZlF3Tkl3dHVyQzNuK3RR?=
- =?utf-8?B?cU44N1JRbTBlN2tSbktWQjhrc1Y1d255S0RqbUF6aXR2WCt6ZUNtdXI0QWt2?=
- =?utf-8?B?WWJBYllrVFJyaVpsWUdDYjYzeUNKZklnMWs5UFlrZWY1SithOGNQQTg2VS9F?=
- =?utf-8?B?bDUwd3NEVC9wQzNmT2QxMEV4c1phRGI3SEIwQ0pXTW9xMlUrQkFhOVVrNFl4?=
- =?utf-8?Q?t0Az9+w2i5h8ehkHE80vbuvG242aNFFWOeSvaPwRAB0E=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 763bf2b3-6590-4ed8-baec-08dbfab932a8
-X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB0332.INDP287.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Dec 2023 02:22:33.3611
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA0P287MB0019
+References: <20231211162656.2564267-1-peteryin.openbmc@gmail.com> <20231211162656.2564267-3-peteryin.openbmc@gmail.com>
+In-Reply-To: <20231211162656.2564267-3-peteryin.openbmc@gmail.com>
+From: Joel Stanley <joel@jms.id.au>
+Date: Tue, 12 Dec 2023 12:59:01 +1030
+Message-ID: <CACPK8XePx+PvDKzPMjPRn_g9z8yrtAmLvP8Qbepm1AVjuCbaKw@mail.gmail.com>
+Subject: Re: [PATCH v7 2/2] ARM: dts: aspeed: Harma: Add Meta Harma (AST2600) BMC
+To: Peter Yin <peteryin.openbmc@gmail.com>
+Cc: patrick@stwcx.xyz, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-hi,
-
-Thank you Conor for your carefully review, I need some time to digest 
-your comments. While I have some quick questions embeded.
-
-On 2023/12/9 0:47, Conor Dooley wrote:
-> On Fri, Dec 08, 2023 at 09:14:32AM +0800, Chen Wang wrote:
+On Tue, 12 Dec 2023 at 02:59, Peter Yin <peteryin.openbmc@gmail.com> wrote:
 >
->> +#define div_mask(width) ((1 << (width)) - 1)
-> Looks like this should be genmask.
-Yes, I will improve this.
+> Add linux device tree entry related to
+> the Meta(Facebook) computer-node system use an AT2600 BMC.
+> This node is named "Harma".
 >
->> +#define ENCODE_PLL_CTRL(fbdiv, p1, p2, refdiv) \
->> +	(((fbdiv & 0xfff) << 16) | ((p2 & 0x7) << 12) | ((p1 & 0x7) << 8) | (refdiv & 0x3f))
-> IMO this should be a function not a macro.
-Would like to listen why it should be a function instead of a macro? Any 
-experiences you can share with me?
->
->> +
->> +static inline int __sg2042_pll_enable(struct sg2042_pll_clock *pll, bool en)
-> Why the __ prefixing of function names btw?
+> Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
 
-:) I just want to differ/highlight these functions agaist those clk 
-operators. Anyway, this is indeed confusing, I will remove this ugly "__".
+Looks good, thanks for your work. This will be submitted for the 6.8
+merge window.
 
->> +{
->> +	unsigned int value = 0;
->> +	unsigned long enter;
->> +	struct regmap *map = pll->map;
->> +
->> +	if (en) {
->> +		/* wait pll lock */
->> +		enter = jiffies;
->> +		regmap_read(map, pll->offset_status, &value);
->> +		while (!((value >> pll->shift_status_lock) & 0x1)) {
->> +			regmap_read(map, pll->shift_status_lock, &value);
->> +			if (time_after(jiffies, enter + HZ / 10))
->> +				pr_warn("%s not locked\n", pll->name);
->> +		}
-> Can't you just use read_poll_timeout()?
-> https://elixir.bootlin.com/linux/latest/source/include/linux/iopoll.h#L16
-It looks like this, will check more.
->> +		/* wait pll updating */
->> +		enter = jiffies;
->> +		regmap_read(map, pll->shift_status_updating, &value);
->> +		while (((value >> pll->shift_status_updating) & 0x1)) {
->> +			regmap_read(map, pll->shift_status_updating, &value);
->> +			if (time_after(jiffies, enter + HZ / 10))
->> +				pr_warn("%s still updating\n", pll->name);
->> +		}
->> +		/* enable pll */
->> +		regmap_read(map, pll->offset_enable, &value);
->> +		regmap_write(map, pll->offset_enable, value | (1 << pll->shift_enable));
->> +	} else {
->> +		/* disable pll */
->> +		regmap_read(map, pll->offset_enable, &value);
->> +		regmap_write(map, pll->offset_enable, value & (~(1 << pll->shift_enable)));
->> +	}
->> +
->> +	return 0;
->> +}
->> + +static unsigned int __sg2042_get_table_div(
->> +	const struct clk_div_table *table,
->> +	unsigned int val)
->> +{
->> +	const struct clk_div_table *clkt;
->> +
->> +	for (clkt = table; clkt->div; clkt++)
->> +		if (clkt->val == val)
->> +			return clkt->div;
->> +	return 0;
->> +}
->> +
->> +static unsigned int __sg2042_get_div(
->> +	const struct clk_div_table *table,
->> +	unsigned int val,
->> +	unsigned long flags, u8 width)
->> +{
->> +	if (flags & CLK_DIVIDER_ONE_BASED)
->> +		return val;
->> +	if (flags & CLK_DIVIDER_POWER_OF_TWO)
->> +		return 1 << val;
->> +	if (flags & CLK_DIVIDER_MAX_AT_ZERO)
->> +		return val ? val : div_mask(width) + 1;
->> +	if (table)
->> +		return __sg2042_get_table_div(table, val);
->> +	return val + 1;
->> +}
-> Are these not effectively the same as clk_divider's ops?
-Will double check.
->
->> +
->> +/*
->> + * @reg_value: current register value
->> + * @parent_rate: parent frequency
->> + *
->> + * This function is used to calculate below "rate" in equation
->> + * rate = (parent_rate/REFDIV) x FBDIV/POSTDIV1/POSTDIV2
->> + *      = (parent_rate x FBDIV) / (REFDIV x POSTDIV1 x POSTDIV2)
->> + */
->> +static unsigned long __sg2042_pll_recalc_rate(
->> +	unsigned int reg_value,
->> +	unsigned long parent_rate)
->> +{
->> +	unsigned int fbdiv, refdiv;
->> +	unsigned int postdiv1, postdiv2;
->> +	u64 rate, numerator, denominator;
->> +
->> +	fbdiv = (reg_value >> 16) & 0xfff;
->> +	refdiv = reg_value & 0x3f;
->> +	postdiv1 = (reg_value >> 8) & 0x7;
->> +	postdiv2 = (reg_value >> 12) & 0x7;
-> IMO all of these are opportunities for GENMASK and defines.
-Looks like this, will double check.
->> +
->> +	numerator = parent_rate * fbdiv;
->> +	denominator = refdiv * postdiv1 * postdiv2;
->> +	do_div(numerator, denominator);
->> +	rate = numerator;
->> +
->> +	return rate;
->> +}
->> +
->> +/*
->> + * Below array is the total combination lists of POSTDIV1 and POSTDIV2
->> + * for example:
->> + * postdiv1_2[0] = {2, 4, 8}
->> + *           ==> div1 = 2, div2 = 4 , div1 * div2 = 8
->> + * And POSTDIV_RESULT_INDEX point to 3rd element in the array
->> + */
->> +#define	POSTDIV_RESULT_INDEX	2
->> +static int postdiv1_2[][3] = {
->> +	{2, 4,  8}, {3, 3,  9}, {2, 5, 10}, {2, 6, 12},
->> +	{2, 7, 14}, {3, 5, 15}, {4, 4, 16}, {3, 6, 18},
->> +	{4, 5, 20}, {3, 7, 21}, {4, 6, 24}, {5, 5, 25},
->> +	{4, 7, 28}, {5, 6, 30}, {5, 7, 35}, {6, 6, 36},
->> +	{6, 7, 42}, {7, 7, 49}
->> +};
->> +
->> +/*
->> + * Based on input rate/prate/fbdiv/refdiv, look up the postdiv1_2 table
->> + * to get the closest postdiiv combination.
->> + * @rate: FOUTPOSTDIV
->> + * @prate: parent rate, i.e. FREF
->> + * @fbdiv: FBDIV
->> + * @refdiv: REFDIV
->> + * @postdiv1: POSTDIV1, output
->> + * @postdiv2: POSTDIV2, output
->> + * See TRM:
->> + * FOUTPOSTDIV = FREF * FBDIV / REFDIV / (POSTDIV1 * POSTDIV2)
->> + * So we get following formula to get POSTDIV1 and POSTDIV2:
->> + * POSTDIV = (prate/REFDIV) x FBDIV/rate
->> + * above POSTDIV = POSTDIV1*POSTDIV2
->> + */
->> +static int __sg2042_pll_get_postdiv_1_2(
->> +	unsigned long rate,
->> +	unsigned long prate,
->> +	unsigned int fbdiv,
->> +	unsigned int refdiv,
->> +	unsigned int *postdiv1,
->> +	unsigned int *postdiv2)
-> This is not the coding style btw.
-Agree, will fix this.
->> +{
->> +	int index = 0;
->> +	int ret = 0;
->> +	u64 tmp0;
->> +
->> +	/* prate/REFDIV and result save to tmp0 */
->> +	tmp0 = prate;
->> +	do_div(tmp0, refdiv);
->> +
->> +	/* ((prate/REFDIV) x FBDIV) and result save to tmp0 */
->> +	tmp0 *= fbdiv;
->> +
->> +	/* ((prate/REFDIV) x FBDIV)/rate and result save to tmp0 */
->> +	do_div(tmp0, rate);
->> +
->> +	/* tmp0 is POSTDIV1*POSTDIV2, now we calculate div1 and div2 value */
->> +	if (tmp0 <= 7) {
->> +		/* (div1 * div2) <= 7, no need to use array search */
->> +		*postdiv1 = tmp0;
->> +		*postdiv2 = 1;
->> +	} else {
->> +		/* (div1 * div2) > 7, use array search */
->> +		for (index = 0; index < ARRAY_SIZE(postdiv1_2); index++) {
->> +			if (tmp0 > postdiv1_2[index][POSTDIV_RESULT_INDEX]) {
->> +				continue;
->> +			} else {
->> +				/* found it */
->> +				break;
->> +			}
->> +		}
->> +		if (index < ARRAY_SIZE(postdiv1_2)) {
->> +			*postdiv1 = postdiv1_2[index][1];
->> +			*postdiv2 = postdiv1_2[index][0];
->> +		} else {
->> +			pr_debug("%s can not find in postdiv array!\n", __func__);
->> +			ret = -EINVAL;
->> +		}
->> +	}
->> +
->> +	return ret;
->> +}
-> Reading this function it makes me wonder if (and I am far from the best
-> person to comment, someone like Stephen is vastly more qualified) you
-> should model this as several "stages", each implemented by the
-> "standard" clocks - like clk_divider etc. The code here is quite
-> complicated IMO as it seems to be trying to implement several stages of
-> division in one go.
+Reviewed-by: Joel Stanley <joel@jms.id.au>
 
-The objective of __sg2042_pll_get_postdiv_1_2() is straightforward: 
-based on the formula defined by the TRM, with input 
-rate/prate/fbdiv/refdiv, we can get the possiblle combination of 
-POSTDIV1 and POSTDIV2 by looking up the table of postdiv1_2. We will 
-later use it to setup the clock register.
 
-Though the codes looks a bit complicated, but accually it is calculate 
-with the formula : POSTDIV = (prate/REFDIV) x FBDIV/rate, I just 
-separate it into several steps to make it easy to understand, I have 
-listed the formula in the comment on top of the function.
+> ---
 
+For next time: Please describe what you've changed between this
+version and the previous version just here, below the ---. This helps
+reviewers understand what has changed, and why it's changed, from the
+previous version.
+
+>  arch/arm/boot/dts/aspeed/Makefile             |   1 +
+>  .../dts/aspeed/aspeed-bmc-facebook-harma.dts  | 585 ++++++++++++++++++
+>  2 files changed, 586 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
 >
-> There's quite a lot in the driver and I will admit that I have not read
-> it all my any means (I skimmed from here onwards), but in general my
-> advice would be to try and reuse the generic code as much as possible.
-Agree, I will double check and try to optimize the code in next revision.
+> diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
+> index 23cbc7203a8e..92ba3208d2a2 100644
+> --- a/arch/arm/boot/dts/aspeed/Makefile
+> +++ b/arch/arm/boot/dts/aspeed/Makefile
+> @@ -19,6 +19,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
+>         aspeed-bmc-facebook-fuji.dtb \
+>         aspeed-bmc-facebook-galaxy100.dtb \
+>         aspeed-bmc-facebook-greatlakes.dtb \
+> +       aspeed-bmc-facebook-harma.dtb \
+>         aspeed-bmc-facebook-minipack.dtb \
+>         aspeed-bmc-facebook-tiogapass.dtb \
+>         aspeed-bmc-facebook-wedge40.dtb \
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
+> new file mode 100644
+> index 000000000000..7db3f9eb0016
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
+> @@ -0,0 +1,585 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +// Copyright 2023 Facebook Inc.
+> +
+> +/dts-v1/;
+> +#include "aspeed-g6.dtsi"
+> +#include <dt-bindings/gpio/aspeed-gpio.h>
+> +#include <dt-bindings/i2c/i2c.h>
+> +
+> +/ {
+> +       model = "Facebook Harma";
+> +       compatible = "facebook,harma-bmc", "aspeed,ast2600";
+> +
+> +       aliases {
+> +               serial0 = &uart1;
+> +               serial1 = &uart6;
+> +               serial2 = &uart2;
+> +               serial4 = &uart5;
+> +
+> +               i2c20 = &imux20;
+> +               i2c21 = &imux21;
+> +               i2c22 = &imux22;
+> +               i2c23 = &imux23;
+> +               i2c24 = &imux24;
+> +               i2c25 = &imux25;
+> +               i2c26 = &imux26;
+> +               i2c27 = &imux27;
+> +               i2c28 = &imux28;
+> +               i2c29 = &imux29;
+> +               i2c30 = &imux30;
+> +               i2c31 = &imux31;
+> +       };
+> +
+> +       chosen {
+> +               stdout-path = &uart5;
+> +       };
+> +
+> +       memory@80000000 {
+> +               device_type = "memory";
+> +               reg = <0x80000000 0x80000000>;
+> +       };
+> +
+> +       iio-hwmon {
+> +               compatible = "iio-hwmon";
+> +               io-channels = <&adc0 0>, <&adc0 1>, <&adc0 2>, <&adc0 3>,
+> +                             <&adc0 4>, <&adc0 5>, <&adc0 6>, <&adc0 7>,
+> +                             <&adc1 2>;
+> +       };
+> +
+> +       leds {
+> +               compatible = "gpio-leds";
+> +
+> +               led-0 {
+> +                       label = "bmc_heartbeat_amber";
+> +                       gpios = <&gpio0 ASPEED_GPIO(P, 7) GPIO_ACTIVE_LOW>;
+> +                       linux,default-trigger = "heartbeat";
+> +               };
+> +
+> +               led-1 {
+> +                       label = "fp_id_amber";
+> +                       default-state = "off";
+> +                       gpios = <&gpio0 13 GPIO_ACTIVE_HIGH>;
+> +               };
+> +
+> +               led-2 {
+> +                       label = "power_blue";
+> +                       default-state = "off";
+> +                       gpios = <&gpio0 124 GPIO_ACTIVE_HIGH>;
+> +               };
+> +       };
+> +};
+> +
+> +// HOST BIOS Debug
+> +&uart1 {
+> +       status = "okay";
+> +};
+> +
+> +// SOL Host Console
+> +&uart2 {
+> +       status = "okay";
+> +       pinctrl-0 = <>;
+> +};
+> +
+> +// SOL BMC Console
+> +&uart4 {
+> +       status = "okay";
+> +       pinctrl-0 = <>;
+> +};
+> +
+> +// BMC Debug Console
+> +&uart5 {
+> +       status = "okay";
+> +};
+> +
+> +// MTIA
+> +&uart6 {
+> +       status = "okay";
+> +};
+> +
+> +&uart_routing {
+> +       status = "okay";
+> +};
+> +
+> +&vuart1 {
+> +       status = "okay";
+> +};
+> +
+> +&wdt1 {
+> +       status = "okay";
+> +       pinctrl-names = "default";
+> +       pinctrl-0 = <&pinctrl_wdtrst1_default>;
+> +       aspeed,reset-type = "soc";
+> +       aspeed,external-signal;
+> +       aspeed,ext-push-pull;
+> +       aspeed,ext-active-high;
+> +       aspeed,ext-pulse-duration = <256>;
+> +};
+> +
+> +&mac3 {
+> +       status = "okay";
+> +       pinctrl-names = "default";
+> +       pinctrl-0 = <&pinctrl_rmii4_default>;
+> +       use-ncsi;
+> +       mlx,multi-host;
+> +};
+> +
+> +&rtc {
+> +       status = "okay";
+> +};
+> +
+> +&fmc {
+> +       status = "okay";
+> +
+> +       flash@0 {
+> +               status = "okay";
+> +               m25p,fast-read;
+> +               label = "bmc";
+> +               spi-max-frequency = <50000000>;
+> +#include "openbmc-flash-layout-128.dtsi"
+> +       };
+> +
+> +       flash@1 {
+> +               status = "okay";
+> +               m25p,fast-read;
+> +               label = "alt-bmc";
+> +               spi-max-frequency = <50000000>;
+> +       };
+> +};
+> +
+> +// BIOS Flash
+> +&spi2 {
+> +       status = "okay";
+> +       pinctrl-names = "default";
+> +       pinctrl-0 = <&pinctrl_spi2_default>;
+> +
+> +       flash@0 {
+> +               status = "okay";
+> +               m25p,fast-read;
+> +               label = "pnor";
+> +               spi-max-frequency = <12000000>;
+> +               spi-tx-bus-width = <2>;
+> +               spi-rx-bus-width = <2>;
+> +       };
+> +};
+> +
+> +&kcs2 {
+> +       status = "okay";
+> +       aspeed,lpc-io-reg = <0xca8>;
+> +};
+> +
+> +&kcs3 {
+> +       status = "okay";
+> +       aspeed,lpc-io-reg = <0xca2>;
+> +};
+> +
+> +&i2c0 {
+> +       status = "okay";
+> +
+> +       max31790@30{
+> +               compatible = "max31790";
+> +               reg = <0x30>;
+> +               #address-cells = <1>;
+> +               #size-cells = <0>;
+> +       };
+> +};
+> +
+> +&i2c1 {
+> +       status = "okay";
+> +
+> +       tmp75@4b {
+> +               compatible = "ti,tmp75";
+> +               reg = <0x4b>;
+> +       };
+> +};
+> +
+> +&i2c2 {
+> +       status = "okay";
+> +
+> +       max31790@30{
+> +               compatible = "max31790";
+> +               reg = <0x30>;
+> +               #address-cells = <1>;
+> +               #size-cells = <0>;
+> +       };
+> +};
+> +
+> +&i2c3 {
+> +       status = "okay";
+> +
+> +       i2c-mux@70 {
+> +               compatible = "nxp,pca9543";
+> +               reg = <0x70>;
+> +               #address-cells = <1>;
+> +               #size-cells = <0>;
+> +
+> +               imux20: i2c@0 {
+> +                       #address-cells = <1>;
+> +                       #size-cells = <0>;
+> +                       reg = <0>;
+> +                       //Retimer Flash
+> +                       eeprom@50 {
+> +                               compatible = "atmel,24c2048";
+> +                               reg = <0x50>;
+> +                               pagesize = <128>;
+> +                       };
+> +               };
+> +               imux21: i2c@1 {
+> +                       #address-cells = <1>;
+> +                       #size-cells = <0>;
+> +                       reg = <1>;
+> +               };
+> +       };
+> +};
+> +
+> +&i2c4 {
+> +       status = "okay";
+> +       // PDB FRU
+> +       eeprom@52 {
+> +               compatible = "atmel,24c64";
+> +               reg = <0x52>;
+> +       };
+> +
+> +       delta_brick@69 {
+> +               compatible = "pmbus";
+> +               reg = <0x69>;
+> +       };
+> +};
+> +
+> +&i2c5 {
+> +       status = "okay";
+> +};
+> +
+> +&i2c6 {
+> +       status = "okay";
+> +
+> +       i2c-mux@70 {
+> +               compatible = "nxp,pca9543";
+> +               reg = <0x70>;
+> +               #address-cells = <1>;
+> +               #size-cells = <0>;
+> +
+> +               imux22: i2c@0 {
+> +                       #address-cells = <1>;
+> +                       #size-cells = <0>;
+> +                       reg = <0>;
+> +               };
+> +               imux23: i2c@1 {
+> +                       #address-cells = <1>;
+> +                       #size-cells = <0>;
+> +                       reg = <1>;
+> +               };
+> +       };
+> +};
+> +
+> +&i2c7 {
+> +       status = "okay";
+> +};
+> +
+> +&i2c8 {
+> +       status = "okay";
+> +};
+> +
+> +&i2c9 {
+> +       status = "okay";
+> +
+> +       gpio@30 {
+> +               compatible = "nxp,pca9555";
+> +               reg = <0x30>;
+> +               gpio-controller;
+> +               #gpio-cells = <2>;
+> +       };
+> +       gpio@31 {
+> +               compatible = "nxp,pca9555";
+> +               reg = <0x31>;
+> +               gpio-controller;
+> +               #gpio-cells = <2>;
+> +       };
+> +
+> +       i2c-mux@71 {
+> +               compatible = "nxp,pca9546";
+> +               reg = <0x71>;
+> +               #address-cells = <1>;
+> +               #size-cells = <0>;
+> +
+> +               imux24: i2c@0 {
+> +                       #address-cells = <1>;
+> +                       #size-cells = <0>;
+> +                       reg = <0>;
+> +               };
+> +               imux25: i2c@1 {
+> +                       #address-cells = <1>;
+> +                       #size-cells = <0>;
+> +                       reg = <1>;
+> +               };
+> +               imux26: i2c@2 {
+> +                       #address-cells = <1>;
+> +                       #size-cells = <0>;
+> +                       reg = <2>;
+> +               };
+> +               imux27: i2c@3 {
+> +                       #address-cells = <1>;
+> +                       #size-cells = <0>;
+> +                       reg = <3>;
+> +               };
+> +       };
+> +       // PTTV FRU
+> +       eeprom@52 {
+> +               compatible = "atmel,24c64";
+> +               reg = <0x52>;
+> +       };
+> +};
+> +
+> +&i2c11 {
+> +       status = "okay";
+> +};
+> +
+> +&i2c12 {
+> +       status = "okay";
+> +};
+> +
+> +&i2c13 {
+> +       status = "okay";
+> +
+> +       i2c-mux@70 {
+> +               compatible = "nxp,pca9545";
+> +               reg = <0x70>;
+> +               #address-cells = <1>;
+> +               #size-cells = <0>;
+> +
+> +               imux28: i2c@0 {
+> +                       #address-cells = <1>;
+> +                       #size-cells = <0>;
+> +                       reg = <0>;
+> +               };
+> +               imux29: i2c@1 {
+> +                       #address-cells = <1>;
+> +                       #size-cells = <0>;
+> +                       reg = <1>;
+> +                       //MB FRU
+> +                       eeprom@54 {
+> +                               compatible = "atmel,24c64";
+> +                               reg = <0x54>;
+> +                       };
+> +               };
+> +               imux30: i2c@2 {
+> +                       #address-cells = <1>;
+> +                       #size-cells = <0>;
+> +                       reg = <2>;
+> +               };
+> +               imux31: i2c@3 {
+> +                       #address-cells = <1>;
+> +                       #size-cells = <0>;
+> +                       reg = <3>;
+> +               };
+> +       };
+> +};
+> +
+> +// To Debug card
+> +&i2c14 {
+> +       status = "okay";
+> +       multi-master;
+> +
+> +       ipmb@10 {
+> +               compatible = "ipmb-dev";
+> +               reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
+> +               i2c-protocol;
+> +       };
+> +};
+> +
+> +&i2c15 {
+> +       status = "okay";
+> +
+> +       // SCM FRU
+> +       eeprom@50 {
+> +               compatible = "atmel,24c64";
+> +               reg = <0x50>;
+> +       };
+> +
+> +       // BSM FRU
+> +       eeprom@56 {
+> +               compatible = "atmel,24c64";
+> +               reg = <0x56>;
+> +       };
+> +};
+> +
+> +&adc0 {
+> +       aspeed,int-vref-microvolt = <2500000>;
+> +       status = "okay";
+> +       pinctrl-0 = <&pinctrl_adc0_default &pinctrl_adc1_default
+> +               &pinctrl_adc2_default &pinctrl_adc3_default
+> +               &pinctrl_adc4_default &pinctrl_adc5_default
+> +               &pinctrl_adc6_default &pinctrl_adc7_default>;
+> +};
+> +
+> +&adc1 {
+> +       aspeed,int-vref-microvolt = <2500000>;
+> +       status = "okay";
+> +       pinctrl-names = "default";
+> +       pinctrl-0 = <&pinctrl_adc10_default>;
+> +};
+> +
+> +&ehci0 {
+> +       status = "okay";
+> +};
+> +
+> +&gpio0 {
+> +       pinctrl-names = "default";
+> +       gpio-line-names =
+> +       /*A0-A7*/       "","","","","","","","",
+> +       /*B0-B7*/       "","","","",
+> +                       "bmc-spi-mux-select-0","led-identify","","",
+> +       /*C0-C7*/       "","","","","","","","",
+> +       /*D0-D7*/       "","","sol-uart-select","","","","","",
+> +       /*E0-E7*/       "","","","","","","","",
+> +       /*F0-F7*/       "","","","","","","","",
+> +       /*G0-G7*/       "","","","","","","","",
+> +       /*H0-H7*/       "","","","","","","","",
+> +       /*I0-I7*/       "","","","","","","","",
+> +       /*J0-J7*/       "","","","","","","","",
+> +       /*K0-K7*/       "","","","","","","","",
+> +       /*L0-L7*/       "","","","","","","","",
+> +       /*M0-M7*/       "","","","","","","","",
+> +       /*N0-N7*/       "led-postcode-0","led-postcode-1",
+> +                       "led-postcode-2","led-postcode-3",
+> +                       "led-postcode-4","led-postcode-5",
+> +                       "led-postcode-6","led-postcode-7",
+> +       /*O0-O7*/       "","","","","","","","",
+> +       /*P0-P7*/       "power-button","power-host-control",
+> +                       "reset-button","","led-power","","","",
+> +       /*Q0-Q7*/       "","","","","","","","",
+> +       /*R0-R7*/       "","","","","","","","",
+> +       /*S0-S7*/       "","","","","","","","",
+> +       /*T0-T7*/       "","","","","","","","",
+> +       /*U0-U7*/       "","","","","","","led-identify-gate","",
+> +       /*V0-V7*/       "","","","",
+> +                       "rtc-battery-voltage-read-enable","","","",
+> +       /*W0-W7*/       "","","","","","","","",
+> +       /*X0-X7*/       "","","","","","","","",
+> +       /*Y0-Y7*/       "","","","","","","","",
+> +       /*Z0-Z7*/       "","","","","","","","";
+> +};
+> +
+> +&sgpiom0 {
+> +       status = "okay";
+> +       max-ngpios = <128>;
+> +       ngpios = <128>;
+> +       bus-frequency = <2000000>;
+> +       gpio-line-names =
+> +       /*in - out - in - out */
+> +       /*A0-A3 line 0-7*/
+> +       "presence-scm-cable","power-config-disable-e1s-0",
+> +       "","",
+> +       "","power-config-disable-e1s-1",
+> +       "","",
+> +       /*A4-A7 line 8-15*/
+> +       "","power-config-asic-module-enable",
+> +       "","power-config-asic-power-good",
+> +       "","power-config-pdb-power-good",
+> +       "presence-cpu","smi-control-n",
+> +       /*B0-B3 line 16-23*/
+> +       "","nmi-control-n",
+> +       "","nmi-control-sync-flood-n",
+> +       "","",
+> +       "","",
+> +       /*B4-B7 line 24-31*/
+> +       "","FM_CPU_SP5R1",
+> +       "reset-cause-rsmrst","FM_CPU_SP5R2",
+> +       "","FM_CPU_SP5R3",
+> +       "","FM_CPU_SP5R4",
+> +       /*C0-C3 line 32-39*/
+> +       "","FM_CPU0_SA0",
+> +       "","FM_CPU0_SA1",
+> +       "","rt-cpu0-p0-enable",
+> +       "","rt-cpu0-p1-enable",
+> +       /*C4-C7 line 40-47*/
+> +       "","smb-rt-rom-p0-select",
+> +       "","smb-rt-rom-p1-select",
+> +       "","i3c-cpu-mux0-oe-n",
+> +       "","i3c-cpu-mux0-select",
+> +       /*D0-D3 line 48-55*/
+> +       "","i3c-cpu-mux1-oe-n",
+> +       "","i3c-cpu-mux1-select",
+> +       "","reset-control-bmc",
+> +       "","reset-control-cpu0-p0-mux",
+> +       /*D4-D7 line 56-63*/
+> +       "","reset-control-cpu0-p1-mux",
+> +       "","reset-control-e1s-mux",
+> +       "power-host-good","reset-control-mb-mux",
+> +       "","reset-control-smb-e1s",
+> +       /*E0-E3 line 64-71*/
+> +       "","reset-control-smb-e1s",
+> +       "host-ready-n","reset-control-srst",
+> +       "presence-e1s-0","reset-control-usb-hub",
+> +       "","reset-control",
+> +       /*E4-E7 line 72-79*/
+> +       "presence-e1s-1","reset-control-cpu-kbrst",
+> +       "","reset-control-platrst",
+> +       "","bmc-jtag-mux-select-0",
+> +       "","bmc-jtag-mux-select-1",
+> +       /*F0-F3 line 80-87*/
+> +       "","bmc-jtag-select",
+> +       "","bmc-ready-n",
+> +       "","bmc-ready-sgpio",
+> +       "","rt-cpu0-p0-force-enable",
+> +       /*F4-F7 line 88-95*/
+> +       "presence-asic-modules-0","rt-cpu0-p1-force-enable",
+> +       "presence-asic-modules-1","bios-debug-msg-disable",
+> +       "","uart-control-buffer-select",
+> +       "","ac-control-n",
+> +       /*G0-G3 line 96-103*/
+> +       "FM_CPU_CORETYPE2","",
+> +       "FM_CPU_CORETYPE1","",
+> +       "FM_CPU_CORETYPE0","",
+> +       "FM_BOARD_REV_ID5","",
+> +       /*G4-G7 line 104-111*/
+> +       "FM_BOARD_REV_ID4","",
+> +       "FM_BOARD_REV_ID3","",
+> +       "FM_BOARD_REV_ID2","",
+> +       "FM_BOARD_REV_ID1","",
+> +       /*H0-H3 line 112-119*/
+> +       "FM_BOARD_REV_ID0","",
+> +       "","","","","","",
+> +       /*H4-H7 line 120-127*/
+> +       "","",
+> +       "reset-control-pcie-expansion-3","",
+> +       "reset-control-pcie-expansion-2","",
+> +       "reset-control-pcie-expansion-1","",
+> +       /*I0-I3 line 128-135*/
+> +       "reset-control-pcie-expansion-0","",
+> +       "FM_EXP_SLOT_ID1","",
+> +       "FM_EXP_SLOT_ID0","",
+> +       "","",
+> +       /*I4-I7 line 136-143*/
+> +       "","","","","","","","",
+> +       /*J0-J3 line 144-151*/
+> +       "","","","","","","","",
+> +       /*J4-J7 line 152-159*/
+> +       "SLOT_ID_BCB_0","",
+> +       "SLOT_ID_BCB_1","",
+> +       "SLOT_ID_BCB_2","",
+> +       "SLOT_ID_BCB_3","",
+> +       /*K0-K3 line 160-167*/
+> +       "","","","","","","","",
+> +       /*K4-K7 line 168-175*/
+> +       "","","","","","","","",
+> +       /*L0-L3 line 176-183*/
+> +       "","","","","","","","",
+> +       /*L4-L7 line 184-191*/
+> +       "","","","","","","","",
+> +       /*M0-M3 line 192-199*/
+> +       "","","","","","","","",
+> +       /*M4-M7 line 200-207*/
+> +       "","","","","","","","",
+> +       /*N0-N3 line 208-215*/
+> +       "","","","","","","","",
+> +       /*N4-N7 line 216-223*/
+> +       "","","","","","","","",
+> +       /*O0-O3 line 224-231*/
+> +       "","","","","","","","",
+> +       /*O4-O7 line 232-239*/
+> +       "","","","","","","","",
+> +       /*P0-P3 line 240-247*/
+> +       "","","","","","","","",
+> +       /*P4-P7 line 248-255*/
+> +       "","","","","","","","";
+> +};
+> --
+> 2.25.1
 >
-> Thanks,
-> Conor.
->
-......
 
