@@ -1,153 +1,122 @@
-Return-Path: <devicetree+bounces-24549-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24550-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FC5C80FA2A
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 23:20:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E23FF80FA83
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 23:44:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD8F42821DB
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 22:20:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 165C91C20D80
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 22:44:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4853660EB;
-	Tue, 12 Dec 2023 22:20:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ELbS/ZBc"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95AB51798F;
+	Tue, 12 Dec 2023 22:44:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80683660E3;
-	Tue, 12 Dec 2023 22:20:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 0FC50C433C9;
-	Tue, 12 Dec 2023 22:20:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702419629;
-	bh=tRQTTgbl7FgoXWnczF+Nu4dcXEMjiXldZt7YykkAb7c=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=ELbS/ZBchr9V1OUApYbsPxVfC3QhK6gRdEtyEwYCxImEAmzDbWjyqHJWD7AKHqx7X
-	 1+4RfdahigCRl5Jw/P1jtwgOqsSBAhrILUK1xrDmeBifpFfMhi/LmhZ6sBJfpA+LJD
-	 CzKdS2nDzPg4mZ3cn+9QPo2uYPUE5o09G91tCT3En/TaWVP37X2hnq6fwH03czEUmS
-	 W8nyC/NInZCNDO7/bQvA1MaZLXKS1upyxidzgSVopOC+5TgrYONnszIomeNY9Z0wn2
-	 nBdGCcJVcyVbnwWYYIGEY0Lv4g3fl/G3p5VSmbNux35T5zQrM2qefYGD4C8QkGkjCH
-	 +Qh/vJAsKuHmA==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id E9729DD4EFE;
-	Tue, 12 Dec 2023 22:20:28 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE61592;
+	Tue, 12 Dec 2023 14:44:28 -0800 (PST)
+Received: by mail-oi1-f172.google.com with SMTP id 5614622812f47-3b844357f7cso4750041b6e.1;
+        Tue, 12 Dec 2023 14:44:28 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702421068; x=1703025868;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VMphJ493+DciN8lLws8RSRlMD94qy0SoU2WP5DJOjj4=;
+        b=kwQylEoU8SK+V8fU2+QG8mF3SIhcOplIlJX2Yx5KYzCmKiICY9DVMYb2TdWlTN+FKs
+         OmQkbGvAHe6pTFFIYsVIIggVV6OQr87kU/qZkr9KuF7Iv4yiUDzlyFoBdSUME+ddYwT5
+         uk8Yd5BXp1JT7Uy9PmmGa3OAhwYnaOa8fGV9IY5AowDl3ex5IcTgecfAY5cfDn1I7+74
+         wuyJgVD7HLSeFXxJGGKXYfIUWXfuUDvaHQ8Q3e0GPyqT5jWyABymAKvQK7IVLE+fDeW1
+         Fd1rFjVR1j/MV+pafjeq9oowg/7ks5Kl01BJTn3o0LG2htTE2BeR92qeH3h4SntkP6r2
+         4VDQ==
+X-Gm-Message-State: AOJu0YySHBo7hzq3x5WAxwiuwHJeO1Z8YtP6EsrBN/h2pHHquM6jDZMq
+	MZxdyQyR0+1IaWfl6aCnqQ==
+X-Google-Smtp-Source: AGHT+IFjb8zyZy6HgbNr/jID6qfej7EjNW9FQEisDXKCGMer4Y5UYOBAfKHQdPfu1aEWyVUhGqcagQ==
+X-Received: by 2002:a05:6808:148a:b0:3b9:ca51:5186 with SMTP id e10-20020a056808148a00b003b9ca515186mr7781124oiw.42.1702421068119;
+        Tue, 12 Dec 2023 14:44:28 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id ct7-20020a056808360700b003b9fd2af1f1sm1970848oib.32.2023.12.12.14.44.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Dec 2023 14:44:27 -0800 (PST)
+Received: (nullmailer pid 2966246 invoked by uid 1000);
+	Tue, 12 Dec 2023 22:44:26 -0000
+Date: Tue, 12 Dec 2023 16:44:26 -0600
+From: Rob Herring <robh@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: bhelgaas@google.com, conor+dt@kernel.org, devicetree@vger.kernel.org, festevam@gmail.com, helgaas@kernel.org, hongxing.zhu@nxp.com, imx@lists.linux.dev, kernel@pengutronix.de, krzysztof.kozlowski+dt@linaro.org, kw@linux.com, l.stach@pengutronix.de, linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, lpieralisi@kernel.org, manivannan.sadhasivam@linaro.org, s.hauer@pengutronix.de, shawnguo@kernel.org
+Subject: Re: [PATCH v3 08/13] dt-bindings: imx6q-pcie: Add imx95 pcie
+ compatible string
+Message-ID: <20231212224426.GA2948988-robh@kernel.org>
+References: <20231211215842.134823-1-Frank.Li@nxp.com>
+ <20231211215842.134823-9-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v4 00/20] riscv: report more ISA extensions through hwprobe
-From: patchwork-bot+linux-riscv@kernel.org
-Message-Id: 
- <170241962895.7374.4064539637441634071.git-patchwork-notify@kernel.org>
-Date: Tue, 12 Dec 2023 22:20:28 +0000
-References: <20231114141256.126749-1-cleger@rivosinc.com>
-In-Reply-To: <20231114141256.126749-1-cleger@rivosinc.com>
-To: =?utf-8?b?Q2zDqW1lbnQgTMOpZ2VyIDxjbGVnZXJAcml2b3NpbmMuY29tPg==?=@codeaurora.org
-Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, palmer@rivosinc.com,
- paul.walmsley@sifive.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, aou@eecs.berkeley.edu, corbet@lwn.net,
- ajones@ventanamicro.com, evan@rivosinc.com, conor@kernel.org,
- sameo@rivosinc.com, jerry.shih@sifive.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231211215842.134823-9-Frank.Li@nxp.com>
 
-Hello:
-
-This series was applied to riscv/linux.git (for-next)
-by Palmer Dabbelt <palmer@rivosinc.com>:
-
-On Tue, 14 Nov 2023 09:12:36 -0500 you wrote:
-> In order to be able to gather more information about the supported ISA
-> extensions from userspace using the hwprobe syscall, add more ISA
-> extensions report. This series adds the following ISA extensions parsing
-> support:
+On Mon, Dec 11, 2023 at 04:58:37PM -0500, Frank Li wrote:
+> From: Richard Zhu <hongxing.zhu@nxp.com>
 > 
-> - Zfh[min]
-> - Zvfh[min]
-> - Zihintntl
-> - Zbc
-> - Zvbb
-> - Zvbc
-> - Zvkb
-> - Zvkg
-> - Zvkned
-> - Zvknh[ab]
-> - Zvksed
-> - Zvksh
-> - Zvkn
-> - Zvknc
-> - Zvkng
-> - Zvks
-> - Zvksc
-> - Zvksg
-> - Zvkt
-> - Zfa
-> - Zbkb
-> - Zbkc
-> - Zbkx
-> - Zknd
-> - Zkne
-> - Zknh
-> - Zkr
-> - Zksed
-> - Zksh
-> - Zkt
+> Add i.MX95 PCIe "fsl,imx95-pcie" compatible string.
+> Add "atu" and "serdes" to reg-names.
 > 
-> [...]
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> ---
+> 
+> Notes:
+>     Change from v2 to v3
+>     - Remove krzy's ACK tag
+>     - Add condition check for imx95, which required more reg-names then old
+>     platform, so need Krzy review again,
+>     
+>     Change from v1 to v2
+>     - add Krzy's ACK tag
+> 
+>  .../bindings/pci/fsl,imx6q-pcie.yaml           | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+> index 81bbb8728f0f9..b8fcf8258f031 100644
+> --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+> @@ -29,6 +29,7 @@ properties:
+>        - fsl,imx8mq-pcie
+>        - fsl,imx8mm-pcie
+>        - fsl,imx8mp-pcie
+> +      - fsl,imx95-pcie
+>  
+>    reg:
+>      items:
+> @@ -90,6 +91,22 @@ required:
+>  allOf:
+>    - $ref: /schemas/pci/snps,dw-pcie.yaml#
+>    - $ref: /schemas/pci/fsl,imx6q-pcie-common.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - fsl,imx95-pcie
+> +    then:
+> +      properties:
+> +        reg:
+> +          minItems: 4
+> +        reg-names:
+> +          items:
+> +            - const: dbi
+> +            - const: serdes
 
-Here is the summary with links:
-  - [v4,01/20] riscv: add ISA extension parsing for Zbc
-    https://git.kernel.org/riscv/c/88e752f0986f
-  - [v4,02/20] riscv: hwprobe: export missing Zbc ISA extension
-    https://git.kernel.org/riscv/c/2ae2b9097b2e
-  - [v4,03/20] riscv: add ISA extension parsing for scalar crypto
-    https://git.kernel.org/riscv/c/5ee88a915d4b
-  - [v4,04/20] riscv: hwprobe: add support for scalar crypto ISA extensions
-    https://git.kernel.org/riscv/c/18883cef7e64
-  - [v4,05/20] dt-bindings: riscv: add scalar crypto ISA extensions description
-    https://git.kernel.org/riscv/c/ffd19e815367
-  - [v4,06/20] riscv: add ISA extension parsing for vector crypto
-    https://git.kernel.org/riscv/c/4fa9e167b63b
-  - [v4,07/20] riscv: hwprobe: export vector crypto ISA extensions
-    https://git.kernel.org/riscv/c/d06b89615a9e
-  - [v4,08/20] dt-bindings: riscv: add vector crypto ISA extensions description
-    https://git.kernel.org/riscv/c/eb8c82b7a8c4
-  - [v4,09/20] riscv: add ISA extension parsing for Zfh/Zfh[min]
-    https://git.kernel.org/riscv/c/68bddb2748ac
-  - [v4,10/20] riscv: hwprobe: export Zfh[min] ISA extensions
-    https://git.kernel.org/riscv/c/5cb9bea00d12
-  - [v4,11/20] dt-bindings: riscv: add Zfh[min] ISA extensions description
-    https://git.kernel.org/riscv/c/6853ab83405c
-  - [v4,12/20] riscv: add ISA extension parsing for Zihintntl
-    https://git.kernel.org/riscv/c/8ab84bf68d2b
-  - [v4,13/20] riscv: hwprobe: export Zhintntl ISA extension
-    https://git.kernel.org/riscv/c/814d9823088a
-  - [v4,14/20] dt-bindings: riscv: add Zihintntl ISA extension description
-    https://git.kernel.org/riscv/c/4bd2e33d1613
-  - [v4,15/20] riscv: add ISA extension parsing for Zvfh[min]
-    https://git.kernel.org/riscv/c/c7fa1ef17e6f
-  - [v4,16/20] riscv: hwprobe: export Zvfh[min] ISA extensions
-    https://git.kernel.org/riscv/c/9a42ab69b658
-  - [v4,17/20] dt-bindings: riscv: add Zvfh[min] ISA extension description
-    https://git.kernel.org/riscv/c/1f532a7d898e
-  - [v4,18/20] riscv: add ISA extension parsing for Zfa
-    https://git.kernel.org/riscv/c/4758aec519ae
-  - [v4,19/20] riscv: hwprobe: export Zfa ISA extension
-    https://git.kernel.org/riscv/c/f838a77a4881
-  - [v4,20/20] dt-bindings: riscv: add Zfa ISA extension description
-    https://git.kernel.org/riscv/c/e810a257576f
+Did you test this? It should fail because 'serdes' would need to be 
+added to snps,dw-pcie.yaml.
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+Is this really not a separate phy block? A separate node would be 
+ideal. If not, there's already a 'phy' name you can use here. We don't 
+want more random names.
 
-
+Rob
 
