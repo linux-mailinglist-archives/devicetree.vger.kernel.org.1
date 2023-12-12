@@ -1,125 +1,103 @@
-Return-Path: <devicetree+bounces-24354-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24355-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C77380ED39
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 14:18:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52B0980ED65
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 14:24:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6D1B51C20CCC
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 13:18:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8318E1C20AA4
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 13:24:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AA8A61680;
-	Tue, 12 Dec 2023 13:18:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kTekyR63"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8070F6168E;
+	Tue, 12 Dec 2023 13:24:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAE9D19B1;
-	Tue, 12 Dec 2023 05:17:54 -0800 (PST)
-Received: by mail-oi1-x22f.google.com with SMTP id 5614622812f47-3b9b6ba42a4so2623962b6e.0;
-        Tue, 12 Dec 2023 05:17:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702387074; x=1702991874; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=vejtt1vJmeMimDpZjsg0bJpa54Rp+HdUAmtTiNxdWkk=;
-        b=kTekyR63PiLadLtLc2/cFwSs+0IyaHwn1VncUaWtBACP4hfQwi4V3o3buHkPDLOojW
-         DwXIujru9ETMGjOnCrn6rqx9iBX8gsV5he22pmv7hiUBimCGfM467LgDEcO5SAFpC9AI
-         TV338b+lIUNz4qonP9ILQrGgJbkcn5o6kADfW3ESn8Ir1hPKL1U6zrVP6IlQkVltJ4fH
-         658P2q6HpmEiKVlmPNYvljw6sW6E+x48h/HgSLh2LyqjpQSP6YgORcgVud9hGPCUIipc
-         y9CFtx1MKFZV8AntE8ABwudQ5T6UX5yHblcBF+pfmd9iri3E4PCOeUkTq9SnQs8+CPTY
-         NSwA==
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF59DA8;
+	Tue, 12 Dec 2023 05:24:46 -0800 (PST)
+Received: by mail-oi1-f171.google.com with SMTP id 5614622812f47-3b9dc3215d2so2266201b6e.0;
+        Tue, 12 Dec 2023 05:24:46 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702387074; x=1702991874;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vejtt1vJmeMimDpZjsg0bJpa54Rp+HdUAmtTiNxdWkk=;
-        b=XMEy2bRHqLGxI43XBFwLe0xg4SBz3/A9/ZliyagQsOFnlHHua2HmitiViR33HiXl32
-         5beW9006/cjkbrGhERgBSjvOVPAwJeEXfVYW/zIEEyu8SPOvd1XiD1/AOQqVJgKMmQtF
-         M2Rw2hwMhwHxiE6IJRfH+hLXHUeoUc+uJ9Ctj9hS4wkmGYQ62w4nUFpAMOP4ml2OvvZw
-         R2ygy1vidnJ6KmZiJ7oaJ1Y5T/dLmkMfiMd7/QholMQyu2NjcCocHP5WNAtOVQIifnnb
-         ihc6iqwAO0IUCzYrNf7dpZGL1B5ujPMEQQ97ma2+re7ZFnRntvm88vEMpC26forA0SsQ
-         qEQg==
-X-Gm-Message-State: AOJu0YwW1mG3LGaXS4cWcEzNKtHhNAHMZ8ettR1PWtMycCcCRXD/M7yp
-	rmO7AxHvz8zyneCsHsdvnOhKXDQ/QPIy0YpdYSY=
-X-Google-Smtp-Source: AGHT+IHoT69UI/fJcUDrTHSTsHf974x8+i74FuoPvmebaK+30qyesiiJ+/Gf8J71fqPi/ux1J3g5Tm9RK2/uT3xBdJo=
-X-Received: by 2002:aca:1908:0:b0:3b9:dd3d:f606 with SMTP id
- l8-20020aca1908000000b003b9dd3df606mr2844499oii.14.1702387073703; Tue, 12 Dec
- 2023 05:17:53 -0800 (PST)
+        d=1e100.net; s=20230601; t=1702387486; x=1702992286;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=9Mu5OY9EeNLblapjoWxLOc/anyMYCIRnO6QV3zIN6QQ=;
+        b=DbpTmSJGFpsOzJiMJO2GW4f+5j94U2Y0x7LBBm7JT15TRdvCMByv2+yJEz6QTmCVD9
+         1zev64wxP1KTEpJ/UfwTBKQgroinloLxYkpZmV6b+jc9ZvsqamZ1+A/LMQSfzIG9+fOa
+         S2wBnBrCr+Ho3mLeQYIP3PGLxqYhBCKcOLjFAjNiRoUhniFCsvwfdPyU0u4RI4Oe3b3Z
+         q9wiYR9nrNzkxW46JNBHhZCe0n9ZqoQyUMcH9goi+/fow/M0Dj8GzmRwHrUMEu8EHE0m
+         /0xqWCyaMnOP7SObecri/rYcFSLNiFy/F78kIzaQa8t7B/EdDU0Xffkv8x8/+boi6vfQ
+         uT/w==
+X-Gm-Message-State: AOJu0Yx7f5nPbqDab8gGEI7gS2CvpkZI+mjX79rGoD4SvJE9uHDVYaD4
+	H9n5j1f40UK5jWXKdyu0oA==
+X-Google-Smtp-Source: AGHT+IHm4cit1iUJK2zyIomx0aOxL5d+CrlgYwTDHHMA+JPNbzxp/5Z+Pdq6jI0cZxMer6lTL0wcJw==
+X-Received: by 2002:a05:6808:152a:b0:3b8:b063:8945 with SMTP id u42-20020a056808152a00b003b8b0638945mr3910939oiw.83.1702387485688;
+        Tue, 12 Dec 2023 05:24:45 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id dj13-20020a056808418d00b003ac9e775706sm2369521oib.1.2023.12.12.05.24.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Dec 2023 05:24:45 -0800 (PST)
+Received: (nullmailer pid 1554265 invoked by uid 1000);
+	Tue, 12 Dec 2023 13:24:44 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231204144429.45197-1-linux.amoon@gmail.com> <20231204144429.45197-2-linux.amoon@gmail.com>
- <20231206135311.GA2043711-robh@kernel.org> <CANAwSgTS0ZSFPv4x803pCLEpjH5imh8vEoWpbiJRH14Sy3GZww@mail.gmail.com>
- <21673bfd-bb87-4c7d-a53f-337c263f3a00@linaro.org> <CANAwSgSo37B0zg-xjrmqndSZ5SbyB3m27_wRsqqN9WTONooeiw@mail.gmail.com>
- <604e653d-c1e2-45c7-b121-8a6b4be5c6bb@linaro.org> <CANAwSgRB=XWo2-40rDru=Zy277-kgGNjozJ8Lxnxgv_4ABB-kg@mail.gmail.com>
- <1a78d453-62a2-410a-a40f-1ff0c2b62e86@linaro.org> <CANAwSgTy4N7Q8e0OQLsFRkRDWksTSbkOetKQGygaqsQ8++U1_g@mail.gmail.com>
- <2e688f4e-11d7-4f8e-b8ec-58f4a97304a8@linaro.org> <CANAwSgQstkS-SDaV2hj0fimt7vgfEgOT_x4efshZ6sZQ0gWSEA@mail.gmail.com>
- <8f28ea77-b3d0-445e-8d8e-80f980775f89@linaro.org> <CANAwSgRLORHb6qiHWRBR0tMbYB=O=gwatuGhk72SwZyhYMopCw@mail.gmail.com>
- <d2962ffb-badd-44a6-bdcc-53e15d4a4379@linaro.org> <CANAwSgSpuh-+HFYg2UTgX27SHFyCBddV46MgKakiSCOtFX4+aw@mail.gmail.com>
- <436ed6a4-2ed9-47bc-bcc9-18a52b1a791b@linaro.org>
-In-Reply-To: <436ed6a4-2ed9-47bc-bcc9-18a52b1a791b@linaro.org>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Tue, 12 Dec 2023 18:47:38 +0530
-Message-ID: <CANAwSgS8ip+FvuvgusjNwnVL5Z68PRmEdwfQxhst_ZoVZFoFNw@mail.gmail.com>
-Subject: Re: [PATCH v6 1/2] dt-bindings: usb: Add the binding example for the
- Genesys Logic GL3523 hub
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Icenowy Zheng <uwu@icenowy.me>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	linux-amlogic@lists.infradead.org, Conor Dooley <conor.dooley@microchip.com>, 
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+From: Rob Herring <robh@kernel.org>
+To: Luo Jie <quic_luoj@quicinc.com>
+Cc: andrew@lunn.ch, netdev@vger.kernel.org, hkallweit1@gmail.com, quic_srichara@quicinc.com, kuba@kernel.org, konrad.dybcio@linaro.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, agross@kernel.org, davem@davemloft.net, robert.marko@sartura.hr, linux@armlinux.org.uk, pabeni@redhat.com, robh+dt@kernel.org, edumazet@google.com, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, andersson@kernel.org, linux-arm-msm@vger.kernel.org
+In-Reply-To: <20231212115151.20016-6-quic_luoj@quicinc.com>
+References: <20231212115151.20016-1-quic_luoj@quicinc.com>
+ <20231212115151.20016-6-quic_luoj@quicinc.com>
+Message-Id: <170238748395.1554206.8758426127604170355.robh@kernel.org>
+Subject: Re: [PATCH v2 5/5] dt-bindings: net: ipq4019-mdio: Document
+ ipq5332 platform
+Date: Tue, 12 Dec 2023 07:24:43 -0600
 
-Hi Krzysztof,
 
-On Tue, 12 Dec 2023 at 18:39, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 12/12/2023 13:51, Anand Moon wrote:
-> > Hi Krzysztof,
-> >
-> > On Tue, 12 Dec 2023 at 17:22, Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 12/12/2023 12:37, Anand Moon wrote:
-> >>>
-> >>> Here is the list of warnings I observed with this patch
-> >>>
-> >>>   DTC_CHK Documentation/devicetree/bindings/usb/nvidia,tegra186-xusb.example.dtb
-> >>> /home/amoon/mainline/linux-amlogic-6.y-devel/Documentation/devicetree/bindings/usb/usb-device.example.dtb:
-> >>> hub@1: 'vdd-supply' is a required property
-> >>
-> >> You always require the property, but it is not valid for some devices.
-> >> Just require it only where it is applicable (in if:then: clause).
-> >>
-> > I had already done this check many times before.
->
-> I don't ask you to check. I ask you to change the code.
->
-I have tried this and it's not working for me.
+On Tue, 12 Dec 2023 19:51:50 +0800, Luo Jie wrote:
+> Update the yaml file for the new DTS properties.
+> 
+> 1. cmn-reference-clock for the CMN PLL source clock select.
+> 2. clock-frequency for MDIO clock frequency config.
+> 3. add uniphy AHB & SYS GCC clocks.
+> 4. add reset-gpios for MDIO bus level reset.
+> 
+> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
+> ---
+>  .../bindings/net/qcom,ipq4019-mdio.yaml       | 157 +++++++++++++++++-
+>  1 file changed, 153 insertions(+), 4 deletions(-)
+> 
 
-> > my v6 original patch was doing the same and it passed all the tests
-> > but since I updated the required field it not parsing correctly.
->
-> Your original v6 patch was different. I don't understand what you are
-> trying to achieve. Or rather: how is it different, that my simple advice
-> above does not work for you  (as in the past you reply with some really
-> unrelated sentence).
->
-Ok, It's my poor English grammar, thanks for your review comments.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> Best regards,
-> Krzysztof
->
-Thanks
--Anand
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml: cmn-reference-clock: missing type definition
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231212115151.20016-6-quic_luoj@quicinc.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
