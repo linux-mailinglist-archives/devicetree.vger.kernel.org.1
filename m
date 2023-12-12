@@ -1,223 +1,185 @@
-Return-Path: <devicetree+bounces-24116-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24117-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E23080E0B9
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 02:09:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B408980E11F
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 02:56:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B22CF1F21B9B
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 01:09:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 60D5A1F21B71
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 01:56:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93A2A658;
-	Tue, 12 Dec 2023 01:09:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B580EDC;
+	Tue, 12 Dec 2023 01:55:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14B61BE;
-	Mon, 11 Dec 2023 17:09:41 -0800 (PST)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00331D1;
+	Mon, 11 Dec 2023 17:55:50 -0800 (PST)
 Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-	by ex01.ufhost.com (Postfix) with ESMTP id A83FC24E25E;
-	Tue, 12 Dec 2023 09:09:39 +0800 (CST)
-Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX165.cuchost.com
+	by ex01.ufhost.com (Postfix) with ESMTP id 4495024E28F;
+	Tue, 12 Dec 2023 09:55:49 +0800 (CST)
+Received: from EXMBX072.cuchost.com (172.16.6.82) by EXMBX165.cuchost.com
  (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 12 Dec
- 2023 09:09:39 +0800
-Received: from EXMBX066.cuchost.com (172.16.7.66) by EXMBX171.cuchost.com
- (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 12 Dec
- 2023 09:09:39 +0800
-Received: from EXMBX066.cuchost.com ([fe80::5947:9245:907e:339f]) by
- EXMBX066.cuchost.com ([fe80::5947:9245:907e:339f%17]) with mapi id
- 15.00.1497.044; Tue, 12 Dec 2023 09:09:39 +0800
-From: JeeHeng Sia <jeeheng.sia@starfivetech.com>
-To: Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	"kernel@esmil.dk" <kernel@esmil.dk>, "conor@kernel.org" <conor@kernel.org>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"paul.walmsley@sifive.com" <paul.walmsley@sifive.com>, "palmer@dabbelt.com"
-	<palmer@dabbelt.com>, "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
-	"mturquette@baylibre.com" <mturquette@baylibre.com>, "sboyd@kernel.org"
-	<sboyd@kernel.org>, "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>, "Hal
- Feng" <hal.feng@starfivetech.com>, Xingyu Wu <xingyu.wu@starfivetech.com>
-CC: "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>, Leyfoon Tan
-	<leyfoon.tan@starfivetech.com>
-Subject: RE: [PATCH v1 00/16] Basic clock and reset support for StarFive
- JH8100 RISC-V SoC
-Thread-Topic: [PATCH v1 00/16] Basic clock and reset support for StarFive
- JH8100 RISC-V SoC
-Thread-Index: AQHaKDpenJ7xM02baU+qIG80sqYy3rCfF1UAgAXHjcA=
-Date: Tue, 12 Dec 2023 01:09:38 +0000
-Message-ID: <f1e151e14e0b4bcca1c9119f5d7e7559@EXMBX066.cuchost.com>
-References: <20231206115000.295825-1-jeeheng.sia@starfivetech.com>
- <CAJM55Z_nnrFcU6N8ZELUoGLe6Dp358aXH7VGf1i+USbZOsbpnQ@mail.gmail.com>
-In-Reply-To: <CAJM55Z_nnrFcU6N8ZELUoGLe6Dp358aXH7VGf1i+USbZOsbpnQ@mail.gmail.com>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-ms-exchange-transport-fromentityheader: Hosted
-x-yovoleruleagent: yovoleflag
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ 2023 09:55:49 +0800
+Received: from localhost.localdomain (202.188.176.82) by EXMBX072.cuchost.com
+ (172.16.6.82) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 12 Dec
+ 2023 09:55:45 +0800
+From: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
+To: <robh+dt@kernel.org>
+CC: <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+	<jisheng.teoh@starfivetech.com>, <krzysztof.kozlowski+dt@linaro.org>,
+	<leyfoon.tan@starfivetech.com>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <mark.rutland@arm.com>,
+	<peterz@infradead.org>, <tglx@linutronix.de>, <will@kernel.org>
+Subject: Re: [PATCH v4 1/2] perf: starfive: Add StarLink PMU support
+Date: Tue, 12 Dec 2023 09:55:38 +0800
+Message-ID: <20231212015538.2310705-1-jisheng.teoh@starfivetech.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <CAL_Jsq+AMbwR64YwtugJ=WC-No0eBUejf3v4YbSB8h7x+uf3wA@mail.gmail.com>
+References: <CAL_Jsq+AMbwR64YwtugJ=WC-No0eBUejf3v4YbSB8h7x+uf3wA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX072.cuchost.com
+ (172.16.6.82)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: quoted-printable
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogRW1pbCBSZW5uZXIgQmVy
-dGhpbmcgPGVtaWwucmVubmVyLmJlcnRoaW5nQGNhbm9uaWNhbC5jb20+DQo+IFNlbnQ6IFNhdHVy
-ZGF5LCBEZWNlbWJlciA5LCAyMDIzIDEyOjUzIEFNDQo+IFRvOiBKZWVIZW5nIFNpYSA8amVlaGVu
-Zy5zaWFAc3RhcmZpdmV0ZWNoLmNvbT47IGtlcm5lbEBlc21pbC5kazsgY29ub3JAa2VybmVsLm9y
-Zzsgcm9iaCtkdEBrZXJuZWwub3JnOw0KPiBrcnp5c3p0b2Yua296bG93c2tpK2R0QGxpbmFyby5v
-cmc7IHBhdWwud2FsbXNsZXlAc2lmaXZlLmNvbTsgcGFsbWVyQGRhYmJlbHQuY29tOyBhb3VAZWVj
-cy5iZXJrZWxleS5lZHU7DQo+IG10dXJxdWV0dGVAYmF5bGlicmUuY29tOyBzYm95ZEBrZXJuZWwu
-b3JnOyBwLnphYmVsQHBlbmd1dHJvbml4LmRlOyBlbWlsLnJlbm5lci5iZXJ0aGluZ0BjYW5vbmlj
-YWwuY29tOyBIYWwgRmVuZw0KPiA8aGFsLmZlbmdAc3RhcmZpdmV0ZWNoLmNvbT47IFhpbmd5dSBX
-dSA8eGluZ3l1Lnd1QHN0YXJmaXZldGVjaC5jb20+DQo+IENjOiBsaW51eC1yaXNjdkBsaXN0cy5p
-bmZyYWRlYWQub3JnOyBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsgbGludXgta2VybmVsQHZn
-ZXIua2VybmVsLm9yZzsgbGludXgtY2xrQHZnZXIua2VybmVsLm9yZzsgTGV5Zm9vbiBUYW4NCj4g
-PGxleWZvb24udGFuQHN0YXJmaXZldGVjaC5jb20+DQo+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggdjEg
-MDAvMTZdIEJhc2ljIGNsb2NrIGFuZCByZXNldCBzdXBwb3J0IGZvciBTdGFyRml2ZSBKSDgxMDAg
-UklTQy1WIFNvQw0KPiANCj4gU2lhIEplZSBIZW5nIHdyb3RlOg0KPiA+IFRoaXMgcGF0Y2ggc2Vy
-aWVzIGVuYWJsZWQgYmFzaWMgY2xvY2sgJiByZXNldCBzdXBwb3J0IGZvciBTdGFyRml2ZQ0KPiA+
-IEpIODEwMCBTb0MuDQo+ID4NCj4gPiBUaGlzIHBhdGNoIHNlcmllcyBkZXBlbmRzIG9uIHRoZSBJ
-bml0aWFsIGRldmljZSB0cmVlIHN1cHBvcnQgZm9yDQo+ID4gU3RhckZpdmUgSkg4MTAwIFNvQyBw
-YXRjaCBzZXJpZXMgd2hpY2ggY2FuIGJlIGZvdW5kIGF0IGJlbG93IGxpbms6DQo+ID4gaHR0cHM6
-Ly9sb3JlLmtlcm5lbC5vcmcvbGttbC8yMDIzMTIwMTEyMTQxMC45NTI5OC0xLWplZWhlbmcuc2lh
-QHN0YXJmaXZldGVjaC5jb20vDQo+ID4NCj4gPiBTdGFyRml2ZSBKSDgxMDAgc2hhcmVzIGEgc2lt
-aWxhciBjbG9jayBhbmQgcmVzZXQgZGVzaWduIHdpdGggSkg3MTEwLg0KPiA+IFRvIGZhY2lsaXRh
-dGUgdGhlIHJldXNlIG9mIHRoZSBmaWxlIGFuZCBpdHMgZnVuY3Rpb25hbGl0aWVzLCBmaWxlcw0K
-PiA+IGNvbnRhaW5pbmcgdGhlICdqaDcxeDAnIG5hbWluZyBjb252ZW50aW9uIGFyZSByZW5hbWVk
-IHRvIHVzZSB0aGUNCj4gPiAnY29tbW9uJyB3b3JkaW5nLiBJbnRlcm5hbCBmdW5jdGlvbnMgdGhh
-dCBjb250YWluIHRoZSAnamg3MXgwJw0KPiA+IG5hbWluZyBjb252ZW50aW9uIGFyZSByZW5hbWVk
-IHRvIHVzZSAnc3RhcmZpdmUuJyBUaGlzIGlzIGFjY29tcGxpc2hlZA0KPiA+IHRocm91Z2ggcGF0
-Y2hlcyAxLCAyLCAzLCBhbmQgNC4NCj4gDQo+IEknbSBhIGxpdHRsZSBzY2VwdGljYWwgYWxsIHRo
-aXMgcmVuYW1pbmcgaXMgd29ydGggaXQsIGJ1dCBpZiB0aGluayBpdCdzIGxpa2VseQ0KPiB0aGF0
-IGZ1dHVyZSBzdGFyZml2ZSBTb0NzIGNhbiB1c2UgdGhlIHNhbWUgY2xvY2sgZHJpdmVycyBJJ20g
-b2sgd2l0aCBpdC4gSnVzdA0KPiBrbm93IHRoYXQgeW91J2xsIGxvb2sgYSBiaXQgc2lsbHkgaWYg
-eW91ciAiSkg5MTAwIiBjYW4ndCB1c2UgdGhlc2UgZHJpdmVycyBhbmQNCj4geW91J2xsIGFscmVh
-ZHkgbmVlZCBkaWZmZXJlbnQgc3RhcmZpdmUgYW5kIHN0YXJmaXZlLWdlbjIgZHJpdmVycy4NClRo
-YW5rIHlvdSBmb3IgeW91ciB1bmRlcnN0YW5kaW5nLg0KPiANCj4gL0VtaWwNCj4gPg0KPiA+DQo+
-ID4gUGF0Y2ggNSBhZGRzIGRvY3VtZW50YXRpb24gdG8gZGVzY3JpYmUgU3lzdGVtIChTWVNDUkcp
-IENsb2NrICYgUmVzZXQNCj4gPiBiaW5kaW5nLg0KPiA+IFBhdGNoIDYgYWRkcyBTWVNDUkcgY2xv
-Y2sgZHJpdmVyLg0KPiA+DQo+ID4gcGF0Y2ggNyBhZGRzIGRvY3VtZW50YXRpb24gdG8gZGVzY3Jp
-YmUgU3lzdGVtLU5vcnRoLVdlc3QgKFNZU0NSRy1OVykNCj4gPiBDbG9jayAmIFJlc2V0IGJpbmRp
-bmcuDQo+ID4gUGF0Y2ggOCBhZGRzIFNZU0NSRy1OVyBjbG9jayBkcml2ZXIuDQo+ID4NCj4gPiBw
-YXRjaCA5IGFkZHMgZG9jdW1lbnRhdGlvbiB0byBkZXNjcmliZSBTeXN0ZW0tTm9ydGgtRWFzdCAo
-U1lTQ1JHLU5FKQ0KPiA+IENsb2NrICYgUmVzZXQgYmluZGluZy4NCj4gPiBQYXRjaCAxMCBhZGRz
-IFNZU0NSRy1ORSBjbG9jayBkcml2ZXIuDQo+ID4NCj4gPiBwYXRjaCAxMSBhZGRzIGRvY3VtZW50
-YXRpb24gdG8gZGVzY3JpYmUgU3lzdGVtLVNvdXRoLVdlc3QgKFNZU0NSRy1TVykNCj4gPiBDbG9j
-ayAmIFJlc2V0IGJpbmRpbmcuDQo+ID4gUGF0Y2ggMTIgYWRkcyBTWVNDUkctU1cgY2xvY2sgZHJp
-dmVyLg0KPiA+DQo+ID4gcGF0Y2ggMTMgYWRkcyBkb2N1bWVudGF0aW9uIHRvIGRlc2NyaWJlIEFs
-d2F5cy1PbiAoQU9OKQ0KPiA+IENsb2NrICYgUmVzZXQgYmluZGluZy4NCj4gPiBQYXRjaCAxNCBh
-ZGRzIEFPTiBjbG9jayBkcml2ZXIuDQo+ID4NCj4gPiBQYXRjaCAxNSBhZGRzIHN1cHBvcnQgZm9y
-IHRoZSBhdXhpbGlhcnkgcmVzZXQgZHJpdmVyLg0KPiA+DQo+ID4gUGF0Y2ggMTYgYWRkcyBjbG9j
-a3MgYW5kIHJlc2V0IG5vZGVzIHRvIHRoZSBKSDgxMDAgZGV2aWNlIHRyZWUuDQo+ID4NCj4gPiBT
-aWEgSmVlIEhlbmcgKDE2KToNCj4gPiAgIHJlc2V0OiBzdGFyZml2ZTogUmVuYW1lIGZpbGUgbmFt
-ZSAiamg3MXgwIiB0byAiY29tbW9uIg0KPiA+ICAgcmVzZXQ6IHN0YXJmaXZlOiBDb252ZXJ0IHRo
-ZSB3b3JkICJqaDcxeDAiIHRvICJzdGFyZml2ZSINCj4gPiAgIGNsazogc3RhcmZpdmU6IFJlbmFt
-ZSBmaWxlIG5hbWUgImpoNzF4MCIgdG8gImNvbW1vbiINCj4gPiAgIGNsazogc3RhcmZpdmU6IENv
-bnZlcnQgdGhlIHdvcmQgImpoNzF4MCIgdG8gInN0YXJmaXZlIg0KPiA+ICAgZHQtYmluZGluZ3M6
-IGNsb2NrOiBBZGQgU3RhckZpdmUgSkg4MTAwIFN5c3RlbSBjbG9jayBhbmQgcmVzZXQNCj4gPiAg
-ICAgZ2VuZXJhdG9yDQo+ID4gICBjbGs6IHN0YXJmaXZlOiBBZGQgSkg4MTAwIFN5c3RlbSBjbG9j
-ayBnZW5lcmF0b3IgZHJpdmVyDQo+ID4gICBkdC1iaW5kaW5nczogY2xvY2s6IEFkZCBTdGFyRml2
-ZSBKSDgxMDAgU3lzdGVtLU5vcnRoLVdlc3QgY2xvY2sgYW5kDQo+ID4gICAgIHJlc2V0IGdlbmVy
-YXRvcg0KPiA+ICAgY2xrOiBzdGFyZml2ZTogQWRkIEpIODEwMCBTeXN0ZW0tTm9ydGgtV2VzdCBj
-bG9jayBnZW5lcmF0b3IgZHJpdmVyDQo+ID4gICBkdC1iaW5kaW5nczogY2xvY2s6IEFkZCBTdGFy
-Rml2ZSBKSDgxMDAgU3lzdGVtLU5vcnRoLUVhc3QgY2xvY2sgYW5kDQo+ID4gICAgIHJlc2V0IGdl
-bmVyYXRvcg0KPiA+ICAgY2xrOiBzdGFyZml2ZTogQWRkIEpIODEwMCBTeXN0ZW0tTm9ydGgtRWFz
-dCBjbG9jayBnZW5lcmF0b3IgZHJpdmVyDQo+ID4gICBkdC1iaW5kaW5nczogY2xvY2s6IEFkZCBT
-dGFyRml2ZSBKSDgxMDAgU3lzdGVtLVNvdXRoLVdlc3QgY2xvY2sgYW5kDQo+ID4gICAgIHJlc2V0
-IGdlbmVyYXRvcg0KPiA+ICAgY2xrOiBzdGFyZml2ZTogQWRkIEpIODEwMCBTeXN0ZW0tU291dGgt
-V2VzdCBjbG9jayBnZW5lcmF0b3IgZHJpdmVyDQo+ID4gICBkdC1iaW5kaW5nczogY2xvY2s6IEFk
-ZCBTdGFyRml2ZSBKSDgxMDAgQWx3YXlzLU9uIGNsb2NrIGFuZCByZXNldA0KPiA+ICAgICBnZW5l
-cmF0b3INCj4gPiAgIGNsazogc3RhcmZpdmU6IEFkZCBKSDgxMDAgQWx3YXlzLU9uIGNsb2NrIGdl
-bmVyYXRvciBkcml2ZXINCj4gPiAgIHJlc2V0OiBzdGFyZml2ZTogQWRkIFN0YXJGaXZlIEpIODEw
-MCByZXNldCBkcml2ZXINCj4gPiAgIHJpc2N2OiBkdHM6IHN0YXJmaXZlOiBqaDgxMDA6IEFkZCBj
-bG9ja3MgYW5kIHJlc2V0cyBub2Rlcw0KPiA+DQo+ID4gIC4uLi9jbG9jay9zdGFyZml2ZSxqaDgx
-MDAtYW9uY3JnLnlhbWwgICAgICAgICB8ICA3NyArKysNCj4gPiAgLi4uL2Nsb2NrL3N0YXJmaXZl
-LGpoODEwMC1zeXNjcmctbmUueWFtbCAgICAgIHwgMTU4ICsrKysrDQo+ID4gIC4uLi9jbG9jay9z
-dGFyZml2ZSxqaDgxMDAtc3lzY3JnLW53LnlhbWwgICAgICB8IDExOSArKysrDQo+ID4gIC4uLi9j
-bG9jay9zdGFyZml2ZSxqaDgxMDAtc3lzY3JnLXN3LnlhbWwgICAgICB8ICA2NiArKw0KPiA+ICAu
-Li4vY2xvY2svc3RhcmZpdmUsamg4MTAwLXN5c2NyZy55YW1sICAgICAgICAgfCAgNjYgKysNCj4g
-PiAgTUFJTlRBSU5FUlMgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgIDE1ICsN
-Cj4gPiAgYXJjaC9yaXNjdi9ib290L2R0cy9zdGFyZml2ZS9qaDgxMDAtY2xrLmR0c2kgIHwgMTgw
-ICsrKysrKw0KPiA+ICBhcmNoL3Jpc2N2L2Jvb3QvZHRzL3N0YXJmaXZlL2poODEwMC5kdHNpICAg
-ICAgfCAxMTUgKysrKw0KPiA+ICBkcml2ZXJzL2Nsay9zdGFyZml2ZS9LY29uZmlnICAgICAgICAg
-ICAgICAgICAgfCAgNDkgKy0NCj4gPiAgZHJpdmVycy9jbGsvc3RhcmZpdmUvTWFrZWZpbGUgICAg
-ICAgICAgICAgICAgIHwgICAzICstDQo+ID4gIGRyaXZlcnMvY2xrL3N0YXJmaXZlL2Nsay1zdGFy
-Zml2ZS1jb21tb24uYyAgICB8IDMyNyArKysrKysrKysrDQo+ID4gIGRyaXZlcnMvY2xrL3N0YXJm
-aXZlL2Nsay1zdGFyZml2ZS1jb21tb24uaCAgICB8IDEzMCArKysrDQo+ID4gIC4uLi9jbGsvc3Rh
-cmZpdmUvY2xrLXN0YXJmaXZlLWpoNzEwMC1hdWRpby5jICB8IDEyNyArKy0tDQo+ID4gIGRyaXZl
-cnMvY2xrL3N0YXJmaXZlL2Nsay1zdGFyZml2ZS1qaDcxMDAuYyAgICB8IDUwMyArKysrKysrKy0t
-LS0tLS0tDQo+ID4gIC4uLi9jbGsvc3RhcmZpdmUvY2xrLXN0YXJmaXZlLWpoNzExMC1hb24uYyAg
-ICB8ICA2MiArLQ0KPiA+ICAuLi4vY2xrL3N0YXJmaXZlL2Nsay1zdGFyZml2ZS1qaDcxMTAtaXNw
-LmMgICAgfCAgNzIgKy0tDQo+ID4gIC4uLi9jbGsvc3RhcmZpdmUvY2xrLXN0YXJmaXZlLWpoNzEx
-MC1zdGcuYyAgICB8ICA5NCArLS0NCj4gPiAgLi4uL2Nsay9zdGFyZml2ZS9jbGstc3RhcmZpdmUt
-amg3MTEwLXN5cy5jICAgIHwgNTIzICsrKysrKysrLS0tLS0tLS0NCj4gPiAgLi4uL2Nsay9zdGFy
-Zml2ZS9jbGstc3RhcmZpdmUtamg3MTEwLXZvdXQuYyAgIHwgIDc0ICstLQ0KPiA+ICBkcml2ZXJz
-L2Nsay9zdGFyZml2ZS9jbGstc3RhcmZpdmUtamg3MTEwLmggICAgfCAgIDQgKy0NCj4gPiAgZHJp
-dmVycy9jbGsvc3RhcmZpdmUvY2xrLXN0YXJmaXZlLWpoNzF4MC5jICAgIHwgMzI3IC0tLS0tLS0t
-LS0NCj4gPiAgZHJpdmVycy9jbGsvc3RhcmZpdmUvY2xrLXN0YXJmaXZlLWpoNzF4MC5oICAgIHwg
-MTIzIC0tLS0NCj4gPiAgZHJpdmVycy9jbGsvc3RhcmZpdmUvamg4MTAwL01ha2VmaWxlICAgICAg
-ICAgIHwgICA3ICsNCj4gPiAgZHJpdmVycy9jbGsvc3RhcmZpdmUvamg4MTAwL2Nsay1hb24uYyAg
-ICAgICAgIHwgMjc1ICsrKysrKysrKw0KPiA+ICAuLi4vY2xrL3N0YXJmaXZlL2poODEwMC9jbGst
-c3RhcmZpdmUtamg4MTAwLmggfCAgMTEgKw0KPiA+ICBkcml2ZXJzL2Nsay9zdGFyZml2ZS9qaDgx
-MDAvY2xrLXN5cy1uZS5jICAgICAgfCA1NjYgKysrKysrKysrKysrKysrKysrDQo+ID4gIGRyaXZl
-cnMvY2xrL3N0YXJmaXZlL2poODEwMC9jbGstc3lzLW53LmMgICAgICB8IDI2OCArKysrKysrKysN
-Cj4gPiAgZHJpdmVycy9jbGsvc3RhcmZpdmUvamg4MTAwL2Nsay1zeXMtc3cuYyAgICAgIHwgMTM2
-ICsrKysrDQo+ID4gIGRyaXZlcnMvY2xrL3N0YXJmaXZlL2poODEwMC9jbGstc3lzLmMgICAgICAg
-ICB8IDQ1NSArKysrKysrKysrKysrKw0KPiA+ICBkcml2ZXJzL3Jlc2V0L3N0YXJmaXZlL0tjb25m
-aWcgICAgICAgICAgICAgICAgfCAgMTQgKy0NCj4gPiAgZHJpdmVycy9yZXNldC9zdGFyZml2ZS9N
-YWtlZmlsZSAgICAgICAgICAgICAgIHwgICA0ICstDQo+ID4gIC4uLnJmaXZlLWpoNzF4MC5jID0+
-IHJlc2V0LXN0YXJmaXZlLWNvbW1vbi5jfSB8ICA2OCArLS0NCj4gPiAgLi4uL3Jlc2V0L3N0YXJm
-aXZlL3Jlc2V0LXN0YXJmaXZlLWNvbW1vbi5oICAgIHwgIDE0ICsNCj4gPiAgLi4uL3Jlc2V0L3N0
-YXJmaXZlL3Jlc2V0LXN0YXJmaXZlLWpoNzEwMC5jICAgIHwgICA0ICstDQo+ID4gIC4uLi9yZXNl
-dC9zdGFyZml2ZS9yZXNldC1zdGFyZml2ZS1qaDcxMTAuYyAgICB8ICAgOCArLQ0KPiA+ICAuLi4v
-cmVzZXQvc3RhcmZpdmUvcmVzZXQtc3RhcmZpdmUtamg3MXgwLmggICAgfCAgMTQgLQ0KPiA+ICAu
-Li4vcmVzZXQvc3RhcmZpdmUvcmVzZXQtc3RhcmZpdmUtamg4MTAwLmMgICAgfCAxMDIgKysrKw0K
-PiA+ICAuLi4vZHQtYmluZGluZ3MvY2xvY2svc3RhcmZpdmUsamg4MTAwLWNyZy5oICAgfCA0MzAg
-KysrKysrKysrKysrKw0KPiA+ICAuLi4vZHQtYmluZGluZ3MvcmVzZXQvc3RhcmZpdmUsamg4MTAw
-LWNyZy5oICAgfCAxMjcgKysrKw0KPiA+ICAuLi5yZml2ZS1qaDcxeDAuaCA9PiByZXNldC1zdGFy
-Zml2ZS1jb21tb24uaH0gfCAgMTAgKy0NCj4gPiAgNDAgZmlsZXMgY2hhbmdlZCwgNDQ4NSBpbnNl
-cnRpb25zKCspLCAxMjQyIGRlbGV0aW9ucygtKQ0KPiA+ICBjcmVhdGUgbW9kZSAxMDA2NDQgRG9j
-dW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Nsb2NrL3N0YXJmaXZlLGpoODEwMC1hb25j
-cmcueWFtbA0KPiA+ICBjcmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVl
-L2JpbmRpbmdzL2Nsb2NrL3N0YXJmaXZlLGpoODEwMC1zeXNjcmctbmUueWFtbA0KPiA+ICBjcmVh
-dGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Nsb2NrL3N0
-YXJmaXZlLGpoODEwMC1zeXNjcmctbncueWFtbA0KPiA+ICBjcmVhdGUgbW9kZSAxMDA2NDQgRG9j
-dW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Nsb2NrL3N0YXJmaXZlLGpoODEwMC1zeXNj
-cmctc3cueWFtbA0KPiA+ICBjcmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZpY2V0
-cmVlL2JpbmRpbmdzL2Nsb2NrL3N0YXJmaXZlLGpoODEwMC1zeXNjcmcueWFtbA0KPiA+ICBjcmVh
-dGUgbW9kZSAxMDA2NDQgYXJjaC9yaXNjdi9ib290L2R0cy9zdGFyZml2ZS9qaDgxMDAtY2xrLmR0
-c2kNCj4gPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvY2xrL3N0YXJmaXZlL2Nsay1zdGFy
-Zml2ZS1jb21tb24uYw0KPiA+ICBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9jbGsvc3RhcmZp
-dmUvY2xrLXN0YXJmaXZlLWNvbW1vbi5oDQo+ID4gIGRlbGV0ZSBtb2RlIDEwMDY0NCBkcml2ZXJz
-L2Nsay9zdGFyZml2ZS9jbGstc3RhcmZpdmUtamg3MXgwLmMNCj4gPiAgZGVsZXRlIG1vZGUgMTAw
-NjQ0IGRyaXZlcnMvY2xrL3N0YXJmaXZlL2Nsay1zdGFyZml2ZS1qaDcxeDAuaA0KPiA+ICBjcmVh
-dGUgbW9kZSAxMDA2NDQgZHJpdmVycy9jbGsvc3RhcmZpdmUvamg4MTAwL01ha2VmaWxlDQo+ID4g
-IGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2Nsay9zdGFyZml2ZS9qaDgxMDAvY2xrLWFvbi5j
-DQo+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2Nsay9zdGFyZml2ZS9qaDgxMDAvY2xr
-LXN0YXJmaXZlLWpoODEwMC5oDQo+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2Nsay9z
-dGFyZml2ZS9qaDgxMDAvY2xrLXN5cy1uZS5jDQo+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2
-ZXJzL2Nsay9zdGFyZml2ZS9qaDgxMDAvY2xrLXN5cy1udy5jDQo+ID4gIGNyZWF0ZSBtb2RlIDEw
-MDY0NCBkcml2ZXJzL2Nsay9zdGFyZml2ZS9qaDgxMDAvY2xrLXN5cy1zdy5jDQo+ID4gIGNyZWF0
-ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2Nsay9zdGFyZml2ZS9qaDgxMDAvY2xrLXN5cy5jDQo+ID4g
-IHJlbmFtZSBkcml2ZXJzL3Jlc2V0L3N0YXJmaXZlL3tyZXNldC1zdGFyZml2ZS1qaDcxeDAuYyA9
-PiByZXNldC1zdGFyZml2ZS1jb21tb24uY30gKDU1JSkNCj4gPiAgY3JlYXRlIG1vZGUgMTAwNjQ0
-IGRyaXZlcnMvcmVzZXQvc3RhcmZpdmUvcmVzZXQtc3RhcmZpdmUtY29tbW9uLmgNCj4gPiAgZGVs
-ZXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvcmVzZXQvc3RhcmZpdmUvcmVzZXQtc3RhcmZpdmUtamg3
-MXgwLmgNCj4gPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvcmVzZXQvc3RhcmZpdmUvcmVz
-ZXQtc3RhcmZpdmUtamg4MTAwLmMNCj4gPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGluY2x1ZGUvZHQt
-YmluZGluZ3MvY2xvY2svc3RhcmZpdmUsamg4MTAwLWNyZy5oDQo+ID4gIGNyZWF0ZSBtb2RlIDEw
-MDY0NCBpbmNsdWRlL2R0LWJpbmRpbmdzL3Jlc2V0L3N0YXJmaXZlLGpoODEwMC1jcmcuaA0KPiA+
-ICByZW5hbWUgaW5jbHVkZS9zb2Mvc3RhcmZpdmUve3Jlc2V0LXN0YXJmaXZlLWpoNzF4MC5oID0+
-IHJlc2V0LXN0YXJmaXZlLWNvbW1vbi5ofSAoNTAlKQ0KPiA+DQo+ID4gLS0NCj4gPiAyLjM0LjEN
-Cj4gPg0K
+On Mon, 11 Dec 2023 11:54:25 -0600
+Rob Herring <robh+dt@kernel.org> wrote:
+
+> On Thu, Nov 16, 2023 at 10:24=E2=80=AFAM Ji Sheng Teoh
+> <jisheng.teoh@starfivetech.com> wrote:
+> >
+> > This patch adds support for StarFive's StarLink PMU (Performance
+> > Monitor Unit). StarLink PMU integrates one or more CPU cores with
+> > a shared L3 memory system. The PMU supports overflow interrupt,
+> > up to 16 programmable 64bit event counters, and an independent
+> > 64bit cycle counter. StarLink PMU is accessed via MMIO.
+> >
+> > Example Perf stat output:
+> > [root@user]# perf stat -a -e /starfive_starlink_pmu/cycles/ \
+> >         -e /starfive_starlink_pmu/read_miss/ \
+> >         -e /starfive_starlink_pmu/read_hit/ \
+> >         -e /starfive_starlink_pmu/release_request/  \
+> >         -e /starfive_starlink_pmu/write_hit/ \
+> >         -e /starfive_starlink_pmu/write_miss/ \
+> >         -e /starfive_starlink_pmu/write_request/ \
+> >         -e /starfive_starlink_pmu/writeback/ \
+> >         -e /starfive_starlink_pmu/read_request/ \
+> >         -- openssl speed rsa2048
+> > Doing 2048 bits private rsa's for 10s: 5 2048 bits private RSA's in
+> > 2.84s
+> > Doing 2048 bits public rsa's for 10s: 169 2048 bits public RSA's in
+> > 2.42s
+> > version: 3.0.11
+> > built on: Tue Sep 19 13:02:31 2023 UTC
+> > options: bn(64,64)
+> > CPUINFO: N/A
+> >                   sign    verify    sign/s verify/s
+> > rsa 2048 bits 0.568000s 0.014320s      1.8     69.8
+> > /////////
+> >  Performance counter stats for 'system wide':
+> >
+> >          649991998      starfive_starlink_pmu/cycles/
+> >            1009690      starfive_starlink_pmu/read_miss/
+> >            1079750      starfive_starlink_pmu/read_hit/
+> >            2089405      starfive_starlink_pmu/release_request/
+> >                129      starfive_starlink_pmu/write_hit/
+> >                 70      starfive_starlink_pmu/write_miss/
+> >                194      starfive_starlink_pmu/write_request/
+> >             150080      starfive_starlink_pmu/writeback/
+> >            2089423      starfive_starlink_pmu/read_request/
+> >
+> >       27.062755678 seconds time elapsed
+> >
+> > Signed-off-by: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
+> > ---
+> >  drivers/perf/Kconfig                 |   9 +
+> >  drivers/perf/Makefile                |   1 +
+> >  drivers/perf/starfive_starlink_pmu.c | 654
+> > +++++++++++++++++++++++++++ include/linux/cpuhotplug.h           |
+> >  1 + 4 files changed, 665 insertions(+)
+> >  create mode 100644 drivers/perf/starfive_starlink_pmu.c
+> >
+> > diff --git a/drivers/perf/Kconfig b/drivers/perf/Kconfig
+> > index 273d67ecf6d2..41278742ef88 100644
+> > --- a/drivers/perf/Kconfig
+> > +++ b/drivers/perf/Kconfig
+> > @@ -86,6 +86,15 @@ config RISCV_PMU_SBI
+> >           full perf feature support i.e. counter overflow,
+> > privilege mode filtering, counter configuration.
+> >
+> > +config STARFIVE_STARLINK_PMU
+> > +       depends on ARCH_STARFIVE
+> > +       bool "StarFive StarLink PMU"
+> > +       help
+> > +          Provide support for StarLink Performance Monitor Unit.
+> > +          StarLink Performance Monitor Unit integrates one or more
+> > cores with
+> > +          an L3 memory system. The L3 cache events are added into
+> > perf event
+> > +          subsystem, allowing monitoring of various L3 cache perf
+> > events. +
+> >  config ARM_PMU_ACPI
+> >         depends on ARM_PMU && ACPI
+> >         def_bool y
+> > diff --git a/drivers/perf/Makefile b/drivers/perf/Makefile
+> > index 16b3ec4db916..e2153aee1e04 100644
+> > --- a/drivers/perf/Makefile
+> > +++ b/drivers/perf/Makefile
+> > @@ -15,6 +15,7 @@ obj-$(CONFIG_QCOM_L3_PMU) +=3D qcom_l3_pmu.o
+> >  obj-$(CONFIG_RISCV_PMU) +=3D riscv_pmu.o
+> >  obj-$(CONFIG_RISCV_PMU_LEGACY) +=3D riscv_pmu_legacy.o
+> >  obj-$(CONFIG_RISCV_PMU_SBI) +=3D riscv_pmu_sbi.o
+> > +obj-$(CONFIG_STARFIVE_STARLINK_PMU) +=3D starfive_starlink_pmu.o
+> >  obj-$(CONFIG_THUNDERX2_PMU) +=3D thunderx2_pmu.o
+> >  obj-$(CONFIG_XGENE_PMU) +=3D xgene_pmu.o
+> >  obj-$(CONFIG_ARM_SPE_PMU) +=3D arm_spe_pmu.o
+> > diff --git a/drivers/perf/starfive_starlink_pmu.c
+> > b/drivers/perf/starfive_starlink_pmu.c new file mode 100644
+> > index 000000000000..272896ab1ade
+> > --- /dev/null
+> > +++ b/drivers/perf/starfive_starlink_pmu.c
+> > @@ -0,0 +1,654 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * StarFive's StarLink PMU driver
+> > + *
+> > + * Copyright (C) 2023 StarFive Technology Co., Ltd.
+> > + *
+> > + * Author: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
+> > + *
+> > + */
+> > +
+> > +#define STARLINK_PMU_PDEV_NAME "starfive_starlink_pmu"
+> > +#define pr_fmt(fmt)    STARLINK_PMU_PDEV_NAME ": " fmt
+> > +
+> > +#include <linux/bitmap.h>
+> > +#include <linux/cpu_pm.h>
+> > +#include <linux/io.h>
+> > +#include <linux/irq.h>
+> > +#include <linux/kernel.h>
+> > +#include <linux/module.h>
+> > +#include <linux/of_device.h> =20
+>=20
+> You probably don't need this header and the implicit includes it makes
+> are dropped now in linux-next. Please check what you actually need and
+> make them explicit.
+>=20
+> Rob
+
+Thanks Rob, this has changed to '#include <linux/mod_devicetable.h>' in
+v5 submitted recently.
+https://lore.kernel.org/lkml/20231207142940.1794032-1-jisheng.teoh@starfi=
+vetech.com/T/#Z2e.:..:20231207142940.1794032-2-jisheng.teoh::40starfivete=
+ch.com:1drivers:perf:starfive_starlink_pmu.c
+
 
