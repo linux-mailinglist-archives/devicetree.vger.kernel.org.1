@@ -1,135 +1,121 @@
-Return-Path: <devicetree+bounces-24513-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24514-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68EA380F6A5
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 20:27:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC28180F6B7
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 20:31:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EAB731F215C0
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 19:27:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 591E31F21273
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 19:31:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1C1681E4D;
-	Tue, 12 Dec 2023 19:27:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="o7P1qpVJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3334281E56;
+	Tue, 12 Dec 2023 19:31:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8523AF
-	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 11:27:26 -0800 (PST)
-Received: from submission (posteo.de [185.67.36.169]) 
-	by mout02.posteo.de (Postfix) with ESMTPS id AEEA1240103
-	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 20:27:24 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
-	t=1702409244; bh=Fl6wWVfLLuK3aQj8q6nx+95p5nnzO8WTVvVWB4QYR/4=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:
-	 Content-Disposition:From;
-	b=o7P1qpVJg2/q2FVr7aQdpSrMzn8ljBmUhAgYHOjH6Z8qFqEPibBfH5X7Of+RbuKbp
-	 1orl3zWoAgOu93WJaEgsmp4xAkIfYzjVTzMObpFUicW69Z1vooU+yZ+2hL+ix1rZFQ
-	 H516eYZPRZhgRVGPojC8A43KqX+34D+xTFVqcG/KhyQh1ErTOT0jNXQ0vJp6oSK/gZ
-	 d1i273RqE9LWcn0UDgCmXpt1ONQsap6n8m0C1cGTJD8YqNVrSrg28vm96OPtzn0nEh
-	 ZXLQ/G+maa4GRBWg3Mg8m5r/iuctj92ouzdPDr0YzVDzjQm3yQlJyQ72AZKVXg3CoQ
-	 a8sHD3xjcnnvw==
-Received: from customer (localhost [127.0.0.1])
-	by submission (posteo.de) with ESMTPSA id 4SqTCB3Qm6z6txZ;
-	Tue, 12 Dec 2023 20:27:18 +0100 (CET)
-Date: Tue, 12 Dec 2023 19:27:14 +0000
-From: Anne Macedo <retpolanne@posteo.net>
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
-	"moderated list:ARM/Allwinner sunXi SoC support" <linux-arm-kernel@lists.infradead.org>, 
-	"open list:ARM/Allwinner sunXi SoC support" <linux-sunxi@lists.linux.dev>, open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: allwinner: Orange Pi One Plus PHY support
-Message-ID: <axsvii25yrknfae6gdreti7lcskoscsdbsujwuispiieimsbdy@gwzm4l7mwlew>
-References: <20231212122835.10850-2-retpolanne@posteo.net>
- <20231212162200.10b3868b@donnerap.manchester.arm.com>
+Received: from netrider.rowland.org (netrider.rowland.org [192.131.102.5])
+	by lindbergh.monkeyblade.net (Postfix) with SMTP id 616F3DB
+	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 11:31:33 -0800 (PST)
+Received: (qmail 175710 invoked by uid 1000); 12 Dec 2023 14:31:31 -0500
+Date: Tue, 12 Dec 2023 14:31:31 -0500
+From: Alan Stern <stern@rowland.harvard.edu>
+To: Kevin Hilman <khilman@kernel.org>
+Cc: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
+  Roger Quadros <rogerq@kernel.org>,
+  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+  Rob Herring <robh+dt@kernel.org>,
+  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+  Conor Dooley <conor+dt@kernel.org>, Peter Chen <peter.chen@kernel.org>,
+  Pawel Laszczak <pawell@cadence.com>, Nishanth Menon <nm@ti.com>,
+  Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+  "Vardhan, Vibhore" <vibhore@ti.com>, linux-usb@vger.kernel.org,
+  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+  linux-arm-kernel@lists.infradead.org,
+  =?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
+  Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 3/6] usb: cdns3-ti: add suspend/resume procedures for
+ J7200
+Message-ID: <ae99430d-12a3-4831-b4b7-586d6d045b15@rowland.harvard.edu>
+References: <CX0GOP07I40N.198G7LJ0HYDBG@tleb-bootlin-xps13-01>
+ <bdea68ad-7523-4738-8fa1-b670d81a6b93@kernel.org>
+ <CX10D9YX1O1C.30PF317AG065N@tleb-bootlin-xps13-01>
+ <3e00b2ad-b58f-4b09-9230-683c58d3bb92@kernel.org>
+ <CX15J7B8F8HH.1WZ10OOW31X1H@tleb-bootlin-xps13-01>
+ <7h34wxfmwn.fsf@baylibre.com>
+ <CX63KP2UPL1N.J9Q344Q06IGP@tleb-bootlin-xps13-01>
+ <7hil5odtwl.fsf@baylibre.com>
+ <CX9MMPFL7HAY.NGULD1FN5WPN@tleb-bootlin-xps13-01>
+ <7h7cljcm6a.fsf@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20231212162200.10b3868b@donnerap.manchester.arm.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <7h7cljcm6a.fsf@baylibre.com>
 
-On Tue, Dec 12, 2023 at 04:22:00PM +0000, Andre Przywara wrote:
-> On Tue, 12 Dec 2023 12:28:30 +0000
-> Anne Macedo <retpolanne@posteo.net> wrote:
-> 
-> Hi Anne,
-> 
-> > Adds compatible values to mdio subnodes for Ethernet PHY representing
-> > Realtek 8211 PHY to Orange Pi One Plus.
-> 
-> So can you state why this would be needed? This is the RTL8211 ID,
-
-Apologies, I completely forgot to include some context. 
-
-> right? Which should be autodetected via MDIO. Looking back in my inbox
-> you proposed this change before, for U-Boot, specifically, but I fail to
-> find a solution or explanation what really happens here. Two Renesas .dts
-> files have the same compatible, and the commit message talks about the
-> reset line there, is this related?
-> 
-> So can you please give some more background and explanation? That would be
-> part of a good commit message anyway ("why", not "what").
-
-Should I resend the commit with a more meaningful explanation? The
-context is the following:
-
-currently, ethernet doesn't seem to work on both u-boot and Linux on the
-Orange Pi One Plus board. 
-
-On the kernel, this error shows up:
-
-Configuring network interfaces... [    5.992589] dwmac-sun8i 5020000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
-[    6.000823] dwmac-sun8i 5020000.ethernet eth0: __stmmac_open: Cannot attach to PHY (error: -19)
-
-After applying this fix, the PHY gets attached: 
-
-Configuring network interfaces... [    6.060020] dwmac-sun8i 5020000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
-[    6.069460] dwmac-sun8i 5020000.ethernet eth0: PHY [stmmac-0:01] driver [RTL8211E Gigabit Ethernet] (irq=POLL)
-
-The previous compatible list that had ethernet-phy-ieee802.3-c22 fails
-to find a PHY, so this patch includes the correct PHY ID with the
-RTL8211 ID. 
-
-The behaviour is described on [1]. U-boot fails completely if the
-correct PHY ID is not correct, and in order to fix U-boot we need to fix
-the upstream dts [2].
-
-[1] https://elixir.bootlin.com/linux/v4.14/source/Documentation/devicetree/bindings/net/phy.txt#L20
-[2] https://elixir.bootlin.com/u-boot/latest/source/drivers/core/ofnode.c#L1258
+On Tue, Dec 12, 2023 at 10:26:05AM -0800, Kevin Hilman wrote:
+> Théo Lebrun <theo.lebrun@bootlin.com> writes:
 
 > 
-> Cheers,
-> Andre
+> > Hello,
+> >
+> > On Sun Nov 26, 2023 at 11:36 PM CET, Kevin Hilman wrote:
+> >> Théo Lebrun <theo.lebrun@bootlin.com> writes:
+> >> > On Wed Nov 22, 2023 at 11:23 PM CET, Kevin Hilman wrote:
+> >> >> Théo Lebrun <theo.lebrun@bootlin.com> writes:
+> >> >> The point is to signal to the power domain the device is in that it can
+> >> >> power on/off.  These IP blocks are (re)used on many different SoCs, so
+> >> >> the driver should not make any assumptions about what power domain it is
+> >> >> in (if any.)
+> >> >
+> >> > On my platform, when the device is attached to the PD it gets turned on.
+> >> > That feels logical to me: if a driver is not RPM aware it "just works".
+> >>
+> >> It "just works"... until the domain gets turned off.
+> >>
+> >> > Are there platforms where RPM must get enabled for the attached
+> >> > power-domains to be turned on?
+> >>
+> >> Yes, but but more importantly, there are platforms where RPM must get
+> >> enabled for the power domain to *stay* on.  For example, the power
+> >> domain might get turned on due to devices probing etc, but as soon as
+> >> all the RPM-enabled drivers drop their refcount, the domain will turn
+> >> off.  If there is a device in that domain with a non-RPM enabled driver,
+> >> that device will be powered off anc cause a crash.
+> >
+> > OK, that makes sense, thanks for taking the time to explain. This topic
+> > makes me see two things that I feel are close to being bugs. I'd be
+> > curious to get your view on both.
 > 
-> > Signed-off-by: Anne Macedo <retpolanne@posteo.net>
-> > ---
-> >  arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-one-plus.dts | 3 ++-
-> >  1 file changed, 2 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-one-plus.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-one-plus.dts
-> > index 29a081e72..7248ab72f 100644
-> > --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-one-plus.dts
-> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-one-plus.dts
-> > @@ -37,7 +37,8 @@ &emac {
-> >  
-> >  &mdio {
-> >  	ext_rgmii_phy: ethernet-phy@1 {
-> > -		compatible = "ethernet-phy-ieee802.3-c22";
-> > +		compatible = "ethernet-phy-id001c.c915",
-> > +			     "ethernet-phy-ieee802.3-c22";
-> >  		reg = <1>;
-> >  	};
-> >  };
+> TL;DR; they are features, not bugs.  ;)
 > 
+> >  - If a device does not use RPM but its children do, it might get its
+> >    associated power-domain turned off. That forces every single driver
+> >    that want to stay alive to enable & increment RPM.
+> >
+> >    What I naively expect: a genpd with a device attached to it that is
+> >    not using RPM should mean that it should not be powered off at
+> >    runtime_suspend. Benefit: no RPM calls in drivers that do not use
+> >    it, and the behavior is that the genpd associated stays alive "as
+> >    expected".
+> 
+> Your expectation makes sense, but unfortunately, that's not how RPM was
+> designed.
 
-Regards, Anne
+I'm not sure how runtime PM is meant to work with power domains.  
+
+However, from the very beginning of runtime PM the intention was that 
+device drivers and subsystems could safely ignore it.  Their devices 
+would have a permanently nonzero disable_depth (permanent because the 
+driver/subsystem would not know to change it) and therefore would always 
+remain in the active state (see rpm_check_suspend_allowed()).
+
+It would be very surprising if runtime PM for power domains was written 
+in a way that would subvert this intention.
+
+Alan Stern
 
