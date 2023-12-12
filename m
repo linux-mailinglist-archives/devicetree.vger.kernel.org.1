@@ -1,95 +1,118 @@
-Return-Path: <devicetree+bounces-24483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24484-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2B4780F4A3
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 18:33:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD71280F4A4
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 18:33:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E31131C20AEA
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 17:33:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C1DF41C20CF7
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 17:33:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 024BA7D89E;
-	Tue, 12 Dec 2023 17:33:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BAD27D8A7;
+	Tue, 12 Dec 2023 17:33:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b="wnZK1R55"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uJ/QGTnA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 286D88E;
-	Tue, 12 Dec 2023 09:33:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=s1;
-	t=1702402352; bh=PONtWZTezqJblgRiScird931BKyEOB+UEj0B3pUhbmc=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=wnZK1R55JMAgKEgx/WbYLZItfGPEPxblqThDBB/L78zmF8o9Ox0ThGoGvmlpeuOea
-	 5JEpoiUO8Rnw6Ju2VeVEKW664wE7XyZ4UT1VL5m4P0kwgqYoyO4gTeMebHYrkzot2G
-	 hFMkD2DPZ6ftZqqGuhTdvv+Mq/aDq9XxEc7GhsFE=
-From: Luca Weiss <luca@z3ntu.xyz>
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject:
- Re: [PATCH v6 09/11] ARM: dts: qcom: msm8974: drop 'regulator' property from
- SAW2 device
-Date: Tue, 12 Dec 2023 18:32:31 +0100
-Message-ID: <2708106.mvXUDI8C0e@z3ntu.xyz>
-In-Reply-To: <20231208004417.3393299-10-dmitry.baryshkov@linaro.org>
-References:
- <20231208004417.3393299-1-dmitry.baryshkov@linaro.org>
- <20231208004417.3393299-10-dmitry.baryshkov@linaro.org>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C8D76FDC
+	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 17:33:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FD69C433C8;
+	Tue, 12 Dec 2023 17:33:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702402390;
+	bh=i0k1hsZBTcIvK0H7K9lZSWl3Fj8iO7tgoW6ofFzT2v4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=uJ/QGTnA8JK4ph69zz/RJ5U2aIwaZ2uOTUk5Py9+I2Kv1SncN9di6e2bzdQapImS0
+	 6dZ9CHMORLbLm1ATkNTOQGz+CtjU1/Cv/sZPt1xrM1IvOwT/9KhoptZ8tYziZbv9Rs
+	 qL40GDCbMRpNMrc3FpiL5l/PU3tLyyR+DDM+VnB8eYAMAIve7YHAAN8PxOlXlgvQAn
+	 7EfpQfopAkmJGUheQDvm4K8/SK54hw6uTzzxpdNu356MmCeR2EqPMsBGkeT3DePlH0
+	 BwGfwmyznwogwImPvOmeplkhMwvfoqTa6cAy3HwxSaKtutoOie4C0GxOmhmKp9ty2/
+	 +KfVgvloED2/Q==
+Date: Tue, 12 Dec 2023 17:33:06 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: cw00.choi@samsung.com, myungjoo.ham@samsung.com, robh+dt@kernel.org,
+	krzysztof.kozlowski@linaro.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, shawnguo@kernel.org, marex@denx.de,
+	hvilleneuve@dimonoff.com, linux-arm-kernel@lists.infradead.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: Re: [PATCH 1/3] dt-bindings: extcon: ptn5150: Describe the USB
+ connector
+Message-ID: <20231212-helium-sixtyfold-ec721c7b5e41@spud>
+References: <20231212112729.700987-1-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="WfrpLqCkfcLK37H7"
+Content-Disposition: inline
+In-Reply-To: <20231212112729.700987-1-festevam@gmail.com>
 
-On Freitag, 8. Dezember 2023 01:44:15 CET Dmitry Baryshkov wrote:
-> The SAW2 device should describe the regulator constraints rather than
-> just declaring that it has the regulator.
-> 
-> Drop the 'regulator' property. If/when CPU voltage scaling is
-> implemented for this platform, proper regulator node show be added
-> instead.
-> 
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
+--WfrpLqCkfcLK37H7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, Dec 12, 2023 at 08:27:27AM -0300, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
+>=20
+> PTN5150 supports USB Type-C connector, so improve the bindings by
+> allowing to describe the connector like it is done on nxp,ptn5110.yaml.
+>=20
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
 > ---
->  arch/arm/boot/dts/qcom/qcom-msm8974.dtsi | 1 -
->  1 file changed, 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/qcom/qcom-msm8974.dtsi
-> b/arch/arm/boot/dts/qcom/qcom-msm8974.dtsi index ee202f3f161e..3e1e88d69c2e
-> 100644
-> --- a/arch/arm/boot/dts/qcom/qcom-msm8974.dtsi
-> +++ b/arch/arm/boot/dts/qcom/qcom-msm8974.dtsi
-> @@ -349,7 +349,6 @@ apcs: syscon@f9011000 {
->  		saw_l2: power-controller@f9012000 {
->  			compatible = "qcom,saw2";
+>  Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml=
+ b/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml
+> index d5cfa32ea52d..3837da7416e9 100644
+> --- a/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml
+> +++ b/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml
+> @@ -37,6 +37,11 @@ properties:
+>        GPIO pin (output) used to control VBUS. If skipped, no such control
+>        takes place.
+> =20
+> +  connector:
+> +    type: object
+> +    $ref: /schemas/connector/usb-connector.yaml#
+> +    unevaluatedProperties: false
 
-Hi Dmitry,
+FWIW, neither the type nor the uneval properties should be needed here,
+the referenced schema has additionalProperties: False.
 
-With the patches touching the dt bindings I don't see this "qcom,saw2" 
-compatible without a second one being accepted by the bindings? Do you have a 
-suggestion what do to there? Also thinking about msm8226 which also has a 
-saw_l2.
+Otherwise,
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Thanks for working on this old stuff!
+Cheers,
+Conor.
 
-Regards
-Luca
+> +
+>  required:
+>    - compatible
+>    - interrupts
+> --=20
+> 2.34.1
+>=20
 
->  			reg = <0xf9012000 0x1000>;
-> -			regulator;
->  		};
-> 
->  		watchdog@f9017000 {
+--WfrpLqCkfcLK37H7
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZXiZUgAKCRB4tDGHoIJi
+0mIJAQCYT5bHr0jPM+QMkDd83rUMLOZgRc8TMPgU5EjwbxsuYQD/TYggsJZjfC3u
+q42gRY2MBYXicLI/U++h975dGtCHKwo=
+=ZAWg
+-----END PGP SIGNATURE-----
 
-
+--WfrpLqCkfcLK37H7--
 
