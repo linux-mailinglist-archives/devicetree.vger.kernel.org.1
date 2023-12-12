@@ -1,53 +1,48 @@
-Return-Path: <devicetree+bounces-24468-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24469-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5530780F3F3
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 18:04:20 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3B5680F3FA
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 18:05:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2B2EBB20D91
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 17:04:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D42EB1C20A53
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 17:05:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DAB77B3BE;
-	Tue, 12 Dec 2023 17:04:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1F737B3BE;
+	Tue, 12 Dec 2023 17:05:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pDkbbvh6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aGwTmpLs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D7C07A221;
-	Tue, 12 Dec 2023 17:04:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2301C433C8;
-	Tue, 12 Dec 2023 17:04:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2E947A221;
+	Tue, 12 Dec 2023 17:05:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FEB1C433C8;
+	Tue, 12 Dec 2023 17:05:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702400651;
-	bh=LQm7aH6ghqJpKj4J3ydBFhDASy4cgy+cbPAS250XPtM=;
+	s=k20201202; t=1702400720;
+	bh=fgV/ueNCtkTrCI5wjYcDbyfn6cdCjZFdcNhi/pc5XFc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pDkbbvh6zFfcu0aSNxDfaQE5KQw7UsETjU5RzG5nVJq9awVEs9kbHQHpgqu7ZIGSM
-	 cNkXNEc72HjlP1RnJJStsxB6JRu1IgvAKEn7yN5Cohf7rTBGp7rGmkfcOJPjdBoy8S
-	 lCOMUPvXyZ514uFaeZIgYL+8jJpaRjCUKE+6vHfXAT884sal8mW14g1xMG/ENLBKJJ
-	 yOy9PIGtxbLB/WXZu6bTFTiLGKs/pu/LtSjfHlAM0r8QvRRjcieBshhHSxMniYu8Ig
-	 iNxG8x4KNT7fWbkEhfqJnWGKMp9n7J3h6rUSzeTSqk6AGm5o5mXkeNJwBWtrpey5XC
-	 IdStfDYWsM62g==
-Date: Tue, 12 Dec 2023 17:04:07 +0000
+	b=aGwTmpLszqMAvT1evkp2WwFB1pDOGD7rISsvdX5xDl5WWqzXBLn+JuMwv3tU4N/Ai
+	 vsuXfs9GuU9Fnyf3Gs0qJv9usvlHPRdQXM3k0/2BMsCYT/Y4XDHY1AybP0RpcfV0OM
+	 AKjmZJMosm46YCKHmSyUtGxgvfdVfPiMnJbeGmNll4RnItyAFNGM0MJUL5OVXFbXp+
+	 Oupnz3bcVAj2fhVNuO3qDuDZLot8Qwsbx4hReJRayWmhoquRaW/uKIDojvK8k4Ru3q
+	 MycgSsg6L8ckbaWCFIWCYK9ZI8Fbh4NAgAY7dAXtT7BiAX59JOLdkmL4bvZkrXZCW5
+	 frUwGUQR+GWBw==
+Date: Tue, 12 Dec 2023 17:05:16 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: David Heidelberg <david@ixit.cz>, Jean Delvare <jdelvare@suse.com>,
-	Rob Herring <robh+dt@kernel.org>,
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/3] dt-bindings: arm: hwmon: gpio-fan: Convert txt
- bindings to yaml
-Message-ID: <20231212-scarf-stage-0f3c6947c1bb@spud>
-References: <20231209171653.85468-1-david@ixit.cz>
- <08ecf10d-03c4-4025-8809-475fb5ee76a9@roeck-us.net>
- <9b67ad11-c55c-4695-9439-2a9c5d6c1e45@ixit.cz>
- <b327d7e4-35fb-4b1e-bde2-267bba918df6@roeck-us.net>
+	Conor Dooley <conor+dt@kernel.org>, linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mmc: synopsys-dw-mshc: add iommus for Intel
+ SocFPGA
+Message-ID: <20231212-situation-catapult-31deb18f55e6@spud>
+References: <20231209171013.249972-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,45 +50,76 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="otppeu91Q+M1BT0I"
+	protocol="application/pgp-signature"; boundary="2mllp56Yojhimxyx"
 Content-Disposition: inline
-In-Reply-To: <b327d7e4-35fb-4b1e-bde2-267bba918df6@roeck-us.net>
+In-Reply-To: <20231209171013.249972-1-krzysztof.kozlowski@linaro.org>
 
 
---otppeu91Q+M1BT0I
+--2mllp56Yojhimxyx
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Dec 11, 2023 at 11:42:09AM -0800, Guenter Roeck wrote:
-> On 12/11/23 11:28, David Heidelberg wrote:
-> > Nothing, as I was working on others ARM-related bindings, it just sneak=
-ed in. Good catch.
-> >=20
-> > Should I resend with adjusted name or can this by done by quick adjust =
-before the merge?
-> >=20
+On Sat, Dec 09, 2023 at 06:10:13PM +0100, Krzysztof Kozlowski wrote:
+> The DW MSHC node in Intel SocFPGA ARM64 DTS has iommus property, so
+> allow it to silence dtbs_check warnings:
 >=20
-> No need to resend. I'll fix that up, assuming you get a Reviewed-by: tag =
-=66rom a dt
-> maintainer.
+>   socfpga_n5x_socdk.dtb: mmc@ff808000: Unevaluated properties are not all=
+owed ('iommus' was unexpected)
+>=20
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>=20
+> ---
+>=20
+> I assume the DTS represents the hardware, thus iommus is real.
 
-I think it is okay.
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Assuming it is in fact real,
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
 Cheers,
 Conor.
 
---otppeu91Q+M1BT0I
+> ---
+>  Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml =
+b/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml
+> index b13b5166d20a..a6292777e376 100644
+> --- a/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml
+> @@ -35,6 +35,9 @@ properties:
+>        - const: biu
+>        - const: ciu
+> =20
+> +  iommus:
+> +    maxItems: 1
+> +
+>    altr,sysmgr-syscon:
+>      $ref: /schemas/types.yaml#/definitions/phandle-array
+>      items:
+> @@ -62,6 +65,7 @@ allOf:
+>          altr,sysmgr-syscon: true
+>      else:
+>        properties:
+> +        iommus: false
+>          altr,sysmgr-syscon: false
+> =20
+>  required:
+> --=20
+> 2.34.1
+>=20
+
+--2mllp56Yojhimxyx
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZXiShwAKCRB4tDGHoIJi
-0mNDAQCLZ2OKvdxwgStqi9QNZmPO4wuo+ujqqalvfCgkOw7JPgEA5rPXIyolvj5K
-0BZcN+wtandQRfYBdIJUD7vmRXc7DAA=
-=sk9Z
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZXiSzAAKCRB4tDGHoIJi
+0guKAP9KpXptHIwPy8y65zTLRaA5ROCdUPXQxch5VszAJOa7WgEAxqSaZF2RNUAA
+Q44AUjPOny9XxYcpphYjYaoX3kr8Tg0=
+=rnlC
 -----END PGP SIGNATURE-----
 
---otppeu91Q+M1BT0I--
+--2mllp56Yojhimxyx--
 
