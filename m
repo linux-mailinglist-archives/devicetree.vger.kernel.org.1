@@ -1,44 +1,44 @@
-Return-Path: <devicetree+bounces-24202-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24209-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F74C80E5CC
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 09:22:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C1C280E5F2
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 09:23:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D4679B20BF7
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 08:22:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D5191C209D3
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 08:23:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C245B20DC6;
-	Tue, 12 Dec 2023 08:22:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CCD5487A0;
+	Tue, 12 Dec 2023 08:22:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pA5J6IPV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SgDtwm1y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 833DB199B7;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFCC124B3A;
 	Tue, 12 Dec 2023 08:22:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 5BC4EC116B3;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 6F3EEC116B6;
 	Tue, 12 Dec 2023 08:22:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1702369325;
-	bh=VNwPggiAWASAvwqtJd7Wj3ItapLp0dhIgz2LnHUWvFk=;
+	bh=QElf92ve25lXN1JZiFHBfLmXRGqOOHFIk5fOxWOua4A=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=pA5J6IPVLRR0NA9SUqxNr+DL7rpwy2rVPnaJeMyYIgt9y9nMfa70PSPL6A6bTWGKJ
-	 83qmLFbT4IcwuPnGBstDCYZeNGu8xRXUGtOTfsFbcBmztDA7rhvuIzYiNAz7VC1dML
-	 hB9FWB5VDLZi1yIc4BrXiVXEyKBxE+w1D9c/12fUj4Qo7/PI8y5ezKY53BJL6VaQCe
-	 ocegP+Vy5eU6w3cWp3B+iOMOUn4Ye1smcpVm45UO/q5AbRyY9KhA0XudKENPrpGGyI
-	 e2ZuRINDbq8zwYaP4JUJ1YZVx8wwmlSf3ZLegJIEz3R6DA6MNye8fVuGtMl3M5CxdU
-	 sWZcUeYxbBtaQ==
+	b=SgDtwm1ylXQ5OjvD4I8AE6wXn3vJGLTFDrH6Td+liqzXoyD4uqTkkPjcU3kb7K6vJ
+	 4fZ6ohJBnq07xtabQ9SU3Y1yyfv/hBder37Lr7zvN+UWm44vnQ5jvLBY/FCE8OQQ2V
+	 16WgPuUUn+xK8exKXh66g3DW7CWOMkld3K+IqljFmWFjh7TCFDd1h1Gzo5aYWeoVAx
+	 1uhSvaM1SP8emmJRIdZ5tKys6Y+ZQ6/94NnXx31oaoCncGw6UGigcQnJyWySJvSae0
+	 Znd5gJdadWppy+dXJPXB3PkduwcxIrZNpi7d1Yrwq9cgn2tZmysIgIwBkkk+VE9XJf
+	 iuwKYHZ4d/CLw==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4CA2AC4167B;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5ECAEC38145;
 	Tue, 12 Dec 2023 08:22:05 +0000 (UTC)
 From:
  Nikita Shubin via B4 Relay <devnull+nikita.shubin.maquefel.me@kernel.org>
-Date: Tue, 12 Dec 2023 11:20:32 +0300
-Subject: [PATCH v6 15/40] dt-bindings: spi: Add Cirrus EP93xx
+Date: Tue, 12 Dec 2023 11:20:34 +0300
+Subject: [PATCH v6 17/40] dt-bindings: net: Add Cirrus EP93xx
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -47,23 +47,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20231212-ep93xx-v6-15-c307b8ac9aa8@maquefel.me>
+Message-Id: <20231212-ep93xx-v6-17-c307b8ac9aa8@maquefel.me>
 References: <20231212-ep93xx-v6-0-c307b8ac9aa8@maquefel.me>
 In-Reply-To: <20231212-ep93xx-v6-0-c307b8ac9aa8@maquefel.me>
-To: Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+To: "David S. Miller" <davem@davemloft.net>, 
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>, 
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
  Alexander Sverdlin <alexander.sverdlin@gmail.com>, 
  Nikita Shubin <nikita.shubin@maquefel.me>
-Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.13-dev-e3e53
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1702369322; l=2297;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1702369322; l=2030;
  i=nikita.shubin@maquefel.me; s=20230718; h=from:subject:message-id;
- bh=eohxXtWd+HuVJyaYSL1l5VkylPnLSM7yKMq6Kko41cI=; =?utf-8?q?b=3DlXF4u5RJQUO9?=
- =?utf-8?q?k1c/73N9EGH3qHbYS2ClWcSCBcYU7oAMndw5RK/HH8R/BhXtcDLJjTOz8VB+VAU/?=
- 2q6bP5LBDwc8p+UoqHwmMEOYdOFe4AawrqizlSt5eRp3r+vjs4XI
+ bh=FinMyeys++S17z45OrZP4NQjjACfz96xCTLZUAMWD/g=; =?utf-8?q?b=3D4kPId6aovYi9?=
+ =?utf-8?q?t/xaSzCc53zJG4kjo3RX1N/mKlmbt1m0f779yDPF231o9ISVzvge5t1v7SC0QSvF?=
+ ZfR4BVZ3B7/aVU1vt2/nbjplYo4OSHOSh34jaOweFodZQ7umj0lR
 X-Developer-Key: i=nikita.shubin@maquefel.me; a=ed25519;
  pk=vqf5YIUJ7BJv3EJFaNNxWZgGuMgDH6rwufTLflwU9ac=
 X-Endpoint-Received:
@@ -73,90 +75,78 @@ Reply-To: <nikita.shubin@maquefel.me>
 
 From: Nikita Shubin <nikita.shubin@maquefel.me>
 
-Add YAML bindings for ep93xx SoC SPI.
+Add YAML bindings for ep93xx SoC Ethernet Controller.
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Mark Brown <broonie@kernel.org>
 Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
 ---
- .../devicetree/bindings/spi/cirrus,ep9301-spi.yaml | 70 ++++++++++++++++++++++
- 1 file changed, 70 insertions(+)
+ .../devicetree/bindings/net/cirrus,ep9301-eth.yaml | 59 ++++++++++++++++++++++
+ 1 file changed, 59 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/spi/cirrus,ep9301-spi.yaml b/Documentation/devicetree/bindings/spi/cirrus,ep9301-spi.yaml
+diff --git a/Documentation/devicetree/bindings/net/cirrus,ep9301-eth.yaml b/Documentation/devicetree/bindings/net/cirrus,ep9301-eth.yaml
 new file mode 100644
-index 000000000000..73980a27dc00
+index 000000000000..ad0915307095
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/spi/cirrus,ep9301-spi.yaml
-@@ -0,0 +1,70 @@
++++ b/Documentation/devicetree/bindings/net/cirrus,ep9301-eth.yaml
+@@ -0,0 +1,59 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/spi/cirrus,ep9301-spi.yaml#
++$id: http://devicetree.org/schemas/net/cirrus,ep9301-eth.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: EP93xx SoC SPI controller
++title: EP93xx SoC Ethernet Controller
 +
 +maintainers:
 +  - Alexander Sverdlin <alexander.sverdlin@gmail.com>
 +  - Nikita Shubin <nikita.shubin@maquefel.me>
 +
 +allOf:
-+  - $ref: spi-controller.yaml#
++  - $ref: ethernet-controller.yaml#
 +
 +properties:
 +  compatible:
 +    oneOf:
-+      - const: cirrus,ep9301-spi
++      - const: cirrus,ep9301-eth
 +      - items:
 +          - enum:
-+              - cirrus,ep9302-spi
-+              - cirrus,ep9307-spi
-+              - cirrus,ep9312-spi
-+              - cirrus,ep9315-spi
-+          - const: cirrus,ep9301-spi
++              - cirrus,ep9302-eth
++              - cirrus,ep9307-eth
++              - cirrus,ep9312-eth
++              - cirrus,ep9315-eth
++          - const: cirrus,ep9301-eth
 +
 +  reg:
 +    items:
-+      - description: SPI registers region
++      - description: The physical base address and size of IO range
 +
 +  interrupts:
-+    maxItems: 1
-+
-+  clocks:
 +    items:
-+      - description: SPI Controller reference clock source
++      - description: Combined signal for various interrupt events
 +
-+  dmas:
-+    items:
-+      - description: rx DMA channel
-+      - description: tx DMA channel
++  phy-handle: true
 +
-+  dma-names:
-+    items:
-+      - const: rx
-+      - const: tx
++  mdio:
++    $ref: mdio.yaml#
++    unevaluatedProperties: false
++    description: optional node for embedded MDIO controller
 +
 +required:
 +  - compatible
 +  - reg
 +  - interrupts
-+  - clocks
++  - phy-handle
 +
-+unevaluatedProperties: false
++additionalProperties: false
 +
 +examples:
 +  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/clock/cirrus,ep9301-syscon.h>
-+    spi@808a0000 {
-+        compatible = "cirrus,ep9301-spi";
-+        reg = <0x808a0000 0x18>;
++    ethernet@80010000 {
++        compatible = "cirrus,ep9301-eth";
++        reg = <0x80010000 0x10000>;
 +        interrupt-parent = <&vic1>;
-+        interrupts = <21>;
-+        clocks = <&syscon EP93XX_CLK_SPI>;
-+        dmas = <&dma1 10 2>, <&dma1 10 1>;
-+        dma-names = "rx", "tx";
-+        cs-gpios = <&gpio5 2 GPIO_ACTIVE_HIGH>;
++        interrupts = <7>;
++        phy-handle = <&phy0>;
 +    };
 
 -- 
