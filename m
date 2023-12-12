@@ -1,110 +1,146 @@
-Return-Path: <devicetree+bounces-24504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24505-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E94580F5FE
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 20:06:55 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91CBC80F602
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 20:07:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7FB821C208CA
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 19:06:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 13B5BB20DAC
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 19:07:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6F3580047;
-	Tue, 12 Dec 2023 19:06:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A12A68004C;
+	Tue, 12 Dec 2023 19:07:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="EfQOr1nW"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="vMLMHfKu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 975D191
-	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 11:06:47 -0800 (PST)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BCH7aDC016534;
-	Tue, 12 Dec 2023 19:06:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=hTY/YUV6KDI+By4u2GZ2L1Q/0EBl5jkKnYeixgDWtis=; b=Ef
-	QOr1nWEXRuE14id5N6XnVvCG/ZWJG6YtkMYPye/DrlFta++awwABn7M4VucTkahC
-	LJZqjZD4+khp4/ywy5UqXTjdyZBKeMoYitHVSC+7R96z2essneFm3AGUms1HTXCi
-	nKk+GiiCtoh8E/r32FTEU40GEOExDWyMWE5Eau3TmgK7NuuSavqlMN3Qfs+4ahez
-	soaejQ9K10MJFk5tn+jP2muz2bytbTPEa92U7sBFIgtIHytyWX9lVIX9TJHFWtwQ
-	3Pek1CfZNTfaV1X3Qfnl0+R8vuurIeml3wE9RNRxK1OcF79LUpW1+UagP7ZQlNrr
-	nJubfe8C0CslxKGM2jqw==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uxctatfpm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 12 Dec 2023 19:06:44 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BCJ6hiD003108
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 12 Dec 2023 19:06:43 GMT
-Received: from [10.110.26.44] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 12 Dec
- 2023 11:06:43 -0800
-Message-ID: <1935cb82-648c-f079-8852-d461dc9f8609@quicinc.com>
-Date: Tue, 12 Dec 2023 11:06:42 -0800
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DE3491;
+	Tue, 12 Dec 2023 11:07:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=WDyfD09PAON4LZuIakiggNErHuklPdxdPhsExRCINO0=; b=vMLMHfKuWjpOeCgqj+OLSIbKsG
+	WCGncmPzax+s7ErnI8PlwoAcxDgi7JafMKVhEz++U+ZVQ0XP+ohiULCrVXD/1dsSQSk5yjcm0zHBK
+	XJSYcF2axTnD1zNtKD5UhlW9zlwLRjW3JYr1H0mjXegUeu0pkeLE3MwLfePZ5fVAWlL23Am0I3PL5
+	NT+gIKBnCPzCh8jjkzWC4o0487W4InM+Or5UWQfd6BDMvNIV9pIIIE1jc+pWQizWWt+hHLFeDOT09
+	rdDi0N33mI6WDlJ+FmCYpG7ErF4HC1LSmRNgAAZM97w65nNqWkVz7kUwz5Y9zFE6ftvqJdadzd2vK
+	vwdMQbbQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:35082)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1rD85g-0007Hq-0s;
+	Tue, 12 Dec 2023 19:06:48 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1rD85e-0000gA-UH; Tue, 12 Dec 2023 19:06:46 +0000
+Date: Tue, 12 Dec 2023 19:06:46 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Serge Semin <fancer.lancer@gmail.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Jose Abreu <Jose.Abreu@synopsys.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Tomer Maimon <tmaimon77@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	openbmc@lists.ozlabs.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 06/16] net: pcs: xpcs: Avoid creating dummy XPCS
+ MDIO device
+Message-ID: <ZXivRofyIpvmfOyR@shell.armlinux.org.uk>
+References: <20231205103559.9605-1-fancer.lancer@gmail.com>
+ <20231205103559.9605-7-fancer.lancer@gmail.com>
+ <ZW8pxM3RvyHJTwqH@shell.armlinux.org.uk>
+ <ZW85iBGAAf5RAsN1@shell.armlinux.org.uk>
+ <kagwzutwnbpiyc7mmtq7ka3vhffw4fejuti5vepnla74rocruh@tryn6lxhwbjz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: DT Query on "New Compatible vs New Property"
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>,
-        "Prasad Sodagudi (QUIC)"
-	<quic_psodagud@quicinc.com>,
-        <srinivas.kandagatla@linaro.org>, <vincent.guittot@linaro.org>,
-        <ulf.hansson@linaro.org>, <manivannan.sadhasivam@linaro.org>
-References: <be31801e-bb21-426b-f7aa-2b52727de646@quicinc.com>
- <82115165-6089-4214-b47b-2c2c0dfb8c66@linaro.org>
-Content-Language: en-US
-From: Nikunj Kela <quic_nkela@quicinc.com>
-In-Reply-To: <82115165-6089-4214-b47b-2c2c0dfb8c66@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: J-Uq6g2kXow3YLM9Zhw6nWriAcFV8pL2
-X-Proofpoint-ORIG-GUID: J-Uq6g2kXow3YLM9Zhw6nWriAcFV8pL2
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 malwarescore=0
- lowpriorityscore=0 phishscore=0 impostorscore=0 bulkscore=0 mlxscore=0
- adultscore=0 suspectscore=0 priorityscore=1501 clxscore=1011
- mlxlogscore=840 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2312120146
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <kagwzutwnbpiyc7mmtq7ka3vhffw4fejuti5vepnla74rocruh@tryn6lxhwbjz>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-+ Linaro team
+On Tue, Dec 12, 2023 at 06:26:16PM +0300, Serge Semin wrote:
+> I would have used in the first place if it was externally visible, but
+> it's defined as static. Do you suggest to make it global or ...
 
-On 12/12/2023 11:01 AM, Krzysztof Kozlowski wrote:
-> On 12/12/2023 18:45, Nikunj Kela wrote:
->> We are abstracting some resources(ex. clocks) under new firmware on an
->> existing platform therefore need to make changes in certain drivers to
->> work with that firmware. We need to make a distinction between two
->> different variants of the FW. In one case, some resources will be
->> abstracted while in other case, they won't be abstracted. My query is -
->> "should we define a new compatible string for the variant with
->> abstracted resources(in FW) or we should add a new DT property keeping
->> the compatible same?"
-> Hi,
->
-> Usually change in the interface or behavior warrants new compatible.
-> Property would be suitable if the same device, e.g. same SoC component
-> with same FW, was configured differently on different boards.
->
-> Best regards,
-> Krzysztof
+That would be one option - I didn't make it visible when I introduced it
+beacuse there were no users for it.
 
-Thank you for your prompt response! Will use different compatible as 
-advised.
+> > At some point, we should implement
+> > mdiobus_get_mdiodev() which also deals with the refcount.
+> 
+> ... create mdiobus_get_mdiodev() instead?
+> 
+> * Note in the commit message I mentioned that having a getter would be
+> * better than directly touching the mii_bus instance guts.
 
+What I'm thinking is:
+
+/**
+ * mdiobus_get_mdiodev() - get a mdiodev for the specified bus
+ * @bus: mii_bus to get mdio device from
+ * @addr: mdio address of mdio device
+ *
+ * Return the struct mdio_device attached to the MII bus @bus at MDIO
+ * address @addr. On success, the refcount on the device will be
+ * increased, which must be dropped using mdio_device_put(), and the
+ * mdio device returned. Otherwise, returns NULL.
+ */
+struct mdio_device *mdiobus_get_mdiodev(struct mii_bus *bus, int addr)
+{
+	struct mdio_device *mdiodev;
+
+	mdiodev = mdiobus_find_device(bus, addr);
+	if (mdiodev)
+		get_device(&mdiodev->dev);
+	return mdiodev;
+}
+EXPORT_SYMBOL(mdiobus_get_mdiodev);
+
+should do it, and will hold a reference on the mdiodev structure (which
+won't be freed) and also on the mii_bus (since this device is a child
+of the bus device, the parent can't be released until the child has
+been, so struct mii_bus should at least stay around.)
+
+What would help the "the bus driver has been unbound" situation is if
+we took the mdio_lock on the bus, and then set the {read,write}{,_c45}
+functions to dummy stubs when the bus is being unregistered which then
+return e.g. -ENXIO. That will probably make unbinding/unloading all
+MDIO bus drivers safe from kernel oops, although phylib will spit out
+a non-useful backtrace if it tries an access. I don't think there's
+much which can be done about that - I did propose a patch to change
+that behaviour but apparently folk like having it!
+
+It isn't perfect - it's racy, but then accessing mdio_map[] is
+inherently racy due to no locking with mdiobus_.*register_device().
+At least if we have everyone using a proper getter function rather
+than directly fiddling with bus->mdio_map[]. We only have one driver
+that accesses it directly at the moment (mscc_ptp):
+
+                dev = phydev->mdio.bus->mdio_map[vsc8531->ts_base_addr];
+                phydev = container_of(dev, struct phy_device, mdio);
+
+                return phydev->priv;
+
+and that should really be using mdiobus_get_phy().
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
