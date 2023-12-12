@@ -1,168 +1,159 @@
-Return-Path: <devicetree+bounces-24253-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24254-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B452080E7E4
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 10:40:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F56080E7F6
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 10:42:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E616282BDB
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 09:40:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C42261F21928
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 09:42:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF87F58AB1;
-	Tue, 12 Dec 2023 09:40:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D09F858AB1;
+	Tue, 12 Dec 2023 09:42:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uhjbM8Jp"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sXlhNgXo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D622DC
-	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 01:40:04 -0800 (PST)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-54dcfca54e0so6977457a12.1
-        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 01:40:04 -0800 (PST)
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01AABDB
+	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 01:42:36 -0800 (PST)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-54ba86ae133so5166688a12.2
+        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 01:42:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702374003; x=1702978803; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=T7WSPbehcijEKgEJWzyVTs2cXCZ1wk5EWf1JMP+vpZw=;
-        b=uhjbM8JpQ5gJdMeBgxEi+hfHJmDWQeFVjq0k9Ld0LAzC/fsoNKUfSzLb9bp6DIqXln
-         3FpeX8h806MQW7gXHh0/Z+WuMGExkpojuFDWc0KmlN4h1rxVx2TDvgVjNrFoXCK/UQz2
-         8onqZZeeQCfJgF5MyE7VLp7zJqbSp1ucFIbss75NO26Fne2TAc6bbXbqFKz3NCo91aRU
-         DwLLq7eRqJUMyCRZu8OlBdrJS3M7EfXfC5cgCY4rrEB1NTD1Aux9ii6xKGqf9x2ybyvk
-         z6qaA8/ADyYDbOoznIjYaqZtB0/3DNSjNlmo9s6dIzf2TQwjPwbBBeUldki5BjDGdd8p
-         uM4Q==
+        d=linaro.org; s=google; t=1702374154; x=1702978954; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=ab1u+8M+Dm9uo1aZ0FRCSc/hdRD8QsyXXMToKdHn3YM=;
+        b=sXlhNgXoixdSf7bmuoCfidYEGBfDbhddNEIgG6d9J+0eu+C2m0wOvPbJNutDjFLqk6
+         L5hHrsaSItsCKoP9qN6qSXxsYpzwPOLpCzXYfO/MFBnmAWgOYoWV5V86wmvyOce0aNIC
+         C1cj4TVVyHEGOp1Z2Wf8yfmc63Cll6C5SmiSGxn7QAP0zoitZeKSoG5juXVCXojvEe23
+         ktSMr9alBCDsGJPCH54GpSWs3DpkW9pS0hBnbfWBeU9zjCzPaSshe7INCTsG3/HY6Eef
+         wiIR8XJoVLjTvuJK6IsDULF5f0/+3d1NJK8VemiqIhTkpUHPp037HE03iMmj6vmGiw7Q
+         uc5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702374003; x=1702978803;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=T7WSPbehcijEKgEJWzyVTs2cXCZ1wk5EWf1JMP+vpZw=;
-        b=cLz+wFsk9THJz6Bdl2DAJ0RWhZGiuoU0BruM2gR4oN6KUdUWq9Gz3RtBc246J+JMRI
-         WKTeHuE9kkdYQM1Bcuq3hFOZQ30BFGC26jJwmc+o79yMYfrKXpbNkk8iOf2NCoux0++T
-         HAflxmtRsaeQMVX5gVd4nyyEneved4L081WU0GGsJuUmLrzylSThDkoEFXYP49YHGzmu
-         G7Nk9VU2QvZRnM8maS8skBo3NBnrS3S/bZ6D570afzvDjEkA+1fbciMlWDx31krHoos1
-         r7+ZPMLfea4mqCXo2fTciu8DIfAQqvU0lb6PCaaEUwMmH2+oT5p4QQJwS4BP8NH0bTHD
-         jn4g==
-X-Gm-Message-State: AOJu0Yyiu2ohFe+3UoT51YX/ePB+/uwTxyeWfeQZlWRj7om8XXksw5Nt
-	jnLdfqR3FpmCDOBa3YdCjXjSKQ==
-X-Google-Smtp-Source: AGHT+IFzFmwY5xwsSBjeFaYogBsab8uI25xMWlwPgCNrjrXjwWM9aMvv9w1//6BcPicBY41+tDiU/A==
-X-Received: by 2002:a17:907:3d8e:b0:a19:a1ba:da4b with SMTP id he14-20020a1709073d8e00b00a19a1bada4bmr3632691ejc.114.1702374002701;
-        Tue, 12 Dec 2023 01:40:02 -0800 (PST)
-Received: from [127.0.1.1] ([79.115.23.25])
-        by smtp.gmail.com with ESMTPSA id ub26-20020a170907c81a00b00a1c96e987c4sm6037240ejc.101.2023.12.12.01.40.01
+        d=1e100.net; s=20230601; t=1702374154; x=1702978954;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ab1u+8M+Dm9uo1aZ0FRCSc/hdRD8QsyXXMToKdHn3YM=;
+        b=I/f1o7Yhr6FaS5vZMLEoXWXqTa3TYm6Xdfx/9v68FTpMq9XnvpIgaAnRHExXdxxHHF
+         K1oGJtQc5Z1D9+IiOaST0pXmczcuj04LNGPAm8RarGy6YiR4AWHFFXMKdDX4foQJHckB
+         NO+i9PKAKuLBWayFDFmun1UzWPcodoGfCu29dUi9EGm2myQIrecV5bndTYMYjxOjckof
+         gQ2Enx6j8MTAeUdV19ELRRMwd8ZqXmJ+WwLyC5EVM5LuztKgtQ54N884sm527n6ncDrS
+         o1qDAeA2+DAz6aO3+ayP1QKe5/nloJCXN720TNnmXq5tbeWTYT9CeodSXBAy/zFipTB+
+         Y4TA==
+X-Gm-Message-State: AOJu0YwQXUcYeLI3eNr8JUcfl5hnk3O9TpkjLQUAJb0U2gDrJ3XqGieO
+	ZEHA05SK8LYtsxemvnidaSI6GA==
+X-Google-Smtp-Source: AGHT+IGjSOz4SSTqu+GJBYnhLwGCVarT1qCJVfjUEnwNzA+f3tfpoT0jrkRQZSZGaQUqCStgg5FLNQ==
+X-Received: by 2002:a17:906:7392:b0:a00:773c:3f09 with SMTP id f18-20020a170906739200b00a00773c3f09mr3444594ejl.17.1702374154403;
+        Tue, 12 Dec 2023 01:42:34 -0800 (PST)
+Received: from linaro.org ([79.115.23.25])
+        by smtp.gmail.com with ESMTPSA id vc12-20020a170907d08c00b00a1d4a920dffsm5933659ejc.88.2023.12.12.01.42.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Dec 2023 01:40:02 -0800 (PST)
+        Tue, 12 Dec 2023 01:42:34 -0800 (PST)
+Date: Tue, 12 Dec 2023 11:42:32 +0200
 From: Abel Vesa <abel.vesa@linaro.org>
-Date: Tue, 12 Dec 2023 11:39:52 +0200
-Subject: [PATCH] arm64: dts: qcom: Add SMB2360 pmic dtsi
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: Add SMB2360 pmic dtsi
+Message-ID: <ZXgrCHNkz20Weqjq@linaro.org>
+References: <20231212-x1e80100-dts-smb2360-v1-1-c28bb4d7105e@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231212-x1e80100-dts-smb2360-v1-1-c28bb4d7105e@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAGgqeGUC/x2NQQrCQAwAv1JyNpCkaMWviIfdbWoDdZWNSqH07
- waPMzDMBq7N1OHSbdD0a27PGsCHDsqc6l3RxmAQkp6FGFfWMzERjm9Hf2TpT4RUhiLHSZTSAJH
- m5Iq5pVrmiOtnWUK+mk62/l/X277/AMpXxoF7AAAA
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1778; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=cENQN0lGVHkALBwjCWgcaICqf2Y63xNy5bQr8heDzrk=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBleCpslNoWRkn7+O49nH1Q8ovNlCDxqv5SowLTF
- dqdYY0TDS+JAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZXgqbAAKCRAbX0TJAJUV
- VsBSEADFIrPMRJ/aVC7MlIn49AwHaxVBk6HCuBNApbP82miRDGenqLS1IbGX2x+K8bIczuml1lX
- MfI4P9guC3gn+lONJ8YIqAQVQW6v6UhS9nCJvSbkGFPYarnkT3QaDkm/xZ+YZVDJIRhtmZZbWZ7
- XjT9P3NIf0vQf5s9p2MiBPhzEwK2rQUK0I48kEIhSzx4KGktO+TToQnVMhy1LyCz3L08oYXJtxm
- sYzklmvwTOGQo8xiqgzveaUhJfgyQD/S6CRFplaCS0Z0/lPVbWLi7quw11SVbQftTYZoCNEz0wN
- zXHP6RrIuPzCvmuQ7NnP/WxuZ3cGwrk54tF6IuA2ruQv800OLInJTkN1J3joPT5ieBt9ICSJmfO
- Tn0XMmExWzSPr7sAe57E+Apv/czMvZGlt92BVMa/YX1gLHuE/cAEFNnN7r30jEOfSt0IJsW6Lsy
- IwZZvkuubVNm7p0JJxhF++5apJTjV45nxPlpJS8gGhMx8JZWS2sXrJxIgVfXU5BqfnrPZW8/0i9
- azs2DjW5XxlKKjpXezYzrQtD8ComuTaddbxWKF6pHEBisqTSW9i14GfxdevFxUxJJ4+cV4cIDAS
- J41bS5uLg4pmTMBPtyuhhRd/ug+D2ZLYwHzgzysnLVNhb5w93+PfwAczyB14g5Oj7RTHlPxH/1i
- ZJHSk97VOCoHzRQ==
-X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231212-x1e80100-dts-smb2360-v1-1-c28bb4d7105e@linaro.org>
 
-Add nodes for SMB2360 in separate dtsi file.
-Also add the eUSB2 repeater nodes.
+On 23-12-12 11:39:52, Abel Vesa wrote:
+> Add nodes for SMB2360 in separate dtsi file.
+> Also add the eUSB2 repeater nodes.
+> 
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
 
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
- arch/arm64/boot/dts/qcom/smb2360.dtsi | 51 +++++++++++++++++++++++++++++++++++
- 1 file changed, 51 insertions(+)
+On a second thought, please ignore this one.
 
-diff --git a/arch/arm64/boot/dts/qcom/smb2360.dtsi b/arch/arm64/boot/dts/qcom/smb2360.dtsi
-new file mode 100644
-index 000000000000..782746a20403
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/smb2360.dtsi
-@@ -0,0 +1,51 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2023, Linaro Limited
-+ */
-+
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/spmi/spmi.h>
-+
-+/ {
-+};
-+
-+&spmi1_bus {
-+	smb2360h: pmic@7 {
-+		compatible = "qcom,sm2360", "qcom,spmi-pmic";
-+		reg = <0x7 SPMI_USID>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		smb2360_1_eusb2_repeater: phy@fd00 {
-+			compatible = "qcom,smb2360-eusb2-repeater";
-+			reg = <0xfd00>;
-+			#phy-cells = <0>;
-+		};
-+	};
-+
-+	smb2360k: pmic@a {
-+		compatible = "qcom,sm2360", "qcom,spmi-pmic";
-+		reg = <0xa SPMI_USID>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		smb2360_2_eusb2_repeater: phy@fd00 {
-+			compatible = "qcom,smb2360-eusb2-repeater";
-+			reg = <0xfd00>;
-+			#phy-cells = <0>;
-+		};
-+	};
-+
-+	smb2360l: pmic@b {
-+		compatible = "qcom,sm2360", "qcom,spmi-pmic";
-+		reg = <0xb SPMI_USID>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		smb2360_3_eusb2_repeater: phy@fd00 {
-+			compatible = "qcom,smb2360-eusb2-repeater";
-+			reg = <0xfd00>;
-+			#phy-cells = <0>;
-+		};
-+	};
-+};
+This depends on the SPMI multi master work.
 
----
-base-commit: bbd220ce4e29ed55ab079007cff0b550895258eb
-change-id: 20231201-x1e80100-dts-smb2360-0c7c25f2e0a7
+Will send proper version later on.
 
-Best regards,
--- 
-Abel Vesa <abel.vesa@linaro.org>
-
+>  arch/arm64/boot/dts/qcom/smb2360.dtsi | 51 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 51 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/smb2360.dtsi b/arch/arm64/boot/dts/qcom/smb2360.dtsi
+> new file mode 100644
+> index 000000000000..782746a20403
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/smb2360.dtsi
+> @@ -0,0 +1,51 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright (c) 2023, Linaro Limited
+> + */
+> +
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/spmi/spmi.h>
+> +
+> +/ {
+> +};
+> +
+> +&spmi1_bus {
+> +	smb2360h: pmic@7 {
+> +		compatible = "qcom,sm2360", "qcom,spmi-pmic";
+> +		reg = <0x7 SPMI_USID>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		smb2360_1_eusb2_repeater: phy@fd00 {
+> +			compatible = "qcom,smb2360-eusb2-repeater";
+> +			reg = <0xfd00>;
+> +			#phy-cells = <0>;
+> +		};
+> +	};
+> +
+> +	smb2360k: pmic@a {
+> +		compatible = "qcom,sm2360", "qcom,spmi-pmic";
+> +		reg = <0xa SPMI_USID>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		smb2360_2_eusb2_repeater: phy@fd00 {
+> +			compatible = "qcom,smb2360-eusb2-repeater";
+> +			reg = <0xfd00>;
+> +			#phy-cells = <0>;
+> +		};
+> +	};
+> +
+> +	smb2360l: pmic@b {
+> +		compatible = "qcom,sm2360", "qcom,spmi-pmic";
+> +		reg = <0xb SPMI_USID>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		smb2360_3_eusb2_repeater: phy@fd00 {
+> +			compatible = "qcom,smb2360-eusb2-repeater";
+> +			reg = <0xfd00>;
+> +			#phy-cells = <0>;
+> +		};
+> +	};
+> +};
+> 
+> ---
+> base-commit: bbd220ce4e29ed55ab079007cff0b550895258eb
+> change-id: 20231201-x1e80100-dts-smb2360-0c7c25f2e0a7
+> 
+> Best regards,
+> -- 
+> Abel Vesa <abel.vesa@linaro.org>
+> 
 
