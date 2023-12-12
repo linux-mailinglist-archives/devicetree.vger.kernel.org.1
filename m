@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-24502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24503-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6587780F5F3
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 20:01:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5FAE80F5FB
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 20:06:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 96E281C20AA2
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 19:01:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6688B1F21618
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 19:06:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55FAC80040;
-	Tue, 12 Dec 2023 19:01:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB0C78004C;
+	Tue, 12 Dec 2023 19:05:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bQWBOH3S"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uCEFcw5Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 119EC91
-	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 11:01:45 -0800 (PST)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-a1c7d8f89a5so804935866b.2
-        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 11:01:44 -0800 (PST)
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F3EBAF
+	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 11:05:54 -0800 (PST)
+Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2c9f85eff28so91463271fa.3
+        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 11:05:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702407703; x=1703012503; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=FccLs66fLmx9ZXNgdJtjL26FzmU6f7pQuOrL4iQJxz4=;
-        b=bQWBOH3S4S8EEeupL5UCcz5UBm6t61v9uW0NLpB/4UwTBeshi4czC4adPFRCqpyRub
-         FR2Q0x/vgTturoJAwJO4IP8NS35HbSNCqZLpw0RRqHsfqLM5VkxGFTSb7z1KTM5f8F12
-         DZz5SkJDA1pOCrFDGUk/BagstnTW/z6oP7WIzcP1dK7nm/2kR/DnwIGE18bKGtkGg3eF
-         U186yqcgZcCCPCyxhWVRWT6GNw2N05yCHjQpWY3M82AZH+xKVh+vcSv6w9bYidxzpX13
-         OGvL37DlIgYvvLoVNItlj9IuPEe5jfOO3eLgXP4dyq8gfCrryPJrc+Z/zpbvx15B00/3
-         eZmQ==
+        d=linaro.org; s=google; t=1702407952; x=1703012752; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Gk+33qG5mMsD2Pf/ecpSWilCtbmUpvnM36Mhb9UlmbE=;
+        b=uCEFcw5QDiHzlB6b0k20dS/kE5sCRrxAFssLu4hzy5SxK66Lx+gnPo1SGxTDRlg29f
+         4a2guomvx2w1eyv7iWyFq55NkNo1Py/3Siq1ZAfMyvjnZEFh9rIleamR3DBxVOpZQx7s
+         IxWkDTgVgAZ/Ge5iZ7ufu6VmeiC4caTx12YDh3ULWdAAa9J5gxOqEW5zcFpq5hl4lLmM
+         iHm6krlWJ38Ocs2R93YE4WMKoMfirKO8F+/iTFxNVLm+N0/5yEevfWaUHlhRuoL/QvfE
+         Mmxqr4ill0w8qBQKF9jkT1ZcgtExfEjNDDqZTyoiJTa6o5v++pPBZ1vl9BsRoujUlUrm
+         RUtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702407703; x=1703012503;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FccLs66fLmx9ZXNgdJtjL26FzmU6f7pQuOrL4iQJxz4=;
-        b=fjoLtfHCIY3qFWyAU+ykkBDVoVMjK5GtB6eUL+QAztmxUwnMmDxVzH85ZKNZPJ2hdy
-         mJeDoWr5TyyLEP6s1Ns8yX1qtK9ApEYpeZ3YYzTLzB/qFg2IY/y7yBqnxYiwkHSWWwHw
-         zYgeDxkb5zTLHaFEcpN4Wfxr1E8/+BoN9NBM9kYhz1X/y2zqdxMakLetAJrz+jvn1KSN
-         r0h7UzADOpqJHjEXiMNaSksBPEP6xY2B/XMa1WyH1GcB6Df95Sn/lesp149ky8R+5hId
-         MdEQRglh3wRABq8p5fc7GVH3uOfSz1bFUIUKwnyrfg7ViZS+ky7Q6uBv0K/MwQ7nLABn
-         +y6w==
-X-Gm-Message-State: AOJu0Yx48q3POx5plSm+lo4z9GeEV7x7AEVP7wNP92BMa0mi4RrAQOyg
-	mtcy84+PdRl/M6XG0+kdSbaNpg==
-X-Google-Smtp-Source: AGHT+IH2UKLYW4dnuk7lxazsWKVy7nV9+Iu+7cw82V9H/hgFj9XGebwQn8mPBaZjz1FdduSAWIjMVw==
-X-Received: by 2002:a17:907:e8f:b0:a1c:9738:2235 with SMTP id ho15-20020a1709070e8f00b00a1c97382235mr4940757ejc.118.1702407703423;
-        Tue, 12 Dec 2023 11:01:43 -0800 (PST)
+        d=1e100.net; s=20230601; t=1702407952; x=1703012752;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Gk+33qG5mMsD2Pf/ecpSWilCtbmUpvnM36Mhb9UlmbE=;
+        b=tFQCBNOWB/gwbhiLCwGETq2BN+Dwmxukt13SCLWCdcR4w9TM9Z7WQSkbLlQhDashtQ
+         +oaYKnLzzlieqxkjcKKi1YwzDaUaB0PreMFKnpC4ONvDJwsIgIw1P2D8JqFLiAMl4423
+         4Eim/9/bkkc+NbuSRVAlMyiyFMVLuDj1+9rNyTJfO6xRAbayawAgS7ZXa1BiaLSk4YeY
+         fvw4Z485SIbNsHkg01qF4P1EYmLR7NJMT3qqa+Pk2H3ljDrduBphp3mABMnA1i6U4Oej
+         aoJz1lEjJcNMZ6Oou046kMuLkKWaxy53b0DKPcROPkzYXm7uFS3WJjavfO7ucorKxTfU
+         PpMQ==
+X-Gm-Message-State: AOJu0Yx0QafX7s4RvrIFcIXPqntduUNOa+4bGveD18dLlWwcS3DDBg30
+	738QFH9WxyYCgceAGROz9En6IlOOUfXWPDiGnrE=
+X-Google-Smtp-Source: AGHT+IEukNRKT45tP6/egDMvn/HPARfZoQNQiDW5zwKEdUjpCsk3Wmlf1yqWmQI95KFk3e46O8dt1w==
+X-Received: by 2002:a05:6512:3187:b0:50b:f23f:d691 with SMTP id i7-20020a056512318700b0050bf23fd691mr3617578lfe.136.1702407952556;
+        Tue, 12 Dec 2023 11:05:52 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id vs6-20020a170907a58600b00a1fa6a70b8dsm3040726ejc.133.2023.12.12.11.01.41
+        by smtp.gmail.com with ESMTPSA id tz4-20020a170907c78400b00a1aad4d92dbsm6592547ejc.123.2023.12.12.11.05.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Dec 2023 11:01:43 -0800 (PST)
-Message-ID: <82115165-6089-4214-b47b-2c2c0dfb8c66@linaro.org>
-Date: Tue, 12 Dec 2023 20:01:40 +0100
+        Tue, 12 Dec 2023 11:05:52 -0800 (PST)
+Message-ID: <562380aa-4ed5-49de-9c21-e650a3a84a1b@linaro.org>
+Date: Tue, 12 Dec 2023 20:05:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,13 +62,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: DT Query on "New Compatible vs New Property"
-To: Nikunj Kela <quic_nkela@quicinc.com>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: devicetree@vger.kernel.org,
- "Prasad Sodagudi (QUIC)" <quic_psodagud@quicinc.com>
-References: <be31801e-bb21-426b-f7aa-2b52727de646@quicinc.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sm8650: drop unneeded assigned-clocks
+ from WSA macro
 Content-Language: en-US
+To: Konrad Dybcio <konrad.dybcio@linaro.org>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231212133143.100575-1-krzysztof.kozlowski@linaro.org>
+ <52aa1fdb-ebdf-4cef-80d6-6c1b83d626ab@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -115,25 +117,29 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <be31801e-bb21-426b-f7aa-2b52727de646@quicinc.com>
+In-Reply-To: <52aa1fdb-ebdf-4cef-80d6-6c1b83d626ab@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/12/2023 18:45, Nikunj Kela wrote:
-> We are abstracting some resources(ex. clocks) under new firmware on an 
-> existing platform therefore need to make changes in certain drivers to 
-> work with that firmware. We need to make a distinction between two 
-> different variants of the FW. In one case, some resources will be 
-> abstracted while in other case, they won't be abstracted. My query is - 
-> "should we define a new compatible string for the variant with 
-> abstracted resources(in FW) or we should add a new DT property keeping 
-> the compatible same?"
+On 12/12/2023 15:41, Konrad Dybcio wrote:
+> 
+> 
+> On 12/12/23 14:31, Krzysztof Kozlowski wrote:
+>> Review of v1 patch resulting in commit 58872a54e4a8 ("arm64: dts: qcom:
+>> sm8650: add ADSP audio codec macros") pointed to remove unneeded
+>> assigned-clock-rates from macro codecs.  One assignment was left in WSA
+>> macro codec, so drop it now as it is redundant: these clocks have fixed
+>> 19.2 MHz frequency.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> 
+> Thanks, could you also check if they're fixed on older platforms?
+> 
 
-Hi,
-
-Usually change in the interface or behavior warrants new compatible.
-Property would be suitable if the same device, e.g. same SoC component
-with same FW, was configured differently on different boards.
+Ack. To my understand they should not be needed in none of Audioreach
+platforms (sc8280xp, sm8[45]50), but I can test only sm8550.
 
 Best regards,
 Krzysztof
