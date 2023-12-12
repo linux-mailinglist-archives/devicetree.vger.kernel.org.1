@@ -1,121 +1,157 @@
-Return-Path: <devicetree+bounces-24514-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24515-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC28180F6B7
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 20:31:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DBF380F6CA
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 20:38:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 591E31F21273
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 19:31:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AAE411C20990
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 19:38:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3334281E56;
-	Tue, 12 Dec 2023 19:31:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E18FA52747;
+	Tue, 12 Dec 2023 19:38:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uFXbsxPl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from netrider.rowland.org (netrider.rowland.org [192.131.102.5])
-	by lindbergh.monkeyblade.net (Postfix) with SMTP id 616F3DB
-	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 11:31:33 -0800 (PST)
-Received: (qmail 175710 invoked by uid 1000); 12 Dec 2023 14:31:31 -0500
-Date: Tue, 12 Dec 2023 14:31:31 -0500
-From: Alan Stern <stern@rowland.harvard.edu>
-To: Kevin Hilman <khilman@kernel.org>
-Cc: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
-  Roger Quadros <rogerq@kernel.org>,
-  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-  Rob Herring <robh+dt@kernel.org>,
-  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-  Conor Dooley <conor+dt@kernel.org>, Peter Chen <peter.chen@kernel.org>,
-  Pawel Laszczak <pawell@cadence.com>, Nishanth Menon <nm@ti.com>,
-  Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
-  "Vardhan, Vibhore" <vibhore@ti.com>, linux-usb@vger.kernel.org,
-  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-  linux-arm-kernel@lists.infradead.org,
-  =?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
-  Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 3/6] usb: cdns3-ti: add suspend/resume procedures for
- J7200
-Message-ID: <ae99430d-12a3-4831-b4b7-586d6d045b15@rowland.harvard.edu>
-References: <CX0GOP07I40N.198G7LJ0HYDBG@tleb-bootlin-xps13-01>
- <bdea68ad-7523-4738-8fa1-b670d81a6b93@kernel.org>
- <CX10D9YX1O1C.30PF317AG065N@tleb-bootlin-xps13-01>
- <3e00b2ad-b58f-4b09-9230-683c58d3bb92@kernel.org>
- <CX15J7B8F8HH.1WZ10OOW31X1H@tleb-bootlin-xps13-01>
- <7h34wxfmwn.fsf@baylibre.com>
- <CX63KP2UPL1N.J9Q344Q06IGP@tleb-bootlin-xps13-01>
- <7hil5odtwl.fsf@baylibre.com>
- <CX9MMPFL7HAY.NGULD1FN5WPN@tleb-bootlin-xps13-01>
- <7h7cljcm6a.fsf@baylibre.com>
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFF54A7
+	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 11:38:45 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-3333224c7b9so5286956f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 11:38:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702409924; x=1703014724; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=c5/mmDf6i4WSE8pvdnXAwPgmxiFf8Q1EZ+f4zzgn/a4=;
+        b=uFXbsxPllrLv5vfQPnuuIcRh7rEJFjP1pceRpcqzjS0MbnTMNYVn5AIGnewbVi3396
+         WLPSf/77yoRIJ1O24O4Ur2auIvhNjukRZ5ioddK3jP7nc+zIJ+wNas5aunMjd8Nd62wc
+         Z+fqC7QlOn/Erhzxe/YuNG26L3wCpTZqFRPzTfk8h9UytTeervx1qHcODTUWMBNvRY79
+         SOxQDier8qToRzvOFXzHCVRtVRma16ZT8No5+e8m0quxT4CEXIulZr05lxjG7tOOi9dy
+         6mGxeQB7gGBobL7rWZGJ3OQea10qvEmdUnqhDCX8S3KWJ/xj17y0jsK4WCCaopypb3sP
+         fNLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702409924; x=1703014724;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=c5/mmDf6i4WSE8pvdnXAwPgmxiFf8Q1EZ+f4zzgn/a4=;
+        b=nuLNn7v8S72hFY/wAKfdimQekPPD8gK+owGDQKHLsWehKt00VmNDc0NqIZna4Wpuvc
+         4lqD2fiOXG0wnLBUgpbJpcq0DqADD14rucXFs4CiJbcECQo8fOGnWqVnBNuu4QJ8usuG
+         qSpAGgICkGeVIu2yP+5LSqAqYL+qxSwGhZZlZSvS7oWr8ZmCXdzpZghLw/OnZQIkEZuz
+         Yk/VaZPR37nX9JIprVZ7uWm90m3Pee/zZRuo3AvIcWsZ0/zaK6lhTfhEHsmzj+95erFU
+         tgrqkvaNkTqaFyCqqgt0M7z9o7a5W7NtsuKdcRzRIQ0+CABKqVzaN/amUPaRklksfhMw
+         ULpw==
+X-Gm-Message-State: AOJu0YwdeigiFbboi87+YcBkmtAC68pin5N1MIlvtNpYG8WZ4aaFlrDz
+	2sXTAmkbUE/qd3Fj+iqxv1OgKQ==
+X-Google-Smtp-Source: AGHT+IFhyWGCr5h5CFGNV1gHohIztgHhXgReWMkDqR+t1DoYs9PgLZGTJWhHHlBSS3UF+699jmriQQ==
+X-Received: by 2002:a5d:560e:0:b0:333:2fd2:68c3 with SMTP id l14-20020a5d560e000000b003332fd268c3mr2994299wrv.86.1702409924437;
+        Tue, 12 Dec 2023 11:38:44 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id h11-20020adffd4b000000b003333298eb4bsm11609609wrs.61.2023.12.12.11.38.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Dec 2023 11:38:44 -0800 (PST)
+Message-ID: <d23cc32c-8a5b-48aa-be4d-608fbbb9ac3a@linaro.org>
+Date: Tue, 12 Dec 2023 20:38:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <7h7cljcm6a.fsf@baylibre.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 08/16] clk: samsung: clk-gs101: Add cmu_top, cmu_misc
+ and cmu_apm support
+Content-Language: en-US
+To: Peter Griffin <peter.griffin@linaro.org>, Rob Herring <robh+dt@kernel.org>
+Cc: krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+ conor+dt@kernel.org, sboyd@kernel.org, tomasz.figa@gmail.com,
+ s.nawrocki@samsung.com, linus.walleij@linaro.org, wim@linux-watchdog.org,
+ linux@roeck-us.net, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
+ olof@lixom.net, gregkh@linuxfoundation.org, jirislaby@kernel.org,
+ cw00.choi@samsung.com, alim.akhtar@samsung.com, tudor.ambarus@linaro.org,
+ andre.draszik@linaro.org, semen.protsenko@linaro.org, saravanak@google.com,
+ willmcvicker@google.com, soc@kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+ linux-watchdog@vger.kernel.org, kernel-team@android.com,
+ linux-serial@vger.kernel.org
+References: <20231211162331.435900-1-peter.griffin@linaro.org>
+ <20231211162331.435900-9-peter.griffin@linaro.org>
+ <CAL_JsqJ_NUajmQs8ZYiE2GpvNxBwtkLRE2jvWDU3hKtztt92Ug@mail.gmail.com>
+ <CADrjBPrkso2cM8zKq-WU8WC3P3A9YoS6nqX-f6XvSNS-EofK9g@mail.gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <CADrjBPrkso2cM8zKq-WU8WC3P3A9YoS6nqX-f6XvSNS-EofK9g@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Dec 12, 2023 at 10:26:05AM -0800, Kevin Hilman wrote:
-> Théo Lebrun <theo.lebrun@bootlin.com> writes:
+On 11/12/2023 20:46, Peter Griffin wrote:
+>>> +#include <linux/platform_device.h>
+> 
+> You are correct, this header isn't required. If a new series is
+> required I will remove it.
+
+I dropped it while applying.
 
 > 
-> > Hello,
-> >
-> > On Sun Nov 26, 2023 at 11:36 PM CET, Kevin Hilman wrote:
-> >> Théo Lebrun <theo.lebrun@bootlin.com> writes:
-> >> > On Wed Nov 22, 2023 at 11:23 PM CET, Kevin Hilman wrote:
-> >> >> Théo Lebrun <theo.lebrun@bootlin.com> writes:
-> >> >> The point is to signal to the power domain the device is in that it can
-> >> >> power on/off.  These IP blocks are (re)used on many different SoCs, so
-> >> >> the driver should not make any assumptions about what power domain it is
-> >> >> in (if any.)
-> >> >
-> >> > On my platform, when the device is attached to the PD it gets turned on.
-> >> > That feels logical to me: if a driver is not RPM aware it "just works".
-> >>
-> >> It "just works"... until the domain gets turned off.
-> >>
-> >> > Are there platforms where RPM must get enabled for the attached
-> >> > power-domains to be turned on?
-> >>
-> >> Yes, but but more importantly, there are platforms where RPM must get
-> >> enabled for the power domain to *stay* on.  For example, the power
-> >> domain might get turned on due to devices probing etc, but as soon as
-> >> all the RPM-enabled drivers drop their refcount, the domain will turn
-> >> off.  If there is a device in that domain with a non-RPM enabled driver,
-> >> that device will be powered off anc cause a crash.
-> >
-> > OK, that makes sense, thanks for taking the time to explain. This topic
-> > makes me see two things that I feel are close to being bugs. I'd be
-> > curious to get your view on both.
+> Whilst you're here I'd like to draw your attention to [PATCH 2/16]
+> where I've removed your reviewed-by tag in v7 because I added the ect
+> node documentation in google.yaml. The empty ect node is required to
+> be present by the bootloader or the device will boot loop. Can you
+> re-review that patch?
 > 
-> TL;DR; they are features, not bugs.  ;)
-> 
-> >  - If a device does not use RPM but its children do, it might get its
-> >    associated power-domain turned off. That forces every single driver
-> >    that want to stay alive to enable & increment RPM.
-> >
-> >    What I naively expect: a genpd with a device attached to it that is
-> >    not using RPM should mean that it should not be powered off at
-> >    runtime_suspend. Benefit: no RPM calls in drivers that do not use
-> >    it, and the behavior is that the genpd associated stays alive "as
-> >    expected".
-> 
-> Your expectation makes sense, but unfortunately, that's not how RPM was
-> designed.
+> The alternative is to remove the empty ect node, and the binding
+> documentation for it and add your Reviewed-by tag back again. But then
+> an upstream kernel won't boot 'out the box' on a pixel 6 which seems
+> less than ideal default behaviour.
 
-I'm not sure how runtime PM is meant to work with power domains.  
+Best regards,
+Krzysztof
 
-However, from the very beginning of runtime PM the intention was that 
-device drivers and subsystems could safely ignore it.  Their devices 
-would have a permanently nonzero disable_depth (permanent because the 
-driver/subsystem would not know to change it) and therefore would always 
-remain in the active state (see rpm_check_suspend_allowed()).
-
-It would be very surprising if runtime PM for power domains was written 
-in a way that would subvert this intention.
-
-Alan Stern
 
