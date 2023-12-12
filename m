@@ -1,360 +1,114 @@
-Return-Path: <devicetree+bounces-24400-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24394-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A88D80F0F6
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 16:30:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7325D80F09C
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 16:28:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10BA22815D7
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 15:30:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2D510280238
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 15:28:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD9AA77F02;
-	Tue, 12 Dec 2023 15:28:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87D5477F02;
+	Tue, 12 Dec 2023 15:26:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="t/MkDzcs"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YHX5pL6o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CED721B6;
-	Tue, 12 Dec 2023 07:28:30 -0800 (PST)
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3BCDTj5q030770;
-	Tue, 12 Dec 2023 16:27:45 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	selector1; bh=A5E3Yu4fIV5aU7qtI3/a6w1HvBafHrdmVAlZVmDmZf8=; b=t/
-	MkDzcs97RJTybMv0GdhkYCl2CsJvbP8D59E+Gc4Qn9DeoaEmlcDrsoXYd6kO9Yct
-	5eLkh+QwurAaviZ4O3szR7dhoVz4mBCbkCIdXFxsN5/tWK8gEs7q8Ba3hwqcf7+I
-	R065+ObzoCVoRLMImemhjuhLNnAoquPiUHC5fQxHnLXpOaofrOwxjNDJssfUTc7M
-	qfz09yiho6vN22qYBThkA5rCMt+Jml1ZHd6y9lKpqOoQfdR5yJUAD3cB8zKNSWtU
-	37DRUMA0xseOaMfsg+aAhUmc1KUFp8XggfR7w3fX9nc8t+olhrIeGM2/LVxCjQuN
-	ZOwBDIjat23I5zfhehWA==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3uve88uyxn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 12 Dec 2023 16:27:45 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 2622C100060;
-	Tue, 12 Dec 2023 16:27:45 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 1695522F7C8;
-	Tue, 12 Dec 2023 16:27:45 +0100 (CET)
-Received: from localhost (10.252.7.20) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Tue, 12 Dec
- 2023 16:27:44 +0100
-From: Gatien Chevallier <gatien.chevallier@foss.st.com>
-To: <Oleksii_Moisieiev@epam.com>, <gregkh@linuxfoundation.org>,
-        <herbert@gondor.apana.org.au>, <davem@davemloft.net>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <alexandre.torgue@foss.st.com>,
-        <vkoul@kernel.org>, <jic23@kernel.org>, <olivier.moysan@foss.st.com>,
-        <arnaud.pouliquen@foss.st.com>, <mchehab@kernel.org>,
-        <fabrice.gasnier@foss.st.com>, <andi.shyti@kernel.org>,
-        <ulf.hansson@linaro.org>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <hugues.fruchet@foss.st.com>, <lee@kernel.org>,
-        <will@kernel.org>, <catalin.marinas@arm.com>, <arnd@kernel.org>,
-        <richardcochran@gmail.com>, Frank Rowand <frowand.list@gmail.com>,
-        <peng.fan@oss.nxp.com>, <lars@metafoo.de>, <rcsekar@samsung.com>,
-        <wg@grandegger.com>, <mkl@pengutronix.de>
-CC: <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <dmaengine@vger.kernel.org>, <linux-i2c@vger.kernel.org>,
-        <linux-iio@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <linux-media@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <linux-serial@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>,
-        Gatien Chevallier
-	<gatien.chevallier@foss.st.com>
-Subject: [PATCH v8 13/13] ARM: dts: stm32: put ETZPC as an access controller for STM32MP13x boards
-Date: Tue, 12 Dec 2023 16:23:56 +0100
-Message-ID: <20231212152356.345703-14-gatien.chevallier@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231212152356.345703-1-gatien.chevallier@foss.st.com>
-References: <20231212152356.345703-1-gatien.chevallier@foss.st.com>
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72B43AA;
+	Tue, 12 Dec 2023 07:26:23 -0800 (PST)
+Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2ca0f21e48cso74882821fa.2;
+        Tue, 12 Dec 2023 07:26:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702394781; x=1702999581; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=RzfykjqVsJboNXe+GyM6OYXbP3W5WNnJ1aGISEQJa3Q=;
+        b=YHX5pL6oJFUsSwBk8s91P4GP016767zDZ3xGtKlET9cPh6G2ogZ3OcXLZsFNF5OHfz
+         cR0ySMmXZUsmIlbCAUAJWtBG7R0TsGpP+WkbPkz/q6NWxO/Fj1gPIZJCKMHVcEG0G5Ld
+         Ae4De6TUtKxQRtYqYZ2sS8+SiOhp0OBRXfQlllJhDIIUz+fUOAcEN1/O25kWS7c6sc7l
+         JPgxq6k5tmcInCnHg4AM32SmIzaRcBidVyWRfYP5/xSV9gG3wSSgk3jnU9sZCWR79NFO
+         v5rZpeb5sjIefZYyS28z4FmBfr0zsFkxgYQOD69hV1VdrC+PC4BrfY2h2uTvWymc+nJp
+         e1Cw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702394781; x=1702999581;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RzfykjqVsJboNXe+GyM6OYXbP3W5WNnJ1aGISEQJa3Q=;
+        b=huKyYmnDjkz3BN16Tettb7ikFPm7FlHVbl5qfB2MGHv/zS6jwoEZDe0YnUDLGmupKn
+         Rp8vn0r/g1LbVPg+JwVHkUM3pK05H8/FIqCBc1Ujoboiwea6tJFM0hmADYJ3p3MR/0OQ
+         JjGXMtS+p1Ru1gjutMtsm33XvZFqHEYGAv7gbAugW9fi1cyW8ysABrHdypuOiOhpdvyS
+         UC6MynOvPNKbXq9L+Io4ztVEKZKefzgFP5xfVNYXiRWB2d3Klo2wzS4+YA3YnCjMNtIc
+         M5Z+y+mkZ+1e7OL7g9Vt6WyrcnJ6f6DsSd5Tgms1uymXsSI8zBB6wsKz400QwoBPvhqg
+         4NVw==
+X-Gm-Message-State: AOJu0YyTmt5LfL5OUlk374E+F0XvbmNFWXY/l0Khp6gGvp5TjLYfFvOT
+	keKNTh01MmW+v0HL2E7N4cw=
+X-Google-Smtp-Source: AGHT+IFitWMolf9+MGbv8J/HUGRQFIiJq5Iv39LqC9IhSSbGgybQNYWznOea4pt3phQe2oNaB8bqQQ==
+X-Received: by 2002:a2e:9ec4:0:b0:2ca:752:24a3 with SMTP id h4-20020a2e9ec4000000b002ca075224a3mr2851858ljk.22.1702394780915;
+        Tue, 12 Dec 2023 07:26:20 -0800 (PST)
+Received: from mobilestation ([178.176.56.174])
+        by smtp.gmail.com with ESMTPSA id z18-20020a2ebe12000000b002c9f59f1748sm1537789ljq.7.2023.12.12.07.26.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Dec 2023 07:26:20 -0800 (PST)
+Date: Tue, 12 Dec 2023 18:26:16 +0300
+From: Serge Semin <fancer.lancer@gmail.com>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>, 
+	Jose Abreu <Jose.Abreu@synopsys.com>, Maxime Chevallier <maxime.chevallier@bootlin.com>, 
+	Tomer Maimon <tmaimon77@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, openbmc@lists.ozlabs.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 06/16] net: pcs: xpcs: Avoid creating dummy XPCS
+ MDIO device
+Message-ID: <kagwzutwnbpiyc7mmtq7ka3vhffw4fejuti5vepnla74rocruh@tryn6lxhwbjz>
+References: <20231205103559.9605-1-fancer.lancer@gmail.com>
+ <20231205103559.9605-7-fancer.lancer@gmail.com>
+ <ZW8pxM3RvyHJTwqH@shell.armlinux.org.uk>
+ <ZW85iBGAAf5RAsN1@shell.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-12_09,2023-12-12_01,2023-05-22_02
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZW85iBGAAf5RAsN1@shell.armlinux.org.uk>
 
-Reference ETZPC as an access-control-provider.
+On Tue, Dec 05, 2023 at 02:54:00PM +0000, Russell King (Oracle) wrote:
+> On Tue, Dec 05, 2023 at 01:46:44PM +0000, Russell King (Oracle) wrote:
+> > For your use case, it would be:
+> > 
+> > 	mdiodev = bus->mdio_map[addr];
+> 
+> By the way, this should be:
+> 
+> 	mdiodev = mdiobus_find_device(bus, addr);
+> 	if (!mdiodev)
+> 		return ERR_PTR(-ENODEV);
+> 
+> to avoid a layering violation.
 
-For more information on which peripheral is securable or supports MCU
-isolation, please read the STM32MP13 reference manual
+I would have used in the first place if it was externally visible, but
+it's defined as static. Do you suggest to make it global or ...
 
-Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
----
+> At some point, we should implement
+> mdiobus_get_mdiodev() which also deals with the refcount.
 
-Patch not present in V6
+... create mdiobus_get_mdiodev() instead?
 
- arch/arm/boot/dts/st/stm32mp131.dtsi  | 26 ++++++++++++++++++++++++++
- arch/arm/boot/dts/st/stm32mp133.dtsi  |  1 +
- arch/arm/boot/dts/st/stm32mp13xc.dtsi |  1 +
- arch/arm/boot/dts/st/stm32mp13xf.dtsi |  1 +
- 4 files changed, 29 insertions(+)
+* Note in the commit message I mentioned that having a getter would be
+* better than directly touching the mii_bus instance guts.
 
-diff --git a/arch/arm/boot/dts/st/stm32mp131.dtsi b/arch/arm/boot/dts/st/stm32mp131.dtsi
-index 6ba8e3fd43b0..74ceece168ce 100644
---- a/arch/arm/boot/dts/st/stm32mp131.dtsi
-+++ b/arch/arm/boot/dts/st/stm32mp131.dtsi
-@@ -883,6 +883,7 @@ etzpc: bus@5c007000 {
- 			reg = <0x5c007000 0x400>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
-+			#access-controller-cells = <1>;
- 			ranges;
- 
- 			adc_2: adc@48004000 {
-@@ -895,6 +896,7 @@ adc_2: adc@48004000 {
- 				#interrupt-cells = <1>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-+				access-controllers = <&etzpc 33>;
- 				status = "disabled";
- 
- 				adc2: adc@0 {
-@@ -942,6 +944,7 @@ usbotg_hs: usb@49000000 {
- 				dr_mode = "otg";
- 				otg-rev = <0x200>;
- 				usb33d-supply = <&scmi_usb33>;
-+				access-controllers = <&etzpc 34>;
- 				status = "disabled";
- 			};
- 
-@@ -955,6 +958,7 @@ usart1: serial@4c000000 {
- 				dmas = <&dmamux1 41 0x400 0x5>,
- 				<&dmamux1 42 0x400 0x1>;
- 				dma-names = "rx", "tx";
-+				access-controllers = <&etzpc 16>;
- 				status = "disabled";
- 			};
- 
-@@ -968,6 +972,7 @@ usart2: serial@4c001000 {
- 				dmas = <&dmamux1 43 0x400 0x5>,
- 				<&dmamux1 44 0x400 0x1>;
- 				dma-names = "rx", "tx";
-+				access-controllers = <&etzpc 17>;
- 				status = "disabled";
- 			};
- 
-@@ -979,6 +984,7 @@ i2s4: audio-controller@4c002000 {
- 				dmas = <&dmamux1 83 0x400 0x01>,
- 				<&dmamux1 84 0x400 0x01>;
- 				dma-names = "rx", "tx";
-+				access-controllers = <&etzpc 13>;
- 				status = "disabled";
- 			};
- 
-@@ -993,6 +999,7 @@ spi4: spi@4c002000 {
- 				dmas = <&dmamux1 83 0x400 0x01>,
- 				       <&dmamux1 84 0x400 0x01>;
- 				dma-names = "rx", "tx";
-+				access-controllers = <&etzpc 18>;
- 				status = "disabled";
- 			};
- 
-@@ -1007,6 +1014,7 @@ spi5: spi@4c003000 {
- 				dmas = <&dmamux1 85 0x400 0x01>,
- 				       <&dmamux1 86 0x400 0x01>;
- 				dma-names = "rx", "tx";
-+				access-controllers = <&etzpc 19>;
- 				status = "disabled";
- 			};
- 
-@@ -1025,6 +1033,7 @@ i2c3: i2c@4c004000 {
- 				dma-names = "rx", "tx";
- 				st,syscfg-fmp = <&syscfg 0x4 0x4>;
- 				i2c-analog-filter;
-+				access-controllers = <&etzpc 20>;
- 				status = "disabled";
- 			};
- 
-@@ -1043,6 +1052,7 @@ i2c4: i2c@4c005000 {
- 				dma-names = "rx", "tx";
- 				st,syscfg-fmp = <&syscfg 0x4 0x8>;
- 				i2c-analog-filter;
-+				access-controllers = <&etzpc 21>;
- 				status = "disabled";
- 			};
- 
-@@ -1061,6 +1071,7 @@ i2c5: i2c@4c006000 {
- 				dma-names = "rx", "tx";
- 				st,syscfg-fmp = <&syscfg 0x4 0x10>;
- 				i2c-analog-filter;
-+				access-controllers = <&etzpc 22>;
- 				status = "disabled";
- 			};
- 
-@@ -1073,6 +1084,7 @@ timers12: timer@4c007000 {
- 				interrupt-names = "global";
- 				clocks = <&rcc TIM12_K>;
- 				clock-names = "int";
-+				access-controllers = <&etzpc 23>;
- 				status = "disabled";
- 
- 				pwm {
-@@ -1097,6 +1109,7 @@ timers13: timer@4c008000 {
- 				interrupt-names = "global";
- 				clocks = <&rcc TIM13_K>;
- 				clock-names = "int";
-+				access-controllers = <&etzpc 24>;
- 				status = "disabled";
- 
- 				pwm {
-@@ -1121,6 +1134,7 @@ timers14: timer@4c009000 {
- 				interrupt-names = "global";
- 				clocks = <&rcc TIM14_K>;
- 				clock-names = "int";
-+				access-controllers = <&etzpc 25>;
- 				status = "disabled";
- 
- 				pwm {
-@@ -1150,6 +1164,7 @@ timers15: timer@4c00a000 {
- 				<&dmamux1 107 0x400 0x1>,
- 				<&dmamux1 108 0x400 0x1>;
- 				dma-names = "ch1", "up", "trig", "com";
-+				access-controllers = <&etzpc 26>;
- 				status = "disabled";
- 
- 				pwm {
-@@ -1177,6 +1192,7 @@ timers16: timer@4c00b000 {
- 				dmas = <&dmamux1 109 0x400 0x1>,
- 				<&dmamux1 110 0x400 0x1>;
- 				dma-names = "ch1", "up";
-+				access-controllers = <&etzpc 27>;
- 				status = "disabled";
- 
- 				pwm {
-@@ -1204,6 +1220,7 @@ timers17: timer@4c00c000 {
- 				dmas = <&dmamux1 111 0x400 0x1>,
- 				       <&dmamux1 112 0x400 0x1>;
- 				dma-names = "ch1", "up";
-+				access-controllers = <&etzpc 28>;
- 				status = "disabled";
- 
- 				pwm {
-@@ -1228,6 +1245,7 @@ lptimer2: timer@50021000 {
- 				clocks = <&rcc LPTIM2_K>;
- 				clock-names = "mux";
- 				wakeup-source;
-+				access-controllers = <&etzpc 1>;
- 				status = "disabled";
- 
- 				pwm {
-@@ -1262,6 +1280,7 @@ lptimer3: timer@50022000 {
- 				clocks = <&rcc LPTIM3_K>;
- 				clock-names = "mux";
- 				wakeup-source;
-+				access-controllers = <&etzpc 2>;
- 				status = "disabled";
- 
- 				pwm {
-@@ -1290,6 +1309,7 @@ hash: hash@54003000 {
- 				resets = <&rcc HASH1_R>;
- 				dmas = <&mdma 30 0x2 0x1000a02 0x0 0x0>;
- 				dma-names = "in";
-+				access-controllers = <&etzpc 41>;
- 			};
- 
- 			rng: rng@54004000 {
-@@ -1297,6 +1317,7 @@ rng: rng@54004000 {
- 				reg = <0x54004000 0x400>;
- 				clocks = <&rcc RNG1_K>;
- 				resets = <&rcc RNG1_R>;
-+				access-controllers = <&etzpc 40>;
- 			};
- 
- 			fmc: memory-controller@58002000 {
-@@ -1311,6 +1332,7 @@ fmc: memory-controller@58002000 {
- 				#size-cells = <1>;
- 				clocks = <&rcc FMC_K>;
- 				resets = <&rcc FMC_R>;
-+				access-controllers = <&etzpc 54>;
- 				status = "disabled";
- 
- 				nand-controller@4,0 {
-@@ -1344,6 +1366,7 @@ qspi: spi@58003000 {
- 				dma-names = "tx", "rx";
- 				clocks = <&rcc QSPI_K>;
- 				resets = <&rcc QSPI_R>;
-+				access-controllers = <&etzpc 55>;
- 				status = "disabled";
- 			};
- 
-@@ -1358,6 +1381,7 @@ sdmmc1: mmc@58005000 {
- 				cap-sd-highspeed;
- 				cap-mmc-highspeed;
- 				max-frequency = <130000000>;
-+				access-controllers = <&etzpc 50>;
- 				status = "disabled";
- 			};
- 
-@@ -1372,6 +1396,7 @@ sdmmc2: mmc@58007000 {
- 				cap-sd-highspeed;
- 				cap-mmc-highspeed;
- 				max-frequency = <130000000>;
-+				access-controllers = <&etzpc 51>;
- 				status = "disabled";
- 			};
- 
-@@ -1385,6 +1410,7 @@ usbphyc: usbphyc@5a006000 {
- 				resets = <&rcc USBPHY_R>;
- 				vdda1v1-supply = <&scmi_reg11>;
- 				vdda1v8-supply = <&scmi_reg18>;
-+				access-controllers = <&etzpc 5>;
- 				status = "disabled";
- 
- 				usbphyc_port0: usb-phy@0 {
-diff --git a/arch/arm/boot/dts/st/stm32mp133.dtsi b/arch/arm/boot/dts/st/stm32mp133.dtsi
-index c4d3a520c14b..3e394c8e58b9 100644
---- a/arch/arm/boot/dts/st/stm32mp133.dtsi
-+++ b/arch/arm/boot/dts/st/stm32mp133.dtsi
-@@ -47,6 +47,7 @@ adc_1: adc@48003000 {
- 		#interrupt-cells = <1>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
-+		access-controllers = <&etzpc 32>;
- 		status = "disabled";
- 
- 		adc1: adc@0 {
-diff --git a/arch/arm/boot/dts/st/stm32mp13xc.dtsi b/arch/arm/boot/dts/st/stm32mp13xc.dtsi
-index b9fb071a1471..a8bd5fe6536c 100644
---- a/arch/arm/boot/dts/st/stm32mp13xc.dtsi
-+++ b/arch/arm/boot/dts/st/stm32mp13xc.dtsi
-@@ -11,6 +11,7 @@ cryp: crypto@54002000 {
- 		interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
- 		clocks = <&rcc CRYP1>;
- 		resets = <&rcc CRYP1_R>;
-+		access-controllers = <&etzpc 42>;
- 		status = "disabled";
- 	};
- };
-diff --git a/arch/arm/boot/dts/st/stm32mp13xf.dtsi b/arch/arm/boot/dts/st/stm32mp13xf.dtsi
-index b9fb071a1471..a8bd5fe6536c 100644
---- a/arch/arm/boot/dts/st/stm32mp13xf.dtsi
-+++ b/arch/arm/boot/dts/st/stm32mp13xf.dtsi
-@@ -11,6 +11,7 @@ cryp: crypto@54002000 {
- 		interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
- 		clocks = <&rcc CRYP1>;
- 		resets = <&rcc CRYP1_R>;
-+		access-controllers = <&etzpc 42>;
- 		status = "disabled";
- 	};
- };
--- 
-2.25.1
+-Serge(y)
 
+> 
+> -- 
+> RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+> FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
