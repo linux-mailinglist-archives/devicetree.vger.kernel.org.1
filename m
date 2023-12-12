@@ -1,130 +1,203 @@
-Return-Path: <devicetree+bounces-24462-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24463-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75D1A80F3B4
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 17:56:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD93A80F3C0
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 17:57:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2AE221F21690
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 16:56:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 97A262816C6
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 16:57:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02FD57B3AA;
-	Tue, 12 Dec 2023 16:56:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC2DC7B3AA;
+	Tue, 12 Dec 2023 16:57:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gfo6NM+i"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hOPb+jNQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8680CE9;
-	Tue, 12 Dec 2023 08:56:02 -0800 (PST)
-Received: by mail-oi1-x231.google.com with SMTP id 5614622812f47-3b9d2b8c3c6so4411751b6e.1;
-        Tue, 12 Dec 2023 08:56:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702400162; x=1703004962; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=t6ivGn4rGfCASPt3DuLCJH1sjecJOwY1PoOcRd7pg4U=;
-        b=gfo6NM+iE0hZCSFRuBZUxeRfGKuFsHiPjr7XHyl9V3mA6FMWjFQzpRk8clPJTnjwOU
-         RVdnQwrAASoC11qa/ITIKMyjfwSP2w2NXaJiVMKh6wTTLEemqZIMYvtHd/jsuB1k4k4l
-         EJwt8GwTy/St6FxU118ohCEc8+pJQ882f4c9XQJifTYvv7ceEgIzeUPENcaC/M5Y0Rie
-         tNjoWWqMgRR+8pbgS53nI5ewXjwttx+HHDY0LhgFmE+vN+yEzVNh7GhxaSNELoqM9Lrd
-         KoXJ7voidGHJvYl8k9aK7EncvPJAxqWaipM4q6cO3H1ZIAtfi2RcZ3n8QOJ7V3mWxzqg
-         g78A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702400162; x=1703004962;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=t6ivGn4rGfCASPt3DuLCJH1sjecJOwY1PoOcRd7pg4U=;
-        b=U8lE3XLBFRbI5gNAYXVMYz6aAaifMW3rEwKbFK0tXUMUgFvskxcf5A7W6dyBo5Ko54
-         +ha+cxd+63ERgl1VbGBo+krbVPnYlmszFX5mceZVYN0BZTARpbtzfd5eYsDJmO7Pptn6
-         ValHFU6B1LsAih74arVvWiI1x1RRxai5VG2sMdduLQESqndBqzMgIe3vkGejqvQwlS+D
-         81DK2LIyp6OxOdDxmLAh/MCuwnmhafmnxzWegJojauq97Q1Ew6Y+UctYOPN0RkC7sclF
-         dfwD2CVg+ZVDzBs65MU9O6UgS6Db6oQkgCzJaq51smhEVi3YEj/RqM1jT78sxvnGEU2R
-         BywA==
-X-Gm-Message-State: AOJu0Ywz5I7q8DnVjNKkDEptzmP9iEsO3k4+6jHJ+uzTGxUFzyX/ifCS
-	zlxeEivfTWm538HRWY6phlA=
-X-Google-Smtp-Source: AGHT+IEj8dy5JxVZeY50pa5vbGsXla0OALH4vjaKtaqkbKs1s++LnjmJbY4EgzS0C/Czj4V8Ep9DGQ==
-X-Received: by 2002:a05:6808:4444:b0:3ba:459:11f5 with SMTP id ep4-20020a056808444400b003ba045911f5mr7275695oib.5.1702400161777;
-        Tue, 12 Dec 2023 08:56:01 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id 25-20020aca2119000000b003b274008e46sm2457297oiz.0.2023.12.12.08.56.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Dec 2023 08:56:01 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Tue, 12 Dec 2023 08:56:00 -0800
-From: Guenter Roeck <linux@roeck-us.net>
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Lee Jones <lee@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>,
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C99037A22D;
+	Tue, 12 Dec 2023 16:57:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C79F0C433C8;
+	Tue, 12 Dec 2023 16:57:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702400237;
+	bh=TgHYmk9iqQrgfTRXmZN7f9jKttmEsbZ20P4e6kUne2Q=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hOPb+jNQj+pifTS74tbWjcK0c7HWfbbgv534jvKIKCX/gLlZAVAq2tNmy952p9HSj
+	 GmAD0fb6BU7iWXzp1RUYp/0Pe6hsi5363W17zkCEld+EjxTqHHESaLKuNHKpUQ+jPx
+	 9tsCEDrtYyK6TGIfLIqQLYM/0rMgg0HDr71VirFqPJ6cy3XLvf8TwPfwyrLDB/MlV8
+	 e3K+WVVgWSd1ipSEach6IHUGT3PxnDb7iZNtfxeGfuUl+kBAh9z3aKIHZZcOnjaEQq
+	 xHIUlhTZUGaBB9KoIUg8k143F5fBIyRLYTEQRWCNf/AwULX5vSagfS3xbJ7epbIat9
+	 FNz8KCRLd/HDA==
+Date: Tue, 12 Dec 2023 16:57:11 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Kamel Bouhara <kamel.bouhara@bootlin.com>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Support Opensource <support.opensource@diasemi.com>,
-	Steve Twiss <stwiss.opensource@diasemi.com>,
-	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v3.1 2/8] dt-bindings: watchdog: dlg,da9062-watchdog: Add
- fallback for DA9061 watchdog
-Message-ID: <a16592d3-e924-435c-bfb0-2b0f2b3cf0a9@roeck-us.net>
-References: <20231204172510.35041-1-biju.das.jz@bp.renesas.com>
- <20231204172510.35041-3-biju.das.jz@bp.renesas.com>
+	Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Marco Felsch <m.felsch@pengutronix.de>,
+	Jeff LaBundy <jeff@labundy.com>,
+	catalin.popescu@leica-geosystems.com,
+	mark.satterthwaite@touchnetix.com, bartp@baasheep.co.uk,
+	hannah.rossiter@touchnetix.com,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	bsp-development.geo@leica-geosystems.com
+Subject: Re: [PATCH v5 2/3] dt-bindings: input: Add TouchNetix axiom
+ touchscreen
+Message-ID: <20231212-rework-bounce-f4d9d12362a4@spud>
+References: <20231211121430.1689139-1-kamel.bouhara@bootlin.com>
+ <20231211121430.1689139-3-kamel.bouhara@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="UaIdxHTfrnxPNhdH"
+Content-Disposition: inline
+In-Reply-To: <20231211121430.1689139-3-kamel.bouhara@bootlin.com>
+
+
+--UaIdxHTfrnxPNhdH
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231204172510.35041-3-biju.das.jz@bp.renesas.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Dec 04, 2023 at 05:25:04PM +0000, Biju Das wrote:
-> The DA9061 watchdog is identical to DA9062 watchdog, so no driver changes
-> are required. The fallback compatible string "dlg,da9062-watchdog" will be
-> used on DA9061 watchdog.
-> 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
-
+On Mon, Dec 11, 2023 at 01:14:28PM +0100, Kamel Bouhara wrote:
+> Add the TouchNetix axiom I2C touchscreen device tree bindings
+> documentation.
+>=20
+> Signed-off-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
 > ---
-> v3->v3.1:
->  * Dropped comment for d9061 watchdog fallback.
->  * Replaced enum->const for dlg,da9061-watchdog and its fallback.
-> v2->v3:
->  * No change
-> v2:
->  * New patch
-> ---
->  .../bindings/watchdog/dlg,da9062-watchdog.yaml         | 10 +++++++---
->  1 file changed, 7 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/dlg,da9062-watchdog.yaml b/Documentation/devicetree/bindings/watchdog/dlg,da9062-watchdog.yaml
-> index f058628bb632..7c63b99dac85 100644
-> --- a/Documentation/devicetree/bindings/watchdog/dlg,da9062-watchdog.yaml
-> +++ b/Documentation/devicetree/bindings/watchdog/dlg,da9062-watchdog.yaml
-> @@ -14,9 +14,13 @@ allOf:
->  
->  properties:
->    compatible:
-> -    enum: 
-> -      - dlg,da9061-watchdog
-> -      - dlg,da9062-watchdog
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - dlg,da9062-watchdog
-> +      - items:
-> +          - const: dlg,da9061-watchdog
-> +          - const: dlg,da9062-watchdog
->  
->    dlg,use-sw-pm:
->      type: boolean
-> -- 
-> 2.39.2
-> 
+>  .../input/touchscreen/touchnetix,ax54a.yaml   | 64 +++++++++++++++++++
+>  MAINTAINERS                                   |  6 ++
+>  2 files changed, 70 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/t=
+ouchnetix,ax54a.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/input/touchscreen/touchnet=
+ix,ax54a.yaml b/Documentation/devicetree/bindings/input/touchscreen/touchne=
+tix,ax54a.yaml
+> new file mode 100644
+> index 000000000000..cbdf48fc538b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/touchscreen/touchnetix,ax54=
+a.yaml
+> @@ -0,0 +1,64 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/touchscreen/touchnetix,ax54a.ya=
+ml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TouchNetix Axiom series touchscreen controller
+> +
+> +maintainers:
+> +  - Kamel Bouhara <kamel.bouhara@bootlin.com>
+> +
+> +allOf:
+> +  - $ref: /schemas/input/touchscreen/touchscreen.yaml#
+
+Weird, you add this ref here but do not actually allow any properties
+=66rom it since you have "additionalProperties: false" below.
+
+What's the point of its inclusion?
+
+Cheers,
+Conor.
+
+> +  - $ref: /schemas/input/input.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: touchnetix,ax54a
+> +
+> +  reg:
+> +    const: 0x66
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +
+> +  vdda-supply:
+> +    description: Analog power supply regulator on VDDA pin
+> +
+> +  vddi-supply:
+> +    description: I/O power supply regulator on VDDI pin
+> +
+> +  poll-interval: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - vdda-supply
+> +  - vddi-supply
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    i2c {
+> +      #address-cells =3D <1>;
+> +      #size-cells =3D <0>;
+> +
+> +      touchscreen@66 {
+> +        compatible =3D "touchnetix,ax54a";
+> +        reg =3D <0x66>;
+> +        interrupt-parent =3D <&gpio2>;
+> +        interrupts =3D <2 IRQ_TYPE_EDGE_FALLING>;
+> +        reset-gpios =3D <&gpio1 1 GPIO_ACTIVE_HIGH>;
+> +        vdda-supply =3D <&vdda_reg>;
+> +        vddi-supply =3D <&vddi_reg>;
+> +        poll-interval =3D <20>;
+> +      };
+> +    };
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 7608b714653f..4752d8436dbb 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -21431,6 +21431,12 @@ S:	Maintained
+>  F:	Documentation/ABI/testing/sysfs-class-firmware-attributes
+>  F:	drivers/platform/x86/think-lmi.?
+> =20
+> +TOUCHNETIX AXIOM I2C TOUCHSCREEN DRIVER
+> +M:	Kamel Bouhara <kamel.bouhara@bootlin.com>
+> +L:	linux-input@vger.kernel.org
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/input/touchscreen/touchnetix,ax54a.=
+yaml
+> +
+>  THUNDERBOLT DMA TRAFFIC TEST DRIVER
+>  M:	Isaac Hazan <isaac.hazan@intel.com>
+>  L:	linux-usb@vger.kernel.org
+> --=20
+> 2.25.1
+>=20
+
+--UaIdxHTfrnxPNhdH
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZXiQ5wAKCRB4tDGHoIJi
+0p61AQDuO5fLGaE3qnBLRE7Yb2SlwrllyQnQEJ6VCaUxkZ/xVQD/eNd1ZcqIUMWN
+sbNXReqN3/dm5vO8dznluM11EW1TugM=
+=K8S0
+-----END PGP SIGNATURE-----
+
+--UaIdxHTfrnxPNhdH--
 
