@@ -1,276 +1,183 @@
-Return-Path: <devicetree+bounces-24290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24353-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30F7780EA7C
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 12:38:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E27BF80ED13
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 14:17:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DCBAC28183C
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 11:38:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F7241C20B4C
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 13:17:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 637575D4A2;
-	Tue, 12 Dec 2023 11:38:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B4986167E;
+	Tue, 12 Dec 2023 13:16:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Bjn7Fr1/"
+	dkim=pass (2048-bit key) header.d=cadence.com header.i=@cadence.com header.b="txL/nKAm";
+	dkim=pass (1024-bit key) header.d=cadence.com header.i=@cadence.com header.b="t4syfu80"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C73FDCD;
-	Tue, 12 Dec 2023 03:38:10 -0800 (PST)
-Received: by mail-oi1-x233.google.com with SMTP id 5614622812f47-3ba084395d9so1503959b6e.0;
-        Tue, 12 Dec 2023 03:38:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702381090; x=1702985890; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=+L2kxEHCu62/EVSOcD5zqPnIMCZrQemKF2WuvkQ2BF4=;
-        b=Bjn7Fr1/g4Rg38kquG3stvn1yHLCv0gMNYP/hoN0xro7e0kC7SyU+/PxLfE3QMXnPd
-         CojxjjECgy63G5EE10/0CTr7Rs3MBVerZkJIbaN6QKcVuiGqiNuk7gnK91GpaV/mLFL/
-         0hHwrEjRMHnpP7J1HHkPs+KBm1yE3KDkjizb2bIGyapbvsSf6tuJQKs0AQYafmGke5gK
-         iJPTHxYDkhZGnfOfVIeL9HzhNd1N4IiLIJ1MA7aM8idbuSBLgENDMZ50d8WgU5ThqxLa
-         ZmsVjh+D2YbijuY80Y9BxlL8ynWWpmgHq/5FWOJ6mVCgZX598aLT0NB/WuuV5cV88/HX
-         3LUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702381090; x=1702985890;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+L2kxEHCu62/EVSOcD5zqPnIMCZrQemKF2WuvkQ2BF4=;
-        b=hV3fNGm5uc/W1pd6JqflFhU+k504+vnvpfVm7f5M2ZHEL2tKaiezei03pko6K8ARWz
-         rs5rgqVU0ZI48vOcdGLh6N7xcqVeoGRyoZx7i4AGUlwAxgZE5FPfj6EkFBV9tM5nlqCg
-         GjwcVZa3MCY5M1V5b7a4OfGp0P9Y1n3Mwz4Nt8Z2zF9yTWkY8VhUqIQ8vOtJkMgEpgMR
-         dp8IMaNIxRWnLz5AW2972tIw2afLK1zGOdFeXpoZICevTwka0PIkb5vamDm+JhEiZ+l5
-         FJ3QvFLY7zFAx8rtLGA2FGu1DX99qpgHIpVaJA3BRB9x5ydN5sWb867Os89VBP4JNGLk
-         aGeg==
-X-Gm-Message-State: AOJu0YzLQFEb4PZWEz8kJW4b45OlJVIbs11iGV6FRlx38ModB+rIQRXs
-	VosWB+S4/UYBHRQLXOxpk3jjJ99iA6Eyu4ChnTk=
-X-Google-Smtp-Source: AGHT+IF+mLItRlwncGPLaOBSbWrzSF4zO2CcLPzv42Do4B8u1Slt2WF4wMUjE3qjHmiGNMT7cW9QlrmRlFHAq5rq+7I=
-X-Received: by 2002:a05:6870:aa97:b0:1fb:75b:99a0 with SMTP id
- gr23-20020a056870aa9700b001fb075b99a0mr7675745oab.79.1702381089856; Tue, 12
- Dec 2023 03:38:09 -0800 (PST)
+Received: from mx0a-0014ca01.pphosted.com (mx0a-0014ca01.pphosted.com [208.84.65.235])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 663F8ED;
+	Tue, 12 Dec 2023 05:16:56 -0800 (PST)
+Received: from pps.filterd (m0042385.ppops.net [127.0.0.1])
+	by mx0a-0014ca01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BCBAeGn029564;
+	Tue, 12 Dec 2023 03:48:52 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com; h=
+	from:to:cc:subject:date:message-id:mime-version:content-type; s=
+	proofpoint; bh=5QxtWJhYGaQ80qzSgkIVk4+m0D8hv8z2jXe9/cOvtJk=; b=t
+	xL/nKAm++eFCZ5EN/RJGprXkxdgLM+ewkTCyWPWvmaIEwL3VMS9UD1WWGAcgceUW
+	+vmE4kYBYV4jvlASVLfwhzA1uKwKAoaYwKG+IPkZ5eJQ3I5mMx8gGlVIHba1sj12
+	WWTOLL3NC+ySr9/i/AWL94DGYT8sNn2wsKdG6ZAONguhP6RCuTo0o+PFV02Q/vpt
+	JY0iI/Mf+SvrreGQXXjGC++5OX9ZjK3sEl7JxaJ/utfYGv6G6T9qIy3CGJH8Nonp
+	gJ6BgrpAWG/BRhiLbnwOmKSAMN5UsvjvuAJ/XDs8d8A0OacjyUb0gGQdORqodyoE
+	NqRrZXzGdhqoBvkdxmcjg==
+Received: from nam12-mw2-obe.outbound.protection.outlook.com (mail-mw2nam12lp2040.outbound.protection.outlook.com [104.47.66.40])
+	by mx0a-0014ca01.pphosted.com (PPS) with ESMTPS id 3uvnnx9k47-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 12 Dec 2023 03:48:51 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=mMNuqHg7E29rFoCU1xPLPqFTFjHwe9ePMjJnFsoVmiK/fPO0FvkB3KX0u2NT92py9UrwUpgPTvXIeRWZ0xhCEf7d6YVQab29r0GXkJd75kEaVmWLg+oiRwkI/3Uo3QWqEkhrOYzwjWTSdv8tSAPcyqpLMBr5pdJfSQ8r2S4VTeV9Wo71JM87StC+5F4OsUMdZszIEgxeHDe8BNBcXTVP4u9ihobywBES6MRqxHCw5ol+K+wj0QzAtyAbjUwuOyVwLFTVsCnDAzGTPuGySWRWRR0PMvMZw6cLuP5inPtPAIT0XRcN1HYPyPDYqHcqGHi2OHDLm2TK1MxaY9ikdDfQ1w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=5QxtWJhYGaQ80qzSgkIVk4+m0D8hv8z2jXe9/cOvtJk=;
+ b=lRXz6pEApoMMRnUqR64zq3cHrdUP4imVlXaCD4ikiSvP3QLZ7AlKmDlcz14Ka2kWXGDAyDre4SlrJInplwJ7JonpTEkBfTTcENyamlv59h4S0MV/yjWIIhF4EYhMTEh33+xNyB7WRCc+pATRD4H6LIUZrUO1hLKPYj5xkSGw3azinmOt8AZkDJptTddACsUqVn3cG7eNbo9CUeP36hQwa6jSJ1UNwS2n2OT97F+V1ZzoJYjWD4XZeuZOJMEFHeQQztlPDFR/APN44wE3Ysehq5YeMwkrvtcsxIVuT7kLuOLxZS3zOdGX8NIN/HFY7UB9EdZO0YpdqJXxvFlRr+hL0w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 158.140.1.147) smtp.rcpttodomain=ti.com smtp.mailfrom=cadence.com; dmarc=pass
+ (p=none sp=none pct=100) action=none header.from=cadence.com; dkim=none
+ (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5QxtWJhYGaQ80qzSgkIVk4+m0D8hv8z2jXe9/cOvtJk=;
+ b=t4syfu80SuI+ye6GaDjyZkCWgwAD9HzoRFCSAgnbMKhF9F+NpJqWWL2i/mf6jH5Y1YRgidptYmS1Rd5CGI/P4mLQ+xGTW5SPb5iGymszLlHQoqnAGa9aBoXJHbHq1z1OIsnIaP85TE4Izk29qpk3dvWFI3A1OlpZa70fKN4zjdA=
+Received: from BYAPR02CA0039.namprd02.prod.outlook.com (2603:10b6:a03:54::16)
+ by SN4PR07MB9246.namprd07.prod.outlook.com (2603:10b6:806:1ee::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.33; Tue, 12 Dec
+ 2023 11:48:50 +0000
+Received: from DM6NAM12FT098.eop-nam12.prod.protection.outlook.com
+ (2603:10b6:a03:54:cafe::e4) by BYAPR02CA0039.outlook.office365.com
+ (2603:10b6:a03:54::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.33 via Frontend
+ Transport; Tue, 12 Dec 2023 11:48:49 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 158.140.1.147)
+ smtp.mailfrom=cadence.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=cadence.com;
+Received-SPF: Pass (protection.outlook.com: domain of cadence.com designates
+ 158.140.1.147 as permitted sender) receiver=protection.outlook.com;
+ client-ip=158.140.1.147; helo=sjmaillnx1.cadence.com; pr=C
+Received: from sjmaillnx1.cadence.com (158.140.1.147) by
+ DM6NAM12FT098.mail.protection.outlook.com (10.13.178.76) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7091.23 via Frontend Transport; Tue, 12 Dec 2023 11:48:49 +0000
+Received: from maileu4.global.cadence.com (eudvw-maileu4.cadence.com [10.160.110.201])
+	by sjmaillnx1.cadence.com (8.14.4/8.14.4) with ESMTP id 3BCBmjpl027153
+	(version=TLSv1/SSLv3 cipher=AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 12 Dec 2023 03:48:46 -0800
+Received: from maileu4.global.cadence.com (10.160.110.201) by
+ maileu4.global.cadence.com (10.160.110.201) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.7; Tue, 12 Dec 2023 12:48:44 +0100
+Received: from cadence.com (10.160.88.83) by maileu4.global.cadence.com
+ (10.160.110.201) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.7 via Frontend
+ Transport; Tue, 12 Dec 2023 12:48:44 +0100
+Received: from vleu-orange.cadence.com (localhost [127.0.0.1])
+	by cadence.com (8.15.2/8.15.2) with ESMTP id 3BCBmh6l1468946;
+	Tue, 12 Dec 2023 12:48:44 +0100
+Received: (from sjakhade@localhost)
+	by vleu-orange.cadence.com (8.15.2/8.15.2/Submit) id 3BCBmeFo1468945;
+	Tue, 12 Dec 2023 12:48:40 +0100
+From: Swapnil Jakhade <sjakhade@cadence.com>
+To: <vkoul@kernel.org>, <kishon@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-phy@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC: <mparab@cadence.com>, <sjakhade@cadence.com>, <rogerq@kernel.org>,
+        <s-vadapalli@ti.com>
+Subject: [PATCH v2 0/5] PHY: Add support for dual refclk configurations in Cadence Torrent PHY driver
+Date: Tue, 12 Dec 2023 12:48:35 +0100
+Message-ID: <20231212114840.1468903-1-sjakhade@cadence.com>
+X-Mailer: git-send-email 2.15.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231204144429.45197-1-linux.amoon@gmail.com> <20231204144429.45197-2-linux.amoon@gmail.com>
- <20231206135311.GA2043711-robh@kernel.org> <CANAwSgTS0ZSFPv4x803pCLEpjH5imh8vEoWpbiJRH14Sy3GZww@mail.gmail.com>
- <21673bfd-bb87-4c7d-a53f-337c263f3a00@linaro.org> <CANAwSgSo37B0zg-xjrmqndSZ5SbyB3m27_wRsqqN9WTONooeiw@mail.gmail.com>
- <604e653d-c1e2-45c7-b121-8a6b4be5c6bb@linaro.org> <CANAwSgRB=XWo2-40rDru=Zy277-kgGNjozJ8Lxnxgv_4ABB-kg@mail.gmail.com>
- <1a78d453-62a2-410a-a40f-1ff0c2b62e86@linaro.org> <CANAwSgTy4N7Q8e0OQLsFRkRDWksTSbkOetKQGygaqsQ8++U1_g@mail.gmail.com>
- <2e688f4e-11d7-4f8e-b8ec-58f4a97304a8@linaro.org> <CANAwSgQstkS-SDaV2hj0fimt7vgfEgOT_x4efshZ6sZQ0gWSEA@mail.gmail.com>
- <8f28ea77-b3d0-445e-8d8e-80f980775f89@linaro.org>
-In-Reply-To: <8f28ea77-b3d0-445e-8d8e-80f980775f89@linaro.org>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Tue, 12 Dec 2023 17:07:54 +0530
-Message-ID: <CANAwSgRLORHb6qiHWRBR0tMbYB=O=gwatuGhk72SwZyhYMopCw@mail.gmail.com>
-Subject: Re: [PATCH v6 1/2] dt-bindings: usb: Add the binding example for the
- Genesys Logic GL3523 hub
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Icenowy Zheng <uwu@icenowy.me>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	linux-amlogic@lists.infradead.org, Conor Dooley <conor.dooley@microchip.com>, 
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-CrossPremisesHeadersFilteredBySendConnector: maileu4.global.cadence.com
+X-OrganizationHeadersPreserved: maileu4.global.cadence.com
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6NAM12FT098:EE_|SN4PR07MB9246:EE_
+X-MS-Office365-Filtering-Correlation-Id: 32f10be5-bef0-4009-e0fa-08dbfb084e37
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	qExctvQZXlGnaFblR9k0E07zSVYvg+mbpQ6bJenF04hmyU9on19DTAKH+FVVG1Nj9MuQ7cCNG7N2lmp8npz4MX28tUfipaEj61Atg6golK6NUZzDlIEPLKeY4Zm3Xztny8mZKiZ7eThDA8J70IlV6fZE/zgAnLsprnBMI2OY09GqiyU5OfpTQ9XqywUCjucFCl4aBgUn9iyiocSwc8sgYLxeIosQNpADJVqim5QRqXj4l1aQ/x5hTvQbpCQ5vkmt1f/RcmMSuuMSfCBawRzxNe4UKusiAifBLxF4S1Ju7Fa+KsxYNGs3fWispNy5Bcs++oPtgy6bYHbGNGDgCoiTz23kMfkZqMWe4TZk0fadwQpXStyvtPIWIvghtCdlCBZWCozdvWSATQ5F1pJGzieNQ4M1CYpqwpv9dASuGU9ZS08IkkfNrh0NGEFmyOBEIiu5mtjLXGxaWLdDRk1XpDXUQ+QhZ3mzyQ6RdXovwC6C/OLIzRTA+7aY0OzNN4coiCziHNIwT6HyfpzvbEl7elswW+jDviozCwJKv0fmEThgUwUL+QDUI6gyuBGKc3mS7gfFSpbB1JUimv/Dqo9ATk00qsGrGV750ErxAxWksDB2y54SenfAYpL4NiJKYm/rk3rPqbbfScafTDoV/7nIc7ElCLZb4mzJ3QMNMu+INcP6htT+qjVLDaHGfLjXClaVgbMR8GMVEvtWoQIOyJ1wAsXdJE/8ISmXk0mTwPcXPTRaAOdPhn38pBjyXVoOtOY5+fAI
+X-Forefront-Antispam-Report: 
+	CIP:158.140.1.147;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:sjmaillnx1.cadence.com;PTR:unknown.Cadence.COM;CAT:NONE;SFS:(13230031)(4636009)(39860400002)(136003)(396003)(346002)(376002)(230922051799003)(1800799012)(451199024)(64100799003)(82310400011)(186009)(40470700004)(36840700001)(46966006)(426003)(40480700001)(336012)(2906002)(47076005)(40460700003)(6666004)(36860700001)(4326008)(26005)(7416002)(1076003)(5660300002)(2616005)(83380400001)(8676002)(41300700001)(7636003)(82740400003)(110136005)(70586007)(70206006)(36756003)(54906003)(356005)(966005)(478600001)(86362001)(8936002)(42186006)(316002)(2101003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: cadence.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Dec 2023 11:48:49.2558
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 32f10be5-bef0-4009-e0fa-08dbfb084e37
+X-MS-Exchange-CrossTenant-Id: d36035c5-6ce6-4662-a3dc-e762e61ae4c9
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=d36035c5-6ce6-4662-a3dc-e762e61ae4c9;Ip=[158.140.1.147];Helo=[sjmaillnx1.cadence.com]
+X-MS-Exchange-CrossTenant-AuthSource: 
+	DM6NAM12FT098.eop-nam12.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN4PR07MB9246
+X-Proofpoint-ORIG-GUID: OLb-dTyvx5VhNpO3wxiPL8VgPTfGu_M5
+X-Proofpoint-GUID: OLb-dTyvx5VhNpO3wxiPL8VgPTfGu_M5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-02_01,2023-11-30_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_check_notspam policy=outbound_check score=0 suspectscore=0
+ bulkscore=0 impostorscore=0 adultscore=0 malwarescore=0 priorityscore=1501
+ spamscore=0 clxscore=1011 lowpriorityscore=0 phishscore=0 mlxlogscore=999
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2312120094
 
-Hi Krzysztof,
+This patch series extends Torrent PHY driver functionality to support
+dual input reference clocks.
 
-On Tue, 12 Dec 2023 at 14:10, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 12/12/2023 07:22, Anand Moon wrote:
-> > Hi Krzysztof,
-> >
-> > On Fri, 8 Dec 2023 at 17:47, Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 08/12/2023 12:19, Anand Moon wrote:
-> >>> Hi Krzysztof,
-> >>>
-> >>> On Fri, 8 Dec 2023 at 13:14, Krzysztof Kozlowski
-> >>> <krzysztof.kozlowski@linaro.org> wrote:
-> >>>>
-> >>>> On 08/12/2023 01:24, Anand Moon wrote:
-> >>>>>>>>>
-> >>>>>>>>> If I move reset-gpios to required, I observe the below warning.
-> >>>>>>>>>
-> >>>>>>>>>   DTC_CHK Documentation/devicetree/bindings/usb/maxim,max33359.example.dtb
-> >>>>>>>>> /home/alarm/linux-amlogic-5.y-devel/Documentation/devicetree/bindings/usb/usb-device.example.dtb:
-> >>>>>>>>> hub@1: 'reset-gpio' is a required property
-> >>>>>>>>>         from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
-> >>>>>>>>
-> >>>>>>>> Where are the properties defined? If you open the binding you see:
-> >>>>>>>> nowhere. You cannot define properties in some variant with "true".
-> >>>>>>>> Please define all of them in top-level and only narrow/constrain when
-> >>>>>>>> applicable.
-> >>>>>>>>
-> >>>>>>> What I meant is the example below, required meant applicable for both
-> >>>>>>> the binding
-> >>>>>>> But it shows me the above warning.
-> >>>>>>
-> >>>>>> My explanation stands... So again:
-> >>>>>>
-> >>>>>>>> Please define all of them in top-level and only narrow/constrain when
-> >>>>>>>> applicable.
-> >>>>>>
-> >>>>> Apologies, But I have tried this multiple times but have not been able
-> >>>>> to fix the device tree warning
-> >>>>
-> >>>> Did you document all properties in top-level "properties:" block?
-> >>>>
-> >>> Yes, I have,
-> >>>
-> >>> Can you suggest a couple of examples to follow?
-> >>> I looked at some of the YAML files but could not fix my issue.
-> >>
-> >> 99% of bindings. Look also at example-schema.
-> >>
-> >> You can also attach here complete patch for fast look / short review.
-> >>
-> >
-> > Please find the modified patch, I have tried a few things but none
-> > resolve the binding warning.
-> > I am not able to debug this.
->
-> And where is the warning or the issue? Can you describe what problem do
-> you have?
+It also adds support for following multilink configurations:
+- PCIe(100MHz) + USXGMII(156.25MHz)
+- USXGMII(156.25MHz) + SGMII/QSGMII(100MHz)
 
-Here is the list of warnings I observed with this patch
+The changes have been validated on TI J721E and J7200 platforms.
 
-  DTC_CHK Documentation/devicetree/bindings/usb/nvidia,tegra186-xusb.example.dtb
-/home/amoon/mainline/linux-amlogic-6.y-devel/Documentation/devicetree/bindings/usb/usb-device.example.dtb:
-hub@1: 'vdd-supply' is a required property
-        from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
-/home/amoon/mainline/linux-amlogic-6.y-devel/Documentation/devicetree/bindings/usb/usb-device.example.dtb:
-hub@1: 'reset-gpios' is a required property
-        from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
-/home/amoon/mainline/linux-amlogic-6.y-devel/Documentation/devicetree/bindings/usb/usb-device.example.dtb:
-hub@1: 'peer-hub' is a required property
-        from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
-  DTC_CHK Documentation/devicetree/bindings/usb/ti,tps6598x.example.dtb
-  DTC_CHK Documentation/devicetree/bindings/usb/xlnx,usb2.example.dtb
-  DTC_CHK Documentation/devicetree/bindings/usb/renesas,usb-xhci.example.dtb
-  DTC_CHK Documentation/devicetree/bindings/usb/renesas,usbhs.example.dtb
-  DTC_CHK Documentation/devicetree/bindings/usb/brcm,bcm7445-ehci.example.dtb
-  DTC_CHK Documentation/devicetree/bindings/usb/cypress,cypd4226.example.dtb
-  DTC_CHK Documentation/devicetree/bindings/usb/cdns,usb3.example.dtb
-  DTC_CHK Documentation/devicetree/bindings/usb/renesas,rzn1-usbf.example.dtb
-  DTC_CHK Documentation/devicetree/bindings/usb/nvidia,tegra124-xusb.example.dtb
-  DTC_CHK Documentation/devicetree/bindings/usb/ci-hdrc-usb2.example.dtb
-  DTC_CHK Documentation/devicetree/bindings/usb/brcm,usb-pinmap.example.dtb
-  DTC_CHK Documentation/devicetree/bindings/usb/renesas,usb3-peri.example.dtb
-  DTC_CHK Documentation/devicetree/bindings/usb/qcom,pmic-typec.example.dtb
-  DTC_CHK Documentation/devicetree/bindings/usb/microchip,usb5744.example.dtb
-  DTC_CHK Documentation/devicetree/bindings/usb/smsc,usb3503.example.dtb
-  DTC_CHK Documentation/devicetree/bindings/usb/mediatek,musb.example.dtb
-  DTC_CHK Documentation/devicetree/bindings/usb/vialab,vl817.example.dtb
-  DTC_CHK Documentation/devicetree/bindings/usb/marvell,pxau2o-ehci.example.dtb
-  DTC_CHK Documentation/devicetree/bindings/usb/richtek,rt1711h.example.dtb
-  DTC_CHK Documentation/devicetree/bindings/usb/usb.example.dtb
-  DTC_CHK Documentation/devicetree/bindings/usb/realtek,rts5411.example.dtb
-  DTC_CHK Documentation/devicetree/bindings/usb/nvidia,tegra210-xusb.example.dtb
-  DTC_CHK Documentation/devicetree/bindings/usb/realtek,rtd-dwc3.example.dtb
-  DTC_CHK Documentation/devicetree/bindings/usb/usb-drd.example.dtb
-  DTC_CHK Documentation/devicetree/bindings/usb/genesys,gl850g.example.dtb
-  DTC_CHK Documentation/devicetree/bindings/usb/ti,j721e-usb.example.dtb
-  DTC_CHK Documentation/devicetree/bindings/usb/ti,am62-usb.example.dtb
-/home/amoon/mainline/linux-amlogic-6.y-devel/Documentation/devicetree/bindings/usb/genesys,gl850g.example.dtb:
-hub@1: 'vdd-supply' is a required property
-        from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
-/home/amoon/mainline/linux-amlogic-6.y-devel/Documentation/devicetree/bindings/usb/genesys,gl850g.example.dtb:
-hub@1: 'peer-hub' is a required property
-        from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
-  DTC_CHK Documentation/devicetree/bindings/usb/renesas,rzv2m-usb3drd.example.dtb
-  DTC_CHK Documentation/devicetree/bindings/usb/usb-hcd.example.dtb
-  DTC_CHK Documentation/devicetree/bindings/usb/fsl,imx8mq-dwc3.example.dtb
-  DTC_CHK Documentation/devicetree/bindings/usb/mediatek,mtu3.example.dtb
-/home/amoon/mainline/linux-amlogic-6.y-devel/Documentation/devicetree/bindings/usb/usb-hcd.example.dtb:
-hub@1: 'vdd-supply' is a required property
-        from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
-/home/amoon/mainline/linux-amlogic-6.y-devel/Documentation/devicetree/bindings/usb/usb-hcd.example.dtb:
-hub@1: 'reset-gpios' is a required property
-        from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
-/home/amoon/mainline/linux-amlogic-6.y-devel/Documentation/devicetree/bindings/usb/usb-hcd.example.dtb:
-hub@1: 'peer-hub' is a required property
-        from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
-  DTC_CHK Documentation/devicetree/bindings/usb/nxp,isp1760.example.dtb
+v1 of the patch series can be found at [1].
 
->
-> >
-> > -Thanks
-> > Anand
-> > -----8<----------8<----------8<----------8<----------8<----------8<-----
-> > diff --git a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> > b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> > index ee08b9c3721f..7f75fa3c1945 100644
-> > --- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> > +++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-> > @@ -9,9 +9,6 @@ title: Genesys Logic USB hub controller
-> >  maintainers:
-> >    - Icenowy Zheng <uwu@icenowy.me>
-> >
-> > -allOf:
-> > -  - $ref: usb-device.yaml#
-> > -
-> >  properties:
-> >    compatible:
-> >      enum:
-> > @@ -27,11 +24,47 @@ properties:
-> >
-> >    vdd-supply:
-> >      description:
-> > -      the regulator that provides 3.3V core power to the hub.
-> > +      The regulator that provides 3.3V or 5.0V core power to the hub.
-> > +
-> > +  peer-hub:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description:
-> > +      For onboard hub controllers that support USB 3.x and USB 2.0 hubs with
-> > +      shared resets and power supplies, this property is used to identify the
-> > +      hubs with which these are shared.
-> >
-> >  required:
-> >    - compatible
-> >    - reg
-> > +  - vdd-supply
-> > +  - reset-gpios
-> > +  - peer-hub
-> > +
-> > +allOf:
-> > +  - $ref: usb-device.yaml#
-> > +
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - usb5e3,608
-> > +    then:
-> > +      properties:
-> > +        peer-hub: false
-> > +        vdd-supply: false
-> > +
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - usb5e3,610
-> > +              - usb5e3,620
-> > +    then:
-> > +      properties:
-> > +        peer-hub: true
-> > +        vdd-supply: true
->
-> Drop this if:, redundant.
->
-No, this does not resolve the above issue.
->
+Version History:
 
-Thanks
--Anand
+v2:
+   - Rename refclk1 to pll1_refclk in bindings and in driver
+   - Simplify clock-names as suggested by Rob
+
+[1] https://lore.kernel.org/linux-phy/20230724150002.5645-1-sjakhade@cadence.com/
+
+Swapnil Jakhade (5):
+  dt-bindings: phy: cadence-torrent: Add optional input reference clock
+    for PLL1
+  phy: cadence-torrent: Add PCIe(100MHz) + USXGMII(156.25MHz) multilink
+    configuration
+  phy: cadence-torrent: Add USXGMII(156.25MHz) + SGMII/QSGMII(100MHz)
+    multilink configuration
+  dt-bindings: phy: cadence-torrent: Add a separate compatible for TI
+    J7200
+  phy: cadence-torrent: Add USXGMII(156.25MHz) + SGMII/QSGMII(100MHz)
+    multilink config for TI J7200
+
+ .../bindings/phy/phy-cadence-torrent.yaml     |   7 +-
+ drivers/phy/cadence/phy-cadence-torrent.c     | 705 +++++++++++++++++-
+ 2 files changed, 706 insertions(+), 6 deletions(-)
+
+-- 
+2.25.1
+
 
