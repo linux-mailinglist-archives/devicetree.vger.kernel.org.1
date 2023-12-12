@@ -1,113 +1,107 @@
-Return-Path: <devicetree+bounces-24167-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24168-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DFE080E45D
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 07:40:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60A8480E47B
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 07:52:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E86FE1F21EBA
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 06:40:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8BAF91C21AB1
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 06:52:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02C2DDDC9;
-	Tue, 12 Dec 2023 06:40:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E96E15AF2;
+	Tue, 12 Dec 2023 06:52:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UzRniBVT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BciUfiVA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-xc30.google.com (mail-oo1-xc30.google.com [IPv6:2607:f8b0:4864:20::c30])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DE7DC7;
-	Mon, 11 Dec 2023 22:40:45 -0800 (PST)
-Received: by mail-oo1-xc30.google.com with SMTP id 006d021491bc7-589d4033e84so3087907eaf.1;
-        Mon, 11 Dec 2023 22:40:45 -0800 (PST)
+Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D2BECF;
+	Mon, 11 Dec 2023 22:52:13 -0800 (PST)
+Received: by mail-pf1-x436.google.com with SMTP id d2e1a72fcca58-6ce76f0748fso3297250b3a.2;
+        Mon, 11 Dec 2023 22:52:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702363245; x=1702968045; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wQ3uJeujcSHCX4Yuy40El599+rKbJemClUH5Ymogx/A=;
-        b=UzRniBVTjkr5tGpREb+y0JI5HdTuHlEdywQlMvei3lXSW8x4S+uQSyurVwv9HW/KiL
-         Gl3fyLphZ9S4ReqKeZdtHcp322Ow6eACX9nFkLg4XyJMqV6te4fWzPuNjAXedRo0onhg
-         5XUSgq/ncuXhXLd2q67k+gjOB4ApVHGWS+R6wr/JomYn/y64n+gQwPw0vsRPCKBloIk+
-         pngq1X3aTyoVRj5aTLzv9h6Vw0fI1RkDJVNtZFEqQkDoWT7zfzeZrP8k3FDnuzsehSiA
-         FqIHgZDMFwLQu6Gk8v6aWYOLfLCxNmTxJ+RzRtnAhYvK7Ww9tYDu1XUiiMUZsAw75APz
-         K8sw==
+        d=gmail.com; s=20230601; t=1702363933; x=1702968733; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=kTf2cuqewiPrk1RQQoqt4/IkxJXXPXtDeMWQFMEZ4Hw=;
+        b=BciUfiVAH1RYlbWfBBlo9EoUX6YqvMl3OI0Eu+YkOkg56k2tWlk2JKQF4qT2JGIA8J
+         SZGLPnkhgBDKh9yJw4vlVUSoH/j4vtBHNxl6EcrTBz9nFEApHEbx3an3XvAgI27VapRx
+         ePymwYN6OQSrHkBfciFT2nFDk9hikTid/824bsEReTHOMkrqXCdRVh6+b6ZG8BL0eHJa
+         AxWDRtRf3hzsAY9eEk3v7c4jdO1wlDSLXwplMaemUs3b136/WjpVsijoqZQ+6PkR//x4
+         7XmXW3peD4DX2IZ3InvmJYrv/pIYbBLg6N9kuXM/i2cjlrLQdgdRkduPJX0R8Xed0jRx
+         hfvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702363245; x=1702968045;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wQ3uJeujcSHCX4Yuy40El599+rKbJemClUH5Ymogx/A=;
-        b=DvsKmk9o5eC9gQauZhqaZ2UWFfwOpENz9uOF16vrggTR/MgYqN16YFtdhVct3otcqr
-         dVSMj240zGx1X3uMXbvj08p3m5S2MBf/Tfq1VctK4nuh1xDGZl3iATbNzXBlGRwViJVM
-         yX0DKueBMKzNcDk22s79ghGswU/pMUcXVYGzM+C5UK43XYrnMsvUjtkrHS+EnFi5Pdf2
-         py63ZnYFyceauJeV8delbkKtB5BglbhMbMIZcgjVctYqccwJTbijtVs+Dj8UDwnvpOLD
-         tPyGIAm5aUZFWXlTF4qhJbBR+K7yuRuVKEquz92Pe9hEv9ns8ofaFIS8ctVIQF9J+2SH
-         Ob7g==
-X-Gm-Message-State: AOJu0YxWv5qXpNE3PybbQb9wvMTIjgNmFn+8LuolSDWqfAq6tCMqLcBc
-	IhLkBK9b7Ryy6Mrqe9gKpbP5B5ySLWU=
-X-Google-Smtp-Source: AGHT+IGO7oCpn2HiGO4Pa3WCaKh+37j9sxmkHe2lf3t5n5MLgxDWCRwUG4qwYd8hUEXSTnJKBHq1DQ==
-X-Received: by 2002:a05:6359:3103:b0:170:8db:96a with SMTP id rh3-20020a056359310300b0017008db096amr4229908rwb.16.1702363244726;
-        Mon, 11 Dec 2023 22:40:44 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id du12-20020a056a002b4c00b006cef5c025d2sm5326604pfb.95.2023.12.11.22.40.43
+        d=1e100.net; s=20230601; t=1702363933; x=1702968733;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kTf2cuqewiPrk1RQQoqt4/IkxJXXPXtDeMWQFMEZ4Hw=;
+        b=kR8LZaiIiM/3oi5RwoHsd7qxyvzKe2/LZr5X6NX+5I6F60c5i00l/o5X1c4jkLqCHT
+         QdrIFqHUleIe/+q7ExPkY6wK6zXXeCx0frBbiTYTysfZ1+c9GvrNvRkG0W0W9hYDj25Z
+         pSz5oNMXAgJBCnufWi7ra66U8qU/FJDz9FigZ1JZt7TADfuRDoXNx/wv0pT1uFugMQfk
+         lRiGdgVqOAD1oZ3FgYnEiU8wgvN0o+M8saeKVhJaUYzoFQ6IRl3YR40mHKOvBi9ClIKJ
+         OnAK6jZEno8tRS8oZhZDH3gKcVXWTlLlpXBbpRmIZwqz8th5yyF0ukmo886I9ktSF874
+         fvzg==
+X-Gm-Message-State: AOJu0Yz9sdcbzOoNV86hs0eoc1/0gQulFkfCt6cH8ZiwiH2rPV+K8Oiv
+	KWWpCLis4W59CdiIlVRmIIk=
+X-Google-Smtp-Source: AGHT+IH7Lpx23pIFrf41IMWWQR20J3LQ8P14JiziXUXV88Cyrk6LtlNKTDlumeVyZW/StlZIysKFjQ==
+X-Received: by 2002:a05:6a21:999d:b0:18f:fb0d:e961 with SMTP id ve29-20020a056a21999d00b0018ffb0de961mr3104973pzb.60.1702363932793;
+        Mon, 11 Dec 2023 22:52:12 -0800 (PST)
+Received: from localhost.localdomain ([1.200.151.130])
+        by smtp.gmail.com with ESMTPSA id z3-20020a170903018300b001d0c4869725sm7855221plg.97.2023.12.11.22.52.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Dec 2023 22:40:43 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Mon, 11 Dec 2023 22:40:42 -0800
-From: Guenter Roeck <linux@roeck-us.net>
-To: Joel Stanley <joel@jms.id.au>
-Cc: Rob Herring <robh+dt@kernel.org>, Peter Huewe <peterhuewe@gmx.de>,
-	Jarkko Sakkinen <jarkko@kernel.org>, devicetree@vger.kernel.org,
-	linux-integrity@vger.kernel.org, Jason Gunthorpe <jgg@ziepe.ca>,
-	Johannes Holland <johannes.holland@infineon.com>,
-	eajames@linux.ibm.com
-Subject: Re: [PATCH v2 3/3] tpm: tis-i2c: Add more compatible strings
-Message-ID: <bd63a97e-d27a-495d-aaf5-138507c10e07@roeck-us.net>
-References: <20220928043957.2636877-1-joel@jms.id.au>
- <20220928043957.2636877-4-joel@jms.id.au>
+        Mon, 11 Dec 2023 22:52:12 -0800 (PST)
+From: Jim Liu <jim.t90615@gmail.com>
+To: jim.t90615@gmail.com,
+	JJLIU0@nuvoton.com,
+	KWLIU@nuvoton.com,
+	linus.walleij@linaro.org,
+	brgl@bgdev.pl,
+	andy@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org
+Cc: linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	openbmc@lists.ozlabs.org
+Subject: [PATCH v9 0/3] Add Nuvoton NPCM SGPIO feature
+Date: Tue, 12 Dec 2023 14:51:44 +0800
+Message-Id: <20231212065147.3475413-1-jim.t90615@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220928043957.2636877-4-joel@jms.id.au>
+Content-Transfer-Encoding: 8bit
+X-Spam-Level: *
 
-On Wed, Sep 28, 2022 at 02:09:57PM +0930, Joel Stanley wrote:
-> The NPCT75x TPM is TIS compatible. It has an I2C and SPI interface.
-> 
-> https://www.nuvoton.com/products/cloud-computing/security/trusted-platform-module-tpm/
-> 
-> Add a compatible string for it, and the generic compatible.
-> 
-> Signed-off-by: Joel Stanley <joel@jms.id.au>
+This SGPIO controller is for NUVOTON NPCM7xx and NPCM8xx SoC.
+Nuvoton NPCM SGPIO module is combine serial to parallel IC (HC595)
+and parallel to serial IC (HC165), and use APB3 clock to control it.
+This interface has 4 pins  (D_out , D_in, S_CLK, LDSH).
+NPCM7xx/NPCM8xx have two sgpio module each module can support up
+to 64 output pins,and up to 64 input pin, the pin is only for GPI or GPO.
+GPIO pins have sequential, First half is GPO and second half is GPI.
 
-Does anyone happen to know why this patch never made it upstream ?
+Jim Liu (3):
+  dt-bindings: gpio: add NPCM sgpio driver bindings
+  arm: dts: nuvoton: npcm: Add sgpio feature
+  gpio: nuvoton: Add Nuvoton NPCM sgpio driver
 
-Thanks,
-Guenter
+ .../bindings/gpio/nuvoton,sgpio.yaml          |  86 +++
+ .../dts/nuvoton/nuvoton-common-npcm7xx.dtsi   |  24 +
+ drivers/gpio/Kconfig                          |   7 +
+ drivers/gpio/Makefile                         |   1 +
+ drivers/gpio/gpio-npcm-sgpio.c                | 635 ++++++++++++++++++
+ 5 files changed, 753 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/gpio/nuvoton,sgpio.yaml
+ create mode 100644 drivers/gpio/gpio-npcm-sgpio.c
 
-> ---
->  drivers/char/tpm/tpm_tis_i2c.c | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/drivers/char/tpm/tpm_tis_i2c.c b/drivers/char/tpm/tpm_tis_i2c.c
-> index 0692510dfcab..4af27b7ec5b1 100644
-> --- a/drivers/char/tpm/tpm_tis_i2c.c
-> +++ b/drivers/char/tpm/tpm_tis_i2c.c
-> @@ -368,6 +368,8 @@ MODULE_DEVICE_TABLE(i2c, tpm_tis_i2c_id);
->  #ifdef CONFIG_OF
->  static const struct of_device_id of_tis_i2c_match[] = {
->  	{ .compatible = "infineon,slb9673", },
-> +	{ .compatible = "nuvoton,npct75x", },
-> +	{ .compatible = "tcg,tpm-tis-i2c", },
->  	{}
->  };
->  MODULE_DEVICE_TABLE(of, of_tis_i2c_match);
-> -- 
-> 2.35.1
-> 
+-- 
+2.25.1
+
 
