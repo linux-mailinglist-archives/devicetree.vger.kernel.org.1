@@ -1,102 +1,114 @@
-Return-Path: <devicetree+bounces-24441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24418-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7937980F319
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 17:36:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4385480F2DD
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 17:35:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 25A291F210AE
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 16:36:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F0D52281C5B
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 16:35:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D8A47A236;
-	Tue, 12 Dec 2023 16:35:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2CC678E63;
+	Tue, 12 Dec 2023 16:35:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="oqQEgVe/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EGoV0FXb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 620C412A;
-	Tue, 12 Dec 2023 08:35:43 -0800 (PST)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id BA11DE000F;
-	Tue, 12 Dec 2023 16:35:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1702398942;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=SUlSGy+v8U/B/CDpSFqLosOixqHv6uGhrQGTRWI6pDQ=;
-	b=oqQEgVe/Dd/JReCgjC5wwGG9MR6+X388hmrdrkSJtD5LOLPOc5QWrlVNeZGEu10wOUCvJj
-	IHv6Q72yaX6rSiZu1DiS0azddfC/Nhl3Sz+TckBokeLjRxn++eBD2njei09oPqtRAcZShC
-	hSsH9GPohbyzcGr01czNchzc5+2mTclRhB8lqBSC8v/5Wg2Nwj65AM3zdEOeVquSdxFTBx
-	c7DYLPUKKY1F1VrnbTdUUszK8bQKiiBxX7GFe2eftPWSEWJPP6KpeDRtndhRdQ004e7+ay
-	f/xTU3r+LZ56lkpDPE71awFmjnhMa/p6AAqNohqa8bWa4m0D401njEGGw4S1DA==
-From: Gregory CLEMENT <gregory.clement@bootlin.com>
-To: Paul Burton <paulburton@kernel.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	linux-mips@vger.kernel.org,
-	Jiaxun Yang <jiaxun.yang@flygoat.com>,
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B056D28E6;
+	Tue, 12 Dec 2023 16:35:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60FC4C433CA;
+	Tue, 12 Dec 2023 16:35:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702398911;
+	bh=mMmJmC+q52Hml5ofl8CP4lRLUI3hn5sN9ppbWyRuzNQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=EGoV0FXbAwukl1l0MwB7ef/rsDx1WCzrP4ggfOmlRwwdxSkUnuZh6YzYwzUSbHYE/
+	 BqAR5kZoq7vFg+i7G3qIVF5ytIOTXKgj/TAVssnIRm7pdCp8C1h2lgbggJiJSPvrBJ
+	 K4qvuJFQQhJ+Z2+u1XNuaSvXgx0c6zgJusk+foLwo1KqNoJgd4e8jCUa1DfJDni3xm
+	 wlu+HGThEnNQ0wai/MuSA9lkd+l4gJ05UHRHNmpYB0l7wr0T6tkJzHx1R6EW9NDOLG
+	 IA38nd1lLu4lAJ+DjyG8M0apsLG19cPwN5KE09/hY2pJnSvbvUiXkdCnmhAXUIKY4U
+	 tQizSL2wR2KLA==
+Date: Tue, 12 Dec 2023 16:35:07 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Jia Jie Ho <jiajie.ho@starfivetech.com>
+Cc: Olivia Mackall <olivia@selenic.com>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Vladimir  Kondratiev <vladimir.kondratiev@mobileye.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	=?UTF-8?q?Th=C3=A9o=20Lebrun?= <theo.lebrun@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Gregory CLEMENT <gregory.clement@bootlin.com>
-Subject: [PATCH v5 22/22] MAINTAINERS: Add entry for Mobileye MIPS SoCs
-Date: Tue, 12 Dec 2023 17:34:54 +0100
-Message-ID: <20231212163459.1923041-23-gregory.clement@bootlin.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231212163459.1923041-1-gregory.clement@bootlin.com>
-References: <20231212163459.1923041-1-gregory.clement@bootlin.com>
+	Conor Dooley <conor+dt@kernel.org>, linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: rng: starfive: Add jh8100 compatible
+ string
+Message-ID: <20231212-freely-familiar-f19c2e14c417@spud>
+References: <20231212032527.1250617-1-jiajie.ho@starfivetech.com>
+ <20231212032527.1250617-2-jiajie.ho@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: gregory.clement@bootlin.com
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="wKaAqqtx0HcURug5"
+Content-Disposition: inline
+In-Reply-To: <20231212032527.1250617-2-jiajie.ho@starfivetech.com>
 
-Add Vlad, Théo and myself as co-maintainers for the Mobileye MIPS
-SoCs.
 
-Signed-off-by: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
-Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
-Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
----
- MAINTAINERS | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+--wKaAqqtx0HcURug5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e2c6187a3ac80..4a7bd6b40d740 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14546,6 +14546,18 @@ W:	https://linuxtv.org
- Q:	http://patchwork.linuxtv.org/project/linux-media/list/
- F:	drivers/media/dvb-frontends/mn88473*
- 
-+MOBILEYE MIPS SOCS
-+M:	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
-+M:	Gregory CLEMENT <gregory.clement@bootlin.com>
-+M:	Théo Lebrun <theo.lebrun@bootlin.com>
-+L:	linux-mips@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/mips/mobileye.yaml
-+F:	arch/mips/boot/dts/mobileye/
-+F:	arch/mips/configs/generic/board-eyeq5.config
-+F:	arch/mips/generic/board-epm5.its.S
-+F:	include/dt-bindings/soc/mobileye,eyeq5.h
-+
- MODULE SUPPORT
- M:	Luis Chamberlain <mcgrof@kernel.org>
- L:	linux-modules@vger.kernel.org
--- 
-2.42.0
+On Tue, Dec 12, 2023 at 11:25:26AM +0800, Jia Jie Ho wrote:
+> Add compatible string for StarFive JH8100 trng.
+>=20
+> Signed-off-by: Jia Jie Ho <jiajie.ho@starfivetech.com>
 
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
+Conor.
+
+> ---
+>  .../devicetree/bindings/rng/starfive,jh7110-trng.yaml       | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/rng/starfive,jh7110-trng.y=
+aml b/Documentation/devicetree/bindings/rng/starfive,jh7110-trng.yaml
+> index 2b76ce25acc4..4639247e9e51 100644
+> --- a/Documentation/devicetree/bindings/rng/starfive,jh7110-trng.yaml
+> +++ b/Documentation/devicetree/bindings/rng/starfive,jh7110-trng.yaml
+> @@ -11,7 +11,11 @@ maintainers:
+> =20
+>  properties:
+>    compatible:
+> -    const: starfive,jh7110-trng
+> +    oneOf:
+> +      - items:
+> +          - const: starfive,jh8100-trng
+> +          - const: starfive,jh7110-trng
+> +      - const: starfive,jh7110-trng
+> =20
+>    reg:
+>      maxItems: 1
+> --=20
+> 2.34.1
+>=20
+
+--wKaAqqtx0HcURug5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZXiLuwAKCRB4tDGHoIJi
+0uEMAP49L1RqAzELTRn4hY+Ff+rzCrdw6w5GIjrpiqAIxF4yyAEA3Aq4Vbym8J2L
+4Z/yc6Qm/2bLhA2ICyLVlC/hCPfDTQo=
+=0CMW
+-----END PGP SIGNATURE-----
+
+--wKaAqqtx0HcURug5--
 
