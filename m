@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-24228-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24229-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8D2480E6A9
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 09:51:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2319680E6C6
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 09:54:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A5292282073
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 08:51:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DA0542829C0
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 08:54:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26A49446A6;
-	Tue, 12 Dec 2023 08:51:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C08958127;
+	Tue, 12 Dec 2023 08:53:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WUPbTix2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BftAJngO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F48AD0
-	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 00:50:59 -0800 (PST)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-55114c073b8so2929210a12.1
-        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 00:50:59 -0800 (PST)
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2CA6D5
+	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 00:53:06 -0800 (PST)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-a22eba5a290so29512466b.3
+        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 00:53:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702371057; x=1702975857; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702371185; x=1702975985; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=R6l22l0d5IOmEawCNZt+j3WRt90z3F8IIYWkn/yTBpw=;
-        b=WUPbTix2ALFGh32es4+7GOehnXh5uRnluKtsrrrmSa5PAbI044UqegeY2sjxGN+Xv5
-         rsqPFNWRLyMR5BGR8sswRJQVLj5idm/ljbV9xrAK/k7LPNShzV2vN5vy8Nqxsn3VRvDU
-         LPihPtIx4K+gXH895vWl7n2S+4os5oUxxnRamMlb1gnibKEvED20w/KMJT34tORChQc6
-         2XSHxS9C1lKBOTuYksH/OLWJIpXJXQUwXlqlhepNKqneY0u++oBA8cGng0y7jNw5Hr/n
-         p3SwU4LMJMQ9zTloQAVr6YIJ+PSIVoV4bl80AJpievTFS2u4f3u2Oajg0DH0nDDqCkUU
-         joFQ==
+        bh=Skev5mhgSycZ+0IAPG/qALIkG3HsL9tXL0lkVTUlICM=;
+        b=BftAJngOjCkB8n8MYmr9HfkG7MeZk68NihKzueLTClC+DQcNIhvQCU1Yo9k6hn8Lt4
+         DOaW/sUt3an6cuxzDCUAewxZkBE8bI+pb/0SeRZ1I/hUedg9o7gHdZfLQkwnORAsXVTV
+         L0I8WOwB3g5/Graj1a0+j4dXI03IrUDQ9oN/P8FeodDZRIJiwJDk6nKK6blLov1mU1mh
+         i6aG3y5TMa8rUKzc9rHe6phtCKgUJWEwvsq0XTMR4Rc8sP7j/mZUuUTO7XAzRjltAinU
+         JSvSKKIC+yC2XPzDz7E3rCNlVcpNR65TdHfWrJ/5UGLNcsPGXP4WIYCkhWDG8Oaig2mm
+         1CCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702371057; x=1702975857;
+        d=1e100.net; s=20230601; t=1702371185; x=1702975985;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=R6l22l0d5IOmEawCNZt+j3WRt90z3F8IIYWkn/yTBpw=;
-        b=fcYr6iB7rkOTUrZrGlQA5F7cYvZh3HfYpn0QfVxSWA8zmu4rt8H3o7otQrx9V1ahQm
-         y4LIAFcrWhjOQ7gjLSDk92itG6tYm062aCvp7NOdFzNxfy+NZQeqlubsIVx5C62WS/3E
-         Ior9uiuKG34caKcihyEXyFaRP8iqQeYU5bHjUnEravhN0gd0GY6T6tres7RBSnbY2Pq2
-         dIJnsbAnT+vd2aJKE8gNPnL7wlf1EniJ2LFfFJVQVS/JtX3fAQyR7vyldQqj8wVM2cSZ
-         VQ6zhrdfdgedzYxHl1mjLS9YdMTuH3IB/d4yNSYhkrqAQZcEOdhA7j4MOU/61MIhtt+M
-         PwbQ==
-X-Gm-Message-State: AOJu0YyEZHahAtHwoWralvJjNovbwl2+YDK5t4gJKltE/sfwiB88cwBs
-	DME+dBav0R6v8R8aImb4KUHlwg==
-X-Google-Smtp-Source: AGHT+IHca2JY/7jACHcqdQknajGGoeNIbtXBYZ1/Cn55UJ5slUhEXe2S5QMA852bbYwrpOnWlq3E6g==
-X-Received: by 2002:a50:a6da:0:b0:54c:47cc:caf0 with SMTP id f26-20020a50a6da000000b0054c47cccaf0mr2103771edc.54.1702371057640;
-        Tue, 12 Dec 2023 00:50:57 -0800 (PST)
+        bh=Skev5mhgSycZ+0IAPG/qALIkG3HsL9tXL0lkVTUlICM=;
+        b=qlbv1R1Cy/0sn8rCei3LidTTGXVauCP/rzd9kM6crzX9NiDNr9H7AsB6ZJu6X9ickp
+         f3SbGGSwMVgOh507Wo3myZo1NH68HQo33pyCmmuGpiGewxqViVdpodpPZcNUTRblzsZ7
+         wJ7N07nY/vI/L5mY1+ULGPpNh1osZlrv0gVP7kR/+ss418rtwhDovSuHU7RuDCHi92q5
+         dWDhZ6TCvP0NcaZlzHFs0GAcyE18M4KaHDQdCVngi4GbgEUoDPpQMsUsyEEfxvrW8NXt
+         4w4Fk0AoXmWUN++/RJePh6eJ7QmPYz8vGVCdVf3u2qz0rnFicamLRat2vTImcMOTOHhW
+         ALQw==
+X-Gm-Message-State: AOJu0YyLhUGUSZQBXImZHUcrWe0/ygmLpMey9mjoY8eYLBugPAWlKoWe
+	ApktaNifUwCLugm/MxKUvQlQ2A==
+X-Google-Smtp-Source: AGHT+IFt8AtQhClpmjgTERxvW1fzAA05irQGBlIdrBW3l2G6CeFGzQPO1sT3ZOZOFY/XDpsD3wEjcw==
+X-Received: by 2002:a17:907:94d5:b0:a19:a19b:55f8 with SMTP id dn21-20020a17090794d500b00a19a19b55f8mr4118083ejc.136.1702371185365;
+        Tue, 12 Dec 2023 00:53:05 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id o12-20020a50c90c000000b0054da352618asm4410475edh.94.2023.12.12.00.50.56
+        by smtp.gmail.com with ESMTPSA id tm6-20020a170907c38600b00a1db955c809sm5899658ejc.73.2023.12.12.00.53.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Dec 2023 00:50:57 -0800 (PST)
-Message-ID: <26b8a6a7-6c27-4a3c-9b66-8b9f55a6b076@linaro.org>
-Date: Tue, 12 Dec 2023 09:50:55 +0100
+        Tue, 12 Dec 2023 00:53:04 -0800 (PST)
+Message-ID: <c39735ac-e173-4696-aba3-9753baa64764@linaro.org>
+Date: Tue, 12 Dec 2023 09:53:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,8 +62,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/10] dt-bindings: clock: Drop the SM8650 DISPCC
- dedicated schema
+Subject: Re: [PATCH 03/10] dt-bindings: clock: qcom: Document the X1E80100 GPU
+ Clock Controller
 Content-Language: en-US
 To: Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
  Bjorn Andersson <andersson@kernel.org>,
@@ -75,9 +75,10 @@ To: Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
  Neil Armstrong <neil.armstrong@linaro.org>,
  Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 Cc: linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ Rajendra Nayak <quic_rjendra@quicinc.com>
 References: <20231212-x1e80100-clock-controllers-v1-0-0de1af44dcb3@linaro.org>
- <20231212-x1e80100-clock-controllers-v1-1-0de1af44dcb3@linaro.org>
+ <20231212-x1e80100-clock-controllers-v1-3-0de1af44dcb3@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -123,14 +124,16 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231212-x1e80100-clock-controllers-v1-1-0de1af44dcb3@linaro.org>
+In-Reply-To: <20231212-x1e80100-clock-controllers-v1-3-0de1af44dcb3@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 11/12/2023 23:45, Abel Vesa wrote:
-> The block is the same between these platforms, at least from devicetree
-> point of view. So drop the dedicated schema and use the SM8550 one instead.
+> From: Rajendra Nayak <quic_rjendra@quicinc.com>
 > 
+> Add bindings documentation for the X1E80100 Graphics Clock Controller.
+> 
+> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
 > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 > ---
 
