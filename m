@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-24383-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24385-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6CED80EFD0
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 16:14:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5902E80EFE5
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 16:17:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E0BD281BD4
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 15:14:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 14731281B72
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 15:17:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20FE475423;
-	Tue, 12 Dec 2023 15:14:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 068D575430;
+	Tue, 12 Dec 2023 15:17:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Be4X8eAi"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VWtSpChT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-x29.google.com (mail-oa1-x29.google.com [IPv6:2001:4860:4864:20::29])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4A9ECA;
-	Tue, 12 Dec 2023 07:14:21 -0800 (PST)
-Received: by mail-oa1-x29.google.com with SMTP id 586e51a60fabf-2030fbc2417so123841fac.3;
-        Tue, 12 Dec 2023 07:14:21 -0800 (PST)
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1602FE9
+	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 07:17:23 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-3332ad5b3e3so5210309f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 07:17:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702394061; x=1702998861; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=0Q82A7YNLsEgZIKZ3MuE+ES9oIeEJyJzsdp/yKVEP3M=;
-        b=Be4X8eAiaiGq124Vctm9Z3IuWkWoxYrTNUlpa3D2MXBOwkmAKGGr6BCK+ojFbG0I2L
-         6ABpSFh0JJISlvyplPDmodaVkp6y6ASAK3Wf0Nzziy1AufoWK6tbTS/Tq5off36kaY7G
-         yhyXu4ohhCaq1UMN2iMDlKVKT98evRDM9LLUF6BzW6QgCaOhyF1w2iyQGw88GUfdvN7m
-         kOGkTdr/e5+/0MiOR2pDabyjCGwwPltzp2xn8NDJxBAdpXW3L5BvdATe5WqKD+72XC1/
-         DWHezP0GaE/xFeny118+byO8kRqt68biJc0cpB/1V2NIJ4E2H7b21PedVdQ4qTqx2UN8
-         rRGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702394061; x=1702998861;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1702394241; x=1702999041; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:from:content-language:subject:reply-to:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=0Q82A7YNLsEgZIKZ3MuE+ES9oIeEJyJzsdp/yKVEP3M=;
-        b=YmLD0xDFDWqKrstefD7qzGdwtY19Ekjv3sWoGPpv95PC8FueKD4DCRcxQT808WKB+2
-         ys7GSYrprMLIhSkmVeRnFc5mZQ5uT09g5atW8rKjkTHaQKU3vRrWbiRb/pypE1wmCGZp
-         rLFuWf7KugA2bhDMlhZ0M4dkrClQRjrnrNuSTxj7fdo/RRH5myzPnL2HDpNSTuAUL/6o
-         P0qA2ujiTExFTiLelGJjX74ZoKricrPH+O+HZKxM5Mlc0/NBu30EyxD7UYvnLjRko0le
-         oIG0XRzX1IXa+j5GoDTeTBvoaMs1rQ7ZIzSKm+1ZvAY/M2t1gowJa4OTW8XdVpqbOjeP
-         qsiw==
-X-Gm-Message-State: AOJu0Yw18i4+JnptTkVaT8Hc2kPfA6tov79naLVHijYo12SjCpBLkyrr
-	nXcBOgLEjT6YLfR3dYW9JVw=
-X-Google-Smtp-Source: AGHT+IHjWy79N/NLmtx8hxNiXbqSmqMXAvj5rornY3O1pALUZXevA8Bt5Qv+KMWMQj5UaAAWeqMe/Q==
-X-Received: by 2002:a05:6870:20d:b0:1fb:75c:3fde with SMTP id j13-20020a056870020d00b001fb075c3fdemr7861841oad.62.1702394060845;
-        Tue, 12 Dec 2023 07:14:20 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id n10-20020a9d4d0a000000b006d9d144786fsm2207871otf.79.2023.12.12.07.14.19
+        bh=W8YuKmgtjcOo5ghSsyfWGTGiBzdewmSb7QQyN9+lne4=;
+        b=VWtSpChT4CAzvi+8IapwWjexgKlzGo1mAGJM2Yhbv0aMXIbW7VL05LRg5mGSb1G7ZT
+         ZRF1/dcCPWz8qAxzSe3BnE2QF//4sw1dkQPvM9SiQ+JhuX161EYnS+MgyHC/fISDMrrG
+         CqS6h/JyhqENKYj7qk1NpueASMwlNdKuX4bkdvMvODrubxm8hvDD7U4YohTm/iwskAX2
+         6Ox/nqRQoWW/yh0LmjuTtKqt5r8m0JVdl1RJMrJ3mOlbGNiYsmv8DXdFMsI1evGAwyjA
+         0DJUFvSYW4HpbFy8RmjFxwE+yCXsio3WiKNvqpzsjIG8acC6273DzYzRNRC/Fhg3LYCs
+         q4mg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702394241; x=1702999041;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:from:content-language:subject:reply-to:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=W8YuKmgtjcOo5ghSsyfWGTGiBzdewmSb7QQyN9+lne4=;
+        b=MTP/c8i9UU7nkmnB9A3cB6RWDI09g0g9/Vkob4zPvl1jlupK9gqtksDJpcCScn/Y5O
+         ft0dJU6teWtBHF56fNTWbPuHA69W1NwGVB0mBok1thUfz5OsguzHUZyFkz6P6jAuS9tQ
+         kqSLSVc3d+VOKbU6tnLnFFAQk5ccQLA5V3i+jwjJVHXl54XmQhOIg0dFQEDDRlamB+1J
+         swLYVvu+szMqWTbHiK4wqcTsbQalhE86clTevdYIIbGfvQ/Co+E+PFcwDa3sm+MaoH2G
+         5A/a7J/vApfqRtEkLN5AUrrbaSPlV3SSGReazS9spoAnyMCKb6q1QXARRFmpklVI+vam
+         VATQ==
+X-Gm-Message-State: AOJu0Yw53vmr4a4NYSvMfs/CgxeubJfYbtmY/bUS88SUlJR/d4glDeFR
+	iAiYLOlly4HHXVoIeFaFNem82g==
+X-Google-Smtp-Source: AGHT+IGGsq3xnVRIoTD3L1WHLVjpSAuvhAyQXkd/+6NTYT40CZdtbcnUujNBOFj/p2R76gvXkJc/SA==
+X-Received: by 2002:a05:600c:230f:b0:40b:5e59:c576 with SMTP id 15-20020a05600c230f00b0040b5e59c576mr3447915wmo.160.1702394241409;
+        Tue, 12 Dec 2023 07:17:21 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:5894:fa62:26b4:bf82? ([2a01:e0a:982:cbb0:5894:fa62:26b4:bf82])
+        by smtp.gmail.com with ESMTPSA id n10-20020a5d4c4a000000b003333abf3edfsm11015556wrt.47.2023.12.12.07.17.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Dec 2023 07:14:20 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <436257a1-628e-4a45-884d-348e73d4c5e9@roeck-us.net>
-Date: Tue, 12 Dec 2023 07:14:18 -0800
+        Tue, 12 Dec 2023 07:17:21 -0800 (PST)
+Message-ID: <1de67bcb-1287-4082-b90a-5c68c8bb9aa6@linaro.org>
+Date: Tue, 12 Dec 2023 16:17:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,164 +64,137 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] hwmon: ltc4282: add support for the LTC4282 chip
-Content-Language: en-US
-To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>, nuno.sa@analog.com
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- linux-doc@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
- Rob Herring <robh+dt@kernel.org>,
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v12 2/4] Input: add core support for Goodix Berlin
+ Touchscreen IC
+Content-Language: en-US, fr
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: linux-input@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
-References: <20231205-ltc4282-support-v3-0-e0877b281bc2@analog.com>
- <20231205-ltc4282-support-v3-2-e0877b281bc2@analog.com>
- <a0eb6cb4-b8af-4a6f-8888-fa18f8f1d188@roeck-us.net>
- <d190620900ceda6c2846f3828ee389da917a66e0.camel@gmail.com>
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <d190620900ceda6c2846f3828ee389da917a66e0.camel@gmail.com>
+ Conor Dooley <conor+dt@kernel.org>, Bastien Nocera <hadess@hadess.net>,
+ Hans de Goede <hdegoede@redhat.com>, Henrik Rydberg <rydberg@bitmath.org>,
+ Jeff LaBundy <jeff@labundy.com>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231209-topic-goodix-berlin-upstream-initial-v12-0-eaffaeb53fb5@linaro.org>
+ <20231209-topic-goodix-berlin-upstream-initial-v12-2-eaffaeb53fb5@linaro.org>
+ <ZXVgYuzE6jPPSfnZ@google.com>
+ <be39f74b-e04f-48c8-acc9-cc818adfc4db@linaro.org>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <be39f74b-e04f-48c8-acc9-cc818adfc4db@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 12/12/23 06:28, Nuno Sá wrote:
-> On Mon, 2023-12-11 at 07:36 -0800, Guenter Roeck wrote:
->> On Tue, Dec 05, 2023 at 04:22:56PM +0100, Nuno Sa via B4 Relay wrote:
->>> From: Nuno Sa <nuno.sa@analog.com>
+On 12/12/2023 15:43, Neil Armstrong wrote:
+> Hi Dmitry,
+> 
+> On 10/12/2023 07:53, Dmitry Torokhov wrote:
+>> Hi Neil,
+>>
+>> On Sat, Dec 09, 2023 at 08:33:40AM +0100, Neil Armstrong wrote:
+>>> Add initial support for the new Goodix "Berlin" touchscreen ICs.
 >>>
->>> The LTC4282 hot swap controller allows a board to be safely inserted and
->>> removed from a live backplane. Using one or more external N-channel pass
->>> transistors, board supply voltage and inrush current are ramped up at an
->>> adjustable rate. An I2C interface and onboard ADC allows for monitoring
->>> of board current, voltage, power, energy and fault status.
+>>> These touchscreen ICs support SPI, I2C and I3C interface, up to
+>>> 10 finger touch, stylus and gestures events.
 >>>
->>> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
->>> ---
->>> +
+>>> This initial driver is derived from the Goodix goodix_ts_berlin
+>>> available at [1] and [2] and only supports the GT9916 IC
+>>> present on the Qualcomm SM8550 MTP & QRD touch panel.
+>>>
+>>> The current implementation only supports BerlinD, aka GT9916.
+>>>
+>>> Support for advanced features like:
+>>> - Firmware & config update
+>>> - Stylus events
+>>> - Gestures events
+>>> - Previous revisions support (BerlinA or BerlinB)
+>>> is not included in current version.
+>>>
+>>> The current support will work with currently flashed firmware
+>>> and config, and bail out if firmware or config aren't flashed yet.
+>>>
+>>> [1] https://github.com/goodix/goodix_ts_berlin
+>>> [2] https://git.codelinaro.org/clo/la/platform/vendor/opensource/touch-drivers
+>>>
+>>> Reviewed-by: Jeff LaBundy <jeff@labundy.com>
+>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 >>
->>> +power1_good		Power considered good
->>
->> I really don't like this attribute. Like the ones below it is non-standard
->> and invisible for standard applications. On top of that, I think it isn't
->> really related to "power" but to the output voltage. What does it actually
->> report that isn't included in the FET faults ?
->>
+>> Thank you for resending the patch. I think there is an issue in how you
+>> read and parse the data in case of more than 2 fingers. It looks like in
+>> that case you are overwriting the checksum form the first 2 and then not
+>> reading the new checksum but use some garbage past the touch data. I
+>> might be mistaken though...
 > 
-> This is detected with the FB pin and a voltage divider (from the output
-> voltage). Basically depending on the level of that pin, the chip indicate power
-> good or power bad. I was also very reluctant with this attribute (I mention it
-> in the v1 cover). This might not even indicate any misbehave. We also support
-> reporting this using the gpio1 pin (if we set it that way). So, I guess I can
-> just drop this one and add support for it if we ever have a real usecase where I
-> can actually justify having it :).
+> I carefully inspected the code again, and it's correct, otherwise I would have experimented
+> checksum errors, which isn't the case.
 > 
-> We already have the power_bad fault log in debugfs so I'm not sure if adding
-> this one there adds much value.
+> First read from goodix_berlin_irq() is GOODIX_BERLIN_IRQ_READ_LEN(2) length in memory:
 > 
->>
->>> +fet_short_fault		FET short alarm
->>> +fet_bad_fault		FET bad alarm
->>
->> Those attributes have little value since they are not standard attributes
->> and won't be seen by standard applications. On top of that, it is not clear
->> (not documented) what the attribute actually reports. I assume it is
->> associated with the output voltage, i.e., in0, but that is just an
->> assumption.
->>
+> [GOODIX_BERLIN_IRQ_EVENT_HEAD_LEN][GOODIX_BERLIN_COOR_DATA_CHECKSUM_SIZE][GOODIX_BERLIN_BYTES_PER_POINT * x]
 > 
-> fet_short - This is one is detected if the ADC measures a current sense voltage
->> 0.25mv while the fet gate is off.
+> the pre_buf_len goodix_berlin_touch_handler() get is GOODIX_BERLIN_IRQ_READ_LEN(2), the we complete the
+> read after the first read, but since the touch checksum is before the touch data, it works because
+> we complete the data.
 > 
-> fet_bad - Is set by monitoring the voltage at the gate and the drain to source
-> voltage.
-> 
-> These ones might indicate real issues with the HW so I thought they could be
-> important...
->   
->> What do you think about introducing a standard inX_fault attribute ?
->> It would not be as specific as short/bad, but I think it would be more
->> useful and we could add it to the ABI.
->>
-> 
-> It would be better than nothing. And we do have fault logs for both these
-> failures so userspace could also use that to know exactly what was the issue. If
-> that's ok with you, I would then report this in inX_fault? Did you had in mind
-> putting this in in0 (vsource) or adding a new channel?
-> 
-> In my first draft I had another voltage channel (label: VFET) to report the
-> fet_bad condition. I was using the inX_crit or inX_lcrit but it felt bad so I
-> removed it...
-> 
+> I added some comments to clarify the memory layout and re-ordered the items
+> in the GOODIX_BERLIN_IRQ_READ_LEN() macro to show GOODIX_BERLIN_COOR_DATA_CHECKSUM
+> is before the GOODIX_BERLIN_BYTES_PER_POINT data.
 
-This isn't an extra voltage channel. It should be associated with the output
-voltage because that is what is affected, and that would be in0.
+Ok I was wrong, the checksun is at the end, but since we check the checksum _after_
+reading the missing fingers, the checksum gets read correctly and is always valid.
 
->>> +fault_logs_reset	Clears all the Logged Faults
-> 
->> What exactly does that do that is user visible ?
-> 
-> Well, this one is because in some configurations the chip won't enable the
-> output load until you reset/clear the fault log keeping it from enabling the
-> output. This is the comment I have in the code:
-> 
-> "Fault log failures. These faults might be important in systems where auto-retry
-> is not enabled since they will cause the part to latch off until they are
-> cleared. Typically that happens when the system admin is close enough so he can
-> check what happened and manually clear the faults. Moreover, manually clearing
-> the faults might only matter when ON_FAULT_MASK in the CONTROL register is set
-> (which is the default) as in that case, a turn off signal from the ON pin won't
-> clear them."
-> 
-> In v1 I was allowing to clear fauls log individually and you recommended to have
-> an attribute to clear them all at once as that would simplify things.
-> 
-> I just kept it in here because this might be important for the chip to work as
-> expected again so having it in debugfs might be weird.
-> 
+The first checksum check is for the header, not the finger data, so it may be
+confusing.
 
-How about using a write to in0_fault to clear the log ?
+I've added a big comment explaining what's done and how the finger data is complete
+and where is the finger data checksum is all cases.
 
-Thanks,
-Guenter
+Neil
+
+> 
+>>
+>> I also believe you are leaking afe_data in case of success. We have the
+>> newfangled __free(kfree) from cleanup.h that should help there.
+> 
+> Indeed it was leaking.
+> 
+>>
+>> Another request - we should not have anything in goodix_berlin.h that is
+>> not used by the I2C and SPI sub-drivers, so the only thing it should
+>> contain is goodix_berlin_probe() declaration and dev_pm_ops. All other
+>> defines and definitions should go to goodix_berlin_core.h.
+>>
+>> I made a few more cosmetic changes in the attached patch, please
+>> consider applying it.
+>>
+>> Thanks.
+> 
+> Thanks,
+> Neil
+> 
 
 
