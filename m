@@ -1,66 +1,66 @@
-Return-Path: <devicetree+bounces-24242-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24243-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 594A580E720
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 10:14:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B730C80E729
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 10:17:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E32B31F21C73
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 09:14:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 710AB282221
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 09:17:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D9C15812F;
-	Tue, 12 Dec 2023 09:14:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 287EF58133;
+	Tue, 12 Dec 2023 09:17:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="i/RA8czS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cLHbrcnT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E910C7
-	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 01:14:12 -0800 (PST)
-Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-5d2d0661a8dso54882827b3.2
-        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 01:14:12 -0800 (PST)
+Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C127DCF
+	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 01:17:02 -0800 (PST)
+Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-5d747dbf81eso47087937b3.1
+        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 01:17:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702372451; x=1702977251; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702372622; x=1702977422; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=94mArPi0KBLNCW+9/5j6k94DKj0W9iwezw/gK4SeWNw=;
-        b=i/RA8czSn8NHJ77rUq8fpNBebUWp3+qX1rj4dvxzlcCC66KYB2Zboda8GfdaTOPt1o
-         MTJg6nPuvTng/SDyqIVjxeWX/I9jP4ASSEeF/D5fJuuEIl92NbFYWTNsJHKJHqD3l5Ot
-         WEmNq2VzjlC5yDeMC/nP2fJEbz9ah3ULIDiPtDb1olKdDxu/f+M1h+hjrJWdhK96R2eU
-         PbjB6/1er/zlVRvsMw+i+j61I63PDJRIBUb7HsE0yi7TViQ2ZvsXnXPirmLIZEyVbCR2
-         AQ2IBIkq/d7G6ZhMB56kv3g1mCm8w8az2VAq85znHJN2WeCJ82otAyzEJz7Ey/YOIUtc
-         6Fcg==
+        bh=p38ZcnMoGySoA9RmMEhaNrnZZBwNT7TlIqnl8C0Lsh4=;
+        b=cLHbrcnTccbzLpgPFtaMkhk8CDo/sdm0AY57ytdW5qVS+9wKPREjSYF/lO7GGtd/QQ
+         C3RRLuaaqVKIVQPGzRggNvWHJd0kDQV8GZZlODhpr26LhWdiqRbM2vXgBtgb5lHENC56
+         1w6+yEAYfy/lXo9Br2XO9MnYqJ1UOPAU0RPOBaZaBZjLY4Xk3aA8rSH4J3StikVdVTqE
+         Dg2TQpNkfdMev4GGOEfw7vSuzAOaZRG3v0nLDKeiZ4M+KrbslZJhs0x7RL9sYivpFQD4
+         4mbKjLMnGtWZDIqLxMqbIgC1eicDHEC+8Vfsc2+TkajwK6jgetQZg9Y1hNA3jyYnZXds
+         rmyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702372451; x=1702977251;
+        d=1e100.net; s=20230601; t=1702372622; x=1702977422;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=94mArPi0KBLNCW+9/5j6k94DKj0W9iwezw/gK4SeWNw=;
-        b=cFSO5ngE+hLMhNCFVOucFQLrJmer92KOnBR8i0E5yOOyAH43KIoFPLr8XkR3lm781A
-         99/vCGTJwfps6Q4jQEMr/jbyzBOn25NXZIPQ+Zpxai8ty8IhX+z9eqVSMdsiYkQSBHbX
-         lyPil+riPNj+A8AoaIXx0toht8USw1T6FY3hNqd21sgkM2gFoFhJK+zgUt+dzvlqxish
-         MIKM7suB7lQC/et5BnGGb9SRQnDkGCNsFZrJ2RKXXDcq8OFJqHPNBreAS0yzmES7MGXh
-         rJtFDa+rVWJO6moNoKq2RWWPIrz3K755J/5CHGDyoke2KYd2DYBkYzkuYieDsvXaDDHF
-         SjFQ==
-X-Gm-Message-State: AOJu0YzLvMmZMlCV4wMi6FbiNyZdl5WWJPi0YM61tkwcDWWvcWy3VZnK
-	cTTc0IimYZIBXDUeRBdXC9Bo+6aKg0ulx8wCkpN8VQ==
-X-Google-Smtp-Source: AGHT+IEM/V0yIgohqydrpyBc5XyPo5SnxiZzn3s8K+OkWsi4tAsIzwUabgxsCocaEqBDGw3AWP5HKXJFT+e/tKMQ+IQ=
-X-Received: by 2002:a0d:c386:0:b0:5d7:1940:b386 with SMTP id
- f128-20020a0dc386000000b005d71940b386mr4641044ywd.82.1702372451507; Tue, 12
- Dec 2023 01:14:11 -0800 (PST)
+        bh=p38ZcnMoGySoA9RmMEhaNrnZZBwNT7TlIqnl8C0Lsh4=;
+        b=MxnZ8cMF5ByCAjzyy+vkcOYTdKVknQWI0dk6ZgeZXMjkFN1riEempoO0JW/VoblGXc
+         gX+No8mFM8LsGyf1bupWje+tsrSVf2xEwtHvIWADfR5H8dMLv0ADpcYVge4jwyhlVceO
+         hHffptlEfB/jLrzI957AsNU2jltSHtlmWODEKh6rXbamGYXHmGlQ8S3dZwtjGdBEzgh+
+         m19T244AYCxvhspB2ggC1gwY5BpcffWx8rWHKNb1gKdtGxmkhz5bK5W4SLOlnxAuauVs
+         U9B/RB49u1VNSF0+9cKv8oADLoeLOkoOofugasgob9qNtiEpKwqXy0Agj4220Nl1MvVD
+         Y9CA==
+X-Gm-Message-State: AOJu0Yz3KA0sGAa+tCH183R9OKnL+KaJJbdLr/9JAnmy8otxW3kZLQAR
+	ux2PkCbXnpxbqLU9+l48iAGfxETPEkJ9tSSR4SaD1Q==
+X-Google-Smtp-Source: AGHT+IGfK6M82t1BPlvqg9TxCM/9qRj45o0tTiIJ27mtS0gYiaU1mn1aQ6NyYyJKbJ+DgcTtvVTbDhuMjYDaazDF4Ss=
+X-Received: by 2002:a0d:e905:0:b0:5d7:1941:ac7 with SMTP id
+ s5-20020a0de905000000b005d719410ac7mr4662948ywe.98.1702372621940; Tue, 12 Dec
+ 2023 01:17:01 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231212-x1e80100-clock-controllers-v1-0-0de1af44dcb3@linaro.org> <20231212-x1e80100-clock-controllers-v1-7-0de1af44dcb3@linaro.org>
-In-Reply-To: <20231212-x1e80100-clock-controllers-v1-7-0de1af44dcb3@linaro.org>
+References: <20231212-x1e80100-clock-controllers-v1-0-0de1af44dcb3@linaro.org> <20231212-x1e80100-clock-controllers-v1-10-0de1af44dcb3@linaro.org>
+In-Reply-To: <20231212-x1e80100-clock-controllers-v1-10-0de1af44dcb3@linaro.org>
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 12 Dec 2023 11:13:58 +0200
-Message-ID: <CAA8EJpoaydf3Fqpo5baAihGS5X37LCytKuYP5EmQt75ibMmKmQ@mail.gmail.com>
-Subject: Re: [PATCH 07/10] clk: qcom: Add dispcc clock driver for x1e80100
+Date: Tue, 12 Dec 2023 11:16:50 +0200
+Message-ID: <CAA8EJpriXaymPkbkr_8Z76SDqZFrNAUOH_ggtpxSE2VA=0gcqA@mail.gmail.com>
+Subject: Re: [PATCH 10/10] clk: qcom: Add camcc clock driver for x1e80100
 To: Abel Vesa <abel.vesa@linaro.org>
 Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
 	Konrad Dybcio <konrad.dybcio@linaro.org>, Michael Turquette <mturquette@baylibre.com>, 
@@ -76,17 +76,123 @@ On Tue, 12 Dec 2023 at 00:46, Abel Vesa <abel.vesa@linaro.org> wrote:
 >
 > From: Rajendra Nayak <quic_rjendra@quicinc.com>
 >
-> Add the dispcc clock driver for x1e80100.
+> Add the camcc clock driver for x1e80100
 >
 > Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
 > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 > ---
->  drivers/clk/qcom/Kconfig           |   10 +
->  drivers/clk/qcom/Makefile          |    1 +
->  drivers/clk/qcom/dispcc-x1e80100.c | 1699 ++++++++++++++++++++++++++++++++++++
->  3 files changed, 1710 insertions(+)
+>  drivers/clk/qcom/Kconfig          |    8 +
+>  drivers/clk/qcom/Makefile         |    1 +
+>  drivers/clk/qcom/camcc-x1e80100.c | 2489 +++++++++++++++++++++++++++++++++++++
+>  3 files changed, 2498 insertions(+)
+>
+> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
+> index 0633728c870c..4580edbd13ea 100644
+> --- a/drivers/clk/qcom/Kconfig
+> +++ b/drivers/clk/qcom/Kconfig
+> @@ -20,6 +20,14 @@ menuconfig COMMON_CLK_QCOM
+>
+>  if COMMON_CLK_QCOM
+>
+> +config CLK_X1E80100_CAMCC
+> +       tristate "X1E80100 Camera Clock Controller"
+> +       depends on ARM64 || COMPILE_TEST
+> +       select CLK_X1E80100_GCC
+> +       help
+> +         Support for the camera clock controller on X1E80100 devices.
+> +         Say Y if you want to support camera devices and camera functionality.
+> +
+>  config CLK_X1E80100_DISPCC
+>         tristate "X1E80100 Display Clock Controller"
+>         depends on ARM64 || COMPILE_TEST
+> diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
+> index 750b084553c6..1da65ca78e24 100644
+> --- a/drivers/clk/qcom/Makefile
+> +++ b/drivers/clk/qcom/Makefile
+> @@ -21,6 +21,7 @@ clk-qcom-$(CONFIG_QCOM_GDSC) += gdsc.o
+>  obj-$(CONFIG_APQ_GCC_8084) += gcc-apq8084.o
+>  obj-$(CONFIG_APQ_MMCC_8084) += mmcc-apq8084.o
+>  obj-$(CONFIG_CLK_GFM_LPASS_SM8250) += lpass-gfm-sm8250.o
+> +obj-$(CONFIG_CLK_X1E80100_CAMCC) += camcc-x1e80100.o
+>  obj-$(CONFIG_CLK_X1E80100_DISPCC) += dispcc-x1e80100.o
+>  obj-$(CONFIG_CLK_X1E80100_GCC) += gcc-x1e80100.o
+>  obj-$(CONFIG_CLK_X1E80100_GPUCC) += gpucc-x1e80100.o
+> diff --git a/drivers/clk/qcom/camcc-x1e80100.c b/drivers/clk/qcom/camcc-x1e80100.c
+> new file mode 100644
+> index 000000000000..50dc578692a1
+> --- /dev/null
+> +++ b/drivers/clk/qcom/camcc-x1e80100.c
+> @@ -0,0 +1,2489 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#include <linux/clk-provider.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/regmap.h>
+> +
+> +#include <dt-bindings/clock/qcom,x1e80100-camcc.h>
+> +
+> +#include "clk-alpha-pll.h"
+> +#include "clk-branch.h"
+> +#include "clk-rcg.h"
+> +#include "clk-regmap.h"
+> +#include "common.h"
+> +#include "gdsc.h"
+> +#include "reset.h"
+> +
+> +enum {
+> +       DT_BI_TCXO,
+> +       DT_BI_TCXO_AO,
+> +       DT_SLEEP_CLK,
+> +};
+> +
+> +enum {
+> +       P_BI_TCXO,
+> +       P_CAM_CC_PLL0_OUT_EVEN,
+> +       P_CAM_CC_PLL0_OUT_MAIN,
+> +       P_CAM_CC_PLL0_OUT_ODD,
+> +       P_CAM_CC_PLL1_OUT_EVEN,
+> +       P_CAM_CC_PLL2_OUT_EVEN,
+> +       P_CAM_CC_PLL2_OUT_MAIN,
+> +       P_CAM_CC_PLL3_OUT_EVEN,
+> +       P_CAM_CC_PLL4_OUT_EVEN,
+> +       P_CAM_CC_PLL6_OUT_EVEN,
+> +       P_CAM_CC_PLL8_OUT_EVEN,
+> +       P_SLEEP_CLK,
+> +};
+> +
+> +static const struct pll_vco lucid_ole_vco[] = {
+> +       { 249600000, 2300000000, 0 },
+> +};
+> +
+> +static const struct pll_vco rivian_ole_vco[] = {
+> +       { 777000000, 1285000000, 0 },
+> +};
+> +
+> +static const struct alpha_pll_config cam_cc_pll0_config = {
+> +       .l = 0x3E,
 
-Reviewed-by: Dmitry Baryshov <dmitry.baryshov@linaro.org>
+Lowercase hex, please.
+Other than that LGTM.
+
+> +       .alpha = 0x8000,
+> +       .config_ctl_val = 0x20485699,
+> +       .config_ctl_hi_val = 0x00182261,
+> +       .config_ctl_hi1_val = 0x82AA299C,
+> +       .test_ctl_val = 0x00000000,
+> +       .test_ctl_hi_val = 0x00000003,
+> +       .test_ctl_hi1_val = 0x00009000,
+> +       .test_ctl_hi2_val = 0x00000034,
+> +       .user_ctl_val = 0x00008400,
+> +       .user_ctl_hi_val = 0x00000005,
+> +};
+
+
 
 -- 
 With best wishes
