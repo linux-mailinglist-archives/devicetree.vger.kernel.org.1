@@ -1,225 +1,163 @@
-Return-Path: <devicetree+bounces-24223-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24224-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C08E280E677
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 09:43:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D0F980E68B
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 09:45:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D7951F220BA
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 08:43:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B5A69282967
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 08:45:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47D9C374EB;
-	Tue, 12 Dec 2023 08:43:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A4863987B;
+	Tue, 12 Dec 2023 08:45:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WERJZuaf"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oMPOOqW7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57E96DB
-	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 00:43:42 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-40c3f68b649so30524835e9.0
-        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 00:43:42 -0800 (PST)
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64262D0
+	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 00:45:25 -0800 (PST)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-54cb4fa667bso7659818a12.3
+        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 00:45:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702370621; x=1702975421; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zCwIaPG18IlZaPGE6LfSCnWOUQMM+WHpG8E21UYkoJA=;
-        b=WERJZuafQW7j/TkPM5AffkBdaasbIZFl9ZHyNNP8wrUMceGt8JDLH5dshncTh8QOYe
-         Z4r/eg6RrcJ76oCbaj94YHrjlpNz9AeKVk5C+nXuMByGlVHtp9H51oGwd7xbprAxKUVC
-         RYeZx3ursJ4VC2sTeRsf92yQXA7kObqcl6JKspAteB99lVsMhuyG28OigbAB48nrH+iX
-         ggv2a3qdfd3pNA5EaPq4wXcWcW96wPx+uv4s2hnWAsW7B4NjOqP2k+YoTb5v+a0kK3K0
-         kbksbG7PIV8RhaQ9rwlsO0jn6x4q3hw3GnZZsGxQ498EblUJc7jcmsxpL/pBtx6Vun3M
-         t+yA==
+        d=linaro.org; s=google; t=1702370724; x=1702975524; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ppbHQCYSLppdUFWWFW0lWAd6TucauVUU4s32x2RiPZ0=;
+        b=oMPOOqW7ueV8Vvvu6PcGcwo/lVfPQB8GB7q4rjFuF8Y0DZaHb5o87z0HVoGRuWs4Yt
+         iIHxTmxIoQKFhtRZ/dqxdFZE9BspCUUoCxyDfuchKUzXScDdJDrT68VLciB5aUflSiPi
+         yWZ9QZqYDS5XUOSFJQ0Ov9/GRIRBvV8jjmudSvwDU9zP/iYxeeduiNtbIYajtYHw7AKk
+         uzNiUTI5pGDcgSPEWV+8eRa2UoUYw6ckPa9Eq9bw/rHqpkyfHjvUaj0FJ8Aqx6QUaSHW
+         Fs8jaHceq+zQfAuZVtzsEjwW9ZhXzl53RrAaMfj55u4X++7litI6hGc+QmnAxhXpgusi
+         tl7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702370621; x=1702975421;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zCwIaPG18IlZaPGE6LfSCnWOUQMM+WHpG8E21UYkoJA=;
-        b=ezOh0rqOdT45wnNv7SglRVXI7gQBbmyIH2Hfn13gelT4rScMPw50G5z6D3Y83eclDj
-         Fp7mg5FLkv1iDz4IzA6zUcE/D8IMO61YCGom04y4TE7iyWgr1SCgXjCN9aSyPiWNTsZe
-         LxsKNWwuzLtd91U/rjnhSRdqGntrNmOM+4rOuZp22o7A1a1QXdNJ29bV/YZUQLBCP57W
-         omiyOHBAUv0jL+VX5UAEh5uxK+qn7jrOaJdSWioqGBIeWPMqsFnt05JBnm51YkT517sj
-         l1OynMa4lnH+1FTXcHDIBaSfsuA5OzMXJEEObswrW9d7JzKT1/ZxIZ1R8dh8uRG7onQR
-         LLsQ==
-X-Gm-Message-State: AOJu0YzyguG8CaJJREJTi9tYNj+++a/kV0oeLE0vR7fB0PUn4j4UW3w6
-	PXZ030p36XjA3cRT42gXiVXgWQ==
-X-Google-Smtp-Source: AGHT+IEOh5cRXARBdKt6ygYMhgJIHQ0YSMV4AkJkVu8QHu7IL2UTMXCadXGm3UFAUSLrFATweQuB/A==
-X-Received: by 2002:a05:600c:4384:b0:40c:2417:3b51 with SMTP id e4-20020a05600c438400b0040c24173b51mr2117769wmn.74.1702370620788;
-        Tue, 12 Dec 2023 00:43:40 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id m3-20020a5d56c3000000b003334520e49bsm10326308wrw.53.2023.12.12.00.43.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Dec 2023 00:43:40 -0800 (PST)
-Message-ID: <e8c60424-21c7-4f64-9e47-8c4183510162@linaro.org>
-Date: Tue, 12 Dec 2023 09:43:38 +0100
+        d=1e100.net; s=20230601; t=1702370724; x=1702975524;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ppbHQCYSLppdUFWWFW0lWAd6TucauVUU4s32x2RiPZ0=;
+        b=MZPzBq+zFJQPr6iH2HZNNSRPqP78GwBPzV9hKFBCvTjXrzLJRzlLu5pNilnihtuf/C
+         ZVeupqRMxlxb9IZ324yUkycBJnuFIV7DS67vhP22Di5Ixhx/oTVDRlSUgOe/GCKQ+zV4
+         bpKG5meETthODGQB0Kh4qz0G443OkBhv0dxFpshIdkc1Vkbk4FoHn/k6T4qRRaHMDfvt
+         shpO5FvNhb++6NwmWLwT0B9JhOt7unw6Y8UjoeDzuq7fSYKREl5H5ygecs8iXAZ84e5K
+         4ATbszcLOCGhLoyXN6jkwJkxe3HRnO4d7+SVCiwY7YOPjG1x65HLFlN7ZMMohfrEG+F6
+         nUbg==
+X-Gm-Message-State: AOJu0YwL9mDkEM2XMwyHgN4DCGNF/qJuIomipA2f2O4VBgFPbiR277ox
+	2ggq0d3oJQWqukegKTSDYqr15w==
+X-Google-Smtp-Source: AGHT+IG461CE58DfQwEvLrH77MxkX0z0TE6W4JC9lMkEpoJudRh2B5fAl6/htiSe24WyJoA/xUQYXA==
+X-Received: by 2002:a50:9b1b:0:b0:551:5646:ade8 with SMTP id o27-20020a509b1b000000b005515646ade8mr663044edi.34.1702370723657;
+        Tue, 12 Dec 2023 00:45:23 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id c27-20020a50d65b000000b0054c9bbd07e7sm4650471edj.54.2023.12.12.00.45.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Dec 2023 00:45:23 -0800 (PST)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v5 0/3] remoteproc: qcom: Introduce DSP support for SM8650
+Date: Tue, 12 Dec 2023 09:45:16 +0100
+Message-Id: <20231212-topic-sm8650-upstream-remoteproc-v5-0-e749a1a48268@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 16/16] riscv: dts: starfive: jh8100: Add clocks and
- resets nodes
-Content-Language: en-US
-To: JeeHeng Sia <jeeheng.sia@starfivetech.com>,
- "kernel@esmil.dk" <kernel@esmil.dk>, "conor@kernel.org" <conor@kernel.org>,
- "robh+dt@kernel.org" <robh+dt@kernel.org>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "paul.walmsley@sifive.com" <paul.walmsley@sifive.com>,
- "palmer@dabbelt.com" <palmer@dabbelt.com>,
- "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
- "mturquette@baylibre.com" <mturquette@baylibre.com>,
- "sboyd@kernel.org" <sboyd@kernel.org>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "emil.renner.berthing@canonical.com" <emil.renner.berthing@canonical.com>,
- Hal Feng <hal.feng@starfivetech.com>, Xingyu Wu <xingyu.wu@starfivetech.com>
-Cc: "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
- Leyfoon Tan <leyfoon.tan@starfivetech.com>
-References: <20231206115000.295825-1-jeeheng.sia@starfivetech.com>
- <20231206115000.295825-17-jeeheng.sia@starfivetech.com>
- <4dd53599-5e80-4a00-a708-507c9c2e7b6b@linaro.org>
- <62705afb652e416695aa26e3bdb2500e@EXMBX066.cuchost.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <62705afb652e416695aa26e3bdb2500e@EXMBX066.cuchost.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJwdeGUC/43QTWrDMBAF4KsErasy+rWcVe8RupDlcSKoLTNyR
+ Urw3SuHQlqyqJdvFt/jzY1lpIiZHQ83RlhijmmqwbwcWLj46Yw89jUzCVIJEJYvaY6B59FZA/x
+ zzguhHznhmBacKQVurXcNYmcHRFaZmXCI13vF6b3mS8xLoq97YxHb9QeX5n+8CA7cu14C6oDCh
+ bePOHlKr4nObNOL/CUq2CHKKlpoEU0jEbx8EtVDFLDjAUVVse96HXznsdPNk6gfogS3Q9Tb6tY
+ GhWaAVqg/4rqu3yaeVXfHAQAA
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Mathieu Poirier <mathieu.poirier@linaro.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Mukesh Ojha <quic_mojha@quicinc.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2551;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=Iwq0UgF1Yfv2WGtfwDWdmFW885Pn0Zt75TkNM8ie22Y=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBleB2gJrAs43nJqREqAHg1quOoAM11tEKc/BpKQWLA
+ UuKNAt2JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZXgdoAAKCRB33NvayMhJ0baOEA
+ C27sssh9IXoAtR1jXjfupwN1RCi9y8Y4ylNBJ7kFAm2h+yZDNEnEQfQ8Qa3dSx8A6zcyY540U4nJXN
+ e32uSvmE8H1tF5v2UddXzu4ShNIQNpdHdR3FQaM7+N1zOeB7Qe4pAIl497SFfYMuYjA9EnMaOufMqe
+ 8dGiaGXAdQ2QZR2HYU9B9AWBU8ul2NoDGP6yBEHR8ISNFwaYk9Z8DnE3X5tV/u0E81LlWHzu+Y1iMy
+ nmcy9MD3BwokhIRuBCZtoAovGRC1fUFCW6hvWToXA8W7PKvXj0rGAWsqr920DpPzLogf60FqiBswub
+ rMM5Lk784pVXDVC1Vr8z8DAAnFH7jogYxSCB5owQfJIgXCstLcEJLYrO4WpWaIoIyyDHmIf0P8Qgzg
+ xJouPL7OGltD/6SQcQBfKCO+Ab+1flPAQQ7zqfCGNKfki2JZKJ+toyRFaN7ZL952HEgHzCv7l+2Klb
+ zjQ+MVU9Y6gwVqIYGQRBZcfcUs3AsLn3mHuaZbpFmr1oeNSzJrdXvZgtIhQrPWKMZoHwDX2u6aN660
+ 2CTT0wQlkTWQRCcySiAbM4Rc5tC4vUtBjePNsNnyUWpKihtX/Qk7n+R9iUuMVgT5ewnN9Sabj6mquc
+ aiu0JxZER79G0Df/6UWF5NDo27yaUK2pt9IUHLMdPytizNWPsYH5y/zdNzDQ==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-On 12/12/2023 03:58, JeeHeng Sia wrote:
-> 
-> 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Sent: Saturday, December 9, 2023 1:57 AM
->> To: JeeHeng Sia <jeeheng.sia@starfivetech.com>; kernel@esmil.dk; conor@kernel.org; robh+dt@kernel.org;
->> krzysztof.kozlowski+dt@linaro.org; paul.walmsley@sifive.com; palmer@dabbelt.com; aou@eecs.berkeley.edu;
->> mturquette@baylibre.com; sboyd@kernel.org; p.zabel@pengutronix.de; emil.renner.berthing@canonical.com; Hal Feng
->> <hal.feng@starfivetech.com>; Xingyu Wu <xingyu.wu@starfivetech.com>
->> Cc: linux-riscv@lists.infradead.org; devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-clk@vger.kernel.org; Leyfoon Tan
->> <leyfoon.tan@starfivetech.com>
->> Subject: Re: [PATCH v1 16/16] riscv: dts: starfive: jh8100: Add clocks and resets nodes
->>
->> On 06/12/2023 12:50, Sia Jee Heng wrote:
->>> Add SYSCRG/SYSCRG-NE/SYSCRG-NW/SYSCRG-SW/AONCRG clock and reset
->>> nodes for JH8100 RISC-V SoC.
->>>
->>> Signed-off-by: Sia Jee Heng <jeeheng.sia@starfivetech.com>
->>> Reviewed-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
->>
->> Really? Looks automated... Care to provide any links to effects of
->> internal review?
-> https://gitlab.starfivetech.com/jeeheng.sia/linux/-/commits/JH8100_Upstream/
->>
->>> ---
->>>  arch/riscv/boot/dts/starfive/jh8100-clk.dtsi | 180 +++++++++++++++++++
->>>  arch/riscv/boot/dts/starfive/jh8100.dtsi     | 115 ++++++++++++
->>>  2 files changed, 295 insertions(+)
->>>  create mode 100644 arch/riscv/boot/dts/starfive/jh8100-clk.dtsi
->>>
->>> diff --git a/arch/riscv/boot/dts/starfive/jh8100-clk.dtsi b/arch/riscv/boot/dts/starfive/jh8100-clk.dtsi
->>> new file mode 100644
->>> index 000000000000..27ba249f523e
->>> --- /dev/null
->>> +++ b/arch/riscv/boot/dts/starfive/jh8100-clk.dtsi
->>> @@ -0,0 +1,180 @@
->>> +// SPDX-License-Identifier: GPL-2.0 OR MIT
->>> +/*
->>> + * Copyright (C) 2023 StarFive Technology Co., Ltd.
->>> + */
->>> +
->>> +/ {
->>> +	clk_osc: clk_osc {
->>
->> No underscores in node names.
-> Noted.
->>
->>> +		compatible = "fixed-clock";
->>> +		#clock-cells = <0>;
->>> +		clock-frequency = <24000000>;
->>> +	};
->>> +
->>
->> ...
->>
->>> diff --git a/arch/riscv/boot/dts/starfive/jh8100.dtsi b/arch/riscv/boot/dts/starfive/jh8100.dtsi
->>> index f26aff5c1ddf..9863c61324a0 100644
->>> --- a/arch/riscv/boot/dts/starfive/jh8100.dtsi
->>> +++ b/arch/riscv/boot/dts/starfive/jh8100.dtsi
->>> @@ -4,6 +4,9 @@
->>>   */
->>>
->>>  /dts-v1/;
->>> +#include <dt-bindings/clock/starfive,jh8100-crg.h>
->>> +#include <dt-bindings/reset/starfive,jh8100-crg.h>
->>> +#include "jh8100-clk.dtsi"
->>>
->>>  / {
->>>  	compatible = "starfive,jh8100";
->>> @@ -357,6 +360,104 @@ uart4: serial@121a0000  {
->>>  			status = "disabled";
->>>  		};
->>>
->>> +		syscrg_ne: syscrg_ne@12320000 {
->>
->> clock-controller@
->>
->> Just open your bindings and take a look how it is done there...
->>
->> This applies everywhere
+Add the bindings and driver changes for DSP support on the
+SM8650 platform in order to enable the aDSP, cDSP and MPSS
+subsystems to boot.
 
-I assume you did not ignore all the other comments you did not respond to.
+Compared to SM8550, where SM8650 uses the same dual firmware files,
+(dtb file and main firmware) the memory zones requirement has changed:
+- cDSP: now requires 2 memory zones to be configured as shared
+  between the cDSP and the HLOS subsystem
+- MPSS: In addition to the memory zone required for the SM8550
+  MPSS, another one is required to be configured for MPSS
+  usage only.
+
+In order to handle this and avoid code duplication, the region_assign_*
+code patch has been made more generic and is able handle multiple
+DSP-only memory zones (for MPSS) or DSP-HLOS shared memory zones (cDSP)
+in the same region_assign functions.
+
+Dependencies: None
+
+For convenience, a regularly refreshed linux-next based git tree containing
+all the SM8650 related work is available at:
+https://git.codelinaro.org/neil.armstrong/linux/-/tree/topic/sm8650/upstream/integ
+
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v5:
+- Rename _perms to _owners per Konrad suggestion
+- Link to v4: https://lore.kernel.org/r/20231208-topic-sm8650-upstream-remoteproc-v4-0-a96c3e5f0913@linaro.org
+
+Changes in v4:
+- Collected review from Mukesh Ojha
+- Fixed adsp_unassign_memory_region() as suggested by Mukesh Ojha
+- Link to v3: https://lore.kernel.org/r/20231106-topic-sm8650-upstream-remoteproc-v3-0-dbd4cabaeb47@linaro.org
+
+Changes in v3:
+- Collected bindings review tags
+- Small fixes suggested by Mukesh Ojha
+- Link to v2: https://lore.kernel.org/r/20231030-topic-sm8650-upstream-remoteproc-v2-0-609ee572e0a2@linaro.org
+
+Changes in v2:
+- Fixed sm8650 entries in allOf:if:then to match Krzysztof's comments
+- Collected reviewed-by on patch 3
+- Link to v1: https://lore.kernel.org/r/20231025-topic-sm8650-upstream-remoteproc-v1-0-a8d20e4ce18c@linaro.org
+
+---
+Neil Armstrong (3):
+      dt-bindings: remoteproc: qcom,sm8550-pas: document the SM8650 PAS
+      remoteproc: qcom: pas: make region assign more generic
+      remoteproc: qcom: pas: Add SM8650 remoteproc support
+
+ .../bindings/remoteproc/qcom,sm8550-pas.yaml       |  44 +++++-
+ drivers/remoteproc/qcom_q6v5_pas.c                 | 150 ++++++++++++++++-----
+ 2 files changed, 159 insertions(+), 35 deletions(-)
+---
+base-commit: bbd220ce4e29ed55ab079007cff0b550895258eb
+change-id: 20231016-topic-sm8650-upstream-remoteproc-66a87eeb6fee
 
 Best regards,
-Krzysztof
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
 
 
