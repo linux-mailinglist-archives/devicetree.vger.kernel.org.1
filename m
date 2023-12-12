@@ -1,338 +1,227 @@
-Return-Path: <devicetree+bounces-24382-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24383-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B6A980EFB8
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 16:10:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6CED80EFD0
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 16:14:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 84B74B20DB9
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 15:10:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E0BD281BD4
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 15:14:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAF3A75406;
-	Tue, 12 Dec 2023 15:10:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20FE475423;
+	Tue, 12 Dec 2023 15:14:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="LHHGslb9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Be4X8eAi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4285DB
-	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 07:10:07 -0800 (PST)
-Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2cb21afa6c1so66069151fa.0
-        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 07:10:07 -0800 (PST)
+Received: from mail-oa1-x29.google.com (mail-oa1-x29.google.com [IPv6:2001:4860:4864:20::29])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4A9ECA;
+	Tue, 12 Dec 2023 07:14:21 -0800 (PST)
+Received: by mail-oa1-x29.google.com with SMTP id 586e51a60fabf-2030fbc2417so123841fac.3;
+        Tue, 12 Dec 2023 07:14:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1702393806; x=1702998606; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Sgb02zIfWO9XtSI9qBoLEAqXEVat4zbB8qv+HQtNLV8=;
-        b=LHHGslb9jPETtJXQjN4Vk2QASbgCA6FkG3oCg1n9IS1L10xamOppZWjcS9nROeYuQK
-         /q0w3D7SmGzlXRS5oT1MmC7KoFhYYoMkg5ytqDGyoqMqWm+3y2KxEWuQEuaNR/kpcBV0
-         RiWB3f6zW3EGg6KafI44c990/ZuZ0hEaMvCOXByoy9BXGfbKr1pD3AEjuQ+lsNjep5JI
-         RK9RGlOPmFLHyLkmjgx1ApoEpJhnKRGpxmqKcp3cFgTHYrvfKxlYYQDYG3t4w/O/0NEB
-         ZqK/n6FLnDNgHiLWKPo8rImb/0Y9EGyxAZoN7WHh9wBuIuYvrlhOuAa4WI8y05fWhVvT
-         2nAQ==
+        d=gmail.com; s=20230601; t=1702394061; x=1702998861; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=0Q82A7YNLsEgZIKZ3MuE+ES9oIeEJyJzsdp/yKVEP3M=;
+        b=Be4X8eAiaiGq124Vctm9Z3IuWkWoxYrTNUlpa3D2MXBOwkmAKGGr6BCK+ojFbG0I2L
+         6ABpSFh0JJISlvyplPDmodaVkp6y6ASAK3Wf0Nzziy1AufoWK6tbTS/Tq5off36kaY7G
+         yhyXu4ohhCaq1UMN2iMDlKVKT98evRDM9LLUF6BzW6QgCaOhyF1w2iyQGw88GUfdvN7m
+         kOGkTdr/e5+/0MiOR2pDabyjCGwwPltzp2xn8NDJxBAdpXW3L5BvdATe5WqKD+72XC1/
+         DWHezP0GaE/xFeny118+byO8kRqt68biJc0cpB/1V2NIJ4E2H7b21PedVdQ4qTqx2UN8
+         rRGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702393806; x=1702998606;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Sgb02zIfWO9XtSI9qBoLEAqXEVat4zbB8qv+HQtNLV8=;
-        b=sdtLtF6b3nXp7DNL+Btwu28r+ssZU4sKYNFOs4JiT4V/PdDw7vVwZdPcLjy8ipWtdt
-         S8r2Ipb8sEuVPve9CP7+BefHcXAf08lFNabxssRynsojEbYzLAHHrA7hQjmBoayhetRw
-         fT97ZEg0Ymk8TIDKkiGQVED5epadsIXXhi6nf73YKzpphjR60OX/FIss/FCx+S0FxYu6
-         KTlE4xWI/tIf+ouv527l7qUvvKzlNyerC8tsxh+N57rxFdkPm54MKHlKZcAR+Qmi9vID
-         vATRd8zNl4UdP8oUW/TcOKNdD5/r3uZKndy9kYLrN0rUr0cjPU+olGvIBQ4HW/g3wyw/
-         TZnA==
-X-Gm-Message-State: AOJu0YzM47QT+X68qI2Flnta8InZ4D9em0VqlozspsZLVG6jxABxSx2v
-	C/5qXl60yYJgaKGobTh6u//j4u+3ZVxMtGQmvEcsNQ==
-X-Google-Smtp-Source: AGHT+IEnmlxt1GZYnvsKLadBA5gaJL+Mw8J602tleM6Cq/s5xYNH1uxRqd0ikhqf6EblAuUXcVfJtJqyQ/mZTWNqVIM=
-X-Received: by 2002:a2e:9f08:0:b0:2c9:f1a2:c396 with SMTP id
- u8-20020a2e9f08000000b002c9f1a2c396mr2674735ljk.101.1702393805929; Tue, 12
- Dec 2023 07:10:05 -0800 (PST)
+        d=1e100.net; s=20230601; t=1702394061; x=1702998861;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0Q82A7YNLsEgZIKZ3MuE+ES9oIeEJyJzsdp/yKVEP3M=;
+        b=YmLD0xDFDWqKrstefD7qzGdwtY19Ekjv3sWoGPpv95PC8FueKD4DCRcxQT808WKB+2
+         ys7GSYrprMLIhSkmVeRnFc5mZQ5uT09g5atW8rKjkTHaQKU3vRrWbiRb/pypE1wmCGZp
+         rLFuWf7KugA2bhDMlhZ0M4dkrClQRjrnrNuSTxj7fdo/RRH5myzPnL2HDpNSTuAUL/6o
+         P0qA2ujiTExFTiLelGJjX74ZoKricrPH+O+HZKxM5Mlc0/NBu30EyxD7UYvnLjRko0le
+         oIG0XRzX1IXa+j5GoDTeTBvoaMs1rQ7ZIzSKm+1ZvAY/M2t1gowJa4OTW8XdVpqbOjeP
+         qsiw==
+X-Gm-Message-State: AOJu0Yw18i4+JnptTkVaT8Hc2kPfA6tov79naLVHijYo12SjCpBLkyrr
+	nXcBOgLEjT6YLfR3dYW9JVw=
+X-Google-Smtp-Source: AGHT+IHjWy79N/NLmtx8hxNiXbqSmqMXAvj5rornY3O1pALUZXevA8Bt5Qv+KMWMQj5UaAAWeqMe/Q==
+X-Received: by 2002:a05:6870:20d:b0:1fb:75c:3fde with SMTP id j13-20020a056870020d00b001fb075c3fdemr7861841oad.62.1702394060845;
+        Tue, 12 Dec 2023 07:14:20 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id n10-20020a9d4d0a000000b006d9d144786fsm2207871otf.79.2023.12.12.07.14.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Dec 2023 07:14:20 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <436257a1-628e-4a45-884d-348e73d4c5e9@roeck-us.net>
+Date: Tue, 12 Dec 2023 07:14:18 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231212104451.22522-1-mitrutzceclan@gmail.com>
-In-Reply-To: <20231212104451.22522-1-mitrutzceclan@gmail.com>
-From: David Lechner <dlechner@baylibre.com>
-Date: Tue, 12 Dec 2023 16:09:55 +0100
-Message-ID: <CAMknhBEfisaSbHhnnei=gT1HZvHNWHrJD3O2y4b_TikkH=v2Ag@mail.gmail.com>
-Subject: Re: [PATCH v8 1/2] dt-bindings: adc: add AD7173
-To: Dumitru Ceclan <mitrutzceclan@gmail.com>
-Cc: linus.walleij@linaro.org, brgl@bgdev.pl, andy@kernel.org, 
-	linux-gpio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, 
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Walle <michael@walle.cc>, Andy Shevchenko <andy.shevchenko@gmail.com>, 
-	Arnd Bergmann <arnd@arndb.de>, ChiaEn Wu <chiaen_wu@richtek.com>, 
-	Niklas Schnelle <schnelle@linux.ibm.com>, =?UTF-8?Q?Leonard_G=C3=B6hrs?= <l.goehrs@pengutronix.de>, 
-	Mike Looijmans <mike.looijmans@topic.nl>, Haibo Chen <haibo.chen@nxp.com>, 
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>, Ceclan Dumitru <dumitru.ceclan@analog.com>, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] hwmon: ltc4282: add support for the LTC4282 chip
+Content-Language: en-US
+To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>, nuno.sa@analog.com
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-doc@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
+References: <20231205-ltc4282-support-v3-0-e0877b281bc2@analog.com>
+ <20231205-ltc4282-support-v3-2-e0877b281bc2@analog.com>
+ <a0eb6cb4-b8af-4a6f-8888-fa18f8f1d188@roeck-us.net>
+ <d190620900ceda6c2846f3828ee389da917a66e0.camel@gmail.com>
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <d190620900ceda6c2846f3828ee389da917a66e0.camel@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Tue, Dec 12, 2023 at 11:45=E2=80=AFAM Dumitru Ceclan <mitrutzceclan@gmai=
-l.com> wrote:
->
-> The AD7173 family offer a complete integrated Sigma-Delta ADC solution
-> which can be used in high precision, low noise single channel application=
-s
-> or higher speed multiplexed applications. The Sigma-Delta ADC is intended
-> primarily for measurement of signals close to DC but also delivers
-> outstanding performance with input bandwidths out to ~10kHz.
+On 12/12/23 06:28, Nuno Sá wrote:
+> On Mon, 2023-12-11 at 07:36 -0800, Guenter Roeck wrote:
+>> On Tue, Dec 05, 2023 at 04:22:56PM +0100, Nuno Sa via B4 Relay wrote:
+>>> From: Nuno Sa <nuno.sa@analog.com>
+>>>
+>>> The LTC4282 hot swap controller allows a board to be safely inserted and
+>>> removed from a live backplane. Using one or more external N-channel pass
+>>> transistors, board supply voltage and inrush current are ramped up at an
+>>> adjustable rate. An I2C interface and onboard ADC allows for monitoring
+>>> of board current, voltage, power, energy and fault status.
+>>>
+>>> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+>>> ---
+>>> +
+>>
+>>> +power1_good		Power considered good
+>>
+>> I really don't like this attribute. Like the ones below it is non-standard
+>> and invisible for standard applications. On top of that, I think it isn't
+>> really related to "power" but to the output voltage. What does it actually
+>> report that isn't included in the FET faults ?
+>>
+> 
+> This is detected with the FB pin and a voltage divider (from the output
+> voltage). Basically depending on the level of that pin, the chip indicate power
+> good or power bad. I was also very reluctant with this attribute (I mention it
+> in the v1 cover). This might not even indicate any misbehave. We also support
+> reporting this using the gpio1 pin (if we set it that way). So, I guess I can
+> just drop this one and add support for it if we ever have a real usecase where I
+> can actually justify having it :).
+> 
+> We already have the power_bad fault log in debugfs so I'm not sure if adding
+> this one there adds much value.
+> 
+>>
+>>> +fet_short_fault		FET short alarm
+>>> +fet_bad_fault		FET bad alarm
+>>
+>> Those attributes have little value since they are not standard attributes
+>> and won't be seen by standard applications. On top of that, it is not clear
+>> (not documented) what the attribute actually reports. I assume it is
+>> associated with the output voltage, i.e., in0, but that is just an
+>> assumption.
+>>
+> 
+> fet_short - This is one is detected if the ADC measures a current sense voltage
+>> 0.25mv while the fet gate is off.
+> 
+> fet_bad - Is set by monitoring the voltage at the gate and the drain to source
+> voltage.
+> 
+> These ones might indicate real issues with the HW so I thought they could be
+> important...
+>   
+>> What do you think about introducing a standard inX_fault attribute ?
+>> It would not be as specific as short/bad, but I think it would be more
+>> useful and we could add it to the ABI.
+>>
+> 
+> It would be better than nothing. And we do have fault logs for both these
+> failures so userspace could also use that to know exactly what was the issue. If
+> that's ok with you, I would then report this in inX_fault? Did you had in mind
+> putting this in in0 (vsource) or adding a new channel?
+> 
+> In my first draft I had another voltage channel (label: VFET) to report the
+> fet_bad condition. I was using the inX_crit or inX_lcrit but it felt bad so I
+> removed it...
+> 
 
-As stated in [1], we should try to make complete bindings. I think
-more could be done here to make this more complete. Most notably, the
-gpio-controller binding is missing. Also maybe something is needed to
-describe how the SYNC/ERROR pin is wired up since it can be an input
-or an output with different functions?
+This isn't an extra voltage channel. It should be associated with the output
+voltage because that is what is affected, and that would be in0.
 
-[1]: https://www.kernel.org/doc/html/latest/devicetree/bindings/writing-bin=
-dings.html
+>>> +fault_logs_reset	Clears all the Logged Faults
+> 
+>> What exactly does that do that is user visible ?
+> 
+> Well, this one is because in some configurations the chip won't enable the
+> output load until you reset/clear the fault log keeping it from enabling the
+> output. This is the comment I have in the code:
+> 
+> "Fault log failures. These faults might be important in systems where auto-retry
+> is not enabled since they will cause the part to latch off until they are
+> cleared. Typically that happens when the system admin is close enough so he can
+> check what happened and manually clear the faults. Moreover, manually clearing
+> the faults might only matter when ON_FAULT_MASK in the CONTROL register is set
+> (which is the default) as in that case, a turn off signal from the ON pin won't
+> clear them."
+> 
+> In v1 I was allowing to clear fauls log individually and you recommended to have
+> an attribute to clear them all at once as that would simplify things.
+> 
+> I just kept it in here because this might be important for the chip to work as
+> expected again so having it in debugfs might be weird.
+> 
 
->
-> Signed-off-by: Dumitru Ceclan <mitrutzceclan@gmail.com>
-> ---
-> V7->V8
->  - include missing fix from V6
+How about using a write to in0_fault to clear the log ?
 
-Including the cumulative changelog for all revisions would be helpful
-to reviewers who haven't been following closely.
+Thanks,
+Guenter
 
->
->  .../bindings/iio/adc/adi,ad7173.yaml          | 170 ++++++++++++++++++
->  1 file changed, 170 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7173.=
-yaml
->
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml b/=
-Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
-> new file mode 100644
-> index 000000000000..25a5404ee353
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
-> @@ -0,0 +1,170 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2023 Analog Devices Inc.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/adi,ad7173.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices AD7173 ADC
-> +
-> +maintainers:
-> +  - Ceclan Dumitru <dumitru.ceclan@analog.com>
-> +
-> +description: |
-> +  Bindings for the Analog Devices AD717X ADC's. Datasheets for supported=
- chips:
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
-AD7172-2.pdf
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
-AD7173-8.pdf
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
-AD7175-2.pdf
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
-AD7176-2.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,ad7172-2
-> +      - adi,ad7173-8
-> +      - adi,ad7175-2
-> +      - adi,ad7176-2
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-
-Shouldn't this be 2? The datasheet says there is a "Data Output Ready"
-signal on the DOUT/RDY pin and an "Error Output" on the SYNC/ERROR
-pin. Although I could see how RDY could be considered part of the SPI
-bus. In any case, a description explaining what the interrupt is would
-be useful.
-
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +  spi-max-frequency:
-> +    maximum: 20000000
-> +
-> +  refin-supply:
-> +    description: external reference supply, can be used as reference for=
- conversion.
-> +
-> +  refin2-supply:
-> +    description: external reference supply, can be used as reference for=
- conversion.
-> +
-> +  avdd-supply:
-> +    description: avdd supply, can be used as reference for conversion.
-
-What about other supplies? AVDD1, AVDD2, IOVDD.
-
-
-> +
-> +patternProperties:
-> +  "^channel@[0-9a-f]$":
-> +    type: object
-> +    $ref: adc.yaml
-> +    unevaluatedProperties: false
-> +
-> +    properties:
-> +      reg:
-> +        minimum: 0
-> +        maximum: 15
-> +
-> +      diff-channels:
-> +        items:
-> +          minimum: 0
-> +          maximum: 31
-
-Do we need to add overrides to limit the maximums for each compatible strin=
-g?
-
-> +
-> +      adi,reference-select:
-> +        description: |
-> +          Select the reference source to use when converting on
-> +          the specific channel. Valid values are:
-> +          refin      : REFIN(+)/REFIN(=E2=88=92).
-> +          refin2     : REFIN2(+)/REFIN2(=E2=88=92)
-> +          refout-avss: REFOUT/AVSS (Internal reference)
-> +          avdd       : AVDD
-> +
-> +          External reference refin2 only available on ad7173-8.
-> +          If not specified, internal reference used.
-> +        enum:
-> +          - refin
-> +          - refin2
-> +          - refout-avss
-> +          - avdd
-> +        default: refout-avss
-
-Missing string type?
-
-> +
-> +    required:
-> +      - reg
-> +      - diff-channels
-
-Individual analog inputs can be used as single-ended or in pairs as
-differential, right? If so, diff-channels should not be required to
-allow for single-ended use.
-
-And we would need to add something like a single-ended-channel
-property to adc.yaml to allow mapping analog input pins to channels
-similar to how diff-channels works, I think (I don't see anything like
-that there already)?
-
-So maybe something like:
-
-oneOf:
-  - required:
-      single-ended-channel
-  - required:
-      diff-channels
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +allOf:
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          not:
-> +            contains:
-> +              const: adi,ad7173-8
-> +    then:
-> +      properties:
-> +        refin2-supply: false
-> +      patternProperties:
-> +        "^channel@[0-9a-f]$":
-> +          properties:
-> +            adi,reference-select:
-> +              enum:
-> +                - refin
-> +                - refout-avss
-> +                - avdd
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    spi {
-> +      #address-cells =3D <1>;
-> +      #size-cells =3D <0>;
-> +
-> +      adc@0 {
-> +        compatible =3D "adi,ad7173-8";
-> +        reg =3D <0>;
-> +
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        interrupts =3D <25 IRQ_TYPE_EDGE_FALLING>;
-> +        interrupt-parent =3D <&gpio>;
-> +        spi-max-frequency =3D <5000000>;
-> +
-> +        refin-supply =3D <&dummy_regulator>;
-> +
-> +        channel@0 {
-> +          reg =3D <0>;
-> +          bipolar;
-> +          diff-channels =3D <0 1>;
-> +          adi,reference-select =3D "refin";
-> +        };
-> +
-> +        channel@1 {
-> +          reg =3D <1>;
-> +          diff-channels =3D <2 3>;
-> +        };
-> +
-> +        channel@2 {
-> +          reg =3D <2>;
-> +          bipolar;
-> +          diff-channels =3D <4 5>;
-> +        };
-> +
-> +        channel@3 {
-> +          reg =3D <3>;
-> +          bipolar;
-> +          diff-channels =3D <6 7>;
-> +        };
-> +
-> +        channel@4 {
-> +          reg =3D <4>;
-> +          diff-channels =3D <8 9>;
-> +          adi,reference-select =3D "avdd";
-> +        };
-> +      };
-> +    };
-> --
-> 2.42.0
->
->
 
