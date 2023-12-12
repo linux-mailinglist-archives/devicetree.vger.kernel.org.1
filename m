@@ -1,76 +1,59 @@
-Return-Path: <devicetree+bounces-24489-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24490-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C20680F4E6
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 18:49:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41D4B80F503
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 18:54:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8AA421C20C90
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 17:49:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E060F1F216DC
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 17:54:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DACAE7D8AD;
-	Tue, 12 Dec 2023 17:49:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DD427D8B9;
+	Tue, 12 Dec 2023 17:54:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fJ0DqaE+"
+	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="PhgIWhx1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E84CA1
-	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 09:49:29 -0800 (PST)
-Received: by mail-pl1-x62c.google.com with SMTP id d9443c01a7336-1d072f50a44so13251835ad.0
-        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 09:49:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702403368; x=1703008168; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9o7hG+Bfuk/8KLgCmYouqOGv10v2ly5d9uYgGYM3biM=;
-        b=fJ0DqaE+QkNGnE0+PsgHBDtv6pIQk+RGUXICb+ZxBJFW7mD7tti6hYGMXnYSLMqHWE
-         AD5aNPL+JwklmorDsCjhf/J9oAiW78dN3S1LJv+FebORpQCgAdvPyEQ86hYqt9obr0kA
-         5t2v77b/6KerltNAU2nADt54ph9csV7fTWNUOSB4AIrT97jcuvBCiIKe3Oi3NrPxe2Fj
-         LOW3gCzDd8NmhhcgBE1PVIiUnxhVlfEghyIMEifDwR06vU9Q+JWyOUJw9ynbPzUYqSbe
-         d5BMoG9HPZc/dJzokXUTOU1cDZgUZVsRpFS0n53fUz4CWjQ/VKe3mVxxbgBeMJQtiaTh
-         bvEg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702403368; x=1703008168;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9o7hG+Bfuk/8KLgCmYouqOGv10v2ly5d9uYgGYM3biM=;
-        b=eO+gZ7DBMe4Ay4gxb4mfwYdT8ZLvJwbvQOhHtpz+YNsRHUPdkbGYs5VQjuHUwnj9Zw
-         n4LbI3nZc2QB+58T2BHCOLtUrg1uy+MHujLM+YOuILhGUXgMYOuNaQva2/35L2jqTtue
-         YzzaiuuUWGZ0DW+zwjsuwPJQMxGkNmelguIXZZN/WErTWjaFo5B4z36GVSBQNbFwefLa
-         FiDLFXQT8mhI01EDsip8pzebZUb3YdWAx+c9YU64k7Nd4H3lzDt1f+qwA5KOT2GCHBr+
-         IVXoIOMo4fqF3wfMGySUIRjuaVZUHp2M01zV42D5ZSASkEiuADXB1UiCIM3SB4vyWhgI
-         qc4A==
-X-Gm-Message-State: AOJu0YwbpLcrfBwD1vLihqDLigrLedBrAvRMV4bz8ZwXKy14/KlWeaRF
-	uqkno7nzdxRUI3I39mJv0ys=
-X-Google-Smtp-Source: AGHT+IHhgVrGnoO8bb2XxpK9KK0jR2gC/92nT+2wfYcSKrcPYEwEg4lZUnzWzaHJD2LmXHNsLHsuqQ==
-X-Received: by 2002:a17:902:ec89:b0:1d1:cd7f:5428 with SMTP id x9-20020a170902ec8900b001d1cd7f5428mr12212086plg.1.1702403368498;
-        Tue, 12 Dec 2023 09:49:28 -0800 (PST)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:a620:342d:797a:5c59])
-        by smtp.gmail.com with ESMTPSA id w23-20020a170902a71700b001d0c418174fsm3115008plq.117.2023.12.12.09.49.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Dec 2023 09:49:27 -0800 (PST)
-From: Fabio Estevam <festevam@gmail.com>
-To: cw00.choi@samsung.com
-Cc: myungjoo.ham@samsung.com,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski@linaro.org,
-	conor+dt@kernel.org,
+Received: from ixit.cz (ip-89-177-23-149.bb.vodafone.cz [89.177.23.149])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC76683;
+	Tue, 12 Dec 2023 09:54:07 -0800 (PST)
+Received: from newone.lan (unknown [10.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by ixit.cz (Postfix) with ESMTPSA id C9286161C8C;
+	Tue, 12 Dec 2023 18:54:04 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1702403644;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=iYhjaphvNqnVlAhFqF/LeOGnoaEb4owq0uizq77WO/M=;
+	b=PhgIWhx1iic7CBvWOiUxB1wZrHR/riTOrlhttDm5W5gTNc40IFERi5rD4zQgx06fSVbTHu
+	y9+aclW/TYEVVU0MH+kzqzGbbE7x/il+ZlAoqtBgE4LmurUlJmR0tyF0EJ+0YAxLzAFv2U
+	R7fphozYP9OlKz7HRC+vqikIxbDEJN4=
+From: David Heidelberg <david@ixit.cz>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>
+Cc: David Heidelberg <david@ixit.cz>,
+	dri-devel@lists.freedesktop.org,
 	devicetree@vger.kernel.org,
-	shawnguo@kernel.org,
-	marex@denx.de,
-	hvilleneuve@dimonoff.com,
-	linux-arm-kernel@lists.infradead.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH v2 3/3] arm64: dts: imx8mp-dhcom-pdk3: Describe the USB-C connector
-Date: Tue, 12 Dec 2023 14:48:47 -0300
-Message-Id: <20231212174847.759164-3-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231212174847.759164-1-festevam@gmail.com>
-References: <20231212174847.759164-1-festevam@gmail.com>
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: panel-simple-dsi: move LG 5" HD TFT LCD panel into DSI yaml
+Date: Tue, 12 Dec 2023 18:53:25 +0100
+Message-ID: <20231212175356.72062-1-david@ixit.cz>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,46 +62,49 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Fabio Estevam <festevam@denx.de>
+Originally was in the panel-simple, but belongs to panel-simple-dsi.
 
-Describe the PTN5150 USB-C connector to improve the devicetree description
-and fix the following dt-schema warning:
+See arch/arm/boot/dts/nvidia/tegra114-roth.dts for more details.
 
-imx8mp-dhcom-pdk3.dtb: typec@3d: 'port' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/extcon/extcon-ptn5150.yaml#
-	
-Signed-off-by: Fabio Estevam <festevam@denx.de>
+Fixes:
+```
+arch/arm/boot/dts/tegra114-roth.dt.yaml: panel@0: 'reg' does not match any of the regexes: 'pinctrl-[0-9]+'
+        From schema: Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+```
+
+Signed-off-by: David Heidelberg <david@ixit.cz>
 ---
-Changes since v1:
-- None
+ .../devicetree/bindings/display/panel/panel-simple-dsi.yaml     | 2 ++
+ .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 --
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
- arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3.dts | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3.dts b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3.dts
-index b749e28e5ede..fea67a9282f0 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3.dts
-@@ -175,10 +175,14 @@ typec@3d {
- 				pinctrl-names = "default";
- 				pinctrl-0 = <&pinctrl_ptn5150>;
- 
--				port {
--
--					ptn5150_out_ep: endpoint {
--						remote-endpoint = <&dwc3_0_ep>;
-+				connector {
-+					compatible = "usb-c-connector";
-+					label = "USB-C";
-+
-+					port {
-+						ptn5150_out_ep: endpoint {
-+							remote-endpoint = <&dwc3_0_ep>;
-+						};
- 					};
- 				};
- 			};
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
+index 73674baea75d..f9160d7bac3c 100644
+--- a/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
++++ b/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
+@@ -42,6 +42,8 @@ properties:
+       - lg,acx467akm-7
+         # LG Corporation 7" WXGA TFT LCD panel
+       - lg,ld070wx3-sl01
++        # LG Corporation 5" HD TFT LCD panel
++      - lg,lh500wx1-sd03
+         # One Stop Displays OSD101T2587-53TS 10.1" 1920x1200 panel
+       - osddisplays,osd101t2587-53ts
+         # Panasonic 10" WUXGA TFT LCD panel
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+index 2021aa82871a..634a10c6f2dd 100644
+--- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
++++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+@@ -212,8 +212,6 @@ properties:
+       - lemaker,bl035-rgb-002
+         # LG 7" (800x480 pixels) TFT LCD panel
+       - lg,lb070wv8
+-        # LG Corporation 5" HD TFT LCD panel
+-      - lg,lh500wx1-sd03
+         # LG LP079QX1-SP0V 7.9" (1536x2048 pixels) TFT LCD panel
+       - lg,lp079qx1-sp0v
+         # LG 9.7" (2048x1536 pixels) TFT LCD panel
 -- 
-2.34.1
+2.43.0
 
 
