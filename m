@@ -1,268 +1,166 @@
-Return-Path: <devicetree+bounces-24458-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24459-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 491A580F3A2
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 17:52:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85BA380F3A6
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 17:54:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C96371F215B5
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 16:52:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3AAF31F215B5
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 16:54:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1CB57A23E;
-	Tue, 12 Dec 2023 16:52:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12B697B3A2;
+	Tue, 12 Dec 2023 16:54:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ZLsFKZ2Y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BMFKjM8e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAF1011A;
-	Tue, 12 Dec 2023 08:52:40 -0800 (PST)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3BCGqOxS013645;
-	Tue, 12 Dec 2023 10:52:24 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1702399944;
-	bh=1MUe3Fn2h5Bh4AZuLfrUVgvBk2Kq/67ffcBC8IxjSJk=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=ZLsFKZ2Y3vPZAvr+BluZxWemhANjfPDQykyDci0oo6pgAQSi0rIFG6GgKXjv6I2MH
-	 gdzFXUnnKsr2/BUg+eyKE6jWya5VOS+3vC3B5vbcpm+mtJX7JhWSbqB0GsvZ33DsY2
-	 Z2ZqY85Ox9GbTO8hPxYrmk5Th4sTkrvQlh7DqNxg=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3BCGqOdT033179
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 12 Dec 2023 10:52:24 -0600
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 12
- Dec 2023 10:52:23 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 12 Dec 2023 10:52:24 -0600
-Received: from localhost (reidt-hp-z2.dhcp.ti.com [128.247.81.215])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3BCGqN6T037633;
-	Tue, 12 Dec 2023 10:52:23 -0600
-Date: Tue, 12 Dec 2023 10:52:23 -0600
-From: reidt <reidt@ti.com>
-To: Neha Malcom Francis <n-francis@ti.com>
-CC: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <a-nandan@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <eblanc@baylibre.com>, <jneanne@baylibre.com>,
-        <aseketeli@baylibre.com>, <jpanis@baylibre.com>, <u-kumar1@ti.com>,
-        <j-luthra@ti.com>, <vaishnav.a@ti.com>, <hnagalla@ti.com>,
-        <devarsht@ti.com>
-Subject: Re: [PATCH v10 1/7] arm64: dts: ti: k3-j7200-som-p0: Add TP6594
- family PMICs
-Message-ID: <20231212165223.lowflzvrut6yxtgy@reidt-HP-Z2>
-References: <20231208114919.3429562-1-n-francis@ti.com>
- <20231208114919.3429562-2-n-francis@ti.com>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA5357A221;
+	Tue, 12 Dec 2023 16:54:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2221C433C7;
+	Tue, 12 Dec 2023 16:54:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702400063;
+	bh=h1eNwF1ukAZwGMPIsPczsxbRoYecqddxkA6L6AgPQ40=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BMFKjM8eqWRvgFjaSMtjvAgNnbCdSjJ5AL09SNEdeNnKdGEiFZHRNQFcY4Cle8CM0
+	 xMVLCvmHkXv0+75ziNGrHpkotS1vIivnxNmrl1cIRskaXBIB/Nyv4+ZBI89kfc3SJn
+	 CpMtXmMaR2aKMT9AzanuKoR4flQNcHnLlVnRUx6Qn65lU05s7+nLvAhBZx4pVlOIp9
+	 AjJhN+dy9SoCkaq9JBISMucJqxz0YNj95guhsLpYJZHPYQVUhEcLwitBFxFhFGtr4j
+	 HBlUka5Vws4HkuMZhZn8gM2B3AnOMwXl4R8hMhDLosVTCe03UWw78dZ49/LsBnReeJ
+	 toAdT3vgidNPw==
+Date: Tue, 12 Dec 2023 16:54:17 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+	Support Opensource <support.opensource@diasemi.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	Steve Twiss <stwiss.opensource@diasemi.com>,
+	"linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	"biju.das.au" <biju.das.au@gmail.com>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH v5 8/8] dt-bindings: mfd: dlg,da9063: Convert da9062 to
+ json-schema
+Message-ID: <20231212-enrich-borax-7943611e2586@spud>
+References: <20231210134717.94020-1-biju.das.jz@bp.renesas.com>
+ <20231210134717.94020-9-biju.das.jz@bp.renesas.com>
+ <20231211-dissuade-skirt-5961ef525497@spud>
+ <TYCPR01MB112697AA2A3BC9F58C7BF4B67868FA@TYCPR01MB11269.jpnprd01.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="AApjMWf173swIuM7"
 Content-Disposition: inline
-In-Reply-To: <20231208114919.3429562-2-n-francis@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <TYCPR01MB112697AA2A3BC9F58C7BF4B67868FA@TYCPR01MB11269.jpnprd01.prod.outlook.com>
 
-On 17:19-20231208, Neha Malcom Francis wrote:
-> From: Esteban Blanc <eblanc@baylibre.com>
-> 
-> This patch adds support for TPS6594 PMIC family on wakup I2C0 bus.
-> Theses devices provides regulators (bucks and LDOs), but also
-> GPIOs, a RTC, a watchdog, an ESM (Error Signal Monitor)
-> which monitors the SoC error output signal, and a PFSM
-> (Pre-configurable Finite State Machine) which manages the
-> operational modes of the PMIC.
-> 
-> Signed-off-by: Esteban Blanc <eblanc@baylibre.com>
-> Signed-off-by: Jai Luthra <j-luthra@ti.com>
-> Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
-> ---
 
-Reviewed-by: Reid Tonking <reidt@ti.com>
+--AApjMWf173swIuM7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->  arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi | 153 ++++++++++++++++++++
->  1 file changed, 153 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-> index 5a300d4c8ba0..ea47f10d393a 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-> @@ -127,6 +127,14 @@ J721E_WKUP_IOPAD(0x9c, PIN_INPUT_PULLUP, 0) /* (H21) WKUP_I2C0_SDA */
->  	};
->  };
->  
-> +&wkup_pmx3 {
-> +	pmic_irq_pins_default: pmic-irq-default-pins {
-> +		pinctrl-single,pins = <
-> +			J721E_WKUP_IOPAD(0x01c, PIN_INPUT, 7) /* (E18) WKUP_GPIO0_84 */
-> +		>;
-> +	};
-> +};
-> +
->  &main_pmx0 {
->  	main_i2c0_pins_default: main-i2c0-default-pins {
->  		pinctrl-single,pins = <
-> @@ -264,6 +272,151 @@ eeprom@50 {
->  		compatible = "atmel,24c256";
->  		reg = <0x50>;
->  	};
-> +
-> +	tps659414: pmic@48 {
-> +		compatible = "ti,tps6594-q1";
-> +		reg = <0x48>;
-> +		system-power-controller;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pmic_irq_pins_default>;
-> +		interrupt-parent = <&wkup_gpio0>;
-> +		interrupts = <84 IRQ_TYPE_EDGE_FALLING>;
-> +		gpio-controller;
-> +		#gpio-cells = <2>;
-> +		ti,primary-pmic;
-> +		buck1-supply = <&vsys_3v3>;
-> +		buck2-supply = <&vsys_3v3>;
-> +		buck3-supply = <&vsys_3v3>;
-> +		buck4-supply = <&vsys_3v3>;
-> +		buck5-supply = <&vsys_3v3>;
-> +		ldo1-supply = <&vsys_3v3>;
-> +		ldo2-supply = <&vsys_3v3>;
-> +		ldo3-supply = <&vsys_3v3>;
-> +		ldo4-supply = <&vsys_3v3>;
-> +
-> +		regulators {
-> +			bucka1: buck1 {
-> +				regulator-name = "vda_mcu_1v8";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			bucka2: buck2 {
-> +				regulator-name = "vdd_mcuio_1v8";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			bucka3: buck3 {
-> +				regulator-name = "vdd_mcu_0v85";
-> +				regulator-min-microvolt = <850000>;
-> +				regulator-max-microvolt = <850000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			bucka4: buck4 {
-> +				regulator-name = "vdd_ddr_1v1";
-> +				regulator-min-microvolt = <1100000>;
-> +				regulator-max-microvolt = <1100000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			bucka5: buck5 {
-> +				regulator-name = "vdd_phyio_1v8";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldoa1: ldo1 {
-> +				regulator-name = "vdd1_lpddr4_1v8";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldoa2: ldo2 {
-> +				regulator-name = "vda_dll_0v8";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <800000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldoa3: ldo3 {
-> +				regulator-name = "vdd_wk_0v8";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <800000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldoa4: ldo4 {
-> +				regulator-name = "vda_pll_1v8";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +		};
-> +	};
-> +
-> +	lp876441: pmic@4c {
-> +		compatible = "ti,lp8764-q1";
-> +		reg = <0x4c>;
-> +		system-power-controller;
-> +		interrupt-parent = <&wkup_gpio0>;
-> +		interrupts = <84 IRQ_TYPE_EDGE_FALLING>;
-> +		gpio-controller;
-> +		#gpio-cells = <2>;
-> +		buck1-supply = <&vsys_3v3>;
-> +		buck2-supply = <&vsys_3v3>;
-> +		buck3-supply = <&vsys_3v3>;
-> +		buck4-supply = <&vsys_3v3>;
-> +
-> +		regulators: regulators {
-> +			buckb1: buck1 {
-> +				regulator-name = "vdd_cpu_avs";
-> +				regulator-min-microvolt = <600000>;
-> +				regulator-max-microvolt = <900000>;
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				bootph-pre-ram;
-> +			};
-> +
-> +			buckb2: buck2 {
-> +				regulator-name = "vdd_ram_0v85";
-> +				regulator-min-microvolt = <850000>;
-> +				regulator-max-microvolt = <850000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			buckb3: buck3 {
-> +				regulator-name = "vdd_core_0v85";
-> +				regulator-min-microvolt = <850000>;
-> +				regulator-max-microvolt = <850000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			buckb4: buck4 {
-> +				regulator-name = "vdd_io_1v8";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +		};
-> +	};
->  };
->  
->  &ospi0 {
-> -- 
-> 2.34.1
-> 
-> 
+On Mon, Dec 11, 2023 at 06:51:14PM +0000, Biju Das wrote:
+> Hi Conor Dooley,
+>=20
+> Thanks for the feedback.
+>=20
+> > -----Original Message-----
+> > From: Conor Dooley <conor@kernel.org>
+> > Sent: Monday, December 11, 2023 6:38 PM
+> > Subject: Re: [PATCH v5 8/8] dt-bindings: mfd: dlg,da9063: Convert da9062
+> > to json-schema
+> >=20
+> > On Sun, Dec 10, 2023 at 01:47:17PM +0000, Biju Das wrote:
+> > > Convert the da9062 PMIC device tree binding documentation to json-
+> > schema.
+> > >
+> > > Document the missing gpio child node for da9062.
+> > >
+> > > While at it, update description with link to product information and
+> > > example.
+> > >
+> > > The missing child node with of_compatible defined in MFD_CELL_OF is
+> > > causing the below warning message:
+> > > da9062-gpio: Failed to locate of_node [id: -1]
+> > >
+> > > So, make all child nodes with of_compatible defined in struct mfd_cell
+> > > as required property for da906{1,2} devices.
+> >=20
+> > > +  gpio-controller: true
+> > > +
+> > > +  "#gpio-cells":
+> > > +    const: 2
+> > > +
+> > > +  gpio:
+> > > +    type: object
+> > > +    additionalProperties: false
+> > > +    properties:
+> > > +      compatible:
+> > > +        const: dlg,da9062-gpio
+> >=20
+> > > +  - |
+> > > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > > +    #include <dt-bindings/regulator/dlg,da9063-regulator.h>
+> > > +    i2c {
+> > > +      #address-cells =3D <1>;
+> > > +      #size-cells =3D <0>;
+> > > +      pmic@58 {
+> > > +        compatible =3D "dlg,da9062";
+> > > +        reg =3D <0x58>;
+> > > +        gpio-controller;
+> > > +        #gpio-cells =3D <2>;
+> >=20
+> > > +        gpio {
+> > > +          compatible =3D "dlg,da9062-gpio";
+> > > +        };
+> >=20
+> > I know you had some conversation with Krzysztof, but I still don;t real=
+ly
+> > follow this. Why is the parent, rather than the child, the one that gets
+> > the "gpio-controller" and "#gpio-cells" properties? The commit message
+> > just mentions why missing child node was added, but not the reason for =
+the
+> > gpio properties being added at what appears to be the "wrong" level.
+>=20
+>=20
+> Please see [1], The driver is checking against parent "gpio-controller"
+>=20
+> [1] https://elixir.bootlin.com/linux/v6.0-rc4/source/drivers/pinctrl/pinc=
+trl-da9062.c#L270
+
+I would appreciate if you could note in your commit message the
+rationale behind the strange setup. Citing the existing driver users etc
+would be helpful.
+
+Thanks,
+Conor.
+
+--AApjMWf173swIuM7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZXiQOQAKCRB4tDGHoIJi
+0rh4AP9s+Bmcr/KyPluXcEi2EtRA6eePFmH6Mq5j3SFKasEY5gEAlGa4LQlVue+w
+FEKTSM6GPxE3wSMv7j6CkqL8+egPXgM=
+=G9hA
+-----END PGP SIGNATURE-----
+
+--AApjMWf173swIuM7--
 
