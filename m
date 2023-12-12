@@ -1,221 +1,151 @@
-Return-Path: <devicetree+bounces-24121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24122-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0485F80E20D
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 03:45:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7228B80E210
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 03:46:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7A401B2153A
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 02:45:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A32521C21668
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 02:46:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97B1D1FC5;
-	Tue, 12 Dec 2023 02:45:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81B4565A;
+	Tue, 12 Dec 2023 02:46:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NluAA8zP"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="UVa+02L9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D9D0B5;
-	Mon, 11 Dec 2023 18:45:01 -0800 (PST)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BC1d3UL013078;
-	Tue, 12 Dec 2023 02:44:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=JrEO67lajTGW8YcWpp+GMjeHTeTZ0xsoLSkntHgPSUQ=; b=Nl
-	uAA8zPyZvy0vxBTwUc4ZAbPyG4cf2R9b4ZTrdWSsihsPXT7s/Fv2N8K8mlV1j/Sp
-	FczTVwhib+4J8R56Ifdw7bRzMvlL/YhDjUPJkVjwjy5FPkuGx9dF6YdBm99XMVwa
-	Olo2gElwjsa8ofC/78vBZezTzOynqPnNpVtDtyIpxpTl+F3H/10WH+hG9LLxMDjw
-	uJw7IQ3p62kgCDQl/GG27wPZyFbQt8iGFP3AsUug8oT1yXBNfPtZOoqLH0ouGToP
-	fxHp7kjtS+bCrU2IHeerjjw/s6tXCzgUw8/AFYnt/G/ZQ3PNym/cqc0QlQxhkeFt
-	1cgDRitYLmkA7+6MSTSQ==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uxa8jgh68-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 12 Dec 2023 02:44:57 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BC2iujs030930
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 12 Dec 2023 02:44:56 GMT
-Received: from [10.47.206.1] (10.49.16.6) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 11 Dec
- 2023 18:44:53 -0800
-Message-ID: <e1ea82cb-e812-9a1e-3c4d-7f468f5069e9@quicinc.com>
-Date: Mon, 11 Dec 2023 18:44:52 -0800
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4411CB0;
+	Mon, 11 Dec 2023 18:46:25 -0800 (PST)
+X-UUID: a0b03ce2989811eea5db2bebc7c28f94-20231212
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=jLDmhsPfiX/JLquACpmKBR/nE79QP3C6Hd9UyNn77cs=;
+	b=UVa+02L9afdXl7xiN7cNWbe4XkcE3VJLuYbGW+zLynSvXGgQn6t7qUHio9V8p9riJiwOHr03G5/GcsMfXXkveGmbua4+xAmTARQVU3x8HnC1wit81uStrek8EkRPGmTAETZYOipJV+ja3e+ds6/lUiZF/DiF+wpT1XOTImv5eDg=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.35,REQID:1bf28d4c-617b-41bc-81fe-f09e849c2ac0,IP:0,U
+	RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+	N:release,TS:-25
+X-CID-META: VersionHash:5d391d7,CLOUDID:6f5910bd-2ac7-4da2-9f94-677a477649d9,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+	DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-UUID: a0b03ce2989811eea5db2bebc7c28f94-20231212
+Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw01.mediatek.com
+	(envelope-from <yong.wu@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 199006210; Tue, 12 Dec 2023 10:46:19 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Tue, 12 Dec 2023 10:46:17 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Tue, 12 Dec 2023 10:46:16 +0800
+From: Yong Wu <yong.wu@mediatek.com>
+To: Rob Herring <robh+dt@kernel.org>, Sumit Semwal <sumit.semwal@linaro.org>,
+	<christian.koenig@amd.com>, Matthias Brugger <matthias.bgg@gmail.com>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+	Brian Starkey <Brian.Starkey@arm.com>, John Stultz <jstultz@google.com>,
+	<tjmercier@google.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Yong Wu <yong.wu@mediatek.com>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-media@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+	<linaro-mm-sig@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>, <jianjiao.zeng@mediatek.com>,
+	<kuohong.wang@mediatek.com>, Vijayanand Jitta <quic_vjitta@quicinc.com>,
+	Joakim Bech <joakim.bech@linaro.org>, Jeffrey Kardatzke
+	<jkardatzke@google.com>, Nicolas Dufresne <nicolas@ndufresne.ca>,
+	<ckoenig.leichtzumerken@gmail.com>
+Subject: [PATCH v3 0/7] dma-buf: heaps: Add secure heap
+Date: Tue, 12 Dec 2023 10:46:00 +0800
+Message-ID: <20231212024607.3681-1-yong.wu@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 3/4] regulator: qcom-rpmh: add support for pm8010
- regulators
-Content-Language: en-US
-To: <quic_fenglinw@quicinc.com>, Andy Gross <agross@kernel.org>,
-        "Bjorn
- Andersson" <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        "Rob
- Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, <kernel@quicinc.com>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <quic_subbaram@quicinc.com>,
-        <quic_jprakash@quicinc.com>
-References: <20231211-pm8010-regulator-v1-0-571e05fb4ecc@quicinc.com>
- <20231211-pm8010-regulator-v1-3-571e05fb4ecc@quicinc.com>
-From: David Collins <quic_collinsd@quicinc.com>
-In-Reply-To: <20231211-pm8010-regulator-v1-3-571e05fb4ecc@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: U6pyP53BWKuClDFlxFWERVMTcPo_TH4_
-X-Proofpoint-ORIG-GUID: U6pyP53BWKuClDFlxFWERVMTcPo_TH4_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
- impostorscore=0 clxscore=1015 phishscore=0 spamscore=0 mlxscore=0
- lowpriorityscore=0 bulkscore=0 adultscore=0 priorityscore=1501
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2312120021
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
 
-On 12/10/23 19:17, Fenglin Wu via B4 Relay wrote:
-> From: Fenglin Wu <quic_fenglinw@quicinc.com>
-> 
-> Add RPMH regulators exposed by Qualcomm Technologies, Inc. PM8010
-> PMIC. It has 7 LDOs with 3 different types, LDO1 - LDO2 are L502
-> NMOS LDOs, LDO5 and LDO7 are L502 PMOS LDOs, LDO3/LDO4/LDO6 are
-> L502 PMOS LDO for low noise applications. Also, LDO3 - LDO7 don't
-> support LPM.
-> 
-> Suggested-by: David Collins <quic_collinsd@quicinc.com>
-> Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
+This patchset is for secure video playback and enables other potential
+uses in the future. The 'secure dma-heap' will be used to allocate dma_buf
+objects that reference memory in the secure world that is inaccessible/
+unmappable by the non-secure (i.e.kernel/userspace) world.  That memory
+will be used by the secure world to store secure information (i.e.
+decrypted media content). The dma_bufs allocated from the kernel will be
+passed to V4L2 for video decoding (as input and output). They will also be
+used by the drm system for rendering of the content.
 
-Reviewed-by: David Collins <quic_collinsd@quicinc.com>
+This patchset adds two secure heaps and they will be used v4l2[1] and drm[2].
+1) secure_mtk_cm: secure chunk memory for MediaTek SVP (Secure Video Path).
+   The buffer is reserved for the secure world after bootup and it is used
+   for vcodec's ES/working buffer;
+2) secure_mtk_cma: secure CMA memory for MediaTek SVP. This buffer is
+   dynamically reserved for the secure world and will be got when we start
+   playing secure videos, Once the security video playing is complete, the
+   CMA will be released. This heap is used for the vcodec's frame buffer.
 
+[1] https://lore.kernel.org/linux-mediatek/20231206081538.17056-1-yunfei.dong@mediatek.com/
+[2] https://lore.kernel.org/linux-mediatek/20231023044549.21412-1-jason-jh.lin@mediatek.com/
 
-> ---
->  drivers/regulator/qcom-rpmh-regulator.c | 62 +++++++++++++++++++++++++++++++++
->  1 file changed, 62 insertions(+)
-> 
-> diff --git a/drivers/regulator/qcom-rpmh-regulator.c b/drivers/regulator/qcom-rpmh-regulator.c
-> index 43b45feb02e6..80e304711345 100644
-> --- a/drivers/regulator/qcom-rpmh-regulator.c
-> +++ b/drivers/regulator/qcom-rpmh-regulator.c
-> @@ -511,6 +511,14 @@ static const int pmic_mode_map_pmic5_ldo[REGULATOR_MODE_STANDBY + 1] = {
->  	[REGULATOR_MODE_FAST]    = -EINVAL,
->  };
->  
-> +static const int pmic_mode_map_pmic5_ldo_hpm[REGULATOR_MODE_STANDBY + 1] = {
+Change note:
+v3: Base on v6.7-rc1.
+    1) Separate the secure heap into a common file(secure_heap.c) and a mtk special file
+       (secure_heap_mtk.c), and put all tee related code into our special file.
+    2) About dt-binding,
+       a) Add "mediatek," prefix since this is Mediatek TEE firmware definition.
+       b) Mute dt-binding check waring.
+    3) Remove the normal CMA heap which is a draft for qcom.
 
-Minor: This is fine as-is.  However, it might be a bit better with the
-name: "pmic_mode_map_pmic5_ldo_hpm_only".
+v2: https://lore.kernel.org/linux-mediatek/20231111111559.8218-1-yong.wu@mediatek.com/
+    1) Move John's patches into the vcodec patchset since they use the new
+       dma heap interface directly.
+       https://lore.kernel.org/linux-mediatek/20231106120423.23364-1-yunfei.dong@mediatek.com/
+    2) Reword the dt-binding description.
+    3) Rename the heap name from mtk_svp to secure_mtk_cm.
+       This means the current vcodec/DRM upstream code doesn't match this.
+    4) Add a normal CMA heap. currently it should be a draft version.
+    5) Regarding the UUID, I still use hard code, but put it in a private
+    data which allow the others could set their own UUID. What's more, UUID
+    is necessary for the session with TEE. If we don't have it, we can't
+    communicate with the TEE, including the get_uuid interface, which tries
+    to make uuid more generic, not working. If there is other way to make
+    UUID more general, please free to tell me.
+    
+v1: https://lore.kernel.org/linux-mediatek/20230911023038.30649-1-yong.wu@mediatek.com/
+    Base on v6.6-rc1.
 
+Yong Wu (7):
+  dt-bindings: reserved-memory: Add mediatek,dynamic-secure-region
+  dma-buf: heaps: Initialize a secure heap
+  dma-buf: heaps: secure_heap: Add private heap ops
+  dma-buf: heaps: secure_heap: Add dma_ops
+  dma-buf: heaps: secure_heap: Add MediaTek secure heap and heap_init
+  dma-buf: heaps: secure_heap_mtk: Add tee memory service call
+  dma_buf: heaps: secure_heap_mtk: Add a new CMA heap
 
-> +	[REGULATOR_MODE_INVALID] = -EINVAL,
-> +	[REGULATOR_MODE_STANDBY] = -EINVAL,
-> +	[REGULATOR_MODE_IDLE]    = -EINVAL,
-> +	[REGULATOR_MODE_NORMAL]  = PMIC5_LDO_MODE_HPM,
-> +	[REGULATOR_MODE_FAST]    = -EINVAL,
-> +};
-> +
->  static unsigned int rpmh_regulator_pmic4_ldo_of_map_mode(unsigned int rpmh_mode)
->  {
->  	unsigned int mode;
-> @@ -733,6 +741,33 @@ static const struct rpmh_vreg_hw_data pmic5_pldo515_mv = {
->  	.of_map_mode = rpmh_regulator_pmic4_ldo_of_map_mode,
->  };
->  
-> +static const struct rpmh_vreg_hw_data pmic5_pldo502 = {
-> +	.regulator_type = VRM,
-> +	.ops = &rpmh_regulator_vrm_ops,
-> +	.voltage_ranges = (struct linear_range[]) {
-> +		REGULATOR_LINEAR_RANGE(1504000, 0, 255, 8000),
-> +	},
-> +	.n_linear_ranges = 1,
-> +	.n_voltages = 256,
-> +	.pmic_mode_map = pmic_mode_map_pmic5_ldo_hpm,
-> +	.of_map_mode = rpmh_regulator_pmic4_ldo_of_map_mode,
-> +};
-> +
-> +static const struct rpmh_vreg_hw_data pmic5_pldo502ln = {
-> +	.regulator_type = VRM,
-> +	.ops = &rpmh_regulator_vrm_ops,
-> +	.voltage_ranges = (struct linear_range[]) {
-> +		REGULATOR_LINEAR_RANGE(1800000, 0,  2,  200000),
-> +		REGULATOR_LINEAR_RANGE(2608000, 3,  28, 16000),
-> +		REGULATOR_LINEAR_RANGE(3104000, 29, 30, 96000),
-> +		REGULATOR_LINEAR_RANGE(3312000, 31, 31, 0),
-> +	},
-> +	.n_linear_ranges = 4,
-> +	.n_voltages = 32,
-> +	.pmic_mode_map = pmic_mode_map_pmic5_ldo_hpm,
-> +	.of_map_mode = rpmh_regulator_pmic4_ldo_of_map_mode,
-> +};
-> +
->  static const struct rpmh_vreg_hw_data pmic5_nldo = {
->  	.regulator_type = VRM,
->  	.ops = &rpmh_regulator_vrm_drms_ops,
-> @@ -759,6 +794,19 @@ static const struct rpmh_vreg_hw_data pmic5_nldo515 = {
->  	.of_map_mode = rpmh_regulator_pmic4_ldo_of_map_mode,
->  };
->  
-> +static const struct rpmh_vreg_hw_data pmic5_nldo502 = {
-> +	.regulator_type = VRM,
-> +	.ops = &rpmh_regulator_vrm_drms_ops,
-> +	.voltage_ranges = (struct linear_range[]) {
-> +		REGULATOR_LINEAR_RANGE(528000, 0, 127, 8000),
-> +	},
-> +	.n_linear_ranges = 1,
-> +	.n_voltages = 128,
-> +	.hpm_min_load_uA = 30000,
-> +	.pmic_mode_map = pmic_mode_map_pmic5_ldo,
-> +	.of_map_mode = rpmh_regulator_pmic4_ldo_of_map_mode,
-> +};
-> +
->  static const struct rpmh_vreg_hw_data pmic5_hfsmps510 = {
->  	.regulator_type = VRM,
->  	.ops = &rpmh_regulator_vrm_ops,
-> @@ -1210,6 +1258,16 @@ static const struct rpmh_vreg_init_data pm8009_1_vreg_data[] = {
->  	{}
->  };
->  
-> +static const struct rpmh_vreg_init_data pm8010_vreg_data[] = {
-> +	RPMH_VREG("ldo1",   "ldo%s1",  &pmic5_nldo502,   "vdd-l1-l2"),
-> +	RPMH_VREG("ldo2",   "ldo%s2",  &pmic5_nldo502,   "vdd-l1-l2"),
-> +	RPMH_VREG("ldo3",   "ldo%s3",  &pmic5_pldo502ln, "vdd-l3-l4"),
-> +	RPMH_VREG("ldo4",   "ldo%s4",  &pmic5_pldo502ln, "vdd-l3-l4"),
-> +	RPMH_VREG("ldo5",   "ldo%s5",  &pmic5_pldo502,   "vdd-l5"),
-> +	RPMH_VREG("ldo6",   "ldo%s6",  &pmic5_pldo502ln, "vdd-l6"),
-> +	RPMH_VREG("ldo7",   "ldo%s7",  &pmic5_pldo502,   "vdd-l7"),
-> +};
-> +
->  static const struct rpmh_vreg_init_data pm6150_vreg_data[] = {
->  	RPMH_VREG("smps1",  "smp%s1",  &pmic5_ftsmps510, "vdd-s1"),
->  	RPMH_VREG("smps2",  "smp%s2",  &pmic5_ftsmps510, "vdd-s2"),
-> @@ -1525,6 +1583,10 @@ static const struct of_device_id __maybe_unused rpmh_regulator_match_table[] = {
->  		.compatible = "qcom,pm8009-1-rpmh-regulators",
->  		.data = pm8009_1_vreg_data,
->  	},
-> +	{
-> +		.compatible = "qcom,pm8010-rpmh-regulators",
-> +		.data = pm8010_vreg_data,
-> +	},
->  	{
->  		.compatible = "qcom,pm8150-rpmh-regulators",
->  		.data = pm8150_vreg_data,
-> 
+ .../mediatek,dynamic-secure-region.yaml       |  43 +++
+ drivers/dma-buf/heaps/Kconfig                 |  13 +
+ drivers/dma-buf/heaps/Makefile                |   2 +
+ drivers/dma-buf/heaps/secure_heap.c           | 234 +++++++++++++
+ drivers/dma-buf/heaps/secure_heap.h           |  43 +++
+ drivers/dma-buf/heaps/secure_heap_mtk.c       | 321 ++++++++++++++++++
+ 6 files changed, 656 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/reserved-memory/mediatek,dynamic-secure-region.yaml
+ create mode 100644 drivers/dma-buf/heaps/secure_heap.c
+ create mode 100644 drivers/dma-buf/heaps/secure_heap.h
+ create mode 100644 drivers/dma-buf/heaps/secure_heap_mtk.c
+
+-- 
+2.18.0
+
 
 
