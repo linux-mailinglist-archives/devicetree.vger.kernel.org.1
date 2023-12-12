@@ -1,37 +1,37 @@
-Return-Path: <devicetree+bounces-24433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24436-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5472480F302
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 17:35:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 581FD80F309
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 17:35:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 860B71C20F27
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 16:35:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0EEBC1F211A2
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 16:35:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FBC67A203;
-	Tue, 12 Dec 2023 16:35:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67D317A23B;
+	Tue, 12 Dec 2023 16:35:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="eAcAYqpz"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Vy3ckR3V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E048011F;
-	Tue, 12 Dec 2023 08:35:37 -0800 (PST)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id EAA3CFF805;
-	Tue, 12 Dec 2023 16:35:35 +0000 (UTC)
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 307EA110;
+	Tue, 12 Dec 2023 08:35:38 -0800 (PST)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id A83564000F;
+	Tue, 12 Dec 2023 16:35:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1702398936;
+	t=1702398937;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=hweC77A4qTiukJmzDsKWoV1ZESOCwoXMkWKMnWM/4uQ=;
-	b=eAcAYqpzCyJ6Pgu0gB32DTZHOIYSBLAyhc646XLgwPTGHNzKongQHmhlVesMLH0SsgyT+J
-	nsQSuadYTIlRbwtM97Bj/47XIURU5ssOyakg6ujAVKxiCAbumXK9LL0AQ0V80IKgoVVduk
-	rK7SOEQDgi7+w3m5U59cs3E6AEg2AVPUkrQs2jsCpTX/8mM1gEzA9J9Vg3HyydvqexJ/cD
-	mGDXL+5dScpK9HK8HQ6i/laAQCSAcMFmH8Ve8+EcWdzx6Wzlr9LiaivdspI8FX0yz1R2Pg
-	D7r+S72+4wEgj/aUMuidO4v0unvHtnh5ltu9kYdbsgEGPpatgyWSYxEdXY5Epw==
+	bh=/+KygOxw7upzFkFkKPQuC0aojbbTgfulc0YH1c5kUVo=;
+	b=Vy3ckR3VwxVy0nDMIHY7AbZzMDkQZukS+BXdEbip5cfNtQrRqzzJidZAC9WKKRjuPI/7FV
+	WDmR1yOTMW2lvj9umhgtO/iiHhcw/MnCB2tpgiCz0rZZfB1lej3l0JdMPmcPj3uK+D/zip
+	q5fp30z/i10h9oIXr5cyzoX9S/T4WRUMKyMZ4rNM9Hc6X+CgUJotDjQCMSzDvuflElwkpW
+	vQKyT+aYfcLEW/0qwup9Y1qKS6nEmeasmEtPXC5XHWbh52z0Eqrkohnt7Ivk4mwoGoruMu
+	LggSuEKd9Gw8mOy8aD7D8ZRqucPweJaFGt1vjDa7o7ZSQXrhxJ1u/0u8csVeYg==
 From: Gregory CLEMENT <gregory.clement@bootlin.com>
 To: Paul Burton <paulburton@kernel.org>,
 	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
@@ -47,11 +47,13 @@ Cc: Vladimir  Kondratiev <vladimir.kondratiev@mobileye.com>,
 	=?UTF-8?q?Th=C3=A9o=20Lebrun?= <theo.lebrun@bootlin.com>,
 	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
 	Gregory CLEMENT <gregory.clement@bootlin.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	=?UTF-8?q?Philippe=20Mathieu-Daud=C3=A9?= <philmd@linaro.org>,
 	Serge Semin <fancer.lancer@gmail.com>,
 	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v5 15/22] dt-bindings: mips: cpus: Sort the entries
-Date: Tue, 12 Dec 2023 17:34:47 +0100
-Message-ID: <20231212163459.1923041-16-gregory.clement@bootlin.com>
+Subject: [PATCH v5 16/22] dt-bindings: mips: cpu: Add I-Class I6500 Multiprocessor Core
+Date: Tue, 12 Dec 2023 17:34:48 +0100
+Message-ID: <20231212163459.1923041-17-gregory.clement@bootlin.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20231212163459.1923041-1-gregory.clement@bootlin.com>
 References: <20231212163459.1923041-1-gregory.clement@bootlin.com>
@@ -61,52 +63,34 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-GND-Sasl: gregory.clement@bootlin.com
 
-The entries were nearly sorted but there were still some entries at
-the wrong places. Let's fix it.
+The MIPS Warrior I-class I6500 was announced by Imagination
+Technologies in 2016 and is used in the Mobileye SoC EyeQ5.
 
+Acked-by: Arnd Bergmann <arnd@arndb.de>
+Reviewed-by: Philippe Mathieu-Daudé <philmd@linaro.org>
 Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
 ---
- Documentation/devicetree/bindings/mips/cpus.yaml | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ Documentation/devicetree/bindings/mips/cpus.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
 diff --git a/Documentation/devicetree/bindings/mips/cpus.yaml b/Documentation/devicetree/bindings/mips/cpus.yaml
-index cf382dea3922c..9bc47868d28b6 100644
+index 9bc47868d28b6..a85137add6689 100644
 --- a/Documentation/devicetree/bindings/mips/cpus.yaml
 +++ b/Documentation/devicetree/bindings/mips/cpus.yaml
-@@ -23,22 +23,22 @@ properties:
+@@ -23,6 +23,7 @@ properties:
        - brcm,bmips4380
        - brcm,bmips5000
        - brcm,bmips5200
--      - ingenic,xburst-mxu1.0
++      - img,i6500
        - ingenic,xburst-fpu1.0-mxu1.1
        - ingenic,xburst-fpu2.0-mxu2.0
-+      - ingenic,xburst-mxu1.0
-       - ingenic,xburst2-fpu2.1-mxu2.1-smt
-       - loongson,gs264
-       - mips,m14Kc
--      - mips,mips4Kc
--      - mips,mips4KEc
--      - mips,mips24Kc
-+      - mips,mips1004Kc
-       - mips,mips24KEc
-+      - mips,mips24Kc
-+      - mips,mips4KEc
-+      - mips,mips4Kc
-       - mips,mips74Kc
--      - mips,mips1004Kc
-       - mti,interaptiv
--      - mti,mips24KEc
-       - mti,mips14KEc
-       - mti,mips14Kc
-+      - mti,mips24KEc
- 
-   reg:
-     maxItems: 1
+       - ingenic,xburst-mxu1.0
 -- 
 2.42.0
 
