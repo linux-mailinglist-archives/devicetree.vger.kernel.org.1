@@ -1,41 +1,49 @@
-Return-Path: <devicetree+bounces-24534-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24536-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDB1780F7A8
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D148F80F7A9
 	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 21:16:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5DD36B20EB3
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 20:16:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B990281D8B
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 20:16:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 777B863BF8;
-	Tue, 12 Dec 2023 20:16:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8456863BF3;
+	Tue, 12 Dec 2023 20:16:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5CF9DB
-	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 12:16:23 -0800 (PST)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB69A98;
+	Tue, 12 Dec 2023 12:16:34 -0800 (PST)
 Received: from [194.95.143.137] (helo=phil.dip.tu-dresden.de)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1rD9Az-0006LK-Kb; Tue, 12 Dec 2023 21:16:21 +0100
+	id 1rD9B0-0006LK-2c; Tue, 12 Dec 2023 21:16:22 +0100
 From: Heiko Stuebner <heiko@sntech.de>
-To: Dragan Simic <dsimic@manjaro.org>,
-	linux-rockchip@lists.infradead.org
+To: hjc@rock-chips.com,
+	Johan Jonker <jbx6244@gmail.com>
 Cc: Heiko Stuebner <heiko@sntech.de>,
+	linux-rockchip@lists.infradead.org,
+	dri-devel@lists.freedesktop.org,
 	krzysztof.kozlowski+dt@linaro.org,
 	devicetree@vger.kernel.org,
+	tzimmermann@suse.de,
+	airlied@gmail.com,
 	robh+dt@kernel.org,
+	daniel@ffwll.ch,
+	maarten.lankhorst@linux.intel.com,
 	linux-arm-kernel@lists.infradead.org,
-	conor+dt@kernel.org
-Subject: Re: [PATCH 0/4] Remove ethernetX aliases from the SoC dtsi for RK3399, RK3368, RK3328 and PX30
-Date: Tue, 12 Dec 2023 21:16:17 +0100
-Message-Id: <170241214697.534713.17361998299651815805.b4-ty@sntech.de>
+	mripard@kernel.org,
+	conor+dt@kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH v1 1/3] dt-bindings: drm: rockchip: convert inno_hdmi-rockchip.txt to yaml
+Date: Tue, 12 Dec 2023 21:16:18 +0100
+Message-Id: <170241214695.534713.7214465445904239057.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1702366958.git.dsimic@manjaro.org>
-References: <cover.1702366958.git.dsimic@manjaro.org>
+In-Reply-To: <49c6afec-022f-02de-99a0-d409b64da198@gmail.com>
+References: <49c6afec-022f-02de-99a0-d409b64da198@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -45,28 +53,20 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-On Tue, 12 Dec 2023 08:53:47 +0100, Dragan Simic wrote:
-> Unlike for the I2C buses, GPIO lines and UARTs, the Rockchip SoC TRMs and
-> datasheets define no numbering for the built-in GMAC(s) or MAC(s), if there
-> are more than one found in the particular Rockchip SoC.
+On Mon, 4 Dec 2023 18:39:03 +0100, Johan Jonker wrote:
+> Convert inno_hdmi-rockchip.txt to yaml.
 > 
-> Moreover, not all boards or devices based on these SoCs actually use the
-> built-in GMAC(s) or MAC(s).  Thus, let's remove the ethernetX aliases from
-> the SoC dtsi files and add them back to the appropriate board and device
-> dts(i) files.  See also [1] for the initial discussion.
 > 
-> [...]
 
 Applied, thanks!
 
-[1/4] arm64: dts: rockchip: Remove ethernet0 alias from the SoC dtsi for RK3399
-      commit: 8030063ca9b019f9dfb90a654f557d8bb15a97a5
-[2/4] arm64: dts: rockchip: Remove ethernet0 alias from the SoC dtsi for RK3368
-      commit: 7aab60df473c70f74880267500884b12151b160b
-[3/4] arm64: dts: rockchip: Remove ethernetX aliases from the SoC dtsi for RK3328
-      commit: 20a9a7667af6b11b7369073d0186d9c92e52db04
-[4/4] arm64: dts: rockchip: Remove ethernet0 alias from the SoC dtsi for PX30
-      commit: a69907a915e4c15bf7e632cd324ec5c3e38c3afc
+[2/3] ARM: dts: rockchip: rk3036: fix hdmi ports node
+      commit: 27ded76ef0fcfcf939914532aae575cf23c221b4
+[3/3] ARM: dts: rockchip: rk3036-kylin: add hdmi-connector node
+      commit: 569b26af7919c15a8ce231b4fae29cfbd811f144
+
+And changed the connector-type to "a" :-)
+
 
 Best regards,
 -- 
