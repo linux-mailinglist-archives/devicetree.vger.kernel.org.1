@@ -1,199 +1,179 @@
-Return-Path: <devicetree+bounces-24372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24373-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 342FE80EE9D
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 15:25:08 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E581A80EEEB
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 15:37:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE90E1F215B1
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 14:25:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 86AD5B20E13
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 14:37:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E60D73183;
-	Tue, 12 Dec 2023 14:25:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A114745C1;
+	Tue, 12 Dec 2023 14:36:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="V20MR84v"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="GHScZKdA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A3328F;
-	Tue, 12 Dec 2023 06:25:00 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-40c32df9174so49272665e9.3;
-        Tue, 12 Dec 2023 06:25:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702391099; x=1702995899; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=wT+VDqG3XoXgaVhq1uWAJL5Mh+pcqg7vqqy6t8enn7o=;
-        b=V20MR84vVemiR/FcRW1Ta1fCSJSBef7Z3RrQw/uwmkjQRONcCIkEEaAWtNMGNuzM4v
-         pKriVuS2E0X0bFFMSujux8MNF/5MQibvU/zgC3/cevE7wHxoJi46+V/4ZpXuvDiFNnXK
-         ikXo17SQA+Ea9pCVuT9+e470Qw/0gHls62OV7C1k9XmHKKAlU2x6OrGVZXOePSnHWWBu
-         Hr6IyeJM+tJPUmyMxFLeXvnDTvZl5G5aWAsL82gjEmVrgfawQnjxtnERs+Wj49R4kq0X
-         +JcaIrsePWd91vfh/quHY0lKhodGdyvxcKCG6qx+62vatJV2x2fP72bfoj+eWQcOjkYZ
-         Y8gA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702391099; x=1702995899;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wT+VDqG3XoXgaVhq1uWAJL5Mh+pcqg7vqqy6t8enn7o=;
-        b=oWXc5Xy7R7YIjYyGM7L1c9mc++s0cR8bwN2DY5YQrgnGm0mVKhoKUp8iXRA+BiRUnN
-         3AiSQSW9EzwXUkE5xrw+3Ypxa5x1RkQxXIUjXuosgSo6xgzvkatl6tTbe+MXoDZqpE/T
-         YJ41z+/IpfWdw1kTMsFoXjMmOsKQXl5aGoeL/l/1p82ZyDwYza8+CJX2qpaiWtxBjIXo
-         /ixivpxdGU9ScZlOxDlidxyjM+0G6hvsKQFLok6fo6ouLzI3qY/6X4ZKnv2U1dVWhzo3
-         ol2WlHHwalaRzqdFDnd5RhMXqIrM1Et8r6xGgagupwcGoGswUl1s6vTLcrOkDu6RMK9R
-         cUcA==
-X-Gm-Message-State: AOJu0YzFXGR/2hfXej3Md77ILfhMph/pmEYrVzQHyqlrqAN5ahU1Q6Ga
-	8FzKXtHg4su5VP2Air0z7tE=
-X-Google-Smtp-Source: AGHT+IGH51NOBoO6nuzdx+4kZ9NNmSPNiBfBdJrzPHJq7wSmapSwkjPSMN4nDURa6XRgJ8ySn9n0Sw==
-X-Received: by 2002:a7b:cbcb:0:b0:40c:34f9:6c14 with SMTP id n11-20020a7bcbcb000000b0040c34f96c14mr2372738wmi.161.1702391098474;
-        Tue, 12 Dec 2023 06:24:58 -0800 (PST)
-Received: from ?IPv6:2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47? (p200300f6ef1b2000944ccbc71e1c2c47.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47])
-        by smtp.gmail.com with ESMTPSA id v6-20020a05600c444600b0040c4886f254sm6920056wmn.13.2023.12.12.06.24.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Dec 2023 06:24:58 -0800 (PST)
-Message-ID: <d190620900ceda6c2846f3828ee389da917a66e0.camel@gmail.com>
-Subject: Re: [PATCH v3 2/2] hwmon: ltc4282: add support for the LTC4282 chip
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Guenter Roeck <linux@roeck-us.net>, nuno.sa@analog.com
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-doc@vger.kernel.org, Jean Delvare <jdelvare@suse.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>
-Date: Tue, 12 Dec 2023 15:28:02 +0100
-In-Reply-To: <a0eb6cb4-b8af-4a6f-8888-fa18f8f1d188@roeck-us.net>
-References: <20231205-ltc4282-support-v3-0-e0877b281bc2@analog.com>
-	 <20231205-ltc4282-support-v3-2-e0877b281bc2@analog.com>
-	 <a0eb6cb4-b8af-4a6f-8888-fa18f8f1d188@roeck-us.net>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.2 
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4993BED;
+	Tue, 12 Dec 2023 06:36:51 -0800 (PST)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3BCEaeNx103930;
+	Tue, 12 Dec 2023 08:36:40 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1702391800;
+	bh=cACDINKX/NHaJbO2EEIFjsKsxwauenGaOvSIM4XU+YI=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=GHScZKdA1s4vcjIOBkAsB8Dz5SOs6uRPGA2J+b94vsI21fDtpG3UgzmNhGR2bLCDv
+	 GvZIGWKvpIDiuLMDJfVXKNPib5B8YSlK/cqZXgDqKRbEJrlEN0yPc5qSp3h1eAoQSu
+	 XmaKRLAcVJkq3LBzGyloS+ZbBr+PkgL7oFJ1DUOI=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3BCEaee8017392
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 12 Dec 2023 08:36:40 -0600
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 12
+ Dec 2023 08:36:40 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 12 Dec 2023 08:36:40 -0600
+Received: from [10.247.16.251] (ula0226330.dhcp.ti.com [10.247.16.251])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3BCEad2B063051;
+	Tue, 12 Dec 2023 08:36:39 -0600
+Message-ID: <5c92ae04-f8c3-40b4-a727-ac7ea5df4295@ti.com>
+Date: Tue, 12 Dec 2023 08:36:39 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] arm64: dts: ti: k3-j721e-evm: Add overlay for
+ PCIE0 Endpoint Mode
+Content-Language: en-US
+To: Siddharth Vadapalli <s-vadapalli@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <r-gunasekaran@ti.com>,
+        <srk@ti.com>
+References: <20231211115535.1264353-1-s-vadapalli@ti.com>
+ <20231211115535.1264353-2-s-vadapalli@ti.com>
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <20231211115535.1264353-2-s-vadapalli@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Mon, 2023-12-11 at 07:36 -0800, Guenter Roeck wrote:
-> On Tue, Dec 05, 2023 at 04:22:56PM +0100, Nuno Sa via B4 Relay wrote:
-> > From: Nuno Sa <nuno.sa@analog.com>
-> >=20
-> > The LTC4282 hot swap controller allows a board to be safely inserted an=
-d
-> > removed from a live backplane. Using one or more external N-channel pas=
-s
-> > transistors, board supply voltage and inrush current are ramped up at a=
-n
-> > adjustable rate. An I2C interface and onboard ADC allows for monitoring
-> > of board current, voltage, power, energy and fault status.
-> >=20
-> > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
-> > ---
-> > +
->=20
-> > +power1_good		Power considered good
->=20
-> I really don't like this attribute. Like the ones below it is non-standar=
-d
-> and invisible for standard applications. On top of that, I think it isn't
-> really related to "power" but to the output voltage. What does it actuall=
-y
-> report that isn't included in the FET faults ?
->=20
+On 12/11/23 5:55 AM, Siddharth Vadapalli wrote:
+> Add overlay to enable the PCIE0 instance of PCIe on J721E-EVM in
+> Endpoint mode of operation.
+> 
+> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> Reviewed-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
+> ---
+>   arch/arm64/boot/dts/ti/Makefile               |  6 ++-
+>   .../boot/dts/ti/k3-j721e-evm-pcie0-ep.dtso    | 53 +++++++++++++++++++
+>   2 files changed, 58 insertions(+), 1 deletion(-)
+>   create mode 100644 arch/arm64/boot/dts/ti/k3-j721e-evm-pcie0-ep.dtso
+> 
+> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+> index 1ac47876bc99..c6606b7678a3 100644
+> --- a/arch/arm64/boot/dts/ti/Makefile
+> +++ b/arch/arm64/boot/dts/ti/Makefile
+> @@ -67,6 +67,7 @@ k3-j721e-evm-dtbs := k3-j721e-common-proc-board.dtb k3-j721e-evm-quad-port-eth-e
+>   dtb-$(CONFIG_ARCH_K3) += k3-j721e-beagleboneai64.dtb
+>   dtb-$(CONFIG_ARCH_K3) += k3-j721e-evm.dtb
+>   dtb-$(CONFIG_ARCH_K3) += k3-j721e-evm-gesi-exp-board.dtbo
+> +dtb-$(CONFIG_ARCH_K3) += k3-j721e-evm-pcie0-ep.dtbo
 
-This is detected with the FB pin and a voltage divider (from the output
-voltage). Basically depending on the level of that pin, the chip indicate p=
-ower
-good or power bad. I was also very reluctant with this attribute (I mention=
- it
-in the v1 cover). This might not even indicate any misbehave. We also suppo=
-rt
-reporting this using the gpio1 pin (if we set it that way). So, I guess I c=
-an
-just drop this one and add support for it if we ever have a real usecase wh=
-ere I
-can actually justify having it :).
+See, much easier :)
 
-We already have the power_bad fault log in debugfs so I'm not sure if addin=
-g
-this one there adds much value.
+Reviewed-by: Andrew Davis <afd@ti.com>
 
->=20
-> > +fet_short_fault		FET short alarm
-> > +fet_bad_fault		FET bad alarm
->=20
-> Those attributes have little value since they are not standard attributes
-> and won't be seen by standard applications. On top of that, it is not cle=
-ar
-> (not documented) what the attribute actually reports. I assume it is
-> associated with the output voltage, i.e., in0, but that is just an
-> assumption.
->=20
-
-fet_short - This is one is detected if the ADC measures a current sense vol=
-tage
-> 0.25mv while the fet gate is off.
-
-fet_bad - Is set by monitoring the voltage at the gate and the drain to sou=
-rce
-voltage.
-
-These ones might indicate real issues with the HW so I thought they could b=
-e
-important...
-=20
-> What do you think about introducing a standard inX_fault attribute ?
-> It would not be as specific as short/bad, but I think it would be more
-> useful and we could add it to the ABI.
->=20
-
-It would be better than nothing. And we do have fault logs for both these
-failures so userspace could also use that to know exactly what was the issu=
-e. If
-that's ok with you, I would then report this in inX_fault? Did you had in m=
-ind
-putting this in in0 (vsource) or adding a new channel?
-
-In my first draft I had another voltage channel (label: VFET) to report the
-fet_bad condition. I was using the inX_crit or inX_lcrit but it felt bad so=
- I
-removed it...
-
-> > +fault_logs_reset	Clears all the Logged Faults
-
-> What exactly does that do that is user visible ?
-
-Well, this one is because in some configurations the chip won't enable the
-output load until you reset/clear the fault log keeping it from enabling th=
-e
-output.=C2=A0This is the comment I have in the code:
-
-"Fault log failures. These faults might be important in systems where auto-=
-retry
-is not enabled since they will cause the part to latch off until they are
-cleared. Typically that happens when the system admin is close enough so he=
- can
-check what happened and manually clear the faults. Moreover, manually clear=
-ing
-the faults might only matter when ON_FAULT_MASK in the CONTROL register is =
-set
-(which is the default) as in that case, a turn off signal from the ON pin w=
-on't
-clear them."
-
-In v1 I was allowing to clear fauls log individually and you recommended to=
- have
-an attribute to clear them all at once as that would simplify things.=C2=A0
-
-I just kept it in here because this might be important for the chip to work=
- as
-expected again so having it in debugfs might be weird.
-
-Thanks!
-- Nuno S=C3=A1
-
-
+>   dtb-$(CONFIG_ARCH_K3) += k3-j721e-sk.dtb
+>   
+>   # Boards with J721s2 SoC
+> @@ -103,6 +104,8 @@ k3-am642-tqma64xxl-mbax4xxl-sdcard-dtbs := \
+>   	k3-am642-tqma64xxl-mbax4xxl.dtb k3-am64-tqma64xxl-mbax4xxl-sdcard.dtbo
+>   k3-am642-tqma64xxl-mbax4xxl-wlan-dtbs := \
+>   	k3-am642-tqma64xxl-mbax4xxl.dtb k3-am64-tqma64xxl-mbax4xxl-wlan.dtbo
+> +k3-j721e-evm-pcie0-ep-dtbs := k3-j721e-common-proc-board.dtb \
+> +	k3-j721e-evm-pcie0-ep.dtbo
+>   dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
+>   	k3-am625-beagleplay-csi2-tevi-ov5640.dtb \
+>   	k3-am625-sk-csi2-imx219.dtb \
+> @@ -113,7 +116,8 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
+>   	k3-am62a7-sk-csi2-imx219.dtb \
+>   	k3-am62a7-sk-csi2-ov5640.dtb \
+>   	k3-am642-tqma64xxl-mbax4xxl-sdcard.dtb \
+> -	k3-am642-tqma64xxl-mbax4xxl-wlan.dtb
+> +	k3-am642-tqma64xxl-mbax4xxl-wlan.dtb \
+> +	k3-j721e-evm-pcie0-ep.dtb
+>   
+>   # Enable support for device-tree overlays
+>   DTC_FLAGS_k3-am625-beagleplay += -@
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-evm-pcie0-ep.dtso b/arch/arm64/boot/dts/ti/k3-j721e-evm-pcie0-ep.dtso
+> new file mode 100644
+> index 000000000000..0c82a13b65a4
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-evm-pcie0-ep.dtso
+> @@ -0,0 +1,53 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/**
+> + * DT Overlay for enabling PCIE0 instance in Endpoint Configuration with the
+> + * J7 common processor board.
+> + *
+> + * J7 Common Processor Board Product Link: https://www.ti.com/tool/J721EXCPXEVM
+> + *
+> + * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
+> + */
+> +
+> +/dts-v1/;
+> +/plugin/;
+> +
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/soc/ti,sci_pm_domain.h>
+> +
+> +#include "k3-pinctrl.h"
+> +
+> +/*
+> + * Since Root Complex and Endpoint modes are mutually exclusive
+> + * disable Root Complex mode.
+> + */
+> +&pcie0_rc {
+> +	status = "disabled";
+> +};
+> +
+> +&cbass_main {
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +	interrupt-parent = <&gic500>;
+> +
+> +	pcie0_ep: pcie-ep@2900000 {
+> +		compatible = "ti,j721e-pcie-ep";
+> +		reg = <0x00 0x02900000 0x00 0x1000>,
+> +		      <0x00 0x02907000 0x00 0x400>,
+> +		      <0x00 0x0d000000 0x00 0x00800000>,
+> +		      <0x00 0x10000000 0x00 0x08000000>;
+> +		reg-names = "intd_cfg", "user_cfg", "reg", "mem";
+> +		interrupt-names = "link_state";
+> +		interrupts = <GIC_SPI 318 IRQ_TYPE_EDGE_RISING>;
+> +		ti,syscon-pcie-ctrl = <&scm_conf 0x4070>;
+> +		max-link-speed = <3>;
+> +		num-lanes = <1>;
+> +		power-domains = <&k3_pds 239 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 239 1>;
+> +		clock-names = "fck";
+> +		max-functions = /bits/ 8 <6>;
+> +		max-virtual-functions = /bits/ 8 <4 4 4 4 0 0>;
+> +		dma-coherent;
+> +		phys = <&serdes0_pcie_link>;
+> +		phy-names = "pcie-phy";
+> +	};
+> +};
 
