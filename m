@@ -1,121 +1,276 @@
-Return-Path: <devicetree+bounces-24289-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24290-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E985880EA5D
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 12:27:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30F7780EA7C
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 12:38:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 24FBB1C20B02
-	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 11:27:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DCBAC28183C
+	for <lists+devicetree@lfdr.de>; Tue, 12 Dec 2023 11:38:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B308F5D4A5;
-	Tue, 12 Dec 2023 11:27:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 637575D4A2;
+	Tue, 12 Dec 2023 11:38:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fwH0c6BS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Bjn7Fr1/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D0E9B8
-	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 03:27:50 -0800 (PST)
-Received: by mail-pl1-x634.google.com with SMTP id d9443c01a7336-1d1cb7651a9so10752055ad.1
-        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 03:27:50 -0800 (PST)
+Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C73FDCD;
+	Tue, 12 Dec 2023 03:38:10 -0800 (PST)
+Received: by mail-oi1-x233.google.com with SMTP id 5614622812f47-3ba084395d9so1503959b6e.0;
+        Tue, 12 Dec 2023 03:38:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702380469; x=1702985269; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gJnBFFlQjmOlNn2KOw8AHQl+aAG080koCWR/okC+yIc=;
-        b=fwH0c6BSKrOPZKvgNGq4gCmkd11hG8B0YISj+PYVBV91Bgt2bdSU+VTPCilM3+UqRV
-         SgJaUg3uDlnxsKLoptmKQl+LmZwOqVQpyUHxySJ+xMG5QvrDKo9293wK5M0lEOs2dTAt
-         mtAPrSDiyNCjxyQMN3gIaHMOO15r1vzTjr0HzlZQ51hd2R/GT/dPmMriJA6oOJtKqNKH
-         KLtiaPBcPrH/jGHd5p1MX5oXheBAWG/FyIHuDrZZy3y7eLJCOnQ50DykwSEcyxB3vKdV
-         iDmM/mXO9AGl4jqSmbijlROyMUpsaPdnL3lPjIWfi+6bQj/TXnBVPfKoz7RpHWn7Psue
-         2xNQ==
+        d=gmail.com; s=20230601; t=1702381090; x=1702985890; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=+L2kxEHCu62/EVSOcD5zqPnIMCZrQemKF2WuvkQ2BF4=;
+        b=Bjn7Fr1/g4Rg38kquG3stvn1yHLCv0gMNYP/hoN0xro7e0kC7SyU+/PxLfE3QMXnPd
+         CojxjjECgy63G5EE10/0CTr7Rs3MBVerZkJIbaN6QKcVuiGqiNuk7gnK91GpaV/mLFL/
+         0hHwrEjRMHnpP7J1HHkPs+KBm1yE3KDkjizb2bIGyapbvsSf6tuJQKs0AQYafmGke5gK
+         iJPTHxYDkhZGnfOfVIeL9HzhNd1N4IiLIJ1MA7aM8idbuSBLgENDMZ50d8WgU5ThqxLa
+         ZmsVjh+D2YbijuY80Y9BxlL8ynWWpmgHq/5FWOJ6mVCgZX598aLT0NB/WuuV5cV88/HX
+         3LUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702380469; x=1702985269;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gJnBFFlQjmOlNn2KOw8AHQl+aAG080koCWR/okC+yIc=;
-        b=jXCdwTDQ51kGyeEPWFuRY5Zu0aOeCPmw9iuyacq335z3lWN+OblQ4ExJPhsiC0g0sP
-         AWH66cSojUEIV4pRl3fAhHgFeaJNBNSvWHFRjnPf5Jx3NbVvqklvisRG8o3fd5hREjoA
-         1BeKWWsSgTl28k83iG8eqyOXrTJo4r/L2V6NOEgWCK28VssPIRpFqw/P0s7LreyPkvNS
-         gXObPybc7XAzOfAtbkkA+QMGP6ieQQleT/o9wUMiGCrbf1nezhnsnWaaxLDPCCplwJrA
-         +VbQv25D3XeEAlSW4gaJSoYA2UcvUFOd6T2NpM/4db65B/wMBafzCRUfVLIgLjfd4+wG
-         Y0iA==
-X-Gm-Message-State: AOJu0YzsFfAhHOycx4ykvx+TjAMBbsQ0UiFP9kwlt8mGRva5RQD7fyqe
-	rUN16iG5/iWoJKaCY92T86o=
-X-Google-Smtp-Source: AGHT+IE02bQc+lwBB8qG1KWfjQSmk8kFZr5ZWGP90M/Xz6/0tQ+3fAXrVuUhWNgMehadISnA1h4bLg==
-X-Received: by 2002:a17:903:32cb:b0:1cf:ce83:3b5d with SMTP id i11-20020a17090332cb00b001cfce833b5dmr11875854plr.6.1702380469560;
-        Tue, 12 Dec 2023 03:27:49 -0800 (PST)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:a620:342d:797a:5c59])
-        by smtp.gmail.com with ESMTPSA id w18-20020a170902e89200b001d051725d09sm8415421plg.241.2023.12.12.03.27.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Dec 2023 03:27:49 -0800 (PST)
-From: Fabio Estevam <festevam@gmail.com>
-To: cw00.choi@samsung.com
-Cc: myungjoo.ham@samsung.com,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski@linaro.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	shawnguo@kernel.org,
-	marex@denx.de,
-	hvilleneuve@dimonoff.com,
-	linux-arm-kernel@lists.infradead.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH 3/3] arm64: dts: imx8mp-dhcom-pdk3: Describe the USB-C connector
-Date: Tue, 12 Dec 2023 08:27:29 -0300
-Message-Id: <20231212112729.700987-3-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231212112729.700987-1-festevam@gmail.com>
-References: <20231212112729.700987-1-festevam@gmail.com>
+        d=1e100.net; s=20230601; t=1702381090; x=1702985890;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+L2kxEHCu62/EVSOcD5zqPnIMCZrQemKF2WuvkQ2BF4=;
+        b=hV3fNGm5uc/W1pd6JqflFhU+k504+vnvpfVm7f5M2ZHEL2tKaiezei03pko6K8ARWz
+         rs5rgqVU0ZI48vOcdGLh6N7xcqVeoGRyoZx7i4AGUlwAxgZE5FPfj6EkFBV9tM5nlqCg
+         GjwcVZa3MCY5M1V5b7a4OfGp0P9Y1n3Mwz4Nt8Z2zF9yTWkY8VhUqIQ8vOtJkMgEpgMR
+         dp8IMaNIxRWnLz5AW2972tIw2afLK1zGOdFeXpoZICevTwka0PIkb5vamDm+JhEiZ+l5
+         FJ3QvFLY7zFAx8rtLGA2FGu1DX99qpgHIpVaJA3BRB9x5ydN5sWb867Os89VBP4JNGLk
+         aGeg==
+X-Gm-Message-State: AOJu0YzLQFEb4PZWEz8kJW4b45OlJVIbs11iGV6FRlx38ModB+rIQRXs
+	VosWB+S4/UYBHRQLXOxpk3jjJ99iA6Eyu4ChnTk=
+X-Google-Smtp-Source: AGHT+IF+mLItRlwncGPLaOBSbWrzSF4zO2CcLPzv42Do4B8u1Slt2WF4wMUjE3qjHmiGNMT7cW9QlrmRlFHAq5rq+7I=
+X-Received: by 2002:a05:6870:aa97:b0:1fb:75b:99a0 with SMTP id
+ gr23-20020a056870aa9700b001fb075b99a0mr7675745oab.79.1702381089856; Tue, 12
+ Dec 2023 03:38:09 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20231204144429.45197-1-linux.amoon@gmail.com> <20231204144429.45197-2-linux.amoon@gmail.com>
+ <20231206135311.GA2043711-robh@kernel.org> <CANAwSgTS0ZSFPv4x803pCLEpjH5imh8vEoWpbiJRH14Sy3GZww@mail.gmail.com>
+ <21673bfd-bb87-4c7d-a53f-337c263f3a00@linaro.org> <CANAwSgSo37B0zg-xjrmqndSZ5SbyB3m27_wRsqqN9WTONooeiw@mail.gmail.com>
+ <604e653d-c1e2-45c7-b121-8a6b4be5c6bb@linaro.org> <CANAwSgRB=XWo2-40rDru=Zy277-kgGNjozJ8Lxnxgv_4ABB-kg@mail.gmail.com>
+ <1a78d453-62a2-410a-a40f-1ff0c2b62e86@linaro.org> <CANAwSgTy4N7Q8e0OQLsFRkRDWksTSbkOetKQGygaqsQ8++U1_g@mail.gmail.com>
+ <2e688f4e-11d7-4f8e-b8ec-58f4a97304a8@linaro.org> <CANAwSgQstkS-SDaV2hj0fimt7vgfEgOT_x4efshZ6sZQ0gWSEA@mail.gmail.com>
+ <8f28ea77-b3d0-445e-8d8e-80f980775f89@linaro.org>
+In-Reply-To: <8f28ea77-b3d0-445e-8d8e-80f980775f89@linaro.org>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Tue, 12 Dec 2023 17:07:54 +0530
+Message-ID: <CANAwSgRLORHb6qiHWRBR0tMbYB=O=gwatuGhk72SwZyhYMopCw@mail.gmail.com>
+Subject: Re: [PATCH v6 1/2] dt-bindings: usb: Add the binding example for the
+ Genesys Logic GL3523 hub
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Icenowy Zheng <uwu@icenowy.me>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	linux-amlogic@lists.infradead.org, Conor Dooley <conor.dooley@microchip.com>, 
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-From: Fabio Estevam <festevam@denx.de>
+Hi Krzysztof,
 
-Describe the PTN5150 USB-C connector to improve the devicetree description
-and fix the following dt-schema warning:
+On Tue, 12 Dec 2023 at 14:10, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 12/12/2023 07:22, Anand Moon wrote:
+> > Hi Krzysztof,
+> >
+> > On Fri, 8 Dec 2023 at 17:47, Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 08/12/2023 12:19, Anand Moon wrote:
+> >>> Hi Krzysztof,
+> >>>
+> >>> On Fri, 8 Dec 2023 at 13:14, Krzysztof Kozlowski
+> >>> <krzysztof.kozlowski@linaro.org> wrote:
+> >>>>
+> >>>> On 08/12/2023 01:24, Anand Moon wrote:
+> >>>>>>>>>
+> >>>>>>>>> If I move reset-gpios to required, I observe the below warning.
+> >>>>>>>>>
+> >>>>>>>>>   DTC_CHK Documentation/devicetree/bindings/usb/maxim,max33359.example.dtb
+> >>>>>>>>> /home/alarm/linux-amlogic-5.y-devel/Documentation/devicetree/bindings/usb/usb-device.example.dtb:
+> >>>>>>>>> hub@1: 'reset-gpio' is a required property
+> >>>>>>>>>         from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
+> >>>>>>>>
+> >>>>>>>> Where are the properties defined? If you open the binding you see:
+> >>>>>>>> nowhere. You cannot define properties in some variant with "true".
+> >>>>>>>> Please define all of them in top-level and only narrow/constrain when
+> >>>>>>>> applicable.
+> >>>>>>>>
+> >>>>>>> What I meant is the example below, required meant applicable for both
+> >>>>>>> the binding
+> >>>>>>> But it shows me the above warning.
+> >>>>>>
+> >>>>>> My explanation stands... So again:
+> >>>>>>
+> >>>>>>>> Please define all of them in top-level and only narrow/constrain when
+> >>>>>>>> applicable.
+> >>>>>>
+> >>>>> Apologies, But I have tried this multiple times but have not been able
+> >>>>> to fix the device tree warning
+> >>>>
+> >>>> Did you document all properties in top-level "properties:" block?
+> >>>>
+> >>> Yes, I have,
+> >>>
+> >>> Can you suggest a couple of examples to follow?
+> >>> I looked at some of the YAML files but could not fix my issue.
+> >>
+> >> 99% of bindings. Look also at example-schema.
+> >>
+> >> You can also attach here complete patch for fast look / short review.
+> >>
+> >
+> > Please find the modified patch, I have tried a few things but none
+> > resolve the binding warning.
+> > I am not able to debug this.
+>
+> And where is the warning or the issue? Can you describe what problem do
+> you have?
 
-imx8mp-dhcom-pdk3.dtb: typec@3d: 'port' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/extcon/extcon-ptn5150.yaml#
-	
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
- arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3.dts | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
+Here is the list of warnings I observed with this patch
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3.dts b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3.dts
-index b749e28e5ede..fea67a9282f0 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3.dts
-@@ -175,10 +175,14 @@ typec@3d {
- 				pinctrl-names = "default";
- 				pinctrl-0 = <&pinctrl_ptn5150>;
- 
--				port {
--
--					ptn5150_out_ep: endpoint {
--						remote-endpoint = <&dwc3_0_ep>;
-+				connector {
-+					compatible = "usb-c-connector";
-+					label = "USB-C";
-+
-+					port {
-+						ptn5150_out_ep: endpoint {
-+							remote-endpoint = <&dwc3_0_ep>;
-+						};
- 					};
- 				};
- 			};
--- 
-2.34.1
+  DTC_CHK Documentation/devicetree/bindings/usb/nvidia,tegra186-xusb.example.dtb
+/home/amoon/mainline/linux-amlogic-6.y-devel/Documentation/devicetree/bindings/usb/usb-device.example.dtb:
+hub@1: 'vdd-supply' is a required property
+        from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
+/home/amoon/mainline/linux-amlogic-6.y-devel/Documentation/devicetree/bindings/usb/usb-device.example.dtb:
+hub@1: 'reset-gpios' is a required property
+        from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
+/home/amoon/mainline/linux-amlogic-6.y-devel/Documentation/devicetree/bindings/usb/usb-device.example.dtb:
+hub@1: 'peer-hub' is a required property
+        from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
+  DTC_CHK Documentation/devicetree/bindings/usb/ti,tps6598x.example.dtb
+  DTC_CHK Documentation/devicetree/bindings/usb/xlnx,usb2.example.dtb
+  DTC_CHK Documentation/devicetree/bindings/usb/renesas,usb-xhci.example.dtb
+  DTC_CHK Documentation/devicetree/bindings/usb/renesas,usbhs.example.dtb
+  DTC_CHK Documentation/devicetree/bindings/usb/brcm,bcm7445-ehci.example.dtb
+  DTC_CHK Documentation/devicetree/bindings/usb/cypress,cypd4226.example.dtb
+  DTC_CHK Documentation/devicetree/bindings/usb/cdns,usb3.example.dtb
+  DTC_CHK Documentation/devicetree/bindings/usb/renesas,rzn1-usbf.example.dtb
+  DTC_CHK Documentation/devicetree/bindings/usb/nvidia,tegra124-xusb.example.dtb
+  DTC_CHK Documentation/devicetree/bindings/usb/ci-hdrc-usb2.example.dtb
+  DTC_CHK Documentation/devicetree/bindings/usb/brcm,usb-pinmap.example.dtb
+  DTC_CHK Documentation/devicetree/bindings/usb/renesas,usb3-peri.example.dtb
+  DTC_CHK Documentation/devicetree/bindings/usb/qcom,pmic-typec.example.dtb
+  DTC_CHK Documentation/devicetree/bindings/usb/microchip,usb5744.example.dtb
+  DTC_CHK Documentation/devicetree/bindings/usb/smsc,usb3503.example.dtb
+  DTC_CHK Documentation/devicetree/bindings/usb/mediatek,musb.example.dtb
+  DTC_CHK Documentation/devicetree/bindings/usb/vialab,vl817.example.dtb
+  DTC_CHK Documentation/devicetree/bindings/usb/marvell,pxau2o-ehci.example.dtb
+  DTC_CHK Documentation/devicetree/bindings/usb/richtek,rt1711h.example.dtb
+  DTC_CHK Documentation/devicetree/bindings/usb/usb.example.dtb
+  DTC_CHK Documentation/devicetree/bindings/usb/realtek,rts5411.example.dtb
+  DTC_CHK Documentation/devicetree/bindings/usb/nvidia,tegra210-xusb.example.dtb
+  DTC_CHK Documentation/devicetree/bindings/usb/realtek,rtd-dwc3.example.dtb
+  DTC_CHK Documentation/devicetree/bindings/usb/usb-drd.example.dtb
+  DTC_CHK Documentation/devicetree/bindings/usb/genesys,gl850g.example.dtb
+  DTC_CHK Documentation/devicetree/bindings/usb/ti,j721e-usb.example.dtb
+  DTC_CHK Documentation/devicetree/bindings/usb/ti,am62-usb.example.dtb
+/home/amoon/mainline/linux-amlogic-6.y-devel/Documentation/devicetree/bindings/usb/genesys,gl850g.example.dtb:
+hub@1: 'vdd-supply' is a required property
+        from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
+/home/amoon/mainline/linux-amlogic-6.y-devel/Documentation/devicetree/bindings/usb/genesys,gl850g.example.dtb:
+hub@1: 'peer-hub' is a required property
+        from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
+  DTC_CHK Documentation/devicetree/bindings/usb/renesas,rzv2m-usb3drd.example.dtb
+  DTC_CHK Documentation/devicetree/bindings/usb/usb-hcd.example.dtb
+  DTC_CHK Documentation/devicetree/bindings/usb/fsl,imx8mq-dwc3.example.dtb
+  DTC_CHK Documentation/devicetree/bindings/usb/mediatek,mtu3.example.dtb
+/home/amoon/mainline/linux-amlogic-6.y-devel/Documentation/devicetree/bindings/usb/usb-hcd.example.dtb:
+hub@1: 'vdd-supply' is a required property
+        from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
+/home/amoon/mainline/linux-amlogic-6.y-devel/Documentation/devicetree/bindings/usb/usb-hcd.example.dtb:
+hub@1: 'reset-gpios' is a required property
+        from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
+/home/amoon/mainline/linux-amlogic-6.y-devel/Documentation/devicetree/bindings/usb/usb-hcd.example.dtb:
+hub@1: 'peer-hub' is a required property
+        from schema $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
+  DTC_CHK Documentation/devicetree/bindings/usb/nxp,isp1760.example.dtb
 
+>
+> >
+> > -Thanks
+> > Anand
+> > -----8<----------8<----------8<----------8<----------8<----------8<-----
+> > diff --git a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> > b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> > index ee08b9c3721f..7f75fa3c1945 100644
+> > --- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> > +++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+> > @@ -9,9 +9,6 @@ title: Genesys Logic USB hub controller
+> >  maintainers:
+> >    - Icenowy Zheng <uwu@icenowy.me>
+> >
+> > -allOf:
+> > -  - $ref: usb-device.yaml#
+> > -
+> >  properties:
+> >    compatible:
+> >      enum:
+> > @@ -27,11 +24,47 @@ properties:
+> >
+> >    vdd-supply:
+> >      description:
+> > -      the regulator that provides 3.3V core power to the hub.
+> > +      The regulator that provides 3.3V or 5.0V core power to the hub.
+> > +
+> > +  peer-hub:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description:
+> > +      For onboard hub controllers that support USB 3.x and USB 2.0 hubs with
+> > +      shared resets and power supplies, this property is used to identify the
+> > +      hubs with which these are shared.
+> >
+> >  required:
+> >    - compatible
+> >    - reg
+> > +  - vdd-supply
+> > +  - reset-gpios
+> > +  - peer-hub
+> > +
+> > +allOf:
+> > +  - $ref: usb-device.yaml#
+> > +
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - usb5e3,608
+> > +    then:
+> > +      properties:
+> > +        peer-hub: false
+> > +        vdd-supply: false
+> > +
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - usb5e3,610
+> > +              - usb5e3,620
+> > +    then:
+> > +      properties:
+> > +        peer-hub: true
+> > +        vdd-supply: true
+>
+> Drop this if:, redundant.
+>
+No, this does not resolve the above issue.
+>
+
+Thanks
+-Anand
 
