@@ -1,113 +1,87 @@
-Return-Path: <devicetree+bounces-25047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25048-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9950812115
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 22:59:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D80F781213C
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 23:11:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 178711C20B6E
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 21:59:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C22BD1C21046
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 22:11:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41A5A7FBC3;
-	Wed, 13 Dec 2023 21:59:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rARAAgfg"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13E887FBD3;
+	Wed, 13 Dec 2023 22:11:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6726F4
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 13:59:38 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-40c31f18274so70971875e9.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 13:59:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702504777; x=1703109577; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5R8Y7jc9NLGPyREc0JUtb8eKm2rIjrA9+VPMF6ejgso=;
-        b=rARAAgfggpKaYBcM/H+eaFDB6OIRzvUjMWoS7knwOlkZWyflKfmHqMebXrfScfvond
-         faWMupomuwqUe7d8opNtIYgTVM8u9b5NtI0phgapI9bzmBpP3be1ur7XXo0bP1AOcvzC
-         a2Nz4K16496ufgzpcmXZ27xDqlGvGDzKX/UOPf6LjAGabLDyd14F3izWsX4EL609X9pb
-         FB/qrKN36oYpvz9UaV2AqBoZpHQGt3Ib4AyEwMKzYL2RBt3lK0L0fEsB/bTJUrizz7r6
-         ZFs7eZY7gkZqlaEkFufyFhNT1Z1bxC+beVGXRDlubk8EncaQNjQn78wHVP/mqdbZa9d+
-         RfNQ==
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D9D29C;
+	Wed, 13 Dec 2023 14:11:27 -0800 (PST)
+Received: by mail-oi1-f171.google.com with SMTP id 5614622812f47-3ba2dd905f9so313433b6e.2;
+        Wed, 13 Dec 2023 14:11:27 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702504777; x=1703109577;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5R8Y7jc9NLGPyREc0JUtb8eKm2rIjrA9+VPMF6ejgso=;
-        b=EqSyBpQEA58LAs0FF/qy1HG7Ydw4/9sFIZ6NaXVzGXTigIIjN3yLW2zrlb2P1y0ced
-         vrymk8/cPUVY9Ix9QPHEHcYdRTzWqL0XYGSi8LHomUQt9KeTi0mkDD54ytlIfHsFOZCA
-         T7JDXD/yrblR5ESzwY4rXV6nFO9sxCNL7FABjXpA1xOkU23S5MpJBsiSh3+bfdVH1mb6
-         yXU38wDCOMDzsvolNKXAwPtrDHwky8rf/2zTGmDndrZ6+tK/lVZi27HAyHlYKTc2GVXR
-         Jz/9CWatdyh3Cw26JE0dScMb8m3KKRbyJ1GK0LBLSUbeYA2d6ycwTKxeZdDlRQspxQKj
-         PHWw==
-X-Gm-Message-State: AOJu0YzQbd5WS89WbQFAFXAExQ+5ZfU5dsfX5yNzgKNcacZu3pBtmkEl
-	FR8JHBuhVRm6+J5Nr73/2fniwA==
-X-Google-Smtp-Source: AGHT+IH8WBMrcy2RpgDyVtXzThQj76QcUxVNUDU/RnHWzVkOCspImqThjEx7TAvmErkgFn+mKeaRYg==
-X-Received: by 2002:a05:600c:1f1a:b0:40c:314a:42e with SMTP id bd26-20020a05600c1f1a00b0040c314a042emr4345008wmb.246.1702504777134;
-        Wed, 13 Dec 2023 13:59:37 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:ac4e:a5fe:7f71:8d59? ([2a01:e0a:982:cbb0:ac4e:a5fe:7f71:8d59])
-        by smtp.gmail.com with ESMTPSA id k40-20020a05600c1ca800b0040b45356b72sm24189351wms.33.2023.12.13.13.59.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Dec 2023 13:59:36 -0800 (PST)
-Message-ID: <98e93632-45e2-4d7b-bde2-4326d07b3c25@linaro.org>
-Date: Wed, 13 Dec 2023 22:59:35 +0100
+        d=1e100.net; s=20230601; t=1702505487; x=1703110287;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AgTgho1a4LA/XjrrePxUmui9LuYj0rwstzK1KGu7248=;
+        b=IMOdCTBYRRbRReNvThP/IthfKDyEycuBWJ2p5+YXsrp6tIPSvBf1h4tn3PPsU2obm7
+         UpTMqDdTQTW5MmKHd6Wo0FCc/O6JLWLVruzay5/RxcI9R1FfbGZ3oRi6+uIAQChboBIl
+         2aKolWYZQXhD0aK3W4mTou0lyLy9JQhQN05xk+XOE7toUrc4pa8usbnqI8zNs9Ye21Dt
+         fIABmmUfThbUT0YTunzXrzJ5G3oOempjphTxm/Z+jlIC+ZnAPBn8NwTnn3XQ317CPC/x
+         kjnp3Dz97l/rSuQpycw2PVcAKZ8b8psKCN3QEucCIq8Kh47X9qKkyO4hKvFyOznEXQgw
+         hVsw==
+X-Gm-Message-State: AOJu0YyHyH+Hc8OFkS2RtWR5Zz0F8PLl4ABVbKUmEcvgplWCFFo9+5Pm
+	ZB3JHFt3pTmCiJjq1RHSCQ==
+X-Google-Smtp-Source: AGHT+IHX5L5W/V5kcRHCZGCX9tUxlzQHF1lIwCR9ERJ7ag6EqOQsYnbBD4efejagEgtQrlmcp0mZLw==
+X-Received: by 2002:a05:6808:6493:b0:3ba:667:9e4f with SMTP id fh19-20020a056808649300b003ba06679e4fmr7673479oib.113.1702505486877;
+        Wed, 13 Dec 2023 14:11:26 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id bh20-20020a056808181400b003b83c516e62sm3102354oib.51.2023.12.13.14.11.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Dec 2023 14:11:26 -0800 (PST)
+Received: (nullmailer pid 2156812 invoked by uid 1000);
+	Wed, 13 Dec 2023 22:11:24 -0000
+Date: Wed, 13 Dec 2023 16:11:24 -0600
+From: Rob Herring <robh@kernel.org>
+To: Mark Hasemeyer <markhas@chromium.org>
+Cc: LKML <linux-kernel@vger.kernel.org>, Raul Rangel <rrangel@chromium.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Andre Przywara <andre.przywara@arm.com>, 
+	Andy Gross <agross@kernel.org>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Baruch Siach <baruch@tkos.co.il>, 
+	Bjorn Andersson <andersson@kernel.org>, Claudiu Beznea <claudiu.beznea@microchip.com>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+	Jesper Nilsson <jesper.nilsson@axis.com>, Jisheng Zhang <jszhang@kernel.org>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, Michal Simek <michal.simek@amd.com>, 
+	Paul Barker <paul.barker@sancloud.com>, Sudeep Holla <sudeep.holla@arm.com>, 
+	Thierry Reding <thierry.reding@gmail.com>, cros-qcom-dts-watchers@chromium.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-arm-msm@vger.kernel.org, linux-mediatek@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v1 2/6] arm: arm64: dts: Enable cros-ec-spi as wake source
+Message-ID: <20231213221124.GB2115075-robh@kernel.org>
+References: <20231213110009.v1.1.Ifd0903f1c351e84376d71dbdadbd43931197f5ea@changeid>
+ <20231213110009.v1.2.I274b2d2255eb539cc9d251c9d65a385cc4014c79@changeid>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 0/4] Add displays support for bsh-smm-s2/pro boards
-Content-Language: en-GB
-To: Rob Herring <robh@kernel.org>,
- Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Cc: linux-kernel@vger.kernel.org, michael@amarulasolutions.com,
- Amarula patchwork <linux-amarula@amarulasolutions.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>, Conor Dooley <conor+dt@kernel.org>,
- Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
- Fabio Estevam <festevam@gmail.com>, Inki Dae <inki.dae@samsung.com>,
- Jagan Teki <jagan@amarulasolutions.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, Jonas Karlman <jonas@kwiboo.se>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Maxime Ripard <mripard@kernel.org>, NXP Linux Team <linux-imx@nxp.com>,
- Peng Fan <peng.fan@nxp.com>, Pengutronix Kernel Team
- <kernel@pengutronix.de>, Robert Foss <rfoss@kernel.org>,
- Sam Ravnborg <sam@ravnborg.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Shawn Guo <shawnguo@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-arm-kernel@lists.infradead.org
-References: <20231213140437.2769508-1-dario.binacchi@amarulasolutions.com>
- <20231213175330.GA1582432-robh@kernel.org>
-From: Neil Armstrong <neil.armstrong@linaro.org>
-In-Reply-To: <20231213175330.GA1582432-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231213110009.v1.2.I274b2d2255eb539cc9d251c9d65a385cc4014c79@changeid>
 
-Le 13/12/2023 à 18:53, Rob Herring a écrit :
-> On Wed, Dec 13, 2023 at 03:03:41PM +0100, Dario Binacchi wrote:
->> The series adds drivers for the displays used by bsh-smm-s2/pro boards.
->> This required applying some patches to the samsung-dsim driver.
->>
->> Changes in v6:
->> - Drop patches:
->>    - [06/10] drm/panel: Add Synaptics R63353 panel driver
-> 
-> The binding should have gone with this. I'll apply it then.
-> 
-> Rob
+On Wed, Dec 13, 2023 at 11:00:20AM -0700, Mark Hasemeyer wrote:
+> The cros_ec driver currently assumes that cros-ec-spi compatible device
+> nodes are a wakeup-source even though the wakeup-source property is not
+> defined.
 
-Oops I missed it,
+If a device knows it is wakeup capable, why do you need a property too?
+I haven't looked closely enough, but it smells like after patch 6, these 
+properties would be required for wakeup? That would be an ABI break.
 
-Thanks for applying it
-
-Neil
+Rob
 
