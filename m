@@ -1,198 +1,105 @@
-Return-Path: <devicetree+bounces-24961-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24962-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C92B811CD0
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 19:39:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5092D811CD9
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 19:40:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D77901F219D0
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 18:39:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1EE7828244C
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 18:40:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 961DF5ABAB;
-	Wed, 13 Dec 2023 18:39:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84C035EE96;
+	Wed, 13 Dec 2023 18:40:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="mcTMy7Eb"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ocTx0uuM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46C93D0;
-	Wed, 13 Dec 2023 10:39:39 -0800 (PST)
-Received: from pps.filterd (m0360083.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3BDI7u2S015354;
-	Wed, 13 Dec 2023 18:38:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
- subject : to : cc : references : from : in-reply-to : content-type :
- content-transfer-encoding : mime-version; s=pp1;
- bh=fEx/rim947811PkyR5Ib8bCcfmjQUMsWMBx0jmD8wro=;
- b=mcTMy7EbuN77YCarY71ife9P537tehZ9gPelI4hUPLtwBuKD3pmaNIXB6j2xH2EooC6m
- YTq2aUv4iVns6b18vuuo52Tr6LWQq85YkglTM6cr0tPEgYqw5NBnVYfLc3fDwo4MCugH
- oKDdlECb8Kk/V8/AKp87AXjFAfGAdG6ju/gy3uJ55WmgnaXKI4/rOAw8bW5jB956BuaB
- lAPkqxYDqbus/TeoFEwJ3Y2LvbLuK9M3qpf+hY9VjjCRG1g5RfS3GCOUXTKkmG8VXe8j
- GON7Tlq00hlb6Ycqc2ZcIehSpycgDWFaUOZVQvs+Gk9shdN+S3L9T8IZ8rOzq04LTf9t Ww== 
-Received: from pps.reinject (localhost [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3uyhm8gu24-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 13 Dec 2023 18:38:27 +0000
-Received: from m0360083.ppops.net (m0360083.ppops.net [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 3BDI8ZAO018923;
-	Wed, 13 Dec 2023 18:38:26 GMT
-Received: from ppma12.dal12v.mail.ibm.com (dc.9e.1632.ip4.static.sl-reverse.com [50.22.158.220])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3uyhm8gu1n-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 13 Dec 2023 18:38:26 +0000
-Received: from pps.filterd (ppma12.dal12v.mail.ibm.com [127.0.0.1])
-	by ppma12.dal12v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 3BDGZU24008450;
-	Wed, 13 Dec 2023 18:38:25 GMT
-Received: from smtprelay05.dal12v.mail.ibm.com ([172.16.1.7])
-	by ppma12.dal12v.mail.ibm.com (PPS) with ESMTPS id 3uw2jtk6q8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 13 Dec 2023 18:38:25 +0000
-Received: from smtpav06.wdc07v.mail.ibm.com (smtpav06.wdc07v.mail.ibm.com [10.39.53.233])
-	by smtprelay05.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 3BDIcOvk21627514
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 13 Dec 2023 18:38:24 GMT
-Received: from smtpav06.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 0C75E58054;
-	Wed, 13 Dec 2023 18:38:24 +0000 (GMT)
-Received: from smtpav06.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id B9AB55803F;
-	Wed, 13 Dec 2023 18:38:22 +0000 (GMT)
-Received: from [9.24.12.86] (unknown [9.24.12.86])
-	by smtpav06.wdc07v.mail.ibm.com (Postfix) with ESMTP;
-	Wed, 13 Dec 2023 18:38:22 +0000 (GMT)
-Message-ID: <719949a9-ddd5-451f-a765-d875cea85ba5@linux.ibm.com>
-Date: Wed, 13 Dec 2023 12:38:22 -0600
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/8] dt-bindings: tpm: Add schema for TIS I2C devices
-Content-Language: en-US
-To: Jarkko Sakkinen <jarkko@kernel.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, joel@jms.id.au,
-        andrew@codeconstruct.com.au, peterhuewe@gmx.de, jgg@ziepe.ca,
-        keescook@chromium.org, tony.luck@intel.com, gpiccoli@igalia.com,
-        johannes.holland@infineon.com, linux@roeck-us.net, broonie@kernel.org
-Cc: patrick.rudolph@9elements.com, vincent@vtremblay.dev,
-        peteryin.openbmc@gmail.com, lakshmiy@us.ibm.com, bhelgaas@google.com,
-        naresh.solanki@9elements.com, alexander.stein@ew.tq-group.com,
-        festevam@denx.de, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org, linux-integrity@vger.kernel.org,
-        linux-hardening@vger.kernel.org, geissonator@yahoo.com
-References: <20231212164004.1683589-1-ninad@linux.ibm.com>
- <20231212164004.1683589-3-ninad@linux.ibm.com>
- <CXNEWTC7G66C.8KM5X4BWMK7P@suppilovahvero>
-From: Ninad Palsule <ninad@linux.ibm.com>
-In-Reply-To: <CXNEWTC7G66C.8KM5X4BWMK7P@suppilovahvero>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: TA5ugVitoI4LBCCP5dmzUD_ldTLYTHkW
-X-Proofpoint-ORIG-GUID: Qxhptd4olsjIjL_1qbdboQzdGrQTp--Y
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-UnRewURL: 0 URL was un-rewritten
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACA9A12A
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 10:40:04 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-50bffb64178so8603202e87.2
+        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 10:40:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702492803; x=1703097603; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ol6nvI3xbrouU9id0Mvjg5S7+/mxK6nwvUyef7QNfDo=;
+        b=ocTx0uuMP6Qgjvbs6/r3JAAsysaaXHlmSjsTovcuTCwHK1I1JCQP79FjKd11iC4nn+
+         9gQfCGMbfUFvT7pzzuT7uaAy33EczJEZ/p8yLLhdWU+UotsoyiLf+JDwAACk9wGWapMZ
+         5IYqSnGzXxHJ1AxXzVX8Uabcp1CcocFx3XFjkaALhTcpqSMWp4TWApMBPps8IhLjtq9a
+         aruRK+qlU30qd8SyndYQhv7K7EGqCg5Gwnw3qrUhPLX2iPpurlwhUnSChwvVDF+nyIfY
+         llvhTtP1gENY1r2LVI1PuwDPpn3ko4c24qcF/UXAXYxsqobIrnHCVT8MjnM3XNizxtF0
+         9tPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702492803; x=1703097603;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ol6nvI3xbrouU9id0Mvjg5S7+/mxK6nwvUyef7QNfDo=;
+        b=SHnjzAf4ZdV3OocdOIK4VDiQ4/5ze2uYICABhkZXRElSEMB/2+1FIW9y652yqb+WQc
+         j28wKKc20Qv8ufJPGMOuGwM9yK+lJ4OMNJGyqCjy21v24fq+y8o2FJOpX1IM4m6Qz4P+
+         7dFAcKcZf81QgM3bAze19MdclSlrlKX+UIb2TGvoQE+E4irJckAeJp2Gw4IzprD1Zajz
+         wpZz60YRxysShlVMTUjRbxpg7qXQQKkx12Xs5xicgDKrBE7bwwQYmF6OJwUvpeVZMQAw
+         zulFyzfF1RjHoF3ATgH+YDLxyqz0alQ/JbTMjOwUPP3w9ZM44kVq4wv7/tun6D4LvGm0
+         PITQ==
+X-Gm-Message-State: AOJu0YyI07AqrjB0p5EHjAbVWBLdFAzNIJTNtK73RAuwEQXfxbaAHLyj
+	ss7ZywiJgXBYaXMu1JoPRzZNAw==
+X-Google-Smtp-Source: AGHT+IEatj0Tn8aANvUUeB4wkvdtU24i+33W2pAE/l99W6gdO8QW7OmX9LNBTTroUxtZvYb8vioDOQ==
+X-Received: by 2002:a05:6512:e88:b0:50c:e70:7b8b with SMTP id bi8-20020a0565120e8800b0050c0e707b8bmr5288901lfb.2.1702492802872;
+        Wed, 13 Dec 2023 10:40:02 -0800 (PST)
+Received: from [172.30.204.126] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id 13-20020ac2484d000000b0050bc59642casm1664598lfy.286.2023.12.13.10.40.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Dec 2023 10:40:02 -0800 (PST)
+Message-ID: <6e9c93a6-48d0-4200-903c-caf271e2531d@linaro.org>
+Date: Wed, 13 Dec 2023 19:39:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-13_12,2023-12-13_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 adultscore=0
- bulkscore=0 priorityscore=1501 mlxscore=0 spamscore=0 mlxlogscore=999
- suspectscore=0 malwarescore=0 lowpriorityscore=0 clxscore=1015
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311290000 definitions=main-2312130133
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 00/11] ARM/arm64: dts: qcom: fix USB wakeup interrupt
+ types
+To: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
+ Johan Hovold <johan@kernel.org>, Bjorn Andersson <andersson@kernel.org>
+Cc: Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231120164331.8116-1-johan+linaro@kernel.org>
+ <ZXc7KcjF82EgiXWd@hovoldconsulting.com>
+ <06354190-b572-46e4-8036-0fae7f15dd15@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <06354190-b572-46e4-8036-0fae7f15dd15@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hello Jarkko,
 
-On 12/13/23 12:20, Jarkko Sakkinen wrote:
-> On Tue Dec 12, 2023 at 6:39 PM EET, Ninad Palsule wrote:
->> From: Johannes Holland <johannes.holland@infineon.com>
->>
->> Add a dt schema to support device tree bindings for the generic I2C
->> physical layer. Refer to the TCG PC Client Platform TPM Profile (PTP)
->> Specification for TPM 2.0 v1.04 Revision 14.
->>
->> This includes descriptions for the Nuvoton and Infineon devices.
->>
->> OpenBMC-Staging-Count: 3
-> Please don't invent your own tags.
 
-Yes, Sorry. I have cherry-picked this commit from openbmc. Now I have 
-removed this line.
+On 12/12/23 10:30, Krishna Kurapati PSSNV wrote:
 
-Thanks for the review.
+[...]
 
-Thanks & Regards,
+> SM6375, I think GIC_SPI is fine but I will try to get back on this.
+interrupts-extended = <&intc GIC_SPI 302 IRQ_TYPE_LEVEL_HIGH>,
+                                               <&mpm 12 IRQ_TYPE_LEVEL_HIGH>,
+                                               <&mpm 93 IRQ_TYPE_EDGE_BOTH>,
+                                               <&mpm 94 IRQ_TYPE_EDGE_BOTH>;
+                         interrupt-names = "hs_phy_irq",
+                                           "ss_phy_irq",
+                                           "dm_hs_phy_irq",
+                                           "dp_hs_phy_irq";
 
-Ninad
+the mpm node is not yet upstream (I only managed to untangle the
+related mess recently), I'll submit this soon.
 
->
->> Signed-off-by: Johannes Holland <johannes.holland@infineon.com>
->> Signed-off-by: Joel Stanley <joel@jms.id.au>
->> Signed-off-by: Ninad Palsule <ninad@linux.ibm.com>
->> ---
->>   .../bindings/security/tpm/tpm-tis-i2c.yaml    | 50 +++++++++++++++++++
->>   1 file changed, 50 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml b/Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml
->> new file mode 100644
->> index 000000000000..de1e34065748
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml
->> @@ -0,0 +1,50 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/security/tpm/tpm-tis-i2c.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: I2C PTP based TPM Devices
->> +
->> +maintainers:
->> +  - Johannes Holland <johannes.holland@infineon.com>
->> +
->> +description:
->> +  Device Tree Bindings for I2C based Trusted Platform Module (TPM).
->> +
->> +properties:
->> +  $nodename:
->> +    pattern: "^tpm(@[0-9a-f]+)?$"
->> +
->> +  compatible:
->> +    oneOf:
->> +      - description: Infineon's Trusted Platform Module (TPM) (SLB9673).
->> +        items:
->> +          - const: infineon,slb9673
->> +          - const: tcg,tpm-tis-i2c
->> +      - description: Nuvoton's Trusted Platform Module (TPM) (NPCT75x).
->> +        items:
->> +          - const: nuvoton,npct75x
->> +          - const: tcg,tpm-tis-i2c
->> +      - const: tcg,tpm-tis-i2c
->> +  reg:
->> +    maxItems: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    i2c {
->> +      #address-cells = <1>;
->> +      #size-cells = <0>;
->> +
->> +      tpm@2e {
->> +        compatible = "nuvoton,npct75x", "tcg,tpm-tis-i2c";
->> +        reg = <0x2e>;
->> +      };
->> +    };
->> +...
->
-> BR, Jarkko
+Thanks Krishna and Johan for looking into this!
+
+Konrad
 
