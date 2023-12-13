@@ -1,90 +1,65 @@
-Return-Path: <devicetree+bounces-24946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24947-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8ECDF811BDF
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 19:04:40 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D24F8811BE0
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 19:04:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 31274282419
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 18:04:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 728B6B20F39
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 18:04:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5CD25C07B;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7E1D5C07E;
 	Wed, 13 Dec 2023 18:01:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="e/xVOQ/f"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="eSF3iGXX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com [IPv6:2607:f8b0:4864:20::d2f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50B0EF2
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 10:01:36 -0800 (PST)
-Received: by mail-io1-xd2f.google.com with SMTP id ca18e2360f4ac-7b435966249so315449539f.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 10:01:36 -0800 (PST)
+Received: from mail-io1-xd29.google.com (mail-io1-xd29.google.com [IPv6:2607:f8b0:4864:20::d29])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69C62DC
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 10:01:37 -0800 (PST)
+Received: by mail-io1-xd29.google.com with SMTP id ca18e2360f4ac-7b6f4ee4f7fso158427439f.0
+        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 10:01:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1702490495; x=1703095295; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1702490497; x=1703095297; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=XHJkvyGkozEZfAn1foMxSDGndxq7Z3rvVOkqL1kGsfY=;
-        b=e/xVOQ/fNvuwsoyIMhGmxORiCBN5toQu+SfZ1PYaIIv1/IROHvZzj3qqMGEguy1YnU
-         8y6C+HjiIotuBoYZffehxPy0eoKlaAwZIDUWHutN7y2EIXivn+ubz4B3TTA9oeoPziB7
-         DHGVvlv4xv/XkwztWmoZiWLimbUlwMZ8s00yc=
+        bh=IE6mE6pjbGov9LkkEhCEwGDUbXlSJbMapTwV75Z3EGc=;
+        b=eSF3iGXXOC2kQ3n5Nvjxs6TXImtBZ+93Z/bZSIAOBmGzEVcfVUtzn/EVhDmjEsflaq
+         MZmH+PNqez1eEtLBjr+QZtLdrvyS19dkt6p8/fahgjp3jxHcDCYZUNQo9zxtMR7vDHe5
+         Bncbrq6uoJ/qVNICvi3OH76+02VUHERHM3VFg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702490495; x=1703095295;
+        d=1e100.net; s=20230601; t=1702490497; x=1703095297;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=XHJkvyGkozEZfAn1foMxSDGndxq7Z3rvVOkqL1kGsfY=;
-        b=PDkoBD2u4RZmgKGLIYWjl+dgCVQLMhPFa52qQWwanIzuBWhl2WSgZeCxlT3jR2MPW4
-         y23oBDdRGJsMIxWa2J5/XzDJFtK0u+nJC1lEx8HH8SwaOXEN0qDGgoHsofoH5CeogRPd
-         uwNptS6taJ1MTOimZCHNn2Fl6Dq2RpRYN1iZHvCq1TuhfXd1qugNgJWSf2lf7s2bgw5h
-         xm8TmK2pPDouLCEgxrijojiXcWheAwE7m8iMDRHVgFiz0KrJXgyW15qM4NYmH3UPCbqu
-         NGsB9/1lkEWZK0vw0DY2ZbiU8TdSgGGnABY/L94ar2D4+DaVOJMTqs+JSMl21wF/1CLj
-         /64g==
-X-Gm-Message-State: AOJu0Yx3ibXuiBnls/gbbxICUU99or3yj0ynfs5tbpx+zpgkrVIObiAy
-	KDdKh6pQMq95yhT2QOjFX1u9rg==
-X-Google-Smtp-Source: AGHT+IFlYJgoIT3A6azjL3KGWGM2LFNYIuooaQV3GC7pc2NQaP0QcsiTJdhp9S5ZzNvKJJo5ucv2Lg==
-X-Received: by 2002:a5d:948e:0:b0:7b7:70fe:2913 with SMTP id v14-20020a5d948e000000b007b770fe2913mr2509400ioj.19.1702490495596;
-        Wed, 13 Dec 2023 10:01:35 -0800 (PST)
+        bh=IE6mE6pjbGov9LkkEhCEwGDUbXlSJbMapTwV75Z3EGc=;
+        b=odW0T3p+90Y0KnDqhkRQuaJBXDrz6qfbAMcrfdZlwZWtJ4EnXi3ZuRULY5ItH1C5qp
+         29Qfz6t79+oo3q4e2h9WgEexJQusMw6dof70+flTXpgr6A1BMS82RX6ddqdg+ikENVST
+         t72OclwjMFVt7UlWuIHDP3OfAkByVMSbd5OOUvFi5A9su7s22LHjZkzsXs7E5c6YUvt1
+         JsaXAKe0dyAysCe+Sn+jtG/dgadbMxL7/TZghLHO+P7OKsknnMqBlEmqpgWy3Qy18Qp+
+         MIlLVDDR4ZOYd1thICesCn0Vew2+Ql8IarxJLrVyHUhq+WO23AD0mtL+3SiZfo8vNnio
+         I1OQ==
+X-Gm-Message-State: AOJu0Yx+SzRioofC7CJo1aaxuEG2Yv7sfdLtHqm6AWzDnMKKmLIAaBIU
+	iW3Sz6IhKFH7daCr0x2K01k8hoUwIM5lXxwXanU=
+X-Google-Smtp-Source: AGHT+IFwHjqRnv3J268uplXRN6NW6wDD9LjTDk7o/KlDkWoKhoyaIiSuqY/p3e4OsbxoyoSGIJpY3Q==
+X-Received: by 2002:a05:6e02:b45:b0:35d:59b3:2f86 with SMTP id f5-20020a056e020b4500b0035d59b32f86mr7479369ilu.27.1702490496668;
+        Wed, 13 Dec 2023 10:01:36 -0800 (PST)
 Received: from markhas1.corp.google.com ([100.107.108.224])
-        by smtp.gmail.com with ESMTPSA id o28-20020a02cc3c000000b0046671f9717csm3161206jap.109.2023.12.13.10.01.34
+        by smtp.gmail.com with ESMTPSA id o28-20020a02cc3c000000b0046671f9717csm3161206jap.109.2023.12.13.10.01.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Dec 2023 10:01:35 -0800 (PST)
+        Wed, 13 Dec 2023 10:01:36 -0800 (PST)
 From: Mark Hasemeyer <markhas@chromium.org>
 To: LKML <linux-kernel@vger.kernel.org>
 Cc: Raul Rangel <rrangel@chromium.org>,
 	Mark Hasemeyer <markhas@chromium.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Andre Przywara <andre.przywara@arm.com>,
-	Andy Gross <agross@kernel.org>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Baruch Siach <baruch@tkos.co.il>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Claudiu Beznea <claudiu.beznea@microchip.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Jesper Nilsson <jesper.nilsson@axis.com>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Michal Simek <michal.simek@amd.com>,
-	Paul Barker <paul.barker@sancloud.com>,
+	Frank Rowand <frowand.list@gmail.com>,
 	Rob Herring <robh+dt@kernel.org>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	cros-qcom-dts-watchers@chromium.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	linux-tegra@vger.kernel.org
-Subject: [PATCH v1 2/6] arm: arm64: dts: Enable cros-ec-spi as wake source
-Date: Wed, 13 Dec 2023 11:00:20 -0700
-Message-ID: <20231213110009.v1.2.I274b2d2255eb539cc9d251c9d65a385cc4014c79@changeid>
+	devicetree@vger.kernel.org
+Subject: [PATCH v1 3/6] of: irq: add wake capable bit to of_irq_resource()
+Date: Wed, 13 Dec 2023 11:00:21 -0700
+Message-ID: <20231213110009.v1.3.I29b26a7f3b80fac0a618707446a10b6cc974fdaf@changeid>
 X-Mailer: git-send-email 2.43.0.472.g3155946c3a-goog
 In-Reply-To: <20231213110009.v1.1.Ifd0903f1c351e84376d71dbdadbd43931197f5ea@changeid>
 References: <20231213110009.v1.1.Ifd0903f1c351e84376d71dbdadbd43931197f5ea@changeid>
@@ -96,226 +71,83 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The cros_ec driver currently assumes that cros-ec-spi compatible device
-nodes are a wakeup-source even though the wakeup-source property is not
-defined.
+Add wake capability information to the irq resource. Wake capability is
+assumed based on conventions provided in the devicetree wakeup-source
+binding documentation. An interrupt is considered wake capable if the
+following are true:
+1. a wakeup-source property exits in the same device node as the
+   interrupt.
+2. No dedicated irq is defined, or the irq is marked as dedicated by
+   setting its interrupt-name to "wakeup".
 
-Add the wakeup-source property to all cros-ec-spi compatible device
-nodes to match expected behavior.
+The wakeup-source documentation states that dedicated interrupts can use
+device specific interrupt names and device drivers are still welcome to
+use their own naming schemes. This api is provided as a helper if one is
+willing to conform to the above conventions.
+
+The ACPI subsystems already provides similar apis that allow one to
+query the wake capability of an irq. This brings feature parity to the
+devicetree.
 
 Signed-off-by: Mark Hasemeyer <markhas@chromium.org>
 ---
 
- arch/arm/boot/dts/nvidia/tegra124-nyan.dtsi              | 1 +
- arch/arm/boot/dts/nvidia/tegra124-venice2.dts            | 1 +
- arch/arm/boot/dts/rockchip/rk3288-veyron-chromebook.dtsi | 1 +
- arch/arm/boot/dts/samsung/exynos5420-peach-pit.dts       | 1 +
- arch/arm/boot/dts/samsung/exynos5800-peach-pi.dts        | 1 +
- arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi             | 1 +
- arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi           | 1 +
- arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi         | 1 +
- arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi         | 1 +
- arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi          | 1 +
- arch/arm64/boot/dts/nvidia/tegra132-norrin.dts           | 1 +
- arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi             | 1 +
- arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi           | 1 +
- arch/arm64/boot/dts/qcom/sc7280-idp-ec-h1.dtsi           | 1 +
- arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi               | 1 +
- arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi             | 1 +
- 16 files changed, 16 insertions(+)
+ drivers/of/irq.c | 30 ++++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
 
-diff --git a/arch/arm/boot/dts/nvidia/tegra124-nyan.dtsi b/arch/arm/boot/dts/nvidia/tegra124-nyan.dtsi
-index a2ee371802004..8125c1b3e8d79 100644
---- a/arch/arm/boot/dts/nvidia/tegra124-nyan.dtsi
-+++ b/arch/arm/boot/dts/nvidia/tegra124-nyan.dtsi
-@@ -338,6 +338,7 @@ cros_ec: cros-ec@0 {
- 			interrupt-parent = <&gpio>;
- 			interrupts = <TEGRA_GPIO(C, 7) IRQ_TYPE_LEVEL_LOW>;
- 			reg = <0>;
-+			wakeup-source;
+diff --git a/drivers/of/irq.c b/drivers/of/irq.c
+index 174900072c18c..633711bc32953 100644
+--- a/drivers/of/irq.c
++++ b/drivers/of/irq.c
+@@ -383,11 +383,39 @@ int of_irq_parse_one(struct device_node *device, int index, struct of_phandle_ar
+ }
+ EXPORT_SYMBOL_GPL(of_irq_parse_one);
  
- 			google,cros-ec-spi-msg-delay = <2000>;
++/**
++ * __of_irq_wake_capable - Determine whether a given irq index is wake capable
++ *
++ * The irq is considered wake capable if the following are true:
++ * 1. wakeup-source property exists
++ * 2. no dedicated wakeirq exists OR provided irq index is a dedicated wakeirq
++ *
++ * This logic assumes the provided irq index is valid.
++ *
++ * @dev: pointer to device tree node
++ * @index: zero-based index of the irq
++ * Return: True if provided irq index for #dev is wake capable. False otherwise.
++ */
++static bool __of_irq_wake_capable(const struct device_node *dev, int index)
++{
++	int wakeindex;
++
++	if (!of_property_read_bool(dev, "wakeup-source"))
++		return false;
++
++	wakeindex = of_property_match_string(dev, "interrupt-names", "wakeup");
++	return wakeindex < 0 || wakeindex == index;
++}
++
+ /**
+  * of_irq_to_resource - Decode a node's IRQ and return it as a resource
+  * @dev: pointer to device tree node
+  * @index: zero-based index of the irq
+  * @r: pointer to resource structure to return result into.
++ *
++ * Return: Linux IRQ number on success, or 0 on the IRQ mapping failure, or
++ * -EPROBE_DEFER if the IRQ domain is not yet created, or error code in case
++ * of any other failure.
+  */
+ int of_irq_to_resource(struct device_node *dev, int index, struct resource *r)
+ {
+@@ -411,6 +439,8 @@ int of_irq_to_resource(struct device_node *dev, int index, struct resource *r)
  
-diff --git a/arch/arm/boot/dts/nvidia/tegra124-venice2.dts b/arch/arm/boot/dts/nvidia/tegra124-venice2.dts
-index 3924ee385dee0..df98dc2a67b85 100644
---- a/arch/arm/boot/dts/nvidia/tegra124-venice2.dts
-+++ b/arch/arm/boot/dts/nvidia/tegra124-venice2.dts
-@@ -857,6 +857,7 @@ cros_ec: cros-ec@0 {
- 			interrupt-parent = <&gpio>;
- 			interrupts = <TEGRA_GPIO(C, 7) IRQ_TYPE_LEVEL_LOW>;
- 			reg = <0>;
-+			wakeup-source;
+ 		r->start = r->end = irq;
+ 		r->flags = IORESOURCE_IRQ | irqd_get_trigger_type(irq_get_irq_data(irq));
++		if (__of_irq_wake_capable(dev, index))
++			r->flags |= IORESOURCE_IRQ_WAKECAPABLE;
+ 		r->name = name ? name : of_node_full_name(dev);
+ 	}
  
- 			google,cros-ec-spi-msg-delay = <2000>;
- 
-diff --git a/arch/arm/boot/dts/rockchip/rk3288-veyron-chromebook.dtsi b/arch/arm/boot/dts/rockchip/rk3288-veyron-chromebook.dtsi
-index 092316be67f74..1554fe36e60fe 100644
---- a/arch/arm/boot/dts/rockchip/rk3288-veyron-chromebook.dtsi
-+++ b/arch/arm/boot/dts/rockchip/rk3288-veyron-chromebook.dtsi
-@@ -112,6 +112,7 @@ cros_ec: ec@0 {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&ec_int>;
- 		spi-max-frequency = <3000000>;
-+		wakeup-source;
- 
- 		i2c_tunnel: i2c-tunnel {
- 			compatible = "google,cros-ec-i2c-tunnel";
-diff --git a/arch/arm/boot/dts/samsung/exynos5420-peach-pit.dts b/arch/arm/boot/dts/samsung/exynos5420-peach-pit.dts
-index 4e757b6e28e1c..3759742d38cac 100644
---- a/arch/arm/boot/dts/samsung/exynos5420-peach-pit.dts
-+++ b/arch/arm/boot/dts/samsung/exynos5420-peach-pit.dts
-@@ -967,6 +967,7 @@ cros_ec: cros-ec@0 {
- 		reg = <0>;
- 		spi-max-frequency = <3125000>;
- 		google,has-vbc-nvram;
-+		wakeup-source;
- 
- 		controller-data {
- 			samsung,spi-feedback-delay = <1>;
-diff --git a/arch/arm/boot/dts/samsung/exynos5800-peach-pi.dts b/arch/arm/boot/dts/samsung/exynos5800-peach-pi.dts
-index f91bc4ae008e4..9bbbdce9103a6 100644
---- a/arch/arm/boot/dts/samsung/exynos5800-peach-pi.dts
-+++ b/arch/arm/boot/dts/samsung/exynos5800-peach-pi.dts
-@@ -949,6 +949,7 @@ cros_ec: cros-ec@0 {
- 		reg = <0>;
- 		spi-max-frequency = <3125000>;
- 		google,has-vbc-nvram;
-+		wakeup-source;
- 
- 		controller-data {
- 			samsung,spi-feedback-delay = <1>;
-diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-index 4dd21dd317026..f0395da659a86 100644
---- a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-@@ -1168,6 +1168,7 @@ cros_ec: ec@0 {
- 		interrupt-parent = <&pio>;
- 		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
- 		google,cros-ec-spi-msg-delay = <500>;
-+		wakeup-source;
- 
- 		i2c_tunnel: i2c-tunnel0 {
- 			compatible = "google,cros-ec-i2c-tunnel";
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-index 44647d462e20b..359859f23b1fd 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-@@ -1013,6 +1013,7 @@ cros_ec: cros-ec@0 {
- 		interrupts = <151 IRQ_TYPE_LEVEL_LOW>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&ec_ap_int_odl>;
-+		wakeup-source;
- 
- 		i2c_tunnel: i2c-tunnel {
- 			compatible = "google,cros-ec-i2c-tunnel";
-diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi b/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-index 5f62dc83013f0..74c534d475cb0 100644
---- a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-@@ -1918,6 +1918,7 @@ cros_ec: ec@0 {
- 		interrupts = <13 IRQ_TYPE_LEVEL_LOW>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&ec_ap_int>;
-+		wakeup-source;
- 
- 		i2c_tunnel: i2c-tunnel {
- 			compatible = "google,cros-ec-i2c-tunnel";
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
-index a29da53d17894..4594287d60926 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
-@@ -1454,6 +1454,7 @@ cros_ec: ec@0 {
- 		spi-max-frequency = <3000000>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&cros_ec_int>;
-+		wakeup-source;
- 
- 		#address-cells = <1>;
- 		#size-cells = <0>;
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-index 37a3e9de90ff7..a5ace1b02c3d2 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-@@ -1034,6 +1034,7 @@ cros_ec: ec@0 {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&cros_ec_int>;
- 		spi-max-frequency = <3000000>;
-+		wakeup-source;
- 
- 		keyboard-backlight {
- 			compatible = "google,cros-kbd-led-backlight";
-diff --git a/arch/arm64/boot/dts/nvidia/tegra132-norrin.dts b/arch/arm64/boot/dts/nvidia/tegra132-norrin.dts
-index bbc2e9bef08da..14d58859bb55c 100644
---- a/arch/arm64/boot/dts/nvidia/tegra132-norrin.dts
-+++ b/arch/arm64/boot/dts/nvidia/tegra132-norrin.dts
-@@ -762,6 +762,7 @@ ec: cros-ec@0 {
- 			interrupt-parent = <&gpio>;
- 			interrupts = <TEGRA_GPIO(C, 7) IRQ_TYPE_LEVEL_LOW>;
- 			reg = <0>;
-+			wakeup-source;
- 
- 			google,cros-ec-spi-msg-delay = <2000>;
- 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-index 5a33e16a8b677..e6a2ed0463997 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-@@ -650,6 +650,7 @@ cros_ec: ec@0 {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&ap_ec_int_l>;
- 		spi-max-frequency = <3000000>;
-+		wakeup-source;
- 
- 		cros_ec_pwm: pwm {
- 			compatible = "google,cros-ec-pwm";
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-index 9ea6636125ad9..2ba4ea60cb147 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-@@ -548,6 +548,7 @@ cros_ec: ec@0 {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&ap_ec_int_l>;
- 		spi-max-frequency = <3000000>;
-+		wakeup-source;
- 
- 		cros_ec_pwm: pwm {
- 			compatible = "google,cros-ec-pwm";
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp-ec-h1.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp-ec-h1.dtsi
-index ebae545c587c4..fbfac7534d3c6 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp-ec-h1.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp-ec-h1.dtsi
-@@ -19,6 +19,7 @@ cros_ec: ec@0 {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&ap_ec_int_l>;
- 		spi-max-frequency = <3000000>;
-+		wakeup-source;
- 
- 		cros_ec_pwm: pwm {
- 			compatible = "google,cros-ec-pwm";
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-index f86e7acdfd99f..d8eb45662c931 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-@@ -838,6 +838,7 @@ cros_ec: ec@0 {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&ec_ap_int_l>;
- 		spi-max-frequency = <3000000>;
-+		wakeup-source;
- 
- 		cros_ec_pwm: pwm {
- 			compatible = "google,cros-ec-pwm";
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi
-index c9bf1d5c3a426..69a0b34f0615b 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi
-@@ -602,6 +602,7 @@ cros_ec: ec@0 {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&ec_ap_int_l>;
- 		spi-max-frequency = <3000000>;
-+		wakeup-source;
- 
- 		i2c_tunnel: i2c-tunnel {
- 			compatible = "google,cros-ec-i2c-tunnel";
 -- 
 2.43.0.472.g3155946c3a-goog
 
