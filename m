@@ -1,120 +1,218 @@
-Return-Path: <devicetree+bounces-24853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24854-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D39B81179C
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 16:42:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 86F7E8117BD
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 16:43:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3FAAC1F21546
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 15:42:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4AFD61F20FB9
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 15:43:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D045235EF9;
-	Wed, 13 Dec 2023 15:33:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 921793172B;
+	Wed, 13 Dec 2023 15:39:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KkYwO/fj"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="CnSHmD3E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E8763172D;
-	Wed, 13 Dec 2023 15:33:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39377C433C8;
-	Wed, 13 Dec 2023 15:32:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702481586;
-	bh=d7g/An6tj1meavK9KfeQnpMkp+2FDg23+65lC9a5QiY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KkYwO/fjoLD2gAZ2b3rLdvfKUYBIUfIj0u7GtXIEpv9XnMn/eeS09zwJH73Qc+vd0
-	 ZnrhcnsBekydmjRl67nJ8Yi0w69hKYTJlrd5WSUmCWw68ELifwovjCrXCpYk0c8U04
-	 xgLXYkjm1UzJjA9btEyrnq22OBEi2Mr4Qc7V4FgZUzdtAuA7XpzOH7Ia8uiGC2l/eH
-	 QJT8nEkg8Aj1rWg5w7LI4onIlYBeBOgQUS+vcNc7qlj7s83jCmIrZ88U9Snp0nZ7d3
-	 nu/NxI8zjYEN1IL/aA/2cI4dLkdg9FYwFXevnOvJKgJZu5HaAZBEPTii5XaJg7Mt9g
-	 5dlxyInpwqBKw==
-Date: Wed, 13 Dec 2023 15:32:54 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Yu Chien Peter Lin <peterlin@andestech.com>
-Cc: acme@kernel.org, adrian.hunter@intel.com, ajones@ventanamicro.com,
-	alexander.shishkin@linux.intel.com, andre.przywara@arm.com,
-	anup@brainfault.org, aou@eecs.berkeley.edu, atishp@atishpatra.org,
-	conor+dt@kernel.org, conor.dooley@microchip.com,
-	devicetree@vger.kernel.org, dminus@andestech.com, evan@rivosinc.com,
-	geert+renesas@glider.be, guoren@kernel.org, heiko@sntech.de,
-	irogers@google.com, jernej.skrabec@gmail.com, jolsa@kernel.org,
-	jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-perf-users@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	locus84@andestech.com, magnus.damm@gmail.com, mark.rutland@arm.com,
-	mingo@redhat.com, n.shubin@yadro.com, namhyung@kernel.org,
-	palmer@dabbelt.com, paul.walmsley@sifive.com, peterz@infradead.org,
-	prabhakar.mahadev-lad.rj@bp.renesas.com, rdunlap@infradead.org,
-	robh+dt@kernel.org, samuel@sholland.org, sunilvl@ventanamicro.com,
-	tglx@linutronix.de, tim609@andestech.com, uwu@icenowy.me,
-	wens@csie.org, will@kernel.org, ycliang@andestech.com,
-	inochiama@outlook.com
-Subject: Re: [PATCH v5 07/16] RISC-V: Move T-Head PMU to CPU feature
- alternative framework
-Message-ID: <20231213-embattled-makeshift-914c2dc0d678@spud>
-References: <20231213070301.1684751-1-peterlin@andestech.com>
- <20231213070301.1684751-8-peterlin@andestech.com>
- <20231213-prewar-poison-f2781b4a6e84@spud>
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2084.outbound.protection.outlook.com [40.107.22.84])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DDC4B2;
+	Wed, 13 Dec 2023 07:39:34 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=C+n/U7U5a5RalC6rHN2rt1bwFbFCVPWlVT8IN/qTt7UBTttirqx3a1iYJ2Es8db1ewO9/JD2mLTS3XERqLX+BsMnk/AMZ8JthXas7cccdMekwlGL3REm6QB+1yJWJUsQU57nWaG8zkVt0CWeoAF8yNHwxttTq8GT8YNwg0KtaTLP/RRUUGGs4+vwEAxQFY+DMz6vjeVs5KuBCyxGCSw4Xegiyc08BOXzveeHK0P/NOyonkXV/tRPC7UYDcmFhQGfqUw8o2V7R8j/exZT5+B4nQy+YU0ZAh23KzmJI5QNzubA9KlYsUIqRdhJ963dd7MaXxezc1sL8D4OlHKam3HV9g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RheBhCGdzPOd5sggcYITOIZ0TR1XH6/G+bcE72jzgvA=;
+ b=jOTHyES9B1mcRiq+gcv/yD1Gaouy+ndlcI+GH2EdamZNh5quyhmqWielukcdZg2SPRx/1wpk91O5CGUkLg8Z3160MBMCesxtKLv+x3zvMV0sD5OSXsJg/kUVUOejridgcn717h9KEfjk8BsulpnjmNhr0bc/+m6Nqgw2V/xrMDqY/Gxchz5PwLr4tc7reZO8EeY/yOI18eBeDvAIHcbAUEcfXunqfCiy5qbMwnLdCnBM6c8mAyaVSNsFhfeuknSxnM5wx5SEHUy1EFIQfxtV10ZuHkHuhf2aRbeBWJY+U0vZLmKwG8gjHXlBDvJVZnX6UweJFiwsdxt6gl0PZ1BNIA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RheBhCGdzPOd5sggcYITOIZ0TR1XH6/G+bcE72jzgvA=;
+ b=CnSHmD3EZdfdWTMdWeudqhuhcgPM/hCoNvIOSxpib6sQYfkN1O8ifUmiQS88BEh4bUXvU/DUks/VxvGxj9rIQ/YAP3hMiOMeLZl9azc+CK/+vh5LcdGy0CAxQpWmBPKn9jonXiHyvwyYcSudONqe838SC6WU3/7hS4l4TsQySGE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM6PR04MB4838.eurprd04.prod.outlook.com (2603:10a6:20b:4::16)
+ by PAXPR04MB8829.eurprd04.prod.outlook.com (2603:10a6:102:20c::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.33; Wed, 13 Dec
+ 2023 15:39:31 +0000
+Received: from AM6PR04MB4838.eurprd04.prod.outlook.com
+ ([fe80::95f5:5118:258f:ee40]) by AM6PR04MB4838.eurprd04.prod.outlook.com
+ ([fe80::95f5:5118:258f:ee40%6]) with mapi id 15.20.7068.033; Wed, 13 Dec 2023
+ 15:39:31 +0000
+Date: Wed, 13 Dec 2023 10:39:20 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Rob Herring <robh@kernel.org>
+Cc: bhelgaas@google.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
+	festevam@gmail.com, helgaas@kernel.org, hongxing.zhu@nxp.com,
+	imx@lists.linux.dev, kernel@pengutronix.de,
+	krzysztof.kozlowski+dt@linaro.org, kw@linux.com,
+	l.stach@pengutronix.de, linux-arm-kernel@lists.infradead.org,
+	linux-imx@nxp.com, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, lpieralisi@kernel.org,
+	manivannan.sadhasivam@linaro.org, s.hauer@pengutronix.de,
+	shawnguo@kernel.org
+Subject: Re: [PATCH v3 08/13] dt-bindings: imx6q-pcie: Add imx95 pcie
+ compatible string
+Message-ID: <ZXnQKBnweCT+si6/@lizhi-Precision-Tower-5810>
+References: <20231211215842.134823-1-Frank.Li@nxp.com>
+ <20231211215842.134823-9-Frank.Li@nxp.com>
+ <20231212224426.GA2948988-robh@kernel.org>
+ <ZXjsq2QtFa2V0BAl@lizhi-Precision-Tower-5810>
+ <20231213143615.GA1093782-robh@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231213143615.GA1093782-robh@kernel.org>
+X-ClientProxiedBy: BYAPR02CA0043.namprd02.prod.outlook.com
+ (2603:10b6:a03:54::20) To AM6PR04MB4838.eurprd04.prod.outlook.com
+ (2603:10a6:20b:4::16)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="SNv4aXwN7leT+bpI"
-Content-Disposition: inline
-In-Reply-To: <20231213-prewar-poison-f2781b4a6e84@spud>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM6PR04MB4838:EE_|PAXPR04MB8829:EE_
+X-MS-Office365-Filtering-Correlation-Id: 23757cac-2bc8-4765-0fbe-08dbfbf1b1db
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	RynaWRZt9e+k2yRcFRbeAhC0KMXomI/64/yq8CKWa5MF5nxit1MCf7VjgHATbPe3uUOm20B094NkvI+4MtQESdBh/eWhDDCb+r0i79yBgACKvb2+vnVPRAr1+sAiJFZHcXPTlpdn4ux+jT44h2ul0lTzUWVOAT+u/MAm0uFVL6nF9zkOK04cl0qgyjivZ51kM2SPnv5loGHTjCH+SduFQZHQV/h0xhyrm/WPVTgKAn0/Y9gylSva37G3AhxDs/J2saO4sPhbWP0WYuBIxx0ToCX57TLZaDsmyUpH1Y3gj+RdT9SIWW/imZB8zCmagonOfwoCsCxgFLshp3wyHUxwBZysmE5aFRWXJoxmj0V814duQuXaJS/3IoUGKtgX0DB73JtdgC2kb7rzNofqg8ySm87df32NlygqeHsCF5BGU/xTw1x2QnxmYrmaeHrtEmcvJ6/qyjvgmHACgr64x3gHN/uEEZ+xb7KfoAjc10yh/yMoEjKA01APPSD2UnWpdV7LZMdcWFBfAYWIwmzH3JO3GbpPyGJ3nV9bfKx/CgXTzoctU4x8av8K53blxsvH4eR/ZTA+NXKNDpgON0WEbJPtjTbSPhdgylV9IL4vqfmbmcb/AOiA9WySMCuF48wHMZY2kADyomrqG0IjiNOfknM+oA==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4838.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(376002)(396003)(136003)(366004)(346002)(39860400002)(230922051799003)(64100799003)(451199024)(186009)(1800799012)(5660300002)(7416002)(2906002)(8936002)(4326008)(8676002)(316002)(66946007)(6916009)(66476007)(66556008)(38100700002)(41300700001)(6506007)(6666004)(52116002)(86362001)(33716001)(478600001)(38350700005)(83380400001)(6486002)(6512007)(26005)(9686003)(32563001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?BQLvgPqVnwCgkGPtqRlMXVTTDrESy3X9VXCQUe42wJ/z2SfjmJv5N7awvpLq?=
+ =?us-ascii?Q?jExdGSnqxxl80wUVAvGjjArvflR5TkZCAdpuQJHsLzi1wLxE6H3QEgAf0zjn?=
+ =?us-ascii?Q?68FgUS6N1XuPxOb+pQRGNf6K/nhkURzx86yOBRFXbagGaiqIOkG7wjMpfG7v?=
+ =?us-ascii?Q?EF/BAdq1uk8EARZpknv3louooSxEuAF78uXW01EcSznnv5dy7eVJzrUo7m8E?=
+ =?us-ascii?Q?kvmNcWb4lzV/IvE8frLXu+aH3gXlaKcpeFBtFPDLb5vx2eKByGk/jE5IOH+U?=
+ =?us-ascii?Q?FfkALrkS++iE/y6JKjmCo0OMr/X8UYOV5aMEpLYbnENNq2to+vgBxBvcXXlY?=
+ =?us-ascii?Q?Zr0kGysvpxSDo6RmuaUy+GgtaBekzV41q8qrtbFoIqWii2MsfoUw3YsQTA38?=
+ =?us-ascii?Q?zdPHT4+4Wlg6JblsM91ZBNfz1b/1uZSwGv4hcJaaMcsso3FvpeZKRgW2Gs5A?=
+ =?us-ascii?Q?qQuMRmeymlGn6a4c5RoF4/u0bCXLnMnGbuta2ksXUc/7cQNT5PyigjrVfAx7?=
+ =?us-ascii?Q?b7Dwm7y9Hif7eFK+/++sDIH+JEe1TpF/c1pxvyszkVRaFSgLPC2PhROaBMBs?=
+ =?us-ascii?Q?BvA+wf46WGDlP89yyAn9A3rwuM9M71doaKW/DFrgaKxHuCUFfivHTm4ObQV9?=
+ =?us-ascii?Q?fLgkGlXXN2yuWS1YZB2+Xuzy2kAEqOQ3XQhELogQwyBI9q94/K64dgUnrbE7?=
+ =?us-ascii?Q?fl1a0VKFPRERVGFVYWp9pk/ViAiGjwvQ4MCtuqn+wfu0w9j+7Ey/fJIeSW7F?=
+ =?us-ascii?Q?rUXrKo5lxBBtAMcLan2yNtmuU1E5j3hdtnlzE5G0kXFWabGaEysClpdQ+5X/?=
+ =?us-ascii?Q?IM+crlhZ28SaNDM1afWo/SlLgEqohsVidmuO67sbuiu/JGY4CjDvyTuJUGt8?=
+ =?us-ascii?Q?WPiv4to7S9HarrfjNIYs88AzxeJGs4nT7wRJtVZZe7iUozHSI7Rc6UOR+QLN?=
+ =?us-ascii?Q?05cZv/4WhnecGh6hcUb2yURPMWu6kpGYLT4EqIFVbCMubi87BRFQGMNKqj+N?=
+ =?us-ascii?Q?J4No1eWcwn23nbnotLOMf56cCRDHhjeuCnxHwxRiQ6zl2uFwRNvKpZG5Hf24?=
+ =?us-ascii?Q?xB330vAWmsFHZEo5F10z57UO1E+7VgrjVmQRBnT4OvYPgZZQjVbaJamlgNWf?=
+ =?us-ascii?Q?CVUff9QjsJAAdR8qmvU+cnVE523ZKXYQRNnf8tAkqk9bgHcdGTfrlCsLX/ex?=
+ =?us-ascii?Q?2Uy89kxhyR/Eh9GDE/C21xqKHqyMCQx3NHXmTEl9g+ZJr+9Rm4EfoZcy34oE?=
+ =?us-ascii?Q?Mw/PWwkdh4Kxcky2BUOd+SbofFZGhLItadYK20ljp82UZmPE/rE4429QCY6f?=
+ =?us-ascii?Q?XBuj/jwrz00++1xbpV+K0R5KhrZsoMiHrWsPUnu9a7op4t04HDTMs4ThZdB/?=
+ =?us-ascii?Q?2DVTD5GVT4hHX8lQyMCvwqPPa38Q9vRLYCPVFIjB1Mtsgha4cF17cGISSdVH?=
+ =?us-ascii?Q?m58EvXujHKNRN8DFB9Sf3BvcGXdlSQ/o+4xgtxQuW71sO7V6h0hInbFuaFmW?=
+ =?us-ascii?Q?sqdpBeQ0yg0YcAyf9X3M4L/v8QVqyjZjmtDjO3BmWQUmh1IK9qgh9bP9v2ud?=
+ =?us-ascii?Q?5rbgHAnU0PIM3mokjPE=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 23757cac-2bc8-4765-0fbe-08dbfbf1b1db
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4838.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Dec 2023 15:39:30.0914
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: bRgkBwFIpZfUMh73VzUOv7XGAm2PrJr/5R/oMFL+nRF4L+opRMnmtGc6r/V45jL6ylh6ufUkeZillFfqU5YCYQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8829
 
+On Wed, Dec 13, 2023 at 08:36:15AM -0600, Rob Herring wrote:
+> On Tue, Dec 12, 2023 at 06:28:43PM -0500, Frank Li wrote:
+> > On Tue, Dec 12, 2023 at 04:44:26PM -0600, Rob Herring wrote:
+> > > On Mon, Dec 11, 2023 at 04:58:37PM -0500, Frank Li wrote:
+> > > > From: Richard Zhu <hongxing.zhu@nxp.com>
+> > > > 
+> > > > Add i.MX95 PCIe "fsl,imx95-pcie" compatible string.
+> > > > Add "atu" and "serdes" to reg-names.
+> > > > 
+> > > > Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> > > > ---
+> > > > 
+> > > > Notes:
+> > > >     Change from v2 to v3
+> > > >     - Remove krzy's ACK tag
+> > > >     - Add condition check for imx95, which required more reg-names then old
+> > > >     platform, so need Krzy review again,
+> > > >     
+> > > >     Change from v1 to v2
+> > > >     - add Krzy's ACK tag
+> > > > 
+> > > >  .../bindings/pci/fsl,imx6q-pcie.yaml           | 18 ++++++++++++++++++
+> > > >  1 file changed, 18 insertions(+)
+> > > > 
+> > > > diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+> > > > index 81bbb8728f0f9..b8fcf8258f031 100644
+> > > > --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+> > > > +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+> > > > @@ -29,6 +29,7 @@ properties:
+> > > >        - fsl,imx8mq-pcie
+> > > >        - fsl,imx8mm-pcie
+> > > >        - fsl,imx8mp-pcie
+> > > > +      - fsl,imx95-pcie
+> > > >  
+> > > >    reg:
+> > > >      items:
+> > > > @@ -90,6 +91,22 @@ required:
+> > > >  allOf:
+> > > >    - $ref: /schemas/pci/snps,dw-pcie.yaml#
+> > > >    - $ref: /schemas/pci/fsl,imx6q-pcie-common.yaml#
+> > > > +  - if:
+> > > > +      properties:
+> > > > +        compatible:
+> > > > +          enum:
+> > > > +            - fsl,imx95-pcie
+> > > > +    then:
+> > > > +      properties:
+> > > > +        reg:
+> > > > +          minItems: 4
+> > > > +        reg-names:
+> > > > +          items:
+> > > > +            - const: dbi
+> > > > +            - const: serdes
+> > > 
+> > > Did you test this? It should fail because 'serdes' would need to be 
+> > > added to snps,dw-pcie.yaml.
+> > 
+> > I run "make dt_binding_check DT_SCHEMA_FILES=/pci/", no error report.
+> 
+> Only because you have no example. What about your actual .dts?
 
---SNv4aXwN7leT+bpI
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I see. 95 is quite new. Still have not good base yet.
+I may just take take care this session.
 
-On Wed, Dec 13, 2023 at 03:27:25PM +0000, Conor Dooley wrote:
-> On Wed, Dec 13, 2023 at 03:02:52PM +0800, Yu Chien Peter Lin wrote:
-> > The custom PMU extension aims to support perf event sampling prior
-> > to the ratification of Sscofpmf. Instead of diverting the bits and
-> > register reserved for future standard, a set of custom registers is
-> > added.  Hence, we may consider it as a CPU feature rather than an
-> > erratum.
-> >=20
-> > T-Head cores need to append "xtheadpmu" to the riscv,isa-extensions
-> > for each cpu node in device tree, and enable CONFIG_THEAD_CUSTOM_PMU
-> > for proper functioning as of this commit.
-> >=20
-> > Signed-off-by: Yu Chien Peter Lin <peterlin@andestech.com>
-> > Reviewed-by: Guo Ren <guoren@kernel.org>
->=20
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> 
+> > And PCIe function can work.
+> > 
+> > > 
+> > > Is this really not a separate phy block?
+> > 
+> > This is misc block, which included phy and also include some registers
+> > about SID for each PCI devices. I plan do it later.
+> 
+> Sounds like it should be a separate node and use the phy binding. Do it 
+> correctly from the start, not later. Later is an ABI break.
 
-I think it is also worth mentioning that the only SoC, to my knowledge,
-that works with a mainline kernel, and supports the SBI PMU is the D1,
-and only recently has the OpenSBI port for the SoC been fixed to
-actually work correctly, and that has apparently not yet made it to
-a release of OpenSBI, making the "damage" caused by requiring a DT
-property for PMU support not all that bad since the firmware needs to be
-changed anyway.
+Actually, I considerred phy binding. The major problem is LUT (look up
+table) for MSI and SMMU. LUT need be config according to some PCI device
+information. I have not find good hook for that at PHY driver.
 
-Thanks for your work on this,
-Conor.
+> 
+> What is SID?
 
---SNv4aXwN7leT+bpI
-Content-Type: application/pgp-signature; name="signature.asc"
+Stream ID, each device master have SID, which pass to IOMMU and GIC ITS.
 
------BEGIN PGP SIGNATURE-----
+Frank
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZXnOpgAKCRB4tDGHoIJi
-0vFSAP4vVxuYhNOszazQh5QRosrPv3AJ+es7VDyK7fJJn7PemAEA00lcLHa8pVPg
-zVv6tom5ELmLTpytrjK7gWjeiOgWggI=
-=DW10
------END PGP SIGNATURE-----
-
---SNv4aXwN7leT+bpI--
+> 
+> Rob
 
