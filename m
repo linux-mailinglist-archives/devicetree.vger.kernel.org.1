@@ -1,97 +1,141 @@
-Return-Path: <devicetree+bounces-24601-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24595-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7438B810A54
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 07:31:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A5D0D810A33
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 07:22:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D3104B20D95
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 06:31:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BE0E0B20D01
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 06:22:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B28E2FBF6;
-	Wed, 13 Dec 2023 06:31:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79477F9ED;
+	Wed, 13 Dec 2023 06:22:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="f3eJqOC/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hMHDDNNt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30673E4;
-	Tue, 12 Dec 2023 22:31:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1702449104; x=1733985104;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references;
-  bh=cYOq7AZDrqOem5EFBS27D9w2EDbODgEUDb6Vlfdk2EM=;
-  b=f3eJqOC/bDbmO3zWUeOgov91fD3ZQM9Ratix29Q5JuNoHjTeixzNwqOE
-   qECF5M79adV3YXr+i+7Y2sh2tDke1RyR7kMq0LWWUi/GW8MImpsrfVtUV
-   o/8rwY5HA08n30dCGmn8xUEFcl+tUei0Thag6Jb+tkN481Vor+jr3hyVJ
-   eYNojx5QazuAnGmr0fONvJHeGkBVzoHXdVWEpkxfSJaDH/6TTsVxqrokw
-   dU8MNw0y3P6P4cUOYNKlHwGWtz/sQ0E1uhXW4q4PYFHgSiYb7JpWC/ZgH
-   qGZclvEtsCjtO/hQvDDdQvWl40aQsM7tmdVsc9pcnWaa1SFCOQlrxpvNP
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="8281310"
-X-IronPort-AV: E=Sophos;i="6.04,272,1695711600"; 
-   d="scan'208";a="8281310"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Dec 2023 22:31:44 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="947065772"
-X-IronPort-AV: E=Sophos;i="6.04,272,1695711600"; 
-   d="scan'208";a="947065772"
-Received: from srikandan-ilbpg12.png.intel.com ([10.88.229.69])
-  by orsmga005.jf.intel.com with ESMTP; 12 Dec 2023 22:31:40 -0800
-From: nandhini.srikandan@intel.com
-To: fancer.lancer@gmail.com,
-	broonie@kernel.org,
-	robh+dt@kernel.org,
-	linux-spi@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: devicetree@vger.kernel.org,
-	mgross@linux.intel.com,
-	kris.pan@intel.com,
-	kenchappa.demakkanavar@intel.com,
-	furong.zhou@intel.com,
-	mallikarjunappa.sangannavar@intel.com,
-	mahesh.r.vaidya@intel.com,
-	nandhini.srikandan@intel.com
-Subject: [PATCH v1 2/2] spi: dw: Remove Intel Thunder Bay SOC support
-Date: Wed, 13 Dec 2023 14:08:36 +0800
-Message-Id: <20231213060836.29203-3-nandhini.srikandan@intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20231213060836.29203-1-nandhini.srikandan@intel.com>
-References: <20231213060836.29203-1-nandhini.srikandan@intel.com>
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8404B9A
+	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 22:22:18 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-33635163fe6so998160f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 22:22:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702448537; x=1703053337; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7Wc8lh1qWNyETO1FmFmLBqzXMWPjFfaUtsfz0oMIVUw=;
+        b=hMHDDNNtgwWFFvU37P/xh3dgceC1ihyi6mCHvPpN2d7Ny2T4lVHAX2c8Y65OsjzFJ+
+         lsqot0RnrFOTai8o+VHFRqMHAWB7MdQOp9eyC6dIU3fnmCAPSR64k+Dzt4mNziEWMFdu
+         1GN5UWJH8LIeOthOYvvUiVj7YLcUYd033LTs0fz/VWTVm/MhN99EJETo7/KGWnyK4X+o
+         56b7Wz8bshxHXtrfxqYzNvMJHvrCMQpEzl83feXXbzjJZxs61XDTX94u0WvUI5/vpUAt
+         H4zAo38lYO5PbJhY/OWC3CWCe+Uf9h8ki5QjUVKsd7GN4yH84ytVMQyW4G0Pbv4sv0dS
+         NB9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702448537; x=1703053337;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7Wc8lh1qWNyETO1FmFmLBqzXMWPjFfaUtsfz0oMIVUw=;
+        b=O9ecPdPqwlvhlNynSN1B78sF0CE4Sp7LD4+FrBKuAISeTeAiJ7AAL6LH4XzVi+sXxh
+         eTjNApvi1zCj7aVPJLexP9VsIlJqFEO9pgaL0LvjkSKxak7PZjf8D0H9AIOjhq+dAYRl
+         l2AVBXh+tC9MReTxqdaN6EOdMcELOAPo+Qg/EoFptvq5Q/0TJXC84YU4+v4udL3RzU82
+         /DrFP1w5Nt6wylgZPDlEDITVFYu8TQW2Px5nYe3/BJtMPHx8Xa55jvz7qcv/8xW9Ioiz
+         BDvgM3i/FpbHLuLtOy1HYDZPan02Mme7jbHrb2naQjHQkmrdtZGhD4um8G4+tXluMNLg
+         YSyg==
+X-Gm-Message-State: AOJu0YyPrvuE/qilGqOV1cbYM/pZMn/ESCw+twkQSpdCtq0UOnmaoluL
+	P5PNd0jpl5OWikP9CZfO40JQ0g==
+X-Google-Smtp-Source: AGHT+IHHXA1d9FUQemPu84ZoLd0cHk57uDKUQYOjv3md1udbQVOKz7OVPQsA/WLOHFLg/Ai9rdUIEg==
+X-Received: by 2002:adf:e712:0:b0:336:30b5:3c19 with SMTP id c18-20020adfe712000000b0033630b53c19mr1116032wrm.126.1702448537013;
+        Tue, 12 Dec 2023 22:22:17 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id m1-20020a056000008100b00334b3208700sm12332952wrx.49.2023.12.12.22.22.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Dec 2023 22:22:16 -0800 (PST)
+Message-ID: <3cb1647d-c58e-4040-9e3a-61965e6a08ac@linaro.org>
+Date: Wed, 13 Dec 2023 07:22:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/3] soc: add NPCM BPC driver support
+Content-Language: en-US
+To: Tomer Maimon <tmaimon77@gmail.com>, arnd@arndb.de, pmenzel@molgen.mpg.de,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ avifishman70@gmail.com, tali.perry1@gmail.com, joel@jms.id.au,
+ venture@google.com, yuenn@google.com, benjaminfair@google.com,
+ j.neuschaefer@gmx.net
+Cc: openbmc@lists.ozlabs.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231212100703.3374555-1-tmaimon77@gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231212100703.3374555-1-tmaimon77@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Nandhini Srikandan <nandhini.srikandan@intel.com>
+On 12/12/2023 11:07, Tomer Maimon wrote:
+> This patch set adds BIOS Post code (BPC) support for the Nuvoton 
+> NPCM Baseboard Management Controller (BMC).
+> 
+> Nuvoton BMC NPCM BIOS Post Code (BPC) monitoring two configurable 
+> I/O addresses written by the host on the bus, the capture data 
+> stored in 128-word FIFO.
+> 
+> NPCM BPC can support capture double words.
+> 
+> The NPCM BPC driver tested on NPCM750 Olympus board.
 
-Remove Intel Thunder Bay specific code as the product got cancelled and
-there are no end customers or users.
+Where is the changelog?
 
-Signed-off-by: Nandhini Srikandan <nandhini.srikandan@intel.com>
----
- Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml | 2 --
- 1 file changed, 2 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-index 6348a387a21c..fde3776a558b 100644
---- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-+++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-@@ -72,8 +72,6 @@ properties:
-           - const: snps,dw-apb-ssi
-       - description: Intel Keem Bay SPI Controller
-         const: intel,keembay-ssi
--      - description: Intel Thunder Bay SPI Controller
--        const: intel,thunderbay-ssi
-       - description: Intel Mount Evans Integrated Management Complex SPI Controller
-         const: intel,mountevans-imc-ssi
-       - description: AMD Pensando Elba SoC SPI Controller
--- 
-2.17.1
+Best regards,
+Krzysztof
 
 
