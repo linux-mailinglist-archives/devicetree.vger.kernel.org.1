@@ -1,91 +1,123 @@
-Return-Path: <devicetree+bounces-25042-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25044-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2F72812024
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 21:44:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A36081205D
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 22:04:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 76F351F21856
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 20:44:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADDBD28285B
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 21:04:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D90317E547;
-	Wed, 13 Dec 2023 20:44:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ADE67FBA0;
+	Wed, 13 Dec 2023 21:04:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="scCp2sm0"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="f6aT5kUa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E06F9C
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 12:44:33 -0800 (PST)
-Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2ca00dffc23so94125331fa.2
-        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 12:44:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702500271; x=1703105071; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=791SIM/Dhvb8Ir1xD+lGgMjeSCLDTpnAuXXKKBGGfXM=;
-        b=scCp2sm0xN+fUSCUAmpef9JPEiqasoceuJBC7uuWbi13tXHIBN7jilKBOzujq/M2Ik
-         RVBrZSdbEyPRfKPsA5e6kSXmepZAep5kyap9WPnY12ZXL2yDOGA1YHgNOcGG0+vAwdsC
-         K0RGZmlimA5MoubfHqD5vttj56tzHYajYw7VKROp3RusDdw89aMvmEbB04BjOpoRcXFg
-         yyGv8YmP2iW3EznlDw+xnB79N03hfSPcgPRycQ5+qCqWyrpTSywTD3v+0iDHII9cX1Sn
-         MbpJcAmV9vdivonRb9Km3mKpJv9P4uR89LUrnEiYqXEVYJ6fLxVSnEFUwEMtqxiz3XD0
-         CAjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702500271; x=1703105071;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=791SIM/Dhvb8Ir1xD+lGgMjeSCLDTpnAuXXKKBGGfXM=;
-        b=tUyWiC207nn4CHfR5acIyXHLLEGl8y/HJE4HporRwWVTsYLDERXAa0UBvnLNljh7PJ
-         5LYOFo1riNg676beFNqKqTEXuRnn78dMNduJfAJSf7T/KgHFFivxLMkiEXronecrgBPE
-         CswpRgGlF1prtGwfh6hwpJm+Q2bCi2FKWnGXh91KJA29HBnOaZo3Up8cwyO/IVL2kgIQ
-         ZRiWtq1JYB6ZjP8sIYGzfnKTOmQqLZ3QIYNueL5B0JDpRVC+DE5EGNmHNB5AHMLfCXRa
-         De0fWQx6zjUmq7++YsveaC2/19WWRdz19vYjdxqcnrGgQuN0rcBtcy5LiOG4XA7cd9Fn
-         MpOg==
-X-Gm-Message-State: AOJu0YypDUHPPFyyaz0tEi3yLnFYignql5Md3kUBuRVYMn3h5EdGIwVe
-	sYV8ae2Tg0MjEQKQ/BgaJZjLcA==
-X-Google-Smtp-Source: AGHT+IGBcCefJRle6Hyu6jtgfQoSzKaAQzBDmyPvdwsrfJHXq/qI3IxXTgfVdwGdurr8E0qLZIqlnw==
-X-Received: by 2002:a05:651c:b07:b0:2cc:1c25:83e0 with SMTP id b7-20020a05651c0b0700b002cc1c2583e0mr3375130ljr.39.1702500271376;
-        Wed, 13 Dec 2023 12:44:31 -0800 (PST)
-Received: from [172.30.204.126] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id z11-20020a2e964b000000b002cc41ec2576sm1946ljh.61.2023.12.13.12.44.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Dec 2023 12:44:30 -0800 (PST)
-Message-ID: <e7f8e4bf-080d-4bb4-99ca-727d2d00f55d@linaro.org>
-Date: Wed, 13 Dec 2023 21:44:28 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FAA3EA;
+	Wed, 13 Dec 2023 13:04:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1702501459; x=1734037459;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=y1mtcoT8ZE06ocUFqW4eqbX762VeIRsfO2sl4kVHv9k=;
+  b=f6aT5kUahyZ3PDV3xHkPYsF0fnFwogrjsBziC6m3UMicPAxo/e7LyJPk
+   QiHIa9iSqet9eBp6+UEB5to1QEiFPCoFJJuc/VAbNuM4hazTQKFzgYS/F
+   6vVHkMHPtq99C1VfsN4rvto7KQxNy8PvrFojeGb/s97rcycEbCNYXojxU
+   SwFtHZFQb36wP2zM/YyfbHVOfVhamZs1UQAiEIBwvAqNKaWmEI9Eq5Q+N
+   LF9UhbmJLohsdDf8H9XLlYG3zm38v1a9FuwCHOAA+N0NflDGNQ4A79xSL
+   TLSFkF43ctEvCxCWeFy2DliIY90BFNfF2QVEewn/cPiUePVd4OYp91Use
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10923"; a="461495928"
+X-IronPort-AV: E=Sophos;i="6.04,273,1695711600"; 
+   d="scan'208";a="461495928"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Dec 2023 13:04:19 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10923"; a="947311374"
+X-IronPort-AV: E=Sophos;i="6.04,273,1695711600"; 
+   d="scan'208";a="947311374"
+Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
+  by orsmga005.jf.intel.com with ESMTP; 13 Dec 2023 13:04:14 -0800
+Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rDWOp-000L8F-2x;
+	Wed, 13 Dec 2023 21:04:11 +0000
+Date: Thu, 14 Dec 2023 05:03:33 +0800
+From: kernel test robot <lkp@intel.com>
+To: Sherry Sun <sherry.sun@nxp.com>, hongxing.zhu@nxp.com,
+	l.stach@pengutronix.de, lpieralisi@kernel.org, kw@linux.com,
+	robh@kernel.org, bhelgaas@google.com,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com
+Cc: oe-kbuild-all@lists.linux.dev, linux-imx@nxp.com,
+	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V2 1/4] PCI: imx6: Add pci host wakeup support on imx
+ platforms.
+Message-ID: <202312140402.hZsD0IVQ-lkp@intel.com>
+References: <20231213092850.1706042-2-sherry.sun@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] ARM: dts: qcom: msm8926-motorola-peregrine: Add
- initial device tree
-To: =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>,
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
- ~postmarketos/upstreaming@lists.sr.ht
-References: <20231213-peregrine-v1-0-5229e21bca3f@apitzsch.eu>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20231213-peregrine-v1-0-5229e21bca3f@apitzsch.eu>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Level: *
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231213092850.1706042-2-sherry.sun@nxp.com>
+
+Hi Sherry,
+
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on pci/next]
+[also build test WARNING on pci/for-linus shawnguo/for-next robh/for-next linus/master v6.7-rc5 next-20231213]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Sherry-Sun/PCI-imx6-Add-pci-host-wakeup-support-on-imx-platforms/20231213-173031
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git next
+patch link:    https://lore.kernel.org/r/20231213092850.1706042-2-sherry.sun%40nxp.com
+patch subject: [PATCH V2 1/4] PCI: imx6: Add pci host wakeup support on imx platforms.
+config: arm64-defconfig (https://download.01.org/0day-ci/archive/20231214/202312140402.hZsD0IVQ-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231214/202312140402.hZsD0IVQ-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202312140402.hZsD0IVQ-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/pci/controller/dwc/pci-imx6.c:1267:13: warning: no previous prototype for 'host_wake_irq_handler' [-Wmissing-prototypes]
+    1267 | irqreturn_t host_wake_irq_handler(int irq, void *priv)
+         |             ^~~~~~~~~~~~~~~~~~~~~
 
 
+vim +/host_wake_irq_handler +1267 drivers/pci/controller/dwc/pci-imx6.c
 
-On 12/13/23 21:33, André Apitzsch wrote:
-> This dts adds support for Motorola Moto G 4G released in 2013.
-I have a similar one in my drawer.. not the 4g kind, titan IIRC?
-Wasn't this one codenamed thea?
+  1266	
+> 1267	irqreturn_t host_wake_irq_handler(int irq, void *priv)
+  1268	{
+  1269		struct imx6_pcie *imx6_pcie = priv;
+  1270		struct device *dev = imx6_pcie->pci->dev;
+  1271	
+  1272		/* Notify PM core we are wakeup source */
+  1273		pm_wakeup_event(dev, 0);
+  1274		pm_system_wakeup();
+  1275	
+  1276		return IRQ_HANDLED;
+  1277	}
+  1278	
 
-Konrad
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
