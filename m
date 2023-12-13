@@ -1,254 +1,257 @@
-Return-Path: <devicetree+bounces-24842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24843-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82E8C8115B3
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 16:05:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36BD4811601
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 16:20:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0298DB20EF9
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 15:05:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 633A01C20F50
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 15:20:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6790E2FC40;
-	Wed, 13 Dec 2023 15:05:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8E4031744;
+	Wed, 13 Dec 2023 15:19:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Z5RwwYfo"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="c05HngJr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0A871B2
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 07:05:11 -0800 (PST)
-Received: by mail-pl1-x629.google.com with SMTP id d9443c01a7336-1d337dc9697so18521105ad.3
-        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 07:05:11 -0800 (PST)
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9973EA
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 07:19:37 -0800 (PST)
+Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2c9ea37ac87so97667931fa.3
+        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 07:19:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1702479911; x=1703084711; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=ventanamicro.com; s=google; t=1702480775; x=1703085575; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=mdJpaEyOrmC4KqA5NItk2d/Ynqwil9BXexUR/FoEjBY=;
-        b=Z5RwwYfoOWw8kZegzwpluiDj28vdWP817A5QJsVOHGUyZwdIEQuCh986qa396PdqZj
-         Ags+/f2TZFjObR22BpB298qSOZuDPipUqiOHIHGWxJeEZbWkdNqkDeSFDfhQNtuitevw
-         Dt2IZPAWqs1WZZdPzg0YYlJZnHve6M5XUtroA=
+        bh=ZNtewRvKdkPKx/kufVZXHodSPMmaednXpW/7XMndJ0U=;
+        b=c05HngJrSXOs9nZxeSDrJfluvJDmtKxclnkEnS5QHlDp8yv+or4WwYBBxUh1NalyW8
+         FDMXUPhHN9tDbMGKyr8vG9X2qVB83jjynz4zR1wEw4MdhoQ/4U2ffd1HBPJklP+Oyroz
+         RTHsYzleZ8DxnXQwxGjSUeUPuin1XYpXmgaIHfHBJ0HwKuFcsbUAsW7KtFF3ioYJWGdO
+         gJALSsPqCjcCADXWqHLYaHS0NkEFg0lRk1LU4SJR4Qw9voRm3Vreft6hz2ywxtHSkeMQ
+         Jx4CaIGTreXntZXZNtUbmaPGqrZnddgp4m3RWPA0FpV6NLyLK7CT9T5YGeXH62QK1c29
+         fZtg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702479911; x=1703084711;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1702480775; x=1703085575;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=mdJpaEyOrmC4KqA5NItk2d/Ynqwil9BXexUR/FoEjBY=;
-        b=rY/p3x3Rn5D8ZPWWwIZ0qw4PETfoTuVMpMIOJgkiusIO7vv2sO+qspX+BzMHChlUfg
-         RNnYgARSFK5fNUnVdQBuhRIRdiy3sO7UwIibyQKw5LgudkeYdd9eK8G4exCibjd3Ld4G
-         Xh0iw23Dm+BMiamDjKZDzNQZaoXhMKWvYSZDzIdmeuHc2P1+hUYNeUXZYE/wGy8Zwt+S
-         6IdQnGH6WKafPhwuuaNy3xNqeglWbaQx3kCTejIUEWC2Iq5MKLOAhrMETGpERl59rPnP
-         31RSbwj55Z6P4ABZjuTXgWzsruL1Qj2MMNlvPiUO3HC7xBrRT/en3mTusLfZGZhfKNnM
-         hxTA==
-X-Gm-Message-State: AOJu0Ywh/D/me1Ludh5s4CLvLcNd0oPNC4ZuzUc+FRxKWOhUI/Ugrsja
-	lQPs6qZZ5E+cS5b5HCbuzZkcsA==
-X-Google-Smtp-Source: AGHT+IEQO3RG5PI4/qHvBA3eucejNO2Hd02WhFSJyA7obS9Q0SY25ZKKT7pzcnuGhCeE8yniLER/ig==
-X-Received: by 2002:a17:902:7e84:b0:1d3:141:cb06 with SMTP id z4-20020a1709027e8400b001d30141cb06mr6005326pla.113.1702479911192;
-        Wed, 13 Dec 2023 07:05:11 -0800 (PST)
-Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:1974:9e2:4915:58b0])
-        by smtp.gmail.com with ESMTPSA id z15-20020a1709027e8f00b001cc2dc61c99sm813808pla.22.2023.12.13.07.05.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Dec 2023 07:05:10 -0800 (PST)
-From: Chen-Yu Tsai <wenst@chromium.org>
-To: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Chen-Yu Tsai <wenst@chromium.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Eugen Hristev <eugen.hristev@collabora.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v4 9/9] arm64: dts: mediatek: Add MT8186 Magneton Chromebooks
-Date: Wed, 13 Dec 2023 23:04:33 +0800
-Message-ID: <20231213150435.4134390-10-wenst@chromium.org>
-X-Mailer: git-send-email 2.43.0.472.g3155946c3a-goog
-In-Reply-To: <20231213150435.4134390-1-wenst@chromium.org>
-References: <20231213150435.4134390-1-wenst@chromium.org>
+        bh=ZNtewRvKdkPKx/kufVZXHodSPMmaednXpW/7XMndJ0U=;
+        b=sqAeEz4ijBVBmG0xAdJBVORzq0R33kIvCG5Xlff0W0dbHsK0lLHymwVvCfRn2gB1+p
+         bribwk8Da8nH0kP0MsboEqXmWsRuk0PysIKKIQa8CNrPCtjQ02GX4ozOmyYLFDIxqPOR
+         7nfyrMtRur+2IVIupv12p7y9olrmf4Ykv0+xVcfqaL9mz9iEzU1XueSOjknaVvuDDoUd
+         rmg2FMKVoIsZdME16NKBUdtau6VrmkYzSPkHFjaB8rL/tRGl65KUNVtEOs7+CVB1jB+d
+         dewNFG22sPxo2lYM9snxAX1iJqL/EZnCZ0WQGAFtlgYWENHlpdNwNPHdMRI78BLZ4oEL
+         Rfrw==
+X-Gm-Message-State: AOJu0YwWrxVekqJtNDZLANB04/r94AyW1qVTQLHr44ZTJJsTSIr7uR42
+	Hf3RTH40KejOPsGW11np9NFc4Y2NfRjpULmPNTscRw==
+X-Google-Smtp-Source: AGHT+IEWCau9dWkDM8W8lF/KIFyXrgUvkYmScfqjpzvs5KS7ZHA07igo81qn4oh9bMosVxgpVkuKuvBsoM9ShBq/11s=
+X-Received: by 2002:a05:651c:1186:b0:2cc:321c:d8dd with SMTP id
+ w6-20020a05651c118600b002cc321cd8ddmr706657ljo.82.1702480775254; Wed, 13 Dec
+ 2023 07:19:35 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20231213070301.1684751-1-peterlin@andestech.com>
+ <20231213070301.1684751-3-peterlin@andestech.com> <CAK9=C2WuuYQD8ydrHP16hUXVk6RuKLbfvUe_GpUGw9ppe3Rd8Q@mail.gmail.com>
+In-Reply-To: <CAK9=C2WuuYQD8ydrHP16hUXVk6RuKLbfvUe_GpUGw9ppe3Rd8Q@mail.gmail.com>
+From: Anup Patel <apatel@ventanamicro.com>
+Date: Wed, 13 Dec 2023 20:49:23 +0530
+Message-ID: <CAK9=C2U+rSP8YMahPmTHLYZ+ZBfwwY5y52JeU_=R+VL1frR1Uw@mail.gmail.com>
+Subject: Re: [PATCH v5 02/16] irqchip/riscv-intc: Allow large non-standard
+ interrupt number
+To: Yu Chien Peter Lin <peterlin@andestech.com>
+Cc: acme@kernel.org, adrian.hunter@intel.com, ajones@ventanamicro.com, 
+	alexander.shishkin@linux.intel.com, andre.przywara@arm.com, 
+	anup@brainfault.org, aou@eecs.berkeley.edu, atishp@atishpatra.org, 
+	conor+dt@kernel.org, conor.dooley@microchip.com, conor@kernel.org, 
+	devicetree@vger.kernel.org, dminus@andestech.com, evan@rivosinc.com, 
+	geert+renesas@glider.be, guoren@kernel.org, heiko@sntech.de, 
+	irogers@google.com, jernej.skrabec@gmail.com, jolsa@kernel.org, 
+	jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-perf-users@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	locus84@andestech.com, magnus.damm@gmail.com, mark.rutland@arm.com, 
+	mingo@redhat.com, n.shubin@yadro.com, namhyung@kernel.org, palmer@dabbelt.com, 
+	paul.walmsley@sifive.com, peterz@infradead.org, 
+	prabhakar.mahadev-lad.rj@bp.renesas.com, rdunlap@infradead.org, 
+	robh+dt@kernel.org, samuel@sholland.org, sunilvl@ventanamicro.com, 
+	tglx@linutronix.de, tim609@andestech.com, uwu@icenowy.me, wens@csie.org, 
+	will@kernel.org, ycliang@andestech.com, inochiama@outlook.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add entries for the MT8186 based Chromebooks, also collectively known
-as the Lenovo IdeaPad Slim 3 Chromebook (14M868). It is also based on
-the "Steelix" design. Being a laptop instead of a convertible device,
-there is no stylus, which is similar to Rusty. However Magneton does
-not have ports on the right side of the device.
+On Wed, Dec 13, 2023 at 7:58=E2=80=AFPM Anup Patel <apatel@ventanamicro.com=
+> wrote:
+>
+> On Wed, Dec 13, 2023 at 12:34=E2=80=AFPM Yu Chien Peter Lin
+> <peterlin@andestech.com> wrote:
+> >
+> > Currently, the implementation of the RISC-V INTC driver uses the
+> > interrupt cause as hardware interrupt number and has a limitation of
+> > supporting a maximum of 64 interrupts. However, according to the
+> > privileged spec, interrupt causes >=3D 16 are defined for platform use.
+>
+> I disagree with this patch.
+>
+> Even though RISC-V priv sepc allows interrupt causes >=3D 16, we
+> still need CSRs to manage arbitrary local interrupts
+>
+> Currently, we have following standard CSRs:
+> 1) [m|s]ie and [m|s]ip which are XLEN wide
+> 2) With AIA, we have [m|s]ieh and [m|s]iph for RV32
+>
+> Clearly, we can only have a XLEN number of standard local
+> interrupts without AIA and 64 local interrupts with AIA.
+>
+> Now for implementations with custom CSRs (such as Andes),
+> we still can't assume infinite local interrupts because HW will
+> have a finite number of custom CSRs.
+>
+> >
+> > This limitation prevents to fully utilize the available local interrupt
+> > sources. Additionally, the interrupt number used on RISC-V are sparse,
+> > with only interrupt numbers 1, 5 and 9 (plus Sscofpmf or T-Head's PMU
+> > interrupt) being currently used for supervisor mode.
+> >
+> > Switch to using irq_domain_create_tree() to create the radix tree
+> > map, so a larger number of hardware interrupts can be handled.
+> >
+> > Signed-off-by: Yu Chien Peter Lin <peterlin@andestech.com>
+> > Reviewed-by: Charles Ci-Jyun Wu <dminus@andestech.com>
+> > Reviewed-by: Leo Yu-Chi Liang <ycliang@andestech.com>
+> > ---
+> > Changes v1 -> v2:
+> >   - Fixed irq mapping failure checking (suggested by Cl=C3=A9ment and A=
+nup)
+> > Changes v2 -> v3:
+> >   - No change
+> > Changes v3 -> v4: (Suggested by Thomas [1])
+> >   - Use pr_warn_ratelimited instead
+> >   - Fix coding style and commit message
+> > Changes v4 -> v5: (Suggested by Thomas)
+> >   - Fix commit message
+> >
+> > [1] https://patchwork.kernel.org/project/linux-riscv/patch/202310230041=
+00.2663486-3-peterlin@andestech.com/#25573085
+> > ---
+> >  drivers/irqchip/irq-riscv-intc.c | 12 ++++--------
+> >  1 file changed, 4 insertions(+), 8 deletions(-)
+> >
+> > diff --git a/drivers/irqchip/irq-riscv-intc.c b/drivers/irqchip/irq-ris=
+cv-intc.c
+> > index e8d01b14ccdd..2fdd40f2a791 100644
+> > --- a/drivers/irqchip/irq-riscv-intc.c
+> > +++ b/drivers/irqchip/irq-riscv-intc.c
+> > @@ -24,10 +24,9 @@ static asmlinkage void riscv_intc_irq(struct pt_regs=
+ *regs)
+> >  {
+> >         unsigned long cause =3D regs->cause & ~CAUSE_IRQ_FLAG;
+> >
+> > -       if (unlikely(cause >=3D BITS_PER_LONG))
+> > -               panic("unexpected interrupt cause");
+> > -
+> > -       generic_handle_domain_irq(intc_domain, cause);
+> > +       if (generic_handle_domain_irq(intc_domain, cause))
+> > +               pr_warn_ratelimited("Failed to handle interrupt (cause:=
+ %ld)\n",
+> > +                                   cause);
+> >  }
+> >
+> >  /*
+> > @@ -117,8 +116,7 @@ static int __init riscv_intc_init_common(struct fwn=
+ode_handle *fn)
+> >  {
+> >         int rc;
+> >
+> > -       intc_domain =3D irq_domain_create_linear(fn, BITS_PER_LONG,
+> > -                                              &riscv_intc_domain_ops, =
+NULL);
+> > +       intc_domain =3D irq_domain_create_tree(fn, &riscv_intc_domain_o=
+ps, NULL);
+>
+> I disagree with this change based on the reasoning above.
+>
+> Instead of this, we should determine the number of local interrupts
+> based on the type of RISC-V intc:
+> 1) For standard INTC without AIA, we have XLEN (or BITS_PER_LONG)
+>     local interrupts
+> 2) For standart INTC with AIA, we have 64 local interrupts
+> 3) For custom INTC (such as Andes), the number of local interrupt
+>     should be custom (Andes specific) which can be determined based
+>     on compatible string.
+>
+> Also, creating a linear domain with a fixed number of local interrupts
+> ensures that drivers can't map a local interrupt beyond the availability
+> of CSRs to manage it.
 
-Three variants are listed separately. These use different touchscreen
-controllers, or lack a touchscreen altogether.
+Thinking about this more. We do have a problem because Andes local
+interrupts are really sparse which is not the case for standard local
+interrupts
 
-Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
-Changes since v3:
-- Collected reviewed-by from Angelo
+I have an alternate suggestion which goes as follows ...
 
-Changes since v2:
-- Picked up Conor's ack
+We use irq_domain_create_tree() in-place of irq_domain_create_linear()
+and enforce checks on hwirq in riscv_intc_domain_alloc() to ensure that
+we only allow hwirq for which we have corresponding standard or custom
+CSR.
 
-Changes since v1:
-- Reorder SKU numbers in descending order.
-- Mark missing components as disabled instead of deleting the node
-- Switched to interrupts-extended in touchscreen nodes
-- Dropped reset-gpios from touchscreen nodes
-- Drop status = "okay", which is the default
----
- arch/arm64/boot/dts/mediatek/Makefile         |  3 ++
- .../mt8186-corsola-magneton-sku393216.dts     | 39 +++++++++++++++++++
- .../mt8186-corsola-magneton-sku393217.dts     | 39 +++++++++++++++++++
- .../mt8186-corsola-magneton-sku393218.dts     | 26 +++++++++++++
- 4 files changed, 107 insertions(+)
- create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-magneton-sku393216.dts
- create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-magneton-sku393217.dts
- create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-magneton-sku393218.dts
+To achieve this, riscv_intc_init_common() will have to save the following
+as static global variables:
+1) riscv_intc_nr_irqs: Number of standard local interrupts
+2) riscv_intc_custom_base and riscv_intc_custom_nr_irqs: Base and
+    number of custom local interrupts.
 
-diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-index 6b05f1f2e645..7e365e9516ab 100644
---- a/arch/arm64/boot/dts/mediatek/Makefile
-+++ b/arch/arm64/boot/dts/mediatek/Makefile
-@@ -43,6 +43,9 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kodama-sku32.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku0.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku176.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-pumpkin.dtb
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-magneton-sku393216.dtb
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-magneton-sku393217.dtb
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-magneton-sku393218.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-rusty-sku196608.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-steelix-sku131072.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-steelix-sku131073.dtb
-diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-magneton-sku393216.dts b/arch/arm64/boot/dts/mediatek/mt8186-corsola-magneton-sku393216.dts
-new file mode 100644
-index 000000000000..c9673381ad3b
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-magneton-sku393216.dts
-@@ -0,0 +1,39 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright 2022 Google LLC
-+ */
-+
-+/dts-v1/;
-+#include "mt8186-corsola-steelix.dtsi"
-+
-+/ {
-+	model = "Google Magneton board";
-+	compatible = "google,steelix-sku393219", "google,steelix-sku393216",
-+		     "google,steelix", "mediatek,mt8186";
-+	chassis-type = "laptop";
-+};
-+
-+&gpio_keys {
-+	status = "disabled";
-+};
-+
-+&i2c1 {
-+	touchscreen@10 {
-+		compatible = "hid-over-i2c";
-+		reg = <0x10>;
-+		interrupts-extended = <&pio 12 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&touchscreen_pins>;
-+		vdd-supply = <&pp3300_s3>;
-+		post-power-on-delay-ms = <350>;
-+		hid-descr-addr = <0x0001>;
-+	};
-+};
-+
-+&touchscreen {
-+	status = "disabled";
-+};
-+
-+&usb_c1 {
-+	status = "disabled";
-+};
-diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-magneton-sku393217.dts b/arch/arm64/boot/dts/mediatek/mt8186-corsola-magneton-sku393217.dts
-new file mode 100644
-index 000000000000..28e3bbe56421
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-magneton-sku393217.dts
-@@ -0,0 +1,39 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright 2022 Google LLC
-+ */
-+
-+/dts-v1/;
-+#include "mt8186-corsola-steelix.dtsi"
-+
-+/ {
-+	model = "Google Magneton board";
-+	compatible = "google,steelix-sku393220", "google,steelix-sku393217",
-+		     "google,steelix", "mediatek,mt8186";
-+	chassis-type = "laptop";
-+};
-+
-+&gpio_keys {
-+	status = "disabled";
-+};
-+
-+&i2c1 {
-+	touchscreen@40 {
-+		compatible = "hid-over-i2c";
-+		reg = <0x40>;
-+		interrupts-extended = <&pio 12 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&touchscreen_pins>;
-+		vdd-supply = <&pp3300_s3>;
-+		post-power-on-delay-ms = <450>;
-+		hid-descr-addr = <0x0001>;
-+	};
-+};
-+
-+&touchscreen {
-+	status = "disabled";
-+};
-+
-+&usb_c1 {
-+	status = "disabled";
-+};
-diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-magneton-sku393218.dts b/arch/arm64/boot/dts/mediatek/mt8186-corsola-magneton-sku393218.dts
-new file mode 100644
-index 000000000000..332894218f07
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-magneton-sku393218.dts
-@@ -0,0 +1,26 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright 2022 Google LLC
-+ */
-+
-+/dts-v1/;
-+#include "mt8186-corsola-steelix.dtsi"
-+
-+/ {
-+	model = "Google Magneton board";
-+	compatible = "google,steelix-sku393221", "google,steelix-sku393218",
-+		     "google,steelix", "mediatek,mt8186";
-+	chassis-type = "laptop";
-+};
-+
-+&gpio_keys {
-+	status = "disabled";
-+};
-+
-+&touchscreen {
-+	status = "disabled";
-+};
-+
-+&usb_c1 {
-+	status = "disabled";
-+};
--- 
-2.43.0.472.g3155946c3a-goog
+Using the above static global variables, the riscv_intc_domain_alloc()
+can return error if one of the following conditions are met:
+1) riscv_intc_nr_irqs<=3D hwirq && hwirq < riscv_intc_custom_base
+2) (riscv_intc_custom_base + riscv_intc_custom_nr_irqs) <=3D hwirq
 
+For standard INTC, we can set the static global variable as follows:
+riscv_intc_nr_irqs =3D XLEN or BITS_PER_LONG
+riscv_intc_custom_base =3D riscv_intc_nr_irqs
+riscv_intc_custom_nr_irqs =3D 0
+
+For Andes INTC, we can set the static global variables as follows:
+riscv_intc_nr_irqs =3D XLEN or BITS_PER_LONG
+riscv_intc_custom_base =3D 256
+riscv_intc_custom_nr_irqs =3D XLEN or BITS_PER_LONG
+
+Regards,
+Anup
+
+>
+> >         if (!intc_domain) {
+> >                 pr_err("unable to add IRQ domain\n");
+> >                 return -ENXIO;
+> > @@ -132,8 +130,6 @@ static int __init riscv_intc_init_common(struct fwn=
+ode_handle *fn)
+> >
+> >         riscv_set_intc_hwnode_fn(riscv_intc_hwnode);
+> >
+> > -       pr_info("%d local interrupts mapped\n", BITS_PER_LONG);
+> > -
+>
+> Same as above, we should definitely advertise the type of INTC and
+> number of local interrupts mapped.
+>
+> Regards,
+> Anup
+>
+> >         return 0;
+> >  }
+> >
+> > --
+> > 2.34.1
+> >
+> >
+> > _______________________________________________
+> > linux-riscv mailing list
+> > linux-riscv@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-riscv
 
