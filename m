@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-24608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24609-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E965F810A9E
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 07:45:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0EAB810AA3
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 07:49:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 269741C208C8
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 06:45:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8C3FF281631
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 06:49:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E703C101EE;
-	Wed, 13 Dec 2023 06:45:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B1BA10A0C;
+	Wed, 13 Dec 2023 06:48:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XXSRkeha"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fbKZE6Ux"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CEF3B3
-	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 22:45:11 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-3332fc9b9b2so5742913f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 22:45:11 -0800 (PST)
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38678CF
+	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 22:48:54 -0800 (PST)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-a1e35c2807fso863677266b.3
+        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 22:48:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702449909; x=1703054709; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702450133; x=1703054933; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Sz+l1aweh4I85TEZ7IqY/M3TTHX3+nJJSAO9ZNAR7L4=;
-        b=XXSRkehaEH/r5JeIcwNFKvxL6aN/T9gpbp6DPMlKY5/qX2kf0TQyoMlLIyyYsVnGpX
-         shisozHbGJIgCwIbwN5bLdj1wQw+mQf3Vr9OrjbxzQMDg7rmKVd6ZoeURw0ThOzxlPN1
-         zOy0CtB34uQEborJLd1aAgakY8YBxa2qgEo77T+HHXI2jCAEfPLQ62ps2UKFgXVGtF3m
-         GPw43cTX4Tj+ZeJZAMzdcPlstRH+HXwluBNGGbWNbvd+Tj7mGOMAp9QcQu0Ixx3d8n24
-         VBXFkpgLIf94caWDn5yGeS8G61vhi8IZSEjgVQCGUYtkxGCI5GtmpK5VIXVfV+3XRI6q
-         +x2A==
+        bh=yIVvMMvaswwg27cMJn3NaCDuYiL5DC22omDwoPC973c=;
+        b=fbKZE6UxScAOqH3MIACBvh/MJmawJ3+tu20VGEkqM5vkFxsbQ42aP2dWfC4RGkg5qm
+         xNHHyNk+J+v2pXf/gsaaZS61RPBCCH9M0V77Z2fbuQMdmL3pB30QRjtzSLw8/AdIW0WI
+         dK6hq2bE5fQ9WS/bD8XCP5T2WOf3t/OYnFoV0oBXQt4WrJMevnK1Xm/N6VwktlnHzoam
+         q3xRzUsw6qUx40lRRfxmwfS/QBxda3fBf1Jqgwr2EVK+7WTgWvPgc1Nd65SosBT00Gcn
+         tXKss+XM3comGN5A6VeABwTDOxCq39JB2ZJfm8b9x0fMMFaecJi8QCLdNWNoeZZbZmEf
+         FOGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702449909; x=1703054709;
+        d=1e100.net; s=20230601; t=1702450133; x=1703054933;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Sz+l1aweh4I85TEZ7IqY/M3TTHX3+nJJSAO9ZNAR7L4=;
-        b=afZuuHDaByMGJx7LPmsUsMM7oWevrr2+TXxZkFLXXQZ3mYjRpmX1lnAMy7EJvFxfFe
-         n+tqV0uMMu2HQWPVrT+2NFE3tmRdP5t7MNJMk45nKUeOZc+bDRZquJ4O9WMsuS3G9fhS
-         DrWhUhQhpg3YhTsCK2veayBBr1TWog2n2btiiv549iozQGeVoAThzua6tIoSMJ0HyzYO
-         2PfhTzi+24Xdpl7jI7/xBhz9Ks4kWzLqe8dWDt9BOLTtPJsKfTT0odckGHLpaTbqaF6s
-         rgy8iZzbjfVl6DYX4h9ohHKJ5Fu7zK7SCgItxaMUcbJ1QBzHiJnXW9/dGzb3hk0BWARS
-         mZaA==
-X-Gm-Message-State: AOJu0Yz7QUu5KHo114aa0z5q1LziGTUgrrwIwahN42ZwYYIu1b7pzZXw
-	Wu4qOYObSIPblsdUtCbxSNfRHQ==
-X-Google-Smtp-Source: AGHT+IHvIkjGyPaqguj7Jfj2E0OwMmLCR+RL5yd5We7t+BRt1PUVqoLR5e1Q7HC1ptJhlXzMhlNvAQ==
-X-Received: by 2002:adf:fa88:0:b0:336:3651:62b0 with SMTP id h8-20020adffa88000000b00336365162b0mr353521wrr.210.1702449909709;
-        Tue, 12 Dec 2023 22:45:09 -0800 (PST)
+        bh=yIVvMMvaswwg27cMJn3NaCDuYiL5DC22omDwoPC973c=;
+        b=WAPNIfk7Pp4xIX4SDspiA1lVZ0NoeCAe2pqCAx2zIR5tRCPS2c80vEuuT3MdAiO0P5
+         pjYXrK+YaE1+LO787mXkPtSEJkmhvJXHEvFeXJm1w31EdH0Ve2fweb021uiX4eFjb2Au
+         cQ656y7igywxHo8SW84actB6t70KzQNSYOQ3mIpTJ6/9/Lqmg6qRt9iz5AbIAYG+Yn9y
+         YJP+Acp6KlshD6pVDxxjb2uL2fH0aZx2sDyGfZ1fcr/9SJW1dNQh2WSkGgGdw2anYo4M
+         EwGQNS3+CBrRvnnZwfW1goxkSbwxv4TRBuA1mPqMGejrDU89q4Ns7RTNQoq2uUQWIkZr
+         h6BA==
+X-Gm-Message-State: AOJu0YzL/85EN+Vgb9NT4qkNBZzVXdku7M+n3NXhCc9nlxMVJ+NXMpzd
+	XR5XpznVmdBbSM9i/53UveW2Sg==
+X-Google-Smtp-Source: AGHT+IEX6e1rw9LWJYz0pZFE5vYaXit1iarygGWu/sRwBgdB7UGiA7Jl875OYAvBwsrjZV8DRchy8A==
+X-Received: by 2002:a17:907:728a:b0:a1b:a52e:3216 with SMTP id dt10-20020a170907728a00b00a1ba52e3216mr3846981ejc.122.1702450132549;
+        Tue, 12 Dec 2023 22:48:52 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id w12-20020adfcd0c000000b003334010a849sm12356765wrm.109.2023.12.12.22.45.07
+        by smtp.gmail.com with ESMTPSA id tn9-20020a170907c40900b00a1f7ab65d3fsm6155942ejc.131.2023.12.12.22.48.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Dec 2023 22:45:09 -0800 (PST)
-Message-ID: <08e0f1a2-0c04-4c7c-87cb-d98c39a0ecd7@linaro.org>
-Date: Wed, 13 Dec 2023 07:45:07 +0100
+        Tue, 12 Dec 2023 22:48:52 -0800 (PST)
+Message-ID: <e09e4df8-ec36-4953-9bb0-75a3ce0b535d@linaro.org>
+Date: Wed, 13 Dec 2023 07:48:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,22 +62,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: panel-simple-dsi: move LG 5" HD TFT LCD
- panel into DSI yaml
+Subject: Re: [PATCH v2 1/5] dt-bindings: phy: cadence-torrent: Add optional
+ input reference clock for PLL1
 Content-Language: en-US
-To: David Heidelberg <david@ixit.cz>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Thierry Reding
- <thierry.reding@gmail.com>, Brian Masney <masneyb@onstation.org>
-Cc: Rob Herring <robh@kernel.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231212200934.99262-1-david@ixit.cz>
+To: Swapnil Jakhade <sjakhade@cadence.com>, vkoul@kernel.org,
+ kishon@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, linux-phy@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc: mparab@cadence.com, rogerq@kernel.org, s-vadapalli@ti.com
+References: <20231212114840.1468903-1-sjakhade@cadence.com>
+ <20231212114840.1468903-2-sjakhade@cadence.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -123,32 +117,46 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231212200934.99262-1-david@ixit.cz>
+In-Reply-To: <20231212114840.1468903-2-sjakhade@cadence.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/12/2023 21:09, David Heidelberg wrote:
-> Originally was in the panel-simple, but belongs to panel-simple-dsi.
-> 
-> See arch/arm/boot/dts/nvidia/tegra114-roth.dts for more details.
-> 
-> Resolves the following warning:
-> ```
-> arch/arm/boot/dts/tegra114-roth.dt.yaml: panel@0: 'reg' does not match any of the regexes: 'pinctrl-[0-9]+'
->         From schema: Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> ```
-> 
-> Fixes: 310abcea76e9 ("dt-bindings: display: convert simple lg panels to DT Schema")
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
-> v2: added Fixes tag (thx to Jessica)
-> 
->  .../devicetree/bindings/display/panel/panel-simple-dsi.yaml     | 2 ++
->  .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 --
->  2 files changed, 2 insertions(+), 2 deletions(-)
-> 
+On 12/12/2023 12:48, Swapnil Jakhade wrote:
+> Torrent PHY can have two input reference clocks. Update bindings
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+It already supports two.
+
+> to support dual reference clock multilink configurations.
+> 
+> Signed-off-by: Swapnil Jakhade <sjakhade@cadence.com>
+> ---
+>  .../devicetree/bindings/phy/phy-cadence-torrent.yaml        | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml b/Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml
+> index dfb31314face..98946f549895 100644
+> --- a/Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml
+> +++ b/Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml
+> @@ -35,14 +35,14 @@ properties:
+>      minItems: 1
+>      maxItems: 2
+>      description:
+> -      PHY reference clock for 1 item. Must contain an entry in clock-names.
+> -      Optional Parent to enable output reference clock.
+> +      PHY input reference clocks - refclk & pll1_refclk (optional).
+> +      Optional Parent to enable output reference clock (phy_en_refclk).
+
+So third clock? But you allow only two? Confusing.
+
+>  
+>    clock-names:
+>      minItems: 1
+>      items:
+>        - const: refclk
+> -      - const: phy_en_refclk
+> +      - enum: [ pll1_refclk, phy_en_refclk ]
+
+This does not match your commit msg. You already had two clocks there.
 
 Best regards,
 Krzysztof
