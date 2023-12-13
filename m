@@ -1,127 +1,317 @@
-Return-Path: <devicetree+bounces-25011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25012-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DCF9811EB8
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 20:20:19 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2129811EC4
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 20:23:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 312031F21CED
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 19:20:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CED7FB211F2
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 19:23:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FA0667B75;
-	Wed, 13 Dec 2023 19:20:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B827D68273;
+	Wed, 13 Dec 2023 19:23:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NL1y6ZXg"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hjKWE/fN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AF9167B56;
-	Wed, 13 Dec 2023 19:20:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 192ACC433C8;
-	Wed, 13 Dec 2023 19:20:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702495216;
-	bh=pvOifwzmhzVpqy1B65sXqWWUfUoqN1GPpaLpMOsu7M4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NL1y6ZXgRJFSI8gechwwAiu4XkPxMrQCZ3LQNQoh+duY2ym7IXeYgeVkjmO2P1Zbp
-	 hDB4oqmrb5FVjrgp7O203jYtSPqIGDoV9OS1/Jbw9Pm5ip8FfSqnjsP3MIsKZDrBGu
-	 YEgcG/fnfM+jv2gl1iv6i4nPkj0CyWYn80MYGVmGbS+geBXWsswLAJ0tNb6cKFCrVV
-	 flEZrv8+fHhFUjfVj5zJUxJ5DFdyyf8jl1rMuqrzWJFEZsL0DWeFuJy6wM7WghLieX
-	 wYSBun4sk1TjGGVYkzyvgslg0iWFnwrQQgInI+Cc4cE4XgUtkpXL/nkWz2ovZm43vk
-	 Iso4DkVscs6Kg==
-Date: Wed, 13 Dec 2023 19:20:09 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Banajit Goswami <bgoswami@quicinc.com>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 5/5] ASoC: codecs: Add WCD939x Codec driver
-Message-ID: <4dae5296-9984-4c3b-803a-f6024edd0dd9@sirena.org.uk>
-References: <20231207-topic-sm8650-upstream-wcd939x-codec-v3-0-6df9585ec7c8@linaro.org>
- <20231207-topic-sm8650-upstream-wcd939x-codec-v3-5-6df9585ec7c8@linaro.org>
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EB6FB0
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 11:22:59 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-336417c565eso679599f8f.3
+        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 11:22:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702495378; x=1703100178; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=89i1OHXQJgIekZUdzaoOl/WPzNUPAmh4Shyy9X7oUY4=;
+        b=hjKWE/fNUOwI37rS3+UQQzklDf7zExLBA+79jFAm0JndNvHRGl2M8NekYp9hySzJu1
+         V4FYctQDTFhetCCuJTj1ZuOiGay+SFjGHRRhfbmmzA2d/pBZ0yd4k2E1RYgB6bthjK6V
+         nBMe3D0vQrIZl5fv2UolPreng93kPP+C+482HyjeembeqMeLMhLGUwKxm7Krzy310X0X
+         W7pSJNxwWcky4Hx9pbVUtm9iIH5AbS/RvN4kl9WalS6Kw0eEq/wYeqUIwRAVNcqSitRF
+         zH9FzOwmy8ktL7g1LFXYoChiVHrSOCwuBQOzCrw+K1AaJ9FKOe5rP4BAQJK+aPYv2866
+         JZmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702495378; x=1703100178;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=89i1OHXQJgIekZUdzaoOl/WPzNUPAmh4Shyy9X7oUY4=;
+        b=kqds/oYgUHaktyIKq+FMbe2bjS48Y2bbsFC3MJp35DETO1sXhKbUO+jeyV03Vp3v1f
+         Ymu95nuhjfVf+DTqDZ677c4VQenNHdt92IJJ4bq5CQZa+suduI1hDvwqlmfXgmvZr0yJ
+         WniuUMvdADpppJ3cmy4VVL9oSYb4aUKj+fWindc2QcG0IdRKdzxFMHbNJMdO1HWfkRz4
+         sVoTcoAjGSFassGF/NfHEtxui/MKUpx5YO+6q8WkGSHt4Fmv/MMxjTINWEjqRKZkLs85
+         NiGAbAX8SYmpi0irKg+xC1MZDnKJw3Q+Ry/fZ5B4y9aby7e374mwF6JRIOOoCdF9rgYY
+         ySiw==
+X-Gm-Message-State: AOJu0YxZCtGyty3/mFgYhncCzLM/+RN+pV3sUo+Ozf/QyHvx+tlWs2/R
+	aWEPHsSXArWWmXYZ5LQ5RJY=
+X-Google-Smtp-Source: AGHT+IFcZKcfAVcsQKDAtqomxNhsXvBOqj2C0qfAQJcS/u+Cqm3nCQMDR0fiNd6YdrV8nk7TJFFkig==
+X-Received: by 2002:adf:e64d:0:b0:336:38ef:f4ec with SMTP id b13-20020adfe64d000000b0033638eff4ecmr541429wrn.28.1702495377445;
+        Wed, 13 Dec 2023 11:22:57 -0800 (PST)
+Received: from archlinux.localnet (82-149-12-148.dynamic.telemach.net. [82.149.12.148])
+        by smtp.gmail.com with ESMTPSA id c11-20020a5d414b000000b0033342f72bf8sm14153283wrq.9.2023.12.13.11.22.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Dec 2023 11:22:56 -0800 (PST)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Samuel Holland <samuel@sholland.org>, Andre Przywara <andre.przywara@arm.com>
+Cc: Icenowy Zheng <uwu@icenowy.me>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+Subject:
+ Re: [PATCH 3/3] arm64: dts: allwinner: h618: add Transpeed 8K618-T TV box
+Date: Wed, 13 Dec 2023 20:22:55 +0100
+Message-ID: <4533903.LvFx2qVVIh@archlinux>
+In-Reply-To: <20231212010859.11571-4-andre.przywara@arm.com>
+References:
+ <20231212010859.11571-1-andre.przywara@arm.com>
+ <20231212010859.11571-4-andre.przywara@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="QxFQz7KiJT5hHtQy"
-Content-Disposition: inline
-In-Reply-To: <20231207-topic-sm8650-upstream-wcd939x-codec-v3-5-6df9585ec7c8@linaro.org>
-X-Cookie: One size fits all.
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
+Hi Andre!
 
---QxFQz7KiJT5hHtQy
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Thu, Dec 07, 2023 at 11:28:08AM +0100, Neil Armstrong wrote:
-
-> +static int wcd939x_rx_hph_mode_put(struct snd_kcontrol *kcontrol,
-> +				   struct snd_ctl_elem_value *ucontrol)
-> +{
-> +	struct snd_soc_component *component = snd_soc_kcontrol_component(kcontrol);
-> +	struct wcd939x_priv *wcd939x = snd_soc_component_get_drvdata(component);
-> +	u32 mode_val;
+On Tuesday, December 12, 2023 2:08:59 AM CET Andre Przywara wrote:
+> This is a Chinese TV box, probably very similar if not identical to
+> various other cheap TV boxes with the same specs:
+>       - Allwinner H618 SoC (4 * Arm Cortex-A53 cores, 1MB L2 cache)
+>       - 2 or 4GiB DDR3L DRAM
+>       - 32, 64, or 128 GiB eMMC flash
+>       - AXP313a PMIC
+>       - 100 Mbit/s Ethernet (using yet unsupported internal PHY)
+>       - HDMI port
+>       - 2 * USB 2.0 ports
+>       - microSD card slot
+>       - 3.5mm A/V port
+>       - 7-segment display
+>       - 5V barrel plug power supply
+> 
+> The PCB provides holes for soldering a UART header or cable, this is
+> connected to the debug UART0. UART1 is used for the Bluetooth chip,
+> although this isn't working yet.
+> 
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> ---
+>  arch/arm64/boot/dts/allwinner/Makefile        |   1 +
+>  .../sun50i-h618-transpeed-8k618-t.dts         | 164 ++++++++++++++++++
+>  2 files changed, 165 insertions(+)
+>  create mode 100644
+> arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
+> 
+> diff --git a/arch/arm64/boot/dts/allwinner/Makefile
+> b/arch/arm64/boot/dts/allwinner/Makefile index 3aca6787a1679..91d505b385de5
+> 100644
+> --- a/arch/arm64/boot/dts/allwinner/Makefile
+> +++ b/arch/arm64/boot/dts/allwinner/Makefile
+> @@ -43,3 +43,4 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-bigtreetech-pi.dtb
+> dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
+>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-x96-mate.dtb
+>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero3.dtb
+> +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-transpeed-8k618-t.dtb
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
+> b/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts new file
+> mode 100644
+> index 0000000000000..fd7ea7bcde2c1
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
+> @@ -0,0 +1,164 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (C) 2023 Arm Ltd.
+> + */
 > +
-> +	mode_val = ucontrol->value.enumerated.item[0];
+> +/dts-v1/;
 > +
-> +	if (wcd939x->variant == WCD9390) {
-> +		if (mode_val == CLS_H_HIFI || mode_val == CLS_AB_HIFI) {
-> +			dev_dbg(component->dev, "%s: Invalid HPH Mode\n", __func__);
-> +			return -EINVAL;
-> +		}
-> +	}
-> +	if (mode_val == CLS_H_NORMAL) {
-> +		dev_dbg(component->dev, "%s: Unsupported HPH Mode\n", __func__);
-> +		return -EINVAL;
-> +	}
+> +#include "sun50i-h616.dtsi"
 > +
-> +	wcd939x->hph_mode = mode_val;
-
-This seems strange - the code will accept any value other than a small
-number of specifically enumerated ones?  I would have expected us to
-check a defined list of modes and reject anything that isn't in that
-list.  This also means that the get() function can return out of bounds
-values which is buggy.  Please use the mixer-test selftest on a card
-with this driver running, it should identify at least that issue.
-
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
 > +
-> +	return 1;
-> +}
+> +/ {
+> +	model = "Transpeed 8K618-T";
+> +	compatible = "transpeed,8k618-t", "allwinner,sun50i-h618";
+> +
+> +	aliases {
+> +		serial0 = &uart0;
+> +		serial1 = &uart1;
 
-This will also unconditionally report that the value of the mux changed,
-the function should return 0 if the value written is the control value
-hasn't changed.
+Any particular reason for above alias?
 
---QxFQz7KiJT5hHtQy
-Content-Type: application/pgp-signature; name="signature.asc"
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	reg_vcc5v: vcc5v {
+> +		/* board wide 5V supply directly from the DC input */
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc-5v";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	reg_vcc3v3: vcc3v3 {
+> +		/* discrete 3.3V regulator */
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc-3v3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-always-on;
+> +	};
+> +};
+> +
+> +&ehci0 {
+> +	status = "okay";
+> +};
+> +
+> +&ehci1 {
+> +	status = "okay";
+> +};
+> +
+> +&ir {
+> +	status = "okay";
+> +};
+> +
+> +&mmc0 {
+> +	vmmc-supply = <&reg_dldo1>;
+> +	cd-gpios = <&pio 8 16 GPIO_ACTIVE_LOW>;	/* PI16 */
+> +	bus-width = <4>;
+> +	status = "okay";
+> +};
+> +
+> +&mmc2 {
+> +	vmmc-supply = <&reg_dldo1>;
+> +	vqmmc-supply = <&reg_aldo1>;
+> +	bus-width = <8>;
+> +	non-removable;
+> +	cap-mmc-hw-reset;
+> +	mmc-ddr-1_8v;
+> +	mmc-hs200-1_8v;
+> +	status = "okay";
+> +};
+> +
+> +&ohci0 {
+> +	status = "okay";
+> +};
+> +
+> +&ohci1 {
+> +	status = "okay";
+> +};
+> +
+> +&r_i2c {
+> +	status = "okay";
+> +
+> +	axp313: pmic@36 {
+> +		compatible = "x-powers,axp313a";
+> +		reg = <0x36>;
+> +		#interrupt-cells = <1>;
+> +		interrupt-controller;
+> +
+> +		vin1-supply = <&reg_vcc5v>;
+> +		vin2-supply = <&reg_vcc5v>;
+> +		vin3-supply = <&reg_vcc5v>;
+> +
+> +		regulators {
+> +			/* Supplies VCC-PLL, so needs to be always 
+on. */
+> +			reg_aldo1: aldo1 {
+> +				regulator-always-on;
+> +				regulator-min-microvolt = 
+<1800000>;
+> +				regulator-max-microvolt = 
+<1800000>;
+> +				regulator-name = "vcc1v8";
 
------BEGIN PGP SIGNATURE-----
+It would be great to expand all PMIC regulator names with (known) areas they 
+power, so something like "vcc1v8-pll-pc". With that, I think you can remove 
+comments.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmV6A+kACgkQJNaLcl1U
-h9BJKQf/U5px02gwHeH7uG4m5GauMpoUmEDiaVVF7tWk02l3M27zveuoN30yDTA1
-pfCa5jV8hUInQwgNXtIOyUZCfHkQN1+OHlvIdkse8NRlLja7PoAXNgu/iw6U0j66
-zSqNGkvYePeMg+AJV/ZGJKfNKFomFc33V3EUC1iVKSWgsDBFjfQqau4TA9/smuaU
-CT6RN5au6S7c5hg1Xyl2AK7RPadJM9rmmxJggOqNUYhYjmFMT7VWYhTta5yQXKak
-Q/2L1+p91ZUr/HYHhVXzY8x/ptX3G7+w2nbIlXkOPuvdw41wGLdAPgpFw9oRmswK
-OERs69V+GdvlY6g8PFruUFeS80qYgQ==
-=FDxZ
------END PGP SIGNATURE-----
+Best regards,
+Jernej
 
---QxFQz7KiJT5hHtQy--
+> +			};
+> +
+> +			/* Supplies VCC-IO, so needs to be always on. 
+*/
+> +			reg_dldo1: dldo1 {
+> +				regulator-always-on;
+> +				regulator-min-microvolt = 
+<3300000>;
+> +				regulator-max-microvolt = 
+<3300000>;
+> +				regulator-name = "vcc3v3";
+> +			};
+> +
+> +			reg_dcdc1: dcdc1 {
+> +				regulator-always-on;
+> +				regulator-min-microvolt = 
+<810000>;
+> +				regulator-max-microvolt = 
+<990000>;
+> +				regulator-name = "vdd-gpu-sys";
+> +			};
+> +
+> +			reg_dcdc2: dcdc2 {
+> +				regulator-always-on;
+> +				regulator-min-microvolt = 
+<810000>;
+> +				regulator-max-microvolt = 
+<1100000>;
+> +				regulator-name = "vdd-cpu";
+> +			};
+> +
+> +			reg_dcdc3: dcdc3 {
+> +				regulator-always-on;
+> +				regulator-min-microvolt = 
+<1360000>;
+> +				regulator-max-microvolt = 
+<1360000>;
+> +				regulator-name = "vdd-dram";
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&pio {
+> +	vcc-pc-supply = <&reg_aldo1>;
+> +	vcc-pg-supply = <&reg_dldo1>;
+> +	vcc-ph-supply = <&reg_dldo1>;
+> +	vcc-pi-supply = <&reg_dldo1>;
+> +};
+> +
+> +&uart0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&uart0_ph_pins>;
+> +	status = "okay";
+> +};
+> +
+> +&uart1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
+> +	uart-has-rtscts;
+> +	status = "okay";
+> +};
+> +
+> +&usbotg {
+> +	dr_mode = "host";	/* USB A type receptable */
+> +	status = "okay";
+> +};
+> +
+> +&usbphy {
+> +	status = "okay";
+> +};
+
+
+
+
 
