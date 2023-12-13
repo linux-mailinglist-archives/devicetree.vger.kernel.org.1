@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-24607-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24608-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 684F3810A99
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 07:44:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E965F810A9E
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 07:45:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BBB93B20B82
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 06:44:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 269741C208C8
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 06:45:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71227101EE;
-	Wed, 13 Dec 2023 06:44:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E703C101EE;
+	Wed, 13 Dec 2023 06:45:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EGhhSFu6"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XXSRkeha"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C809DB
-	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 22:44:38 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-40c3f68b79aso44900545e9.0
-        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 22:44:38 -0800 (PST)
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CEF3B3
+	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 22:45:11 -0800 (PST)
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-3332fc9b9b2so5742913f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 22:45:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702449876; x=1703054676; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702449909; x=1703054709; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=sqb9HLXRupmLPjMGImMDXLcC75oDDVzgVthoSDs2V7c=;
-        b=EGhhSFu6CuhvZgDCWWrsQmoVWwZtqvW+X+UxhmF++9vybZVvTXBedF3/AUG9rYw4dh
-         mspfosdCapFGTZ8jWDFnS/E7E5tMl+DDVfE1N0UsArLZDIrlgAqv3aG2Q1GHG0NK/Frp
-         EUSQ4HyIlCXe9FyOGJNPCRu0XYbNVMSUwWjze54w6AeT5VCLjyLpuaNyhpjhr27QWtMt
-         2BQDnGREsvbGSVjffwjcoJ5oVLfY3f2ik53M68Yr/QOt44H6zgKwe4GzJa30I1V72HrG
-         4NrRUYlRzeIrQW+v4mIiE/au1tbmeFVqYbT+d1aBgJ5S4KY302EYkqKu52eBKieO19BF
-         UcQA==
+        bh=Sz+l1aweh4I85TEZ7IqY/M3TTHX3+nJJSAO9ZNAR7L4=;
+        b=XXSRkehaEH/r5JeIcwNFKvxL6aN/T9gpbp6DPMlKY5/qX2kf0TQyoMlLIyyYsVnGpX
+         shisozHbGJIgCwIbwN5bLdj1wQw+mQf3Vr9OrjbxzQMDg7rmKVd6ZoeURw0ThOzxlPN1
+         zOy0CtB34uQEborJLd1aAgakY8YBxa2qgEo77T+HHXI2jCAEfPLQ62ps2UKFgXVGtF3m
+         GPw43cTX4Tj+ZeJZAMzdcPlstRH+HXwluBNGGbWNbvd+Tj7mGOMAp9QcQu0Ixx3d8n24
+         VBXFkpgLIf94caWDn5yGeS8G61vhi8IZSEjgVQCGUYtkxGCI5GtmpK5VIXVfV+3XRI6q
+         +x2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702449876; x=1703054676;
+        d=1e100.net; s=20230601; t=1702449909; x=1703054709;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sqb9HLXRupmLPjMGImMDXLcC75oDDVzgVthoSDs2V7c=;
-        b=S6MOZjTTXJ2i9WcfWGUVIhqMZLH8OiseYvMM3gZdZpZkhDu38nqTzfM6PkJYqS5nCD
-         nzeubgo9fLMA8Pxlpnc5uCQnBn6Y1CDAyNHilra/WQIdbZRX287gmn5xjxBTi1gB2ztI
-         6AE6wEib3mrOt4LbcNJIeFgcaRXaO+uw5fRvilJu4+pqjSZ0k6K9Co1qTcQa0iNw7fwL
-         1SyXrApr46Xg6hlVpAUieUO5glmrQGVj/wpgsOgti4xDZesNnmqYULKDLMnCgm/FZSoV
-         yaZAUneRKXOuoP3spTxw08qIdvyfO+Jv7N2SP/Y3kDxC7eNMy/24F2tVjqE51wtQe2qN
-         cP+g==
-X-Gm-Message-State: AOJu0Yz9AvVJD1bvPcJkJZYqU8M6nJVc9cvoi1XTtUBhvFExBD7sGCpu
-	863jzoPPsRDOUQwL1P/zB6MnbQ==
-X-Google-Smtp-Source: AGHT+IG3ik2GzEaveqhuLhT5xJoGFxr41LSj/+ZmVmVb2BxAv9TceemlPW6u35BKtYQA7zvFirsksQ==
-X-Received: by 2002:a05:600c:444c:b0:40b:3d6e:16b7 with SMTP id v12-20020a05600c444c00b0040b3d6e16b7mr3917555wmn.33.1702449876648;
-        Tue, 12 Dec 2023 22:44:36 -0800 (PST)
+        bh=Sz+l1aweh4I85TEZ7IqY/M3TTHX3+nJJSAO9ZNAR7L4=;
+        b=afZuuHDaByMGJx7LPmsUsMM7oWevrr2+TXxZkFLXXQZ3mYjRpmX1lnAMy7EJvFxfFe
+         n+tqV0uMMu2HQWPVrT+2NFE3tmRdP5t7MNJMk45nKUeOZc+bDRZquJ4O9WMsuS3G9fhS
+         DrWhUhQhpg3YhTsCK2veayBBr1TWog2n2btiiv549iozQGeVoAThzua6tIoSMJ0HyzYO
+         2PfhTzi+24Xdpl7jI7/xBhz9Ks4kWzLqe8dWDt9BOLTtPJsKfTT0odckGHLpaTbqaF6s
+         rgy8iZzbjfVl6DYX4h9ohHKJ5Fu7zK7SCgItxaMUcbJ1QBzHiJnXW9/dGzb3hk0BWARS
+         mZaA==
+X-Gm-Message-State: AOJu0Yz7QUu5KHo114aa0z5q1LziGTUgrrwIwahN42ZwYYIu1b7pzZXw
+	Wu4qOYObSIPblsdUtCbxSNfRHQ==
+X-Google-Smtp-Source: AGHT+IHvIkjGyPaqguj7Jfj2E0OwMmLCR+RL5yd5We7t+BRt1PUVqoLR5e1Q7HC1ptJhlXzMhlNvAQ==
+X-Received: by 2002:adf:fa88:0:b0:336:3651:62b0 with SMTP id h8-20020adffa88000000b00336365162b0mr353521wrr.210.1702449909709;
+        Tue, 12 Dec 2023 22:45:09 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id w12-20020adfcd0c000000b003334010a849sm12356765wrm.109.2023.12.12.22.44.34
+        by smtp.gmail.com with ESMTPSA id w12-20020adfcd0c000000b003334010a849sm12356765wrm.109.2023.12.12.22.45.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Dec 2023 22:44:36 -0800 (PST)
-Message-ID: <ce238248-6bac-41df-94ba-b494c5c09631@linaro.org>
-Date: Wed, 13 Dec 2023 07:44:33 +0100
+        Tue, 12 Dec 2023 22:45:09 -0800 (PST)
+Message-ID: <08e0f1a2-0c04-4c7c-87cb-d98c39a0ecd7@linaro.org>
+Date: Wed, 13 Dec 2023 07:45:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,25 +62,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/3] dt-bindings: input: Add TouchNetix axiom
- touchscreen
+Subject: Re: [PATCH v2] dt-bindings: panel-simple-dsi: move LG 5" HD TFT LCD
+ panel into DSI yaml
 Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>, Kamel Bouhara <kamel.bouhara@bootlin.com>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+To: David Heidelberg <david@ixit.cz>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Henrik Rydberg <rydberg@bitmath.org>,
- linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Marco Felsch <m.felsch@pengutronix.de>,
- Jeff LaBundy <jeff@labundy.com>, catalin.popescu@leica-geosystems.com,
- mark.satterthwaite@touchnetix.com, bartp@baasheep.co.uk,
- hannah.rossiter@touchnetix.com,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Gregory Clement <gregory.clement@bootlin.com>,
- bsp-development.geo@leica-geosystems.com
-References: <20231211121430.1689139-1-kamel.bouhara@bootlin.com>
- <20231211121430.1689139-3-kamel.bouhara@bootlin.com>
- <20231212-rework-bounce-f4d9d12362a4@spud>
+ Conor Dooley <conor+dt@kernel.org>, Thierry Reding
+ <thierry.reding@gmail.com>, Brian Masney <masneyb@onstation.org>
+Cc: Rob Herring <robh@kernel.org>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231212200934.99262-1-david@ixit.cz>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,51 +123,32 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231212-rework-bounce-f4d9d12362a4@spud>
+In-Reply-To: <20231212200934.99262-1-david@ixit.cz>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/12/2023 17:57, Conor Dooley wrote:
-> On Mon, Dec 11, 2023 at 01:14:28PM +0100, Kamel Bouhara wrote:
->> Add the TouchNetix axiom I2C touchscreen device tree bindings
->> documentation.
->>
->> Signed-off-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
->> ---
->>  .../input/touchscreen/touchnetix,ax54a.yaml   | 64 +++++++++++++++++++
->>  MAINTAINERS                                   |  6 ++
->>  2 files changed, 70 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/touchnetix,ax54a.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/input/touchscreen/touchnetix,ax54a.yaml b/Documentation/devicetree/bindings/input/touchscreen/touchnetix,ax54a.yaml
->> new file mode 100644
->> index 000000000000..cbdf48fc538b
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/input/touchscreen/touchnetix,ax54a.yaml
->> @@ -0,0 +1,64 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/input/touchscreen/touchnetix,ax54a.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: TouchNetix Axiom series touchscreen controller
->> +
->> +maintainers:
->> +  - Kamel Bouhara <kamel.bouhara@bootlin.com>
->> +
->> +allOf:
->> +  - $ref: /schemas/input/touchscreen/touchscreen.yaml#
+On 12/12/2023 21:09, David Heidelberg wrote:
+> Originally was in the panel-simple, but belongs to panel-simple-dsi.
 > 
-> Weird, you add this ref here but do not actually allow any properties
-> from it since you have "additionalProperties: false" below.
+> See arch/arm/boot/dts/nvidia/tegra114-roth.dts for more details.
 > 
-> What's the point of its inclusion?
+> Resolves the following warning:
+> ```
+> arch/arm/boot/dts/tegra114-roth.dt.yaml: panel@0: 'reg' does not match any of the regexes: 'pinctrl-[0-9]+'
+>         From schema: Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> ```
+> 
+> Fixes: 310abcea76e9 ("dt-bindings: display: convert simple lg panels to DT Schema")
+> Signed-off-by: David Heidelberg <david@ixit.cz>
+> ---
+> v2: added Fixes tag (thx to Jessica)
+> 
+>  .../devicetree/bindings/display/panel/panel-simple-dsi.yaml     | 2 ++
+>  .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 --
+>  2 files changed, 2 insertions(+), 2 deletions(-)
+> 
 
-It still brings the type of some fields or the constraints. However need
-of specifying "poll-interval" already points to missing
-unevaluatedProperties.
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
