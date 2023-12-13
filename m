@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-25013-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25014-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A0B5811F0B
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 20:38:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 428EB811F0F
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 20:39:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A8EEC2829D5
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 19:38:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C5B672826E8
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 19:39:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14ECF6827B;
-	Wed, 13 Dec 2023 19:38:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 785BA68286;
+	Wed, 13 Dec 2023 19:39:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OjNgFcH+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mSdTmJxQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1344CB7
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 11:37:56 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-40c317723a8so63672955e9.3
-        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 11:37:56 -0800 (PST)
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57654B2
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 11:39:03 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-40c41b43e1eso48618185e9.1
+        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 11:39:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702496274; x=1703101074; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702496342; x=1703101142; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2sRpatBHtiDiQL5nldGL+DevcGq+LfXAm7bbpRyzW7s=;
-        b=OjNgFcH+AYJH26/UvICY8DpUPLNk6llSYUmhqirges9i6Q3LMnyygYEbS00XNNRwJf
-         ngabpsFY12lo8DtaWzlUvqcZrUWLtjyIAg5ETDG0XyZgJ3biEYnntojDRy4NcQYAwDEY
-         EQYHwC2P0XnZbr7HrVIww7PpkyyVtCJjt8zI5ZMvv6Hh2MEq++s2lwcNDIegL51k18TU
-         lv5OnzWt019x11zyAzCfKVt6EE7ApCEhMDUR5VOUOP7cWIQTkDyjli7d+CGo4v7bd1Um
-         1lsl5PUBT438kplX2PhfRUC3skSAJ0JDIapFXqQngoq3u4SOS1NuSWnKngK2iQUACEjI
-         kY1A==
+        bh=rbxf/n1JYPWU0JCbaKzfpPEQ9Z3iTVDLH9PGOSTQg68=;
+        b=mSdTmJxQM4qtcYvrue340rwahDIuaO0BPUEmCbbyAs5R29psePF/rmlyogcksAxSGD
+         +g0NGwjx0tvRaOmLsoY0EI+swzfJaeyqho1cH6XNkJaL1mytKQArpszYdhxQIcRNPJII
+         cei8Z4G8W/qo6i9Q1KbSnLH3Rmwu2hyS1Blo6NUEv7Rd+uspySEngTIfqPdNdV9PeYfI
+         BheXmLtv8KXg9jg4Ue7vS/h05sPEVR3j51dQrlJDBR+W6VOqdE/kU27FIAqGwT29s1cB
+         xE3932gDkqNMpWuq4joZKAlR2Zl+LttI38ogl+FfJeU+qgQAzpdwpt1BGhg/v55qtFma
+         B8Qw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702496274; x=1703101074;
+        d=1e100.net; s=20230601; t=1702496342; x=1703101142;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2sRpatBHtiDiQL5nldGL+DevcGq+LfXAm7bbpRyzW7s=;
-        b=p79HKzuMPcWeXzh7ffh2YR8m9/6b/P++tY6YZtgVPLKrYP+X28GoomBlo5jKgaq8+s
-         /V/8E8OMj1W3NR6h6Rby2S11mvx2Dif4z/UVX9xUNH+Pyfu5C5gs+WZ4BiQxSoMmY0fq
-         o8Ge5O66cH+e7W/1Sb77W7V7eBon71Zo31/Fq9Gx0JHhmr3R8aAmWOdLhxI/eHOA3VjV
-         y1kMkUxoOVBEmZrctj9lBksEpYy7JgfqV0onVlnEYygSS/r0EDKi6dMy9B/U7k0cJyBA
-         NM5wexA834Dx/ipLza+f7lsNXulgxocfnDbDjQX/2Hv99mwsh3c81sAcSUd1hxw+W/0k
-         l6Nw==
-X-Gm-Message-State: AOJu0YzSuCDdz2tCjouHQ20grmwECgLpUylvyaia5h7/7sxFDKhrCiOP
-	tO8gppJCSZYLKCpRRJCkXLShaw==
-X-Google-Smtp-Source: AGHT+IG08kpliUYrjJsdcjFLL1GvMIGydpD+tUzFAaHU0izSk0Rxs5hLIrLUhX3buDfgcnTx/QlVkQ==
-X-Received: by 2002:a05:600c:4f52:b0:40b:5e21:d362 with SMTP id m18-20020a05600c4f5200b0040b5e21d362mr4769876wmq.107.1702496274486;
-        Wed, 13 Dec 2023 11:37:54 -0800 (PST)
+        bh=rbxf/n1JYPWU0JCbaKzfpPEQ9Z3iTVDLH9PGOSTQg68=;
+        b=k4V/xtLjN+75/JynW2HJyGukCb2+hQv4ltMft/pckQwPH2sfE/QrfuOuYGRR62aw9G
+         lvT3bnIfn6kfKx+f8DODPQZ6tTOxQfCVQ856zEc1YiNysB/eETQjGxKVqLWUWpSKZQrn
+         vya250qfsFXx6WFxzkI8icEt9sYJ9fvi/tN/cjAOOZ7a9vQWSx1KXuk38k6+Q0TJqXWZ
+         zql9NWIDomF94Rf9booxOma8vnebE6OtFBnzjeI6W7mC+Q9y9n/eLw0Zw0GSEEqccnCx
+         cdf/ZCkcw3+lyLNwcFfXeFhjQ9XMj9vXoU/16r7Yp73rTxvGogp3qxEF6+Yrxk10GVLX
+         LbAQ==
+X-Gm-Message-State: AOJu0Yw60q6ayBJlVsdBo+HcdZJFZ8cF5b36Vb1QZx6iyiXpjtDfWZqH
+	we1G5XyS/fW18vCLKVFDDWx+hQ==
+X-Google-Smtp-Source: AGHT+IHWzwoPcW8Z5MFSpN2Gr/X3vdABbVjW7aD5xUeNiltIoUTuZ0GHTP+D9qINzvk/IQ4T9M3v0A==
+X-Received: by 2002:a05:600c:45d1:b0:40b:5e21:bdc2 with SMTP id s17-20020a05600c45d100b0040b5e21bdc2mr3068441wmo.81.1702496341815;
+        Wed, 13 Dec 2023 11:39:01 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id i1-20020a05600c354100b0040c411da99csm16159537wmq.48.2023.12.13.11.37.51
+        by smtp.gmail.com with ESMTPSA id i1-20020a05600c354100b0040c411da99csm16159537wmq.48.2023.12.13.11.38.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Dec 2023 11:37:53 -0800 (PST)
-Message-ID: <427fa99c-764c-4d6a-b9f1-cd9089710d5e@linaro.org>
-Date: Wed, 13 Dec 2023 20:37:50 +0100
+        Wed, 13 Dec 2023 11:39:01 -0800 (PST)
+Message-ID: <ad65341e-2d84-4fe1-bd04-c788d4c6eecc@linaro.org>
+Date: Wed, 13 Dec 2023 20:38:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,25 +62,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 8/8] ARM: dts: aspeed: System1: PS, sensor and more
+Subject: Re: [PATCH v2 7/7] arm64: dts: qcom: aim300: add AIM300 AIoT
 Content-Language: en-US
-To: Ninad Palsule <ninad@linux.ibm.com>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, joel@jms.id.au,
- andrew@codeconstruct.com.au, peterhuewe@gmx.de, jarkko@kernel.org,
- jgg@ziepe.ca, keescook@chromium.org, tony.luck@intel.com,
- gpiccoli@igalia.com, johannes.holland@infineon.com, linux@roeck-us.net,
- broonie@kernel.org
-Cc: patrick.rudolph@9elements.com, vincent@vtremblay.dev,
- peteryin.openbmc@gmail.com, lakshmiy@us.ibm.com, bhelgaas@google.com,
- naresh.solanki@9elements.com, alexander.stein@ew.tq-group.com,
- festevam@denx.de, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org, linux-integrity@vger.kernel.org,
- linux-hardening@vger.kernel.org, geissonator@yahoo.com
-References: <20231212164004.1683589-1-ninad@linux.ibm.com>
- <20231212164004.1683589-9-ninad@linux.ibm.com>
- <5b98538a-8ffe-42ec-b020-514dcfcebba3@linaro.org>
- <44abff4a-0a8e-499b-8b98-a4a1680cb431@linux.ibm.com>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Tengfei Fan <quic_tengfan@quicinc.com>, agross@kernel.org,
+ andersson@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Abel Vesa
+ <abel.vesa@linaro.org>, Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kernel@quicinc.com,
+ Qiang Yu <quic_qianyu@quicinc.com>, Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+References: <20231207092801.7506-1-quic_tengfan@quicinc.com>
+ <20231207092801.7506-8-quic_tengfan@quicinc.com>
+ <02be9f46-2187-45d0-9929-31f6a2c18b35@linaro.org>
+ <11257e57-693f-46db-8f97-09e5d4c20238@linaro.org>
+ <e2c5d7ba-15c0-45ea-ae45-2a6deffde04e@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,38 +123,45 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <44abff4a-0a8e-499b-8b98-a4a1680cb431@linux.ibm.com>
+In-Reply-To: <e2c5d7ba-15c0-45ea-ae45-2a6deffde04e@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 13/12/2023 20:02, Ninad Palsule wrote:
-> Hello Krzysztof,
+On 13/12/2023 20:01, Konrad Dybcio wrote:
 > 
-> On 12/12/23 14:26, Krzysztof Kozlowski wrote:
->> On 12/12/2023 17:40, Ninad Palsule wrote:
->>> This drop adds following devices in the device tree.
->>> - EEPROM/VPD
->>> - Power supplies
->>> - Humidity, pressure and temperature sensors.
->>> - Trusted platform module(TPM) chip
->>>
->>> Tested:
->>>      This board is tested using the simics simulator.
->>>
->>> Signed-off-by: Ninad Palsule <ninad@linux.ibm.com>
->>> ---
->> Don't mix DTS with drivers. DTS and drivers go via different subsystems
->> and cannot have dependencies, so why DTS is patch #6, then driver #7 and
->> now again DTS #7?
 > 
-> There is a dependency on driver code as patch #8 uses the compatibility 
-> string added in driver patch #7.  I have now moved driver patch at the 
-> start. Is that ok? OR you are suggesting something else?
+> On 12/13/23 15:04, Krzysztof Kozlowski wrote:
+>> On 11/12/2023 11:33, Krzysztof Kozlowski wrote:
+>>>> @@ -0,0 +1,579 @@
+>>>> +// SPDX-License-Identifier: BSD-3-Clause
+>>>> +/*
+>>>> + * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
+>>>> + */
+>>>> +
+>>>> +/dts-v1/;
+>>>> +
+>>>> +#include <dt-bindings/leds/common.h>
+>>>> +#include "qcs8550-aim300.dtsi"
+>>>
+>>> Which includes sm8550.dtsi thus I think this is compatible with sm8550.
+>>> You even use sm8550 compatibles here, which is one more hint for that
+>>> compatibility.
+>>>
+>>> We followed this convention for RB5, although not for QRU/QDU1000 boards.
+>>>
+>>> Anyway, if you add here new SoC compatible, I would expect to see new
+>>> SoC DTSI.
+>>>
+>>> I don't have in my notes any previous consensus or decision in these
+>>> matters, so let's discuss now.
+>>> +CC few Linaro folks
+>>
+>> After some talks, the idea is to create qcs8550.dtsi, which will include
+>> sm8550.dtsi, and add top level compatible for qcs8550 using sm8550 fallback.
+> To the board device tree? Otherwise it'll get overwritten.
 
-First, there is no dependency. Second, except confusing order anyway DTS
-will go via separate trees. Third, again, there is no dependency. If
-there is, your patchset is broken and this needs to be fixed. Although I
-don't understand how new hardware can depend on driver... it's really odd.
+Could be both, to serve as a guideline for future DTS, but in general
+yes, to the board DTS.
 
 Best regards,
 Krzysztof
