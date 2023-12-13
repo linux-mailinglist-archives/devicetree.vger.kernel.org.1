@@ -1,127 +1,163 @@
-Return-Path: <devicetree+bounces-24822-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24824-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E60C2811555
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 15:56:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B2A6811585
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 16:03:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 75D611F21415
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 14:56:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A27CA282448
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 15:03:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69B592EB1B;
-	Wed, 13 Dec 2023 14:56:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C80D92FC41;
+	Wed, 13 Dec 2023 15:03:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="KEqEmJj4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YDIHnZ9s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C053EB9
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 06:56:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1702479365;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=seLSmd4NaxAGKV9tJbzWfT8nVms62NbVrReJ4pEC1u4=;
-	b=KEqEmJj4XjOLl50lZ/YtQ2WdTMP+XfYP/wrNbSpCTfceP7y/0AhzqbN8aLL9BYJc2UHip8
-	8tLnUBSd8G85NT9omOzG1Drp88c7blgmrXVR54J/qMZXD+5+HGqF1qAjDoxkBrWOOyPa2T
-	f+PJUvb5oPqFYw3xKQpr8QbxSltHX/g=
-Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
- [209.85.221.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-85-f6cjZ3VONwOLsUdEe0-ejQ-1; Wed, 13 Dec 2023 09:56:02 -0500
-X-MC-Unique: f6cjZ3VONwOLsUdEe0-ejQ-1
-Received: by mail-wr1-f69.google.com with SMTP id ffacd0b85a97d-33608afc4daso2657690f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 06:55:59 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702479358; x=1703084158;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=seLSmd4NaxAGKV9tJbzWfT8nVms62NbVrReJ4pEC1u4=;
-        b=bmnILskI/mYLVfmeSA40WK7p7BlJN0ivlC1wEJm873S3ZriOkW5RmS2mTLi4eORHza
-         bIsvKs7YOCNBB/n1BYkstzGRhtstpdt0Aq/ueuh+UzezzNlUBeID0NDRcNLRQg35V98A
-         mov0ctzum3nl4aPPeQVKjGMkVnHkt1MLWTI4op90ApiQ0rFc+jiGl6nxbpZ9K4ym8hXN
-         T7rMzyzSYIUApqgy89C9/0AJIjtZq/+nBeAydo91MzQkTcbAeaNBSwYuBxqw6LYpAICw
-         SbfQg72GyIolzz0hbTCkcd+lSjx/w+jQcnpP9IP3euxPJgVuQZ/pXt6zeaY2KvR4IV2i
-         gmSQ==
-X-Gm-Message-State: AOJu0YyjMPF0Mg1I95MYFV5XSbUTapTTn/BcnMa2/mxlCt/Qa6yCYTMr
-	nNfd7wmYVXW9JTbK0V1dyYcT90z+AGIQk1H48rKWn9ouLGadaj4qojIpM67fmPlmTZa+kA9bu0T
-	QjXWiCJdFh0EWxN4elpEbKw==
-X-Received: by 2002:a5d:5643:0:b0:336:4196:b861 with SMTP id j3-20020a5d5643000000b003364196b861mr509843wrw.11.1702479358494;
-        Wed, 13 Dec 2023 06:55:58 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHx9WUns+c31gzuLj/TybdHPWHND+pSU+GNTIKZApMqfbmTpuviAuYQQ6FI/50xHfhicnxj1A==
-X-Received: by 2002:a5d:5643:0:b0:336:4196:b861 with SMTP id j3-20020a5d5643000000b003364196b861mr509819wrw.11.1702479358176;
-        Wed, 13 Dec 2023 06:55:58 -0800 (PST)
-Received: from localhost ([2a01:e0a:b25:f902::ff])
-        by smtp.gmail.com with ESMTPSA id c4-20020adffb44000000b003362d0eefd3sm4125363wrs.20.2023.12.13.06.55.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Dec 2023 06:55:57 -0800 (PST)
-Date: Wed, 13 Dec 2023 15:55:57 +0100
-From: Maxime Ripard <mripard@redhat.com>
-To: Donald Robson <donald.robson@imgtec.com>, nm@ti.com, vigneshr@ti.com, 
-	kristo@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, frank.binns@imgtec.com, matt.coster@imgtec.com, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	catalin.marinas@arm.com, will@kernel.org, quic_bjorande@quicinc.com, 
-	geert+renesas@glider.be, konrad.dybcio@linaro.org, arnd@arndb.de, 
-	neil.armstrong@linaro.org, dmitry.baryshkov@linaro.org, nfraprado@collabora.com, 
-	m.szyprowski@samsung.com, u-kumar1@ti.com, peng.fan@nxp.com
-Subject: Re: [PATCH v2 0/2] Enable PowerVR driver for TI AM62x
-Message-ID: <zq3qtz7rherh2fp2yoe6ail5yvyfkfi46i7fqcbecdagflyj4x@htcfxyhunewx>
-References: <cover.1701773390.git.donald.robson@imgtec.com>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A66C62FC3A;
+	Wed, 13 Dec 2023 15:03:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 29DD4C433C7;
+	Wed, 13 Dec 2023 15:03:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702479787;
+	bh=2eAeAB2OSKA3kMHm2dotaI1S60CZCs+9Bu00lkPC4pg=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=YDIHnZ9s0F/iWtaRN+95VdGtiT5Z6pSqe1owm6a1rFJjKSQkT/pwKy05rRapiI5eS
+	 ngskBe2g6aeHm576rQ+3Ol9voaqjJkciscQwJ22Dp0fZhVcbhKW5Q07RDRivXv5teR
+	 eh2m9z7ufTlYrLtJpJNfGXmgaHmOov4bME6RwiKNllegK6NmjuZ/Zu9BLViIgk0ah2
+	 CZ5/oSnEhM+hz4ujZ/G2YFPSere2bszEWE4fCN+78QZNEgVFvxHK53RiIQZ5lriOx6
+	 Qy7TwoEXB2vatLybRfAm69c0H5tQUH0jXrEtgxfDCULzdR4B0FdYRdOArQGW6cNSmK
+	 D7ON0lmHU3sEg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 10A64C4332F;
+	Wed, 13 Dec 2023 15:03:07 +0000 (UTC)
+From: Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>
+Subject: [PATCH v3 0/8] iio: add new backend framework
+Date: Wed, 13 Dec 2023 16:02:31 +0100
+Message-Id: <20231213-dev-iio-backend-v3-0-bb9f12a5c6dc@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="p53zjzgmum7iorxr"
-Content-Disposition: inline
-In-Reply-To: <cover.1701773390.git.donald.robson@imgtec.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAIfHeWUC/2WNQQ6CMBBFr0Jm7Zi20AiuvIdhUdoBJmpLWtNoC
+ He34tLle8l/f4VEkSnBuVohUubEwReoDxXY2fiJkF1hUELVUiqBjjIyBxyMvZF36GQzNKfaSNe
+ NUFZLpJFfe/HaF545PUN87wdZfe2vpUT718oKBepGi07LttMkL8abe5iONjyg37btAykssoGvA
+ AAA
+To: devicetree@vger.kernel.org, linux-iio@vger.kernel.org
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Frank Rowand <frowand.list@gmail.com>, Jonathan Cameron <jic23@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Olivier Moysan <olivier.moysan@foss.st.com>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1702479785; l=3859;
+ i=nuno.sa@analog.com; s=20231116; h=from:subject:message-id;
+ bh=2eAeAB2OSKA3kMHm2dotaI1S60CZCs+9Bu00lkPC4pg=;
+ b=ZdBPKtdhFrWiX5W0MlzQLvi5FZAO29nTrtsbsIrwQyNVmksYsFYN3aNJp7tbTT/Pzydz4Kyu6
+ Ro2nEf24vrgDj2mOP5fBmOfBhshsYQ05u5TeNgbAzwgpVYH7RLxq+nw
+X-Developer-Key: i=nuno.sa@analog.com; a=ed25519;
+ pk=3NQwYA013OUYZsmDFBf8rmyyr5iQlxV/9H4/Df83o1E=
+X-Endpoint-Received:
+ by B4 Relay for nuno.sa@analog.com/20231116 with auth_id=100
+X-Original-From: Nuno Sa <nuno.sa@analog.com>
+Reply-To: <nuno.sa@analog.com>
 
+v1:
+ https://lore.kernel.org/linux-iio/20231204144925.4fe9922f@jic23-huawei/T/#m222f5175273b81dbfe40b7f0daffcdc67d6cb8ff
 
---p53zjzgmum7iorxr
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+v2:
+ https://lore.kernel.org/r/20231208-dev-iio-backend-v2-0-5450951895e1@analog.com
 
-Hi Nishanth, Tero, Vignesh,
+Changes in v3:
+- Patch 1:
+ * Use proposed generic schema [1]. Also make it a required property;
+ * Improved the commit message.
+- Patch 2:
+ * Improved commit message.
+- Patch 4:
+ * Namespace all IIO DMAENGINE buffer exports;
+ * Removed unrelated new line removal change.
+- Patch 5:
+ * Namespace all IIO backend exports.
+- Patch 6:
+ * Set backend.h in alphabetical order;
+ * Import IIO backend namespace.
+- Patch 7:
+ * Don't depend on OF in kbuild anymore;
+ * Import IIO backend namespace.
 
-On Tue, Dec 05, 2023 at 11:39:31AM +0000, Donald Robson wrote:
-> These patches enable the new open source PowerVR driver for TI AM62x SoCs,
-> currently the only one supported.
->=20
-> Changes since v1:
-> - Added patch 1 for arm64 defconfig (requested by Nishanth Menon)
->=20
-> Donald Robson (1):
->   arm64: defconfig: enable DRM_POWERVR
->=20
-> Sarah Walker (1):
->   arm64: dts: ti: k3-am62-main: Add GPU device node
+For the bindings patches, I tried not to enter into much details about
+the IIO framework as I think specifics of the implementation don't care
+from the bindings perspective. Hopefully the commit messages are good
+enough.
 
-Any chance we can get that in 6.8?
+I'm also aware that patch 1 is not backward compatible but we are
+anyways doing it on the driver side (and on the driver the property is
+indeed required). Anyways, just let me know if making the property
+required is not acceptable (I'm fairly confident no one was using the
+upstream version of the driver and so validating devicetrees for it). 
 
-Since the driver will reach 6.8 as well, it would be a bit of a bummer
-to not have it enabled anywhere.
+Keeping the block diagram in v3's cover so we don't have to follow links
+to check the one of the typicals setups. 
 
-Maxime
+                                           -------------------------------------------------------
+ ------------------                        | -----------         ------------      -------  FPGA |
+ |     ADC        |------------------------| | AXI ADC |---------| DMA CORE |------| RAM |       |
+ | (Frontend/IIO) | Serial Data (eg: LVDS) | |(backend)|---------|          |------|     |       |
+ |                |------------------------| -----------         ------------      -------       |
+ ------------------                        -------------------------------------------------------
+ 
+Jonathan, I was also tempted in including the diagram in the source
+file. Would that be a good idea?
 
---p53zjzgmum7iorxr
-Content-Type: application/pgp-signature; name="signature.asc"
+[1]: https://github.com/devicetree-org/dt-schema/pull/120
 
------BEGIN PGP SIGNATURE-----
+---
+Nuno Sa (7):
+      dt-bindings: adc: ad9467: add new io-backend property
+      dt-bindings: adc: axi-adc: deprecate 'adi,adc-dev'
+      driver: core: allow modifying device_links flags
+      iio: buffer-dmaengine: export buffer alloc and free functions
+      iio: add the IIO backend framework
+      iio: adc: ad9467: convert to backend framework
+      iio: adc: adi-axi-adc: move to backend framework
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZXnF/QAKCRDj7w1vZxhR
-xVqrAQD6EdMWC9m6qFxV3KiMi4/C/MPkTHRdno81R57dNuGj3wD/fwGlEnklNRir
-py8Ke+Q/cAOVgLS+I3Yt6fBTOsjxIgM=
-=LdLH
------END PGP SIGNATURE-----
+Olivier Moysan (1):
+      of: property: add device link support for io-backends
 
---p53zjzgmum7iorxr--
+ .../devicetree/bindings/iio/adc/adi,ad9467.yaml    |   5 +
+ .../devicetree/bindings/iio/adc/adi,axi-adc.yaml   |   4 +-
+ MAINTAINERS                                        |   8 +
+ drivers/base/core.c                                |  14 +-
+ drivers/iio/Kconfig                                |   5 +
+ drivers/iio/Makefile                               |   1 +
+ drivers/iio/adc/Kconfig                            |   4 +-
+ drivers/iio/adc/ad9467.c                           | 243 +++++++------
+ drivers/iio/adc/adi-axi-adc.c                      | 381 +++++---------------
+ drivers/iio/buffer/industrialio-buffer-dmaengine.c |   8 +-
+ drivers/iio/industrialio-backend.c                 | 386 +++++++++++++++++++++
+ drivers/of/property.c                              |   2 +
+ include/linux/iio/adc/adi-axi-adc.h                |  68 ----
+ include/linux/iio/backend.h                        |  68 ++++
+ include/linux/iio/buffer-dmaengine.h               |   3 +
+ 15 files changed, 730 insertions(+), 470 deletions(-)
+---
+base-commit: 3cde3cdb0b23151dbaac476b17eb1868335993aa
+change-id: 20231120-dev-iio-backend-d14b473a1d9f
+--
+
+Thanks!
+- Nuno Sá
 
 
