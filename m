@@ -1,137 +1,205 @@
-Return-Path: <devicetree+bounces-24728-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24733-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DFF7811021
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 12:33:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B11981104A
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 12:38:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F201DB20DFC
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 11:33:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 476EC281544
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 11:38:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BEA9249F0;
-	Wed, 13 Dec 2023 11:33:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC6152420D;
+	Wed, 13 Dec 2023 11:38:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="RfzSBK9S"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nhwUp3kw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66D20131
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 03:33:23 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-40c32e205fcso10694135e9.1
-        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 03:33:23 -0800 (PST)
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DC4AA5;
+	Wed, 13 Dec 2023 03:38:39 -0800 (PST)
+Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2c9f7fe6623so86032871fa.3;
+        Wed, 13 Dec 2023 03:38:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1702467202; x=1703072002; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KKPObWVuIFXSRwOfIm7U25jwf++f1sQGlTYA9JTEt2I=;
-        b=RfzSBK9SpNVuBJ654n3yp6K89HTEUNgLDz1Sbt6qD1ReJvEFqKJNWWjquoQuURed/7
-         44oanJh4FfD1MTUJeQPIDNmOGHYMOfr3rZwDb1EWck4Hm/TM/6DOXF9J7bxb1uwvOJI7
-         hmR0sqBCxhqSin/1N2o7WE9V7Qkjz5HsR2IKc+wPDvElfWdR4qHrySS82awQH0gPWgzG
-         SjQhYrmxuYmJiZ7KEkg2tS0x08mZ7qU2Xo5JiXjzO7qAJwe99Mp5MUfRxG3CXhwEHqEl
-         9KF8k0oRR+ccrWlyyOk++AVWrFr0TEGOuoocx30+8XMa/RDMy2RBfelCU9UmAW0IU0Es
-         tfDA==
+        d=gmail.com; s=20230601; t=1702467517; x=1703072317; darn=vger.kernel.org;
+        h=mime-version:references:in-reply-to:message-id:subject:cc:to:from
+         :date:from:to:cc:subject:date:message-id:reply-to;
+        bh=erM8V8RgO6KRLO/yh7jID1/baZLh+uPtPuh+atBa3V8=;
+        b=nhwUp3kwWdijRB46PbhVx0WQfR69/iV7strFztaFgKqOZ06Ok3IFKHeLOgvUIqm0Fg
+         YdDF/uOGsJzL/SocLsI/78wLKhNMAQrLjxa4sW6rbFapEhRbKJ9MVROSzhPmB5Dvd/Cl
+         YGs/AHfGIRcoaGyAT75K0yXxVcL7ovj3z7WXwQqR7wsir9GnHFH3smfMhrYsAgKQ00mH
+         II7rCOZHJ9lwYNI8VSVmcU1L2TfhhO40Yl6gEUkLiU8PIhaH58LiQeAcqdJ4Xr9nvNrl
+         s9+FxNjPGkLllRmh6WU51sL3GAbXYW2lxkh928fxUAPbWZFPGZ028cR1FTuVS5Cgmvhm
+         jp/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702467202; x=1703072002;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KKPObWVuIFXSRwOfIm7U25jwf++f1sQGlTYA9JTEt2I=;
-        b=VVVvAwNV65gcnv98j4l9GMUd4B4QAQ0/TGX0SE13AGZcSA4BnPn2pq5l/W32xydYLi
-         V1ggY50pH14LywKKxBhy7rTA/9HdAK+F801erkTAI42gNQ1W+JvG3FQl0sRPag5ux/eG
-         w5SziK6re2dcj2SM0pJaJG3c9YqeL7L2maPZWUV/DFrUSlYPslPojnnaV0lgHLhqfodG
-         BDMr+oVOs8hKSHj2ZcPJ15CgK2dRVpIvfeFjmh9GCe1a1oqMGvDdtVaPOUFrhJC60YZL
-         78d/7FWr1wXesGGB4mFkmTsxm1MpwKR3Qi25r+gbIq2ZB2O2tvlnGCwaxUOBdS7T6oVH
-         INow==
-X-Gm-Message-State: AOJu0YzaUGZLmFiO0lMxv5VjYJfswxguNyT/yGwpHTa05ZpANsQzf4P3
-	HBHnhbs+yM6+INgV4mt302zskA==
-X-Google-Smtp-Source: AGHT+IFOAi6+jGGEZI3vEUxmpFwncaq2mLgc0WthEtql1NhoQKa77IbEBEbBVUbFXF2l0uTI44prGg==
-X-Received: by 2002:a05:600c:3b23:b0:40c:2631:7c3d with SMTP id m35-20020a05600c3b2300b0040c26317c3dmr9593791wms.2.1702467201829;
-        Wed, 13 Dec 2023 03:33:21 -0800 (PST)
-Received: from carbon-x1.. ([2a01:e0a:999:a3a0:c564:f167:d072:5672])
-        by smtp.gmail.com with ESMTPSA id m27-20020a05600c3b1b00b0040b38292253sm22433137wms.30.2023.12.13.03.33.21
+        d=1e100.net; s=20230601; t=1702467517; x=1703072317;
+        h=mime-version:references:in-reply-to:message-id:subject:cc:to:from
+         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=erM8V8RgO6KRLO/yh7jID1/baZLh+uPtPuh+atBa3V8=;
+        b=N333lWZ4bUkQGK5MU16ZmMDPkA2XqI23RhXlwimSlbJqe9zbX6gpGkuAFr3l4jXBJ6
+         H2eSlX3aYRGDACKTtNqTkjYOunaSdk3/Lf8WT9lNN8oSJNzbCRsDqXkNrN/Hyi36aLiy
+         8PKH20LAa0eoS6mOhigjJlKU2YC3mpc/0ZEj9eGbiMq9/By1wiBI/4mk3j7FfvwdEaTl
+         DBXdY8F80I9sw3zM9WJIl6UoHooIv20J7Ux47VERU+oAdiP6op8uieX8pEAxY7SlXvvu
+         tgT2hYAprUKWs3Nr8tOMW8W1dqVQG48zBFkSBlLJ8d/Bn2u+XWH+qwPhAVAwRBgCPn0a
+         72fA==
+X-Gm-Message-State: AOJu0YxGaeIhjHdr11xMFOfVKyTJI8LbOV9r6sc7jvl5X5kyAhmIFV05
+	ymki4tbODHRCMfXKO4Ve2FY=
+X-Google-Smtp-Source: AGHT+IGrw7mppJSoNS7Dsgtj7c74Wvr4sERgMIvNl5Jx450IZ2/p127Sh3s8TK2qiUjKMuJrmp211w==
+X-Received: by 2002:a2e:330e:0:b0:2ca:226:423b with SMTP id d14-20020a2e330e000000b002ca0226423bmr2342385ljc.48.1702467517050;
+        Wed, 13 Dec 2023 03:38:37 -0800 (PST)
+Received: from eldfell ([194.136.85.206])
+        by smtp.gmail.com with ESMTPSA id q6-20020a2e2a06000000b002c9e9c29670sm1767204ljq.47.2023.12.13.03.38.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Dec 2023 03:33:21 -0800 (PST)
-From: =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <cleger@rivosinc.com>
-To: linux-doc@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <cleger@rivosinc.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Conor Dooley <conor@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Robbin Ehn <rehn@rivosinc.com>
-Subject: [PATCH 9/9] riscv: hwprobe: export Zicond extension
-Date: Wed, 13 Dec 2023 12:33:05 +0100
-Message-ID: <20231213113308.133176-10-cleger@rivosinc.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20231213113308.133176-1-cleger@rivosinc.com>
-References: <20231213113308.133176-1-cleger@rivosinc.com>
+        Wed, 13 Dec 2023 03:38:36 -0800 (PST)
+Date: Wed, 13 Dec 2023 13:38:25 +0200
+From: Pekka Paalanen <ppaalanen@gmail.com>
+To: Joakim Bech <joakim.bech@linaro.org>
+Cc: Simon Ser <contact@emersion.fr>, Yong Wu <yong.wu@mediatek.com>, Rob
+ Herring <robh+dt@kernel.org>, Sumit Semwal <sumit.semwal@linaro.org>,
+ christian.koenig@amd.com, Matthias Brugger <matthias.bgg@gmail.com>,
+ dri-devel@lists.freedesktop.org, John Stultz <jstultz@google.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Jeffrey Kardatzke
+ <jkardatzke@google.com>, Benjamin Gaignard
+ <benjamin.gaignard@collabora.com>, Vijayanand Jitta
+ <quic_vjitta@quicinc.com>, Nicolas Dufresne <nicolas@ndufresne.ca>,
+ jianjiao.zeng@mediatek.com, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ ckoenig.leichtzumerken@gmail.com, linaro-mm-sig@lists.linaro.org,
+ linux-mediatek@lists.infradead.org, tjmercier@google.com,
+ linux-arm-kernel@lists.infradead.org, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, kuohong.wang@mediatek.com,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/7] dma-buf: heaps: Add secure heap
+Message-ID: <20231213133825.0a329864@eldfell>
+In-Reply-To: <20231213101549.lioqfzjxcvmqxqu3@pop-os.localdomain>
+References: <20231212024607.3681-1-yong.wu@mediatek.com>
+	<DPBmATfmfvSP8Cwjz99kj_JvCEiAqRfuMFJZEBF2aIgl8NZqWFR66eyPTX1E8bHyOlimBihEE3E80p9bfOJ-0SNu8pwoIzL9gD2Xae6r97g=@emersion.fr>
+	<20231213110517.6ce36aca@eldfell>
+	<20231213101549.lioqfzjxcvmqxqu3@pop-os.localdomain>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; boundary="Sig_/xTcL2+m+K.KNDg_qGM9LG9u";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 
-Export the zicond extension to userspace using hwprobe.
+--Sig_/xTcL2+m+K.KNDg_qGM9LG9u
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Clément Léger <cleger@rivosinc.com>
----
- Documentation/arch/riscv/hwprobe.rst  | 5 +++++
- arch/riscv/include/uapi/asm/hwprobe.h | 1 +
- arch/riscv/kernel/sys_riscv.c         | 1 +
- 3 files changed, 7 insertions(+)
+On Wed, 13 Dec 2023 11:15:49 +0100
+Joakim Bech <joakim.bech@linaro.org> wrote:
 
-diff --git a/Documentation/arch/riscv/hwprobe.rst b/Documentation/arch/riscv/hwprobe.rst
-index 510e49878834..a42c3b5d6bc3 100644
---- a/Documentation/arch/riscv/hwprobe.rst
-+++ b/Documentation/arch/riscv/hwprobe.rst
-@@ -172,6 +172,11 @@ The following keys are defined:
-        defined in the Atomic Compare-and-Swap (CAS) instructions manual starting
-        from commit 5059e0ca641c ("update to ratified").
- 
-+  * :c:macro:`RISCV_HWPROBE_EXT_ZICOND`: The Zicond extension is supported as
-+       defined in the RISC-V Integer Conditional (Zicond) operations extension
-+       manual starting from commit 95cf1f9 ("Add changes requested by Ved
-+       during signoff")
-+
- * :c:macro:`RISCV_HWPROBE_KEY_CPUPERF_0`: A bitmask that contains performance
-   information about the selected set of processors.
- 
-diff --git a/arch/riscv/include/uapi/asm/hwprobe.h b/arch/riscv/include/uapi/asm/hwprobe.h
-index 7ec4331122e7..4287aa391cf5 100644
---- a/arch/riscv/include/uapi/asm/hwprobe.h
-+++ b/arch/riscv/include/uapi/asm/hwprobe.h
-@@ -59,6 +59,7 @@ struct riscv_hwprobe {
- #define		RISCV_HWPROBE_EXT_ZTSO		(1ULL << 33)
- #define		RISCV_HWPROBE_EXT_ZAM		(1ULL << 34)
- #define		RISCV_HWPROBE_EXT_ZACAS		(1ULL << 35)
-+#define		RISCV_HWPROBE_EXT_ZICOND	(1ULL << 36)
- #define RISCV_HWPROBE_KEY_CPUPERF_0	5
- #define		RISCV_HWPROBE_MISALIGNED_UNKNOWN	(0 << 0)
- #define		RISCV_HWPROBE_MISALIGNED_EMULATED	(1 << 0)
-diff --git a/arch/riscv/kernel/sys_riscv.c b/arch/riscv/kernel/sys_riscv.c
-index abb0eea3ee08..d94f11534efa 100644
---- a/arch/riscv/kernel/sys_riscv.c
-+++ b/arch/riscv/kernel/sys_riscv.c
-@@ -177,6 +177,7 @@ static void hwprobe_isa_ext0(struct riscv_hwprobe *pair,
- 		EXT_KEY(ZTSO);
- 		EXT_KEY(ZAM);
- 		EXT_KEY(ZACAS);
-+		EXT_KEY(ZICOND);
- 
- 		if (has_vector()) {
- 			EXT_KEY(ZVBB);
--- 
-2.43.0
+> On Wed, Dec 13, 2023 at 11:05:17AM +0200, Pekka Paalanen wrote:
+> > On Tue, 12 Dec 2023 16:36:35 +0000
+> > Simon Ser <contact@emersion.fr> wrote:
+> >  =20
+> > > Is there a chance to pick a better name than "secure" here?
+> > >=20
+> > > "Secure" is super overloaded, it's not clear at all what it means from
+> > > just the name. Something like "restricted" would be an improvement.
+> > >  =20
+> >=20
+> > My thoughts exactly. Every time I see "secure" used for something that
+> > either gives you garbage, refuses to work, or crashes your whole machine
+> > *intentionally* when you try to do normal usual things to it in
+> > userspace (like use it for GL texturing, or try to use KMS writeback), I
+> > get an unscratchable itch.
+> >=20
+> > There is nothing "secure" from security perspective there for end users
+> > and developers. It's just inaccessible buffers.
+> >=20
+> > I've been biting my lip until now, thinking it's too late.
+> >  =20
+> The characteristics we're looking for here is a buffer where the content
+> is inaccessible to the normal OS and user space, i.e., Non-secure EL0 to
+> EL2. I.e, the content of the buffer is meant to be used and accessible
+> primarily by the secure side and other devices that has been granted
 
+s/secure side/proprietary side/
+
+I presume nothing of the other side can ever be in any way open?
+
+Maybe the other side is even less secure than the FOSS side...
+
+> access to it (for example decoders, display controllers if we're talking
+> about video use cases). However, since the use cases for this exercises
+> the whole stack, from non-secure user space (EL0) all the way to secure
+> user space (S-EL0), with various devices needing access to the buffer at
+> various times, it makes sense to let Linux manage the buffers, although
+> it still cannot access the content. That's the overall context.
+
+Yes, we know all this (except for the exact meaning of EL0 etc.).
+
+> As for the name, it's always difficult to find a name suitable precisely
+> describing what it is. "Secure" is perhaps vague, but it might still a
+> good choice, if you carefully describe what secure means for this
+> particular heap (in the source code and the documentation for it). For
+
+Carefully describe, as in, re-define.
+
+> example, the definition of "secure" for a secure heap as here could mean
+> that buffer content is inaccessible to the host OS and user space
+> running in normal world (using Arm nomenclature). I wouldn't have any
+> problems with calling it secure if, as said it's defined what we mean by
+> saying so. But I'm all ears for other suggestions as well.
+>=20
+> Safe, protected, shielded, unreachable, isolated, inaccessible,
+> unaccessible, fortified, ... would any of these make more sense?
+
+"Restricted" sounds like a good compromise to me. The buffers' usage is
+severely restricted.
+
+It is the opposite of "safe", because accessing the contents the wrong
+way can return garbage or intentionally crash the whole system,
+depending on the hardware implementation. One example is attempting to
+put such a buffer on a KMS plane while the connector HDCP state is not
+high enough, or a writeback connector is connected to the CRTC. It is
+really fragile. (Do KMS drivers fail an atomic commit that would
+violate the heap rules? Somehow I doubt that, who'd even know what the
+rules are.)
+
+It is protected/shielded/fortified from all the kernel and userspace,
+but a more familiar word to describe that is inaccessible.
+"Inaccessible buffer" per se OTOH sounds like a useless concept.
+
+It is not secure, because it does not involve security in any way. In
+fact, given it's so fragile, I'd classify it as mildly opposite of
+secure, as e.g. clients of a Wayland compositor can potentially DoS the
+compositor with it by simply sending such a dmabuf. Or DoS the whole
+system.
+
+"Poisonous heap" would be fitting but politically inappropriate I
+guess. After all, "poison" is data that is not meant to be read by
+anything normal.
+
+
+Thanks,
+pq
+
+--Sig_/xTcL2+m+K.KNDg_qGM9LG9u
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmV5l7EACgkQI1/ltBGq
+qqd21w/7B5AOlcm0BJvZ+kXMgngEgshf4OR5HVOLoGtC3uQwgQJLmIotDzGjaXnM
+YNpvxE7i3jgF/MvfUynt58CspSm4fcgJzP5fjqD5zTAQ7BH2PFxnyl8Ko1AemP1A
+yauV0Fco65ZDgsZRGCxZeCI60vtceCYPECULnQSC67w2ToHsdQsgaSH2DnTmNPgZ
+TSqV553NtqYEc4U1XcfN0kwwwG7l3B5k7Fv57eEcLbpYjHhVHDc2Lbr138SWn7fx
+APC3vIZGlAKGPSDwHCApb/xA9SiCprT1nxKtqsPnYON3OWeivPqd8w3ehdaHGI93
+d5F6GM6c7XyTxSpde5H9UueQROreZB1JOrF81Pw4u3dJ0NMYjludA64BBnbDx4u7
+HDPQDMMtpq2Gvg+FosmzYa3Pf1laWztXyqcjhrvr9W7FPvzDOvnA8Jt05jgRYHBO
+Fi+ghVDeIkuiv3Yk5Ien7FStcO6OKjSeRErZvR3Cqu1ZdTZOd7+Pg7eZe+bdNtsN
+lEaSLNF8x9hRQjBE3hsP9El2dcOIZbvxElDhczpHy+mEfHyf4wp6slc8be+dFiwq
+b/kHVXxALVcRSBoa7E26WS0zcXgE0CyHkFAoMI/E6S2Ijxxf1UIGwTQyVzaUQ/V4
+5FZEBlGLow3ax7wAl+aXTOAubzc4cm+LI17q6TbeRqcL9y0EBcU=
+=P1qu
+-----END PGP SIGNATURE-----
+
+--Sig_/xTcL2+m+K.KNDg_qGM9LG9u--
 
