@@ -1,182 +1,183 @@
-Return-Path: <devicetree+bounces-24751-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24752-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5ADFE811113
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 13:25:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECF54811133
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 13:38:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 011FE281994
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 12:25:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7B9111F21040
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 12:38:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30CC928E1E;
-	Wed, 13 Dec 2023 12:25:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C56CA249E5;
+	Wed, 13 Dec 2023 12:38:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="liKKZ5hM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 40E8ACD;
-	Wed, 13 Dec 2023 04:25:28 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 08FB4C15;
-	Wed, 13 Dec 2023 04:26:14 -0800 (PST)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5E4BE3F762;
-	Wed, 13 Dec 2023 04:25:26 -0800 (PST)
-Date: Wed, 13 Dec 2023 12:25:23 +0000
-From: Andre Przywara <andre.przywara@arm.com>
-To: Anne Macedo <retpolanne@posteo.net>
-Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, "open list:OPEN FIRMWARE AND
- FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, "moderated
- list:ARM/Allwinner sunXi SoC support"
- <linux-arm-kernel@lists.infradead.org>, "open list:ARM/Allwinner sunXi SoC
- support" <linux-sunxi@lists.linux.dev>, open list
- <linux-kernel@vger.kernel.org>, Corentin Labbe <clabbe@baylibre.com>
-Subject: Re: [PATCH] arm64: dts: allwinner: Orange Pi One Plus PHY support
-Message-ID: <20231213122523.219cbfc0@donnerap.manchester.arm.com>
-In-Reply-To: <ceuoq3xxgb5kkel7e7wqpslcg7h6dde3wgdqhyo7jgop6owovk@5a76ks5fiun4>
-References: <20231212122835.10850-2-retpolanne@posteo.net>
-	<20231212162200.10b3868b@donnerap.manchester.arm.com>
-	<axsvii25yrknfae6gdreti7lcskoscsdbsujwuispiieimsbdy@gwzm4l7mwlew>
-	<20231213013544.2fc7e0d1@minigeek.lan>
-	<ceuoq3xxgb5kkel7e7wqpslcg7h6dde3wgdqhyo7jgop6owovk@5a76ks5fiun4>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BF2DA4;
+	Wed, 13 Dec 2023 04:38:29 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3BDCcKvL068102;
+	Wed, 13 Dec 2023 06:38:20 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1702471100;
+	bh=gy1qArKSqhsRjFGn+LP95Xdrzj0gXfcfs2ST9SpwNn4=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=liKKZ5hMZe+vJrml3OdKgNrLlksoOh5bus+6J0oQeGCHBRgUfGrk/C/Q737dQ+QbO
+	 k2nxif5jntJCmkTngoJG73nRByGBUaJAfJJ5Fhg9zBn1xZyVcSurYBoVhniDa9z1K7
+	 sX7IUp91VPb6HYDptNb4mJFB1wklczLiopE/D1Sg=
+Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3BDCcKPI083754
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 13 Dec 2023 06:38:20 -0600
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 13
+ Dec 2023 06:38:19 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 13 Dec 2023 06:38:19 -0600
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3BDCcJNF080616;
+	Wed, 13 Dec 2023 06:38:19 -0600
+Date: Wed, 13 Dec 2023 06:38:19 -0600
+From: Nishanth Menon <nm@ti.com>
+To: Siddharth Vadapalli <s-vadapalli@ti.com>
+CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <danishanwar@ti.com>,
+        <r-gunasekaran@ti.com>, <srk@ti.com>
+Subject: Re: [PATCH v2] arm64: dts: ti: k3-am654-icssg2: Enable PHY
+ interrupts for ICSSG2
+Message-ID: <20231213123819.tqh3lm2ceir3qjbk@swimmer>
+References: <20231213080216.1710730-1-s-vadapalli@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20231213080216.1710730-1-s-vadapalli@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Wed, 13 Dec 2023 11:02:39 +0000
-Anne Macedo <retpolanne@posteo.net> wrote:
-
-Hi Anne,
-
-> On Wed, Dec 13, 2023 at 01:35:44AM +0000, Andre Przywara wrote:
-> > On Tue, 12 Dec 2023 19:27:14 +0000
-> > Anne Macedo <retpolanne@posteo.net> wrote:
-> > 
-> > Hi Anne,
-> >   
-> > > On Tue, Dec 12, 2023 at 04:22:00PM +0000, Andre Przywara wrote:  
-> > > > On Tue, 12 Dec 2023 12:28:30 +0000
-> > > > Anne Macedo <retpolanne@posteo.net> wrote:
-> > > > 
-> > > > Hi Anne,
-> > > >     
-> > > > > Adds compatible values to mdio subnodes for Ethernet PHY representing
-> > > > > Realtek 8211 PHY to Orange Pi One Plus.    
-> > > > 
-> > > > So can you state why this would be needed? This is the RTL8211 ID,    
-> > > 
-> > > Apologies, I completely forgot to include some context. 
-> > >   
-> > > > right? Which should be autodetected via MDIO. Looking back in my inbox
-> > > > you proposed this change before, for U-Boot, specifically, but I fail to
-> > > > find a solution or explanation what really happens here. Two Renesas .dts
-> > > > files have the same compatible, and the commit message talks about the
-> > > > reset line there, is this related?
-> > > > 
-> > > > So can you please give some more background and explanation? That would be
-> > > > part of a good commit message anyway ("why", not "what").    
-> > > 
-> > > Should I resend the commit with a more meaningful explanation? The
-> > > context is the following:
-> > > 
-> > > currently, ethernet doesn't seem to work on both u-boot and Linux on the
-> > > Orange Pi One Plus board. 
-> > > 
-> > > On the kernel, this error shows up:
-> > > 
-> > > Configuring network interfaces... [    5.992589] dwmac-sun8i 5020000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
-> > > [    6.000823] dwmac-sun8i 5020000.ethernet eth0: __stmmac_open: Cannot attach to PHY (error: -19)
-> > > 
-> > > After applying this fix, the PHY gets attached: 
-> > > 
-> > > Configuring network interfaces... [    6.060020] dwmac-sun8i 5020000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
-> > > [    6.069460] dwmac-sun8i 5020000.ethernet eth0: PHY [stmmac-0:01] driver [RTL8211E Gigabit Ethernet] (irq=POLL)
-> > > 
-> > > The previous compatible list that had ethernet-phy-ieee802.3-c22 fails
-> > > to find a PHY, so this patch includes the correct PHY ID with the
-> > > RTL8211 ID. 
-> > > 
-> > > The behaviour is described on [1].  
-> > 
-> > So this is all an observation, but no real explanation, isn't it?  
+On 13:32-20231213, Siddharth Vadapalli wrote:
+> Enable interrupt mode of operation of the DP83867 Ethernet PHY which is
+> used by ICSSG2. The DP83867 PHY driver already supports interrupt handling
+> for interrupts generated by the PHY. Thus, add the necessary device-tree
+> support to enable it.
 > 
-> I've made some analysis on [3] on this bug, but it was based solely on
-> u-boot. I was having trouble with the regulator and on u-boot nothing
-> would trigger the GPIO PD6 and the vcc-gmac-3v3 regulator, so the NIC
-> was completely dead. Next I did an analysis based on [2] because the
-> u-boot PHY initialization was flaky.
+> Since the GPIO1_87 line is muxed with EXT_REFCLK1 and SYNC1_OUT, update
+> the pinmux to select GPIO1_87 for routing the interrupt.
 > 
-> > To cite [1]: "If the PHY reports an incorrect ID (or none at all) ...".
-> > I am pretty sure this is not the case here, instead we are looking at
-> > some missing platform bits, like a missing clock, reset, or most likely
-> > regulator. Or one of the existing resources is wrongly assigned or  
+> As the same interrupt line and therefore the same pinmux configuration is
+> applicable to both Ethernet PHYs used by ICSSG2, allocate the pinmux
+> resource to the first Ethernet PHY alone.
 > 
-> As I mentioned, PHY initialization is flaky on u-boot, so maybe that
-> assumption is correct. 
+> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> Reviewed-by: MD Danish Anwar <danishanwar@ti.com>
+> ---
+> Hello,
 > 
-> > configured? If the PHY is not (yet?) powered correctly when the code
-> > does the auto-detection via the MDIO bus, then the initialisation would  
+> This patch is based on linux-next tagged next-20231213.
 > 
-> If I recall correctly (I don't know if I kept it in my notes :c), that
-> could be the case. regulator-boot-on makes the NIC work (LEDs blink, at
-> least) but it doesn't get initialized. 
+> v1:
+> https://lore.kernel.org/r/20231120063159.539306-1-s-vadapalli@ti.com/
+> Changes since v1:
+> - Rebased patch on next-20231213.
+> - Collected Reviewed-by tag from
+>   MD Danish Anwar <danishanwar@ti.com>
+> - Moved pinctrl from MDIO node to Ethernet PHY node based on feedback from
+>   Nishanth Menon <nm@ti.com>
+> - Replaced the hard-coded value 0x2 with IRQ_TYPE_EDGE_FALLING for
+>   setting the interrupt trigger type and level flag based on feedback from
+>   Nishanth Menon <nm@ti.com>
+> - Included dt-bindings/interrupt-controller/irq.h in the overlay.
+> - Updated commit message with details of the pinmux resource allocation.
 > 
-> > fail. But since it works when overriding the auto-detection, I feel
-> > like we are papering over something here.
-> > Do you have the schematics for this board? I can only find the one for
-> > the Orange Pi Plus 2E, and I don't know how similar those two are. This
-> > shows *two* regulators, but both are activated by the same GPIO.  
+> Regards,
+> Siddharth.
 > 
-> I do. It's available on [4]
-
-Oh damn it, I got lost in Orange Pi's naming maze again - and was looking
-for the wrong board! So thanks for the link, and this clears things up!
-
-So yes, the Orange Pi *One* Plus, much like the Orange Pi 3, uses *two*
-regulators for Ethernet: one 3.3V from the PMIC's ALDO2 rail to power the
-PHY, and a discrete 2.5V regulator, enabled by GPIO PD6, for the voltage
-level on the MDIO lines. On top of this there is a reset line for the PHY,
-though this is held up by a pull-up resistor, so it *should* work,
-although we should describe this in the DT.
-
-So the DT looks wrong then: The reg_gmac_3v3 is actually a 2.5V regulator,
-and phy-supply is aldo2. I think it was done the way it is to somehow make
-it work with the current DT binding and code, which just supports one
-regulator. And aldo2 is referenced as the source of reg_gmac_3v3, which
-smells like another hack to me.
-
-> > It would also be interesting to see if any of Corentin's work for the
-> > Orange Pi 3 helps here?  
+>  arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
 > 
-> Adding [5] for reference here, thanks! Will check it out. 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso b/arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso
+> index ec8cf20ca3ac..6eabdfa0d602 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso
+> +++ b/arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso
+> @@ -8,6 +8,7 @@
+>  /dts-v1/;
+>  /plugin/;
+>  
+> +#include <dt-bindings/interrupt-controller/irq.h>
+>  #include <dt-bindings/net/ti-dp83867.h>
+>  #include "k3-pinctrl.h"
+>  
+> @@ -124,6 +125,15 @@ AM65X_IOPAD(0x0088, PIN_INPUT, 2) /* (AG17) PRG2_PRU0_GPO4.PRG2_RGMII1_RX_CTL */
+>  	};
+>  };
+>  
+> +&main_pmx1 {
+> +	/* Select GPIO1_87 for ICSSG2 PHY interrupt */
+> +	icssg2_phy_irq_pins_default: icssg2-phy-irq-default-pins {
+> +		pinctrl-single,pins = <
+> +			AM65X_IOPAD(0x0014, PIN_INPUT, 7) /* (A22) EXT_REFCLK1.GPIO1_87 */
+> +		>;
+> +	};
+> +};
+> +
+>  &icssg2_mdio {
+>  	status = "okay";
+>  	pinctrl-names = "default";
+> @@ -132,13 +142,20 @@ &icssg2_mdio {
+>  	#size-cells = <0>;
+>  
+>  	icssg2_phy0: ethernet-phy@0 {
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&icssg2_phy_irq_pins_default>;
+> +
+>  		reg = <0>;
+> +		interrupt-parent = <&main_gpio1>;
+> +		interrupts = <87 IRQ_TYPE_EDGE_FALLING>;
+>  		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
+>  		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+>  	};
+>  
+>  	icssg2_phy1: ethernet-phy@3 {
+>  		reg = <3>;
+> +		interrupt-parent = <&main_gpio1>;
+> +		interrupts = <87 IRQ_TYPE_EDGE_FALLING>;
 
-This is an older version, there are actually updates. And he also mentions
-your board as well, so I think it just can sail in the wake of the OPi 3
-Ethernet enablement.
+https://www.ti.com/lit/ds/symlink/dp83867ir.pdf -> it looks like the
+interrupt pin is level event. but drivers/gpio/gpio-davinci.c::
+gpio_irq_type() -> The SoC cannot handle level, only edge.
 
-Can you try if this change, just applied to your .dts instead, works?
-https://github.com/montjoie/linux/commit/cf6e192eca1d59be630e6729d2cef9e897b3da8c
+A bit confused here..  GPIO 87 is shared between two phys. isn't it a
+case of race?
 
-Cheers,
-Andre
+PHY1 assets low
+phy1 handler starts, but before the driver it clears the condition:
+PHY2 asserts low - but since the signal is already low, there is no
+pulse
+phy1 handler clears phy1 condition, but signal is still low due to phy2?
+now phy2 OR phy1 never gets handled since there is never a pulse event
+ever again.
 
-P.S. Is there any chance where I can reply/comment on your blog? It seems
-like I can clear some things up...
 
-> [3] https://blog.retpolanne.com/hardware/embedded/2023/07/07/embedded-phy.html
-> [4] https://linux-sunxi.org/images/7/7c/OrangePi_OnePlus_Schematics_v2.0.pdf
-> [5] https://lore.kernel.org/netdev/20220509074857.195302-1-clabbe@baylibre.com/
+>  		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
+>  		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+>  	};
+> -- 
+> 2.34.1
 > 
-> Regards, Anne
 
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
