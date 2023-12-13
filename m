@@ -1,89 +1,158 @@
-Return-Path: <devicetree+bounces-25016-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25017-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 197F3811F41
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 20:46:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BCA4811F58
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 20:50:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B32A31F20F1D
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 19:46:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 370582822B0
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 19:50:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 665CA7764F;
-	Wed, 13 Dec 2023 19:46:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DFCC78E7C;
+	Wed, 13 Dec 2023 19:50:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JdmOvEPt"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="FaBbWCzk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92DC9D4B;
-	Wed, 13 Dec 2023 11:45:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1702496756; x=1734032756;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=NkInTmywTVeWZDXhb8Nql959C4qM12kBZjmIfc1IU9o=;
-  b=JdmOvEPt3V1lJlMt5Unkc9dLgjraP+394ASeJ07ySW+MVwEFi2FLVGtK
-   IQ1fOKMRC0+kdMxu7U9SgBOBSd162qz/mDeS52oEp8Zv/J9cvPm0xbncs
-   Mt1d6N5lRxPuGz+1T2DopMsm91yG71lZidkqek2DR/Ey+CmH1Q0fmzAF/
-   EFUdQSAOueGHCNKmo2tNUWZkdsCceucPRFhKhWYlK0PriNq5cirns3CdG
-   14uxAtfIX3+Y1mw3H+wh1KZNci789+/8rg9+zqVBqXaVh9L/HkqAci+55
-   NyuGNnjywJtttP4t5/kwRqvxJ1Ld5aSwB3ep/66ZHP/4xswrsPUXhc+zh
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10923"; a="16568780"
-X-IronPort-AV: E=Sophos;i="6.04,273,1695711600"; 
-   d="scan'208";a="16568780"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Dec 2023 11:45:55 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10923"; a="947292068"
-X-IronPort-AV: E=Sophos;i="6.04,273,1695711600"; 
-   d="scan'208";a="947292068"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Dec 2023 11:45:52 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1rDVB0-00000005d1h-0bhM;
-	Wed, 13 Dec 2023 21:45:50 +0200
-Date: Wed, 13 Dec 2023 21:45:49 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Mark Hasemeyer <markhas@chromium.org>
-Cc: LKML <linux-kernel@vger.kernel.org>, Raul Rangel <rrangel@chromium.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 4/6] of: irq: Add default implementation for
- of_irq_to_resource()
-Message-ID: <ZXoJ7WG4lJ4wMM8w@smile.fi.intel.com>
-References: <20231213110009.v1.1.Ifd0903f1c351e84376d71dbdadbd43931197f5ea@changeid>
- <20231213110009.v1.4.I31d4dd6a7e5a3e5eee05c87b358e63cd1aa0e467@changeid>
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4ED26C9;
+	Wed, 13 Dec 2023 11:50:38 -0800 (PST)
+Received: from pps.filterd (m0353729.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3BDJ7B7j012884;
+	Wed, 13 Dec 2023 19:49:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=pp1;
+ bh=L1dGX3bAr3L6MVW5M70dQtsQ2pdKDwOrjjPgZmZ9Nss=;
+ b=FaBbWCzkxjdeqtrv+Eyh6JPEdTAC1incrbMiODjMZ5LdIgkOMSg0aM8wu118JoB+uF0g
+ yVPGPG92U7Y2OZZmQLpfngXLAZ39HYBmh4u4zWOk7h62WpQyYAQ1zMoviixSGClP7BQh
+ tkuvQZ6c3VzW+6D3FPnZ0KGdfe14nsTIGurBgbWGI2gmqi3ItvMApMj0pOYFuVzOqEBw
+ 6U0HOfxk1PLvGnTTBMCKoeIi1MV2rodl2/wpia1G4XKZ+ddhjOW5GKuwkaQkNcFlnGGq
+ w6v9P03ZlrS8zfR6FNRTxwsn7K0dgplQ2nNUHYCVHTCpaa/gK41ekqj5l7nyObynANoE KQ== 
+Received: from pps.reinject (localhost [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3uyjg30xdy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 13 Dec 2023 19:49:26 +0000
+Received: from m0353729.ppops.net (m0353729.ppops.net [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 3BDJmEa8010165;
+	Wed, 13 Dec 2023 19:49:25 GMT
+Received: from ppma13.dal12v.mail.ibm.com (dd.9e.1632.ip4.static.sl-reverse.com [50.22.158.221])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3uyjg30xdb-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 13 Dec 2023 19:49:25 +0000
+Received: from pps.filterd (ppma13.dal12v.mail.ibm.com [127.0.0.1])
+	by ppma13.dal12v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 3BDI0FAI004101;
+	Wed, 13 Dec 2023 19:49:24 GMT
+Received: from smtprelay06.wdc07v.mail.ibm.com ([172.16.1.73])
+	by ppma13.dal12v.mail.ibm.com (PPS) with ESMTPS id 3uw4skk2au-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 13 Dec 2023 19:49:24 +0000
+Received: from smtpav06.wdc07v.mail.ibm.com (smtpav06.wdc07v.mail.ibm.com [10.39.53.233])
+	by smtprelay06.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 3BDJnNYp27591270
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Wed, 13 Dec 2023 19:49:23 GMT
+Received: from smtpav06.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 8138F58055;
+	Wed, 13 Dec 2023 19:49:23 +0000 (GMT)
+Received: from smtpav06.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 0FAA45803F;
+	Wed, 13 Dec 2023 19:49:22 +0000 (GMT)
+Received: from [9.24.12.86] (unknown [9.24.12.86])
+	by smtpav06.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+	Wed, 13 Dec 2023 19:49:21 +0000 (GMT)
+Message-ID: <edcdcea2-febc-4859-9ccf-b8c59b794f01@linux.ibm.com>
+Date: Wed, 13 Dec 2023 13:49:21 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231213110009.v1.4.I31d4dd6a7e5a3e5eee05c87b358e63cd1aa0e467@changeid>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 8/8] ARM: dts: aspeed: System1: PS, sensor and more
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, joel@jms.id.au,
+        andrew@codeconstruct.com.au, peterhuewe@gmx.de, jarkko@kernel.org,
+        jgg@ziepe.ca, keescook@chromium.org, tony.luck@intel.com,
+        gpiccoli@igalia.com, johannes.holland@infineon.com, linux@roeck-us.net,
+        broonie@kernel.org
+Cc: patrick.rudolph@9elements.com, vincent@vtremblay.dev,
+        peteryin.openbmc@gmail.com, lakshmiy@us.ibm.com, bhelgaas@google.com,
+        naresh.solanki@9elements.com, alexander.stein@ew.tq-group.com,
+        festevam@denx.de, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org, linux-integrity@vger.kernel.org,
+        linux-hardening@vger.kernel.org, geissonator@yahoo.com
+References: <20231212164004.1683589-1-ninad@linux.ibm.com>
+ <20231212164004.1683589-9-ninad@linux.ibm.com>
+ <5b98538a-8ffe-42ec-b020-514dcfcebba3@linaro.org>
+ <44abff4a-0a8e-499b-8b98-a4a1680cb431@linux.ibm.com>
+ <427fa99c-764c-4d6a-b9f1-cd9089710d5e@linaro.org>
+From: Ninad Palsule <ninad@linux.ibm.com>
+In-Reply-To: <427fa99c-764c-4d6a-b9f1-cd9089710d5e@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: -lbtKMmRARtMlAJmbObK1QI6-3y3Nw92
+X-Proofpoint-GUID: HhWJUytBbixy7UlL0_Fe2zPrr42jTffk
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-13_13,2023-12-13_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
+ priorityscore=1501 suspectscore=0 spamscore=0 phishscore=0 bulkscore=0
+ lowpriorityscore=0 mlxscore=0 mlxlogscore=999 adultscore=0 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2311290000
+ definitions=main-2312130141
 
-On Wed, Dec 13, 2023 at 11:00:22AM -0700, Mark Hasemeyer wrote:
-> Similar to of_irq_to_resource_table(), add a default implementation of
-> of_irq_to_resource() for systems that don't have CONFIG_OF_IRQ defined.
+Hello Krzysztof,
 
-...
+On 12/13/23 13:37, Krzysztof Kozlowski wrote:
+> On 13/12/2023 20:02, Ninad Palsule wrote:
+>> Hello Krzysztof,
+>>
+>> On 12/12/23 14:26, Krzysztof Kozlowski wrote:
+>>> On 12/12/2023 17:40, Ninad Palsule wrote:
+>>>> This drop adds following devices in the device tree.
+>>>> - EEPROM/VPD
+>>>> - Power supplies
+>>>> - Humidity, pressure and temperature sensors.
+>>>> - Trusted platform module(TPM) chip
+>>>>
+>>>> Tested:
+>>>>       This board is tested using the simics simulator.
+>>>>
+>>>> Signed-off-by: Ninad Palsule <ninad@linux.ibm.com>
+>>>> ---
+>>> Don't mix DTS with drivers. DTS and drivers go via different subsystems
+>>> and cannot have dependencies, so why DTS is patch #6, then driver #7 and
+>>> now again DTS #7?
+>> There is a dependency on driver code as patch #8 uses the compatibility
+>> string added in driver patch #7.  I have now moved driver patch at the
+>> start. Is that ok? OR you are suggesting something else?
+> First, there is no dependency. Second, except confusing order anyway DTS
+> will go via separate trees. Third, again, there is no dependency. If
+> there is, your patchset is broken and this needs to be fixed. Although I
+> don't understand how new hardware can depend on driver... it's really odd.
 
-> +extern int of_irq_to_resource(struct device_node *dev, int index,
-> +			      struct resource *r);
+Thanks for the quick response.
 
-It looks like you may put this on a single line as this file has longer lines.
-Note you do not need "extern" for function. You may even update the header
-to drop all of them at once.
+This board uses the nuvoton TPM device. The tpm devices uses 
+"nuvoton,npct75x" driver hence we added it in the device tree. If the 
+driver doesn't have this compatibility string then it won't load. So if 
+someone tries to use this board then tpm won't work unless the 
+compatibility string is added in the driver. That is the dependency I am 
+talking about.
 
--- 
-With Best Regards,
-Andy Shevchenko
+Please let me know.
 
+Regards,
 
+Ninad
+
+>
+> Best regards,
+> Krzysztof
+>
 
