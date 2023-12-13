@@ -1,218 +1,152 @@
-Return-Path: <devicetree+bounces-24745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24746-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 912278110E7
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 13:18:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFFA28110EA
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 13:18:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8613FB20C75
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 12:18:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B32028197E
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 12:18:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF78328E07;
-	Wed, 13 Dec 2023 12:18:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E31FC28E07;
+	Wed, 13 Dec 2023 12:18:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nW+oJ4IK"
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="lCTXiHGA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B130E4;
-	Wed, 13 Dec 2023 04:18:07 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-54cd8f5bb5cso8699048a12.1;
-        Wed, 13 Dec 2023 04:18:07 -0800 (PST)
+Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D86B8CF
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 04:18:46 -0800 (PST)
+Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-5e2f9e9a2e8so2926137b3.3
+        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 04:18:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702469886; x=1703074686; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Fb1JaePVR0fJwILpc3yyM5yj78LV/m+momHnaokZdOw=;
-        b=nW+oJ4IKLIAavVsiI+jDSyw4uzGB5NFlO4x7O67Swnn/7m5upWLO4Z/4jCL7J0aAUE
-         yeBzejokzc4ZqK5tnGYqNWNQx+1U9tC6RtL+zOSETxB03OaLAdAgQ0JsoBce52tuZmgr
-         yTPCZTBczkWutYucEFnOI1aF7L+49ACYbutE5L+NlvH86w1KPATDqz9N/kHU9foa/zHi
-         juewqF5dhKUQ1OJIfx2hn09NHuBSnRn1HCxnlIu8ESh1amu285bPzeOezmceECjZT5so
-         Dm4cNzfcrKn1ZBfLSu+zm7kxqXTs34/+6BlE7PQLSZ429tqYe21sMwhn0v577UgPOvRa
-         KgiA==
+        d=amarulasolutions.com; s=google; t=1702469926; x=1703074726; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VWh2TAmXbh0nz9apU3tkS8M7aheQ9d8T7G1VI3vxO7M=;
+        b=lCTXiHGAEd2uw3ucP/Zso179Vu5/QbLV8D9iZqiDFaPErANlWhxV8oYkTzG3F77Boh
+         8Azq3XXnJdDAG/cTnFzq6Kqk9PHvKlk6EmI6fc5oRnVGN7WPd8VvgKauQ2a/bWsld1Eg
+         jusqfNucbcf5LKnsThIMVy2G7nVjZXsQUfwr0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702469886; x=1703074686;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Fb1JaePVR0fJwILpc3yyM5yj78LV/m+momHnaokZdOw=;
-        b=e0GiDmXwqCYpYgjzIqqisWNCkoCRlTtR1bPFV8vAR3Yj04HjwTm2l7ZATQsjEKIEtB
-         ISP92M91kkzR4g3xSYZHAAD8i6N8aR2Mgka/QkqYUJQXtkD7rqRaEt/8jjHIzt2V5ziU
-         ZEVdZTJ97RlTzkuOmkfYGuc1jd2L3r1LoA5Z+qUWxrKFPFTDHnRVgZ0VD0c20g8H8SWT
-         Lw29TS/pO8xkbvjH2NMeGs5Yz/uO7z+O0UWilPqXj2CDiqtFItwj5h6uaI9ALsT7yWf/
-         N5LV4o4w6w6oVNjit9dEmNwv7CvcajsotHHNBZFJFF4WxkYwxXK/Uk6a4cw9pIuwI8wo
-         yfVQ==
-X-Gm-Message-State: AOJu0YxgkXQqlWjnjSBIzaRqOZZn4grwfieKqR92piezEfpD5SBW4XiT
-	ku8R4dhwnPSTiaGtZf4XUzurw+wpYpDznEeWsao=
-X-Google-Smtp-Source: AGHT+IEhn1hCL8EuZgyJadrvggj/oAgW1xC0wQwKvSuQX10q7CWwnVxDkFmpI5oE57s/CLUt+CwJnw==
-X-Received: by 2002:a17:906:2244:b0:a22:fc0f:9870 with SMTP id 4-20020a170906224400b00a22fc0f9870mr423888ejr.108.1702469885420;
-        Wed, 13 Dec 2023 04:18:05 -0800 (PST)
-Received: from ?IPv6:2001:a61:3456:4e01:6ae:b55a:bd1d:57fc? ([2001:a61:3456:4e01:6ae:b55a:bd1d:57fc])
-        by smtp.gmail.com with ESMTPSA id uv8-20020a170907cf4800b00a1d232b39b9sm7601923ejc.184.2023.12.13.04.18.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Dec 2023 04:18:05 -0800 (PST)
-Message-ID: <5f7a1c60ccebe13ba6cdfa5d8f9632bc9b838137.camel@gmail.com>
-Subject: Re: [PATCH v2 3/3] iio: adc: ad7380: new driver for AD7380 ADCs
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: David Lechner <dlechner@baylibre.com>, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-	 <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Cameron
-	 <jic23@kernel.org>, Michael Hennerich <michael.hennerich@analog.com>, Nuno
-	=?ISO-8859-1?Q?S=E1?=
-	 <nuno.sa@analog.com>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
-	 <broonie@kernel.org>, linux-kernel@vger.kernel.org, Stefan Popa
-	 <stefan.popa@analog.com>
-Date: Wed, 13 Dec 2023 13:18:04 +0100
-In-Reply-To: <20231213-ad7380-mainline-v2-3-cd32150d84a3@baylibre.com>
-References: <20231213-ad7380-mainline-v2-0-cd32150d84a3@baylibre.com>
-	 <20231213-ad7380-mainline-v2-3-cd32150d84a3@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
-User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
+        d=1e100.net; s=20230601; t=1702469926; x=1703074726;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VWh2TAmXbh0nz9apU3tkS8M7aheQ9d8T7G1VI3vxO7M=;
+        b=t6NAN/DRuUAvwq0H/1djxQyeUJhnzlcu7gihvGdH59obVOICG6/A/n4WguE8nzs44N
+         apvVIPqiIp9Qema8t1GOEABpzPXH16DFRl0GReXw95Nh5pLaHOyz8TVxp200dAUH5+pn
+         Gao0oEmy7IXm3w86h0UnxOaKAY+A6sBc88R8ZMG6gabFBX/WSLI34vh341YfKgjQbkIp
+         TETPlzICB/GatTb7lqueFgfU2xavxrklRXUgch1hg3AdM1U9Ft+Ck5b43DbCHeaRsKzE
+         tHyXhSKaSpuDlWpxJuNBfS39NZZRN+ufetcJIMTqn8QSVozGPTrb31R2MeNfvVv0kvni
+         6VmA==
+X-Gm-Message-State: AOJu0YyueHH43Y37HnVOl2ZUpmMKzeowQOlVMvcqgyDaaq729QWmnnLU
+	pb321iH/N/DQySw9Ab4fByGnoMpEI1V0VGQXhI4vuQ==
+X-Google-Smtp-Source: AGHT+IHRSVC8g3B8lYtUT1BmmUNibAhdEKjzXIv4l2Nn0+pVfN5TKMdrtjmbetU3VgJeCkdzdphWTs7NgCfnhTuirBk=
+X-Received: by 2002:a25:2e04:0:b0:dbc:d342:4e77 with SMTP id
+ u4-20020a252e04000000b00dbcd3424e77mr250667ybu.92.1702469925813; Wed, 13 Dec
+ 2023 04:18:45 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20231207141723.108004-1-dario.binacchi@amarulasolutions.com> <170228617622.2409693.12899768447819855539.b4-ty@linaro.org>
+In-Reply-To: <170228617622.2409693.12899768447819855539.b4-ty@linaro.org>
+From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Date: Wed, 13 Dec 2023 13:18:34 +0100
+Message-ID: <CABGWkvp+40oCpajZKH8GDJq6qTD1g_+sVrcxHv6yHAxk4szXiw@mail.gmail.com>
+Subject: Re: (subset) [PATCH v5 00/10] Add displays support for bsh-smm-s2/pro boards
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: linux-kernel@vger.kernel.org, 
+	Amarula patchwork <linux-amarula@amarulasolutions.com>, michael@amarulasolutions.com, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Conor Dooley <conor+dt@kernel.org>, 
+	Daniel Vetter <daniel@ffwll.ch>, Dave Stevenson <dave.stevenson@raspberrypi.com>, 
+	David Airlie <airlied@gmail.com>, Fabio Estevam <festevam@gmail.com>, 
+	Frieder Schrempf <frieder.schrempf@kontron.de>, Inki Dae <inki.dae@samsung.com>, 
+	Jagan Teki <jagan@amarulasolutions.com>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Jessica Zhang <quic_jesszhan@quicinc.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, Maxime Ripard <mripard@kernel.org>, 
+	NXP Linux Team <linux-imx@nxp.com>, Peng Fan <peng.fan@nxp.com>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Rob Herring <robh+dt@kernel.org>, 
+	Robert Foss <rfoss@kernel.org>, Sam Ravnborg <sam@ravnborg.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-T24gV2VkLCAyMDIzLTEyLTEzIGF0IDA1OjIxIC0wNjAwLCBEYXZpZCBMZWNobmVyIHdyb3RlOgo+
-IFRoaXMgYWRkcyBhIG5ldyBkcml2ZXIgZm9yIHRoZSBBRDczODAgZmFtaWx5IEFEQ3MuCj4gCj4g
-VGhlIGRyaXZlciBjdXJyZW50bHkgaW1wbGVtZW50cyBiYXNpYyBzdXBwb3J0IGZvciB0aGUgQUQ3
-MzgwLCBBRDczODEsCj4gQUQ3MzgzLCBhbmQgQUQ3Mzg0IDItY2hhbm5lbCBkaWZmZXJlbnRpYWwg
-QURDcy4gU3VwcG9ydCBmb3IgYWRkaXRpb25hbAo+IHNpbmdsZS1lbmRlZCBhbmQgNC1jaGFubmVs
-IGNoaXBzIHRoYXQgdXNlIHRoZSBzYW1lIHJlZ2lzdGVyIG1hcCBhcyB3ZWxsCj4gYXMgYWRkaXRp
-b25hbCBmZWF0dXJlcyBvZiB0aGUgY2hpcCB3aWxsIGJlIGFkZGVkIGluIGZ1dHVyZSBwYXRjaGVz
-Lgo+IAo+IENvLWRldmVsb3BlZC1ieTogU3RlZmFuIFBvcGEgPHN0ZWZhbi5wb3BhQGFuYWxvZy5j
-b20+Cj4gU2lnbmVkLW9mZi1ieTogU3RlZmFuIFBvcGEgPHN0ZWZhbi5wb3BhQGFuYWxvZy5jb20+
-Cj4gU2lnbmVkLW9mZi1ieTogRGF2aWQgTGVjaG5lciA8ZGxlY2huZXJAYmF5bGlicmUuY29tPgo+
-IC0tLQo+IAo+IHYyIGNoYW5nZXM6Cj4gLSBGaXhlZCBDT05GSUdfQUQ3MzgwIGluIE1ha2VmaWxl
-Cj4gLSByeF9idWYgPSBzdC0+c2Nhbl9kYXRhLnJhdyBpbnN0ZWFkIG9mIHJ4X2J1ZiA9ICZzdC0+
-c2Nhbl9kYXRhCj4gLSBNb3ZlZCBpaW9fcHVzaF90b19idWZmZXJzX3dpdGhfdGltZXN0YW1wKCkg
-b3V0c2lkZSBvZiBpZiBzdGF0ZW1lbnQKPiAtIFJlbW92ZWQgZXh0cmEgYmxhbmsgbGluZXMKPiAt
-IFJlbmFtZWQgcmVndWxhdG9yIGRpc2FibGUgZnVuY3Rpb24KPiAtIERyb3BwZWQgY2hlY2tpbmcg
-b2YgYWRpLHNkby1tb2RlIHByb3BlcnR5IChyZWdhcmRsZXNzIG9mIHRoZSBhY3R1YWwKPiDCoMKg
-wqDCoMKgwqDCoMKgd2lyaW5nLCB3ZSBjYW4gYWx3YXlzIHVzZSAxLXdpcmUgbW9kZSkKPiAtIEFk
-ZGVkIGF2YWlsYWJsZV9zY2FuX21hc2tzICh3ZSBhbHdheXMgc2FtcGxlIHR3byBjaGFubmVscyBh
-dCB0aGUgc2FtZSB0aW1lCj4gwqAgc28gd2UgbmVlZCB0byBsZXQgdXNlcnNwYWNlIGtub3cgdGhp
-cykKPiAtIEFkZGVkIGNoZWNrIGZvciBtaXNzaW5nIGRyaXZlciBtYXRjaCBkYXRhCj4gCj4gwqBN
-QUlOVEFJTkVSU8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHzCoMKgIDEgKwo+IMKgZHJpdmVy
-cy9paW8vYWRjL0tjb25maWfCoCB8wqAgMTYgKysKPiDCoGRyaXZlcnMvaWlvL2FkYy9NYWtlZmls
-ZSB8wqDCoCAxICsKPiDCoGRyaXZlcnMvaWlvL2FkYy9hZDczODAuYyB8IDQ2NCArKysrKysrKysr
-KysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKwo+IMKgNCBmaWxlcyBjaGFuZ2Vk
-LCA0ODIgaW5zZXJ0aW9ucygrKQo+IAo+IGRpZmYgLS1naXQgYS9NQUlOVEFJTkVSUyBiL01BSU5U
-QUlORVJTCj4gaW5kZXggZTJhOTk4YmU1ODc5Li41YTU0NjIwYTMxYjggMTAwNjQ0Cj4gLS0tIGEv
-TUFJTlRBSU5FUlMKPiArKysgYi9NQUlOVEFJTkVSUwo+IEBAIC00MzgsNiArNDM4LDcgQEAgUzrC
-oMKgU3VwcG9ydGVkCj4gwqBXOsKgwqDCoMKgwqAKPiBodHRwczovL3dpa2kuYW5hbG9nLmNvbS9y
-ZXNvdXJjZXMvdG9vbHMtc29mdHdhcmUvbGludXgtZHJpdmVycy9paW8tYWRjL2FkNzM4eAo+IMKg
-VzrCoMKgwqDCoMKgaHR0cHM6Ly9lei5hbmFsb2cuY29tL2xpbnV4LXNvZnR3YXJlLWRyaXZlcnMK
-PiDCoEY6wqDCoMKgwqDCoERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9paW8vYWRj
-L2FkaSxhZDczODAueWFtbAo+ICtGOsKgwqDCoMKgwqBkcml2ZXJzL2lpby9hZGMvYWQ3MzgwLmMK
-PiDCoAo+IMKgQUQ3ODc3IFRPVUNIU0NSRUVOIERSSVZFUgo+IMKgTTrCoMKgwqDCoMKgTWljaGFl
-bCBIZW5uZXJpY2ggPG1pY2hhZWwuaGVubmVyaWNoQGFuYWxvZy5jb20+Cj4gZGlmZiAtLWdpdCBh
-L2RyaXZlcnMvaWlvL2FkYy9LY29uZmlnIGIvZHJpdmVycy9paW8vYWRjL0tjb25maWcKPiBpbmRl
-eCAzNWY5ODY3ZGExMmMuLmNiZmQ2MjY3MTJlMyAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2lpby9h
-ZGMvS2NvbmZpZwo+ICsrKyBiL2RyaXZlcnMvaWlvL2FkYy9LY29uZmlnCj4gQEAgLTEyMiw2ICsx
-MjIsMjIgQEAgY29uZmlnIEFENzI5OAo+IMKgwqDCoMKgwqDCoMKgwqDCoCBUbyBjb21waWxlIHRo
-aXMgZHJpdmVyIGFzIGEgbW9kdWxlLCBjaG9vc2UgTSBoZXJlOiB0aGUKPiDCoMKgwqDCoMKgwqDC
-oMKgwqAgbW9kdWxlIHdpbGwgYmUgY2FsbGVkIGFkNzI5OC4KPiDCoAo+ICtjb25maWcgQUQ3Mzgw
-Cj4gK8KgwqDCoMKgwqDCoMKgdHJpc3RhdGUgIkFuYWxvZyBEZXZpY2VzIEFENzM4MCBBREMgZHJp
-dmVyIgo+ICvCoMKgwqDCoMKgwqDCoGRlcGVuZHMgb24gU1BJX01BU1RFUgo+ICvCoMKgwqDCoMKg
-wqDCoHNlbGVjdCBJSU9fQlVGRkVSCj4gK8KgwqDCoMKgwqDCoMKgc2VsZWN0IElJT19UUklHR0VS
-Cj4gK8KgwqDCoMKgwqDCoMKgc2VsZWN0IElJT19UUklHR0VSRURfQlVGRkVSCj4gK8KgwqDCoMKg
-wqDCoMKgaGVscAo+ICvCoMKgwqDCoMKgwqDCoMKgIEFENzM4MCBpcyBhIGZhbWlseSBvZiBzaW11
-bHRhbmVvdXMgc2FtcGxpbmcgQURDcyB0aGF0IHNoYXJlIHRoZSBzYW1lCj4gK8KgwqDCoMKgwqDC
-oMKgwqAgU1BJIHJlZ2lzdGVyIG1hcCBhbmQgaGF2ZSBzaW1pbGFyIHBpbm91dHMuCj4gKwo+ICvC
-oMKgwqDCoMKgwqDCoMKgIFNheSB5ZXMgaGVyZSB0byBidWlsZCBzdXBwb3J0IGZvciBBbmFsb2cg
-RGV2aWNlcyBBRDczODAgQURDIGFuZAo+ICvCoMKgwqDCoMKgwqDCoMKgIHNpbWlsYXIgY2hpcHMu
-Cj4gKwo+ICvCoMKgwqDCoMKgwqDCoMKgIFRvIGNvbXBpbGUgdGhpcyBkcml2ZXIgYXMgYSBtb2R1
-bGUsIGNob29zZSBNIGhlcmU6IHRoZSBtb2R1bGUgd2lsbCBiZQo+ICvCoMKgwqDCoMKgwqDCoMKg
-IGNhbGxlZCBhZDczODAuCj4gKwo+IMKgY29uZmlnIEFENzQ3Ngo+IMKgwqDCoMKgwqDCoMKgwqB0
-cmlzdGF0ZSAiQW5hbG9nIERldmljZXMgQUQ3NDc2IDEtY2hhbm5lbCBBRENzIGRyaXZlciBhbmQg
-b3RoZXIgc2ltaWxhcgo+IGRldmljZXMgZnJvbSBBRCBhbmQgVEkiCj4gwqDCoMKgwqDCoMKgwqDC
-oGRlcGVuZHMgb24gU1BJCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvaWlvL2FkYy9NYWtlZmlsZSBi
-L2RyaXZlcnMvaWlvL2FkYy9NYWtlZmlsZQo+IGluZGV4IGJlZTExZDQ0MmFmNC4uOWM5MjFjNDk3
-NjU1IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvaWlvL2FkYy9NYWtlZmlsZQo+ICsrKyBiL2RyaXZl
-cnMvaWlvL2FkYy9NYWtlZmlsZQo+IEBAIC0xNiw2ICsxNiw3IEBAIG9iai0kKENPTkZJR19BRDcy
-OTEpICs9IGFkNzI5MS5vCj4gwqBvYmotJChDT05GSUdfQUQ3MjkyKSArPSBhZDcyOTIubwo+IMKg
-b2JqLSQoQ09ORklHX0FENzI5OCkgKz0gYWQ3Mjk4Lm8KPiDCoG9iai0kKENPTkZJR19BRDc5MjMp
-ICs9IGFkNzkyMy5vCj4gK29iai0kKENPTkZJR19BRDczODApICs9IGFkNzM4MC5vCj4gwqBvYmot
-JChDT05GSUdfQUQ3NDc2KSArPSBhZDc0NzYubwo+IMKgb2JqLSQoQ09ORklHX0FENzYwNl9JRkFD
-RV9QQVJBTExFTCkgKz0gYWQ3NjA2X3Bhci5vCj4gwqBvYmotJChDT05GSUdfQUQ3NjA2X0lGQUNF
-X1NQSSkgKz0gYWQ3NjA2X3NwaS5vCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvaWlvL2FkYy9hZDcz
-ODAuYyBiL2RyaXZlcnMvaWlvL2FkYy9hZDczODAuYwo+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0Cj4g
-aW5kZXggMDAwMDAwMDAwMDAwLi5iODAyNWI2MzZiNjcKPiAtLS0gL2Rldi9udWxsCj4gKysrIGIv
-ZHJpdmVycy9paW8vYWRjL2FkNzM4MC5jCj4gQEAgLTAsMCArMSw0NjQgQEAKPiArLy8gU1BEWC1M
-aWNlbnNlLUlkZW50aWZpZXI6IEdQTC0yLjAtb25seQo+ICsvKgo+ICsgKiBBbmFsb2cgRGV2aWNl
-cyBBRDczOHggU2ltdWx0YW5lb3VzIFNhbXBsaW5nIFNBUiBBRENzCj4gKyAqCj4gKyAqIENvcHly
-aWdodCAyMDE3IEFuYWxvZyBEZXZpY2VzIEluYy4KPiArICogQ29weXJpZ2h0IDIwMjMgQmF5TGli
-cmUsIFNBUwo+ICsgKi8KPiArCj4gKyNpbmNsdWRlIDxsaW51eC9iaXRmaWVsZC5oPgo+ICsjaW5j
-bHVkZSA8bGludXgvYml0b3BzLmg+Cj4gKyNpbmNsdWRlIDxsaW51eC9jbGVhbnVwLmg+Cj4gKyNp
-bmNsdWRlIDxsaW51eC9kZXZpY2UuaD4KPiArI2luY2x1ZGUgPGxpbnV4L2Vyci5oPgo+ICsjaW5j
-bHVkZSA8bGludXgva2VybmVsLmg+Cj4gKyNpbmNsdWRlIDxsaW51eC9tb2R1bGUuaD4KPiArI2lu
-Y2x1ZGUgPGxpbnV4L3JlZ21hcC5oPgo+ICsjaW5jbHVkZSA8bGludXgvcmVndWxhdG9yL2NvbnN1
-bWVyLmg+Cj4gKyNpbmNsdWRlIDxsaW51eC9zbGFiLmg+Cj4gKyNpbmNsdWRlIDxsaW51eC9zcGkv
-c3BpLmg+Cj4gKyNpbmNsdWRlIDxsaW51eC9zeXNmcy5oPgo+ICsKPiArI2luY2x1ZGUgPGxpbnV4
-L2lpby9idWZmZXIuaD4KPiArI2luY2x1ZGUgPGxpbnV4L2lpby9paW8uaD4KPiArI2luY2x1ZGUg
-PGxpbnV4L2lpby9zeXNmcy5oPgo+ICsjaW5jbHVkZSA8bGludXgvaWlvL3RyaWdnZXJfY29uc3Vt
-ZXIuaD4KPiArI2luY2x1ZGUgPGxpbnV4L2lpby90cmlnZ2VyZWRfYnVmZmVyLmg+Cj4gKwoKLi4u
-Cgo+IAo+ICtzdGF0aWMgaW50IGFkNzM4MF9wcm9iZShzdHJ1Y3Qgc3BpX2RldmljZSAqc3BpKQo+
-ICt7Cj4gK8KgwqDCoMKgwqDCoMKgc3RydWN0IGlpb19kZXYgKmluZGlvX2RldjsKPiArwqDCoMKg
-wqDCoMKgwqBzdHJ1Y3QgYWQ3MzgwX3N0YXRlICpzdDsKPiArwqDCoMKgwqDCoMKgwqBpbnQgcmV0
-Owo+ICsKPiArwqDCoMKgwqDCoMKgwqBpbmRpb19kZXYgPSBkZXZtX2lpb19kZXZpY2VfYWxsb2Mo
-JnNwaS0+ZGV2LCBzaXplb2YoKnN0KSk7Cj4gK8KgwqDCoMKgwqDCoMKgaWYgKCFpbmRpb19kZXYp
-Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJldHVybiAtRU5PTUVNOwo+ICsKPiAr
-wqDCoMKgwqDCoMKgwqBzdCA9IGlpb19wcml2KGluZGlvX2Rldik7Cj4gK8KgwqDCoMKgwqDCoMKg
-c3QtPnNwaSA9IHNwaTsKPiArwqDCoMKgwqDCoMKgwqBzdC0+Y2hpcF9pbmZvID0gc3BpX2dldF9k
-ZXZpY2VfbWF0Y2hfZGF0YShzcGkpOwo+ICvCoMKgwqDCoMKgwqDCoGlmICghc3QtPmNoaXBfaW5m
-bykKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuIGRldl9lcnJfcHJvYmUo
-JnNwaS0+ZGV2LCAtRUlOVkFMLCAibWlzc2luZyBtYXRjaCBkYXRhXG4iKTsKPiArCj4gK8KgwqDC
-oMKgwqDCoMKgc3QtPnZyZWYgPSBkZXZtX3JlZ3VsYXRvcl9nZXRfb3B0aW9uYWwoJnNwaS0+ZGV2
-LCAicmVmaW8iKTsKPiArwqDCoMKgwqDCoMKgwqBpZiAoSVNfRVJSKHN0LT52cmVmKSkgewo+ICvC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAvKgo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqAgKiBJZiB0aGVyZSBpcyBubyBSRUZJTyBzdXBwbHksIHRoZW4gaXQgbWVhbnMgdGhh
-dCB3ZSBhcmUgdXNpbmcKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICogdGhlIGlu
-dGVybmFsIDIuNVYgcmVmZXJlbmNlLgo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-Ki8KPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgaWYgKFBUUl9FUlIoc3QtPnZyZWYp
-ID09IC1FTk9ERVYpCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqBzdC0+dnJlZiA9IE5VTEw7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGVs
-c2UKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJldHVy
-biBkZXZfZXJyX3Byb2JlKCZzcGktPmRldiwgUFRSX0VSUihzdC0+dnJlZiksCj4gK8KgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgICJGYWlsZWQgdG8gZ2V0IHJlZmlvIHJlZ3VsYXRvclxuIik7
-Cj4gK8KgwqDCoMKgwqDCoMKgfQo+ICsKPiArwqDCoMKgwqDCoMKgwqBpZiAoc3QtPnZyZWYpIHsK
-PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0ID0gcmVndWxhdG9yX2VuYWJsZShz
-dC0+dnJlZik7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGlmIChyZXQpCj4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gcmV0Owo+
-ICsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0ID0gZGV2bV9hZGRfYWN0aW9u
-X29yX3Jlc2V0KCZzcGktPmRldiwgYWQ3MzgwX3JlZ3VsYXRvcl9kaXNhYmxlLAo+ICvCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgc3QtPnZyZWYpOwo+ICvCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqBpZiAocmV0KQo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgcmV0dXJuIHJldDsKPiArwqDCoMKgwqDCoMKgwqB9Cj4gKwo+ICvCoMKg
-wqDCoMKgwqDCoHN0LT5yZWdtYXAgPSBkZXZtX3JlZ21hcF9pbml0KCZzcGktPmRldiwgTlVMTCwg
-c3QsICZhZDczODBfcmVnbWFwX2NvbmZpZyk7Cj4gK8KgwqDCoMKgwqDCoMKgaWYgKElTX0VSUihz
-dC0+cmVnbWFwKSkKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuIGRldl9l
-cnJfcHJvYmUoJnNwaS0+ZGV2LCBQVFJfRVJSKHN0LT5yZWdtYXApLAo+ICvCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-ICJmYWlsZWQgdG8gYWxsb2NhdGUgcmVnaXN0ZXIgbWFwXG4iKTsKClN0aWxsIG5vdCB1c2luZyBh
-IHJlZ21hcF9idXMuLi4gWW91IGNvdWxkIGF0IGxlYXN0IGFyZ3VlIGluIHRoZSBsYXN0IHZlcnNp
-b24gd2h5CnlvdSdyZSBub3QgZG9pbmcgaXQgcmF0aGVyIHRoYW4gaWdub3JpbmcgdGhlIGNvbW1l
-bnQgOikuCgpJJ20gYXNraW5nIGZvciBpdCBiZWNhdXNlIGl0IGFscmVhZHkgaGFwcGVuZWQgKGlu
-IElJTykgdG8gbWUgYW5kIEkgd2FzIGFza2VkIGZvcgppbXBsZW1lbnRpbmcgdGhlIGJ1cy4gWW91
-IGFsc28gZ2FpbiB0aGluZ3MgbGlrZSByZWdtYXAgY29yZSBoYW5kbGluZyBlbmRpYW5pc20gYW5k
-CmZvcm1hdHRpbmcgdGhlIHdvcmsgYnVmZmVyIGZvciB5b3UgKGVnOiByZWdtYXBfYnVsa19yZWFk
-KCkgY291bGQgYmUgbW9yZSBlZmZpY2llbnQpLAoKPiArwqDCoMKgwqDCoMKgwqBpbmRpb19kZXYt
-PmNoYW5uZWxzID0gc3QtPmNoaXBfaW5mby0+Y2hhbm5lbHM7Cj4gK8KgwqDCoMKgwqDCoMKgaW5k
-aW9fZGV2LT5udW1fY2hhbm5lbHMgPSBzdC0+Y2hpcF9pbmZvLT5udW1fY2hhbm5lbHM7Cj4gK8Kg
-wqDCoMKgwqDCoMKgaW5kaW9fZGV2LT5kZXYucGFyZW50ID0gJnNwaS0+ZGV2OwoKc3RpbGwgbm90
-IGFkZHJlc3NlZC4uLgoKV2l0aCBhdCBsZWFzdCB0aGUgYWJvdmUgKGZvciB0aGUgcmVnbWFwX2J1
-cyBJJ2xsIGxlYXZlIHRoZSB1bHRpbWF0ZSBkZWNpc2lvbiB0bwpKb25hdGhhbiAtIG5vdCBhIGRl
-YWwgYnJlYWtlciBmb3IgbWUpOgoKUmV2aWV3ZWQtYnk6IE51bm8gU2EgPG51bm8uc2FAYW5hbG9n
-LmNvbT4KCgotIE51bm8gU8OhCgo=
+Hi Neil,
 
+On Mon, Dec 11, 2023 at 10:16=E2=80=AFAM Neil Armstrong
+<neil.armstrong@linaro.org> wrote:
+>
+> Hi,
+>
+> On Thu, 07 Dec 2023 15:16:29 +0100, Dario Binacchi wrote:
+> > The series adds drivers for the displays used by bsh-smm-s2/pro boards.
+> > This required applying some patches to the samsung-dsim driver and the
+> > drm_bridge.c module.
+> >
+> > Changes in v5:
+> > - Replace a 'return ret' with a 'goto fail' in the r63353_panel_activat=
+e()
+> > - Add 'Reviewed-by' tag of Krzysztof Kozlowski
+> >
+> > [...]
+>
+> Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (=
+drm-misc-next)
+>
+> [06/10] drm/panel: Add Synaptics R63353 panel driver
+>         https://cgit.freedesktop.org/drm/drm-misc/commit/?id=3D2e87bad7cd=
+339882cf26b7101a1c87dab71962c9
+> [07/10] dt-bindings: display: panel: Add Ilitek ili9805 panel controller
+>         https://cgit.freedesktop.org/drm/drm-misc/commit/?id=3D549240c98e=
+50207244bc1ac182622b8daba89a89
+> [08/10] drm/panel: Add Ilitek ILI9805 panel driver
+>         https://cgit.freedesktop.org/drm/drm-misc/commit/?id=3Dedbf1d506e=
+be8c0857c406bd5d5b81d46ffd8437
+> [09/10] drm/panel: ilitek-ili9805: add support for Tianma TM041XDHG01 pan=
+el
+>         https://cgit.freedesktop.org/drm/drm-misc/commit/?id=3Db1fcb7ee37=
+07290466b2cc4956325fb91f09f13b
+>
+> --
+> Neil
+>
+
+I think you forgot the patch:
+[05/10] dt-bindings: display: panel: Add synaptics r63353 panel controller
+
+I received an email complaining about the lack of documentation for
+the Synaptics panel.
+
+Thanks and regards,
+Dario
+
+--
+
+Dario Binacchi
+
+Senior Embedded Linux Developer
+
+dario.binacchi@amarulasolutions.com
+
+__________________________________
+
+
+Amarula Solutions SRL
+
+Via Le Canevare 30, 31100 Treviso, Veneto, IT
+
+T. +39 042 243 5310
+info@amarulasolutions.com
+
+www.amarulasolutions.com
 
