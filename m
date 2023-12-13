@@ -1,127 +1,88 @@
-Return-Path: <devicetree+bounces-25000-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25001-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE631811E65
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 20:13:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F9FD811E69
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 20:14:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 532E7B20C5E
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 19:13:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6AD131C211A6
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 19:14:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A33D67B52;
-	Wed, 13 Dec 2023 19:13:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="E0X+B/ox"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFB275C081;
+	Wed, 13 Dec 2023 19:14:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-xc2b.google.com (mail-oo1-xc2b.google.com [IPv6:2607:f8b0:4864:20::c2b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C767B2
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 11:13:42 -0800 (PST)
-Received: by mail-oo1-xc2b.google.com with SMTP id 006d021491bc7-5913b73b53eso1369156eaf.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 11:13:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702494821; x=1703099621; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=eoasIn7ZWnWThH0PLf9u8EiK7T+LlQqn1Vvx2nlonP4=;
-        b=E0X+B/oxPvxfM6DIOvgp5aNszau4clZ7/loIOGUT5vofzEAHDc9jr/rce6YD1UFR1S
-         aK08BgJCmZdSdnoxnQyzdg7XbhYcPzzm/g3S8VDQnvDinID1R74oduw6LM3ohFFuynvg
-         nMZg4blmZWVTf9Jrna2n0WSLU+G25fW3LF5y5vXgqmQ7x3RFLcbIeYnznhHEhKUIORhh
-         urgOOdS2GXt8smq6757k/j+laJK4ssKcmEPqeyf7qpXofuuPzasC4FbGjjk//psPWn29
-         ft9gWLq9EO9UaYr+au4ORGblWx+I2JvMgxf1WzK8sl+XcdrHZlCyoHXrMdbS61ShLhMk
-         L6Dw==
+Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9401E95;
+	Wed, 13 Dec 2023 11:14:00 -0800 (PST)
+Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-5c66e7eafabso6034826a12.0;
+        Wed, 13 Dec 2023 11:14:00 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702494821; x=1703099621;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=eoasIn7ZWnWThH0PLf9u8EiK7T+LlQqn1Vvx2nlonP4=;
-        b=oAxC9A4zFcC+sVqeGHcV6dcnUEBTedAumRkwMvHYBocwk3Ymd/PUmosjYiAdtfuZaD
-         46AHGt1sxB9gm0ncUom6M+2zJKDlQn0M1HRwumVIm4duNUkWfe0oShRwf0/4SSdXbRw5
-         Zk0tSQKG19yziDRnQi7y9+7I5TRcu2zaGkR6eXV+9h25sp75UDBZo1qqlzLSIBB1TrjS
-         YYO/SSMV2JEirvroa/GHEsB3x2vrMPcsxOvtH9QUtTClRHXMA9uKoRu47nfqvPZifA4U
-         SKQy5uLDQ63sKINjrMR64BuDiyxfbKUFpHtgfEDasi8OhD2OtmXctjsWQe+Ur4vfIWsj
-         ynfA==
-X-Gm-Message-State: AOJu0YziqpAta+39+cnTSel0FRJDHL4vzwVH/s3Ooh9OAV4zgA5r9y77
-	YqtbZ1oQQ/0WOAVfOr7AFABIXxTW1M8XWX7yc1uUoA==
-X-Google-Smtp-Source: AGHT+IH4+myfhe9Yt7eO0yu5pPXNu0R/7YLBoZZEMIElJzsamITcWtE6zUFIGooST9U4bGH3ubAkBPh6S/8Kq9R6VJ8=
-X-Received: by 2002:a05:6358:cb25:b0:170:7dca:9798 with SMTP id
- gr37-20020a056358cb2500b001707dca9798mr6354481rwb.10.1702494821571; Wed, 13
- Dec 2023 11:13:41 -0800 (PST)
+        d=1e100.net; s=20230601; t=1702494840; x=1703099640;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1DP3/rX8XS4GFefeHlxYO7e4nc2P3XZWDmzXbM/YjAg=;
+        b=uz3XoKhXySgdK61SlpmkOoSAu/w+SMGt3YGMfHnV67RWlyw2KCThMdKKMeGdyC5p66
+         VjQGkP+suOCRV/1090xHzq7uOYlcMtgKy/gFCg5whio/ZQo/NEBbS5XWhgkpzzRqyom9
+         RWn86gVpfoI5V6eu7eWJ5NCrZWAcVx4cE/NXqgt36AIjXJhaZnH/HUatF0JzCmRyArf9
+         AKZh35JaCXzySoHnieYRdLqt/sz7tAubJ/20NooM170sH8owrkmrGGZD1UAwvvN7kySy
+         JG8qteXNUUAXuJULfXGn0MIaaeFRrGoac40rEeecibjNdZTP2C+Qoj8JNRNV1VnBucwM
+         BUrw==
+X-Gm-Message-State: AOJu0YxLAIvgFaH/JDCJCSweSvPdZp8R0ZPMdyPdY9El/rYxRMGvY0Hu
+	DOqqXIWYQsEa0C27WLiAkE0=
+X-Google-Smtp-Source: AGHT+IFVBUq4VGlL4SdERkPGjW5pC1rrG+mPJ05oPnGJJ69Hq2QIbDQIupZA5zRIk/6gItf+TYsBnw==
+X-Received: by 2002:a17:902:e5c5:b0:1d1:cd8b:8bc2 with SMTP id u5-20020a170902e5c500b001d1cd8b8bc2mr9637633plf.33.1702494839983;
+        Wed, 13 Dec 2023 11:13:59 -0800 (PST)
+Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
+        by smtp.gmail.com with ESMTPSA id x7-20020a1709029a4700b001cf7bd9ade5sm10887076plv.3.2023.12.13.11.13.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Dec 2023 11:13:59 -0800 (PST)
+Date: Thu, 14 Dec 2023 04:13:58 +0900
+From: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
+To: Maxime Ripard <mripard@redhat.com>
+Cc: lpieralisi@kernel.org, robh@kernel.org, bhelgaas@google.com,
+	Siddharth Vadapalli <s-vadapalli@ti.com>,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	vigneshr@ti.com, tjoseph@cadence.com, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, r-gunasekaran@ti.com,
+	danishanwar@ti.com, srk@ti.com, nm@ti.com
+Subject: Re: [PATCH v13 0/5] PCI: add 4x lane support for pci-j721e
+ controllers
+Message-ID: <20231213191358.GB988516@rocinante>
+References: <20231128054402.2155183-1-s-vadapalli@ti.com>
+ <isttx4vp7warwowlz46oo7y2zex7xuizfvovfse3yb4ww72e6u@nuev2jbkhnhw>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231211162331.435900-1-peter.griffin@linaro.org>
- <CGME20231211162434epcas5p485e7b2edbb02a1b6ea04ff5cc758f5db@epcas5p4.samsung.com>
- <20231211162331.435900-12-peter.griffin@linaro.org> <017401da2de2$400ec6e0$c02c54a0$@samsung.com>
-In-Reply-To: <017401da2de2$400ec6e0$c02c54a0$@samsung.com>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Wed, 13 Dec 2023 19:13:30 +0000
-Message-ID: <CADrjBPoFu8azjZ65RGqae6HSCCoHQuhcBHNO_Fo0nVsE9pYGaA@mail.gmail.com>
-Subject: Re: [PATCH v7 11/16] watchdog: s3c2410_wdt: Update QUIRK macros to
- use BIT macro
-To: Alim Akhtar <alim.akhtar@samsung.com>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	mturquette@baylibre.com, conor+dt@kernel.org, sboyd@kernel.org, 
-	tomasz.figa@gmail.com, s.nawrocki@samsung.com, linus.walleij@linaro.org, 
-	wim@linux-watchdog.org, linux@roeck-us.net, catalin.marinas@arm.com, 
-	will@kernel.org, arnd@arndb.de, olof@lixom.net, gregkh@linuxfoundation.org, 
-	jirislaby@kernel.org, cw00.choi@samsung.com, tudor.ambarus@linaro.org, 
-	andre.draszik@linaro.org, semen.protsenko@linaro.org, saravanak@google.com, 
-	willmcvicker@google.com, soc@kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-watchdog@vger.kernel.org, kernel-team@android.com, 
-	linux-serial@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <isttx4vp7warwowlz46oo7y2zex7xuizfvovfse3yb4ww72e6u@nuev2jbkhnhw>
 
-Hi Alim,
+Hi Maxime,
 
-Thanks for your reviews.
+> > This series adds support to the pci-j721e PCIe controller for up to 4x Lane
+> > configuration supported by TI's J784S4 SoC. Bindings are also added for
+> > the num-lanes property which shall be used by the driver. The compatible
+> > for J784S4 SoC is added.
+> > 
+> > This series is based on linux-next tagged next-20231128.
+> 
+> These patches have been floating around for a long time (v12 was almost
+> identical and was submitted back in April, without any review back then
+> already [1]), and it looks like reviewers are happy with it.
 
-On Wed, 13 Dec 2023 at 16:34, Alim Akhtar <alim.akhtar@samsung.com> wrote:
->
->
->
-> > -----Original Message-----
-> > From: Peter Griffin <peter.griffin@linaro.org>
-> > Sent: Monday, December 11, 2023 9:53 PM
-> > To: robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
-> > mturquette@baylibre.com; conor+dt@kernel.org; sboyd@kernel.org;
-> > tomasz.figa@gmail.com; s.nawrocki@samsung.com; linus.walleij@linaro.org;
-> > wim@linux-watchdog.org; linux@roeck-us.net; catalin.marinas@arm.com;
-> > will@kernel.org; arnd@arndb.de; olof@lixom.net;
-> > gregkh@linuxfoundation.org; jirislaby@kernel.org;
-> > cw00.choi@samsung.com; alim.akhtar@samsung.com
-> > Cc: peter.griffin@linaro.org; tudor.ambarus@linaro.org;
-> > andre.draszik@linaro.org; semen.protsenko@linaro.org;
-> > saravanak@google.com; willmcvicker@google.com; soc@kernel.org;
-> > devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
-> > samsung-soc@vger.kernel.org; linux-clk@vger.kernel.org; linux-
-> > gpio@vger.kernel.org; linux-watchdog@vger.kernel.org; kernel-
-> > team@android.com; linux-serial@vger.kernel.org
-> > Subject: [PATCH v7 11/16] watchdog: s3c2410_wdt: Update QUIRK macros to
-> > use BIT macro
-> >
-> > Update the remaining QUIRK macros to use the BIT macro.
-> >
-> Ah! I see you have change use BIT here, so you can squash this patch to
-> patch 10/16 or
-> Move BIT change from patch 10/16 to this patch. Either way is fine.
+Having a glance, it looks good to me, too.
 
-I actually kept them separate deliberately to avoid conflating adding
-of the DBGACK quirk with cleanup of the driver to use BIT macro.
+> Could you merge them to get them in 6.8?
 
-As such one patch adds the QUIRK and only updates the macros that were
-touched by that patch (to avoid the --strict warnings), and the second
-patch cleans up the rest of the macros to use BIT macro for
-consistency.
 
-regards,
+Applied, so it should make it to 6.8.  Apologies for the delay.
 
-Peter
+	Krzysztof
 
