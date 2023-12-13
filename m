@@ -1,89 +1,179 @@
-Return-Path: <devicetree+bounces-24810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24812-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEBCD8114A1
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 15:30:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE6C48114AE
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 15:33:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B9AA1F2125A
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 14:30:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 022141F2167D
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 14:33:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9247C9468;
-	Wed, 13 Dec 2023 14:30:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7C352D780;
+	Wed, 13 Dec 2023 14:33:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="kv7uqr2k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C129010A;
-	Wed, 13 Dec 2023 06:30:35 -0800 (PST)
-Received: from i53875b61.versanet.de ([83.135.91.97] helo=phil.lan)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1rDQFd-00008V-35; Wed, 13 Dec 2023 15:30:17 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: Andy Yan <andyshrk@163.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	krzysztof.kozlowski+dt@linaro.org,
-	chris.obbard@collabora.com,
-	devicetree@vger.kernel.org,
-	Andy Yan <andy.yan@rock-chips.com>,
-	dri-devel@lists.freedesktop.org,
-	hjc@rock-chips.com,
-	kever.yang@rock-chips.com,
-	sebastian.reichel@collabora.com,
-	linux-rockchip@lists.infradead.org,
-	robh+dt@kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH v5 00/16] Add VOP2 support on rk3588
-Date: Wed, 13 Dec 2023 15:30:15 +0100
-Message-Id: <170247779733.724099.13674557093099995192.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231211115547.1784587-1-andyshrk@163.com>
-References: <20231211115547.1784587-1-andyshrk@163.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42160B9;
+	Wed, 13 Dec 2023 06:33:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1702477986; x=1734013986;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=+/l+0BNbimCMHUlKMvEhWrN0nsKQrugc4xTA+mJbo1c=;
+  b=kv7uqr2kUo1yeoctXIXLoJ5mx5gwUcLr9ZWsRO1FJttkh7qHNtjoYJw+
+   IlMvf1A8cOGhVHTyxSn8qV20KetSSzfknzppJMwdgMuWeWlBrcOli8WIY
+   PN7Y5+/aB1n49O/NdQ5BcEJ8CVfzqBYWEwfuCxE08nEvgHokHSeLvLNcB
+   pOMm8mdV8p1jega0sYFvKBUfFgXsmbsKWnOxfY1kLhFJhdEaXdxo85pis
+   eaiXC/DtCOg1dRPoVbFeS51X1NhJ8txkYwfKbp47wz2ObHO53a2/5P2m5
+   Cf9SpfBndCF7fr6ou4H2pW+zMaHRj9UFb14lY3jpjNS5qdMGyd0b94LGh
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="2111276"
+X-IronPort-AV: E=Sophos;i="6.04,272,1695711600"; 
+   d="scan'208";a="2111276"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Dec 2023 06:32:46 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="1105333851"
+X-IronPort-AV: E=Sophos;i="6.04,272,1695711600"; 
+   d="scan'208";a="1105333851"
+Received: from kuha.fi.intel.com ([10.237.72.185])
+  by fmsmga005.fm.intel.com with SMTP; 13 Dec 2023 06:32:42 -0800
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Wed, 13 Dec 2023 16:32:41 +0200
+Date: Wed, 13 Dec 2023 16:32:41 +0200
+From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To: Kyle Tso <kyletso@google.com>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, linux@roeck-us.net, gregkh@linuxfoundation.org,
+	badhri@google.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
+Subject: Re: [PATCH v5 2/2] usb: typec: tcpm: Support multiple capabilities
+Message-ID: <ZXnAiRa9bBacASQ5@kuha.fi.intel.com>
+References: <20231205030114.1349089-1-kyletso@google.com>
+ <20231205030114.1349089-3-kyletso@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231205030114.1349089-3-kyletso@google.com>
 
-On Mon, 11 Dec 2023 19:55:47 +0800, Andy Yan wrote:
-> From: Andy Yan <andy.yan@rock-chips.com>
+Hi Kyle,
+
+On Tue, Dec 05, 2023 at 11:01:14AM +0800, Kyle Tso wrote:
+> Refactor tcpm_fw_get_caps to support the multiple pd capabilities got
+> from fwnode. For backward compatibility, the original single capability
+> is still applicable. The fetched data is stored in the newly defined
+> structure "pd_data" and there is an array "pd_list" to store the
+> pointers to them. A dedicated array "pds" is used to store the handles
+> of the registered usb_power_delivery instances.
 > 
-> This patch sets aims at enable the VOP2 support on rk3588.
+> Also implement the .pd_get and .pd_set ops which are introduced in
+> commit a7cff92f0635 ("usb: typec: USB Power Delivery helpers for ports
+> and partners"). Once the .pd_set is called, the current capability will
+> be updated and state machine will re-negotiate the power contract if
+> possible.
 > 
-> Main feature of VOP2 on rk3588:
-> Four video ports:
-> VP0 Max 4096x2160
-> VP1 Max 4096x2160
-> VP2 Max 4096x2160
-> VP3 Max 2048x1080
+> Signed-off-by: Kyle Tso <kyletso@google.com>
+> ---
+> v4 -> v5:
+> - no change
 > 
-> [...]
+>  drivers/usb/typec/tcpm/tcpm.c | 389 ++++++++++++++++++++++++++--------
+>  1 file changed, 303 insertions(+), 86 deletions(-)
 
-Applied, thanks!
+<snip>
 
-[01/16] drm/rockchip: move output interface related definition to rockchip_drm_drv.h
-        commit: 8c8546546f256f834e9c7cab48e5946df340d1a8
-[02/16] Revert "drm/rockchip: vop2: Use regcache_sync() to fix suspend/resume"
-        commit: 81a06f1d02e588cfa14c5e5953d9dc50b1d404be
-[03/16] drm/rockchip: vop2: set half_block_en bit in all mode
-        commit: bebad6bd4fbdc448ad3b337ad281b813e68f6f53
-[04/16] drm/rockchip: vop2: clear afbc en and transform bit for cluster window at linear mode
-        commit: 20529a68307feed00dd3d431d3fff0572616b0f2
-[05/16] drm/rockchip: vop2: Add write mask for VP config done
-        commit: d1f8face0fc1298c88ef4a0479c3027b46ca2c77
-[06/16] drm/rockchip: vop2: Set YUV/RGB overlay mode
-        commit: dd49ee4614cfb0b1f627c4353b60cecfe998a374
-[07/16] drm/rockchip: vop2: set bg dly and prescan dly at vop2_post_config
-        commit: 075a5b3969becb1ebc2f1d4fa1a1fe9163679273
-[08/16] drm/rockchip: vop2: rename grf to sys_grf
-        commit: c408af1afc4b74ea6df69e0313be97f1f83e981a
+> @@ -6124,12 +6243,11 @@ static int tcpm_port_register_pd(struct tcpm_port *port)
+>  	return ret;
+>  }
+>  
+> -static int tcpm_fw_get_caps(struct tcpm_port *port,
+> -			    struct fwnode_handle *fwnode)
+> +static int tcpm_fw_get_properties(struct tcpm_port *port, struct fwnode_handle *fwnode)
 
-Best regards,
+The function names got me confused first :). Even though you now call
+this "properties", I think the term "capablities" can in practice
+still mean two things in this driver (you are for example still
+calling typec_get_fw_cap() from this function).
+
+So how about you don't change the name of this function, but
+instead..
+
+>  {
+>  	const char *opmode_str;
+> +	u32 frs_current;
+>  	int ret;
+> -	u32 mw, frs_current;
+>  
+>  	if (!fwnode)
+>  		return -EINVAL;
+> @@ -6149,28 +6267,10 @@ static int tcpm_fw_get_caps(struct tcpm_port *port,
+>  
+>  	port->port_type = port->typec_caps.type;
+>  	port->pd_supported = !fwnode_property_read_bool(fwnode, "pd-disable");
+> -
+>  	port->slow_charger_loop = fwnode_property_read_bool(fwnode, "slow-charger-loop");
+> -	if (port->port_type == TYPEC_PORT_SNK)
+> -		goto sink;
+> -
+> -	/* Get Source PDOs for the PD port or Source Rp value for the non-PD port */
+> -	if (port->pd_supported) {
+> -		ret = fwnode_property_count_u32(fwnode, "source-pdos");
+> -		if (ret == 0)
+> -			return -EINVAL;
+> -		else if (ret < 0)
+> -			return ret;
+> +	port->self_powered = fwnode_property_read_bool(fwnode, "self-powered");
+>  
+> -		port->nr_src_pdo = min(ret, PDO_MAX_OBJECTS);
+> -		ret = fwnode_property_read_u32_array(fwnode, "source-pdos",
+> -						     port->src_pdo, port->nr_src_pdo);
+> -		if (ret)
+> -			return ret;
+> -		ret = tcpm_validate_caps(port, port->src_pdo, port->nr_src_pdo);
+> -		if (ret)
+> -			return ret;
+> -	} else {
+> +	if (!port->pd_supported) {
+>  		ret = fwnode_property_read_string(fwnode, "typec-power-opmode", &opmode_str);
+>  		if (ret)
+>  			return ret;
+> @@ -6180,43 +6280,156 @@ static int tcpm_fw_get_caps(struct tcpm_port *port,
+>  		port->src_rp = tcpm_pwr_opmode_to_rp(ret);
+>  	}
+>  
+> -	if (port->port_type == TYPEC_PORT_SRC)
+> -		return 0;
+> +	/* FRS can only be supported by DRP ports */
+> +	if (port->port_type == TYPEC_PORT_DRP) {
+> +		ret = fwnode_property_read_u32(fwnode, "new-source-frs-typec-current",
+> +					       &frs_current);
+> +		if (!ret && frs_current <= FRS_5V_3A)
+> +			port->new_source_frs_current = frs_current;
+> +	}
+>  
+> -sink:
+> -	port->self_powered = fwnode_property_read_bool(fwnode, "self-powered");
+> +	return 0;
+> +}
+> +
+> +static int tcpm_fw_get_caps(struct tcpm_port *port, struct fwnode_handle *fwnode)
+
+..make that tcpm_fw_get_pd_capabilities() (or something like that) to
+be more clear?
+
+Also, since you are only calling this ones, why not just call this
+directly from tcpm_fw_get_cap() instead of right after it?
+
+thanks,
+
 -- 
-Heiko Stuebner <heiko@sntech.de>
+heikki
 
