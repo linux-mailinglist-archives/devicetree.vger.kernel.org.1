@@ -1,96 +1,205 @@
-Return-Path: <devicetree+bounces-25031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25032-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4D8E811F94
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 20:59:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47904811FB1
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 21:07:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 190ED281859
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 19:59:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F317D1F20FC9
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 20:07:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F7D07D8B0;
-	Wed, 13 Dec 2023 19:59:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 798307E547;
+	Wed, 13 Dec 2023 20:07:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YYft67vo"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MmFJ+UNp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 209625FF18;
-	Wed, 13 Dec 2023 19:59:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 650E4C433C8;
-	Wed, 13 Dec 2023 19:59:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702497589;
-	bh=n4y6guQRV12k+liN2WHD+wd3QSw9JETlMI+NEhFXEvM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=YYft67voJWxpBtLm5xqPzprpXz2B1yCo7ZrhnnWakz/NJaoH0i821cOvZiF4YISQq
-	 0Q5We9nWveoWSKZ1Ls+/RwyeFWXqWP1oXDrohPmOejUE68ozgge5vUbTZ//8Wo7Kig
-	 SztMPmEXg5mIRfwuf/IBtYuhHER0buqy5Pq+PVEPLpZ9ajKkyMG/i9hzW5inTtGP3H
-	 VbTJ6Dm5zDFrcl03Ovd1h/frFO+I7g4CpBLSzIhYmQBA0N4ApyTAa15Id3QHyPMiFR
-	 GxGz4Mlxhi1xmwmBRpZwWPPQUIRKqOufiLnSAFjQ+dB6/49i1AvZalL+ShevNK+yTW
-	 ZoXcLjK3/VSZA==
-Date: Wed, 13 Dec 2023 13:59:47 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: Cyril Brulebois <kibi@debian.org>,
-	Jim Quinlan <james.quinlan@broadcom.com>, linux-pci@vger.kernel.org,
-	Nicolas Saenz Julienne <nsaenz@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-	Phil Elwell <phil@raspberrypi.com>,
-	bcm-kernel-feedback-list@broadcom.com,
-	Conor Dooley <conor+dt@kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	Jim Quinlan <jim2101024@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
-	open list <linux-kernel@vger.kernel.org>,
-	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-rpi-kernel@lists.infradead.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v8 0/2] PCI: brcmstb: Configure appropriate HW CLKREQ#
- mode
-Message-ID: <20231213195947.GA1056194@bhelgaas>
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66014C9;
+	Wed, 13 Dec 2023 12:07:24 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-40c317723a8so63978685e9.3;
+        Wed, 13 Dec 2023 12:07:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702498043; x=1703102843; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Gsu3q13MvDpE/CGXMPYCWwJtd9OUgwH5TkWvsm2e2cA=;
+        b=MmFJ+UNppUWxNTHj/tS7v/ct3AjdddJkI7rwYJjgACVwpImj3ljY4OypC6k6pZwfdN
+         E+DsM80nkSKC+MOGnziALObRa64yhHE9wHjAdLu1WAAAuFx2JQ53XCsqNw7x6PhqDdXU
+         28eSeMYvGzA04xJ58OBdu1GH+mvAJDlx7O4/6Yxpm2LzyTDgjS+xde+Y8HiawKPGqG12
+         j/Qhe2+8bMOTXZAB4BLcgIf842zUT4DiAGa/BTJhH72sEmqFN9AAg+RIuYiRnEumVB/k
+         qwyDAbAjXcfpEnvO+BhfLLkmgTTcaWG/oaIivs9BywsWoy6S9MgvYvg6nYs2mh69rNKJ
+         T7lA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702498043; x=1703102843;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Gsu3q13MvDpE/CGXMPYCWwJtd9OUgwH5TkWvsm2e2cA=;
+        b=LysvFYfyvxJvL1s+WYzBvcJZpeZ3Zxm7oyw/V/AO6lyrn21TCpl9gsDr/lsjxa/kPf
+         V1Bdwst1TbzQIQyAXvBRCTkntZyRjlOuAVSkjPZWNgsewDabbxL7r9gAH9oEGfoY8bHq
+         FYyqSq8gmYb2sDsy23HcehuV9LCN54hDqbcuk6CxJn1JeUZZOmPlWJM9/EtLe5dqH6Kq
+         7chtXo066XbKQv2+mHYDSmaAIvJ5Ku5j4+ewiT7mrE+xyiBrtfPi3s2UWQEICsXG1mUJ
+         EHhaykxAgXof2xf44DUhFZWaKi+3wEKSWUM8vBdXpkhyHxXmVo7SwKDnWZs9bqejXIpI
+         /lDQ==
+X-Gm-Message-State: AOJu0YxXSFTya2ee17bh2V8+JvngkG/QCz9+X0m8p8R/B5A7a2gladEg
+	IxWiVQC3vmg4dddS4NhXKtBkGMWs2yU=
+X-Google-Smtp-Source: AGHT+IHXFAhPhkQlTGwETgEwQJ0+N7+UNA2cm4OrTmck51BAJtoT4bV4BK2nZBlfQ3MZpCxFuPiTkg==
+X-Received: by 2002:a05:600c:81b:b0:40b:5e59:c590 with SMTP id k27-20020a05600c081b00b0040b5e59c590mr4312661wmp.186.1702498042479;
+        Wed, 13 Dec 2023 12:07:22 -0800 (PST)
+Received: from archlinux.localnet (82-149-12-148.dynamic.telemach.net. [82.149.12.148])
+        by smtp.gmail.com with ESMTPSA id p7-20020a05600c468700b0040c420eda48sm15195843wmo.22.2023.12.13.12.07.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Dec 2023 12:07:21 -0800 (PST)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org, Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Subject:
+ Re: [PATCH v7 3/7] ARM: dts: sun8i: v3s: Add nodes for MIPI CSI-2 support
+Date: Wed, 13 Dec 2023 21:07:20 +0100
+Message-ID: <2169265.irdbgypaU6@archlinux>
+In-Reply-To: <20231122141426.329694-4-paul.kocialkowski@bootlin.com>
+References:
+ <20231122141426.329694-1-paul.kocialkowski@bootlin.com>
+ <20231122141426.329694-4-paul.kocialkowski@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ae49227b-5026-43a4-8e19-aeeb63865a6a@broadcom.com>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Tue, Dec 12, 2023 at 03:51:12PM -0800, Florian Fainelli wrote:
-> On 11/26/23 12:19, Cyril Brulebois wrote:
-> > Hi Jim,
-> > 
-> > Jim Quinlan <james.quinlan@broadcom.com> (2023-11-13):
-> > > V8 -- Un-advertise L1SS capability when in "no-l1ss" mode (Bjorn)
-> > >     -- Squashed last two commits of v7 (Bjorn)
-> > >     -- Fix DT binding description text wrapping (Bjorn)
-> > >     -- Fix incorrect Spec reference (Bjorn)
-> > >           s/PCIe Spec/PCIe Express Mini CEM 2.1 specification/
-> > >     -- Text substitutions (Bjorn)
-> > >           s/WRT/With respect to/
-> > >           s/Tclron/T_CLRon/
-> > > 
-> > > v7 -- Manivannan Sadhasivam suggested (a) making the property look like a
-> > >        network phy-mode and (b) keeping the code simple (not counting clkreq
-> > >        signal appearances, un-advertising capabilites, etc).  This is
-> > >        what I have done.  The property is now "brcm,clkreq-mode" and
-> > >        the values may be one of "safe", "default", and "no-l1ss".  The
-> > >        default setting is to employ the most capable power savings mode.
-> > 
-> > Still:
-> > 
-> > Tested-by: Cyril Brulebois <cyril@debamax.com>
+Hi Paul!
+
+Sorry for late reply.
+
+On Wednesday, November 22, 2023 3:14:21 PM CET Paul Kocialkowski wrote:
+> MIPI CSI-2 is supported on the V3s with an A31-based MIPI CSI-2 bridge
+> controller. The controller uses a separate D-PHY, which is the same
+> that is otherwise used for MIPI DSI, but used in Rx mode.
 > 
-> Thanks Cyril! Bjorn, Lorenzo, any chance this can be applied soon? Thanks!
+> On the V3s, the CSI0 controller is dedicated to MIPI CSI-2 as it does
+> not have access to any parallel interface pins.
+> 
+> Add all the necessary nodes (CSI0, MIPI CSI-2 bridge and D-PHY) to
+> support the MIPI CSI-2 interface.
+> 
+> Note that a fwnode graph link is created between CSI0 and MIPI CSI-2
+> even when no sensor is connected. This will result in a probe failure
+> for the controller as long as no sensor is connected but this is fine
+> since no other interface is available.
+> 
+> The interconnects property is used to inherit the proper DMA offset.
+> 
+> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> ---
+>  arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi | 71 ++++++++++++++++++++++
+>  1 file changed, 71 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi b/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi
+> index 506e98f4f69d..d57612023aa4 100644
+> --- a/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi
+> +++ b/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi
+> @@ -621,6 +621,77 @@ gic: interrupt-controller@1c81000 {
+>  			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
+>  		};
+>  
+> +		csi0: camera@1cb0000 {
+> +			compatible = "allwinner,sun8i-v3s-csi";
+> +			reg = <0x01cb0000 0x1000>;
+> +			interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&ccu CLK_BUS_CSI>,
+> +				 <&ccu CLK_CSI1_SCLK>,
+> +				 <&ccu CLK_DRAM_CSI>;
+> +			clock-names = "bus", "mod", "ram";
+> +			resets = <&ccu RST_BUS_CSI>;
+> +			interconnects = <&mbus 5>;
+> +			interconnect-names = "dma-mem";
 
-Seems OK to me if Lorenzo or Krzysztof W. are OK with it.
+As far as I can see, interconnects are not documented in
+allwinner,sun6i-a31-csi.yaml. Please run make dtbs_check on this.
+
+Best regards,
+Jernej
+
+> +			status = "disabled";
+> +
+> +			ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@1 {
+> +					reg = <1>;
+> +
+> +					csi0_in_mipi_csi2: endpoint {
+> +						remote-endpoint = <&mipi_csi2_out_csi0>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		mipi_csi2: csi@1cb1000 {
+> +			compatible = "allwinner,sun8i-v3s-mipi-csi2",
+> +				     "allwinner,sun6i-a31-mipi-csi2";
+> +			reg = <0x01cb1000 0x1000>;
+> +			interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&ccu CLK_BUS_CSI>,
+> +				 <&ccu CLK_CSI1_SCLK>;
+> +			clock-names = "bus", "mod";
+> +			resets = <&ccu RST_BUS_CSI>;
+> +			status = "disabled";
+> +
+> +			phys = <&dphy>;
+> +			phy-names = "dphy";
+> +
+> +			ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				mipi_csi2_in: port@0 {
+> +					reg = <0>;
+> +				};
+> +
+> +				mipi_csi2_out: port@1 {
+> +					reg = <1>;
+> +
+> +					mipi_csi2_out_csi0: endpoint {
+> +						remote-endpoint = <&csi0_in_mipi_csi2>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		dphy: d-phy@1cb2000 {
+> +			compatible = "allwinner,sun6i-a31-mipi-dphy";
+> +			reg = <0x01cb2000 0x1000>;
+> +			clocks = <&ccu CLK_BUS_CSI>,
+> +				 <&ccu CLK_MIPI_CSI>;
+> +			clock-names = "bus", "mod";
+> +			resets = <&ccu RST_BUS_CSI>;
+> +			allwinner,direction = "rx";
+> +			status = "disabled";
+> +			#phy-cells = <0>;
+> +		};
+> +
+>  		csi1: camera@1cb4000 {
+>  			compatible = "allwinner,sun8i-v3s-csi";
+>  			reg = <0x01cb4000 0x3000>;
+> 
+
+
+
+
 
