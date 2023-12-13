@@ -1,114 +1,116 @@
-Return-Path: <devicetree+bounces-24576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24577-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1852881069E
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 01:35:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B83558106B4
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 01:37:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C5DC728239C
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 00:35:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 72A0F2821B1
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 00:37:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1424A375;
-	Wed, 13 Dec 2023 00:35:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2515B19C;
+	Wed, 13 Dec 2023 00:37:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amazon.com header.i=@amazon.com header.b="VSau86g+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ObEZ3nsp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-fw-80007.amazon.com (smtp-fw-80007.amazon.com [99.78.197.218])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EE5292;
-	Tue, 12 Dec 2023 16:35:32 -0800 (PST)
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B29399
+	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 16:37:38 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-50c02628291so6703430e87.0
+        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 16:37:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1702427732; x=1733963732;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=VBKvTcQi72PcvnK4SFQYGqORB7BIbXX6crvus+RXOaY=;
-  b=VSau86g+hgAvpNEhvQq2TITJrNMB4SWMV+6VgA2VazzPBXqgrr6EU3Cm
-   0aPvptWHP4IjfQRszkgutWdFF1WjSZWPx9kgpgjryfL165H7qR75+zeLt
-   f4m1HmypvWZP6kkdRJA4A9BIxOK4xl8eqm3xBlx7cYlpYNTKAKH2rS5Mr
-   k=;
-X-IronPort-AV: E=Sophos;i="6.04,271,1695686400"; 
-   d="scan'208";a="259294536"
-Received: from pdx4-co-svc-p1-lb2-vlan2.amazon.com (HELO email-inbound-relay-pdx-2c-m6i4x-b1c0e1d0.us-west-2.amazon.com) ([10.25.36.210])
-  by smtp-border-fw-80007.pdx80.corp.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Dec 2023 00:35:31 +0000
-Received: from smtpout.prod.us-west-2.prod.farcaster.email.amazon.dev (pdx2-ws-svc-p26-lb5-vlan3.pdx.amazon.com [10.39.38.70])
-	by email-inbound-relay-pdx-2c-m6i4x-b1c0e1d0.us-west-2.amazon.com (Postfix) with ESMTPS id 634AC80DCC;
-	Wed, 13 Dec 2023 00:35:25 +0000 (UTC)
-Received: from EX19MTAUWC002.ant.amazon.com [10.0.38.20:10819]
- by smtpin.naws.us-west-2.prod.farcaster.email.amazon.dev [10.0.27.95:2525] with esmtp (Farcaster)
- id 911b45ff-f732-45cd-b0a4-dcec0b0539c8; Wed, 13 Dec 2023 00:35:24 +0000 (UTC)
-X-Farcaster-Flow-ID: 911b45ff-f732-45cd-b0a4-dcec0b0539c8
-Received: from EX19D020UWC004.ant.amazon.com (10.13.138.149) by
- EX19MTAUWC002.ant.amazon.com (10.250.64.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Wed, 13 Dec 2023 00:35:24 +0000
-Received: from [0.0.0.0] (10.253.83.51) by EX19D020UWC004.ant.amazon.com
- (10.13.138.149) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 13 Dec
- 2023 00:35:19 +0000
-Message-ID: <eb567d99-e03b-4718-9cc9-e27c5e408ea2@amazon.com>
-Date: Wed, 13 Dec 2023 01:35:16 +0100
+        d=linaro.org; s=google; t=1702427856; x=1703032656; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2Qy64QWxJAPVkUwYgcUS97lSr6WwyxeboAAZZoCa+8s=;
+        b=ObEZ3nspOTfIWVT/ZZyKQIt5mZ6hfK0U8HUQv2NPgSbwhVHaSHp/PVObwxa8ysJLiD
+         3Es4B9V021hl8bdaHFtBIZ6A0PvKKl5LXZWnyfeCV3amWChOyb0E+Z8DUWOr2YfDwgOM
+         wbkDyOcNUHEyIjYBa6vbey4xc0wL9WhUIxPt41fAGMHFM62c92YxNEVvsha0bKbsta1L
+         NQHfnHMj0RD4Hacu5mDqlpBFQZCewKnDeg0sWLnsrRSG0xVPz606fOgoEklrnqk6W/Yd
+         n57P8VXoHoPxLZFx8HDmRyA7FMzWxivkJEWoyDhlHjPCJxhcgG36EROr08dWJNrn2+kt
+         ka6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702427856; x=1703032656;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2Qy64QWxJAPVkUwYgcUS97lSr6WwyxeboAAZZoCa+8s=;
+        b=W3BuiHElZ8A4zJ4ozqUaD8kMHDEQ9bbTR4q+8MX1pdftPY5UXMzoOMdxdDleoNoNCu
+         GNPYYnvx6SJEcArtC0EeX/6bLSsNofIjYq+AE5RNTy7kFZCooidFrLyut/zt4V6jo5DE
+         LNA9A/CAJv9XXO+YaSTLxRrEp1INVrtsInBIADvPYPCdJFfeAIAqnnXMAIufnjQShA27
+         hPulcGLnXrgiNV0WaRp6YRirrDSEDQUqZd36w03yoDy6pqPmMNBUwZ9tvF+rxs13JQu0
+         xJCBGm8zKCus9aySHQ6cFdmQSQBR5wXPS0g3aO8lgg28bVie8/Hn/nM/ZyfSEuUJKJDx
+         FhIw==
+X-Gm-Message-State: AOJu0YysYVS8syEYUMSJc8/Hb0yrM6crZGi3pQMtWb2sxts2s8J/9C6u
+	VUhd4KVV6fKD4lHZrLslNEc9Fg==
+X-Google-Smtp-Source: AGHT+IHQFt8OQIXxdl03CphfReY+l9SomhKym2TaxIOF+GkTzz6HHzUSRNBIZeYP3zSDGey6ZCAOVA==
+X-Received: by 2002:ac2:5f46:0:b0:50c:14d6:ebce with SMTP id 6-20020ac25f46000000b0050c14d6ebcemr2634065lfz.54.1702427855498;
+        Tue, 12 Dec 2023 16:37:35 -0800 (PST)
+Received: from umbar.unikie.fi ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id a4-20020a194f44000000b0050bef1c5a50sm1517467lfk.267.2023.12.12.16.37.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Dec 2023 16:37:34 -0800 (PST)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Clark <robdclark@gmail.com>,
+	Sean Paul <sean@poorly.run>,
+	Abhinav Kumar <quic_abhinavk@quicinc.com>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Stephen Boyd <swboyd@chromium.org>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	freedreno@lists.freedesktop.org
+Subject: Re: [PATCH 0/9] arm64: dts: qcom: sm8150-hdk: enable display output
+Date: Wed, 13 Dec 2023 02:37:28 +0200
+Message-Id: <170242755505.12964.13391263979827367977.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20231209232132.3580045-1-dmitry.baryshkov@linaro.org>
+References: <20231209232132.3580045-1-dmitry.baryshkov@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 08/15] tracing: Introduce names for ring buffers
-Content-Language: en-US
-To: Steven Rostedt <rostedt@goodmis.org>
-CC: <linux-kernel@vger.kernel.org>, <linux-trace-kernel@vger.kernel.org>,
-	<linux-mm@kvack.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <kexec@lists.infradead.org>,
-	<linux-doc@vger.kernel.org>, <x86@kernel.org>, Eric Biederman
-	<ebiederm@xmission.com>, "H. Peter Anvin" <hpa@zytor.com>, Andy Lutomirski
-	<luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>, Rob Herring
-	<robh+dt@kernel.org>, Andrew Morton <akpm@linux-foundation.org>, Mark Rutland
-	<mark.rutland@arm.com>, Tom Lendacky <thomas.lendacky@amd.com>, Ashish Kalra
-	<ashish.kalra@amd.com>, James Gowans <jgowans@amazon.com>, "Stanislav
- Kinsburskii" <skinsburskii@linux.microsoft.com>, <arnd@arndb.de>,
-	<pbonzini@redhat.com>, <madvenka@linux.microsoft.com>, Anthony Yznaga
-	<anthony.yznaga@oracle.com>, Usama Arif <usama.arif@bytedance.com>, "David
- Woodhouse" <dwmw@amazon.co.uk>, Benjamin Herrenschmidt
-	<benh@kernel.crashing.org>
-References: <20231213000452.88295-1-graf@amazon.com>
- <20231213000452.88295-9-graf@amazon.com>
- <20231212191546.603c0703@gandalf.local.home>
-From: Alexander Graf <graf@amazon.com>
-In-Reply-To: <20231212191546.603c0703@gandalf.local.home>
-X-ClientProxiedBy: EX19D033UWC001.ant.amazon.com (10.13.139.218) To
- EX19D020UWC004.ant.amazon.com (10.13.138.149)
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-SGkgU3RldmUsCgpPbiAxMy4xMi4yMyAwMToxNSwgU3RldmVuIFJvc3RlZHQgd3JvdGU6Cj4KPiBP
-biBXZWQsIDEzIERlYyAyMDIzIDAwOjA0OjQ1ICswMDAwCj4gQWxleGFuZGVyIEdyYWYgPGdyYWZA
-YW1hem9uLmNvbT4gd3JvdGU6Cj4KPj4gV2l0aCBLSE8gKEtleGVjIEhhbmRPdmVyKSwgd2Ugd2Fu
-dCB0byBwcmVzZXJ2ZSB0cmFjZSBidWZmZXJzIGFjcm9zcwo+PiBrZXhlYy4gVG8gY2Fycnkgb3Zl
-ciB0aGVpciBzdGF0ZSBiZXR3ZWVuIGtlcm5lbHMsIHRoZSBrZXJuZWwgbmVlZHMgYQo+PiBjb21t
-b24gaGFuZGxlIGZvciB0aGVtIHRoYXQgZXhpc3RzIG9uIGJvdGggc2lkZXMuIEFzIGhhbmRsZSB3
-ZSBpbnRyb2R1Y2UKPj4gbmFtZXMgZm9yIHJpbmcgYnVmZmVycy4gSW4gYSBmb2xsb3ctdXAgcGF0
-Y2gsIHRoZSBrZXJuZWwgY2FuIHRoZW4gdXNlCj4+IHRoZXNlIG5hbWVzIHRvIHJlY292ZXIgYnVm
-ZmVyIGNvbnRlbnRzIGZvciBzcGVjaWZpYyByaW5nIGJ1ZmZlcnMuCj4+Cj4gSXMgdGhlcmUgYSB3
-YXkgdG8gdXNlIHRoZSB0cmFjZV9hcnJheSBuYW1lIGluc3RlYWQ/Cj4KPiBUaGUgdHJhY2VfYXJy
-YXkgaXMgdGhlIHN0cnVjdHVyZSB0aGF0IHJlcHJlc2VudHMgZWFjaCB0cmFjaW5nIGluc3RhbmNl
-LiBBbmQKPiBpdCBhbHJlYWR5IGhhcyBhIG5hbWUgZmllbGQuIEFuZCBpZiB5b3UgY2FuIGdldCB0
-aGUgYXNzb2NpYXRlZCByaW5nIGJ1ZmZlcgo+IGZyb20gdGhhdCB0b28uCj4KPiBzdHJ1Y3QgdHJh
-Y2VfYXJyYXkgKnRyOwo+Cj4gICAgICAgICAgdHItPmFycmF5X2J1ZmZlci5idWZmZXIKPgo+ICAg
-ICAgICAgIHRyLT5uYW1lCj4KPiBXaGVuIHlvdSBkbzogbWtkaXIgL3N5cy9rZXJuZWwvdHJhY2lu
-Zy9pbnN0YW5jZS9mb28KPgo+IFlvdSBjcmVhdGUgYSBuZXcgdHJhY2VfYXJyYXkgaW5zdGFuY2Ug
-d2hlcmUgdHItPm5hbWUgPSAiZm9vIiBhbmQgYWxsb2NhdGVzCj4gdGhlIGJ1ZmZlciBmb3IgaXQg
-YXMgd2VsbC4KClRoZSBuYW1lIGluIHRoZSByaW5nIGJ1ZmZlciBpcyBwcmV0dHkgbXVjaCBqdXN0
-IGEgY29weSBvZiB0aGUgdHJhY2UgCmFycmF5IG5hbWUuIEkgdXNlIGl0IHRvIHJlY29uc3RydWN0
-IHdoaWNoIGJ1ZmZlciB3ZSdyZSBhY3R1YWxseSAKcmVmZXJyaW5nIHRvIGluc2lkZSBfX3Jpbmdf
-YnVmZmVyX2FsbG9jKCkuCgpJJ20gYWxsIGVhcnMgZm9yIGFsdGVybmF0aXZlIHN1Z2dlc3Rpb25z
-LiBJIHN1cHBvc2Ugd2UgY291bGQgcGFzcyB0ciBhcyAKYXJndW1lbnQgdG8gcmluZ19idWZmZXJf
-YWxsb2MoKSBpbnN0ZWFkIG9mIHRoZSBuYW1lPwoKCkFsZXgKCgoKCkFtYXpvbiBEZXZlbG9wbWVu
-dCBDZW50ZXIgR2VybWFueSBHbWJICktyYXVzZW5zdHIuIDM4CjEwMTE3IEJlcmxpbgpHZXNjaGFl
-ZnRzZnVlaHJ1bmc6IENocmlzdGlhbiBTY2hsYWVnZXIsIEpvbmF0aGFuIFdlaXNzCkVpbmdldHJh
-Z2VuIGFtIEFtdHNnZXJpY2h0IENoYXJsb3R0ZW5idXJnIHVudGVyIEhSQiAxNDkxNzMgQgpTaXR6
-OiBCZXJsaW4KVXN0LUlEOiBERSAyODkgMjM3IDg3OQoKCg==
 
+On Sun, 10 Dec 2023 02:21:23 +0300, Dmitry Baryshkov wrote:
+> Enable display output on the SM8150 HDK device. This includes HDMI
+> output through the onboard DSI-HDMI bridge and DP output on the USB-C
+> port.
+> 
+> Dmitry Baryshkov (9):
+>   dt-bindings: display: msm: dp: declare compatible string for sm8150
+>   arm64: dts: qcom: sm8150: use SoC-specific compat for RPMh stats
+>   arm64: dts: qcom: sm8150: make dispcc cast minimal vote on MMCX
+>   arm64: dts: qcom: sm8150-hdk: enable HDMI output
+>   arm64: dts: qcom: sm8150-hdk: fix SS USB regulators
+>   arm64: dts: qcom: sm8150: add DisplayPort controller
+>   arm64: dts: qcom: sm8150: add USB-C ports to the USB+DP QMP PHY
+>   arm64: dts: qcom: sm8150: add USB-C ports to the OTG USB host
+>   arm64: dts: qcom: sm8150-hdk: enable DisplayPort and USB-C altmode
+> 
+> [...]
+
+Applied, thanks!
+
+[1/9] dt-bindings: display: msm: dp: declare compatible string for sm8150
+      https://gitlab.freedesktop.org/lumag/msm/-/commit/0d196633771c
+
+Best regards,
+-- 
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
