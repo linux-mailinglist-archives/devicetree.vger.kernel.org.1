@@ -1,59 +1,55 @@
-Return-Path: <devicetree+bounces-24812-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24811-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE6C48114AE
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 15:33:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D2B98114A8
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 15:32:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 022141F2167D
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 14:33:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1CA992827D3
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 14:32:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7C352D780;
-	Wed, 13 Dec 2023 14:33:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="kv7uqr2k"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B80728E2C;
+	Wed, 13 Dec 2023 14:32:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42160B9;
-	Wed, 13 Dec 2023 06:33:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1702477986; x=1734013986;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=+/l+0BNbimCMHUlKMvEhWrN0nsKQrugc4xTA+mJbo1c=;
-  b=kv7uqr2kUo1yeoctXIXLoJ5mx5gwUcLr9ZWsRO1FJttkh7qHNtjoYJw+
-   IlMvf1A8cOGhVHTyxSn8qV20KetSSzfknzppJMwdgMuWeWlBrcOli8WIY
-   PN7Y5+/aB1n49O/NdQ5BcEJ8CVfzqBYWEwfuCxE08nEvgHokHSeLvLNcB
-   pOMm8mdV8p1jega0sYFvKBUfFgXsmbsKWnOxfY1kLhFJhdEaXdxo85pis
-   eaiXC/DtCOg1dRPoVbFeS51X1NhJ8txkYwfKbp47wz2ObHO53a2/5P2m5
-   Cf9SpfBndCF7fr6ou4H2pW+zMaHRj9UFb14lY3jpjNS5qdMGyd0b94LGh
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="2111276"
-X-IronPort-AV: E=Sophos;i="6.04,272,1695711600"; 
-   d="scan'208";a="2111276"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Dec 2023 06:32:46 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="1105333851"
-X-IronPort-AV: E=Sophos;i="6.04,272,1695711600"; 
-   d="scan'208";a="1105333851"
-Received: from kuha.fi.intel.com ([10.237.72.185])
-  by fmsmga005.fm.intel.com with SMTP; 13 Dec 2023 06:32:42 -0800
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Wed, 13 Dec 2023 16:32:41 +0200
-Date: Wed, 13 Dec 2023 16:32:41 +0200
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Kyle Tso <kyletso@google.com>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, linux@roeck-us.net, gregkh@linuxfoundation.org,
-	badhri@google.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
-Subject: Re: [PATCH v5 2/2] usb: typec: tcpm: Support multiple capabilities
-Message-ID: <ZXnAiRa9bBacASQ5@kuha.fi.intel.com>
-References: <20231205030114.1349089-1-kyletso@google.com>
- <20231205030114.1349089-3-kyletso@google.com>
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33293CF;
+	Wed, 13 Dec 2023 06:32:46 -0800 (PST)
+Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-6d9fdbcec6eso3521982a34.1;
+        Wed, 13 Dec 2023 06:32:46 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702477965; x=1703082765;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Z0kWneZU0gge6lamU79WOa8q8MUgTJ3s6CXlsPKbl1w=;
+        b=FyNim23zynxG3N6xA4bc/o/jLotwbc7Hb+nLUZEEgJt+IbkMPm9pQWPzqlafCkPVn9
+         Pm+S8li22NhyDP06n6OUVS+eS+25+GI3gN1BYx63X+B9Kgdgmuab/LxU+fqdNOJ8XHMa
+         wqaf+XhiRMBis7F+Mh267RDXRzAFw+IFQPsSwfiKQFul2BmzwE7uAewTos4jlYQAzrn5
+         YE/AyhY2ov162yMnaWzEnjA5YECMWrdwfx4smiGXw6nu5fdq8HuGSMmUhDOiObJhDZlO
+         9sq8HTZ4ul9TVdm9gcdMIZEgTc6IbjbN+jKgYNvLsR2xnMMTshKmH6LzH8Z5diJgEZxm
+         OJpg==
+X-Gm-Message-State: AOJu0YzmpK+Q8wjv6QTmTUrUPt/AfCQkPuY/zNlYoVWYyljn09/s6hUI
+	hF52q0Uu1p3mo2F6yP3HN/nhDAn4MA==
+X-Google-Smtp-Source: AGHT+IFWkvHfseSXYTYT3uKdOPAB8K0URkVWZMX3xZ7xanO9ooySMDAjcPKjyJvnnmKaV3WR/fUj1g==
+X-Received: by 2002:a05:6830:1b64:b0:6d9:da9f:ab2f with SMTP id d4-20020a0568301b6400b006d9da9fab2fmr7327230ote.27.1702477965392;
+        Wed, 13 Dec 2023 06:32:45 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id p26-20020a9d695a000000b006d85518ae62sm2776323oto.76.2023.12.13.06.32.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Dec 2023 06:32:44 -0800 (PST)
+Received: (nullmailer pid 1093516 invoked by uid 1000);
+	Wed, 13 Dec 2023 14:32:43 -0000
+Date: Wed, 13 Dec 2023 08:32:42 -0600
+From: Rob Herring <robh@kernel.org>
+To: Peter Griffin <peter.griffin@linaro.org>
+Cc: linux-samsung-soc@vger.kernel.org, arnd@arndb.de, catalin.marinas@arm.com, s.nawrocki@samsung.com, willmcvicker@google.com, gregkh@linuxfoundation.org, linux@roeck-us.net, linux-arm-kernel@lists.infradead.org, kernel-team@android.com, olof@lixom.net, linux-watchdog@vger.kernel.org, linux-clk@vger.kernel.org, alim.akhtar@samsung.com, saravanak@google.com, will@kernel.org, cw00.choi@samsung.com, tudor.ambarus@linaro.org, linus.walleij@linaro.org, mturquette@baylibre.com, soc@kernel.org, conor+dt@kernel.org, wim@linux-watchdog.org, sboyd@kernel.org, robh+dt@kernel.org, devicetree@vger.kernel.org, linux-serial@vger.kernel.org, tomasz.figa@gmail.com, linux-gpio@vger.kernel.org, jirislaby@kernel.org, semen.protsenko@linaro.org, krzysztof.kozlowski+dt@linaro.org, andre.draszik@linaro.org
+Subject: Re: [PATCH v7 02/16] dt-bindings: arm: google: Add bindings for
+ Google ARM platforms
+Message-ID: <170247795662.1093374.11352509671907840697.robh@kernel.org>
+References: <20231211162331.435900-1-peter.griffin@linaro.org>
+ <20231211162331.435900-3-peter.griffin@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,118 +58,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231205030114.1349089-3-kyletso@google.com>
+In-Reply-To: <20231211162331.435900-3-peter.griffin@linaro.org>
 
-Hi Kyle,
 
-On Tue, Dec 05, 2023 at 11:01:14AM +0800, Kyle Tso wrote:
-> Refactor tcpm_fw_get_caps to support the multiple pd capabilities got
-> from fwnode. For backward compatibility, the original single capability
-> is still applicable. The fetched data is stored in the newly defined
-> structure "pd_data" and there is an array "pd_list" to store the
-> pointers to them. A dedicated array "pds" is used to store the handles
-> of the registered usb_power_delivery instances.
+On Mon, 11 Dec 2023 16:23:17 +0000, Peter Griffin wrote:
+> This introduces bindings and dt-schema for the Google Tensor SoCs.
+> Currently just gs101 and pixel 6 are supported.
 > 
-> Also implement the .pd_get and .pd_set ops which are introduced in
-> commit a7cff92f0635 ("usb: typec: USB Power Delivery helpers for ports
-> and partners"). Once the .pd_set is called, the current capability will
-> be updated and state machine will re-negotiate the power contract if
-> possible.
-> 
-> Signed-off-by: Kyle Tso <kyletso@google.com>
+> Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
+> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
 > ---
-> v4 -> v5:
-> - no change
+> @RobH I removed your 'Reviewed-by: Rob Herring <robh@kernel.org>' tag
+> as since you reviewed this I added the empty ect node. Can you please
+> do the review again?
 > 
->  drivers/usb/typec/tcpm/tcpm.c | 389 ++++++++++++++++++++++++++--------
->  1 file changed, 303 insertions(+), 86 deletions(-)
+> x# Please enter the commit message for your changes. Lines starting
+> ---
+>  .../devicetree/bindings/arm/google.yaml       | 53 +++++++++++++++++++
+>  1 file changed, 53 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/google.yaml
+> 
 
-<snip>
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-> @@ -6124,12 +6243,11 @@ static int tcpm_port_register_pd(struct tcpm_port *port)
->  	return ret;
->  }
->  
-> -static int tcpm_fw_get_caps(struct tcpm_port *port,
-> -			    struct fwnode_handle *fwnode)
-> +static int tcpm_fw_get_properties(struct tcpm_port *port, struct fwnode_handle *fwnode)
-
-The function names got me confused first :). Even though you now call
-this "properties", I think the term "capablities" can in practice
-still mean two things in this driver (you are for example still
-calling typec_get_fw_cap() from this function).
-
-So how about you don't change the name of this function, but
-instead..
-
->  {
->  	const char *opmode_str;
-> +	u32 frs_current;
->  	int ret;
-> -	u32 mw, frs_current;
->  
->  	if (!fwnode)
->  		return -EINVAL;
-> @@ -6149,28 +6267,10 @@ static int tcpm_fw_get_caps(struct tcpm_port *port,
->  
->  	port->port_type = port->typec_caps.type;
->  	port->pd_supported = !fwnode_property_read_bool(fwnode, "pd-disable");
-> -
->  	port->slow_charger_loop = fwnode_property_read_bool(fwnode, "slow-charger-loop");
-> -	if (port->port_type == TYPEC_PORT_SNK)
-> -		goto sink;
-> -
-> -	/* Get Source PDOs for the PD port or Source Rp value for the non-PD port */
-> -	if (port->pd_supported) {
-> -		ret = fwnode_property_count_u32(fwnode, "source-pdos");
-> -		if (ret == 0)
-> -			return -EINVAL;
-> -		else if (ret < 0)
-> -			return ret;
-> +	port->self_powered = fwnode_property_read_bool(fwnode, "self-powered");
->  
-> -		port->nr_src_pdo = min(ret, PDO_MAX_OBJECTS);
-> -		ret = fwnode_property_read_u32_array(fwnode, "source-pdos",
-> -						     port->src_pdo, port->nr_src_pdo);
-> -		if (ret)
-> -			return ret;
-> -		ret = tcpm_validate_caps(port, port->src_pdo, port->nr_src_pdo);
-> -		if (ret)
-> -			return ret;
-> -	} else {
-> +	if (!port->pd_supported) {
->  		ret = fwnode_property_read_string(fwnode, "typec-power-opmode", &opmode_str);
->  		if (ret)
->  			return ret;
-> @@ -6180,43 +6280,156 @@ static int tcpm_fw_get_caps(struct tcpm_port *port,
->  		port->src_rp = tcpm_pwr_opmode_to_rp(ret);
->  	}
->  
-> -	if (port->port_type == TYPEC_PORT_SRC)
-> -		return 0;
-> +	/* FRS can only be supported by DRP ports */
-> +	if (port->port_type == TYPEC_PORT_DRP) {
-> +		ret = fwnode_property_read_u32(fwnode, "new-source-frs-typec-current",
-> +					       &frs_current);
-> +		if (!ret && frs_current <= FRS_5V_3A)
-> +			port->new_source_frs_current = frs_current;
-> +	}
->  
-> -sink:
-> -	port->self_powered = fwnode_property_read_bool(fwnode, "self-powered");
-> +	return 0;
-> +}
-> +
-> +static int tcpm_fw_get_caps(struct tcpm_port *port, struct fwnode_handle *fwnode)
-
-..make that tcpm_fw_get_pd_capabilities() (or something like that) to
-be more clear?
-
-Also, since you are only calling this ones, why not just call this
-directly from tcpm_fw_get_cap() instead of right after it?
-
-thanks,
-
--- 
-heikki
 
