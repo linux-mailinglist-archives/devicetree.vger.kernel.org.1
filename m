@@ -1,358 +1,115 @@
-Return-Path: <devicetree+bounces-24758-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24759-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30F9381118F
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 13:50:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E062811225
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 13:54:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5519B1C2101B
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 12:50:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4FFC51C20899
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 12:54:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8F332942A;
-	Wed, 13 Dec 2023 12:49:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AA902C185;
+	Wed, 13 Dec 2023 12:54:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="E9Czqppe"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="onZlDTA2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75804EA;
-	Wed, 13 Dec 2023 04:49:48 -0800 (PST)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3BDCnaXS005865;
-	Wed, 13 Dec 2023 06:49:36 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1702471776;
-	bh=F99hiyYRTqN0xEpFopcKYcZrXDpOJcGYI0JZNgw6I10=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=E9CzqppeRH090jtmVX8ZAjE4QkaxuWEDh9AxRPdKgzf+q9Y55iwZWctUnf+ooGIFs
-	 r5YP+8tSD4qK/RZ0zMuHO2uMGQFL+vxifWVkelvTSSF3vhcRKxucA7ml0tQk/qa9Ur
-	 +FNSaIv3hpXeDt0m4zEKtU5etuq2t8NyxIImymD8=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3BDCna59091795
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 13 Dec 2023 06:49:36 -0600
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 13
- Dec 2023 06:49:35 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 13 Dec 2023 06:49:35 -0600
-Received: from localhost ([10.24.69.141])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3BDCnZeX092413;
-	Wed, 13 Dec 2023 06:49:35 -0600
-From: Vaishnav Achath <vaishnav.a@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <j-choudhary@ti.com>, <u-kumar1@ti.com>,
-        <vaishnav.a@ti.com>
-Subject: [PATCH 3/3] arm64: dts: ti: Add support for TI J722S Evaluation Module
-Date: Wed, 13 Dec 2023 18:19:30 +0530
-Message-ID: <20231213124930.3012-4-vaishnav.a@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20231213124930.3012-1-vaishnav.a@ti.com>
-References: <20231213124930.3012-1-vaishnav.a@ti.com>
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77D75D42
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 04:54:39 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-40c31f18274so64407485e9.0
+        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 04:54:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702472078; x=1703076878; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=k0T+A6SRa9G6oV07TV0BevTGZT6++0no4uJCEiRG1HQ=;
+        b=onZlDTA28DDwtZGIb+SIGlapV7GUIgUx8zHiMtRZS5XYYOz5HWeTdhy4gwhOD8n814
+         LmlJGEKuqHmW2ajdHhd/TS4rq9VaxguJQLJW470Y4pLHawpFZwDSOova5IlDcn0ylIqS
+         5e30DUIVCqf0rQEICOY1TQ5QyfYHPNErHhJu1DDKaAhWjxvsOc+HVGvjFS5powo1y7Cw
+         D5IIfocUBM4AhCJ/GLhcP8dUEmEo8ciOUmJN3IiPFFDglhYgYvNqOPm9kTbq1IoxtRth
+         r0ihUcs8Z2XNCbMv4G4GBPj72J8JXIMDYuU5IehXbbYrfU8lk4SkWDA7Yl7s+5P1llGG
+         Jalg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702472078; x=1703076878;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=k0T+A6SRa9G6oV07TV0BevTGZT6++0no4uJCEiRG1HQ=;
+        b=o/5FaVW9lW2/30NsxZyXRfsRmCZI7Heaa+zVZzpGLxHu1xxFAi69cGxMO3UKiRSKqn
+         d9GnZbYMITwKNnQdG+clLx/rLgpf10ZA82AyOIHfqC/tkWSD7yPx7Y0+rw+buaDIdB1A
+         9bMhKJy8qi/3yyCynpIkT3NNsw8MWLJbbqZYRJmE1wnYlZr98/GUOIXt0YFQJcOn1q5e
+         9BN1vL8ixdLJcP4RCtFIWM5d5TwZ4fhfk0Hh2AHQhvhMnJBIwGuDt5SECsPG8DJq3FXT
+         pkqT0QqHVUGAOF4OCD4X4QH2Et4idib/sO5C5RZiC8ggAOCcaFMYhaVu881feHME3HpY
+         jyEg==
+X-Gm-Message-State: AOJu0YzZWxBT9dV1o4WGW2zbjIWGu/39Zn7RbQgXv35aTcUC7iSfckLx
+	efZ9I48Dwy/h2uO0md7s0URrGw==
+X-Google-Smtp-Source: AGHT+IGfK+6t200n7Uf79+mFIVcnbySb7ZZ/Zv9J0qH1I2C1ziTS7sBTa5sZAA0q/aUz6AB2R57PGQ==
+X-Received: by 2002:a1c:4b10:0:b0:40c:32d5:18df with SMTP id y16-20020a1c4b10000000b0040c32d518dfmr3912612wma.182.1702472077776;
+        Wed, 13 Dec 2023 04:54:37 -0800 (PST)
+Received: from ?IPV6:2a05:6e02:1041:c10:c49e:e1a5:3210:b8c0? ([2a05:6e02:1041:c10:c49e:e1a5:3210:b8c0])
+        by smtp.googlemail.com with ESMTPSA id bi8-20020a05600c3d8800b0040c43be2e52sm12903853wmb.40.2023.12.13.04.54.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Dec 2023 04:54:37 -0800 (PST)
+Message-ID: <47523014-1ed6-4644-8099-52fe785bef13@linaro.org>
+Date: Wed, 13 Dec 2023 13:54:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v12 1/4] dt-bindings: thermal-zones: Document
+ critical-action
+Content-Language: en-US
+To: Fabio Estevam <festevam@gmail.com>, rafael@kernel.org
+Cc: krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+ conor+dt@kernel.org, mazziesaccount@gmail.com, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20231129124330.519423-1-festevam@gmail.com>
+ <e0b9c0c1-eae5-4664-bddb-56515e9fee56@linaro.org>
+ <CAOMZO5CTBkT+T+wevFRYyBJuwMCiUoFuDKGSyYNNZQ9CWsEJrQ@mail.gmail.com>
+ <CAOMZO5AhP1Jhjte2dncWbmWzJ0ZHK9PrOC=pQt8YANTU+B076Q@mail.gmail.com>
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <CAOMZO5AhP1Jhjte2dncWbmWzJ0ZHK9PrOC=pQt8YANTU+B076Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Add basic support for the J722S EVM with UART console and
-MMC SD as rootfs.
+On 13/12/2023 12:39, Fabio Estevam wrote:
+> Rafael, Daniel,
+> 
+> On Wed, Dec 6, 2023 at 9:59 AM Fabio Estevam <festevam@gmail.com> wrote:
+>>
+>> Hi Rafael,
+>>
+>> On Wed, Nov 29, 2023 at 10:13 AM Daniel Lezcano
+>> <daniel.lezcano@linaro.org> wrote:
+>>
+>>> Rafael, ok for you if I pick this series ?
+>>
+>> Please let us know if Daniel could pick this series.
+> 
+> Can this be applied for 6.8, please?
 
-Schematics are available at:
-	https://www.ti.com/lit/zip/sprr495
+I have applied this series on my bleeding-edge branch, this one will be 
+merged with the PM's bleeding branch. After a few days it will migrate 
+to linux-next.
 
-Co-developed-by: Jayesh Choudhary <j-choudhary@ti.com>
-Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
-Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
----
- arch/arm64/boot/dts/ti/Makefile         |   3 +
- arch/arm64/boot/dts/ti/k3-j722s-evm.dts | 253 ++++++++++++++++++++++++
- 2 files changed, 256 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-j722s-evm.dts
+If no obvious regression happen it will end up for v6.8
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 1ac47876bc99..aa7cc33e239b 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -76,6 +76,9 @@ dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm-gesi-exp-board.dtbo
- k3-j721s2-evm-dtbs := k3-j721s2-common-proc-board.dtb k3-j721s2-evm-gesi-exp-board.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm.dtb
- 
-+# Boards with J722s SoC
-+dtb-$(CONFIG_ARCH_K3) += k3-j722s-evm.dtb
-+
- # Boards with J784s4 SoC
- dtb-$(CONFIG_ARCH_K3) += k3-am69-sk.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm.dtb
-diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-new file mode 100644
-index 000000000000..1cb29203a8ed
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-@@ -0,0 +1,253 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Device Tree file for the J722S-EVM
-+ * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
-+ *
-+ * Schematics: https://www.ti.com/lit/zip/sprr495
-+ */
-+
-+/dts-v1/;
-+
-+#include "k3-j722s.dtsi"
-+
-+/ {
-+	compatible = "ti,j722s-evm", "ti,j722s";
-+	model = "Texas Instruments J722S EVM";
-+
-+	aliases {
-+		serial0 = &wkup_uart0;
-+		serial2 = &main_uart0;
-+		mmc0 = &sdhci0;
-+		mmc1 = &sdhci1;
-+	};
-+
-+	chosen {
-+		stdout-path = &main_uart0;
-+	};
-+
-+	memory@80000000 {
-+		/* 8G RAM */
-+		reg = <0x00000000 0x80000000 0x00000000 0x80000000>,
-+		      <0x00000008 0x80000000 0x00000001 0x80000000>;
-+		device_type = "memory";
-+		bootph-pre-ram;
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		secure_tfa_ddr: tfa@9e780000 {
-+			reg = <0x00 0x9e780000 0x00 0x80000>;
-+			no-map;
-+		};
-+
-+		secure_ddr: optee@9e800000 {
-+			reg = <0x00 0x9e800000 0x00 0x01800000>;
-+			no-map;
-+		};
-+
-+		wkup_r5fss0_core0_memory_region: r5f-memory@a0100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa0100000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+	};
-+
-+	vmain_pd: regulator-0 {
-+		/* TPS65988 PD CONTROLLER OUTPUT */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vmain_pd";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		bootph-all;
-+	};
-+
-+	vsys_5v0: regulator-vsys5v0 {
-+		/* Output of LM5140 */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vsys_5v0";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vmain_pd>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vdd_mmc1: regulator-mmc1 {
-+		/* TPS22918DBVR */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_mmc1";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		enable-active-high;
-+		gpio = <&exp1 15 GPIO_ACTIVE_HIGH>;
-+		bootph-all;
-+	};
-+
-+	vdd_sd_dv: regulator-TLV71033 {
-+		compatible = "regulator-gpio";
-+		regulator-name = "tlv71033";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vdd_sd_dv_pins_default>;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		vin-supply = <&vsys_5v0>;
-+		gpios = <&main_gpio0 70 GPIO_ACTIVE_HIGH>;
-+		states = <1800000 0x0>,
-+			 <3300000 0x1>;
-+	};
-+
-+	vsys_io_1v8: regulator-vsys-io-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vsys_io_1v8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vsys_io_1v2: regulator-vsys-io-1v2 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vsys_io_1v2";
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+};
-+
-+&main_pmx0 {
-+	bootph-all;
-+
-+	main_i2c0_pins_default: main-i2c0-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_IOPAD(0x01e0, PIN_INPUT_PULLUP, 0) /* (D23) I2C0_SCL */
-+			J722S_IOPAD(0x01e4, PIN_INPUT_PULLUP, 0) /* (B22) I2C0_SDA */
-+		>;
-+		bootph-all;
-+	};
-+
-+	main_uart0_pins_default: main-uart0-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_IOPAD(0x1c8, PIN_INPUT, 0)	/* (A22) UART0_RXD */
-+			J722S_IOPAD(0x1cc, PIN_OUTPUT, 0)	/* (B22) UART0_TXD */
-+		>;
-+		bootph-all;
-+	};
-+
-+	vdd_sd_dv_pins_default: vdd-sd-dv-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_IOPAD(0x0120, PIN_INPUT, 7) /* (F27) MMC2_CMD.GPIO0_70 */
-+		>;
-+		bootph-all;
-+	};
-+
-+	main_mmc1_pins_default: main-mmc1-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_IOPAD(0x023c, PIN_INPUT, 0) /* (H22) MMC1_CMD */
-+			J722S_IOPAD(0x0234, PIN_OUTPUT, 0) /* (H24) MMC1_CLK */
-+			J722S_IOPAD(0x0230, PIN_INPUT, 0) /* (H23) MMC1_DAT0 */
-+			J722S_IOPAD(0x022c, PIN_INPUT_PULLUP, 0) /* (H20) MMC1_DAT1 */
-+			J722S_IOPAD(0x0228, PIN_INPUT_PULLUP, 0) /* (J23) MMC1_DAT2 */
-+			J722S_IOPAD(0x0224, PIN_INPUT_PULLUP, 0) /* (H25) MMC1_DAT3 */
-+			J722S_IOPAD(0x0240, PIN_INPUT, 0) /* (B24) MMC1_SDCD */
-+		>;
-+		bootph-all;
-+	};
-+};
-+
-+&main_gpio1 {
-+	status = "okay";
-+};
-+
-+&main_uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_uart0_pins_default>;
-+	status = "okay";
-+	bootph-all;
-+};
-+
-+&mcu_pmx0 {
-+	bootph-all;
-+
-+	wkup_uart0_pins_default: wkup-uart0-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_MCU_IOPAD(0x02c, PIN_INPUT, 0)	/* (C7) WKUP_UART0_CTSn */
-+			J722S_MCU_IOPAD(0x030, PIN_OUTPUT, 0)	/* (C6) WKUP_UART0_RTSn */
-+			J722S_MCU_IOPAD(0x024, PIN_INPUT, 0)	/* (D8) WKUP_UART0_RXD */
-+			J722S_MCU_IOPAD(0x028, PIN_OUTPUT, 0)	/* (D7) WKUP_UART0_TXD */
-+		>;
-+		bootph-all;
-+	};
-+
-+	wkup_i2c0_pins_default: wkup-i2c0-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_MCU_IOPAD(0x04c, PIN_INPUT_PULLUP, 0)	/* (C7) WKUP_I2C0_SCL */
-+			J722S_MCU_IOPAD(0x050, PIN_INPUT_PULLUP, 0)	/* (C6) WKUP_I2C1_SDA */
-+		>;
-+		bootph-all;
-+	};
-+};
-+
-+&wkup_uart0 {
-+	/* WKUP UART0 is used by DM firmware */
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&wkup_uart0_pins_default>;
-+	status = "reserved";
-+	bootph-all;
-+};
-+
-+&wkup_i2c0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&wkup_i2c0_pins_default>;
-+	clock-frequency = <400000>;
-+	bootph-all;
-+};
-+
-+&main_i2c0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_i2c0_pins_default>;
-+	clock-frequency = <400000>;
-+	bootph-all;
-+
-+	exp1: gpio@23 {
-+		compatible = "ti,tca6424";
-+		reg = <0x23>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		gpio-line-names = "TRC_MUX_SEL", "OSPI/ONAND_MUX_SEL",
-+				  "MCASP1_FET_SEL", "CTRL_PM_I2C_OE#",
-+				  "CSI_VIO_SEL", "USB2.0_MUX_SEL",
-+				  "CSI01_MUX_SEL_2", "CSI23_MUX_SEL_2",
-+				  "LMK1_OE1", "LMK1_OE0",
-+				  "LMK2_OE0", "LMK2_OE1",
-+				  "GPIO_RGMII1_RST#", "GPIO_AUD_RSTn",
-+				  "GPIO_eMMC_RSTn", "GPIO_uSD_PWR_EN",
-+				  "USER_LED2", "MCAN0_STB",
-+				  "PCIe0_1L_RC_RSTz", "PCIe0_1L_PRSNT#",
-+				  "ENET1_EXP_SPARE2", "ENET1_EXP_PWRDN",
-+				  "PD_I2ENET1_I2CMUX_SELC_IRQ", "ENET1_EXP_RESETZ";
-+	};
-+};
-+
-+&sdhci1 {
-+	/* SD/MMC */
-+	status = "okay";
-+	vmmc-supply = <&vdd_mmc1>;
-+	vqmmc-supply = <&vdd_sd_dv>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_mmc1_pins_default>;
-+	ti,driver-strength-ohm = <50>;
-+	disable-wp;
-+	no-1-8-v;
-+	bootph-all;
-+};
+Thank you
+
+   -- Daniel
+
 -- 
-2.17.1
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
 
