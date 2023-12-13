@@ -1,89 +1,191 @@
-Return-Path: <devicetree+bounces-24819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CF5C81152E
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 15:47:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6AAD811546
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 15:54:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A84CF1F214D8
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 14:47:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D53BA1C20F50
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 14:54:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A8072E85D;
-	Wed, 13 Dec 2023 14:46:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28B782EB08;
+	Wed, 13 Dec 2023 14:53:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2DB118F;
-	Wed, 13 Dec 2023 06:46:51 -0800 (PST)
-Received: from i53875b61.versanet.de ([83.135.91.97] helo=phil.lan)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1rDQVN-0000JI-AG; Wed, 13 Dec 2023 15:46:33 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: Andy Yan <andyshrk@163.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	sebastian.reichel@collabora.com,
-	krzysztof.kozlowski+dt@linaro.org,
-	chris.obbard@collabora.com,
-	robh+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	kever.yang@rock-chips.com,
-	linux-rockchip@lists.infradead.org,
-	hjc@rock-chips.com,
-	dri-devel@lists.freedesktop.org,
-	linux-kernel@vger.kernel.org,
-	Andy Yan <andy.yan@rock-chips.com>
-Subject: Re: (subset) [PATCH v5 00/16] Add VOP2 support on rk3588
-Date: Wed, 13 Dec 2023 15:46:31 +0100
-Message-Id: <170247871959.753029.11166929824242336708.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231211115547.1784587-1-andyshrk@163.com>
-References: <20231211115547.1784587-1-andyshrk@163.com>
+Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C92EDD;
+	Wed, 13 Dec 2023 06:53:52 -0800 (PST)
+Received: by mail-ot1-f49.google.com with SMTP id 46e09a7af769-6d7fa93afe9so5193932a34.2;
+        Wed, 13 Dec 2023 06:53:52 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702479232; x=1703084032;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=C7eF1sr6RjgS4rFcgIiGFaIc2GmVoQDjgQdR45bMb7w=;
+        b=rrHgetc7PfISuyQitl4JMiEKbo9yYWv2TK6eO20Oy3HKedVedfO8cMRothvg/Pc/Zk
+         b64hBHREnUh9GogGEiqXMCGtzGBD5RMUiT1uHaHrk+1Fyw3ITIVDgqNuEB8db3IsBQmW
+         b2hjt4jw4TEr9AhrL0zpB5QQ+PAy8uM/BWnPq7ilWaC33aEFfdymCVJ6kxol9E0Oyv1J
+         Qj6mfHeaFcDM/O3r4xIf0SPoiYBioswFf+xJWUocmQzcN2eMMSWhy7KPXCtMlns2tCmv
+         Dv4yp0KYSvKi1qM+LJZ8b4cNMWgLM9WEN/ZIRYpXcQc01Y+Nsaw1b9AklL0UDRjr/2mE
+         sk2Q==
+X-Gm-Message-State: AOJu0Yz+FZlAvYdWD5E0PK8HbXl4ZSpdJU8rW6VG1yvR4UfsZUUEjgU3
+	s6GxdI0uw/KFOe5qX/9AnzlW+fSpWg==
+X-Google-Smtp-Source: AGHT+IHjJzuUOUOtUnsfLKwrky5w1ClJWBJ+R/A5M3/AIk8/vRzcUwGi1xuOCyrENkM3QBoI5z+p0Q==
+X-Received: by 2002:a9d:6284:0:b0:6d9:e2ee:3d23 with SMTP id x4-20020a9d6284000000b006d9e2ee3d23mr7076020otk.36.1702479231786;
+        Wed, 13 Dec 2023 06:53:51 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id x6-20020a4aea06000000b0059030f95ebfsm2977608ood.41.2023.12.13.06.53.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Dec 2023 06:53:51 -0800 (PST)
+Received: (nullmailer pid 1116961 invoked by uid 1000);
+	Wed, 13 Dec 2023 14:53:50 -0000
+Date: Wed, 13 Dec 2023 08:53:50 -0600
+From: Rob Herring <robh@kernel.org>
+To: Mike Looijmans <mike.looijmans@topic.nl>
+Cc: devicetree@vger.kernel.org, linux-iio@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Lars-Peter Clausen <lars@metafoo.de>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: iio: spi-dac: Add driver for SPI shift
+ register DACs
+Message-ID: <20231213145350.GA1102482-robh@kernel.org>
+References: <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.3aa8b2c3-ac7e-4139-afe5-048730c85889@emailsignatures365.codetwo.com>
+ <20231213090910.25410-1-mike.looijmans@topic.nl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231213090910.25410-1-mike.looijmans@topic.nl>
 
-On Mon, 11 Dec 2023 19:55:47 +0800, Andy Yan wrote:
-> From: Andy Yan <andy.yan@rock-chips.com>
+On Wed, Dec 13, 2023 at 10:09:09AM +0100, Mike Looijmans wrote:
+> Add a driver for generic serial shift register DACs like TI DAC714.
+
+This is not a driver.
+
 > 
-> This patch sets aims at enable the VOP2 support on rk3588.
+> Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
 > 
-> Main feature of VOP2 on rk3588:
-> Four video ports:
-> VP0 Max 4096x2160
-> VP1 Max 4096x2160
-> VP2 Max 4096x2160
-> VP3 Max 2048x1080
+> ---
 > 
-> [...]
+>  .../devicetree/bindings/iio/dac/spidac.yaml   | 69 +++++++++++++++++++
+>  1 file changed, 69 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/dac/spidac.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/dac/spidac.yaml b/Documentation/devicetree/bindings/iio/dac/spidac.yaml
+> new file mode 100644
+> index 000000000000..be98da728594
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/dac/spidac.yaml
+> @@ -0,0 +1,69 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/dac/spidac.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Generic "shift register" SPI DAC
+> +
+> +description:
+> +  Supports simple SPI "shift register" DACs, like TI's DAC714. These DACs have
+> +  no control registers or commands, they just use a clock and serial data to
+> +  shift in a raw DAC value. Multiple DACs can be daisy-chained together.
+> +
+> +maintainers:
+> +  - Mike Looijmans <mike.looijmans@topic.nl>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - spi-dac
+> +      - ti,dac714
 
-Applied, thanks!
+Why does TI chip need a specific compatible and others don't?
 
-[10/16] dt-bindings: display: vop2: Add rk3588 support
-        commit: 4ccdc92c1fea732fac8f3438d6288719055fa141
-[11/16] dt-bindings: rockchip,vop2: Add more endpoint definition
-        commit: dc7226acacc6502291446f9e33cf96246ec49a30
-[12/16] drm/rockchip: vop2: Add support for rk3588
-        commit: 5a028e8f062fc862f051f8e62a0d5a1abac91955
-[13/16] drm/rockchip: vop2: rename VOP_FEATURE_OUTPUT_10BIT to VOP2_VP_FEATURE_OUTPUT_10BIT
-        commit: 9d7fe7704d534c2d043aff2987f10671a8b4373d
-[16/16] MAINTAINERS: Add myself as a reviewer for rockchip drm
-        commit: 6c3ab21f37a97a868193ccbeb8a492e51210ff31
+Are power supplies on these chips the same?
 
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  ldac-gpios:
+> +    description:
+> +      LDAC pin to be used as a hardware trigger to update the DAC outputs. Not
+> +      needed when the DACs use the chip select to update their output.
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    description:
+> +      Optional reset pin that resets all DACs.
+> +    maxItems: 1
+> +
+> +  num-channels:
+> +    description:
+> +      Number of channels (usually the number of DAC chips in series)
 
-I skipped the debugfs patch for now, as I need to look at that separately
-and of course the dts patch as that needs to wait for iommu maintainers
-to pick up the binding addition.
+usually? What other possible option is there? If something else, how is 
+the driver going to distinguish that?
 
+default: 1
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  bits-per-channel:
+
+Perhaps 'channel-bits' as -bits is a standard unit suffix.
+
+> +    description:
+> +       Number of bits for each DAC output.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+
+Constraints? I assume all DACs are much less than 2^32 bits. default?
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+
+Don't you always need to know how many bits?
+
+> +
+> +allOf:
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        dac@1 {
+> +            compatible = "spidac";
+> +            reg = <0x1>;
+> +            ldac-gpios = <&gpio 42 GPIO_ACTIVE_LOW>;
+> +        };
+> +    };
+> +...
+> -- 
+> 2.34.1
+> 
+> 
+> Met vriendelijke groet / kind regards,
+> 
+> Mike Looijmans
+> System Expert
+> 
+> 
+> TOPIC Embedded Products B.V.
+> Materiaalweg 4, 5681 RJ Best
+> The Netherlands
+> 
+> T: +31 (0) 499 33 69 69
+> E: mike.looijmans@topic.nl
+> W: www.topic.nl
+> 
+> Please consider the environment before printing this e-mail
 
