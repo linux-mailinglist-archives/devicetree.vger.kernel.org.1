@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-24795-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24799-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64B95811407
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 15:04:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2538811426
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 15:06:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D1C011F224A5
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 14:04:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6EAED1F2301C
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 14:06:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 910432E637;
-	Wed, 13 Dec 2023 14:04:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 772262E826;
+	Wed, 13 Dec 2023 14:06:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cqSOY00x"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OQ5mQlPu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B3ECA7
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 06:04:05 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-50c0f6b1015so8111813e87.3
-        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 06:04:05 -0800 (PST)
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FD35131
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 06:06:03 -0800 (PST)
+Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2c9f9db9567so80151871fa.3
+        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 06:06:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702476244; x=1703081044; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :references:cc:to:from:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=xRbYe9ijnkLeFnAmPMRsBoKr6vdwNz/E+CbxpHOS9z8=;
-        b=cqSOY00xSeuVcTQjI3EAhR0SbR/L13ft1/uwuTBcaCLFJGrS69/oaSoOQZT9RQW1ka
-         Sk0vQpN+8I8zU3shBVHYAD/Ym1OOrMl5TtC98NqBL3EOrlbumLiS6UVoXXW2FUz8ZrwD
-         EWe4hVr/auKf+GCTE39xEteqV56glJi6Zgz1fAOBXiMCWpWhnWYFyI0pjGZFy4MTeY5U
-         VyzYzNYhZ5jkddW0ife0I/o0pXGl0wCL+Qc0KrkO8esGD3SAIKIsN566OgmzfS0taqJK
-         CK8sQTS30QxlGfcB9xh6yY2XC/dPl/s31UOhBMJorF8cAL8CWct31mJQ69+o7Y1LRYPr
-         iqeg==
+        d=linaro.org; s=google; t=1702476361; x=1703081161; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RAHh2YYimTjQ7eN1pl3Npn3iYoj+AWtZ/MwFC7+Xs58=;
+        b=OQ5mQlPu0Ij4B4JI6OEJ/ANxsqH240aexZRW4KW6KqUongVsBWf8ozYhBqGeuNBUbX
+         2Jwcq0CbwtWC1H29Oz1ORFlK++h1ifFTw3rkh4cmTYfB6mfFMug/uHyeLxQCjJG9b/Dx
+         2XyFEgmOHOmfYRLc/YCAP+bjb4Y7Dhgugrh8AKFch0kTjnSpCrV0MkL5lPrErHBQQ0IK
+         AFWWxz1TGxKTxa2BsQavSOi8DiOeX8VApnyiUjtKjkUFyleRhFGCrpc4nce3ZEda9r5u
+         1uh2lnesUpao2hYnc0f40CRjnOj0UbmiB9J48CMdH3JbTKRbiTOrCJkdwlD4TCPg1MYr
+         mWSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702476244; x=1703081044;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :references:cc:to:from:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xRbYe9ijnkLeFnAmPMRsBoKr6vdwNz/E+CbxpHOS9z8=;
-        b=FzlZTYX7MB/pyie0EQRbS+k4K3qTTOCCzkt6PZWiroohvZqJq0MqTZ1Irn4RNK031W
-         v/LIjhNAzVStxTT9+HZ8aVlKsFMoeZXbDYX4lgIFQRPPWQySqD1s6DWRjCIqT3ANBqA3
-         2qRuPvtoYiqQg6pMSdrcLdbGLVBTwMuxQALemxa1M3fTdNMvip7uGX2+HZBZT5TIQo8r
-         dYGotYjcb/pjDCg49qrVxWMT3P3Ra0wlAsqdmB0ksyPGqSiDlCylW7tCZblZ8hr7Ypn6
-         5FOzm/kUnVzl77rfmP+mtURmpuGHXaXs/o2bE3xhIDoYZ58N2NyDDSBhhajFhlaxXOjl
-         Az/Q==
-X-Gm-Message-State: AOJu0Yw3NOrfZY4dmtB2a702df3QZNAgV+uSzIVyeDRUr9y69XZtR727
-	2XwkQQ5PosGr/Y0sAPZYnqMU9w==
-X-Google-Smtp-Source: AGHT+IHXMStjoFGz66MJFO4YavP1JUOwKIwmrthJWwEQF3M0eEgC1L39Fi8DAqirkU/xgjnBz1rgVw==
-X-Received: by 2002:ac2:4247:0:b0:50c:6e:98c6 with SMTP id m7-20020ac24247000000b0050c006e98c6mr3987375lfl.122.1702476243773;
-        Wed, 13 Dec 2023 06:04:03 -0800 (PST)
+        d=1e100.net; s=20230601; t=1702476361; x=1703081161;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RAHh2YYimTjQ7eN1pl3Npn3iYoj+AWtZ/MwFC7+Xs58=;
+        b=gM4aa24I3dj22lFnqQeWKUvx9u5mh7rBJiSn7kSzcYoIzN+P2AtsWiQZC4TEg0wq/v
+         bbuByuuwdatYaihv6T33j8I+MGIwD/qwg9twKK59GHtGfBxHp1kNjSUqLyTsxnya0ykz
+         WDclPuARwfqQTL+bCp7TnPPvo6b/xTfkX/frJjrMFiOvrRTAmZ9pQ2oDoyn9acugbn1j
+         4Bu1hIzNAhhe1psVFJhP4xZbdaBCSKqiWiXlHXHjmWDvnls0VJdreoESjsxxfpE84LK2
+         1RZkIj06NzBjHNrpUEtX1uKElMCU+mh3dZJQaGOwsLA3b2u8VdoKIyppX5nSvdkJNb/W
+         3yRw==
+X-Gm-Message-State: AOJu0Yytvgva8GfmzrRaKXHQIkPnGzVelYtdmyfD9llRKOhE/B7ZZuyP
+	u4QXMFzIFY7D/kjaAsAU3i7OZg==
+X-Google-Smtp-Source: AGHT+IGE6GWZdPNlIEjJHZNMsDk4qF9PX6AICFCT/vw0imiiACSbxU8tQQhwai+eYXm5QFQqzM7KuQ==
+X-Received: by 2002:a2e:a28e:0:b0:2ca:2412:4df8 with SMTP id k14-20020a2ea28e000000b002ca24124df8mr2889734lja.84.1702476361438;
+        Wed, 13 Dec 2023 06:06:01 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id kw20-20020a170907771400b00a1dc4307ed5sm7758194ejc.195.2023.12.13.06.04.02
+        by smtp.gmail.com with ESMTPSA id s20-20020a50d494000000b0054cc2e952f0sm5877972edi.81.2023.12.13.06.05.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Dec 2023 06:04:03 -0800 (PST)
-Message-ID: <11257e57-693f-46db-8f97-09e5d4c20238@linaro.org>
-Date: Wed, 13 Dec 2023 15:04:01 +0100
+        Wed, 13 Dec 2023 06:06:00 -0800 (PST)
+Message-ID: <5013146f-ff8c-4462-a94e-061478268cb2@linaro.org>
+Date: Wed, 13 Dec 2023 15:05:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,21 +62,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 7/7] arm64: dts: qcom: aim300: add AIM300 AIoT
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Tengfei Fan <quic_tengfan@quicinc.com>, agross@kernel.org,
- andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Neil Armstrong <neil.armstrong@linaro.org>, Abel Vesa
- <abel.vesa@linaro.org>, Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@quicinc.com,
- Qiang Yu <quic_qianyu@quicinc.com>, Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-References: <20231207092801.7506-1-quic_tengfan@quicinc.com>
- <20231207092801.7506-8-quic_tengfan@quicinc.com>
- <02be9f46-2187-45d0-9929-31f6a2c18b35@linaro.org>
+Subject: Re: [Patch v5 11/11] arm64: dts: fsd: Add MFC related DT enteries
 Content-Language: en-US
+To: Aakarsh Jain <aakarsh.jain@samsung.com>,
+ linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc: m.szyprowski@samsung.com, andrzej.hajda@intel.com, mchehab@kernel.org,
+ hverkuil-cisco@xs4all.nl, krzysztof.kozlowski+dt@linaro.org,
+ robh+dt@kernel.org, conor+dt@kernel.org, linux-samsung-soc@vger.kernel.org,
+ andi@etezian.org, gost.dev@samsung.com, alim.akhtar@samsung.com,
+ aswani.reddy@samsung.com, pankaj.dubey@samsung.com,
+ ajaykumar.rs@samsung.com, linux-fsd@tesla.com,
+ Smitha T Murthy <smithatmurthy@gmail.com>
+References: <20231206063045.97234-1-aakarsh.jain@samsung.com>
+ <CGME20231206063140epcas5p1ba86525117f4d9ec9172ae7cb18b7420@epcas5p1.samsung.com>
+ <20231206063045.97234-12-aakarsh.jain@samsung.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -122,37 +122,25 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <02be9f46-2187-45d0-9929-31f6a2c18b35@linaro.org>
+In-Reply-To: <20231206063045.97234-12-aakarsh.jain@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 11/12/2023 11:33, Krzysztof Kozlowski wrote:
->> @@ -0,0 +1,579 @@
->> +// SPDX-License-Identifier: BSD-3-Clause
->> +/*
->> + * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
->> + */
->> +
->> +/dts-v1/;
->> +
->> +#include <dt-bindings/leds/common.h>
->> +#include "qcs8550-aim300.dtsi"
+On 06/12/2023 07:30, Aakarsh Jain wrote:
+> Add MFC DT node and reserve memory node for MFC usage.
 > 
-> Which includes sm8550.dtsi thus I think this is compatible with sm8550.
-> You even use sm8550 compatibles here, which is one more hint for that
-> compatibility.
-> 
-> We followed this convention for RB5, although not for QRU/QDU1000 boards.
-> 
-> Anyway, if you add here new SoC compatible, I would expect to see new
-> SoC DTSI.
-> 
-> I don't have in my notes any previous consensus or decision in these
-> matters, so let's discuss now.
-> +CC few Linaro folks
+> Cc: linux-fsd@tesla.com
+> Signed-off-by: Smitha T Murthy <smithatmurthy@gmail.com>
+> Signed-off-by: Aakarsh Jain <aakarsh.jain@samsung.com>
+> ---
 
-After some talks, the idea is to create qcs8550.dtsi, which will include
-sm8550.dtsi, and add top level compatible for qcs8550 using sm8550 fallback.
+Always run checkpatch on your patches:
+
+[Checkpatch]
+WARNING: Use a single space after Cc:
+#8:
+Cc:  <linux-fsd@tesla.com>
+
 
 Best regards,
 Krzysztof
