@@ -1,72 +1,103 @@
-Return-Path: <devicetree+bounces-24773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24774-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EF568112D1
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 14:26:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD05F8112D9
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 14:29:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 618681C20944
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 13:26:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7978A1F21447
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 13:29:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A36B82CCB0;
-	Wed, 13 Dec 2023 13:26:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="bOZjT7TL"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 721AD2D039;
+	Wed, 13 Dec 2023 13:29:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2764EB;
-	Wed, 13 Dec 2023 05:26:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=ZJVFEQtf1RlYavde8GnHeSGwhOHPUeHDQCpuIu2hLTE=; b=bOZjT7TL6qLOKBeEou7JtxyikH
-	rrtrKNFMBgyjiLY2KVdWmq7wiRAoXD6v0YqoMsA9Z4x+gPGqNEqDtBBDFDnx4HkBkOdf3wmr80Juj
-	eBCSjOUbI+wWbeXlbwBYbUbh50sbkVgX/vQ2O+GTZk/WeBwCkl25sjxnvS7vvSK8wWMc=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rDPG6-002p2m-Q3; Wed, 13 Dec 2023 14:26:42 +0100
-Date: Wed, 13 Dec 2023 14:26:42 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: MD Danish Anwar <danishanwar@ti.com>
-Cc: Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Tero Kristo <kristo@kernel.org>, srk@ti.com, r-gunasekaran@ti.com,
-	afd@ti.com
-Subject: Re: [PATCH v2 2/3] arm64: dts: ti: k3-am642-evm: add ICSSG1 Ethernet
- support
-Message-ID: <1a2aba0c-5c4d-4258-b89c-b1be4593d7ff@lunn.ch>
-References: <20231212165832.3933335-1-danishanwar@ti.com>
- <20231212165832.3933335-3-danishanwar@ti.com>
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C242795;
+	Wed, 13 Dec 2023 05:29:00 -0800 (PST)
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-5d3644ca426so67804757b3.1;
+        Wed, 13 Dec 2023 05:29:00 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702474140; x=1703078940;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=T1lNqD1L6tZtJl+KRYDU2cXw+VOrpfjYLm5vnacweRg=;
+        b=AMLF+MnZ0fta1kloYIZqDwrsFufWgdctfINdKpx9PZdo6h9TU/hYK8nc3dttgLvSZs
+         c0PyxbUI/24gHSHCYyItIrGxicQnX/2Xk/EkO0jJRG/3dTUu4KjUAqKnfwiJ9VZShzgY
+         JO020ATq47DORFi6Mvu+9fk8Z9xQl3cv6a2kco1wwHZkyfuRsnjnBZn98PPh0v3k/z9q
+         sTCdyZAdOh49iJeR9wQOl4i7YUvbn5SSF7fi9needv2Y5qsh87Abo8REFHgFP/bXZYbF
+         IAo04FZmpxarWbcX5pzAU74aXs8+OFP8k9BU6kiP9yCj7aW4cKp6506XusckjL0I9kaj
+         APSg==
+X-Gm-Message-State: AOJu0YxTjNEbxaTAPn0/+4X2fFBk5ndwURZwoWH/Jv+75KK0IdI9Gq/Q
+	AIrjIAtPkcn4WObMtlAXokxM08MvWHaZcw==
+X-Google-Smtp-Source: AGHT+IEJKsvHdkmUWpfDYcgnDunaDPSmPnxH9GWCsGLbJxiqiVQQANuFPPBW1+S2+YkjlFdV3+FAIw==
+X-Received: by 2002:a81:9290:0:b0:5e2:2e4c:e16f with SMTP id j138-20020a819290000000b005e22e4ce16fmr2204736ywg.13.1702474139841;
+        Wed, 13 Dec 2023 05:28:59 -0800 (PST)
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com. [209.85.219.172])
+        by smtp.gmail.com with ESMTPSA id x199-20020a81a0d0000000b005e2f116e2f5sm299945ywg.32.2023.12.13.05.28.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Dec 2023 05:28:58 -0800 (PST)
+Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-db4422fff15so5719993276.1;
+        Wed, 13 Dec 2023 05:28:58 -0800 (PST)
+X-Received: by 2002:a25:b122:0:b0:db7:dad0:76e6 with SMTP id
+ g34-20020a25b122000000b00db7dad076e6mr4302665ybj.130.1702474138709; Wed, 13
+ Dec 2023 05:28:58 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231212165832.3933335-3-danishanwar@ti.com>
+References: <20231207070700.4156557-1-claudiu.beznea.uj@bp.renesas.com> <20231207070700.4156557-3-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20231207070700.4156557-3-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 13 Dec 2023 14:28:47 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXozONJDiWVHUGPCwNdJq0q2TaVwBtqO9E5OCQBaWi1Ow@mail.gmail.com>
+Message-ID: <CAMuHMdXozONJDiWVHUGPCwNdJq0q2TaVwBtqO9E5OCQBaWi1Ow@mail.gmail.com>
+Subject: Re: [PATCH v2 02/11] clk: renesas: r9a08g045-cpg: Add clock and reset
+ support for ETH0 and ETH1
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: s.shtylyov@omp.ru, davem@davemloft.net, edumazet@google.com, 
+	kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, magnus.damm@gmail.com, 
+	mturquette@baylibre.com, sboyd@kernel.org, linus.walleij@linaro.org, 
+	prabhakar.mahadev-lad.rj@bp.renesas.com, biju.das.jz@bp.renesas.com, 
+	linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Dec 12, 2023 at 10:28:31PM +0530, MD Danish Anwar wrote:
-> ICSSG1 provides dual Gigabit Ethernet support with proper FW loaded.
-> 
-> The ICSSG1 MII0 (RGMII1) has DP83869 PHY attached to it. The ICSSG1 shares
-> MII1 (RGMII2) PHY DP83869 with CPSW3g and it's assigned by default to
-> CPSW3g. The MDIO access to MII1 (RGMII2) PHY DP83869 is controlled by MDIO
-> bus switch and also assigned to CPSW3g. Therefore the ICSSG1 MII1 (RGMII2)
-> port is kept disable and ICSSG1 is enabled in single MAC mode by
-> default.
+On Thu, Dec 7, 2023 at 8:08=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev> w=
+rote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> RZ/G3S has 2 Gigabit Ethernet interfaces available. Add clock and reset
+> support for both of them.
+>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> ---
+>
+> Changes in v2:
+> - dropped MSTOP
 
-FYI
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-clk-for-v6.8.
 
-I want to review all this MII muxing, but it won't be today.
+Gr{oetje,eeting}s,
 
-  Andrew
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
