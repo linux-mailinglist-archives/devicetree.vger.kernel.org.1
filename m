@@ -1,159 +1,218 @@
-Return-Path: <devicetree+bounces-24744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0334A8110B8
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 13:05:29 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 912278110E7
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 13:18:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 35DBA1C20832
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 12:05:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8613FB20C75
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 12:18:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3ABDE28DC1;
-	Wed, 13 Dec 2023 12:05:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF78328E07;
+	Wed, 13 Dec 2023 12:18:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="smIesrYJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nW+oJ4IK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD46FCD
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 04:05:20 -0800 (PST)
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id AFD433F183
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 12:05:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1702469119;
-	bh=ed/4z9K37WF1+ypqnAItmB7J3yVCg6lzXveMVJNIB+I=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type;
-	b=smIesrYJpscZxloUefgTPLm9pjHmYAbyliUxqFWNWExa7S/6j5I28PBlgJJ8x7USl
-	 3O4ncWgyzy3F22gInJTSF4tV8xphNY2F/CC8E6Gxa9yEAwDdowosPnVylryN8B3jTP
-	 qdcvA8a/x9R93amX0mO3JnkMHXl5RI6iPn8LPfQrrNM9zlcaE6e88i81iOAkL9GIFp
-	 J21Ui9f+PJZyEL+HJJ4Lp4P+GyK+WXGaq2O+Xe+FdUeDOnBajvEbnUrBLNjkMX6eN/
-	 jZuuwKw2lhhotMenNnjph5wJkeJAyVstLE+DPhA/IQ3E/T5GmKggVOygQP0UxkSyp1
-	 ROZxhDtUUnenA==
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-425d963aec1so28085221cf.2
-        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 04:05:19 -0800 (PST)
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B130E4;
+	Wed, 13 Dec 2023 04:18:07 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-54cd8f5bb5cso8699048a12.1;
+        Wed, 13 Dec 2023 04:18:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702469886; x=1703074686; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Fb1JaePVR0fJwILpc3yyM5yj78LV/m+momHnaokZdOw=;
+        b=nW+oJ4IKLIAavVsiI+jDSyw4uzGB5NFlO4x7O67Swnn/7m5upWLO4Z/4jCL7J0aAUE
+         yeBzejokzc4ZqK5tnGYqNWNQx+1U9tC6RtL+zOSETxB03OaLAdAgQ0JsoBce52tuZmgr
+         yTPCZTBczkWutYucEFnOI1aF7L+49ACYbutE5L+NlvH86w1KPATDqz9N/kHU9foa/zHi
+         juewqF5dhKUQ1OJIfx2hn09NHuBSnRn1HCxnlIu8ESh1amu285bPzeOezmceECjZT5so
+         Dm4cNzfcrKn1ZBfLSu+zm7kxqXTs34/+6BlE7PQLSZ429tqYe21sMwhn0v577UgPOvRa
+         KgiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702469118; x=1703073918;
-        h=content-transfer-encoding:cc:to:subject:message-id:date
-         :mime-version:references:in-reply-to:from:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=ed/4z9K37WF1+ypqnAItmB7J3yVCg6lzXveMVJNIB+I=;
-        b=xGHqQraok4/n2VKfmNSA+AulWE6qvBbUZiNEe82nMz3wEr+BLakP85elxraRPS0A39
-         Y1rMETgqQzGra8LRBwmqwGJIrOB3mYl5xNR945QbP1mS+mWe2wPyIB/nvXFvZZWqShwC
-         vj8p6wqOkXymZn11oCiQoX6uVWfGDHlPkFK920ZJtJefMFTMY+hRyekuUjPenIkdG5B+
-         nvZvk2ujF8D3mSQmWmexSSH5kI+sbsvTJRokdRc1TOPN2BiE+N2hyXQOEp/T6mFXDd++
-         Ov/WqrRa0iA1Kwl1v01VBPLR5wYNAkLEsAsJebzleCexeqEkV+QWaJWKHNULh9O0jGFM
-         4JvQ==
-X-Gm-Message-State: AOJu0YybvJdGzy5tTkkE2aL7DErkBkYE39Vk7hcwuqIJB+Rll3G8XjPx
-	J6kxb7KhBcYkdFWXX+3zgSnh42+35giouVS1GntSimSe+d4ph62/bJyKsp38nBskqn1EeF+sVIs
-	yMr32f4Bi4a5lUjFSGmoKMiE9foDakItacbOnOlUrlGIc7DgioCw618E=
-X-Received: by 2002:ac8:5cc8:0:b0:425:4043:763d with SMTP id s8-20020ac85cc8000000b004254043763dmr11389692qta.101.1702469118708;
-        Wed, 13 Dec 2023 04:05:18 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IE9QHKlpfiHiwknItMSza3ZGQwZtx+b52QZTd9pTWAuKsITQLCClWyurTTqXFX6DTkIy2rCL/jyIwRxWdAltnE=
-X-Received: by 2002:ac8:5cc8:0:b0:425:4043:763d with SMTP id
- s8-20020ac85cc8000000b004254043763dmr11389680qta.101.1702469118472; Wed, 13
- Dec 2023 04:05:18 -0800 (PST)
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 13 Dec 2023 04:05:18 -0800
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <a554a163793e4513b25766c21ddc3f02@EXMBX066.cuchost.com>
-References: <20231206115000.295825-1-jeeheng.sia@starfivetech.com>
- <20231206115000.295825-7-jeeheng.sia@starfivetech.com> <CAJM55Z_VgBGvCPuvwmQahMcMfuWKnOKpZ9bBbbhei_Teu5Apeg@mail.gmail.com>
- <a554a163793e4513b25766c21ddc3f02@EXMBX066.cuchost.com>
+        d=1e100.net; s=20230601; t=1702469886; x=1703074686;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Fb1JaePVR0fJwILpc3yyM5yj78LV/m+momHnaokZdOw=;
+        b=e0GiDmXwqCYpYgjzIqqisWNCkoCRlTtR1bPFV8vAR3Yj04HjwTm2l7ZATQsjEKIEtB
+         ISP92M91kkzR4g3xSYZHAAD8i6N8aR2Mgka/QkqYUJQXtkD7rqRaEt/8jjHIzt2V5ziU
+         ZEVdZTJ97RlTzkuOmkfYGuc1jd2L3r1LoA5Z+qUWxrKFPFTDHnRVgZ0VD0c20g8H8SWT
+         Lw29TS/pO8xkbvjH2NMeGs5Yz/uO7z+O0UWilPqXj2CDiqtFItwj5h6uaI9ALsT7yWf/
+         N5LV4o4w6w6oVNjit9dEmNwv7CvcajsotHHNBZFJFF4WxkYwxXK/Uk6a4cw9pIuwI8wo
+         yfVQ==
+X-Gm-Message-State: AOJu0YxgkXQqlWjnjSBIzaRqOZZn4grwfieKqR92piezEfpD5SBW4XiT
+	ku8R4dhwnPSTiaGtZf4XUzurw+wpYpDznEeWsao=
+X-Google-Smtp-Source: AGHT+IEhn1hCL8EuZgyJadrvggj/oAgW1xC0wQwKvSuQX10q7CWwnVxDkFmpI5oE57s/CLUt+CwJnw==
+X-Received: by 2002:a17:906:2244:b0:a22:fc0f:9870 with SMTP id 4-20020a170906224400b00a22fc0f9870mr423888ejr.108.1702469885420;
+        Wed, 13 Dec 2023 04:18:05 -0800 (PST)
+Received: from ?IPv6:2001:a61:3456:4e01:6ae:b55a:bd1d:57fc? ([2001:a61:3456:4e01:6ae:b55a:bd1d:57fc])
+        by smtp.gmail.com with ESMTPSA id uv8-20020a170907cf4800b00a1d232b39b9sm7601923ejc.184.2023.12.13.04.18.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Dec 2023 04:18:05 -0800 (PST)
+Message-ID: <5f7a1c60ccebe13ba6cdfa5d8f9632bc9b838137.camel@gmail.com>
+Subject: Re: [PATCH v2 3/3] iio: adc: ad7380: new driver for AD7380 ADCs
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: David Lechner <dlechner@baylibre.com>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	 <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Cameron
+	 <jic23@kernel.org>, Michael Hennerich <michael.hennerich@analog.com>, Nuno
+	=?ISO-8859-1?Q?S=E1?=
+	 <nuno.sa@analog.com>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
+	 <broonie@kernel.org>, linux-kernel@vger.kernel.org, Stefan Popa
+	 <stefan.popa@analog.com>
+Date: Wed, 13 Dec 2023 13:18:04 +0100
+In-Reply-To: <20231213-ad7380-mainline-v2-3-cd32150d84a3@baylibre.com>
+References: <20231213-ad7380-mainline-v2-0-cd32150d84a3@baylibre.com>
+	 <20231213-ad7380-mainline-v2-3-cd32150d84a3@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Date: Wed, 13 Dec 2023 04:05:18 -0800
-Message-ID: <CAJM55Z_3Mty2LftPVkQC1wbwtGeznMMAk9mAjH_GoNuL7CKtaQ@mail.gmail.com>
-Subject: RE: [PATCH v1 06/16] clk: starfive: Add JH8100 System clock generator driver
-To: JeeHeng Sia <jeeheng.sia@starfivetech.com>, 
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>, "kernel@esmil.dk" <kernel@esmil.dk>, 
-	"conor@kernel.org" <conor@kernel.org>, "robh+dt@kernel.org" <robh+dt@kernel.org>, 
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, 
-	"paul.walmsley@sifive.com" <paul.walmsley@sifive.com>, "palmer@dabbelt.com" <palmer@dabbelt.com>, 
-	"aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>, "mturquette@baylibre.com" <mturquette@baylibre.com>, 
-	"sboyd@kernel.org" <sboyd@kernel.org>, "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>, 
-	Hal Feng <hal.feng@starfivetech.com>, Xingyu Wu <xingyu.wu@starfivetech.com>
-Cc: "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>, Leyfoon Tan <leyfoon.tan@starfivetech.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 
-JeeHeng Sia wrote:
->
->
-> > -----Original Message-----
-> > From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-> > Sent: Saturday, December 9, 2023 12:25 AM
-> > To: JeeHeng Sia <jeeheng.sia@starfivetech.com>; kernel@esmil.dk; conor@=
-kernel.org; robh+dt@kernel.org;
-> > krzysztof.kozlowski+dt@linaro.org; paul.walmsley@sifive.com; palmer@dab=
-belt.com; aou@eecs.berkeley.edu;
-> > mturquette@baylibre.com; sboyd@kernel.org; p.zabel@pengutronix.de; emil=
-.renner.berthing@canonical.com; Hal Feng
-> > <hal.feng@starfivetech.com>; Xingyu Wu <xingyu.wu@starfivetech.com>
-> > Cc: linux-riscv@lists.infradead.org; devicetree@vger.kernel.org; linux-=
-kernel@vger.kernel.org; linux-clk@vger.kernel.org; Leyfoon Tan
-> > <leyfoon.tan@starfivetech.com>
-> > Subject: Re: [PATCH v1 06/16] clk: starfive: Add JH8100 System clock ge=
-nerator driver
-> >
-> > Sia Jee Heng wrote:
-> > > Add support for JH8100 System clock generator.
-> > >
-> > > Signed-off-by: Sia Jee Heng <jeeheng.sia@starfivetech.com>
-> > > Reviewed-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
-> > > ---
-> > >  MAINTAINERS                                   |   8 +
-> > >  drivers/clk/starfive/Kconfig                  |   9 +
-> > >  drivers/clk/starfive/Makefile                 |   1 +
-> > >  drivers/clk/starfive/clk-starfive-common.h    |   9 +-
-> > >  drivers/clk/starfive/jh8100/Makefile          |   3 +
-> > >  .../clk/starfive/jh8100/clk-starfive-jh8100.h |  11 +
-> > >  drivers/clk/starfive/jh8100/clk-sys.c         | 455 ++++++++++++++++=
-++
-> > >  7 files changed, 495 insertions(+), 1 deletion(-)
-> > >  create mode 100644 drivers/clk/starfive/jh8100/Makefile
-> > >  create mode 100644 drivers/clk/starfive/jh8100/clk-starfive-jh8100.h
-> > >  create mode 100644 drivers/clk/starfive/jh8100/clk-sys.c
-> > >
-[...]
-> > > diff --git a/drivers/clk/starfive/jh8100/Makefile b/drivers/clk/starf=
-ive/jh8100/Makefile
-> > > new file mode 100644
-> > > index 000000000000..af6a09e220d3
-> > > --- /dev/null
-> > > +++ b/drivers/clk/starfive/jh8100/Makefile
-> > > @@ -0,0 +1,3 @@
-> > > +# SPDX-License-Identifier: GPL-2.0
-> > > +# StarFive JH8100 Clock
-> > > +obj-$(CONFIG_CLK_STARFIVE_JH8100_SYS)		+=3D clk-sys.o
-> >
-> > This will name the module clk-sys, which is way too generic. Please nam=
-e this
-> > clk-starfive-jh8100-sys similar to the JH7110 drivers.
-> Just realized that I haven't reply to this comment.
-> I can't give it a longer name otherwise compiler will throw warning.
-> That=E2=80=99s why ends up to use a shorter name and keep it under jh8100=
- folder.
+T24gV2VkLCAyMDIzLTEyLTEzIGF0IDA1OjIxIC0wNjAwLCBEYXZpZCBMZWNobmVyIHdyb3RlOgo+
+IFRoaXMgYWRkcyBhIG5ldyBkcml2ZXIgZm9yIHRoZSBBRDczODAgZmFtaWx5IEFEQ3MuCj4gCj4g
+VGhlIGRyaXZlciBjdXJyZW50bHkgaW1wbGVtZW50cyBiYXNpYyBzdXBwb3J0IGZvciB0aGUgQUQ3
+MzgwLCBBRDczODEsCj4gQUQ3MzgzLCBhbmQgQUQ3Mzg0IDItY2hhbm5lbCBkaWZmZXJlbnRpYWwg
+QURDcy4gU3VwcG9ydCBmb3IgYWRkaXRpb25hbAo+IHNpbmdsZS1lbmRlZCBhbmQgNC1jaGFubmVs
+IGNoaXBzIHRoYXQgdXNlIHRoZSBzYW1lIHJlZ2lzdGVyIG1hcCBhcyB3ZWxsCj4gYXMgYWRkaXRp
+b25hbCBmZWF0dXJlcyBvZiB0aGUgY2hpcCB3aWxsIGJlIGFkZGVkIGluIGZ1dHVyZSBwYXRjaGVz
+Lgo+IAo+IENvLWRldmVsb3BlZC1ieTogU3RlZmFuIFBvcGEgPHN0ZWZhbi5wb3BhQGFuYWxvZy5j
+b20+Cj4gU2lnbmVkLW9mZi1ieTogU3RlZmFuIFBvcGEgPHN0ZWZhbi5wb3BhQGFuYWxvZy5jb20+
+Cj4gU2lnbmVkLW9mZi1ieTogRGF2aWQgTGVjaG5lciA8ZGxlY2huZXJAYmF5bGlicmUuY29tPgo+
+IC0tLQo+IAo+IHYyIGNoYW5nZXM6Cj4gLSBGaXhlZCBDT05GSUdfQUQ3MzgwIGluIE1ha2VmaWxl
+Cj4gLSByeF9idWYgPSBzdC0+c2Nhbl9kYXRhLnJhdyBpbnN0ZWFkIG9mIHJ4X2J1ZiA9ICZzdC0+
+c2Nhbl9kYXRhCj4gLSBNb3ZlZCBpaW9fcHVzaF90b19idWZmZXJzX3dpdGhfdGltZXN0YW1wKCkg
+b3V0c2lkZSBvZiBpZiBzdGF0ZW1lbnQKPiAtIFJlbW92ZWQgZXh0cmEgYmxhbmsgbGluZXMKPiAt
+IFJlbmFtZWQgcmVndWxhdG9yIGRpc2FibGUgZnVuY3Rpb24KPiAtIERyb3BwZWQgY2hlY2tpbmcg
+b2YgYWRpLHNkby1tb2RlIHByb3BlcnR5IChyZWdhcmRsZXNzIG9mIHRoZSBhY3R1YWwKPiDCoMKg
+wqDCoMKgwqDCoMKgd2lyaW5nLCB3ZSBjYW4gYWx3YXlzIHVzZSAxLXdpcmUgbW9kZSkKPiAtIEFk
+ZGVkIGF2YWlsYWJsZV9zY2FuX21hc2tzICh3ZSBhbHdheXMgc2FtcGxlIHR3byBjaGFubmVscyBh
+dCB0aGUgc2FtZSB0aW1lCj4gwqAgc28gd2UgbmVlZCB0byBsZXQgdXNlcnNwYWNlIGtub3cgdGhp
+cykKPiAtIEFkZGVkIGNoZWNrIGZvciBtaXNzaW5nIGRyaXZlciBtYXRjaCBkYXRhCj4gCj4gwqBN
+QUlOVEFJTkVSU8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHzCoMKgIDEgKwo+IMKgZHJpdmVy
+cy9paW8vYWRjL0tjb25maWfCoCB8wqAgMTYgKysKPiDCoGRyaXZlcnMvaWlvL2FkYy9NYWtlZmls
+ZSB8wqDCoCAxICsKPiDCoGRyaXZlcnMvaWlvL2FkYy9hZDczODAuYyB8IDQ2NCArKysrKysrKysr
+KysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKwo+IMKgNCBmaWxlcyBjaGFuZ2Vk
+LCA0ODIgaW5zZXJ0aW9ucygrKQo+IAo+IGRpZmYgLS1naXQgYS9NQUlOVEFJTkVSUyBiL01BSU5U
+QUlORVJTCj4gaW5kZXggZTJhOTk4YmU1ODc5Li41YTU0NjIwYTMxYjggMTAwNjQ0Cj4gLS0tIGEv
+TUFJTlRBSU5FUlMKPiArKysgYi9NQUlOVEFJTkVSUwo+IEBAIC00MzgsNiArNDM4LDcgQEAgUzrC
+oMKgU3VwcG9ydGVkCj4gwqBXOsKgwqDCoMKgwqAKPiBodHRwczovL3dpa2kuYW5hbG9nLmNvbS9y
+ZXNvdXJjZXMvdG9vbHMtc29mdHdhcmUvbGludXgtZHJpdmVycy9paW8tYWRjL2FkNzM4eAo+IMKg
+VzrCoMKgwqDCoMKgaHR0cHM6Ly9lei5hbmFsb2cuY29tL2xpbnV4LXNvZnR3YXJlLWRyaXZlcnMK
+PiDCoEY6wqDCoMKgwqDCoERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9paW8vYWRj
+L2FkaSxhZDczODAueWFtbAo+ICtGOsKgwqDCoMKgwqBkcml2ZXJzL2lpby9hZGMvYWQ3MzgwLmMK
+PiDCoAo+IMKgQUQ3ODc3IFRPVUNIU0NSRUVOIERSSVZFUgo+IMKgTTrCoMKgwqDCoMKgTWljaGFl
+bCBIZW5uZXJpY2ggPG1pY2hhZWwuaGVubmVyaWNoQGFuYWxvZy5jb20+Cj4gZGlmZiAtLWdpdCBh
+L2RyaXZlcnMvaWlvL2FkYy9LY29uZmlnIGIvZHJpdmVycy9paW8vYWRjL0tjb25maWcKPiBpbmRl
+eCAzNWY5ODY3ZGExMmMuLmNiZmQ2MjY3MTJlMyAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2lpby9h
+ZGMvS2NvbmZpZwo+ICsrKyBiL2RyaXZlcnMvaWlvL2FkYy9LY29uZmlnCj4gQEAgLTEyMiw2ICsx
+MjIsMjIgQEAgY29uZmlnIEFENzI5OAo+IMKgwqDCoMKgwqDCoMKgwqDCoCBUbyBjb21waWxlIHRo
+aXMgZHJpdmVyIGFzIGEgbW9kdWxlLCBjaG9vc2UgTSBoZXJlOiB0aGUKPiDCoMKgwqDCoMKgwqDC
+oMKgwqAgbW9kdWxlIHdpbGwgYmUgY2FsbGVkIGFkNzI5OC4KPiDCoAo+ICtjb25maWcgQUQ3Mzgw
+Cj4gK8KgwqDCoMKgwqDCoMKgdHJpc3RhdGUgIkFuYWxvZyBEZXZpY2VzIEFENzM4MCBBREMgZHJp
+dmVyIgo+ICvCoMKgwqDCoMKgwqDCoGRlcGVuZHMgb24gU1BJX01BU1RFUgo+ICvCoMKgwqDCoMKg
+wqDCoHNlbGVjdCBJSU9fQlVGRkVSCj4gK8KgwqDCoMKgwqDCoMKgc2VsZWN0IElJT19UUklHR0VS
+Cj4gK8KgwqDCoMKgwqDCoMKgc2VsZWN0IElJT19UUklHR0VSRURfQlVGRkVSCj4gK8KgwqDCoMKg
+wqDCoMKgaGVscAo+ICvCoMKgwqDCoMKgwqDCoMKgIEFENzM4MCBpcyBhIGZhbWlseSBvZiBzaW11
+bHRhbmVvdXMgc2FtcGxpbmcgQURDcyB0aGF0IHNoYXJlIHRoZSBzYW1lCj4gK8KgwqDCoMKgwqDC
+oMKgwqAgU1BJIHJlZ2lzdGVyIG1hcCBhbmQgaGF2ZSBzaW1pbGFyIHBpbm91dHMuCj4gKwo+ICvC
+oMKgwqDCoMKgwqDCoMKgIFNheSB5ZXMgaGVyZSB0byBidWlsZCBzdXBwb3J0IGZvciBBbmFsb2cg
+RGV2aWNlcyBBRDczODAgQURDIGFuZAo+ICvCoMKgwqDCoMKgwqDCoMKgIHNpbWlsYXIgY2hpcHMu
+Cj4gKwo+ICvCoMKgwqDCoMKgwqDCoMKgIFRvIGNvbXBpbGUgdGhpcyBkcml2ZXIgYXMgYSBtb2R1
+bGUsIGNob29zZSBNIGhlcmU6IHRoZSBtb2R1bGUgd2lsbCBiZQo+ICvCoMKgwqDCoMKgwqDCoMKg
+IGNhbGxlZCBhZDczODAuCj4gKwo+IMKgY29uZmlnIEFENzQ3Ngo+IMKgwqDCoMKgwqDCoMKgwqB0
+cmlzdGF0ZSAiQW5hbG9nIERldmljZXMgQUQ3NDc2IDEtY2hhbm5lbCBBRENzIGRyaXZlciBhbmQg
+b3RoZXIgc2ltaWxhcgo+IGRldmljZXMgZnJvbSBBRCBhbmQgVEkiCj4gwqDCoMKgwqDCoMKgwqDC
+oGRlcGVuZHMgb24gU1BJCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvaWlvL2FkYy9NYWtlZmlsZSBi
+L2RyaXZlcnMvaWlvL2FkYy9NYWtlZmlsZQo+IGluZGV4IGJlZTExZDQ0MmFmNC4uOWM5MjFjNDk3
+NjU1IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvaWlvL2FkYy9NYWtlZmlsZQo+ICsrKyBiL2RyaXZl
+cnMvaWlvL2FkYy9NYWtlZmlsZQo+IEBAIC0xNiw2ICsxNiw3IEBAIG9iai0kKENPTkZJR19BRDcy
+OTEpICs9IGFkNzI5MS5vCj4gwqBvYmotJChDT05GSUdfQUQ3MjkyKSArPSBhZDcyOTIubwo+IMKg
+b2JqLSQoQ09ORklHX0FENzI5OCkgKz0gYWQ3Mjk4Lm8KPiDCoG9iai0kKENPTkZJR19BRDc5MjMp
+ICs9IGFkNzkyMy5vCj4gK29iai0kKENPTkZJR19BRDczODApICs9IGFkNzM4MC5vCj4gwqBvYmot
+JChDT05GSUdfQUQ3NDc2KSArPSBhZDc0NzYubwo+IMKgb2JqLSQoQ09ORklHX0FENzYwNl9JRkFD
+RV9QQVJBTExFTCkgKz0gYWQ3NjA2X3Bhci5vCj4gwqBvYmotJChDT05GSUdfQUQ3NjA2X0lGQUNF
+X1NQSSkgKz0gYWQ3NjA2X3NwaS5vCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvaWlvL2FkYy9hZDcz
+ODAuYyBiL2RyaXZlcnMvaWlvL2FkYy9hZDczODAuYwo+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0Cj4g
+aW5kZXggMDAwMDAwMDAwMDAwLi5iODAyNWI2MzZiNjcKPiAtLS0gL2Rldi9udWxsCj4gKysrIGIv
+ZHJpdmVycy9paW8vYWRjL2FkNzM4MC5jCj4gQEAgLTAsMCArMSw0NjQgQEAKPiArLy8gU1BEWC1M
+aWNlbnNlLUlkZW50aWZpZXI6IEdQTC0yLjAtb25seQo+ICsvKgo+ICsgKiBBbmFsb2cgRGV2aWNl
+cyBBRDczOHggU2ltdWx0YW5lb3VzIFNhbXBsaW5nIFNBUiBBRENzCj4gKyAqCj4gKyAqIENvcHly
+aWdodCAyMDE3IEFuYWxvZyBEZXZpY2VzIEluYy4KPiArICogQ29weXJpZ2h0IDIwMjMgQmF5TGli
+cmUsIFNBUwo+ICsgKi8KPiArCj4gKyNpbmNsdWRlIDxsaW51eC9iaXRmaWVsZC5oPgo+ICsjaW5j
+bHVkZSA8bGludXgvYml0b3BzLmg+Cj4gKyNpbmNsdWRlIDxsaW51eC9jbGVhbnVwLmg+Cj4gKyNp
+bmNsdWRlIDxsaW51eC9kZXZpY2UuaD4KPiArI2luY2x1ZGUgPGxpbnV4L2Vyci5oPgo+ICsjaW5j
+bHVkZSA8bGludXgva2VybmVsLmg+Cj4gKyNpbmNsdWRlIDxsaW51eC9tb2R1bGUuaD4KPiArI2lu
+Y2x1ZGUgPGxpbnV4L3JlZ21hcC5oPgo+ICsjaW5jbHVkZSA8bGludXgvcmVndWxhdG9yL2NvbnN1
+bWVyLmg+Cj4gKyNpbmNsdWRlIDxsaW51eC9zbGFiLmg+Cj4gKyNpbmNsdWRlIDxsaW51eC9zcGkv
+c3BpLmg+Cj4gKyNpbmNsdWRlIDxsaW51eC9zeXNmcy5oPgo+ICsKPiArI2luY2x1ZGUgPGxpbnV4
+L2lpby9idWZmZXIuaD4KPiArI2luY2x1ZGUgPGxpbnV4L2lpby9paW8uaD4KPiArI2luY2x1ZGUg
+PGxpbnV4L2lpby9zeXNmcy5oPgo+ICsjaW5jbHVkZSA8bGludXgvaWlvL3RyaWdnZXJfY29uc3Vt
+ZXIuaD4KPiArI2luY2x1ZGUgPGxpbnV4L2lpby90cmlnZ2VyZWRfYnVmZmVyLmg+Cj4gKwoKLi4u
+Cgo+IAo+ICtzdGF0aWMgaW50IGFkNzM4MF9wcm9iZShzdHJ1Y3Qgc3BpX2RldmljZSAqc3BpKQo+
+ICt7Cj4gK8KgwqDCoMKgwqDCoMKgc3RydWN0IGlpb19kZXYgKmluZGlvX2RldjsKPiArwqDCoMKg
+wqDCoMKgwqBzdHJ1Y3QgYWQ3MzgwX3N0YXRlICpzdDsKPiArwqDCoMKgwqDCoMKgwqBpbnQgcmV0
+Owo+ICsKPiArwqDCoMKgwqDCoMKgwqBpbmRpb19kZXYgPSBkZXZtX2lpb19kZXZpY2VfYWxsb2Mo
+JnNwaS0+ZGV2LCBzaXplb2YoKnN0KSk7Cj4gK8KgwqDCoMKgwqDCoMKgaWYgKCFpbmRpb19kZXYp
+Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJldHVybiAtRU5PTUVNOwo+ICsKPiAr
+wqDCoMKgwqDCoMKgwqBzdCA9IGlpb19wcml2KGluZGlvX2Rldik7Cj4gK8KgwqDCoMKgwqDCoMKg
+c3QtPnNwaSA9IHNwaTsKPiArwqDCoMKgwqDCoMKgwqBzdC0+Y2hpcF9pbmZvID0gc3BpX2dldF9k
+ZXZpY2VfbWF0Y2hfZGF0YShzcGkpOwo+ICvCoMKgwqDCoMKgwqDCoGlmICghc3QtPmNoaXBfaW5m
+bykKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuIGRldl9lcnJfcHJvYmUo
+JnNwaS0+ZGV2LCAtRUlOVkFMLCAibWlzc2luZyBtYXRjaCBkYXRhXG4iKTsKPiArCj4gK8KgwqDC
+oMKgwqDCoMKgc3QtPnZyZWYgPSBkZXZtX3JlZ3VsYXRvcl9nZXRfb3B0aW9uYWwoJnNwaS0+ZGV2
+LCAicmVmaW8iKTsKPiArwqDCoMKgwqDCoMKgwqBpZiAoSVNfRVJSKHN0LT52cmVmKSkgewo+ICvC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAvKgo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqAgKiBJZiB0aGVyZSBpcyBubyBSRUZJTyBzdXBwbHksIHRoZW4gaXQgbWVhbnMgdGhh
+dCB3ZSBhcmUgdXNpbmcKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICogdGhlIGlu
+dGVybmFsIDIuNVYgcmVmZXJlbmNlLgo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
+Ki8KPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgaWYgKFBUUl9FUlIoc3QtPnZyZWYp
+ID09IC1FTk9ERVYpCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqBzdC0+dnJlZiA9IE5VTEw7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGVs
+c2UKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJldHVy
+biBkZXZfZXJyX3Byb2JlKCZzcGktPmRldiwgUFRSX0VSUihzdC0+dnJlZiksCj4gK8KgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgICJGYWlsZWQgdG8gZ2V0IHJlZmlvIHJlZ3VsYXRvclxuIik7
+Cj4gK8KgwqDCoMKgwqDCoMKgfQo+ICsKPiArwqDCoMKgwqDCoMKgwqBpZiAoc3QtPnZyZWYpIHsK
+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0ID0gcmVndWxhdG9yX2VuYWJsZShz
+dC0+dnJlZik7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGlmIChyZXQpCj4gK8Kg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gcmV0Owo+
+ICsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0ID0gZGV2bV9hZGRfYWN0aW9u
+X29yX3Jlc2V0KCZzcGktPmRldiwgYWQ3MzgwX3JlZ3VsYXRvcl9kaXNhYmxlLAo+ICvCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgc3QtPnZyZWYpOwo+ICvCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqBpZiAocmV0KQo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgcmV0dXJuIHJldDsKPiArwqDCoMKgwqDCoMKgwqB9Cj4gKwo+ICvCoMKg
+wqDCoMKgwqDCoHN0LT5yZWdtYXAgPSBkZXZtX3JlZ21hcF9pbml0KCZzcGktPmRldiwgTlVMTCwg
+c3QsICZhZDczODBfcmVnbWFwX2NvbmZpZyk7Cj4gK8KgwqDCoMKgwqDCoMKgaWYgKElTX0VSUihz
+dC0+cmVnbWFwKSkKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuIGRldl9l
+cnJfcHJvYmUoJnNwaS0+ZGV2LCBQVFJfRVJSKHN0LT5yZWdtYXApLAo+ICvCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+ICJmYWlsZWQgdG8gYWxsb2NhdGUgcmVnaXN0ZXIgbWFwXG4iKTsKClN0aWxsIG5vdCB1c2luZyBh
+IHJlZ21hcF9idXMuLi4gWW91IGNvdWxkIGF0IGxlYXN0IGFyZ3VlIGluIHRoZSBsYXN0IHZlcnNp
+b24gd2h5CnlvdSdyZSBub3QgZG9pbmcgaXQgcmF0aGVyIHRoYW4gaWdub3JpbmcgdGhlIGNvbW1l
+bnQgOikuCgpJJ20gYXNraW5nIGZvciBpdCBiZWNhdXNlIGl0IGFscmVhZHkgaGFwcGVuZWQgKGlu
+IElJTykgdG8gbWUgYW5kIEkgd2FzIGFza2VkIGZvcgppbXBsZW1lbnRpbmcgdGhlIGJ1cy4gWW91
+IGFsc28gZ2FpbiB0aGluZ3MgbGlrZSByZWdtYXAgY29yZSBoYW5kbGluZyBlbmRpYW5pc20gYW5k
+CmZvcm1hdHRpbmcgdGhlIHdvcmsgYnVmZmVyIGZvciB5b3UgKGVnOiByZWdtYXBfYnVsa19yZWFk
+KCkgY291bGQgYmUgbW9yZSBlZmZpY2llbnQpLAoKPiArwqDCoMKgwqDCoMKgwqBpbmRpb19kZXYt
+PmNoYW5uZWxzID0gc3QtPmNoaXBfaW5mby0+Y2hhbm5lbHM7Cj4gK8KgwqDCoMKgwqDCoMKgaW5k
+aW9fZGV2LT5udW1fY2hhbm5lbHMgPSBzdC0+Y2hpcF9pbmZvLT5udW1fY2hhbm5lbHM7Cj4gK8Kg
+wqDCoMKgwqDCoMKgaW5kaW9fZGV2LT5kZXYucGFyZW50ID0gJnNwaS0+ZGV2OwoKc3RpbGwgbm90
+IGFkZHJlc3NlZC4uLgoKV2l0aCBhdCBsZWFzdCB0aGUgYWJvdmUgKGZvciB0aGUgcmVnbWFwX2J1
+cyBJJ2xsIGxlYXZlIHRoZSB1bHRpbWF0ZSBkZWNpc2lvbiB0bwpKb25hdGhhbiAtIG5vdCBhIGRl
+YWwgYnJlYWtlciBmb3IgbWUpOgoKUmV2aWV3ZWQtYnk6IE51bm8gU2EgPG51bm8uc2FAYW5hbG9n
+LmNvbT4KCgotIE51bm8gU8OhCgo=
 
-I'm sorry, how does that make any sense? If the compiler can compile
-
-  drivers/clk/starfive/clk-starfive-jh7110-sys.c
-
-just fine, then why would it have trouble with
-
-  drivers/clk/starfive/clk-starfive-jh8100-sys.c
-
-/Emil
 
