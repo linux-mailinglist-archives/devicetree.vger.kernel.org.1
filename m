@@ -1,269 +1,216 @@
-Return-Path: <devicetree+bounces-24904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D44308119A2
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 17:36:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 813618119BC
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 17:42:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 608261F2126C
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 16:36:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 52BDD1C21110
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 16:42:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3948535F10;
-	Wed, 13 Dec 2023 16:36:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 767DA381D1;
+	Wed, 13 Dec 2023 16:42:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="zt0q//UF"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="YcI+3vfJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF39D98;
-	Wed, 13 Dec 2023 08:36:03 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Mqe9KVdf3+2Xy5OrV3vEYJTpwNBKudnr3autPYgNZDsssLU90dUbrHZvzQtWND0A7Bzz9IiZWFzqIRiTkPFlPOyoueneFFPSnA6UWOQtCJvfy0XTt2TmSEcoKpTtuMBcB73C+ClTtdZJwG530QpgZQ6L8ir283txY1wMYWptU4kn2JPlqwiIDQ5gLLf0ZGxt8HR14azquk0iqip7wstKS1+ewvTh3bJbPyPvIM7mNkydwjQ8hFU3RsEoCTNEmavSPu/t2ut2o1c5feDa+gipPrS1xc9eEFiY3i1qvW6T92ThxkZW1y8D5k3zyGgD8rnrLPgnAS7rLUGwO8NuZ/4vpA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fDXVf35fz6pJ39slAUTBlWAn8mcjv55BnzXX7/C/8sw=;
- b=GGuctBvoWi7yk201HiQhtDq7dy1NirnrsMaYFuUSSzFGfC6tBkRgOtGhYBW9Vqd/Qfy6aEEt7ngw4l1vVbJgxgnpjtR6KpMAg2uEB9so0AIxTOPBZLlPEMKdJ3uQiB9FXPwvoY8wjOXKiLNe5x+80/4cvS3nkakuHfm6f3qObL8CiwfV4k4qF473ng1gplwDT0wR2DkL96sa4LpOmNSM1ucW6CEEaigu/+gU/ZIWmFy0AwDzPz+FGUeXtMmsR3IrX0dHLhvU9VZaEAxzsm3Nr47pGpIYjk9iCzDeQPLO2b3k0UIBE2iFlDzQ2Lw8PXQLnbVSxWWf22LZ0/Gxiu56Tw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fDXVf35fz6pJ39slAUTBlWAn8mcjv55BnzXX7/C/8sw=;
- b=zt0q//UFnNyBoqPAmkawb2G/pFIrc0QqeWGEchwVLaYHrwtID1wdTDROulW9C860g/U5vCO9n2Y1Fse+CtifftVDzjI6mKDAldNCXMCyHN5W1vuVhWFtSByA25cs0JbhkYpmc6D1NCsOVXRFIiZiNQCWdKc+ff+O13ChuY3KJGc=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BY5PR12MB3683.namprd12.prod.outlook.com (2603:10b6:a03:1a5::16)
- by PH7PR12MB5949.namprd12.prod.outlook.com (2603:10b6:510:1d8::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.26; Wed, 13 Dec
- 2023 16:36:01 +0000
-Received: from BY5PR12MB3683.namprd12.prod.outlook.com
- ([fe80::dacc:66a0:6923:a5e]) by BY5PR12MB3683.namprd12.prod.outlook.com
- ([fe80::dacc:66a0:6923:a5e%4]) with mapi id 15.20.7091.022; Wed, 13 Dec 2023
- 16:36:00 +0000
-Message-ID: <1027ec80-bed6-4b51-b346-60bc19aa04e6@amd.com>
-Date: Wed, 13 Dec 2023 10:35:57 -0600
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH v2] dt-bindings: mailbox: add Versal IPI bindings
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- jassisinghbrar@gmail.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- michal.simek@amd.com, shubhrajyoti.datta@amd.com
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, "Levinsky, Ben" <ben.levinsky@amd.com>
-References: <20231212230353.888714-1-tanmay.shah@amd.com>
- <d91a9278-f70e-4f0f-92c1-ce0bdac69ff5@linaro.org>
- <44052047-06c9-4b95-b040-2d4c7c1343d1@amd.com>
- <daa14201-2027-4732-bbea-acbb2675e4b8@linaro.org>
-From: Tanmay Shah <tanmay.shah@amd.com>
-In-Reply-To: <daa14201-2027-4732-bbea-acbb2675e4b8@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: DM6PR07CA0128.namprd07.prod.outlook.com
- (2603:10b6:5:330::20) To BY5PR12MB3683.namprd12.prod.outlook.com
- (2603:10b6:a03:1a5::16)
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3B6498;
+	Wed, 13 Dec 2023 08:42:12 -0800 (PST)
+Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20231213164210epoutp027458a90750e48990fa3534dcf00073fe~gccCI7Gnm0948109481epoutp02R;
+	Wed, 13 Dec 2023 16:42:10 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20231213164210epoutp027458a90750e48990fa3534dcf00073fe~gccCI7Gnm0948109481epoutp02R
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1702485730;
+	bh=+0oW3jgYcC0AXU5SXvWMpmtVZTXc58/iVuCs2NO6N5Q=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=YcI+3vfJR8eNGO2fhzmlGmEKg9nYb9hSiEJ+9IGR027hi4jbNUpeczDpcBYhsibo5
+	 sJcV5eiNQQioiipYAddn32QA+MDoXRMCru7UOqyxBKI1Be3Stt2jKX5Rx9fuKTwmyr
+	 DoTTby1s4AePJ1wnwU2R/LlgmTfK0qoO+oJnzD3g=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTP id
+	20231213164210epcas5p2bcf8ece486681731842a9e2122a00a35~gccBpbH0u0921009210epcas5p2U;
+	Wed, 13 Dec 2023 16:42:10 +0000 (GMT)
+Received: from epsmges5p3new.samsung.com (unknown [182.195.38.181]) by
+	epsnrtp1.localdomain (Postfix) with ESMTP id 4Sr1V858BCz4x9Pp; Wed, 13 Dec
+	2023 16:42:08 +0000 (GMT)
+Received: from epcas5p3.samsung.com ( [182.195.41.41]) by
+	epsmges5p3new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	7A.F2.09672.0EED9756; Thu, 14 Dec 2023 01:42:08 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
+	20231213164208epcas5p3ad056fa6ad7cc9dc00ac5c8ad5a84014~gcb-lim583108931089epcas5p3f;
+	Wed, 13 Dec 2023 16:42:08 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20231213164208epsmtrp2c8ba0d9149b52bd98f4342616b76c634~gcb-kTrIC1984019840epsmtrp2I;
+	Wed, 13 Dec 2023 16:42:08 +0000 (GMT)
+X-AuditID: b6c32a4b-60bfd700000025c8-98-6579dee04dfa
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	F5.6C.08755.FDED9756; Thu, 14 Dec 2023 01:42:07 +0900 (KST)
+Received: from INBRO000447 (unknown [107.122.12.5]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20231213164203epsmtip1f03ac3699482279568fca70400c8e7e1~gcb7Zyj-60728607286epsmtip1L;
+	Wed, 13 Dec 2023 16:42:03 +0000 (GMT)
+From: "Alim Akhtar" <alim.akhtar@samsung.com>
+To: "'Peter Griffin'" <peter.griffin@linaro.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
+	<conor+dt@kernel.org>, <sboyd@kernel.org>, <tomasz.figa@gmail.com>,
+	<s.nawrocki@samsung.com>, <linus.walleij@linaro.org>,
+	<wim@linux-watchdog.org>, <linux@roeck-us.net>, <catalin.marinas@arm.com>,
+	<will@kernel.org>, <arnd@arndb.de>, <olof@lixom.net>,
+	<gregkh@linuxfoundation.org>, <jirislaby@kernel.org>,
+	<cw00.choi@samsung.com>
+Cc: <tudor.ambarus@linaro.org>, <andre.draszik@linaro.org>,
+	<semen.protsenko@linaro.org>, <saravanak@google.com>,
+	<willmcvicker@google.com>, <soc@kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
+	<linux-clk@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+	<linux-watchdog@vger.kernel.org>, <kernel-team@android.com>,
+	<linux-serial@vger.kernel.org>
+In-Reply-To: <20231211162331.435900-13-peter.griffin@linaro.org>
+Subject: RE: [PATCH v7 12/16] watchdog: s3c2410_wdt: Add support for Google
+ gs101 SoC
+Date: Wed, 13 Dec 2023 22:12:02 +0530
+Message-ID: <017501da2de3$4fad8950$ef089bf0$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BY5PR12MB3683:EE_|PH7PR12MB5949:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8b3cccd6-3e01-41ac-632d-08dbfbf99739
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	FVwfaQYBys4JqHO+3RxF1DDgs/H6AXm9gYItF2uKTkRBQjRl4K+wpJ+O6kLfCf5zMcsCoHykW9ZdJ41eRLuPBoDDoWabblI/JMxmsxsMkZ4kD9itVZBxWf/mj1/3vStvTHgLr0fOJrw5h6S7+i94ytJtd4ByjLgvPwc3WXXyYDnDS6C1G2TDSzEnMBhgZIuyFcrg0slFtty5xox9n7rqj0tfGH+pi5BzZXSfefB6EFEi3g9LaC7CqWNiSx85Two+UyDD6Mo3xxcqwwm+lmSf+8FtEoHWfSyJY9fab6Q+WCt3VV84Jy9aw7aHFnmzUIVO0hvjx2A/JW0MaELxj+VVqeyXEeT7KXvSQuGG/L77u7Cevv5c3TcVEVI8ZWRzhJKs2JRSYFeQqopU5NfCOQrT0NzpobycRvEpcAnwRAyUmH9CrqgEW6Co/ldLuZEe1CvQlHuN/D9oDjSuws6IirJD0FXAtDGSnxeAy7URE+ahAOK1/t7ffMTiQRBVQmvpMffnFxrlKaJBFPBuWxUPxuhrKsKfueruxLqPcqehAb9vG3zSdf/VEkezvXAmDN7UCJepMqyHEdV25tlYdiIgiPf9YolRbtV8guhtwjrKZJqS3+INCJnmW8jY/b3DKT4u4+r47lHvKTyyuyqqernGtkroPw==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR12MB3683.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(366004)(136003)(346002)(376002)(396003)(230922051799003)(186009)(64100799003)(1800799012)(451199024)(2616005)(26005)(6506007)(6512007)(6666004)(53546011)(83380400001)(15650500001)(5660300002)(4326008)(44832011)(8676002)(8936002)(41300700001)(2906002)(6486002)(478600001)(316002)(6636002)(66946007)(66556008)(66476007)(86362001)(31696002)(38100700002)(36756003)(31686004)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?NEhnVmdQMUFkdlFWNEFFaFMrb05NbVZsQ0NDaXdMMlBtek9RS25xemVLQ1dw?=
- =?utf-8?B?SkM5L0lyRHp1TzI4eWhjY2l4Qm56TndRc3dHQ0EreCtBZjVraFlGSGQ2dlFU?=
- =?utf-8?B?TEFPOUs2V1NYQ2Z3c0ZndElRTHhGdGM5WVJsSWZOVS9Jd08vK1JiVGtsa2to?=
- =?utf-8?B?NnNtQXl3N09Qa3YrTEM0VGUzU2VObUFTYlRYRkRuVnl2NUdaZFhYYk1qNDA0?=
- =?utf-8?B?UnRyNU5KS0dzZ3BpSHAyZUtvb0xMd1FvWVp6WGMwRE5WZVFBc0RqRXU1bUhF?=
- =?utf-8?B?T042Qld4aEZFK1JTTEh4N0VQblRUOTh2VzMrZTdGck5od0hhUUthRU9MZmsz?=
- =?utf-8?B?TW1zUFJSbTZxQzBacTJ0STZsQ2pvV28xZzRIQytlMTU2cnQxNzRvK0J3UE1n?=
- =?utf-8?B?TDAwVUlKV0xkRXRoNXhsT1g5RTZJNWN0YXNCbmRYbWpaRDl0SUdGWm9QUmNa?=
- =?utf-8?B?M28wa1dORENHK21GMmpmZzNBRENrcDlnZDA2OGxUMnpiNzJ0RlduUi84U2x4?=
- =?utf-8?B?V28wVGN3UHdIZDhIK2NCYkorb0R0V1dHa29hM1pRVFY0WlNiaUR0YU0zVlNY?=
- =?utf-8?B?Kzg5c1ltdWVYR2tsaEZZRWdIeWlUcmUrTzY1VTZKWHQzVFZXSFl6V1dwMlpT?=
- =?utf-8?B?YVNEK3YwakZuMjdBMXJhU2N4aWtnaHJxOVBWYmRSWGEvUHNYZHRvT3Rzdmd2?=
- =?utf-8?B?WEd2V3NSVGdHRnp1ZmsyeDdYNklPSnRGNkllMUZHeGE4encvSWxYeHZrM2Mr?=
- =?utf-8?B?WEt5bVI4RzNucjYyWmhzb1ZLa1pxYmNTU2ZrMXBremRDbWp4VFpjbUZucEJn?=
- =?utf-8?B?b2FWN0srOG1GVHkyanc1dDVKbGY0eU1FWmd6enMwWC85djBqVnhjdThoOVpO?=
- =?utf-8?B?RCtDSk96Q3dkVEcvV3ZiNncxQ0E2Sm1taE5kdnBldHVVWHVzc0Z0Tk5jSVQ5?=
- =?utf-8?B?K0FhM3p2WlhPSDZVR3JxVWVSRjEwZ0hmZmdQLzZ3anMvc3FER2Ntd0R1SXla?=
- =?utf-8?B?akVKUFI3QVU4Q1Iwb0pVckU3TzVaNzYya2MvWVNES3BKVGpGaS9zZzYvcW10?=
- =?utf-8?B?YzlTWmlsUGF2eXpqLysrdWdhcFpJQ3EvNDA0WUtjVWtQdGkzSkREN1lSU1hW?=
- =?utf-8?B?aURBSHlxZTRLbUZ1UkRiSUM3TU9CYzlQSDZud0dNWXdYR3ljendSQzl1ZktK?=
- =?utf-8?B?OGM3QkxrR2JoTVNqK2I2QWtyNTlaRW5sNnV5UzIzMVRxTUlQTXJ4dzdWWnlR?=
- =?utf-8?B?K0IrN1JzWjVrRnFNdUlMNG9sdGV4TytsVmhNQWFSaU1IRXBPL0VXYWhxdEtN?=
- =?utf-8?B?WU5nU2xZTTBoT0R3VXpoSDEvOXZpemkrY21LaXJsU3dWZ1NVaXk5UkJ1WEdv?=
- =?utf-8?B?Zy8zVnFsK2FBWFJoc2U5ZjBJY1BNUkJwRmp5YzdsYTVFclNjNllGdnFzZ0lN?=
- =?utf-8?B?Y3N1aE15VmQ4MFN0aC9XUzdaVElENHlaVk1kZml1d3NCSXlhZDltZHA0MkRz?=
- =?utf-8?B?N1FZaG1xSzhTbkJWTzlOYnVJOWNpd1Y5THNtRlExRHUvL2d2bTV1dzJMbWNp?=
- =?utf-8?B?ZDdmUFlyVUtjSTFidjJHekNuQWhucHEwWmdpU0hZUkQzWHdsNXA0WU55RTB3?=
- =?utf-8?B?eEpyNXBNbUxhZ2R2N04xb1dxMS93STl6WnhxSm1RM3ZKQVpKN1oxeW02UHl2?=
- =?utf-8?B?SUIyanpGeWV1aWsvYVJ6UElhTUtMREtlOWgyempsUkFoV2Fxb05GdUlFR3dS?=
- =?utf-8?B?SzNJcW1aUllPYkJQSGYvNGpKTjJmdnQvL1NBNDZsUVQ4bWRSRkNBNW50NFZI?=
- =?utf-8?B?cGxqUHJVUnpmYUhHREFiQ1lnZjRWdFRJVDNqOHc2N0NsS2dDS0tWQU44Z1ha?=
- =?utf-8?B?UFVyM1RxV1FyY1h3cWZnSURmUE9yaStsLzZnVlBJbmNHeHJtb2pCTWtPa1Zr?=
- =?utf-8?B?Y3NidjBQUjZQaXVWVUpCYWlsUGlKcUFhRzV2U0o5Y0Nja2Y1RmVGVHpLRXl5?=
- =?utf-8?B?VFNTeEJiWmRWWmVodlZyZ1lmTERidWt5NU43NHhRS0pwZlhVeERYMnB1bkR6?=
- =?utf-8?B?dzZGbjZucFJxWGU4b3VZbW84S1pza0VrYUZzVjR6ZThOaTBnRGVib200QjUw?=
- =?utf-8?Q?kwosMQtbNC/7v6XgsXDV6VFBK?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8b3cccd6-3e01-41ac-632d-08dbfbf99739
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR12MB3683.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Dec 2023 16:36:00.7045
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: vCSC/2K27+fY74p/OCuvBy8JseOD675zYiuXIM5hXQqDpcpHAmq+a32IOvpSD1Af
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5949
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Content-Language: en-us
+Thread-Index: AQEeDlMUs+qnFg95EVUf+Z9FZqMuEwGYygq+AkfiRXGyAKPW4A==
+X-Brightmail-Tracker: H4sIAAAAAAAAA01Te0xTVxz29Lb3FhLkrnZyZDy6LiSDjEehdAcHUzdwN3HJiGbqHhlUuKEM
+	KF1vmcPMDYc8BGkmqGDlNRFQrDIKgSKivJwDEafycIIMCqaAAxXMEIG6lqsb/33f73zf+X6/
+	38nhY4JWwpkfq9TQaqU8Xozbc+vbPT29R4aTab9UgwjVTdVy0XLubwR6VHEYIH1zDwcNPDXz
+	UElHDw+lllXjaKbIBRkbhEg7MYqho0uVHGQY6+ehJ4eHeai2ZAmggpuXOai7LIdAdy9cJtD4
+	L90cdKsrDHUNzOHo1wILF6U1dxCo/e8MHspqW8aRpb+Gi8xaq2tsYAlHVRetl8ze+wodHApE
+	VbMvABqbtGCbRVR9Uz2P0hfrAbX4PBdQj+6mEVSj7j5BlRqSKEPVIZwa6r+EU2f1eh51pUhP
+	ULWnf6R6f/+JRzXOpxCUtq4KUHMGt3DHz+OCFbQ8mlaLaGVUYnSsMiZEvG1HxIcRgTI/ibck
+	CL0rFinlCXSIOPTjcO+tsfHWdYlF38rjk6ylcDnDiH3fD1YnJmlokSKR0YSIaVV0vEqq8mHk
+	CUySMsZHSWs2Svz8/AOtwsg4xegxV9WA03cPjl/CU0CaMAvY8SEphWZzJScL2PMFZBOA460N
+	BEtmAZyusxE7K/kHwKJJ2StHbsd1LitqBrD8fBpgyQSAOZYDXJsKJ72hsSwdt2EhOYzBgZ4t
+	NhFG6jG48GIIsx3YkZthe+/gCl5H7oI3nmQDG+aSHtCkM6/UHcggeMXUjLP4Ndh5YnwlACPd
+	YcN0Ica2JIILDyp4bN0JTl7tINjgD6CpunClO0hq7WHfdDFgDaHwYGvDS/M6OHWtjmCxM5yb
+	sYXxrZiCp5ac2bICTldWv7Rugi29hVybBCM9YfVFXzZ2LcxZHOewTgeYmS5g1R4wdaaPy+I3
+	4JHsbB6LKbh4zAJ+Bm/qVg2mWzWYbtUwuv/DSgG3CmygVUxCDM0EqgKU9N7/njsqMcEAVv6S
+	1zYjMI089mkDHD5oA5CPiYUOnca9tMAhWp68j1YnRqiT4mmmDQRat30Ec349KtH6GZWaCIk0
+	yE8qk8mkQQEyidjJ4WFaUbSAjJFr6DiaVtHqVz4O3845hbMPD10aOU2Y8/3D5GvOFrvg710w
+	lyy36m5eP3Wt5kvVuLG7/KR6sWBONG1yND2PnP86y7Olpdyn76jlm0ym+vugnZ6KxvyGuk0u
+	ggVdLpNSPif1VTRL043zjnv8Pr1FycZODgc/nXB3W5u3PsfdbTkwSLXb/k6yV+H+HX1NHsUx
+	edKuhrcEH6E/p3wzjz/bGDF8O/ye+pxw9My5XRVc1z+yM+73LaTIGv8qMvWYdh8Q3mkO25Bb
+	OH9+61BIzdtM3sCN9YOfnFBnq/wf7t++syQtuDFu4lBdzJ581y/SGx9vPxNwNXgL7rvm2W3J
+	Z9nJloRObWSB1i7jHdEPBUbDYGZpfnpXrpjLKOQSL0zNyP8FeszHFdQEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA02SbUyTZxSGffp+gmt4bZv1QUVdN+dHpILZkseNGPdhfKdhURZ/iEHWyDsg
+	0Ja1ILJssd0EWYWOoRCtoCgEadfB2jqoSGEplQ3GMHOMdgM6BFyRVBnFhChYRtss4999zn3u
+	K/ePQ2MCI7GWzlbkcyqFLFdCRuOt3ZIN8WPeIi7BfhTdnLbh6HllD4VmGssAMjsGeMj9xEeg
+	q64BAn1R30Kix7Xrkb1NhPRT9zF0YfEGD1knhgg0W+YlkO3qIkAX73byUH99OYU8zZ0UmrzW
+	z0O/9u1Dfe45En13MYijYoeLQt3+swTSOZ+TKDhkwZFPv5yacC+SyNS+DAn8eRydGXkdmQJL
+	AE08DGJ7N7Gtt1sJ1nzFDNiFZ5WAnfEUU+wtwyjF1lkLWKvpS5IdGeogWaPZTLBdtWaKtTWc
+	Zgd/+pxgb81rKFZ/0wTYOeuGQzGp0UkZXG72SU61c8+H0Vn3q+Ly3OJTD6o7SA0oFulAFA2Z
+	12Cl62dcB6JpAXMbwH5nE4gY66DbUkFFtBAagz4qcvQ3gGf/qMVCBsnEQ3t9CRkyREwAg98s
+	ecIDxrRjcEBTQoSuBIwLwGltVkhHMXth9+BwOC1kjsDgwjAZ0jizGY4bfOE9n9kNu8YdZESv
+	gb2XJpf70ctQKSyxhNthzEbY9qgGi7TbBJ8+aCQiezF8eMcVbi1i3objLTWgAggNK0iG/0mG
+	FSTDinQdwE0glstTyzPl6sS8RAVXKFXL5OoCRab0hFJuBeFv2r7NDtpM/0idgEcDJ4A0JhHx
+	e+2FnICfISv6hFMp01UFuZzaCdbRuETMF0+VZwiYTFk+l8NxeZzqP5dHR63V8JjGN6ocI7zz
+	UP/j7OFkScsTwLb37KRmLOn5P8Scsc3uahb/3jCaVPouoyLTdSev5XdUpyri9mzcpvd/Onai
+	OdhQ5j93bF/UlK/Gp0ybNnztAV1/vbq1VHv6hcM7Jvu6PZsTvBVKu1Qbg+0/0pRic4/MrbZo
+	3OfvLJVu/d77UecvTY+M+lnDyzPr9xfcq1bvut4zqLjun1+tDdTx8bSj/pRYeuzu8QMvwRvu
+	5LfOlcXqPKPlgVOP54Ut73N4IVoY/I1Nk7+323FvNDnm6Wf8LXE52jUfGC9L3nnl43rlwaLh
+	rtIXTfEJwJXt/WrVIfHBTt63VSmZOc9WpfZ6kyxvMsIdElydJUvcjqnUsn8BxvhPf7wDAAA=
+X-CMS-MailID: 20231213164208epcas5p3ad056fa6ad7cc9dc00ac5c8ad5a84014
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20231211162436epcas5p4161dfb5a2b849edc6856662e5b42693d
+References: <20231211162331.435900-1-peter.griffin@linaro.org>
+	<CGME20231211162436epcas5p4161dfb5a2b849edc6856662e5b42693d@epcas5p4.samsung.com>
+	<20231211162331.435900-13-peter.griffin@linaro.org>
 
 
-On 12/13/23 10:21 AM, Krzysztof Kozlowski wrote:
-> On 13/12/2023 17:18, Tanmay Shah wrote:
->
->
-> >>> +    minItems: 1
-> >>> +    maxItems: 2
-> >>
-> >> I don't understand why this change is here. Previously you did not have
-> >> MMIO address space? If yes, then where do you restrict the old device to
-> >> disallow these?
-> > 
-> > 
-> > Hardware description is different between ZynqMP and Versal. And so, we have to design
-> > 
-> > new bindings for Versal. reg and reg-names for parent node, is only available for new devices.
-> > 
-> > The new device is checked with compatible string after "required" section.
->
-> Hm? What does that mean?
+
+> -----Original Message-----
+> From: Peter Griffin <peter.griffin@linaro.org>
+> Sent: Monday, December 11, 2023 9:53 PM
+> To: robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
+> mturquette@baylibre.com; conor+dt@kernel.org; sboyd@kernel.org;
+> tomasz.figa@gmail.com; s.nawrocki@samsung.com; linus.walleij@linaro.org;
+> wim@linux-watchdog.org; linux@roeck-us.net; catalin.marinas@arm.com;
+> will@kernel.org; arnd@arndb.de; olof@lixom.net;
+> gregkh@linuxfoundation.org; jirislaby@kernel.org;
+> cw00.choi@samsung.com; alim.akhtar@samsung.com
+> Cc: peter.griffin@linaro.org; tudor.ambarus@linaro.org;
+> andre.draszik@linaro.org; semen.protsenko@linaro.org;
+> saravanak@google.com; willmcvicker@google.com; soc@kernel.org;
+> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+> samsung-soc@vger.kernel.org; linux-clk@vger.kernel.org; linux-
+> gpio@vger.kernel.org; linux-watchdog@vger.kernel.org; kernel-
+> team@android.com; linux-serial@vger.kernel.org
+> Subject: [PATCH v7 12/16] watchdog: s3c2410_wdt: Add support for Google
+> gs101 SoC
+> 
+> This patch adds the compatibles and drvdata for the Google
+> gs101 SoC found in Pixel 6, Pixel 6a & Pixel 6 pro phones.
+> 
+> Similar to Exynos850 it has two watchdog instances, one for each cluster
+and
+> has some control bits in PMU registers.
+> 
+> gs101 also has the dbgack_mask bit in wtcon register, so we also enable
+> QUIRK_HAS_DBGACK_BIT.
+> 
+> Tested-by: Will McVicker <willmcvicker@google.com>
+> Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
+> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> ---
+>  drivers/watchdog/s3c2410_wdt.c | 49
+> ++++++++++++++++++++++++++++++----
+>  1 file changed, 44 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/watchdog/s3c2410_wdt.c
+> b/drivers/watchdog/s3c2410_wdt.c index b7a03668f743..c3046610ab5d
+> 100644
+> --- a/drivers/watchdog/s3c2410_wdt.c
+> +++ b/drivers/watchdog/s3c2410_wdt.c
+> @@ -69,6 +69,13 @@
+>  #define EXYNOSAUTOV9_CLUSTER0_WDTRESET_BIT	25
+>  #define EXYNOSAUTOV9_CLUSTER1_WDTRESET_BIT	24
+> 
+> 
+[snip]
+>  static const struct of_device_id s3c2410_wdt_match[] = {
+> +	{ .compatible = "google,gs101-wdt",
+> +	  .data = &drv_data_gs101_cl0 },
+>  	{ .compatible = "samsung,s3c2410-wdt",
+>  	  .data = &drv_data_s3c2410 },
+>  	{ .compatible = "samsung,s3c6410-wdt", @@ -605,9 +640,10 @@
+> s3c2410_get_wdt_drv_data(struct platform_device *pdev, struct
+> s3c2410_wdt *wdt)
+>  	}
+> 
+>  #ifdef CONFIG_OF
+> -	/* Choose Exynos850/ExynosAutov9 driver data w.r.t. cluster index
+> */
+> +	/* Choose Exynos9 SoC family driver data w.r.t. cluster index */
+Exynos9 introduction is out of context here, so you can leave it as original
+comment, it is not adding anything here.
+
+>  	if (variant == &drv_data_exynos850_cl0 ||
+> -	    variant == &drv_data_exynosautov9_cl0) {
+> +	    variant == &drv_data_exynosautov9_cl0 ||
+> +	    variant == &drv_data_gs101_cl0) {
+>  		u32 index;
+[snip]
+> --
+> 2.43.0.472.g3155946c3a-goog
 
 
-Following [1]. I think You answered what needs to be done. I will have reg: false for old devices.
-
-Thanks.
-
-
->
-> > 
-> > Should I add "unevaluatedProperties: false" after "additionalProperties: false" for parent node below [1] ?
->
-> No, you should disallow reg/reg-names for older device.
->
-> ...
->
-> > 
-> >>> +        then:
-> >>> +          properties:
-> >>> +            reg:
-> >>> +              items:
-> >>> +                - description: Host agent request message buffer
-> >>> +                - description: Host agent response message buffer
-> >>> +                - description: Remote agent request message buffer
-> >>> +                - description: Remote agent response message buffer
-> >>> +
-> >>> +            reg-names:
-> >>> +              items:
-> >>> +                - const: local_request_region
-> >>> +                - const: local_response_region
-> >>> +                - const: remote_request_region
-> >>> +                - const: remote_response_region
-> >>> +        else:
-> >>> +          properties:
-> >>> +            reg:
-> >>> +              minItems: 1
-> >>> +              items:
-> >>> +                - description: Remote IPI agent control register
-> >>> +                - description: Remote IPI agent optional message buffer
-> >>
-> >> Were these described in old binding? If not, it's a separate change.
-> > 
-> > Okay, so I will split this in two patches:
-> > 
-> > 1) Clean up current bindings (like remove redundant descriptino, sort "required" property order etc..)
->
-> If you want to combine cleanup and functional changes, then this would
-> be two patches.
->
-> > 
-> > 2) Add versal platforms bindings doc. (This will add if else cases and Versal platform support)
-
-In that case, can I just post single patch that adds new device support ?
-
-Won't touch anything that is not needed for new device support.
-
-
->
-> > 
-> > 
-> >>> +
-> >>> +            reg-names:
-> >>> +              minItems: 1
-> >>> +              items:
-> >>> +                - const: ctrl
-> >>> +                - const: msg
-> >>
-> >> Blank line
-> >>
-> >>>  required:
-> >>>    - compatible
-> >>> -  - interrupts
-> >>>    - '#address-cells'
-> >>>    - '#size-cells'
-> >>> +  - interrupts
-> >>
-> >> Separate change with its own rationale. Trivial cleanups can be
-> >> organized in one patch, but should not be mixed with adding new devices.
-> > 
-> > Ack
-> > 
-> > 
-> >>>    - xlnx,ipi-id
-> >>>  
-> >>> +allOf:
-> >>> +  - if:
-> >>> +      properties:
-> >>> +        compatible:
-> >>> +          contains:
-> >>> +            enum:
-> >>> +              - xlnx,versal-ipi-mailbox
-> >>> +    then:
-> >>> +      properties:
-> >>> +        reg:
-> >>> +          items:
-> >>> +            - description: Host IPI agent control registers
-> >>> +            - description: Host IPI agent optional message buffers
-> >>> +
-> >>> +        reg-names:
-> >>> +          items:
-> >>> +            - const: ctrl
-> >>> +            - const: msg
-> >>> +
-> >>> +      required:
-> >>> +        - reg
-> >>> +        - reg-names
-> >>> +
-> >>> +additionalProperties: false
-> > 
-> > [1] Here, if I add unevaluatedProperties: false then is it enough for old device to disallow
->
-> No, you need reg:false
->
-> Best regards,
-> Krzysztof
->
 
