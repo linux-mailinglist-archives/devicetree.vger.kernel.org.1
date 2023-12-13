@@ -1,126 +1,308 @@
-Return-Path: <devicetree+bounces-24817-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24818-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E5BF811517
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 15:44:49 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AAA76811524
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 15:45:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD4D21F21849
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 14:44:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 24A1D1F2187D
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 14:45:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D41512EB04;
-	Wed, 13 Dec 2023 14:44:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CCDF2EB15;
+	Wed, 13 Dec 2023 14:45:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hA7q6eHM"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="Agj/ICxb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34A25D63;
-	Wed, 13 Dec 2023 06:44:26 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-50bf3efe2cbso8066337e87.2;
-        Wed, 13 Dec 2023 06:44:26 -0800 (PST)
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A5B710E4
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 06:45:42 -0800 (PST)
+Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2cc2238f597so44104361fa.3
+        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 06:45:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702478664; x=1703083464; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=247l+rcM14kykhxTNl3mbLVe+ul76O9sNfKGqS/c1U4=;
-        b=hA7q6eHM+YEYyHrsLY9iQ7vUrlgfD46JTV/RldRSWU4+blQ+1MlqN9FuRd9ozmbVr5
-         bYynNRPUP2dJNSTb4jB2zv2GWl1EWFspVZN2KJ1Fk74ZK3o9XQiTR/BJmcrdpxF/cp0w
-         v4HJsMJ3LSHIkurWP39RA8mN5ttiaeDFbLkN6RVOfCiX8+hVoPhQAYLpveqTeokd4PWF
-         4FDXDa2u9woTFc59w5r9EjsAjQPmArFlAcTGNLgwUuxpD2XVx+hmaXSa4DW5hbjtCkNA
-         AFE7EmC3sY1jqkRR6oHXjoIUwP3ShgRpDBjIjwZrzfb2RZmthCZjqOt0GSRYcELizDV6
-         e8LQ==
+        d=ventanamicro.com; s=google; t=1702478740; x=1703083540; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bmqPFkPuxnmZl6SJeiaZQfpiU27tLb3tsOrQMJyrLD4=;
+        b=Agj/ICxbfAA8gikFbPx/aYaV00RAZ2/uHfd3qjMezPv/8CVFLw+cbJYimZ1O40ohsP
+         rZ9Gj2UzkHdWDgDoiZmUYI2KIilTYFiGctNS2YoiiOHrvuP3Xwoo6wQqGAXks/muW/6V
+         PKFviEYgBqizGlGgqLql0LXEdRga5Lqg0bDm1yeb07Tl2A5gUG3VxmRR2/Vz5UXtwDLk
+         kodHD46XLQNxHgeg16tlIEcwlPZmepIzRl+6msJymXWeCitozjzVSUt//nHBv8wYJ1Pd
+         kyVuEflKcYQUz/w3GqZIuIDliqfRCRwaWrInB6Etxtpo1nVks9FdOsRYZaNke7Kxb/oE
+         FU/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702478664; x=1703083464;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=247l+rcM14kykhxTNl3mbLVe+ul76O9sNfKGqS/c1U4=;
-        b=hcsh3Tdil/xpwjhufSGWP+e7/s4bm+mq28gRd01vJ444DszBXhOnUHoTjCKmQFUjwq
-         ShkYSKBI2OkPAA+s0E1mzs5HAElBNaa8uQ+5uLMd063PiyCqkniqz1ZGPt3r36fK1kwf
-         PTNIO/mL+D1LfkR4n/b0JAKnB4wM2cowZX0+pfge32gqX9rS5EqzU5KRffOOECQNnF9M
-         ZEipiUzt7SwzmhClzZMBPGvz8nsLRX7GFKNvdLrJg3rVjn8t02vG/Map3XtWhAvgL5Ty
-         U3hTPys4tEysj9aqhQvA72HnNFjco1SFcUjOqQYF+XBwtsBDrfA4zfqIeDXDa/9AxbUO
-         Ojvg==
-X-Gm-Message-State: AOJu0YyL6eQryWOGrRKWLP6b8koFH3arHdX3+mlIxihIC59vvoa0MGUD
-	JjnkcIovyBdVcC/BCXay+cM=
-X-Google-Smtp-Source: AGHT+IE9xDobGtuFHBEZX870IVSbo0wphjnaFT+8js0/53mzF81jZlJANosifpCc9Ik3NvXQbCPyow==
-X-Received: by 2002:a05:6512:3d1f:b0:50d:fb24:a032 with SMTP id d31-20020a0565123d1f00b0050dfb24a032mr1951533lfv.74.1702478663924;
-        Wed, 13 Dec 2023 06:44:23 -0800 (PST)
-Received: from ?IPv6:2001:a61:3456:4e01:6ae:b55a:bd1d:57fc? ([2001:a61:3456:4e01:6ae:b55a:bd1d:57fc])
-        by smtp.gmail.com with ESMTPSA id hu18-20020a170907a09200b00a1e081369a9sm7822548ejc.23.2023.12.13.06.44.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Dec 2023 06:44:23 -0800 (PST)
-Message-ID: <114c8347063d196b58f48bb5ce9914144e215c4b.camel@gmail.com>
-Subject: Re: [PATCH v3 2/2] hwmon: ltc4282: add support for the LTC4282 chip
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Guenter Roeck <linux@roeck-us.net>, nuno.sa@analog.com
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-doc@vger.kernel.org, Jean Delvare <jdelvare@suse.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>
-Date: Wed, 13 Dec 2023 15:44:23 +0100
-In-Reply-To: <505ac1bf-616a-443d-b2bc-a54b3c193757@roeck-us.net>
-References: <20231205-ltc4282-support-v3-0-e0877b281bc2@analog.com>
-	 <20231205-ltc4282-support-v3-2-e0877b281bc2@analog.com>
-	 <a0eb6cb4-b8af-4a6f-8888-fa18f8f1d188@roeck-us.net>
-	 <d190620900ceda6c2846f3828ee389da917a66e0.camel@gmail.com>
-	 <436257a1-628e-4a45-884d-348e73d4c5e9@roeck-us.net>
-	 <38e41d0b92c0cb1f61e7a1d92137cc94a57a7f85.camel@gmail.com>
-	 <92699a3e-1198-4bf9-b5c0-ea8c5c189336@roeck-us.net>
-	 <cdf4876c8e5f70d70ac362f79f295cae5e39b1ef.camel@gmail.com>
-	 <505ac1bf-616a-443d-b2bc-a54b3c193757@roeck-us.net>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
+        d=1e100.net; s=20230601; t=1702478740; x=1703083540;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=bmqPFkPuxnmZl6SJeiaZQfpiU27tLb3tsOrQMJyrLD4=;
+        b=ZLcgWmNmdjYnCWZIL5IQaVdU8M6CtAeEef/ZkMLA4tmS8vbx1vnxfeB7L8AIKsk0IG
+         W55M0SKyOcXWAxEo2hTmGcWjAGNdFwdHgQjK13V4tIT9ziGAt7hUZVrn5rVEd0wnqgtM
+         0GADBf+uWT7RzlSAZ2oCzWZp39D9khgvyEwNSuYKLwv0yxmiEemq/fLDrKV0a25IkDfp
+         C1aQhXSK/8s4255ZKNW51Qgkf0+3erMArQ/Rf5JMZKUU41b8X2nk95iWBMUQGDyErzMm
+         nCmNoUvDAOPPxjXQb8McU97RpzMXMTLDdKQZKz4ugXVbz0dY8JY5sXFRKjqDhM9vMwtQ
+         B6cg==
+X-Gm-Message-State: AOJu0Yxyv6eJol7qxNQ2wIPJGDXQVxueq4uzf9EWv5ObN3paHG/hhSht
+	O9eBBQ6v/Q4L2PgPZJdM9stAnQy31uQoIu35pHHbOQ==
+X-Google-Smtp-Source: AGHT+IG6FMOgiaHfoGJ4CXnfRM137eDjGlMeCoh6XEgb1O0XWDa1v6SeRcYd9d9XNsMFoYiywjezVdEKzupnFGgO6Xc=
+X-Received: by 2002:a2e:9f51:0:b0:2c9:fece:5be6 with SMTP id
+ v17-20020a2e9f51000000b002c9fece5be6mr1427130ljk.54.1702478740068; Wed, 13
+ Dec 2023 06:45:40 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20231213070301.1684751-1-peterlin@andestech.com> <20231213070301.1684751-4-peterlin@andestech.com>
+In-Reply-To: <20231213070301.1684751-4-peterlin@andestech.com>
+From: Anup Patel <apatel@ventanamicro.com>
+Date: Wed, 13 Dec 2023 20:15:28 +0530
+Message-ID: <CAK9=C2WC2i7XkjDgbjccVn03BYfnE_YS4YiA6ZWMj6GDyTjJKA@mail.gmail.com>
+Subject: Re: [PATCH v5 03/16] irqchip/riscv-intc: Introduce Andes hart-level
+ interrupt controller
+To: Yu Chien Peter Lin <peterlin@andestech.com>
+Cc: acme@kernel.org, adrian.hunter@intel.com, ajones@ventanamicro.com, 
+	alexander.shishkin@linux.intel.com, andre.przywara@arm.com, 
+	anup@brainfault.org, aou@eecs.berkeley.edu, atishp@atishpatra.org, 
+	conor+dt@kernel.org, conor.dooley@microchip.com, conor@kernel.org, 
+	devicetree@vger.kernel.org, dminus@andestech.com, evan@rivosinc.com, 
+	geert+renesas@glider.be, guoren@kernel.org, heiko@sntech.de, 
+	irogers@google.com, jernej.skrabec@gmail.com, jolsa@kernel.org, 
+	jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-perf-users@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	locus84@andestech.com, magnus.damm@gmail.com, mark.rutland@arm.com, 
+	mingo@redhat.com, n.shubin@yadro.com, namhyung@kernel.org, palmer@dabbelt.com, 
+	paul.walmsley@sifive.com, peterz@infradead.org, 
+	prabhakar.mahadev-lad.rj@bp.renesas.com, rdunlap@infradead.org, 
+	robh+dt@kernel.org, samuel@sholland.org, sunilvl@ventanamicro.com, 
+	tglx@linutronix.de, tim609@andestech.com, uwu@icenowy.me, wens@csie.org, 
+	will@kernel.org, ycliang@andestech.com, inochiama@outlook.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, 2023-12-13 at 06:35 -0800, Guenter Roeck wrote:
-> On 12/13/23 02:06, Nuno S=C3=A1 wrote:
-> [ ... ]
-> > >=20
-> > > We could also use in[01]_reset_history. While that is originally inte=
-nded to
-> > > reset
-> > > min/max voltage history, I think it makes sense to extend the meaning=
- to
-> > > include
-> > > fault history (even more so if that history includes over/undervoltag=
-e events).
-> > > Plus, there are other _reset_history attributes which could be used t=
-o reset
-> > > power/current/temperature history separately if that is supported by =
-the chip.
-> > >=20
-> >=20
-> > Well, I'm already supporting _reset_history in the voltage/power/curren=
-t channels
-> > so
-> > I can easily extend that for clearing fault history if that is fine wit=
-h you. I
-> > just
-> > need to document it because it's a bit of an "hidden" thing. The questi=
-on would
-> > also
-> > be, should I just document this for this chip docs or in the general hw=
-mon docs?
-> >=20
->=20
-> I'd say chip specific for now. We can document it in the general document=
-ation
-> if/when we get more chips with the same characteristics.
->=20
+On Wed, Dec 13, 2023 at 12:35=E2=80=AFPM Yu Chien Peter Lin
+<peterlin@andestech.com> wrote:
+>
+> Add support for the Andes hart-level interrupt controller. This
+> controller provides interrupt mask/unmask functions to access the
+> custom register (SLIE) where the non-standard S-mode local interrupt
+> enable bits are located.
+>
+> To share the riscv_intc_domain_map() with the generic RISC-V INTC and
+> ACPI, add a chip parameter to riscv_intc_init_common(), so it can be
+> passed to the irq_domain_set_info() as private data.
+>
+> Andes hart-level interrupt controller requires the "andestech,cpu-intc"
+> compatible string to be present in interrupt-controller of cpu node.
+> e.g.,
+>
+>   cpu0: cpu@0 {
+>       compatible =3D "andestech,ax45mp", "riscv";
+>       ...
+>       cpu0-intc: interrupt-controller {
+>           #interrupt-cells =3D <0x01>;
+>           compatible =3D "andestech,cpu-intc", "riscv,cpu-intc";
+>           interrupt-controller;
+>       };
+>   };
+>
+> Signed-off-by: Yu Chien Peter Lin <peterlin@andestech.com>
+> Reviewed-by: Charles Ci-Jyun Wu <dminus@andestech.com>
+> Reviewed-by: Leo Yu-Chi Liang <ycliang@andestech.com>
+> ---
+> Changes v1 -> v2:
+>   - New patch
+> Changes v2 -> v3:
+>   - Return -ENXIO if no valid compatible INTC found
+>   - Allow falling back to generic RISC-V INTC
+> Changes v3 -> v4: (Suggested by Thomas [1])
+>   - Add comment to andes irq chip function
+>   - Refine code flow to share with generic RISC-V INTC and ACPI
+>   - Move Andes specific definitions to include/linux/soc/andes/irq.h
+> Changes v4 -> v5: (Suggested by Thomas)
+>   - Fix commit message
+>   - Subtract ANDES_SLI_CAUSE_BASE from d->hwirq to calculate the value of=
+ mask
+>   - Do not set chip_data to the chip itself with irq_domain_set_info()
+>   - Follow reverse fir tree order variable declarations
+>
+> [1] https://patchwork.kernel.org/project/linux-riscv/patch/20231019135723=
+.3657156-1-peterlin@andestech.com/
+> ---
+>  drivers/irqchip/irq-riscv-intc.c | 53 ++++++++++++++++++++++++++++----
+>  include/linux/soc/andes/irq.h    | 17 ++++++++++
+>  2 files changed, 64 insertions(+), 6 deletions(-)
+>  create mode 100644 include/linux/soc/andes/irq.h
+>
+> diff --git a/drivers/irqchip/irq-riscv-intc.c b/drivers/irqchip/irq-riscv=
+-intc.c
+> index 2fdd40f2a791..0b6bf3fb1dba 100644
+> --- a/drivers/irqchip/irq-riscv-intc.c
+> +++ b/drivers/irqchip/irq-riscv-intc.c
+> @@ -17,6 +17,7 @@
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+>  #include <linux/smp.h>
+> +#include <linux/soc/andes/irq.h>
+>
+>  static struct irq_domain *intc_domain;
+>
+> @@ -46,6 +47,31 @@ static void riscv_intc_irq_unmask(struct irq_data *d)
+>         csr_set(CSR_IE, BIT(d->hwirq));
+>  }
+>
+> +static void andes_intc_irq_mask(struct irq_data *d)
+> +{
+> +       /*
+> +        * Andes specific S-mode local interrupt causes (hwirq)
+> +        * are defined as (256 + n) and controlled by n-th bit
+> +        * of SLIE.
+> +        */
+> +       unsigned int mask =3D BIT(d->hwirq - ANDES_SLI_CAUSE_BASE);
+> +
+> +       if (d->hwirq < ANDES_SLI_CAUSE_BASE)
+> +               csr_clear(CSR_IE, mask);
+> +       else
+> +               csr_clear(ANDES_CSR_SLIE, mask);
+> +}
+> +
+> +static void andes_intc_irq_unmask(struct irq_data *d)
+> +{
+> +       unsigned int mask =3D BIT(d->hwirq - ANDES_SLI_CAUSE_BASE);
+> +
+> +       if (d->hwirq < ANDES_SLI_CAUSE_BASE)
+> +               csr_set(CSR_IE, mask);
+> +       else
+> +               csr_set(ANDES_CSR_SLIE, mask);
 
-Agreed... Alright, I think I have now all I need to work on v4.
+Clearly, Andes does not have any CSR for:
+XLEN <=3D local interrupt <ANDES_SLI_CAUSE_BASE
+and
+ANDES_SLI_CAUSE_BASE + XLEN <=3D local interrupt
 
-Thanks!
-- Nuno S=C3=A1
+Regards,
+Anup
+
+> +}
+> +
+>  static void riscv_intc_irq_eoi(struct irq_data *d)
+>  {
+>         /*
+> @@ -69,11 +95,20 @@ static struct irq_chip riscv_intc_chip =3D {
+>         .irq_eoi =3D riscv_intc_irq_eoi,
+>  };
+>
+> +static struct irq_chip andes_intc_chip =3D {
+> +       .name       =3D "RISC-V INTC",
+> +       .irq_mask   =3D andes_intc_irq_mask,
+> +       .irq_unmask =3D andes_intc_irq_unmask,
+> +       .irq_eoi    =3D riscv_intc_irq_eoi,
+> +};
+> +
+>  static int riscv_intc_domain_map(struct irq_domain *d, unsigned int irq,
+>                                  irq_hw_number_t hwirq)
+>  {
+> +       struct irq_chip *chip =3D d->host_data;
+> +
+>         irq_set_percpu_devid(irq);
+> -       irq_domain_set_info(d, irq, hwirq, &riscv_intc_chip, d->host_data=
+,
+> +       irq_domain_set_info(d, irq, hwirq, chip, NULL,
+>                             handle_percpu_devid_irq, NULL, NULL);
+>
+>         return 0;
+> @@ -112,11 +147,12 @@ static struct fwnode_handle *riscv_intc_hwnode(void=
+)
+>         return intc_domain->fwnode;
+>  }
+>
+> -static int __init riscv_intc_init_common(struct fwnode_handle *fn)
+> +static int __init riscv_intc_init_common(struct fwnode_handle *fn,
+> +                                        struct irq_chip *chip)
+>  {
+>         int rc;
+>
+> -       intc_domain =3D irq_domain_create_tree(fn, &riscv_intc_domain_ops=
+, NULL);
+> +       intc_domain =3D irq_domain_create_tree(fn, &riscv_intc_domain_ops=
+, chip);
+>         if (!intc_domain) {
+>                 pr_err("unable to add IRQ domain\n");
+>                 return -ENXIO;
+> @@ -136,8 +172,9 @@ static int __init riscv_intc_init_common(struct fwnod=
+e_handle *fn)
+>  static int __init riscv_intc_init(struct device_node *node,
+>                                   struct device_node *parent)
+>  {
+> -       int rc;
+> +       struct irq_chip *chip =3D &riscv_intc_chip;
+>         unsigned long hartid;
+> +       int rc;
+>
+>         rc =3D riscv_of_parent_hartid(node, &hartid);
+>         if (rc < 0) {
+> @@ -162,10 +199,14 @@ static int __init riscv_intc_init(struct device_nod=
+e *node,
+>                 return 0;
+>         }
+>
+> -       return riscv_intc_init_common(of_node_to_fwnode(node));
+> +       if (of_device_is_compatible(node, "andestech,cpu-intc"))
+> +               chip =3D &andes_intc_chip;
+> +
+> +       return riscv_intc_init_common(of_node_to_fwnode(node), chip);
+>  }
+>
+>  IRQCHIP_DECLARE(riscv, "riscv,cpu-intc", riscv_intc_init);
+> +IRQCHIP_DECLARE(andes, "andestech,cpu-intc", riscv_intc_init);
+>
+>  #ifdef CONFIG_ACPI
+>
+> @@ -192,7 +233,7 @@ static int __init riscv_intc_acpi_init(union acpi_sub=
+table_headers *header,
+>                 return -ENOMEM;
+>         }
+>
+> -       return riscv_intc_init_common(fn);
+> +       return riscv_intc_init_common(fn, &riscv_intc_chip);
+>  }
+>
+>  IRQCHIP_ACPI_DECLARE(riscv_intc, ACPI_MADT_TYPE_RINTC, NULL,
+> diff --git a/include/linux/soc/andes/irq.h b/include/linux/soc/andes/irq.=
+h
+> new file mode 100644
+> index 000000000000..f03e68fea261
+> --- /dev/null
+> +++ b/include/linux/soc/andes/irq.h
+> @@ -0,0 +1,17 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Copyright (C) 2023 Andes Technology Corporation
+> + */
+> +#ifndef __ANDES_IRQ_H
+> +#define __ANDES_IRQ_H
+> +
+> +/* Andes PMU irq number */
+> +#define ANDES_RV_IRQ_PMU               18
+> +#define ANDES_SLI_CAUSE_BASE           256
+> +
+> +/* Andes PMU related registers */
+> +#define ANDES_CSR_SLIE                 0x9c4
+> +#define ANDES_CSR_SLIP                 0x9c5
+> +#define ANDES_CSR_SCOUNTEROF           0x9d4
+> +
+> +#endif /* __ANDES_IRQ_H */
+> --
+> 2.34.1
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
