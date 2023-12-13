@@ -1,98 +1,121 @@
-Return-Path: <devicetree+bounces-24869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5514F811869
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 16:54:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 082B7811889
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 17:02:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D344A280FE2
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 15:54:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E5581C20CBF
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 16:02:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 785BE85365;
-	Wed, 13 Dec 2023 15:54:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 517938537F;
+	Wed, 13 Dec 2023 16:02:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Fa+vjghE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uDrTRQ4T"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5975485346
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 15:54:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EB99C433C9;
-	Wed, 13 Dec 2023 15:54:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25CD285354;
+	Wed, 13 Dec 2023 16:02:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B5D6C433C7;
+	Wed, 13 Dec 2023 16:02:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702482845;
-	bh=2y1sC29LZVf5pOO/mDDd70nkQpS3j6F+u18Jw81+VcA=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Fa+vjghEYQ0QZb4ZiejM15rw46zji/7Gzsvf2LAZB3W933pTv/Tg+V9MeSa+WaEXx
-	 wzA9dbitQYvjCM68noceSUh3BUyRIKPFX8MXHilP66g45R2+UHY1mxzCIVnPZhmsGz
-	 nssRld9YUiq0kRlKfJ5SWsfeF1tQzGPefMR38OeG0MYtjPJVehcGC80j39arrmZCFZ
-	 pk+xRIWaRhh3gfH4mDdhBxSbiCp31MxmRyPw190pYPsC39MTC8VMVpKtfILskV8CZ3
-	 8SjjT3UH3jgN/7THPi5rAgp9uF8ct/4jlvvRoA+TOtoywK6RkfyZR98WuNdbaDqqsT
-	 bT+JrUroiOb2w==
+	s=k20201202; t=1702483341;
+	bh=iU0MYjjyzlZMDWQFfoANj4Ve4q83Cm1o4XgWEYy9/o8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=uDrTRQ4TbJ1MLpgiWBdfCkeJFD62W0AFnk66stElmOQfrYXU1FuFZy1hgVFjxkCO3
+	 r3WGKhdoNBo7Y3hdfKmn6WVcXbUsfeJhkoRq5MetVc+yt/XdGIBQVV5PJ1cRE6k/LF
+	 5KxKfKJrD1EL/jTqlvoLIB1WOUtpbzWyGNrEIEySxEu4OgdkLOWzPkAiUBsJBz7CWu
+	 SfO6cf7ncX/LqvQXfJs3PPl/f2rIcK9rNxjqq2ZNW8xyEG1sRRdDiS0GoZHs8e2vPe
+	 2UmSn/60q1WTjoPRPOCEimVXyZpERLMbqQ8T4ZwpaYxSN5ScfZjYrsIUGtudFEvrkC
+	 xrPdF7cC9QbgA==
+Date: Wed, 13 Dec 2023 16:02:16 +0000
 From: Conor Dooley <conor@kernel.org>
-To: linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc: conor@kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	Geert Uytterhoeven <geert@linux-m68k.org>
-Subject: Re: (subset) [PATCH v2 0/8] Add JH7100 errata and update device tree
-Date: Wed, 13 Dec 2023 15:53:56 +0000
-Message-Id: <20231213-animating-ambiguous-b8267c78e335@spud>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231130151932.729708-1-emil.renner.berthing@canonical.com>
-References: <20231130151932.729708-1-emil.renner.berthing@canonical.com>
+To: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
+Cc: git@amd.com, michal.simek@amd.com, gregkh@linuxfoundation.org,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	jirislaby@kernel.org, linux-arm-kernel@lists.infradead.org,
+	radhey.shyam.pandey@amd.com, srinivas.goud@amd.com,
+	shubhrajyoti.datta@amd.com, manion05gk@gmail.com
+Subject: Re: [PATCH V5 1/3] dt-bindings: Add reference to rs485.yaml
+Message-ID: <20231213-chief-heroics-fd8ba9dbb653@spud>
+References: <20231213130023.606486-1-manikanta.guntupalli@amd.com>
+ <20231213130023.606486-2-manikanta.guntupalli@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1318; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=bDevohe/TkJ99xD3EWfy4Mbir3mmI5PygrNqH48gvbE=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDKmVlydV/7r2TMbr1Dymn6LXFj5242m78l/nkvrWdXFmP X6LFyYUd5SyMIhxMMiKKbIk3u5rkVr/x2WHc89bmDmsTCBDGLg4BWAih+cyMnx/p+8+ZVKr1+Q+ 0XUbvvEemfFVuMno46acPSHaJ49tfHqE4b9nseD609fOXraw55JYuat/dXJWtuj/bDu+DUV7fx/ 458gOAA==
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="PON0JI5JFuC6UHYc"
+Content-Disposition: inline
+In-Reply-To: <20231213130023.606486-2-manikanta.guntupalli@amd.com>
 
-From: Conor Dooley <conor.dooley@microchip.com>
 
-On Thu, 30 Nov 2023 16:19:24 +0100, Emil Renner Berthing wrote:
-> Now that the driver for the SiFive cache controller supports manual
-> flushing as non-standard cache operations[1] we can add an errata option
-> for the StarFive JH7100 SoC and update the device tree with the cache
-> controller, dedicated DMA pool and add MMC nodes for the SD-card and
-> wifi.
-> 
-> This series needs the following commit in [1] to work properly:
-> 
-> [...]
+--PON0JI5JFuC6UHYc
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Applied to riscv-dt-for-next, thanks!
+On Wed, Dec 13, 2023 at 06:30:21PM +0530, Manikanta Guntupalli wrote:
+> Add reference to rs485.yaml
 
-[2/8] riscv: dts: starfive: Group tuples in interrupt properties
-      https://git.kernel.org/conor/c/dd3c1b365fe9
-[3/8] riscv: dts: starfive: Mark the JH7100 as having non-coherent DMAs
-      https://git.kernel.org/conor/c/ba0074972ee9
-[4/8] riscv: dts: starfive: Add JH7100 cache controller
-      https://git.kernel.org/conor/c/d4b95c445cab
-[5/8] riscv: dts: starfive: Add pool for coherent DMA memory on JH7100 boards
-      https://git.kernel.org/conor/c/0a99b562e815
-[6/8] riscv: dts: starfive: Add JH7100 MMC nodes
-      https://git.kernel.org/conor/c/a29bb6564e12
-[7/8] riscv: dts: starfive: Enable SD-card on JH7100 boards
-      https://git.kernel.org/conor/c/c548409cfe03
-[8/8] riscv: dts: starfive: Enable SDIO wifi on JH7100 boards
-      https://git.kernel.org/conor/c/56b10953da7e
+I can see this both from the diff and from $subject. What is missing
+here is why.
 
-Thanks,
-Conor.
+> Signed-off-by: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
+> ---
+> Changes for V2:
+> Modify optional gpio name to xlnx,phy-ctrl-gpios.
+> Update commit description.
+>=20
+> Changes for V3:
+> Modify optional gpio name to rts-gpios.
+> Update commit description.
+>=20
+> Changes for V4:
+> Update rts-gpios description.
+>=20
+> Changes for V5:
+> Remove rts-gpios description.
+> Update commit message and description.
+> ---
+>  Documentation/devicetree/bindings/serial/cdns,uart.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/serial/cdns,uart.yaml b/Do=
+cumentation/devicetree/bindings/serial/cdns,uart.yaml
+> index e35ad1109efc..2129247d7c81 100644
+> --- a/Documentation/devicetree/bindings/serial/cdns,uart.yaml
+> +++ b/Documentation/devicetree/bindings/serial/cdns,uart.yaml
+> @@ -55,6 +55,7 @@ required:
+> =20
+>  allOf:
+>    - $ref: serial.yaml#
+> +  - $ref: rs485.yaml#
+>    - if:
+>        properties:
+>          compatible:
+> --=20
+> 2.25.1
+>=20
+
+--PON0JI5JFuC6UHYc
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZXnViAAKCRB4tDGHoIJi
+0kWPAQCxViZ7KfO02cW9B+6e9MKb9cXp8W/9ckLEheKy7g8N9gEA8ja8T/s7+kVF
+ErNJOVODs7LBh5h9z7mnTeF7dLHdlw4=
+=GUr0
+-----END PGP SIGNATURE-----
+
+--PON0JI5JFuC6UHYc--
 
