@@ -1,122 +1,108 @@
-Return-Path: <devicetree+bounces-24694-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24695-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B0C9810EC9
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 11:47:12 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17ABC810EFD
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 11:53:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F152FB20B4E
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 10:47:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ABD3CB20B7A
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 10:53:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A6DA224C9;
-	Wed, 13 Dec 2023 10:47:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7886022EF1;
+	Wed, 13 Dec 2023 10:53:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="2/yVxpy8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aHKu3hja"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 903C799;
-	Wed, 13 Dec 2023 02:47:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1702464420;
-	bh=S1PKbsocAj5/bpOzgd6MxBRKB+aWSCTCeiTPSJMpSa0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=2/yVxpy8OsJfCUWCpd5FQ5ZeAPQBrG/zSCYIAQfVJMD+rPPz/8/p59lvS7v/m8XUJ
-	 RZN2LNHYpGln10/4CUz0Q1AVFQ+lFGgNWIletVvgj+mzbj9tMnm3PU4fxElhEHwcFF
-	 QkX/6skHgv+pG+g0OR3EfgbwmhPCDlBH6WUScUOUU6zTivbNJjyMMpsT6t5+czWtcZ
-	 eiQ8xE1l1R7qjpUiDzTdpYAWjopLnXq8L4PDSrAGg9Vdbj8MmZGgKyl1KEohB2IBAv
-	 x3NWCbGccW1KuIM5u4088261qpXH93e/MPk/rHwCwYeyONdrifRcTKfP/mhIp4J6cy
-	 5oVFlG+QAAeMA==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 387B73781453;
-	Wed, 13 Dec 2023 10:46:59 +0000 (UTC)
-Message-ID: <bbc6d09b-c472-4334-ba67-1072e94a89e9@collabora.com>
-Date: Wed, 13 Dec 2023 11:46:58 +0100
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 532E398
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 02:53:43 -0800 (PST)
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-33330a5617fso6858238f8f.2
+        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 02:53:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702464822; x=1703069622; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9AVoR1uUGIhIdM0n8dOyva32mu3rDmn4zFFnMFBtCJg=;
+        b=aHKu3hja6RKi1QETcTzcsQlMx22KOP00reYI/dJ2yTwfH1vRgXm3ZIMbNOOeLCbDd1
+         Ldg1TLNxIOEkFjUj4Gi6pqcKbbhWvJzsP5GrmPlL0l9kfnTYUKyTnN1akzNBF1ChMN3J
+         ztgkQKqvb/15GgM1jWrfDHczJURGQ3WCUoig4AKnuy6belJuYH9mMEBLPDur7Z+7k6ss
+         qlolCJgKtXhUTblSeAOodAhcxx5vCevRDlZ7g1Xv7ol0RUjk4H7oLPjriFAOPSEF28mt
+         kgJ4cym7IhQaIAgdRVhnYtJ3uV49XK9zeZ0I4yXmMjXK/59khmE5TVcAvIh8mEsePIK7
+         dkvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702464822; x=1703069622;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9AVoR1uUGIhIdM0n8dOyva32mu3rDmn4zFFnMFBtCJg=;
+        b=XFZgfKq3Soh6XgCJGSTIsefXjhXCLESG/tP+Zw+A6/x9mUlVH1hh27SmnoRrWmPnHo
+         A0vkNqj6z531fqGKGGl7HxRODCGRs3UQDJqNXQLiUbsshJzfIk4HYbwgI9HGY/9nTW0o
+         NfAV6DYPR71di0mQOVj3lb7qFdxUVdxdxQyNZim6c8hWV9VawlEXx4zLMvKS+u4hh8d+
+         rr4LcXwlB1b8aMGae3oUozzPJmf7/PiIWmp3OiKQGl9Q5SiOd7fZNPFVrBQE+niI8mZk
+         0bI83BKC62erO5I15QKxNNFA7U0QYXeQLQl8kOXVPU+CYrE3LFmcvyKIOhdky8m9OaIo
+         4dIA==
+X-Gm-Message-State: AOJu0YzaeMet0JcLDLaU5EkQU+6WPnE2kk1VSFBxPHVoKvoxgEi0gUtU
+	CE82KM4j9qB0iqNVdvEh4aarZQ==
+X-Google-Smtp-Source: AGHT+IGuvTKym5GzSffelzfLsWJCS5S1+vASIQD6/JxyNREq8dMO2z30KqWMSeSA3exaeQI7tcTbNg==
+X-Received: by 2002:a5d:6811:0:b0:332:ea44:8989 with SMTP id w17-20020a5d6811000000b00332ea448989mr4509472wru.30.1702464821704;
+        Wed, 13 Dec 2023 02:53:41 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id dd14-20020a0560001e8e00b003364277e714sm374761wrb.89.2023.12.13.02.53.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Dec 2023 02:53:41 -0800 (PST)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: Jessica Zhang <quic_jesszhan@quicinc.com>, 
+ Sam Ravnborg <sam@ravnborg.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thierry Reding <thierry.reding@gmail.com>, 
+ Brian Masney <masneyb@onstation.org>, David Heidelberg <david@ixit.cz>
+Cc: Rob Herring <robh@kernel.org>, dri-devel@lists.freedesktop.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20231212200934.99262-1-david@ixit.cz>
+References: <20231212200934.99262-1-david@ixit.cz>
+Subject: Re: [PATCH v2] dt-bindings: panel-simple-dsi: move LG 5" HD TFT
+ LCD panel into DSI yaml
+Message-Id: <170246482066.875647.5449342592487224704.b4-ty@linaro.org>
+Date: Wed, 13 Dec 2023 11:53:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [v9 3/4] ASoC: mediatek: mt8188-mt6359: add es8326 support
-Content-Language: en-US
-To: Rui Zhou <zhourui@huaqin.corp-partner.google.com>
-Cc: lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- matthias.bgg@gmail.com, perex@perex.cz, tiwai@suse.com,
- trevor.wu@mediatek.com, allen-kh.cheng@mediatek.com,
- kuninori.morimoto.gx@renesas.com, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-mediatek@lists.infradead.org
-References: <20231212123050.4080083-1-zhourui@huaqin.corp-partner.google.com>
- <20231212123050.4080083-4-zhourui@huaqin.corp-partner.google.com>
- <25ec0476-0ee3-4f2a-b0e6-ee33580159ab@collabora.com>
- <CABRjgztKkpE8KOBfj47Bdt_EXFiXA8+6eh6+=WMyPHW2UOF-oA@mail.gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <CABRjgztKkpE8KOBfj47Bdt_EXFiXA8+6eh6+=WMyPHW2UOF-oA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.4
 
-Il 13/12/23 02:48, Rui Zhou ha scritto:
-> Hi Angelo,
-> Thank you for your review.
-> I'm so sorry, but the person I added was obtained through the command
-> ./scripts/get_maintainer.pl. Do you mean that the order of my TO/CC people
-> is out of order? For example, it should be TO but CC is used.
-> Or maybe I added less people to my email. In your spare time, could you
-> please help check it out?
-> Thank you very much!
+Hi,
+
+On Tue, 12 Dec 2023 21:09:17 +0100, David Heidelberg wrote:
+> Originally was in the panel-simple, but belongs to panel-simple-dsi.
 > 
-> ./scripts/get_maintainer.pl 00*.patch
-> ./scripts/get_maintainer.pl: file '0000-cover-letter.patch' doesn't appear
-> to be a patch.  Add -f to options?
-> Liam Girdwood <lgirdwood@gmail.com> (supporter:SOUND - SOC LAYER / DYNAMIC
-> AUDIO POWER MANAGEM...)
-> Mark Brown <broonie@kernel.org> (supporter:SOUND - SOC LAYER / DYNAMIC
-> AUDIO POWER MANAGEM...,commit_signer:10/11=91%,commit_signer:16/19=84%)
-> Rob Herring <robh+dt@kernel.org> (maintainer:OPEN FIRMWARE AND FLATTENED
-> DEVICE TREE BINDINGS,authored:1/19=5%)
-> Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org> (maintainer:OPEN
-> FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
-> Conor Dooley <conor+dt@kernel.org> (maintainer:OPEN FIRMWARE AND FLATTENED
-> DEVICE TREE BINDINGS)
-> Matthias Brugger <matthias.bgg@gmail.com> (maintainer:ARM/Mediatek SoC
-> support)
-> AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> (maintainer:ARM/Mediatek SoC
-> support,commit_signer:4/11=36%,commit_signer:11/19=58%,authored:4/19=21%,removed_lines:41/157=26%)
-> Jaroslav Kysela <perex@perex.cz> (maintainer:SOUND)
-> Takashi Iwai <tiwai@suse.com> (maintainer:SOUND,removed_lines:11/157=7%)
-> Trevor Wu <trevor.wu@mediatek.com>
-> (commit_signer:5/11=45%,authored:3/11=27%,added_lines:27/54=50%,commit_signer:10/19=53%,authored:7/19=37%,added_lines:1401/1640=85%,removed_lines:26/157=17%,in
-> file)
-> xiazhengqiao <xiazhengqiao@huaqin.corp-partner.google.com>
-> (commit_signer:2/11=18%,authored:2/11=18%,added_lines:120/1640=7%)
-> Maso Huang <maso.huang@mediatek.com>
-> (commit_signer:2/11=18%,authored:2/11=18%,added_lines:20/54=37%)
-> Arnd Bergmann <arnd@arndb.de> (authored:1/11=9%)
-> Rui Zhou <zhourui@huaqin.corp-partner.google.com>
-> (authored:1/11=9%,commit_signer:3/19=16%,authored:3/19=16%,removed_lines:64/157=41%)
-> Allen-KH Cheng <allen-kh.cheng@mediatek.com> (removed_lines:1/1=100%)
-> Alexandre Mergnat <amergnat@baylibre.com> (commit_signer:7/19=37%)
-> Dan Carpenter <dan.carpenter@linaro.org> (authored:1/19=5%)
-> Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> (removed_lines:11/157=7%)
+> See arch/arm/boot/dts/nvidia/tegra114-roth.dts for more details.
+> 
+> Resolves the following warning:
+> ```
+> arch/arm/boot/dts/tegra114-roth.dt.yaml: panel@0: 'reg' does not match any of the regexes: 'pinctrl-[0-9]+'
+>         From schema: Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> ```
+> 
+> [...]
 
+Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-fixes)
 
-> linux-sound@vger.kernel.org (open list:SOUND - SOC LAYER / DYNAMIC AUDIO
-> POWER MANAGEM...)
+[1/1] dt-bindings: panel-simple-dsi: move LG 5" HD TFT LCD panel into DSI yaml
+      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=fa97e21e74df5ef63a442e4cfd13fd113fc8196e
 
-^^^^ You forgot to add this one :-)
-
-Regards,
-Angelo
-
+-- 
+Neil
 
 
