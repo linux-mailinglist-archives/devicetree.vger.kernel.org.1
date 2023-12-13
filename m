@@ -1,96 +1,171 @@
-Return-Path: <devicetree+bounces-24806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0491D811478
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 15:18:49 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C382A811485
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 15:24:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 374971C21072
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 14:18:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 33CA5B20C33
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 14:24:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCE392E848;
-	Wed, 13 Dec 2023 14:18:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E15092E84B;
+	Wed, 13 Dec 2023 14:24:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80233DD;
-	Wed, 13 Dec 2023 06:18:41 -0800 (PST)
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-5e32af77f15so1754017b3.2;
-        Wed, 13 Dec 2023 06:18:41 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702477120; x=1703081920;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nQIUc37L857Xy2IutTbpm0mG6sIjdIjLVU0WeFZORnk=;
-        b=Gs2o2bo+cyarBUBLPPCKojhwJGamx4PHbYNeS+Z/dCtcxf5GiZoTkXEI7egmfAx31e
-         bIjuegghly5LB5AYhae+/Xkqdwacv2oqmWJ2uMIuArtJQWuQpOkKLJQ14YrZ8p7Krhjt
-         tl9TW/0tS1mkGwgZY7VUoV0DMr0UJ4NPBQDpZV7nbgacc9AWE/LTubaT2SxeAE5Ljbvj
-         0X78P++1rFacZfiyO+cLw1qV2CpNIuJGejt4+AaeAZEzngUqnY/w9Pi46ZpzsAJEnFg6
-         GWEM+tA++j0nnWLkN4spvehdOj2kHX4HhaiZAZAT4mgaDH+9cHwY1GK78dBADaellkuu
-         /PKg==
-X-Gm-Message-State: AOJu0YxtoDaKVAx5uZQelqNx/x+GezNJcAWJSXfudCcN1DjD03QEQivo
-	0x1lGqgH+iMWsII7NoSoHuyd3Mc1PpH5iw==
-X-Google-Smtp-Source: AGHT+IFoQSG35p2VxhzCnsVF4RrrrIm2UQYlRVknpgd9Z0yTw+yA18LRMMRv01W7mHC77nGGemnnBQ==
-X-Received: by 2002:a0d:f3c5:0:b0:5d8:165c:17a5 with SMTP id c188-20020a0df3c5000000b005d8165c17a5mr6258032ywf.91.1702477120573;
-        Wed, 13 Dec 2023 06:18:40 -0800 (PST)
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com. [209.85.128.177])
-        by smtp.gmail.com with ESMTPSA id t21-20020a0dea15000000b005e295c30e4asm730248ywe.80.2023.12.13.06.18.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Dec 2023 06:18:39 -0800 (PST)
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-5e32af77f15so1753517b3.2;
-        Wed, 13 Dec 2023 06:18:39 -0800 (PST)
-X-Received: by 2002:a0d:c704:0:b0:5d7:1940:53c4 with SMTP id
- j4-20020a0dc704000000b005d7194053c4mr6755236ywd.60.1702477118892; Wed, 13 Dec
- 2023 06:18:38 -0800 (PST)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAD94B9;
+	Wed, 13 Dec 2023 06:24:15 -0800 (PST)
+X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="8330526"
+X-IronPort-AV: E=Sophos;i="6.04,272,1695711600"; 
+   d="scan'208";a="8330526"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Dec 2023 06:24:15 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="897344794"
+X-IronPort-AV: E=Sophos;i="6.04,272,1695711600"; 
+   d="scan'208";a="897344794"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Dec 2023 06:24:10 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andy@kernel.org>)
+	id 1rDQ9e-00000005Xtn-0GjE;
+	Wed, 13 Dec 2023 16:24:06 +0200
+Date: Wed, 13 Dec 2023 16:24:05 +0200
+From: Andy Shevchenko <andy@kernel.org>
+To: Dumitru Ceclan <mitrutzceclan@gmail.com>
+Cc: linus.walleij@linaro.org, brgl@bgdev.pl, linux-gpio@vger.kernel.org,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Walle <michael@walle.cc>, Arnd Bergmann <arnd@arndb.de>,
+	ChiaEn Wu <chiaen_wu@richtek.com>,
+	Niklas Schnelle <schnelle@linux.ibm.com>,
+	Leonard =?iso-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>,
+	Mike Looijmans <mike.looijmans@topic.nl>,
+	Haibo Chen <haibo.chen@nxp.com>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	Ceclan Dumitru <dumitru.ceclan@analog.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 2/2] iio: adc: ad7173: add AD7173 driver
+Message-ID: <ZXm-hf8UQ3VEyP-2@smile.fi.intel.com>
+References: <20231212104451.22522-1-mitrutzceclan@gmail.com>
+ <20231212104451.22522-2-mitrutzceclan@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231120111820.87398-1-claudiu.beznea.uj@bp.renesas.com> <20231120111820.87398-10-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20231120111820.87398-10-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 13 Dec 2023 15:18:27 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdX04XKYcoXQ60DsKt-1LuEKm_kSiuYDLjiqfM2Ej0OAXQ@mail.gmail.com>
-Message-ID: <CAMuHMdX04XKYcoXQ60DsKt-1LuEKm_kSiuYDLjiqfM2Ej0OAXQ@mail.gmail.com>
-Subject: Re: [PATCH v3 9/9] arm64: dts: renesas: r9108g045: Add IA55 interrupt
- controller node
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	conor+dt@kernel.org, magnus.damm@gmail.com, mturquette@baylibre.com, 
-	sboyd@kernel.org, prabhakar.mahadev-lad.rj@bp.renesas.com, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231212104451.22522-2-mitrutzceclan@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Wed, Nov 22, 2023 at 7:16=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev> =
-wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> Add IA55 interrupt controller node and set it as interrupt parent for pin
-> controller.
->
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+On Tue, Dec 12, 2023 at 12:44:36PM +0200, Dumitru Ceclan wrote:
+> The AD7173 family offer a complete integrated Sigma-Delta ADC solution
+> which can be used in high precision, low noise single channel
+> applications or higher speed multiplexed applications. The Sigma-Delta
+> ADC is intended primarily for measurement of signals close to DC but also
+> delivers outstanding performance with input bandwidths out to ~10kHz.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.8.
+I do not see any major problem in the code,
+Reviewed-by: Andy Shevchenko <andy@kernel.org>
 
-Gr{oetje,eeting}s,
+Some nit-picks below, but it's fine if it get addressed later on. Up to you
+and Jonathan.
 
-                        Geert
+...
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+> +static const unsigned int ad7173_sinc5_data_rates[] = {
+> +	6211000, 6211000, 6211000, 6211000, 6211000, 6211000, 5181000, 4444000,
+> +	3115000, 2597000, 1007000, 503800,  381000,  200300,  100500,  59520,
+> +	49680,	 20010,	  16333,   10000,   5000,    2500,    1250,
+> +};
+> +
+> +static const unsigned int ad7175_sinc5_data_rates[] = {
+> +	50000000, 41667000, 31250000, 27778000, 20833000, 17857000, 12500000,
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+I would add a comment with offsets, like
+
+	... /* 0-6 */
+
+But better to make it power of two, like each 4 on one line or 8.
+
+> +	10000000, 5000000,  2500000,  1000000,	500000,	  397500,   200000,
+> +	100000,	  59920,    49960,    20000,	16666,	  10000,    5000,
+> +};
+
+Not that I insist, just consider readability of these tables.
+
+...
+
+> +		if (chan->type == IIO_TEMP) {
+> +			temp = ((u32)AD7173_VOLTAGE_INT_REF_uV) * MILLI;
+
+Hmm... Is the casting mandatory here?
+
+> +			temp /= AD7173_TEMP_SENSIIVITY_uV_per_C;
+> +			*val = temp;
+> +			*val2 = chan->scan_type.realbits;
+> +		} else {
+> +			*val = ad7173_get_ref_voltage_milli(st, ch->cfg.ref_sel);
+> +			*val2 = chan->scan_type.realbits - !!(ch->cfg.bipolar);
+> +		}
+
+...
+
+> +		if (chan->type == IIO_TEMP)
+> +			*val = -874379; //-milli_kelvin_to_millicelsius(0)/scale
+
+Hmm... Besides C99 comment format, can we actually use the mentioned API?
+In such a case the comment won't be needed and the value semantics is better
+to get.
+
+> +		else
+> +			*val = -BIT(chan->scan_type.realbits - 1);
+
+...
+
+> +static int ad7173_debug_reg_access(struct iio_dev *indio_dev, unsigned int reg,
+> +				   unsigned int writeval, unsigned int *readval)
+> +{
+> +	struct ad7173_state *st = iio_priv(indio_dev);
+> +	u8 reg_size;
+> +
+> +	if (reg == 0)
+
+0 does not have its definition, does it?
+
+> +		reg_size = 1;
+> +	else if (reg == AD7173_REG_CRC || reg == AD7173_REG_DATA ||
+> +		 reg >= AD7173_REG_OFFSET(0))
+> +		reg_size = 3;
+> +	else
+> +		reg_size = 2;
+> +
+> +	if (readval)
+> +		return ad_sd_read_reg(&st->sd, reg, reg_size, readval);
+> +
+> +	return ad_sd_write_reg(&st->sd, reg, reg_size, writeval);
+> +}
+
+...
+
+> +	channels_st_priv_arr = devm_kcalloc(dev, num_channels,
+> +					    sizeof(*channels_st_priv_arr),
+> +					    GFP_KERNEL);
+> +	if (!channels_st_priv_arr)
+> +		return -ENOMEM;
+
+The variable name can be made shorter and hence the above will take less LoCs.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
