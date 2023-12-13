@@ -1,228 +1,156 @@
-Return-Path: <devicetree+bounces-24760-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24761-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FD6881122B
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 13:56:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BBD981123D
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 14:00:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 725FA1C2083F
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 12:56:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DADE7281E49
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 13:00:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36D002C193;
-	Wed, 13 Dec 2023 12:56:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C428F2C1B5;
+	Wed, 13 Dec 2023 13:00:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="Yb3xoDFx"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="hWaCamrZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26BE8B3
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 04:56:11 -0800 (PST)
-Received: from submission (posteo.de [185.67.36.169]) 
-	by mout01.posteo.de (Postfix) with ESMTPS id 3C22A240028
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 13:56:08 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
-	t=1702472168; bh=Ja35sRH73MLPHXYRUj6azr9TKoxuU7Yk//SKbBsoIxk=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:
-	 Content-Disposition:From;
-	b=Yb3xoDFxqb8xCIFjMoLLFjCaI6T/lGldLdz07M5ByoX4HkuSJII21L8Dyu6XtsnAI
-	 6M/u2fZ8YGwxKNfzjLHMedYroM+pyfGbU0vIrP99a0c8ar3Zzp7TLbc8fH+a9I5FjK
-	 R/pjlM3iQd25ECn1Az8BmlFsyF33qe3sa7ipQtUI1Pi8M6cc1XucAzbxq9Ab+3HcJi
-	 5B4fiIA6Emuq/seaT/bLwz/UuWVLhZcOHZRiWR+zIdki6K7SuJTjQwJ1WH932dGJRi
-	 7BKuKUj1uLuSGg/Knqj2gW7RemwSS6wHzidmq3zt27Kil8e/QHnl3VimGbo1MzTjfI
-	 N1U91yikLAF6A==
-Received: from customer (localhost [127.0.0.1])
-	by submission (posteo.de) with ESMTPSA id 4SqwTG3HMsz6tyd;
-	Wed, 13 Dec 2023 13:56:01 +0100 (CET)
-Date: Wed, 13 Dec 2023 12:55:58 +0000
-From: Anne Macedo <retpolanne@posteo.net>
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
-	"moderated list:ARM/Allwinner sunXi SoC support" <linux-arm-kernel@lists.infradead.org>, 
-	"open list:ARM/Allwinner sunXi SoC support" <linux-sunxi@lists.linux.dev>, open list <linux-kernel@vger.kernel.org>, 
-	Corentin Labbe <clabbe@baylibre.com>
-Subject: Re: [PATCH] arm64: dts: allwinner: Orange Pi One Plus PHY support
-Message-ID: <cm5e7g2ozviyin6p3dh2qtuh4i3f2sbqq4c2arjtdektgk7i6c@l7aawekyj6t2>
-References: <20231212122835.10850-2-retpolanne@posteo.net>
- <20231212162200.10b3868b@donnerap.manchester.arm.com>
- <axsvii25yrknfae6gdreti7lcskoscsdbsujwuispiieimsbdy@gwzm4l7mwlew>
- <20231213013544.2fc7e0d1@minigeek.lan>
- <ceuoq3xxgb5kkel7e7wqpslcg7h6dde3wgdqhyo7jgop6owovk@5a76ks5fiun4>
- <20231213122523.219cbfc0@donnerap.manchester.arm.com>
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2061.outbound.protection.outlook.com [40.107.93.61])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06C81111;
+	Wed, 13 Dec 2023 05:00:35 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nV6uBGZac56hKDvAzExld8fQSQx7Mde+kRbYIYU98SazNI+Ao0xtf2bBLDfBnoZel65oe6XseLce7apM2jtUvklfi1hAmSYayppv7+Rsx00mq1myvfZfpzAqUzCrpmWdtQGJmkT3N4WDvo+2eBz5xTNIQ1ZRwF3qVGyV2ZiIjHxhpc83f2/qWTuQx/V2OQUyQUE+vRfxBEFZO3IG/O+mDIzMmOQbmUy3l+wYClSOPnOOsayPN+9kztErzEfOIn0irDoyIMuSRTwWIbukCjQ+P1eJfTJE1r/f8/x/69zgOh+RikQvtq7vwLq5EV3DI/CPa2+23TrftEBTJf1ivhWiGA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8IjFzzzvWzho3lrTGlNnztCJPd9qCUlvIuKE7281IF0=;
+ b=Q7TQfJNnsVSkqiSVJr+FFIBiM71JMcYiMcjEU9aY5J5HHtXTTLrJKnS59GxmULyUU3S6VqyUL+YExTRvL/TyOypkq5hGTuQFE/WTbQfJc8yJocVbqcsdr2vff4LBUNMhiFsmk4Z3UQUUh81I5PfHEZ0EpBxk9N76mse0WY4ptOAXXybC6Cph4Dn2iz5fmYj7mjcqN71YdLP+Ugff3TRHSJP1lr2E7RthWQif3RseEcEHRSH/DxZpDa9HXNPEmVd4xvJIVaZNjpcsWJYmE3+wZuTQ032y2Mug95yyIARf5G2oU1xwfygHhQsDRmrH3IklPj57mGlji+AaOsAu/MTUjA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=linuxfoundation.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8IjFzzzvWzho3lrTGlNnztCJPd9qCUlvIuKE7281IF0=;
+ b=hWaCamrZcbctkEk2MpdODRekFbkqR8GSIqJ2V0iwMJpVdiKnA84Cnr2jDBm/Iey0vbRlWgNQRuhshPYvkCr8NWXE0eAq+oBZd7PQHlrZqxcs2wBMvSTlHPMLxIy/0oKCOJ/mnHPh0149VWHNn1ceqGTa45HrGt2aBQFhlcF2w28=
+Received: from CY5PR13CA0034.namprd13.prod.outlook.com (2603:10b6:930:11::19)
+ by DM8PR12MB5415.namprd12.prod.outlook.com (2603:10b6:8:25::5) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7091.26; Wed, 13 Dec 2023 13:00:32 +0000
+Received: from CY4PEPF0000E9CD.namprd03.prod.outlook.com
+ (2603:10b6:930:11:cafe::fd) by CY5PR13CA0034.outlook.office365.com
+ (2603:10b6:930:11::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7113.8 via Frontend
+ Transport; Wed, 13 Dec 2023 13:00:32 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CY4PEPF0000E9CD.mail.protection.outlook.com (10.167.241.140) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7091.26 via Frontend Transport; Wed, 13 Dec 2023 13:00:32 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Wed, 13 Dec
+ 2023 07:00:29 -0600
+Received: from xhdsgoud40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.34 via Frontend
+ Transport; Wed, 13 Dec 2023 07:00:25 -0600
+From: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
+To: <git@amd.com>, <michal.simek@amd.com>, <gregkh@linuxfoundation.org>,
+	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor+dt@kernel.org>, <linux-serial@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<jirislaby@kernel.org>, <linux-arm-kernel@lists.infradead.org>
+CC: <radhey.shyam.pandey@amd.com>, <srinivas.goud@amd.com>,
+	<shubhrajyoti.datta@amd.com>, <manion05gk@gmail.com>, Manikanta Guntupalli
+	<manikanta.guntupalli@amd.com>
+Subject: [PATCH V5 0/3] Add rs485 support to uartps driver
+Date: Wed, 13 Dec 2023 18:30:20 +0530
+Message-ID: <20231213130023.606486-1-manikanta.guntupalli@amd.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231213122523.219cbfc0@donnerap.manchester.arm.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9CD:EE_|DM8PR12MB5415:EE_
+X-MS-Office365-Filtering-Correlation-Id: 850b581f-43de-4533-df4a-08dbfbdb7da5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	iPZl4MuWh76jUqvT+0H7WAuVD/QAqOQAgcO6rFk4JhTUHTuQkfFj+QxzQ+9Kkklad12mjxOfDGoQM8fAPTW9+P1JYCzRipFkkCgQEtLaFTc4IR6LhZafGuGXG8eQL28mH132zc59dSfE0nEca6H2k9QwQMtChcoy9dvVJwoHgi6d+lpEV3f2zYyHy1LlnzHcpJ4vxMkedGDKtrjN/ykQ9lg8Z+fNAyMCe28Uc1V47ODLdCGct+tlyCjHwZMndjIZyaUeKfr3EwfxiHE2iUxtwJjp21XwFSDLVylTB6fl005Pxhp10I5NLVE5hJB5fol7EZNiTApyIriLAdbPPYGeCLZEh39BLfJH0UjGQvCNm5t+T40yEVDApCkPwyHHCl3gr/cDIddUnKtR5Iz484wRLIyvka+6qpxkjsB6wkF7njvSy7ILSmUuhNWrLhoj1bHwkAg2SwR372obEbUkIIvuf/yDGLVhaL1ZJn9Wy337Z7DH5cGfpigocJ+hmLOcxOc6Lrr52A591xkBBAmVBmfzH/ntYQSyY9+GR+0hlcRUqt0PDZJ0iNdAz+ZKslkSQilFCyrNrqBnGcOmKEs36DZWCOrCG+WYcki2+oi3HLArzqFaRk/1Uj1ATm7y7q16HBzDb2yfJiC4RkGzIYzJp2zjAEzNv7B/zyR8P8ijwadvd1gXntTN0Q8NGg3jvR11fHbIqhNV/yMAEPOiXFBqbPxHn/lxYXO7USfd6rvB1CfHUuouCpGloYFpMohlKHj+G9DeWnj1mPg0xifuMvOyqptd0eosllOAGo9EKMkeBYLGqaQ=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(136003)(376002)(346002)(39860400002)(396003)(230922051799003)(451199024)(186009)(1800799012)(64100799003)(82310400011)(40470700004)(36840700001)(46966006)(1076003)(426003)(83380400001)(26005)(336012)(6666004)(478600001)(2616005)(40480700001)(4326008)(41300700001)(8936002)(8676002)(5660300002)(7416002)(36756003)(81166007)(44832011)(2906002)(47076005)(82740400003)(356005)(921008)(40460700003)(70206006)(86362001)(70586007)(36860700001)(316002)(54906003)(110136005)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Dec 2023 13:00:32.5770
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 850b581f-43de-4533-df4a-08dbfbdb7da5
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CY4PEPF0000E9CD.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM8PR12MB5415
 
-On Wed, Dec 13, 2023 at 12:25:23PM +0000, Andre Przywara wrote:
-> On Wed, 13 Dec 2023 11:02:39 +0000
-> Anne Macedo <retpolanne@posteo.net> wrote:
-> 
-> Hi Anne,
-> 
-> > On Wed, Dec 13, 2023 at 01:35:44AM +0000, Andre Przywara wrote:
-> > > On Tue, 12 Dec 2023 19:27:14 +0000
-> > > Anne Macedo <retpolanne@posteo.net> wrote:
-> > > 
-> > > Hi Anne,
-> > >   
-> > > > On Tue, Dec 12, 2023 at 04:22:00PM +0000, Andre Przywara wrote:  
-> > > > > On Tue, 12 Dec 2023 12:28:30 +0000
-> > > > > Anne Macedo <retpolanne@posteo.net> wrote:
-> > > > > 
-> > > > > Hi Anne,
-> > > > >     
-> > > > > > Adds compatible values to mdio subnodes for Ethernet PHY representing
-> > > > > > Realtek 8211 PHY to Orange Pi One Plus.    
-> > > > > 
-> > > > > So can you state why this would be needed? This is the RTL8211 ID,    
-> > > > 
-> > > > Apologies, I completely forgot to include some context. 
-> > > >   
-> > > > > right? Which should be autodetected via MDIO. Looking back in my inbox
-> > > > > you proposed this change before, for U-Boot, specifically, but I fail to
-> > > > > find a solution or explanation what really happens here. Two Renesas .dts
-> > > > > files have the same compatible, and the commit message talks about the
-> > > > > reset line there, is this related?
-> > > > > 
-> > > > > So can you please give some more background and explanation? That would be
-> > > > > part of a good commit message anyway ("why", not "what").    
-> > > > 
-> > > > Should I resend the commit with a more meaningful explanation? The
-> > > > context is the following:
-> > > > 
-> > > > currently, ethernet doesn't seem to work on both u-boot and Linux on the
-> > > > Orange Pi One Plus board. 
-> > > > 
-> > > > On the kernel, this error shows up:
-> > > > 
-> > > > Configuring network interfaces... [    5.992589] dwmac-sun8i 5020000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
-> > > > [    6.000823] dwmac-sun8i 5020000.ethernet eth0: __stmmac_open: Cannot attach to PHY (error: -19)
-> > > > 
-> > > > After applying this fix, the PHY gets attached: 
-> > > > 
-> > > > Configuring network interfaces... [    6.060020] dwmac-sun8i 5020000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
-> > > > [    6.069460] dwmac-sun8i 5020000.ethernet eth0: PHY [stmmac-0:01] driver [RTL8211E Gigabit Ethernet] (irq=POLL)
-> > > > 
-> > > > The previous compatible list that had ethernet-phy-ieee802.3-c22 fails
-> > > > to find a PHY, so this patch includes the correct PHY ID with the
-> > > > RTL8211 ID. 
-> > > > 
-> > > > The behaviour is described on [1].  
-> > > 
-> > > So this is all an observation, but no real explanation, isn't it?  
-> > 
-> > I've made some analysis on [3] on this bug, but it was based solely on
-> > u-boot. I was having trouble with the regulator and on u-boot nothing
-> > would trigger the GPIO PD6 and the vcc-gmac-3v3 regulator, so the NIC
-> > was completely dead. Next I did an analysis based on [2] because the
-> > u-boot PHY initialization was flaky.
-> > 
-> > > To cite [1]: "If the PHY reports an incorrect ID (or none at all) ...".
-> > > I am pretty sure this is not the case here, instead we are looking at
-> > > some missing platform bits, like a missing clock, reset, or most likely
-> > > regulator. Or one of the existing resources is wrongly assigned or  
-> > 
-> > As I mentioned, PHY initialization is flaky on u-boot, so maybe that
-> > assumption is correct. 
-> > 
-> > > configured? If the PHY is not (yet?) powered correctly when the code
-> > > does the auto-detection via the MDIO bus, then the initialisation would  
-> > 
-> > If I recall correctly (I don't know if I kept it in my notes :c), that
-> > could be the case. regulator-boot-on makes the NIC work (LEDs blink, at
-> > least) but it doesn't get initialized. 
-> > 
-> > > fail. But since it works when overriding the auto-detection, I feel
-> > > like we are papering over something here.
-> > > Do you have the schematics for this board? I can only find the one for
-> > > the Orange Pi Plus 2E, and I don't know how similar those two are. This
-> > > shows *two* regulators, but both are activated by the same GPIO.  
-> > 
-> > I do. It's available on [4]
-> 
-> Oh damn it, I got lost in Orange Pi's naming maze again - and was looking
-> for the wrong board! So thanks for the link, and this clears things up!
+Add reference to rs485.yaml.
+Add rs485 support to uartps driver.
+---
+Changes for V2:
+Modify optional gpio name to xlnx,phy-ctrl-gpios.
+Update commit description.
+Add support for RTS, delay_rts_before_send and delay_rts_after_send in RS485 mode.
 
-Yay! 
+Changes for V3:
+Modify optional gpio name to rts-gpios.
+Update commit description.
+Move cdns_uart_tx_empty function to avoid prototype statement.
+Remove assignment of struct serial_rs485 to port->rs485 as
+serial core performs that.
+Switch to native RTS in non GPIO case.
+Handle rs485 during stop tx.
+Remove explicit calls to configure gpio direction and value,
+as devm_gpiod_get_optional performs that by using GPIOD_OUT_LOW argument.
+Update implementation to support configuration of GPIO/RTS value
+based on user configuration of SER_RS485_RTS_ON_SEND and
+SER_RS485_RTS_AFTER_SEND. Move implementation to start_tx from handle_tx.
 
-> 
-> So yes, the Orange Pi *One* Plus, much like the Orange Pi 3, uses *two*
-> regulators for Ethernet: one 3.3V from the PMIC's ALDO2 rail to power the
-> PHY, and a discrete 2.5V regulator, enabled by GPIO PD6, for the voltage
+Changes for V4:
+Update rts-gpios description.
+Create separate patch for cdns_uart_tx_empty relocation.
+Call cdns_rs485_rx_setup() before uart_add_one_port() in probe.
+Update gpio descriptor name to gpiod_rts.
+Instead of cdns_rs485_config_gpio_rts_high() and
+cdns_rs485_config_gpio_rts_low() functions for RTS/GPIO value
+configuration implement cdns_rts_gpio_enable().
+Disable auto rts and call cdns_uart_stop_tx() from cdns_rs485_config.
+Use timer instead of mdelay for delay_rts_before_send and delay_rts_after_send.
+Update cdns_uart_set_mctrl to support GPIO/RTS.
 
-Oh! I didn't know about the PMIC's ALDO2.
+Changes for V5:
+Remove rts-gpios description.
+Update commit message and description.
 
-> level on the MDIO lines. On top of this there is a reset line for the PHY,
-> though this is held up by a pull-up resistor, so it *should* work,
-> although we should describe this in the DT.
+Manikanta Guntupalli (3):
+  dt-bindings: Add reference to rs485.yaml
+  tty: serial: uartps: Relocate cdns_uart_tx_empty to facilitate rs485
+  tty: serial: uartps: Add rs485 support to uartps driver
 
-Noting here to take a look at the reset line so I can add it as well to
-the DT.
+ .../devicetree/bindings/serial/cdns,uart.yaml |   1 +
+ drivers/tty/serial/xilinx_uartps.c            | 244 ++++++++++++++++--
+ 2 files changed, 221 insertions(+), 24 deletions(-)
 
-> 
-> So the DT looks wrong then: The reg_gmac_3v3 is actually a 2.5V regulator,
-> and phy-supply is aldo2. I think it was done the way it is to somehow make
-> it work with the current DT binding and code, which just supports one
-> regulator. And aldo2 is referenced as the source of reg_gmac_3v3, which
-> smells like another hack to me.
+-- 
+2.25.1
 
-	reg_gmac_3v3: gmac-3v3 {
-		compatible = "regulator-fixed";
-		regulator-name = "vcc-gmac-3v3";
-		regulator-min-microvolt = <3300000>;
-		regulator-max-microvolt = <3300000>;
-		startup-delay-us = <100000>;
-		enable-active-high;
-		gpio = <&pio 3 6 GPIO_ACTIVE_HIGH>; /* PD6 */
-		vin-supply = <&reg_aldo2>;
-	};
-
-Interesting, I see the reg_aldo2 on vin-supply for reg_gmac_3v3. I don't
-understand how it works, is it linking the regulator with the ALDO2 but
-it also enables the PD6 GPIO?
-
-> 
-> > > It would also be interesting to see if any of Corentin's work for the
-> > > Orange Pi 3 helps here?  
-> > 
-> > Adding [5] for reference here, thanks! Will check it out. 
-> 
-> This is an older version, there are actually updates. And he also mentions
-> your board as well, so I think it just can sail in the wake of the OPi 3
-> Ethernet enablement.
-> 
-> Can you try if this change, just applied to your .dts instead, works?
-> https://github.com/montjoie/linux/commit/cf6e192eca1d59be630e6729d2cef9e897b3da8c
-
-Will do! I'll be out of my lab today but will try it at night Brazil
-time. 
-> 
-> Cheers,
-> Andre
-> 
-> P.S. Is there any chance where I can reply/comment on your blog? It seems
-> like I can clear some things up...
-
-Please send me suggestions off thread, the blog is a static GHPages
-blog, so I didn't implement replies yet. I will be happy to include them
-to my notes :) 
-
-> 
-> > [3] https://blog.retpolanne.com/hardware/embedded/2023/07/07/embedded-phy.html
-> > [4] https://linux-sunxi.org/images/7/7c/OrangePi_OnePlus_Schematics_v2.0.pdf
-> > [5] https://lore.kernel.org/netdev/20220509074857.195302-1-clabbe@baylibre.com/
-> > 
-> > Regards, Anne
-> 
-
-Regards, Anne
 
