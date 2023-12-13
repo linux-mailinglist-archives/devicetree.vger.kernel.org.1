@@ -1,207 +1,191 @@
-Return-Path: <devicetree+bounces-24655-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24656-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91547810C65
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 09:27:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E092D810C6D
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 09:29:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 481831F2113C
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 08:27:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8BDFD1F2113D
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 08:29:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CC3D1DFC3;
-	Wed, 13 Dec 2023 08:27:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E86C21EA66;
+	Wed, 13 Dec 2023 08:29:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YlsTbeja"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="E6BM9oPn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41F5091;
-	Wed, 13 Dec 2023 00:27:19 -0800 (PST)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BD7UFmv007336;
-	Wed, 13 Dec 2023 08:27:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=3lO73/urnQDm+kr+1VeDVOz2JVDHAIwLqDv0H1bD5Iw=; b=Yl
-	sTbejaClQy+tJ8J+U+DkXgP4bSDdsy1txWlLvJdoqOEG+7n8LuDChqdbPY/B0zks
-	yP0wV4zT78EvblM5Zt+DDMonsU/cqTzx5gH9DWKzMLoQKNCGI/dRjZiqGLOIFtGA
-	JJ0mSjOOhOET00dcpo/K7d72EO95pInk8lmy5T7aJ3udTYXYOCD82W3xHk74Tp24
-	msQX0YiTZjqsQB9per3qb3f4oiM5xtgIRUYbJfCzlQETfR59l8wDsnAHdM7cmRpC
-	RUyq2QgbXIM28wEBaSZbdTucJ8kmdBhyEeEpoTv7jbKLF/3yHcsQ/9yrMPCGeLxw
-	Ng+Tpn2nsdhnMftTmu3w==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uy3rprs48-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 13 Dec 2023 08:27:05 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BD8R4Dp012447
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 13 Dec 2023 08:27:04 GMT
-Received: from [10.253.13.71] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 13 Dec
- 2023 00:26:59 -0800
-Message-ID: <11ffc985-3f2b-46b9-ae0b-911f7abe98d1@quicinc.com>
-Date: Wed, 13 Dec 2023 16:26:56 +0800
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF137DC;
+	Wed, 13 Dec 2023 00:29:37 -0800 (PST)
+Received: from localhost.localdomain (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 727E68CD;
+	Wed, 13 Dec 2023 09:28:50 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1702456130;
+	bh=q2VBK2zqBxJwDiuGlg0YSCm/2JrrWXxfTuTnfqXYC/0=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=E6BM9oPnbtbAcIsT2jDtx5XYa2w9hhN/femtC8f9yMrSdvPtTVxnFybndz1+gj5s4
+	 d7nCqfVfhGYd21iWx4I9GH1w+a++Mg1fAWbCVgECUAPn95r2+iiXG3IW+zpchGga0L
+	 5fu7VVzG6D0mV2cToeH23fskIXwm7yJ/6cjyrC1I=
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+	linux-media@vger.kernel.org,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	devicetree@vger.kernel.org,
+	Lee Jackson <lee.jackson@arducam.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v8 1/2] media: dt-bindings: Add OmniVision OV64A40
+Date: Wed, 13 Dec 2023 09:29:18 +0100
+Message-ID: <20231213082919.206413-2-jacopo.mondi@ideasonboard.com>
+X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20231213082919.206413-1-jacopo.mondi@ideasonboard.com>
+References: <20231213082919.206413-1-jacopo.mondi@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/5] dt-bindings: net: ipq4019-mdio: Document ipq5332
- platform
-Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>
-CC: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <andrew@lunn.ch>, <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
-        <robert.marko@sartura.hr>, <linux-arm-msm@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_srichara@quicinc.com>
-References: <20231212115151.20016-1-quic_luoj@quicinc.com>
- <20231212115151.20016-6-quic_luoj@quicinc.com>
- <20231212-caution-improvise-ed3cc6a1d305@spud>
-From: Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <20231212-caution-improvise-ed3cc6a1d305@spud>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: IhyU1Oqb6UTIJDWGvhhHChFCzN1KcSsK
-X-Proofpoint-GUID: IhyU1Oqb6UTIJDWGvhhHChFCzN1KcSsK
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 spamscore=0
- mlxscore=0 suspectscore=0 impostorscore=0 adultscore=0 malwarescore=0
- mlxlogscore=999 bulkscore=0 priorityscore=1501 phishscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2312130059
+Content-Transfer-Encoding: 8bit
 
+Add bindings for OmniVision OV64A40.
 
+Co-developed-by: Lee Jackson <lee.jackson@arducam.com>
+Signed-off-by: Lee Jackson <lee.jackson@arducam.com>
+Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+---
+v7->v8:
+- no changes
 
-On 12/13/2023 12:06 AM, Conor Dooley wrote:
-> On Tue, Dec 12, 2023 at 07:51:50PM +0800, Luo Jie wrote:
->> Update the yaml file for the new DTS properties.
->>
->> 1. cmn-reference-clock for the CMN PLL source clock select.
->> 2. clock-frequency for MDIO clock frequency config.
->> 3. add uniphy AHB & SYS GCC clocks.
->> 4. add reset-gpios for MDIO bus level reset.
->>
->> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
->> ---
->>   .../bindings/net/qcom,ipq4019-mdio.yaml       | 157 +++++++++++++++++-
->>   1 file changed, 153 insertions(+), 4 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml b/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml
->> index 3407e909e8a7..9546a6ad7841 100644
->> --- a/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml
->> +++ b/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml
->> @@ -20,6 +20,8 @@ properties:
->>             - enum:
->>                 - qcom,ipq6018-mdio
->>                 - qcom,ipq8074-mdio
->> +              - qcom,ipq9574-mdio
->> +              - qcom,ipq5332-mdio
->>             - const: qcom,ipq4019-mdio
->>   
->>     "#address-cells":
->> @@ -30,19 +32,71 @@ properties:
->>   
->>     reg:
->>       minItems: 1
->> -    maxItems: 2
->> +    maxItems: 5
->>       description:
->> -      the first Address and length of the register set for the MDIO controller.
->> -      the second Address and length of the register for ethernet LDO, this second
->> -      address range is only required by the platform IPQ50xx.
->> +      the first Address and length of the register set for the MDIO controller,
->> +      the optional second, third and fourth address and length of the register
->> +      for ethernet LDO, these three address range are required by the platform
->> +      IPQ50xx/IPQ5332/IPQ9574, the last address and length is for the CMN clock
->> +      to select the reference clock.
->> +
->> +  reg-names:
->> +    minItems: 1
->> +    maxItems: 5
->>   
->>     clocks:
->> +    minItems: 1
->>       items:
->>         - description: MDIO clock source frequency fixed to 100MHZ
->> +      - description: UNIPHY0 AHB clock source frequency fixed to 100MHZ
->> +      - description: UNIPHY1 AHB clock source frequency fixed to 100MHZ
->> +      - description: UNIPHY0 SYS clock source frequency fixed to 24MHZ
->> +      - description: UNIPHY1 SYS clock source frequency fixed to 24MHZ
->>   
->>     clock-names:
->> +    minItems: 1
->>       items:
->>         - const: gcc_mdio_ahb_clk
->> +      - const: gcc_uniphy0_ahb_clk
->> +      - const: gcc_uniphy1_ahb_clk
->> +      - const: gcc_uniphy0_sys_clk
->> +      - const: gcc_uniphy1_sys_clk
-> 
->> +  cmn-reference-clock:
->> +    oneOf:
->> +      - items:
->> +          - enum:
->> +              - 0   # CMN PLL reference internal 48MHZ
->> +              - 1   # CMN PLL reference external 25MHZ
->> +              - 2   # CMN PLL reference external 31250KHZ
->> +              - 3   # CMN PLL reference external 40MHZ
->> +              - 4   # CMN PLL reference external 48MHZ
->> +              - 5   # CMN PLL reference external 50MHZ
->> +              - 6   # CMN PLL reference internal 96MHZ
-> 
-> Why is this not represented by an element of the clocks property?
+v6->v7:
+- Make bus-type and data-lanes mandatory
+- Add Lee's Signed-off-by to comply with process
 
-This property is for the reference clock source selection of CMN PLL,
-CMN PLL generates the different clock rates for the different Ethernet
-blocks, this CMN PLL configuration is not located in the GCC, so the
-clock framework can't be used, which is the general hardware register
-instead of RCG register for GCC.
+v5->v6:
+- Make link-frequencies mandatory as requested by Sakari
+---
+ .../bindings/media/i2c/ovti,ov64a40.yaml      | 103 ++++++++++++++++++
+ 1 file changed, 103 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov64a40.yaml
 
-> 
->> +  clock-frequency:
->> +    oneOf:
->> +      - items:
->> +          - enum:
->> +              - 12500000
->> +              - 6250000
->> +              - 3125000
->> +              - 1562500
->> +              - 781250
->> +              - 390625
->> +    description:
->> +      The MDIO bus clock that must be output by the MDIO bus hardware,
->> +      only the listed frequecies above can be configured, other frequency
->> +      will cause malfunction. If absent, the default hardware value is used.
-> 
-> Likewise.
-> 
-> Your commit message contains a bullet point list of what you are doing,
-> but there's no explanation here for why custom properties are required
-> to provide clock information.
-> 
-> Thanks,
-> Conor.
+diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov64a40.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov64a40.yaml
+new file mode 100644
+index 000000000000..2b6143aff391
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov64a40.yaml
+@@ -0,0 +1,103 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/ovti,ov64a40.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: OmniVision OV64A40 Image Sensor
++
++maintainers:
++  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
++
++allOf:
++  - $ref: /schemas/media/video-interface-devices.yaml#
++
++properties:
++  compatible:
++    const: ovti,ov64a40
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  avdd-supply:
++    description: Analog voltage supply, 2.8 volts
++
++  dvdd-supply:
++    description: Digital core voltage supply, 1.1 volts
++
++  dovdd-supply:
++    description: Digital I/O voltage supply, 1.8 volts
++
++  powerdown-gpios:
++    maxItems: 1
++
++  reset-gpios:
++    maxItems: 1
++
++  port:
++    $ref: /schemas/graph.yaml#/$defs/port-base
++    additionalProperties: false
++
++    properties:
++      endpoint:
++        $ref: /schemas/media/video-interfaces.yaml#
++        additionalProperties: false
++
++        properties:
++          bus-type:
++            enum:
++              - 1 # MIPI CSI-2 C-PHY
++              - 4 # MIPI CSI-2 D-PHY
++          data-lanes: true
++          link-frequencies: true
++          clock-noncontinuous: true
++          remote-endpoint: true
++
++        required:
++          - bus-type
++          - data-lanes
++          - link-frequencies
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - port
++
++unevaluatedProperties: false
++
++examples:
++  - |
++      #include <dt-bindings/gpio/gpio.h>
++
++      i2c {
++          #address-cells = <1>;
++          #size-cells = <0>;
++
++          camera@36 {
++              compatible = "ovti,ov64a40";
++              reg = <0x36>;
++              clocks = <&camera_clk>;
++              dovdd-supply = <&vgen4_reg>;
++              avdd-supply = <&vgen3_reg>;
++              dvdd-supply = <&vgen2_reg>;
++              powerdown-gpios = <&gpio1 9 GPIO_ACTIVE_HIGH>;
++              reset-gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
++              rotation = <180>;
++              orientation = <2>;
++
++              port {
++                  endpoint {
++                      remote-endpoint = <&mipi_csi2_in>;
++                      bus-type = <4>;
++                      data-lanes = <1 2 3 4>;
++                      link-frequencies = /bits/ 64 <456000000>;
++                  };
++              };
++          };
++      };
++
++...
+--
+2.41.0
 
-Hi Conor,
-This property clock-frequency is optional to configure the MDIO working
-clock rate, and this is the MDIO general DT property, since the hardware
-default clock rate is 390625HZ, there is requirement for higher clock 
-rate in the normal working case, i will update this information in the
-next patch set.
 
