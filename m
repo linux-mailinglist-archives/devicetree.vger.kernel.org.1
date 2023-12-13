@@ -1,159 +1,145 @@
-Return-Path: <devicetree+bounces-24960-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24958-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DC54811CD6
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 19:40:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAC10811CBA
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 19:37:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 401151F21730
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 18:39:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D4072822B1
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 18:37:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91EBE59530;
-	Wed, 13 Dec 2023 18:39:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEAE125542;
+	Wed, 13 Dec 2023 18:37:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="lW/icCEX"
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="ebjd3sbd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E83DBD;
-	Wed, 13 Dec 2023 10:39:38 -0800 (PST)
-Received: from pps.filterd (m0356517.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3BDIGSU5031388;
-	Wed, 13 Dec 2023 18:36:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=pp1;
- bh=0f3eS2dKAg8fw7ia5UFHTP28ocE3TQ9LjwcT23r6pfM=;
- b=lW/icCEXESFZaYr1QCrwQh6OSm78r80I+o62gx7b+YTjdV61hHFi4y4C/L1YiLg+q3g3
- HAsGt3kfmccvSbcQCee/VL6wdc47zMA6kM9gQnr/wCIvhYiItK1S3pKZWVwc30/wxmxv
- KvpxJBLXZfvcSlUH7APBD9O/zUBCBB0rQ4y3koIf1CCvr0xQD3Snnfwp+PNqVJyKCV6E
- hzNW495m0LetMsKGRWFJCmbtRI++Z7dyIpVVgHRWSIvowbg2dqNNozYrAEBrMF2PokxJ
- NN0NervjqMD2QwArQUSpvSd09GK9ce/odq72A/vcEWE1k73x7/l6gTh1ZBB570Uvx3kA VA== 
-Received: from pps.reinject (localhost [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3uyeahq9g6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 13 Dec 2023 18:36:53 +0000
-Received: from m0356517.ppops.net (m0356517.ppops.net [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 3BDIUVVw017657;
-	Wed, 13 Dec 2023 18:36:53 GMT
-Received: from ppma21.wdc07v.mail.ibm.com (5b.69.3da9.ip4.static.sl-reverse.com [169.61.105.91])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3uyeahq9fe-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 13 Dec 2023 18:36:53 +0000
-Received: from pps.filterd (ppma21.wdc07v.mail.ibm.com [127.0.0.1])
-	by ppma21.wdc07v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 3BDGogMG012588;
-	Wed, 13 Dec 2023 18:36:51 GMT
-Received: from smtprelay02.dal12v.mail.ibm.com ([172.16.1.4])
-	by ppma21.wdc07v.mail.ibm.com (PPS) with ESMTPS id 3uw3jp2xpf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 13 Dec 2023 18:36:51 +0000
-Received: from smtpav06.wdc07v.mail.ibm.com (smtpav06.wdc07v.mail.ibm.com [10.39.53.233])
-	by smtprelay02.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 3BDIao8F40698204
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 13 Dec 2023 18:36:50 GMT
-Received: from smtpav06.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 3ED6958054;
-	Wed, 13 Dec 2023 18:36:50 +0000 (GMT)
-Received: from smtpav06.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id F147158056;
-	Wed, 13 Dec 2023 18:36:48 +0000 (GMT)
-Received: from [9.24.12.86] (unknown [9.24.12.86])
-	by smtpav06.wdc07v.mail.ibm.com (Postfix) with ESMTP;
-	Wed, 13 Dec 2023 18:36:48 +0000 (GMT)
-Message-ID: <6e1a7f5d-c15f-4938-893b-0aa77ef9fcfc@linux.ibm.com>
-Date: Wed, 13 Dec 2023 12:36:48 -0600
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5501EBD
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 10:37:47 -0800 (PST)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-a1f8a1e9637so855988966b.1
+        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 10:37:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google; t=1702492666; x=1703097466; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5uPvnip3JZl3WuLxh7oPl48PoCiV1C8MB4jla1EX1AI=;
+        b=ebjd3sbd0WSuyaLvveJp+g9UrOUMNRaQyqu+fWfIeY3o0a4JbMP3t8XmKWq6F3a3en
+         /QP70L0FcdvNKFKTPUK/x395l9Ka4ze0RByPnCCPPLrlQ3BCF7+rzNtCzhnHeakTToBh
+         5xKFKZImmhi1yGdqRlPDNGRvjL4Jc9HuCW6Mo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702492666; x=1703097466;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5uPvnip3JZl3WuLxh7oPl48PoCiV1C8MB4jla1EX1AI=;
+        b=Z6XrELFkG+NkNVkwO0yxMw9xC/RGHMwjVlrVG7H3JSXjJjR1pAJFQamswubTmYNFCA
+         hFZ6e19lmwbWxqu7ozrTInzC48L0iKu/kuE7KFh3zyyr64f+d/Ad/GofvELiG9LL59We
+         Wm1lTg+vKUu9b4Be9M7GFkz26yxXHW/RN5kwZOGrt0H3V3r9Zi+21hznd2RwuseI2fEk
+         Cr4jzmA7d/TGxEde/Ozp8By7lHaZKeUxd5xpKbTp4E77exOZjANdyUhep+NPMIckSi1v
+         rabgE00iJaJkNYSTCBjPXk2ZHv4apYrvjl5yUZvf0d09MVhDFw7VAk4vnoszodY7/vp7
+         LRxQ==
+X-Gm-Message-State: AOJu0Yw5TN4enOYYHHINkTxFJHDRhDkE+YtVwxvrlaKjnHioIMM1fxyp
+	eAMtLxsesTx8kdRQKXz4BtcnYg==
+X-Google-Smtp-Source: AGHT+IG/hyoLETOAVHjV1Ok+F8yZIUMpufAfkY6VEitAgTFuCSHGyyOipTjBtJEzwoS0SyvpMmOZ1A==
+X-Received: by 2002:a17:907:e86:b0:a1d:6cbc:c22 with SMTP id ho6-20020a1709070e8600b00a1d6cbc0c22mr10546877ejc.41.1702492665706;
+        Wed, 13 Dec 2023 10:37:45 -0800 (PST)
+Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-80-182-13-188.pool80182.interbusiness.it. [80.182.13.188])
+        by smtp.gmail.com with ESMTPSA id rd12-20020a170907a28c00b00a11b2677acbsm8152775ejc.163.2023.12.13.10.37.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Dec 2023 10:37:45 -0800 (PST)
+From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To: linux-kernel@vger.kernel.org
+Cc: Amarula patchwork <linux-amarula@amarulasolutions.com>,
+	michael@amarulasolutions.com,
+	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	David Airlie <airlied@gmail.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Inki Dae <inki.dae@samsung.com>,
+	Jagan Teki <jagan@amarulasolutions.com>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v7 0/3] Add displays support for bsh-smm-s2/pro boards
+Date: Wed, 13 Dec 2023 19:37:09 +0100
+Message-ID: <20231213183737.4182996-1-dario.binacchi@amarulasolutions.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/8] dt-bindings: arm: aspeed: add IBM system1-bmc
-Content-Language: en-US
-To: Jarkko Sakkinen <jarkko@kernel.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, joel@jms.id.au,
-        andrew@codeconstruct.com.au, peterhuewe@gmx.de, jgg@ziepe.ca,
-        keescook@chromium.org, tony.luck@intel.com, gpiccoli@igalia.com,
-        johannes.holland@infineon.com, linux@roeck-us.net, broonie@kernel.org
-Cc: patrick.rudolph@9elements.com, vincent@vtremblay.dev,
-        peteryin.openbmc@gmail.com, lakshmiy@us.ibm.com, bhelgaas@google.com,
-        naresh.solanki@9elements.com, alexander.stein@ew.tq-group.com,
-        festevam@denx.de, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org, linux-integrity@vger.kernel.org,
-        linux-hardening@vger.kernel.org, geissonator@yahoo.com
-References: <20231212164004.1683589-1-ninad@linux.ibm.com>
- <20231212164004.1683589-2-ninad@linux.ibm.com>
- <CXNEVH8BZUJT.1UHVUI66SZMTE@suppilovahvero>
-From: Ninad Palsule <ninad@linux.ibm.com>
-In-Reply-To: <CXNEVH8BZUJT.1UHVUI66SZMTE@suppilovahvero>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: 5kq0bIMe7CgVmBlyTgG4FKZr25jLiE3U
-X-Proofpoint-GUID: klWOiAxxw_I9AuxkGpEXwLWNyobuFlN9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-13_12,2023-12-13_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 phishscore=0
- mlxscore=0 spamscore=0 lowpriorityscore=0 mlxlogscore=999 bulkscore=0
- suspectscore=0 impostorscore=0 priorityscore=1501 clxscore=1015
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311290000 definitions=main-2312130133
+Content-Transfer-Encoding: 8bit
 
-Hello Jarkko,
+The series adds drivers for the displays used by bsh-smm-s2/pro boards.
+This required applying some patches to the samsung-dsim driver and the
+drm_bridge.c module.
 
-On 12/13/23 12:18, Jarkko Sakkinen wrote:
-> On Tue Dec 12, 2023 at 6:39 PM EET, Ninad Palsule wrote:
->> Document the new compatibles used on IBM system1-bmc
->>
->> Tested:
-> this not very useful line :-) (nit)
->
->>      This board is tested using the simics simulator.
-> Just leave this (w/o indentation)
+Changes in v7:
+- Drop [3/4] dt-bindings: display: panel: Add synaptics r63353 panel controller
+  because applied.
 
-Based on Conor's suggestion, I have removed both lines.
+Changes in v6:
+- Drop patches:
+  - [06/10] drm/panel: Add Synaptics R63353 panel driver
+  - [07/10] dt-bindings: display: panel: Add Ilitek ili9805 panel controller
+  - [08/10] drm/panel: Add Ilitek ILI9805 panel driver
+  - [09/10] drm/panel: ilitek-ili9805: add support for Tianma TM041XDHG01 panel
+  Because applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
+  Drop patches:
+  - [01/10] drm/bridge: Fix bridge disable logic
+  - [02/10] drm/bridge: Fix a use case in the bridge disable logic
+  Because they are wrong
 
-Thanks for the review.
+Changes in v3:
+- Replace "synaptics,r63353" compatible with "syna,r63353", as
+  required by vendor-prefixes.yaml.
+- Squash patch [09/11] dt-bindings: ili9805: add compatible string for Tianma TM041XDHG01
+  into [07/11] dt-bindings: display: panel: Add Ilitek ili9805 panel controller.
 
-Thanks & Regards,
+Changes in v2:
+- Adjust the mipi_dsi node based on the latest patches merged into
+  the mainline in the dtsi files it includes.
+- Added to the series the following patches:
+  - 0001 drm/bridge: Fix bridge disable logic
+  - 0002 drm/bridge: Fix a use case in the bridge disable logic
+  - 0003 samsung-dsim: enter display mode in the enable() callback
+  - 0004 drm: bridge: samsung-dsim: complete the CLKLANE_STOP setting
 
-Ninad
+Dario Binacchi (2):
+  drm: bridge: samsung-dsim: enter display mode in the enable() callback
+  drm: bridge: samsung-dsim: complete the CLKLANE_STOP setting
 
->
->> Signed-off-by: Ninad Palsule <ninad@linux.ibm.com>
->> ---
->>   Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
->>   Documentation/devicetree/bindings/trivial-devices.yaml   | 2 ++
->>   2 files changed, 3 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
->> index 6f7543463d89..ebebe14c42aa 100644
->> --- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
->> +++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
->> @@ -85,6 +85,7 @@ properties:
->>                 - facebook,yosemite4-bmc
->>                 - ibm,everest-bmc
->>                 - ibm,rainier-bmc
->> +              - ibm,system1-bmc
->>                 - ibm,tacoma-bmc
->>                 - inventec,starscream-bmc
->>                 - inventec,transformer-bmc
->> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
->> index 441b55723675..b12a60d2eb0f 100644
->> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
->> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
->> @@ -135,6 +135,8 @@ properties:
->>             - ibm,cffps1
->>               # IBM Common Form Factor Power Supply Versions 2
->>             - ibm,cffps2
->> +            # Infineon barometric pressure and temperature sensor
->> +          - infineon,dps310
->>               # Infineon IR36021 digital POL buck controller
->>             - infineon,ir36021
->>               # Infineon IR38060 Voltage Regulator
-> BR, Jarkko
+Michael Trimarchi (1):
+  arm64: dts: imx8mn-bsh-smm-s2/pro: add display setup
+
+ .../freescale/imx8mn-bsh-smm-s2-common.dtsi   |   1 +
+ .../freescale/imx8mn-bsh-smm-s2-display.dtsi  | 121 ++++++++++++++++++
+ drivers/gpu/drm/bridge/samsung-dsim.c         |  14 +-
+ 3 files changed, 133 insertions(+), 3 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-display.dtsi
+
+-- 
+2.43.0
+
 
