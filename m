@@ -1,107 +1,168 @@
-Return-Path: <devicetree+bounces-24938-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24940-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FFE4811B3C
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 18:34:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AFAF811B4A
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 18:36:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB4CD281498
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 17:34:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B1CFD1F20EE2
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 17:36:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7072259524;
-	Wed, 13 Dec 2023 17:34:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E339856B97;
+	Wed, 13 Dec 2023 17:36:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c6pAKJKP"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="D4TjJmic"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CADA57893;
-	Wed, 13 Dec 2023 17:34:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8EEF0C433C9;
-	Wed, 13 Dec 2023 17:34:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702488859;
-	bh=pOzeZqYCumnmyLY7QOO5p/wpjgqUMF/9UXyX7tE2MGk=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=c6pAKJKPxD9ImO3af3kB3QdIS3Vukdcv56y93m+ANRPOWTLMMrf3y1jkOIhRrEHVT
-	 mFAQsnGxpWTs1lRk/Lq+02Cxt+pzoDzvwhPf0q6zmZy9hkMrY53g30Za5vSTlnbyYf
-	 z77fjnWKBxyygARx8tvDSHvPdS0lKAPWfGoOEoB8Zb1x09Qae0HmtnhSvx3IiNqjh1
-	 JkJw7K1QY26j5US1ioosTjGz6iu9YsFL8zICiixoSxxpwh/KTa6Rh5gnjIF3jDHGM8
-	 0BbGniqbEzvUaa5/qu7L1r6F2FWM3OrXDKPQ0DQWi1p2/Vn2iIc62v5hYiG3l2oBTH
-	 q0mjZia+cOJ0Q==
-Received: from johan by xi.lan with local (Exim 4.96.2)
-	(envelope-from <johan+linaro@kernel.org>)
-	id 1rDT7h-0007h4-2I;
-	Wed, 13 Dec 2023 18:34:17 +0100
-From: Johan Hovold <johan+linaro@kernel.org>
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: Andy Gross <agross@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Johan Hovold <johan+linaro@kernel.org>,
-	stable@vger.kernel.org,
-	Jack Pham <quic_jackp@quicinc.com>,
-	Jonathan Marek <jonathan@marek.ca>
-Subject: [PATCH 5/5] arm64: dts: qcom: sm8150: fix USB SS wakeup
-Date: Wed, 13 Dec 2023 18:34:03 +0100
-Message-ID: <20231213173403.29544-6-johan+linaro@kernel.org>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20231213173403.29544-1-johan+linaro@kernel.org>
-References: <20231213173403.29544-1-johan+linaro@kernel.org>
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D46410A
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 09:36:26 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-40c2c5a8150so66088145e9.2
+        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 09:36:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1702488984; x=1703093784; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=nar7AGpkKCMY3vU9wBOjKXihyoMWUwSDoyGxla1FSMU=;
+        b=D4TjJmicgwyiuxU/0EQRMLlqFgwKB643M+Ls0ZrdgfTQzDGPaGC1+l7UiKTUp3QOIb
+         x99r8Tj1EMoiw66hZVfozvkOmJQGuciegH+usdnX50mw1fwPKvm3dbT4ryBibHhL66d6
+         B47I+JJQf6UKoeaxkSAv3Ud8TJU8S5rclkVcf1oTRsg+Qdr5z4/dMJ+nMul+SVdwKLvG
+         b2eXFTTcUMyVlEcNOZ4lQaEDl/pHOGVoRtSTsj9qoYJzVBdSOk6mFBPsxejolZHdf4Y7
+         85IQ993ek78WZ0ma1S7V/wEtRYvrdQBP4KkshvfvIAJ6IQB9tvvQQ2fzvtN7KJxa+Rsr
+         Zk4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702488984; x=1703093784;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nar7AGpkKCMY3vU9wBOjKXihyoMWUwSDoyGxla1FSMU=;
+        b=VMJ874JqP6VNgy8jvEiDXXWyG2JPjErDI1dXkR001PqlBZ0pjt1oEvY0U96+1y1wwh
+         dAsFhDXNo6KbBhwxPBWNvIa+2i/5tXDZAXCnMJUkRu30XG92KdS7zsRi/vYQnRWyUelb
+         gTebIyyowJU8crWsham9qNf0VygfuQyQ+0PFmvqoDe1vS5wDazyU8TG3kxQB9VHt2QtA
+         ffAeirB0KAFi1d9GIxq6Kj492qTb0CK9SVGEKF3sxKjL6rPUIKFbNZREiN6W7bEUVS92
+         JzHoQWkSloTT13i2xrmgmuj4Wc7dHEbT+48Xqai2oCCQSrgEHV09a8YCPVo2gUuOKdya
+         GNmA==
+X-Gm-Message-State: AOJu0YwJ6bq0QgTAxDXrEa2UTAQzPlsycYONXyAWs73Gx3gGo6GxoLe5
+	IFEqE1wKmNw1J8MGNzosaaxhjw==
+X-Google-Smtp-Source: AGHT+IEK2Pp7nkWqxvEj/mdVNQpoa5hctJ9KTENrVC46QZLfOUyzk+bN6eF4FhiRrxtksDL5J5C+hw==
+X-Received: by 2002:a05:600c:3590:b0:40c:2c56:4f37 with SMTP id p16-20020a05600c359000b0040c2c564f37mr4662038wmq.36.1702488984605;
+        Wed, 13 Dec 2023 09:36:24 -0800 (PST)
+Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
+        by smtp.gmail.com with ESMTPSA id m16-20020a05600c4f5000b0040c57e4ea28sm4720420wmq.17.2023.12.13.09.36.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Dec 2023 09:36:24 -0800 (PST)
+Date: Wed, 13 Dec 2023 18:36:23 +0100
+From: Andrew Jones <ajones@ventanamicro.com>
+To: Anup Patel <apatel@ventanamicro.com>
+Cc: Paolo Bonzini <pbonzini@redhat.com>, 
+	Atish Patra <atishp@atishpatra.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Shuah Khan <shuah@kernel.org>, Anup Patel <anup@brainfault.org>, 
+	devicetree@vger.kernel.org, kvm@vger.kernel.org, kvm-riscv@lists.infradead.org, 
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH 04/15] RISC-V: KVM: Allow scalar crypto extensions for
+ Guest/VM
+Message-ID: <20231213-1c93d927d30feb6d09739e94@orel>
+References: <20231128145357.413321-1-apatel@ventanamicro.com>
+ <20231128145357.413321-5-apatel@ventanamicro.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231128145357.413321-5-apatel@ventanamicro.com>
 
-The USB SS PHY interrupts need to be provided by the PDC interrupt
-controller in order to be able to wake the system up from low-power
-states.
+On Tue, Nov 28, 2023 at 08:23:46PM +0530, Anup Patel wrote:
+> We extend the KVM ISA extension ONE_REG interface to allow KVM
+> user space to detect and enable scalar crypto extensions for
+> Guest/VM. This includes extensions Zbkb, Zbkc, Zbkx, Zknd, Zkne,
+> Zknh, Zkr, Zksed, Zksh, and Zkt.
+> 
+> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> ---
+>  arch/riscv/include/uapi/asm/kvm.h | 10 ++++++++++
+>  arch/riscv/kvm/vcpu_onereg.c      | 20 ++++++++++++++++++++
+>  2 files changed, 30 insertions(+)
+> 
+> diff --git a/arch/riscv/include/uapi/asm/kvm.h b/arch/riscv/include/uapi/asm/kvm.h
+> index 518b368b41e5..7b54fa215d6d 100644
+> --- a/arch/riscv/include/uapi/asm/kvm.h
+> +++ b/arch/riscv/include/uapi/asm/kvm.h
+> @@ -140,6 +140,16 @@ enum KVM_RISCV_ISA_EXT_ID {
+>  	KVM_RISCV_ISA_EXT_SMSTATEEN,
+>  	KVM_RISCV_ISA_EXT_ZICOND,
+>  	KVM_RISCV_ISA_EXT_ZBC,
+> +	KVM_RISCV_ISA_EXT_ZBKB,
+> +	KVM_RISCV_ISA_EXT_ZBKC,
+> +	KVM_RISCV_ISA_EXT_ZBKX,
+> +	KVM_RISCV_ISA_EXT_ZKND,
+> +	KVM_RISCV_ISA_EXT_ZKNE,
+> +	KVM_RISCV_ISA_EXT_ZKNH,
+> +	KVM_RISCV_ISA_EXT_ZKR,
+> +	KVM_RISCV_ISA_EXT_ZKSED,
+> +	KVM_RISCV_ISA_EXT_ZKSH,
+> +	KVM_RISCV_ISA_EXT_ZKT,
+>  	KVM_RISCV_ISA_EXT_MAX,
+>  };
+>  
+> diff --git a/arch/riscv/kvm/vcpu_onereg.c b/arch/riscv/kvm/vcpu_onereg.c
+> index f789517c9fae..b0beebd4f86e 100644
+> --- a/arch/riscv/kvm/vcpu_onereg.c
+> +++ b/arch/riscv/kvm/vcpu_onereg.c
+> @@ -43,6 +43,9 @@ static const unsigned long kvm_isa_ext_arr[] = {
+>  	KVM_ISA_EXT_ARR(ZBA),
+>  	KVM_ISA_EXT_ARR(ZBB),
+>  	KVM_ISA_EXT_ARR(ZBC),
+> +	KVM_ISA_EXT_ARR(ZBKB),
+> +	KVM_ISA_EXT_ARR(ZBKC),
+> +	KVM_ISA_EXT_ARR(ZBKX),
+>  	KVM_ISA_EXT_ARR(ZBS),
+>  	KVM_ISA_EXT_ARR(ZICBOM),
+>  	KVM_ISA_EXT_ARR(ZICBOZ),
+> @@ -52,6 +55,13 @@ static const unsigned long kvm_isa_ext_arr[] = {
+>  	KVM_ISA_EXT_ARR(ZIFENCEI),
+>  	KVM_ISA_EXT_ARR(ZIHINTPAUSE),
+>  	KVM_ISA_EXT_ARR(ZIHPM),
+> +	KVM_ISA_EXT_ARR(ZKND),
+> +	KVM_ISA_EXT_ARR(ZKNE),
+> +	KVM_ISA_EXT_ARR(ZKNH),
+> +	KVM_ISA_EXT_ARR(ZKR),
+> +	KVM_ISA_EXT_ARR(ZKSED),
+> +	KVM_ISA_EXT_ARR(ZKSH),
+> +	KVM_ISA_EXT_ARR(ZKT),
+>  };
+>  
+>  static unsigned long kvm_riscv_vcpu_base2isa_ext(unsigned long base_ext)
+> @@ -94,6 +104,9 @@ static bool kvm_riscv_vcpu_isa_disable_allowed(unsigned long ext)
+>  	case KVM_RISCV_ISA_EXT_ZBA:
+>  	case KVM_RISCV_ISA_EXT_ZBB:
+>  	case KVM_RISCV_ISA_EXT_ZBC:
+> +	case KVM_RISCV_ISA_EXT_ZBKB:
+> +	case KVM_RISCV_ISA_EXT_ZBKC:
+> +	case KVM_RISCV_ISA_EXT_ZBKX:
+>  	case KVM_RISCV_ISA_EXT_ZBS:
+>  	case KVM_RISCV_ISA_EXT_ZICNTR:
+>  	case KVM_RISCV_ISA_EXT_ZICOND:
+> @@ -101,6 +114,13 @@ static bool kvm_riscv_vcpu_isa_disable_allowed(unsigned long ext)
+>  	case KVM_RISCV_ISA_EXT_ZIFENCEI:
+>  	case KVM_RISCV_ISA_EXT_ZIHINTPAUSE:
+>  	case KVM_RISCV_ISA_EXT_ZIHPM:
+> +	case KVM_RISCV_ISA_EXT_ZKND:
+> +	case KVM_RISCV_ISA_EXT_ZKNE:
+> +	case KVM_RISCV_ISA_EXT_ZKNH:
+> +	case KVM_RISCV_ISA_EXT_ZKR:
+> +	case KVM_RISCV_ISA_EXT_ZKSED:
+> +	case KVM_RISCV_ISA_EXT_ZKSH:
+> +	case KVM_RISCV_ISA_EXT_ZKT:
+>  		return false;
+>  	/* Extensions which can be disabled using Smstateen */
+>  	case KVM_RISCV_ISA_EXT_SSAIA:
+> -- 
+> 2.34.1
+>
 
-Fixes: 0c9dde0d2015 ("arm64: dts: qcom: sm8150: Add secondary USB and PHY nodes")
-Fixes: b33d2868e8d3 ("arm64: dts: qcom: sm8150: Add USB and PHY device nodes")
-Cc: stable@vger.kernel.org      # 5.10
-Cc: Jack Pham <quic_jackp@quicinc.com>
-Cc: Jonathan Marek <jonathan@marek.ca>
-Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
----
- arch/arm64/boot/dts/qcom/sm8150.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-index 5e46b9ef8642..56c74a841d80 100644
---- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-@@ -3566,7 +3566,7 @@ usb_1: usb@a6f8800 {
- 			assigned-clock-rates = <19200000>, <200000000>;
- 
- 			interrupts-extended = <&intc GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>,
--					      <&intc GIC_SPI 486 IRQ_TYPE_LEVEL_HIGH>,
-+					      <&pdc 6 IRQ_TYPE_LEVEL_HIGH>,
- 					      <&pdc 8 IRQ_TYPE_EDGE_BOTH>,
- 					      <&pdc 9 IRQ_TYPE_EDGE_BOTH>;
- 			interrupt-names = "hs_phy_irq", "ss_phy_irq",
-@@ -3619,7 +3619,7 @@ usb_2: usb@a8f8800 {
- 			assigned-clock-rates = <19200000>, <200000000>;
- 
- 			interrupts-extended = <&intc GIC_SPI 136 IRQ_TYPE_LEVEL_HIGH>,
--					      <&intc GIC_SPI 487 IRQ_TYPE_LEVEL_HIGH>,
-+					      <&pdc 7 IRQ_TYPE_LEVEL_HIGH>,
- 					      <&pdc 10 IRQ_TYPE_EDGE_BOTH>,
- 					      <&pdc 11 IRQ_TYPE_EDGE_BOTH>;
- 			interrupt-names = "hs_phy_irq", "ss_phy_irq",
--- 
-2.41.0
-
+Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
 
