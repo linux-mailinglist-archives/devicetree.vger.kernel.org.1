@@ -1,300 +1,136 @@
-Return-Path: <devicetree+bounces-24928-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24929-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14A01811AC4
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 18:18:59 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7187B811AC9
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 18:19:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5FE48B210A9
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 17:18:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 78F991C2114A
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 17:19:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D20C554BF3;
-	Wed, 13 Dec 2023 17:18:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3BDE5579B;
+	Wed, 13 Dec 2023 17:19:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="D0KAKx8N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id A929AAB;
-	Wed, 13 Dec 2023 09:18:51 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 643181596;
-	Wed, 13 Dec 2023 09:19:37 -0800 (PST)
-Received: from e121345-lin.cambridge.arm.com (e121345-lin.cambridge.arm.com [10.1.196.40])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 7408B3F762;
-	Wed, 13 Dec 2023 09:18:47 -0800 (PST)
-From: Robin Murphy <robin.murphy@arm.com>
-To: Joerg Roedel <joro@8bytes.org>,
-	Christoph Hellwig <hch@lst.de>
-Cc: Vineet Gupta <vgupta@kernel.org>,
-	Russell King <linux@armlinux.org.uk>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Huacai Chen <chenhuacai@kernel.org>,
-	WANG Xuerui <kernel@xen0n.name>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Hanjun Guo <guohanjun@huawei.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	"K. Y. Srinivasan" <kys@microsoft.com>,
-	Haiyang Zhang <haiyangz@microsoft.com>,
-	Wei Liu <wei.liu@kernel.org>,
-	Dexuan Cui <decui@microsoft.com>,
-	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
-	David Woodhouse <dwmw2@infradead.org>,
-	Lu Baolu <baolu.lu@linux.intel.com>,
-	Niklas Schnelle <schnelle@linux.ibm.com>,
-	Matthew Rosato <mjrosato@linux.ibm.com>,
-	Gerald Schaefer <gerald.schaefer@linux.ibm.com>,
-	Jean-Philippe Brucker <jean-philippe@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Jason Gunthorpe <jgg@ziepe.ca>,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-acpi@vger.kernel.org,
-	iommu@lists.linux.dev,
-	devicetree@vger.kernel.org
-Subject: [PATCH v2 7/7] dma-mapping: Simplify arch_setup_dma_ops()
-Date: Wed, 13 Dec 2023 17:18:00 +0000
-Message-Id: <7e6af148e0df9a10b51cd60234ec6b35f7d4cc20.1702486837.git.robin.murphy@arm.com>
-X-Mailer: git-send-email 2.39.2.101.g768bb238c484.dirty
-In-Reply-To: <cover.1702486837.git.robin.murphy@arm.com>
-References: <cover.1702486837.git.robin.murphy@arm.com>
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0986DF5
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 09:19:40 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-40c3ca9472dso51473975e9.2
+        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 09:19:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1702487978; x=1703092778; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=W3BG24W610lJuKV/MW/fbLfcOspFMJtOeERiQaIiRWM=;
+        b=D0KAKx8N4MOccXzvsRUZwfL8OuCPtt3k7XEY9o9U6Ih3o+HdBLv6i4JjXRresI2HZ+
+         wanjfnLKZVo68KteA3Zw+i7+NbBdBjEJJEE9vSdH3EUFIkSz+QBF8q/s/jdm7kcHU8R/
+         gXPfscw1sWibuwuqwo2lwqQxJbXz6M3BIsEVuBJqb79Lqe1LrGNOFebPQ+r3IC7POhRX
+         MK4Wrx23J5YbUz386TcdmtUd318S1eQEvV8IoyskZ3UqEjuI239KKX4WJCQ0mIcLMoVv
+         MUJ9U/QgfjVAndSoKONembXEsWkpKqW9RsiaoVANQgOTkXM47AH4sjS11iY/ItjloGWk
+         cUjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702487978; x=1703092778;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=W3BG24W610lJuKV/MW/fbLfcOspFMJtOeERiQaIiRWM=;
+        b=NIkXCqVAiasJt4/n1hm4Wd49mKzqCCR0Hr6vrtPqyspPLd2iaiQSZZyZkx9q4LlK+y
+         X7d1bWmZLNemnAyPexAUkd8pWI+mAWdQDF1dNvYkwdYT7XVbFkfR5S8aHVVLXueiyS5p
+         Pkio+qMINkBDE4Qz6TOn17Om9yOj8l81FnOfOiEuwLJUJ8+Z3YyrOO2eCJXF4s3aqw7J
+         Nrj9iaXrkvnGY1+wmj9JKMntbH71YMrQKC5xzLQoFnjPYseur7Nf0OuOQqwCRnIT3mb+
+         Zrtgl0AZ9U/F5f1dW7iDNCgSWWbogYJAbL1dupvvJ1YdtrhBWoTPzGX2oJKEPWkQl1sU
+         /TJQ==
+X-Gm-Message-State: AOJu0Yz4XkpYJa0zAmnKri3TUrWk/YInu2knezuezgAu3FE2CU6ki8e0
+	QK28apr03S4MDo5D24JZZ/P0Xg==
+X-Google-Smtp-Source: AGHT+IFLcGLrThHqoGdIdS0RECHOQeVt4478xU7EiOcPPKGKy3QIAr+KLDIgxCltoydbRPGDwIQ3TA==
+X-Received: by 2002:a05:600c:4749:b0:40c:a11:19df with SMTP id w9-20020a05600c474900b0040c0a1119dfmr2878247wmo.180.1702487978245;
+        Wed, 13 Dec 2023 09:19:38 -0800 (PST)
+Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
+        by smtp.gmail.com with ESMTPSA id r20-20020a05600c459400b0040b349c91acsm23318063wmo.16.2023.12.13.09.19.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Dec 2023 09:19:37 -0800 (PST)
+Date: Wed, 13 Dec 2023 18:19:37 +0100
+From: Andrew Jones <ajones@ventanamicro.com>
+To: Anup Patel <apatel@ventanamicro.com>
+Cc: Paolo Bonzini <pbonzini@redhat.com>, 
+	Atish Patra <atishp@atishpatra.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Shuah Khan <shuah@kernel.org>, Anup Patel <anup@brainfault.org>, 
+	devicetree@vger.kernel.org, kvm@vger.kernel.org, kvm-riscv@lists.infradead.org, 
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH 03/15] KVM: riscv: selftests: Add Zbc extension to
+ get-reg-list test
+Message-ID: <20231213-1082f104e8ba65ee3db6aa3a@orel>
+References: <20231128145357.413321-1-apatel@ventanamicro.com>
+ <20231128145357.413321-4-apatel@ventanamicro.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231128145357.413321-4-apatel@ventanamicro.com>
 
-The dma_base, size and iommu arguments are only used by ARM, and can
-now easily be deduced from the device itself, so there's no need to pass
-them through the callchain as well.
+On Tue, Nov 28, 2023 at 08:23:45PM +0530, Anup Patel wrote:
+> The KVM RISC-V allows Zbc extension for Guest/VM so let us add
+> this extension to get-reg-list test.
+> 
+> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> ---
+>  tools/testing/selftests/kvm/riscv/get-reg-list.c | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/tools/testing/selftests/kvm/riscv/get-reg-list.c b/tools/testing/selftests/kvm/riscv/get-reg-list.c
+> index b6b4b6d7dacd..4b75b011f2d8 100644
+> --- a/tools/testing/selftests/kvm/riscv/get-reg-list.c
+> +++ b/tools/testing/selftests/kvm/riscv/get-reg-list.c
+> @@ -44,6 +44,7 @@ bool filter_reg(__u64 reg)
+>  	case KVM_REG_RISCV_ISA_EXT | KVM_RISCV_ISA_EXT_SVPBMT:
+>  	case KVM_REG_RISCV_ISA_EXT | KVM_RISCV_ISA_EXT_ZBA:
+>  	case KVM_REG_RISCV_ISA_EXT | KVM_RISCV_ISA_EXT_ZBB:
+> +	case KVM_REG_RISCV_ISA_EXT | KVM_RISCV_ISA_EXT_ZBC:
 
-Reviewed-by: Christoph Hellwig <hch@lst.de>
-Signed-off-by: Robin Murphy <robin.murphy@arm.com>
----
-v2: Make sure the ARM changes actually build (oops...)
----
- arch/arc/mm/dma.c               |  3 +--
- arch/arm/mm/dma-mapping-nommu.c |  3 +--
- arch/arm/mm/dma-mapping.c       | 18 ++++++++++--------
- arch/arm64/mm/dma-mapping.c     |  3 +--
- arch/mips/mm/dma-noncoherent.c  |  3 +--
- arch/riscv/mm/dma-noncoherent.c |  3 +--
- drivers/acpi/scan.c             |  3 +--
- drivers/hv/hv_common.c          |  6 +-----
- drivers/of/device.c             |  4 +---
- include/linux/dma-map-ops.h     |  6 ++----
- 10 files changed, 20 insertions(+), 32 deletions(-)
+Assuming this gets rebased on [1] then this line becomes
 
-diff --git a/arch/arc/mm/dma.c b/arch/arc/mm/dma.c
-index 2a7fbbb83b70..6b85e94f3275 100644
---- a/arch/arc/mm/dma.c
-+++ b/arch/arc/mm/dma.c
-@@ -90,8 +90,7 @@ void arch_sync_dma_for_cpu(phys_addr_t paddr, size_t size,
- /*
-  * Plug in direct dma map ops.
-  */
--void arch_setup_dma_ops(struct device *dev, u64 dma_base, u64 size,
--			const struct iommu_ops *iommu, bool coherent)
-+void arch_setup_dma_ops(struct device *dev, bool coherent)
- {
- 	/*
- 	 * IOC hardware snoops all DMA traffic keeping the caches consistent
-diff --git a/arch/arm/mm/dma-mapping-nommu.c b/arch/arm/mm/dma-mapping-nommu.c
-index cfd9c933d2f0..97db5397c320 100644
---- a/arch/arm/mm/dma-mapping-nommu.c
-+++ b/arch/arm/mm/dma-mapping-nommu.c
-@@ -33,8 +33,7 @@ void arch_sync_dma_for_cpu(phys_addr_t paddr, size_t size,
- 	}
- }
- 
--void arch_setup_dma_ops(struct device *dev, u64 dma_base, u64 size,
--			const struct iommu_ops *iommu, bool coherent)
-+void arch_setup_dma_ops(struct device *dev, bool coherent)
- {
- 	if (IS_ENABLED(CONFIG_CPU_V7M)) {
- 		/*
-diff --git a/arch/arm/mm/dma-mapping.c b/arch/arm/mm/dma-mapping.c
-index 5409225b4abc..5ac482d7ff94 100644
---- a/arch/arm/mm/dma-mapping.c
-+++ b/arch/arm/mm/dma-mapping.c
-@@ -1712,11 +1712,15 @@ void arm_iommu_detach_device(struct device *dev)
- }
- EXPORT_SYMBOL_GPL(arm_iommu_detach_device);
- 
--static void arm_setup_iommu_dma_ops(struct device *dev, u64 dma_base, u64 size,
--				    const struct iommu_ops *iommu, bool coherent)
-+static void arm_setup_iommu_dma_ops(struct device *dev)
- {
- 	struct dma_iommu_mapping *mapping;
-+	u64 dma_base = 0, size = 1ULL << 32;
- 
-+	if (dev->dma_range_map) {
-+		dma_base = dma_range_map_min(dev->dma_range_map);
-+		size = dma_range_map_max(dev->dma_range_map) - dma_base;
-+	}
- 	mapping = arm_iommu_create_mapping(dev->bus, dma_base, size);
- 	if (IS_ERR(mapping)) {
- 		pr_warn("Failed to create %llu-byte IOMMU mapping for device %s\n",
-@@ -1747,8 +1751,7 @@ static void arm_teardown_iommu_dma_ops(struct device *dev)
- 
- #else
- 
--static void arm_setup_iommu_dma_ops(struct device *dev, u64 dma_base, u64 size,
--				    const struct iommu_ops *iommu, bool coherent)
-+static void arm_setup_iommu_dma_ops(struct device *dev)
- {
- }
- 
-@@ -1756,8 +1759,7 @@ static void arm_teardown_iommu_dma_ops(struct device *dev) { }
- 
- #endif	/* CONFIG_ARM_DMA_USE_IOMMU */
- 
--void arch_setup_dma_ops(struct device *dev, u64 dma_base, u64 size,
--			const struct iommu_ops *iommu, bool coherent)
-+void arch_setup_dma_ops(struct device *dev, bool coherent)
- {
- 	/*
- 	 * Due to legacy code that sets the ->dma_coherent flag from a bus
-@@ -1776,8 +1778,8 @@ void arch_setup_dma_ops(struct device *dev, u64 dma_base, u64 size,
- 	if (dev->dma_ops)
- 		return;
- 
--	if (iommu)
--		arm_setup_iommu_dma_ops(dev, dma_base, size, iommu, coherent);
-+	if (device_iommu_mapped(dev))
-+		arm_setup_iommu_dma_ops(dev);
- 
- 	xen_setup_dma_ops(dev);
- 	dev->archdata.dma_ops_setup = true;
-diff --git a/arch/arm64/mm/dma-mapping.c b/arch/arm64/mm/dma-mapping.c
-index 96ff791199e8..0b320a25a471 100644
---- a/arch/arm64/mm/dma-mapping.c
-+++ b/arch/arm64/mm/dma-mapping.c
-@@ -46,8 +46,7 @@ void arch_teardown_dma_ops(struct device *dev)
- }
- #endif
- 
--void arch_setup_dma_ops(struct device *dev, u64 dma_base, u64 size,
--			const struct iommu_ops *iommu, bool coherent)
-+void arch_setup_dma_ops(struct device *dev, bool coherent)
- {
- 	int cls = cache_line_size_of_cpu();
- 
-diff --git a/arch/mips/mm/dma-noncoherent.c b/arch/mips/mm/dma-noncoherent.c
-index 3c4fc97b9f39..ab4f2a75a7d0 100644
---- a/arch/mips/mm/dma-noncoherent.c
-+++ b/arch/mips/mm/dma-noncoherent.c
-@@ -137,8 +137,7 @@ void arch_sync_dma_for_cpu(phys_addr_t paddr, size_t size,
- #endif
- 
- #ifdef CONFIG_ARCH_HAS_SETUP_DMA_OPS
--void arch_setup_dma_ops(struct device *dev, u64 dma_base, u64 size,
--		const struct iommu_ops *iommu, bool coherent)
-+void arch_setup_dma_ops(struct device *dev, bool coherent)
- {
- 	dev->dma_coherent = coherent;
- }
-diff --git a/arch/riscv/mm/dma-noncoherent.c b/arch/riscv/mm/dma-noncoherent.c
-index 4e4e469b8dd6..cb89d7e0ba88 100644
---- a/arch/riscv/mm/dma-noncoherent.c
-+++ b/arch/riscv/mm/dma-noncoherent.c
-@@ -128,8 +128,7 @@ void arch_dma_prep_coherent(struct page *page, size_t size)
- 	ALT_CMO_OP(FLUSH, flush_addr, size, riscv_cbom_block_size);
- }
- 
--void arch_setup_dma_ops(struct device *dev, u64 dma_base, u64 size,
--		const struct iommu_ops *iommu, bool coherent)
-+void arch_setup_dma_ops(struct device *dev, bool coherent)
- {
- 	WARN_TAINT(!coherent && riscv_cbom_block_size > ARCH_DMA_MINALIGN,
- 		   TAINT_CPU_OUT_OF_SPEC,
-diff --git a/drivers/acpi/scan.c b/drivers/acpi/scan.c
-index ee88a727f200..cad171fc31e8 100644
---- a/drivers/acpi/scan.c
-+++ b/drivers/acpi/scan.c
-@@ -1640,8 +1640,7 @@ int acpi_dma_configure_id(struct device *dev, enum dev_dma_attr attr,
- 	if (PTR_ERR(iommu) == -EPROBE_DEFER)
- 		return -EPROBE_DEFER;
- 
--	arch_setup_dma_ops(dev, 0, U64_MAX,
--				iommu, attr == DEV_DMA_COHERENT);
-+	arch_setup_dma_ops(dev, attr == DEV_DMA_COHERENT);
- 
- 	return 0;
- }
-diff --git a/drivers/hv/hv_common.c b/drivers/hv/hv_common.c
-index 4372f5d146ab..0e2decd1167a 100644
---- a/drivers/hv/hv_common.c
-+++ b/drivers/hv/hv_common.c
-@@ -484,11 +484,7 @@ EXPORT_SYMBOL_GPL(hv_query_ext_cap);
- 
- void hv_setup_dma_ops(struct device *dev, bool coherent)
- {
--	/*
--	 * Hyper-V does not offer a vIOMMU in the guest
--	 * VM, so pass 0/NULL for the IOMMU settings
--	 */
--	arch_setup_dma_ops(dev, 0, 0, NULL, coherent);
-+	arch_setup_dma_ops(dev, coherent);
- }
- EXPORT_SYMBOL_GPL(hv_setup_dma_ops);
- 
-diff --git a/drivers/of/device.c b/drivers/of/device.c
-index 66879edb4a61..3394751015d3 100644
---- a/drivers/of/device.c
-+++ b/drivers/of/device.c
-@@ -96,7 +96,6 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
- 	const struct iommu_ops *iommu;
- 	const struct bus_dma_region *map = NULL;
- 	struct device_node *bus_np;
--	u64 dma_start = 0;
- 	u64 mask, end = 0;
- 	bool coherent;
- 	int ret;
-@@ -118,7 +117,6 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
- 			return ret == -ENODEV ? 0 : ret;
- 	} else {
- 		/* Determine the overall bounds of all DMA regions */
--		dma_start = dma_range_map_min(map);
- 		end = dma_range_map_max(map);
- 	}
- 
-@@ -167,7 +165,7 @@ int of_dma_configure_id(struct device *dev, struct device_node *np,
- 	dev_dbg(dev, "device is%sbehind an iommu\n",
- 		iommu ? " " : " not ");
- 
--	arch_setup_dma_ops(dev, dma_start, end - dma_start + 1, iommu, coherent);
-+	arch_setup_dma_ops(dev, coherent);
- 
- 	if (!iommu)
- 		of_dma_set_restricted_buffer(dev, np);
-diff --git a/include/linux/dma-map-ops.h b/include/linux/dma-map-ops.h
-index a52e508d1869..023f265eae2e 100644
---- a/include/linux/dma-map-ops.h
-+++ b/include/linux/dma-map-ops.h
-@@ -426,11 +426,9 @@ bool arch_dma_unmap_sg_direct(struct device *dev, struct scatterlist *sg,
- #endif
- 
- #ifdef CONFIG_ARCH_HAS_SETUP_DMA_OPS
--void arch_setup_dma_ops(struct device *dev, u64 dma_base, u64 size,
--		const struct iommu_ops *iommu, bool coherent);
-+void arch_setup_dma_ops(struct device *dev, bool coherent);
- #else
--static inline void arch_setup_dma_ops(struct device *dev, u64 dma_base,
--		u64 size, const struct iommu_ops *iommu, bool coherent)
-+static inline void arch_setup_dma_ops(struct device *dev, bool coherent)
- {
- }
- #endif /* CONFIG_ARCH_HAS_SETUP_DMA_OPS */
--- 
-2.39.2.101.g768bb238c484.dirty
+  case KVM_REG_RISCV_ISA_EXT | KVM_REG_RISCV_ISA_SINGLE | KVM_RISCV_ISA_EXT_ZBC:
+
+[1] https://lore.kernel.org/linux-riscv/20231213170951.93453-8-ajones@ventanamicro.com/
+
+>  	case KVM_REG_RISCV_ISA_EXT | KVM_RISCV_ISA_EXT_ZBS:
+>  	case KVM_REG_RISCV_ISA_EXT | KVM_RISCV_ISA_EXT_ZICBOM:
+>  	case KVM_REG_RISCV_ISA_EXT | KVM_RISCV_ISA_EXT_ZICBOZ:
+> @@ -361,6 +362,7 @@ static const char *isa_ext_id_to_str(const char *prefix, __u64 id)
+>  		KVM_ISA_EXT_ARR(SVPBMT),
+>  		KVM_ISA_EXT_ARR(ZBA),
+>  		KVM_ISA_EXT_ARR(ZBB),
+> +		KVM_ISA_EXT_ARR(ZBC),
+>  		KVM_ISA_EXT_ARR(ZBS),
+>  		KVM_ISA_EXT_ARR(ZICBOM),
+>  		KVM_ISA_EXT_ARR(ZICBOZ),
+> @@ -739,6 +741,7 @@ KVM_ISA_EXT_SIMPLE_CONFIG(svnapot, SVNAPOT);
+>  KVM_ISA_EXT_SIMPLE_CONFIG(svpbmt, SVPBMT);
+>  KVM_ISA_EXT_SIMPLE_CONFIG(zba, ZBA);
+>  KVM_ISA_EXT_SIMPLE_CONFIG(zbb, ZBB);
+> +KVM_ISA_EXT_SIMPLE_CONFIG(zbc, ZBC);
+>  KVM_ISA_EXT_SIMPLE_CONFIG(zbs, ZBS);
+>  KVM_ISA_EXT_SUBLIST_CONFIG(zicbom, ZICBOM);
+>  KVM_ISA_EXT_SUBLIST_CONFIG(zicboz, ZICBOZ);
+> @@ -761,6 +764,7 @@ struct vcpu_reg_list *vcpu_configs[] = {
+>  	&config_svpbmt,
+>  	&config_zba,
+>  	&config_zbb,
+> +	&config_zbc,
+>  	&config_zbs,
+>  	&config_zicbom,
+>  	&config_zicboz,
+> -- 
+> 2.34.1
+>
+
+Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
 
 
