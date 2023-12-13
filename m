@@ -1,204 +1,183 @@
-Return-Path: <devicetree+bounces-24906-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24907-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 185B18119E6
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 17:45:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C9308119EC
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 17:45:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9F6361F21884
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 16:44:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8A07F1C20EE3
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 16:45:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47B4A39FC8;
-	Wed, 13 Dec 2023 16:44:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24F0136B1E;
+	Wed, 13 Dec 2023 16:45:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="rrg1DXMa"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dL48ZN7/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1076B189;
-	Wed, 13 Dec 2023 08:44:51 -0800 (PST)
-Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
-	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20231213164449epoutp023fd64615399e6e62e744eadbe1de0d03~gceVxlC9d0917409174epoutp02V;
-	Wed, 13 Dec 2023 16:44:49 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20231213164449epoutp023fd64615399e6e62e744eadbe1de0d03~gceVxlC9d0917409174epoutp02V
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1702485889;
-	bh=RD0jG/REDL3S4PTv/Ck6hMfscjCMHfpmiHODJta/i+4=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=rrg1DXMab0ZoBrqQJ6/jivHONHqfn+9bCe0dOZ9W8qydXK17X3EU88oSAVfPO/RTL
-	 mAa7+b3Aw99ev55GWPK9OvKdbaqOtVZTxpXQP8BBzQF6Hm1oZoNx2AtftU3ON4Yy1l
-	 wFqbbKeja3vval2Ox812QZMuPuYy4/bF8ENwvjNg=
-Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
-	epcas5p4.samsung.com (KnoxPortal) with ESMTP id
-	20231213164448epcas5p4e976f034ca8830f70a48a1cf9e14ae6e~gceVI4JSX2992729927epcas5p4y;
-	Wed, 13 Dec 2023 16:44:48 +0000 (GMT)
-Received: from epsmgec5p1-new.samsung.com (unknown [182.195.38.181]) by
-	epsnrtp4.localdomain (Postfix) with ESMTP id 4Sr1YC0x4Mz4x9Pq; Wed, 13 Dec
-	2023 16:44:47 +0000 (GMT)
-Received: from epcas5p1.samsung.com ( [182.195.41.39]) by
-	epsmgec5p1-new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	6B.79.19369.E7FD9756; Thu, 14 Dec 2023 01:44:47 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
-	20231213164446epcas5p43cb1c94693f386127918f6b15e6f2bd5~gceTOeOGm2992729927epcas5p4v;
-	Wed, 13 Dec 2023 16:44:46 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20231213164446epsmtrp1ab24ca6f10f89d2b8bd173b303387534~gceTMBZaB2259122591epsmtrp1F;
-	Wed, 13 Dec 2023 16:44:46 +0000 (GMT)
-X-AuditID: b6c32a50-c99ff70000004ba9-65-6579df7ecbd4
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	03.7C.08755.E7FD9756; Thu, 14 Dec 2023 01:44:46 +0900 (KST)
-Received: from INBRO000447 (unknown [107.122.12.5]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20231213164442epsmtip14c8055805388afac3f2d1c0e9a4cd35e~gcePBbyEn2325823258epsmtip1b;
-	Wed, 13 Dec 2023 16:44:42 +0000 (GMT)
-From: "Alim Akhtar" <alim.akhtar@samsung.com>
-To: "'Peter Griffin'" <peter.griffin@linaro.org>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
-	<conor+dt@kernel.org>, <sboyd@kernel.org>, <tomasz.figa@gmail.com>,
-	<s.nawrocki@samsung.com>, <linus.walleij@linaro.org>,
-	<wim@linux-watchdog.org>, <linux@roeck-us.net>, <catalin.marinas@arm.com>,
-	<will@kernel.org>, <arnd@arndb.de>, <olof@lixom.net>,
-	<gregkh@linuxfoundation.org>, <jirislaby@kernel.org>,
-	<cw00.choi@samsung.com>
-Cc: <tudor.ambarus@linaro.org>, <andre.draszik@linaro.org>,
-	<semen.protsenko@linaro.org>, <saravanak@google.com>,
-	<willmcvicker@google.com>, <soc@kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
-	<linux-clk@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-	<linux-watchdog@vger.kernel.org>, <kernel-team@android.com>,
-	<linux-serial@vger.kernel.org>
-In-Reply-To: <20231211162331.435900-14-peter.griffin@linaro.org>
-Subject: RE: [PATCH v7 13/16] tty: serial: samsung: Add gs101 compatible and
- common fifoszdt_serial_drv_data
-Date: Wed, 13 Dec 2023 22:14:41 +0530
-Message-ID: <017601da2de3$ae2298e0$0a67caa0$@samsung.com>
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7891CB9
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 08:45:35 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-40c3fe6c1b5so41907625e9.2
+        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 08:45:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702485934; x=1703090734; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3cCBxgQgmHnb3FRuAT0Bjhlc/UFy50sdoklKTPhP0IM=;
+        b=dL48ZN7/8D65AVij2/Q/zX5fYY5e1bNs0afXcWkg0UIwRdky47Xs1au69sZ4/NQbrk
+         DUwaD31TheYZ80s39yW88x2WuTJPh2yVM9GUsiVPuNUObCtclDEDsmEThotIG4p79eCa
+         7hj7bMrUrt8q91YXQ7t+lHSKFsiBE4aE6F+AfByydCCOu2bUwL35t71sQt3T3wR+EtjY
+         lSCJv2AXClUiiiLp9YHpMGqf43FLXrvxq9nmrcrX5lijC3hxjWHmRXNXRmbg/YykO39R
+         BKD6oN4cApG1sxEodbg+Q8hGYx72QJQWfZkT0wc8HVz9fEaAgPUMGtlpQORUM0aUGIFM
+         mWPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702485934; x=1703090734;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3cCBxgQgmHnb3FRuAT0Bjhlc/UFy50sdoklKTPhP0IM=;
+        b=ToyuVV5Oc4l8FHQnowSnllLH21+npET2maV6PuK8vAyAhvd0Ld2ZeAGJnUZpyIpaUS
+         RYutn0I0LHL6pSbZXrH/VDT+Z47+LzL13+pZi/HDF9eB2YlYejnOcg3/Mudw6kmFS9+j
+         UrGqcSd/+bv4+xKoZt+hDVX0nL7GrletUm6h6MBx+5O7Y87OZIXSvXHzSuguyy32DA/y
+         B4S4eToGJV5GXu8OgCkaL7XRa54JGdFMsqEGpAEPh2yt6itLNDoUD3ZXWsarHwjDPldq
+         1/a5HhUsmMzoRDyNgthimPdY2ocPr51q7h10PBUYVITFS0fI99PyI63MN769AKtlZxe3
+         1a8w==
+X-Gm-Message-State: AOJu0YyPMyWVMKyA9jB+pEjekfI+XQkyB6aJaE9MW9qZ5xZihlQJidC0
+	NMivLtzQ2EVvYOf1uqUOZ253aw==
+X-Google-Smtp-Source: AGHT+IGjw8Bq0cGDXDAd7MBP09NT/7yPcTR+FQ1FGC8gDGZUKAgas4EVJLyZ7cZdLM7taOaIlr1C9Q==
+X-Received: by 2002:a05:600c:3ba9:b0:40c:20d3:3a0f with SMTP id n41-20020a05600c3ba900b0040c20d33a0fmr955874wms.78.1702485933874;
+        Wed, 13 Dec 2023 08:45:33 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:ac4e:a5fe:7f71:8d59? ([2a01:e0a:982:cbb0:ac4e:a5fe:7f71:8d59])
+        by smtp.gmail.com with ESMTPSA id o4-20020a5d58c4000000b0033333bee379sm13767115wrf.107.2023.12.13.08.45.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Dec 2023 08:45:33 -0800 (PST)
+Message-ID: <ce71647f-a21e-4df2-9f62-19de7da09728@linaro.org>
+Date: Wed, 13 Dec 2023 17:45:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Content-Language: en-us
-Thread-Index: AQEeDlMUs+qnFg95EVUf+Z9FZqMuEwIiSpF9Afs8Mk6x/r4tkA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA02Te0zTVxTHc/trfy1M9Gdl41odds2YSga22HaXIeKUbb/FmZD5z+aSsQ5+
-	oYzSdn2omGUwHMh4CUQIa3goOIldXaFAKU9neSiIuCUMkFTUUcdjilJB5b2Wn27897nnfr/n
-	3HNuDgfjtrN5nHiljtIoZQoB7s20tu/cHpR8J4kSNqUwUN1kLRMtFXSx0aML2QCZWvsYaHBm
-	jIXKO/pY6GSlGUdTpVuRrcEX5Y7fw9CZxSoGsowOsNB09ggL1ZYvAlR8s42Beitz2Gjo1zY2
-	cp7rZaA/et5HPYNPcFRdvMxEaa0dbNT+4BQLZdqXcLQ8UMNEY7lu1+jgIo6MTe4kruEv0A8O
-	CTK6VgAanVjG9vFJa7OVRZrKTIBcmC8A5KOhNDbZaLjNJs9a9KTF+CNOOgZacPKiycQiL5ea
-	2GTt+WSy/1oqi2x8lsImc+uMgHxi8Y/acCRhj5ySxVIaPqWMUcXGK+PCBQcPRx+IlkiFoiBR
-	KHpHwFfKEqlwQeTHUUEfxCvc4xLwj8oUencoSqbVCnbt3aNR6XUUX67S6sIFlDpWoRarg7Wy
-	RK1eGRespHTvioTCEIlb+GWCvOD5HVxd4Xv81MpFRgro2ZgJvDiQEMPzZUW4h7lEC4BnKkIy
-	gbebXQCmmi/h9OEpgH2mW6yXjvvWbIy+aAVw8ec5Bn0YB3Dq90GmR4UTQdBWmb6a15cYweBg
-	33seEUaYMDi34sA8F17EPrjcdhd4eBOhhM5r11cNTCIAFvZ2sD3sQ4TCjroCjOaNsPsn52oB
-	jNgGGx6WYPST+HDu/gUWHfeDE52015fYD69XW4GnMCQyveH49BROGyLhuclCQPMmOHm1jk0z
-	D06cTnczx80krFjk0WE5fFhlfiGPgL/1lzA9EozYCc1Nu+iy62HOgpNBO31gRjqXVgfAk1N/
-	MmneAvOzsl4MkYTGii52HnjDsKYxw5rGDGuaMfxf7CxgGgGPUmsT46gYiVoUpKSO/ffhMapE
-	C1jdpsAoG/ileinYDhgcYAeQgwl8fbptxyiuT6ws6QSlUUVr9ApKawcS97jzMd6rMSr3Oip1
-	0SJxqFAslUrFobulIoGfzz9ppbFcIk6moxIoSk1pXvoYHC9eCqPRIE/M7r4cIrYf1Oe99bbs
-	7ontH/bZmjvbW4r9j1QN610R0PFNyXei52MNqUWznwpmL30k2XKziBn293z+XIvQu9lirdtd
-	z/O6QUEmcWjGcFW7P8SRHRwmxcPyuAuZLuvxHPO8d2dVWti6bZ/ZT9ckPbjRb3/FSUa1uhbt
-	f+2Yrer/5LHxcHhr1kBE4Jvf6pPLwvg1M7OdY1hO/WsbGv2wo8EZHV8t3dLnTYRqpnZMT9e8
-	jh9w8BOF6F6P/wiX8zWVEbA1AnPOefV+f6U/b3P93s1mWM0LSR9RRQ49u40+HxiR8Z7iysJh
-	cZmi4fGVJVv2ukNyla6rfH3tkDDc7C1gauUyUSCm0cr+BXTGkFLWBAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrDKsWRmVeSWpSXmKPExsWy7bCSnG7d/cpUg1PLZC22vNrMYvF30jF2
-	i/fLehgt1uw9x2Rx/ctzVov5R86xWjQvXs9m8W6ujMWO7SIWfS8eMltM+bOcyWLT42usFh97
-	7rFabJ7/h9Fixvl9TBZnFveyW9xYt4/d4snCM0wWF0+5Wpy6/pnNYsOMfywWrXuPsFscftPO
-	atF16C+bxb9rG1ksnvcBdT2+/ofNYtUuoCGfbsVZtNwxtVj16T+jxeOX/5gdFDy27d7G6rFm
-	3hpGj9+/JjF6vL/Ryu6xc9Zddo8Fm0o9Nq3qZPO4c20Pm8fKNWtYPfbPXcPusXlJvceVE02s
-	Hju/N7B79G1ZxejxeZNcAH8Ul01Kak5mWWqRvl0CV8akH/fZChaJVLT/X8nUwHhKsIuRk0NC
-	wETi6bYe5i5GLg4hgd2MElvu/GaESEhLXN84gR3CFpZY+e85O0TRM0aJPx++sYAk2AR0JXYs
-	bmMDSYgIfGKWWP3/BpjDLLCLWeJcQxsrRMsRRom12+6DzeUUcJD4t+8BmC0skCOxcvE+sFEs
-	AqoSU88cAdvHK2ApcWTLJGYIW1Di5MwnQDUcQFP1JNo2grUyC8hLbH87hxniPAWJn0+XsULE
-	xSVeHoUYIyLgJHF6wzbGCYzCs5BMmoUwaRaSSbOQdC9gZFnFKJlaUJybnltsWGCYl1quV5yY
-	W1yal66XnJ+7iRGcoLQ0dzBuX/VB7xAjEwfjIUYJDmYlEd6TO8pThXhTEiurUovy44tKc1KL
-	DzFKc7AoifOKv+hNERJITyxJzU5NLUgtgskycXBKNTCdFFNaUj65wTFWmMXQvt6t0NF7OaOu
-	QoqBVJnn08jF6f8ydacaTKoNtP19IZibJWSZTndMtuClxuMsvgXm/EeOrnNXDdebY+inkCDY
-	OWVWnIPUlWUH7zTN+WmTbdbTfIcpQrbujBDz6fnH91peWLCZ2798xURR2cBZ3m33hI4cWnPx
-	AuPBwATvjnvX7aJl5tVfv+L22Z7nea79raeVcrVN/QYLz0SXChgwPjnGxMO/MuNFSuj6556n
-	TrY9mfM11WLvQ+0lb2zmlKYKzTdYtEek8cmpsoz6J3rciSWc50uMXjxiaVS+rBLbEp+a08fg
-	KB8ilFvj1SCQJdcfG3DLx/yr9f0vs9k2X3z5dMckJZbijERDLeai4kQA4KQRub8DAAA=
-X-CMS-MailID: 20231213164446epcas5p43cb1c94693f386127918f6b15e6f2bd5
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20231211162437epcas5p2d640158c5afd1b4a58c7f9f7b2966300
-References: <20231211162331.435900-1-peter.griffin@linaro.org>
-	<CGME20231211162437epcas5p2d640158c5afd1b4a58c7f9f7b2966300@epcas5p2.samsung.com>
-	<20231211162331.435900-14-peter.griffin@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/4] arm64: dts: qcom: sm8450: move Soundwire pinctrl
+ to its nodes
+Content-Language: en-GB
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231213162856.188566-1-krzysztof.kozlowski@linaro.org>
+ <20231213162856.188566-2-krzysztof.kozlowski@linaro.org>
+From: Neil Armstrong <neil.armstrong@linaro.org>
+In-Reply-To: <20231213162856.188566-2-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-
-
-> -----Original Message-----
-> From: Peter Griffin <peter.griffin@linaro.org>
-> Sent: Monday, December 11, 2023 9:53 PM
-> To: robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
-> mturquette@baylibre.com; conor+dt@kernel.org; sboyd@kernel.org;
-> tomasz.figa@gmail.com; s.nawrocki@samsung.com; linus.walleij@linaro.org;
-> wim@linux-watchdog.org; linux@roeck-us.net; catalin.marinas@arm.com;
-> will@kernel.org; arnd@arndb.de; olof@lixom.net;
-> gregkh@linuxfoundation.org; jirislaby@kernel.org;
-> cw00.choi@samsung.com; alim.akhtar@samsung.com
-> Cc: peter.griffin@linaro.org; tudor.ambarus@linaro.org;
-> andre.draszik@linaro.org; semen.protsenko@linaro.org;
-> saravanak@google.com; willmcvicker@google.com; soc@kernel.org;
-> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
-> samsung-soc@vger.kernel.org; linux-clk@vger.kernel.org; linux-
-> gpio@vger.kernel.org; linux-watchdog@vger.kernel.org; kernel-
-> team@android.com; linux-serial@vger.kernel.org
-> Subject: [PATCH v7 13/16] tty: serial: samsung: Add gs101 compatible and
-> common fifoszdt_serial_drv_data
+Le 13/12/2023 à 17:28, Krzysztof Kozlowski a écrit :
+> Pin configuration for Soundwire bus should be set in Soundwire
+> controller nodes, not in the associated macro codec node.  This
+> placement change should not have big impact in general, because macro
+> codec is a clock provider for Soundwire controller, thus its devices is
+> probed first.  However it will have impact for disabled Soundwire buses,
+> e.g. WSA2, because after this change the pins will be left in default
+> state.
 > 
-> Add serial driver data for Google Tensor gs101 SoC and a common
-> fifoszdt_serial_drv_data that can be used by platforms that specify the
-> samsung,uart-fifosize DT property.
+> We also follow similar approach in newer SoCs, like Qualcomm SM8650.
 > 
-> A corresponding dt-bindings patch updates the yaml to ensure
-> samsung,uart-fifosize is a required property.
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> Tested-by: Will McVicker <willmcvicker@google.com>
-> Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
-> Reviewed-by: Arnd Bergmann <arnd@arndb.de>
-> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
 > ---
-Reviewed-by: Alim Akhtar <alim.akhtar@samsung.com>
-
->  drivers/tty/serial/samsung_tty.c | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
 > 
-> diff --git a/drivers/tty/serial/samsung_tty.c
-> b/drivers/tty/serial/samsung_tty.c
-> index 1b0c2b467a30..71d17d804fda 100644
-> --- a/drivers/tty/serial/samsung_tty.c
-> +++ b/drivers/tty/serial/samsung_tty.c
-> @@ -2490,14 +2490,25 @@ static const struct s3c24xx_serial_drv_data
-> exynos850_serial_drv_data = {
->  	.fifosize = { 256, 64, 64, 64 },
->  };
+> Not tested on HW.
+> ---
+>   arch/arm64/boot/dts/qcom/sm8450.dtsi | 20 ++++++++++++--------
+>   1 file changed, 12 insertions(+), 8 deletions(-)
 > 
-> +/*
-> + * Common drv_data struct for platforms that specify
-> +samsung,uart-fifosize in
-> + * device tree.
-> + */
-> +static const struct s3c24xx_serial_drv_data
-> exynos_fifoszdt_serial_drv_data = {
-> +	EXYNOS_COMMON_SERIAL_DRV_DATA(),
-> +	.fifosize = { 0 },
-> +};
-[snip]
->  MODULE_DEVICE_TABLE(of, s3c24xx_uart_dt_match);
-> --
-> 2.43.0.472.g3155946c3a-goog
+> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> index 12e55a0c7417..3b6ea9653d2a 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> @@ -2160,8 +2160,6 @@ wsa2macro: codec@31e0000 {
+>   
+>   			#clock-cells = <0>;
+>   			clock-output-names = "wsa2-mclk";
+> -			pinctrl-names = "default";
+> -			pinctrl-0 = <&wsa2_swr_active>;
+>   			#sound-dai-cells = <1>;
+>   		};
+>   
+> @@ -2173,6 +2171,9 @@ swr4: soundwire-controller@31f0000 {
+>   			clock-names = "iface";
+>   			label = "WSA2";
+>   
+> +			pinctrl-0 = <&wsa2_swr_active>;
+> +			pinctrl-names = "default";
+> +
+>   			qcom,din-ports = <2>;
+>   			qcom,dout-ports = <6>;
+>   
+> @@ -2208,8 +2209,6 @@ rxmacro: codec@3200000 {
+>   
+>   			#clock-cells = <0>;
+>   			clock-output-names = "mclk";
+> -			pinctrl-names = "default";
+> -			pinctrl-0 = <&rx_swr_active>;
+>   			#sound-dai-cells = <1>;
+>   		};
+>   
+> @@ -2223,6 +2222,9 @@ swr1: soundwire-controller@3210000 {
+>   			qcom,din-ports = <0>;
+>   			qcom,dout-ports = <5>;
+>   
+> +			pinctrl-0 = <&rx_swr_active>;
+> +			pinctrl-names = "default";
+> +
+>   			qcom,ports-sinterval-low =	/bits/ 8 <0x03 0x1f 0x1f 0x07 0x00>;
+>   			qcom,ports-offset1 =		/bits/ 8 <0x00 0x00 0x0b 0x01 0x00>;
+>   			qcom,ports-offset2 =		/bits/ 8 <0x00 0x00 0x0b 0x00 0x00>;
+> @@ -2254,8 +2256,6 @@ txmacro: codec@3220000 {
+>   
+>   			#clock-cells = <0>;
+>   			clock-output-names = "mclk";
+> -			pinctrl-names = "default";
+> -			pinctrl-0 = <&tx_swr_active>;
+>   			#sound-dai-cells = <1>;
+>   		};
+>   
+> @@ -2275,8 +2275,6 @@ wsamacro: codec@3240000 {
+>   
+>   			#clock-cells = <0>;
+>   			clock-output-names = "mclk";
+> -			pinctrl-names = "default";
+> -			pinctrl-0 = <&wsa_swr_active>;
+>   			#sound-dai-cells = <1>;
+>   		};
+>   
+> @@ -2288,6 +2286,9 @@ swr0: soundwire-controller@3250000 {
+>   			clock-names = "iface";
+>   			label = "WSA";
+>   
+> +			pinctrl-0 = <&wsa_swr_active>;
+> +			pinctrl-names = "default";
+> +
+>   			qcom,din-ports = <2>;
+>   			qcom,dout-ports = <6>;
+>   
+> @@ -2318,6 +2319,9 @@ swr2: soundwire-controller@33b0000 {
+>   			clock-names = "iface";
+>   			label = "TX";
+>   
+> +			pinctrl-0 = <&tx_swr_active>;
+> +			pinctrl-names = "default";
+> +
+>   			qcom,din-ports = <4>;
+>   			qcom,dout-ports = <0>;
+>   			qcom,ports-sinterval-low =	/bits/ 8 <0x01 0x01 0x03 0x03>;
 
-
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
