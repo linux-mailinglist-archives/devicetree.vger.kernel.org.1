@@ -1,243 +1,259 @@
-Return-Path: <devicetree+bounces-24558-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB5A280FBAF
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 01:01:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACA9880FBC0
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 01:05:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 084931C20D0B
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 00:01:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6298328231F
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 00:05:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 883FC320A;
-	Wed, 13 Dec 2023 00:01:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C52CD18E;
+	Wed, 13 Dec 2023 00:05:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FPPjYei5"
+	dkim=pass (1024-bit key) header.d=amazon.com header.i=@amazon.com header.b="JRKZgNVJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EEB5B2;
-	Tue, 12 Dec 2023 16:01:50 -0800 (PST)
-Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2c9f099cf3aso94983571fa.1;
-        Tue, 12 Dec 2023 16:01:50 -0800 (PST)
+Received: from smtp-fw-80006.amazon.com (smtp-fw-80006.amazon.com [99.78.197.217])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6E1AB7;
+	Tue, 12 Dec 2023 16:05:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702425709; x=1703030509; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=VryqNPAZN0PkatF1K0X8vt4MAOW1TOMh6E4WJPxdE5M=;
-        b=FPPjYei5VlhH6VbKFgm9RH9kLPKqYw7jYIdUDyRve5JJifaKGVa2LE1DUXinIFnkEF
-         PTYa7cNJIRSu9owEiLA63Arj1rLzvWxWy85aGelwlPnlmV7yTuigHnUMvu5UUTwBqi5h
-         vDcQDozdPiCKDdSqxxQKCfxYVj4QHAhTTFJAPX3DaR8JISrEfDp7m6YwSOspQnZnJk9a
-         1JKGCQkhLmhLBDeRYMoWTjMJg0bRGif3znVJDN6zmlMulGN3KBOdluGp3nwpxsH37jWY
-         2UrExfE9P0pDzYjKRsIogi0zmQd3symHIgQyhab735pR02yMxLPKUivPhuNA87H6h3ga
-         DTJw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702425709; x=1703030509;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VryqNPAZN0PkatF1K0X8vt4MAOW1TOMh6E4WJPxdE5M=;
-        b=UgV6wAVRQAGg4VRSwAhE7KJdwFbfvsTueh3oaMWznB19NEu96TIEzvZzWay2wG/7Pg
-         nQ/sO7kvSDI52hzziLbWNXPGYri2/JRowYL5g0MmdIjhiLwsfXzA2Wu4h5ul/vn1G/Fp
-         UiBvBECz1Eytbs9sDjHO2RcvlCysIu8aUMsuvEv+vZRjK6eiHY2n5NL9pHKnvrBVM6uE
-         ZCHc2jibIdfGgafUUELZxdiXxrYHE1yj7z3J8x1nRlFFsmQNHnkqQQrr+ztlttJE6k2H
-         TVPLZ+qlWTmGNfq1Bban4n2GpA2iv2I9kh0DiLfXokXnFfmhmIP3w8xUYbHe+2DN+L/m
-         vOpA==
-X-Gm-Message-State: AOJu0YxrtspnzamlLK7spP5uAc2sr9NYZHFe8LSPFvZXLivZE6YBPRHI
-	ZEGcQQniaJVGYEdIp2Kxw+k=
-X-Google-Smtp-Source: AGHT+IENnuG3VrAA1W6qkKzWhJ1vIToPV4vIsRy3hjLPjuA8T5HfiInAiU3+NFHOZnakbSvOFJD53A==
-X-Received: by 2002:a2e:5c01:0:b0:2cc:27f4:4abb with SMTP id q1-20020a2e5c01000000b002cc27f44abbmr1295705ljb.51.1702425708353;
-        Tue, 12 Dec 2023 16:01:48 -0800 (PST)
-Received: from mobilestation ([95.79.203.166])
-        by smtp.gmail.com with ESMTPSA id y26-20020a2e545a000000b002c9f2a716e2sm1775969ljd.54.2023.12.12.16.01.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Dec 2023 16:01:47 -0800 (PST)
-Date: Wed, 13 Dec 2023 03:01:45 +0300
-From: Serge Semin <fancer.lancer@gmail.com>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>, 
-	Jose Abreu <Jose.Abreu@synopsys.com>, Maxime Chevallier <maxime.chevallier@bootlin.com>, 
-	Tomer Maimon <tmaimon77@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, openbmc@lists.ozlabs.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 06/16] net: pcs: xpcs: Avoid creating dummy XPCS
- MDIO device
-Message-ID: <gbkgtb4yp3cwyw7xcuhmkdl3io2wlia2gska2xmjbwjvhigpz3@w52b6tdyugqo>
-References: <20231205103559.9605-1-fancer.lancer@gmail.com>
- <20231205103559.9605-7-fancer.lancer@gmail.com>
- <ZW8pxM3RvyHJTwqH@shell.armlinux.org.uk>
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1702425911; x=1733961911;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=fB4jNKUlRe6N2loXV8PJj2wVQgaVapDNdKtj8FKjX38=;
+  b=JRKZgNVJUNYUti32279vCmCNyO2uZKI/zvxQWBcVxZo5csvR8D+dpDBB
+   BF1/Y2OdHlk5rUQrCb4DuGHDqQPtu29EHMVseAZGMZAdWMbn4CVNCilO1
+   NXPqDVBqkdgGIIFGK3GgEWxJ0EFE6KRUgBMrxzblM6sgD4Ga9WI7saqqz
+   E=;
+X-IronPort-AV: E=Sophos;i="6.04,271,1695686400"; 
+   d="scan'208";a="258636760"
+Received: from pdx4-co-svc-p1-lb2-vlan3.amazon.com (HELO email-inbound-relay-iad-1e-m6i4x-3e1fab07.us-east-1.amazon.com) ([10.25.36.214])
+  by smtp-border-fw-80006.pdx80.corp.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Dec 2023 00:05:07 +0000
+Received: from smtpout.prod.us-west-2.prod.farcaster.email.amazon.dev (iad7-ws-svc-p70-lb3-vlan3.iad.amazon.com [10.32.235.38])
+	by email-inbound-relay-iad-1e-m6i4x-3e1fab07.us-east-1.amazon.com (Postfix) with ESMTPS id 2F16D80559;
+	Wed, 13 Dec 2023 00:04:58 +0000 (UTC)
+Received: from EX19MTAUWA002.ant.amazon.com [10.0.38.20:24714]
+ by smtpin.naws.us-west-2.prod.farcaster.email.amazon.dev [10.0.33.64:2525] with esmtp (Farcaster)
+ id a315ff1a-1500-42c3-9aab-085b45d8541a; Wed, 13 Dec 2023 00:04:58 +0000 (UTC)
+X-Farcaster-Flow-ID: a315ff1a-1500-42c3-9aab-085b45d8541a
+Received: from EX19D020UWC004.ant.amazon.com (10.13.138.149) by
+ EX19MTAUWA002.ant.amazon.com (10.250.64.202) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Wed, 13 Dec 2023 00:04:58 +0000
+Received: from dev-dsk-graf-1a-5ce218e4.eu-west-1.amazon.com (10.253.83.51) by
+ EX19D020UWC004.ant.amazon.com (10.13.138.149) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Wed, 13 Dec 2023 00:04:54 +0000
+From: Alexander Graf <graf@amazon.com>
+To: <linux-kernel@vger.kernel.org>
+CC: <linux-trace-kernel@vger.kernel.org>, <linux-mm@kvack.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<kexec@lists.infradead.org>, <linux-doc@vger.kernel.org>, <x86@kernel.org>,
+	Eric Biederman <ebiederm@xmission.com>, "H. Peter Anvin" <hpa@zytor.com>,
+	Andy Lutomirski <luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>,
+	"Rob Herring" <robh+dt@kernel.org>, Steven Rostedt <rostedt@goodmis.org>,
+	"Andrew Morton" <akpm@linux-foundation.org>, Mark Rutland
+	<mark.rutland@arm.com>, "Tom Lendacky" <thomas.lendacky@amd.com>, Ashish
+ Kalra <ashish.kalra@amd.com>, James Gowans <jgowans@amazon.com>, Stanislav
+ Kinsburskii <skinsburskii@linux.microsoft.com>, <arnd@arndb.de>,
+	<pbonzini@redhat.com>, <madvenka@linux.microsoft.com>, Anthony Yznaga
+	<anthony.yznaga@oracle.com>, Usama Arif <usama.arif@bytedance.com>, David
+ Woodhouse <dwmw@amazon.co.uk>, Benjamin Herrenschmidt
+	<benh@kernel.crashing.org>
+Subject: [PATCH 00/15] kexec: Allow preservation of ftrace buffers
+Date: Wed, 13 Dec 2023 00:04:37 +0000
+Message-ID: <20231213000452.88295-1-graf@amazon.com>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZW8pxM3RvyHJTwqH@shell.armlinux.org.uk>
+X-ClientProxiedBy: EX19D031UWC001.ant.amazon.com (10.13.139.241) To
+ EX19D020UWC004.ant.amazon.com (10.13.138.149)
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-On Tue, Dec 05, 2023 at 01:46:44PM +0000, Russell King (Oracle) wrote:
-> On Tue, Dec 05, 2023 at 01:35:27PM +0300, Serge Semin wrote:
-> > If the DW XPCS MDIO devices are either left unmasked for being auto-probed
-> > or explicitly registered in the MDIO subsystem by means of the
-> > mdiobus_register_board_info() method there is no point in creating the
-> > dummy MDIO device instance in order to get the DW XPCS handler since the
-> > MDIO core subsystem will create the device during the MDIO bus
-> > registration procedure. All what needs to be done is to just reuse the
-> > MDIO-device instance available in the mii_bus.mdio_map array (using some
-> > getter for it would look better though). It shall prevent the XPCS devices
-> > been accessed over several MDIO-device instances.
-> > 
-> > Note since the MDIO-device instance might be retrieved from the MDIO-bus
-> > map array its reference counter shall be increased. If the MDIO-device
-> > instance is created in the xpcs_create_mdiodev() method its reference
-> > counter will be already increased. So there is no point in toggling the
-> > reference counter in the xpcs_create() function. Just drop it from there.
-> > 
-> > Signed-off-by: Serge Semin <fancer.lancer@gmail.com>
-> > ---
-> >  drivers/net/pcs/pcs-xpcs.c | 26 +++++++++++++-------------
-> >  1 file changed, 13 insertions(+), 13 deletions(-)
-> > 
-> > diff --git a/drivers/net/pcs/pcs-xpcs.c b/drivers/net/pcs/pcs-xpcs.c
-> > index 2850122f354a..a53376472394 100644
-> > --- a/drivers/net/pcs/pcs-xpcs.c
-> > +++ b/drivers/net/pcs/pcs-xpcs.c
-> > @@ -1376,7 +1376,6 @@ static struct dw_xpcs *xpcs_create(struct mdio_device *mdiodev,
-> >  	if (!xpcs)
-> >  		return ERR_PTR(-ENOMEM);
-> >  
-> > -	mdio_device_get(mdiodev);
-> >  	xpcs->mdiodev = mdiodev;
-> >  
-> >  	xpcs_id = xpcs_get_id(xpcs);
-> > @@ -1417,7 +1416,6 @@ static struct dw_xpcs *xpcs_create(struct mdio_device *mdiodev,
-> >  	ret = -ENODEV;
-> >  
-> >  out:
-> > -	mdio_device_put(mdiodev);
-> >  	kfree(xpcs);
-> >  
-> >  	return ERR_PTR(ret);
-> 
-> The above two hunks are a completely Unnecessary change.
-> 
-> > @@ -1437,19 +1435,21 @@ struct dw_xpcs *xpcs_create_mdiodev(struct mii_bus *bus, int addr,
-> >  	struct mdio_device *mdiodev;
-> >  	struct dw_xpcs *xpcs;
-> >  
-> > -	mdiodev = mdio_device_create(bus, addr);
-> > -	if (IS_ERR(mdiodev))
-> > -		return ERR_CAST(mdiodev);
-> > +	if (addr >= PHY_MAX_ADDR)
-> > +		return ERR_PTR(-EINVAL);
-> >  
-> > -	xpcs = xpcs_create(mdiodev, interface);
-> > +	if (mdiobus_is_registered_device(bus, addr)) {
-> > +		mdiodev = bus->mdio_map[addr];
-> > +		mdio_device_get(mdiodev);
-> 
-> This is fine - taking a reference on the mdiodev you've got from
-> somewhere else is the right thing to do.
-> 
-> > +	} else {
-> > +		mdiodev = mdio_device_create(bus, addr);
-> > +		if (IS_ERR(mdiodev))
-> > +			return ERR_CAST(mdiodev);
-> > +	}
-> >  
-> > -	/* xpcs_create() has taken a refcount on the mdiodev if it was
-> > -	 * successful. If xpcs_create() fails, this will free the mdio
-> > -	 * device here. In any case, we don't need to hold our reference
-> > -	 * anymore, and putting it here will allow mdio_device_put() in
-> > -	 * xpcs_destroy() to automatically free the mdio device.
-> > -	 */
-> > -	mdio_device_put(mdiodev);
-> > +	xpcs = xpcs_create(mdiodev, interface);
-> > +	if (IS_ERR(xpcs))
-> > +		mdio_device_put(mdiodev);
-> 
+Kexec today considers itself purely a boot loader: When we enter the new
+kernel, any state the previous kernel left behind is irrelevant and the
+new kernel reinitializes the system.
 
-> Without the change to xpcs_create() you don't need this change - and
-> this is why I say you don't understand refcounting.
-> 
-> The point here is that the refcounting management is in each function
-> where references are gained or lost.
-> 
-> xpcs_create() creates a new reference to the mdiodev by storing it in
-> the dw_xpcs structure. Therefore, it takes a reference to the mdiodev.
-> If something fails, it drops that reference to restore the refcount
-> as it was on function entry.
-> 
-> xpcs_create_mdiodev() as it originally stood creates the mdiodev from
-> the bus/address, and then passes that to xpcs_create(). Once
-> xpcs_create() has finished its work (irrespective of whether it was
-> successful or not) we're done with the mdiodev in this function, so
-> the reference is _always_ put.
+However, there are use cases where this mode of operation is not what we
+actually want. In virtualization hosts for example, we want to use kexec
+to update the host kernel while virtual machine memory stays untouched.
+When we add device assignment to the mix, we also need to ensure that
+IOMMU and VFIO states are untouched. If we add PCIe peer to peer DMA, we
+need to do the same for the PCI subsystem. If we want to kexec while an
+SEV-SNP enabled virtual machine is running, we need to preserve the VM
+context pages and physical memory. See James' and my Linux Plumbers
+Conference 2023 presentation for details:
 
-Can't deny now I fully understood the whole concept indeed. It was the
-first time I met the double refcount management in a single place. My
-understanding was that it was enough to increment the counter once,
-when a driver got a pointer from somewhere else (like another
-subsystem) and decrement it after it's not used for sure. From that
-perspective getting a device in xpcs_create_mdiodev(), putting it in
-the cleanup-on-error path and in xpcs_destroy() was supposed to be
-enough.
+  https://lpc.events/event/17/contributions/1485/
 
-You say that it's required to manage the refcounting twice: when we
-get the reference from some external place and internally when the
-reference is stored in the XPCS descriptor. What's the point in such
-redundancy with the internal ref-counting if we know that the pointer
-can be safely stored and utilized afterwards? Better maintainability?
-Is it due to having the object retrieval and storing implemented in
-different functions?
+To start us on the journey to support all the use cases above, this
+patch implements basic infrastructure to allow hand over of kernel state
+across kexec (Kexec HandOver, aka KHO). As example target, we use ftrace:
+With this patch set applied, you can read ftrace records from the
+pre-kexec environment in your post-kexec one. This creates a very powerful
+debugging and performance analysis tool for kexec. It's also slightly
+easier to reason about than full blown VFIO state preservation.
 
-While at it if you happen to know an answer could you please also
-clarify the next question. None of the ordinary
-platform/PCI/USB/hwmon/etc drivers I've been working with managed
-refcounting on storing a passed to probe() device pointer in the
-private driver data. Is it wrong not doing that? Should the drivers
-call get_device() or it's derivatives in probe() if the respective
-object is stored in the driver data? If they shouldn't since the ref
-is already counted by the bus-specific probe() methods, then what
-makes the DW XPCS create/destroy methods special to have the double
-ref-counting utilized there?
+== Alternatives ==
 
-> 
-> For your use case, it would be:
-> 
-> 	mdiodev = bus->mdio_map[addr];
-> 	mdio_device_get(mdiodev);
-> 
-> 	xpcs = xpcs_create(mdiodev, interface);
-> 
-> 	mdio_device_put(mdiodev);
-> 
-> 	return xpcs;
-> 
-> which illustrates this point - we get a reference to the mdiodev by
-> reading it from the array. We do something (calling xpcs_create)
-> with it. If that something was successful, it takes its own refcount
-> otherwise leaves it as-is. We're then done with the mdiodev so we
-> drop the refcount we took.
+There are alternative approaches to (parts of) the problems above:
 
-I do understand the way the refcount management works in your
-implementation. It's just hard to figure out the reason of having the
-second get/set pair utilized for the internal reference.
+  * Memory Pools [1] - preallocated persistent memory region + allocator
+  * PRMEM [2] - resizable persistent memory regions with fixed metadata
+                pointer on the kernel command line + allocator
+  * Pkernfs [3] - preallocated file system for in-kernel data with fixed
+                  address location on the kernel command line
+  * PKRAM [4] - handover of user space pages using a fixed metadata page
+                specified via command line
 
-Anyway thanks for providing a very detailed comment and in advance for
-answering my questions.
+All of the approaches above fundamentally have the same problem: They
+require the administrator to explicitly carve out a physical memory
+location because they have no mechanism outside of the kernel command
+line to pass data (including memory reservations) between kexec'ing
+kernels.
 
--Serge(y)
+KHO provides that base foundation. We will determine later whether we
+still need any of the approaches above for fast bulk memory handover of for
+example IOMMU page tables. But IMHO they would all be users of KHO, with
+KHO providing the foundational primitive to pass metadata and bulk memory
+reservations as well as provide easy versioning for data.
 
-> 
-> There is no need to make the code more complicated by changing this,
-> so I regard the refcount changes in this patch to be wrong.
-> 
-> -- 
-> RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-> FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+== Documentation ==
+
+If people are happy with the approach in this patch set, I will write up
+conclusive documentation including schemas for the metadata as part of its
+next iteration. For now, here's a rudimentary overview:
+
+We introduce a metadata file that the kernels pass between each other. How
+they pass it is architecture specific. The file's format is a Flattened
+Device Tree (fdt) which has a generator and parser already included in
+Linux. When the root user enables KHO through /sys/kernel/kho/active, the
+kernel invokes callbacks to every driver that supports KHO to serialize
+its state. When the actual kexec happens, the fdt is part of the image
+set that we boot into. In addition, we keep a "scratch region" available
+for kexec: A physically contiguous memory region that is guaranteed to
+not have any memory that KHO would preserve.  The new kernel bootstraps
+itself using the scratch region and sets all handed over memory as in use.
+When drivers initialize that support KHO, they introspect the fdt and
+recover their state from it. This includes memory reservations, where the
+driver can either discard or claim reservations.
+
+== Limitations ==
+
+I currently only implemented file based kexec. The kernel interfaces
+in the patch set are already in place to support user space kexec as well,
+but I have not implemented it yet.
+
+== How to Use ==
+
+To use the code, please boot the kernel with the "kho_scratch=" command
+line parameter set: "kho_scratch=512M". KHO requires a scratch region.
+
+Make sure to fill ftrace with contents that you want to observe after
+kexec.  Then, before you invoke file based "kexec -l", activate KHO:
+
+  # echo 1 > /sys/kernel/kho/active
+  # kexec -l Image --initrd=initrd -s
+  # kexec -e
+
+The new kernel will boot up and contain the previous kernel's trace
+buffers in /sys/kernel/debug/tracing/trace.
+
+
+
+Alex
+
+[1] https://lore.kernel.org/all/169645773092.11424.7258549771090599226.stgit@skinsburskii./
+[2] https://lore.kernel.org/all/20231016233215.13090-1-madvenka@linux.microsoft.com/
+[3] https://lpc.events/event/17/contributions/1485/attachments/1296/2650/jgowans-preserving-across-kexec.pdf
+[4] https://lore.kernel.org/kexec/1682554137-13938-1-git-send-email-anthony.yznaga@oracle.com/
+
+
+Alexander Graf (15):
+  mm,memblock: Add support for scratch memory
+  memblock: Declare scratch memory as CMA
+  kexec: Add Kexec HandOver (KHO) generation helpers
+  kexec: Add KHO parsing support
+  kexec: Add KHO support to kexec file loads
+  arm64: Add KHO support
+  x86: Add KHO support
+  tracing: Introduce names for ring buffers
+  tracing: Introduce names for events
+  tracing: Introduce kho serialization
+  tracing: Add kho serialization of trace buffers
+  tracing: Recover trace buffers from kexec handover
+  tracing: Add kho serialization of trace events
+  tracing: Recover trace events from kexec handover
+  tracing: Add config option for kexec handover
+
+ Documentation/ABI/testing/sysfs-firmware-kho  |   9 +
+ Documentation/ABI/testing/sysfs-kernel-kho    |  53 ++
+ .../admin-guide/kernel-parameters.txt         |  10 +
+ MAINTAINERS                                   |   2 +
+ arch/arm64/Kconfig                            |  12 +
+ arch/arm64/kernel/setup.c                     |   2 +
+ arch/arm64/mm/init.c                          |   8 +
+ arch/x86/Kconfig                              |  12 +
+ arch/x86/boot/compressed/kaslr.c              |  55 ++
+ arch/x86/include/uapi/asm/bootparam.h         |  15 +-
+ arch/x86/kernel/e820.c                        |   9 +
+ arch/x86/kernel/kexec-bzimage64.c             |  39 ++
+ arch/x86/kernel/setup.c                       |  46 ++
+ arch/x86/mm/init_32.c                         |   7 +
+ arch/x86/mm/init_64.c                         |   7 +
+ drivers/of/fdt.c                              |  41 ++
+ drivers/of/kexec.c                            |  36 ++
+ include/linux/kexec.h                         |  56 ++
+ include/linux/memblock.h                      |  19 +
+ include/linux/ring_buffer.h                   |   9 +-
+ include/linux/trace_events.h                  |   1 +
+ include/trace/trace_events.h                  |   2 +
+ include/uapi/linux/kexec.h                    |   6 +
+ kernel/Makefile                               |   2 +
+ kernel/kexec_file.c                           |  41 ++
+ kernel/kexec_kho_in.c                         | 298 ++++++++++
+ kernel/kexec_kho_out.c                        | 526 ++++++++++++++++++
+ kernel/trace/Kconfig                          |  13 +
+ kernel/trace/blktrace.c                       |   1 +
+ kernel/trace/ring_buffer.c                    | 267 ++++++++-
+ kernel/trace/trace.c                          |  76 ++-
+ kernel/trace/trace_branch.c                   |   1 +
+ kernel/trace/trace_events.c                   |   3 +
+ kernel/trace/trace_functions_graph.c          |   4 +-
+ kernel/trace/trace_output.c                   | 106 +++-
+ kernel/trace/trace_output.h                   |   1 +
+ kernel/trace/trace_probe.c                    |   3 +
+ kernel/trace/trace_syscalls.c                 |  29 +
+ mm/Kconfig                                    |   4 +
+ mm/memblock.c                                 |  83 ++-
+ 40 files changed, 1901 insertions(+), 13 deletions(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-firmware-kho
+ create mode 100644 Documentation/ABI/testing/sysfs-kernel-kho
+ create mode 100644 kernel/kexec_kho_in.c
+ create mode 100644 kernel/kexec_kho_out.c
+
+-- 
+2.40.1
+
+
+
+
+Amazon Development Center Germany GmbH
+Krausenstr. 38
+10117 Berlin
+Geschaeftsfuehrung: Christian Schlaeger, Jonathan Weiss
+Eingetragen am Amtsgericht Charlottenburg unter HRB 149173 B
+Sitz: Berlin
+Ust-ID: DE 289 237 879
+
+
+
 
