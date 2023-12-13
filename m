@@ -1,123 +1,86 @@
-Return-Path: <devicetree+bounces-24855-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24856-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4DC98117EC
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 16:45:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEE6081182C
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 16:49:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6CABF1F21E06
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 15:45:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 808CB2810B2
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 15:49:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 499643A8F8;
-	Wed, 13 Dec 2023 15:42:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57A86381DE;
+	Wed, 13 Dec 2023 15:43:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OwCt09Q1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DEB3187
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 07:42:09 -0800 (PST)
-Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-6ce94f62806so3892772b3a.1
-        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 07:42:09 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702482128; x=1703086928;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7dGqDRJ0w9nVIHFYvwy3H2NeZxOqyG5Sv0/1APrHxnU=;
-        b=BU8xJJqOUq7KMcqYmrK+tcuqMzkqdNSTA/ml1VAlZLTae6GE+Gcn/2yKVMHcvxPZuz
-         XnGGgwgqI1XogzrMuOXp6KsSbHpuPBuXoFQDl7JspqNGvVugcnHTtqmBEYuwqLmI05E5
-         8J2Q9+qMBdfU3+9FzmrgJLsOVtUe1sBBBrSRuls1ikhpQ4GzOrMlfGffmSzBntfymsdk
-         ycaPLa6AryVvWvmCnBNyzB6XO+gK/VgYmubFi7xrHrcUz6mivQ3XkGXKVbFr/urfLZpB
-         BxtiQofJ8Cqrx2JpV1gkCx87UHBThTD7h834GWdGTRiAvCyu5g1sx+QsDyzgLe6ZVQHX
-         MD7Q==
-X-Gm-Message-State: AOJu0YxLI1BM2U7+4SoF1kgZxuL8iaD9qYxY24tO3DUnQNbZttbqoAut
-	Bxscb0rQPqHGobr7PMdmJluViw==
-X-Google-Smtp-Source: AGHT+IHopEAauysSfb8ROWt34w1/YfNc58y9l66Fy5uQbu6hMwlQZkVrsT+zflkJyHs9vn/ZgDLSHA==
-X-Received: by 2002:a05:6a00:3095:b0:6ce:2731:c247 with SMTP id bh21-20020a056a00309500b006ce2731c247mr2696557pfb.54.1702482128421;
-        Wed, 13 Dec 2023 07:42:08 -0800 (PST)
-Received: from localhost (75-172-121-199.tukw.qwest.net. [75.172.121.199])
-        by smtp.gmail.com with ESMTPSA id u23-20020aa78497000000b006d0d83a11afsm1064030pfn.203.2023.12.13.07.41.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Dec 2023 07:42:07 -0800 (PST)
-From: Kevin Hilman <khilman@kernel.org>
-To: Tony Lindgren <tony@atomide.com>
-Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Dhruva
- Gole <d-gole@ti.com>
-Subject: Re: [PATCH v2 1/1] arm64: dts: ti: k3-am62-wakeup: Configure
- ti-sysc for wkup_uart0
-In-Reply-To: <20231209035900.GW5169@atomide.com>
-References: <20231114073209.40756-1-tony@atomide.com>
- <7h5y1c7c0q.fsf@baylibre.com> <20231207060854.GQ5169@atomide.com>
- <7hedfwd3co.fsf@baylibre.com> <20231209035900.GW5169@atomide.com>
-Date: Wed, 13 Dec 2023 07:41:44 -0800
-Message-ID: <7hcyvam7nr.fsf@baylibre.com>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AD58381D1
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 15:42:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 154A1C433CA;
+	Wed, 13 Dec 2023 15:42:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702482179;
+	bh=hkcptZUU72QGqUIGA2u1ZtU7E07KBVFxcMF2xAvR6u4=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=OwCt09Q1RWJLNWO0MDuEwZGt9IkbFtgsoctzaaeO0noYh6S1gFg2cd/dUnLZ49B3+
+	 LBfhqfjbjkM+nMXEcHHYLb/GJ1OUYk7eDPruZ7TbrQvOIFFpsyGYnWQL/qLmolr7R0
+	 Sn8Bb3MyJXaXx3I3ytBdwMN/U6HIuMbORSty8ziKODMDvsJvJjyRku86VuHntHcusR
+	 KsWfxsQeidwpNCPFPYVNwPD62fd9P+UXa2LqlNJ6EVvNybCOj9qH3TJhXNnerXfkU5
+	 0Qr8yhPEXnGbVdNGhBobuVWjlRxUmHUcibXK5Fr3NtPlAXUbDwM49L+HcJx6Msf4Jv
+	 8kuNMLvIJfQ0Q==
+From: Conor Dooley <conor@kernel.org>
+To: linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	Geert Uytterhoeven <geert@linux-m68k.org>
+Subject: Re: (subset) [PATCH v2 0/8] Add JH7100 errata and update device tree
+Date: Wed, 13 Dec 2023 15:42:44 +0000
+Message-Id: <20231213-jester-rendering-dd876ef8e8ac@spud>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20231130151932.729708-1-emil.renner.berthing@canonical.com>
+References: <20231130151932.729708-1-emil.renner.berthing@canonical.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset="utf-8"
+X-Developer-Signature: v=1; a=openpgp-sha256; l=615; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=uS9TPJL7JAemNHfJAG96Ozr9DLEia/BDfH/NodMVEi4=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDKmVFz7NKPq9Wf/i82/1PJKM+a+/LLT8uEA9OVkvUemn9 XTnvoClHaUsDGIcDLJiiiyJt/tapNb/cdnh3PMWZg4rE8gQBi5OAZhI8CZGhjO6oY7/Q4IjSk3V 6/YcYg9bG7YmLFziUYICj+/dxuUfVjEyTC/9JyH07PTaME+b1znb7sXYLatmPMWka2HdpKF5XNO TDwA=
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
 
-Tony Lindgren <tony@atomide.com> writes:
+From: Conor Dooley <conor.dooley@microchip.com>
 
-> * Kevin Hilman <khilman@kernel.org> [231208 17:13]:
->> Tony Lindgren <tony@atomide.com> writes:
->> 
->> > * Kevin Hilman <khilman@kernel.org> [231205 18:14]:
->> >> I'm a little confused why these power-domain and clocks stay here and
->> >> are not moved under the wkup_uart0 node... 
->> >
->> > The resources are also needed by the interconnect target module. It's the
->> > wrapper IP for the child device(s). In this case there's one chip 8250 IP
->> > instance. In some other devices there can be multiple child IP devices
->> > wired to one target module.
->> >
->> >> > -		clock-names = "fclk";
->> >> > -		status = "disabled";
->> >> > +		clock-names = "fck";
->> >> > +		#address-cells = <1>;
->> >> > +		#size-cells = <1>;
->> >> > +		ranges = <0 0 0x2b300000 0x100000>;
->> >> > +
->> >> > +		wkup_uart0: serial@2b300000 {
->> >> > +			compatible = "ti,am64-uart", "ti,am654-uart";
->> >> > +			reg = <0 0x100>;
->> >> > +			interrupts = <GIC_SPI 186 IRQ_TYPE_LEVEL_HIGH>;
->> >> > +			status = "disabled";
->> >> 
->> >> ...here.
->> >> 
->> >> The SCI device ID 114 is specifically for wkup_uart0[1], so it seems to
->> >> me those should be in the wkup_uart0 node.
->> >
->> > Those resources are also needed for the parent target module for revision
->> > detection, quirks, reset, idle register configuration, and to probe the
->> > child devices.
->> >
->> > Here the 8250 IP can be set to status = "reserved" when used by the
->> > firmware, and 8250 not touched by Linux. However, the parent interconnect
->> > target module still needs to be configured for idle registers and wake-up
->> > path register bit so the wake-up from deeper suspend states works.
->> 
->> OK, makes sense.  Thanks for the clarification.
->
-> One more thing to clarify, there's nothing stopping also mapping the needed
-> resources for the child IP too if needed by the driver or the dts binding.
-> The calls for resources by the 8250 driver just won't do anything as the
-> resources are already enabled by the parent.
+On Thu, 30 Nov 2023 16:19:24 +0100, Emil Renner Berthing wrote:
+> Now that the driver for the SiFive cache controller supports manual
+> flushing as non-standard cache operations[1] we can add an errata option
+> for the StarFive JH7100 SoC and update the device tree with the cache
+> controller, dedicated DMA pool and add MMC nodes for the SD-card and
+> wifi.
+> 
+> This series needs the following commit in [1] to work properly:
+> 
+> [...]
 
-OK, thanks.
+Applied to riscv-cache-for-next, thanks!
 
->> In that case, shouldn't the same be done for the other wakeup sources
->> there (e.g. wkup_rtc0) ?
->
-> Yes it should be done for devices with the wake-up path wired like
-> wkup_rtc0.
+[1/8] riscv: errata: Add StarFive JH7100 errata
+      https://git.kernel.org/conor/c/64fc984a8a54
 
-OK, in that case, this all makes sense to me.
-
-Reviewed-by: Kevin Hilman <khilman@baylibre.com>
-
-Kevin
+Thanks,
+Conor.
 
