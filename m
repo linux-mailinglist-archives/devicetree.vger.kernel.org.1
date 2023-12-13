@@ -1,171 +1,217 @@
-Return-Path: <devicetree+bounces-24807-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24808-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C382A811485
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 15:24:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09F27811499
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 15:28:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 33CA5B20C33
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 14:24:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2CC961C210FE
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 14:28:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E15092E84B;
-	Wed, 13 Dec 2023 14:24:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23C622E85B;
+	Wed, 13 Dec 2023 14:28:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="oq/scHkN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAD94B9;
-	Wed, 13 Dec 2023 06:24:15 -0800 (PST)
-X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="8330526"
-X-IronPort-AV: E=Sophos;i="6.04,272,1695711600"; 
-   d="scan'208";a="8330526"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Dec 2023 06:24:15 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="897344794"
-X-IronPort-AV: E=Sophos;i="6.04,272,1695711600"; 
-   d="scan'208";a="897344794"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Dec 2023 06:24:10 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andy@kernel.org>)
-	id 1rDQ9e-00000005Xtn-0GjE;
-	Wed, 13 Dec 2023 16:24:06 +0200
-Date: Wed, 13 Dec 2023 16:24:05 +0200
-From: Andy Shevchenko <andy@kernel.org>
-To: Dumitru Ceclan <mitrutzceclan@gmail.com>
-Cc: linus.walleij@linaro.org, brgl@bgdev.pl, linux-gpio@vger.kernel.org,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Walle <michael@walle.cc>, Arnd Bergmann <arnd@arndb.de>,
-	ChiaEn Wu <chiaen_wu@richtek.com>,
-	Niklas Schnelle <schnelle@linux.ibm.com>,
-	Leonard =?iso-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>,
-	Mike Looijmans <mike.looijmans@topic.nl>,
-	Haibo Chen <haibo.chen@nxp.com>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Ceclan Dumitru <dumitru.ceclan@analog.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 2/2] iio: adc: ad7173: add AD7173 driver
-Message-ID: <ZXm-hf8UQ3VEyP-2@smile.fi.intel.com>
-References: <20231212104451.22522-1-mitrutzceclan@gmail.com>
- <20231212104451.22522-2-mitrutzceclan@gmail.com>
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4CD0E8
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 06:28:14 -0800 (PST)
+Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2ca03103155so88511991fa.0
+        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 06:28:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1702477693; x=1703082493; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wYCVDEfmEpAAq2joADzIDjMSoQFlP/Ou+pXsJQt/qSE=;
+        b=oq/scHkNx7fOA8XZwUVSe0s77KmLIdLcNCVMczA00Zl1Da29XfUGnRWh1mxmScuZKo
+         MgSyAh1eFMMbQg+wF8OBDc9uvdh1I8Uv/MNhwRlq7b4jexm4/Vt9kvPq3wiyaqo/pfDg
+         nQLzvRixvQCKS4Ax3i3Zsk+w/91XFe4LE7UxbhFTe3yagwsHn4rrlTrY1rw/aqJf/vi4
+         g4D1Hv8EmdSgAkq/eVGWtlmSEh5oazd2T5d588snXb7BQo9OtNYnM8WZXvwqLDdDqPZm
+         EOQmDZhMZPsvUqq6Md1OwhQPCxhjEEBf81CRxdt1E/okAhNIJSBNGEm5AUFUbEoKDo4p
+         FyLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702477693; x=1703082493;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wYCVDEfmEpAAq2joADzIDjMSoQFlP/Ou+pXsJQt/qSE=;
+        b=FogzbEauZ/xC3YDuJSe3cz9xjeexYM+2CIW+sjjxhm+mwOmLRt3t5AVB3P6Ky3Vwur
+         0JesOJ8Lqi329udIWBQSvu0aRLrSc3mdwqSoYV+vt9TLrgRFOhJ1mZ0UxcUB7QAXJHRH
+         543yb6P7fBajP8ol9cDOgHCO6Xht/Kh9K26YL+sEq0tmKqeeUyv7Y2+qUj0hqiarOi5W
+         IGgZ7Sg+Gz8saTFpsFiSMZy0UxDNhkQlPq+0bctrj9tBias93H7ARvftHDIPpb/CBsnO
+         ls1QxF5t3a6Jgb6LBTx4k5O7fxhONP8fNG+mndleqbC5QDijj9RMW/v8S01miu/PP+Tv
+         9SIA==
+X-Gm-Message-State: AOJu0Yxr0QAV3Cn00SBoHXF8x4TW/C/KRO1ZKRTppCuIxCz879SOXLV8
+	OnfK0+X8AvkdF+KBNrZ+fYj2WqUery8Au5FXnT2CoQ==
+X-Google-Smtp-Source: AGHT+IHDmlLtTkFMLJW7VNJT8SlVJHCzmvG4k5wsYrRIgEpE6i0fDa0/acLJ4JdcgtstAE4LD4tfwFQKOdBlv8mM9Vw=
+X-Received: by 2002:a2e:bea7:0:b0:2cb:2b04:cf92 with SMTP id
+ a39-20020a2ebea7000000b002cb2b04cf92mr2250407ljr.11.1702477692628; Wed, 13
+ Dec 2023 06:28:12 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231212104451.22522-2-mitrutzceclan@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20231213070301.1684751-1-peterlin@andestech.com> <20231213070301.1684751-3-peterlin@andestech.com>
+In-Reply-To: <20231213070301.1684751-3-peterlin@andestech.com>
+From: Anup Patel <apatel@ventanamicro.com>
+Date: Wed, 13 Dec 2023 19:58:00 +0530
+Message-ID: <CAK9=C2WuuYQD8ydrHP16hUXVk6RuKLbfvUe_GpUGw9ppe3Rd8Q@mail.gmail.com>
+Subject: Re: [PATCH v5 02/16] irqchip/riscv-intc: Allow large non-standard
+ interrupt number
+To: Yu Chien Peter Lin <peterlin@andestech.com>
+Cc: acme@kernel.org, adrian.hunter@intel.com, ajones@ventanamicro.com, 
+	alexander.shishkin@linux.intel.com, andre.przywara@arm.com, 
+	anup@brainfault.org, aou@eecs.berkeley.edu, atishp@atishpatra.org, 
+	conor+dt@kernel.org, conor.dooley@microchip.com, conor@kernel.org, 
+	devicetree@vger.kernel.org, dminus@andestech.com, evan@rivosinc.com, 
+	geert+renesas@glider.be, guoren@kernel.org, heiko@sntech.de, 
+	irogers@google.com, jernej.skrabec@gmail.com, jolsa@kernel.org, 
+	jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-perf-users@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	locus84@andestech.com, magnus.damm@gmail.com, mark.rutland@arm.com, 
+	mingo@redhat.com, n.shubin@yadro.com, namhyung@kernel.org, palmer@dabbelt.com, 
+	paul.walmsley@sifive.com, peterz@infradead.org, 
+	prabhakar.mahadev-lad.rj@bp.renesas.com, rdunlap@infradead.org, 
+	robh+dt@kernel.org, samuel@sholland.org, sunilvl@ventanamicro.com, 
+	tglx@linutronix.de, tim609@andestech.com, uwu@icenowy.me, wens@csie.org, 
+	will@kernel.org, ycliang@andestech.com, inochiama@outlook.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Dec 12, 2023 at 12:44:36PM +0200, Dumitru Ceclan wrote:
-> The AD7173 family offer a complete integrated Sigma-Delta ADC solution
-> which can be used in high precision, low noise single channel
-> applications or higher speed multiplexed applications. The Sigma-Delta
-> ADC is intended primarily for measurement of signals close to DC but also
-> delivers outstanding performance with input bandwidths out to ~10kHz.
+On Wed, Dec 13, 2023 at 12:34=E2=80=AFPM Yu Chien Peter Lin
+<peterlin@andestech.com> wrote:
+>
+> Currently, the implementation of the RISC-V INTC driver uses the
+> interrupt cause as hardware interrupt number and has a limitation of
+> supporting a maximum of 64 interrupts. However, according to the
+> privileged spec, interrupt causes >=3D 16 are defined for platform use.
 
-I do not see any major problem in the code,
-Reviewed-by: Andy Shevchenko <andy@kernel.org>
+I disagree with this patch.
 
-Some nit-picks below, but it's fine if it get addressed later on. Up to you
-and Jonathan.
+Even though RISC-V priv sepc allows interrupt causes >=3D 16, we
+still need CSRs to manage arbitrary local interrupts
 
-...
+Currently, we have following standard CSRs:
+1) [m|s]ie and [m|s]ip which are XLEN wide
+2) With AIA, we have [m|s]ieh and [m|s]iph for RV32
 
-> +static const unsigned int ad7173_sinc5_data_rates[] = {
-> +	6211000, 6211000, 6211000, 6211000, 6211000, 6211000, 5181000, 4444000,
-> +	3115000, 2597000, 1007000, 503800,  381000,  200300,  100500,  59520,
-> +	49680,	 20010,	  16333,   10000,   5000,    2500,    1250,
-> +};
-> +
-> +static const unsigned int ad7175_sinc5_data_rates[] = {
-> +	50000000, 41667000, 31250000, 27778000, 20833000, 17857000, 12500000,
+Clearly, we can only have a XLEN number of standard local
+interrupts without AIA and 64 local interrupts with AIA.
 
-I would add a comment with offsets, like
+Now for implementations with custom CSRs (such as Andes),
+we still can't assume infinite local interrupts because HW will
+have a finite number of custom CSRs.
 
-	... /* 0-6 */
+>
+> This limitation prevents to fully utilize the available local interrupt
+> sources. Additionally, the interrupt number used on RISC-V are sparse,
+> with only interrupt numbers 1, 5 and 9 (plus Sscofpmf or T-Head's PMU
+> interrupt) being currently used for supervisor mode.
+>
+> Switch to using irq_domain_create_tree() to create the radix tree
+> map, so a larger number of hardware interrupts can be handled.
+>
+> Signed-off-by: Yu Chien Peter Lin <peterlin@andestech.com>
+> Reviewed-by: Charles Ci-Jyun Wu <dminus@andestech.com>
+> Reviewed-by: Leo Yu-Chi Liang <ycliang@andestech.com>
+> ---
+> Changes v1 -> v2:
+>   - Fixed irq mapping failure checking (suggested by Cl=C3=A9ment and Anu=
+p)
+> Changes v2 -> v3:
+>   - No change
+> Changes v3 -> v4: (Suggested by Thomas [1])
+>   - Use pr_warn_ratelimited instead
+>   - Fix coding style and commit message
+> Changes v4 -> v5: (Suggested by Thomas)
+>   - Fix commit message
+>
+> [1] https://patchwork.kernel.org/project/linux-riscv/patch/20231023004100=
+.2663486-3-peterlin@andestech.com/#25573085
+> ---
+>  drivers/irqchip/irq-riscv-intc.c | 12 ++++--------
+>  1 file changed, 4 insertions(+), 8 deletions(-)
+>
+> diff --git a/drivers/irqchip/irq-riscv-intc.c b/drivers/irqchip/irq-riscv=
+-intc.c
+> index e8d01b14ccdd..2fdd40f2a791 100644
+> --- a/drivers/irqchip/irq-riscv-intc.c
+> +++ b/drivers/irqchip/irq-riscv-intc.c
+> @@ -24,10 +24,9 @@ static asmlinkage void riscv_intc_irq(struct pt_regs *=
+regs)
+>  {
+>         unsigned long cause =3D regs->cause & ~CAUSE_IRQ_FLAG;
+>
+> -       if (unlikely(cause >=3D BITS_PER_LONG))
+> -               panic("unexpected interrupt cause");
+> -
+> -       generic_handle_domain_irq(intc_domain, cause);
+> +       if (generic_handle_domain_irq(intc_domain, cause))
+> +               pr_warn_ratelimited("Failed to handle interrupt (cause: %=
+ld)\n",
+> +                                   cause);
+>  }
+>
+>  /*
+> @@ -117,8 +116,7 @@ static int __init riscv_intc_init_common(struct fwnod=
+e_handle *fn)
+>  {
+>         int rc;
+>
+> -       intc_domain =3D irq_domain_create_linear(fn, BITS_PER_LONG,
+> -                                              &riscv_intc_domain_ops, NU=
+LL);
+> +       intc_domain =3D irq_domain_create_tree(fn, &riscv_intc_domain_ops=
+, NULL);
 
-But better to make it power of two, like each 4 on one line or 8.
+I disagree with this change based on the reasoning above.
 
-> +	10000000, 5000000,  2500000,  1000000,	500000,	  397500,   200000,
-> +	100000,	  59920,    49960,    20000,	16666,	  10000,    5000,
-> +};
+Instead of this, we should determine the number of local interrupts
+based on the type of RISC-V intc:
+1) For standard INTC without AIA, we have XLEN (or BITS_PER_LONG)
+    local interrupts
+2) For standart INTC with AIA, we have 64 local interrupts
+3) For custom INTC (such as Andes), the number of local interrupt
+    should be custom (Andes specific) which can be determined based
+    on compatible string.
 
-Not that I insist, just consider readability of these tables.
+Also, creating a linear domain with a fixed number of local interrupts
+ensures that drivers can't map a local interrupt beyond the availability
+of CSRs to manage it.
 
-...
+>         if (!intc_domain) {
+>                 pr_err("unable to add IRQ domain\n");
+>                 return -ENXIO;
+> @@ -132,8 +130,6 @@ static int __init riscv_intc_init_common(struct fwnod=
+e_handle *fn)
+>
+>         riscv_set_intc_hwnode_fn(riscv_intc_hwnode);
+>
+> -       pr_info("%d local interrupts mapped\n", BITS_PER_LONG);
+> -
 
-> +		if (chan->type == IIO_TEMP) {
-> +			temp = ((u32)AD7173_VOLTAGE_INT_REF_uV) * MILLI;
+Same as above, we should definitely advertise the type of INTC and
+number of local interrupts mapped.
 
-Hmm... Is the casting mandatory here?
+Regards,
+Anup
 
-> +			temp /= AD7173_TEMP_SENSIIVITY_uV_per_C;
-> +			*val = temp;
-> +			*val2 = chan->scan_type.realbits;
-> +		} else {
-> +			*val = ad7173_get_ref_voltage_milli(st, ch->cfg.ref_sel);
-> +			*val2 = chan->scan_type.realbits - !!(ch->cfg.bipolar);
-> +		}
-
-...
-
-> +		if (chan->type == IIO_TEMP)
-> +			*val = -874379; //-milli_kelvin_to_millicelsius(0)/scale
-
-Hmm... Besides C99 comment format, can we actually use the mentioned API?
-In such a case the comment won't be needed and the value semantics is better
-to get.
-
-> +		else
-> +			*val = -BIT(chan->scan_type.realbits - 1);
-
-...
-
-> +static int ad7173_debug_reg_access(struct iio_dev *indio_dev, unsigned int reg,
-> +				   unsigned int writeval, unsigned int *readval)
-> +{
-> +	struct ad7173_state *st = iio_priv(indio_dev);
-> +	u8 reg_size;
-> +
-> +	if (reg == 0)
-
-0 does not have its definition, does it?
-
-> +		reg_size = 1;
-> +	else if (reg == AD7173_REG_CRC || reg == AD7173_REG_DATA ||
-> +		 reg >= AD7173_REG_OFFSET(0))
-> +		reg_size = 3;
-> +	else
-> +		reg_size = 2;
-> +
-> +	if (readval)
-> +		return ad_sd_read_reg(&st->sd, reg, reg_size, readval);
-> +
-> +	return ad_sd_write_reg(&st->sd, reg, reg_size, writeval);
-> +}
-
-...
-
-> +	channels_st_priv_arr = devm_kcalloc(dev, num_channels,
-> +					    sizeof(*channels_st_priv_arr),
-> +					    GFP_KERNEL);
-> +	if (!channels_st_priv_arr)
-> +		return -ENOMEM;
-
-The variable name can be made shorter and hence the above will take less LoCs.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+>         return 0;
+>  }
+>
+> --
+> 2.34.1
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
