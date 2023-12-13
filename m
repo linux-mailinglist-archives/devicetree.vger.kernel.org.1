@@ -1,80 +1,79 @@
-Return-Path: <devicetree+bounces-24743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24744-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4832D8110AA
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 13:00:41 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0334A8110B8
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 13:05:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05C66281987
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 12:00:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 35DBA1C20832
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 12:05:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F80528DBD;
-	Wed, 13 Dec 2023 12:00:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3ABDE28DC1;
+	Wed, 13 Dec 2023 12:05:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="ACgC6o++"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="smIesrYJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75BCAEA
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 04:00:32 -0800 (PST)
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD46FCD
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 04:05:20 -0800 (PST)
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 02EDC3F289
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 12:00:31 +0000 (UTC)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id AFD433F183
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 12:05:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1702468831;
-	bh=d2k9g+CDQlS0u/Axm3QhPzDXMJCmIzyDAkyUWJItYfY=;
+	s=20210705; t=1702469119;
+	bh=ed/4z9K37WF1+ypqnAItmB7J3yVCg6lzXveMVJNIB+I=;
 	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
 	 To:Cc:Content-Type;
-	b=ACgC6o++m5onWi3iC6feZkyd27DJBI7MyK9ZIVxl83OfCAg6CWyJ8dK2B29DvIgGI
-	 EY8lDJdCcRIzA6YYYEGjAQNTISIAOIEe16L78keTo35uQRupx+KeldQgqjjgPA768H
-	 gm58zPa2gw528AvU9LX2wyU3pcLZoh6rveP6MXT9koRaPjluYPUuCnbfpTDU90Yc0W
-	 CyJXEOM58MEo//mH359GDKgGZLTz0XeKAOoiBWmvogiPEL3k0ilMuCPuyzyd1d8HVq
-	 mUQWb42036q1pq5jBzRAH65Dd08Rtq3xj5XXXB8MZZ5haT4RZvjA1A+JQzPwhwy82R
-	 kuGf1ZGmoJIkA==
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-77dcbd6edb0so926904985a.1
-        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 04:00:30 -0800 (PST)
+	b=smIesrYJpscZxloUefgTPLm9pjHmYAbyliUxqFWNWExa7S/6j5I28PBlgJJ8x7USl
+	 3O4ncWgyzy3F22gInJTSF4tV8xphNY2F/CC8E6Gxa9yEAwDdowosPnVylryN8B3jTP
+	 qdcvA8a/x9R93amX0mO3JnkMHXl5RI6iPn8LPfQrrNM9zlcaE6e88i81iOAkL9GIFp
+	 J21Ui9f+PJZyEL+HJJ4Lp4P+GyK+WXGaq2O+Xe+FdUeDOnBajvEbnUrBLNjkMX6eN/
+	 jZuuwKw2lhhotMenNnjph5wJkeJAyVstLE+DPhA/IQ3E/T5GmKggVOygQP0UxkSyp1
+	 ROZxhDtUUnenA==
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-425d963aec1so28085221cf.2
+        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 04:05:19 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702468830; x=1703073630;
+        d=1e100.net; s=20230601; t=1702469118; x=1703073918;
         h=content-transfer-encoding:cc:to:subject:message-id:date
          :mime-version:references:in-reply-to:from:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=d2k9g+CDQlS0u/Axm3QhPzDXMJCmIzyDAkyUWJItYfY=;
-        b=buiQOwiP6EKvhmsgpIcM32fj1I3VGXMtSFdV4vKcUkx1PxHvWwbO95jr6uRZ9aePAC
-         nDDJYI+NB1l5hEzi/SGOCLjQvp4vNEHn03OrvztXbFa1uyYysKEknQ38rJsUfDG1x1XD
-         z7JzfurxKP2o5kfX9l31bQgsAaRHN9yGaAIVPkZFuhctO7LJ7gJi8DrimAlUNjXy70ZC
-         LQJDBWYWUV3afcdPbhs5qXKxZSWQLDtg7s7dywzYOtWDDbsNms9RIjppayKSLAUN/jFK
-         HzprgHn4seI55CbZlO0sWx61CKSPzr3zUdmEv+6clZvgI1rAcKEpdk5qDBHNhrfX2dKc
-         OQ2Q==
-X-Gm-Message-State: AOJu0YwMLWv1hnHsPcz+w7eNNZ5myWzBStPsOPsbqCLoIIlo/MU9xvG8
-	Yc5DHHMgr/0fbzEpbaghMYazJWoS5cy7ey+9eJTsVJNaSAwZlk4huAwOFEDoF2QZCyk4cWTnDY6
-	62GP//iadZM1g0xhw5roZFek5FtjR8mvaNhFPGk24WmnlgENb3t9EEnonOVixgog=
-X-Received: by 2002:a05:620a:1d97:b0:77d:88cc:e759 with SMTP id pj23-20020a05620a1d9700b0077d88cce759mr9425953qkn.44.1702468829690;
-        Wed, 13 Dec 2023 04:00:29 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHQyE19HlHZoU/6ZbCTx8+T9R2+zaT+Qju6cnML0AE3RTJpk0HMKR1T19a5ApinlnNf+jiWW68wxrNoj0JLy3s=
-X-Received: by 2002:a05:620a:1d97:b0:77d:88cc:e759 with SMTP id
- pj23-20020a05620a1d9700b0077d88cce759mr9425929qkn.44.1702468829479; Wed, 13
- Dec 2023 04:00:29 -0800 (PST)
+        bh=ed/4z9K37WF1+ypqnAItmB7J3yVCg6lzXveMVJNIB+I=;
+        b=xGHqQraok4/n2VKfmNSA+AulWE6qvBbUZiNEe82nMz3wEr+BLakP85elxraRPS0A39
+         Y1rMETgqQzGra8LRBwmqwGJIrOB3mYl5xNR945QbP1mS+mWe2wPyIB/nvXFvZZWqShwC
+         vj8p6wqOkXymZn11oCiQoX6uVWfGDHlPkFK920ZJtJefMFTMY+hRyekuUjPenIkdG5B+
+         nvZvk2ujF8D3mSQmWmexSSH5kI+sbsvTJRokdRc1TOPN2BiE+N2hyXQOEp/T6mFXDd++
+         Ov/WqrRa0iA1Kwl1v01VBPLR5wYNAkLEsAsJebzleCexeqEkV+QWaJWKHNULh9O0jGFM
+         4JvQ==
+X-Gm-Message-State: AOJu0YybvJdGzy5tTkkE2aL7DErkBkYE39Vk7hcwuqIJB+Rll3G8XjPx
+	J6kxb7KhBcYkdFWXX+3zgSnh42+35giouVS1GntSimSe+d4ph62/bJyKsp38nBskqn1EeF+sVIs
+	yMr32f4Bi4a5lUjFSGmoKMiE9foDakItacbOnOlUrlGIc7DgioCw618E=
+X-Received: by 2002:ac8:5cc8:0:b0:425:4043:763d with SMTP id s8-20020ac85cc8000000b004254043763dmr11389692qta.101.1702469118708;
+        Wed, 13 Dec 2023 04:05:18 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IE9QHKlpfiHiwknItMSza3ZGQwZtx+b52QZTd9pTWAuKsITQLCClWyurTTqXFX6DTkIy2rCL/jyIwRxWdAltnE=
+X-Received: by 2002:ac8:5cc8:0:b0:425:4043:763d with SMTP id
+ s8-20020ac85cc8000000b004254043763dmr11389680qta.101.1702469118472; Wed, 13
+ Dec 2023 04:05:18 -0800 (PST)
 Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 13 Dec 2023 04:00:29 -0800
+ HTTPREST; Wed, 13 Dec 2023 04:05:18 -0800
 From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <56031a2fadf442e297b1e0ea03777e5f@EXMBX066.cuchost.com>
+In-Reply-To: <a554a163793e4513b25766c21ddc3f02@EXMBX066.cuchost.com>
 References: <20231206115000.295825-1-jeeheng.sia@starfivetech.com>
- <20231206115000.295825-8-jeeheng.sia@starfivetech.com> <CAJM55Z-FXV-Go4yj_AJyU4pRC0msHqTCT3q24HkNtBTWW9rAgA@mail.gmail.com>
- <56031a2fadf442e297b1e0ea03777e5f@EXMBX066.cuchost.com>
+ <20231206115000.295825-7-jeeheng.sia@starfivetech.com> <CAJM55Z_VgBGvCPuvwmQahMcMfuWKnOKpZ9bBbbhei_Teu5Apeg@mail.gmail.com>
+ <a554a163793e4513b25766c21ddc3f02@EXMBX066.cuchost.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 Mime-Version: 1.0
-Date: Wed, 13 Dec 2023 04:00:29 -0800
-Message-ID: <CAJM55Z8ndFEg1gqk5=HydjN93iKY-f0k=FDpcL-hYH+_GA4Taw@mail.gmail.com>
-Subject: RE: [PATCH v1 07/16] dt-bindings: clock: Add StarFive JH8100
- System-North-West clock and reset generator
+Date: Wed, 13 Dec 2023 04:05:18 -0800
+Message-ID: <CAJM55Z_3Mty2LftPVkQC1wbwtGeznMMAk9mAjH_GoNuL7CKtaQ@mail.gmail.com>
+Subject: RE: [PATCH v1 06/16] clk: starfive: Add JH8100 System clock generator driver
 To: JeeHeng Sia <jeeheng.sia@starfivetech.com>, 
 	Emil Renner Berthing <emil.renner.berthing@canonical.com>, "kernel@esmil.dk" <kernel@esmil.dk>, 
 	"conor@kernel.org" <conor@kernel.org>, "robh+dt@kernel.org" <robh+dt@kernel.org>, 
@@ -91,9 +90,11 @@ Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
 JeeHeng Sia wrote:
+>
+>
 > > -----Original Message-----
 > > From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-> > Sent: Saturday, December 9, 2023 12:37 AM
+> > Sent: Saturday, December 9, 2023 12:25 AM
 > > To: JeeHeng Sia <jeeheng.sia@starfivetech.com>; kernel@esmil.dk; conor@=
 kernel.org; robh+dt@kernel.org;
 > > krzysztof.kozlowski+dt@linaro.org; paul.walmsley@sifive.com; palmer@dab=
@@ -104,50 +105,55 @@ belt.com; aou@eecs.berkeley.edu;
 > > Cc: linux-riscv@lists.infradead.org; devicetree@vger.kernel.org; linux-=
 kernel@vger.kernel.org; linux-clk@vger.kernel.org; Leyfoon Tan
 > > <leyfoon.tan@starfivetech.com>
-> > Subject: Re: [PATCH v1 07/16] dt-bindings: clock: Add StarFive JH8100 S=
-ystem-North-West clock and reset generator
+> > Subject: Re: [PATCH v1 06/16] clk: starfive: Add JH8100 System clock ge=
+nerator driver
 > >
 > > Sia Jee Heng wrote:
-> > > Add bindings for the System-North-West clock and reset generator
-> > > (SYSCRG-NW) on JH8100 SoC.
+> > > Add support for JH8100 System clock generator.
 > > >
 > > > Signed-off-by: Sia Jee Heng <jeeheng.sia@starfivetech.com>
 > > > Reviewed-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
 > > > ---
-> > >  .../clock/starfive,jh8100-syscrg-nw.yaml      | 119 ++++++++++++++++=
+> > >  MAINTAINERS                                   |   8 +
+> > >  drivers/clk/starfive/Kconfig                  |   9 +
+> > >  drivers/clk/starfive/Makefile                 |   1 +
+> > >  drivers/clk/starfive/clk-starfive-common.h    |   9 +-
+> > >  drivers/clk/starfive/jh8100/Makefile          |   3 +
+> > >  .../clk/starfive/jh8100/clk-starfive-jh8100.h |  11 +
+> > >  drivers/clk/starfive/jh8100/clk-sys.c         | 455 ++++++++++++++++=
 ++
+> > >  7 files changed, 495 insertions(+), 1 deletion(-)
+> > >  create mode 100644 drivers/clk/starfive/jh8100/Makefile
+> > >  create mode 100644 drivers/clk/starfive/jh8100/clk-starfive-jh8100.h
+> > >  create mode 100644 drivers/clk/starfive/jh8100/clk-sys.c
+> > >
+[...]
+> > > diff --git a/drivers/clk/starfive/jh8100/Makefile b/drivers/clk/starf=
+ive/jh8100/Makefile
+> > > new file mode 100644
+> > > index 000000000000..af6a09e220d3
+> > > --- /dev/null
+> > > +++ b/drivers/clk/starfive/jh8100/Makefile
+> > > @@ -0,0 +1,3 @@
+> > > +# SPDX-License-Identifier: GPL-2.0
+> > > +# StarFive JH8100 Clock
+> > > +obj-$(CONFIG_CLK_STARFIVE_JH8100_SYS)		+=3D clk-sys.o
 > >
-> > The JH7110 clocks, the JH8100 system and always-on all follow the Xcrg =
-pattern:
-> > syscrg
-> > aoncrg
-> > stgcrg
-> > ispcrg
-> > voutcrg
-> > etc.
-> >
-> > Is there a reason the north-west, north-east and south-west breaks this=
- pattern?
-> > I'd have expected them to be called something like
-> > nwcrg, JH8100_NWCLK_*, JH8100_NWRST_*,
-> > necrg, JH8100_NECLK_*, JH8100_NERST_* and
-> > swcrg, JH8100_SWCLK_*, JH8100_SWRST_*
-> >
-> > Just like all the other Starfive drivers.
-> Understood your concern. We don=E2=80=99t have the intention to break the=
- pattern,
-> but the reason we skip the SoC_ prefix is that the SoC names were already
-> defined in the header file with the SoC name.
-> However, I can put it back, of course.
+> > This will name the module clk-sys, which is way too generic. Please nam=
+e this
+> > clk-starfive-jh8100-sys similar to the JH7110 drivers.
+> Just realized that I haven't reply to this comment.
+> I can't give it a longer name otherwise compiler will throw warning.
+> That=E2=80=99s why ends up to use a shorter name and keep it under jh8100=
+ folder.
 
-Yes, all these 3 JHXX00 drivers are almost identical. There should be no re=
-ason
-to name any one of them differently. Having them all be as similar as possi=
-ble
-will make it a lot easier to maintain in the future. If you don't like a
-pattern then please change it for all the similar drivers and don't make ju=
-st
-one of them be different.
+I'm sorry, how does that make any sense? If the compiler can compile
+
+  drivers/clk/starfive/clk-starfive-jh7110-sys.c
+
+just fine, then why would it have trouble with
+
+  drivers/clk/starfive/clk-starfive-jh8100-sys.c
 
 /Emil
 
