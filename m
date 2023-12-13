@@ -1,114 +1,85 @@
-Return-Path: <devicetree+bounces-24587-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24588-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEB7C810877
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 03:58:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A8168108AC
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 04:19:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 946301F21A7E
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 02:58:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B7E1F1C20E02
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 03:19:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26EB99475;
-	Wed, 13 Dec 2023 02:58:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42A0263B9;
+	Wed, 13 Dec 2023 03:18:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RjuUgVvo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62F9AB3;
-	Tue, 12 Dec 2023 18:58:18 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-	by ex01.ufhost.com (Postfix) with ESMTP id 5C4C924E254;
-	Wed, 13 Dec 2023 10:58:15 +0800 (CST)
-Received: from EXMBX072.cuchost.com (172.16.6.82) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 13 Dec
- 2023 10:58:15 +0800
-Received: from localhost.localdomain (202.188.176.82) by EXMBX072.cuchost.com
- (172.16.6.82) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 13 Dec
- 2023 10:58:11 +0800
-From: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
-To: <conor@kernel.org>
-CC: <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-	<jisheng.teoh@starfivetech.com>, <krzysztof.kozlowski+dt@linaro.org>,
-	<leyfoon.tan@starfivetech.com>, <linux-kernel@vger.kernel.org>,
-	<linux-watchdog@vger.kernel.org>, <linux@roeck-us.net>, <robh+dt@kernel.org>,
-	<samin.guo@starfivetech.com>, <wim@linux-watchdog.org>,
-	<xingyu.wu@starfivetech.com>
-Subject: Re: [PATCH v2 1/1] dt-bindings: watchdog: starfive,jh7100-wdt: Add compatible for JH8100
-Date: Wed, 13 Dec 2023 10:57:59 +0800
-Message-ID: <20231213025759.812453-1-jisheng.teoh@starfivetech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231212-shout-bazooka-714aeda42ec1@spud>
-References: <20231212-shout-bazooka-714aeda42ec1@spud>
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88C55B0;
+	Tue, 12 Dec 2023 19:18:49 -0800 (PST)
+Received: by mail-pj1-x102e.google.com with SMTP id 98e67ed59e1d1-286f22c52c7so4638460a91.2;
+        Tue, 12 Dec 2023 19:18:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702437529; x=1703042329; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=tUsrEWDzuZ1gsEXsSPNm1wFCElovbWFBrMSojE1ZCVY=;
+        b=RjuUgVvoCA3dAP8y4CNkwSF4xbI0kKLm+MvLmEp+1XSWSJVP+tmBwp2gcdw8jBt5uQ
+         Bdr6Yi3zMgQt3H1MD+LyXZ8xm5NysAievDf9Caj++rZuB97FUIfbT6N8rU/YbQZ9KL7y
+         e6txfzv6nHml5k+nqnNzKNTsw1Sle57eFVWekAyDvVrIVIY3v9O70JhrI4vzVPF/AIi6
+         /wodOPYjOBl9cPql8l2XkMTxN4Y74dErg9XC3qwN8kBnriUCFgs/SLtuBl4jPM3nhN0f
+         xV47+skgM/hmbXzMEGiy6DKSr4wfraXPrdJy7rIbxwvkJQCAqCsEk8qfgZ4kgT+9bKXv
+         YAJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702437529; x=1703042329;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tUsrEWDzuZ1gsEXsSPNm1wFCElovbWFBrMSojE1ZCVY=;
+        b=heVAvYbjNuK7k63y4lcf/W0WOCV9Rwl+klCiF3RWq4fD3BJa9WifJvdrn4eVQcfR0R
+         v1I5eGZakkCoe8rvSx0Ry6sJWPyPbsE3VTf5a+Xsywjt5E6F+6B7GQ6LWR5Z3FjD7bbK
+         Hbm7lovVrO2N6wbxBa8TLYJ2legk206+2orbJw3NbvL8hXtDU3JkFrkv4f7jLF7q5j23
+         fVW7u25G/TONoidY3pZ8tq90+4PvlriVXsjX+PbnWAQ4MG79UZh2uKeiDKBF7KetFFfA
+         LkRaE/PoNwQUuKf52abKqKr2g7rkE0K1L3bziSlmT0JhXEDFWeMTdJYS7EQw8luo8q9U
+         gtrw==
+X-Gm-Message-State: AOJu0Yz3gW2YUnG8tE6FpwhbyOHdn6s4rVZm8cTBYvk6+/3xHO6aZCUD
+	BBlxK6dsTQN3L6dcDFJ9IFMv4TtMfm5/IA==
+X-Google-Smtp-Source: AGHT+IEVM7xkRCmEc2GLIq9p4QBAsq/SfE5WHtKjyR7f5eyhufrTmQYA3iHnDD2Nh2FO2mHKL2WsFA==
+X-Received: by 2002:a05:6a00:b89:b0:6ce:6e6c:cdc7 with SMTP id g9-20020a056a000b8900b006ce6e6ccdc7mr4066790pfj.56.1702437528679;
+        Tue, 12 Dec 2023 19:18:48 -0800 (PST)
+Received: from google.com ([2620:15c:9d:2:96c1:256f:67e0:c0db])
+        by smtp.gmail.com with ESMTPSA id l66-20020a632545000000b005c6ee23cd30sm8798333pgl.77.2023.12.12.19.18.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Dec 2023 19:18:48 -0800 (PST)
+Date: Tue, 12 Dec 2023 19:18:45 -0800
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Jiri Valek - 2N <jiriv@axis.com>
+Cc: krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+	linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+	robh+dt@kernel.org, u.kleine-koenig@pengutronix.de
+Subject: Re: [PATCH v6 1/2] dt-bindings: input: microchip,cap11xx: add
+ advanced sensitivity settings
+Message-ID: <ZXkilekhSEEFXC_p@google.com>
+References: <20231121155250.613242-1-jiriv@axis.com>
+ <20231121155250.613242-2-jiriv@axis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX072.cuchost.com
- (172.16.6.82)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231121155250.613242-2-jiriv@axis.com>
 
-On Tue, 12 Dec 2023 16:47:59 +0000
-Conor Dooley <conor@kernel.org> wrote:
+On Tue, Nov 21, 2023 at 04:52:49PM +0100, Jiri Valek - 2N wrote:
+> Add support for advanced sensitivity settings and signal guard feature.
+> 
+> Signed-off-by: Jiri Valek - 2N <jiriv@axis.com>
 
-> On Tue, Dec 12, 2023 at 04:46:00PM +0000, Conor Dooley wrote:
-> > On Tue, Dec 12, 2023 at 11:17:31AM +0800, Ji Sheng Teoh wrote: =20
-> > > Add "starfive,jh8100-wdt" compatible string for StarFive's JH8100
-> > > watchdog.
-> > > Since JH8100 watchdog only has 1 reset signal, update binding
-> > > document to support one reset for "starfive,jh8100-wdt"
-> > > compatible.
-> > >=20
-> > > Signed-off-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
-> > > Signed-off-by: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
-> > > ---
-> > >  .../devicetree/bindings/watchdog/starfive,jh7100-wdt.yaml
-> > > | 2 ++ 1 file changed, 2 insertions(+)
-> > >=20
-> > > diff --git
-> > > a/Documentation/devicetree/bindings/watchdog/starfive,jh7100-wdt.ya=
-ml
-> > > b/Documentation/devicetree/bindings/watchdog/starfive,jh7100-wdt.ya=
-ml
-> > > index 68f3f6fd08a6..02572b16ac08 100644 ---
-> > > a/Documentation/devicetree/bindings/watchdog/starfive,jh7100-wdt.ya=
-ml
-> > > +++
-> > > b/Documentation/devicetree/bindings/watchdog/starfive,jh7100-wdt.ya=
-ml
-> > > @@ -27,6 +27,7 @@ properties: enum:
-> > >        - starfive,jh7100-wdt
-> > >        - starfive,jh7110-wdt
-> > > +      - starfive,jh8100-wdt
-> > > =20
-> > >    reg:
-> > >      maxItems: 1
-> > > @@ -45,6 +46,7 @@ properties:
-> > >        - const: core
-> > > =20
-> > >    resets:
-> > > +    minItems: 1
-> > >      items:
-> > >        - description: APB reset
-> > >        - description: Core reset =20
-> >=20
-> > This relaxes the constraints for the existing devices, please add
-> > per compatible constraints to avoid doing so. =20
->=20
-Thanks Conor. Just to clarify, are you suggesting to add what was done
-in v1?
-v1:
-https://lore.kernel.org/all/20231209142723.2060196-3-jisheng.teoh@starfiv=
-etech.com/
+Applied, thank you.
 
-> Also, you do not appear to have implemented the request from Krzysztof
-> to express compatibility with the jh7110.
->=20
-Ok, fix that up.
-
+-- 
+Dmitry
 
