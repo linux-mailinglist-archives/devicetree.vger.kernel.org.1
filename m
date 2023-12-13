@@ -1,168 +1,77 @@
-Return-Path: <devicetree+bounces-24877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 550B68118CE
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 17:11:55 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 312808118DB
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 17:13:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B8732822DF
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 16:11:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C28F6B2108B
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 16:13:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F39473218E;
-	Wed, 13 Dec 2023 16:11:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KzF+ocBP"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 334EC321B1;
+	Wed, 13 Dec 2023 16:13:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D19521D6B8;
-	Wed, 13 Dec 2023 16:11:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF873C433C8;
-	Wed, 13 Dec 2023 16:11:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702483905;
-	bh=81xPCJRD7sl164kIgTp1GjUGAC/Vhq0axvltDwrUq6E=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KzF+ocBP2mjoUW7K6RrQnV1IecVV9GUl7VbnGppZXWa9pFdZ/9oqsPkdpKaNjNG9F
-	 sDnv+khOdzHKBkx/qW3goyvSyP+kSr2TFJwb6+iFJXAkSpwU4uhLmLpcBzE4uFJwxs
-	 Ldbqq1qKObWZbW5OpTFV7fwuAGj17EBuzWiJknnlhNBUXz51OZbc7Ri/SgKhuV1OQR
-	 miGZlwfVq5+IWZ9Y3moitNR97Hkv5ewYYM5W4X7ni3pXx03hFk+fS23T6G3q/48gt/
-	 rb5SOoCl6uGLokBwxdad36Qzv4ikjEhSaEjLuQ4crLA6Saiyc13X69hGOPfx+Tb3KT
-	 HAY+glTMvRqpw==
-Date: Wed, 13 Dec 2023 16:11:40 +0000
-From: Conor Dooley <conor@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Michael Hennerich <michael.hennerich@analog.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] dt-bindings: iio: adc: Add binding for AD7380 ADCs
-Message-ID: <20231213-harmless-aspect-b7cee2d0173f@spud>
-References: <20231213-ad7380-mainline-v2-0-cd32150d84a3@baylibre.com>
- <20231213-ad7380-mainline-v2-2-cd32150d84a3@baylibre.com>
- <20231213-grooving-bulk-58fcfc20be11@spud>
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FF5810C;
+	Wed, 13 Dec 2023 08:13:50 -0800 (PST)
+Received: by mail-ot1-f50.google.com with SMTP id 46e09a7af769-6d84ddd642fso5401517a34.0;
+        Wed, 13 Dec 2023 08:13:50 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702484030; x=1703088830;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yKFwCtE90EPD9y2XJTF44lWNSwXrZ/Ik0w5o/94t9wo=;
+        b=rLZ6s6hq/+A38IhIqZVpVkgN+VX8AoxjGU3N+/LbhM25VpWREgQRJtSHby3lCgobnx
+         nX/9Lj1F0oYr88SSYoDDRPsBp616pYKM/KV+lh6Qc1NKyTpXosVV3mMJhIMbUTObiGIb
+         qXN3TQt4yqMdltmAs6WfvORcYJgM1i1doHR9cnHs1VzAJ+bVb8ClN1U/CevilJ+LLZod
+         wa47GVOU5+NddKS8Obp5UFTsUtrmVbyBWr/iyxyXd4dK8AaqRcc2xCXPrCz9tK2coygw
+         NLuWi3zkS4UPXjpGp1mBKaGMh+eJ0Jwpg2Yn9aEM9IdP3vM7sIW7no9oJkBKBnVp6WyD
+         fvqw==
+X-Gm-Message-State: AOJu0Yx/oYmJxqOTsLOMMRqP96FcxL8ovJlR6rWNiAg2LOVb65qdc/0B
+	x9xP/8njEvAX9s+MrifTLw==
+X-Google-Smtp-Source: AGHT+IHvwtas0Wz/5QoHKT/kRL+DgeC/VW8MvnUtSILOIvJ0GIakLipYqdQA3Ql3Vum+yJU0aDi0bQ==
+X-Received: by 2002:a05:6871:6b90:b0:1fa:ff63:2d3b with SMTP id zh16-20020a0568716b9000b001faff632d3bmr7032507oab.44.1702484029822;
+        Wed, 13 Dec 2023 08:13:49 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id zl10-20020a0568716d8a00b001fb42001fa7sm3978002oab.36.2023.12.13.08.13.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Dec 2023 08:13:49 -0800 (PST)
+Received: (nullmailer pid 1207750 invoked by uid 1000);
+	Wed, 13 Dec 2023 16:13:47 -0000
+Date: Wed, 13 Dec 2023 10:13:47 -0600
+From: Rob Herring <robh@kernel.org>
+To: Ninad Palsule <ninad@linux.ibm.com>
+Cc: krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au, peterhuewe@gmx.de, jarkko@kernel.org, jgg@ziepe.ca, keescook@chromium.org, tony.luck@intel.com, gpiccoli@igalia.com, johannes.holland@infineon.com, linux@roeck-us.net, broonie@kernel.org, patrick.rudolph@9elements.com, vincent@vtremblay.dev, peteryin.openbmc@gmail.com, lakshmiy@us.ibm.com, bhelgaas@google.com, naresh.solanki@9elements.com, alexander.stein@ew.tq-group.com, festevam@denx.de, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, linux-integrity@vger.kernel.org, linux-hardening@vger.kernel.org, geissonator@yahoo.com
+Subject: Re: [PATCH v1 2/8] dt-bindings: tpm: Add schema for TIS I2C devices
+Message-ID: <20231213161347.GA1204384-robh@kernel.org>
+References: <20231212164004.1683589-1-ninad@linux.ibm.com>
+ <20231212164004.1683589-3-ninad@linux.ibm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="qvGfKPR0cMEVlYu+"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231213-grooving-bulk-58fcfc20be11@spud>
+In-Reply-To: <20231212164004.1683589-3-ninad@linux.ibm.com>
 
+On Tue, Dec 12, 2023 at 10:39:58AM -0600, Ninad Palsule wrote:
+> From: Johannes Holland <johannes.holland@infineon.com>
+> 
+> Add a dt schema to support device tree bindings for the generic I2C
+> physical layer. Refer to the TCG PC Client Platform TPM Profile (PTP)
+> Specification for TPM 2.0 v1.04 Revision 14.
+> 
+> This includes descriptions for the Nuvoton and Infineon devices.
 
---qvGfKPR0cMEVlYu+
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This is incomplete and conflicts with this series[1]. Please help 
+review and make sure it works for the cases you care about.
 
-On Wed, Dec 13, 2023 at 04:10:40PM +0000, Conor Dooley wrote:
-> On Wed, Dec 13, 2023 at 05:21:19AM -0600, David Lechner wrote:
-> > This adds a binding specification for the Analog Devices Inc. AD7380
-> > family of ADCs.
-> >=20
-> > Signed-off-by: David Lechner <dlechner@baylibre.com>
-> > ---
-> >=20
-> > v2 changes:
-> > - Added maxItems to reg property
-> > - Replaced adi,sdo-mode property with spi-rx-bus-channels
-> > - Made spi-rx-bus-channels property optional with default value of 1
-> >     (this made the if: check more complex)
-> > - Changed example to use gpio for interrupt
-> >=20
-> >  .../devicetree/bindings/iio/adc/adi,ad7380.yaml    | 107 +++++++++++++=
-++++++++
-> >  MAINTAINERS                                        |   9 ++
-> >  2 files changed, 116 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml =
-b/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml
-> > new file mode 100644
-> > index 000000000000..43d58c52f7dd
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml
-> > @@ -0,0 +1,107 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/iio/adc/adi,ad7380.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Analog Devices Simultaneous Sampling Analog to Digital Converte=
-rs
-> > +
-> > +maintainers:
-> > +  - Michael Hennerich <Michael.Hennerich@analog.com>
-> > +  - Nuno S=E1 <nuno.sa@analog.com>
-> > +
-> > +description: |
-> > +  * https://www.analog.com/en/products/ad7380.html
-> > +  * https://www.analog.com/en/products/ad7381.html
-> > +  * https://www.analog.com/en/products/ad7383.html
-> > +  * https://www.analog.com/en/products/ad7384.html
-> > +
-> > +$ref: /schemas/spi/spi-peripheral-props.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - adi,ad7380
-> > +      - adi,ad7381
-> > +      - adi,ad7383
-> > +      - adi,ad7384
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  spi-max-frequency:
-> > +    maximum: 80000000
-> > +  spi-cpol: true
-> > +  spi-cpha: true
-> > +
-> > +  spi-rx-bus-channels:
->=20
-> This is now being framed as a standard property, so I think it should be
-> in spi-peripheral-props, no? Granted, you'd need a rather more
-> generalised explanation of the property in that case.
->=20
-> > +    description:
-> > +      In 1-wire mode, the SDOA pin acts as the sole data line and the =
-SDOB/ALERT
-> > +      pin acts as the ALERT interrupt signal. In 2-wire mode, data for=
- input A
-> > +      is read from SDOA and data for input B is read from SDOB/ALERT (=
-and the
-> > +      ALERT interrupt signal is not available).
-> > +    enum: [1, 2]
->=20
-> Jonathan also mentioned specifying that this defaults to 1-wire. I
-> didn't see a response or that implemented. Did you miss that comment
-> from him?
+Rob
 
-Ah, I read the patchset backwards, d'oh. I see you did in fact do both
-of these things. Apologies!
-
---qvGfKPR0cMEVlYu+
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZXnXvAAKCRB4tDGHoIJi
-0gCaAP99Nw069HRWHRkR+FtYfcruPmekFSXXFB33zvwWkx5HwAEAgxNJu+bcPA7w
-U/bdib1bIPbUfCwaFj1cLZ9bDIzd2A8=
-=0aeo
------END PGP SIGNATURE-----
-
---qvGfKPR0cMEVlYu+--
+[1] https://lore.kernel.org/all/cover.1701093036.git.lukas@wunner.de/
 
