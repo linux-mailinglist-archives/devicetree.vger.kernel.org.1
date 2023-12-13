@@ -1,69 +1,54 @@
-Return-Path: <devicetree+bounces-25048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25049-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D80F781213C
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 23:11:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D7B2812153
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 23:20:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C22BD1C21046
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 22:11:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ECB0428271D
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 22:20:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13E887FBD3;
-	Wed, 13 Dec 2023 22:11:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D32C7FBDF;
+	Wed, 13 Dec 2023 22:20:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D9D29C;
-	Wed, 13 Dec 2023 14:11:27 -0800 (PST)
-Received: by mail-oi1-f171.google.com with SMTP id 5614622812f47-3ba2dd905f9so313433b6e.2;
-        Wed, 13 Dec 2023 14:11:27 -0800 (PST)
+Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 434F39C;
+	Wed, 13 Dec 2023 14:20:02 -0800 (PST)
+Received: by mail-oo1-f53.google.com with SMTP id 006d021491bc7-591553d3835so702236eaf.3;
+        Wed, 13 Dec 2023 14:20:02 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702505487; x=1703110287;
+        d=1e100.net; s=20230601; t=1702506001; x=1703110801;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=AgTgho1a4LA/XjrrePxUmui9LuYj0rwstzK1KGu7248=;
-        b=IMOdCTBYRRbRReNvThP/IthfKDyEycuBWJ2p5+YXsrp6tIPSvBf1h4tn3PPsU2obm7
-         UpTMqDdTQTW5MmKHd6Wo0FCc/O6JLWLVruzay5/RxcI9R1FfbGZ3oRi6+uIAQChboBIl
-         2aKolWYZQXhD0aK3W4mTou0lyLy9JQhQN05xk+XOE7toUrc4pa8usbnqI8zNs9Ye21Dt
-         fIABmmUfThbUT0YTunzXrzJ5G3oOempjphTxm/Z+jlIC+ZnAPBn8NwTnn3XQ317CPC/x
-         kjnp3Dz97l/rSuQpycw2PVcAKZ8b8psKCN3QEucCIq8Kh47X9qKkyO4hKvFyOznEXQgw
-         hVsw==
-X-Gm-Message-State: AOJu0YyHyH+Hc8OFkS2RtWR5Zz0F8PLl4ABVbKUmEcvgplWCFFo9+5Pm
-	ZB3JHFt3pTmCiJjq1RHSCQ==
-X-Google-Smtp-Source: AGHT+IHX5L5W/V5kcRHCZGCX9tUxlzQHF1lIwCR9ERJ7ag6EqOQsYnbBD4efejagEgtQrlmcp0mZLw==
-X-Received: by 2002:a05:6808:6493:b0:3ba:667:9e4f with SMTP id fh19-20020a056808649300b003ba06679e4fmr7673479oib.113.1702505486877;
-        Wed, 13 Dec 2023 14:11:26 -0800 (PST)
+        bh=IWWDY9W1m0Ti8Ki53nf0U1ywjlmu1b5RWqKGlHg5nZs=;
+        b=sXmLPi4er833zan94EXvafgD6/LJsyPQRVkt0ZugiWx3kSSKQfBlhVZ1Yawmx9+oEg
+         pUEOcsbU0gp6r4G5zjgB7UfQa0ayOOw47e6q4/yrsyWwoEEjD4Up3VayNVIHg0JdH6p4
+         Jnkz/vKBY2XMVeIWEQoAEoiVuVrdwBgtQ4ePMVbB925Bqcwv4EWhurFibI4XfuNLEDev
+         3uE0buAmg7K1RF30sfYBVzZOssXQNWJyYA9Mk7I8c8ohGpRlfJjRZgIf5PrOevH4z/bH
+         /HwD+yp8MBitp10BlX42MpRnB1+QS7Wl/TcjhnhvtWnqsvyFyRk5OCis08AQz59LEOIq
+         uq0A==
+X-Gm-Message-State: AOJu0YwCAx4x8j3pf1Id12qa9CgRt494O+JHHCGXanj5SJSqqO4h2mdA
+	AUBxdSaL/BX4j2mQecl17w==
+X-Google-Smtp-Source: AGHT+IGNCeS8qGqgRy7CByZh4jSuOunk+kuhCMt9l01iEQDu99NfcZqlP8grqh7EMyBg98MVYFfQxg==
+X-Received: by 2002:a05:6820:168b:b0:58e:29db:b963 with SMTP id bc11-20020a056820168b00b0058e29dbb963mr6417993oob.4.1702506001502;
+        Wed, 13 Dec 2023 14:20:01 -0800 (PST)
 Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id bh20-20020a056808181400b003b83c516e62sm3102354oib.51.2023.12.13.14.11.24
+        by smtp.gmail.com with ESMTPSA id bx23-20020a056830601700b006da30d1646fsm722414otb.59.2023.12.13.14.20.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Dec 2023 14:11:26 -0800 (PST)
-Received: (nullmailer pid 2156812 invoked by uid 1000);
-	Wed, 13 Dec 2023 22:11:24 -0000
-Date: Wed, 13 Dec 2023 16:11:24 -0600
+        Wed, 13 Dec 2023 14:20:00 -0800 (PST)
+Received: (nullmailer pid 2165620 invoked by uid 1000);
+	Wed, 13 Dec 2023 22:19:59 -0000
+Date: Wed, 13 Dec 2023 16:19:59 -0600
 From: Rob Herring <robh@kernel.org>
 To: Mark Hasemeyer <markhas@chromium.org>
-Cc: LKML <linux-kernel@vger.kernel.org>, Raul Rangel <rrangel@chromium.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Andre Przywara <andre.przywara@arm.com>, 
-	Andy Gross <agross@kernel.org>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Baruch Siach <baruch@tkos.co.il>, 
-	Bjorn Andersson <andersson@kernel.org>, Claudiu Beznea <claudiu.beznea@microchip.com>, 
-	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
-	Jesper Nilsson <jesper.nilsson@axis.com>, Jisheng Zhang <jszhang@kernel.org>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, Michal Simek <michal.simek@amd.com>, 
-	Paul Barker <paul.barker@sancloud.com>, Sudeep Holla <sudeep.holla@arm.com>, 
-	Thierry Reding <thierry.reding@gmail.com>, cros-qcom-dts-watchers@chromium.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-arm-msm@vger.kernel.org, linux-mediatek@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v1 2/6] arm: arm64: dts: Enable cros-ec-spi as wake source
-Message-ID: <20231213221124.GB2115075-robh@kernel.org>
+Cc: LKML <linux-kernel@vger.kernel.org>, Raul Rangel <rrangel@chromium.org>, Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v1 3/6] of: irq: add wake capable bit to of_irq_resource()
+Message-ID: <20231213221959.GC2115075-robh@kernel.org>
 References: <20231213110009.v1.1.Ifd0903f1c351e84376d71dbdadbd43931197f5ea@changeid>
- <20231213110009.v1.2.I274b2d2255eb539cc9d251c9d65a385cc4014c79@changeid>
+ <20231213110009.v1.3.I29b26a7f3b80fac0a618707446a10b6cc974fdaf@changeid>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,16 +57,69 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231213110009.v1.2.I274b2d2255eb539cc9d251c9d65a385cc4014c79@changeid>
+In-Reply-To: <20231213110009.v1.3.I29b26a7f3b80fac0a618707446a10b6cc974fdaf@changeid>
 
-On Wed, Dec 13, 2023 at 11:00:20AM -0700, Mark Hasemeyer wrote:
-> The cros_ec driver currently assumes that cros-ec-spi compatible device
-> nodes are a wakeup-source even though the wakeup-source property is not
-> defined.
+On Wed, Dec 13, 2023 at 11:00:21AM -0700, Mark Hasemeyer wrote:
+> Add wake capability information to the irq resource. Wake capability is
+> assumed based on conventions provided in the devicetree wakeup-source
+> binding documentation. An interrupt is considered wake capable if the
+> following are true:
+> 1. a wakeup-source property exits in the same device node as the
+>    interrupt.
+> 2. No dedicated irq is defined, or the irq is marked as dedicated by
+>    setting its interrupt-name to "wakeup".
+> 
+> The wakeup-source documentation states that dedicated interrupts can use
+> device specific interrupt names and device drivers are still welcome to
+> use their own naming schemes. This api is provided as a helper if one is
+> willing to conform to the above conventions.
+> 
+> The ACPI subsystems already provides similar apis that allow one to
+> query the wake capability of an irq. This brings feature parity to the
+> devicetree.
+> 
+> Signed-off-by: Mark Hasemeyer <markhas@chromium.org>
+> ---
+> 
+>  drivers/of/irq.c | 30 ++++++++++++++++++++++++++++++
+>  1 file changed, 30 insertions(+)
+> 
+> diff --git a/drivers/of/irq.c b/drivers/of/irq.c
+> index 174900072c18c..633711bc32953 100644
+> --- a/drivers/of/irq.c
+> +++ b/drivers/of/irq.c
+> @@ -383,11 +383,39 @@ int of_irq_parse_one(struct device_node *device, int index, struct of_phandle_ar
+>  }
+>  EXPORT_SYMBOL_GPL(of_irq_parse_one);
+>  
+> +/**
+> + * __of_irq_wake_capable - Determine whether a given irq index is wake capable
+> + *
+> + * The irq is considered wake capable if the following are true:
+> + * 1. wakeup-source property exists
+> + * 2. no dedicated wakeirq exists OR provided irq index is a dedicated wakeirq
+> + *
+> + * This logic assumes the provided irq index is valid.
+> + *
+> + * @dev: pointer to device tree node
+> + * @index: zero-based index of the irq
+> + * Return: True if provided irq index for #dev is wake capable. False otherwise.
+> + */
+> +static bool __of_irq_wake_capable(const struct device_node *dev, int index)
+> +{
+> +	int wakeindex;
+> +
+> +	if (!of_property_read_bool(dev, "wakeup-source"))
+> +		return false;
+> +
+> +	wakeindex = of_property_match_string(dev, "interrupt-names", "wakeup");
+> +	return wakeindex < 0 || wakeindex == index;
 
-If a device knows it is wakeup capable, why do you need a property too?
-I haven't looked closely enough, but it smells like after patch 6, these 
-properties would be required for wakeup? That would be an ABI break.
+If a device has multiple interrupts, but none named "wakeup" you are 
+saying all the interrupts are wakeup capable. That's not right though. 
+Only the device knows which interrupts are wakeup capable. You need:
+
+return wakeindex >= 0 && wakeindex == index;
 
 Rob
 
