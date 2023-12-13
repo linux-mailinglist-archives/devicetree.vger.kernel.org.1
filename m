@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-24598-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24602-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B85D8810A4B
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 07:29:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06DE1810A63
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 07:35:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA0D11C209FC
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 06:29:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 91705281D22
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 06:35:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C654FBED;
-	Wed, 13 Dec 2023 06:29:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E8EDFBFA;
+	Wed, 13 Dec 2023 06:35:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NaeMSnix"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gHVqO02S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0F22184
-	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 22:29:25 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-550dd0e3304so5498577a12.1
-        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 22:29:25 -0800 (PST)
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7802AF
+	for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 22:35:07 -0800 (PST)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-a1f0616a15bso731977766b.2
+        for <devicetree@vger.kernel.org>; Tue, 12 Dec 2023 22:35:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702448964; x=1703053764; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702449306; x=1703054106; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=OhhTT2JZjKcz8l8JL5GA9GOQF5AQhyukyYV3lNeTdtc=;
-        b=NaeMSnix8wjV3eo/yyWIN+pcOJQFUfXU43yRK4AwUy1nUkP6TCpz31zGKZntqGkP20
-         3t1Q2YoD3cUOQ2JTtYmmc+sBNj5tNDYdAggrIY71aFLWqXXTE29uapLO8awvxMcCOTyF
-         rWzfU+cMmZKBHtFvvmxlQgbrY4A0teS5xQ6aqUW5JutMgxCbTUYFYStDwfGbQu1gn9+m
-         F1ZcMlcj9GBtoAUWMWUebrrSJX7eiUoiNhVRjadOVa70V039i+veGPD3rhREf3l+3ILi
-         k2tgt3fQe4KiNtI+wchtZUT5TUhr8nIAdZHqy7KGmSYXKR1FIk6I9bMvxiv+ASZ0eEzc
-         m+Xg==
+        bh=igoDahi7rNbkSlz7yguA+9xfPvLprhhiBvehrui8ccw=;
+        b=gHVqO02SGP+VxndbyfbXJo7es5tzWCQqQugzcJADrxoPaBFZaiijUR1h9SGN7cbHcy
+         Q6q3NrRfkeV/XDQL6flHDfd+rVf6MthGUTmxglDi4ZYU0922qmRWWFMh5eEWuChpJq4Q
+         Fr+BpMFq5Ivl7xxp6sXdUodmOFa9+8ILksNuv13AiM7fvTa00nIwCDkdnuQtLen2qgEd
+         LjkQnuvPIGVzz+7gyWQZRU3QR66rsEUpXDz8tdSWiUw+aQAjI82b48dQYKQEwzjvhvFR
+         4wSfBr3iJR8rPX7wkDKnq2EayceVitmAUZ7LYyIT+mL9xpOFtPG0yz0XqSTnOEX5GEHy
+         at3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702448964; x=1703053764;
+        d=1e100.net; s=20230601; t=1702449306; x=1703054106;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OhhTT2JZjKcz8l8JL5GA9GOQF5AQhyukyYV3lNeTdtc=;
-        b=j7kvYpddScBUs1fts8CzbxKLIAPK3FwtWhq7LrL+i92BVON2tM8TNrTPbVLmH6nMnT
-         R4hvcTNdHRmvg3PWXRKbivzAV3uXl34DbpF4P4RhTF1wy52+3rpqmzfYHSsQcWdCuXen
-         UtuxgqzPk4Ko3Ah6cCd+9zC7nUgBx/lVWZrmlJdA5zl5CJ50DyHqyAj8E2QhGmTWG07N
-         IinsphU/2hWLbzB8ddqBGEB3GQMaiRrTxblRL6sHLqdH3YrUbde4I7ZblPAQbheHlgkK
-         SAfaFyzI9ILtlXX/YKmgnkT41mZdVP4onX1YgXeC7mIhzmZH8gMuCht+NyEGaftrrVs+
-         KezQ==
-X-Gm-Message-State: AOJu0YzefcABJR+qSmziRwZH0HdWQ7EUTJRObd9jWkRJ7pPDlqMuZfe4
-	BTaLDcKoJli68N4ooMrxdAyuMQ==
-X-Google-Smtp-Source: AGHT+IEf6AMh+maIl3AI5UbHxiKdaSqI65hLDhYop0OZCcbr7HdwskIA8+n1Ti9rwcTb5FsiiOk00Q==
-X-Received: by 2002:a50:d692:0:b0:551:e5ea:cd32 with SMTP id r18-20020a50d692000000b00551e5eacd32mr581150edi.23.1702448964138;
-        Tue, 12 Dec 2023 22:29:24 -0800 (PST)
+        bh=igoDahi7rNbkSlz7yguA+9xfPvLprhhiBvehrui8ccw=;
+        b=mi6X+u0j6NBBlfgkNuk8UBGU6XGv6t2w5RMHA5eaXhjH+ZawQ7CHZzWQEjM5G0sUcn
+         Z9oTiYPHsxdHJ7kPIyhFOLW7+7IK16aHM9qwcMW1kwRLDjQCiOXaih10eWmbzG5W00CE
+         t+ZhOJWmOPwkgrQwhlSFGcCX9/VIRBGzzd5DtyIrrOGkxkMlV7wjgyRSVugHOitKa8wQ
+         rNW4P3oK3S/+alyNVyypbRxsie83BoKJfhtnQQ89PgbVYKPjCr1cNW0bexBGN2/BO5si
+         T4c3A262PGQHl46kdG0A+hKIOmvYO8/suveC6lTV8uLSfKbyu32/LlUKeiQXA0V1lrJc
+         3pdg==
+X-Gm-Message-State: AOJu0YyT4nl9GPQFq/xhZJALZeUvkWo4CJPoQ7K6iEskOdy7wuMbeq5M
+	8zWsNUOUEm8cXBLriBR1Sh+lTj5oKAyBaBUmXVU=
+X-Google-Smtp-Source: AGHT+IFeeIsf7NByZzMsHaAFNhVZ9wrE5PNegNkkaPtp+UMy9/9okjLZmNr1LvCCtwlqSOuwTs677w==
+X-Received: by 2002:a17:906:b341:b0:a01:b9bd:878 with SMTP id cd1-20020a170906b34100b00a01b9bd0878mr3821013ejb.14.1702449306010;
+        Tue, 12 Dec 2023 22:35:06 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id s28-20020a50ab1c000000b0054c6b50df3asm5566246edc.92.2023.12.12.22.29.22
+        by smtp.gmail.com with ESMTPSA id vg16-20020a170907d31000b00a1cdf29af64sm7199429ejc.45.2023.12.12.22.35.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Dec 2023 22:29:23 -0800 (PST)
-Message-ID: <de84c311-ee02-4bb7-89cf-8b4f4d80d204@linaro.org>
-Date: Wed, 13 Dec 2023 07:29:22 +0100
+        Tue, 12 Dec 2023 22:35:05 -0800 (PST)
+Message-ID: <d91a9278-f70e-4f0f-92c1-ce0bdac69ff5@linaro.org>
+Date: Wed, 13 Dec 2023 07:35:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,20 +62,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 12/13] dt-bindings: imx6q-pcie: Add iMX95 pcie endpoint
- compatible string
+Subject: Re: [PATCH v2] dt-bindings: mailbox: add Versal IPI bindings
 Content-Language: en-US
-To: Frank Li <Frank.Li@nxp.com>
-Cc: bhelgaas@google.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
- festevam@gmail.com, helgaas@kernel.org, hongxing.zhu@nxp.com,
- imx@lists.linux.dev, kernel@pengutronix.de,
- krzysztof.kozlowski+dt@linaro.org, kw@linux.com, l.stach@pengutronix.de,
- linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
- linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
- lpieralisi@kernel.org, manivannan.sadhasivam@linaro.org, robh@kernel.org,
- s.hauer@pengutronix.de, shawnguo@kernel.org
-References: <20231211215842.134823-1-Frank.Li@nxp.com>
- <20231211215842.134823-13-Frank.Li@nxp.com>
+To: Tanmay Shah <tanmay.shah@amd.com>, jassisinghbrar@gmail.com,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ michal.simek@amd.com, shubhrajyoti.datta@amd.com
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20231212230353.888714-1-tanmay.shah@amd.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -121,61 +115,260 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231211215842.134823-13-Frank.Li@nxp.com>
+In-Reply-To: <20231212230353.888714-1-tanmay.shah@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 11/12/2023 22:58, Frank Li wrote:
-> Add i.MX95 PCIe "fsl,imx95-pcie-ep" compatible string.
-> Add reg-name: "atu", "dbi2", "dma" and "serdes".
+On 13/12/2023 00:03, Tanmay Shah wrote:
+> Add documentation for AMD-Xilinx Versal platform Inter Processor Interrupt
+> controller. Versal IPI controller contains buffer-less IPI which do not
+> have buffers for message passing. For such IPI channels message buffers
+> are not expected and only notification to/from remote agent is expected.
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
 > ---
 > 
-> Notes:
->     Change from v1 to v3
->     - new patches at v3
-> 
->  .../bindings/pci/fsl,imx6q-pcie-ep.yaml       | 20 +++++++++++++++++++
->  1 file changed, 20 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml
-> index ee155ed5f1811..36d8f117fdfb3 100644
-> --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml
-> +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml
-> @@ -22,6 +22,7 @@ properties:
->        - fsl,imx8mm-pcie-ep
->        - fsl,imx8mq-pcie-ep
->        - fsl,imx8mp-pcie-ep
-> +      - fsl,imx95-pcie-ep
+
+
+>  properties:
+>    compatible:
+> -    const: xlnx,zynqmp-ipi-mailbox
+> +    enum:
+> +      - xlnx,zynqmp-ipi-mailbox
+> +      - xlnx,versal-ipi-mailbox
 >  
->    reg:
->      minItems: 2
-> @@ -62,11 +63,30 @@ required:
->  allOf:
->    - $ref: /schemas/pci/snps,dw-pcie-ep.yaml#
->    - $ref: /schemas/pci/fsl,imx6q-pcie-common.yaml#
+>    method:
+>      description: |
+>        The method of calling the PM-API firmware layer.
+> -      Permitted values are.
+> -      - "smc" : SMC #0, following the SMCCC
+> -      - "hvc" : HVC #0, following the SMCCC
+> -
+
+Independent change. Please do not mix logical changes in one patch.
+
+>      $ref: /schemas/types.yaml#/definitions/string
+>      enum:
+>        - smc
+> @@ -58,16 +56,26 @@ properties:
+>    '#size-cells':
+>      const: 2
+>  
+> -  xlnx,ipi-id:
+> -    description: |
+> -      Remote Xilinx IPI agent ID of which the mailbox is connected to.
+> -    $ref: /schemas/types.yaml#/definitions/uint32
+> +  reg:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  reg-names:
+> +    minItems: 1
+> +    maxItems: 2
+
+I don't understand why this change is here. Previously you did not have
+MMIO address space? If yes, then where do you restrict the old device to
+disallow these?
+
+
+>  
+>    interrupts:
+>      maxItems: 1
+>  
+>    ranges: true
+>  
+> +  xlnx,ipi-id:
+> +    description: |
+> +      Remote Xilinx IPI agent ID of which the mailbox is connected to.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 0
+> +    maximum: 64
+> +
+>  patternProperties:
+>    '^mailbox@[0-9a-f]+$':
+>      description: Internal ipi mailbox node
+> @@ -76,57 +84,116 @@ patternProperties:
+>      properties:
+>  
+>        compatible:
+> -        const: xlnx,zynqmp-ipi-dest-mailbox
+> +        enum:
+> +          - xlnx,zynqmp-ipi-dest-mailbox
+> +          - xlnx,versal-ipi-dest-mailbox
+>  
+> -      xlnx,ipi-id:
+> -        description:
+> -          Remote Xilinx IPI agent ID of which the mailbox is connected to.
+> -        $ref: /schemas/types.yaml#/definitions/uint32
+> +      reg:
+> +        minItems: 1
+> +        maxItems: 4
+> +
+> +      reg-names:
+> +        minItems: 1
+> +        maxItems: 4
+
+Same concern.
+
+>  
+>        '#mbox-cells':
+>          const: 1
+>          description:
+>            It contains tx(0) or rx(1) channel IPI id number.
+>  
+> -      reg:
+> -        maxItems: 4
+> -
+> -      reg-names:
+> -        items:
+> -          - const: local_request_region
+> -          - const: local_response_region
+> -          - const: remote_request_region
+> -          - const: remote_response_region
+> +      xlnx,ipi-id:
+> +        description:
+> +          Remote Xilinx IPI agent ID of which the mailbox is connected to.
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        minimum: 0
+> +        maximum: 64
+>  
+>      required:
+>        - compatible
+>        - reg
+>        - reg-names
+>        - "#mbox-cells"
+> -
+> -additionalProperties: false
+> -
+> +      - xlnx,ipi-id
+> +
+> +    allOf:
+> +      - if:
+> +          properties:
+> +            compatible:
+> +              contains:
+> +                enum:
+> +                  - xlnx,zynqmp-ipi-dest-mailbox
+> +        then:
+> +          properties:
+> +            reg:
+> +              items:
+> +                - description: Host agent request message buffer
+> +                - description: Host agent response message buffer
+> +                - description: Remote agent request message buffer
+> +                - description: Remote agent response message buffer
+> +
+> +            reg-names:
+> +              items:
+> +                - const: local_request_region
+> +                - const: local_response_region
+> +                - const: remote_request_region
+> +                - const: remote_response_region
+> +        else:
+> +          properties:
+> +            reg:
+> +              minItems: 1
+> +              items:
+> +                - description: Remote IPI agent control register
+> +                - description: Remote IPI agent optional message buffer
+
+Were these described in old binding? If not, it's a separate change.
+
+> +
+> +            reg-names:
+> +              minItems: 1
+> +              items:
+> +                - const: ctrl
+> +                - const: msg
+
+Blank line
+
+>  required:
+>    - compatible
+> -  - interrupts
+>    - '#address-cells'
+>    - '#size-cells'
+> +  - interrupts
+
+Separate change with its own rationale. Trivial cleanups can be
+organized in one patch, but should not be mixed with adding new devices.
+
+>    - xlnx,ipi-id
+>  
+> +allOf:
 > +  - if:
 > +      properties:
 > +        compatible:
-> +          enum:
-> +            - fsl,imx95-pcie-ep
+> +          contains:
+> +            enum:
+> +              - xlnx,versal-ipi-mailbox
 > +    then:
 > +      properties:
 > +        reg:
-> +          minItems: 6
+> +          items:
+> +            - description: Host IPI agent control registers
+> +            - description: Host IPI agent optional message buffers
+> +
 > +        reg-names:
 > +          items:
-> +            - const: dbi
-> +            - const: atu
-> +            - const: dbi2
-> +            - const: serdes
-> +            - const: dma
-> +            - const: addr_space
+> +            - const: ctrl
+> +            - const: msg
+> +
+> +      required:
+> +        - reg
+> +        - reg-names
+> +
+> +additionalProperties: false
+> +
+> +
 
-Again, was it tested? Testing in this context means: bindings check pass
-(dt_binding_check) and all your DTS pass, or at least do not introduce
-any new warning.
+Just one blank line.
+
+>  examples:
+>    - |
+>      #include<dt-bindings/interrupt-controller/arm-gic.h>
+>  
+> -    amba {
+> -      #address-cells = <0x2>;
+> -      #size-cells = <0x2>;
+> +    bus {
+>        zynqmp-mailbox {
+>          compatible = "xlnx,zynqmp-ipi-mailbox";
+>          interrupts = <GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>;
+>          xlnx,ipi-id = <0>;
+>          #address-cells = <2>;
+>          #size-cells = <2>;
+> -        ranges;
+
+How is this related to Versal?
+
+>  
+>          mailbox: mailbox@ff9905c0 {
+>            compatible = "xlnx,zynqmp-ipi-dest-mailbox";
+> @@ -144,4 +211,41 @@ examples:
+>        };
+>      };
+>  
+> +  - |
+> +    #include<dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    bus {
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+> +      zynqmp-mailbox@ff300000 {
+
+mailbox@
+
+> +        compatible = "xlnx,versal-ipi-mailbox";
+> +        interrupts = <GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>;
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +        reg = <0x0 0xff300000 0x0 0x1000>,
+> +              <0x0 0xff990000 0x0 0x1ff>;
+> +        reg-names = "ctrl", "msg";
+> +        xlnx,ipi-id = <0>;
+> +        ranges;
+> +
 
 
 Best regards,
