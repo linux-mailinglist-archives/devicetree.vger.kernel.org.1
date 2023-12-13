@@ -1,295 +1,96 @@
-Return-Path: <devicetree+bounces-24805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24806-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 867C4811468
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 15:16:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0491D811478
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 15:18:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B90D91C20EF5
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 14:16:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 374971C21072
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 14:18:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 124AB2E840;
-	Wed, 13 Dec 2023 14:16:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Of5AJp6b"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCE392E848;
+	Wed, 13 Dec 2023 14:18:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FC5ECD;
-	Wed, 13 Dec 2023 06:16:29 -0800 (PST)
-Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2cc3647bf06so9271431fa.2;
-        Wed, 13 Dec 2023 06:16:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702476987; x=1703081787; darn=vger.kernel.org;
-        h=mime-version:references:in-reply-to:message-id:subject:cc:to:from
-         :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=HnmrUE6uA1UjU0DGZJd+ywoyYgk2RFZ2Qv8HjSJNWug=;
-        b=Of5AJp6bdXvCv2dQPxWxzM4N3Ydqv8zxYzcF2wYJpG/mdixAb+VHeWFcbL+M+ad+Z/
-         hDpgse5EYpJZM133HUySbjj6KnRuM2u6+pn31Pxzy/s/QJzT0qYkGfGKlNnf73zX2LIU
-         SZ4O6Xb8un5uYKHwO2+XcGHjvWwiFtZ8A31Eg23dFaN8K4T6aT9wnMv0QVhM3em703tH
-         jx+6ZpBnsQSzPAVIRdN7p+MlH3qum9STy2Ds+WQX2wwgTTTmathLiJwC6vY8D4SZuziZ
-         9dDomh8SRqHmZiVxremKcSIo2+prNIYS29lE9INekka3qwF0RzscWFg5n46rjj4Y4iDf
-         5WxQ==
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80233DD;
+	Wed, 13 Dec 2023 06:18:41 -0800 (PST)
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-5e32af77f15so1754017b3.2;
+        Wed, 13 Dec 2023 06:18:41 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702476987; x=1703081787;
-        h=mime-version:references:in-reply-to:message-id:subject:cc:to:from
-         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HnmrUE6uA1UjU0DGZJd+ywoyYgk2RFZ2Qv8HjSJNWug=;
-        b=AX4baAVc1mDjsMgQcdp8c90bCjqpqBEeaBjhWjf8lxTUMZlnVIuD333hGLcLrjPnUm
-         BzhjoY5z4jU9FJxToW684NX7Mhqtc1s8umL7DhSKoRYYSt6sUEvgpj5Pj+nimJPxcwEh
-         ZN2Mdu/fqKhCfgbK4bVD5PtTxRQpUrwz/YlXHOiE3or03utD6OBFQH4d8rl+46dUTeR8
-         A4DX+yeQJp6fZnb+2o/RrbVSNjY5AxOGQfTOUuT5F++5u1wITlsV3E3y0ImXAfX0uizQ
-         O+1Iqd1vUSjOPLCDS7Q9zrJFFRn26n/V3Pl2ytLBId68ySK4aJFw1uX0/SspBE7T9V/Z
-         wPTg==
-X-Gm-Message-State: AOJu0YzxEgdP4edV4EflC13s2JZl5TBrQHcCraBpnEV/rpS6lO9Y510p
-	6mnKXOo6Q9UaixPb0vxle/c=
-X-Google-Smtp-Source: AGHT+IHMEFbwY2jxx7Eqytsu4ONvN/Lw6aO1DvwW9XsiwGhW/Welyye/FmxGvgN+8ji2wLeKZxibCA==
-X-Received: by 2002:a2e:9b03:0:b0:2ca:34cd:77ea with SMTP id u3-20020a2e9b03000000b002ca34cd77eamr2472316lji.44.1702476987175;
-        Wed, 13 Dec 2023 06:16:27 -0800 (PST)
-Received: from eldfell ([194.136.85.206])
-        by smtp.gmail.com with ESMTPSA id 20-20020a2eb954000000b002c9f62145f8sm1868126ljs.82.2023.12.13.06.16.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Dec 2023 06:16:26 -0800 (PST)
-Date: Wed, 13 Dec 2023 16:16:14 +0200
-From: Pekka Paalanen <ppaalanen@gmail.com>
-To: Joakim Bech <joakim.bech@linaro.org>
-Cc: Simon Ser <contact@emersion.fr>, Yong Wu <yong.wu@mediatek.com>, Rob
- Herring <robh+dt@kernel.org>, Sumit Semwal <sumit.semwal@linaro.org>,
- christian.koenig@amd.com, Matthias Brugger <matthias.bgg@gmail.com>,
- dri-devel@lists.freedesktop.org, John Stultz <jstultz@google.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Jeffrey Kardatzke
- <jkardatzke@google.com>, Benjamin Gaignard
- <benjamin.gaignard@collabora.com>, Vijayanand Jitta
- <quic_vjitta@quicinc.com>, Nicolas Dufresne <nicolas@ndufresne.ca>,
- jianjiao.zeng@mediatek.com, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- ckoenig.leichtzumerken@gmail.com, linaro-mm-sig@lists.linaro.org,
- linux-mediatek@lists.infradead.org, tjmercier@google.com,
- linux-arm-kernel@lists.infradead.org, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, kuohong.wang@mediatek.com,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/7] dma-buf: heaps: Add secure heap
-Message-ID: <20231213161614.43e5bca8@eldfell>
-In-Reply-To: <20231213132229.q3uxdhtdsxuzw3w6@pop-os.localdomain>
-References: <20231212024607.3681-1-yong.wu@mediatek.com>
-	<DPBmATfmfvSP8Cwjz99kj_JvCEiAqRfuMFJZEBF2aIgl8NZqWFR66eyPTX1E8bHyOlimBihEE3E80p9bfOJ-0SNu8pwoIzL9gD2Xae6r97g=@emersion.fr>
-	<20231213110517.6ce36aca@eldfell>
-	<20231213101549.lioqfzjxcvmqxqu3@pop-os.localdomain>
-	<20231213133825.0a329864@eldfell>
-	<20231213132229.q3uxdhtdsxuzw3w6@pop-os.localdomain>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+        d=1e100.net; s=20230601; t=1702477120; x=1703081920;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=nQIUc37L857Xy2IutTbpm0mG6sIjdIjLVU0WeFZORnk=;
+        b=Gs2o2bo+cyarBUBLPPCKojhwJGamx4PHbYNeS+Z/dCtcxf5GiZoTkXEI7egmfAx31e
+         bIjuegghly5LB5AYhae+/Xkqdwacv2oqmWJ2uMIuArtJQWuQpOkKLJQ14YrZ8p7Krhjt
+         tl9TW/0tS1mkGwgZY7VUoV0DMr0UJ4NPBQDpZV7nbgacc9AWE/LTubaT2SxeAE5Ljbvj
+         0X78P++1rFacZfiyO+cLw1qV2CpNIuJGejt4+AaeAZEzngUqnY/w9Pi46ZpzsAJEnFg6
+         GWEM+tA++j0nnWLkN4spvehdOj2kHX4HhaiZAZAT4mgaDH+9cHwY1GK78dBADaellkuu
+         /PKg==
+X-Gm-Message-State: AOJu0YxtoDaKVAx5uZQelqNx/x+GezNJcAWJSXfudCcN1DjD03QEQivo
+	0x1lGqgH+iMWsII7NoSoHuyd3Mc1PpH5iw==
+X-Google-Smtp-Source: AGHT+IFoQSG35p2VxhzCnsVF4RrrrIm2UQYlRVknpgd9Z0yTw+yA18LRMMRv01W7mHC77nGGemnnBQ==
+X-Received: by 2002:a0d:f3c5:0:b0:5d8:165c:17a5 with SMTP id c188-20020a0df3c5000000b005d8165c17a5mr6258032ywf.91.1702477120573;
+        Wed, 13 Dec 2023 06:18:40 -0800 (PST)
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com. [209.85.128.177])
+        by smtp.gmail.com with ESMTPSA id t21-20020a0dea15000000b005e295c30e4asm730248ywe.80.2023.12.13.06.18.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Dec 2023 06:18:39 -0800 (PST)
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-5e32af77f15so1753517b3.2;
+        Wed, 13 Dec 2023 06:18:39 -0800 (PST)
+X-Received: by 2002:a0d:c704:0:b0:5d7:1940:53c4 with SMTP id
+ j4-20020a0dc704000000b005d7194053c4mr6755236ywd.60.1702477118892; Wed, 13 Dec
+ 2023 06:18:38 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/m_y9/L720k3.YUUEknjTd2h";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-
---Sig_/m_y9/L720k3.YUUEknjTd2h
-Content-Type: text/plain; charset=US-ASCII
+References: <20231120111820.87398-1-claudiu.beznea.uj@bp.renesas.com> <20231120111820.87398-10-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20231120111820.87398-10-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 13 Dec 2023 15:18:27 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdX04XKYcoXQ60DsKt-1LuEKm_kSiuYDLjiqfM2Ej0OAXQ@mail.gmail.com>
+Message-ID: <CAMuHMdX04XKYcoXQ60DsKt-1LuEKm_kSiuYDLjiqfM2Ej0OAXQ@mail.gmail.com>
+Subject: Re: [PATCH v3 9/9] arm64: dts: renesas: r9108g045: Add IA55 interrupt
+ controller node
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	conor+dt@kernel.org, magnus.damm@gmail.com, mturquette@baylibre.com, 
+	sboyd@kernel.org, prabhakar.mahadev-lad.rj@bp.renesas.com, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, 13 Dec 2023 14:22:29 +0100
-Joakim Bech <joakim.bech@linaro.org> wrote:
+On Wed, Nov 22, 2023 at 7:16=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev> =
+wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> Add IA55 interrupt controller node and set it as interrupt parent for pin
+> controller.
+>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-> On Wed, Dec 13, 2023 at 01:38:25PM +0200, Pekka Paalanen wrote:
-> > On Wed, 13 Dec 2023 11:15:49 +0100
-> > Joakim Bech <joakim.bech@linaro.org> wrote:
-> >  =20
-> > > On Wed, Dec 13, 2023 at 11:05:17AM +0200, Pekka Paalanen wrote: =20
-> > > > On Tue, 12 Dec 2023 16:36:35 +0000
-> > > > Simon Ser <contact@emersion.fr> wrote:
-> > > >    =20
-> > > > > Is there a chance to pick a better name than "secure" here?
-> > > > >=20
-> > > > > "Secure" is super overloaded, it's not clear at all what it means=
- from
-> > > > > just the name. Something like "restricted" would be an improvemen=
-t.
-> > > > >    =20
-> > > >=20
-> > > > My thoughts exactly. Every time I see "secure" used for something t=
-hat
-> > > > either gives you garbage, refuses to work, or crashes your whole ma=
-chine
-> > > > *intentionally* when you try to do normal usual things to it in
-> > > > userspace (like use it for GL texturing, or try to use KMS writebac=
-k), I
-> > > > get an unscratchable itch.
-> > > >=20
-> > > > There is nothing "secure" from security perspective there for end u=
-sers
-> > > > and developers. It's just inaccessible buffers.
-> > > >=20
-> > > > I've been biting my lip until now, thinking it's too late.
-> > > >    =20
-> > > The characteristics we're looking for here is a buffer where the cont=
-ent
-> > > is inaccessible to the normal OS and user space, i.e., Non-secure EL0=
- to
-> > > EL2. I.e, the content of the buffer is meant to be used and accessible
-> > > primarily by the secure side and other devices that has been granted =
-=20
-> >=20
-> > s/secure side/proprietary side/
-> >  =20
-> I'm using the nomenclature as written by Arm (other architectures have
-> other names for their secure execution states).
->=20
-> > I presume nothing of the other side can ever be in any way open?
-> >  =20
-> I'm sure there are lots of examples of things running on the secure side
-> that are open. The OP-TEE project where I'm a maintainer has been fully
-> open source since 2014, to give one example that I'm familiar with
-> myself.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.8.
 
-Oh, I didn't realise there were FOSS implementations of the other side
-that tie in with this secure/restricted heap here. Sorry.
+Gr{oetje,eeting}s,
 
-I think the patch series cover letter should point to those to give a
-view of the other side to the reviewers, just like DRM requires
-userspace to be open for new UAPI.
+                        Geert
 
-> > Maybe the other side is even less secure than the FOSS side...
-> >  =20
-> > > access to it (for example decoders, display controllers if we're talk=
-ing
-> > > about video use cases). However, since the use cases for this exercis=
-es
-> > > the whole stack, from non-secure user space (EL0) all the way to secu=
-re
-> > > user space (S-EL0), with various devices needing access to the buffer=
- at
-> > > various times, it makes sense to let Linux manage the buffers, althou=
-gh
-> > > it still cannot access the content. That's the overall context. =20
-> >=20
-> > Yes, we know all this (except for the exact meaning of EL0 etc.).
-> >  =20
-> Great!
->=20
-> > > As for the name, it's always difficult to find a name suitable precis=
-ely
-> > > describing what it is. "Secure" is perhaps vague, but it might still a
-> > > good choice, if you carefully describe what secure means for this
-> > > particular heap (in the source code and the documentation for it). Fo=
-r =20
-> >=20
-> > Carefully describe, as in, re-define.
-> >  =20
-> > > example, the definition of "secure" for a secure heap as here could m=
-ean
-> > > that buffer content is inaccessible to the host OS and user space
-> > > running in normal world (using Arm nomenclature). I wouldn't have any
-> > > problems with calling it secure if, as said it's defined what we mean=
- by
-> > > saying so. But I'm all ears for other suggestions as well.
-> > >=20
-> > > Safe, protected, shielded, unreachable, isolated, inaccessible,
-> > > unaccessible, fortified, ... would any of these make more sense? =20
-> >=20
-> > "Restricted" sounds like a good compromise to me. The buffers' usage is
-> > severely restricted.
-> >  =20
-> Yes, restricted isn't a bad choice. We would still need to describe what
-> we mean by saying it's restricted, i.e., what is it restricted from,
-> since I'd guess that "restricted" by itself also could be a bit open
-> ended for a lot of people.
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-Yes, but "restricted" also does not give out an immediate wrong
-impression. Label something as "secure", and it immediately raises the
-questions of what kind of attacks it prevents and how can I make use of
-it.
-
-Is there any use of restricted buffers outside of Digital Rights
-Management though? Could a private person somehow make use of it to
-protect their own contents? Like a photographer sending drafts to a
-customer while not wanting give out any digital copies?
-
-If not, then restricted buffers are something people would generally
-like to avoid, not embrace. "Secure" gives a positive impression,
-"restricted" a negative impression.
-
-> > It is the opposite of "safe", because accessing the contents the wrong
-> > way can return garbage or intentionally crash the whole system,
-> > depending on the hardware implementation. One example is attempting to
-> > put such a buffer on a KMS plane while the connector HDCP state is not
-> > high enough, or a writeback connector is connected to the CRTC. It is
-> > really fragile. (Do KMS drivers fail an atomic commit that would
-> > violate the heap rules? Somehow I doubt that, who'd even know what the
-> > rules are.)
-> >  =20
-> I believe one of the goals with reviewing the patches is to highlight
-> issues like this and try to figure out how to avoid ending up in
-> situations like what you described by suggesting alternative solutions
-> and ideas.
->=20
-> > It is protected/shielded/fortified from all the kernel and userspace,
-> > but a more familiar word to describe that is inaccessible.
-> > "Inaccessible buffer" per se OTOH sounds like a useless concept.
-> >=20
-> > It is not secure, because it does not involve security in any way. In
-> > fact, given it's so fragile, I'd classify it as mildly opposite of
-> > secure, as e.g. clients of a Wayland compositor can potentially DoS the
-> > compositor with it by simply sending such a dmabuf. Or DoS the whole
-> > system.
-> >  =20
-> I hear what you are saying and DoS is a known problem and attack vector,
-> but regardless, we have use cases where we don't want to expose
-> information in the clear and where we also would like to have some
-> guarantees about correctness. That is where various secure elements and
-> more generally security is needed.
->=20
-> So, it sounds like we have two things here, the first is the naming and
-> the meaning behind it. I'm pretty sure the people following and
-> contributing to this thread can agree on a name that makes sense. Would
-> you personally be OK with "restricted" as the name? It sounds like that.
-
-I would. I'm also just a by-stander, not a maintainer of kernel
-anything. I have no power to accept nor reject anything here.
-
-> The other thing is the feature and functionality itself offered by this
-> patch series. My impression from reading your replies is that you think
-> this is the wrong approach. If my impression is correct, what would you
-> suggest as an alternative approach?
-
-I just generally dislike locking people out of what their systems hold,
-but I also understand why extremely big companies want this Digital
-Rights Management technology for their business model. If Linux does
-not support that business model, they and the whole broadcast industry
-might use something else. At least it pays for kernel developers who
-can hopefully do some genuinely useful work on the side as well,
-benefiting the community.
-
-Let's just be honest about what is what.
-
-
-Thanks,
-pq
-
---Sig_/m_y9/L720k3.YUUEknjTd2h
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmV5vK4ACgkQI1/ltBGq
-qqeSrxAAsVMu1uwUAEiHOmIbdZ3IMpYONvvX9PjrsowXIzc4xZ+sohcdjwWsN9LM
-ZwyXBLhxVmbSKy55b8fNI2UR51yIDO8E6lZLQieSxAulEzya2aMjmJEHoXdBo/sS
-A3aGLk4Wu7hh4kSbyeOSoLf2Xf+Fg85puarR12WrxHwXn2JvFteRe1NX2v5+QJSn
-lzGOqYb4bFIIC7oL7qBVH3VBT/st+RdqvUGnsJlvngSO/YEZz8Q2AZTt8sE1R/mT
-6eZ9cidJoUdKqF9vKAxiKpTJyiVLpYqvhm9cvGQinbsYz3QKoUICKcSIGCGZlQti
-2GShGtnPL1qpZfo95xzcu+fw/9g9DC3BRbG/+dV84txlxzn8y1pD6kGka9HjPhi1
-ZuPC1MVNFvSOpv7tIvRRI/lD4ZRKdRJnvW4DDFntEhVfjGq0I5ezVjqBBHcic4QE
-tWWjkepYco492avLdzrJFuVbzj9VwzCRt+M/mlIyons/QfvX/SoRGDya2pk1DNvF
-NBK3Rf4qvOsooioZRNe8PnR/aBXw0MRFMN8htEKcuUHZnOCeIih+PV7VJwGMLMC2
-vjYC7/yXalMFutcYjBJeMyqQylgXUsoJY2WB4d4alazZvlMFrQ/v6+t9y2aOHdpZ
-+XGDbbjlVimKW1utrZlaHsi8w8Dbk9OH3I3tOZZQYfBgAFj6Nco=
-=IiKA
------END PGP SIGNATURE-----
-
---Sig_/m_y9/L720k3.YUUEknjTd2h--
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
