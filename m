@@ -1,63 +1,65 @@
-Return-Path: <devicetree+bounces-24858-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24859-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8118F81183D
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC07481183F
 	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 16:50:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D0D751F21A6A
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 15:50:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3AB7F28109B
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 15:50:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0EDD3173F;
-	Wed, 13 Dec 2023 15:45:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14BBB3172D;
+	Wed, 13 Dec 2023 15:46:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="w8sXLMqm"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="GXV4EVqh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2076.outbound.protection.outlook.com [40.107.220.76])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E24379C;
-	Wed, 13 Dec 2023 07:45:35 -0800 (PST)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2088.outbound.protection.outlook.com [40.107.94.88])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3B4AB3;
+	Wed, 13 Dec 2023 07:46:36 -0800 (PST)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fDoCc7WdL2SEkavcroxRfz5Fusl2hyETgJKxm/3hVQ8xJTAa+JGEAqIqJQgo9dgDwk/bsAWaA0/PUo71kRFkRH2QJAf5ddjNotrxh0FDbPugXdrQtdTBalUWiwcanPDFtHsurZ2NgA6Z5pMizCksKqkxds4Ftz2Z2K0Flbqw9yxvtq0WFkUUi+MAaKdQQbVro2vaFHYRBdXdiue/eJYlbySEDb9x7Hn81fztEvXS1PJ3jTipfGf7zWtFHPqP+zQ85qFez2KAq6Eebx/40CePxv3sXM+K2+cJJcX7WzveR2ZkdLhcShtMtqs8iXeMbg8keNGOt+FRm/VX2IXvW2cBdA==
+ b=Ci/4DvIMV52397/877wFTcUh9CuQEHyjnNSElCyiwIB/W4r96ID4RgBlEM2+ZYcZT/TcPfdpi5iqtbRUso9T4bgyFnzWF08kCoUtGyb91VwFTANF7JjFLmrBdduGQ/b1mBnskQCYm5QableIHSYcIBpHUlmkt8v0L3eYnlWemU4woXzrijIhZPHhWDiYtEHAhz86tFk7q4uWYligxnZMF1GACCfJKMsG6OQt2FSBrujOemf0xwQYyvUNFJHC0KE4qdp+MKb0DlkPttYQ9bktAlFFkBbD9AHyMXYohEtOjYg1shulDanQJSbDOKM023/c9epHYse5A79xFKO7XOpSqg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/SZGFjgH9K9E9Yvc+kO19cX7ubEPEdToaYpFgCA+Mf8=;
- b=dmZEcDeaX8Bzxj7xgx5dt97eJeE3DjUIVGIu/q/6SZesIUrktbOejBRxcZOc/djqfLgK7+Z2a3qoAg9i2AxTbK8FzbYixntxL11s19d01ySc22o+AiOxCTLGDlWXYo1ZgF0NXk6f/RGTpoKyXpgZ3+dyrotoqAw0VA8WC9wghlHiRTDaCpmxdxiynQY0wKIRkd9PS8zBfcw9gDyHDyN3wqwBNujwEgNsAhtpQq/uC+MX94Dv9hCROjViPb7oNDq2vzSJL91crTo99ynKGj1H2q3EcdsXTimQJ8epE9AkcBK2LtIWE7WgdLVXbexyt5jjRB2Lod2/pfpw/m3cNYdK5A==
+ bh=qzmd5lM8S4lnWpdhRDpitGyiOg4JtEysBYo5DefCXf4=;
+ b=F7bBgw6ccMZ7j0Syk0kiDjBHe0UVdb3Mmhyz2DwrmyfptsIYmQs7/TUPdBv9Abj4KhPw9/y2LQGcYtL4/ljB44xl6bJJO8PBU1FIS4y4Z3GLDJNDm0JQjWS5r633aswCEtY8akHYomf+ma9U3znOAeGiEuO3h4bNDMje8OqgpYkTQKDO6jDsvz4ojlr6CCqQutGd+sODHemWhmhGZl/CtHugUCHFn/Gx1KJyBcy5paVn7fE/0YpQpNOyMvjaTol/7SowV7RQznGuB7ExE3/4Fs6EjykRP7qiwWEMca04nVxkufylkTHQY31H1eak1kC9jVlmkLaWozsQiPms0oJXsQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/SZGFjgH9K9E9Yvc+kO19cX7ubEPEdToaYpFgCA+Mf8=;
- b=w8sXLMqmJSkyKJ48Hgr1MzYs6uVBM9StKrU5Wv9gdyPG2x4Ave2RluIw0huvRH9O2jqY3789+6tdam/b/2XKHsU+BIO0Iqjeiv6ss3L++Xl81hPBK0YlFUsuKsefBE8fOS350TNQvuBOshocUc/72IPOI9YlMwHkdw7Dk9/QLog=
+ bh=qzmd5lM8S4lnWpdhRDpitGyiOg4JtEysBYo5DefCXf4=;
+ b=GXV4EVqhPudVHtyWuJh1RW/eG+Hu9LFmLnAiIApw5VwdHAkaviMktGZcAX9uSDCMW7SJ0gUSjm3j44gleF/KcuLaEbQEGRbeYtoVP8sdbBhbgF8PS3heMsLbv788ATb8him1Hn1oXYrJ5PFPzW2GaaXWOMh8vkFsOgdvF0lEDME=
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=amd.com;
 Received: from BYAPR12MB4758.namprd12.prod.outlook.com (2603:10b6:a03:a5::28)
  by CH2PR12MB4167.namprd12.prod.outlook.com (2603:10b6:610:7a::7) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.26; Wed, 13 Dec
- 2023 15:45:33 +0000
+ 2023 15:46:34 +0000
 Received: from BYAPR12MB4758.namprd12.prod.outlook.com
  ([fe80::39a2:42da:ea20:3349]) by BYAPR12MB4758.namprd12.prod.outlook.com
  ([fe80::39a2:42da:ea20:3349%5]) with mapi id 15.20.7091.022; Wed, 13 Dec 2023
- 15:45:32 +0000
-Message-ID: <0164c37a-872f-43d0-9b3f-f351a7fda31c@amd.com>
-Date: Wed, 13 Dec 2023 16:45:08 +0100
+ 15:46:34 +0000
+Message-ID: <ff1a121c-e674-47a5-8187-52135fbf404f@amd.com>
+Date: Wed, 13 Dec 2023 16:46:21 +0100
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] dt-bindings: soc: Add new board description for
- MicroBlaze V
+Subject: Re: [PATCH 0/2] arm64: zynqmp: Align fixed-clock nodes for kv260
 Content-Language: en-US
-To: conor@kernel.org, linux-kernel@vger.kernel.org, monstr@monstr.eu,
- michal.simek@xilinx.com, git@xilinx.com, robh@kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
+To: linux-kernel@vger.kernel.org, monstr@monstr.eu, michal.simek@xilinx.com,
+ git@xilinx.com
+Cc: Andrew Davis <afd@ti.com>, Ashok Reddy Soma
+ <ashok.reddy.soma@xilinx.com>, Conor Dooley <conor+dt@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Harini Katakam <harini.katakam@amd.com>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Manikanta Guntupalli <manikanta.guntupalli@amd.com>,
  Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org
-References: <9653338d293c25ff0e591213698d59ac55cf5c27.1700722941.git.michal.simek@amd.com>
- <69670e5a46c98a2eb73d4f2e2d571a27c46b4640.1700722941.git.michal.simek@amd.com>
+References: <cover.1701338352.git.michal.simek@amd.com>
 From: Michal Simek <michal.simek@amd.com>
 Autocrypt: addr=michal.simek@amd.com; keydata=
  xsFNBFFuvDEBEAC9Amu3nk79+J+4xBOuM5XmDmljuukOc6mKB5bBYOa4SrWJZTjeGRf52VMc
@@ -103,7 +105,7 @@ Autocrypt: addr=michal.simek@amd.com; keydata=
  y7RkYPOpmElF2pwWI/SXKOgMUgigedGCl1QRUio7iifBmXHkRrTgNT0PWQmeGsWTmfRit2+i
  l2dpB2lxha72cQ6MTEmL65HaoeANhtfO1se2R9dej57g+urO9V2v/UglZG1wsyaP/vOrgs+3
  3i3l5DA=
-In-Reply-To: <69670e5a46c98a2eb73d4f2e2d571a27c46b4640.1700722941.git.michal.simek@amd.com>
+In-Reply-To: <cover.1701338352.git.michal.simek@amd.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-ClientProxiedBy: VI1PR06CA0115.eurprd06.prod.outlook.com
@@ -117,105 +119,84 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: BYAPR12MB4758:EE_|CH2PR12MB4167:EE_
-X-MS-Office365-Filtering-Correlation-Id: 89cb8c0d-c410-43b7-4320-08dbfbf28a2d
+X-MS-Office365-Filtering-Correlation-Id: 9e9bd28f-3169-4ce1-6b0f-08dbfbf2aee8
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info:
-	RG/Q5T2jvUujpMXjb8kHF6TliRvKn7HctRUIMsG1VVXDleyhBMi8/c8SrdD/5sobUBmbybXanoAlLR8yKKz6i+vF6KtWyHRPhH3B6zu4vpujserohEnXPyfos5W6M/zp8ctizBoDawS3i4BXYdPTldSxhPNEx6nobNTo/US9v/G9iyKItFS/VSsUX7RVBnyjPjKF2AhpzjJ+1AcIzQzmpk5Gil88MOV8NGpDSUcJx5pd+bN3LXIoR/Hlo8IAEtu8dDGJu+TcDsRhtLW1TUCOulh/mqgEFcnVBObPQubyEWuo2rP7K7kgEmrK9S1BNVICpe6+IGvXNBqzsTcQaTxnLJJo8ZVVnSDz2z3srTNcucexFT0e8pRR5W8UwBC247ViGWG412MqX+jIJZ5jEC4Afim6y1pIxsIdEtMi+sR5lITOKt9xsvp5A/I5/S40DK8fMA+0gytQeN8sc86wlGc9Nx7xTVi9BBwkELJus2dR9FSq6BT7hem7owCFGVLVFHvRjz9mJGzqNXCBvOzm4g01mUQwWca78rf7UBnsIa0RN9fniXBqiaJkCWyJK99HuTvo1dYs4pO5YhurJNrIMDHppIIguFepT2ncTxYKFZJqv/Sc/dtX/w28QxnGEVDfQcK0iNDoq7HWTsi/vUoX+IREFw==
+	ryiy11xd75loaGk/MXLhSkoluYjKNHDGjM0vkzMNhsq5WKPy2oeJJbtH1ybDwlRzIfmTcCWznbhyQ1Dl4bxD8oFGey3mqw6F9cvys80YYKXQHoyZEY12Tdkf+6x1N1lWoLJ1nQTePKJl1ZQr9TkXKmZa08PGd1un8WRQxn204MUozC0ZNmyJhbhvuJK0i0kCw5csS4qcq1iFWYRzQsYWkNazhUj32eVYXNSAzuw6MVLv7FQXM/vu+VFdN338vL8hkNRx128W8f737/27O46Olu3FZMWDF1wsf7O4/KJFAQPy84t3N+IrYKg0veQVJDFDDlARh053+qco4O4NsNB4YF5Qhl/mCK8baFYUW/HD9LkKbhSL+RPjcKzrkeSPkVcGcjFgz+BYdeDBtLuSaAp6oB8O3nNPeyoVyLu6X6y1Enj7yMgWuztqnaOkEq3KFIDEjXgCIrOVhX9IycADLqwJO6CmX3BJBwwsO85khJMh4+nL5c6GwuT3zlURbvC06kfbWkU9thdO2JxtS3uQoIqdBPjWabMi109cIXUe1jg+sCvpeHzZju+8TY9dnlJ/LYomL+oUMw0XxXoX+dre9AgU9nKoOBAii2SsXIUHyhXMKsCv1McnJ2hXdu1e9w+055ETeS+hFueChMV+0vC51hwVkQ==
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR12MB4758.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(346002)(376002)(136003)(366004)(39860400002)(230922051799003)(64100799003)(186009)(451199024)(1800799012)(31686004)(66556008)(66946007)(36756003)(31696002)(86362001)(66476007)(38100700002)(6512007)(53546011)(2616005)(44832011)(6506007)(6486002)(6666004)(2906002)(7416002)(54906003)(316002)(478600001)(5660300002)(26005)(4326008)(8936002)(41300700001)(8676002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR12MB4758.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(346002)(376002)(136003)(366004)(39860400002)(230922051799003)(64100799003)(186009)(451199024)(1800799012)(31686004)(66556008)(66946007)(36756003)(31696002)(86362001)(66476007)(38100700002)(6512007)(83380400001)(53546011)(2616005)(44832011)(6506007)(6486002)(6666004)(4744005)(2906002)(7416002)(54906003)(316002)(478600001)(5660300002)(26005)(4326008)(8936002)(41300700001)(8676002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?TnlxVi90TGZhNm1ycVVyS25obnYvd0JNaDJLaFlFNW5GQWlmRWdOSXEvK09C?=
- =?utf-8?B?Zzg1K3ZZajIvUXZPV1lBeHYvclpNLzVhVmFWamkzNWRZSlBSb2FrWVVxR1pu?=
- =?utf-8?B?UXNhY3dpazdJSUxuT2N4eVZ4SDdXNU8vY21WaUtPWDZyQWgzcjFPa3Nzbnk1?=
- =?utf-8?B?VXlaNWtCcVVrN1VDZlRDL3huNFlabFdNVlJRbDVqTS9SbnZHb2VYaEtEakVz?=
- =?utf-8?B?ZzB1NGlsWWFpZHdyUklFNlhZc2VpSzZwbG00STJydXBWTzZrQWc3Z3lXOW16?=
- =?utf-8?B?Z0d3UXl6WTZrK08rbHJFUGJQY3hoczVKZ0JidHQ0cU9LK29aTlhrQ2JuSmxP?=
- =?utf-8?B?MUFnc0lBQzNzcVMzVm1xdGtsdXczbFdqa0k0c3NBTUNGRXVGTzFZYnc2V1Zn?=
- =?utf-8?B?SHdLRC92Mjl2V3pubm5IaDNpQmtHL3F6SUlxenRxN3JXRnRlY0FBOXp6eU9L?=
- =?utf-8?B?OVNZQU4vUlBhYzBkRUc2alZxNk0wQUIySUcwT2RDS3dhTUVMdGxMMXZGcFQ4?=
- =?utf-8?B?amh1OXB6YjJCVzhJeXFveXFJTUk0emhJK0hRQStIQUovU1YrZWQ4d0VERDZH?=
- =?utf-8?B?RjQrVlNhcHdGelBGZ3FMNFhsY0ZMdURPQ0VFUXR1UnpDOFY0RW12am1zTFU2?=
- =?utf-8?B?dGUzZUJicnlnUUVhSVczWkdNTklsdFprYVQxUDhQajAvU2JBVThYc0E5cXNs?=
- =?utf-8?B?YmhodkRJK1h0aVUwd0JrTXJnNW01ODZtWEsxT24vdEFkWXB5OWs1S0ZHa2JY?=
- =?utf-8?B?WjZhN1lNeU05Z3ZNWVV1ZEM3OHBuVFF1WGtHVjFnTFQ3aDJFOXM1YjdsVjRK?=
- =?utf-8?B?UHlLVVBjZ0lVMHpzeHNFNHY3bks0OUk2QXRXYjdGbkt1ZkJBaFY5VEJxRHFl?=
- =?utf-8?B?NCtMd0szaW5YcHNHRnJIeHh4TktsZzhGbThqc0hFcmIzNzgrTmgzWStkZms2?=
- =?utf-8?B?Zk9CUnExZ0h6ejliY3BxeDlPRHVsVXBIdTEvVUpRTjUyTHVtc1pZd0trUHFS?=
- =?utf-8?B?VTEzQVhkbEpIK3JxcitnM1BtVE9EU08zdDBlZmRiWFpPRkRYeGgwSlBkYkRt?=
- =?utf-8?B?cnFZTFRlUDJ5WnNkYnV4b3lpMGxITkszM3cwcHZnZmoycjhvNE1YaklrM0lt?=
- =?utf-8?B?Tm9mYzlkUjBtNWxYcHNEckUwajg4enJtUGptWW1tellTaFBSQUdtMzJDN1hW?=
- =?utf-8?B?cW1OWkdnOXdOV2VWS0ZIVkxVR0hzdTF4bDdQVlFtd01DZVNtbXhYZS9aM2JI?=
- =?utf-8?B?UW5zTDZqY0JxUklHUm5ML3hTc2ExYVdPc3kyZG9nMlRvQjZKKytXTjJHeG54?=
- =?utf-8?B?Q2FRRU5WRlBERnhleWMvUlk3TS95QUpNMVR4a1AwTmkwemY0UU1zdDFhRm1u?=
- =?utf-8?B?Z2ZLMy9MMjEzdU5IeEptc0JicU02Zm1xTkdxdDJ2aUxZdDdWeEJYZWtySzB5?=
- =?utf-8?B?Vmw0cUprUFVxUyt4SjFCUnhOVXJXd05tRFgzQW94aURlZUU0SU92NjZBSFRO?=
- =?utf-8?B?cG1WMHlrcDY3YzJ3WGVHRXYwZWwwdG9WYUE2cEdUSC9TS01xcHQ4U0MvWWhH?=
- =?utf-8?B?djlzVk9uTUVoTElDQW5hWVVXUnUyV1hCTzN2dHFqVW1oU242b05KTkYxdExZ?=
- =?utf-8?B?bFFhUjFsZ2pZSS84b0RUL29XYWNWUmh4YStLbWZLUkFLSHB4N3I1Q0hjdU1h?=
- =?utf-8?B?WmFSbCsyazFpL3pVWHYrU3N5YmpkbVJYVVN5SHVKTnFmdVBFRWk3bmYxRjJm?=
- =?utf-8?B?amFuaVVSeFBVQzZVSzNnN0dDMFJJUzk4ZnVYYTJzT2kxUHlJQkppYnJHRGhY?=
- =?utf-8?B?YUxYeHB2Z3ZpNE94NkhOb0szMHlEUzRoblp4aUJZS1h4WTJ2bndGd1B3VHFj?=
- =?utf-8?B?dDdtYXpMa1V4MmM1UzRmbDZ6a0F2azl4enVndHRCdkNqK2N4TmhBTGREOFNs?=
- =?utf-8?B?M0JIVmk2Y1dVaWFIdkJBZ3p1cVp0UXZrTWUwUkZYazNlYTNIeDZSS3pKSXdX?=
- =?utf-8?B?ckE4dGF4amYxRFdQTjB0bmF4MTJUcGFuTnAzdVhHUkRoWDZkYWwwb1Jlc1Mr?=
- =?utf-8?B?amJVSUNFQm5QNTg5TVVaeTFWQjB6dUtQUnpuME85ZXJHRVcvSVBManAvSzhB?=
- =?utf-8?Q?AKItDjpIhRz6E6hYrquE7+xEB?=
+	=?utf-8?B?dFJoZ3M5QnVXYWdtL2Y5ZDJkZVNDRk03R04rWDNZNE1JQmZMN05ScjJYZ0hZ?=
+ =?utf-8?B?TEx5ekUxcUNRZW5qc2xiOUd4a0c4WDhONkVvekRXSEZNYVN6Ym5wTmpwTkxq?=
+ =?utf-8?B?TnBjRFdDRkcraEt5MEZOa3J3V1ZlQzJMRm5jcitvRFo2Q0psMldwL1YxZDlt?=
+ =?utf-8?B?aXVlVVZ0bDJpVGxxQndWNzdlNXZ3UWpiRUVGWURSU205RUsyc3J5RzVLbFVG?=
+ =?utf-8?B?K0hqaWxZZHNkd0lkZ0taeVI5cklBNU04a1RkSUN6YjdqVGMwa1NQdzlZeVE0?=
+ =?utf-8?B?aWYyeFM1VkJGZGNnVEh6YURBMFJteXI5TC9YTFlXMTNRSEFMY1Ftb24rUjc3?=
+ =?utf-8?B?RTZtb1RxNXRlRVExL2s0TlNsZWdQVUtlOGdaTWtiWVJuRUsvOVNLSTdZbTRo?=
+ =?utf-8?B?U2IraHhsOWppTmhBWmJSZk5tQmZxZzYxeHhxRUZRWDhDR2hZODhlOTFRMWJi?=
+ =?utf-8?B?cHArb1Q0YVhQbmt4dHdDZkREdVBobVo5N0JTS0xsRm9vSDczNHBNZ0piczJY?=
+ =?utf-8?B?UW11ZEpFakhIcjVnTkxIZ1VUdURJMFNNeGh3NVJBZnl3dmhKUnRXZS9ONmNi?=
+ =?utf-8?B?ckxnTWRvaXBCWTdjYlcvNE5PdEkyRDhLRGJGSEtCSzlWcElIN1Z0V3F0K29T?=
+ =?utf-8?B?K3BFR1REdHBHSUlib29OM1lWZDdPUngxek5wVHZDaEpOMEpRVmkzMlY2cGh2?=
+ =?utf-8?B?dkt0bXhQOXlTQllLYllwUVc0b1U5U3ZKckZNTWRCMjN0ZjVPWXczOTl4MnlK?=
+ =?utf-8?B?QXA0TzVWMFgwRXZzVHUvR1BrbzFCZXk1KzIraGRJWDREanFtMGZIWTdqWTdW?=
+ =?utf-8?B?VnpoSkloN1hicjhiMlU2WGp0WUJNSnRsa2UxZHVsU2xhMHdILzk4U0xsTmZ4?=
+ =?utf-8?B?OWtTZGNNUUVtbGZpYktTd1hacXkwdGdpam5aRjI4WlBPSVBXQVhKK2V5cUZZ?=
+ =?utf-8?B?Szc5SFo5eUdGeW1GQzU2L0VpRDJRM2s3b1hoTVpBU21EYlVTNUkyak1LWUJo?=
+ =?utf-8?B?RFE5Rjg3NmIramNtNTRnOHh5TFlnb0g2N2RnNjR6RS9GMWtZcEtTWW5aek1B?=
+ =?utf-8?B?SitsZG5iNHFveG1vcnhhK05wQVpFUzRuWllESGNNSWhxSFZGTVFrTnlxU2xF?=
+ =?utf-8?B?bFJUYkFGeEhkMUROR0FBbFV6NHAzbGRPbktSUHRLTEZCYisyazJwSHRtR1FR?=
+ =?utf-8?B?SkNOWThldHBOcnlmWmIzbWNMVGpQSE41aWMwYkZmUC90SFdzV1ZSbzFDUzdD?=
+ =?utf-8?B?TlZlOGYraFFKa3VScU9WUjlJSWROMVg2YjlTb29URDB5NCtrZWxjYjFSM09Z?=
+ =?utf-8?B?YUFOczRjTytsTnZNd2V1RDN6SnlZdDdlQXd1WE9xOUd6ZnJBRURiODFBeXdU?=
+ =?utf-8?B?SWhyb2lWRytpWkZ1a1puUEJ2K25ldEJ6bytUcTVkbVE2UTlmWGFHRTRKSy9H?=
+ =?utf-8?B?andESWJQbm9QU0pweUJ1RURNVXh4bjZHV3huZDlMc1FHYzdZbUtSWm5tOGI4?=
+ =?utf-8?B?Y2FlV2RrbWIxaFJZSDRvdCtTVTNFc3R3YnFQbTRBWU0vMVJlNUtYOG92SmE1?=
+ =?utf-8?B?UTk0UUpzNUdaLzFrTkM4alFtcXoraUNaUUM1aGF3YUg4OFhPRWRVR3FYd1lU?=
+ =?utf-8?B?QUtmZmN2WkFOTzdLUkZGNlpROWhoMnBKQ0RyK0RrZzNHRVIzdkVnZ2VtaHlu?=
+ =?utf-8?B?QzdTUm1Ybk1uc3gxbWtGZDdrT0tWK0tsMkZvdmlBTlJxR2hUZC85dmRwMkt4?=
+ =?utf-8?B?clZTNVhxeThOYmkweVVJVjJ2WnJBQkVGOW53V1pNNFdzVzZ3SFBYMldWenU1?=
+ =?utf-8?B?dzMwTzlLczdkZU52VkVLM3Nzazd0SVlmb09DTERmN3ZlSnZvWllIekVNVUVW?=
+ =?utf-8?B?NDg2eGlEOXJsZXF0L0dUM0h5YVN0azY1MnVGNXZaakJmZUNWN2dKb2RxSXNV?=
+ =?utf-8?B?M2xMSmF5aG5BbUNiTExJV3pnTzJBNWszdENOQXMxRGQ1N0Rxc3FXNSs3aTQ1?=
+ =?utf-8?B?UFRIUzJiZWpPb25FTmVFK1VhdWV2Q09Ha1dpNnVlYVdaQ0puNEdsdGZjSWg2?=
+ =?utf-8?B?WVo3cHZoblB6eW1STU83Q211MGt5clNXOWQxL1BGK0tOYU01bUNhRVU0VGpN?=
+ =?utf-8?Q?INRvbjURRJpYVTUhCZ6yh4zmy?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 89cb8c0d-c410-43b7-4320-08dbfbf28a2d
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9e9bd28f-3169-4ce1-6b0f-08dbfbf2aee8
 X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB4758.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Dec 2023 15:45:32.4538
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Dec 2023 15:46:34.0868
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: x/LYvbuHlF3LtRd7G3uQxUUZrlRYI1cAOo1MJ51wwQREStOw6KXFIVTAJaGHVRYY
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1BIIXB7dThe+44eE2G7oq2WDNoSsv7h91B+yBXHOxn+hXNAt28nT+Gg6+eg69BsD
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4167
 
 
 
-On 11/23/23 08:02, Michal Simek wrote:
-> MicroBlaze V is new AMD/Xilinx soft-core 32bit RISC-V processor IP.
-> It is hardware compatible with classic MicroBlaze processor. Processor can
-> be used with standard AMD/Xilinx IPs including interrupt controller and
-> timer.
+On 11/30/23 10:59, Michal Simek wrote:
+> Hi,
 > 
-> Signed-off-by: Michal Simek <michal.simek@amd.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
+> these two patches are moving clock nodes out of bus because they don't have
+> reg property and also align node names.
 > 
-> Changes in v4:
-> - Fix indentation reported by bot
+> Thanks,
+> Michal
 > 
-> Changes in v3:
-> - Add Krzysztof's ACK
 > 
-> Changes in v2:
-> - Put MicroBlaze V description to xilinx.yaml
-> - Add qemu target platform as platform used for testing.
+> Michal Simek (2):
+>    arm64: zynqmp: Move fixed clock to / for kv260
+>    arm64: zynqmp: Fix clock node name in kv260 cards
 > 
->   Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml | 5 +++++
->   1 file changed, 5 insertions(+)
+>   .../boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso | 40 +++++++++---------
+>   .../boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso | 42 +++++++++----------
+>   2 files changed, 41 insertions(+), 41 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml b/Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml
-> index 95758deca325..d4c0fe1fe435 100644
-> --- a/Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml
-> +++ b/Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml
-> @@ -132,6 +132,11 @@ properties:
->             - const: xlnx,zynqmp-smk-k26
->             - const: xlnx,zynqmp
->   
-> +      - description: AMD MicroBlaze V (QEMU)
-> +        items:
-> +          - const: qemu,mbv
-> +          - const: amd,mbv
-> +
->   additionalProperties: true
->   
->   ...
 
 Applied.
 M
