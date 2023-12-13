@@ -1,115 +1,228 @@
-Return-Path: <devicetree+bounces-24759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24760-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E062811225
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 13:54:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FD6881122B
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 13:56:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4FFC51C20899
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 12:54:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 725FA1C2083F
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 12:56:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AA902C185;
-	Wed, 13 Dec 2023 12:54:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36D002C193;
+	Wed, 13 Dec 2023 12:56:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="onZlDTA2"
+	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="Yb3xoDFx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77D75D42
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 04:54:39 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-40c31f18274so64407485e9.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 04:54:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702472078; x=1703076878; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=k0T+A6SRa9G6oV07TV0BevTGZT6++0no4uJCEiRG1HQ=;
-        b=onZlDTA28DDwtZGIb+SIGlapV7GUIgUx8zHiMtRZS5XYYOz5HWeTdhy4gwhOD8n814
-         LmlJGEKuqHmW2ajdHhd/TS4rq9VaxguJQLJW470Y4pLHawpFZwDSOova5IlDcn0ylIqS
-         5e30DUIVCqf0rQEICOY1TQ5QyfYHPNErHhJu1DDKaAhWjxvsOc+HVGvjFS5powo1y7Cw
-         D5IIfocUBM4AhCJ/GLhcP8dUEmEo8ciOUmJN3IiPFFDglhYgYvNqOPm9kTbq1IoxtRth
-         r0ihUcs8Z2XNCbMv4G4GBPj72J8JXIMDYuU5IehXbbYrfU8lk4SkWDA7Yl7s+5P1llGG
-         Jalg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702472078; x=1703076878;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=k0T+A6SRa9G6oV07TV0BevTGZT6++0no4uJCEiRG1HQ=;
-        b=o/5FaVW9lW2/30NsxZyXRfsRmCZI7Heaa+zVZzpGLxHu1xxFAi69cGxMO3UKiRSKqn
-         d9GnZbYMITwKNnQdG+clLx/rLgpf10ZA82AyOIHfqC/tkWSD7yPx7Y0+rw+buaDIdB1A
-         9bMhKJy8qi/3yyCynpIkT3NNsw8MWLJbbqZYRJmE1wnYlZr98/GUOIXt0YFQJcOn1q5e
-         9BN1vL8ixdLJcP4RCtFIWM5d5TwZ4fhfk0Hh2AHQhvhMnJBIwGuDt5SECsPG8DJq3FXT
-         pkqT0QqHVUGAOF4OCD4X4QH2Et4idib/sO5C5RZiC8ggAOCcaFMYhaVu881feHME3HpY
-         jyEg==
-X-Gm-Message-State: AOJu0YzZWxBT9dV1o4WGW2zbjIWGu/39Zn7RbQgXv35aTcUC7iSfckLx
-	efZ9I48Dwy/h2uO0md7s0URrGw==
-X-Google-Smtp-Source: AGHT+IGfK+6t200n7Uf79+mFIVcnbySb7ZZ/Zv9J0qH1I2C1ziTS7sBTa5sZAA0q/aUz6AB2R57PGQ==
-X-Received: by 2002:a1c:4b10:0:b0:40c:32d5:18df with SMTP id y16-20020a1c4b10000000b0040c32d518dfmr3912612wma.182.1702472077776;
-        Wed, 13 Dec 2023 04:54:37 -0800 (PST)
-Received: from ?IPV6:2a05:6e02:1041:c10:c49e:e1a5:3210:b8c0? ([2a05:6e02:1041:c10:c49e:e1a5:3210:b8c0])
-        by smtp.googlemail.com with ESMTPSA id bi8-20020a05600c3d8800b0040c43be2e52sm12903853wmb.40.2023.12.13.04.54.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Dec 2023 04:54:37 -0800 (PST)
-Message-ID: <47523014-1ed6-4644-8099-52fe785bef13@linaro.org>
-Date: Wed, 13 Dec 2023 13:54:36 +0100
+Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26BE8B3
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 04:56:11 -0800 (PST)
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout01.posteo.de (Postfix) with ESMTPS id 3C22A240028
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 13:56:08 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
+	t=1702472168; bh=Ja35sRH73MLPHXYRUj6azr9TKoxuU7Yk//SKbBsoIxk=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:
+	 Content-Disposition:From;
+	b=Yb3xoDFxqb8xCIFjMoLLFjCaI6T/lGldLdz07M5ByoX4HkuSJII21L8Dyu6XtsnAI
+	 6M/u2fZ8YGwxKNfzjLHMedYroM+pyfGbU0vIrP99a0c8ar3Zzp7TLbc8fH+a9I5FjK
+	 R/pjlM3iQd25ECn1Az8BmlFsyF33qe3sa7ipQtUI1Pi8M6cc1XucAzbxq9Ab+3HcJi
+	 5B4fiIA6Emuq/seaT/bLwz/UuWVLhZcOHZRiWR+zIdki6K7SuJTjQwJ1WH932dGJRi
+	 7BKuKUj1uLuSGg/Knqj2gW7RemwSS6wHzidmq3zt27Kil8e/QHnl3VimGbo1MzTjfI
+	 N1U91yikLAF6A==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4SqwTG3HMsz6tyd;
+	Wed, 13 Dec 2023 13:56:01 +0100 (CET)
+Date: Wed, 13 Dec 2023 12:55:58 +0000
+From: Anne Macedo <retpolanne@posteo.net>
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
+	"moderated list:ARM/Allwinner sunXi SoC support" <linux-arm-kernel@lists.infradead.org>, 
+	"open list:ARM/Allwinner sunXi SoC support" <linux-sunxi@lists.linux.dev>, open list <linux-kernel@vger.kernel.org>, 
+	Corentin Labbe <clabbe@baylibre.com>
+Subject: Re: [PATCH] arm64: dts: allwinner: Orange Pi One Plus PHY support
+Message-ID: <cm5e7g2ozviyin6p3dh2qtuh4i3f2sbqq4c2arjtdektgk7i6c@l7aawekyj6t2>
+References: <20231212122835.10850-2-retpolanne@posteo.net>
+ <20231212162200.10b3868b@donnerap.manchester.arm.com>
+ <axsvii25yrknfae6gdreti7lcskoscsdbsujwuispiieimsbdy@gwzm4l7mwlew>
+ <20231213013544.2fc7e0d1@minigeek.lan>
+ <ceuoq3xxgb5kkel7e7wqpslcg7h6dde3wgdqhyo7jgop6owovk@5a76ks5fiun4>
+ <20231213122523.219cbfc0@donnerap.manchester.arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 1/4] dt-bindings: thermal-zones: Document
- critical-action
-Content-Language: en-US
-To: Fabio Estevam <festevam@gmail.com>, rafael@kernel.org
-Cc: krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
- conor+dt@kernel.org, mazziesaccount@gmail.com, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20231129124330.519423-1-festevam@gmail.com>
- <e0b9c0c1-eae5-4664-bddb-56515e9fee56@linaro.org>
- <CAOMZO5CTBkT+T+wevFRYyBJuwMCiUoFuDKGSyYNNZQ9CWsEJrQ@mail.gmail.com>
- <CAOMZO5AhP1Jhjte2dncWbmWzJ0ZHK9PrOC=pQt8YANTU+B076Q@mail.gmail.com>
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <CAOMZO5AhP1Jhjte2dncWbmWzJ0ZHK9PrOC=pQt8YANTU+B076Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231213122523.219cbfc0@donnerap.manchester.arm.com>
 
-On 13/12/2023 12:39, Fabio Estevam wrote:
-> Rafael, Daniel,
+On Wed, Dec 13, 2023 at 12:25:23PM +0000, Andre Przywara wrote:
+> On Wed, 13 Dec 2023 11:02:39 +0000
+> Anne Macedo <retpolanne@posteo.net> wrote:
 > 
-> On Wed, Dec 6, 2023 at 9:59 AM Fabio Estevam <festevam@gmail.com> wrote:
->>
->> Hi Rafael,
->>
->> On Wed, Nov 29, 2023 at 10:13 AM Daniel Lezcano
->> <daniel.lezcano@linaro.org> wrote:
->>
->>> Rafael, ok for you if I pick this series ?
->>
->> Please let us know if Daniel could pick this series.
+> Hi Anne,
 > 
-> Can this be applied for 6.8, please?
+> > On Wed, Dec 13, 2023 at 01:35:44AM +0000, Andre Przywara wrote:
+> > > On Tue, 12 Dec 2023 19:27:14 +0000
+> > > Anne Macedo <retpolanne@posteo.net> wrote:
+> > > 
+> > > Hi Anne,
+> > >   
+> > > > On Tue, Dec 12, 2023 at 04:22:00PM +0000, Andre Przywara wrote:  
+> > > > > On Tue, 12 Dec 2023 12:28:30 +0000
+> > > > > Anne Macedo <retpolanne@posteo.net> wrote:
+> > > > > 
+> > > > > Hi Anne,
+> > > > >     
+> > > > > > Adds compatible values to mdio subnodes for Ethernet PHY representing
+> > > > > > Realtek 8211 PHY to Orange Pi One Plus.    
+> > > > > 
+> > > > > So can you state why this would be needed? This is the RTL8211 ID,    
+> > > > 
+> > > > Apologies, I completely forgot to include some context. 
+> > > >   
+> > > > > right? Which should be autodetected via MDIO. Looking back in my inbox
+> > > > > you proposed this change before, for U-Boot, specifically, but I fail to
+> > > > > find a solution or explanation what really happens here. Two Renesas .dts
+> > > > > files have the same compatible, and the commit message talks about the
+> > > > > reset line there, is this related?
+> > > > > 
+> > > > > So can you please give some more background and explanation? That would be
+> > > > > part of a good commit message anyway ("why", not "what").    
+> > > > 
+> > > > Should I resend the commit with a more meaningful explanation? The
+> > > > context is the following:
+> > > > 
+> > > > currently, ethernet doesn't seem to work on both u-boot and Linux on the
+> > > > Orange Pi One Plus board. 
+> > > > 
+> > > > On the kernel, this error shows up:
+> > > > 
+> > > > Configuring network interfaces... [    5.992589] dwmac-sun8i 5020000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
+> > > > [    6.000823] dwmac-sun8i 5020000.ethernet eth0: __stmmac_open: Cannot attach to PHY (error: -19)
+> > > > 
+> > > > After applying this fix, the PHY gets attached: 
+> > > > 
+> > > > Configuring network interfaces... [    6.060020] dwmac-sun8i 5020000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
+> > > > [    6.069460] dwmac-sun8i 5020000.ethernet eth0: PHY [stmmac-0:01] driver [RTL8211E Gigabit Ethernet] (irq=POLL)
+> > > > 
+> > > > The previous compatible list that had ethernet-phy-ieee802.3-c22 fails
+> > > > to find a PHY, so this patch includes the correct PHY ID with the
+> > > > RTL8211 ID. 
+> > > > 
+> > > > The behaviour is described on [1].  
+> > > 
+> > > So this is all an observation, but no real explanation, isn't it?  
+> > 
+> > I've made some analysis on [3] on this bug, but it was based solely on
+> > u-boot. I was having trouble with the regulator and on u-boot nothing
+> > would trigger the GPIO PD6 and the vcc-gmac-3v3 regulator, so the NIC
+> > was completely dead. Next I did an analysis based on [2] because the
+> > u-boot PHY initialization was flaky.
+> > 
+> > > To cite [1]: "If the PHY reports an incorrect ID (or none at all) ...".
+> > > I am pretty sure this is not the case here, instead we are looking at
+> > > some missing platform bits, like a missing clock, reset, or most likely
+> > > regulator. Or one of the existing resources is wrongly assigned or  
+> > 
+> > As I mentioned, PHY initialization is flaky on u-boot, so maybe that
+> > assumption is correct. 
+> > 
+> > > configured? If the PHY is not (yet?) powered correctly when the code
+> > > does the auto-detection via the MDIO bus, then the initialisation would  
+> > 
+> > If I recall correctly (I don't know if I kept it in my notes :c), that
+> > could be the case. regulator-boot-on makes the NIC work (LEDs blink, at
+> > least) but it doesn't get initialized. 
+> > 
+> > > fail. But since it works when overriding the auto-detection, I feel
+> > > like we are papering over something here.
+> > > Do you have the schematics for this board? I can only find the one for
+> > > the Orange Pi Plus 2E, and I don't know how similar those two are. This
+> > > shows *two* regulators, but both are activated by the same GPIO.  
+> > 
+> > I do. It's available on [4]
+> 
+> Oh damn it, I got lost in Orange Pi's naming maze again - and was looking
+> for the wrong board! So thanks for the link, and this clears things up!
 
-I have applied this series on my bleeding-edge branch, this one will be 
-merged with the PM's bleeding branch. After a few days it will migrate 
-to linux-next.
+Yay! 
 
-If no obvious regression happen it will end up for v6.8
+> 
+> So yes, the Orange Pi *One* Plus, much like the Orange Pi 3, uses *two*
+> regulators for Ethernet: one 3.3V from the PMIC's ALDO2 rail to power the
+> PHY, and a discrete 2.5V regulator, enabled by GPIO PD6, for the voltage
 
-Thank you
+Oh! I didn't know about the PMIC's ALDO2.
 
-   -- Daniel
+> level on the MDIO lines. On top of this there is a reset line for the PHY,
+> though this is held up by a pull-up resistor, so it *should* work,
+> although we should describe this in the DT.
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+Noting here to take a look at the reset line so I can add it as well to
+the DT.
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+> 
+> So the DT looks wrong then: The reg_gmac_3v3 is actually a 2.5V regulator,
+> and phy-supply is aldo2. I think it was done the way it is to somehow make
+> it work with the current DT binding and code, which just supports one
+> regulator. And aldo2 is referenced as the source of reg_gmac_3v3, which
+> smells like another hack to me.
 
+	reg_gmac_3v3: gmac-3v3 {
+		compatible = "regulator-fixed";
+		regulator-name = "vcc-gmac-3v3";
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+		startup-delay-us = <100000>;
+		enable-active-high;
+		gpio = <&pio 3 6 GPIO_ACTIVE_HIGH>; /* PD6 */
+		vin-supply = <&reg_aldo2>;
+	};
+
+Interesting, I see the reg_aldo2 on vin-supply for reg_gmac_3v3. I don't
+understand how it works, is it linking the regulator with the ALDO2 but
+it also enables the PD6 GPIO?
+
+> 
+> > > It would also be interesting to see if any of Corentin's work for the
+> > > Orange Pi 3 helps here?  
+> > 
+> > Adding [5] for reference here, thanks! Will check it out. 
+> 
+> This is an older version, there are actually updates. And he also mentions
+> your board as well, so I think it just can sail in the wake of the OPi 3
+> Ethernet enablement.
+> 
+> Can you try if this change, just applied to your .dts instead, works?
+> https://github.com/montjoie/linux/commit/cf6e192eca1d59be630e6729d2cef9e897b3da8c
+
+Will do! I'll be out of my lab today but will try it at night Brazil
+time. 
+> 
+> Cheers,
+> Andre
+> 
+> P.S. Is there any chance where I can reply/comment on your blog? It seems
+> like I can clear some things up...
+
+Please send me suggestions off thread, the blog is a static GHPages
+blog, so I didn't implement replies yet. I will be happy to include them
+to my notes :) 
+
+> 
+> > [3] https://blog.retpolanne.com/hardware/embedded/2023/07/07/embedded-phy.html
+> > [4] https://linux-sunxi.org/images/7/7c/OrangePi_OnePlus_Schematics_v2.0.pdf
+> > [5] https://lore.kernel.org/netdev/20220509074857.195302-1-clabbe@baylibre.com/
+> > 
+> > Regards, Anne
+> 
+
+Regards, Anne
 
