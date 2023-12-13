@@ -1,91 +1,158 @@
-Return-Path: <devicetree+bounces-24700-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24708-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B0DD810F28
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 12:00:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DFAD810F4E
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 12:03:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D8B7B1F21212
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 11:00:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7DB0C1C20987
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 11:03:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B70922F05;
-	Wed, 13 Dec 2023 11:00:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A147523750;
+	Wed, 13 Dec 2023 11:02:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U2XwzqUz"
+	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="ovI9kRR2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4209B22EF1;
-	Wed, 13 Dec 2023 11:00:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id A49CDC433C9;
-	Wed, 13 Dec 2023 11:00:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702465224;
-	bh=qri/w5jLo+6ipU86Kfi+yN99WggNK8P2NJcKN4CB6ok=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=U2XwzqUzjWN0yLjzlLhJQc3xMh3Tg0fhZn8qCu9BfIRR5WocEZ1lmz4BKFgAB/VFr
-	 zg5A+VDIPe2JK5K3B6DNHg3tebxxKu4nyQ1Q9Gb/S3COrsYLwasZ4Urm66OwOCa6KI
-	 L5mT16Tf/Es6CSzqCQvIjGmIY34GGFPJASUBGsJHMYvOHC1AnobfapvffVT6X8dw2m
-	 oX4dPOwt/OwsrzbR9vyiahmZt2kOOk70Qzyou/gYYNqc7nctHqnJYJe/HSbaniCJTF
-	 P3AS9hZhDeeizkycIvTg0X5SHhfAjKjWQuV0Ds0nw14MSFbYNk0C/Xq5Rpt1U1uAbX
-	 MYTYQnc3LpREQ==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 89A83DD4EFD;
-	Wed, 13 Dec 2023 11:00:24 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3997EBD
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 03:02:53 -0800 (PST)
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout02.posteo.de (Postfix) with ESMTPS id 8D19E240104
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 12:02:50 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
+	t=1702465370; bh=Xn11GfJCgZ19WHONmDGEs0lStFSo2QPNdFNP92RVqOI=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:
+	 Content-Disposition:From;
+	b=ovI9kRR2zf5MQRLepWAGGopPB4nh3rSpYbdIODMHFOiG+VpcqnXOBOMM2OMiG8BHb
+	 eoO7hy3BFmHIEtBKk8eBYk1pKrywfomYk0kvXDVXPAePZ3u5nL2ZiPaR2SNk8hIQRj
+	 sUppfBzC+meUzPCXDg6nOIJQ9AJ0ivoPEPJuuqq4dsLkJBs9iLoP0CCbRyLoNwrplU
+	 imUajjGn02yKz9wQPVmPbBzjUorFxA6w02gio3tRta3Ot13rkcOF/m5fTE0SJ6GkU5
+	 XcoBVDVcmrj3/spVZ1LHgh+tdrxLO1PPK9PIGYpJ7lx/lDS17wtL0pPctY49JV2kfa
+	 vf3FpySCoZn8Q==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4SqsyW26CGz6tvr;
+	Wed, 13 Dec 2023 12:02:42 +0100 (CET)
+Date: Wed, 13 Dec 2023 11:02:39 +0000
+From: Anne Macedo <retpolanne@posteo.net>
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
+	"moderated list:ARM/Allwinner sunXi SoC support" <linux-arm-kernel@lists.infradead.org>, 
+	"open list:ARM/Allwinner sunXi SoC support" <linux-sunxi@lists.linux.dev>, open list <linux-kernel@vger.kernel.org>, 
+	Corentin Labbe <clabbe@baylibre.com>
+Subject: Re: [PATCH] arm64: dts: allwinner: Orange Pi One Plus PHY support
+Message-ID: <ceuoq3xxgb5kkel7e7wqpslcg7h6dde3wgdqhyo7jgop6owovk@5a76ks5fiun4>
+References: <20231212122835.10850-2-retpolanne@posteo.net>
+ <20231212162200.10b3868b@donnerap.manchester.arm.com>
+ <axsvii25yrknfae6gdreti7lcskoscsdbsujwuispiieimsbdy@gwzm4l7mwlew>
+ <20231213013544.2fc7e0d1@minigeek.lan>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v1 net 0/3] Some bug fixes
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <170246522455.5465.14917728271617814116.git-patchwork-notify@kernel.org>
-Date: Wed, 13 Dec 2023 11:00:24 +0000
-References: <cover.1702289232.git.siyanteng@loongson.cn>
-In-Reply-To: <cover.1702289232.git.siyanteng@loongson.cn>
-To: Yanteng Si <siyanteng@loongson.cn>
-Cc: andrew@lunn.ch, tsbogend@alpha.franken.de, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- peppe.cavallaro@st.com, alexandre.torgue@foss.st.com, joabreu@synopsys.com,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
- mcoquelin.stm32@gmail.com, devicetree@vger.kernel.org,
- linux-mips@vger.kernel.org, chenhuacai@loongson.cn, netdev@vger.kernel.org,
- loongarch@lists.linux.dev, chris.chenfeiyang@gmail.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231213013544.2fc7e0d1@minigeek.lan>
 
-Hello:
-
-This series was applied to netdev/net.git (main)
-by David S. Miller <davem@davemloft.net>:
-
-On Mon, 11 Dec 2023 18:20:32 +0800 you wrote:
-> * Put Krzysztof's patch into my thread, pick Conor's Reviewed-by
->   tag and Jiaxun's Acked-by tag.(prev version is RFC patch)
+On Wed, Dec 13, 2023 at 01:35:44AM +0000, Andre Przywara wrote:
+> On Tue, 12 Dec 2023 19:27:14 +0000
+> Anne Macedo <retpolanne@posteo.net> wrote:
 > 
-> * I fixed an Oops related to mdio, mainly to ensure that
->   mdio is initialized before use, because it will be used
->   in a series of patches I am working on.
+> Hi Anne,
 > 
-> [...]
+> > On Tue, Dec 12, 2023 at 04:22:00PM +0000, Andre Przywara wrote:
+> > > On Tue, 12 Dec 2023 12:28:30 +0000
+> > > Anne Macedo <retpolanne@posteo.net> wrote:
+> > > 
+> > > Hi Anne,
+> > >   
+> > > > Adds compatible values to mdio subnodes for Ethernet PHY representing
+> > > > Realtek 8211 PHY to Orange Pi One Plus.  
+> > > 
+> > > So can you state why this would be needed? This is the RTL8211 ID,  
+> > 
+> > Apologies, I completely forgot to include some context. 
+> > 
+> > > right? Which should be autodetected via MDIO. Looking back in my inbox
+> > > you proposed this change before, for U-Boot, specifically, but I fail to
+> > > find a solution or explanation what really happens here. Two Renesas .dts
+> > > files have the same compatible, and the commit message talks about the
+> > > reset line there, is this related?
+> > > 
+> > > So can you please give some more background and explanation? That would be
+> > > part of a good commit message anyway ("why", not "what").  
+> > 
+> > Should I resend the commit with a more meaningful explanation? The
+> > context is the following:
+> > 
+> > currently, ethernet doesn't seem to work on both u-boot and Linux on the
+> > Orange Pi One Plus board. 
+> > 
+> > On the kernel, this error shows up:
+> > 
+> > Configuring network interfaces... [    5.992589] dwmac-sun8i 5020000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
+> > [    6.000823] dwmac-sun8i 5020000.ethernet eth0: __stmmac_open: Cannot attach to PHY (error: -19)
+> > 
+> > After applying this fix, the PHY gets attached: 
+> > 
+> > Configuring network interfaces... [    6.060020] dwmac-sun8i 5020000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
+> > [    6.069460] dwmac-sun8i 5020000.ethernet eth0: PHY [stmmac-0:01] driver [RTL8211E Gigabit Ethernet] (irq=POLL)
+> > 
+> > The previous compatible list that had ethernet-phy-ieee802.3-c22 fails
+> > to find a PHY, so this patch includes the correct PHY ID with the
+> > RTL8211 ID. 
+> > 
+> > The behaviour is described on [1].
+> 
+> So this is all an observation, but no real explanation, isn't it?
 
-Here is the summary with links:
-  - [v1,net,1/3] stmmac: dwmac-loongson: Make sure MDIO is initialized before use
-    https://git.kernel.org/netdev/net/c/e87d3a1370ce
-  - [v1,net,2/3] stmmac: dwmac-loongson: drop useless check for compatible fallback
-    https://git.kernel.org/netdev/net/c/31fea092c6f9
-  - [v1,net,3/3] MIPS: dts: loongson: drop incorrect dwmac fallback compatible
-    https://git.kernel.org/netdev/net/c/4907a3f54b12
+I've made some analysis on [3] on this bug, but it was based solely on
+u-boot. I was having trouble with the regulator and on u-boot nothing
+would trigger the GPIO PD6 and the vcc-gmac-3v3 regulator, so the NIC
+was completely dead. Next I did an analysis based on [2] because the
+u-boot PHY initialization was flaky.
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+> To cite [1]: "If the PHY reports an incorrect ID (or none at all) ...".
+> I am pretty sure this is not the case here, instead we are looking at
+> some missing platform bits, like a missing clock, reset, or most likely
+> regulator. Or one of the existing resources is wrongly assigned or
 
+As I mentioned, PHY initialization is flaky on u-boot, so maybe that
+assumption is correct. 
 
+> configured? If the PHY is not (yet?) powered correctly when the code
+> does the auto-detection via the MDIO bus, then the initialisation would
+
+If I recall correctly (I don't know if I kept it in my notes :c), that
+could be the case. regulator-boot-on makes the NIC work (LEDs blink, at
+least) but it doesn't get initialized. 
+
+> fail. But since it works when overriding the auto-detection, I feel
+> like we are papering over something here.
+> Do you have the schematics for this board? I can only find the one for
+> the Orange Pi Plus 2E, and I don't know how similar those two are. This
+> shows *two* regulators, but both are activated by the same GPIO.
+
+I do. It's available on [4]
+
+> It would also be interesting to see if any of Corentin's work for the
+> Orange Pi 3 helps here?
+
+Adding [5] for reference here, thanks! Will check it out. 
+> 
+> Cheers,
+> Andre
+> 
+
+[3] https://blog.retpolanne.com/hardware/embedded/2023/07/07/embedded-phy.html
+[4] https://linux-sunxi.org/images/7/7c/OrangePi_OnePlus_Schematics_v2.0.pdf
+[5] https://lore.kernel.org/netdev/20220509074857.195302-1-clabbe@baylibre.com/
+
+Regards, Anne
 
