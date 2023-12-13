@@ -1,164 +1,172 @@
-Return-Path: <devicetree+bounces-24720-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24721-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8F39810FBE
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 12:23:20 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA808810FD5
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 12:25:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 069111C20983
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 11:23:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0953C1C20A11
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 11:25:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 482082377F;
-	Wed, 13 Dec 2023 11:23:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5308423777;
+	Wed, 13 Dec 2023 11:25:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nvkSHpZu"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ps4H3KJ9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5638BA0;
-	Wed, 13 Dec 2023 03:23:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1702466592; x=1734002592;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=EFKlP2H/rVAQxxvmv92h/YY7+JQJiLeLpwP988CiQ8I=;
-  b=nvkSHpZuIvP5VIr94JZomr2SZvU1/Oa0k0gYKu3/m2xO7RM128OuSkxw
-   DYHktUpNv7hToGxLBSXHq/2Y4YmEl/IkBLtvLV14Sttd+OzVyQpe+obpW
-   F9xeBfi4Hs8csOwAefnD0lFdvurTRwnRhbVDwirJHFJF1XJr0zPA4Exii
-   sW0PYA5EU35JDhef73nqJXZuj9UKG18mK5rX2WDp/CgzEHeAN5/OadFuM
-   zDcdeaU/aX+cMrKjMhPI6jIkcDBUXz8PreZ9LGyrH5HTd6X0w78m15a99
-   7CDzMxM9AFfJfqGqwEl4KxSygDzBVb0drPQmA3yog9lsLNpIfLVGTUzn6
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="394701081"
-X-IronPort-AV: E=Sophos;i="6.04,272,1695711600"; 
-   d="scan'208";a="394701081"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Dec 2023 03:23:11 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="802851000"
-X-IronPort-AV: E=Sophos;i="6.04,272,1695711600"; 
-   d="scan'208";a="802851000"
-Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
-  by orsmga008.jf.intel.com with ESMTP; 13 Dec 2023 03:23:04 -0800
-Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rDNKP-000KTb-1L;
-	Wed, 13 Dec 2023 11:23:01 +0000
-Date: Wed, 13 Dec 2023 19:22:33 +0800
-From: kernel test robot <lkp@intel.com>
-To: Alexander Graf <graf@amazon.com>, linux-kernel@vger.kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-trace-kernel@vger.kernel.org, linux-mm@kvack.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	kexec@lists.infradead.org, linux-doc@vger.kernel.org,
-	x86@kernel.org, Eric Biederman <ebiederm@xmission.com>,
-	"H. Peter Anvin" <hpa@zytor.com>, Andy Lutomirski <luto@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Steven Rostedt <rostedt@goodmis.org>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Tom Lendacky <thomas.lendacky@amd.com>,
-	Ashish Kalra <ashish.kalra@amd.com>,
-	James Gowans <jgowans@amazon.com>,
-	Stanislav Kinsburskii <skinsburskii@linux.microsoft.com>,
-	arnd@arndb.de, pbonzini@redhat.com, madvenka@linux.microsoft.com,
-	Anthony Yznaga <anthony.yznaga@oracle.com>,
-	Usama Arif <usama.arif@bytedance.com>,
-	David Woodhouse <dwmw@amazon.co.uk>,
-	Benjamin Herrenschmidt <benh@kernel.crashing.org>
-Subject: Re: [PATCH 06/15] arm64: Add KHO support
-Message-ID: <202312131958.BJ7skdaN-lkp@intel.com>
-References: <20231213000452.88295-7-graf@amazon.com>
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4F4FA0
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 03:25:02 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-5522ba3f94aso406593a12.1
+        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 03:25:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702466701; x=1703071501; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=gv/A7jHNjFLyzRYzKfqK0WHlrVZmXn0422j25ExLZCs=;
+        b=ps4H3KJ9SrjAw3O4iZ9guR/YT4TPtbKuzpULj1uDgS3SIInFeYOMJnwvy1k74c9ajD
+         R/MFAF45Vfk5lNQrHYSsz+FRNvU/MJoDnUJnAx/o0zza9jNISpepGE0bgxd69inUUR23
+         srXlGDmweyQR5BIErRUCCc6Z3qcMk2B9SZXwt+UBE0enZJDyvvHPQ02s07KnLI99mhZo
+         S57HFkzD514h5hzNM7U2rLht8jrIpvBqEX1h4Ix9jC2riLgmSKJS9qcfiPrEf7uFv/5P
+         YwtIR/S5jBHaa9pogDWxzuSgWRmqMvNteuWWDcjsJngdMAjAwmlOXLjgQXdba9CY/SG2
+         3A/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702466701; x=1703071501;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gv/A7jHNjFLyzRYzKfqK0WHlrVZmXn0422j25ExLZCs=;
+        b=DQDDhcFq5hbixq96L5s7fdTF4PmJr+7BWq0Dc/C5uimZMKmvo7FMH9tf1AP0P2J7rC
+         iG7W5QmSbevThiYKiOAYCZfW9U1kgtDGt8Xx9BS9SdQ0TKCCJKrqusAHZRkUe+6atlfs
+         mk4aR/a2C22nhSVF7UoNzPOMbDASjyNrIeNvvwm6fzbnDWISKl5npGuB8p29yWWnTN09
+         jPrsq+6Gt2N4UVTvhRTTCfHKNorBfPDLuxkxSWiIu+LkoPOXnCyzyUaQDQdWFReV2obI
+         ZsBpQ7zwiUwmEF9Z/nSdhJMOgdGyqXQVsTmmEyg4HMA/UaXpg4L6AMfSrR9mO1jY2+Zg
+         5iaQ==
+X-Gm-Message-State: AOJu0YysArploTe3902aqF3l4nf1Res1ejJaaStNuGSKbj8fD4VvRL4Q
+	otLmK34w0gojTLExVlhzaNc0rg==
+X-Google-Smtp-Source: AGHT+IGJlXn1Mi08HlP34ar3lkIRgsRhx1P0eKXDU6J4SGUwS5vCrIpbvzuXSTpw61BYOYGEpzAJEQ==
+X-Received: by 2002:a17:906:8b:b0:a1f:821b:1d9c with SMTP id 11-20020a170906008b00b00a1f821b1d9cmr2132407ejc.288.1702466701283;
+        Wed, 13 Dec 2023 03:25:01 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id cw13-20020a170907160d00b00a1c9f65a31csm7602722ejd.4.2023.12.13.03.24.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Dec 2023 03:25:00 -0800 (PST)
+Message-ID: <8745cfde-57d1-4b08-9020-bbec9b9c7fc1@linaro.org>
+Date: Wed, 13 Dec 2023 12:24:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231213000452.88295-7-graf@amazon.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: usb: mtk-xhci: add a property for Gen1
+ isoc-in transfer issue
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Chunfeng Yun <chunfeng.yun@mediatek.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, Mathias Nyman <mathias.nyman@intel.com>,
+ linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Macpaul Lin <macpaul.lin@mediatek.com>,
+ Eddie Hung <eddie.hung@mediatek.com>
+References: <20231213063543.12435-1-chunfeng.yun@mediatek.com>
+ <c1bc144d-07d6-422c-8294-42be47f83e59@linaro.org>
+ <5327b2fd-94c6-46fe-b987-52cfff042033@collabora.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <5327b2fd-94c6-46fe-b987-52cfff042033@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Alexander,
+On 13/12/2023 12:17, AngeloGioacchino Del Regno wrote:
+> Il 13/12/23 09:05, Krzysztof Kozlowski ha scritto:
+>> On 13/12/2023 07:35, Chunfeng Yun wrote:
+>>> For Gen1 isoc-in endpoint on controller before about SSUSB IPM v1.6.0, it
+>>> still send out unexpected ACK after receiving a short packet in burst
+>>> transfer, this will cause an exception on connected device, specially for
+>>> a 4k camera.
+>>> Add a quirk property "mediatek,rxfifo-depth" to work around this hardware
+>>> issue;
+>>> The side-effect is that may cause performance drop about 10%, including
+>>> bulk transfer.
+>>>
+>>> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+>>> ---
+>>>   .../devicetree/bindings/usb/mediatek,mtk-xhci.yaml     | 10 ++++++++++
+>>>   1 file changed, 10 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
+>>> index e9644e333d78..b8ed68574ba4 100644
+>>> --- a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
+>>> +++ b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
+>>> @@ -124,6 +124,16 @@ properties:
+>>>         defined in the xHCI spec on MTK's controller.
+>>>       default: 5000
+>>>   
+>>> +  mediatek,rxfifo-depth:
+>>> +    description:
+>>
+>> The property description and driver patch suggest you configure the
+>> depth of FIFO, so this should be not bool, but some uint32. And then,
+>> use generic "fifo-depth" property to set desired depth.
+> 
+> Did you mean "rx-fifo-depth" instead, as used in net?
+> This FIFO depth parameter is for RX only.
 
-kernel test robot noticed the following build warnings:
+I guess yes, if it is specific to RX.
 
-[auto build test WARNING on tip/x86/core]
-[also build test WARNING on arm64/for-next/core akpm-mm/mm-everything linus/master v6.7-rc5 next-20231213]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Best regards,
+Krzysztof
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Alexander-Graf/mm-memblock-Add-support-for-scratch-memory/20231213-080941
-base:   tip/x86/core
-patch link:    https://lore.kernel.org/r/20231213000452.88295-7-graf%40amazon.com
-patch subject: [PATCH 06/15] arm64: Add KHO support
-config: i386-buildonly-randconfig-001-20231213 (https://download.01.org/0day-ci/archive/20231213/202312131958.BJ7skdaN-lkp@intel.com/config)
-compiler: clang version 16.0.4 (https://github.com/llvm/llvm-project.git ae42196bc493ffe877a7e3dff8be32035dea4d07)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231213/202312131958.BJ7skdaN-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202312131958.BJ7skdaN-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/of/fdt.c:1012:13: warning: no previous prototype for function 'early_init_dt_check_kho' [-Wmissing-prototypes]
-   void __init early_init_dt_check_kho(void)
-               ^
-   drivers/of/fdt.c:1012:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
-   void __init early_init_dt_check_kho(void)
-   ^
-   static 
-   1 warning generated.
-
-
-vim +/early_init_dt_check_kho +1012 drivers/of/fdt.c
-
-  1008	
-  1009	/**
-  1010	 * early_init_dt_check_kho - Decode info required for kexec handover from DT
-  1011	 */
-> 1012	void __init early_init_dt_check_kho(void)
-  1013	{
-  1014	#ifdef CONFIG_KEXEC_KHO
-  1015		unsigned long node = chosen_node_offset;
-  1016		u64 kho_start, scratch_start, scratch_size, mem_start, mem_size;
-  1017		const __be32 *p;
-  1018		int l;
-  1019	
-  1020		if ((long)node < 0)
-  1021			return;
-  1022	
-  1023		p = of_get_flat_dt_prop(node, "linux,kho-dt", &l);
-  1024		if (l != (dt_root_addr_cells + dt_root_size_cells) * sizeof(__be32))
-  1025			return;
-  1026	
-  1027		kho_start = dt_mem_next_cell(dt_root_addr_cells, &p);
-  1028	
-  1029		p = of_get_flat_dt_prop(node, "linux,kho-scratch", &l);
-  1030		if (l != (dt_root_addr_cells + dt_root_size_cells) * sizeof(__be32))
-  1031			return;
-  1032	
-  1033		scratch_start = dt_mem_next_cell(dt_root_addr_cells, &p);
-  1034		scratch_size = dt_mem_next_cell(dt_root_addr_cells, &p);
-  1035	
-  1036		p = of_get_flat_dt_prop(node, "linux,kho-mem", &l);
-  1037		if (l != (dt_root_addr_cells + dt_root_size_cells) * sizeof(__be32))
-  1038			return;
-  1039	
-  1040		mem_start = dt_mem_next_cell(dt_root_addr_cells, &p);
-  1041		mem_size = dt_mem_next_cell(dt_root_addr_cells, &p);
-  1042	
-  1043		kho_populate(kho_start, scratch_start, scratch_size, mem_start, mem_size);
-  1044	#endif
-  1045	}
-  1046	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
