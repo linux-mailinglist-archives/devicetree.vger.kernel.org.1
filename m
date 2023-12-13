@@ -1,101 +1,89 @@
-Return-Path: <devicetree+bounces-24594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24599-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDCBE8109A0
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 06:51:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8EF3810A4F
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 07:31:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 971C41F2167F
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 05:51:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A4B79281C06
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 06:31:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07202CA4E;
-	Wed, 13 Dec 2023 05:51:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 200AAFBF2;
+	Wed, 13 Dec 2023 06:31:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TZiiiMrN"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="fVLg6Dg4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-x1136.google.com (mail-yw1-x1136.google.com [IPv6:2607:f8b0:4864:20::1136])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77D528E;
-	Tue, 12 Dec 2023 21:51:09 -0800 (PST)
-Received: by mail-yw1-x1136.google.com with SMTP id 00721157ae682-5d33574f64eso66442097b3.3;
-        Tue, 12 Dec 2023 21:51:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702446668; x=1703051468; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=cuCbUQb5WegONcfx1OBAUOwkSNfrcmV4RrW5gKHhwH4=;
-        b=TZiiiMrNdupuOEKUD+OTjC3OSHDF9KnPZZLhrHVLmdTFHfd0E9dprZCBwJxvjv3z58
-         jjrhLlzF1iqW6iGkVJgoWz9d6BSazMCOETDwjrS+/wTJPdiYdl+qoliV/oC9IKTp+Eqy
-         fIJMqzRDLQ3iKAPUj3bgnJk7BRj6TcnN91p9nigAIRkIsO78pSwxa/C2yB+5A57y9Z6c
-         IUZNU14FMocqtlaLws/fdquNSOmSD7hJGfHAIzcdsDDTqYQ2h+9pnxB+6Q3IETY8oY5l
-         QjcXxknqo4nNurBUy7fHrWvrymQG6SVOnezBFW44KRjPyr3C4q9BTwqAFufKH98jmUy3
-         oU1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702446668; x=1703051468;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cuCbUQb5WegONcfx1OBAUOwkSNfrcmV4RrW5gKHhwH4=;
-        b=TXptA94io4KfzFKVwVOVjEBhf3q+uEzegYMMU8kZ8XJ5ms3E1CxRsHXA+mwgRnKDJC
-         Re6dRtX8FPFGLcADcl0t4bT1e2sgdcLUVXejfmbAv2eb4deltnR1dXto4PgKHCwXrGpb
-         UDRqE3QC6cqtpvdP5IjXJyOLRtA4qoqML20VGAnCYc/VD4gqFd66ebWG5hafx/rJYWaX
-         +WN891pLYMzX/2QKrGRzrpXDHfrXgU7/YWMqQmzKoNTpH/rZE802xoi8POazVQOYnX3j
-         4dnrTsBBQAiS8Dn2LZKD8W7x8Z0Im24nj3qT9oaWYTR426ojl/sXLeAy5cshFfluzyd7
-         ADRA==
-X-Gm-Message-State: AOJu0Yy54KwWLmaXmhtDEv18Hf98RotUfBu/Kp65uDKLMzQTWBogfFeE
-	J7LKcaXQAcMiorlbbasZ4PDGRArfSUSKEA==
-X-Google-Smtp-Source: AGHT+IGHJG5AwQ6ERukPWZk9JkCzGueszXfxLlvKzK6e/M2zt812hcssOa+hOXZob7k4FVv2WFZlEw==
-X-Received: by 2002:a81:af66:0:b0:5e2:5d4:6f17 with SMTP id x38-20020a81af66000000b005e205d46f17mr1884372ywj.43.1702446668472;
-        Tue, 12 Dec 2023 21:51:08 -0800 (PST)
-Received: from google.com ([2620:15c:9d:2:96c1:256f:67e0:c0db])
-        by smtp.gmail.com with ESMTPSA id o4-20020a170902d4c400b001cfd049528esm9573609plg.110.2023.12.12.21.51.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Dec 2023 21:51:07 -0800 (PST)
-Date: Tue, 12 Dec 2023 21:51:04 -0800
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: devicetree@vger.kernel.org, Lee Jones <lee@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	linux-arm-msm@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org,
-	linux-input@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
-	linux-leds@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v5 01/37] dt-bindings: input: qcom,pm8921-keypad: convert
- to YAML format
-Message-ID: <ZXlGSPTnineYmTyN@google.com>
-References: <20230827132525.951475-1-dmitry.baryshkov@linaro.org>
- <20230827132525.951475-2-dmitry.baryshkov@linaro.org>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5417BE4;
+	Tue, 12 Dec 2023 22:31:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1702449097; x=1733985097;
+  h=from:to:cc:subject:date:message-id;
+  bh=OQ7WzdvD05NPItZLW1pLFQ5aeAJVE0IdbApen3gJr6c=;
+  b=fVLg6Dg4/RDm4b2Q1wkVYwNQ/aKDMH3GKoMPdgosnw+chUDbVK948pHy
+   Ziw2Y8FlzeaiJMuvs5+bH3rs/466EiQJc035NTQry614Vpl1IUaoACpfm
+   FNwWJIGSiU6uj3OTc74AxW1PWB1RGlxBOEU2egniO5dKFbNB0eRnRixr4
+   C4oMZuiOW3gXD5uYZjb6XzLqedszMCQjy/tS/mJELsEGaL10xkWo0QWl4
+   Y2YJGWuYCqO963gkVZOTBaQSox9fhb3OoNRy82o2gZy4JRny5D2EHVwBZ
+   IWOq/fKz9YE6BgJGiWGXKTBqXmmngT+Aoeaf+8gV6wrKqZ7f7qc/qnlQX
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="8281303"
+X-IronPort-AV: E=Sophos;i="6.04,272,1695711600"; 
+   d="scan'208";a="8281303"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Dec 2023 22:31:37 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="947065763"
+X-IronPort-AV: E=Sophos;i="6.04,272,1695711600"; 
+   d="scan'208";a="947065763"
+Received: from srikandan-ilbpg12.png.intel.com ([10.88.229.69])
+  by orsmga005.jf.intel.com with ESMTP; 12 Dec 2023 22:31:32 -0800
+From: nandhini.srikandan@intel.com
+To: fancer.lancer@gmail.com,
+	broonie@kernel.org,
+	robh+dt@kernel.org,
+	linux-spi@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: devicetree@vger.kernel.org,
+	mgross@linux.intel.com,
+	kris.pan@intel.com,
+	kenchappa.demakkanavar@intel.com,
+	furong.zhou@intel.com,
+	mallikarjunappa.sangannavar@intel.com,
+	mahesh.r.vaidya@intel.com,
+	nandhini.srikandan@intel.com
+Subject: [PATCH v1 0/2] Remove Intel Thunder Bay SOC support                       
+Date: Wed, 13 Dec 2023 14:08:34 +0800
+Message-Id: <20231213060836.29203-1-nandhini.srikandan@intel.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230827132525.951475-2-dmitry.baryshkov@linaro.org>
 
-On Sun, Aug 27, 2023 at 04:24:49PM +0300, Dmitry Baryshkov wrote:
-> Convert the bindings for the keypad subdevices of Qualcomm PM8921 and
-> PM8058 PMICs from text to YAML format.
-> 
-> While doing the conversion also drop the linux,keypad-no-autorepeat
-> The property was never used by DT files. Both input and DT binding
-> maintainers consider that bindings should switch to assertive
-> (linux,autorepeat) instead of negating (no-autorepeat) property.
-> 
-> Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+From: Nandhini Srikandan <nandhini.srikandan@intel.com>
 
-Applied, thank you.
+This patch set removes Intel Thunder Bay specific code as the product              
+got cancelled and there are no end customers.                                      
+                                                                                   
+Patch 1: Remove Intel Thunder Bay spi dw binding specific code.                    
+Patch 2: Remove Intel Thunder Bay spi dw binding Documentation.
+
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+
+Nandhini Srikandan (2):
+  spi: dw: Remove Intel Thunder Bay SOC support
+  spi: dw: Remove Intel Thunder Bay SOC support
+
+ Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml | 2 --
+ drivers/spi/spi-dw-mmio.c                                  | 1 -
+ 2 files changed, 3 deletions(-)
 
 -- 
-Dmitry
+2.17.1
+
 
