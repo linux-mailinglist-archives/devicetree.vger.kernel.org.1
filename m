@@ -1,156 +1,525 @@
-Return-Path: <devicetree+bounces-24881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F5B381190A
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 17:19:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C3C0811919
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 17:21:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1EB9C1F216A5
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 16:19:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 327741F211DB
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 16:21:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A759933CC7;
-	Wed, 13 Dec 2023 16:19:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C58C833CD2;
+	Wed, 13 Dec 2023 16:21:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="joLQ/K6h"
+	dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b="d6qh7Xut"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9F26106;
-	Wed, 13 Dec 2023 08:19:13 -0800 (PST)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BDEQLKL015880;
-	Wed, 13 Dec 2023 16:19:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=YXZ0gTJLcXRK80R/QdLUiDkkAhr39zUqg+imbXMMADs=; b=jo
-	LQ/K6hqlFwmZKeD4dfiV5QBttJYWTMnKOLbJ0B2Hs8Gm8W6i9/17wOY25qQzOi6u
-	EIEbEfoMhUBrOO1MvxWvLMfs3jJHNN8M3Pd3Rb40NsMxR48lWwgu3dLcIt6jmBB3
-	qvpYVFdas5SRhmNdNXE1kXNGn3monN+Ylj1uIWpoc63LCOPXFnXONubKrbOnBDUI
-	FTMnrfkE3glkLOPxPdYYVW4K27ZNn4Dfc+9nm/GccD8hXN8dxCYMpjphSDrkg13y
-	Rp7/3avpAfKNElr7GQrY/CzHNwx4PH+16Dz33sz8JRSCUKYbpToWzj9DjoLuaVdG
-	uD81DSsnuGmE1farQ9rg==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uyec5r9cg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 13 Dec 2023 16:19:07 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BDGJ6ts023703
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 13 Dec 2023 16:19:06 GMT
-Received: from [10.216.40.169] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 13 Dec
- 2023 08:19:00 -0800
-Message-ID: <c5d85c84-3783-4262-a379-1f28e13ae4ce@quicinc.com>
-Date: Wed, 13 Dec 2023 21:48:57 +0530
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEE3591
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 08:20:57 -0800 (PST)
+Received: by mail-pj1-x102a.google.com with SMTP id 98e67ed59e1d1-28659348677so5524999a91.0
+        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 08:20:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=brainfault-org.20230601.gappssmtp.com; s=20230601; t=1702484457; x=1703089257; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MIJjv+e0tTxf8PNAHYeP7fkm8EBld5oupHXn0lAaJpk=;
+        b=d6qh7Xut8AmuUTLCdpkiPOdby63QOfFSI4lSJ8Mu68Eei5YpHiZhjwF2EmszS7wdfh
+         +FVJeaP0emZYytQFOjFGFyyMyVxYiF+Rug567Iu6Rmsx6de8ieYZmighvc2b1Ohmq1Gg
+         hnOdAmq6g2gwBNs8VRPWhqiMXgRDZVSllDqc0a66kPoo/88Fw4d2ua0CrAkdAIhIci/G
+         xPtxRbje2eaBOPTgyQjUAYfwXnpa6wxNS08u0nL0QYwIUQfSymfAWIUU557zHabiXeoO
+         KAj0C389iMlDdnVjn/wgTwlam5r/D8cdETlgmrMWqCgXfdfYqZrvSwaGQxfZ2eaYqEEo
+         izmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702484457; x=1703089257;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MIJjv+e0tTxf8PNAHYeP7fkm8EBld5oupHXn0lAaJpk=;
+        b=OdnMUFAkPqt4oFPAhLlK4Mm7z4CCtz3byRX+YzesYXh0YvxHoKPBtPjxBj4gOlaoZP
+         7VlBnJlJZmTWhdaDut3QNz60DQRVjNYnd2HC15PbVyKKulEp7Ro5Sf15onuscQcdlhiL
+         DWMwWpZMVRBkNkYKvzkQsCviWZE/+aSQLY8Ywa0QsjZe1WEgFv6xucOiMD/onAEn2J7v
+         OKRN34JcgK2wIfZfeKK3xyx2wh86YHTmfLOR9kvPzywK9i50D43hELF2UD+tLmz4jhHJ
+         kFBfPP2CNUR2JOAgSM8A9EqM/0PNAQqQvylA3tthWYBt8f0H+kYsTsMv8/mplNyfFQgk
+         Ogdw==
+X-Gm-Message-State: AOJu0YykCXYvZLhbKLTXujNP+10lGmeXmlnVL4B5o1/hmCE0TdBSqmoa
+	SB/fjQJGq7JIl/zOEAVhl4CPA8IaC82DzLIvxdajeQ==
+X-Google-Smtp-Source: AGHT+IEjzcK13S4bpQjHvkP/WNLaAwG8IF+WhDBPm+KYbX9sTlmVKVPfIA+3J8TrHXDfS/9GnhkMO7Q29MoC2FkpLPA=
+X-Received: by 2002:a17:90b:1298:b0:280:280c:efe3 with SMTP id
+ fw24-20020a17090b129800b00280280cefe3mr8682239pjb.14.1702484457249; Wed, 13
+ Dec 2023 08:20:57 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: usb: dwc3: Clean up hs_phy_irq in
- bindings
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        Johan Hovold
-	<johan@kernel.org>
-CC: <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>,
-        Thinh Nguyen
-	<Thinh.Nguyen@synopsys.com>, <quic_ppratap@quicinc.com>,
-        <quic_jackp@quicinc.com>, Bjorn Andersson <andersson@kernel.org>
-References: <20231211121124.4194-1-quic_kriskura@quicinc.com>
- <20231211121124.4194-2-quic_kriskura@quicinc.com>
- <24fb0b25-0139-4370-864c-839ae931f847@linaro.org>
-Content-Language: en-US
-From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <24fb0b25-0139-4370-864c-839ae931f847@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 4ZVhg3XykqQzlODK8lYcj2XIQHMOsVYK
-X-Proofpoint-GUID: 4ZVhg3XykqQzlODK8lYcj2XIQHMOsVYK
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 malwarescore=0
- priorityscore=1501 mlxscore=0 lowpriorityscore=0 suspectscore=0
- mlxlogscore=733 impostorscore=0 adultscore=0 phishscore=0 bulkscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2312130115
+References: <20231128145357.413321-1-apatel@ventanamicro.com>
+ <20231128145357.413321-2-apatel@ventanamicro.com> <20231213-f8c7c8ca94f67631dfa97631@orel>
+In-Reply-To: <20231213-f8c7c8ca94f67631dfa97631@orel>
+From: Anup Patel <anup@brainfault.org>
+Date: Wed, 13 Dec 2023 21:50:45 +0530
+Message-ID: <CAAhSdy0ehPWpbcny3oxOF+_=7x69zJ81dOEhg5rhCN+vQci9DA@mail.gmail.com>
+Subject: Re: [PATCH 01/15] KVM: riscv: selftests: Generate ISA extension
+ reg_list using macros
+To: Andrew Jones <ajones@ventanamicro.com>
+Cc: Anup Patel <apatel@ventanamicro.com>, Paolo Bonzini <pbonzini@redhat.com>, 
+	Atish Patra <atishp@atishpatra.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Shuah Khan <shuah@kernel.org>, devicetree@vger.kernel.org, 
+	kvm@vger.kernel.org, kvm-riscv@lists.infradead.org, 
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-kselftest@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, Dec 13, 2023 at 9:22=E2=80=AFPM Andrew Jones <ajones@ventanamicro.c=
+om> wrote:
+>
+> On Tue, Nov 28, 2023 at 08:23:43PM +0530, Anup Patel wrote:
+> > Various ISA extension reg_list have common pattern so let us generate
+> > these using macros.
+> >
+> > We define two macros for the above purpose:
+> > 1) KVM_ISA_EXT_SIMPLE_CONFIG - Macro to generate reg_list for
+> >    ISA extension without any additional ONE_REG registers
+> > 2) KVM_ISA_EXT_SUBLIST_CONFIG - Macro to generate reg_list for
+> >    ISA extension with additional ONE_REG registers
+>
+> This patch also adds the missing config for svnapot.
+>
+> Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
 
+Thanks Drew, I am queuing this one patch so that others can rebase
+on the RISC-V KVM queue. Other patches of this series, will have to
+wait for dependent patches to be merged by Palmer.
 
-On 12/13/2023 12:45 PM, Krzysztof Kozlowski wrote:
-> On 11/12/2023 13:11, Krishna Kurapati wrote:
->> The high speed related interrupts present on QC targets are as follows:
->>
->> dp/dm irq's
->> These IRQ's directly reflect changes on the DP/DM pads of the SoC. These
->> are used as wakeup interrupts only on SoCs with non-QUSB2 targets with
->> exception of SDM670/SDM845/SM6350.
->>
->> qusb2_phy irq
->> SoCs with QUSB2 PHY do not have separate DP/DM IRQs and expose only a
->> single IRQ whose behavior can be modified by the QUSB2PHY_INTR_CTRL
->> register. The required DPSE/DMSE configuration is done in
->> QUSB2PHY_INTR_CTRL register of phy address space.
->>
->> hs_phy_irq
->> This is completely different from the above two and is present on all
->> targets with exception of a few IPQ ones. The interrupt is not enabled by
->> default and its functionality is mutually exclusive of qusb2_phy on QUSB
->> targets and DP/DM on femto phy targets.
->>
->> The DTs of several QUSB2 PHY based SoCs incorrectly define "hs_phy_irq"
->> when they should have been "qusb2_phy_irq". On Femto phy targets, the
->> "hs_phy_irq" mentioned is either the actual "hs_phy_irq" or "pwr_event",
->> neither of which would never be triggered directly are non-functional
->> currently. The implementation tries to clean up this issue by addressing
->> the discrepencies involved and fixing the hs_phy_irq's in respective DT's.
->>
->> Classiffy SoC's into four groups based on whether qusb2_phy interrupt
->> or {dp/dm}_hs_phy_irq is used for wakeup in high speed and whether the
->> SoCs have hs_phy_irq present in them or not.
->>
->> The ss_phy_irq is optional interrupt because there are mutliple SoC's
->> which either support only High Speed or there are multiple controllers
->> within same Soc and the secondary controller is High Speed only capable.
->>
->> This breaks ABI on targets running older kernels, but since the interrupt
->> definitions are given wrong on many targets and to establish proper rules
->> for usage of DWC3 interrupts on Qualcomm platforms, DT binding update is
->> necessary.
-> 
-> This still does not explain why missing property has to be added as
-> first one, causing huge reordering of everything here and in DTS.
-> 
-> If pwr_event is required and we already break the ABI, reduce the impact
-> of the change by putting it after all required interrupts. Otherwise
-> please explain here and in commit msg why different approach is taken.
-> 
-
-Hi Krzysztof. I don't know much about the effect of the ordering on ABI. 
-I will try to learn up on it. Would the series be good if we just move 
-the pwr_event to the end and keep everything in v3 as it is, and push v4 
-for now ?
+Queued this patch for Linux-6.8.
 
 Regards,
-Krishna,
+Anup
+
+>
+> Thanks,
+> drew
+>
+> >
+> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> > ---
+> >  .../selftests/kvm/riscv/get-reg-list.c        | 331 ++++--------------
+> >  1 file changed, 76 insertions(+), 255 deletions(-)
+> >
+> > diff --git a/tools/testing/selftests/kvm/riscv/get-reg-list.c b/tools/t=
+esting/selftests/kvm/riscv/get-reg-list.c
+> > index 6bedaea95395..b6b4b6d7dacd 100644
+> > --- a/tools/testing/selftests/kvm/riscv/get-reg-list.c
+> > +++ b/tools/testing/selftests/kvm/riscv/get-reg-list.c
+> > @@ -581,10 +581,6 @@ static __u64 base_skips_set[] =3D {
+> >       KVM_REG_RISCV | KVM_REG_SIZE_U64 | KVM_REG_RISCV_TIMER | KVM_REG_=
+RISCV_TIMER_REG(state),
+> >  };
+> >
+> > -static __u64 h_regs[] =3D {
+> > -     KVM_REG_RISCV | KVM_REG_SIZE_ULONG | KVM_REG_RISCV_ISA_EXT | KVM_=
+RISCV_ISA_EXT_H,
+> > -};
+> > -
+> >  static __u64 zicbom_regs[] =3D {
+> >       KVM_REG_RISCV | KVM_REG_SIZE_ULONG | KVM_REG_RISCV_CONFIG | KVM_R=
+EG_RISCV_CONFIG_REG(zicbom_block_size),
+> >       KVM_REG_RISCV | KVM_REG_SIZE_ULONG | KVM_REG_RISCV_ISA_EXT | KVM_=
+RISCV_ISA_EXT_ZICBOM,
+> > @@ -595,54 +591,6 @@ static __u64 zicboz_regs[] =3D {
+> >       KVM_REG_RISCV | KVM_REG_SIZE_ULONG | KVM_REG_RISCV_ISA_EXT | KVM_=
+RISCV_ISA_EXT_ZICBOZ,
+> >  };
+> >
+> > -static __u64 svpbmt_regs[] =3D {
+> > -     KVM_REG_RISCV | KVM_REG_SIZE_ULONG | KVM_REG_RISCV_ISA_EXT | KVM_=
+RISCV_ISA_EXT_SVPBMT,
+> > -};
+> > -
+> > -static __u64 sstc_regs[] =3D {
+> > -     KVM_REG_RISCV | KVM_REG_SIZE_ULONG | KVM_REG_RISCV_ISA_EXT | KVM_=
+RISCV_ISA_EXT_SSTC,
+> > -};
+> > -
+> > -static __u64 svinval_regs[] =3D {
+> > -     KVM_REG_RISCV | KVM_REG_SIZE_ULONG | KVM_REG_RISCV_ISA_EXT | KVM_=
+RISCV_ISA_EXT_SVINVAL,
+> > -};
+> > -
+> > -static __u64 zihintpause_regs[] =3D {
+> > -     KVM_REG_RISCV | KVM_REG_SIZE_ULONG | KVM_REG_RISCV_ISA_EXT | KVM_=
+RISCV_ISA_EXT_ZIHINTPAUSE,
+> > -};
+> > -
+> > -static __u64 zba_regs[] =3D {
+> > -     KVM_REG_RISCV | KVM_REG_SIZE_ULONG | KVM_REG_RISCV_ISA_EXT | KVM_=
+RISCV_ISA_EXT_ZBA,
+> > -};
+> > -
+> > -static __u64 zbb_regs[] =3D {
+> > -     KVM_REG_RISCV | KVM_REG_SIZE_ULONG | KVM_REG_RISCV_ISA_EXT | KVM_=
+RISCV_ISA_EXT_ZBB,
+> > -};
+> > -
+> > -static __u64 zbs_regs[] =3D {
+> > -     KVM_REG_RISCV | KVM_REG_SIZE_ULONG | KVM_REG_RISCV_ISA_EXT | KVM_=
+RISCV_ISA_EXT_ZBS,
+> > -};
+> > -
+> > -static __u64 zicntr_regs[] =3D {
+> > -     KVM_REG_RISCV | KVM_REG_SIZE_ULONG | KVM_REG_RISCV_ISA_EXT | KVM_=
+RISCV_ISA_EXT_ZICNTR,
+> > -};
+> > -
+> > -static __u64 zicond_regs[] =3D {
+> > -     KVM_REG_RISCV | KVM_REG_SIZE_ULONG | KVM_REG_RISCV_ISA_EXT | KVM_=
+RISCV_ISA_EXT_ZICOND,
+> > -};
+> > -
+> > -static __u64 zicsr_regs[] =3D {
+> > -     KVM_REG_RISCV | KVM_REG_SIZE_ULONG | KVM_REG_RISCV_ISA_EXT | KVM_=
+RISCV_ISA_EXT_ZICSR,
+> > -};
+> > -
+> > -static __u64 zifencei_regs[] =3D {
+> > -     KVM_REG_RISCV | KVM_REG_SIZE_ULONG | KVM_REG_RISCV_ISA_EXT | KVM_=
+RISCV_ISA_EXT_ZIFENCEI,
+> > -};
+> > -
+> > -static __u64 zihpm_regs[] =3D {
+> > -     KVM_REG_RISCV | KVM_REG_SIZE_ULONG | KVM_REG_RISCV_ISA_EXT | KVM_=
+RISCV_ISA_EXT_ZIHPM,
+> > -};
+> > -
+> >  static __u64 aia_regs[] =3D {
+> >       KVM_REG_RISCV | KVM_REG_SIZE_ULONG | KVM_REG_RISCV_CSR | KVM_REG_=
+RISCV_CSR_AIA | KVM_REG_RISCV_CSR_AIA_REG(siselect),
+> >       KVM_REG_RISCV | KVM_REG_SIZE_ULONG | KVM_REG_RISCV_CSR | KVM_REG_=
+RISCV_CSR_AIA | KVM_REG_RISCV_CSR_AIA_REG(iprio1),
+> > @@ -733,221 +681,94 @@ static __u64 fp_d_regs[] =3D {
+> >       KVM_REG_RISCV | KVM_REG_SIZE_ULONG | KVM_REG_RISCV_ISA_EXT | KVM_=
+RISCV_ISA_EXT_D,
+> >  };
+> >
+> > -#define BASE_SUBLIST \
+> > +#define SUBLIST_BASE \
+> >       {"base", .regs =3D base_regs, .regs_n =3D ARRAY_SIZE(base_regs), =
+\
+> >        .skips_set =3D base_skips_set, .skips_set_n =3D ARRAY_SIZE(base_=
+skips_set),}
+> > -#define H_REGS_SUBLIST \
+> > -     {"h", .feature =3D KVM_RISCV_ISA_EXT_H, .regs =3D h_regs, .regs_n=
+ =3D ARRAY_SIZE(h_regs),}
+> > -#define ZICBOM_REGS_SUBLIST \
+> > +#define SUBLIST_ZICBOM \
+> >       {"zicbom", .feature =3D KVM_RISCV_ISA_EXT_ZICBOM, .regs =3D zicbo=
+m_regs, .regs_n =3D ARRAY_SIZE(zicbom_regs),}
+> > -#define ZICBOZ_REGS_SUBLIST \
+> > +#define SUBLIST_ZICBOZ \
+> >       {"zicboz", .feature =3D KVM_RISCV_ISA_EXT_ZICBOZ, .regs =3D zicbo=
+z_regs, .regs_n =3D ARRAY_SIZE(zicboz_regs),}
+> > -#define SVPBMT_REGS_SUBLIST \
+> > -     {"svpbmt", .feature =3D KVM_RISCV_ISA_EXT_SVPBMT, .regs =3D svpbm=
+t_regs, .regs_n =3D ARRAY_SIZE(svpbmt_regs),}
+> > -#define SSTC_REGS_SUBLIST \
+> > -     {"sstc", .feature =3D KVM_RISCV_ISA_EXT_SSTC, .regs =3D sstc_regs=
+, .regs_n =3D ARRAY_SIZE(sstc_regs),}
+> > -#define SVINVAL_REGS_SUBLIST \
+> > -     {"svinval", .feature =3D KVM_RISCV_ISA_EXT_SVINVAL, .regs =3D svi=
+nval_regs, .regs_n =3D ARRAY_SIZE(svinval_regs),}
+> > -#define ZIHINTPAUSE_REGS_SUBLIST \
+> > -     {"zihintpause", .feature =3D KVM_RISCV_ISA_EXT_ZIHINTPAUSE, .regs=
+ =3D zihintpause_regs, .regs_n =3D ARRAY_SIZE(zihintpause_regs),}
+> > -#define ZBA_REGS_SUBLIST \
+> > -     {"zba", .feature =3D KVM_RISCV_ISA_EXT_ZBA, .regs =3D zba_regs, .=
+regs_n =3D ARRAY_SIZE(zba_regs),}
+> > -#define ZBB_REGS_SUBLIST \
+> > -     {"zbb", .feature =3D KVM_RISCV_ISA_EXT_ZBB, .regs =3D zbb_regs, .=
+regs_n =3D ARRAY_SIZE(zbb_regs),}
+> > -#define ZBS_REGS_SUBLIST \
+> > -     {"zbs", .feature =3D KVM_RISCV_ISA_EXT_ZBS, .regs =3D zbs_regs, .=
+regs_n =3D ARRAY_SIZE(zbs_regs),}
+> > -#define ZICNTR_REGS_SUBLIST \
+> > -     {"zicntr", .feature =3D KVM_RISCV_ISA_EXT_ZICNTR, .regs =3D zicnt=
+r_regs, .regs_n =3D ARRAY_SIZE(zicntr_regs),}
+> > -#define ZICOND_REGS_SUBLIST \
+> > -     {"zicond", .feature =3D KVM_RISCV_ISA_EXT_ZICOND, .regs =3D zicon=
+d_regs, .regs_n =3D ARRAY_SIZE(zicond_regs),}
+> > -#define ZICSR_REGS_SUBLIST \
+> > -     {"zicsr", .feature =3D KVM_RISCV_ISA_EXT_ZICSR, .regs =3D zicsr_r=
+egs, .regs_n =3D ARRAY_SIZE(zicsr_regs),}
+> > -#define ZIFENCEI_REGS_SUBLIST \
+> > -     {"zifencei", .feature =3D KVM_RISCV_ISA_EXT_ZIFENCEI, .regs =3D z=
+ifencei_regs, .regs_n =3D ARRAY_SIZE(zifencei_regs),}
+> > -#define ZIHPM_REGS_SUBLIST \
+> > -     {"zihpm", .feature =3D KVM_RISCV_ISA_EXT_ZIHPM, .regs =3D zihpm_r=
+egs, .regs_n =3D ARRAY_SIZE(zihpm_regs),}
+> > -#define AIA_REGS_SUBLIST \
+> > +#define SUBLIST_AIA \
+> >       {"aia", .feature =3D KVM_RISCV_ISA_EXT_SSAIA, .regs =3D aia_regs,=
+ .regs_n =3D ARRAY_SIZE(aia_regs),}
+> > -#define SMSTATEEN_REGS_SUBLIST \
+> > +#define SUBLIST_SMSTATEEN \
+> >       {"smstateen", .feature =3D KVM_RISCV_ISA_EXT_SMSTATEEN, .regs =3D=
+ smstateen_regs, .regs_n =3D ARRAY_SIZE(smstateen_regs),}
+> > -#define FP_F_REGS_SUBLIST \
+> > +#define SUBLIST_FP_F \
+> >       {"fp_f", .feature =3D KVM_RISCV_ISA_EXT_F, .regs =3D fp_f_regs, \
+> >               .regs_n =3D ARRAY_SIZE(fp_f_regs),}
+> > -#define FP_D_REGS_SUBLIST \
+> > +#define SUBLIST_FP_D \
+> >       {"fp_d", .feature =3D KVM_RISCV_ISA_EXT_D, .regs =3D fp_d_regs, \
+> >               .regs_n =3D ARRAY_SIZE(fp_d_regs),}
+> >
+> > -static struct vcpu_reg_list h_config =3D {
+> > -     .sublists =3D {
+> > -     BASE_SUBLIST,
+> > -     H_REGS_SUBLIST,
+> > -     {0},
+> > -     },
+> > -};
+> > -
+> > -static struct vcpu_reg_list zicbom_config =3D {
+> > -     .sublists =3D {
+> > -     BASE_SUBLIST,
+> > -     ZICBOM_REGS_SUBLIST,
+> > -     {0},
+> > -     },
+> > -};
+> > -
+> > -static struct vcpu_reg_list zicboz_config =3D {
+> > -     .sublists =3D {
+> > -     BASE_SUBLIST,
+> > -     ZICBOZ_REGS_SUBLIST,
+> > -     {0},
+> > -     },
+> > -};
+> > -
+> > -static struct vcpu_reg_list svpbmt_config =3D {
+> > -     .sublists =3D {
+> > -     BASE_SUBLIST,
+> > -     SVPBMT_REGS_SUBLIST,
+> > -     {0},
+> > -     },
+> > -};
+> > -
+> > -static struct vcpu_reg_list sstc_config =3D {
+> > -     .sublists =3D {
+> > -     BASE_SUBLIST,
+> > -     SSTC_REGS_SUBLIST,
+> > -     {0},
+> > -     },
+> > -};
+> > -
+> > -static struct vcpu_reg_list svinval_config =3D {
+> > -     .sublists =3D {
+> > -     BASE_SUBLIST,
+> > -     SVINVAL_REGS_SUBLIST,
+> > -     {0},
+> > -     },
+> > -};
+> > -
+> > -static struct vcpu_reg_list zihintpause_config =3D {
+> > -     .sublists =3D {
+> > -     BASE_SUBLIST,
+> > -     ZIHINTPAUSE_REGS_SUBLIST,
+> > -     {0},
+> > -     },
+> > -};
+> > -
+> > -static struct vcpu_reg_list zba_config =3D {
+> > -     .sublists =3D {
+> > -     BASE_SUBLIST,
+> > -     ZBA_REGS_SUBLIST,
+> > -     {0},
+> > -     },
+> > -};
+> > -
+> > -static struct vcpu_reg_list zbb_config =3D {
+> > -     .sublists =3D {
+> > -     BASE_SUBLIST,
+> > -     ZBB_REGS_SUBLIST,
+> > -     {0},
+> > -     },
+> > -};
+> > -
+> > -static struct vcpu_reg_list zbs_config =3D {
+> > -     .sublists =3D {
+> > -     BASE_SUBLIST,
+> > -     ZBS_REGS_SUBLIST,
+> > -     {0},
+> > -     },
+> > -};
+> > -
+> > -static struct vcpu_reg_list zicntr_config =3D {
+> > -     .sublists =3D {
+> > -     BASE_SUBLIST,
+> > -     ZICNTR_REGS_SUBLIST,
+> > -     {0},
+> > -     },
+> > -};
+> > -
+> > -static struct vcpu_reg_list zicond_config =3D {
+> > -     .sublists =3D {
+> > -     BASE_SUBLIST,
+> > -     ZICOND_REGS_SUBLIST,
+> > -     {0},
+> > -     },
+> > -};
+> > -
+> > -static struct vcpu_reg_list zicsr_config =3D {
+> > -     .sublists =3D {
+> > -     BASE_SUBLIST,
+> > -     ZICSR_REGS_SUBLIST,
+> > -     {0},
+> > -     },
+> > -};
+> > -
+> > -static struct vcpu_reg_list zifencei_config =3D {
+> > -     .sublists =3D {
+> > -     BASE_SUBLIST,
+> > -     ZIFENCEI_REGS_SUBLIST,
+> > -     {0},
+> > -     },
+> > -};
+> > -
+> > -static struct vcpu_reg_list zihpm_config =3D {
+> > -     .sublists =3D {
+> > -     BASE_SUBLIST,
+> > -     ZIHPM_REGS_SUBLIST,
+> > -     {0},
+> > -     },
+> > -};
+> > -
+> > -static struct vcpu_reg_list aia_config =3D {
+> > -     .sublists =3D {
+> > -     BASE_SUBLIST,
+> > -     AIA_REGS_SUBLIST,
+> > -     {0},
+> > -     },
+> > -};
+> > -
+> > -static struct vcpu_reg_list smstateen_config =3D {
+> > -     .sublists =3D {
+> > -     BASE_SUBLIST,
+> > -     SMSTATEEN_REGS_SUBLIST,
+> > -     {0},
+> > -     },
+> > -};
+> > -
+> > -static struct vcpu_reg_list fp_f_config =3D {
+> > -     .sublists =3D {
+> > -     BASE_SUBLIST,
+> > -     FP_F_REGS_SUBLIST,
+> > -     {0},
+> > -     },
+> > -};
+> > -
+> > -static struct vcpu_reg_list fp_d_config =3D {
+> > -     .sublists =3D {
+> > -     BASE_SUBLIST,
+> > -     FP_D_REGS_SUBLIST,
+> > -     {0},
+> > -     },
+> > -};
+> > +#define KVM_ISA_EXT_SIMPLE_CONFIG(ext, extu)                 \
+> > +static __u64 regs_##ext[] =3D {                                       =
+ \
+> > +     KVM_REG_RISCV | KVM_REG_SIZE_ULONG |                    \
+> > +     KVM_REG_RISCV_ISA_EXT | KVM_RISCV_ISA_EXT_##extu,       \
+> > +};                                                           \
+> > +static struct vcpu_reg_list config_##ext =3D {                 \
+> > +     .sublists =3D {                                           \
+> > +             SUBLIST_BASE,                                   \
+> > +             {                                               \
+> > +                     .name =3D #ext,                           \
+> > +                     .feature =3D KVM_RISCV_ISA_EXT_##extu,    \
+> > +                     .regs =3D regs_##ext,                     \
+> > +                     .regs_n =3D ARRAY_SIZE(regs_##ext),       \
+> > +             },                                              \
+> > +             {0},                                            \
+> > +     },                                                      \
+> > +}                                                            \
+> > +
+> > +#define KVM_ISA_EXT_SUBLIST_CONFIG(ext, extu)                        \
+> > +static struct vcpu_reg_list config_##ext =3D {                 \
+> > +     .sublists =3D {                                           \
+> > +             SUBLIST_BASE,                                   \
+> > +             SUBLIST_##extu,                                 \
+> > +             {0},                                            \
+> > +     },                                                      \
+> > +}                                                            \
+> > +
+> > +/* Note: The below list is alphabetically sorted. */
+> > +
+> > +KVM_ISA_EXT_SUBLIST_CONFIG(aia, AIA);
+> > +KVM_ISA_EXT_SUBLIST_CONFIG(fp_f, FP_F);
+> > +KVM_ISA_EXT_SUBLIST_CONFIG(fp_d, FP_D);
+> > +KVM_ISA_EXT_SIMPLE_CONFIG(h, H);
+> > +KVM_ISA_EXT_SUBLIST_CONFIG(smstateen, SMSTATEEN);
+> > +KVM_ISA_EXT_SIMPLE_CONFIG(sstc, SSTC);
+> > +KVM_ISA_EXT_SIMPLE_CONFIG(svinval, SVINVAL);
+> > +KVM_ISA_EXT_SIMPLE_CONFIG(svnapot, SVNAPOT);
+> > +KVM_ISA_EXT_SIMPLE_CONFIG(svpbmt, SVPBMT);
+> > +KVM_ISA_EXT_SIMPLE_CONFIG(zba, ZBA);
+> > +KVM_ISA_EXT_SIMPLE_CONFIG(zbb, ZBB);
+> > +KVM_ISA_EXT_SIMPLE_CONFIG(zbs, ZBS);
+> > +KVM_ISA_EXT_SUBLIST_CONFIG(zicbom, ZICBOM);
+> > +KVM_ISA_EXT_SUBLIST_CONFIG(zicboz, ZICBOZ);
+> > +KVM_ISA_EXT_SIMPLE_CONFIG(zicntr, ZICNTR);
+> > +KVM_ISA_EXT_SIMPLE_CONFIG(zicond, ZICOND);
+> > +KVM_ISA_EXT_SIMPLE_CONFIG(zicsr, ZICSR);
+> > +KVM_ISA_EXT_SIMPLE_CONFIG(zifencei, ZIFENCEI);
+> > +KVM_ISA_EXT_SIMPLE_CONFIG(zihintpause, ZIHINTPAUSE);
+> > +KVM_ISA_EXT_SIMPLE_CONFIG(zihpm, ZIHPM);
+> >
+> >  struct vcpu_reg_list *vcpu_configs[] =3D {
+> > -     &h_config,
+> > -     &zicbom_config,
+> > -     &zicboz_config,
+> > -     &svpbmt_config,
+> > -     &sstc_config,
+> > -     &svinval_config,
+> > -     &zihintpause_config,
+> > -     &zba_config,
+> > -     &zbb_config,
+> > -     &zbs_config,
+> > -     &zicntr_config,
+> > -     &zicond_config,
+> > -     &zicsr_config,
+> > -     &zifencei_config,
+> > -     &zihpm_config,
+> > -     &aia_config,
+> > -     &smstateen_config,
+> > -     &fp_f_config,
+> > -     &fp_d_config,
+> > +     &config_aia,
+> > +     &config_fp_f,
+> > +     &config_fp_d,
+> > +     &config_h,
+> > +     &config_smstateen,
+> > +     &config_sstc,
+> > +     &config_svinval,
+> > +     &config_svnapot,
+> > +     &config_svpbmt,
+> > +     &config_zba,
+> > +     &config_zbb,
+> > +     &config_zbs,
+> > +     &config_zicbom,
+> > +     &config_zicboz,
+> > +     &config_zicntr,
+> > +     &config_zicond,
+> > +     &config_zicsr,
+> > +     &config_zifencei,
+> > +     &config_zihintpause,
+> > +     &config_zihpm,
+> >  };
+> >  int vcpu_configs_n =3D ARRAY_SIZE(vcpu_configs);
+> > --
+> > 2.34.1
+> >
 
