@@ -1,77 +1,93 @@
-Return-Path: <devicetree+bounces-24878-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24879-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 312808118DB
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 17:13:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA5378118EC
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 17:15:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C28F6B2108B
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 16:13:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 03317280FDC
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 16:15:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 334EC321B1;
-	Wed, 13 Dec 2023 16:13:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73E373307E;
+	Wed, 13 Dec 2023 16:15:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Of14jwS8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FF5810C;
-	Wed, 13 Dec 2023 08:13:50 -0800 (PST)
-Received: by mail-ot1-f50.google.com with SMTP id 46e09a7af769-6d84ddd642fso5401517a34.0;
-        Wed, 13 Dec 2023 08:13:50 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702484030; x=1703088830;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yKFwCtE90EPD9y2XJTF44lWNSwXrZ/Ik0w5o/94t9wo=;
-        b=rLZ6s6hq/+A38IhIqZVpVkgN+VX8AoxjGU3N+/LbhM25VpWREgQRJtSHby3lCgobnx
-         nX/9Lj1F0oYr88SSYoDDRPsBp616pYKM/KV+lh6Qc1NKyTpXosVV3mMJhIMbUTObiGIb
-         qXN3TQt4yqMdltmAs6WfvORcYJgM1i1doHR9cnHs1VzAJ+bVb8ClN1U/CevilJ+LLZod
-         wa47GVOU5+NddKS8Obp5UFTsUtrmVbyBWr/iyxyXd4dK8AaqRcc2xCXPrCz9tK2coygw
-         NLuWi3zkS4UPXjpGp1mBKaGMh+eJ0Jwpg2Yn9aEM9IdP3vM7sIW7no9oJkBKBnVp6WyD
-         fvqw==
-X-Gm-Message-State: AOJu0Yx/oYmJxqOTsLOMMRqP96FcxL8ovJlR6rWNiAg2LOVb65qdc/0B
-	x9xP/8njEvAX9s+MrifTLw==
-X-Google-Smtp-Source: AGHT+IHvwtas0Wz/5QoHKT/kRL+DgeC/VW8MvnUtSILOIvJ0GIakLipYqdQA3Ql3Vum+yJU0aDi0bQ==
-X-Received: by 2002:a05:6871:6b90:b0:1fa:ff63:2d3b with SMTP id zh16-20020a0568716b9000b001faff632d3bmr7032507oab.44.1702484029822;
-        Wed, 13 Dec 2023 08:13:49 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id zl10-20020a0568716d8a00b001fb42001fa7sm3978002oab.36.2023.12.13.08.13.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Dec 2023 08:13:49 -0800 (PST)
-Received: (nullmailer pid 1207750 invoked by uid 1000);
-	Wed, 13 Dec 2023 16:13:47 -0000
-Date: Wed, 13 Dec 2023 10:13:47 -0600
-From: Rob Herring <robh@kernel.org>
-To: Ninad Palsule <ninad@linux.ibm.com>
-Cc: krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au, peterhuewe@gmx.de, jarkko@kernel.org, jgg@ziepe.ca, keescook@chromium.org, tony.luck@intel.com, gpiccoli@igalia.com, johannes.holland@infineon.com, linux@roeck-us.net, broonie@kernel.org, patrick.rudolph@9elements.com, vincent@vtremblay.dev, peteryin.openbmc@gmail.com, lakshmiy@us.ibm.com, bhelgaas@google.com, naresh.solanki@9elements.com, alexander.stein@ew.tq-group.com, festevam@denx.de, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, linux-integrity@vger.kernel.org, linux-hardening@vger.kernel.org, geissonator@yahoo.com
-Subject: Re: [PATCH v1 2/8] dt-bindings: tpm: Add schema for TIS I2C devices
-Message-ID: <20231213161347.GA1204384-robh@kernel.org>
-References: <20231212164004.1683589-1-ninad@linux.ibm.com>
- <20231212164004.1683589-3-ninad@linux.ibm.com>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 536F92D604;
+	Wed, 13 Dec 2023 16:15:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F673C433C7;
+	Wed, 13 Dec 2023 16:15:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702484150;
+	bh=ZqEBUHrDEyZ8vkQ44qaY7mZTN79QNnv4TScFFLk5+vk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Of14jwS8A1sZTdZkNDvtnyx9NBrsJmwu737MeFhswh8XXSiBr2ZlfgLkFFrPcrseI
+	 KBcM5cBSsQI+UcM3ZZiTaTN7Z+MQcE0kNpaiv/87K0My92Xf6wn+fJ9tCyX0BvTMEK
+	 4PBODvEfrqMvCS7WA1uhWfnGh4AxbqVfm8Uk/2qq4+9TKTTHIk/F18X554kqp+4ouc
+	 tPoBmbP+R3AfoxCxjYfcY6zRfw/WnD8pW4s4gXIz2s2oUgpI4s1VJaJ3djMcjeSYDL
+	 NuClBDQsLOdksM5b9yt/M59A5QY4GBocz0L1+lEPL+NqscUSFnFbawvcoAr43/KY5D
+	 fF5lXh+JjohfA==
+Date: Wed, 13 Dec 2023 16:15:46 +0000
+From: Conor Dooley <conor@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Michael Hennerich <michael.hennerich@analog.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] dt-bindings: iio: adc: Add binding for AD7380 ADCs
+Message-ID: <20231213-jogging-void-79416ce73560@spud>
+References: <20231213-ad7380-mainline-v2-0-cd32150d84a3@baylibre.com>
+ <20231213-ad7380-mainline-v2-2-cd32150d84a3@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="B/2uj1twGd2QJ9G1"
+Content-Disposition: inline
+In-Reply-To: <20231213-ad7380-mainline-v2-2-cd32150d84a3@baylibre.com>
+
+
+--B/2uj1twGd2QJ9G1
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231212164004.1683589-3-ninad@linux.ibm.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Dec 12, 2023 at 10:39:58AM -0600, Ninad Palsule wrote:
-> From: Johannes Holland <johannes.holland@infineon.com>
-> 
-> Add a dt schema to support device tree bindings for the generic I2C
-> physical layer. Refer to the TCG PC Client Platform TPM Profile (PTP)
-> Specification for TPM 2.0 v1.04 Revision 14.
-> 
-> This includes descriptions for the Nuvoton and Infineon devices.
+On Wed, Dec 13, 2023 at 05:21:19AM -0600, David Lechner wrote:
+> This adds a binding specification for the Analog Devices Inc. AD7380
+> family of ADCs.
+>=20
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
 
-This is incomplete and conflicts with this series[1]. Please help 
-review and make sure it works for the cases you care about.
+Having read the patchset in the correct order, this patch now
+seems fine to me.
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-Rob
+Cheers,
+Conor.
 
-[1] https://lore.kernel.org/all/cover.1701093036.git.lukas@wunner.de/
+--B/2uj1twGd2QJ9G1
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZXnYsgAKCRB4tDGHoIJi
+0tpwAQCxYBiFQmCqom4mwWDb0e1I7dm/40px79kV8XltCtJiWwD+MU13YNO77cic
+ua/woQGNvZ8oc4ZH3wH9XYPxa+n7Ogg=
+=nkrt
+-----END PGP SIGNATURE-----
+
+--B/2uj1twGd2QJ9G1--
 
