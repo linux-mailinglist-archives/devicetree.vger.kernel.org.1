@@ -1,105 +1,106 @@
-Return-Path: <devicetree+bounces-25053-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25054-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 935678122C8
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 00:25:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5109A81230A
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 00:37:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F3391F21954
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 23:25:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 82FF81C211B3
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 23:37:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9566B77B30;
-	Wed, 13 Dec 2023 23:25:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4E9B77B55;
+	Wed, 13 Dec 2023 23:36:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=amazon.com header.i=@amazon.com header.b="ZEbblJwa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC094EA;
-	Wed, 13 Dec 2023 15:25:18 -0800 (PST)
-Received: by mail-oo1-f52.google.com with SMTP id 006d021491bc7-5910b21896eso2343275eaf.0;
-        Wed, 13 Dec 2023 15:25:18 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702509918; x=1703114718;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=c+ujX2KdbWl+FCDRkPG1EwpBH+yzRnhRj9laF4akgZg=;
-        b=J8AuLG1oFZynBjB+2IRB6TgTuHbv4IxN4N6LHeUVSeyMy+86xMUaJLEfqqrNvR3urT
-         Bovv2Q16Bgu4QtjKCcFlJMRV/utKHS728bgpvLJ1dlyX9kg0WkTdjzaE57SEd8MO/8Jo
-         9/+uZJFTuLe2GmnZsSukM9H4OxWOCP2mZnz5mdwQS26yrEqnlipKfDXW11ITQj58uo/v
-         qKFPbAhaHs7OkkPDzcgkwGf7b0kUQaMU3EH7arpDgD0aKjyyXefQbNWC+qoZ2FrlF6Ta
-         HJIuTTnYDCfurGeC0/C1QQXH4YmVwXdzgHW/27fZWujrPIgLpPhPr6RdmsI0V6TOTH54
-         zsCw==
-X-Gm-Message-State: AOJu0Yw2BrD8qLg+ccSaEdcFGWdqJGGMn3DFVl1PQShW/IsfE2g3zzdH
-	lfUyz3Jl4UbRaXq9Es7AGVwK/xjytg==
-X-Google-Smtp-Source: AGHT+IGghdFnEQBv2Q1gGQFkdtduPobZx6ZkqkdA1mh/zFQx4tpk5DqrUHn56S1Ix93YoI+J2tsdhQ==
-X-Received: by 2002:a4a:55ca:0:b0:590:67db:1dcb with SMTP id e193-20020a4a55ca000000b0059067db1dcbmr5555100oob.4.1702509918208;
-        Wed, 13 Dec 2023 15:25:18 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r124-20020a4a4e82000000b0058cbbf9b4e4sm3251624ooa.48.2023.12.13.15.25.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Dec 2023 15:25:17 -0800 (PST)
-Received: (nullmailer pid 2248461 invoked by uid 1000);
-	Wed, 13 Dec 2023 23:25:16 -0000
-From: Rob Herring <robh@kernel.org>
-To: "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH net-next] dt-bindings: net: marvell,orion-mdio: Drop "reg" sizes schema
-Date: Wed, 13 Dec 2023 17:24:55 -0600
-Message-ID: <20231213232455.2248056-1-robh@kernel.org>
-X-Mailer: git-send-email 2.43.0
+Received: from smtp-fw-33001.amazon.com (smtp-fw-33001.amazon.com [207.171.190.10])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CD81DB;
+	Wed, 13 Dec 2023 15:36:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1702510616; x=1734046616;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=uhcOfQRbinzPEwd7PFn+5HZ7ZrYv/GL0E6TNEd2zF1E=;
+  b=ZEbblJwaGxqLUn09tej+FOS0JpRaYNKsLJhkMVp5ABlllF3Xo0P9mayw
+   OEMPMPOoYbEDzdT+ao77aSAkBOjBArMCmrdm2TxZFK6MG1R+WdnBWBeOv
+   nU05nInXPcbZ7cBGMLkby279QDgFSIcKIjwpiM+1GOYyUS1shKGWPzrrQ
+   4=;
+X-IronPort-AV: E=Sophos;i="6.04,274,1695686400"; 
+   d="scan'208";a="317067437"
+Received: from iad12-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-pdx-2c-m6i4x-dc7c3f8b.us-west-2.amazon.com) ([10.43.8.6])
+  by smtp-border-fw-33001.sea14.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Dec 2023 23:36:46 +0000
+Received: from smtpout.prod.us-west-2.prod.farcaster.email.amazon.dev (pdx2-ws-svc-p26-lb5-vlan2.pdx.amazon.com [10.39.38.66])
+	by email-inbound-relay-pdx-2c-m6i4x-dc7c3f8b.us-west-2.amazon.com (Postfix) with ESMTPS id BC6F1A0F68;
+	Wed, 13 Dec 2023 23:36:41 +0000 (UTC)
+Received: from EX19MTAUWA001.ant.amazon.com [10.0.38.20:7953]
+ by smtpin.naws.us-west-2.prod.farcaster.email.amazon.dev [10.0.33.64:2525] with esmtp (Farcaster)
+ id f9b5748f-49e6-459d-89c3-cedde6930958; Wed, 13 Dec 2023 23:36:41 +0000 (UTC)
+X-Farcaster-Flow-ID: f9b5748f-49e6-459d-89c3-cedde6930958
+Received: from EX19D020UWC004.ant.amazon.com (10.13.138.149) by
+ EX19MTAUWA001.ant.amazon.com (10.250.64.217) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Wed, 13 Dec 2023 23:36:40 +0000
+Received: from [0.0.0.0] (10.253.83.51) by EX19D020UWC004.ant.amazon.com
+ (10.13.138.149) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 13 Dec
+ 2023 23:36:34 +0000
+Message-ID: <6748dc7e-534e-4b45-8fa9-052fae591534@amazon.com>
+Date: Thu, 14 Dec 2023 00:36:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 03/15] kexec: Add Kexec HandOver (KHO) generation helpers
+Content-Language: en-US
+To: Stanislav Kinsburskii <skinsburskii@linux.microsoft.com>
+CC: <linux-kernel@vger.kernel.org>, <linux-trace-kernel@vger.kernel.org>,
+	<linux-mm@kvack.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <kexec@lists.infradead.org>,
+	<linux-doc@vger.kernel.org>, <x86@kernel.org>, Eric Biederman
+	<ebiederm@xmission.com>, "H. Peter Anvin" <hpa@zytor.com>, Andy Lutomirski
+	<luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>, Rob Herring
+	<robh+dt@kernel.org>, Steven Rostedt <rostedt@goodmis.org>, Andrew Morton
+	<akpm@linux-foundation.org>, Mark Rutland <mark.rutland@arm.com>, "Tom
+ Lendacky" <thomas.lendacky@amd.com>, Ashish Kalra <ashish.kalra@amd.com>,
+	James Gowans <jgowans@amazon.com>, <arnd@arndb.de>, <pbonzini@redhat.com>,
+	<madvenka@linux.microsoft.com>, Anthony Yznaga <anthony.yznaga@oracle.com>,
+	Usama Arif <usama.arif@bytedance.com>, David Woodhouse <dwmw@amazon.co.uk>,
+	Benjamin Herrenschmidt <benh@kernel.crashing.org>
+References: <20231213000452.88295-1-graf@amazon.com>
+ <20231213000452.88295-4-graf@amazon.com>
+ <20231213183614.GA14669@skinsburskii.>
+From: Alexander Graf <graf@amazon.com>
+In-Reply-To: <20231213183614.GA14669@skinsburskii.>
+X-ClientProxiedBy: EX19D044UWA002.ant.amazon.com (10.13.139.11) To
+ EX19D020UWC004.ant.amazon.com (10.13.138.149)
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
-Defining the size of register regions is not really in scope of what
-bindings need to cover. The schema for this is also not completely correct
-as a reg entry can be variable number of cells for the address and size,
-but the schema assumes 1 cell.
-
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- .../bindings/net/marvell,orion-mdio.yaml      | 22 -------------------
- 1 file changed, 22 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/net/marvell,orion-mdio.yaml b/Documentation/devicetree/bindings/net/marvell,orion-mdio.yaml
-index e35da8b01dc2..73429855d584 100644
---- a/Documentation/devicetree/bindings/net/marvell,orion-mdio.yaml
-+++ b/Documentation/devicetree/bindings/net/marvell,orion-mdio.yaml
-@@ -39,28 +39,6 @@ required:
- allOf:
-   - $ref: mdio.yaml#
- 
--  - if:
--      required:
--        - interrupts
--
--    then:
--      properties:
--        reg:
--          items:
--            - items:
--                - $ref: /schemas/types.yaml#/definitions/cell
--                - const: 0x84
--
--    else:
--      properties:
--        reg:
--          items:
--            - items:
--                - $ref: /schemas/types.yaml#/definitions/cell
--                - enum:
--                    - 0x4
--                    - 0x10
--
- unevaluatedProperties: false
- 
- examples:
--- 
-2.43.0
+Ck9uIDEzLjEyLjIzIDE5OjM2LCBTdGFuaXNsYXYgS2luc2J1cnNraWkgd3JvdGU6Cj4gT24gV2Vk
+LCBEZWMgMTMsIDIwMjMgYXQgMTI6MDQ6NDBBTSArMDAwMCwgQWxleGFuZGVyIEdyYWYgd3JvdGU6
+Cj4+ICtpbnQgcmVnaXN0ZXJfa2hvX25vdGlmaWVyKHN0cnVjdCBub3RpZmllcl9ibG9jayAqbmIp
+Cj4+ICt7Cj4+ICsgICAgIHJldHVybiBibG9ja2luZ19ub3RpZmllcl9jaGFpbl9yZWdpc3Rlcigm
+a2hvLmNoYWluX2hlYWQsIG5iKTsKPj4gK30KPj4gK0VYUE9SVF9TWU1CT0xfR1BMKHJlZ2lzdGVy
+X2tob19ub3RpZmllcik7Cj4+ICsKPj4gK2ludCB1bnJlZ2lzdGVyX2tob19ub3RpZmllcihzdHJ1
+Y3Qgbm90aWZpZXJfYmxvY2sgKm5iKQo+PiArewo+PiArICAgICByZXR1cm4gYmxvY2tpbmdfbm90
+aWZpZXJfY2hhaW5fdW5yZWdpc3Rlcigma2hvLmNoYWluX2hlYWQsIG5iKTsKPj4gK30KPj4gK0VY
+UE9SVF9TWU1CT0xfR1BMKHVucmVnaXN0ZXJfa2hvX25vdGlmaWVyKTsKPj4gKwo+PiArYm9vbCBr
+aG9faXNfYWN0aXZlKHZvaWQpCj4+ICt7Cj4+ICsgICAgIHJldHVybiBraG8uYWN0aXZlOwo+PiAr
+fQo+PiArRVhQT1JUX1NZTUJPTF9HUEwoa2hvX2lzX2FjdGl2ZSk7Cj4+ICsKPiBXaHkgc2hvdWxk
+IHRoZXNlIGhlbHBlcnMgYmUgcmVzdHJpY3RlZCB0byBHUEwgY29kZT8KCgpUaGF0J3MgYSBzaW1w
+bGUgb25lOiBFdmVyeXRoaW5nIHNob3VsZCBiZSBFWFBPUlRfU1lNQk9MX0dQTCBieSBkZWZhdWx0
+LiAKWW91IG5lZWQgdG8gaGF2ZSByZWFsbHkgZ29vZCByZWFzb25zIHRvIGV4cG9ydCBhbnl0aGlu
+ZyBmb3Igbm9uLUdQTCAKbW9kdWxlcy4gSSBkb24ndCBoYXZlIGEgZ29vZCByZWFzb24gZm9yIHRo
+ZW0sIHNvIGl0J3MgR1BMIG9ubHkgOikKCgpBbGV4CgoKCgoKQW1hem9uIERldmVsb3BtZW50IENl
+bnRlciBHZXJtYW55IEdtYkgKS3JhdXNlbnN0ci4gMzgKMTAxMTcgQmVybGluCkdlc2NoYWVmdHNm
+dWVocnVuZzogQ2hyaXN0aWFuIFNjaGxhZWdlciwgSm9uYXRoYW4gV2Vpc3MKRWluZ2V0cmFnZW4g
+YW0gQW10c2dlcmljaHQgQ2hhcmxvdHRlbmJ1cmcgdW50ZXIgSFJCIDE0OTE3MyBCClNpdHo6IEJl
+cmxpbgpVc3QtSUQ6IERFIDI4OSAyMzcgODc5CgoK
 
 
