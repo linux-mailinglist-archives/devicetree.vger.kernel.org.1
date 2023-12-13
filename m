@@ -1,126 +1,95 @@
-Return-Path: <devicetree+bounces-24754-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24755-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 442BA81113A
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 13:43:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25718811180
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 13:49:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EFEFE281BF6
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 12:43:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D40BB281DB7
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 12:49:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 825C928E26;
-	Wed, 13 Dec 2023 12:43:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 962512940A;
+	Wed, 13 Dec 2023 12:49:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SkigjsFv"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Ot3yupre"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63A82F4F2
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 12:43:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA4DAC433C8;
-	Wed, 13 Dec 2023 12:43:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702471387;
-	bh=FjDgTJb3iN+IW1iAF5vDMCIbbGw0B3symE2ANlrDB5w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SkigjsFv2x+gC7EpuxdQxnywJ4suCEtmoH+ePSuVjVkflsKPbVS+huHzufrgTjrjo
-	 3RrlcuVx1GTL3bskd5v5WCO092kIZQLlluttUivdP4LB1zQVFR/Kx3U3pm5gogdwRH
-	 WEJHJKX5m3E5VGuY5BA4IFLd6bdgvtoPkjxJgN7/OB0Hub1gkir9kVmHmgQbKfovod
-	 DJAFm7NAj+00iDIPJS7n95K2Z+6sUYLaLcMy0K7Q8fAN+k+x9NDTWm05zSXAC5KnVb
-	 j8wMrORBndfOPcPaHy8wcYtPiAg5Iw63J+1n0yvJ9ppLOJ3xE2L/LSdupZX1DJ5jA6
-	 e3b8y6wd5J77w==
-Date: Wed, 13 Dec 2023 12:43:01 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Sia Jee Heng <jeeheng.sia@starfivetech.com>
-Cc: kernel@esmil.dk, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	krzk@kernel.org, conor+dt@kernel.org, paul.walmsley@sifive.com,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	daniel.lezcano@linaro.org, tglx@linutronix.de, anup@brainfault.org,
-	gregkh@linuxfoundation.org, jirislaby@kernel.org,
-	michal.simek@amd.com, michael.zhu@starfivetech.com,
-	drew@beagleboard.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	leyfoon.tan@starfivetech.com,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v3 2/6] dt-bindings: riscv: Add StarFive JH8100 SoC
-Message-ID: <20231213-imminent-favorable-a7d25e6555af@spud>
-References: <20231201121410.95298-1-jeeheng.sia@starfivetech.com>
- <20231201121410.95298-3-jeeheng.sia@starfivetech.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CE4E10C;
+	Wed, 13 Dec 2023 04:49:42 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3BDCnVO6085317;
+	Wed, 13 Dec 2023 06:49:31 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1702471771;
+	bh=OIRYLUKZ5INmTYZOwweJDDv9as22X7DSzbTpPm9Id1Y=;
+	h=From:To:CC:Subject:Date;
+	b=Ot3yupretPRMzTnRSnaIGCfcXf5QSquZCWSgFp63j2TD1lvrQOXv9QuTCU85LcwOs
+	 SlF2l6wT1J8UcrgSllruIBH2ev5Att/PCOOg3DArlr/wjlSr4mfdTZZ19o//KrQmLH
+	 jnS1qE6vQOgcIn9PlLgh8XZfJhiY4wELYZBHrJEI=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3BDCnV4T091743
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 13 Dec 2023 06:49:31 -0600
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 13
+ Dec 2023 06:49:31 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 13 Dec 2023 06:49:31 -0600
+Received: from localhost ([10.24.69.141])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3BDCnUkg092357;
+	Wed, 13 Dec 2023 06:49:31 -0600
+From: Vaishnav Achath <vaishnav.a@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <j-choudhary@ti.com>, <u-kumar1@ti.com>,
+        <vaishnav.a@ti.com>
+Subject: [PATCH 0/3] arm64: dts: ti: Introduce J722S SoC and EVM
+Date: Wed, 13 Dec 2023 18:19:27 +0530
+Message-ID: <20231213124930.3012-1-vaishnav.a@ti.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="zXeS7EP6Yj4II9Wy"
-Content-Disposition: inline
-In-Reply-To: <20231201121410.95298-3-jeeheng.sia@starfivetech.com>
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
+This series adds basic support for J722S family of SoCs. Also add
+J722S EVM support with basic peripheral like MMC and UART.
 
---zXeS7EP6Yj4II9Wy
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+TRM: https://www.ti.com/lit/zip/sprujb3
+EVM Schematics: https://www.ti.com/lit/zip/sprr495
 
-On Fri, Dec 01, 2023 at 08:14:06PM +0800, Sia Jee Heng wrote:
-> Add device tree bindings for the StarFive JH8100 RISC-V SoC.
->=20
-> Signed-off-by: Sia Jee Heng <jeeheng.sia@starfivetech.com>
-> Reviewed-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  Documentation/devicetree/bindings/riscv/starfive.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/riscv/starfive.yaml b/Docu=
-mentation/devicetree/bindings/riscv/starfive.yaml
-> index cc4d92f0a1bf..12d7844232b8 100644
-> --- a/Documentation/devicetree/bindings/riscv/starfive.yaml
-> +++ b/Documentation/devicetree/bindings/riscv/starfive.yaml
-> @@ -30,6 +30,10 @@ properties:
->                - starfive,visionfive-2-v1.3b
->            - const: starfive,jh7110
-> =20
-> +      - items:
-> +          - enum:
-> +              - starfive,jh8100-evb
+Bootlog:
+https://gist.github.com/vaishnavachath/23d859925277df9ccd628190e7c23371
 
-Hmm, reading some of the other threads it appears that the evaluation
-platform that you guys have is actually just an FPGA? Could you please
-provide more information as to what this "evb" actually is?
+Depends on:
+https://lore.kernel.org/all/20231211132600.25289-1-vaishnav.a@ti.com/
+https://lore.kernel.org/all/20231213081318.26203-1-vaishnav.a@ti.com/
 
-If it is just an FPGA-based evaluation platform I don't think that we
-want to merge patches for the platform. I'm fine with patches adding
-peripheral support, but the soc/board dts files and things like pinctrl
-or clock drivers I am not keen on.
-Perhaps Emil also has an opinion on this.
+Vaishnav Achath (3):
+  dt-bindings: arm: ti: Add bindings for J722S SoCs
+  arm64: dts: ti: Introduce J722S family of SoCs
+  arm64: dts: ti: Add support for TI J722S Evaluation Module
 
-Thanks,
-Conor.
+ .../devicetree/bindings/arm/ti/k3.yaml        |   6 +
+ arch/arm64/boot/dts/ti/Makefile               |   3 +
+ arch/arm64/boot/dts/ti/k3-j722s-evm.dts       | 253 ++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j722s.dtsi          | 275 ++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-pinctrl.h           |   3 +
+ 5 files changed, 540 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j722s-evm.dts
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j722s.dtsi
 
-> +          - const: starfive,jh8100
->  additionalProperties: true
-> =20
->  ...
-> --=20
-> 2.34.1
->=20
->=20
+-- 
+2.17.1
 
---zXeS7EP6Yj4II9Wy
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZXmm1QAKCRB4tDGHoIJi
-0q72AQDhgF9fijVdRhbKeMyERN4WLOL/D6o7cI1DU92ChEiNoQEAq6oZD+7p/il+
-dgQb7NS+xXKd9Q3hwC949WAUiDm63A8=
-=PqAD
------END PGP SIGNATURE-----
-
---zXeS7EP6Yj4II9Wy--
 
