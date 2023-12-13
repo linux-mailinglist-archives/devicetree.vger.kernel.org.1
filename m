@@ -1,125 +1,86 @@
-Return-Path: <devicetree+bounces-24941-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24942-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C644811B57
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 18:38:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44AC7811B8E
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 18:53:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 222B71F21990
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 17:38:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D8C1282405
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 17:53:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 125B256B98;
-	Wed, 13 Dec 2023 17:38:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U6zv71lL"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E43A5953F;
+	Wed, 13 Dec 2023 17:53:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E788C8534B;
-	Wed, 13 Dec 2023 17:38:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2ACBC433C7;
-	Wed, 13 Dec 2023 17:38:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702489110;
-	bh=27cCuNNlr0k/6GtYxt0e4EOa/N1Nghrs6dzqZcWq72Y=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=U6zv71lLi/wR9iYiX5qrn+a4OU/BACTvRrvTGl6CAk6PH1XHmtQSOe2fglpaGlX83
-	 zLeyRY8RbYzULmB8XEg02yBHKY65u0R/1FLfOoXD72gdAI0K4BuiqML6PB6Iu91gW6
-	 JiOl+RiDCX/li3CIHSJYhwh6YmwiaThWKR6sQF/0aQMZlti+8jndieu6h7cm3KrRZG
-	 8E6rrfSYblkT6lAkPwO/YWQ467EPqYyTgyJ4f7nf/nrqhJwJ4aCut3Q/Fx4rA7jb3t
-	 zI4uW5IL4ioqqmtY4GDyxDmHyFu13smWcCKPn9hE8i4Yaiseqlhk84VDo50D3gShSd
-	 QuYMlzOYqutjg==
-Received: from johan by xi.lan with local (Exim 4.96.2)
-	(envelope-from <johan@kernel.org>)
-	id 1rDTBk-0007iv-1i;
-	Wed, 13 Dec 2023 18:38:28 +0100
-Date: Wed, 13 Dec 2023 18:38:28 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 00/11] ARM/arm64: dts: qcom: fix USB wakeup interrupt
- types
-Message-ID: <ZXnsFIl9i6Ix-woH@hovoldconsulting.com>
-References: <20231120164331.8116-1-johan+linaro@kernel.org>
- <ZXc7KcjF82EgiXWd@hovoldconsulting.com>
- <06354190-b572-46e4-8036-0fae7f15dd15@quicinc.com>
+Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com [209.85.161.48])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FE0483;
+	Wed, 13 Dec 2023 09:53:33 -0800 (PST)
+Received: by mail-oo1-f48.google.com with SMTP id 006d021491bc7-58d08497aa1so4612175eaf.0;
+        Wed, 13 Dec 2023 09:53:33 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702490012; x=1703094812;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FqqY6lSB+RFit+gJ+Ct64NvIN16qb9HYYOP9L5yB65g=;
+        b=bpGICFO5RnXWGs1N8uWDMMcbMMlvHYTEZg55gm/Pc7TJ8iGEGeBSnYvP0ViXcpOHL8
+         alCGkjMs38wVLCY6zUcapYaW9xWPGyFni7ZDeRg8gqYfIrlKZfPbGAeO7VCOA9ldZN+X
+         eEWhmueGphFwTYigUei+k6BQNdFSi8bT4XbwoesnOEDraxmImFNlqruXMIEWKhwNWR1w
+         x7oF63T7XhEYXwU/8nWiCgg0Z+g2uIMGaXv6W8EY7gNpUlqtwF4+jOWD28tU32/G2VQT
+         Z1FeJcFK4EharZ18bY0LsY2c2/zdYfrYR5PaEY1rzYmjemAGXhtgXtBJg/TtJHDmlcfy
+         N6Tg==
+X-Gm-Message-State: AOJu0Yw5cPr6SWPvcKlG22Wid9IqVrvGTvxOKXaUFJOAWdJ7S9OzHY4+
+	ILHG8pnnMyHFXMd/d28Q0hR+gyJL0g==
+X-Google-Smtp-Source: AGHT+IGGnK4qpiuPojyap8RSF0CD8y3a4ePwM9/4ReTh5wQmPg8Bwi+PLX+Jg8DxKI3K2cYH/jaXZA==
+X-Received: by 2002:a05:6820:1ac9:b0:590:7b3d:dbcc with SMTP id bu9-20020a0568201ac900b005907b3ddbccmr7238000oob.6.1702490012455;
+        Wed, 13 Dec 2023 09:53:32 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id f203-20020a4a58d4000000b0059057416278sm3149398oob.6.2023.12.13.09.53.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Dec 2023 09:53:31 -0800 (PST)
+Received: (nullmailer pid 1588079 invoked by uid 1000);
+	Wed, 13 Dec 2023 17:53:30 -0000
+Date: Wed, 13 Dec 2023 11:53:30 -0600
+From: Rob Herring <robh@kernel.org>
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc: linux-kernel@vger.kernel.org, michael@amarulasolutions.com, 
+	Amarula patchwork <linux-amarula@amarulasolutions.com>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Conor Dooley <conor+dt@kernel.org>, 
+	Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>, Fabio Estevam <festevam@gmail.com>, 
+	Inki Dae <inki.dae@samsung.com>, Jagan Teki <jagan@amarulasolutions.com>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, Maxime Ripard <mripard@kernel.org>, 
+	NXP Linux Team <linux-imx@nxp.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Peng Fan <peng.fan@nxp.com>, Pengutronix Kernel Team <kernel@pengutronix.de>, Robert Foss <rfoss@kernel.org>, 
+	Sam Ravnborg <sam@ravnborg.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Shawn Guo <shawnguo@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v6 0/4] Add displays support for bsh-smm-s2/pro boards
+Message-ID: <20231213175330.GA1582432-robh@kernel.org>
+References: <20231213140437.2769508-1-dario.binacchi@amarulasolutions.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <06354190-b572-46e4-8036-0fae7f15dd15@quicinc.com>
+In-Reply-To: <20231213140437.2769508-1-dario.binacchi@amarulasolutions.com>
 
-On Tue, Dec 12, 2023 at 03:00:07PM +0530, Krishna Kurapati PSSNV wrote:
-> On 12/11/2023 10:09 PM, Johan Hovold wrote:
-> > On Mon, Nov 20, 2023 at 05:43:20PM +0100, Johan Hovold wrote:
-
-> > Konrad reported off-list that the sc8180x patch in this series breaks
-> > probe of the dwc3 driver.
-> > 
-> > Turns out a number of these SoCs were using GIC interrupts for the
-> > DP/DM_HS_PHY interrupts despite the fact that the driver tries to
-> > reconfigure these as IRQ_TYPE_EDGE_FALLING (which the GIC does not
-> > support) to detect disconnect events during suspend.
-> > 
-> > This is obviously broken and the proper fix is to replace the GIC
-> > interrupts with the corresponding PDC interrupts. I believe Konrad is
-> > digging out the magic numbers at this moment.
-> > 
-> > The following patches will need a follow-up fix:
-> > 
-> >>    ARM: dts: qcom: sdx55: fix USB wakeup interrupt types
-> > 
-> >>    arm64: dts: qcom: sc8180x: fix USB wakeup interrupt types
-> >>    arm64: dts: qcom: sdm670: fix USB wakeup interrupt types
-> >>    arm64: dts: qcom: sdm845: fix USB wakeup interrupt types
-> >>    arm64: dts: qcom: sm6375: fix USB wakeup interrupt types
-> >>    arm64: dts: qcom: sm8150: fix USB wakeup interrupt types
-
->   If it helps, I tried to dig up the PDC numbers for corresponding 
-> GIC_SPI vectors:
-
-Thanks, Krisha, that helps a lot.
-
-I've sent two series (for arm and arm64) based on yours and Konrad's
-input:
-
-	https://lore.kernel.org/lkml/20231213173131.29436-1-johan+linaro@kernel.org/
-	https://lore.kernel.org/lkml/20231213173403.29544-1-johan+linaro@kernel.org/
-
-> SM8150:
+On Wed, Dec 13, 2023 at 03:03:41PM +0100, Dario Binacchi wrote:
+> The series adds drivers for the displays used by bsh-smm-s2/pro boards.
+> This required applying some patches to the samsung-dsim driver.
 > 
-> eud_p0_dpse_int_mx	apps_pdc_irq_out[9]	SYS_apcsQgicSPI[489]
-> eud_p0_dmse_int_mx    apps_pdc_irq_out[8]	SYS_apcsQgicSPI[488]
-> qmp_usb3_lfps_rxterm_irq apps_pdc_irq_out[6]	SYS_apcsQgicSPI[486]
-> usb31_power_event_irq	SYS_apcsQgicSPI[130]
-> usb31_hs_phy_irq	SYS_apcsQgicSPI[131]
-> 
-> interrupts-extended = <&pdc 9 IRQ_TYPE_EDGE_RISING>,
-> 			<&intc GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH>,
-> 			<&pdc 6 IRQ_TYPE_LEVEL_HIGH>,
-> 			<&pdc 8 IRQ_TYPE_EDGE_RISING>;
-> 
-> interrupt-names = "dp_hs_phy_irq", "pwr_event_irq",
-> 		"ss_phy_irq", "dm_hs_phy_irq";
+> Changes in v6:
+> - Drop patches:
+>   - [06/10] drm/panel: Add Synaptics R63353 panel driver
 
-Do you have the corresponding numbers also for the second controller on
-SM8150? I inferred them from SDM845, but it would good to verify that.
+The binding should have gone with this. I'll apply it then.
 
-And can someone dig out the corresponding SS PHY interrupt for sc8180x?
-
-Johan
+Rob
 
