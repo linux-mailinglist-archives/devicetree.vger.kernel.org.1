@@ -1,58 +1,58 @@
-Return-Path: <devicetree+bounces-24889-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24890-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E439681193D
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 17:25:56 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72D5481193E
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 17:25:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 733F21C20F93
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 16:25:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5BE491C20F66
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 16:25:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D973635EF1;
-	Wed, 13 Dec 2023 16:25:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32D1C35EFA;
+	Wed, 13 Dec 2023 16:25:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MBrWmTLs"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pzuNlUOh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA02FD0
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 08:25:43 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-50c222a022dso7795367e87.1
-        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 08:25:43 -0800 (PST)
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D89C8B9
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 08:25:44 -0800 (PST)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-5525ef84512so74851a12.0
+        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 08:25:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702484742; x=1703089542; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702484743; x=1703089543; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
         bh=uDQI7CGNXE5QtDrGTA7vjhneNjlnGJyq3B8Gpd+RnjY=;
-        b=MBrWmTLsfVs9CMTTY1sUTDHbF4DlS8phTh8izquwAKAb+isBV8MzcPat9BUccNIBdK
-         6mLpuE+pSxCke3K+lPWq909tvGF9YMItP9ogpgViObCXbopakcBz6Ys3twOlgkXkb387
-         3Yl3yt/x0VSQ1gu0m3SbIJkv76LLgRzLmSIW51PXjjegzNB+fWGak78i+4qh7+JEev5s
-         MBAXCnSLX8pqqe8tDc71mrpktjsXDv/Rd9csEwoa+sDsPsGK3nKcyUQ/PVOhM58E4eSa
-         IOpp6Tct7qz+ULB7n3ie14DhvSG7sSnIckkH45ny7sw0TYuNcYrZ0YMjYbV2dW+AvS+B
-         2laQ==
+        b=pzuNlUOhIoTE4WWFVONCAdtW6UTIvY2igyhxfa08zkdkKM+BAjSBHODmWqaIU+iXcb
+         6BnHlv64y7fq50Wn286F5ME9RGmDLbLojh4we1hF2gB+zd0lij1dSWRwZpnq7Wb3DNyX
+         NF3nyrE+OH7VljP4LBlyg6Y24cL6QcpCEntCIFCMqnb3rzzd+8S6xKDRPUDRrvf8fofQ
+         wWDg+H4ZNGW40RIhmhaCHafBwmmt82LuW2Fjb7o0kLlzSeAhB17gNYJiiSe4fs8eZg7B
+         RGA+55w2qEJw1jvjqybp32MLflhvQIDkCmDQ+tMEQj02vzFsOTyayAMGr8uwQQNPyW6A
+         0HFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702484742; x=1703089542;
+        d=1e100.net; s=20230601; t=1702484743; x=1703089543;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
         bh=uDQI7CGNXE5QtDrGTA7vjhneNjlnGJyq3B8Gpd+RnjY=;
-        b=MIZDr0uqxPETDH/mXZGQTkiEf6XRbW+kvKoXIgTs9NrtPQI+muiiB++rvxdoeju/bR
-         N2f57a6ae4jb0Wq5xI2shmdyTIlYtUDxEHK0PJF3lOEgBkTx8/63uSaMZTdYnuVzVJJx
-         rorGVvNTH43EiTENVFTb7CIUHnE6Gm/0w61gJlisVrXtJkodB0EcjZQjtveqK1E0tH9l
-         HxA0yZ7Jpklx+yOO13IVHW+dhh+6lacq4RNA+gU2fq+SMgEQ0eH6F3hoicKwBs6AWVSZ
-         aYvEpkuCaVoAJ4J3Am0rs5SHpX9gZQOo1/NtrihhTW9vGjeB9HXu+/mtnOr+jS9bAw0j
-         +kNQ==
-X-Gm-Message-State: AOJu0Yw1kt3RRZRXGC1qlqWNqGHVB5nMHqPVKXjA4lMcL81LYwTXWrVe
-	ufh2TtOVh0NtRh9ycqc8Q3XV4A==
-X-Google-Smtp-Source: AGHT+IFjnrOCSXPAAVknPOOlr+r0qRzJnlPFXP1AYOv7yP7vWLlq+2T00ZQXaFnaFDbSBQ3uhGFykg==
-X-Received: by 2002:a05:6512:401f:b0:50c:1d0e:5298 with SMTP id br31-20020a056512401f00b0050c1d0e5298mr4840221lfb.82.1702484742243;
-        Wed, 13 Dec 2023 08:25:42 -0800 (PST)
+        b=aFfJwb4fiNDHhaRUu966jBnhwI4MoxnZ8o2LFDu5z24n6rpaEZLKzIKvHSAW9KtaCP
+         55QaCZNTQTJ55B3CYd+ZLEsDqrFAbwz0jjvHufAR+ItjVxYajVKdJseGR8BH+B8vCrsA
+         E7FWNzD/doorYSvPnh9lwGOaYjMA7jrGxbJadjVunio257l747A3VwF0xKMp2iwqbp5s
+         Vg03h095U2XUwbP0bbU7Kx8EBy8DnvdSkZXb2UfmrrkY+hj6THz+/EByUT++WvHIQ960
+         03hgM6GxnDPLBr6xd1faMSmGdCML9F0dO4wG70zCjzqmE9NY4Jnjiy9m0DK3Znjcbxi2
+         7gJw==
+X-Gm-Message-State: AOJu0YzTyw80x8HDXFgHxtjs64SazDYLaDHKtpf24CmnQLKl9uOqRJPV
+	wQpDrFlaivFrQZSjzdq8LfxbYQ==
+X-Google-Smtp-Source: AGHT+IFYR8rsO1VF//8r3xp61FMiOmVTtJhWR3SeKc7XhW8dyZuYFpYd2aa1O950RUJUMP4pn9sS4A==
+X-Received: by 2002:a17:906:c30a:b0:a1e:26ae:3ac5 with SMTP id s10-20020a170906c30a00b00a1e26ae3ac5mr4881307ejz.39.1702484743452;
+        Wed, 13 Dec 2023 08:25:43 -0800 (PST)
 Received: from krzk-bin.. ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id kv18-20020a17090778d200b00a1dfc541282sm8048914ejc.225.2023.12.13.08.25.41
+        by smtp.gmail.com with ESMTPSA id kv18-20020a17090778d200b00a1dfc541282sm8048914ejc.225.2023.12.13.08.25.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Dec 2023 08:25:41 -0800 (PST)
+        Wed, 13 Dec 2023 08:25:43 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Andy Gross <agross@kernel.org>,
 	Bjorn Andersson <andersson@kernel.org>,
@@ -64,9 +64,9 @@ To: Andy Gross <agross@kernel.org>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] arm64: dts: qcom: sm8550: move Soundwire pinctrl to its nodes
-Date: Wed, 13 Dec 2023 17:25:34 +0100
-Message-Id: <20231213162536.171475-3-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 3/4] arm64: dts: qcom: sm8550: move Soundwire pinctrl to its nodes
+Date: Wed, 13 Dec 2023 17:25:35 +0100
+Message-Id: <20231213162536.171475-4-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231213162536.171475-1-krzysztof.kozlowski@linaro.org>
 References: <20231213162536.171475-1-krzysztof.kozlowski@linaro.org>
