@@ -1,78 +1,159 @@
-Return-Path: <devicetree+bounces-24660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24661-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C052E810CE1
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 10:03:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3A04810CE4
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 10:03:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 640E21F2107C
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 09:03:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9477928148D
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 09:03:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 749741EB42;
-	Wed, 13 Dec 2023 09:02:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3329D1EB4C;
+	Wed, 13 Dec 2023 09:03:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nJqE7Ae0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46ED6B7
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 01:02:55 -0800 (PST)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[IPv6:::1])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <l.stach@pengutronix.de>)
-	id 1rDL8n-00039X-80; Wed, 13 Dec 2023 10:02:53 +0100
-Message-ID: <a8188accccc12b524de0e479a1780f8447fb45dd.camel@pengutronix.de>
-Subject: Re: [PATCH 1/3] drm/mxsfb: Add an entry for "fsl,imx8mq-lcdif"
-From: Lucas Stach <l.stach@pengutronix.de>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: marex@denx.de, devicetree@vger.kernel.org, conor+dt@kernel.org, Fabio
- Estevam <festevam@denx.de>, kernel@puri.sm,
- dri-devel@lists.freedesktop.org,  robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, martink@posteo.de
-Date: Wed, 13 Dec 2023 10:02:51 +0100
-In-Reply-To: <CAOMZO5D0rxTmxGZX1Obfm9+t46gW6XpGWDcHDzocQd6p5OokBg@mail.gmail.com>
-References: <20231211204138.553141-1-festevam@gmail.com>
-	 <9089fb993eb0b2b630784e5b91cb88c1ff2f45fb.camel@pengutronix.de>
-	 <CAOMZO5D0rxTmxGZX1Obfm9+t46gW6XpGWDcHDzocQd6p5OokBg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AB7DB7
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 01:03:00 -0800 (PST)
+Received: by mail-pl1-x62b.google.com with SMTP id d9443c01a7336-1d098b87eeeso59061675ad.0
+        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 01:03:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702458180; x=1703062980; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zQ5v76BnrmLWivZZ9vq4Wy8nZbRsobKtjTZUA/itlB4=;
+        b=nJqE7Ae0E6XlIFIbzOUZjvgIcTUdLs2raRXlc+qtRt4gfRVcq6AzcsbRR3FwSnwDd5
+         RR9pKjlFhsgInOyJsdWBbWCGcGl6MHx6G6w+ftQMi1reCeukgD0Q/XMm6zO8S6tkp3IH
+         uQgDcwalF5W8BGhumz/ZOIqjTpUOL4oj0wVLnbux1K7vv5w3pXjdB/u6BcuaSfiAlSvP
+         aZzafSvjgIl18h0z20pEFbPoofXGc9uxsjahZ988JjE6TYeKWb4nUO7oQeLYpmQpqH05
+         NSZDcH5au93eM+kxLRxSECdqVf6zHsxWt5I3WNsO0mmBdSkqWnzvG90QxIjbOgEeEMXg
+         HHyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702458180; x=1703062980;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=zQ5v76BnrmLWivZZ9vq4Wy8nZbRsobKtjTZUA/itlB4=;
+        b=Ozq8PRI9CQMb38FLLV5JDkPy72ueX65KACdWTnpjM9V+notsywivGjZLmhBAmABBuo
+         B48D6/zt7gxk1DpezifFhXTXoSHIbx7AsFWSPmJ+/wUa3Xl9BfzYiMllANKcVkXqnX/X
+         qqOCwq0gGWCDpV7SjsMPzVPkSrzjtXUkujzF1hNnL897p8N4vCe9dAdCRF0J1PfvEYjw
+         24dJw7cvToGLkC3b1w2MnlUSkhSegby4qLCXxgKYmpUAAIGcVIeIioBQAuXzn+HF3IRv
+         TRW8ppZ/5hqLw5EiHRSwDh18YjIMkyU68wM9rhrNaXzWNKiYzR/NNxp1cjZeMZeUyA40
+         Up1w==
+X-Gm-Message-State: AOJu0Yzzb0CzmGiaodv6jCsWZ4FS8qawdWdoG24mBvhHBA51Sx0vGVU8
+	EB719D5tOs6DQOynePjIb+p1og==
+X-Google-Smtp-Source: AGHT+IGvzCS6OB++JiwOWbdsEBhTqhA3QwJu/M2SlJeaob+iOdQDtV+McX/e9U1lUrRgrMI4tWneow==
+X-Received: by 2002:a17:902:7d8a:b0:1d2:eb05:9d05 with SMTP id a10-20020a1709027d8a00b001d2eb059d05mr6614482plm.90.1702458179815;
+        Wed, 13 Dec 2023 01:02:59 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:596e:6d4f:fc0a:ec65? ([2a01:e0a:982:cbb0:596e:6d4f:fc0a:ec65])
+        by smtp.gmail.com with ESMTPSA id h9-20020a170902748900b001d33e6521c1sm2516143pll.102.2023.12.13.01.02.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Dec 2023 01:02:59 -0800 (PST)
+Message-ID: <365e012d-7fde-4cf9-b4c6-bebf2dfa53cf@linaro.org>
+Date: Wed, 13 Dec 2023 10:02:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH] arm64: dts: qcom: sm8550: add missing two RX Soundwire
+ ports in configuration
+Content-Language: en-US, fr
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231212185415.228003-1-krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <20231212185415.228003-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Fabio,
+On 12/12/2023 19:54, Krzysztof Kozlowski wrote:
+> The Qualcomm SM8550 RX Soundwire port configuration was taken from
+> downstream sources ("rx_frame_params_default"), but without two ports.
+> Correct the DTS, even though no practical impact was observed.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+> 
+> Not adding fixes table, as I am not able to identify whether this was
+> actually a bug.
+> ---
+>   arch/arm64/boot/dts/qcom/sm8550.dtsi | 22 +++++++++++-----------
+>   1 file changed, 11 insertions(+), 11 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> index 17c4f0a7638a..1f06fd33d1ce 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> @@ -2109,18 +2109,18 @@ swr1: soundwire-controller@6ad0000 {
+>   			clock-names = "iface";
+>   			label = "RX";
+>   
+> -			qcom,din-ports = <0>;
+> -			qcom,dout-ports = <10>;
+> +			qcom,din-ports = <1>;
+> +			qcom,dout-ports = <11>;
+>   
+> -			qcom,ports-sinterval =		/bits/ 16 <0x03 0x3f 0x1f 0x07 0x00 0x18f 0xff 0xff 0xff 0xff>;
+> -			qcom,ports-offset1 =		/bits/ 8 <0x00 0x00 0x0b 0x01 0x00 0x00 0xff 0xff 0xff 0xff>;
+> -			qcom,ports-offset2 =		/bits/ 8 <0x00 0x00 0x0b 0x00 0x00 0x00 0xff 0xff 0xff 0xff>;
+> -			qcom,ports-hstart =		/bits/ 8 <0xff 0x03 0xff 0xff 0xff 0x08 0xff 0xff 0xff 0xff>;
+> -			qcom,ports-hstop =		/bits/ 8 <0xff 0x06 0xff 0xff 0xff 0x08 0xff 0xff 0xff 0xff>;
+> -			qcom,ports-word-length =	/bits/ 8 <0x01 0x07 0x04 0xff 0xff 0x0f 0xff 0xff 0xff 0xff>;
+> -			qcom,ports-block-pack-mode =	/bits/ 8 <0xff 0x00 0x01 0xff 0xff 0x00 0xff 0xff 0xff 0xff>;
+> -			qcom,ports-block-group-count =	/bits/ 8 <0xff 0xff 0xff 0xff 0x00 0x00 0xff 0xff 0xff 0xff>;
+> -			qcom,ports-lane-control =	/bits/ 8 <0x01 0x00 0x00 0x00 0x00 0x00 0xff 0xff 0xff 0xff>;
+> +			qcom,ports-sinterval =		/bits/ 16 <0x03 0x3f 0x1f 0x07 0x00 0x18f 0xff 0xff 0xff 0xff 0xff 0xff>;
+> +			qcom,ports-offset1 =		/bits/ 8 <0x00 0x00 0x0b 0x01 0x00 0x00 0xff 0xff 0xff 0xff 0xff 0xff>;
+> +			qcom,ports-offset2 =		/bits/ 8 <0x00 0x00 0x0b 0x00 0x00 0x00 0xff 0xff 0xff 0xff 0xff 0xff>;
+> +			qcom,ports-hstart =		/bits/ 8 <0xff 0x03 0xff 0xff 0xff 0x08 0xff 0xff 0xff 0xff 0xff 0xff>;
+> +			qcom,ports-hstop =		/bits/ 8 <0xff 0x06 0xff 0xff 0xff 0x08 0xff 0xff 0xff 0xff 0xff 0xff>;
+> +			qcom,ports-word-length =	/bits/ 8 <0x01 0x07 0x04 0xff 0xff 0x0f 0xff 0xff 0xff 0xff 0xff 0xff>;
+> +			qcom,ports-block-pack-mode =	/bits/ 8 <0xff 0x00 0x01 0xff 0xff 0x00 0xff 0xff 0xff 0xff 0xff 0xff>;
+> +			qcom,ports-block-group-count =	/bits/ 8 <0xff 0xff 0xff 0xff 0x00 0x00 0xff 0xff 0xff 0xff 0xff 0xff>;
+> +			qcom,ports-lane-control =	/bits/ 8 <0x01 0x00 0x00 0x00 0x00 0x00 0xff 0xff 0xff 0xff 0xff 0xff>;
+>   
+>   			#address-cells = <2>;
+>   			#size-cells = <0>;
 
-Am Dienstag, dem 12.12.2023 um 15:28 -0300 schrieb Fabio Estevam:
-> Hi Lucas,
->=20
-> On Tue, Dec 12, 2023 at 3:19=E2=80=AFPM Lucas Stach <l.stach@pengutronix.=
-de> wrote:
->=20
-> > I don't really like this series. While we don't make any strong
-> > guarantees in this way, it breaks booting older kernels with a new DT.
->=20
-> I thought we needed only to guarantee that old DTs still run with
-> newer kernels, not the other way around.
->=20
-That's right. At least in the i.MX world we never made a strong
-guarantee in that way.
-
-Still we should not break it deliberately if there isn't a good reason
-to do so. And I _feel_ that "DT schema isn't able to express the SoC
-integration" isn't a good enough reason to break things.
-
-But maybe there is a way to describe this in the DT schema, that we
-aren't aware of yet. I'm not quite up-to-date with all the DT schema
-stuff...
-
-Regards,
-Lucas
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
