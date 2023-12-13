@@ -1,192 +1,68 @@
-Return-Path: <devicetree+bounces-24648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24649-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EEE3810C13
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 09:10:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DBD86810C1B
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 09:12:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B8DFB1F211B0
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 08:10:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 91C0B1F210D3
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 08:12:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00B9A1D527;
-	Wed, 13 Dec 2023 08:10:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80F5B1CF94;
+	Wed, 13 Dec 2023 08:12:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="fRcovOwJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QJdSEwli"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 568B7EA
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 00:10:42 -0800 (PST)
-Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
-	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20231213081040epoutp0103c296b60e51b572f5482e5cc5525df3~gVdbv36Kw2362223622epoutp01X
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 08:10:40 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20231213081040epoutp0103c296b60e51b572f5482e5cc5525df3~gVdbv36Kw2362223622epoutp01X
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1702455040;
-	bh=PdS2y8Co78/Fv1mYnqiLVsgstnUodpEglwoVK3SJid0=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=fRcovOwJsTHZFRhLPuLh6R8WT98nYam3zbIb+PxQ2d2sA+28Ge+2bS7j6k0Ad2mE9
-	 mnXqr22bKUYgABa5R2LZaeif12N9c6OtExh1m937tzBWgnlgzxmjN0GqGZ4+IV7Zva
-	 up1Ry7/PBIXqQqWF/z3IJGk/cRH6Gs5rGVTr7QTU=
-Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
-	epcas2p4.samsung.com (KnoxPortal) with ESMTP id
-	20231213081040epcas2p493e0b33864a0d883c67bf2083174dec9~gVdbMt9mf2574525745epcas2p4G;
-	Wed, 13 Dec 2023 08:10:40 +0000 (GMT)
-Received: from epsmges2p1.samsung.com (unknown [182.195.36.70]) by
-	epsnrtp3.localdomain (Postfix) with ESMTP id 4Sqp7z4m1Lz4x9Q8; Wed, 13 Dec
-	2023 08:10:39 +0000 (GMT)
-Received: from epcas2p2.samsung.com ( [182.195.41.54]) by
-	epsmges2p1.samsung.com (Symantec Messaging Gateway) with SMTP id
-	04.DE.10006.FF669756; Wed, 13 Dec 2023 17:10:39 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-	epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
-	20231213081039epcas2p3cbe854e785e78a1a650b29fcb24ddc23~gVdaQApBI1435014350epcas2p3S;
-	Wed, 13 Dec 2023 08:10:39 +0000 (GMT)
-Received: from epsmgmcp1.samsung.com (unknown [182.195.42.82]) by
-	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20231213081039epsmtrp291dfabcc572bf9c164ecc3a49596b3cc~gVdaPCzTk2160121601epsmtrp2B;
-	Wed, 13 Dec 2023 08:10:39 +0000 (GMT)
-X-AuditID: b6c32a45-179ff70000002716-f3-657966fffc7f
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-	epsmgmcp1.samsung.com (Symantec Messaging Gateway) with SMTP id
-	46.86.18939.EF669756; Wed, 13 Dec 2023 17:10:39 +0900 (KST)
-Received: from [10.229.8.168] (unknown [10.229.8.168]) by
-	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20231213081038epsmtip20f8466aadc95bdb0b5a3cb4b7954ac2f~gVdZ5UpuW1538115381epsmtip2V;
-	Wed, 13 Dec 2023 08:10:38 +0000 (GMT)
-Message-ID: <2b72464e-d60a-6adc-0ef7-ed92ff495859@samsung.com>
-Date: Wed, 13 Dec 2023 17:10:38 +0900
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6033EC2DF;
+	Wed, 13 Dec 2023 08:12:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E430C433C7;
+	Wed, 13 Dec 2023 08:12:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702455150;
+	bh=6cLOPwMjvibdut8r74sh4DxCF/rsyHgNZEROG+kEFS8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QJdSEwliaWDOQ8h2zpaMPCQFomNMzh/55V7/+H/gp/dXljDPmlxrGtx6XFFm1tQE/
+	 8gmLtvdsVItk/iYq7mWa9d2KFH9OBN571ISMYXNHcczop0WG8zwYPAqYoJgvBboISu
+	 BzcTBdad+gI+5/jhTQaz+w6MIlSyvQhvB0ogrkAnSAjr0FHtJQqw+cXWc/8T++FJfT
+	 DGGCcTHZbhKBXykiJ0AZcaoB81ELuuCBErPaeL0KYEgZD0r1K2T9+TMwNYDVKG9fCV
+	 b3gsDzzmj2JhUaPnwEW7VySWloSD1GzirhhRK1uCQf23Fz1h8RMjfu1NRnONhXUM0j
+	 s072YauCltlFw==
+Date: Wed, 13 Dec 2023 16:12:23 +0800
+From: Shawn Guo <shawnguo@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: miquel.raynal@bootlin.com, alexander.stein@ew.tq-group.com,
+	alexandre.belloni@bootlin.com, conor+dt@kernel.org,
+	conor.culhane@silvaco.com, conor@kernel.org,
+	devicetree@vger.kernel.org, festevam@gmail.com, haibo.chen@nxp.com,
+	imx@lists.linux.dev, joe@perches.com, kernel@pengutronix.de,
+	krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org,
+	linux-arm-kernel@lists.infradead.org, linux-i3c@lists.infradead.org,
+	linux-imx@nxp.com, linux-kernel@vger.kernel.org, peng.fan@nxp.com,
+	ping.bai@nxp.com, robh+dt@kernel.org, s.hauer@pengutronix.de,
+	sherry.sun@nxp.com, xiaoning.wang@nxp.com
+Subject: Re: [PATCH v2 2/2] arm64: dts: freescale: imx93: add i3c1 and i3c2
+Message-ID: <20231213081223.GH270430@dragon>
+References: <20231017194657.3199749-1-Frank.Li@nxp.com>
+ <20231017194657.3199749-2-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
-	Thunderbird/102.11.0
-Subject: Re: [PATCH v4 2/2] pinctrl: samsung: add exynosautov920 pinctrl
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Alim Akhtar
-	<alim.akhtar@samsung.com>, Rob Herring <robh+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Tomasz Figa <tomasz.figa@gmail.com>, Sylwester
-	Nawrocki <s.nawrocki@samsung.com>, Linus Walleij <linus.walleij@linaro.org>,
-	Thierry Reding <thierry.reding@gmail.com>, Uwe Kleine-K?nig
-	<u.kleine-koenig@pengutronix.de>, Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
-	linux-serial@vger.kernel.org
-From: Jaewon Kim <jaewon02.kim@samsung.com>
-In-Reply-To: <68a36910-e528-45ff-8b59-e7cd95aaef0b@linaro.org>
-Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrJJsWRmVeSWpSXmKPExsWy7bCmme7/tMpUgxvPVCwezNvGZrFm7zkm
-	i/lHzrFaNC9ez2bxbq6Mxd7XW9ktpvxZzmSx6fE1VovN8/8wWlzeNYfN4u7dVYwWM87vY7I4
-	s7iX3aJ17xF2i8Nv2lktfu6ax2KxahdQ3e2JkxkdhDx2zrrL7rFpVSebx51re9g89s9dw+6x
-	eUm9R/9fA4++LasYPT5vkgvgiMq2yUhNTEktUkjNS85PycxLt1XyDo53jjc1MzDUNbS0MFdS
-	yEvMTbVVcvEJ0HXLzAH6REmhLDGnFCgUkFhcrKRvZ1OUX1qSqpCRX1xiq5RakJJTYF6gV5yY
-	W1yal66Xl1piZWhgYGQKVJiQnfH24GLmgv3CFdtPsDQwdgp0MXJySAiYSDw73cfSxcjFISSw
-	g1HiUcccJgjnE6PE/Y1/WOGccz9vssC0/Jw6C6plJ6PEq0fzoZzXjBKnty9jA6niFbCTWHf+
-	KFgHi4CqxOqF51gg4oISJ2c+AbNFBaIlWpfdB6rn4BAW8JA4u98BJMwsIC5x68l8JhBbROA+
-	s8TrtmqQ+cwCDxgl5p77ygiSYBPQlvi+fjEriM0JtOvPoWUsEM3yEtvfzmEGaZAQeMEh8Xvl
-	f2aIs10kWh7vhXpBWOLV8S3sELaUxOd3e9kg7HyJtitnoOI1EhsXXGKEsO0lFp35yQ5yKLOA
-	psT6XfogpoSAssSRW1Br+SQ6Dv9lhwjzSnS0CUE0qkncn3oOariMxKQjK5kgbA+JXb13WSYw
-	Ks5CCpRZSL6fheSZWQh7FzCyrGIUSy0ozk1PLTYqMITHdXJ+7iZGcBrXct3BOPntB71DjEwc
-	jIcYJTiYlUR4T+4oTxXiTUmsrEotyo8vKs1JLT7EaAqMmonMUqLJ+cBMklcSb2hiaWBiZmZo
-	bmRqYK4kznuvdW6KkEB6YklqdmpqQWoRTB8TB6dUA5Oyegd72szj+w65rtdc/eWt/a/9Llck
-	nz2s3hm+Z48in2mw/T696hMGm+9vWiYkYnNpypL3xXMTG6ou31RKC39/9u66oKw8romT3wqI
-	LXxy/Vtzbd3CY3NqviZ+arRNMCgIWXVn79SLS9ec4bl7Td5vllrBym17Tpfdrl95zm/NkzzW
-	8kliZu82T1Le2bxIgde0qaaZwy3+2GymWt5Q/xzlpzN6TkiryPyLn1Pwodhyc4utSMnusPh/
-	K6UOcz0/+SGhm+99k6BSQ9TSoB2cZ7QU/x9xOSHNs3Tbovx98ueUHcJDYxo9189cJmg9zaZp
-	L79T1pnbt1R2Wi26H/uj7teVX7yHSnc7SzJ/7mMXm9yvxFKckWioxVxUnAgAQklvHmwEAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrOIsWRmVeSWpSXmKPExsWy7bCSvO7/tMpUg88zmSwezNvGZrFm7zkm
-	i/lHzrFaNC9ez2bxbq6Mxd7XW9ktpvxZzmSx6fE1VovN8/8wWlzeNYfN4u7dVYwWM87vY7I4
-	s7iX3aJ17xF2i8Nv2lktfu6ax2KxahdQ3e2JkxkdhDx2zrrL7rFpVSebx51re9g89s9dw+6x
-	eUm9R/9fA4++LasYPT5vkgvgiOKySUnNySxLLdK3S+DKeHtwMXPBfuGK7SdYGhg7BboYOTkk
-	BEwkfk6dxdLFyMUhJLCdUWLKv3+sEAkZieXP+tggbGGJ+y1HWCGKXjJKbGvayAiS4BWwk1h3
-	/igLiM0ioCqxeuE5Foi4oMTJmU/AbFGBaInVny8ANXNwCAt4SJzd7wASZhYQl7j1ZD4TyEwR
-	gcfMEg+n/mcGcZgFHjBKLJ/0CGrbb0aJ481H2UFa2AS0Jb6vXwx2HifQ5j+HlrFAjDKT6Nra
-	xQhhy0tsfzuHeQKj0Cwkh8xCsnEWkpZZSFoWMLKsYhRNLSjOTc9NLjDUK07MLS7NS9dLzs/d
-	xAiOW62gHYzL1v/VO8TIxMF4iFGCg1lJhPfkjvJUId6UxMqq1KL8+KLSnNTiQ4zSHCxK4rzK
-	OZ0pQgLpiSWp2ampBalFMFkmDk6pBiZBge+/Hj1foMcRqpLQdic58kvUp1oZ9ew9y59FzLg7
-	O+lPYpblwdtZC+1K6rz+ry5rfKHzefkG2cgUa0VD9QDVBeHRvNnaxc8DZoXd2lCx/OCjPZFH
-	p8llT78++XzpUmsZzTP8DZMYH86tY+R8c1z/UXPhzUyGzxw5v/cJnX72qoVTRIVxdjWr+gmZ
-	XdxHe6uDNTq/rG8snMJ4Od122kantjftpTcbVs9luVOWk9+S1MSu/u3f1HnhN/vn2SqvmMzJ
-	JnlznTO33f/ssxmXNEy38Cxunep7K3+qYZ3r0/THP18s8Qv/FvyrIPJesayD3hXBb3WK2zlc
-	HRSSVG8adlZ7THJ3itthkFj18elREyWW4oxEQy3mouJEAHwSZJBKAwAA
-X-CMS-MailID: 20231213081039epcas2p3cbe854e785e78a1a650b29fcb24ddc23
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20231211114216epcas2p300bbf4c592d495991c6cc2d96e0b1f85
-References: <20231211114145.106255-1-jaewon02.kim@samsung.com>
-	<CGME20231211114216epcas2p300bbf4c592d495991c6cc2d96e0b1f85@epcas2p3.samsung.com>
-	<20231211114145.106255-3-jaewon02.kim@samsung.com>
-	<68a36910-e528-45ff-8b59-e7cd95aaef0b@linaro.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231017194657.3199749-2-Frank.Li@nxp.com>
 
+On Tue, Oct 17, 2023 at 03:46:57PM -0400, Frank Li wrote:
+> Add I3C1 and I3C2.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-On 23. 12. 13. 16:52, Krzysztof Kozlowski wrote:
-> On 11/12/2023 12:41, Jaewon Kim wrote:
->> Add pinctrl data for ExynosAutov920 SoC.
->> It has a newly applied pinctrl register layer for ExynosAuto series.
->>
->> Pinctrl data for ExynosAutoV920 SoC.
->>   - GPA0,GPA1 (10): External wake up interrupt
->>   - GPQ0 (2): SPMI (PMIC I/F)
->>   - GPB0,GPB1,GPB2,GPB3,GPB4,GPB5,GPB6 (47): I2S Audio
->>   - GPH0,GPH1,GPH2,GPH3,GPH4,GPH5,GPH6,GPH8 (49): PCIE, UFS, Ethernet
->>   - GPG0,GPG1,GPG2,GPG3,GPG4,GPG5 (29): General purpose
->>   - GPP0,GPP1,GPP2,GPP3,GPP4,GPP5,GPP6,GPP7,GPP8,GPP9,GPP10 (77): USI
->>
->> Signed-off-by: Jaewon Kim <jaewon02.kim@samsung.com>
->> ---
->>   .../pinctrl/samsung/pinctrl-exynos-arm64.c    | 140 ++++++++++++++++++
->>   drivers/pinctrl/samsung/pinctrl-exynos.c      |  23 ++-
->>   drivers/pinctrl/samsung/pinctrl-exynos.h      |  25 ++++
->>   drivers/pinctrl/samsung/pinctrl-samsung.c     |   2 +
->>   drivers/pinctrl/samsung/pinctrl-samsung.h     |   1 +
->>   5 files changed, 190 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c b/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c
->> index cb965cf93705..a998c296dd05 100644
->> --- a/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c
->> +++ b/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c
->> @@ -796,3 +796,143 @@ const struct samsung_pinctrl_of_match_data fsd_of_data __initconst = {
->>   	.ctrl		= fsd_pin_ctrl,
->>   	.num_ctrl	= ARRAY_SIZE(fsd_pin_ctrl),
->>   };
->> +
->> +/* pin banks of exynosautov920 pin-controller 0 (ALIVE) */
->> +static const struct samsung_pin_bank_data exynosautov920_pin_banks0[] = {
->> +	EXYNOSV920_PIN_BANK_EINTW(8, 0x0000, "gpa0", 0x18, 0x24, 0x28),
->> +	EXYNOSV920_PIN_BANK_EINTW(2, 0x1000, "gpa1", 0x18, 0x20, 0x24),
->> +	EXYNOS850_PIN_BANK_EINTN(2, 0x2000, "gpq0"),
->> +};e
-> Applied with re-ordering it, to keep it after ExynosAutov9. For the
-> future: don't add entries to the end of lists because it causes exactly
-> this issue we have here: unnecessary conflicts. Please keep this rule
-> for entire development, not only pinctrl.
->
-> If both you and Peter were observing this basic rule, I would not have
-> work of reshuffling and fixing conflicts.
->
-> Please check the result if I reshuffled/solved conflicts correctly.
->
-
-I thought the new SoC should go to the end, but I was wrong.
-
-I will follow your comments in alphabetical order.
-
-Thanks you sincerely.
-
-
-Thanks
-
-Jaewon Kim
-
-
+Applied, thanks!
 
