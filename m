@@ -1,641 +1,202 @@
-Return-Path: <devicetree+bounces-24718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24719-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34FC1810FB2
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 12:21:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B644C810FBA
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 12:23:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DEF5D281937
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 11:21:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A874281414
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 11:23:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DC5923779;
-	Wed, 13 Dec 2023 11:21:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1675123777;
+	Wed, 13 Dec 2023 11:23:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="jEUo05cY"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="T/ocUh/l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AA62F3
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 03:21:29 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-40c339d2b88so53230815e9.3
-        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 03:21:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1702466488; x=1703071288; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=X+J3VQ5AgIfkGX+EialdKLCs66BF3uuHwTixtHbvZ1Q=;
-        b=jEUo05cYnYn3pSW2wj4X93hM5dwmTChl0wU61gmUqfZ25ZkRL2l6QL8MTFKN4Nt4Xb
-         c1TQjAxtbyioByzPWY7bNAXehcbh6CBGiZMxJjcK+/n8s09pT8L4s1VtBO3bg3RSCIpI
-         wo2ewCnnXAxWDac31/+I35tTvg8zLl1UaKyDxlYbzawuqbeoN0CSKDQxGVmgDcejqnGP
-         mu6uI/3EzOWYaB95fR9GixstgI1VArsmzmj60k/iYf5g/9RY25BzSHkby9oGY4y5mLM4
-         H/aNnx/KiQCyWfJuDW+sQGVF+auO5UQJb6WQni3PJYJodayE1iMYCLSYh5a6EF5sTSY/
-         P6sQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702466488; x=1703071288;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=X+J3VQ5AgIfkGX+EialdKLCs66BF3uuHwTixtHbvZ1Q=;
-        b=PR3dRrwqjd6Cq/4OvbENxQqjxUho6lWxWwppxnkSD1+882+D77/J5KoGfxj2fJOYZA
-         Xry7JCEpXAE+yYvnbiBgRSPwh5ljnlO/XcKalmJub1i62iH49V4RWmivpxIOzLV8LzNu
-         pBhUb5Ohar0kegxrSJY9ZGDljzJ+8bvLy2uZxSztpkE4/0nkbxrjPLwXgOr0r9ha69Uq
-         4YumGsFNfkJ+97wMJiEPdXIpENrbJvo5VihILNFQSidc2T68TBi3+Pcm9Xnbg0wZAKIc
-         hX/fmZo1tHyCGHz+2mWQRSmMu1DrWTWWi8lQdfqIVvsZrxfGCdWWM8tU16R7rlSDnXod
-         By2g==
-X-Gm-Message-State: AOJu0YyY3gUltWRJfe2lbTBzgsNKVeaw8Tdx3oeLIWGHLFiSe0+NGzsL
-	dZTFirBY+EFMcYuxsAV2MNtSfg==
-X-Google-Smtp-Source: AGHT+IGYmkVaa+wK/toz0y5IdhTZ3xypPkIM4MsJrYwTrYaUeKNsn8ikBKmYyTQXIH3MAH2xYbW85w==
-X-Received: by 2002:a05:600c:1c90:b0:401:b6f6:d8fd with SMTP id k16-20020a05600c1c9000b00401b6f6d8fdmr3634566wms.6.1702466487992;
-        Wed, 13 Dec 2023 03:21:27 -0800 (PST)
-Received: from localhost.localdomain (abordeaux-655-1-152-60.w90-5.abo.wanadoo.fr. [90.5.9.60])
-        by smtp.gmail.com with ESMTPSA id m29-20020a05600c3b1d00b0040b3515cdf8sm20097617wms.7.2023.12.13.03.21.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Dec 2023 03:21:27 -0800 (PST)
-From: David Lechner <dlechner@baylibre.com>
-To: linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: David Lechner <dlechner@baylibre.com>,
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE839B2;
+	Wed, 13 Dec 2023 03:23:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1702466591; x=1734002591;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=0vG05tOcWt8hNkb/0MfvDKdSwDkxJN+d9TF+RoFO0kI=;
+  b=T/ocUh/leKYo2oyLn+Mo20tfV37e76tTsRtvMumf8G22yxVdlQP8AatP
+   8NM9IKGt4U6Fu6559IEwHrhTUrM/jvWEQ1NJDS1I9AEjGYLzWYCEvbtew
+   PP+xb4/aN5af7wH9fsfmZV0Bpi+i58FhRtBD3Pf19+250Zb+96/5LwM8P
+   463IotjCD9jlnX5Hos1J8BE3YYc+pjWPQXj+PYycxAE8vQCTUit0yWy9n
+   NL81+M9+Ze79gi4RWCU1Jf2yJtvrcJktjPPrApwwSnclsE8cpPgrQJ8u/
+   /hAE4ANv0lOw/nN1zehRDo0AX6mxn7jbx89WKEJNUMu9rBGyZZqWaNdNB
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="398793300"
+X-IronPort-AV: E=Sophos;i="6.04,272,1695711600"; 
+   d="scan'208";a="398793300"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Dec 2023 03:23:10 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10922"; a="864592315"
+X-IronPort-AV: E=Sophos;i="6.04,272,1695711600"; 
+   d="scan'208";a="864592315"
+Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
+  by FMSMGA003.fm.intel.com with ESMTP; 13 Dec 2023 03:23:03 -0800
+Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rDNKP-000KTd-1U;
+	Wed, 13 Dec 2023 11:23:01 +0000
+Date: Wed, 13 Dec 2023 19:22:32 +0800
+From: kernel test robot <lkp@intel.com>
+To: Alexander Graf <graf@amazon.com>, linux-kernel@vger.kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-trace-kernel@vger.kernel.org, linux-mm@kvack.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	kexec@lists.infradead.org, linux-doc@vger.kernel.org,
+	x86@kernel.org, Eric Biederman <ebiederm@xmission.com>,
+	"H. Peter Anvin" <hpa@zytor.com>, Andy Lutomirski <luto@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
 	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Michael Hennerich <michael.hennerich@analog.com>,
-	=?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	Stefan Popa <stefan.popa@analog.com>
-Subject: [PATCH v2 3/3] iio: adc: ad7380: new driver for AD7380 ADCs
-Date: Wed, 13 Dec 2023 05:21:20 -0600
-Message-Id: <20231213-ad7380-mainline-v2-3-cd32150d84a3@baylibre.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231213-ad7380-mainline-v2-0-cd32150d84a3@baylibre.com>
-References: <20231213-ad7380-mainline-v2-0-cd32150d84a3@baylibre.com>
+	Steven Rostedt <rostedt@goodmis.org>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Tom Lendacky <thomas.lendacky@amd.com>,
+	Ashish Kalra <ashish.kalra@amd.com>,
+	James Gowans <jgowans@amazon.com>,
+	Stanislav Kinsburskii <skinsburskii@linux.microsoft.com>,
+	arnd@arndb.de, pbonzini@redhat.com, madvenka@linux.microsoft.com,
+	Anthony Yznaga <anthony.yznaga@oracle.com>,
+	Usama Arif <usama.arif@bytedance.com>,
+	David Woodhouse <dwmw@amazon.co.uk>,
+	Benjamin Herrenschmidt <benh@kernel.crashing.org>
+Subject: Re: [PATCH 08/15] tracing: Introduce names for ring buffers
+Message-ID: <202312131922.5dJORQu4-lkp@intel.com>
+References: <20231213000452.88295-9-graf@amazon.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Mailer: b4 0.12.4
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231213000452.88295-9-graf@amazon.com>
 
-This adds a new driver for the AD7380 family ADCs.
+Hi Alexander,
 
-The driver currently implements basic support for the AD7380, AD7381,
-AD7383, and AD7384 2-channel differential ADCs. Support for additional
-single-ended and 4-channel chips that use the same register map as well
-as additional features of the chip will be added in future patches.
+kernel test robot noticed the following build errors:
 
-Co-developed-by: Stefan Popa <stefan.popa@analog.com>
-Signed-off-by: Stefan Popa <stefan.popa@analog.com>
-Signed-off-by: David Lechner <dlechner@baylibre.com>
----
+[auto build test ERROR on tip/x86/core]
+[also build test ERROR on arm64/for-next/core akpm-mm/mm-everything linus/master v6.7-rc5 next-20231213]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-v2 changes:
-- Fixed CONFIG_AD7380 in Makefile
-- rx_buf = st->scan_data.raw instead of rx_buf = &st->scan_data
-- Moved iio_push_to_buffers_with_timestamp() outside of if statement
-- Removed extra blank lines
-- Renamed regulator disable function
-- Dropped checking of adi,sdo-mode property (regardless of the actual
-	wiring, we can always use 1-wire mode)
-- Added available_scan_masks (we always sample two channels at the same time
-  so we need to let userspace know this)
-- Added check for missing driver match data
+url:    https://github.com/intel-lab-lkp/linux/commits/Alexander-Graf/mm-memblock-Add-support-for-scratch-memory/20231213-080941
+base:   tip/x86/core
+patch link:    https://lore.kernel.org/r/20231213000452.88295-9-graf%40amazon.com
+patch subject: [PATCH 08/15] tracing: Introduce names for ring buffers
+config: i386-buildonly-randconfig-003-20231213 (https://download.01.org/0day-ci/archive/20231213/202312131922.5dJORQu4-lkp@intel.com/config)
+compiler: clang version 16.0.4 (https://github.com/llvm/llvm-project.git ae42196bc493ffe877a7e3dff8be32035dea4d07)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231213/202312131922.5dJORQu4-lkp@intel.com/reproduce)
 
- MAINTAINERS              |   1 +
- drivers/iio/adc/Kconfig  |  16 ++
- drivers/iio/adc/Makefile |   1 +
- drivers/iio/adc/ad7380.c | 464 +++++++++++++++++++++++++++++++++++++++++++++++
- 4 files changed, 482 insertions(+)
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202312131922.5dJORQu4-lkp@intel.com/
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e2a998be5879..5a54620a31b8 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -438,6 +438,7 @@ S:	Supported
- W:	https://wiki.analog.com/resources/tools-software/linux-drivers/iio-adc/ad738x
- W:	https://ez.analog.com/linux-software-drivers
- F:	Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml
-+F:	drivers/iio/adc/ad7380.c
- 
- AD7877 TOUCHSCREEN DRIVER
- M:	Michael Hennerich <michael.hennerich@analog.com>
-diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-index 35f9867da12c..cbfd626712e3 100644
---- a/drivers/iio/adc/Kconfig
-+++ b/drivers/iio/adc/Kconfig
-@@ -122,6 +122,22 @@ config AD7298
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called ad7298.
- 
-+config AD7380
-+	tristate "Analog Devices AD7380 ADC driver"
-+	depends on SPI_MASTER
-+	select IIO_BUFFER
-+	select IIO_TRIGGER
-+	select IIO_TRIGGERED_BUFFER
-+	help
-+	  AD7380 is a family of simultaneous sampling ADCs that share the same
-+	  SPI register map and have similar pinouts.
-+
-+	  Say yes here to build support for Analog Devices AD7380 ADC and
-+	  similar chips.
-+
-+	  To compile this driver as a module, choose M here: the module will be
-+	  called ad7380.
-+
- config AD7476
- 	tristate "Analog Devices AD7476 1-channel ADCs driver and other similar devices from AD and TI"
- 	depends on SPI
-diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
-index bee11d442af4..9c921c497655 100644
---- a/drivers/iio/adc/Makefile
-+++ b/drivers/iio/adc/Makefile
-@@ -16,6 +16,7 @@ obj-$(CONFIG_AD7291) += ad7291.o
- obj-$(CONFIG_AD7292) += ad7292.o
- obj-$(CONFIG_AD7298) += ad7298.o
- obj-$(CONFIG_AD7923) += ad7923.o
-+obj-$(CONFIG_AD7380) += ad7380.o
- obj-$(CONFIG_AD7476) += ad7476.o
- obj-$(CONFIG_AD7606_IFACE_PARALLEL) += ad7606_par.o
- obj-$(CONFIG_AD7606_IFACE_SPI) += ad7606_spi.o
-diff --git a/drivers/iio/adc/ad7380.c b/drivers/iio/adc/ad7380.c
-new file mode 100644
-index 000000000000..b8025b636b67
---- /dev/null
-+++ b/drivers/iio/adc/ad7380.c
-@@ -0,0 +1,464 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Analog Devices AD738x Simultaneous Sampling SAR ADCs
-+ *
-+ * Copyright 2017 Analog Devices Inc.
-+ * Copyright 2023 BayLibre, SAS
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/bitops.h>
-+#include <linux/cleanup.h>
-+#include <linux/device.h>
-+#include <linux/err.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/slab.h>
-+#include <linux/spi/spi.h>
-+#include <linux/sysfs.h>
-+
-+#include <linux/iio/buffer.h>
-+#include <linux/iio/iio.h>
-+#include <linux/iio/sysfs.h>
-+#include <linux/iio/trigger_consumer.h>
-+#include <linux/iio/triggered_buffer.h>
-+
-+/* 2.5V internal reference voltage */
-+#define AD7380_INTERNAL_REF_MV		2500
-+
-+/* reading and writing registers is more reliable at lower than max speed */
-+#define AD7380_REG_WR_SPEED_HZ		10000000
-+
-+#define AD7380_REG_WR			BIT(15)
-+#define AD7380_REG_REGADDR		GENMASK(14, 12)
-+#define AD7380_REG_DATA			GENMASK(11, 0)
-+
-+#define AD7380_REG_ADDR_NOP		0x0
-+#define AD7380_REG_ADDR_CONFIG1		0x1
-+#define AD7380_REG_ADDR_CONFIG2		0x2
-+#define AD7380_REG_ADDR_ALERT		0x3
-+#define AD7380_REG_ADDR_ALERT_LOW_TH	0x4
-+#define AD7380_REG_ADDR_ALERT_HIGH_TH	0x5
-+
-+#define AD7380_CONFIG1_OS_MODE		BIT(9)
-+#define AD7380_CONFIG1_OSR		GENMASK(8, 6)
-+#define AD7380_CONFIG1_CRC_W		BIT(5)
-+#define AD7380_CONFIG1_CRC_R		BIT(4)
-+#define AD7380_CONFIG1_ALERTEN		BIT(3)
-+#define AD7380_CONFIG1_RES		BIT(2)
-+#define AD7380_CONFIG1_REFSEL		BIT(1)
-+#define AD7380_CONFIG1_PMODE		BIT(0)
-+
-+#define AD7380_CONFIG2_SDO2		GENMASK(9, 8)
-+#define AD7380_CONFIG2_SDO		BIT(8)
-+#define AD7380_CONFIG2_RESET		GENMASK(7, 0)
-+
-+#define AD7380_CONFIG2_RESET_SOFT	0x3C
-+#define AD7380_CONFIG2_RESET_HARD	0xFF
-+
-+#define AD7380_ALERT_LOW_TH		GENMASK(11, 0)
-+#define AD7380_ALERT_HIGH_TH		GENMASK(11, 0)
-+
-+struct ad7380_chip_info {
-+	const char *name;
-+	const struct iio_chan_spec *channels;
-+	unsigned int num_channels;
-+};
-+
-+#define AD7380_DIFFERENTIAL_CHANNEL(index, bits) {		\
-+	.type = IIO_VOLTAGE,					\
-+	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),		\
-+	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),	\
-+	.indexed = 1,						\
-+	.differential = 1,					\
-+	.channel = 2 * (index),					\
-+	.channel2 = 2 * (index) + 1,				\
-+	.scan_index = (index),					\
-+	.scan_type = {						\
-+		.sign = 's',					\
-+		.realbits = (bits),				\
-+		.storagebits = 16,				\
-+		.endianness = IIO_CPU,				\
-+	},							\
-+}
-+
-+#define DEFINE_AD7380_DIFFERENTIAL_2_CHANNEL(name, bits)	\
-+static const struct iio_chan_spec name[] = {			\
-+		AD7380_DIFFERENTIAL_CHANNEL(0, bits),		\
-+		AD7380_DIFFERENTIAL_CHANNEL(1, bits),		\
-+		IIO_CHAN_SOFT_TIMESTAMP(2),			\
-+}
-+
-+/* fully differential */
-+DEFINE_AD7380_DIFFERENTIAL_2_CHANNEL(ad7380_channels, 16);
-+DEFINE_AD7380_DIFFERENTIAL_2_CHANNEL(ad7381_channels, 14);
-+/* pseudo differential */
-+DEFINE_AD7380_DIFFERENTIAL_2_CHANNEL(ad7383_channels, 16);
-+DEFINE_AD7380_DIFFERENTIAL_2_CHANNEL(ad7384_channels, 14);
-+
-+/* Since this is simultaneous sampling, we don't allow individual channels. */
-+static const unsigned long ad7380_2_channel_scan_masks[] = {
-+	GENMASK(2, 0), /* both ADC channels and soft timestamp */
-+	GENMASK(1, 0), /* both ADC channels, no timestamp */
-+	0
-+};
-+
-+static const struct ad7380_chip_info ad7380_chip_info = {
-+	.name = "ad7380",
-+	.channels = ad7380_channels,
-+	.num_channels = ARRAY_SIZE(ad7380_channels),
-+};
-+
-+static const struct ad7380_chip_info ad7381_chip_info = {
-+	.name = "ad7381",
-+	.channels = ad7381_channels,
-+	.num_channels = ARRAY_SIZE(ad7381_channels),
-+};
-+
-+static const struct ad7380_chip_info ad7383_chip_info = {
-+	.name = "ad7383",
-+	.channels = ad7383_channels,
-+	.num_channels = ARRAY_SIZE(ad7383_channels),
-+};
-+
-+static const struct ad7380_chip_info ad7384_chip_info = {
-+	.name = "ad7384",
-+	.channels = ad7384_channels,
-+	.num_channels = ARRAY_SIZE(ad7384_channels),
-+};
-+
-+struct ad7380_state {
-+	const struct ad7380_chip_info *chip_info;
-+	struct spi_device *spi;
-+	struct regulator *vref;
-+	struct regmap *regmap;
-+	/*
-+	 * DMA (thus cache coherency maintenance) requires the
-+	 * transfer buffers to live in their own cache lines.
-+	 * Make the buffer large enough for 2 16-bit samples and one 64-bit
-+	 * aligned 64 bit timestamp.
-+	 */
-+	struct {
-+		u16 raw[2];
-+		s64 ts __aligned(8);
-+	} scan_data __aligned(IIO_DMA_MINALIGN);
-+	u16 tx[2];
-+	u16 rx[2];
-+};
-+
-+static int ad7380_regmap_reg_write(void *context, unsigned int reg,
-+				   unsigned int val)
-+{
-+	struct ad7380_state *st = context;
-+	struct spi_transfer xfer = {
-+		.speed_hz = AD7380_REG_WR_SPEED_HZ,
-+		.bits_per_word = 16,
-+		.len = 2,
-+		.tx_buf = &st->tx[0],
-+	};
-+
-+	st->tx[0] = FIELD_PREP(AD7380_REG_WR, 1) |
-+		    FIELD_PREP(AD7380_REG_REGADDR, reg) |
-+		    FIELD_PREP(AD7380_REG_DATA, val);
-+
-+	return spi_sync_transfer(st->spi, &xfer, 1);
-+}
-+
-+static int ad7380_regmap_reg_read(void *context, unsigned int reg,
-+				  unsigned int *val)
-+{
-+	struct ad7380_state *st = context;
-+	struct spi_transfer xfers[] = {
-+		{
-+			.speed_hz = AD7380_REG_WR_SPEED_HZ,
-+			.bits_per_word = 16,
-+			.len = 2,
-+			.tx_buf = &st->tx[0],
-+			.cs_change = 1,
-+			.cs_change_delay = {
-+				.value = 10, /* t[CSH] */
-+				.unit = SPI_DELAY_UNIT_NSECS,
-+			},
-+		}, {
-+			.speed_hz = AD7380_REG_WR_SPEED_HZ,
-+			.bits_per_word = 16,
-+			.len = 2,
-+			.rx_buf = &st->rx[0],
-+		},
-+	};
-+	int ret;
-+
-+	st->tx[0] = FIELD_PREP(AD7380_REG_WR, 0) |
-+		    FIELD_PREP(AD7380_REG_REGADDR, reg) |
-+		    FIELD_PREP(AD7380_REG_DATA, 0);
-+
-+	ret = spi_sync_transfer(st->spi, xfers, ARRAY_SIZE(xfers));
-+	if (ret < 0)
-+		return ret;
-+
-+	*val = FIELD_GET(AD7380_REG_DATA, st->rx[0]);
-+
-+	return 0;
-+}
-+
-+const struct regmap_config ad7380_regmap_config = {
-+	.reg_bits = 3,
-+	.val_bits = 12,
-+	.reg_read = ad7380_regmap_reg_read,
-+	.reg_write = ad7380_regmap_reg_write,
-+	.max_register = AD7380_REG_ADDR_ALERT_HIGH_TH,
-+	.can_sleep = true,
-+};
-+
-+static int ad7380_debugfs_reg_access(struct iio_dev *indio_dev, u32 reg,
-+				     u32 writeval, u32 *readval)
-+{
-+	struct ad7380_state *st = iio_priv(indio_dev);
-+	int ret;
-+
-+	ret = iio_device_claim_direct_mode(indio_dev);
-+	if (ret)
-+		return ret;
-+
-+	if (readval)
-+		ret = regmap_read(st->regmap, reg, readval);
-+	else
-+		ret = regmap_write(st->regmap, reg, writeval);
-+
-+	iio_device_release_direct_mode(indio_dev);
-+
-+	return ret;
-+}
-+
-+static irqreturn_t ad7380_trigger_handler(int irq, void *p)
-+{
-+	struct iio_poll_func *pf = p;
-+	struct iio_dev *indio_dev = pf->indio_dev;
-+	struct ad7380_state *st = iio_priv(indio_dev);
-+	struct spi_transfer xfer = {
-+		.bits_per_word = st->chip_info->channels[0].scan_type.realbits,
-+		.len = 4,
-+		.rx_buf = st->scan_data.raw,
-+	};
-+	int ret;
-+
-+	ret = spi_sync_transfer(st->spi, &xfer, 1);
-+	if (ret)
-+		goto out;
-+
-+	iio_push_to_buffers_with_timestamp(indio_dev, &st->scan_data,
-+					   pf->timestamp);
-+
-+out:
-+	iio_trigger_notify_done(indio_dev->trig);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int ad7380_read_direct(struct ad7380_state *st,
-+			      struct iio_chan_spec const *chan, int *val)
-+{
-+	struct spi_transfer xfers[] = {
-+		/* toggle CS (no data xfer) to trigger a conversion */
-+		{
-+			.speed_hz = AD7380_REG_WR_SPEED_HZ,
-+			.bits_per_word = chan->scan_type.realbits,
-+			.delay = {
-+				.value = 190, /* t[CONVERT] */
-+				.unit = SPI_DELAY_UNIT_NSECS,
-+			},
-+			.cs_change = 1,
-+			.cs_change_delay = {
-+				.value = 10, /* t[CSH] */
-+				.unit = SPI_DELAY_UNIT_NSECS,
-+			},
-+		},
-+		/* then read both channels */
-+		{
-+			.speed_hz = AD7380_REG_WR_SPEED_HZ,
-+			.bits_per_word = chan->scan_type.realbits,
-+			.rx_buf = &st->rx[0],
-+			.len = 4,
-+		},
-+	};
-+	int ret;
-+
-+	ret = spi_sync_transfer(st->spi, xfers, ARRAY_SIZE(xfers));
-+	if (ret < 0)
-+		return ret;
-+
-+	*val = sign_extend32(st->rx[chan->scan_index],
-+			     chan->scan_type.realbits - 1);
-+
-+	return IIO_VAL_INT;
-+}
-+
-+static int ad7380_read_raw(struct iio_dev *indio_dev,
-+			   struct iio_chan_spec const *chan,
-+			   int *val, int *val2, long info)
-+{
-+	struct ad7380_state *st = iio_priv(indio_dev);
-+	int ret;
-+
-+	switch (info) {
-+	case IIO_CHAN_INFO_RAW:
-+		ret = iio_device_claim_direct_mode(indio_dev);
-+		if (ret)
-+			return ret;
-+
-+		ret = ad7380_read_direct(st, chan, val);
-+		iio_device_release_direct_mode(indio_dev);
-+
-+		return ret;
-+	case IIO_CHAN_INFO_SCALE:
-+		if (st->vref) {
-+			ret = regulator_get_voltage(st->vref);
-+			if (ret < 0)
-+				return ret;
-+
-+			*val = ret / 1000;
-+		} else {
-+			*val = AD7380_INTERNAL_REF_MV;
-+		}
-+
-+		*val2 = chan->scan_type.realbits;
-+
-+		return IIO_VAL_FRACTIONAL_LOG2;
-+	}
-+
-+	return -EINVAL;
-+}
-+
-+static const struct iio_info ad7380_info = {
-+	.read_raw = &ad7380_read_raw,
-+	.debugfs_reg_access = &ad7380_debugfs_reg_access,
-+};
-+
-+static int ad7380_init(struct ad7380_state *st)
-+{
-+	int ret;
-+
-+	/* perform hard reset */
-+	ret = regmap_update_bits(st->regmap, AD7380_REG_ADDR_CONFIG2,
-+				 AD7380_CONFIG2_RESET,
-+				 FIELD_PREP(AD7380_CONFIG2_RESET,
-+					    AD7380_CONFIG2_RESET_HARD));
-+	if (ret < 0)
-+		return ret;
-+
-+	/* select internal or external reference voltage */
-+	ret = regmap_update_bits(st->regmap, AD7380_REG_ADDR_CONFIG1,
-+				 AD7380_CONFIG1_REFSEL,
-+				 FIELD_PREP(AD7380_CONFIG1_REFSEL, !!st->vref));
-+	if (ret < 0)
-+		return ret;
-+
-+	/* SPI 1-wire mode */
-+	return regmap_update_bits(st->regmap, AD7380_REG_ADDR_CONFIG2,
-+				  AD7380_CONFIG2_SDO,
-+				  FIELD_PREP(AD7380_CONFIG2_SDO, 1));
-+}
-+
-+static void ad7380_regulator_disable(void *p)
-+{
-+	regulator_disable(p);
-+}
-+
-+static int ad7380_probe(struct spi_device *spi)
-+{
-+	struct iio_dev *indio_dev;
-+	struct ad7380_state *st;
-+	int ret;
-+
-+	indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*st));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	st = iio_priv(indio_dev);
-+	st->spi = spi;
-+	st->chip_info = spi_get_device_match_data(spi);
-+	if (!st->chip_info)
-+		return dev_err_probe(&spi->dev, -EINVAL, "missing match data\n");
-+
-+	st->vref = devm_regulator_get_optional(&spi->dev, "refio");
-+	if (IS_ERR(st->vref)) {
-+		/*
-+		 * If there is no REFIO supply, then it means that we are using
-+		 * the internal 2.5V reference.
-+		 */
-+		if (PTR_ERR(st->vref) == -ENODEV)
-+			st->vref = NULL;
-+		else
-+			return dev_err_probe(&spi->dev, PTR_ERR(st->vref),
-+					     "Failed to get refio regulator\n");
-+	}
-+
-+	if (st->vref) {
-+		ret = regulator_enable(st->vref);
-+		if (ret)
-+			return ret;
-+
-+		ret = devm_add_action_or_reset(&spi->dev, ad7380_regulator_disable,
-+					       st->vref);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	st->regmap = devm_regmap_init(&spi->dev, NULL, st, &ad7380_regmap_config);
-+	if (IS_ERR(st->regmap))
-+		return dev_err_probe(&spi->dev, PTR_ERR(st->regmap),
-+				     "failed to allocate register map\n");
-+
-+	indio_dev->channels = st->chip_info->channels;
-+	indio_dev->num_channels = st->chip_info->num_channels;
-+	indio_dev->dev.parent = &spi->dev;
-+	indio_dev->name = st->chip_info->name;
-+	indio_dev->info = &ad7380_info;
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+	indio_dev->available_scan_masks = ad7380_2_channel_scan_masks;
-+
-+	ret = devm_iio_triggered_buffer_setup(&spi->dev, indio_dev,
-+					      iio_pollfunc_store_time,
-+					      ad7380_trigger_handler, NULL);
-+	if (ret)
-+		return ret;
-+
-+	ret = ad7380_init(st);
-+	if (ret)
-+		return ret;
-+
-+	return devm_iio_device_register(&spi->dev, indio_dev);
-+}
-+
-+static const struct of_device_id ad7380_of_match_table[] = {
-+	{ .compatible = "adi,ad7380", .data = &ad7380_chip_info },
-+	{ .compatible = "adi,ad7381", .data = &ad7381_chip_info },
-+	{ .compatible = "adi,ad7383", .data = &ad7383_chip_info },
-+	{ .compatible = "adi,ad7384", .data = &ad7384_chip_info },
-+	{ }
-+};
-+
-+static const struct spi_device_id ad7380_id_table[] = {
-+	{ "ad7380", (kernel_ulong_t)&ad7380_chip_info },
-+	{ "ad7381", (kernel_ulong_t)&ad7381_chip_info },
-+	{ "ad7383", (kernel_ulong_t)&ad7383_chip_info },
-+	{ "ad7384", (kernel_ulong_t)&ad7384_chip_info },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(spi, ad7380_id_table);
-+
-+static struct spi_driver ad7380_driver = {
-+	.driver = {
-+		.name = "ad7380",
-+		.of_match_table = ad7380_of_match_table,
-+	},
-+	.probe = ad7380_probe,
-+	.id_table = ad7380_id_table,
-+};
-+module_spi_driver(ad7380_driver);
-+
-+MODULE_AUTHOR("Stefan Popa <stefan.popa@analog.com>");
-+MODULE_DESCRIPTION("Analog Devices AD738x ADC driver");
-+MODULE_LICENSE("GPL");
+All errors (new ones prefixed by >>):
+
+>> kernel/trace/ring_buffer_benchmark.c:435:53: error: too few arguments provided to function-like macro invocation
+           buffer = ring_buffer_alloc(1000000, RB_FL_OVERWRITE);
+                                                              ^
+   include/linux/ring_buffer.h:96:9: note: macro 'ring_buffer_alloc' defined here
+   #define ring_buffer_alloc(name, size, flags)                    \
+           ^
+>> kernel/trace/ring_buffer_benchmark.c:435:11: error: use of undeclared identifier 'ring_buffer_alloc'; did you mean '__ring_buffer_alloc'?
+           buffer = ring_buffer_alloc(1000000, RB_FL_OVERWRITE);
+                    ^~~~~~~~~~~~~~~~~
+                    __ring_buffer_alloc
+   include/linux/ring_buffer.h:88:1: note: '__ring_buffer_alloc' declared here
+   __ring_buffer_alloc(const char *name, unsigned long size, unsigned flags,
+   ^
+   2 errors generated.
+--
+>> kernel/trace/ring_buffer.c:6096:65: error: too few arguments provided to function-like macro invocation
+           buffer = ring_buffer_alloc(RB_TEST_BUFFER_SIZE, RB_FL_OVERWRITE);
+                                                                          ^
+   include/linux/ring_buffer.h:96:9: note: macro 'ring_buffer_alloc' defined here
+   #define ring_buffer_alloc(name, size, flags)                    \
+           ^
+>> kernel/trace/ring_buffer.c:6096:11: error: use of undeclared identifier 'ring_buffer_alloc'; did you mean '__ring_buffer_alloc'?
+           buffer = ring_buffer_alloc(RB_TEST_BUFFER_SIZE, RB_FL_OVERWRITE);
+                    ^~~~~~~~~~~~~~~~~
+                    __ring_buffer_alloc
+   kernel/trace/ring_buffer.c:1873:19: note: '__ring_buffer_alloc' declared here
+   EXPORT_SYMBOL_GPL(__ring_buffer_alloc);
+                     ^
+   2 errors generated.
+
+
+vim +435 kernel/trace/ring_buffer_benchmark.c
+
+5092dbc96f3acd Steven Rostedt 2009-05-05  429  
+5092dbc96f3acd Steven Rostedt 2009-05-05  430  static int __init ring_buffer_benchmark_init(void)
+5092dbc96f3acd Steven Rostedt 2009-05-05  431  {
+5092dbc96f3acd Steven Rostedt 2009-05-05  432  	int ret;
+5092dbc96f3acd Steven Rostedt 2009-05-05  433  
+5092dbc96f3acd Steven Rostedt 2009-05-05  434  	/* make a one meg buffer in overwite mode */
+5092dbc96f3acd Steven Rostedt 2009-05-05 @435  	buffer = ring_buffer_alloc(1000000, RB_FL_OVERWRITE);
+5092dbc96f3acd Steven Rostedt 2009-05-05  436  	if (!buffer)
+5092dbc96f3acd Steven Rostedt 2009-05-05  437  		return -ENOMEM;
+5092dbc96f3acd Steven Rostedt 2009-05-05  438  
+5092dbc96f3acd Steven Rostedt 2009-05-05  439  	if (!disable_reader) {
+5092dbc96f3acd Steven Rostedt 2009-05-05  440  		consumer = kthread_create(ring_buffer_consumer_thread,
+5092dbc96f3acd Steven Rostedt 2009-05-05  441  					  NULL, "rb_consumer");
+5092dbc96f3acd Steven Rostedt 2009-05-05  442  		ret = PTR_ERR(consumer);
+5092dbc96f3acd Steven Rostedt 2009-05-05  443  		if (IS_ERR(consumer))
+5092dbc96f3acd Steven Rostedt 2009-05-05  444  			goto out_fail;
+5092dbc96f3acd Steven Rostedt 2009-05-05  445  	}
+5092dbc96f3acd Steven Rostedt 2009-05-05  446  
+5092dbc96f3acd Steven Rostedt 2009-05-05  447  	producer = kthread_run(ring_buffer_producer_thread,
+5092dbc96f3acd Steven Rostedt 2009-05-05  448  			       NULL, "rb_producer");
+5092dbc96f3acd Steven Rostedt 2009-05-05  449  	ret = PTR_ERR(producer);
+5092dbc96f3acd Steven Rostedt 2009-05-05  450  
+5092dbc96f3acd Steven Rostedt 2009-05-05  451  	if (IS_ERR(producer))
+5092dbc96f3acd Steven Rostedt 2009-05-05  452  		goto out_kill;
+5092dbc96f3acd Steven Rostedt 2009-05-05  453  
+98e4833ba3c314 Ingo Molnar    2009-11-23  454  	/*
+98e4833ba3c314 Ingo Molnar    2009-11-23  455  	 * Run them as low-prio background tasks by default:
+98e4833ba3c314 Ingo Molnar    2009-11-23  456  	 */
+7ac07434048001 Steven Rostedt 2009-11-25  457  	if (!disable_reader) {
+4fd5750af02ab7 Peter Zijlstra 2020-07-20  458  		if (consumer_fifo >= 2)
+4fd5750af02ab7 Peter Zijlstra 2020-07-20  459  			sched_set_fifo(consumer);
+4fd5750af02ab7 Peter Zijlstra 2020-07-20  460  		else if (consumer_fifo == 1)
+4fd5750af02ab7 Peter Zijlstra 2020-07-20  461  			sched_set_fifo_low(consumer);
+4fd5750af02ab7 Peter Zijlstra 2020-07-20  462  		else
+7ac07434048001 Steven Rostedt 2009-11-25  463  			set_user_nice(consumer, consumer_nice);
+7ac07434048001 Steven Rostedt 2009-11-25  464  	}
+7ac07434048001 Steven Rostedt 2009-11-25  465  
+4fd5750af02ab7 Peter Zijlstra 2020-07-20  466  	if (producer_fifo >= 2)
+4fd5750af02ab7 Peter Zijlstra 2020-07-20  467  		sched_set_fifo(producer);
+4fd5750af02ab7 Peter Zijlstra 2020-07-20  468  	else if (producer_fifo == 1)
+4fd5750af02ab7 Peter Zijlstra 2020-07-20  469  		sched_set_fifo_low(producer);
+4fd5750af02ab7 Peter Zijlstra 2020-07-20  470  	else
+7ac07434048001 Steven Rostedt 2009-11-25  471  		set_user_nice(producer, producer_nice);
+98e4833ba3c314 Ingo Molnar    2009-11-23  472  
+5092dbc96f3acd Steven Rostedt 2009-05-05  473  	return 0;
+5092dbc96f3acd Steven Rostedt 2009-05-05  474  
+5092dbc96f3acd Steven Rostedt 2009-05-05  475   out_kill:
+5092dbc96f3acd Steven Rostedt 2009-05-05  476  	if (consumer)
+5092dbc96f3acd Steven Rostedt 2009-05-05  477  		kthread_stop(consumer);
+5092dbc96f3acd Steven Rostedt 2009-05-05  478  
+5092dbc96f3acd Steven Rostedt 2009-05-05  479   out_fail:
+5092dbc96f3acd Steven Rostedt 2009-05-05  480  	ring_buffer_free(buffer);
+5092dbc96f3acd Steven Rostedt 2009-05-05  481  	return ret;
+5092dbc96f3acd Steven Rostedt 2009-05-05  482  }
+5092dbc96f3acd Steven Rostedt 2009-05-05  483  
 
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
