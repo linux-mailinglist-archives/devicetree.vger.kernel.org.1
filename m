@@ -1,64 +1,72 @@
-Return-Path: <devicetree+bounces-24679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBD75810D9A
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 10:46:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E7592810D9C
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 10:46:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 88A2A1F2116A
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 09:46:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F5AD1F2116D
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 09:46:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 221A1208C0;
-	Wed, 13 Dec 2023 09:46:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05B7B20B0D;
+	Wed, 13 Dec 2023 09:46:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="reV1SdvT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tB5OQxh/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6DCA91;
-	Wed, 13 Dec 2023 01:46:18 -0800 (PST)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3BD9kADc100621;
-	Wed, 13 Dec 2023 03:46:10 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1702460770;
-	bh=CURFSVLmZ5QgLhebwaRlM2v0jStEoUK2jdIO++eSFAU=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=reV1SdvTl7QoEzKY5DwW05Sgv/Tv6Bu0SvE8OCk6jeRCJ8009fD74GDykd59IY/JT
-	 XBXMEZ32swPiRj+5xo08xrZGZKKb5VUYt8+otp1znASCMYD2z/pT02VbN1Y3sTJ10H
-	 7OFAv4BPSZGHiLhRYQnRzZttaZtg39gDrDpzFGS4=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3BD9kAZ4062678
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 13 Dec 2023 03:46:10 -0600
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 13
- Dec 2023 03:46:10 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 13 Dec 2023 03:46:09 -0600
-Received: from localhost (jluthra.dhcp.ti.com [172.24.227.12])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3BD9k9gA017205;
-	Wed, 13 Dec 2023 03:46:09 -0600
-Date: Wed, 13 Dec 2023 15:16:02 +0530
-From: Jai Luthra <j-luthra@ti.com>
-To: Vignesh Raghavendra <vigneshr@ti.com>, <m-chawdhry@ti.com>
-CC: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/3] arm64: dts: ti: k3-am65: Add additional regs for DMA
- components
-Message-ID: <rbwjt352yewngagypraqjzaynks65d3ttabeqqbdffifnoal55@aiuybx2bvx6l>
-References: <20231212111634.3515175-1-vigneshr@ti.com>
- <20231212111634.3515175-2-vigneshr@ti.com>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6DF02030D;
+	Wed, 13 Dec 2023 09:46:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88F15C433C7;
+	Wed, 13 Dec 2023 09:46:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702460812;
+	bh=k3h+x5Vi0c4IUc2BgiJewMzJeCYyvSk8+ZHJK/SWAOw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tB5OQxh//OBSfXK0FUdFSzcfEoIJyEniRxaI6FF3p7iKPcZ+k+7oHa13+VC5BtTVW
+	 AIvVDladP54+eKEj0Gizw4euRRRU6KZCljmIlisdNUIFEIPMh59eypu8BxdaDEnvgg
+	 +J1/VytncX+iPP7xylS4qbsFfaeCyc35ucSWlT1PIR9VG8UK+IadGA4rhnRd1kZdNI
+	 /xMEdLMTt+iCLnF06HyS5MK4EQ/RO1rWc5rGrvf97MSFIVP3+KQmnXpVVESH+jjOa7
+	 Y3XgFLpzUW+W4LKrAmsIIn5S1Y6lJPRrOn80Znicol+dSEaP5p+knty92G1xUrhR47
+	 j9Ggn0ti7Ij1A==
+Date: Wed, 13 Dec 2023 09:46:44 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chunfeng Yun <chunfeng.yun@mediatek.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
+	Sean Wang <sean.wang@mediatek.com>,
+	Mark Lee <Mark-MC.Lee@mediatek.com>,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Alexander Couzens <lynxis@fe80.eu>,
+	Qingfang Deng <dqfext@gmail.com>,
+	SkyLake Huang <SkyLake.Huang@mediatek.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org
+Subject: Re: [RFC PATCH net-next v3 1/8] dt-bindings: phy:
+ mediatek,xfi-pextp: add new bindings
+Message-ID: <20231213-confined-shaping-f56b1fdfb135@spud>
+References: <cover.1702352117.git.daniel@makrotopia.org>
+ <b875f693f6d4367a610a12ef324584f3bf3a1c1c.1702352117.git.daniel@makrotopia.org>
+ <20231212-renderer-strobe-2b46652cd6e7@spud>
+ <ZXiNhSYDbowUiNvy@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,118 +74,58 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ml4slrfwpinrbggr"
+	protocol="application/pgp-signature"; boundary="TQLtrFVr4ShS8Ew7"
 Content-Disposition: inline
-In-Reply-To: <20231212111634.3515175-2-vigneshr@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <ZXiNhSYDbowUiNvy@makrotopia.org>
 
---ml4slrfwpinrbggr
+
+--TQLtrFVr4ShS8Ew7
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi Vignesh/Manorit,
-
-Thanks for the patch. BCDMA regions don't seem to match the TRM for=20
-AM65, can you recheck?
-
-On Dec 12, 2023 at 16:46:32 +0530, Vignesh Raghavendra wrote:
-> From: Manorit Chawdhry <m-chawdhry@ti.com>
+On Tue, Dec 12, 2023 at 04:42:45PM +0000, Daniel Golle wrote:
+> On Tue, Dec 12, 2023 at 04:21:38PM +0000, Conor Dooley wrote:
+> > On Tue, Dec 12, 2023 at 03:46:26AM +0000, Daniel Golle wrote:
+> >=20
+> > > +  mediatek,usxgmii-performance-errata:
+> > > +    $ref: /schemas/types.yaml#/definitions/flag
+> > > +    description:
+> > > +      USXGMII0 on MT7988 suffers from a performance problem in 10GBa=
+se-R
+> > > +      mode which needs a work-around in the driver. The work-around =
+is
+> > > +      enabled using this flag.
+> >=20
+> > Why do you need a property for this if you know that it is present on
+> > the MT7988?
 >=20
-> Add additional reg properties for UDMA and RingAcc nodes which are
-> mostly used by bootloader components before Device Manager firmware
-> services are available, in order to setup DMA transfers.
+> Because it is only present in one of the two SerDes channels.
+> Channel 0 needs the work-around, Channel 1 doesn't.
 >=20
-> Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
-> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 8 ++++++--
->  arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi  | 8 ++++++--
->  2 files changed, 12 insertions(+), 4 deletions(-)
+> See also this commit in the vendor driver for reference[1].
 >=20
-> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/d=
-ts/ti/k3-am65-main.dtsi
-> index 5ebb87f467de..2033a8ec89d6 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> @@ -790,8 +790,12 @@ main_udmap: dma-controller@31150000 {
->  			compatible =3D "ti,am654-navss-main-udmap";
->  			reg =3D <0x0 0x31150000 0x0 0x100>,
->  			      <0x0 0x34000000 0x0 0x100000>,
-> -			      <0x0 0x35000000 0x0 0x100000>;
-> -			reg-names =3D "gcfg", "rchanrt", "tchanrt";
-> +			      <0x0 0x35000000 0x0 0x100000>,
-> +			      <0x0 0x30b00000 0x0 0x20000>,
+> We previously discussed that[2] and it was decided that a property
+> would be the prefered way to represent this as there aren't any other
+> per-instance differences which would justify another compatible.
 
-AM65 TRM mentions TCHAN region size as 0x10000 in the memory map. Can=20
-you confirm if this is correct and send a v2 if not?
+Please put it in the commit message so that when the next version shows
+up, Krzysztof doesn't show up and question the property for the third
+time.
 
-> +			      <0x0 0x30c00000 0x0 0x8000>,
+Also, on another note, this series is aimed at net-next but half the
+series is fixed for incorrect bindings. Why not net?
 
-Same here, TRM says size is 0x10000.
-
-> +			      <0x0 0x30d00000 0x0 0x4000>;
-
-Same here, TRM says size is 0x8000.
-
-> +			reg-names =3D "gcfg", "rchanrt", "tchanrt",
-> +				    "tchan", "rchan", "rflow";
->  			msi-parent =3D <&inta_main_udmass>;
->  			#dma-cells =3D <1>;
-> =20
-> diff --git a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi b/arch/arm64/boot/dt=
-s/ti/k3-am65-mcu.dtsi
-> index edd5cfbec40e..ecd7356f3315 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
-> @@ -214,8 +214,12 @@ mcu_udmap: dma-controller@285c0000 {
->  			compatible =3D "ti,am654-navss-mcu-udmap";
->  			reg =3D <0x0 0x285c0000 0x0 0x100>,
->  			      <0x0 0x2a800000 0x0 0x40000>,
-> -			      <0x0 0x2aa00000 0x0 0x40000>;
-> -			reg-names =3D "gcfg", "rchanrt", "tchanrt";
-> +			      <0x0 0x2aa00000 0x0 0x40000>,
-> +			      <0x0 0x284a0000 0x0 0x4000>,
-> +			      <0x0 0x284c0000 0x0 0x4000>,
-> +			      <0x0 0x28400000 0x0 0x2000>;
-
-These look okay.
-
-> +			reg-names =3D "gcfg", "rchanrt", "tchanrt",
-> +				    "tchan", "rchan", "rflow";
->  			msi-parent =3D <&inta_main_udmass>;
->  			#dma-cells =3D <1>;
-> =20
-> --=20
-> 2.43.0
->=20
->=20
-
---=20
-Thanks,
-Jai
-
-GPG Fingerprint: 4DE0 D818 E5D5 75E8 D45A AFC5 43DE 91F9 249A 7145
-
---ml4slrfwpinrbggr
+--TQLtrFVr4ShS8Ew7
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCAAdFiEETeDYGOXVdejUWq/FQ96R+SSacUUFAmV5fVkACgkQQ96R+SSa
-cUWDRRAAvpyEW9sMFP/+bSgALlAyBq6/8gdS6bkiYEQlFAhE+Fecsl2bKNnGyh0O
-xYOC2oqVD68X7LwfhZWz7y4RUoAzClCQn25yayWZjzJ65BovjP9Ecv9RNy+kf42L
-k0jKaTOGVHELTP5TfWh3o8qHWFi0MK4UGpkCg5ZSPuSnqn1H7rU3NB7Plqm5Qfna
-IvwS24WUT5TAa9RrrBbpEueQR77pYx4NjjeHhHVn6bYPnvyanKGpdPxnfuJC9Ike
-xO0L/i3yBvEZp1xrNFIfgpFck+u1j0aBUmfiqE3ubFQ8QgkQ0xkdukH/yn2yVN6b
-DKizpbcDj8Vnc+2TcI701A6hKfZeXNXcxC9l7EFLBh1bQyon8dGs+BcV+N3E+cCR
-JIdhcGj/ug8IElhntpL3FQj5aG7Fr3Ki5Jh1rMNztJpeCIGIXCFQU/tDqAidF+m/
-uqM5oot+3P7AT8NL5ca5Ez4TpPCeo7zP+pnfx0qm+wE/XXD5T4MujGaqHDx8kmHz
-ESY2CyyMvf2ENKczzw0xrKrwYKLQfUgZggKOfEltq0gabp/G0mpskNCFj86dqCXb
-nTwxfFj3D4Uy4RhKDlBzh7IhjBSOF/FqOu31sWxIkf1EcW96tWt1wzTXzKljeZ2Z
-uzKE1Wk17rTtG80dRuJrxbVH8N3Uem/y8nsQLmYD2PAapkXg3ho=
-=CSC2
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZXl9hAAKCRB4tDGHoIJi
+0l51AP9AfxTVJus53lwalnfKdDDM6fu9GnfTQ1DaU51hYEgGlAD+KJiVYUIfbVyH
+NeYoGDoBXFZkUEImGzZ7OfYXmDAzTQw=
+=+6BB
 -----END PGP SIGNATURE-----
 
---ml4slrfwpinrbggr--
+--TQLtrFVr4ShS8Ew7--
 
