@@ -1,373 +1,121 @@
-Return-Path: <devicetree+bounces-25038-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25039-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1DB2811FF3
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 21:28:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E3FF811FF6
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 21:29:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 961D31F2185C
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 20:28:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D7D4E28271A
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 20:29:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BA5C7E56E;
-	Wed, 13 Dec 2023 20:28:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F13407E570;
+	Wed, 13 Dec 2023 20:29:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="sZa+fcjW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UV6F+HMy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3E76DC;
-	Wed, 13 Dec 2023 12:28:31 -0800 (PST)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3BDKSDOr024588;
-	Wed, 13 Dec 2023 14:28:13 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1702499293;
-	bh=DjYeocYlQnbm+b46K66B+is+JQHLrwPynM8kFchXcRU=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=sZa+fcjWVLGt9YoxZVqWvffPVC4MWLBG5Mapym78KnDCFNT9Sd4SitL6b8YvlvhQS
-	 PtBMYVaYTQph962NpRNHMypqBLyiPKxykYKpZvA3xmRSMoroO3YvUD9a3SJurKu7nJ
-	 gr1hnjqYf8p0or7uSraYIQbqR/zG4UIojc9chSIE=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3BDKSDTh065566
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 13 Dec 2023 14:28:13 -0600
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 13
- Dec 2023 14:28:13 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 13 Dec 2023 14:28:13 -0600
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3BDKSDKw002316;
-	Wed, 13 Dec 2023 14:28:13 -0600
-Date: Wed, 13 Dec 2023 14:28:13 -0600
-From: Nishanth Menon <nm@ti.com>
-To: Vaishnav Achath <vaishnav.a@ti.com>
-CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <j-choudhary@ti.com>,
-        <u-kumar1@ti.com>
-Subject: Re: [PATCH 3/3] arm64: dts: ti: Add support for TI J722S Evaluation
- Module
-Message-ID: <20231213202813.7wgncys4qxgslsro@bulldog>
-References: <20231213124930.3012-1-vaishnav.a@ti.com>
- <20231213124930.3012-4-vaishnav.a@ti.com>
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80265A3;
+	Wed, 13 Dec 2023 12:29:49 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-40c48d7a7a7so32307725e9.3;
+        Wed, 13 Dec 2023 12:29:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702499388; x=1703104188; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Zw2AbkoN/4FIKkUWexE+EWqV2AcpdmgqKqjwrsLePhs=;
+        b=UV6F+HMyC1uQmn384lL0Xk2D69cNif6FlMm6AJI3HGQ1xn9GTIbdsnft9BAR4uYAL+
+         P663ol+Efe/pFz7wV8VLgllpcllpj7YjykMIBpPoJKdaBZap5vgRhik+tTL46l7rgRre
+         MBxQIoxsYOLWvTs8CPaClR+h0FsppmxvegbC135DRm5aV0r/Mh7snnkZ24EcQMcVrUxZ
+         N54JQ2DIYBFSJJtGuOqAATxWiCDwVwBRF9rn8eJ5ybcY32QQCnZuPVmz5ivtWEpTWIvQ
+         3WEuyEIiJah/FhTWolicgWkb0z9ilGvBvRmB0VgPhim67uYaJo0umphu7P1HWRCDoFVI
+         3lPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702499388; x=1703104188;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Zw2AbkoN/4FIKkUWexE+EWqV2AcpdmgqKqjwrsLePhs=;
+        b=hee5yTVBBSUdJFOysReZnHpRdAZuuqQ/YFA6ggHPEkBvRowDSzFt3+PGY/wut2xQ77
+         6m2/kWHMdCdmWnzEIT/p6kewovMS1LFdiZRIMluSsw9TeEeSoLRVtTefGHREsm3loAqh
+         lTNafE8URxofKN24JaOKfKg1LQxS6DlAmwnQy660iQJnxOorejTz6q8+2eubhV4A35j0
+         bTV9WxlRvTTB+LED4xAIghwMzeuWbDqMGhoSHBkNlx9221ckurfyaWYbsks5nDk0H8TS
+         CGR4oXqeYr6w5Dg2zLWbr/5Q9SVfCBk7mEQdEw/Js7DH+7j1a1uan8ZLlGeHDd9Rw+iW
+         u0uA==
+X-Gm-Message-State: AOJu0Yw/XX8TFn7fVb7qeSo6PiTKJOA9bCG/GURfGlS/lF/JUSWPggBM
+	qNLZ9hseR5TSUNcgxu+APd5cI7Kmww==
+X-Google-Smtp-Source: AGHT+IG20yw7g9GqI9IbadFk19Exl/zGderaqPqj/VFPT7HLhLixQNc2+B3uD+potrr7JRkM+oOFEA==
+X-Received: by 2002:a05:600c:3648:b0:40b:4812:22e2 with SMTP id y8-20020a05600c364800b0040b481222e2mr5226786wmq.11.1702499387771;
+        Wed, 13 Dec 2023 12:29:47 -0800 (PST)
+Received: from ?IPV6:2a02:810b:f40:4300:3bf6:bcc0:fe50:883f? ([2a02:810b:f40:4300:3bf6:bcc0:fe50:883f])
+        by smtp.gmail.com with ESMTPSA id n21-20020a05600c4f9500b0040b36ad5413sm21179364wmq.46.2023.12.13.12.29.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Dec 2023 12:29:47 -0800 (PST)
+Message-ID: <a5889aba-75b6-4671-918b-26a4b9ec12c5@gmail.com>
+Date: Wed, 13 Dec 2023 21:29:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20231213124930.3012-4-vaishnav.a@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 00/31] Fix and improve Rockchip RK3128 support
+Content-Language: en-US, de-DE
+To: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Lee Jones <lee@kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>
+Cc: Elaine Zhang <zhangqing@rock-chips.com>, Johan Jonker
+ <jbx6244@gmail.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ alsa-devel@alsa-project.org, linux-clk@vger.kernel.org,
+ linux-phy@lists.infradead.org
+References: <20230829171647.187787-1-knaerzche@gmail.com>
+ <2167016.irdbgypaU6@phil>
+From: Alex Bee <knaerzche@gmail.com>
+In-Reply-To: <2167016.irdbgypaU6@phil>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 18:19-20231213, Vaishnav Achath wrote:
-> Add basic support for the J722S EVM with UART console and
-> MMC SD as rootfs.
-> 
-> Schematics are available at:
-> 	https://www.ti.com/lit/zip/sprr495
-> 
-> Co-developed-by: Jayesh Choudhary <j-choudhary@ti.com>
-> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
-> Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/Makefile         |   3 +
->  arch/arm64/boot/dts/ti/k3-j722s-evm.dts | 253 ++++++++++++++++++++++++
->  2 files changed, 256 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-> 
-> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-> index 1ac47876bc99..aa7cc33e239b 100644
-> --- a/arch/arm64/boot/dts/ti/Makefile
-> +++ b/arch/arm64/boot/dts/ti/Makefile
-> @@ -76,6 +76,9 @@ dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm-gesi-exp-board.dtbo
->  k3-j721s2-evm-dtbs := k3-j721s2-common-proc-board.dtb k3-j721s2-evm-gesi-exp-board.dtbo
->  dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm.dtb
->  
-> +# Boards with J722s SoC
-> +dtb-$(CONFIG_ARCH_K3) += k3-j722s-evm.dtb
-> +
->  # Boards with J784s4 SoC
->  dtb-$(CONFIG_ARCH_K3) += k3-am69-sk.dtb
->  dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm.dtb
-> diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-> new file mode 100644
-> index 000000000000..1cb29203a8ed
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-> @@ -0,0 +1,253 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Device Tree file for the J722S-EVM
-> + * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
-> + *
-> + * Schematics: https://www.ti.com/lit/zip/sprr495
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "k3-j722s.dtsi"
-> +
-> +/ {
-> +	compatible = "ti,j722s-evm", "ti,j722s";
-> +	model = "Texas Instruments J722S EVM";
-> +
-> +	aliases {
-> +		serial0 = &wkup_uart0;
-> +		serial2 = &main_uart0;
-> +		mmc0 = &sdhci0;
-> +		mmc1 = &sdhci1;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = &main_uart0;
-> +	};
-> +
-> +	memory@80000000 {
-> +		/* 8G RAM */
-> +		reg = <0x00000000 0x80000000 0x00000000 0x80000000>,
-> +		      <0x00000008 0x80000000 0x00000001 0x80000000>;
-> +		device_type = "memory";
-> +		bootph-pre-ram;
-> +	};
-> +
-> +	reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		secure_tfa_ddr: tfa@9e780000 {
-> +			reg = <0x00 0x9e780000 0x00 0x80000>;
-> +			no-map;
-> +		};
-> +
-> +		secure_ddr: optee@9e800000 {
-> +			reg = <0x00 0x9e800000 0x00 0x01800000>;
-> +			no-map;
-> +		};
-> +
-> +		wkup_r5fss0_core0_memory_region: r5f-memory@a0100000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x00 0xa0100000 0x00 0xf00000>;
-> +			no-map;
-> +		};
-> +
-> +	};
-> +
-> +	vmain_pd: regulator-0 {
-> +		/* TPS65988 PD CONTROLLER OUTPUT */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vmain_pd";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		bootph-all;
-> +	};
-> +
-> +	vsys_5v0: regulator-vsys5v0 {
-> +		/* Output of LM5140 */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vsys_5v0";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		vin-supply = <&vmain_pd>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
-> +
-> +	vdd_mmc1: regulator-mmc1 {
-> +		/* TPS22918DBVR */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vdd_mmc1";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-boot-on;
-> +		enable-active-high;
-> +		gpio = <&exp1 15 GPIO_ACTIVE_HIGH>;
-> +		bootph-all;
-> +	};
-> +
-> +	vdd_sd_dv: regulator-TLV71033 {
-> +		compatible = "regulator-gpio";
-> +		regulator-name = "tlv71033";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&vdd_sd_dv_pins_default>;
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-boot-on;
-> +		vin-supply = <&vsys_5v0>;
-> +		gpios = <&main_gpio0 70 GPIO_ACTIVE_HIGH>;
-> +		states = <1800000 0x0>,
-> +			 <3300000 0x1>;
-> +	};
-> +
-> +	vsys_io_1v8: regulator-vsys-io-1v8 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vsys_io_1v8";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
-> +
-> +	vsys_io_1v2: regulator-vsys-io-1v2 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vsys_io_1v2";
-> +		regulator-min-microvolt = <1200000>;
-> +		regulator-max-microvolt = <1200000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
-> +};
-> +
-> +&main_pmx0 {
-> +	bootph-all;
+Hi Heiko
 
-Only in leaf nodes.
+Am 12.12.23 um 21:03 schrieb Heiko Stuebner:
+> Hi Alex,
+>
+> Am Dienstag, 29. August 2023, 19:16:16 CET schrieb Alex Bee:
+>> this series fixes some issues I found when testing my "new" RK3128 board
+>> with the mainline kernel and adds some core functionality like SMP bringup,
+>> usb and networking.
+> before I discard this thread, is everything from here migrated to
+> separate serieses or are there patches in this big pile that are still
+> relevant on their own, that haven't been applied?
+> [I lost track of what did go where ;-) ]
 
-> +
-> +	main_i2c0_pins_default: main-i2c0-default-pins {
-> +		pinctrl-single,pins = <
-> +			J722S_IOPAD(0x01e0, PIN_INPUT_PULLUP, 0) /* (D23) I2C0_SCL */
-> +			J722S_IOPAD(0x01e4, PIN_INPUT_PULLUP, 0) /* (B22) I2C0_SDA */
-> +		>;
-> +		bootph-all;
-> +	};
-> +
-> +	main_uart0_pins_default: main-uart0-default-pins {
-> +		pinctrl-single,pins = <
-> +			J722S_IOPAD(0x1c8, PIN_INPUT, 0)	/* (A22) UART0_RXD */
-> +			J722S_IOPAD(0x1cc, PIN_OUTPUT, 0)	/* (B22) UART0_TXD */
-> +		>;
-> +		bootph-all;
-> +	};
-> +
-> +	vdd_sd_dv_pins_default: vdd-sd-dv-default-pins {
-> +		pinctrl-single,pins = <
-> +			J722S_IOPAD(0x0120, PIN_INPUT, 7) /* (F27) MMC2_CMD.GPIO0_70 */
-> +		>;
-> +		bootph-all;
-> +	};
-> +
-> +	main_mmc1_pins_default: main-mmc1-default-pins {
-> +		pinctrl-single,pins = <
-> +			J722S_IOPAD(0x023c, PIN_INPUT, 0) /* (H22) MMC1_CMD */
-> +			J722S_IOPAD(0x0234, PIN_OUTPUT, 0) /* (H24) MMC1_CLK */
-> +			J722S_IOPAD(0x0230, PIN_INPUT, 0) /* (H23) MMC1_DAT0 */
-> +			J722S_IOPAD(0x022c, PIN_INPUT_PULLUP, 0) /* (H20) MMC1_DAT1 */
-> +			J722S_IOPAD(0x0228, PIN_INPUT_PULLUP, 0) /* (J23) MMC1_DAT2 */
-> +			J722S_IOPAD(0x0224, PIN_INPUT_PULLUP, 0) /* (H25) MMC1_DAT3 */
-> +			J722S_IOPAD(0x0240, PIN_INPUT, 0) /* (B24) MMC1_SDCD */
-> +		>;
-> +		bootph-all;
-> +	};
-> +};
-> +
-> +&main_gpio1 {
-> +	status = "okay";
-> +};
-> +
-> +&main_uart0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&main_uart0_pins_default>;
-> +	status = "okay";
-> +	bootph-all;
-> +};
-> +
-> +&mcu_pmx0 {
-> +	bootph-all;
+No worries - I kept track :)
 
-Same..
+Not everything is re-sent yet (sound nodes, RK3126/RK3128 split-up) but 
+you can discard this and will re-send everything left in separate series 
+(as I said [0])
 
-> +
-> +	wkup_uart0_pins_default: wkup-uart0-default-pins {
-> +		pinctrl-single,pins = <
-> +			J722S_MCU_IOPAD(0x02c, PIN_INPUT, 0)	/* (C7) WKUP_UART0_CTSn */
-> +			J722S_MCU_IOPAD(0x030, PIN_OUTPUT, 0)	/* (C6) WKUP_UART0_RTSn */
-> +			J722S_MCU_IOPAD(0x024, PIN_INPUT, 0)	/* (D8) WKUP_UART0_RXD */
-> +			J722S_MCU_IOPAD(0x028, PIN_OUTPUT, 0)	/* (D7) WKUP_UART0_TXD */
-> +		>;
-> +		bootph-all;
-> +	};
-> +
-> +	wkup_i2c0_pins_default: wkup-i2c0-default-pins {
-> +		pinctrl-single,pins = <
-> +			J722S_MCU_IOPAD(0x04c, PIN_INPUT_PULLUP, 0)	/* (C7) WKUP_I2C0_SCL */
-> +			J722S_MCU_IOPAD(0x050, PIN_INPUT_PULLUP, 0)	/* (C6) WKUP_I2C1_SDA */
-> +		>;
-> +		bootph-all;
-> +	};
-> +};
-> +
-> +&wkup_uart0 {
-> +	/* WKUP UART0 is used by DM firmware */
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&wkup_uart0_pins_default>;
-> +	status = "reserved";
-> +	bootph-all;
-> +};
-> +
-> +&wkup_i2c0 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&wkup_i2c0_pins_default>;
-> +	clock-frequency = <400000>;
-> +	bootph-all;
-> +};
-> +
-> +&main_i2c0 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&main_i2c0_pins_default>;
-> +	clock-frequency = <400000>;
-> +	bootph-all;
-> +
-> +	exp1: gpio@23 {
-> +		compatible = "ti,tca6424";
-> +		reg = <0x23>;
-> +		gpio-controller;
-> +		#gpio-cells = <2>;
-> +		gpio-line-names = "TRC_MUX_SEL", "OSPI/ONAND_MUX_SEL",
-> +				  "MCASP1_FET_SEL", "CTRL_PM_I2C_OE#",
-> +				  "CSI_VIO_SEL", "USB2.0_MUX_SEL",
-> +				  "CSI01_MUX_SEL_2", "CSI23_MUX_SEL_2",
-> +				  "LMK1_OE1", "LMK1_OE0",
-> +				  "LMK2_OE0", "LMK2_OE1",
-> +				  "GPIO_RGMII1_RST#", "GPIO_AUD_RSTn",
-> +				  "GPIO_eMMC_RSTn", "GPIO_uSD_PWR_EN",
-> +				  "USER_LED2", "MCAN0_STB",
-> +				  "PCIe0_1L_RC_RSTz", "PCIe0_1L_PRSNT#",
-> +				  "ENET1_EXP_SPARE2", "ENET1_EXP_PWRDN",
-> +				  "PD_I2ENET1_I2CMUX_SELC_IRQ", "ENET1_EXP_RESETZ";
-> +	};
-> +};
-> +
-> +&sdhci1 {
-> +	/* SD/MMC */
-> +	status = "okay";
-> +	vmmc-supply = <&vdd_mmc1>;
-> +	vqmmc-supply = <&vdd_sd_dv>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&main_mmc1_pins_default>;
-> +	ti,driver-strength-ohm = <50>;
-> +	disable-wp;
-> +	no-1-8-v;
-> +	bootph-all;
-> +};
-> -- 
-> 2.17.1
-> 
+[0] 
+https://lore.kernel.org/linux-arm-kernel/170109134007.42627.12929766893521974712.b4-ty@kernel.org/T/#m63efa1c1379353b5cf764d2f9a260cf0329c864c
 
--- 
 Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+
+Alex
+
+>
+>
+> Thanks
+> Heiko
+>
+>
 
