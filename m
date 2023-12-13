@@ -1,209 +1,167 @@
-Return-Path: <devicetree+bounces-24860-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24861-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C0F7811842
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 16:50:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2ACF811840
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 16:50:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 72D6C1C2125A
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 15:50:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 32F351C212CE
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 15:50:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E48243175E;
-	Wed, 13 Dec 2023 15:47:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D5793306B;
+	Wed, 13 Dec 2023 15:47:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="D206nCNJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DaM9v6xu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2055.outbound.protection.outlook.com [40.107.220.55])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C44DB2;
-	Wed, 13 Dec 2023 07:47:23 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Il1tGUW26YNXweDailn9sIZX2lSp2zvyufBkzxsubAxBpCHY9Eqg+X0HKRsCsc+nN/Yd6Y3vfm59BhUT9jbz9jGZaRwXor+GvagyQtN0g7/Y/q7nTfsBV9Ag6CN8XseEgyHIE3PCM2X6T/97WTs1v38+oKsaEy69eGRomVMoJNTlxuPeG3k+k8M86UPOFA3wQ46o/bN1S/UZiKsF0xpmvTtpf2JAdTPV5U8YldcgDArx1wdKrXnX0Q7ezwbefV7wGFHzE2krHwoSTJBQH2GMVfUelLQypnnGVSv13Y+jTVHfJF4npfstL3hLXD7TUSzCcMU8E6BiRCgBexJogRZRMA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aslV1OZ4Ikw9IKOgg2A1BN98uqd9istGvIj+iv6t1Jo=;
- b=WC9NTaUTz1yiZHNR/TjLzccmNWewsoTJuX2SqucUPO/vbOnvvsHWSgbMKoZuNcWsr3nWDsxGg7etExthg9LqWcGgkgl8bNwMz0HX15v9VaMJPS7CMUbwkh1gjDQ5tdlYQ9YDK0LE2qZ6XPeV7A8EKLF2g+1VVd6bvwJxyokWKb2YpmjIWj5LsjEzNQ9qYq8Iep2q+1eYvOwTKnolmQhn3nHd/b9dt59yO0z5EYL9hBouJdcBZGIe6k1tZgzlSUd/WzMMm8oXlqq9ankHDOsZ4kW3Hp9i67b7nPMHF9jduhhk0uXZADNge51pu5JjaYfXQzHM60jVZYz/SCltsudZkA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aslV1OZ4Ikw9IKOgg2A1BN98uqd9istGvIj+iv6t1Jo=;
- b=D206nCNJ+kZQSvp8J41xs5LkhCLlw3Y1eWPZcq4P2EGFTyvqwCRRJoLlD3XR0VYiWqvCV7IN9RIRIp5XZCkHzY+19ZbhEF08N/QByjAY+NP1XMdxHpKEnVlHNzK8wfFAFEomFOPF2wGS7Y5ICl/8EQGCktcVjsTTjxdSmH/Bg3Q=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BYAPR12MB4758.namprd12.prod.outlook.com (2603:10b6:a03:a5::28)
- by CH2PR12MB4167.namprd12.prod.outlook.com (2603:10b6:610:7a::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.26; Wed, 13 Dec
- 2023 15:47:20 +0000
-Received: from BYAPR12MB4758.namprd12.prod.outlook.com
- ([fe80::39a2:42da:ea20:3349]) by BYAPR12MB4758.namprd12.prod.outlook.com
- ([fe80::39a2:42da:ea20:3349%5]) with mapi id 15.20.7091.022; Wed, 13 Dec 2023
- 15:47:20 +0000
-Message-ID: <fc38f9a4-6ce8-4d27-9bdc-f317ad03c930@amd.com>
-Date: Wed, 13 Dec 2023 16:47:09 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: zynqmp: Add missing destination mailbox compatible
-Content-Language: en-US
-To: linux-kernel@vger.kernel.org, monstr@monstr.eu, michal.simek@xilinx.com,
- git@xilinx.com
-Cc: Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Michael Grzeschik <m.grzeschik@pengutronix.de>,
- Parth Gajjar <parth.gajjar@amd.com>,
- Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
- Rob Herring <robh+dt@kernel.org>,
- Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>,
- Varalaxmi Bingi <varalaxmi.bingi@amd.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <96460adbb99ea829a2a95c72a40118f81946a559.1701335951.git.michal.simek@amd.com>
-From: Michal Simek <michal.simek@amd.com>
-Autocrypt: addr=michal.simek@amd.com; keydata=
- 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
- 3i3l5DA=
-In-Reply-To: <96460adbb99ea829a2a95c72a40118f81946a559.1701335951.git.michal.simek@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VI1PR06CA0115.eurprd06.prod.outlook.com
- (2603:10a6:803:8c::44) To BYAPR12MB4758.namprd12.prod.outlook.com
- (2603:10b6:a03:a5::28)
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9BC3F2;
+	Wed, 13 Dec 2023 07:47:24 -0800 (PST)
+Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2cc259392a6so42984621fa.2;
+        Wed, 13 Dec 2023 07:47:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702482443; x=1703087243; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=EhvWEh807oUIcSem4VDgk6dTPM+cYeOF5hlufV89DoI=;
+        b=DaM9v6xuPKDYm4Kyb/wttByJTbgU1JRNzLNpXJMk2sLR/aDSlzQ7M8YFBOlmcUGhUX
+         amxFegOmdy1Pj++hPY6A/WeyIfNAoeSZhGZDo761/9PQcq66Sj7c5vpbTTyCqerF498O
+         S/FmcG/TqizEWAieIaogjSwVjUfp3WhlYaZ2xLD0XqtfTP0Kc9JQAZMcUZz7XspERXSp
+         kTyi4zWKOwZo6KZGfYJWj3R8VdzhY/5YHUhOBkCswmnN0THhh03v0lvQPY87zcQJvePo
+         4IoA1KdMYf62Yp/NxI5cBxynwX+VS9EHcqTMuIgDnWCk8XcyM+eyPv3pwSlT7rwg7hU5
+         dBYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702482443; x=1703087243;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EhvWEh807oUIcSem4VDgk6dTPM+cYeOF5hlufV89DoI=;
+        b=cBkZu+/N1ea8g57MnHh+Jt2bczeENCZo2iCLx1NMEVnuNd9bUZz37R06/ZUSnYucT3
+         Ycm4Q5RFeWyseDygGiYcdNudyqraDljC9xQaSt8Vzo5pf4EXNpNDFHDe5BP3a/ns2Vl3
+         OiV5Ff9lumnh9Q24p7wP+Z7jFUAJ4VPKyF+TTYbDjAL7DizJ4LCrUA//B4eI8RbSnytS
+         G/uYo8x79cEtD7YHzeIs+oHSW4d4TaYC7xR6iL+85I1jiPdHF7Nnk7RwT+W5GUGMGn0o
+         m9ThVR8D8gyy2VnthweL+cXByhvgqGHxGKSx/DGJutJSFyRutxG13/VwAE9YeBnTpYKh
+         2Z2g==
+X-Gm-Message-State: AOJu0YyXFDRYihL8ssoF8PLXRXYCevhqWexRbl7/XvOqABl4Isv8O/5p
+	Xlr9dFBIi4fiIpyOUO1DK6M=
+X-Google-Smtp-Source: AGHT+IHfEac18zoY0gBPJcbuOObR91TUzD3b56b0y+7kI2XbIcuwhPK2c/DDUaHKl+amw8uRZizW/A==
+X-Received: by 2002:a2e:a103:0:b0:2cc:1dc8:4e96 with SMTP id s3-20020a2ea103000000b002cc1dc84e96mr4567741ljl.24.1702482442739;
+        Wed, 13 Dec 2023 07:47:22 -0800 (PST)
+Received: from mobilestation ([178.176.56.174])
+        by smtp.gmail.com with ESMTPSA id p8-20020a2e8048000000b002ca026f777fsm1867436ljg.48.2023.12.13.07.47.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Dec 2023 07:47:22 -0800 (PST)
+Date: Wed, 13 Dec 2023 18:47:19 +0300
+From: Serge Semin <fancer.lancer@gmail.com>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>, 
+	Jose Abreu <Jose.Abreu@synopsys.com>, Maxime Chevallier <maxime.chevallier@bootlin.com>, 
+	Tomer Maimon <tmaimon77@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, openbmc@lists.ozlabs.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 06/16] net: pcs: xpcs: Avoid creating dummy XPCS
+ MDIO device
+Message-ID: <eeyhdczfpgxwxbtljjc7tkjwi64avqkn2h7tehh56xq6pss3x3@7cun56p633o4>
+References: <20231205103559.9605-1-fancer.lancer@gmail.com>
+ <20231205103559.9605-7-fancer.lancer@gmail.com>
+ <ZW8pxM3RvyHJTwqH@shell.armlinux.org.uk>
+ <ZW85iBGAAf5RAsN1@shell.armlinux.org.uk>
+ <kagwzutwnbpiyc7mmtq7ka3vhffw4fejuti5vepnla74rocruh@tryn6lxhwbjz>
+ <ZXivRofyIpvmfOyR@shell.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BYAPR12MB4758:EE_|CH2PR12MB4167:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9982f211-c921-4f9c-78c3-08dbfbf2caa4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	MrQNRuSwTTZcss55C0RZi0E+gl+fbCAAdu7A4QhaCE2NFlO+loBLzruzjc42vXk3x20mI9LXiT2gAcHrzZWaIyxXRVXGrM/ouyT6J18B2gX4WwXS+rxyUX/FMwmy3QjON5q5fXF+FNwgvpCSDq4zY0fcLIYt6pyRr5d4bkQ5fBQuprCzSRNUUbNO/EG2WirS3bve3xYLFyhBB6rysOiieUbJYjwQGcpuFTqZIZgOZXNkfZrUXfv0OjIBh3WYd0qPZM/ny3aBqH0ez0arhayDrju9/zSarySR8kJMloQ7Ghh5tj0rBdFHS8GFNb1xNCyiYQ0Mm3aTD+kK0eWpbJn88vxCvT3Z3dWPs3W6OB+x1WlNQ7GiPz7V3ZMiyCQ2fiQQDA275BJiu6UF+ZG5SishcQAWMiyPfNxBbpQXot8i6MmSgXfpjOcT/jokCZOse1Ne6Nz8QP1JXbKB1ipwu8DxzwgOTIbMIn0cR8x7pFdLpswluP4U6DI95Mx9vMWYEa+WDduDd76AWYL+9JVqW4X2lI7zmfe1NQav3zKFVcoekxJkS7FfsyXqic94/L1Rsb863Pk8Ku0xT8ee5XgZuGRseOIjutc5oAHG5QrVrpKPvauRInhNeCrE9cBgBUgiU7diLPKfvP7+RSqWoSeMBQXn4A==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR12MB4758.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(346002)(376002)(136003)(366004)(39860400002)(230922051799003)(64100799003)(186009)(451199024)(1800799012)(31686004)(66556008)(66946007)(36756003)(31696002)(86362001)(66476007)(38100700002)(6512007)(83380400001)(53546011)(2616005)(44832011)(6506007)(6486002)(6666004)(15650500001)(4744005)(2906002)(7416002)(54906003)(316002)(478600001)(5660300002)(26005)(4326008)(8936002)(41300700001)(8676002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?RGJnTFBnUFJrb0M4cmRlTW9sQmxFbEMrS3NaL094RFNuNUVCcTJHS1JGdG1v?=
- =?utf-8?B?QVRxV0hMWTdNQTZGVENTVHNIUzRpd0JDbFd4NE1IdEh0THFCMVp1bkpYMDdR?=
- =?utf-8?B?U1RwOFRVL1FuRzN1a0lIM2VjRldJTFphZlh3enJnMXNscDNzdVlEM2F6Zm9B?=
- =?utf-8?B?Y2Y3WnQyL0J3cXJmbTNVRUF5L25QMWw4MFJwa2pVSGRwaVV0d0xFNUFkdU1Y?=
- =?utf-8?B?NEpWaGdPaWtmL0NxRHFCOFlSZXh6c3VSdndBRVR5SmxzMCsrSVNld1NidzNT?=
- =?utf-8?B?dnBQVTFvYTdyV0xQWHZZWVduYU8yNytzZ0s1ZUJyMkR3dDJ3Y3BGSlJ2UWh0?=
- =?utf-8?B?T0VZRlVPK1AvaWhrc1h5Wkp2UmtMbGFXWFNIVWV2ekxlOHVxSGpJa0NWS3Nn?=
- =?utf-8?B?YmxKRlNWTTRwck9MSW4rVjZPbUgrSnZGeTF3YU1DV0VWakl6VHpyVXcrcDlU?=
- =?utf-8?B?UFdSWURxVVBQbjhTTS9TT1RwdkpQbFlhZ0M1TUNSdTlWamg2TU0wakRhV2sy?=
- =?utf-8?B?TmNubkJ1UjVlMUhWU2kxMHdaTUZsaG5iTXo5RGx6dzluYWlRVTgxbTh2MlRt?=
- =?utf-8?B?RHhSNEU4S3VYaS8rSEFUWmxnK3F5V29jNm5DSllHSmgyZFR0L3gxK0RjeHc3?=
- =?utf-8?B?TU11bEQybG5GVEp5dDUyZ1RvNDRDRVFMNUtSUFVjWW0xSUZERVBBa1NOMXVG?=
- =?utf-8?B?alJieWJRVU1qUFNwN2tJV1RkRE96TktWQkZ1ZnkrZW1xMStWOEdKQVdWSjNN?=
- =?utf-8?B?ajhhcWF3UytzcXg5NFFZeVVCNm5xc09CQnQ1L1VRMjF4UkFWOHVpRXI2am9r?=
- =?utf-8?B?MlZsL0dJaG91YWV1dVhBa1VsZCs1b3Q5ZG13aUZlUVNhSVJSYjNMbTVYNjB2?=
- =?utf-8?B?N1c0ZlcwWFVzQmpRQXB0ODUzcWNvejlrVmpaS2tFVUxsUE5HY3ZGNnEyL1Np?=
- =?utf-8?B?S1J3NFpyRkI1NzltY3JsUkJrRFFMaXo1R1lQemRSRFVXK05aWHJPc2dEd1Z0?=
- =?utf-8?B?QTc5b3BqVFJvcm11Ym5rL214bHlCNmRCOHNsWUtOcTU1TXRLa0luWjNhU0Ex?=
- =?utf-8?B?ZHBKWC9qVFpVRWJ4STNlbExoTmk3NVdkMzNEeUpwOCtmbXJHWFNHbm03T0RL?=
- =?utf-8?B?ZnkxMHN0ZWd2b3ZGS1M2S1h4a2R3L3ROM0VjY0FteXZwVzE2MTFIMkR5T2VB?=
- =?utf-8?B?bEV4bVNBYVY4YnliMkxSSU8vL2JKai8wRTBlVWFjbzdJNkk2RUU0enNHMTVu?=
- =?utf-8?B?Qm1OaWtrTXVSN1h4c3QwYW4xZ0pRU2lPNXZsV1J0d2xKSzZYZmdCcmEyTjBP?=
- =?utf-8?B?NE1iN1RtcjZrZzBsSml6YXZMbkl2cWJYc2N5UjlkYVFJeThrWTV1UldudUNn?=
- =?utf-8?B?Rk4rTEtVY1lob2JVU0RNSjRxN09QcG95TzVuazlZM1RrdmJCSnFGRDRnVFBT?=
- =?utf-8?B?blduRXNVQnJ1TUdHb1h6WEtKdHBMeWRIRzFGMEYzQUdCQUs0cGN6Um1UajRl?=
- =?utf-8?B?ZzRhc2cwZ2lNaXlLK216TmFtK1hySVRRdmNMZEFYcGN5eXdnbVU3YUx2VU01?=
- =?utf-8?B?VHcxdUFEQm9FSis3a2EyKzlZUXlkTGlBVnliTTlsRnYxaDJwZkYwVCthOTQw?=
- =?utf-8?B?ZW5waVBGT2VvNVNnZ1MxNkkyZ1dnS0RuejJzbmRqcFcybXRzVXdramhVTlBG?=
- =?utf-8?B?bHozbUlaQkhpZW43bWswbkQ0RGxMcEFhVWZBK1lyWHFoRDhzbzFwT1BkckVF?=
- =?utf-8?B?YXBoaGR3SFlNRXNkTFRVQmZXTjk5LzZYdjdxelk3UGRBM1AvMm41M256YmpP?=
- =?utf-8?B?RHg1YzBkeXIwcWxKZEJiNEdubEJrN0xIRnZxbzU4ckNlUnRXSWdncDZyWm83?=
- =?utf-8?B?TVFKN29pbUZZejBySVpTLytFN1h0NmxkUVhZa1pEdnViTXNrZFk5ZWN2QWo0?=
- =?utf-8?B?b2JUV1piVzV3Q3NoQmtwWFdrUDJrbnZZb0ZneFpodWZnZFhyQVhVdjFjMTA5?=
- =?utf-8?B?azI0dmZINWtrYkZpQkd0S2EyVW0zenV4SlhjVTNIZFlBcWE5VzBTSENQYVI5?=
- =?utf-8?B?ZEFQUDZzR1dwN1RDeE9UbEZVNU4xTkQzVGhmVDVxbEM2eTFEV1dvdVhpVVZB?=
- =?utf-8?Q?llWaP09Hua6OFh/r9uQf+5uCq?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9982f211-c921-4f9c-78c3-08dbfbf2caa4
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB4758.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Dec 2023 15:47:20.6194
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: HYe6RWhVhNhqrafzz3dOMQ0Sz4pdJJrIGyUNp4vHN3d0YK2BixJfufv1QYRbpKKW
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4167
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZXivRofyIpvmfOyR@shell.armlinux.org.uk>
 
-
-
-On 11/30/23 10:19, Michal Simek wrote:
-> The commit 81186dc16101 ("dt-bindings: zynqmp: add destination mailbox
-> compatible") make compatible string for child nodes mandatory that's why
-> add it.
+On Tue, Dec 12, 2023 at 07:06:46PM +0000, Russell King (Oracle) wrote:
+> On Tue, Dec 12, 2023 at 06:26:16PM +0300, Serge Semin wrote:
+> > I would have used in the first place if it was externally visible, but
+> > it's defined as static. Do you suggest to make it global or ...
 > 
-> Signed-off-by: Michal Simek <michal.simek@amd.com>
-> ---
+> That would be one option - I didn't make it visible when I introduced it
+> beacuse there were no users for it.
 > 
->   arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 1 +
->   1 file changed, 1 insertion(+)
+> > > At some point, we should implement
+> > > mdiobus_get_mdiodev() which also deals with the refcount.
+> > 
+> > ... create mdiobus_get_mdiodev() instead?
+> > 
+> > * Note in the commit message I mentioned that having a getter would be
+> > * better than directly touching the mii_bus instance guts.
 > 
-> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> index f5e1eb8cb3b7..eaba466804bc 100644
-> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> @@ -141,6 +141,7 @@ zynqmp_ipi: zynqmp-ipi {
->   
->   		ipi_mailbox_pmu1: mailbox@ff9905c0 {
->   			bootph-all;
-> +			compatible = "xlnx,zynqmp-ipi-dest-mailbox";
->   			reg = <0x0 0xff9905c0 0x0 0x20>,
->   			      <0x0 0xff9905e0 0x0 0x20>,
->   			      <0x0 0xff990e80 0x0 0x20>,
+> What I'm thinking is:
+> 
+> /**
+>  * mdiobus_get_mdiodev() - get a mdiodev for the specified bus
+>  * @bus: mii_bus to get mdio device from
+>  * @addr: mdio address of mdio device
+>  *
+>  * Return the struct mdio_device attached to the MII bus @bus at MDIO
+>  * address @addr. On success, the refcount on the device will be
+>  * increased, which must be dropped using mdio_device_put(), and the
+>  * mdio device returned. Otherwise, returns NULL.
+>  */
+> struct mdio_device *mdiobus_get_mdiodev(struct mii_bus *bus, int addr)
+> {
+> 	struct mdio_device *mdiodev;
+> 
+> 	mdiodev = mdiobus_find_device(bus, addr);
+> 	if (mdiodev)
+> 		get_device(&mdiodev->dev);
+> 	return mdiodev;
+> }
+> EXPORT_SYMBOL(mdiobus_get_mdiodev);
+> 
+> should do it, and will hold a reference on the mdiodev structure (which
+> won't be freed) and also on the mii_bus (since this device is a child
+> of the bus device, the parent can't be released until the child has
+> been, so struct mii_bus should at least stay around.)
 
-Applied.
-M
+Right. That's exactly what had in mind. Thanks for suggesting a
+ready-to-apply solution. I'll add it to the series as a separate patch
+if we decide to keep the proposed in this patch change.  See my
+question in the next message:
+https://lore.kernel.org/netdev/wnptneaxxe2tq2rf7ac6a72xtyluyggughvmtxbbg5qto64mpa@7gchl5e4qllu/
+
+> 
+> What would help the "the bus driver has been unbound" situation is if
+> we took the mdio_lock on the bus, and then set the {read,write}{,_c45}
+> functions to dummy stubs when the bus is being unregistered which then
+> return e.g. -ENXIO. That will probably make unbinding/unloading all
+> MDIO bus drivers safe from kernel oops, although phylib will spit out
+> a non-useful backtrace if it tries an access. I don't think there's
+> much which can be done about that - I did propose a patch to change
+> that behaviour but apparently folk like having it!
+> 
+> It isn't perfect - it's racy, but then accessing mdio_map[] is
+> inherently racy due to no locking with mdiobus_.*register_device().
+> At least if we have everyone using a proper getter function rather
+> than directly fiddling with bus->mdio_map[]. We only have one driver
+> that accesses it directly at the moment (mscc_ptp):
+> 
+>                 dev = phydev->mdio.bus->mdio_map[vsc8531->ts_base_addr];
+>                 phydev = container_of(dev, struct phy_device, mdio);
+> 
+>                 return phydev->priv;
+> 
+> and that should really be using mdiobus_get_phy().
+
+Regarding the driver bind/unbind. I guess the maintainers just forget
+about that problem. Do you think it's worth reminding them about it? 
+
+-Serge(y)
+
+> 
+> -- 
+> RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+> FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
