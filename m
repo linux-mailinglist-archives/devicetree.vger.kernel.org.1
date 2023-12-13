@@ -1,302 +1,107 @@
-Return-Path: <devicetree+bounces-24684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24685-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B201B810DC1
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 10:56:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 65018810DC9
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 11:00:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D60F51C208FE
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 09:56:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 971E81C20967
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 09:59:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5F66219E1;
-	Wed, 13 Dec 2023 09:56:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADE822207B;
+	Wed, 13 Dec 2023 09:59:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="tZhOF3he"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="UnbSIH0Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31362A5;
-	Wed, 13 Dec 2023 01:56:02 -0800 (PST)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3BD9tsv3035793;
-	Wed, 13 Dec 2023 03:55:54 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1702461354;
-	bh=i9JxcjajiZIqaXhdDVPAsNjWaUMuYvf7aLDjliyNCDM=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=tZhOF3he43wkGQr6fmJpcDoVu/k7vRspSDVuF3x7FCDFG/NWUjlhHahT3qlcUPspc
-	 Zn3iqfFYwtrUnDiBufxeIw3Y2qkmuO0vGwIy7WUPFkkqvOQ58CxKlM/rphRzX/j/qY
-	 oKSltMfNbFK9JeYK7EUgrLnXb7tmTx53KSUt6czo=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3BD9tsav069528
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 13 Dec 2023 03:55:54 -0600
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 13
- Dec 2023 03:55:54 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 13 Dec 2023 03:55:54 -0600
-Received: from localhost (jluthra.dhcp.ti.com [172.24.227.12])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3BD9trZD027827;
-	Wed, 13 Dec 2023 03:55:54 -0600
-Date: Wed, 13 Dec 2023 15:25:47 +0530
-From: Jai Luthra <j-luthra@ti.com>
-To: Vignesh Raghavendra <vigneshr@ti.com>, <m-chawdhry@ti.com>
-CC: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/3] arm64: dts: ti: k3-j7*: Add additional regs for DMA
- components
-Message-ID: <go65ysuu74xsg6xuqozlp4f6iqyxluxpxbafrizrj3xk5nkexk@uihz45d7wst3>
-References: <20231212111634.3515175-1-vigneshr@ti.com>
- <20231212111634.3515175-3-vigneshr@ti.com>
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B5A583;
+	Wed, 13 Dec 2023 01:59:50 -0800 (PST)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 40D6E240011;
+	Wed, 13 Dec 2023 09:59:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1702461589;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=nTAnT1PVzX6vcK0RfwUZyNxxQAd/jwvrT19yLQs+C4Q=;
+	b=UnbSIH0Y1HCLvwbULwx2H3B1LWY96fVr8vLzUfF1/SFv9nka4g4DdQJDAkDjs38Kwm7Atk
+	mp872UwH9UE7oDt7zK1SxubMXoShq3w2Pf6m+cjSwM9ao27/SiTzLqo6hudA7QuKA9970g
+	WLgHOC/5FRwEvcpYnSuJl2adqREKc1qWIfhSrEH3UKLlUyZNJqhX/qETogIopr1bq4EM8o
+	paXnwt/VrPgrAuR6/J/miZPdF5CQfKhOi4JbzoXemoCK4cqva1TYYlUTSbwap+ZOdKVdxj
+	aaB00qqbkN0rmExstwn1PdamLsNOfLzeb1N//3GTUIKOvxgUPuKgyzf4C/bdQg==
+Date: Wed, 13 Dec 2023 10:59:48 +0100
+From: Kamel Bouhara <kamel.bouhara@bootlin.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Conor Dooley <conor@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Marco Felsch <m.felsch@pengutronix.de>,
+	Jeff LaBundy <jeff@labundy.com>,
+	catalin.popescu@leica-geosystems.com,
+	mark.satterthwaite@touchnetix.com, bartp@baasheep.co.uk,
+	hannah.rossiter@touchnetix.com,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	bsp-development.geo@leica-geosystems.com
+Subject: Re: [PATCH v5 2/3] dt-bindings: input: Add TouchNetix axiom
+ touchscreen
+Message-ID: <20231213095948.GD2340704@kb-xps>
+References: <20231211121430.1689139-1-kamel.bouhara@bootlin.com>
+ <20231211121430.1689139-3-kamel.bouhara@bootlin.com>
+ <20231212-rework-bounce-f4d9d12362a4@spud>
+ <ce238248-6bac-41df-94ba-b494c5c09631@linaro.org>
+ <20231213082256.GB2340704@kb-xps>
+ <656f2245-ff76-48cf-9a1f-05259765c622@linaro.org>
+ <20231213091417.GC2340704@kb-xps>
+ <de1ee415-31b0-45fd-b376-f7aa83b64c64@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="cecej26b2bbrda5u"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20231212111634.3515175-3-vigneshr@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <de1ee415-31b0-45fd-b376-f7aa83b64c64@linaro.org>
+X-GND-Sasl: kamel.bouhara@bootlin.com
 
---cecej26b2bbrda5u
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Le Wed, Dec 13, 2023 at 10:15:35AM +0100, Krzysztof Kozlowski a écrit :
+> On 13/12/2023 10:14, Kamel Bouhara wrote:
+> > Le Wed, Dec 13, 2023 at 09:46:03AM +0100, Krzysztof Kozlowski a écrit :
+> >> On 13/12/2023 09:22, Kamel Bouhara wrote:
+> >>>> It still brings the type of some fields or the constraints. However need
+> >>>> of specifying "poll-interval" already points to missing
+> >>>> unevaluatedProperties.
+> >>>
+> >>> Ok, this wasn't clear for me wether or not I should pick
+> >>> unevaluatedProperties
+> >>
+> >> Yes
+> >>
+> >>> as I still reference "poll-interval" from the
+> >>> input.yaml schema ?
+> >>
+> >> You should drop it from your binding.
+> >
+> > The driver use it could you explain why I should drop it ?
+>
+> Because it comes from input.yaml and you did not add any constraints, so
+> poll-interval here is redundant.
+>
 
-Hi Manorit/Vignesh,
+Ok clear, thanks !
 
-Please recheck the addresses match each SoCs TRM.
-
-On Dec 12, 2023 at 16:46:33 +0530, Vignesh Raghavendra wrote:
-> From: Manorit Chawdhry <m-chawdhry@ti.com>
->=20
-> Add additional reg properties for UDMA and RingAcc nodes which are
-> mostly used by bootloader components before Device Manager firmware
-> services are available, in order to setup DMA transfers.
->=20
-> Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
-> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-j7200-main.dtsi        | 8 ++++++--
->  arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi  | 8 ++++++--
->  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi        | 8 ++++++--
->  arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi  | 8 ++++++--
->  arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi       | 8 ++++++--
->  arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi | 8 ++++++--
->  arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi       | 8 ++++++--
->  arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi | 8 ++++++--
->  8 files changed, 48 insertions(+), 16 deletions(-)
->=20
-> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/=
-dts/ti/k3-j7200-main.dtsi
-> index 264913f83287..97b90f4d09dd 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-> @@ -281,8 +281,12 @@ main_udmap: dma-controller@31150000 {
->  			compatible =3D "ti,j721e-navss-main-udmap";
->  			reg =3D <0x00 0x31150000 0x00 0x100>,
->  			      <0x00 0x34000000 0x00 0x100000>,
-> -			      <0x00 0x35000000 0x00 0x100000>;
-> -			reg-names =3D "gcfg", "rchanrt", "tchanrt";
-> +			      <0x00 0x35000000 0x00 0x100000>,
-> +			      <0x00 0x30b00000 0x00 0x20000>,
-> +			      <0x00 0x30c00000 0x00 0x8000>,
-> +			      <0x00 0x30d00000 0x00 0x4000>;
-> +			reg-names =3D "gcfg", "rchanrt", "tchanrt",
-> +				    "tchan", "rchan", "rflow";
->  			msi-parent =3D <&main_udmass_inta>;
->  			#dma-cells =3D <1>;
-> =20
-> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64=
-/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-> index 3fc588b848c6..576ed7494521 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-> @@ -346,8 +346,12 @@ mcu_udmap: dma-controller@285c0000 {
->  			compatible =3D "ti,j721e-navss-mcu-udmap";
->  			reg =3D <0x00 0x285c0000 0x00 0x100>,
->  			      <0x00 0x2a800000 0x00 0x40000>,
-> -			      <0x00 0x2aa00000 0x00 0x40000>;
-> -			reg-names =3D "gcfg", "rchanrt", "tchanrt";
-> +			      <0x00 0x2aa00000 0x00 0x40000>,
-> +			      <0x00 0x284a0000 0x00 0x4000>,
-> +			      <0x00 0x284c0000 0x00 0x4000>,
-> +			      <0x00 0x28400000 0x00 0x2000>;
-> +			reg-names =3D "gcfg", "rchanrt", "tchanrt",
-> +				    "tchan", "rchan", "rflow";
->  			msi-parent =3D <&main_udmass_inta>;
->  			#dma-cells =3D <1>;
-> =20
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/=
-dts/ti/k3-j721e-main.dtsi
-> index 746b9f8b1c64..f1e995d12d74 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> @@ -382,8 +382,12 @@ main_udmap: dma-controller@31150000 {
->  			compatible =3D "ti,j721e-navss-main-udmap";
->  			reg =3D <0x0 0x31150000 0x0 0x100>,
->  			      <0x0 0x34000000 0x0 0x100000>,
-> -			      <0x0 0x35000000 0x0 0x100000>;
-> -			reg-names =3D "gcfg", "rchanrt", "tchanrt";
-> +			      <0x0 0x35000000 0x0 0x100000>,
-> +			      <0x0 0x30b00000 0x0 0x20000>,
-> +			      <0x0 0x30c00000 0x0 0x8000>,
-
-Above don't match J721E TRM, which says TCHAN has size 0x10000.
-
-> +			      <0x00 0x30d00000 0x00 0x4000>;
-
-Same here, TRM says 0x8000.
-I did not check J7200/J721S2 TRMs, please do.
-
-> +			reg-names =3D "gcfg", "rchanrt", "tchanrt",
-> +				    "tchan", "rchan", "rflow";
->  			msi-parent =3D <&main_udmass_inta>;
->  			#dma-cells =3D <1>;
-> =20
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi b/arch/arm64=
-/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-> index f7ab7719fc07..011d93e32238 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-> @@ -468,8 +468,12 @@ mcu_udmap: dma-controller@285c0000 {
->  			compatible =3D "ti,j721e-navss-mcu-udmap";
->  			reg =3D <0x0 0x285c0000 0x0 0x100>,
->  			      <0x0 0x2a800000 0x0 0x40000>,
-> -			      <0x0 0x2aa00000 0x0 0x40000>;
-> -			reg-names =3D "gcfg", "rchanrt", "tchanrt";
-> +			      <0x0 0x2aa00000 0x0 0x40000>,
-> +			      <0x0 0x284a0000 0x0 0x4000>,
-> +			      <0x0 0x284c0000 0x0 0x4000>,
-> +			      <0x0 0x28400000 0x0 0x2000>;
-> +			reg-names =3D "gcfg", "rchanrt", "tchanrt",
-> +				    "tchan", "rchan", "rflow";
->  			msi-parent =3D <&main_udmass_inta>;
->  			#dma-cells =3D <1>;
-> =20
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot=
-/dts/ti/k3-j721s2-main.dtsi
-> index b03731b53a26..2ed469d36f1d 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-> @@ -1086,8 +1086,12 @@ main_udmap: dma-controller@31150000 {
->  			compatible =3D "ti,j721e-navss-main-udmap";
->  			reg =3D <0x0 0x31150000 0x0 0x100>,
->  			      <0x0 0x34000000 0x0 0x80000>,
-> -			      <0x0 0x35000000 0x0 0x200000>;
-> -			reg-names =3D "gcfg", "rchanrt", "tchanrt";
-> +			      <0x0 0x35000000 0x0 0x200000>,
-> +			      <0x0 0x30b00000 0x0 0x8000>,
-> +			      <0x0 0x30c00000 0x0 0x20000>,
-> +			      <0x0 0x30d00000 0x0 0x4000>;
-> +			reg-names =3D "gcfg", "rchanrt", "tchanrt",
-> +				    "tchan", "rchan", "rflow";
->  			msi-parent =3D <&main_udmass_inta>;
->  			#dma-cells =3D <1>;
-> =20
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm6=
-4/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-> index 7254f3bd3634..75c6931480dd 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-> @@ -471,8 +471,12 @@ mcu_udmap: dma-controller@285c0000 {
->  			compatible =3D "ti,j721e-navss-mcu-udmap";
->  			reg =3D <0x0 0x285c0000 0x0 0x100>,
->  			      <0x0 0x2a800000 0x0 0x40000>,
-> -			      <0x0 0x2aa00000 0x0 0x40000>;
-> -			reg-names =3D "gcfg", "rchanrt", "tchanrt";
-> +			      <0x0 0x2aa00000 0x0 0x40000>,
-> +			      <0x0 0x284a0000 0x0 0x4000>,
-> +			      <0x0 0x284c0000 0x0 0x4000>,
-> +			      <0x0 0x28400000 0x0 0x2000>;
-> +			reg-names =3D "gcfg", "rchanrt", "tchanrt",
-> +				    "tchan", "rchan", "rflow";
->  			msi-parent =3D <&main_udmass_inta>;
->  			#dma-cells =3D <1>;
-> =20
-> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot=
-/dts/ti/k3-j784s4-main.dtsi
-> index d89bcddcfe3d..827328450f96 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-> @@ -1188,8 +1188,12 @@ main_udmap: dma-controller@31150000 {
->  			compatible =3D "ti,j721e-navss-main-udmap";
->  			reg =3D <0x00 0x31150000 0x00 0x100>,
->  			      <0x00 0x34000000 0x00 0x80000>,
-> -			      <0x00 0x35000000 0x00 0x200000>;
-> -			reg-names =3D "gcfg", "rchanrt", "tchanrt";
-> +			      <0x00 0x35000000 0x00 0x200000>,
-> +			      <0x00 0x30b00000 0x00 0x20000>,
-> +			      <0x00 0x30c00000 0x00 0x8000>,
-> +			      <0x00 0x30d00000 0x00 0x4000>;
-> +			reg-names =3D "gcfg", "rchanrt", "tchanrt",
-> +				    "tchan", "rchan", "rflow";
->  			msi-parent =3D <&main_udmass_inta>;
->  			#dma-cells =3D <1>;
-> =20
-> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi b/arch/arm6=
-4/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-> index adb5ea6b9732..0eebb92e6a72 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-> @@ -478,8 +478,12 @@ mcu_udmap: dma-controller@285c0000 {
->  			compatible =3D "ti,j721e-navss-mcu-udmap";
->  			reg =3D <0x00 0x285c0000 0x00 0x100>,
->  			      <0x00 0x2a800000 0x00 0x40000>,
-> -			      <0x00 0x2aa00000 0x00 0x40000>;
-> -			reg-names =3D "gcfg", "rchanrt", "tchanrt";
-> +			      <0x00 0x2aa00000 0x00 0x40000>,
-> +			      <0x00 0x284a0000 0x00 0x4000>,
-> +			      <0x00 0x284c0000 0x00 0x4000>,
-> +			      <0x00 0x28400000 0x00 0x2000>;
-> +			reg-names =3D "gcfg", "rchanrt", "tchanrt",
-> +				    "tchan", "rchan", "rflow";
->  			msi-parent =3D <&main_udmass_inta>;
->  			#dma-cells =3D <1>;
-> =20
-> --=20
-> 2.43.0
->=20
->=20
-
---=20
-Thanks,
-Jai
-
-GPG Fingerprint: 4DE0 D818 E5D5 75E8 D45A AFC5 43DE 91F9 249A 7145
-
---cecej26b2bbrda5u
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEETeDYGOXVdejUWq/FQ96R+SSacUUFAmV5f6IACgkQQ96R+SSa
-cUWB2g/+Pn4bYg6ZxVuGYNUTdzoGmSQ63nDvLblxr0PcQOTr8xwwhgcUA2zOlGxo
-0ASQCv+UNxTNEmT8D/ZUiVCn88IMEITwl6z9vdIAP0KQSLwb1JLKJhP+NmZLZnpa
-of7efbsTF4j39oog2xqQEQgbt0hB9mlgkIhxzBTX3ePzcJBR2vLWv+bLDut2nPKV
-qp488pwewc5L3CAZFz9jrwzofUO5ivtaUTs41FrTo5MrynFj3fSW9YMXDJU6F6+q
-c0Mz46WZDoCcRmMem+fgdqW7GM+tUYw+NZLLnn3YpiA5lj7BY92VVMgONbqzBzMp
-j94w+KodS+jJETwyHupv7ouaCk8O2vz21AbWsFZt/QVc5TjPYAmuRz8fb7wAhivN
-M7oClvdDSv5cfJGgffdwNZJ9dKZjDLI5EuCP56gkD5CPnRcCqfs2A3JC55bcByU7
-rVYAAUDtrGxYoNElNydM5mHzDwMx/I9QYMgRCXrq6TqxakEDBbsKDeI2dnWpyo63
-Ul4MtR/YVcXzCYTPxPSkn//qQuxcba1MIM9YNDTz7DE4FPdLcQ6hEw7z5KCxs3fP
-Stv7tT/TsyovKD0ouRqOVSj5gF870dO5Zay8XX+UPtHMOj38BTRHdgyy9s2s7r2M
-6WVq3D1V+/3DeOf1Ng2c3brbe+8RlwOaVWLfDldpLkeH97LSUzE=
-=dcWE
------END PGP SIGNATURE-----
-
---cecej26b2bbrda5u--
+Regards,
+--
+Kamel Bouhara, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
