@@ -1,195 +1,138 @@
-Return-Path: <devicetree+bounces-24590-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24591-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 373378108B8
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 04:23:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38BAA810910
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 05:20:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B5571C20E10
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 03:23:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9EAAF28239F
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 04:20:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE04710E2;
-	Wed, 13 Dec 2023 03:23:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="NbxUT3J0"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE861BE6D;
+	Wed, 13 Dec 2023 04:20:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2102.outbound.protection.outlook.com [40.107.215.102])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92C04D2;
-	Tue, 12 Dec 2023 19:23:30 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=a9Fx1rr6eClJccGQT+aUH6MEy5YnOqDqZ7HfmF0mb7KSVDg+bECizb6kErD4bn4gRQ4WoGRUER5SD/DOMwkxA7HxhuuRP59+xDax3eAAOLCn8nfHoJqzE9zQnJGOFT03jm3eAo1jiIe1C/RBoz+RuHalvveNfYQTJHAr6aKQCPeQu8JuDP99eovaq9hMEs8EdRDL5siTlmXYIDin+oHkwCntANT5OAUDBiAJuhWar1TdRkZaseZ8dryHaUWs6kEoAyQEbCRIjsOOdraU3+NSP53Af0yvdWJznmYWzBo2A8njppeK6bCCSshmC5BuHfwB+6cUKaPAp+SF4TTGFKLxzw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=j+vN2/9Jan56PwObpWXGtQzwfz7wH6YKNRyc7th54Fs=;
- b=gynVzRWcHLfC3wDJZ7x1CsH5WoOqoOXfdBdSG8BWVWSREniyLLoRraZh89lGMqRd+nPSaxhF0x6rKzSldw06byZ3MBphmT10uyj6DTKe9EWKafQeoHIihFUswlpOWBNeA64HTs3QfZaN1DYP216Rpp7lAzX72fTQ9ekrCrV6HLXZIdoCMUBOwibGwtXQTzNX+83GZ/rRF6li0szoSjs5/2V8I8FOH82QXzvV+FJJKQgUn2YgBMi6fkf/7PbabQJswfPcR6l/I9NkDxElkTtY2Obsv606FccQTuL1+ctAV05cBqdA0J6h+57Gt+yNZgx7IeM+1f9r0VFPl59B/g53tw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=j+vN2/9Jan56PwObpWXGtQzwfz7wH6YKNRyc7th54Fs=;
- b=NbxUT3J0FyggAGWhcnBqtmPP5OGcwgrWTuhHq8wWXFd58vGC7J/pD3pYKJuayNCN+sT0XvjNL/JkHPRWTgZcH+JAf8g/imhZmB9et7vWiCJ5vi6mqDof+p68hn8myQQeSscbQB5VnLWfw0s204qpY4J0B38nQUsyEUnatYSjhVjL9uIZoZtPkw/9TBtHqd9xWNdcaERDntjT96ExAsSW9W4POuvsr/8oWyJRdlGhS0YDkMeOQLbUi2W2qzsGVzHzO59wO85MIQWWt+nf4GDhGKvplUtTSonv6ySMghlTglLPUztexg79ybS/8a+hOtN7+JDG1UGkMuGdfNaigcoKlg==
-Received: from OSQPR06MB7252.apcprd06.prod.outlook.com (2603:1096:604:29c::6)
- by SEZPR06MB5667.apcprd06.prod.outlook.com (2603:1096:101:9f::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.26; Wed, 13 Dec
- 2023 03:23:23 +0000
-Received: from OSQPR06MB7252.apcprd06.prod.outlook.com
- ([fe80::36df:4bd:1991:976b]) by OSQPR06MB7252.apcprd06.prod.outlook.com
- ([fe80::36df:4bd:1991:976b%5]) with mapi id 15.20.7091.022; Wed, 13 Dec 2023
- 03:23:23 +0000
-From: Billy Tsai <billy_tsai@aspeedtech.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	=?iso-8859-1?Q?Uwe_Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>, Guenter
- Roeck <linux@roeck-us.net>
-CC: "jdelvare@suse.com" <jdelvare@suse.com>, "robh+dt@kernel.org"
-	<robh+dt@kernel.org>, "krzysztof.kozlowski+dt@linaro.org"
-	<krzysztof.kozlowski+dt@linaro.org>, "joel@jms.id.au" <joel@jms.id.au>,
-	"andrew@aj.id.au" <andrew@aj.id.au>, "corbet@lwn.net" <corbet@lwn.net>,
-	"thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-	"naresh.solanki@9elements.com" <naresh.solanki@9elements.com>,
-	"linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72260AC;
+	Tue, 12 Dec 2023 20:20:10 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+	by fd01.gateway.ufhost.com (Postfix) with ESMTP id 383478016;
+	Wed, 13 Dec 2023 12:20:02 +0800 (CST)
+Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 13 Dec
+ 2023 12:20:02 +0800
+Received: from EXMBX066.cuchost.com (172.16.7.66) by EXMBX172.cuchost.com
+ (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 13 Dec
+ 2023 12:20:01 +0800
+Received: from EXMBX066.cuchost.com ([fe80::5947:9245:907e:339f]) by
+ EXMBX066.cuchost.com ([fe80::5947:9245:907e:339f%17]) with mapi id
+ 15.00.1497.044; Wed, 13 Dec 2023 12:20:01 +0800
+From: JeeHeng Sia <jeeheng.sia@starfivetech.com>
+To: Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	"kernel@esmil.dk" <kernel@esmil.dk>, "conor@kernel.org" <conor@kernel.org>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"paul.walmsley@sifive.com" <paul.walmsley@sifive.com>, "palmer@dabbelt.com"
+	<palmer@dabbelt.com>, "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
+	"mturquette@baylibre.com" <mturquette@baylibre.com>, "sboyd@kernel.org"
+	<sboyd@kernel.org>, "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>, "Hal
+ Feng" <hal.feng@starfivetech.com>, Xingyu Wu <xingyu.wu@starfivetech.com>
+CC: "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
 	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
-	<linux-aspeed@lists.ozlabs.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-doc@vger.kernel.org"
-	<linux-doc@vger.kernel.org>, "linux-pwm@vger.kernel.org"
-	<linux-pwm@vger.kernel.org>, BMC-SW <BMC-SW@aspeedtech.com>,
-	"patrick@stwcx.xyz" <patrick@stwcx.xyz>
-Subject: Re: [PATCH RESEND v10 0/3] Support pwm/tach driver for aspeed ast26xx
-Thread-Topic: [PATCH RESEND v10 0/3] Support pwm/tach driver for aspeed
- ast26xx
-Thread-Index: AQHaEWg7S/NllT0hPE+qUe52iPc027BvNyiAgC1+14CAAAJLgIAKCWl7
-Date: Wed, 13 Dec 2023 03:23:23 +0000
-Message-ID:
- <OSQPR06MB72529B0769B89A21DDFB8B1F8B8DA@OSQPR06MB7252.apcprd06.prod.outlook.com>
-References: <20231107105025.1480561-1-billy_tsai@aspeedtech.com>
- <3ea9ef0c-27c0-4304-8bf7-26710224c3b1@roeck-us.net>
- <20231206174823.ok6rrufhez33rte5@pengutronix.de>
- <ed9d28e0-f879-41f3-8679-7ed5e0eec7ce@linaro.org>
-In-Reply-To: <ed9d28e0-f879-41f3-8679-7ed5e0eec7ce@linaro.org>
-Accept-Language: en-US, zh-TW
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>, Leyfoon Tan
+	<leyfoon.tan@starfivetech.com>
+Subject: RE: [PATCH v1 06/16] clk: starfive: Add JH8100 System clock generator
+ driver
+Thread-Topic: [PATCH v1 06/16] clk: starfive: Add JH8100 System clock
+ generator driver
+Thread-Index: AQHaKDp8qa+gHWDJHkGDh0MGWRuwVrCfD58AgAd/fYA=
+Date: Wed, 13 Dec 2023 04:20:01 +0000
+Message-ID: <a554a163793e4513b25766c21ddc3f02@EXMBX066.cuchost.com>
+References: <20231206115000.295825-1-jeeheng.sia@starfivetech.com>
+ <20231206115000.295825-7-jeeheng.sia@starfivetech.com>
+ <CAJM55Z_VgBGvCPuvwmQahMcMfuWKnOKpZ9bBbbhei_Teu5Apeg@mail.gmail.com>
+In-Reply-To: <CAJM55Z_VgBGvCPuvwmQahMcMfuWKnOKpZ9bBbbhei_Teu5Apeg@mail.gmail.com>
+Accept-Language: en-US, zh-CN
 Content-Language: en-US
 X-MS-Has-Attach:
 X-MS-TNEF-Correlator:
-msip_labels:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=aspeedtech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: OSQPR06MB7252:EE_|SEZPR06MB5667:EE_
-x-ms-office365-filtering-correlation-id: f6d86246-0c1b-482e-517e-08dbfb8adcd5
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- wvpeZwR5TL/jWvm/Tl14W4H08+JMxVCBmpADWSZ0nGlTV5xQO15iO9TkmsKXOHzuTPE44peoU2yPRKDoVCDJM+K6U/WsRoGQmEEOam2oSHsHAP+ZoLBOzmsI0ON5I3af/L6Ok68MpcsLYtSDjrOqcOAYFSjPFLeTqZTJqqnHmJFkcpJbAVgckJABl4CgaXyfKsaol4HzEg7WJDhWJTHEZ8Kk+D4rwbLOR3F6CDlc8ISbzWukXkW47wZ8mBoeLJQu1je+bktcYnElFtEfc67ViDo6sWU9nxXUCsd42wbhowktqvKpKckTBGvFZcc6DMG6e5ggpI/xIKGS79mmUhmMLvucW8csRViW0yzpGzKcT+4pb03ZyCi1HvSubU9NE4GfQLvDyNxQLL+W711uVVeNDWzgXMmsNiTA2wLFK/iF0GHw29qLCF/rrZXGaF6S04JmKx1vMzdjtq8qYyCBFuSRzz6V5C6q7OaAUc4IWV85T4EqR1clUqSMBp8E859BCyFqbNXepE6ltO9wzvgCN/XTGKJoJGIj/fJISRAHfyuwhRzBseD4Dxa7y1OejnVonqVIY0EvonR4KYrP1d0BP65sEuSzsih7iwzWRJQ74HfliHM=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OSQPR06MB7252.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(136003)(39850400004)(376002)(346002)(366004)(230922051799003)(64100799003)(1800799012)(451199024)(186009)(38070700009)(41300700001)(7416002)(5660300002)(33656002)(2906002)(26005)(53546011)(55236004)(7696005)(9686003)(83380400001)(55016003)(6506007)(71200400001)(478600001)(966005)(122000001)(38100700002)(86362001)(52536014)(8936002)(8676002)(4326008)(64756008)(54906003)(110136005)(316002)(66556008)(66476007)(66446008)(76116006)(66946007);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?iso-8859-1?Q?Az2o7Ae0WZHT1PVD5xu1XnPkWGuMxKwGvgMn6dTL0IJg1Q64ORAZr44EOH?=
- =?iso-8859-1?Q?EYj2VQz70IyESiIw8JTN/oFZ5uEc8u6xliaKB3vcGiWhxXckPhc3rUq2/B?=
- =?iso-8859-1?Q?uOR1ypDwZcbZb62A/B0+hs8a6Va7BqqQAP4aA2PBHubZtRTOmazMENcMGa?=
- =?iso-8859-1?Q?g6cEUBxEQsGz21fqZ3RuB4oFzyS2G9A/zgQTyYaJZbEtfSAXiJmhw49NOS?=
- =?iso-8859-1?Q?vBAXETZKjzTnSbn7XEnnAUFXJFKftOVHDDgBwQXY60ycKJOv5AH91LXu6R?=
- =?iso-8859-1?Q?W5jWo6aP1QJbKbVW5xuZZ8o6vSC4Tsp7xFwIKRqG2ZIxcdlO7+GUdaGQyL?=
- =?iso-8859-1?Q?iAdeZKqRpcyc4muZgzlZgcXauD2aKhQ0YVJlzAdtV10ekvN1j/KK06/uBg?=
- =?iso-8859-1?Q?v+15ooXFGnWeUoL63+YBfE3hOpI1RstyuplT9jmBLekZrleHZWneOWas1H?=
- =?iso-8859-1?Q?f8ACCVY1BV/pDBfOx4hyNEK3VFOn68AUH1ZBysLsr/4/Qq0xmem1Y6oYQd?=
- =?iso-8859-1?Q?BaXtoB8AWXAIG11k0f0dR1mX1KYY23r/bfPeLKSfYg/UQ3wDo5iT72tPZn?=
- =?iso-8859-1?Q?7Mw+xgKsNFUZTYlHhn2gHzthReBM7VeMbKZk7Hh1IMYI6y6HRUwJ6ZAH/i?=
- =?iso-8859-1?Q?e0l/AWXmu5Js//f1OinDtK7wGoYL03ILigrvtCzOXsPF1d1dD1hA7cXCh4?=
- =?iso-8859-1?Q?lydJhdv+h/TbOfsgkk851MHorwytZCGK2WwtP3HirqcfmSnw53lHmY6wm3?=
- =?iso-8859-1?Q?dnqMAXEl+aWs2xMy2z56i3b9PoETHMULhwp5I+WvR/d66120xVRStagnUE?=
- =?iso-8859-1?Q?sIm6UTG92Qer8Y5XqtAnrw0GDouJ78i6v8Tyn5Uk2lw4n3MXW0IP8m8VVF?=
- =?iso-8859-1?Q?YrskQb+oKmdAB/j/2qqDUntUBLowH22sjvLB2ollEf0tqwjiM9RMmHC2PP?=
- =?iso-8859-1?Q?gqCM8TG1UEZKdI77aiVihXYoMyiVJJLJTVTa4wlgb2MLmN5kzRrWIZS55B?=
- =?iso-8859-1?Q?Klkx5+mbbvecIOXLOqjqw2pIzjK0HmUmsU6uxM0I3pV/Ro4krzhqLKj0uK?=
- =?iso-8859-1?Q?p64/6Qy0COjZvBTws1AyDQJ786ABVXcGQ2zwU1nLiY1OVkBvqwPRUVYJzE?=
- =?iso-8859-1?Q?V8L7pmtV92nzpcXmo/fdI0bd0Z7zZoPvXWrqjsfWOzReoAoYndWi9GwYPR?=
- =?iso-8859-1?Q?KjLogHrWHXzNhFXCWPDaD93F2gTJqnPuTHqyV3fgQ43zvOEFpE/KnNMWFa?=
- =?iso-8859-1?Q?5lj5RR13w1APd7auvXEJFQ+/VDoKeQbm6LVr7RwmOzNJjZf1YqR5N8CZNp?=
- =?iso-8859-1?Q?SviU+ZUfa0r1NtGB5b+SuLcHeyYiwEV9opFoM6g6HeJHf+9CdVj448Df+m?=
- =?iso-8859-1?Q?IY5LJHDwfCa4ecoE3sCUkxlR3jkUnxdJkFYePSA21D0NM/KZu2LUktXZ47?=
- =?iso-8859-1?Q?cVEk2ePYJJcCaAxdicEu/N643jY4uahlZXToJn+0Ol/ANTDuBLZGs0IkQe?=
- =?iso-8859-1?Q?YJyRyUoJrDFPwgvw1I1B3AyOSVWLMUL60qi/Uy7B21EdVHxkoHlBMAnWV6?=
- =?iso-8859-1?Q?JwuW/mS77UYpmUjnR0fQvVtz+/u32a9P0OAO2JX1A/69tS96bIzgEDs0AL?=
- =?iso-8859-1?Q?eZCxrGhzEGCT1BMhDLXrccAFG7GoRacNJf?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+x-ms-exchange-transport-fromentityheader: Hosted
+x-yovoleruleagent: yovoleflag
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OSQPR06MB7252.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f6d86246-0c1b-482e-517e-08dbfb8adcd5
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Dec 2023 03:23:23.1813
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: m59l02BNGgtk+Wvaw72k8j5W8vzb+S7q4axxvNaBtFh6uAeAfRfCgXV6mUDVXqSCxFdmQTeNoVT13VjR5Mccg5MTttZD1x3xAIG7fUCJ1CU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR06MB5667
 
-On 06/12/2023 18:48, Uwe Kleine-K=F6nig wrote:=0A=
->> On Tue, Nov 07, 2023 at 11:02:43AM -0800, Guenter Roeck wrote:=0A=
->>> On 11/7/23 02:50, Billy Tsai wrote:=0A=
->>>> Unlike the old design that the register setting of the TACH should bas=
-ed=0A=
->>>> on the configure of the PWM. In ast26xx, the dependency between pwm an=
-d=0A=
->>>> tach controller is eliminated and becomes a separate hardware block. O=
-ne=0A=
->>>> is used to provide pwm output and another is used to monitor the frequ=
-ency=0A=
->>>> of the input. This driver implements them by exposing two kernel=0A=
->>>> subsystems: PWM and HWMON. The PWM subsystem can be utilized alongside=
-=0A=
->>>> existing drivers for controlling elements such as fans (pwm-fan.c),=0A=
->>>> beepers (pwm-beeper.c) and so on. Through the HWMON subsystem, the dri=
-ver=0A=
->>>> provides sysfs interfaces for fan.=0A=
->>>>=0A=
->>>> Changes since v9:=0A=
->>>> Change the type of fan-driving-mode to string=0A=
->>>> Fix some typos and formatting issues.=0A=
->>>>=0A=
->>>=0A=
->>> What is the resend about ?=0A=
->>=0A=
->> And to the original v10 there is a reply by Krzysztof;=0A=
->> see https://lore.kernel.org/linux-pwm/3d9e50db-19f0-43b3-8042-2f80a1e7b7=
-9e@linaro.org/ .=0A=
->>=0A=
->> I'll mark the original and this resend as "changes-requested" in our=0A=
->> patchwork. Probably the most cooperative way to object is to send a v11=
-=0A=
->> and point out the changes compared to v10.=0A=
-=0A=
-> The resend might be fixing issues from v10, but who knows which and how=
-=0A=
-> many. In any case it should be v11, not a resend.=0A=
-=0A=
-I apologize for responding to this question inappropriately. I only replied=
- to Guenter and removed=0A=
-the others.=0A=
-The reason for the resend is simply to remove the 'Change-Id' in the commit=
- log, which triggers an=0A=
-error when running scripts/checkpatch.pl. =0A=
-It's a minor issue, and I forgot to mention this change in the cover letter=
-.=0A=
-I sincerely apologize for any confusion.=0A=
-=0A=
-Best regards,=0A=
-Billy Tsai=0A=
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogRW1pbCBSZW5uZXIgQmVy
+dGhpbmcgPGVtaWwucmVubmVyLmJlcnRoaW5nQGNhbm9uaWNhbC5jb20+DQo+IFNlbnQ6IFNhdHVy
+ZGF5LCBEZWNlbWJlciA5LCAyMDIzIDEyOjI1IEFNDQo+IFRvOiBKZWVIZW5nIFNpYSA8amVlaGVu
+Zy5zaWFAc3RhcmZpdmV0ZWNoLmNvbT47IGtlcm5lbEBlc21pbC5kazsgY29ub3JAa2VybmVsLm9y
+Zzsgcm9iaCtkdEBrZXJuZWwub3JnOw0KPiBrcnp5c3p0b2Yua296bG93c2tpK2R0QGxpbmFyby5v
+cmc7IHBhdWwud2FsbXNsZXlAc2lmaXZlLmNvbTsgcGFsbWVyQGRhYmJlbHQuY29tOyBhb3VAZWVj
+cy5iZXJrZWxleS5lZHU7DQo+IG10dXJxdWV0dGVAYmF5bGlicmUuY29tOyBzYm95ZEBrZXJuZWwu
+b3JnOyBwLnphYmVsQHBlbmd1dHJvbml4LmRlOyBlbWlsLnJlbm5lci5iZXJ0aGluZ0BjYW5vbmlj
+YWwuY29tOyBIYWwgRmVuZw0KPiA8aGFsLmZlbmdAc3RhcmZpdmV0ZWNoLmNvbT47IFhpbmd5dSBX
+dSA8eGluZ3l1Lnd1QHN0YXJmaXZldGVjaC5jb20+DQo+IENjOiBsaW51eC1yaXNjdkBsaXN0cy5p
+bmZyYWRlYWQub3JnOyBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsgbGludXgta2VybmVsQHZn
+ZXIua2VybmVsLm9yZzsgbGludXgtY2xrQHZnZXIua2VybmVsLm9yZzsgTGV5Zm9vbiBUYW4NCj4g
+PGxleWZvb24udGFuQHN0YXJmaXZldGVjaC5jb20+DQo+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggdjEg
+MDYvMTZdIGNsazogc3RhcmZpdmU6IEFkZCBKSDgxMDAgU3lzdGVtIGNsb2NrIGdlbmVyYXRvciBk
+cml2ZXINCj4gDQo+IFNpYSBKZWUgSGVuZyB3cm90ZToNCj4gPiBBZGQgc3VwcG9ydCBmb3IgSkg4
+MTAwIFN5c3RlbSBjbG9jayBnZW5lcmF0b3IuDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBTaWEg
+SmVlIEhlbmcgPGplZWhlbmcuc2lhQHN0YXJmaXZldGVjaC5jb20+DQo+ID4gUmV2aWV3ZWQtYnk6
+IExleSBGb29uIFRhbiA8bGV5Zm9vbi50YW5Ac3RhcmZpdmV0ZWNoLmNvbT4NCj4gPiAtLS0NCj4g
+PiAgTUFJTlRBSU5FUlMgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgICA4ICsN
+Cj4gPiAgZHJpdmVycy9jbGsvc3RhcmZpdmUvS2NvbmZpZyAgICAgICAgICAgICAgICAgIHwgICA5
+ICsNCj4gPiAgZHJpdmVycy9jbGsvc3RhcmZpdmUvTWFrZWZpbGUgICAgICAgICAgICAgICAgIHwg
+ICAxICsNCj4gPiAgZHJpdmVycy9jbGsvc3RhcmZpdmUvY2xrLXN0YXJmaXZlLWNvbW1vbi5oICAg
+IHwgICA5ICstDQo+ID4gIGRyaXZlcnMvY2xrL3N0YXJmaXZlL2poODEwMC9NYWtlZmlsZSAgICAg
+ICAgICB8ICAgMyArDQo+ID4gIC4uLi9jbGsvc3RhcmZpdmUvamg4MTAwL2Nsay1zdGFyZml2ZS1q
+aDgxMDAuaCB8ICAxMSArDQo+ID4gIGRyaXZlcnMvY2xrL3N0YXJmaXZlL2poODEwMC9jbGstc3lz
+LmMgICAgICAgICB8IDQ1NSArKysrKysrKysrKysrKysrKysNCj4gPiAgNyBmaWxlcyBjaGFuZ2Vk
+LCA0OTUgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQ0KPiA+ICBjcmVhdGUgbW9kZSAxMDA2
+NDQgZHJpdmVycy9jbGsvc3RhcmZpdmUvamg4MTAwL01ha2VmaWxlDQo+ID4gIGNyZWF0ZSBtb2Rl
+IDEwMDY0NCBkcml2ZXJzL2Nsay9zdGFyZml2ZS9qaDgxMDAvY2xrLXN0YXJmaXZlLWpoODEwMC5o
+DQo+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2Nsay9zdGFyZml2ZS9qaDgxMDAvY2xr
+LXN5cy5jDQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEvTUFJTlRBSU5FUlMgYi9NQUlOVEFJTkVSUw0K
+PiA+IGluZGV4IDc4OGJlOWFiNWI3My4uODdiY2IyNWJlY2MxIDEwMDY0NA0KPiA+IC0tLSBhL01B
+SU5UQUlORVJTDQo+ID4gKysrIGIvTUFJTlRBSU5FUlMNCj4gPiBAQCAtMjA3NjMsNiArMjA3NjMs
+MTQgQEAgRjoJRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BoeS9zdGFyZml2ZSxq
+aDcxMTAtdXNiLXBoeS55YW1sDQo+ID4gIEY6CWRyaXZlcnMvcGh5L3N0YXJmaXZlL3BoeS1qaDcx
+MTAtcGNpZS5jDQo+ID4gIEY6CWRyaXZlcnMvcGh5L3N0YXJmaXZlL3BoeS1qaDcxMTAtdXNiLmMN
+Cj4gPg0KPiA+ICtTVEFSRklWRSBKSDgxMDAgQ0xPQ0sgRFJJVkVSUw0KPiA+ICtNOglTaWEgSmVl
+IEhlbmcgPGplZWhlbmcuc2lhQHN0YXJmaXZldGVjaC5jb20+DQo+ID4gK006CUxleSBGb29uIFRh
+biA8bGV5Zm9vbi50YW5Ac3RhcmZpdmV0ZWNoLmNvbT4NCj4gPiArUzoJTWFpbnRhaW5lZA0KPiA+
+ICtGOglEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvY2xvY2svc3RhcmZpdmUsamg4
+MSoueWFtbA0KPiA+ICtGOglkcml2ZXJzL2Nsay9zdGFyZml2ZS9qaDgxMDANCj4gPiArRjoJaW5j
+bHVkZS9kdC1iaW5kaW5ncy9jbG9jay9zdGFyZml2ZT9qaDgxKi5oDQo+ID4gKw0KPiA+ICBTVEFU
+SUMgQlJBTkNIL0NBTEwNCj4gPiAgTToJUGV0ZXIgWmlqbHN0cmEgPHBldGVyekBpbmZyYWRlYWQu
+b3JnPg0KPiA+ICBNOglKb3NoIFBvaW1ib2V1ZiA8anBvaW1ib2VAa2VybmVsLm9yZz4NCj4gPiBk
+aWZmIC0tZ2l0IGEvZHJpdmVycy9jbGsvc3RhcmZpdmUvS2NvbmZpZyBiL2RyaXZlcnMvY2xrL3N0
+YXJmaXZlL0tjb25maWcNCj4gPiBpbmRleCBmZjhlYWNlMzZlNjQuLmQ4YzdiOWJiMzg5NSAxMDA2
+NDQNCj4gPiAtLS0gYS9kcml2ZXJzL2Nsay9zdGFyZml2ZS9LY29uZmlnDQo+ID4gKysrIGIvZHJp
+dmVycy9jbGsvc3RhcmZpdmUvS2NvbmZpZw0KPiA+IEBAIC03MiwzICs3MiwxMiBAQCBjb25maWcg
+Q0xLX1NUQVJGSVZFX0pINzExMF9WT1VUDQo+ID4gIAloZWxwDQo+ID4gIAkgIFNheSB5ZXMgaGVy
+ZSB0byBzdXBwb3J0IHRoZSBWaWRlby1PdXRwdXQgY2xvY2sgY29udHJvbGxlcg0KPiA+ICAJICBv
+biB0aGUgU3RhckZpdmUgSkg3MTEwIFNvQy4NClsuLi5dDQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZl
+cnMvY2xrL3N0YXJmaXZlL2poODEwMC9NYWtlZmlsZSBiL2RyaXZlcnMvY2xrL3N0YXJmaXZlL2po
+ODEwMC9NYWtlZmlsZQ0KPiA+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+ID4gaW5kZXggMDAwMDAw
+MDAwMDAwLi5hZjZhMDllMjIwZDMNCj4gPiAtLS0gL2Rldi9udWxsDQo+ID4gKysrIGIvZHJpdmVy
+cy9jbGsvc3RhcmZpdmUvamg4MTAwL01ha2VmaWxlDQo+ID4gQEAgLTAsMCArMSwzIEBADQo+ID4g
+KyMgU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0yLjANCj4gPiArIyBTdGFyRml2ZSBKSDgx
+MDAgQ2xvY2sNCj4gPiArb2JqLSQoQ09ORklHX0NMS19TVEFSRklWRV9KSDgxMDBfU1lTKQkJKz0g
+Y2xrLXN5cy5vDQo+IA0KPiBUaGlzIHdpbGwgbmFtZSB0aGUgbW9kdWxlIGNsay1zeXMsIHdoaWNo
+IGlzIHdheSB0b28gZ2VuZXJpYy4gUGxlYXNlIG5hbWUgdGhpcw0KPiBjbGstc3RhcmZpdmUtamg4
+MTAwLXN5cyBzaW1pbGFyIHRvIHRoZSBKSDcxMTAgZHJpdmVycy4NCkp1c3QgcmVhbGl6ZWQgdGhh
+dCBJIGhhdmVuJ3QgcmVwbHkgdG8gdGhpcyBjb21tZW50Lg0KSSBjYW4ndCBnaXZlIGl0IGEgbG9u
+Z2VyIG5hbWUgb3RoZXJ3aXNlIGNvbXBpbGVyIHdpbGwgdGhyb3cgd2FybmluZy4NClRoYXTigJlz
+IHdoeSBlbmRzIHVwIHRvIHVzZSBhIHNob3J0ZXIgbmFtZSBhbmQga2VlcCBpdCB1bmRlciBqaDgx
+MDAgZm9sZGVyLg0KPiANClsuLi5dDQo=
 
