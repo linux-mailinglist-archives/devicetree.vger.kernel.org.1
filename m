@@ -1,159 +1,217 @@
-Return-Path: <devicetree+bounces-24661-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24696-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3A04810CE4
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 10:03:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36B53810F08
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 11:57:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9477928148D
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 09:03:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B77ED2819A2
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 10:57:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3329D1EB4C;
-	Wed, 13 Dec 2023 09:03:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2080622EF8;
+	Wed, 13 Dec 2023 10:57:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nJqE7Ae0"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="VdIeJ0Vo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AB7DB7
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 01:03:00 -0800 (PST)
-Received: by mail-pl1-x62b.google.com with SMTP id d9443c01a7336-1d098b87eeeso59061675ad.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 01:03:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702458180; x=1703062980; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zQ5v76BnrmLWivZZ9vq4Wy8nZbRsobKtjTZUA/itlB4=;
-        b=nJqE7Ae0E6XlIFIbzOUZjvgIcTUdLs2raRXlc+qtRt4gfRVcq6AzcsbRR3FwSnwDd5
-         RR9pKjlFhsgInOyJsdWBbWCGcGl6MHx6G6w+ftQMi1reCeukgD0Q/XMm6zO8S6tkp3IH
-         uQgDcwalF5W8BGhumz/ZOIqjTpUOL4oj0wVLnbux1K7vv5w3pXjdB/u6BcuaSfiAlSvP
-         aZzafSvjgIl18h0z20pEFbPoofXGc9uxsjahZ988JjE6TYeKWb4nUO7oQeLYpmQpqH05
-         NSZDcH5au93eM+kxLRxSECdqVf6zHsxWt5I3WNsO0mmBdSkqWnzvG90QxIjbOgEeEMXg
-         HHyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702458180; x=1703062980;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=zQ5v76BnrmLWivZZ9vq4Wy8nZbRsobKtjTZUA/itlB4=;
-        b=Ozq8PRI9CQMb38FLLV5JDkPy72ueX65KACdWTnpjM9V+notsywivGjZLmhBAmABBuo
-         B48D6/zt7gxk1DpezifFhXTXoSHIbx7AsFWSPmJ+/wUa3Xl9BfzYiMllANKcVkXqnX/X
-         qqOCwq0gGWCDpV7SjsMPzVPkSrzjtXUkujzF1hNnL897p8N4vCe9dAdCRF0J1PfvEYjw
-         24dJw7cvToGLkC3b1w2MnlUSkhSegby4qLCXxgKYmpUAAIGcVIeIioBQAuXzn+HF3IRv
-         TRW8ppZ/5hqLw5EiHRSwDh18YjIMkyU68wM9rhrNaXzWNKiYzR/NNxp1cjZeMZeUyA40
-         Up1w==
-X-Gm-Message-State: AOJu0Yzzb0CzmGiaodv6jCsWZ4FS8qawdWdoG24mBvhHBA51Sx0vGVU8
-	EB719D5tOs6DQOynePjIb+p1og==
-X-Google-Smtp-Source: AGHT+IGvzCS6OB++JiwOWbdsEBhTqhA3QwJu/M2SlJeaob+iOdQDtV+McX/e9U1lUrRgrMI4tWneow==
-X-Received: by 2002:a17:902:7d8a:b0:1d2:eb05:9d05 with SMTP id a10-20020a1709027d8a00b001d2eb059d05mr6614482plm.90.1702458179815;
-        Wed, 13 Dec 2023 01:02:59 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:596e:6d4f:fc0a:ec65? ([2a01:e0a:982:cbb0:596e:6d4f:fc0a:ec65])
-        by smtp.gmail.com with ESMTPSA id h9-20020a170902748900b001d33e6521c1sm2516143pll.102.2023.12.13.01.02.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Dec 2023 01:02:59 -0800 (PST)
-Message-ID: <365e012d-7fde-4cf9-b4c6-bebf2dfa53cf@linaro.org>
-Date: Wed, 13 Dec 2023 10:02:55 +0100
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3735C9C
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 02:57:32 -0800 (PST)
+Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20231213105730epoutp02469d2c4bb7944cf5af160de3ba2ba450~gXvFwfMkg2992429924epoutp02T
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 10:57:30 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20231213105730epoutp02469d2c4bb7944cf5af160de3ba2ba450~gXvFwfMkg2992429924epoutp02T
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1702465050;
+	bh=BqiRaJ0NsfpiJ2sM4INLMQsVpV+uA7WmGveruRmpB48=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=VdIeJ0VoIlR/Nwd87Iw1QUx+QDQBv0Na4IrUbBhhVGHwj2rBgv+lDDry2D3MrdYlb
+	 hVRadufiBJniQxgenIebafDoM6dSxoSBoqYAuyilIWb0k91kR2/JqYrsVcjirR+Fka
+	 HoCXRp+/HWmdHn4q87lmDxUvE+Y1EC72Ks0EL6Ao=
+Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTP id
+	20231213105729epcas5p145680c4dc6bb8eaefbff59b6f32158c0~gXvFQlk-B2144021440epcas5p12;
+	Wed, 13 Dec 2023 10:57:29 +0000 (GMT)
+Received: from epsmges5p2new.samsung.com (unknown [182.195.38.176]) by
+	epsnrtp4.localdomain (Postfix) with ESMTP id 4SqsrS2cY1z4x9Pq; Wed, 13 Dec
+	2023 10:57:28 +0000 (GMT)
+Received: from epcas5p3.samsung.com ( [182.195.41.41]) by
+	epsmges5p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	C8.C4.10009.81E89756; Wed, 13 Dec 2023 19:57:28 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
+	20231213081112epcas5p171f1b69376bc4b1e8ced03f8b56efe35~gVd491gOh0249502495epcas5p1r;
+	Wed, 13 Dec 2023 08:11:12 +0000 (GMT)
+Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
+	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20231213081112epsmtrp10d31838d8f8b9870c9df96bf65b25882~gVd48784f2318723187epsmtrp1n;
+	Wed, 13 Dec 2023 08:11:12 +0000 (GMT)
+X-AuditID: b6c32a4a-261fd70000002719-6d-65798e182176
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+	epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	25.E2.08817.F1769756; Wed, 13 Dec 2023 17:11:12 +0900 (KST)
+Received: from cheetah.sa.corp.samsungelectronics.net (unknown
+	[107.109.115.53]) by epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20231213081109epsmtip2f885480c8110cbba87fd0625514a47c8~gVd2a24WA1539415394epsmtip2i;
+	Wed, 13 Dec 2023 08:11:09 +0000 (GMT)
+From: Aakarsh Jain <aakarsh.jain@samsung.com>
+To: linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc: m.szyprowski@samsung.com, andrzej.hajda@intel.com, mchehab@kernel.org,
+	hverkuil-cisco@xs4all.nl, krzysztof.kozlowski+dt@linaro.org,
+	robh+dt@kernel.org, conor+dt@kernel.org, linux-samsung-soc@vger.kernel.org,
+	andi@etezian.org, gost.dev@samsung.com, alim.akhtar@samsung.com,
+	aswani.reddy@samsung.com, pankaj.dubey@samsung.com,
+	ajaykumar.rs@samsung.com, aakarsh.jain@samsung.com
+Subject: [Patch v6 00/10] Add MFC v12 support
+Date: Wed, 13 Dec 2023 13:40:55 +0530
+Message-Id: <20231213081105.25817-1-aakarsh.jain@samsung.com>
+X-Mailer: git-send-email 2.17.1
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprDJsWRmVeSWpSXmKPExsWy7bCmpq5EX2WqwaHFAhZPd8xktTjw/iCL
+	xYN529gsFv94zmRxf/FnFotDm7eyW6zZe47JYv6Rc6wWNw/sZLK4OPMui0Xfi4fMFpseX2O1
+	uLxrDptFz4atrBYzzu9jslh75C67xbJNf5gsFm39wm7RuvcIu4Owx/Uln5g9Fu95yeSxaVUn
+	m8eda3vYPDYvqffo27KK0ePzJjmPU18/swdwRGXbZKQmpqQWKaTmJeenZOal2yp5B8c7x5ua
+	GRjqGlpamCsp5CXmptoqufgE6Lpl5gA9pKRQlphTChQKSCwuVtK3synKLy1JVcjILy6xVUot
+	SMkpMCnQK07MLS7NS9fLSy2xMjQwMDIFKkzIzjjZNJe54IByReP6/YwNjJ1yXYycHBICJhKf
+	Zl1g62Lk4hAS2M0o0XVmCxOE84lR4tzOvYwQzjdGidPNG1lgWnq3PYJK7GWU2DnjJ1R/K5PE
+	tbmbmbsYOTjYBHQlzm7PAWkQEWhklHjcUQJSwyzQyizRMuUdI0hCGKjm493tYDaLgKrEjJtN
+	bCA2r4CtxO8JZ1khtslLrN5wgBmkWUJgIYfEqTmnoBIuEh+3HGGGsIUlXh3fwg5hS0m87G+D
+	spMlHi96CVWTI7F+zxSoF+wlDlyZwwJyKLOApsT6XfoQYVmJqafWMYHYzAJ8Er2/nzBBxHkl
+	dsyDsdUk5tz5AXWCjMTh1UsZQcZICHhI3NqdDGIKCcRKrN9mOYFRdhbC/AWMjKsYJVMLinPT
+	U4tNC4zyUsvh8ZScn7uJEZxMtbx2MD588EHvECMTB+MhRgkOZiUR3pM7ylOFeFMSK6tSi/Lj
+	i0pzUosPMZoCQ2wis5Rocj4wneeVxBuaWBqYmJmZmVgamxkqifO+bp2bIiSQnliSmp2aWpBa
+	BNPHxMEp1cDkscv0mmTTrWeCzNnyTb9qWmStTk5LP5hy0+xYeIbly3kiL56JXYiueV6d0uE3
+	8ffJOjH7BskVLI9je1qPXj7cskGpdCO7XIb6rv512VMlr5jtL26x9em2CfkgsP/ZPNF9qmci
+	NOUfL/LWnfSb9Y7d8wPPpudvTCvoLGf+wexwqmX38cUbQm8K939fxnxPpmLzT9fVWWnp/422
+	Oj3aN1lcWFZ3xrVylbN7Du2yTm7JmpX48KvPXpNMlgPnlnOsF3h3hKHt4ir7t0kvCmrO/3u8
+	7WR0xu5L8T4FhmWPd7Y/060tXK4tvetslTDHG8VjFldvsJ2M485SOGmxu/eKzbTgw41Lo3IO
+	lHTu4P5ve/+9EktxRqKhFnNRcSIAmSFQGi8EAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrFLMWRmVeSWpSXmKPExsWy7bCSvK5CemWqwZ8HjBZPd8xktTjw/iCL
+	xYN529gsFv94zmRxf/FnFotDm7eyW6zZe47JYv6Rc6wWNw/sZLK4OPMui0Xfi4fMFpseX2O1
+	uLxrDptFz4atrBYzzu9jslh75C67xbJNf5gsFm39wm7RuvcIu4Owx/Uln5g9Fu95yeSxaVUn
+	m8eda3vYPDYvqffo27KK0ePzJjmPU18/swdwRHHZpKTmZJalFunbJXBlnGyay1xwQLmicf1+
+	xgbGTrkuRk4OCQETid5tjxi7GLk4hAR2M0rs/36VFSIhI/G/7Rg7hC0ssfLfc3aIomYmiRVf
+	9wJ1cHCwCehKnN2eAxIXEWhllLi+spMJxGEWmM4s8fVlLwtItzBQ0ce72xlBbBYBVYkZN5vY
+	QGxeAVuJ3xPOQm2Tl1i94QDzBEaeBYwMqxglUwuKc9Nziw0LjPJSy/WKE3OLS/PS9ZLzczcx
+	goNbS2sH455VH/QOMTJxMB5ilOBgVhLhPbmjPFWINyWxsiq1KD++qDQntfgQozQHi5I477fX
+	vSlCAumJJanZqakFqUUwWSYOTqkGpqU/O+acnhylfeviXWaHdI690brx0qu8J8ws/Wpp8plh
+	5cp3bbWHLzO2J63Y2bSZSW+W44qVJXeEKsWOzg//etfzo9uKRylymtyX8r/+Y1n1edaWpkO/
+	L61bbTazsnFSksQdtW2Pd1zeKfrU77pok3tjh26KhYNm5PYzF9e/6ffgUF8dvyX4NXfjCobK
+	q3cPxQT9OL/qcP3hzqU3J3Da3F3uEHpwv8tWkT21R289nWZr+pM9tTT/BH9f/PrM/1OOOopb
+	+yYsdZld+vRdz+/Sa/WVFlcvz7Vcu/jg+YRPAT4+b/cuPLfioOVP9RkpvJ0bPDfVHlcpcFl9
+	anF/VXCUzOYQw1iBJcHWVQ28Foui/lxXYinOSDTUYi4qTgQAzAA1P90CAAA=
+X-CMS-MailID: 20231213081112epcas5p171f1b69376bc4b1e8ced03f8b56efe35
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20231213081112epcas5p171f1b69376bc4b1e8ced03f8b56efe35
+References: <CGME20231213081112epcas5p171f1b69376bc4b1e8ced03f8b56efe35@epcas5p1.samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH] arm64: dts: qcom: sm8550: add missing two RX Soundwire
- ports in configuration
-Content-Language: en-US, fr
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231212185415.228003-1-krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <20231212185415.228003-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
 
-On 12/12/2023 19:54, Krzysztof Kozlowski wrote:
-> The Qualcomm SM8550 RX Soundwire port configuration was taken from
-> downstream sources ("rx_frame_params_default"), but without two ports.
-> Correct the DTS, even though no practical impact was observed.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
-> 
-> Not adding fixes table, as I am not able to identify whether this was
-> actually a bug.
-> ---
->   arch/arm64/boot/dts/qcom/sm8550.dtsi | 22 +++++++++++-----------
->   1 file changed, 11 insertions(+), 11 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> index 17c4f0a7638a..1f06fd33d1ce 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> @@ -2109,18 +2109,18 @@ swr1: soundwire-controller@6ad0000 {
->   			clock-names = "iface";
->   			label = "RX";
->   
-> -			qcom,din-ports = <0>;
-> -			qcom,dout-ports = <10>;
-> +			qcom,din-ports = <1>;
-> +			qcom,dout-ports = <11>;
->   
-> -			qcom,ports-sinterval =		/bits/ 16 <0x03 0x3f 0x1f 0x07 0x00 0x18f 0xff 0xff 0xff 0xff>;
-> -			qcom,ports-offset1 =		/bits/ 8 <0x00 0x00 0x0b 0x01 0x00 0x00 0xff 0xff 0xff 0xff>;
-> -			qcom,ports-offset2 =		/bits/ 8 <0x00 0x00 0x0b 0x00 0x00 0x00 0xff 0xff 0xff 0xff>;
-> -			qcom,ports-hstart =		/bits/ 8 <0xff 0x03 0xff 0xff 0xff 0x08 0xff 0xff 0xff 0xff>;
-> -			qcom,ports-hstop =		/bits/ 8 <0xff 0x06 0xff 0xff 0xff 0x08 0xff 0xff 0xff 0xff>;
-> -			qcom,ports-word-length =	/bits/ 8 <0x01 0x07 0x04 0xff 0xff 0x0f 0xff 0xff 0xff 0xff>;
-> -			qcom,ports-block-pack-mode =	/bits/ 8 <0xff 0x00 0x01 0xff 0xff 0x00 0xff 0xff 0xff 0xff>;
-> -			qcom,ports-block-group-count =	/bits/ 8 <0xff 0xff 0xff 0xff 0x00 0x00 0xff 0xff 0xff 0xff>;
-> -			qcom,ports-lane-control =	/bits/ 8 <0x01 0x00 0x00 0x00 0x00 0x00 0xff 0xff 0xff 0xff>;
-> +			qcom,ports-sinterval =		/bits/ 16 <0x03 0x3f 0x1f 0x07 0x00 0x18f 0xff 0xff 0xff 0xff 0xff 0xff>;
-> +			qcom,ports-offset1 =		/bits/ 8 <0x00 0x00 0x0b 0x01 0x00 0x00 0xff 0xff 0xff 0xff 0xff 0xff>;
-> +			qcom,ports-offset2 =		/bits/ 8 <0x00 0x00 0x0b 0x00 0x00 0x00 0xff 0xff 0xff 0xff 0xff 0xff>;
-> +			qcom,ports-hstart =		/bits/ 8 <0xff 0x03 0xff 0xff 0xff 0x08 0xff 0xff 0xff 0xff 0xff 0xff>;
-> +			qcom,ports-hstop =		/bits/ 8 <0xff 0x06 0xff 0xff 0xff 0x08 0xff 0xff 0xff 0xff 0xff 0xff>;
-> +			qcom,ports-word-length =	/bits/ 8 <0x01 0x07 0x04 0xff 0xff 0x0f 0xff 0xff 0xff 0xff 0xff 0xff>;
-> +			qcom,ports-block-pack-mode =	/bits/ 8 <0xff 0x00 0x01 0xff 0xff 0x00 0xff 0xff 0xff 0xff 0xff 0xff>;
-> +			qcom,ports-block-group-count =	/bits/ 8 <0xff 0xff 0xff 0xff 0x00 0x00 0xff 0xff 0xff 0xff 0xff 0xff>;
-> +			qcom,ports-lane-control =	/bits/ 8 <0x01 0x00 0x00 0x00 0x00 0x00 0xff 0xff 0xff 0xff 0xff 0xff>;
->   
->   			#address-cells = <2>;
->   			#size-cells = <0>;
+This patch series adds MFC v12 support. MFC v12 is used in Tesla FSD SoC.
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+This adds support for following:
+
+-Add support for YV12 and I420 format (3-plane)
+-Add support for Rate Control, UHD and DMABUF for encoder
+-Add support for DPB buffers allocation based on MFC requirement
+
+changes since v5:
+-As per Krzysztof, he will take MFC dt-entries patch via Samsung SoC
+once dt-bindings patch gets accepted. Therefore, excluded MFC dt-entries
+patch from v6.
+-Addressed review comments by Hans Verkuil.
+Resolved smatch warning from 'drivers/media/platform/samsung/s5p-mfc/s5p_mfc_enc.c'.
+Resolved kernel doc warnings from 'drivers/media/platform/samsung/s5p-mfc/s5p_mfc_common.h'.
+Added explanation in the patch 9 as comment on why mfc v12 firmware loading is
+needed for each run.
+v5 link: https://patchwork.kernel.org/project/linux-media/cover/20231206063045.97234-1-aakarsh.jain@samsung.com/
+
+Changes since v4:
+-Addressed review comments by Krzysztof Kozlowski.
+As per discussion included iommus property in dt-schema.
+-Addressed review comments by Hans Verkuil.
+Fixed checkpatch warnings with --strict flag enabled.
+Upstreamed s5p-mfc-v12.fw to linux-firmware.
+Added comment in the patch 9 regarding loading mfc firmware v12
+sequentially.
+-Addressed review comments by Nicolas Dufresne
+Made use of v4l2-common library to get number of planes needed for
+particular format in patch 4.
+v4 link:https://patchwork.kernel.org/project/linux-media/patch/20231025102216.50480-2-aakarsh.jain@samsung.com/
+
+Changes since v3:
+-Removed vp9 codec support for now and just keeping MFC v12 base
+patches with necessary hardware controls, decoder, encoder and
+structural changes. Also covers luma dbp, chroma dpb and mv sizes
+for each codec as per the UM for MFCv12, along with appropriate
+alignment.
+v3 link: https://patchwork.kernel.org/project/linux-media/cover/20221011122516.32135-1-aakarsh.jain@samsung.com/
+
+Changes since v2:
+-Addressed review comments by Rob Herring.
+This was regarding the errors found by Rob bot in yaml file. File
+'samsung,s5p-mfc.yaml' is already converted into json schema and is
+merged.
+
+-Addressed review comments by Krzysztof Kozlowski.
+This was regarding depricated properties mentioned in s5p-mfc.txt file.
+Review comment was addressed and 'samsung,s5p-mfc.yaml' is already
+merged now.
+
+-Addressed review comments by Andi Shyti.
+This was regarding addition of 'MFC_V10PLUS_BITS' macro in
+'s5p_mfc_common.h file.
+v2 link: https://patchwork.kernel.org/project/linux-media/cover/20220907064715.55778-1-smitha.t@samsung.com/
+
+Changes since v1:
+-Addressed review comments by Krzysztof Kozlowski.
+Separated bug fixes patches, resent again with fix tag
+and those are merged now.
+-Added SoC based compatible string.
+
+-Addressed review comments by Andrzej Hajda
+Assigned width64 and height32 variable with ALIGN(ctx->img_..)
+used in the code in 's5p_mfc_opr_v6.c' file.
+v1 link: https://patchwork.kernel.org/project/linux-media/patch/20220517125548.14746-2-smitha.t@samsung.com/
+
+Aakarsh Jain (10):
+  dt-bindings: media: s5p-mfc: Add mfcv12 variant
+  media: s5p-mfc: Rename IS_MFCV10 macro
+  media: s5p-mfc: Add initial support for MFCv12
+  media: s5p-mfc: Add YV12 and I420 multiplanar format support
+  media: s5p-mfc: Add support for rate controls in MFCv12
+  media: s5p-mfc: Add support for UHD encoding.
+  media: s5p-mfc: Add support for DMABUF for encoder
+  media: s5p-mfc: Set context for valid case before calling try_run
+  media: s5p-mfc: Load firmware for each run in MFCv12.
+  media: s5p-mfc: DPB Count Independent of VIDIOC_REQBUF
+
+ .../bindings/media/samsung,s5p-mfc.yaml       |  18 ++
+ .../platform/samsung/s5p-mfc/regs-mfc-v12.h   |  52 +++
+ .../platform/samsung/s5p-mfc/regs-mfc-v7.h    |   1 +
+ .../platform/samsung/s5p-mfc/regs-mfc-v8.h    |   3 +
+ .../media/platform/samsung/s5p-mfc/s5p_mfc.c  |  36 ++-
+ .../platform/samsung/s5p-mfc/s5p_mfc_common.h |  33 +-
+ .../platform/samsung/s5p-mfc/s5p_mfc_ctrl.c   |  15 +-
+ .../platform/samsung/s5p-mfc/s5p_mfc_dec.c    |  60 +++-
+ .../platform/samsung/s5p-mfc/s5p_mfc_enc.c    | 149 ++++++---
+ .../platform/samsung/s5p-mfc/s5p_mfc_opr.h    |  14 +-
+ .../platform/samsung/s5p-mfc/s5p_mfc_opr_v5.c |  12 +-
+ .../platform/samsung/s5p-mfc/s5p_mfc_opr_v6.c | 299 ++++++++++++++----
+ .../platform/samsung/s5p-mfc/s5p_mfc_opr_v6.h |   7 +-
+ 13 files changed, 550 insertions(+), 149 deletions(-)
+ create mode 100644 drivers/media/platform/samsung/s5p-mfc/regs-mfc-v12.h
+
+-- 
+2.17.1
+
 
