@@ -1,60 +1,34 @@
-Return-Path: <devicetree+bounces-24651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24652-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A3A8810C2D
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 09:15:11 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4903B810C2F
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 09:15:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DA4C028187E
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 08:15:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E6B701F210AD
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 08:15:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A2031D68E;
-	Wed, 13 Dec 2023 08:15:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="V6svnmOL"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E7F91D53A;
+	Wed, 13 Dec 2023 08:15:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 989E6F4
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 00:15:02 -0800 (PST)
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-40b5155e154so76065905e9.3
-        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 00:15:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702455301; x=1703060101; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Qg3/WicGNss8PVwXMd3IQ5VkA5POBdOm00ZLLplNk0c=;
-        b=V6svnmOL88xQzTZfH519kujJKQ/gTVu8lmwnjaJR2LnQ3uTyeUn0aiboWiBWvbZPHx
-         6vdkmLZsWIkN/eZgKj1Du23S/jf25C08D3DkdENAUphWIKvWdsmUxQ1jIbzaYW5YkYo8
-         VeztNJuR0CYhRawGkoPRL8Gqi4K5tfdyafwxHkGr8vTXcTESLPGjTGNDu31ECCxXWKnW
-         cr1vu3IWanxmIfpu8618HVilEzmDqKxSEMyAAvyNTotClKP+Ko0FdRUWR57OvvvD7w4M
-         WtQ5js74bwbVxwZhBirWT62wMnOFRnoFbu4LYqUbRCPItzMD3KMAGcxgC822Hfl8Ke5d
-         btcw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702455301; x=1703060101;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Qg3/WicGNss8PVwXMd3IQ5VkA5POBdOm00ZLLplNk0c=;
-        b=AxCP55Zwb82Y5H9YxM6DW9KhVp9AuK22TZVv3k5GaYj/bRBrSjFilHY5a9q60TjwTd
-         0BS/UM1Wjob2wMPRKwyuVcsBKmLS95pc+0urSO0tDPshxuuYdzM9mqjapXlnubFXdv6Q
-         5FbEw7pjcOJLDim5kpxpGg6F19yMzKUNxgZUAt212UtLlC6+41mlEEkhtht6qNCQrnT+
-         kU1MVfZqVFD2TmB1uW9dXuxIb750Wu/XypM77mx6EPARVXYTh/9mcySDS/oPmKdaZSRc
-         QGa0gp/8nZdNt/QhBN8j2mR4H8gbLO2YTheOcU8pv2e41ixj8CbM21RoEJr1vnYsUBdy
-         kafQ==
-X-Gm-Message-State: AOJu0Yz7DhlH/WAHWTXrpVHfWA1lfyvUEYn5bjGC7rloOtUcC563LVnj
-	SUtftC6+vTbSY0TJYJymB9EByg==
-X-Google-Smtp-Source: AGHT+IE+1ybGpmC3Q6g+PK76bHek4m+qQOoFEixKP3L8sgol4mgPhnbNJ71Wa2eZphaS9dfl9+twmQ==
-X-Received: by 2002:a05:600c:3589:b0:40c:35b3:b7a5 with SMTP id p9-20020a05600c358900b0040c35b3b7a5mr3710867wmq.11.1702455301066;
-        Wed, 13 Dec 2023 00:15:01 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id l12-20020a05600c4f0c00b0040b4b2a15ebsm19441678wmq.28.2023.12.13.00.14.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Dec 2023 00:15:00 -0800 (PST)
-Message-ID: <a26032ca-1a05-43a9-b6e6-7240193db79c@linaro.org>
-Date: Wed, 13 Dec 2023 09:14:58 +0100
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4997CDC;
+	Wed, 13 Dec 2023 00:15:49 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+	by fd01.gateway.ufhost.com (Postfix) with ESMTP id 5B74582A9;
+	Wed, 13 Dec 2023 16:15:41 +0800 (CST)
+Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 13 Dec
+ 2023 16:15:41 +0800
+Received: from [192.168.125.85] (183.27.97.57) by EXMBX171.cuchost.com
+ (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 13 Dec
+ 2023 16:15:40 +0800
+Message-ID: <9523aa6b-55a8-4e6a-a3ba-45d9b1dacc77@starfivetech.com>
+Date: Wed, 13 Dec 2023 16:15:39 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,135 +36,108 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] pinctrl: samsung: add exynosautov920 pinctrl
+Subject: Re: [PATCH v12 15/21] PCI: microchip: Add event IRQ domain ops to
+ struct plda_event
 Content-Language: en-US
-To: Jaewon Kim <jaewon02.kim@samsung.com>,
- Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Tomasz Figa <tomasz.figa@gmail.com>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Linus Walleij <linus.walleij@linaro.org>,
- Thierry Reding <thierry.reding@gmail.com>,
- Uwe Kleine-K?nig <u.kleine-koenig@pengutronix.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
- linux-serial@vger.kernel.org
-References: <20231211114145.106255-1-jaewon02.kim@samsung.com>
- <CGME20231211114216epcas2p300bbf4c592d495991c6cc2d96e0b1f85@epcas2p3.samsung.com>
- <20231211114145.106255-3-jaewon02.kim@samsung.com>
- <68a36910-e528-45ff-8b59-e7cd95aaef0b@linaro.org>
- <2b72464e-d60a-6adc-0ef7-ed92ff495859@samsung.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <2b72464e-d60a-6adc-0ef7-ed92ff495859@samsung.com>
-Content-Type: text/plain; charset=UTF-8
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>
+CC: Conor Dooley <conor@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
+	<kw@linux.com>, Rob Herring <robh+dt@kernel.org>, Bjorn Helgaas
+	<bhelgaas@google.com>, Daire McNamara <daire.mcnamara@microchip.com>, "Emil
+ Renner Berthing" <emil.renner.berthing@canonical.com>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+	<linux-pci@vger.kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+	"Palmer Dabbelt" <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+	"Philipp Zabel" <p.zabel@pengutronix.de>, Mason Huo
+	<mason.huo@starfivetech.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Kevin Xie <kevin.xie@starfivetech.com>
+References: <20231206105839.25805-1-minda.chen@starfivetech.com>
+ <20231206105839.25805-16-minda.chen@starfivetech.com>
+ <ZXhB1kKpElgKx8vm@lpieralisi>
+From: Minda Chen <minda.chen@starfivetech.com>
+In-Reply-To: <ZXhB1kKpElgKx8vm@lpieralisi>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX171.cuchost.com
+ (172.16.6.91)
+X-YovoleRuleAgent: yovoleflag
 
-On 13/12/2023 09:10, Jaewon Kim wrote:
+
+
+On 2023/12/12 19:19, Lorenzo Pieralisi wrote:
+> On Wed, Dec 06, 2023 at 06:58:33PM +0800, Minda Chen wrote:
+>> For lack of an MSI controller, The new added PCIe interrupts have to be
+>> added to global interrupt event field. PolarFire event domain ops can not
+>> be re-used.
 > 
-> On 23. 12. 13. 16:52, Krzysztof Kozlowski wrote:
->> On 11/12/2023 12:41, Jaewon Kim wrote:
->>> Add pinctrl data for ExynosAutov920 SoC.
->>> It has a newly applied pinctrl register layer for ExynosAuto series.
->>>
->>> Pinctrl data for ExynosAutoV920 SoC.
->>>   - GPA0,GPA1 (10): External wake up interrupt
->>>   - GPQ0 (2): SPMI (PMIC I/F)
->>>   - GPB0,GPB1,GPB2,GPB3,GPB4,GPB5,GPB6 (47): I2S Audio
->>>   - GPH0,GPH1,GPH2,GPH3,GPH4,GPH5,GPH6,GPH8 (49): PCIE, UFS, Ethernet
->>>   - GPG0,GPG1,GPG2,GPG3,GPG4,GPG5 (29): General purpose
->>>   - GPP0,GPP1,GPP2,GPP3,GPP4,GPP5,GPP6,GPP7,GPP8,GPP9,GPP10 (77): USI
->>>
->>> Signed-off-by: Jaewon Kim <jaewon02.kim@samsung.com>
->>> ---
->>>   .../pinctrl/samsung/pinctrl-exynos-arm64.c    | 140 ++++++++++++++++++
->>>   drivers/pinctrl/samsung/pinctrl-exynos.c      |  23 ++-
->>>   drivers/pinctrl/samsung/pinctrl-exynos.h      |  25 ++++
->>>   drivers/pinctrl/samsung/pinctrl-samsung.c     |   2 +
->>>   drivers/pinctrl/samsung/pinctrl-samsung.h     |   1 +
->>>   5 files changed, 190 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c b/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c
->>> index cb965cf93705..a998c296dd05 100644
->>> --- a/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c
->>> +++ b/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c
->>> @@ -796,3 +796,143 @@ const struct samsung_pinctrl_of_match_data fsd_of_data __initconst = {
->>>   	.ctrl		= fsd_pin_ctrl,
->>>   	.num_ctrl	= ARRAY_SIZE(fsd_pin_ctrl),
->>>   };
->>> +
->>> +/* pin banks of exynosautov920 pin-controller 0 (ALIVE) */
->>> +static const struct samsung_pin_bank_data exynosautov920_pin_banks0[] = {
->>> +	EXYNOSV920_PIN_BANK_EINTW(8, 0x0000, "gpa0", 0x18, 0x24, 0x28),
->>> +	EXYNOSV920_PIN_BANK_EINTW(2, 0x1000, "gpa1", 0x18, 0x20, 0x24),
->>> +	EXYNOS850_PIN_BANK_EINTN(2, 0x2000, "gpq0"),
->>> +};e
->> Applied with re-ordering it, to keep it after ExynosAutov9. For the
->> future: don't add entries to the end of lists because it causes exactly
->> this issue we have here: unnecessary conflicts. Please keep this rule
->> for entire development, not only pinctrl.
->>
->> If both you and Peter were observing this basic rule, I would not have
->> work of reshuffling and fixing conflicts.
->>
->> Please check the result if I reshuffled/solved conflicts correctly.
->>
+> I don't understand what this means, please explain and I will
+> add it to the commit log.
 > 
-> I thought the new SoC should go to the end, but I was wrong.
+Sorry.
+Microchip Polarfire PCIe adds 11 PCIe interrupts to PCIe global event domain.(Total 28 PCIe interrupts)
+The microchip event domain and event irqchip will handle these interrupts.
+But PLDA host contain 13 fixed PCIe interrupts. PLDA codes just process these
+13 interrupts. Microchip the event irq codes are quite different and can't be used by PLDA codes.
+So add an event domain field support microchip and other vendor who just using the PLDA interrupts.
+>> PLDA event domain ops instances will be implemented in later patch.
 > 
+> Future patches don't exist, each commit log is a logical change
+> that must make sense on its own, I will remove this sentence.
+> 
+> Lorenzo
 
-Peter's Google's structures went to the end, which was actually
-alphabetical. You also added to the end thus git could not apply the
-patch. Even cherry-pick had troubles, so I need to manually copy code
-from downloaded patch. That's the main reason of not putting stuff to
-the end, but to some logical place, usually alphabetical.
+OK, Thanks.
 
-Best regards,
-Krzysztof
-
+>> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+>> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>> ---
+>>  drivers/pci/controller/plda/pcie-microchip-host.c | 6 ++++--
+>>  drivers/pci/controller/plda/pcie-plda.h           | 1 +
+>>  2 files changed, 5 insertions(+), 2 deletions(-)
+>> 
+>> diff --git a/drivers/pci/controller/plda/pcie-microchip-host.c b/drivers/pci/controller/plda/pcie-microchip-host.c
+>> index f5e7da242aec..e6dcc572b65b 100644
+>> --- a/drivers/pci/controller/plda/pcie-microchip-host.c
+>> +++ b/drivers/pci/controller/plda/pcie-microchip-host.c
+>> @@ -821,13 +821,15 @@ static const struct plda_event_ops mc_event_ops = {
+>>  };
+>>  
+>>  static const struct plda_event mc_event = {
+>> +	.domain_ops        = &mc_event_domain_ops,
+>>  	.event_ops         = &mc_event_ops,
+>>  	.request_event_irq = mc_request_event_irq,
+>>  	.intx_event        = EVENT_LOCAL_PM_MSI_INT_INTX,
+>>  	.msi_event         = EVENT_LOCAL_PM_MSI_INT_MSI,
+>>  };
+>>  
+>> -static int plda_pcie_init_irq_domains(struct plda_pcie_rp *port)
+>> +static int plda_pcie_init_irq_domains(struct plda_pcie_rp *port,
+>> +				      const struct irq_domain_ops *ops)
+>>  {
+>>  	struct device *dev = port->dev;
+>>  	struct device_node *node = dev->of_node;
+>> @@ -941,7 +943,7 @@ static int plda_init_interrupts(struct platform_device *pdev,
+>>  		return -EINVAL;
+>>  	}
+>>  
+>> -	ret = plda_pcie_init_irq_domains(port);
+>> +	ret = plda_pcie_init_irq_domains(port, event->domain_ops);
+>>  	if (ret) {
+>>  		dev_err(dev, "failed creating IRQ domains\n");
+>>  		return ret;
+>> diff --git a/drivers/pci/controller/plda/pcie-plda.h b/drivers/pci/controller/plda/pcie-plda.h
+>> index df1729095952..820ea16855b5 100644
+>> --- a/drivers/pci/controller/plda/pcie-plda.h
+>> +++ b/drivers/pci/controller/plda/pcie-plda.h
+>> @@ -129,6 +129,7 @@ struct plda_pcie_rp {
+>>  };
+>>  
+>>  struct plda_event {
+>> +	const struct irq_domain_ops *domain_ops;
+>>  	const struct plda_event_ops *event_ops;
+>>  	int (*request_event_irq)(struct plda_pcie_rp *pcie,
+>>  				 int event_irq, int event);
+>> -- 
+>> 2.17.1
+>> 
 
