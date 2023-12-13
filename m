@@ -1,139 +1,268 @@
-Return-Path: <devicetree+bounces-24815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24816-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5ADD98114C6
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 15:36:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 153578114CA
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 15:38:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2FAEAB21037
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 14:36:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8685C2817C7
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 14:37:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FAE12E85F;
-	Wed, 13 Dec 2023 14:36:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D61462EAE0;
+	Wed, 13 Dec 2023 14:37:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5473B9;
-	Wed, 13 Dec 2023 06:36:17 -0800 (PST)
-Received: by mail-oo1-f47.google.com with SMTP id 006d021491bc7-5906eac104bso4109579eaf.2;
-        Wed, 13 Dec 2023 06:36:17 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702478177; x=1703082977;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=C+KCX3VeG9RylsCC1YNPXKBKpJf6ejqEflv5vOYcrLY=;
-        b=r+/FLdmmzt/1Z6XVbWks0akWA5TDd35FlIEl1ONjBJui+YMxYIvZaLgJM+04J42Yf1
-         humYKAHsusXK7oo6cHOFF8wq/TeLbBwt6BmVjAqN56df9+nZOyc80BrDvNdD7FanDgCR
-         1UqTPu6IgGtCZtdwfhf2qdKOuEAuVBi2TIhEcA5c4LJH9sBTNWysLh2hr14vdSR9pYau
-         USl0g4hBgIH6kZBbtAeU25fyCEwnnDt2hfcU1lzDS21vuC/hXz5kcW0lFL1vgGqjEVPn
-         bC7GTccjEMV+bavNNA/sOHDzrZamWT9fSC2CrFBzh0ZcTcS6SndZh3Wo8zKJHh75XGCk
-         OHeQ==
-X-Gm-Message-State: AOJu0YxcPHZOvQJ+OmovS+cm6EMSJdU+zyLtWFQ0G/rP6bXdqlm5FnJZ
-	WkATmNoojuPmXoRbq/OpUA==
-X-Google-Smtp-Source: AGHT+IFfbdp0Fk0iljZhPsJrTY/juF09ZOPbQP2s05SHQ+lFCWp9SR9xRORHjmc2ElZiVPN97gPIeg==
-X-Received: by 2002:a05:6820:287:b0:590:673c:e284 with SMTP id q7-20020a056820028700b00590673ce284mr3736085ood.10.1702478176998;
-        Wed, 13 Dec 2023 06:36:16 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id x8-20020a4a6208000000b0057b6ac3922esm3043883ooc.18.2023.12.13.06.36.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Dec 2023 06:36:16 -0800 (PST)
-Received: (nullmailer pid 1097845 invoked by uid 1000);
-	Wed, 13 Dec 2023 14:36:15 -0000
-Date: Wed, 13 Dec 2023 08:36:15 -0600
-From: Rob Herring <robh@kernel.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: bhelgaas@google.com, conor+dt@kernel.org, devicetree@vger.kernel.org, festevam@gmail.com, helgaas@kernel.org, hongxing.zhu@nxp.com, imx@lists.linux.dev, kernel@pengutronix.de, krzysztof.kozlowski+dt@linaro.org, kw@linux.com, l.stach@pengutronix.de, linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, lpieralisi@kernel.org, manivannan.sadhasivam@linaro.org, s.hauer@pengutronix.de, shawnguo@kernel.org
-Subject: Re: [PATCH v3 08/13] dt-bindings: imx6q-pcie: Add imx95 pcie
- compatible string
-Message-ID: <20231213143615.GA1093782-robh@kernel.org>
-References: <20231211215842.134823-1-Frank.Li@nxp.com>
- <20231211215842.134823-9-Frank.Li@nxp.com>
- <20231212224426.GA2948988-robh@kernel.org>
- <ZXjsq2QtFa2V0BAl@lizhi-Precision-Tower-5810>
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id AF5B8B9;
+	Wed, 13 Dec 2023 06:37:49 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2D4F0C15;
+	Wed, 13 Dec 2023 06:38:35 -0800 (PST)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8AD383F738;
+	Wed, 13 Dec 2023 06:37:47 -0800 (PST)
+Date: Wed, 13 Dec 2023 14:37:43 +0000
+From: Andre Przywara <andre.przywara@arm.com>
+To: Anne Macedo <retpolanne@posteo.net>
+Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, "open list:OPEN FIRMWARE AND
+ FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, "moderated
+ list:ARM/Allwinner sunXi SoC support"
+ <linux-arm-kernel@lists.infradead.org>, "open list:ARM/Allwinner sunXi SoC
+ support" <linux-sunxi@lists.linux.dev>, open list
+ <linux-kernel@vger.kernel.org>, Corentin Labbe <clabbe@baylibre.com>
+Subject: Re: [PATCH] arm64: dts: allwinner: Orange Pi One Plus PHY support
+Message-ID: <20231213143743.272e4d3c@donnerap.manchester.arm.com>
+In-Reply-To: <cm5e7g2ozviyin6p3dh2qtuh4i3f2sbqq4c2arjtdektgk7i6c@l7aawekyj6t2>
+References: <20231212122835.10850-2-retpolanne@posteo.net>
+	<20231212162200.10b3868b@donnerap.manchester.arm.com>
+	<axsvii25yrknfae6gdreti7lcskoscsdbsujwuispiieimsbdy@gwzm4l7mwlew>
+	<20231213013544.2fc7e0d1@minigeek.lan>
+	<ceuoq3xxgb5kkel7e7wqpslcg7h6dde3wgdqhyo7jgop6owovk@5a76ks5fiun4>
+	<20231213122523.219cbfc0@donnerap.manchester.arm.com>
+	<cm5e7g2ozviyin6p3dh2qtuh4i3f2sbqq4c2arjtdektgk7i6c@l7aawekyj6t2>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZXjsq2QtFa2V0BAl@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Tue, Dec 12, 2023 at 06:28:43PM -0500, Frank Li wrote:
-> On Tue, Dec 12, 2023 at 04:44:26PM -0600, Rob Herring wrote:
-> > On Mon, Dec 11, 2023 at 04:58:37PM -0500, Frank Li wrote:
-> > > From: Richard Zhu <hongxing.zhu@nxp.com>
-> > > 
-> > > Add i.MX95 PCIe "fsl,imx95-pcie" compatible string.
-> > > Add "atu" and "serdes" to reg-names.
-> > > 
-> > > Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-> > > ---
-> > > 
-> > > Notes:
-> > >     Change from v2 to v3
-> > >     - Remove krzy's ACK tag
-> > >     - Add condition check for imx95, which required more reg-names then old
-> > >     platform, so need Krzy review again,
-> > >     
-> > >     Change from v1 to v2
-> > >     - add Krzy's ACK tag
-> > > 
-> > >  .../bindings/pci/fsl,imx6q-pcie.yaml           | 18 ++++++++++++++++++
-> > >  1 file changed, 18 insertions(+)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-> > > index 81bbb8728f0f9..b8fcf8258f031 100644
-> > > --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-> > > +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-> > > @@ -29,6 +29,7 @@ properties:
-> > >        - fsl,imx8mq-pcie
-> > >        - fsl,imx8mm-pcie
-> > >        - fsl,imx8mp-pcie
-> > > +      - fsl,imx95-pcie
-> > >  
-> > >    reg:
-> > >      items:
-> > > @@ -90,6 +91,22 @@ required:
-> > >  allOf:
-> > >    - $ref: /schemas/pci/snps,dw-pcie.yaml#
-> > >    - $ref: /schemas/pci/fsl,imx6q-pcie-common.yaml#
-> > > +  - if:
-> > > +      properties:
-> > > +        compatible:
-> > > +          enum:
-> > > +            - fsl,imx95-pcie
-> > > +    then:
-> > > +      properties:
-> > > +        reg:
-> > > +          minItems: 4
-> > > +        reg-names:
-> > > +          items:
-> > > +            - const: dbi
-> > > +            - const: serdes
+On Wed, 13 Dec 2023 12:55:58 +0000
+Anne Macedo <retpolanne@posteo.net> wrote:
+
+Hi Anne,
+
+> On Wed, Dec 13, 2023 at 12:25:23PM +0000, Andre Przywara wrote:
+> > On Wed, 13 Dec 2023 11:02:39 +0000
+> > Anne Macedo <retpolanne@posteo.net> wrote:
 > > 
-> > Did you test this? It should fail because 'serdes' would need to be 
-> > added to snps,dw-pcie.yaml.
+> > Hi Anne,
+> >   
+> > > On Wed, Dec 13, 2023 at 01:35:44AM +0000, Andre Przywara wrote:  
+> > > > On Tue, 12 Dec 2023 19:27:14 +0000
+> > > > Anne Macedo <retpolanne@posteo.net> wrote:
+> > > > 
+> > > > Hi Anne,
+> > > >     
+> > > > > On Tue, Dec 12, 2023 at 04:22:00PM +0000, Andre Przywara wrote:    
+> > > > > > On Tue, 12 Dec 2023 12:28:30 +0000
+> > > > > > Anne Macedo <retpolanne@posteo.net> wrote:
+> > > > > > 
+> > > > > > Hi Anne,
+> > > > > >       
+> > > > > > > Adds compatible values to mdio subnodes for Ethernet PHY representing
+> > > > > > > Realtek 8211 PHY to Orange Pi One Plus.      
+> > > > > > 
+> > > > > > So can you state why this would be needed? This is the RTL8211 ID,      
+> > > > > 
+> > > > > Apologies, I completely forgot to include some context. 
+> > > > >     
+> > > > > > right? Which should be autodetected via MDIO. Looking back in my inbox
+> > > > > > you proposed this change before, for U-Boot, specifically, but I fail to
+> > > > > > find a solution or explanation what really happens here. Two Renesas .dts
+> > > > > > files have the same compatible, and the commit message talks about the
+> > > > > > reset line there, is this related?
+> > > > > > 
+> > > > > > So can you please give some more background and explanation? That would be
+> > > > > > part of a good commit message anyway ("why", not "what").      
+> > > > > 
+> > > > > Should I resend the commit with a more meaningful explanation? The
+> > > > > context is the following:
+> > > > > 
+> > > > > currently, ethernet doesn't seem to work on both u-boot and Linux on the
+> > > > > Orange Pi One Plus board. 
+> > > > > 
+> > > > > On the kernel, this error shows up:
+> > > > > 
+> > > > > Configuring network interfaces... [    5.992589] dwmac-sun8i 5020000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
+> > > > > [    6.000823] dwmac-sun8i 5020000.ethernet eth0: __stmmac_open: Cannot attach to PHY (error: -19)
+> > > > > 
+> > > > > After applying this fix, the PHY gets attached: 
+> > > > > 
+> > > > > Configuring network interfaces... [    6.060020] dwmac-sun8i 5020000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
+> > > > > [    6.069460] dwmac-sun8i 5020000.ethernet eth0: PHY [stmmac-0:01] driver [RTL8211E Gigabit Ethernet] (irq=POLL)
+> > > > > 
+> > > > > The previous compatible list that had ethernet-phy-ieee802.3-c22 fails
+> > > > > to find a PHY, so this patch includes the correct PHY ID with the
+> > > > > RTL8211 ID. 
+> > > > > 
+> > > > > The behaviour is described on [1].    
+> > > > 
+> > > > So this is all an observation, but no real explanation, isn't it?    
+> > > 
+> > > I've made some analysis on [3] on this bug, but it was based solely on
+> > > u-boot. I was having trouble with the regulator and on u-boot nothing
+> > > would trigger the GPIO PD6 and the vcc-gmac-3v3 regulator, so the NIC
+> > > was completely dead. Next I did an analysis based on [2] because the
+> > > u-boot PHY initialization was flaky.
+> > >   
+> > > > To cite [1]: "If the PHY reports an incorrect ID (or none at all) ...".
+> > > > I am pretty sure this is not the case here, instead we are looking at
+> > > > some missing platform bits, like a missing clock, reset, or most likely
+> > > > regulator. Or one of the existing resources is wrongly assigned or    
+> > > 
+> > > As I mentioned, PHY initialization is flaky on u-boot, so maybe that
+> > > assumption is correct. 
+> > >   
+> > > > configured? If the PHY is not (yet?) powered correctly when the code
+> > > > does the auto-detection via the MDIO bus, then the initialisation would    
+> > > 
+> > > If I recall correctly (I don't know if I kept it in my notes :c), that
+> > > could be the case. regulator-boot-on makes the NIC work (LEDs blink, at
+> > > least) but it doesn't get initialized. 
+> > >   
+> > > > fail. But since it works when overriding the auto-detection, I feel
+> > > > like we are papering over something here.
+> > > > Do you have the schematics for this board? I can only find the one for
+> > > > the Orange Pi Plus 2E, and I don't know how similar those two are. This
+> > > > shows *two* regulators, but both are activated by the same GPIO.    
+> > > 
+> > > I do. It's available on [4]  
+> > 
+> > Oh damn it, I got lost in Orange Pi's naming maze again - and was looking
+> > for the wrong board! So thanks for the link, and this clears things up!  
 > 
-> I run "make dt_binding_check DT_SCHEMA_FILES=/pci/", no error report.
-
-Only because you have no example. What about your actual .dts?
-
-> And PCIe function can work.
+> Yay! 
 > 
 > > 
-> > Is this really not a separate phy block?
+> > So yes, the Orange Pi *One* Plus, much like the Orange Pi 3, uses *two*
+> > regulators for Ethernet: one 3.3V from the PMIC's ALDO2 rail to power the
+> > PHY, and a discrete 2.5V regulator, enabled by GPIO PD6, for the voltage  
 > 
-> This is misc block, which included phy and also include some registers
-> about SID for each PCI devices. I plan do it later.
+> Oh! I didn't know about the PMIC's ALDO2.
 
-Sounds like it should be a separate node and use the phy binding. Do it 
-correctly from the start, not later. Later is an ABI break.
+That's a bit obscure in the schematic, but it's a common thing to do:
+- On page 12 (LAN), in the top right box, you see the EPHY-DVDD33 and
+EPHY-AVDD33 signals connected to GMAC-3V.
+- On the same page, in the middle left part, you see GMAC-3V connected to
+VCC3V3-MAC.
+- On page 8 (POWER), in the lower left corner, you see VCC3V3-MAC
+connected to ALDO2.
+- On the same page, in the right hand part, you see the ALDO2 signal
+connected to the ALDO2 pin on the PMIC.
 
-What is SID?
+Easy, huh? ;-)
 
-Rob
+> > level on the MDIO lines. On top of this there is a reset line for the PHY,
+> > though this is held up by a pull-up resistor, so it *should* work,
+> > although we should describe this in the DT.  
+> 
+> Noting here to take a look at the reset line so I can add it as well to
+> the DT.
+
+Yeah, maybe it helps to bring the PHY back into a sane state?
+
+> > So the DT looks wrong then: The reg_gmac_3v3 is actually a 2.5V regulator,
+> > and phy-supply is aldo2. I think it was done the way it is to somehow make
+> > it work with the current DT binding and code, which just supports one
+> > regulator. And aldo2 is referenced as the source of reg_gmac_3v3, which
+> > smells like another hack to me.  
+> 
+> 	reg_gmac_3v3: gmac-3v3 {
+> 		compatible = "regulator-fixed";
+> 		regulator-name = "vcc-gmac-3v3";
+> 		regulator-min-microvolt = <3300000>;
+> 		regulator-max-microvolt = <3300000>;
+> 		startup-delay-us = <100000>;
+> 		enable-active-high;
+> 		gpio = <&pio 3 6 GPIO_ACTIVE_HIGH>; /* PD6 */
+> 		vin-supply = <&reg_aldo2>;
+> 	};
+> 
+> Interesting, I see the reg_aldo2 on vin-supply for reg_gmac_3v3. I don't
+> understand how it works, is it linking the regulator with the ALDO2 but
+> it also enables the PD6 GPIO?
+
+So yes, this is one hack I was talking about: This DT node describes a
+regulator with a GPIO controlled enable pin (PD6), which feeds itself off
+another regulator (vin-supply), namely ALDO2.
+So to enable reg_gmac_3v3, which is referenced by the MAC DT node as the
+"phy-supply", the regulator driver code would need to enable ALDO2 first,
+then make PD6 go high, (to enable this regulator here), then wait 100ms.
+So even though the MAC DT node only references one regulator, this trick
+will allow *two* regulators to be turned on.
+
+The only problem with this is that it's the wrong order: there are
+comments somewhere that say it's required to enable the 2.5V supply
+*earlier* or at the same time as the 3.3V supply. And since this PD6
+controlled regulator is actually the 2.5V regulator (compare the
+schematic!), and ALDO2 is the 3.3V supply, we get it the other way around,
+and the PHY operation becomes unstable (that's what those comments say).
+
+And we can't apply this same trick the other way around, since the ALDO
+input supply clearly does not feed off this PD6 regulator. 
+And besides, it would be wrong and a hack anyway, as we should be able to
+describe two regulators as the requirement: this is what Corentin's
+of_regulator_bulk_get_all() patch takes care of.
+
+> > > > It would also be interesting to see if any of Corentin's work for the
+> > > > Orange Pi 3 helps here?    
+> > > 
+> > > Adding [5] for reference here, thanks! Will check it out.   
+> > 
+> > This is an older version, there are actually updates. And he also mentions
+> > your board as well, so I think it just can sail in the wake of the OPi 3
+> > Ethernet enablement.
+> > 
+> > Can you try if this change, just applied to your .dts instead, works?
+> > https://github.com/montjoie/linux/commit/cf6e192eca1d59be630e6729d2cef9e897b3da8c  
+> 
+> Will do! I'll be out of my lab today but will try it at night Brazil
+> time. 
+> > 
+> > Cheers,
+> > Andre
+> > 
+> > P.S. Is there any chance where I can reply/comment on your blog? It seems
+> > like I can clear some things up...  
+> 
+> Please send me suggestions off thread, the blog is a static GHPages
+> blog, so I didn't implement replies yet. I will be happy to include them
+> to my notes :) 
+
+OK, will do later today!
+
+Cheers,
+Andre
+
+> 
+> >   
+> > > [3] https://blog.retpolanne.com/hardware/embedded/2023/07/07/embedded-phy.html
+> > > [4] https://linux-sunxi.org/images/7/7c/OrangePi_OnePlus_Schematics_v2.0.pdf
+> > > [5] https://lore.kernel.org/netdev/20220509074857.195302-1-clabbe@baylibre.com/
+> > > 
+> > > Regards, Anne  
+> >   
+> 
+> Regards, Anne
+> 
+
 
