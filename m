@@ -1,166 +1,302 @@
-Return-Path: <devicetree+bounces-24683-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24684-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 019D5810DAD
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 10:50:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B201B810DC1
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 10:56:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 264301C208EE
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 09:50:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D60F51C208FE
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 09:56:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B75921100;
-	Wed, 13 Dec 2023 09:50:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5F66219E1;
+	Wed, 13 Dec 2023 09:56:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tNqiqIuu"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="tZhOF3he"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B06E20B09;
-	Wed, 13 Dec 2023 09:50:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1C46C433C7;
-	Wed, 13 Dec 2023 09:50:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702461031;
-	bh=7DWDqmvfQ6nJsElv9hLPoTLEDMdZHlAdcpM0hp4Wl3o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tNqiqIuuG60sCKBzvWTT6UwePqHRX79kUeOw+oj7LuGFMAiuVRtA+yNaDyfRKB7SK
-	 yUh0v0GOfQ3ZbwlNQjEcsGbRWLiD3Apj3UHLfrh0CqMx6qtPN5eG+WQ8R8FIhJW2qg
-	 k0l5yQ9Lq/rPQ3cey6Z0ssPoaMp7e27byTaJfVO2ejX+K/xnOcf4walGzRbKtPT8UN
-	 Q7eL53y3p3Hp9rXQ09Wod3nliL1fp8BxaWYNm60bn1WahzbVZWBPCXq6/hm9jhFSHO
-	 iwX3rspvFyRciMQ5965HSfknOzuNLuP5ZuraONnCc8dkvIFFVfuXx01tLu30T4N8JA
-	 LV6Gt9N/rOG4Q==
-Date: Wed, 13 Dec 2023 10:50:23 +0100
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Minda Chen <minda.chen@starfivetech.com>
-Cc: Conor Dooley <conor@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Mason Huo <mason.huo@starfivetech.com>,
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Kevin Xie <kevin.xie@starfivetech.com>
-Subject: Re: [PATCH v12 15/21] PCI: microchip: Add event IRQ domain ops to
- struct plda_event
-Message-ID: <ZXl+XxNRpKg170ZH@lpieralisi>
-References: <20231206105839.25805-1-minda.chen@starfivetech.com>
- <20231206105839.25805-16-minda.chen@starfivetech.com>
- <ZXhB1kKpElgKx8vm@lpieralisi>
- <9523aa6b-55a8-4e6a-a3ba-45d9b1dacc77@starfivetech.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31362A5;
+	Wed, 13 Dec 2023 01:56:02 -0800 (PST)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3BD9tsv3035793;
+	Wed, 13 Dec 2023 03:55:54 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1702461354;
+	bh=i9JxcjajiZIqaXhdDVPAsNjWaUMuYvf7aLDjliyNCDM=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=tZhOF3he43wkGQr6fmJpcDoVu/k7vRspSDVuF3x7FCDFG/NWUjlhHahT3qlcUPspc
+	 Zn3iqfFYwtrUnDiBufxeIw3Y2qkmuO0vGwIy7WUPFkkqvOQ58CxKlM/rphRzX/j/qY
+	 oKSltMfNbFK9JeYK7EUgrLnXb7tmTx53KSUt6czo=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3BD9tsav069528
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 13 Dec 2023 03:55:54 -0600
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 13
+ Dec 2023 03:55:54 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 13 Dec 2023 03:55:54 -0600
+Received: from localhost (jluthra.dhcp.ti.com [172.24.227.12])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3BD9trZD027827;
+	Wed, 13 Dec 2023 03:55:54 -0600
+Date: Wed, 13 Dec 2023 15:25:47 +0530
+From: Jai Luthra <j-luthra@ti.com>
+To: Vignesh Raghavendra <vigneshr@ti.com>, <m-chawdhry@ti.com>
+CC: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/3] arm64: dts: ti: k3-j7*: Add additional regs for DMA
+ components
+Message-ID: <go65ysuu74xsg6xuqozlp4f6iqyxluxpxbafrizrj3xk5nkexk@uihz45d7wst3>
+References: <20231212111634.3515175-1-vigneshr@ti.com>
+ <20231212111634.3515175-3-vigneshr@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="cecej26b2bbrda5u"
+Content-Disposition: inline
+In-Reply-To: <20231212111634.3515175-3-vigneshr@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+
+--cecej26b2bbrda5u
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <9523aa6b-55a8-4e6a-a3ba-45d9b1dacc77@starfivetech.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Dec 13, 2023 at 04:15:39PM +0800, Minda Chen wrote:
-> 
-> 
-> On 2023/12/12 19:19, Lorenzo Pieralisi wrote:
-> > On Wed, Dec 06, 2023 at 06:58:33PM +0800, Minda Chen wrote:
-> >> For lack of an MSI controller, The new added PCIe interrupts have to be
-> >> added to global interrupt event field. PolarFire event domain ops can not
-> >> be re-used.
-> > 
-> > I don't understand what this means, please explain and I will
-> > add it to the commit log.
-> > 
-> Sorry.
-> Microchip Polarfire PCIe adds 11 PCIe interrupts to PCIe global event domain.(Total 28 PCIe interrupts)
-> The microchip event domain and event irqchip will handle these interrupts.
-> But PLDA host contain 13 fixed PCIe interrupts. PLDA codes just process these
-> 13 interrupts. Microchip the event irq codes are quite different and can't be used by PLDA codes.
-> So add an event domain field support microchip and other vendor who just using the PLDA interrupts.
-> >> PLDA event domain ops instances will be implemented in later patch.
-> > 
-> > Future patches don't exist, each commit log is a logical change
-> > that must make sense on its own, I will remove this sentence.
-> > 
-> > Lorenzo
-> 
-> OK, Thanks.
-> 
-> >> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
-> >> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Hi Manorit/Vignesh,
 
-I am sorry folks but I still don't get what this patch is supposed
-to do. To start with it looks like a preparation patch (it does
-not have any net effect), that's not OK since it has to be merged
-with the patches that actually apply significant changes on top
-of this.
+Please recheck the addresses match each SoCs TRM.
 
-Then I need an explanation of what the problem is and what is the
-code actually changing in irqdomain/irqchip specific terms.
+On Dec 12, 2023 at 16:46:33 +0530, Vignesh Raghavendra wrote:
+> From: Manorit Chawdhry <m-chawdhry@ti.com>
+>=20
+> Add additional reg properties for UDMA and RingAcc nodes which are
+> mostly used by bootloader components before Device Manager firmware
+> services are available, in order to setup DMA transfers.
+>=20
+> Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
+> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-j7200-main.dtsi        | 8 ++++++--
+>  arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi  | 8 ++++++--
+>  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi        | 8 ++++++--
+>  arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi  | 8 ++++++--
+>  arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi       | 8 ++++++--
+>  arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi | 8 ++++++--
+>  arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi       | 8 ++++++--
+>  arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi | 8 ++++++--
+>  8 files changed, 48 insertions(+), 16 deletions(-)
+>=20
+> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/=
+dts/ti/k3-j7200-main.dtsi
+> index 264913f83287..97b90f4d09dd 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+> @@ -281,8 +281,12 @@ main_udmap: dma-controller@31150000 {
+>  			compatible =3D "ti,j721e-navss-main-udmap";
+>  			reg =3D <0x00 0x31150000 0x00 0x100>,
+>  			      <0x00 0x34000000 0x00 0x100000>,
+> -			      <0x00 0x35000000 0x00 0x100000>;
+> -			reg-names =3D "gcfg", "rchanrt", "tchanrt";
+> +			      <0x00 0x35000000 0x00 0x100000>,
+> +			      <0x00 0x30b00000 0x00 0x20000>,
+> +			      <0x00 0x30c00000 0x00 0x8000>,
+> +			      <0x00 0x30d00000 0x00 0x4000>;
+> +			reg-names =3D "gcfg", "rchanrt", "tchanrt",
+> +				    "tchan", "rchan", "rflow";
+>  			msi-parent =3D <&main_udmass_inta>;
+>  			#dma-cells =3D <1>;
+> =20
+> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64=
+/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+> index 3fc588b848c6..576ed7494521 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+> @@ -346,8 +346,12 @@ mcu_udmap: dma-controller@285c0000 {
+>  			compatible =3D "ti,j721e-navss-mcu-udmap";
+>  			reg =3D <0x00 0x285c0000 0x00 0x100>,
+>  			      <0x00 0x2a800000 0x00 0x40000>,
+> -			      <0x00 0x2aa00000 0x00 0x40000>;
+> -			reg-names =3D "gcfg", "rchanrt", "tchanrt";
+> +			      <0x00 0x2aa00000 0x00 0x40000>,
+> +			      <0x00 0x284a0000 0x00 0x4000>,
+> +			      <0x00 0x284c0000 0x00 0x4000>,
+> +			      <0x00 0x28400000 0x00 0x2000>;
+> +			reg-names =3D "gcfg", "rchanrt", "tchanrt",
+> +				    "tchan", "rchan", "rflow";
+>  			msi-parent =3D <&main_udmass_inta>;
+>  			#dma-cells =3D <1>;
+> =20
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/=
+dts/ti/k3-j721e-main.dtsi
+> index 746b9f8b1c64..f1e995d12d74 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> @@ -382,8 +382,12 @@ main_udmap: dma-controller@31150000 {
+>  			compatible =3D "ti,j721e-navss-main-udmap";
+>  			reg =3D <0x0 0x31150000 0x0 0x100>,
+>  			      <0x0 0x34000000 0x0 0x100000>,
+> -			      <0x0 0x35000000 0x0 0x100000>;
+> -			reg-names =3D "gcfg", "rchanrt", "tchanrt";
+> +			      <0x0 0x35000000 0x0 0x100000>,
+> +			      <0x0 0x30b00000 0x0 0x20000>,
+> +			      <0x0 0x30c00000 0x0 0x8000>,
 
-I can't merge it as-is because I don't understand what it changes
-and it is not clear by reading the commit log.
+Above don't match J721E TRM, which says TCHAN has size 0x10000.
 
+> +			      <0x00 0x30d00000 0x00 0x4000>;
+
+Same here, TRM says 0x8000.
+I did not check J7200/J721S2 TRMs, please do.
+
+> +			reg-names =3D "gcfg", "rchanrt", "tchanrt",
+> +				    "tchan", "rchan", "rflow";
+>  			msi-parent =3D <&main_udmass_inta>;
+>  			#dma-cells =3D <1>;
+> =20
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi b/arch/arm64=
+/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+> index f7ab7719fc07..011d93e32238 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+> @@ -468,8 +468,12 @@ mcu_udmap: dma-controller@285c0000 {
+>  			compatible =3D "ti,j721e-navss-mcu-udmap";
+>  			reg =3D <0x0 0x285c0000 0x0 0x100>,
+>  			      <0x0 0x2a800000 0x0 0x40000>,
+> -			      <0x0 0x2aa00000 0x0 0x40000>;
+> -			reg-names =3D "gcfg", "rchanrt", "tchanrt";
+> +			      <0x0 0x2aa00000 0x0 0x40000>,
+> +			      <0x0 0x284a0000 0x0 0x4000>,
+> +			      <0x0 0x284c0000 0x0 0x4000>,
+> +			      <0x0 0x28400000 0x0 0x2000>;
+> +			reg-names =3D "gcfg", "rchanrt", "tchanrt",
+> +				    "tchan", "rchan", "rflow";
+>  			msi-parent =3D <&main_udmass_inta>;
+>  			#dma-cells =3D <1>;
+> =20
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot=
+/dts/ti/k3-j721s2-main.dtsi
+> index b03731b53a26..2ed469d36f1d 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> @@ -1086,8 +1086,12 @@ main_udmap: dma-controller@31150000 {
+>  			compatible =3D "ti,j721e-navss-main-udmap";
+>  			reg =3D <0x0 0x31150000 0x0 0x100>,
+>  			      <0x0 0x34000000 0x0 0x80000>,
+> -			      <0x0 0x35000000 0x0 0x200000>;
+> -			reg-names =3D "gcfg", "rchanrt", "tchanrt";
+> +			      <0x0 0x35000000 0x0 0x200000>,
+> +			      <0x0 0x30b00000 0x0 0x8000>,
+> +			      <0x0 0x30c00000 0x0 0x20000>,
+> +			      <0x0 0x30d00000 0x0 0x4000>;
+> +			reg-names =3D "gcfg", "rchanrt", "tchanrt",
+> +				    "tchan", "rchan", "rflow";
+>  			msi-parent =3D <&main_udmass_inta>;
+>  			#dma-cells =3D <1>;
+> =20
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm6=
+4/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
+> index 7254f3bd3634..75c6931480dd 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
+> @@ -471,8 +471,12 @@ mcu_udmap: dma-controller@285c0000 {
+>  			compatible =3D "ti,j721e-navss-mcu-udmap";
+>  			reg =3D <0x0 0x285c0000 0x0 0x100>,
+>  			      <0x0 0x2a800000 0x0 0x40000>,
+> -			      <0x0 0x2aa00000 0x0 0x40000>;
+> -			reg-names =3D "gcfg", "rchanrt", "tchanrt";
+> +			      <0x0 0x2aa00000 0x0 0x40000>,
+> +			      <0x0 0x284a0000 0x0 0x4000>,
+> +			      <0x0 0x284c0000 0x0 0x4000>,
+> +			      <0x0 0x28400000 0x0 0x2000>;
+> +			reg-names =3D "gcfg", "rchanrt", "tchanrt",
+> +				    "tchan", "rchan", "rflow";
+>  			msi-parent =3D <&main_udmass_inta>;
+>  			#dma-cells =3D <1>;
+> =20
+> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot=
+/dts/ti/k3-j784s4-main.dtsi
+> index d89bcddcfe3d..827328450f96 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+> @@ -1188,8 +1188,12 @@ main_udmap: dma-controller@31150000 {
+>  			compatible =3D "ti,j721e-navss-main-udmap";
+>  			reg =3D <0x00 0x31150000 0x00 0x100>,
+>  			      <0x00 0x34000000 0x00 0x80000>,
+> -			      <0x00 0x35000000 0x00 0x200000>;
+> -			reg-names =3D "gcfg", "rchanrt", "tchanrt";
+> +			      <0x00 0x35000000 0x00 0x200000>,
+> +			      <0x00 0x30b00000 0x00 0x20000>,
+> +			      <0x00 0x30c00000 0x00 0x8000>,
+> +			      <0x00 0x30d00000 0x00 0x4000>;
+> +			reg-names =3D "gcfg", "rchanrt", "tchanrt",
+> +				    "tchan", "rchan", "rflow";
+>  			msi-parent =3D <&main_udmass_inta>;
+>  			#dma-cells =3D <1>;
+> =20
+> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi b/arch/arm6=
+4/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
+> index adb5ea6b9732..0eebb92e6a72 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
+> @@ -478,8 +478,12 @@ mcu_udmap: dma-controller@285c0000 {
+>  			compatible =3D "ti,j721e-navss-mcu-udmap";
+>  			reg =3D <0x00 0x285c0000 0x00 0x100>,
+>  			      <0x00 0x2a800000 0x00 0x40000>,
+> -			      <0x00 0x2aa00000 0x00 0x40000>;
+> -			reg-names =3D "gcfg", "rchanrt", "tchanrt";
+> +			      <0x00 0x2aa00000 0x00 0x40000>,
+> +			      <0x00 0x284a0000 0x00 0x4000>,
+> +			      <0x00 0x284c0000 0x00 0x4000>,
+> +			      <0x00 0x28400000 0x00 0x2000>;
+> +			reg-names =3D "gcfg", "rchanrt", "tchanrt",
+> +				    "tchan", "rchan", "rflow";
+>  			msi-parent =3D <&main_udmass_inta>;
+>  			#dma-cells =3D <1>;
+> =20
+> --=20
+> 2.43.0
+>=20
+>=20
+
+--=20
 Thanks,
-Lorenzo
+Jai
 
-> >> ---
-> >>  drivers/pci/controller/plda/pcie-microchip-host.c | 6 ++++--
-> >>  drivers/pci/controller/plda/pcie-plda.h           | 1 +
-> >>  2 files changed, 5 insertions(+), 2 deletions(-)
-> >> 
-> >> diff --git a/drivers/pci/controller/plda/pcie-microchip-host.c b/drivers/pci/controller/plda/pcie-microchip-host.c
-> >> index f5e7da242aec..e6dcc572b65b 100644
-> >> --- a/drivers/pci/controller/plda/pcie-microchip-host.c
-> >> +++ b/drivers/pci/controller/plda/pcie-microchip-host.c
-> >> @@ -821,13 +821,15 @@ static const struct plda_event_ops mc_event_ops = {
-> >>  };
-> >>  
-> >>  static const struct plda_event mc_event = {
-> >> +	.domain_ops        = &mc_event_domain_ops,
-> >>  	.event_ops         = &mc_event_ops,
-> >>  	.request_event_irq = mc_request_event_irq,
-> >>  	.intx_event        = EVENT_LOCAL_PM_MSI_INT_INTX,
-> >>  	.msi_event         = EVENT_LOCAL_PM_MSI_INT_MSI,
-> >>  };
-> >>  
-> >> -static int plda_pcie_init_irq_domains(struct plda_pcie_rp *port)
-> >> +static int plda_pcie_init_irq_domains(struct plda_pcie_rp *port,
-> >> +				      const struct irq_domain_ops *ops)
-> >>  {
-> >>  	struct device *dev = port->dev;
-> >>  	struct device_node *node = dev->of_node;
-> >> @@ -941,7 +943,7 @@ static int plda_init_interrupts(struct platform_device *pdev,
-> >>  		return -EINVAL;
-> >>  	}
-> >>  
-> >> -	ret = plda_pcie_init_irq_domains(port);
-> >> +	ret = plda_pcie_init_irq_domains(port, event->domain_ops);
-> >>  	if (ret) {
-> >>  		dev_err(dev, "failed creating IRQ domains\n");
-> >>  		return ret;
-> >> diff --git a/drivers/pci/controller/plda/pcie-plda.h b/drivers/pci/controller/plda/pcie-plda.h
-> >> index df1729095952..820ea16855b5 100644
-> >> --- a/drivers/pci/controller/plda/pcie-plda.h
-> >> +++ b/drivers/pci/controller/plda/pcie-plda.h
-> >> @@ -129,6 +129,7 @@ struct plda_pcie_rp {
-> >>  };
-> >>  
-> >>  struct plda_event {
-> >> +	const struct irq_domain_ops *domain_ops;
-> >>  	const struct plda_event_ops *event_ops;
-> >>  	int (*request_event_irq)(struct plda_pcie_rp *pcie,
-> >>  				 int event_irq, int event);
-> >> -- 
-> >> 2.17.1
-> >> 
+GPG Fingerprint: 4DE0 D818 E5D5 75E8 D45A AFC5 43DE 91F9 249A 7145
+
+--cecej26b2bbrda5u
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEETeDYGOXVdejUWq/FQ96R+SSacUUFAmV5f6IACgkQQ96R+SSa
+cUWB2g/+Pn4bYg6ZxVuGYNUTdzoGmSQ63nDvLblxr0PcQOTr8xwwhgcUA2zOlGxo
+0ASQCv+UNxTNEmT8D/ZUiVCn88IMEITwl6z9vdIAP0KQSLwb1JLKJhP+NmZLZnpa
+of7efbsTF4j39oog2xqQEQgbt0hB9mlgkIhxzBTX3ePzcJBR2vLWv+bLDut2nPKV
+qp488pwewc5L3CAZFz9jrwzofUO5ivtaUTs41FrTo5MrynFj3fSW9YMXDJU6F6+q
+c0Mz46WZDoCcRmMem+fgdqW7GM+tUYw+NZLLnn3YpiA5lj7BY92VVMgONbqzBzMp
+j94w+KodS+jJETwyHupv7ouaCk8O2vz21AbWsFZt/QVc5TjPYAmuRz8fb7wAhivN
+M7oClvdDSv5cfJGgffdwNZJ9dKZjDLI5EuCP56gkD5CPnRcCqfs2A3JC55bcByU7
+rVYAAUDtrGxYoNElNydM5mHzDwMx/I9QYMgRCXrq6TqxakEDBbsKDeI2dnWpyo63
+Ul4MtR/YVcXzCYTPxPSkn//qQuxcba1MIM9YNDTz7DE4FPdLcQ6hEw7z5KCxs3fP
+Stv7tT/TsyovKD0ouRqOVSj5gF870dO5Zay8XX+UPtHMOj38BTRHdgyy9s2s7r2M
+6WVq3D1V+/3DeOf1Ng2c3brbe+8RlwOaVWLfDldpLkeH97LSUzE=
+=dcWE
+-----END PGP SIGNATURE-----
+
+--cecej26b2bbrda5u--
 
