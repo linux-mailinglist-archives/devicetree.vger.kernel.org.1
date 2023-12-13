@@ -1,50 +1,60 @@
-Return-Path: <devicetree+bounces-24657-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24658-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 723C2810CA4
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 09:42:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1ADAA810CB7
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 09:46:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EA0631F21072
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 08:42:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9BE01281C4B
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 08:46:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 820C91EB2B;
-	Wed, 13 Dec 2023 08:42:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 288C31EB3C;
+	Wed, 13 Dec 2023 08:46:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="iB7k1AMs"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="heFL5J9G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3034DE8;
-	Wed, 13 Dec 2023 00:42:45 -0800 (PST)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BD7r1ak003468;
-	Wed, 13 Dec 2023 08:42:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=iAjFsOwENPi7BwNpFRzZmgyc+Bw78gJRbpoqxoD3c+8=; b=iB
-	7k1AMsrq9g5IUpWmOdaYFr7oaRThtRqe4xwvgpK3P0raEYOnMFYYOIwxSDg3Kclo
-	zGlmm86Ga0ulaewGvxBSLIf7O6pRunrpS0h4aJBxw8kGAatTkviJIp4IgZ8TnT8Z
-	XkS1ZNUEuaVmsNdA+SlRruFbElUNAZFEaQS9IRDaqxAtIo4tJ2+tZz4ZrK4rFLtc
-	9lL6gPGs65SzYRotQN2ug7pZqwdjzOdfCM0RDe3cXNLZ2gXhCDQ5gkl3t15m7KAT
-	qacubV4svHcADlLnPWeVgOV+c+AoppUOxsafr6zxqkM5GHwD77gjLtbaURovBOcr
-	E7nK1MujQB4X0NITXyaQ==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uy4kjgp4e-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 13 Dec 2023 08:42:31 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BD8gUgD029301
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 13 Dec 2023 08:42:30 GMT
-Received: from [10.253.13.71] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 13 Dec
- 2023 00:42:25 -0800
-Message-ID: <d8e723f0-2c51-402b-9464-7e4a928cf748@quicinc.com>
-Date: Wed, 13 Dec 2023 16:42:22 +0800
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E48BAE8
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 00:46:06 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-336417c565eso112734f8f.3
+        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 00:46:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702457165; x=1703061965; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lmRAbOzUbOggjPVMLe07m1+kH4bIRvkM5/eV6wAjPek=;
+        b=heFL5J9GIFP3sPPsu9R0GItxy8d+IsebBWbjOJron548Jh8yKpqc/0x057zuBsyCKE
+         F26e4grJPieRTZ8VYXrdkbJYHiXmS0atOQ2aWSDJ0XnPfnol073detvuMUIsSd0to0aF
+         WTuJHnARROB2P14gcPI3oi8NdKbU+YEOBMU/IMLa255tbchRjT1Oy237XQbz6nBvxQU2
+         UR+uHycFHmsROjjBbHXnTSNr8AsE59+9mRfjYQcAoNW5eI9MD1yZqE5n3fhj4TMbNCW+
+         Q0jrvxkUYfGQKFtJ97yF6Z1BhOCeTfnPRj1jvvTTJKQYqcGnWGhOBW3yb+XWhGz4ELEq
+         3Ctw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702457165; x=1703061965;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lmRAbOzUbOggjPVMLe07m1+kH4bIRvkM5/eV6wAjPek=;
+        b=CkrCSEna6+J1L558UsfuK2VOi0VLGP4dg1vmGoaSUmB2CzbFVXssw5pW+aGs0dLu5x
+         IsxIfhyViFOFVET3JiokZRCCLKP1Ne1yicfouxPUZ09KCorSXhm1P77cKqkQM2VH89QF
+         JwEvVWRkntAIBjfl7ylHlXDgaNmYvhjV2f/QJSnB9yFDa4xwzpk2UENM+PSYHtOCtKx6
+         4TOHS1qlvYOCi5NNx1r9oh7qS+rewW07rGlkQADYWdrWBedrdtsX/UgIpYSRc0wKEl8u
+         +WnaFYxprQ8h1oaH/WMfUoQB4jMMaaLkqdkrSsQwM1VOJOt+D/n0sEkL+4Db78Rtue1o
+         NCuA==
+X-Gm-Message-State: AOJu0Yx7Wi39wPlQ/Xql+l1slqosP4M33X2J1SFQcSsbTVVDoUUc2n8c
+	M1Tu35WKuirJU4QLUFp4I3ESXw==
+X-Google-Smtp-Source: AGHT+IHJrGlqt2VZ8iFjccdbrLNXXT7bQx3/D3J5DbsYCA23ll/JKKEn4k17YauMa3DCg+XC/RaEKg==
+X-Received: by 2002:a05:600c:4193:b0:40c:3820:eff9 with SMTP id p19-20020a05600c419300b0040c3820eff9mr2610037wmh.189.1702457165358;
+        Wed, 13 Dec 2023 00:46:05 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id a19-20020a05600c349300b004064cd71aa8sm19450351wmq.34.2023.12.13.00.46.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Dec 2023 00:46:04 -0800 (PST)
+Message-ID: <656f2245-ff76-48cf-9a1f-05259765c622@linaro.org>
+Date: Wed, 13 Dec 2023 09:46:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,242 +62,92 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/5] dt-bindings: net: ipq4019-mdio: Document ipq5332
- platform
+Subject: Re: [PATCH v5 2/3] dt-bindings: input: Add TouchNetix axiom
+ touchscreen
 Content-Language: en-US
-To: Rob Herring <robh@kernel.org>
-CC: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <andrew@lunn.ch>, <hkallweit1@gmail.com>,
-        <linux@armlinux.org.uk>, <robert.marko@sartura.hr>,
-        <linux-arm-msm@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_srichara@quicinc.com>
-References: <20231212115151.20016-1-quic_luoj@quicinc.com>
- <20231212115151.20016-6-quic_luoj@quicinc.com>
- <20231212200641.GA2331615-robh@kernel.org>
-From: Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <20231212200641.GA2331615-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To: Kamel Bouhara <kamel.bouhara@bootlin.com>
+Cc: Conor Dooley <conor@kernel.org>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Marco Felsch <m.felsch@pengutronix.de>, Jeff LaBundy <jeff@labundy.com>,
+ catalin.popescu@leica-geosystems.com, mark.satterthwaite@touchnetix.com,
+ bartp@baasheep.co.uk, hannah.rossiter@touchnetix.com,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Gregory Clement <gregory.clement@bootlin.com>,
+ bsp-development.geo@leica-geosystems.com
+References: <20231211121430.1689139-1-kamel.bouhara@bootlin.com>
+ <20231211121430.1689139-3-kamel.bouhara@bootlin.com>
+ <20231212-rework-bounce-f4d9d12362a4@spud>
+ <ce238248-6bac-41df-94ba-b494c5c09631@linaro.org>
+ <20231213082256.GB2340704@kb-xps>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
+ m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
+ HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
+ XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
+ mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
+ v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
+ cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
+ rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
+ qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
+ aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
+ gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
+ dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
+ NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
+ hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
+ oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
+ H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
+ yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
+ 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
+ 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
+ +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
+ FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
+ 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
+ DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
+ oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
+ 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
+ Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
+ qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
+ /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
+ qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
+ EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
+ KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
+ fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231213082256.GB2340704@kb-xps>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 34yrAcRTHXBHQBaobTMc3Bf9q-h_bjus
-X-Proofpoint-ORIG-GUID: 34yrAcRTHXBHQBaobTMc3Bf9q-h_bjus
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
- priorityscore=1501 phishscore=0 bulkscore=0 lowpriorityscore=0 mlxscore=0
- malwarescore=0 clxscore=1015 suspectscore=0 mlxlogscore=999 spamscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2312130061
 
-
-
-On 12/13/2023 4:06 AM, Rob Herring wrote:
-> On Tue, Dec 12, 2023 at 07:51:50PM +0800, Luo Jie wrote:
->> Update the yaml file for the new DTS properties.
->>
->> 1. cmn-reference-clock for the CMN PLL source clock select.
->> 2. clock-frequency for MDIO clock frequency config.
->> 3. add uniphy AHB & SYS GCC clocks.
->> 4. add reset-gpios for MDIO bus level reset.
->>
->> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
->> ---
->>   .../bindings/net/qcom,ipq4019-mdio.yaml       | 157 +++++++++++++++++-
->>   1 file changed, 153 insertions(+), 4 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml b/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml
->> index 3407e909e8a7..9546a6ad7841 100644
->> --- a/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml
->> +++ b/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml
->> @@ -20,6 +20,8 @@ properties:
->>             - enum:
->>                 - qcom,ipq6018-mdio
->>                 - qcom,ipq8074-mdio
->> +              - qcom,ipq9574-mdio
->> +              - qcom,ipq5332-mdio
->>             - const: qcom,ipq4019-mdio
+On 13/12/2023 09:22, Kamel Bouhara wrote:
+>> It still brings the type of some fields or the constraints. However need
+>> of specifying "poll-interval" already points to missing
+>> unevaluatedProperties.
 > 
-> A driver can function without knowing about all these new registers and
-> clocks? If not, then it can't be compatible with "qcom,ipq4019-mdio".
+> Ok, this wasn't clear for me wether or not I should pick
+> unevaluatedProperties 
 
-Yes, the driver can work without knowing the compatible string.
-the configuration is decided by the DT property defined or not.
+Yes
 
-> 
->>   
->>     "#address-cells":
->> @@ -30,19 +32,71 @@ properties:
->>   
->>     reg:
->>       minItems: 1
->> -    maxItems: 2
->> +    maxItems: 5
->>       description:
->> -      the first Address and length of the register set for the MDIO controller.
->> -      the second Address and length of the register for ethernet LDO, this second
->> -      address range is only required by the platform IPQ50xx.
->> +      the first Address and length of the register set for the MDIO controller,
->> +      the optional second, third and fourth address and length of the register
->> +      for ethernet LDO, these three address range are required by the platform
->> +      IPQ50xx/IPQ5332/IPQ9574, the last address and length is for the CMN clock
->> +      to select the reference clock.
->> +
->> +  reg-names:
->> +    minItems: 1
->> +    maxItems: 5
->>   
->>     clocks:
->> +    minItems: 1
->>       items:
->>         - description: MDIO clock source frequency fixed to 100MHZ
->> +      - description: UNIPHY0 AHB clock source frequency fixed to 100MHZ
->> +      - description: UNIPHY1 AHB clock source frequency fixed to 100MHZ
->> +      - description: UNIPHY0 SYS clock source frequency fixed to 24MHZ
->> +      - description: UNIPHY1 SYS clock source frequency fixed to 24MHZ
-> 
-> These are all clock inputs to this h/w block and not some other clocks
-> you want to manage?
+> as I still reference "poll-interval" from the
+> input.yaml schema ?
 
-Yes, for ipq5332, these 5 clocks are need to be managed, for the legacy 
-platform such as ipq8074, only MDIO clock is needed.
+You should drop it from your binding.
 
-No other more clock needs to be managed for the current IPQ platforms.
+Best regards,
+Krzysztof
 
-> 
->>   
->>     clock-names:
->> +    minItems: 1
->>       items:
->>         - const: gcc_mdio_ahb_clk
->> +      - const: gcc_uniphy0_ahb_clk
->> +      - const: gcc_uniphy1_ahb_clk
->> +      - const: gcc_uniphy0_sys_clk
->> +      - const: gcc_uniphy1_sys_clk
-> 
-> "gcc" is presumably the name of the clock controller in QCom chips.
-> Well, the clock source should not be part of the binding. The names
-> should be local for what they are for. So drop 'gcc_'. And '_clk' is
-> also redundant, so drop it too. Unfortunately you are stuck with the
-> name of the 1st entry.
-
-Yes, gcc is the name of QCOM SOC clock controller.
-will remove the "gcc_" and "_clk" for the new added clocks.
-
-we should keep the existed DT gcc_mdio_ahb_clk unmodified, right?
-since it has been used in the current device tree.
-
-> 
->> +
->> +  cmn-reference-clock:
->> +    oneOf:
->> +      - items:
->> +          - enum:
->> +              - 0   # CMN PLL reference internal 48MHZ
->> +              - 1   # CMN PLL reference external 25MHZ
->> +              - 2   # CMN PLL reference external 31250KHZ
->> +              - 3   # CMN PLL reference external 40MHZ
->> +              - 4   # CMN PLL reference external 48MHZ
->> +              - 5   # CMN PLL reference external 50MHZ
->> +              - 6   # CMN PLL reference internal 96MHZ
->> +
->> +  clock-frequency:
->> +    oneOf:
->> +      - items:
->> +          - enum:
->> +              - 12500000
->> +              - 6250000
->> +              - 3125000
->> +              - 1562500
->> +              - 781250
->> +              - 390625
->> +    description:
->> +      The MDIO bus clock that must be output by the MDIO bus hardware,
->> +      only the listed frequecies above can be configured, other frequency
->> +      will cause malfunction. If absent, the default hardware value is used.
->> +
->> +  reset-gpios:
->> +    maxItems: 1
->> +
->> +  reset-assert-us:
->> +    maxItems: 1
->> +
->> +  reset-deassert-us:
->> +    maxItems: 1
->>   
->>   required:
->>     - compatible
->> @@ -61,6 +115,8 @@ allOf:
->>                 - qcom,ipq5018-mdio
->>                 - qcom,ipq6018-mdio
->>                 - qcom,ipq8074-mdio
->> +              - qcom,ipq5332-mdio
->> +              - qcom,ipq9574-mdio
->>       then:
->>         required:
->>           - clocks
->> @@ -70,6 +126,40 @@ allOf:
->>           clocks: false
->>           clock-names: false
->>   
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - qcom,ipq5332-mdio
->> +    then:
->> +      properties:
->> +        clocks:
->> +          minItems: 5
->> +          maxItems: 5
->> +        reg-names:
->> +          items:
->> +            - const: mdio
->> +            - const: eth_ldo1
->> +            - const: eth_ldo2
->> +            - const: cmn_blk
-> 
-> Perhaps cmn_blk should come 2nd, so all the variants have the same entry
-> indices. Then you can move this to the top level and just say 'minItems:
-> 4' here.
-
-Thanks Rob for the suggestion, i will update to move cmn_blk to the 2nd
-location.
-
-> 
-> 
->> +
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - qcom,ipq9574-mdio
->> +    then:
->> +      properties:
->> +        reg-names:
->> +          items:
->> +            - const: mdio
->> +            - const: eth_ldo1
->> +            - const: eth_ldo2
->> +            - const: eth_ldo3
->> +            - const: cmn_blk
-> 
-> And 'minItems: 5' here.
-> 
-> The ipq9574 adds the CMN block, but none of the clocks? Weird.
-> 
-> Rob
-
-For ipq9574, only mdio clock is needed, the uniphy ahb and sys clock is
-not needed to configure.
-
-Yes, there is some Ethernet design delta between ipq9574 and ipq5332.
 
