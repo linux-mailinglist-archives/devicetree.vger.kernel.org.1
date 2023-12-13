@@ -1,153 +1,112 @@
-Return-Path: <devicetree+bounces-24972-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24978-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E87B811D35
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 19:46:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DFA5811D6B
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 19:51:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B5C562812C4
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 18:46:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE11D1F21619
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 18:51:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8050867B40;
-	Wed, 13 Dec 2023 18:46:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E32B65A82;
+	Wed, 13 Dec 2023 18:51:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="16TInb5m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 670ABEB;
-	Wed, 13 Dec 2023 10:46:07 -0800 (PST)
-Received: by mail-oi1-f172.google.com with SMTP id 5614622812f47-3ba2e4ff6e1so113274b6e.3;
-        Wed, 13 Dec 2023 10:46:07 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702493166; x=1703097966;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ypDAUZtqQsHCWJvG9R68gKE5grPMiGIdHhSF45/XI9Y=;
-        b=J5ZaGphrlGw8cDc6qEUlXkDCCh2yYjW2eoIQImxxNgq/Dl5sYF0gToYecka6tGJvv9
-         KzsvsRiPNNYjVYub3SBXV70FJHWWXnBTgzZbtceBdVIT4++ksSIhbY1uvAnv+uJPZp7s
-         JEWy8yHWQQH0xfvD1bShvnfuQefs2SlZwT3qwnXTD4aVboMgV1M9+m59+D/+6QXn1PB5
-         +l1mRp0b7Bv/WACnHRMNrnOdjcepgOXS1S8OJ0XkRNGOBUFRSHqlOPP46A6uypAfs8E9
-         mPdUvsDTe+BhOSbBrx7nwf/GPWhuIuaVwlZR/Vz1uJCc3kWcNJthG3vIHwOj2IBgduG0
-         H5uA==
-X-Gm-Message-State: AOJu0Yz6YTv6s3c6lCPTIPgVc8+nRgBch8cxs2AomfeSjMujTTZd1fHc
-	8Xwy22359Dk2peeRDAhnrMHz+thGTg==
-X-Google-Smtp-Source: AGHT+IFr/VJgLdjQp5boJaMDjP0/Xxbbt4r1gRhYk+65qogG3aH9Gj22wXCt/wNNPMMIZWVT/JGFTA==
-X-Received: by 2002:a05:6808:3c8b:b0:3b9:f584:1e9 with SMTP id gs11-20020a0568083c8b00b003b9f58401e9mr11687488oib.7.1702493166470;
-        Wed, 13 Dec 2023 10:46:06 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r5-20020a056808210500b003b85c2b17efsm3049174oiw.9.2023.12.13.10.46.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Dec 2023 10:46:05 -0800 (PST)
-Received: (nullmailer pid 1705906 invoked by uid 1000);
-	Wed, 13 Dec 2023 18:46:04 -0000
-Date: Wed, 13 Dec 2023 12:46:04 -0600
-From: Rob Herring <robh@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [net-next PATCH 1/2] dt-bindings: Document QCA808x PHYs
-Message-ID: <20231213184604.GA1701402-robh@kernel.org>
-References: <20231209014828.28194-1-ansuelsmth@gmail.com>
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [IPv6:2a00:1098:ed:100::25])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 695D6E3;
+	Wed, 13 Dec 2023 10:51:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1702493476;
+	bh=Qqj7VpGSeV2Wlo88nLvyTvvJ8JpXr4kVLj1TvLAJGDI=;
+	h=From:To:Cc:Subject:Date:From;
+	b=16TInb5mDZeVwP0vwLXn1heYC86GUQ8TGTZ6p8e+Yj2YhJ5fKOHaH4NWeOCmEf/PM
+	 EIMxItG7PXnEkS3q3dIfUVBEzW7dlDPzYdm0xr0IPBSv7ZJO2rpPEzgbKNiXWdPD58
+	 AKq58I69L71rpTYUJ3yqpmFogTPjq8DYNbFdKGOP/IPaDCb5D9StfGjpSvmAfdgcrh
+	 H2fdhXkUMG3yUyRNqZjGktjOnppj3ktM5imawcmbQhyyppT2HJQ+zffncMUJdAWQFD
+	 wpYHxun7q8RaxvCFOZssaqahaEQlawDEZYhfdBlTAF33p8lqXruBCC48iXu1ku6K7E
+	 E9NyR5rPsHRfg==
+Received: from jupiter.universe (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 9C54F378149A;
+	Wed, 13 Dec 2023 18:51:16 +0000 (UTC)
+Received: by jupiter.universe (Postfix, from userid 1000)
+	id 33B234800CB; Wed, 13 Dec 2023 19:51:16 +0100 (CET)
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Elaine Zhang <zhangqing@rock-chips.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	linux-clk@vger.kernel.org
+Cc: Kever Yang <kever.yang@rock-chips.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	huangtao@rock-chips.com,
+	andy.yan@rock-chips.com,
+	devicetree@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	kernel@collabora.com
+Subject: [PATCH v7 0/7] rockchip: clk: improve GATE_LINK support
+Date: Wed, 13 Dec 2023 19:46:45 +0100
+Message-ID: <20231213185114.47565-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231209014828.28194-1-ansuelsmth@gmail.com>
+Content-Transfer-Encoding: 8bit
 
-On Sat, Dec 09, 2023 at 02:48:27AM +0100, Christian Marangi wrote:
-> Add Documentation for QCA808x PHYs for the additional property for the
-> active high LED setting and also document the LED configuration for this
-> PHY.
-> 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> ---
->  .../devicetree/bindings/net/qca,qca808x.yaml  | 66 +++++++++++++++++++
->  1 file changed, 66 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/qca,qca808x.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/qca,qca808x.yaml b/Documentation/devicetree/bindings/net/qca,qca808x.yaml
-> new file mode 100644
-> index 000000000000..73cfff357311
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/qca,qca808x.yaml
-> @@ -0,0 +1,66 @@
-> +# SPDX-License-Identifier: GPL-2.0+
+Hi,
 
-Dual license as checkpatch.pl points out.
+I've send this as v7 for the series from Elaine [0], since it kinds of is. These
+patches are written from scratch, though. There are two parts:
 
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/qca,qca808x.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Atheros QCA808X PHY
-> +
-> +maintainers:
-> +  - Christian Marangi <ansuelsmth@gmail.com>
-> +
-> +description:
-> +  Bindings for Qualcomm Atheros QCA808X PHYs
-> +
-> +  QCA808X PHYs can have up to 3 LEDs attached.
-> +  All 3 LEDs are disabled by default.
-> +  2 LEDs have dedicated pins with the 3rd LED having the
-> +  double function of Interrupt LEDs/GPIO or additional LED.
-> +
-> +  By default this special PIN is set to LED function.
-> +
-> +allOf:
-> +  - $ref: ethernet-phy.yaml#
-> +
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        enum:
-> +          - ethernet-phy-id004d.d101
+part 1:
+Elaine's series used to contain patches for the VO1GRF handling, but they were
+dropped at some point because of the CLK_NR_CLKS feedback from the DT
+maintainers. I added some code, that should hopefully fix everyones concerns by
+figuring out the right number at runtime. I also moved the correct handling of
+pclk_vo0grf/pclk_vo1grf before proper handling of GATE_LINK clocks, so that it
+can be merged ASAP. These patches are needed for HDMI RX/TX support on RK3588
+and should not be blocked by the GATE_LINK discussion.
 
-Move this to properties and drop the select.
+part 2:
+For proper GATE_LINK support I tried implementing the suggestion from Stephen
+Boyd to use clk PM operations by creating MFD dynamically. This required some
+restructuring, since CLK_OF_DECLARE() is called before devices are available.
+All of this can be found in the last patch of this series.
 
-> +  required:
-> +    - compatible
-> +
-> +properties:
-> +  qca,led-active-high:
-> +    description: Set all the LEDs to active high to be turned on.
-> +    type: boolean
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/leds/common.h>
-> +
-> +    mdio {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        ethernet-phy@0 {
-> +            compatible = "ethernet-phy-id004d.d101";
-> +            reg = <0>;
-> +            qca,led-active-high;
-> +
-> +            leds {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                led@0 {
-> +                    reg = <0>;
-> +                    color = <LED_COLOR_ID_GREEN>;
-> +                    function = LED_FUNCTION_WAN;
-> +                    default-state = "keep";
-> +                };
-> +            };
-> +        };
-> +    };
-> -- 
-> 2.40.1
-> 
+[0] https://lore.kernel.org/linux-clk/20231110020358.12840-1-zhangqing@rock-chips.com/
+
+Greetings,
+
+-- Sebstian
+
+Sebastian Reichel (7):
+  clk: rockchip: rk3588: fix CLK_NR_CLKS usage
+  dt-bindings: clock: rk3588: drop CLK_NR_CLKS
+  dt-bindings: clock: rk3588: add missing PCLK_VO1GRF
+  clk: rockchip: rk3588: fix pclk_vo0grf and pclk_vo1grf
+  clk: rockchip: rk3588: fix indent
+  clk: rockchip: rk3588: use linked clock ID for GATE_LINK
+  clk: rockchip: implement proper GATE_LINK support
+
+ drivers/clk/rockchip/clk-rk3588.c             | 163 ++++++++----------
+ drivers/clk/rockchip/clk.c                    |  85 ++++++++-
+ drivers/clk/rockchip/clk.h                    |  18 ++
+ .../dt-bindings/clock/rockchip,rk3588-cru.h   |   3 +-
+ 4 files changed, 178 insertions(+), 91 deletions(-)
+
+-- 
+2.43.0
+
 
