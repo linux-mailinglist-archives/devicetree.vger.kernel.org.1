@@ -1,97 +1,143 @@
-Return-Path: <devicetree+bounces-24899-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24901-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9668C811982
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 17:32:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFA5B81198E
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 17:32:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 48BFE1F211C7
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 16:32:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 63CD71F21892
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 16:32:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B408225CC;
-	Wed, 13 Dec 2023 16:32:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C619335EFD;
+	Wed, 13 Dec 2023 16:32:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TPC/l228"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="F9FacYpA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DD6585360;
-	Wed, 13 Dec 2023 16:32:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0555C433C8;
-	Wed, 13 Dec 2023 16:32:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702485131;
-	bh=odZ1MQY6e5KqzUlrj24nd/XYhqc7X1mQzuFErG0nj6I=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=TPC/l228szv0HrOVhUFnCl2ggjMKWRJ61PGzfrZp15kcPatwJNxZt+HGvsOaXgy/B
-	 dVLozXjJqtllvypDcwe7VH4RD1jRy5pUmx13SQKoFF982iH1QoEiFGPLTZLZYY6Bfx
-	 JLJZP6J/g5ozaYfjWpwyh1CGy17NXTKSBhsc/x5Onxhc7ZCw2jUsVL/Z69Tv6XoslH
-	 YBAYzCNM3Gwflm7a3x9Vuzty1or2Uvz0s6RTV5/N3q1Usyn7Seb6ixd67aTuPttW4O
-	 bfYBhibwIUs1iuv2bctj9Hz5Fy2MsIQJzXVjW5AOSp7c83n5uHeYi2YVCzZZJbjL8L
-	 32POkNGB11Nqw==
-From: Mark Brown <broonie@kernel.org>
-To: fancer.lancer@gmail.com, robh+dt@kernel.org, linux-spi@vger.kernel.org, 
- linux-kernel@vger.kernel.org, nandhini.srikandan@intel.com
-Cc: devicetree@vger.kernel.org, mgross@linux.intel.com, kris.pan@intel.com, 
- kenchappa.demakkanavar@intel.com, furong.zhou@intel.com, 
- mallikarjunappa.sangannavar@intel.com, mahesh.r.vaidya@intel.com
-In-Reply-To: <20231213060836.29203-1-nandhini.srikandan@intel.com>
-References: <20231213060836.29203-1-nandhini.srikandan@intel.com>
-Subject: Re: [PATCH v1 0/2] Remove Intel Thunder Bay SOC support
-Message-Id: <170248512843.27334.1958241029702729417.b4-ty@kernel.org>
-Date: Wed, 13 Dec 2023 16:32:08 +0000
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75F9E91;
+	Wed, 13 Dec 2023 08:32:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=N/E28jRK/viDvwysZ67eINh1B/xnv1AANrAAo+m468A=; b=F9FacYpAvC8VBP83kNMIpHTuVL
+	StsEhcooImqRL0oa7xdnDBllK6KkpkYTk4gTnuRIertAdiNTHp46DxpNDNkPXUyY+qmdUNEk+D1SA
+	Y6EeaRQWlHQl0ztEkl4ENZhDEj2QYIJeIWfrxOu0/3+b4418i6lBBlF44tHLDS/PHuAaewGCrZFZO
+	e/l1KFXkDC9rYxkwhe7qw3Vq8NOoXmrGZmZZxGEaWXG7UPAXtkBRH71zg7IecLdbT96sUJqvLbBTh
+	bSZIRZgFS8fOdfUo0i+S0ewDHQU3lMDUgcCJ3dOOtUMa5WJS93cn8lz7MuT+uBAgeA26m9zUfusQ+
+	Q5lacQ0Q==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:59474)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1rDS9o-0000HK-1N;
+	Wed, 13 Dec 2023 16:32:24 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1rDS9l-0001eT-VG; Wed, 13 Dec 2023 16:32:21 +0000
+Date: Wed, 13 Dec 2023 16:32:21 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Serge Semin <fancer.lancer@gmail.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Jose Abreu <Jose.Abreu@synopsys.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Tomer Maimon <tmaimon77@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	openbmc@lists.ozlabs.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 06/16] net: pcs: xpcs: Avoid creating dummy XPCS
+ MDIO device
+Message-ID: <ZXnclVEz10K2XD2+@shell.armlinux.org.uk>
+References: <20231205103559.9605-1-fancer.lancer@gmail.com>
+ <20231205103559.9605-7-fancer.lancer@gmail.com>
+ <ZW8pxM3RvyHJTwqH@shell.armlinux.org.uk>
+ <gbkgtb4yp3cwyw7xcuhmkdl3io2wlia2gska2xmjbwjvhigpz3@w52b6tdyugqo>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-5c066
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <gbkgtb4yp3cwyw7xcuhmkdl3io2wlia2gska2xmjbwjvhigpz3@w52b6tdyugqo>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On Wed, 13 Dec 2023 14:08:34 +0800, nandhini.srikandan@intel.com wrote:
-> This patch set removes Intel Thunder Bay specific code as the product
-> got cancelled and there are no end customers.
+On Wed, Dec 13, 2023 at 03:01:45AM +0300, Serge Semin wrote:
+> On Tue, Dec 05, 2023 at 01:46:44PM +0000, Russell King (Oracle) wrote:
+> > xpcs_create_mdiodev() as it originally stood creates the mdiodev from
+> > the bus/address, and then passes that to xpcs_create(). Once
+> > xpcs_create() has finished its work (irrespective of whether it was
+> > successful or not) we're done with the mdiodev in this function, so
+> > the reference is _always_ put.
 > 
-> Patch 1: Remove Intel Thunder Bay spi dw binding specific code.
-> Patch 2: Remove Intel Thunder Bay spi dw binding Documentation.
-> 
-> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> 
-> [...]
+> You say that it's required to manage the refcounting twice: when we
+> get the reference from some external place and internally when the
+> reference is stored in the XPCS descriptor. What's the point in such
+> redundancy with the internal ref-counting if we know that the pointer
+> can be safely stored and utilized afterwards? Better maintainability?
+> Is it due to having the object retrieval and storing implemented in
+> different functions?
 
-Applied to
+The point is that the error handling gets simpler:
+- One can see in xpcs_create_mdiodev() that the reference taken by
+  mdio_device_create() is always dropped if that function was
+  successful, irrespective of whether xpcs_create() was successful.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+- xpcs_create() is responsible for managing the refcount on the mdiodev
+  that is passed to it - and if it's successful, it needs to increment
+  the refcount, or leave it in the same state as it was on entry if
+  failing.
 
-Thanks!
+This avoids complexities in error paths, which are notorious for things
+being forgotten - since with this, each of these functions is resposible
+for managing its refcount.
 
-[1/2] spi: dw: Remove Intel Thunder Bay SOC support
-      commit: e1fca6957f1966cb6e75cdc354f4bcaed230a454
-[2/2] spi: dw: Remove Intel Thunder Bay SOC support
-      commit: e1fca6957f1966cb6e75cdc354f4bcaed230a454
+It's a different style of refcount management, one I think more people
+should adopt.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+> While at it if you happen to know an answer could you please also
+> clarify the next question. None of the ordinary
+> platform/PCI/USB/hwmon/etc drivers I've been working with managed
+> refcounting on storing a passed to probe() device pointer in the
+> private driver data. Is it wrong not doing that?
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+If we wanted to do refcounting strictly, then every time a new
+pointer to a data structure is created, we should be taking a refcount
+on it, and each time that pointer is destroyed, we should be putting
+the refcount. That is what refcounting is all about.
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+However, there are circumstances where this can be done lazily, and
+for drivers we would prefer driver authors not to end up with
+refcount errors where they've forgotten to put something.
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+In the specific case of drivers, we have a well defined lifetime for
+a device bound to a driver. We guarantee that the struct device will
+not go away if a driver is bound to the device, until such time that
+the driver's .remove method has been called. Thus, we guarantee that
+the device driver will be notified of the struct device going away
+before it has been freed. This frees the driver author from having
+to worry about the refcount of the struct device.
 
-Thanks,
-Mark
+As soon as we start doing stuff that is outside of that model, then
+objects that are refcounted need to be dealt with, and I much prefer
+the "strict" refcounting implementation such as the one I added to
+xpcs, because IMHO it's much easier to see that the flow is obviously
+correct - even if it does need a comment to describe why we always
+do a put.
 
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
