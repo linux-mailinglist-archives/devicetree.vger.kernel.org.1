@@ -1,168 +1,125 @@
-Return-Path: <devicetree+bounces-24940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24941-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AFAF811B4A
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 18:36:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C644811B57
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 18:38:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B1CFD1F20EE2
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 17:36:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 222B71F21990
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 17:38:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E339856B97;
-	Wed, 13 Dec 2023 17:36:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 125B256B98;
+	Wed, 13 Dec 2023 17:38:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="D4TjJmic"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U6zv71lL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D46410A
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 09:36:26 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-40c2c5a8150so66088145e9.2
-        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 09:36:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1702488984; x=1703093784; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=nar7AGpkKCMY3vU9wBOjKXihyoMWUwSDoyGxla1FSMU=;
-        b=D4TjJmicgwyiuxU/0EQRMLlqFgwKB643M+Ls0ZrdgfTQzDGPaGC1+l7UiKTUp3QOIb
-         x99r8Tj1EMoiw66hZVfozvkOmJQGuciegH+usdnX50mw1fwPKvm3dbT4ryBibHhL66d6
-         B47I+JJQf6UKoeaxkSAv3Ud8TJU8S5rclkVcf1oTRsg+Qdr5z4/dMJ+nMul+SVdwKLvG
-         b2eXFTTcUMyVlEcNOZ4lQaEDl/pHOGVoRtSTsj9qoYJzVBdSOk6mFBPsxejolZHdf4Y7
-         85IQ993ek78WZ0ma1S7V/wEtRYvrdQBP4KkshvfvIAJ6IQB9tvvQQ2fzvtN7KJxa+Rsr
-         Zk4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702488984; x=1703093784;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nar7AGpkKCMY3vU9wBOjKXihyoMWUwSDoyGxla1FSMU=;
-        b=VMJ874JqP6VNgy8jvEiDXXWyG2JPjErDI1dXkR001PqlBZ0pjt1oEvY0U96+1y1wwh
-         dAsFhDXNo6KbBhwxPBWNvIa+2i/5tXDZAXCnMJUkRu30XG92KdS7zsRi/vYQnRWyUelb
-         gTebIyyowJU8crWsham9qNf0VygfuQyQ+0PFmvqoDe1vS5wDazyU8TG3kxQB9VHt2QtA
-         ffAeirB0KAFi1d9GIxq6Kj492qTb0CK9SVGEKF3sxKjL6rPUIKFbNZREiN6W7bEUVS92
-         JzHoQWkSloTT13i2xrmgmuj4Wc7dHEbT+48Xqai2oCCQSrgEHV09a8YCPVo2gUuOKdya
-         GNmA==
-X-Gm-Message-State: AOJu0YwJ6bq0QgTAxDXrEa2UTAQzPlsycYONXyAWs73Gx3gGo6GxoLe5
-	IFEqE1wKmNw1J8MGNzosaaxhjw==
-X-Google-Smtp-Source: AGHT+IEK2Pp7nkWqxvEj/mdVNQpoa5hctJ9KTENrVC46QZLfOUyzk+bN6eF4FhiRrxtksDL5J5C+hw==
-X-Received: by 2002:a05:600c:3590:b0:40c:2c56:4f37 with SMTP id p16-20020a05600c359000b0040c2c564f37mr4662038wmq.36.1702488984605;
-        Wed, 13 Dec 2023 09:36:24 -0800 (PST)
-Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
-        by smtp.gmail.com with ESMTPSA id m16-20020a05600c4f5000b0040c57e4ea28sm4720420wmq.17.2023.12.13.09.36.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Dec 2023 09:36:24 -0800 (PST)
-Date: Wed, 13 Dec 2023 18:36:23 +0100
-From: Andrew Jones <ajones@ventanamicro.com>
-To: Anup Patel <apatel@ventanamicro.com>
-Cc: Paolo Bonzini <pbonzini@redhat.com>, 
-	Atish Patra <atishp@atishpatra.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Shuah Khan <shuah@kernel.org>, Anup Patel <anup@brainfault.org>, 
-	devicetree@vger.kernel.org, kvm@vger.kernel.org, kvm-riscv@lists.infradead.org, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH 04/15] RISC-V: KVM: Allow scalar crypto extensions for
- Guest/VM
-Message-ID: <20231213-1c93d927d30feb6d09739e94@orel>
-References: <20231128145357.413321-1-apatel@ventanamicro.com>
- <20231128145357.413321-5-apatel@ventanamicro.com>
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E788C8534B;
+	Wed, 13 Dec 2023 17:38:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2ACBC433C7;
+	Wed, 13 Dec 2023 17:38:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702489110;
+	bh=27cCuNNlr0k/6GtYxt0e4EOa/N1Nghrs6dzqZcWq72Y=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=U6zv71lLi/wR9iYiX5qrn+a4OU/BACTvRrvTGl6CAk6PH1XHmtQSOe2fglpaGlX83
+	 zLeyRY8RbYzULmB8XEg02yBHKY65u0R/1FLfOoXD72gdAI0K4BuiqML6PB6Iu91gW6
+	 JiOl+RiDCX/li3CIHSJYhwh6YmwiaThWKR6sQF/0aQMZlti+8jndieu6h7cm3KrRZG
+	 8E6rrfSYblkT6lAkPwO/YWQ467EPqYyTgyJ4f7nf/nrqhJwJ4aCut3Q/Fx4rA7jb3t
+	 zI4uW5IL4ioqqmtY4GDyxDmHyFu13smWcCKPn9hE8i4Yaiseqlhk84VDo50D3gShSd
+	 QuYMlzOYqutjg==
+Received: from johan by xi.lan with local (Exim 4.96.2)
+	(envelope-from <johan@kernel.org>)
+	id 1rDTBk-0007iv-1i;
+	Wed, 13 Dec 2023 18:38:28 +0100
+Date: Wed, 13 Dec 2023 18:38:28 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 00/11] ARM/arm64: dts: qcom: fix USB wakeup interrupt
+ types
+Message-ID: <ZXnsFIl9i6Ix-woH@hovoldconsulting.com>
+References: <20231120164331.8116-1-johan+linaro@kernel.org>
+ <ZXc7KcjF82EgiXWd@hovoldconsulting.com>
+ <06354190-b572-46e4-8036-0fae7f15dd15@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20231128145357.413321-5-apatel@ventanamicro.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <06354190-b572-46e4-8036-0fae7f15dd15@quicinc.com>
 
-On Tue, Nov 28, 2023 at 08:23:46PM +0530, Anup Patel wrote:
-> We extend the KVM ISA extension ONE_REG interface to allow KVM
-> user space to detect and enable scalar crypto extensions for
-> Guest/VM. This includes extensions Zbkb, Zbkc, Zbkx, Zknd, Zkne,
-> Zknh, Zkr, Zksed, Zksh, and Zkt.
-> 
-> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> ---
->  arch/riscv/include/uapi/asm/kvm.h | 10 ++++++++++
->  arch/riscv/kvm/vcpu_onereg.c      | 20 ++++++++++++++++++++
->  2 files changed, 30 insertions(+)
-> 
-> diff --git a/arch/riscv/include/uapi/asm/kvm.h b/arch/riscv/include/uapi/asm/kvm.h
-> index 518b368b41e5..7b54fa215d6d 100644
-> --- a/arch/riscv/include/uapi/asm/kvm.h
-> +++ b/arch/riscv/include/uapi/asm/kvm.h
-> @@ -140,6 +140,16 @@ enum KVM_RISCV_ISA_EXT_ID {
->  	KVM_RISCV_ISA_EXT_SMSTATEEN,
->  	KVM_RISCV_ISA_EXT_ZICOND,
->  	KVM_RISCV_ISA_EXT_ZBC,
-> +	KVM_RISCV_ISA_EXT_ZBKB,
-> +	KVM_RISCV_ISA_EXT_ZBKC,
-> +	KVM_RISCV_ISA_EXT_ZBKX,
-> +	KVM_RISCV_ISA_EXT_ZKND,
-> +	KVM_RISCV_ISA_EXT_ZKNE,
-> +	KVM_RISCV_ISA_EXT_ZKNH,
-> +	KVM_RISCV_ISA_EXT_ZKR,
-> +	KVM_RISCV_ISA_EXT_ZKSED,
-> +	KVM_RISCV_ISA_EXT_ZKSH,
-> +	KVM_RISCV_ISA_EXT_ZKT,
->  	KVM_RISCV_ISA_EXT_MAX,
->  };
->  
-> diff --git a/arch/riscv/kvm/vcpu_onereg.c b/arch/riscv/kvm/vcpu_onereg.c
-> index f789517c9fae..b0beebd4f86e 100644
-> --- a/arch/riscv/kvm/vcpu_onereg.c
-> +++ b/arch/riscv/kvm/vcpu_onereg.c
-> @@ -43,6 +43,9 @@ static const unsigned long kvm_isa_ext_arr[] = {
->  	KVM_ISA_EXT_ARR(ZBA),
->  	KVM_ISA_EXT_ARR(ZBB),
->  	KVM_ISA_EXT_ARR(ZBC),
-> +	KVM_ISA_EXT_ARR(ZBKB),
-> +	KVM_ISA_EXT_ARR(ZBKC),
-> +	KVM_ISA_EXT_ARR(ZBKX),
->  	KVM_ISA_EXT_ARR(ZBS),
->  	KVM_ISA_EXT_ARR(ZICBOM),
->  	KVM_ISA_EXT_ARR(ZICBOZ),
-> @@ -52,6 +55,13 @@ static const unsigned long kvm_isa_ext_arr[] = {
->  	KVM_ISA_EXT_ARR(ZIFENCEI),
->  	KVM_ISA_EXT_ARR(ZIHINTPAUSE),
->  	KVM_ISA_EXT_ARR(ZIHPM),
-> +	KVM_ISA_EXT_ARR(ZKND),
-> +	KVM_ISA_EXT_ARR(ZKNE),
-> +	KVM_ISA_EXT_ARR(ZKNH),
-> +	KVM_ISA_EXT_ARR(ZKR),
-> +	KVM_ISA_EXT_ARR(ZKSED),
-> +	KVM_ISA_EXT_ARR(ZKSH),
-> +	KVM_ISA_EXT_ARR(ZKT),
->  };
->  
->  static unsigned long kvm_riscv_vcpu_base2isa_ext(unsigned long base_ext)
-> @@ -94,6 +104,9 @@ static bool kvm_riscv_vcpu_isa_disable_allowed(unsigned long ext)
->  	case KVM_RISCV_ISA_EXT_ZBA:
->  	case KVM_RISCV_ISA_EXT_ZBB:
->  	case KVM_RISCV_ISA_EXT_ZBC:
-> +	case KVM_RISCV_ISA_EXT_ZBKB:
-> +	case KVM_RISCV_ISA_EXT_ZBKC:
-> +	case KVM_RISCV_ISA_EXT_ZBKX:
->  	case KVM_RISCV_ISA_EXT_ZBS:
->  	case KVM_RISCV_ISA_EXT_ZICNTR:
->  	case KVM_RISCV_ISA_EXT_ZICOND:
-> @@ -101,6 +114,13 @@ static bool kvm_riscv_vcpu_isa_disable_allowed(unsigned long ext)
->  	case KVM_RISCV_ISA_EXT_ZIFENCEI:
->  	case KVM_RISCV_ISA_EXT_ZIHINTPAUSE:
->  	case KVM_RISCV_ISA_EXT_ZIHPM:
-> +	case KVM_RISCV_ISA_EXT_ZKND:
-> +	case KVM_RISCV_ISA_EXT_ZKNE:
-> +	case KVM_RISCV_ISA_EXT_ZKNH:
-> +	case KVM_RISCV_ISA_EXT_ZKR:
-> +	case KVM_RISCV_ISA_EXT_ZKSED:
-> +	case KVM_RISCV_ISA_EXT_ZKSH:
-> +	case KVM_RISCV_ISA_EXT_ZKT:
->  		return false;
->  	/* Extensions which can be disabled using Smstateen */
->  	case KVM_RISCV_ISA_EXT_SSAIA:
-> -- 
-> 2.34.1
->
+On Tue, Dec 12, 2023 at 03:00:07PM +0530, Krishna Kurapati PSSNV wrote:
+> On 12/11/2023 10:09 PM, Johan Hovold wrote:
+> > On Mon, Nov 20, 2023 at 05:43:20PM +0100, Johan Hovold wrote:
 
-Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
+> > Konrad reported off-list that the sc8180x patch in this series breaks
+> > probe of the dwc3 driver.
+> > 
+> > Turns out a number of these SoCs were using GIC interrupts for the
+> > DP/DM_HS_PHY interrupts despite the fact that the driver tries to
+> > reconfigure these as IRQ_TYPE_EDGE_FALLING (which the GIC does not
+> > support) to detect disconnect events during suspend.
+> > 
+> > This is obviously broken and the proper fix is to replace the GIC
+> > interrupts with the corresponding PDC interrupts. I believe Konrad is
+> > digging out the magic numbers at this moment.
+> > 
+> > The following patches will need a follow-up fix:
+> > 
+> >>    ARM: dts: qcom: sdx55: fix USB wakeup interrupt types
+> > 
+> >>    arm64: dts: qcom: sc8180x: fix USB wakeup interrupt types
+> >>    arm64: dts: qcom: sdm670: fix USB wakeup interrupt types
+> >>    arm64: dts: qcom: sdm845: fix USB wakeup interrupt types
+> >>    arm64: dts: qcom: sm6375: fix USB wakeup interrupt types
+> >>    arm64: dts: qcom: sm8150: fix USB wakeup interrupt types
+
+>   If it helps, I tried to dig up the PDC numbers for corresponding 
+> GIC_SPI vectors:
+
+Thanks, Krisha, that helps a lot.
+
+I've sent two series (for arm and arm64) based on yours and Konrad's
+input:
+
+	https://lore.kernel.org/lkml/20231213173131.29436-1-johan+linaro@kernel.org/
+	https://lore.kernel.org/lkml/20231213173403.29544-1-johan+linaro@kernel.org/
+
+> SM8150:
+> 
+> eud_p0_dpse_int_mx	apps_pdc_irq_out[9]	SYS_apcsQgicSPI[489]
+> eud_p0_dmse_int_mx    apps_pdc_irq_out[8]	SYS_apcsQgicSPI[488]
+> qmp_usb3_lfps_rxterm_irq apps_pdc_irq_out[6]	SYS_apcsQgicSPI[486]
+> usb31_power_event_irq	SYS_apcsQgicSPI[130]
+> usb31_hs_phy_irq	SYS_apcsQgicSPI[131]
+> 
+> interrupts-extended = <&pdc 9 IRQ_TYPE_EDGE_RISING>,
+> 			<&intc GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH>,
+> 			<&pdc 6 IRQ_TYPE_LEVEL_HIGH>,
+> 			<&pdc 8 IRQ_TYPE_EDGE_RISING>;
+> 
+> interrupt-names = "dp_hs_phy_irq", "pwr_event_irq",
+> 		"ss_phy_irq", "dm_hs_phy_irq";
+
+Do you have the corresponding numbers also for the second controller on
+SM8150? I inferred them from SDM845, but it would good to verify that.
+
+And can someone dig out the corresponding SS PHY interrupt for sc8180x?
+
+Johan
 
