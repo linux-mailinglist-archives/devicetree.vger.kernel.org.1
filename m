@@ -1,101 +1,126 @@
-Return-Path: <devicetree+bounces-24944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24945-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7B8E811BA5
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 18:56:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A936811BBB
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 19:00:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 80BE0280E04
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 17:56:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BCF881C21110
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 17:59:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F31059B6E;
-	Wed, 13 Dec 2023 17:55:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57C6759157;
+	Wed, 13 Dec 2023 17:59:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D6FCD49;
-	Wed, 13 Dec 2023 09:55:38 -0800 (PST)
-Received: by mail-oo1-f53.google.com with SMTP id 006d021491bc7-58d08497aa1so4613524eaf.0;
-        Wed, 13 Dec 2023 09:55:38 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702490137; x=1703094937;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=iQGtdcuwZQtYi+ph6QyuuJNxkINZNun39WyUzZSioII=;
-        b=fepmZoDprD3yvJQPMh5HjnfeGgNnSPM+RTYu3YbocEV5v4pxarGa0f1oQV07XPkabj
-         u3DZPEB24BBHXDv1Z56NKEY8dKBRI16f+KXYhPIDwY6148muWxzeNCLu43UUKbvVWD3W
-         Mb6OegYAdUsGgpaz7rIEjx2xDZyLbRrftOKx4JaMvOE4kjUnBY+6Uhlu6OvsKNood7qx
-         mUHaE7ZMcL+NB4Y7cXaFYc1QYBVBhaz3u8CyGFv/cSil3PQENdaVZ/ncW7RSmI5un/tM
-         Bzw9eJIYHwo1r2SPSO5DBxo6uNuTdT4GtLDXELRDMZjT8Ck2ga/q9oKonZZOe7pbHA2o
-         5gCw==
-X-Gm-Message-State: AOJu0YwZ6s+xvVHVPLne2+3vu0xqDSNIVh34QOIT0gVbPb3Z/1RzC0r2
-	rRjoLiNbtCVQrGLGJdkIPKMxK/C3BQ==
-X-Google-Smtp-Source: AGHT+IGrM0+7Hame/CwYfbqJzlDDo/dTHLNEVyFkVVHG6/yf2wP/8XRvaLTO2VSzJMHtG1hHNOfrzw==
-X-Received: by 2002:a05:6820:22a4:b0:590:16e7:d767 with SMTP id ck36-20020a05682022a400b0059016e7d767mr6252763oob.3.1702490137241;
-        Wed, 13 Dec 2023 09:55:37 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id v15-20020a05683011cf00b006ce2db9e6c4sm2854965otq.36.2023.12.13.09.55.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Dec 2023 09:55:36 -0800 (PST)
-Received: (nullmailer pid 1591681 invoked by uid 1000);
-	Wed, 13 Dec 2023 17:55:35 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50D2783;
+	Wed, 13 Dec 2023 09:59:52 -0800 (PST)
+X-IronPort-AV: E=McAfee;i="6600,9927,10923"; a="385419697"
+X-IronPort-AV: E=Sophos;i="6.04,273,1695711600"; 
+   d="scan'208";a="385419697"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Dec 2023 09:59:51 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10923"; a="864707289"
+X-IronPort-AV: E=Sophos;i="6.04,273,1695711600"; 
+   d="scan'208";a="864707289"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by FMSMGA003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Dec 2023 09:59:40 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andy@kernel.org>)
+	id 1rDTWB-00000005bJa-0XiK;
+	Wed, 13 Dec 2023 19:59:35 +0200
+Date: Wed, 13 Dec 2023 19:59:34 +0200
+From: Andy Shevchenko <andy@kernel.org>
+To: Nikita Shubin <nikita.shubin@maquefel.me>
+Cc: Hartley Sweeten <hsweeten@visionengravers.com>,
+	Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Lukasz Majewski <lukma@denx.de>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Sebastian Reichel <sre@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	Mark Brown <broonie@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Damien Le Moal <dlemoal@kernel.org>,
+	Sergey Shtylyov <s.shtylyov@omp.ru>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+	dmaengine@vger.kernel.org, linux-watchdog@vger.kernel.org,
+	linux-pwm@vger.kernel.org, linux-spi@vger.kernel.org,
+	netdev@vger.kernel.org, linux-mtd@lists.infradead.org,
+	linux-ide@vger.kernel.org, linux-input@vger.kernel.org,
+	linux-sound@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH v6 00/40] ep93xx device tree conversion
+Message-ID: <ZXnxBtqbneUMbvwq@smile.fi.intel.com>
+References: <20231212-ep93xx-v6-0-c307b8ac9aa8@maquefel.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Nuno Sa <nuno.sa@analog.com>
-Cc: Frank Rowand <frowand.list@gmail.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>, devicetree@vger.kernel.org, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Michael Hennerich <Michael.Hennerich@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org
-In-Reply-To: <20231213-dev-iio-backend-v3-1-bb9f12a5c6dc@analog.com>
-References: <20231213-dev-iio-backend-v3-0-bb9f12a5c6dc@analog.com>
- <20231213-dev-iio-backend-v3-1-bb9f12a5c6dc@analog.com>
-Message-Id: <170249013568.1591665.1236116981497856652.robh@kernel.org>
-Subject: Re: [PATCH v3 1/8] dt-bindings: adc: ad9467: add new io-backend
- property
-Date: Wed, 13 Dec 2023 11:55:35 -0600
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231212-ep93xx-v6-0-c307b8ac9aa8@maquefel.me>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-
-On Wed, 13 Dec 2023 16:02:32 +0100, Nuno Sa wrote:
-> The ad9467 will make use of the new IIO backend framework which is a
-> provider - consumer interface where IIO backends provide services to
-> consumers. As such, and being this device a consumer,  add the new
-> generic io-backend property to the bindings.
+On Tue, Dec 12, 2023 at 11:20:17AM +0300, Nikita Shubin wrote:
+> No major changes since last version all changes are cometic.
 > 
-> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
-> ---
->  Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+> Following patches require attention from Stephen Boyd, as they were converted to aux_dev as suggested:
 > 
+> - ARM: ep93xx: add regmap aux_dev
+> - clk: ep93xx: add DT support for Cirrus EP93xx
+> 
+> DMA related patches still require Acked or Reviewed tags.
+> 
+> got approval LGTM from Miquel:
+> - mtd: rawnand: add support for ts72xx
+> Link: https://lore.kernel.org/lkml/20231004103911.2aa65354@xps-13/
+> 
+> new patches:
+> 
+> ARM: ep93xx:  Add terminator to gpiod_lookup_table
+>   - fixed terminator in gpiod_lockup_table
+> 
+> So mostly all patches got approval.
+> 
+> Patches should be now formated with '--histogram'
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+It _feels_ like some tags might be missing.
+In any case I suggest to use `b4` tool to retrieve tags when preparing
+the next version:
 
-yamllint warnings/errors:
+	git checkout -b vXX v6.7-rcX
+	b4 am -slt $MSG_ID_OF_v(XX-1)
+	git am ...
+	git rebase --interactive ... # to address comments
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml: io-backends: missing type definition
+-- 
+With Best Regards,
+Andy Shevchenko
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231213-dev-iio-backend-v3-1-bb9f12a5c6dc@analog.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
 
 
