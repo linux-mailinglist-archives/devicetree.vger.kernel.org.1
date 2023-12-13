@@ -1,268 +1,126 @@
-Return-Path: <devicetree+bounces-24816-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24817-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 153578114CA
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 15:38:01 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E5BF811517
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 15:44:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8685C2817C7
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 14:37:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD4D21F21849
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 14:44:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D61462EAE0;
-	Wed, 13 Dec 2023 14:37:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D41512EB04;
+	Wed, 13 Dec 2023 14:44:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hA7q6eHM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id AF5B8B9;
-	Wed, 13 Dec 2023 06:37:49 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2D4F0C15;
-	Wed, 13 Dec 2023 06:38:35 -0800 (PST)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8AD383F738;
-	Wed, 13 Dec 2023 06:37:47 -0800 (PST)
-Date: Wed, 13 Dec 2023 14:37:43 +0000
-From: Andre Przywara <andre.przywara@arm.com>
-To: Anne Macedo <retpolanne@posteo.net>
-Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, "open list:OPEN FIRMWARE AND
- FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, "moderated
- list:ARM/Allwinner sunXi SoC support"
- <linux-arm-kernel@lists.infradead.org>, "open list:ARM/Allwinner sunXi SoC
- support" <linux-sunxi@lists.linux.dev>, open list
- <linux-kernel@vger.kernel.org>, Corentin Labbe <clabbe@baylibre.com>
-Subject: Re: [PATCH] arm64: dts: allwinner: Orange Pi One Plus PHY support
-Message-ID: <20231213143743.272e4d3c@donnerap.manchester.arm.com>
-In-Reply-To: <cm5e7g2ozviyin6p3dh2qtuh4i3f2sbqq4c2arjtdektgk7i6c@l7aawekyj6t2>
-References: <20231212122835.10850-2-retpolanne@posteo.net>
-	<20231212162200.10b3868b@donnerap.manchester.arm.com>
-	<axsvii25yrknfae6gdreti7lcskoscsdbsujwuispiieimsbdy@gwzm4l7mwlew>
-	<20231213013544.2fc7e0d1@minigeek.lan>
-	<ceuoq3xxgb5kkel7e7wqpslcg7h6dde3wgdqhyo7jgop6owovk@5a76ks5fiun4>
-	<20231213122523.219cbfc0@donnerap.manchester.arm.com>
-	<cm5e7g2ozviyin6p3dh2qtuh4i3f2sbqq4c2arjtdektgk7i6c@l7aawekyj6t2>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34A25D63;
+	Wed, 13 Dec 2023 06:44:26 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-50bf3efe2cbso8066337e87.2;
+        Wed, 13 Dec 2023 06:44:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702478664; x=1703083464; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=247l+rcM14kykhxTNl3mbLVe+ul76O9sNfKGqS/c1U4=;
+        b=hA7q6eHM+YEYyHrsLY9iQ7vUrlgfD46JTV/RldRSWU4+blQ+1MlqN9FuRd9ozmbVr5
+         bYynNRPUP2dJNSTb4jB2zv2GWl1EWFspVZN2KJ1Fk74ZK3o9XQiTR/BJmcrdpxF/cp0w
+         v4HJsMJ3LSHIkurWP39RA8mN5ttiaeDFbLkN6RVOfCiX8+hVoPhQAYLpveqTeokd4PWF
+         4FDXDa2u9woTFc59w5r9EjsAjQPmArFlAcTGNLgwUuxpD2XVx+hmaXSa4DW5hbjtCkNA
+         AFE7EmC3sY1jqkRR6oHXjoIUwP3ShgRpDBjIjwZrzfb2RZmthCZjqOt0GSRYcELizDV6
+         e8LQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702478664; x=1703083464;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=247l+rcM14kykhxTNl3mbLVe+ul76O9sNfKGqS/c1U4=;
+        b=hcsh3Tdil/xpwjhufSGWP+e7/s4bm+mq28gRd01vJ444DszBXhOnUHoTjCKmQFUjwq
+         ShkYSKBI2OkPAA+s0E1mzs5HAElBNaa8uQ+5uLMd063PiyCqkniqz1ZGPt3r36fK1kwf
+         PTNIO/mL+D1LfkR4n/b0JAKnB4wM2cowZX0+pfge32gqX9rS5EqzU5KRffOOECQNnF9M
+         ZEipiUzt7SwzmhClzZMBPGvz8nsLRX7GFKNvdLrJg3rVjn8t02vG/Map3XtWhAvgL5Ty
+         U3hTPys4tEysj9aqhQvA72HnNFjco1SFcUjOqQYF+XBwtsBDrfA4zfqIeDXDa/9AxbUO
+         Ojvg==
+X-Gm-Message-State: AOJu0YyL6eQryWOGrRKWLP6b8koFH3arHdX3+mlIxihIC59vvoa0MGUD
+	JjnkcIovyBdVcC/BCXay+cM=
+X-Google-Smtp-Source: AGHT+IE9xDobGtuFHBEZX870IVSbo0wphjnaFT+8js0/53mzF81jZlJANosifpCc9Ik3NvXQbCPyow==
+X-Received: by 2002:a05:6512:3d1f:b0:50d:fb24:a032 with SMTP id d31-20020a0565123d1f00b0050dfb24a032mr1951533lfv.74.1702478663924;
+        Wed, 13 Dec 2023 06:44:23 -0800 (PST)
+Received: from ?IPv6:2001:a61:3456:4e01:6ae:b55a:bd1d:57fc? ([2001:a61:3456:4e01:6ae:b55a:bd1d:57fc])
+        by smtp.gmail.com with ESMTPSA id hu18-20020a170907a09200b00a1e081369a9sm7822548ejc.23.2023.12.13.06.44.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Dec 2023 06:44:23 -0800 (PST)
+Message-ID: <114c8347063d196b58f48bb5ce9914144e215c4b.camel@gmail.com>
+Subject: Re: [PATCH v3 2/2] hwmon: ltc4282: add support for the LTC4282 chip
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Guenter Roeck <linux@roeck-us.net>, nuno.sa@analog.com
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-doc@vger.kernel.org, Jean Delvare <jdelvare@suse.com>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>
+Date: Wed, 13 Dec 2023 15:44:23 +0100
+In-Reply-To: <505ac1bf-616a-443d-b2bc-a54b3c193757@roeck-us.net>
+References: <20231205-ltc4282-support-v3-0-e0877b281bc2@analog.com>
+	 <20231205-ltc4282-support-v3-2-e0877b281bc2@analog.com>
+	 <a0eb6cb4-b8af-4a6f-8888-fa18f8f1d188@roeck-us.net>
+	 <d190620900ceda6c2846f3828ee389da917a66e0.camel@gmail.com>
+	 <436257a1-628e-4a45-884d-348e73d4c5e9@roeck-us.net>
+	 <38e41d0b92c0cb1f61e7a1d92137cc94a57a7f85.camel@gmail.com>
+	 <92699a3e-1198-4bf9-b5c0-ea8c5c189336@roeck-us.net>
+	 <cdf4876c8e5f70d70ac362f79f295cae5e39b1ef.camel@gmail.com>
+	 <505ac1bf-616a-443d-b2bc-a54b3c193757@roeck-us.net>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
 
-On Wed, 13 Dec 2023 12:55:58 +0000
-Anne Macedo <retpolanne@posteo.net> wrote:
+On Wed, 2023-12-13 at 06:35 -0800, Guenter Roeck wrote:
+> On 12/13/23 02:06, Nuno S=C3=A1 wrote:
+> [ ... ]
+> > >=20
+> > > We could also use in[01]_reset_history. While that is originally inte=
+nded to
+> > > reset
+> > > min/max voltage history, I think it makes sense to extend the meaning=
+ to
+> > > include
+> > > fault history (even more so if that history includes over/undervoltag=
+e events).
+> > > Plus, there are other _reset_history attributes which could be used t=
+o reset
+> > > power/current/temperature history separately if that is supported by =
+the chip.
+> > >=20
+> >=20
+> > Well, I'm already supporting _reset_history in the voltage/power/curren=
+t channels
+> > so
+> > I can easily extend that for clearing fault history if that is fine wit=
+h you. I
+> > just
+> > need to document it because it's a bit of an "hidden" thing. The questi=
+on would
+> > also
+> > be, should I just document this for this chip docs or in the general hw=
+mon docs?
+> >=20
+>=20
+> I'd say chip specific for now. We can document it in the general document=
+ation
+> if/when we get more chips with the same characteristics.
+>=20
 
-Hi Anne,
+Agreed... Alright, I think I have now all I need to work on v4.
 
-> On Wed, Dec 13, 2023 at 12:25:23PM +0000, Andre Przywara wrote:
-> > On Wed, 13 Dec 2023 11:02:39 +0000
-> > Anne Macedo <retpolanne@posteo.net> wrote:
-> > 
-> > Hi Anne,
-> >   
-> > > On Wed, Dec 13, 2023 at 01:35:44AM +0000, Andre Przywara wrote:  
-> > > > On Tue, 12 Dec 2023 19:27:14 +0000
-> > > > Anne Macedo <retpolanne@posteo.net> wrote:
-> > > > 
-> > > > Hi Anne,
-> > > >     
-> > > > > On Tue, Dec 12, 2023 at 04:22:00PM +0000, Andre Przywara wrote:    
-> > > > > > On Tue, 12 Dec 2023 12:28:30 +0000
-> > > > > > Anne Macedo <retpolanne@posteo.net> wrote:
-> > > > > > 
-> > > > > > Hi Anne,
-> > > > > >       
-> > > > > > > Adds compatible values to mdio subnodes for Ethernet PHY representing
-> > > > > > > Realtek 8211 PHY to Orange Pi One Plus.      
-> > > > > > 
-> > > > > > So can you state why this would be needed? This is the RTL8211 ID,      
-> > > > > 
-> > > > > Apologies, I completely forgot to include some context. 
-> > > > >     
-> > > > > > right? Which should be autodetected via MDIO. Looking back in my inbox
-> > > > > > you proposed this change before, for U-Boot, specifically, but I fail to
-> > > > > > find a solution or explanation what really happens here. Two Renesas .dts
-> > > > > > files have the same compatible, and the commit message talks about the
-> > > > > > reset line there, is this related?
-> > > > > > 
-> > > > > > So can you please give some more background and explanation? That would be
-> > > > > > part of a good commit message anyway ("why", not "what").      
-> > > > > 
-> > > > > Should I resend the commit with a more meaningful explanation? The
-> > > > > context is the following:
-> > > > > 
-> > > > > currently, ethernet doesn't seem to work on both u-boot and Linux on the
-> > > > > Orange Pi One Plus board. 
-> > > > > 
-> > > > > On the kernel, this error shows up:
-> > > > > 
-> > > > > Configuring network interfaces... [    5.992589] dwmac-sun8i 5020000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
-> > > > > [    6.000823] dwmac-sun8i 5020000.ethernet eth0: __stmmac_open: Cannot attach to PHY (error: -19)
-> > > > > 
-> > > > > After applying this fix, the PHY gets attached: 
-> > > > > 
-> > > > > Configuring network interfaces... [    6.060020] dwmac-sun8i 5020000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
-> > > > > [    6.069460] dwmac-sun8i 5020000.ethernet eth0: PHY [stmmac-0:01] driver [RTL8211E Gigabit Ethernet] (irq=POLL)
-> > > > > 
-> > > > > The previous compatible list that had ethernet-phy-ieee802.3-c22 fails
-> > > > > to find a PHY, so this patch includes the correct PHY ID with the
-> > > > > RTL8211 ID. 
-> > > > > 
-> > > > > The behaviour is described on [1].    
-> > > > 
-> > > > So this is all an observation, but no real explanation, isn't it?    
-> > > 
-> > > I've made some analysis on [3] on this bug, but it was based solely on
-> > > u-boot. I was having trouble with the regulator and on u-boot nothing
-> > > would trigger the GPIO PD6 and the vcc-gmac-3v3 regulator, so the NIC
-> > > was completely dead. Next I did an analysis based on [2] because the
-> > > u-boot PHY initialization was flaky.
-> > >   
-> > > > To cite [1]: "If the PHY reports an incorrect ID (or none at all) ...".
-> > > > I am pretty sure this is not the case here, instead we are looking at
-> > > > some missing platform bits, like a missing clock, reset, or most likely
-> > > > regulator. Or one of the existing resources is wrongly assigned or    
-> > > 
-> > > As I mentioned, PHY initialization is flaky on u-boot, so maybe that
-> > > assumption is correct. 
-> > >   
-> > > > configured? If the PHY is not (yet?) powered correctly when the code
-> > > > does the auto-detection via the MDIO bus, then the initialisation would    
-> > > 
-> > > If I recall correctly (I don't know if I kept it in my notes :c), that
-> > > could be the case. regulator-boot-on makes the NIC work (LEDs blink, at
-> > > least) but it doesn't get initialized. 
-> > >   
-> > > > fail. But since it works when overriding the auto-detection, I feel
-> > > > like we are papering over something here.
-> > > > Do you have the schematics for this board? I can only find the one for
-> > > > the Orange Pi Plus 2E, and I don't know how similar those two are. This
-> > > > shows *two* regulators, but both are activated by the same GPIO.    
-> > > 
-> > > I do. It's available on [4]  
-> > 
-> > Oh damn it, I got lost in Orange Pi's naming maze again - and was looking
-> > for the wrong board! So thanks for the link, and this clears things up!  
-> 
-> Yay! 
-> 
-> > 
-> > So yes, the Orange Pi *One* Plus, much like the Orange Pi 3, uses *two*
-> > regulators for Ethernet: one 3.3V from the PMIC's ALDO2 rail to power the
-> > PHY, and a discrete 2.5V regulator, enabled by GPIO PD6, for the voltage  
-> 
-> Oh! I didn't know about the PMIC's ALDO2.
-
-That's a bit obscure in the schematic, but it's a common thing to do:
-- On page 12 (LAN), in the top right box, you see the EPHY-DVDD33 and
-EPHY-AVDD33 signals connected to GMAC-3V.
-- On the same page, in the middle left part, you see GMAC-3V connected to
-VCC3V3-MAC.
-- On page 8 (POWER), in the lower left corner, you see VCC3V3-MAC
-connected to ALDO2.
-- On the same page, in the right hand part, you see the ALDO2 signal
-connected to the ALDO2 pin on the PMIC.
-
-Easy, huh? ;-)
-
-> > level on the MDIO lines. On top of this there is a reset line for the PHY,
-> > though this is held up by a pull-up resistor, so it *should* work,
-> > although we should describe this in the DT.  
-> 
-> Noting here to take a look at the reset line so I can add it as well to
-> the DT.
-
-Yeah, maybe it helps to bring the PHY back into a sane state?
-
-> > So the DT looks wrong then: The reg_gmac_3v3 is actually a 2.5V regulator,
-> > and phy-supply is aldo2. I think it was done the way it is to somehow make
-> > it work with the current DT binding and code, which just supports one
-> > regulator. And aldo2 is referenced as the source of reg_gmac_3v3, which
-> > smells like another hack to me.  
-> 
-> 	reg_gmac_3v3: gmac-3v3 {
-> 		compatible = "regulator-fixed";
-> 		regulator-name = "vcc-gmac-3v3";
-> 		regulator-min-microvolt = <3300000>;
-> 		regulator-max-microvolt = <3300000>;
-> 		startup-delay-us = <100000>;
-> 		enable-active-high;
-> 		gpio = <&pio 3 6 GPIO_ACTIVE_HIGH>; /* PD6 */
-> 		vin-supply = <&reg_aldo2>;
-> 	};
-> 
-> Interesting, I see the reg_aldo2 on vin-supply for reg_gmac_3v3. I don't
-> understand how it works, is it linking the regulator with the ALDO2 but
-> it also enables the PD6 GPIO?
-
-So yes, this is one hack I was talking about: This DT node describes a
-regulator with a GPIO controlled enable pin (PD6), which feeds itself off
-another regulator (vin-supply), namely ALDO2.
-So to enable reg_gmac_3v3, which is referenced by the MAC DT node as the
-"phy-supply", the regulator driver code would need to enable ALDO2 first,
-then make PD6 go high, (to enable this regulator here), then wait 100ms.
-So even though the MAC DT node only references one regulator, this trick
-will allow *two* regulators to be turned on.
-
-The only problem with this is that it's the wrong order: there are
-comments somewhere that say it's required to enable the 2.5V supply
-*earlier* or at the same time as the 3.3V supply. And since this PD6
-controlled regulator is actually the 2.5V regulator (compare the
-schematic!), and ALDO2 is the 3.3V supply, we get it the other way around,
-and the PHY operation becomes unstable (that's what those comments say).
-
-And we can't apply this same trick the other way around, since the ALDO
-input supply clearly does not feed off this PD6 regulator. 
-And besides, it would be wrong and a hack anyway, as we should be able to
-describe two regulators as the requirement: this is what Corentin's
-of_regulator_bulk_get_all() patch takes care of.
-
-> > > > It would also be interesting to see if any of Corentin's work for the
-> > > > Orange Pi 3 helps here?    
-> > > 
-> > > Adding [5] for reference here, thanks! Will check it out.   
-> > 
-> > This is an older version, there are actually updates. And he also mentions
-> > your board as well, so I think it just can sail in the wake of the OPi 3
-> > Ethernet enablement.
-> > 
-> > Can you try if this change, just applied to your .dts instead, works?
-> > https://github.com/montjoie/linux/commit/cf6e192eca1d59be630e6729d2cef9e897b3da8c  
-> 
-> Will do! I'll be out of my lab today but will try it at night Brazil
-> time. 
-> > 
-> > Cheers,
-> > Andre
-> > 
-> > P.S. Is there any chance where I can reply/comment on your blog? It seems
-> > like I can clear some things up...  
-> 
-> Please send me suggestions off thread, the blog is a static GHPages
-> blog, so I didn't implement replies yet. I will be happy to include them
-> to my notes :) 
-
-OK, will do later today!
-
-Cheers,
-Andre
-
-> 
-> >   
-> > > [3] https://blog.retpolanne.com/hardware/embedded/2023/07/07/embedded-phy.html
-> > > [4] https://linux-sunxi.org/images/7/7c/OrangePi_OnePlus_Schematics_v2.0.pdf
-> > > [5] https://lore.kernel.org/netdev/20220509074857.195302-1-clabbe@baylibre.com/
-> > > 
-> > > Regards, Anne  
-> >   
-> 
-> Regards, Anne
-> 
-
+Thanks!
+- Nuno S=C3=A1
 
