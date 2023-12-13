@@ -1,64 +1,61 @@
-Return-Path: <devicetree+bounces-24790-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24791-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9664B8113E0
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 14:58:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C6468113E1
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 14:58:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 408E31F22A4F
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 13:58:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4EE061C209FC
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 13:58:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A36FF2E40E;
-	Wed, 13 Dec 2023 13:58:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 048FA2E417;
+	Wed, 13 Dec 2023 13:58:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="qC20BgsZ"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="B9pRj2YT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 739F2131;
-	Wed, 13 Dec 2023 05:58:25 -0800 (PST)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3BDDw2d7027536;
-	Wed, 13 Dec 2023 07:58:02 -0600
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01FE71AA;
+	Wed, 13 Dec 2023 05:58:39 -0800 (PST)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3BDDwXul083864;
+	Wed, 13 Dec 2023 07:58:33 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1702475882;
-	bh=zf1uNzLL138JIP7WwmzIZ2tsfIRpEhLUgJal4PSyHjA=;
+	s=ti-com-17Q1; t=1702475913;
+	bh=ZPa0O7YiR9CkUahenUG0yZpWNB69T/p2oEzwqmF/fD0=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=qC20BgsZWC/uMfE9DeGFsk8VTBO/7cQTlIolYFubOeXxwTTquElLKZUikG7p4TJzU
-	 +DY3gSaVPZ6u5QJ3p5ymLRo2Q2GiHv6BZ8/NnOBlMwcmu2A+943NeaVNjYGTvHiyj8
-	 hwdKmavTZqnvmVALCviCIRd7qSn7OH3XXanTDUiY=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3BDDw21U125466
+	b=B9pRj2YTUMI6k3LvUJjuEwSgAfjJda8UCK1MGrcsrAr4c79r9/+zlnlsTZpcrhU1K
+	 1HjxArFTD7tdFNiXX5310ZnpZOMdP+SFGCQVFgYi1KGa+MPvwlhW2VuVOFt2jAL1jF
+	 BEACEMsyfIiVAFjRdhMZECLlPHYn62onLNCWugLY=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3BDDwXKA046298
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 13 Dec 2023 07:58:02 -0600
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 13 Dec 2023 07:58:33 -0600
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 13
- Dec 2023 07:58:02 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ Dec 2023 07:58:33 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 13 Dec 2023 07:58:02 -0600
+ Frontend Transport; Wed, 13 Dec 2023 07:58:33 -0600
 Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3BDDw2q8109090;
-	Wed, 13 Dec 2023 07:58:02 -0600
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3BDDwXvc042362;
+	Wed, 13 Dec 2023 07:58:33 -0600
 From: Nishanth Menon <nm@ti.com>
 To: <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
         <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <a-nandan@ti.com>, Neha Malcom Francis <n-francis@ti.com>
-CC: Nishanth Menon <nm@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <eblanc@baylibre.com>, <jneanne@baylibre.com>,
-        <aseketeli@baylibre.com>, <jpanis@baylibre.com>, <u-kumar1@ti.com>,
-        <j-luthra@ti.com>, <vaishnav.a@ti.com>, <hnagalla@ti.com>,
-        <devarsht@ti.com>
-Subject: Re: (subset) [PATCH v10 0/7] Add TPS6594 PMIC support on several boards
-Date: Wed, 13 Dec 2023 07:58:00 -0600
-Message-ID: <170247584177.2577232.10722538239180811630.b4-ty@ti.com>
+        <afd@ti.com>, Siddharth Vadapalli <s-vadapalli@ti.com>
+CC: Nishanth Menon <nm@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <r-gunasekaran@ti.com>, <srk@ti.com>
+Subject: Re: [PATCH v3 0/2] Add PCIe Endpoint overlays for J721E and J721S2
+Date: Wed, 13 Dec 2023 07:58:31 -0600
+Message-ID: <170247588949.2577332.11579176748260902766.b4-ty@ti.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20231208114919.3429562-1-n-francis@ti.com>
-References: <20231208114919.3429562-1-n-francis@ti.com>
+In-Reply-To: <20231211115535.1264353-1-s-vadapalli@ti.com>
+References: <20231211115535.1264353-1-s-vadapalli@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,47 +66,36 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Neha Malcom Francis,
+Hi Siddharth Vadapalli,
 
-On Fri, 08 Dec 2023 17:19:12 +0530, Neha Malcom Francis wrote:
-> TPS6594 is a Power Management IC which provides regulators and others
-> features like GPIOs, RTC, watchdog, ESMs (Error Signal Monitor), and
-> PFSM (Pre-configurable Finite State Machine). The SoC and the PMIC can
-> communicate through the I2C or SPI interfaces.
-> TPS6594 is the super-set device while TPS6593 and LP8764 are derivatives.
+On Mon, 11 Dec 2023 17:25:33 +0530, Siddharth Vadapalli wrote:
+> This series adds device-tree overlays for enabling PCIe in Endpoint mode
+> of operation on J721E-EVM and J721S2-EVM.
 > 
-> This series adds device tree nodes for TI TPS6594 PMICs found in the
-> following boards:
-> - J721EXSOMXEVM:
->   Link: https://www.ti.com/tool/J721EXSOMXEVM
-> - J721S2XSOMXEVM:
->   Link: https://www.ti.com/tool/J721S2XSOMXEVM
-> - J7200XSOMXEVM:
->   Link: https://www.ti.com/tool/J7200XSOMXEVM
-> - J784S4XEVM
->   Link: https://www.ti.com/tool/J784S4XEVM
-> - SK-AM69
->   Link: https://www.ti.com/tool/SK-AM69
-> - SK-TDA4VM (J721E-SK)
->   Link: https://www.ti.com/tool/SK-TDA4VM
+> NOTE: This series is based on linux-next tagged next-20231211.
+> 
+> v2:
+> https://lore.kernel.org/r/20231115085204.3578616-1-s-vadapalli@ti.com/
+> Changes since v2:
+> - Rebased series on linux-next tagged next-20231211.
+> - Collected Reviewed-by tag from:
+>   Ravi Gunasekaran <r-gunasekaran@ti.com>
+> - Updated Makefile based on Andrew's suggestion to build the DTBs
+>   corresponding to the overlays only with an OF_ALL_DTBS build config
+>   since the generated DTBs are not required except to ensure that the
+>   overlays apply on the base DTB.
+>   Reference:
+>   https://lore.kernel.org/r/20231128-csi_dts-v3-9-0bb11cfa9d43@ti.com
 > 
 > [...]
 
 I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[1/7] arm64: dts: ti: k3-j7200-som-p0: Add TP6594 family PMICs
-      commit: 08aaf5f02e9d593cf6b2dc7da9c568e19199e00e
-[2/7] arm64: dts: ti: k3-j721s2-som-p0: Add TP6594 family PMICs
-      commit: f4eb94b898f5b708d024a70fd544cdd76537bcf9
-[3/7] arm64: dts: ti: k3-j721e-som-p0: Add TP6594 family PMICs
-      commit: 46774eddde0ce499621cc8887106bcb449856e1f
-[4/7] arm64: dts: ti: k3-j784s4-evm: Add support for TPS6594 PMIC
-      commit: 3044f0184089e910f4da923bf64dca60ff47a117
-[5/7] arm64: dts: ti: k3-am69-sk: Add support for TPS6594 PMIC
-      commit: 865a1593bf99e1b3d4ffa6182919429694b17a36
-[6/7] arm64: dts: ti: k3-j721e-sk: Add TPS6594 family PMICs
-      commit: b808cef0be467318d862f87b64d7eddde6906ba3
+[1/2] arm64: dts: ti: k3-j721e-evm: Add overlay for PCIE0 Endpoint Mode
+      commit: 3942697901eb5340dc51202352f035ae191c37f2
+[2/2] arm64: dts: ti: k3-j721s2-evm: Add overlay for PCIE1 Endpoint Mode
+      commit: 729cfcf8ac2447f175eb4b6a0604983618ba07d5
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
