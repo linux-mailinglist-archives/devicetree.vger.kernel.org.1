@@ -1,131 +1,153 @@
-Return-Path: <devicetree+bounces-24766-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24767-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD54181125C
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 14:03:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D9AEE8112A1
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 14:18:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6BED1280EF5
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 13:02:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 94820281885
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 13:18:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C88E2C1BC;
-	Wed, 13 Dec 2023 13:02:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECBCB2C85D;
+	Wed, 13 Dec 2023 13:18:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pOAZ793f"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OGxLB+0y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3244E2C842;
-	Wed, 13 Dec 2023 13:02:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B73FFC433C8;
-	Wed, 13 Dec 2023 13:02:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702472575;
-	bh=SYhlR91tO42bA8AfGZXjJpENUJXvfJwI9ZrVd2yDl7o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pOAZ793fHzKh/HYPbFWxrP57xdIvDGz7zJAPafMIdiXo/gdClWfHHvXyABgyiaI3d
-	 IzjD7flCvOmUtRPQK/nwxFG4P+/wjewBRhds66wynKr/e/B9HcmsYwbGWOiDfrcGgF
-	 Mad+vti/3CHqhV9Mc8DmDCiHi5Llrhj8bBvRK8yG2/BfMYB5kldfx6AoNVi3LS5Yed
-	 voYZzMviyN03AtFIwzndO9A1hh6wyeIOadgNlhvE3YVLQFoRmcz/zTpvLmVk2qGecJ
-	 c2p65kbrZ/i6niLm0i+F8ERk9GXSfIiwFL6+xEZru50pieVHqYJCoculVkT2y+ID+D
-	 uMM7/fLCxbELQ==
-Date: Wed, 13 Dec 2023 13:02:49 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Marc Kleine-Budde <mkl@pengutronix.de>
-Cc: linux-riscv@lists.infradead.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Wolfgang Grandegger <wg@grandegger.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+Received: from mail-qt1-x833.google.com (mail-qt1-x833.google.com [IPv6:2607:f8b0:4864:20::833])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA08EF5;
+	Wed, 13 Dec 2023 05:18:10 -0800 (PST)
+Received: by mail-qt1-x833.google.com with SMTP id d75a77b69052e-425a116f1cdso41853851cf.0;
+        Wed, 13 Dec 2023 05:18:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702473489; x=1703078289; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=i4l/5gRXaP1+RfdbJslxJg0fd6YM0cZ5wR9VCW+0Q3U=;
+        b=OGxLB+0y/nDDpGTbIyFhLKtXL82c9oHexPHfKFD6DX5GDFXndoJYmWJe2FYKb1oUe9
+         sgzwZHfmPXV21ralZeb8AxF9hT7JAbV2De4wFOKMRbHHHwLqWamXApQPbU/Y+gDRL/1R
+         W0VLNuLHj5y8KNA818AZW9kiAAOLTdIqV8edqBwRhq7jJWd6WUsz+m15m9DvVFruWqlH
+         vSxPRiZefJ7MihueKMB2mztbnRDozoVpgLp7w/epLlkMQc2ITowmmI9zXs/6fWcQ+/yq
+         xGHHCw2jNatPpezX5JEFoIZ+aDZdqjlqR1CcPKQX/j0Hu/mFbZyOOmMZRwt6jOyuoqwt
+         GCuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702473489; x=1703078289;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=i4l/5gRXaP1+RfdbJslxJg0fd6YM0cZ5wR9VCW+0Q3U=;
+        b=XeaxhF7bFbVEMv9F4v7FCBamBHmH9CU5ow0gXn0AZpoI+oSSuODDX8IGcesFrEGe7m
+         UVGkoW62wfIMS0/zmYrTl6YBHUz5CDZmoicJxk3zKLGFi3o2FrhEy94AzWKA+a+D3suc
+         jC925L4qhFPf+IvfBlxcWYB+mjJOQUfH3pZe1kPspfz9G05j+r9e0t+mxVByhFk/AdxK
+         rtEdEdiWJ00U5mhRrxtDuItCmgxdATIAgjPTVNQiQ4CQ9GUXop7HYRuJKAPWTIh8pL01
+         ibIvi72qCP/r/AGxWeXOQPJwHApt/fmLuegM+PoXfE5/v1yxPVAmnSGY8byow19iC1cD
+         u3kQ==
+X-Gm-Message-State: AOJu0YwwDLVZN2Ko8sqy+dFog3yeQiSX2imqoRK1F3vc2ckz01I8D1ff
+	QqU4g2CfAPEwuUgkI+CZKBXtg39C4HM=
+X-Google-Smtp-Source: AGHT+IHgcLpgW31VJbUwq7ETCySFb7UPpGI5z6ixSKAzF4FLXtqxQsOZnFRjUpq9Pkp2L2oo33Hu0g==
+X-Received: by 2002:a05:622a:1708:b0:425:4043:18ca with SMTP id h8-20020a05622a170800b00425404318camr12136045qtk.125.1702473489392;
+        Wed, 13 Dec 2023 05:18:09 -0800 (PST)
+Received: from localhost.localdomain (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
+        by smtp.gmail.com with ESMTPSA id f21-20020ac84995000000b00423890096afsm4889400qtq.2.2023.12.13.05.18.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Dec 2023 05:18:08 -0800 (PST)
+From: Trevor Woerner <twoerner@gmail.com>
+To: linux-kernel@vger.kernel.org,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, linux-can@vger.kernel.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH RESEND v1 2/7] dt-bindings: can: mpfs: add missing
- required clock
-Message-ID: <20231213-waffle-grueling-3a5c3879395b@spud>
-References: <20231208-reenter-ajar-b6223e5134b3@spud>
- <20231208-palpitate-passable-c79bacf2036c@spud>
- <20231212-unreeling-depose-8b6b2e032555-mkl@pengutronix.de>
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Subject: [PATCH] amd64: rockchip: dts: rk3328-rock-pi-e add gpio-line-names
+Date: Wed, 13 Dec 2023 08:17:38 -0500
+Message-ID: <20231213131739.13900-1-twoerner@gmail.com>
+X-Mailer: git-send-email 2.41.0.327.gaa9166bcc0ba
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="AuzXFLC6CIKr68l9"
-Content-Disposition: inline
-In-Reply-To: <20231212-unreeling-depose-8b6b2e032555-mkl@pengutronix.de>
+Content-Transfer-Encoding: 8bit
 
+Add names to the pins of the general-purpose expansion header as given
+in the Radxa GPIO page[1] following the conventions in the kernel
+documentation[2] to make it easier for users to correlate the pins with
+functions when using utilities such as 'gpioinfo'.
 
---AuzXFLC6CIKr68l9
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+[1] https://wiki.radxa.com/RockpiE/hardware/gpio
+[2] Documentation/devicetree/bindings/gpio/gpio.txt
 
-On Tue, Dec 12, 2023 at 09:49:41PM +0100, Marc Kleine-Budde wrote:
-> On 08.12.2023 17:12:24, Conor Dooley wrote:
-> > From: Conor Dooley <conor.dooley@microchip.com>
-> >=20
-> > The CAN controller on PolarFire SoC has an AHB peripheral clock _and_ a
-> > CAN bus clock. The bus clock was omitted when the binding was written,
-> > but is required for operation. Make up for lost time and add it.
-> >=20
-> > Cautionary tale in adding bindings without having implemented a real
-> > user for them perhaps.
-> >=20
-> > Fixes: c878d518d7b6 ("dt-bindings: can: mpfs: document the mpfs CAN con=
-troller")
-> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> > ---
-> >  .../devicetree/bindings/net/can/microchip,mpfs-can.yaml    | 7 +++++--
-> >  1 file changed, 5 insertions(+), 2 deletions(-)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/net/can/microchip,mpfs-c=
-an.yaml b/Documentation/devicetree/bindings/net/can/microchip,mpfs-can.yaml
-> > index 45aa3de7cf01..05f680f15b17 100644
-> > --- a/Documentation/devicetree/bindings/net/can/microchip,mpfs-can.yaml
-> > +++ b/Documentation/devicetree/bindings/net/can/microchip,mpfs-can.yaml
-> > @@ -24,7 +24,10 @@ properties:
-> >      maxItems: 1
-> > =20
-> >    clocks:
-> > -    maxItems: 1
-> > +    maxItems: 2
-> > +    items:
-> > +      - description: AHB peripheral clock
-> > +      - description: CAN bus clock
->=20
-> Do we we want to have a "clock-names" property, as we need the clock
-> rate of the CAN bus clock.
+Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+---
+ .../boot/dts/rockchip/rk3328-rock-pi-e.dts    | 53 +++++++++++++++++++
+ 1 file changed, 53 insertions(+)
 
-We should not need the clock-names property to be able to get both of
-the clocks. clk_bulk_get_all() for example should be usable here.
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
+index 018a3a5075c7..3169c0854061 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
+@@ -388,3 +388,56 @@ &usbdrd3 {
+ &usb_host0_ehci {
+ 	status = "okay";
+ };
++
++&gpio0 {
++	gpio-line-names =
++	/* GPIO0_A0 - A7 */
++	"", "", "", "", "", "", "", "",
++	/* GPIO0_B0 - B7 */
++	"", "", "", "", "", "", "", "",
++	/* GPIO0_C0 - C7 */
++	"", "", "", "", "", "", "", "",
++	/* GPIO0_D0 - D7 */
++	"", "", "", "pin-15 [GPIO0_D3]", "", "", "", "";
++};
++
++&gpio1 {
++	gpio-line-names =
++	/* GPIO1_A0 - A7 */
++	"", "", "", "", "", "", "", "",
++	/* GPIO1_B0 - B7 */
++	"", "", "", "", "", "", "", "",
++	/* GPIO1_C0 - C7 */
++	"", "", "", "", "", "", "", "",
++	/* GPIO1_D0 - D7 */
++	"", "", "", "", "pin-07 [GPIO1_D4]", "", "", "";
++};
++
++&gpio2 {
++	gpio-line-names =
++	/* GPIO2_A0 - A7 */
++	"pin-08 [GPIO2_A0]", "pin-10 [GPIO2_A1]", "pin-11 [GPIO2_A2]",
++	"pin-13 [GPIO2-A3]", "pin-27 [GPIO2_A4]", "pin-28 [GPIO2_A5]",
++	"pin-33 [GPIO2_A6]", "",
++	/* GPIO2_B0 - B7 */
++	"", "", "", "", "pin-26 [GPIO2_B4]", "", "", "pin-36 [GPIO2_B7]",
++	/* GPIO2_C0 - C7 */
++	"pin-32 [GPIO2_C0]", "pin-35 [GPIO2_C1]", "pin-12 [GPIO2_C2]",
++	"pin-38 [GPIO2_C3]", "pin-29 [GPIO2_C4]", "pin-31 [GPIO2_C5]",
++	"pin-37 [GPIO2_C6]", "pin-40 [GPIO2_C7]",
++	/* GPIO2_D0 - D7 */
++	"", "", "", "", "", "", "", "";
++};
++
++&gpio3 {
++	gpio-line-names =
++	/* GPIO3_A0 - A7 */
++	"pin-23 [GPIO3_A0]", "pin-19 [GPIO3_A1]", "pin-21 [GPIO3_A2]",
++	"", "pin-03 [GPIO3_A4]", "", "pin-05 [GPIO3_A6]", "",
++	/* GPIO3_B0 - B7 */
++	"pin-24 [GPIO3_B0]", "", "", "", "", "", "", "",
++	/* GPIO3_C0 - C7 */
++	"", "", "", "", "", "", "", "",
++	/* GPIO3_D0 - D7 */
++	"", "", "", "", "", "", "", "";
++};
+-- 
+2.41.0.327.gaa9166bcc0ba
 
-Cheers,
-Conor.
-
---AuzXFLC6CIKr68l9
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZXmreQAKCRB4tDGHoIJi
-0pybAQCaXK2xUCp5W6797bY/KOydLDfzz6/zpgo3/ym1K/7tCgEAs+ZQmqrTvSuQ
-t2sr42Cf8RWYaRCGrwl6zg97g0jV0As=
-=jW/W
------END PGP SIGNATURE-----
-
---AuzXFLC6CIKr68l9--
 
