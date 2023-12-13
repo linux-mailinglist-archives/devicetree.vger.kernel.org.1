@@ -1,143 +1,199 @@
-Return-Path: <devicetree+bounces-24901-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24902-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFA5B81198E
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 17:32:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E61D3811990
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 17:34:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 63CD71F21892
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 16:32:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E1AC1F21964
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 16:34:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C619335EFD;
-	Wed, 13 Dec 2023 16:32:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9765735F08;
+	Wed, 13 Dec 2023 16:34:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="F9FacYpA"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="qmdpJxxG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75F9E91;
-	Wed, 13 Dec 2023 08:32:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=N/E28jRK/viDvwysZ67eINh1B/xnv1AANrAAo+m468A=; b=F9FacYpAvC8VBP83kNMIpHTuVL
-	StsEhcooImqRL0oa7xdnDBllK6KkpkYTk4gTnuRIertAdiNTHp46DxpNDNkPXUyY+qmdUNEk+D1SA
-	Y6EeaRQWlHQl0ztEkl4ENZhDEj2QYIJeIWfrxOu0/3+b4418i6lBBlF44tHLDS/PHuAaewGCrZFZO
-	e/l1KFXkDC9rYxkwhe7qw3Vq8NOoXmrGZmZZxGEaWXG7UPAXtkBRH71zg7IecLdbT96sUJqvLbBTh
-	bSZIRZgFS8fOdfUo0i+S0ewDHQU3lMDUgcCJ3dOOtUMa5WJS93cn8lz7MuT+uBAgeA26m9zUfusQ+
-	Q5lacQ0Q==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:59474)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1rDS9o-0000HK-1N;
-	Wed, 13 Dec 2023 16:32:24 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1rDS9l-0001eT-VG; Wed, 13 Dec 2023 16:32:21 +0000
-Date: Wed, 13 Dec 2023 16:32:21 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Serge Semin <fancer.lancer@gmail.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Jose Abreu <Jose.Abreu@synopsys.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Tomer Maimon <tmaimon77@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	openbmc@lists.ozlabs.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 06/16] net: pcs: xpcs: Avoid creating dummy XPCS
- MDIO device
-Message-ID: <ZXnclVEz10K2XD2+@shell.armlinux.org.uk>
-References: <20231205103559.9605-1-fancer.lancer@gmail.com>
- <20231205103559.9605-7-fancer.lancer@gmail.com>
- <ZW8pxM3RvyHJTwqH@shell.armlinux.org.uk>
- <gbkgtb4yp3cwyw7xcuhmkdl3io2wlia2gska2xmjbwjvhigpz3@w52b6tdyugqo>
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9538D83;
+	Wed, 13 Dec 2023 08:34:37 -0800 (PST)
+Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
+	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20231213163435epoutp041264b05df058ff50f1b10d63f324b16d~gcVZ9bQ5E0188301883epoutp04K;
+	Wed, 13 Dec 2023 16:34:35 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20231213163435epoutp041264b05df058ff50f1b10d63f324b16d~gcVZ9bQ5E0188301883epoutp04K
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1702485275;
+	bh=kEQbJdtujh4v1xklB3S9ZLk0YyXXz7IJpUS+2fODp78=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=qmdpJxxGSlmFa6Tmr84DHrxb01LJKtgIwYnvZWqXJ2SftGilH/5nc7bTt9PC4rrOY
+	 TdyQJe1wzAVsWuY6aBgLOp8xQYkGcN4mLgJnEweMGsalkhSaoG7rhvu4uLtsSjj40O
+	 JH6WvUbLIds6eAhQqqYoZqXkDmrDYW1NrrKPOgRo=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTP id
+	20231213163435epcas5p12afdac2e7c286a6a12a2f41dbf7a1ebd~gcVZmj3BT2298822988epcas5p1B;
+	Wed, 13 Dec 2023 16:34:35 +0000 (GMT)
+Received: from epsmges5p1new.samsung.com (unknown [182.195.38.177]) by
+	epsnrtp1.localdomain (Postfix) with ESMTP id 4Sr1KP2qmnz4x9Pr; Wed, 13 Dec
+	2023 16:34:33 +0000 (GMT)
+Received: from epcas5p4.samsung.com ( [182.195.41.42]) by
+	epsmges5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	B5.C4.09634.91DD9756; Thu, 14 Dec 2023 01:34:33 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
+	20231213163432epcas5p2256c43f4e218c433b7078609dfb2c908~gcVXN-b5V3010530105epcas5p2k;
+	Wed, 13 Dec 2023 16:34:32 +0000 (GMT)
+Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
+	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20231213163432epsmtrp22be51ff79d9882b24ae9e139696cb652~gcVXMoNie1436514365epsmtrp2H;
+	Wed, 13 Dec 2023 16:34:32 +0000 (GMT)
+X-AuditID: b6c32a49-eebff700000025a2-04-6579dd195504
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+	epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	C1.04.08817.81DD9756; Thu, 14 Dec 2023 01:34:32 +0900 (KST)
+Received: from INBRO000447 (unknown [107.122.12.5]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20231213163428epsmtip1447aaa69e5980351b987795d160c50af~gcVTD6ANw0862208622epsmtip1N;
+	Wed, 13 Dec 2023 16:34:27 +0000 (GMT)
+From: "Alim Akhtar" <alim.akhtar@samsung.com>
+To: "'Peter Griffin'" <peter.griffin@linaro.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
+	<conor+dt@kernel.org>, <sboyd@kernel.org>, <tomasz.figa@gmail.com>,
+	<s.nawrocki@samsung.com>, <linus.walleij@linaro.org>,
+	<wim@linux-watchdog.org>, <linux@roeck-us.net>, <catalin.marinas@arm.com>,
+	<will@kernel.org>, <arnd@arndb.de>, <olof@lixom.net>,
+	<gregkh@linuxfoundation.org>, <jirislaby@kernel.org>,
+	<cw00.choi@samsung.com>
+Cc: <tudor.ambarus@linaro.org>, <andre.draszik@linaro.org>,
+	<semen.protsenko@linaro.org>, <saravanak@google.com>,
+	<willmcvicker@google.com>, <soc@kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
+	<linux-clk@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+	<linux-watchdog@vger.kernel.org>, <kernel-team@android.com>,
+	<linux-serial@vger.kernel.org>
+In-Reply-To: <20231211162331.435900-12-peter.griffin@linaro.org>
+Subject: RE: [PATCH v7 11/16] watchdog: s3c2410_wdt: Update QUIRK macros to
+ use BIT macro
+Date: Wed, 13 Dec 2023 22:04:26 +0530
+Message-ID: <017401da2de2$400ec6e0$c02c54a0$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <gbkgtb4yp3cwyw7xcuhmkdl3io2wlia2gska2xmjbwjvhigpz3@w52b6tdyugqo>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Content-Language: en-us
+Thread-Index: AQEeDlMUs+qnFg95EVUf+Z9FZqMuEwIEtzV/AWqu9NqyBCwcgA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA01Te0xTZxTP19veW4iwa0H5rJuWBrJIBlJefjhgCLjchaEsm8a4OGzgSpFS
+	mj5EmMsQRJBH5TXjEARW5qOrYzxWShmOQZ2KgFtk1GxgYMDkjQJjYxZYS3Hjv9853+93zvmd
+	L4eNcdoILjtBoqBlEqGYj9szdR27PDy3DaTS3oYFEjVONDDRcvGPBJq9lg+QtrWHgUwLT1mo
+	0tjDQpnqWhzNVLyK9E3OSDU2hKFS83UGqh/uY6Hn+U9YqKHSDNDlh7cZqEtdQKDHX98m0Eh1
+	FwP93LkfdZrmcfTN5RUmymo1EqhjKpuFctuXcbTSV8dET1UW1bDJjCONwVJk7teP0Ll+f6SZ
+	WwVoeHwFC+VRuhYdi9Je1QLqxT/FgJp9nEVQzWUDBFVVr6TqNRdwqr/vO5y6qdWyqO8rtATV
+	UPMp1Xsvg0U1/5VOUKpGDaDm63dEv3I0MUhEC+NoGY+WxCbHJUjig/mR78eEx/gHeAs8BYFo
+	D58nESbRwfyId6M9304QW9bF550SipWWVLRQLufvDgmSJSsVNE+ULFcE82lpnFjqJ/WSC5Pk
+	Skm8l4RW7BV4e/v4W4jHE0WFfbcY0hGn002/j+LpYI7MBXZsSPpB3b1Z3Io5ZAuAfyzSucDe
+	gucANLbUYLZgEcDuoUripWLsbtn6QyuAmd2LTFswBuDDlXGWlYWTnlCvPr9W15l8gkFTzz4r
+	CSO1GFxa7bfI2Ww7MhQW6I5ZOU7kh/BGbwPDipmkOyxRdTKt2IEMhMVf6YENb4b3Px9Zy2Pk
+	Ttg0XY7ZJuLBpdFrLFveBY7fMRLW8s5kGOy6pbC2haTKHhp7zSwbPwI+qF9ad+MEJ+42rmMu
+	nJ9pxa1aSFLwCzPXlhbB6eu1wIbfgm295UwrBSN3wVrDbltXR1jwYoRhUzrAnPMcG9sdZs78
+	wrTh7bAoL299AAo2thiIQuBatsFX2QZfZRu8lP3frAowNWAbLZUnxdNyf6lAQqf899uxyUn1
+	YO2UPN7Rg4HBZ17tgMEG7QCyMb6zw319Cs1xiBOmptGy5BiZUkzL24G/ZdlFGHdLbLLlFiWK
+	GIFfoLdfQECAX6BvgIDv4jCZVRHHIeOFCjqRpqW07KWOwbbjpjNSUFVhuXpzlb5aOPmbS0Zd
+	4KR3mHhT1InKi5eCIkYO/R1Wsdfz0UG3fpeW6ppSzQ+jMU15dhM5ob7mc2c4F458JslQSQfV
+	D1IiTxoPnApy5/voPnExqDONq++tOCpNW8JvnE2djkvrUZtyfA5ElnQ0P/JKTc9qDckzHxFR
+	+dkhO+Kh457MJrHvdvnpakmbo+trmlJR8Z8fpNcs5DdqDw+KzlSDL2+eHSa5tR+7yrrdcH28
+	27fhbZoT/L40PGryYsPASQ0Zc0XwXHGUO9RW11pbHL18kFMwsXNyFT/25lXiSsnrE+OXNh2y
+	/4mnZBbto+6ItmYf3hrxRnul+5Tp2ZQh6jifKRcJBR6YTC78F8lambzTBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Se0xTZxjG8507NWTH0oUPcJ1r4uKYtugu+UyMgbmRM2Miho1sZrcOjoWM
+	Imlhzm3ZKgPmmkJYvWEj1xLQcgAppa2CumBF6LqyJVvbMWRxrSC6rbMu6KDU2TbL+O953+f5
+	PXn/eBlcbCEzmbKKKl5ToSyXUSLCfkUm3QyvH+Jzom4xst0eItCKcZxG4W4DQMJFL4b8f8+T
+	qM3lJdEX5gEK/dmyDjkdEtR46waOjkV7MGQN+kh01zBLoqG2KEDNU5cw5DE30CjQf4lGoQ4P
+	hn5wv4Lc/nsUOtccI1DdRReNrvz+JYn0YysUivkGCTTf+IgK+qMUslx4VBKZfgfVzryALJGH
+	AAUXYnjues4+Yic5oVUA3PKSEXDhQB3NnTddp7l2azVntXxFcTO+UYo7Kwgkd7lFoLmhrs+5
+	HydqSO78fR3NNdosgLtnlRY8tk+0vYQvL/uQ1yh2vCcqbfL1YZWhtI8cv92kdCDC6kEKA9nn
+	4a1rJlwPRIyYHQHQ9m0fljSyoH+wiU7qNHg2Nk8nQ3MA1raMJ0IUuxk6zfVU3JCwERz2Pgwk
+	Bpy9gEOvrp5MIi4Af709AvSAYVLYXNhgfztOp7FvwlbBRMQ1wW6ARxvdCZ3KboPGXidI6rVw
+	8lSIiKM4K4f1g4k1zj4JHX+cxpPXrYf/3Owmk/t0uHDVRcfjEvYl6OmragJpplVFpv+LTKuK
+	TKvgdkBYQAZfqVWr1NotlVsr+INyrVKtra5QyYsPqK0g8U7Z2U4wavlLPgYwBowByOAySeqk
+	8yAvTi1RHvqY1xx4V1NdzmvHQBZDyNJTF+80lIhZlbKK/4DnK3nNfy7GpGTqsKf673fMmYTs
+	rp7d4UU1v3bl7j5zYbr7cOGp43mvymdHeoKcfVOpR7urU5Hb/UD8/bDz8BmnBBUZeU/hkQe6
+	c1U7i3exDZmRa71lx3duqHnmreemNnZ/89q4r7A/z6WrXyrLD+gH2monrLvnaa9572xreLnI
+	dqTg5c8MXdLTC8WiY6oBjzPmeELsm9L/0vKzrfrrgS7z0vv7s06sE07mzUh9L17OuKpaZo82
+	t+cYpHObRIrQ68Gt3sDE8ERnTjS40Z/RtwgKTm4T1ZSvmTa+cWc49F2noi6qODMadux9Oj9l
+	z2SrPjC741P2hHR7flHIaOhd8/hPrtIbHdMFnzyLo/0yQluq3JKNa7TKfwH7N9uavQMAAA==
+X-CMS-MailID: 20231213163432epcas5p2256c43f4e218c433b7078609dfb2c908
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20231211162434epcas5p485e7b2edbb02a1b6ea04ff5cc758f5db
+References: <20231211162331.435900-1-peter.griffin@linaro.org>
+	<CGME20231211162434epcas5p485e7b2edbb02a1b6ea04ff5cc758f5db@epcas5p4.samsung.com>
+	<20231211162331.435900-12-peter.griffin@linaro.org>
 
-On Wed, Dec 13, 2023 at 03:01:45AM +0300, Serge Semin wrote:
-> On Tue, Dec 05, 2023 at 01:46:44PM +0000, Russell King (Oracle) wrote:
-> > xpcs_create_mdiodev() as it originally stood creates the mdiodev from
-> > the bus/address, and then passes that to xpcs_create(). Once
-> > xpcs_create() has finished its work (irrespective of whether it was
-> > successful or not) we're done with the mdiodev in this function, so
-> > the reference is _always_ put.
+
+
+> -----Original Message-----
+> From: Peter Griffin <peter.griffin@linaro.org>
+> Sent: Monday, December 11, 2023 9:53 PM
+> To: robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
+> mturquette@baylibre.com; conor+dt@kernel.org; sboyd@kernel.org;
+> tomasz.figa@gmail.com; s.nawrocki@samsung.com; linus.walleij@linaro.org;
+> wim@linux-watchdog.org; linux@roeck-us.net; catalin.marinas@arm.com;
+> will@kernel.org; arnd@arndb.de; olof@lixom.net;
+> gregkh@linuxfoundation.org; jirislaby@kernel.org;
+> cw00.choi@samsung.com; alim.akhtar@samsung.com
+> Cc: peter.griffin@linaro.org; tudor.ambarus@linaro.org;
+> andre.draszik@linaro.org; semen.protsenko@linaro.org;
+> saravanak@google.com; willmcvicker@google.com; soc@kernel.org;
+> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+> samsung-soc@vger.kernel.org; linux-clk@vger.kernel.org; linux-
+> gpio@vger.kernel.org; linux-watchdog@vger.kernel.org; kernel-
+> team@android.com; linux-serial@vger.kernel.org
+> Subject: [PATCH v7 11/16] watchdog: s3c2410_wdt: Update QUIRK macros to
+> use BIT macro
 > 
-> You say that it's required to manage the refcounting twice: when we
-> get the reference from some external place and internally when the
-> reference is stored in the XPCS descriptor. What's the point in such
-> redundancy with the internal ref-counting if we know that the pointer
-> can be safely stored and utilized afterwards? Better maintainability?
-> Is it due to having the object retrieval and storing implemented in
-> different functions?
+> Update the remaining QUIRK macros to use the BIT macro.
+> 
+Ah! I see you have change use BIT here, so you can squash this patch to
+patch 10/16 or
+Move BIT change from patch 10/16 to this patch. Either way is fine.
 
-The point is that the error handling gets simpler:
-- One can see in xpcs_create_mdiodev() that the reference taken by
-  mdio_device_create() is always dropped if that function was
-  successful, irrespective of whether xpcs_create() was successful.
+> Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
+> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> ---
+>  drivers/watchdog/s3c2410_wdt.c | 10 +++++-----
+>  1 file changed, 5 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/watchdog/s3c2410_wdt.c
+> b/drivers/watchdog/s3c2410_wdt.c index 7ecb762a371d..b7a03668f743
+> 100644
+> --- a/drivers/watchdog/s3c2410_wdt.c
+> +++ b/drivers/watchdog/s3c2410_wdt.c
+> @@ -107,11 +107,11 @@
+>   * DBGACK_MASK bit disables the watchdog outputs when the SoC is in
+> debug mode.
+>   * Debug mode is determined by the DBGACK CPU signal.
+>   */
+> -#define QUIRK_HAS_WTCLRINT_REG			(1 << 0)
+> -#define QUIRK_HAS_PMU_MASK_RESET		(1 << 1)
+> -#define QUIRK_HAS_PMU_RST_STAT			(1 << 2)
+> -#define QUIRK_HAS_PMU_AUTO_DISABLE		(1 << 3)
+> -#define QUIRK_HAS_PMU_CNT_EN			(1 << 4)
+> +#define QUIRK_HAS_WTCLRINT_REG			BIT(0)
+> +#define QUIRK_HAS_PMU_MASK_RESET		BIT(1)
+> +#define QUIRK_HAS_PMU_RST_STAT			BIT(2)
+> +#define QUIRK_HAS_PMU_AUTO_DISABLE		BIT(3)
+> +#define QUIRK_HAS_PMU_CNT_EN			BIT(4)
+>  #define QUIRK_HAS_DBGACK_BIT			BIT(5)
+> 
+>  /* These quirks require that we have a PMU register map */
+> --
+> 2.43.0.472.g3155946c3a-goog
 
-- xpcs_create() is responsible for managing the refcount on the mdiodev
-  that is passed to it - and if it's successful, it needs to increment
-  the refcount, or leave it in the same state as it was on entry if
-  failing.
 
-This avoids complexities in error paths, which are notorious for things
-being forgotten - since with this, each of these functions is resposible
-for managing its refcount.
-
-It's a different style of refcount management, one I think more people
-should adopt.
-
-> While at it if you happen to know an answer could you please also
-> clarify the next question. None of the ordinary
-> platform/PCI/USB/hwmon/etc drivers I've been working with managed
-> refcounting on storing a passed to probe() device pointer in the
-> private driver data. Is it wrong not doing that?
-
-If we wanted to do refcounting strictly, then every time a new
-pointer to a data structure is created, we should be taking a refcount
-on it, and each time that pointer is destroyed, we should be putting
-the refcount. That is what refcounting is all about.
-
-However, there are circumstances where this can be done lazily, and
-for drivers we would prefer driver authors not to end up with
-refcount errors where they've forgotten to put something.
-
-In the specific case of drivers, we have a well defined lifetime for
-a device bound to a driver. We guarantee that the struct device will
-not go away if a driver is bound to the device, until such time that
-the driver's .remove method has been called. Thus, we guarantee that
-the device driver will be notified of the struct device going away
-before it has been freed. This frees the driver author from having
-to worry about the refcount of the struct device.
-
-As soon as we start doing stuff that is outside of that model, then
-objects that are refcounted need to be dealt with, and I much prefer
-the "strict" refcounting implementation such as the one I added to
-xpcs, because IMHO it's much easier to see that the flow is obviously
-correct - even if it does need a comment to describe why we always
-do a put.
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
