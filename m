@@ -1,198 +1,153 @@
-Return-Path: <devicetree+bounces-24873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24874-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CEA781189F
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 17:04:52 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B16C8118AC
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 17:06:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B81928257A
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 16:04:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E926DB20B1E
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 16:06:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 690B23159A;
-	Wed, 13 Dec 2023 16:04:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F79921A1E;
+	Wed, 13 Dec 2023 16:06:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="R+1MKf1r"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="C0kQ9t+U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B58A910B;
-	Wed, 13 Dec 2023 08:04:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=QRqwo6sswifF3LFPo684dgIWFUyFasVRNKlEWyiikhI=; b=R+1MKf1rzy9ANE955VAmc7MRqm
-	hCWSk4JX137rBfen/P8Nm47Di+4ndSbW7wyKqKAZQfSeKvNqjZOQ7h+ozG1y82K68yoGn+GJmlxTJ
-	HSa3d2+TEnPRtqH2l6FBZBT0QG523tdWrM2gvgIjLfWc+lQ+OwZn8xeMBQZ+p27avi7V6KZ1EIwmE
-	tUOWNpuAZOwuNx7857l8Nppar0NfBSL4jj2fssUdXc1mBs8uG1+Lm5CRVI9LBqGlXLhqKzg21wp1M
-	Pg2rWKekk7nkzy3zfT65bes3ssLwvxH5KjSQJCl0VUaxSTKZcMGrv8l/GBDNAPCaM0ej6RDZvdprY
-	Q6b4hJhQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:55118)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1rDRiY-0000D5-0G;
-	Wed, 13 Dec 2023 16:04:14 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1rDRiW-0001cw-Q5; Wed, 13 Dec 2023 16:04:12 +0000
-Date: Wed, 13 Dec 2023 16:04:12 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+Received: from mail-qv1-xf30.google.com (mail-qv1-xf30.google.com [IPv6:2607:f8b0:4864:20::f30])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CD8CDB;
+	Wed, 13 Dec 2023 08:06:26 -0800 (PST)
+Received: by mail-qv1-xf30.google.com with SMTP id 6a1803df08f44-67ad531686eso63546526d6.1;
+        Wed, 13 Dec 2023 08:06:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702483584; x=1703088384; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=mV7pcScjZucWWRXnAxSJek2hZSxOGAqXVzogrAoZOIE=;
+        b=C0kQ9t+UDxyRZVsZd4YiiVbV/VH4h+L6ErF5H/fOa6R+1QRm+4jVPAmbOvkfcHgeF3
+         jZ8zwX6L0A8TxjD2lvCtwNPLGIqha62bWYpsQamu7cu9dFe1L3GVwHA0Bdo8vkWB8jkP
+         SEGoMjTAzYmfxi29Ivgiee0i5eUwYJqh/SgVxq94lulKDQIuyaPZGTtNyQwd4MbvPM2/
+         ikDQjHlqxaJOgPDixtncU4TuwaXrFfiVeFJL4lICUOGSIT+yOZqkr+SPoB0Etr4Ltrgl
+         jwh6S+CwSa/ir0iVgrsAtyDGJC4lM2lxwkLA+nJBKZGs1EKajGXWcilnXFaG8l38jLKM
+         GrCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702483584; x=1703088384;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mV7pcScjZucWWRXnAxSJek2hZSxOGAqXVzogrAoZOIE=;
+        b=LxL7WW7sBXgMzS4xjDhEKq3iYZHyGojhkNO1ODcMl2V7gBu6h3bVTo+fkSDctYJ3Ak
+         8iPObG9p99eXfxPrgurtsEu6ZfS2ul72q42QcS+U0h/j9opcATWFEkHnpEf80dWAO2cj
+         uOfre8E+ViCLAx5F8RtT08UkpdYJfKJHD/N69eMKIuVY/J929Q/6h3px6xr/nznytPbL
+         2BHgWtIWo4RmRB/HW1Fyt89corZYb2BZ+Y9TOS3ft0nZAsU4OCR+aluotjerhunaLr+7
+         32XM/FwZiXf/+tWyTtJn6WZjb3vunmGGV5QhjohnT19eT3+MN06k9bdsNoPMojmE+w6o
+         tXMg==
+X-Gm-Message-State: AOJu0YwnGk0Tk19BaYPHAZz4LLSwcGete9H2L2KB848DJ+RvWHsQ6zVD
+	B3MzM0zEDQFUJGtR3Qjrxvjz2mxafc8=
+X-Google-Smtp-Source: AGHT+IGXmvitHaimiJfEzIE4bQb1b+g+FbM+iFhthTlXcxDos1V7s36HFzw+7/wuVmnwUsuUirgsWw==
+X-Received: by 2002:a05:6214:5e85:b0:67e:f80e:56db with SMTP id mm5-20020a0562145e8500b0067ef80e56dbmr1520364qvb.54.1702483584629;
+        Wed, 13 Dec 2023 08:06:24 -0800 (PST)
+Received: from localhost.localdomain (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
+        by smtp.gmail.com with ESMTPSA id h11-20020a0cf8cb000000b0067aa2d86ce3sm1720378qvo.52.2023.12.13.08.06.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Dec 2023 08:06:23 -0800 (PST)
+From: Trevor Woerner <twoerner@gmail.com>
+To: linux-kernel@vger.kernel.org,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Chunfeng Yun <chunfeng.yun@mediatek.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Mark Lee <Mark-MC.Lee@mediatek.com>,
-	Lorenzo Bianconi <lorenzo@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Alexander Couzens <lynxis@fe80.eu>,
-	Qingfang Deng <dqfext@gmail.com>,
-	SkyLake Huang <SkyLake.Huang@mediatek.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org
-Subject: Re: [RFC PATCH net-next v3 3/8] net: pcs: pcs-mtk-lynxi: add
- platform driver for MT7988
-Message-ID: <ZXnV/Pk1PYxAm/jS@shell.armlinux.org.uk>
-References: <cover.1702352117.git.daniel@makrotopia.org>
- <8aa905080bdb6760875d62cb3b2b41258837f80e.1702352117.git.daniel@makrotopia.org>
+	linux-rockchip@lists.infradead.org
+Subject: [PATCH v2] arm64: rockchip: dts: rk3328-rock-pi-e: add gpio-line-names
+Date: Wed, 13 Dec 2023 11:05:55 -0500
+Message-ID: <20231213160556.14424-1-twoerner@gmail.com>
+X-Mailer: git-send-email 2.41.0.327.gaa9166bcc0ba
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8aa905080bdb6760875d62cb3b2b41258837f80e.1702352117.git.daniel@makrotopia.org>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Transfer-Encoding: 8bit
 
-On Tue, Dec 12, 2023 at 03:47:18AM +0000, Daniel Golle wrote:
-> Introduce a proper platform MFD driver for the LynxI (H)SGMII PCS which
-> is going to initially be used for the MT7988 SoC.
-> 
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+Add names to the pins of the general-purpose expansion header as given
+in the Radxa GPIO page[1] following the conventions in the kernel
+documentation[2] to make it easier for users to correlate the pins with
+functions when using utilities such as 'gpioinfo'.
 
-I made some specific suggestions about what I wanted to see for
-"getting" PCS in the previous review, and I'm disappointed that this
-patch set is still inventing its own solution.
+Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+---
+changes in v2:
+- fix subject from "amd64..." to "arm64..."
+---
+ .../boot/dts/rockchip/rk3328-rock-pi-e.dts    | 53 +++++++++++++++++++
+ 1 file changed, 53 insertions(+)
 
-> +struct phylink_pcs *mtk_pcs_lynxi_get(struct device *dev, struct device_node *np)
-> +{
-> +	struct platform_device *pdev;
-> +	struct mtk_pcs_lynxi *mpcs;
-> +
-> +	if (!np)
-> +		return NULL;
-> +
-> +	if (!of_device_is_available(np))
-> +		return ERR_PTR(-ENODEV);
-> +
-> +	if (!of_match_node(mtk_pcs_lynxi_of_match, np))
-> +		return ERR_PTR(-EINVAL);
-> +
-> +	pdev = of_find_device_by_node(np);
-> +	if (!pdev || !platform_get_drvdata(pdev)) {
-
-This is racy - as I thought I described before, userspace can unbind
-the device in one thread, while another thread is calling this
-function. With just the right timing, this check succeeds, but...
-
-> +		if (pdev)
-> +			put_device(&pdev->dev);
-> +		return ERR_PTR(-EPROBE_DEFER);
-> +	}
-> +
-> +	mpcs = platform_get_drvdata(pdev);
-
-mpcs ends up being read as NULL here. Even if you did manage to get a
-valid pointer, "mpcs" being devm-alloced could be freed from under
-you at this point...
-
-> +	device_link_add(dev, mpcs->dev, DL_FLAG_AUTOREMOVE_CONSUMER);
-
-resulting in this accessing memory which has been freed.
-
-The solution would be either to suppress the bind/unbind attributes
-(provided the underlying struct device can't go away, which probably
-also means ensuring the same of the MDIO bus. Aternatively, adding
-a lock around the remove path and around the checking of
-platform_get_drvdata() down to adding the device link would probably
-solve it.
-
-However, I come back to my general point - this kind of stuff is
-hairy. Do we want N different implementations of it in various drivers
-with subtle bugs, or do we want _one_ implemenatation.
-
-If we go with the one implemenation approach, then we need to think
-about whether we should be using device links or not. The problem
-could be for network interfaces where one struct device is
-associated with multiple network interfaces. Using device links has
-the unfortunate side effect that if the PCS for one of those network
-interfaces is removed, _all_ network interfaces disappear.
-
-My original suggestion was to hook into phylink to cause that to
-take the link down when an in-use PCS gets removed.
-
-> +
-> +	return &mpcs->pcs;
-> +}
-> +EXPORT_SYMBOL(mtk_pcs_lynxi_get);
-> +
-> +void mtk_pcs_lynxi_put(struct phylink_pcs *pcs)
-> +{
-> +	struct mtk_pcs_lynxi *cur, *mpcs = NULL;
-> +
-> +	if (!pcs)
-> +		return;
-> +
-> +	mutex_lock(&instance_mutex);
-> +	list_for_each_entry(cur, &mtk_pcs_lynxi_instances, node)
-> +		if (pcs == &cur->pcs) {
-> +			mpcs = cur;
-> +			break;
-> +		}
-> +	mutex_unlock(&instance_mutex);
-
-I don't see what this loop gains us, other than checking that the "pcs"
-is still on the list and hasn't already been removed. If that is all
-that this is about, then I would suggest:
-
-	bool found = false;
-
-	if (!pcs)
-		return;
-
-	mpcs = pcs_to_mtk_pcs_lynxi(pcs);
-	mutex_lock(&instance_mutex);
-	list_for_each_entry(cur, &mtk_pcs_lynxi_instances, node)
-		if (cur == mpcs) {
-			found = true;
-			break;
-		}
-	mutex_unlock(&instance_mutex);
-
-	if (WARN_ON(!found))
-		return;
-
-which makes it more obvious why this exists.
-
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
+index 018a3a5075c7..3169c0854061 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
+@@ -388,3 +388,56 @@ &usbdrd3 {
+ &usb_host0_ehci {
+ 	status = "okay";
+ };
++
++&gpio0 {
++	gpio-line-names =
++	/* GPIO0_A0 - A7 */
++	"", "", "", "", "", "", "", "",
++	/* GPIO0_B0 - B7 */
++	"", "", "", "", "", "", "", "",
++	/* GPIO0_C0 - C7 */
++	"", "", "", "", "", "", "", "",
++	/* GPIO0_D0 - D7 */
++	"", "", "", "pin-15 [GPIO0_D3]", "", "", "", "";
++};
++
++&gpio1 {
++	gpio-line-names =
++	/* GPIO1_A0 - A7 */
++	"", "", "", "", "", "", "", "",
++	/* GPIO1_B0 - B7 */
++	"", "", "", "", "", "", "", "",
++	/* GPIO1_C0 - C7 */
++	"", "", "", "", "", "", "", "",
++	/* GPIO1_D0 - D7 */
++	"", "", "", "", "pin-07 [GPIO1_D4]", "", "", "";
++};
++
++&gpio2 {
++	gpio-line-names =
++	/* GPIO2_A0 - A7 */
++	"pin-08 [GPIO2_A0]", "pin-10 [GPIO2_A1]", "pin-11 [GPIO2_A2]",
++	"pin-13 [GPIO2-A3]", "pin-27 [GPIO2_A4]", "pin-28 [GPIO2_A5]",
++	"pin-33 [GPIO2_A6]", "",
++	/* GPIO2_B0 - B7 */
++	"", "", "", "", "pin-26 [GPIO2_B4]", "", "", "pin-36 [GPIO2_B7]",
++	/* GPIO2_C0 - C7 */
++	"pin-32 [GPIO2_C0]", "pin-35 [GPIO2_C1]", "pin-12 [GPIO2_C2]",
++	"pin-38 [GPIO2_C3]", "pin-29 [GPIO2_C4]", "pin-31 [GPIO2_C5]",
++	"pin-37 [GPIO2_C6]", "pin-40 [GPIO2_C7]",
++	/* GPIO2_D0 - D7 */
++	"", "", "", "", "", "", "", "";
++};
++
++&gpio3 {
++	gpio-line-names =
++	/* GPIO3_A0 - A7 */
++	"pin-23 [GPIO3_A0]", "pin-19 [GPIO3_A1]", "pin-21 [GPIO3_A2]",
++	"", "pin-03 [GPIO3_A4]", "", "pin-05 [GPIO3_A6]", "",
++	/* GPIO3_B0 - B7 */
++	"pin-24 [GPIO3_B0]", "", "", "", "", "", "", "",
++	/* GPIO3_C0 - C7 */
++	"", "", "", "", "", "", "", "",
++	/* GPIO3_D0 - D7 */
++	"", "", "", "", "", "", "", "";
++};
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+2.41.0.327.gaa9166bcc0ba
+
 
