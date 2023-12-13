@@ -1,153 +1,165 @@
-Return-Path: <devicetree+bounces-24874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24875-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B16C8118AC
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 17:06:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03E3E8118C2
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 17:10:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E926DB20B1E
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 16:06:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F0561F20F2C
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 16:10:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F79921A1E;
-	Wed, 13 Dec 2023 16:06:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC1D432180;
+	Wed, 13 Dec 2023 16:09:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="C0kQ9t+U"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="pWE8HBU2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-xf30.google.com (mail-qv1-xf30.google.com [IPv6:2607:f8b0:4864:20::f30])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CD8CDB;
-	Wed, 13 Dec 2023 08:06:26 -0800 (PST)
-Received: by mail-qv1-xf30.google.com with SMTP id 6a1803df08f44-67ad531686eso63546526d6.1;
-        Wed, 13 Dec 2023 08:06:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702483584; x=1703088384; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=mV7pcScjZucWWRXnAxSJek2hZSxOGAqXVzogrAoZOIE=;
-        b=C0kQ9t+UDxyRZVsZd4YiiVbV/VH4h+L6ErF5H/fOa6R+1QRm+4jVPAmbOvkfcHgeF3
-         jZ8zwX6L0A8TxjD2lvCtwNPLGIqha62bWYpsQamu7cu9dFe1L3GVwHA0Bdo8vkWB8jkP
-         SEGoMjTAzYmfxi29Ivgiee0i5eUwYJqh/SgVxq94lulKDQIuyaPZGTtNyQwd4MbvPM2/
-         ikDQjHlqxaJOgPDixtncU4TuwaXrFfiVeFJL4lICUOGSIT+yOZqkr+SPoB0Etr4Ltrgl
-         jwh6S+CwSa/ir0iVgrsAtyDGJC4lM2lxwkLA+nJBKZGs1EKajGXWcilnXFaG8l38jLKM
-         GrCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702483584; x=1703088384;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mV7pcScjZucWWRXnAxSJek2hZSxOGAqXVzogrAoZOIE=;
-        b=LxL7WW7sBXgMzS4xjDhEKq3iYZHyGojhkNO1ODcMl2V7gBu6h3bVTo+fkSDctYJ3Ak
-         8iPObG9p99eXfxPrgurtsEu6ZfS2ul72q42QcS+U0h/j9opcATWFEkHnpEf80dWAO2cj
-         uOfre8E+ViCLAx5F8RtT08UkpdYJfKJHD/N69eMKIuVY/J929Q/6h3px6xr/nznytPbL
-         2BHgWtIWo4RmRB/HW1Fyt89corZYb2BZ+Y9TOS3ft0nZAsU4OCR+aluotjerhunaLr+7
-         32XM/FwZiXf/+tWyTtJn6WZjb3vunmGGV5QhjohnT19eT3+MN06k9bdsNoPMojmE+w6o
-         tXMg==
-X-Gm-Message-State: AOJu0YwnGk0Tk19BaYPHAZz4LLSwcGete9H2L2KB848DJ+RvWHsQ6zVD
-	B3MzM0zEDQFUJGtR3Qjrxvjz2mxafc8=
-X-Google-Smtp-Source: AGHT+IGXmvitHaimiJfEzIE4bQb1b+g+FbM+iFhthTlXcxDos1V7s36HFzw+7/wuVmnwUsuUirgsWw==
-X-Received: by 2002:a05:6214:5e85:b0:67e:f80e:56db with SMTP id mm5-20020a0562145e8500b0067ef80e56dbmr1520364qvb.54.1702483584629;
-        Wed, 13 Dec 2023 08:06:24 -0800 (PST)
-Received: from localhost.localdomain (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id h11-20020a0cf8cb000000b0067aa2d86ce3sm1720378qvo.52.2023.12.13.08.06.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Dec 2023 08:06:23 -0800 (PST)
-From: Trevor Woerner <twoerner@gmail.com>
-To: linux-kernel@vger.kernel.org,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: [PATCH v2] arm64: rockchip: dts: rk3328-rock-pi-e: add gpio-line-names
-Date: Wed, 13 Dec 2023 11:05:55 -0500
-Message-ID: <20231213160556.14424-1-twoerner@gmail.com>
-X-Mailer: git-send-email 2.41.0.327.gaa9166bcc0ba
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF076B9
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 08:09:49 -0800 (PST)
+Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20231213160948epoutp02999021b3c058bdf8aa0a49a82f04230c~gb-w3UOfs1565615656epoutp028
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 16:09:48 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20231213160948epoutp02999021b3c058bdf8aa0a49a82f04230c~gb-w3UOfs1565615656epoutp028
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1702483788;
+	bh=afVvJieNT+llfsmtaR1nNoSD0bljlOmyLWrGv/f0GlA=;
+	h=From:To:In-Reply-To:Subject:Date:References:From;
+	b=pWE8HBU2PORXnNdPyW24obJSdQYv7CfFCpLZAupVLrCi1oCQgj/XnJazdTpZQKBan
+	 fi8Y34QQl9ly8VnUgBA+TLY1Utg/Y0Bi1YJ3O9jEONzdq+eH5NIIpfkvIrhWPuGmVT
+	 z1vh/5XiP9DUYh96myTTFJQEWl2Q3uoPNG+HxHxc=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTP id
+	20231213160947epcas5p3325683ce64e485d30828497c7725e703~gb-v9fiYY2618626186epcas5p3p;
+	Wed, 13 Dec 2023 16:09:47 +0000 (GMT)
+Received: from epsmgec5p1new.samsung.com (unknown [182.195.38.174]) by
+	epsnrtp2.localdomain (Postfix) with ESMTP id 4Sr0mn4Mgfz4x9Pt; Wed, 13 Dec
+	2023 16:09:45 +0000 (GMT)
+Received: from epcas5p2.samsung.com ( [182.195.41.40]) by
+	epsmgec5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	DD.92.08567.947D9756; Thu, 14 Dec 2023 01:09:45 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
+	20231213160945epcas5p4968cf82b20ac40bb7a89937f5f83e3b1~gb-t5sIpr1187811878epcas5p4Y;
+	Wed, 13 Dec 2023 16:09:45 +0000 (GMT)
+Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
+	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20231213160945epsmtrp1aea7a274763388f1e005033043e810e8~gb-t41qNv0255102551epsmtrp1d;
+	Wed, 13 Dec 2023 16:09:45 +0000 (GMT)
+X-AuditID: b6c32a44-617fd70000002177-4c-6579d74935e4
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+	epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	15.B3.08817.847D9756; Thu, 14 Dec 2023 01:09:44 +0900 (KST)
+Received: from INBRO000447 (unknown [107.122.12.5]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20231213160943epsmtip15a2583debde02121028b0b3c6ef0368b~gb-sHTVNv0109401094epsmtip1A;
+	Wed, 13 Dec 2023 16:09:42 +0000 (GMT)
+From: "Alim Akhtar" <alim.akhtar@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>, "'Tomasz
+	Figa'" <tomasz.figa@gmail.com>, "'Sylwester Nawrocki'"
+ <s.nawrocki@samsung.com>, "'Linus	Walleij'" <linus.walleij@linaro.org>,
+	"'Rob Herring'" <robh+dt@kernel.org>, "'Conor	Dooley'"
+	<conor+dt@kernel.org>, "'Jaewon Kim'" <jaewon02.kim@samsung.com>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
+	<linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+In-Reply-To: <20231210133915.42112-1-krzysztof.kozlowski@linaro.org>
+Subject: RE: [PATCH] dt-bindings: pinctrl: samsung: correct ExynosAutov920
+ wake-up compatibles
+Date: Wed, 13 Dec 2023 21:39:41 +0530
+Message-ID: <016e01da2dde$c9777610$5c666230$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Content-Language: en-us
+Thread-Index: AQDwuG9IClMSYxFsO+y1snlGxJj/YwKcDPHesmVr46A=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrKJsWRmVeSWpSXmKPExsWy7bCmhq7n9cpUg9blihZr9p5jsph/5Byr
+	xY6GI6wWe19vZbeY8mc5k8Wmx9dYLTbP/8NocXnXHDaLGef3MVm07j3CbnH4TTurxapdfxgd
+	eDx2zrrL7rFpVSebx51re9g8Ni+p9+jbsorR4/MmuQC2qGybjNTElNQihdS85PyUzLx0WyXv
+	4HjneFMzA0NdQ0sLcyWFvMTcVFslF58AXbfMHKAblRTKEnNKgUIBicXFSvp2NkX5pSWpChn5
+	xSW2SqkFKTkFJgV6xYm5xaV56Xp5qSVWhgYGRqZAhQnZGZfOJRZM56pY/uYbSwPjLY4uRk4O
+	CQETiYPnpzN3MXJxCAnsZpS4PuclO0hCSOATo8S3HbwQiW+MEjffbmOD6Wg99psJIrGXUWLr
+	9ivMEB0vGCWmLPUAsdkEdCV2LG5jAykSEfjCLDHr0CcWkASngIvE7qufGUFsYYEEiSnn77KC
+	2CwCqhIrT00A28ArYCnxat9lFghbUOLkzCdgNrOAvMT2t3OYIa5QkPj5dBkrRFxc4uXRI2Bn
+	iwhYSVxe/5QRZLGEwA4OiZ3Ne4ESHECOi8SjBYIQvcISr45vYYewpSRe9rdBlXhILPojBRHO
+	kHi7fD0jhG0vceDKHBaQEmYBTYn1u/QhtvJJ9P5+wgTRySvR0SYEUa0q0fzuKguELS0xsbub
+	FcL2kHj4exYLJNimM0qcnvmAZQKjwiwkT85C8uQsJI/NQti8gJFlFaNkakFxbnpqsmmBYV5q
+	OTy2k/NzNzGC06+Wyw7GG/P/6R1iZOJgPMQowcGsJMJ7ckd5qhBvSmJlVWpRfnxRaU5q8SFG
+	U2DIT2SWEk3OB2aAvJJ4QxNLAxMzMzMTS2MzQyVx3tetc1OEBNITS1KzU1MLUotg+pg4OKUa
+	mAqUfm671np7vmH4JosJz69/rmzONedb5GO9i+NF/pSnldFhaxjuaty/EsTe/upqHufBfacm
+	9/jZJUvLTvgky+K4bgX3owSVp4XbhbeY/pP71BAwNXKR24GKomi5uS/vytaq5fPeYxF7+pHr
+	UILjpZkiKpHfPk6SYu4+z8ie/d2srf3K9Qmfp1zO2Pfi+bMf/Klr4vIW3n50k29thTWTfW3k
+	/vyjPa8n9VXOre/qFbF+919cpPoQh0HT3Ne3v//sLDKa/XpRqVgQy/d4m81sab/dVNX6C3/s
+	/vlo3tTCtzXXy19fMxfe7HDO+oHJlFfZa/qu/jkfolc693HXhPs8y02k3d4X9nlHaBU/kxeQ
+	DFdiKc5INNRiLipOBADeDrEBSAQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprEIsWRmVeSWpSXmKPExsWy7bCSnK7H9cpUg32LTCzW7D3HZDH/yDlW
+	ix0NR1gt9r7eym4x5c9yJotNj6+xWmye/4fR4vKuOWwWM87vY7Jo3XuE3eLwm3ZWi1W7/jA6
+	8HjsnHWX3WPTqk42jzvX9rB5bF5S79G3ZRWjx+dNcgFsUVw2Kak5mWWpRfp2CVwZl84lFkzn
+	qlj+5htLA+Mtji5GTg4JAROJ1mO/mboYuTiEBHYzSuw/8Y8VIiEtcX3jBHYIW1hi5b/n7BBF
+	zxglds3ZzAaSYBPQldixuA3MFhH4wyyxZXk6RNFURomXC5pZQBKcAi4Su69+ZgSxhQXiJF5M
+	vMIMYrMIqEqsPDUBrJlXwFLi1b7LLBC2oMTJmU+AbA4OZgE9ibaNYK3MAvIS29/OYYY4SEHi
+	59NlrBBxcYmXR4+wQ9xgJXF5/VPGCYxCs5BMmoUwaRaSSbOQdC9gZFnFKJlaUJybnltsWGCU
+	l1quV5yYW1yal66XnJ+7iREcbVpaOxj3rPqgd4iRiYPxEKMEB7OSCO/JHeWpQrwpiZVVqUX5
+	8UWlOanFhxilOViUxHm/ve5NERJITyxJzU5NLUgtgskycXBKNTB1bLFYcvhNUVP8pyV5hgJC
+	uyOkFpzPOXa8NfGqbHL4P9NmbS6P0k/Zs/L01kZ3HNDcfOh0yqpzy2ODbjV4dG8MfONnG18f
+	9d5Jd+Xif+HeXwPPtgr6G/31t/v/duHf3wtPpCzN3b1u+3fTWeVd1hH93I2ur2f0iJsqztfi
+	KVlgeJzJ3qjw3ONLapf4u37eetrNUMW2d077GpOTtWyaf5Yo7P52ZWur4frnSzbrLD8b/FpQ
+	6fOj5fNPvH72ZvKuNzlV5acS1rfYRkssyMv4q+Lk6/tml+bbHXlvjrvta3l0wqqxbNvKnA/S
+	H9U/aq5zSjL/9cdo21lt5suGy1+8cj365KAJQ7fPteRjBw4mr3XsVWIpzkg01GIuKk4EAJMG
+	Vy4lAwAA
+X-CMS-MailID: 20231213160945epcas5p4968cf82b20ac40bb7a89937f5f83e3b1
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20231210133923epcas5p2b8c2e0d2bd5f54a338deb13ccde8f9ba
+References: <CGME20231210133923epcas5p2b8c2e0d2bd5f54a338deb13ccde8f9ba@epcas5p2.samsung.com>
+	<20231210133915.42112-1-krzysztof.kozlowski@linaro.org>
 
-Add names to the pins of the general-purpose expansion header as given
-in the Radxa GPIO page[1] following the conventions in the kernel
-documentation[2] to make it easier for users to correlate the pins with
-functions when using utilities such as 'gpioinfo'.
 
-Signed-off-by: Trevor Woerner <twoerner@gmail.com>
----
-changes in v2:
-- fix subject from "amd64..." to "arm64..."
----
- .../boot/dts/rockchip/rk3328-rock-pi-e.dts    | 53 +++++++++++++++++++
- 1 file changed, 53 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
-index 018a3a5075c7..3169c0854061 100644
---- a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
-@@ -388,3 +388,56 @@ &usbdrd3 {
- &usb_host0_ehci {
- 	status = "okay";
- };
-+
-+&gpio0 {
-+	gpio-line-names =
-+	/* GPIO0_A0 - A7 */
-+	"", "", "", "", "", "", "", "",
-+	/* GPIO0_B0 - B7 */
-+	"", "", "", "", "", "", "", "",
-+	/* GPIO0_C0 - C7 */
-+	"", "", "", "", "", "", "", "",
-+	/* GPIO0_D0 - D7 */
-+	"", "", "", "pin-15 [GPIO0_D3]", "", "", "", "";
-+};
-+
-+&gpio1 {
-+	gpio-line-names =
-+	/* GPIO1_A0 - A7 */
-+	"", "", "", "", "", "", "", "",
-+	/* GPIO1_B0 - B7 */
-+	"", "", "", "", "", "", "", "",
-+	/* GPIO1_C0 - C7 */
-+	"", "", "", "", "", "", "", "",
-+	/* GPIO1_D0 - D7 */
-+	"", "", "", "", "pin-07 [GPIO1_D4]", "", "", "";
-+};
-+
-+&gpio2 {
-+	gpio-line-names =
-+	/* GPIO2_A0 - A7 */
-+	"pin-08 [GPIO2_A0]", "pin-10 [GPIO2_A1]", "pin-11 [GPIO2_A2]",
-+	"pin-13 [GPIO2-A3]", "pin-27 [GPIO2_A4]", "pin-28 [GPIO2_A5]",
-+	"pin-33 [GPIO2_A6]", "",
-+	/* GPIO2_B0 - B7 */
-+	"", "", "", "", "pin-26 [GPIO2_B4]", "", "", "pin-36 [GPIO2_B7]",
-+	/* GPIO2_C0 - C7 */
-+	"pin-32 [GPIO2_C0]", "pin-35 [GPIO2_C1]", "pin-12 [GPIO2_C2]",
-+	"pin-38 [GPIO2_C3]", "pin-29 [GPIO2_C4]", "pin-31 [GPIO2_C5]",
-+	"pin-37 [GPIO2_C6]", "pin-40 [GPIO2_C7]",
-+	/* GPIO2_D0 - D7 */
-+	"", "", "", "", "", "", "", "";
-+};
-+
-+&gpio3 {
-+	gpio-line-names =
-+	/* GPIO3_A0 - A7 */
-+	"pin-23 [GPIO3_A0]", "pin-19 [GPIO3_A1]", "pin-21 [GPIO3_A2]",
-+	"", "pin-03 [GPIO3_A4]", "", "pin-05 [GPIO3_A6]", "",
-+	/* GPIO3_B0 - B7 */
-+	"pin-24 [GPIO3_B0]", "", "", "", "", "", "", "",
-+	/* GPIO3_C0 - C7 */
-+	"", "", "", "", "", "", "", "",
-+	/* GPIO3_D0 - D7 */
-+	"", "", "", "", "", "", "", "";
-+};
--- 
-2.41.0.327.gaa9166bcc0ba
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Sent: Sunday, December 10, 2023 7:09 PM
+> To: Tomasz Figa <tomasz.figa@gmail.com>; Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org>; Sylwester Nawrocki
+> <s.nawrocki@samsung.com>; Alim Akhtar <alim.akhtar@samsung.com>;
+> Linus Walleij <linus.walleij@linaro.org>; Rob Herring
+<robh+dt@kernel.org>;
+> Conor Dooley <conor+dt@kernel.org>; Jaewon Kim
+> <jaewon02.kim@samsung.com>; linux-arm-kernel@lists.infradead.org;
+> linux-samsung-soc@vger.kernel.org; linux-gpio@vger.kernel.org;
+> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org
+> Subject: [PATCH] dt-bindings: pinctrl: samsung: correct ExynosAutov920
+> wake-up compatibles
+> 
+> ExynosAutov920 SoC wake-up pin controller has different register layout
+> than Exynos7, thus it should not be marked as compatible.  Neither DTS nor
+> Linux driver was merged yet, so the change does not impact ABI.
+> 
+> Cc: Jaewon Kim <jaewon02.kim@samsung.com>
+> Fixes: 904140fa4553 ("dt-bindings: pinctrl: samsung: use Exynos7 fallbacks
+for
+> newer wake-up controllers")
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+Reviewed-by: Alim Akhtar <alim.akhtar@samsung.com>
+
+> ---
+> 
+.
+.
+.
+--
+> 2.34.1
+> 
+
 
 
