@@ -1,137 +1,149 @@
-Return-Path: <devicetree+bounces-24770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-24772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D44A18112C2
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 14:24:41 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19E068112CA
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 14:26:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F47928224C
-	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 13:24:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4BF1D1C209CE
+	for <lists+devicetree@lfdr.de>; Wed, 13 Dec 2023 13:26:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B3132C876;
-	Wed, 13 Dec 2023 13:24:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1911D2CCB0;
+	Wed, 13 Dec 2023 13:26:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCC9CE3;
-	Wed, 13 Dec 2023 05:24:32 -0800 (PST)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-	by ex01.ufhost.com (Postfix) with ESMTP id 1D5DA24E246;
-	Wed, 13 Dec 2023 21:24:24 +0800 (CST)
-Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 13 Dec
- 2023 21:24:23 +0800
-Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX061.cuchost.com
- (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 13 Dec
- 2023 21:24:23 +0800
-Received: from EXMBX061.cuchost.com ([fe80::413f:35c8:bf4f:599a]) by
- EXMBX061.cuchost.com ([fe80::413f:35c8:bf4f:599a%14]) with mapi id
- 15.00.1497.044; Wed, 13 Dec 2023 21:24:23 +0800
-From: Leyfoon Tan <leyfoon.tan@starfivetech.com>
-To: Conor Dooley <conor@kernel.org>, JeeHeng Sia
-	<jeeheng.sia@starfivetech.com>
-CC: "kernel@esmil.dk" <kernel@esmil.dk>, "robh+dt@kernel.org"
-	<robh+dt@kernel.org>, "krzysztof.kozlowski+dt@linaro.org"
-	<krzysztof.kozlowski+dt@linaro.org>, "krzk@kernel.org" <krzk@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "paul.walmsley@sifive.com"
-	<paul.walmsley@sifive.com>, "palmer@dabbelt.com" <palmer@dabbelt.com>,
-	"aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>, "daniel.lezcano@linaro.org"
-	<daniel.lezcano@linaro.org>, "tglx@linutronix.de" <tglx@linutronix.de>,
-	"anup@brainfault.org" <anup@brainfault.org>, "gregkh@linuxfoundation.org"
-	<gregkh@linuxfoundation.org>, "jirislaby@kernel.org" <jirislaby@kernel.org>,
-	"michal.simek@amd.com" <michal.simek@amd.com>, Michael Zhu
-	<michael.zhu@starfivetech.com>, "drew@beagleboard.org"
-	<drew@beagleboard.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-riscv@lists.infradead.org"
-	<linux-riscv@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, Conor Dooley <conor.dooley@microchip.com>
-Subject: RE: [PATCH v3 2/6] dt-bindings: riscv: Add StarFive JH8100 SoC
-Thread-Topic: [PATCH v3 2/6] dt-bindings: riscv: Add StarFive JH8100 SoC
-Thread-Index: AQHaJE/+gN06PgKn10+OgNsQzAP7lrCmtRSAgACQEsA=
-Date: Wed, 13 Dec 2023 13:24:23 +0000
-Message-ID: <84b808cb028c40a29c9f81011931afba@EXMBX061.cuchost.com>
-References: <20231201121410.95298-1-jeeheng.sia@starfivetech.com>
- <20231201121410.95298-3-jeeheng.sia@starfivetech.com>
- <20231213-imminent-favorable-a7d25e6555af@spud>
-In-Reply-To: <20231213-imminent-favorable-a7d25e6555af@spud>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-ms-exchange-transport-fromentityheader: Hosted
-x-yovoleruleagent: yovoleflag
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6848391;
+	Wed, 13 Dec 2023 05:26:29 -0800 (PST)
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-5e263e43ff2so12275317b3.0;
+        Wed, 13 Dec 2023 05:26:29 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702473988; x=1703078788;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=z/dW7y/88rRyjaO7r00R6o21E2y2IyUgTVUEboam7dg=;
+        b=Oz+yXYJpq+Oct7FrkI1dqm8rpVBHqo2R5SHLaG6h5EcjNQHCdNMHay8Q8EKkw6wB7c
+         tTq46YkMbHxT8AJiBIFuriCIysg403prfas+oCNFJQiYgOpZTj3tpOlfm7cjko2pPebU
+         +b9+kC4xJu2thZPy8lQGb37eVcS1h9DcKHDj7tq0DldInrUzBH1vxgLvrrmDMB6ZStBq
+         7wjcEB09iiIBATMaoOPCnBL7of9PVe3ieHGxSDsxlzRGq0xQ7dy9vowALELBukDivO2V
+         B8PQWroNhq6H8Un+pPhkHol8XrcnRf+zJEKtZaNfuM3q4V3UjQtvtrazJirzkEWkyYzc
+         shGQ==
+X-Gm-Message-State: AOJu0YyksD0PKXPM92NAJatNFvU6YrKtsSLFDqVdmAtEPZgIA8Wzv5bG
+	je4K5S2JU2pyD7o2xJt0qYVuexnX64qApg==
+X-Google-Smtp-Source: AGHT+IGxXAV5YJNHjGtnfjrTF6PsWA95v4gJZvwnyes1B2rIui/NwQOTqCwPeq3xFEYM+5W4Z7whrw==
+X-Received: by 2002:a81:df06:0:b0:5d7:1940:53c2 with SMTP id c6-20020a81df06000000b005d7194053c2mr6746365ywn.58.1702473988427;
+        Wed, 13 Dec 2023 05:26:28 -0800 (PST)
+Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com. [209.85.219.178])
+        by smtp.gmail.com with ESMTPSA id u11-20020a0deb0b000000b005af5bb5e840sm4666932ywe.34.2023.12.13.05.26.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Dec 2023 05:26:28 -0800 (PST)
+Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-da819902678so6335862276.1;
+        Wed, 13 Dec 2023 05:26:28 -0800 (PST)
+X-Received: by 2002:a25:e655:0:b0:dbc:bbff:68fe with SMTP id
+ d82-20020a25e655000000b00dbcbbff68femr1786964ybh.76.1702473988098; Wed, 13
+ Dec 2023 05:26:28 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20231207070700.4156557-1-claudiu.beznea.uj@bp.renesas.com> <20231207070700.4156557-2-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20231207070700.4156557-2-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 13 Dec 2023 14:26:16 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWfh7U6WqAgO85bLwZDKWpMgmviNdNfKRYtcxs4VEXsgQ@mail.gmail.com>
+Message-ID: <CAMuHMdWfh7U6WqAgO85bLwZDKWpMgmviNdNfKRYtcxs4VEXsgQ@mail.gmail.com>
+Subject: Re: [PATCH v2 01/11] clk: renesas: rzg2l-cpg: Check reset monitor registers
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: s.shtylyov@omp.ru, davem@davemloft.net, edumazet@google.com, 
+	kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	geert+renesas@glider.be, magnus.damm@gmail.com, mturquette@baylibre.com, 
+	sboyd@kernel.org, linus.walleij@linaro.org, 
+	prabhakar.mahadev-lad.rj@bp.renesas.com, biju.das.jz@bp.renesas.com, 
+	linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Claudiu,
 
+On Thu, Dec 7, 2023 at 8:08=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev> w=
+rote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> The hardware manual of both RZ/G2L and RZ/G3S specifies that the reset
+> monitor registers need to be interrogated when the reset signals are
+> toggled (chapters "Procedures for Supplying and Stopping Reset Signals"
+> and "Procedure for Activating Modules"). Without this, there is a chance
+> that different modules (e.g., Ethernet) to not be ready after their reset
+> signal is toggled, leading to failures (on probe or resume from deep slee=
+p
+> states).
+>
+> The same indications are available for RZ/V2M for TYPE-B reset controls.
+>
+> Fixes: ef3c613ccd68 ("clk: renesas: Add CPG core wrapper for RZ/G2L SoC")
+> Fixes: 8090bea32484 ("clk: renesas: rzg2l: Add support for RZ/V2M reset m=
+onitor reg")
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> ---
+>
+> Changes in v2:
+> - adapted for CPG versions with monbit (e.g., RZ/V2M)
+> - added a fixes tag for RZ/V2M
+> - fixed typos in commit description
 
-> -----Original Message-----
-> From: Conor Dooley <conor@kernel.org>
-> Sent: Wednesday, December 13, 2023 8:43 PM
-> To: JeeHeng Sia <jeeheng.sia@starfivetech.com>
-> Cc: kernel@esmil.dk; robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.or=
-g;
-> krzk@kernel.org; conor+dt@kernel.org; paul.walmsley@sifive.com;
-> palmer@dabbelt.com; aou@eecs.berkeley.edu; daniel.lezcano@linaro.org;
-> tglx@linutronix.de; anup@brainfault.org; gregkh@linuxfoundation.org;
-> jirislaby@kernel.org; michal.simek@amd.com; Michael Zhu
-> <michael.zhu@starfivetech.com>; drew@beagleboard.org;
-> devicetree@vger.kernel.org; linux-riscv@lists.infradead.org; linux-
-> kernel@vger.kernel.org; Leyfoon Tan <leyfoon.tan@starfivetech.com>; Conor
-> Dooley <conor.dooley@microchip.com>
-> Subject: Re: [PATCH v3 2/6] dt-bindings: riscv: Add StarFive JH8100 SoC
->=20
-> On Fri, Dec 01, 2023 at 08:14:06PM +0800, Sia Jee Heng wrote:
-> > Add device tree bindings for the StarFive JH8100 RISC-V SoC.
-> >
-> > Signed-off-by: Sia Jee Heng <jeeheng.sia@starfivetech.com>
-> > Reviewed-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
-> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> > ---
-> >  Documentation/devicetree/bindings/riscv/starfive.yaml | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/riscv/starfive.yaml
-> > b/Documentation/devicetree/bindings/riscv/starfive.yaml
-> > index cc4d92f0a1bf..12d7844232b8 100644
-> > --- a/Documentation/devicetree/bindings/riscv/starfive.yaml
-> > +++ b/Documentation/devicetree/bindings/riscv/starfive.yaml
-> > @@ -30,6 +30,10 @@ properties:
-> >                - starfive,visionfive-2-v1.3b
-> >            - const: starfive,jh7110
-> >
-> > +      - items:
-> > +          - enum:
-> > +              - starfive,jh8100-evb
->=20
-> Hmm, reading some of the other threads it appears that the evaluation
-> platform that you guys have is actually just an FPGA? Could you please pr=
-ovide
-> more information as to what this "evb" actually is?
->=20
-> If it is just an FPGA-based evaluation platform I don't think that we wan=
-t to
-> merge patches for the platform. I'm fine with patches adding peripheral
-> support, but the soc/board dts files and things like pinctrl or clock dri=
-vers I am
-> not keen on.
-> Perhaps Emil also has an opinion on this.
->=20
-> Thanks,
-> Conor.
+Thanks for the update!
 
-We have been testing on the FPGA/emulator for pre-silicon validation. It wi=
-ll have real silicon SoC next year.
+> --- a/drivers/clk/renesas/rzg2l-cpg.c
+> +++ b/drivers/clk/renesas/rzg2l-cpg.c
+> @@ -1416,12 +1416,27 @@ static int rzg2l_cpg_assert(struct reset_controll=
+er_dev *rcdev,
+>         struct rzg2l_cpg_priv *priv =3D rcdev_to_priv(rcdev);
+>         const struct rzg2l_cpg_info *info =3D priv->info;
+>         unsigned int reg =3D info->resets[id].off;
+> -       u32 value =3D BIT(info->resets[id].bit) << 16;
+> +       u32 mask =3D BIT(info->resets[id].bit);
+> +       s8 monbit =3D info->resets[id].monbit;
+> +       u32 value =3D mask << 16;
+>
+>         dev_dbg(rcdev->dev, "assert id:%ld offset:0x%x\n", id, CLK_RST_R(=
+reg));
+>
+>         writel(value, priv->base + CLK_RST_R(reg));
+> -       return 0;
+> +
+> +       if (info->has_clk_mon_regs) {
+> +               reg =3D CLK_MRST_R(reg);
+> +       } else if (monbit >=3D 0) {
+> +               reg =3D CPG_RST_MON;
+> +               mask =3D BIT(monbit);
+> +       } else {
+> +               /* Wait for at least one cyc le of the RCLK clock (@ ca. =
+32 kHz) */
 
-Regards
-Ley Foon
+cycle
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-clk-for-v6.8 with the above fixed.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
