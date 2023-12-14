@@ -1,156 +1,229 @@
-Return-Path: <devicetree+bounces-25608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25609-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39FC5813E02
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 00:08:02 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46938813E4B
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 00:34:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A3A04B21DE5
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 23:07:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A78C6B21179
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 23:34:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E0A066AC4;
-	Thu, 14 Dec 2023 23:07:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB01E6C6F3;
+	Thu, 14 Dec 2023 23:34:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="m2d+qd37"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FucQ5lx9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2108.outbound.protection.outlook.com [40.107.114.108])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F3C5224DF;
-	Thu, 14 Dec 2023 23:07:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bEdC9eEBRK+1FSOb8Sl6MJfpU4SUF/j81kTCwdhiJjMG7U5ybhPaLUN+GYIEx4Q5GqqwKoPG6iIkN3SXGxAAeMJEHy+9Npw5pPxNkcemF7T93ivHTOBU4VLcyDsjFzZWW/XPQgzVTAfENGjZ11UV6k8vhHo2wHugOzRsuTnQVfekDIUz12qhvwgueMa5Y2rCVX8VqxtypoloJREm4Jsn3Ok1dWlhJxQUdUkhMjTZRWddHWcoNPpbPn1i1wlaxOYgdoEfdbWDSMwtxUstT5tJWFf5/GbaUnNoUxS7r7EdvzHy8HWSJQbPqUDh0Oilyczt9BG3zJSEAzl4vy71AOGsNw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LP0T5GixPraMcgzK031XcBJ9qzFZ4O9KGF1Tlntxv2I=;
- b=QvW4Xo2JIUXHvJXdha2dxoiu1sQzlbyLD4mKBobJ9Yrheh1hchHkGgMkuiswq381GIZwX/7lRFjdyMVIxEDXMvWIsmPMfXtDMAVrjm8GS6Ykhd7twe9+h29+4eyJOO78f4eLOfqP3+PRg+2q5MiuJKwxTLkksYbyjaiZokqXHSYifWogLUZVhwQqJM6UGv+bjQfozaMh4y78qJsUsgp4BixGk5Tzio9J50qQ95cSNPYWKhhRUXQYqSom9wD2sPHEco7zBrn4BPQymVDw+DypJLECMaN6BY5vsXIONv6DqEuGvpQ8bEqesGxLFfwNINRt7yOrt2I1Que0gSFnSoh1nw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LP0T5GixPraMcgzK031XcBJ9qzFZ4O9KGF1Tlntxv2I=;
- b=m2d+qd37qNk+iyEYi6uvJJNbrjJHq4k9pCh9vtfqM2s9olDAo5QrAio4XKNUnS/cLs7+71JaNAv94brz/afQSmI6D3brBQ83DDBoW1DbDAeqr78da7CVIKew/7auCLfeAK4eXAX71wbOki/HPsj/mhD/9djTIRl7D/5NS2LF3Gk=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11) by TYAPR01MB5660.jpnprd01.prod.outlook.com
- (2603:1096:404:8059::6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7113.10; Thu, 14 Dec
- 2023 23:07:49 +0000
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::5732:673b:846c:ed92]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::5732:673b:846c:ed92%4]) with mapi id 15.20.7113.010; Thu, 14 Dec 2023
- 23:07:49 +0000
-Message-ID: <878r5wpem3.wl-kuninori.morimoto.gx@renesas.com>
-From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Frank Rowand <frowand.list@gmail.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Aymeric Aillet <aymeric.aillet@iot.bzh>,
-	Yusuke Goda <yusuke.goda.sx@renesas.com>
-Subject: Re: [PATCH v4 4/4] drivers: clk: renesas: ignore all clocks which are assinged to non-Linux system
-In-Reply-To: <CAMuHMdUx-nm6k9LXbUJAJ78ChFYHVcmGcoz0YhWyos7h99R4wg@mail.gmail.com>
-References: <87wmtlo2zs.wl-kuninori.morimoto.gx@renesas.com>
-	<87r0jto2yq.wl-kuninori.morimoto.gx@renesas.com>
-	<CAMuHMdUx-nm6k9LXbUJAJ78ChFYHVcmGcoz0YhWyos7h99R4wg@mail.gmail.com>
-User-Agent: Wanderlust/2.15.9 Emacs/27.1 Mule/6.0
-Content-Type: text/plain; charset=US-ASCII
-Date: Thu, 14 Dec 2023 23:07:48 +0000
-X-ClientProxiedBy: TYCPR01CA0046.jpnprd01.prod.outlook.com
- (2603:1096:405:1::34) To TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5D786C6EB
+	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 23:34:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-50dfac6c0beso39724e87.2
+        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 15:34:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702596839; x=1703201639; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=MOPVtivbJXEovKvjd/c9RVV/5FKLHB9dKwJGQ2mAJU4=;
+        b=FucQ5lx9uvvIiLN7FgSxoPMispuqKXjLqd/aa91wpU6/AG63uhy82I878FZIDiE4lt
+         2ekSaU+DMTqJrN0M9G72zceHKBodU8T0L3UAS00fWXEwO1wv+Wa5Qxjebv8nELIXVCOh
+         +gvX3bG36fiXwRkbPd5JBoaCPsJN4Wjj2PDLA4kcZ0EUwo/SHnspRGCU9bPBUqMU6wVl
+         9amNoNaGV2fASwee+blbF8G+uwgDM+LyuIVuQO/j6t2uU7jpXl00GNqEaXk5KPo8A9vd
+         WK3DJkDeYSCJVQJ1ArdBW9b5c7NcfcWbjlkDHWSIHmSS5EJk8uJSPm/DVDu1POgnpGUe
+         0xNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702596839; x=1703201639;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MOPVtivbJXEovKvjd/c9RVV/5FKLHB9dKwJGQ2mAJU4=;
+        b=eS8FGgogQ3wCla/xPafOb/5hhJFUfnEey6Zobmob4qdD/uu2d2LSPwSBBsj041mUmo
+         vqkDPgjf8sG1WhEv99SUeZ1ar+2Jq/T7+PfYR/8ih6epbYN0qUo5z2lwwhiW98VOyFyk
+         yWBoggtjEpCbujCp/VwrFQy33d0UyKPIZhGhyB7d8P+w/mMHD3slpQvM662XwHT60Pu0
+         Q7SAoEoQV30/CGGScKhd9hHWiPs4VrFYZAVuK0OVauix/u1aUk1PPhrV8uXKJScQmXU3
+         wUvioM3l4ooOeIGZlkxzAKS685tKmhbiEUJLtU9p0nNrwzDyj/WUJm5Q74+x5vmbLUgu
+         Gkpw==
+X-Gm-Message-State: AOJu0YxX+QvkG5Dq9qY7Oaz3knlqEP4xRJO1g7ZyRN5wy4wiWZXY5rUb
+	0YFs2m+s2K5sYTHB5fwdonxGCQ==
+X-Google-Smtp-Source: AGHT+IHesYVTjesNoJaPcv4xPErzKm8Fnr3IMOlvXWerPU86Yd/hJDSPZ15AdJ4AVyV2PSALV0hjhw==
+X-Received: by 2002:a05:6512:220f:b0:50e:1bf3:62fc with SMTP id h15-20020a056512220f00b0050e1bf362fcmr851485lfu.97.1702596838740;
+        Thu, 14 Dec 2023 15:33:58 -0800 (PST)
+Received: from [172.30.205.72] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id z15-20020a195e4f000000b0050be0049075sm2016600lfi.251.2023.12.14.15.33.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Dec 2023 15:33:58 -0800 (PST)
+Message-ID: <7d90a4d3-9108-44e3-8398-ba1ac2b599ca@linaro.org>
+Date: Fri, 15 Dec 2023 00:33:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|TYAPR01MB5660:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1e917c6c-04ab-4105-2bd1-08dbfcf97dbf
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	miD7tj/trni0V/ReaMQ+17cqHYV5seM3+wmtX/jwUAe8pMhgC4UeFtW6jy+IRWBqLI7tnAMoKvzPTXGL2SEQa9/0JKEa0Mu/1UcteZuJJQeH4J0TmCCQxbIbVvU0Gki7pKZZy18/tFrck0xHYstGG1d9f/xBEYsV1ET+UrbiFH/U1cZXqv3wK3vRSwkell7Sk1QZoh/VSB+D1Z2bRbVD3uF7PvdAUjN/fX9x09nFsUjaYs+a9zxjfmgSWrRSTPHkq0xV2sKM4/3uVCVLKtoWKresh7bcURXYTTmxhldcGIXkl/ib6MmVsb+RQ33fCXGHO/mF+MNsuptJFHnNUIwzjZgjXzWfV9AKw0ihAFPqPe4lM5Vhqx1tUTa4V77I6AWCCNkUP/MimwPWzqjvHQ6LuBtz36Si9FF9kJymJRvPwW+gpLLSakor3SedUFcoGhgYNcy8bHcRryfs8igldZjD264+pdRPvO/MeC+M+Lnmo7Ux3CzskHdIPCKDBhpHgAhU3svgAzuYClIUnMWIUiK2Wn4Np/RKnE1LJjnxi8Use1xmbCQcT5c1PV9wbo6luN0jTxU/z7nfyFvilkrgmMS7S9HLj5uR4sx6V3ZG5xvts5+VKzj8fOtCa7mdclDV5LLq
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(346002)(39860400002)(136003)(396003)(366004)(230922051799003)(64100799003)(186009)(1800799012)(451199024)(26005)(2616005)(107886003)(6506007)(52116002)(6512007)(5660300002)(7416002)(4326008)(41300700001)(2906002)(4744005)(478600001)(6486002)(8676002)(8936002)(66946007)(316002)(6916009)(54906003)(66476007)(66556008)(36756003)(86362001)(38100700002)(38350700005);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?/0RtO5jhlfjQJaCUO5M2pTtyrrNbOKjJL1kaVMFN7boN9iSMDztMgmwZfx/B?=
- =?us-ascii?Q?XgdMnQ21ni0jIN6oDAyfu9kVwJWWOjlcP+pzyTIsBvT1Z95DPmTfIduAHMrh?=
- =?us-ascii?Q?EzzefVOf6ozIwNyL3Jzp5bj0tNLlYMfte2U7N0/Ttzau7eCiigiBp8aq37zW?=
- =?us-ascii?Q?TCgCg1839t4cuYWi+N9z/JlvH+bGO9XLc6KkOPwRswbLQN+nnxg3q1caUbaC?=
- =?us-ascii?Q?/YZyqwQAfXAbS7BIQ3B53Hln/Bxuw1AEWcMh97snKrKe+OWxYXJJja1nZ7Ww?=
- =?us-ascii?Q?oc1qRtvhYSDFHTbeNyiuYhV/ZNADEQwH/ImJ2pmgwI9n4Kvf0Spe5lIhVly9?=
- =?us-ascii?Q?34uHynoXXeCFJYsOksXrdiO6heZYxm7qzTKwUlpFZYFqbCcalQMw5zRXweFx?=
- =?us-ascii?Q?KDVkIf0+TwFb5uJxsxQ2yWZseFvCzf9fBU+mFNyFpTY7hmhSj1HuRGC4YcVI?=
- =?us-ascii?Q?DSBlk5rKPXh/7PN0Wy99lkrbF1V46YHnP3sz4utXKlf3aKzJvxrI8eRofQa1?=
- =?us-ascii?Q?cxMvHlcA1A0/ASde5JWj7/2EN6C0Q+UkpfERksFHIRuJkGLgypi8Ly6c716d?=
- =?us-ascii?Q?EptxOgwigdIOoJS5o0fVc1Jqt87PziQmr26dT9wthHk4d19r4LKdnw2kThqj?=
- =?us-ascii?Q?4jaWM3F+kdS0RrfkYk0pRUN71PFHs+lRhm1zZfU1+BG/vbr/NI2TaoOgro+Q?=
- =?us-ascii?Q?UpBHoDbNiEYX6JRFp60tHAH4zdWTQJsMWXD825yEElcIejMkF8UqaQSBk49N?=
- =?us-ascii?Q?K3lYLw8sjIwRpoDspDi7fY2rg3h7hRQ665dtOUby/ARea4F4UBjmMYhkUpF6?=
- =?us-ascii?Q?MC8kPMhmMIt6WJKScIv5rmqsZcS5lM81ZrS4gZQZeji7CcccDmVuxzNYdsUj?=
- =?us-ascii?Q?kJbQOxqsy4KmG5Og9d64tvf/GShIWD144Ms/Uw/C9fT8eVgwOU9rgy6uyYoD?=
- =?us-ascii?Q?TfZbPJgVWLQxwlf2lFfLXYNLWx2b6p7t9urMoJ/kUbj9uSnSRk1WZgU0Ddc/?=
- =?us-ascii?Q?XbHI8uj7Pknr4cMARBRhj5diX/fHa/mx6Bx+4bOsREPpCTPJxquDQfujyn4s?=
- =?us-ascii?Q?oGnLiq8aecaD7y7pK/MnrNkKv0GCg7U7C4q8See/JcSjRxrF6rPXg1IHCWwf?=
- =?us-ascii?Q?h1ftqOC43GouoMZGSAI6aBishfZ1FiqBtpZ0XYvFKUJf7L0gxizv/FoHQxwL?=
- =?us-ascii?Q?vLGQMdnFDV/XicAAfMg8gpLBJlsjSkwGP5ad5AqOhelAD953upmPmG2H2OhR?=
- =?us-ascii?Q?gx2kVg1swSFSB98qZ87dUHYx3t1iqyZ8u1JEGJYskirJZEVzruNEiN3l+KfA?=
- =?us-ascii?Q?COTQivY1wgTpycC1ms2jpxZ+eLKSvbF/jAXaR/GxpZe8+leppkrsGe19v4Gz?=
- =?us-ascii?Q?ORCAoPTWrP6LfmR84ztQl2H3f+5lGf4QID3RDiKLBX8GubsmGVK4UjHuattP?=
- =?us-ascii?Q?UWn7ZcgWNNUvFC8iMOvYNnc1x8sm5h30vIbM1IubkQWP8GSmydXeXC5t+p40?=
- =?us-ascii?Q?KCbyTadovbb+vbwyQuNWIY0vBINmkeviH/VV73kLGWK2hq6JOtWjOzbUAMUH?=
- =?us-ascii?Q?AgwctVEzu+UHZm79Y17VuSOAROJkxYgfc4YHqOaJK2gNJvC9B1+RAgs99jlN?=
- =?us-ascii?Q?qPxWMJN3+0nUiTsjLDRfnT8=3D?=
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1e917c6c-04ab-4105-2bd1-08dbfcf97dbf
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Dec 2023 23:07:49.0668
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qAUuBMdr2SXop8zA+ud0mzqgg9LQrU1YGNvXXGOxRtkvf5rgJYvEy5APOFTobmek8SMGwttPrhhxZGogGDbrECZkDuKAOSSOVweMeA+iNMb9ZUg0FC1aEjHcwsOZEnOn
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYAPR01MB5660
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] arm64: dts: qcom: x1e80100: Add more support
+To: Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Rajendra Nayak <quic_rjendra@quicinc.com>
+References: <20231215-x1e80100-dts-missing-nodes-v3-0-c4e8d186adf2@linaro.org>
+ <20231215-x1e80100-dts-missing-nodes-v3-1-c4e8d186adf2@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20231215-x1e80100-dts-missing-nodes-v3-1-c4e8d186adf2@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
 
-Hi Geert
 
-Thank you for your reveiw
-
-> > +static void __init cpg_mssr_reserved_exit(struct cpg_mssr_priv *priv)
-> > +{
-> > +       kfree(priv->reserved_ids);
-> > +}
+On 12/14/23 23:48, Abel Vesa wrote:
+> Add nodes for the following:
+> - ADSP and CDSP
+> - IPCC
+> - USB SubSys 0, 1 and 2 (along with the PHYs)
+> - PCIe 4 and 6 and related PHYs
+> - DISP, GPU, TCSR and CAM clock controllers
+> - AOSS QMP
+> - Display controllers (along with the PHYs)
 > 
-> This function is called only once, so you might want to inline it manually.
+> Co-developed-by: Rajendra Nayak <quic_rjendra@quicinc.com>
+> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
+[...]
 
-I want to keep init()/exit() pair because it is easy to understand.
+> +
+> +			interrupts-extended = <&intc GIC_SPI 370 IRQ_TYPE_LEVEL_HIGH>,
+> +					      <&pdc 10 IRQ_TYPE_EDGE_RISING>,
+> +					      <&pdc 57 IRQ_TYPE_EDGE_RISING>,
+> +					      <&pdc 58 IRQ_TYPE_LEVEL_HIGH>;
+the interrupt types seem wrong (ss vs dp/dm lvl vs edge, looks like a
+cut-n-paste reordering mistake)
 
-I will consider other comment and post v5 patch next week
+btw the edge-triggered ones should be _BOTH, see Johan's
+recent treewide cleanups
+[...]
+
+> +			usb_2_dwc3: usb@a200000 {
+> +				compatible = "snps,dwc3";
+> +				reg = <0 0x0a200000 0 0xcd00>;
+> +				interrupts = <GIC_SPI 241 IRQ_TYPE_LEVEL_HIGH>;
+> +				iommus = <&apps_smmu 0x14e0 0x0>;
+> +				phys = <&usb_2_hsphy>;
+> +				phy-names = "usb2-phy";
+maximum-speed = "high-speed"
+
+would be fitting here as well
+[...]
+
+> +			interrupts-extended = <&intc GIC_SPI 371 IRQ_TYPE_LEVEL_HIGH>,
+> +					      <&pdc 17 IRQ_TYPE_LEVEL_HIGH>,
+> +					      <&pdc 15 IRQ_TYPE_EDGE_RISING>,
+> +					      <&pdc 61 IRQ_TYPE_EDGE_RISING>;
+edges
+[...]
+
+> +			interrupts-extended = <&intc GIC_SPI 372 IRQ_TYPE_LEVEL_HIGH>,
+> +					      <&pdc 47 IRQ_TYPE_LEVEL_HIGH>,
+> +					      <&pdc 11 IRQ_TYPE_EDGE_RISING>,
+> +					      <&pdc 60 IRQ_TYPE_EDGE_RISING>;
+edges
+[...]
+
+> +		mdss: display-subsystem@ae00000 {
+> +			compatible = "qcom,x1e80100-mdss";
+> +			reg = <0 0x0ae00000 0 0x1000>;
+> +			reg-names = "mdss";
+> +
+> +			interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +			clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
+> +				 <&gcc GCC_DISP_AHB_CLK>,
+> +				 <&gcc GCC_DISP_HF_AXI_CLK>,
+> +				 <&dispcc DISP_CC_MDSS_MDP_CLK>;
+no -names?
+
+> +
+> +			assigned-clocks = <&dispcc DISP_CC_MDSS_MDP_CLK_SRC>;
+> +			assigned-clock-parents = <&dispcc DISP_CC_PLL0>;
+raised eyebrow emoji - why would this be necessary?
+
+> +
+> +			resets = <&dispcc DISP_CC_MDSS_CORE_BCR>;
+> +
+> +			interconnects = <&mmss_noc MASTER_MDP 0 &gem_noc SLAVE_LLCC 0>,
+QCOM_ICC_TAG_ALWAYS
+
+[...]
+
+> +				assigned-clocks = <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
+> +				assigned-clock-rates = <19200000>;
+I was wondering why we keep copypasting this.. the clk driver only
+support this single frequency, can it be dropped?
+
+[...]
+
+> +					opp-514000000 {
+> +						opp-hz = /bits/ 64 <514000000>;
+> +						required-opps = <&rpmhpd_opp_nom>;
+> +					};
+Is there no 575MHz level?
+
+[...]
+
+> +		dispcc: clock-controller@af00000 {
+> +			compatible = "qcom,x1e80100-dispcc";
+> +			reg = <0 0x0af00000 0 0x20000>;
+> +			clocks = <&bi_tcxo_div2>,
+> +				 <&bi_tcxo_ao_div2>,
+> +				 <&gcc GCC_DISP_AHB_CLK>,
+> +				 <&sleep_clk>,
+> +				 <0>, /* dsi0 */
+> +				 <0>,
+> +				 <0>, /* dsi1 */
+> +				 <0>,
+> +				 <&usb_1_ss0_qmpphy QMP_USB43DP_DP_LINK_CLK>, /* dp0 */
+> +				 <&usb_1_ss0_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>, /* dp0 */
+> +				 <0>, /* dp1 */
+> +				 <0>,
+> +				 <0>, /* dp2 */
+should these not be filled out as well?
+
+usb1_ss1_qmpphy
+
+and
+
+mdss_dp2_phy
+
+respectively, I think?
+
+> +				 <0>,
+> +				 <&mdss_dp3_phy 0>, /* dp3 */
+> +				 <&mdss_dp3_phy 1>;
+> +			power-domains = <&rpmhpd RPMHPD_MMCX>;
+> +			#clock-cells = <1>;
+> +			#reset-cells = <1>;
+> +			#power-domain-cells = <1>;
+> +		};
+[...]
+
+> +
+> +			interrupts-extended = <&pdc 6 IRQ_TYPE_EDGE_RISING>,
+> +					      <&smp2p_adsp_in 0 IRQ_TYPE_EDGE_RISING>,
+> +					      <&smp2p_adsp_in 1 IRQ_TYPE_EDGE_RISING>,
+> +					      <&smp2p_adsp_in 2 IRQ_TYPE_EDGE_RISING>,
+> +					      <&smp2p_adsp_in 3 IRQ_TYPE_EDGE_RISING>;
+> +			interrupt-names = "wdog", "fatal", "ready",
+> +					  "handover", "stop-ack";
+One a line? :(
 
 
-Thank you for your help !!
-
-Best regards
----
-Renesas Electronics
-Ph.D. Kuninori Morimoto
+Konrad
 
