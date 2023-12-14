@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-25376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FE94813110
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 14:15:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4ECF9813114
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 14:15:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 506B11C21506
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 13:15:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C472F282CFB
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 13:15:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E602154BC8;
-	Thu, 14 Dec 2023 13:15:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFFC154FBB;
+	Thu, 14 Dec 2023 13:15:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XY6n0fKP"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="foP7ko3I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D29110E
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD3B2120
 	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 05:15:45 -0800 (PST)
-Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2cc3f5e7451so15426771fa.2
+Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2ca02def690so103151851fa.3
         for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 05:15:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702559743; x=1703164543; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Hsy3l+28Wlzo8cXaOBVgUpQ+5XTYvjbT3bX9woEdBdk=;
-        b=XY6n0fKPFM4ylqgrT+DP76vnVBxqSarH7iMtVLY8BSDMOhHRf/hj2cgzV6Z2bP1q1S
-         pg4zff30ctvffBQbZbZ79zSc5B0zsQ9Tfek6gdPQiHRYWRrZsEl/SICIdfiF/7HAc104
-         o8YXB6BEiTotSUiemKqQf4I8rtO+lOeyP4fLIFKG7eZMl0i+IWrOWaC4iagqJED4ArC8
-         d1T4XMYTFKdjlPhIelCh0AkKgDD0TuseyDky/ByMBVxSidGIMeEz7wOaTfoz/B44Jwv7
-         FOHF61fDmfANI7mQD4HasB75MbTro1hmLI8BgjxRrb+6cQKm+oUU/BzZnIWFjBAMP8YV
-         52ZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702559743; x=1703164543;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1702559744; x=1703164544; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Hsy3l+28Wlzo8cXaOBVgUpQ+5XTYvjbT3bX9woEdBdk=;
-        b=V0uWdKM7bdjrOEU9TA/oBanw75nE2HC+U3MpEDgdUop8BQadZ41vucSno0tVkY3eUJ
-         BI6B0jiiUBnGGPiOznTWHJH3vDUBecmvRrHnqN54pqM1M9qVJmavJ50GDvOTSCyzoKnS
-         BDbyfspA7RYiHol+ViTbybNbSgR43d/z+zRsFH8U+DEKpKSfbAMSX8Kdz5g2ppTUsDfl
-         jwj06YhGsjzZMsKHcsCLKuU+HFYPFWDv1Z8fTdxeQqs3yTIP9Rs1zAvoDq/ihCqXKmLz
-         4xL0eZY4heoeV8TQnJhCbwPLnTu1E7CjWJ1xQ5clB7rgE5qjv5zlRxnPKxU2fPJDI34g
-         UivA==
-X-Gm-Message-State: AOJu0YzcfbHRGygl6XJn0OtwiVJj85aVLHDRpoY2arj5m9+U7hbmjD5D
-	uh+t2sDF8hT1IEp/L16l1VH5wg==
-X-Google-Smtp-Source: AGHT+IGG2eNJ8YdSSOtikRyhfKzL54YiZt8kpDvWZmOdjaLZ+i16vshFSugATB9RNQ2q9+lT0N5dlA==
-X-Received: by 2002:a2e:8447:0:b0:2ca:31a:4e8 with SMTP id u7-20020a2e8447000000b002ca031a04e8mr4281616ljh.72.1702559743254;
-        Thu, 14 Dec 2023 05:15:43 -0800 (PST)
+        bh=XFPvhE2TfppE4P1yrXLwpu8QNBSRgd4h1Csi59de14s=;
+        b=foP7ko3IO8DAwAEYc7zmB+sgmK2URm0gvDRkYZWcMLD9Yewh0axNzZfuh4vfILZh5D
+         TrTBeeQhFZsDqIvLFqjN0J0LrbJprsemLgoMg1PMWpo9cBPxfWHAe1qMn0IY1kV7xl3I
+         TlqZtyKgJ/DxkqwvzNpoQXofQ0LdtxS1NoYYzoO68iu0SqFvF/Cm7d/hpRCMd8Leutkm
+         mhCgsoPTb+lmSB4NDA7HoIgIbiB2Uv8qdJPXBa7ouf1i+oRL5VrD/Ap6F4CLaMT5jiyL
+         DI36RHi+M9w1qUFKWllQ53nkN7FHvdLesrYaKnJ4zFktZmgl8BBN1EVcdwcFHSpPi9Hx
+         H0JQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702559744; x=1703164544;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XFPvhE2TfppE4P1yrXLwpu8QNBSRgd4h1Csi59de14s=;
+        b=bYMjAkhTBdfofGuNUGYBWbZjEpNbEv7g/4rtckCj/LQE5Mxe4m3fiAIoBSI264oPmb
+         5kIJsLR/PViLAW5CUfgIfSEbBJRwO8JEWGWpNk7ihaqmvD9HFV7YME51BEPNLSBsJ4e/
+         txFtZMY8GnF4qwQvlBmyyNGTUb5H/L3FBTiq+KXI0D4kcHnQX42g/7FPOZHlGeCB3SKY
+         eY0ESyiLUKj83re4MsLVabJ/bM0hdZ2rTNnRKdMxH0SUKXQnETiuqKhBfUvvX6lrdfM/
+         Ni7DiVAsmSjs1nRpoVLf6Vq9CVB2b3NdChEtCvt4CdKhQLaml8GZdwu18Ag3sqyeSC6E
+         u4xw==
+X-Gm-Message-State: AOJu0Yxlast9xGAGvUawdLFmomhj8NKs85WoaJvcMOfqqJkdNxlBW/uB
+	CCA9ZN81QM3jmKumTv6H1+D8nw==
+X-Google-Smtp-Source: AGHT+IFZ57yYzKJ7lhsSP4PBKVG28nM00flMj6xzVKrNm2pHPIBAti0LYIyzlqr3hZAxbG5Uc+OLtQ==
+X-Received: by 2002:a05:651c:88b:b0:2cc:1c75:3494 with SMTP id d11-20020a05651c088b00b002cc1c753494mr5912328ljq.55.1702559744240;
+        Thu, 14 Dec 2023 05:15:44 -0800 (PST)
 Received: from [127.0.1.1] ([85.235.12.238])
-        by smtp.gmail.com with ESMTPSA id p23-20020a2e93d7000000b002ca02ceae84sm2080478ljh.83.2023.12.14.05.15.42
+        by smtp.gmail.com with ESMTPSA id p23-20020a2e93d7000000b002ca02ceae84sm2080478ljh.83.2023.12.14.05.15.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Dec 2023 05:15:42 -0800 (PST)
+        Thu, 14 Dec 2023 05:15:43 -0800 (PST)
 From: Linus Walleij <linus.walleij@linaro.org>
-Subject: [PATCH 0/4] GPIO inclusion fixes to misc sound drivers
-Date: Thu, 14 Dec 2023 14:15:41 +0100
-Message-Id: <20231214-gpio-descriptors-sound-misc-v1-0-e3004176bd8b@linaro.org>
+Date: Thu, 14 Dec 2023 14:15:42 +0100
+Subject: [PATCH 1/4] ASoC: hisilicon: Drop GPIO include
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,9 +64,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAP3/emUC/x3MwQqDMAwA0F+RnA0slQ3Zr4gHbdMuh7UlURHEf
- 1/Z8V3eBcYqbPDuLlA+xKTkBuo78J8lJ0YJzeAebiBHDlOVgoHNq9StqKGVPQf8inkcV08vGp4
- jR4I2VOUo53+f5vv+ASS6OIxtAAAA
+Message-Id: <20231214-gpio-descriptors-sound-misc-v1-1-e3004176bd8b@linaro.org>
+References: <20231214-gpio-descriptors-sound-misc-v1-0-e3004176bd8b@linaro.org>
+In-Reply-To: <20231214-gpio-descriptors-sound-misc-v1-0-e3004176bd8b@linaro.org>
 To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
  Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
  Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
@@ -80,31 +80,28 @@ Cc: linux-sound@vger.kernel.org, alsa-devel@alsa-project.org,
  Linus Walleij <linus.walleij@linaro.org>
 X-Mailer: b4 0.12.4
 
-Mostly dropping unused headers, and a single driver rewrite.
+This driver is including the legacy GPIO header <linux/gpio.h>
+but not using any symbols from it. Drop the include.
 
 Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
-Linus Walleij (4):
-      ASoC: hisilicon: Drop GPIO include
-      ASoC: qcom: sc7180: Drop GPIO include
-      ASoC: simple-card-utils: Drop GPIO include
-      ASoC: tegra: tegra20_ac97: Convert to use GPIO descriptors
+ sound/soc/hisilicon/hi6210-i2s.c | 1 -
+ 1 file changed, 1 deletion(-)
 
- arch/arm/boot/dts/nvidia/tegra20-colibri.dtsi |  2 +-
- sound/soc/generic/audio-graph-card.c          |  1 -
- sound/soc/generic/audio-graph-card2.c         |  1 -
- sound/soc/generic/simple-card-utils.c         |  1 -
- sound/soc/hisilicon/hi6210-i2s.c              |  1 -
- sound/soc/qcom/sc7180.c                       |  1 -
- sound/soc/tegra/tegra20_ac97.c                | 55 +++++++++++++--------------
- sound/soc/tegra/tegra20_ac97.h                |  4 +-
- 8 files changed, 29 insertions(+), 37 deletions(-)
----
-base-commit: b85ea95d086471afb4ad062012a4d73cd328fa86
-change-id: 20231212-gpio-descriptors-sound-misc-8bc161358ef1
+diff --git a/sound/soc/hisilicon/hi6210-i2s.c b/sound/soc/hisilicon/hi6210-i2s.c
+index dd7d2a077248..250ae3781d14 100644
+--- a/sound/soc/hisilicon/hi6210-i2s.c
++++ b/sound/soc/hisilicon/hi6210-i2s.c
+@@ -15,7 +15,6 @@
+ #include <linux/clk.h>
+ #include <linux/jiffies.h>
+ #include <linux/io.h>
+-#include <linux/gpio.h>
+ #include <sound/core.h>
+ #include <sound/pcm.h>
+ #include <sound/pcm_params.h>
 
-Best regards,
 -- 
-Linus Walleij <linus.walleij@linaro.org>
+2.34.1
 
 
