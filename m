@@ -1,136 +1,146 @@
-Return-Path: <devicetree+bounces-25057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25058-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBB548123F1
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 01:36:01 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D978F8123F8
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 01:37:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 670481F20F1C
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 00:36:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4125CB20E9D
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 00:37:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19B61392;
-	Thu, 14 Dec 2023 00:35:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="dows6p8m"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88965389;
+	Thu, 14 Dec 2023 00:37:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDB74E4
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 16:35:53 -0800 (PST)
-Received: by mail-pj1-x1030.google.com with SMTP id 98e67ed59e1d1-28b012f93eeso573051a91.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 16:35:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1702514153; x=1703118953; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=i/9vhns2rh5wNRAmTF+7unWvvWQlEhzdv4Zy/TsV5A0=;
-        b=dows6p8mXur/wQfnC2iMggrm2+iC6D64PXF1sAfvsbWuSFFWhYoBySauIfISJ/rL57
-         Kxojgw/YFXNYQ7bQBLzau7t+nEvmpwRzNX4UBozdB9RYsaXNYuueaWcDowrd8j53YXC+
-         kIaUq5y1v16T886wbKGZcdxNAYD6bRywzasdc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702514153; x=1703118953;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=i/9vhns2rh5wNRAmTF+7unWvvWQlEhzdv4Zy/TsV5A0=;
-        b=DInQfU+zbU/DMTxyhsae96D2VuyRnujLl8mm8eyYTZ3UVQmhPUftfmzSCZWHfZuueQ
-         EJ1b78ewEXj4GJ86cX7SpRFGYST1kPzvRbg4ENBwBVY8BkqAtKWPtPmvxKzEGMtAIyh9
-         mZkQNjC253qW3w0zTkrfk5N1EklzeZDo+mbgV9rGbpK4l+OnXq5SlrhGFbNpe2emV8NI
-         dBYVrZ94GI34oRXssyRBw73XbflwoIJ5VZ/OpxdCH/6jkrYWAeUmX3fvnLkmx+Pgpn6j
-         V7qNimCweBZAoQVGK8q9IEnMWe7terI29O/YmbyxhoOUKrB/8zNnPcqTO9RrRdZa0XcE
-         cE1g==
-X-Gm-Message-State: AOJu0YyNIkzNZBUwHN1yP0IvxmiabDJWLEhK28GjIh5OmfTGgcM3trmO
-	Ecn0zNibZjY5ww98TJeazYExXg==
-X-Google-Smtp-Source: AGHT+IE/V1gvqFNTDzqqMA4JhqSbG/LhKExowWOW95PGLRoZTgWORK8uZ5xecK/IINEs9HhgjSZDqA==
-X-Received: by 2002:a17:90a:ba85:b0:28a:fd40:1650 with SMTP id t5-20020a17090aba8500b0028afd401650mr719467pjr.25.1702514153413;
-        Wed, 13 Dec 2023 16:35:53 -0800 (PST)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:9d:2:f03:a4cc:c5f:7040])
-        by smtp.gmail.com with ESMTPSA id sk13-20020a17090b2dcd00b002864c14063fsm11879981pjb.20.2023.12.13.16.35.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Dec 2023 16:35:52 -0800 (PST)
-From: Douglas Anderson <dianders@chromium.org>
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: Stephen Boyd <swboyd@chromium.org>,
-	Douglas Anderson <dianders@chromium.org>,
-	Andy Gross <agross@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hsin-Yi Wang <hsinyi@chromium.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	cros-qcom-dts-watchers@chromium.org,
-	devicetree@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: sc7180: Switch pompom to the generic edp-panel
-Date: Wed, 13 Dec 2023 16:35:02 -0800
-Message-ID: <20231213163501.1.I8c20f926d15c9ddc12e423e07df1e89db1105d93@changeid>
-X-Mailer: git-send-email 2.43.0.472.g3155946c3a-goog
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13147E4;
+	Wed, 13 Dec 2023 16:37:01 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+	by fd01.gateway.ufhost.com (Postfix) with ESMTP id 9F1387F98;
+	Thu, 14 Dec 2023 08:36:58 +0800 (CST)
+Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 14 Dec
+ 2023 08:36:58 +0800
+Received: from EXMBX066.cuchost.com (172.16.7.66) by EXMBX168.cuchost.com
+ (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 14 Dec
+ 2023 08:36:58 +0800
+Received: from EXMBX066.cuchost.com ([fe80::5947:9245:907e:339f]) by
+ EXMBX066.cuchost.com ([fe80::5947:9245:907e:339f%17]) with mapi id
+ 15.00.1497.044; Thu, 14 Dec 2023 08:36:57 +0800
+From: JeeHeng Sia <jeeheng.sia@starfivetech.com>
+To: Conor Dooley <conor@kernel.org>
+CC: "kernel@esmil.dk" <kernel@esmil.dk>, "robh+dt@kernel.org"
+	<robh+dt@kernel.org>, "krzysztof.kozlowski+dt@linaro.org"
+	<krzysztof.kozlowski+dt@linaro.org>, "krzk@kernel.org" <krzk@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "paul.walmsley@sifive.com"
+	<paul.walmsley@sifive.com>, "palmer@dabbelt.com" <palmer@dabbelt.com>,
+	"aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>, "daniel.lezcano@linaro.org"
+	<daniel.lezcano@linaro.org>, "tglx@linutronix.de" <tglx@linutronix.de>,
+	"anup@brainfault.org" <anup@brainfault.org>, "gregkh@linuxfoundation.org"
+	<gregkh@linuxfoundation.org>, "jirislaby@kernel.org" <jirislaby@kernel.org>,
+	"michal.simek@amd.com" <michal.simek@amd.com>, Michael Zhu
+	<michael.zhu@starfivetech.com>, "drew@beagleboard.org"
+	<drew@beagleboard.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-riscv@lists.infradead.org"
+	<linux-riscv@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: RE: [PATCH v3 2/6] dt-bindings: riscv: Add StarFive JH8100 SoC
+Thread-Topic: [PATCH v3 2/6] dt-bindings: riscv: Add StarFive JH8100 SoC
+Thread-Index: AQHaJE/+BLI69uGa3k+hymTbPrUHV7CmtRSAgAFNEpA=
+Date: Thu, 14 Dec 2023 00:36:57 +0000
+Message-ID: <f6665b5c235148279104c4c3fa9ff080@EXMBX066.cuchost.com>
+References: <20231201121410.95298-1-jeeheng.sia@starfivetech.com>
+ <20231201121410.95298-3-jeeheng.sia@starfivetech.com>
+ <20231213-imminent-favorable-a7d25e6555af@spud>
+In-Reply-To: <20231213-imminent-favorable-a7d25e6555af@spud>
+Accept-Language: en-US, zh-CN
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-ms-exchange-transport-fromentityheader: Hosted
+x-yovoleruleagent: yovoleflag
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 
-Pompom has several sources for its panel. Let's switch it to the
-generic edp-panel compatible string to account for this.
 
-This fixes a problem where the panel wouldn't come up on some pompon
-devices after commit fb3f43d50d9b ("drm/panel-edp: Avoid adding
-multiple preferred modes"). Specifically, some models of pompom have a
-1920x1080 panel which is _very_ different than the 1366x768 panel
-specified in the dts. Before the recent panel-edp fix on Linux things
-kinda/sorta worked because the panel-edp driver would include both the
-hardcoded and probed mode, AKA:
 
-* #0 1920x1080
-  60.00 1920 1944 1960 2000 1080 1083 1088 1111 133320
-  flags: nhsync, nvsync; type: preferred, driver
-* #1 1366x768
-  60.00 1366 1406 1438 1500 768 773 778 900 81000
-  flags: nhsync, nvsync; type: preferred, driver
-
-...and, at least on ChromeOS, the userspace was consistently picking
-the first mode even though both were marked as "preferred". Now that
-the Linux driver is fixed we only get the hardcoded mode. That means
-we end up trying to drive a 1920x1080 panel at 1366x768 and it doesn't
-work so well.
-
-Let's switch over to the generic panel-edp.
-
-Fixes: fb3f43d50d9b ("drm/panel-edp: Avoid adding multiple preferred modes")
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
----
-Techhnically we could put a "Fixes" in for the commits that added the
-pompom device tree, but that gets a little weird. Specifically the
-pompom device tree predates the introduction of the generic edp-panel
-bindings. Older pompom hardware always had 1366x768 compatible panels
-and worked fine so techncially those old commits weren't really
-"broken" per say and thus don't need to be "fixed".
-
-For now, I've marked this a fixing the Linux driver commit that broke
-ChromeOS userspace.
-
- arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi
-index 0be62331f982..067813f5f437 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi
-@@ -141,7 +141,7 @@ CROS_STD_MAIN_KEYMAP
- };
- 
- &panel {
--	compatible = "kingdisplay,kd116n21-30nv-a010";
-+	compatible = "edp-panel";
- };
- 
- &pen_insert {
--- 
-2.43.0.472.g3155946c3a-goog
-
+> -----Original Message-----
+> From: Conor Dooley <conor@kernel.org>
+> Sent: Wednesday, December 13, 2023 8:43 PM
+> To: JeeHeng Sia <jeeheng.sia@starfivetech.com>
+> Cc: kernel@esmil.dk; robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.or=
+g; krzk@kernel.org; conor+dt@kernel.org;
+> paul.walmsley@sifive.com; palmer@dabbelt.com; aou@eecs.berkeley.edu; dani=
+el.lezcano@linaro.org; tglx@linutronix.de;
+> anup@brainfault.org; gregkh@linuxfoundation.org; jirislaby@kernel.org; mi=
+chal.simek@amd.com; Michael Zhu
+> <michael.zhu@starfivetech.com>; drew@beagleboard.org; devicetree@vger.ker=
+nel.org; linux-riscv@lists.infradead.org; linux-
+> kernel@vger.kernel.org; Leyfoon Tan <leyfoon.tan@starfivetech.com>; Conor=
+ Dooley <conor.dooley@microchip.com>
+> Subject: Re: [PATCH v3 2/6] dt-bindings: riscv: Add StarFive JH8100 SoC
+>=20
+> On Fri, Dec 01, 2023 at 08:14:06PM +0800, Sia Jee Heng wrote:
+> > Add device tree bindings for the StarFive JH8100 RISC-V SoC.
+> >
+> > Signed-off-by: Sia Jee Heng <jeeheng.sia@starfivetech.com>
+> > Reviewed-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
+> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> > ---
+> >  Documentation/devicetree/bindings/riscv/starfive.yaml | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/riscv/starfive.yaml b/Do=
+cumentation/devicetree/bindings/riscv/starfive.yaml
+> > index cc4d92f0a1bf..12d7844232b8 100644
+> > --- a/Documentation/devicetree/bindings/riscv/starfive.yaml
+> > +++ b/Documentation/devicetree/bindings/riscv/starfive.yaml
+> > @@ -30,6 +30,10 @@ properties:
+> >                - starfive,visionfive-2-v1.3b
+> >            - const: starfive,jh7110
+> >
+> > +      - items:
+> > +          - enum:
+> > +              - starfive,jh8100-evb
+>=20
+> Hmm, reading some of the other threads it appears that the evaluation
+> platform that you guys have is actually just an FPGA? Could you please
+> provide more information as to what this "evb" actually is?
+>=20
+> If it is just an FPGA-based evaluation platform I don't think that we
+> want to merge patches for the platform. I'm fine with patches adding
+> peripheral support, but the soc/board dts files and things like pinctrl
+> or clock drivers I am not keen on.
+> Perhaps Emil also has an opinion on this.
+Eco the same reply here. I am not sure what you mean. We verified on FPGA &=
+ Emulator,
+and the logic is pretty much close to the real silicon. I did mention that =
+in the cover letter as well.
+I am new to Linux, so I am wondering if there is a Linux upstream guideline=
+ mentioning
+that pre-silicon software is not allowed to upstream? Hope there is an upda=
+ted Linux
+upstream guideline that benefit other vendors.
+>=20
+> Thanks,
+> Conor.
+>=20
+> > +          - const: starfive,jh8100
+> >  additionalProperties: true
+> >
+> >  ...
+> > --
+> > 2.34.1
+> >
+> >
 
