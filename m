@@ -1,125 +1,131 @@
-Return-Path: <devicetree+bounces-25534-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25535-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0129813835
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 18:16:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B27A4813851
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 18:17:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 10DECB21C3B
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 17:16:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B666282434
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 17:17:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A91D763DDA;
-	Thu, 14 Dec 2023 17:16:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74BC165EAF;
+	Thu, 14 Dec 2023 17:17:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DJRTAqQT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gjwBFQpy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD909128
-	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 09:16:13 -0800 (PST)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-9fa45e75ed9so967720866b.1
-        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 09:16:13 -0800 (PST)
+Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31B1C170B;
+	Thu, 14 Dec 2023 09:17:34 -0800 (PST)
+Received: by mail-ot1-x332.google.com with SMTP id 46e09a7af769-6da3659535fso1660471a34.3;
+        Thu, 14 Dec 2023 09:17:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702574172; x=1703178972; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ecnta8fmq85962lS8hL+fAUj0iRD5WKCwqnVAGP2iIc=;
-        b=DJRTAqQTYb5g5XBwNoiDQgAM4Nk82K09kycH3fC8q5whaLnbbjbbtNd2jdfWECDvQy
-         fkdj/tApjWU+byQjNjUP8LY/j3pTK38x1PJiHQAO5pWd74wxWub4MMebw3QqtLjghHZU
-         6/iiLEJ4lvzDFrqeAEHtxd+bkq3sdBcrk5hzDDZBdEVkrVy/5KpqRxCpviDZ9rWcVrTz
-         Aj9w45hb0a/ql/3pCsEq4zT8oVMkGMD1Yf3RnP1kxypF8UkZpGYERXhePMYA2dny4zjz
-         4tMgRX3Jbh17OaK9bhL68JgTWskzcxYQJvcykkJcfU04FauMWnMkC1oaMjHa6nLcIGr1
-         ShVg==
+        d=gmail.com; s=20230601; t=1702574253; x=1703179053; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=sdhRanQFrFV0TuBSHOaE+X1d5YXiNzoy0E1bPVU3K44=;
+        b=gjwBFQpyDzHatOM31WU9GBKhD+HvzBi7T0y+a2pvxrLc7EjqhAyUx6w0ggSFneOG/N
+         UZnDYUBCvhxVubG9Rjplrmo4B4c+Bm9HUqruCVNcQc4hdQYLbdDSgA11SbrF7D2F7PGs
+         g8Qmv3MBJv6M5t76D4Xe/Oj454seRmyo8saEFp8rvSjyuIq13JiHxUx/d61bsbu2zoBT
+         pZpjvURKrmwCnfy8pHWt0gQujcTQxsHtHi1JCoEb9LTCE25oQC+OOFI67WP6TeqTMfy3
+         w9B7UnVFmGGUXPqhb+4fyw1J9/+e3y440BsDEH1AbMUMq6YGQzfwEzTTCgRArHkP9u7r
+         cqsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702574172; x=1703178972;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1702574253; x=1703179053;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ecnta8fmq85962lS8hL+fAUj0iRD5WKCwqnVAGP2iIc=;
-        b=MutpTrbSvhzp8tZf1+Ygy9EcYSMmhYEXV6RplHyY996tvTS14pm5T+g6pnJERn3D5t
-         GoXKzAcu7pp7bhmQw+yzpX7zykcknMJeNYs72t/DKUuiY62/EW3JxHIrqiNKT+xNqmJq
-         i8m3whaoGub9m423RbgUjqNWnKS62l0fYIuBEtWxnjNlKcfOUvju3MnpBYOvcIwo6a+H
-         lxZ9mNxnExhflYlHGlK4Hu31OXvFN3y6n1VGhUX1XOx1ziVOvuXfsEDB3Zv4gQR0Rb1B
-         jKdNvnyVJgQgFuExwSG7tarcIHD0RzaeV1CDa55e7S06RjpMUelfN8iehmeMMKurGbpJ
-         Hazg==
-X-Gm-Message-State: AOJu0YwnCLAPeM4RuhyYK0/shMu34GTLeVIEpKIfn7lY9ef9iqPsmIwn
-	7FgfnWGjEK9yz6c6/72LIqBgWZgzr/Wnieyj0i4=
-X-Google-Smtp-Source: AGHT+IG6Su9AcJ8UB8+CR3YvRwMsFViTW9KvL5ywNrTDS3Z7rvlSiHVZSb3ePy1KzoSttFUebNqOqw==
-X-Received: by 2002:a17:906:3f13:b0:a1e:7683:4da4 with SMTP id c19-20020a1709063f1300b00a1e76834da4mr4450934ejj.11.1702574172010;
-        Thu, 14 Dec 2023 09:16:12 -0800 (PST)
-Received: from [127.0.1.1] ([79.115.23.25])
-        by smtp.gmail.com with ESMTPSA id rl19-20020a1709076c1300b00a1f8bae93d3sm7609398ejc.215.2023.12.14.09.16.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Dec 2023 09:16:11 -0800 (PST)
-From: Abel Vesa <abel.vesa@linaro.org>
-Date: Thu, 14 Dec 2023 19:16:04 +0200
-Subject: [PATCH] dt-bindings: mailbox: qcom-ipcc: document the X1E80100
- Inter-Processor Communication Controller
+        bh=sdhRanQFrFV0TuBSHOaE+X1d5YXiNzoy0E1bPVU3K44=;
+        b=nU46Rf+gMrN1Oh691+K4pFmZygAAiQNSXi/aJs4WzO6WMzvgrPsxdn/unQorAmRzGc
+         RciTwXpvAnQYYJeDofKlZB0cZkT61uIAO2otRYC5jq7yzrz0Wb2UwNrxhL9wcr4PFhDX
+         +w+2raeALrkRSZQQv5TdKKXysHvD13y0tuP2dRWlBb4JqyU5/ly1lj4zeGwhoAsAJYOB
+         3W/JbGGkRKrTIdZbQT2OIphZuJHZRaehaA/FW42VIMJfcMaZ98v1BgaC1ldfUrfHFn4t
+         yl2YfumXc7/d0gJtb3EbY8w/X+iXgmA83ztNxLDb8jqO32qHssydCwyKKllKCDVoCplP
+         mQPQ==
+X-Gm-Message-State: AOJu0YzD6v+TWOOmyQrjGNeizKfQzFM+Rmf1K2U+pFI93rJ4u0mFdf2D
+	7kBLarfMQmZaRNTOSMhtWl3gI/5DjDkhqz908rI=
+X-Google-Smtp-Source: AGHT+IGu0qsEalrz1YM6XxCprXRke2tEQ/qScT/H2ci6ZNr18869lf+HGxmdxY1qgpq2RIpITtyGbHOZaz8VsNvNVrc=
+X-Received: by 2002:a05:6830:3103:b0:6da:2edf:3132 with SMTP id
+ b3-20020a056830310300b006da2edf3132mr4998217ots.27.1702574253354; Thu, 14 Dec
+ 2023 09:17:33 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231214-x1e80100-mailbox-ipcc-v1-1-49d177238c9b@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAFM4e2UC/x3MSwqFMAxA0a1IxgaSKqJuRRzUGDXgjxYeBXHvr
- zg8g3sfiBpMI/TFA0F/Fu06M7gsQDZ/roo2Z4MjV7HjGhNrS0yEh7d9uhLaLYIteTdL11QydZD
- bO+hi6fsO4/v+AeE8+h5nAAAA
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Manivannan Sadhasivam <mani@kernel.org>, 
- Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=906; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=JIVsQfTi7l0HKesJJg+/gqxHs3KMNT6H5TGenNe67T8=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBlezhVBSG2LXnGFpw9Fd6d+VIQW1urKEo21MZzX
- q9y4MpVefyJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZXs4VQAKCRAbX0TJAJUV
- VgO1D/9KAMQ9QWuf3XCJCB2S1M27TbPpoQV1A94UzDvNuRAGDAWLL3rXWX3kLh8KepIwZO6a73m
- t0WVFEyfwL8jDs+FL9z4+voUe1WZhJzDoazN/5EgYoNPF2/ZC/s2czxnHL7awlq0N9LWUIxtbPo
- uKpvi75s2QGc+LXuwJAy27nQV99LU8LPbhJsNC1Ohsqn2ZUT3xddFFBC9J+XKZQs0lBkuUXj1Kh
- LLvHbzRc7NlFpV9XSege3G/NRydc9LCc2NR755GNeZRdut0sZdbRItQM7r755MMZTJlsrQflg+m
- yx/OfzFjCpoCFPAGPK9s0fKxxPh9eMkI8QQ5YUIRky6LCuNSAiTQaAGSA/q/8QT5QgUQi+ZAMFQ
- BL5nrZ3OoG6NmNcypJA73U1AgnccBinsqOcvdx257SBkDyTCJhTGchhOO6Ea8LcJkO7oyIjHOFY
- /PaIHTDoVIJIT8Y4RZH5gv7v480HovOak7pBWHNrvZfJyD3T/MmsQynKjOeavfwS4AkBSmKJ6ns
- Hj2vPVb4IfR+O8qkcNRIvpJTK6Zr3nN1f5vxLPz0LCM6JdkvOXFVkVbY3SK3DMWMEhbdEGK3ZW6
- Dt+Uob23ejAJVRnPkpKndyYxeiVp0TOoP15VlH0xBZnvaaopAcTwMQnuz00ZnMBDD6bI7e37L+7
- LtD0xYBzWWGUBtQ==
-X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
+References: <20231206151600.26833-1-quic_pintu@quicinc.com>
+ <20231208203128.GA2646347-robh@kernel.org> <CAOuPNLg90T69USVQ8Ti6c8fXb_XrnaR035in_CbJHmNMUYLqOg@mail.gmail.com>
+In-Reply-To: <CAOuPNLg90T69USVQ8Ti6c8fXb_XrnaR035in_CbJHmNMUYLqOg@mail.gmail.com>
+From: Pintu Agarwal <pintu.ping@gmail.com>
+Date: Thu, 14 Dec 2023 22:47:04 +0530
+Message-ID: <CAOuPNLj4_pQiAHoER2VJpW_2NEaq8+zF8p1br+tf0Toe1t1UDg@mail.gmail.com>
+Subject: Re: [PATCH] of: reserved_mem: fix error log for reserved mem init failure
+To: Rob Herring <robh@kernel.org>, vichy.kuo@gmail.com
+Cc: Pintu Kumar <quic_pintu@quicinc.com>, linux-kernel@vger.kernel.org, 
+	akpm@linux-foundation.org, linux-mm@kvack.org, frowand.list@gmail.com, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Document the Inter-Processor Communication Controller on the X1E80100 Platform.
+On Mon, 11 Dec 2023 at 20:13, Pintu Agarwal <pintu.ping@gmail.com> wrote:
+>
+> Hi,
+>
+> On Sat, 9 Dec 2023 at 02:01, Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Wed, Dec 06, 2023 at 08:46:00PM +0530, Pintu Kumar wrote:
+> > > During fdt_init_reserved_mem() when __reserved_mem_init_node()
+> > > fail we are using pr_info to print error.
+> > >
+> > > So, if we change the loglevel to 4 (or below), this error
+> > > message will be missed.
+> > >
+> > > Thus, change the pr_info to pr_err for fail case.
+> > >
+> > > Signed-off-by: Pintu Kumar <quic_pintu@quicinc.com>
+> > > ---
+> > >  drivers/of/of_reserved_mem.c | 2 +-
+> > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > >
+> > > diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
+> > > index 7ec94cfcbddb..473665e76b6f 100644
+> > > --- a/drivers/of/of_reserved_mem.c
+> > > +++ b/drivers/of/of_reserved_mem.c
+> > > @@ -334,7 +334,7 @@ void __init fdt_init_reserved_mem(void)
+> > >               if (err == 0) {
+> > >                       err = __reserved_mem_init_node(rmem);
+> > >                       if (err != 0 && err != -ENOENT) {
+> > > -                             pr_info("node %s compatible matching fail\n",
+> > > +                             pr_err("node %s compatible matching fail\n",
+> >
+> > Isn't the message just wrong. If compatible match fails, we return
+> > ENOENT. The failure here would be from the init function.
+> >
+> Okay.
+> You mean to say, if __reserved_mem_init_node fails with default err
+> (ENOENT) then it may not hit this condition.
+> Instead it will hit the 'else' case which is wrong ?
+> Also, the "initfn" inside "__reserved_mem_init_node" may fail in which
+> case also it may return default err.
+>
+> Maybe, the initial author's intention was to free the memory only if
+> the failure type is not the default ENOENT type.
+>
+> This seems to be a different issue.
+> Can we address this separately in a different patch ?
+>
+> And how do we fix this ?
+> One option is to add another "if" condition with just ENOENT error check ?
+> if (err == -ENOENT) {
+>     pr_err("node %s compatible matching fail\n", rmem->name);
+>     return;
+> }
+> Then, correct the existing log with a different message:
+> pr_err("node %s matching reserved mem not found.\n", rmem->name);
+> Or, add one more "if else" condition ?
+> Or, fix the calling function itself : __reserved_mem_init_node ?
+>
 
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
- Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml b/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml
-index a35f9483dc71..8f004868aad9 100644
---- a/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml
-+++ b/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml
-@@ -35,6 +35,7 @@ properties:
-           - qcom,sm8450-ipcc
-           - qcom,sm8550-ipcc
-           - qcom,sm8650-ipcc
-+          - qcom,x1e80100-ipcc
-       - const: qcom,ipcc
- 
-   reg:
-
----
-base-commit: 48e8992e33abf054bcc0bb2e77b2d43bb899212e
-change-id: 20231214-x1e80100-mailbox-ipcc-80a2dc963cb9
-
-Best regards,
--- 
-Abel Vesa <abel.vesa@linaro.org>
-
+Any further comments on this ?
 
