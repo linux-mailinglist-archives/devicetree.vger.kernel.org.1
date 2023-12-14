@@ -1,159 +1,143 @@
-Return-Path: <devicetree+bounces-25413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25415-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C1A6813301
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 15:24:34 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D19A981332B
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 15:31:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0D75CB2147D
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 14:24:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0F5FF1C21B1C
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 14:31:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8C2559E47;
-	Thu, 14 Dec 2023 14:24:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FFA75A109;
+	Thu, 14 Dec 2023 14:31:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=shantur-com.20230601.gappssmtp.com header.i=@shantur-com.20230601.gappssmtp.com header.b="F6A5PQoz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eh8WBxT6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-x933.google.com (mail-ua1-x933.google.com [IPv6:2607:f8b0:4864:20::933])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF2F711B
-	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 06:24:24 -0800 (PST)
-Received: by mail-ua1-x933.google.com with SMTP id a1e0cc1a2514c-7cac4a9faccso1684903241.0
-        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 06:24:24 -0800 (PST)
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51FA911B
+	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 06:31:28 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-54c77e0835bso11317346a12.2
+        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 06:31:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=shantur-com.20230601.gappssmtp.com; s=20230601; t=1702563864; x=1703168664; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=n8hzjHa/oDAa5VXlxiZKu2h0BY/JRc6YD0syWlY0Zxs=;
-        b=F6A5PQozsC5VLiqVx+Zz9oISpcFtNfdBipNKw8/IuWSYKOVLrHtQdf3RyRH7jHx3yi
-         AaLyLHTpt60zuXL1OptwrxXZYGdfrZxATM1eSUve9In0EVIau3GMXciNaJ6f4aBV1kMT
-         U0DzGPgeGxD9TXn3Urrpur7Mdc18ap3sHwx3eimH/LJsSAXVT465Xib2LPyOo5IZTPiD
-         2SvWrejnZ932v8juFx6NJrPH4pWW4LheQnJ4UAdj5Yw7ARvMVloeycdQ2GVzKPMCMKHx
-         s2QiDxdVJnEQ1Iu5MmpV3ZE65K8p5F32hzdz+2Hq5GevhlfgO4tqj61NNH1MKGwYdb2u
-         mSxw==
+        d=linaro.org; s=google; t=1702564287; x=1703169087; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VgJQbimhdbaMz8PSS4TWmPrQmjKzzald78cLvtVZ+/M=;
+        b=eh8WBxT6Q0T3qFh1kwRQZApC3AmWMWC21CjpFyCAEALvcBx8K/cxF9foP0qc+YO6u4
+         uIiUjO9uYDmJMdEsIF4h2BqDob2rD4zHhEaYosG/aI4byr5DJDqGNg01sGMpUY0HvP9k
+         nlNugi0HzdUMAhmC5bk/adU02sQkmCaj1STs7OlWVGIR5WXdJ1zPgh68dVaVoCtDYLzO
+         Yk3KDINaJrinLhnFOP2vm3vehZyj1EUU2OzAiQIelhyWhn+TRqP1IS/erCI6MnhSfG5U
+         EgYZI0SnIGOZRgRhJaNE9Y1bhypoa0/KHKPG3bs6XLER/kw7aEOFqs+hydSV2tdFgshX
+         QkLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702563864; x=1703168664;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=n8hzjHa/oDAa5VXlxiZKu2h0BY/JRc6YD0syWlY0Zxs=;
-        b=NHJIQYib6EP+C+QKrHZQP2rX59Xjr9Q5mkmwfGB3NIytuPJ62xi39jHKBjhVHNpaZk
-         t4jf2ykxahA8arzLaJVXa8SFhQZtaxlURGOR/Gw72L9kWq7JjHGrcjLXgXWrnIU8LA6a
-         1a8+heyGUSFbkXg7MpXlO8hSRtUy9RlaTmWUlzqSVeep6rcP+vtMSUqb9Wd9BhpKy8UK
-         ZDSs1dXxadqdW6lKnPv/VWQaASWuP9ZN+uO5W2CLygvVG/mKZmvYHz3olefyGN0+PTXp
-         iJAmvGr88aswxWI+O+UmGxFI9x/SbN4kqR6A/jS6k8lYm99xryTMT/UphN+h8Yp15H78
-         9Pww==
-X-Gm-Message-State: AOJu0Yz3R5sDTlo5joyF46+CKSkvB1wFZb4PACil1KikwBjUu/Wu+onh
-	3xGjZG93DV83O5vbTbhrDPtndWRUa0UJjRlE2nExow==
-X-Google-Smtp-Source: AGHT+IHE+HSJBycqJMA34KSVioJpw4usXProHQmm+r0A0+kAWxb+v5YdOkPKo3COQ4z2ZnZ10tLyLbrPwfjRkkOimN0=
-X-Received: by 2002:a05:6122:4681:b0:4b2:b964:1095 with SMTP id
- di1-20020a056122468100b004b2b9641095mr10991092vkb.10.1702563863726; Thu, 14
- Dec 2023 06:24:23 -0800 (PST)
+        d=1e100.net; s=20230601; t=1702564287; x=1703169087;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VgJQbimhdbaMz8PSS4TWmPrQmjKzzald78cLvtVZ+/M=;
+        b=IHazLCBkGpJS/pK9BNDDPI3PkbiGNoSZCEkzFU26c791ocXrxUJH+YVDRKhLKzzC6z
+         im83x+22M+HPiBFdqs+3+pDMOjKPFoYr7spcapuIuJkRPJeQTIyOLUe6jfY046Ugp2Tp
+         Ax5zk52up+WEnOIGK/7lO+YKFSPy8/jA6iDGbEAkIKk/uajuBGhAxkdIUiBHxSAMo2rU
+         xX39YdFZPJrj0giSyRLiwaN4eOU7MQXPIj1gGlYECCLMIOPyyD26IDm/+IQIryg8+1bA
+         NIPt0aQCtQUECUxTA4e+TXBdq7Nj2I0M6zEFB1m+YkLw10cs5s6gwSSp3LR47ID+zGft
+         Bc5Q==
+X-Gm-Message-State: AOJu0YwSa0OtLxfd9qZRz+zcZzFZG3ex6pv+EIsuJqXIBwnBDchJE9Om
+	yExFY020TXyzelfTzhp0mQRU9A==
+X-Google-Smtp-Source: AGHT+IHWZ078ljQ3KvRmktAtxA7HnfQvsB0QqyGy4IG0/hZ9rDcDubhsLYhJrI6GM7rvgcmCHZYcDw==
+X-Received: by 2002:a17:906:4559:b0:a18:8b15:4d3d with SMTP id s25-20020a170906455900b00a188b154d3dmr5541926ejq.77.1702564286762;
+        Thu, 14 Dec 2023 06:31:26 -0800 (PST)
+Received: from [192.168.2.107] ([79.115.63.202])
+        by smtp.gmail.com with ESMTPSA id hw15-20020a170907a0cf00b00a1f761d9ffdsm8791995ejc.177.2023.12.14.06.31.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Dec 2023 06:31:26 -0800 (PST)
+Message-ID: <584e036a-2ae7-4b88-a517-8f79c6baed4a@linaro.org>
+Date: Thu, 14 Dec 2023 14:31:23 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231209232109.348999-1-i@shantur.com> <20231209233536.350876-1-i@shantur.com>
- <43339adb6f98a0b4e59db78f932df0d4@manjaro.org> <CABEcMwU8bOxUZV8i-Wig14GG-+NEEw+sbDBznTLNvgRg6Co3Jg@mail.gmail.com>
- <acbadb7f1d2c14b7003103c10d663d38@manjaro.org>
-In-Reply-To: <acbadb7f1d2c14b7003103c10d663d38@manjaro.org>
-From: Shantur Rathore <i@shantur.com>
-Date: Thu, 14 Dec 2023 14:24:12 +0000
-Message-ID: <CABEcMwV8XhShnbJ_Z+2YW0EUCYt460pEyE-FPHW9jN16SR_Lpg@mail.gmail.com>
-Subject: Re: [PATCH v1] dts: rockpro64: Remove usb regulator-always-on
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: heiko@sntech.de, linux-rockchip@lists.infradead.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 05/13] tty: serial: samsung: add gs101 earlycon support
+Content-Language: en-US
+To: Arnd Bergmann <arnd@arndb.de>, Peter Griffin <peter.griffin@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>, krzysztof.kozlowski+dt@linaro.org,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ andi.shyti@kernel.org, Alim Akhtar <alim.akhtar@samsung.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Catalin Marinas
+ <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Tomasz Figa <tomasz.figa@gmail.com>, Chanwoo Choi <cw00.choi@samsung.com>,
+ Sam Protsenko <semen.protsenko@linaro.org>
+Cc: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ saravanak@google.com, William McVicker <willmcvicker@google.com>,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+ linux-serial@vger.kernel.org
+References: <20231214105243.3707730-1-tudor.ambarus@linaro.org>
+ <20231214105243.3707730-6-tudor.ambarus@linaro.org>
+ <1938fcf1-eb5d-4723-a6c6-d2fe2c6dd1c0@app.fastmail.com>
+ <8808ceeb-35dc-4094-aec4-f43c7acd6174@linaro.org>
+ <6962ac73-2f44-4c9e-8731-152087815454@app.fastmail.com>
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <6962ac73-2f44-4c9e-8731-152087815454@app.fastmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Dragan,
 
-On Sun, Dec 10, 2023 at 12:08=E2=80=AFAM Dragan Simic <dsimic@manjaro.org> =
-wrote:
->
-> On 2023-12-10 01:03, Shantur Rathore wrote:
-> > On Sat, Dec 9, 2023 at 11:43=E2=80=AFPM Dragan Simic <dsimic@manjaro.or=
-g>
-> > wrote:
-> >> On 2023-12-10 00:35, Shantur Rathore wrote:
-> >> > USB port regulators should be controlled by PHYs
-> >> > so we remove always-on property and let PHYs manage the
-> >> > regulator.
-> >> >
-> >> > Typec port has misconfugred phy-supply and now that we are
-> >> > removing regulator-always-on, we need to fix the phy-supply
-> >> > so the PHYs are able to turn power to type-c port.
-> >> >
-> >> > Signed-off-by: Shantur Rathore <i@shantur.com>
-> >> > ---
-> >> > + devicetree
-> >> >
-> >> > After this patch the ports were confirmed to power up and down
-> >> > in u-boot when doing usb start and usb stop.
-> >> > At boot the regulators were off, the devices connected weren't
-> >> > powered up, on usb start the PHYs are able to power on the ports
-> >> > and on usb stop they were powered down.
-> >> >
-> >> > At the boot, the ports were powered down which was again powered
-> >> > up by Linux kernel when booting up.
-> >> >
-> >> >
-> >> >  arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi | 4 +---
-> >> >  1 file changed, 1 insertion(+), 3 deletions(-)
-> >> >
-> >> > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
-> >> > b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
-> >> > index bca2b50e0a..bd2824aa48 100644
-> >> > --- a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
-> >> > +++ b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
-> >> > @@ -192,7 +192,6 @@ vcc5v0_host: vcc5v0-host-regulator {
-> >> >               pinctrl-names =3D "default";
-> >> >               pinctrl-0 =3D <&vcc5v0_host_en>;
-> >> >               regulator-name =3D "vcc5v0_host";
-> >> > -             regulator-always-on;
-> >> >               vin-supply =3D <&vcc5v0_usb>;
-> >> >       };
-> >> >
-> >> > @@ -203,7 +202,6 @@ vcc5v0_typec: vcc5v0-typec-regulator {
-> >> >               pinctrl-names =3D "default";
-> >> >               pinctrl-0 =3D <&vcc5v0_typec_en>;
-> >> >               regulator-name =3D "vcc5v0_typec";
-> >> > -             regulator-always-on;
-> >> >               vin-supply =3D <&vcc5v0_usb>;
-> >> >       };
-> >> >
-> >> > @@ -863,7 +861,7 @@ u2phy0_otg: otg-port {
-> >> >       };
-> >> >
-> >> >       u2phy0_host: host-port {
-> >> > -             phy-supply =3D <&vcc5v0_host>;
-> >> > +             phy-supply =3D <&vcc5v0_typec>;
-> >> >               status =3D "okay";
-> >> >       };
-> >> >  };
-> >>
-> >> Quite frankly, something doesn't feel right there.  Would you mind,
-> >> please, to place this patch on hold until next week or so, at which
-> >> point I should have enough time to go through the RockPro64 schematic
-> >> thoroughly once again, and test the patch in detail?
-> >
-> > Sure, no worries.
->
-> Great, thanks.
->
-> > Would you mind letting me know which part doesn't feel right to you?
->
-> Sure, it was about the last change in the patch.
 
-The TypeC port VBUS is VBUS_TYPEC on Page 20 of 33 marked for
-VBUS_[1-4] in schematic here - [0]
+On 12/14/23 14:19, Arnd Bergmann wrote:
+> On Thu, Dec 14, 2023, at 13:52, Tudor Ambarus wrote:
+>> On 12/14/23 12:01, Arnd Bergmann wrote:
+>>> On Thu, Dec 14, 2023, at 11:52, Tudor Ambarus wrote:
+>>>> +static int __init gs101_early_console_setup(struct earlycon_device *device,
+>>>
+>>
+>> It works if in device tree one specifies the reg-io-width property and
+>> sets it to 4. If the reg-io-width is not specified, the iotype defaults
+>> to UPIO_MEM causing the SError interrupt on gs101 which makes the system
+>> unusable.
+> 
+> In the case of incorrect DT data like a missing reg-io-width property,
+> I would expect it to still fail once the regular console or tty takes
+> over from earlycon.
+> 
+>> Also, if the earlycon comes specified from the kernel params, the
+>> of_setup_earlycon() is no longer called and the earlycon will be set
+>> solely based on the kernel params buffer, thus allowing users to crash
+>> the kernel on wrong earlycon definitions.
+> 
+> But that in turn is the same as specifying any other incorrect earlycon.
 
-[0] - https://files.pine64.org/doc/rockpro64/rockpro64_v21-SCH.pdf
+I don't think you can crash the kernel if you use other earlycon as you
+don't make accesses on the 32bit restricted bus. But I agree that if
+using the correct earlycon name, and mmio instead mmio32, is equivalent
+to not specifying reg-io-width in dt.
 
-Kind regards,
-Shantur
+> 
+>> If you think the change is fine, I can amend the commit message with the
+>> description from above.
+> 
+> I'm still not convinced we need a special case here when everything else
+> just requires passing the correct data.
+> 
+
+Well, I made this patch because I used a wrong bootargs earlycon
+configuration and I ended up crashing the kernel. I couldn't see what
+happens as kgdb is not available at that stage. Figuring out what was
+going on made me spend some time. I hoped I'll be helpful and spare
+others of the same mistakes and wasted time.
+
+I'm ok to drop the patch as well, no pushing here. Please ignore.
+Thanks for the review!
+
+Cheers,
+ta
 
