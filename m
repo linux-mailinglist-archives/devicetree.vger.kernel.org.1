@@ -1,168 +1,123 @@
-Return-Path: <devicetree+bounces-25538-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25539-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51D8981387E
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 18:27:20 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E7EF81389F
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 18:36:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D80942832AE
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 17:27:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A56FFB20A7C
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 17:36:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45D8F675B0;
-	Thu, 14 Dec 2023 17:27:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8496365ED1;
+	Thu, 14 Dec 2023 17:36:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CjfBQl2w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD1E799;
-	Thu, 14 Dec 2023 09:27:05 -0800 (PST)
-Received: by mail-oo1-f52.google.com with SMTP id 006d021491bc7-5906e03a7a4so4937482eaf.1;
-        Thu, 14 Dec 2023 09:27:05 -0800 (PST)
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE09310E
+	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 09:36:05 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-a22ed5f0440so446023966b.1
+        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 09:36:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702575364; x=1703180164; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=mne296aPJtU4QgTaZarV9zfnR0z7R06yN21F5bc4Dts=;
+        b=CjfBQl2wcqcyZ1n8uat/93pazT4dUGZJ4uB5iCYppKV/LsCIZzpphxxCfoKK7sCxm6
+         VAe7eueUH5uYB8EScXXqeieAyibAyVTzaFneJG5UThHBgw7rdmIuG1iWWHMDg2M8v9/F
+         2wrOhJo2vfSDkAsm3oOZDOHj0B3rjk9z3v6Iz+pM7YxWaSsFZ71lfsPgmVM5cLgjIob2
+         /MUb/Fc6e61uT8byNyF00oZWlU4fkXesl/73AOw9W/e37t8YF6T7OiQCh+SbpG1yLLA7
+         THTOaCn6mQU+px45QYGB2jZdwD6u6WlDshLgPz/qex+eK2EJB2PK11kwS8JQUJg7UBoQ
+         d+LQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702574825; x=1703179625;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bvlPaOvWZi6YT4dBhvJqrCk9Wves4WI6vEv3aL4+FYg=;
-        b=MJagL2MPO5d/r2tleyWyiCfgpeB2PaTJgSyPLHgyEwEPEU6HM/IU+5gNVsOVaKyC2b
-         BGWMoeQzwALreJwaxFLxHSDqi7nL6wEGW8yDPG3//dwxC+1LzfCtfFNLd18ZUuiSRrfY
-         TuEQuM4OgdxxsD3DCtee1/zFyAPrbbIuIh26VCMStTPGXyuFzVdFf5HSc0sAqdCALZh9
-         /bbhhru+ZJwp3+EohG9l5Sz3GsMkHO34TVj6gBMA/+j8Q4mF+EvnnGgAuH/vpi/zZExv
-         3bbl/u5gXMfwXIU57NGKi0/MZ0p2oFy6RthBLHOm7OsBYz8eev5lzi74p6upewv7TKR2
-         G7vA==
-X-Gm-Message-State: AOJu0YxY1MWBpeW+OvCCKXqKEf0vd5UTxGMv8gwnCRcECQh0kuNNoH9A
-	DP4mHSzWCA7hGjdx8g59ag==
-X-Google-Smtp-Source: AGHT+IHE3yB7iPFgi1CEIf18XQ6wLVZQxOJa4peKJpfxlxe4KfiUfxamVgaQaN9eMO+YHnRGmAJgUg==
-X-Received: by 2002:a05:6820:162c:b0:590:6f86:f3c6 with SMTP id bb44-20020a056820162c00b005906f86f3c6mr8302579oob.12.1702574825070;
-        Thu, 14 Dec 2023 09:27:05 -0800 (PST)
-Received: from herring.priv ([2607:fb91:e6c7:a40:1c2d:b875:912d:c28])
-        by smtp.gmail.com with ESMTPSA id q12-20020a056820028c00b0058d52d0ef2dsm3456842ood.38.2023.12.14.09.27.03
+        d=1e100.net; s=20230601; t=1702575364; x=1703180164;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mne296aPJtU4QgTaZarV9zfnR0z7R06yN21F5bc4Dts=;
+        b=r2srvqALWm6V4Ubz063WT+Eww80UfDqCITkYw6e0gUAYnm9aB22/AjpTK27jwHBKsb
+         kAoa/X0QeOVhwrVuxxn/WFH+Bj4DtirVa5Gmj5pR7HkyePizqW/F38ziWYLR7lQTKQmk
+         nxadX140u6dlbOLIYeo5In8oFcmkmI6jmOziCWqW7aI9mxPsF/PA3u3H7TbCls2JXy6s
+         nTXGdSpcU/roQs89cK2u7CBCGft/ZsHo6QHZZFeBAidM6hbaczjf0qWWQzb96g7aAGHn
+         i0V7ChbzqIB8NkwCv0ciwSxyh3vMT8aWpeCHBnHjT1rsXKNfTsu04JEncs9aUnMzOK2h
+         a91w==
+X-Gm-Message-State: AOJu0YxSBWqpkhRichtxj2AoocaTsPiE0/BS7Q65GQKksUWeDOdsN4V8
+	L6fjYcEr5v/J3CDiBDQkEL266w==
+X-Google-Smtp-Source: AGHT+IFeRbq/P0rFVY/jZj2F38qeGhn7vCHi5uvfFQGtWJNc8iTb9zwtG5dTkEQUc16IMLebQlhOtg==
+X-Received: by 2002:a17:907:94c9:b0:a18:eb7d:9424 with SMTP id dn9-20020a17090794c900b00a18eb7d9424mr3783906ejc.27.1702575364125;
+        Thu, 14 Dec 2023 09:36:04 -0800 (PST)
+Received: from [127.0.1.1] ([79.115.23.25])
+        by smtp.gmail.com with ESMTPSA id vw15-20020a170907a70f00b00a22ff4994e9sm2725086ejc.214.2023.12.14.09.36.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Dec 2023 09:27:04 -0800 (PST)
-Received: (nullmailer pid 622570 invoked by uid 1000);
-	Thu, 14 Dec 2023 17:27:02 -0000
-Date: Thu, 14 Dec 2023 11:27:02 -0600
-From: Rob Herring <robh@kernel.org>
-To: Simon Glass <sjg@chromium.org>
-Cc: devicetree@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>, linux-mtd@lists.infradead.org, Tom Rini <trini@konsulko.com>, Michael Walle <mwalle@kernel.org>, U-Boot Mailing List <u-boot@lists.denx.de>, Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Pratyush Yadav <ptyadav@amazon.de>, =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 1/3] dt-bindings: mtd: partitions: Add binman
- compatible
-Message-ID: <20231214172702.GA617226-robh@kernel.org>
-References: <20231116172859.393744-1-sjg@chromium.org>
- <20231208150042.GA1278773-robh@kernel.org>
- <CAPnjgZ2i4gvgiUeHPOfHuOdBooV4e=QQEq6iMo0JbDwOS6dCwA@mail.gmail.com>
- <CAL_Jsq+xMZ8yz4H9D59uCSyX4h5W+4ruGF++=wVA=msXz+Y01A@mail.gmail.com>
- <CAPnjgZ1uW8T6woXSqFUNm301=W3zBYOrADREkrz=DuwSW87qZg@mail.gmail.com>
+        Thu, 14 Dec 2023 09:36:03 -0800 (PST)
+From: Abel Vesa <abel.vesa@linaro.org>
+Date: Thu, 14 Dec 2023 19:35:50 +0200
+Subject: [PATCH] dt-bindings: soc: qcom,aoss-qmp: document the X1E80100
+ Always-On Subsystem side channel
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAPnjgZ1uW8T6woXSqFUNm301=W3zBYOrADREkrz=DuwSW87qZg@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20231214-x1e80100-soc-qcom-aoss-v1-1-94c46c5182fd@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAPU8e2UC/x3MMQqAMAxA0atIZgNNKyheRRxqGzWDVhsQQby7x
+ fEN/z+gnIUV+uqBzJeopL2A6grC6veFUWIxWGMdWWrwJu4MGYOaAp4hbeiTKlK03jXd1DoXocR
+ H5lnufzyM7/sBmbM+L2gAAAA=
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=944; i=abel.vesa@linaro.org;
+ h=from:subject:message-id; bh=Hep+DHPXJuUzQ7KO0AE21Mq91lRuEtDe6OG3PuWcLSo=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBlezz+VP8l5zwR6k4mCNsMqm2+p7ow3ZpLhK8vb
+ wo0TGrWMReJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZXs8/gAKCRAbX0TJAJUV
+ Vu6qEAC5PCwBaBNdR2gtdLVYHZK9mnqofbsxDHQm1mYOhy+7E7Plmt2GrSqc96eJikFLjJhLLFd
+ J8NnqJfnZh12udrLCGlT8hqb+ayjxqxW6zQpC/3IqIxsqPgBwMYop9/mS4lW5EDLYce1y/3SCM1
+ gsmOrWJA0LC4/4aYg7+t9BEGJsCvJGRaK12gA+yVVcAxoYiDwM2t2wCciVRrovr/AkDC9bSvH5u
+ Dn8phCPODJOroOge5GdS/00IHEJdstjfy/hQteELbbgATiJoWVhwolDll3Zc/6uX4U6dFge4XB+
+ dBjSHDe0VhlrCmgRcdhOF1TSQvpKmx0WOdYs9FN/C5IueIV6HufQ/uRTyVCe3HvYHz6CitsmD3e
+ /IIdMocyIfX8ztyt9uhESYvZGW962h8AIbBLyxFyOGNqrxLmSCh8V1G9rvtbjmfACC45Iw4ONCm
+ zkFywPmqgr7XIU+ytR0WZ0vZ1+V9+WjjOrJUzkthdHIND9HFo3BEQLCZ9LqSL7hNTzc6iO95rfp
+ tiuXjkGk859D/r6Qk2w13pymo9U+fl2epmf2Hmx0NvLShTMtUNTko4zVDsDNYUqG03A3z2q7nAa
+ iLuhux5nNkK6WPrvBxVKp3Q2kAEUHU7gRJjejLiwBY/XNuYDBmy9iWpbGq5l31oEnue7AJ37tjF
+ jfZ9vXVVMAq/M9g==
+X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
+ fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
-On Fri, Dec 08, 2023 at 03:58:10PM -0700, Simon Glass wrote:
-> Hi Rob,
-> 
-> On Fri, 8 Dec 2023 at 14:56, Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Fri, Dec 8, 2023 at 11:47 AM Simon Glass <sjg@chromium.org> wrote:
-> > >
-> > > Hi Rob,
-> > >
-> > > On Fri, 8 Dec 2023 at 08:00, Rob Herring <robh@kernel.org> wrote:
-> > > >
-> > > > On Thu, Nov 16, 2023 at 10:28:50AM -0700, Simon Glass wrote:
-> > > > > Add a compatible string for binman, so we can extend fixed-partitions
-> > > > > in various ways.
-> > > > >
-> > > > > Signed-off-by: Simon Glass <sjg@chromium.org>
-> > > > > ---
-> > > > >
-> > > > > (no changes since v5)
-> > > > >
-> > > > > Changes in v5:
-> > > > > - Add #address/size-cells and parternProperties
-> > > > > - Drop $ref to fixed-partitions.yaml
-> > > > > - Drop 'select: false'
-> > > > >
-> > > > > Changes in v4:
-> > > > > - Change subject line
-> > > > >
-> > > > > Changes in v3:
-> > > > > - Drop fixed-partition additional compatible string
-> > > > > - Drop fixed-partitions from the example
-> > > > > - Mention use of compatible instead of label
-> > > > >
-> > > > > Changes in v2:
-> > > > > - Drop mention of 'enhanced features' in fixed-partitions.yaml
-> > > > > - Mention Binman input and output properties
-> > > > > - Use plain partition@xxx for the node name
-> > > > >
-> > > > >  .../bindings/mtd/partitions/binman.yaml       | 68 +++++++++++++++++++
-> > > > >  .../bindings/mtd/partitions/partitions.yaml   |  1 +
-> > > > >  MAINTAINERS                                   |  5 ++
-> > > > >  3 files changed, 74 insertions(+)
-> > > > >  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/binman.yaml
-> > > > >
-> > > > > diff --git a/Documentation/devicetree/bindings/mtd/partitions/binman.yaml b/Documentation/devicetree/bindings/mtd/partitions/binman.yaml
-> > > > > new file mode 100644
-> > > > > index 000000000000..329217550a98
-> > > > > --- /dev/null
-> > > > > +++ b/Documentation/devicetree/bindings/mtd/partitions/binman.yaml
-> > > > > @@ -0,0 +1,68 @@
-> > > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > > > +# Copyright 2023 Google LLC
-> > > > > +
-> > > > > +%YAML 1.2
-> > > > > +---
-> > > > > +$id: http://devicetree.org/schemas/mtd/partitions/binman.yaml#
-> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > > +
-> > > > > +title: Binman firmware layout
-> > > > > +
-> > > > > +maintainers:
-> > > > > +  - Simon Glass <sjg@chromium.org>
-> > > > > +
-> > > > > +description: |
-> > > > > +  The binman node provides a layout for firmware, used when packaging firmware
-> > > > > +  from multiple projects. It is based on fixed-partitions, with some
-> > > > > +  extensions, but uses 'compatible' to indicate the contents of the node, to
-> > > > > +  avoid perturbing or confusing existing installations which use 'label' for a
-> > > > > +  particular purpose.
-> > > > > +
-> > > > > +  Binman supports properties used as inputs to the firmware-packaging process,
-> > > > > +  such as those which control alignment of partitions. This binding addresses
-> > > > > +  these 'input' properties. For example, it is common for the 'reg' property
-> > > > > +  (an 'output' property) to be set by Binman, based on the alignment requested
-> > > > > +  in the input.
-> > > > > +
-> > > > > +  Once processing is complete, input properties have mostly served their
-> > > > > +  purpose, at least until the firmware is repacked later, e.g. due to a
-> > > > > +  firmware update. The 'fixed-partitions' binding should provide enough
-> > > > > +  information to read the firmware at runtime, including decompression if
-> > > > > +  needed.
-> > > >
-> > > > How is this going to work exactly? binman reads these nodes and then
-> > > > writes out 'fixed-partitions' nodes. But then you've lost the binman
-> > > > specifc parts needed for repacking.
-> > >
-> > > No, they are the same node. I do want the extra information to stick
-> > > around. So long as it is compatible with fixed-partition as well, this
-> > > should work OK.
-> >
-> > How can it be both? The partitions node compatible can be either
-> > 'fixed-partitions' or 'binman'.
-> 
-> Can we not allow it to be both? I have tried to adjust things in
-> response to feedback but perhaps the feedback was leading me down the
-> wrong path?
+Document the Always-On Subsystem side channel on the X1E80100 Platform.
 
-Sure, but then the schema has to and that means extending 
-fixed-partitions.
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
+ Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Rob
+diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml
+index 109f52a0b524..b4478f417edc 100644
+--- a/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml
++++ b/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml
+@@ -39,6 +39,7 @@ properties:
+           - qcom,sm8450-aoss-qmp
+           - qcom,sm8550-aoss-qmp
+           - qcom,sm8650-aoss-qmp
++          - qcom,x1e80100-aoss-qmp
+       - const: qcom,aoss-qmp
+ 
+   reg:
+
+---
+base-commit: 48e8992e33abf054bcc0bb2e77b2d43bb899212e
+change-id: 20231214-x1e80100-soc-qcom-aoss-1d2a348b733d
+
+Best regards,
+-- 
+Abel Vesa <abel.vesa@linaro.org>
+
 
