@@ -1,112 +1,133 @@
-Return-Path: <devicetree+bounces-25392-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25393-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B1538131E3
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 14:43:11 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4818813209
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 14:47:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B18A91F22197
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 13:43:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7F2C71F21FB8
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 13:47:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 458F556B6B;
-	Thu, 14 Dec 2023 13:43:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5311B4F216;
+	Thu, 14 Dec 2023 13:47:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="lLk8zjQm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p/Diy8RF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D43AB126
-	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 05:43:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1702561382; x=1734097382;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=iXSwRG/rx0OyRIYjDnfQMbcylm/rWyCaSZ8s8e+AQ8U=;
-  b=lLk8zjQmiZe0k/Z6Bt0rlAb/aV30gu60LipuIuo4OKF24jm9QMfMUZ9M
-   +d3dGMgf0lpDKRKfm/Hgvkybo6KSQZH7Fm3md56SqTR2iDkzWOYnxwohi
-   r+7Ka3IagqibEV+SlOpHaUMYVVVRTGuXEWOiGSJmZvjvfWLkSLecOAfTz
-   E/us6GJYtpde5sTwnTrV954ubXbGQ8uwPoZYPq5W4ZVXPNfRmVdexgmf+
-   zvv/y5Ak8aog77ZVKNkPjZjc2skBfAZZ95oaOFsk5jegVJ8Nhiuy4R4El
-   aWMLt9TIBGmJsQA1sxXGBga6ZMJSDEfnQyn/Hgg/my+5BJprY8qIyA1jP
-   g==;
-X-IronPort-AV: E=Sophos;i="6.04,275,1695679200"; 
-   d="scan'208";a="34510776"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 14 Dec 2023 14:43:00 +0100
-Received: from steina-w.tq-net.de (steina-w.tq-net.de [10.123.53.18])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id F1376280075;
-	Thu, 14 Dec 2023 14:42:59 +0100 (CET)
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Rob Herring <robh+dt@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30E324EB38;
+	Thu, 14 Dec 2023 13:47:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03207C433C8;
+	Thu, 14 Dec 2023 13:47:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702561641;
+	bh=lWqoyY+Lp0x9QIy2h5s/P2Ib5HZKYH1QdBbOLtUFQsE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=p/Diy8RFki0Xj0UHq3i2rCZfhaqQg8EttcvF9psMEeM0+YTNy7zkRYMakriJZiqLK
+	 dBOBbHJ+2pqIQ0Qiwgg2Tr1V9wqcoRJR7PDuwBSk4mBYFvTth01psHiZwYVmPnOXFz
+	 5ZxP23bDpK1suw9uvM+qoQSUZ5tw10ARjNfqk6zQtsFdG1PWOwxgbD2ZmqHv2CYbpC
+	 9VPpcEJFmiFv05M30RH9pLf4nm5OPAT2tauPWu6Qol9Fq1zAhY/NLJC7PSJXfnbV27
+	 uuzPsug4M8oVleSFbo6yHZdfymHCVUNOMf/YNt6auGzR7/YglzJO7oLpFmFiQT9mXD
+	 5eH3JiIG3ZIhQ==
+Date: Thu, 14 Dec 2023 13:47:14 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Viresh Kumar <viresh.kumar@linaro.org>
+Cc: Brandon Cheo Fusi <fusibrandon13@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 1/1] arm64: dts: freescale: imx8qxp: Disable dsp reserved memory by default
-Date: Thu, 14 Dec 2023 14:42:59 +0100
-Message-Id: <20231214134259.1933541-1-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Yangtao Li <tiny.windzz@gmail.com>, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH 1/5] riscv: dts: allwinner: Update opp table to allow CPU
+ frequency scaling
+Message-ID: <20231214-junkyard-corset-d35b01bad69f@spud>
+References: <20231214103342.30775-1-fusibrandon13@gmail.com>
+ <20231214103342.30775-2-fusibrandon13@gmail.com>
+ <20231214111446.camz2krqanaieybh@vireshk-i7>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="4Bt0sbK2SeaAxN2v"
+Content-Disposition: inline
+In-Reply-To: <20231214111446.camz2krqanaieybh@vireshk-i7>
 
-Even if the 'dsp' node is disabled the memory intended to be used by the
-DSP is reserved. This limits the memory range suitable for CMA allocation.
-Thus disable the dsp_reserved node. DSP users need to enable it in parallel
-to the 'dsp' node.
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
-Apparently imx8qxp-mek is the only in-kernel user, so it is enabled
-again to preserve current state.
+--4Bt0sbK2SeaAxN2v
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
- arch/arm64/boot/dts/freescale/imx8qxp-mek.dts | 4 ++++
- arch/arm64/boot/dts/freescale/imx8qxp.dtsi    | 1 +
- 2 files changed, 5 insertions(+)
+On Thu, Dec 14, 2023 at 04:44:46PM +0530, Viresh Kumar wrote:
+> On 14-12-23, 11:33, Brandon Cheo Fusi wrote:
+> > Two OPPs are currently defined for the D1/D1s; one at 408MHz and
+> > another at 1.08GHz. Switching between these can be done with the
+> > "sun50i-cpufreq-nvmem" driver. This patch populates the opp table
+> > appropriately, with inspiration from
+> > https://github.com/Tina-Linux/linux-5.4/blob/master/arch/riscv/boot/dts=
+/sunxi/sun20iw1p1.dtsi
+> >=20
+> > The supply voltages are PWM-controlled, but support for that IP
+> > is still in the works. So stick to a fixed 0.9V vdd-cpu supply,
+> > which seems to be the default on most D1 boards.
+> >=20
+> > Signed-off-by: Brandon Cheo Fusi <fusibrandon13@gmail.com>
+> > ---
+> >  arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi | 18 +++++++++++++++---
+> >  1 file changed, 15 insertions(+), 3 deletions(-)
+> >=20
+> > diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi b/arch/riscv=
+/boot/dts/allwinner/sun20i-d1s.dtsi
+> > index 64c3c2e6c..e211fe4c7 100644
+> > --- a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
+> > +++ b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
+> > @@ -39,16 +39,22 @@ cpu0_intc: interrupt-controller {
+> >  	};
+> > =20
+> >  	opp_table_cpu: opp-table-cpu {
+> > -		compatible =3D "operating-points-v2";
+> > +		compatible =3D "allwinner,sun20i-d1-operating-points",
+>=20
+> I don't think you should add a new compatible for every SoC that needs
+> to be supported by a DT bindings and cpufreq driver. Maybe you should
+> just reuse "allwinner,sun50i-h6-operating-points" and it will work
+> fine for you ?
+>=20
+> Rob ?
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-index 6c3d8715bc11e..7888570c15e19 100644
---- a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-@@ -50,6 +50,10 @@ &dsp {
- 	status = "okay";
- };
- 
-+&dsp_reserved {
-+	status = "okay";
-+};
-+
- &fec1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_fec1>;
-diff --git a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-index c80c85a4b4059..f014d0a764ea4 100644
---- a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-@@ -184,6 +184,7 @@ decoder_rpc: decoder-rpc@92000000 {
- 		dsp_reserved: dsp@92400000 {
- 			reg = <0 0x92400000 0 0x2000000>;
- 			no-map;
-+			status = "disabled";
- 		};
- 
- 		encoder_rpc: encoder-rpc@94400000 {
--- 
-2.34.1
+The driver can definitely just reuse sun50i-h6, but the binding and
+devicetree should have a soc-specific compatible for the sun20i-d1.
 
+That said, the compatible does need to be documented, there's a
+dt-bindings patch missing from this series.
+
+Cheers,
+Conor.
+
+--4Bt0sbK2SeaAxN2v
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZXsHYgAKCRB4tDGHoIJi
+0llNAPwPlCtHYqdw3PHm/F9o63nh77wIsWE9SawYpIg6XvVYSQEA3ontbKuKxaUy
+sMpsYI0c/7MsH2HbQPLjiFJVxobR5wo=
+=L6Mk
+-----END PGP SIGNATURE-----
+
+--4Bt0sbK2SeaAxN2v--
 
