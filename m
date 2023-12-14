@@ -1,45 +1,45 @@
-Return-Path: <devicetree+bounces-25432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25431-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E59C68133D0
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 16:02:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFC3F8133CF
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 16:02:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 73EC91F221B1
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 15:02:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9936A1F22270
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 15:02:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 355625B5CD;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01AF25B5B9;
 	Thu, 14 Dec 2023 15:02:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="dAI5lAUv"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="Uv263hjS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 562D7120
-	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 07:02:49 -0800 (PST)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80311BD
+	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 07:02:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1702566169; x=1734102169;
+  t=1702566170; x=1734102170;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=/JzvmgCuE5/vwqnmvfp26TZymQHwHO2e89lNzTTRkW0=;
-  b=dAI5lAUvdLnvElg8p8h5Yb0/51HrHCCSeVSP6xpsmdT/DZv9pGz2vmZt
-   MMdOXdcmvmM91r/GyuUwD9gcTe1ko9Gi0bRlEG0srMFK0plpQmmY27NmL
-   m6eAVqync7M3ANPRczoZvuXeTIhJJrnjdxV5vC1lKuCdJGL64Xz3yf0+y
-   QPsj+aYVPQCgW2mkTvptn/fsiIaL8UfEszkHHfl1jAe4J07nrVbCN0Q5z
-   G0himBazDdklA1ofu4oO3UmaiRTcK5fC9P7xee4UxCWXMs5fzy4zCUSD0
-   DafHxyNRxid29/teqUMs6CgZTN+KWT1bAz0nqR8Cf+TAXQpPaeutiBm5i
-   g==;
+  bh=3weEccDHP4bYdWEvQd79Jf6N+sA5GjhNZ6jCZiq2E7o=;
+  b=Uv263hjSwIYM3RoN2gbcpEBIr3LAJaSH9g7etb0ts4eShEmR9IThCoDh
+   nr5XOTQbgwRrfny6Rmi+1q1FMGZWPApQCrHaIU20xlVrxJImnjxwIP4sE
+   KUTVTzXlKhYhw07ykKFVS52ucEQZ6wprz8bn8XllIYVvm5ZGhfSgr7pyR
+   RNJ7UErTV8shgfpRlwQ+lBfSjBAEFqDfolhgNA+Lj9GeRtdlmzAbBsvTH
+   EqCjCF5Hy/7FPn+Mv1bbXQ0febn1Qi7kgpHr/+kvwo9Bg2bcmp4+Xlx0d
+   wav2/yeae6AUm9m5aSKwIOR48FI4GHME2GpisUaa7HxSy7TUTM5ESQgoj
+   w==;
 X-IronPort-AV: E=Sophos;i="6.04,275,1695679200"; 
-   d="scan'208";a="34513399"
+   d="scan'208";a="34513400"
 Received: from vtuxmail01.tq-net.de ([10.115.0.20])
   by mx1.tq-group.com with ESMTP; 14 Dec 2023 16:02:44 +0100
 Received: from steina-w.tq-net.de (steina-w.tq-net.de [10.123.53.18])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 8F366280084;
+	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id C2271280075;
 	Thu, 14 Dec 2023 16:02:44 +0100 (CET)
 From: Alexander Stein <alexander.stein@ew.tq-group.com>
 To: Rob Herring <robh+dt@kernel.org>,
@@ -53,9 +53,9 @@ Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
 	NXP Linux Team <linux-imx@nxp.com>,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 3/5] arm64: dts: imx8qxp: Add audio SAI nodes
-Date: Thu, 14 Dec 2023 16:02:41 +0100
-Message-Id: <20231214150243.1991532-4-alexander.stein@ew.tq-group.com>
+Subject: [PATCH 4/5] arm64: dts: imx8qxp: Add mclkout clock gates
+Date: Thu, 14 Dec 2023 16:02:42 +0100
+Message-Id: <20231214150243.1991532-5-alexander.stein@ew.tq-group.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231214150243.1991532-1-alexander.stein@ew.tq-group.com>
 References: <20231214150243.1991532-1-alexander.stein@ew.tq-group.com>
@@ -67,176 +67,45 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-This adds the sai nodes attached to aips1 bus. These can be shared with
-imx8qm as well. Input clock from ACM is always feed to mclk1 only. Others
-are unused and are connected to a dummy clock.
+These clock gates provide a clock output on ACM_MCLK_OUT pads. They are
+intended to be used as MCLK for SAI0-3.
 
 Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 ---
-This SAI list is not complete, but re-usable on imx8qm without any further
-change. Adding SAI4/5 needs to be done in a SoC-specific file
-imx8qxp-ss-audio.dtsi. They are hard-wired to the internal audio mixer as well.
-
- .../boot/dts/freescale/imx8-ss-audio.dtsi     | 113 ++++++++++++++++++
- arch/arm64/boot/dts/freescale/imx8qxp.dtsi    |   7 ++
- 2 files changed, 120 insertions(+)
+ .../boot/dts/freescale/imx8-ss-audio.dtsi     | 20 +++++++++++++++++++
+ 1 file changed, 20 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-audio.dtsi b/arch/arm64/boot/dts/freescale/imx8-ss-audio.dtsi
-index 61ef0272b06e6..29a7d10f7db3d 100644
+index 29a7d10f7db3d..07afeb78ed564 100644
 --- a/arch/arm64/boot/dts/freescale/imx8-ss-audio.dtsi
 +++ b/arch/arm64/boot/dts/freescale/imx8-ss-audio.dtsi
-@@ -4,6 +4,7 @@
-  *	Dong Aisheng <aisheng.dong@nxp.com>
-  */
- 
-+#include <dt-bindings/clock/imx8-clock.h>
- #include <dt-bindings/clock/imx8-lpcg.h>
- #include <dt-bindings/firmware/imx/rsrc.h>
- 
-@@ -118,6 +119,70 @@ audio_subsys: bus@59000000 {
- 	#size-cells = <1>;
- 	ranges = <0x59000000 0x0 0x59000000 0x1000000>;
- 
-+	sai0: sai@59040000 {
-+		compatible = "fsl,imx8qm-sai";
-+		reg = <0x59040000 0x10000>;
-+		interrupts = <GIC_SPI 314 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&sai0_lpcg 1>,
-+			 <&clk_dummy>,
-+			 <&sai0_lpcg 0>,
-+			 <&clk_dummy>,
-+			 <&clk_dummy>;
-+		clock-names = "bus", "mclk0", "mclk1", "mclk2", "mclk3";
-+		dma-names = "rx", "tx";
-+		dmas = <&edma0 12 0 1>, <&edma0 13 0 0>;
-+		power-domains = <&pd IMX_SC_R_SAI_0>;
-+		status = "disabled";
-+	};
-+
-+	sai1: sai@59050000 {
-+		compatible = "fsl,imx8qm-sai";
-+		reg = <0x59050000 0x10000>;
-+		interrupts = <GIC_SPI 316 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&sai1_lpcg 1>,
-+			 <&clk_dummy>,
-+			 <&sai1_lpcg 0>,
-+			 <&clk_dummy>,
-+			 <&clk_dummy>;
-+		clock-names = "bus", "mclk0", "mclk1", "mclk2", "mclk3";
-+		dma-names = "rx", "tx";
-+		dmas = <&edma0 14 0 1>, <&edma0 15 0 0>;
-+		power-domains = <&pd IMX_SC_R_SAI_1>;
-+		status = "disabled";
-+	};
-+
-+	sai2: sai@59060000 {
-+		compatible = "fsl,imx8qm-sai";
-+		reg = <0x59060000 0x10000>;
-+		interrupts = <GIC_SPI 318 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&sai2_lpcg 1>,
-+			 <&clk_dummy>,
-+			 <&sai2_lpcg 0>,
-+			 <&clk_dummy>,
-+			 <&clk_dummy>;
-+		clock-names = "bus", "mclk0", "mclk1", "mclk2", "mclk3";
-+		dma-names = "rx";
-+		dmas = <&edma0 16 0 1>;
-+		power-domains = <&pd IMX_SC_R_SAI_2>;
-+		status = "disabled";
-+	};
-+
-+	sai3: sai@59070000 {
-+		compatible = "fsl,imx8qm-sai";
-+		reg = <0x59070000 0x10000>;
-+		interrupts = <GIC_SPI 323 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&sai3_lpcg 1>,
-+			 <&clk_dummy>,
-+			 <&sai3_lpcg 0>,
-+			 <&clk_dummy>,
-+			 <&clk_dummy>;
-+		clock-names = "bus", "mclk0", "mclk1", "mclk2", "mclk3";
-+		dma-names = "rx";
-+		dmas = <&edma0 17 0 1>;
-+		power-domains = <&pd IMX_SC_R_SAI_3>;
-+		status = "disabled";
-+	};
-+
- 	edma0: dma-controller@591f0000 {
- 		compatible = "fsl,imx8qm-edma";
- 		reg = <0x591f0000 0x190000>;
-@@ -174,6 +239,54 @@ edma0: dma-controller@591f0000 {
- 				<&pd IMX_SC_R_DMA_0_CH23>;
+@@ -403,6 +403,26 @@ aud_pll_div1_lpcg: clock-controller@59d30000 {
+ 		power-domains = <&pd IMX_SC_R_AUDIO_PLL_1>;
  	};
  
-+	sai0_lpcg: clock-controller@59440000 {
++	mclkout0_lpcg: clock-controller@59d50000 {
 +		compatible = "fsl,imx8qxp-lpcg";
-+		reg = <0x59440000 0x10000>;
++		reg = <0x59d50000 0x10000>;
 +		#clock-cells = <1>;
-+		clocks = <&acm IMX_ADMA_ACM_SAI0_MCLK_SEL>,
-+			 <&audio_ipg_clk>;
-+		clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
-+		clock-output-names = "sai0_lpcg_mclk",
-+				     "sai0_lpcg_ipg_clk";
-+		power-domains = <&pd IMX_SC_R_SAI_0>;
++		clocks = <&acm IMX_ADMA_ACM_MCLKOUT0_SEL>;
++		clock-indices = <IMX_LPCG_CLK_0>;
++		clock-output-names = "mclkout0_lpcg_clk";
++		power-domains = <&pd IMX_SC_R_MCLK_OUT_0>;
 +	};
 +
-+	sai1_lpcg: clock-controller@59450000 {
++	mclkout1_lpcg: clock-controller@59d60000 {
 +		compatible = "fsl,imx8qxp-lpcg";
-+		reg = <0x59450000 0x10000>;
++		reg = <0x59d60000 0x10000>;
 +		#clock-cells = <1>;
-+		clocks = <&acm IMX_ADMA_ACM_SAI1_MCLK_SEL>,
-+			 <&audio_ipg_clk>;
-+		clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
-+		clock-output-names = "sai1_lpcg_mclk",
-+				     "sai1_lpcg_ipg_clk";
-+		power-domains = <&pd IMX_SC_R_SAI_1>;
++		clocks = <&acm IMX_ADMA_ACM_MCLKOUT1_SEL>;
++		clock-indices = <IMX_LPCG_CLK_0>;
++		clock-output-names = "mclkout1_lpcg_clk";
++		power-domains = <&pd IMX_SC_R_MCLK_OUT_1>;
 +	};
 +
-+	sai2_lpcg: clock-controller@59460000 {
-+		compatible = "fsl,imx8qxp-lpcg";
-+		reg = <0x59460000 0x10000>;
-+		#clock-cells = <1>;
-+		clocks = <&acm IMX_ADMA_ACM_SAI2_MCLK_SEL>,
-+			 <&audio_ipg_clk>;
-+		clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
-+		clock-output-names = "sai2_lpcg_mclk",
-+				     "sai2_lpcg_ipg_clk";
-+		power-domains = <&pd IMX_SC_R_SAI_2>;
-+	};
-+
-+	sai3_lpcg: clock-controller@59470000 {
-+		compatible = "fsl,imx8qxp-lpcg";
-+		reg = <0x59470000 0x10000>;
-+		#clock-cells = <1>;
-+		clocks = <&acm IMX_ADMA_ACM_SAI3_MCLK_SEL>,
-+			 <&audio_ipg_clk>;
-+		clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
-+		clock-output-names = "sai3_lpcg_mclk",
-+				     "sai3_lpcg_ipg_clk";
-+		power-domains = <&pd IMX_SC_R_SAI_3>;
-+	};
-+
- 	dsp_lpcg: clock-controller@59580000 {
- 		compatible = "fsl,imx8qxp-lpcg";
- 		reg = <0x59580000 0x10000>;
-diff --git a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-index 958267b333403..fdbb4242b157c 100644
---- a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-@@ -260,6 +260,13 @@ timer {
- 			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>; /* Hypervisor */
- 	};
- 
-+	clk_dummy: clock-dummy {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <0>;
-+		clock-output-names = "clk_dummy";
-+	};
-+
- 	xtal32k: clock-xtal32k {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
+ 	acm: acm@59e00000 {
+ 		compatible = "fsl,imx8qxp-acm";
+ 		reg = <0x59e00000 0x1d0000>;
 -- 
 2.34.1
 
