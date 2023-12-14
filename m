@@ -1,141 +1,230 @@
-Return-Path: <devicetree+bounces-25530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CE23813750
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 18:07:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88FC58137D0
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 18:13:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 25DE31F212DB
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 17:07:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D5C71F210C0
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 17:13:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64BE263DDF;
-	Thu, 14 Dec 2023 17:07:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2955465EAC;
+	Thu, 14 Dec 2023 17:12:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="F2sIpfGD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n9sZrVGq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9737A7
-	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 09:06:57 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-54f4f7e88feso9352805a12.3
-        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 09:06:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702573616; x=1703178416; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Vg4pzsKp2Qe/t4K3eYUmtV9LkGCsbM0iu+iGTaqM5Ck=;
-        b=F2sIpfGDpB6dmvn2e3bPyI+qV/p3URKD27bn+g/EhOBcqA6Y9M19bfmll9ZA6QUG2g
-         2V8NKMTEoDhRxmyp+rdOCwlY4vFyzuRPwVmLRCL59lFtWP/HUVDIipARUMrPiuvbvPj7
-         xSj7LP/wFI0YBm6Lmt/PQqt/4LBjkMwc12smF/a0jq5x339wVkzlrFfzqWCoj9U4oqKX
-         ReP2q13gGMi3Elj1AvFxbrVfpuIdhyssyboNJN5fP/d4y3v6i+g2G+Soe1Pr431/N3cy
-         bJIv0ESkP0KapRncK2F0OAvipbeI3ni9Z5TdJ57nt4j7aYVX7QGdpFRNyi9/JAFx0kd9
-         MHiA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702573616; x=1703178416;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Vg4pzsKp2Qe/t4K3eYUmtV9LkGCsbM0iu+iGTaqM5Ck=;
-        b=BjeMkW1ZAN60mdrxlHuPOHlzJkAv8SOsmjwWVrfuGaoh1ofvmTTkfKQXQSCKQ7Z+hP
-         4gTQXczd8dWSLvGZZufMiC+j7j1bPpbIgSbtskvvDzKHCw78lDAdtax79OeB8fsF6bpX
-         kiGmIRkZWYc3QtG5/WcoNfamA+jHqA/qfdUA/xo3AAD5ABKwFAaeNqBL8zZi3e+MJmAs
-         oBlSZFEEyKoP1md2Y9cN4fJN80ys0nWY/3Lt6vC62r1qJedJZKI8bFP/Xv+bZBwqhwSE
-         m9vBgN+0dfoDmRIs5CgvElibcy7nuvJvNAcR6zXMSesnIdDnXB1BogPAoo1n/3wJ3B3k
-         QtOg==
-X-Gm-Message-State: AOJu0YxBpJtEyrI/GeRBUbjQf2/lFj+tuRlgnNpcatGj/ZWFxDc770Sk
-	YV09hFC49xAEL3lq30QXWxsYAA==
-X-Google-Smtp-Source: AGHT+IFwnubd/IcCm6zKJxoRCySo1E+aDWxfOl0YfDbKYnbz4Qx8e3oh/+MYHR5/NygWBwZ41rV4+w==
-X-Received: by 2002:a05:6402:2313:b0:552:1be8:422 with SMTP id l19-20020a056402231300b005521be80422mr1727337eda.51.1702573616379;
-        Thu, 14 Dec 2023 09:06:56 -0800 (PST)
-Received: from [127.0.1.1] ([79.115.23.25])
-        by smtp.gmail.com with ESMTPSA id y66-20020a50bb48000000b0054c77ac01f4sm7182863ede.51.2023.12.14.09.06.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Dec 2023 09:06:56 -0800 (PST)
-From: Abel Vesa <abel.vesa@linaro.org>
-Date: Thu, 14 Dec 2023 19:06:52 +0200
-Subject: [PATCH] dt-bindings: usb: qcom,dwc3: Add X1E80100 binding
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0166D65EA7;
+	Thu, 14 Dec 2023 17:12:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8716C433C8;
+	Thu, 14 Dec 2023 17:12:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702573977;
+	bh=BAELR7PAtgbHJ26Por16QtKzX2s0QDtbvfohshpvT7k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=n9sZrVGqgBfPqr4iuqNawJmRCH6DZnjo9xEv9sc8Jb8tUM5X0p2lHGToKbQ71HmoH
+	 44fCZG2jogO+9MP9i+gwLpTOOeyiyU8jAzQ1KbHVHCCGg37M6IvFcsH49fsWo4Bj9r
+	 9YCpvO79dr6domzMwMFfmpRS9yzXx9Pzq5ie9+Pp33xnWN/ahxK5Y3byWThrLVIRzL
+	 lQbkm57hE1G71W7o7ddnMWQuxFYqhvBVWMz1Y9yTRr89wMBuQ0tvGE9pbIGLfT80zN
+	 VwNv612w0mqTSyIyJzwwQEthaIO3/MOA2kJ/6s8cYTWUsqwlbnGiZx4yeCY6098KxZ
+	 sCIYaCsJeKvOA==
+Date: Thu, 14 Dec 2023 17:12:51 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Jie Luo <quic_luoj@quicinc.com>
+Cc: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
+	robert.marko@sartura.hr, linux-arm-msm@vger.kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, quic_srichara@quicinc.com
+Subject: Re: [PATCH v2 5/5] dt-bindings: net: ipq4019-mdio: Document ipq5332
+ platform
+Message-ID: <20231214-outshine-shush-8a11c68607cd@spud>
+References: <20231212115151.20016-1-quic_luoj@quicinc.com>
+ <20231212115151.20016-6-quic_luoj@quicinc.com>
+ <20231212-caution-improvise-ed3cc6a1d305@spud>
+ <11ffc985-3f2b-46b9-ae0b-911f7abe98d1@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231214-x1e80100-usb-v1-1-c22be5c0109e@linaro.org>
-X-B4-Tracking: v=1; b=H4sIACs2e2UC/x3MMQqAMAxA0atIZgtJRQ1eRRy0Rs1SpUUpSO9uc
- XzD/y9ECSoRhuqFII9GPX0B1RW4Y/a7GF2LwaJtyBKZRMJIiOaOi1kct8y9cNcglOQKsmn6d+O
- U8wctMyjmXgAAAA==
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Abel Vesa <abel.vesa@linaro.org>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1223; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=M6miljaqwJPNWjTWUdahHGSlgKOEzXafA/Gjh7eL4QQ=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBlezYujPA2t+ofl5U22PW88pc91HxN9ggKKvB4Q
- uunpvqYfliJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZXs2LgAKCRAbX0TJAJUV
- VowlD/9TfX/CZHexvlo32hwGjhczMG95CPnUTrqn+eZB1lcJ/dNVDvN9D8fxo6ps7+O+30+jiTn
- sO3gTfxdUh+s70sYVVZEX2nnUTFYeJcwFnI9CKoJqFisK280Su4mt7bMRN/kTWVDIBYdglEIvgZ
- grgSGTMYMqxFHe+f+EN7VwsJxuR1cN53x51GNroyO8EIYgoO8T64bcdbi6O7DpqRtF3MqP2q0p5
- ShCNrpgyZt0WiN+2a9K7gEWGrFHBZur1EBNCBBzS0RtLPL98dez1JVE14AsqEfKjQCc+EDZgzDq
- +5PFfi0GiH18d5JtoO5sHPP8vTgIfJOxymEdAbDWAUPtghnrymW2BZ00pXic+5uCNJnulEbBQxC
- 6Cc1R6awioK8ET8mLsnnGTM4CoYbM9mDPf7GZCDN+znde+nBCT007rjV+xsEcGktgvtKs5nUPXp
- VSdsSsPGuw5f+djy7knLSen0V5ZleRWGG4Hp7bX3noy37OFX+to0u7ODhCuSJH+pbVan3BExOi/
- MclXJysnOJKUuBnq/vaSBzZkQGUAH4naeltzB7CCM7WyX5nl0G0k8EUcXHxGUYMDDl1j0CrOe52
- 3MSgXPDTNowzkN/sRDa7aCMKmG10fWejuLUYGZGFz44wbq1yIOpS+PBNCRMuI2a3aYOIwkOAh7t
- 38prAfbScGrMc0Q==
-X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="LYJ0ceWwoY8jlvlx"
+Content-Disposition: inline
+In-Reply-To: <11ffc985-3f2b-46b9-ae0b-911f7abe98d1@quicinc.com>
 
-Add X1E80100 to the DT schema.
 
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
- Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+--LYJ0ceWwoY8jlvlx
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-index 3ec62027f663..473c4bfaf8a2 100644
---- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-+++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-@@ -47,6 +47,7 @@ properties:
-           - qcom,sm8450-dwc3
-           - qcom,sm8550-dwc3
-           - qcom,sm8650-dwc3
-+          - qcom,x1e80100-dwc3
-       - const: qcom,dwc3
- 
-   reg:
-@@ -264,6 +265,7 @@ allOf:
-           contains:
-             enum:
-               - qcom,sc8280xp-dwc3
-+              - qcom,x1e80100-dwc3
-     then:
-       properties:
-         clocks:
-@@ -459,6 +461,7 @@ allOf:
-           contains:
-             enum:
-               - qcom,sc8280xp-dwc3
-+              - qcom,x1e80100-dwc3
-     then:
-       properties:
-         interrupts:
+On Wed, Dec 13, 2023 at 04:26:56PM +0800, Jie Luo wrote:
+>=20
+>=20
+> On 12/13/2023 12:06 AM, Conor Dooley wrote:
+> > On Tue, Dec 12, 2023 at 07:51:50PM +0800, Luo Jie wrote:
+> > > Update the yaml file for the new DTS properties.
+> > >=20
+> > > 1. cmn-reference-clock for the CMN PLL source clock select.
+> > > 2. clock-frequency for MDIO clock frequency config.
+> > > 3. add uniphy AHB & SYS GCC clocks.
+> > > 4. add reset-gpios for MDIO bus level reset.
+> > >=20
+> > > Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
+> > > ---
+> > >   .../bindings/net/qcom,ipq4019-mdio.yaml       | 157 +++++++++++++++=
+++-
+> > >   1 file changed, 153 insertions(+), 4 deletions(-)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.=
+yaml b/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml
+> > > index 3407e909e8a7..9546a6ad7841 100644
+> > > --- a/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml
+> > > +++ b/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml
+> > > @@ -20,6 +20,8 @@ properties:
+> > >             - enum:
+> > >                 - qcom,ipq6018-mdio
+> > >                 - qcom,ipq8074-mdio
+> > > +              - qcom,ipq9574-mdio
+> > > +              - qcom,ipq5332-mdio
+> > >             - const: qcom,ipq4019-mdio
+> > >     "#address-cells":
+> > > @@ -30,19 +32,71 @@ properties:
+> > >     reg:
+> > >       minItems: 1
+> > > -    maxItems: 2
+> > > +    maxItems: 5
+> > >       description:
+> > > -      the first Address and length of the register set for the MDIO =
+controller.
+> > > -      the second Address and length of the register for ethernet LDO=
+, this second
+> > > -      address range is only required by the platform IPQ50xx.
+> > > +      the first Address and length of the register set for the MDIO =
+controller,
+> > > +      the optional second, third and fourth address and length of th=
+e register
+> > > +      for ethernet LDO, these three address range are required by th=
+e platform
+> > > +      IPQ50xx/IPQ5332/IPQ9574, the last address and length is for th=
+e CMN clock
+> > > +      to select the reference clock.
+> > > +
+> > > +  reg-names:
+> > > +    minItems: 1
+> > > +    maxItems: 5
+> > >     clocks:
+> > > +    minItems: 1
+> > >       items:
+> > >         - description: MDIO clock source frequency fixed to 100MHZ
+> > > +      - description: UNIPHY0 AHB clock source frequency fixed to 100=
+MHZ
+> > > +      - description: UNIPHY1 AHB clock source frequency fixed to 100=
+MHZ
+> > > +      - description: UNIPHY0 SYS clock source frequency fixed to 24M=
+HZ
+> > > +      - description: UNIPHY1 SYS clock source frequency fixed to 24M=
+HZ
+> > >     clock-names:
+> > > +    minItems: 1
+> > >       items:
+> > >         - const: gcc_mdio_ahb_clk
+> > > +      - const: gcc_uniphy0_ahb_clk
+> > > +      - const: gcc_uniphy1_ahb_clk
+> > > +      - const: gcc_uniphy0_sys_clk
+> > > +      - const: gcc_uniphy1_sys_clk
+> >=20
+> > > +  cmn-reference-clock:
+> > > +    oneOf:
+> > > +      - items:
+> > > +          - enum:
+> > > +              - 0   # CMN PLL reference internal 48MHZ
+> > > +              - 1   # CMN PLL reference external 25MHZ
+> > > +              - 2   # CMN PLL reference external 31250KHZ
+> > > +              - 3   # CMN PLL reference external 40MHZ
+> > > +              - 4   # CMN PLL reference external 48MHZ
+> > > +              - 5   # CMN PLL reference external 50MHZ
+> > > +              - 6   # CMN PLL reference internal 96MHZ
+> >=20
+> > Why is this not represented by an element of the clocks property?
+>=20
+> This property is for the reference clock source selection of CMN PLL,
+> CMN PLL generates the different clock rates for the different Ethernet
+> blocks, this CMN PLL configuration is not located in the GCC, so the
+> clock framework can't be used, which is the general hardware register
+> instead of RCG register for GCC.
 
----
-base-commit: 48e8992e33abf054bcc0bb2e77b2d43bb899212e
-change-id: 20231211-x1e80100-usb-bc85887e8630
+I don't see how the clock being provided by the "GCC" (whatever that is)
+or by some other clock controller or fixed clock makes a difference.
+Why can't the other clock provider be represented in the devicetree?
 
-Best regards,
--- 
-Abel Vesa <abel.vesa@linaro.org>
+> > > +  clock-frequency:
+> > > +    oneOf:
+> > > +      - items:
+> > > +          - enum:
+> > > +              - 12500000
+> > > +              - 6250000
+> > > +              - 3125000
+> > > +              - 1562500
+> > > +              - 781250
+> > > +              - 390625
+> > > +    description:
+> > > +      The MDIO bus clock that must be output by the MDIO bus hardwar=
+e,
+> > > +      only the listed frequecies above can be configured, other freq=
+uency
+> > > +      will cause malfunction. If absent, the default hardware value =
+is used.
+> >=20
+> > Likewise.
+> >=20
+> > Your commit message contains a bullet point list of what you are doing,
+> > but there's no explanation here for why custom properties are required
+> > to provide clock information.
 
+> This property clock-frequency is optional to configure the MDIO working
+> clock rate, and this is the MDIO general DT property, since the hardware
+> default clock rate is 390625HZ, there is requirement for higher clock rate
+> in the normal working case, i will update this information in the
+> next patch set.
+
+I'm just realising that this particular one is not a custom property,
+the unusual `oneOf: - items: - enum:` structure here threw me. This can
+just be
+  clock-frequency:
+    enum:
+      - 12500000
+      - 6250000
+      - 3125000
+      - 1562500
+      - 781250
+      - 390625
+
+but you're missing a default, given your commit about the last element
+in that list being one.
+
+Thanks,
+Conor.
+
+--LYJ0ceWwoY8jlvlx
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZXs3kwAKCRB4tDGHoIJi
+0vu7APsHtU2RskKEI44XxHTB9wAjvT2zciB0zeCci/YTbg5d6gEAqM9G7uRaWzhA
+33QIM6/PicVe6pC2JOVaFUlBDKnW0gM=
+=Cypi
+-----END PGP SIGNATURE-----
+
+--LYJ0ceWwoY8jlvlx--
 
