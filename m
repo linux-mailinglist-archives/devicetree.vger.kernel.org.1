@@ -1,76 +1,168 @@
-Return-Path: <devicetree+bounces-25537-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25538-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7943E81385C
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 18:21:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51D8981387E
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 18:27:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AB4121C20D48
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 17:21:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D80942832AE
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 17:27:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D55F065EC3;
-	Thu, 14 Dec 2023 17:20:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45D8F675B0;
+	Thu, 14 Dec 2023 17:27:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68675B2;
-	Thu, 14 Dec 2023 09:20:54 -0800 (PST)
-Received: by mail-oi1-f181.google.com with SMTP id 5614622812f47-3b9e2d50e61so5879696b6e.2;
-        Thu, 14 Dec 2023 09:20:54 -0800 (PST)
+Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD1E799;
+	Thu, 14 Dec 2023 09:27:05 -0800 (PST)
+Received: by mail-oo1-f52.google.com with SMTP id 006d021491bc7-5906e03a7a4so4937482eaf.1;
+        Thu, 14 Dec 2023 09:27:05 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702574453; x=1703179253;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5bRpMT8adyLjuk8v3m+Q7iMZxQW0r3mgWAJ3z5hKZNg=;
-        b=mdeiyd4ZDe2FlWjP/JQ6cadgInN4sJEUifOxPSTf43IT2GElxyu/KO8nYwLxHvHACz
-         PrusoF3mplullW7N32VHhw9+zlnRrcG955NRnGKhZCa9c7mLpseNDGGA9CeWuuUHPHdV
-         pgWvMW5V/i+uAiuz99Ti0SimMuIo0md4QI71enyl9hhTFhKpobLOMzKqa5LkebNRmvVS
-         fiDQbbQzZN7a7KluoTdIFslS+uvUAlqzUW4zh6lPcDeCy9FpcuqUbRB2xAp8AUBGz2Gu
-         Oq6S6mLWKlVIJyT4vPDz3QCtBPSec0DrUtOh8ZKp2Psz51Z7dFIdmgBSAM5zUuHAclbN
-         /QiA==
-X-Gm-Message-State: AOJu0YymwRzFgNoSZsAc11dgnMxZYglnvLTUqAhLIZasteL5LWK50b5t
-	JqW18Tl+lyGndJOMy/eTggU1Q+73+g==
-X-Google-Smtp-Source: AGHT+IFG1H7d5qx/OPE9NFJC6FAAQwsK89rA2Zqb4ztseS1evSpGKvGvToAZ/lZKGdOpICFILPvMYg==
-X-Received: by 2002:a05:6870:4209:b0:203:56f5:5a29 with SMTP id u9-20020a056870420900b0020356f55a29mr895478oac.16.1702574453615;
-        Thu, 14 Dec 2023 09:20:53 -0800 (PST)
+        d=1e100.net; s=20230601; t=1702574825; x=1703179625;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=bvlPaOvWZi6YT4dBhvJqrCk9Wves4WI6vEv3aL4+FYg=;
+        b=MJagL2MPO5d/r2tleyWyiCfgpeB2PaTJgSyPLHgyEwEPEU6HM/IU+5gNVsOVaKyC2b
+         BGWMoeQzwALreJwaxFLxHSDqi7nL6wEGW8yDPG3//dwxC+1LzfCtfFNLd18ZUuiSRrfY
+         TuEQuM4OgdxxsD3DCtee1/zFyAPrbbIuIh26VCMStTPGXyuFzVdFf5HSc0sAqdCALZh9
+         /bbhhru+ZJwp3+EohG9l5Sz3GsMkHO34TVj6gBMA/+j8Q4mF+EvnnGgAuH/vpi/zZExv
+         3bbl/u5gXMfwXIU57NGKi0/MZ0p2oFy6RthBLHOm7OsBYz8eev5lzi74p6upewv7TKR2
+         G7vA==
+X-Gm-Message-State: AOJu0YxY1MWBpeW+OvCCKXqKEf0vd5UTxGMv8gwnCRcECQh0kuNNoH9A
+	DP4mHSzWCA7hGjdx8g59ag==
+X-Google-Smtp-Source: AGHT+IHE3yB7iPFgi1CEIf18XQ6wLVZQxOJa4peKJpfxlxe4KfiUfxamVgaQaN9eMO+YHnRGmAJgUg==
+X-Received: by 2002:a05:6820:162c:b0:590:6f86:f3c6 with SMTP id bb44-20020a056820162c00b005906f86f3c6mr8302579oob.12.1702574825070;
+        Thu, 14 Dec 2023 09:27:05 -0800 (PST)
 Received: from herring.priv ([2607:fb91:e6c7:a40:1c2d:b875:912d:c28])
-        by smtp.gmail.com with ESMTPSA id so10-20020a056871818a00b001fb1f2c424fsm4597941oab.45.2023.12.14.09.20.52
+        by smtp.gmail.com with ESMTPSA id q12-20020a056820028c00b0058d52d0ef2dsm3456842ood.38.2023.12.14.09.27.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Dec 2023 09:20:53 -0800 (PST)
-Received: (nullmailer pid 614807 invoked by uid 1000);
-	Thu, 14 Dec 2023 17:20:51 -0000
-Date: Thu, 14 Dec 2023 11:20:51 -0600
+        Thu, 14 Dec 2023 09:27:04 -0800 (PST)
+Received: (nullmailer pid 622570 invoked by uid 1000);
+	Thu, 14 Dec 2023 17:27:02 -0000
+Date: Thu, 14 Dec 2023 11:27:02 -0600
 From: Rob Herring <robh@kernel.org>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: andersson@kernel.org, konrad.dybcio@linaro.org, vkoul@kernel.org, sboyd@kernel.org, mturquette@baylibre.com, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 01/16] dt-bindings: phy: qmp-ufs: Fix PHY clocks
-Message-ID: <20231214172051.GA611674-robh@kernel.org>
-References: <20231214091101.45713-1-manivannan.sadhasivam@linaro.org>
- <20231214091101.45713-2-manivannan.sadhasivam@linaro.org>
+To: Simon Glass <sjg@chromium.org>
+Cc: devicetree@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>, linux-mtd@lists.infradead.org, Tom Rini <trini@konsulko.com>, Michael Walle <mwalle@kernel.org>, U-Boot Mailing List <u-boot@lists.denx.de>, Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Pratyush Yadav <ptyadav@amazon.de>, =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 1/3] dt-bindings: mtd: partitions: Add binman
+ compatible
+Message-ID: <20231214172702.GA617226-robh@kernel.org>
+References: <20231116172859.393744-1-sjg@chromium.org>
+ <20231208150042.GA1278773-robh@kernel.org>
+ <CAPnjgZ2i4gvgiUeHPOfHuOdBooV4e=QQEq6iMo0JbDwOS6dCwA@mail.gmail.com>
+ <CAL_Jsq+xMZ8yz4H9D59uCSyX4h5W+4ruGF++=wVA=msXz+Y01A@mail.gmail.com>
+ <CAPnjgZ1uW8T6woXSqFUNm301=W3zBYOrADREkrz=DuwSW87qZg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20231214091101.45713-2-manivannan.sadhasivam@linaro.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAPnjgZ1uW8T6woXSqFUNm301=W3zBYOrADREkrz=DuwSW87qZg@mail.gmail.com>
 
-On Thu, Dec 14, 2023 at 02:40:46PM +0530, Manivannan Sadhasivam wrote:
-> All QMP UFS PHYs except MSM8996 require 3 clocks:
+On Fri, Dec 08, 2023 at 03:58:10PM -0700, Simon Glass wrote:
+> Hi Rob,
 > 
-> * ref - 19.2MHz reference clock from RPMh
-> * ref_aux - Auxiliary reference clock from GCC
-> * qref - QREF clock from GCC or TCSR (since SM8550)
+> On Fri, 8 Dec 2023 at 14:56, Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Fri, Dec 8, 2023 at 11:47 AM Simon Glass <sjg@chromium.org> wrote:
+> > >
+> > > Hi Rob,
+> > >
+> > > On Fri, 8 Dec 2023 at 08:00, Rob Herring <robh@kernel.org> wrote:
+> > > >
+> > > > On Thu, Nov 16, 2023 at 10:28:50AM -0700, Simon Glass wrote:
+> > > > > Add a compatible string for binman, so we can extend fixed-partitions
+> > > > > in various ways.
+> > > > >
+> > > > > Signed-off-by: Simon Glass <sjg@chromium.org>
+> > > > > ---
+> > > > >
+> > > > > (no changes since v5)
+> > > > >
+> > > > > Changes in v5:
+> > > > > - Add #address/size-cells and parternProperties
+> > > > > - Drop $ref to fixed-partitions.yaml
+> > > > > - Drop 'select: false'
+> > > > >
+> > > > > Changes in v4:
+> > > > > - Change subject line
+> > > > >
+> > > > > Changes in v3:
+> > > > > - Drop fixed-partition additional compatible string
+> > > > > - Drop fixed-partitions from the example
+> > > > > - Mention use of compatible instead of label
+> > > > >
+> > > > > Changes in v2:
+> > > > > - Drop mention of 'enhanced features' in fixed-partitions.yaml
+> > > > > - Mention Binman input and output properties
+> > > > > - Use plain partition@xxx for the node name
+> > > > >
+> > > > >  .../bindings/mtd/partitions/binman.yaml       | 68 +++++++++++++++++++
+> > > > >  .../bindings/mtd/partitions/partitions.yaml   |  1 +
+> > > > >  MAINTAINERS                                   |  5 ++
+> > > > >  3 files changed, 74 insertions(+)
+> > > > >  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/binman.yaml
+> > > > >
+> > > > > diff --git a/Documentation/devicetree/bindings/mtd/partitions/binman.yaml b/Documentation/devicetree/bindings/mtd/partitions/binman.yaml
+> > > > > new file mode 100644
+> > > > > index 000000000000..329217550a98
+> > > > > --- /dev/null
+> > > > > +++ b/Documentation/devicetree/bindings/mtd/partitions/binman.yaml
+> > > > > @@ -0,0 +1,68 @@
+> > > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > > > +# Copyright 2023 Google LLC
+> > > > > +
+> > > > > +%YAML 1.2
+> > > > > +---
+> > > > > +$id: http://devicetree.org/schemas/mtd/partitions/binman.yaml#
+> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > +
+> > > > > +title: Binman firmware layout
+> > > > > +
+> > > > > +maintainers:
+> > > > > +  - Simon Glass <sjg@chromium.org>
+> > > > > +
+> > > > > +description: |
+> > > > > +  The binman node provides a layout for firmware, used when packaging firmware
+> > > > > +  from multiple projects. It is based on fixed-partitions, with some
+> > > > > +  extensions, but uses 'compatible' to indicate the contents of the node, to
+> > > > > +  avoid perturbing or confusing existing installations which use 'label' for a
+> > > > > +  particular purpose.
+> > > > > +
+> > > > > +  Binman supports properties used as inputs to the firmware-packaging process,
+> > > > > +  such as those which control alignment of partitions. This binding addresses
+> > > > > +  these 'input' properties. For example, it is common for the 'reg' property
+> > > > > +  (an 'output' property) to be set by Binman, based on the alignment requested
+> > > > > +  in the input.
+> > > > > +
+> > > > > +  Once processing is complete, input properties have mostly served their
+> > > > > +  purpose, at least until the firmware is repacked later, e.g. due to a
+> > > > > +  firmware update. The 'fixed-partitions' binding should provide enough
+> > > > > +  information to read the firmware at runtime, including decompression if
+> > > > > +  needed.
+> > > >
+> > > > How is this going to work exactly? binman reads these nodes and then
+> > > > writes out 'fixed-partitions' nodes. But then you've lost the binman
+> > > > specifc parts needed for repacking.
+> > >
+> > > No, they are the same node. I do want the extra information to stick
+> > > around. So long as it is compatible with fixed-partition as well, this
+> > > should work OK.
+> >
+> > How can it be both? The partitions node compatible can be either
+> > 'fixed-partitions' or 'binman'.
 > 
-> MSM8996 only requires 'ref' and 'qref' clocks. Hence, fix the binding to
-> reflect the actual clock topology.
+> Can we not allow it to be both? I have tried to adjust things in
+> response to feedback but perhaps the feedback was leading me down the
+> wrong path?
 
-Breaking the ABI is okay because...? Please explain in the commit msg.
+Sure, but then the schema has to and that means extending 
+fixed-partitions.
 
 Rob
-
 
