@@ -1,169 +1,159 @@
-Return-Path: <devicetree+bounces-25414-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB705813306
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 15:25:16 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C1A6813301
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 15:24:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE5A31C212E6
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 14:25:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0D75CB2147D
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 14:24:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16F4F59E4B;
-	Thu, 14 Dec 2023 14:25:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8C2559E47;
+	Thu, 14 Dec 2023 14:24:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="iC5jqNZg"
+	dkim=pass (2048-bit key) header.d=shantur-com.20230601.gappssmtp.com header.i=@shantur-com.20230601.gappssmtp.com header.b="F6A5PQoz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC5A6B2;
-	Thu, 14 Dec 2023 06:25:07 -0800 (PST)
-Received: from pps.filterd (m0353726.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3BEEGqWA026264;
-	Thu, 14 Dec 2023 14:24:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=pp1;
- bh=lqgfGZSL02s12bV+EZPiVU/q0lVJ2wM7GttJMZHSMg4=;
- b=iC5jqNZg7M5Qeg4VQrkpX2zE+6knUtAznit82kJGdiwdlU3HmcA5VrM/e110No9xaS0F
- UR/Z2LGtFIQ9K0bnOB/DY+QRhusp4wpqxTZSlVslMTCmxomNkWHCwoDkTCS3jeDX5soQ
- rd4EPfAaJLQ7x8lAP3GD0o8jj9j5nDr2dfdX4Yj+6OQrkPOve2Nx9AVa6U5nVuKVrFDY
- dRsYWrGAOghCzKbgS+vwXsnHTDm4WwrQJ5pGJwVexMLsEEhw+XQiHjR6wI5sKjgXjmmV
- +Re+J+KHBL6LeDuqXCLkv9PSrsSgurFClvmSs2NvkrL80Ye9SMcaX1JIqtyWxI/4ACRO dQ== 
-Received: from pps.reinject (localhost [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3v03b307wr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Dec 2023 14:24:17 +0000
-Received: from m0353726.ppops.net (m0353726.ppops.net [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 3BEEHkNK029961;
-	Thu, 14 Dec 2023 14:24:16 GMT
-Received: from ppma21.wdc07v.mail.ibm.com (5b.69.3da9.ip4.static.sl-reverse.com [169.61.105.91])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3v03b307w5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Dec 2023 14:24:15 +0000
-Received: from pps.filterd (ppma21.wdc07v.mail.ibm.com [127.0.0.1])
-	by ppma21.wdc07v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 3BED9jOp012620;
-	Thu, 14 Dec 2023 14:24:14 GMT
-Received: from smtprelay04.wdc07v.mail.ibm.com ([172.16.1.71])
-	by ppma21.wdc07v.mail.ibm.com (PPS) with ESMTPS id 3uw3jp90pk-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Dec 2023 14:24:14 +0000
-Received: from smtpav02.dal12v.mail.ibm.com (smtpav02.dal12v.mail.ibm.com [10.241.53.101])
-	by smtprelay04.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 3BEEODRr33358310
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 14 Dec 2023 14:24:13 GMT
-Received: from smtpav02.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 644605805F;
-	Thu, 14 Dec 2023 14:24:13 +0000 (GMT)
-Received: from smtpav02.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id D15B558051;
-	Thu, 14 Dec 2023 14:24:09 +0000 (GMT)
-Received: from [9.67.23.198] (unknown [9.67.23.198])
-	by smtpav02.dal12v.mail.ibm.com (Postfix) with ESMTP;
-	Thu, 14 Dec 2023 14:24:09 +0000 (GMT)
-Message-ID: <f9f95e8d-02e5-454e-8075-1e4231d385bb@linux.ibm.com>
-Date: Thu, 14 Dec 2023 08:24:09 -0600
+Received: from mail-ua1-x933.google.com (mail-ua1-x933.google.com [IPv6:2607:f8b0:4864:20::933])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF2F711B
+	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 06:24:24 -0800 (PST)
+Received: by mail-ua1-x933.google.com with SMTP id a1e0cc1a2514c-7cac4a9faccso1684903241.0
+        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 06:24:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=shantur-com.20230601.gappssmtp.com; s=20230601; t=1702563864; x=1703168664; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=n8hzjHa/oDAa5VXlxiZKu2h0BY/JRc6YD0syWlY0Zxs=;
+        b=F6A5PQozsC5VLiqVx+Zz9oISpcFtNfdBipNKw8/IuWSYKOVLrHtQdf3RyRH7jHx3yi
+         AaLyLHTpt60zuXL1OptwrxXZYGdfrZxATM1eSUve9In0EVIau3GMXciNaJ6f4aBV1kMT
+         U0DzGPgeGxD9TXn3Urrpur7Mdc18ap3sHwx3eimH/LJsSAXVT465Xib2LPyOo5IZTPiD
+         2SvWrejnZ932v8juFx6NJrPH4pWW4LheQnJ4UAdj5Yw7ARvMVloeycdQ2GVzKPMCMKHx
+         s2QiDxdVJnEQ1Iu5MmpV3ZE65K8p5F32hzdz+2Hq5GevhlfgO4tqj61NNH1MKGwYdb2u
+         mSxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702563864; x=1703168664;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=n8hzjHa/oDAa5VXlxiZKu2h0BY/JRc6YD0syWlY0Zxs=;
+        b=NHJIQYib6EP+C+QKrHZQP2rX59Xjr9Q5mkmwfGB3NIytuPJ62xi39jHKBjhVHNpaZk
+         t4jf2ykxahA8arzLaJVXa8SFhQZtaxlURGOR/Gw72L9kWq7JjHGrcjLXgXWrnIU8LA6a
+         1a8+heyGUSFbkXg7MpXlO8hSRtUy9RlaTmWUlzqSVeep6rcP+vtMSUqb9Wd9BhpKy8UK
+         ZDSs1dXxadqdW6lKnPv/VWQaASWuP9ZN+uO5W2CLygvVG/mKZmvYHz3olefyGN0+PTXp
+         iJAmvGr88aswxWI+O+UmGxFI9x/SbN4kqR6A/jS6k8lYm99xryTMT/UphN+h8Yp15H78
+         9Pww==
+X-Gm-Message-State: AOJu0Yz3R5sDTlo5joyF46+CKSkvB1wFZb4PACil1KikwBjUu/Wu+onh
+	3xGjZG93DV83O5vbTbhrDPtndWRUa0UJjRlE2nExow==
+X-Google-Smtp-Source: AGHT+IHE+HSJBycqJMA34KSVioJpw4usXProHQmm+r0A0+kAWxb+v5YdOkPKo3COQ4z2ZnZ10tLyLbrPwfjRkkOimN0=
+X-Received: by 2002:a05:6122:4681:b0:4b2:b964:1095 with SMTP id
+ di1-20020a056122468100b004b2b9641095mr10991092vkb.10.1702563863726; Thu, 14
+ Dec 2023 06:24:23 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 8/8] ARM: dts: aspeed: System1: PS, sensor and more
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, joel@jms.id.au,
-        andrew@codeconstruct.com.au, peterhuewe@gmx.de, jarkko@kernel.org,
-        jgg@ziepe.ca, keescook@chromium.org, tony.luck@intel.com,
-        gpiccoli@igalia.com, johannes.holland@infineon.com, linux@roeck-us.net,
-        broonie@kernel.org
-Cc: patrick.rudolph@9elements.com, vincent@vtremblay.dev,
-        peteryin.openbmc@gmail.com, lakshmiy@us.ibm.com, bhelgaas@google.com,
-        naresh.solanki@9elements.com, alexander.stein@ew.tq-group.com,
-        festevam@denx.de, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org, linux-integrity@vger.kernel.org,
-        linux-hardening@vger.kernel.org, geissonator@yahoo.com
-References: <20231212164004.1683589-1-ninad@linux.ibm.com>
- <20231212164004.1683589-9-ninad@linux.ibm.com>
- <5b98538a-8ffe-42ec-b020-514dcfcebba3@linaro.org>
- <44abff4a-0a8e-499b-8b98-a4a1680cb431@linux.ibm.com>
- <427fa99c-764c-4d6a-b9f1-cd9089710d5e@linaro.org>
- <edcdcea2-febc-4859-9ccf-b8c59b794f01@linux.ibm.com>
- <1c5ace65-2fd8-4503-b22f-e0f564d1c83f@linaro.org>
-Content-Language: en-US
-From: Ninad Palsule <ninad@linux.ibm.com>
-In-Reply-To: <1c5ace65-2fd8-4503-b22f-e0f564d1c83f@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: Dw6P0YguG2FsdSKN_nlMIhXcu-QkMI3x
-X-Proofpoint-GUID: Fa1OsjgEvz5G5Q94M6u6-pMLI18_E7rH
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-14_09,2023-12-14_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxscore=0
- suspectscore=0 phishscore=0 priorityscore=1501 malwarescore=0
- impostorscore=0 mlxlogscore=999 clxscore=1015 bulkscore=0 adultscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311290000 definitions=main-2312140100
+References: <20231209232109.348999-1-i@shantur.com> <20231209233536.350876-1-i@shantur.com>
+ <43339adb6f98a0b4e59db78f932df0d4@manjaro.org> <CABEcMwU8bOxUZV8i-Wig14GG-+NEEw+sbDBznTLNvgRg6Co3Jg@mail.gmail.com>
+ <acbadb7f1d2c14b7003103c10d663d38@manjaro.org>
+In-Reply-To: <acbadb7f1d2c14b7003103c10d663d38@manjaro.org>
+From: Shantur Rathore <i@shantur.com>
+Date: Thu, 14 Dec 2023 14:24:12 +0000
+Message-ID: <CABEcMwV8XhShnbJ_Z+2YW0EUCYt460pEyE-FPHW9jN16SR_Lpg@mail.gmail.com>
+Subject: Re: [PATCH v1] dts: rockpro64: Remove usb regulator-always-on
+To: Dragan Simic <dsimic@manjaro.org>
+Cc: heiko@sntech.de, linux-rockchip@lists.infradead.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hello Krzysztof,
+Hi Dragan,
 
-
-On 12/14/23 01:24, Krzysztof Kozlowski wrote:
-> On 13/12/2023 20:49, Ninad Palsule wrote:
->> Hello Krzysztof,
->>
->> On 12/13/23 13:37, Krzysztof Kozlowski wrote:
->>> On 13/12/2023 20:02, Ninad Palsule wrote:
->>>> Hello Krzysztof,
->>>>
->>>> On 12/12/23 14:26, Krzysztof Kozlowski wrote:
->>>>> On 12/12/2023 17:40, Ninad Palsule wrote:
->>>>>> This drop adds following devices in the device tree.
->>>>>> - EEPROM/VPD
->>>>>> - Power supplies
->>>>>> - Humidity, pressure and temperature sensors.
->>>>>> - Trusted platform module(TPM) chip
->>>>>>
->>>>>> Tested:
->>>>>>        This board is tested using the simics simulator.
->>>>>>
->>>>>> Signed-off-by: Ninad Palsule <ninad@linux.ibm.com>
->>>>>> ---
->>>>> Don't mix DTS with drivers. DTS and drivers go via different subsystems
->>>>> and cannot have dependencies, so why DTS is patch #6, then driver #7 and
->>>>> now again DTS #7?
->>>> There is a dependency on driver code as patch #8 uses the compatibility
->>>> string added in driver patch #7.  I have now moved driver patch at the
->>>> start. Is that ok? OR you are suggesting something else?
->>> First, there is no dependency. Second, except confusing order anyway DTS
->>> will go via separate trees. Third, again, there is no dependency. If
->>> there is, your patchset is broken and this needs to be fixed. Although I
->>> don't understand how new hardware can depend on driver... it's really odd.
->> Thanks for the quick response.
->>
->> This board uses the nuvoton TPM device. The tpm devices uses
->> "nuvoton,npct75x" driver hence we added it in the device tree. If the
->> driver doesn't have this compatibility string then it won't load. So if
->> someone tries to use this board then tpm won't work unless the
-> ... and if there is no board it also fails to load.
+On Sun, Dec 10, 2023 at 12:08=E2=80=AFAM Dragan Simic <dsimic@manjaro.org> =
+wrote:
 >
->> compatibility string is added in the driver. That is the dependency I am
->> talking about.
-> This is not a dependency! It's unrelated.
-
-ok, I will send it as a separate patch.
-
-Thanks for the prompt reply.
-
-Regards,
-
-Ninad
-
+> On 2023-12-10 01:03, Shantur Rathore wrote:
+> > On Sat, Dec 9, 2023 at 11:43=E2=80=AFPM Dragan Simic <dsimic@manjaro.or=
+g>
+> > wrote:
+> >> On 2023-12-10 00:35, Shantur Rathore wrote:
+> >> > USB port regulators should be controlled by PHYs
+> >> > so we remove always-on property and let PHYs manage the
+> >> > regulator.
+> >> >
+> >> > Typec port has misconfugred phy-supply and now that we are
+> >> > removing regulator-always-on, we need to fix the phy-supply
+> >> > so the PHYs are able to turn power to type-c port.
+> >> >
+> >> > Signed-off-by: Shantur Rathore <i@shantur.com>
+> >> > ---
+> >> > + devicetree
+> >> >
+> >> > After this patch the ports were confirmed to power up and down
+> >> > in u-boot when doing usb start and usb stop.
+> >> > At boot the regulators were off, the devices connected weren't
+> >> > powered up, on usb start the PHYs are able to power on the ports
+> >> > and on usb stop they were powered down.
+> >> >
+> >> > At the boot, the ports were powered down which was again powered
+> >> > up by Linux kernel when booting up.
+> >> >
+> >> >
+> >> >  arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi | 4 +---
+> >> >  1 file changed, 1 insertion(+), 3 deletions(-)
+> >> >
+> >> > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
+> >> > b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
+> >> > index bca2b50e0a..bd2824aa48 100644
+> >> > --- a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
+> >> > +++ b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
+> >> > @@ -192,7 +192,6 @@ vcc5v0_host: vcc5v0-host-regulator {
+> >> >               pinctrl-names =3D "default";
+> >> >               pinctrl-0 =3D <&vcc5v0_host_en>;
+> >> >               regulator-name =3D "vcc5v0_host";
+> >> > -             regulator-always-on;
+> >> >               vin-supply =3D <&vcc5v0_usb>;
+> >> >       };
+> >> >
+> >> > @@ -203,7 +202,6 @@ vcc5v0_typec: vcc5v0-typec-regulator {
+> >> >               pinctrl-names =3D "default";
+> >> >               pinctrl-0 =3D <&vcc5v0_typec_en>;
+> >> >               regulator-name =3D "vcc5v0_typec";
+> >> > -             regulator-always-on;
+> >> >               vin-supply =3D <&vcc5v0_usb>;
+> >> >       };
+> >> >
+> >> > @@ -863,7 +861,7 @@ u2phy0_otg: otg-port {
+> >> >       };
+> >> >
+> >> >       u2phy0_host: host-port {
+> >> > -             phy-supply =3D <&vcc5v0_host>;
+> >> > +             phy-supply =3D <&vcc5v0_typec>;
+> >> >               status =3D "okay";
+> >> >       };
+> >> >  };
+> >>
+> >> Quite frankly, something doesn't feel right there.  Would you mind,
+> >> please, to place this patch on hold until next week or so, at which
+> >> point I should have enough time to go through the RockPro64 schematic
+> >> thoroughly once again, and test the patch in detail?
+> >
+> > Sure, no worries.
 >
-> Best regards,
-> Krzysztof
+> Great, thanks.
 >
+> > Would you mind letting me know which part doesn't feel right to you?
+>
+> Sure, it was about the last change in the patch.
+
+The TypeC port VBUS is VBUS_TYPEC on Page 20 of 33 marked for
+VBUS_[1-4] in schematic here - [0]
+
+[0] - https://files.pine64.org/doc/rockpro64/rockpro64_v21-SCH.pdf
+
+Kind regards,
+Shantur
 
