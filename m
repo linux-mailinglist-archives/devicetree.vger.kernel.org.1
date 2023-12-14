@@ -1,122 +1,137 @@
-Return-Path: <devicetree+bounces-25095-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25096-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7F718126D8
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 06:18:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 661E6812702
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 06:41:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1E48FB2114A
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 05:18:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0C2211F218A4
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 05:41:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FF934C6B;
-	Thu, 14 Dec 2023 05:18:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44DE5613D;
+	Thu, 14 Dec 2023 05:41:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="OVgZWnyy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AC48D0;
-	Wed, 13 Dec 2023 21:18:06 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-	by fd01.gateway.ufhost.com (Postfix) with ESMTP id 97AA980A4;
-	Thu, 14 Dec 2023 13:17:58 +0800 (CST)
-Received: from EXMBX072.cuchost.com (172.16.6.82) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 14 Dec
- 2023 13:17:58 +0800
-Received: from localhost.localdomain (202.188.176.82) by EXMBX072.cuchost.com
- (172.16.6.82) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 14 Dec
- 2023 13:17:52 +0800
-From: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
-To: <conor@kernel.org>
-CC: <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-	<jisheng.teoh@starfivetech.com>, <krzysztof.kozlowski+dt@linaro.org>,
-	<leyfoon.tan@starfivetech.com>, <linux-kernel@vger.kernel.org>,
-	<linux-watchdog@vger.kernel.org>, <linux@roeck-us.net>, <robh+dt@kernel.org>,
-	<samin.guo@starfivetech.com>, <wim@linux-watchdog.org>,
-	<xingyu.wu@starfivetech.com>
-Subject: Re: [PATCH v2 1/1] dt-bindings: watchdog: starfive,jh7100-wdt: Add compatible for JH8100
-Date: Thu, 14 Dec 2023 13:17:17 +0800
-Message-ID: <20231214051717.9795-1-jisheng.teoh@starfivetech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231213-rectified-unmindful-4064c852930f@spud>
-References: <20231213-rectified-unmindful-4064c852930f@spud>
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE52FAC;
+	Wed, 13 Dec 2023 21:41:29 -0800 (PST)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BE2hRcI016504;
+	Thu, 14 Dec 2023 05:41:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=WnR2V1HDkmW5PBc0e7CWYokozIJgAwQp5DJQVrfapxQ=; b=OV
+	gZWnyyHXm5GmwGpA/L4d5qgQiCm/lPMr5AtUjd8rfQcZkzO+zkHzAs5MSGqsdZyV
+	P4sq4bFhui+rXkRD03Af8JYTq1Jwr5vrVumWfvyO9DrcNt8jmCkREAWU7PINs6N4
+	B1ish8aA4j3CvUFxS2m+MIWJBjlgrQ8Ltt3dEPc3X03fjRSt7bz3M2Q29Isl0FST
+	Sn28bDDG+Waj6Ajdrt7X7WoPGvdsgCIyHHaQX6K2YM3y2qw+0OPzRr4JRzfmgVfn
+	jmojX77HH1IBTsHSRguzrBZjRkEbjN6ndfPSMl4NFeRuleUEcgInwAkB4zArOP08
+	WcMV2bszjY5Op4BX1dzw==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uyq2trh02-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Dec 2023 05:41:17 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BE5fGlL005831
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Dec 2023 05:41:16 GMT
+Received: from [10.216.56.9] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 13 Dec
+ 2023 21:41:11 -0800
+Message-ID: <6b79c66d-7591-443b-92e5-beeff6c93ae4@quicinc.com>
+Date: Thu, 14 Dec 2023 11:11:07 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX072.cuchost.com
- (172.16.6.82)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V2 2/2] arm64: dts: qcom: sc7280: add QCrypto nodes
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC: <neil.armstrong@linaro.org>, <konrad.dybcio@linaro.org>,
+        <agross@kernel.org>, <andersson@kernel.org>, <conor+dt@kernel.org>,
+        <davem@davemloft.net>, <devicetree@vger.kernel.org>,
+        <herbert@gondor.apana.org.au>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-crypto@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <marijn.suijten@somainline.org>,
+        <robh+dt@kernel.org>, <vkoul@kernel.org>
+References: <20231212133247.1366698-1-quic_omprsing@quicinc.com>
+ <20231212133247.1366698-3-quic_omprsing@quicinc.com>
+ <c848f874-3748-4d59-8e78-9ae044fb760a@linaro.org>
+Content-Language: en-US
+From: Om Prakash Singh <quic_omprsing@quicinc.com>
+In-Reply-To: <c848f874-3748-4d59-8e78-9ae044fb760a@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Wi5nIYlPga3ktMlviCFTYu4wTZDV_8Xu
+X-Proofpoint-ORIG-GUID: Wi5nIYlPga3ktMlviCFTYu4wTZDV_8Xu
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 mlxscore=0
+ phishscore=0 clxscore=1015 mlxlogscore=921 priorityscore=1501
+ lowpriorityscore=0 malwarescore=0 suspectscore=0 bulkscore=0 adultscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2312140033
 
-On Wed, 13 Dec 2023 16:35:39 +0000
-Conor Dooley <conor@kernel.org> wrote:
 
-> On Wed, Dec 13, 2023 at 10:57:59AM +0800, Ji Sheng Teoh wrote:
-> > On Tue, 12 Dec 2023 16:47:59 +0000
-> > Conor Dooley <conor@kernel.org> wrote:
-> >  =20
-> > > On Tue, Dec 12, 2023 at 04:46:00PM +0000, Conor Dooley wrote: =20
-> > > > On Tue, Dec 12, 2023 at 11:17:31AM +0800, Ji Sheng Teoh wrote:
-> > > >  =20
-> > > > > Add "starfive,jh8100-wdt" compatible string for StarFive's
-> > > > > JH8100 watchdog.
-> > > > > Since JH8100 watchdog only has 1 reset signal, update binding
-> > > > > document to support one reset for "starfive,jh8100-wdt"
-> > > > > compatible.
-> > > > >=20
-> > > > > Signed-off-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
-> > > > > Signed-off-by: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
-> > > > > ---
-> > > > >  .../devicetree/bindings/watchdog/starfive,jh7100-wdt.yaml
-> > > > > | 2 ++ 1 file changed, 2 insertions(+)
-> > > > >=20
-> > > > > diff --git
-> > > > > a/Documentation/devicetree/bindings/watchdog/starfive,jh7100-wd=
-t.yaml
-> > > > > b/Documentation/devicetree/bindings/watchdog/starfive,jh7100-wd=
-t.yaml
-> > > > > index 68f3f6fd08a6..02572b16ac08 100644 ---
-> > > > > a/Documentation/devicetree/bindings/watchdog/starfive,jh7100-wd=
-t.yaml
-> > > > > +++
-> > > > > b/Documentation/devicetree/bindings/watchdog/starfive,jh7100-wd=
-t.yaml
-> > > > > @@ -27,6 +27,7 @@ properties: enum:
-> > > > >        - starfive,jh7100-wdt
-> > > > >        - starfive,jh7110-wdt
-> > > > > +      - starfive,jh8100-wdt
-> > > > > =20
-> > > > >    reg:
-> > > > >      maxItems: 1
-> > > > > @@ -45,6 +46,7 @@ properties:
-> > > > >        - const: core
-> > > > > =20
-> > > > >    resets:
-> > > > > +    minItems: 1
-> > > > >      items:
-> > > > >        - description: APB reset
-> > > > >        - description: Core reset   =20
-> > > >=20
-> > > > This relaxes the constraints for the existing devices, please
-> > > > add per compatible constraints to avoid doing so.   =20
-> > >  =20
-> > Thanks Conor. Just to clarify, are you suggesting to add what was
-> > done in v1?
-> > v1:
-> > https://lore.kernel.org/all/20231209142723.2060196-3-jisheng.teoh@sta=
-rfivetech.com/
-> > =20
->=20
-> No, but similar. Add numerical constraints that vary per SoC without
-> changing the names of the resets on a per-SoC basis.:wq
->=20
-Sent out v3, hope it addresses the comments.
-v3:
-https://lore.kernel.org/all/20231214033056.3953143-2-jisheng.teoh@starfiv=
-etech.com/
+
+On 12/12/2023 8:32 PM, Krzysztof Kozlowski wrote:
+> On 12/12/2023 14:32, Om Prakash Singh wrote:
+>> Add the QCE and Crypto BAM DMA nodes.
+>>
+>> Signed-off-by: Om Prakash Singh <quic_omprsing@quicinc.com>
+>> ---
+>>
+>> Changes in V2:
+>>    - Update DT node sequence as per register ascending order
+> 
+> Hm, I don't see it...
+> 
+>>    - Fix DT node properties as per convention
+>>
+>>   arch/arm64/boot/dts/qcom/sc7280.dtsi | 22 ++++++++++++++++++++++
+>>   1 file changed, 22 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> index 66f1eb83cca7..7b705df21f4e 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> @@ -2272,6 +2272,28 @@ ipa: ipa@1e40000 {
+>>   			status = "disabled";
+>>   		};
+>>   
+>> +		cryptobam: dma-controller@1dc4000 {
+> 
+> It still looks like not correctly ordered by unit address against other
+> nodes in the file.
+> 
+
+Hi Krzysztof,
+Probably I am missing something basic here. I am trying to put entries 
+addresses that are sorted wrt their current adjacent.
+
+And it looks fine to me.
+
+1c0e000 (current exist)
+1dc4000 (newly added)
+1dfa000	(newly added)
+1e40000	(current exist)
+
+> 
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
 
