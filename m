@@ -1,121 +1,119 @@
-Return-Path: <devicetree+bounces-25129-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25130-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4BF38127D3
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 07:18:01 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF3F38127F8
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 07:29:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4578B282404
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 06:18:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 80FC6B2100C
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 06:29:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA4D3C8ED;
-	Thu, 14 Dec 2023 06:17:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E415D261;
+	Thu, 14 Dec 2023 06:29:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LFMCkQ2i"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="aV03J+iM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 336F6A3
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 22:17:50 -0800 (PST)
-Received: by mail-pl1-x62f.google.com with SMTP id d9443c01a7336-1d345b187bbso21256545ad.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 22:17:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702534669; x=1703139469; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=zaR4Nz0vZgkJ/6+6AwqMKPaNjIg/RrKn0ONF1zwuOv4=;
-        b=LFMCkQ2iLEO3mVZFltcya3E+jC4OijYvowal1w8kUnysAWfRIOBtIVLt8ijw0dEeAN
-         TYkDqzUXAoBGfUWPK3IZvfnDJAJJ3xcwYgRUjC2Q7Hho8TaU1t5k+C14SlR3ZOtrRBe7
-         vkK5a6QJ8WQdHmPYLYGVVDY/i5GytGAfiakBJmF1BumBguhUBpSd7+qeUf7gZzF5N6xL
-         WTRTiUugjMxvf74hMhW+tsvk4rI1iq4WM0HlubWjb8k4tkxUkTY8NkLogIKBzXKFDrV8
-         H/rj8F/EQqnfsHvU8X1mgDOn5vS6rPN16kqJ5IdNxzyZygoSBCIkZhJrNDpzg1RkBlUI
-         VCag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702534669; x=1703139469;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zaR4Nz0vZgkJ/6+6AwqMKPaNjIg/RrKn0ONF1zwuOv4=;
-        b=WfUrnCAo7C69kxGxdU2+Fe00OozG0SflNwhz59mHOI2zkdAoCm+gjPK4fofTuKnZg8
-         Ddnd1JwkiVLjiXTcdMU3l/BbP2KEW9PN+W9eztALMilT65P8+v/Jjs0d0Nw6cXt+tXoA
-         XJre8FHEgQBQWyESCqKfZBziTi8OSVKmrc1dGhsYu5cLOOhBhuuJIiRQGJPt8OpkWvI6
-         n/1l7+gl3/PP3coprXo47ICNsCNdypPkpYEmDjDu8Ply8wB4pJrLB+p5pLjF+Kkh32dA
-         x8o+LdB+6fj5WY6nrYxds629VwxCv9rfqXC3uPqYZfTH+i4Jd/QWMycecV0u4u8LqFd0
-         D6Tg==
-X-Gm-Message-State: AOJu0YzmUOl2rGeEIRKXYGPdkplt1c1vN1WoUGq704NBYEHCtHtBL+LM
-	DbiRDCcUPpLUNPFwGgCKLeZA
-X-Google-Smtp-Source: AGHT+IHR92QjZbICu7C8PPnG6JlLvcsImJ5E+pIfDHl5/QKM5+/Ay9U0iVnHNwxna3OkXhCBYEoabg==
-X-Received: by 2002:a17:903:1d0:b0:1d0:9e59:35e2 with SMTP id e16-20020a17090301d000b001d09e5935e2mr11167773plh.123.1702534669669;
-        Wed, 13 Dec 2023 22:17:49 -0800 (PST)
-Received: from thinkpad ([117.213.102.12])
-        by smtp.gmail.com with ESMTPSA id n2-20020a170902d2c200b001d04c097d32sm11485821plc.270.2023.12.13.22.17.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Dec 2023 22:17:49 -0800 (PST)
-Date: Thu, 14 Dec 2023 11:47:42 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Nikunj Kela <quic_nkela@quicinc.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org,
-	"Prasad Sodagudi (QUIC)" <quic_psodagud@quicinc.com>,
-	srinivas.kandagatla@linaro.org, vincent.guittot@linaro.org,
-	ulf.hansson@linaro.org
-Subject: Re: DT Query on "New Compatible vs New Property"
-Message-ID: <20231214061742.GG2938@thinkpad>
-References: <be31801e-bb21-426b-f7aa-2b52727de646@quicinc.com>
- <82115165-6089-4214-b47b-2c2c0dfb8c66@linaro.org>
- <1935cb82-648c-f079-8852-d461dc9f8609@quicinc.com>
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68985A6;
+	Wed, 13 Dec 2023 22:29:20 -0800 (PST)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BE3Rr5P026065;
+	Thu, 14 Dec 2023 06:29:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=ODCJhiY
+	BeWEU03LHMRasSH8E7YzOuqTWK5pYz/IOpl4=; b=aV03J+iML9O2FRcdASCnAOc
+	upOAvs05PL7uyoSHooUXoaiglVD7ehYw1oVPFX6q7O9FQiIDJDfd6DuEmMY0gvNu
+	nTNVUOZGAL2YC7o7WYYkOcooYO1RRqX9LQdY9j2WzNxPu6DdTrPJyYq5QKuDPffl
+	ndK2MnXzBkvMtwf51ccr7vdt/u3ILD2zXU0HGSaNujK2sDsqx2lYTwm2ic2ZR+Y4
+	pWnVGzKQnZXjUrvWfLOGqMvU01mYRTEHd6X5XGyVWFBni4C66gTdvvjJM+385txG
+	d9wvJDKw1jLRLnr7hmqlh/MWBqFgJi/nTIOOUDsdUEypLcxarRs2Xl52TZxq8Vg=
+	=
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uyqd50k36-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Dec 2023 06:29:09 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BE6T8p0006439
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Dec 2023 06:29:08 GMT
+Received: from hu-ipkumar-blr.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Wed, 13 Dec 2023 22:29:01 -0800
+From: Praveenkumar I <quic_ipkumar@quicinc.com>
+To: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <bhelgaas@google.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
+        <vkoul@kernel.org>, <kishon@kernel.org>, <mani@kernel.org>,
+        <quic_nsekar@quicinc.com>, <quic_srichara@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>, <linux-phy@lists.infradead.org>
+CC: <quic_varada@quicinc.com>, <quic_devipriy@quicinc.com>,
+        <quic_kathirav@quicinc.com>, <quic_anusha@quicinc.com>
+Subject: [PATCH 00/10] Add PCIe support for Qualcomm IPQ5332
+Date: Thu, 14 Dec 2023 11:58:37 +0530
+Message-ID: <20231214062847.2215542-1-quic_ipkumar@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <1935cb82-648c-f079-8852-d461dc9f8609@quicinc.com>
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: v719Z6pncc-Lc86gqsgsO87urvOt3rkD
+X-Proofpoint-ORIG-GUID: v719Z6pncc-Lc86gqsgsO87urvOt3rkD
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxscore=0
+ adultscore=0 clxscore=1011 suspectscore=0 phishscore=0 bulkscore=0
+ malwarescore=0 mlxlogscore=754 priorityscore=1501 impostorscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2312140039
 
-On Tue, Dec 12, 2023 at 11:06:42AM -0800, Nikunj Kela wrote:
-> + Linaro team
-> 
-> On 12/12/2023 11:01 AM, Krzysztof Kozlowski wrote:
-> > On 12/12/2023 18:45, Nikunj Kela wrote:
-> > > We are abstracting some resources(ex. clocks) under new firmware on an
-> > > existing platform therefore need to make changes in certain drivers to
-> > > work with that firmware. We need to make a distinction between two
-> > > different variants of the FW. In one case, some resources will be
-> > > abstracted while in other case, they won't be abstracted. My query is -
-> > > "should we define a new compatible string for the variant with
-> > > abstracted resources(in FW) or we should add a new DT property keeping
-> > > the compatible same?"
-> > Hi,
-> > 
-> > Usually change in the interface or behavior warrants new compatible.
-> > Property would be suitable if the same device, e.g. same SoC component
-> > with same FW, was configured differently on different boards.
-> > 
+Patch series adds support for enabling the PCIe controller and
+UNIPHY found on Qualcomm IPQ5332 platform. PCIe0 is Gen3 X1 and
+PCIe1 is Gen3 X2 are added.
 
-Here, the hardware is going to be the same, but the resources (clocks,
-regulators, etc...) will be controlled by the firmware instead of OS.
+UNIPHY changes depends on
+https://lore.kernel.org/all/20231003120846.28626-1-quic_nsekar@quicinc.com/
+PCIe driver change depends on
+https://lore.kernel.org/all/20230519090219.15925-1-quic_devipriy@quicinc.com/
 
-Should we still use a different compatible? For the similar usecase, we already
-have properties like 'qcom,controlled-remotely' to let the OS know that it
-should not configure the hardware and just consume it.
+Praveenkumar I (10):
+  dt-bindings: clock: Add separate clocks for PCIe and USB for Combo PHY
+  clk: qcom: ipq5332: Add separate clocks for PCIe and USB for Combo PHY
+  arm64: dts: qcom: ipq5332: Add separate entry for USB pipe clock
+  phy: qcom: Add support for Pipe clock rate from device data
+  dt-bindings: phy: qcom,uniphy-pcie: Add ipq5332 bindings
+  phy: qcom: ipq5332: Add support for g3x1 and g3x2 PCIe PHYs
+  dt-bindings: PCI: qcom: Add IPQ5332 SoC
+  pci: qcom: Add support for IPQ5332
+  arm64: dts: qcom: ipq5332: Add PCIe related nodes
+  arm64: dts: qcom: ipq5332: Enable PCIe phys and controllers
 
-To me both usecases sounds similar.
-
-- Mani
-
-> > Best regards,
-> > Krzysztof
-> 
-> Thank you for your prompt response! Will use different compatible as
-> advised.
-> 
+ .../bindings/clock/qcom,ipq5332-gcc.yaml      |   6 +-
+ .../devicetree/bindings/pci/qcom,pcie.yaml    |  36 ++++
+ .../bindings/phy/qcom,uniphy-pcie-28lp.yaml   |  65 +++++-
+ arch/arm64/boot/dts/qcom/ipq5332-rdp441.dts   |  74 +++++++
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi         | 188 +++++++++++++++++-
+ drivers/clk/qcom/gcc-ipq5332.c                |   7 +-
+ drivers/pci/controller/dwc/pcie-qcom.c        |   1 +
+ .../phy/qualcomm/phy-qcom-uniphy-pcie-28lp.c  |  49 ++++-
+ 8 files changed, 412 insertions(+), 14 deletions(-)
 
 -- 
-மணிவண்ணன் சதாசிவம்
+2.34.1
+
 
