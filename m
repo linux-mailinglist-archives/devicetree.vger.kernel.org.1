@@ -1,77 +1,99 @@
-Return-Path: <devicetree+bounces-25059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25060-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E897812403
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 01:43:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A88E1812426
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 01:57:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 50B251C20490
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 00:43:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4EA901F21257
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 00:57:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC5D438E;
-	Thu, 14 Dec 2023 00:43:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=jms.id.au header.i=@jms.id.au header.b="Hi8bRobk"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12570634;
+	Thu, 14 Dec 2023 00:57:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31F37E0;
-	Wed, 13 Dec 2023 16:43:44 -0800 (PST)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-a22deb95d21so369148366b.3;
-        Wed, 13 Dec 2023 16:43:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google; t=1702514622; x=1703119422; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=RLpB5md1tEE7IuK+B3sruEQW7P8lycC54rVRstoSoLw=;
-        b=Hi8bRobkZd38MwIzsqox+5Fcdlmia96Suk8wc1VIHEWj9K2IBhKp0X34q5X7N+Blbw
-         AXPXhYgY0MYjl9zgSGcv40HYSnMPMuJ7wr4AJRlbItQNTGcwdBN+c9AuOGoTWRj4+/Rw
-         aTHm1flvFdLq+wpQfjPISiltbvpR1eLba8FYI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702514622; x=1703119422;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RLpB5md1tEE7IuK+B3sruEQW7P8lycC54rVRstoSoLw=;
-        b=c4HspHSEBFpSJ3phKJCF+4B8m0K7qjzJqEIGSrBBe/YgPDMI2Va6H/aCwqRnXpPN8L
-         1zgLXPvefR5OpA5tawoduxxZrBYGyMVzxTYtOgA2Llgg9p7XMFKYPM74ajNfds3XTZAn
-         YrzDQsn6GDIceZk6XOw/c0mU5e1hbEdPhfX2VdiDw1VeLxJInGVBcyILiqcfnLFqiqtW
-         gHFxrTys936d9Xc0MhSNMSTHclwAvGWbgHn9O2SZn4qAi3CbMMVkfAJoAYaeC4WCYupj
-         v66jc4QtUdcV/sv4XMWg2eqa9pDdigAlAl3lbst0aQmdaE1v9v5A2TFwA2U/nhrxGIRR
-         /+oA==
-X-Gm-Message-State: AOJu0YxtfUZbW1e44d6dQxjUSyWcXa5/tHV6MK7y+x+3XodmlitHpMIf
-	pdapfqDqpy7cmROvBpuAcnFBUCLMv2FDyhDVVBw=
-X-Google-Smtp-Source: AGHT+IFa9Zm+LfMZFPUZavztuLcHzT2Ycn1Vj82hIrX/b4xCeE4xJgbmsr48xQ/aHgS2Y86FFkv1fdkhWTwCmE5Nadc=
-X-Received: by 2002:a17:906:1750:b0:a19:a19b:c746 with SMTP id
- d16-20020a170906175000b00a19a19bc746mr3703966eje.150.1702514622267; Wed, 13
- Dec 2023 16:43:42 -0800 (PST)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id E18E6D0
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 16:56:57 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2B5ACC15;
+	Wed, 13 Dec 2023 16:57:43 -0800 (PST)
+Received: from minigeek.lan (unknown [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D6FF13F762;
+	Wed, 13 Dec 2023 16:56:55 -0800 (PST)
+Date: Thu, 14 Dec 2023 00:56:46 +0000
+From: Andre Przywara <andre.przywara@arm.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, Icenowy Zheng <uwu@icenowy.me>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH 2/3] dt-bindings: arm: sunxi: document Transpeed 8K618-T
+ board name
+Message-ID: <20231214005646.15c2b69e@minigeek.lan>
+In-Reply-To: <7d352882-5f6f-4c8b-a8c5-76ea31c2ae31@linaro.org>
+References: <20231212010859.11571-1-andre.przywara@arm.com>
+	<20231212010859.11571-3-andre.przywara@arm.com>
+	<7d352882-5f6f-4c8b-a8c5-76ea31c2ae31@linaro.org>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231212075200.983536-1-yangchen.openbmc@gmail.com>
-In-Reply-To: <20231212075200.983536-1-yangchen.openbmc@gmail.com>
-From: Joel Stanley <joel@jms.id.au>
-Date: Thu, 14 Dec 2023 11:13:30 +1030
-Message-ID: <CACPK8Xc7XjgBj-SQH45=omjEXd-BpXgcQDp6s8UkJ8QsbnYSPg@mail.gmail.com>
-Subject: Re: [PATCH 00/11] Modify DTS of META Minerva CMM BMC(AST2600)
-To: Yang Chen <yangchen.openbmc@gmail.com>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	andrew@codeconstruct.com.au, patrick@stwcx.xyz, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
-	linux-kernel@vger.kernel.org, Jerry.Lin@quantatw.com, EasonChen1@quantatw.com, 
-	Leslie.Tong@quantatw.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Tue, 12 Dec 2023 at 18:24, Yang Chen <yangchen.openbmc@gmail.com> wrote:
->
-> This series modifies the DTS of the Minerva CMM which is the board on the
-> META platform that uses the ASPEED SoC(AST2600).
+On Tue, 12 Dec 2023 10:01:56 +0100
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-Looks good. I've merged this for submission in v6.8.
+Hi,
 
-Reviewed-by: Joel Stanley <joel@jms.id.au>
+> On 12/12/2023 02:08, Andre Przywara wrote:
+> > The Transpeed 8K618-T TV box is a Chinese Android TV box, using the
+> > Allwinner H618 SoC.
+> > 
+> > Add the board/SoC compatible string pair to the list of known boards.
+> > 
+> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> > ---
+> >  Documentation/devicetree/bindings/arm/sunxi.yaml | 5 +++++
+> >  1 file changed, 5 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
+> > index 11c5ce941dd7e..5e91110cc9eb8 100644
+> > --- a/Documentation/devicetree/bindings/arm/sunxi.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+> > @@ -868,6 +868,11 @@ properties:
+> >            - const: topwise,a721
+> >            - const: allwinner,sun4i-a10
+> >  
+> > +      - description: Transpeed 8K618-T
+> > +        items:
+> > +          - const: transpeed,8k618-t
+> > +          - const: allwinner,sun50i-h618  
+> 
+> Assuming you kept the existing order (its style) of a file:
+
+Ah, a good point. The file seems to be sort alphabetically after the
+"description" name, though there are some outliers. Will send a patch
+to fix them.
+But at least this entry is correctly sorted.
+ 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Thanks!
+Andre
+
+> 
+> Best regards,
+> Krzysztof
+> 
+> 
+
 
