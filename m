@@ -1,183 +1,225 @@
-Return-Path: <devicetree+bounces-25506-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25508-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0C7E81364E
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 17:31:38 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DF56813659
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 17:35:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F8F81C20C03
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 16:31:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BD807B213B7
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 16:35:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33A6D60B99;
-	Thu, 14 Dec 2023 16:31:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 390465FEF1;
+	Thu, 14 Dec 2023 16:35:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ODU27qF5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2BAA1A6
-	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 08:31:29 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 69E8B1596;
-	Thu, 14 Dec 2023 08:32:14 -0800 (PST)
-Received: from e121345-lin.cambridge.arm.com (e121345-lin.cambridge.arm.com [10.1.196.40])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id B35183F5A1;
-	Thu, 14 Dec 2023 08:31:27 -0800 (PST)
-From: Robin Murphy <robin.murphy@arm.com>
-To: will@kernel.org
-Cc: mark.rutland@arm.com,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	suzuki.poulose@arm.com,
-	ilkka@os.amperecomputing.com,
-	bwicaksono@nvidia.com,
-	YWan@nvidia.com,
-	rwiley@nvidia.com
-Subject: [PATCH v2 5/5] perf/arm_cspmu: Add devicetree support
-Date: Thu, 14 Dec 2023 16:31:08 +0000
-Message-Id: <6858523689a214543224495fee22f9e31be2f767.1702571292.git.robin.murphy@arm.com>
-X-Mailer: git-send-email 2.39.2.101.g768bb238c484.dirty
-In-Reply-To: <cover.1702571292.git.robin.murphy@arm.com>
-References: <cover.1702571292.git.robin.murphy@arm.com>
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00AE6A6;
+	Thu, 14 Dec 2023 08:35:02 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-40c38e292c8so5231965e9.0;
+        Thu, 14 Dec 2023 08:35:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702571701; x=1703176501; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XbG+eAMrQaBWQ+wuswfsb9grx3t71hV/JH/fBc408/Q=;
+        b=ODU27qF5/4ZV7Q8zSiHaIdjZbzVXxHNUPesPSMt2pAhVFHqEcezPZQ7rFF+86yGNjp
+         jqMW3dtqL12tDZEQN58rzEWwXmqAjhktVz+arC3pfWU/qoZHqTfEcRy4jqT5TbukuLvv
+         1in0637YIaEmkBZRVaSld2hnTdsb82Ab/62TLaNn6LFVmt88Wwah740puDzw8mbXDKlU
+         Ju8rTc6XMHewrxZrbJAncoFPxN52dld5uOuvVKCFDaaf1QMuxXRzzXwjBRQUpQ+GJ+bo
+         mUvq32nEoPxgdMJ4jsgKd5+ffuu0eUzAIrKviXd/NB0vGvZQB1UlPPrLOL+o6faL16jy
+         dmWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702571701; x=1703176501;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XbG+eAMrQaBWQ+wuswfsb9grx3t71hV/JH/fBc408/Q=;
+        b=sMXLwzyYzv6zqjZHm3yib4dApxb5cnDxPZ6VKxVNvU6xegRRED/2cy1cp6Nbrvnlj7
+         zepX+/ZYg0OBCFYeMiiqf+B5MzLQ2RnFE1a9x3Xa1+HxvPiy8j/OWzAAeg1hQCEcJq10
+         /6nz9c0zSIkoaSLy1ISHaAzp2vr+vtyNLNkJp17SiegWyqbr/RM3JR49qnGM6aSYZIQx
+         zHmieVtkTsDqrNddZXFXEeGkqTuDJbmwxG8Fj2qUwv/TpDtxGLE3fNq0+2WDco2kC48a
+         +ASYJ6IDGggfVPGwE0Z9yn7OILfEZttvDBRq1EkgJQ9RCng9E5LhQ9x1mtjMsJdGAHla
+         XBHQ==
+X-Gm-Message-State: AOJu0YxH/fLGejnLjGof3Vo0JaXzJRtRcuvwPgdGZwyd3oRREa62BVQC
+	QKISQyWN6spnfZz0X7pAMQ==
+X-Google-Smtp-Source: AGHT+IHEhJt9TnAC+6/28vyZWFHxbmVh3rWrJ5sW42wi+b946fK82gifA8YHOhMiGtePzXIRfssCoQ==
+X-Received: by 2002:a05:600c:4d82:b0:40b:5e56:7b36 with SMTP id v2-20020a05600c4d8200b0040b5e567b36mr4568736wmp.127.1702571701014;
+        Thu, 14 Dec 2023 08:35:01 -0800 (PST)
+Received: from ?IPV6:2a02:810b:f40:4300:fb6a:140c:b21d:7387? ([2a02:810b:f40:4300:fb6a:140c:b21d:7387])
+        by smtp.gmail.com with ESMTPSA id h5-20020a05600c314500b0040b56f2cce3sm27378055wmo.23.2023.12.14.08.35.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Dec 2023 08:35:00 -0800 (PST)
+Message-ID: <3f970571-f454-4615-8234-64ea68a3d63c@gmail.com>
+Date: Thu, 14 Dec 2023 17:34:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 04/11] drm/rockchip: inno_hdmi: Correctly setup HDMI
+ quantization range
+Content-Language: en-US, de-DE
+To: Maxime Ripard <mripard@kernel.org>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
+ <heiko@sntech.de>
+Cc: Sandy Huang <hjc@rock-chips.com>, Andy Yan <andyshrk@163.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20231213195125.212923-1-knaerzche@gmail.com>
+ <w7cj24se5gjomfynp5yindnh3s2pea4p3f46u6y7lcci7hri32@62i6hg26pheb>
+ <5f4fc919-681f-44ec-bd44-5788e5b718ca@gmail.com> <3053311.k3LOHGUjKi@diego>
+ <qr7if2k76wdqgevdcwqxj2dkcbga72owjqlk3qaazujhejjloo@cnvmuq27qqns>
+From: Alex Bee <knaerzche@gmail.com>
+In-Reply-To: <qr7if2k76wdqgevdcwqxj2dkcbga72owjqlk3qaazujhejjloo@cnvmuq27qqns>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Hook up devicetree probing support. For now let's hope that people
-implement PMIIDR properly and we don't need an override property or
-match data mechanism.
+Hi Heiko, Hi Maxime,
 
-Signed-off-by: Robin Murphy <robin.murphy@arm.com>
----
-v2: Use APMT node to distinguish ACPI; adjust for binding change
----
- drivers/perf/arm_cspmu/arm_cspmu.c | 63 ++++++++++++++++++++++++------
- 1 file changed, 52 insertions(+), 11 deletions(-)
+Am 14.12.23 um 12:36 schrieb Maxime Ripard:
+> On Thu, Dec 14, 2023 at 12:17:34PM +0100, Heiko Stübner wrote:
+>> Am Donnerstag, 14. Dezember 2023, 12:12:08 CET schrieb Alex Bee:
+>>> Hi Maxime
+>>>
+>>> Am 14.12.23 um 08:56 schrieb Maxime Ripard:
+>>>> Hi Alex,
+>>>>
+>>>> Thanks for working on this!
+>>>>
+>>>> On Wed, Dec 13, 2023 at 08:51:18PM +0100, Alex Bee wrote:
+>>>>> The display controller will always give full range RGB regardless of the
+>>>>> mode set, but HDMI requires certain modes to be transmitted in limited
+>>>>> range RGB. This is especially required for HDMI sinks which do not support
+>>>>> non-standard quantization ranges.
+>>>>>
+>>>>> This enables color space conversion for those modes and sets the
+>>>>> quantization range accordingly in the AVI infoframe.
+>>>>>
+>>>>> Fixes: 412d4ae6b7a5 ("drm/rockchip: hdmi: add Innosilicon HDMI support")
+>>>>> Signed-off-by: Alex Bee <knaerzche@gmail.com>
+>>>>> ---
+>>>>>    drivers/gpu/drm/rockchip/inno_hdmi.c | 40 ++++++++++++++++++++++------
+>>>>>    1 file changed, 32 insertions(+), 8 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/rockchip/inno_hdmi.c b/drivers/gpu/drm/rockchip/inno_hdmi.c
+>>>>> index 345253e033c5..32626a75723c 100644
+>>>>> --- a/drivers/gpu/drm/rockchip/inno_hdmi.c
+>>>>> +++ b/drivers/gpu/drm/rockchip/inno_hdmi.c
+>>>>> @@ -33,6 +33,7 @@ struct hdmi_data_info {
+>>>>>    	unsigned int enc_in_format;
+>>>>>    	unsigned int enc_out_format;
+>>>>>    	unsigned int colorimetry;
+>>>>> +	bool rgb_limited_range;
+>>>>>    };
+>>>>>    
+>>>>>    struct inno_hdmi_i2c {
+>>>>> @@ -308,6 +309,18 @@ static int inno_hdmi_config_video_avi(struct inno_hdmi *hdmi,
+>>>>>    	else
+>>>>>    		frame.avi.colorspace = HDMI_COLORSPACE_RGB;
+>>>>>    
+>>>>> +	if (hdmi->hdmi_data.enc_out_format == HDMI_COLORSPACE_RGB) {
+>>>>> +		drm_hdmi_avi_infoframe_quant_range(&frame.avi,
+>>>>> +						   &hdmi->connector, mode,
+>>>>> +						   hdmi->hdmi_data.rgb_limited_range ?
+>>>>> +						   HDMI_QUANTIZATION_RANGE_LIMITED :
+>>>>> +						   HDMI_QUANTIZATION_RANGE_FULL);
+>>>>> +	} else {
+>>>>> +		frame.avi.quantization_range = HDMI_QUANTIZATION_RANGE_DEFAULT;
+>>>>> +		frame.avi.ycc_quantization_range =
+>>>>> +			HDMI_YCC_QUANTIZATION_RANGE_LIMITED;
+>>>>> +	}
+>>>>> +
+>>>>>    	return inno_hdmi_upload_frame(hdmi, rc, &frame, INFOFRAME_AVI, 0, 0, 0);
+>>>>>    }
+>>>>>    
+>>>>> @@ -334,14 +347,22 @@ static int inno_hdmi_config_video_csc(struct inno_hdmi *hdmi)
+>>>>>    	if (data->enc_in_format == data->enc_out_format) {
+>>>>>    		if ((data->enc_in_format == HDMI_COLORSPACE_RGB) ||
+>>>>>    		    (data->enc_in_format >= HDMI_COLORSPACE_YUV444)) {
+>>>>> -			value = v_SOF_DISABLE | v_COLOR_DEPTH_NOT_INDICATED(1);
+>>>>> -			hdmi_writeb(hdmi, HDMI_VIDEO_CONTRL3, value);
+>>>>> -
+>>>>> -			hdmi_modb(hdmi, HDMI_VIDEO_CONTRL,
+>>>>> -				  m_VIDEO_AUTO_CSC | m_VIDEO_C0_C2_SWAP,
+>>>>> -				  v_VIDEO_AUTO_CSC(AUTO_CSC_DISABLE) |
+>>>>> -				  v_VIDEO_C0_C2_SWAP(C0_C2_CHANGE_DISABLE));
+>>>>> -			return 0;
+>>>>> +			if (data->enc_in_format == HDMI_COLORSPACE_RGB &&
+>>>>> +			    data->enc_out_format == HDMI_COLORSPACE_RGB &&
+>>>>> +			    hdmi->hdmi_data.rgb_limited_range) {
+>>>>> +				csc_mode = CSC_RGB_0_255_TO_RGB_16_235_8BIT;
+>>>>> +				auto_csc = AUTO_CSC_DISABLE;
+>>>>> +				c0_c2_change = C0_C2_CHANGE_DISABLE;
+>>>>> +				csc_enable = v_CSC_ENABLE;
+>>>>> +			} else {
+>>>>> +				value = v_SOF_DISABLE | v_COLOR_DEPTH_NOT_INDICATED(1);
+>>>>> +				hdmi_writeb(hdmi, HDMI_VIDEO_CONTRL3, value);
+>>>>> +				hdmi_modb(hdmi, HDMI_VIDEO_CONTRL,
+>>>>> +					  m_VIDEO_AUTO_CSC | m_VIDEO_C0_C2_SWAP,
+>>>>> +					  v_VIDEO_AUTO_CSC(AUTO_CSC_DISABLE) |
+>>>>> +					  v_VIDEO_C0_C2_SWAP(C0_C2_CHANGE_DISABLE));
+>>>>> +				return 0;
+>>>>> +			}
+>>>>>    		}
+>>>>>    	}
+>>>>>    
+>>>>> @@ -458,6 +479,9 @@ static int inno_hdmi_setup(struct inno_hdmi *hdmi,
+>>>>>    	else
+>>>>>    		hdmi->hdmi_data.colorimetry = HDMI_COLORIMETRY_ITU_709;
+>>>>>    
+>>>>> +	hdmi->hdmi_data.rgb_limited_range =
+>>>>> +		drm_default_rgb_quant_range(mode) == HDMI_QUANTIZATION_RANGE_LIMITED;
+>>>>> +
+>>>> This patch conflicts heavily with my inno_hdmi patches here (patches 22 to 38):
+>>>> https://lore.kernel.org/dri-devel/20231207-kms-hdmi-connector-state-v5-0-6538e19d634d@kernel.org/
+>>> I'm aware of that and I mentioned it in the cover letter. Your series is
+>>> not merged yet and it didn't get much feedback so far. What is the
+>>> status there? Especially because you are removing things from inno-hdmi
+>>> driver (which aren't really required to remove there) which will I have
+>>> to reintroduce.
+>> Sadly I haven't found the time to look closer at Maxime's series so far,
+>> but I got the impression that it separates into multiple cleanup steps
+>> for a number of controllers.
+> Yeah, one of the previous version comment was to support more
+> controllers than vc4, which is fair. So I ended up reworking and
+> converting multiple controllers, but most of the clean up changes can be
+> applied outside of that series just fine.
+>
+> I just didn't find someone to test / review them yet :)
 
-diff --git a/drivers/perf/arm_cspmu/arm_cspmu.c b/drivers/perf/arm_cspmu/arm_cspmu.c
-index b64de4d800c7..6c76c135a0cf 100644
---- a/drivers/perf/arm_cspmu/arm_cspmu.c
-+++ b/drivers/perf/arm_cspmu/arm_cspmu.c
-@@ -27,6 +27,7 @@
- #include <linux/io-64-nonatomic-lo-hi.h>
- #include <linux/module.h>
- #include <linux/mutex.h>
-+#include <linux/of.h>
- #include <linux/perf_event.h>
- #include <linux/platform_device.h>
- 
-@@ -310,6 +311,10 @@ static const char *arm_cspmu_get_name(const struct arm_cspmu *cspmu)
- 
- 	dev = cspmu->dev;
- 	apmt_node = arm_cspmu_apmt_node(dev);
-+	if (!apmt_node)
-+		return devm_kasprintf(dev, GFP_KERNEL, PMUNAME "_%u",
-+				      atomic_fetch_inc(&pmu_idx[0]));
-+
- 	pmu_type = apmt_node->type;
- 
- 	if (pmu_type >= ACPI_APMT_NODE_TYPE_COUNT) {
-@@ -425,7 +430,7 @@ static int arm_cspmu_init_impl_ops(struct arm_cspmu *cspmu)
- 	};
- 
- 	/* Firmware may override implementer/product ID from PMIIDR */
--	if (apmt_node->impl_id)
-+	if (apmt_node && apmt_node->impl_id)
- 		cspmu->impl.pmiidr = apmt_node->impl_id;
- 
- 	/* Find implementer specific attribute ops. */
-@@ -940,7 +945,14 @@ static struct arm_cspmu *arm_cspmu_alloc(struct platform_device *pdev)
- 	platform_set_drvdata(pdev, cspmu);
- 
- 	apmt_node = arm_cspmu_apmt_node(dev);
--	cspmu->has_atomic_dword = apmt_node->flags & ACPI_APMT_FLAGS_ATOMIC;
-+	if (apmt_node) {
-+		cspmu->has_atomic_dword = apmt_node->flags & ACPI_APMT_FLAGS_ATOMIC;
-+	} else {
-+		u32 width = 0;
-+
-+		device_property_read_u32(dev, "reg-io-width", &width);
-+		cspmu->has_atomic_dword = (width == 8);
-+	}
- 
- 	return cspmu;
- }
-@@ -1133,11 +1145,6 @@ static int arm_cspmu_acpi_get_cpus(struct arm_cspmu *cspmu)
- 		}
- 	}
- 
--	if (cpumask_empty(&cspmu->associated_cpus)) {
--		dev_dbg(cspmu->dev, "No cpu associated with the PMU\n");
--		return -ENODEV;
--	}
--
- 	return 0;
- }
- #else
-@@ -1147,9 +1154,36 @@ static int arm_cspmu_acpi_get_cpus(struct arm_cspmu *cspmu)
- }
- #endif
- 
-+static int arm_cspmu_of_get_cpus(struct arm_cspmu *cspmu)
-+{
-+	struct of_phandle_iterator it;
-+	int ret, cpu;
-+
-+	of_for_each_phandle(&it, ret, dev_of_node(cspmu->dev), "cpus", NULL, 0) {
-+		cpu = of_cpu_node_to_id(it.node);
-+		if (cpu < 0)
-+			continue;
-+		cpumask_set_cpu(cpu, &cspmu->associated_cpus);
-+	}
-+	return ret;
-+}
-+
- static int arm_cspmu_get_cpus(struct arm_cspmu *cspmu)
- {
--	return arm_cspmu_acpi_get_cpus(cspmu);
-+	int ret = 0;
-+
-+	if (arm_cspmu_apmt_node(cspmu->dev))
-+		ret = arm_cspmu_acpi_get_cpus(cspmu);
-+	else if (device_property_present(cspmu->dev, "cpus"))
-+		ret = arm_cspmu_of_get_cpus(cspmu);
-+	else
-+		cpumask_copy(&cspmu->associated_cpus, cpu_possible_mask);
-+
-+	if (!ret && cpumask_empty(&cspmu->associated_cpus)) {
-+		dev_dbg(cspmu->dev, "No cpu associated with the PMU\n");
-+		ret = -ENODEV;
-+	}
-+	return ret;
- }
- 
- static int arm_cspmu_register_pmu(struct arm_cspmu *cspmu)
-@@ -1246,11 +1280,18 @@ static const struct platform_device_id arm_cspmu_id[] = {
- };
- MODULE_DEVICE_TABLE(platform, arm_cspmu_id);
- 
-+static const struct of_device_id arm_cspmu_of_match[] = {
-+	{ .compatible = "arm,coresight-pmu" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, arm_cspmu_of_match);
-+
- static struct platform_driver arm_cspmu_driver = {
- 	.driver = {
--			.name = DRVNAME,
--			.suppress_bind_attrs = true,
--		},
-+		.name = DRVNAME,
-+		.of_match_table = arm_cspmu_of_match,
-+		.suppress_bind_attrs = true,
-+	},
- 	.probe = arm_cspmu_device_probe,
- 	.remove = arm_cspmu_device_remove,
- 	.id_table = arm_cspmu_id,
--- 
-2.39.2.101.g768bb238c484.dirty
+I'm not exactly sure how to proceed here. Do you want me to:
 
+- base my patches on top of Maxime's series and reintroduce csc things 
+(of course only those which touch inno-hdmi w/o the framwork changes)
+
+- only apply the patches that do not touch csc things and base my 
+series  on top of that
+
+- adapt Maxime's patches so that RGB full to RGB limited stays in there
+
+- wait with resend until Maxime's series is merged and reintroduce csc 
+after that
+
+- something else
+
+?
+
+Please advise.
+
+Thanks,
+
+Alex
+
+> Maxime
 
