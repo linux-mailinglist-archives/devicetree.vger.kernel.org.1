@@ -1,76 +1,69 @@
-Return-Path: <devicetree+bounces-25602-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25603-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59D8E813D5C
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 23:38:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94A78813D6A
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 23:42:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 11946283609
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 22:38:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C6AF21C20A6F
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 22:42:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6981967214;
-	Thu, 14 Dec 2023 22:38:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CEB42C6BD;
+	Thu, 14 Dec 2023 22:42:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="neoCMENw"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="g5d5XN2A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8254266AD9
-	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 22:37:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a1db99cd1b2so11313366b.2
-        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 14:37:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702593476; x=1703198276; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=82WlJRLjSGo/vPW0f6ZIe9xHewTxZnBuvNjtigfiQoc=;
-        b=neoCMENwiva6jIDIQeZSXd59Q4Lp2bDBTXtljwfQBhaEi6qabFtnPDYRBUU3ipRYgR
-         R7rlse6qn3U7/Gs2hCYwO5CEGdFYCE93dZIDZlRHYD5MdJwAjCeLVwB9Woqwod2WyRjy
-         lwH2swLKpGSXOjItXtiTk3xettqXKJHDPNnhtbrwbUVqiorLzm3aEFktqGbCad3uFJyr
-         jHqVBU8gQ9psViJeRezLNRoxpSkSiGCbJQp3srr8W1CvFmuOAeLZv+ixZF+AyYx1X+7L
-         5597vsyDW/E2srINm77dITBjKWvKsl6sp5yXATXVy/nawLs+1gzAHm52CrXThOT7gkCk
-         dAFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702593476; x=1703198276;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=82WlJRLjSGo/vPW0f6ZIe9xHewTxZnBuvNjtigfiQoc=;
-        b=bv8kFZx5huSf28Lj8V3UgAsia8Z2uvqNnHU6eRoYkrLV+1wgJsnNy6iksFCwt8XE0H
-         EW/OeB4TI9UV2penhq8A4AZJqEyCBKuLHEeemKCR5HZU02neHAq7OP4MMN49adSqTL3k
-         CQInD1fgjxrHiaCrMiGs1gN0Jv8LgcNH18Y4rP6P6Of0Ov5olAzhGMAlvXexw/kARsnw
-         H1xpzr1kQnFxbN76R1JFwLAJbpwMVblgtnlGGdkbtFy9u3LYOBgI3yMBiDe+otsGvOIe
-         qymqufgDq59ammCOFoy+E2u1utsa0zydLZ5c2JVKFGMZZmu24pgh2z86/gaUm0zoFNus
-         JE3g==
-X-Gm-Message-State: AOJu0YzFewKUspRxD4zRGEGjY7gaJ4sBPwZBMDcf4Ntj+YKQhFvFQfj7
-	i1NjpZaOriS51uNBdEaHTInH8w==
-X-Google-Smtp-Source: AGHT+IFB9c8G3F6p8Djjw3isqnzw95yObhF11H6TdI+vXof5Qw9NTBybN7yB3FhOASkkyVChjmVMZQ==
-X-Received: by 2002:a17:906:180f:b0:a1d:2e32:d28c with SMTP id v15-20020a170906180f00b00a1d2e32d28cmr2914094eje.146.1702593476544;
-        Thu, 14 Dec 2023 14:37:56 -0800 (PST)
-Received: from linaro.org ([79.115.23.25])
-        by smtp.gmail.com with ESMTPSA id vc11-20020a170907d08b00b00a1ce58e9fc7sm9927639ejc.64.2023.12.14.14.37.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Dec 2023 14:37:56 -0800 (PST)
-Date: Fri, 15 Dec 2023 00:37:54 +0200
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Sibi Sankar <quic_sibis@quicinc.com>,
-	Rajendra Nayak <quic_rjendra@quicinc.com>
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: x1e80100: Add some issing nodes
- for CRD
-Message-ID: <ZXuDwrtvhejz6of7@linaro.org>
-References: <20231215-x1e80100-dts-missing-nodes-v2-0-5a6efc04d00c@linaro.org>
- <20231215-x1e80100-dts-missing-nodes-v2-2-5a6efc04d00c@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6369266ACF;
+	Thu, 14 Dec 2023 22:42:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1702593753; x=1734129753;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=KU/A3jUQKGkyim74DOJB+aBrQP+MMoH4ytEotxAxkqA=;
+  b=g5d5XN2ANud21J+s4McQv+VnYI0ibHvekwEzN77TlQ5eLl4g6TVSPHwG
+   6scRWheT2vc9IXUmBdtFmWNNuIYtVh6UHRsL6t/MBKfZVdq+7Tn7fh6qZ
+   jvppptoo4AjQJ52KCc1QLn8/adUg8XnlXDZJzINgONfN751lFihdPOCUp
+   wgnXzoTn4jApE80d+2oVqNtrTjeBh5Sv5lyhdTpyrz8WotlDOEzGbXFNj
+   bcKAJ/HGudGq6TS8iBKpGGu/ucO68+fn4owX6ej9D/wwo4GX15mXdHUCo
+   z+dPHlo0DsoU6QQhnyblgwYy6WVOB5Qds4HBsB3DH7LKeZDWQbExiTwlW
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="2017244"
+X-IronPort-AV: E=Sophos;i="6.04,276,1695711600"; 
+   d="scan'208";a="2017244"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Dec 2023 14:42:32 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="778052218"
+X-IronPort-AV: E=Sophos;i="6.04,276,1695711600"; 
+   d="scan'208";a="778052218"
+Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
+  by fmsmga007.fm.intel.com with ESMTP; 14 Dec 2023 14:42:28 -0800
+Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rDuPS-000MgM-0L;
+	Thu, 14 Dec 2023 22:42:26 +0000
+Date: Fri, 15 Dec 2023 06:41:46 +0800
+From: kernel test robot <lkp@intel.com>
+To: Tomer Maimon <tmaimon77@gmail.com>, arnd@arndb.de,
+	pmenzel@molgen.mpg.de, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	avifishman70@gmail.com, tali.perry1@gmail.com, joel@jms.id.au,
+	venture@google.com, yuenn@google.com, benjaminfair@google.com,
+	j.neuschaefer@gmx.net
+Cc: oe-kbuild-all@lists.linux.dev, openbmc@lists.ozlabs.org,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Tomer Maimon <tmaimon77@gmail.com>
+Subject: Re: [PATCH v3 3/3] soc: nuvoton: add NPCM BPC driver
+Message-ID: <202312150632.EzPYbn6l-lkp@intel.com>
+References: <20231213190528.3751583-4-tmaimon77@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,274 +72,57 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231215-x1e80100-dts-missing-nodes-v2-2-5a6efc04d00c@linaro.org>
+In-Reply-To: <20231213190528.3751583-4-tmaimon77@gmail.com>
 
-On 23-12-15 00:35:38, Abel Vesa wrote:
-> Enable touchscreen, touchpad, keyboard, display, pcie and usb
-> and all related nodes.
+Hi Tomer,
 
-Urgh, type in subject. I'll rephrase it anyway in the next version.
+kernel test robot noticed the following build warnings:
 
-Please ignore this version.
+[auto build test WARNING on soc/for-next]
+[also build test WARNING on robh/for-next linus/master v6.7-rc5 next-20231214]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-> 
-> Co-developed-by: Sibi Sankar <quic_sibis@quicinc.com>
-> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
-> Co-developed-by: Rajendra Nayak <quic_rjendra@quicinc.com>
-> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/x1e80100-crd.dts | 221 ++++++++++++++++++++++++++++++
->  1 file changed, 221 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-> index 7532d8eca2de..d44898453315 100644
-> --- a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-> +++ b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-> @@ -401,10 +401,144 @@ vreg_l3j_0p8: ldo3 {
->  	};
->  };
->  
-> +&i2c0 {
-> +	clock-frequency = <400000>;
-> +
-> +	status = "okay";
-> +
-> +	touchpad@15 {
-> +		compatible = "hid-over-i2c";
-> +		reg = <0x15>;
-> +
-> +		hid-descr-addr = <0x1>;
-> +		interrupts-extended = <&tlmm 3 IRQ_TYPE_LEVEL_LOW>;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&tpad_default>;
-> +
-> +		wakeup-source;
-> +	};
-> +
-> +	keyboard@3a {
-> +		compatible = "hid-over-i2c";
-> +		reg = <0x3a>;
-> +
-> +		hid-descr-addr = <0x1>;
-> +		interrupts-extended = <&tlmm 67 IRQ_TYPE_LEVEL_LOW>;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&kybd_default>;
-> +		wakeup-source;
-> +	};
-> +};
-> +
-> +&i2c8 {
-> +	clock-frequency = <400000>;
-> +
-> +	status = "okay";
-> +
-> +	touchscreen@10 {
-> +		compatible = "hid-over-i2c";
-> +		reg = <0x10>;
-> +
-> +		hid-descr-addr = <0x1>;
-> +		interrupts-extended = <&tlmm 51 IRQ_TYPE_LEVEL_LOW>;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&ts0_default>;
-> +	};
-> +};
-> +
-> +&mdss {
-> +	status = "okay";
-> +};
-> +
-> +&mdss_dp3 {
-> +	compatible = "qcom,x1e80100-dp";
-> +	/delete-property/ #sound-dai-cells;
-> +
-> +	data-lanes = <0 1 2 3>;
-> +
-> +	status = "okay";
-> +
-> +	aux-bus {
-> +		panel {
-> +			compatible = "edp-panel";
-> +			power-supply = <&vreg_edp_3p3>;
-> +
-> +			port {
-> +				edp_panel_in: endpoint {
-> +					remote-endpoint = <&mdss_dp3_out>;
-> +				};
-> +			};
-> +		};
-> +	};
-> +
-> +	ports {
-> +		port@1 {
-> +			reg = <1>;
-> +			mdss_dp3_out: endpoint {
-> +				remote-endpoint = <&edp_panel_in>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&mdss_dp3_phy {
-> +	vdda-phy-supply = <&vreg_l3j_0p8>;
-> +	vdda-pll-supply = <&vreg_l2j_1p2>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&pcie4 {
-> +	status = "okay";
-> +};
-> +
-> +&pcie4_phy {
-> +	vdda-phy-supply = <&vreg_l3j_0p8>;
-> +	vdda-pll-supply = <&vreg_l3e_1p2>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&pcie6a {
-> +	status = "okay";
-> +};
-> +
-> +&pcie6a_phy {
-> +	vdda-phy-supply = <&vreg_l3j_0p8>;
-> +	vdda-pll-supply = <&vreg_l2j_1p2>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&qupv3_0 {
-> +	status = "okay";
-> +};
-> +
-> +&qupv3_1 {
-> +	status = "okay";
-> +};
-> +
->  &qupv3_2 {
->  	status = "okay";
->  };
->  
-> +&remoteproc_adsp {
-> +	firmware-name = "qcom/x1e80100/adsp.mbn",
-> +			"qcom/x1e80100/adsp_dtb.mbn";
-> +
-> +	status = "okay";
-> +};
-> +
-> +&remoteproc_cdsp {
-> +	firmware-name = "qcom/x1e80100/cdsp.mbn",
-> +			"qcom/x1e80100/cdsp_dtb.mbn";
-> +
-> +	status = "okay";
-> +};
-> +
->  &tlmm {
->  	gpio-reserved-ranges = <34 2>, /* Unused */
->  			       <44 4>, /* SPI (TPM) */
-> @@ -416,9 +550,96 @@ edp_reg_en: edp-reg-en-state {
->  		drive-strength = <16>;
->  		bias-disable;
->  	};
-> +
-> +	kybd_default: kybd-default-state {
-> +		pins = "gpio67";
-> +		function = "gpio";
-> +		bias-disable;
-> +	};
-> +
-> +	tpad_default: tpad-default-state {
-> +		pins = "gpio3";
-> +		function = "gpio";
-> +		bias-disable;
-> +	};
-> +
-> +	ts0_default: ts0-default-state {
-> +		int-n-pins {
-> +			pins = "gpio51";
-> +			function = "gpio";
-> +			bias-disable;
-> +		};
-> +
-> +		reset-n-pins {
-> +			pins = "gpio48";
-> +			function = "gpio";
-> +			output-high;
-> +			drive-strength = <16>;
-> +		};
-> +	};
->  };
->  
->  &uart21 {
->  	compatible = "qcom,geni-debug-uart";
->  	status = "okay";
->  };
-> +
-> +&usb_1_ss0_hsphy {
-> +	vdd-supply = <&vreg_l2e_0p8>;
-> +	vdda12-supply = <&vreg_l3e_1p2>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_1_ss0_qmpphy {
-> +	status = "okay";
-> +};
-> +
-> +&usb_1_ss0 {
-> +	status = "okay";
-> +};
-> +
-> +&usb_1_ss0_dwc3 {
-> +	dr_mode = "host";
-> +	usb-role-switch;
-> +};
-> +
-> +&usb_1_ss1_hsphy {
-> +	vdd-supply = <&vreg_l2e_0p8>;
-> +	vdda12-supply = <&vreg_l3e_1p2>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_1_ss1_qmpphy {
-> +	status = "okay";
-> +};
-> +
-> +&usb_1_ss1 {
-> +	status = "okay";
-> +};
-> +
-> +&usb_1_ss1_dwc3 {
-> +	dr_mode = "host";
-> +	usb-role-switch;
-> +};
-> +
-> +&usb_1_ss2_hsphy {
-> +	vdd-supply = <&vreg_l2e_0p8>;
-> +	vdda12-supply = <&vreg_l3e_1p2>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_1_ss2_qmpphy {
-> +	status = "okay";
-> +};
-> +
-> +&usb_1_ss2 {
-> +	status = "okay";
-> +};
-> +
-> +&usb_1_ss2_dwc3 {
-> +	dr_mode = "host";
-> +	usb-role-switch;
-> +};
-> 
-> -- 
-> 2.34.1
-> 
+url:    https://github.com/intel-lab-lkp/linux/commits/Tomer-Maimon/dt-bindings-soc-nuvoton-Add-NPCM-BPC/20231214-030714
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git for-next
+patch link:    https://lore.kernel.org/r/20231213190528.3751583-4-tmaimon77%40gmail.com
+patch subject: [PATCH v3 3/3] soc: nuvoton: add NPCM BPC driver
+config: arm64-randconfig-r123-20231215 (https://download.01.org/0day-ci/archive/20231215/202312150632.EzPYbn6l-lkp@intel.com/config)
+compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project.git 4a5ac14ee968ff0ad5d2cc1ffa0299048db4c88a)
+reproduce: (https://download.01.org/0day-ci/archive/20231215/202312150632.EzPYbn6l-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202312150632.EzPYbn6l-lkp@intel.com/
+
+sparse warnings: (new ones prefixed by >>)
+>> drivers/soc/nuvoton/npcm-bpc.c:105:25: sparse: sparse: cast to restricted __poll_t
+   drivers/soc/nuvoton/npcm-bpc.c:108:26: sparse: sparse: cast to restricted __poll_t
+
+vim +105 drivers/soc/nuvoton/npcm-bpc.c
+
+    97	
+    98	static __poll_t npcm_bpc_poll(struct file *file, struct poll_table_struct *pt)
+    99	{
+   100		struct npcm_bpc_channel *chan = npcm_file_to_ch(file);
+   101		__poll_t mask = 0;
+   102	
+   103		poll_wait(file, &chan->wq, pt);
+   104		if (!kfifo_is_empty(&chan->fifo))
+ > 105			mask = (__poll_t)POLLIN;
+   106	
+   107		if (chan->host_reset) {
+   108			mask |= (__poll_t)POLLHUP;
+   109			chan->host_reset = false;
+   110		}
+   111	
+   112		return mask;
+   113	}
+   114	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
