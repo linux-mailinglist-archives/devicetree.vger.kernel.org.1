@@ -1,87 +1,204 @@
-Return-Path: <devicetree+bounces-25267-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25268-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FAE0812CA7
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 11:15:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DE40812CCD
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 11:22:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A37ABB212B6
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 10:15:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B2D961F21BA4
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 10:22:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7394B3B292;
-	Thu, 14 Dec 2023 10:15:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d+HvtCwn"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C8813BB21;
+	Thu, 14 Dec 2023 10:22:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A90E39FF7;
-	Thu, 14 Dec 2023 10:15:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7537C433C7;
-	Thu, 14 Dec 2023 10:15:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702548938;
-	bh=spD0AcUmHxYeiPYt/c3JhN1YM2jl2kjLtal2py7KBa4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=d+HvtCwnirQYqb0XbaZZISMF+cDLc/3vjA3UQTYQWPiM7Z67oMaX0TSMyybRQUwo3
-	 VoH80XOrwpYpM+tma/YD2DjOzL/RnPF419qSrGIM82tSHG+nRcI7xozewZKviSs9Mz
-	 RviVxNHT93s54OVcbGMkNUd+iiZUqIHuENqCtp6poC8CenDJLteveEAlVHawyyIctM
-	 hnaWuLkLsiVCRH4oYptbvCWKi0GoRzUO9UQglIKK4wl0Z41N4h8U2umipGVKOiHQAp
-	 wsqaBvgwqL/97KOepDh8TFUqA1+V8DLB8sRkUMQNDpQLrO8O98TyEqXdH9XFg/BvwY
-	 quC3+8ZE6Sdew==
-Received: from johan by xi.lan with local (Exim 4.96.2)
-	(envelope-from <johan@kernel.org>)
-	id 1rDikg-0007zX-34;
-	Thu, 14 Dec 2023 11:15:35 +0100
-Date: Thu, 14 Dec 2023 11:15:34 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: andersson@kernel.org, konrad.dybcio@linaro.org, vkoul@kernel.org,
-	sboyd@kernel.org, mturquette@baylibre.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 00/16] Fix Qcom UFS PHY clocks
-Message-ID: <ZXrVxmxY6wZprbBa@hovoldconsulting.com>
-References: <20231214091101.45713-1-manivannan.sadhasivam@linaro.org>
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 324A7AF;
+	Thu, 14 Dec 2023 02:22:48 -0800 (PST)
+Received: from mail.maildlp.com (unknown [172.18.186.231])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4SrT1X1Xwyz6K6JQ;
+	Thu, 14 Dec 2023 18:22:24 +0800 (CST)
+Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
+	by mail.maildlp.com (Postfix) with ESMTPS id 7623B14058E;
+	Thu, 14 Dec 2023 18:22:46 +0800 (CST)
+Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 14 Dec
+ 2023 10:22:46 +0000
+Date: Thu, 14 Dec 2023 10:22:44 +0000
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: Conor Dooley <conor@kernel.org>
+CC: Mike Looijmans <mike.looijmans@topic.nl>, <devicetree@vger.kernel.org>,
+	<linux-iio@vger.kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Jonathan
+ Cameron" <jic23@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: ti-ads1298: Add driver
+Message-ID: <20231214102244.000052a3@Huawei.com>
+In-Reply-To: <20231213-diffuser-disposal-ea21bbce8b64@spud>
+References: <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.618139b3-8cb2-4e4c-9283-9e3787c70105@emailsignatures365.codetwo.com>
+	<20231213094722.31547-1-mike.looijmans@topic.nl>
+	<20231213-diffuser-disposal-ea21bbce8b64@spud>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231214091101.45713-1-manivannan.sadhasivam@linaro.org>
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: lhrpeml100003.china.huawei.com (7.191.160.210) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
 
-On Thu, Dec 14, 2023 at 02:40:45PM +0530, Manivannan Sadhasivam wrote:
+On Wed, 13 Dec 2023 16:23:43 +0000
+Conor Dooley <conor@kernel.org> wrote:
 
-> This series fixes the clocks supplied to QMP PHY IPs in the Qcom SoCs. All
-> of the Qcom SoCs except MSM8996 require 3 clocks for QMP UFS:
+> On Wed, Dec 13, 2023 at 10:47:21AM +0100, Mike Looijmans wrote:
+> > Skeleton driver for the TI ADS1298 medical ADC. This device is
+> > typically used for ECG and similar measurements. Supports data
+> > acquisition at configurable scale and sampling frequency.  
 > 
-> * ref - 19.2MHz reference clock from RPM/RPMh
-> * ref_aux - Auxiliary reference clock from GCC
-> * qref - QREF clock from GCC or TCSR (TCSR since SM8550)
+> I think the commit subject and body here were accidentally copy-pasted
+> from the driver patch. Patches for bindings should avoid talking about
+> drivers and focus on the harware (unless we are talking about LEDs or
+> motors etc)
 > 
-> MSM8996 only requires 'ref' and 'qref' clocks.
+> > 
+> > Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
+> > 
+> > ---
+> > 
+> >  .../bindings/iio/adc/ti,ads1298.yaml          | 80 +++++++++++++++++++
+> >  1 file changed, 80 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads1298.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads1298.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads1298.yaml
+> > new file mode 100644
+> > index 000000000000..7a160ba721eb
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/iio/adc/ti,ads1298.yaml
+> > @@ -0,0 +1,80 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/iio/adc/ti,ads1298.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Texas Instruments' ads1298 medical ADC chips
+> > +
+> > +maintainers:
+> > +  - Mike Looijmans <mike.looijmans@topic.nl>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - ti,ads1298
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  spi-cpha: true
+> > +
+> > +  reset-gpios:
+> > +    maxItems: 1
+> > +
+> > +  avdd-supply:
+> > +    description:
+> > +      Analog power supply, voltage between AVDD and AVSS. When providing a
+> > +      symmetric +/- 2.5V, the regulator should report 5V.
+
+Any precedence in tree for doing this?  I thought we had bindings that required negative
+supplies to be specified separately if present - so this would need to be 2 
+supplies. e.g.
+https://elixir.bootlin.com/linux/v6.7-rc5/source/Documentation/devicetree/bindings/iio/adc/ti,adc12138.yaml#L37
+
+
+> > +
+> > +  vref-supply:
+> > +    description:
+> > +      Optional reference voltage. If omitted, internal reference is used,
+> > +      depending on analog supply this is 2.4 or 4V.  
 > 
-> Hence, this series fixes the binding, DT and GCC driver to reflect the
-> actual clock topology.
+> It may be worth mentioning here what the conditions for the internal
+> reference being 2.4 or 4 volts actually are.
+> 
+> > +
+> > +  clocks:
+> > +    description: Optional 2.048 MHz external source clock on CLK pin
+> > +    maxItems: 1
+> > +
+> > +  clock-names:
+> > +    const: clk  
+> 
+> Since you have only one clock, having clock-names (especially with a
+> name like "clk") is pointless IMO.
+> 
+> Generally though, this patch looks good to me.
+> 
+> Cheers,
+> Conor.
+> 
+> > +  interrupts:
+> > +    description: Interrupt on DRDY pin, triggers on falling edge
+> > +    maxItems: 1
+> > +
+> > +  label: true
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - avdd-supply
+> > +  - interrupts
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> > +
+> > +unevaluatedProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > +    spi {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        adc@1 {
+> > +          reg = <1>;
+> > +          compatible = "ti,ads1298";
+> > +          label = "ads1298-1-ecg";
+> > +          avdd-supply = <&reg_iso_5v_a>;
+> > +          clock-names = "clk";
+> > +          clocks = <&clk_ads1298>;
+> > +          interrupt-parent = <&gpio0>;
+> > +          interrupts = <78 IRQ_TYPE_EDGE_FALLING>;
+> > +          spi-max-frequency = <20000000>;
+> > +          spi-cpha;
+> > +        };
+> > +    };
+> > +...
+> > -- 
+> > 2.34.1
+> > 
+> > 
+> > Met vriendelijke groet / kind regards,
+> > 
+> > Mike Looijmans
+> > System Expert
+> > 
+> > 
+> > TOPIC Embedded Products B.V.
+> > Materiaalweg 4, 5681 RJ Best
+> > The Netherlands
+> > 
+> > T: +31 (0) 499 33 69 69
+> > E: mike.looijmans@topic.nl
+> > W: www.topic.nl
+> > 
+> > Please consider the environment before printing this e-mail  
+> 
 
-Is this based on documentation for all the SoCs or on inference from the
-current (upstream and downstream) devicetrees?
-
-Are you sure that you should not just describe that some of these UFS
-reference clocks are sourced from CXO in the clock driver instead?
-
-Take a look at commits
-
-	f446022b932a ("arm64: dts: qcom: sc8280xp: fix UFS reference clocks")
-	f6abcc21d943 ("clk: qcom: gcc-sc8280xp: add cxo as parent for three ufs ref clks")
-
-Johan
 
