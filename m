@@ -1,72 +1,96 @@
-Return-Path: <devicetree+bounces-25309-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25310-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AD0D812DD0
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 11:55:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6DED812DDD
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 11:55:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3CC6D1C2158C
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 10:55:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 351132820A3
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 10:55:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 088C03D97D;
-	Thu, 14 Dec 2023 10:55:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C6833D98E;
+	Thu, 14 Dec 2023 10:55:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="2gnJCC9T"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="b7wF6oau"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0107F1739;
-	Thu, 14 Dec 2023 02:54:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=hL27dSLqUR1fYhgLcHCRK29mJV+B6pX4R0DXWGJrOn0=; b=2gnJCC9T5+jlLMhkqX26eUrO85
-	KLqxuRZRdqOUnpKBZekxZeRlLTtdgC02vjbnujOMcOcgue9OM3oBU+Q6z7wuKxXnFGgpUr8Jd+8eI
-	mcdJtGMysMNRJVCW6IDTeSzMfVP7thsXihG/Xw7NGvBrUb0VdQVj9BEXvq/eJofJi8DE=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rDjMF-002uic-CV; Thu, 14 Dec 2023 11:54:23 +0100
-Date: Thu, 14 Dec 2023 11:54:23 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Luo Jie <quic_luoj@quicinc.com>
-Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	hkallweit1@gmail.com, linux@armlinux.org.uk, corbet@lwn.net,
-	p.zabel@pengutronix.de, f.fainelli@gmail.com,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v7 02/14] dt-bindings: net: ethernet-controller: add
- 10g-qxgmii mode
-Message-ID: <8472a40e-b114-45bf-b990-69c1224df34c@lunn.ch>
-References: <20231214094813.24690-1-quic_luoj@quicinc.com>
- <20231214094813.24690-3-quic_luoj@quicinc.com>
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45E48D5A;
+	Thu, 14 Dec 2023 02:55:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1702551336;
+	bh=nDwI9Pl6CCoEAnD+fTst64/YqkRvVVhKmZlxyty2nAw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=b7wF6oaus0TpnLvYOVI62QNuXci/Xd3tppTa1l12+jGW1Kj5elHnVNfXkkGE7eZ63
+	 pH2QiLUgHz3yAa1sph4DwjxkOEtItW9JA7tOiaeVPI3XJxZ+LUg9kpdXNCQ6CSyDtT
+	 Kz9WcagvFIPcdgmMs/cunw0MOn0c8Adx0y5aPLEdIogQgkHXSUVfBqqtwKerzyR9j+
+	 lDYUQlLMeMI8UvoRBIfpMSXhqh3aL+vgIsiZBPKSwHIOfom2G1h0InEGlmBfFH/LBg
+	 Tf6CqIsaJPMOtJZsY0m7yPZwKNHCOR1nuWbWG7xm4ew/Ckb6GhFDaKGwbY6juzH0ca
+	 OEORjJUAhZVbA==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id F1D31378000B;
+	Thu, 14 Dec 2023 10:55:34 +0000 (UTC)
+Message-ID: <e5625051-e9e2-4a75-a11a-cf5b40606fa4@collabora.com>
+Date: Thu, 14 Dec 2023 11:55:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231214094813.24690-3-quic_luoj@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 2/6] arm: arm64: dts: Enable cros-ec-spi as wake source
+Content-Language: en-US
+To: Mark Hasemeyer <markhas@chromium.org>, LKML <linux-kernel@vger.kernel.org>
+Cc: Raul Rangel <rrangel@chromium.org>, Alim Akhtar
+ <alim.akhtar@samsung.com>, Andre Przywara <andre.przywara@arm.com>,
+ Andy Gross <agross@kernel.org>, Baruch Siach <baruch@tkos.co.il>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Claudiu Beznea <claudiu.beznea@microchip.com>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Jesper Nilsson <jesper.nilsson@axis.com>, Jisheng Zhang
+ <jszhang@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Michal Simek <michal.simek@amd.com>, Paul Barker <paul.barker@sancloud.com>,
+ Rob Herring <robh+dt@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ cros-qcom-dts-watchers@chromium.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-tegra@vger.kernel.org
+References: <20231213110009.v1.1.Ifd0903f1c351e84376d71dbdadbd43931197f5ea@changeid>
+ <20231213110009.v1.2.I274b2d2255eb539cc9d251c9d65a385cc4014c79@changeid>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20231213110009.v1.2.I274b2d2255eb539cc9d251c9d65a385cc4014c79@changeid>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Dec 14, 2023 at 05:48:01PM +0800, Luo Jie wrote:
-> From: Vladimir Oltean <vladimir.oltean@nxp.com>
+Il 13/12/23 19:00, Mark Hasemeyer ha scritto:
+> The cros_ec driver currently assumes that cros-ec-spi compatible device
+> nodes are a wakeup-source even though the wakeup-source property is not
+> defined.
 > 
-> Add the new interface mode 10g-qxgmii, which is similar to
-> usxgmii but extend to 4 channels to support maximum of 4
-> ports with the link speed 10M/100M/1G/2.5G.
+> Add the wakeup-source property to all cros-ec-spi compatible device
+> nodes to match expected behavior.
 > 
-> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
-> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Mark Hasemeyer <markhas@chromium.org>
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+I received only patch [2/6] - please send the entire series to the relevant
+maintainers, as otherwise it's difficult to understand what's going on.
 
-    Andrew
+As for this patch alone:
+  1. arch/arm stuff goes to a different commit
+  2. I would prefer if you split per-arch and per-SoC.
+
+Regards,
+Angelo
+
+
 
