@@ -1,136 +1,100 @@
-Return-Path: <devicetree+bounces-25184-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20BDA81299A
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 08:43:22 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9CE08129A6
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 08:43:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 522A81C21323
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 07:43:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4C4C0B2133F
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 07:43:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 923BC12E78;
-	Thu, 14 Dec 2023 07:43:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 690CC14A9C;
+	Thu, 14 Dec 2023 07:43:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xfzZL7XP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="osFoWmK9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 317F09C
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 23:43:15 -0800 (PST)
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-551d5cd1c5fso638904a12.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 23:43:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702539793; x=1703144593; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4MvMAIiIotVIco6M4RcGZEQ+hNO3VGKxDULnpzX6Bxg=;
-        b=xfzZL7XP6ioC7wSrE4W09Bjcf5BFoSRvqsr565f5g9/RshUC2aYMkj6qb0pOQh4hZk
-         6mULi9zghdpU18coJB1UPpqM9VRPdNjZiQSgqEFDjVKz4JyYQGhN68x2YNeqbg3ROT0M
-         +vLD/heVQMyVgBqChE4OcdSVjrFZys40bnvSL5yFlNOcAcenoDxq566rJlFPLpC1r6g3
-         9dDOO001RUd2uB/mJAXUJScIysHoxi/I91Dr3kviaiqFrFjJwGLW+8MlKua0XPrNxKcn
-         5ibnf95RsY53VuT1B0wfm/jbT/n0VzbX5KZeo7f4QWBs1gaJCrWQFGJyTSRDeDS9g8nC
-         1jYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702539793; x=1703144593;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4MvMAIiIotVIco6M4RcGZEQ+hNO3VGKxDULnpzX6Bxg=;
-        b=Qdm86cj0viXf3u0NLaLDJs+dR2kv/tWeSOphbTVgpFl5IcBNauHPGASZio/qNz+0ZT
-         Czn83EUqFsmSugTox1iRXFQOM+10vY1KPwBGMUoAR1yDrGJosq1mBzthxRAcjT8FooOA
-         qgIm6vBruuRIQZRFB5PE2Ma0BkA403N4ahtssKtPo9lfLlFFEIIPkEFiaGx/GkpOt4TK
-         OUIfdtFdJRgZPW0wrr5Ekx66uJnmKDsuaL2kx4wKgiOGrEfU7zafaZAekJSgPyaDVp6m
-         lBwCxGbw+fO6xNXYR3PIQ5YBzPoXk94DqUHfH8e/h48NOix76OFCgCCI7SZD4OFB3+Ea
-         1fIQ==
-X-Gm-Message-State: AOJu0YweV6UlhRCOWmQPpSnAkr52grMcBlJxZgcIhC0QSLEQJud1Sspc
-	KVwgYWzWgSbYSj81BD99GG6HHOh5ro2i6tDPhVE=
-X-Google-Smtp-Source: AGHT+IHdvLd1KKquidilWvpGJpBfFf9nJMNA6i8fkBP2TcpSRydkmy+BzgyDEauKI6aia6/eqKmMWA==
-X-Received: by 2002:a50:9e81:0:b0:552:63bd:4326 with SMTP id a1-20020a509e81000000b0055263bd4326mr908615edf.21.1702539793674;
-        Wed, 13 Dec 2023 23:43:13 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id ew12-20020a056402538c00b00552691fc7f9sm458868edb.66.2023.12.13.23.43.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Dec 2023 23:43:13 -0800 (PST)
-Message-ID: <6bf12018-6904-451c-8c6d-6643099b2a76@linaro.org>
-Date: Thu, 14 Dec 2023 08:43:12 +0100
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 475F513AC5;
+	Thu, 14 Dec 2023 07:43:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BECA3C433C8;
+	Thu, 14 Dec 2023 07:43:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702539819;
+	bh=OEMk/nxMTR+a3ksA2UJ1yTut+dCnmQnWva7ppIneGCc=;
+	h=From:To:Cc:Subject:Date:From;
+	b=osFoWmK9rwckrPYfephyKYoWACTfSb/oyYSpzZ71wSgHuVd5F+y0II14i2SQ4SLRQ
+	 3N3GPkj7/NQMtXu/JbC+z8gFSjlBufcTnavtSou6wrB1CutW29Jk8d6axLfuMgreFF
+	 I5qVRxdgkmgnCq9IHdiGWWZ01QuQM5hz+bcax6GrPzuDWqjuSl+nROJPBj+RixWP97
+	 QRGQBObLS7S7G77H4+hBMxkNvNyrwgKzc2WOtNVchvG7wcGYUPzJO78UST0I3oWVb+
+	 OG2GEkef9Cz32wddWMrqn0aV4eXSYK8ihOlCGMX1kAvBfr2XZLCXuNrQLyLKCQzVTJ
+	 ODq5tQBWGGOpA==
+Received: from johan by xi.lan with local (Exim 4.96.2)
+	(envelope-from <johan+linaro@kernel.org>)
+	id 1rDgNe-0002s4-1A;
+	Thu, 14 Dec 2023 08:43:39 +0100
+From: Johan Hovold <johan+linaro@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Andy Gross <agross@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Johan Hovold <johan+linaro@kernel.org>
+Subject: [PATCH 0/3] arm64: dts: qcom: fix USB wakeup interrupts again (pt 2)
+Date: Thu, 14 Dec 2023 08:43:16 +0100
+Message-ID: <20231214074319.11023-1-johan+linaro@kernel.org>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: vendor-prefixes: add Transpeed
-Content-Language: en-US
-To: Andre Przywara <andre.przywara@arm.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>
-Cc: Icenowy Zheng <uwu@icenowy.me>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-References: <20231214015312.17363-1-andre.przywara@arm.com>
- <20231214015312.17363-2-andre.przywara@arm.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231214015312.17363-2-andre.przywara@arm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 14/12/2023 02:53, Andre Przywara wrote:
-> This is a name used by some Chinese TV boxes, add it to the bindings.
-> 
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> ---
+The USB DP/DM HS PHY interrupts need to be provided by the PDC interrupt
+controller in order to be able to wake the system up from low-power
+states and to be able to detect disconnect events, which requires
+triggering on falling edges.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+A recent commit updated the trigger type but failed to change the
+interrupt provider as required. This leads to the current Linux driver
+failing to probe instead of printing an error during suspend and USB
+wakeup not working as intended.
 
-Best regards,
-Krzysztof
+While at it, fix also the SS PHY interrupt so that it too can be used to
+wakeup the system up.
+
+Thanks to Konrad and Krishna for providing the sdm670 PDC interrupts
+numbers. The sc8180x SS PHY vectors I inferred from sdm670/sdm845/sm8150
+which appear to use the name configuration.
+
+After this series, only sm6375 remains to be fixed and I believe Bjorn
+is trying to dig out the corresponding vectors.
+
+Also note that these patches have only been compile tested.
+
+Johan
+
+
+Johan Hovold (3):
+  arm64: dts: qcom: sdm670: fix USB DP/DM HS PHY interrupts
+  arm64: dts: qcom: sdm670: fix USB SS wakeup
+  arm64: dts: qcom: sc8180x: fix USB SS wakeup
+
+ arch/arm64/boot/dts/qcom/sc8180x.dtsi | 4 ++--
+ arch/arm64/boot/dts/qcom/sdm670.dtsi  | 8 ++++----
+ 2 files changed, 6 insertions(+), 6 deletions(-)
+
+-- 
+2.41.0
 
 
