@@ -1,67 +1,67 @@
-Return-Path: <devicetree+bounces-25145-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25146-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 502E98128C7
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 08:09:24 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C065F8128D1
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 08:12:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 80C891C212D9
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 07:09:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 687111F216F2
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 07:12:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E99DD52C;
-	Thu, 14 Dec 2023 07:09:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 059A1DDC5;
+	Thu, 14 Dec 2023 07:12:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Jrg0onkE"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yfQBWOAG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CCEDB9
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 23:09:17 -0800 (PST)
-Received: by mail-yb1-xb2e.google.com with SMTP id 3f1490d57ef6-dbcd9af2428so243177276.1
-        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 23:09:17 -0800 (PST)
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E45B7E8
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 23:12:19 -0800 (PST)
+Received: by mail-yb1-xb2c.google.com with SMTP id 3f1490d57ef6-db3fa47c2f7so8006668276.0
+        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 23:12:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702537756; x=1703142556; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702537939; x=1703142739; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=9O1GnUq4pw6hl4a/GhVKNLNjzNzEUMAMJcd0utEyLiE=;
-        b=Jrg0onkEW7cZmLkXpgpixdbps3bf+3816C8u1ryDdu8/S6ggiSXCSaFC6mMW8w0mRq
-         UCcapzzEQkiotnyscr46KOGVMADBNQB8Lk0O4I3sPvYR42qwV2NiiTCYUHIyDSOcTj5J
-         KX67eBXfhmTtxwdOYnl58EhYT6avc+qjXpC8Lc6lidtfiTh31pPeBoZSAeblwtB8ienX
-         D7n7IPRZXu3ERL9Ux/PnxTgMeiQKctPlssDqgCrNd80J91KRbtFFuEjbnPOEHugVglUe
-         SPoqk+sChWeCYtEb89exiKxuTfeNxPHlG/ZNy83rxHQUcsWUPgu+fbnKQtjyMoLrYAO/
-         cqWA==
+        bh=BeQY4H3SvQ0wdp8LNZJHZHNl8zWKZa5eAoAO6u6SBqw=;
+        b=yfQBWOAGBpJrLDiYeJiIU4q81B+ykK4WOAl4O+IlfvroT7Oz7u8Cj+lfvZ2LyMVggu
+         bQHbGlY7Tl+0pq8js5jLCIgF9oSQvUTVltU3kWvTquUBzFl2Dsr3LdnBOYkVixZhPGC9
+         pWFR0xJ4tSmxBavtrlJfhhNReGPBsJNLLxcr+hn98HmHKAYnHB/RYm54ya8beerh3I1B
+         d4FuXkqXHCmazyu3+wTONk84c9AtBkvUxFxxNmwsSRLtNqE/XpkK1ZOQaz5Vvugtb+EM
+         17J9TD/chFmOYqlpkAaf4nbPh9somuTTc9AXi8c3sGdfYO2cvB11Cq3VwGL1X1BPHzTD
+         BnmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702537756; x=1703142556;
+        d=1e100.net; s=20230601; t=1702537939; x=1703142739;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=9O1GnUq4pw6hl4a/GhVKNLNjzNzEUMAMJcd0utEyLiE=;
-        b=XvxXMzKYi5muh5cU+Mec5eogBgPttaUMH07KiUksZn+MnceoVkY+cAcI74FCtRfjdC
-         AxzE2zk25OVKAG8QJSFpm20ek3+uXybR9SCutRg6r1WSwe7HcVx2yxlubY4FEOykjog3
-         wbRgbA7Z5tLxcQexRrXMts3XUdiEzwbShocCMnHow33rU1Vbvkv/3mPnMAWLL3wMfE/k
-         z0e8DXShX2m4wEiW1wr6vWftsXzbvN0Q4+W9fjvPGw84g/YjZnPo0RE5/WQaChw1ersA
-         qgEHlqheYd46lUQBfVfoVb4Bk8+XwJGqW0cZHQVK0x90sxBSIweMOZ1MSKJY4lHtleYA
-         xBMw==
-X-Gm-Message-State: AOJu0YzCtsDcK4VC/zlBEMIqMv97NrI7hsxtE9XFLNm43lDCH9vpdX0Z
-	cBHslhytyQlCMpOEqACZLcfwbqvKajAYbbY8T9+CNw==
-X-Google-Smtp-Source: AGHT+IG078aMdmbmisgdnRLiC9BHttQaRKTw1dmngc8Uzuyuor0vsPrA1eyS3c5KPIlT0ZUu4886PyAXYBHaW+v9aKM=
-X-Received: by 2002:a25:8041:0:b0:dbc:ddf4:4b14 with SMTP id
- a1-20020a258041000000b00dbcddf44b14mr1157789ybn.50.1702537756642; Wed, 13 Dec
- 2023 23:09:16 -0800 (PST)
+        bh=BeQY4H3SvQ0wdp8LNZJHZHNl8zWKZa5eAoAO6u6SBqw=;
+        b=gbktV6h4cEYlOWFQKmWY9VBArvNf2J+U0r6707FRTjJJYLxKI4euN/FtAkXDogPxVJ
+         K9xHFvNfdy1kG5H9z3t3YN7nYwWgKjDqVcNdSNRalqILWf/g6U184VQdHEixiWQ+4DlO
+         iJbdUHUm6RbmB2VbvHvvhkEy5yRRzs81mPyRVwl/ca1w0v3EqSccfL8jcQTm1oXw9fDV
+         7+oL0pV+M+nWSl1ZNNd4xbZ0tDFCID+u0zspMr6Jy2u2pkNeoxySEQ06+y38PmyD33x9
+         YDUPcxe1K8VHPMUIkQERh8fXsHrzxo1TI6YHKENLA3UDPUJfjGzg3hmbe7GfZSgaEPv9
+         WAKA==
+X-Gm-Message-State: AOJu0YyFJF+VgunFB7EEDALv1QtGeqd9s/Dvgx9ui5wUbnFIcDUESc0D
+	S+61cFIxCaFS6r6lzokbRg5OBxDmNnBujb8+/cC0TowpaRV1tLGiLJY=
+X-Google-Smtp-Source: AGHT+IH29F7oDPcW96XqPra5HyXoBDO1YudpygTc5FlbxagbsYbyzPBTWsjhToTqAubKvWeBHVd6Jk+uBDLmOzLIaqk=
+X-Received: by 2002:a0d:ca84:0:b0:5e2:8d1d:e323 with SMTP id
+ m126-20020a0dca84000000b005e28d1de323mr2294917ywd.41.1702537939001; Wed, 13
+ Dec 2023 23:12:19 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231214062847.2215542-1-quic_ipkumar@quicinc.com> <20231214062847.2215542-3-quic_ipkumar@quicinc.com>
-In-Reply-To: <20231214062847.2215542-3-quic_ipkumar@quicinc.com>
+References: <20231214062847.2215542-1-quic_ipkumar@quicinc.com> <20231214062847.2215542-7-quic_ipkumar@quicinc.com>
+In-Reply-To: <20231214062847.2215542-7-quic_ipkumar@quicinc.com>
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 14 Dec 2023 09:09:05 +0200
-Message-ID: <CAA8EJpr61JuznqfdMG96mjrqquf2Qbfe=potB5vzk43XexWj2w@mail.gmail.com>
-Subject: Re: [PATCH 02/10] clk: qcom: ipq5332: Add separate clocks for PCIe
- and USB for Combo PHY
+Date: Thu, 14 Dec 2023 09:12:08 +0200
+Message-ID: <CAA8EJppSXeV9LSv8VAwYSP9nDzq+uHTvbiEzD4PebEHoOJySNg@mail.gmail.com>
+Subject: Re: [PATCH 06/10] phy: qcom: ipq5332: Add support for g3x1 and g3x2
+ PCIe PHYs
 To: Praveenkumar I <quic_ipkumar@quicinc.com>
 Cc: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org, 
 	mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org, 
@@ -75,60 +75,103 @@ Cc: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
 	quic_anusha@quicinc.com
 Content-Type: text/plain; charset="UTF-8"
 
-On Thu, 14 Dec 2023 at 08:29, Praveenkumar I <quic_ipkumar@quicinc.com> wrote:
+On Thu, 14 Dec 2023 at 08:30, Praveenkumar I <quic_ipkumar@quicinc.com> wrote:
 >
-> Qualcomm IPQ5332 has a combo PHY for PCIe and USB. Either one of the
-> interface (PCIe/USB) can use this combo PHY and the PHY drivers are
-> different for PCIe and USB. Hence separate the PCIe and USB pipe clock
-> source from DT, and individual driver node can be used as a clock source
-> separately in the gcc. Add separate enum for PCIe and USB pipe clock and
-> change the parent in corresponding structures.
+> Add support for single-lane and dual-lane PCIe UNIPHY found on
+> Qualcomm IPQ5332 platform. This UNIPHY is similar to the one
+> present in Qualcomm IPQ5018.
 >
 > Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-
-Please use your full name for the git authorship and or the S-o-B
-tags. This applies to the whole series.
-
-Other than that:
-
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
 > ---
->  drivers/clk/qcom/gcc-ipq5332.c | 7 ++++---
->  1 file changed, 4 insertions(+), 3 deletions(-)
+> This patch depends on the below series which adds PCIe support in
+> Qualcomm IPQ5018
+> https://lore.kernel.org/all/20231003120846.28626-1-quic_nsekar@quicinc.com/
 >
-> diff --git a/drivers/clk/qcom/gcc-ipq5332.c b/drivers/clk/qcom/gcc-ipq5332.c
-> index f98591148a97..aa0f616c3b1b 100644
-> --- a/drivers/clk/qcom/gcc-ipq5332.c
-> +++ b/drivers/clk/qcom/gcc-ipq5332.c
-> @@ -25,7 +25,8 @@ enum {
->         DT_SLEEP_CLK,
->         DT_PCIE_2LANE_PHY_PIPE_CLK,
->         DT_PCIE_2LANE_PHY_PIPE_CLK_X1,
-> -       DT_USB_PCIE_WRAPPER_PIPE_CLK,
-> +       DT_PCIE_WRAPPER_PIPE_CLK,
-> +       DT_USB_WRAPPER_PIPE_CLK,
+>  .../phy/qualcomm/phy-qcom-uniphy-pcie-28lp.c  | 44 +++++++++++++++++++
+>  1 file changed, 44 insertions(+)
+>
+> diff --git a/drivers/phy/qualcomm/phy-qcom-uniphy-pcie-28lp.c b/drivers/phy/qualcomm/phy-qcom-uniphy-pcie-28lp.c
+> index 9f9a03faf6fa..aa71b85eb50e 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-uniphy-pcie-28lp.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-uniphy-pcie-28lp.c
+> @@ -34,6 +34,10 @@
+>  #define SSCG_CTRL_REG_6                0xb0
+>  #define PCS_INTERNAL_CONTROL_2 0x2d8
+>
+> +#define PHY_CFG_PLLCFG                         0x220
+> +#define PHY_CFG_EIOS_DTCT_REG                  0x3e4
+> +#define PHY_CFG_GEN3_ALIGN_HOLDOFF_TIME                0x3e8
+> +
+>  #define PHY_MODE_FIXED         0x1
+>
+>  enum qcom_uniphy_pcie_type {
+> @@ -112,6 +116,21 @@ static const struct uniphy_regs ipq5018_regs[] = {
+>         },
 >  };
 >
->  enum {
-> @@ -728,7 +729,7 @@ static struct clk_regmap_phy_mux gcc_pcie3x1_0_pipe_clk_src = {
->                 .hw.init = &(struct clk_init_data) {
->                         .name = "gcc_pcie3x1_0_pipe_clk_src",
->                         .parent_data = &(const struct clk_parent_data) {
-> -                               .index = DT_USB_PCIE_WRAPPER_PIPE_CLK,
-> +                               .index = DT_PCIE_WRAPPER_PIPE_CLK,
->                         },
->                         .num_parents = 1,
->                         .ops = &clk_regmap_phy_mux_ops,
-> @@ -1072,7 +1073,7 @@ static struct clk_regmap_phy_mux gcc_usb0_pipe_clk_src = {
->                 .hw.init = &(struct clk_init_data) {
->                         .name = "gcc_usb0_pipe_clk_src",
->                         .parent_data = &(const struct clk_parent_data) {
-> -                               .index = DT_USB_PCIE_WRAPPER_PIPE_CLK,
-> +                               .index = DT_USB_WRAPPER_PIPE_CLK,
->                         },
->                         .num_parents = 1,
->                         .ops = &clk_regmap_phy_mux_ops,
+> +static const struct uniphy_regs ipq5332_regs[] = {
+> +       {
+> +               .offset = PHY_CFG_PLLCFG,
+> +               .val = 0x30,
+> +       },
+> +       {
+> +               .offset = PHY_CFG_EIOS_DTCT_REG,
+> +               .val = 0x53ef,
+> +       },
+> +       {
+> +               .offset = PHY_CFG_GEN3_ALIGN_HOLDOFF_TIME,
+> +               .val = 0xCf,
+> +       },
+> +};
+> +
+>  static const struct uniphy_pcie_data ipq5018_2x2_data = {
+>         .lanes          = 2,
+>         .lane_offset    = 0x800,
+> @@ -121,6 +140,23 @@ static const struct uniphy_pcie_data ipq5018_2x2_data = {
+>         .pipe_clk_rate  = 125000000,
+>  };
+>
+> +static const struct uniphy_pcie_data ipq5332_x2_data = {
+> +       .lanes          = 2,
+> +       .lane_offset    = 0x800,
+> +       .phy_type       = PHY_TYPE_PCIE_GEN3,
+> +       .init_seq       = ipq5332_regs,
+> +       .init_seq_num   = ARRAY_SIZE(ipq5332_regs),
+> +       .pipe_clk_rate  = 250000000,
+> +};
+> +
+> +static const struct uniphy_pcie_data ipq5332_x1_data = {
+> +       .lanes          = 1,
+> +       .phy_type       = PHY_TYPE_PCIE_GEN3,
+> +       .init_seq       = ipq5332_regs,
+> +       .init_seq_num   = ARRAY_SIZE(ipq5332_regs),
+> +       .pipe_clk_rate  = 250000000,
+> +};
+
+Please keep structs sorted out.
+
+> +
+>  static void qcom_uniphy_pcie_init(struct qcom_uniphy_pcie *phy)
+>  {
+>         const struct uniphy_pcie_data *data = phy->data;
+> @@ -270,6 +306,14 @@ static const struct of_device_id qcom_uniphy_pcie_id_table[] = {
+>                 .compatible = "qcom,ipq5018-uniphy-pcie-gen2x2",
+>                 .data = &ipq5018_2x2_data,
+>         },
+> +       {
+> +               .compatible = "qcom,ipq5332-uniphy-pcie-gen3x2",
+> +               .data = &ipq5332_x2_data,
+> +       },
+> +       {
+> +               .compatible = "qcom,ipq5332-uniphy-pcie-gen3x1",
+> +               .data = &ipq5332_x1_data,
+
+The entries here should be sorted out.
+
+> +       },
+>         { /* Sentinel */ },
+>  };
+>  MODULE_DEVICE_TABLE(of, qcom_uniphy_pcie_id_table);
 > --
 > 2.34.1
 >
