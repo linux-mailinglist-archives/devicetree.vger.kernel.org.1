@@ -1,125 +1,137 @@
-Return-Path: <devicetree+bounces-25383-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25385-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24D7F813139
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 14:20:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 19EAE813142
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 14:20:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B72A1C2169A
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 13:20:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C26D1C21A96
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 13:20:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 010E655784;
-	Thu, 14 Dec 2023 13:20:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="LANOjHpH"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7159255782;
+	Thu, 14 Dec 2023 13:20:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED1D112C
-	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 05:20:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1702560006; x=1734096006;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=YfHrxhhonBWfGnPfZ5m0iZ+Sa6IWk6Y+ewoIgz5dMG0=;
-  b=LANOjHpHt19jHGwYC9JnDJa5mcBCo6n9jbkPalJTXgKv6AujEQm4+SYN
-   nbdawAaHWTt3XKr6XfBlHK4dPCKOX895P5yKVQ4IXZ2VIpeL65PkHhw8p
-   JCYZ53o6hGvmhZt68n5e9Py+vmFWeqWc+Csxp7o5od0Z/kMb89tOY7/7I
-   DrBDJn7RoE5CU0twZPgDkjSB0mVa4kXYiGYl+zPHzP42O5Gi1cx0wFW9l
-   xu2OEWoRR8PI6C3uCG+ckTWdl7Marb+zKPfYAjJ0EiaPKMZlqqwcmcCfx
-   Pv142R4JRRSwk9Afqkt+m5I6S0fH7XpyyZGePUDZKADBWUgpJSrGwWz4I
-   A==;
-X-IronPort-AV: E=Sophos;i="6.04,275,1695679200"; 
-   d="scan'208";a="34509898"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 14 Dec 2023 14:20:04 +0100
-Received: from steina-w.tq-net.de (steina-w.tq-net.de [10.123.53.18])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE08D12B
+	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 05:20:28 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1rDldH-0006qa-Ix; Thu, 14 Dec 2023 14:20:07 +0100
+Received: from [2a0a:edc0:0:b01:1d::7b] (helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1rDldF-00FoVx-W9; Thu, 14 Dec 2023 14:20:06 +0100
+Received: from pengutronix.de (unknown [172.20.34.65])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 00DCE280075;
-	Thu, 14 Dec 2023 14:20:03 +0100 (CET)
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Rob Herring <robh+dt@kernel.org>,
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id E93BD26304B;
+	Thu, 14 Dec 2023 13:20:04 +0000 (UTC)
+Date: Thu, 14 Dec 2023 14:20:04 +0100
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Conor Dooley <conor@kernel.org>
+Cc: linux-riscv@lists.infradead.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Wolfgang Grandegger <wg@grandegger.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 1/1] arm64: dts: imx8qxp: Add VPU subsystem file
-Date: Thu, 14 Dec 2023 14:20:00 +0100
-Message-Id: <20231214132000.1927638-1-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, linux-can@vger.kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH RESEND v1 2/7] dt-bindings: can: mpfs: add missing
+ required clock
+Message-ID: <20231214-genetics-issue-b8f9c60c74b2-mkl@pengutronix.de>
+References: <20231208-reenter-ajar-b6223e5134b3@spud>
+ <20231208-palpitate-passable-c79bacf2036c@spud>
+ <20231212-unreeling-depose-8b6b2e032555-mkl@pengutronix.de>
+ <20231213-waffle-grueling-3a5c3879395b@spud>
+ <20231214-tinderbox-glitzy-60d1936ab85f-mkl@pengutronix.de>
+ <20231214-tinderbox-paver-d1ff0fc5c428@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ingrkcbszpm5ox2g"
+Content-Disposition: inline
+In-Reply-To: <20231214-tinderbox-paver-d1ff0fc5c428@spud>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-imx8qxp re-uses imx8qm VPU subsystem file, but it has different base
-addresses. Also imx8qxp has only two VPU cores, delete vpu_vore2 and
-mu2_m0 accordingly.
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- .../boot/dts/freescale/imx8qxp-ss-vpu.dtsi      | 17 +++++++++++++++++
- arch/arm64/boot/dts/freescale/imx8qxp.dtsi      |  2 +-
- 2 files changed, 18 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8qxp-ss-vpu.dtsi
+--ingrkcbszpm5ox2g
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-ss-vpu.dtsi b/arch/arm64/boot/dts/freescale/imx8qxp-ss-vpu.dtsi
-new file mode 100644
-index 0000000000000..7894a3ab26d6b
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8qxp-ss-vpu.dtsi
-@@ -0,0 +1,17 @@
-+// SPDX-License-Identifier: (GPL-2.0-or-later OR X11)
-+/*
-+ * Copyright 2023 TQ-Systems GmbH <linux@ew.tq-group.com>,
-+ * D-82229 Seefeld, Germany.
-+ * Author: Alexander Stein
-+ */
-+
-+&vpu_core0 {
-+	reg = <0x2d040000 0x10000>;
-+};
-+
-+&vpu_core1 {
-+	reg = <0x2d050000 0x10000>;
-+};
-+
-+/delete-node/ &mu2_m0;
-+/delete-node/ &vpu_core2;
-diff --git a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-index f014d0a764ea4..958267b333403 100644
---- a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-@@ -48,7 +48,6 @@ aliases {
- 		serial3 = &lpuart3;
- 		vpu-core0 = &vpu_core0;
- 		vpu-core1 = &vpu_core1;
--		vpu-core2 = &vpu_core2;
- 	};
- 
- 	cpus {
-@@ -318,6 +317,7 @@ map0 {
- };
- 
- #include "imx8qxp-ss-img.dtsi"
-+#include "imx8qxp-ss-vpu.dtsi"
- #include "imx8qxp-ss-adma.dtsi"
- #include "imx8qxp-ss-conn.dtsi"
- #include "imx8qxp-ss-lsio.dtsi"
--- 
-2.34.1
+On 14.12.2023 13:16:55, Conor Dooley wrote:
+> > > > > --- a/Documentation/devicetree/bindings/net/can/microchip,mpfs-ca=
+n.yaml
+> > > > > +++ b/Documentation/devicetree/bindings/net/can/microchip,mpfs-ca=
+n.yaml
+> > > > > @@ -24,7 +24,10 @@ properties:
+> > > > >      maxItems: 1
+> > > > > =20
+> > > > >    clocks:
+> > > > > -    maxItems: 1
+> > > > > +    maxItems: 2
+> > > > > +    items:
+> > > > > +      - description: AHB peripheral clock
+> > > > > +      - description: CAN bus clock
+> > > >=20
+> > > > Do we we want to have a "clock-names" property, as we need the clock
+> > > > rate of the CAN bus clock.
+> > >=20
+> > > We should not need the clock-names property to be able to get both of
+> > > the clocks. clk_bulk_get_all() for example should be usable here.
+> >=20
+> > ACK, but we need the clock rate of CAN clock. Does this binding check
+> > that the CAN clock rate is the 2nd one?
+>=20
+> The items list requires that the can clock be the second one, so drivers
+> etc can rely on that ordering.
 
+Thanks for the clarification,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--ingrkcbszpm5ox2g
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmV7AQAACgkQvlAcSiqK
+BOgXVQgAiYx/qmn+/n56qpOGHQ2TatWn/aI2UbU6V7+JDjHv+P8H3L5u5vHCT3vn
+KS93aR3iviTIzFdrnadB3oLNJ4YErKNuszF4zKAb0G24ze4X/ZoGGegGd6nzTzNL
+QBNZtOGrSAVZOIF/Kjf0hPUdZMjPDW4D8LG1P1P5T7Jke33m4dEtbYGMUFxJUWf/
+z3d8oqJO2H8wym5sTvzfC8rBKor9uJ1Cy+b7m1uXce9JCPqb2x4sHjD6cvO0GnsG
+QsqRWDTLt02gmQ/5Bi+yGPuBSRv4DQhukgXTkfHRtp7+VAmpU45p6mD7+iEjCqYn
+2zTEKmCfHq+OXBvLtGPaGCfFYkRpPw==
+=FXlj
+-----END PGP SIGNATURE-----
+
+--ingrkcbszpm5ox2g--
 
