@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-25199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 940D48129E5
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 09:01:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6D428129E7
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 09:01:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4918E1F212D6
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 08:01:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 247431C20A92
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 08:01:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B6E8154A1;
-	Thu, 14 Dec 2023 08:01:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B90615E81;
+	Thu, 14 Dec 2023 08:01:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wXGAmAIo"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bca87T2W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1A20113
-	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 00:01:19 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-a22f59c6af8so211947666b.0
-        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 00:01:19 -0800 (PST)
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33A88107
+	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 00:01:29 -0800 (PST)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-a1c8512349dso1015473466b.2
+        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 00:01:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702540878; x=1703145678; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702540887; x=1703145687; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=q1YsCi/T34WJszm0iiLEhU2qP37YfuR/yzFj0GKjypk=;
-        b=wXGAmAIouENujsV9yMeXJDZEitklF2wTURAYUctEGP8BqZhu5XBcBQCYk8Zy+Bjyl5
-         8CdivJ1n2fdCfA5yPC0B5v0L7vOzZ385HQ6LD4IPk+N4JJFXietgcDkSbuhmBUo8nCgo
-         WuFp/PrT7ii0OpREqgEXW/2WSGMcTjEmLlnLDc5IMOfiiPE8W+hT7NM9v0JfFZD+6dAA
-         VDU96DiMXKEk6zaIWhOVx7hyYeZKRJIa28WRsQQfNfWEjlyilz2QlcJs3LsFWBRK1LWa
-         LmDRUGYF147sPTTsoeQA2R5vhZB0+M+pI3oqO/iF5X5nMgzIB5LAkdw7RVBv1AqfyDan
-         Ecpg==
+        bh=J0jjbr+3IkJtKne0pWE1d7a0imhyalsZnvTU6uPocFo=;
+        b=bca87T2WV2Mv1S0VpgNdqZ039T8tWteuK9ZHxLYnYQpPlQrlkSBW1w5MeR9lWffp+V
+         MRleFq0/HYpfpoZeB1w8DUI5v1aBbAkCqHTC9SGqXBD2RfEWkU5gIZBKH5LLixJyNYxu
+         pcpvt96+Xks/C5dPDjanqZoHlucM6tSTzMIHs7rAtBH1oBYY1m3Kq3dj/ts4iH4e0+Nk
+         LPD5KnghHfcxKS4us+mMaRLV04YUhoL8b6NCRdz+6LC0zkec4lV8moHsq0bXWuOI+S5I
+         tOa8ww/dvRBxfZpkNM2khWQos28ETAImGyqMb0ADKnUtmZbV3FJ6wByIKeNfecNLTAMz
+         OUBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702540878; x=1703145678;
+        d=1e100.net; s=20230601; t=1702540887; x=1703145687;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=q1YsCi/T34WJszm0iiLEhU2qP37YfuR/yzFj0GKjypk=;
-        b=YOWaQemb5+TMbEE9nRia7LCK4raBkZVcDIpw9Q8p5uQR6y8W5gIxiho9/NexcuLPci
-         00h2FHB/7EvzTnnSdqJqWsnwEslfvKzkT6yUgAbkYzhwM2p/BoTpzys9xr8ZWRGCeJ/M
-         gtdW/TPmZxHAWyoIpgQv7rwflwYlmwMU8hZXSHnWeEAC7pCy9aLluiiALqJdrdH1/HYq
-         IrFoQUrEqp/lpWEZDicruI+eLcTFF4x8O6KfpQD5hZP0IET9g87FZT1yTjMdV+MT/kZc
-         /PwnW3m7vXl00vn6t8ac0cg2jrVze6kfEFJWfQZNGO7KZTqV/UF2phuUvSHNVSIGW0Bi
-         TmEA==
-X-Gm-Message-State: AOJu0YwAbdv3MGs71KyyU95GNvG0EqoA1m4On/MgOMUkaibDF0zUROmj
-	sx24K03YbKRxWaqMLBuN+f9hhw==
-X-Google-Smtp-Source: AGHT+IHoKUpG/YJgZAxA4UVoVwL071GogtVsymww0ZAXzYa8Cf9VTr25vfmvQbADTh3MmjibKt4eGw==
-X-Received: by 2002:a17:906:6a29:b0:a18:9ac9:27c2 with SMTP id qw41-20020a1709066a2900b00a189ac927c2mr5378195ejc.53.1702540878220;
-        Thu, 14 Dec 2023 00:01:18 -0800 (PST)
+        bh=J0jjbr+3IkJtKne0pWE1d7a0imhyalsZnvTU6uPocFo=;
+        b=YnaSATBPW7xEtSunPwwaYLj+7S9xzrtz0wV3ndqXRXIZTMY0elrjeWTVVuF9OBOXdI
+         QoWmuXl7VPRbz/iUxQCL6rYSk9GyMbMgaSZ8SqnVWCeGi1LsYqtSbwXjFJFL1K7ER918
+         g1N9y89cOkHWNo+myM3zu2ZJ8Xtgg445iQdOVZ64t5dcJbjY+JnLSxpg1tz8XcH84qGq
+         aTwzbzv+/5f+IsTvJ4SWsNQCvE3nEN9U0f0KZANwNhCyADGTUOfi8ew1P/nokZu2ZNNF
+         9HiI14B05Nn3MFiK/kreypo0ks6gXxWYOehVClXIMTT9vZgLdP5vOLaHQOTb3Hkcanyq
+         p6nw==
+X-Gm-Message-State: AOJu0YwUw72mWPhVhwg/lFXaAlxxvAGT2cvwYwQFVattkhlM1p0/ytxE
+	DjfXk7UpFgqKWwPxzldzNOyGVQ==
+X-Google-Smtp-Source: AGHT+IHcCdoFQ7HqeTIsrTDf09xqaLpVxZ4WlBpaJv/++WG3QhgkcXO0zvX+cEJIaBjeVU9ZHKM2LA==
+X-Received: by 2002:a17:907:9408:b0:a1d:4f7c:4428 with SMTP id dk8-20020a170907940800b00a1d4f7c4428mr6625306ejc.63.1702540887528;
+        Thu, 14 Dec 2023 00:01:27 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id rm6-20020a1709076b0600b00a1f6f120b33sm8476917ejc.110.2023.12.14.00.01.16
+        by smtp.gmail.com with ESMTPSA id rm6-20020a1709076b0600b00a1f6f120b33sm8476917ejc.110.2023.12.14.00.01.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Dec 2023 00:01:17 -0800 (PST)
-Message-ID: <54b55ce6-a90b-47ba-bc7c-e1d722c95b0b@linaro.org>
-Date: Thu, 14 Dec 2023 09:01:16 +0100
+        Thu, 14 Dec 2023 00:01:27 -0800 (PST)
+Message-ID: <39e76cd4-66e6-42bc-897d-365c310198b1@linaro.org>
+Date: Thu, 14 Dec 2023 09:01:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,7 +62,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 2/7] dt-bindings: clock: rk3588: drop CLK_NR_CLKS
+Subject: Re: [PATCH v7 3/7] dt-bindings: clock: rk3588: add missing
+ PCLK_VO1GRF
 Content-Language: en-US
 To: Sebastian Reichel <sebastian.reichel@collabora.com>,
  Elaine Zhang <zhangqing@rock-chips.com>,
@@ -75,7 +76,7 @@ Cc: Kever Yang <kever.yang@rock-chips.com>, Heiko Stuebner <heiko@sntech.de>,
  andy.yan@rock-chips.com, devicetree@vger.kernel.org,
  linux-rockchip@lists.infradead.org, kernel@collabora.com
 References: <20231213185114.47565-1-sebastian.reichel@collabora.com>
- <20231213185114.47565-3-sebastian.reichel@collabora.com>
+ <20231213185114.47565-4-sebastian.reichel@collabora.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -121,18 +122,18 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231213185114.47565-3-sebastian.reichel@collabora.com>
+In-Reply-To: <20231213185114.47565-4-sebastian.reichel@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 13/12/2023 19:46, Sebastian Reichel wrote:
-> CLK_NR_CLKS should not be part of the binding. Let's drop it, since
-> the kernel code no longer uses it either.
+> Add PCLK_VO1GRF to complement PCLK_VO0GRF. This will be needed
+> for HDMI support.
 > 
 > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 > ---
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
