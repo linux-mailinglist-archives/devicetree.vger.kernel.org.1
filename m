@@ -1,155 +1,108 @@
-Return-Path: <devicetree+bounces-25541-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25542-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA9BB813922
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 18:54:37 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 216FC81392C
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 18:56:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD3CE1C20A4A
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 17:54:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A698FB21823
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 17:56:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A96D67B49;
-	Thu, 14 Dec 2023 17:54:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="ql44oSG2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4E3E67B70;
+	Thu, 14 Dec 2023 17:55:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CDB7CF;
-	Thu, 14 Dec 2023 09:54:28 -0800 (PST)
-X-UUID: cfd594fa9aa911eeba30773df0976c77-20231215
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=QtivBajJ2uEBe/N9gJN8n3kJKYyoOgnif0RBAayWfuQ=;
-	b=ql44oSG2Bhr9l3tkGQz4JLjMujdHaHk2gtPBefJsL/VTiueEMMjVViLtSgyRnVhqwW1hmY/VtdvArqL73TIfpghrnEHb8EOHmW0hDFM2jKF/5CfP5LCBKk1JDaS+wf721FWyHMHbCM0OZZFVoGwrDqkVgwKOXwGRdCKpyzCDbVw=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.35,REQID:1c84478b-279d-43a1-a913-32752cb4efb4,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:5d391d7,CLOUDID:284fcc73-1bd3-4f48-b671-ada88705968c,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
-	DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: cfd594fa9aa911eeba30773df0976c77-20231215
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw02.mediatek.com
-	(envelope-from <macpaul.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1779464143; Fri, 15 Dec 2023 01:54:22 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Fri, 15 Dec 2023 01:54:21 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
- Transport; Fri, 15 Dec 2023 01:54:20 +0800
-Message-ID: <1ce43346-3f60-b614-cdcc-7d9db8dec758@mediatek.com>
-Date: Fri, 15 Dec 2023 01:54:19 +0800
+Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 515CAAF
+	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 09:55:55 -0800 (PST)
+Received: by mail-oo1-f52.google.com with SMTP id 006d021491bc7-5913b73b53eso2180306eaf.0
+        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 09:55:55 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702576554; x=1703181354;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=f+ggBAsNl/SO1BPagRujEHiLGgCPQPrmAyl7WswRSzg=;
+        b=ttkYh1yw603Ts6VUsUh4wCylhOeWWGqGeQpwckEW1mBQOGTR9On7rAoktUP0SC12+f
+         etoS9LXbVaOVls60vxtDIb+pP2YRfG07NwN6pXmtpEYSXyj2xDjZg2UDYtCvSdF/h/Cs
+         gW+0tdSStnNVzavmamqsnU63FG8u57ej4Q846UCtyicVP4VUIuW1hPekrb2UdfQ2Arsh
+         9urDrjTVRiXvFabSy/A/Q7wy1JH7vKrw0GbcjRtcU64wmpoWAyvmo7nzm958XbC3vTEy
+         F51WMMyeGW1yPpGrvff1FTXeYzn4jsG5K2/A9oKq6xenhZKtU7cLPhdd8hab7V0STWqv
+         jsUw==
+X-Gm-Message-State: AOJu0Yxc1Tvvv41hLyboPUmuKriwzjdhw0J6c4jlfIIKQFeB0qsydIMP
+	rKPfXhmHLxMBfkxtF8Q5lQ==
+X-Google-Smtp-Source: AGHT+IG4QWnnRvW0ICIvB7B7R3tJBDhaqW5yfulK+YTN5QpleTTt8vlH6ibmm1Hp6r64xUkZPsO+Kw==
+X-Received: by 2002:a05:6820:2292:b0:58d:974b:5056 with SMTP id ck18-20020a056820229200b0058d974b5056mr8007514oob.1.1702576554625;
+        Thu, 14 Dec 2023 09:55:54 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id y9-20020a4a2d09000000b00584017f57a9sm3584089ooy.30.2023.12.14.09.55.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Dec 2023 09:55:53 -0800 (PST)
+Received: (nullmailer pid 646665 invoked by uid 1000);
+	Thu, 14 Dec 2023 17:55:52 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH] arm64: mediatek: remove broken pmic interrupt property
-Content-Language: en-US
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Arnd
- Bergmann <arnd@kernel.org>, <soc@kernel.org>, Matthias Brugger
-	<matthias.bgg@gmail.com>, Ben Lok <ben.lok@mediatek.com>
-CC: Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
-	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, <bear.wang@mediatek.com>,
-	<pablo.sun@mediatek.com>, <wenst@chromium.org>
-References: <20231212214737.230115-1-arnd@kernel.org>
- <bc5dafe4-5487-4794-97f1-f4e4d967a665@collabora.com>
-From: Macpaul Lin <macpaul.lin@mediatek.com>
-In-Reply-To: <bc5dafe4-5487-4794-97f1-f4e4d967a665@collabora.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+From: Rob Herring <robh@kernel.org>
+To: Robin Murphy <robin.murphy@arm.com>
+Cc: suzuki.poulose@arm.com, linux-arm-kernel@lists.infradead.org, mark.rutland@arm.com, bwicaksono@nvidia.com, YWan@nvidia.com, ilkka@os.amperecomputing.com, will@kernel.org, Rob Herring <robh+dt@kernel.org>, rwiley@nvidia.com, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+In-Reply-To: <3c2dd41b585efe44d361f41fcea0181ff2a9c9c5.1702571292.git.robin.murphy@arm.com>
+References: <cover.1702571292.git.robin.murphy@arm.com>
+ <3c2dd41b585efe44d361f41fcea0181ff2a9c9c5.1702571292.git.robin.murphy@arm.com>
+Message-Id: <170257655252.646649.16048051740823218749.robh@kernel.org>
+Subject: Re: [PATCH v2 4/5] dt-bindings/perf: Add Arm CoreSight PMU
+Date: Thu, 14 Dec 2023 11:55:52 -0600
 
-On 12/13/23 19:09, AngeloGioacchino Del Regno wrote:
 
-> Il 12/12/23 22:47, Arnd Bergmann ha scritto:
->> From: Arnd Bergmann <arnd@arndb.de>
->>
->> The pmic is connected to the GIC, which uses four-cell interrupt 
->> properties,
->> but its interrupt is specified as two-cell that would only make sense 
->> for
->> the GPIO irqchip:
->>
->> arch/arm64/boot/dts/mediatek/mt8195.dtsi:464.4-27: Warning 
->> (interrupts_property): /soc/i2c@11d01000/pmic@34:#interrupt-cells: 
->> size is (8), expected multiple of 16
->>
->> Remove the interrupt for now to shut up the warning. When someone 
->> figures out
->> what the correct interrupt and parent are, we can add it back.
->>
->
-> Please, can anyone from MediaTek comment on that?
+On Thu, 14 Dec 2023 16:31:07 +0000, Robin Murphy wrote:
+> Add a binding for implementations of the Arm CoreSight Performance
+> Monitoring Unit Architecture. Not to be confused with CoreSight debug
+> and trace, the PMU architecture defines a standard MMIO interface for
+> event counters following a similar design to the CPU PMU architecture,
+> where the implementation and most of its features are discoverable
+> through ID registers.
+> 
+> CC: Rob Herring <robh+dt@kernel.org>
+> CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> CC: Conor Dooley <conor+dt@kernel.org>
+> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+> ---
+> v2: Use reg-io-width instead of a new property; tweak descriptions
+> ---
+>  .../bindings/perf/arm,coresight-pmu.yaml      | 39 +++++++++++++++++++
+>  1 file changed, 39 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/perf/arm,coresight-pmu.yaml
+> 
 
-Sorry for late response, I've just stuck in other tasks and didn't 
-notice this
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-patch is for genio-1200-evk. I've tested 6.7-rc1 but I thought it might 
-be an issue
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/perf/arm,coresight-pmu.yaml:27:111: [warning] line too long (114 > 110 characters) (line-length)
 
-in origin mt8195.dtsi and not be related to board dts.
+dtschema/dtc warnings/errors:
 
-> I see a mt6360_pins on PIO:
->             pinmux = <PINMUX_GPIO17__FUNC_GPIO17>,
->                  <PINMUX_GPIO128__FUNC_GPIO128>;
->
-> ...and that's GPIO128, which may effectively be the IRQ pin for MT6360.
->
-> Still, I'm not sure whether the interrupt is on GIC or PIO, please 
-> clarify,
-> otherwise we will have to get this commit upstream.
->
-I think it could be solved by adding
+doc reference errors (make refcheckdocs):
 
-'interrupt-parent = <&pio>;' to mt6360 node.
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/3c2dd41b585efe44d361f41fcea0181ff2a9c9c5.1702571292.git.robin.murphy@arm.com
 
-But currently I have no much time to verify it.
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-I'll try to find some time to find out the solution tomorrow.
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-> Thanks,
-> Angelo
->
->> Fixes: f2b543a191b6 ("arm64: dts: mediatek: add device-tree for Genio 
->> 1200 EVK board")
->> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
->> ---
->>   arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts | 2 --
->>   1 file changed, 2 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts 
->> b/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
->> index 70b465f7c6a7..a409ef998746 100644
->> --- a/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
->> +++ b/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
->> @@ -238,8 +238,6 @@ &i2c6 {
->>       mt6360: pmic@34 {
->>           compatible = "mediatek,mt6360";
->>           reg = <0x34>;
->> -        interrupts = <128 IRQ_TYPE_EDGE_FALLING>;
->> -        interrupt-names = "IRQB";
->>           interrupt-controller;
->>           #interrupt-cells = <1>;
->>           pinctrl-0 = <&mt6360_pins>;
->
+pip3 install dtschema --upgrade
 
-Thanks for pointing out the issue! Let's see if it could be solved by 
-adding 'interrupt-parents'.
-
-Macpaul Lin
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
