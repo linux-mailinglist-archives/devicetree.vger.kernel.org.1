@@ -1,73 +1,79 @@
-Return-Path: <devicetree+bounces-25497-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25499-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7CD381362F
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 17:29:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C35681363E
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 17:29:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4F156B20B94
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 16:29:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AEC9C1C209B4
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 16:29:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81BBE5F1FF;
-	Thu, 14 Dec 2023 16:29:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE06C5FEFD;
+	Thu, 14 Dec 2023 16:29:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JGW4TUJk"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SNtXOp5n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99545120
-	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 08:28:59 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-3333074512bso495399f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 08:28:59 -0800 (PST)
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F31C10F;
+	Thu, 14 Dec 2023 08:29:34 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-40c3f68b79aso64829785e9.0;
+        Thu, 14 Dec 2023 08:29:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702571338; x=1703176138; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1702571373; x=1703176173; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=DocpNCRUemb4PzU5LBi65wCkuGjIl2naDWPnxKjn8u8=;
-        b=JGW4TUJk0ikNWPnPfDsec1zI14GTPi0mANP9TtEQhHBDrhFAcwZivVYp+NIFIPTc6M
-         mvB0VSlAYeAb8o3wP9aAA3MtZAKMKBxqitLxmedpR0Hw+vDKvo1drvfeMd56O2FoHyuj
-         CY+ZSUtishAmWAv4jqql3twD4R8KPOfHBOd00WYtQ1VORpVc8VnYvwYzhK+Ty7ME753c
-         OBd32xHaIX96FER72WU6puoCH0xkXLW7Vo1InqoWs7AbL3eMCkgkPqxGlZyU5Av3/fAM
-         RTK+DVmi9hxJHi3ER52TLIHgS6HL4mmH3v2HROzI7fTOzmZnDZHGQsAJHoy3jbg8JjIW
-         vITg==
+        bh=YzQGVhzK9qgzTVRhSljpGjlLUwC8cdffhqMfyCAFf7I=;
+        b=SNtXOp5nnv5BJo0bBOZAfj2NldHoJzdqajP5NA6v6JVV/p8p2wSym8Wq52TcGK2kEd
+         QYAOyHbVkzvayTW21trYPomyrTYGOdftVdyEwdWsh23fwqtRY4lnPqRTC2LVZP1bJenE
+         DaK3rFt2YCqzCsTEttp+bKXuRi/sCN9kK1fqMBrrm684nwSx0hFSXlJcT0BHwH7njJ1p
+         H6IPMnnc4xXkbfeoZ8aWBBj7wyEs7keFK+D8V/U2Es5bf4Sri9HKVEjH1cG7v5QUL7J2
+         YW4tXGugE040x092hPJumTCoGJV1n93Fin7S4wlMd/Lupfe61LlA6tGSW5rzha9Dnd7l
+         XomQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702571338; x=1703176138;
+        d=1e100.net; s=20230601; t=1702571373; x=1703176173;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=DocpNCRUemb4PzU5LBi65wCkuGjIl2naDWPnxKjn8u8=;
-        b=FIaJWIy/XgKfUg9aqvJxKoSLY+MjfS5XeTaYDcWVzjLTuHFp3lnJMsNHCEprc8WtJI
-         CmIQsdPDmVtk/3fzCfCfYHD+v0wvlO3O5ZZufqGD9v6semfeo3eNacnjPInS4ETYGWbI
-         H/M40KtTKIiqY0ya52y3/XZX1aWn4iJVFU//LNhn9UHqYIyv15ynv0CFaJ2h8ItjYfWk
-         F32dRMqypd3muJI+n5tc0uDl+Gb8J1L1x87htKTc+ne3SQIiRyTvzxXIl/8YAlnrhE8u
-         cPpI9srsjESMnQqSKpgREDA+MuxO/P+Kgm8z4ESbrthwY9sHayv1kThQPJ3KL8hGUYyg
-         SXBA==
-X-Gm-Message-State: AOJu0Yxvvex3rpL8RIgBZg/pzvroA5fn0dgv9T2Jy/J+lr+j36umgdaU
-	BhGRTbxYymEFPkECTPrF/6A=
-X-Google-Smtp-Source: AGHT+IFuYk/xTOppuMVaqKZ5dBLqDo/+tFTSYF7mI1tGF8Qq2G0Xo3r21ucFb9p+qFP7h0cUXPBbmg==
-X-Received: by 2002:a05:600c:260c:b0:40b:5e56:7b4e with SMTP id h12-20020a05600c260c00b0040b5e567b4emr4851909wma.151.1702571337673;
-        Thu, 14 Dec 2023 08:28:57 -0800 (PST)
+        bh=YzQGVhzK9qgzTVRhSljpGjlLUwC8cdffhqMfyCAFf7I=;
+        b=ZKUhdAjYg3w0PqR5Tmzq4+Lx2TCS/Zrgc2cvOhW1rrqj/Z5J4PVREv36vbzeO5X+AS
+         9uqhx7rapFKEeTm5I+XDEsDTWRCN+Pt8BxMreb5eYGp4NpjWjUIfLrmDWUPcxbt67Y4a
+         oYnv3BP0re+lsErIH2vJUujYh2A59S3gf2cSPQNJHFiNZ5dCpHpRIMzDrceo8Y7aRUT/
+         31sEdIBffys+D5Cw6mAF0rkCtsrHZyGkBd2l47F5D5W5ZjcbiSq0s/sLXKJ5LBIcwrcr
+         rJdKA9Mc/WzhL3WckyKnQLIIb+WiQ03lyI1XdWedqUjJi99OKNiYG/kyMQFMb3LoFK77
+         4xQw==
+X-Gm-Message-State: AOJu0YwAMFcp9x+yxDTPOeC9ARxbwvWFTo1lyg0O1km+sWhl2yhL1jqM
+	nnz8wg6q2e9GxLZsy8CSFHU=
+X-Google-Smtp-Source: AGHT+IFN5ZJPrgJWQSUN0ieEOEfcOtwuEvWwJAPclnmbsShFkrfXSYtGFxx2cJxfVHSsuqkS0Ivihg==
+X-Received: by 2002:a05:600c:d1:b0:40c:26f4:dda9 with SMTP id u17-20020a05600c00d100b0040c26f4dda9mr5404229wmm.187.1702571372498;
+        Thu, 14 Dec 2023 08:29:32 -0800 (PST)
 Received: from archlinux.localnet (82-149-12-148.dynamic.telemach.net. [82.149.12.148])
-        by smtp.gmail.com with ESMTPSA id y12-20020a5d614c000000b0033643505580sm3327259wrt.92.2023.12.14.08.28.56
+        by smtp.gmail.com with ESMTPSA id m29-20020a05600c3b1d00b0040b3515cdf8sm25377092wms.7.2023.12.14.08.29.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Dec 2023 08:28:57 -0800 (PST)
+        Thu, 14 Dec 2023 08:29:32 -0800 (PST)
 From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
 To: Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Samuel Holland <samuel@sholland.org>, Andre Przywara <andre.przywara@arm.com>
-Cc: Icenowy Zheng <uwu@icenowy.me>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject:
- Re: [PATCH v2 3/3] arm64: dts: allwinner: h618: add Transpeed 8K618-T TV box
-Date: Thu, 14 Dec 2023 17:28:55 +0100
-Message-ID: <5897240.MhkbZ0Pkbq@archlinux>
-In-Reply-To: <20231214015312.17363-4-andre.przywara@arm.com>
+ Samuel Holland <samuel@sholland.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ "Rafael J . Wysocki" <rafael@kernel.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>, Yangtao Li <tiny.windzz@gmail.com>,
+ Brandon Cheo Fusi <fusibrandon13@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ Brandon Cheo Fusi <fusibrandon13@gmail.com>
+Subject: Re: [PATCH 2/5] cpufreq: sun50i: Add D1 support
+Date: Thu, 14 Dec 2023 17:29:30 +0100
+Message-ID: <8351928.NyiUUSuA9g@archlinux>
+In-Reply-To: <20231214103342.30775-3-fusibrandon13@gmail.com>
 References:
- <20231214015312.17363-1-andre.przywara@arm.com>
- <20231214015312.17363-4-andre.przywara@arm.com>
+ <20231214103342.30775-1-fusibrandon13@gmail.com>
+ <20231214103342.30775-3-fusibrandon13@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,31 +83,36 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
 
-On Thursday, December 14, 2023 2:53:12 AM CET Andre Przywara wrote:
-> This is a Chinese TV box, probably very similar if not identical to
-> various other cheap TV boxes with the same specs:
->       - Allwinner H618 SoC (4 * Arm Cortex-A53 cores, 1MB L2 cache)
->       - 2 or 4GiB DDR3L DRAM
->       - 32, 64, or 128 GiB eMMC flash
->       - AXP313a PMIC
->       - 100 Mbit/s Ethernet (using yet unsupported internal PHY)
->       - HDMI port
->       - 2 * USB 2.0 ports
->       - microSD card slot
->       - 3.5mm A/V port
->       - 7-segment display
->       - 5V barrel plug power supply
+On Thursday, December 14, 2023 11:33:39 AM CET Brandon Cheo Fusi wrote:
+> Add support for D1 based devices to the Allwinner H6 cpufreq
+> driver
 > 
-> The PCB provides holes for soldering a UART header or cable, this is
-> connected to the debug UART0. UART1 is used for the Bluetooth chip,
-> although this isn't working yet.
+> Signed-off-by: Brandon Cheo Fusi <fusibrandon13@gmail.com>
+> ---
+>  drivers/cpufreq/sun50i-cpufreq-nvmem.c | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> diff --git a/drivers/cpufreq/sun50i-cpufreq-nvmem.c b/drivers/cpufreq/sun50i-cpufreq-nvmem.c
+> index 32a9c88f8..ccf83780f 100644
+> --- a/drivers/cpufreq/sun50i-cpufreq-nvmem.c
+> +++ b/drivers/cpufreq/sun50i-cpufreq-nvmem.c
+> @@ -160,6 +160,7 @@ static struct platform_driver sun50i_cpufreq_driver = {
+>  
+>  static const struct of_device_id sun50i_cpufreq_match_list[] = {
+>  	{ .compatible = "allwinner,sun50i-h6" },
+> +	{ .compatible = "allwinner,sun20i-d1" },
 
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+This is not needed, as there is no functionality change.
 
 Best regards,
 Jernej
+
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(of, sun50i_cpufreq_match_list);
+> 
+
+
 
 
 
