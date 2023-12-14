@@ -1,53 +1,76 @@
-Return-Path: <devicetree+bounces-25405-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25406-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3283E8132BB
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 15:16:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 821838132D8
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 15:19:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 94C8CB213D3
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 14:16:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 11A0C1F21506
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 14:19:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2924159E2D;
-	Thu, 14 Dec 2023 14:16:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42A8559E38;
+	Thu, 14 Dec 2023 14:19:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="k4AZMB4q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A534C9C;
-	Thu, 14 Dec 2023 06:16:02 -0800 (PST)
-Received: by mail-oi1-f176.google.com with SMTP id 5614622812f47-3ba2dc0f6b7so991096b6e.2;
-        Thu, 14 Dec 2023 06:16:02 -0800 (PST)
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEF45136;
+	Thu, 14 Dec 2023 06:19:10 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-50dfac6c0beso6342807e87.2;
+        Thu, 14 Dec 2023 06:19:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702563549; x=1703168349; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=CQ3bwMUk8X1J9J3ypOy0/pA2DHF8fbOaltjbT7mP9XQ=;
+        b=k4AZMB4qqs2QvtVei5TV64L4E5JV6cNBfZFPHH3XotPoyBzdvtopDjqd1IDiX5C01v
+         bp9MvuyAZda9AKHUj2dFPBLlpCCWjolTCKUxp6sjPQjzTIcLbnhYPmxxC4qElNRuRY0/
+         Z34PfTl421la5OUPKn4eMt/dxGV+P0KIBSFo1FBBkxsi9jIXAiwGxx2XQtGqrUFzgUlk
+         oj2PBHdCZcj7wkqRPBaN+nisL3Z2iGYdqfLCGHhFNOeclb4LbG0LIHvHoYrYs2JFk+0m
+         3MGcsEckiian6QrxfrLnNN6jmaYDi3znouaq5lTC8FeALsQTGSBGJaqL5qciQQzwrQGg
+         X1Ow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702563362; x=1703168162;
+        d=1e100.net; s=20230601; t=1702563549; x=1703168349;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=HMTq5pMAaDOJYQEmGWHKZ8Rcvl+M1avRt4eHZ4R2vog=;
-        b=LQVBX+IUq4qsycadv4NHM2QvFsjms4/ymgV71sfW8FC1p3QquVbS32oI5MsNiT3+3+
-         FMPzwMaDptsB6A8gQXUGdStql+GM1z4v8RoUpov/XJLq2N3OR6mWSm4iVc6DiAzRhcgj
-         0bip0VzWudwbGOUsrTuf2vYvaALG2lPRhW5jnbtb4/Y/xg2P9G1vzs0eJoNRRYbWZTZs
-         cbiW9eBPkuA5Umf1S+IxNLkGqGpK+ik6nb+acoeJ/8v98oEAGrsEi6lyi2IdExP+rFOZ
-         yYX+Rp5prN4E/HeTCmZeBQj732lNjFahyqtVRYchHBgIjbidt1OhznlqHC5eDFaoFU0s
-         w5Ag==
-X-Gm-Message-State: AOJu0Yzkk81G5n+9R/uR1Lf98xJ2I/j09YQybK9lWGAi4yHNSYgh2D/q
-	NdHCKJybVvo62cxxn8QC6w==
-X-Google-Smtp-Source: AGHT+IFCKUZM61QqCWtOMvFPejA9INlIXYajdO7i5gIK1gxqeJCH0JI3HLFUbTt/gG1nITmzT25dGw==
-X-Received: by 2002:a05:6808:2201:b0:3b8:63aa:826f with SMTP id bd1-20020a056808220100b003b863aa826fmr14850983oib.25.1702563361881;
-        Thu, 14 Dec 2023 06:16:01 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id bq1-20020a05680823c100b003a7a34a4ed8sm3362994oib.33.2023.12.14.06.16.00
+        bh=CQ3bwMUk8X1J9J3ypOy0/pA2DHF8fbOaltjbT7mP9XQ=;
+        b=a9Ih1576xLOsVm/hKMoIq6R625GFTvkde7MMPYa6V1ObFsMbfgWuw0PYEQc2zx6Lzy
+         /ircoEqnPNYFmfCvnUAw0WtsNjQMvha/AQ9u3HLNXSG5q9sLUyma/UOxdxISO6MCpfim
+         Jdsxr1Vg1a0yUEMI9/XeMG+O6jotfxFrRLw1wkSTIKfbAvqGlE7Nma+siSW8Xh7qnAOb
+         FdCS8DTGcF7umItToTO5vUW9TZSe5dA4etn1YFvC1g1t+dcmHGwrcJklb/HRFqHRF2dK
+         K3JaDBjKpMb67Fni6uYxV3NNhDpQiB/wWzY5lQTwruHtPvBxq1/cwTVToZyIP4+OxKKN
+         dwXg==
+X-Gm-Message-State: AOJu0YwMC83y6FcZ0XuUj9Nj5ZvshFgBceVRP/JQQZPjAK2c3G3ZNziN
+	3suq6oSl8+1VAJFQOG83JMs=
+X-Google-Smtp-Source: AGHT+IHqRqPM9xCrb8bY2qjbc5gXG+mnTP3vPzOVFwnQVHJHqCdJgI9kYABRRuwhHG1WUCcWt/wOqg==
+X-Received: by 2002:a19:f70b:0:b0:50c:1f:7e00 with SMTP id z11-20020a19f70b000000b0050c001f7e00mr4932096lfe.21.1702563548694;
+        Thu, 14 Dec 2023 06:19:08 -0800 (PST)
+Received: from mobilestation ([178.176.56.174])
+        by smtp.gmail.com with ESMTPSA id d6-20020ac24c86000000b0050bed336e0csm1881825lfl.162.2023.12.14.06.19.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Dec 2023 06:16:01 -0800 (PST)
-Received: (nullmailer pid 233694 invoked by uid 1000);
-	Thu, 14 Dec 2023 14:16:00 -0000
-Date: Thu, 14 Dec 2023 08:16:00 -0600
-From: Rob Herring <robh@kernel.org>
-To: Nuno Sa <nuno.sa@analog.com>
-Cc: devicetree@vger.kernel.org, linux-iio@vger.kernel.org, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Frank Rowand <frowand.list@gmail.com>, Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>
-Subject: Re: [PATCH v3 0/8] iio: add new backend framework
-Message-ID: <20231214141600.GA224419-robh@kernel.org>
-References: <20231213-dev-iio-backend-v3-0-bb9f12a5c6dc@analog.com>
+        Thu, 14 Dec 2023 06:19:08 -0800 (PST)
+Date: Thu, 14 Dec 2023 17:19:04 +0300
+From: Serge Semin <fancer.lancer@gmail.com>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>, 
+	Jose Abreu <Jose.Abreu@synopsys.com>, Maxime Chevallier <maxime.chevallier@bootlin.com>, 
+	Tomer Maimon <tmaimon77@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, openbmc@lists.ozlabs.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 06/16] net: pcs: xpcs: Avoid creating dummy XPCS
+ MDIO device
+Message-ID: <n44fxxqr6q3fs7z6uhooecn55tvyapdroizsowtmfgrn7vnhlw@dt25gi2dybc4>
+References: <20231205103559.9605-1-fancer.lancer@gmail.com>
+ <20231205103559.9605-7-fancer.lancer@gmail.com>
+ <ZW8pxM3RvyHJTwqH@shell.armlinux.org.uk>
+ <gbkgtb4yp3cwyw7xcuhmkdl3io2wlia2gska2xmjbwjvhigpz3@w52b6tdyugqo>
+ <ZXnclVEz10K2XD2+@shell.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,64 +79,81 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231213-dev-iio-backend-v3-0-bb9f12a5c6dc@analog.com>
+In-Reply-To: <ZXnclVEz10K2XD2+@shell.armlinux.org.uk>
 
-On Wed, Dec 13, 2023 at 04:02:31PM +0100, Nuno Sa wrote:
-> v1:
->  https://lore.kernel.org/linux-iio/20231204144925.4fe9922f@jic23-huawei/T/#m222f5175273b81dbfe40b7f0daffcdc67d6cb8ff
+On Wed, Dec 13, 2023 at 04:32:21PM +0000, Russell King (Oracle) wrote:
+> On Wed, Dec 13, 2023 at 03:01:45AM +0300, Serge Semin wrote:
+> > On Tue, Dec 05, 2023 at 01:46:44PM +0000, Russell King (Oracle) wrote:
+> > > xpcs_create_mdiodev() as it originally stood creates the mdiodev from
+> > > the bus/address, and then passes that to xpcs_create(). Once
+> > > xpcs_create() has finished its work (irrespective of whether it was
+> > > successful or not) we're done with the mdiodev in this function, so
+> > > the reference is _always_ put.
+> > 
+> > You say that it's required to manage the refcounting twice: when we
+> > get the reference from some external place and internally when the
+> > reference is stored in the XPCS descriptor. What's the point in such
+> > redundancy with the internal ref-counting if we know that the pointer
+> > can be safely stored and utilized afterwards? Better maintainability?
+> > Is it due to having the object retrieval and storing implemented in
+> > different functions?
 > 
-> v2:
->  https://lore.kernel.org/r/20231208-dev-iio-backend-v2-0-5450951895e1@analog.com
+> The point is that the error handling gets simpler:
+> - One can see in xpcs_create_mdiodev() that the reference taken by
+>   mdio_device_create() is always dropped if that function was
+>   successful, irrespective of whether xpcs_create() was successful.
 > 
-> Changes in v3:
-> - Patch 1:
->  * Use proposed generic schema [1]. Also make it a required property;
->  * Improved the commit message.
-> - Patch 2:
->  * Improved commit message.
-> - Patch 4:
->  * Namespace all IIO DMAENGINE buffer exports;
->  * Removed unrelated new line removal change.
-> - Patch 5:
->  * Namespace all IIO backend exports.
-> - Patch 6:
->  * Set backend.h in alphabetical order;
->  * Import IIO backend namespace.
-> - Patch 7:
->  * Don't depend on OF in kbuild anymore;
->  * Import IIO backend namespace.
+> - xpcs_create() is responsible for managing the refcount on the mdiodev
+>   that is passed to it - and if it's successful, it needs to increment
+>   the refcount, or leave it in the same state as it was on entry if
+>   failing.
 > 
-> For the bindings patches, I tried not to enter into much details about
-> the IIO framework as I think specifics of the implementation don't care
-> from the bindings perspective. Hopefully the commit messages are good
-> enough.
+> This avoids complexities in error paths, which are notorious for things
+> being forgotten - since with this, each of these functions is resposible
+> for managing its refcount.
 > 
-> I'm also aware that patch 1 is not backward compatible but we are
-> anyways doing it on the driver side (and on the driver the property is
-> indeed required). Anyways, just let me know if making the property
-> required is not acceptable (I'm fairly confident no one was using the
-> upstream version of the driver and so validating devicetrees for it). 
+> It's a different style of refcount management, one I think more people
+> should adopt.
 > 
-> Keeping the block diagram in v3's cover so we don't have to follow links
-> to check the one of the typicals setups. 
+> > While at it if you happen to know an answer could you please also
+> > clarify the next question. None of the ordinary
+> > platform/PCI/USB/hwmon/etc drivers I've been working with managed
+> > refcounting on storing a passed to probe() device pointer in the
+> > private driver data. Is it wrong not doing that?
 > 
->                                            -------------------------------------------------------
->  ------------------                        | -----------         ------------      -------  FPGA |
->  |     ADC        |------------------------| | AXI ADC |---------| DMA CORE |------| RAM |       |
->  | (Frontend/IIO) | Serial Data (eg: LVDS) | |(backend)|---------|          |------|     |       |
->  |                |------------------------| -----------         ------------      -------       |
->  ------------------                        -------------------------------------------------------
+> If we wanted to do refcounting strictly, then every time a new
+> pointer to a data structure is created, we should be taking a refcount
+> on it, and each time that pointer is destroyed, we should be putting
+> the refcount. That is what refcounting is all about.
+> 
+> However, there are circumstances where this can be done lazily, and
+> for drivers we would prefer driver authors not to end up with
+> refcount errors where they've forgotten to put something.
+> 
+> In the specific case of drivers, we have a well defined lifetime for
+> a device bound to a driver. We guarantee that the struct device will
+> not go away if a driver is bound to the device, until such time that
+> the driver's .remove method has been called. Thus, we guarantee that
+> the device driver will be notified of the struct device going away
+> before it has been freed. This frees the driver author from having
+> to worry about the refcount of the struct device.
+> 
+> As soon as we start doing stuff that is outside of that model, then
+> objects that are refcounted need to be dealt with, and I much prefer
+> the "strict" refcounting implementation such as the one I added to
+> xpcs, because IMHO it's much easier to see that the flow is obviously
+> correct - even if it does need a comment to describe why we always
+> do a put.
 
-Why doesn't axi-adc just have an io-channels property to adc? It's the 
-opposite direction for the link, but it seems more logical to me that 
-axi-adc depends on adc rather than the other way around.
+Ok. I fully get your point now: lazy refcounting for the drivers
+following standard model and the 'strict' one for others. It sounds
+reasonable. I'll get that adopted in my future developments. Thank you
+very much for the detailed explanation and for all your comments.
 
-And if there's another consumer in the chain, then a node could 
-certainly be both an io-channels consumer and producer.
+-Serge(y)
 
-The architecture of the drivers seems odd to me. It looks similar to 
-making a phy driver handle all the state and protocol with the host 
-controller being a backend.
-
-Rob
+> 
+> -- 
+> RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+> FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
