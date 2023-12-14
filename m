@@ -1,135 +1,297 @@
-Return-Path: <devicetree+bounces-25348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25349-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7635813003
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 13:27:24 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE22D813004
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 13:27:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 399B1B21854
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 12:27:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8460C1F221FD
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 12:27:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 843014AF84;
-	Thu, 14 Dec 2023 12:27:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB10948CED;
+	Thu, 14 Dec 2023 12:27:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fu4TcqRs"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="qHbBIAY/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0C56132;
-	Thu, 14 Dec 2023 04:27:08 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-54bf9a54fe3so11138065a12.3;
-        Thu, 14 Dec 2023 04:27:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702556827; x=1703161627; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=ueEUnJf9vhjwrQfvpBg6AiET0LLFEjTRO5+ClpFgSGA=;
-        b=fu4TcqRsngh7GR++p6CS9uodJWxS7E622OXadsr6LfmqKbo+5am+63Jb45+Zu0pPBE
-         37ppUIMsLfABYStRFBLmsjiNHmBig+P/fwH0sS/NGSxtNM6lqXLTYBjp9VQko+/n2gxJ
-         RoiAkkx+u8SZseaNfXy72rFayrixcqp5+htZqjg5hSlAWmmHcAYbysgBYZc6b2rcF4pA
-         liPYW9dGzjE9B2itEKE35O6bDEW1MccvUYRY1Q0BxLZLFWwBIRqi6Sf6UUmyjuZEubMB
-         z2Vo/L+a89lv1Z/td2Gl9ieIimqrhyGIPTaxcHDOntRtot/ZLxjs6b8eq2AJODQ77vit
-         /KDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702556827; x=1703161627;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ueEUnJf9vhjwrQfvpBg6AiET0LLFEjTRO5+ClpFgSGA=;
-        b=AU930RRQlLjQ8VUVjzlNlHFgxsq2DQbeBoJavp6be9KMvXnNikCUy2d6bA8rdj7aNu
-         1HsXa9jR0xVP9Z81gF6PANcpni8CaFtdpR2GqvBGGLpBrEzWFFQ8u5j6G4ZB0ZTcael9
-         na9mzxpGh+5yvCZH/XbOVG8kLHE/C1ShIIfmOceOgjbONQ0N43v6VXml3A6f0mpybiIA
-         q/jO0WoJ7XIUQMpBDF4Dkh1u0kY5JXwVR2gB4m0F1LdDtmNtwHXQwpuCIbTYYHC5c6/R
-         jRw3esiU784TEyPbZ0woNJaYe6k0Fb8XdZKKT26+Kmn3PLy+V9p8e3H2TenuFs84/P6J
-         mdBg==
-X-Gm-Message-State: AOJu0YzlwiuDldU0hWT+sbkE+ZhSXqZTt+LdQnPihX2lfDIurDKw/nyS
-	hMbLShsVnTNmOgRCPDPzKI9l63dCcYO1EVwQ
-X-Google-Smtp-Source: AGHT+IF0Tmyn8Iks3LhYLvasc4ZT2QU2SDDlt4bwZaG+XPmfi7zsPESNLUUPTRaDQEevZ/LfngxtqA==
-X-Received: by 2002:a17:906:598b:b0:a19:a1ba:8cd3 with SMTP id m11-20020a170906598b00b00a19a1ba8cd3mr4006559ejs.113.1702556826965;
-        Thu, 14 Dec 2023 04:27:06 -0800 (PST)
-Received: from ?IPv6:2001:a61:3456:4e01:6ae:b55a:bd1d:57fc? ([2001:a61:3456:4e01:6ae:b55a:bd1d:57fc])
-        by smtp.gmail.com with ESMTPSA id th19-20020a1709078e1300b00a1bda8db043sm9139820ejc.120.2023.12.14.04.27.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Dec 2023 04:27:06 -0800 (PST)
-Message-ID: <983df13c5da90bf36dbca1a4dd3a6fd7ffd340a6.camel@gmail.com>
-Subject: Re: [PATCH v3 1/8] dt-bindings: adc: ad9467: add new io-backend
- property
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Rob Herring <robh@kernel.org>, Nuno Sa <nuno.sa@analog.com>
-Cc: Frank Rowand <frowand.list@gmail.com>, Rob Herring <robh+dt@kernel.org>,
-  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- devicetree@vger.kernel.org, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
- Michael Hennerich <Michael.Hennerich@analog.com>, Lars-Peter Clausen
- <lars@metafoo.de>, linux-iio@vger.kernel.org
-Date: Thu, 14 Dec 2023 13:27:05 +0100
-In-Reply-To: <170249013568.1591665.1236116981497856652.robh@kernel.org>
-References: <20231213-dev-iio-backend-v3-0-bb9f12a5c6dc@analog.com>
-	 <20231213-dev-iio-backend-v3-1-bb9f12a5c6dc@analog.com>
-	 <170249013568.1591665.1236116981497856652.robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FC4F11D;
+	Thu, 14 Dec 2023 04:27:22 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3BECRENt029318;
+	Thu, 14 Dec 2023 06:27:14 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1702556834;
+	bh=VqrTS3Nf0oYZo0mbPS/YZaDCqhTgpCgDvSl+aqyP2gc=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=qHbBIAY/yhKJcOumqEy9eFVAI1w2ZLKgdoUBKye4rRZvijpxVN8IeSBG+2vUezRxD
+	 yMDs5sDp4GtDDjvkvJ7jHMLE8p3tMmMe/6PaqnkymptvbF2kguGdB86QO+lWBJ9glc
+	 MP9FnyJ9JcnNN9Ea42D1bW/usmCgi7KYG0sHNauo=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3BECRE8k059744
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 14 Dec 2023 06:27:14 -0600
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 14
+ Dec 2023 06:27:14 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 14 Dec 2023 06:27:13 -0600
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3BECRDTA106764;
+	Thu, 14 Dec 2023 06:27:13 -0600
+Date: Thu, 14 Dec 2023 06:27:13 -0600
+From: Nishanth Menon <nm@ti.com>
+To: Vaishnav Achath <vaishnav.a@ti.com>
+CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <j-choudhary@ti.com>,
+        <u-kumar1@ti.com>
+Subject: Re: [PATCH 2/3] arm64: dts: ti: Introduce J722S family of SoCs
+Message-ID: <20231214122713.qx7as6grpvlq3ylw@stoic>
+References: <20231213124930.3012-1-vaishnav.a@ti.com>
+ <20231213124930.3012-3-vaishnav.a@ti.com>
+ <20231213202705.6tspycl5qicb6gwd@germproof>
+ <08eccba2-41df-91e7-c1e5-e03190402c23@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <08eccba2-41df-91e7-c1e5-e03190402c23@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Wed, 2023-12-13 at 11:55 -0600, Rob Herring wrote:
->=20
-> On Wed, 13 Dec 2023 16:02:32 +0100, Nuno Sa wrote:
-> > The ad9467 will make use of the new IIO backend framework which is a
-> > provider - consumer interface where IIO backends provide services to
-> > consumers. As such, and being this device a consumer,=C2=A0 add the new
-> > generic io-backend property to the bindings.
-> >=20
-> > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
-> > ---
-> > =C2=A0Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml | 5 +++=
-++
-> > =C2=A01 file changed, 5 insertions(+)
-> >=20
->=20
-> My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->=20
-> yamllint warnings/errors:
->=20
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-
-> ci/linux/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml: io-ba=
-ckends:
-> missing type definition
->=20
-> doc reference errors (make refcheckdocs):
->=20
-> See
-> https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231213-d=
-ev-iio-backend-v3-1-bb9f12a5c6dc@analog.com
->=20
-> The base for the series is generally the latest rc1. A different dependen=
-cy
-> should be noted in *this* patch.
->=20
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
->=20
-> pip3 install dtschema --upgrade
->=20
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your sch=
-ema.
->=20
+On 14:07-20231214, Vaishnav Achath wrote:
+[..]
+> > Trim this down to what is different from AM62P?
+> > 
+> 
+> Thanks for the review, I will trim this down in next revision, but the above is
+> just a summary of the main features of this SoC, pointing to AM62P feature set
+> here seems confusing to me. why does a new user/developer using J722S need to be
+> aware of the existence of AM62P to just understand a high level summary about
+> this device?
 
-This is kind of expected as the property is being proposed as a generic one=
-...
+Since this is a reuse device. Helps with review and focus on deltas.
 
-- Nuno S=C3=A1
+[...]
+
+> >> +	l2_0: l2-cache0 {
+> >> +		compatible = "cache";
+> >> +		cache-unified;
+> >> +		cache-level = <2>;
+> >> +		cache-size = <0x80000>;
+> >> +		cache-line-size = <64>;
+> >> +		cache-sets = <512>;
+> >> +	};
+> > 
+> > ^^ this is a duplication of am62p5.dtsi? what about the spins with
+> > different CPUs enabled?
+> > 
+> 
+> Yes it is a duplicate, as of now we are not aware of plan for spins with cores
+> disabled, so just followed the pattern followed for other Jacinto devices
+> (J721e, J7200, J721s2, J784s4).
+
+None of the devices have been as close a reuse device as this has been.
+errata in one carries over to the other etc.. There are definitely some
+differences - for example: itap/otap delays for mmc those would be
+unique on this device, but overrides with documentation will make
+perfect sense there.
+
+[..]
+> >> +		cbass_wakeup: bus@b00000 {
+> >> +			compatible = "simple-bus";
+> >> +			#address-cells = <2>;
+> >> +			#size-cells = <2>;
+> >> +			ranges = <0x00 0x00b00000 0x00 0x00b00000 0x00 0x00002400>, /* VTM */
+> >> +				 <0x00 0x2b000000 0x00 0x2b000000 0x00 0x00300400>, /* Peripheral Window */
+> >> +				 <0x00 0x43000000 0x00 0x43000000 0x00 0x00020000>, /* WKUP CTRL MMR */
+> >> +				 <0x00 0x78000000 0x00 0x78000000 0x00 0x00008000>, /* DM R5 ATCM*/
+> >> +				 <0x00 0x78100000 0x00 0x78100000 0x00 0x00008000>; /* DM R5 BTCM*/
+> >> +			bootph-all;
+> > 
+> > Not in the bus nodes.. only in the leaf nodes please.
+> > 
+> > 
+> > Also what is wrong with expanding the am62p to include the
+> > missing bus segments instead of duplicating all of them?
+> > 
+> 
+> We can do that, but the same would be true for AM625, AM62A and AM62P families
+> and also for (J721E, J7200), since all these SoCs introduced new dtsi instead of
+> resuing existing ones, I thought there would be some valid reason to have
+> separate dtsi and just followed the same pattern, please let know if we need to
+> reuse from AM62P here also.
+
+See above.
+
+[...]
+
+> 
+> >> +		};
+> >> +	};
+> >> +
+> >> +	#include "k3-am62p-thermal.dtsi"
+> > 
+> > Is this correct?
+> > 
+> 
+> I think it would be preferred to have a duplicate for J722S here as users may
+> want to customize the trip points as per system and doing that without affecting
+> AM62P would be preferred, but the initial information here would be same for J722S.
+
+Please check with your hardware teams if the am62p SoC level thermal
+behavior will be similar to j722s or will it be different. If it is
+estimated to be different, then you'd prefer to hold off introducing
+the trips till the characterization provides you with the data.
+
+> 
+> >> +};
+> >> +
+> >> +/*
+> >> + * Include peripherals for each bus segment derived
+> >> + * from AM62P and overrides specific to J722S.
+> >> + */
+> >> +#include "k3-am62p-main.dtsi"
+> >> +#include "k3-am62p-mcu.dtsi"
+> >> +#include "k3-am62p-wakeup.dtsi"
+> >> +
+> >> +/* Main domain overrides */
+> >> +
+> >> +&cpsw3g {
+> >> +	status = "disabled";
+> > 
+> > 	here and rest: Why disabled?
+> 
+> These nodes seems to have dependencies that are not merged already and would
+> throw errors during boot, AM62P SoC dtsi seems to have these enabled by default
+> without these dependencies met and have errors like below during boot (seen on
+> AM62P with 6.7.0-rc4-next-20231211).
+> 
+> [   17.869092] platform 8000000.ethernet: deferred probe pending:
+> am65-cpsw-nuss: Failed to request tx dma channel
+
+OK - lets get the dependencies sorted out before merging then. I though
+all the dependencies were indicated in the cover letter.
+
+> 
+> >> +};
+> >> +
+> >> +&inta_main_dmss {
+> >> +	ti,interrupt-ranges = <5 69 35>;
+> >> +};
+> >> +
+> >> +&mailbox0_cluster0 {
+> >> +	status = "disabled";
+> >> +};
+> >> +
+> >> +&mailbox0_cluster1 {
+> >> +	status = "disabled";
+> >> +};
+> >> +
+> >> +&mailbox0_cluster2 {
+> >> +	status = "disabled";
+> >> +};
+> >> +
+> >> +&mailbox0_cluster3 {
+> >> +	status = "disabled";
+> >> +};
+> >> +
+> 
+> [    7.198470] omap-mailbox 29020000.mailbox: no available mbox devices found
+> [    7.210411] omap-mailbox 29030000.mailbox: no available mbox devices found
+
+You might want to dig into why..
+
+> 
+> >> +&oc_sram {
+> >> +	reg = <0x00 0x70000000 0x00 0x40000>;
+> >> +	ranges = <0x00 0x00 0x70000000 0x40000>;
+> >> +};
+> >> +
+> >> +/* MCU domain overrides */
+> >> +
+> >> +&mcu_r5fss0 {
+> >> +	status = "disabled";
+> >> +};
+> 
+> [    7.492406] platform 79000000.r5f: configured R5F for remoteproc mode
+> [    7.499887] platform 79000000.r5f: device does not have reserved memory
+> regions, ret = -22
+> [    7.508271] k3_r5_rproc bus@f0000:bus@4000000:r5fss@79000000: reserved memory
+> init failed, ret = -22
+> [    7.517549] remoteproc remoteproc0: releasing 79000000.r5f
+> [    7.523338] k3_r5_rproc bus@f0000:bus@4000000:r5fss@79000000:
+> k3_r5_cluster_rproc_init failed, ret = -22
+> [    7.532993] k3_r5_rproc: probe of bus@f0000:bus@4000000:r5fss@79000000 failed
+> with error -22
+
+Yes, and the approach should rather be to disable the remote procs in
+the board or at the SoC dtsi in a consistent manner. I had previously
+suggested to do that SoC level (which means at am62p dtsi) since the remoteprocs have direct
+dependency on how the memory layouts are partitioned in board.dts - but
+i had asked folks working on remote procs to do that consistently across
+SoCs. I don't see that having been done so far.
+
+> 
+> >> +
+> >> +/* wakeup domain overrides */
+> >> +
+> >> +&wkup_r5fss0 {
+> >> +	status = "disabled";
+> >> +};
+> 
+> [    7.576576] platform 78000000.r5f: configured R5F for IPC-only mode
+> [    7.605535] platform 78000000.r5f: device does not have reserved memory
+> regions, ret = -22
+> [    7.613942] k3_r5_rproc bus@f0000:bus@b00000:r5fss@78000000: reserved memory
+> init failed, ret = -22
+> [    7.635990] remoteproc remoteproc0: releasing 78000000.r5f
+> [    7.648639] k3_r5_rproc bus@f0000:bus@b00000:r5fss@78000000:
+> k3_r5_cluster_rproc_init failed, ret = -22
+> [    7.664043] k3_r5_rproc: probe of bus@f0000:bus@b00000:r5fss@78000000 failed
+> with error -22
+
+See above.
+
+> 
+> >> diff --git a/arch/arm64/boot/dts/ti/k3-pinctrl.h b/arch/arm64/boot/dts/ti/k3-pinctrl.h
+> >> index 2a4e0e084d69..591be4489f37 100644
+> >> --- a/arch/arm64/boot/dts/ti/k3-pinctrl.h
+> >> +++ b/arch/arm64/boot/dts/ti/k3-pinctrl.h
+> >> @@ -59,6 +59,9 @@
+> >>  #define J721S2_IOPAD(pa, val, muxmode)		(((pa) & 0x1fff)) ((val) | (muxmode))
+> >>  #define J721S2_WKUP_IOPAD(pa, val, muxmode)	(((pa) & 0x1fff)) ((val) | (muxmode))
+> >>  
+> >> +#define J722S_IOPAD(pa, val, muxmode)		(((pa) & 0x1fff)) ((val) | (muxmode))
+> >> +#define J722S_MCU_IOPAD(pa, val, muxmode)	(((pa) & 0x1fff)) ((val) | (muxmode))
+> >> +
+> >>  #define J784S4_IOPAD(pa, val, muxmode)		(((pa) & 0x1fff)) ((val) | (muxmode))
+> >>  #define J784S4_WKUP_IOPAD(pa, val, muxmode)	(((pa) & 0x1fff)) ((val) | (muxmode))
+> >>  
+> >> -- 
+> >> 2.17.1
+> >>
+> 
+> 0 - AM62P Boot logs (next-20231211) -
+> https://gist.github.com/vaishnavachath/7143da253bc708a1e60a13fe081d3914
+> 
+> To avoid these errors I am keeping these disabled, can we add support for these
+> also as part of the initial support addition series? then there is no need for
+> disabling these.
+
+Fix them, then introduce j722s.
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
