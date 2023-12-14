@@ -1,234 +1,144 @@
-Return-Path: <devicetree+bounces-25380-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25381-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 642E481311A
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 14:16:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C755813125
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 14:17:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E41681F2225A
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 13:16:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 42A2F1C219F3
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 13:17:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FBB955C29;
-	Thu, 14 Dec 2023 13:15:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97E4855771;
+	Thu, 14 Dec 2023 13:17:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dujYVbOc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cs7sirs9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C767129
-	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 05:15:49 -0800 (PST)
-Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2ca0c36f5beso106150991fa.1
-        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 05:15:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702559747; x=1703164547; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=GhFLd4CPtXm/YF25BMgLtgk+3dv0PmLn7A52Lhi5STs=;
-        b=dujYVbOcmdAmGSIJiC8cEw3liMRlA/6252CqxtduWcDTKvgHgytgHw/aOkfFjwcBv/
-         Sfyqbrrt10HGrLgqt7aVfIyonXf/NMtXzuiAa8FXZfjrfTE9MZjkhV/6STe5Wm291OjZ
-         oVdDHDYDufhOgZq6ncQp4dfZKF2IBVTsYAKq9+1O+Jq0TARukkX55AjxZHSSB/DKFnlE
-         HFgGxlrRxXqeFltm5vBx4uy6f8rPVlSWkx8PDsPmBjtB9xZpbIXrDZJIqLtgn23bbrGH
-         lDgm8KzMjmSWqkk+k3MhkS4A5abndIHdCSsfljQds45Fwr4gbSkRLFIAdDfVlC10gnEJ
-         JYkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702559747; x=1703164547;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GhFLd4CPtXm/YF25BMgLtgk+3dv0PmLn7A52Lhi5STs=;
-        b=EnF1hF2ft3Tha1XTgPi0HN+BA9RrCD4b3tI0V+bYo4yUBuA8pcOaDdhHNCMCKc/XXI
-         a+kz+nMqIQskcqpYCmhBAGC5am5z9Kkl57i0aW8juRyj64jXei67NSvDZv4Yw54rsab3
-         ZbBJME/hoOpuRfufNoF/VY42C7NAG65IhDgmcuFtsI1oGFaN65wBc9bYHDta+W5z4+vk
-         WFR/p2gem39SrZbLSt5/AU16nOfpoPcwu20KroEYHuxKIbB798dOjzZNVQ8Hlie6sQkB
-         1lxjrlW30Fnsdn4vIxOlNlURmEoSB4TkzL6CPHnBbjSauo9txkN9QsE+kkSGWQUjx5vJ
-         WE4w==
-X-Gm-Message-State: AOJu0YxqW0TEuy8kdNIUjYVIYAFXeFAmHdxru+ysg+lrAK4Mg4fBQQo8
-	xSCMhfjdmYPKYASorz6WVEv+GA==
-X-Google-Smtp-Source: AGHT+IGq3Eh0v9BtGBtOlHuwDYZzfJD+n+q/wtn0mvU9Vj1OSw4Alx/PDq6ZFZ1HgX3LajGeYwBYdA==
-X-Received: by 2002:a2e:bcd1:0:b0:2cc:2b21:6fc7 with SMTP id z17-20020a2ebcd1000000b002cc2b216fc7mr3288644ljp.88.1702559747394;
-        Thu, 14 Dec 2023 05:15:47 -0800 (PST)
-Received: from [127.0.1.1] ([85.235.12.238])
-        by smtp.gmail.com with ESMTPSA id p23-20020a2e93d7000000b002ca02ceae84sm2080478ljh.83.2023.12.14.05.15.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Dec 2023 05:15:47 -0800 (PST)
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Thu, 14 Dec 2023 14:15:45 +0100
-Subject: [PATCH 4/4] ASoC: tegra: tegra20_ac97: Convert to use GPIO
- descriptors
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B9CE4F1E1;
+	Thu, 14 Dec 2023 13:17:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2EFFC433C8;
+	Thu, 14 Dec 2023 13:16:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702559821;
+	bh=JHyomd0Q9NPn9A6jdZewEr+8uII5CmAyP0V6PrfA4bA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cs7sirs9h0XVwnqWYZLR/SKUFu2N9cpp0Yiz0d+uM6Gx48N7jql/U1q1F0Baw8AK0
+	 KAsMhLeqa+jA25Lv7z282d9rx/9Bx3RtE/7rtOpsLo2hAMJVn/cb8uNlOCUh9G1tRa
+	 Q4BlAFF9y8gqm4V1uwSrFjju+NkuQAPifpstroy8LPfPit/KVjSN39cF+u1fdTDuFr
+	 wxH9zOBWW1Jj+JAaA2/6ttNAWNB3DcevrU39jZyxIV3queyCIejv1lioZzsj2CMqI5
+	 YpAEj54TSUVWnVHEfGb4FtOIqjOnmePv+hf2aM31ld4yumAISfJy8yxIVIZjHqK8C8
+	 P5OilGkQLL67g==
+Date: Thu, 14 Dec 2023 13:16:55 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Marc Kleine-Budde <mkl@pengutronix.de>
+Cc: linux-riscv@lists.infradead.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Wolfgang Grandegger <wg@grandegger.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, linux-can@vger.kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH RESEND v1 2/7] dt-bindings: can: mpfs: add missing
+ required clock
+Message-ID: <20231214-tinderbox-paver-d1ff0fc5c428@spud>
+References: <20231208-reenter-ajar-b6223e5134b3@spud>
+ <20231208-palpitate-passable-c79bacf2036c@spud>
+ <20231212-unreeling-depose-8b6b2e032555-mkl@pengutronix.de>
+ <20231213-waffle-grueling-3a5c3879395b@spud>
+ <20231214-tinderbox-glitzy-60d1936ab85f-mkl@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231214-gpio-descriptors-sound-misc-v1-4-e3004176bd8b@linaro.org>
-References: <20231214-gpio-descriptors-sound-misc-v1-0-e3004176bd8b@linaro.org>
-In-Reply-To: <20231214-gpio-descriptors-sound-misc-v1-0-e3004176bd8b@linaro.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
- Banajit Goswami <bgoswami@quicinc.com>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>, 
- Jonathan Hunter <jonathanh@nvidia.com>
-Cc: linux-sound@vger.kernel.org, alsa-devel@alsa-project.org, 
- devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
- Linus Walleij <linus.walleij@linaro.org>
-X-Mailer: b4 0.12.4
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="8sbtDukOq8t99rKn"
+Content-Disposition: inline
+In-Reply-To: <20231214-tinderbox-glitzy-60d1936ab85f-mkl@pengutronix.de>
 
-The Tegra20 AC97 driver is using the legacy GPIO APIs in
-<linux/of_gpio.h> and <linux/gpio.h> to obtain GPIOs for reset
-and sync.
 
-Convert it over and fix the polarity error on the RESET line
-in the process: this reset line is clearly active low. Just
-fix the one in-tree device tree site using it at the same
-time.
+--8sbtDukOq8t99rKn
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
-If people demand that the DTS oneliner be submitted and merged
-separately then I can do so. (I personally think that is too
-much focus on process over content.)
----
- arch/arm/boot/dts/nvidia/tegra20-colibri.dtsi |  2 +-
- sound/soc/tegra/tegra20_ac97.c                | 55 +++++++++++++--------------
- sound/soc/tegra/tegra20_ac97.h                |  4 +-
- 3 files changed, 29 insertions(+), 32 deletions(-)
+On Thu, Dec 14, 2023 at 12:31:04PM +0100, Marc Kleine-Budde wrote:
+> On 13.12.2023 13:02:49, Conor Dooley wrote:
+> > On Tue, Dec 12, 2023 at 09:49:41PM +0100, Marc Kleine-Budde wrote:
+> > > On 08.12.2023 17:12:24, Conor Dooley wrote:
+> > > > From: Conor Dooley <conor.dooley@microchip.com>
+> > > >=20
+> > > > The CAN controller on PolarFire SoC has an AHB peripheral clock _an=
+d_ a
+> > > > CAN bus clock. The bus clock was omitted when the binding was writt=
+en,
+> > > > but is required for operation. Make up for lost time and add it.
+> > > >=20
+> > > > Cautionary tale in adding bindings without having implemented a real
+> > > > user for them perhaps.
+> > > >=20
+> > > > Fixes: c878d518d7b6 ("dt-bindings: can: mpfs: document the mpfs CAN=
+ controller")
+> > > > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> > > > ---
+> > > >  .../devicetree/bindings/net/can/microchip,mpfs-can.yaml    | 7 +++=
+++--
+> > > >  1 file changed, 5 insertions(+), 2 deletions(-)
+> > > >=20
+> > > > diff --git a/Documentation/devicetree/bindings/net/can/microchip,mp=
+fs-can.yaml b/Documentation/devicetree/bindings/net/can/microchip,mpfs-can.=
+yaml
+> > > > index 45aa3de7cf01..05f680f15b17 100644
+> > > > --- a/Documentation/devicetree/bindings/net/can/microchip,mpfs-can.=
+yaml
+> > > > +++ b/Documentation/devicetree/bindings/net/can/microchip,mpfs-can.=
+yaml
+> > > > @@ -24,7 +24,10 @@ properties:
+> > > >      maxItems: 1
+> > > > =20
+> > > >    clocks:
+> > > > -    maxItems: 1
+> > > > +    maxItems: 2
+> > > > +    items:
+> > > > +      - description: AHB peripheral clock
+> > > > +      - description: CAN bus clock
+> > >=20
+> > > Do we we want to have a "clock-names" property, as we need the clock
+> > > rate of the CAN bus clock.
+> >=20
+> > We should not need the clock-names property to be able to get both of
+> > the clocks. clk_bulk_get_all() for example should be usable here.
+>=20
+> ACK, but we need the clock rate of CAN clock. Does this binding check
+> that the CAN clock rate is the 2nd one?
 
-diff --git a/arch/arm/boot/dts/nvidia/tegra20-colibri.dtsi b/arch/arm/boot/dts/nvidia/tegra20-colibri.dtsi
-index 16b374e6482f..8c1d5c9fa483 100644
---- a/arch/arm/boot/dts/nvidia/tegra20-colibri.dtsi
-+++ b/arch/arm/boot/dts/nvidia/tegra20-colibri.dtsi
-@@ -446,7 +446,7 @@ lvp0 {
- 	tegra_ac97: ac97@70002000 {
- 		status = "okay";
- 		nvidia,codec-reset-gpio =
--			<&gpio TEGRA_GPIO(V, 0) GPIO_ACTIVE_HIGH>;
-+			<&gpio TEGRA_GPIO(V, 0) GPIO_ACTIVE_LOW>;
- 		nvidia,codec-sync-gpio =
- 			<&gpio TEGRA_GPIO(P, 0) GPIO_ACTIVE_HIGH>;
- 	};
-diff --git a/sound/soc/tegra/tegra20_ac97.c b/sound/soc/tegra/tegra20_ac97.c
-index e713feca25fa..8011afe93c96 100644
---- a/sound/soc/tegra/tegra20_ac97.c
-+++ b/sound/soc/tegra/tegra20_ac97.c
-@@ -12,12 +12,11 @@
- #include <linux/clk.h>
- #include <linux/delay.h>
- #include <linux/device.h>
--#include <linux/gpio.h>
-+#include <linux/gpio/consumer.h>
- #include <linux/io.h>
- #include <linux/jiffies.h>
- #include <linux/module.h>
- #include <linux/of.h>
--#include <linux/of_gpio.h>
- #include <linux/platform_device.h>
- #include <linux/regmap.h>
- #include <linux/reset.h>
-@@ -39,11 +38,15 @@ static void tegra20_ac97_codec_reset(struct snd_ac97 *ac97)
- 	u32 readback;
- 	unsigned long timeout;
- 
--	/* reset line is not driven by DAC pad group, have to toggle GPIO */
--	gpio_set_value(workdata->reset_gpio, 0);
-+	/*
-+	 * The reset line is not driven by DAC pad group, have to toggle GPIO.
-+	 * The RESET line is active low but this is abstracted by the GPIO
-+	 * library.
-+	 */
-+	gpiod_set_value(workdata->reset_gpio, 1);
- 	udelay(2);
- 
--	gpio_set_value(workdata->reset_gpio, 1);
-+	gpiod_set_value(workdata->reset_gpio, 0);
- 	udelay(2);
- 
- 	timeout = jiffies + msecs_to_jiffies(100);
-@@ -66,14 +69,10 @@ static void tegra20_ac97_codec_warm_reset(struct snd_ac97 *ac97)
- 	 * the controller cmd is not working, have to toggle sync line
- 	 * manually.
- 	 */
--	gpio_request(workdata->sync_gpio, "codec-sync");
--
--	gpio_direction_output(workdata->sync_gpio, 1);
--
-+	gpiod_direction_output(workdata->sync_gpio, 1);
- 	udelay(2);
--	gpio_set_value(workdata->sync_gpio, 0);
-+	gpiod_set_value(workdata->sync_gpio, 0);
- 	udelay(2);
--	gpio_free(workdata->sync_gpio);
- 
- 	timeout = jiffies + msecs_to_jiffies(100);
- 
-@@ -342,28 +341,26 @@ static int tegra20_ac97_platform_probe(struct platform_device *pdev)
- 		goto err_clk_put;
- 	}
- 
--	ac97->reset_gpio = of_get_named_gpio(pdev->dev.of_node,
--					     "nvidia,codec-reset-gpio", 0);
--	if (gpio_is_valid(ac97->reset_gpio)) {
--		ret = devm_gpio_request_one(&pdev->dev, ac97->reset_gpio,
--					    GPIOF_OUT_INIT_HIGH, "codec-reset");
--		if (ret) {
--			dev_err(&pdev->dev, "could not get codec-reset GPIO\n");
--			goto err_clk_put;
--		}
--	} else {
--		dev_err(&pdev->dev, "no codec-reset GPIO supplied\n");
--		ret = -EINVAL;
-+	/* Obtain RESET de-asserted */
-+	ac97->reset_gpio = devm_gpiod_get(&pdev->dev,
-+					  "nvidia,codec-reset",
-+					  GPIOD_OUT_LOW);
-+	if (IS_ERR(ac97->reset_gpio)) {
-+		ret = PTR_ERR(ac97->reset_gpio);
-+		dev_err(&pdev->dev, "no RESET GPIO supplied: %d\n", ret);
- 		goto err_clk_put;
- 	}
--
--	ac97->sync_gpio = of_get_named_gpio(pdev->dev.of_node,
--					    "nvidia,codec-sync-gpio", 0);
--	if (!gpio_is_valid(ac97->sync_gpio)) {
--		dev_err(&pdev->dev, "no codec-sync GPIO supplied\n");
--		ret = -EINVAL;
-+	gpiod_set_consumer_name(ac97->reset_gpio, "codec-reset");
-+
-+	ac97->sync_gpio = devm_gpiod_get(&pdev->dev,
-+					 "nvidia,codec-sync",
-+					 GPIOD_OUT_LOW);
-+	if (IS_ERR(ac97->sync_gpio)) {
-+		ret = PTR_ERR(ac97->sync_gpio);
-+		dev_err(&pdev->dev, "no codec-sync GPIO supplied: %d\n", ret);
- 		goto err_clk_put;
- 	}
-+	gpiod_set_consumer_name(ac97->sync_gpio, "codec-sync");
- 
- 	ac97->capture_dma_data.addr = mem->start + TEGRA20_AC97_FIFO_RX1;
- 	ac97->capture_dma_data.addr_width = DMA_SLAVE_BUSWIDTH_4_BYTES;
-diff --git a/sound/soc/tegra/tegra20_ac97.h b/sound/soc/tegra/tegra20_ac97.h
-index 870ea09ff301..116d7b2db27e 100644
---- a/sound/soc/tegra/tegra20_ac97.h
-+++ b/sound/soc/tegra/tegra20_ac97.h
-@@ -80,7 +80,7 @@ struct tegra20_ac97 {
- 	struct snd_dmaengine_dai_dma_data playback_dma_data;
- 	struct reset_control *reset;
- 	struct regmap *regmap;
--	int reset_gpio;
--	int sync_gpio;
-+	struct gpio_desc *reset_gpio;
-+	struct gpio_desc *sync_gpio;
- };
- #endif /* __TEGRA20_AC97_H__ */
+The items list requires that the can clock be the second one, so drivers
+etc can rely on that ordering.
 
--- 
-2.34.1
+--8sbtDukOq8t99rKn
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZXsARwAKCRB4tDGHoIJi
+0h9wAP903owgON0b07MdLtwGROU5QzSNFLxoBOqorLvQyAIqpAD+NUlz2g5CmXeF
+4jrpFftFyQNgWbQ8mC2atxX5XKUNvA4=
+=LB6e
+-----END PGP SIGNATURE-----
+
+--8sbtDukOq8t99rKn--
 
