@@ -1,174 +1,175 @@
-Return-Path: <devicetree+bounces-25201-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25202-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A00E8129F0
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 09:06:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4A068129F7
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 09:09:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4ED4F1C20FC8
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 08:06:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 960041F2173E
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 08:09:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EF0A15E89;
-	Thu, 14 Dec 2023 08:06:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LY2zHWvR"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D78A15EBE;
+	Thu, 14 Dec 2023 08:09:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6091815482
-	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 08:06:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1301C433C7;
-	Thu, 14 Dec 2023 08:06:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702541161;
-	bh=sYEhTF8PFiCP41kQDsfl473xLEZ+XXLgBpyKrt1TpZ0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LY2zHWvRamfUM7o1LtV8JnaxofEdItKMw+27NQM3lch6E+1MGPOJA2pCQIWppcvMG
-	 641jfW0dbA4X9MXirOWme2ggJCA0rQ8mmNvRy0jcsT8DzQOPDSqbSQmt3B33vsLAtA
-	 dkC7IR5y7QsI/N95hOp6G+IN+NT0puCHHp7TKCZX07X6qCjfIKq4NAKG75MJjS51RL
-	 iJgrkK5kDLyFe33Hu2/pDXFAYwhf47d15DvnU2B2+f8FYqzMluDW5k4XZPqK4U8RK4
-	 8ZEM+z10IqeH9ge1ozkfw6/noYBww1USJSTWzRMaZdVCLzwZnhZsAbqMeU6kS+NE0y
-	 3qE2qdKH84cDA==
-Date: Thu, 14 Dec 2023 09:05:58 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Alex Bee <knaerzche@gmail.com>
-Cc: Sandy Huang <hjc@rock-chips.com>, 
-	Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>, Andy Yan <andyshrk@163.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 07/11] drm/rockchip: inno_hdmi: Add basic mode validation
-Message-ID: <wz4e43ateg3gb7745mz22wwyruwavevvpfbqsdxeynejcjxhzn@qbqldsnkktei>
-References: <20231213195125.212923-1-knaerzche@gmail.com>
- <20231213195125.212923-8-knaerzche@gmail.com>
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 43EA9B9;
+	Thu, 14 Dec 2023 00:09:21 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="6.04,274,1695654000"; 
+   d="scan'208";a="190338321"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 14 Dec 2023 17:09:20 +0900
+Received: from localhost.localdomain (unknown [10.226.92.242])
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id D4F214004CEE;
+	Thu, 14 Dec 2023 17:09:13 +0900 (JST)
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Lee Jones <lee@kernel.org>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	Support Opensource <support.opensource@diasemi.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>,
+	Lukasz Luba <lukasz.luba@arm.com>,
+	Steve Twiss <stwiss.opensource@diasemi.com>,
+	linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	linux-watchdog@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>,
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v6 0/8] Convert DA906{1,2} bindings to json-schema
+Date: Thu, 14 Dec 2023 08:09:03 +0000
+Message-Id: <20231214080911.23359-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="b7pooqjn5gbbri2j"
-Content-Disposition: inline
-In-Reply-To: <20231213195125.212923-8-knaerzche@gmail.com>
+Content-Transfer-Encoding: 8bit
 
+Convert the below bindings to json-schema
+1) DA906{1,2} mfd bindings
+2) DA906{1,2,3} onkey bindings
+3) DA906{1,2,3} thermal bindings
 
---b7pooqjn5gbbri2j
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Also add fallback for DA9061 watchdog device and document
+DA9063 watchdog device.
 
-Hi,
+Document missing gpio child node for da9062 and update MAINTAINERS entries.
 
-On Wed, Dec 13, 2023 at 08:51:21PM +0100, Alex Bee wrote:
-> As per TRM this controller supports pixelclocks starting from 25 MHz. The
-> maximum supported pixelclocks are defined by the phy configurations we
-> have. Also it can't support modes that require doubled clocks.
-> If there is a phy reference clock we can additionally validate against
-> VESA DMT's recommendations.
-> Those checks are added to the mode_valid hook of the connector and
-> encoder's mode_fixup hook.
->=20
-> Signed-off-by: Alex Bee <knaerzche@gmail.com>
-> ---
->  drivers/gpu/drm/rockchip/inno_hdmi.c | 38 ++++++++++++++++++++++++++--
->  1 file changed, 36 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/rockchip/inno_hdmi.c b/drivers/gpu/drm/rockc=
-hip/inno_hdmi.c
-> index f7f0bec725f9..2f839ff31c1c 100644
-> --- a/drivers/gpu/drm/rockchip/inno_hdmi.c
-> +++ b/drivers/gpu/drm/rockchip/inno_hdmi.c
-> @@ -38,6 +38,8 @@ struct inno_hdmi_variant {
->  	struct inno_hdmi_phy_config *default_phy_config;
->  };
-> =20
-> +#define INNO_HDMI_MIN_TMDS_CLOCK  25000000U
-> +
->  struct hdmi_data_info {
->  	int vic;
->  	bool sink_has_audio;
-> @@ -572,6 +574,34 @@ static int inno_hdmi_setup(struct inno_hdmi *hdmi,
->  	return 0;
->  }
-> =20
-> +static enum drm_mode_status inno_hdmi_mode_valid(struct inno_hdmi *hdmi,
-> +						 struct drm_display_mode *mode)
-> +{
+Merge strategy:
+Since there is binding dependency between input, thermal, watchdog and MFD
+subsystem. it is decided that this series will go through the MFD tree.
+So once the respective subsystem maintainers, DT and Renesas are happy
+with the patch they can give an ack/rb tag, so that it can be applied to
+MFD tree.
 
-So, mode_valid is only called to filter out the modes retrieved by
-get_modes, but it won't be called when userspace programs a mode. That's
-atomic_check's job.
+Note:
 
-So you probably want to create a shared function between atomic_check
-and mode_valid, and call it from both places (or call mode_valid from
-atomic_check).
+This patch series is same as v3.1 as it allows the tools (PW, b4)
+to compare against previous versions.
 
-> +	/* No support for double-clock modes */
-> +	if (mode->flags & DRM_MODE_FLAG_DBLCLK)
-> +		return MODE_BAD;
-> +
-> +	unsigned int mpixelclk =3D mode->clock * 1000;
+The review comments/tags received for v4 + (a.k.a v3.1) will be
+addressed in the next version(v5).
 
-Variables should be declared at the top of the function.
+Link to v3.1: https://lore.kernel.org/all/20231204172510.35041-1-biju.das.jz@bp.renesas.com/
 
-> +	if (mpixelclk < INNO_HDMI_MIN_TMDS_CLOCK)
-> +		return MODE_CLOCK_LOW;
+v5->v6:
+ * Added Rb tag from Guenter Roeck for watchdog binding patches.
+ * Updated commit description related to "gpio-controller" and
+   "#gpio-cells" properties defined in parent node.
+ * Added Rb tag from Krzysztof Kozlowski for patch#8.
+v4->v5:
+ * Updated cover letter with merging strategy.
+ * Added fixes tag for patch#1
+ * Added Rb tags from Geert and Krzysztof for patch#1
+ * Added Ack from Conor for patch#1
+ * Added Rb tag from Geert and Ack from Conor for patch#2
+ * Drop items and just use enum as it is easier to read for compatibles.
+ * Retained the tags for patch#2 as it is trivial change.
+ * Added Rb tag from Geert for patch#3
+ * Updated commit header and description by replacing
+   'watchdog property'->'watchdog child node'
+ * Added Rb tag from Geert for patch#4.
+ * Added Rb tag from Krzysztof and Conor for patch#5
+ * Dropped Items, Just enum as it is easier to read compatibles.
+ * Retained tags for patch#5 as the changes are trivial.
+ * Updated commit description for patch#8
+ * Dropped unnecessary ref from gpio child node.
+ * Added gpio-hog pattern property
+ * Moved gpio-controller,gpio-cells above child nodes
+ * Sorted compatible in rtc child node.
+ * Dropped status from example.
+ * Updated the example.
+v3->v4:
+ * Patch#1 is merge of patch#1 from v2 + patch#8 from v2.
+ * Dropped comment for d9061 watchdog fallback
+ * Replaced enum->const for dlg,da9061-watchdog and its fallback.
+ * Restored patch#4 in series 1 and dropped the thermal example
+ * Added Ack from Conor Dooley for da9063 watchdog binding support.
+ * Updated title DA9062/61->DA906{1,2,3} as it supports DA9063.
+ * Retained Rb tag since the changes are trivial.
+ * Added Ack from Conor for updating watchdog property
+ * Dropped link to product information.
+ * Patch#5(onkey) is squashed with patch#6 and patch#9 from v2.
+ * Replaced enum->const for dlg,da9061-onkey and its fallback.
+ * Dropped example
+ * Restored the thermal binding patch from v2.
+ * Dropped example
+ * Replaced enum->const for compatible property.
+ * Added Rb tag from Rob and retained Rb tag as changes are trivial.
+ * Added Ack from Conor Dooley for patch#7.
+ * Split the thermal binding patch separate
+ * Updated the description
+v2->v3:
+ * Updated Maintainer entries for watchdog,onkey and thermal bindings
+ * Fixed bot errors related to MAINTAINERS entry, invalid doc
+   references and thermal examples by merging patch#4. 
 
-You probably want to check the max TMDS clock too?
+v1->v2:
+ Link: https://lore.kernel.org/all/20231201110840.37408-5-biju.das.jz@bp.renesas.com/
+ * DA9062 and DA9061 merged with DA9063
+ * Sorted the child devices
+ * mfd,onkey and thermal are pointing to child bindings
 
-> +	if (inno_hdmi_find_phy_config(hdmi, mpixelclk) < 0)
-> +		return MODE_CLOCK_HIGH;
-> +
-> +	if (hdmi->refclk) {
-> +		long refclk =3D clk_round_rate(hdmi->refclk, mpixelclk);
-> +		unsigned int max_tolerance =3D mpixelclk / 5000;
-> +
-> +		/* Vesa DMT standard mentions +/- 0.5% max tolerance */
-> +		if (abs(refclk - mpixelclk) > max_tolerance ||
-> +		    mpixelclk - refclk > max_tolerance;
-> +			return MODE_NOCLOCK;
+Biju Das (8):
+  dt-bindings: mfd: da9062: Update watchdog description
+  dt-bindings: watchdog: dlg,da9062-watchdog: Add fallback for DA9061
+    watchdog
+  dt-bindings: watchdog: dlg,da9062-watchdog: Document DA9063 watchdog
+  dt-bindings: mfd: dlg,da9063: Update watchdog child node
+  dt-bindings: input: Convert da906{1,2,3} onkey to json-schema
+  dt-bindings: thermal: Convert da906{1,2} thermal to json-schema
+  dt-bindings: mfd: dlg,da9063: Sort child devices
+  dt-bindings: mfd: dlg,da9063: Convert da9062 to json-schema
 
-You should use abs_diff here. abs() will get confused by the unsigned vs
-signed comparison.
+ .../bindings/input/da9062-onkey.txt           |  47 ----
+ .../bindings/input/dlg,da9062-onkey.yaml      |  38 +++
+ .../devicetree/bindings/mfd/da9062.txt        | 124 ---------
+ .../devicetree/bindings/mfd/dlg,da9063.yaml   | 248 +++++++++++++++---
+ .../bindings/thermal/da9062-thermal.txt       |  36 ---
+ .../bindings/thermal/dlg,da9062-thermal.yaml  |  35 +++
+ .../watchdog/dlg,da9062-watchdog.yaml         |  12 +-
+ MAINTAINERS                                   |   6 +-
+ 8 files changed, 298 insertions(+), 248 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/input/da9062-onkey.txt
+ create mode 100644 Documentation/devicetree/bindings/input/dlg,da9062-onkey.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mfd/da9062.txt
+ delete mode 100644 Documentation/devicetree/bindings/thermal/da9062-thermal.txt
+ create mode 100644 Documentation/devicetree/bindings/thermal/dlg,da9062-thermal.yaml
 
-> +	}
-> +
-> +	return MODE_OK;
-> +}
-> +
->  static void inno_hdmi_encoder_mode_set(struct drm_encoder *encoder,
->  				       struct drm_display_mode *mode,
->  				       struct drm_display_mode *adj_mode)
-> @@ -602,7 +632,9 @@ static bool inno_hdmi_encoder_mode_fixup(struct drm_e=
-ncoder *encoder,
->  					 const struct drm_display_mode *mode,
->  					 struct drm_display_mode *adj_mode)
->  {
-> -	return true;
-> +	struct inno_hdmi *hdmi =3D encoder_to_inno_hdmi(encoder);
-> +
-> +	return inno_hdmi_mode_valid(hdmi, adj_mode) =3D=3D MODE_OK;
->  }
+-- 
+2.39.2
 
-Why do you call mode_valid in mode_fixup?
-
-Maxime
-
---b7pooqjn5gbbri2j
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZXq3ZgAKCRDj7w1vZxhR
-xaVDAP9cv6mFeTDpg7RgRea+Sf7bjeLk6ZsJ3l3oNXqnHls6gAD/cxaEFtITXR/A
-ujMQfG/WE5YLTNoxJiT+lbA9A4vu3QA=
-=ufKw
------END PGP SIGNATURE-----
-
---b7pooqjn5gbbri2j--
 
