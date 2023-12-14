@@ -1,120 +1,148 @@
-Return-Path: <devicetree+bounces-25552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25553-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11BB08139A9
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 19:14:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E36988139CF
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 19:18:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A783BB21179
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 18:14:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7337CB21156
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 18:18:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2332C68B8F;
-	Thu, 14 Dec 2023 18:14:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06C9D68B7B;
+	Thu, 14 Dec 2023 18:18:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rypMenmu"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kAgstMJo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B310B132
-	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 10:14:01 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-50bdec453c8so9939240e87.3
-        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 10:14:01 -0800 (PST)
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42AA8112
+	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 10:18:24 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-50be10acaf9so939496e87.1
+        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 10:18:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702577640; x=1703182440; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Jeq677NEMB1IsnQAjs4/+yBvpQgDXfs4klZEe8r6nwY=;
-        b=rypMenmuMdO1QbcrihnIVf2JXPhpJGZC0ibYEr6hPjfqhNVsru9owGy6iOLu+yWQZL
-         6YzMN7WOwW1eoSfh/nzVhcIHwvdVc+LzkGmE9/+PtO6s8Tet+9a7HJ8DOH9Wt89Vco6R
-         x2vXDNlr2A6pinNEripZvIn2kBch+KxLIqTlxBuDKMqiAmfKtoaBoa/0LK1eu+wpa1/5
-         fwpYE1DeQ4yc4jrGiaDL4ppnA2wxA7ikfnNZU5Fi+SzyTf8UU5ZoJZbYRUm20l8s384y
-         r0MKAW+DxWsUi+BfQM+O/mH4y73+XHEscyElcWqMo5IM8VyhoEfCRb+plNMIKHvBvclt
-         Js4A==
+        d=linaro.org; s=google; t=1702577902; x=1703182702; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=aUXxNIE0oyhaGNjYhqDm71JIvcw2/l7lxWAlHlBLujc=;
+        b=kAgstMJo59Uulo15INN4HDJUpYM5JnIK6OhLAqGBKXFXoFlG5KzO0OKnGvj4x4U1Bt
+         99U6Uvg4F/Zk1hRyp2EmW80qYBzV5GpZEbazT3cPB6GdhyfI2vcVP+4zQfavpPs0nE7M
+         U8V/ngLyCpW8C5xBQEv5+IExNEGawEBMITF0FyCrq919AnehwLZsPVTQVUUdGk7IOuTK
+         sAPpyuluR7T+QQxIqxbKHFT0N0boAPJXS83QT5uW5RDGvkZl2sRO3pNENlzq/BNMDq/Z
+         eiweJL7VX7z7LWsbTokpTJTJuaLxe6UQYEDWr7d4GJKkbUuBsI1XmZmhuatJ0aPW+SKA
+         mdLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702577640; x=1703182440;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Jeq677NEMB1IsnQAjs4/+yBvpQgDXfs4klZEe8r6nwY=;
-        b=VWcGZubT5n+Et6nLCW9ELd+0dHxX4Qfw4+A+0vew75orcrQ7K/Dc1HXL3M29Mp9JlK
-         8AhDjkX1aPwvkFNFgWkaCzAnMrpvsk+StzvcpKoCXSFW4A50L2y4TrqD6Y8DQVWOhSRa
-         6qo93uEbXV+CH4LIiGXK2davKC8PLtY2j4NMAiUuwOLGTlpLu1uPbS+ga7GZOpUlQpnB
-         ngxL8uCq8NyDXDCWsnxkiAEX4Bbw39hdRQEmGPjZv5+AoO4CjrqIiDpHBZ4wWQlUTOYS
-         fKy//g7yjROulDcCtejl7ikhMJ8kQuHj9h70geTQtMSLLMvTFQ/23sYtQpaqB1ewneuJ
-         bH4w==
-X-Gm-Message-State: AOJu0Ywrx/KVl8+xbUerqh5O60QLU89h/rS9h3/p/h3qSeui6kjsbgi3
-	JLS3g3TSc6ueNo5Yukv4VlNciw==
-X-Google-Smtp-Source: AGHT+IH+63IBJ9rieYmdKRPNhHxIM+WiKLHtfWsJ9OIE/+7mq19A5B8k4ZmO4Euqa6cdaiIKAp6nLg==
-X-Received: by 2002:a19:e043:0:b0:50e:17df:a992 with SMTP id g3-20020a19e043000000b0050e17dfa992mr815321lfj.33.1702577640041;
-        Thu, 14 Dec 2023 10:14:00 -0800 (PST)
-Received: from [127.0.1.1] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id n11-20020a0565120acb00b0050be6038170sm1928838lfu.48.2023.12.14.10.13.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Dec 2023 10:13:59 -0800 (PST)
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Date: Thu, 14 Dec 2023 19:13:43 +0100
-Subject: [PATCH 6/6] arm64: dts: qcom: sc8180x-primus: Allow UFS regulators
- load/mode setting
+        d=1e100.net; s=20230601; t=1702577902; x=1703182702;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=aUXxNIE0oyhaGNjYhqDm71JIvcw2/l7lxWAlHlBLujc=;
+        b=V8pvXPwHrr3GQ03/jVs5ZsQU7XN89iOD4CPdDWStz8G5gPAoXzQOF7tRc4Rjvs57By
+         FvvHcFticPzTbOJ112+UjDtYG5MYeAlA5Kdu3m7TtC2a8kmH0p4LFy9Fmbyr6vCQvd3G
+         M4oqcRvwhxZRjiKTAUvZKXveyXl/GW0FBNw4n3YhSbIlWq2IgltA2AxVTvbhPqC5xXsF
+         otuWMV1/TOdo859zGgleuBQBs+o07tVEV4mDs+RxUhBV9iVdDZeCQVz3TRwyRGc7+vPn
+         sODDI98lkzyvE70xfZvoc4CgqMN4yPzrdHA+9Qt8WYGPYMixG2LwjXAoZNhZ5Q5ma194
+         40Ww==
+X-Gm-Message-State: AOJu0YyJ6uC/buU6j4Gar7GgWtuGl9lJYz5AcXunk8D1IPOYdqkYGDZH
+	dFz5HCnvN5RX4cjBpG3K1x07yQ==
+X-Google-Smtp-Source: AGHT+IHPvoFv9KvPlT+AD1GWaLtelWYGlfY72peH/oBCnqzIcbZPrWCVcWP96N2Eo12F9Pm8pvzRCA==
+X-Received: by 2002:a05:6512:398f:b0:50e:15de:9931 with SMTP id j15-20020a056512398f00b0050e15de9931mr1257549lfu.24.1702577902567;
+        Thu, 14 Dec 2023 10:18:22 -0800 (PST)
+Received: from [172.30.205.72] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id c16-20020a056512105000b0050d1a0e7129sm1659686lfb.291.2023.12.14.10.18.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Dec 2023 10:18:22 -0800 (PST)
+Message-ID: <92e9039b-a0e3-4f93-aaa8-226ef9e8b613@linaro.org>
+Date: Thu, 14 Dec 2023 19:18:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231214-topic-sc8180_fixes-v1-6-421904863006@linaro.org>
-References: <20231214-topic-sc8180_fixes-v1-0-421904863006@linaro.org>
-In-Reply-To: <20231214-topic-sc8180_fixes-v1-0-421904863006@linaro.org>
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Georgi Djakov <djakov@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Maximilian Luz <luzmaximilian@gmail.com>, 
- Gustave Monce <gustave.monce@outlook.com>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.13-dev-0438c
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 7/8] arm64: dts: qcom: ipq5332: add support for the
+ NSSCC
+Content-Language: en-US
+To: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Richard Cochran <richardcochran@gmail.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20231211-ipq5332-nsscc-v3-0-ad13bef9b137@quicinc.com>
+ <20231211-ipq5332-nsscc-v3-7-ad13bef9b137@quicinc.com>
+ <c4034715-53a5-468e-914a-3f19d0618c42@linaro.org>
+ <8cc2a8ec-632e-4e3b-b13b-d1523a61c136@quicinc.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <8cc2a8ec-632e-4e3b-b13b-d1523a61c136@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Level: *
 
-The UFS driver expects to be able to set load (and by extension, mode)
-on the supplied regulators. Add the necessary properties to make that
-possible.
 
-Fixes: 2ce38cc1e8fe ("arm64: dts: qcom: sc8180x: Introduce Primus")
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/boot/dts/qcom/sc8180x-primus.dts | 6 ++++++
- 1 file changed, 6 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8180x-primus.dts b/arch/arm64/boot/dts/qcom/sc8180x-primus.dts
-index adddf360c7fc..bfee60c93ccc 100644
---- a/arch/arm64/boot/dts/qcom/sc8180x-primus.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8180x-primus.dts
-@@ -386,12 +386,18 @@ vreg_l7e_1p8: ldo7 {
- 			regulator-min-microvolt = <1800000>;
- 			regulator-max-microvolt = <1800000>;
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
- 		};
- 
- 		vreg_l10e_2p9: ldo10 {
- 			regulator-min-microvolt = <2904000>;
- 			regulator-max-microvolt = <2904000>;
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
- 		};
- 
- 		vreg_l12e: ldo12 {
+On 12/11/23 14:28, Kathiravan Thirumoorthy wrote:
+> 
+> 
+> On 12/11/2023 4:02 PM, Konrad Dybcio wrote:
+>> On 11.12.2023 04:37, Kathiravan Thirumoorthy wrote:
+>>> Describe the NSS clock controller node and it's relevant external
+>>> clocks.
+>>>
+>>> Signed-off-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+>>> ---
+>>>   arch/arm64/boot/dts/qcom/ipq5332.dtsi | 28 ++++++++++++++++++++++++++++
+>>>   1 file changed, 28 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+>>> index 42e2e48b2bc3..a1504f6c40c1 100644
+>>> --- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+>>> @@ -15,6 +15,18 @@ / {
+>>>       #size-cells = <2>;
+>>>       clocks {
+>>> +        cmn_pll_nss_200m_clk: cmn-pll-nss-200m-clk {
+>>> +            compatible = "fixed-clock";
+>>> +            clock-frequency = <200000000>;
+>>> +            #clock-cells = <0>;
+>>> +        };
+>>> +
+>>> +        cmn_pll_nss_300m_clk: cmn-pll-nss-300m-clk {
+>>> +            compatible = "fixed-clock";
+>>> +            clock-frequency = <300000000>;
+>>> +            #clock-cells = <0>;
+>>> +        };
+>>> +
+>>>           sleep_clk: sleep-clk {
+>>>               compatible = "fixed-clock";
+>>>               #clock-cells = <0>;
+>>> @@ -473,6 +485,22 @@ frame@b128000 {
+>>>                   status = "disabled";
+>>>               };
+>>>           };
+>>> +
+>>> +        nsscc: clock-controller@39b00000{
+>> Missing space between the opening curly brace
+> 
+> My bad :( will fix it in next spin.
+> 
+>>
+>>> +            compatible = "qcom,ipq5332-nsscc";
+>>> +            reg = <0x39b00000 0x80000>;
+>> the regmap_config in the clk driver has .max_register = 0x800, is this
+>> correct?
+> 
+> As per the memory map, 512KB is the size of this block. However the last register in that region is at the offset 0x800. Shall I update the max_register also to 512KB to keep it consistency?
+No, it's fine, I just wanted to know if it's intentional :)
 
--- 
-2.40.1
+Thanks!
 
+Konrad
 
