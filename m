@@ -1,146 +1,77 @@
-Return-Path: <devicetree+bounces-25058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25059-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D978F8123F8
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 01:37:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E897812403
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 01:43:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4125CB20E9D
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 00:37:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 50B251C20490
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 00:43:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88965389;
-	Thu, 14 Dec 2023 00:37:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC5D438E;
+	Thu, 14 Dec 2023 00:43:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=jms.id.au header.i=@jms.id.au header.b="Hi8bRobk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13147E4;
-	Wed, 13 Dec 2023 16:37:01 -0800 (PST)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-	by fd01.gateway.ufhost.com (Postfix) with ESMTP id 9F1387F98;
-	Thu, 14 Dec 2023 08:36:58 +0800 (CST)
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 14 Dec
- 2023 08:36:58 +0800
-Received: from EXMBX066.cuchost.com (172.16.7.66) by EXMBX168.cuchost.com
- (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 14 Dec
- 2023 08:36:58 +0800
-Received: from EXMBX066.cuchost.com ([fe80::5947:9245:907e:339f]) by
- EXMBX066.cuchost.com ([fe80::5947:9245:907e:339f%17]) with mapi id
- 15.00.1497.044; Thu, 14 Dec 2023 08:36:57 +0800
-From: JeeHeng Sia <jeeheng.sia@starfivetech.com>
-To: Conor Dooley <conor@kernel.org>
-CC: "kernel@esmil.dk" <kernel@esmil.dk>, "robh+dt@kernel.org"
-	<robh+dt@kernel.org>, "krzysztof.kozlowski+dt@linaro.org"
-	<krzysztof.kozlowski+dt@linaro.org>, "krzk@kernel.org" <krzk@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "paul.walmsley@sifive.com"
-	<paul.walmsley@sifive.com>, "palmer@dabbelt.com" <palmer@dabbelt.com>,
-	"aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>, "daniel.lezcano@linaro.org"
-	<daniel.lezcano@linaro.org>, "tglx@linutronix.de" <tglx@linutronix.de>,
-	"anup@brainfault.org" <anup@brainfault.org>, "gregkh@linuxfoundation.org"
-	<gregkh@linuxfoundation.org>, "jirislaby@kernel.org" <jirislaby@kernel.org>,
-	"michal.simek@amd.com" <michal.simek@amd.com>, Michael Zhu
-	<michael.zhu@starfivetech.com>, "drew@beagleboard.org"
-	<drew@beagleboard.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-riscv@lists.infradead.org"
-	<linux-riscv@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: RE: [PATCH v3 2/6] dt-bindings: riscv: Add StarFive JH8100 SoC
-Thread-Topic: [PATCH v3 2/6] dt-bindings: riscv: Add StarFive JH8100 SoC
-Thread-Index: AQHaJE/+BLI69uGa3k+hymTbPrUHV7CmtRSAgAFNEpA=
-Date: Thu, 14 Dec 2023 00:36:57 +0000
-Message-ID: <f6665b5c235148279104c4c3fa9ff080@EXMBX066.cuchost.com>
-References: <20231201121410.95298-1-jeeheng.sia@starfivetech.com>
- <20231201121410.95298-3-jeeheng.sia@starfivetech.com>
- <20231213-imminent-favorable-a7d25e6555af@spud>
-In-Reply-To: <20231213-imminent-favorable-a7d25e6555af@spud>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-ms-exchange-transport-fromentityheader: Hosted
-x-yovoleruleagent: yovoleflag
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31F37E0;
+	Wed, 13 Dec 2023 16:43:44 -0800 (PST)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-a22deb95d21so369148366b.3;
+        Wed, 13 Dec 2023 16:43:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jms.id.au; s=google; t=1702514622; x=1703119422; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=RLpB5md1tEE7IuK+B3sruEQW7P8lycC54rVRstoSoLw=;
+        b=Hi8bRobkZd38MwIzsqox+5Fcdlmia96Suk8wc1VIHEWj9K2IBhKp0X34q5X7N+Blbw
+         AXPXhYgY0MYjl9zgSGcv40HYSnMPMuJ7wr4AJRlbItQNTGcwdBN+c9AuOGoTWRj4+/Rw
+         aTHm1flvFdLq+wpQfjPISiltbvpR1eLba8FYI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702514622; x=1703119422;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RLpB5md1tEE7IuK+B3sruEQW7P8lycC54rVRstoSoLw=;
+        b=c4HspHSEBFpSJ3phKJCF+4B8m0K7qjzJqEIGSrBBe/YgPDMI2Va6H/aCwqRnXpPN8L
+         1zgLXPvefR5OpA5tawoduxxZrBYGyMVzxTYtOgA2Llgg9p7XMFKYPM74ajNfds3XTZAn
+         YrzDQsn6GDIceZk6XOw/c0mU5e1hbEdPhfX2VdiDw1VeLxJInGVBcyILiqcfnLFqiqtW
+         gHFxrTys936d9Xc0MhSNMSTHclwAvGWbgHn9O2SZn4qAi3CbMMVkfAJoAYaeC4WCYupj
+         v66jc4QtUdcV/sv4XMWg2eqa9pDdigAlAl3lbst0aQmdaE1v9v5A2TFwA2U/nhrxGIRR
+         /+oA==
+X-Gm-Message-State: AOJu0YxtfUZbW1e44d6dQxjUSyWcXa5/tHV6MK7y+x+3XodmlitHpMIf
+	pdapfqDqpy7cmROvBpuAcnFBUCLMv2FDyhDVVBw=
+X-Google-Smtp-Source: AGHT+IFa9Zm+LfMZFPUZavztuLcHzT2Ycn1Vj82hIrX/b4xCeE4xJgbmsr48xQ/aHgS2Y86FFkv1fdkhWTwCmE5Nadc=
+X-Received: by 2002:a17:906:1750:b0:a19:a19b:c746 with SMTP id
+ d16-20020a170906175000b00a19a19bc746mr3703966eje.150.1702514622267; Wed, 13
+ Dec 2023 16:43:42 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20231212075200.983536-1-yangchen.openbmc@gmail.com>
+In-Reply-To: <20231212075200.983536-1-yangchen.openbmc@gmail.com>
+From: Joel Stanley <joel@jms.id.au>
+Date: Thu, 14 Dec 2023 11:13:30 +1030
+Message-ID: <CACPK8Xc7XjgBj-SQH45=omjEXd-BpXgcQDp6s8UkJ8QsbnYSPg@mail.gmail.com>
+Subject: Re: [PATCH 00/11] Modify DTS of META Minerva CMM BMC(AST2600)
+To: Yang Chen <yangchen.openbmc@gmail.com>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	andrew@codeconstruct.com.au, patrick@stwcx.xyz, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+	linux-kernel@vger.kernel.org, Jerry.Lin@quantatw.com, EasonChen1@quantatw.com, 
+	Leslie.Tong@quantatw.com
+Content-Type: text/plain; charset="UTF-8"
 
+On Tue, 12 Dec 2023 at 18:24, Yang Chen <yangchen.openbmc@gmail.com> wrote:
+>
+> This series modifies the DTS of the Minerva CMM which is the board on the
+> META platform that uses the ASPEED SoC(AST2600).
 
+Looks good. I've merged this for submission in v6.8.
 
-> -----Original Message-----
-> From: Conor Dooley <conor@kernel.org>
-> Sent: Wednesday, December 13, 2023 8:43 PM
-> To: JeeHeng Sia <jeeheng.sia@starfivetech.com>
-> Cc: kernel@esmil.dk; robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.or=
-g; krzk@kernel.org; conor+dt@kernel.org;
-> paul.walmsley@sifive.com; palmer@dabbelt.com; aou@eecs.berkeley.edu; dani=
-el.lezcano@linaro.org; tglx@linutronix.de;
-> anup@brainfault.org; gregkh@linuxfoundation.org; jirislaby@kernel.org; mi=
-chal.simek@amd.com; Michael Zhu
-> <michael.zhu@starfivetech.com>; drew@beagleboard.org; devicetree@vger.ker=
-nel.org; linux-riscv@lists.infradead.org; linux-
-> kernel@vger.kernel.org; Leyfoon Tan <leyfoon.tan@starfivetech.com>; Conor=
- Dooley <conor.dooley@microchip.com>
-> Subject: Re: [PATCH v3 2/6] dt-bindings: riscv: Add StarFive JH8100 SoC
->=20
-> On Fri, Dec 01, 2023 at 08:14:06PM +0800, Sia Jee Heng wrote:
-> > Add device tree bindings for the StarFive JH8100 RISC-V SoC.
-> >
-> > Signed-off-by: Sia Jee Heng <jeeheng.sia@starfivetech.com>
-> > Reviewed-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
-> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> > ---
-> >  Documentation/devicetree/bindings/riscv/starfive.yaml | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/riscv/starfive.yaml b/Do=
-cumentation/devicetree/bindings/riscv/starfive.yaml
-> > index cc4d92f0a1bf..12d7844232b8 100644
-> > --- a/Documentation/devicetree/bindings/riscv/starfive.yaml
-> > +++ b/Documentation/devicetree/bindings/riscv/starfive.yaml
-> > @@ -30,6 +30,10 @@ properties:
-> >                - starfive,visionfive-2-v1.3b
-> >            - const: starfive,jh7110
-> >
-> > +      - items:
-> > +          - enum:
-> > +              - starfive,jh8100-evb
->=20
-> Hmm, reading some of the other threads it appears that the evaluation
-> platform that you guys have is actually just an FPGA? Could you please
-> provide more information as to what this "evb" actually is?
->=20
-> If it is just an FPGA-based evaluation platform I don't think that we
-> want to merge patches for the platform. I'm fine with patches adding
-> peripheral support, but the soc/board dts files and things like pinctrl
-> or clock drivers I am not keen on.
-> Perhaps Emil also has an opinion on this.
-Eco the same reply here. I am not sure what you mean. We verified on FPGA &=
- Emulator,
-and the logic is pretty much close to the real silicon. I did mention that =
-in the cover letter as well.
-I am new to Linux, so I am wondering if there is a Linux upstream guideline=
- mentioning
-that pre-silicon software is not allowed to upstream? Hope there is an upda=
-ted Linux
-upstream guideline that benefit other vendors.
->=20
-> Thanks,
-> Conor.
->=20
-> > +          - const: starfive,jh8100
-> >  additionalProperties: true
-> >
-> >  ...
-> > --
-> > 2.34.1
-> >
-> >
+Reviewed-by: Joel Stanley <joel@jms.id.au>
 
