@@ -1,112 +1,152 @@
-Return-Path: <devicetree+bounces-25559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A26EC8139F3
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 19:28:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70B79813A07
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 19:34:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 426EFB20F29
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 18:28:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 29283281230
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 18:34:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2583F68B88;
-	Thu, 14 Dec 2023 18:28:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5369D5A0FD;
+	Thu, 14 Dec 2023 18:34:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WPtXTk3P"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="YNRAxn6N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63CE711B
-	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 10:28:08 -0800 (PST)
-Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2c9f85eff28so126494841fa.3
-        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 10:28:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702578486; x=1703183286; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3dQ/bNphB3A9w3rMAHBZdgKti0js2ncdlw9oeKElMsk=;
-        b=WPtXTk3P+HDrs3uQJk2aSLb/i2+JPz583dRblms8MojCBhue6IkkQ4hi1ZiAzlr1oN
-         Sd1wZwilY9O0V0HYHvkqSHWu09cZ40aw2R+83whdMrMqTVY3RzIehv1XFDFoD6DjBHw/
-         7A5g+W/y8F5jS7tUOZ0xgGB0cxCl9jBsJXMRjJDnqx0rGM0GM2it64NoPUTRXJeUZ9xf
-         4rc137P9ZT/+/YZ0F9Ee27xLZqP7i5rI9c2KPR4z0VFe9OuQ0pLuf+E7mmc7SAhNMBfA
-         4vF6HRfOfMz0D40dRaxOtMYR74qi1mjJed/oyUTZ4NzxsMhI6W+ZaEITUi65tqKydfEt
-         cHBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702578486; x=1703183286;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3dQ/bNphB3A9w3rMAHBZdgKti0js2ncdlw9oeKElMsk=;
-        b=wfsxsGohE5lWFPOQBuSx30YSmOVhD/PjuTjVUPzEzMkakq9jU5D2eNmA7VPTXczdDE
-         knCMcK8I35UMyXxBVCGsU6xyQWsl8Rdt2Ek87HiHFTw6DMOdRjMcdWiiewPVTl4mScmb
-         F3CRFvo+i3z31uCQhzqG2eVe7rxJHvupd0R2aWd1NaQZqYur9SMZwpG+FzjYsssqbA6X
-         bhOiw7q4Qseaw5QNGnOZ72AN+R4K4oQ9KeYw4Q++0peMb/93mUiYUhbCFKUyqMZbG/Tg
-         o0jLYn5oWI68UTBDCq589QV/aqpzegND6+urYsAomMgqqUkcGTxS8uMLtmfjRe7qdzm2
-         FRAQ==
-X-Gm-Message-State: AOJu0Yz7nNhlZ6rqMg7jBQhlB/B3uNmF200x7GqhTYUlU5tjTCk7JZBw
-	YU41746x8Z84gDV0xA1Iprj1PA==
-X-Google-Smtp-Source: AGHT+IGlrjmnV9pxVjOkym/WuJNu96Q2GiosakZnW0q0/cRNqUnsQz5lvmib3MqI4Be8NJa/p3hYSw==
-X-Received: by 2002:a2e:a4b6:0:b0:2cc:1d8f:b372 with SMTP id g22-20020a2ea4b6000000b002cc1d8fb372mr3691692ljm.53.1702578486607;
-        Thu, 14 Dec 2023 10:28:06 -0800 (PST)
-Received: from [172.30.205.72] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id z6-20020a2e7e06000000b002ca25f11f56sm2084008ljc.103.2023.12.14.10.28.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Dec 2023 10:28:06 -0800 (PST)
-Message-ID: <65c551e7-25f2-48d2-97b6-af609807b7d0@linaro.org>
-Date: Thu, 14 Dec 2023 19:28:04 +0100
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94D74CF;
+	Thu, 14 Dec 2023 10:34:04 -0800 (PST)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3BEIXumW081352;
+	Thu, 14 Dec 2023 12:33:56 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1702578836;
+	bh=gh6wsVmxg2mdw23YLINnnRtb54FDmZeh9eGm3PU2HB8=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=YNRAxn6N8nGXxxOZzwgnuKtKiw2T6hSJ14VYlNlUpn73iGLpOcfmsCfx2d2ucouKd
+	 h+rLRG0rAqYezA4BzQ3qd8t6ET4xMQtwCnrbj3hiJziU1GSZ1D6Aj8vRDDtq4f6Wb+
+	 w4dzAA/6pWnEr/jLBzrFHSb8pjbl1DHhM/Ru+Xbc=
+Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3BEIXuYT020753
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 14 Dec 2023 12:33:56 -0600
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 14
+ Dec 2023 12:33:56 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 14 Dec 2023 12:33:56 -0600
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3BEIXuDU063957;
+	Thu, 14 Dec 2023 12:33:56 -0600
+Date: Thu, 14 Dec 2023 12:33:56 -0600
+From: Nishanth Menon <nm@ti.com>
+To: Andrew Davis <afd@ti.com>
+CC: Vaishnav Achath <vaishnav.a@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <j-choudhary@ti.com>,
+        <u-kumar1@ti.com>
+Subject: Re: [PATCH 2/3] arm64: dts: ti: Introduce J722S family of SoCs
+Message-ID: <20231214183356.hi5d6cuqmqltiy6i@footnote>
+References: <20231213124930.3012-1-vaishnav.a@ti.com>
+ <20231213124930.3012-3-vaishnav.a@ti.com>
+ <20231213202705.6tspycl5qicb6gwd@germproof>
+ <08eccba2-41df-91e7-c1e5-e03190402c23@ti.com>
+ <20231214122713.qx7as6grpvlq3ylw@stoic>
+ <f2bc6c68-742a-4a21-956e-91ee0933dd96@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] ARM: dts: qcom: msm8926-motorola-peregrine: Add
- initial device tree
-Content-Language: en-US
-To: =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>,
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
- ~postmarketos/upstreaming@lists.sr.ht
-References: <20231213-peregrine-v1-0-5229e21bca3f@apitzsch.eu>
- <e7f8e4bf-080d-4bb4-99ca-727d2d00f55d@linaro.org>
- <1d5de5547d5980da6040bf1c9bfc7fc3c32de88c.camel@apitzsch.eu>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <1d5de5547d5980da6040bf1c9bfc7fc3c32de88c.camel@apitzsch.eu>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Level: *
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <f2bc6c68-742a-4a21-956e-91ee0933dd96@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-
-
-On 12/14/23 09:18, André Apitzsch wrote:
-> Am Mittwoch, dem 13.12.2023 um 21:44 +0100 schrieb Konrad Dybcio:
->>
->>
->> On 12/13/23 21:33, André Apitzsch wrote:
->>> This dts adds support for Motorola Moto G 4G released in 2013.
->> I have a similar one in my drawer.. not the 4g kind, titan IIRC?
->> Wasn't this one codenamed thea?
->>
->> Konrad
+On 09:43-20231214, Andrew Davis wrote:
+> On 12/14/23 6:27 AM, Nishanth Menon wrote:
+> > On 14:07-20231214, Vaishnav Achath wrote:
+> > [..]
+> > > > Trim this down to what is different from AM62P?
+> > > > 
+> > > 
+> > > Thanks for the review, I will trim this down in next revision, but the above is
+> > > just a summary of the main features of this SoC, pointing to AM62P feature set
+> > > here seems confusing to me. why does a new user/developer using J722S need to be
+> > > aware of the existence of AM62P to just understand a high level summary about
+> > > this device?
+> > 
+> > Since this is a reuse device. Helps with review and focus on deltas.
+> > 
+> > [...]
+> > 
+> > > > > +	l2_0: l2-cache0 {
+> > > > > +		compatible = "cache";
+> > > > > +		cache-unified;
+> > > > > +		cache-level = <2>;
+> > > > > +		cache-size = <0x80000>;
+> > > > > +		cache-line-size = <64>;
+> > > > > +		cache-sets = <512>;
+> > > > > +	};
+> > > > 
+> > > > ^^ this is a duplication of am62p5.dtsi? what about the spins with
+> > > > different CPUs enabled?
+> > > > 
+> > > 
+> > > Yes it is a duplicate, as of now we are not aware of plan for spins with cores
+> > > disabled, so just followed the pattern followed for other Jacinto devices
+> > > (J721e, J7200, J721s2, J784s4).
+> > 
+> > None of the devices have been as close a reuse device as this has been.
 > 
-> Yes, thea is the 2nd generation of Moto G 4G, released in 2014.
-> pregrine is the first generation, from 2013.
+> I'd argue J721e and J7200 are more similar in terms of reuse. It was a
+> mistake to model them as simple super/subsets of each other, only causes
+> confusion later. Let's keep at least this top level file, we will end up
+> using it more as more features/deltas are enabled/found.
 > 
-> Should
->> model = "Motorola Moto G 4G";
-> be updated, to reflect that it is 1st gen or should only "thea" (if it
-> is added at all) have an addition in the model name?
-I *think* it'd be good to make it
 
-"Motorola Moto G 4G (2014)"
+yes, we do need a top level dtsi for the SoC. just minimize the amount
+of duplication.
 
-as I think it's what it was called anyway
+[...]
+> > > 
+> > > [    7.492406] platform 79000000.r5f: configured R5F for remoteproc mode
+> > > [    7.499887] platform 79000000.r5f: device does not have reserved memory
+> > > regions, ret = -22
+> > > [    7.508271] k3_r5_rproc bus@f0000:bus@4000000:r5fss@79000000: reserved memory
+> > > init failed, ret = -22
+> > > [    7.517549] remoteproc remoteproc0: releasing 79000000.r5f
+> > > [    7.523338] k3_r5_rproc bus@f0000:bus@4000000:r5fss@79000000:
+> > > k3_r5_cluster_rproc_init failed, ret = -22
+> > > [    7.532993] k3_r5_rproc: probe of bus@f0000:bus@4000000:r5fss@79000000 failed
+> > > with error -22
+> > 
+> > Yes, and the approach should rather be to disable the remote procs in
+> > the board or at the SoC dtsi in a consistent manner. I had previously
+> > suggested to do that SoC level (which means at am62p dtsi) since the remoteprocs have direct
+> > dependency on how the memory layouts are partitioned in board.dts - but
+> > i had asked folks working on remote procs to do that consistently across
+> > SoCs. I don't see that having been done so far.
+> > 
+> 
+> I fixed this for a couple SoCs way back last year (7e48b665100ee), seems
+> folks kept adding mailboxes/rprocs un-disabled in the base .dtbi for
+> new SoCs anyway :( This needs fixed in AM62p .dtsi first, then these
+> disables can be removed from here.
+> 
 
-Konrad
+Yes, hence blocking it from here on. Cleanup, then add.
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
