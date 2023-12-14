@@ -1,50 +1,60 @@
-Return-Path: <devicetree+bounces-25361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25362-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C218813045
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 13:37:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E4B2813070
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 13:43:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F15D21F215AA
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 12:37:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2FFCA1F22175
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 12:43:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9027F4B5C1;
-	Thu, 14 Dec 2023 12:37:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 438454D132;
+	Thu, 14 Dec 2023 12:43:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="PFP68CkX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GuBkbk8X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8647A3;
-	Thu, 14 Dec 2023 04:37:12 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3BECalJU050485;
-	Thu, 14 Dec 2023 06:36:47 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1702557407;
-	bh=TSUxD9N2i45CrrsNEHmHpgIpWr3SEY4PWG7zHxl+92o=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=PFP68CkXolHp53YdB2DXr0cXJMdLc1g1rUxl2zaIbcFty1PxfBAJAnHBfXIu/XoVI
-	 mG8nVCaIEGoz7bEfzQoU9jsfpaaKXn/mVb3qcySEm63OhWLKxcHYyg5jM5dx17EH7r
-	 OrZPhV5UnOt2//8+kOGAw7V+XUft2LV6wq9USg1U=
-Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3BECalIc018999
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 14 Dec 2023 06:36:47 -0600
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 14
- Dec 2023 06:36:46 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 14 Dec 2023 06:36:46 -0600
-Received: from [172.24.227.94] (uda0132425.dhcp.ti.com [172.24.227.94])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3BECagZo117923;
-	Thu, 14 Dec 2023 06:36:43 -0600
-Message-ID: <81531cd8-5625-474c-9cdc-0eb63e039cf3@ti.com>
-Date: Thu, 14 Dec 2023 18:06:41 +0530
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECA9D11D;
+	Thu, 14 Dec 2023 04:43:13 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-50bf2d9b3fdso10891313e87.3;
+        Thu, 14 Dec 2023 04:43:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702557792; x=1703162592; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DLS5Sl/tcs7UdHUclsP8wzE7HsHwHptKsbrYJkJgZGU=;
+        b=GuBkbk8X//vN2MqB3QH9cyd69URtayCAMJI12a8HoECoWdRwrkDVsnAhZ+q/Is84Pr
+         bIrt+2dEmsP4wXyOZtRghQO77n7wK2foJsDpEdotyABrYNkPWO4iUvawl/slzmWrvm0q
+         6h1fksVXcrhD5U3VJAzTLpDnCtMCfLv+6eQILKWQnA2GhIMjlsrQR43NsTcxEcnYzmJ7
+         ketzu+CDgiTuM1rxANdo8HBqnArsvQFTGXOZTcbUwgpsS5Dc1WH5mDGxA6VtDnvSZWvB
+         p3tSBD3vv/Ui6zeZHfINakAFjeydfrv+7TtcEqdAKigJK3QY8PLlOjWzKb0V3liaGLJo
+         q+wA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702557792; x=1703162592;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DLS5Sl/tcs7UdHUclsP8wzE7HsHwHptKsbrYJkJgZGU=;
+        b=Uwxo0wK8cIOGJzAeyKbxAH+9irj8ryaxKdpKDaKPYYOEKqn6EVGS58YmAZgK2QgQgI
+         wgo909Zue0WQXIZppT5EsVlHJuS7sdNjpbqNA1lfmKL+/HKHfetECA3WmUWFUnCZQcnB
+         6xPEM6J1ubnVWCKxCs3gNStwzly/IAOY3Fjfr+epmbUaLEB9MEtxvNTq7gsjysVg4z8/
+         RIaOQs1uCXxyyUbbMtdulGpAKWujhDfu/nhhbmtbCtdqQ8E0wEkMRV8VHLzs3q768kSY
+         PfuaNTWgO7Pw9xGT7prr9dQdjawbxHsLsJidFXHLkkpB9UeD/H4sEALyVfopXPEAGSLa
+         XcKA==
+X-Gm-Message-State: AOJu0YzLrFjBrHEE4+yWpdGc3KW9zBjA4tpDwbuxRnft/M3tHd35FdH7
+	M5NXY3v0fMSiJCkRbMoYI3Q=
+X-Google-Smtp-Source: AGHT+IGua8eR59eAZWjpuEYJuoRA4g6iYT9xAqu1nYyVI+ph0ivN3XaLaaXUVKwY8kqqIGO1CcwTQA==
+X-Received: by 2002:a05:6512:238f:b0:50d:1a7f:f76 with SMTP id c15-20020a056512238f00b0050d1a7f0f76mr5708024lfv.65.1702557791782;
+        Thu, 14 Dec 2023 04:43:11 -0800 (PST)
+Received: from [172.25.98.130] ([5.2.194.157])
+        by smtp.gmail.com with ESMTPSA id vh2-20020a170907d38200b00a1be80a0b69sm9324342ejc.58.2023.12.14.04.43.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Dec 2023 04:43:11 -0800 (PST)
+Message-ID: <e4a9dde7-dca6-4862-bfb3-a93b879c9a1f@gmail.com>
+Date: Thu, 14 Dec 2023 14:43:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,179 +62,139 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: ti: k3-am625-beagleplay: Use pwrseq for TI's
- wl18xx enable.
+Subject: Re: [PATCH v8 1/2] dt-bindings: adc: add AD7173
 Content-Language: en-US
-To: Sukrut Bellary <sukrut.bellary@linux.com>, Nishanth Menon <nm@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: Robert Nelson <robertcnelson@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <d-gole@ti.com>,
-        Shengyu Qu
-	<wiagn233@outlook.com>
-References: <20231213213219.566369-1-sukrut.bellary@linux.com>
-From: Vignesh Raghavendra <vigneshr@ti.com>
-In-Reply-To: <20231213213219.566369-1-sukrut.bellary@linux.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+To: David Lechner <dlechner@baylibre.com>
+Cc: linus.walleij@linaro.org, brgl@bgdev.pl, andy@kernel.org,
+ linux-gpio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Michael Walle <michael@walle.cc>,
+ Andy Shevchenko <andy.shevchenko@gmail.com>, Arnd Bergmann <arnd@arndb.de>,
+ ChiaEn Wu <chiaen_wu@richtek.com>, Niklas Schnelle <schnelle@linux.ibm.com>,
+ =?UTF-8?Q?Leonard_G=C3=B6hrs?= <l.goehrs@pengutronix.de>,
+ Mike Looijmans <mike.looijmans@topic.nl>, Haibo Chen <haibo.chen@nxp.com>,
+ Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+ Ceclan Dumitru <dumitru.ceclan@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231212104451.22522-1-mitrutzceclan@gmail.com>
+ <CAMknhBEfisaSbHhnnei=gT1HZvHNWHrJD3O2y4b_TikkH=v2Ag@mail.gmail.com>
+From: Ceclan Dumitru <mitrutzceclan@gmail.com>
+In-Reply-To: <CAMknhBEfisaSbHhnnei=gT1HZvHNWHrJD3O2y4b_TikkH=v2Ag@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi
 
-Thanks for the patch. Few comments
 
-On 14/12/23 03:02, Sukrut Bellary wrote:
-> BeaglePlay SBC has Texas Instrument's WL18xx WiFi Chipset.
+On 12/12/23 17:09, David Lechner wrote:
+> On Tue, Dec 12, 2023 at 11:45 AM Dumitru Ceclan <mitrutzceclan@gmail.com> wrote:
+>>
+>> The AD7173 family offer a complete integrated Sigma-Delta ADC solution
+>> which can be used in high precision, low noise single channel applications
+>> or higher speed multiplexed applications. The Sigma-Delta ADC is intended
+>> primarily for measurement of signals close to DC but also delivers
+>> outstanding performance with input bandwidths out to ~10kHz.
 > 
-> BeaglePlay SBC:
-> https://www.beagleboard.org/boards/beagleplay
+> As stated in [1], we should try to make complete bindings. I think
+> more could be done here to make this more complete. Most notably, the
+> gpio-controller binding is missing. Also maybe something is needed to
+> describe how the SYNC/ERROR pin is wired up since it can be an input
+> or an output with different functions?
 > 
-> TI WL18XX:
-> https://www.ti.com/lit/ds/symlink/wl1807mod.pdf
-> 
-> Currently, WLAN_EN is configured as regulator and regulator-always-on.
-> During hibernation thaw, WiFi fails to come online.
-> During freeze/suspend,
-> the WLAN_EN line is not put to low '0' to power down the WiFi.
-> So during restore, the WiFi driver tries to load the FW without following
-> correct power sequence.
-> WLAN_EN => '1'/assert (high) to power-up the chipset.
-> WLAN_EN => '0'/deassert (low) to shut-down the chipset.
-> 
-> thaw failure log below:
-> 
-> Use mmc-pwrseq-simple to drive TI's WiFi (WL18xx) chipset enable 'WLAN_EN'.
-> mmc-pwrseq-simple provides power sequence flexibility with support for
-> post power-on and power-off delays.
-> 
-> ================ thaw failure Log ================
-> [  161.418528] ------------[ cut here ]------------
-> [  161.418540] WARNING: CPU: 1 PID: 45 at drivers/net/wireless/ti/wlcore/sdio.c:123 wl12xx_sdio_raw_write+0xe4/0x168 [wlcore_sdio]
 
-Adding full stack dump is usually noise. This line alone should be
-sufficient to point to the location of dump. Besides you have the link
-to the full log for anyone looking for more details
+GPIO-controller:
+  '#gpio-cells':
 
-> [  161.418576] Modules linked in: br_netfilter bridge stp llc overlay usb_f_mass_storage usb_f_acm u_serial usb_f_ncm usb_f_rndis u_ether libcomposite wl18xx wlcore mac80211 libarc4 cfg80211 rfkill crct10dif_ce6[  161.418676] CPU: 1 PID: 45 Comm: kworker/u8:2 Not tainted 6.5.0-rc6+ #2
-> [  161.418684] Hardware name: BeagleBoard.org BeaglePlay (DT)
-> [  161.418691] Workqueue: events_unbound async_run_entry_fn
-> [  161.418711] pstate: 20000005 (nzCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
-> [  161.418719] pc : wl12xx_sdio_raw_write+0xe4/0x168 [wlcore_sdio]
-> [  161.418731] lr : wl12xx_sdio_raw_write+0x94/0x168 [wlcore_sdio]
-> [  161.418743] sp : ffff800082b43970
-> [  161.418746] x29: ffff800082b43970 x28: ffff800083c5b000 x27: 0000000000000003
-> [  161.418757] x26: ffff80007aab3800 x25: ffff800083c53000 x24: 0000000000000000
-> [  161.418767] x23: 0000000000004000 x22: ffff00000f938000 x21: ffff000005bd3010
-> [  161.418778] x20: 0000000000008000 x19: ffff000005bd2000 x18: 0000000000000000
-> [  161.418789] x17: 0000000000000100 x16: 0000000000000000 x15: f44fb9a9e0200014
-> [  161.418799] x14: 0000000000000049 x13: 000000000000038f x12: 0000000000000000
-> [  161.418809] x11: 0000000000000001 x10: 0000000000000a50 x9 : ffff800082b43550
-> [  161.418819] x8 : ffff000000ca2830 x7 : ffff00007fb92f40 x6 : 00000007e5428bd2
-> [  161.418829] x5 : 03ffffffffffffff x4 : ffff0000002569c0 x3 : 0000000000000000
-> [  161.418839] x2 : 0000000000000001 x1 : ffff000000256810 x0 : 00000000ffffff92
-> [  161.418850] Call trace:
-> [  161.418856]  wl12xx_sdio_raw_write+0xe4/0x168 [wlcore_sdio]
-> [  161.418869]  wlcore_raw_write.constprop.0+0x4c/0xac [wlcore]
-> [  161.418931]  wlcore_boot_upload_firmware+0x140/0x3c0 [wlcore]
-> [  161.418973]  wl18xx_boot+0x574/0x77c [wl18xx]
-> [  161.419011]  wl1271_op_add_interface+0x5f0/0xaa8 [wlcore]
-> [  161.419052]  drv_add_interface+0x3c/0x88 [mac80211]
-> [  161.419228]  ieee80211_reconfig+0x1a8/0xf1c [mac80211]
-> [  161.419330]  ieee80211_resume+0x54/0x70 [mac80211]
-> [  161.419432]  wiphy_resume+0x84/0xf8 [cfg80211]
-> [  161.419562]  device_resume+0x84/0x178
-> [  161.419576]  async_resume+0x28/0x74
-> [  161.419584]  async_run_entry_fn+0x34/0xe0
-> [  161.419596]  process_one_work+0x1e0/0x340
-> [  161.419605]  worker_thread+0x68/0x428
-> [  161.419613]  kthread+0x114/0x118
-> [  161.419620]  ret_from_fork+0x10/0x20
-> [  161.419630] ---[ end trace 0000000000000000 ]---
-> [  161.419726] wl1271_sdio mmc2:0001:2: sdio write failed (-110)
-> [  162.341981] wlcore: using inverted interrupt logic: 2
-> [  170.553515] ------------[ cut here ]------------
+    const: 2
+
+
+  gpio-controller: true
+Like this, in properties?
+
+Sync can only be an output, Error is configurable. Are there any
+examples for how something like this is described?
+
+...
+
+>> +  interrupts:
+>> +    maxItems: 1
 > 
-> [  180.315942] ieee80211 phy0: PM: dpm_run_callback(): wiphy_resume+0x0/0xf8 [cfg80211] returns -110
-> [  180.316090] ieee80211 phy0: PM: failed to thaw async: error -110
-> ======================================================
+> Shouldn't this be 2? The datasheet says there is a "Data Output Ready"
+> signal on the DOUT/RDY pin and an "Error Output" on the SYNC/ERROR
+> pin. Although I could see how RDY could be considered part of the SPI
+> bus. In any case, a description explaining what the interrupt is would
+> be useful.
 > 
-> Full thaw failure log -
-> https://gist.github.com/sukrutb/8b02a9ffa7bd1cb9fb514220e9af097e
+
+I do not see how there could be 2 interrupts. DOUT/RDY is used as an
+interrupt when waiting for a conversion to finalize.
+
+Sync and Error are sepparate pins, Sync(if enabled) works only as an
+input that resets the modulator and the digital filter.
+
+Error can be configured as input, output or ERROR output (OR between all
+internal error sources).
+
+Would this be alright
+  interrupts:
+
+    description: Conversion completion interrupt.
+		 Pin is shared with SPI DOUT.
+    maxItems: 1
+
+...
+
+>> +
+>> +patternProperties:
+>> +  "^channel@[0-9a-f]$":
+>> +    type: object
+>> +    $ref: adc.yaml
+>> +    unevaluatedProperties: false
+>> +
+>> +    properties:
+>> +      reg:
+>> +        minimum: 0
+>> +        maximum: 15
+>> +
+>> +      diff-channels:
+>> +        items:
+>> +          minimum: 0
+>> +          maximum: 31
 > 
-> Suggested-by: Shengyu Qu <wiagn233@outlook.com>
-> Signed-off-by: Sukrut Bellary <sukrut.bellary@linux.com>
-> ---
->  .../arm64/boot/dts/ti/k3-am625-beagleplay.dts | 25 ++++++++-----------
->  1 file changed, 10 insertions(+), 15 deletions(-)
+> Do we need to add overrides to limit the maximums for each compatible string?
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
-> index eadbdd9ffe37..d388c5e78658 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
-> @@ -83,6 +83,15 @@ wkup_r5fss0_core0_dma_memory_region: r5f-dma-memory@9db00000 {
->  		};
->  	};
->  
-> +	sdio_pwrseq: sdio-pwrseq {
-> +		compatible = "mmc-pwrseq-simple";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&wifi_en_pins_default>;
 
-> +		post-power-on-delay-ms = <1>;
-> +		power-off-delay-us = <80>;
+Just to be sure, in the allOf section?
+If yes, is there any other more elegant method to obtain this behavior?
 
-how did you arrive at these delay's. A comment to that order would be
-good to add.
+...
 
-> +		reset-gpios = <&main_gpio0 38 GPIO_ACTIVE_LOW>;
-> +	};
-> +
->  	vsys_5v0: regulator-1 {
->  		bootph-all;
->  		compatible = "regulator-fixed";
-> @@ -105,20 +114,6 @@ vdd_3v3: regulator-2 {
->  		regulator-boot-on;
->  	};
->  
-> -	wlan_en: regulator-3 {
-> -		/* OUTPUT of SN74AVC2T244DQMR */
-> -		compatible = "regulator-fixed";
-> -		regulator-name = "wlan_en";
-> -		regulator-min-microvolt = <1800000>;
-> -		regulator-max-microvolt = <1800000>;
-> -		enable-active-high;
-> -		regulator-always-on;
-> -		vin-supply = <&vdd_3v3>;
-> -		gpio = <&main_gpio0 38 GPIO_ACTIVE_HIGH>;
-> -		pinctrl-names = "default";
-> -		pinctrl-0 = <&wifi_en_pins_default>;
-> -	};
-> -
->  	vdd_3v3_sd: regulator-4 {
->  		/* output of TPS22918DBVR-U21 */
->  		bootph-all;
-> @@ -849,7 +844,6 @@ &sdhci1 {
->  };
->  
->  &sdhci2 {
-> -	vmmc-supply = <&wlan_en>;
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&wifi_pins_default>, <&wifi_32k_clk>;
->  	bus-width = <4>;
-> @@ -857,6 +851,7 @@ &sdhci2 {
->  	ti,fails-without-test-cd;
->  	cap-power-off-card;
->  	keep-power-in-suspend;
-> +	mmc-pwrseq = <&sdio_pwrseq>;
->  	ti,driver-strength-ohm = <50>;
->  	assigned-clocks = <&k3_clks 157 158>;
->  	assigned-clock-parents = <&k3_clks 157 160>;
+>> +
+>> +    required:
+>> +      - reg
+>> +      - diff-channels
+> 
+> Individual analog inputs can be used as single-ended or in pairs as
+> differential, right? If so, diff-channels should not be required to
+> allow for single-ended use.
+> 
+> And we would need to add something like a single-ended-channel
+> property to adc.yaml to allow mapping analog input pins to channels
+> similar to how diff-channels works, I think (I don't see anything like
+> that there already)?
+> 
+> So maybe something like:
+> 
+> oneOf:
+>   - required:
+>       single-ended-channel
+>   - required:
+>       diff-channels
+> 
+All channels must specify 2 analog input sources, there is no input
+source wired by default to AVSS.
 
--- 
-Regards
-Vignesh
+In my opinion, there is no need to specify channels as single-ended
+because that would require a property that specifies the input that is
+wired to AVSS.
 
