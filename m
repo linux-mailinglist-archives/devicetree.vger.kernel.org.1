@@ -1,128 +1,162 @@
-Return-Path: <devicetree+bounces-25069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25070-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A58648124D7
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 02:56:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CD2A8124E2
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 03:01:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B2D81F21105
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 01:56:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7FC871F20FBC
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 02:01:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EE5F65B;
-	Thu, 14 Dec 2023 01:56:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CC087ED;
+	Thu, 14 Dec 2023 02:01:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="CUDdPjAU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bbv6SkU2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57328F7;
-	Wed, 13 Dec 2023 17:56:09 -0800 (PST)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BE1XG8u032654;
-	Thu, 14 Dec 2023 01:56:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=pDwCxF94S9D0lgonY0fmhpzWERchJQlMltv0nwy5uFo=; b=CU
-	DdPjAULc0hxxfiOiLgDLidTO7qUHgf9hmih8SLRkmgVdugi7gyQZz9sm/1tiWPAK
-	PgnOCHg6/pcr5/Vaak/Y1awu5DXR3hw6dskuppP3YG/LyrFYiQxswq2JRAVHnl+R
-	LSE0oBy7RDBeXlRojSyCyPg3lDUdcze5GuK90VdCVaQN5iozTzeTO5jWDooO4Z3+
-	r2Mg7DBqPiygmd4iw6FLwyOf+fQZvHXrcUe2D2RtZdsm9QMqvXnWcnkqeaOhoLCG
-	B8DLJb+S2j1Pie7R+u5xO/E0ukFTkcBdf+IS1HsqdLj/9MnKHeHAj+Jn8Pocoq9O
-	yzvPzcZQjT4tmEpFlmTQ==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uyq9t053b-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Dec 2023 01:56:05 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BE1twZg018574
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Dec 2023 01:55:58 GMT
-Received: from [10.216.7.247] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 13 Dec
- 2023 17:55:54 -0800
-Message-ID: <4b73d53e-ee25-4764-a916-973674d83fc9@quicinc.com>
-Date: Thu, 14 Dec 2023 07:25:51 +0530
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D682656;
+	Thu, 14 Dec 2023 02:00:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FCE5C433C7;
+	Thu, 14 Dec 2023 02:00:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702519259;
+	bh=mJwp9Wt+3zEWxjwj3NDYHejaJVXV/U4TQs6qHUx4VHI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Bbv6SkU2FR2YvI6T24wzRg992B38pmh7L41ohUxSe6RXDkhpste+v8Cob4JbuN9jg
+	 jdCG3utQeZLu1nGgTVPcR46Fxy1m3aW8mf6NvCUF2aRpy8ZIIFBpjx6QNfLFnJeN8D
+	 JgfjFC7NCZakROeSipOhMOb2H0Azjj2lUOIUu5B76WL6a5JSi0OFFfrsZr3ri9WpJx
+	 dBV1AABeAZJyUo4doOWyNjhrNDLeyQmhcrCmP5+wm6Yau9G8w/2QEmzAIcmaBkDdaG
+	 1y6bJmfr1VNUT4EWbUeK1ZMsDAOUSuQwwilHV3F+YtkoVTAwkigMSlLpVxjK61lmrT
+	 8YzXqiz+Cu9Vw==
+Date: Thu, 14 Dec 2023 10:00:53 +0800
+From: Shawn Guo <shawnguo@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: imx@lists.linux.dev, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Joakim Zhang <qiangqing.zhang@nxp.com>,
+	Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/1] arm64: dts: imx8qm: Fix edma3 power-domains and
+ interrupt number
+Message-ID: <20231214020053.GQ270430@dragon>
+References: <20231206201256.1113800-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/5] arm64: dts: qcom: fix USB wakeup interrupts again
-Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Johan Hovold
-	<johan+linaro@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-CC: Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20231213173403.29544-1-johan+linaro@kernel.org>
- <e2ce47e8-fe27-4ca0-b295-cf7e12eae1ce@linaro.org>
-From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <e2ce47e8-fe27-4ca0-b295-cf7e12eae1ce@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: G6Qbz1WsjBl2O4jjcCFZmxwy7g5Y1RGW
-X-Proofpoint-GUID: G6Qbz1WsjBl2O4jjcCFZmxwy7g5Y1RGW
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
- mlxlogscore=576 suspectscore=0 adultscore=0 spamscore=0 lowpriorityscore=0
- malwarescore=0 impostorscore=0 priorityscore=1501 phishscore=0 bulkscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2311290000
- definitions=main-2312140004
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231206201256.1113800-1-Frank.Li@nxp.com>
 
-
-
-On 12/14/2023 12:19 AM, Konrad Dybcio wrote:
+On Wed, Dec 06, 2023 at 03:12:55PM -0500, Frank Li wrote:
+> Fixed a kernel dump when access edma3 registers.
 > 
+> [    1.517547] SError Interrupt on CPU1, code 0x00000000bf000002 -- SError
+> [    1.517556] CPU: 1 PID: 59 Comm: kworker/u8:2 Not tainted 6.7.0-rc3-next-20231129-dirty #3
+> [    1.517564] Hardware name: Freescale i.MX8QM MEK (DT)
+> [    1.517570] Workqueue: events_unbound deferred_probe_work_func
+> [    1.517593] pstate: 80000005 (Nzcv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+> [    1.517601] pc : vsnprintf+0x60/0x770
+> [    1.517612] lr : snprintf+0x58/0x80
+> [    1.517619] sp : ffff800082f0b9e0
+> [    1.517622] x29: ffff800082f0b9e0 x28: ffff8000819a8af8 x27: ffff000801f90080
+> [    1.517632] x26: ffff000801f90510 x25: 0000000000000001 x24: 0000000000000020
+> [    1.517640] x23: 00000000ffffffd8 x22: ffff000800114800 x21: ffff800082f0baf0
+> [    1.517650] x20: ffff000801f90698 x19: ffff000801f906b8 x18: ffffffffffffffff
+> [    1.517659] x17: 6e6f632d616d642e x16: 3030303066396135 x15: ffff800102f0b687
+> [    1.517668] x14: 0000000000000000 x13: 30206e6168632065 x12: 74697277203a7265
+> [    1.517677] x11: 6c6c6f72746e6f63 x10: 2d616d642e303030 x9 : 72656c6c6f72746e
+> [    1.517686] x8 : ffff000800396740 x7 : 205d333337383035 x6 : ffff800082f0baf0
+> [    1.517694] x5 : 00000000ffffffd8 x4 : ffff000800396740 x3 : ffff800082f0ba70
+> [    1.517703] x2 : ffff8000819a8af8 x1 : ffff800082f0baf0 x0 : 0000000000000025
+> [    1.517713] Kernel panic - not syncing: Asynchronous SError Interrupt
+> [    1.517718] CPU: 1 PID: 59 Comm: kworker/u8:2 Not tainted 6.7.0-rc3-next-20231129-dirty #3
+> [    1.517724] Hardware name: Freescale i.MX8QM MEK (DT)
+> [    1.517727] Workqueue: events_unbound deferred_probe_work_func
+> [    1.517736] Call trace:
+> [    1.517739]  dump_backtrace+0x90/0xe8
+> [    1.517752]  show_stack+0x18/0x24
+> [    1.517761]  dump_stack_lvl+0x48/0x60
+> [    1.517771]  dump_stack+0x18/0x24
+> [    1.517780]  panic+0x36c/0x3ac
+> [    1.517789]  nmi_panic+0x48/0x94
+> [    1.517796]  arm64_serror_panic+0x6c/0x78
+> [    1.517801]  do_serror+0x3c/0x78
+> [    1.517806]  el1h_64_error_handler+0x30/0x48
+> [    1.517813]  el1h_64_error+0x64/0x68
+> [    1.517819]  vsnprintf+0x60/0x770
+> [    1.517827]  snprintf+0x58/0x80
+> [    1.517834]  fsl_edma_probe+0x2ac/0x830
 > 
-> On 12/13/23 18:33, Johan Hovold wrote:
->> The USB DP/DM HS PHY interrupts need to be provided by the PDC interrupt
->> controller in order to be able to wake the system up from low-power
->> states and to be able to detect disconnect events, which requires
->> triggering on falling edges.
->>
->> A recent commit updated the trigger type but failed to change the
->> interrupt provider as required. This leads to the current Linux driver
->> failing to probe instead of printing an error during suspend and USB
->> wakeup not working as intended.
->>
->> While at it, fix also the SS PHY interrupt so that it too can be used to
->> wakeup the system up.
->>
->> Thanks to Konrad for reporting the probe failure on sc8180x and
->> providing the corresponding PDC interrupts and to Krishna for providing
->> the remaining PDC interrupts. The exception is for the second controller
->> on sm8150 whose PDC vectors I inferred from sdm845.
->>
->> Note sdm670 and sm6375 need similar fixes and I believe Bjorn is trying
->> to dig out the corresponding vectors. The SS PHY interrupt on sc8180x
->> should also be fixed.
-> sdm670:
+> It is eDMA1 at QM, which have the same register with eDMA3 at qxp.
 > 
-> pdc 9 DP
-> pdc 8 DM
-> pdc 6 usb3
-> 
-And for second controller of sdm670/sdm845,
+> Fixes: e4d7a330fb7a ("arm64: dts: imx8: add edma[0..3]")
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-pdc 11 DP
-pdc 10 DM
-pdc 7 SS
+Hi Frank,
 
-Regards,
-Krishna,
+Did you see the fix [1] from Xiaolei?  It has landed on Linus' tree.
+
+Shawn
+
+[1] https://lore.kernel.org/all/20231110072531.1957891-1-xiaolei.wang@windriver.com/
+
+> ---
+>  .../boot/dts/freescale/imx8qm-ss-dma.dtsi     | 27 +++++++++++++++++++
+>  1 file changed, 27 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8qm-ss-dma.dtsi b/arch/arm64/boot/dts/freescale/imx8qm-ss-dma.dtsi
+> index 01539df335f8c..5d76b4dee4cef 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8qm-ss-dma.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8qm-ss-dma.dtsi
+> @@ -44,6 +44,33 @@ can2_lpcg: clock-controller@5acf0000 {
+>  	};
+>  };
+>  
+> +/* It is eDMA1 in 8QM RM, but 8QXP it is eDMA3 */
+> +&edma3 {
+> +	reg = <0x5a9f0000 0x210000>;
+> +	dma-channels = <10>;
+> +	interrupts = <GIC_SPI 424 IRQ_TYPE_LEVEL_HIGH>,
+> +		     <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH>,
+> +		     <GIC_SPI 426 IRQ_TYPE_LEVEL_HIGH>,
+> +		     <GIC_SPI 427 IRQ_TYPE_LEVEL_HIGH>,
+> +		     <GIC_SPI 428 IRQ_TYPE_LEVEL_HIGH>,
+> +		     <GIC_SPI 429 IRQ_TYPE_LEVEL_HIGH>,
+> +		     <GIC_SPI 430 IRQ_TYPE_LEVEL_HIGH>,
+> +		     <GIC_SPI 431 IRQ_TYPE_LEVEL_HIGH>,
+> +		     <GIC_SPI 432 IRQ_TYPE_LEVEL_HIGH>,
+> +		     <GIC_SPI 433 IRQ_TYPE_LEVEL_HIGH>;
+> +	power-domains = <&pd IMX_SC_R_DMA_1_CH0>,
+> +			<&pd IMX_SC_R_DMA_1_CH1>,
+> +			<&pd IMX_SC_R_DMA_1_CH2>,
+> +			<&pd IMX_SC_R_DMA_1_CH3>,
+> +			<&pd IMX_SC_R_DMA_1_CH4>,
+> +			<&pd IMX_SC_R_DMA_1_CH5>,
+> +			<&pd IMX_SC_R_DMA_1_CH6>,
+> +			<&pd IMX_SC_R_DMA_1_CH7>,
+> +			<&pd IMX_SC_R_DMA_1_CH8>,
+> +			<&pd IMX_SC_R_DMA_1_CH9>;
+> +};
+> +
+> +/* It is edma0 in 8QM RM, but it is eDMA2 at 8QXP */
+>  &edma2 {
+>  	reg = <0x5a1f0000 0x170000>;
+>  	#dma-cells = <3>;
+> -- 
+> 2.34.1
+> 
 
