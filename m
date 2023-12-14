@@ -1,116 +1,108 @@
-Return-Path: <devicetree+bounces-25369-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25370-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 267EF8130E8
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 14:07:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 766768130F4
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 14:10:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CFEC11F2104C
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 13:07:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A63B1F21009
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 13:10:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C28B4F20A;
-	Thu, 14 Dec 2023 13:06:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8460524D3;
+	Thu, 14 Dec 2023 13:10:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oiul8Eew"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TtNVA4Pi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEA6041224;
-	Thu, 14 Dec 2023 13:06:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 829CFC433C9;
-	Thu, 14 Dec 2023 13:06:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702559218;
-	bh=4DmhfcKP5a7QiKawraF+mw/pvVqMPyK0S58+roaapOU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oiul8EewigOeqOx6Mi9PQ6UZF0YQOATTHlzqVv7wkqi4OqclyCpebjS1KjirRDmEJ
-	 SvN6nIAF5QFu3Rcpr05GHKOL9eWgDgCzQnhmYlLvXsoBM5YepIaVkkk87flH4foOMk
-	 HaEEHOk0t2MkerO7erR4Tg+mK9QVlxsBk7Li9xJ41U0gwmHV/F1W6wdcrgGytQYVC6
-	 l+8sai6EDx5PdMp0sZGLrrvruoCIlp5nUBPWXV5vXuL6jbYuhR4pxOxmDPiJk4Tuig
-	 EUYn8D2ZMCCIcBnTMtuI4S6P9Gk70pgl1fWKnsQog7jGOaMaIc+kHPMXoL5wrB9y7/
-	 vLwEC5YUsRGug==
-Date: Thu, 14 Dec 2023 14:06:54 +0100
-From: Wolfram Sang <wsa@kernel.org>
-To: Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: peter.griffin@linaro.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
-	sboyd@kernel.org, conor+dt@kernel.org, andi.shyti@kernel.org,
-	alim.akhtar@samsung.com, gregkh@linuxfoundation.org,
-	jirislaby@kernel.org, catalin.marinas@arm.com, will@kernel.org,
-	s.nawrocki@samsung.com, tomasz.figa@gmail.com,
-	cw00.choi@samsung.com, arnd@arndb.de, semen.protsenko@linaro.org,
-	andre.draszik@linaro.org, saravanak@google.com,
-	willmcvicker@google.com, linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-i2c@vger.kernel.org, linux-serial@vger.kernel.org
-Subject: Re: [PATCH 03/13] dt-bindings: i2c: exynos5: add google,gs101-hsi2c
- compatible
-Message-ID: <ZXr97owdnLq3viNc@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>, peter.griffin@linaro.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	mturquette@baylibre.com, sboyd@kernel.org, conor+dt@kernel.org,
-	andi.shyti@kernel.org, alim.akhtar@samsung.com,
-	gregkh@linuxfoundation.org, jirislaby@kernel.org,
-	catalin.marinas@arm.com, will@kernel.org, s.nawrocki@samsung.com,
-	tomasz.figa@gmail.com, cw00.choi@samsung.com, arnd@arndb.de,
-	semen.protsenko@linaro.org, andre.draszik@linaro.org,
-	saravanak@google.com, willmcvicker@google.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-i2c@vger.kernel.org, linux-serial@vger.kernel.org
-References: <20231214105243.3707730-1-tudor.ambarus@linaro.org>
- <20231214105243.3707730-4-tudor.ambarus@linaro.org>
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73F71118
+	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 05:10:21 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-54c67b0da54so10307645a12.0
+        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 05:10:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702559420; x=1703164220; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=AUIDfecuT3CPgdXD9xs9nBICujuqZFrFJljrYUStf5M=;
+        b=TtNVA4PiDYtLuFLRTcI7YwiGX9MV6OC+xM7vWbEVgc2QYsR43j++JwA8OAmVN1+JP8
+         I5qeDPtLSqclF60lK7nx4ycMVpGwgMPIcdvq6t2mSeGLkXp4MjM8SYvTSrFL9sfdI6+3
+         6kkCV2WEVaRyI0/XJl16x03WTnqzwsbqU+n1bNJXTb5s1XS85SWtUM1Wy1jw/MenNeUQ
+         VRFkb6OpRlLxq+6STt99wcZKHwiI+TllA/gQ4Z/ndem+owOn56QHHFmbhsZNZAzBk4zi
+         HOImXyC4wD8bMU7XJ6kNugiss0K9g/4bc40UHCkL47LMa4FJqk3HdDYgv4laPTHtp3Re
+         bIlQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702559420; x=1703164220;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AUIDfecuT3CPgdXD9xs9nBICujuqZFrFJljrYUStf5M=;
+        b=Q9iyLvblGaIwutk5zInWEvE/U4FjgIVW/EIUhsJ26kD6I9C9edPjqvKOyIGJogfwwE
+         /R8xQPlCSxjcfpMwPcA6dZ2Bw5G50+eSFjA0HteNIKJpKYUvA7dDKpXE9V/9xySfSWtE
+         FiNwDEx+bVarOPwZ1Vakbs2LbCs8oZspE4oVvmnUt3WkpviAW/thceAG4Gpa4yTVgXXw
+         r6BuMP3UiBycLiNJeQZG+xGOdK74bwDvrzqrKt44p1OCRvYDfeFapCkrpiZ0UmxliDkd
+         yXUrVf574fOfAWI2iNpwh8uYObqHcHWe77C9898M5EaqG47XG06rjvIZkYh9vxmSnu2D
+         /N/A==
+X-Gm-Message-State: AOJu0YzIOiMtm170h7SFFbEw7m2xS4L51KpVUEnraBA9S8TKzyHLtZn9
+	4+o71lSa++kLn76cxTSgTaXP+g==
+X-Google-Smtp-Source: AGHT+IHcI+CB3dbqOBHc6gZyiSRJLCh66jgUkizSK5tB7H8mSiwkIVstbwBUz8Ca/NrqwqFnQQ219w==
+X-Received: by 2002:a17:907:2d11:b0:a1f:60d2:f0af with SMTP id gs17-20020a1709072d1100b00a1f60d2f0afmr6420294ejc.70.1702559419956;
+        Thu, 14 Dec 2023 05:10:19 -0800 (PST)
+Received: from krzk-bin.. ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id vq2-20020a170907a4c200b00a22faee6649sm2547776ejc.117.2023.12.14.05.10.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Dec 2023 05:10:19 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Abel Vesa <abel.vesa@linaro.org>
+Subject: [PATCH 0/4] arm64: dts: qcom: x1e80100: audio support components
+Date: Thu, 14 Dec 2023 14:10:12 +0100
+Message-Id: <20231214131016.30502-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="HQnYG9fD4BDlpmSL"
-Content-Disposition: inline
-In-Reply-To: <20231214105243.3707730-4-tudor.ambarus@linaro.org>
+Content-Transfer-Encoding: 8bit
 
+Hi,
 
---HQnYG9fD4BDlpmSL
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Still not complete, but most of audio support.
 
-On Thu, Dec 14, 2023 at 10:52:33AM +0000, Tudor Ambarus wrote:
-> Add google,gs101-hsi2c dedicated compatible for representing
-> I2C of Google GS101 SoC.
->=20
-> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+Dependency
+=========
+Depends on:
+https://lore.kernel.org/linux-arm-msm/20231212125632.54021-1-krzysztof.kozlowski@linaro.org/
 
-Acked-by: Wolfram Sang <wsa@kernel.org>
+Bindings were already applied.
 
+Cc: Abel Vesa <abel.vesa@linaro.org>
 
---HQnYG9fD4BDlpmSL
-Content-Type: application/pgp-signature; name="signature.asc"
+Best regards,
+Krzysztof
 
------BEGIN PGP SIGNATURE-----
+Krzysztof Kozlowski (4):
+  arm64: dts: qcom: x1e80100: add ADSP audio codec macros
+  arm64: dts: qcom: x1e80100: add Soundwire controllers
+  arm64: dts: qcom: x1e80100-crd: add WCD9385 Audio Codec
+  arm64: dts: qcom: x1e80100-crd: add WSA8845 speakers
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmV6/ekACgkQFA3kzBSg
-Kbac1hAAtEeMMhA9NKxHiemKCgdvzxVb71vVFzKZTa0rM9HstusgWrnxcXTU4XWd
-tQMUwAVVs6G5Lxho0WuFLuJXRVmc/XOFSyDLeo75vHop/khJpREg5/4x5S953V7j
-SDY4ThYVJuYdXFhZKFsiH04nV3O4zrxm3leDvT0q9C9P09Xh7DYeMu2PnHPV/Gu1
-JFGknNxP4nAb86hKMMsZIkhWZ9Wk+XZAluArjyu17rKeSQHcbE6QJoR95AEydEUy
-PolkM4ZOh/SHRffnMO+FG1+IX2lIEMM9dOX2eLpjZzMRI4iW0I39iQaoPz7WSqQs
-fWa8LdXndWGIZvQmYN4lRjQFhzDKDEOheg/SglzLuGa+48tkqrrcRKGRM+Kx/cGo
-yHbtA6qimdxi/o8+YmUWl+X57X8JIbgmSHsucm/+lNCG6JFtfMyOskeS1hsIgWws
-PV3BPNAY32hJLbEnTf2royzKnJbWMt75RZJTsu/8j54DPydhhLO9IqdHDqngnHpp
-d5WPhOebKuYdqH5YHqVG6C7hOYTR903tWy0annEcAKm64bboWZ9EWYs5Z0IP2/af
-i/i9y1Nou+YYvlSmkp0asWHhpHySkIR3rkThW9eIHVBEWkSS2si6WJSfWQBvDGro
-hEYeczzfDuUcb3v6vuIinWdDcVoHWyrlRbJS5GLIT8LoVAc8ohs=
-=msdb
------END PGP SIGNATURE-----
+ arch/arm64/boot/dts/qcom/x1e80100-crd.dts | 132 +++++++++
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi    | 311 ++++++++++++++++++++++
+ 2 files changed, 443 insertions(+)
 
---HQnYG9fD4BDlpmSL--
+-- 
+2.34.1
+
 
