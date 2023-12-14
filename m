@@ -1,69 +1,60 @@
-Return-Path: <devicetree+bounces-25603-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25604-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94A78813D6A
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 23:42:46 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3850813D6E
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 23:43:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C6AF21C20A6F
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 22:42:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 11C651C209F2
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 22:43:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CEB42C6BD;
-	Thu, 14 Dec 2023 22:42:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="g5d5XN2A"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CA8F66ABB;
+	Thu, 14 Dec 2023 22:43:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6369266ACF;
-	Thu, 14 Dec 2023 22:42:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1702593753; x=1734129753;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=KU/A3jUQKGkyim74DOJB+aBrQP+MMoH4ytEotxAxkqA=;
-  b=g5d5XN2ANud21J+s4McQv+VnYI0ibHvekwEzN77TlQ5eLl4g6TVSPHwG
-   6scRWheT2vc9IXUmBdtFmWNNuIYtVh6UHRsL6t/MBKfZVdq+7Tn7fh6qZ
-   jvppptoo4AjQJ52KCc1QLn8/adUg8XnlXDZJzINgONfN751lFihdPOCUp
-   wgnXzoTn4jApE80d+2oVqNtrTjeBh5Sv5lyhdTpyrz8WotlDOEzGbXFNj
-   bcKAJ/HGudGq6TS8iBKpGGu/ucO68+fn4owX6ej9D/wwo4GX15mXdHUCo
-   z+dPHlo0DsoU6QQhnyblgwYy6WVOB5Qds4HBsB3DH7LKeZDWQbExiTwlW
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="2017244"
-X-IronPort-AV: E=Sophos;i="6.04,276,1695711600"; 
-   d="scan'208";a="2017244"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Dec 2023 14:42:32 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="778052218"
-X-IronPort-AV: E=Sophos;i="6.04,276,1695711600"; 
-   d="scan'208";a="778052218"
-Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
-  by fmsmga007.fm.intel.com with ESMTP; 14 Dec 2023 14:42:28 -0800
-Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rDuPS-000MgM-0L;
-	Thu, 14 Dec 2023 22:42:26 +0000
-Date: Fri, 15 Dec 2023 06:41:46 +0800
-From: kernel test robot <lkp@intel.com>
-To: Tomer Maimon <tmaimon77@gmail.com>, arnd@arndb.de,
-	pmenzel@molgen.mpg.de, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	avifishman70@gmail.com, tali.perry1@gmail.com, joel@jms.id.au,
-	venture@google.com, yuenn@google.com, benjaminfair@google.com,
-	j.neuschaefer@gmx.net
-Cc: oe-kbuild-all@lists.linux.dev, openbmc@lists.ozlabs.org,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Tomer Maimon <tmaimon77@gmail.com>
-Subject: Re: [PATCH v3 3/3] soc: nuvoton: add NPCM BPC driver
-Message-ID: <202312150632.EzPYbn6l-lkp@intel.com>
-References: <20231213190528.3751583-4-tmaimon77@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEEC46AB83;
+	Thu, 14 Dec 2023 22:43:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oo1-f46.google.com with SMTP id 006d021491bc7-591553d3835so64900eaf.3;
+        Thu, 14 Dec 2023 14:43:08 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702593788; x=1703198588;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=25NXwF3j3CDWMwNZ1yXSftsyQ/VmIgJUcDUuu2o2sQc=;
+        b=Kfl5cxcs0b8Za6Mt+4zUvGRc5C+23gNjxPv3ckvF9a8WcezHiigu49JaQlUCiZ8Pml
+         lYILq6bBIbuHnn5d40SE1VLWEMzpXzjNlO4g3xyu+pXb0ujQNf26WtSu06rhgTOLLDfr
+         ljSwpe6nevxmauSah79BmqsHNAiC7zPjYnKimhYusko31u7OmBA/UMMSWwmdEixtE2DR
+         XrKhSsNX1OV0ZNDuvwcKUoRc+t4dwMDPYW+6D+IBFnXAYwwAw4ZqCKY7jNvdXsVoVjwc
+         9IHCpKxyGizn3dT9eCj0ISFQ/+Buk3g9ic32ccCjvDu82/XlRfbtdw3dTvYlYUzL/4gI
+         3unw==
+X-Gm-Message-State: AOJu0YwVX48m1FFJTItElS0SONDh/VTPTmBAl9vSHKAg2Fobty5EweLe
+	wqQUE6AbllNCXKTUVKaw6ju9FMj4Ow==
+X-Google-Smtp-Source: AGHT+IEOpcXDaJc/6auAFxNvwtlBTN+TSmelxUX2AwVBrxCJYeQ+EL/Dz8nHpPpAbpv7PDMRevEGfA==
+X-Received: by 2002:a4a:98ea:0:b0:590:f5fc:df58 with SMTP id b39-20020a4a98ea000000b00590f5fcdf58mr5115698ooj.17.1702593787772;
+        Thu, 14 Dec 2023 14:43:07 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id w23-20020a4a7657000000b0058a0809ea25sm3714382ooe.21.2023.12.14.14.43.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Dec 2023 14:43:07 -0800 (PST)
+Received: (nullmailer pid 1066090 invoked by uid 1000);
+	Thu, 14 Dec 2023 22:43:04 -0000
+Date: Thu, 14 Dec 2023 16:43:04 -0600
+From: Rob Herring <robh@kernel.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Chunfeng Yun <chunfeng.yun@mediatek.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, Mathias Nyman <mathias.nyman@intel.com>, linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Macpaul Lin <macpaul.lin@mediatek.com>, Eddie Hung <eddie.hung@mediatek.com>
+Subject: Re: [PATCH 1/3] dt-bindings: usb: mtk-xhci: add a property for Gen1
+ isoc-in transfer issue
+Message-ID: <20231214224304.GA1062298-robh@kernel.org>
+References: <20231213063543.12435-1-chunfeng.yun@mediatek.com>
+ <c1bc144d-07d6-422c-8294-42be47f83e59@linaro.org>
+ <5327b2fd-94c6-46fe-b987-52cfff042033@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,57 +63,43 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231213190528.3751583-4-tmaimon77@gmail.com>
+In-Reply-To: <5327b2fd-94c6-46fe-b987-52cfff042033@collabora.com>
 
-Hi Tomer,
+On Wed, Dec 13, 2023 at 12:17:17PM +0100, AngeloGioacchino Del Regno wrote:
+> Il 13/12/23 09:05, Krzysztof Kozlowski ha scritto:
+> > On 13/12/2023 07:35, Chunfeng Yun wrote:
+> > > For Gen1 isoc-in endpoint on controller before about SSUSB IPM v1.6.0, it
+> > > still send out unexpected ACK after receiving a short packet in burst
+> > > transfer, this will cause an exception on connected device, specially for
+> > > a 4k camera.
+> > > Add a quirk property "mediatek,rxfifo-depth" to work around this hardware
+> > > issue;
+> > > The side-effect is that may cause performance drop about 10%, including
+> > > bulk transfer.
+> > > 
+> > > Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> > > ---
+> > >   .../devicetree/bindings/usb/mediatek,mtk-xhci.yaml     | 10 ++++++++++
+> > >   1 file changed, 10 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
+> > > index e9644e333d78..b8ed68574ba4 100644
+> > > --- a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
+> > > +++ b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
+> > > @@ -124,6 +124,16 @@ properties:
+> > >         defined in the xHCI spec on MTK's controller.
+> > >       default: 5000
+> > > +  mediatek,rxfifo-depth:
+> > > +    description:
+> > 
+> > The property description and driver patch suggest you configure the
+> > depth of FIFO, so this should be not bool, but some uint32. And then,
+> > use generic "fifo-depth" property to set desired depth.
+> 
+> Did you mean "rx-fifo-depth" instead, as used in net?
+> This FIFO depth parameter is for RX only.
 
-kernel test robot noticed the following build warnings:
+Or rx-fifo-size. There's so many to choose from.
 
-[auto build test WARNING on soc/for-next]
-[also build test WARNING on robh/for-next linus/master v6.7-rc5 next-20231214]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Tomer-Maimon/dt-bindings-soc-nuvoton-Add-NPCM-BPC/20231214-030714
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git for-next
-patch link:    https://lore.kernel.org/r/20231213190528.3751583-4-tmaimon77%40gmail.com
-patch subject: [PATCH v3 3/3] soc: nuvoton: add NPCM BPC driver
-config: arm64-randconfig-r123-20231215 (https://download.01.org/0day-ci/archive/20231215/202312150632.EzPYbn6l-lkp@intel.com/config)
-compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project.git 4a5ac14ee968ff0ad5d2cc1ffa0299048db4c88a)
-reproduce: (https://download.01.org/0day-ci/archive/20231215/202312150632.EzPYbn6l-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202312150632.EzPYbn6l-lkp@intel.com/
-
-sparse warnings: (new ones prefixed by >>)
->> drivers/soc/nuvoton/npcm-bpc.c:105:25: sparse: sparse: cast to restricted __poll_t
-   drivers/soc/nuvoton/npcm-bpc.c:108:26: sparse: sparse: cast to restricted __poll_t
-
-vim +105 drivers/soc/nuvoton/npcm-bpc.c
-
-    97	
-    98	static __poll_t npcm_bpc_poll(struct file *file, struct poll_table_struct *pt)
-    99	{
-   100		struct npcm_bpc_channel *chan = npcm_file_to_ch(file);
-   101		__poll_t mask = 0;
-   102	
-   103		poll_wait(file, &chan->wq, pt);
-   104		if (!kfifo_is_empty(&chan->fifo))
- > 105			mask = (__poll_t)POLLIN;
-   106	
-   107		if (chan->host_reset) {
-   108			mask |= (__poll_t)POLLHUP;
-   109			chan->host_reset = false;
-   110		}
-   111	
-   112		return mask;
-   113	}
-   114	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Rob
 
