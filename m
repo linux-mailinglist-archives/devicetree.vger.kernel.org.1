@@ -1,112 +1,133 @@
-Return-Path: <devicetree+bounces-25284-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25286-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 807AD812D2F
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 11:39:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EADC4812D3F
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 11:44:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 230EFB20C74
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 10:39:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 29A911C2094F
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 10:44:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4D853C08F;
-	Thu, 14 Dec 2023 10:39:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D9773C469;
+	Thu, 14 Dec 2023 10:44:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E5w1HLkE"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="oWZ3jLXI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC549BD;
+	Thu, 14 Dec 2023 02:44:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1702550667;
+	bh=cAT6HmiYeTlVqmi2uXEf6RyUkhAQ2o/TgivLiKg7xng=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=oWZ3jLXIEj3UPozYna6D0FNBFm7legTk4Y4t7BniXyaUMxwmAwhzkg9r8Gp3XQe4j
+	 tbZqks35ReyaJajZ0HLf0nWlB3zhDnGXnQ0L8Qz4QXwFFQcJu0fthEka0uiG/MGgrt
+	 aKW5P+8QbPvl9Dt00r7ggoWmVFcO+D+P8iWrXjGIUONSQgiS5kJhgiV9TURHNpeiVm
+	 pz2GZYxVFMALQGy/UyzsDmWqZY5uCIaSWIN4qVXaYZgKLvKGVinPLa0AaxYby8bwwY
+	 iJFjB5zAdjqbDv763gVeFJpSbH7+MQw4dRYjNZQLFs5dQ1j31gMm3WwkIWp/cjyrwZ
+	 dDuJq6BjOpeSA==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F8992837F;
-	Thu, 14 Dec 2023 10:39:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C20BDC433C7;
-	Thu, 14 Dec 2023 10:39:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702550363;
-	bh=yCEKQFaUrCZAt0Cggx/F1wMYgUKW9axB5dGFHkP8rxE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=E5w1HLkELARynQCRfDz4e/qOmrfpq/znPX7uuY+43vvYzB0JhDPZMpD90pHmb5+TS
-	 pNar2GRPHylpBIgI/yXLg6mSjR+fHWHM2uVwD2+F2k704AHEnw2/vMDfKjf8ELTWss
-	 8eXju5pKQonG+EN/Yo1CpqF0H0SVscHiWzDnC0NVCY4kaNyXJ/g3//zAF0xokFehC0
-	 fmBrk5E0ySQus/FAPaF6KjZxe/ESQiEWaN/g/KjbxZeOr7Z3+lqXZzEmX4ieiqil7I
-	 KmdayZLawHOGmHZMUHl8LDeyVicfnTJfI0uFpU+0YfCp/GgPDK0ggj/UhIzGnQlF3T
-	 xyyVq54yS3Wnw==
-Date: Thu, 14 Dec 2023 16:09:07 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Johan Hovold <johan@kernel.org>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	andersson@kernel.org, konrad.dybcio@linaro.org, vkoul@kernel.org,
-	sboyd@kernel.org, mturquette@baylibre.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 00/16] Fix Qcom UFS PHY clocks
-Message-ID: <20231214103907.GL2938@thinkpad>
-References: <20231214091101.45713-1-manivannan.sadhasivam@linaro.org>
- <ZXrVxmxY6wZprbBa@hovoldconsulting.com>
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id CD23D378000B;
+	Thu, 14 Dec 2023 10:44:26 +0000 (UTC)
+Message-ID: <d20c35e2-cc40-436d-90ca-4cab555874ca@collabora.com>
+Date: Thu, 14 Dec 2023 11:44:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZXrVxmxY6wZprbBa@hovoldconsulting.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/4] arm64: dts: mediatek: mt8186: Add venc node
+Content-Language: en-US
+To: Eugen Hristev <eugen.hristev@collabora.com>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ kernel@collabora.com, tiffany.lin@mediatek.com, andrew-ct.chen@mediatek.com,
+ matthias.bgg@gmail.com, Kyrie Wu <kyrie.wu@mediatek.com>,
+ Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+ Hsin-Yi Wang <hsinyi@chromium.org>
+References: <20231213122017.102100-1-eugen.hristev@collabora.com>
+ <20231213122017.102100-4-eugen.hristev@collabora.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20231213122017.102100-4-eugen.hristev@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Dec 14, 2023 at 11:15:34AM +0100, Johan Hovold wrote:
-> On Thu, Dec 14, 2023 at 02:40:45PM +0530, Manivannan Sadhasivam wrote:
+Il 13/12/23 13:20, Eugen Hristev ha scritto:
+> From: Kyrie Wu <kyrie.wu@mediatek.com>
 > 
-> > This series fixes the clocks supplied to QMP PHY IPs in the Qcom SoCs. All
-> > of the Qcom SoCs except MSM8996 require 3 clocks for QMP UFS:
-> > 
-> > * ref - 19.2MHz reference clock from RPM/RPMh
-> > * ref_aux - Auxiliary reference clock from GCC
-> > * qref - QREF clock from GCC or TCSR (TCSR since SM8550)
-> > 
-> > MSM8996 only requires 'ref' and 'qref' clocks.
-> > 
-> > Hence, this series fixes the binding, DT and GCC driver to reflect the
-> > actual clock topology.
+> Add video encoder node.
 > 
-> Is this based on documentation for all the SoCs or on inference from the
-> current (upstream and downstream) devicetrees?
+> Signed-off-by: Kyrie Wu <kyrie.wu@mediatek.com>
+> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+> Reviewed-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> [eugen.hristev@collabora.com: minor cleanup]
+> Signed-off-by: Eugen Hristev <eugen.hristev@collabora.com>
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8186.dtsi | 24 ++++++++++++++++++++++++
+>   1 file changed, 24 insertions(+)
 > 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
+> index 66ead3f23336..8535ff2b44e9 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8186.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
+> @@ -1993,6 +1993,30 @@ larb7: smi@17010000 {
+>   			power-domains = <&spm MT8186_POWER_DOMAIN_VENC>;
+>   		};
+>   
+> +		venc: venc@17020000 {
+> +			compatible = "mediatek,mt8183-vcodec-enc";
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			reg = <0 0x17020000 0 0x2000>;
+> +			interrupts = <GIC_SPI 243 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			iommus = <&iommu_mm IOMMU_PORT_L7_VENC_RCPU>,
+> +				 <&iommu_mm IOMMU_PORT_L7_VENC_REC>,
+> +				 <&iommu_mm IOMMU_PORT_L7_VENC_BSDMA>,
+> +				 <&iommu_mm IOMMU_PORT_L7_VENC_SV_COMV>,
+> +				 <&iommu_mm IOMMU_PORT_L7_VENC_RD_COMV>,
+> +				 <&iommu_mm IOMMU_PORT_L7_VENC_CUR_LUMA>,
+> +				 <&iommu_mm IOMMU_PORT_L7_VENC_CUR_CHROMA>,
+> +				 <&iommu_mm IOMMU_PORT_L7_VENC_REF_LUMA>,
+> +				 <&iommu_mm IOMMU_PORT_L7_VENC_REF_CHROMA>;
+> +			dma-ranges = <0x1 0x0 0x1 0x0 0x1 0x0>;
+> +			mediatek,scp = <&scp>;
+> +			clocks = <&vencsys CLK_VENC_CKE1_VENC>;
+> +			clock-names = "MT_CG_VENC";
 
-It is based on the internal documentation. Even downstream devicetrees are
-wrong. I should've mentioned it in the cover letter.
+clock-names = "venc"; (please no underscores and please lower case)
 
-> Are you sure that you should not just describe that some of these UFS
-> reference clocks are sourced from CXO in the clock driver instead?
-> 
+> +			assigned-clocks = <&topckgen CLK_TOP_VENC>;
+> +			assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D3>;
+> +			power-domains = <&spm MT8186_POWER_DOMAIN_VENC>;
+> +		};
 
-I don't get your comment fully. Could you please elaborate?
 
-> Take a look at commits
-> 
-> 	f446022b932a ("arm64: dts: qcom: sc8280xp: fix UFS reference clocks")
-> 	f6abcc21d943 ("clk: qcom: gcc-sc8280xp: add cxo as parent for three ufs ref clks")
-> 
+....also:
 
-Btw, these commits are not accurate. In all the SoCs before SM8550, reference
-clock for the UFS device comes from the UFS controller. There is a dedicated
-register in UFSHC memory map that is being toggled by the driver to
-enable/disable reference clock for the UFS device.
+The following order of properties in device nodes is preferred:
 
-Since SM8550, reference clock is directly sourced from RPMh. I'm preparing a
-series to fix it.
+1. "compatible"
+2. "reg"
+3. "ranges"
+4. Standard/common properties (defined by common bindings, e.g. without
+    vendor-prefixes)
+5. Vendor-specific properties
+6. "status" (if applicable)
+7. Child nodes, where each node is preceded with a blank line
 
-Unfortunately, this information is not depicted correctly in the downstream
-devicetrees.
+Documentation/devicetree/bindings/dts-coding-style.rst
 
-- Mani
+Please reorder as per the DTS coding style document, and also please rename the
+venc node to use a generic name, such as "video-encoder@xxxx"
 
-> Johan
-> 
-
--- 
-மணிவண்ணன் சதாசிவம்
+Cheers,
+Angelo
 
