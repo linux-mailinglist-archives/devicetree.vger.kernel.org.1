@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-25182-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25183-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F138812997
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 08:42:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D583812999
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 08:42:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1C650B21267
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 07:42:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B179DB210FD
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 07:42:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3747512E69;
-	Thu, 14 Dec 2023 07:42:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 901AB12E6F;
+	Thu, 14 Dec 2023 07:42:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ud4CNBpR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Rhz0KKgL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7509CB9
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 23:42:25 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-552231d9c1dso1957563a12.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 23:42:25 -0800 (PST)
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6983BB9
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 23:42:36 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-50bf69afa99so10088885e87.3
+        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 23:42:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702539744; x=1703144544; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702539754; x=1703144554; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Z6d6GcNikJGiR5SToV5VakGHdIkVh2njpCHZXsBES18=;
-        b=Ud4CNBpRaPv4/fAd/u9FEkPPVMBvRPAohetGQSvgy8k+dYg7lHzjw6MQ/1jPldbdYU
-         ++yhIm/UYmr7NEca02d0e+v0yKlMJnK/RVCJNt0N/5MIskU4SJi5ehk9aJw1fxEUpZTV
-         NOi4m1N8JNoB5yXMrsYgX1kEamcVCTeUvIQE2aO6P2PXqHtnIldmT6XkxAOXOjOtOKb1
-         N28BSnmc8OT3inIZOl9//2mNG+XhqtdPuVXdyEwIGHLgAY+mOj8C0v/S+mHR10lwaeW2
-         VKk5EKEDA9dGuhn0bw0hdX32MaZg18jQSoKt6Q6TtC4kGu183BMznuRJZYOkQdLPAAzE
-         k8eg==
+        bh=0nTYo2/tmmPk7j10HEsmCzArs7vuCyxU96000XSPoE0=;
+        b=Rhz0KKgLyXUbS7gj/6Z027cD4d34URF13CcLzbTy3abFESVmAiMltlvBOcURNyeyfi
+         JRGDXZ9NxXbw1t32EqYfBuhC3V7MBVAS+zYLCYmbt6T2+NLmVeWLemhXDR6u6WvRZtTC
+         KhhDg8kVmiVtScR9nE4BN13jSgIAGymKu3Qh8fORqlfndJ6tlAwqKn2ZLrRFMooQ9bXB
+         L8LYatpi5EgFHPu4dR5py4yFQp5GEYEXVdkFATSgZwMlYs3jIL8cEcDBGDrxtBjNFBqG
+         U6s9gEg17mTo/gn8k9DSd9uDyN0tqGEl/JidZJzaZr/LROY6iOriInODb7WGrMkoHzlY
+         wJkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702539744; x=1703144544;
+        d=1e100.net; s=20230601; t=1702539754; x=1703144554;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Z6d6GcNikJGiR5SToV5VakGHdIkVh2njpCHZXsBES18=;
-        b=TYwVQjQVUDIgV8lsbHbMkWekau9a2vK8wAqV6s98pQE6ZFgOzs1ZnxVof4UVYMu1/u
-         0xjTzwmAh9BcXekctOJMlXzt6RkQy7l3esrvj1XDcfPgnyBlCNLPkqqvHkORQUVDaI0z
-         qxaf62X2KMVQ4RU0b/RXo2rNNQyg70eCmbcL5QbcDNODgPq8DUiBkSp/wj9wh4hrYYZK
-         simVyc2STJY8YeCtKheIkn0cP5PL8jt9DaZmAcn8faJcBlh01L60uVWurHOdyzId+/xT
-         Ngx9abUqD8U4nWTeqZGLfN8KEqOdissYD0d/RwSPN/W3g+5kzPuZwkP3uk7HelXmFAKb
-         ESfQ==
-X-Gm-Message-State: AOJu0YyHvevGZXvltFFy3ufbCeaf8fL5J60NJgzKGwbEH4xbFBd9gx/R
-	Q4791lwLWAyBIcNHNyC/pwfXTA==
-X-Google-Smtp-Source: AGHT+IHW+dTuQ60ZFYJs7+lO9MU+ZWixbtRdX10A8hY4pf0w2xRnOU4FLG857hGBeWT0VQk0979/jg==
-X-Received: by 2002:a50:8ad7:0:b0:551:f959:c2b4 with SMTP id k23-20020a508ad7000000b00551f959c2b4mr1210424edk.79.1702539743939;
-        Wed, 13 Dec 2023 23:42:23 -0800 (PST)
+        bh=0nTYo2/tmmPk7j10HEsmCzArs7vuCyxU96000XSPoE0=;
+        b=lSBcFjvBXI7xGL+SyJy9JXvpjkUmDycJPP/6zRjyLPSIJex2KSwjWxm83tI4nxw+S/
+         5mawLLISJBS9zn01UpOVDRkbORTlrkv+rrufQqJ9rMWqD2MxjCUogSl+4+2SNuRF9r6g
+         rOHUWHzzUrWo/Yggrg5Pc+zdnCvD8N0/hzRmzbeKamxDXu3Qewx/VUH0fe78P9C3UCUB
+         P7aXp/axBbq+keFMK23f0UxuDbSJ6vYQ87ZdTmtmT9CM+grCYu8u7Q6iY5wFG94Ytgxe
+         FaehefZId7PSoyT1zR7qV7wKrFVOUbiCWGdquvVvgrA/0vuwODIQ17rrLS98snPs1bRj
+         1+1g==
+X-Gm-Message-State: AOJu0YxYwtYUA7aDJfkQNENhlHd7zKQxweFzghdg342hctpEa9ZQrUnr
+	e0tIhepScvpr1DfnR6CucPm1nA==
+X-Google-Smtp-Source: AGHT+IFpfh6L8728Z3j6bzPbiowlWy8+T8GLPep+SDx+hbW0WYRIuhdMOw4p3aX4qj3BGCjpZ1FkPg==
+X-Received: by 2002:a05:6512:1089:b0:50d:5837:f6f7 with SMTP id j9-20020a056512108900b0050d5837f6f7mr5038377lfg.15.1702539754628;
+        Wed, 13 Dec 2023 23:42:34 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id ew12-20020a056402538c00b00552691fc7f9sm458868edb.66.2023.12.13.23.42.21
+        by smtp.gmail.com with ESMTPSA id ew12-20020a056402538c00b00552691fc7f9sm458868edb.66.2023.12.13.23.42.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Dec 2023 23:42:23 -0800 (PST)
-Message-ID: <1fbbff6b-2e49-4ee1-ab7b-3ff490d3636e@linaro.org>
-Date: Thu, 14 Dec 2023 08:42:21 +0100
+        Wed, 13 Dec 2023 23:42:34 -0800 (PST)
+Message-ID: <f98a5d06-199d-4b3d-bc53-6572a80033e8@linaro.org>
+Date: Thu, 14 Dec 2023 08:42:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,14 +62,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: mmc: sdhci-pxa: Fix 'regs' typo
+Subject: Re: [PATCH 1/3] dt-bindings: arm: ti: Add bindings for J722S SoCs
 Content-Language: en-US
-To: Rob Herring <robh@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>
-Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231213224219.2191721-1-robh@kernel.org>
+To: Vaishnav Achath <vaishnav.a@ti.com>, nm@ti.com, vigneshr@ti.com,
+ kristo@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org, j-choudhary@ti.com, u-kumar1@ti.com
+References: <20231213124930.3012-1-vaishnav.a@ti.com>
+ <20231213124930.3012-2-vaishnav.a@ti.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -115,19 +116,19 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231213224219.2191721-1-robh@kernel.org>
+In-Reply-To: <20231213124930.3012-2-vaishnav.a@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/12/2023 23:42, Rob Herring wrote:
-> The correct property name is 'reg' not 'regs'.
+On 13/12/2023 13:49, Vaishnav Achath wrote:
+> Add bindings for TI J722S family of devices.
 > 
-> Fixes: ae5c0585dfc2 ("dt-bindings: mmc: Convert sdhci-pxa to json-schema")
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
 > ---
+>  Documentation/devicetree/bindings/arm/ti/k3.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
