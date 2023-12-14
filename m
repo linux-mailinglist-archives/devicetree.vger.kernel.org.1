@@ -1,117 +1,168 @@
-Return-Path: <devicetree+bounces-25448-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25449-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71E25813461
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 16:14:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 388B0813465
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 16:15:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F414283462
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 15:14:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A6251C20932
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 15:15:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 236765C8FD;
-	Thu, 14 Dec 2023 15:14:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85CA35C8F0;
+	Thu, 14 Dec 2023 15:15:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ltvDi11o"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EHIIzRMV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 208071734
-	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 07:14:37 -0800 (PST)
-Received: by mail-pg1-x52a.google.com with SMTP id 41be03b00d2f7-5cd54e5fbb2so190152a12.2
-        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 07:14:37 -0800 (PST)
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3977810DD
+	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 07:15:11 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2ca0c36f5beso108187711fa.1
+        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 07:15:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702566876; x=1703171676; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZWqMHpUSkAPDn3wm2z4jDOhMdXvzCuosczZCAgcr4kM=;
-        b=ltvDi11omEnn5qaqbSVvMf92ELR8bE6qNn/++dxsVNOur3z8xo7SAIKQJ/fL+IrpqW
-         +X7iCi5e3BoyXyokbX4BkYjJz8zPO3FPtbEyQGgS/DGcCbUw7bW4e1w4kdwTQutKWiCC
-         dmHh/sfjBe52v+3QEvGNV7jqM0OBjYaskaThRqMLsArR3TW5DDjHXazJfYkvhli7OgPk
-         3b+dcl/04RMP670Ur/uBVW5FlQXFwO5pzfIPifD8iLQMGBe03KWGhTDYrzzy3ATvOJje
-         IuixlPuB8/xBPIVcvKuMpLKxwruxCmshCgKVOt3Zl2r9ZcuGIkp+xPgYiD0BXUTF7k4h
-         lQLQ==
+        d=linaro.org; s=google; t=1702566909; x=1703171709; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mjygnYLv9wPWREwrNBcftV6uG5X/vCKXcTO+yxGG9tI=;
+        b=EHIIzRMVK9mQN2DQR2HLh5gwr2aLytRHR0/cp7SB3hTB5RiQa3RN4YJRx6UjGR5KyN
+         bWidQlv+oRopXBWaWdS/YVADK/FVZeMDCMVHlYFceUQ+n8wnThzEU8nB/IxhkPfGVKyT
+         ie4mv5YeozybAIiCO3p4KnjeGO47uND11grCrOVsaoMebuMIkYIAPCM5qj0QaHIpoEX5
+         mmXGzw9PIQj+7ldihuP8HH9eErg7jqkpFRVs5R4sJ57Hmi/HSsJ3gUSzH52jN9yRsoBV
+         xoUnuKSlc5kHAgTvpiBFUIFulpXh3Dn0EcybTEpN/W0DRBI6tuvH8NFwbjVmnP/cR+25
+         AtNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702566876; x=1703171676;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZWqMHpUSkAPDn3wm2z4jDOhMdXvzCuosczZCAgcr4kM=;
-        b=nvHwxYOrNQCZSPuxi+CLDtYJDMEcUETcDCbAX/O8iwP3Ttf8t4csUI59yRLKrYFnqN
-         m/w9uEOxeGmPPb0UYU0BVYdt96GeEWAXULz+zan4R8k5EUP7xx27K39cIf++VcWhTAh4
-         irmECp1hku3If/nMtZWx4b8ON9mJZKKn3iI2EyAekqoklH6qx2Z2LwzLxjZzXenO5wGP
-         GAU1CiqytMGsTOE5vy4k7q73KjYEVoFcKgrR5aRvo0qiceMWWGTWhbq8eRTHtpDberD8
-         GtTSyueAcQfW4E3t7DudPxbFSLUN8GOJQnRtu5/uuKG6JrkKfOW0yih2RzhgbzUsa84b
-         d+Rw==
-X-Gm-Message-State: AOJu0Yy0suF7ZyEsIIqwnBBlFvxzD0Sdnso8NVzeTUA801zufbAI58mj
-	f/ozZCwP9WxfblRI6fPglggXOCR9cCRh7ea1wuwegQ==
-X-Google-Smtp-Source: AGHT+IEM9NOntXhLmCrjcoIuQ47Pfui0YztUJd6OSshayTkyxMrEa+wi5LDmzXV8P+FrMsH0LnE9quA35R9O9TaR7Z4=
-X-Received: by 2002:a17:90b:3697:b0:28b:d51:e7fe with SMTP id
- mj23-20020a17090b369700b0028b0d51e7femr354699pjb.64.1702566876603; Thu, 14
- Dec 2023 07:14:36 -0800 (PST)
+        d=1e100.net; s=20230601; t=1702566909; x=1703171709;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mjygnYLv9wPWREwrNBcftV6uG5X/vCKXcTO+yxGG9tI=;
+        b=toEL8ZXxlK5UpMIGHV8OFXb7hn2d+CTB6jsR1Hhzw6y2kapwrz0yTc2Dr/hh/zZ9b6
+         6GUCwkbg2AX9TKUjVzF1F/MwZ5ByQSrnWQ9cWOUUPJtwLs7uITSFFUDuW+jt5/QXYWQO
+         HWu7GhJXZmW9zluarm2dqXu/jQ/3VRbomYGctN+j67DZve2e8PE/JpcoInmfCxmoEu0M
+         I58BztdZhOxPSOXAWqHwGP3eA1ufInYqndoUkmR9h4aP8mcUJPUT24fdQU/a8FepwBAW
+         Wlvgy/GTFw8s7gD8yPSPdH9ap9fk49Qg6YpZk/Bp8WISuwk9B6IzJ8FnXNhcJfoqEr3Q
+         w2HA==
+X-Gm-Message-State: AOJu0Yw2vtJRvWI3TwGP3X26agpx7AkT9BY2QOHCPVPK2AGTjpu424l+
+	qAxgXTFF8+k6vAJktu5TQW8n2Q==
+X-Google-Smtp-Source: AGHT+IFmF2d1GfyhDY7+ubTis/rqA0ZTNlxWngYJM1dyNZjeauBRktJr8J6Kn59wuDXnygSZLbuNcQ==
+X-Received: by 2002:a05:6512:314d:b0:50b:fd4a:f788 with SMTP id s13-20020a056512314d00b0050bfd4af788mr2709089lfi.33.1702566909420;
+        Thu, 14 Dec 2023 07:15:09 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id tp25-20020a170907c49900b00a1f7c502736sm8235915ejc.164.2023.12.14.07.15.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Dec 2023 07:15:09 -0800 (PST)
+Message-ID: <d647ca03-3f28-4c94-a86b-c191ed801e4f@linaro.org>
+Date: Thu, 14 Dec 2023 16:15:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231214105243.3707730-1-tudor.ambarus@linaro.org> <20231214105243.3707730-5-tudor.ambarus@linaro.org>
-In-Reply-To: <20231214105243.3707730-5-tudor.ambarus@linaro.org>
-From: Sam Protsenko <semen.protsenko@linaro.org>
-Date: Thu, 14 Dec 2023 09:14:25 -0600
-Message-ID: <CAPLW+4kBPj+f+aedr3yq_KTg7V7NFjK3RzFMypeYdQ-eos-NAA@mail.gmail.com>
-Subject: Re: [PATCH 04/13] dt-bindings: serial: samsung: gs101: make
- reg-io-width required property
-To: Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: peter.griffin@linaro.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com, sboyd@kernel.org, 
-	conor+dt@kernel.org, andi.shyti@kernel.org, alim.akhtar@samsung.com, 
-	gregkh@linuxfoundation.org, jirislaby@kernel.org, catalin.marinas@arm.com, 
-	will@kernel.org, s.nawrocki@samsung.com, tomasz.figa@gmail.com, 
-	cw00.choi@samsung.com, arnd@arndb.de, andre.draszik@linaro.org, 
-	saravanak@google.com, willmcvicker@google.com, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	linux-serial@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] arm64: dts: ac5: add watchdog nodes
+Content-Language: en-US
+To: Elad Nachman <enachman@marvell.com>, wim@linux-watchdog.org,
+ linux@roeck-us.net, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, gregory.clement@bootlin.com,
+ chris.packham@alliedtelesis.co.nz, andrew@lunn.ch, fu.wei@linaro.org,
+ Suravee.Suthikulpanit@amd.com, al.stone@linaro.org, timur@codeaurora.org,
+ linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: cyuval@marvell.com
+References: <20231214150414.1849058-1-enachman@marvell.com>
+ <20231214150414.1849058-3-enachman@marvell.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231214150414.1849058-3-enachman@marvell.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Dec 14, 2023 at 4:52=E2=80=AFAM Tudor Ambarus <tudor.ambarus@linaro=
-.org> wrote:
->
-> GS101 only allows 32-bit register accesses. When using 8-bit reg
-> accesses on gs101, a SError Interrupt is raised causing the system
-> unusable.
->
-> Make reg-io-width a required property and expect for it a value of 4.
->
-> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+On 14/12/2023 16:04, Elad Nachman wrote:
+> From: Elad Nachman <enachman@marvell.com>
+> 
+> Add watchdog nodes to ac5 and ac5x device tree files
+> 
+> Signed-off-by: Elad Nachman <enachman@marvell.com>
 > ---
+>  arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi | 14 ++++++++++++++
+>  arch/arm64/boot/dts/marvell/ac5-98dx35xx.dtsi |  8 ++++++++
+>  2 files changed, 22 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi b/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
+> index b5e042b8e929..e898c6bd31f0 100644
+> --- a/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
+> +++ b/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
+> @@ -307,6 +307,20 @@ nand: nand-controller@805b0000 {
+>  			status = "disabled";
+>  		};
+>  
+> +/*
+> + * Global Watchdog:
+> + */
 
-Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
+Messed indentation. Also unnecessary line breaks around comment, unless
+you have some KPI per lines of code. If it is the only watchdog, why
+even commenting on it?
 
->  Documentation/devicetree/bindings/serial/samsung_uart.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/serial/samsung_uart.yaml b=
-/Documentation/devicetree/bindings/serial/samsung_uart.yaml
-> index 133259ed3a34..cc896d7e2a3d 100644
-> --- a/Documentation/devicetree/bindings/serial/samsung_uart.yaml
-> +++ b/Documentation/devicetree/bindings/serial/samsung_uart.yaml
-> @@ -143,6 +143,10 @@ allOf:
->      then:
->        required:
->          - samsung,uart-fifosize
-> +        - reg-io-width
-> +      properties:
-> +        reg-io-width:
-> +          const: 4
->
->  unevaluatedProperties: false
->
-> --
-> 2.43.0.472.g3155946c3a-goog
->
+> +		watchdog: watchdog@80216000 {
+> +			compatible = "marvell,ac5-wd";
+> +			reg = <0x0 0x80216000 0 0x1000>,
+> +			      <0x0 0x80215000 0 0x1000>,
+> +			      <0x0 0x80210000 0 0x1000>,
+> +			      <0x0 0x7f900000 0 0x1000>,
+> +			      <0x0 0x840F8000 0 0x1000>;
+
+Lowercase hex.
+
+
+
+Best regards,
+Krzysztof
+
 
