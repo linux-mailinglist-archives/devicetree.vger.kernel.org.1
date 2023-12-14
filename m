@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-25183-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25184-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D583812999
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 08:42:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20BDA81299A
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 08:43:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B179DB210FD
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 07:42:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 522A81C21323
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 07:43:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 901AB12E6F;
-	Thu, 14 Dec 2023 07:42:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 923BC12E78;
+	Thu, 14 Dec 2023 07:43:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Rhz0KKgL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xfzZL7XP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6983BB9
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 23:42:36 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-50bf69afa99so10088885e87.3
-        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 23:42:36 -0800 (PST)
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 317F09C
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 23:43:15 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-551d5cd1c5fso638904a12.0
+        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 23:43:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702539754; x=1703144554; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702539793; x=1703144593; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=0nTYo2/tmmPk7j10HEsmCzArs7vuCyxU96000XSPoE0=;
-        b=Rhz0KKgLyXUbS7gj/6Z027cD4d34URF13CcLzbTy3abFESVmAiMltlvBOcURNyeyfi
-         JRGDXZ9NxXbw1t32EqYfBuhC3V7MBVAS+zYLCYmbt6T2+NLmVeWLemhXDR6u6WvRZtTC
-         KhhDg8kVmiVtScR9nE4BN13jSgIAGymKu3Qh8fORqlfndJ6tlAwqKn2ZLrRFMooQ9bXB
-         L8LYatpi5EgFHPu4dR5py4yFQp5GEYEXVdkFATSgZwMlYs3jIL8cEcDBGDrxtBjNFBqG
-         U6s9gEg17mTo/gn8k9DSd9uDyN0tqGEl/JidZJzaZr/LROY6iOriInODb7WGrMkoHzlY
-         wJkg==
+        bh=4MvMAIiIotVIco6M4RcGZEQ+hNO3VGKxDULnpzX6Bxg=;
+        b=xfzZL7XP6ioC7wSrE4W09Bjcf5BFoSRvqsr565f5g9/RshUC2aYMkj6qb0pOQh4hZk
+         6mULi9zghdpU18coJB1UPpqM9VRPdNjZiQSgqEFDjVKz4JyYQGhN68x2YNeqbg3ROT0M
+         +vLD/heVQMyVgBqChE4OcdSVjrFZys40bnvSL5yFlNOcAcenoDxq566rJlFPLpC1r6g3
+         9dDOO001RUd2uB/mJAXUJScIysHoxi/I91Dr3kviaiqFrFjJwGLW+8MlKua0XPrNxKcn
+         5ibnf95RsY53VuT1B0wfm/jbT/n0VzbX5KZeo7f4QWBs1gaJCrWQFGJyTSRDeDS9g8nC
+         1jYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702539754; x=1703144554;
+        d=1e100.net; s=20230601; t=1702539793; x=1703144593;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0nTYo2/tmmPk7j10HEsmCzArs7vuCyxU96000XSPoE0=;
-        b=lSBcFjvBXI7xGL+SyJy9JXvpjkUmDycJPP/6zRjyLPSIJex2KSwjWxm83tI4nxw+S/
-         5mawLLISJBS9zn01UpOVDRkbORTlrkv+rrufQqJ9rMWqD2MxjCUogSl+4+2SNuRF9r6g
-         rOHUWHzzUrWo/Yggrg5Pc+zdnCvD8N0/hzRmzbeKamxDXu3Qewx/VUH0fe78P9C3UCUB
-         P7aXp/axBbq+keFMK23f0UxuDbSJ6vYQ87ZdTmtmT9CM+grCYu8u7Q6iY5wFG94Ytgxe
-         FaehefZId7PSoyT1zR7qV7wKrFVOUbiCWGdquvVvgrA/0vuwODIQ17rrLS98snPs1bRj
-         1+1g==
-X-Gm-Message-State: AOJu0YxYwtYUA7aDJfkQNENhlHd7zKQxweFzghdg342hctpEa9ZQrUnr
-	e0tIhepScvpr1DfnR6CucPm1nA==
-X-Google-Smtp-Source: AGHT+IFpfh6L8728Z3j6bzPbiowlWy8+T8GLPep+SDx+hbW0WYRIuhdMOw4p3aX4qj3BGCjpZ1FkPg==
-X-Received: by 2002:a05:6512:1089:b0:50d:5837:f6f7 with SMTP id j9-20020a056512108900b0050d5837f6f7mr5038377lfg.15.1702539754628;
-        Wed, 13 Dec 2023 23:42:34 -0800 (PST)
+        bh=4MvMAIiIotVIco6M4RcGZEQ+hNO3VGKxDULnpzX6Bxg=;
+        b=Qdm86cj0viXf3u0NLaLDJs+dR2kv/tWeSOphbTVgpFl5IcBNauHPGASZio/qNz+0ZT
+         Czn83EUqFsmSugTox1iRXFQOM+10vY1KPwBGMUoAR1yDrGJosq1mBzthxRAcjT8FooOA
+         qgIm6vBruuRIQZRFB5PE2Ma0BkA403N4ahtssKtPo9lfLlFFEIIPkEFiaGx/GkpOt4TK
+         OUIfdtFdJRgZPW0wrr5Ekx66uJnmKDsuaL2kx4wKgiOGrEfU7zafaZAekJSgPyaDVp6m
+         lBwCxGbw+fO6xNXYR3PIQ5YBzPoXk94DqUHfH8e/h48NOix76OFCgCCI7SZD4OFB3+Ea
+         1fIQ==
+X-Gm-Message-State: AOJu0YweV6UlhRCOWmQPpSnAkr52grMcBlJxZgcIhC0QSLEQJud1Sspc
+	KVwgYWzWgSbYSj81BD99GG6HHOh5ro2i6tDPhVE=
+X-Google-Smtp-Source: AGHT+IHdvLd1KKquidilWvpGJpBfFf9nJMNA6i8fkBP2TcpSRydkmy+BzgyDEauKI6aia6/eqKmMWA==
+X-Received: by 2002:a50:9e81:0:b0:552:63bd:4326 with SMTP id a1-20020a509e81000000b0055263bd4326mr908615edf.21.1702539793674;
+        Wed, 13 Dec 2023 23:43:13 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id ew12-20020a056402538c00b00552691fc7f9sm458868edb.66.2023.12.13.23.42.33
+        by smtp.gmail.com with ESMTPSA id ew12-20020a056402538c00b00552691fc7f9sm458868edb.66.2023.12.13.23.43.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Dec 2023 23:42:34 -0800 (PST)
-Message-ID: <f98a5d06-199d-4b3d-bc53-6572a80033e8@linaro.org>
-Date: Thu, 14 Dec 2023 08:42:33 +0100
+        Wed, 13 Dec 2023 23:43:13 -0800 (PST)
+Message-ID: <6bf12018-6904-451c-8c6d-6643099b2a76@linaro.org>
+Date: Thu, 14 Dec 2023 08:43:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,15 +62,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: arm: ti: Add bindings for J722S SoCs
+Subject: Re: [PATCH v2 1/3] dt-bindings: vendor-prefixes: add Transpeed
 Content-Language: en-US
-To: Vaishnav Achath <vaishnav.a@ti.com>, nm@ti.com, vigneshr@ti.com,
- kristo@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org, j-choudhary@ti.com, u-kumar1@ti.com
-References: <20231213124930.3012-1-vaishnav.a@ti.com>
- <20231213124930.3012-2-vaishnav.a@ti.com>
+To: Andre Przywara <andre.przywara@arm.com>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>
+Cc: Icenowy Zheng <uwu@icenowy.me>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+References: <20231214015312.17363-1-andre.przywara@arm.com>
+ <20231214015312.17363-2-andre.przywara@arm.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -116,17 +118,15 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231213124930.3012-2-vaishnav.a@ti.com>
+In-Reply-To: <20231214015312.17363-2-andre.przywara@arm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/12/2023 13:49, Vaishnav Achath wrote:
-> Add bindings for TI J722S family of devices.
+On 14/12/2023 02:53, Andre Przywara wrote:
+> This is a name used by some Chinese TV boxes, add it to the bindings.
 > 
-> Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 > ---
->  Documentation/devicetree/bindings/arm/ti/k3.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
