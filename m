@@ -1,261 +1,110 @@
-Return-Path: <devicetree+bounces-25444-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25445-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB4F8813449
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 16:12:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 02D5A813450
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 16:13:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 10B8BB20C99
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 15:12:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 98952B218C3
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 15:13:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EFA55C093;
-	Thu, 14 Dec 2023 15:12:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8F9C5C8E8;
+	Thu, 14 Dec 2023 15:13:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gzb+ab07"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QVOLhbu5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CBEA19A;
-	Thu, 14 Dec 2023 07:12:20 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-50bf32c0140so9344396e87.1;
-        Thu, 14 Dec 2023 07:12:20 -0800 (PST)
+Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40F8E1BEF
+	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 07:13:10 -0800 (PST)
+Received: by mail-pg1-x52e.google.com with SMTP id 41be03b00d2f7-5ca5b61f101so571312a12.0
+        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 07:13:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702566738; x=1703171538; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=3L9IW1XXYJamkBl9kuyV2sbbsqpozouQnx6/10RpzLw=;
-        b=gzb+ab07pqv7oTrWcdnu67tgqKLH7N4iVUzHzJlbmZ0jj2MxkZV1RgxVdo7QSZbbLT
-         6rGrzZnIO5asF3kBr2xSs6p+BubXOyoahODsnnQmwrT4WSt1rtkVgBIsn2vb9mdQYaPq
-         KOO/VnHe7tk+CiPbf11PZ7hr0iD3j7Qslh8jGfKcR4jpWzj6PoMFEOXk3RKkudqIA5YQ
-         hB1GSAGGv4Zl+yo2J2ee70c11RBGco/J7oVfwM92CzWYXMErhLsSZ6T1ssXt7N5iDr17
-         Y4N/TdkXvSkb2aEogiUbQxDij4mOdb25EwxiMGhCW2epJi40wlJpWmYgesRqwgU2SUCU
-         PJTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702566738; x=1703171538;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1702566790; x=1703171590; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=3L9IW1XXYJamkBl9kuyV2sbbsqpozouQnx6/10RpzLw=;
-        b=EBhAuEpgt/hJFR6pMvjHTnmIaTEbuqPCykVI8kdQTtKWv2vWYjqol4N18xxXDuuvbl
-         szzpEZMiEoq6siiO2LTlopls+I0ARKC/zXC5f3ie773iEsjXzXBA0McXwA50PxO1J8fe
-         buKeEL7xCDIAfNkNsS06nbPkiDcMceF21RI0NXerf2eTYoxqhp2GS70HHeZAlSf82cKa
-         gkV2O5w5qOo/XLFL4xg34kx7e3wHNFdE8Q+iUojhR/K+0JMOlX1Z4MRvmqIrNn+gXVon
-         rpHcgwpJbwt2uV5aXDrNXU+bqCQRjlIZhhL/9auMDbafxR9rvOxdUZ676LSgaudrwp3G
-         WhgQ==
-X-Gm-Message-State: AOJu0Yw/ykaB9IzRwI3iVYMs7xSKLw+fSP/Jxhocih/K+X3dnped22lF
-	vQlsSkBZqOhwPkSPl6NQl+s=
-X-Google-Smtp-Source: AGHT+IEP3u4O2lNbWkKG8W6U43RJc9F6kHw2aeiH1kBN6pG9EFt7MG3Lv/BMC49bba7SPP2qAPULeg==
-X-Received: by 2002:ac2:5201:0:b0:50b:f9b2:cf2 with SMTP id a1-20020ac25201000000b0050bf9b20cf2mr4406925lfl.40.1702566738075;
-        Thu, 14 Dec 2023 07:12:18 -0800 (PST)
-Received: from mobilestation ([178.176.56.174])
-        by smtp.gmail.com with ESMTPSA id j26-20020ac2455a000000b0050bbad31c64sm1885297lfm.172.2023.12.14.07.12.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Dec 2023 07:12:17 -0800 (PST)
-Date: Thu, 14 Dec 2023 18:12:14 +0300
-From: Serge Semin <fancer.lancer@gmail.com>
-To: Suraj Jaiswal <quic_jsuraj@quicinc.com>
-Cc: Vinod Koul <vkoul@kernel.org>, 
-	Bhupesh Sharma <bhupesh.sharma@linaro.org>, Andy Gross <agross@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com, Prasad Sodagudi <psodagud@quicinc.com>, 
-	Andrew Halaney <ahalaney@redhat.com>, Rob Herring <robh@kernel.org>, kernel@quicinc.com
-Subject: Re: [PATCH net-next v6 3/3] net: stmmac: Add driver support for
- DWMAC5 common safety IRQ
-Message-ID: <bcppwdnscrebqtsap2fyfd6ltpi4al3ojm5dqytzp37h7y7rdy@zqy6bncdhzl2>
-References: <20231212115841.3800241-1-quic_jsuraj@quicinc.com>
- <20231212115841.3800241-4-quic_jsuraj@quicinc.com>
+        bh=etJ+/wYoAcvEaSoojHqnnim2gYjZh1zVJDqnc2kSXpQ=;
+        b=QVOLhbu5Qr7LsTyMe6GposwU9a//7P8AI8YTz2gIDYOAzbBvHGBX4ILfoweHvJk4rV
+         9HeeiUWpwpDgwlZEV7VfHFf4MSpgc5jQt4yISG48Qnn/wGouHI+JIZ60TLeO7SC8HYAl
+         zn3gND+PF/S3Gq32PnP6Q4t/UjsZNizhxuFfoP5HddnbgHeGGOgwP16NJt5xOfliu5bp
+         /KhHZK50OVgHv37IvobrrHNnCbfZrXaZMPLe7jdRkhMChG/4/wVPnBKU2ZXFd4MG1NZ1
+         KunmMzEVO9wsXOnlo7kyW5xsaVx7uM2JySchWwaoyF31fiZlCBTyEzLcgYkUeYSjnJQa
+         2jxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702566790; x=1703171590;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=etJ+/wYoAcvEaSoojHqnnim2gYjZh1zVJDqnc2kSXpQ=;
+        b=oLSivxHk8ExCDauE9iKKild56YYHQQtDwCeXwcbWJg65aEaIbLOiOd1um0hcxAIWWD
+         mv5WXNLMygnONGxYveMgLphfMCP10msFXK/uetC0e6yMD9juzYDtbZDJ1QmGvHZb/LxP
+         78ho7mem++W46n4pKjWpRhOlF9WMQa75CBSYIjrRFOCWzbf0E/pEQE1y/fscM59LBOEj
+         n8mnxgyKyTiiV2eA5Y1zmfFGp0x7DycsNqkitFZBXOi5+DpNxsWdnifOIafB+9rbT9OQ
+         34rvY8U1D73V74L4O4mpus15oX0qHtOJtblpUEgjFtemjJf/i0szugG4a6B1M++oKqvL
+         O49Q==
+X-Gm-Message-State: AOJu0YzLu9p/G3JjOIrcLcTxbo5C/kjhU+5cmkiySGH2y3kyQW2QAJLc
+	V8HS/r4FDLEfDoo5bd5on1YSt1pDCfNTFQqvZBalTQ==
+X-Google-Smtp-Source: AGHT+IEFL6tnUHSNVnMcU+kCLIcfGx/R1ZUOTFN7/bZVIiGtPzpJjiJX8aWhelM2KXu+zN0404N10HK44v1+/oTJCzM=
+X-Received: by 2002:a17:90a:de94:b0:28b:1fbd:27de with SMTP id
+ n20-20020a17090ade9400b0028b1fbd27demr197844pjv.29.1702566789746; Thu, 14 Dec
+ 2023 07:13:09 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231212115841.3800241-4-quic_jsuraj@quicinc.com>
+References: <20231214105243.3707730-1-tudor.ambarus@linaro.org> <20231214105243.3707730-4-tudor.ambarus@linaro.org>
+In-Reply-To: <20231214105243.3707730-4-tudor.ambarus@linaro.org>
+From: Sam Protsenko <semen.protsenko@linaro.org>
+Date: Thu, 14 Dec 2023 09:12:58 -0600
+Message-ID: <CAPLW+4mBN1g0ojYiE_AVt7ZWO_1yEFpx58x4+1U9spxaS=abRA@mail.gmail.com>
+Subject: Re: [PATCH 03/13] dt-bindings: i2c: exynos5: add google,gs101-hsi2c compatible
+To: Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: peter.griffin@linaro.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com, sboyd@kernel.org, 
+	conor+dt@kernel.org, andi.shyti@kernel.org, alim.akhtar@samsung.com, 
+	gregkh@linuxfoundation.org, jirislaby@kernel.org, catalin.marinas@arm.com, 
+	will@kernel.org, s.nawrocki@samsung.com, tomasz.figa@gmail.com, 
+	cw00.choi@samsung.com, arnd@arndb.de, andre.draszik@linaro.org, 
+	saravanak@google.com, willmcvicker@google.com, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org, 
+	linux-serial@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Suraj
-
-On Tue, Dec 12, 2023 at 05:28:41PM +0530, Suraj Jaiswal wrote:
-> Add support to listen HW safety IRQ like ECC(error
-> correction code), DPP(data path parity), FSM(finite state
-> machine) fault in common IRQ line.
-> 
-> Signed-off-by: Suraj Jaiswal <quic_jsuraj@quicinc.com>
+On Thu, Dec 14, 2023 at 4:52=E2=80=AFAM Tudor Ambarus <tudor.ambarus@linaro=
+.org> wrote:
+>
+> Add google,gs101-hsi2c dedicated compatible for representing
+> I2C of Google GS101 SoC.
+>
+> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
 > ---
->  drivers/net/ethernet/stmicro/stmmac/common.h  |  1 +
->  drivers/net/ethernet/stmicro/stmmac/stmmac.h  |  3 +++
->  .../net/ethernet/stmicro/stmmac/stmmac_main.c | 21 +++++++++++++++++++
->  .../ethernet/stmicro/stmmac/stmmac_platform.c |  9 ++++++++
->  4 files changed, 34 insertions(+)
-> 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/common.h b/drivers/net/ethernet/stmicro/stmmac/common.h
-> index 721c1f8e892f..b9233b09b80f 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/common.h
-> +++ b/drivers/net/ethernet/stmicro/stmmac/common.h
-> @@ -344,6 +344,7 @@ enum request_irq_err {
->  	REQ_IRQ_ERR_ALL,
->  	REQ_IRQ_ERR_TX,
->  	REQ_IRQ_ERR_RX,
-> +	REQ_IRQ_ERR_SFTY,
->  	REQ_IRQ_ERR_SFTY_UE,
->  	REQ_IRQ_ERR_SFTY_CE,
->  	REQ_IRQ_ERR_LPI,
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac.h b/drivers/net/ethernet/stmicro/stmmac/stmmac.h
-> index 9f89acf31050..ca3d93851bed 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac.h
-> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac.h
-> @@ -31,6 +31,7 @@ struct stmmac_resources {
->  	int wol_irq;
->  	int lpi_irq;
->  	int irq;
-> +	int sfty_irq;
->  	int sfty_ce_irq;
->  	int sfty_ue_irq;
->  	int rx_irq[MTL_MAX_RX_QUEUES];
-> @@ -297,6 +298,7 @@ struct stmmac_priv {
->  	void __iomem *ptpaddr;
->  	void __iomem *estaddr;
->  	unsigned long active_vlans[BITS_TO_LONGS(VLAN_N_VID)];
-> +	int sfty_irq;
->  	int sfty_ce_irq;
->  	int sfty_ue_irq;
->  	int rx_irq[MTL_MAX_RX_QUEUES];
-> @@ -305,6 +307,7 @@ struct stmmac_priv {
->  	char int_name_mac[IFNAMSIZ + 9];
->  	char int_name_wol[IFNAMSIZ + 9];
->  	char int_name_lpi[IFNAMSIZ + 9];
-> +	char int_name_sfty[IFNAMSIZ + 10];
->  	char int_name_sfty_ce[IFNAMSIZ + 10];
->  	char int_name_sfty_ue[IFNAMSIZ + 10];
->  	char int_name_rx_irq[MTL_MAX_TX_QUEUES][IFNAMSIZ + 14];
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> index 47de466e432c..6cf289f192a7 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> @@ -3592,6 +3592,10 @@ static void stmmac_free_irq(struct net_device *dev,
->  		if (priv->wol_irq > 0 && priv->wol_irq != dev->irq)
->  			free_irq(priv->wol_irq, dev);
->  		fallthrough;
-> +	case REQ_IRQ_ERR_SFTY:
-> +		if (priv->sfty_irq > 0 && priv->sfty_irq != dev->irq)
-> +			free_irq(priv->sfty_irq, dev);
-> +		fallthrough;
->  	case REQ_IRQ_ERR_WOL:
->  		free_irq(dev->irq, dev);
->  		fallthrough;
-> @@ -3759,6 +3763,7 @@ static int stmmac_request_irq_single(struct net_device *dev)
->  	struct stmmac_priv *priv = netdev_priv(dev);
->  	enum request_irq_err irq_err;
->  	int ret;
 
-> +	char *int_name;
+Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
 
-See my comment below.
-
->  
->  	ret = request_irq(dev->irq, stmmac_interrupt,
->  			  IRQF_SHARED, dev->name, dev);
-> @@ -3798,6 +3803,20 @@ static int stmmac_request_irq_single(struct net_device *dev)
->  		}
->  	}
->  
-
-> +	if (priv->sfty_irq > 0 && priv->sfty_irq != dev->irq) {
-> +		int_name = priv->int_name_sfty;
-> +		sprintf(int_name, "%s:%s", dev->name, "safety");
-> +		ret = request_irq(priv->sfty_irq, stmmac_safety_interrupt,
-> +				  0, int_name, dev);
-> +		if (unlikely(ret < 0)) {
-> +			netdev_err(priv->dev,
-> +				   "%s: alloc safety failed %d (error: %d)\n",
-> +				   __func__, priv->sfty_irq, ret);
-> +			irq_err = REQ_IRQ_ERR_SFTY;
-> +			goto irq_error;
-> +		}
-> +	}
-> +
-
-Omg, I thought this change belonged to stmmac_request_irq_multi_msi().
-My bad, sorry. Please move the code above to
-stmmac_request_irq_multi_msi() and get back the part in
-stmmac_request_irq_single() as it was in v5, but instead of specifying
-"safety" IRQ name use "dev->name" as the rest of similar code snippets
-in here have:
-
-+	if (priv->sfty_irq > 0 && priv->sfty_irq != dev->irq) {
-+		ret = request_irq(priv->sfty_irq, stmmac_safety_interrupt,
-+				  0, dev->name, dev);
-+		if (unlikely(ret < 0)) {
-+			netdev_err(priv->dev,
-+				   "%s: alloc safety failed %d (error: %d)\n",
-+				   __func__, priv->sfty_irq, ret);
-+			irq_err = REQ_IRQ_ERR_SFTY;
-+			goto irq_error;
-+		}
-+	}
-
-I guess at some point afterwards we'll need to refactor the IRQs
-request part of this driver: replace stmmac_request_irq_single() body
-with the upper part of the stmmac_request_irq_multi_msi() method and
-then just make the former method being called from the later one...
-
->  	return 0;
->  
->  irq_error:
-> @@ -7462,8 +7481,10 @@ int stmmac_dvr_probe(struct device *device,
->  	priv->dev->irq = res->irq;
->  	priv->wol_irq = res->wol_irq;
->  	priv->lpi_irq = res->lpi_irq;
-> +	priv->sfty_irq = res->sfty_irq;
->  	priv->sfty_ce_irq = res->sfty_ce_irq;
->  	priv->sfty_ue_irq = res->sfty_ue_irq;
-
-> +
-
-Please drop this change. The code below is attached to the code above
-because it basically does the same but in the loop. 
-
->  	for (i = 0; i < MTL_MAX_RX_QUEUES; i++)
->  		priv->rx_irq[i] = res->rx_irq[i];
->  	for (i = 0; i < MTL_MAX_TX_QUEUES; i++)
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-> index 1ffde555da47..3808a3225a7d 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-> @@ -726,6 +726,15 @@ int stmmac_get_platform_resources(struct platform_device *pdev,
->  		dev_info(&pdev->dev, "IRQ eth_lpi not found\n");
->  	}
->  
-> +	stmmac_res->sfty_irq =
-> +		platform_get_irq_byname_optional(pdev, "sfty");
-
-> +
-
-Please drop this change too. It's normal to have a method call
-attached to the error check statement especially seeing the rest of
-the similar code snippets are designed that way in this function.
-
--Serge(y)
-
-> +	if (stmmac_res->sfty_irq < 0) {
-> +		if (stmmac_res->sfty_irq == -EPROBE_DEFER)
-> +			return -EPROBE_DEFER;
-> +		dev_info(&pdev->dev, "IRQ safety IRQ not found\n");
-> +	}
-> +
->  	stmmac_res->addr = devm_platform_ioremap_resource(pdev, 0);
->  
->  	return PTR_ERR_OR_ZERO(stmmac_res->addr);
-> -- 
-> 2.25.1
-> 
-> 
+>  Documentation/devicetree/bindings/i2c/i2c-exynos5.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/Documentation/devicetree/bindings/i2c/i2c-exynos5.yaml b/Doc=
+umentation/devicetree/bindings/i2c/i2c-exynos5.yaml
+> index df9c57bca2a8..cc8bba5537b9 100644
+> --- a/Documentation/devicetree/bindings/i2c/i2c-exynos5.yaml
+> +++ b/Documentation/devicetree/bindings/i2c/i2c-exynos5.yaml
+> @@ -33,6 +33,7 @@ properties:
+>            - const: samsung,exynos7-hsi2c
+>        - items:
+>            - enum:
+> +              - google,gs101-hsi2c
+>                - samsung,exynos850-hsi2c
+>            - const: samsung,exynosautov9-hsi2c
+>        - const: samsung,exynos5-hsi2c    # Exynos5250 and Exynos5420
+> --
+> 2.43.0.472.g3155946c3a-goog
+>
 
