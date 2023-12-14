@@ -1,117 +1,120 @@
-Return-Path: <devicetree+bounces-25343-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25344-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9EC7812F94
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 13:00:28 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27EEC812F9D
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 13:01:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 89CF51F220F2
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 12:00:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A1C48B2183D
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 12:01:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0E364121B;
-	Thu, 14 Dec 2023 12:00:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB5464121F;
+	Thu, 14 Dec 2023 12:01:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VMHOBKTG"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="fuI254nT";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="H4hUsGCD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16B62B7;
-	Thu, 14 Dec 2023 04:00:21 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-5522ba3f94aso1877336a12.1;
-        Thu, 14 Dec 2023 04:00:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702555219; x=1703160019; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=uAVjKqO7t1SHEAhnbN0gUIgoq1UKlAq8GC08s1NGUV8=;
-        b=VMHOBKTGX2nJ/vb/pYuzizI7gNB8bCnxFUsbE+v/oFgtYDZBzFLVfs5rLuTLaZoc2h
-         rqTFeUrxFXZgzxZ1A5R3nTXCq+UJmtXZOW/4jbUDaTcwL2wZrRW6izkm81JmgvYS53aT
-         onlSgdVZfWMWNfrxX9BhnxLSz3m8nu/TKczDC0pIYIHynEtckssQhZSxE5zcUAi/O55W
-         xaqE5yCFQW2kth6rILEkbCetazM5v6xG4jzWYa/Gy1XRuUVgUn5n1+MAIF6TNMKQ7oFw
-         88jEkoRRSmG50MXAH+ng0rElcHm0dGRPPybLDd8EbD5yhxOmjkKUFgO6Ew3y8ljl7Kmu
-         nlRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702555219; x=1703160019;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uAVjKqO7t1SHEAhnbN0gUIgoq1UKlAq8GC08s1NGUV8=;
-        b=Vx0jNyu7MVDllNyo8ioCn9gZXHyAkDj9CSUuJVo9COOy/l6x1N8519THgRdaelxY7W
-         ZNYlpgZL35plBqfbdm0g17MBC7SzopQKM8w0UGiAwAmQq/lUxRXm/Y2TMS7Y+2eA91r3
-         5LotGMrCuXxfYZx2fWKsQ5h3Q5bXgqEge9j3hmwTd+NCJUkk1ZP25iwXO9EqhdzVH2Bx
-         ArfY6y67oCbmYJzwa/hlzL4P5rBbljOYBF6M3pTMcE3P+WVYgcMac3aI04scaRYatWHy
-         h9l8MPzdx8HmoQUV2TOc+ANmtxnIkLm2nfVrimC8ltPcuoSebyv79S0MI8lg4vjQn8vF
-         hR4Q==
-X-Gm-Message-State: AOJu0YzMP4Wp05uf9u+erUHhRN3m/rxyMhl8iwKGTJVjOP7PW0XoDXnB
-	Xk5eI8W3+Bfwq3nZuQGlmpjZA5dTBMCvBg==
-X-Google-Smtp-Source: AGHT+IFkAF8xyyVRvjbkhV0Imar1p4RnoaCvAzq2XlE+nsr9Wcq6xdWObgKdx8piQfIZ52SF7bMauQ==
-X-Received: by 2002:a17:906:74d6:b0:a23:fb2:e6c4 with SMTP id z22-20020a17090674d600b00a230fb2e6c4mr186158ejl.233.1702555219291;
-        Thu, 14 Dec 2023 04:00:19 -0800 (PST)
-Received: from skbuf ([188.27.185.68])
-        by smtp.gmail.com with ESMTPSA id ss27-20020a170907c01b00b00a1d9afe42f0sm9248350ejc.35.2023.12.14.04.00.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Dec 2023 04:00:19 -0800 (PST)
-Date: Thu, 14 Dec 2023 14:00:16 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Serge Semin <fancer.lancer@gmail.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Jose Abreu <Jose.Abreu@synopsys.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Tomer Maimon <tmaimon77@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	openbmc@lists.ozlabs.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 10/16] net: pcs: xpcs: Add generic DW XPCS
- MDIO-device support
-Message-ID: <20231214120016.wgeip3mdro5ihnxe@skbuf>
-References: <20231205103559.9605-1-fancer.lancer@gmail.com>
- <20231205103559.9605-11-fancer.lancer@gmail.com>
- <20231205111351.xjjuwpbf7kwg3vuh@skbuf>
- <uivunnjv5vi3w3fkc5w2f4lem5bingrgajgjfsu2ih7fuhz6hd@3naeubr5spak>
- <20231205122316.ihhpklv222f5giz3@skbuf>
- <nflj4ajgx3byqhwna2eslldwulbbafmcwba4dwgxo65o5c7pmj@zbgqt2zje4ix>
- <20231208163343.5s74bmirfna3o7yw@skbuf>
- <xhj7jchcv63y2bmnedxqffnmh3fvdxirccdugnnljruemuiurz@ceafs7mivbqp>
+Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D7B4BD;
+	Thu, 14 Dec 2023 04:01:45 -0800 (PST)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailout.nyi.internal (Postfix) with ESMTP id E6A1D5C01FA;
+	Thu, 14 Dec 2023 07:01:44 -0500 (EST)
+Received: from imap51 ([10.202.2.101])
+  by compute5.internal (MEProxy); Thu, 14 Dec 2023 07:01:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-type:content-type:date:date:from:from:in-reply-to
+	:in-reply-to:message-id:mime-version:references:reply-to:subject
+	:subject:to:to; s=fm1; t=1702555304; x=1702641704; bh=Baksf+ezVF
+	lYZ2aIOXFNfU8ikmrbeyERoCYqa6/cW4Y=; b=fuI254nTWrgEL508ZUXSr5ts7/
+	kL5NSSYQ9JyWAcH/I0aVXU+xp7FkYXP3UpSL7twuKSg9dSynv2q9ATL6UwFiQntV
+	FbjMNsWLD7EbXgwk9sK73Xev9A3NcxXYtKDIxHZ/txh1DZiFkqdYoXWYM0x0qmTx
+	VJrZKtRpdftK/xUC9+DUCsVDcEXyPP7YxVl8JYE86kybQ/bVWjzbUvoST4/OeTMK
+	dtIcHKbaotzXZ3hN9stNCbPuMbly5XG6BINTpdP1cqEY7GYer2pjiSReD4bIN7DN
+	mVJkhwR7P9s/zWjn6jBiAKr9qikX1el6R4abP+xop0BK1YVsgTWELj5R45cg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm1; t=1702555304; x=1702641704; bh=Baksf+ezVFlYZ2aIOXFNfU8ikmrb
+	eyERoCYqa6/cW4Y=; b=H4hUsGCD+UIpPhvTp6EDda5x184ckDpINaoPPwYhG6Bz
+	pHrj1+s3zIJMTXmqdvx/JGqJ/hd2av7VtEQIPEm6WT++DwSy7BMNCiOWGoCPX8Pb
+	eyu9Rr7n4WLnuV7XODR4sFJzUse0N2foWWq5LZoxh7urMYi/npT7AH8G5+sJG13H
+	qKAxFJyp0e3UC1vTtvJBGJjF19LSovxJt+wS2iUU5KA/T1hxeOwqmcEQ9yws7UIT
+	ekEE1qbPICwOFcUJV8dk/8cX6od0dkCsWEOWZbUXvuSkQBkbA5LHKmah+BXF8qxB
+	7X21c47xO5o4wBJptgZc80EB191pJPTwlEwQJS0KLw==
+X-ME-Sender: <xms:p-56ZfivBsopwzJZUolzYfIwCyeb1_gUGFaQFErpr8dBiVYSiiTJ2A>
+    <xme:p-56ZcDYh5fT2_FwBR5UmjS4-ld9llEkSfj-nLAWDISM9s8emwpjly7LjXh1nMNmb
+    I8OAehJrVT-gTxOXrw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrudelledgfeegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
+    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
+    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
+    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+    hrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:p-56ZfEh9NlIyqEvfieC3ApXwdqjkVDtV84AZttHKOUhd3fY6NBbGw>
+    <xmx:p-56ZcRlgLBGG20YuLoW9BvjkhNfpbGJE4AymzTznyVL5qXxb7yVkg>
+    <xmx:p-56ZcwwDYeuLqtfeNo6KEDmz9WFiKgU7XZUFEoxj0Oj05LSun0qHQ>
+    <xmx:qO56ZZjQr8S5MbXEpxTVcjgIE1nGGY0D9mobT7rrgS1E5yJuuh1h8g>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id 779C6B6008F; Thu, 14 Dec 2023 07:01:43 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-1283-g327e3ec917-fm-20231207.002-g327e3ec9
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <xhj7jchcv63y2bmnedxqffnmh3fvdxirccdugnnljruemuiurz@ceafs7mivbqp>
+Message-Id: <1938fcf1-eb5d-4723-a6c6-d2fe2c6dd1c0@app.fastmail.com>
+In-Reply-To: <20231214105243.3707730-6-tudor.ambarus@linaro.org>
+References: <20231214105243.3707730-1-tudor.ambarus@linaro.org>
+ <20231214105243.3707730-6-tudor.ambarus@linaro.org>
+Date: Thu, 14 Dec 2023 13:01:21 +0100
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Tudor Ambarus" <tudor.ambarus@linaro.org>,
+ "Peter Griffin" <peter.griffin@linaro.org>,
+ "Rob Herring" <robh+dt@kernel.org>, krzysztof.kozlowski+dt@linaro.org,
+ "Michael Turquette" <mturquette@baylibre.com>,
+ "Stephen Boyd" <sboyd@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ andi.shyti@kernel.org, "Alim Akhtar" <alim.akhtar@samsung.com>,
+ "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+ "Jiri Slaby" <jirislaby@kernel.org>,
+ "Catalin Marinas" <catalin.marinas@arm.com>, "Will Deacon" <will@kernel.org>,
+ "Sylwester Nawrocki" <s.nawrocki@samsung.com>,
+ "Tomasz Figa" <tomasz.figa@gmail.com>,
+ "Chanwoo Choi" <cw00.choi@samsung.com>,
+ "Sam Protsenko" <semen.protsenko@linaro.org>
+Cc: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ saravanak@google.com, "William McVicker" <willmcvicker@google.com>,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+ linux-serial@vger.kernel.org
+Subject: Re: [PATCH 05/13] tty: serial: samsung: add gs101 earlycon support
+Content-Type: text/plain
 
-On Thu, Dec 14, 2023 at 02:54:00PM +0300, Serge Semin wrote:
-> > > > The pcs-rzn1-miic.c driver puts a device_link to the MAC to at least
-> > > > tear down the whole thing when the PCS is unbound, which is saner than
-> > > > crashing the kernel. I don't see the equivalent protection mechanism here?
-> > > 
-> > > You are right. I don't have any equivalent protection here. Thanks for
-> > > suggesting a solution.
-> > 
-> > I think that a device link between the "ethernet" device and the "mdio"
-> > device (controller, parent of the PHY or PCS), if the Ethernet is not a
-> > parent of the MDIO controller, could also solve that. But it would also
-> > require ACK from PHY maintainers, who may have grander plans to address
-> > this snag.
-> 
-> Ok. I'll add it in v2. Let's see what the maintainers think about
-> that.
+On Thu, Dec 14, 2023, at 11:52, Tudor Ambarus wrote:
+> +static int __init gs101_early_console_setup(struct earlycon_device *device,
+> +					    const char *opt)
+> +{
+> +	/* gs101 always expects MMIO32 register accesses. */
+> +	device->port.iotype = UPIO_MEM32;
+> +
+> +	return s5pv210_early_console_setup(device, opt);
+> +}
+> +
+> +OF_EARLYCON_DECLARE(gs101, "google,gs101-uart", gs101_early_console_setup);
 
-Are you not following the parallel discussion on the topic of PCS
-devices having bound drivers?
-https://lore.kernel.org/netdev/ZXnV%2FPk1PYxAm%2FjS@shell.armlinux.org.uk/
+It looks like this is already done by of_setup_earlycon() based on
+the reg-io-width property. Any idea why it doesn't work with the
+normal s5pv210_early_console_setup() function?
 
-Sadly I don't have much spare time to join that discussion, but it looks
-like you could.
+      Arnd
 
