@@ -1,129 +1,117 @@
-Return-Path: <devicetree+bounces-25342-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25343-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C469812F91
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 12:59:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9EC7812F94
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 13:00:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D67D1C21990
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 11:59:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 89CF51F220F2
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 12:00:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D38B4121B;
-	Thu, 14 Dec 2023 11:59:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0E364121B;
+	Thu, 14 Dec 2023 12:00:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="b0YEhtqb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VMHOBKTG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8D7C11D
-	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 03:59:08 -0800 (PST)
-Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2c9f85eff28so119805061fa.3
-        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 03:59:08 -0800 (PST)
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16B62B7;
+	Thu, 14 Dec 2023 04:00:21 -0800 (PST)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-5522ba3f94aso1877336a12.1;
+        Thu, 14 Dec 2023 04:00:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702555147; x=1703159947; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MBNHMT7LqHLUU6LGBqOeadsJyO5Y3oN/Q3Spl99QuKQ=;
-        b=b0YEhtqbm7ZJJYQs3SMtwEhmgmOMf5FH2SSRFIxxNwgcWS5p3ZA65MIr1i6n9B2gIT
-         1i2VvFDKGLYbSxnPy6IrJpa1G8eIVtQw9QUM4vG+gExYPrjVtEr9lHG1KNRoefKw/iEL
-         p63MtTveRv0UH+87k6AXTRtl4owkz1hXG0dvZ0F7sChtP2AQhURgfVcIIpRFbNcjGFlI
-         QioIG8+Mot1y+Vs4rm1k7AXcVsH6rn6Kx3gmvMCSut35SG8D36JDMMFqI13RuRFazpq1
-         58vaZEATd0wY/pg+QhVxY1eGpocxiyuKv0Z72ECgnM7bMPn4my777JiB9jjbEMROM9mx
-         vrAw==
+        d=gmail.com; s=20230601; t=1702555219; x=1703160019; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=uAVjKqO7t1SHEAhnbN0gUIgoq1UKlAq8GC08s1NGUV8=;
+        b=VMHOBKTGX2nJ/vb/pYuzizI7gNB8bCnxFUsbE+v/oFgtYDZBzFLVfs5rLuTLaZoc2h
+         rqTFeUrxFXZgzxZ1A5R3nTXCq+UJmtXZOW/4jbUDaTcwL2wZrRW6izkm81JmgvYS53aT
+         onlSgdVZfWMWNfrxX9BhnxLSz3m8nu/TKczDC0pIYIHynEtckssQhZSxE5zcUAi/O55W
+         xaqE5yCFQW2kth6rILEkbCetazM5v6xG4jzWYa/Gy1XRuUVgUn5n1+MAIF6TNMKQ7oFw
+         88jEkoRRSmG50MXAH+ng0rElcHm0dGRPPybLDd8EbD5yhxOmjkKUFgO6Ew3y8ljl7Kmu
+         nlRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702555147; x=1703159947;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MBNHMT7LqHLUU6LGBqOeadsJyO5Y3oN/Q3Spl99QuKQ=;
-        b=bunlMiGCfe3P3LzT7cRWC/og8beuVTIpnekOKjj8cqL5GbnfgDI3UQZlHktosPr9Ms
-         uRrHe7EsJi2mijR/pzWYqZ/Io7QqT4RGiNaii6J9sqAwAU9LaqVF5SQwpTBJy1/3bPfc
-         SapWADnRna3mBFQHuZ00RXyuWkEUlODQrKKCxCW2uIm+UlXdk5WcXxumoyH7FvLsReyx
-         mws5g9IfwPY1RZ8/I9AACZnd261uTLFuHPrBlXOCOgAjQLzxMeEVX3kj9LS/Q+ECEBlC
-         8Tk/5GEv4TpvwBvtksmLLtxL8v7Pagsxb7sNqZOOad9GZRyx9aToTtKXtShx5cV1+jcW
-         TG2A==
-X-Gm-Message-State: AOJu0Yz5oUmXwU0J7GU6+5+O1X5NjqsbiToBLtuWZl/Untf+3KF1mqzX
-	pMEQU5YsNg2R4OdvNMCBVLb2mA==
-X-Google-Smtp-Source: AGHT+IF8sQq2hCKWuHAD9trXlrokL4kEzbH8TJA/EFxemSgc5XKtke2dKBh9a2f1+Ry3QihsMAdJzQ==
-X-Received: by 2002:a2e:a7c8:0:b0:2cc:41d4:1c58 with SMTP id x8-20020a2ea7c8000000b002cc41d41c58mr627354ljp.66.1702555147028;
-        Thu, 14 Dec 2023 03:59:07 -0800 (PST)
-Received: from [172.30.204.158] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id y2-20020a05651c106200b002ca0cb6f476sm2037042ljm.60.2023.12.14.03.59.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Dec 2023 03:59:06 -0800 (PST)
-Message-ID: <be7fe545-3a5f-4af3-89f6-c22326689465@linaro.org>
-Date: Thu, 14 Dec 2023 12:59:06 +0100
+        d=1e100.net; s=20230601; t=1702555219; x=1703160019;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uAVjKqO7t1SHEAhnbN0gUIgoq1UKlAq8GC08s1NGUV8=;
+        b=Vx0jNyu7MVDllNyo8ioCn9gZXHyAkDj9CSUuJVo9COOy/l6x1N8519THgRdaelxY7W
+         ZNYlpgZL35plBqfbdm0g17MBC7SzopQKM8w0UGiAwAmQq/lUxRXm/Y2TMS7Y+2eA91r3
+         5LotGMrCuXxfYZx2fWKsQ5h3Q5bXgqEge9j3hmwTd+NCJUkk1ZP25iwXO9EqhdzVH2Bx
+         ArfY6y67oCbmYJzwa/hlzL4P5rBbljOYBF6M3pTMcE3P+WVYgcMac3aI04scaRYatWHy
+         h9l8MPzdx8HmoQUV2TOc+ANmtxnIkLm2nfVrimC8ltPcuoSebyv79S0MI8lg4vjQn8vF
+         hR4Q==
+X-Gm-Message-State: AOJu0YzMP4Wp05uf9u+erUHhRN3m/rxyMhl8iwKGTJVjOP7PW0XoDXnB
+	Xk5eI8W3+Bfwq3nZuQGlmpjZA5dTBMCvBg==
+X-Google-Smtp-Source: AGHT+IFkAF8xyyVRvjbkhV0Imar1p4RnoaCvAzq2XlE+nsr9Wcq6xdWObgKdx8piQfIZ52SF7bMauQ==
+X-Received: by 2002:a17:906:74d6:b0:a23:fb2:e6c4 with SMTP id z22-20020a17090674d600b00a230fb2e6c4mr186158ejl.233.1702555219291;
+        Thu, 14 Dec 2023 04:00:19 -0800 (PST)
+Received: from skbuf ([188.27.185.68])
+        by smtp.gmail.com with ESMTPSA id ss27-20020a170907c01b00b00a1d9afe42f0sm9248350ejc.35.2023.12.14.04.00.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Dec 2023 04:00:19 -0800 (PST)
+Date: Thu, 14 Dec 2023 14:00:16 +0200
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Serge Semin <fancer.lancer@gmail.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Jose Abreu <Jose.Abreu@synopsys.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Tomer Maimon <tmaimon77@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	openbmc@lists.ozlabs.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 10/16] net: pcs: xpcs: Add generic DW XPCS
+ MDIO-device support
+Message-ID: <20231214120016.wgeip3mdro5ihnxe@skbuf>
+References: <20231205103559.9605-1-fancer.lancer@gmail.com>
+ <20231205103559.9605-11-fancer.lancer@gmail.com>
+ <20231205111351.xjjuwpbf7kwg3vuh@skbuf>
+ <uivunnjv5vi3w3fkc5w2f4lem5bingrgajgjfsu2ih7fuhz6hd@3naeubr5spak>
+ <20231205122316.ihhpklv222f5giz3@skbuf>
+ <nflj4ajgx3byqhwna2eslldwulbbafmcwba4dwgxo65o5c7pmj@zbgqt2zje4ix>
+ <20231208163343.5s74bmirfna3o7yw@skbuf>
+ <xhj7jchcv63y2bmnedxqffnmh3fvdxirccdugnnljruemuiurz@ceafs7mivbqp>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] soc: qcom: stats: don't crash if DDR offset contains
- invalid data
-Content-Language: en-US
-To: Doug Anderson <dianders@chromium.org>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- Stephen Boyd <swboyd@chromium.org>
-References: <20231209215601.3543895-1-dmitry.baryshkov@linaro.org>
- <20231209215601.3543895-2-dmitry.baryshkov@linaro.org>
- <3ba4da84-a17e-47ae-8958-2484cd6cbea0@linaro.org>
- <CAD=FV=XX4wLg1NNVL15RK4D4tLvuSzZyUv=k_tS4bSb3=7QJzQ@mail.gmail.com>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <CAD=FV=XX4wLg1NNVL15RK4D4tLvuSzZyUv=k_tS4bSb3=7QJzQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Level: *
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <xhj7jchcv63y2bmnedxqffnmh3fvdxirccdugnnljruemuiurz@ceafs7mivbqp>
 
+On Thu, Dec 14, 2023 at 02:54:00PM +0300, Serge Semin wrote:
+> > > > The pcs-rzn1-miic.c driver puts a device_link to the MAC to at least
+> > > > tear down the whole thing when the PCS is unbound, which is saner than
+> > > > crashing the kernel. I don't see the equivalent protection mechanism here?
+> > > 
+> > > You are right. I don't have any equivalent protection here. Thanks for
+> > > suggesting a solution.
+> > 
+> > I think that a device link between the "ethernet" device and the "mdio"
+> > device (controller, parent of the PHY or PCS), if the Ethernet is not a
+> > parent of the MDIO controller, could also solve that. But it would also
+> > require ACK from PHY maintainers, who may have grander plans to address
+> > this snag.
+> 
+> Ok. I'll add it in v2. Let's see what the maintainers think about
+> that.
 
+Are you not following the parallel discussion on the topic of PCS
+devices having bound drivers?
+https://lore.kernel.org/netdev/ZXnV%2FPk1PYxAm%2FjS@shell.armlinux.org.uk/
 
-On 12/14/23 01:59, Doug Anderson wrote:
-> Hi,
-> 
-> On Mon, Dec 11, 2023 at 1:11 AM Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->>
->> On 9.12.2023 22:55, Dmitry Baryshkov wrote:
->>> The stats ram on sm8150 platform contains invalid data at the
->>> DDR_DYNAMIC_OFFSET. Most likely this is because the platform didn't
->>> support DDR sleep stats.
->> Interesting. Can you read back DDR_DYNAMIC_OFFSET on 8350/8280 and
->> see if 8150 has correct data in there?
->>
->>> However this platform uses generic
->>> "qcom,rpmh-stats" compatible, which implies presense of the DDR data.
->>> Add safety net to prevent old DTB files from crashing the
->>> qcom,rpmh-stats driver.
->> Yeah I'dve never thought there would be garbage in there..
->>
->> I'd advocate for simply not doing anything wrt sleep stats if DDR
->> stats are unavailable though. The QMP handle can stay, as there
->> may (I don't know) be more data available that we want to export
->> through this driver.
-> 
-> FWIW, I'm getting a crash on sc7180-trogdor like this too. In kgdb it
-> says I'm on line:
-> 
-> key = readl(ddrd->base);
-> 
-> ...and
-> 
-> (gdb) print ddrd->base
-> $1 = (void *) 0xffffffc0833a3149
-> (gdb) print reg
-> $2 = (void *) 0xffffffc0833a3000
-> 
-> ...so I guess my "stats_offset" must have been 0x149.
-> 
-> Can we get a fix landed or a revert? Thanks! :-)
-Right, I guess we may want to revert it and I'll try to get more
-info from Qualcomm folks..
-
-Konrad
+Sadly I don't have much spare time to join that discussion, but it looks
+like you could.
 
