@@ -1,107 +1,104 @@
-Return-Path: <devicetree+bounces-25312-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25313-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 567AD812DFF
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 12:01:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA59D812E01
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 12:03:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D9D21B211EB
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 11:01:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 656F228227C
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 11:03:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB8F73E46B;
-	Thu, 14 Dec 2023 11:01:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D3FD3E479;
+	Thu, 14 Dec 2023 11:03:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="sgeHfjBH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UeNfZ/sj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 396971A3;
-	Thu, 14 Dec 2023 03:01:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=Popi+890fZ1lHbXbLEHSlXolpjJo3sDNBxoaukvvxzM=; b=sgeHfjBHWSa4Ai8ohwsLkr9bLX
-	exGWirdgfG0oHmhTbF3/gok3kfORbPiMrVHzOqnkjt7M4Ix3XQTMImnSyqz4idtzHLbs+Ydb+yLyd
-	Y4ECRzgfFoX7137PTSav157ABqjC3u3JaqNHd3GCIaPUaRN/LOYEOujiIYlpnUJlve4c=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rDjT4-002ul8-GY; Thu, 14 Dec 2023 12:01:26 +0100
-Date: Thu, 14 Dec 2023 12:01:26 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Luo Jie <quic_luoj@quicinc.com>
-Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	hkallweit1@gmail.com, linux@armlinux.org.uk, corbet@lwn.net,
-	p.zabel@pengutronix.de, f.fainelli@gmail.com,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH v7 03/14] net: phy: at803x: add QCA8084 ethernet phy
- support
-Message-ID: <c05e4756-0b33-4c97-ba88-1e14f459bbe3@lunn.ch>
-References: <20231214094813.24690-1-quic_luoj@quicinc.com>
- <20231214094813.24690-4-quic_luoj@quicinc.com>
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD10F11B;
+	Thu, 14 Dec 2023 03:03:03 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-50bfa5a6cffso9287074e87.0;
+        Thu, 14 Dec 2023 03:03:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702551782; x=1703156582; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wu2c3DwVvYEQBllF+/J+S28oH/5LztrNNWHtWraW0sc=;
+        b=UeNfZ/sjAcHJwE47q13oEhNa/P1qRCcN5zfyQMKC6CQV3p8qL5aDiaLeWywD7vB5Bv
+         n5W+at9asoyRx0ncRDqrNvAkotWsvks9N6ETxWiyMZMr5RKiaH4KZi5WAAKkhdGXTT9J
+         tML7SDpaCgYD+y7qVP0+eU65tHVj1BqbDDldyxqAcQTW1ECshRAbTzw3+rpdB5o3IQlT
+         lI09BzNezUDvC4bTTbGMsOVkWxy2HWDs9nBpLbzAwHnYkjAoJajFB6+KQs41JRvrQYT8
+         f/SMWM0RIFk2Yy8zvydFWARD0T3EoKA/hLtW1SqmHOicAJAmppbwKykC2ao0Cowcp/5K
+         NA4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702551782; x=1703156582;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wu2c3DwVvYEQBllF+/J+S28oH/5LztrNNWHtWraW0sc=;
+        b=pukQQBoUdarLuqRiLUXlskQ63rls/As9kkhHA5YK9bKRHlO5vbbUD6TRKwy37j//5R
+         N2iTWqeb785le7WHdJY8wrKKr4vrEW/RqD29Nb5sGY4G13FKi1OlwtxJ7AqWlmo+42Db
+         NiwM+tjLEpQDOPEFZnjjcmtkS4cHRo1AUn+oujto2fbbHEhvEK7QgUIprXpuUe7G7ywX
+         oVgF2ItOOPTwUsa0KIkdN5pr5ieNdw9R3/3REfd5T+6a8Vv2JxszjVaS97RTbkqAsrrH
+         XM0yRHj9eAMCtTmykXWfAJOKqCQHiKNLMi7Psu8b1DnwKFaFG5bRJCrBP3pz+JRptm7r
+         02NA==
+X-Gm-Message-State: AOJu0YxmBOqD8lhsab7i0/HGNBAGu/iAffcpN3ccKjgFEXM2XwaOMHxM
+	mDtn7fqrqWt5A/ImPn07ynU=
+X-Google-Smtp-Source: AGHT+IGkA/6XtvCqg7LSR6AbDUensyCKLPT5PPoyzAFxddrwL2e8LOG9GSSHWOPFrBJSfpn7oxdjnQ==
+X-Received: by 2002:a05:6512:11c2:b0:50b:e790:e96c with SMTP id h2-20020a05651211c200b0050be790e96cmr3522017lfr.30.1702551781616;
+        Thu, 14 Dec 2023 03:03:01 -0800 (PST)
+Received: from [172.25.98.130] ([5.2.194.157])
+        by smtp.gmail.com with ESMTPSA id vc11-20020a170907d08b00b00a1b6d503e7esm9152162ejc.157.2023.12.14.03.03.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Dec 2023 03:03:01 -0800 (PST)
+Message-ID: <fd9f6465-fd72-401e-bcc2-59f775a43d9b@gmail.com>
+Date: Thu, 14 Dec 2023 13:02:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231214094813.24690-4-quic_luoj@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 2/2] iio: adc: ad7173: add AD7173 driver
+To: Andy Shevchenko <andy@kernel.org>
+Cc: linus.walleij@linaro.org, brgl@bgdev.pl, linux-gpio@vger.kernel.org,
+ Lars-Peter Clausen <lars@metafoo.de>, Jonathan Cameron <jic23@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Michael Walle <michael@walle.cc>,
+ Arnd Bergmann <arnd@arndb.de>, ChiaEn Wu <chiaen_wu@richtek.com>,
+ Niklas Schnelle <schnelle@linux.ibm.com>,
+ =?UTF-8?Q?Leonard_G=C3=B6hrs?= <l.goehrs@pengutronix.de>,
+ Mike Looijmans <mike.looijmans@topic.nl>, Haibo Chen <haibo.chen@nxp.com>,
+ Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+ Ceclan Dumitru <dumitru.ceclan@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231212104451.22522-1-mitrutzceclan@gmail.com>
+ <20231212104451.22522-2-mitrutzceclan@gmail.com>
+ <ZXm-hf8UQ3VEyP-2@smile.fi.intel.com>
+Content-Language: en-US
+From: Ceclan Dumitru <mitrutzceclan@gmail.com>
+In-Reply-To: <ZXm-hf8UQ3VEyP-2@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Dec 14, 2023 at 05:48:02PM +0800, Luo Jie wrote:
-> Add qca8084 PHY support, which is four-port PHY with maximum
-> link capability 2.5G, the features of each port is almost same
-> as QCA8081 and slave seed config is not needed.
+
+
+On 12/13/23 16:24, Andy Shevchenko wrote:
+> On Tue, Dec 12, 2023 at 12:44:36PM +0200, Dumitru Ceclan wrote:
+> ...
 > 
-> Three kind of interface modes supported by qca8084.
-> PHY_INTERFACE_MODE_10G_QXGMII, PHY_INTERFACE_MODE_2500BASEX and
-> PHY_INTERFACE_MODE_SGMII.
+>> +		if (chan->type == IIO_TEMP) {
+>> +			temp = ((u32)AD7173_VOLTAGE_INT_REF_uV) * MILLI;
 > 
-> The PCS(serdes) and clock are also needed to be configured to
-> bringup qca8084 PHY, which will be added in the pcs driver.
+> Hmm... Is the casting mandatory here?
 > 
-> The additional CDT configurations used for qca8084.
-> 
-> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
-> ---
->  drivers/net/phy/at803x.c | 49 ++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 49 insertions(+)
-> 
-> diff --git a/drivers/net/phy/at803x.c b/drivers/net/phy/at803x.c
-> index 37fb033e1c29..8dfdf2ff56a5 100644
-> --- a/drivers/net/phy/at803x.c
-> +++ b/drivers/net/phy/at803x.c
-> @@ -176,6 +176,7 @@
->  #define AT8030_PHY_ID_MASK			0xffffffef
->  
->  #define QCA8081_PHY_ID				0x004dd101
-> +#define QCA8084_PHY_ID				0x004dd180
->  
->  #define QCA8327_A_PHY_ID			0x004dd033
->  #define QCA8327_B_PHY_ID			0x004dd034
-> @@ -1760,6 +1761,9 @@ static bool qca808x_is_prefer_master(struct phy_device *phydev)
->  
->  static bool qca808x_has_fast_retrain_or_slave_seed(struct phy_device *phydev)
->  {
-> +	if (phydev_id_compare(phydev, QCA8084_PHY_ID))
-> +		return false;
-> +
->  	return linkmode_test_bit(ETHTOOL_LINK_MODE_2500baseT_Full_BIT, phydev->supported);
->  }
 
+Yep, not really needed as MILLI is already declared as unsigned and it
+will promote the _INT_REF as well. On signed32 it would have overflowed.
 
-It looks like these patches need rebasing on net-next/main. It appears
-you are missing Christians patches.
-
-
-    Andrew
-
----
-pw-bot: cr
+Are there any cases where this would not be alright?
 
