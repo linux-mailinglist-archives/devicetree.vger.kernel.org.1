@@ -1,106 +1,129 @@
-Return-Path: <devicetree+bounces-25093-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25094-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0555081268B
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 05:30:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 788088126D2
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 06:13:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3855F1C214D5
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 04:30:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1DE9A1F217AA
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 05:13:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C9F36FB1;
-	Thu, 14 Dec 2023 04:30:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B32836122;
+	Thu, 14 Dec 2023 05:13:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=oracle.com header.i=@oracle.com header.b="U2LlWeJy"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nKrYKE8U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com [205.220.177.32])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAC7F10C9;
-	Wed, 13 Dec 2023 20:29:54 -0800 (PST)
-Received: from pps.filterd (m0333520.ppops.net [127.0.0.1])
-	by mx0b-00069f02.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3BE0T42K005350;
-	Thu, 14 Dec 2023 04:29:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type : content-transfer-encoding; s=corp-2023-11-20;
- bh=mJ3451zkdfGLDhRtPu1QT4Ogrv1lFk0jYww8GFnhT6w=;
- b=U2LlWeJyoEvG60Zl1CPswOTt+Dv4MlQ1L7zM+KsisneYtJcLi7RuXbbvNafRJ2Vp8h2w
- aiYncTvHMZmBinxZUSma3yHXQi4PjsdMvI8DAc2LEP89YPBHart+gADQD9nkkx4PSOyk
- a0bPgI0+0xWoNU7TNbFI39uL8UPVD9AesJKShIhuWJohzfMn51H79Xl3/2ZyU8ghzZvs
- Ro8mbAINDkt0JOisrn2QbuY3FAPQ/t95igLx0lz28QCBTqtE9+0BPbX9u6yVcyYUf04R
- Bkhfp44GiElJ4Jwnr333tOfju+4QHEAdY8tu+hfgcxAKxndQRzqvFEpeTVTD03axvBMv Hw== 
-Received: from iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (iadpaimrmta01.appoci.oracle.com [130.35.100.223])
-	by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 3uvg9d9x6c-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 14 Dec 2023 04:29:32 +0000
-Received: from pps.filterd (iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
-	by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (8.17.1.19/8.17.1.19) with ESMTP id 3BE34td0010087;
-	Thu, 14 Dec 2023 04:29:31 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id 3uvep9ev4n-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 14 Dec 2023 04:29:31 +0000
-Received: from iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 3BE4TQMO035965;
-	Thu, 14 Dec 2023 04:29:30 GMT
-Received: from ca-mkp2.ca.oracle.com.com (mpeterse-ol9.allregionaliads.osdevelopmeniad.oraclevcn.com [100.100.251.135])
-	by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTP id 3uvep9ev0g-11;
-	Thu, 14 Dec 2023 04:29:30 +0000
-From: "Martin K. Petersen" <martin.petersen@oracle.com>
-To: quic_asutoshd@quicinc.com, quic_cang@quicinc.com, bvanassche@acm.org,
-        mani@kernel.org, stanley.chu@mediatek.com, adrian.hunter@intel.com,
-        beanhuo@micron.com, avri.altman@wdc.com, junwoo80.lee@samsung.com,
-        quic_nguyenb@quicinc.com, quic_nitirawa@quicinc.com,
-        Ziqi Chen <quic_ziqichen@quicinc.com>
-Cc: "Martin K . Petersen" <martin.petersen@oracle.com>,
-        linux-scsi@vger.kernel.org, Alim Akhtar <alim.akhtar@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Sudeep Holla <sudeep.holla@arm.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4] dt-bindings: ufs: Add msi-parent for UFS MCQ
-Date: Wed, 13 Dec 2023 23:29:16 -0500
-Message-ID: <170205513080.1790765.11260329706297347985.b4-ty@oracle.com>
-X-Mailer: git-send-email 2.42.1
-In-Reply-To: <1701144469-1018-1-git-send-email-quic_ziqichen@quicinc.com>
-References: <1701144469-1018-1-git-send-email-quic_ziqichen@quicinc.com>
+Received: from mail-oa1-x34.google.com (mail-oa1-x34.google.com [IPv6:2001:4860:4864:20::34])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95686F7
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 21:13:39 -0800 (PST)
+Received: by mail-oa1-x34.google.com with SMTP id 586e51a60fabf-1fb37f25399so5118470fac.1
+        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 21:13:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702530819; x=1703135619; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=tGvsJDQAMzLezaJvKe+SydOVs1hJQDGaynKlMwoskT4=;
+        b=nKrYKE8Uf3UL7w0vaBWQi2gBRLEIiBZfJH50f9E2d5qKLJtbbyBWNCsvC7qT6W3sYC
+         eg4yaoNsac3k94gxt8H68ThiL6xthPpgbr+nh//+oT2HH2H+spOBXkmISH07n0cA9p7/
+         /1ziGdf/L0PhBDcbxGVoYpbMwEbqei+sw/J5ture6HUUTcm0X4LeFRSP+E2eOuQ50y2x
+         tnn0Q5GjEoER16bjBZnjF4d3tJEjXKOXWXyaBtrg9ogrF75kpYAfYXZA+/cC75BsyfC6
+         MFEGGSUHwwsmUpwVK3HZ9V+BjwNle9f19nykV42O5F+FGwL8Fqvfx2P05CXl3I9eA2rx
+         OXXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702530819; x=1703135619;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tGvsJDQAMzLezaJvKe+SydOVs1hJQDGaynKlMwoskT4=;
+        b=Wov3eW7MKLMzd1uuJzZQc5Exn4JdP8lguATOs/J5i4vaYEIPE3TTsDlIhd91Kr7ByM
+         +1OxkSF4AC2lMrhrqEntM3F2QeWBSP+TZ3ysGucKaHoae0KqwCYoNoSuJ4hKj4TMdbjA
+         uUut/5hIuNDwfjgod9510gePEpbzVmyOE1W+d5kbX2w/hlA9sDu1cY+yhXmVruwUxIrZ
+         xIiVvVeRSxcwwmVMhi279wWcH3WmZdfYSJlyLNEJYdNyCmneBWIYeKP158D1n4Z0HC2l
+         hOV9qb1c94yxvATZyOsvvGz8PcCcMVARdMSqR51qQt0v0TR04RqeCpHABWYdtU3TBfkX
+         kD2A==
+X-Gm-Message-State: AOJu0YyvbD3NU5HHpGQr0mP0cJqRA26IsdDlBA9XcKLtYETkTM64KlRG
+	wbdBn/xi+zKLxRXhbFk441V3
+X-Google-Smtp-Source: AGHT+IF7Jn4S+prGJxVJcS2oGK9Fh6M9OUtE75CGnfrjrN6KWZmfHgWTJpIwPzVP3dRI2hzJ3wX4Jw==
+X-Received: by 2002:a05:6870:4987:b0:1fb:75a:778f with SMTP id ho7-20020a056870498700b001fb075a778fmr10833283oab.64.1702530818876;
+        Wed, 13 Dec 2023 21:13:38 -0800 (PST)
+Received: from thinkpad ([117.213.102.12])
+        by smtp.gmail.com with ESMTPSA id n2-20020a170902d2c200b001bf044dc1a6sm11413219plc.39.2023.12.13.21.13.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Dec 2023 21:13:38 -0800 (PST)
+Date: Thu, 14 Dec 2023 10:43:28 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Sherry Sun <sherry.sun@nxp.com>
+Cc: hongxing.zhu@nxp.com, l.stach@pengutronix.de, lpieralisi@kernel.org,
+	kw@linux.com, robh@kernel.org, bhelgaas@google.com,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, linux-imx@nxp.com, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V2 0/4] PCI: imx6: Add pci host wakeup support
+Message-ID: <20231214051328.GD2938@thinkpad>
+References: <20231213092850.1706042-1-sherry.sun@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-14_01,2023-12-13_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 suspectscore=0
- phishscore=0 malwarescore=0 spamscore=0 mlxlogscore=778 bulkscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311290000 definitions=main-2312140024
-X-Proofpoint-GUID: VUFW3WOjV65xTw0QVW4TCYaIcvdFt6qr
-X-Proofpoint-ORIG-GUID: VUFW3WOjV65xTw0QVW4TCYaIcvdFt6qr
+In-Reply-To: <20231213092850.1706042-1-sherry.sun@nxp.com>
 
-On Tue, 28 Nov 2023 12:07:47 +0800, Ziqi Chen wrote:
+On Wed, Dec 13, 2023 at 05:28:46PM +0800, Sherry Sun wrote:
+> Add pci host wakeup feature for imx platforms. The host wake pin is a
+> standard feature in the PCIe bus specification, so we can add this
+> property under PCI dts node to support the host gpio wakeup feature.
+> 
+> Example of configuring the corresponding dts property under the PCI node:
+>     wake-gpios = <&gpio5 21 GPIO_ACTIVE_LOW>;
+> 
 
-> The Message Signaled Interrupts (MSI) support has been introduced in
-> UFSHCI version 4.0 (JESD223E). The MSI is the recommended interrupt
-> approach for MCQ. If choose to use MSI, In UFS DT, we need to provide
-> msi-parent property that point to the hardware entity which serves as
-> the MSI controller for this UFS controller.
+As you mentioned, WAKE# is a standard sideband signal defined in the PCI spec.
+So the support for handling it has to be in the PCI core layer, not in the
+host controller drivers.
+
+There is already a series floating to add support for WAKE# in PCI core. Please
+take a look:
+
+https://lore.kernel.org/linux-pci/20230208111645.3863534-1-mmaddireddy@nvidia.com/
+
+- Mani
+
+> ---
+> changes in V2:
+> 1. Rename host-wake-gpio property to wake-gpios.
+> 2. Improve the wake-gpios property description in the dt-binding doc to avoid
+> confusion.
+> 3. Remove unnecessary debugging info in host_wake_irq_handler().
+> 4. Remove unnecessary imx6_pcie->host_wake_irq = -1 resetting in error paths.
+> 5. Use dev_err_probe() to simplify error path code.
+> ---
+> 
+> Sherry Sun (4):
+>   PCI: imx6: Add pci host wakeup support on imx platforms.
+>   dt-bindings: imx6q-pcie: Add wake-gpios property
+>   arm64: dts: imx8mp-evk: add wake-gpios property for pci bus
+>   arm64: dts: imx8mq-evk: add wake-gpios property for pci bus
+> 
+>  .../bindings/pci/fsl,imx6q-pcie.yaml          |  6 ++
+>  arch/arm64/boot/dts/freescale/imx8mp-evk.dts  |  2 +
+>  arch/arm64/boot/dts/freescale/imx8mq-evk.dts  |  2 +
+>  drivers/pci/controller/dwc/pci-imx6.c         | 60 +++++++++++++++++++
+>  4 files changed, 70 insertions(+)
+> 
+> -- 
+> 2.34.1
 > 
 > 
-> [...]
-
-Applied to 6.8/scsi-queue, thanks!
-
-[1/1] dt-bindings: ufs: Add msi-parent for UFS MCQ
-      https://git.kernel.org/mkp/scsi/c/af85d689ae08
 
 -- 
-Martin K. Petersen	Oracle Linux Engineering
+மணிவண்ணன் சதாசிவம்
 
