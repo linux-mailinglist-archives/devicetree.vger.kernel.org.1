@@ -1,122 +1,105 @@
-Return-Path: <devicetree+bounces-25062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25063-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42BEC81242F
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 01:59:59 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BDD781244D
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 02:06:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E145E1F21913
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 00:59:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D439EB2103B
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 01:06:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8593D38E;
-	Thu, 14 Dec 2023 00:59:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBFE738E;
+	Thu, 14 Dec 2023 01:06:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="NfuUm96i"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="cw/Wz/qB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 279FDDD
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 16:59:50 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-50e0daa57b3so1782058e87.3
-        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 16:59:50 -0800 (PST)
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFED7F7
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 17:06:38 -0800 (PST)
+Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2c9fbb846b7so87176541fa.2
+        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 17:06:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1702515587; x=1703120387; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qqcAH2y6Hz8HXbwvCsmkFY7uTh79KxMlBdJGmAf+Vgc=;
-        b=NfuUm96ix+FAGu7arvPXlIrP1y9UE+qXHkuGmOzjo7jc60rHGuZeWbMZVo7a4Ri5LY
-         w1q6xRQr2CqIQcHL82oRk6+55xZ31jeaUSZgE+OaqJ/x2Ot6+4EGou+bh3oZ646VzQWn
-         zpRlya80SD0ogjHPCMXii8rMVkfKYXXH99i0g=
+        d=chromium.org; s=google; t=1702515996; x=1703120796; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=peKqQhahD9JRG6w67FwL0sZR7IqqMN+7cEJCPbXgpS8=;
+        b=cw/Wz/qBmUDgWvZLY+mt8wuaD0gqN0/KuzCVbuYonRQULoYb6y6stZG5p5X1pukETH
+         x8kD44ObrdpdQSS9gbw5DRGSheuDkfm++CnyjVR6KhDfeKIP4/k17QZlWEiw07eArlRX
+         hwfHEvF3jnUWAb8NozrTA5cUbzZl1SxRupyJw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702515587; x=1703120387;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qqcAH2y6Hz8HXbwvCsmkFY7uTh79KxMlBdJGmAf+Vgc=;
-        b=s8N8xQqB+qoiRYIkYoCAv1yfITOIHr/Ibhu3xT1gw15qhaau/73fovuEC23ypYgLKu
-         fU8fxe1Bz4VEVswtH/5T/QCyJJuU8aseb3BGmfaA0hratM18SrMu3fCMdBXhoAyDTLdp
-         DJdDIDWTS+v327fwMqb9EUQetso8Rk4psGLRYIeY+shkI4JUdVPGfG4QxV7Cnpcv5YSJ
-         P8ButbF1IRLBVJ1y/8mhWAJt2Jq/V9qVguyvuFgCi8nB4e+gJEiPqkVCKlsislDj43WC
-         Erk9HmFIk3HobcSxCIeZ5uorTUtIv9lAM54nNNgDKuxZrFTfYDI6RUeMlhr1sWM5ghQF
-         3k7g==
-X-Gm-Message-State: AOJu0YwC1YUWma7dsH2n/I8cUtErSYxVJCOzs6Kwi8LyLMwvY4/mxyot
-	wyEuuDTqX1e7B8vnNYzBQoupejZ1ot6P2s5hFbCaKcUI
-X-Google-Smtp-Source: AGHT+IEM6sKMSPsZq/iTTj9BuKolTXJfTc6NHlM2n7uFqeOu5rXHZyoKtO1dfQlrd0nOGEt/mRBhUQ==
-X-Received: by 2002:a05:6512:3741:b0:50e:d3e:9953 with SMTP id a1-20020a056512374100b0050e0d3e9953mr838903lfs.170.1702515586774;
-        Wed, 13 Dec 2023 16:59:46 -0800 (PST)
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com. [209.85.128.41])
-        by smtp.gmail.com with ESMTPSA id tg10-20020a1709078dca00b00a178b965899sm8627981ejc.100.2023.12.13.16.59.46
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Dec 2023 16:59:46 -0800 (PST)
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-40c32bea30dso30235e9.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 16:59:46 -0800 (PST)
-X-Received: by 2002:a05:600c:3648:b0:3f7:3e85:36a with SMTP id
- y8-20020a05600c364800b003f73e85036amr464020wmq.7.1702515585949; Wed, 13 Dec
- 2023 16:59:45 -0800 (PST)
+        d=1e100.net; s=20230601; t=1702515996; x=1703120796;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=peKqQhahD9JRG6w67FwL0sZR7IqqMN+7cEJCPbXgpS8=;
+        b=JY7tlgRxcp05RdJvFfbyomgz7V62KvxVKrwLWkuuPcLvJ3ekqAv/OcCESCzovSyaRT
+         ljXc1MiWZFGUJOKhndCjFzHNsqVOEKz1wDbpnwuUksKrG+iTPp9wK2vZD8zZIz8rvGbJ
+         W9EJEqelakRev1RDeBJIucVDL4DR5IFICPj3031IOhMlwO5p29HMzuRKPiAXw//6aOZX
+         8fNjm7wq2cO5xYvaYjlYc7r+VnnWfuTrvcetj/ijkeRjlIPPv1zoo0vwA4jbblB92jZ9
+         Iuxsi1OzzvJygBkZ+IRRDmBHUwMpelQolV+7b+puy2fIYVEEdXv6uhrrcGgJJuEXguS2
+         lKoA==
+X-Gm-Message-State: AOJu0YxkFV8W8zNBmM96ZKuN5Rl9eXN8fq5Snz2kRKrmsWdSnJYovRev
+	18XCMmiPsUt7CHCRHgS3DJWS6v739svHNr62a+wqXw==
+X-Google-Smtp-Source: AGHT+IHvs8FX8jR+oHMtbXK5cvMpQXiJFEHExpih0ehnbtikW0K8fvGV2686+EyTLWM3fZDJz3SeNMCcCHHM7UeoTbg=
+X-Received: by 2002:a2e:a373:0:b0:2cc:2591:bcd3 with SMTP id
+ i19-20020a2ea373000000b002cc2591bcd3mr2000691ljn.106.1702515996638; Wed, 13
+ Dec 2023 17:06:36 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 13 Dec 2023 17:06:36 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231209215601.3543895-1-dmitry.baryshkov@linaro.org>
- <20231209215601.3543895-2-dmitry.baryshkov@linaro.org> <3ba4da84-a17e-47ae-8958-2484cd6cbea0@linaro.org>
-In-Reply-To: <3ba4da84-a17e-47ae-8958-2484cd6cbea0@linaro.org>
-From: Doug Anderson <dianders@chromium.org>
-Date: Wed, 13 Dec 2023 16:59:30 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=XX4wLg1NNVL15RK4D4tLvuSzZyUv=k_tS4bSb3=7QJzQ@mail.gmail.com>
-Message-ID: <CAD=FV=XX4wLg1NNVL15RK4D4tLvuSzZyUv=k_tS4bSb3=7QJzQ@mail.gmail.com>
-Subject: Re: [PATCH 2/4] soc: qcom: stats: don't crash if DDR offset contains
- invalid data
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Andy Gross <agross@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>
+In-Reply-To: <20231213163501.1.I8c20f926d15c9ddc12e423e07df1e89db1105d93@changeid>
+References: <20231213163501.1.I8c20f926d15c9ddc12e423e07df1e89db1105d93@changeid>
+From: Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date: Wed, 13 Dec 2023 17:06:36 -0800
+Message-ID: <CAE-0n52vfejT7a9Dh177dvD7G3cCx3paB7i_xgSCi=1Z4aE9nw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7180: Switch pompom to the generic edp-panel
+To: Bjorn Andersson <andersson@kernel.org>, Douglas Anderson <dianders@chromium.org>
+Cc: Andy Gross <agross@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Hsin-Yi Wang <hsinyi@chromium.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	cros-qcom-dts-watchers@chromium.org, devicetree@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi,
-
-On Mon, Dec 11, 2023 at 1:11=E2=80=AFAM Konrad Dybcio <konrad.dybcio@linaro=
-.org> wrote:
+Quoting Douglas Anderson (2023-12-13 16:35:02)
+> Pompom has several sources for its panel. Let's switch it to the
+> generic edp-panel compatible string to account for this.
 >
-> On 9.12.2023 22:55, Dmitry Baryshkov wrote:
-> > The stats ram on sm8150 platform contains invalid data at the
-> > DDR_DYNAMIC_OFFSET. Most likely this is because the platform didn't
-> > support DDR sleep stats.
-> Interesting. Can you read back DDR_DYNAMIC_OFFSET on 8350/8280 and
-> see if 8150 has correct data in there?
+> This fixes a problem where the panel wouldn't come up on some pompon
+> devices after commit fb3f43d50d9b ("drm/panel-edp: Avoid adding
+> multiple preferred modes"). Specifically, some models of pompom have a
+> 1920x1080 panel which is _very_ different than the 1366x768 panel
+> specified in the dts. Before the recent panel-edp fix on Linux things
+> kinda/sorta worked because the panel-edp driver would include both the
+> hardcoded and probed mode, AKA:
 >
-> > However this platform uses generic
-> > "qcom,rpmh-stats" compatible, which implies presense of the DDR data.
-> > Add safety net to prevent old DTB files from crashing the
-> > qcom,rpmh-stats driver.
-> Yeah I'dve never thought there would be garbage in there..
+> * #0 1920x1080
+>   60.00 1920 1944 1960 2000 1080 1083 1088 1111 133320
+>   flags: nhsync, nvsync; type: preferred, driver
+> * #1 1366x768
+>   60.00 1366 1406 1438 1500 768 773 778 900 81000
+>   flags: nhsync, nvsync; type: preferred, driver
 >
-> I'd advocate for simply not doing anything wrt sleep stats if DDR
-> stats are unavailable though. The QMP handle can stay, as there
-> may (I don't know) be more data available that we want to export
-> through this driver.
+> ...and, at least on ChromeOS, the userspace was consistently picking
+> the first mode even though both were marked as "preferred". Now that
+> the Linux driver is fixed we only get the hardcoded mode. That means
+> we end up trying to drive a 1920x1080 panel at 1366x768 and it doesn't
+> work so well.
+>
+> Let's switch over to the generic panel-edp.
+>
+> Fixes: fb3f43d50d9b ("drm/panel-edp: Avoid adding multiple preferred modes")
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> ---
 
-FWIW, I'm getting a crash on sc7180-trogdor like this too. In kgdb it
-says I'm on line:
-
-key =3D readl(ddrd->base);
-
-...and
-
-(gdb) print ddrd->base
-$1 =3D (void *) 0xffffffc0833a3149
-(gdb) print reg
-$2 =3D (void *) 0xffffffc0833a3000
-
-...so I guess my "stats_offset" must have been 0x149.
-
-Can we get a fix landed or a revert? Thanks! :-)
-
--Doug
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 
