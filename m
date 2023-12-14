@@ -1,66 +1,66 @@
-Return-Path: <devicetree+bounces-25148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25149-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC9EF8128EB
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 08:16:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 647298128FD
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 08:21:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 39303B20FB7
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 07:16:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9527C1C20AFF
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 07:21:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2801ADDD4;
-	Thu, 14 Dec 2023 07:16:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DA10DDD4;
+	Thu, 14 Dec 2023 07:21:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HW2dUlKu"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RwXTj6pm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-x112a.google.com (mail-yw1-x112a.google.com [IPv6:2607:f8b0:4864:20::112a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29F49100
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 23:15:57 -0800 (PST)
-Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-5cece20f006so78010567b3.3
-        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 23:15:57 -0800 (PST)
+Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F4DF10E
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 23:21:00 -0800 (PST)
+Received: by mail-oi1-x232.google.com with SMTP id 5614622812f47-3b9e6262fccso4880821b6e.3
+        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 23:21:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702538156; x=1703142956; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702538459; x=1703143259; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Hyuj6L4AEIo77b1y5Vbh5MTrD0n68EvFYvH7xGhCjqA=;
-        b=HW2dUlKuh5ESUmOaYRbiyzbvaDRcmFw2QlVR3dGYxoYY67WfLWhwJkf9aMmGkWyTp4
-         wsNFeQinxl3D9mBay7BhlCy2dJ1NaVz9AZrFIPikHQeeSKbXfe1fEyDWI5ssjI41YmUa
-         yNTIVS/g043RyNT0CLAQkdE2OmqTMuvqsOGX71IqOI51+YPiafFSHg2KfqdN9INXqu5S
-         jTS+rFJoSyHZLb1R9tr32CJQe4NuFjNSmwZoPH8+8GicVX12jPv+dr3mO+FsHgrkiU5v
-         0EvAoyrZIreVSge7g8N60KOjR1RlNW4Wx0JBYdrubeoRK3HqT6DQpDhyg3YNLA63WjdR
-         3nQQ==
+        bh=E+lTsJeZ0gUOBqbzzRtKzTHzKA4q+fi1iIj8a7QvU6U=;
+        b=RwXTj6pmjGextkpoVS6AXgQDRY4rdKbwAtPqHDsE9/oDp+3Hb+YmZp9xIEUX3wOkxY
+         gI9P+A/VoYBB4Dc4SKODdfFyFisHAexXLH0KTGPuKXEzrt1iWDKGWOrzkq0HtCF9PIeA
+         DO9tQLc8Ne6r2+k9nOodKuR69AHtwj4xOKpTse70dfxomnMc1/rAoyGJ/4wZmeBqQI+j
+         Ds39cfZbmeKSqWbL75IG7hIdQkGd5JXrWXIN1ROC8W32EqGfeE1rf28LGkNgvYpX7mL2
+         NNkhZhKCN2nd3e1yjMyGaXjw8OwFKVJHKUdf3lA54y8cLWNFov0bQR6AyS7RdyEiueLH
+         59qA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702538156; x=1703142956;
+        d=1e100.net; s=20230601; t=1702538459; x=1703143259;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Hyuj6L4AEIo77b1y5Vbh5MTrD0n68EvFYvH7xGhCjqA=;
-        b=VDyHjaMC7YCqrI6XKkQ2NRz1WGW7sQv8+C049hauXBF1Hr+49PqXZU04GaSYdW3Hjo
-         +x9bsX1C/1zjue/8oyCJin5tUtiNjc2No+C7gcsJUmM+Hnq+bMIQL3EB8I5yeXYc1+7M
-         2FsZQhyS2Jkh161XXb+9pxhYcJ5BKU93NQw1PW42vKjy8NFVX05jXtaoQDohKzyCz0lP
-         Dw1J+TuuBfYjvlMY+XMf2VSDni2peH5iRdgUUw+Khratvlta9VutlDjSNIHemG4IzklU
-         ExeHxx8QXTduuP+lXoxxf0ar+uX3CTZgGunuCK3sEf7F498f5xgvaCmS5sgI6UDn+/aU
-         U5Cw==
-X-Gm-Message-State: AOJu0Yzk0vPbTDRkhntivW38wbRwjUgX3n3jifq7NpSSXNuQlNp82ypt
-	fmP7DsHC+ta89MBZdZ2VrlcH62FofDeHgs/lGnk44A==
-X-Google-Smtp-Source: AGHT+IH3+Sw3exQcLiS7Au2pmyJWOiOy946o670EL9T8G4UD/WLVLtSaMDRzk5R+ja2Q0rT5BFDKfRPi9nleUY6Lf3Q=
-X-Received: by 2002:a81:c30e:0:b0:5e3:9b5f:e3f with SMTP id
- r14-20020a81c30e000000b005e39b5f0e3fmr358653ywk.59.1702538156139; Wed, 13 Dec
- 2023 23:15:56 -0800 (PST)
+        bh=E+lTsJeZ0gUOBqbzzRtKzTHzKA4q+fi1iIj8a7QvU6U=;
+        b=Eihr68iUhnhfSRYe7zZ4y/DbdpBrHainy7AvAP+xgb48attnXPbIcfoFfxxPonQyYm
+         dX63jK9FDe6Ym8uj/vsHTi7ceP/bxc6Vf5lufFZQ/FYxcq2bRLMSA5AWSz1zDR9BHXfA
+         kF0AyYMoJC6DmtM2jR8D8EIl/2LwqB8w6nFG9u5Pzm7G0ATUQDB9YTGtinRz19EPSPF3
+         ABlmmrNNR940sDqbTM1PAPQi3HKIL65cQwuoeqZRJqApdslPzf2Owzn8I2135qGiRaM+
+         QtDIM+36rYGURGyhV00kLhws3R63QJRDz3qoh6qRUiHOnO28TQuM7pDDOu//VcmAri1e
+         4ENw==
+X-Gm-Message-State: AOJu0YwBRqX4WyiNwbAisAK6+WZIk6iuPzqDGjGoThjljzXztFp2uozn
+	kDpugzuglGbPgsEHUnyyQBfUI2A8A/uEiJsOFcjlMA==
+X-Google-Smtp-Source: AGHT+IG+rJCUqFxD37rX/E7u2uLcsa0i45ReRUeOSB/aPceCAS76sfm4WJSdI1aYG+X+Hv7jFYOqLLCYgOhAJjE+HqI=
+X-Received: by 2002:a05:6808:320a:b0:3ba:1e0:f1df with SMTP id
+ cb10-20020a056808320a00b003ba01e0f1dfmr11721187oib.70.1702538459745; Wed, 13
+ Dec 2023 23:20:59 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231214062847.2215542-1-quic_ipkumar@quicinc.com> <20231214062847.2215542-8-quic_ipkumar@quicinc.com>
-In-Reply-To: <20231214062847.2215542-8-quic_ipkumar@quicinc.com>
+References: <20231214062847.2215542-1-quic_ipkumar@quicinc.com> <20231214062847.2215542-9-quic_ipkumar@quicinc.com>
+In-Reply-To: <20231214062847.2215542-9-quic_ipkumar@quicinc.com>
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 14 Dec 2023 09:15:45 +0200
-Message-ID: <CAA8EJppyd5-TQmvzRB3rBhRQtMLdu=6u5aQd5rWHitRuaJXzpA@mail.gmail.com>
-Subject: Re: [PATCH 07/10] dt-bindings: PCI: qcom: Add IPQ5332 SoC
+Date: Thu, 14 Dec 2023 09:20:49 +0200
+Message-ID: <CAA8EJprxUxK5tkWPShuJu8nqz_frDC_5p-b4x7KRZsOxJ=EsjA@mail.gmail.com>
+Subject: Re: [PATCH 08/10] pci: qcom: Add support for IPQ5332
 To: Praveenkumar I <quic_ipkumar@quicinc.com>
 Cc: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org, 
 	mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org, 
@@ -76,86 +76,36 @@ Content-Type: text/plain; charset="UTF-8"
 
 On Thu, 14 Dec 2023 at 08:30, Praveenkumar I <quic_ipkumar@quicinc.com> wrote:
 >
-> Add support for the PCIe controller on the Qualcomm
-> IPQ5332 SoC to the bindings.
+> The Qualcomm IPQ5332 PCIe controller instances are based on
+> SNPS core 5.90a with Gen3 Single-lane and Dual-lane support.
+> The Qualcomm IP rev is 1.27.0 and hence using the 1_27_0 ops.
 >
 > Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
 > ---
->  .../devicetree/bindings/pci/qcom,pcie.yaml    | 36 +++++++++++++++++++
->  1 file changed, 36 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> index eadba38171e1..af5e67d2a984 100644
-> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> @@ -21,6 +21,7 @@ properties:
->            - qcom,pcie-apq8064
->            - qcom,pcie-apq8084
->            - qcom,pcie-ipq4019
-> +          - qcom,pcie-ipq5332
->            - qcom,pcie-ipq6018
->            - qcom,pcie-ipq8064
->            - qcom,pcie-ipq8064-v2
-> @@ -170,6 +171,7 @@ allOf:
->          compatible:
->            contains:
->              enum:
-> +              - qcom,pcie-ipq5332
->                - qcom,pcie-ipq6018
->                - qcom,pcie-ipq8074-gen3
->      then:
-> @@ -332,6 +334,39 @@ allOf:
->              - const: ahb # AHB reset
->              - const: phy_ahb # PHY AHB reset
->
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,pcie-ipq5332
+> This patch depends on the below series which adds PCIe support in
+> Qualcomm IPQ9574
+> https://lore.kernel.org/all/20230519090219.15925-1-quic_devipriy@quicinc.com/
 
-As you seem to be depending on the ipq9574, could you please reuse the
-DT entry too?
+The series did not receive updates since the end of May. Should we
+expect the next iteration of that series? Otherwise depending on it
+sounds like a dead end.
 
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 6
-> +          maxItems: 6
-> +        clock-names:
-> +          items:
-> +            - const: ahb # AHB clock
-> +            - const: aux # Auxiliary clock
-> +            - const: axi_m # AXI Master clock
-> +            - const: axi_s # AXI Slave clock
-> +            - const: axi_bridge # AXI bridge clock
-> +            - const: rchng
-> +        resets:
-> +          minItems: 8
-> +          maxItems: 8
-> +        reset-names:
-> +          items:
-> +            - const: pipe # PIPE reset
-> +            - const: sticky # Core sticky reset
-> +            - const: axi_m_sticky # AXI master sticky reset
-> +            - const: axi_m # AXI master reset
-> +            - const: axi_s_sticky # AXI slave sticky reset
-> +            - const: axi_s # AXI slave reset
-> +            - const: ahb # AHB reset
-> +            - const: aux # AUX reset
-> +
->    - if:
->        properties:
->          compatible:
-> @@ -790,6 +825,7 @@ allOf:
->                enum:
->                  - qcom,pcie-apq8064
->                  - qcom,pcie-ipq4019
-> +                - qcom,pcie-ipq5332
->                  - qcom,pcie-ipq8064
->                  - qcom,pcie-ipq8064v2
->                  - qcom,pcie-ipq8074
+>
+>  drivers/pci/controller/dwc/pcie-qcom.c | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> index 109df587234e..3d54de1a71df 100644
+> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> @@ -1642,6 +1642,7 @@ static const struct of_device_id qcom_pcie_match[] = {
+>         { .compatible = "qcom,pcie-apq8064", .data = &cfg_2_1_0 },
+>         { .compatible = "qcom,pcie-apq8084", .data = &cfg_1_0_0 },
+>         { .compatible = "qcom,pcie-ipq4019", .data = &cfg_2_4_0 },
+> +       { .compatible = "qcom,pcie-ipq5332", .data = &cfg_1_27_0 },
+>         { .compatible = "qcom,pcie-ipq6018", .data = &cfg_2_9_0 },
+>         { .compatible = "qcom,pcie-ipq8064", .data = &cfg_2_1_0 },
+>         { .compatible = "qcom,pcie-ipq8064-v2", .data = &cfg_2_1_0 },
 > --
 > 2.34.1
 >
