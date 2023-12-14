@@ -1,133 +1,170 @@
-Return-Path: <devicetree+bounces-25433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 122748133D1
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 16:02:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32354813495
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 16:22:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC55D1F221DE
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 15:02:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6475A1C21984
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 15:22:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68F215C063;
-	Thu, 14 Dec 2023 15:02:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="H0S9gQ7z"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA3765C90E;
+	Thu, 14 Dec 2023 15:22:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98CA0121
-	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 07:02:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1702566170; x=1734102170;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=eisuyFOlTcr+YrM17j+SBgd6K1yNTIGZqxFReQQ2Qy8=;
-  b=H0S9gQ7zVF8L1N5jWJS6tbXeR2mqTPm5k42PUOvr7PcCU4AbC8O0UbRp
-   BFrKPTMRX+yFdXDlUMA1zkK21jfmjI3Nc+u8Auu9MqYzrVHjIslDMsYKb
-   6sGbRwAbmd3JqQRcBQvKm2OWICl9OWJJkYCzpXNdbS/Y/nQNsGA+0anbX
-   +dQ0cy1ldhDLJyPH+LcX61tKY24fX7Lcb3cpxRgIGGZe6OBXpcv1+Saem
-   DoAuC0m0R99cj28POM+WG8CtqiOm6njlBDFl6fckAk6hfBJ6w+gDrnSz2
-   6QXPZGBUJMntJdaCPrwJkCgJ2l434A5SdVtf+9u5u8M/BeoSaseYSpKN2
-   g==;
-X-IronPort-AV: E=Sophos;i="6.04,275,1695679200"; 
-   d="scan'208";a="34513401"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 14 Dec 2023 16:02:45 +0100
-Received: from steina-w.tq-net.de (steina-w.tq-net.de [10.123.53.18])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id F3FDC280084;
-	Thu, 14 Dec 2023 16:02:44 +0100 (CET)
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 5/5] arm64: dts: imx8qxp: mba8xx: Add analog audio output on MBa8Xx
-Date: Thu, 14 Dec 2023 16:02:43 +0100
-Message-Id: <20231214150243.1991532-6-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231214150243.1991532-1-alexander.stein@ew.tq-group.com>
-References: <20231214150243.1991532-1-alexander.stein@ew.tq-group.com>
+X-Greylist: delayed 1359 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 14 Dec 2023 07:22:00 PST
+Received: from out03.mta.xmission.com (out03.mta.xmission.com [166.70.13.233])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C3D6120;
+	Thu, 14 Dec 2023 07:22:00 -0800 (PST)
+Received: from in01.mta.xmission.com ([166.70.13.51]:55106)
+	by out03.mta.xmission.com with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.93)
+	(envelope-from <ebiederm@xmission.com>)
+	id 1rDnBD-00298x-8O; Thu, 14 Dec 2023 07:59:15 -0700
+Received: from ip68-227-168-167.om.om.cox.net ([68.227.168.167]:48054 helo=email.froward.int.ebiederm.org.xmission.com)
+	by in01.mta.xmission.com with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.93)
+	(envelope-from <ebiederm@xmission.com>)
+	id 1rDnBC-009bes-10; Thu, 14 Dec 2023 07:59:14 -0700
+From: "Eric W. Biederman" <ebiederm@xmission.com>
+To: Alexander Graf <graf@amazon.com>
+Cc: <linux-kernel@vger.kernel.org>,  <linux-trace-kernel@vger.kernel.org>,
+  <linux-mm@kvack.org>,  <devicetree@vger.kernel.org>,
+  <linux-arm-kernel@lists.infradead.org>,  <kexec@lists.infradead.org>,
+  <linux-doc@vger.kernel.org>,  <x86@kernel.org>,  "H. Peter Anvin"
+ <hpa@zytor.com>,  Andy Lutomirski <luto@kernel.org>,  Peter Zijlstra
+ <peterz@infradead.org>,  "Rob Herring" <robh+dt@kernel.org>,  Steven
+ Rostedt <rostedt@goodmis.org>,  "Andrew Morton"
+ <akpm@linux-foundation.org>,  Mark Rutland <mark.rutland@arm.com>,  "Tom
+ Lendacky" <thomas.lendacky@amd.com>,  Ashish Kalra <ashish.kalra@amd.com>,
+  James Gowans <jgowans@amazon.com>,  Stanislav Kinsburskii
+ <skinsburskii@linux.microsoft.com>,  <arnd@arndb.de>,
+  <pbonzini@redhat.com>,  <madvenka@linux.microsoft.com>,  Anthony Yznaga
+ <anthony.yznaga@oracle.com>,  Usama Arif <usama.arif@bytedance.com>,
+  David Woodhouse <dwmw@amazon.co.uk>,  Benjamin Herrenschmidt
+ <benh@kernel.crashing.org>
+References: <20231213000452.88295-1-graf@amazon.com>
+Date: Thu, 14 Dec 2023 08:58:49 -0600
+In-Reply-To: <20231213000452.88295-1-graf@amazon.com> (Alexander Graf's
+	message of "Wed, 13 Dec 2023 00:04:37 +0000")
+Message-ID: <87r0jo7rva.fsf@email.froward.int.ebiederm.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-XM-SPF: eid=1rDnBC-009bes-10;;;mid=<87r0jo7rva.fsf@email.froward.int.ebiederm.org>;;;hst=in01.mta.xmission.com;;;ip=68.227.168.167;;;frm=ebiederm@xmission.com;;;spf=pass
+X-XM-AID: U2FsdGVkX1/OhbNhEazZ4D40H/sN4yD6DjQIF1U06u0=
+X-SA-Exim-Connect-IP: 68.227.168.167
+X-SA-Exim-Mail-From: ebiederm@xmission.com
+X-Spam-DCC: XMission; sa04 1397; Body=1 Fuz1=1 Fuz2=1 
+X-Spam-Combo: **;Alexander Graf <graf@amazon.com>
+X-Spam-Relay-Country: 
+X-Spam-Timing: total 587 ms - load_scoreonly_sql: 0.05 (0.0%),
+	signal_user_changed: 11 (1.9%), b_tie_ro: 10 (1.6%), parse: 1.07
+	(0.2%), extract_message_metadata: 12 (2.1%), get_uri_detail_list: 2.7
+	(0.5%), tests_pri_-2000: 4.8 (0.8%), tests_pri_-1000: 3.8 (0.6%),
+	tests_pri_-950: 1.19 (0.2%), tests_pri_-900: 1.01 (0.2%),
+	tests_pri_-90: 68 (11.7%), check_bayes: 67 (11.4%), b_tokenize: 12
+	(2.0%), b_tok_get_all: 13 (2.3%), b_comp_prob: 3.8 (0.7%),
+	b_tok_touch_all: 34 (5.8%), b_finish: 0.86 (0.1%), tests_pri_0: 461
+	(78.6%), check_dkim_signature: 0.63 (0.1%), check_dkim_adsp: 2.2
+	(0.4%), poll_dns_idle: 0.70 (0.1%), tests_pri_10: 2.4 (0.4%),
+	tests_pri_500: 16 (2.8%), rewrite_mail: 0.00 (0.0%)
+Subject: Re: [PATCH 00/15] kexec: Allow preservation of ftrace buffers
+X-SA-Exim-Version: 4.2.1 (built Sat, 08 Feb 2020 21:53:50 +0000)
+X-SA-Exim-Scanned: Yes (on in01.mta.xmission.com)
 
-Enable SAI1, add the codec to enable LINE_IN and LINE_OUT support on
-MBa8Xx on connectors X9 & X10.
+Alexander Graf <graf@amazon.com> writes:
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- arch/arm64/boot/dts/freescale/mba8xx.dtsi | 27 ++++++++++++++++++++---
- 1 file changed, 24 insertions(+), 3 deletions(-)
+> Kexec today considers itself purely a boot loader: When we enter the new
+> kernel, any state the previous kernel left behind is irrelevant and the
+> new kernel reinitializes the system.
+>
+> However, there are use cases where this mode of operation is not what we
+> actually want. In virtualization hosts for example, we want to use kexec
+> to update the host kernel while virtual machine memory stays untouched.
+> When we add device assignment to the mix, we also need to ensure that
+> IOMMU and VFIO states are untouched. If we add PCIe peer to peer DMA, we
+> need to do the same for the PCI subsystem. If we want to kexec while an
+> SEV-SNP enabled virtual machine is running, we need to preserve the VM
+> context pages and physical memory. See James' and my Linux Plumbers
+> Conference 2023 presentation for details:
+>
+>   https://lpc.events/event/17/contributions/1485/
+>
+> To start us on the journey to support all the use cases above, this
+> patch implements basic infrastructure to allow hand over of kernel state
+> across kexec (Kexec HandOver, aka KHO). As example target, we use ftrace:
+> With this patch set applied, you can read ftrace records from the
+> pre-kexec environment in your post-kexec one. This creates a very powerful
+> debugging and performance analysis tool for kexec. It's also slightly
+> easier to reason about than full blown VFIO state preservation.
+>
+> == Alternatives ==
+>
+> There are alternative approaches to (parts of) the problems above:
+>
+>   * Memory Pools [1] - preallocated persistent memory region + allocator
+>   * PRMEM [2] - resizable persistent memory regions with fixed metadata
+>                 pointer on the kernel command line + allocator
+>   * Pkernfs [3] - preallocated file system for in-kernel data with fixed
+>                   address location on the kernel command line
+>   * PKRAM [4] - handover of user space pages using a fixed metadata page
+>                 specified via command line
+>
+> All of the approaches above fundamentally have the same problem: They
+> require the administrator to explicitly carve out a physical memory
+> location because they have no mechanism outside of the kernel command
+> line to pass data (including memory reservations) between kexec'ing
+> kernels.
+>
+> KHO provides that base foundation. We will determine later whether we
+> still need any of the approaches above for fast bulk memory handover of for
+> example IOMMU page tables. But IMHO they would all be users of KHO, with
+> KHO providing the foundational primitive to pass metadata and bulk memory
+> reservations as well as provide easy versioning for data.
 
-diff --git a/arch/arm64/boot/dts/freescale/mba8xx.dtsi b/arch/arm64/boot/dts/freescale/mba8xx.dtsi
-index a263c3d008023..6164fefb92184 100644
---- a/arch/arm64/boot/dts/freescale/mba8xx.dtsi
-+++ b/arch/arm64/boot/dts/freescale/mba8xx.dtsi
-@@ -116,7 +116,12 @@ reg_3v3_mb: regulator-usdhc2-vmmc {
- 		regulator-max-microvolt = <3300000>;
- 	};
- 
--	/* TODO: Audio */
-+	sound {
-+		compatible = "fsl,imx-audio-tlv320aic32x4";
-+		model = "tqm-tlv320aic32";
-+		audio-codec = <&tlv320aic3x04>;
-+		ssi-controller = <&sai1>;
-+	};
- };
- 
- &adc0 {
-@@ -204,7 +209,14 @@ &flexcan2 {
- };
- 
- &i2c1 {
--	/* TODO: Add Audio codec */
-+	tlv320aic3x04: audio-codec@18 {
-+		compatible = "ti,tlv320aic32x4";
-+		reg = <0x18>;
-+		clocks = <&mclkout0_lpcg 0>;
-+		clock-names = "mclk";
-+		iov-supply = <&reg_1v8>;
-+		ldoin-supply = <&reg_3v3>;
-+	};
- 
- 	se97b_1c: temperature-sensor@1c {
- 		compatible = "nxp,se97b", "jedec,jc-42.4-temp";
-@@ -298,7 +310,16 @@ &lsio_gpio3 {
- 
- /* TODO: Mini-PCIe */
- 
--/* TODO: SAI1 */
-+&sai1 {
-+	assigned-clocks = <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_PLL>,
-+			  <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_SLV_BUS>,
-+			  <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_MST_BUS>,
-+			  <&sai1_lpcg 0>;
-+	assigned-clock-rates = <786432000>, <49152000>, <12288000>, <49152000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_sai1>;
-+	status = "okay";
-+};
- 
- &usbotg1 {
- 	pinctrl-names = "default";
--- 
-2.34.1
+What you are describe in many ways is the same problem as
+kexec-on-panic.  The goal of leaving devices running absolutely requires
+carving out memory for the new kernel to live in while it is coming up
+so that DMA from a device that was not shutdown down does not stomp the
+kernel coming up.
 
+If I understand the virtualization case some of those virtual machines
+are going to have virtual NICs that are going to want to DMA memory to
+the host system.  Which if I understand things correctly means that
+among the devices you explicitly want to keep running there is a not
+a way to avoid the chance of DMA coming in while the kernel is being
+changed.
+
+There is also a huge maintenance challenge associated with all of this.
+
+If you go with something that is essentially kexec-on-panic and then
+add a little bit to help find things in the memory of the previous
+kernel while the new kernel is coming up I can see it as a possibility.
+
+As an example I think preserving ftrace data of kexec seems bizarre.
+I don't see how that is an interesting use case at all.  Not in
+the situation of preserving virtual machines, and not in the situation
+of kexec on panic.
+
+If you are doing an orderly shutdown and kernel switch you should be
+able to manually change the memory.  If you are not doing an orderly
+shutdown then I really don't get it.
+
+I don't hate the capability you are trying to build.
+
+I have not read or looked at most of this so I am probably
+missing subtle details.
+
+As you are currently describing things I have the sense you have
+completely misframed the problem and are trying to solve the wrong parts
+of the problem.
+
+Eric
 
