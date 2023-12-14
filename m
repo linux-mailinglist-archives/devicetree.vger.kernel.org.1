@@ -1,185 +1,280 @@
-Return-Path: <devicetree+bounces-25270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25271-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 282F2812CD6
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 11:24:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6958812CF1
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 11:31:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B0E81C215A8
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 10:24:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BE2451C20B0A
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 10:31:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89DFC3BB26;
-	Thu, 14 Dec 2023 10:24:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 286AA26AF0;
+	Thu, 14 Dec 2023 10:31:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=moxa.com header.i=@moxa.com header.b="T9YZgwyG"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="uqycB/5R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2059.outbound.protection.outlook.com [40.107.215.59])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28D37AF;
-	Thu, 14 Dec 2023 02:24:44 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KkVefg99o4LE747T3nbLEhwYYRLq1QylAdd4lTR0B4ulVSunISLAMNWz1ldi9Frde7BfssAmgOtM3VqZ6SOBExpXyoarYlFDpNlcS0yJRjaH9pI5SflU9QZ6uF80sHhNvv7e6pqxbNl8HOXv3Y6Ru/sXQodntWjnp4IbP+KyWEV9fOx1OKxf5yq9BLCJ8vlM3uSmkYu95HSTWD7sypoAR1gJ32feHfOefGtWNS4d8ATDFFZE2dsSqqcm9xEWMeDU+MkKbUveA//yU9yzTA4895vAtWEh7IfDWh55f2JLD9Vdn1YhvakTAJ7D1BwDszzqJWBsaFnztKKHZ+mn2Cr1uQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=eiOimk1oZIn/bwWRx0kWMlf5zDV2wGTUT5OQv4GHfVA=;
- b=kQOSJFF5usnrASOOWSTedQH9XQqPMK/VrK+orc8MECeFHj1grprmti1J++VovqnjCbVbcxfNcdALmxPXuYA04Zh/DRjudo7lh4vGUKc/t8pJp80ZUjngOaffMWDG1qKKN4tAENN8mPnzJuON0Px1VaHvaZ/ImkNn3/7X/thZfQUoqUTb8hiOjPY7VA1igJk/iqe3vR0DZEv7AY2J8XpahZmM0Oqjs6EDpFeXhiQN9n1u3cz9RPg+skcNtzlnRSqHR3vh04gO+haCXhQeIC4etIOlyBbKcnt97vi0v7zUxCS1JlsD0lNqhNEG4iD6dx5pDq7SWdgBv9p85TuLBjcYbA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=moxa.com; dmarc=pass action=none header.from=moxa.com;
- dkim=pass header.d=moxa.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=moxa.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eiOimk1oZIn/bwWRx0kWMlf5zDV2wGTUT5OQv4GHfVA=;
- b=T9YZgwyGhroIjXTX0psaMbSlzrjlwLyHlbazlE/fKxUUQCRo68TZEa+MfImikZTmZf8AhnWBK3JfDbDDxypFjVyAO004rGvhKah65OU3R8EgXxFoXUo//mZiwkbNCqA9GpuLwtoblvz7SLtJJJaGS/Stzyi+AwIjXvWBNebHxqw=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=moxa.com;
-Received: from SEYPR01MB5387.apcprd01.prod.exchangelabs.com
- (2603:1096:101:d8::6) by TYZPR01MB4943.apcprd01.prod.exchangelabs.com
- (2603:1096:400:280::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.28; Thu, 14 Dec
- 2023 10:24:40 +0000
-Received: from SEYPR01MB5387.apcprd01.prod.exchangelabs.com
- ([fe80::a480:d88f:100:3a92]) by SEYPR01MB5387.apcprd01.prod.exchangelabs.com
- ([fe80::a480:d88f:100:3a92%7]) with mapi id 15.20.7091.028; Thu, 14 Dec 2023
- 10:24:40 +0000
-Date: Thu, 14 Dec 2023 18:24:34 +0800
-From: Crescent CY Hsieh <crescentcy.hsieh@moxa.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Lino Sanfilippo <LinoSanfilippo@gmx.de>,
-	Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-	Lukas Wunner <lukas@wunner.de>,
-	Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	"brenda.streiff@ni.com" <brenda.streiff@ni.com>,
-	Tomas Paukrt <tomaspaukrt@email.cz>
-Subject: Re: [PATCH 1/2] dt-bindings: serial: rs485: add rs485-mux-gpios
- binding
-Message-ID: <ZXrX4mQXPLum0jL3@moxa-ThinkCentre-M90t>
-References: <20231120151056.148450-1-linux@rasmusvillemoes.dk>
- <20231120151056.148450-2-linux@rasmusvillemoes.dk>
- <20231122145344.GA18949@wunner.de>
- <3b8548b1-b8a9-0c9e-4040-5cfda06a85c6@gmx.de>
- <ec66d25162de4cbc92720df1e7008fe8@dh-electronics.com>
- <5c140498-69e3-4187-8703-db0c41e7ca89@gmx.de>
- <fe28eb93-daa1-41af-a005-f21aa87e1984@gmx.de>
- <ZXcJr4VS_uGr_6TV@smile.fi.intel.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZXcJr4VS_uGr_6TV@smile.fi.intel.com>
-X-ClientProxiedBy: TYCP301CA0059.JPNP301.PROD.OUTLOOK.COM
- (2603:1096:400:384::19) To SEYPR01MB5387.apcprd01.prod.exchangelabs.com
- (2603:1096:101:d8::6)
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F8F8AF;
+	Thu, 14 Dec 2023 02:31:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1702549903;
+	bh=hAEE7gN/tX8xVA6dmhtKspxa0JnRlGiTqZPWAS3zgDY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=uqycB/5RIGAkwL3i+H8xhqNcU3DDhsjo6RCTvOyBuZVcSYxuk9BdrepCKV7XxrJVR
+	 1wA2DrKCxY6hMxHSX4LpIp6XF2uypcIY7d7hlP6ItfpgMibAP4OlSTagHMfvUnXrob
+	 fORXnpWP1gDU+5SI+xtxjfxb9uDUZzzdwPCy+oF54gBSnAPI9/X8vyduw14+E2An/B
+	 iozcd6fInEgMZl5HLQ1IOQ52Y16TIk84nX1+I1aHqJ4AHbe+s6OlV+Z+PNNNVG0AFs
+	 pbFuzogNkQkk7Oba4znaBYFPB9+U2Nk+WmEjEOZiA39HF9+JG6zLbfJxxhk4LGpcPD
+	 SPT4wYIgA4IOA==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 4E065378000B;
+	Thu, 14 Dec 2023 10:31:42 +0000 (UTC)
+Message-ID: <13c8ccbc-0eef-43f5-ae37-29ec64d1606b@collabora.com>
+Date: Thu, 14 Dec 2023 11:31:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SEYPR01MB5387:EE_|TYZPR01MB4943:EE_
-X-MS-Office365-Filtering-Correlation-Id: 20d96746-ac5f-46de-2ff6-08dbfc8ee15c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	InHd4dTw6S0UZbMC/c+V9vjt3PO0vtrtexVHMGlqYmTs0fByKcKbuXkY6HQhbyM9idsuB5CVKC/zNJ00RqW4ScUTilteVlUrqo95tKKSoAVBIqqeaCyOu/DxtdH6FNh/3LPb4OcwJPVk4L5DLA3UYrPlOVSIXpYmtVLSv21MfpiZI+lLu3TsBb/eEVVKCfFmmYKkDbWwBbp7cSk9+p/jRfRr9dDQkzDgGPCKKzojh5M5tXNnakXcncyi3RE6BILEWKErdJzJtM8iL7ok2r8uF7JZNiy1upBl9nUJtYe5ltCLz6V7TEHLhDgnLAe1g8znfQhQLm/mru2FyH6EaQ4NiXjxZ48pjhV47QBM8S2nGgCmILE6kFayM/xhoXBnyAJDv8gkJGsCsT1KTEvgGNk/YCop6BXaE82RF7Ok47rzZYcBbFTckEIvztxSeCuA5vOTe3Gi1JjU5DD/9ddIGAPIVSJ3ZKSxBiVIrp2s3oz9Su6bLOdJHqYLRUe5tKqnsHJAouIxGhTQxc1JU6VGdYz1LQGKcNyt/8DSX7BLWYGDpvoDodgFU4gSLjtNFyrpxawKVMOGrkNl7O4dHIUXmjET1V8MOW6kS9RrZFYQIcfo1Sg=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SEYPR01MB5387.apcprd01.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(366004)(376002)(136003)(346002)(39850400004)(396003)(230922051799003)(186009)(1800799012)(64100799003)(451199024)(6512007)(9686003)(6666004)(966005)(6486002)(26005)(478600001)(86362001)(4326008)(8936002)(8676002)(66946007)(53546011)(52116002)(66556008)(66476007)(54906003)(6916009)(316002)(6506007)(5660300002)(33716001)(38350700005)(38100700002)(7416002)(41300700001)(2906002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?JFOS2qTCKacVX09tFnnMbCxrv0xLemZ9OrSk3tG2L9+YFoArAw+ROqBOr+wN?=
- =?us-ascii?Q?KFfwZWYoZ4KZI8q4FD9+XyiyLcE1ysUpWqWIW0jdTBG8Y52mjXvriMB0LIRe?=
- =?us-ascii?Q?XUfJ1B7HzISSgQvriWWucU5kpq2thBRuMPe20BJDeg0vuvhdhRPZrIKP/6o8?=
- =?us-ascii?Q?UIIvoy28fMOUD3IFzTiiK95PmaaUWzu+JCcdpTrBjJ4ZrXXJFUKq9rGXbeXj?=
- =?us-ascii?Q?9l9lZxyvJMqJ0YgXTIjYyBep2YIcdxrNxvj/gFLDUjqBOKMcTgxeaTaUmRfZ?=
- =?us-ascii?Q?QYIU6DKXX59wpmlLRg6ku+pbDZZlSBJDlksQdpPpR1klhKpb2qzFtD8HCqDS?=
- =?us-ascii?Q?bd1HhGQjGqUTr1idgxAA9rtnkdzbYrfnqVIiMitO+IA8GoTfC/P8l+O/uwOZ?=
- =?us-ascii?Q?UB1CRw1ec54BGoGhxCgLf3JvPS/JVSWUKbPUc0SdT5FscLX1le7HCxdv4Oqs?=
- =?us-ascii?Q?M4upbzkkZDByCoiGZds2LaIuto0lgP46p0Nb9uijYmJA/PykNGcgsGpESqhC?=
- =?us-ascii?Q?+IzEmp6nvHZ38SPki7uLWAn3HzWpqGmh95Ia/myTjptH2x4e7XHqznMDc5an?=
- =?us-ascii?Q?y9k63+6nWeUYTpHJo+YESuLuy29bFHA0is2fusrk2y/yDQ3jE3fzKg4rxDoO?=
- =?us-ascii?Q?CCphlp1pkpZ9WhEMEdbajMJ6RPwc3OGruSfvK5DAawckqAtDHCYL6HjrBfOR?=
- =?us-ascii?Q?eIMcYDQBJOJ2BJ01NNhZkcoW7ppC5ZFyBWTKdedpi3FPzauEtF39OLvxNoDV?=
- =?us-ascii?Q?uKves+FcEjFHzfujJZDzKKJl24IeDa0plRiaZtawkNMXa0vfvW0Pxqu9hSKz?=
- =?us-ascii?Q?QQ5JDETni451QQ/GbTveKG4qyUJQgc/Nz8AEEZgNmCR1C/zlpQilKhoUKYZZ?=
- =?us-ascii?Q?rZGviqVkO6bNrB5ejsjYfOw4cnZuLj2CFBw58U58tJ8wCqt4BgKu+X44lq3E?=
- =?us-ascii?Q?WBTz0gkxmZaV24NONpWqw9K8r8zypa5LF390ByRvwUfpIVAMfhuqTrZ/FvER?=
- =?us-ascii?Q?IhZMVBNl7m5H+SN/x0gAGPf0OaSojGC/wE6qcjcfl++zyut4TMFNI6VsRTjJ?=
- =?us-ascii?Q?TJ3LxXLVUtUhXyvzUlLDCs6FrQZhaCnaUOAFw1Gw+iPpKiiJ7gf8awTWszCK?=
- =?us-ascii?Q?cHGjgmdHPijU/tJwybrTD6wsHxINdVNfLJr4CXk1ta+0wFX3r4DziimbYyyI?=
- =?us-ascii?Q?9sIyE37rpnl5n53q33LiuUDxMILN2kC9o2hlkm2jBUbfHHYew2h8h7vseoI4?=
- =?us-ascii?Q?nF90ttiBQlbnmT73tNoXxDPTCJiFN9VoinTc4Q94WYuZLSkDU3oYs+9ZxGsT?=
- =?us-ascii?Q?I7JeA5SJDbXDGBbAJobUVALdjPHbHF202QXcUlPUAg/mRcqOgBgbCvEjMEj2?=
- =?us-ascii?Q?PL2sZyXaqykADYWlqe0EL9waYV8z965QVQoBqgHJJpeIRg8HXQa99uG9Kwoa?=
- =?us-ascii?Q?3fBcgttyhlIwiGsVcXrV3ZERsNrMVdoQaOhD9TdSm/efUdW+bIpE6DRf5wN/?=
- =?us-ascii?Q?rgRVilrAXoG9X9aUqDUoQruNPu5sqMIUwqNg7/OfBEMqTH89v8oux3rS2KFa?=
- =?us-ascii?Q?7IJYnXQWzPrxyT6w+nW6XgjhR7YbmFn+sPCNk/jjArGqiNRzVAoTiR63j+ja?=
- =?us-ascii?Q?gg=3D=3D?=
-X-OriginatorOrg: moxa.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 20d96746-ac5f-46de-2ff6-08dbfc8ee15c
-X-MS-Exchange-CrossTenant-AuthSource: SEYPR01MB5387.apcprd01.prod.exchangelabs.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Dec 2023 10:24:40.0977
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5571c7d4-286b-47f6-9dd5-0aa688773c8e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: lB4+DYWNzYd0eZOwueX8D/2akxLHFhlPQBlyKRp0M3SfUyndTOuPqgwbKju4pbG5S0Sf2w4V5wwZI/vMka5zsH4LDgCP4wpWDh0Qow8LESQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR01MB4943
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 6/9] arm64: dts: mediatek: Add MT8186 Krabby platform
+ based Tentacruel / Tentacool
+To: Chen-Yu Tsai <wenst@chromium.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Eugen Hristev <eugen.hristev@collabora.com>,
+ Conor Dooley <conor.dooley@microchip.com>
+References: <20231213150435.4134390-1-wenst@chromium.org>
+ <20231213150435.4134390-7-wenst@chromium.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20231213150435.4134390-7-wenst@chromium.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Dec 11, 2023 at 03:07:59PM +0200, Andy Shevchenko wrote:
-> On Sat, Dec 09, 2023 at 12:47:47PM +0100, Lino Sanfilippo wrote:
-> > On 06.12.23 16:42, Lino Sanfilippo wrote:
+Il 13/12/23 16:04, Chen-Yu Tsai ha scritto:
+> Tentacruel and Tentacool are MT8186 based Chromebooks based on the
+> Krabby design.
 > 
-> > >>>> Crescent CY Hsieh (+cc) is in parallel trying to add an RS-422 mode bit
-> > >>>> to struct serial_rs485:
-> > >>>>
-> > >>>> https://lore.kernel.org/all/20231121095122.15948-1-crescentcy.hsieh@moxa.com/
-> > >>>>
-> > >>>
-> > >>> That new flag was suggested by me instead of using SER_RS422_ENABLED, which
-> > >>> would mostly be redundant to SER_RS485_ENABLED.
-> > 
-> > A cleaner solution would probably be to not handle RS422 with the RS485 settings at
-> > all, but to introduce another set of ioctls to set and read it.
-> > 
-> > An own RS422 structure like
-> > 
-> > struct serial_rs422 {
-> > 	__u32	flags;
-> > #define SER_RS422_ENABLED		(1 << 0)
-> > #define SER_RS422_TERMINATE_BUS		(1 << 1)
-> > };
-> > 
-> > 
-> > could be used as the parameter for these new ioctls.
-> > 
-> > Any comments on this?
+> Tentacruel, also known as the ASUS Chromebook CM14 Flip CM1402F, is a
+> convertible device with touchscreen and stylus.
 > 
-> I have (maybe not so constructive) a comment. Please, at all means try to not
-> extend the existing serial data structures, we have too many ones with too many
-> fields already. For user space, though, one may use unions and flags, but for
-> internal ones it might be better ways, I think.
+> Tentacool, also known as the ASUS Chromebook CM14 CM1402C, is a laptop
+> device. It does not have a touchscreen or stylus.
+> 
+> The two devices both have two variants. The difference is a second
+> source touchpad controller that shares the same address as the original,
+> but is incompatible.
+> 
+> The extra SKU IDs for the Tentacruel devices map to different sensor
+> components attached to the Embedded Controller. These are not visible
+> to the main processor.
+> 
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+> Changes since v3:
+> - Reorder some properties to conform better to the newly proposed DT
+>    style guidelines
+> - Drop unused labels
+> - Rename bt-sco node name to bt-sco-codec
+> - Drop i2s*-share properties from afe node
+> - Drop aud_gpio_tdm_{on,off} pinctrl nodes
+> - Replace interrupts with interrupts-extended in tpm node
+> - Enable adsp device
+> 
+> Changes since v2:
+> - Picked up Conor's ack
+> - Rename touchpad to trackpad
+> - Drop pinctrl properties from trackpad in tentacruel/tentacool second
+>    source trackpad
+> 
+> Changes since v1:
+> - Reorder SKU numbers in descending order.
+> - Fixed pinconfig node names
+> - Moved pinctrl-* properties after interrupts-*
+> - Switched to interrupts-extended for external components
+> - Marked ADSP as explicitly disabled, with a comment explaining that it
+>    stalls the system
+> - Renamed "touchpad" to "trackpad"
+> - Dropped bogus "no-laneswap" property from it6505 node
+> - Moved "realtek,jd-src" property to after all the regulator supplies
+> - Switched to macros for MT6366 regulator "regulator-allowed-modes"
+> - Renamed "vgpu" regulator name to allow coupling, with a comment
+>    containing the name used in the design
+> - Renamed "cr50" node name to "tpm"
+> - Moved trackpad_pins reference up to i2c2; workaround for second source
+>    component resource sharing.
+> - Fix copyright year
+> - Fixed touchscreen supply name
+> ---
+>   arch/arm64/boot/dts/mediatek/Makefile         |    4 +
+>   .../dts/mediatek/mt8186-corsola-krabby.dtsi   |  129 ++
+>   .../mt8186-corsola-tentacool-sku327681.dts    |   57 +
+>   .../mt8186-corsola-tentacool-sku327683.dts    |   24 +
+>   .../mt8186-corsola-tentacruel-sku262144.dts   |   44 +
+>   .../mt8186-corsola-tentacruel-sku262148.dts   |   26 +
+>   .../boot/dts/mediatek/mt8186-corsola.dtsi     | 1707 +++++++++++++++++
+>   7 files changed, 1991 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-krabby.dtsi
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacool-sku327681.dts
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacool-sku327683.dts
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacruel-sku262144.dts
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacruel-sku262148.dts
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
+> index e6e7592a3645..442af61b1305 100644
+> --- a/arch/arm64/boot/dts/mediatek/Makefile
+> +++ b/arch/arm64/boot/dts/mediatek/Makefile
+> @@ -43,6 +43,10 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kodama-sku32.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku0.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku176.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-pumpkin.dtb
+> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-tentacool-sku327681.dtb
+> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-tentacool-sku327683.dtb
+> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-tentacruel-sku262144.dtb
+> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-tentacruel-sku262148.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-evb.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-asurada-hayato-r1.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-asurada-hayato-r5-sku2.dtb
 
-How about revising the name of 'TIOCSRS485' and 'serial_rs485' to a
-general one, and put RS422 and RS485 configuration flags into that
-structure?
+..snip..
 
-So that in userspace it could set RS422 or RS485 configurations using a
-single ioctl command and one structure.
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacruel-sku262148.dts b/arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacruel-sku262148.dts
+> new file mode 100644
+> index 000000000000..447b57b12b41
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-tentacruel-sku262148.dts
+> @@ -0,0 +1,26 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright 2023 Google LLC
+> + */
+> +
+> +#include "mt8186-corsola-tentacruel-sku262144.dts"
+> +
+> +/ {
+> +	compatible = "google,tentacruel-sku262151", "google,tentacruel-sku262150",
+> +		     "google,tentacruel-sku262149", "google,tentacruel-sku262148",
+> +		     "google,tentacruel", "mediatek,mt8186";
+> +};
+> +
+> +/* This variant replaces only the trackpad controller. */
+> +&i2c2 {
+> +	/delete-node/ trackpad@15;
+> +
+> +	trackpad@15 {
+> +		compatible = "hid-over-i2c";
+> +		reg = <0x15>;
+> +		interrupts-extended = <&pio 11 IRQ_TYPE_LEVEL_LOW>;
+> +		hid-descr-addr = <0x0001>;
+> +		vdd-supply = <&pp3300_s3>;
+> +		wakeup-source;
+> +	};
+> +};
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi b/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
+> new file mode 100644
+> index 000000000000..adbeb0c765d3
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
+> @@ -0,0 +1,1707 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright (C) 2022 MediaTek Inc.
+> + */
+> +/dts-v1/;
+> +#include "mt8186.dtsi"
+> +#include <dt-bindings/pinctrl/mt8186-pinfunc.h>
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/input/input.h>
+> +#include <dt-bindings/input/gpio-keys.h>
+> +#include <dt-bindings/regulator/mediatek,mt6397-regulator.h>
+> +
 
-In this way, it won't be confused in userspace and won't add new data
-structure internally as well.
+..snip..
 
----
-Sincerely,
-Crescent Hsieh.
+> +
+> +&i2c2 {
+> +	pinctrl-names = "default";
+> +	/*
+> +	 * Trackpad pin put here to work around second source components
+> +	 * sharing the pinmux in steelix designs.
+> +	 */
+> +	pinctrl-0 = <&i2c2_pins>, <&trackpad_pin>;
+> +	clock-frequency = <400000>;
+> +	i2c-scl-internal-delay-ns = <10000>;
+> +	status = "okay";
+> +
+> +	trackpad@15 {
+> +		compatible = "elan,ekth3000";
+
+You forgot to change this one.
+
+Remove compatible from this node and stop using /delete-node/ in device specific
+devicetrees.
+
+> +		reg = <0x15>;
+> +		interrupts-extended = <&pio 11 IRQ_TYPE_LEVEL_LOW>;
+> +		vcc-supply = <&pp3300_s3>;
+> +		wakeup-source;
+> +	};
+> +};
+
+
+corsola.dtsi (here):
+
+&i2c2 {
+	pinctrl-names = "default";
+	/*
+	 * Trackpad pin put here to work around second source components
+	 * sharing the pinmux in steelix designs.
+	 */
+	pinctrl-0 = <&i2c2_pins>, <&trackpad_pin>;
+	clock-frequency = <400000>;
+	i2c-scl-internal-delay-ns = <10000>;
+	status = "okay";
+
+	trackpad_i2c2_15: trackpad@15 {
+		/*
+		 * Those are common properties for i2c2 trackpad on Corsola boards.
+		 * The compatible string is declared in device specific devicetrees
+		 */
+		reg = <0x15>;
+		interrupts-extended = <&pio 11 IRQ_TYPE_LEVEL_LOW>;
+		vcc-supply = <&pp3300_s3>;
+		wakeup-source;
+		status = "disabled";
+	};
+};
+
+corsola-some-device.dts:
+
+&trackpad_i2c2_15 {
+	compatible = "hid-over-i2c";
+	hid-descr-addr = <0x0001>;
+	status = "okay";
+};
+
+corsola-some-other-device.dts:
+
+&trackpad_i2c2_15 {
+	compatible = "elan,ekth3000";
+	status = "okay";
+};
+
+....everything else looks good.
+
+Cheers,
+Angelo
 
