@@ -1,217 +1,139 @@
-Return-Path: <devicetree+bounces-25399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25400-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24374813277
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 15:06:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7104813291
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 15:09:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7A48DB20E65
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 14:06:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 257BB1C21A88
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 14:09:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F9BF58AA3;
-	Thu, 14 Dec 2023 14:06:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95D9059B52;
+	Thu, 14 Dec 2023 14:09:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="O1I5A7KW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="N6udWIjP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8526129;
-	Thu, 14 Dec 2023 06:06:01 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-40c256ffdbcso83820645e9.2;
-        Thu, 14 Dec 2023 06:06:01 -0800 (PST)
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18282CF;
+	Thu, 14 Dec 2023 06:09:41 -0800 (PST)
+Received: by mail-oi1-x22b.google.com with SMTP id 5614622812f47-3b9df0a6560so5617566b6e.2;
+        Thu, 14 Dec 2023 06:09:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702562760; x=1703167560; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pVJeJO1HsRZL15USbnvPbmKRRvrh/D+wF6I/BbjUvtY=;
-        b=O1I5A7KWZ0ycwIeNPvtSSqgdk0Oam622oVsIP1tNdkAxpCqKKypf85FIwXWJh4dgeF
-         PEIxewzkVbhewGokjut3ZLhMZ115I/OiJwth5Pgt5ndlJp5r8xDLQXLsHJMR5gwJx5Ao
-         LOIn+WzoJwks3wn2ACsGA/oUR+hR77nmEQTabn6CHWx42UFQjEHtbRAsAdoFHB3e+nWi
-         /e8MSZIG/mYX1pukz/aC4JDWNzKjmLMDYdnzCJ5HhiN3pKY6uqKtcTJDy9n5/LUDs21T
-         svKUfs/NwHZAipe0k5DtAs/jUNk4YhRk5FED6FC4hCVmvl7T9eCLCpSfHuwFfkJSQJWS
-         RZSw==
+        d=gmail.com; s=20230601; t=1702562980; x=1703167780; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=OnDoJ6wVmo9VoXzzMiE8cFoyXSZgzadjzCBeRZFN5gs=;
+        b=N6udWIjPR42EV3mF0HsCdZ8AJRJnqFSLT/nbX7a/j9+ZkN3ufzit9LrX7aPiqHKBtQ
+         WJoUAFXOu4qFHDIQDpDiwMI0el8EhzrDvSJHareCFvOwrPpf3cAzL2FCDTqWVVDRAo+0
+         TgFZLn83b5nRR6NEwi5C8pGhF47EXKsG4AHV9sv3ldEdwCJI+hMz7Fr/6Ug02chfu7i7
+         aDbms3ibQ55Uj/xaamrMdOhN2fk5Uk4C4F3/s9fygrtrkk3uFvoWFERj1Npr3uBPndyW
+         cskwDfTHRsJvddNY+PhNj9aYCcpt33lYo1sabakK5+gJZ37GRlcAElnCDJXMAsJIM1Oj
+         k6hQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702562760; x=1703167560;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pVJeJO1HsRZL15USbnvPbmKRRvrh/D+wF6I/BbjUvtY=;
-        b=AdvFxO6w8xh5RjNHyuE5TYWlftUWP+td/mgK65LIRStgtBjJLaR2ixJK83gtQKb3sd
-         ZavJuCTXqMATJ31olxoDnYAMA1EGHmiT4cKdcGgeFXlFtMf3k9XuaHyw1xsky3TnIfZV
-         XnrTMtXT+2J0y7EQ6Ctx/zqRGhlh4JsYAEl+0iJx8vm4f5vxkrQk/TFz98TjV04mKa2S
-         iMwH26AdczscAPN2a8HfrUAdqro6bz6IZuwnYl9NNUuPmBjgjgUDFTgimdbgkMoVyPIg
-         80phCRPZ3I2Iu14ICxOAReslnM0uFAK/p+Fnj5M/xm3SByW1SCdaYpESdjjB4wMoCZgb
-         f/lg==
-X-Gm-Message-State: AOJu0YzA1Jk0RnPSM+PllYyCxC46j1V+XRaNmAGuarwBfIZZ9wYtg6XX
-	lGwARmFljW/tKc00kj61cg==
-X-Google-Smtp-Source: AGHT+IGEibxucWSKbBiOsWTsKNrxSPrV0djit9jKX1j4/jyMouWXn8buCXt4pJ+c4g6ulVA7yUvrYw==
-X-Received: by 2002:a05:600c:1c1f:b0:3fe:4cbc:c345 with SMTP id j31-20020a05600c1c1f00b003fe4cbcc345mr4925156wms.41.1702562760052;
-        Thu, 14 Dec 2023 06:06:00 -0800 (PST)
-Received: from ?IPV6:2a02:810b:f40:4300:fb6a:140c:b21d:7387? ([2a02:810b:f40:4300:fb6a:140c:b21d:7387])
-        by smtp.gmail.com with ESMTPSA id r20-20020a05600c35d400b0040b538047b4sm27230090wmq.3.2023.12.14.06.05.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Dec 2023 06:05:59 -0800 (PST)
-Message-ID: <a8f13e19-7bb3-4a7f-a264-1e1ede1864e0@gmail.com>
-Date: Thu, 14 Dec 2023 15:05:59 +0100
+        d=1e100.net; s=20230601; t=1702562980; x=1703167780;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OnDoJ6wVmo9VoXzzMiE8cFoyXSZgzadjzCBeRZFN5gs=;
+        b=tThvsQNPO1l80N0E/P5d6aE11z+2ve+N8R9OFOj92nIhXLSArLHbANWeFhAzHSByW4
+         xmTooAUwUVv5oFxZryRE+8OCEm7KytAjhS4PMlJPeYvTQmCFkUtX1i4ScOexakWtOHOS
+         v0IDd4XviR21zP/WM66+44RCsCPwrqeffxvXnjCg06AYJH7Z0Gq3lqMJQlCKSF9nVI9N
+         KF4DE+C9iigot1+1+meThVkwXGhcs2CEneGlu0lcrGiptrtObt5GPx4DcLSHNs4+5vCk
+         ZTKqfm76100xd1GIC5aD3otuJAx5bELUZAB+/lAEiURQ6TOWlDaAjuRD3h1ikA/m+IU8
+         DlUQ==
+X-Gm-Message-State: AOJu0Yxma45T5dvB+YyyQBwq0dyQ47R7Df9JpIAQWPlx1MKxFQIdUhT1
+	qlvR4dbnqFJQDToP04vrcxEIDmJ13szEsFJvSnI=
+X-Google-Smtp-Source: AGHT+IGPp77OIeq0HPwK1G1mRuXPVT/TNiXRQRsdPVwq0HzCh+/6goRnf27mZqKmRhoHC4FS1baWhsKabTH7NXn1ZHo=
+X-Received: by 2002:a05:6808:f91:b0:3b9:e654:9010 with SMTP id
+ o17-20020a0568080f9100b003b9e6549010mr10465714oiw.34.1702562980290; Thu, 14
+ Dec 2023 06:09:40 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 04/11] drm/rockchip: inno_hdmi: Correctly setup HDMI
- quantization range
-Content-Language: en-US, de-DE
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
- <heiko@sntech.de>, Andy Yan <andyshrk@163.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20231213195125.212923-1-knaerzche@gmail.com>
- <20231213195125.212923-5-knaerzche@gmail.com>
- <w7cj24se5gjomfynp5yindnh3s2pea4p3f46u6y7lcci7hri32@62i6hg26pheb>
- <5f4fc919-681f-44ec-bd44-5788e5b718ca@gmail.com>
- <db3kdzy4ogf3o2fd6apr36s44qitcsxksfkfa2oc77s5y6dv2w@kfji4iszthxa>
-From: Alex Bee <knaerzche@gmail.com>
-In-Reply-To: <db3kdzy4ogf3o2fd6apr36s44qitcsxksfkfa2oc77s5y6dv2w@kfji4iszthxa>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20231213190528.3751583-1-tmaimon77@gmail.com> <20231213190528.3751583-4-tmaimon77@gmail.com>
+ <cf3ce945-2f1c-4dae-86b8-349dae3d962b@app.fastmail.com>
+In-Reply-To: <cf3ce945-2f1c-4dae-86b8-349dae3d962b@app.fastmail.com>
+From: Tomer Maimon <tmaimon77@gmail.com>
+Date: Thu, 14 Dec 2023 16:09:29 +0200
+Message-ID: <CAP6Zq1inLOMHORqO8=RbP6NfwJ63kLaH0G3+TKBhfn0p2CE53w@mail.gmail.com>
+Subject: Re: [PATCH v3 3/3] soc: nuvoton: add NPCM BPC driver
+To: Arnd Bergmann <arnd@arndb.de>
+Cc: pmenzel@molgen.mpg.de, Rob Herring <robh+dt@kernel.org>, 
+	krzysztof.kozlowski+dt@linaro.org, Conor Dooley <conor+dt@kernel.org>, 
+	avifishman70@gmail.com, tali.perry1@gmail.com, Joel Stanley <joel@jms.id.au>, 
+	venture@google.com, yuenn@google.com, benjaminfair@google.com, 
+	=?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>, 
+	openbmc@lists.ozlabs.org, 
+	"open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
+Hi Arnd,
 
-Am 14.12.23 um 12:33 schrieb Maxime Ripard:
-> On Thu, Dec 14, 2023 at 12:12:08PM +0100, Alex Bee wrote:
->> Hi Maxime
->>
->> Am 14.12.23 um 08:56 schrieb Maxime Ripard:
->>> Hi Alex,
->>>
->>> Thanks for working on this!
->>>
->>> On Wed, Dec 13, 2023 at 08:51:18PM +0100, Alex Bee wrote:
->>>> The display controller will always give full range RGB regardless of the
->>>> mode set, but HDMI requires certain modes to be transmitted in limited
->>>> range RGB. This is especially required for HDMI sinks which do not support
->>>> non-standard quantization ranges.
->>>>
->>>> This enables color space conversion for those modes and sets the
->>>> quantization range accordingly in the AVI infoframe.
->>>>
->>>> Fixes: 412d4ae6b7a5 ("drm/rockchip: hdmi: add Innosilicon HDMI support")
->>>> Signed-off-by: Alex Bee <knaerzche@gmail.com>
->>>> ---
->>>>    drivers/gpu/drm/rockchip/inno_hdmi.c | 40 ++++++++++++++++++++++------
->>>>    1 file changed, 32 insertions(+), 8 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/rockchip/inno_hdmi.c b/drivers/gpu/drm/rockchip/inno_hdmi.c
->>>> index 345253e033c5..32626a75723c 100644
->>>> --- a/drivers/gpu/drm/rockchip/inno_hdmi.c
->>>> +++ b/drivers/gpu/drm/rockchip/inno_hdmi.c
->>>> @@ -33,6 +33,7 @@ struct hdmi_data_info {
->>>>    	unsigned int enc_in_format;
->>>>    	unsigned int enc_out_format;
->>>>    	unsigned int colorimetry;
->>>> +	bool rgb_limited_range;
->>>>    };
->>>>    struct inno_hdmi_i2c {
->>>> @@ -308,6 +309,18 @@ static int inno_hdmi_config_video_avi(struct inno_hdmi *hdmi,
->>>>    	else
->>>>    		frame.avi.colorspace = HDMI_COLORSPACE_RGB;
->>>> +	if (hdmi->hdmi_data.enc_out_format == HDMI_COLORSPACE_RGB) {
->>>> +		drm_hdmi_avi_infoframe_quant_range(&frame.avi,
->>>> +						   &hdmi->connector, mode,
->>>> +						   hdmi->hdmi_data.rgb_limited_range ?
->>>> +						   HDMI_QUANTIZATION_RANGE_LIMITED :
->>>> +						   HDMI_QUANTIZATION_RANGE_FULL);
->>>> +	} else {
->>>> +		frame.avi.quantization_range = HDMI_QUANTIZATION_RANGE_DEFAULT;
->>>> +		frame.avi.ycc_quantization_range =
->>>> +			HDMI_YCC_QUANTIZATION_RANGE_LIMITED;
->>>> +	}
->>>> +
->>>>    	return inno_hdmi_upload_frame(hdmi, rc, &frame, INFOFRAME_AVI, 0, 0, 0);
->>>>    }
->>>> @@ -334,14 +347,22 @@ static int inno_hdmi_config_video_csc(struct inno_hdmi *hdmi)
->>>>    	if (data->enc_in_format == data->enc_out_format) {
->>>>    		if ((data->enc_in_format == HDMI_COLORSPACE_RGB) ||
->>>>    		    (data->enc_in_format >= HDMI_COLORSPACE_YUV444)) {
->>>> -			value = v_SOF_DISABLE | v_COLOR_DEPTH_NOT_INDICATED(1);
->>>> -			hdmi_writeb(hdmi, HDMI_VIDEO_CONTRL3, value);
->>>> -
->>>> -			hdmi_modb(hdmi, HDMI_VIDEO_CONTRL,
->>>> -				  m_VIDEO_AUTO_CSC | m_VIDEO_C0_C2_SWAP,
->>>> -				  v_VIDEO_AUTO_CSC(AUTO_CSC_DISABLE) |
->>>> -				  v_VIDEO_C0_C2_SWAP(C0_C2_CHANGE_DISABLE));
->>>> -			return 0;
->>>> +			if (data->enc_in_format == HDMI_COLORSPACE_RGB &&
->>>> +			    data->enc_out_format == HDMI_COLORSPACE_RGB &&
->>>> +			    hdmi->hdmi_data.rgb_limited_range) {
->>>> +				csc_mode = CSC_RGB_0_255_TO_RGB_16_235_8BIT;
->>>> +				auto_csc = AUTO_CSC_DISABLE;
->>>> +				c0_c2_change = C0_C2_CHANGE_DISABLE;
->>>> +				csc_enable = v_CSC_ENABLE;
->>>> +			} else {
->>>> +				value = v_SOF_DISABLE | v_COLOR_DEPTH_NOT_INDICATED(1);
->>>> +				hdmi_writeb(hdmi, HDMI_VIDEO_CONTRL3, value);
->>>> +				hdmi_modb(hdmi, HDMI_VIDEO_CONTRL,
->>>> +					  m_VIDEO_AUTO_CSC | m_VIDEO_C0_C2_SWAP,
->>>> +					  v_VIDEO_AUTO_CSC(AUTO_CSC_DISABLE) |
->>>> +					  v_VIDEO_C0_C2_SWAP(C0_C2_CHANGE_DISABLE));
->>>> +				return 0;
->>>> +			}
->>>>    		}
->>>>    	}
->>>> @@ -458,6 +479,9 @@ static int inno_hdmi_setup(struct inno_hdmi *hdmi,
->>>>    	else
->>>>    		hdmi->hdmi_data.colorimetry = HDMI_COLORIMETRY_ITU_709;
->>>> +	hdmi->hdmi_data.rgb_limited_range =
->>>> +		drm_default_rgb_quant_range(mode) == HDMI_QUANTIZATION_RANGE_LIMITED;
->>>> +
->>> This patch conflicts heavily with my inno_hdmi patches here (patches 22 to 38):
->>> https://lore.kernel.org/dri-devel/20231207-kms-hdmi-connector-state-v5-0-6538e19d634d@kernel.org/
->> I'm aware of that and I mentioned it in the cover letter.
-> Sorry, I missed that part.
->
->> Your series is not merged yet and it didn't get much feedback so far.
->> What is the status there?
-> It didn't have much reviews, but I'll hope to change that. For the
-> patches 22 to 38 though, it doesn't really matter. Those changes are
-> self-contained and can be applied as is outside of the series.
->
->> Especially because you are removing things from inno-hdmi driver (which
->> aren't really required to remove there) which will I have to reintroduce.
-> I'm not entirely sure which part I remove that are actually going to be
-> used here.
-I'm refering to [PATCH v5 33/44] which completly removes csc coeffs but 
-this series needs the CSC_RGB_0_255_TO_RGB_16_235_8BIT  coeffs and  
-[PATCH v5 29/44] which removes writing csc_coeffs to the hardware.
->
->>> I would appreciate if you could test and merge them into your series.
->>>
->>> In particular, there's no need to store the range here: enc_out_format
->> rgb_limited_range is currently not only used for csc, but also for for
->> infoframe creation. So it makes sense to have this stored  to avoid calling
->> drm_default_rgb_quant_range twice.
-> You're right, I missed one. Still, it shouldn't be stored in the
-> hdmi_data_info structure, it's tied to the mode, and the mode is part of
-> the state, so it's not a property to a given device, but it's tied to
-> the connector state.
->
-> So if you want to do so, you should really create a custom state
-> structure and store the range there, just like vc4 is doing for example.
+Thanks for your comments.
 
-OK - I'll check.
-
-Alex
-
+On Thu, 14 Dec 2023 at 14:44, Arnd Bergmann <arnd@arndb.de> wrote:
 >
-> Maxime
+> On Wed, Dec 13, 2023, at 20:05, Tomer Maimon wrote:
+> > Add Nuvoton BMC NPCM BIOS post code (BPC) driver.
+> >
+> > The NPCM BPC monitoring two configurable I/O address written by the host
+> > on the bus.
+> >
+> > Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> > ---
+> >  drivers/soc/nuvoton/Kconfig    |   9 +
+> >  drivers/soc/nuvoton/Makefile   |   1 +
+> >  drivers/soc/nuvoton/npcm-bpc.c | 387 +++++++++++++++++++++++++++++++++
+> >  3 files changed, 397 insertions(+)
+> >  create mode 100644 drivers/soc/nuvoton/npcm-bpc.c
+>
+> I try hard to avoid having user interfaces in drivers/soc/, that
+> subsystem should primarily be used for things that don't have an
+> existing subsystem in the kernel and are used by other in-kernel
+> drivers but don't export hteir own misc device.
+>
+> > diff --git a/drivers/soc/nuvoton/Kconfig b/drivers/soc/nuvoton/Kconfig
+> > index d5102f5f0c28..ebd162633942 100644
+> > --- a/drivers/soc/nuvoton/Kconfig
+> > +++ b/drivers/soc/nuvoton/Kconfig
+> > @@ -2,6 +2,15 @@
+> >
+> >  menu "NUVOTON SoC drivers"
+> >
+> > +config NPCM_BPC
+> > +     tristate "NPCM BIOS Post Code support"
+> > +     depends on (ARCH_NPCM || COMPILE_TEST)
+> > +     help
+> > +       Provides NPCM driver to control the BIOS Post Code
+> > +       interface which allows the BMC to monitor and save
+> > +       the data written by the host to an arbitrary I/O port,
+> > +       the BPC is connected to the host thourgh LPC or eSPI bus.
+> > +
+>
+> This one in particular looks like this might be implemented
+> by more than one BMC type, it's a fairly generic functionality.
+>
+> Have you talked to the other maintainers of SoCs used in
+> OpenBMC about coming up with a common interface?
+Yes, Both Nuvoton and Aspeed use the same user-facing code to manage
+the host snooping.
+https://github.com/openbmc/phosphor-host-postd
+>
+> > +#define DEVICE_NAME  "npcm-bpc"
+Will do.
+>
+> [nitpicking] No need for macros like this one, open-coding the
+> string is usually more readable.
+>
+>     Arnd
+
+Thanks,
+
+Tomer
 
