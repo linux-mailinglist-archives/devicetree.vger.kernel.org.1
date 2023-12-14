@@ -1,194 +1,407 @@
-Return-Path: <devicetree+bounces-25424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25425-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C77FA813397
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 15:51:59 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3C7C8133AB
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 15:54:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 57B98B2189D
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 14:51:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9CA041C2166A
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 14:54:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A97E5B20A;
-	Thu, 14 Dec 2023 14:51:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69DDB5B5A5;
+	Thu, 14 Dec 2023 14:54:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dh-electronics.com header.i=@dh-electronics.com header.b="KYciiA4d"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="eZeTL2Uz"
 X-Original-To: devicetree@vger.kernel.org
-X-Greylist: delayed 4121 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 14 Dec 2023 06:51:45 PST
-Received: from mx2.securetransport.de (mx2.securetransport.de [IPv6:2a03:4000:13:6c7::1])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8E04BD;
-	Thu, 14 Dec 2023 06:51:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dh-electronics.com;
-	s=dhelectronicscom; t=1702565441;
-	bh=aLGN4htM89+up79T2eb77aEvSzdj7cHHPgTWA316ebs=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-	b=KYciiA4d46KvTdukX8riEEaMKPncF5X+3XL5Flodo1iel2EIVjGTA74wx5gPc84Gj
-	 v7xRwLrPilGvDflTAOUlzq2Mc0hA88pBYjv6jkWAh5z8hP/DBpd+tJqDpwISLtaDsv
-	 guZpMxAgdNwOfSqGs+fDySkOrUrGX6zA3yb3VW0UBXs9PUSApQcssHXr/uDyU4YsnW
-	 moFCMBjWlKtl5DWjnuHBzfW821OURYCY7XG3UCWKK1J4syOS55Yaqve5J83N4MKWVs
-	 ikY+lHGu5dKrPutuVTdo1fLYS0ADPqXbJELe5GwIeCGQAQaQ0jFijW2iCuDv37ggwS
-	 ns0ykj9bn2qKA==
-X-secureTransport-forwarded: yes
-From: Christoph Niedermaier <cniedermaier@dh-electronics.com>
-Complaints-To: abuse@cubewerk.de
-To: Lino Sanfilippo <LinoSanfilippo@gmx.de>, Crescent CY Hsieh
-	<crescentcy.hsieh@moxa.com>, Andy Shevchenko
-	<andriy.shevchenko@linux.intel.com>
-CC: Lukas Wunner <lukas@wunner.de>, Rasmus Villemoes
-	<linux@rasmusvillemoes.dk>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
-	<conor+dt@kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-serial@vger.kernel.org"
-	<linux-serial@vger.kernel.org>, =?utf-8?B?SWxwbyBKw6RydmluZW4=?=
-	<ilpo.jarvinen@linux.intel.com>, "brenda.streiff@ni.com"
-	<brenda.streiff@ni.com>, Tomas Paukrt <tomaspaukrt@email.cz>
-Subject: RE: [PATCH 1/2] dt-bindings: serial: rs485: add rs485-mux-gpios
- binding
-Thread-Topic: [PATCH 1/2] dt-bindings: serial: rs485: add rs485-mux-gpios
- binding
-Thread-Index: AQHaH/jBESSZN4JU2UOxi81YCMKNnLCN1MYggA6QRICABHVPgIADOxKAgASJVgCAABWukIAAJ8AAgAASapA=
-Date: Thu, 14 Dec 2023 14:50:36 +0000
-Message-ID: <cc59c5bb16574073ba8b2bf9bc59bc7c@dh-electronics.com>
-References: <20231120151056.148450-1-linux@rasmusvillemoes.dk>
- <20231120151056.148450-2-linux@rasmusvillemoes.dk>
- <20231122145344.GA18949@wunner.de>
- <3b8548b1-b8a9-0c9e-4040-5cfda06a85c6@gmx.de>
- <ec66d25162de4cbc92720df1e7008fe8@dh-electronics.com>
- <5c140498-69e3-4187-8703-db0c41e7ca89@gmx.de>
- <fe28eb93-daa1-41af-a005-f21aa87e1984@gmx.de>
- <ZXcJr4VS_uGr_6TV@smile.fi.intel.com>
- <ZXrX4mQXPLum0jL3@moxa-ThinkCentre-M90t>
- <b35730df8288469fbaf67b5ceae4eece@dh-electronics.com>
- <ed087928-43ac-42bc-8e4d-d1632db451b9@gmx.de>
-In-Reply-To: <ed087928-43ac-42bc-8e4d-d1632db451b9@gmx.de>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86FEE18B
+	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 06:54:10 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2c9e9c2989dso110859521fa.0
+        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 06:54:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1702565649; x=1703170449; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=j12poGNDMVPCiuizwZZDvadcKFA8ZUt/cvz0rwzMQOM=;
+        b=eZeTL2UzPXSKvkFM7uefSYpMK9hdyMywhMt21vmacW8DVHsy/jkxyVG8/sl3UU38A6
+         1s86+4z4SmaT6pAjmAToBPSpGF+Q9UzIO3jk3eERaLOc42o/X7L6s1vhqa+ntX9fU7+d
+         7qah9pPwumRLHdgzB63jXvdg8Rhqx4OstW6UA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702565649; x=1703170449;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=j12poGNDMVPCiuizwZZDvadcKFA8ZUt/cvz0rwzMQOM=;
+        b=fon9Q8jjmnhLIVhBsM4m/9bwFbBFcc0JyvrhzP1LAtkJJ8hcNF3YFdz+kcOlTOmtxi
+         GmNB0VDfpv8j254R0CRznBp62EVebvGqfP2VpmcdR/atwk8rdD78DwT+HEZg6hPSl/eD
+         YgmQd+KoX6aONbGvGLe/sVgGmyzvgVIZuuEiP143EndoN7/mnC2qhOmS8800d3omlIaE
+         mAaD39BdKo2H39HgL8oKZ7t/m77pepA25rBD9j4wcetF0nWSxLj0dGjjgHTvbog5VaOP
+         QWG/ts0EBcOxkYQ9qAfVpM1TKf1Kb0Y/hIRgfUt57a6ijpr2QcHSifGW+RYd3YpUQ5+t
+         84gA==
+X-Gm-Message-State: AOJu0YwksxdxPVTOBrOsfsnz/9aZQDHWM6UQybcSrjIALH0moaLnrU8+
+	6UO205SdWi75dflPGrCRI0sjKCdNoSyEKnr2JVoaWo99hGQXJkxhwAo=
+X-Google-Smtp-Source: AGHT+IED4t5ae8nY4HkOQWlRIXE+8L9IsVE130yoorSi0lxc/LUFMqhbgM571oVEzj//HHDD9tXSzEr5sS7OVkMgkCk=
+X-Received: by 2002:ac2:5201:0:b0:50b:f9b2:cf2 with SMTP id
+ a1-20020ac25201000000b0050bf9b20cf2mr4389768lfl.40.1702565648530; Thu, 14 Dec
+ 2023 06:54:08 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20231213150435.4134390-1-wenst@chromium.org> <20231213150435.4134390-8-wenst@chromium.org>
+ <8d855e5e-4938-4d4f-a79f-bbf89e30f6ca@collabora.com>
+In-Reply-To: <8d855e5e-4938-4d4f-a79f-bbf89e30f6ca@collabora.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Thu, 14 Dec 2023 23:53:57 +0900
+Message-ID: <CAGXv+5EmVQBNOL6GWaXu_i89WAUeUVtMBSbG8onGh3KHz5rnbA@mail.gmail.com>
+Subject: Re: [PATCH v4 7/9] arm64: dts: mediatek: Introduce MT8186 Steelix
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Eugen Hristev <eugen.hristev@collabora.com>, Conor Dooley <conor.dooley@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-RnJvbTogTGlubyBTYW5maWxpcHBvIDxMaW5vU2FuZmlsaXBwb0BnbXguZGU+DQpTZW50OiBUaHVy
-c2RheSwgRGVjZW1iZXIgMTQsIDIwMjMgMzowNCBQTQ0KPiANCj4gSGksDQo+IA0KPiBPbiAxNC4x
-Mi4yMyAxNDo0MSwgQ2hyaXN0b3BoIE5pZWRlcm1haWVyIHdyb3RlOg0KPj4gRnJvbTogQ3Jlc2Nl
-bnQgQ1kgSHNpZWggPGNyZXNjZW50Y3kuaHNpZWhAbW94YS5jb20+DQo+PiBTZW50OiBUaHVyc2Rh
-eSwgRGVjZW1iZXIgMTQsIDIwMjMgMTE6MjUgQU0NCj4+PiBPbiBNb24sIERlYyAxMSwgMjAyMyBh
-dCAwMzowNzo1OVBNICswMjAwLCBBbmR5IFNoZXZjaGVua28gd3JvdGU6DQo+Pj4+IE9uIFNhdCwg
-RGVjIDA5LCAyMDIzIGF0IDEyOjQ3OjQ3UE0gKzAxMDAsIExpbm8gU2FuZmlsaXBwbyB3cm90ZToN
-Cj4+Pj4+IE9uIDA2LjEyLjIzIDE2OjQyLCBMaW5vIFNhbmZpbGlwcG8gd3JvdGU6DQo+Pj4+DQo+
-Pj4+Pj4+Pj4gQ3Jlc2NlbnQgQ1kgSHNpZWggKCtjYykgaXMgaW4gcGFyYWxsZWwgdHJ5aW5nIHRv
-IGFkZCBhbiBSUy00MjIgbW9kZSBiaXQNCj4+Pj4+Pj4+PiB0byBzdHJ1Y3Qgc2VyaWFsX3JzNDg1
-Og0KPj4+Pj4+Pj4+DQo+Pj4+Pj4+Pj4gaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvYWxsLzIwMjMx
-MTIxMDk1MTIyLjE1OTQ4LTEtY3Jlc2NlbnRjeS5oc2llaEBtb3hhLmNvbS8NCj4+Pj4+Pj4+Pg0K
-Pj4+Pj4+Pj4NCj4+Pj4+Pj4+IFRoYXQgbmV3IGZsYWcgd2FzIHN1Z2dlc3RlZCBieSBtZSBpbnN0
-ZWFkIG9mIHVzaW5nIFNFUl9SUzQyMl9FTkFCTEVELCB3aGljaA0KPj4+Pj4+Pj4gd291bGQgbW9z
-dGx5IGJlIHJlZHVuZGFudCB0byBTRVJfUlM0ODVfRU5BQkxFRC4NCj4+Pj4+DQo+Pj4+PiBBIGNs
-ZWFuZXIgc29sdXRpb24gd291bGQgcHJvYmFibHkgYmUgdG8gbm90IGhhbmRsZSBSUzQyMiB3aXRo
-IHRoZSBSUzQ4NSBzZXR0aW5ncyBhdA0KPj4+Pj4gYWxsLCBidXQgdG8gaW50cm9kdWNlIGFub3Ro
-ZXIgc2V0IG9mIGlvY3RscyB0byBzZXQgYW5kIHJlYWQgaXQuDQo+Pj4+Pg0KPj4+Pj4gQW4gb3du
-IFJTNDIyIHN0cnVjdHVyZSBsaWtlDQo+Pj4+Pg0KPj4+Pj4gc3RydWN0IHNlcmlhbF9yczQyMiB7
-DQo+Pj4+PiAgICAgX191MzIgICBmbGFnczsNCj4+Pj4+ICNkZWZpbmUgU0VSX1JTNDIyX0VOQUJM
-RUQgICAgICAgICAgICgxIDw8IDApDQo+Pj4+PiAjZGVmaW5lIFNFUl9SUzQyMl9URVJNSU5BVEVf
-QlVTICAgICAgICAgICAgICgxIDw8IDEpDQo+Pj4+PiB9Ow0KPj4+Pj4NCj4+Pj4+DQo+Pj4+PiBj
-b3VsZCBiZSB1c2VkIGFzIHRoZSBwYXJhbWV0ZXIgZm9yIHRoZXNlIG5ldyBpb2N0bHMuDQo+Pj4+
-Pg0KPj4+Pj4gQW55IGNvbW1lbnRzIG9uIHRoaXM/DQo+Pj4+DQo+Pj4+IEkgaGF2ZSAobWF5YmUg
-bm90IHNvIGNvbnN0cnVjdGl2ZSkgYSBjb21tZW50LiBQbGVhc2UsIGF0IGFsbCBtZWFucyB0cnkg
-dG8gbm90DQo+Pj4+IGV4dGVuZCB0aGUgZXhpc3Rpbmcgc2VyaWFsIGRhdGEgc3RydWN0dXJlcywg
-d2UgaGF2ZSB0b28gbWFueSBvbmVzIHdpdGggdG9vIG1hbnkNCj4+Pj4gZmllbGRzIGFscmVhZHku
-IEZvciB1c2VyIHNwYWNlLCB0aG91Z2gsIG9uZSBtYXkgdXNlIHVuaW9ucyBhbmQgZmxhZ3MsIGJ1
-dCBmb3INCj4+Pj4gaW50ZXJuYWwgb25lcyBpdCBtaWdodCBiZSBiZXR0ZXIgd2F5cywgSSB0aGlu
-ay4NCj4+Pg0KPj4+IEhvdyBhYm91dCByZXZpc2luZyB0aGUgbmFtZSBvZiAnVElPQ1NSUzQ4NScg
-YW5kICdzZXJpYWxfcnM0ODUnIHRvIGENCj4+PiBnZW5lcmFsIG9uZSwgYW5kIHB1dCBSUzQyMiBh
-bmQgUlM0ODUgY29uZmlndXJhdGlvbiBmbGFncyBpbnRvIHRoYXQNCj4+PiBzdHJ1Y3R1cmU/DQo+
-Pj4NCj4+PiBTbyB0aGF0IGluIHVzZXJzcGFjZSBpdCBjb3VsZCBzZXQgUlM0MjIgb3IgUlM0ODUg
-Y29uZmlndXJhdGlvbnMgdXNpbmcgYQ0KPj4+IHNpbmdsZSBpb2N0bCBjb21tYW5kIGFuZCBvbmUg
-c3RydWN0dXJlLg0KPj4+DQo+Pj4gSW4gdGhpcyB3YXksIGl0IHdvbid0IGJlIGNvbmZ1c2VkIGlu
-IHVzZXJzcGFjZSBhbmQgd29uJ3QgYWRkIG5ldyBkYXRhDQo+Pj4gc3RydWN0dXJlIGludGVybmFs
-bHkgYXMgd2VsbC4NCj4+Pg0KPj4NCj4+IEkgd2lsbCBzdW1tYXJpemUgdGhlIGN1cnJlbnQgc2l0
-dWF0aW9uIGZyb20gbXkgcG9pbnQgb2YgdmlldywgbWF5YmUgaXQgaGVscHM6DQo+Pg0KPj4gUlMt
-MjMyOg0KPj4gICAtIEZ1bGwgRHVwbGV4IFBvaW50LXRvLVBvaW50IGNvbm5lY3Rpb24NCj4+ICAg
-LSBObyB0cmFuc2NlaXZlciBjb250cm9sIHdpdGggUlRTDQo+PiAgIC0gTm8gdGVybWluYXRpb24N
-Cj4+ICAgLSBObyBleHRyYSBzdHJ1Y3QgaW4gdXNlDQo+Pg0KPj4gUlMtNDIyOg0KPj4gICAtIEZ1
-bGwgRHVwbGV4IFBvaW50LXRvLVBvaW50IGNvbm5lY3Rpb24NCj4+ICAgLSBObyB0cmFuc2NlaXZl
-ciBjb250cm9sIHdpdGggUlRTIG5lZWRlZA0KPj4gICAtIFRlcm1pbmF0aW9uIHBvc3NpYmxlDQo+
-PiAgIC0gRXh0cmEgc3RydWN0IHNlcmlhbF9yczQ4NSBuZWVkZWQgaWYgdGVybWluYXRpb24gaXMg
-dXNlZA0KPj4gID0+IFJTLTQyMiBjYW4gYmUgdXNlZCBpbiBSUy0yMzIgb3BlcmF0aW9uLCBidXQg
-aWYgYSB0ZXJtaW5hdGlvbiBzaG91bGQgYmUNCj4+ICAgICBzd2l0Y2hhYmxlIHRoZSBSUzQ4NSBm
-bGFnIGhhcyB0byBiZSBlbmFibGVkLiBCdXQgdGhlbiBhbHNvIHRyYW5zY2VpdmVyDQo+PiAgICAg
-Y29udHJvbCB3aWxsIGJlIGVuYWJsZWQuIE5vdCBhIHZlcnkgc2F0aXNmeWluZyBzaXR1YXRpb24u
-DQo+Pg0KPiANCj4gVGhhdHMgd2h5IEkgdm90ZSBmb3IgYSAgUlM0MjIgbW9kZS4NCj4gDQo+PiBS
-Uy00ODUgKDItd2lyZSkgdmVyeSBjb21tb246DQo+PiAgIC0gSGFsZiBEdXBsZXggUlMtNDg1IGJ1
-cw0KPj4gICAtIFRyYW5zY2VpdmVyIGNvbnRyb2wgd2l0aCBSVFMgaXMgbmVlZGVkDQo+PiAgIC0g
-VGVybWluYXRpb24gcG9zc2libGUNCj4+ICAgLSBFeHRyYSBzdHJ1Y3Qgc2VyaWFsX3JzNDg1IGlz
-IG5lZWRlZA0KPj4gID0+IFJTLTQ4NSBoYXMgdG8gYmUgZW5hYmxlZCBhbmQgY29uZmlndXJlZDoN
-Cj4+ICAgICAtIFNldCBTRVJfUlM0ODVfRU5BQkxFRA0KPj4gICAgIC0gU2V0IFNFUl9SUzQ4NV9S
-VFNfT05fU0VORCBvciBTRVJfUlM0ODVfUlRTX0FGVEVSX1NFTkQNCj4+ICAgICAtIFNldC9jbGVh
-ciBTRVJfUlM0ODVfUlhfRFVSSU5HX1RYIGRlcGVuZGluZyBvbiB3aGV0aGVyDQo+PiAgICAgICB0
-aGUgcmVjZWl2ZXIgcGF0aCBzaG91bGQgYmUgb24gb3Igb2ZmIGR1cmluZyBzZW5kaW5nLg0KPj4g
-ICAgICAgSWYgaXQncyBzZXQgaXQgYWxsb3dzIHRvIG1vbml0b3IgdGhlIHNlbmRpbmcgb24gdGhl
-IGJ1cw0KPj4gICAgICAgYW5kIGRldGVjdCB3aGV0aGVyIGFub3RoZXIgYnVzIGRldmljZSBpcyB0
-cmFuc21pdHRpbmcNCj4+ICAgICAgIGF0IHRoZSBzYW1lIHRpbWUuDQo+PiAgICAgLSBTZXQvY2xl
-YXIgU0VSX1JTNDg1X1RFUk1JTkFURV9CVVMgZm9yIGJ1cyB0ZXJtaW5hdGlvbi4NCj4+DQo+PiBS
-Uy00ODUgKDQtd2lyZSkgbGl0dGxlIHVzZWQ6DQo+PiAgIC0gRnVsbCBEdXBsZXggUlMtNDg1IGJ1
-cw0KPj4gICAtIFRyYW5zY2VpdmVyIGNvbnRyb2wgd2l0aCBSVFMgaXMgbmVlZGVkDQo+PiAgIC0g
-VGVybWluYXRpb24gcG9zc2libGUNCj4+ICAgLSBFeHRyYSBzdHJ1Y3Qgc2VyaWFsX3JzNDg1IGlz
-IG5lZWRlZA0KPj4gID0+IFJTLTQ4NSBoYXMgdG8gYmUgZW5hYmxlZCBhbmQgY29uZmlndXJlZDoN
-Cj4+ICAgICAtIFNldCBTRVJfUlM0ODVfRU5BQkxFRA0KPj4gICAgIC0gU2V0IFNFUl9SUzQ4NV9S
-VFNfT05fU0VORCBvciBTRVJfUlM0ODVfUlRTX0FGVEVSX1NFTkQNCj4+ICAgICAtIFNldCBTRVJf
-UlM0ODVfUlhfRFVSSU5HX1RYLCBhcyB0aGUgcmVjZWl2ZXIgc2hvdWxkIGFsd2F5cw0KPj4gICAg
-ICAgYmUgZW5hYmxlZCBpbmRlcGVuZGVudGx5IG9mIFRYLCBiZWNhdXNlIFRYIGFuZCBSWCBhcmUN
-Cj4+ICAgICAgIHNlcGFyYXRlZCBmcm9tIGVhY2ggb3RoZXIgYnkgdGhlaXIgb3duIHdpcmVzLg0K
-Pj4gICAgIC0gU2V0L2NsZWFyIFNFUl9SUzQ4NV9URVJNSU5BVEVfQlVTIGZvciBidXMgdGVybWlu
-YXRpb24uDQo+IA0KPiBIb3cgY2FuIHRoZSBkcml2ZXIgZGlzdGluZ3Vpc2ggYmV0d2VlbiBSUzQ4
-NSBmdWxsIGR1cGxleCBhbmQgaGFsZiBkdXBsZXggdGhlbj8NCj4gSW4gZnVsbCBkdXBsZXggUlRT
-IGNvbnRyb2wgaXMgbm90IG5lZWRlZCBBRkFJVS4NCg0KSSB0aGluayB3ZSBkb24ndCBuZWVkIHRv
-IGRpc3Rpbmd1aXNoLCBiZWNhdXNlIGZvciBhIGZ1bGwgZHVwbGV4IFJTLTQ4NQ0KdHJhbnNjZWl2
-ZXIgYWxzbyBuZWVkcyBSVFMgY29udHJvbC4gRm9yIGV4YW1wbGUgbG9vayBhdCB0aGUgZnVsbCBk
-dXBsZXgNClJTLTQ4NSB0cmFuc2NlaXZlciBBRE0zNDkxRSBbMV0uIEl0J3MgYSBmdWxsIGR1cGxl
-eCB0cmFuc2NlaXZlciAoQS9CIGFuZCBaL1kpDQp0aGF0IGhhcyBERSAoRHJpdmVyIGVuYWJsZSkg
-YW5kIERJIChEcml2ZXIgSW5wdXQpIHBpbnMgZm9yIGNvbnRyb2xsaW5nIFRYLiBJDQp0aGluayB0
-aGUgUlMtNDg1IG1hc3RlciBkb2Vzbid0IG5lZWQgaXQuIFRoZSBERSBwaW4gY291bGQgYWxzbyBi
-ZSBzZXQNCnBlcm1hbmVudGx5IGhpZ2guIEJ1dCBpZiB3ZSBoYXZlIG1vcmUgdGhhbiBvbmUgUlMt
-NDg1IHNsYXZlcyBpdCdzIG5lZWRlZCB0bw0KYXZvaWQgYmxvY2tpbmcgb2YgZWFjaCBvdGhlciBv
-biB0aGUgcmVjZWl2aW5nIHdpcmVzIG9mIHRoZSBSUy00ODUgbWFzdGVyLg0KDQpbMV0gaHR0cHM6
-Ly93d3cuYW5hbG9nLmNvbS9lbi9wcm9kdWN0cy9hZG0zNDkxZS5odG1sDQoNCj4+IEkgdGhpbmsg
-dGhlIEdQSU9zIHJlZmxlY3QgdGhlIGZsYWcgc3RhdGVzIGFuZCBhcmUgbWVhbmluZ2Z1bDoNCj4+
-IC0gU0VSX1JTNDg1X1RFUk1JTkFURV9CVVM6IFN3aXRjaCBidXMgdGVybWluYXRpb24gb24vb2Zm
-IGJ5IEdQSU8NCj4+IC0gU0VSX1JTNDg1X1JYX0RVUklOR19UWDogIFVzZWQgdG8gZW5hYmxlL2Rp
-c2FibGUgUlggZHVyaW5nIFRYDQo+PiAgICAgICAgICAgICAgICAgICAgICAgICAgICBpbiBoYXJk
-d2FyZSBieSBHUElPIChmb3IgMi13aXJlKQ0KPj4gLSBTRVJfUlM0ODVfRU5BQkxFRDogICAgICAg
-TXV4aW5nIGJldHdlZW4gUlMtMjMyIGFuZCBSUy00ODUgYnkgR1BJTw0KPj4NCj4+IFN3aXRjaGlu
-ZyBSUy00ODUgb24gZHVyaW5nIGJvb3QgY291bGQgYWxzbyBiZSBoYW5kbGVkIGJ5IGEgZGV2aWNl
-dHJlZQ0KPj4gb3ZlcmxheS4gRXZhbHVhdGUgdGhlIEdQSU8gYW5kIGxvYWQgYSBEVE8gYWNjb3Jk
-aW5nbHkgYmVmb3JlIGJvb3RpbmcuDQo+Pg0KPj4gUGxlYXNlIGNvcnJlY3QgbWUgaWYgSSBoYXZl
-IG1pc3JlcHJlc2VudGVkIHNvbWV0aGluZy4uLg0KPj4NCj4+IElmIEkgbG9va2VkIGF0IGl0IGlu
-IHRoaXMgbmV3IHdheSwgSSB3b3VsZCBkaXNjYXJkIG15IGlkZWEgd2l0aCB0aGUNCj4+IEZVTExf
-RFVQTEVYIGFuZCBIQUxGX0RVUExFWC4gRm9yIGEgYmV0dGVyIHVzZSBvZiBSUy00MjIgaXQgd291
-bGQgYmUNCj4+IGdvb2QgdG8gZGlzYWJsZSB0cmFuc2NlaXZlciBjb250cm9sIHZpYSBSVFMuIEl0
-IGNhbiBiZSBkb25lIGJ5IGNsZWFyaW5nDQo+PiB0aGUgZXhpc3RpbmcgZmxhZ3MgU0VSX1JTNDg1
-X1JUU19PTl9TRU5EIGFuZCBTRVJfUlM0ODVfUlRTX0FGVEVSX1NFTkQNCj4+IGF0IHRoZSBzYW1l
-IHRpbWUsIGJ1dCBJIHRoaW5rIGl0IGlzIGNvbmZ1c2luZy4gQmV0dGVyIHdvdWxkIGJlIGEgZmxh
-Zw0KPj4gZm9yIFJTLTQyMjoNCj4+DQo+PiBSUy00MjI6ICAgICAgICAgICAgICAgICAgICAgU2V0
-IFNFUl9SUzQyMl9NT0RFIGZvciBkaXNhYmxpbmcNCj4+ICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICB0cmFuc2NlaXZlciBjb250cm9sIHZpYSBSVFMuDQo+PiBSUy00ODUgKDItd2lyZSBhbmQg
-NC13aXJlKTogQ2xlYXIgU0VSX1JTNDIyX01PREUgZm9yIGVuYWJsaW5nDQo+PiAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgdHJhbnNjZWl2ZXIgY29udHJvbCB2aWEgUlRTLg0KPj4NCj4+IEZp
-bmFsbHksIGF0IHByZXNlbnQgaXQgaXMgYWxzbyBub3QgcG9zc2libGUgdG8gZGlzdGluZ3Vpc2gg
-YmV0d2VlbiBSUzQ4NQ0KPj4gMi13aXJlIGFuZCA0LXdpcmUgb3BlcmF0aW9uLiBJIHRoaW5rIGl0
-IGlzbid0IG5lY2Vzc2FyeSwgYXMgZGlmZmVyZW50DQo+PiBoYXJkd2FyZSBoYXMgdG8gYmUgdXNl
-ZCBhbnl3YXkuIFRoZSBoYXJkd2FyZSB0aGVuIGRldGVybWluZXMgdGhlDQo+PiBjb25maWd1cmF0
-aW9uLCBzZWUgYWJvdmUuDQo+IA0KPiBCdXQgdGhlIGRyaXZlciBzaG91bGQgc29tZWhvdyBiZSBp
-bmZvcm1lZCB0aGF0IHRoZXJlIGV4aXN0cyBhIGZ1bGwNCj4gZHVwbGV4IGhhcmR3YXJlIHNldHVw
-LCBzbyB0aGF0IGl0IGRvZXMgbm90IG5lZWQgdG8gY29udHJvbCB0aGUgUlRTIGxpbmUuDQo+IE1h
-eWJlIGJ5IG1lYW5zIG9mIGEgZGV2aWNlIHRyZWUgcHJvcGVydHk/DQoNClNlZSBhYm92ZS4NCg0K
-UmVnYXJkcw0KQ2hyaXN0b3BoDQo=
+On Thu, Dec 14, 2023 at 7:34=E2=80=AFPM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> Il 13/12/23 16:04, Chen-Yu Tsai ha scritto:
+> > The MT8186 Steelix, also known as the Lenovo 300e Yoga Chromebook Gen 4=
+,
+> > is a convertible device based on a common design of the same name. The
+> > device comes in different variants. Of them, whether a world facing
+> > camera is integrated is the only differentiating factor between the
+> > two device trees added. The different SKU IDs describe this alone.
+> >
+> > The other device difference is the touchpad component used. This is
+> > simply handled by having both possible components described in the
+> > device tree, and letting the implementation figure out which one is
+> > actually available. The system bootloader / firmware does not
+> > differentiate this in that they share the same SKU IDs.
+> >
+> > Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> > ---
+> > Changes since v2:
+> > - Picked up Conor's ack
+> >
+> > Changes since v1:
+> > - Removed trackpad_pins reference (moved to i2c2 in corsola dtsi)
+> > - Fixed copyright year
+> > - Renamed touchpad to trackpad
+> > ---
+> >   arch/arm64/boot/dts/mediatek/Makefile         |   2 +
+> >   .../mt8186-corsola-steelix-sku131072.dts      |  18 ++
+> >   .../mt8186-corsola-steelix-sku131073.dts      |  18 ++
+> >   .../dts/mediatek/mt8186-corsola-steelix.dtsi  | 195 +++++++++++++++++=
++
+> >   4 files changed, 233 insertions(+)
+> >   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-steeli=
+x-sku131072.dts
+> >   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-steeli=
+x-sku131073.dts
+> >   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-steeli=
+x.dtsi
+> >
+> > diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dt=
+s/mediatek/Makefile
+> > index 442af61b1305..7bd9471b89f9 100644
+> > --- a/arch/arm64/boot/dts/mediatek/Makefile
+> > +++ b/arch/arm64/boot/dts/mediatek/Makefile
+> > @@ -43,6 +43,8 @@ dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8183-kukui-kodama-=
+sku32.dtb
+> >   dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8183-kukui-krane-sku0.dtb
+> >   dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8183-kukui-krane-sku176.dtb
+> >   dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8183-pumpkin.dtb
+> > +dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8186-corsola-steelix-sku131072.dtb
+> > +dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8186-corsola-steelix-sku131073.dtb
+> >   dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8186-corsola-tentacool-sku327681.d=
+tb
+> >   dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8186-corsola-tentacool-sku327683.d=
+tb
+> >   dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt8186-corsola-tentacruel-sku262144.=
+dtb
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-steelix-sku131=
+072.dts b/arch/arm64/boot/dts/mediatek/mt8186-corsola-steelix-sku131072.dts
+> > new file mode 100644
+> > index 000000000000..eae17bca8585
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-steelix-sku131072.dts
+> > @@ -0,0 +1,18 @@
+> > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> > +/*
+> > + * Copyright 2022 Google LLC
+> > + */
+> > +
+> > +/dts-v1/;
+> > +#include "mt8186-corsola-steelix.dtsi"
+> > +
+> > +/ {
+> > +     model =3D "Google Steelix board";
+> > +     compatible =3D "google,steelix-sku131072", "google,steelix",
+> > +                  "mediatek,mt8186";
+> > +     chassis-type =3D "convertible";
+> > +};
+> > +
+> > +&mt6366codec {
+> > +     mediatek,dmic-mode =3D <0>; /* two-wire */
+> > +};
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-steelix-sku131=
+073.dts b/arch/arm64/boot/dts/mediatek/mt8186-corsola-steelix-sku131073.dts
+> > new file mode 100644
+> > index 000000000000..a55375b95d0d
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-steelix-sku131073.dts
+> > @@ -0,0 +1,18 @@
+> > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> > +/*
+> > + * Copyright 2022 Google LLC
+> > + */
+> > +
+> > +/dts-v1/;
+> > +#include "mt8186-corsola-steelix.dtsi"
+> > +
+> > +/ {
+> > +     model =3D "Google Steelix board";
+> > +     compatible =3D "google,steelix-sku131073", "google,steelix",
+> > +                  "mediatek,mt8186";
+> > +     chassis-type =3D "convertible";
+> > +};
+> > +
+> > +&mt6366codec {
+> > +     mediatek,dmic-mode =3D <1>; /* one-wire */
+> > +};
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-steelix.dtsi b=
+/arch/arm64/boot/dts/mediatek/mt8186-corsola-steelix.dtsi
+> > new file mode 100644
+> > index 000000000000..47262bc499ad
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-steelix.dtsi
+> > @@ -0,0 +1,195 @@
+> > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> > +/*
+> > + * Copyright 2022 Google LLC
+> > + */
+> > +
+> > +/dts-v1/;
+> > +#include "mt8186-corsola.dtsi"
+> > +#include <dt-bindings/gpio/gpio.h>
+> > +#include <dt-bindings/input/input.h>
+> > +
+> > +/{
+> > +     pp1000_edpbrdg: regulator-pp1000-edpbrdg {
+> > +             compatible =3D "regulator-fixed";
+> > +             regulator-name =3D "pp1000_edpbrdg";
+> > +             pinctrl-names =3D "default";
+> > +             pinctrl-0 =3D <&en_pp1000_edpbrdg>;
+> > +             enable-active-high;
+> > +             regulator-boot-on;
+> > +             gpio =3D <&pio 29 GPIO_ACTIVE_HIGH>;
+> > +             vin-supply =3D <&pp3300_z2>;
+> > +     };
+> > +
+> > +     pp1800_edpbrdg_dx: regulator-pp1800-edpbrdg-dx {
+> > +             compatible =3D "regulator-fixed";
+> > +             regulator-name =3D "pp1800_edpbrdg_dx";
+> > +             pinctrl-names =3D "default";
+> > +             pinctrl-0 =3D <&en_pp1800_edpbrdg>;
+> > +             enable-active-high;
+> > +             regulator-boot-on;
+> > +             gpio =3D <&pio 30 GPIO_ACTIVE_HIGH>;
+> > +             vin-supply =3D <&mt6366_vio18_reg>;
+> > +     };
+> > +
+> > +     pp3300_edp_dx: regulator-pp3300-edp-dx {
+> > +             compatible =3D "regulator-fixed";
+> > +             regulator-name =3D "pp3300_edp_dx";
+> > +             pinctrl-names =3D "default";
+> > +             pinctrl-0 =3D <&en_pp3300_edpbrdg>;
+> > +             enable-active-high;
+> > +             regulator-boot-on;
+> > +             gpio =3D <&pio 31 GPIO_ACTIVE_HIGH>;
+> > +             vin-supply =3D <&pp3300_z2>;
+> > +     };
+> > +};
+> > +
+> > +&dsi_out {
+> > +     remote-endpoint =3D <&anx7625_in>;
+> > +};
+> > +
+> > +&i2c0 {
+> > +     clock-frequency =3D <400000>;
+> > +
+> > +     anx_bridge: anx7625@58 {
+> > +             compatible =3D "analogix,anx7625";
+> > +             reg =3D <0x58>;
+> > +             pinctrl-names =3D "default";
+> > +             pinctrl-0 =3D <&anx7625_pins>;
+> > +             enable-gpios =3D <&pio 96 GPIO_ACTIVE_HIGH>;
+> > +             reset-gpios =3D <&pio 98 GPIO_ACTIVE_HIGH>;
+
+BTW, do you think there is anything we can do about this backwards
+active level setting?
+
+> > +             vdd10-supply =3D <&pp1000_edpbrdg>;
+> > +             vdd18-supply =3D <&pp1800_edpbrdg_dx>;
+> > +             vdd33-supply =3D <&pp3300_edp_dx>;
+> > +             analogix,lane0-swing =3D /bits/ 8 <0x70 0x30>;
+> > +             analogix,lane1-swing =3D /bits/ 8 <0x70 0x30>;
+> > +
+> > +             ports {
+> > +                     #address-cells =3D <1>;
+> > +                     #size-cells =3D <0>;
+> > +
+> > +                     port@0 {
+> > +                             reg =3D <0>;
+> > +
+> > +                             anx7625_in: endpoint {
+> > +                                     remote-endpoint =3D <&dsi_out>;
+> > +                                     data-lanes =3D <0 1 2 3>;
+> > +                             };
+> > +                     };
+> > +
+> > +                     port@1 {
+> > +                             reg =3D <1>;
+> > +
+> > +                             anx7625_out: endpoint {
+> > +                                     remote-endpoint =3D <&panel_in>;
+> > +                             };
+> > +                     };
+> > +             };
+> > +
+> > +             aux-bus {
+> > +                     panel: panel {
+> > +                             compatible =3D "edp-panel";
+> > +                             power-supply =3D <&pp3300_disp_x>;
+> > +                             backlight =3D <&backlight_lcd0>;
+> > +
+> > +                             port {
+> > +                                     panel_in: endpoint {
+> > +                                             remote-endpoint =3D <&anx=
+7625_out>;
+> > +                                     };
+> > +                             };
+> > +                     };
+> > +             };
+> > +     };
+> > +};
+> > +
+> > +&i2c1 {
+> > +     touchscreen: touchscreen@5d {
+> > +             compatible =3D "goodix,gt7375p";
+> > +             reg =3D <0x5d>;
+> > +             interrupts-extended =3D <&pio 12 IRQ_TYPE_EDGE_FALLING>;
+> > +             pinctrl-names =3D "default";
+> > +             pinctrl-0 =3D <&touchscreen_pins>;
+> > +             reset-gpios =3D <&pio 60 GPIO_ACTIVE_LOW>;
+> > +             vdd-supply =3D <&pp3300_s3>;
+> > +             goodix,no-reset-during-suspend;
+> > +     };
+> > +};
+> > +
+> > +&i2c2 {
+> > +     i2c-scl-internal-delay-ns =3D <22000>;
+> > +
+> > +     /* second source component */
+> > +     trackpad@2c {
+> > +             compatible =3D "hid-over-i2c";
+> > +             reg =3D <0x2c>;
+> > +             hid-descr-addr =3D <0x20>;
+> > +             interrupts-extended =3D <&pio 11 IRQ_TYPE_LEVEL_LOW>;
+> > +             vdd-supply =3D <&pp3300_s3>;
+> > +             wakeup-source;
+> > +     };
+> > +};
+> > +
+> > +&keyboard_controller {
+> > +     function-row-physmap =3D <
+> > +             MATRIX_KEY(0x00, 0x02, 0)       /* T1 */
+> > +             MATRIX_KEY(0x03, 0x02, 0)       /* T2 */
+> > +             MATRIX_KEY(0x02, 0x02, 0)       /* T3 */
+> > +             MATRIX_KEY(0x01, 0x02, 0)       /* T4 */
+> > +             MATRIX_KEY(0x03, 0x04, 0)       /* T5 */
+> > +             MATRIX_KEY(0x02, 0x04, 0)       /* T6 */
+> > +             MATRIX_KEY(0x01, 0x04, 0)       /* T7 */
+> > +             MATRIX_KEY(0x02, 0x09, 0)       /* T8 */
+> > +             MATRIX_KEY(0x01, 0x09, 0)       /* T9 */
+> > +             MATRIX_KEY(0x00, 0x04, 0)       /* T10 */
+> > +     >;
+> > +
+> > +     linux,keymap =3D <
+> > +             MATRIX_KEY(0x00, 0x02, KEY_BACK)
+> > +             MATRIX_KEY(0x03, 0x02, KEY_REFRESH)
+> > +             MATRIX_KEY(0x02, 0x02, KEY_ZOOM)
+> > +             MATRIX_KEY(0x01, 0x02, KEY_SCALE)
+> > +             MATRIX_KEY(0x03, 0x04, KEY_BRIGHTNESSDOWN)
+> > +             MATRIX_KEY(0x02, 0x04, KEY_BRIGHTNESSUP)
+> > +             MATRIX_KEY(0x01, 0x04, KEY_MICMUTE)
+> > +             MATRIX_KEY(0x02, 0x09, KEY_MUTE)
+> > +             MATRIX_KEY(0x01, 0x09, KEY_VOLUMEDOWN)
+> > +             MATRIX_KEY(0x00, 0x04, KEY_VOLUMEUP)
+> > +             CROS_STD_MAIN_KEYMAP
+> > +     >;
+> > +};
+> > +
+> > +&pio {
+> > +     anx7625_pins: anx7625-pins {
+> > +             pins1 {
+>
+> pins-en-rst
+
+Ack. Also I think we can split them so they each get proper names.
+
+> > +                     pinmux =3D <PINMUX_GPIO96__FUNC_GPIO96>,
+> > +                              <PINMUX_GPIO98__FUNC_GPIO98>;
+> > +                     output-low;
+> > +             };
+> > +
+> > +             pins2 {
+>
+> pins-is-this-an-interrupt? :-)
+
+Yes. Will use pins-int.
+
+> > +                     pinmux =3D <PINMUX_GPIO9__FUNC_GPIO9>;
+> > +                     input-enable;
+> > +                     bias-disable;
+> > +             };
+> > +     };
+> > +
+> > +     en_pp1000_edpbrdg: pp1000-edpbrdg-en-pins {
+> > +             pins {
+>
+> pins-vreg-en like in corsola.dtsi
+
+Ack.
+
+> > +                     pinmux =3D <PINMUX_GPIO29__FUNC_GPIO29>;
+> > +                     output-low;
+> > +             };
+> > +     };
+> > +
+> > +     en_pp1800_edpbrdg: pp1800-edpbrdg-en-pins {
+> > +             pins {
+>
+> same
+
+Ack.
+
+> > +                     pinmux =3D <PINMUX_GPIO30__FUNC_GPIO30>;
+> > +                     output-low;
+> > +             };
+> > +     };
+> > +
+> > +     en_pp3300_edpbrdg: pp3300-edpbrdg-en-pins {
+> > +             pins {
+
+Ack.
+
+ChenYu
 
