@@ -1,270 +1,145 @@
-Return-Path: <devicetree+bounces-25452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25453-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57A08813475
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 16:17:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B18DA81347B
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 16:18:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0ECFC28182C
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 15:17:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E32B31C21B36
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 15:18:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 970DD5C8FD;
-	Thu, 14 Dec 2023 15:17:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 268145C91E;
+	Thu, 14 Dec 2023 15:18:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FlzBcC7/"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="KxM2WZEg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1747A129
-	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 07:16:59 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-54c7744a93fso11388770a12.2
-        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 07:16:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702567017; x=1703171817; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=c9TC9w44p0at14veon8LChvdwV45TKqCHl5xSdplaoU=;
-        b=FlzBcC7/CccTV46QPpE/QnAq9ZXfnC5wcOZgDmVTqtnMF2VVy42yJ8FTOPgVl7O0XL
-         RA6iVpvSLXc6ETYDCsbLuxQKuqPoJTsztd37BfjTR5ot9hqwVf7FwXvRs7wgsm+Cz3JN
-         LPQjEWL8r7LZi54S+N1dCEJbxNr94uRGeWDuJt0SxLrQE4ust8MMq4hY9pJqcDc8eV4c
-         50YbePqaXtzhtTa99ZRssfQe6U+6+/CPxCnbF1xQ+ai+ViP4dPEWB/pajC1GnTqH9jVy
-         jADpJyfmBvWrMdZpyqSt51s361P6FRZd/CQkeKJA4DRJtVcBcvTwO5B6tIVTb9DWx691
-         m5uw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702567017; x=1703171817;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=c9TC9w44p0at14veon8LChvdwV45TKqCHl5xSdplaoU=;
-        b=NyuSVPwQEkTssrtDR5bapo48PKOF8zvlnwJ57fIycImqO2VoMkEftqvU4VLJ0ARjWQ
-         7VSGBjuyLg2ICZtwHnYYvviP2Vsg9udEpYX6Ln/ubmoXJtysSqE3UQx27OIyoP34pgCm
-         NZib5O50Hm9HKB+kYSawUbzxsgHQmGwVxHO+rM/2ITyzzZEVwxgQn4kndDkm/MJLBZzK
-         DjfDgJ/pHbzBHiw9p50TkecwLwOFPbhjv4JGR0yDNEhkC9v4VwPZn/03gT+oqDhIPN6R
-         eZ3oBxdhdRvM1pkWhNp1qHZ8Ccq6X8MxcHiIszHoMtNzmtD8JV/eMUEUn78U4lBCxn21
-         mcpg==
-X-Gm-Message-State: AOJu0YylINNgGYKcAJx0e2q7smSwWmNMtqaaSElbHYnza4/g6qGlPUhT
-	PwFSlT2P/x3tcrYk3wSmgvoh0A==
-X-Google-Smtp-Source: AGHT+IGDblrOooy4yt2sn4Jz0hhoCiUz72BBujoWmGS2qpE9GGbrUt3g2m9xmlTAT3ZodDyYmAmOqQ==
-X-Received: by 2002:a50:d5d6:0:b0:551:fa18:fa68 with SMTP id g22-20020a50d5d6000000b00551fa18fa68mr1855714edj.18.1702567017511;
-        Thu, 14 Dec 2023 07:16:57 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id q19-20020a50cc93000000b0054d3d20f429sm7116706edi.72.2023.12.14.07.16.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Dec 2023 07:16:57 -0800 (PST)
-Message-ID: <09cf3280-9959-4475-ae0d-03b750f64825@linaro.org>
-Date: Thu, 14 Dec 2023 16:16:55 +0100
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5627111D
+	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 07:18:37 -0800 (PST)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BEDomUm003030;
+	Thu, 14 Dec 2023 15:18:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=EdT9K4UNkIoyoDdlWP7VlbpUfDLcL2xQzw5qnLQ/bCY=; b=Kx
+	M2WZEgwQ9qGmCTbotjJYZoRrBIlDosJ3gJZaxf4hshlE+vxqBQ7XhNkCjaBx9U5+
+	aAtJ5GCQO2PLmzhU0b61o6SF+blii8z5oGNDnP7aguntjY4lecdv5bZGRs93oVxh
+	r2dDUk29TI5DM5HOONaoju736b/Up0xj+GYk/FwcWhm1PtAO055xtOqYaJN+jnIU
+	NDIYgnfyjyoO3YpIiiREiot4dCFDXVl9mTyr5tupPX65gvLczo2aLn9ROUXLfZb2
+	udGllZTg+n12W1IOvDen2alVysZEQcmHUBLNgHgfxDwDvydnSQDCyU9akKhMIlkL
+	2WxKmjRU1ayl3VYTkYPg==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uysrpscm7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Dec 2023 15:18:27 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BEFIQCx006392
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Dec 2023 15:18:26 GMT
+Received: from [10.110.26.44] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 14 Dec
+ 2023 07:18:26 -0800
+Message-ID: <7768258d-4748-84f7-0da2-43988138e5cc@quicinc.com>
+Date: Thu, 14 Dec 2023 07:18:25 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] watchdog: sbsa_gwdt: add support for Marvell ac5
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: DT Query on "New Compatible vs New Property"
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "Manivannan
+ Sadhasivam" <manivannan.sadhasivam@linaro.org>
+CC: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        "Prasad Sodagudi (QUIC)"
+	<quic_psodagud@quicinc.com>,
+        <srinivas.kandagatla@linaro.org>, <vincent.guittot@linaro.org>,
+        <ulf.hansson@linaro.org>
+References: <be31801e-bb21-426b-f7aa-2b52727de646@quicinc.com>
+ <82115165-6089-4214-b47b-2c2c0dfb8c66@linaro.org>
+ <1935cb82-648c-f079-8852-d461dc9f8609@quicinc.com>
+ <20231214061742.GG2938@thinkpad>
+ <66f82e2c-0c42-4ead-93f5-2136ad478df2@linaro.org>
 Content-Language: en-US
-To: Elad Nachman <enachman@marvell.com>, wim@linux-watchdog.org,
- linux@roeck-us.net, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, gregory.clement@bootlin.com,
- chris.packham@alliedtelesis.co.nz, andrew@lunn.ch, fu.wei@linaro.org,
- Suravee.Suthikulpanit@amd.com, al.stone@linaro.org, timur@codeaurora.org,
- linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: cyuval@marvell.com
-References: <20231214150414.1849058-1-enachman@marvell.com>
- <20231214150414.1849058-4-enachman@marvell.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231214150414.1849058-4-enachman@marvell.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: Nikunj Kela <quic_nkela@quicinc.com>
+In-Reply-To: <66f82e2c-0c42-4ead-93f5-2136ad478df2@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: hSpTSJWy_2uhn2NOXZ0zOvfSZl6z0e8k
+X-Proofpoint-GUID: hSpTSJWy_2uhn2NOXZ0zOvfSZl6z0e8k
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
+ mlxscore=0 bulkscore=0 mlxlogscore=999 priorityscore=1501 impostorscore=0
+ lowpriorityscore=0 clxscore=1015 malwarescore=0 suspectscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2312140107
 
-On 14/12/2023 16:04, Elad Nachman wrote:
-> From: Elad Nachman <enachman@marvell.com>
-> 
-> Add support for Marvell ac5/x variant of the ARM
-> sbsa global watchdog. This watchdog deviates from
-> the standard driver by the following items:
-> 
-> 1. Registers reside in secure register section.
->    hence access is only possible via SMC calls to ATF.
-> 
-> 2. There are couple more registers which reside in
->    other register areas, which needs to be configured
->    in order for the watchdog to properly generate
->    reset through the SOC.
-> 
-> The new Marvell compatibility string differentiates between
-> the original sbsa mode of operation and the Marvell mode of
-> operation.
-> 
-> Signed-off-by: Elad Nachman <enachman@marvell.com>
-> ---
 
-...
+On 12/13/2023 11:49 PM, Krzysztof Kozlowski wrote:
+> On 14/12/2023 07:17, Manivannan Sadhasivam wrote:
+>> On Tue, Dec 12, 2023 at 11:06:42AM -0800, Nikunj Kela wrote:
+>>> + Linaro team
+>>>
+>>> On 12/12/2023 11:01 AM, Krzysztof Kozlowski wrote:
+>>>> On 12/12/2023 18:45, Nikunj Kela wrote:
+>>>>> We are abstracting some resources(ex. clocks) under new firmware on an
+>>>>> existing platform therefore need to make changes in certain drivers to
+>>>>> work with that firmware. We need to make a distinction between two
+>>>>> different variants of the FW. In one case, some resources will be
+>>>>> abstracted while in other case, they won't be abstracted. My query is -
+>>>>> "should we define a new compatible string for the variant with
+>>>>> abstracted resources(in FW) or we should add a new DT property keeping
+>>>>> the compatible same?"
+>>>> Hi,
+>>>>
+>>>> Usually change in the interface or behavior warrants new compatible.
+>>>> Property would be suitable if the same device, e.g. same SoC component
+>>>> with same FW, was configured differently on different boards.
+>>>>
+>> Here, the hardware is going to be the same, but the resources (clocks,
+>> regulators, etc...) will be controlled by the firmware instead of OS.
+> Yeah, that's the problem with generic questions, instead of specific...
+> "Talk is cheap."
+>
+> OK, so the hardware is exactly the same? Does FW bring any
+> incompatibilities in the interface or is it just about the clocks? I
+> guess I should not have included "with same FW" in my last statement.
+> It's true, but way too narrow. Therefore let me rephrase it:
 
->  	gwdt = devm_kzalloc(dev, sizeof(*gwdt), GFP_KERNEL);
->  	if (!gwdt)
->  		return -ENOMEM;
->  	platform_set_drvdata(pdev, gwdt);
->  
-> -	cf_base = devm_platform_ioremap_resource(pdev, 0);
-> -	if (IS_ERR(cf_base))
-> -		return PTR_ERR(cf_base);
-> -
-> -	rf_base = devm_platform_ioremap_resource(pdev, 1);
-> -	if (IS_ERR(rf_base))
-> -		return PTR_ERR(rf_base);
-> +	if (of_device_is_compatible(np, "marvell,ac5-wd")) {
+HW is exactly the same. Let me give more insight on the setup. We have 
+been using the HW in virtual environment but now the ownership of 
+certain resources (e.g. clock controller etc.) is handed over to a 
+different VM(non Linux VM). Earlier the ownership of the resources was 
+local to the same VM(Linux VM) via passthrough mode so it could directly 
+access them however now Linux VM talks to non-Linux VM for its 
+operations for resources that it doesn't own anymore via some 
+interface(shared memory/doorbell).  So shall we use property like 'qcom, 
+controlled-remotely' or do we need a new compatible for such setup?
 
-No, use match data. That's its purpose, don't put comaptibles inside code.
-
-> +		marvell = true;
-> +		gwdt->soc_reg_ops = &smc_reg_ops;
-> +		res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +		if (IS_ERR(res))
-> +			return PTR_ERR(res);
-> +		cf_base = res->start;
-
-Why do you use entirely different code?
-
-> +
-> +		res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
-> +		if (IS_ERR(res))
-> +			return PTR_ERR(res);
-> +		rf_base = res->start;
-> +
-> +		res = platform_get_resource(pdev, IORESOURCE_MEM, 2);
-> +		if (IS_ERR(res))
-> +			return PTR_ERR(res);
-> +		cpu_ctrl_base = res->start;
-> +		mng_base = devm_platform_ioremap_resource(pdev, 3);
-> +		if (IS_ERR(mng_base))
-> +			return PTR_ERR(mng_base);
-> +		rst_ctrl_base = devm_platform_ioremap_resource(pdev, 4);
-> +		if (IS_ERR(rst_ctrl_base))
-> +			return PTR_ERR(rst_ctrl_base);
-> +	} else {
-> +		gwdt->soc_reg_ops = &direct_reg_ops;
-> +		cf_base = devm_platform_ioremap_resource(pdev, 0);
-> +		if (IS_ERR(cf_base))
-> +			return PTR_ERR(cf_base);
-
-Why? This is shared.
-
-> +
-> +		rf_base = devm_platform_ioremap_resource(pdev, 1);
-> +		if (IS_ERR(rf_base))
-> +			return PTR_ERR(rf_base);
-
-Ditto
-
-> +	}
->  
->  	/*
->  	 * Get the frequency of system counter from the cp15 interface of ARM
-> @@ -299,7 +482,7 @@ static int sbsa_gwdt_probe(struct platform_device *pdev)
->  	else
->  		wdd->max_hw_heartbeat_ms = GENMASK_ULL(47, 0) / gwdt->clk * 1000;
->  
-> -	status = readl(cf_base + SBSA_GWDT_WCS);
-> +	status = gwdt->soc_reg_ops->reg_read32(cf_base + SBSA_GWDT_WCS);
->  	if (status & SBSA_GWDT_WCS_WS1) {
->  		dev_warn(dev, "System reset by WDT.\n");
->  		wdd->bootstatus |= WDIOF_CARDRESET;
-> @@ -317,7 +500,7 @@ static int sbsa_gwdt_probe(struct platform_device *pdev)
->  			 * In case there is a pending ws0 interrupt, just ping
->  			 * the watchdog before registering the interrupt routine
->  			 */
-> -			writel(0, rf_base + SBSA_GWDT_WRR);
-> +			gwdt->soc_reg_ops->reg_write32(0, rf_base + SBSA_GWDT_WRR);
->  			if (devm_request_irq(dev, irq, sbsa_gwdt_interrupt, 0,
->  					     pdev->name, gwdt)) {
->  				action = 0;
-> @@ -347,7 +530,28 @@ static int sbsa_gwdt_probe(struct platform_device *pdev)
->  	ret = devm_watchdog_register_device(dev, wdd);
->  	if (ret)
->  		return ret;
-> -
-> +	/*
-> +	 * Marvell AC5/X/IM: need to configure the watchdog
-> +	 * HW to trigger reset on WS1 (Watchdog Signal 1):
-> +	 *
-> +	 * 1. Configure the watchdog signal enable (routing)
-> +	 *    according to configuration
-> +	 * 2. Unmask the wd_rst input signal to the reset unit
-> +	 */
-> +	if (marvell) {
-> +		gwdt->soc_reg_ops->reg_write32(reset, cpu_ctrl_base +
-> +					       SBSA_GWDT_MARVELL_CPU_WD_RST_EN_REG);
-> +		id = readl(mng_base + SBSA_GWDT_MARVELL_MNG_ID_REG) &
-> +			   SBSA_GWDT_MARVELL_ID_MASK;
-> +
-> +		if (id == SBSA_GWDT_MARVELL_AC5_ID)
-> +			val = SBSA_GWDT_MARVELL_AC5_RST_UNIT_WD_BIT;
-> +		else
-> +			val = SBSA_GWDT_MARVELL_IRONMAN_RST_UNIT_WD_BIT;
-> +
-> +		writel(readl(rst_ctrl_base + SBSA_GWDT_MARVELL_RST_CTRL_REG) & ~val,
-> +		       rst_ctrl_base + SBSA_GWDT_MARVELL_RST_CTRL_REG);
-> +	}
->  	dev_info(dev, "Initialized with %ds timeout @ %u Hz, action=%d.%s\n",
->  		 wdd->timeout, gwdt->clk, action,
->  		 status & SBSA_GWDT_WCS_EN ? " [enabled]" : "");
-> @@ -383,6 +587,7 @@ static const struct dev_pm_ops sbsa_gwdt_pm_ops = {
->  
->  static const struct of_device_id sbsa_gwdt_of_match[] = {
->  	{ .compatible = "arm,sbsa-gwdt", },
-> +	{ .compatible = "marvell,ac5-wd", },
->  	{},
->  };
->  MODULE_DEVICE_TABLE(of, sbsa_gwdt_of_match);
-
-Best regards,
-Krzysztof
-
+> "Property would be suitable if the same device, e.g. same SoC component
+> with same interface towards OS, was configured differently on different
+> boards."
+>
+>> Should we still use a different compatible? For the similar usecase, we already
+>> have properties like 'qcom,controlled-remotely' to let the OS know that it
+>> should not configure the hardware and just consume it.
+> Yeah, also similar qcom,gsi-loader.
+>
+> Best regards,
+> Krzysztof
+>
 
