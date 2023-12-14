@@ -1,136 +1,107 @@
-Return-Path: <devicetree+bounces-25283-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25285-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 793CA812D26
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 11:36:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90A19812D31
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 11:39:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 24D161F214BB
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 10:36:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 209FE281AA9
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 10:39:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE0013C070;
-	Thu, 14 Dec 2023 10:36:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31C863C092;
+	Thu, 14 Dec 2023 10:39:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LNOkMoFK"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="C86E/pKc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DDED10E;
-	Thu, 14 Dec 2023 02:36:41 -0800 (PST)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BE9K6JT028706;
-	Thu, 14 Dec 2023 10:36:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	qcppdkim1; bh=Hy0ZCuxeshJ9OJqrWSouk5mKlu/Kf0gzIP9t1ih7CTA=; b=LN
-	OkMoFKYjFQD+lYDukDIkcmZ09DimEPdpEaJazOMOf1SrEJRjAGtJrMmrPeXSekeM
-	1HIGT3IC8VRKmFv1rxy8oOXvX/VQ7+hnG50D8CF08Hyk6QdhNHj8ZS3WnXYuGZeL
-	yoNsOSY6zSIH4TDO9QQUrL8hbID9OJq3loyPrgIZdCmYx952TBh5EGnugQD1Lwrd
-	4D+KIIy4Os56qkxlKF0laYQG2O2hKGkMk5z/bQnu4r89SmwgvOXv4QdMXwO2jsDp
-	ZFES3Zq5+MrrjMDAjIELnCDTeoAioAOBlVEay1bkLjRb7zR+bLOLxILZKzi0zNyU
-	6jBhagoCEsRC5yOoBONQ==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uyqgt115s-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Dec 2023 10:36:33 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BEAaW2O002868
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Dec 2023 10:36:32 GMT
-Received: from hu-omprsing-hyd.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Thu, 14 Dec 2023 02:36:27 -0800
-From: Om Prakash Singh <quic_omprsing@quicinc.com>
-To: <quic_omprsing@quicinc.com>
-CC: <neil.armstrong@linaro.org>, <konrad.dybcio@linaro.org>,
-        <agross@kernel.org>, <andersson@kernel.org>, <conor+dt@kernel.org>,
-        <davem@davemloft.net>, <devicetree@vger.kernel.org>,
-        <herbert@gondor.apana.org.au>, <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-crypto@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <marijn.suijten@somainline.org>,
-        <robh+dt@kernel.org>, <vkoul@kernel.org>,
-        <cros-qcom-dts-watchers@chromium.org>
-Subject: [PATCH V3 2/2] arm64: dts: qcom: sc7280: add QCrypto nodes
-Date: Thu, 14 Dec 2023 16:06:00 +0530
-Message-ID: <20231214103600.2613988-3-quic_omprsing@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231214103600.2613988-1-quic_omprsing@quicinc.com>
-References: <20231214103600.2613988-1-quic_omprsing@quicinc.com>
+Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40682121
+	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 02:39:40 -0800 (PST)
+Received: by mail-ot1-x331.google.com with SMTP id 46e09a7af769-6d9dc789f23so5653813a34.3
+        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 02:39:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1702550379; x=1703155179; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WQpEKW0vlfzqI5cDIUoQ0zKRhm/QITCtnmzIzOsRhcU=;
+        b=C86E/pKcbzucau9dIR65aigCl679MftuECWgaUycOAQYecKtprATGuDH93O59gA1Ye
+         N5dfT6FzojMwlCWjqDdHt1ttY2DNCCPD6aqfVph4sosn/8c9mOtCYjsHCWWSYg8vRPUr
+         hoHMSEE+cymNyRRJnQUgzPcf7HQO/9NtfU+xc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702550379; x=1703155179;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=WQpEKW0vlfzqI5cDIUoQ0zKRhm/QITCtnmzIzOsRhcU=;
+        b=iRb+uTJE8S4vLi0izv+ZuYg60TqB5DyK3sMFSlfQLzxjmo3fGDGm5okVgemoYnlv5W
+         iAoBbvluAZzAxoJZ5My6KdsIuKNTdb2KI3y+BYeop8KYED4dSRV83J6CeumL2sbLK4cL
+         vAZ+gxyyMbpn68Bj2U0/aOK0rjnKxvNZ69YpDeCHiQFzGPDzSyEwJaw61dMQ+ss4TFd9
+         KUUl70VvObseBPQ8ddlMzIzpvsR0CTfhu1rJjrC5pDmzXK4khOimemOMKLw+Vra2wbPF
+         e6UL2ikQbTIfnXsZD1Gjj2pN4SNkPVNl4/AvaRGFUe0oS5N+Nthhb0gKPLjlJYVrcQ1R
+         yIXw==
+X-Gm-Message-State: AOJu0YxiFJD1tKzzB4RikLpr5b17cu8dbswTmvfP7fmUG4y5chsYW2VT
+	nzPMBcLcZBMvmNET/kd1uMuoemO8SvMzRPBlqbY=
+X-Google-Smtp-Source: AGHT+IES4KQcy3lT4qqy0Ygw0GXuOy7DLjMv8THHTks8p6+/5Cps8rCJeLDUi0/su+QK7sRp1fJrIQ==
+X-Received: by 2002:a05:6808:140b:b0:3b9:f37d:d7c6 with SMTP id w11-20020a056808140b00b003b9f37dd7c6mr11152226oiv.97.1702550379491;
+        Thu, 14 Dec 2023 02:39:39 -0800 (PST)
+Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com. [209.85.222.53])
+        by smtp.gmail.com with ESMTPSA id eg19-20020a0561302b1300b007cb68e982c6sm55040uab.30.2023.12.14.02.39.38
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Dec 2023 02:39:39 -0800 (PST)
+Received: by mail-ua1-f53.google.com with SMTP id a1e0cc1a2514c-7c495bec2f7so1266359241.2
+        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 02:39:38 -0800 (PST)
+X-Received: by 2002:a67:c010:0:b0:465:fc90:2cce with SMTP id
+ v16-20020a67c010000000b00465fc902ccemr2107147vsi.29.1702550378388; Thu, 14
+ Dec 2023 02:39:38 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: eI1ZMDqxm7hjzoiataeKDsSfKo5OS_qG
-X-Proofpoint-ORIG-GUID: eI1ZMDqxm7hjzoiataeKDsSfKo5OS_qG
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- phishscore=0 adultscore=0 suspectscore=0 lowpriorityscore=0
- impostorscore=0 malwarescore=0 mlxlogscore=810 mlxscore=0 clxscore=1015
- spamscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2312140070
+References: <20231213150435.4134390-1-wenst@chromium.org> <20231213150435.4134390-7-wenst@chromium.org>
+In-Reply-To: <20231213150435.4134390-7-wenst@chromium.org>
+From: Fei Shao <fshao@chromium.org>
+Date: Thu, 14 Dec 2023 18:39:01 +0800
+X-Gmail-Original-Message-ID: <CAC=S1niMvoD-EzGWqo-5fEBJLWAVk3FnxW3jq5rSj9fQ_H37gA@mail.gmail.com>
+Message-ID: <CAC=S1niMvoD-EzGWqo-5fEBJLWAVk3FnxW3jq5rSj9fQ_H37gA@mail.gmail.com>
+Subject: Re: [PATCH v4 6/9] arm64: dts: mediatek: Add MT8186 Krabby platform
+ based Tentacruel / Tentacool
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add the QCE and Crypto BAM DMA nodes.
+On Wed, Dec 13, 2023 at 11:05=E2=80=AFPM Chen-Yu Tsai <wenst@chromium.org> =
+wrote:
+>
+> Tentacruel and Tentacool are MT8186 based Chromebooks based on the
+> Krabby design.
+>
+> Tentacruel, also known as the ASUS Chromebook CM14 Flip CM1402F, is a
+> convertible device with touchscreen and stylus.
+>
+> Tentacool, also known as the ASUS Chromebook CM14 CM1402C, is a laptop
+> device. It does not have a touchscreen or stylus.
+>
+> The two devices both have two variants. The difference is a second
+> source touchpad controller that shares the same address as the original,
+One nit since you need to resend this anyway...
+s/touchpad/trackpad/g
 
-Signed-off-by: Om Prakash Singh <quic_omprsing@quicinc.com>
----
+Regards,
+Fei
 
-Changes in V3:
-  - V2 patch was sent without actual modification. Resending the patch with modified file.
-
-Changes in V2:
-  - Update DT node sequence as per register ascending order.
-  - Fix DT node properties as per convention.
-
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 66f1eb83cca7..b819724c1255 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -2233,6 +2233,28 @@ pcie1_phy: phy@1c0e000 {
- 			status = "disabled";
- 		};
- 
-+		cryptobam: dma-controller@1dc4000 {
-+			compatible = "qcom,bam-v1.7.4", "qcom,bam-v1.7.0";
-+			reg = <0x0 0x01dc4000 0x0 0x28000>;
-+			interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
-+			#dma-cells = <1>;
-+			iommus = <&apps_smmu 0x4e4 0x0011>,
-+				 <&apps_smmu 0x4e6 0x0011>;
-+			qcom,ee = <0>;
-+			qcom,controlled-remotely;
-+		};
-+
-+		crypto: crypto@1dfa000 {
-+			compatible = "qcom,sc7280-qce", "qcom,sm8150-qce", "qcom,qce";
-+			reg = <0x0 0x01dfa000 0x0 0x6000>;
-+			dmas = <&cryptobam 4>, <&cryptobam 5>;
-+			dma-names = "rx", "tx";
-+			iommus = <&apps_smmu 0x4e4 0x0011>,
-+				 <&apps_smmu 0x4e4 0x0011>;
-+			interconnects = <&aggre2_noc MASTER_CRYPTO 0 &mc_virt SLAVE_EBI1 0>;
-+			interconnect-names = "memory";
-+		};
-+
- 		ipa: ipa@1e40000 {
- 			compatible = "qcom,sc7280-ipa";
- 
--- 
-2.25.1
-
+> but is incompatible.
+>
+> The extra SKU IDs for the Tentacruel devices map to different sensor
+> components attached to the Embedded Controller. These are not visible
+> to the main processor.
+>
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
