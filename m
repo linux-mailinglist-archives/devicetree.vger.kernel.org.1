@@ -1,137 +1,160 @@
-Return-Path: <devicetree+bounces-25242-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25244-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B01F812BE7
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 10:46:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E663D812BF5
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 10:48:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B81F728260A
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 09:46:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3388282935
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 09:48:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0E9830FB7;
-	Thu, 14 Dec 2023 09:46:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B12A7339BF;
+	Thu, 14 Dec 2023 09:48:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="CynJzwHV";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="28hSaxdB"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="GhDRMXiO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89B94E0;
-	Thu, 14 Dec 2023 01:46:49 -0800 (PST)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-	by mailout.nyi.internal (Postfix) with ESMTP id F299B5C029E;
-	Thu, 14 Dec 2023 04:46:48 -0500 (EST)
-Received: from imap44 ([10.202.2.94])
-  by compute3.internal (MEProxy); Thu, 14 Dec 2023 04:46:48 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm2; t=1702547208;
-	 x=1702633608; bh=uzaZ2T/iq1KIJxlVF1wV39ljPwWnMmto9XWBVN4kLn4=; b=
-	CynJzwHVkWnoMJVasBPRJb76XXUT1mkeepZdxfLOLIC7J1iJlOG4DWQX8TQ+5QXk
-	oi7DwmL9PfsdGmgw47Hf88ll1B+P2P5IOWMLcHfzC8tU1J9gQtukXcuon3NpPhgm
-	RNaoZlAAAG0l2fDK8RbUb3vBtZXRIIJt6sfHWL/c4PPsBYzfHuseBQLVkC+tlqMN
-	koGkLfksgOjqSKSQCf4uwgYSQtnOutIixwObYT/7yKfOtNzTNHPfNfzwXdhagdhF
-	V5UlZ6WGaLf9MTUMsGrKz3PQ/vIdXoTOJNoxRCepDriySkqU4QkWBPm09eAa89/H
-	v9CrpinH5+M4VkyCTplYFQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1702547208; x=
-	1702633608; bh=uzaZ2T/iq1KIJxlVF1wV39ljPwWnMmto9XWBVN4kLn4=; b=2
-	8hSaxdBH5/teyrfv+9soeV/vlb2oGsIMNal/+egvw/vw8jmeVHfp1FYDrTDgWDss
-	lrErdvn2NxWPNbT+lJ0Ae+QsL35BrskzkOQi5MiE1k9b9k2fFhyiOeVhhfKh+iJU
-	q/PG197jsnLqpguWzhgN9+EIwHwoFfa0e19lfaX9VUMdriFKi8yWkknANYecEVhb
-	Lh+DvginZFPJ4GECe4FokPfTSBYdVxkR8PSMP4VA/SwJZJU0pVjH9N6ELH5iComu
-	dL8BFhBa2WJ90PKurvy997yV1x9QVG8MlZiaTVs0K/EYgcnBg1WyolcwFXtDabtf
-	8lRFqJdWiKhFw42dcC9SA==
-X-ME-Sender: <xms:CM96Zdzceq6mjRYH1j0jopqDubCshEwosezBumHmScWW60Rl70h-IQ>
-    <xme:CM96ZdTNg1d_KxRMdSu2nEIEBq6y3dW-6TKlX38kEg0T3TGFS5y80sr-Hph0US-qH
-    _nYn9F6l_D4CD6cXec>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrudelledgtdejucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtgfesthhqredtreerjeenucfhrhhomhepfdfl
-    ihgrgihunhcujggrnhhgfdcuoehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtoh
-    hmqeenucggtffrrghtthgvrhhnpedufeegfeetudeghefftdehfefgveffleefgfehhfej
-    ueegveethfduuddvieehgfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmh
-    grihhlfhhrohhmpehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtohhm
-X-ME-Proxy: <xmx:CM96ZXVz2zwSvX7VM4qd-wbHNl9c6GwCgDRSWCC9RxaTd1AkJGEzdQ>
-    <xmx:CM96Zfiy6j2pawsE-j3Sd4I-ml8cORRqQJRn3IeE7Y30fSmLacUAew>
-    <xmx:CM96ZfDHnIIpSbI_21UJvl-0OrbT3BDeoeIUU7dgzOnIWvIj2WemWw>
-    <xmx:CM96ZT42hYzmv4iikYb8qZRlmrUt_qG5p0BQ6hvJr1CpKh94_4ep7g>
-Feedback-ID: ifd894703:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 4047836A0076; Thu, 14 Dec 2023 04:46:48 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-1283-g327e3ec917-fm-20231207.002-g327e3ec9
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 830D6E0;
+	Thu, 14 Dec 2023 01:48:48 -0800 (PST)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BE4Qpbg001177;
+	Thu, 14 Dec 2023 09:48:29 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=5gAIgXH
+	XeRin2mY+3nShzO93vkScwEPkafSycd779B0=; b=GhDRMXiOI2oQt1NUXTi/fVK
+	zYR8P+l3guWUMrjWhvf05gfaNQMqucmb167oXUWLx2W+3LlAjPWftDnS7c1SDjAa
+	fLRl9/fH3dmLfI8bNlmQWSvKN+zE680aj2soYCOBbyRnx6iBtfjedXYx3UradpeZ
+	D50PtrRq2DMlNjHf134ZZaC3tzyVOV/U3jH/QYsjmvkDdoUdSOTmvqbSinyMKrJh
+	7TNEM7JjcUeMnP4kKLdtStdP8k8D9HMkbI9zz3HZeRXrzsOBNcLF2ej+GKKXxsJD
+	qkhrbolMlHSmYGik3KO/TPqPqhDzY27mfxRLvgsL4SJ3q0rt6EslndSdATHHzmw=
+	=
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uynja94p0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Dec 2023 09:48:28 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BE9mRlT000717
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Dec 2023 09:48:27 GMT
+Received: from akronite-sh-dev02.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Thu, 14 Dec 2023 01:48:22 -0800
+From: Luo Jie <quic_luoj@quicinc.com>
+To: <andrew@lunn.ch>, <davem@davemloft.net>, <edumazet@google.com>,
+        <kuba@kernel.org>, <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <hkallweit1@gmail.com>, <linux@armlinux.org.uk>, <corbet@lwn.net>,
+        <p.zabel@pengutronix.de>, <f.fainelli@gmail.com>
+CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>
+Subject: [PATCH v7 00/14] add qca8084 ethernet phy driver
+Date: Thu, 14 Dec 2023 17:47:59 +0800
+Message-ID: <20231214094813.24690-1-quic_luoj@quicinc.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <6b747f3b-f0d7-4e40-a331-8d2323e4874c@app.fastmail.com>
-In-Reply-To: <20231212163459.1923041-22-gregory.clement@bootlin.com>
-References: <20231212163459.1923041-1-gregory.clement@bootlin.com>
- <20231212163459.1923041-22-gregory.clement@bootlin.com>
-Date: Thu, 14 Dec 2023 09:46:27 +0000
-From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
-To: "Gregory CLEMENT" <gregory.clement@bootlin.com>,
- "paulburton@kernel.org" <paulburton@kernel.org>,
- "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
- "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
- "Rob Herring" <robh+dt@kernel.org>,
- "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: "Vladimir Kondratiev" <vladimir.kondratiev@mobileye.com>,
- "Tawfik Bayouk" <tawfik.bayouk@mobileye.com>,
- "Alexandre Belloni" <alexandre.belloni@bootlin.com>,
- =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
- "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v5 21/22] MIPS: generic: Add support for Mobileye EyeQ5
-Content-Type: text/plain;charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: XHYkJ8TAGLrIFIgXHOeOiDABrmoi6RgO
+X-Proofpoint-ORIG-GUID: XHYkJ8TAGLrIFIgXHOeOiDABrmoi6RgO
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
+ impostorscore=0 spamscore=0 priorityscore=1501 mlxlogscore=905 mlxscore=0
+ clxscore=1011 lowpriorityscore=0 bulkscore=0 suspectscore=0 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2311290000
+ definitions=main-2312140065
+
+QCA8084 is four-port PHY with maximum link capability 2.5G,
+which supports the interface mode qusgmii and sgmii mode,
+there are two PCSs available to connected with ethernet port.
+
+QCA8084 can work in switch mode or PHY mode.
+For switch mode, both PCS0 and PCS1 work on sgmii mode.
+For PHY mode, PCS1 works on qusgmii mode.
+The fourth PHY connected with PCS0 works on sgmii mode.
+
+Besides this PHY driver patches, the PCS driver is also needed
+to bring up the qca8084 device, which mainly configurs PCS
+and clocks.
+
+The qca8084 PHY driver depends on the following clock controller
+patchset, the initial clocks and resets are provided by the clock
+controller driver below.
+https://lore.kernel.org/lkml/20231104034858.9159-2-quic_luoj@quicinc.com/T/
+
+Changes in v3:
+	* pick the two patches to introduce the interface mode
+	  10g-qxgmii from Vladimir Oltean(olteanv@gmail.com).
+	* add the function phydev_id_is_qca808x to identify the
+	  PHY qca8081 and qca8084.
+	* update the interface mode name PHY_INTERFACE_MODE_QUSGMII
+	  to PHY_INTERFACE_MODE_10G_QXGMII.
+
+Changes in v4:
+	* remove the following patch:
+	  <net: phylink: move phylink_pcs_neg_mode() to phylink.c>.
+	* split out 10g_qxgmii change of ethernet-controller.yaml.
+
+Changes in v5:
+	* update the author of the patch below.
+	  <introduce core support for phy-mode = "10g-qxgmii">.
+
+Changes in v6:
+	* drop the "inline" keyword.
+	* apply the patches with "--max-line-length=80".
+
+Changes in v7:
+	* add possible interfaces of phydev
+	* customize phy address
+	* add initialized clock & reset config
+	* add the work mode config
+	* update qca,ar803x.yaml for the new added properties
+
+Luo Jie (12):
+  net: phy: at803x: add QCA8084 ethernet phy support
+  net: phy: at803x: add the function phydev_id_is_qca808x
+  net: phy: at803x: Add qca8084_config_init function
+  net: phy: at803x: add qca8084_link_change_notify
+  net: phy: at803x: add the possible_interfaces
+  net: phy: at803x: add qca8084 switch registe access
+  net: phy: at803x: set MDIO address of qca8084 PHY
+  net: phy: at803x: parse qca8084 clocks and resets
+  net: phy: at803x: add qca808x initial config sequence
+  net: phy: at803x: configure qca8084 common clocks
+  net: phy: at803x: configure qca8084 work mode
+  dt-bindings: net: ar803x: add qca8084 PHY propetry
+
+Vladimir Oltean (2):
+  net: phy: introduce core support for phy-mode = "10g-qxgmii"
+  dt-bindings: net: ethernet-controller: add 10g-qxgmii mode
+
+ .../bindings/net/ethernet-controller.yaml     |   1 +
+ .../devicetree/bindings/net/qca,ar803x.yaml   | 158 ++++-
+ Documentation/networking/phy.rst              |   6 +
+ drivers/net/phy/at803x.c                      | 586 +++++++++++++++++-
+ drivers/net/phy/phy-core.c                    |   1 +
+ drivers/net/phy/phylink.c                     |  11 +-
+ include/linux/phy.h                           |   4 +
+ include/linux/phylink.h                       |   2 +
+ 8 files changed, 758 insertions(+), 11 deletions(-)
 
 
+base-commit: 48e8992e33abf054bcc0bb2e77b2d43bb899212e
+-- 
+2.42.0
 
-=E5=9C=A82023=E5=B9=B412=E6=9C=8812=E6=97=A5=E5=8D=81=E4=BA=8C=E6=9C=88 =
-=E4=B8=8B=E5=8D=884:34=EF=BC=8CGregory CLEMENT=E5=86=99=E9=81=93=EF=BC=9A
-> Introduce support for the MIPS based Mobileye EyeQ5 SoCs.
->
-> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
-> ---
->  arch/mips/configs/generic/board-eyeq5.config | 42 ++++++++++++++++++++
->  arch/mips/generic/Kconfig                    | 15 +++++++
->  arch/mips/generic/Platform                   |  2 +
->  arch/mips/generic/board-epm5.its.S           | 24 +++++++++++
->  4 files changed, 83 insertions(+)
->  create mode 100644 arch/mips/configs/generic/board-eyeq5.config
->  create mode 100644 arch/mips/generic/board-epm5.its.S
->
-> diff --git a/arch/mips/configs/generic/board-eyeq5.config=20
-> b/arch/mips/configs/generic/board-eyeq5.config
-> new file mode 100644
-> index 0000000000000..d94e408145389
-> --- /dev/null
-> +++ b/arch/mips/configs/generic/board-eyeq5.config
-> @@ -0,0 +1,42 @@
-> +CONFIG_HIGH_RES_TIMERS=3Dy
-> +CONFIG_TASKSTATS=3Dy
-> +CONFIG_FIT_IMAGE_FDT_EPM5=3Dy
-> +CONFIG_BOARD_EYEQ5=3Dy
-> +CONFIG_PHYSICAL_START=3D0xa800000808000000
-
-^ I still think by doing this you are risking overriding starting address
-for all other generic systems. make 32r6_defconfig will load config files
-of all boards.
-
-Perhaps just provide an eqm5_defconfig will work better?
-
-Thanks.
---=20
-- Jiaxun
 
