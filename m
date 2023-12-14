@@ -1,99 +1,99 @@
-Return-Path: <devicetree+bounces-25567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FA90813ACF
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 20:33:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E5ED813AC9
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 20:32:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 93507283317
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 19:33:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A451283346
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 19:31:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B64D76979D;
-	Thu, 14 Dec 2023 19:33:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B75F3697B9;
+	Thu, 14 Dec 2023 19:31:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="YKCT6jAL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WVWSEAR1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D56E56979A
-	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 19:33:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=vJr/
-	AQFE1XFRSIFd6GXXrHnQGhGkGt3dKuW9tKsM4n0=; b=YKCT6jALhYwerAmIP8og
-	WvlNjpLQ/du0sxJvWarBIVAgSnDV2WcLnWlcmXD8VnqLyy8xjECjUWSy+N8spC0J
-	s7U5mhqzl+IYHPIlL1OpGH2BDymKomzFllX3U/vYp4wReJ9LN48b7yK4Z2hEUlkT
-	Mo+aABJ1ha9ufY5Cp37BDH50UpuNGFunPkA6Tc2uTL36NyS9aer1uxV4ODjxu8FP
-	UJaqcON8fbubzXzS36zVzDvVk8N154kXrVMSo2EeXqakRQiEU3VINb7PXzvZdj1r
-	PzISFrJhx8N+N0dTG7RInkn3zf/Zs9il/c9XQWF5n71isuu7lKS7wBmjtZYoCwu/
-	WQ==
-Received: (qmail 1023542 invoked from network); 14 Dec 2023 20:27:06 +0100
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 14 Dec 2023 20:27:06 +0100
-X-UD-Smtp-Session: l3s3148p1@iI7dRH0MMtUujnuR
-Date: Thu, 14 Dec 2023 20:27:05 +0100
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
-Cc: linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	Marek Vasut <marek.vasut+renesas@gmail.com>,
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: Re: [PATCH v5 RESEND 0/2] PCI: rcar: support regulators for PCIe
-Message-ID: <ZXtXCYx2YR1of/qr@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	Marek Vasut <marek.vasut+renesas@gmail.com>,
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-References: <20231105092908.3792-1-wsa+renesas@sang-engineering.com>
- <ZXske3k8CkMcGjr5@shikoro>
- <20231214191900.GB2079458@rocinante>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49A7F69798
+	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 19:31:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-50e0daa57b3so2765953e87.3
+        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 11:31:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702582309; x=1703187109; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qtamLk15uiLxGzhwsunKJdl02l1MlYN9ssm1S1ptW9s=;
+        b=WVWSEAR1+XUM+0+vVEQXc/R5frlNfDGmBwZfh8G26nsMRWmdW/J4z9vYGO5F418dTQ
+         Tw8IZ1jalvyk5JEp5VZI2rGz2A//64F/hWS8rMhS7gD7/Q/R5T7tK440ptSD8kLZtgXk
+         vJwGFSyUDUvlenB7sdlC4Ye1UoC1UV+GziUmuK+9mU3JeQ0HICuP0nhvgNb5w14H079X
+         abK5jSscETZdfQJfF95T2z949lSNfIdVNyp79+k+6lK/ewU/PvNKYKy+RrgRuqQUI8/x
+         k2namhGRuPg4R/DBBazwjZWupGbhPA/cU04mqohnQV9zRznotYibQN4g8XdN2W/xaAR7
+         p96Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702582309; x=1703187109;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qtamLk15uiLxGzhwsunKJdl02l1MlYN9ssm1S1ptW9s=;
+        b=X73VlvBF+LJd+wiKw56A4c8NwSjmTZymdX8jxIp1jqC1U7dGsAaoizaKb3PwRwUiYL
+         VE9HE/MQJUec1LBAwFuo5LBieWs4f7RcvdwRAVlaMllLiwQMJFJNjYcGIC36ajhl2Xpr
+         FfzLnz2SIWL0pSxOomRNTqBromFaV77m+mvWCsiZXx+peKiPrHztyAuyR1mDKySuZ6S0
+         yTlmyic/YzapNzx3ZUO+peva8GrYe8WBG4tRguPPwrh1eWbT60JCFhHKlx+TRvDWqhsu
+         GuDen208wxwS9xZ87b7afoCVrJIPewYE6o5mZfV7FZWK2k2U39TO2c16ARBcDITqol76
+         s0KA==
+X-Gm-Message-State: AOJu0YxsSzvN+uRws1/y+PiYeD+BJt/LVCZPdwdhPnkGRGNjBiiNMqQD
+	W8hn1y43jJ3ELJabcxl5KpEuRw==
+X-Google-Smtp-Source: AGHT+IH5JM+njOSUVpJVz1U7SmBjrCyLvoh710QoZPAixUx/0/KVQdGX2+wsArj3SMVrpzuVNns6Iw==
+X-Received: by 2002:a19:e003:0:b0:507:a04c:76e8 with SMTP id x3-20020a19e003000000b00507a04c76e8mr3167966lfg.46.1702582309365;
+        Thu, 14 Dec 2023 11:31:49 -0800 (PST)
+Received: from [172.30.205.72] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id m21-20020ac24255000000b0050bf4df12d6sm1935590lfl.168.2023.12.14.11.31.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Dec 2023 11:31:49 -0800 (PST)
+Message-ID: <b578a34a-0e7f-4175-8051-3d2340861700@linaro.org>
+Date: Thu, 14 Dec 2023 20:31:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="C8Ty/fbhp+nEXecq"
-Content-Disposition: inline
-In-Reply-To: <20231214191900.GB2079458@rocinante>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: x1e80100-crd: Fix supplies for some
+ LDOs in PM8550
+To: Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>,
+ Rajendra Nayak <quic_rjendra@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231214-x1e80100-dts-fix-pm8550-regulators-supplies-v1-1-6b5830dc337e@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20231214-x1e80100-dts-fix-pm8550-regulators-supplies-v1-1-6b5830dc337e@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
 
---C8Ty/fbhp+nEXecq
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 
+On 12/14/23 20:24, Abel Vesa wrote:
+> The LDOs 1, 4 and 10 from PM8550 share the same supply, the SMPS 4
+> from PM8550ve. This needs to be done through shared supply approach
+> otherwise the bindings check fails.
+Not only that, but Linux also doesn't parse it :D
+> 
+> Fixes: bd50b1f5b6f3 ("arm64: dts: qcom: x1e80100: Add Compute Reference Device")
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-> Applied, so it should make it to 6.8.  Apologies for the delay.
-
-Awesome, thank you!
-
-
---C8Ty/fbhp+nEXecq
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmV7VwUACgkQFA3kzBSg
-Kbav2Q//axmhe1kLHs/Li35jBoHdo2LNR2a2RGkR0AzFNJ95MgzJLCAHlmXq+lOU
-Odi268gmDwriEa9ISl3a47TxgrndBrxGiMUXgKityzQh+0EAE15erWozUrdCxyel
-whdEb0WSlaq0B4lETpbP6jKB4GGi5OZC9VfdFGq9Rl0MIJqYOLn40ZTzO+5+oI4z
-ZaZDeTY1+8QRHquRJ97bm8+oAcuMbkf1O6yc6LahUiPTx2lTbxTbdotLFnp8z5go
-rjJJ3ctZ9jse4Eqc1iXJORufrRanTtA9RWOyD1pq1difuSaSYTZG6dsPDJOsusma
-i0OQ1UjPZSC+dx9MXLfJ5vmgJ89cNfrCp/lt2n2GmJ+LmS0G2wNx1QGJVcYCq2Mu
-HNKOqvXLKJS8WnmfRJZeV+hH4ih3fILCzRBLF/+TQIto6bgOv2e63CfKRfvwv5Gn
-nOxBPZIAkNdkBQ3birtagIy+6U4sunH6jQxzMlijcTfqks6WWzY7D294Bi3k0FxH
-u/vZBvcNcCFg6mxay/tXP0Odpm08AJdMOL2iTRDyMFcYPRWVwS7fr4Tq40TAbWMF
-VeBoOjl5l1U47mH6yqR4/lNqZS4LxhA8Oo/jct6e+vHgKpaTl7hEVj0nNANWJdRu
-Fi9Ydikto8WBAXc/ubLUXWjDwbtO1qTiLA7xpkmAl4A5/g9JP/s=
-=DwEQ
------END PGP SIGNATURE-----
-
---C8Ty/fbhp+nEXecq--
+Konrad
 
