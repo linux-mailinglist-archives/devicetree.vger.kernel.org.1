@@ -1,109 +1,91 @@
-Return-Path: <devicetree+bounces-25595-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25596-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7582C813D23
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 23:20:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 300F3813D37
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 23:23:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 158FDB21948
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 22:20:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DAA691F20F20
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 22:23:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33D88671FD;
-	Thu, 14 Dec 2023 22:20:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QuHgemc/"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 721D92C69D;
+	Thu, 14 Dec 2023 22:22:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1B7B2C68C;
-	Thu, 14 Dec 2023 22:20:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 845EFC433CD;
-	Thu, 14 Dec 2023 22:20:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702592442;
-	bh=DLrciHpGY/Tr+KDhmgFsHpodGdAyv9347IqpzcQxN0E=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=QuHgemc/eGs8haslapsQfMlcL+SJKh/2Xkj9g3QjaPcNuqzC8IWQRs/V6rEVsZiIv
-	 LnzLfQTFWKNWM+7/ZObc+6o4ZRqg4NTZJhX60pJ5mHsQMn3EG04kGRZy1ccnAiux4M
-	 BbBVLJeJrNzckEWKZv3yiatDKAG428GX/bkOp6W9Yb9+qY0DStkTuHKYBOrVF6ZPTc
-	 IX6dRKutdX5tij9PkNcXKB4PMeV8xfy2B0zgG3rzr3dwjvoOnOkZ7JWbPHqVmUEJxY
-	 3S17UtGir9Baa0Jpj3ZSPIIf9oppe7Yc3bS5+VJoneicorjDh+YiyKfdCq47JMIc1v
-	 1Y1/grdMFxhXQ==
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-50bdec453c8so10211463e87.3;
-        Thu, 14 Dec 2023 14:20:42 -0800 (PST)
-X-Gm-Message-State: AOJu0YxhLRUyRuCp3hR/amJKTRH4nQgq6woqV1/RBCiMUGhRjpK+P1Lt
-	pdR7Ejn36U7E9Q4Q8SBdlXXsYIhSmbeEzTj1hQ==
-X-Google-Smtp-Source: AGHT+IGv5JFi0lNuAs8VuSZYhhQ038anhXHkFFHu9EfV9TuthpQBAyp6VCuGwuNxaswRwh/ZuAYrqL6Y8WdKhTnUgEM=
-X-Received: by 2002:a05:6512:4847:b0:50a:a5f7:47fb with SMTP id
- ep7-20020a056512484700b0050aa5f747fbmr4457434lfb.49.1702592440674; Thu, 14
- Dec 2023 14:20:40 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF4496AB84
+	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 22:22:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f54.google.com with SMTP id 46e09a7af769-6da4893142aso68696a34.0
+        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 14:22:15 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702592535; x=1703197335;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IMQMwJd9xaZGRsEiGYUsiE5l2C6EMtbma5zygaGEwUE=;
+        b=MA8HTzVEquxmjyhj39WybWPSmtRu5PI8901Y7GvRzyK+ije+GcxyoTqsATkmGvQ5Fz
+         3vxRnqwKsqrMzecevpBEYgFa2WNFCBtJV3lDecOxSudlVPy8fAph8/bdCLuslX852xD6
+         WPE5YiTSO7g5ncCdT7kgA/rehiikHWjqrbzIwLcYg6yyxwkalFymial8KGHsXX/ASeV5
+         q/4eOmIKfiEI7qrm0L1LN7mKzWvJ/yHBksoX4gpyGrYstBMYTqoLWEd98pW2rcxu9QBq
+         9pGcH02FXLEcvCzcNadES34NNqJqrK+2NL9zyBfFZhr60J3ofdlNqYTgCifoNwyccle0
+         CTMQ==
+X-Gm-Message-State: AOJu0YyYt4PvydNRWhb+LVuOc9HGnd3OWCThynvXAxDtMuX7Ej6tZbDw
+	fnEFg1dABnl9/vFgSTko/g==
+X-Google-Smtp-Source: AGHT+IF8PRpEdy7GmE83n9Cf0gt5H7z2RE7g5isCY1lvipql7ZU3L/SbYhiI2C1l5XUpG0norFYWug==
+X-Received: by 2002:a9d:65d6:0:b0:6d9:e756:ca8a with SMTP id z22-20020a9d65d6000000b006d9e756ca8amr10663883oth.21.1702592534759;
+        Thu, 14 Dec 2023 14:22:14 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id p26-20020a9d695a000000b006d85518ae62sm3326425oto.76.2023.12.14.14.22.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Dec 2023 14:22:14 -0800 (PST)
+Received: (nullmailer pid 1043392 invoked by uid 1000);
+	Thu, 14 Dec 2023 22:22:13 -0000
+Date: Thu, 14 Dec 2023 16:22:13 -0600
+From: Rob Herring <robh@kernel.org>
+To: Robin Murphy <robin.murphy@arm.com>
+Cc: will@kernel.org, Conor Dooley <conor+dt@kernel.org>, bwicaksono@nvidia.com, devicetree@vger.kernel.org, suzuki.poulose@arm.com, rwiley@nvidia.com, linux-arm-kernel@lists.infradead.org, Rob Herring <robh+dt@kernel.org>, mark.rutland@arm.com, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, ilkka@os.amperecomputing.com, YWan@nvidia.com
+Subject: Re: [PATCH v2 4/5] dt-bindings/perf: Add Arm CoreSight PMU
+Message-ID: <170259153356.1024552.13737544149896160495.robh@kernel.org>
+References: <cover.1702571292.git.robin.murphy@arm.com>
+ <3c2dd41b585efe44d361f41fcea0181ff2a9c9c5.1702571292.git.robin.murphy@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231213110009.v1.1.Ifd0903f1c351e84376d71dbdadbd43931197f5ea@changeid>
- <20231213110009.v1.2.I274b2d2255eb539cc9d251c9d65a385cc4014c79@changeid>
- <20231213221124.GB2115075-robh@kernel.org> <CANg-bXCG61HFW7JFuAd3k+OrCG_F9F3e8brjM-pmBauS53aobQ@mail.gmail.com>
-In-Reply-To: <CANg-bXCG61HFW7JFuAd3k+OrCG_F9F3e8brjM-pmBauS53aobQ@mail.gmail.com>
-From: Rob Herring <robh@kernel.org>
-Date: Thu, 14 Dec 2023 16:20:27 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+MYwOG40X26cYmO9EkZ9xqWrXDi03MaRfxnV-+VGkXWQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+MYwOG40X26cYmO9EkZ9xqWrXDi03MaRfxnV-+VGkXWQ@mail.gmail.com>
-Subject: Re: [PATCH v1 2/6] arm: arm64: dts: Enable cros-ec-spi as wake source
-To: Mark Hasemeyer <markhas@chromium.org>
-Cc: LKML <linux-kernel@vger.kernel.org>, Raul Rangel <rrangel@chromium.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Andre Przywara <andre.przywara@arm.com>, 
-	Andy Gross <agross@kernel.org>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Baruch Siach <baruch@tkos.co.il>, 
-	Bjorn Andersson <andersson@kernel.org>, Claudiu Beznea <claudiu.beznea@microchip.com>, 
-	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
-	Jesper Nilsson <jesper.nilsson@axis.com>, Jisheng Zhang <jszhang@kernel.org>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, Michal Simek <michal.simek@amd.com>, 
-	Paul Barker <paul.barker@sancloud.com>, Sudeep Holla <sudeep.holla@arm.com>, 
-	Thierry Reding <thierry.reding@gmail.com>, cros-qcom-dts-watchers@chromium.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-arm-msm@vger.kernel.org, linux-mediatek@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-tegra@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3c2dd41b585efe44d361f41fcea0181ff2a9c9c5.1702571292.git.robin.murphy@arm.com>
 
-On Thu, Dec 14, 2023 at 3:04=E2=80=AFPM Mark Hasemeyer <markhas@chromium.or=
-g> wrote:
->
-> > If a device knows it is wakeup capable, why do you need a property too?
->
-> I'm referencing:
-> https://www.kernel.org/doc/Documentation/devicetree/bindings/power/wakeup=
--source.txt
-> "Nodes that describe devices which has wakeup capability must contain
-> an "wakeup-source" boolean property."
 
-That's probably too strongly worded because wakeup capable devices
-existed (and still exist) before this binding was created. Powerpc for
-example doesn't use it.
+On Thu, 14 Dec 2023 16:31:07 +0000, Robin Murphy wrote:
+> Add a binding for implementations of the Arm CoreSight Performance
+> Monitoring Unit Architecture. Not to be confused with CoreSight debug
+> and trace, the PMU architecture defines a standard MMIO interface for
+> event counters following a similar design to the CPU PMU architecture,
+> where the implementation and most of its features are discoverable
+> through ID registers.
+> 
+> CC: Rob Herring <robh+dt@kernel.org>
+> CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> CC: Conor Dooley <conor+dt@kernel.org>
+> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+> ---
+> v2: Use reg-io-width instead of a new property; tweak descriptions
+> ---
+>  .../bindings/perf/arm,coresight-pmu.yaml      | 39 +++++++++++++++++++
+>  1 file changed, 39 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/perf/arm,coresight-pmu.yaml
+> 
 
-> Currently the driver assumes the device is wake capable without
-> parsing the device tree, which is an incorrect assumption as wake
-> capability should not be enabled on some cros_ec systems.
->
-> > I haven't looked closely enough, but it smells like after patch 6, thes=
-e
-> > properties would be required for wakeup? That would be an ABI break.
->
-> Agreed. In this case, the driver is a ChromeOS related driver and DTS
-> is built from source for each OS update.
-> For more context, I will make sure to CC you (and everyone else) and
-> include a cover letter in the next series version.
+With the line wrapping fixed:
 
-Please explain in the patches with an ABI break why it doesn't matter.
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-Rob
 
