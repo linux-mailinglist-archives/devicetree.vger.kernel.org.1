@@ -1,105 +1,314 @@
-Return-Path: <devicetree+bounces-25063-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25064-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BDD781244D
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 02:06:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C227812480
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 02:24:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D439EB2103B
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 01:06:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 948871C212A9
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 01:24:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBFE738E;
-	Thu, 14 Dec 2023 01:06:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="cw/Wz/qB"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 729FE63D;
+	Thu, 14 Dec 2023 01:24:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFED7F7
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 17:06:38 -0800 (PST)
-Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2c9fbb846b7so87176541fa.2
-        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 17:06:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1702515996; x=1703120796; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:user-agent:from:references
-         :in-reply-to:mime-version:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=peKqQhahD9JRG6w67FwL0sZR7IqqMN+7cEJCPbXgpS8=;
-        b=cw/Wz/qBmUDgWvZLY+mt8wuaD0gqN0/KuzCVbuYonRQULoYb6y6stZG5p5X1pukETH
-         x8kD44ObrdpdQSS9gbw5DRGSheuDkfm++CnyjVR6KhDfeKIP4/k17QZlWEiw07eArlRX
-         hwfHEvF3jnUWAb8NozrTA5cUbzZl1SxRupyJw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702515996; x=1703120796;
-        h=cc:to:subject:message-id:date:user-agent:from:references
-         :in-reply-to:mime-version:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=peKqQhahD9JRG6w67FwL0sZR7IqqMN+7cEJCPbXgpS8=;
-        b=JY7tlgRxcp05RdJvFfbyomgz7V62KvxVKrwLWkuuPcLvJ3ekqAv/OcCESCzovSyaRT
-         ljXc1MiWZFGUJOKhndCjFzHNsqVOEKz1wDbpnwuUksKrG+iTPp9wK2vZD8zZIz8rvGbJ
-         W9EJEqelakRev1RDeBJIucVDL4DR5IFICPj3031IOhMlwO5p29HMzuRKPiAXw//6aOZX
-         8fNjm7wq2cO5xYvaYjlYc7r+VnnWfuTrvcetj/ijkeRjlIPPv1zoo0vwA4jbblB92jZ9
-         Iuxsi1OzzvJygBkZ+IRRDmBHUwMpelQolV+7b+puy2fIYVEEdXv6uhrrcGgJJuEXguS2
-         lKoA==
-X-Gm-Message-State: AOJu0YxkFV8W8zNBmM96ZKuN5Rl9eXN8fq5Snz2kRKrmsWdSnJYovRev
-	18XCMmiPsUt7CHCRHgS3DJWS6v739svHNr62a+wqXw==
-X-Google-Smtp-Source: AGHT+IHvs8FX8jR+oHMtbXK5cvMpQXiJFEHExpih0ehnbtikW0K8fvGV2686+EyTLWM3fZDJz3SeNMCcCHHM7UeoTbg=
-X-Received: by 2002:a2e:a373:0:b0:2cc:2591:bcd3 with SMTP id
- i19-20020a2ea373000000b002cc2591bcd3mr2000691ljn.106.1702515996638; Wed, 13
- Dec 2023 17:06:36 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 13 Dec 2023 17:06:36 -0800
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id D12D8E4
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 17:24:08 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 51E74C15;
+	Wed, 13 Dec 2023 17:24:54 -0800 (PST)
+Received: from minigeek.lan (unknown [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2B9383F762;
+	Wed, 13 Dec 2023 17:24:07 -0800 (PST)
+Date: Thu, 14 Dec 2023 01:23:57 +0000
+From: Andre Przywara <andre.przywara@arm.com>
+To: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>, Icenowy
+ Zheng <uwu@icenowy.me>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH 3/3] arm64: dts: allwinner: h618: add Transpeed 8K618-T
+ TV box
+Message-ID: <20231214012357.37526feb@minigeek.lan>
+In-Reply-To: <4533903.LvFx2qVVIh@archlinux>
+References: <20231212010859.11571-1-andre.przywara@arm.com>
+	<20231212010859.11571-4-andre.przywara@arm.com>
+	<4533903.LvFx2qVVIh@archlinux>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20231213163501.1.I8c20f926d15c9ddc12e423e07df1e89db1105d93@changeid>
-References: <20231213163501.1.I8c20f926d15c9ddc12e423e07df1e89db1105d93@changeid>
-From: Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date: Wed, 13 Dec 2023 17:06:36 -0800
-Message-ID: <CAE-0n52vfejT7a9Dh177dvD7G3cCx3paB7i_xgSCi=1Z4aE9nw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sc7180: Switch pompom to the generic edp-panel
-To: Bjorn Andersson <andersson@kernel.org>, Douglas Anderson <dianders@chromium.org>
-Cc: Andy Gross <agross@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Hsin-Yi Wang <hsinyi@chromium.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	cros-qcom-dts-watchers@chromium.org, devicetree@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Quoting Douglas Anderson (2023-12-13 16:35:02)
-> Pompom has several sources for its panel. Let's switch it to the
-> generic edp-panel compatible string to account for this.
->
-> This fixes a problem where the panel wouldn't come up on some pompon
-> devices after commit fb3f43d50d9b ("drm/panel-edp: Avoid adding
-> multiple preferred modes"). Specifically, some models of pompom have a
-> 1920x1080 panel which is _very_ different than the 1366x768 panel
-> specified in the dts. Before the recent panel-edp fix on Linux things
-> kinda/sorta worked because the panel-edp driver would include both the
-> hardcoded and probed mode, AKA:
->
-> * #0 1920x1080
->   60.00 1920 1944 1960 2000 1080 1083 1088 1111 133320
->   flags: nhsync, nvsync; type: preferred, driver
-> * #1 1366x768
->   60.00 1366 1406 1438 1500 768 773 778 900 81000
->   flags: nhsync, nvsync; type: preferred, driver
->
-> ...and, at least on ChromeOS, the userspace was consistently picking
-> the first mode even though both were marked as "preferred". Now that
-> the Linux driver is fixed we only get the hardcoded mode. That means
-> we end up trying to drive a 1920x1080 panel at 1366x768 and it doesn't
-> work so well.
->
-> Let's switch over to the generic panel-edp.
->
-> Fixes: fb3f43d50d9b ("drm/panel-edp: Avoid adding multiple preferred modes")
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> ---
+On Wed, 13 Dec 2023 20:22:55 +0100
+Jernej =C5=A0krabec <jernej.skrabec@gmail.com> wrote:
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Hi Jernej,
+
+thanks for having a look, much appreciated.
+
+> On Tuesday, December 12, 2023 2:08:59 AM CET Andre Przywara wrote:
+> > This is a Chinese TV box, probably very similar if not identical to
+> > various other cheap TV boxes with the same specs:
+> >       - Allwinner H618 SoC (4 * Arm Cortex-A53 cores, 1MB L2 cache)
+> >       - 2 or 4GiB DDR3L DRAM
+> >       - 32, 64, or 128 GiB eMMC flash
+> >       - AXP313a PMIC
+> >       - 100 Mbit/s Ethernet (using yet unsupported internal PHY)
+> >       - HDMI port
+> >       - 2 * USB 2.0 ports
+> >       - microSD card slot
+> >       - 3.5mm A/V port
+> >       - 7-segment display
+> >       - 5V barrel plug power supply
+> >=20
+> > The PCB provides holes for soldering a UART header or cable, this is
+> > connected to the debug UART0. UART1 is used for the Bluetooth chip,
+> > although this isn't working yet.
+> >=20
+> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> > ---
+> >  arch/arm64/boot/dts/allwinner/Makefile        |   1 +
+> >  .../sun50i-h618-transpeed-8k618-t.dts         | 164 ++++++++++++++++++
+> >  2 files changed, 165 insertions(+)
+> >  create mode 100644
+> > arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
+> >=20
+> > diff --git a/arch/arm64/boot/dts/allwinner/Makefile
+> > b/arch/arm64/boot/dts/allwinner/Makefile index 3aca6787a1679..91d505b38=
+5de5
+> > 100644
+> > --- a/arch/arm64/boot/dts/allwinner/Makefile
+> > +++ b/arch/arm64/boot/dts/allwinner/Makefile
+> > @@ -43,3 +43,4 @@ dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h616-bigtreetech=
+-pi.dtb
+> > dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h616-orangepi-zero2.dtb
+> >  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h616-x96-mate.dtb
+> >  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h618-orangepi-zero3.dtb
+> > +dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h618-transpeed-8k618-t.dtb
+> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-=
+t.dts
+> > b/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts new f=
+ile
+> > mode 100644
+> > index 0000000000000..fd7ea7bcde2c1
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
+> > @@ -0,0 +1,164 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +/*
+> > + * Copyright (C) 2023 Arm Ltd.
+> > + */
+> > +
+> > +/dts-v1/;
+> > +
+> > +#include "sun50i-h616.dtsi"
+> > +
+> > +#include <dt-bindings/gpio/gpio.h>
+> > +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +
+> > +/ {
+> > +	model =3D "Transpeed 8K618-T";
+> > +	compatible =3D "transpeed,8k618-t", "allwinner,sun50i-h618";
+> > +
+> > +	aliases {
+> > +		serial0 =3D &uart0;
+> > +		serial1 =3D &uart1; =20
+>=20
+> Any particular reason for above alias?
+
+Not really, and since UART1 is used for Bluetooth, its name should not
+matter at all, the BT driver will just use its parent device.
+Will remove it.
+
+>=20
+> > +	};
+> > +
+> > +	chosen {
+> > +		stdout-path =3D "serial0:115200n8";
+> > +	};
+> > +
+> > +	reg_vcc5v: vcc5v {
+> > +		/* board wide 5V supply directly from the DC input */
+> > +		compatible =3D "regulator-fixed";
+> > +		regulator-name =3D "vcc-5v";
+> > +		regulator-min-microvolt =3D <5000000>;
+> > +		regulator-max-microvolt =3D <5000000>;
+> > +		regulator-always-on;
+> > +	};
+> > +
+> > +	reg_vcc3v3: vcc3v3 {
+> > +		/* discrete 3.3V regulator */
+> > +		compatible =3D "regulator-fixed";
+> > +		regulator-name =3D "vcc-3v3";
+> > +		regulator-min-microvolt =3D <3300000>;
+> > +		regulator-max-microvolt =3D <3300000>;
+> > +		regulator-always-on;
+> > +	};
+> > +};
+> > +
+> > +&ehci0 {
+> > +	status =3D "okay";
+> > +};
+> > +
+> > +&ehci1 {
+> > +	status =3D "okay";
+> > +};
+> > +
+> > +&ir {
+> > +	status =3D "okay";
+> > +};
+> > +
+> > +&mmc0 {
+> > +	vmmc-supply =3D <&reg_dldo1>;
+> > +	cd-gpios =3D <&pio 8 16 GPIO_ACTIVE_LOW>;	/* PI16 */
+> > +	bus-width =3D <4>;
+> > +	status =3D "okay";
+> > +};
+> > +
+> > +&mmc2 {
+> > +	vmmc-supply =3D <&reg_dldo1>;
+> > +	vqmmc-supply =3D <&reg_aldo1>;
+> > +	bus-width =3D <8>;
+> > +	non-removable;
+> > +	cap-mmc-hw-reset;
+> > +	mmc-ddr-1_8v;
+> > +	mmc-hs200-1_8v;
+> > +	status =3D "okay";
+> > +};
+> > +
+> > +&ohci0 {
+> > +	status =3D "okay";
+> > +};
+> > +
+> > +&ohci1 {
+> > +	status =3D "okay";
+> > +};
+> > +
+> > +&r_i2c {
+> > +	status =3D "okay";
+> > +
+> > +	axp313: pmic@36 {
+> > +		compatible =3D "x-powers,axp313a";
+> > +		reg =3D <0x36>;
+> > +		#interrupt-cells =3D <1>;
+> > +		interrupt-controller;
+> > +
+> > +		vin1-supply =3D <&reg_vcc5v>;
+> > +		vin2-supply =3D <&reg_vcc5v>;
+> > +		vin3-supply =3D <&reg_vcc5v>;
+> > +
+> > +		regulators {
+> > +			/* Supplies VCC-PLL, so needs to be always  =20
+> on. */
+> > +			reg_aldo1: aldo1 {
+> > +				regulator-always-on;
+> > +				regulator-min-microvolt =3D  =20
+> <1800000>;
+> > +				regulator-max-microvolt =3D  =20
+> <1800000>;
+> > +				regulator-name =3D "vcc1v8"; =20
+>=20
+> It would be great to expand all PMIC regulator names with (known) areas t=
+hey=20
+> power, so something like "vcc1v8-pll-pc". With that, I think you can remo=
+ve=20
+> comments.
+
+Alright, will do. I will stick with those users that I am pretty sure
+of, either because they are mentioned in the BSP DT, or because they
+must be supplied by that rail: there seem to be only one 1.8V source.
+
+Cheers,
+Andre
+
+>=20
+> Best regards,
+> Jernej
+>=20
+> > +			};
+> > +
+> > +			/* Supplies VCC-IO, so needs to be always on.  =20
+> */
+> > +			reg_dldo1: dldo1 {
+> > +				regulator-always-on;
+> > +				regulator-min-microvolt =3D  =20
+> <3300000>;
+> > +				regulator-max-microvolt =3D  =20
+> <3300000>;
+> > +				regulator-name =3D "vcc3v3";
+> > +			};
+> > +
+> > +			reg_dcdc1: dcdc1 {
+> > +				regulator-always-on;
+> > +				regulator-min-microvolt =3D  =20
+> <810000>;
+> > +				regulator-max-microvolt =3D  =20
+> <990000>;
+> > +				regulator-name =3D "vdd-gpu-sys";
+> > +			};
+> > +
+> > +			reg_dcdc2: dcdc2 {
+> > +				regulator-always-on;
+> > +				regulator-min-microvolt =3D  =20
+> <810000>;
+> > +				regulator-max-microvolt =3D  =20
+> <1100000>;
+> > +				regulator-name =3D "vdd-cpu";
+> > +			};
+> > +
+> > +			reg_dcdc3: dcdc3 {
+> > +				regulator-always-on;
+> > +				regulator-min-microvolt =3D  =20
+> <1360000>;
+> > +				regulator-max-microvolt =3D  =20
+> <1360000>;
+> > +				regulator-name =3D "vdd-dram";
+> > +			};
+> > +		};
+> > +	};
+> > +};
+> > +
+> > +&pio {
+> > +	vcc-pc-supply =3D <&reg_aldo1>;
+> > +	vcc-pg-supply =3D <&reg_dldo1>;
+> > +	vcc-ph-supply =3D <&reg_dldo1>;
+> > +	vcc-pi-supply =3D <&reg_dldo1>;
+> > +};
+> > +
+> > +&uart0 {
+> > +	pinctrl-names =3D "default";
+> > +	pinctrl-0 =3D <&uart0_ph_pins>;
+> > +	status =3D "okay";
+> > +};
+> > +
+> > +&uart1 {
+> > +	pinctrl-names =3D "default";
+> > +	pinctrl-0 =3D <&uart1_pins>, <&uart1_rts_cts_pins>;
+> > +	uart-has-rtscts;
+> > +	status =3D "okay";
+> > +};
+> > +
+> > +&usbotg {
+> > +	dr_mode =3D "host";	/* USB A type receptable */
+> > +	status =3D "okay";
+> > +};
+> > +
+> > +&usbphy {
+> > +	status =3D "okay";
+> > +}; =20
+>=20
+>=20
+>=20
+>=20
+>=20
+
 
