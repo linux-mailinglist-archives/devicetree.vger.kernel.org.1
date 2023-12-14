@@ -1,118 +1,80 @@
-Return-Path: <devicetree+bounces-25340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87225812F87
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 12:58:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 883AC812F8C
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 12:58:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8D4F31C20901
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 11:58:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3345F1F2203F
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 11:58:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7C2D41211;
-	Thu, 14 Dec 2023 11:58:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96A904120F;
+	Thu, 14 Dec 2023 11:58:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IMp040Hn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bx1tFYMC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C91B6B7
-	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 03:58:07 -0800 (PST)
-Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2c9e9c2989dso108091541fa.0
-        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 03:58:07 -0800 (PST)
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DC3A124
+	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 03:58:25 -0800 (PST)
+Received: by mail-pj1-x102b.google.com with SMTP id 98e67ed59e1d1-28b0d412bbaso97094a91.0
+        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 03:58:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702555086; x=1703159886; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1U+x76bsJvKZYYk/aZHwgcx3jETmKUK1eOM6Ci4k3g0=;
-        b=IMp040Hn3k4XVzoDt4arx3zfnKkOroV8uD4yDS0N0RgzrOM54e8rpH0xhp7DL9wMRZ
-         sggu1S0/MzO6q8CkSNtaG5+4jAHBv2a6O6i8RUy1OeUjXBkwKlq4tD0TDVvdj3WEe39r
-         M0Kq35AcIL6tDbOYq58BXeZTnroUxpAt3ME2ZV1YAzdNyXXK7uvrT8Jh/i2KOV2RWyUC
-         f+k3F/LO8Gdlc/AzavK1MI/X6bCadSBcfitIRvUir8+ld82HVOz1oGOKq/UobjxjrnYp
-         LoshgX2YCY1CYLsC8vujKcxwoMphyt6LcUcIMbyhrjW2W2VABGzhj2/mUrE0RiMg/bA6
-         8pUw==
+        d=gmail.com; s=20230601; t=1702555104; x=1703159904; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8BsgdHnpAr3IYWhOG4zdAkihAfm1z1GoMI09uXzY72s=;
+        b=bx1tFYMC70lPOceSNeahQB6WXb7CGghqy6swmfUZfh95OvygDE1IKSk22+/4gZ1Rv2
+         PZec04j+Jj04TJlvs/dfvgAa6RH84N6/jeKUK9SE6dmBzlzyPBAoX8ho2TWsFZnVxDbQ
+         2+nLdYmg2zfQIsDS40pqB3mK5+bXN/5kBTDeM/36vlWDzWnXd2NiyA+mAOhQWLjOmY0e
+         RgvvWbMe6pPHTZC6rpF5ceyirjipP6GqCK6gSrhWBOrJvnjuPh7rIPNFFy5VsJsp8DvO
+         zRp3HaO7beid19/j/rY+DcbR/x7HAUCKRSk9eUdO5klsAumYHGdE4SnQGZHHZzC9NaRN
+         Yndg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702555086; x=1703159886;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1U+x76bsJvKZYYk/aZHwgcx3jETmKUK1eOM6Ci4k3g0=;
-        b=vm3uQrvnbQylTpA2Z93N77TYB8npjg9VamgcxYAoDNDlXrR8CfFNBGVkMR1JWq8EG2
-         CMooN3AooasmRhsaEckIJj7x5IHvIucmEMBrpbh4FsAv7R2WHF8G8MUmC/lem3plfvBX
-         rwDhc+nDeqEgTNT6Y9pdIuubxaHfSowqqkrJu2N/9V7n9+4gUyU7qCqBUFz9FVsfMjG4
-         QzwtQ0IlPdobZUFvDiBjJjOtuLSwJW/39JRtvFv1HDynaYNfwoI2b2JgLROUl+dbL864
-         WVMKC57LTlsjTmaHzZDAlU9o5ZvATCfEvwpBg80e39rr1DbdXqZLRyN3n9sk9Vt0hp+D
-         AHdA==
-X-Gm-Message-State: AOJu0YzfvkuAjzrFblVglQH0aC+uT1JFLu57QyNwMwigqqB2Qu+e/Jce
-	P0b2cCNcjXpBuICIF7hG/IxLHA==
-X-Google-Smtp-Source: AGHT+IFUaZgBx9xAcNdJ1qicIQ3i7Yr/GjR/h3Q0aCoeomMp+qKnlU7ATjJSTRoKt8jGVMutXnryMA==
-X-Received: by 2002:a2e:711:0:b0:2cc:1cc5:de6f with SMTP id 17-20020a2e0711000000b002cc1cc5de6fmr3090346ljh.106.1702555085972;
-        Thu, 14 Dec 2023 03:58:05 -0800 (PST)
-Received: from [172.30.204.158] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id y2-20020a05651c106200b002ca0cb6f476sm2037042ljm.60.2023.12.14.03.58.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Dec 2023 03:58:05 -0800 (PST)
-Message-ID: <f30ba74d-62c9-4f91-929e-a3c6d074deeb@linaro.org>
-Date: Thu, 14 Dec 2023 12:58:04 +0100
+        d=1e100.net; s=20230601; t=1702555104; x=1703159904;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8BsgdHnpAr3IYWhOG4zdAkihAfm1z1GoMI09uXzY72s=;
+        b=kR2m0kCkQpK2cI8dnUnBJHdbPUKRfVlMk1wEao1cSz6i7zd3Z3iDxVARz5ZOB7iTfW
+         7nIM76ZM6Nz/CZ3R/Bkd/dqPbG+TA2wD0cn647J3cDLdMcoz3/pJqDz8BAhYhzyet/vQ
+         tUhu5GHx9uhf7audyI2V40uAIgWin4K+3f2Mg92JB9vAL/8JrI9aY1ESI0DaWYk6088C
+         +gjHKVGOloNkO5Nih7+fQVAgDrTA23vTf9YCMAGpZBGU7pCIBVExjvurgB97At63IZUS
+         aA17wgNGMK57E+FHt+ULcocyZtlFkddgX6Wg7UkCmLhdTHrfCasOJYh14fLDVU6XCPPi
+         1hNw==
+X-Gm-Message-State: AOJu0YwvCuLq9dLCtp7Z8/A+Tye2dlgYhjbmdE9rreFvxhcY9nOvtVrX
+	vM5QE/wEIRD3Tq5G/q51xOYWqsgxOEJ03Xo5YOQ=
+X-Google-Smtp-Source: AGHT+IHSTjctjdsTTuuyZF29dbboIarhzdKaos7vZ4W7wMTbAf1XYRuXMMcZsj2ddhAA9xEwZ4YA8vjn43zVexzPvbg=
+X-Received: by 2002:a17:90b:1a8a:b0:28a:f56e:8559 with SMTP id
+ ng10-20020a17090b1a8a00b0028af56e8559mr3259019pjb.1.1702555104638; Thu, 14
+ Dec 2023 03:58:24 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: sc7180: Switch pompom to the generic
- edp-panel
-Content-Language: en-US
-To: Douglas Anderson <dianders@chromium.org>,
- Bjorn Andersson <andersson@kernel.org>
-Cc: Stephen Boyd <swboyd@chromium.org>, Andy Gross <agross@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Hsin-Yi Wang <hsinyi@chromium.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org,
- devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231213163501.1.I8c20f926d15c9ddc12e423e07df1e89db1105d93@changeid>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20231213163501.1.I8c20f926d15c9ddc12e423e07df1e89db1105d93@changeid>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Level: *
+References: <20231214112442.2412079-1-xu.yang_2@nxp.com> <20231214112442.2412079-2-xu.yang_2@nxp.com>
+In-Reply-To: <20231214112442.2412079-2-xu.yang_2@nxp.com>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Thu, 14 Dec 2023 08:58:12 -0300
+Message-ID: <CAOMZO5DxcLoBYMXQi=EW=-fAqz12ghPm+7PHn=LdhicETKg2pQ@mail.gmail.com>
+Subject: Re: [PATCH 2/4] arm64: dts: imx8ulp-evk: enable usb nodes
+To: Xu Yang <xu.yang_2@nxp.com>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
+	linux-imx@nxp.com, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Thu, Dec 14, 2023 at 8:19=E2=80=AFAM Xu Yang <xu.yang_2@nxp.com> wrote:
+>
+> Enable 2 USB nodes on i.MX8ULP evk board.
 
+imx8ulp-evk schematics show two PTN5150 and two USB Type-C connectors.
 
-On 12/14/23 01:35, Douglas Anderson wrote:
-> Pompom has several sources for its panel. Let's switch it to the
-> generic edp-panel compatible string to account for this.
-> 
-> This fixes a problem where the panel wouldn't come up on some pompon
-> devices after commit fb3f43d50d9b ("drm/panel-edp: Avoid adding
-> multiple preferred modes"). Specifically, some models of pompom have a
-> 1920x1080 panel which is _very_ different than the 1366x768 panel
-> specified in the dts. Before the recent panel-edp fix on Linux things
-> kinda/sorta worked because the panel-edp driver would include both the
-> hardcoded and probed mode, AKA:
-> 
-> * #0 1920x1080
->    60.00 1920 1944 1960 2000 1080 1083 1088 1111 133320
->    flags: nhsync, nvsync; type: preferred, driver
-> * #1 1366x768
->    60.00 1366 1406 1438 1500 768 773 778 900 81000
->    flags: nhsync, nvsync; type: preferred, driver
-> 
-> ...and, at least on ChromeOS, the userspace was consistently picking
-> the first mode even though both were marked as "preferred". Now that
-> the Linux driver is fixed we only get the hardcoded mode. That means
-> we end up trying to drive a 1920x1080 panel at 1366x768 and it doesn't
-> work so well.
-> 
-> Let's switch over to the generic panel-edp.
-> 
-> Fixes: fb3f43d50d9b ("drm/panel-edp: Avoid adding multiple preferred modes")
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> ---
-Acked-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Konrad
+Why are they not represented in the devicetree?
 
