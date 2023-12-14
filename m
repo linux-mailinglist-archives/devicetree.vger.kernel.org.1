@@ -1,332 +1,132 @@
-Return-Path: <devicetree+bounces-25561-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25562-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6660813A0B
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 19:35:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06F5E813A66
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 19:56:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 14FD01C20BA9
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 18:35:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C1C38282A69
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 18:56:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8688A5FF1E;
-	Thu, 14 Dec 2023 18:35:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFBA668B9B;
+	Thu, 14 Dec 2023 18:56:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="IYgjFJMm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DjpsODRf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 648ED111;
-	Thu, 14 Dec 2023 10:35:09 -0800 (PST)
-Received: from pps.filterd (m0353722.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3BEIVkrm012030;
-	Thu, 14 Dec 2023 18:34:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=pp1;
- bh=aZfItAC16OpY8Y87+kaxK+6Wy7sVgwOm4UYAmq8AAhc=;
- b=IYgjFJMmcgD3ceQdzJU0wRBQXHCOT3CZX9YgqKWvOo2vanSnqkOdQ67Dq92BaM5Z5R5W
- g+e6Rz6YlNVck/VPwy5TxxfLvpYS9XNJA7brDMhS4aUjfUz5NC/hD5WMntYoTbDZxNj2
- 81vMhGfewItxp+nBfugU4UA/Zw9DM/e8zhi5aOvwgafkZL+kj2vBFuu73GJKwUrntaIY
- RhbG9AGLb9LC9aKOdVfMMKojC2NPcnwgMxFdpwab8bbKitz4zZAegcYiLCzqwzeqAVVX
- 4nBv4FPhaeAyb4fnlaV+Kbltiuu3q46uQgQjLUkiwiOmdYpfG0lSZgl0hWjmK3cyMsME uA== 
-Received: from pps.reinject (localhost [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3v072ag26k-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Dec 2023 18:34:22 +0000
-Received: from m0353722.ppops.net (m0353722.ppops.net [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 3BEIXAjM016214;
-	Thu, 14 Dec 2023 18:34:21 GMT
-Received: from ppma23.wdc07v.mail.ibm.com (5d.69.3da9.ip4.static.sl-reverse.com [169.61.105.93])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3v072ag264-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Dec 2023 18:34:21 +0000
-Received: from pps.filterd (ppma23.wdc07v.mail.ibm.com [127.0.0.1])
-	by ppma23.wdc07v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 3BECe1XP014799;
-	Thu, 14 Dec 2023 18:34:20 GMT
-Received: from smtprelay06.wdc07v.mail.ibm.com ([172.16.1.73])
-	by ppma23.wdc07v.mail.ibm.com (PPS) with ESMTPS id 3uw42khrus-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Dec 2023 18:34:20 +0000
-Received: from smtpav05.dal12v.mail.ibm.com (smtpav05.dal12v.mail.ibm.com [10.241.53.104])
-	by smtprelay06.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 3BEIYJq69830950
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 14 Dec 2023 18:34:20 GMT
-Received: from smtpav05.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id D07D65805D;
-	Thu, 14 Dec 2023 18:34:19 +0000 (GMT)
-Received: from smtpav05.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 254E358056;
-	Thu, 14 Dec 2023 18:34:16 +0000 (GMT)
-Received: from [9.67.23.198] (unknown [9.67.23.198])
-	by smtpav05.dal12v.mail.ibm.com (Postfix) with ESMTP;
-	Thu, 14 Dec 2023 18:34:15 +0000 (GMT)
-Message-ID: <8cdadff2-055a-48ab-8495-45c8285d3d8f@linux.ibm.com>
-Date: Thu, 14 Dec 2023 12:34:14 -0600
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1561F10F
+	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 10:56:39 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-40c68c1990dso1747365e9.0
+        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 10:56:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702580197; x=1703184997; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IAxAjKcdxPU97AIvApR3RCAnoJx2vmM7/1XrerRQJkc=;
+        b=DjpsODRfMB5c2XYNNgYXxw+2uC4Swt0DI5ZknUN1tGF50jgD8opP9mkckejmaekdhi
+         Yi/s9uTfPfv2PY+mNsM13VQJAYEWVnVN930oqgtwx1Onz/xpAJtGbQOfgTVkvtBa3tic
+         xFZKgzuPOBfJVnGHDG+Bb2Wb/fqjkhOkKVgFQ5exmFA0/qe2X7cu5EcIJv41GIeaDgkW
+         f5i0qRtzUbQccNOTLMRr8JDJbKPGqHqfMjmGQdYsnKar7PQEcFDYG5Hslh1FySsbheuG
+         ihkxUnBCGJhBen7GbgxAizaT4awdgu2umjBJM9jYnq/sYY1SroggaMXqudsL8VUUh0NO
+         ACJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702580197; x=1703184997;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=IAxAjKcdxPU97AIvApR3RCAnoJx2vmM7/1XrerRQJkc=;
+        b=w+HU27lKcjIShM8RGn5cv1LocU/bROEy7bRQ5SVvNNutAL4Wcbr6/c8rqjO38G7UAX
+         jSwBsuFtim1d5Sg+fjt0BZGvl6+iVJjrKBqqpPZIWQrFmFvJie2U5NuQJ8uVP/e1hZ33
+         TMhAY1JvSu38O6WlM1uDlmohYmBdnO3p0CuM6gv3nYp2BXekBW6cwevAq3MbQZvA/74k
+         Dr/x9fqcuqSnKY1h70z1uPD0U1f90k/tZydRu4LLJJER1q/MqPjMVi/8cHNJDtdFjmA4
+         uRUsy0rEg9jQwM3YTN5UDamGlojU+9P7I1LCEiurSYkZqrCBDeXxlsIoW+GwAIwh6AXr
+         6apw==
+X-Gm-Message-State: AOJu0YxuzlPTZQxL0zKWaYU8M6l7BjU2HAbdTDXGvxvJ+ABnXhiMZAVA
+	p6iXhfCtqEkgxlF/i0dQtTQ=
+X-Google-Smtp-Source: AGHT+IEJdSovztE1+kaX2STJnCOl7W1aWVQMf5BovgvciYv0lS+dzUl+ZZ1suE0cXUGwcLPNd6ee9g==
+X-Received: by 2002:a05:600c:1c07:b0:40c:1e8a:4d0e with SMTP id j7-20020a05600c1c0700b0040c1e8a4d0emr3298090wms.27.1702580197226;
+        Thu, 14 Dec 2023 10:56:37 -0800 (PST)
+Received: from archlinux.localnet (82-149-12-148.dynamic.telemach.net. [82.149.12.148])
+        by smtp.gmail.com with ESMTPSA id m14-20020a05600c4f4e00b0040b30be6244sm25718707wmq.24.2023.12.14.10.56.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Dec 2023 10:56:36 -0800 (PST)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Samuel Holland <samuel@sholland.org>, Andre Przywara <andre.przywara@arm.com>
+Cc: Icenowy Zheng <uwu@icenowy.me>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+Subject:
+ Re: [PATCH v2 0/3] arm64: dts: allwinner: Add Transpeed 8K618-T TV box
+Date: Thu, 14 Dec 2023 19:56:35 +0100
+Message-ID: <46021670.fMDQidcC6G@archlinux>
+In-Reply-To: <20231214015312.17363-1-andre.przywara@arm.com>
+References: <20231214015312.17363-1-andre.przywara@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 4/8] ARM: dts: aspeed: System1: Add i2c and muxes
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, joel@jms.id.au,
-        andrew@codeconstruct.com.au, peterhuewe@gmx.de, jarkko@kernel.org,
-        jgg@ziepe.ca, keescook@chromium.org, tony.luck@intel.com,
-        gpiccoli@igalia.com, johannes.holland@infineon.com, linux@roeck-us.net,
-        broonie@kernel.org
-Cc: patrick.rudolph@9elements.com, vincent@vtremblay.dev,
-        peteryin.openbmc@gmail.com, lakshmiy@us.ibm.com, bhelgaas@google.com,
-        naresh.solanki@9elements.com, alexander.stein@ew.tq-group.com,
-        festevam@denx.de, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org, linux-integrity@vger.kernel.org,
-        linux-hardening@vger.kernel.org, geissonator@yahoo.com
-References: <20231212164004.1683589-1-ninad@linux.ibm.com>
- <20231212164004.1683589-5-ninad@linux.ibm.com>
- <72a749b9-b9be-4496-9bcc-37519044c109@linaro.org>
-From: Ninad Palsule <ninad@linux.ibm.com>
-In-Reply-To: <72a749b9-b9be-4496-9bcc-37519044c109@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: KIu3tM4aH2p_1s1TvaCGkUi7cGT1eyM9
-X-Proofpoint-GUID: 7-F53l8el8CAhlx9LMigtTCwyZjJNqJO
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-14_13,2023-12-14_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 adultscore=0
- malwarescore=0 mlxlogscore=999 mlxscore=0 priorityscore=1501 phishscore=0
- lowpriorityscore=0 spamscore=0 bulkscore=0 suspectscore=0 clxscore=1015
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2311290000
- definitions=main-2312140131
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hello Krzysztof,
+On Thursday, December 14, 2023 2:53:09 AM CET Andre Przywara wrote:
+> A quick update, with the few fixes for issues that reviewers spotted.
+> See below for a changelog.
+> ================================
+> 
+> The Transpeed 8K618-T is one example of various cheap Chinese TV boxes
+> using the Allwinner H618 SoC. It comes with up to 4GB DRAM and up to
+> 128GB eMMC flash, plus the usual HDMI, 100Mbit Ethernet, WiFi/BT and
+> dual USB ports, not to forget the mandatory microSD card slot.
+> More details: https://linux-sunxi.org/Transpeed_8K618-T
+> 
+> Ethernet relies on the yet unsupported integrated PHY, and the HDMI
+> output is similarly not yet supported, but patches exist that await
+> polishing for mainline submission.
+> Meanwhile USB and eMMC plus SD card work, so you can hook up an USB
+> Ethernet or WiFi adapter to get things going.
+> 
+> This series is the usual trilogy of DT support patches: adding the vendor
+> name in patch 1, the board compatible name in patch 2, and the actual
+> .dts file in patch 3.
+> 
+> Please have a look!
 
-On 12/12/23 14:21, Krzysztof Kozlowski wrote:
-> On 12/12/2023 17:40, Ninad Palsule wrote:
->> This commit adds i2c devices and muxes.
->>
->> Tested:
->>      This board is tested using the simics simulator.
->>
->> Signed-off-by: Ninad Palsule <ninad@linux.ibm.com>
->> ---
->>   .../dts/aspeed/aspeed-bmc-ibm-system1.dts     | 577 ++++++++++++++++++
->>   1 file changed, 577 insertions(+)
->>
-> Why do you split new submission into multiple chunks? The logical
-> feature here is new board, so all your DTS patches adding new board
-> should be in one patch.
-Oh,ok. I thought it might be easier to review but now I squashed them 
-together.
->
->> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts
->> index 01291b407f59..0557bff9f36a 100644
->> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts
->> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts
->> @@ -11,6 +11,65 @@ / {
->>   	model = "System1";
->>   	compatible = "ibm,system1-bmc", "aspeed,ast2600";
->>   
->> +	aliases {
->> +		i2c16 = &i2c8mux1chn0;
->> +		i2c17 = &i2c8mux1chn1;
->> +		i2c18 = &i2c8mux1chn2;
->> +		i2c19 = &i2c8mux1chn3;
->> +		i2c20 = &i2c8mux1chn4;
->> +		i2c21 = &i2c8mux1chn5;
->> +		i2c22 = &i2c8mux1chn6;
->> +		i2c23 = &i2c8mux1chn7;
->> +		i2c24 = &i2c3mux0chn0;
->> +		i2c25 = &i2c3mux0chn1;
->> +		i2c26 = &i2c3mux0chn2;
->> +		i2c27 = &i2c3mux0chn3;
->> +		i2c28 = &i2c3mux0chn4;
->> +		i2c29 = &i2c3mux0chn5;
->> +		i2c30 = &i2c3mux0chn6;
->> +		i2c31 = &i2c3mux0chn7;
->> +		i2c32 = &i2c6mux0chn0;
->> +		i2c33 = &i2c6mux0chn1;
->> +		i2c34 = &i2c6mux0chn2;
->> +		i2c35 = &i2c6mux0chn3;
->> +		i2c36 = &i2c6mux0chn4;
->> +		i2c37 = &i2c6mux0chn5;
->> +		i2c38 = &i2c6mux0chn6;
->> +		i2c39 = &i2c6mux0chn7;
->> +		i2c40 = &i2c7mux0chn0;
->> +		i2c41 = &i2c7mux0chn1;
->> +		i2c42 = &i2c7mux0chn2;
->> +		i2c43 = &i2c7mux0chn3;
->> +		i2c44 = &i2c7mux0chn4;
->> +		i2c45 = &i2c7mux0chn5;
->> +		i2c46 = &i2c7mux0chn6;
->> +		i2c47 = &i2c7mux0chn7;
->> +		i2c48 = &i2c8mux0chn0;
->> +		i2c49 = &i2c8mux0chn1;
->> +		i2c50 = &i2c8mux0chn2;
->> +		i2c51 = &i2c8mux0chn3;
->> +		i2c52 = &i2c8mux0chn4;
->> +		i2c53 = &i2c8mux0chn5;
->> +		i2c54 = &i2c8mux0chn6;
->> +		i2c55 = &i2c8mux0chn7;
->> +		i2c56 = &i2c14mux0chn0;
->> +		i2c57 = &i2c14mux0chn1;
->> +		i2c58 = &i2c14mux0chn2;
->> +		i2c59 = &i2c14mux0chn3;
->> +		i2c60 = &i2c14mux0chn4;
->> +		i2c61 = &i2c14mux0chn5;
->> +		i2c62 = &i2c14mux0chn6;
->> +		i2c63 = &i2c14mux0chn7;
->> +		i2c64 = &i2c15mux0chn0;
->> +		i2c65 = &i2c15mux0chn1;
->> +		i2c66 = &i2c15mux0chn2;
->> +		i2c67 = &i2c15mux0chn3;
->> +		i2c68 = &i2c15mux0chn4;
->> +		i2c69 = &i2c15mux0chn5;
->> +		i2c70 = &i2c15mux0chn6;
->> +		i2c71 = &i2c15mux0chn7;
->> +	};
->> +
->>   	chosen {
->>   		stdout-path = &uart5;
->>   		bootargs = "console=ttyS4,115200n8 earlycon";
->> @@ -54,10 +113,12 @@ vga_memory: region@bf000000 {
->>   			reg = <0xbf000000 0x01000000>;  /* 16M */
->>   		};
->>   	};
->> +
-> You need to clean your patchset...
-I made changes about the stdout-path, is that what you mean?
->
->
->>   };
->>   
->>   &adc1 {
->>   	status = "okay";
->> +
-> Really.
-I need to add "status = okay" otherwise its not instantiated.
->
->>   	aspeed,int-vref-microvolt = <2500000>;
->>   	pinctrl-names = "default";
->>   	pinctrl-0 = <&pinctrl_adc8_default
->> @@ -186,3 +247,519 @@ &kcs3 {
->>   	aspeed,lpc-io-reg = <0xca2>;
->>   	aspeed,lpc-interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
->>   };
->> +
->> +&i2c0 {
->> +	status = "okay";
->> +};
->> +
->> +&i2c1 {
->> +	status = "okay";
->> +};
->> +
->> +&i2c2 {
->> +	status = "okay";
->> +};
->> +
->> +&i2c3 {
->> +	status = "okay";
->> +
->> +	i2c-mux@70 {
->> +		compatible = "nxp,pca9548";
->> +		reg = <0x70>;
->> +		#address-cells = <1>;
->> +		#size-cells = <0>;
->> +		status = "okay";
-> Drop
-Done.
->
->> +		i2c-mux-idle-disconnect;
->> +
->> +		i2c3mux0chn0: i2c@0 {
->> +			#address-cells = <1>;
->> +			#size-cells = <0>;
->> +			reg = <0>;
->> +		};
->> +
->> +		i2c3mux0chn1: i2c@1 {
->> +			#address-cells = <1>;
->> +			#size-cells = <0>;
->> +			reg = <1>;
->> +		};
->> +
->> +		i2c3mux0chn2: i2c@2 {
->> +			#address-cells = <1>;
->> +			#size-cells = <0>;
->> +			reg = <2>;
->> +		};
->> +
->> +		i2c3mux0chn3: i2c@3 {
->> +			#address-cells = <1>;
->> +			#size-cells = <0>;
->> +			reg = <3>;
->> +		};
->> +
->> +		i2c3mux0chn4: i2c@4 {
->> +			#address-cells = <1>;
->> +			#size-cells = <0>;
->> +			reg = <4>;
->> +		};
->> +
->> +		i2c3mux0chn5: i2c@5 {
->> +			#address-cells = <1>;
->> +			#size-cells = <0>;
->> +			reg = <5>;
->> +		};
->> +
->> +		i2c3mux0chn6: i2c@6 {
->> +			#address-cells = <1>;
->> +			#size-cells = <0>;
->> +			reg = <6>;
->> +		};
->> +
->> +		i2c3mux0chn7: i2c@7 {
->> +			#address-cells = <1>;
->> +			#size-cells = <0>;
->> +			reg = <7>;
->> +		};
->> +	};
->> +};
->> +
->> +&i2c4 {
->> +	status = "okay";
->> +};
->> +
->> +&i2c5 {
->> +	status = "okay";
->> +};
->> +
->> +&i2c6 {
->> +	status = "okay";
->> +
->> +	i2c-mux@70 {
->> +		compatible = "nxp,pca9548";
->> +		reg = <0x70>;
->> +		#address-cells = <1>;
->> +		#size-cells = <0>;
->> +		status = "okay";
-> Drop
+Applied, thanks!
 
-Done
+Best regards,
+Jernej
 
-Thanks for the review.
+> 
+> Thanks,
+> Andre
+> 
+> Changelog v1 .. v2:
+> - fix alphabetical ordering in vendor-prefixes
+> - remove unneeded UART1 alias
+> - extend regulator names, drop now redundant comments
+> 
+> Andre Przywara (3):
+>   dt-bindings: vendor-prefixes: add Transpeed
+>   dt-bindings: arm: sunxi: document Transpeed 8K618-T board name
+>   arm64: dts: allwinner: h618: add Transpeed 8K618-T TV box
+> 
+>  .../devicetree/bindings/arm/sunxi.yaml        |   5 +
+>  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+>  arch/arm64/boot/dts/allwinner/Makefile        |   1 +
+>  .../sun50i-h618-transpeed-8k618-t.dts         | 161 ++++++++++++++++++
+>  4 files changed, 169 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
+> 
+> 
 
-Regards,
 
-Ninad
 
->
-> Other places as well.
->
->
-> Best regards,
-> Krzysztof
->
+
 
