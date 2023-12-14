@@ -1,163 +1,86 @@
-Return-Path: <devicetree+bounces-25491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25492-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 666FB8135FD
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 17:16:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1ED0981360D
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 17:20:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 98AE51C20296
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 16:15:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 510041C2096C
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 16:20:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F70D5F1DF;
-	Thu, 14 Dec 2023 16:15:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="egtvOHQ0"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0B7B5F1E8;
+	Thu, 14 Dec 2023 16:20:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33FE0126
-	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 08:15:42 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-54cb4fa667bso11483624a12.3
-        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 08:15:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702570540; x=1703175340; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=QbYix1w4UHJyJ+ioQYc4DJ91pPGmRQo7dHrqC9f0kgk=;
-        b=egtvOHQ0Yi8ktTAKeS+Qi/PmdKfW0m5GP8IMExuS+YUHBES6F+6NNjCPxBiRKW1R/z
-         DKOR6v292fE+cCpilsuVRacJpmcEM+GzqeYCUJE7aK1+AIUCo1535Cpz12lRLlcP+fHF
-         cWuEyE+KykIqnrNKXj024KNWTcrI+YrUKYZnCA2twydlNCbQk+wGRQzHhnzsm7rSGpY7
-         LFYrNKrrpKwSKxkmrYy0I/deLLKIxIf3SgUB5yh7dPy/l8r4afGXf4uo2RBZsOijt6ZE
-         XWyh3R5brCouz0SFg29St1P37sQ8W70cWxDrKPpoWuW7nRoJaHaanb8Ydy7fm+tXMwc5
-         lt4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702570540; x=1703175340;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QbYix1w4UHJyJ+ioQYc4DJ91pPGmRQo7dHrqC9f0kgk=;
-        b=q12NolD1Yq5lNsOCOU3nNWTQlt2lK0iZ+jlvdTE4mCP/tz0/iOUOtOdizmbYxlWJgP
-         v4/4ejHxhgnCKqlD4RjnhECZ9NnXaQ4kHyxeJtO0k5/kvuQR0yI7XKhN59sKgZoMVsYm
-         kDnZPEi2WZVUqOG6qflEoukklNG8c2SsND6cLwCXzxxoUet4NYhoNm5xyHQhiSxlO3Df
-         w+lj7jymH2ktFRmvZvyGVtMbZa1iUtr9o6Zy8dE1LOHjPnLnY6KH18HLA6KiFcgpo4uX
-         1ngGtlLG2j96Fq/n11TVw96IwHCn4w3Pox4ExjHLk8ifH6eOdr6ckGBJj4WFCebsKACk
-         nLMw==
-X-Gm-Message-State: AOJu0YyFnIVYX564hxMHt1csfymbGhFW0EJhI7B8pOp3RXFbwUvII1XR
-	1HM7tedKbydIVHEXc0A8CW7xmg==
-X-Google-Smtp-Source: AGHT+IFmRcLF0OoA8DEzmxgzOcTf6k0T0PqSZAePsKTXa0uwU1Db/V7XoFeTFuqChCFK/b/BWjhAbQ==
-X-Received: by 2002:a17:906:560c:b0:a1d:f89d:7cb7 with SMTP id f12-20020a170906560c00b00a1df89d7cb7mr5469221ejq.92.1702570540553;
-        Thu, 14 Dec 2023 08:15:40 -0800 (PST)
-Received: from [192.168.2.107] ([79.115.63.202])
-        by smtp.gmail.com with ESMTPSA id v20-20020a170906489400b00a1de512fa24sm9537667ejq.191.2023.12.14.08.15.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Dec 2023 08:15:40 -0800 (PST)
-Message-ID: <5de5cddd-2bab-4408-b31f-f48bef98f14c@linaro.org>
-Date: Thu, 14 Dec 2023 16:15:37 +0000
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 507B710A;
+	Thu, 14 Dec 2023 08:20:28 -0800 (PST)
+Received: from i53875b61.versanet.de ([83.135.91.97] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1rDoRR-0005iB-OR; Thu, 14 Dec 2023 17:20:05 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Alex Bee <knaerzche@gmail.com>, Sandy Huang <hjc@rock-chips.com>,
+ Andy Yan <andyshrk@163.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject:
+ Re: [PATCH 01/11] dt-bindings: display: rockchip,inno-hdmi: Document RK3128
+ compatible
+Date: Thu, 14 Dec 2023 17:20:04 +0100
+Message-ID: <2221612.3VsfAaAtOV@diego>
+In-Reply-To: <df84a0cc-cb38-431f-864b-012ada7bb0d5@linaro.org>
+References:
+ <20231213195125.212923-1-knaerzche@gmail.com>
+ <288857ab-bebd-4f80-9cdc-9b04fa6c7386@gmail.com>
+ <df84a0cc-cb38-431f-864b-012ada7bb0d5@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 07/13] clk: samsung: gs101: mark PERIC0 IP TOP gate clock
- as critical
-Content-Language: en-US
-To: Sam Protsenko <semen.protsenko@linaro.org>
-Cc: peter.griffin@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
- sboyd@kernel.org, conor+dt@kernel.org, andi.shyti@kernel.org,
- alim.akhtar@samsung.com, gregkh@linuxfoundation.org, jirislaby@kernel.org,
- catalin.marinas@arm.com, will@kernel.org, s.nawrocki@samsung.com,
- tomasz.figa@gmail.com, cw00.choi@samsung.com, arnd@arndb.de,
- andre.draszik@linaro.org, saravanak@google.com, willmcvicker@google.com,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
- linux-serial@vger.kernel.org
-References: <20231214105243.3707730-1-tudor.ambarus@linaro.org>
- <20231214105243.3707730-8-tudor.ambarus@linaro.org>
- <CAPLW+4mNjCbJ+VbKR66DFSkiXHyxdjgvwjN7azxjJQ6UxQikEw@mail.gmail.com>
- <f3d61c49-1a46-476c-b7a5-6cc6a06a33ed@linaro.org>
- <CAPLW+4=tyr8Pcoe6Wm0Wtmkk4udDpuAiOKy7+C+Fwa6mvt3VoQ@mail.gmail.com>
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <CAPLW+4=tyr8Pcoe6Wm0Wtmkk4udDpuAiOKy7+C+Fwa6mvt3VoQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-
-
-On 12/14/23 16:09, Sam Protsenko wrote:
-> On Thu, Dec 14, 2023 at 10:01 AM Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
->>
->>
->>
->> On 12/14/23 15:37, Sam Protsenko wrote:
->>> On Thu, Dec 14, 2023 at 4:52 AM Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
->>>>
->>>> Testing USI8 I2C with an eeprom revealed that when the USI8 leaf clock
->>>> is disabled it leads to the CMU_TOP PERIC0 IP gate clock disablement,
->>>> which then makes the system hang. To prevent this, mark
->>>> CLK_GOUT_CMU_PERIC0_IP as critical. Other clocks will be marked
->>>> accordingly when tested.
->>>>
->>>> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
->>>> ---
->>>>  drivers/clk/samsung/clk-gs101.c | 2 +-
->>>>  1 file changed, 1 insertion(+), 1 deletion(-)
->>>>
->>>> diff --git a/drivers/clk/samsung/clk-gs101.c b/drivers/clk/samsung/clk-gs101.c
->>>> index 3d194520b05e..08d80fca9cd6 100644
->>>> --- a/drivers/clk/samsung/clk-gs101.c
->>>> +++ b/drivers/clk/samsung/clk-gs101.c
->>>> @@ -1402,7 +1402,7 @@ static const struct samsung_gate_clock cmu_top_gate_clks[] __initconst = {
->>>>              "mout_cmu_peric0_bus", CLK_CON_GAT_GATE_CLKCMU_PERIC0_BUS,
->>>>              21, 0, 0),
->>>>         GATE(CLK_GOUT_CMU_PERIC0_IP, "gout_cmu_peric0_ip", "mout_cmu_peric0_ip",
->>>> -            CLK_CON_GAT_GATE_CLKCMU_PERIC0_IP, 21, 0, 0),
->>>> +            CLK_CON_GAT_GATE_CLKCMU_PERIC0_IP, 21, CLK_IS_CRITICAL, 0),
->>>
->>> This clock doesn't seem like a leaf clock. It's also not a bus clock.
->>> Leaving it always running makes the whole PERIC0 CMU clocked, which
->>> usually should be avoided. Is it possible that the system freezes
->>> because some other clock (which depends on peric0_ip) gets disabled as
->>> a consequence of disabling peric0_ip? Maybe it's some leaf clock which
->>> is not implemented yet in the clock driver? Just looks weird to me
->>> that the system hangs because of CMU IP clock disablement. It's
->>> usually something much more specific.
->>
->> The system hang happened when I tested USI8 in I2C configuration with an
->> eeprom. After the eeprom is read the leaf gate clock that gets disabled
->> is the one on PERIC0 (CLK_GOUT_PERIC0_CLK_PERIC0_USI8_USI_CLK). I assume
->> this leads to the CMU_TOP gate (CLK_CON_GAT_GATE_CLKCMU_PERIC0_IP)
->> disablement which makes the system hang. Either marking the CMU_TOP gate
->> clock as critical (as I did in this patch) or marking the leaf PERIC0
->> gate clock as critical, gets rid of the system hang. Did I choose wrong?
->>
+Am Donnerstag, 14. Dezember 2023, 17:07:27 CET schrieb Krzysztof Kozlowski:
+> On 14/12/2023 16:22, Alex Bee wrote:
+> > 
+> > Am 14.12.23 um 08:53 schrieb Krzysztof Kozlowski:
+> >> On 13/12/2023 20:51, Alex Bee wrote:
+> >>> Document the compatible for RK3128's HDMI controller block.
+> >>> The integration for this SoC is somewhat different here: It needs the PHY's
+> >> Please wrap commit message according to Linux coding style / submission
+> >> process (neither too early nor over the limit):
+> >> https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
+> > OK. Not sure why checkpatch --strict  didn't tell me that I'm over the 
+> > limit here.
+> >>
+> >>> reference clock rate to calculate the ddc bus frequency correctly. This
+> >>> clock is part of a power-domain (PD_VIO), so this gets added as an optional
+> >>> property too.
+> >> If clock is part of power domain, then the power domain must be in the
+> >> clock controller, not here. So either you put power domain in wrong
+> >> place or you used incorrect reason for a change.
+> >   Rockchip defines it's powerdomains per clock and I was little to much 
+> > in that world when writing this. Actually the controller itself is part 
+> > of the powerdomain. Will rephrase.
 > 
-> Did you already implement 100% of clocks in CMU_PERIC0? If no, there
+> Does it mean you have like 200 different power domains in one SoC? Then
+> how are they different than clock if there is one-to-one mapping?
 
-yes.
+It's more like the other way around. Controllers and their clocks belong
+to specific power-domains. So there are of course more clocks than domains.
 
-> is a chance some other leaf clock (which is not implemented yet in
-> your driver) gets disabled as a result of PERIC0_IP disablement, which
-> might actually lead to that hang you observe. Usually it's some
-> meaningful leaf clock, e.g. GIC or interconnect clocks. Please check
-> clk-exynos850.c driver for CLK_IS_CRITICAL and CLK_IGNORE_UNUSED flags
-> and the corresponding comments I left there, maybe it'll give you more
-> particular idea about what to look for. Yes, making the whole CMU
-> always running without understanding why (i.e. because of which
-> particular leaf clock) might not be the best way of handling this
 
-because of CLK_GOUT_PERIC0_CLK_PERIC0_USI8_USI_CLK
 
-> issue. I might be mistaken, but at least please check if you
-> implemented all clocks for PERIC0 first and if making some meaningful
-> leaf clock critical makes more sense.
-> 
 
-Thanks,
-ta
 
