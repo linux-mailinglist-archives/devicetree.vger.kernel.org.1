@@ -1,276 +1,104 @@
-Return-Path: <devicetree+bounces-25257-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25258-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 479DC812C29
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 10:50:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C73D5812C30
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 10:51:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1DEDF1C215C0
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 09:50:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 640DE1F217AA
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 09:51:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9849F35F13;
-	Thu, 14 Dec 2023 09:50:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="oVT6c+VE"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D15835EF1;
+	Thu, 14 Dec 2023 09:51:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DF221BE9;
-	Thu, 14 Dec 2023 01:49:45 -0800 (PST)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BE9TS2r023593;
-	Thu, 14 Dec 2023 09:49:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	qcppdkim1; bh=AhES8Y7x+ZpiqbfFpeHU+5rxqGlvKWJu/Mp3zVbaca0=; b=oV
-	T6c+VELcBW5dn2GehNL+ov3U8He2zOEx868Wb++REhMB4udMHO29plxxxK9ONaCh
-	j1XmbFGvWNQFjgiRg5iTb66jmgVK0iM6mdK7HhZ57VwfATbH6605w3CJw+XAAv9e
-	Y7s8TrA29yzaM6YvY5su3h+WLcpuiZNronEioEW4ugxAiBU+2HxO7YQZvwpAcW29
-	Eoo4dgaFESc8haqenFChVlxby/YP0tiAFLDUCFN0X+4GlBg0nPJIClRImhI8/r0C
-	JFHiN5OuFPzWeBCgelrWMDHgtG/TBlsZUwGyUon22Fx3hPBWo/7vZH2W1Dj1BhVd
-	JyUkEvk5/Wu954pyNEOw==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uysrprq1k-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Dec 2023 09:49:31 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BE9nUYf024558
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Dec 2023 09:49:30 GMT
-Received: from akronite-sh-dev02.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Thu, 14 Dec 2023 01:49:25 -0800
-From: Luo Jie <quic_luoj@quicinc.com>
-To: <andrew@lunn.ch>, <davem@davemloft.net>, <edumazet@google.com>,
-        <kuba@kernel.org>, <pabeni@redhat.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <hkallweit1@gmail.com>, <linux@armlinux.org.uk>, <corbet@lwn.net>,
-        <p.zabel@pengutronix.de>, <f.fainelli@gmail.com>
-CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>
-Subject: [PATCH v7 14/14] dt-bindings: net: ar803x: add qca8084 PHY propetry
-Date: Thu, 14 Dec 2023 17:48:13 +0800
-Message-ID: <20231214094813.24690-15-quic_luoj@quicinc.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231214094813.24690-1-quic_luoj@quicinc.com>
-References: <20231214094813.24690-1-quic_luoj@quicinc.com>
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 928611FF6;
+	Thu, 14 Dec 2023 01:50:47 -0800 (PST)
+Received: from i53875b61.versanet.de ([83.135.91.97] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1rDiMN-00023i-MP; Thu, 14 Dec 2023 10:50:27 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: iommu@lists.linux.dev, Andy Yan <andyshrk@163.com>, joro@8bytes.org,
+ jroedel@suse.de
+Cc: conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ robh+dt@kernel.org, robin.murphy@arm.com, will@kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v2] dt-bindings: iommu: rockchip: Add Rockchip RK3588
+Date: Thu, 14 Dec 2023 10:50:26 +0100
+Message-ID: <14263703.RDIVbhacDa@diego>
+In-Reply-To: <20231212005710.1837066-1-andyshrk@163.com>
+References: <20231212005710.1837066-1-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: mMfo319Ha1GenamwBq7cOMRZqSIvWQa9
-X-Proofpoint-GUID: mMfo319Ha1GenamwBq7cOMRZqSIvWQa9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
- mlxscore=0 bulkscore=0 mlxlogscore=765 priorityscore=1501 impostorscore=0
- lowpriorityscore=0 clxscore=1015 malwarescore=0 suspectscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2312140065
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-The following properties are added for qca8084 PHY.
+Hi Joerg,
 
-1. add the compatible string "ethernet-phy-id004d.d180" since
-   the PHY device is not accessible during MDIO bus register.
-2. add property "qcom,phy-addr-fixup" for customizing MDIO address.
-3. add property "qcom,phy-work-mode" for specifying qca8084 PHY
-   work mode.
-4. add the initial clocks and resets.
+Am Dienstag, 12. Dezember 2023, 01:57:10 CET schrieb Andy Yan:
+> From: Andy Yan <andy.yan@rock-chips.com>
+> 
+> Add a Rockchip RK3588 compatible
+> 
+> I split it from the vop2 patch series as suggested by Heiko[0]
+> 
+> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
----
- .../devicetree/bindings/net/qca,ar803x.yaml   | 158 +++++++++++++++++-
- 1 file changed, 155 insertions(+), 3 deletions(-)
+could you possibly pick this patch for the iommu tree?
 
-diff --git a/Documentation/devicetree/bindings/net/qca,ar803x.yaml b/Documentation/devicetree/bindings/net/qca,ar803x.yaml
-index 3acd09f0da86..febff039a44f 100644
---- a/Documentation/devicetree/bindings/net/qca,ar803x.yaml
-+++ b/Documentation/devicetree/bindings/net/qca,ar803x.yaml
-@@ -14,9 +14,6 @@ maintainers:
- description: |
-   Bindings for Qualcomm Atheros AR803x PHYs
- 
--allOf:
--  - $ref: ethernet-phy.yaml#
--
- properties:
-   qca,clk-out-frequency:
-     description: Clock output frequency in Hertz.
-@@ -85,6 +82,161 @@ properties:
-     $ref: /schemas/regulator/regulator.yaml
-     unevaluatedProperties: false
- 
-+  qcom,phy-addr-fixup:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    description:
-+      MDIO address for 4 PHY devices and 3 PCS devices
-+
-+  qcom,phy-work-mode:
-+    description: PHY device work mode.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [0, 1, 2, 3]
-+
-+  clocks:
-+    items:
-+      - description: APB bridge clock
-+      - description: AHB clock
-+      - description: Security control clock
-+      - description: TLMM clock
-+      - description: TLMM AHB clock
-+      - description: CNOC AHB clock
-+      - description: MDIO AHB clock
-+      - description: MDIO master AHB clock
-+      - description: PCS0 system clock
-+      - description: PCS1 system clock
-+      - description: EPHY0 system clock
-+      - description: EPHY1 system clock
-+      - description: EPHY2 system clock
-+      - description: EPHY3 system clock
-+    description: PHY initial common clock configs
-+
-+  clock-names:
-+    items:
-+      - const: apb_bridge
-+      - const: ahb
-+      - const: sec_ctrl_ahb
-+      - const: tlmm
-+      - const: tlmm_ahb
-+      - const: cnoc_ahb
-+      - const: mdio_ahb
-+      - const: mdio_master_ahb
-+      - const: srds0_sys
-+      - const: srds1_sys
-+      - const: gephy0_sys
-+      - const: gephy1_sys
-+      - const: gephy2_sys
-+      - const: gephy3_sys
-+
-+  resets:
-+    items:
-+      - description: PCS0 system reset
-+      - description: PCS1 system reset
-+      - description: EPHY0 system reset
-+      - description: EPHY1 system reset
-+      - description: EPHY2 system reset
-+      - description: EPHY3 system reset
-+      - description: EPHY0 software reset
-+      - description: EPHY1 software reset
-+      - description: EPHY2 software reset
-+      - description: EPHY3 software reset
-+      - description: Ethernet DSP reset
-+    description: PHY initial common reset configs
-+
-+  reset-names:
-+    items:
-+      - const: srds0_sys
-+      - const: srds1_sys
-+      - const: gephy0_sys
-+      - const: gephy1_sys
-+      - const: gephy2_sys
-+      - const: gephy3_sys
-+      - const: gephy0_soft
-+      - const: gephy1_soft
-+      - const: gephy2_soft
-+      - const: gephy3_soft
-+      - const: gephy_dsp
-+
-+allOf:
-+  - $ref: ethernet-phy.yaml#
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - ethernet-phy-id004d.d180
-+    then:
-+      properties:
-+        clocks:
-+          items:
-+            - description: APB bridge clock
-+            - description: AHB clock
-+            - description: Security control clock
-+            - description: TLMM clock
-+            - description: TLMM AHB clock
-+            - description: CNOC AHB clock
-+            - description: MDIO AHB clock
-+            - description: MDIO master AHB clock
-+            - description: PCS0 system clock
-+            - description: PCS1 system clock
-+            - description: EPHY0 system clock
-+            - description: EPHY1 system clock
-+            - description: EPHY2 system clock
-+            - description: EPHY3 system clock
-+        clock-names:
-+          items:
-+            - const: apb_bridge
-+            - const: ahb
-+            - const: sec_ctrl_ahb
-+            - const: tlmm
-+            - const: tlmm_ahb
-+            - const: cnoc_ahb
-+            - const: mdio_ahb
-+            - const: mdio_master_ahb
-+            - const: srds0_sys
-+            - const: srds1_sys
-+            - const: gephy0_sys
-+            - const: gephy1_sys
-+            - const: gephy2_sys
-+            - const: gephy3_sys
-+        resets:
-+          items:
-+            - description: PCS0 system reset
-+            - description: PCS1 system reset
-+            - description: EPHY0 system reset
-+            - description: EPHY1 system reset
-+            - description: EPHY2 system reset
-+            - description: EPHY3 system reset
-+            - description: EPHY0 software reset
-+            - description: EPHY1 software reset
-+            - description: EPHY2 software reset
-+            - description: EPHY3 software reset
-+            - description: Ethernet DSP reset
-+        reset-names:
-+          items:
-+            - const: srds0_sys
-+            - const: srds1_sys
-+            - const: gephy0_sys
-+            - const: gephy1_sys
-+            - const: gephy2_sys
-+            - const: gephy3_sys
-+            - const: gephy0_soft
-+            - const: gephy1_soft
-+            - const: gephy2_soft
-+            - const: gephy3_soft
-+            - const: gephy_dsp
-+      required:
-+        - qcom,phy-addr-fixup
-+        - qcom,phy-work-mode
-+        - clocks
-+        - clock-names
-+        - resets
-+        - reset-names
-+    else:
-+      properties:
-+        qcom,phy-addr-fixup: false
-+        qcom,phy-work-mode: false
-+
- unevaluatedProperties: false
- 
- examples:
--- 
-2.42.0
+
+Thanks a lot
+Heiko
+
+
+> [0]https://patchwork.kernel.org/project/dri-devel/patch/20231207080235.652719-1-andyshrk@163.com/
+> 
+> ---
+> 
+> Changes in v2:
+> - Add maintainers for the iommu subsystem to cc list
+> 
+>  .../devicetree/bindings/iommu/rockchip,iommu.yaml     | 11 ++++++++---
+>  1 file changed, 8 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml b/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml
+> index ba9124f721f1..621dde0e45d8 100644
+> --- a/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml
+> +++ b/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml
+> @@ -19,9 +19,14 @@ description: |+
+>  
+>  properties:
+>    compatible:
+> -    enum:
+> -      - rockchip,iommu
+> -      - rockchip,rk3568-iommu
+> +    oneOf:
+> +      - enum:
+> +          - rockchip,iommu
+> +          - rockchip,rk3568-iommu
+> +      - items:
+> +          - enum:
+> +              - rockchip,rk3588-iommu
+> +          - const: rockchip,rk3568-iommu
+>  
+>    reg:
+>      items:
+> 
+
+
+
 
 
