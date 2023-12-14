@@ -1,161 +1,125 @@
-Return-Path: <devicetree+bounces-25572-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25573-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73293813B1E
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 20:56:45 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 107BD813B43
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 21:08:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC2E01C21A7C
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 19:56:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8C54AB20E93
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 20:08:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76CAD697B9;
-	Thu, 14 Dec 2023 19:56:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DDEB6A334;
+	Thu, 14 Dec 2023 20:08:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mbtNiX0h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C4F16A351;
-	Thu, 14 Dec 2023 19:56:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f43.google.com with SMTP id 006d021491bc7-5916c6b2e0fso1038952eaf.3;
-        Thu, 14 Dec 2023 11:56:03 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702583762; x=1703188562;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RMu3qe8RJmgyyVOaKPy6rEHFml1se+sCmssOaEi90U4=;
-        b=J6neRkjSAF2s33M727L7sVSFcqFmhzm5ikzmjF5Tf24yI6NGJL+ciaygOkiPMln2Jn
-         d8XHwezwMoxNytIv89WoZ4EGX4Jlu8RPqDyUjvXFiWbHXJizRY/Zn9XRvxnMKiKj1JwV
-         37icwWrsbEWFE7jX5CT6IXGsQXkttrXVk0lvu57bs4eQyaphQU8e65yO6JVxmfnJvMQk
-         pAfSDcWFU0WdIIpuQaLLKsscMupq4172vmlYNZmNfBpOyZC6eJD2MhO0khLkeGgHcSDj
-         TiD7wLSeVuMt9XYKT+lgzUCG1f+Wpbu6h/x/6n4eMSXin5c6iV3FbSGnBRu3Wg/KYNFn
-         OXfA==
-X-Gm-Message-State: AOJu0YxmCbQF+eQZVSIo7c9jVD+LzA2n8CijBx9Mha7jRRewH+VSZoo1
-	AdxrrFrXY+4cTVRfWX7Iqg==
-X-Google-Smtp-Source: AGHT+IFGmBpwDdWphaWjGbg0/DrlAiemTYd8eL3ibXknjLg7pN3G6/8VDLCUqsRK18wPEMgvMTHWNw==
-X-Received: by 2002:a4a:af02:0:b0:58d:8b93:ec8 with SMTP id w2-20020a4aaf02000000b0058d8b930ec8mr7429120oon.2.1702583762494;
-        Thu, 14 Dec 2023 11:56:02 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id en12-20020a056830488c00b006d9fcb44e00sm2836039otb.32.2023.12.14.11.56.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Dec 2023 11:56:01 -0800 (PST)
-Received: (nullmailer pid 863088 invoked by uid 1000);
-	Thu, 14 Dec 2023 19:56:00 -0000
-From: Rob Herring <robh@kernel.org>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Marek Szyprowski <m.szyprowski@samsung.com>, Aakarsh Jain <aakarsh.jain@samsung.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2] media: dt-bindings: samsung,s5p-mfc: Fix iommu properties schemas
-Date: Thu, 14 Dec 2023 13:55:52 -0600
-Message-ID: <20231214195553.862920-1-robh@kernel.org>
-X-Mailer: git-send-email 2.43.0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2F8C6A036;
+	Thu, 14 Dec 2023 20:08:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1702584499; x=1734120499;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=SEbmdNQI4oR9juNQv5BOktkdGKtVXGwsaSvQNvpGCOs=;
+  b=mbtNiX0hkvqnclP3l+XrN1tylS06G3iMKCIrk1kLpBxAclD7Ykzxn/O7
+   XvLOM9lvlBOOKHEspg45UxGShxLMsyrGNs8/k5Oo+UpXZnFuPxWvRPXD2
+   js3XgLkwv0FgJO+hBKM33pnvocm7v/2KHo12UXXZ40B24jrWRHbm1fE8X
+   6CWfR5DDJQgfsn1hEOu0nzVeakLJGe+FYXLMolR1ZB1o6lNi8gyZFM0yf
+   VP5AxSR0CN1jbvRo4sJKSSgiPeyNMrVePEP8492uYDOjBnSYFg+DOU8gb
+   znbSg3ooBVWSg1M11Zp0TvYkLq0d01X/+sHKGnZ9mHal2rBcxTXs3rlRZ
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="392356776"
+X-IronPort-AV: E=Sophos;i="6.04,276,1695711600"; 
+   d="scan'208";a="392356776"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Dec 2023 12:08:18 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10924"; a="918168048"
+X-IronPort-AV: E=Sophos;i="6.04,276,1695711600"; 
+   d="scan'208";a="918168048"
+Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
+  by fmsmga001.fm.intel.com with ESMTP; 14 Dec 2023 12:08:12 -0800
+Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rDs09-000MZA-1y;
+	Thu, 14 Dec 2023 20:08:09 +0000
+Date: Fri, 15 Dec 2023 04:07:45 +0800
+From: kernel test robot <lkp@intel.com>
+To: Cosmo Chou <chou.cosmo@gmail.com>, linux@roeck-us.net,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, jdelvare@suse.com, corbet@lwn.net,
+	broonie@kernel.org, naresh.solanki@9elements.com,
+	vincent@vtremblay.dev, patrick.rudolph@9elements.com,
+	luca.ceresoli@bootlin.com, bhelgaas@google.com, festevam@denx.de,
+	alexander.stein@ew.tq-group.com, heiko@sntech.de,
+	jernej.skrabec@gmail.com, macromorgan@hotmail.com,
+	forbidden405@foxmail.com, sre@kernel.org, linus.walleij@linaro.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
+	chou.cosmo@gmail.com, cosmo.chou@quantatw.com
+Subject: Re: [PATCH v2 3/3] hwmon: Add driver for Astera Labs PT5161L retimer
+Message-ID: <202312150313.eDD5WEPc-lkp@intel.com>
+References: <20231214060552.2852761-4-chou.cosmo@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231214060552.2852761-4-chou.cosmo@gmail.com>
 
-The iommus and iommu-names property schemas have several issues. First,
-'iommus-names' in the if/then schemas is the wrong name. As all the names
-are the same, they can be defined at the top level instead. Then the
-if/then schemas just need to define how many entries. The iommus if/then
-schemas are also redundant. Best I can tell, the desire was to require 2
-entries for "samsung,exynos5433-mfc", "samsung,mfc-v5", "samsung,mfc-v6",
-and "samsung,mfc-v8".
+Hi Cosmo,
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
-v2:
- - Fix some more cases of iommus-names
----
- .../bindings/media/samsung,s5p-mfc.yaml       | 33 ++++++++-----------
- 1 file changed, 13 insertions(+), 20 deletions(-)
+kernel test robot noticed the following build warnings:
 
-diff --git a/Documentation/devicetree/bindings/media/samsung,s5p-mfc.yaml b/Documentation/devicetree/bindings/media/samsung,s5p-mfc.yaml
-index 084b44582a43..4c3250985ac3 100644
---- a/Documentation/devicetree/bindings/media/samsung,s5p-mfc.yaml
-+++ b/Documentation/devicetree/bindings/media/samsung,s5p-mfc.yaml
-@@ -49,7 +49,9 @@ properties:
- 
-   iommu-names:
-     minItems: 1
--    maxItems: 2
-+    items:
-+      - const: left
-+      - const: right
- 
-   power-domains:
-     maxItems: 1
-@@ -84,7 +86,7 @@ allOf:
-             - const: sclk_mfc
-         iommus:
-           maxItems: 1
--        iommus-names: false
-+        iommu-names: false
- 
-   - if:
-       properties:
-@@ -102,11 +104,9 @@ allOf:
-             - const: aclk
-             - const: aclk_xiu
-         iommus:
--          maxItems: 2
--        iommus-names:
--          items:
--            - const: left
--            - const: right
-+          minItems: 2
-+        iommu-names:
-+          minItems: 2
- 
-   - if:
-       properties:
-@@ -123,11 +123,9 @@ allOf:
-             - const: mfc
-             - const: sclk_mfc
-         iommus:
--          maxItems: 2
--        iommus-names:
--          items:
--            - const: left
--            - const: right
-+          minItems: 2
-+        iommu-names:
-+          minItems: 2
- 
-   - if:
-       properties:
-@@ -144,11 +142,9 @@ allOf:
-           items:
-             - const: mfc
-         iommus:
--          maxItems: 2
--        iommus-names:
--          items:
--            - const: left
--            - const: right
-+          minItems: 2
-+        iommu-names:
-+          minItems: 2
- 
-   - if:
-       properties:
-@@ -161,9 +157,6 @@ allOf:
-         clocks:
-           minItems: 1
-           maxItems: 2
--        iommus:
--          minItems: 1
--          maxItems: 2
- 
- examples:
-   - |
+[auto build test WARNING on groeck-staging/hwmon-next]
+[also build test WARNING on robh/for-next linus/master v6.7-rc5 next-20231214]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Cosmo-Chou/dt-bindings-vendor-prefixes-add-asteralabs/20231214-140823
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
+patch link:    https://lore.kernel.org/r/20231214060552.2852761-4-chou.cosmo%40gmail.com
+patch subject: [PATCH v2 3/3] hwmon: Add driver for Astera Labs PT5161L retimer
+config: powerpc-allyesconfig (https://download.01.org/0day-ci/archive/20231215/202312150313.eDD5WEPc-lkp@intel.com/config)
+compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project.git 4a5ac14ee968ff0ad5d2cc1ffa0299048db4c88a)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231215/202312150313.eDD5WEPc-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202312150313.eDD5WEPc-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/hwmon/pt5161l.c:517:36: warning: unused variable 'pt5161l_acpi_match' [-Wunused-const-variable]
+     517 | static const struct acpi_device_id pt5161l_acpi_match[] = {
+         |                                    ^
+   1 warning generated.
+
+
+vim +/pt5161l_acpi_match +517 drivers/hwmon/pt5161l.c
+
+   516	
+ > 517	static const struct acpi_device_id pt5161l_acpi_match[] = {
+   518		{ "PT5161L", 0 },
+   519		{},
+   520	};
+   521	MODULE_DEVICE_TABLE(acpi, pt5161l_acpi_match);
+   522	
+
 -- 
-2.43.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
