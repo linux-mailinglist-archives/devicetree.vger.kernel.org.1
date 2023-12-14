@@ -1,34 +1,40 @@
-Return-Path: <devicetree+bounces-25215-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25216-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6AA4812AA9
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 09:49:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 245E1812AC8
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 09:52:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4DD70B20D37
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 08:49:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B1D332826C7
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 08:52:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB5FD241EC;
-	Thu, 14 Dec 2023 08:49:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E955224A14;
+	Thu, 14 Dec 2023 08:52:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="H+Tih2AC"
+	dkim=pass (2048-bit key) header.d=gmx.de header.i=linosanfilippo@gmx.de header.b="rbFh6xG4"
 X-Original-To: devicetree@vger.kernel.org
-X-Greylist: delayed 329 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 14 Dec 2023 00:49:05 PST
-Received: from mail-m12780.qiye.163.com (mail-m12780.qiye.163.com [115.236.127.80])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0C6910C;
-	Thu, 14 Dec 2023 00:49:05 -0800 (PST)
-DKIM-Signature: a=rsa-sha256;
-	b=H+Tih2AC1swsa5LpolLueaHwjGrZcQgYvOihmSPLeeLcpCcwbsfl7MzZ+JSwRBd74tlMZ7Fpt9bioIds7vQaYmqF5oGzOxy94LNRn4LQ5dnuTLiF8MxZf8s/VdbY8o7UZ/2PD2I+OBdlnugqv89YfjOOTW9XmUoBtzSDWg3BL3I=;
-	c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=WikvbsWmSBI7ys5pJkbGwLqwVnrtiIg2JwpTBdw98p0=;
-	h=date:mime-version:subject:message-id:from;
-Received: from [172.16.12.87] (unknown [58.22.7.114])
-	by mail-m12744.qiye.163.com (Hmail) with ESMTPA id CEE8B10052F;
-	Thu, 14 Dec 2023 16:42:35 +0800 (CST)
-Message-ID: <090a7670-6997-4be3-99d7-24f67430a16c@rock-chips.com>
-Date: Thu, 14 Dec 2023 16:42:32 +0800
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 129F4A0;
+	Thu, 14 Dec 2023 00:52:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.de; s=s31663417;
+	t=1702543935; x=1703148735; i=linosanfilippo@gmx.de;
+	bh=nVGZXwaLHN7v4BUnHdEIrojj3cfgCeXb8jS185agoEo=;
+	h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
+	 In-Reply-To;
+	b=rbFh6xG4CahoZaL/sMgl/3if2tf0TOBiPvD5QcPYaPhBQJa7G4E3164qwAP8xTor
+	 lP7SQ9HoO67Y5Yu0Ak6bqCnFm6/yn9aORt4u+Rhx7RXjC7MCAwgD/f9MUY0UBPcIb
+	 DXUomy83R5yO4VFYeTLtPh2Pbz9o4xrWwhPLMQTflGtPQJzjjigN6/qCnKPMm5enH
+	 2BDEDL0c4c2QrWErfGFjJjkhynSJ6iKpukgwwBf0arIjeWN59i9FsRKu2MzSmSgRh
+	 KLcQ3XaxSKNvv0rqYxHQ8t/l4AzN1zjeJPfy3oNQpEHUQ3RBUss3TWLA9f5j2dtt3
+	 BSAAFsYy/3KZBYRWww==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.2.42] ([84.180.3.177]) by mail.gmx.net (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MKbkC-1quwfz0BTQ-00L1Zg; Thu, 14
+ Dec 2023 09:52:15 +0100
+Message-ID: <d4a7ab35-cb81-4681-84bb-703f2d63fe43@gmx.de>
+Date: Thu, 14 Dec 2023 09:52:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -36,114 +42,108 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 1/7] clk: rockchip: rk3588: fix CLK_NR_CLKS usage
+Subject: Re: [PATCH 1/2] dt-bindings: serial: rs485: add rs485-mux-gpios
+ binding
 Content-Language: en-US
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Kever Yang <kever.yang@rock-chips.com>, Heiko Stuebner <heiko@sntech.de>,
- Rob Herring <robh+dt@kernel.org>,
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+ Lukas Wunner <lukas@wunner.de>, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, andy.yan@rock-chips.com,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
- kernel@collabora.com, Elaine Zhang <zhangqing@rock-chips.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, linux-clk@vger.kernel.org
-References: <20231213185114.47565-1-sebastian.reichel@collabora.com>
- <20231213185114.47565-2-sebastian.reichel@collabora.com>
-From: Tao Huang <huangtao@rock-chips.com>
-In-Reply-To: <20231213185114.47565-2-sebastian.reichel@collabora.com>
+ Conor Dooley <conor+dt@kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ "brenda.streiff@ni.com" <brenda.streiff@ni.com>,
+ Crescent CY Hsieh <crescentcy.hsieh@moxa.com>,
+ Tomas Paukrt <tomaspaukrt@email.cz>
+References: <20231120151056.148450-1-linux@rasmusvillemoes.dk>
+ <20231120151056.148450-2-linux@rasmusvillemoes.dk>
+ <20231122145344.GA18949@wunner.de>
+ <3b8548b1-b8a9-0c9e-4040-5cfda06a85c6@gmx.de>
+ <ec66d25162de4cbc92720df1e7008fe8@dh-electronics.com>
+ <5c140498-69e3-4187-8703-db0c41e7ca89@gmx.de>
+ <fe28eb93-daa1-41af-a005-f21aa87e1984@gmx.de>
+ <ZXcJr4VS_uGr_6TV@smile.fi.intel.com>
+From: Lino Sanfilippo <LinoSanfilippo@gmx.de>
+In-Reply-To: <ZXcJr4VS_uGr_6TV@smile.fi.intel.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGUNJSFZMTx8aShlIQkkfGBpVEwETFh
-	oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSk1PSU5JVUpLS1VKQl
-	kG
-X-HM-Tid: 0a8c677df184b217kuuucee8b10052f
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NSo6ITo*UTwzPzICCipNKRgC
-	DyhPCjVVSlVKTEtJTk9ISE5NQk5LVTMWGhIXVRMOGhUcDxoUOwkUGBBWGBMSCwhVGBQWRVlXWRIL
-	WUFZTkNVSUlVTFVKSk9ZV1kIAVlBTkhOSTcG
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:Il2EdiqegOFeHXIgLDNacYB57UTBj/2H78z8fR1nAnaR3vju0uW
+ 6wIQlPcrsViy5HQGYy5nBtZE5YIwzfm9uh0syGDS8UF/tbVNz101FncwoIKLt9y+fYl49jF
+ jkALz49RAkvCKi6IseMcXFvMhviTdWBYqX89Id7xPh8IuYgOLSqI76R3OSd8xwuE08X/wJt
+ /0YA6Iu5jc7vowk6NxGrQ==
+UI-OutboundReport: notjunk:1;M01:P0:y73/cztHYiE=;pUtBUjJgBrX8akDqFkq++QJ48kp
+ lHZhpzLI/m7EARbZ02k5hbxdJNasRxaPpK4cgYi46oUmfrNw4oORjpEVHsne8ZzeeZk1wYNHX
+ 3sfXXeIWHkRVQL/Cw81l53RRWdYX24hAKERtjrGWOgQO/Ayt/3IPVQJqK3j5WucVHhDuVMekt
+ TAF2IxLK8VfI0K8in9whGxhu7jMWdI0brXwvOlREcJILmfPkQxYmQJsgM3+nB7zvGIEdgzNVX
+ awv4lAhG4e7AaUBJl0NenNL9SarGKZJnVlrd+klCCmEpIZnBgCDSfdPxwahVTTK50/D1H16aL
+ F1y0nXJg0qI5S5Ftan6vdagZZ56rbWsCotVwIW35ieADZ6NGmyUeLgq7tFsC3ziRYUy+xh2ID
+ 2EtipEkI3eeJb2bbwxyOXzvHLeXQxGYybyQ7FnYKBno3uzCJIb7KWIDCR1nwVoFM4jvjuhjMY
+ +4k39lJV2d/qTcB3p+FDIXNO6HRUpfl3ku5KpgHNt9zHQUYrqfuHt2mszowujOApFvRMfQSRK
+ 1PUX+FAW0QZuEyrd8i+XCjjBe7uFjNT80SiiDAaQCP9bPaxLy9j4nMNswfq+OQoXNiP0ZlDeS
+ QVnRUuI509Tx+6BXDQb5yyWkXuEhCPnLLQ4EX2vzIEX3ofb0HpsyDaXnR6SODZehirtdjU8wP
+ O6KVayLdnwg20/7gBLC59v7Ir6f9WSFcSQowWDVQXg0RMEfdkpsdK1pz9x0KoyExyppqtsebs
+ LMVzDpqrWnUasRZKW9bI1QFPbAkV+UY/GmwR07yP3U6AHuMLrNQW0xvnxWLjFXKaEcwvjf43g
+ Xenn/MLgq9Gvz6iP+scHKpIS0WR7JiXooUk7zRm6eqSRUfzkz+XqCpSI8gKGOLkWc20HKf3VG
+ zipRw7ljepD9JEZlgZi5DG6dVpg3C4T+GovEo1+aQIkQ34B1X7yMnp5cJWe1Uy/tvDUo3vCy4
+ rYNq+VTcnrqCXvTjEX0SZKlWjL8=
 
-On 2023/12/14 上午2:46, Sebastian Reichel wrote:
-> CLK_NR_CLKS is not part of the DT bindings and needs to be removed
-> from it, just like it recently happened for other platforms. This
-> takes care of it by introducing a new function identifying the
-> maximum used clock ID at runtime.
+Hi,
+
+On 11.12.23 14:07, Andy Shevchenko wrote:
+> On Sat, Dec 09, 2023 at 12:47:47PM +0100, Lino Sanfilippo wrote:
+>> On 06.12.23 16:42, Lino Sanfilippo wrote:
 >
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> ---
->  drivers/clk/rockchip/clk-rk3588.c |  5 ++++-
->  drivers/clk/rockchip/clk.c        | 17 +++++++++++++++++
->  drivers/clk/rockchip/clk.h        |  2 ++
->  3 files changed, 23 insertions(+), 1 deletion(-)
+>>>>>> Crescent CY Hsieh (+cc) is in parallel trying to add an RS-422 mode=
+ bit
+>>>>>> to struct serial_rs485:
+>>>>>>
+>>>>>> https://lore.kernel.org/all/20231121095122.15948-1-crescentcy.hsieh=
+@moxa.com/
+>>>>>>
+>>>>>
+>>>>> That new flag was suggested by me instead of using SER_RS422_ENABLED=
+, which
+>>>>> would mostly be redundant to SER_RS485_ENABLED.
+>>
+>> A cleaner solution would probably be to not handle RS422 with the RS485=
+ settings at
+>> all, but to introduce another set of ioctls to set and read it.
+>>
+>> An own RS422 structure like
+>>
+>> struct serial_rs422 {
+>> 	__u32	flags;
+>> #define SER_RS422_ENABLED		(1 << 0)
+>> #define SER_RS422_TERMINATE_BUS		(1 << 1)
+>> };
+>>
+>>
+>> could be used as the parameter for these new ioctls.
+>>
+>> Any comments on this?
 >
-> diff --git a/drivers/clk/rockchip/clk-rk3588.c b/drivers/clk/rockchip/clk-rk3588.c
-> index 6994165e0395..0b60ae78f9d8 100644
-> --- a/drivers/clk/rockchip/clk-rk3588.c
-> +++ b/drivers/clk/rockchip/clk-rk3588.c
-> @@ -2458,15 +2458,18 @@ static struct rockchip_clk_branch rk3588_clk_branches[] __initdata = {
->  static void __init rk3588_clk_init(struct device_node *np)
->  {
->  	struct rockchip_clk_provider *ctx;
-> +	unsigned long clk_nr_clks;
->  	void __iomem *reg_base;
->  
-> +	clk_nr_clks = rockchip_clk_find_max_clk_id(rk3588_clk_branches,
-> +					ARRAY_SIZE(rk3588_clk_branches)) + 1;
->  	reg_base = of_iomap(np, 0);
->  	if (!reg_base) {
->  		pr_err("%s: could not map cru region\n", __func__);
->  		return;
->  	}
->  
-> -	ctx = rockchip_clk_init(np, reg_base, CLK_NR_CLKS);
-> +	ctx = rockchip_clk_init(np, reg_base, clk_nr_clks);
->  	if (IS_ERR(ctx)) {
->  		pr_err("%s: rockchip clk init failed\n", __func__);
->  		iounmap(reg_base);
-> diff --git a/drivers/clk/rockchip/clk.c b/drivers/clk/rockchip/clk.c
-> index 4059d9365ae6..043458b7c579 100644
-> --- a/drivers/clk/rockchip/clk.c
-> +++ b/drivers/clk/rockchip/clk.c
-> @@ -429,6 +429,23 @@ void rockchip_clk_register_plls(struct rockchip_clk_provider *ctx,
->  }
->  EXPORT_SYMBOL_GPL(rockchip_clk_register_plls);
->  
-> +unsigned long rockchip_clk_find_max_clk_id(struct rockchip_clk_branch *list,
-> +					   unsigned int nr_clk)
-> +{
-> +	unsigned int idx;
-> +	unsigned long max;
+> I have (maybe not so constructive) a comment. Please, at all means try t=
+o not
+> extend the existing serial data structures, we have too many ones with t=
+oo many
+> fields already. For user space, though, one may use unions and flags, bu=
+t for
+> internal ones it might be better ways, I think.
+>
 
-smatch report warning: uninitialized symbol 'max'.
-And make sure this function return correct number, for example, when nr_clk == 0.
+Ok, thanks. This is still a valuable information. So what if the above str=
+ucture (serial_rs422)
+is only used as a parameter of a new TIOCSRS422 ioctl and only internally =
+we set a SER_RS485_MODE_RS422
+flag in the serial_rs485 struct?
+So we do not have to add something new to uart_port but also do not expose=
+ the mixture of RS485 and RS422
+settings within the serial_rs485 structure to userspace.
 
-> +
-> +	for (idx = 0; idx < nr_clk; idx++, list++) {
-> +		if (list->id > max)
-> +			max = list->id;
-> +		if (list->child && list->child->id > max)
-> +			max = list->id;
-> +	}
-> +
-> +	return max;
-> +}
-> +EXPORT_SYMBOL_GPL(rockchip_clk_find_max_clk_id);
-> +
->  void rockchip_clk_register_branches(struct rockchip_clk_provider *ctx,
->  				    struct rockchip_clk_branch *list,
->  				    unsigned int nr_clk)
-> diff --git a/drivers/clk/rockchip/clk.h b/drivers/clk/rockchip/clk.h
-> index 758ebaf2236b..fd3b476dedda 100644
-> --- a/drivers/clk/rockchip/clk.h
-> +++ b/drivers/clk/rockchip/clk.h
-> @@ -973,6 +973,8 @@ struct rockchip_clk_provider *rockchip_clk_init(struct device_node *np,
->  			void __iomem *base, unsigned long nr_clks);
->  void rockchip_clk_of_add_provider(struct device_node *np,
->  				struct rockchip_clk_provider *ctx);
-> +unsigned long rockchip_clk_find_max_clk_id(struct rockchip_clk_branch *list,
-> +					   unsigned int nr_clk);
->  void rockchip_clk_register_branches(struct rockchip_clk_provider *ctx,
->  				    struct rockchip_clk_branch *list,
->  				    unsigned int nr_clk);
-
+Regards,
+Lino
 
