@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-25181-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25182-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB4E1812993
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 08:42:19 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F138812997
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 08:42:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 446D62820F0
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 07:42:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1C650B21267
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 07:42:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C24CF12E52;
-	Thu, 14 Dec 2023 07:42:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3747512E69;
+	Thu, 14 Dec 2023 07:42:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QvMP9wP9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ud4CNBpR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 008659C
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 23:42:10 -0800 (PST)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-551e6b99490so2322678a12.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 23:42:10 -0800 (PST)
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7509CB9
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 23:42:25 -0800 (PST)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-552231d9c1dso1957563a12.0
+        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 23:42:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702539729; x=1703144529; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702539744; x=1703144544; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=eMElSWC9iwqGvBmo8uWjNFZojYiZXvN/GQzRbqzsr2g=;
-        b=QvMP9wP9q4xuj3E/AJ+wqlySet6YjzMdjlhf23iNCF1H3bWhrsXllevrt4T2391f1l
-         rhbZA5j/1/NA4xLWrXDD1O6VD4IWtJkB1FlB9cipqgdQVpv6kD5MBsN1NkypSnV8TYgq
-         yTN4SX56jEDcyigr1CxYbKFVuRehWEX0mZPhKSZJvU83G4HXlNgSwX5l0jfua6bO2FZm
-         lOi9rkdfpaIw2SLDleSj2My6UEUppQixJCVTHuysVC4IB0qGIxaayXawo7A76YvBtjgp
-         hgD4d0QlTaOH7V+gjlenLyi31yVQ6iEk6gWubWUw31gQtvP4/oD22Y6GlAGGAuYMITWP
-         HLvQ==
+        bh=Z6d6GcNikJGiR5SToV5VakGHdIkVh2njpCHZXsBES18=;
+        b=Ud4CNBpRaPv4/fAd/u9FEkPPVMBvRPAohetGQSvgy8k+dYg7lHzjw6MQ/1jPldbdYU
+         ++yhIm/UYmr7NEca02d0e+v0yKlMJnK/RVCJNt0N/5MIskU4SJi5ehk9aJw1fxEUpZTV
+         NOi4m1N8JNoB5yXMrsYgX1kEamcVCTeUvIQE2aO6P2PXqHtnIldmT6XkxAOXOjOtOKb1
+         N28BSnmc8OT3inIZOl9//2mNG+XhqtdPuVXdyEwIGHLgAY+mOj8C0v/S+mHR10lwaeW2
+         VKk5EKEDA9dGuhn0bw0hdX32MaZg18jQSoKt6Q6TtC4kGu183BMznuRJZYOkQdLPAAzE
+         k8eg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702539729; x=1703144529;
+        d=1e100.net; s=20230601; t=1702539744; x=1703144544;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eMElSWC9iwqGvBmo8uWjNFZojYiZXvN/GQzRbqzsr2g=;
-        b=nprjBsg6Lce0w79F30yo1YKit1FNaUBFBrBGcswxNLRRpNc3C9UtaD6NgWtqhfELK5
-         aLyhBAh3yWcDComi3mwLYaBFW45cqzLksccsNWDWF7t1Ocqoh7l4m+gMNcbAdKdc96GR
-         mET3GLg3aZrMcYgfB24opVzw2lwgVdabwNqgDMfTG/4veWa2DrueDacPhIb+w/SYJJN4
-         KbSKrULQYOqhdQ2oAbhIfswp6U09CKJWWKqqakhaNYgMgAYA5cCARfAVo39KC5gKARAj
-         mSSwfVfMi0RTjGVapOH0WojYDvfYOEsud5hKTDWZiFC6tLmnvIMwdCryhknHwlBzGPGI
-         YjmQ==
-X-Gm-Message-State: AOJu0YyCOMRKjfLcP0vU0gKe92yZSpm0Dnk1+5r8pnWJBeuEhX5PRRsK
-	bnLd0kjwRdcM6+kmIsjYvkay4w==
-X-Google-Smtp-Source: AGHT+IHB62sUmG4NZm7gqH7rBQdPOt++ROP30/V+3OFwfrVoKGceiRJailrXbaDFjD2RBDlmS/axZA==
-X-Received: by 2002:aa7:cf83:0:b0:54c:4fec:f9 with SMTP id z3-20020aa7cf83000000b0054c4fec00f9mr2533739edx.136.1702539729402;
-        Wed, 13 Dec 2023 23:42:09 -0800 (PST)
+        bh=Z6d6GcNikJGiR5SToV5VakGHdIkVh2njpCHZXsBES18=;
+        b=TYwVQjQVUDIgV8lsbHbMkWekau9a2vK8wAqV6s98pQE6ZFgOzs1ZnxVof4UVYMu1/u
+         0xjTzwmAh9BcXekctOJMlXzt6RkQy7l3esrvj1XDcfPgnyBlCNLPkqqvHkORQUVDaI0z
+         qxaf62X2KMVQ4RU0b/RXo2rNNQyg70eCmbcL5QbcDNODgPq8DUiBkSp/wj9wh4hrYYZK
+         simVyc2STJY8YeCtKheIkn0cP5PL8jt9DaZmAcn8faJcBlh01L60uVWurHOdyzId+/xT
+         Ngx9abUqD8U4nWTeqZGLfN8KEqOdissYD0d/RwSPN/W3g+5kzPuZwkP3uk7HelXmFAKb
+         ESfQ==
+X-Gm-Message-State: AOJu0YyHvevGZXvltFFy3ufbCeaf8fL5J60NJgzKGwbEH4xbFBd9gx/R
+	Q4791lwLWAyBIcNHNyC/pwfXTA==
+X-Google-Smtp-Source: AGHT+IHW+dTuQ60ZFYJs7+lO9MU+ZWixbtRdX10A8hY4pf0w2xRnOU4FLG857hGBeWT0VQk0979/jg==
+X-Received: by 2002:a50:8ad7:0:b0:551:f959:c2b4 with SMTP id k23-20020a508ad7000000b00551f959c2b4mr1210424edk.79.1702539743939;
+        Wed, 13 Dec 2023 23:42:23 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id ew12-20020a056402538c00b00552691fc7f9sm458868edb.66.2023.12.13.23.42.08
+        by smtp.gmail.com with ESMTPSA id ew12-20020a056402538c00b00552691fc7f9sm458868edb.66.2023.12.13.23.42.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Dec 2023 23:42:09 -0800 (PST)
-Message-ID: <d6cbc405-6113-4d6c-a9b9-8f5a32159963@linaro.org>
-Date: Thu, 14 Dec 2023 08:42:07 +0100
+        Wed, 13 Dec 2023 23:42:23 -0800 (PST)
+Message-ID: <1fbbff6b-2e49-4ee1-ab7b-3ff490d3636e@linaro.org>
+Date: Thu, 14 Dec 2023 08:42:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,17 +62,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] media: dt-bindings: samsung,s5p-mfc: Fix iommu properties
- schemas
+Subject: Re: [PATCH] dt-bindings: mmc: sdhci-pxa: Fix 'regs' typo
 Content-Language: en-US
-To: Rob Herring <robh@kernel.org>, Mauro Carvalho Chehab
- <mchehab@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Aakarsh Jain <aakarsh.jain@samsung.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+To: Rob Herring <robh@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-References: <20231213224227.2191897-1-robh@kernel.org>
+References: <20231213224219.2191721-1-robh@kernel.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -118,74 +115,20 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231213224227.2191897-1-robh@kernel.org>
+In-Reply-To: <20231213224219.2191721-1-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 13/12/2023 23:42, Rob Herring wrote:
-> The iommus and iommu-names property schemas have several issues. First,
-> 'iommus-names' in the if/then schemas is the wrong name. As all the names
-> are the same, they can be defined at the top level instead. Then the
-> if/then schemas just need to define how many entries. The iommus if/then
-> schemas are also redundant. Best I can tell, the desire was to require 2
-> entries for "samsung,exynos5433-mfc", "samsung,mfc-v5", "samsung,mfc-v6",
-> and "samsung,mfc-v8".
+> The correct property name is 'reg' not 'regs'.
 > 
+> Fixes: ae5c0585dfc2 ("dt-bindings: mmc: Convert sdhci-pxa to json-schema")
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
 
-...
 
-> -        iommus-names: false
-> +        iommu-names: false
->  
->    - if:
->        properties:
-> @@ -102,11 +104,9 @@ allOf:
->              - const: aclk
->              - const: aclk_xiu
->          iommus:
-> -          maxItems: 2
-> -        iommus-names:
-> -          items:
-> -            - const: left
-> -            - const: right
-> +          minItems: 2
-> +        iommu-names:
-> +          minItems: 2
->  
->    - if:
->        properties:
-> @@ -123,11 +123,9 @@ allOf:
->              - const: mfc
->              - const: sclk_mfc
->          iommus:
-> -          maxItems: 2
-> +          minItems: 2
->          iommus-names:
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Also here -> iommu-names
-
-> -          items:
-> -            - const: left
-> -            - const: right
-> +          minItems: 2
->  
->    - if:
->        properties:
-> @@ -144,11 +142,9 @@ allOf:
->            items:
->              - const: mfc
->          iommus:
-> -          maxItems: 2
-> +          minItems: 2
->          iommus-names:
-
-Also here
-
-> -          items:
-> -            - const: left
-> -            - const: right
-> +          minItems: 2
->  
 Best regards,
 Krzysztof
 
