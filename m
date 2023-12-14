@@ -1,362 +1,156 @@
-Return-Path: <devicetree+bounces-25606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25608-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3520813D78
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 23:48:46 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39FC5813E02
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 00:08:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A06A2810B1
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 22:48:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A3A04B21DE5
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 23:07:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DB826D1B6;
-	Thu, 14 Dec 2023 22:48:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E0A066AC4;
+	Thu, 14 Dec 2023 23:07:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WDEaU5DN"
+	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="m2d+qd37"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2108.outbound.protection.outlook.com [40.107.114.108])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D815697AB
-	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 22:48:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2c9f72176cfso297001fa.2
-        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 14:48:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702594107; x=1703198907; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=yZZxZdtOI4FdgO9A4qaLtAUNeS5rm+jyNaoNzPNaDEA=;
-        b=WDEaU5DNk6aBitXCuc09bsgv2107Pz9JuxvrD02kZC1xWGUWbmmJedPompzrVau9+s
-         FaC2xn2Qm2BISaYUN5/W+YR0KxcbBDo4lecvCg/AD3DVV1jUo4lf8X5VtQXQol8Iluxt
-         FscFXqflwiHE6WV52BmpdO7zmWoJzfqhYs8Dy1vL+Ygek0L0NpCnJ4aa4kSBiJjE+8Zi
-         ZJcge1d8rrdaz5hp0TKPIuTqnwzzMlmlu7LB0qdSFFNRk1lnHqqye2OkMaVeDDHgMFx9
-         TPX73QAnXsBx84rv4GD6w+r2ZJSCPPIycvFsy1hzG2Sw4aa+K+S8pIu071QVpS1PaWpK
-         g8mw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702594107; x=1703198907;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yZZxZdtOI4FdgO9A4qaLtAUNeS5rm+jyNaoNzPNaDEA=;
-        b=kkt3paezItW6Gg3MH08MepKugAA64E8sJe5pP7WoOSxxU6VH2wxy78izoC9Ph7NZbP
-         3cDioLfMc9HpvGx66iG3YAli5Lkfp21Q/csESzGJAjpuJnhDxyRSMstiyqVc+pKVqKHM
-         aDZ5LBowJ0LDowbM9s55nA7AGvEwUwrJLsHvNqB4SqaszaeT4BkYFBuy7DCoG7Pxb/qg
-         sFHY4fnCBjngjuSZTgKCwfRd6B9oIEjHXfzabYDY76roqTOzud6Dmy1Msy1EVkRhxnWK
-         ZK8Pg5XC3HmRD2xRNDslNQs1enBTFvxy/Fo05DZFipyH6v+aYgEMnLg9hs459xpY/Rpe
-         aJSw==
-X-Gm-Message-State: AOJu0YyR+8yQyjYMMT5PYmmXyWPa3Tvdp7+WlkS6eVPpXlouNxpo+g0D
-	7PAzdqrOS7T1HEfNLVz1o/NUtA==
-X-Google-Smtp-Source: AGHT+IH1JT+oH81WhvjxPgVA4QXVnuxlCXReh277fuu8sGn2FL8qjypxC6f1wPQG2QLHI83aiIPJGw==
-X-Received: by 2002:a19:6404:0:b0:50c:a91:6186 with SMTP id y4-20020a196404000000b0050c0a916186mr2205389lfb.35.1702594107310;
-        Thu, 14 Dec 2023 14:48:27 -0800 (PST)
-Received: from [127.0.1.1] ([79.115.23.25])
-        by smtp.gmail.com with ESMTPSA id vq6-20020a170907a4c600b00a19b7362dcfsm10068118ejc.139.2023.12.14.14.48.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Dec 2023 14:48:26 -0800 (PST)
-From: Abel Vesa <abel.vesa@linaro.org>
-Date: Fri, 15 Dec 2023 00:48:13 +0200
-Subject: [PATCH v3 2/2] arm64: dts: qcom: x1e80100-crd: Enable more support
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F3C5224DF;
+	Thu, 14 Dec 2023 23:07:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bEdC9eEBRK+1FSOb8Sl6MJfpU4SUF/j81kTCwdhiJjMG7U5ybhPaLUN+GYIEx4Q5GqqwKoPG6iIkN3SXGxAAeMJEHy+9Npw5pPxNkcemF7T93ivHTOBU4VLcyDsjFzZWW/XPQgzVTAfENGjZ11UV6k8vhHo2wHugOzRsuTnQVfekDIUz12qhvwgueMa5Y2rCVX8VqxtypoloJREm4Jsn3Ok1dWlhJxQUdUkhMjTZRWddHWcoNPpbPn1i1wlaxOYgdoEfdbWDSMwtxUstT5tJWFf5/GbaUnNoUxS7r7EdvzHy8HWSJQbPqUDh0Oilyczt9BG3zJSEAzl4vy71AOGsNw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LP0T5GixPraMcgzK031XcBJ9qzFZ4O9KGF1Tlntxv2I=;
+ b=QvW4Xo2JIUXHvJXdha2dxoiu1sQzlbyLD4mKBobJ9Yrheh1hchHkGgMkuiswq381GIZwX/7lRFjdyMVIxEDXMvWIsmPMfXtDMAVrjm8GS6Ykhd7twe9+h29+4eyJOO78f4eLOfqP3+PRg+2q5MiuJKwxTLkksYbyjaiZokqXHSYifWogLUZVhwQqJM6UGv+bjQfozaMh4y78qJsUsgp4BixGk5Tzio9J50qQ95cSNPYWKhhRUXQYqSom9wD2sPHEco7zBrn4BPQymVDw+DypJLECMaN6BY5vsXIONv6DqEuGvpQ8bEqesGxLFfwNINRt7yOrt2I1Que0gSFnSoh1nw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LP0T5GixPraMcgzK031XcBJ9qzFZ4O9KGF1Tlntxv2I=;
+ b=m2d+qd37qNk+iyEYi6uvJJNbrjJHq4k9pCh9vtfqM2s9olDAo5QrAio4XKNUnS/cLs7+71JaNAv94brz/afQSmI6D3brBQ83DDBoW1DbDAeqr78da7CVIKew/7auCLfeAK4eXAX71wbOki/HPsj/mhD/9djTIRl7D/5NS2LF3Gk=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11) by TYAPR01MB5660.jpnprd01.prod.outlook.com
+ (2603:1096:404:8059::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7113.10; Thu, 14 Dec
+ 2023 23:07:49 +0000
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::5732:673b:846c:ed92]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::5732:673b:846c:ed92%4]) with mapi id 15.20.7113.010; Thu, 14 Dec 2023
+ 23:07:49 +0000
+Message-ID: <878r5wpem3.wl-kuninori.morimoto.gx@renesas.com>
+From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Frank Rowand <frowand.list@gmail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Aymeric Aillet <aymeric.aillet@iot.bzh>,
+	Yusuke Goda <yusuke.goda.sx@renesas.com>
+Subject: Re: [PATCH v4 4/4] drivers: clk: renesas: ignore all clocks which are assinged to non-Linux system
+In-Reply-To: <CAMuHMdUx-nm6k9LXbUJAJ78ChFYHVcmGcoz0YhWyos7h99R4wg@mail.gmail.com>
+References: <87wmtlo2zs.wl-kuninori.morimoto.gx@renesas.com>
+	<87r0jto2yq.wl-kuninori.morimoto.gx@renesas.com>
+	<CAMuHMdUx-nm6k9LXbUJAJ78ChFYHVcmGcoz0YhWyos7h99R4wg@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 Emacs/27.1 Mule/6.0
+Content-Type: text/plain; charset=US-ASCII
+Date: Thu, 14 Dec 2023 23:07:48 +0000
+X-ClientProxiedBy: TYCPR01CA0046.jpnprd01.prod.outlook.com
+ (2603:1096:405:1::34) To TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231215-x1e80100-dts-missing-nodes-v3-2-c4e8d186adf2@linaro.org>
-References: <20231215-x1e80100-dts-missing-nodes-v3-0-c4e8d186adf2@linaro.org>
-In-Reply-To: <20231215-x1e80100-dts-missing-nodes-v3-0-c4e8d186adf2@linaro.org>
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>, 
- Sibi Sankar <quic_sibis@quicinc.com>, 
- Rajendra Nayak <quic_rjendra@quicinc.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4645; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=ZkrfN1FTbzStJDMu0UDO2sPSgsYC4jgS7AcwxL8eCCs=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBle4Y29mnLUhYNij8eqg08tdp4NLws76zNCuaWA
- CMpFGmuDWSJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZXuGNgAKCRAbX0TJAJUV
- Vtz4EACsF/qgxwO/ftCLBhIBeFQTwxelzJzBcp6DPncWE8sy/KcBeCRX0YkmPXy2pgXVpjdvWa8
- DtdffM7yIZm0BjwvDz50vx5LMCsVTd4pQ4ogebW2OM6TCxruMwJTbjqTMXCdup60e6tJuNJBHWI
- 14WJC0aek0Wv2vnYO1vjtO7bvX4fNkxQ5h3lvyUPA+wNiz+OrNYWCulRPOuYJ6qwnowFgredkcW
- DhBvu+DKuADvSWSDMZ22sXu5jh1M5tkST0OvADHOyGpGbBOU1orXMSolfS81O+BzCt+kvsKWu2M
- Mgo82oJGeTr1n4PzG3jF9ziOti0yKAcjXMY9JSVDuY7RWXKVlbn9nAMfDzKzaIiajmj7m7YLSDO
- ODtIYPN2UVxwne7z9/zOsPdA6ZO1Uoqf/ckaHIFbJSHcpCRRX+NSpM44m/ipyqMglIGFLZ5Xcgy
- yz/pMvDUiDy73lHIBFoAW7YRZ9f92gwFqZvVSNZf4CN2lWyE2kSqQ4l8ulZ3RA6WxD4ibrQX6W9
- SwnUSHbnWEupjiBRL0t1gHoxjPlJIkvHriMT8ROjmTLGbUBQmprMtu/vQUzyZxE7OwSslraAxo9
- FS7EDTlp8TJYm7X8HxX2k5SC/Hx1POud1E///ev6Cvifqv/TlbhHSG4HDPHSjxFpE2Rw/zbkJVi
- wcuGo6TCtR9t4BQ==
-X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|TYAPR01MB5660:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1e917c6c-04ab-4105-2bd1-08dbfcf97dbf
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	miD7tj/trni0V/ReaMQ+17cqHYV5seM3+wmtX/jwUAe8pMhgC4UeFtW6jy+IRWBqLI7tnAMoKvzPTXGL2SEQa9/0JKEa0Mu/1UcteZuJJQeH4J0TmCCQxbIbVvU0Gki7pKZZy18/tFrck0xHYstGG1d9f/xBEYsV1ET+UrbiFH/U1cZXqv3wK3vRSwkell7Sk1QZoh/VSB+D1Z2bRbVD3uF7PvdAUjN/fX9x09nFsUjaYs+a9zxjfmgSWrRSTPHkq0xV2sKM4/3uVCVLKtoWKresh7bcURXYTTmxhldcGIXkl/ib6MmVsb+RQ33fCXGHO/mF+MNsuptJFHnNUIwzjZgjXzWfV9AKw0ihAFPqPe4lM5Vhqx1tUTa4V77I6AWCCNkUP/MimwPWzqjvHQ6LuBtz36Si9FF9kJymJRvPwW+gpLLSakor3SedUFcoGhgYNcy8bHcRryfs8igldZjD264+pdRPvO/MeC+M+Lnmo7Ux3CzskHdIPCKDBhpHgAhU3svgAzuYClIUnMWIUiK2Wn4Np/RKnE1LJjnxi8Use1xmbCQcT5c1PV9wbo6luN0jTxU/z7nfyFvilkrgmMS7S9HLj5uR4sx6V3ZG5xvts5+VKzj8fOtCa7mdclDV5LLq
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(346002)(39860400002)(136003)(396003)(366004)(230922051799003)(64100799003)(186009)(1800799012)(451199024)(26005)(2616005)(107886003)(6506007)(52116002)(6512007)(5660300002)(7416002)(4326008)(41300700001)(2906002)(4744005)(478600001)(6486002)(8676002)(8936002)(66946007)(316002)(6916009)(54906003)(66476007)(66556008)(36756003)(86362001)(38100700002)(38350700005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?/0RtO5jhlfjQJaCUO5M2pTtyrrNbOKjJL1kaVMFN7boN9iSMDztMgmwZfx/B?=
+ =?us-ascii?Q?XgdMnQ21ni0jIN6oDAyfu9kVwJWWOjlcP+pzyTIsBvT1Z95DPmTfIduAHMrh?=
+ =?us-ascii?Q?EzzefVOf6ozIwNyL3Jzp5bj0tNLlYMfte2U7N0/Ttzau7eCiigiBp8aq37zW?=
+ =?us-ascii?Q?TCgCg1839t4cuYWi+N9z/JlvH+bGO9XLc6KkOPwRswbLQN+nnxg3q1caUbaC?=
+ =?us-ascii?Q?/YZyqwQAfXAbS7BIQ3B53Hln/Bxuw1AEWcMh97snKrKe+OWxYXJJja1nZ7Ww?=
+ =?us-ascii?Q?oc1qRtvhYSDFHTbeNyiuYhV/ZNADEQwH/ImJ2pmgwI9n4Kvf0Spe5lIhVly9?=
+ =?us-ascii?Q?34uHynoXXeCFJYsOksXrdiO6heZYxm7qzTKwUlpFZYFqbCcalQMw5zRXweFx?=
+ =?us-ascii?Q?KDVkIf0+TwFb5uJxsxQ2yWZseFvCzf9fBU+mFNyFpTY7hmhSj1HuRGC4YcVI?=
+ =?us-ascii?Q?DSBlk5rKPXh/7PN0Wy99lkrbF1V46YHnP3sz4utXKlf3aKzJvxrI8eRofQa1?=
+ =?us-ascii?Q?cxMvHlcA1A0/ASde5JWj7/2EN6C0Q+UkpfERksFHIRuJkGLgypi8Ly6c716d?=
+ =?us-ascii?Q?EptxOgwigdIOoJS5o0fVc1Jqt87PziQmr26dT9wthHk4d19r4LKdnw2kThqj?=
+ =?us-ascii?Q?4jaWM3F+kdS0RrfkYk0pRUN71PFHs+lRhm1zZfU1+BG/vbr/NI2TaoOgro+Q?=
+ =?us-ascii?Q?UpBHoDbNiEYX6JRFp60tHAH4zdWTQJsMWXD825yEElcIejMkF8UqaQSBk49N?=
+ =?us-ascii?Q?K3lYLw8sjIwRpoDspDi7fY2rg3h7hRQ665dtOUby/ARea4F4UBjmMYhkUpF6?=
+ =?us-ascii?Q?MC8kPMhmMIt6WJKScIv5rmqsZcS5lM81ZrS4gZQZeji7CcccDmVuxzNYdsUj?=
+ =?us-ascii?Q?kJbQOxqsy4KmG5Og9d64tvf/GShIWD144Ms/Uw/C9fT8eVgwOU9rgy6uyYoD?=
+ =?us-ascii?Q?TfZbPJgVWLQxwlf2lFfLXYNLWx2b6p7t9urMoJ/kUbj9uSnSRk1WZgU0Ddc/?=
+ =?us-ascii?Q?XbHI8uj7Pknr4cMARBRhj5diX/fHa/mx6Bx+4bOsREPpCTPJxquDQfujyn4s?=
+ =?us-ascii?Q?oGnLiq8aecaD7y7pK/MnrNkKv0GCg7U7C4q8See/JcSjRxrF6rPXg1IHCWwf?=
+ =?us-ascii?Q?h1ftqOC43GouoMZGSAI6aBishfZ1FiqBtpZ0XYvFKUJf7L0gxizv/FoHQxwL?=
+ =?us-ascii?Q?vLGQMdnFDV/XicAAfMg8gpLBJlsjSkwGP5ad5AqOhelAD953upmPmG2H2OhR?=
+ =?us-ascii?Q?gx2kVg1swSFSB98qZ87dUHYx3t1iqyZ8u1JEGJYskirJZEVzruNEiN3l+KfA?=
+ =?us-ascii?Q?COTQivY1wgTpycC1ms2jpxZ+eLKSvbF/jAXaR/GxpZe8+leppkrsGe19v4Gz?=
+ =?us-ascii?Q?ORCAoPTWrP6LfmR84ztQl2H3f+5lGf4QID3RDiKLBX8GubsmGVK4UjHuattP?=
+ =?us-ascii?Q?UWn7ZcgWNNUvFC8iMOvYNnc1x8sm5h30vIbM1IubkQWP8GSmydXeXC5t+p40?=
+ =?us-ascii?Q?KCbyTadovbb+vbwyQuNWIY0vBINmkeviH/VV73kLGWK2hq6JOtWjOzbUAMUH?=
+ =?us-ascii?Q?AgwctVEzu+UHZm79Y17VuSOAROJkxYgfc4YHqOaJK2gNJvC9B1+RAgs99jlN?=
+ =?us-ascii?Q?qPxWMJN3+0nUiTsjLDRfnT8=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1e917c6c-04ab-4105-2bd1-08dbfcf97dbf
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Dec 2023 23:07:49.0668
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: qAUuBMdr2SXop8zA+ud0mzqgg9LQrU1YGNvXXGOxRtkvf5rgJYvEy5APOFTobmek8SMGwttPrhhxZGogGDbrECZkDuKAOSSOVweMeA+iNMb9ZUg0FC1aEjHcwsOZEnOn
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYAPR01MB5660
 
-Enable touchscreen, touchpad, keyboard, display, pcie and usb
-support.
 
-Co-developed-by: Sibi Sankar <quic_sibis@quicinc.com>
-Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
-Co-developed-by: Rajendra Nayak <quic_rjendra@quicinc.com>
-Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+Hi Geert
+
+Thank you for your reveiw
+
+> > +static void __init cpg_mssr_reserved_exit(struct cpg_mssr_priv *priv)
+> > +{
+> > +       kfree(priv->reserved_ids);
+> > +}
+> 
+> This function is called only once, so you might want to inline it manually.
+
+I want to keep init()/exit() pair because it is easy to understand.
+
+I will consider other comment and post v5 patch next week
+
+
+Thank you for your help !!
+
+Best regards
 ---
- arch/arm64/boot/dts/qcom/x1e80100-crd.dts | 221 ++++++++++++++++++++++++++++++
- 1 file changed, 221 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-index 7532d8eca2de..d44898453315 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-@@ -401,10 +401,144 @@ vreg_l3j_0p8: ldo3 {
- 	};
- };
- 
-+&i2c0 {
-+	clock-frequency = <400000>;
-+
-+	status = "okay";
-+
-+	touchpad@15 {
-+		compatible = "hid-over-i2c";
-+		reg = <0x15>;
-+
-+		hid-descr-addr = <0x1>;
-+		interrupts-extended = <&tlmm 3 IRQ_TYPE_LEVEL_LOW>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&tpad_default>;
-+
-+		wakeup-source;
-+	};
-+
-+	keyboard@3a {
-+		compatible = "hid-over-i2c";
-+		reg = <0x3a>;
-+
-+		hid-descr-addr = <0x1>;
-+		interrupts-extended = <&tlmm 67 IRQ_TYPE_LEVEL_LOW>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&kybd_default>;
-+		wakeup-source;
-+	};
-+};
-+
-+&i2c8 {
-+	clock-frequency = <400000>;
-+
-+	status = "okay";
-+
-+	touchscreen@10 {
-+		compatible = "hid-over-i2c";
-+		reg = <0x10>;
-+
-+		hid-descr-addr = <0x1>;
-+		interrupts-extended = <&tlmm 51 IRQ_TYPE_LEVEL_LOW>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&ts0_default>;
-+	};
-+};
-+
-+&mdss {
-+	status = "okay";
-+};
-+
-+&mdss_dp3 {
-+	compatible = "qcom,x1e80100-dp";
-+	/delete-property/ #sound-dai-cells;
-+
-+	data-lanes = <0 1 2 3>;
-+
-+	status = "okay";
-+
-+	aux-bus {
-+		panel {
-+			compatible = "edp-panel";
-+			power-supply = <&vreg_edp_3p3>;
-+
-+			port {
-+				edp_panel_in: endpoint {
-+					remote-endpoint = <&mdss_dp3_out>;
-+				};
-+			};
-+		};
-+	};
-+
-+	ports {
-+		port@1 {
-+			reg = <1>;
-+			mdss_dp3_out: endpoint {
-+				remote-endpoint = <&edp_panel_in>;
-+			};
-+		};
-+	};
-+};
-+
-+&mdss_dp3_phy {
-+	vdda-phy-supply = <&vreg_l3j_0p8>;
-+	vdda-pll-supply = <&vreg_l2j_1p2>;
-+
-+	status = "okay";
-+};
-+
-+&pcie4 {
-+	status = "okay";
-+};
-+
-+&pcie4_phy {
-+	vdda-phy-supply = <&vreg_l3j_0p8>;
-+	vdda-pll-supply = <&vreg_l3e_1p2>;
-+
-+	status = "okay";
-+};
-+
-+&pcie6a {
-+	status = "okay";
-+};
-+
-+&pcie6a_phy {
-+	vdda-phy-supply = <&vreg_l3j_0p8>;
-+	vdda-pll-supply = <&vreg_l2j_1p2>;
-+
-+	status = "okay";
-+};
-+
-+&qupv3_0 {
-+	status = "okay";
-+};
-+
-+&qupv3_1 {
-+	status = "okay";
-+};
-+
- &qupv3_2 {
- 	status = "okay";
- };
- 
-+&remoteproc_adsp {
-+	firmware-name = "qcom/x1e80100/adsp.mbn",
-+			"qcom/x1e80100/adsp_dtb.mbn";
-+
-+	status = "okay";
-+};
-+
-+&remoteproc_cdsp {
-+	firmware-name = "qcom/x1e80100/cdsp.mbn",
-+			"qcom/x1e80100/cdsp_dtb.mbn";
-+
-+	status = "okay";
-+};
-+
- &tlmm {
- 	gpio-reserved-ranges = <34 2>, /* Unused */
- 			       <44 4>, /* SPI (TPM) */
-@@ -416,9 +550,96 @@ edp_reg_en: edp-reg-en-state {
- 		drive-strength = <16>;
- 		bias-disable;
- 	};
-+
-+	kybd_default: kybd-default-state {
-+		pins = "gpio67";
-+		function = "gpio";
-+		bias-disable;
-+	};
-+
-+	tpad_default: tpad-default-state {
-+		pins = "gpio3";
-+		function = "gpio";
-+		bias-disable;
-+	};
-+
-+	ts0_default: ts0-default-state {
-+		int-n-pins {
-+			pins = "gpio51";
-+			function = "gpio";
-+			bias-disable;
-+		};
-+
-+		reset-n-pins {
-+			pins = "gpio48";
-+			function = "gpio";
-+			output-high;
-+			drive-strength = <16>;
-+		};
-+	};
- };
- 
- &uart21 {
- 	compatible = "qcom,geni-debug-uart";
- 	status = "okay";
- };
-+
-+&usb_1_ss0_hsphy {
-+	vdd-supply = <&vreg_l2e_0p8>;
-+	vdda12-supply = <&vreg_l3e_1p2>;
-+
-+	status = "okay";
-+};
-+
-+&usb_1_ss0_qmpphy {
-+	status = "okay";
-+};
-+
-+&usb_1_ss0 {
-+	status = "okay";
-+};
-+
-+&usb_1_ss0_dwc3 {
-+	dr_mode = "host";
-+	usb-role-switch;
-+};
-+
-+&usb_1_ss1_hsphy {
-+	vdd-supply = <&vreg_l2e_0p8>;
-+	vdda12-supply = <&vreg_l3e_1p2>;
-+
-+	status = "okay";
-+};
-+
-+&usb_1_ss1_qmpphy {
-+	status = "okay";
-+};
-+
-+&usb_1_ss1 {
-+	status = "okay";
-+};
-+
-+&usb_1_ss1_dwc3 {
-+	dr_mode = "host";
-+	usb-role-switch;
-+};
-+
-+&usb_1_ss2_hsphy {
-+	vdd-supply = <&vreg_l2e_0p8>;
-+	vdda12-supply = <&vreg_l3e_1p2>;
-+
-+	status = "okay";
-+};
-+
-+&usb_1_ss2_qmpphy {
-+	status = "okay";
-+};
-+
-+&usb_1_ss2 {
-+	status = "okay";
-+};
-+
-+&usb_1_ss2_dwc3 {
-+	dr_mode = "host";
-+	usb-role-switch;
-+};
-
--- 
-2.34.1
-
+Renesas Electronics
+Ph.D. Kuninori Morimoto
 
