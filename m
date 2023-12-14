@@ -1,100 +1,249 @@
-Return-Path: <devicetree+bounces-25442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25443-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18D6F813417
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 16:09:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8E61813444
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 16:12:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7AB68B2189B
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 15:09:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 196AC1C20AA6
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 15:12:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92B225C070;
-	Thu, 14 Dec 2023 15:09:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B19105C099;
+	Thu, 14 Dec 2023 15:12:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="Z0RV6CEf"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yjrscuM+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 867D8120;
-	Thu, 14 Dec 2023 07:09:31 -0800 (PST)
-Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3BE9eYHh016118;
-	Thu, 14 Dec 2023 16:09:12 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	message-id:date:mime-version:subject:to:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	selector1; bh=//aHt+UwHuR+VliPjKOydyJZ/EL+SaXc+DQNt7bW2G8=; b=Z0
-	RV6CEfWhLkCrORbG9O+PR1YfqTVnDSBaRm0q0LOCggOYcZqT2u6U1l/vRQkDlWra
-	BVOlEA4iPH+2TpEs+iTa2naW3oXnpJew4zWyzLNEFqVDti6Llg2Fsb6MBOxprdcC
-	edBaHWvuyd82AfU8i1hvMwZ+Bp2zFcwfFmzZ7ptOYEWn0ampQAGrYTpDVgXV+pmQ
-	NFtNV1wC+e+wCVbq4CtZkcm94stBKh/yAX3GewZ2O/j9XmisXcElK8JfiEaL9ufX
-	rT38lNnEoeNEckX69y3N4V/DubLVPLW3Xv9R70X2wOO9fVtmXXYub4MdxLJUoY1J
-	/FQSQJ1gBU+Fkx0Ku19g==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3uw42nueqh-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Dec 2023 16:09:12 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 359B7100053;
-	Thu, 14 Dec 2023 16:09:11 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 2DBB7265997;
-	Thu, 14 Dec 2023 16:09:11 +0100 (CET)
-Received: from [10.201.21.122] (10.201.21.122) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 14 Dec
- 2023 16:09:10 +0100
-Message-ID: <e0d83b7f-509e-4d9b-8ad8-7baa2889e484@foss.st.com>
-Date: Thu, 14 Dec 2023 16:09:09 +0100
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF19E19A
+	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 07:12:13 -0800 (PST)
+Received: by mail-pg1-x533.google.com with SMTP id 41be03b00d2f7-5ca0b968d8dso2125988a12.1
+        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 07:12:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702566733; x=1703171533; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LwHpdQvNy5J0Igg1Vsz7T/zPUieTC2ctDg1RFLI3Irg=;
+        b=yjrscuM+kOzgQMSFtd+6A38cXtxRDYPuNjaXgIiT1p8geNzIAOv4PPOFAlQf1WMZY5
+         84aEdIDMhc6+6Dc4LBGbesemcwCmc+pHV8ayjGeG2uKT50VUzsIu7IHcM4K9cheg5Xvv
+         rjZnfaul9kf/EOo+EHKGy1xIMvOrQspVvq4iwF58rpm+/sDyWb29uoUxrmXAHWiFXh6S
+         s4F8y305T7kSA2amD4rrEnescyIGZjIqmUz1X5IBtVGRKALIZUbXlHgvpJRe6JMsyqAx
+         5xDrEKgyHOeOp9+Znfl8vwnEPclIDXfdy53Hcw8W5l1SNVQxbFt+A5jU3tJrdkiVlDkK
+         2a6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702566733; x=1703171533;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=LwHpdQvNy5J0Igg1Vsz7T/zPUieTC2ctDg1RFLI3Irg=;
+        b=ErfgtNM/x0kpjERwU6g34EJH8jx0Q3oUmXk8r72uh8L34msmRjxZpvehzl4eAS/ROn
+         g6827rPkWGIRMhVOOXBscrB2hkYkxYS/iac+V9SRflSLRDFc5kyheUG7zrPiG0/cDd6L
+         hOf1sVKiunMQ/3hyzMZOCcZUVZHgsz9A6ghlX5vLRbLibPXmDqXd+BZK7ahD1zDMKc3B
+         rCR9MZA/FixRa6AfACpFmNkYUX+/zQjrvfv2TaJop+10LMT8+RbSxFA2cAs3BcWjcXzi
+         FKXWjcwJnrnmwq+JICeSFwFaj2Q6pJGHnTQqB5sxisFD8TjNTC49dbgiLITgazTzWK18
+         3uZQ==
+X-Gm-Message-State: AOJu0YyHWaOb4GJcOsPPzsa1kSH0lf3eH2BAhf+3Hmdav9hx6O0SLq0g
+	OhKe6aTYQp9SRFRQLiKwWrSZI8Dvy2+kAGp5nsmK1w==
+X-Google-Smtp-Source: AGHT+IHkdlxZI9BdksvtM5U64iab2h/pY7ggP309thulz4NiNhxzZYZ8yM7zHvmhWWBCVkGuUgTGrAki3o9iWrNX200=
+X-Received: by 2002:a17:90a:c49:b0:28b:559:3916 with SMTP id
+ u9-20020a17090a0c4900b0028b05593916mr499392pje.79.1702566733415; Thu, 14 Dec
+ 2023 07:12:13 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] ARM: dts: stm32: minor whitespace cleanup around '='
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20231127093420.20473-1-krzysztof.kozlowski@linaro.org>
-From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20231127093420.20473-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-14_10,2023-12-14_01,2023-05-22_02
+References: <20231214105243.3707730-1-tudor.ambarus@linaro.org> <20231214105243.3707730-3-tudor.ambarus@linaro.org>
+In-Reply-To: <20231214105243.3707730-3-tudor.ambarus@linaro.org>
+From: Sam Protsenko <semen.protsenko@linaro.org>
+Date: Thu, 14 Dec 2023 09:12:02 -0600
+Message-ID: <CAPLW+4=3naHwG4co=7bOf4LxmOPKR0qpn_hNGxys_N3AUzfiOA@mail.gmail.com>
+Subject: Re: [PATCH 02/13] dt-bindings: clock: google,gs101-clock: add PERIC0
+ clock management unit
+To: Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: peter.griffin@linaro.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com, sboyd@kernel.org, 
+	conor+dt@kernel.org, andi.shyti@kernel.org, alim.akhtar@samsung.com, 
+	gregkh@linuxfoundation.org, jirislaby@kernel.org, catalin.marinas@arm.com, 
+	will@kernel.org, s.nawrocki@samsung.com, tomasz.figa@gmail.com, 
+	cw00.choi@samsung.com, arnd@arndb.de, andre.draszik@linaro.org, 
+	saravanak@google.com, willmcvicker@google.com, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org, 
+	linux-serial@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
-
-On 11/27/23 10:34, Krzysztof Kozlowski wrote:
-> The DTS code coding style expects exactly one space before and after '='
-> sign.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
+On Thu, Dec 14, 2023 at 4:52=E2=80=AFAM Tudor Ambarus <tudor.ambarus@linaro=
+.org> wrote:
+>
+> Add dt-schema documentation for the Connectivity Peripheral 0 (PERIC0)
+> clock management unit.
+>
+> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
 > ---
-> 
-> Changes in v2:
-> 1. Split previous commit touching entire 'st' directory.
+>  .../bindings/clock/google,gs101-clock.yaml    | 25 +++++-
+>  include/dt-bindings/clock/google,gs101.h      | 86 +++++++++++++++++++
+>  2 files changed, 109 insertions(+), 2 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/clock/google,gs101-clock.y=
+aml b/Documentation/devicetree/bindings/clock/google,gs101-clock.yaml
+> index 3eebc03a309b..ba54c13c55bc 100644
+> --- a/Documentation/devicetree/bindings/clock/google,gs101-clock.yaml
+> +++ b/Documentation/devicetree/bindings/clock/google,gs101-clock.yaml
+> @@ -30,14 +30,15 @@ properties:
+>        - google,gs101-cmu-top
+>        - google,gs101-cmu-apm
+>        - google,gs101-cmu-misc
+> +      - google,gs101-cmu-peric0
+>
+>    clocks:
+>      minItems: 1
+> -    maxItems: 2
+> +    maxItems: 3
+>
+>    clock-names:
+>      minItems: 1
+> -    maxItems: 2
+> +    maxItems: 3
+>
+>    "#clock-cells":
+>      const: 1
+> @@ -88,6 +89,26 @@ allOf:
+>              - const: dout_cmu_misc_bus
+>              - const: dout_cmu_misc_sss
+>
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: google,gs101-cmu-peric0
+> +
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: External reference clock (24.576 MHz)
+> +            - description: Connectivity Peripheral 0 bus clock (from CMU=
+_TOP)
+> +            - description: Connectivity Peripheral 0 IP clock (from CMU_=
+TOP)
+> +
+> +        clock-names:
+> +          items:
+> +            - const: oscclk
+> +            - const: dout_cmu_peric0_bus
+> +            - const: dout_cmu_peric0_ip
+> +
+>  additionalProperties: false
+>
+>  examples:
+> diff --git a/include/dt-bindings/clock/google,gs101.h b/include/dt-bindin=
+gs/clock/google,gs101.h
+> index 21adec22387c..7d7a896416a7 100644
+> --- a/include/dt-bindings/clock/google,gs101.h
+> +++ b/include/dt-bindings/clock/google,gs101.h
+> @@ -389,4 +389,90 @@
+>  #define CLK_GOUT_MISC_WDT_CLUSTER1_PCLK                        73
+>  #define CLK_GOUT_MISC_XIU_D_MISC_ACLK                  74
+>
+> +/* CMU_PERIC0 */
 
-Thanks Krzysztof,
+This comments looks off here. Other than than, LGTM:
 
-Applied on stm32-next.
+Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
 
-Alex
-
-...
+> +/* CMU_PERIC0 MUX */
+> +#define CLK_MOUT_PERIC0_BUS_USER                       1
+> +#define CLK_MOUT_PERIC0_I3C_USER                       2
+> +#define CLK_MOUT_PERIC0_USI0_UART_USER                 3
+> +#define CLK_MOUT_PERIC0_USI14_USI_USER                 4
+> +#define CLK_MOUT_PERIC0_USI1_USI_USER                  5
+> +#define CLK_MOUT_PERIC0_USI2_USI_USER                  6
+> +#define CLK_MOUT_PERIC0_USI3_USI_USER                  7
+> +#define CLK_MOUT_PERIC0_USI4_USI_USER                  8
+> +#define CLK_MOUT_PERIC0_USI5_USI_USER                  9
+> +#define CLK_MOUT_PERIC0_USI6_USI_USER                  10
+> +#define CLK_MOUT_PERIC0_USI7_USI_USER                  11
+> +#define CLK_MOUT_PERIC0_USI8_USI_USER                  12
+> +
+> +/* CMU_PERIC0 Dividers */
+> +#define CLK_DOUT_PERIC0_I3C                            13
+> +#define CLK_DOUT_PERIC0_USI0_UART                      14
+> +#define CLK_DOUT_PERIC0_USI14_USI                      15
+> +#define CLK_DOUT_PERIC0_USI1_USI                       16
+> +#define CLK_DOUT_PERIC0_USI2_USI                       17
+> +#define CLK_DOUT_PERIC0_USI3_USI                       18
+> +#define CLK_DOUT_PERIC0_USI4_USI                       19
+> +#define CLK_DOUT_PERIC0_USI5_USI                       20
+> +#define CLK_DOUT_PERIC0_USI6_USI                       21
+> +#define CLK_DOUT_PERIC0_USI7_USI                       22
+> +#define CLK_DOUT_PERIC0_USI8_USI                       23
+> +
+> +/* CMU_PERIC0 Gates */
+> +#define CLK_GOUT_PERIC0_IP                             24
+> +#define CLK_GOUT_PERIC0_PERIC0_CMU_PERIC0_PCLK         25
+> +#define CLK_GOUT_PERIC0_CLK_PERIC0_OSCCLK_CLK          26
+> +#define CLK_GOUT_PERIC0_D_TZPC_PERIC0_PCLK             27
+> +#define CLK_GOUT_PERIC0_GPC_PERIC0_PCLK                        28
+> +#define CLK_GOUT_PERIC0_GPIO_PERIC0_PCLK               29
+> +#define CLK_GOUT_PERIC0_LHM_AXI_P_PERIC0_I_CLK         30
+> +#define CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_0            31
+> +#define CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_1            32
+> +#define CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_10           33
+> +#define CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_11           34
+> +#define CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_12           35
+> +#define CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_13           36
+> +#define CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_14           37
+> +#define CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_15           38
+> +#define CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_2            39
+> +#define CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_3            40
+> +#define CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_4            41
+> +#define CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_5            42
+> +#define CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_6            43
+> +#define CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_7            44
+> +#define CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_8            45
+> +#define CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_9            46
+> +#define CLK_GOUT_PERIC0_PERIC0_TOP0_PCLK_0             47
+> +#define CLK_GOUT_PERIC0_PERIC0_TOP0_PCLK_1             48
+> +#define CLK_GOUT_PERIC0_PERIC0_TOP0_PCLK_10            49
+> +#define CLK_GOUT_PERIC0_PERIC0_TOP0_PCLK_11            50
+> +#define CLK_GOUT_PERIC0_PERIC0_TOP0_PCLK_12            51
+> +#define CLK_GOUT_PERIC0_PERIC0_TOP0_PCLK_13            52
+> +#define CLK_GOUT_PERIC0_PERIC0_TOP0_PCLK_14            53
+> +#define CLK_GOUT_PERIC0_PERIC0_TOP0_PCLK_15            54
+> +#define CLK_GOUT_PERIC0_PERIC0_TOP0_PCLK_2             55
+> +#define CLK_GOUT_PERIC0_PERIC0_TOP0_PCLK_3             56
+> +#define CLK_GOUT_PERIC0_PERIC0_TOP0_PCLK_4             57
+> +#define CLK_GOUT_PERIC0_PERIC0_TOP0_PCLK_5             58
+> +#define CLK_GOUT_PERIC0_PERIC0_TOP0_PCLK_6             59
+> +#define CLK_GOUT_PERIC0_PERIC0_TOP0_PCLK_7             60
+> +#define CLK_GOUT_PERIC0_PERIC0_TOP0_PCLK_8             61
+> +#define CLK_GOUT_PERIC0_PERIC0_TOP0_PCLK_9             62
+> +#define CLK_GOUT_PERIC0_PERIC0_TOP1_IPCLK_0            63
+> +#define CLK_GOUT_PERIC0_PERIC0_TOP1_IPCLK_2            64
+> +#define CLK_GOUT_PERIC0_PERIC0_TOP1_PCLK_0             65
+> +#define CLK_GOUT_PERIC0_PERIC0_TOP1_PCLK_2             66
+> +#define CLK_GOUT_PERIC0_CLK_PERIC0_BUSP_CLK            67
+> +#define CLK_GOUT_PERIC0_CLK_PERIC0_I3C_CLK             68
+> +#define CLK_GOUT_PERIC0_CLK_PERIC0_USI0_UART_CLK       69
+> +#define CLK_GOUT_PERIC0_CLK_PERIC0_USI14_USI_CLK       70
+> +#define CLK_GOUT_PERIC0_CLK_PERIC0_USI1_USI_CLK                71
+> +#define CLK_GOUT_PERIC0_CLK_PERIC0_USI2_USI_CLK                72
+> +#define CLK_GOUT_PERIC0_CLK_PERIC0_USI3_USI_CLK                73
+> +#define CLK_GOUT_PERIC0_CLK_PERIC0_USI4_USI_CLK                74
+> +#define CLK_GOUT_PERIC0_CLK_PERIC0_USI5_USI_CLK                75
+> +#define CLK_GOUT_PERIC0_CLK_PERIC0_USI6_USI_CLK                76
+> +#define CLK_GOUT_PERIC0_CLK_PERIC0_USI7_USI_CLK                77
+> +#define CLK_GOUT_PERIC0_CLK_PERIC0_USI8_USI_CLK                78
+> +#define CLK_GOUT_PERIC0_SYSREG_PERIC0_PCLK             79
+> +
+>  #endif /* _DT_BINDINGS_CLOCK_GOOGLE_GS101_H */
+> --
+> 2.43.0.472.g3155946c3a-goog
+>
 
