@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-25179-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25180-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B8E1812980
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 08:37:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 169DC812991
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 08:39:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E5691C21247
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 07:37:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A6AB1F21261
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 07:39:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4032C125C7;
-	Thu, 14 Dec 2023 07:37:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2032A12E68;
+	Thu, 14 Dec 2023 07:39:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YTr1DjJY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="l6W/vGRZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8FC1109
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 23:37:09 -0800 (PST)
-Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-336353782efso1897028f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 23:37:09 -0800 (PST)
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3F339C
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 23:39:49 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-40c32df9174so69831825e9.3
+        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 23:39:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702539428; x=1703144228; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702539588; x=1703144388; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=+IuXmVAKEc7co34UubozYSEHNll9mm9AXXyID5iSw6I=;
-        b=YTr1DjJYAQy7C+mAqSN1CyfsuJfBYwcmVjwthPPrkxFMn2zzkDFqg02F2HQg/K3aEG
-         IiG4IBNEHBxhgS2c6CgQKUR1ovpXAyHXxyB7FmztCE9Vyjxjh40/BgMzfSFBV4d4CAz/
-         CHqrKHbCe85r2Y1a9x5r9ZveLoH47CUF4CVmfk5LrjlF2/rWwjFstFjWD3fBe/4rX/cE
-         pUHMNJvG4v7pv+t9vVUHeVQswtbjM4A/BlUHLNV+ZMsJWN4YF36wbE2a2sMjnnZuLysQ
-         yfyOMM3HNJCYy0Pyxz3GBlv/e+12rKzbz1wKjl3feXvFPpzmE3/fVWE3YPSbPPrFUIBF
-         2pZw==
+        bh=VW4wVDHDIDRG/QG+aGoy/gqSKcXM6UwBG8v8hXKmGlA=;
+        b=l6W/vGRZpK+v2pmqGZG1WYAvErxX2/wC+iJLfaeJ6n4Yst2nKDicfHaS8+zVkG+tIz
+         e4RPWVmNcYFgBCU7+rzPAAP+3CLpxfV3THerVNfiFl4RhBgS4PuwDPdukpZ1QV8t7dPx
+         4C74ZEp47vYjrAWgtuBHQqwNsz1N0xX8NZyCozo3LG4zNRhyjHM+r1rAeYUHf5Z4iPdI
+         ri+ddsPrIYNgAhQCowAacKygbMlWnWKzcJWxeJLgz+fN++ujfwXzzFj5upfF2UYWeiAu
+         F6TZeQ+qbP5XJ1fFhNzytDzYvzPPN+ousmtO7OaGRhis1h7N8Ncw4hCIbNNJ+75W93gt
+         J/ZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702539428; x=1703144228;
+        d=1e100.net; s=20230601; t=1702539588; x=1703144388;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+IuXmVAKEc7co34UubozYSEHNll9mm9AXXyID5iSw6I=;
-        b=GZCAnGPLG3+6wBhGTiUveNHKoB6x4foNTrItLp7uaWheyjSYQjILAGp9qcCt/3CWcd
-         eGj14yaZWzD2mvN7Ox14Bu5hw9Pmydepd693+kIlNLyq922CgO1UML9nvK0jzcyDEKkd
-         XoFdpSxFDS4ciss7bDncmeoEbyb10qUmDUVsUnqfMZUuBsb5R5Rb7gIl4HybZbvcyXxd
-         PMzZ5eFixS0IHjKHNrl9HsH+39Ckw58lL6rIasjdNfVJqjpqWPAHgTqP1LsPZzXeV+ti
-         /5Cehh9EevVPdz0D1VnHk6r2oDx5bkDaSePU3kN9FkK+ZazntXFCZRZRNe0e/XDAtSTT
-         Kz4g==
-X-Gm-Message-State: AOJu0Yw/3l7jS/5vED09Ss7jTFEk7dCtgJVrIZpF8i3LDxEz6DfBNfLv
-	Cs+CONeAfLhhemzwabEg5PzZ0g==
-X-Google-Smtp-Source: AGHT+IFR/744B9FB2N5XsxJsx0u/FQJZnfqdnb9KCK7R9oKXjzscM0Xd1vb2j6R+F4xCYlLn46kERQ==
-X-Received: by 2002:adf:ef52:0:b0:336:4a06:42e9 with SMTP id c18-20020adfef52000000b003364a0642e9mr131351wrp.76.1702539428404;
-        Wed, 13 Dec 2023 23:37:08 -0800 (PST)
+        bh=VW4wVDHDIDRG/QG+aGoy/gqSKcXM6UwBG8v8hXKmGlA=;
+        b=k1RPJegWBA0f2nVsHoTZQI/5WxlkHvMt3i1tlRI4Frn5RPDGr4oG1m4+4ZfMl7PEXY
+         XANm14VkJpz+u0rWtcANgwyJUuxXBLqABcIZIhfmD/gCbnk3kk3/SmZJsklzS7j9jN1k
+         OjpJGFTtdPOEdR2ejoiEhjPv5+eG3l+U7LQTQ5ai5lDe1lQAS8BK4cfPKGH4ICKwAoqR
+         jxQDRAAwcoWugU2Bko7y95ipMnssLMyDKL6EHBV6fSz1+ZE3/rzTGOH99i1zxGVm1Z3A
+         k/UXqawrbfLaydUNLCh65zcKe0i8krqGvYw5d7cNs7VZvUmpRg9vVNCTlxbH5csFw5jh
+         NRew==
+X-Gm-Message-State: AOJu0YxcGo/QG/JtkOO4ko5GCKOipUaGlsFpdqFrTLXZFgM+IBXE+Q0O
+	thK2iyKHS/DUlNfqLrxZaX3XUA==
+X-Google-Smtp-Source: AGHT+IFKfVsa71JYjz6AOShAoEET5JTqa7UESNpG9Wz3xkSPVHkkhcXSxiTRLFBGsag/bUgSJ0RlfQ==
+X-Received: by 2002:a05:600c:430c:b0:409:6e0e:e948 with SMTP id p12-20020a05600c430c00b004096e0ee948mr3260793wme.1.1702539588412;
+        Wed, 13 Dec 2023 23:39:48 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id e4-20020a5d65c4000000b003333ed23356sm15419169wrw.4.2023.12.13.23.37.07
+        by smtp.gmail.com with ESMTPSA id fm14-20020a05600c0c0e00b00407b93d8085sm25890269wmb.27.2023.12.13.23.39.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Dec 2023 23:37:08 -0800 (PST)
-Message-ID: <9f579f6e-b032-4b0c-ba40-a6ef33a3eb45@linaro.org>
-Date: Thu, 14 Dec 2023 08:37:07 +0100
+        Wed, 13 Dec 2023 23:39:48 -0800 (PST)
+Message-ID: <40b5d1a8-37d2-4c68-8d16-33c92c3e5716@linaro.org>
+Date: Thu, 14 Dec 2023 08:39:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,17 +62,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] dt-bindings: mailbox: add Versal IPI bindings
+Subject: Re: [PATCH v3 1/1] dt-bindings: watchdog: starfive,jh7100-wdt: Add
+ compatible for JH8100
 Content-Language: en-US
-To: Tanmay Shah <tanmay.shah@amd.com>, jassisinghbrar@gmail.com,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- michal.simek@amd.com, shubhrajyoti.datta@amd.com,
- shubhrajyoti.datta@xilinx.com
-Cc: robh@kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- ben.levinsky@amd.com
-References: <20231214054224.957336-1-tanmay.shah@amd.com>
- <20231214054224.957336-3-tanmay.shah@amd.com>
+To: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>,
+ Xingyu Wu <xingyu.wu@starfivetech.com>,
+ Samin Guo <samin.guo@starfivetech.com>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
+ <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Ley Foon Tan <leyfoon.tan@starfivetech.com>,
+ linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231214033056.3953143-1-jisheng.teoh@starfivetech.com>
+ <20231214033056.3953143-2-jisheng.teoh@starfivetech.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -118,21 +122,109 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231214054224.957336-3-tanmay.shah@amd.com>
+In-Reply-To: <20231214033056.3953143-2-jisheng.teoh@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 14/12/2023 06:42, Tanmay Shah wrote:
-> Add documentation for AMD-Xilinx Versal platform Inter Processor Interrupt
-> controller. Versal IPI controller contains buffer-less IPI which do not
-> have buffers for message passing. For such IPI channels message buffers
-> are not expected and only notification to/from remote agent is expected.
+On 14/12/2023 04:30, Ji Sheng Teoh wrote:
+> Add "starfive,jh8100-wdt" compatible string for StarFive's JH8100
+> watchdog.
+> Since JH8100 watchdog only has 1 reset signal, update binding
+> document to support one reset for "starfive,jh8100-wdt" compatible.
 > 
-> Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
+> Signed-off-by: Ley Foon Tan <leyfoon.tan@starfivetech.com>
+> Signed-off-by: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
 > ---
+>  .../watchdog/starfive,jh7100-wdt.yaml         | 48 ++++++++++++++++---
+>  1 file changed, 42 insertions(+), 6 deletions(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/watchdog/starfive,jh7100-wdt.yaml b/Documentation/devicetree/bindings/watchdog/starfive,jh7100-wdt.yaml
+> index 68f3f6fd08a6..79082c5f9971 100644
+> --- a/Documentation/devicetree/bindings/watchdog/starfive,jh7100-wdt.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/starfive,jh7100-wdt.yaml
+> @@ -19,14 +19,17 @@ description:
+>    isn't cleared, the watchdog will reset the system unless the watchdog
+>    reset is disabled.
+>  
+> -allOf:
+> -  - $ref: watchdog.yaml#
+> -
+>  properties:
+>    compatible:
+> -    enum:
+> -      - starfive,jh7100-wdt
+> -      - starfive,jh7110-wdt
+> +    oneOf:
+> +      - items:
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Drop items, it wasn't here in the first place.
+
+> +          - enum:
+> +              - starfive,jh7100-wdt
+> +              - starfive,jh7110-wdt
+> +      - items:
+> +          - enum:
+> +              - starfive,jh8100-wdt
+> +          - const: starfive,jh7110-wdt
+>  
+>    reg:
+>      maxItems: 1
+> @@ -45,10 +48,33 @@ properties:
+>        - const: core
+>  
+>    resets:
+> +    minItems: 1
+>      items:
+>        - description: APB reset
+>        - description: Core reset
+
+This is not valid for jh8100. Move it to else: part. Here maxItems: 2.
+
+>  
+> +allOf:
+
+allOf goes after required:, see example-schema
+
+> +  - $ref: watchdog.yaml#
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - starfive,jh8100-wdt
+> +    then:
+> +      properties:
+> +        resets:
+> +          description: |
+> +            Must contain Core reset entry.
+> +          maxItems: 1
+
+Instead of both, items: with description.
+
+> +    else:
+> +      properties:
+> +        resets:
+> +          description: |
+> +            Must contain APB reset and Core reset entry.
+> +          minItems: 2
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -69,3 +95,13 @@ examples:
+>          resets = <&rst 99>,
+>                   <&rst 100>;
+>      };
+> +
+> +  - |
+> +    watchdog@12270000 {
+> +        compatible = "starfive,jh8100-wdt", "starfive,jh7110-wdt";
+> +        reg = <0x12270000 0x10000>;
+> +        clocks = <&clk 78>,
+> +                 <&clk 79>;
+
+No need for new example with difference in one property.
 
 Best regards,
 Krzysztof
