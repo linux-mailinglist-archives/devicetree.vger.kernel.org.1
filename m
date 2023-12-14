@@ -1,197 +1,86 @@
-Return-Path: <devicetree+bounces-25374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25375-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 581078130FE
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 14:10:40 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 065B881310F
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 14:15:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A06D1C215AB
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 13:10:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 676A7B20CAC
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 13:15:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FAAF537EF;
-	Thu, 14 Dec 2023 13:10:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F80353E3F;
+	Thu, 14 Dec 2023 13:15:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ooozgHBC"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hnsA1eZc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F54A11D
-	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 05:10:27 -0800 (PST)
-Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2cc47f1e829so2517481fa.1
-        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 05:10:27 -0800 (PST)
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF65610E
+	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 05:15:15 -0800 (PST)
+Received: by mail-pg1-x52b.google.com with SMTP id 41be03b00d2f7-58962bf3f89so638135a12.0
+        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 05:15:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702559425; x=1703164225; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1702559715; x=1703164515; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Zv75S7w86iylwPFGSxZB3llZQ1CBvgYvd4ByAnD/noo=;
-        b=ooozgHBCLPG7b5uiAjlgreD4y/TbzVDVOKHh6n2gOPqt9yoiLZxSU0GIm80wcrnpfN
-         v785ozc2D54bEgNo4Ad3sBsqjQ3EW/GnbVau6U5WwWTXOseky6e+vAqW26HVMxnJDTHi
-         RN6HZ534+trJnwlOIq1MKKc3hCpX4zSo6AwPb8d7LFh3RsQYDn37MRONFemyf1ngeFrp
-         L7+Z4O4t3MvKjpu+kRLJ3od+1oGOwxapTwIabu61wfhdbC57pOFtjTGP6fFRg8eTSYXr
-         fq85FADEuKH5fQbhigx+qUFS7CsgAD1ILNfzv/2sb6tqIuvwP37P/tG8Jhu3ZUxU+0HV
-         l+cg==
+        bh=NNtgCx5NnhkXj7j2xKYtXfwc0kMnKH5xbdP5A0tmvRg=;
+        b=hnsA1eZcqHa6PFLlXrztc2JVJRCVymBlllYODtgJfIje5Oyxana2/PdzGwhIXFyL1z
+         NdhHbv6Z4G4Tc6ExAJHrt/Ji3jhhOkzZztWdsuyh1A9HjRUY8pTsRYCyg2L6L+94HFFB
+         SSrmJTIYy2+UVzQb7xO8zcU51w80l+cY/dASc5igmsHhIYIYQLLJNOtV8N9+tsfAHNR5
+         lK2PPmOOcwuOBgFB7yptFum+ptQQds5SxkC+3RgE2sp/o8D1N5jRByuwprbfVcEiiqCC
+         GYlVYs/h9Z/pLJn+iG3vls+XjgBJUW21LN1H2Bv8rPWPsA1X3LyvZv7hnWBcrBHe1o2e
+         SuYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702559425; x=1703164225;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1702559715; x=1703164515;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Zv75S7w86iylwPFGSxZB3llZQ1CBvgYvd4ByAnD/noo=;
-        b=T5zyTyrPk0hSN8xmmnFaIK10/GcGCCNyd0IGBJbNbjg5wWexLC7Q4SnlLpOquV/0X1
-         p7iMJO+cVncGtFFEMix47J+Jln8uWf6s2FwtldIrTFmpK13DDyGxNqHXQRvZheG3nQ/v
-         lLZVbjoTAbGJ1u++y3JJi1aayZHInRZdm0OAmCz5P61vol1TSegZ8ixZkL4yPkUFL28T
-         SHIWPzFwsIKOG65pZuiVUgsQ4EDBvHGgplA7fVI3gJLO02C3JYejbaIk4YPAoyUNxwGl
-         TuTZqdq4LptQB9o0MS2MQSAz3rsREhZozRnf6Hsny6StJJoKWsI+quGqS+MAzRcONmwY
-         lNwA==
-X-Gm-Message-State: AOJu0YyNGq4lMaPLIc1N+PSQ195Rv4m9Efs6eDM/rdrsXT30u3ykHzSi
-	RigSmj+sfIlT1OfgxrelaEoVDg==
-X-Google-Smtp-Source: AGHT+IF0vB1K8s/4fuVHqhai7UgCQdRmqfPqB9YHWPZoeT+Mr22NJijQycQ9o1jR1Qugup8i4kwm9A==
-X-Received: by 2002:a19:5211:0:b0:50d:1679:5a50 with SMTP id m17-20020a195211000000b0050d16795a50mr4560724lfb.40.1702559425766;
-        Thu, 14 Dec 2023 05:10:25 -0800 (PST)
-Received: from krzk-bin.. ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id vq2-20020a170907a4c200b00a22faee6649sm2547776ejc.117.2023.12.14.05.10.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Dec 2023 05:10:25 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Abel Vesa <abel.vesa@linaro.org>
-Subject: [PATCH 4/4] arm64: dts: qcom: x1e80100-crd: add WSA8845 speakers
-Date: Thu, 14 Dec 2023 14:10:16 +0100
-Message-Id: <20231214131016.30502-5-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231214131016.30502-1-krzysztof.kozlowski@linaro.org>
-References: <20231214131016.30502-1-krzysztof.kozlowski@linaro.org>
+        bh=NNtgCx5NnhkXj7j2xKYtXfwc0kMnKH5xbdP5A0tmvRg=;
+        b=aIWaNM4iqZGKvxdDYwDqdbIpFa73gXir+rOKWgs0T4+rkQO5AXb/DQ7bqiFx4OO5Uv
+         s0xNtdtYDTVE2NlJo4ex/X/QJ6TmfwtlAm7a01EIEQNMhvolDC7/G0ip7ljlYCbtEk7E
+         cjQG8mHI6UavylFwli5h2/YYYNHB4cohY8Kovxai29eUsej6ENLLyuzvayBF1yzWqdr7
+         GqFWpX2dOHcGdzwFDa7wdCsIOcM+k6O1Gdx60YL/eSqq6IoYZ8HPUTIEee5u5dtp1H7q
+         DmOFAE3/mvRYhqsw2J66VVSJnp+6t01f6Wj8aTOMLIcd67mEmquyNVBxgq6nyqHgVMoi
+         eltQ==
+X-Gm-Message-State: AOJu0YybleZMYGIFFxc1v/rG6toTHYxXOSQ9Rgt2dho0VW0mgHedrRPe
+	CcZbX9zhctdXktiLIRcREuV59OHS0Yqi4KDeqS8+MtaK
+X-Google-Smtp-Source: AGHT+IFMj+5d7A9ZxWLiLEpCZuoZ0tkhZYQXFLF8/TXg+qRZAwd9EhDruSOBxDhGBbLreXufw0uMnNTZtdxf1KvxT7U=
+X-Received: by 2002:a17:90a:7e8b:b0:286:8fa5:7bc7 with SMTP id
+ j11-20020a17090a7e8b00b002868fa57bc7mr16804666pjl.2.1702559715133; Thu, 14
+ Dec 2023 05:15:15 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20231214112442.2412079-1-xu.yang_2@nxp.com> <20231214112442.2412079-2-xu.yang_2@nxp.com>
+ <CAOMZO5DxcLoBYMXQi=EW=-fAqz12ghPm+7PHn=LdhicETKg2pQ@mail.gmail.com> <VI1PR04MB51523F1EF74EF23B92C6880D8C8CA@VI1PR04MB5152.eurprd04.prod.outlook.com>
+In-Reply-To: <VI1PR04MB51523F1EF74EF23B92C6880D8C8CA@VI1PR04MB5152.eurprd04.prod.outlook.com>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Thu, 14 Dec 2023 10:15:03 -0300
+Message-ID: <CAOMZO5DxQGjF5rUs6NMR7LCo11tLVPpnPs9nzH7qh2nCCBXoLQ@mail.gmail.com>
+Subject: Re: [EXT] Re: [PATCH 2/4] arm64: dts: imx8ulp-evk: enable usb nodes
+To: Xu Yang <xu.yang_2@nxp.com>
+Cc: "robh+dt@kernel.org" <robh+dt@kernel.org>, 
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, 
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "shawnguo@kernel.org" <shawnguo@kernel.org>, 
+	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>, "kernel@pengutronix.de" <kernel@pengutronix.de>, 
+	dl-linux-imx <linux-imx@nxp.com>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add nodes for four WSA8845 speakers.  Unlike previous boards like
-SM8550-QRD, this board has four speakers spread over two Soundwire buses
-instead of two speakers on one bus.  Each pair of speakers shares the
-reset GPIO thus pinctrl property is only in one of them.
+On Thu, Dec 14, 2023 at 9:50=E2=80=AFAM Xu Yang <xu.yang_2@nxp.com> wrote:
 
-Cc: Abel Vesa <abel.vesa@linaro.org>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/qcom/x1e80100-crd.dts | 76 +++++++++++++++++++++++
- 1 file changed, 76 insertions(+)
+> PTN5150 can work autonomously for most of the basic functions.
+> I don=E2=80=99t see a need to enable driver for it now.
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-index aa5c4199bd2c..8b4e5577048a 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-@@ -543,6 +543,24 @@ touchscreen@10 {
- 	};
- };
- 
-+&lpass_tlmm {
-+	spkr_01_sd_n_active: spkr-01-sd-n-active-state {
-+		pins = "gpio12";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-disable;
-+		output-low;
-+	};
-+
-+	spkr_23_sd_n_active: spkr-23-sd-n-active-state {
-+		pins = "gpio13";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-disable;
-+		output-low;
-+	};
-+};
-+
- &mdss {
- 	status = "okay";
- };
-@@ -633,6 +651,35 @@ &remoteproc_cdsp {
- 	status = "okay";
- };
- 
-+&swr0 {
-+	status = "okay";
-+
-+	/* WSA8845, Left Woofer */
-+	left_woofer: speaker@0,0 {
-+		compatible = "sdw20217020400";
-+		reg = <0 0>;
-+		pinctrl-0 = <&spkr_01_sd_n_active>;
-+		pinctrl-names = "default";
-+		powerdown-gpios = <&lpass_tlmm 12 GPIO_ACTIVE_LOW>;
-+		#sound-dai-cells = <0>;
-+		sound-name-prefix = "WooferLeft";
-+		vdd-1p8-supply = <&vreg_l15b_1p8>;
-+		vdd-io-supply = <&vreg_l12b_1p2>;
-+	};
-+
-+	/* WSA8845, Left Tweeter */
-+	left_tweeter: speaker@0,1 {
-+		compatible = "sdw20217020400";
-+		reg = <0 1>;
-+		/* pinctrl in left_woofer node because of sharing the GPIO*/
-+		powerdown-gpios = <&lpass_tlmm 12 GPIO_ACTIVE_LOW>;
-+		#sound-dai-cells = <0>;
-+		sound-name-prefix = "TwitterLeft";
-+		vdd-1p8-supply = <&vreg_l15b_1p8>;
-+		vdd-io-supply = <&vreg_l12b_1p2>;
-+	};
-+};
-+
- &swr1 {
- 	status = "okay";
- 
-@@ -655,6 +702,35 @@ wcd_tx: codec@0,3 {
- 	};
- };
- 
-+&swr3 {
-+	status = "okay";
-+
-+	/* WSA8845, Right Woofer */
-+	right_woofer: speaker@0,0 {
-+		compatible = "sdw20217020400";
-+		reg = <0 0>;
-+		pinctrl-0 = <&spkr_23_sd_n_active>;
-+		pinctrl-names = "default";
-+		powerdown-gpios = <&lpass_tlmm 13 GPIO_ACTIVE_LOW>;
-+		#sound-dai-cells = <0>;
-+		sound-name-prefix = "WooferRight";
-+		vdd-1p8-supply = <&vreg_l15b_1p8>;
-+		vdd-io-supply = <&vreg_l12b_1p2>;
-+	};
-+
-+	/* WSA8845, Right Tweeter */
-+	right_tweeter: speaker@0,1 {
-+		compatible = "sdw20217020400";
-+		reg = <0 1>;
-+		/* pinctrl in right_woofer node because of sharing the GPIO*/
-+		powerdown-gpios = <&lpass_tlmm 13 GPIO_ACTIVE_LOW>;
-+		#sound-dai-cells = <0>;
-+		sound-name-prefix = "TwitterRight";
-+		vdd-1p8-supply = <&vreg_l15b_1p8>;
-+		vdd-io-supply = <&vreg_l12b_1p2>;
-+	};
-+};
-+
- &tlmm {
- 	gpio-reserved-ranges = <34 2>, /* Unused */
- 			       <44 4>, /* SPI (TPM) */
--- 
-2.34.1
+We are talking about devicetree here, not driver.
 
+If the PTN5150 is present on the board, then just represent it in the
+devicetree.
 
