@@ -1,138 +1,99 @@
-Return-Path: <devicetree+bounces-25565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25567-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB811813AB1
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 20:25:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FA90813ACF
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 20:33:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 750B61F2169E
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 19:25:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 93507283317
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 19:33:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 751106978A;
-	Thu, 14 Dec 2023 19:25:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B64D76979D;
+	Thu, 14 Dec 2023 19:33:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cLVOB3t+"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="YKCT6jAL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 640155ABB8
-	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 19:24:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a1d93da3eb7so987763966b.0
-        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 11:24:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702581896; x=1703186696; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=wW/GDlju1SlGiHxyBADi4zieDq7qt0NNlAx5gIb5X2c=;
-        b=cLVOB3t+J+3+sLqigbU4jgcI4l8O8TIPMFEw3McLPbwimp8llYnljx/D5fEk+44sLD
-         2ADf+59Rcdan1KPxpdJArCratnqJaArYSoSpb6gReG59M6r46HFjCd6iLQ1CxKdBvi7Q
-         UN49PFOpRW+3tFfbfynYvCn2pnNgH50K5G3clFu1qmXr4R1cJVO/5S/SZ298ETAOAAJm
-         KBeg1eZ98NoO0Z9lMhCaMbEm7YPPskgzcQJDQLP8aWUYQRCX9uHHXLz9aUI97nbxuJQ8
-         Y4ZwbiHC55TDIpuU4fWoYbkxDnODFqKBamr9yIFur2P+Z+Llkv/j/rnd/p2ubchPxBxh
-         +CmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702581896; x=1703186696;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wW/GDlju1SlGiHxyBADi4zieDq7qt0NNlAx5gIb5X2c=;
-        b=PSFPzHDBW5g0KN4vQoxHt0HIGX/7PdUSI8ERRgsZYTYOV49KBSyVvt3vOyYVszMfGm
-         2gOv815a+NwK0ZC9P+CTbeL/iGf0aiw5Qg+00F5jF31DQNi086fucKd2OWOaAX/UPHpL
-         hXH625ZiAFocabql28KAuuIYMgEryOqPj6dd+4tyXQKqRmI1VOQmTS2Fu6C97hQbrOcM
-         53kkGAx9MfpFPhVHnVv/CRbAds0HBKZRs/yXA29521Lsnun/sPfWslLiyWWpQLB7rgF2
-         U9qsdbdvfgb+uj8NZlN6mxgrlTwKrdoBIMVB8NZl1e/cyj8FEtryFwhQiBNBfAPbzuwu
-         GPOg==
-X-Gm-Message-State: AOJu0YxZKF+XP/a0CqK+uwpQeEDyaFP64EWJg0+y937LEjkI4mt+j+Mt
-	8z7nhQHxrrOJrT6SsN1chjNimw==
-X-Google-Smtp-Source: AGHT+IHMbXE/Abwze9EjqdpU70sO1enIjtDNJ9uE5t83WoTmA2Fs9hT/sHcWMvbLno6r7B91hf1hLQ==
-X-Received: by 2002:a17:906:cb85:b0:a19:6483:d899 with SMTP id mf5-20020a170906cb8500b00a196483d899mr5306891ejb.66.1702581896680;
-        Thu, 14 Dec 2023 11:24:56 -0800 (PST)
-Received: from [127.0.1.1] ([79.115.23.25])
-        by smtp.gmail.com with ESMTPSA id vg7-20020a170907d30700b00a22fdf10c96sm2876292ejc.180.2023.12.14.11.24.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Dec 2023 11:24:56 -0800 (PST)
-From: Abel Vesa <abel.vesa@linaro.org>
-Date: Thu, 14 Dec 2023 21:24:50 +0200
-Subject: [PATCH] arm64: dts: qcom: x1e80100-crd: Fix supplies for some LDOs
- in PM8550
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D56E56979A
+	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 19:33:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=vJr/
+	AQFE1XFRSIFd6GXXrHnQGhGkGt3dKuW9tKsM4n0=; b=YKCT6jALhYwerAmIP8og
+	WvlNjpLQ/du0sxJvWarBIVAgSnDV2WcLnWlcmXD8VnqLyy8xjECjUWSy+N8spC0J
+	s7U5mhqzl+IYHPIlL1OpGH2BDymKomzFllX3U/vYp4wReJ9LN48b7yK4Z2hEUlkT
+	Mo+aABJ1ha9ufY5Cp37BDH50UpuNGFunPkA6Tc2uTL36NyS9aer1uxV4ODjxu8FP
+	UJaqcON8fbubzXzS36zVzDvVk8N154kXrVMSo2EeXqakRQiEU3VINb7PXzvZdj1r
+	PzISFrJhx8N+N0dTG7RInkn3zf/Zs9il/c9XQWF5n71isuu7lKS7wBmjtZYoCwu/
+	WQ==
+Received: (qmail 1023542 invoked from network); 14 Dec 2023 20:27:06 +0100
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 14 Dec 2023 20:27:06 +0100
+X-UD-Smtp-Session: l3s3148p1@iI7dRH0MMtUujnuR
+Date: Thu, 14 Dec 2023 20:27:05 +0100
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
+Cc: linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	Marek Vasut <marek.vasut+renesas@gmail.com>,
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: Re: [PATCH v5 RESEND 0/2] PCI: rcar: support regulators for PCIe
+Message-ID: <ZXtXCYx2YR1of/qr@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	Marek Vasut <marek.vasut+renesas@gmail.com>,
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+References: <20231105092908.3792-1-wsa+renesas@sang-engineering.com>
+ <ZXske3k8CkMcGjr5@shikoro>
+ <20231214191900.GB2079458@rocinante>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20231214-x1e80100-dts-fix-pm8550-regulators-supplies-v1-1-6b5830dc337e@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAIFWe2UC/x2NQQqDMBAAvyJ77sJu0rTSr5QeQtzYBashq0UQ/
- 97Q4xxm5gCTqmLw6A6o8lXTZW7Alw7SO86joA6NwZHz7PiKO0tPTITDaph1x/LpQyCsMm5TXJd
- qaFspU4siiw85+ts9pQytWKo04397vs7zB0US26d9AAAA
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>, 
- Rajendra Nayak <quic_rjendra@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1379; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=OuI3ZT6TSbv4+Phx9PQrKmxRLVqKlP7HvLWZobRvDFs=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBle1aDFfDkRbCA6udlRBLwiDsPgFeLMm6UE6AHm
- xqOJ7wcN1GJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZXtWgwAKCRAbX0TJAJUV
- VooTEADK2iEU66Bm0GdvcfQWVxdhoXrvjSAFEt6qDI/1n7Q3x2P2BLhcnYpRnlxBtE542lP8ApG
- PugrpvLtUqtTmthUK9l6pUXu+TS1/66iYP/ZuRTIU9mGGM8VeQGUnnBcfHqKds5fK958rATdS/X
- nPq9e9t/jmBQ+Y+kGXH/+3IaOMlXjo+PtUiwgWi7I4HaXSEJ7A13KSM1hHwOpNbP+5Be4cz6e3H
- E11Bwfo2NxdE2lh1tTOmveCei40s5FjZp7NfNQ/YZ2FyTuZoQ5Wp7cibgLE4WAn0NlY3xePAcZL
- mGnX9OqQkSKyRsQifNvsywbt+wxBmQY45BpQELh/thfld5VvQ9M4resXX9Cta6ukks7vSNCp+1Y
- IXXy/9DF/xGuU0frcC/gEJTTdvMryhlTYeJz1OyzTZW8kPftnAo2Oq9AG9Ctd63AQdeXZhQ26XL
- DOD0kqW2Ns/e2tH9IJTOuP/A7HgAcb9Evsu/lhvrByZegg0HeuEybkLrfUb0HL7zK211vvsGHkd
- 3Ftcqz/ISSg5iFPHNVjvuPIADGSnFnzvqrib7XzwMplKXGWWWFTeSqw1Fjkd7+/zWj8/SxrYfel
- Ij5grSMP7mWZ/WucR+55rr51ugzrDil0/xYdBdh7AGE9ygfZ7XjxVcewjV3YeY9l+5a3xZ9vH9T
- qtONEsHxOFX+GTQ==
-X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="C8Ty/fbhp+nEXecq"
+Content-Disposition: inline
+In-Reply-To: <20231214191900.GB2079458@rocinante>
 
-The LDOs 1, 4 and 10 from PM8550 share the same supply, the SMPS 4
-from PM8550ve. This needs to be done through shared supply approach
-otherwise the bindings check fails.
 
-Fixes: bd50b1f5b6f3 ("arm64: dts: qcom: x1e80100: Add Compute Reference Device")
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
- arch/arm64/boot/dts/qcom/x1e80100-crd.dts | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+--C8Ty/fbhp+nEXecq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-index c209ae59c6b5..7532d8eca2de 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-@@ -58,13 +58,11 @@ regulators-0 {
- 
- 		vdd-bob1-supply = <&vph_pwr>;
- 		vdd-bob2-supply = <&vph_pwr>;
--		vdd-l1-supply = <&vreg_s4c_1p8>;
-+		vdd-l1-l4-l10-supply = <&vreg_s4c_1p8>;
- 		vdd-l2-l13-l14-supply = <&vreg_bob1>;
--		vdd-l4-supply = <&vreg_s4c_1p8>;
- 		vdd-l5-l16-supply = <&vreg_bob1>;
- 		vdd-l6-l7-supply = <&vreg_bob2>;
- 		vdd-l8-l9-supply = <&vreg_bob1>;
--		vdd-l10-supply = <&vreg_s4c_1p8>;
- 		vdd-l12-supply = <&vreg_s5j_1p2>;
- 		vdd-l15-supply = <&vreg_s4c_1p8>;
- 		vdd-l17-supply = <&vreg_bob2>;
 
----
-base-commit: 7b0e611dc474ffa67d3a6ea235085bf423ee5f2a
-change-id: 20231214-x1e80100-dts-fix-pm8550-regulators-supplies-1e35fa367ccf
+> Applied, so it should make it to 6.8.  Apologies for the delay.
 
-Best regards,
--- 
-Abel Vesa <abel.vesa@linaro.org>
+Awesome, thank you!
 
+
+--C8Ty/fbhp+nEXecq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmV7VwUACgkQFA3kzBSg
+Kbav2Q//axmhe1kLHs/Li35jBoHdo2LNR2a2RGkR0AzFNJ95MgzJLCAHlmXq+lOU
+Odi268gmDwriEa9ISl3a47TxgrndBrxGiMUXgKityzQh+0EAE15erWozUrdCxyel
+whdEb0WSlaq0B4lETpbP6jKB4GGi5OZC9VfdFGq9Rl0MIJqYOLn40ZTzO+5+oI4z
+ZaZDeTY1+8QRHquRJ97bm8+oAcuMbkf1O6yc6LahUiPTx2lTbxTbdotLFnp8z5go
+rjJJ3ctZ9jse4Eqc1iXJORufrRanTtA9RWOyD1pq1difuSaSYTZG6dsPDJOsusma
+i0OQ1UjPZSC+dx9MXLfJ5vmgJ89cNfrCp/lt2n2GmJ+LmS0G2wNx1QGJVcYCq2Mu
+HNKOqvXLKJS8WnmfRJZeV+hH4ih3fILCzRBLF/+TQIto6bgOv2e63CfKRfvwv5Gn
+nOxBPZIAkNdkBQ3birtagIy+6U4sunH6jQxzMlijcTfqks6WWzY7D294Bi3k0FxH
+u/vZBvcNcCFg6mxay/tXP0Odpm08AJdMOL2iTRDyMFcYPRWVwS7fr4Tq40TAbWMF
+VeBoOjl5l1U47mH6yqR4/lNqZS4LxhA8Oo/jct6e+vHgKpaTl7hEVj0nNANWJdRu
+Fi9Ydikto8WBAXc/ubLUXWjDwbtO1qTiLA7xpkmAl4A5/g9JP/s=
+=DwEQ
+-----END PGP SIGNATURE-----
+
+--C8Ty/fbhp+nEXecq--
 
