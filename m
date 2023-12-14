@@ -1,139 +1,141 @@
-Return-Path: <devicetree+bounces-25144-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25145-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 442168128BE
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 08:08:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 502E98128C7
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 08:09:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A335F281CBF
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 07:08:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 80C891C212D9
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 07:09:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C66DBDDBE;
-	Thu, 14 Dec 2023 07:07:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E99DD52C;
+	Thu, 14 Dec 2023 07:09:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="jjnrRkZ7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Jrg0onkE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13C2DBD;
-	Wed, 13 Dec 2023 23:07:51 -0800 (PST)
+Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CCEDB9
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 23:09:17 -0800 (PST)
+Received: by mail-yb1-xb2e.google.com with SMTP id 3f1490d57ef6-dbcd9af2428so243177276.1
+        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 23:09:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702537756; x=1703142556; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=9O1GnUq4pw6hl4a/GhVKNLNjzNzEUMAMJcd0utEyLiE=;
+        b=Jrg0onkEW7cZmLkXpgpixdbps3bf+3816C8u1ryDdu8/S6ggiSXCSaFC6mMW8w0mRq
+         UCcapzzEQkiotnyscr46KOGVMADBNQB8Lk0O4I3sPvYR42qwV2NiiTCYUHIyDSOcTj5J
+         KX67eBXfhmTtxwdOYnl58EhYT6avc+qjXpC8Lc6lidtfiTh31pPeBoZSAeblwtB8ienX
+         D7n7IPRZXu3ERL9Ux/PnxTgMeiQKctPlssDqgCrNd80J91KRbtFFuEjbnPOEHugVglUe
+         SPoqk+sChWeCYtEb89exiKxuTfeNxPHlG/ZNy83rxHQUcsWUPgu+fbnKQtjyMoLrYAO/
+         cqWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702537756; x=1703142556;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9O1GnUq4pw6hl4a/GhVKNLNjzNzEUMAMJcd0utEyLiE=;
+        b=XvxXMzKYi5muh5cU+Mec5eogBgPttaUMH07KiUksZn+MnceoVkY+cAcI74FCtRfjdC
+         AxzE2zk25OVKAG8QJSFpm20ek3+uXybR9SCutRg6r1WSwe7HcVx2yxlubY4FEOykjog3
+         wbRgbA7Z5tLxcQexRrXMts3XUdiEzwbShocCMnHow33rU1Vbvkv/3mPnMAWLL3wMfE/k
+         z0e8DXShX2m4wEiW1wr6vWftsXzbvN0Q4+W9fjvPGw84g/YjZnPo0RE5/WQaChw1ersA
+         qgEHlqheYd46lUQBfVfoVb4Bk8+XwJGqW0cZHQVK0x90sxBSIweMOZ1MSKJY4lHtleYA
+         xBMw==
+X-Gm-Message-State: AOJu0YzCtsDcK4VC/zlBEMIqMv97NrI7hsxtE9XFLNm43lDCH9vpdX0Z
+	cBHslhytyQlCMpOEqACZLcfwbqvKajAYbbY8T9+CNw==
+X-Google-Smtp-Source: AGHT+IG078aMdmbmisgdnRLiC9BHttQaRKTw1dmngc8Uzuyuor0vsPrA1eyS3c5KPIlT0ZUu4886PyAXYBHaW+v9aKM=
+X-Received: by 2002:a25:8041:0:b0:dbc:ddf4:4b14 with SMTP id
+ a1-20020a258041000000b00dbcddf44b14mr1157789ybn.50.1702537756642; Wed, 13 Dec
+ 2023 23:09:16 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1702537669;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=YeV7T88snl53RFgpuP4C5JHNb6hLjpYKE/XnNP2YYbo=;
-	b=jjnrRkZ7xobzuw20PCR8x87LIc5aCuTeZvPA1ATgp61Ob8c/IHBiA3KpL7OlX/A5FEMTBK
-	eUtLAKy3AaB3m7DXp+U5mWfZU5UoqzIkqiJvYEJXMDEsJFwB8qzpeu3R9CLSeuL8gvZWsi
-	Q2DlKKoADIRC8eLLfY6DNzI6PQW3t4Xk6k5nmOE+i5CskTn7KMG4zrHWlXg9UFg/6Pl1SF
-	+AYG/kYPYVJ2iq86dHc46/1Vsj+qlUv0itifPkOC67ubwBkoPlcOSbV9QEcFqr0MhE8Kt4
-	8sfMjNtvC6spnDRu3IBRAA2ZM9J/2itTShoEjzXI+C+1T8SA4GWtI2DKMTfMFw==
-Date: Thu, 14 Dec 2023 08:07:48 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Trevor Woerner <twoerner@gmail.com>
-Cc: linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v2] arm64: rockchip: dts: rk3328-rock-pi-e: add
- gpio-line-names
-In-Reply-To: <20231213160556.14424-1-twoerner@gmail.com>
-References: <20231213160556.14424-1-twoerner@gmail.com>
-Message-ID: <62a0261fba6aecf5b28c4c55eb38ea51@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+References: <20231214062847.2215542-1-quic_ipkumar@quicinc.com> <20231214062847.2215542-3-quic_ipkumar@quicinc.com>
+In-Reply-To: <20231214062847.2215542-3-quic_ipkumar@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Thu, 14 Dec 2023 09:09:05 +0200
+Message-ID: <CAA8EJpr61JuznqfdMG96mjrqquf2Qbfe=potB5vzk43XexWj2w@mail.gmail.com>
+Subject: Re: [PATCH 02/10] clk: qcom: ipq5332: Add separate clocks for PCIe
+ and USB for Combo PHY
+To: Praveenkumar I <quic_ipkumar@quicinc.com>
+Cc: agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org, 
+	mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, bhelgaas@google.com, 
+	lpieralisi@kernel.org, kw@linux.com, vkoul@kernel.org, kishon@kernel.org, 
+	mani@kernel.org, quic_nsekar@quicinc.com, quic_srichara@quicinc.com, 
+	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pci@vger.kernel.org, linux-phy@lists.infradead.org, 
+	quic_varada@quicinc.com, quic_devipriy@quicinc.com, quic_kathirav@quicinc.com, 
+	quic_anusha@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
 
-On 2023-12-13 17:05, Trevor Woerner wrote:
-> Add names to the pins of the general-purpose expansion header as given
-> in the Radxa GPIO page[1] following the conventions in the kernel
-> documentation[2] to make it easier for users to correlate the pins with
-> functions when using utilities such as 'gpioinfo'.
-> 
-> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+On Thu, 14 Dec 2023 at 08:29, Praveenkumar I <quic_ipkumar@quicinc.com> wrote:
+>
+> Qualcomm IPQ5332 has a combo PHY for PCIe and USB. Either one of the
+> interface (PCIe/USB) can use this combo PHY and the PHY drivers are
+> different for PCIe and USB. Hence separate the PCIe and USB pipe clock
+> source from DT, and individual driver node can be used as a clock source
+> separately in the gcc. Add separate enum for PCIe and USB pipe clock and
+> change the parent in corresponding structures.
+>
+> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+
+Please use your full name for the git authorship and or the S-o-B
+tags. This applies to the whole series.
+
+Other than that:
+
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
 > ---
-> changes in v2:
-> - fix subject from "amd64..." to "arm64..."
-> ---
->  .../boot/dts/rockchip/rk3328-rock-pi-e.dts    | 53 +++++++++++++++++++
->  1 file changed, 53 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
-> b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
-> index 018a3a5075c7..3169c0854061 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
-> @@ -388,3 +388,56 @@ &usbdrd3 {
->  &usb_host0_ehci {
->  	status = "okay";
+>  drivers/clk/qcom/gcc-ipq5332.c | 7 ++++---
+>  1 file changed, 4 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/clk/qcom/gcc-ipq5332.c b/drivers/clk/qcom/gcc-ipq5332.c
+> index f98591148a97..aa0f616c3b1b 100644
+> --- a/drivers/clk/qcom/gcc-ipq5332.c
+> +++ b/drivers/clk/qcom/gcc-ipq5332.c
+> @@ -25,7 +25,8 @@ enum {
+>         DT_SLEEP_CLK,
+>         DT_PCIE_2LANE_PHY_PIPE_CLK,
+>         DT_PCIE_2LANE_PHY_PIPE_CLK_X1,
+> -       DT_USB_PCIE_WRAPPER_PIPE_CLK,
+> +       DT_PCIE_WRAPPER_PIPE_CLK,
+> +       DT_USB_WRAPPER_PIPE_CLK,
 >  };
-> +
-> +&gpio0 {
-> +	gpio-line-names =
-> +	/* GPIO0_A0 - A7 */
-> +	"", "", "", "", "", "", "", "",
-> +	/* GPIO0_B0 - B7 */
-> +	"", "", "", "", "", "", "", "",
-> +	/* GPIO0_C0 - C7 */
-> +	"", "", "", "", "", "", "", "",
-> +	/* GPIO0_D0 - D7 */
-> +	"", "", "", "pin-15 [GPIO0_D3]", "", "", "", "";
-> +};
-> +
-> +&gpio1 {
-> +	gpio-line-names =
-> +	/* GPIO1_A0 - A7 */
-> +	"", "", "", "", "", "", "", "",
-> +	/* GPIO1_B0 - B7 */
-> +	"", "", "", "", "", "", "", "",
-> +	/* GPIO1_C0 - C7 */
-> +	"", "", "", "", "", "", "", "",
-> +	/* GPIO1_D0 - D7 */
-> +	"", "", "", "", "pin-07 [GPIO1_D4]", "", "", "";
-> +};
-> +
-> +&gpio2 {
-> +	gpio-line-names =
-> +	/* GPIO2_A0 - A7 */
-> +	"pin-08 [GPIO2_A0]", "pin-10 [GPIO2_A1]", "pin-11 [GPIO2_A2]",
-> +	"pin-13 [GPIO2-A3]", "pin-27 [GPIO2_A4]", "pin-28 [GPIO2_A5]",
-> +	"pin-33 [GPIO2_A6]", "",
-> +	/* GPIO2_B0 - B7 */
-> +	"", "", "", "", "pin-26 [GPIO2_B4]", "", "", "pin-36 [GPIO2_B7]",
-> +	/* GPIO2_C0 - C7 */
-> +	"pin-32 [GPIO2_C0]", "pin-35 [GPIO2_C1]", "pin-12 [GPIO2_C2]",
-> +	"pin-38 [GPIO2_C3]", "pin-29 [GPIO2_C4]", "pin-31 [GPIO2_C5]",
-> +	"pin-37 [GPIO2_C6]", "pin-40 [GPIO2_C7]",
-> +	/* GPIO2_D0 - D7 */
-> +	"", "", "", "", "", "", "", "";
-> +};
-> +
-> +&gpio3 {
-> +	gpio-line-names =
-> +	/* GPIO3_A0 - A7 */
-> +	"pin-23 [GPIO3_A0]", "pin-19 [GPIO3_A1]", "pin-21 [GPIO3_A2]",
-> +	"", "pin-03 [GPIO3_A4]", "", "pin-05 [GPIO3_A6]", "",
-> +	/* GPIO3_B0 - B7 */
-> +	"pin-24 [GPIO3_B0]", "", "", "", "", "", "", "",
-> +	/* GPIO3_C0 - C7 */
-> +	"", "", "", "", "", "", "", "",
-> +	/* GPIO3_D0 - D7 */
-> +	"", "", "", "", "", "", "", "";
-> +};
+>
+>  enum {
+> @@ -728,7 +729,7 @@ static struct clk_regmap_phy_mux gcc_pcie3x1_0_pipe_clk_src = {
+>                 .hw.init = &(struct clk_init_data) {
+>                         .name = "gcc_pcie3x1_0_pipe_clk_src",
+>                         .parent_data = &(const struct clk_parent_data) {
+> -                               .index = DT_USB_PCIE_WRAPPER_PIPE_CLK,
+> +                               .index = DT_PCIE_WRAPPER_PIPE_CLK,
+>                         },
+>                         .num_parents = 1,
+>                         .ops = &clk_regmap_phy_mux_ops,
+> @@ -1072,7 +1073,7 @@ static struct clk_regmap_phy_mux gcc_usb0_pipe_clk_src = {
+>                 .hw.init = &(struct clk_init_data) {
+>                         .name = "gcc_usb0_pipe_clk_src",
+>                         .parent_data = &(const struct clk_parent_data) {
+> -                               .index = DT_USB_PCIE_WRAPPER_PIPE_CLK,
+> +                               .index = DT_USB_WRAPPER_PIPE_CLK,
+>                         },
+>                         .num_parents = 1,
+>                         .ops = &clk_regmap_phy_mux_ops,
+> --
+> 2.34.1
+>
+>
 
-The formatting should be a bit different, i.e. all lines following 
-"gpio-line-names =" and providing the value should be indented one tab 
-position further.
+
+-- 
+With best wishes
+Dmitry
 
