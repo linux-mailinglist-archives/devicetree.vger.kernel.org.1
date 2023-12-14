@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-25198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECA768129DE
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 08:59:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 940D48129E5
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 09:01:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 926711F2129F
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 07:59:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4918E1F212D6
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 08:01:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D5A914F90;
-	Thu, 14 Dec 2023 07:59:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B6E8154A1;
+	Thu, 14 Dec 2023 08:01:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PGqKjB11"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wXGAmAIo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA8C4C9
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 23:59:39 -0800 (PST)
-Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2cc3f5e7451so11230661fa.2
-        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 23:59:39 -0800 (PST)
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1A20113
+	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 00:01:19 -0800 (PST)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-a22f59c6af8so211947666b.0
+        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 00:01:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702540778; x=1703145578; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702540878; x=1703145678; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=n9wEnUDIRvKLyzOqX0O3tx30Tvjspr7MEcA9HRHm9qk=;
-        b=PGqKjB11cnsez4TKVIE9XCSDSIWcs/diMkYEeVYu3nJupUISGrnSNXC7rONfLCrnVu
-         Yy8AH1T8x10lgUeHHG+JnXK+HCoW7LrIja/9COwD3tidKDjr6Ann02/lqUPoaV2GIlDe
-         CN0PCHETk/AUlZy/4QW1lMQLlvf96GWKmhKNNkNpNrVX9P6zF355YHNjhDx/4eJCWkvF
-         70/tKn3Tf3ORrywuqL7+4gE5pLs3qfezvgj1DaeO+mdgMUimipeCVKV3ObbZYFWDCDrM
-         Rn64CZ0toDo6smKpUY0fTQHe1mHczt09aKhPKMBb3s4SGwc1ML4KwqktyBwm0PHfLCsN
-         RkZA==
+        bh=q1YsCi/T34WJszm0iiLEhU2qP37YfuR/yzFj0GKjypk=;
+        b=wXGAmAIouENujsV9yMeXJDZEitklF2wTURAYUctEGP8BqZhu5XBcBQCYk8Zy+Bjyl5
+         8CdivJ1n2fdCfA5yPC0B5v0L7vOzZ385HQ6LD4IPk+N4JJFXietgcDkSbuhmBUo8nCgo
+         WuFp/PrT7ii0OpREqgEXW/2WSGMcTjEmLlnLDc5IMOfiiPE8W+hT7NM9v0JfFZD+6dAA
+         VDU96DiMXKEk6zaIWhOVx7hyYeZKRJIa28WRsQQfNfWEjlyilz2QlcJs3LsFWBRK1LWa
+         LmDRUGYF147sPTTsoeQA2R5vhZB0+M+pI3oqO/iF5X5nMgzIB5LAkdw7RVBv1AqfyDan
+         Ecpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702540778; x=1703145578;
+        d=1e100.net; s=20230601; t=1702540878; x=1703145678;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=n9wEnUDIRvKLyzOqX0O3tx30Tvjspr7MEcA9HRHm9qk=;
-        b=DM1x1+XRc/oSRMzcDHZoO9woQc9LXLQBsfCie+dzGBPOwSf9l7QF8OXB4d1lg563OK
-         Mx7fxijgroX2rLPrPYqmEowLVcrjAuuQYYRLCJCXeVYAe5Cn3WlqJBNogC9ZzZ3cBypy
-         AMTu06a6XVhLlv4JPzWvqJQ1GT/nlDHHIIyQDem0omPoN0Ljvr8S9YIZOQF5Hg+dtJ9H
-         E5v4MFtNWN6h+o62soMsTtPSWR0jdC+c5kbk9FQciA+M7q7U0Ok0EC1DhuN5TeZCF86o
-         t6PgHXbYDYh6werOhANz0Mt9FkrRkZHc2ubrHlNbtVlb5GqbO2lh2IL20w0Ci8VjGl9x
-         wMQg==
-X-Gm-Message-State: AOJu0YxtXdIGLTjZqt5lo+oSeL7U5AHpBzaGvi72IQs6lZR8+27qjpSa
-	VN0VnCu06/nrawaFQJG+nGGGjQ==
-X-Google-Smtp-Source: AGHT+IEe1lSgOXPocDgp9kCh/V3KjoKfM051nF7MsjqFJM+J46Ouy4zBpfOW7arvRyUz2R2cq6bW8Q==
-X-Received: by 2002:ac2:51b0:0:b0:50b:fd52:e629 with SMTP id f16-20020ac251b0000000b0050bfd52e629mr3702789lfk.125.1702540777832;
-        Wed, 13 Dec 2023 23:59:37 -0800 (PST)
+        bh=q1YsCi/T34WJszm0iiLEhU2qP37YfuR/yzFj0GKjypk=;
+        b=YOWaQemb5+TMbEE9nRia7LCK4raBkZVcDIpw9Q8p5uQR6y8W5gIxiho9/NexcuLPci
+         00h2FHB/7EvzTnnSdqJqWsnwEslfvKzkT6yUgAbkYzhwM2p/BoTpzys9xr8ZWRGCeJ/M
+         gtdW/TPmZxHAWyoIpgQv7rwflwYlmwMU8hZXSHnWeEAC7pCy9aLluiiALqJdrdH1/HYq
+         IrFoQUrEqp/lpWEZDicruI+eLcTFF4x8O6KfpQD5hZP0IET9g87FZT1yTjMdV+MT/kZc
+         /PwnW3m7vXl00vn6t8ac0cg2jrVze6kfEFJWfQZNGO7KZTqV/UF2phuUvSHNVSIGW0Bi
+         TmEA==
+X-Gm-Message-State: AOJu0YwAbdv3MGs71KyyU95GNvG0EqoA1m4On/MgOMUkaibDF0zUROmj
+	sx24K03YbKRxWaqMLBuN+f9hhw==
+X-Google-Smtp-Source: AGHT+IHoKUpG/YJgZAxA4UVoVwL071GogtVsymww0ZAXzYa8Cf9VTr25vfmvQbADTh3MmjibKt4eGw==
+X-Received: by 2002:a17:906:6a29:b0:a18:9ac9:27c2 with SMTP id qw41-20020a1709066a2900b00a189ac927c2mr5378195ejc.53.1702540878220;
+        Thu, 14 Dec 2023 00:01:18 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id rm6-20020a1709076b0600b00a1f6f120b33sm8476917ejc.110.2023.12.13.23.59.36
+        by smtp.gmail.com with ESMTPSA id rm6-20020a1709076b0600b00a1f6f120b33sm8476917ejc.110.2023.12.14.00.01.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Dec 2023 23:59:37 -0800 (PST)
-Message-ID: <ada0b523-d0a9-405b-a7f3-d4d58c6a6696@linaro.org>
-Date: Thu, 14 Dec 2023 08:59:35 +0100
+        Thu, 14 Dec 2023 00:01:17 -0800 (PST)
+Message-ID: <54b55ce6-a90b-47ba-bc7c-e1d722c95b0b@linaro.org>
+Date: Thu, 14 Dec 2023 09:01:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,17 +62,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/3] soc: nuvoton: add NPCM BPC driver
+Subject: Re: [PATCH v7 2/7] dt-bindings: clock: rk3588: drop CLK_NR_CLKS
 Content-Language: en-US
-To: Tomer Maimon <tmaimon77@gmail.com>, arnd@arndb.de, pmenzel@molgen.mpg.de,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- avifishman70@gmail.com, tali.perry1@gmail.com, joel@jms.id.au,
- venture@google.com, yuenn@google.com, benjaminfair@google.com,
- j.neuschaefer@gmx.net
-Cc: openbmc@lists.ozlabs.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231213190528.3751583-1-tmaimon77@gmail.com>
- <20231213190528.3751583-4-tmaimon77@gmail.com>
+To: Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Elaine Zhang <zhangqing@rock-chips.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, linux-clk@vger.kernel.org
+Cc: Kever Yang <kever.yang@rock-chips.com>, Heiko Stuebner <heiko@sntech.de>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, huangtao@rock-chips.com,
+ andy.yan@rock-chips.com, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, kernel@collabora.com
+References: <20231213185114.47565-1-sebastian.reichel@collabora.com>
+ <20231213185114.47565-3-sebastian.reichel@collabora.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -118,236 +121,18 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231213190528.3751583-4-tmaimon77@gmail.com>
+In-Reply-To: <20231213185114.47565-3-sebastian.reichel@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/12/2023 20:05, Tomer Maimon wrote:
-> Add Nuvoton BMC NPCM BIOS post code (BPC) driver.
+On 13/12/2023 19:46, Sebastian Reichel wrote:
+> CLK_NR_CLKS should not be part of the binding. Let's drop it, since
+> the kernel code no longer uses it either.
 > 
-> The NPCM BPC monitoring two configurable I/O address written by the host
-> on the bus.
-> 
-> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 > ---
->  drivers/soc/nuvoton/Kconfig    |   9 +
->  drivers/soc/nuvoton/Makefile   |   1 +
->  drivers/soc/nuvoton/npcm-bpc.c | 387 +++++++++++++++++++++++++++++++++
->  3 files changed, 397 insertions(+)
->  create mode 100644 drivers/soc/nuvoton/npcm-bpc.c
-> 
-> diff --git a/drivers/soc/nuvoton/Kconfig b/drivers/soc/nuvoton/Kconfig
-> index d5102f5f0c28..ebd162633942 100644
-> --- a/drivers/soc/nuvoton/Kconfig
-> +++ b/drivers/soc/nuvoton/Kconfig
-> @@ -2,6 +2,15 @@
->  
->  menu "NUVOTON SoC drivers"
 
-...
-
-> +
-> +static int npcm_bpc_config_irq(struct npcm_bpc *bpc,
-> +			       struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	int rc;
-> +
-> +	bpc->irq = platform_get_irq(pdev, 0);
-> +	if (bpc->irq < 0) {
-> +		dev_err(dev, "get IRQ failed\n");
-> +		return bpc->irq;
-
-return dev_err_probe
-
-> +	}
-> +
-> +	rc = devm_request_irq(dev, bpc->irq,
-> +			      npcm_bpc_irq, IRQF_SHARED,
-> +			      DEVICE_NAME, bpc);
-> +	if (rc < 0) {
-> +		dev_warn(dev, "Unable to request IRQ %d\n", bpc->irq);
-
-return dev_err_probe
-
-> +		return rc;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int npcm_enable_bpc(struct npcm_bpc *bpc, struct device *dev,
-> +			   int channel, u16 host_port)
-> +{
-> +	u8 addr_en, reg_en;
-> +	int err;
-> +
-> +	init_waitqueue_head(&bpc->ch[channel].wq);
-> +
-> +	err = kfifo_alloc(&bpc->ch[channel].fifo, BPC_KFIFO_SIZE,
-> +			  GFP_KERNEL);
-> +	if (err)
-> +		return err;
-> +
-> +	bpc->ch[channel].miscdev.minor = MISC_DYNAMIC_MINOR;
-> +	bpc->ch[channel].miscdev.name =
-> +		devm_kasprintf(dev, GFP_KERNEL, "%s%d", DEVICE_NAME, channel);
-> +	bpc->ch[channel].miscdev.fops = &npcm_bpc_fops;
-> +	bpc->ch[channel].miscdev.parent = dev;
-> +	err = misc_register(&bpc->ch[channel].miscdev);
-> +	if (err)
-> +		return err;
-> +
-> +	bpc->ch[channel].data = bpc;
-> +	bpc->ch[channel].host_reset = false;
-> +
-> +	/* Enable host snoop channel at requested port */
-> +	switch (channel) {
-> +	case 0:
-> +		addr_en = FIFO_IOADDR1_ENABLE;
-> +		iowrite8((u8)host_port & 0xFF,
-> +			 bpc->base + NPCM_BPCFA1L_REG);
-> +		iowrite8((u8)(host_port >> 8),
-> +			 bpc->base + NPCM_BPCFA1M_REG);
-> +		break;
-> +	case 1:
-> +		addr_en = FIFO_IOADDR2_ENABLE;
-> +		iowrite8((u8)host_port & 0xFF,
-> +			 bpc->base + NPCM_BPCFA2L_REG);
-> +		iowrite8((u8)(host_port >> 8),
-> +			 bpc->base + NPCM_BPCFA2M_REG);
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (bpc->en_dwcap)
-> +		addr_en = FIFO_DWCAPTURE;
-> +
-> +	/*
-> +	 * Enable FIFO Ready Interrupt, FIFO Capture of I/O addr,
-> +	 * and Host Reset
-> +	 */
-> +	reg_en = ioread8(bpc->base + NPCM_BPCFEN_REG);
-> +	iowrite8(reg_en | addr_en | FIFO_READY_INT_ENABLE |
-> +		 HOST_RESET_INT_ENABLE, bpc->base + NPCM_BPCFEN_REG);
-> +
-> +	return 0;
-> +}
-> +
-> +static void npcm_disable_bpc(struct npcm_bpc *bpc, int channel)
-> +{
-> +	u8 reg_en;
-> +
-> +	switch (channel) {
-> +	case 0:
-> +		reg_en = ioread8(bpc->base + NPCM_BPCFEN_REG);
-> +		if (bpc->en_dwcap)
-> +			iowrite8(reg_en & ~FIFO_DWCAPTURE,
-> +				 bpc->base + NPCM_BPCFEN_REG);
-> +		else
-> +			iowrite8(reg_en & ~FIFO_IOADDR1_ENABLE,
-> +				 bpc->base + NPCM_BPCFEN_REG);
-> +		break;
-> +	case 1:
-> +		reg_en = ioread8(bpc->base + NPCM_BPCFEN_REG);
-> +		iowrite8(reg_en & ~FIFO_IOADDR2_ENABLE,
-> +			 bpc->base + NPCM_BPCFEN_REG);
-> +		break;
-> +	default:
-> +		return;
-> +	}
-> +
-> +	if (!(reg_en & (FIFO_IOADDR1_ENABLE | FIFO_IOADDR2_ENABLE)))
-> +		iowrite8(reg_en &
-> +			 ~(FIFO_READY_INT_ENABLE | HOST_RESET_INT_ENABLE),
-> +			 bpc->base + NPCM_BPCFEN_REG);
-> +
-> +	kfifo_free(&bpc->ch[channel].fifo);
-> +	misc_deregister(&bpc->ch[channel].miscdev);
-> +}
-> +
-> +static int npcm_bpc_probe(struct platform_device *pdev)
-> +{
-> +	struct npcm_bpc *bpc;
-> +	struct device *dev;
-> +	u32 port;
-> +	int err;
-> +
-> +	dev = &pdev->dev;
-> +
-> +	bpc = devm_kzalloc(dev, sizeof(*bpc), GFP_KERNEL);
-> +	if (!bpc)
-> +		return -ENOMEM;
-> +
-> +	bpc->base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(bpc->base))
-> +		return PTR_ERR(bpc->base);
-> +
-> +	dev_set_drvdata(&pdev->dev, bpc);
-
-Why do you use pdev again? Look earlier, you have local variable for this.
-
-> +
-> +	err = of_property_read_u32_index(dev->of_node, "nuvoton,monitor-ports",
-> +					 0, &port);
-> +	if (err) {
-> +		dev_err(dev, "no monitor ports configured\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	bpc->en_dwcap =
-> +		of_property_read_bool(dev->of_node, "nuvoton,bpc-en-dwcapture");
-> +
-> +	bpc->dev = dev;
-> +
-> +	err = npcm_bpc_config_irq(bpc, pdev);
-> +	if (err)
-> +		return err;
-> +
-> +	err = npcm_enable_bpc(bpc, dev, 0, port);
-> +	if (err) {
-> +		dev_err(dev, "Enable BIOS post code I/O port 0 failed\n");
-> +		return err;
-> +	}
-> +
-> +	/*
-> +	 * Configuration of second BPC channel port is optional
-> +	 * Double-Word Capture ignoring address 2
-> +	 */
-> +	if (!bpc->en_dwcap) {
-> +		if (of_property_read_u32_index(dev->of_node,
-> +					       "nuvoton,monitor-ports", 1,
-> +					       &port) == 0) {
-> +			err = npcm_enable_bpc(bpc, dev, 1, port);
-> +			if (err) {
-> +				dev_err(dev, "Enable BIOS post code I/O port 1 failed, disable I/O port 0\n");
-> +				npcm_disable_bpc(bpc, 0);
-> +				return err;
-> +			}
-> +		}
-> +	}
-> +
-> +	pr_info("NPCM BIOS Post Code probe\n");
-
-Drop
-
-> +
-> +	return err;
-> +}
-> +
-> +static int npcm_bpc_remove(struct platform_device *pdev)
-> +{
-> +	struct npcm_bpc *bpc = dev_get_drvdata(&pdev->dev);
-> +	u8 reg_en;
-> +
-> +	reg_en = ioread8(bpc->base + NPCM_BPCFEN_REG);
-> +
-> +	if (reg_en & FIFO_IOADDR1_ENABLE)
-> +		npcm_disable_bpc(bpc, 0);
-> +	if (reg_en & FIFO_IOADDR2_ENABLE)
-> +		npcm_disable_bpc(bpc, 1);
-> +
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
