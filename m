@@ -1,112 +1,141 @@
-Return-Path: <devicetree+bounces-25478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 183A6813586
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 17:00:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 777A6813589
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 17:01:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA7991F20B65
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 16:00:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A9F461C20BCE
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 16:01:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 906465E0BC;
-	Thu, 14 Dec 2023 15:59:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D13F05E0C9;
+	Thu, 14 Dec 2023 16:01:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oE/U4nNR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Guk+6gL5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 671BB5D91C;
-	Thu, 14 Dec 2023 15:59:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 326FEC433C8;
-	Thu, 14 Dec 2023 15:59:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702569595;
-	bh=7CoqfRw4JMr1mH61QnY6pnHqNDAJkzpjjIZkWX4fWDo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oE/U4nNRQ8qAZMz6rhJ8Sce7YX983atw1Ny0Zxc1hMmAY3JxOc7pXYNlvPBXeaGuQ
-	 loSUdaeJXdWV/b3HHhWHdDDfT6hOK0eKn3Pt3dYKl6FVkwhr2ptTCiXvrUv9tSOUBV
-	 KDfMM8KNsKA3mz02PUm3IzzbDmXD8pzBQINycWQ65iM94UygxbumUS/VhfEFlA+nQF
-	 9iMziNRgNs4Q/XbCBepT75LTFGS1psYisR0ReKKYzFozGOYLbjC1TLjHBrdDMCiJEO
-	 mUmt/Ay9ptppcOBYMVi3QK87vU8cfcMSXYvX6HW4Fx9kLEIg1b77B9osyiebHQrJvD
-	 eKcW3URUzhcqg==
-Date: Thu, 14 Dec 2023 15:59:49 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-	Support Opensource <support.opensource@diasemi.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-	Steve Twiss <stwiss.opensource@diasemi.com>,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>, linux-renesas-soc@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v6 8/8] dt-bindings: mfd: dlg,da9063: Convert da9062 to
- json-schema
-Message-ID: <20231214-muzzle-spectator-6d8c278ccf8b@spud>
-References: <20231214080911.23359-1-biju.das.jz@bp.renesas.com>
- <20231214080911.23359-9-biju.das.jz@bp.renesas.com>
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 976C1126
+	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 08:01:23 -0800 (PST)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-54c79968ffbso10447459a12.3
+        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 08:01:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702569682; x=1703174482; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=D+VFIozAF30zEgKKxFDP3drI06z9zzmO3HV6m4SuiwQ=;
+        b=Guk+6gL5FvgbClXZhAqmyYzGq5UH6OfIyUvODkVmFf4vSY3etzuNxe3FtrN7amNL04
+         iJbmutKwh+6hUZ7JmeXeaqXqTI8sdd2Bj6lpYFplcA5aJFuSnWQk0ii/jrfMdbifEcnX
+         MJMuT8B9XAOKq77C1E6lcI3zFiUh/anFfrNMt6sj7FdMIEvtpdw8zM9w7Cwej01TVWFS
+         Et7KTSugVOS4dY8Rwiadpp2X62ezw1yHN9/B1Hp5Ahy2iuMdlah+kQ1BzrZ2OyOZT1Jz
+         TKZF2a7uh/FelkBbsieLNB52aPJZdhETqALxPQYlRgUwfsoUkvo1bDNnlomKJ3QeEuXc
+         HtAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702569682; x=1703174482;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=D+VFIozAF30zEgKKxFDP3drI06z9zzmO3HV6m4SuiwQ=;
+        b=xEzB/6VH2EGCRcjLf1G04ZRXVQqR/aitDUbrNZouxv0Sn5GO/z8cGFAUqVnUTc+e5e
+         cT8M8d7Jmhu0lhhsDh9kBczFC/+P9akHVVqtv69/Y8BJDmTe+tWTdGFxtLnM97I7zdwC
+         FeVc97QoFIbQ82Fj2WI2tAZEnpmCHQckOiPa3CK6P44MuwfmaAkTmFUCCB6By+fid0jf
+         ZFecAcvMRzXy43sQHgm2JiTf4LCYv2SwMr0FXeY4CB0sQQlehDHyqNMeCTwDz31GYHZI
+         T80cg6GM+clFPR1me99rPbCBt5PkTQppgl5o7agQ4VCVZDEWMPDLocF80pn+0DsnBgMa
+         G9Kg==
+X-Gm-Message-State: AOJu0Yy+SAAtgD71eJo55Rj8CHuVF3kXJFdHfjy2PMyy5XocEfWlS4Wx
+	ZIzxVbqYhbxPg5u4ebIDfyH31w==
+X-Google-Smtp-Source: AGHT+IEMYj7NZTyAlbSayhibN+bIajeem6cYXSSO7+k3rveUzLz3uWXFda+obxiUgnN1c1X2yJymPw==
+X-Received: by 2002:a17:907:7ea1:b0:a1e:9d8b:1e7b with SMTP id qb33-20020a1709077ea100b00a1e9d8b1e7bmr6017626ejc.69.1702569682045;
+        Thu, 14 Dec 2023 08:01:22 -0800 (PST)
+Received: from [192.168.2.107] ([79.115.63.202])
+        by smtp.gmail.com with ESMTPSA id ld4-20020a1709079c0400b00a1df88cc7c0sm9445638ejc.182.2023.12.14.08.01.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Dec 2023 08:01:21 -0800 (PST)
+Message-ID: <f3d61c49-1a46-476c-b7a5-6cc6a06a33ed@linaro.org>
+Date: Thu, 14 Dec 2023 16:01:18 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="HqlfYCRaK1p8RYfx"
-Content-Disposition: inline
-In-Reply-To: <20231214080911.23359-9-biju.das.jz@bp.renesas.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 07/13] clk: samsung: gs101: mark PERIC0 IP TOP gate clock
+ as critical
+Content-Language: en-US
+To: Sam Protsenko <semen.protsenko@linaro.org>
+Cc: peter.griffin@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+ sboyd@kernel.org, conor+dt@kernel.org, andi.shyti@kernel.org,
+ alim.akhtar@samsung.com, gregkh@linuxfoundation.org, jirislaby@kernel.org,
+ catalin.marinas@arm.com, will@kernel.org, s.nawrocki@samsung.com,
+ tomasz.figa@gmail.com, cw00.choi@samsung.com, arnd@arndb.de,
+ andre.draszik@linaro.org, saravanak@google.com, willmcvicker@google.com,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+ linux-serial@vger.kernel.org
+References: <20231214105243.3707730-1-tudor.ambarus@linaro.org>
+ <20231214105243.3707730-8-tudor.ambarus@linaro.org>
+ <CAPLW+4mNjCbJ+VbKR66DFSkiXHyxdjgvwjN7azxjJQ6UxQikEw@mail.gmail.com>
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <CAPLW+4mNjCbJ+VbKR66DFSkiXHyxdjgvwjN7azxjJQ6UxQikEw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
 
---HqlfYCRaK1p8RYfx
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Dec 14, 2023 at 08:09:11AM +0000, Biju Das wrote:
-> Convert the da9062 PMIC device tree binding documentation to json-schema.
->=20
-> Document the missing gpio child node for da9062.
->=20
-> While at it, update description with link to product information and
-> example.
->=20
-> The missing child node with of_compatible defined in MFD_CELL_OF is
-> causing the below warning message:
-> da9062-gpio: Failed to locate of_node [id: -1]
->=20
-> So, make all child nodes with of_compatible defined in struct mfd_cell
-> as required property for da906{1,2} devices.
->=20
-> The "gpio-controller" and "#gpio-cells" properties are defined in the
-> parent instead of gpio child node as there are existing driver users
-> based on these parent properties.
+On 12/14/23 15:37, Sam Protsenko wrote:
+> On Thu, Dec 14, 2023 at 4:52 AM Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
+>>
+>> Testing USI8 I2C with an eeprom revealed that when the USI8 leaf clock
+>> is disabled it leads to the CMU_TOP PERIC0 IP gate clock disablement,
+>> which then makes the system hang. To prevent this, mark
+>> CLK_GOUT_CMU_PERIC0_IP as critical. Other clocks will be marked
+>> accordingly when tested.
+>>
+>> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+>> ---
+>>  drivers/clk/samsung/clk-gs101.c | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/clk/samsung/clk-gs101.c b/drivers/clk/samsung/clk-gs101.c
+>> index 3d194520b05e..08d80fca9cd6 100644
+>> --- a/drivers/clk/samsung/clk-gs101.c
+>> +++ b/drivers/clk/samsung/clk-gs101.c
+>> @@ -1402,7 +1402,7 @@ static const struct samsung_gate_clock cmu_top_gate_clks[] __initconst = {
+>>              "mout_cmu_peric0_bus", CLK_CON_GAT_GATE_CLKCMU_PERIC0_BUS,
+>>              21, 0, 0),
+>>         GATE(CLK_GOUT_CMU_PERIC0_IP, "gout_cmu_peric0_ip", "mout_cmu_peric0_ip",
+>> -            CLK_CON_GAT_GATE_CLKCMU_PERIC0_IP, 21, 0, 0),
+>> +            CLK_CON_GAT_GATE_CLKCMU_PERIC0_IP, 21, CLK_IS_CRITICAL, 0),
+> 
+> This clock doesn't seem like a leaf clock. It's also not a bus clock.
+> Leaving it always running makes the whole PERIC0 CMU clocked, which
+> usually should be avoided. Is it possible that the system freezes
+> because some other clock (which depends on peric0_ip) gets disabled as
+> a consequence of disabling peric0_ip? Maybe it's some leaf clock which
+> is not implemented yet in the clock driver? Just looks weird to me
+> that the system hangs because of CMU IP clock disablement. It's
+> usually something much more specific.
 
-Thanks for updating the commit message :)
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+The system hang happened when I tested USI8 in I2C configuration with an
+eeprom. After the eeprom is read the leaf gate clock that gets disabled
+is the one on PERIC0 (CLK_GOUT_PERIC0_CLK_PERIC0_USI8_USI_CLK). I assume
+this leads to the CMU_TOP gate (CLK_CON_GAT_GATE_CLKCMU_PERIC0_IP)
+disablement which makes the system hang. Either marking the CMU_TOP gate
+clock as critical (as I did in this patch) or marking the leaf PERIC0
+gate clock as critical, gets rid of the system hang. Did I choose wrong?
 
-Cheers,
-Conor.
-
---HqlfYCRaK1p8RYfx
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZXsmdQAKCRB4tDGHoIJi
-0lzGAP4oEdT2WUJUxiyRRCFGE6OT0WvQwnCe1E3iSspn6sqjPAEA2Ki0TvwYTowX
-TGIvSJPBorLjAV43jOT30EsDyvL91gg=
-=3PTg
------END PGP SIGNATURE-----
-
---HqlfYCRaK1p8RYfx--
+Thanks,
+ta
+> 
+>>         GATE(CLK_GOUT_CMU_PERIC1_BUS, "gout_cmu_peric1_bus",
+>>              "mout_cmu_peric1_bus", CLK_CON_GAT_GATE_CLKCMU_PERIC1_BUS,
+>>              21, 0, 0),
+>> --
+>> 2.43.0.472.g3155946c3a-goog
+>>
 
