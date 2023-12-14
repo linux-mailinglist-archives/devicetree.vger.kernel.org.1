@@ -1,288 +1,284 @@
-Return-Path: <devicetree+bounces-25223-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25224-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E557812B12
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 10:04:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4B99812B1D
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 10:07:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3989D1C21543
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 09:04:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C62461C21538
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 09:07:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1ABF286BC;
-	Thu, 14 Dec 2023 09:04:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="J8EvZKV1"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AACE286B9;
+	Thu, 14 Dec 2023 09:07:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 365F011B;
-	Thu, 14 Dec 2023 01:04:01 -0800 (PST)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BE5dNL9017365;
-	Thu, 14 Dec 2023 09:03:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	qcppdkim1; bh=mpb9J/YO/uB0jlf1r6qW5LJVCkw1qcvSyKfD0EbExOg=; b=J8
-	EvZKV1XAXmqTBTF2ofTudI92S3DKYaN96LOjjHZWemqocTiJ9QceaX7RGol/wjoE
-	K+JQHCNf9gOZoDwpaHDskhjnZsGi2s7knOOwXO9BZeT7cyYY78jIErbmsHvvgWBF
-	Rmj6PU1TGlCBFrM7vIucilBrQty12yEq9wdoGp96DqBlMGwKsvX5zBtkCdUNLqFj
-	tgObWmOGt7aTirqT03s8Vr6OPw2ZqOZTZh1xEVNMJwVQM+gSpScbihCdQBPLS6MA
-	eA5OGo/gfiUi6WUyeDgZCH9qUKZSgbUeBh6ctuq2BJuKBts3B4Nz9J4bFz+cLNWO
-	/HkyQdlYzQNP9fAKVAyw==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uyp4xh0b5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Dec 2023 09:03:50 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BE93nJU028629
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Dec 2023 09:03:49 GMT
-Received: from akronite-sh-dev02.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Thu, 14 Dec 2023 01:03:44 -0800
-From: Luo Jie <quic_luoj@quicinc.com>
-To: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <andrew@lunn.ch>, <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
-        <robert.marko@sartura.hr>
-CC: <linux-arm-msm@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_srichara@quicinc.com>
-Subject: [PATCH v3 5/5] dt-bindings: net: ipq4019-mdio: Document ipq5332 platform
-Date: Thu, 14 Dec 2023 17:03:04 +0800
-Message-ID: <20231214090304.16884-6-quic_luoj@quicinc.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231214090304.16884-1-quic_luoj@quicinc.com>
-References: <20231214090304.16884-1-quic_luoj@quicinc.com>
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9549710A;
+	Thu, 14 Dec 2023 01:07:07 -0800 (PST)
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-5c85e8fdd2dso76703387b3.2;
+        Thu, 14 Dec 2023 01:07:07 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702544826; x=1703149626;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=K62UqS9GxhpYYA4mLJeDhLsQ+jlCTyGKCF6JM+FXF3A=;
+        b=HVPnM6AmuQuwlArAaADTvLr6eXfws9WDYnVqd0sBuVPAscKvNZlcYauW9lA4yaXtZz
+         MeOvGesji6lQrhxMN3/M1UZLhVhFl992cxWc9H3DEyCFW6Tpodoe2ZAmG/7KAWdmteAn
+         GNd3KUSyZGmUU5gf/Qk4/hLmbTkZGMQ0afyfU9efV4YUImkaTkYdPfh3j6QyJRMXh6Gy
+         /5elsiFpbuBOKh6SnfDJpr618Cwp6UFvwjI641aVg2lTRTcTtmcF6euY2HKaSu+6WsOw
+         EZiJL+4XGDBmdbl4XWc8CuBgEMszOJWU6aBY1Xai0z1NB09AGc3F3waPwDJZu4NTld2T
+         vU/A==
+X-Gm-Message-State: AOJu0YzEXByAFreqnl6fuGiwtqXjqA/DUQ2YJMNIUaZSikH6/EqhkCnj
+	8atShnE9Bk7yJdp0+CGH7bVg0cRZmLTAVw==
+X-Google-Smtp-Source: AGHT+IGmbZxoI9gOukxHwcTIG1wP06TzisZ2xtDzGluz9SQNH1lESYPBvdNwam2d5POI+YKw76c27g==
+X-Received: by 2002:a0d:eb51:0:b0:5e2:a7a7:b0cb with SMTP id u78-20020a0deb51000000b005e2a7a7b0cbmr2435002ywe.101.1702544826562;
+        Thu, 14 Dec 2023 01:07:06 -0800 (PST)
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com. [209.85.219.171])
+        by smtp.gmail.com with ESMTPSA id v7-20020a81a547000000b005869ca8da8esm5237677ywg.146.2023.12.14.01.07.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Dec 2023 01:07:06 -0800 (PST)
+Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-dbcdec51ed9so825784276.0;
+        Thu, 14 Dec 2023 01:07:06 -0800 (PST)
+X-Received: by 2002:a25:9cc3:0:b0:dbc:ddc8:e751 with SMTP id
+ z3-20020a259cc3000000b00dbcddc8e751mr1067385ybo.117.1702544826078; Thu, 14
+ Dec 2023 01:07:06 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 8trfveeldZpNI5eRxpVi3PUoZy7LshOx
-X-Proofpoint-ORIG-GUID: 8trfveeldZpNI5eRxpVi3PUoZy7LshOx
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- lowpriorityscore=0 mlxlogscore=999 mlxscore=0 priorityscore=1501
- malwarescore=0 adultscore=0 spamscore=0 suspectscore=0 phishscore=0
- impostorscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2311290000 definitions=main-2312140058
+References: <87wmtlo2zs.wl-kuninori.morimoto.gx@renesas.com> <87r0jto2yq.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <87r0jto2yq.wl-kuninori.morimoto.gx@renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 14 Dec 2023 10:06:53 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUx-nm6k9LXbUJAJ78ChFYHVcmGcoz0YhWyos7h99R4wg@mail.gmail.com>
+Message-ID: <CAMuHMdUx-nm6k9LXbUJAJ78ChFYHVcmGcoz0YhWyos7h99R4wg@mail.gmail.com>
+Subject: Re: [PATCH v4 4/4] drivers: clk: renesas: ignore all clocks which are
+ assinged to non-Linux system
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Frank Rowand <frowand.list@gmail.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Rob Herring <robh+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, Aymeric Aillet <aymeric.aillet@iot.bzh>, 
+	Yusuke Goda <yusuke.goda.sx@renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Update the yaml file for the new DTS properties.
+Hi Morimoto-san,
 
-1. cmn-reference-clock for the CMN PLL source clock select.
-2. clock-frequency for MDIO clock frequency config.
-3. add uniphy AHB & SYS GCC clocks.
-4. add reset-gpios for MDIO bus level reset.
+Thanks for the update!
 
-Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
----
- .../bindings/net/qcom,ipq4019-mdio.yaml       | 143 +++++++++++++++++-
- 1 file changed, 139 insertions(+), 4 deletions(-)
+s/assinged/assigned/
 
-diff --git a/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml b/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml
-index 3407e909e8a7..79f8513739e7 100644
---- a/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml
-+++ b/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml
-@@ -20,6 +20,8 @@ properties:
-           - enum:
-               - qcom,ipq6018-mdio
-               - qcom,ipq8074-mdio
-+              - qcom,ipq9574-mdio
-+              - qcom,ipq5332-mdio
-           - const: qcom,ipq4019-mdio
- 
-   "#address-cells":
-@@ -30,19 +32,77 @@ properties:
- 
-   reg:
-     minItems: 1
--    maxItems: 2
-+    maxItems: 5
-     description:
--      the first Address and length of the register set for the MDIO controller.
--      the second Address and length of the register for ethernet LDO, this second
--      address range is only required by the platform IPQ50xx.
-+      the first Address and length of the register set for the MDIO controller,
-+      the optional second, third and fourth address and length of the register
-+      for ethernet LDO, these three address range are required by the platform
-+      IPQ50xx/IPQ5332, the last address and length is for the CMN clock to
-+      select the reference clock.
-+
-+  reg-names:
-+    minItems: 1
-+    maxItems: 5
- 
-   clocks:
-+    minItems: 1
-     items:
-       - description: MDIO clock source frequency fixed to 100MHZ
-+      - description: UNIPHY0 AHB clock source frequency fixed to 100MHZ
-+      - description: UNIPHY1 AHB clock source frequency fixed to 100MHZ
-+      - description: UNIPHY0 SYS clock source frequency fixed to 24MHZ
-+      - description: UNIPHY1 SYS clock source frequency fixed to 24MHZ
- 
-   clock-names:
-+    minItems: 1
-     items:
-       - const: gcc_mdio_ahb_clk
-+      - const: uniphy0_ahb
-+      - const: uniphy1_ahb
-+      - const: uniphy0_sys
-+      - const: uniphy1_sys
-+
-+  cmn-reference-clock:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    oneOf:
-+      - items:
-+          - enum:
-+              - 0   # CMN PLL reference internal 48MHZ
-+              - 1   # CMN PLL reference external 25MHZ
-+              - 2   # CMN PLL reference external 31250KHZ
-+              - 3   # CMN PLL reference external 40MHZ
-+              - 4   # CMN PLL reference external 48MHZ
-+              - 5   # CMN PLL reference external 50MHZ
-+              - 6   # CMN PLL reference internal 96MHZ
-+
-+  clock-frequency:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - 12500000
-+              - 6250000
-+              - 3125000
-+              - 1562500
-+              - 781250
-+              - 390625
-+    description:
-+      The MDIO bus clock that must be output by the MDIO bus hardware,
-+      only the listed frequencies above can be supported, other frequency
-+      will cause malfunction. If absent, the default hardware value 0xff
-+      is used, which means the default MDIO clock frequency 390625HZ, The
-+      MDIO clock frequency is MDIO_SYS_CLK/(MDIO_CLK_DIV + 1), the SoC
-+      MDIO_SYS_CLK is fixed to 100MHZ, the MDIO_CLK_DIV is from MDIO control
-+      register, there is higher clock frequency requirement on the normal
-+      working case where the MDIO slave devices support high clock frequency.
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+  reset-assert-us:
-+    maxItems: 1
-+
-+  reset-deassert-us:
-+    maxItems: 1
- 
- required:
-   - compatible
-@@ -61,6 +121,8 @@ allOf:
-               - qcom,ipq5018-mdio
-               - qcom,ipq6018-mdio
-               - qcom,ipq8074-mdio
-+              - qcom,ipq5332-mdio
-+              - qcom,ipq9574-mdio
-     then:
-       required:
-         - clocks
-@@ -70,6 +132,20 @@ allOf:
-         clocks: false
-         clock-names: false
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,ipq5332-mdio
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 5
-+          maxItems: 5
-+        reg-names:
-+          minItems: 4
-+
- unevaluatedProperties: false
- 
- examples:
-@@ -100,3 +176,62 @@ examples:
-         reg = <4>;
-       };
-     };
-+
-+  - |
-+    #include <dt-bindings/clock/qcom,ipq5332-gcc.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    mdio@90000 {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      compatible = "qcom,ipq5332-mdio",
-+                   "qcom,ipq4019-mdio";
-+      cmn-reference-clock = <0>;
-+      clock-frequency = <6250000>;
-+
-+      reset-gpios = <&tlmm 51 GPIO_ACTIVE_LOW>;
-+      reset-assert-us = <100000>;
-+      reset-deassert-us = <100000>;
-+
-+      reg = <0x90000 0x64>,
-+            <0x9B000 0x800>,
-+            <0x7A00610 0x4>,
-+            <0x7A10610 0x4>;
-+
-+      reg-names = "mdio",
-+                  "cmn_blk",
-+                  "eth_ldo1",
-+                  "eth_ldo2";
-+
-+      clocks = <&gcc GCC_MDIO_AHB_CLK>,
-+               <&gcc GCC_UNIPHY0_AHB_CLK>,
-+               <&gcc GCC_UNIPHY1_AHB_CLK>,
-+               <&gcc GCC_UNIPHY0_SYS_CLK>,
-+               <&gcc GCC_UNIPHY1_SYS_CLK>;
-+
-+      clock-names = "gcc_mdio_ahb_clk",
-+                    "uniphy0_ahb",
-+                    "uniphy1_ahb",
-+                    "uniphy0_sys",
-+                    "uniphy1_sys";
-+
-+      qca8kphy0: ethernet-phy@1 {
-+        compatible = "ethernet-phy-id004d.d180";
-+        reg = <1>;
-+      };
-+
-+      qca8kphy1: ethernet-phy@2 {
-+        compatible = "ethernet-phy-id004d.d180";
-+        reg = <2>;
-+      };
-+
-+      qca8kphy2: ethernet-phy@3 {
-+        compatible = "ethernet-phy-id004d.d180";
-+        reg = <3>;
-+      };
-+
-+      qca8kphy3: ethernet-phy@4 {
-+        compatible = "ethernet-phy-id004d.d180";
-+        reg = <4>;
-+      };
-+    };
--- 
-2.42.0
+On Mon, Dec 11, 2023 at 4:03=E2=80=AFAM Kuninori Morimoto
+<kuninori.morimoto.gx@renesas.com> wrote:
+> Some boards might use Linux and another OS at the same time. In such
+> case, currently, during booting, Linux will stop necessary module clocks
+> which are not used on the Linux side, but are used by another OS.
+>
+> To avoid such situation, renesas-cpg-mssr tries to find
+> status =3D "reserved" devices (A), and adds CLK_IGNORE_UNUSED flag to its
+> <&cgp CPG_MOD xxx> clock (B).
+>
+> Table 2.4: Values for status property
+> https://github.com/devicetree-org/devicetree-specification/releases/downl=
+oad/v0.4/devicetree-specification-v0.4.pdf
+>
+> "reserved"
+>         Indicates that the device is operational, but should not be
+>         used. Typically this is used for devices that are controlled
+>         by another software component, such as platform firmware.
+>
+> ex)
+>         scif5: serial@e6f30000 {
+>                 ...
+> (B)             clocks =3D <&cpg CPG_MOD 202>,
+>                          <&cpg CPG_CORE R8A7795_CLK_S3D1>,
+>                          <&scif_clk>;
+>                 ...
+> (A)             status =3D "reserved";
+>         };
+>
+> Cc: Aymeric Aillet <aymeric.aillet@iot.bzh>
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> Tested-by: Yusuke Goda <yusuke.goda.sx@renesas.com>
 
+> @@ -949,6 +967,72 @@ static const struct dev_pm_ops cpg_mssr_pm =3D {
+>  #define DEV_PM_OPS     NULL
+>  #endif /* CONFIG_PM_SLEEP && CONFIG_ARM_PSCI_FW */
+>
+> +static void __init cpg_mssr_reserved_exit(struct cpg_mssr_priv *priv)
+> +{
+> +       kfree(priv->reserved_ids);
+> +}
+
+This function is called only once, so you might want to inline it manually.
+
+> +
+> +static int __init cpg_mssr_reserved_init(struct cpg_mssr_priv *priv,
+> +                                        const struct cpg_mssr_info *info=
+)
+> +{
+> +       struct device_node *soc =3D of_find_node_by_path("/soc");
+> +       struct device_node *node;
+> +       uint32_t args[MAX_PHANDLE_ARGS];
+> +       unsigned int *ids =3D NULL;
+> +       unsigned int num =3D 0;
+> +
+> +       /*
+> +        * Because clk_disable_unused() will disable all unused clocks, t=
+he device which is assigned
+> +        * to a non-Linux system will be disabled when Linux is booted.
+> +        *
+> +        * To avoid such situation, renesas-cpg-mssr assumes the device w=
+hich has
+> +        * status =3D "reserved" is assigned to a non-Linux system, and a=
+dds CLK_IGNORE_UNUSED flag
+> +        * to its CPG_MOD clocks.
+> +        * see also
+> +        *      cpg_mssr_register_mod_clk()
+> +        *
+> +        *      scif5: serial@e6f30000 {
+> +        *              ...
+> +        * =3D>           clocks =3D <&cpg CPG_MOD 202>,
+> +        *                       <&cpg CPG_CORE R8A7795_CLK_S3D1>,
+> +        *                       <&scif_clk>;
+> +        *                       ...
+> +        *               status =3D "reserved";
+> +        *      };
+> +        */
+> +       for_each_reserved_child_of_node(soc, node) {
+> +               struct of_phandle_iterator it;
+> +               int rc;
+> +
+> +               of_for_each_phandle(&it, rc, node, "clocks", "#clock-cell=
+s", -1) {
+> +                       int idx;
+> +
+> +                       of_phandle_iterator_args(&it, args, MAX_PHANDLE_A=
+RGS);
+> +
+> +                       if (!(it.node =3D=3D priv->np && args[0] =3D=3D C=
+PG_MOD))
+
+I think "(it.node !=3D priv->np || args[0] !=3D CPG_MOD)" is easier to read=
+ ;-)
+
+However, I think it would make sense to split this in two separate
+checks, to avoid calling of_phandle_iterator_args() when it.node !=3D
+priv->np, and to validate the number of arguments:
+
+    if (it.node !=3D priv->np)
+            continue;
+
+    if (of_phandle_iterator_args(&it, args, MAX_PHANDLE_ARGS) !=3D 2)
+            continue;
+
+    if (args[0] !=3D CPG_MOD)
+            continue;
+
+> +                               continue;
+> +
+> +                       ids =3D krealloc_array(ids, (num + 1), sizeof(*id=
+s), GFP_KERNEL);
+> +                       if (!ids)
+> +                               return -ENOMEM;
+
+Missing of_node_put(it.node) in the error path.
+
+> +
+> +                       if (priv->reg_layout =3D=3D CLK_REG_LAYOUT_RZ_A)
+> +                               idx =3D MOD_CLK_PACK_10(args[1]); /* for =
+DEF_MOD_STB() */
+> +                       else
+> +                               idx =3D MOD_CLK_PACK(args[1]);    /* for =
+DEF_MOD() */
+> +
+> +                       ids[num] =3D info->num_total_core_clks + idx;
+> +
+> +                       num++;
+> +               }
+> +       }
+> +
+> +       priv->num_reserved_ids  =3D num;
+> +       priv->reserved_ids      =3D ids;
+> +
+> +       return 0;
+> +}
+> +
+>  static int __init cpg_mssr_common_init(struct device *dev,
+>                                        struct device_node *np,
+>                                        const struct cpg_mssr_info *info)
+> @@ -1007,6 +1091,10 @@ static int __init cpg_mssr_common_init(struct devi=
+ce *dev,
+>         if (error)
+>                 goto out_err;
+>
+> +       error =3D cpg_mssr_reserved_init(priv, info);
+> +       if (error)
+> +               goto out_err;
+
+Missing of_clk_del_provider() in the error path.
+
+You may want to move the call to cpg_mssr_reserved_init() up, as
+reverting that just needs an unconditional call to kfree() (kfree
+works fine on NULL), while calling of_clk_del_provider() requires a
+new label to jump to.
+
+> +
+>         cpg_mssr_priv =3D priv;
+>
+>         return 0;
+> @@ -1070,22 +1158,23 @@ static int __init cpg_mssr_probe(struct platform_=
+device *pdev)
+>                                          cpg_mssr_del_clk_provider,
+>                                          np);
+>         if (error)
+> -               return error;
+> +               goto reserve_err;
+>
+>         error =3D cpg_mssr_add_clk_domain(dev, info->core_pm_clks,
+>                                         info->num_core_pm_clks);
+>         if (error)
+> -               return error;
+> +               goto reserve_err;
+>
+>         /* Reset Controller not supported for Standby Control SoCs */
+>         if (priv->reg_layout =3D=3D CLK_REG_LAYOUT_RZ_A)
+> -               return 0;
+> +               goto reserve_err;
+>
+>         error =3D cpg_mssr_reset_controller_register(priv);
+> -       if (error)
+> -               return error;
+>
+> -       return 0;
+> +reserve_err:
+
+Perhaps rename the label to "reserve_exit", as this is called on
+success, too?
+
+> +       cpg_mssr_reserved_exit(priv);
+> +
+> +       return error;
+>  }
+>
+>  static struct platform_driver cpg_mssr_driver =3D {
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
