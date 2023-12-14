@@ -1,177 +1,143 @@
-Return-Path: <devicetree+bounces-25509-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25510-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D1A181365B
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 17:35:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC9E6813667
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 17:37:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 27D9C281755
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 16:35:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A89D528187A
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 16:37:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27C6D60B87;
-	Thu, 14 Dec 2023 16:35:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3391B60B8F;
+	Thu, 14 Dec 2023 16:37:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="osr3FgHO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CrbA7uB/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 002D65FF07;
-	Thu, 14 Dec 2023 16:35:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04F85C433C8;
-	Thu, 14 Dec 2023 16:35:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702571735;
-	bh=xLP+CoYVRLf33dBZWy5D+JKVopjIGSKoYshwiIZs8WA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=osr3FgHOd4SxcHlgM+KOE3JV5uBYP9C8KxGaoG2GKSPe6NrSS8k4Otmqu4xV46Yas
-	 waqEXYeDYaxMmJiZn/Ld0KbTKe1csyUB23OvBJMSRempX0Te7sC4TA3JrVvyJp5qar
-	 EX642T5u02Fu+1kmlzxxE0xK5FczFoX5t6PD2QIUWiPXcXlYRUkyJOe1UAWR5vAftl
-	 8tWrd1VeDeWfI+HH8oAycivpbskmMyPDLLF4okV29ou9JImHjNKXIExJWL11P+OtjW
-	 UjjKb4KEtvajbahh8rfFn/MGo3ArVlhAFke2+6PTj58UqBfSR+owDpZhR3CcFz8ww1
-	 NSSQ3uH/wi5xQ==
-Date: Thu, 14 Dec 2023 16:35:27 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Ninad Palsule <ninad@linux.ibm.com>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au,
-	peterhuewe@gmx.de, jarkko@kernel.org, jgg@ziepe.ca,
-	keescook@chromium.org, tony.luck@intel.com, gpiccoli@igalia.com,
-	johannes.holland@infineon.com, linux@roeck-us.net,
-	broonie@kernel.org, patrick.rudolph@9elements.com,
-	vincent@vtremblay.dev, peteryin.openbmc@gmail.com,
-	lakshmiy@us.ibm.com, bhelgaas@google.com,
-	naresh.solanki@9elements.com, alexander.stein@ew.tq-group.com,
-	festevam@denx.de, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org, linux-integrity@vger.kernel.org,
-	linux-hardening@vger.kernel.org, geissonator@yahoo.com
-Subject: Re: [PATCH v1 2/8] dt-bindings: tpm: Add schema for TIS I2C devices
-Message-ID: <20231214-stopper-bounce-ca9002869293@spud>
-References: <20231212164004.1683589-1-ninad@linux.ibm.com>
- <20231212164004.1683589-3-ninad@linux.ibm.com>
- <20231212-amusement-elevation-28e42bcccc35@spud>
- <d8b5df1c-c732-4cf3-ae28-cc2017d3b0b6@linux.ibm.com>
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA9C810F;
+	Thu, 14 Dec 2023 08:37:02 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-3364c9ba749so122101f8f.1;
+        Thu, 14 Dec 2023 08:37:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702571821; x=1703176621; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TcCiI3TQ8gopQV9tnMaS9uQNfvMYnRZBR7pxWDWkr/8=;
+        b=CrbA7uB/zi9PXh1Cyv+UaEFnSXoTL9tviw7zCnS26oDNVsebOmUF+G0vdqjCSIXSyC
+         GNtPgEjz2lHlPkTonBXON/R80erQqh3g3lGzYbK26gSf2lH+GlkexYdD0WdaSeWdkKZd
+         tz+O8MSaV92fl0OPO6fewU1iRTsqiYpMKqIesVxDju+T3q7E0LWHoMeE5lhNDRfbapy1
+         IcIJOf8lKVtFuFGC7RmD74xG68SOJJkld2U7/Xd4+aPaThmnglCbnHTSXQSp8fcaokix
+         QidXc4PeohzwPihXqfKcHY5uhvdvJMDsitKb4wJqRdn68LlP+L/ilPFu0C4ZHSKEecLg
+         uW/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702571821; x=1703176621;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TcCiI3TQ8gopQV9tnMaS9uQNfvMYnRZBR7pxWDWkr/8=;
+        b=JBDYR5R9f+jPTW0hjnZ5K21tDB85hi2QvnBcj5rEJFBeFtKZVCYnu9psr2NQxnhVTf
+         9HiwXjXnFm0p6Ou70AGolU6RYkq+k0ZDH9hfQ6RN2oLuHjOluOdLkbm3MRmV5JesZxtj
+         SPzr1fLl3abJRO/MFhmw3+nzesSV0bOzE5uOLkw4KDQeyXiR31FQFZaaprs0ouv4Jt0P
+         DfYBB8i5rFeLc0MHtnmkVfTAGZ+PfV/if87WjYm+XVh3JXkdhaALLw5sM8KD5xrKScsC
+         BwWBqIGDhZAvUc6QvI3jhud/jW4uAGqphlyXFveeZXpyGBdU/q4gu5cu+nv25jOmD81O
+         x6cQ==
+X-Gm-Message-State: AOJu0YxAhfEBe3XklROKWVfM4gENm8hyIEQ8aSG9lK7BHk27wp+ICBJ1
+	RC3SkudTj6N0BvBPvOFgG7Y=
+X-Google-Smtp-Source: AGHT+IF7IW71yfGUG4q0bOw/8YVkeH6lRc27QSTBg3suiLoVsXi8oVaj5T3bf+/+et/gNTlQqLCjlA==
+X-Received: by 2002:a05:600c:1819:b0:40c:3630:264b with SMTP id n25-20020a05600c181900b0040c3630264bmr1912250wmp.249.1702571820876;
+        Thu, 14 Dec 2023 08:37:00 -0800 (PST)
+Received: from archlinux.localnet (82-149-12-148.dynamic.telemach.net. [82.149.12.148])
+        by smtp.gmail.com with ESMTPSA id m29-20020a05600c3b1d00b0040b3515cdf8sm25400470wms.7.2023.12.14.08.36.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Dec 2023 08:37:00 -0800 (PST)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Viresh Kumar <viresh.kumar@linaro.org>, Conor Dooley <conor@kernel.org>
+Cc: Brandon Cheo Fusi <fusibrandon13@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Samuel Holland <samuel@sholland.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ "Rafael J . Wysocki" <rafael@kernel.org>, Yangtao Li <tiny.windzz@gmail.com>,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Subject:
+ Re: [PATCH 1/5] riscv: dts: allwinner: Update opp table to allow CPU
+ frequency scaling
+Date: Thu, 14 Dec 2023 17:36:59 +0100
+Message-ID: <2177637.Mh6RI2rZIc@archlinux>
+In-Reply-To: <20231214-junkyard-corset-d35b01bad69f@spud>
+References:
+ <20231214103342.30775-1-fusibrandon13@gmail.com>
+ <20231214111446.camz2krqanaieybh@vireshk-i7>
+ <20231214-junkyard-corset-d35b01bad69f@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="MMQ9s9pZoIm9/Al5"
-Content-Disposition: inline
-In-Reply-To: <d8b5df1c-c732-4cf3-ae28-cc2017d3b0b6@linux.ibm.com>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-
---MMQ9s9pZoIm9/Al5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, Dec 14, 2023 at 09:34:39AM -0600, Ninad Palsule wrote:
-> Hello Conor,
->=20
-> On 12/12/23 11:14, Conor Dooley wrote:
-> > Hey,
-> >=20
-> > On Tue, Dec 12, 2023 at 10:39:58AM -0600, Ninad Palsule wrote:
-> > > From: Johannes Holland <johannes.holland@infineon.com>
-> > >=20
-> > > Add a dt schema to support device tree bindings
-> > "Add bindings for..."
-> Fixed.
-> >=20
-> > > for the generic I2C
-> > > physical layer. Refer to the TCG PC Client Platform TPM Profile (PTP)
-> > > Specification for TPM 2.0 v1.04 Revision 14.
-> > >=20
-> > > This includes descriptions for the Nuvoton and Infineon devices.
-> > >=20
-> > > OpenBMC-Staging-Count: 3
-> > I have no idea what this is, but it needs to be removed from the patch.
-> Removed.
-> >=20
-> > > Signed-off-by: Johannes Holland <johannes.holland@infineon.com>
-> > > Signed-off-by: Joel Stanley <joel@jms.id.au>
-> > > Signed-off-by: Ninad Palsule <ninad@linux.ibm.com>
+On Thursday, December 14, 2023 2:47:14 PM CET Conor Dooley wrote:
+> On Thu, Dec 14, 2023 at 04:44:46PM +0530, Viresh Kumar wrote:
+> > On 14-12-23, 11:33, Brandon Cheo Fusi wrote:
+> > > Two OPPs are currently defined for the D1/D1s; one at 408MHz and
+> > > another at 1.08GHz. Switching between these can be done with the
+> > > "sun50i-cpufreq-nvmem" driver. This patch populates the opp table
+> > > appropriately, with inspiration from
+> > > https://github.com/Tina-Linux/linux-5.4/blob/master/arch/riscv/boot/dts/sunxi/sun20iw1p1.dtsi
+> > > 
+> > > The supply voltages are PWM-controlled, but support for that IP
+> > > is still in the works. So stick to a fixed 0.9V vdd-cpu supply,
+> > > which seems to be the default on most D1 boards.
+> > > 
+> > > Signed-off-by: Brandon Cheo Fusi <fusibrandon13@gmail.com>
 > > > ---
-> > >   .../bindings/security/tpm/tpm-tis-i2c.yaml    | 50 ++++++++++++++++=
-+++
-> > >   1 file changed, 50 insertions(+)
-> > >   create mode 100644 Documentation/devicetree/bindings/security/tpm/t=
-pm-tis-i2c.yaml
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/security/tpm/tpm-tis-i=
-2c.yaml b/Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml
-> > > new file mode 100644
-> > > index 000000000000..de1e34065748
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml
-> > > @@ -0,0 +1,50 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/security/tpm/tpm-tis-i2c.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: I2C PTP based TPM Devices
-> > > +
-> > > +maintainers:
-> > > +  - Johannes Holland <johannes.holland@infineon.com>
-> > > +
-> > > +description:
-> > > +  Device Tree Bindings for I2C based Trusted Platform Module (TPM).
-> > s/Device Tree Bindings for //. Doesn't dt_binding_check now complain if
-> > you have this in a title or description?
-> Fixed.
-> >=20
-> > > +properties:
-> > > +  $nodename:
-> > > +    pattern: "^tpm(@[0-9a-f]+)?$"
-> > > +
-> > > +  compatible:
-> > > +    oneOf:
-> > > +      - description: Infineon's Trusted Platform Module (TPM) (SLB96=
-73).
-> > > +        items:
-> > > +          - const: infineon,slb9673
-> > > +          - const: tcg,tpm-tis-i2c
-> > > +      - description: Nuvoton's Trusted Platform Module (TPM) (NPCT75=
-x).
-> > > +        items:
-> > > +          - const: nuvoton,npct75x
-> > > +          - const: tcg,tpm-tis-i2c
+> > >  arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi | 18 +++++++++++++++---
+> > >  1 file changed, 15 insertions(+), 3 deletions(-)
+> > > 
+> > > diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
+> > > index 64c3c2e6c..e211fe4c7 100644
+> > > --- a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
+> > > +++ b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
+> > > @@ -39,16 +39,22 @@ cpu0_intc: interrupt-controller {
+> > >  	};
+> > >  
+> > >  	opp_table_cpu: opp-table-cpu {
+> > > -		compatible = "operating-points-v2";
+> > > +		compatible = "allwinner,sun20i-d1-operating-points",
+> > 
+> > I don't think you should add a new compatible for every SoC that needs
+> > to be supported by a DT bindings and cpufreq driver. Maybe you should
+> > just reuse "allwinner,sun50i-h6-operating-points" and it will work
+> > fine for you ?
+> > 
+> > Rob ?
+> 
+> The driver can definitely just reuse sun50i-h6, but the binding and
+> devicetree should have a soc-specific compatible for the sun20i-d1.
 
-Also, another thought - the bus is not usually encoded in the compatible
-string, so it would be good to remove that.
+Correct. This is to avoid later regrets if it turns out there are some slight
+differences or additional functionality.
 
-> > > +      - const: tcg,tpm-tis-i2c
-> > IMO this should be removed and this fallback should only be used in
-> > combination with device specific compatibles, like you have here for the
-> > infineon and nuvoton devices.
->=20
-> As Guenter mentioned I need to keep it as tacoma board is just using this
-> string.
+Best regards,
+Jernej
 
-No, that does not mean that you have to keep this in the binding. I know
-Rob had some comments that might invalidate this binding entirely, but
-if that does not happen then I think think that the tacoma devicetree
-needs to have a device-specific compatible added for the tpm that it has.
-You could of course retain the generic fallback compatible however.
+> 
+> That said, the compatible does need to be documented, there's a
+> dt-bindings patch missing from this series.
+> 
+> Cheers,
+> Conor.
 
---MMQ9s9pZoIm9/Al5
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZXsuzwAKCRB4tDGHoIJi
-0iCVAQDk5mHO10tmO5WDzSu3wLDAmW2sRXfnlt57B2JKfnI6ugEA4cuH9pF3plY6
-Hwto/5Zwn/wHNXZGd/jh0wVacJxniQo=
-=N8sK
------END PGP SIGNATURE-----
 
---MMQ9s9pZoIm9/Al5--
 
