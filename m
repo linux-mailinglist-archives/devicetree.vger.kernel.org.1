@@ -1,180 +1,126 @@
-Return-Path: <devicetree+bounces-25140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25141-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C4F1812824
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 07:30:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4800881285A
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 07:43:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9E33E28260F
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 06:30:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F189D1F21A86
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 06:43:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23640D277;
-	Thu, 14 Dec 2023 06:30:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5393BD288;
+	Thu, 14 Dec 2023 06:43:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="JlpUzm31"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bAM5Lc0Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A4261BB;
-	Wed, 13 Dec 2023 22:30:33 -0800 (PST)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BE6RaTm011805;
-	Thu, 14 Dec 2023 06:30:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	qcppdkim1; bh=97iArE/7fSpUEFf1nWhOfrrjPwTNcjVGC7vrxk+Z5PY=; b=Jl
-	pUzm31S7Tc8NMcwNCtiSDsmK9h61Ll0sLrc8OuUF+mU6ZCEgB9S+ZEU8iGoSUvZC
-	4TzbOd/NTK64Q9tU7fYHrtBepBTTbMbMUYcusUTAm8EvA2xoqntHy/uNmkUhy3E8
-	/ajeO0Usc6n2SET0qhgcpnSUICW80iWVc9MczDGKrtPAtLXpzxGWyFlQxkJD9LOK
-	mUzdqhF20654njCEvVa7fWbQxKB+RZMa0uKA3bcVXdkq8K5AQR824qirfPbIRuBG
-	s7vEtZKH6Wx7m6Vw3Kk5v7GfqZbf9tZgzoUJqXP+1d/iYIJhDp9iQVYLVJEzDFcV
-	13G9HCtm8DnJGSAKnLHg==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uyqgt0jeq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Dec 2023 06:30:24 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BE6UNiV018007
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Dec 2023 06:30:23 GMT
-Received: from hu-ipkumar-blr.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Wed, 13 Dec 2023 22:30:15 -0800
-From: Praveenkumar I <quic_ipkumar@quicinc.com>
-To: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <bhelgaas@google.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
-        <vkoul@kernel.org>, <kishon@kernel.org>, <mani@kernel.org>,
-        <quic_nsekar@quicinc.com>, <quic_srichara@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pci@vger.kernel.org>, <linux-phy@lists.infradead.org>
-CC: <quic_varada@quicinc.com>, <quic_devipriy@quicinc.com>,
-        <quic_kathirav@quicinc.com>, <quic_anusha@quicinc.com>
-Subject: [PATCH 10/10] arm64: dts: qcom: ipq5332: Enable PCIe phys and controllers
-Date: Thu, 14 Dec 2023 11:58:47 +0530
-Message-ID: <20231214062847.2215542-11-quic_ipkumar@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231214062847.2215542-1-quic_ipkumar@quicinc.com>
-References: <20231214062847.2215542-1-quic_ipkumar@quicinc.com>
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49E3AA6
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 22:43:05 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-54ba86ae133so7244935a12.2
+        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 22:43:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702536184; x=1703140984; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1iMbqEZR5eaXa4dTgt4nUw5UGW6RlRrufIGjK+6wcTM=;
+        b=bAM5Lc0QbFWzmalXjoT6BGRav7uv/ewKenz67jeP4Iy/5G89bw5tvXQ7GTXU37iVQ1
+         GCXsVEYp/+1b1WjxTkI3uA73OIPAPPUxA4coYATxa3o3pJ5ZQLbZYT6Ul/HHzfLZkDYK
+         FtxPK//YUpTdgeT6UFIbouNaytzA9/yKmLrKnXuSMScr1/PQusvI7ksIxS0WhfpSy50t
+         GxP7mN8BH5NZ97i2WGAt1q0yVUnR8Q05aJL6UKiOTf5F+PIQaT5BXFkm8SRSQ5MBCamx
+         /FXjOFIuL4TI171lTEYVcQmT003i0L2vyhQ8ZklwO+7Ze8yVlLsfueqKKE46wobJI1G5
+         b6jw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702536184; x=1703140984;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1iMbqEZR5eaXa4dTgt4nUw5UGW6RlRrufIGjK+6wcTM=;
+        b=PdJDc3kcWKbGYQAsb7s/ZLuyzeQEjso6lP/LnEctltWklicPhlgoKRVLTD1lwrSWIn
+         3RNqlRbVyWjakj/3E9EfpG8Q5RRLudpkeSYkxCNNfI71zXxazrhChIuZaBQly9VIkI/T
+         1e5vVUJVRNHQr4YyAnucK4r00xIS2rze6ffP9MV/KsLUiiTSpiN+o6YB+IJPE5b7ELLc
+         d330AvzTs9FJFJ0sYwV6rcmMK2Zn3FRam3BDV63WVy8jLDfMmI76t/TZrSsHBDDSoHM5
+         bpJHnX8n6awdcvL0G8kOxdZGUKjpTVRW4Y5rhN2PJdYI0kdi/QlmPoQhCofNO7EYitsp
+         70ag==
+X-Gm-Message-State: AOJu0YyK2yZ2YbqwAo0ZDzBgvIsC7SMAsPDHNLDyuPKAlvCFoSCMBVy1
+	91Ut+cZ96HuDzU/mXpsv7yA=
+X-Google-Smtp-Source: AGHT+IHbL6T33tZSZlPZzC11uXyFcBsmtHS/gkkr7kg1JyHY7NIkaY1VviDHvP8WgTQtelpkHjQp9Q==
+X-Received: by 2002:a50:f68e:0:b0:552:7ecf:8651 with SMTP id d14-20020a50f68e000000b005527ecf8651mr51148edn.17.1702536183444;
+        Wed, 13 Dec 2023 22:43:03 -0800 (PST)
+Received: from [192.168.26.149] (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.googlemail.com with ESMTPSA id r10-20020a508d8a000000b0054cb88a353dsm6333909edh.14.2023.12.13.22.43.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Dec 2023 22:43:03 -0800 (PST)
+Message-ID: <a5113b85-e29c-454f-b776-ac7abbca771f@gmail.com>
+Date: Thu, 14 Dec 2023 07:43:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: mediatek: mt7986: fix reference to PWM in fan
+ node
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Daniel Golle <daniel@makrotopia.org>,
+ Frank Wunderlich <frank-w@public-files.de>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20231116130816.4932-1-zajec5@gmail.com>
+Content-Language: en-US
+From: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+In-Reply-To: <20231116130816.4932-1-zajec5@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 9xfHIffaGkkmrwGB9V7CzBTBrvmfquZJ
-X-Proofpoint-ORIG-GUID: 9xfHIffaGkkmrwGB9V7CzBTBrvmfquZJ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- phishscore=0 adultscore=0 suspectscore=0 lowpriorityscore=0
- impostorscore=0 malwarescore=0 mlxlogscore=827 mlxscore=0 clxscore=1015
- spamscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2312140039
 
-Enable the PCIe controller and PHY nodes for RDP 441.
+Hi guys,
 
-Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
----
- arch/arm64/boot/dts/qcom/ipq5332-rdp441.dts | 74 +++++++++++++++++++++
- 1 file changed, 74 insertions(+)
+On 16.11.2023 14:08, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> This fixes typo and resolves following validation error:
+> arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtb: pwm-fan: pwms: [[54, 0, 10000], [0]] is too long
+>          from schema $id: http://devicetree.org/schemas/hwmon/pwm-fan.yaml#
+> 
+> Fixes: c26f779a2295 ("arm64: dts: mt7986: add pwm-fan and cooling-maps to BPI-R3 dts")
+> Cc: Daniel Golle <daniel@makrotopia.org>
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq5332-rdp441.dts b/arch/arm64/boot/dts/qcom/ipq5332-rdp441.dts
-index 846413817e9a..83eca8435cff 100644
---- a/arch/arm64/boot/dts/qcom/ipq5332-rdp441.dts
-+++ b/arch/arm64/boot/dts/qcom/ipq5332-rdp441.dts
-@@ -62,4 +62,78 @@ data-pins {
- 			bias-pull-up;
- 		};
- 	};
-+
-+	pcie0_default: pcie0-default-state {
-+		clkreq-n-pins {
-+			pins = "gpio37";
-+			function = "pcie0_clk";
-+			drive-strength = <8>;
-+			bias-pull-up;
-+		};
-+
-+		perst-n-pins {
-+			pins = "gpio38";
-+			function = "gpio";
-+			drive-strength = <8>;
-+			bias-pull-up;
-+			output-low;
-+		};
-+
-+		wake-n-pins {
-+			pins = "gpio39";
-+			function = "pcie0_wake";
-+			drive-strength = <8>;
-+			bias-pull-up;
-+		};
-+	};
-+
-+	pcie1_default: pcie1-default-state {
-+		clkreq-n-pins {
-+			pins = "gpio46";
-+			function = "pcie1_clk";
-+			drive-strength = <8>;
-+			bias-pull-up;
-+		};
-+
-+		perst-n-pins {
-+			pins = "gpio47";
-+			function = "gpio";
-+			drive-strength = <8>;
-+			bias-pull-up;
-+			output-low;
-+		};
-+
-+		wake-n-pins {
-+			pins = "gpio48";
-+			function = "pcie1_wake";
-+			drive-strength = <8>;
-+			bias-pull-up;
-+		};
-+	};
-+};
-+
-+&pcie0_phy {
-+	status = "okay";
-+};
-+
-+&pcie0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie0_default>;
-+
-+	perst-gpios = <&tlmm 38 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 39 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+};
-+
-+&pcie1_phy {
-+	status = "okay";
-+};
-+
-+&pcie1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie1_default>;
-+
-+	perst-gpios = <&tlmm 47 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 48 GPIO_ACTIVE_LOW>;
-+	status = "okay";
- };
--- 
-2.34.1
+I sent those few trivial fixes weeks ago:
+[PATCH] arm64: dts: mediatek: mt7986: fix reference to PWM in fan node
+[PATCH 1/2] arm64: dts: mediatek: mt7986: fix SPI bus width properties
+[PATCH 2/2] arm64: dts: mediatek: mt7986: fix SPI nodename
+[PATCH] arm64: dts: mediatek: mt7986: drop crypto's unneeded/invalid clock name
+
+Could someone pick them up, please?
+
+
+P.S.
+FWIW there is also my Acelink EW-7886CAX work but I can understand if
+that needs to sit for another week or so.
+
+> ---
+>   arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
+> index af4a4309bda4..ba65e3e72bf6 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
+> @@ -43,7 +43,7 @@ fan: pwm-fan {
+>   		#cooling-cells = <2>;
+>   		/* cooling level (0, 1, 2) - pwm inverted */
+>   		cooling-levels = <255 96 0>;
+> -		pwms = <&pwm 0 10000 0>;
+> +		pwms = <&pwm 0 10000>;
+>   		status = "okay";
+>   	};
+>   
 
 
