@@ -1,27 +1,27 @@
-Return-Path: <devicetree+bounces-25066-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25067-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F9838124CE
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 02:53:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 51D458124CF
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 02:53:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0238EB21142
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E09F9B20FB7
 	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 01:53:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CF137EE;
-	Thu, 14 Dec 2023 01:53:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D8C5656;
+	Thu, 14 Dec 2023 01:53:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id D1514E0
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 17:53:27 -0800 (PST)
+	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 94C19D5
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 17:53:29 -0800 (PST)
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 568EE11FB;
-	Wed, 13 Dec 2023 17:54:13 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1B0EF1516;
+	Wed, 13 Dec 2023 17:54:15 -0800 (PST)
 Received: from localhost.localdomain (unknown [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 17D8B3F762;
-	Wed, 13 Dec 2023 17:53:25 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D03923F762;
+	Wed, 13 Dec 2023 17:53:27 -0800 (PST)
 From: Andre Przywara <andre.przywara@arm.com>
 To: Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -33,9 +33,9 @@ Cc: Icenowy Zheng <uwu@icenowy.me>,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-sunxi@lists.linux.dev
-Subject: [PATCH v2 1/3] dt-bindings: vendor-prefixes: add Transpeed
-Date: Thu, 14 Dec 2023 01:53:10 +0000
-Message-Id: <20231214015312.17363-2-andre.przywara@arm.com>
+Subject: [PATCH v2 2/3] dt-bindings: arm: sunxi: document Transpeed 8K618-T board name
+Date: Thu, 14 Dec 2023 01:53:11 +0000
+Message-Id: <20231214015312.17363-3-andre.przywara@arm.com>
 X-Mailer: git-send-email 2.35.8
 In-Reply-To: <20231214015312.17363-1-andre.przywara@arm.com>
 References: <20231214015312.17363-1-andre.przywara@arm.com>
@@ -47,26 +47,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-This is a name used by some Chinese TV boxes, add it to the bindings.
+The Transpeed 8K618-T TV box is a Chinese Android TV box, using the
+Allwinner H618 SoC.
+
+Add the board/SoC compatible string pair to the list of known boards.
 
 Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ Documentation/devicetree/bindings/arm/sunxi.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 309b94c328c84..c545c63b316d4 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -1434,6 +1434,8 @@ patternProperties:
-     description: TPO
-   "^tq,.*":
-     description: TQ-Systems GmbH
-+  "^transpeed,.*":
-+    description: Transpeed
-   "^traverse,.*":
-     description: Traverse Technologies Australia Pty Ltd
-   "^tronfy,.*":
+diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
+index 11c5ce941dd7e..5e91110cc9eb8 100644
+--- a/Documentation/devicetree/bindings/arm/sunxi.yaml
++++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+@@ -868,6 +868,11 @@ properties:
+           - const: topwise,a721
+           - const: allwinner,sun4i-a10
+ 
++      - description: Transpeed 8K618-T
++        items:
++          - const: transpeed,8k618-t
++          - const: allwinner,sun50i-h618
++
+       - description: Utoo P66
+         items:
+           - const: utoo,p66
 -- 
 2.35.8
 
