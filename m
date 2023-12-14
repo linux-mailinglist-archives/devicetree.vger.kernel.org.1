@@ -1,61 +1,62 @@
-Return-Path: <devicetree+bounces-25575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25577-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 138BE813B5D
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 21:15:23 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 467C2813B60
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 21:15:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B2A021F223C8
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 20:15:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 76FFEB21281
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 20:15:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC5276A330;
-	Thu, 14 Dec 2023 20:15:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3759D6A346;
+	Thu, 14 Dec 2023 20:15:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=waldekranz-com.20230601.gappssmtp.com header.i=@waldekranz-com.20230601.gappssmtp.com header.b="IEZ1FYjf"
+	dkim=pass (2048-bit key) header.d=waldekranz-com.20230601.gappssmtp.com header.i=@waldekranz-com.20230601.gappssmtp.com header.b="QYCwS8ih"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEFCC6A03D
-	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 20:15:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E08716A32B
+	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 20:15:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=waldekranz.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=waldekranz.com
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-50e0d1f9fe6so3562427e87.1
-        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 12:15:02 -0800 (PST)
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-50bf3efe2cbso9890019e87.2
+        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 12:15:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=waldekranz-com.20230601.gappssmtp.com; s=20230601; t=1702584900; x=1703189700; darn=vger.kernel.org;
-        h=content-transfer-encoding:organization:mime-version:message-id:date
-         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=rKv6UWpxS9t4qwcfHANH1OST6fgGU487WAUtdgpbQMc=;
-        b=IEZ1FYjfpu9FwPmTcSXSLny+DA6+omDgtb6PGS3r9cMnWq8ExTSiIgIDmVCi0CzMKc
-         Es2onSLt9X+k6qjLnyKCSGraNI+rgSzfFAEW+44/RTjvoP/L30wycZTegiaXeUpA4tHv
-         XMG0Ym6Y8CMxT71L3n0Mj+dja3ZCcLX7zAVFk7ikW976EGNmpVAMsiO6pz9FBgRjD2Ua
-         wTnNjpBa7YLN99u84Rdz0Gkhr5GYtIfrgmn4nuZ2kgpEj6CUihtN3ouDTPZgnpoSvv/x
-         bKmkv1c9qxnF1X/hvhNzTl+iEvdgwZpX7ruGezsZjNWGJzNTKHVrl/CgswfZgdmGdc0p
-         XVAA==
+        d=waldekranz-com.20230601.gappssmtp.com; s=20230601; t=1702584902; x=1703189702; darn=vger.kernel.org;
+        h=content-transfer-encoding:organization:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=NQpFYsK8/obVkITErfPH3Tq20K9RS8oXAAq1YZCGghE=;
+        b=QYCwS8ihkbZW81xJbA5cQOfR+IMGyYTZ/JAlD8siheJ02wCfASC48CJgIBKdrrKed6
+         Nw6IpjOwa2mFgQ0kgT+ZW7FDWopfO465F5e8haDSjav7R+LM1yuOOxoNt9qq2oYNhmp/
+         mRlvmZwINisuxDnMQ5YUB+rUYE6sCCdGqGNf+t1CP9I9ZJ9lIE0cA2lvH5F/VEa0yzGE
+         Ls6F2y5mCjRUQOg3MoRyEp3YKxmCL5v10W78Md7Y6Ku6UWJqW5uR130ClT9mW43MaV9f
+         OzIdryc4ZTxIexBCN5XVPgP1rEMUtsuCoBJcL5LX6lUpY21R5ClGEEl5EpsatcY0oFyD
+         WeXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702584900; x=1703189700;
-        h=content-transfer-encoding:organization:mime-version:message-id:date
-         :subject:cc:to:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rKv6UWpxS9t4qwcfHANH1OST6fgGU487WAUtdgpbQMc=;
-        b=Hv3OJyOqeVEVZiGioqfWSL9AUdiG0QdUqRIkx8e1BZsElO6zNOisnmdUjBbpQiJCs9
-         Ond39JwDWfO1R7v+vF2Z4/UsL+opH9zs8vqxgkBsfo7kJ+mddOD8rGMiEMq0sKP6O5v+
-         9oTm45LuLoTjg7o/RO8pbcitHytQwsMiJjgSxw+0UJ030IHYpjyT4LJnX2DmZhQhXgBF
-         5ZTjloRNQZgoy4kjoeVdYZm8X4wpG0ezNOufmfC/FZkn4D3xo8v1tm0JYFFwjDIomYhu
-         Ta9tjZMMVhK80WCet2JwDldXx8JYkm/Fo+NGK+aPd0TwB/q+4TpxfqUgfQ027OlCXhN3
-         TxqA==
-X-Gm-Message-State: AOJu0Yyl01fKBVofYhk+HE25KZBpTmkKBU0f58caSDSv5NY6XoNkEUUd
-	eZEIUybtr9B1Gmv5Zu/B0Zjcxw==
-X-Google-Smtp-Source: AGHT+IG0Cl2kf5LGFVHt8mJHSLQtwSmGMPRUsrmcGGlJL0l250mopSvDWkloT958QBlKW2Lnqc5kNQ==
-X-Received: by 2002:a05:6512:716:b0:50c:21c2:a278 with SMTP id b22-20020a056512071600b0050c21c2a278mr3908176lfs.17.1702584900409;
-        Thu, 14 Dec 2023 12:15:00 -0800 (PST)
+        d=1e100.net; s=20230601; t=1702584902; x=1703189702;
+        h=content-transfer-encoding:organization:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NQpFYsK8/obVkITErfPH3Tq20K9RS8oXAAq1YZCGghE=;
+        b=FponN+ywGk0HGLA2yQzy5NXySuhEo99mBGMee+lH8eMeN1ucxD3d6MM6hb9Y01zwuG
+         Czkg1qHMd+jZjOS5/WOJCY0unDiZepbJFwrSCPxlxQQgTZ2JpCg0RzB0/h7joEwEPqGa
+         o3gBy/cOt4dygGm/HcHGXI8VAWeuI3/GC3sm1LRtvpPvF0esKdRqFUbJmy+yS10Gefko
+         /PFc7OHzbNOrdUsNO9uZPWdU+JiwdEXJcCcnCQHkcEeR1bPRTw4beEX16fUXsfrHgAMe
+         jdg5BqabK8HSwWEJgfRnC55l58e0ShGzeFB+tR36ZbSHOMf5QatQKp/SvdpecpX1OTIV
+         /I4w==
+X-Gm-Message-State: AOJu0YwvB34W7CJXy6o7u2eSLJ+0Xjx4C8BTlvEGDBK/br268hfvbRFO
+	6SzeNxC6uDjA0F0WYJil9vuvlKWoLvOPVaiiV/o=
+X-Google-Smtp-Source: AGHT+IF6xtDoWaYsQc+IvKQpfiDqtrfNeO8TXvb1Wd9mnsmgg1F4nRGOdE94WyGFWpC5VAvlRvfEgA==
+X-Received: by 2002:ac2:5610:0:b0:50c:ff6c:64ae with SMTP id v16-20020ac25610000000b0050cff6c64aemr2078270lfd.196.1702584901823;
+        Thu, 14 Dec 2023 12:15:01 -0800 (PST)
 Received: from wkz-x13.addiva.ad (h-158-174-187-194.NA.cust.bahnhof.se. [158.174.187.194])
-        by smtp.gmail.com with ESMTPSA id dw11-20020a0565122c8b00b0050e140f84besm369519lfb.164.2023.12.14.12.14.59
+        by smtp.gmail.com with ESMTPSA id dw11-20020a0565122c8b00b0050e140f84besm369519lfb.164.2023.12.14.12.15.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Dec 2023 12:14:59 -0800 (PST)
+        Thu, 14 Dec 2023 12:15:00 -0800 (PST)
 From: Tobias Waldekranz <tobias@waldekranz.com>
 To: davem@davemloft.net,
 	kuba@kernel.org
@@ -68,10 +69,12 @@ Cc: linux@armlinux.org.uk,
 	conor+dt@kernel.org,
 	netdev@vger.kernel.org,
 	devicetree@vger.kernel.org
-Subject: [PATCH net-next 0/4] net: phy: marvell10g: Firmware loading and LED support for 88X3310
-Date: Thu, 14 Dec 2023 21:14:38 +0100
-Message-Id: <20231214201442.660447-1-tobias@waldekranz.com>
+Subject: [PATCH net-next 1/4] net: phy: marvell10g: Support firmware loading on 88X3310
+Date: Thu, 14 Dec 2023 21:14:39 +0100
+Message-Id: <20231214201442.660447-2-tobias@waldekranz.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20231214201442.660447-1-tobias@waldekranz.com>
+References: <20231214201442.660447-1-tobias@waldekranz.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,37 +84,225 @@ MIME-Version: 1.0
 Organization: Addiva Elektronik
 Content-Transfer-Encoding: 8bit
 
-There are two boot options for a 88X3310 PHY:
+When probing, if a device is waiting for firmware to be loaded into
+its RAM, ask userspace for the binary and load it over XMDIO.
 
-1. Device loads its firmware from a dedicated serial FLASH
-2. Device waits for its firmware to be downloaded over XMDIO
+We have no choice but to bail out of the probe if firmware is not
+available, as the device does not have any built-in image on which to
+fall back.
 
-1/4 adds support for the second option. The device reports which mode
-it is in via a register, so we only attempt to load a firmware in this
-situation. Crucially, if firmware is not available in this case, the
-device is not usable _at all_, so we are forced to fail the probe
-entirely.
+Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
+---
+ drivers/net/phy/marvell10g.c | 149 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 149 insertions(+)
 
-2/4 extends the power up sequence to cover cases where the device has
-been hardware strapped to start powered down, in which case all
-internal units will be powered down.
-
-3/4 adds support for the LED controller in the PHY. A special DT
-attribute is added to control the polarity and drive behavior of each
-LED, which we document in 4/4.
-
-Tobias Waldekranz (4):
-  net: phy: marvell10g: Support firmware loading on 88X3310
-  net: phy: marvell10g: Fix power-up when strapped to start powered down
-  net: phy: marvell10g: Add LED support for 88X3310
-  dt-bindings: net: marvell10g: Document LED polarity
-
- .../bindings/net/marvell,marvell10g.yaml      |  60 ++
- MAINTAINERS                                   |   1 +
- drivers/net/phy/marvell10g.c                  | 602 +++++++++++++++++-
- 3 files changed, 660 insertions(+), 3 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/net/marvell,marvell10g.yaml
-
+diff --git a/drivers/net/phy/marvell10g.c b/drivers/net/phy/marvell10g.c
+index ad43e280930c..83233b30d7b0 100644
+--- a/drivers/net/phy/marvell10g.c
++++ b/drivers/net/phy/marvell10g.c
+@@ -25,6 +25,7 @@
+ #include <linux/bitfield.h>
+ #include <linux/ctype.h>
+ #include <linux/delay.h>
++#include <linux/firmware.h>
+ #include <linux/hwmon.h>
+ #include <linux/marvell_phy.h>
+ #include <linux/phy.h>
+@@ -50,6 +51,13 @@ enum {
+ 	MV_PMA_21X0_PORT_CTRL_MACTYPE_10GBASER_RATE_MATCH	= 0x6,
+ 	MV_PMA_BOOT		= 0xc050,
+ 	MV_PMA_BOOT_FATAL	= BIT(0),
++	MV_PMA_BOOT_PRGS_MASK	= 0x0006,
++	MV_PMA_BOOT_PRGS_INIT	= 0x0000,
++	MV_PMA_BOOT_PRGS_WAIT	= 0x0002,
++	MV_PMA_BOOT_PRGS_CSUM	= 0x0004,
++	MV_PMA_BOOT_PRGS_JRAM	= 0x0006,
++	MV_PMA_BOOT_APP_STARTED	= BIT(4),
++	MV_PMA_BOOT_APP_LOADED	= BIT(6),
+ 
+ 	MV_PCS_BASE_T		= 0x0000,
+ 	MV_PCS_BASE_R		= 0x1000,
+@@ -96,6 +104,12 @@ enum {
+ 	MV_PCS_PORT_INFO_NPORTS_MASK	= 0x0380,
+ 	MV_PCS_PORT_INFO_NPORTS_SHIFT	= 7,
+ 
++	/* Firmware downloading */
++	MV_PCS_FW_ADDR_LOW	= 0xd0f0,
++	MV_PCS_FW_ADDR_HIGH	= 0xd0f1,
++	MV_PCS_FW_DATA		= 0xd0f2,
++	MV_PCS_FW_CSUM		= 0xd0f3,
++
+ 	/* SerDes reinitialization 88E21X0 */
+ 	MV_AN_21X0_SERDES_CTRL2	= 0x800f,
+ 	MV_AN_21X0_SERDES_CTRL2_AUTO_INIT_DIS	= BIT(13),
+@@ -156,6 +170,7 @@ struct mv3310_chip {
+ 
+ 	const struct mv3310_mactype *mactypes;
+ 	size_t n_mactypes;
++	const char *firmware_path;
+ 
+ #ifdef CONFIG_HWMON
+ 	int (*hwmon_read_temp_reg)(struct phy_device *phydev);
+@@ -506,6 +521,132 @@ static const struct sfp_upstream_ops mv3310_sfp_ops = {
+ 	.module_insert = mv3310_sfp_insert,
+ };
+ 
++struct mv3310_fw_hdr {
++	struct {
++		u32 size;
++		u32 addr;
++		u16 csum;
++	} __packed data;
++
++	u8 flags;
++#define MV3310_FW_HDR_DATA_ONLY BIT(6)
++
++	u8 port_skip;
++	u32 next_hdr;
++	u16 csum;
++
++	u8 pad[14];
++} __packed;
++
++static int mv3310_load_fw_sect(struct phy_device *phydev,
++			       const struct mv3310_fw_hdr *hdr, const u8 *data)
++{
++	int err = 0;
++	size_t i;
++	u16 csum;
++
++	dev_dbg(&phydev->mdio.dev, "Loading %u byte %s section at 0x%08x\n",
++		hdr->data.size,
++		(hdr->flags & MV3310_FW_HDR_DATA_ONLY) ? "data" : "executable",
++		hdr->data.addr);
++
++	for (i = 0, csum = 0; i < hdr->data.size; i++)
++		csum += data[i];
++
++	if ((u16)~csum != hdr->data.csum) {
++		dev_err(&phydev->mdio.dev, "Corrupt section data\n");
++		return -EINVAL;
++	}
++
++	phy_lock_mdio_bus(phydev);
++
++	/* Any existing checksum is cleared by a read */
++	__phy_read_mmd(phydev, MDIO_MMD_PCS, MV_PCS_FW_CSUM);
++
++	__phy_write_mmd(phydev, MDIO_MMD_PCS, MV_PCS_FW_ADDR_LOW,  hdr->data.addr & 0xffff);
++	__phy_write_mmd(phydev, MDIO_MMD_PCS, MV_PCS_FW_ADDR_HIGH, hdr->data.addr >> 16);
++
++	for (i = 0; i < hdr->data.size; i += 2) {
++		__phy_write_mmd(phydev, MDIO_MMD_PCS, MV_PCS_FW_DATA,
++				(data[i + 1] << 8) | data[i]);
++	}
++
++	csum = __phy_read_mmd(phydev, MDIO_MMD_PCS, MV_PCS_FW_CSUM);
++	if ((u16)~csum != hdr->data.csum) {
++		dev_err(&phydev->mdio.dev, "Download failed\n");
++		err = -EIO;
++		goto unlock;
++	}
++
++	if (hdr->flags & MV3310_FW_HDR_DATA_ONLY)
++		goto unlock;
++
++	__phy_modify_mmd(phydev, MDIO_MMD_PMAPMD, MV_PMA_BOOT, 0, MV_PMA_BOOT_APP_LOADED);
++	mdelay(200);
++	if (!(__phy_read_mmd(phydev, MDIO_MMD_PMAPMD, MV_PMA_BOOT) & MV_PMA_BOOT_APP_STARTED)) {
++		dev_err(&phydev->mdio.dev, "Application did not startup\n");
++		err = -ENODEV;
++	}
++
++unlock:
++	phy_unlock_mdio_bus(phydev);
++	return err;
++}
++
++static int mv3310_load_fw(struct phy_device *phydev)
++{
++	const struct mv3310_chip *chip = to_mv3310_chip(phydev);
++	const struct firmware *fw;
++	struct mv3310_fw_hdr hdr;
++	const u8 *sect;
++	size_t i;
++	u16 csum;
++	int err;
++
++	if (!chip->firmware_path)
++		return -EOPNOTSUPP;
++
++	err = request_firmware(&fw, chip->firmware_path, &phydev->mdio.dev);
++	if (err)
++		return err;
++
++	if (fw->size & 1) {
++		err = -EINVAL;
++		goto release;
++	}
++
++	for (sect = fw->data; (sect + sizeof(hdr)) < (fw->data + fw->size);) {
++		memcpy(&hdr, sect, sizeof(hdr));
++		hdr.data.size = cpu_to_le32(hdr.data.size);
++		hdr.data.addr = cpu_to_le32(hdr.data.addr);
++		hdr.data.csum = cpu_to_le16(hdr.data.csum);
++		hdr.next_hdr = cpu_to_le32(hdr.next_hdr);
++		hdr.csum = cpu_to_le16(hdr.csum);
++
++		for (i = 0, csum = 0; i < offsetof(struct mv3310_fw_hdr, csum); i++)
++			csum += sect[i];
++
++		if ((u16)~csum != hdr.csum) {
++			dev_err(&phydev->mdio.dev, "Corrupt section header\n");
++			err = -EINVAL;
++			break;
++		}
++
++		err = mv3310_load_fw_sect(phydev, &hdr, sect + sizeof(hdr));
++		if (err)
++			break;
++
++		if (!hdr.next_hdr)
++			break;
++
++		sect = fw->data + hdr.next_hdr;
++	}
++
++release:
++	release_firmware(fw);
++	return err;
++}
++
+ static int mv3310_probe(struct phy_device *phydev)
+ {
+ 	const struct mv3310_chip *chip = to_mv3310_chip(phydev);
+@@ -527,6 +668,12 @@ static int mv3310_probe(struct phy_device *phydev)
+ 		return -ENODEV;
+ 	}
+ 
++	if ((ret & MV_PMA_BOOT_PRGS_MASK) == MV_PMA_BOOT_PRGS_WAIT) {
++		ret = mv3310_load_fw(phydev);
++		if (ret)
++			return ret;
++	}
++
+ 	priv = devm_kzalloc(&phydev->mdio.dev, sizeof(*priv), GFP_KERNEL);
+ 	if (!priv)
+ 		return -ENOMEM;
+@@ -1219,6 +1366,7 @@ static const struct mv3310_chip mv3310_type = {
+ 
+ 	.mactypes = mv3310_mactypes,
+ 	.n_mactypes = ARRAY_SIZE(mv3310_mactypes),
++	.firmware_path = "mrvl/x3310fw.hdr",
+ 
+ #ifdef CONFIG_HWMON
+ 	.hwmon_read_temp_reg = mv3310_hwmon_read_temp_reg,
+@@ -1489,4 +1637,5 @@ static struct mdio_device_id __maybe_unused mv3310_tbl[] = {
+ };
+ MODULE_DEVICE_TABLE(mdio, mv3310_tbl);
+ MODULE_DESCRIPTION("Marvell Alaska X/M multi-gigabit Ethernet PHY driver");
++MODULE_FIRMWARE("mrvl/x3310fw.hdr");
+ MODULE_LICENSE("GPL");
 -- 
 2.34.1
 
