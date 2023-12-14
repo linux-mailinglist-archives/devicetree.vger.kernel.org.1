@@ -1,131 +1,106 @@
-Return-Path: <devicetree+bounces-25471-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25472-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48950813531
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 16:49:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F03381353E
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 16:51:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C373AB210CA
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 15:49:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF0481C20C37
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 15:51:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAD4B5D907;
-	Thu, 14 Dec 2023 15:49:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 312A95D90F;
+	Thu, 14 Dec 2023 15:51:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="pPhCwWxj";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="c4yS8tbE"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="j2tM1WaS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com [66.111.4.29])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 558CD9A;
-	Thu, 14 Dec 2023 07:49:18 -0800 (PST)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailout.nyi.internal (Postfix) with ESMTP id ECBA65C01EA;
-	Thu, 14 Dec 2023 10:49:15 -0500 (EST)
-Received: from imap51 ([10.202.2.101])
-  by compute5.internal (MEProxy); Thu, 14 Dec 2023 10:49:15 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-type:content-type:date:date:from:from:in-reply-to
-	:in-reply-to:message-id:mime-version:references:reply-to:subject
-	:subject:to:to; s=fm1; t=1702568955; x=1702655355; bh=rsrWTQjBQT
-	0relicSVB/5hAbF9a2jab8bg2oUsSBSH0=; b=pPhCwWxjGRTA+Ledc/1HB99oEb
-	8m6nFpU2rW2Noyj3dojFZQxVbpA0DrdpUEPTOEN8DgIrK77y2pQd82YC7pS75xeI
-	BX33FP7DLfdxJFGdi5aaD++Ftl1olEcQhZAGMuu7egNySEysrblxu23QpVh47xAn
-	xZqh5KMEW6x8kyc4Hf04dSjyaoG8kXzD/fEosNq75ptGk4q01XptqM2eB3eGKoJ0
-	jdfee8R4NA/q8h4u9QDnN31s1OW3adPEuUqbThF6CruJ5gGIwfIlei/XPrMs+Zq3
-	smRwEyUp+s6lF4mK2jVN/QxzzHYGuLVFwk/onuoPFg5ORxs4EDhP+CvleFOQ==
+Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3EE9E8
+	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 07:51:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm1; t=1702568955; x=1702655355; bh=rsrWTQjBQT0relicSVB/5hAbF9a2
-	jab8bg2oUsSBSH0=; b=c4yS8tbEPEwCWwCRUDPNftjnOF78gNL7VN7cHmHXmukZ
-	dAcl18nRyV0cJ/yBC8C4x0rD0X0d5iAhmCpKGdTQ4aLeONb9kRnMyndnJ4NG/kTP
-	+oP6HoV24kH6wrMPxW2dRi3WMha525Wh2qbbvEYTBYn4r7FjhazNPA7T1TBs2lM9
-	Wq4uumy9RAaXqRuFX7hBqslN+eEADuRms/AexDhIxZRUjbdBBh7wqRKRsAgLGRqH
-	h28Fh2ZQtVtJ1vj0ZPtItgmnAE5ekXQGiaJ+sww5BaxXopDDN1GD4NqVAk0lYlh9
-	KplQnGkgCmU64EXomkFjvE5RPKy68daJEOUlPAYK5A==
-X-ME-Sender: <xms:-yN7Za9jQoCeaHiVVCPVOx-5XJBAPjG6qr1e7FOYeaZnVNjTKTJznA>
-    <xme:-yN7ZavHHTFLcbp9OUI3VYychZyyzhWxbQCMR4X8ODbG10YP5q6LJPUXy3qtzk-5R
-    1ckNyvh_irQOWgX17A>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrudelledgkedtucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
-    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
-    htvghrnhepjedvvddvudeludehjeeitdehheeivdejgfelleffiefgvefhhfeuudfhgeef
-    feehnecuffhomhgrihhnpehgihhthhhusgdrtghomhenucevlhhushhtvghrufhiiigvpe
-    dtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrhhnugesrghrnhgusgdruggv
-X-ME-Proxy: <xmx:-yN7ZQD-Ff4o3JfCIel-uzk49qql3Rs1LZ902Bos7sUNcjldKYCJrg>
-    <xmx:-yN7ZSeSdF6MY2y9Q-1DWPtZ36dJ1eWSTtojvSZOLGJesJFiC_-wyQ>
-    <xmx:-yN7ZfMIKb28qEiuWYvuXiHbVbNfkISfRyxEnPltMd1KmKuA9YeOEA>
-    <xmx:-yN7ZdsA6kJMPxgatqIM5Qzl-GYWtph8qh1i0kDuPF3queGrAj1ESQ>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 15800B6008D; Thu, 14 Dec 2023 10:49:15 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-1283-g327e3ec917-fm-20231207.002-g327e3ec9
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=SWD5
+	0egKwLc0Rybwi1RAvz7QScMU5f/Ur7h95KrgliU=; b=j2tM1WaStkNaKN+yr1RR
+	s50Kn/z2eapPW+OrIq8j0AnGUlzSEezIVhXFoiijiVysPGSsQ3DQ+QeiWkyHwy72
+	yPkF3Jiky+QwoC02lGZK7uB+jzALuEzaeEBP08NxUDS5YipV+mdFt2uIZMY2rqkj
+	zThG5pSGjdVjzbF+xocSH5wrWyevC+AEP+T7IUa/Lwx4o8r2tOFuXupLJYFd8F/d
+	32x9jiaVL2vKgbye2+0Bz3zYs33WXQtsaSQlHpxcTiS6dh3OU7H2hE72NurAs7mX
+	m1chOTFGgbI5DIpPNY+ilgzX/WVfXfucLH/pZhM83uXL8kGLah425UFOc4T1pV2/
+	Vw==
+Received: (qmail 972578 invoked from network); 14 Dec 2023 16:51:24 +0100
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 14 Dec 2023 16:51:24 +0100
+X-UD-Smtp-Session: l3s3148p1@+qV/QXoMAMIujnuR
+Date: Thu, 14 Dec 2023 16:51:23 +0100
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: linux-renesas-soc@vger.kernel.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	Marek Vasut <marek.vasut+renesas@gmail.com>,
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: Re: [PATCH v5 RESEND 0/2] PCI: rcar: support regulators for PCIe
+Message-ID: <ZXske3k8CkMcGjr5@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	Marek Vasut <marek.vasut+renesas@gmail.com>,
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+References: <20231105092908.3792-1-wsa+renesas@sang-engineering.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <88040035-d971-4012-bb9f-9f2ae91fdc6e@app.fastmail.com>
-In-Reply-To: 
- <CAP6Zq1inLOMHORqO8=RbP6NfwJ63kLaH0G3+TKBhfn0p2CE53w@mail.gmail.com>
-References: <20231213190528.3751583-1-tmaimon77@gmail.com>
- <20231213190528.3751583-4-tmaimon77@gmail.com>
- <cf3ce945-2f1c-4dae-86b8-349dae3d962b@app.fastmail.com>
- <CAP6Zq1inLOMHORqO8=RbP6NfwJ63kLaH0G3+TKBhfn0p2CE53w@mail.gmail.com>
-Date: Thu, 14 Dec 2023 15:48:55 +0000
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Tomer Maimon" <tmaimon77@gmail.com>
-Cc: pmenzel@molgen.mpg.de, "Rob Herring" <robh+dt@kernel.org>,
- krzysztof.kozlowski+dt@linaro.org, "Conor Dooley" <conor+dt@kernel.org>,
- avifishman70@gmail.com, tali.perry1@gmail.com,
- "Joel Stanley" <joel@jms.id.au>, venture@google.com, yuenn@google.com,
- benjaminfair@google.com,
- =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
- openbmc@lists.ozlabs.org,
- "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 3/3] soc: nuvoton: add NPCM BPC driver
-Content-Type: text/plain
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="iYf0e0WBJmy2fgy7"
+Content-Disposition: inline
+In-Reply-To: <20231105092908.3792-1-wsa+renesas@sang-engineering.com>
 
-On Thu, Dec 14, 2023, at 14:09, Tomer Maimon wrote:
-> On Thu, 14 Dec 2023 at 14:44, Arnd Bergmann <arnd@arndb.de> wrote:
->> >
->> > +config NPCM_BPC
->> > +     tristate "NPCM BIOS Post Code support"
->> > +     depends on (ARCH_NPCM || COMPILE_TEST)
->> > +     help
->> > +       Provides NPCM driver to control the BIOS Post Code
->> > +       interface which allows the BMC to monitor and save
->> > +       the data written by the host to an arbitrary I/O port,
->> > +       the BPC is connected to the host thourgh LPC or eSPI bus.
->> > +
->>
->> This one in particular looks like this might be implemented
->> by more than one BMC type, it's a fairly generic functionality.
->>
->> Have you talked to the other maintainers of SoCs used in
->> OpenBMC about coming up with a common interface?
-> Yes, Both Nuvoton and Aspeed use the same user-facing code to manage
-> the host snooping.
-> https://github.com/openbmc/phosphor-host-postd
 
-Ok, that's good. I found the driver in drivers/soc/aspeed/aspeed-lpc-snoop.c
-now and see that the implementation looks very similar. 
+--iYf0e0WBJmy2fgy7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I think we should do two things here:
+On Sun, Nov 05, 2023 at 10:29:06AM +0100, Wolfram Sang wrote:
+> Here are the patches to make PCIe cards work in slot CN15 on a Renesas
+> KingFisher board. Please apply.
+>=20
+> Changes since v4:
+> * rebased to 6.6
+> * added ack from Mani (Thanks!)
+>=20
+> Wolfram Sang (2):
+>   dt-bindings: PCI: rcar-pci-host: add optional regulators
+>   PCI: rcar-host: add support for optional regulators
+>=20
+>  .../devicetree/bindings/pci/rcar-pci-host.yaml   | 11 +++++++++++
+>  drivers/pci/controller/pcie-rcar-host.c          | 16 +++++++++++++++-
+>  2 files changed, 26 insertions(+), 1 deletion(-)
 
- - split out the common code into a shared module that exports the
-   symbols to be used by either one
+Can we have this series in 6.8, pretty please?
 
- - find a better place for both drivers outside of drivers/soc.
-   I would suggest drivers/misc/bmc/ but am open to other suggestions.
 
-      Arnd
+--iYf0e0WBJmy2fgy7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmV7JHgACgkQFA3kzBSg
+KbY3KhAAn1LjgCchuymBK5WOFv1iQU8JHdrudMbyioMalewF7lH/NVT6vA2FPeNN
+X5X0FZ6JmGyrnOj8qbkakl0iB1ZYf1lKOoGjiAVzS3qj2lxsP5NpBXX3yQuF2m2A
+Ajc8wp0P6z2q11gWkVHjYnDAW1SawtLSJtHhsFdfDL9WzTOXO01CDYU87Rshckno
+Ckyjo9Mc69R8XNdsubdYzIipRBQGnFuz6lTjYXlJvWk/siwTPc95pB9fmF398eJn
+DIoqYPBccsb4484o9oJ5LUlG/pov1ud7kPsKu197A1SaxUwS3j+C/ghIhTl3Rq7W
+jpK2eZp/tGyfPnkr72niLCJvd+mkwg6EB4Xy9tocBMgUsK0JG7dBzuD5AJopbOVu
+fm94Wc2/mKaUXVdMY4REG9u4kLMl3v9RZxlbtqvv4aSHobnIGWX2jkMmrnm5ztQf
+HbK+X809vP3owl++JmD0K+CjxLNusiYqVHZmfbXgR5IzlnLCgShsROPquuVT1bvG
+EJti4TXSAxUU8zbDDEoBF7xcaxiynRlsg9NROsQ3hs60rz6JYAG/oxdnv050juSV
+bIwnZLSAdaYbx8UxevSSX+TXxMjzUmBHvyj96w09U0ckVTcz4AEm4gH2lXppL3qi
+8bwbzUJ2CV3ZlsYOgBTdgWpPFQIqm8XVgnB9TyFX4FpPmBtP8UE=
+=8XDE
+-----END PGP SIGNATURE-----
+
+--iYf0e0WBJmy2fgy7--
 
