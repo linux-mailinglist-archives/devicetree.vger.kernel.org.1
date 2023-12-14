@@ -1,70 +1,80 @@
-Return-Path: <devicetree+bounces-25087-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25088-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 543D28125BF
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 04:07:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8315F8125ED
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 04:32:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F0D7282BBB
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 03:07:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 282A41F21A68
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 03:32:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD8C21375;
-	Thu, 14 Dec 2023 03:07:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dy6HTCc0"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A8BB15C0;
+	Thu, 14 Dec 2023 03:31:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B331F111D
-	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 03:07:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B590C433C8;
-	Thu, 14 Dec 2023 03:07:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702523258;
-	bh=QQk6nnDXW2agyfNqd3ynhfOjbLc5mRzE7yLywTmSVcA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dy6HTCc0rikET5ylYnvKy7CPcOVt353QEumi42DGYlkkUj/jekBlRI9LWRmfUhAZG
-	 HmFpyXejF/HNkNoqNzrbogp6kLub2ArkT71xP/3o9XqrHXmgT21PpF76mm9/4/ITwG
-	 cNZfiCbJPJonjRnXTLMlT4Hk6dZxfMg2eldtk99bPuRaF6d+7YEfnf5z1GDGL6hMDa
-	 X11b55dykOskfSMDerGuWKO2P+x9oSQv/4niQ7Poon+FQvkQjE8+B0hQz8KsrByAar
-	 a2dJMceiTddaqCD4cliOu+0fAqeN5pwCOg2BTL7qRQg4k6+BExx6ZP9AEJHp3pierg
-	 0/Ns5/olP1obg==
-Date: Thu, 14 Dec 2023 11:07:32 +0800
-From: Shawn Guo <shawnguo@kernel.org>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: cw00.choi@samsung.com, myungjoo.ham@samsung.com, robh+dt@kernel.org,
-	krzysztof.kozlowski@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, marex@denx.de, hvilleneuve@dimonoff.com,
-	linux-arm-kernel@lists.infradead.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: Re: [PATCH v2 3/3] arm64: dts: imx8mp-dhcom-pdk3: Describe the USB-C
- connector
-Message-ID: <20231214030732.GH270430@dragon>
-References: <20231212174847.759164-1-festevam@gmail.com>
- <20231212174847.759164-3-festevam@gmail.com>
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E02DB0;
+	Wed, 13 Dec 2023 19:31:52 -0800 (PST)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+	by fd01.gateway.ufhost.com (Postfix) with ESMTP id 46AC27F98;
+	Thu, 14 Dec 2023 11:31:50 +0800 (CST)
+Received: from EXMBX072.cuchost.com (172.16.6.82) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 14 Dec
+ 2023 11:31:49 +0800
+Received: from localhost.localdomain (202.188.176.82) by EXMBX072.cuchost.com
+ (172.16.6.82) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 14 Dec
+ 2023 11:31:44 +0800
+From: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
+To: Xingyu Wu <xingyu.wu@starfivetech.com>, Samin Guo
+	<samin.guo@starfivetech.com>, Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>
+CC: Ji Sheng Teoh <jisheng.teoh@starfivetech.com>, Ley Foon Tan
+	<leyfoon.tan@starfivetech.com>, <linux-watchdog@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3 0/1] Add StarFive JH8100 watchdog
+Date: Thu, 14 Dec 2023 11:30:55 +0800
+Message-ID: <20231214033056.3953143-1-jisheng.teoh@starfivetech.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231212174847.759164-3-festevam@gmail.com>
+Content-Type: text/plain
+X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX072.cuchost.com
+ (172.16.6.82)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Dec 12, 2023 at 02:48:47PM -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
-> 
-> Describe the PTN5150 USB-C connector to improve the devicetree description
-> and fix the following dt-schema warning:
-> 
-> imx8mp-dhcom-pdk3.dtb: typec@3d: 'port' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/extcon/extcon-ptn5150.yaml#
-> 	
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
+Changes since v2:
+- Express JH8100 compatibility to JH7110 in dt-bindings.
+- Rework min/maxItems constraint for JH8100 resets property.
 
-Applied, thanks!
+Changes since v1:
+- Drop "starfive,jh8100-wdt" compatible field in starfive-wdt.c,
+  and express them in dt-bindings.
+- Use minItems in resets field to cater for single reset signal
+  in JH8100.
+- Reword Watchdog reset to Core reset for JH8100.
+
+StarFive's JH8100 watchdog reuses JH7100 register mapping.
+DT-binding of JH7100 watchdog is extended to support JH8100.
+Since JH8100 only uses 1 reset signal, update the binding to
+support one reset for "starfive,jh8100-wdt" compatible.
+
+Ji Sheng Teoh (1):
+  dt-bindings: watchdog: starfive,jh7100-wdt: Add compatible for JH8100
+
+ .../watchdog/starfive,jh7100-wdt.yaml         | 48 ++++++++++++++++---
+ 1 file changed, 42 insertions(+), 6 deletions(-)
+
+--=20
+2.25.1
+
 
