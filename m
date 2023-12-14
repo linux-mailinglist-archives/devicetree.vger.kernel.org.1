@@ -1,77 +1,138 @@
-Return-Path: <devicetree+bounces-25564-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25565-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C72E1813A97
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 20:19:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB811813AB1
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 20:25:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 83067281E23
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 19:19:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 750B61F2169E
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 19:25:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23B6A692B3;
-	Thu, 14 Dec 2023 19:19:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 751106978A;
+	Thu, 14 Dec 2023 19:25:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cLVOB3t+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A8A1692A0;
-	Thu, 14 Dec 2023 19:19:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-6d26eef7438so350653b3a.0;
-        Thu, 14 Dec 2023 11:19:03 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 640155ABB8
+	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 19:24:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a1d93da3eb7so987763966b.0
+        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 11:24:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702581896; x=1703186696; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wW/GDlju1SlGiHxyBADi4zieDq7qt0NNlAx5gIb5X2c=;
+        b=cLVOB3t+J+3+sLqigbU4jgcI4l8O8TIPMFEw3McLPbwimp8llYnljx/D5fEk+44sLD
+         2ADf+59Rcdan1KPxpdJArCratnqJaArYSoSpb6gReG59M6r46HFjCd6iLQ1CxKdBvi7Q
+         UN49PFOpRW+3tFfbfynYvCn2pnNgH50K5G3clFu1qmXr4R1cJVO/5S/SZ298ETAOAAJm
+         KBeg1eZ98NoO0Z9lMhCaMbEm7YPPskgzcQJDQLP8aWUYQRCX9uHHXLz9aUI97nbxuJQ8
+         Y4ZwbiHC55TDIpuU4fWoYbkxDnODFqKBamr9yIFur2P+Z+Llkv/j/rnd/p2ubchPxBxh
+         +CmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702581543; x=1703186343;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HmaPv5ednXxlApkIzwmu5V1HXdcr5X0Tt25BMAujWYA=;
-        b=nh/s3ZgpE85slgefhZJqFxhwS+1R0d7TqFy5UvnC3XNQfd/JdUP+2mdDZ+tMCrE7wJ
-         bl2vuE3yWUL+xwyWOyB5pGJC1By5JLNlWaQCif9EDcU2Xwsm6m1kLG6bCcc6uYqahSSq
-         GqpKw30xoGowRUXPhXomLnNvCXVcLPTS9YrjTVABg8gBwPVeVuoALDO6g1h1WoMwYIs9
-         VU+8e1+3Ux0Kr34HJcluViME9P3vuGUs5w/+j8a05YwpcrRK7dRh5RUhJgdUqfW9cGwJ
-         WEgwv4kxfIgEIHAGPylHu6a/0v4SAqQcxiwqwwierXwyQzCCanXEH3a+jqaFtQ1MHpWH
-         DdMw==
-X-Gm-Message-State: AOJu0Yx3xxxISHklKA40hamtNzHt5X2s7Cwpg5GieZQVnMTag+Hyt6VK
-	Ctxq/zN95VGhJz6l8FU3mx/I7XBenVlBMfrI
-X-Google-Smtp-Source: AGHT+IGHCCE+L7JDS8FZbZpAIGvsdL6+lgQ1l80vl7spaWGOGjl5OMSavZxWNoQGKdgEH7IQ4IdN2w==
-X-Received: by 2002:a05:6a20:7f9b:b0:190:1b16:3558 with SMTP id d27-20020a056a207f9b00b001901b163558mr15185325pzj.2.1702581542739;
-        Thu, 14 Dec 2023 11:19:02 -0800 (PST)
-Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
-        by smtp.gmail.com with ESMTPSA id q16-20020a62ae10000000b006a77343b0ccsm12189368pff.89.2023.12.14.11.19.01
+        d=1e100.net; s=20230601; t=1702581896; x=1703186696;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wW/GDlju1SlGiHxyBADi4zieDq7qt0NNlAx5gIb5X2c=;
+        b=PSFPzHDBW5g0KN4vQoxHt0HIGX/7PdUSI8ERRgsZYTYOV49KBSyVvt3vOyYVszMfGm
+         2gOv815a+NwK0ZC9P+CTbeL/iGf0aiw5Qg+00F5jF31DQNi086fucKd2OWOaAX/UPHpL
+         hXH625ZiAFocabql28KAuuIYMgEryOqPj6dd+4tyXQKqRmI1VOQmTS2Fu6C97hQbrOcM
+         53kkGAx9MfpFPhVHnVv/CRbAds0HBKZRs/yXA29521Lsnun/sPfWslLiyWWpQLB7rgF2
+         U9qsdbdvfgb+uj8NZlN6mxgrlTwKrdoBIMVB8NZl1e/cyj8FEtryFwhQiBNBfAPbzuwu
+         GPOg==
+X-Gm-Message-State: AOJu0YxZKF+XP/a0CqK+uwpQeEDyaFP64EWJg0+y937LEjkI4mt+j+Mt
+	8z7nhQHxrrOJrT6SsN1chjNimw==
+X-Google-Smtp-Source: AGHT+IHMbXE/Abwze9EjqdpU70sO1enIjtDNJ9uE5t83WoTmA2Fs9hT/sHcWMvbLno6r7B91hf1hLQ==
+X-Received: by 2002:a17:906:cb85:b0:a19:6483:d899 with SMTP id mf5-20020a170906cb8500b00a196483d899mr5306891ejb.66.1702581896680;
+        Thu, 14 Dec 2023 11:24:56 -0800 (PST)
+Received: from [127.0.1.1] ([79.115.23.25])
+        by smtp.gmail.com with ESMTPSA id vg7-20020a170907d30700b00a22fdf10c96sm2876292ejc.180.2023.12.14.11.24.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Dec 2023 11:19:02 -0800 (PST)
-Date: Fri, 15 Dec 2023 04:19:00 +0900
-From: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	Marek Vasut <marek.vasut+renesas@gmail.com>,
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: Re: [PATCH v5 RESEND 0/2] PCI: rcar: support regulators for PCIe
-Message-ID: <20231214191900.GB2079458@rocinante>
-References: <20231105092908.3792-1-wsa+renesas@sang-engineering.com>
- <ZXske3k8CkMcGjr5@shikoro>
+        Thu, 14 Dec 2023 11:24:56 -0800 (PST)
+From: Abel Vesa <abel.vesa@linaro.org>
+Date: Thu, 14 Dec 2023 21:24:50 +0200
+Subject: [PATCH] arm64: dts: qcom: x1e80100-crd: Fix supplies for some LDOs
+ in PM8550
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZXske3k8CkMcGjr5@shikoro>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20231214-x1e80100-dts-fix-pm8550-regulators-supplies-v1-1-6b5830dc337e@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAIFWe2UC/x2NQQqDMBAAvyJ77sJu0rTSr5QeQtzYBashq0UQ/
+ 97Q4xxm5gCTqmLw6A6o8lXTZW7Alw7SO86joA6NwZHz7PiKO0tPTITDaph1x/LpQyCsMm5TXJd
+ qaFspU4siiw85+ts9pQytWKo04397vs7zB0US26d9AAAA
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>, 
+ Rajendra Nayak <quic_rjendra@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1379; i=abel.vesa@linaro.org;
+ h=from:subject:message-id; bh=OuI3ZT6TSbv4+Phx9PQrKmxRLVqKlP7HvLWZobRvDFs=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBle1aDFfDkRbCA6udlRBLwiDsPgFeLMm6UE6AHm
+ xqOJ7wcN1GJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZXtWgwAKCRAbX0TJAJUV
+ VooTEADK2iEU66Bm0GdvcfQWVxdhoXrvjSAFEt6qDI/1n7Q3x2P2BLhcnYpRnlxBtE542lP8ApG
+ PugrpvLtUqtTmthUK9l6pUXu+TS1/66iYP/ZuRTIU9mGGM8VeQGUnnBcfHqKds5fK958rATdS/X
+ nPq9e9t/jmBQ+Y+kGXH/+3IaOMlXjo+PtUiwgWi7I4HaXSEJ7A13KSM1hHwOpNbP+5Be4cz6e3H
+ E11Bwfo2NxdE2lh1tTOmveCei40s5FjZp7NfNQ/YZ2FyTuZoQ5Wp7cibgLE4WAn0NlY3xePAcZL
+ mGnX9OqQkSKyRsQifNvsywbt+wxBmQY45BpQELh/thfld5VvQ9M4resXX9Cta6ukks7vSNCp+1Y
+ IXXy/9DF/xGuU0frcC/gEJTTdvMryhlTYeJz1OyzTZW8kPftnAo2Oq9AG9Ctd63AQdeXZhQ26XL
+ DOD0kqW2Ns/e2tH9IJTOuP/A7HgAcb9Evsu/lhvrByZegg0HeuEybkLrfUb0HL7zK211vvsGHkd
+ 3Ftcqz/ISSg5iFPHNVjvuPIADGSnFnzvqrib7XzwMplKXGWWWFTeSqw1Fjkd7+/zWj8/SxrYfel
+ Ij5grSMP7mWZ/WucR+55rr51ugzrDil0/xYdBdh7AGE9ygfZ7XjxVcewjV3YeY9l+5a3xZ9vH9T
+ qtONEsHxOFX+GTQ==
+X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
+ fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
-Hello,
+The LDOs 1, 4 and 10 from PM8550 share the same supply, the SMPS 4
+from PM8550ve. This needs to be done through shared supply approach
+otherwise the bindings check fails.
 
-> > Here are the patches to make PCIe cards work in slot CN15 on a Renesas
-> > KingFisher board. Please apply.
-[...]
-> Can we have this series in 6.8, pretty please?
+Fixes: bd50b1f5b6f3 ("arm64: dts: qcom: x1e80100: Add Compute Reference Device")
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/x1e80100-crd.dts | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-Applied, so it should make it to 6.8.  Apologies for the delay.
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+index c209ae59c6b5..7532d8eca2de 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+@@ -58,13 +58,11 @@ regulators-0 {
+ 
+ 		vdd-bob1-supply = <&vph_pwr>;
+ 		vdd-bob2-supply = <&vph_pwr>;
+-		vdd-l1-supply = <&vreg_s4c_1p8>;
++		vdd-l1-l4-l10-supply = <&vreg_s4c_1p8>;
+ 		vdd-l2-l13-l14-supply = <&vreg_bob1>;
+-		vdd-l4-supply = <&vreg_s4c_1p8>;
+ 		vdd-l5-l16-supply = <&vreg_bob1>;
+ 		vdd-l6-l7-supply = <&vreg_bob2>;
+ 		vdd-l8-l9-supply = <&vreg_bob1>;
+-		vdd-l10-supply = <&vreg_s4c_1p8>;
+ 		vdd-l12-supply = <&vreg_s5j_1p2>;
+ 		vdd-l15-supply = <&vreg_s4c_1p8>;
+ 		vdd-l17-supply = <&vreg_bob2>;
 
-	Krzysztof
+---
+base-commit: 7b0e611dc474ffa67d3a6ea235085bf423ee5f2a
+change-id: 20231214-x1e80100-dts-fix-pm8550-regulators-supplies-1e35fa367ccf
+
+Best regards,
+-- 
+Abel Vesa <abel.vesa@linaro.org>
+
 
