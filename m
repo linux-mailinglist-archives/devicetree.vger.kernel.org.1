@@ -1,169 +1,184 @@
-Return-Path: <devicetree+bounces-25366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29AC581308E
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 13:51:49 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09BC28130A7
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 13:57:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8B7E7B20C02
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 12:51:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7AE151F2133E
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 12:57:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45C7C4BA90;
-	Thu, 14 Dec 2023 12:51:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 088804D5AC;
+	Thu, 14 Dec 2023 12:57:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Xsc4kUvH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="R55KsC/N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BFB7113;
-	Thu, 14 Dec 2023 04:51:38 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3BECpVch033275;
-	Thu, 14 Dec 2023 06:51:31 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1702558291;
-	bh=/9jtNyDDhoXaq6g2ujsv+iw1ZZiTAQQuZfO9t1kVU6w=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=Xsc4kUvHW7ogRvhZTpGMqPGZZNt/rdOu2gRjGflGmaQ7ZiXldTdFEp2vgKeimEgK2
-	 T33YHrvr/vGgZQtIKOydUqJzJI+vx27ncfxw1ta0uTFDUS5N3TdWc8WFdUXO/9WcNH
-	 YUUjDTyb07+vs3qfsLULo3znK6xl9cP7jK8B/RqI=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3BECpUWS032389
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 14 Dec 2023 06:51:30 -0600
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 14
- Dec 2023 06:51:30 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 14 Dec 2023 06:51:30 -0600
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3BECpUD9103783;
-	Thu, 14 Dec 2023 06:51:30 -0600
-Date: Thu, 14 Dec 2023 06:51:30 -0600
-From: Nishanth Menon <nm@ti.com>
-To: Neha Malcom Francis <n-francis@ti.com>
-CC: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <vigneshr@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <a-nandan@ti.com>, <kristo@kernel.org>, <u-kumar1@ti.com>
-Subject: Re: [PATCH] arm64: dts: ti: k3-j721e: Add support for DFS in J721E
- A72
-Message-ID: <20231214125130.zqtq6ioj4c533wha@elbow>
-References: <20231214075637.176586-1-n-francis@ti.com>
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7751BA6;
+	Thu, 14 Dec 2023 04:57:39 -0800 (PST)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-a1db6c63028so935949866b.2;
+        Thu, 14 Dec 2023 04:57:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702558658; x=1703163458; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=g2GKWz1rRyCNwha7gGcRolq2RILUdPIiIt5FzDdvILQ=;
+        b=R55KsC/NDMFJnCucTbjK5g5o6ELzDY2jFcfTZR678xc3Cyqzv4YZEAfkohXIY2IU07
+         4dl4paNF15fmPy/hDhPj4ZT9E/ws8+OPCaaEZXSf745M3Mza6oET9Y+g0BvZub2aDCKH
+         lHVcwFLKwhyCwvdWLhDXy6mUPqgAe7lfRhv0ubP7boMtSjypehMixvZk41QdZXx2NyM/
+         RrI7cu6nbU3pT9XRYB/PtgZUKhsJg+O4JqxnSS1H9uloO3a794NcJJy3ijw+CpFR99tL
+         fvRd7A/zUqUO0zZCvA1kM/ZfLPRFL//PzPpphkn4gvi2h/VVWCi4WBOQDKAyhvvQeWZE
+         sQSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702558658; x=1703163458;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=g2GKWz1rRyCNwha7gGcRolq2RILUdPIiIt5FzDdvILQ=;
+        b=fnXUPG4rDFyD+WBn32ix6SI74MeCIA64XP/p0HXV+lPPaNrNkMYKKigvQvLSrgan10
+         MNbXKTPo3YdP8gZiqPPs8p11Tvwi860UvQN6cN91+EMsj8oUE0SdwZB6j5Dg15KVNLF/
+         1krsZgZ1qo88P+JxiET/QX7UAh5o9KsNo0nUfOPW7LIffr1jpmWNp+8RPf3hcewuIRI2
+         5pr8jvlkydqj+9pqCx9VQ27meRr5TN6di+wabj3Xa+xG1HMpnU9e07DN0K5GMQ0992hK
+         yojN3OiqGXLHEB4lTfQdN3puUoUlTGN9DJNONA/VlLBdz9OhodWMxBs259ElAl0enwfS
+         Swmw==
+X-Gm-Message-State: AOJu0YyTmFIzCznmuAM9dzM5NctEhmlUlOFmuQXcXqXEZeTOfv0smpyU
+	EmHXAhpHTWNxtcV3CMLbtlU=
+X-Google-Smtp-Source: AGHT+IHtIY7rFcQC93tfnJBXkLGQRNbPQabINCfXb9w5tCgijrk98Ge2WRXokyVfdLbqczA2V1R56A==
+X-Received: by 2002:a17:906:4546:b0:a01:fc1b:8197 with SMTP id s6-20020a170906454600b00a01fc1b8197mr4262851ejq.62.1702558657491;
+        Thu, 14 Dec 2023 04:57:37 -0800 (PST)
+Received: from [172.25.98.130] ([5.2.194.157])
+        by smtp.gmail.com with ESMTPSA id ub14-20020a170907c80e00b00a1da5d9a602sm9368347ejc.138.2023.12.14.04.57.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Dec 2023 04:57:36 -0800 (PST)
+Message-ID: <375bf803-a5d5-4778-938a-b8218b116375@gmail.com>
+Date: Thu, 14 Dec 2023 14:57:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20231214075637.176586-1-n-francis@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 2/2] iio: adc: ad7173: add AD7173 driver
+Content-Language: en-US
+To: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+Cc: linus.walleij@linaro.org, brgl@bgdev.pl, andy@kernel.org,
+ linux-gpio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Michael Walle <michael@walle.cc>,
+ Andy Shevchenko <andy.shevchenko@gmail.com>, Arnd Bergmann <arnd@arndb.de>,
+ ChiaEn Wu <chiaen_wu@richtek.com>, Niklas Schnelle <schnelle@linux.ibm.com>,
+ =?UTF-8?Q?Leonard_G=C3=B6hrs?= <l.goehrs@pengutronix.de>,
+ Mike Looijmans <mike.looijmans@topic.nl>, Haibo Chen <haibo.chen@nxp.com>,
+ Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+ Ceclan Dumitru <dumitru.ceclan@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231212104451.22522-1-mitrutzceclan@gmail.com>
+ <20231212104451.22522-2-mitrutzceclan@gmail.com>
+ <20231214123029.000002f1@Huawei.com>
+From: Ceclan Dumitru <mitrutzceclan@gmail.com>
+In-Reply-To: <20231214123029.000002f1@Huawei.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 13:26-20231214, Neha Malcom Francis wrote:
-> Add 2G, 1.5G, 1G, 750M, 500M and 250M as the supported frequencies for
-> A72. This enables support for Dynamic Frequency Scaling (DFS).
+
+
+On 12/14/23 14:30, Jonathan Cameron wrote:
+> On Tue, 12 Dec 2023 12:44:36 +0200
+> Dumitru Ceclan <mitrutzceclan@gmail.com> wrote:
 > 
-
-Just curious, since I picked up the PMIC support... can we do dvfs? if
-not, please indicate that in the commit message.
-
-> Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
-> ---
-> Boot logs:
-> https://gist.github.com/nehamalcom/e3c3d0446f0467e7fd28706f7ffaeea8
+>> The AD7173 family offer a complete integrated Sigma-Delta ADC solution
+>> which can be used in high precision, low noise single channel
+>> applications or higher speed multiplexed applications. The Sigma-Delta
+>> ADC is intended primarily for measurement of signals close to DC but also
+>> delivers outstanding performance with input bandwidths out to ~10kHz.
+>>
+>> Reviewed-by: Michael Walle <michael@walle.cc> # for gpio-regmap
+>> Signed-off-by: Dumitru Ceclan <mitrutzceclan@gmail.com>
+> Hi
 > 
-> J721E SoC has three different speed grade devices (see [1], 7.5
-> Operating Performance Points) which as of today are indiscernible in
-> software, users of a different speed grade device must manually change
-> the DTS to ensure their maximum speed frequency is supported.
+> Given it seems like you'll be doing a v9, one quick comment from me below.
 > 
-> [1] https://www.ti.com/lit/gpn/tda4vm
-This is critical info in the commit message and in documentation of
-source.
-
-I am also concerned if the table should be separated out as a dtsi and
-included at board.dts level to prevent downstream users going crazy..
-
-Are you absolutely sure this has no detection logic that can be
-implemented? Almost all TI K3 SoCs seem to have a standard scheme to
-detect the speed grades till date. /me wonders what the heck happened
-here..
-
+> Jonathan
 > 
->  arch/arm64/boot/dts/ti/k3-j721e.dtsi | 35 ++++++++++++++++++++++++++++
->  1 file changed, 35 insertions(+)
+>> diff --git a/drivers/iio/adc/ad7173.c b/drivers/iio/adc/ad7173.c
+>> new file mode 100644
+>> index 000000000000..96918b24a10a
+>> --- /dev/null
+>> +++ b/drivers/iio/adc/ad7173.c
+>> @@ -0,0 +1,964 @@
+> ...
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721e.dtsi b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
-> index a200810df54a..fe92879f5812 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721e.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
-> @@ -48,6 +48,9 @@ cpu0: cpu@0 {
->  			d-cache-line-size = <64>;
->  			d-cache-sets = <256>;
->  			next-level-cache = <&L2_0>;
-> +			clocks = <&k3_clks 202 2>;
-> +			clock-names = "cpu";
-> +			operating-points-v2 = <&cpu0_opp_table>;
->  		};
->  
->  		cpu1: cpu@1 {
-> @@ -62,9 +65,41 @@ cpu1: cpu@1 {
->  			d-cache-line-size = <64>;
->  			d-cache-sets = <256>;
->  			next-level-cache = <&L2_0>;
-> +			clocks = <&k3_clks 203 0>;
-> +			clock-names = "cpu";
-> +			operating-points-v2 = <&cpu0_opp_table>;
->  		};
->  	};
->  
-> +	cpu0_opp_table: opp-table {
-> +		compatible = "operating-points-v2";
-Don't you need opp-shared ?
-> +
-> +		opp6-2000000000 {
-> +			opp-hz = /bits/ 64 <2000000000>;
-> +		};
-> +
-> +		opp5-1500000000 {
-> +			opp-hz = /bits/ 64 <1500000000>;
-> +		};
-> +
-> +		opp4-1000000000 {
-> +			opp-hz = /bits/ 64 <1000000000>;
-> +		};
-> +
-> +		opp3-750000000 {
-> +			opp-hz = /bits/ 64 <750000000>;
-> +		};
-> +
-> +		opp2-500000000 {
-> +			opp-hz = /bits/ 64 <500000000>;
-> +		};
-> +
-> +		opp1-250000000 {
-> +			opp-hz = /bits/ 64 <250000000>;
-Could you add clock-latency-ns ?
-> +		};
-> +
-> +	};
-> +
->  	L2_0: l2-cache0 {
->  		compatible = "cache";
->  		cache-level = <2>;
-> -- 
-> 2.34.1
+>> +static int ad7173_fw_parse_channel_config(struct iio_dev *indio_dev)
+>> +{
 > 
+> ...
+> 
+>> +
+>> +	if (st->info->has_temp) {
+>> +		chan_arr[chan_index] = ad7173_temp_iio_channel_template;
+>> +		chan_st_priv = &channels_st_priv_arr[chan_index];
+>> +		chan_st_priv->ain =
+>> +			AD7173_CH_ADDRESS(chan_arr[chan_index].channel, chan_arr[chan_index].channel2);
+>> +		chan_st_priv->cfg.bipolar = false;
+>> +		chan_st_priv->cfg.input_buf = true;
+>> +		chan_st_priv->cfg.ref_sel = AD7173_SETUP_REF_SEL_INT_REF;
+>> +		st->adc_mode |= AD7173_ADC_MODE_REF_EN;
+>> +
+>> +		chan_index++;
+>> +	}
+>> +
+>> +	device_for_each_child_node(dev, child) {
+>> +		chan = &chan_arr[chan_index];
+>> +		chan_st_priv = &channels_st_priv_arr[chan_index];
+>> +		ret = fwnode_property_read_u32_array(child, "diff-channels",
+>> +						     ain, ARRAY_SIZE(ain));
+>> +		if (ret) {
+>> +			fwnode_handle_put(child);
+>> +			return ret;
+>> +		}
+>> +
+>> +		if (ain[0] >= st->info->num_inputs ||
+>> +		    ain[1] >= st->info->num_inputs) {
+>> +			fwnode_handle_put(child);
+>> +			return dev_err_probe(dev, -EINVAL,
+>> +					     "Input pin number out of range for pair (%d %d).\n",
+>> +					     ain[0], ain[1]);
+>> +		}
+>> +
+>> +		ret = fwnode_property_match_property_string(child,
+>> +							    "adi,reference-select",
+>> +							    ad7173_ref_sel_str,
+>> +							    ARRAY_SIZE(ad7173_ref_sel_str));
+>> +
+>> +		if (ret < 0)
+>> +			ref_sel = AD7173_SETUP_REF_SEL_INT_REF;
+>> +		else
+>> +			ref_sel = ret;
+> Simpler pattern for properties with a default is not to check the error code.
+> 
+> 		ref_sel = AD7173_SETUP_REF_SEL_INT_REF;
+> 
+> 		fwnode_property_match_property_String(child, ...
+> 
+> so only if it succeeds is the value overridden.
 
+Where exactly would the value be overridden, the function does not have
+an argument passed for the found index. The function is written to
+return either the found index or a negative error.
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+The proposed pattern would just ignore the returned index and would
+always leave ref_sel to default. Am I missing something?
+
+I can see in the thread where it was introduced that you proposed:
+"Looking at the usecases I wonder if it would be better to pass in
+
+an unsigned int *ret which is only updated on a match?"
+
+But on the iio togreg branch that was suggested I could the function on,
+it does not have that parameter.
 
