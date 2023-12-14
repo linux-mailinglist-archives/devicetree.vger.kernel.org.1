@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-25177-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25178-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECE6B81296A
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 08:34:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 392C5812976
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 08:36:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9FE4F1F21190
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 07:34:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A5001C2087B
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 07:36:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BAF3125C7;
-	Thu, 14 Dec 2023 07:34:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6C7C12E47;
+	Thu, 14 Dec 2023 07:36:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fz3lXTFa"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EX6BApNU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5C34133
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 23:33:56 -0800 (PST)
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-55114c073b8so5862312a12.1
-        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 23:33:56 -0800 (PST)
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BB35A0
+	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 23:36:12 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-40c2d50bfbfso1449565e9.0
+        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 23:36:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702539235; x=1703144035; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702539371; x=1703144171; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=wcv7sGgcNTnRT1bBWy6u9QOHZXNv+hQLmOYd4/d0PoQ=;
-        b=fz3lXTFaTFLONBQg6yXFDZkqqUX6TesePAk7qOeP26LER0oIgqJeO+rMtH1XKdflji
-         hXSMRT2C5Z771LmvtHjefGPg9R74SJolK2/pLdHTOMcXjBh2N0rsXrCe0xCPN6Iiru4s
-         Zxg7+afdf1tDvD5ahcRDoQ5Db1TSPfzrRLUlBxvP+tWZwKJ8bX+Sn7ha/2dLY1PPweg6
-         KLfqLR+EMduHIkqChJ7k1zATPGJn+dmFsD/eBqylWIQPEhpBMgUFtvbOcnNAzBFmhysP
-         I1mZjCrmJA5JxTd3tL1tCVlmrS0ZF+S9kKsKGSGZ3/f+SO4QMqJzOdVJFnVQAEbDHfcd
-         Cyqg==
+        bh=A7hrJUva4P5rUj6Ldei6q/eYHmeCbeQEnTrsd+eEoH0=;
+        b=EX6BApNUO9aZz+SamKL7HeFRCC6LbNAiqFGyBhzqL1ykh42ec/k2nCV0nqD/PGRFTe
+         CmkW82KZEzPyKdHStpNIWzsWIs2/AF4Mv/riLWK5xt0R7vE4VNeVF6OaEZo/X6dqKFSu
+         tes+H3hIXNHFI0mT+tzdcelq3qhC5+tRvQ0caCIRbmKbNfkUrQH703AiK6DQJP86YEHD
+         gsxchuZvH49j1TtU6riABFG1WEy22wV17cUn0IT69h1OnmETlf2WXlQXI389jzRdGrA/
+         9lAy+heBiOl8UjWyDdn8KkdRulYOu62kOqTV9s+ycYeUdR9kCN4ZVp25BjhKCmUfvOqw
+         36Fw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702539235; x=1703144035;
+        d=1e100.net; s=20230601; t=1702539371; x=1703144171;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wcv7sGgcNTnRT1bBWy6u9QOHZXNv+hQLmOYd4/d0PoQ=;
-        b=ngOajoASyhvhZIuz6j01VeCiKklcmfXDOJWGjUGfsUFEvVRAp8vllt3FGeejjUPm6N
-         tuNgiWJt88pj/4Si20djW2IUqs1n0WjSh8TxgowfLrSIy0VtNzuNQFyJJog56/t+k9WC
-         W2t7l1TwZ6stkL3EhC8LTgBaYsds/OHSGsUzCOqQG9FYox++V5R8x8FTh5YZZprglFN0
-         BJ16BzkLAqslK6e7WsI6JKFz/yMi9/EJDtwuvaI2HHS6IelcN94HHPZm7ZnrrGdCPxyy
-         DfPd4HqTJN26PqOlt+YFX5UjH25ZpB0bUxUgZi4g6eFT2bx3WZ45p4R4qaZZ6vhD3opD
-         wH7Q==
-X-Gm-Message-State: AOJu0YyLGg1s3gsLfPzlWX+ry0HqIrmSkC0nQpynI4nArVOrJIYgp1Tw
-	WvMgFwhI3TDtuIk2en+m9f+UgA==
-X-Google-Smtp-Source: AGHT+IHGEVebgVIc7poq1NDQSzshE/fnhw0BckYI+SIiFGDxAtHqp+Z8O+dGXQIENOcUlIoKkOebrA==
-X-Received: by 2002:a50:cd81:0:b0:552:5c38:5d59 with SMTP id p1-20020a50cd81000000b005525c385d59mr430628edi.48.1702539235155;
-        Wed, 13 Dec 2023 23:33:55 -0800 (PST)
+        bh=A7hrJUva4P5rUj6Ldei6q/eYHmeCbeQEnTrsd+eEoH0=;
+        b=AmnzCUlLGlmGkIINOg4CEUwPQqS93vAqH4SQCyqL/JR2JwzRZz8m9u8hoT9VyAOx/Q
+         o0bbo533jvF50F5EGqCoOw5g+/uGNAO60gicYXCw3pUYE+vQZx1GUGm1PKnRIP1t1JqK
+         4TWG+JW6mkUA8TjH1TWk+rawx4hHSyU8HxcTdGTNOi2VrGksKutzX7rtnT7v/lfsqts+
+         6uljpY0fMw2C5C9EfVfa5iWnFPFePuI2N3sp4BHBqrha2ZoHZR5lzINaELCaPZcRcQd4
+         dABHjuVUjSDjdSPgEsQCCxGoKUcPrS2T2KjXY7INeO/pGw5TbGtACNF3wIIisdubO5rB
+         HoVA==
+X-Gm-Message-State: AOJu0YzRv2l+NG6iK7vhr3k+vF4gUFodjpyP3gBiLlrktJjw3Z+6mBhh
+	MBOzpzG5B7j3ZUVSxTQ2GxrK9A==
+X-Google-Smtp-Source: AGHT+IFqZ19eGAB+2W0wksUllQFHPlllTE6CMVxQhRcwuE7+OIQ0EQXU3BH9oUdNI/gyZ7duolJ9pg==
+X-Received: by 2002:a05:600c:438a:b0:40c:2417:3b61 with SMTP id e10-20020a05600c438a00b0040c24173b61mr4760730wmn.153.1702539371012;
+        Wed, 13 Dec 2023 23:36:11 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id bd18-20020a056402207200b00542db304680sm6440491edb.63.2023.12.13.23.33.53
+        by smtp.gmail.com with ESMTPSA id e4-20020a5d65c4000000b003333ed23356sm15419169wrw.4.2023.12.13.23.36.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Dec 2023 23:33:54 -0800 (PST)
-Message-ID: <a1563e29-2f20-4b1e-acbf-2b6d77dc7831@linaro.org>
-Date: Thu, 14 Dec 2023 08:33:53 +0100
+        Wed, 13 Dec 2023 23:36:10 -0800 (PST)
+Message-ID: <d7c5af19-dd65-4d60-a414-513a8075897a@linaro.org>
+Date: Thu, 14 Dec 2023 08:36:08 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,19 +62,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] ARM: dts: qcom: msm8926-motorola-peregrine: Add
- initial device tree
+Subject: Re: [PATCH v3 1/2] dt-bindings: mailbox: zynqmp: extend required list
 Content-Language: en-US
-To: =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>,
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
- ~postmarketos/upstreaming@lists.sr.ht
-References: <20231213-peregrine-v1-0-5229e21bca3f@apitzsch.eu>
- <20231213-peregrine-v1-2-5229e21bca3f@apitzsch.eu>
+To: Tanmay Shah <tanmay.shah@amd.com>, jassisinghbrar@gmail.com,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ michal.simek@amd.com, shubhrajyoti.datta@amd.com,
+ shubhrajyoti.datta@xilinx.com
+Cc: robh@kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ ben.levinsky@amd.com
+References: <20231214054224.957336-1-tanmay.shah@amd.com>
+ <20231214054224.957336-2-tanmay.shah@amd.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -120,101 +118,25 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231213-peregrine-v1-2-5229e21bca3f@apitzsch.eu>
+In-Reply-To: <20231214054224.957336-2-tanmay.shah@amd.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 13/12/2023 21:33, André Apitzsch wrote:
-> This dts adds support for Motorola Moto G 4G released in 2013.
+On 14/12/2023 06:42, Tanmay Shah wrote:
+> "xlnx,ipi-id" is handled as required property but is
+> missing from binding doc required list of mailbox child node.
+> Add that to required list. This does not break backward
+> compatibility but bug in bindings document.
 > 
-> Add a device tree with initial support for:
+> Fixes: 4a855a957936 ("dt-bindings: mailbox: zynqmp_ipi: convert to yaml")
 > 
-> - GPIO keys
-> - Hall sensor
-> - SDHCI
-> - Vibrator
-> 
-> Signed-off-by: André Apitzsch <git@apitzsch.eu>
+
+No blank lines between tags.
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+> Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
 > ---
->  arch/arm/boot/dts/qcom/Makefile                    |   1 +
->  .../dts/qcom/qcom-msm8926-motorola-peregrine.dts   | 297 +++++++++++++++++++++
->  2 files changed, 298 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/qcom/Makefile b/arch/arm/boot/dts/qcom/Makefile
-> index 0cb272f4fa45..9cc1e14e6cd0 100644
-> --- a/arch/arm/boot/dts/qcom/Makefile
-> +++ b/arch/arm/boot/dts/qcom/Makefile
-> @@ -35,6 +35,7 @@ dtb-$(CONFIG_ARCH_QCOM) += \
->  	qcom-msm8926-htc-memul.dtb \
->  	qcom-msm8926-microsoft-superman-lte.dtb \
->  	qcom-msm8926-microsoft-tesla.dtb \
-> +	qcom-msm8926-motorola-peregrine.dtb \
->  	qcom-msm8960-cdp.dtb \
->  	qcom-msm8960-samsung-expressatt.dtb \
->  	qcom-msm8974-lge-nexus5-hammerhead.dtb \
-> diff --git a/arch/arm/boot/dts/qcom/qcom-msm8926-motorola-peregrine.dts b/arch/arm/boot/dts/qcom/qcom-msm8926-motorola-peregrine.dts
-> new file mode 100644
-> index 000000000000..3c5256120502
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/qcom/qcom-msm8926-motorola-peregrine.dts
-> @@ -0,0 +1,297 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +
-> +/dts-v1/;
-> +
-> +#include "qcom-msm8226.dtsi"
-> +#include "pm8226.dtsi"
-> +
-> +/delete-node/ &smem_region;
-> +
-> +/ {
-> +	model = "Motorola Moto G 4G";
-> +	compatible = "motorola,peregrine", "qcom,msm8926", "qcom,msm8226";
-> +	chassis-type = "handset";
-> +
-> +	aliases {
-> +		mmc0 = &sdhc_1; /* SDC1 eMMC slot */
-> +		mmc1 = &sdhc_2; /* SDC2 SD card slot */
-> +	};
-> +
-> +	chosen {
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges;
-> +
-> +		framebuffer0: framebuffer@3200000 {
-> +			compatible = "simple-framebuffer";
-> +			reg = <0x03200000 0x800000>;
-> +			width = <720>;
-> +			height = <1280>;
-> +			stride = <(720 * 3)>;
-> +			format = "r8g8b8";
-> +		};
-> +	};
-> +
-> +	gpio-hall-sensor {
-> +		compatible = "gpio-keys";
-> +
-> +		label = "GPIO Hall Effect Sensor";
-> +
-> +		event-hall-sensor {
-> +			label = "Hall Effect Sensor";
-> +			gpios = <&tlmm 51 GPIO_ACTIVE_LOW>;
-> +			linux,input-type = <EV_SW>;
-> +			linux,code = <SW_LID>;
-> +			linux,can-disable;
-> +		};
-> +	};
-> +
-> +	gpio-keys {
-
-No need to have two nodes for gpio-keys. Combine them.
-
-> +		compatible = "gpio-keys";
-> +
-> +		key-volume-up {
-> +			label = "Volume Up";
-
 
 
 Best regards,
