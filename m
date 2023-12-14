@@ -1,60 +1,33 @@
-Return-Path: <devicetree+bounces-25141-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25142-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4800881285A
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 07:43:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 169DB81286C
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 07:47:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F189D1F21A86
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 06:43:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A4B3228243A
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 06:47:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5393BD288;
-	Thu, 14 Dec 2023 06:43:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5BB3D28E;
+	Thu, 14 Dec 2023 06:47:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bAM5Lc0Q"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="CnvD0Irk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49E3AA6
-	for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 22:43:05 -0800 (PST)
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-54ba86ae133so7244935a12.2
-        for <devicetree@vger.kernel.org>; Wed, 13 Dec 2023 22:43:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702536184; x=1703140984; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1iMbqEZR5eaXa4dTgt4nUw5UGW6RlRrufIGjK+6wcTM=;
-        b=bAM5Lc0QbFWzmalXjoT6BGRav7uv/ewKenz67jeP4Iy/5G89bw5tvXQ7GTXU37iVQ1
-         GCXsVEYp/+1b1WjxTkI3uA73OIPAPPUxA4coYATxa3o3pJ5ZQLbZYT6Ul/HHzfLZkDYK
-         FtxPK//YUpTdgeT6UFIbouNaytzA9/yKmLrKnXuSMScr1/PQusvI7ksIxS0WhfpSy50t
-         GxP7mN8BH5NZ97i2WGAt1q0yVUnR8Q05aJL6UKiOTf5F+PIQaT5BXFkm8SRSQ5MBCamx
-         /FXjOFIuL4TI171lTEYVcQmT003i0L2vyhQ8ZklwO+7Ze8yVlLsfueqKKE46wobJI1G5
-         b6jw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702536184; x=1703140984;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1iMbqEZR5eaXa4dTgt4nUw5UGW6RlRrufIGjK+6wcTM=;
-        b=PdJDc3kcWKbGYQAsb7s/ZLuyzeQEjso6lP/LnEctltWklicPhlgoKRVLTD1lwrSWIn
-         3RNqlRbVyWjakj/3E9EfpG8Q5RRLudpkeSYkxCNNfI71zXxazrhChIuZaBQly9VIkI/T
-         1e5vVUJVRNHQr4YyAnucK4r00xIS2rze6ffP9MV/KsLUiiTSpiN+o6YB+IJPE5b7ELLc
-         d330AvzTs9FJFJ0sYwV6rcmMK2Zn3FRam3BDV63WVy8jLDfMmI76t/TZrSsHBDDSoHM5
-         bpJHnX8n6awdcvL0G8kOxdZGUKjpTVRW4Y5rhN2PJdYI0kdi/QlmPoQhCofNO7EYitsp
-         70ag==
-X-Gm-Message-State: AOJu0YyK2yZ2YbqwAo0ZDzBgvIsC7SMAsPDHNLDyuPKAlvCFoSCMBVy1
-	91Ut+cZ96HuDzU/mXpsv7yA=
-X-Google-Smtp-Source: AGHT+IHbL6T33tZSZlPZzC11uXyFcBsmtHS/gkkr7kg1JyHY7NIkaY1VviDHvP8WgTQtelpkHjQp9Q==
-X-Received: by 2002:a50:f68e:0:b0:552:7ecf:8651 with SMTP id d14-20020a50f68e000000b005527ecf8651mr51148edn.17.1702536183444;
-        Wed, 13 Dec 2023 22:43:03 -0800 (PST)
-Received: from [192.168.26.149] (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.googlemail.com with ESMTPSA id r10-20020a508d8a000000b0054cb88a353dsm6333909edh.14.2023.12.13.22.43.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Dec 2023 22:43:03 -0800 (PST)
-Message-ID: <a5113b85-e29c-454f-b776-ac7abbca771f@gmail.com>
-Date: Thu, 14 Dec 2023 07:43:01 +0100
+Received: from mail-m49225.qiye.163.com (mail-m49225.qiye.163.com [45.254.49.225])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F9F4B7;
+	Wed, 13 Dec 2023 22:47:16 -0800 (PST)
+DKIM-Signature: a=rsa-sha256;
+	b=CnvD0IrkRnp+DmnzfgfteCXPBAsutHSVsMWQK1rzFcAblJYEkSweXgFANYqw3U88pMYtkO79l9NPInFWXnD8hXVCLdT/uGfcSOpoRB/rdY8p5rmXE/4TQuVE+Lx8BOFMINbrY+owqdLEaBAqVf9sYElyHBXbfm1pT585TwgcNJU=;
+	s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=KlkoaA5PsGnM9dQhcrREu3MkNeyqWVDoqb2DLKgU9rM=;
+	h=date:mime-version:subject:message-id:from;
+Received: from [172.16.12.141] (unknown [58.22.7.114])
+	by mail-m12779.qiye.163.com (Hmail) with ESMTPA id 5272778019C;
+	Thu, 14 Dec 2023 14:46:38 +0800 (CST)
+Message-ID: <7a20761b-4cec-4b65-b9fa-efce73ac4c83@rock-chips.com>
+Date: Thu, 14 Dec 2023 14:46:37 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,65 +35,68 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: mediatek: mt7986: fix reference to PWM in fan
- node
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Daniel Golle <daniel@makrotopia.org>,
- Frank Wunderlich <frank-w@public-files.de>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20231116130816.4932-1-zajec5@gmail.com>
+Subject: Re: (subset) [PATCH v5 00/16] Add VOP2 support on rk3588
+To: Heiko Stuebner <heiko@sntech.de>, Andy Yan <andyshrk@163.com>
+Cc: sebastian.reichel@collabora.com, krzysztof.kozlowski+dt@linaro.org,
+ chris.obbard@collabora.com, robh+dt@kernel.org, devicetree@vger.kernel.org,
+ kever.yang@rock-chips.com, linux-rockchip@lists.infradead.org,
+ hjc@rock-chips.com, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+References: <20231211115547.1784587-1-andyshrk@163.com>
+ <170247871959.753029.11166929824242336708.b4-ty@sntech.de>
 Content-Language: en-US
-From: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-In-Reply-To: <20231116130816.4932-1-zajec5@gmail.com>
+From: Andy Yan <andy.yan@rock-chips.com>
+In-Reply-To: <170247871959.753029.11166929824242336708.b4-ty@sntech.de>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGUhOH1ZOHhhPHhpOThhPTkxVEwETFh
+	oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSk1PSU5JVUpLS1VKQl
+	kG
+X-HM-Tid: 0a8c6713c726b24fkuuu5272778019c
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PD46GRw*FDw#MzJDAhI6HA4S
+	LEwaFApVSlVKTEtJTkhNSEJCSU1NVTMWGhIXVRoVHwJVAhoVOwkUGBBWGBMSCwhVGBQWRVlXWRIL
+	WUFZTkNVSUlVTFVKSk9ZV1kIAVlBSEtJQjcG
 
-Hi guys,
+Hi Heiko:
 
-On 16.11.2023 14:08, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On 12/13/23 22:46, Heiko Stuebner wrote:
+> On Mon, 11 Dec 2023 19:55:47 +0800, Andy Yan wrote:
+>> From: Andy Yan <andy.yan@rock-chips.com>
+>>
+>> This patch sets aims at enable the VOP2 support on rk3588.
+>>
+>> Main feature of VOP2 on rk3588:
+>> Four video ports:
+>> VP0 Max 4096x2160
+>> VP1 Max 4096x2160
+>> VP2 Max 4096x2160
+>> VP3 Max 2048x1080
+>>
+>> [...]
 > 
-> This fixes typo and resolves following validation error:
-> arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtb: pwm-fan: pwms: [[54, 0, 10000], [0]] is too long
->          from schema $id: http://devicetree.org/schemas/hwmon/pwm-fan.yaml#
+> Applied, thanks!
 > 
-> Fixes: c26f779a2295 ("arm64: dts: mt7986: add pwm-fan and cooling-maps to BPI-R3 dts")
-> Cc: Daniel Golle <daniel@makrotopia.org>
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-
-I sent those few trivial fixes weeks ago:
-[PATCH] arm64: dts: mediatek: mt7986: fix reference to PWM in fan node
-[PATCH 1/2] arm64: dts: mediatek: mt7986: fix SPI bus width properties
-[PATCH 2/2] arm64: dts: mediatek: mt7986: fix SPI nodename
-[PATCH] arm64: dts: mediatek: mt7986: drop crypto's unneeded/invalid clock name
-
-Could someone pick them up, please?
-
-
-P.S.
-FWIW there is also my Acelink EW-7886CAX work but I can understand if
-that needs to sit for another week or so.
-
-> ---
->   arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+> [10/16] dt-bindings: display: vop2: Add rk3588 support
+>          commit: 4ccdc92c1fea732fac8f3438d6288719055fa141
+> [11/16] dt-bindings: rockchip,vop2: Add more endpoint definition
+>          commit: dc7226acacc6502291446f9e33cf96246ec49a30
+> [12/16] drm/rockchip: vop2: Add support for rk3588
+>          commit: 5a028e8f062fc862f051f8e62a0d5a1abac91955
+> [13/16] drm/rockchip: vop2: rename VOP_FEATURE_OUTPUT_10BIT to VOP2_VP_FEATURE_OUTPUT_10BIT
+>          commit: 9d7fe7704d534c2d043aff2987f10671a8b4373d
+> [16/16] MAINTAINERS: Add myself as a reviewer for rockchip drm
+>          commit: 6c3ab21f37a97a868193ccbeb8a492e51210ff31
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
-> index af4a4309bda4..ba65e3e72bf6 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
-> @@ -43,7 +43,7 @@ fan: pwm-fan {
->   		#cooling-cells = <2>;
->   		/* cooling level (0, 1, 2) - pwm inverted */
->   		cooling-levels = <255 96 0>;
-> -		pwms = <&pwm 0 10000 0>;
-> +		pwms = <&pwm 0 10000>;
->   		status = "okay";
->   	};
->   
+> 
+> I skipped the debugfs patch for now, as I need to look at that separately
+> and of course the dts patch as that needs to wait for iommu maintainers
+> to pick up the binding addition.
 
+That's fine. Thanks for picking these series.
+
+> 
+> 
+> Best regards,
 
