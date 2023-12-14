@@ -1,133 +1,106 @@
-Return-Path: <devicetree+bounces-25393-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25395-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4818813209
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 14:47:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58124813222
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 14:50:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7F2C71F21FB8
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 13:47:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0084B1F21A68
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 13:50:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5311B4F216;
-	Thu, 14 Dec 2023 13:47:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6482F57861;
+	Thu, 14 Dec 2023 13:50:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p/Diy8RF"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Yc12oRuc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30E324EB38;
-	Thu, 14 Dec 2023 13:47:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03207C433C8;
-	Thu, 14 Dec 2023 13:47:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702561641;
-	bh=lWqoyY+Lp0x9QIy2h5s/P2Ib5HZKYH1QdBbOLtUFQsE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=p/Diy8RFki0Xj0UHq3i2rCZfhaqQg8EttcvF9psMEeM0+YTNy7zkRYMakriJZiqLK
-	 dBOBbHJ+2pqIQ0Qiwgg2Tr1V9wqcoRJR7PDuwBSk4mBYFvTth01psHiZwYVmPnOXFz
-	 5ZxP23bDpK1suw9uvM+qoQSUZ5tw10ARjNfqk6zQtsFdG1PWOwxgbD2ZmqHv2CYbpC
-	 9VPpcEJFmiFv05M30RH9pLf4nm5OPAT2tauPWu6Qol9Fq1zAhY/NLJC7PSJXfnbV27
-	 uuzPsug4M8oVleSFbo6yHZdfymHCVUNOMf/YNt6auGzR7/YglzJO7oLpFmFiQT9mXD
-	 5eH3JiIG3ZIhQ==
-Date: Thu, 14 Dec 2023 13:47:14 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Viresh Kumar <viresh.kumar@linaro.org>
-Cc: Brandon Cheo Fusi <fusibrandon13@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Yangtao Li <tiny.windzz@gmail.com>, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH 1/5] riscv: dts: allwinner: Update opp table to allow CPU
- frequency scaling
-Message-ID: <20231214-junkyard-corset-d35b01bad69f@spud>
-References: <20231214103342.30775-1-fusibrandon13@gmail.com>
- <20231214103342.30775-2-fusibrandon13@gmail.com>
- <20231214111446.camz2krqanaieybh@vireshk-i7>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A5828E;
+	Thu, 14 Dec 2023 05:50:46 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3BEDob6B066265;
+	Thu, 14 Dec 2023 07:50:37 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1702561837;
+	bh=1MFgmM+99t7S332JrEimE+YAbkE70zysXns5rbpIq8U=;
+	h=Date:CC:Subject:To:References:From:In-Reply-To;
+	b=Yc12oRuc5GpXnsPSzDReJntbhwMr56bUesxbHSO8ockBZgabQOY2zM7I4L2Jarg35
+	 VN2QIkO7GXE4sltLnNN5Wej44hREhFk1C4djXoYGlvfhoRC5Hh3nOmFeWpxAlsKDdy
+	 /aZCk1StG0CzvzVZfKgjGA53ZQ8umMeLRLtZ6sGQ=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3BEDobRA001613
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 14 Dec 2023 07:50:37 -0600
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 14
+ Dec 2023 07:50:37 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 14 Dec 2023 07:50:37 -0600
+Received: from [10.249.131.186] ([10.249.131.186])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3BEDoXZ7088063;
+	Thu, 14 Dec 2023 07:50:34 -0600
+Message-ID: <0cef8f50-6608-cf3d-ad62-1afd3f5560ea@ti.com>
+Date: Thu, 14 Dec 2023 19:20:32 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="4Bt0sbK2SeaAxN2v"
-Content-Disposition: inline
-In-Reply-To: <20231214111446.camz2krqanaieybh@vireshk-i7>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <danishanwar@ti.com>,
+        <r-gunasekaran@ti.com>, <srk@ti.com>, <s-vadapalli@ti.com>
+Subject: Re: [PATCH v2] arm64: dts: ti: k3-am654-icssg2: Enable PHY interrupts
+ for ICSSG2
+Content-Language: en-US
+To: Nishanth Menon <nm@ti.com>
+References: <20231213080216.1710730-1-s-vadapalli@ti.com>
+ <20231213123819.tqh3lm2ceir3qjbk@swimmer>
+ <6f1c1a59-cec0-46d1-8ecb-a82d9d444ccf@ti.com>
+ <20231214121727.ayrbqz2nmeb25rpw@striving>
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+In-Reply-To: <20231214121727.ayrbqz2nmeb25rpw@striving>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
 
---4Bt0sbK2SeaAxN2v
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Dec 14, 2023 at 04:44:46PM +0530, Viresh Kumar wrote:
-> On 14-12-23, 11:33, Brandon Cheo Fusi wrote:
-> > Two OPPs are currently defined for the D1/D1s; one at 408MHz and
-> > another at 1.08GHz. Switching between these can be done with the
-> > "sun50i-cpufreq-nvmem" driver. This patch populates the opp table
-> > appropriately, with inspiration from
-> > https://github.com/Tina-Linux/linux-5.4/blob/master/arch/riscv/boot/dts=
-/sunxi/sun20iw1p1.dtsi
-> >=20
-> > The supply voltages are PWM-controlled, but support for that IP
-> > is still in the works. So stick to a fixed 0.9V vdd-cpu supply,
-> > which seems to be the default on most D1 boards.
-> >=20
-> > Signed-off-by: Brandon Cheo Fusi <fusibrandon13@gmail.com>
-> > ---
-> >  arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi | 18 +++++++++++++++---
-> >  1 file changed, 15 insertions(+), 3 deletions(-)
-> >=20
-> > diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi b/arch/riscv=
-/boot/dts/allwinner/sun20i-d1s.dtsi
-> > index 64c3c2e6c..e211fe4c7 100644
-> > --- a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
-> > +++ b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
-> > @@ -39,16 +39,22 @@ cpu0_intc: interrupt-controller {
-> >  	};
-> > =20
-> >  	opp_table_cpu: opp-table-cpu {
-> > -		compatible =3D "operating-points-v2";
-> > +		compatible =3D "allwinner,sun20i-d1-operating-points",
->=20
-> I don't think you should add a new compatible for every SoC that needs
-> to be supported by a DT bindings and cpufreq driver. Maybe you should
-> just reuse "allwinner,sun50i-h6-operating-points" and it will work
-> fine for you ?
->=20
-> Rob ?
+On 14-12-2023 17:47, Nishanth Menon wrote:
 
-The driver can definitely just reuse sun50i-h6, but the binding and
-devicetree should have a soc-specific compatible for the sun20i-d1.
+...
 
-That said, the compatible does need to be documented, there's a
-dt-bindings patch missing from this series.
+>>
+>> Yes, you are right! Edge-Triggered interrupts shouldn't be shared. I missed
+>> noticing this. Thank you for pointing it out. Since the SoC only supports
+>> Edge-Triggered interrupts, I believe that the correct decision would be to use
+>> the interrupt for only one of the two PHYs, while leaving the other PHY in
+>> polled mode of operation which is the default.
+>>
+>> Kindly let me know if this is acceptable and I shall update this patch accordingly.
+> 
+> Sounds like a bug in board design there (due to an choice of IP
+> limitation) - I suggest getting it noted in board documentation and
+> refer to the errata in the second phy (else folks will wonder why we
+> aren't using interrupts on the second phy.
 
-Cheers,
-Conor.
+Thank you for your suggestion on the next steps to be taken. I will
+ensure that the board documentation is updated. Additionally, in the v3
+patch I will add a comment within the "icssg2_phy0" node indicating that
+the interrupt mode of operation is only being enabled for "icssg2_phy0"
+due to the interrupt being an edge-triggered interrupt which cannot be
+shared among both the PHYs. And for that reason "icssg2_phy1" is being
+left in the default polled mode of operation.
 
---4Bt0sbK2SeaAxN2v
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZXsHYgAKCRB4tDGHoIJi
-0llNAPwPlCtHYqdw3PHm/F9o63nh77wIsWE9SawYpIg6XvVYSQEA3ontbKuKxaUy
-sMpsYI0c/7MsH2HbQPLjiFJVxobR5wo=
-=L6Mk
------END PGP SIGNATURE-----
-
---4Bt0sbK2SeaAxN2v--
+-- 
+Regards,
+Siddharth.
 
