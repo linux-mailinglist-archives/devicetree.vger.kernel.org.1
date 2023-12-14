@@ -1,107 +1,188 @@
-Return-Path: <devicetree+bounces-25265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25266-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 002E1812C99
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 11:14:30 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 270B3812CA2
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 11:15:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 107A61C214FE
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 10:14:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ACD37B20C8F
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 10:15:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE0ED3BB20;
-	Thu, 14 Dec 2023 10:14:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 868FD3B18C;
+	Thu, 14 Dec 2023 10:15:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PMPPUwlQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 081B0BD;
-	Thu, 14 Dec 2023 02:14:19 -0800 (PST)
-Received: from mail.maildlp.com (unknown [172.18.186.231])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4SrSpz4b1nz6J9fR;
-	Thu, 14 Dec 2023 18:13:15 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
-	by mail.maildlp.com (Postfix) with ESMTPS id C39D61400CA;
-	Thu, 14 Dec 2023 18:14:17 +0800 (CST)
-Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Thu, 14 Dec
- 2023 10:14:17 +0000
-Date: Thu, 14 Dec 2023 10:14:15 +0000
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: David Lechner <dlechner@baylibre.com>
-CC: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>, Rob Herring
-	<robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>, Michael Hennerich
-	<michael.hennerich@analog.com>, Nuno =?ISO-8859-1?Q?S=E1?=
-	<nuno.sa@analog.com>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
-	<broonie@kernel.org>, <linux-kernel@vger.kernel.org>, Stefan Popa
-	<stefan.popa@analog.com>
-Subject: Re: [PATCH v2 3/3] iio: adc: ad7380: new driver for AD7380 ADCs
-Message-ID: <20231214101415.0000060c@Huawei.com>
-In-Reply-To: <20231213-ad7380-mainline-v2-3-cd32150d84a3@baylibre.com>
-References: <20231213-ad7380-mainline-v2-0-cd32150d84a3@baylibre.com>
-	<20231213-ad7380-mainline-v2-3-cd32150d84a3@baylibre.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A266106
+	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 02:15:26 -0800 (PST)
+Received: by mail-pl1-x62b.google.com with SMTP id d9443c01a7336-1d0ccda19eeso47907775ad.1
+        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 02:15:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702548926; x=1703153726; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=QUdVNRKMX4Cx5Orml+0GGoXetMeFfZaZP2784m2QjJ4=;
+        b=PMPPUwlQeWlfUbRz2K+1wkZ3Zs+JvLCb26+QR59t0S8IrTd0GyONhnepM4rnPNlmWl
+         Kz9mp39PgMYQYOprDf757gj0rP6Y+l8JqdhZHYVhTnUQvq5HTYlMVKPE7PQEg18Gq+HD
+         ZSIGq6WSUJrXy+frw1r/OuNEP13GvktYJbcSsETuB7utd7SgaBtu2geXn3Id3IcHHRqc
+         rch2RQGbWoNQwosB3zyiEDrHn3T8lziY6/rBs8QqmnRYwaLl4CZ2d6mz+I+Gta6R9U9v
+         c2GFEuIhqGllUe5MvgpmBEqLvTcMhqdNLiigkLgg6hHJ8EhhhZly0VVyIJ5uetc9XjAP
+         munQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702548926; x=1703153726;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QUdVNRKMX4Cx5Orml+0GGoXetMeFfZaZP2784m2QjJ4=;
+        b=IWLQkSbjxhkXCOhuppjVIAB5mbNQd3iCDyaYVqTw3xCooJQrfBvpYxlvhIyb3xR1iC
+         n0yHFC0zSxTUBcOIfEt6LcEcj709NmHfuKO9nNXkJKV0I0kbppJFABaquarV6wRXYSTS
+         pGghcwmJlIT3AErulCtHiomjdrc6/+FAfugR7tfLjoTO11RHQ71q0u3S76YkbFWLxH25
+         MPHoz+6gClqZmMPsGC0kZlQc7v/1AaWtbmUAVf/UHgXHn0lxCf1gdpTV6MmH+Baq3e4G
+         8zChl4sao4XYLKBuIjNhwdMnPV7NopPmlRz75UWciMyXpAm73+pZ8CW5DlKdjsthcsIY
+         v2KA==
+X-Gm-Message-State: AOJu0YxNE5pIaO0IMTVepe07yBLuH3i/6WUX4bvGm0Jz6IC5ojwigkIF
+	h2yn3YmnZFREj5YZLTlx/Qal
+X-Google-Smtp-Source: AGHT+IEovuy1aE+8Oh/ICFTdKuB0NyJInHclalxlNsccsdsIXh79KDlB83JKOkxWhBCa3uZLlvK51A==
+X-Received: by 2002:a17:902:6e02:b0:1d3:2e0d:cd98 with SMTP id u2-20020a1709026e0200b001d32e0dcd98mr3152463plk.105.1702548925560;
+        Thu, 14 Dec 2023 02:15:25 -0800 (PST)
+Received: from thinkpad ([117.216.120.87])
+        by smtp.gmail.com with ESMTPSA id u9-20020a170902e80900b001d0c37a9cdesm11989727plg.38.2023.12.14.02.15.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Dec 2023 02:15:25 -0800 (PST)
+Date: Thu, 14 Dec 2023 15:45:15 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Sherry Sun <sherry.sun@nxp.com>
+Cc: Hongxing Zhu <hongxing.zhu@nxp.com>,
+	"l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+	"lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+	"kw@linux.com" <kw@linux.com>, "robh@kernel.org" <robh@kernel.org>,
+	"bhelgaas@google.com" <bhelgaas@google.com>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"shawnguo@kernel.org" <shawnguo@kernel.org>,
+	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+	"kernel@pengutronix.de" <kernel@pengutronix.de>,
+	"festevam@gmail.com" <festevam@gmail.com>,
+	dl-linux-imx <linux-imx@nxp.com>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH V2 0/4] PCI: imx6: Add pci host wakeup support
+Message-ID: <20231214101515.GJ2938@thinkpad>
+References: <20231213092850.1706042-1-sherry.sun@nxp.com>
+ <20231214051328.GD2938@thinkpad>
+ <AS8PR04MB84046143C236AEA322BBBAD3928CA@AS8PR04MB8404.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml100003.china.huawei.com (7.191.160.210) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <AS8PR04MB84046143C236AEA322BBBAD3928CA@AS8PR04MB8404.eurprd04.prod.outlook.com>
 
-On Wed, 13 Dec 2023 05:21:20 -0600
-David Lechner <dlechner@baylibre.com> wrote:
-
-> This adds a new driver for the AD7380 family ADCs.
+On Thu, Dec 14, 2023 at 10:03:51AM +0000, Sherry Sun wrote:
 > 
-> The driver currently implements basic support for the AD7380, AD7381,
-> AD7383, and AD7384 2-channel differential ADCs. Support for additional
-> single-ended and 4-channel chips that use the same register map as well
-> as additional features of the chip will be added in future patches.
 > 
-> Co-developed-by: Stefan Popa <stefan.popa@analog.com>
-> Signed-off-by: Stefan Popa <stefan.popa@analog.com>
-> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> > -----Original Message-----
+> > From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > Sent: 2023年12月14日 13:13
+> > To: Sherry Sun <sherry.sun@nxp.com>
+> > Cc: Hongxing Zhu <hongxing.zhu@nxp.com>; l.stach@pengutronix.de;
+> > lpieralisi@kernel.org; kw@linux.com; robh@kernel.org;
+> > bhelgaas@google.com; krzysztof.kozlowski+dt@linaro.org;
+> > conor+dt@kernel.org; shawnguo@kernel.org; s.hauer@pengutronix.de;
+> > kernel@pengutronix.de; festevam@gmail.com; dl-linux-imx <linux-
+> > imx@nxp.com>; linux-pci@vger.kernel.org; linux-arm-
+> > kernel@lists.infradead.org; devicetree@vger.kernel.org; linux-
+> > kernel@vger.kernel.org
+> > Subject: Re: [PATCH V2 0/4] PCI: imx6: Add pci host wakeup support
+> >
+> > On Wed, Dec 13, 2023 at 05:28:46PM +0800, Sherry Sun wrote:
+> > > Add pci host wakeup feature for imx platforms. The host wake pin is a
+> > > standard feature in the PCIe bus specification, so we can add this
+> > > property under PCI dts node to support the host gpio wakeup feature.
+> > >
+> > > Example of configuring the corresponding dts property under the PCI node:
+> > >     wake-gpios = <&gpio5 21 GPIO_ACTIVE_LOW>;
+> > >
+> >
+> > As you mentioned, WAKE# is a standard sideband signal defined in the PCI
+> > spec.
+> > So the support for handling it has to be in the PCI core layer, not in the host
+> > controller drivers.
+> >
+> > There is already a series floating to add support for WAKE# in PCI core.
+> > Please take a look:
+> >
+> > https://lore.k/
+> > ernel.org%2Flinux-pci%2F20230208111645.3863534-1-
+> > mmaddireddy%40nvidia.com%2F&data=05%7C02%7Csherry.sun%40nxp.co
+> > m%7C0254c001df61498c09d408dbfc636f5c%7C686ea1d3bc2b4c6fa92cd99c5
+> > c301635%7C0%7C0%7C638381276239824912%7CUnknown%7CTWFpbGZsb3
+> > d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%
+> > 3D%7C3000%7C%7C%7C&sdata=IoBAwTy0qeb0J6JrK0WRhI8A4ThUfkVx6mri
+> > ve%2BK5xs%3D&reserved=0
+> 
+> Hi Manivannan,
+> I checked the patch set, the implementation of host wake gpio is different from mine, I referred to the mmc bus cd(card detect) pin implementation and I think it is simpler and clearer.
 
-Just one additional comment.  I 'might' sort both this an Nuno's comment
-if Mark is fine with the SPI and no on else has review comments.
-Feel free to send a v3 though if you like ;)
+It's not just about simple and clear code, but about scalability. See below.
 
+> Regarding whether the WAKE# support should be moved to PCI core layer, we may need more research and discussion. Thanks for your suggestions.
+> 
 
-> +/* fully differential */
-> +DEFINE_AD7380_DIFFERENTIAL_2_CHANNEL(ad7380_channels, 16);
-> +DEFINE_AD7380_DIFFERENTIAL_2_CHANNEL(ad7381_channels, 14);
-> +/* pseudo differential */
-> +DEFINE_AD7380_DIFFERENTIAL_2_CHANNEL(ad7383_channels, 16);
-> +DEFINE_AD7380_DIFFERENTIAL_2_CHANNEL(ad7384_channels, 14);
-> +
-> +/* Since this is simultaneous sampling, we don't allow individual channels. */
-> +static const unsigned long ad7380_2_channel_scan_masks[] = {
-> +	GENMASK(2, 0), /* both ADC channels and soft timestamp */
-> +	GENMASK(1, 0), /* both ADC channels, no timestamp */
+We can research and come up with a better solution, but the implementation has
+to be done in the PCI core layer. Otherwise, host controllers supporting WAKE#
+has to duplicate the code which is common.
 
-https://elixir.bootlin.com/linux/v6.7-rc5/source/include/linux/iio/iio.h#L567
-See the comment (added recently!)
+- Mani
 
-Also, if I remember how this works correctly there is no need to include
-the timestamp in the mask.  We do special handling for it to avoid having to double
-the number of provided masks.  The details being that it uses
-iio_scan_el_ts_store rather than iio_scan_el_Store.
+> Best Regards
+> Sherry
+> 
+> 
+> >
+> > - Mani
+> >
+> > > ---
+> > > changes in V2:
+> > > 1. Rename host-wake-gpio property to wake-gpios.
+> > > 2. Improve the wake-gpios property description in the dt-binding doc
+> > > to avoid confusion.
+> > > 3. Remove unnecessary debugging info in host_wake_irq_handler().
+> > > 4. Remove unnecessary imx6_pcie->host_wake_irq = -1 resetting in error
+> > paths.
+> > > 5. Use dev_err_probe() to simplify error path code.
+> > > ---
+> > >
+> > > Sherry Sun (4):
+> > >   PCI: imx6: Add pci host wakeup support on imx platforms.
+> > >   dt-bindings: imx6q-pcie: Add wake-gpios property
+> > >   arm64: dts: imx8mp-evk: add wake-gpios property for pci bus
+> > >   arm64: dts: imx8mq-evk: add wake-gpios property for pci bus
+> > >
+> > >  .../bindings/pci/fsl,imx6q-pcie.yaml          |  6 ++
+> > >  arch/arm64/boot/dts/freescale/imx8mp-evk.dts  |  2 +
+> > > arch/arm64/boot/dts/freescale/imx8mq-evk.dts  |  2 +
+> > >  drivers/pci/controller/dwc/pci-imx6.c         | 60 +++++++++++++++++++
+> > >  4 files changed, 70 insertions(+)
+> > >
+> > > --
+> > > 2.34.1
+> > >
+> > >
+> >
+> > --
+> > மணிவண்ணன் சதாசிவம்
 
-So as you have it I think you'll always end up with the first entry
-and that will include a bonus bit that isn't a problem as it will match
-anyway.
-
-So just have the second entry and 0.
-
-Jonathan
-
-> +	0
-> +};
+-- 
+மணிவண்ணன் சதாசிவம்
 
