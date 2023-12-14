@@ -1,29 +1,61 @@
-Return-Path: <devicetree+bounces-25557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25558-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8770B8139DD
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 19:23:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AC958139E9
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 19:25:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42190282230
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 18:23:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4DA921C20B06
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 18:25:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79E7468B7F;
-	Thu, 14 Dec 2023 18:23:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1658C68B87;
+	Thu, 14 Dec 2023 18:25:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MvJPlKgC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTP id 64C69120;
-	Thu, 14 Dec 2023 10:22:57 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 77EACC15;
-	Thu, 14 Dec 2023 10:23:42 -0800 (PST)
-Received: from [10.57.86.13] (unknown [10.57.86.13])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C1D713F738;
-	Thu, 14 Dec 2023 10:22:51 -0800 (PST)
-Message-ID: <2d87c1dc-cc95-4d92-968c-9d6e6e6439ff@arm.com>
-Date: Thu, 14 Dec 2023 18:22:49 +0000
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67A9511B
+	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 10:24:59 -0800 (PST)
+Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-32f8441dfb5so7640574f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 10:24:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702578298; x=1703183098; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=OAvvjFur9kgKQG6RpvR2vR6c/bbq4mw20lduRN6FrYU=;
+        b=MvJPlKgCrHP0CzJogwhSL4jQJ3i4uVzs7qrYSoP2IFG6stXhpBsQWWPmJ/ZZyHywRe
+         ypZ9S5CDD2K3/hcQIcIEnhNlhDC1mvUY7RLgLJjQHZ2ysAaQO2wjlto/jKwTYyIYsZX5
+         3uYXmFtYzJMLgzwAiMr5f7dXDZXhCwZ5TGOoMfUGbXulTyM7iY82EVXkcBmCLa8pkKrO
+         QaaGtlC7+l3/y5Blz4bhuqIgJedXAyOaLWu5CSFuvh89/SCL2MvDWBoVjpgXTQOY3p3j
+         xZS/qxNMrX5hPl/uHwXmBaRyl8wYtZzknXNXSKHcGNQWtPbyH8vFdqJwJ0X+bife36mQ
+         3GTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702578298; x=1703183098;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OAvvjFur9kgKQG6RpvR2vR6c/bbq4mw20lduRN6FrYU=;
+        b=KTHvv1jgNC2/bpob8l54v6HplCoxXG6u+bBgKyNX8evaOxheFllwWotZcjrwiN1Xm0
+         jVDxTAaMIQyCJz0QUtix+0NwfMZjMSRIT8Y3LOeyfz9caaetYYGdZk5DVPham9UuXcbB
+         ViFxvCIp1rnNUzrkTfwYDzuyxAHBwCaIyAZ9dloVvNOxpQ9pFcXMzi7vSGlFFtwQrvUv
+         viSC2XVhlvS25Gg0663XVqBQljyQtIvMdoeS3onBm6+XG5+rfPS93q7SsFgAyDqLu/l2
+         sbjIoND8rHcn0gtWpMJjmXTkA8TMTH6zGq1bmdkvp3FGml7ObzE8J2RhMc8gVyAyQaN9
+         MZpQ==
+X-Gm-Message-State: AOJu0YykI0cwgwo3MJnT6WtHJ+ECx7KXat+SfcBHTn6UmEv7fWYViNr8
+	FyB3o+AU2nYTf2JF8Et9sF+1BQ==
+X-Google-Smtp-Source: AGHT+IHwbuEVMrsCY8j+4T4cIscVN7tXar91LNEdqarCLkHLNBoQ28Bm9PRTrNJ6QaWutDrvRraRKA==
+X-Received: by 2002:adf:fb44:0:b0:333:3f5d:63d2 with SMTP id c4-20020adffb44000000b003333f5d63d2mr4777484wrs.3.1702578297897;
+        Thu, 14 Dec 2023 10:24:57 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id h6-20020a5d6886000000b00336430ad57csm3665489wru.106.2023.12.14.10.24.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Dec 2023 10:24:57 -0800 (PST)
+Message-ID: <f60cd2ad-e0ec-4576-9a3d-58e4e192fd78@linaro.org>
+Date: Thu, 14 Dec 2023 19:24:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -31,146 +63,75 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 6/7] iommu/dma: Centralise iommu_setup_dma_ops()
-Content-Language: en-GB
-To: Jean-Philippe Brucker <jean-philippe@linaro.org>
-Cc: Joerg Roedel <joro@8bytes.org>, Christoph Hellwig <hch@lst.de>,
- Vineet Gupta <vgupta@kernel.org>, Russell King <linux@armlinux.org.uk>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Huacai Chen <chenhuacai@kernel.org>, WANG Xuerui <kernel@xen0n.name>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, Hanjun Guo
- <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@arm.com>,
- "K. Y. Srinivasan" <kys@microsoft.com>,
- Haiyang Zhang <haiyangz@microsoft.com>, Wei Liu <wei.liu@kernel.org>,
- Dexuan Cui <decui@microsoft.com>,
- Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
- David Woodhouse <dwmw2@infradead.org>, Lu Baolu <baolu.lu@linux.intel.com>,
- Niklas Schnelle <schnelle@linux.ibm.com>,
- Matthew Rosato <mjrosato@linux.ibm.com>,
- Gerald Schaefer <gerald.schaefer@linux.ibm.com>,
- Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
- Marek Szyprowski <m.szyprowski@samsung.com>, Jason Gunthorpe <jgg@ziepe.ca>,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-acpi@vger.kernel.org, iommu@lists.linux.dev, devicetree@vger.kernel.org
-References: <cover.1702486837.git.robin.murphy@arm.com>
- <5d89190b35720bf5b66621f46b6d3c85323d8eab.1702486837.git.robin.murphy@arm.com>
- <20231214165126.GA3726750@myrica>
-From: Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <20231214165126.GA3726750@myrica>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH] dt-bindings: soc: qcom,aoss-qmp: document the X1E80100
+ Always-On Subsystem side channel
+To: Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231214-x1e80100-soc-qcom-aoss-v1-1-94c46c5182fd@linaro.org>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231214-x1e80100-soc-qcom-aoss-v1-1-94c46c5182fd@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 2023-12-14 4:51 pm, Jean-Philippe Brucker wrote:
-> On Wed, Dec 13, 2023 at 05:17:59PM +0000, Robin Murphy wrote:
->> diff --git a/drivers/iommu/dma-iommu.c b/drivers/iommu/dma-iommu.c
->> index 27a167f4cd3e..d808c8dcf5cb 100644
->> --- a/drivers/iommu/dma-iommu.c
->> +++ b/drivers/iommu/dma-iommu.c
->> @@ -1724,25 +1724,20 @@ static const struct dma_map_ops iommu_dma_ops = {
->>   	.opt_mapping_size	= iommu_dma_opt_mapping_size,
->>   };
->>   
->> -/*
->> - * The IOMMU core code allocates the default DMA domain, which the underlying
->> - * IOMMU driver needs to support via the dma-iommu layer.
->> - */
->> -void iommu_setup_dma_ops(struct device *dev, u64 dma_base, u64 dma_limit)
->> +void iommu_setup_dma_ops(struct device *dev)
->>   {
->>   	struct iommu_domain *domain = iommu_get_domain_for_dev(dev);
->>   
->> -	if (!domain)
->> -		goto out_err;
->> +	if (dev_is_pci(dev))
->> +		dev->iommu->pci_32bit_workaround = !iommu_dma_forcedac;
->>   
->> -	/*
->> -	 * The IOMMU core code allocates the default DMA domain, which the
->> -	 * underlying IOMMU driver needs to support via the dma-iommu layer.
->> -	 */
->>   	if (iommu_is_dma_domain(domain)) {
+On 14/12/2023 18:35, Abel Vesa wrote:
+> Document the Always-On Subsystem side channel on the X1E80100 Platform.
 > 
-> ...
-> 
->> diff --git a/drivers/iommu/iommu.c b/drivers/iommu/iommu.c
->> index 824989874dee..43f630d0530e 100644
->> --- a/drivers/iommu/iommu.c
->> +++ b/drivers/iommu/iommu.c
->> @@ -560,10 +560,10 @@ static int __iommu_probe_device(struct device *dev, struct list_head *group_list
->>   		if (list_empty(&group->entry))
->>   			list_add_tail(&group->entry, group_list);
->>   	}
->> -	mutex_unlock(&group->mutex);
->>   
->> -	if (dev_is_pci(dev))
->> -		iommu_dma_set_pci_32bit_workaround(dev);
->> +	iommu_setup_dma_ops(dev);
-> 
-> With Intel VT-d (QEMU emulation) I get a crash in iommu_setup_dma_ops()
-> because at this point group->domain and group->default_domain are still
-> NULL, group_list is non-NULL.
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
 
-Ugh, clearly I'd manage to confuse myself, since what I wrote in the
-changelog isn't even right...
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Taking yet another look, there's not actually one single place we can do
-this right now which will work in a manageable way for all cases. With 2
-or 3 more levels of mess unpicked it's going to clean up much further
-(it's also becoming clear that iommu-dma wants better separation of its
-own per-device and per-domain bits), but for the immediate task in this
-series of finally getting out of arch code, I guess that continuing to
-echo the current probe_finalize flows is going to be safest. Something
-like the diff below (but I'll have a further think about it with a fresh
-head tomorrow).
+Best regards,
+Krzysztof
 
-Thanks,
-Robin.
-
------>8-----
-diff --git a/drivers/iommu/iommu.c b/drivers/iommu/iommu.c
-index 8972b7f22a9a..ba4cd5251205 100644
---- a/drivers/iommu/iommu.c
-+++ b/drivers/iommu/iommu.c
-@@ -562,7 +562,8 @@ static int __iommu_probe_device(struct device *dev, struct list_head *group_list
-  			list_add_tail(&group->entry, group_list);
-  	}
-  
--	iommu_setup_dma_ops(dev);
-+	if (group->default_domain)
-+		iommu_setup_dma_ops(dev);
-  
-  	mutex_unlock(&group->mutex);
-  
-@@ -1992,6 +1993,8 @@ int bus_iommu_probe(const struct bus_type *bus)
-  			mutex_unlock(&group->mutex);
-  			return ret;
-  		}
-+		for_each_group_device(group, gdev)
-+			iommu_setup_dma_ops(gdev->dev);
-  		mutex_unlock(&group->mutex);
-  
-  		/*
-@@ -3217,18 +3220,9 @@ static ssize_t iommu_group_store_type(struct iommu_group *group,
-  	if (ret)
-  		goto out_unlock;
-  
--	/*
--	 * Release the mutex here because ops->probe_finalize() call-back of
--	 * some vendor IOMMU drivers calls arm_iommu_attach_device() which
--	 * in-turn might call back into IOMMU core code, where it tries to take
--	 * group->mutex, resulting in a deadlock.
--	 */
--	mutex_unlock(&group->mutex);
--
-  	/* Make sure dma_ops is appropriatley set */
-  	for_each_group_device(group, gdev)
--		iommu_group_do_probe_finalize(gdev->dev);
--	return count;
-+		iommu_setup_dma_ops(gdev->dev);
-  
-  out_unlock:
-  	mutex_unlock(&group->mutex);
 
