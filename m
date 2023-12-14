@@ -1,170 +1,183 @@
-Return-Path: <devicetree+bounces-25454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32354813495
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 16:22:08 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7F988133DD
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 16:04:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6475A1C21984
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 15:22:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 58BB5B21905
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 15:04:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA3765C90E;
-	Thu, 14 Dec 2023 15:22:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C7515B5D8;
+	Thu, 14 Dec 2023 15:03:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="KclSK1B1"
 X-Original-To: devicetree@vger.kernel.org
-X-Greylist: delayed 1359 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 14 Dec 2023 07:22:00 PST
-Received: from out03.mta.xmission.com (out03.mta.xmission.com [166.70.13.233])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C3D6120;
-	Thu, 14 Dec 2023 07:22:00 -0800 (PST)
-Received: from in01.mta.xmission.com ([166.70.13.51]:55106)
-	by out03.mta.xmission.com with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.93)
-	(envelope-from <ebiederm@xmission.com>)
-	id 1rDnBD-00298x-8O; Thu, 14 Dec 2023 07:59:15 -0700
-Received: from ip68-227-168-167.om.om.cox.net ([68.227.168.167]:48054 helo=email.froward.int.ebiederm.org.xmission.com)
-	by in01.mta.xmission.com with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.93)
-	(envelope-from <ebiederm@xmission.com>)
-	id 1rDnBC-009bes-10; Thu, 14 Dec 2023 07:59:14 -0700
-From: "Eric W. Biederman" <ebiederm@xmission.com>
-To: Alexander Graf <graf@amazon.com>
-Cc: <linux-kernel@vger.kernel.org>,  <linux-trace-kernel@vger.kernel.org>,
-  <linux-mm@kvack.org>,  <devicetree@vger.kernel.org>,
-  <linux-arm-kernel@lists.infradead.org>,  <kexec@lists.infradead.org>,
-  <linux-doc@vger.kernel.org>,  <x86@kernel.org>,  "H. Peter Anvin"
- <hpa@zytor.com>,  Andy Lutomirski <luto@kernel.org>,  Peter Zijlstra
- <peterz@infradead.org>,  "Rob Herring" <robh+dt@kernel.org>,  Steven
- Rostedt <rostedt@goodmis.org>,  "Andrew Morton"
- <akpm@linux-foundation.org>,  Mark Rutland <mark.rutland@arm.com>,  "Tom
- Lendacky" <thomas.lendacky@amd.com>,  Ashish Kalra <ashish.kalra@amd.com>,
-  James Gowans <jgowans@amazon.com>,  Stanislav Kinsburskii
- <skinsburskii@linux.microsoft.com>,  <arnd@arndb.de>,
-  <pbonzini@redhat.com>,  <madvenka@linux.microsoft.com>,  Anthony Yznaga
- <anthony.yznaga@oracle.com>,  Usama Arif <usama.arif@bytedance.com>,
-  David Woodhouse <dwmw@amazon.co.uk>,  Benjamin Herrenschmidt
- <benh@kernel.crashing.org>
-References: <20231213000452.88295-1-graf@amazon.com>
-Date: Thu, 14 Dec 2023 08:58:49 -0600
-In-Reply-To: <20231213000452.88295-1-graf@amazon.com> (Alexander Graf's
-	message of "Wed, 13 Dec 2023 00:04:37 +0000")
-Message-ID: <87r0jo7rva.fsf@email.froward.int.ebiederm.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3A70128
+	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 07:03:53 -0800 (PST)
+Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2cc3f5e7451so17234661fa.2
+        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 07:03:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1702566232; x=1703171032; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Bdds0ORz8v+5B0f4PxBAIWXX7DWm0YzECYB8nL+ZDRg=;
+        b=KclSK1B1CcPLhM0aUywjXMEsqXYJjb83l6nM+NlX87fmak/R33YXfUuh3E6TAOaa/g
+         NiUZqE2lxir3Wl2lGEa9cEa0VoVf+PcnOsDTjuvFnSxt5hpdnvPwaEFHXKOUlgQZDToW
+         9qO5hQM8R6Ns4bcVujuk6I3BGXOxYrhUJT24RqB35RPqNs0rS2AfNhTaSeCBHTXoRjUU
+         kz1HaBrMKSRiATXdecZ+9CRBeXmppUVcy0+dlnDNk7UBQoKnk0/r+NT68aVxI/GsEVxr
+         qzvq0gNLFamrpTkjCqTv9GkYZ5UHhHDOv4rtuWCatZDpa+gwT/FebYUsChVJSYUcsm1h
+         T4Ng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702566232; x=1703171032;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Bdds0ORz8v+5B0f4PxBAIWXX7DWm0YzECYB8nL+ZDRg=;
+        b=pL0xjMJyj3XUiuIhN/uZdpEGHYkgW+RURrlKa9xUxN+DcO+kcIB/FIOBIgUPXo8VTK
+         4pweeOSoUJn9a0RyzgfTmY1eCX4ooa6nE8yk0kH/3odBq/mvbIDOfoMpQ6cSW5iuQXNh
+         pHEZ+y8WdfwADHFLgJvYRQYmIQW+/lHgIt1RAcyXe/KGLyFPnTNqYQ6tM6BDEdzYMing
+         NCxfTEnv4Q4Q6SHMLLLs95xqQoD4NecvO7SWAWtfUzsjRvtQ4VrhYeDKhrgS1fhf3SBr
+         4H1j8B7obfR21HU3Td9LpHl6ANLjrKoiTR/feIYkjOobf4eg+yQZ3mpmWUFtpqeKVERx
+         /MvA==
+X-Gm-Message-State: AOJu0YxZV2D8u+Rrcd/pFH9AYYluywQCIsZ2b0F703WUb0OkONd/TToP
+	XK6gxOvliFrn/+3XkpKsYpGff1D5feXFGNu7/bV30A==
+X-Google-Smtp-Source: AGHT+IFmyI386iLiUHPlW4WwtKlMnA6myG4ZHBLhXxLLf/cnJZpar+DOGncWRfIpEZelwC7WbFhYsO1g5sBePkgkHrc=
+X-Received: by 2002:a05:651c:c1:b0:2cc:479d:2d15 with SMTP id
+ 1-20020a05651c00c100b002cc479d2d15mr255200ljr.81.1702566231864; Thu, 14 Dec
+ 2023 07:03:51 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-XM-SPF: eid=1rDnBC-009bes-10;;;mid=<87r0jo7rva.fsf@email.froward.int.ebiederm.org>;;;hst=in01.mta.xmission.com;;;ip=68.227.168.167;;;frm=ebiederm@xmission.com;;;spf=pass
-X-XM-AID: U2FsdGVkX1/OhbNhEazZ4D40H/sN4yD6DjQIF1U06u0=
-X-SA-Exim-Connect-IP: 68.227.168.167
-X-SA-Exim-Mail-From: ebiederm@xmission.com
-X-Spam-DCC: XMission; sa04 1397; Body=1 Fuz1=1 Fuz2=1 
-X-Spam-Combo: **;Alexander Graf <graf@amazon.com>
-X-Spam-Relay-Country: 
-X-Spam-Timing: total 587 ms - load_scoreonly_sql: 0.05 (0.0%),
-	signal_user_changed: 11 (1.9%), b_tie_ro: 10 (1.6%), parse: 1.07
-	(0.2%), extract_message_metadata: 12 (2.1%), get_uri_detail_list: 2.7
-	(0.5%), tests_pri_-2000: 4.8 (0.8%), tests_pri_-1000: 3.8 (0.6%),
-	tests_pri_-950: 1.19 (0.2%), tests_pri_-900: 1.01 (0.2%),
-	tests_pri_-90: 68 (11.7%), check_bayes: 67 (11.4%), b_tokenize: 12
-	(2.0%), b_tok_get_all: 13 (2.3%), b_comp_prob: 3.8 (0.7%),
-	b_tok_touch_all: 34 (5.8%), b_finish: 0.86 (0.1%), tests_pri_0: 461
-	(78.6%), check_dkim_signature: 0.63 (0.1%), check_dkim_adsp: 2.2
-	(0.4%), poll_dns_idle: 0.70 (0.1%), tests_pri_10: 2.4 (0.4%),
-	tests_pri_500: 16 (2.8%), rewrite_mail: 0.00 (0.0%)
-Subject: Re: [PATCH 00/15] kexec: Allow preservation of ftrace buffers
-X-SA-Exim-Version: 4.2.1 (built Sat, 08 Feb 2020 21:53:50 +0000)
-X-SA-Exim-Scanned: Yes (on in01.mta.xmission.com)
+References: <20231213-ad7380-mainline-v2-0-cd32150d84a3@baylibre.com>
+ <20231213-ad7380-mainline-v2-3-cd32150d84a3@baylibre.com> <20231214101415.0000060c@Huawei.com>
+ <CAMknhBF9GtbOP_M2q8DrrMOePFOaQzGxqcS2P8OHjtGN-Z27Vg@mail.gmail.com> <20231214123613.00002b69@Huawei.com>
+In-Reply-To: <20231214123613.00002b69@Huawei.com>
+From: David Lechner <dlechner@baylibre.com>
+Date: Thu, 14 Dec 2023 16:03:40 +0100
+Message-ID: <CAMknhBGR9mkk+mG-vFJqSBFFykyppLpeOYRqcXwUWi6dtMh28Q@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] iio: adc: ad7380: new driver for AD7380 ADCs
+To: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Cameron <jic23@kernel.org>, Michael Hennerich <michael.hennerich@analog.com>, 
+	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org, 
+	Stefan Popa <stefan.popa@analog.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Alexander Graf <graf@amazon.com> writes:
-
-> Kexec today considers itself purely a boot loader: When we enter the new
-> kernel, any state the previous kernel left behind is irrelevant and the
-> new kernel reinitializes the system.
+On Thu, Dec 14, 2023 at 1:36=E2=80=AFPM Jonathan Cameron
+<Jonathan.Cameron@huawei.com> wrote:
 >
-> However, there are use cases where this mode of operation is not what we
-> actually want. In virtualization hosts for example, we want to use kexec
-> to update the host kernel while virtual machine memory stays untouched.
-> When we add device assignment to the mix, we also need to ensure that
-> IOMMU and VFIO states are untouched. If we add PCIe peer to peer DMA, we
-> need to do the same for the PCI subsystem. If we want to kexec while an
-> SEV-SNP enabled virtual machine is running, we need to preserve the VM
-> context pages and physical memory. See James' and my Linux Plumbers
-> Conference 2023 presentation for details:
+> On Thu, 14 Dec 2023 11:33:51 +0100
+> David Lechner <dlechner@baylibre.com> wrote:
 >
->   https://lpc.events/event/17/contributions/1485/
+> > On Thu, Dec 14, 2023 at 11:14=E2=80=AFAM Jonathan Cameron
+> > <Jonathan.Cameron@huawei.com> wrote:
+> > >
+> > > On Wed, 13 Dec 2023 05:21:20 -0600
+> > > David Lechner <dlechner@baylibre.com> wrote:
+> > >
+> > > > This adds a new driver for the AD7380 family ADCs.
+> > > >
+> > > > The driver currently implements basic support for the AD7380, AD738=
+1,
+> > > > AD7383, and AD7384 2-channel differential ADCs. Support for additio=
+nal
+> > > > single-ended and 4-channel chips that use the same register map as =
+well
+> > > > as additional features of the chip will be added in future patches.
+> > > >
+> > > > Co-developed-by: Stefan Popa <stefan.popa@analog.com>
+> > > > Signed-off-by: Stefan Popa <stefan.popa@analog.com>
+> > > > Signed-off-by: David Lechner <dlechner@baylibre.com>
+> > >
+> > > Just one additional comment.  I 'might' sort both this an Nuno's comm=
+ent
+> > > if Mark is fine with the SPI and no on else has review comments.
+> > > Feel free to send a v3 though if you like ;)
+> > >
+> > >
+> > > > +/* fully differential */
+> > > > +DEFINE_AD7380_DIFFERENTIAL_2_CHANNEL(ad7380_channels, 16);
+> > > > +DEFINE_AD7380_DIFFERENTIAL_2_CHANNEL(ad7381_channels, 14);
+> > > > +/* pseudo differential */
+> > > > +DEFINE_AD7380_DIFFERENTIAL_2_CHANNEL(ad7383_channels, 16);
+> > > > +DEFINE_AD7380_DIFFERENTIAL_2_CHANNEL(ad7384_channels, 14);
+> > > > +
+> > > > +/* Since this is simultaneous sampling, we don't allow individual =
+channels. */
+> > > > +static const unsigned long ad7380_2_channel_scan_masks[] =3D {
+> > > > +     GENMASK(2, 0), /* both ADC channels and soft timestamp */
+> > > > +     GENMASK(1, 0), /* both ADC channels, no timestamp */
+> > >
+> > > https://elixir.bootlin.com/linux/v6.7-rc5/source/include/linux/iio/ii=
+o.h#L567
+> > > See the comment (added recently!)
+> >
+> > I did see this comment but this is already sorted in order of
+> > preference, so I'm not sure why you are calling it out. Just FYI, I
+> > guess?
 >
-> To start us on the journey to support all the use cases above, this
-> patch implements basic infrastructure to allow hand over of kernel state
-> across kexec (Kexec HandOver, aka KHO). As example target, we use ftrace:
-> With this patch set applied, you can read ftrace records from the
-> pre-kexec environment in your post-kexec one. This creates a very powerful
-> debugging and performance analysis tool for kexec. It's also slightly
-> easier to reason about than full blown VFIO state preservation.
+> No. Order of preference would be turn on the minimal if that is enough.
+> First item is the highest preference (if the requested channels are a sub=
+set of
+> that we don't look any further).  Here that means we always stop on the f=
+irst
+> entry and never look at the second.
+
+OK, I understand what you are getting at now. I thought the preference
+could be my personal preference rather than the minimal case. :-)
+
+But as you pointed out, the timestamp is handled separately, so it
+doesn't make a difference here. The main point was to ensure that both
+channels are always enabled since the ADC is doing simultaneous
+sampling and always reading two channels at the same time.
+
 >
-> == Alternatives ==
+> >
+> > >
+> > > Also, if I remember how this works correctly there is no need to incl=
+ude
+> > > the timestamp in the mask.  We do special handling for it to avoid ha=
+ving to double
+> > > the number of provided masks.  The details being that it uses
+> > > iio_scan_el_ts_store rather than iio_scan_el_Store.
+> >
+> > Indeed. I've been working ahead on adding more features and noticed
+> > this. So we will need to find a way to say that we the timestamp
+> > should not be allowed under certain conditions. But that will be a
+> > discussion for a later series.
 >
-> There are alternative approaches to (parts of) the problems above:
+> Interesting - you have cases where it's not valid at all?
+> It sometimes becomes inaccurate because we are interpolating across
+> data from a fifo, but I've not seen a case where we can't provide anythin=
+g
+> useful.  Ah well - as you say I'll wait for that later series!
 >
->   * Memory Pools [1] - preallocated persistent memory region + allocator
->   * PRMEM [2] - resizable persistent memory regions with fixed metadata
->                 pointer on the kernel command line + allocator
->   * Pkernfs [3] - preallocated file system for in-kernel data with fixed
->                   address location on the kernel command line
->   * PKRAM [4] - handover of user space pages using a fixed metadata page
->                 specified via command line
+> Jonathan
 >
-> All of the approaches above fundamentally have the same problem: They
-> require the administrator to explicitly carve out a physical memory
-> location because they have no mechanism outside of the kernel command
-> line to pass data (including memory reservations) between kexec'ing
-> kernels.
+> >
+> > >
+> > > So as you have it I think you'll always end up with the first entry
+> > > and that will include a bonus bit that isn't a problem as it will mat=
+ch
+> > > anyway.
+> > >
+> > > So just have the second entry and 0.
+> > >
+> > > Jonathan
+> > >
+> > > > +     0
+> > > > +};
 >
-> KHO provides that base foundation. We will determine later whether we
-> still need any of the approaches above for fast bulk memory handover of for
-> example IOMMU page tables. But IMHO they would all be users of KHO, with
-> KHO providing the foundational primitive to pass metadata and bulk memory
-> reservations as well as provide easy versioning for data.
-
-What you are describe in many ways is the same problem as
-kexec-on-panic.  The goal of leaving devices running absolutely requires
-carving out memory for the new kernel to live in while it is coming up
-so that DMA from a device that was not shutdown down does not stomp the
-kernel coming up.
-
-If I understand the virtualization case some of those virtual machines
-are going to have virtual NICs that are going to want to DMA memory to
-the host system.  Which if I understand things correctly means that
-among the devices you explicitly want to keep running there is a not
-a way to avoid the chance of DMA coming in while the kernel is being
-changed.
-
-There is also a huge maintenance challenge associated with all of this.
-
-If you go with something that is essentially kexec-on-panic and then
-add a little bit to help find things in the memory of the previous
-kernel while the new kernel is coming up I can see it as a possibility.
-
-As an example I think preserving ftrace data of kexec seems bizarre.
-I don't see how that is an interesting use case at all.  Not in
-the situation of preserving virtual machines, and not in the situation
-of kexec on panic.
-
-If you are doing an orderly shutdown and kernel switch you should be
-able to manually change the memory.  If you are not doing an orderly
-shutdown then I really don't get it.
-
-I don't hate the capability you are trying to build.
-
-I have not read or looked at most of this so I am probably
-missing subtle details.
-
-As you are currently describing things I have the sense you have
-completely misframed the problem and are trying to solve the wrong parts
-of the problem.
-
-Eric
 
