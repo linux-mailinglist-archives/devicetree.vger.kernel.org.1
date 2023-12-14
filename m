@@ -1,162 +1,118 @@
-Return-Path: <devicetree+bounces-25574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25575-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17D87813B52
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 21:13:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 138BE813B5D
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 21:15:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B768A1F21034
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 20:13:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B2A021F223C8
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 20:15:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2F676A02A;
-	Thu, 14 Dec 2023 20:13:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC5276A330;
+	Thu, 14 Dec 2023 20:15:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jO7HT/kz"
+	dkim=pass (2048-bit key) header.d=waldekranz-com.20230601.gappssmtp.com header.i=@waldekranz-com.20230601.gappssmtp.com header.b="IEZ1FYjf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CADF56A021;
-	Thu, 14 Dec 2023 20:13:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58C24C433B9;
-	Thu, 14 Dec 2023 20:13:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702584798;
-	bh=DE5oZHxnY2FnfLLm9CrhQ8lZCYG3nLE1BorF38WzfFU=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=jO7HT/kzC/0e5zyKvEwCgBKNFSmhYNZle6KooVc59NDXQjgb6obiFUHPgs1uAvAwy
-	 ZXJDNqAUwphT0pfOMqJ5eJc0veFLExwNXzexEdgyieZZ+n7IJMgqFRNxSA/DwRG3d6
-	 9kGZzpRtlXzpcPVJHI35wuNkkBUl0qS3UsQO2FPvLm91jrODGUs4/7l7bHTQkJj4Qh
-	 QuvhvmXGu1EdenVwO+q1Dz6wmqlmY6aAXXi0pxaD5stWd/rnUYpRai9ywnm3YDcBoH
-	 88J4pxvCl4JHz/VHDmT2RnJX3stj7KpK3Ip5xxNpOY2HDyjSSv0lIU84UAvQA7lYFl
-	 dO9yozw8KXuJg==
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-50c02628291so9176102e87.0;
-        Thu, 14 Dec 2023 12:13:18 -0800 (PST)
-X-Gm-Message-State: AOJu0YyDGdIhxQYTGdNwHf5a9XQm9Vnud9OpEbbE6rqyDVAQLPdHkxoM
-	UiBuS+D9Q/qRoMQ0ksBQ5z6Cjw0f3O4ZTApV8Q==
-X-Google-Smtp-Source: AGHT+IHDKZo8Iz9evcWsSlbRyWsjf9ZmHonlKRtMaMEtFTEvbkKWDgkxQU9xVlEHJQrHQKr9MJyv9JPsWzfEzSGK/Wg=
-X-Received: by 2002:a05:6512:2019:b0:50b:d764:8046 with SMTP id
- a25-20020a056512201900b0050bd7648046mr4254179lfb.121.1702584796440; Thu, 14
- Dec 2023 12:13:16 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEFCC6A03D
+	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 20:15:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=waldekranz.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=waldekranz.com
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-50e0d1f9fe6so3562427e87.1
+        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 12:15:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=waldekranz-com.20230601.gappssmtp.com; s=20230601; t=1702584900; x=1703189700; darn=vger.kernel.org;
+        h=content-transfer-encoding:organization:mime-version:message-id:date
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=rKv6UWpxS9t4qwcfHANH1OST6fgGU487WAUtdgpbQMc=;
+        b=IEZ1FYjfpu9FwPmTcSXSLny+DA6+omDgtb6PGS3r9cMnWq8ExTSiIgIDmVCi0CzMKc
+         Es2onSLt9X+k6qjLnyKCSGraNI+rgSzfFAEW+44/RTjvoP/L30wycZTegiaXeUpA4tHv
+         XMG0Ym6Y8CMxT71L3n0Mj+dja3ZCcLX7zAVFk7ikW976EGNmpVAMsiO6pz9FBgRjD2Ua
+         wTnNjpBa7YLN99u84Rdz0Gkhr5GYtIfrgmn4nuZ2kgpEj6CUihtN3ouDTPZgnpoSvv/x
+         bKmkv1c9qxnF1X/hvhNzTl+iEvdgwZpX7ruGezsZjNWGJzNTKHVrl/CgswfZgdmGdc0p
+         XVAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702584900; x=1703189700;
+        h=content-transfer-encoding:organization:mime-version:message-id:date
+         :subject:cc:to:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rKv6UWpxS9t4qwcfHANH1OST6fgGU487WAUtdgpbQMc=;
+        b=Hv3OJyOqeVEVZiGioqfWSL9AUdiG0QdUqRIkx8e1BZsElO6zNOisnmdUjBbpQiJCs9
+         Ond39JwDWfO1R7v+vF2Z4/UsL+opH9zs8vqxgkBsfo7kJ+mddOD8rGMiEMq0sKP6O5v+
+         9oTm45LuLoTjg7o/RO8pbcitHytQwsMiJjgSxw+0UJ030IHYpjyT4LJnX2DmZhQhXgBF
+         5ZTjloRNQZgoy4kjoeVdYZm8X4wpG0ezNOufmfC/FZkn4D3xo8v1tm0JYFFwjDIomYhu
+         Ta9tjZMMVhK80WCet2JwDldXx8JYkm/Fo+NGK+aPd0TwB/q+4TpxfqUgfQ027OlCXhN3
+         TxqA==
+X-Gm-Message-State: AOJu0Yyl01fKBVofYhk+HE25KZBpTmkKBU0f58caSDSv5NY6XoNkEUUd
+	eZEIUybtr9B1Gmv5Zu/B0Zjcxw==
+X-Google-Smtp-Source: AGHT+IG0Cl2kf5LGFVHt8mJHSLQtwSmGMPRUsrmcGGlJL0l250mopSvDWkloT958QBlKW2Lnqc5kNQ==
+X-Received: by 2002:a05:6512:716:b0:50c:21c2:a278 with SMTP id b22-20020a056512071600b0050c21c2a278mr3908176lfs.17.1702584900409;
+        Thu, 14 Dec 2023 12:15:00 -0800 (PST)
+Received: from wkz-x13.addiva.ad (h-158-174-187-194.NA.cust.bahnhof.se. [158.174.187.194])
+        by smtp.gmail.com with ESMTPSA id dw11-20020a0565122c8b00b0050e140f84besm369519lfb.164.2023.12.14.12.14.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Dec 2023 12:14:59 -0800 (PST)
+From: Tobias Waldekranz <tobias@waldekranz.com>
+To: davem@davemloft.net,
+	kuba@kernel.org
+Cc: linux@armlinux.org.uk,
+	kabel@kernel.org,
+	andrew@lunn.ch,
+	hkallweit1@gmail.com,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH net-next 0/4] net: phy: marvell10g: Firmware loading and LED support for 88X3310
+Date: Thu, 14 Dec 2023 21:14:38 +0100
+Message-Id: <20231214201442.660447-1-tobias@waldekranz.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231212164004.1683589-1-ninad@linux.ibm.com> <20231212164004.1683589-3-ninad@linux.ibm.com>
- <20231212-amusement-elevation-28e42bcccc35@spud> <d8b5df1c-c732-4cf3-ae28-cc2017d3b0b6@linux.ibm.com>
- <20231214-stopper-bounce-ca9002869293@spud>
-In-Reply-To: <20231214-stopper-bounce-ca9002869293@spud>
-From: Rob Herring <robh+dt@kernel.org>
-Date: Thu, 14 Dec 2023 14:13:04 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJCbRREnUyKkvkutyWP2GYK2ZqzfC1TS1pwQ=4xY_1J5w@mail.gmail.com>
-Message-ID: <CAL_JsqJCbRREnUyKkvkutyWP2GYK2ZqzfC1TS1pwQ=4xY_1J5w@mail.gmail.com>
-Subject: Re: [PATCH v1 2/8] dt-bindings: tpm: Add schema for TIS I2C devices
-To: Conor Dooley <conor@kernel.org>
-Cc: Ninad Palsule <ninad@linux.ibm.com>, krzysztof.kozlowski+dt@linaro.org, 
-	conor+dt@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au, 
-	peterhuewe@gmx.de, jarkko@kernel.org, jgg@ziepe.ca, keescook@chromium.org, 
-	tony.luck@intel.com, gpiccoli@igalia.com, johannes.holland@infineon.com, 
-	linux@roeck-us.net, broonie@kernel.org, patrick.rudolph@9elements.com, 
-	vincent@vtremblay.dev, peteryin.openbmc@gmail.com, lakshmiy@us.ibm.com, 
-	bhelgaas@google.com, naresh.solanki@9elements.com, 
-	alexander.stein@ew.tq-group.com, festevam@denx.de, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
-	linux-kernel@vger.kernel.org, linux-integrity@vger.kernel.org, 
-	linux-hardening@vger.kernel.org, geissonator@yahoo.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Organization: Addiva Elektronik
+Content-Transfer-Encoding: 8bit
 
-On Thu, Dec 14, 2023 at 10:35=E2=80=AFAM Conor Dooley <conor@kernel.org> wr=
-ote:
->
-> On Thu, Dec 14, 2023 at 09:34:39AM -0600, Ninad Palsule wrote:
-> > Hello Conor,
-> >
-> > On 12/12/23 11:14, Conor Dooley wrote:
-> > > Hey,
-> > >
-> > > On Tue, Dec 12, 2023 at 10:39:58AM -0600, Ninad Palsule wrote:
-> > > > From: Johannes Holland <johannes.holland@infineon.com>
-> > > >
-> > > > Add a dt schema to support device tree bindings
-> > > "Add bindings for..."
-> > Fixed.
-> > >
-> > > > for the generic I2C
-> > > > physical layer. Refer to the TCG PC Client Platform TPM Profile (PT=
-P)
-> > > > Specification for TPM 2.0 v1.04 Revision 14.
-> > > >
-> > > > This includes descriptions for the Nuvoton and Infineon devices.
-> > > >
-> > > > OpenBMC-Staging-Count: 3
-> > > I have no idea what this is, but it needs to be removed from the patc=
-h.
-> > Removed.
-> > >
-> > > > Signed-off-by: Johannes Holland <johannes.holland@infineon.com>
-> > > > Signed-off-by: Joel Stanley <joel@jms.id.au>
-> > > > Signed-off-by: Ninad Palsule <ninad@linux.ibm.com>
-> > > > ---
-> > > >   .../bindings/security/tpm/tpm-tis-i2c.yaml    | 50 ++++++++++++++=
-+++++
-> > > >   1 file changed, 50 insertions(+)
-> > > >   create mode 100644 Documentation/devicetree/bindings/security/tpm=
-/tpm-tis-i2c.yaml
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/security/tpm/tpm-tis=
--i2c.yaml b/Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..de1e34065748
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.ya=
-ml
-> > > > @@ -0,0 +1,50 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/security/tpm/tpm-tis-i2c.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: I2C PTP based TPM Devices
-> > > > +
-> > > > +maintainers:
-> > > > +  - Johannes Holland <johannes.holland@infineon.com>
-> > > > +
-> > > > +description:
-> > > > +  Device Tree Bindings for I2C based Trusted Platform Module (TPM)=
-.
-> > > s/Device Tree Bindings for //. Doesn't dt_binding_check now complain =
-if
-> > > you have this in a title or description?
-> > Fixed.
-> > >
-> > > > +properties:
-> > > > +  $nodename:
-> > > > +    pattern: "^tpm(@[0-9a-f]+)?$"
-> > > > +
-> > > > +  compatible:
-> > > > +    oneOf:
-> > > > +      - description: Infineon's Trusted Platform Module (TPM) (SLB=
-9673).
-> > > > +        items:
-> > > > +          - const: infineon,slb9673
-> > > > +          - const: tcg,tpm-tis-i2c
-> > > > +      - description: Nuvoton's Trusted Platform Module (TPM) (NPCT=
-75x).
-> > > > +        items:
-> > > > +          - const: nuvoton,npct75x
-> > > > +          - const: tcg,tpm-tis-i2c
->
-> Also, another thought - the bus is not usually encoded in the compatible
-> string, so it would be good to remove that.
+There are two boot options for a 88X3310 PHY:
 
-True, but we already have 3 different bus variants in this case. So
-that ship has sailed.
+1. Device loads its firmware from a dedicated serial FLASH
+2. Device waits for its firmware to be downloaded over XMDIO
 
-Rob
+1/4 adds support for the second option. The device reports which mode
+it is in via a register, so we only attempt to load a firmware in this
+situation. Crucially, if firmware is not available in this case, the
+device is not usable _at all_, so we are forced to fail the probe
+entirely.
+
+2/4 extends the power up sequence to cover cases where the device has
+been hardware strapped to start powered down, in which case all
+internal units will be powered down.
+
+3/4 adds support for the LED controller in the PHY. A special DT
+attribute is added to control the polarity and drive behavior of each
+LED, which we document in 4/4.
+
+Tobias Waldekranz (4):
+  net: phy: marvell10g: Support firmware loading on 88X3310
+  net: phy: marvell10g: Fix power-up when strapped to start powered down
+  net: phy: marvell10g: Add LED support for 88X3310
+  dt-bindings: net: marvell10g: Document LED polarity
+
+ .../bindings/net/marvell,marvell10g.yaml      |  60 ++
+ MAINTAINERS                                   |   1 +
+ drivers/net/phy/marvell10g.c                  | 602 +++++++++++++++++-
+ 3 files changed, 660 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/marvell,marvell10g.yaml
+
+-- 
+2.34.1
+
 
