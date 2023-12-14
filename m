@@ -1,250 +1,166 @@
-Return-Path: <devicetree+bounces-25391-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25394-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41A218131CA
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 14:40:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A813C813220
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 14:50:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E6F721F22240
-	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 13:40:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 362C31F22223
+	for <lists+devicetree@lfdr.de>; Thu, 14 Dec 2023 13:50:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78EA856B87;
-	Thu, 14 Dec 2023 13:40:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6565D56B9C;
+	Thu, 14 Dec 2023 13:50:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="TvaB6Obu"
+	dkim=pass (2048-bit key) header.d=dh-electronics.com header.i=@dh-electronics.com header.b="QkZSWxig"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89719114
-	for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 05:40:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1702561202; x=1734097202;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=mU/LhIYL5RBgQEbNWg80SqOIneRvkeJakwqWdi62WHE=;
-  b=TvaB6ObuCmK+EBUPH0lFZ0ERydrSXyGfOVbHH6p2KvPGCWWlo1vz2/Wr
-   8sdP1Xn3dLQxvDTgPBzdL6X5xf3yymZWwvzaiFOjfOzHybub0iDvS2sV/
-   MIvlSmn+fcRVF11+5sX5FRJ77IwtZ9zmzo//N0UereUlEOHJHB31l+RoW
-   SZ/aSFxpdceEQEn/Sp/d6W4k/h2bXm3njAZ1V1toHwtovJClTXb+LrCQM
-   QTwU9f5aqTaPCQzBJtAzAZvlkLqZNfnRVZMExUzYGywauJN4kx7x4EzNv
-   NeJPAC0I4V7VR+PR5GxqiPjrF/h/g2wQMMMmFUWnJRASDJ4HLp11E4WBg
-   A==;
-X-IronPort-AV: E=Sophos;i="6.04,275,1695679200"; 
-   d="scan'208";a="34510718"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 14 Dec 2023 14:40:00 +0100
-Received: from steina-w.localnet (steina-w.tq-net.de [10.123.53.18])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 9FB5D280075;
-	Thu, 14 Dec 2023 14:40:00 +0100 (CET)
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, linux-arm-kernel@lists.infradead.org
-Cc: linux-imx@nxp.com, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Xu Yang <xu.yang_2@nxp.com>
-Subject: Re: [PATCH 4/4] arm64: dts: imx93-11x11-evk: enable usb and typec nodes
-Date: Thu, 14 Dec 2023 14:40:01 +0100
-Message-ID: <1952554.PYKUYFuaPT@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20231214112442.2412079-4-xu.yang_2@nxp.com>
-References: <20231214112442.2412079-1-xu.yang_2@nxp.com> <20231214112442.2412079-4-xu.yang_2@nxp.com>
+X-Greylist: delayed 440 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 14 Dec 2023 05:50:20 PST
+Received: from mx2.securetransport.de (mx2.securetransport.de [188.68.39.254])
+	by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37501CF;
+	Thu, 14 Dec 2023 05:50:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dh-electronics.com;
+	s=dhelectronicscom; t=1702561312;
+	bh=aA46rQnXWzvf6O7iLbhRK/Kl8C4HBcMLPJSxSkIvRFM=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+	b=QkZSWxigv5o3u941gSyWwYWW0H5RGVPtbYbbOWV4fZfBoCmcwIYWSUb42BvfcCLah
+	 grRxCxyYxj9Lck0O75SlGdTbXuKgJTJYPp7GA103w7E5/1+lGnyjCh1A9CoVPEUvjH
+	 qjTCDwyn8yX0avY8Wyg1M7xegbz5ZjyIBYMlNSeEAUqi5PtKrlROcczXAv0f5tNERk
+	 aQ48ySe1P7hqXMho1zQf6cG+b1FFCfNqBcyYgjcbW/GOH9JrZxTJk59drsvNf019zx
+	 /+uk8I9zrBuZQNYphUFSnZK1/A5Lsh1vNJyN+sctLv3zmtp6YkZlT39Ilx5ERx5lIn
+	 I9ZYUyGZt953w==
+X-secureTransport-forwarded: yes
+From: Christoph Niedermaier <cniedermaier@dh-electronics.com>
+Complaints-To: abuse@cubewerk.de
+To: Crescent CY Hsieh <crescentcy.hsieh@moxa.com>, Andy Shevchenko
+	<andriy.shevchenko@linux.intel.com>, Lino Sanfilippo <LinoSanfilippo@gmx.de>
+CC: Lukas Wunner <lukas@wunner.de>, Rasmus Villemoes
+	<linux@rasmusvillemoes.dk>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-serial@vger.kernel.org"
+	<linux-serial@vger.kernel.org>, =?utf-8?B?SWxwbyBKw6RydmluZW4=?=
+	<ilpo.jarvinen@linux.intel.com>, "brenda.streiff@ni.com"
+	<brenda.streiff@ni.com>, Tomas Paukrt <tomaspaukrt@email.cz>
+Subject: RE: [PATCH 1/2] dt-bindings: serial: rs485: add rs485-mux-gpios
+ binding
+Thread-Topic: [PATCH 1/2] dt-bindings: serial: rs485: add rs485-mux-gpios
+ binding
+Thread-Index: AQHaH/jBESSZN4JU2UOxi81YCMKNnLCN1MYggA6QRICABHVPgIADOxKAgASJVgCAABWukA==
+Date: Thu, 14 Dec 2023 13:41:47 +0000
+Message-ID: <b35730df8288469fbaf67b5ceae4eece@dh-electronics.com>
+References: <20231120151056.148450-1-linux@rasmusvillemoes.dk>
+ <20231120151056.148450-2-linux@rasmusvillemoes.dk>
+ <20231122145344.GA18949@wunner.de>
+ <3b8548b1-b8a9-0c9e-4040-5cfda06a85c6@gmx.de>
+ <ec66d25162de4cbc92720df1e7008fe8@dh-electronics.com>
+ <5c140498-69e3-4187-8703-db0c41e7ca89@gmx.de>
+ <fe28eb93-daa1-41af-a005-f21aa87e1984@gmx.de>
+ <ZXcJr4VS_uGr_6TV@smile.fi.intel.com>
+ <ZXrX4mQXPLum0jL3@moxa-ThinkCentre-M90t>
+In-Reply-To: <ZXrX4mQXPLum0jL3@moxa-ThinkCentre-M90t>
+Accept-Language: de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
 
-Hi,
-
-thanks for the patch.
-
-Am Donnerstag, 14. Dezember 2023, 12:24:42 CET schrieb Xu Yang:
-> There are 2 Type-C ports and 2 USB controllers on i.MX93. Enable them.
->=20
-> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
-> ---
->  .../boot/dts/freescale/imx93-11x11-evk.dts    | 108 ++++++++++++++++++
->  1 file changed, 108 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
-> b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts index
-> 2b9d47716f75..42b1ea7d5220 100644
-> --- a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
-> @@ -5,6 +5,7 @@
->=20
->  /dts-v1/;
->=20
-> +#include <dt-bindings/usb/pd.h>
->  #include "imx93.dtsi"
->=20
->  / {
-> @@ -103,6 +104,70 @@ &mu2 {
->  	status =3D "okay";
->  };
->=20
-> +&lpi2c3 {
-> +	#address-cells =3D <1>;
-> +	#size-cells =3D <0>;
-> +	clock-frequency =3D <400000>;
-> +	pinctrl-names =3D "default", "sleep";
-> +	pinctrl-0 =3D <&pinctrl_lpi2c3>;
-> +	pinctrl-1 =3D <&pinctrl_lpi2c3>;
-> +	status =3D "okay";
-> +
-> +	ptn5110: tcpc@50 {
-
-I do not know if there is already some consent, but personally I do not lik=
-e=20
-tcpc for the node name. Maybe change that to usb-typec@50.
-
-> +		compatible =3D "nxp,ptn5110";
-> +		reg =3D <0x50>;
-> +		interrupt-parent =3D <&gpio3>;
-> +		interrupts =3D <27 IRQ_TYPE_LEVEL_LOW>;
-> +		status =3D "okay";
-
-status not needed here, "okay" is default and node is added here.
-
-> +
-> +		port {
-> +			typec1_dr_sw: endpoint {
-> +				remote-endpoint =3D <&usb1_drd_sw>;
-> +			};
-> +		};
-> +
-> +		typec1_con: connector {
-> +			compatible =3D "usb-c-connector";
-> +			label =3D "USB-C";
-> +			power-role =3D "dual";
-> +			data-role =3D "dual";
-> +			try-power-role =3D "sink";
-> +			source-pdos =3D <PDO_FIXED(5000, 3000,=20
-PDO_FIXED_USB_COMM)>;
-> +			sink-pdos =3D <PDO_FIXED(5000, 3000,=20
-PDO_FIXED_USB_COMM)
-> +				     PDO_VAR(5000, 20000, 3000)>;
-> +			op-sink-microwatt =3D <15000000>;
-> +			self-powered;
-> +		};
-> +	};
-> +
-> +	ptn5110_2: tcpc@51 {
-
-See above.
-
-> +		compatible =3D "nxp,ptn5110";
-> +		reg =3D <0x51>;
-> +		interrupt-parent =3D <&gpio3>;
-> +		interrupts =3D <27 IRQ_TYPE_LEVEL_LOW>;
-> +		status =3D "okay";
-
-See above.
-
-Best regards,
-Alexander
-
-> +
-> +		port {
-> +			typec2_dr_sw: endpoint {
-> +				remote-endpoint =3D <&usb2_drd_sw>;
-> +			};
-> +		};
-> +
-> +		typec2_con: connector {
-> +			compatible =3D "usb-c-connector";
-> +			label =3D "USB-C";
-> +			power-role =3D "dual";
-> +			data-role =3D "dual";
-> +			try-power-role =3D "sink";
-> +			source-pdos =3D <PDO_FIXED(5000, 3000,=20
-PDO_FIXED_USB_COMM)>;
-> +			sink-pdos =3D <PDO_FIXED(5000, 3000,=20
-PDO_FIXED_USB_COMM)
-> +				     PDO_VAR(5000, 20000, 3000)>;
-> +			op-sink-microwatt =3D <15000000>;
-> +			self-powered;
-> +		};
-> +	};
-> +};
-> +
->  &eqos {
->  	pinctrl-names =3D "default";
->  	pinctrl-0 =3D <&pinctrl_eqos>;
-> @@ -155,6 +220,42 @@ &lpuart5 {
->  	status =3D "okay";
->  };
->=20
-> +&usbotg1 {
-> +	dr_mode =3D "otg";
-> +	hnp-disable;
-> +	srp-disable;
-> +	adp-disable;
-> +	usb-role-switch;
-> +	disable-over-current;
-> +	samsung,picophy-pre-emp-curr-control =3D <3>;
-> +	samsung,picophy-dc-vol-level-adjust =3D <7>;
-> +	status =3D "okay";
-> +
-> +	port {
-> +		usb1_drd_sw: endpoint {
-> +			remote-endpoint =3D <&typec1_dr_sw>;
-> +		};
-> +	};
-> +};
-> +
-> +&usbotg2 {
-> +	dr_mode =3D "otg";
-> +	hnp-disable;
-> +	srp-disable;
-> +	adp-disable;
-> +	usb-role-switch;
-> +	disable-over-current;
-> +	samsung,picophy-pre-emp-curr-control =3D <3>;
-> +	samsung,picophy-dc-vol-level-adjust =3D <7>;
-> +	status =3D "okay";
-> +
-> +	port {
-> +		usb2_drd_sw: endpoint {
-> +			remote-endpoint =3D <&typec2_dr_sw>;
-> +		};
-> +	};
-> +};
-> +
->  &usdhc1 {
->  	pinctrl-names =3D "default", "state_100mhz", "state_200mhz";
->  	pinctrl-0 =3D <&pinctrl_usdhc1>;
-> @@ -221,6 +322,13 @@ MX93_PAD_ENET2_TX_CTL__ENET1_RGMII_TX_CTL	0x57e
->=20
->  		>;
->=20
->  	};
->=20
-> +	pinctrl_lpi2c3: lpi2c3grp {
-> +		fsl,pins =3D <
-> +			MX93_PAD_GPIO_IO28__LPI2C3_SDA		=09
-0x40000b9e
-> +			MX93_PAD_GPIO_IO29__LPI2C3_SCL		=09
-0x40000b9e
-> +		>;
-> +	};
-> +
->  	pinctrl_uart1: uart1grp {
->  		fsl,pins =3D <
->  			MX93_PAD_UART1_RXD__LPUART1_RX		=09
-0x31e
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
-
+RnJvbTogQ3Jlc2NlbnQgQ1kgSHNpZWggPGNyZXNjZW50Y3kuaHNpZWhAbW94YS5jb20+DQpTZW50
+OiBUaHVyc2RheSwgRGVjZW1iZXIgMTQsIDIwMjMgMTE6MjUgQU0NCj4gT24gTW9uLCBEZWMgMTEs
+IDIwMjMgYXQgMDM6MDc6NTlQTSArMDIwMCwgQW5keSBTaGV2Y2hlbmtvIHdyb3RlOg0KPj4gT24g
+U2F0LCBEZWMgMDksIDIwMjMgYXQgMTI6NDc6NDdQTSArMDEwMCwgTGlubyBTYW5maWxpcHBvIHdy
+b3RlOg0KPj4+IE9uIDA2LjEyLjIzIDE2OjQyLCBMaW5vIFNhbmZpbGlwcG8gd3JvdGU6DQo+Pg0K
+Pj4+Pj4+PiBDcmVzY2VudCBDWSBIc2llaCAoK2NjKSBpcyBpbiBwYXJhbGxlbCB0cnlpbmcgdG8g
+YWRkIGFuIFJTLTQyMiBtb2RlIGJpdA0KPj4+Pj4+PiB0byBzdHJ1Y3Qgc2VyaWFsX3JzNDg1Og0K
+Pj4+Pj4+Pg0KPj4+Pj4+PiBodHRwczovL2xvcmUua2VybmVsLm9yZy9hbGwvMjAyMzExMjEwOTUx
+MjIuMTU5NDgtMS1jcmVzY2VudGN5LmhzaWVoQG1veGEuY29tLw0KPj4+Pj4+Pg0KPj4+Pj4+DQo+
+Pj4+Pj4gVGhhdCBuZXcgZmxhZyB3YXMgc3VnZ2VzdGVkIGJ5IG1lIGluc3RlYWQgb2YgdXNpbmcg
+U0VSX1JTNDIyX0VOQUJMRUQsIHdoaWNoDQo+Pj4+Pj4gd291bGQgbW9zdGx5IGJlIHJlZHVuZGFu
+dCB0byBTRVJfUlM0ODVfRU5BQkxFRC4NCj4+Pg0KPj4+IEEgY2xlYW5lciBzb2x1dGlvbiB3b3Vs
+ZCBwcm9iYWJseSBiZSB0byBub3QgaGFuZGxlIFJTNDIyIHdpdGggdGhlIFJTNDg1IHNldHRpbmdz
+IGF0DQo+Pj4gYWxsLCBidXQgdG8gaW50cm9kdWNlIGFub3RoZXIgc2V0IG9mIGlvY3RscyB0byBz
+ZXQgYW5kIHJlYWQgaXQuDQo+Pj4NCj4+PiBBbiBvd24gUlM0MjIgc3RydWN0dXJlIGxpa2UNCj4+
+Pg0KPj4+IHN0cnVjdCBzZXJpYWxfcnM0MjIgew0KPj4+ICAgICBfX3UzMiAgIGZsYWdzOw0KPj4+
+ICNkZWZpbmUgU0VSX1JTNDIyX0VOQUJMRUQgICAgICAgICAgICgxIDw8IDApDQo+Pj4gI2RlZmlu
+ZSBTRVJfUlM0MjJfVEVSTUlOQVRFX0JVUyAgICAgICAgICAgICAoMSA8PCAxKQ0KPj4+IH07DQo+
+Pj4NCj4+Pg0KPj4+IGNvdWxkIGJlIHVzZWQgYXMgdGhlIHBhcmFtZXRlciBmb3IgdGhlc2UgbmV3
+IGlvY3Rscy4NCj4+Pg0KPj4+IEFueSBjb21tZW50cyBvbiB0aGlzPw0KPj4NCj4+IEkgaGF2ZSAo
+bWF5YmUgbm90IHNvIGNvbnN0cnVjdGl2ZSkgYSBjb21tZW50LiBQbGVhc2UsIGF0IGFsbCBtZWFu
+cyB0cnkgdG8gbm90DQo+PiBleHRlbmQgdGhlIGV4aXN0aW5nIHNlcmlhbCBkYXRhIHN0cnVjdHVy
+ZXMsIHdlIGhhdmUgdG9vIG1hbnkgb25lcyB3aXRoIHRvbyBtYW55DQo+PiBmaWVsZHMgYWxyZWFk
+eS4gRm9yIHVzZXIgc3BhY2UsIHRob3VnaCwgb25lIG1heSB1c2UgdW5pb25zIGFuZCBmbGFncywg
+YnV0IGZvcg0KPj4gaW50ZXJuYWwgb25lcyBpdCBtaWdodCBiZSBiZXR0ZXIgd2F5cywgSSB0aGlu
+ay4NCj4gDQo+IEhvdyBhYm91dCByZXZpc2luZyB0aGUgbmFtZSBvZiAnVElPQ1NSUzQ4NScgYW5k
+ICdzZXJpYWxfcnM0ODUnIHRvIGENCj4gZ2VuZXJhbCBvbmUsIGFuZCBwdXQgUlM0MjIgYW5kIFJT
+NDg1IGNvbmZpZ3VyYXRpb24gZmxhZ3MgaW50byB0aGF0DQo+IHN0cnVjdHVyZT8NCj4gDQo+IFNv
+IHRoYXQgaW4gdXNlcnNwYWNlIGl0IGNvdWxkIHNldCBSUzQyMiBvciBSUzQ4NSBjb25maWd1cmF0
+aW9ucyB1c2luZyBhDQo+IHNpbmdsZSBpb2N0bCBjb21tYW5kIGFuZCBvbmUgc3RydWN0dXJlLg0K
+PiANCj4gSW4gdGhpcyB3YXksIGl0IHdvbid0IGJlIGNvbmZ1c2VkIGluIHVzZXJzcGFjZSBhbmQg
+d29uJ3QgYWRkIG5ldyBkYXRhDQo+IHN0cnVjdHVyZSBpbnRlcm5hbGx5IGFzIHdlbGwuDQo+IA0K
+DQpJIHdpbGwgc3VtbWFyaXplIHRoZSBjdXJyZW50IHNpdHVhdGlvbiBmcm9tIG15IHBvaW50IG9m
+IHZpZXcsIG1heWJlIGl0IGhlbHBzOg0KDQpSUy0yMzI6DQogIC0gRnVsbCBEdXBsZXggUG9pbnQt
+dG8tUG9pbnQgY29ubmVjdGlvbg0KICAtIE5vIHRyYW5zY2VpdmVyIGNvbnRyb2wgd2l0aCBSVFMN
+CiAgLSBObyB0ZXJtaW5hdGlvbg0KICAtIE5vIGV4dHJhIHN0cnVjdCBpbiB1c2UNCg0KUlMtNDIy
+Og0KICAtIEZ1bGwgRHVwbGV4IFBvaW50LXRvLVBvaW50IGNvbm5lY3Rpb24NCiAgLSBObyB0cmFu
+c2NlaXZlciBjb250cm9sIHdpdGggUlRTIG5lZWRlZA0KICAtIFRlcm1pbmF0aW9uIHBvc3NpYmxl
+DQogIC0gRXh0cmEgc3RydWN0IHNlcmlhbF9yczQ4NSBuZWVkZWQgaWYgdGVybWluYXRpb24gaXMg
+dXNlZA0KID0+IFJTLTQyMiBjYW4gYmUgdXNlZCBpbiBSUy0yMzIgb3BlcmF0aW9uLCBidXQgaWYg
+YSB0ZXJtaW5hdGlvbiBzaG91bGQgYmUNCiAgICBzd2l0Y2hhYmxlIHRoZSBSUzQ4NSBmbGFnIGhh
+cyB0byBiZSBlbmFibGVkLiBCdXQgdGhlbiBhbHNvIHRyYW5zY2VpdmVyDQogICAgY29udHJvbCB3
+aWxsIGJlIGVuYWJsZWQuIE5vdCBhIHZlcnkgc2F0aXNmeWluZyBzaXR1YXRpb24uDQoNClJTLTQ4
+NSAoMi13aXJlKSB2ZXJ5IGNvbW1vbjoNCiAgLSBIYWxmIER1cGxleCBSUy00ODUgYnVzDQogIC0g
+VHJhbnNjZWl2ZXIgY29udHJvbCB3aXRoIFJUUyBpcyBuZWVkZWQNCiAgLSBUZXJtaW5hdGlvbiBw
+b3NzaWJsZQ0KICAtIEV4dHJhIHN0cnVjdCBzZXJpYWxfcnM0ODUgaXMgbmVlZGVkDQogPT4gUlMt
+NDg1IGhhcyB0byBiZSBlbmFibGVkIGFuZCBjb25maWd1cmVkOg0KICAgIC0gU2V0IFNFUl9SUzQ4
+NV9FTkFCTEVEIA0KICAgIC0gU2V0IFNFUl9SUzQ4NV9SVFNfT05fU0VORCBvciBTRVJfUlM0ODVf
+UlRTX0FGVEVSX1NFTkQNCiAgICAtIFNldC9jbGVhciBTRVJfUlM0ODVfUlhfRFVSSU5HX1RYIGRl
+cGVuZGluZyBvbiB3aGV0aGVyDQogICAgICB0aGUgcmVjZWl2ZXIgcGF0aCBzaG91bGQgYmUgb24g
+b3Igb2ZmIGR1cmluZyBzZW5kaW5nLg0KICAgICAgSWYgaXQncyBzZXQgaXQgYWxsb3dzIHRvIG1v
+bml0b3IgdGhlIHNlbmRpbmcgb24gdGhlIGJ1cw0KICAgICAgYW5kIGRldGVjdCB3aGV0aGVyIGFu
+b3RoZXIgYnVzIGRldmljZSBpcyB0cmFuc21pdHRpbmcNCiAgICAgIGF0IHRoZSBzYW1lIHRpbWUu
+DQogICAgLSBTZXQvY2xlYXIgU0VSX1JTNDg1X1RFUk1JTkFURV9CVVMgZm9yIGJ1cyB0ZXJtaW5h
+dGlvbi4NCg0KUlMtNDg1ICg0LXdpcmUpIGxpdHRsZSB1c2VkOg0KICAtIEZ1bGwgRHVwbGV4IFJT
+LTQ4NSBidXMNCiAgLSBUcmFuc2NlaXZlciBjb250cm9sIHdpdGggUlRTIGlzIG5lZWRlZA0KICAt
+IFRlcm1pbmF0aW9uIHBvc3NpYmxlDQogIC0gRXh0cmEgc3RydWN0IHNlcmlhbF9yczQ4NSBpcyBu
+ZWVkZWQNCiA9PiBSUy00ODUgaGFzIHRvIGJlIGVuYWJsZWQgYW5kIGNvbmZpZ3VyZWQ6DQogICAg
+LSBTZXQgU0VSX1JTNDg1X0VOQUJMRUQgDQogICAgLSBTZXQgU0VSX1JTNDg1X1JUU19PTl9TRU5E
+IG9yIFNFUl9SUzQ4NV9SVFNfQUZURVJfU0VORA0KICAgIC0gU2V0IFNFUl9SUzQ4NV9SWF9EVVJJ
+TkdfVFgsIGFzIHRoZSByZWNlaXZlciBzaG91bGQgYWx3YXlzDQogICAgICBiZSBlbmFibGVkIGlu
+ZGVwZW5kZW50bHkgb2YgVFgsIGJlY2F1c2UgVFggYW5kIFJYIGFyZQ0KICAgICAgc2VwYXJhdGVk
+IGZyb20gZWFjaCBvdGhlciBieSB0aGVpciBvd24gd2lyZXMuDQogICAgLSBTZXQvY2xlYXIgU0VS
+X1JTNDg1X1RFUk1JTkFURV9CVVMgZm9yIGJ1cyB0ZXJtaW5hdGlvbi4NCg0KSSB0aGluayB0aGUg
+R1BJT3MgcmVmbGVjdCB0aGUgZmxhZyBzdGF0ZXMgYW5kIGFyZSBtZWFuaW5nZnVsOg0KLSBTRVJf
+UlM0ODVfVEVSTUlOQVRFX0JVUzogU3dpdGNoIGJ1cyB0ZXJtaW5hdGlvbiBvbi9vZmYgYnkgR1BJ
+Tw0KLSBTRVJfUlM0ODVfUlhfRFVSSU5HX1RYOiAgVXNlZCB0byBlbmFibGUvZGlzYWJsZSBSWCBk
+dXJpbmcgVFgNCiAgICAgICAgICAgICAgICAgICAgICAgICAgIGluIGhhcmR3YXJlIGJ5IEdQSU8g
+KGZvciAyLXdpcmUpDQotIFNFUl9SUzQ4NV9FTkFCTEVEOiAgICAgICBNdXhpbmcgYmV0d2VlbiBS
+Uy0yMzIgYW5kIFJTLTQ4NSBieSBHUElPDQoNClN3aXRjaGluZyBSUy00ODUgb24gZHVyaW5nIGJv
+b3QgY291bGQgYWxzbyBiZSBoYW5kbGVkIGJ5IGEgZGV2aWNldHJlZQ0Kb3ZlcmxheS4gRXZhbHVh
+dGUgdGhlIEdQSU8gYW5kIGxvYWQgYSBEVE8gYWNjb3JkaW5nbHkgYmVmb3JlIGJvb3RpbmcuDQoN
+ClBsZWFzZSBjb3JyZWN0IG1lIGlmIEkgaGF2ZSBtaXNyZXByZXNlbnRlZCBzb21ldGhpbmcuLi4N
+Cg0KSWYgSSBsb29rZWQgYXQgaXQgaW4gdGhpcyBuZXcgd2F5LCBJIHdvdWxkIGRpc2NhcmQgbXkg
+aWRlYSB3aXRoIHRoZQ0KRlVMTF9EVVBMRVggYW5kIEhBTEZfRFVQTEVYLiBGb3IgYSBiZXR0ZXIg
+dXNlIG9mIFJTLTQyMiBpdCB3b3VsZCBiZQ0KZ29vZCB0byBkaXNhYmxlIHRyYW5zY2VpdmVyIGNv
+bnRyb2wgdmlhIFJUUy4gSXQgY2FuIGJlIGRvbmUgYnkgY2xlYXJpbmcNCnRoZSBleGlzdGluZyBm
+bGFncyBTRVJfUlM0ODVfUlRTX09OX1NFTkQgYW5kIFNFUl9SUzQ4NV9SVFNfQUZURVJfU0VORA0K
+YXQgdGhlIHNhbWUgdGltZSwgYnV0IEkgdGhpbmsgaXQgaXMgY29uZnVzaW5nLiBCZXR0ZXIgd291
+bGQgYmUgYSBmbGFnDQpmb3IgUlMtNDIyOg0KDQpSUy00MjI6ICAgICAgICAgICAgICAgICAgICAg
+U2V0IFNFUl9SUzQyMl9NT0RFIGZvciBkaXNhYmxpbmcNCiAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICB0cmFuc2NlaXZlciBjb250cm9sIHZpYSBSVFMuDQpSUy00ODUgKDItd2lyZSBhbmQgNC13
+aXJlKTogQ2xlYXIgU0VSX1JTNDIyX01PREUgZm9yIGVuYWJsaW5nDQogICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgdHJhbnNjZWl2ZXIgY29udHJvbCB2aWEgUlRTLg0KDQpGaW5hbGx5LCBhdCBw
+cmVzZW50IGl0IGlzIGFsc28gbm90IHBvc3NpYmxlIHRvIGRpc3Rpbmd1aXNoIGJldHdlZW4gUlM0
+ODUNCjItd2lyZSBhbmQgNC13aXJlIG9wZXJhdGlvbi4gSSB0aGluayBpdCBpc24ndCBuZWNlc3Nh
+cnksIGFzIGRpZmZlcmVudA0KaGFyZHdhcmUgaGFzIHRvIGJlIHVzZWQgYW55d2F5LiBUaGUgaGFy
+ZHdhcmUgdGhlbiBkZXRlcm1pbmVzIHRoZQ0KY29uZmlndXJhdGlvbiwgc2VlIGFib3ZlLg0KDQoN
+ClJlZ2FyZHMNCkNocmlzdG9waA0K
 
