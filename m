@@ -1,70 +1,70 @@
-Return-Path: <devicetree+bounces-25825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25826-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A71A814ABA
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 15:41:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DCD0814AC5
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 15:42:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 56AB8285EC9
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 14:41:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 289D01F234E6
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 14:42:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF7083C460;
-	Fri, 15 Dec 2023 14:39:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFEF83EA78;
+	Fri, 15 Dec 2023 14:39:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="q9xpxE4w"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="rgEU2+8b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F5D53A8E7
-	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 14:39:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0A753DB93
+	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 14:39:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com [209.85.218.71])
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id EC0C53F2CF
-	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 14:39:18 +0000 (UTC)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 32E283F2C4
+	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 14:39:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1702651158;
-	bh=KeS7bAuIUzMlkgCBNZb8n3wxD/29BdX0GI6KJUISBPU=;
+	s=20210705; t=1702651160;
+	bh=sqnkwNJyx4Y3XZP1ctBo+dwvCXDcRgLVJAObMWMc4no=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
 	 MIME-Version;
-	b=q9xpxE4w8QHRDLbWBwh7Kox/tRLUNaCHOMzZS+SnKOOeby+RYJSkIbUAiE3qfeE6M
-	 E2AbrZv46hzciIVRLBDwMFFk1KWOkkdVBE7097iBCILEAB7AvgxjFL03mLKQbO7Mva
-	 WykKNx3ocOWtiSuHnHGD5ADo+rYDey1J2FW/I82wGiG1TCEC5lkVq/aakj8YpqPUTg
-	 OBXEBmunFNlCtcR8WwkwlVz0hJDqYG5KZSQfGU72UQtaU5Tndm4aVLxr+bV6XHYF7W
-	 HRMlXKheJtk13gH+tiHvLFrWAPJN6twpoZGO2Dpcm8fNDP0Q46V5pHLvo/rHHlhjrw
-	 8sJzUHdbGgTcg==
-Received: by mail-ej1-f71.google.com with SMTP id a640c23a62f3a-a230f3b3599so42842766b.3
-        for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 06:39:18 -0800 (PST)
+	b=rgEU2+8bHiexwoF/wJDklvHF2ff54gxNGsk3RG68+R/ZrFXJMG1wTv/e2IWFTbTmc
+	 pSuEHLWnRgZdLK162TWxS1zGk0As1mgqQtin7FhPnqtILZ3Hhbep5ddZe2zqxs0qDH
+	 J0oxZ26l1ZClvVt74ZXKdo6tu/LrWdpJJRTvuGoGuXLhEQwgBH+wQDDoWsmEiQUu/k
+	 GUOVaiNa8R2gPsUFIXxkoLlgxZ48/XXbaXZzpkm+tmFIU3Ekxm9sUFt4AVTwNBylNX
+	 N0cncReRWnOu/9366sm/oQ5ZRwdULliSOlwMWky/pPQfB0+v5OQFsXSpc6ZcnQEyQ5
+	 LQuaKuOTjVkXA==
+Received: by mail-ej1-f70.google.com with SMTP id a640c23a62f3a-a1fa0ed2058so46271466b.2
+        for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 06:39:20 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702651158; x=1703255958;
+        d=1e100.net; s=20230601; t=1702651159; x=1703255959;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=KeS7bAuIUzMlkgCBNZb8n3wxD/29BdX0GI6KJUISBPU=;
-        b=nlard5iIXnHO57YUtEkr1b9Wrq3qoBA3+6hcVyt73yldxgAIB1ekT0sOD9vQizMNX4
-         bLsdkZNK7+07r6yOaxf2LY0nMg0CYE9Xzy70T0oM9sE63DV9Az07MBEhvRMYluPNZGFW
-         pb6ifWOfqd+JLhOrMhnFbEdHoOera52gReXmGp4yFawvmY23zjhELBI/FjouzNcKMnNK
-         yE0NgdMByOrsTiJrZ1z1HYHrePGvK8yVtbYDFcj/ihW12M6c0Ri935kcdqe4aZr+ppdQ
-         gLTLfmIrqRlbkCNUrYZ9HaEXC2jhfFdmUYaH+ns9CMO6UvMj3GP9jTjeWrwkMQUb+ZLh
-         ohQw==
-X-Gm-Message-State: AOJu0YzdKnu77ZRePHO6SIrsNLXEMHFpHeCeeI9eyTA8ldtJ6y7lnZ5X
-	lKY1TI6bOcn9SkWuJbKEDiRqsmcFKOy2y5sO9CAN3dGUGIvYE5C6pmGGV1I7QjklMw9ObOnGy39
-	p/wUCvQfL0+cyYu4U8qroLF1cS5E2qlul7ohFPJ0=
-X-Received: by 2002:a17:907:9815:b0:a1e:5ea5:c5db with SMTP id ji21-20020a170907981500b00a1e5ea5c5dbmr7355319ejc.83.1702651158525;
-        Fri, 15 Dec 2023 06:39:18 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHYp9pwfbZkq5mfgtJhASrZeR58D28PvdjDO0/bhC5ViEz08OWOBS4jzY7w2oHtlQRgSLS9Lw==
-X-Received: by 2002:a17:907:9815:b0:a1e:5ea5:c5db with SMTP id ji21-20020a170907981500b00a1e5ea5c5dbmr7355304ejc.83.1702651158328;
-        Fri, 15 Dec 2023 06:39:18 -0800 (PST)
+        bh=sqnkwNJyx4Y3XZP1ctBo+dwvCXDcRgLVJAObMWMc4no=;
+        b=iMtm9pC0Py3j0hnFDC/az8mXzRDhmku5E2kUm0pidEle8y5lqePv9DT6NgFVA8+5+1
+         0jSZ3QmD7X+Du6S8db8uhAYj8anyPGu3sjboAaJqccVU+GlsvmwHqUhVsTW9/g4F0KyC
+         b7OcEEdFBRcYIfJCXi/Ss10F+Yj7o2WTwmxHLQJ2H0nZ4gvquqcx5mM9E9WzqMacTOaO
+         4D0BtyGc9SeTF8rR+CcvVxbK9MZJ5tCOvk9ArT4Mf9Tn+qL/WOLOadiByJl7x687D4Od
+         91JWKxZufqAhXz+MOmzfmcryLVU/V2ZBkND5fsCcYyNaeTA1jJ8qU754yE0tPnfkIIgz
+         ZaPw==
+X-Gm-Message-State: AOJu0YxJZ/fS8jnJJmLZ6/XcRCZUGsQsmP0zEyGAZYoJ+/sZzE/ltxL/
+	qHQ5CZGXCpIoks+FzEbz/Wn0KhWosZmkd+Vwy5WkpodoH/zxBzjpmNlG4R5VcRbz2wDU80mYRc7
+	J4D7RlEk858YqBZNZcUIYaMH2pMJMrU+m5sP6TtM=
+X-Received: by 2002:a17:906:2082:b0:a23:105c:4c58 with SMTP id 2-20020a170906208200b00a23105c4c58mr840401ejq.101.1702651159554;
+        Fri, 15 Dec 2023 06:39:19 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHdZavjGi1n85oMXyfE7FfrDma/NmyRnykjf5VznoZdUOncAJuIX1TOejqRPUe7VuV7Judxgw==
+X-Received: by 2002:a17:906:2082:b0:a23:105c:4c58 with SMTP id 2-20020a170906208200b00a23105c4c58mr840384ejq.101.1702651159359;
+        Fri, 15 Dec 2023 06:39:19 -0800 (PST)
 Received: from stitch.. ([152.115.213.158])
-        by smtp.gmail.com with ESMTPSA id tm6-20020a170907c38600b00a1db955c809sm10789122ejc.73.2023.12.15.06.39.17
+        by smtp.gmail.com with ESMTPSA id tm6-20020a170907c38600b00a1db955c809sm10789122ejc.73.2023.12.15.06.39.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Dec 2023 06:39:17 -0800 (PST)
+        Fri, 15 Dec 2023 06:39:18 -0800 (PST)
 From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
 To: linux-gpio@vger.kernel.org,
 	devicetree@vger.kernel.org,
@@ -83,9 +83,9 @@ Cc: Hoan Tran <hoan@os.amperecomputing.com>,
 	Fu Wei <wefu@redhat.com>,
 	Paul Walmsley <paul.walmsley@sifive.com>,
 	Palmer Dabbelt <palmer@dabbelt.com>
-Subject: [PATCH v1 7/8] riscv: dts: thead: Add TH1520 pinctrl settings for UART0
-Date: Fri, 15 Dec 2023 15:39:05 +0100
-Message-Id: <20231215143906.3651122-8-emil.renner.berthing@canonical.com>
+Subject: [PATCH v1 8/8] riscv: dtb: thead: Add BeagleV Ahead LEDs
+Date: Fri, 15 Dec 2023 15:39:06 +0100
+Message-Id: <20231215143906.3651122-9-emil.renner.berthing@canonical.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20231215143906.3651122-1-emil.renner.berthing@canonical.com>
 References: <20231215143906.3651122-1-emil.renner.berthing@canonical.com>
@@ -97,89 +97,94 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add pinctrl settings for UART0 used as the default debug console on
-both the Lichee Pi 4A and BeagleV Ahead boards.
+Add nodes for the 5 user controllable LEDs on the BeagleV Ahead board.
 
 Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
 ---
- .../boot/dts/thead/th1520-beaglev-ahead.dts   | 26 +++++++++++++++++++
- .../boot/dts/thead/th1520-lichee-pi-4a.dts    | 26 +++++++++++++++++++
- 2 files changed, 52 insertions(+)
+ .../boot/dts/thead/th1520-beaglev-ahead.dts   | 55 +++++++++++++++++++
+ 1 file changed, 55 insertions(+)
 
 diff --git a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-index 91ba96588ae8..54d86aab6656 100644
+index 54d86aab6656..35585eff6ab3 100644
 --- a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
 +++ b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-@@ -58,6 +58,32 @@ &dmac0 {
- 	status = "okay";
- };
+@@ -7,6 +7,8 @@
+ /dts-v1/;
  
-+&padctrl0_apsys {
-+	uart0_pins: uart0-0 {
-+		tx-pins {
-+			pins = "UART0_TXD";
-+			function = "0";
-+			bias-disable;
-+			drive-strength = <3>;
-+			input-disable;
-+			input-schmitt-disable;
-+			slew-rate = <0>;
-+		};
-+
-+		rx-pins {
-+			pins = "UART0_RXD";
-+			function = "0";
-+			bias-disable;
-+			drive-strength = <1>;
-+			input-enable;
-+			input-schmitt-enable;
-+			slew-rate = <0>;
-+		};
+ #include "th1520.dtsi"
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/leds/common.h>
+ 
+ / {
+ 	model = "BeagleV Ahead";
+@@ -34,7 +36,42 @@ chosen {
+ 	memory@0 {
+ 		device_type = "memory";
+ 		reg = <0x0  0x00000000  0x1 0x00000000>;
 +	};
-+};
+ 
++	leds {
++		pinctrl-names = "default";
++		pinctrl-0 = <&led_pins>;
++		compatible = "gpio-leds";
 +
- &uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_pins>;
- 	status = "okay";
- };
-diff --git a/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts b/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
-index 0ae2c20d5641..260aa5e0769f 100644
---- a/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
-+++ b/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
-@@ -29,6 +29,32 @@ chosen {
++		led-1 {
++			gpios = <&gpio4 8 GPIO_ACTIVE_LOW>;
++			color = <LED_COLOR_ID_BLUE>;
++			label = "led1";
++		};
++
++		led-2 {
++			gpios = <&gpio4 9 GPIO_ACTIVE_LOW>;
++			color = <LED_COLOR_ID_BLUE>;
++			label = "led2";
++		};
++
++		led-3 {
++			gpios = <&gpio4 10 GPIO_ACTIVE_LOW>;
++			color = <LED_COLOR_ID_BLUE>;
++			label = "led3";
++		};
++
++		led-4 {
++			gpios = <&gpio4 11 GPIO_ACTIVE_LOW>;
++			color = <LED_COLOR_ID_BLUE>;
++			label = "led4";
++		};
++
++		led-5 {
++			gpios = <&gpio4 12 GPIO_ACTIVE_LOW>;
++			color = <LED_COLOR_ID_BLUE>;
++			label = "led5";
++		};
  	};
  };
  
-+&padctrl0_apsys {
-+	uart0_pins: uart0-0 {
-+		tx-pins {
-+			pins = "UART0_TXD";
-+			function = "0";
+@@ -58,6 +95,24 @@ &dmac0 {
+ 	status = "okay";
+ };
+ 
++&padctrl_aosys {
++	led_pins: led-0 {
++		led-pins {
++			pins = "AUDIO_PA8",  /* GPIO4_8 */
++			       "AUDIO_PA9",  /* GPIO4_9 */
++			       "AUDIO_PA10", /* GPIO4_10 */
++			       "AUDIO_PA11", /* GPIO4_11 */
++			       "AUDIO_PA12"; /* GPIO4_12 */
++			function = "3";
 +			bias-disable;
 +			drive-strength = <3>;
 +			input-disable;
 +			input-schmitt-disable;
 +			slew-rate = <0>;
 +		};
-+
-+		rx-pins {
-+			pins = "UART0_RXD";
-+			function = "0";
-+			bias-disable;
-+			drive-strength = <1>;
-+			input-enable;
-+			input-schmitt-enable;
-+			slew-rate = <0>;
-+		};
 +	};
 +};
 +
- &uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_pins>;
- 	status = "okay";
- };
+ &padctrl0_apsys {
+ 	uart0_pins: uart0-0 {
+ 		tx-pins {
 -- 
 2.40.1
 
