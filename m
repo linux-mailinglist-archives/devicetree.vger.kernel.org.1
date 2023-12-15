@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-25659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25660-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B695814286
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 08:36:55 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BEB18142A2
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 08:41:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E05731F21258
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 07:36:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A6E45B229A8
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 07:41:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F967D30E;
-	Fri, 15 Dec 2023 07:36:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7F8B107A6;
+	Fri, 15 Dec 2023 07:39:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="c8NpYo+i"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JV+IhtlY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8632D515
-	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 07:36:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 100AE1802E
+	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 07:39:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-5529a38eccbso323012a12.3
-        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 23:36:48 -0800 (PST)
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a1fae88e66eso38747866b.3
+        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 23:39:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702625807; x=1703230607; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702625984; x=1703230784; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=frPzA9xTLGKz92/1qTzuW4BZr6aA4/SEQGAGAcHMDq0=;
-        b=c8NpYo+iEZIqQkaM5iIfHROZKG0dsLeEs/qiaN5TLeM90aFlaTpZpYXY77eL3aLokn
-         gw3me5Rc1OquJS2yhb07EDfzSBVHEQm+KRBRiq1qsGBW/N8bZpkXFgNc/JCa9AUefqc5
-         n5BaOKoYFywEuWOL99JuFaAEOxRU+qeE/DzfLmtgYq7WJl7CLpdVAFp4X3IIIORSEUiW
-         u78cLaq7kxLP9HOM3ve/Pi+FCOT7YX8T46crEoyM+2vnHmcI2NYMX+BqdxT7BhTpZdS7
-         isCzNrbBWXaxfcSG1foOJ3U8j4Zkw/yXk0F/QPjEZpn/Dcpk2i7rQvrDaoOK13n8UQFD
-         B8uA==
+        bh=agoRo2mbV6EcQfr+pR1Y40cC9u9vGwA9AsmLL7KV7sU=;
+        b=JV+IhtlYSjAzrKEZOudcxHtgvN2XLoOSGwJAspC/J2PTeWFFdsFaKNpr5P9VKw124d
+         5JxRmJHAgLFSW0cI6xiuBSXy3tUvzIKngTWsxGZpDzcGv/IpLc9tShElaYSyS8eFYnIA
+         YkEKqjNWHLf+/dFbtYSiIyDTR2i1y0APJI5+N8YqoB8Okg/XGc/jnNjuseKIQDjubNIe
+         D9qdIQ+na7GOZNlvSanDq5M2vFyYQo6g/nZi3aqxQQ1w7Z+0eDosRmMCax2ICDYsGiEH
+         xXNg/qngybTah0ZslGour/abBtxjE9u8wi+0djll5ulNFxQcaaDoSigisIaHsELJTH2b
+         poMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702625807; x=1703230607;
+        d=1e100.net; s=20230601; t=1702625984; x=1703230784;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=frPzA9xTLGKz92/1qTzuW4BZr6aA4/SEQGAGAcHMDq0=;
-        b=nXcDwEyoYETbUVkg2QgicfQfVee8ZClZghkYUfTuXilIPwBVEjtxD5gENkxqR6J3vF
-         ixjzPsg/xN1xpsIWCvVU5rDe7KPt4x6A0PIwdalV1Z2N1QxAzHEq03IDqp9eWAelqIcx
-         YCfn7l5LeN32O++a6k9zinM5FpI69Zlz1NK4sIKJz02k0GMFKMcW2FJOIgF8pvvpbpDj
-         7tyxzLZtTh79YT23/QhnazVYrGJi7f+mS5+sto6bxDSPt4aKaTdObDJqalbD6mahML9p
-         Q3R+kYXzF0C/tDbaBk6l+mB1HOoGeIb1uzY5uHNDo5BFGRXMFy8sSlaU2LZmjN8r3dtm
-         cYMg==
-X-Gm-Message-State: AOJu0Yx6QyuypPCkKYdsQTT12SrjNmFIQLWCBBtoP1YXGd0DEzosURx6
-	TZ/+JHNYJEOm9x4kBBWUaNDHMQ==
-X-Google-Smtp-Source: AGHT+IFLu3IzW1GdoPuPzsqFBHKs+amYl6Tq/sMls8BhuNAw7AcNrl2M6sFfog+h0EvGqQIUKi0+Og==
-X-Received: by 2002:a50:bb69:0:b0:54c:4fec:ce with SMTP id y96-20020a50bb69000000b0054c4fec00cemr3275311ede.93.1702625807016;
-        Thu, 14 Dec 2023 23:36:47 -0800 (PST)
+        bh=agoRo2mbV6EcQfr+pR1Y40cC9u9vGwA9AsmLL7KV7sU=;
+        b=a+IXoen+yTnQH1ikgKTOef+Q5V/zcdaMOe58YT2U64H8QVbZBPuprtUhIZiQ3z4UNi
+         SMk4YPn7yfzZ8fesrmWAdgngl29U6yh5ktfNedovkAwDk5pGo+l/9zbjikMCq5tV2aw5
+         9cdT15lEdIvj63Alh0d2F45zk55pb+I5qjQcl7g9KN9SJYxM2AuTV+8G+I7GKzuP8nRI
+         RCViu85S0bw2sMhlLJNvXL6P8uEP/Hp4wbU1RZBxPgS2l5vtgrWw6lUXES3goAdQku/A
+         UU2m9bgXNOXNcxsEFhSbI5h/mI6FGFhO0GzlQMhM9H5lKFDSgP5R4jjLEukQAH/aV4bj
+         oQZQ==
+X-Gm-Message-State: AOJu0YynSzAWsuz069b/LqAPJP0Jy56mgDUTRwi116mdSMVqH3L2TTWK
+	EgAXOn1lQTzQRwPafKEizbsIeg==
+X-Google-Smtp-Source: AGHT+IEiUR23XzrGSDW6M6qYv/YkPmGftSDu+tJRAV+kw5oNpHwlAd5Agd9tOUpmRGBMdgcBDBx8Yw==
+X-Received: by 2002:a17:906:b0c9:b0:a1f:6433:798c with SMTP id bk9-20020a170906b0c900b00a1f6433798cmr4715879ejb.106.1702625984288;
+        Thu, 14 Dec 2023 23:39:44 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id et14-20020a056402378e00b005527cfaa2dfsm1217270edb.49.2023.12.14.23.36.45
+        by smtp.gmail.com with ESMTPSA id ub27-20020a170907c81b00b00a1df4387f16sm10576725ejc.95.2023.12.14.23.39.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Dec 2023 23:36:46 -0800 (PST)
-Message-ID: <d50abf1a-1ee7-4f84-9f53-69dfe9aad103@linaro.org>
-Date: Fri, 15 Dec 2023 08:36:45 +0100
+        Thu, 14 Dec 2023 23:39:43 -0800 (PST)
+Message-ID: <52400d96-6ce0-47af-8f25-0b95f9aa9bec@linaro.org>
+Date: Fri, 15 Dec 2023 08:39:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,21 +66,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: usb: mtk-xhci: add a property for
- Gen1 isoc-in transfer issue
+Subject: Re: [PATCH v7 14/14] dt-bindings: net: ar803x: add qca8084 PHY
+ propetry
 Content-Language: en-US
-To: Chunfeng Yun <chunfeng.yun@mediatek.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Conor Dooley <conor+dt@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- Mathias Nyman <mathias.nyman@intel.com>, linux-usb@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Macpaul Lin <macpaul.lin@mediatek.com>, Eddie Hung <eddie.hung@mediatek.com>
-References: <20231215073431.8512-1-chunfeng.yun@mediatek.com>
+To: Luo Jie <quic_luoj@quicinc.com>, andrew@lunn.ch, davem@davemloft.net,
+ edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ hkallweit1@gmail.com, linux@armlinux.org.uk, corbet@lwn.net,
+ p.zabel@pengutronix.de, f.fainelli@gmail.com
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+References: <20231214094813.24690-1-quic_luoj@quicinc.com>
+ <20231214094813.24690-15-quic_luoj@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,50 +123,227 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231215073431.8512-1-chunfeng.yun@mediatek.com>
+In-Reply-To: <20231214094813.24690-15-quic_luoj@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 15/12/2023 08:34, Chunfeng Yun wrote:
-> For Gen1 isoc-in endpoint on controller before about SSUSB IPM v1.6.0, it
-> still send out unexpected ACK after receiving a short packet in burst
-> transfer, this will cause an exception on connected device, specially for
-> a 4k camera.
-> Add a quirk property "rx-fifo-depth" to work around this hardware issue,
-> prefer to use 2;
-> The side-effect is that may cause performance drop about 10%, including
-> bulk transfer.
+On 14/12/2023 10:48, Luo Jie wrote:
+> The following properties are added for qca8084 PHY.
 > 
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> ---
-> v2: change 'mediatek,rxfifo-depth' to 'rx-fifo-depth'
-> ---
->  .../devicetree/bindings/usb/mediatek,mtk-xhci.yaml   | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
+> 1. add the compatible string "ethernet-phy-id004d.d180" since
+>    the PHY device is not accessible during MDIO bus register.
+> 2. add property "qcom,phy-addr-fixup" for customizing MDIO address.
+
+Why? Commit msg must explain why, not "what".
+
+> 3. add property "qcom,phy-work-mode" for specifying qca8084 PHY
+>    work mode.
+
+Why?
+
+> 4. add the initial clocks and resets.
+Why only initial, not final?
+
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
-> index e9644e333d78..e44a71acb5c0 100644
-> --- a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
-> +++ b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
-> @@ -124,6 +124,18 @@ properties:
->        defined in the xHCI spec on MTK's controller.
->      default: 5000
+> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
+> ---
+>  .../devicetree/bindings/net/qca,ar803x.yaml   | 158 +++++++++++++++++-
+>  1 file changed, 155 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/qca,ar803x.yaml b/Documentation/devicetree/bindings/net/qca,ar803x.yaml
+> index 3acd09f0da86..febff039a44f 100644
+> --- a/Documentation/devicetree/bindings/net/qca,ar803x.yaml
+> +++ b/Documentation/devicetree/bindings/net/qca,ar803x.yaml
+> @@ -14,9 +14,6 @@ maintainers:
+>  description: |
+>    Bindings for Qualcomm Atheros AR803x PHYs
 >  
-> +  rx-fifo-depth:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
+> -allOf:
+> -  - $ref: ethernet-phy.yaml#
+> -
+>  properties:
+>    qca,clk-out-frequency:
+>      description: Clock output frequency in Hertz.
+> @@ -85,6 +82,161 @@ properties:
+>      $ref: /schemas/regulator/regulator.yaml
+>      unevaluatedProperties: false
+>  
+> +  qcom,phy-addr-fixup:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+
+Why no constraints?
+
 > +    description:
-> +      It is a quirk used to work around Gen1 isoc-in endpoint transfer issue
-> +      that still send out unexpected ACK after device finish the burst transfer
-> +      with a short packet and cause an exception, specially on a 4K camera
-> +      device, it happens on controller before about IPM v1.6.0; the side-effect
-> +      is that may cause performance drop about 10%, include bulk transfer,
-> +      prefer to use 2 here.
+> +      MDIO address for 4 PHY devices and 3 PCS devices
 
-What is the meaning of 0-3? bytes? words?
 
-> +    minimum: 0
-> +    maximum: 3
+Why do you need to change MMIO address?
 
+> +
+> +  qcom,phy-work-mode:
+> +    description: PHY device work mode.
+
+Your description copies property name. Tell us something we don't
+know... like the meaning of the vcalues.
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1, 2, 3]
+> +
+> +  clocks:
+> +    items:
+> +      - description: APB bridge clock
+> +      - description: AHB clock
+> +      - description: Security control clock
+> +      - description: TLMM clock
+> +      - description: TLMM AHB clock
+> +      - description: CNOC AHB clock
+> +      - description: MDIO AHB clock
+> +      - description: MDIO master AHB clock
+> +      - description: PCS0 system clock
+> +      - description: PCS1 system clock
+> +      - description: EPHY0 system clock
+> +      - description: EPHY1 system clock
+> +      - description: EPHY2 system clock
+> +      - description: EPHY3 system clock
+> +    description: PHY initial common clock configs
+> +
+> +  clock-names:
+> +    items:
+> +      - const: apb_bridge
+> +      - const: ahb
+> +      - const: sec_ctrl_ahb
+> +      - const: tlmm
+> +      - const: tlmm_ahb
+> +      - const: cnoc_ahb
+> +      - const: mdio_ahb
+> +      - const: mdio_master_ahb
+> +      - const: srds0_sys
+> +      - const: srds1_sys
+> +      - const: gephy0_sys
+> +      - const: gephy1_sys
+> +      - const: gephy2_sys
+> +      - const: gephy3_sys
+> +
+> +  resets:
+> +    items:
+> +      - description: PCS0 system reset
+> +      - description: PCS1 system reset
+> +      - description: EPHY0 system reset
+> +      - description: EPHY1 system reset
+> +      - description: EPHY2 system reset
+> +      - description: EPHY3 system reset
+> +      - description: EPHY0 software reset
+> +      - description: EPHY1 software reset
+> +      - description: EPHY2 software reset
+> +      - description: EPHY3 software reset
+> +      - description: Ethernet DSP reset
+> +    description: PHY initial common reset configs
+> +
+> +  reset-names:
+> +    items:
+> +      - const: srds0_sys
+> +      - const: srds1_sys
+> +      - const: gephy0_sys
+> +      - const: gephy1_sys
+> +      - const: gephy2_sys
+> +      - const: gephy3_sys
+> +      - const: gephy0_soft
+> +      - const: gephy1_soft
+> +      - const: gephy2_soft
+> +      - const: gephy3_soft
+> +      - const: gephy_dsp
+> +
+> +allOf:
+> +  - $ref: ethernet-phy.yaml#
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - ethernet-phy-id004d.d180
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: APB bridge clock
+> +            - description: AHB clock
+> +            - description: Security control clock
+> +            - description: TLMM clock
+> +            - description: TLMM AHB clock
+> +            - description: CNOC AHB clock
+> +            - description: MDIO AHB clock
+> +            - description: MDIO master AHB clock
+> +            - description: PCS0 system clock
+> +            - description: PCS1 system clock
+> +            - description: EPHY0 system clock
+> +            - description: EPHY1 system clock
+> +            - description: EPHY2 system clock
+> +            - description: EPHY3 system clock
+> +        clock-names:
+> +          items:
+> +            - const: apb_bridge
+> +            - const: ahb
+> +            - const: sec_ctrl_ahb
+> +            - const: tlmm
+> +            - const: tlmm_ahb
+> +            - const: cnoc_ahb
+> +            - const: mdio_ahb
+> +            - const: mdio_master_ahb
+> +            - const: srds0_sys
+> +            - const: srds1_sys
+> +            - const: gephy0_sys
+> +            - const: gephy1_sys
+> +            - const: gephy2_sys
+> +            - const: gephy3_sys
+
+?!? Why do you duplicate properties?
+
+> +        resets:
+> +          items:
+> +            - description: PCS0 system reset
+> +            - description: PCS1 system reset
+> +            - description: EPHY0 system reset
+> +            - description: EPHY1 system reset
+> +            - description: EPHY2 system reset
+> +            - description: EPHY3 system reset
+> +            - description: EPHY0 software reset
+> +            - description: EPHY1 software reset
+> +            - description: EPHY2 software reset
+> +            - description: EPHY3 software reset
+> +            - description: Ethernet DSP reset
+> +        reset-names:
+> +          items:
+> +            - const: srds0_sys
+> +            - const: srds1_sys
+> +            - const: gephy0_sys
+> +            - const: gephy1_sys
+> +            - const: gephy2_sys
+> +            - const: gephy3_sys
+> +            - const: gephy0_soft
+> +            - const: gephy1_soft
+> +            - const: gephy2_soft
+> +            - const: gephy3_soft
+> +            - const: gephy_dsp
+> +      required:
+> +        - qcom,phy-addr-fixup
+> +        - qcom,phy-work-mode
+> +        - clocks
+> +        - clock-names
+> +        - resets
+> +        - reset-names
+> +    else:
+> +      properties:
+> +        qcom,phy-addr-fixup: false
+> +        qcom,phy-work-mode: false
+
+And what about clcoks and resets for other variants? Your patch now
+defined them for all variants without any explanation in commit msg.
+
+> +
+>  unevaluatedProperties: false
+>  
+>  examples:
 
 Best regards,
 Krzysztof
