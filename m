@@ -1,25 +1,25 @@
-Return-Path: <devicetree+bounces-25815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25816-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85588814A81
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 15:30:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43FF1814A8F
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 15:33:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 41F1D285780
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 14:30:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C64A11F23CDA
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 14:33:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1C2D31741;
-	Fri, 15 Dec 2023 14:30:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 275661117;
+	Fri, 15 Dec 2023 14:33:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="DYOxdjhR"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="MHuHuFjC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43C4C31A60;
-	Fri, 15 Dec 2023 14:30:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BF1A651;
+	Fri, 15 Dec 2023 14:33:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
@@ -27,13 +27,13 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
 	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
 	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
 	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=P3iLHttbrgUIWYcVkIFf5jAva/J51DmOVnlpZQQDo+k=; b=DYOxdjhRrUI6Emgjy6KKYO0u2G
-	83r8usrhOHjsEw53n/T5X7ttj9KFKKNdK8V/nM96s5gW/GRjs3VA/eQNtphY0p5rPXewmTam5jmRH
-	vJUA9wBTuDGyYsxtZCtGaamJCXnkP7yQOKkBnjYCCd6mKYSvRD0cJ95Hhtoso8dvh5ws=;
+	bh=9O2SRFCsr+fHmC5dGHeu5hxIQaUwVlsgWHNa5PRaEtE=; b=MHuHuFjCfdc1VWzBD5Ao1wfsum
+	tY3zw85layAXOXNDuyK+y+5w9wphKbSm7sfW49RZuk+a6vO/VfaKYkWQrpoUVuxeQI7XgsMLv9eRu
+	If3Tj4MG5VlNX6HbFsK8fA1wlKLWn2gyZQqc7fVOmysE6l64gEH8ReKoahO3UJybiRmg=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
 	(envelope-from <andrew@lunn.ch>)
-	id 1rE9Cb-00323Q-Ao; Fri, 15 Dec 2023 15:30:09 +0100
-Date: Fri, 15 Dec 2023 15:30:09 +0100
+	id 1rE9FX-00324X-QC; Fri, 15 Dec 2023 15:33:11 +0100
+Date: Fri, 15 Dec 2023 15:33:11 +0100
 From: Andrew Lunn <andrew@lunn.ch>
 To: Tobias Waldekranz <tobias@waldekranz.com>
 Cc: davem@davemloft.net, kuba@kernel.org, linux@armlinux.org.uk,
@@ -42,7 +42,7 @@ Cc: davem@davemloft.net, kuba@kernel.org, linux@armlinux.org.uk,
 	netdev@vger.kernel.org, devicetree@vger.kernel.org
 Subject: Re: [PATCH net-next 1/4] net: phy: marvell10g: Support firmware
  loading on 88X3310
-Message-ID: <627fbf7d-5992-4c4b-9e32-b34e363db928@lunn.ch>
+Message-ID: <cde8ad34-0114-4cf4-b757-12ea6763a44a@lunn.ch>
 References: <20231214201442.660447-1-tobias@waldekranz.com>
  <20231214201442.660447-2-tobias@waldekranz.com>
 Precedence: bulk
@@ -55,43 +55,15 @@ Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 In-Reply-To: <20231214201442.660447-2-tobias@waldekranz.com>
 
-On Thu, Dec 14, 2023 at 09:14:39PM +0100, Tobias Waldekranz wrote:
-> When probing, if a device is waiting for firmware to be loaded into
-> its RAM, ask userspace for the binary and load it over XMDIO.
-
-Does a device without firmware have valid ID registers? Is the driver
-going to probe via bus enumeration, or is it necessary to use a
-compatible with ID values?
+> +	for (i = 0, csum = 0; i < hdr->data.size; i++)
+> +		csum += data[i];
 
 > +	for (sect = fw->data; (sect + sizeof(hdr)) < (fw->data + fw->size);) {
-
-This validates that the firmware is big enough to hold the header...
-
 > +		memcpy(&hdr, sect, sizeof(hdr));
 > +		hdr.data.size = cpu_to_le32(hdr.data.size);
-> +		hdr.data.addr = cpu_to_le32(hdr.data.addr);
-> +		hdr.data.csum = cpu_to_le16(hdr.data.csum);
-> +		hdr.next_hdr = cpu_to_le32(hdr.next_hdr);
 
-I'm surprised sparse is not complaining about this. You have the same
-source and destination, and sparse probably wants the destination to
-be marked as little endian.
+hdr.data.size is little endian. Doing a for loop using a little endian
+test seems wrong. Should this actually be le32_to_cpu()?
 
-> +		hdr.csum = cpu_to_le16(hdr.csum);
-> +
-> +		for (i = 0, csum = 0; i < offsetof(struct mv3310_fw_hdr, csum); i++)
-> +			csum += sect[i];
-> +
-> +		if ((u16)~csum != hdr.csum) {
-> +			dev_err(&phydev->mdio.dev, "Corrupt section header\n");
-> +			err = -EINVAL;
-> +			break;
-> +		}
-> +
-> +		err = mv3310_load_fw_sect(phydev, &hdr, sect + sizeof(hdr));
-
-What i don't see is any validation that the firmware left at sect +
-sizeof(hdr) big enough to contain hdr.data.size bytes.
-
-	    Andrew
+       Andrew
 
