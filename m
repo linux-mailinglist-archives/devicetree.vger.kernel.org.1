@@ -1,129 +1,122 @@
-Return-Path: <devicetree+bounces-25748-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25749-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19AB18146AE
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 12:19:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6F8A8146B1
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 12:20:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 48C7D1C210C6
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 11:19:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 161141C22BE5
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 11:20:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4B6D24A03;
-	Fri, 15 Dec 2023 11:19:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69CCD200AD;
+	Fri, 15 Dec 2023 11:19:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E40F1C2A9;
-	Fri, 15 Dec 2023 11:19:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1D56AC15;
-	Fri, 15 Dec 2023 03:20:17 -0800 (PST)
-Received: from [192.168.1.3] (unknown [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7BBA53F738;
-	Fri, 15 Dec 2023 03:19:29 -0800 (PST)
-Message-ID: <09447d69-e0ce-13e9-95ea-0db475b8bb6e@arm.com>
-Date: Fri, 15 Dec 2023 11:19:24 +0000
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A47B24B23;
+	Fri, 15 Dec 2023 11:19:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=artur-rojek.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=artur-rojek.eu
+Received: by mail.gandi.net (Postfix) with ESMTPA id 60F8D60005;
+	Fri, 15 Dec 2023 11:19:51 +0000 (UTC)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v3 1/8] dt-bindings: arm: Add support for CMB element size
-Content-Language: en-US
-To: Tao Zhang <quic_taozha@quicinc.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Jinlong Mao <quic_jinlmao@quicinc.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, coresight@lists.linaro.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
- Yuanfang Zhang <quic_yuanfang@quicinc.com>,
- Trilok Soni <quic_tsoni@quicinc.com>, Song Chai <quic_songchai@quicinc.com>,
- linux-arm-msm@vger.kernel.org, andersson@kernel.org,
- Mathieu Poirier <mathieu.poirier@linaro.org>,
- Suzuki K Poulose <suzuki.poulose@arm.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Konrad Dybcio <konradybcio@gmail.com>, Mike Leach <mike.leach@linaro.org>
-References: <1700533494-19276-1-git-send-email-quic_taozha@quicinc.com>
- <1700533494-19276-2-git-send-email-quic_taozha@quicinc.com>
-From: James Clark <james.clark@arm.com>
-In-Reply-To: <1700533494-19276-2-git-send-email-quic_taozha@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+Date: Fri, 15 Dec 2023 12:19:51 +0100
+From: Artur Rojek <contact@artur-rojek.eu>
+To: Chris Morgan <macroalpha82@gmail.com>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+ dmitry.torokhov@gmail.com, Chris Morgan <macromorgan@hotmail.com>, Paul
+ Cercueil <paul@crapouillou.net>
+Subject: Re: [RFC] dt-bindings: input: Clarify that abs_min must be less than
+ abs_max
+In-Reply-To: <20231215024022.122022-1-macroalpha82@gmail.com>
+References: <20231215024022.122022-1-macroalpha82@gmail.com>
+Message-ID: <03a9a56362b0559234d4a21a4de3e32e@artur-rojek.eu>
+X-Sender: contact@artur-rojek.eu
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
+X-GND-Sasl: contact@artur-rojek.eu
 
-
-
-On 21/11/2023 02:24, Tao Zhang wrote:
-> Add property "qcom,cmb-elem-size" to support CMB(Continuous
-> Multi-Bit) element for TPDM. The associated aggregator will read
-> this size before it is enabled. CMB element size currently only
-> supports 32-bit and 64-bit.
+On 2023-12-15 03:40, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
-> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
+> uinput refuses to work with abs devices where the min value is greater
+> than the max value. uinput_validate_absinfo() returns -EINVAL if this
+> is the case and prevents using uinput on such a device. Since uinput
+> has worked this way since at least kernel 2.6 (or prior) I presume that
+> this is the correct way of doing things, and that this documentation
+> needs to be clarified that min must always be less than max.
+> 
+> uinput is used in my use case to bind together adc-joystick devices
+> with gpio-keys devices to create a single unified gamepad for
+> userspace.
+> 
+> Note that there are several boards that will need to be corrected,
+> all but a few of them I maintain. Submitting as an RFC for now to get
+> comments from the input team and the original author in case there is
+> something I am missing.
+> 
+> Fixes: 7956b0d4694f ("dt-bindings: input: Add docs for ADC driven 
+> joystick")
+> 
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 > ---
->  .../bindings/arm/qcom,coresight-tpdm.yaml     | 28 +++++++++++++++++++
->  1 file changed, 28 insertions(+)
+>  Documentation/devicetree/bindings/input/adc-joystick.yaml | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
-> index 61ddc3b5b247..0d9fe01a8b15 100644
-> --- a/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
-> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
-> @@ -52,6 +52,15 @@ properties:
->      $ref: /schemas/types.yaml#/definitions/uint8
->      enum: [32, 64]
->  
-> +  qcom,cmb-element-size:
-> +    description:
-> +      Specifies the CMB(Continuous Multi-Bit) element size supported by
-> +      the monitor. The associated aggregator will read this size before it
-> +      is enabled. CMB element size currently only supports 8-bit, 32-bit
-> +      and 64-bit.
-> +    $ref: /schemas/types.yaml#/definitions/uint8
-> +    enum: [8, 32, 64]
-> +
->    qcom,dsb-msrs-num:
->      description:
->        Specifies the number of DSB(Discrete Single Bit) MSR(mux select register)
-> @@ -110,4 +119,23 @@ examples:
->        };
->      };
->  
-> +    tpdm@6c29000 {
-> +      compatible = "qcom,coresight-tpdm", "arm,primecell";
-> +      reg = <0x06c29000 0x1000>;
-> +      reg-names = "tpdm-base";
+> diff --git a/Documentation/devicetree/bindings/input/adc-joystick.yaml
+> b/Documentation/devicetree/bindings/input/adc-joystick.yaml
+> index 6c244d66f8ce..8f5cdd5ef190 100644
+> --- a/Documentation/devicetree/bindings/input/adc-joystick.yaml
+> +++ b/Documentation/devicetree/bindings/input/adc-joystick.yaml
+> @@ -73,8 +73,9 @@ patternProperties:
+>          description: >
+>            Minimum and maximum values produced by the axis.
+>            For an ABS_X axis this will be the left-most and right-most
+> -          inclination of the joystick. If min > max, it is left to 
+> userspace to
+> -          treat the axis as inverted.
+> +          inclination of the joystick. The axis must always be 
+> expressed as
+> +          min < max, if the axis is inverted it is left to userspace 
+> to handle
+> +          the inversion.
 
-I think this one gives this error:
+Hi Chris,
 
- $ make dt_binding_check DT_SCHEMA_FILES=arm/qcom,coresight
+Device Tree is supposed to depict the actual state of the hardware.
+I worded the adc-joytick's adc-range property specifically, so that it
+covers a case of GCW Zero hardware [1], which has a joystick,  where the
+ABS_X axis reports increasing values for the left-wards inclination of
+the joystick, and decreasing values for the right-wards inclination. You
+are saying that there are even more boards that need to be corrected -
+those are all situations, where DT depicts the actual behavior of the
+hardware.
+What you are trying to do is change hardware description, because of how
+a driver in an OS works. You should instead fix behavior of said driver,
+even if nobody stumbled upon that issue since 2.6 :) We fixed libSDL [2]
+for the same reason.
 
- DTC_CHK Documentation/devicetree/bindings/arm/qcom,coresight-
-  tpdm.example.dtb
- qcom,coresight-tpdm.example.dtb: tpdm@6c29000: 'reg-names' does not
-  match any of the regexes: 'pinctrl-[0-9]+'
-        from schema $id: http://devicetree.org/schemas
-        /arm/qcom,coresight-tpdm.yaml#
+Cheers,
+Artur
 
-> +
-> +      qcom,cmb-element-size = /bits/ 8 <64>;
-> +
-> +      clocks = <&aoss_qmp>;
-> +      clock-names = "apb_pclk";
-> +
-> +      out-ports {
-> +        port {
-> +          tpdm_ipcc_out_funnel_center: endpoint {
-> +            remote-endpoint =
-> +              <&funnel_center_in_tpdm_ipcc>;
-> +          };
-> +        };
-> +      };
-> +    };
->  ...
+PS. cc'd Paul to the conversation.
+
+[1] 
+https://github.com/OpenDingux/linux/blob/jz-6.1/arch/mips/boot/dts/ingenic/gcw0.dts#L273C12-L273C12
+[2] https://github.com/libsdl-org/SDL-1.2/commit/46806790ad043
+
+>            This property is interpreted as two signed 32 bit values.
+> 
+>        abs-fuzz:
+
 
