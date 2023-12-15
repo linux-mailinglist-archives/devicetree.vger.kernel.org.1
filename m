@@ -1,171 +1,159 @@
-Return-Path: <devicetree+bounces-25846-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25847-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 148FC814C12
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 16:48:46 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1359814C1E
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 16:52:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9BE401F2335C
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 15:48:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 64A1DB22502
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 15:52:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE181381AF;
-	Fri, 15 Dec 2023 15:48:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B72739FC7;
+	Fri, 15 Dec 2023 15:52:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WjKqstUq"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="DJ9e7+sf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5051A374EA
-	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 15:48:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a1d93da3eb7so94642566b.0
-        for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 07:48:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702655317; x=1703260117; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6V+t0K1oct9Wudj2H/d2gc++61U+do5HqF41fn098Q8=;
-        b=WjKqstUqCGsJkSUiM4TwZnmDbk/KW/cCrAMl/Gzf+jCl9uQGHs8wRfQiRc0GfkNcuj
-         386IpgD8zz/oA+ZY5H1arLL1/lEb6W8+FGyUqHmaRMQlSvlkOAtKGGHz/YJJmbFJvHIN
-         f+iWd6VFFmZwFcPk3IELYyqJ0T5Ywgu8Y39FCWzQlZ0BYOUh6GDa5aY0xL9VXG4RjgsW
-         lcvHtL+75kqvkgtuMXfUJ5U3fiAlsC2rLaESZHOe8ubaUwZ4aSHX0P4d+7bqoF8vXQ4Z
-         e0nYGvQbvGC84iHbnBr4WP7P1d32JCQSVejaX5N26oLvgj9Kbgpg4Y8BcwlvD0cFN9K7
-         yYKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702655317; x=1703260117;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6V+t0K1oct9Wudj2H/d2gc++61U+do5HqF41fn098Q8=;
-        b=o+F6uhH00FHlcTto7U4zTzFC2V1J6TbFUJUQc9jCJzSFx/wotwj0g0nTO3JjDPmqH0
-         MbJR00ujR/DLmdUxAb0jHrsu7DTLgfsCfDP3WEC46pdS6AvRfld5wVvzcjdENuJaDQaI
-         LoDVKxqRacxQSmkr+2reRyX0rdqo5lvFblQ1tZnnmivqNqhQXYrPMII9PAPHtdiXkz6l
-         Zqcl3bzWBcnwyRCi4spJTBerPuNplCfqWS3ElBixETXZ+5G0Oqw0OPWj7Dlrbpdac2gg
-         Cvq1vRfXf4zEAkBZwy5ysxdUSpjvJ+wevTOCXDMZQJIFdjKFQ4HU+ULR2cFdLTbeiHQ7
-         SLxA==
-X-Gm-Message-State: AOJu0YyeAq2nb+21QrUNUEZANhKRNw5lmWfjF3Hgpu3JHmM2ULHnipO1
-	ra+cQ46jE49afwDn97uIw/EFYw==
-X-Google-Smtp-Source: AGHT+IGByvw04w73VsKBlxa7B7G/1sxNz8ygLYCarskgry1OFwGj4M8JCxuwxPewDmOZidbZO7nxaQ==
-X-Received: by 2002:a17:907:868d:b0:a19:a1ba:8ccb with SMTP id qa13-20020a170907868d00b00a19a1ba8ccbmr6541639ejc.105.1702655317599;
-        Fri, 15 Dec 2023 07:48:37 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id mm15-20020a1709077a8f00b00a1b6ec7a88asm10887144ejc.113.2023.12.15.07.48.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Dec 2023 07:48:37 -0800 (PST)
-Message-ID: <d63e8b6a-c0fc-4d99-b399-86f66f369176@linaro.org>
-Date: Fri, 15 Dec 2023 16:48:35 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F67339FC3;
+	Fri, 15 Dec 2023 15:52:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=6ubkWsYpV4BWzzyphoro0gLj1g3jOZKtwuoxzD7eTew=; b=DJ9e7+sfL3xQjeVhIpkR5qck79
+	jb2u17HR6IwzrVfyfpQxuZuiXdXag1N3ANpkRX2DDAp9CwIWiEuj+0QBoK97C3buJtkB/axaNTaZH
+	uqarP5S7B8q48ZO0QPSUAatxHUbTAWv7Lng2QO6dWsmEP1yPwZvAetXTfxIfL25jybtee6ragopnn
+	rbovznOgw7dV3/kFwEndcojVTfZ7JuhDeyHnW0uXt3REnRkNjlUdhWfyrCIf5MMPRLWnCblvORMtB
+	oloN4h7cUnDnqlQ1lDtJw13gwk1YFR/93T8QCyGSN6pJWtFUs0Gm9BF02hdiVUzPoqrOpCAaBQSoF
+	jNWVEiDg==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:33866)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1rEAU9-0002rv-0s;
+	Fri, 15 Dec 2023 15:52:21 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1rEAUB-0003k3-6j; Fri, 15 Dec 2023 15:52:23 +0000
+Date: Fri, 15 Dec 2023 15:52:23 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Tobias Waldekranz <tobias@waldekranz.com>
+Cc: davem@davemloft.net, kuba@kernel.org, kabel@kernel.org, andrew@lunn.ch,
+	hkallweit1@gmail.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 1/4] net: phy: marvell10g: Support firmware
+ loading on 88X3310
+Message-ID: <ZXx2N85XNeugFtPa@shell.armlinux.org.uk>
+References: <20231214201442.660447-1-tobias@waldekranz.com>
+ <20231214201442.660447-2-tobias@waldekranz.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [net-next PATCH v3 1/4] dt-bindings: net: phy: Document new LEDs
- active-low property
-Content-Language: en-US
-To: Christian Marangi <ansuelsmth@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
- Heiner Kallweit <hkallweit1@gmail.com>, Russell King
- <linux@armlinux.org.uk>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, tobias Waldekranz <tobias@waldekranz.com>
-References: <20231213111322.6152-1-ansuelsmth@gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231213111322.6152-1-ansuelsmth@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231214201442.660447-2-tobias@waldekranz.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On 13/12/2023 12:13, Christian Marangi wrote:
-> Document new LEDs active-low property to define if the LED require to be
-> set low to be turned on.
-> 
-> active-low can be defined in the leds node for PHY that apply the LED
-> polarity globally for each attached LED or in the specific led node for
-> PHY that supports setting the LED polarity per LED.
-> 
-> Declaring both way is not supported and will result in the schema
-> getting rejected.
-> 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> ---
-> Changes v3:
-> - Out of RFC
-> Changes v2:
-> - Add this patch
-> 
->  .../devicetree/bindings/net/ethernet-phy.yaml | 20 +++++++++++++++++++
->  1 file changed, 20 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> index 8fb2a6ee7e5b..9cb3981fed2a 100644
-> --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> @@ -213,6 +213,11 @@ properties:
->        '#size-cells':
->          const: 0
->  
-> +      'active-low':
+On Thu, Dec 14, 2023 at 09:14:39PM +0100, Tobias Waldekranz wrote:
+> +	MV_PMA_BOOT_PRGS_MASK	= 0x0006,
+> +	MV_PMA_BOOT_PRGS_INIT	= 0x0000,
+> +	MV_PMA_BOOT_PRGS_WAIT	= 0x0002,
+> +	MV_PMA_BOOT_PRGS_CSUM	= 0x0004,
+> +	MV_PMA_BOOT_PRGS_JRAM	= 0x0006,
 
-Drop quotes, no need for them.
+You only seem to use PRGS_WAIT, the rest seem unused.
 
-As pointed out in other patchset, bool might not be enough.
-https://lore.kernel.org/all/74cb1d1c-64b8-4fb0-9e6d-c2fad8417232@lunn.ch/
-Anyway, both cases probably needs to be considered here.
+> +struct mv3310_fw_hdr {
+> +	struct {
+> +		u32 size;
+> +		u32 addr;
+> +		u16 csum;
+> +	} __packed data;
 
-Best regards,
-Krzysztof
+It's probably better to get rid of this embedded struct and just place
+the members in the parent struct (although csum woul dneed to be
+renamed).
 
+> +
+> +	u8 flags;
+> +#define MV3310_FW_HDR_DATA_ONLY BIT(6)
+> +
+> +	u8 port_skip;
+> +	u32 next_hdr;
+> +	u16 csum;
+> +
+> +	u8 pad[14];
+> +} __packed;
+> +
+> +static int mv3310_load_fw_sect(struct phy_device *phydev,
+> +			       const struct mv3310_fw_hdr *hdr, const u8 *data)
+> +{
+> +	int err = 0;
+> +	size_t i;
+> +	u16 csum;
+> +
+> +	dev_dbg(&phydev->mdio.dev, "Loading %u byte %s section at 0x%08x\n",
+> +		hdr->data.size,
+> +		(hdr->flags & MV3310_FW_HDR_DATA_ONLY) ? "data" : "executable",
+> +		hdr->data.addr);
+> +
+> +	for (i = 0, csum = 0; i < hdr->data.size; i++)
+> +		csum += data[i];
+> +
+> +	if ((u16)~csum != hdr->data.csum) {
+> +		dev_err(&phydev->mdio.dev, "Corrupt section data\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	phy_lock_mdio_bus(phydev);
+> +
+> +	/* Any existing checksum is cleared by a read */
+> +	__phy_read_mmd(phydev, MDIO_MMD_PCS, MV_PCS_FW_CSUM);
+> +
+> +	__phy_write_mmd(phydev, MDIO_MMD_PCS, MV_PCS_FW_ADDR_LOW,  hdr->data.addr & 0xffff);
+> +	__phy_write_mmd(phydev, MDIO_MMD_PCS, MV_PCS_FW_ADDR_HIGH, hdr->data.addr >> 16);
+> +
+> +	for (i = 0; i < hdr->data.size; i += 2) {
+> +		__phy_write_mmd(phydev, MDIO_MMD_PCS, MV_PCS_FW_DATA,
+> +				(data[i + 1] << 8) | data[i]);
+> +	}
+> +
+> +	csum = __phy_read_mmd(phydev, MDIO_MMD_PCS, MV_PCS_FW_CSUM);
+> +	if ((u16)~csum != hdr->data.csum) {
+> +		dev_err(&phydev->mdio.dev, "Download failed\n");
+> +		err = -EIO;
+> +		goto unlock;
+> +	}
+> +
+> +	if (hdr->flags & MV3310_FW_HDR_DATA_ONLY)
+> +		goto unlock;
+> +
+> +	__phy_modify_mmd(phydev, MDIO_MMD_PMAPMD, MV_PMA_BOOT, 0, MV_PMA_BOOT_APP_LOADED);
+> +	mdelay(200);
+> +	if (!(__phy_read_mmd(phydev, MDIO_MMD_PMAPMD, MV_PMA_BOOT) & MV_PMA_BOOT_APP_STARTED)) {
+> +		dev_err(&phydev->mdio.dev, "Application did not startup\n");
+> +		err = -ENODEV;
+> +	}
+
+I'm confused why this is done here - after each section in the firmware
+file, rather than having loaded all sections in the firmware file and
+only then starting the application. Surely if there's multiple sections
+that we're going to load, we want to load _all_ sections before starting
+the application?
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
