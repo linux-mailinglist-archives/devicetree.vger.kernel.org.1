@@ -1,159 +1,245 @@
-Return-Path: <devicetree+bounces-25632-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25633-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 093E3814120
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 06:05:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C32CA81413D
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 06:27:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 63302B21E7A
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 05:05:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B69B21C2238B
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 05:27:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BCDA1C31;
-	Fri, 15 Dec 2023 05:05:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20315569C;
+	Fri, 15 Dec 2023 05:26:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="fHdM8lVo"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="THr7GBr3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2075.outbound.protection.outlook.com [40.107.104.75])
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7725F568C;
-	Fri, 15 Dec 2023 05:04:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=idZULi7Of9CCZ2hiQCub4SBy0JrdObw/Tl6QlS+atbIcdnS1R1yzPf95RshfOV6v57fbzvxtEv+yRHBfn7qR3OEdnPkgVHwIeJJoGXkmKi0lRJ2XiNE+wbnrhbuXiXxmtLDRQ4VRGcFkwG4+4NL0yobYEHH7SvPjCjXJlVV0W6FZZna9IVZX7J8r0KLIT1OvFLJsOxTHBOQI39EmCdDBH0d14UG43dpftEibXQJ6eNvF+D9XeuTx8VEPsKc6Kd1fPDiKDYrWMV1UAWMAmPRZeCje2XSLkp8DUfySwAM0Rt5Ub3675WeCGJm1zDw8duSYRSN+4tpqoLxIIUYJtjoDIQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9+Z0KMEgY9mk188TyBhhqCnmZ9Z1niI5ahCrn69K+jQ=;
- b=l37gXC9HCLPWUoJEJMa4926zAYjzpcj2p2yrVkVdQ3/YS76VtmgnFoYs6jMbb6vtWSv11YDYiCQPVX/dEODvTkoWjreAlrtNF06yFpaX6jvWlsKqDZFTvnfizfgQX8ep3O6hKAsMaham71bOqR64UnUB8gw1TZ61H4Egn+VZu2ltZCw0w2qlr9Vq23rCEu5NqTB8D9gwXaNS79FwroBkwLEoDcOYUv5Us1Ef2K6r5D6qkB+4XIWEOifVI3i4QpveWETmMCxJpKI5rRK3y2UXoCT6Ciy8ovO0nUMGp3qB4+lyD1gPV5tLr+R+ZNFUzVs21a6IBpBorqcDZ7MuPKqSSg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9+Z0KMEgY9mk188TyBhhqCnmZ9Z1niI5ahCrn69K+jQ=;
- b=fHdM8lVoB/tTiYzBE1bhpyj77QBTJ7wnwOQZtoh6JbiePSZTUGZ47oEJayycD5Shbk9xeTK3hCYeDC42VwmJOlRftSww7fAouI5FWEarpN2KuveDWc8GWGTvevq0lkjBpHhpcSeMCBeEscMdj8gMb+dgWZuSXXgYhl/ZT4ssqm8=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM6PR04MB4838.eurprd04.prod.outlook.com (2603:10a6:20b:4::16)
- by AM0PR04MB7025.eurprd04.prod.outlook.com (2603:10a6:208:19c::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.30; Fri, 15 Dec
- 2023 05:04:55 +0000
-Received: from AM6PR04MB4838.eurprd04.prod.outlook.com
- ([fe80::95f5:5118:258f:ee40]) by AM6PR04MB4838.eurprd04.prod.outlook.com
- ([fe80::95f5:5118:258f:ee40%7]) with mapi id 15.20.7091.030; Fri, 15 Dec 2023
- 05:04:55 +0000
-Date: Fri, 15 Dec 2023 00:04:45 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: krzysztof.kozlowski@linaro.org, shawnguo@kernel.org, festevam@denx.de
-Cc: devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
-	imx@lists.linux.dev, joy.zou@nxp.com,
-	krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
-	peng.fan@nxp.com, robh+dt@kernel.org, shenwei.wang@nxp.com,
-	vkoul@kernel.org
-Subject: Re: [PATCH 0/4] dmaengine: fsl-edma: fix eDMAv4 uart dma loop test
- failure
-Message-ID: <ZXvebWSmOhHRIcZc@lizhi-Precision-Tower-5810>
-References: <20231114154824.3617255-1-Frank.Li@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231114154824.3617255-1-Frank.Li@nxp.com>
-X-ClientProxiedBy: BYAPR05CA0105.namprd05.prod.outlook.com
- (2603:10b6:a03:e0::46) To VI1PR04MB4845.eurprd04.prod.outlook.com
- (2603:10a6:803:51::30)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A307463A9
+	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 05:26:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
+	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20231215052619epoutp01e8d247c4094f29cce73f635293d21189~g6ggMKbza2601626016epoutp01n
+	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 05:26:19 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20231215052619epoutp01e8d247c4094f29cce73f635293d21189~g6ggMKbza2601626016epoutp01n
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1702617979;
+	bh=eL9hYEmNDzP5hw9IEZEImZuBabBqahO/D3bSV7irFQA=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=THr7GBr3zww+nZ8fljL6K7Ln3j++5cQTtrx0C4DBsV/LOKTRwasAgdQv8FnEiTqjz
+	 2hkLw7n8S+8Jc35RkNuKRI6WoiBdZDTPiEsFlD8XduKeUzIvLT5UJqJ4jweVmfhupL
+	 3BtqATTbHulbC26B5N4MaW3TkM2QavTDbJEvqSU8=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTP id
+	20231215052619epcas5p4938fc462999af551f8b9191ab99bee0d~g6gf7b1fa0727707277epcas5p4y;
+	Fri, 15 Dec 2023 05:26:19 +0000 (GMT)
+Received: from epsmgec5p1-new.samsung.com (unknown [182.195.38.182]) by
+	epsnrtp2.localdomain (Postfix) with ESMTP id 4SryPN41Ggz4x9Q9; Fri, 15 Dec
+	2023 05:26:16 +0000 (GMT)
+Received: from epcas5p2.samsung.com ( [182.195.41.40]) by
+	epsmgec5p1-new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	2C.89.19369.873EB756; Fri, 15 Dec 2023 14:26:16 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
+	20231215051108epcas5p2c657d2629ed8451ad519644c28e6c234~g6TPpQhPL1850118501epcas5p2X;
+	Fri, 15 Dec 2023 05:11:08 +0000 (GMT)
+Received: from epsmgmcp1.samsung.com (unknown [182.195.42.82]) by
+	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20231215051108epsmtrp1c0c8998163945bab413ca8d1c50a1178~g6TPoXwJW2671726717epsmtrp1b;
+	Fri, 15 Dec 2023 05:11:08 +0000 (GMT)
+X-AuditID: b6c32a50-c99ff70000004ba9-e3-657be378944b
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+	epsmgmcp1.samsung.com (Symantec Messaging Gateway) with SMTP id
+	E3.B3.18939.CEFDB756; Fri, 15 Dec 2023 14:11:08 +0900 (KST)
+Received: from FDSFTE308 (unknown [107.122.81.79]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20231215051106epsmtip28b912955bc5af8f9bb80aae351fd2e89~g6TOZnKls0775707757epsmtip2c;
+	Fri, 15 Dec 2023 05:11:06 +0000 (GMT)
+From: "Aakarsh Jain" <aakarsh.jain@samsung.com>
+To: "'Rob Herring'" <robh@kernel.org>, "'Mauro Carvalho Chehab'"
+	<mchehab@kernel.org>, "'Krzysztof Kozlowski'"
+	<krzysztof.kozlowski+dt@linaro.org>, "'Conor Dooley'" <conor+dt@kernel.org>,
+	"'Marek Szyprowski'" <m.szyprowski@samsung.com>
+Cc: <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+In-Reply-To: <20231214195553.862920-1-robh@kernel.org>
+Subject: RE: [PATCH v2] media: dt-bindings: samsung,s5p-mfc: Fix iommu
+ properties schemas
+Date: Fri, 15 Dec 2023 10:41:04 +0530
+Message-ID: <114701da2f15$1c8cf730$55a6e590$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM6PR04MB4838:EE_|AM0PR04MB7025:EE_
-X-MS-Office365-Filtering-Correlation-Id: 22ef390e-d369-462e-1828-08dbfd2b604a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	rQwtQc5l5/tiG50+vWG3/JNNUJcuf20MNmOgoOv8hKiXNnDLjCTdgW0cEtOYejpscMb8mGATa55Mhsm5XAsCKDEkzXh/31MKEWcCSen+2SsMqd3ae+7tK2sDM36wmjQTtonBMlwcTcpJBSgy22eti9g3pNV6SQXRpaMvz+yGvEoHYacwYlt2ajTKxeYhEjwWbpUi/oy9eUMWCtvDSdH3bjuQTqMGs1LTEWCtu8K1bp4VnubGnA3bjxrXVC+3gYWcl2a6zi1iCivmKeFdvEs0Uzad04Y5pD+JxX/uNOdu/zKQQgkxNSDu3wlO/EUoe7Vkb4dtZEH6wNif7JD+a7hllXLJ159AAQ+7klgv33w0C3kA/gvdNqgSgPATiugNh7/+0wTRwSzHKMjUMqgFEgEYpEbyoXXTqtVzUSH9UnSxjbZIw1Gj2GfAQMVsK1UlhG+H4Mv/7GWPJmtvi1Fd2VpgpITkrQ3E+S46iK+1M2lppCNHydGsG9HR7v7bDrfQrhUdV4Pqq08kAMZ/P1YRjuiPooLiH/SeRbQm3YgrwygqkVmZNk6z/KR03lrN6KP9mJFoiC8wERUbg3ggmnuTQ6kU1w46x4rl1scHGbMviKgiSTdK5AOQKhGkumGZya6x9Pu5
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4838.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(39860400002)(396003)(136003)(346002)(376002)(366004)(230922051799003)(64100799003)(1800799012)(451199024)(186009)(4326008)(8936002)(8676002)(2906002)(7416002)(5660300002)(478600001)(6506007)(6512007)(6666004)(9686003)(52116002)(66476007)(66556008)(66946007)(316002)(6486002)(33716001)(41300700001)(38100700002)(86362001)(38350700005)(26005)(83380400001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?cuCklYpZ7n0k8fvHOG3AHqev+vNEKpCZnY0uuVCEaX7pOi3vMore45tnuj1l?=
- =?us-ascii?Q?cC5h3ty86S538rl7+fNRD0VfNjSTBDMoaVALea5L3pf1AowkqS2k18UTWKJk?=
- =?us-ascii?Q?nALq6VWPZfkjH5PY8I+RKzytxuNZRChKYSjxsC19EYEzOQvwe6idM2lolN/Z?=
- =?us-ascii?Q?lCbEKnrZqYmiilHWYZHmHZShQ/2IoCU56ce8jUIf7o6Q1J6ciGPlmkhDDYDB?=
- =?us-ascii?Q?44c3Mk83LcBlabCWiC2XmCHmVcjHOv3+xn6Wkdev57PXAoWXajDMEgPrhNhU?=
- =?us-ascii?Q?OnjrxmXDGXhV1Ff44FzP2TD2VuNq91WdQfoe1gizCBMZHtpXiy9McBO9Hon6?=
- =?us-ascii?Q?LKi2oHQBbNLh3JQfUqhNPUWkbIq5JeQnfHSGMGOtL45PkX/awJkUEQArEJig?=
- =?us-ascii?Q?Odmf4cXtVhHaeUiHwa1tE9V+HhneaxdDHaPSJs3DX+WSXtdvrvcb9T/zYFQe?=
- =?us-ascii?Q?tmtVHzneuqgZoIPKDnTFu4zuR9zKKp96pC5uI0vqfo+I7USU5jJHYqyWyTZP?=
- =?us-ascii?Q?Z06LCHD2OlEcF47urryBIBjEAreW5af3o1JJ1IHTyM7wLl5ZwkksYA2tZgh4?=
- =?us-ascii?Q?43PaM2aglHCJWFafKw8+/srU3t4k28T8WTINEOszRjia7ZAABHVYeT/7+Xfv?=
- =?us-ascii?Q?souvQNXwc9qiGfBJ8+iDiL5jfgyZQscnyUxYcH8vruk3bEil9whnqi4OpLhA?=
- =?us-ascii?Q?y/j02+gC2LewmOV4I7c2JWk+cCshJOXTD9+gA+VQ8/u58LqhaOft1lqr4Fc2?=
- =?us-ascii?Q?dNcipHY9XO4lB1hIrDk69PSwpanRKZoSvoQ3WGjtypWfBu/RksL4XAOeOFrf?=
- =?us-ascii?Q?LuoILqz+yXIvYxXt9c1JxqmKkN6pUfiJZXgoWTlzfBXx+cNxpgZedagxwtjp?=
- =?us-ascii?Q?cVaHqn641GKGercPPGljYL9+IfDk89dq0s4AeodccXY7apvTMypkmV4lbvbG?=
- =?us-ascii?Q?OzREArZB8GnH/RZsAZekfwjf6uehTY9U9/Ncl2g1jMkPbdy+BgX1SejfIvVS?=
- =?us-ascii?Q?LssaBSQ+W0oAkVzqeG2vHZ093V0BpD2/r0WQ7xqYQ1F+x9BN8LteX1KkvoRO?=
- =?us-ascii?Q?qCvirR3RE0EUY8hFHZo3DnBAlLqduXMC9ZPfZZEiLawBoR6WvT5HJZEr4RlK?=
- =?us-ascii?Q?1OyefjIijSCXxZJ6YzKzW8gy5H8FTPiPIqvjT+m9tvAOQ2jiULF8XFcqyWoB?=
- =?us-ascii?Q?5VbmSWmimFBftkkzEY5ZFl2ZNno+p5pC4eZ7FctCtS6L+ydKAZz2cdedqj65?=
- =?us-ascii?Q?RE2pYxXpqZbMKhlOhBfGpTaoHTO5KGvh2E3r/C3VsnvhaNy1+UPCsQg+Qi7/?=
- =?us-ascii?Q?rnsMmlGPO15tkRtu2RRACkYMNNDwjq/YCDLlbWhWHeGxdsxI6vOUqG9h7Sf2?=
- =?us-ascii?Q?qpdbVItrcf9B1Wxc13r9AmIduWpdWbQYqVIrJXI2kjlAURSSzIsT8SWhvpXd?=
- =?us-ascii?Q?vnuyHLH8sTDvGST31d+/LXBgiZZLXG8bKSMO+gTk3IKgNTmbgfaYjOI52Psk?=
- =?us-ascii?Q?vcpWHuAU0LX9GsCBWAW8TiFQYcFD9sSXdJiBdV8Y/BaQgvq+29SfHW+Xx24h?=
- =?us-ascii?Q?e6LWZfyMdv0023kI7Wo=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 22ef390e-d369-462e-1828-08dbfd2b604a
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB4845.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Dec 2023 05:04:55.5435
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: l8mD6zCkjjugoKRKihtGZp41PecBi3JFmQB2L/30bkMC/tp1kh0KQDt7gayq+lss1ZnAYvhBVQw+Lclv6+4TqQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB7025
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQHcypBR0AxbKGLonVbN0M0kdAGaSgFmSeOHsJlilgA=
+Content-Language: en-in
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprFJsWRmVeSWpSXmKPExsWy7bCmhm7F4+pUg8Z2WYs1e88xWcw/co7V
+	ou/FQ2aLy7vmsFn0bNjKarH2yF12i2Wb/jBZ/N+zg92Bw2PTqk42jzvX9rB59G1ZxejxeZNc
+	AEtUtk1GamJKapFCal5yfkpmXrqtkndwvHO8qZmBoa6hpYW5kkJeYm6qrZKLT4CuW2YO0BlK
+	CmWJOaVAoYDE4mIlfTubovzSklSFjPziElul1IKUnAKTAr3ixNzi0rx0vbzUEitDAwMjU6DC
+	hOyMi0v3sxbMk6qYtzaygfGZYBcjJ4eEgInEtnnrWbsYuTiEBPYwSmw5dJQFwvnEKHHy7BcE
+	5/maNmaYlqtLZjFDJHYySpz/+hmq6jmjxJz5S1hBqtgE9CXun+oBGywi8JFRYsareWDtzAKJ
+	Ev+73wElODg4Bcwktr1UBTGFBaIlmm84glSwCKhKXH0zAayaV8BSonXfYihbUOLkzCcsEFPk
+	Jba/nQN1kILEz6fLwNaKCFhJ3N++lR2iRlzi6M8eqJqpHBJdHaUQtovEy4tbWSBsYYlXx7ew
+	Q9hSEi/726DsZInHi15C9eZIrN8zBareXuLAlTksICczC2hKrN+lDxGWlZh6ah0TxFo+id7f
+	T5gg4rwSO+bB2GoSc+78YIWwZSQOr17KOIFRaRaSz2Yh+WwWkg9mIWxbwMiyilEqtaA4Nz01
+	2bTAUDcvtRwe38n5uZsYwYlUK2AH4+oNf/UOMTJxMB5ilOBgVhLhXbC2OlWINyWxsiq1KD++
+	qDQntfgQoykwvCcyS4km5wNTeV5JvKGJpYGJmZmZiaWxmaGSOO/r1rkpQgLpiSWp2ampBalF
+	MH1MHJxSDUymi52mzRLhKn36UHRWdfXa+m1mkbEdnduYU9uFTlUVpsnsfr4t6tm6CRl+fh6t
+	b1c7XpgtKyzr5cK/ZDH/MrXA07VTj9z53nH6eSTv2RZ235I4r4mzzheEP7gbzzC/8j2H3qFV
+	a+KKuP72Xpfft6XONdSpo6bmruqOp8uzHDtmpa3OVP8oy1SmyrDo9lEV61jhSWz5Byb90I0N
+	Tv2x/5Xi/8MHntU3N7p/1qw4Vrj2SOFh1bJl0y7+4G8QnF72S2GD4vS3++ONztY/bOmKj+hM
+	/Hvxm3Kr3rF+w2WBhryFmo3ZvmXfJ716wSR9UOtlp6G43KXiaRNLa52PXLk2XZBt79b1Kvs1
+	dE6uSlx5e70SS3FGoqEWc1FxIgDTxQ0hLQQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrDLMWRmVeSWpSXmKPExsWy7bCSvO6b+9WpBn0beSzW7D3HZDH/yDlW
+	i74XD5ktLu+aw2bRs2Erq8XaI3fZLZZt+sNk8X/PDnYHDo9NqzrZPO5c28Pm0bdlFaPH501y
+	ASxRXDYpqTmZZalF+nYJXBkXl+5nLZgnVTFvbWQD4zPBLkZODgkBE4mrS2YxdzFycQgJbGeU
+	uHfxOxtEQkbif9sxdghbWGLlv+dgtpDAU0aJhb3GIDabgL7E/VM9rCDNIgKfGSUO7HvNCJJg
+	FkiWePP2GdTUdkaJa9PWASU4ODgFzCS2vVQFqREWiJRYO38HC4jNIqAqcfXNBGYQm1fAUqJ1
+	32IoW1Di5MwnLCCtzAJ6Em0bocbLS2x/O4cZ4jYFiZ9Pl7GC2CICVhL3t29lh6gRlzj6s4d5
+	AqPwLCSTZiFMmoVk0iwkHQsYWVYxiqYWFOem5yYXGOoVJ+YWl+al6yXn525iBEeQVtAOxmXr
+	/+odYmTiYDzEKMHBrCTCu2BtdaoQb0piZVVqUX58UWlOavEhRmkOFiVxXuWczhQhgfTEktTs
+	1NSC1CKYLBMHp1QDU0L6Z6Xklz2zdu552i9ocyRh4c5FfpHxW44cNp14KKpqbnXB1cS2pNAl
+	WdeFFno/W1NiwNGYdzWU10x6eahHy/rciI9Xj/50+b5X6GO81PxbT14Kd/5f9v99bmT20xip
+	L5LbetiPyVzQu1xqtzdHfuHzuMVtM87Ou/i6RebXll/zJrarOPj8eBmoVDn/rvlv889m6kmX
+	tJWllVR2Hqpd9DY7ccrjdhufJ5MCHh1ZdLLwXH/Cl3ns71ZvOP/j0dpdz86rLTursipT5Ub7
+	fRmvs9kpac/38L89dCEoOyDrfh3H4n98t1MVTNylZK/MW9fzoTTntdbT+9n6CZPPvni+Z9au
+	qc/OMDxmT0hT226/0POfEktxRqKhFnNRcSIAlfcufg8DAAA=
+X-CMS-MailID: 20231215051108epcas5p2c657d2629ed8451ad519644c28e6c234
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20231214195605epcas5p1ae2470abdb641ad8d299968fc306ec07
+References: <CGME20231214195605epcas5p1ae2470abdb641ad8d299968fc306ec07@epcas5p1.samsung.com>
+	<20231214195553.862920-1-robh@kernel.org>
 
-On Tue, Nov 14, 2023 at 10:48:20AM -0500, Frank Li wrote:
-> The commit a725990557e7d ("arm64: dts: imx93: Fix the dmas entries order")
-> trigger a hidden eDMAv4 hardware limitation.
-> 
-> Some channel require stick to odd number, some require stick to even
-> number.
-> 
-> This fixes include 3 part.
-> 1. add limitation at eDMA driver.
-> 2. create dt-binding header file to share define between driver and dts
-> 3. add ODD and EVEN requirement for uart driver at dts file.
 
-@vkoul:
-	Did you have chance to check this patch?
 
-Frank	
+> -----Original Message-----
+> From: Rob Herring <robh@kernel.org>
+> Sent: 15 December 2023 01:26
+> To: Mauro Carvalho Chehab <mchehab@kernel.org>; Krzysztof Kozlowski
+> <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley
+> <conor+dt@kernel.org>; Marek Szyprowski <m.szyprowski@samsung.com>;
+> Aakarsh Jain <aakarsh.jain@samsung.com>
+> Cc: linux-media@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> kernel@vger.kernel.org
+> Subject: [PATCH v2] media: dt-bindings: samsung,s5p-mfc: Fix iommu
+> properties schemas
+> 
+> The iommus and iommu-names property schemas have several issues. First,
+> 'iommus-names' in the if/then schemas is the wrong name. As all the names
+> are the same, they can be defined at the top level instead. Then the
+if/then
+> schemas just need to define how many entries. The iommus if/then schemas
+> are also redundant. Best I can tell, the desire was to require 2 entries
+for
+> "samsung,exynos5433-mfc", "samsung,mfc-v5", "samsung,mfc-v6", and
+> "samsung,mfc-v8".
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+> v2:
+>  - Fix some more cases of iommus-names
+> ---
+>  .../bindings/media/samsung,s5p-mfc.yaml       | 33 ++++++++-----------
+>  1 file changed, 13 insertions(+), 20 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/samsung,s5p-
+> mfc.yaml b/Documentation/devicetree/bindings/media/samsung,s5p-
+> mfc.yaml
+> index 084b44582a43..4c3250985ac3 100644
+> --- a/Documentation/devicetree/bindings/media/samsung,s5p-mfc.yaml
+> +++ b/Documentation/devicetree/bindings/media/samsung,s5p-mfc.yaml
+> @@ -49,7 +49,9 @@ properties:
+> 
+>    iommu-names:
+>      minItems: 1
+> -    maxItems: 2
+> +    items:
+> +      - const: left
+> +      - const: right
+> 
+>    power-domains:
+>      maxItems: 1
+> @@ -84,7 +86,7 @@ allOf:
+>              - const: sclk_mfc
+>          iommus:
+>            maxItems: 1
+> -        iommus-names: false
+> +        iommu-names: false
+> 
+>    - if:
+>        properties:
+> @@ -102,11 +104,9 @@ allOf:
+>              - const: aclk
+>              - const: aclk_xiu
+>          iommus:
+> -          maxItems: 2
+> -        iommus-names:
+> -          items:
+> -            - const: left
+> -            - const: right
+> +          minItems: 2
+> +        iommu-names:
+> +          minItems: 2
+> 
+>    - if:
+>        properties:
+> @@ -123,11 +123,9 @@ allOf:
+>              - const: mfc
+>              - const: sclk_mfc
+>          iommus:
+> -          maxItems: 2
+> -        iommus-names:
+> -          items:
+> -            - const: left
+> -            - const: right
+> +          minItems: 2
+> +        iommu-names:
+> +          minItems: 2
+> 
+>    - if:
+>        properties:
+> @@ -144,11 +142,9 @@ allOf:
+>            items:
+>              - const: mfc
+>          iommus:
+> -          maxItems: 2
+> -        iommus-names:
+> -          items:
+> -            - const: left
+> -            - const: right
+> +          minItems: 2
+> +        iommu-names:
+> +          minItems: 2
+> 
+>    - if:
+>        properties:
+> @@ -161,9 +157,6 @@ allOf:
+>          clocks:
+>            minItems: 1
+>            maxItems: 2
+> -        iommus:
+> -          minItems: 1
+> -          maxItems: 2
+> 
+>  examples:
+>    - |
+> --
+> 2.43.0
 
-> 
-> Frank Li (4):
->   dmaengine: fsl-edma: fix eDMAv4 channel allocation issue
->   dt-bindings: dma: fsl-edma: Add fsl-edma.h to prevent hardcoding in
->     dts
->   dmaengine: fsl-edma: utilize common dt-binding header file
->   arm64: dts: imx93: Fix EDMA transfer failure
-> 
->  arch/arm64/boot/dts/freescale/imx93.dtsi | 13 +++++++++----
->  drivers/dma/fsl-edma-main.c              | 17 ++++++++++-------
->  include/dt-bindings/dma/fsl-edma.h       | 21 +++++++++++++++++++++
->  3 files changed, 40 insertions(+), 11 deletions(-)
->  create mode 100644 include/dt-bindings/dma/fsl-edma.h
-> 
-> -- 
-> 2.34.1
-> 
+Reviewed-by: Aakarsh Jain <aakarsh.jain@samsung.com>
+
 
