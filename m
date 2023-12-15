@@ -1,632 +1,239 @@
-Return-Path: <devicetree+bounces-25730-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25731-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 921838145A4
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 11:32:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 810C38145AE
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 11:34:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1F8131F21028
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 10:32:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A692B1C2310C
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 10:34:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E66924A18;
-	Fri, 15 Dec 2023 10:32:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1C7B1A596;
+	Fri, 15 Dec 2023 10:33:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="fXfm67lP"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Su+5Fsu2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67A43249FA
-	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 10:32:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-333536432e0so380393f8f.3
-        for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 02:32:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1702636332; x=1703241132; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cNUIgGKeBLNxRtZa/e62xwwjn2LbYij3IIZziGi/+Cs=;
-        b=fXfm67lPjf1836o+7z3zuPoa6EUu3NdrzwC6Ty8UuPjrN8A54jd43E9peGszT9zLjv
-         2KF/xfCXUUrnTiOnr73VhgE0vdv8PsooT5wvVqZ8ZECHHu6R/NbCX2QzWfVjpU8pJSGW
-         L8CgORvrgM63JM/u6LxgJ+2s2GUv0cT+VPG7nTi0ajFxnIFdxkSsCMGfz/8liC3Abeg5
-         I4VINI5UbKfoy8sfi4KFYi3AgCsk6Z6nFD/JDjZhvxMIaFgY6kVrundSeKqeM9y9Tvcv
-         /Thx6kC2Pk5ovPLH2NdEg2lpnG/7E45NCM2Lw+0qaWAU2WRQVNTxyi6OMkOjRvU9NO2L
-         bCOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702636332; x=1703241132;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cNUIgGKeBLNxRtZa/e62xwwjn2LbYij3IIZziGi/+Cs=;
-        b=E35JQr0t+plfUiNhSQxHMA/g7ecE/nqdmgwv8Z8IY8JwjwvMwEFqJdUCVEb5crh+uf
-         Aw7GV6roYopVEVzRte8vVXKpljDyFNBrfDgaskzLL1tYxa1XgxekGJrbuO4V8iYtNifp
-         AQIs+16yeE9N2BGlVyoAvKCMPd3+o+uic7AzI6ncJR1pQO+5OOTIke+nQ3RviOMYRCi4
-         41tTwW4tg0qGhnZqdieePF9rcKchpLbSEXId/xOMjM+zVfdxOOrJYyBqKqp8/rj6u1SB
-         0IGDNSD2eaQ9eAj/Wn/qXKniKnylMjveqicoIeMqFMeeItY7BJyvZRN9idTvZtqLiqz6
-         NSrQ==
-X-Gm-Message-State: AOJu0Yyrw84FZahcLz/A4FOrzSFyIIVw8hWqmGJvhAYRsKQPjbQOC7/o
-	8v2Y6Sxhp6aYrgaXwNBRh6cgHQ==
-X-Google-Smtp-Source: AGHT+IFeLk1CnSx2XUPLfPx2pcI54txed0kAOP+Eqa42CkBqPcmuy7REMQGvvG1qqQUTnteXdhO+OA==
-X-Received: by 2002:adf:e28e:0:b0:334:b3d0:c300 with SMTP id v14-20020adfe28e000000b00334b3d0c300mr6228671wri.32.1702636332422;
-        Fri, 15 Dec 2023 02:32:12 -0800 (PST)
-Received: from localhost.localdomain (abordeaux-655-1-152-60.w90-5.abo.wanadoo.fr. [90.5.9.60])
-        by smtp.gmail.com with ESMTPSA id q11-20020adffecb000000b003332db7d91dsm18421015wrs.39.2023.12.15.02.32.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Dec 2023 02:32:12 -0800 (PST)
-From: David Lechner <dlechner@baylibre.com>
-To: linux-iio@vger.kernel.org,
-	linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: David Lechner <dlechner@baylibre.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Michael Hennerich <michael.hennerich@analog.com>,
-	=?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	Stefan Popa <stefan.popa@analog.com>
-Subject: [PATCH v3 3/3] iio: adc: ad7380: new driver for AD7380 ADCs
-Date: Fri, 15 Dec 2023 04:32:04 -0600
-Message-Id: <20231215-ad7380-mainline-v3-3-7a11ebf642b9@baylibre.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231215-ad7380-mainline-v3-0-7a11ebf642b9@baylibre.com>
-References: <20231215-ad7380-mainline-v3-0-7a11ebf642b9@baylibre.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE1F724B47;
+	Fri, 15 Dec 2023 10:33:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BF52exE014231;
+	Fri, 15 Dec 2023 10:33:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=ErghD2DU58fu4FrgHwTi/CSNEsLFLKIVRl/dA43D9K4=; b=Su
+	+5Fsu2Jv1t56qyrnS+BEpsrmjJgtkEcpEoFmKrBcaeYR6sI0KRj893NLwliJorRC
+	8BXld7k4MDV+IdMmDw1m09hldDN5YF2GaRxN1QFxRg++uYMeThDJklvaLYAGfBWb
+	FqNken6A/SB4j0ZbhRZqDsw7WZnGUrfS5q6eIgC5x1xrFO8IITGoY5qurbaTRo3v
+	jaW+PKQvgtmbIbTo8zjat4IDlu+Pe1Grt13sfZTebYqRlwqkvUbmjJgfpIhNK6Y9
+	KDwcQrZ36YTsroO7rcdTTwv2clrepgj1src1lyZ4iX2pXN2gLWW4eGJtL4uziSFp
+	NwHKucii/qvLUTqBW55w==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v07c62r2y-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 15 Dec 2023 10:33:10 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BFAX9tT021425
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 15 Dec 2023 10:33:09 GMT
+Received: from [10.253.13.71] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 15 Dec
+ 2023 02:33:03 -0800
+Message-ID: <4b9c56b8-3b29-4861-a3d5-2da26fbc14b4@quicinc.com>
+Date: Fri, 15 Dec 2023 18:33:01 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Mailer: b4 0.12.4
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/5] dt-bindings: net: ipq4019-mdio: Document ipq5332
+ platform
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Conor Dooley
+	<conor@kernel.org>
+CC: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <andrew@lunn.ch>, <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
+        <robert.marko@sartura.hr>, <linux-arm-msm@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_srichara@quicinc.com>
+References: <20231212115151.20016-1-quic_luoj@quicinc.com>
+ <20231212115151.20016-6-quic_luoj@quicinc.com>
+ <20231212-caution-improvise-ed3cc6a1d305@spud>
+ <11ffc985-3f2b-46b9-ae0b-911f7abe98d1@quicinc.com>
+ <20231214-outshine-shush-8a11c68607cd@spud>
+ <c5123ce7-6fdc-43c7-ac07-251c39196e66@quicinc.com>
+ <a1e5ffec-a20d-4389-83f9-ee09bd9d733d@linaro.org>
+ <a84a36af-69f8-46af-967e-b06d028597a3@quicinc.com>
+ <26c8b0b1-5ea9-45cc-adf3-0d0b03a1284d@linaro.org>
+From: Jie Luo <quic_luoj@quicinc.com>
+In-Reply-To: <26c8b0b1-5ea9-45cc-adf3-0d0b03a1284d@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: y6nGBTW_zJBwfy1rJG7Tc75ilNabOBc5
+X-Proofpoint-ORIG-GUID: y6nGBTW_zJBwfy1rJG7Tc75ilNabOBc5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxlogscore=999
+ mlxscore=0 priorityscore=1501 malwarescore=0 suspectscore=0 bulkscore=0
+ spamscore=0 phishscore=0 adultscore=0 impostorscore=0 lowpriorityscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2311290000
+ definitions=main-2312150070
 
-This adds a new driver for the AD7380 family ADCs.
 
-The driver currently implements basic support for the AD7380, AD7381,
-AD7383, and AD7384 2-channel differential ADCs. Support for additional
-single-ended and 4-channel chips that use the same register map as well
-as additional features of the chip will be added in future patches.
 
-Co-developed-by: Stefan Popa <stefan.popa@analog.com>
-Signed-off-by: Stefan Popa <stefan.popa@analog.com>
-Reviewed-by: Nuno Sa <nuno.sa@analog.com>
-Signed-off-by: David Lechner <dlechner@baylibre.com>
----
- MAINTAINERS              |   1 +
- drivers/iio/adc/Kconfig  |  16 ++
- drivers/iio/adc/Makefile |   1 +
- drivers/iio/adc/ad7380.c | 462 +++++++++++++++++++++++++++++++++++++++++++++++
- 4 files changed, 480 insertions(+)
+On 12/15/2023 6:19 PM, Krzysztof Kozlowski wrote:
+> On 15/12/2023 10:49, Jie Luo wrote:
+>>
+>>
+>> On 12/15/2023 3:29 PM, Krzysztof Kozlowski wrote:
+>>> On 15/12/2023 07:46, Jie Luo wrote:
+>>>>
+>>>>
+>>>> On 12/15/2023 1:12 AM, Conor Dooley wrote:
+>>>>> On Wed, Dec 13, 2023 at 04:26:56PM +0800, Jie Luo wrote:
+>>>>>>
+>>>>>>
+>>>>>> On 12/13/2023 12:06 AM, Conor Dooley wrote:
+>>>>>>> On Tue, Dec 12, 2023 at 07:51:50PM +0800, Luo Jie wrote:
+>>>>>>>> Update the yaml file for the new DTS properties.
+>>>>>>>>
+>>>>>>>> 1. cmn-reference-clock for the CMN PLL source clock select.
+>>>>>>>> 2. clock-frequency for MDIO clock frequency config.
+>>>>>>>> 3. add uniphy AHB & SYS GCC clocks.
+>>>>>>>> 4. add reset-gpios for MDIO bus level reset.
+>>>>>>>>
+>>>>>>>> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
+>>>>>>>> ---
+>>>>>>>>      .../bindings/net/qcom,ipq4019-mdio.yaml       | 157 +++++++++++++++++-
+>>>>>>>>      1 file changed, 153 insertions(+), 4 deletions(-)
+>>>>>>>>
+>>>>>>>> diff --git a/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml b/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml
+>>>>>>>> index 3407e909e8a7..9546a6ad7841 100644
+>>>>>>>> --- a/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml
+>>>>>>>> +++ b/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml
+>>>>>>>> @@ -20,6 +20,8 @@ properties:
+>>>>>>>>                - enum:
+>>>>>>>>                    - qcom,ipq6018-mdio
+>>>>>>>>                    - qcom,ipq8074-mdio
+>>>>>>>> +              - qcom,ipq9574-mdio
+>>>>>>>> +              - qcom,ipq5332-mdio
+>>>>>>>>                - const: qcom,ipq4019-mdio
+>>>>>>>>        "#address-cells":
+>>>>>>>> @@ -30,19 +32,71 @@ properties:
+>>>>>>>>        reg:
+>>>>>>>>          minItems: 1
+>>>>>>>> -    maxItems: 2
+>>>>>>>> +    maxItems: 5
+>>>>>>>>          description:
+>>>>>>>> -      the first Address and length of the register set for the MDIO controller.
+>>>>>>>> -      the second Address and length of the register for ethernet LDO, this second
+>>>>>>>> -      address range is only required by the platform IPQ50xx.
+>>>>>>>> +      the first Address and length of the register set for the MDIO controller,
+>>>>>>>> +      the optional second, third and fourth address and length of the register
+>>>>>>>> +      for ethernet LDO, these three address range are required by the platform
+>>>>>>>> +      IPQ50xx/IPQ5332/IPQ9574, the last address and length is for the CMN clock
+>>>>>>>> +      to select the reference clock.
+>>>>>>>> +
+>>>>>>>> +  reg-names:
+>>>>>>>> +    minItems: 1
+>>>>>>>> +    maxItems: 5
+>>>>>>>>        clocks:
+>>>>>>>> +    minItems: 1
+>>>>>>>>          items:
+>>>>>>>>            - description: MDIO clock source frequency fixed to 100MHZ
+>>>>>>>> +      - description: UNIPHY0 AHB clock source frequency fixed to 100MHZ
+>>>>>>>> +      - description: UNIPHY1 AHB clock source frequency fixed to 100MHZ
+>>>>>>>> +      - description: UNIPHY0 SYS clock source frequency fixed to 24MHZ
+>>>>>>>> +      - description: UNIPHY1 SYS clock source frequency fixed to 24MHZ
+>>>>>>>>        clock-names:
+>>>>>>>> +    minItems: 1
+>>>>>>>>          items:
+>>>>>>>>            - const: gcc_mdio_ahb_clk
+>>>>>>>> +      - const: gcc_uniphy0_ahb_clk
+>>>>>>>> +      - const: gcc_uniphy1_ahb_clk
+>>>>>>>> +      - const: gcc_uniphy0_sys_clk
+>>>>>>>> +      - const: gcc_uniphy1_sys_clk
+>>>>>>>
+>>>>>>>> +  cmn-reference-clock:
+>>>>>>>> +    oneOf:
+>>>>>>>> +      - items:
+>>>>>>>> +          - enum:
+>>>>>>>> +              - 0   # CMN PLL reference internal 48MHZ
+>>>>>>>> +              - 1   # CMN PLL reference external 25MHZ
+>>>>>>>> +              - 2   # CMN PLL reference external 31250KHZ
+>>>>>>>> +              - 3   # CMN PLL reference external 40MHZ
+>>>>>>>> +              - 4   # CMN PLL reference external 48MHZ
+>>>>>>>> +              - 5   # CMN PLL reference external 50MHZ
+>>>>>>>> +              - 6   # CMN PLL reference internal 96MHZ
+>>>>>>>
+>>>>>>> Why is this not represented by an element of the clocks property?
+>>>>>>
+>>>>>> This property is for the reference clock source selection of CMN PLL,
+>>>>>> CMN PLL generates the different clock rates for the different Ethernet
+>>>>>> blocks, this CMN PLL configuration is not located in the GCC, so the
+>>>>>> clock framework can't be used, which is the general hardware register
+>>>>>> instead of RCG register for GCC.
+>>>>>
+>>>>> I don't see how the clock being provided by the "GCC" (whatever that is)
+>>>>> or by some other clock controller or fixed clock makes a difference.
+>>>>> Why can't the other clock provider be represented in the devicetree?
+>>>>>
+>>>>
+>>>> cmn-reference-clock is for selecting the reference clock source for the
+>>>> whole Ethernet block, which is just the standalone configure register.
+>>>
+>>> Sure, you are aware though that all clocks are just configure registers?
+>>>
+>>> Which clocks are these mentioned in the property? From where do they come?
+>>>
+>>> Anyway, property is in existing form is not correct - this is not a
+>>> generic property.
+>>>
+>>
+>> This property cmn-reference-clock is just the hardware register
+>> configuration, since the different IPQ platform needs to select
+>> the different reference clock source for the CMN PLL block that
+>> provides the various clock outputs to the all kinds of Ethernet
+>> devices, which is not from GCC provider.
+> 
+> AGAIN: where do the clocks come from? Which device generates them?
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e2a998be5879..5a54620a31b8 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -438,6 +438,7 @@ S:	Supported
- W:	https://wiki.analog.com/resources/tools-software/linux-drivers/iio-adc/ad738x
- W:	https://ez.analog.com/linux-software-drivers
- F:	Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml
-+F:	drivers/iio/adc/ad7380.c
- 
- AD7877 TOUCHSCREEN DRIVER
- M:	Michael Hennerich <michael.hennerich@analog.com>
-diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-index 35f9867da12c..cbfd626712e3 100644
---- a/drivers/iio/adc/Kconfig
-+++ b/drivers/iio/adc/Kconfig
-@@ -122,6 +122,22 @@ config AD7298
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called ad7298.
- 
-+config AD7380
-+	tristate "Analog Devices AD7380 ADC driver"
-+	depends on SPI_MASTER
-+	select IIO_BUFFER
-+	select IIO_TRIGGER
-+	select IIO_TRIGGERED_BUFFER
-+	help
-+	  AD7380 is a family of simultaneous sampling ADCs that share the same
-+	  SPI register map and have similar pinouts.
-+
-+	  Say yes here to build support for Analog Devices AD7380 ADC and
-+	  similar chips.
-+
-+	  To compile this driver as a module, choose M here: the module will be
-+	  called ad7380.
-+
- config AD7476
- 	tristate "Analog Devices AD7476 1-channel ADCs driver and other similar devices from AD and TI"
- 	depends on SPI
-diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
-index bee11d442af4..9c921c497655 100644
---- a/drivers/iio/adc/Makefile
-+++ b/drivers/iio/adc/Makefile
-@@ -16,6 +16,7 @@ obj-$(CONFIG_AD7291) += ad7291.o
- obj-$(CONFIG_AD7292) += ad7292.o
- obj-$(CONFIG_AD7298) += ad7298.o
- obj-$(CONFIG_AD7923) += ad7923.o
-+obj-$(CONFIG_AD7380) += ad7380.o
- obj-$(CONFIG_AD7476) += ad7476.o
- obj-$(CONFIG_AD7606_IFACE_PARALLEL) += ad7606_par.o
- obj-$(CONFIG_AD7606_IFACE_SPI) += ad7606_spi.o
-diff --git a/drivers/iio/adc/ad7380.c b/drivers/iio/adc/ad7380.c
-new file mode 100644
-index 000000000000..80712aaa9548
---- /dev/null
-+++ b/drivers/iio/adc/ad7380.c
-@@ -0,0 +1,462 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Analog Devices AD738x Simultaneous Sampling SAR ADCs
-+ *
-+ * Copyright 2017 Analog Devices Inc.
-+ * Copyright 2023 BayLibre, SAS
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/bitops.h>
-+#include <linux/cleanup.h>
-+#include <linux/device.h>
-+#include <linux/err.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/slab.h>
-+#include <linux/spi/spi.h>
-+#include <linux/sysfs.h>
-+
-+#include <linux/iio/buffer.h>
-+#include <linux/iio/iio.h>
-+#include <linux/iio/sysfs.h>
-+#include <linux/iio/trigger_consumer.h>
-+#include <linux/iio/triggered_buffer.h>
-+
-+/* 2.5V internal reference voltage */
-+#define AD7380_INTERNAL_REF_MV		2500
-+
-+/* reading and writing registers is more reliable at lower than max speed */
-+#define AD7380_REG_WR_SPEED_HZ		10000000
-+
-+#define AD7380_REG_WR			BIT(15)
-+#define AD7380_REG_REGADDR		GENMASK(14, 12)
-+#define AD7380_REG_DATA			GENMASK(11, 0)
-+
-+#define AD7380_REG_ADDR_NOP		0x0
-+#define AD7380_REG_ADDR_CONFIG1		0x1
-+#define AD7380_REG_ADDR_CONFIG2		0x2
-+#define AD7380_REG_ADDR_ALERT		0x3
-+#define AD7380_REG_ADDR_ALERT_LOW_TH	0x4
-+#define AD7380_REG_ADDR_ALERT_HIGH_TH	0x5
-+
-+#define AD7380_CONFIG1_OS_MODE		BIT(9)
-+#define AD7380_CONFIG1_OSR		GENMASK(8, 6)
-+#define AD7380_CONFIG1_CRC_W		BIT(5)
-+#define AD7380_CONFIG1_CRC_R		BIT(4)
-+#define AD7380_CONFIG1_ALERTEN		BIT(3)
-+#define AD7380_CONFIG1_RES		BIT(2)
-+#define AD7380_CONFIG1_REFSEL		BIT(1)
-+#define AD7380_CONFIG1_PMODE		BIT(0)
-+
-+#define AD7380_CONFIG2_SDO2		GENMASK(9, 8)
-+#define AD7380_CONFIG2_SDO		BIT(8)
-+#define AD7380_CONFIG2_RESET		GENMASK(7, 0)
-+
-+#define AD7380_CONFIG2_RESET_SOFT	0x3C
-+#define AD7380_CONFIG2_RESET_HARD	0xFF
-+
-+#define AD7380_ALERT_LOW_TH		GENMASK(11, 0)
-+#define AD7380_ALERT_HIGH_TH		GENMASK(11, 0)
-+
-+struct ad7380_chip_info {
-+	const char *name;
-+	const struct iio_chan_spec *channels;
-+	unsigned int num_channels;
-+};
-+
-+#define AD7380_DIFFERENTIAL_CHANNEL(index, bits) {		\
-+	.type = IIO_VOLTAGE,					\
-+	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),		\
-+	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),	\
-+	.indexed = 1,						\
-+	.differential = 1,					\
-+	.channel = 2 * (index),					\
-+	.channel2 = 2 * (index) + 1,				\
-+	.scan_index = (index),					\
-+	.scan_type = {						\
-+		.sign = 's',					\
-+		.realbits = (bits),				\
-+		.storagebits = 16,				\
-+		.endianness = IIO_CPU,				\
-+	},							\
-+}
-+
-+#define DEFINE_AD7380_DIFFERENTIAL_2_CHANNEL(name, bits)	\
-+static const struct iio_chan_spec name[] = {			\
-+	AD7380_DIFFERENTIAL_CHANNEL(0, bits),			\
-+	AD7380_DIFFERENTIAL_CHANNEL(1, bits),			\
-+	IIO_CHAN_SOFT_TIMESTAMP(2),				\
-+}
-+
-+/* fully differential */
-+DEFINE_AD7380_DIFFERENTIAL_2_CHANNEL(ad7380_channels, 16);
-+DEFINE_AD7380_DIFFERENTIAL_2_CHANNEL(ad7381_channels, 14);
-+/* pseudo differential */
-+DEFINE_AD7380_DIFFERENTIAL_2_CHANNEL(ad7383_channels, 16);
-+DEFINE_AD7380_DIFFERENTIAL_2_CHANNEL(ad7384_channels, 14);
-+
-+/* Since this is simultaneous sampling, we don't allow individual channels. */
-+static const unsigned long ad7380_2_channel_scan_masks[] = {
-+	GENMASK(1, 0),
-+	0
-+};
-+
-+static const struct ad7380_chip_info ad7380_chip_info = {
-+	.name = "ad7380",
-+	.channels = ad7380_channels,
-+	.num_channels = ARRAY_SIZE(ad7380_channels),
-+};
-+
-+static const struct ad7380_chip_info ad7381_chip_info = {
-+	.name = "ad7381",
-+	.channels = ad7381_channels,
-+	.num_channels = ARRAY_SIZE(ad7381_channels),
-+};
-+
-+static const struct ad7380_chip_info ad7383_chip_info = {
-+	.name = "ad7383",
-+	.channels = ad7383_channels,
-+	.num_channels = ARRAY_SIZE(ad7383_channels),
-+};
-+
-+static const struct ad7380_chip_info ad7384_chip_info = {
-+	.name = "ad7384",
-+	.channels = ad7384_channels,
-+	.num_channels = ARRAY_SIZE(ad7384_channels),
-+};
-+
-+struct ad7380_state {
-+	const struct ad7380_chip_info *chip_info;
-+	struct spi_device *spi;
-+	struct regulator *vref;
-+	struct regmap *regmap;
-+	/*
-+	 * DMA (thus cache coherency maintenance) requires the
-+	 * transfer buffers to live in their own cache lines.
-+	 * Make the buffer large enough for 2 16-bit samples and one 64-bit
-+	 * aligned 64 bit timestamp.
-+	 */
-+	struct {
-+		u16 raw[2];
-+		s64 ts __aligned(8);
-+	} scan_data __aligned(IIO_DMA_MINALIGN);
-+	u16 tx[2];
-+	u16 rx[2];
-+};
-+
-+static int ad7380_regmap_reg_write(void *context, unsigned int reg,
-+				   unsigned int val)
-+{
-+	struct ad7380_state *st = context;
-+	struct spi_transfer xfer = {
-+		.speed_hz = AD7380_REG_WR_SPEED_HZ,
-+		.bits_per_word = 16,
-+		.len = 2,
-+		.tx_buf = &st->tx[0],
-+	};
-+
-+	st->tx[0] = FIELD_PREP(AD7380_REG_WR, 1) |
-+		    FIELD_PREP(AD7380_REG_REGADDR, reg) |
-+		    FIELD_PREP(AD7380_REG_DATA, val);
-+
-+	return spi_sync_transfer(st->spi, &xfer, 1);
-+}
-+
-+static int ad7380_regmap_reg_read(void *context, unsigned int reg,
-+				  unsigned int *val)
-+{
-+	struct ad7380_state *st = context;
-+	struct spi_transfer xfers[] = {
-+		{
-+			.speed_hz = AD7380_REG_WR_SPEED_HZ,
-+			.bits_per_word = 16,
-+			.len = 2,
-+			.tx_buf = &st->tx[0],
-+			.cs_change = 1,
-+			.cs_change_delay = {
-+				.value = 10, /* t[CSH] */
-+				.unit = SPI_DELAY_UNIT_NSECS,
-+			},
-+		}, {
-+			.speed_hz = AD7380_REG_WR_SPEED_HZ,
-+			.bits_per_word = 16,
-+			.len = 2,
-+			.rx_buf = &st->rx[0],
-+		},
-+	};
-+	int ret;
-+
-+	st->tx[0] = FIELD_PREP(AD7380_REG_WR, 0) |
-+		    FIELD_PREP(AD7380_REG_REGADDR, reg) |
-+		    FIELD_PREP(AD7380_REG_DATA, 0);
-+
-+	ret = spi_sync_transfer(st->spi, xfers, ARRAY_SIZE(xfers));
-+	if (ret < 0)
-+		return ret;
-+
-+	*val = FIELD_GET(AD7380_REG_DATA, st->rx[0]);
-+
-+	return 0;
-+}
-+
-+const struct regmap_config ad7380_regmap_config = {
-+	.reg_bits = 3,
-+	.val_bits = 12,
-+	.reg_read = ad7380_regmap_reg_read,
-+	.reg_write = ad7380_regmap_reg_write,
-+	.max_register = AD7380_REG_ADDR_ALERT_HIGH_TH,
-+	.can_sleep = true,
-+};
-+
-+static int ad7380_debugfs_reg_access(struct iio_dev *indio_dev, u32 reg,
-+				     u32 writeval, u32 *readval)
-+{
-+	struct ad7380_state *st = iio_priv(indio_dev);
-+	int ret;
-+
-+	ret = iio_device_claim_direct_mode(indio_dev);
-+	if (ret)
-+		return ret;
-+
-+	if (readval)
-+		ret = regmap_read(st->regmap, reg, readval);
-+	else
-+		ret = regmap_write(st->regmap, reg, writeval);
-+
-+	iio_device_release_direct_mode(indio_dev);
-+
-+	return ret;
-+}
-+
-+static irqreturn_t ad7380_trigger_handler(int irq, void *p)
-+{
-+	struct iio_poll_func *pf = p;
-+	struct iio_dev *indio_dev = pf->indio_dev;
-+	struct ad7380_state *st = iio_priv(indio_dev);
-+	struct spi_transfer xfer = {
-+		.bits_per_word = st->chip_info->channels[0].scan_type.realbits,
-+		.len = 4,
-+		.rx_buf = st->scan_data.raw,
-+	};
-+	int ret;
-+
-+	ret = spi_sync_transfer(st->spi, &xfer, 1);
-+	if (ret)
-+		goto out;
-+
-+	iio_push_to_buffers_with_timestamp(indio_dev, &st->scan_data,
-+					   pf->timestamp);
-+
-+out:
-+	iio_trigger_notify_done(indio_dev->trig);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int ad7380_read_direct(struct ad7380_state *st,
-+			      struct iio_chan_spec const *chan, int *val)
-+{
-+	struct spi_transfer xfers[] = {
-+		/* toggle CS (no data xfer) to trigger a conversion */
-+		{
-+			.speed_hz = AD7380_REG_WR_SPEED_HZ,
-+			.bits_per_word = chan->scan_type.realbits,
-+			.delay = {
-+				.value = 190, /* t[CONVERT] */
-+				.unit = SPI_DELAY_UNIT_NSECS,
-+			},
-+			.cs_change = 1,
-+			.cs_change_delay = {
-+				.value = 10, /* t[CSH] */
-+				.unit = SPI_DELAY_UNIT_NSECS,
-+			},
-+		},
-+		/* then read both channels */
-+		{
-+			.speed_hz = AD7380_REG_WR_SPEED_HZ,
-+			.bits_per_word = chan->scan_type.realbits,
-+			.rx_buf = &st->rx[0],
-+			.len = 4,
-+		},
-+	};
-+	int ret;
-+
-+	ret = spi_sync_transfer(st->spi, xfers, ARRAY_SIZE(xfers));
-+	if (ret < 0)
-+		return ret;
-+
-+	*val = sign_extend32(st->rx[chan->scan_index],
-+			     chan->scan_type.realbits - 1);
-+
-+	return IIO_VAL_INT;
-+}
-+
-+static int ad7380_read_raw(struct iio_dev *indio_dev,
-+			   struct iio_chan_spec const *chan,
-+			   int *val, int *val2, long info)
-+{
-+	struct ad7380_state *st = iio_priv(indio_dev);
-+	int ret;
-+
-+	switch (info) {
-+	case IIO_CHAN_INFO_RAW:
-+		ret = iio_device_claim_direct_mode(indio_dev);
-+		if (ret)
-+			return ret;
-+
-+		ret = ad7380_read_direct(st, chan, val);
-+		iio_device_release_direct_mode(indio_dev);
-+
-+		return ret;
-+	case IIO_CHAN_INFO_SCALE:
-+		if (st->vref) {
-+			ret = regulator_get_voltage(st->vref);
-+			if (ret < 0)
-+				return ret;
-+
-+			*val = ret / 1000;
-+		} else {
-+			*val = AD7380_INTERNAL_REF_MV;
-+		}
-+
-+		*val2 = chan->scan_type.realbits;
-+
-+		return IIO_VAL_FRACTIONAL_LOG2;
-+	}
-+
-+	return -EINVAL;
-+}
-+
-+static const struct iio_info ad7380_info = {
-+	.read_raw = &ad7380_read_raw,
-+	.debugfs_reg_access = &ad7380_debugfs_reg_access,
-+};
-+
-+static int ad7380_init(struct ad7380_state *st)
-+{
-+	int ret;
-+
-+	/* perform hard reset */
-+	ret = regmap_update_bits(st->regmap, AD7380_REG_ADDR_CONFIG2,
-+				 AD7380_CONFIG2_RESET,
-+				 FIELD_PREP(AD7380_CONFIG2_RESET,
-+					    AD7380_CONFIG2_RESET_HARD));
-+	if (ret < 0)
-+		return ret;
-+
-+	/* select internal or external reference voltage */
-+	ret = regmap_update_bits(st->regmap, AD7380_REG_ADDR_CONFIG1,
-+				 AD7380_CONFIG1_REFSEL,
-+				 FIELD_PREP(AD7380_CONFIG1_REFSEL, !!st->vref));
-+	if (ret < 0)
-+		return ret;
-+
-+	/* SPI 1-wire mode */
-+	return regmap_update_bits(st->regmap, AD7380_REG_ADDR_CONFIG2,
-+				  AD7380_CONFIG2_SDO,
-+				  FIELD_PREP(AD7380_CONFIG2_SDO, 1));
-+}
-+
-+static void ad7380_regulator_disable(void *p)
-+{
-+	regulator_disable(p);
-+}
-+
-+static int ad7380_probe(struct spi_device *spi)
-+{
-+	struct iio_dev *indio_dev;
-+	struct ad7380_state *st;
-+	int ret;
-+
-+	indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*st));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	st = iio_priv(indio_dev);
-+	st->spi = spi;
-+	st->chip_info = spi_get_device_match_data(spi);
-+	if (!st->chip_info)
-+		return dev_err_probe(&spi->dev, -EINVAL, "missing match data\n");
-+
-+	st->vref = devm_regulator_get_optional(&spi->dev, "refio");
-+	if (IS_ERR(st->vref)) {
-+		/*
-+		 * If there is no REFIO supply, then it means that we are using
-+		 * the internal 2.5V reference.
-+		 */
-+		if (PTR_ERR(st->vref) == -ENODEV)
-+			st->vref = NULL;
-+		else
-+			return dev_err_probe(&spi->dev, PTR_ERR(st->vref),
-+					     "Failed to get refio regulator\n");
-+	}
-+
-+	if (st->vref) {
-+		ret = regulator_enable(st->vref);
-+		if (ret)
-+			return ret;
-+
-+		ret = devm_add_action_or_reset(&spi->dev, ad7380_regulator_disable,
-+					       st->vref);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	st->regmap = devm_regmap_init(&spi->dev, NULL, st, &ad7380_regmap_config);
-+	if (IS_ERR(st->regmap))
-+		return dev_err_probe(&spi->dev, PTR_ERR(st->regmap),
-+				     "failed to allocate register map\n");
-+
-+	indio_dev->channels = st->chip_info->channels;
-+	indio_dev->num_channels = st->chip_info->num_channels;
-+	indio_dev->name = st->chip_info->name;
-+	indio_dev->info = &ad7380_info;
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+	indio_dev->available_scan_masks = ad7380_2_channel_scan_masks;
-+
-+	ret = devm_iio_triggered_buffer_setup(&spi->dev, indio_dev,
-+					      iio_pollfunc_store_time,
-+					      ad7380_trigger_handler, NULL);
-+	if (ret)
-+		return ret;
-+
-+	ret = ad7380_init(st);
-+	if (ret)
-+		return ret;
-+
-+	return devm_iio_device_register(&spi->dev, indio_dev);
-+}
-+
-+static const struct of_device_id ad7380_of_match_table[] = {
-+	{ .compatible = "adi,ad7380", .data = &ad7380_chip_info },
-+	{ .compatible = "adi,ad7381", .data = &ad7381_chip_info },
-+	{ .compatible = "adi,ad7383", .data = &ad7383_chip_info },
-+	{ .compatible = "adi,ad7384", .data = &ad7384_chip_info },
-+	{ }
-+};
-+
-+static const struct spi_device_id ad7380_id_table[] = {
-+	{ "ad7380", (kernel_ulong_t)&ad7380_chip_info },
-+	{ "ad7381", (kernel_ulong_t)&ad7381_chip_info },
-+	{ "ad7383", (kernel_ulong_t)&ad7383_chip_info },
-+	{ "ad7384", (kernel_ulong_t)&ad7384_chip_info },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(spi, ad7380_id_table);
-+
-+static struct spi_driver ad7380_driver = {
-+	.driver = {
-+		.name = "ad7380",
-+		.of_match_table = ad7380_of_match_table,
-+	},
-+	.probe = ad7380_probe,
-+	.id_table = ad7380_id_table,
-+};
-+module_spi_driver(ad7380_driver);
-+
-+MODULE_AUTHOR("Stefan Popa <stefan.popa@analog.com>");
-+MODULE_DESCRIPTION("Analog Devices AD738x ADC driver");
-+MODULE_LICENSE("GPL");
+Oh, OK, the reference clock is from wifi that provides 48MHZ to
+Ethernet block.
 
--- 
-2.34.1
+> 
+>>
+>> This is indeed not a generic property, which is the Ethernet
+>> function configs same as clock-frequency.
+> 
+> 
+> Then it should not be made as a generic property...
 
+sure, i saw your another comments, will prefix qcom_ on this property.
+
+> 
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
 
