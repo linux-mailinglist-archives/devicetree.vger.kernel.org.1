@@ -1,155 +1,249 @@
-Return-Path: <devicetree+bounces-25630-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25631-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0D72814110
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 05:59:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CC26814119
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 06:00:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6754C1F22F15
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 04:59:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E27D11F22924
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 05:00:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71F226C6C0;
-	Fri, 15 Dec 2023 04:59:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4C1B6C6C0;
+	Fri, 15 Dec 2023 05:00:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="ljEw1aCu"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="RQs34OgL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2101.outbound.protection.outlook.com [40.107.113.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E68245697;
-	Fri, 15 Dec 2023 04:59:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nMKd4Grsq1VdZCl+iT9hdm0ICLs/c0Y2gt3xJAP2c0OoQaie/FFWCP2VHNXEiFPHcQGPKnGg+u306j02xqcdvwlgtF8/FzkEGnCqPgRZ/2j4fofbJ2kUHXMOroJx1Qfh5t9uuoQfrbnsHGYWInWec3yDNvDM1O8AIEtFh1oGYpG5lsLPx2CEpJcZ/eljp721b4pD+2bWc0UClDpZyX2ZdSou/j4mp8jTpmJDTHCUYqeJRuvleAaUYD/cLx8v9B8UGOIqH0Vyl4mFpWiUfqO3FbAgmUrHA65f/ycJXf9dcKZHT/UJI6KkirA/3JXFuqFED27TJ5xeeCO1oGbP0OjbVg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KIZkpDjfLNqOj7NX3e6S1TOAMiHcDCwzRAnT+pqayrw=;
- b=ER+f5gMvnYj3X7Uuu6y0m0gmgNaBGhcRhEPKLy7YODj1CpLQy1ZY1yQD/VnVKlzS1bI73skApsnOppc2g0Jfc9QMj/mWFaD1FqbSbaJHiLRRSexNi/RlVYTIVUv/K0g0Jups+RcMDhGHSCb2QifjfbmaInzBnJAmv2m59K+H7aVnfg8bkOkOS0NlbQX1UkF6Yx64NeGhKNWbBKJDkiX0aMcutg+bGn9zpG6NWmhMI3FeMSZurB3v9p2ewCXNC39kHGtSPdxtgqHKdboaLA/Da2Fa+qfOdtfaa+iwdYgxTE+Z5OWThP3Z+qdsCF4U4hr9h+uL6tieeiWpF6lJbR3P2A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KIZkpDjfLNqOj7NX3e6S1TOAMiHcDCwzRAnT+pqayrw=;
- b=ljEw1aCuXOLYq1qTLTGEHcIA3b1rqb+V07WDu8sj1Ez28dZePpDagCuU89T7F5bD8bUguv4MrQiA8lUoYtTeTMOw6UW0IzgMEs5Xee6psmzEXje1ViWf+vrNfZVqEAgLCge1ZcyoXNDzfeWKaA+920QSmz8sIA+pZCbXdTkvvds=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11) by TYWPR01MB10663.jpnprd01.prod.outlook.com
- (2603:1096:400:2a3::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7113.10; Fri, 15 Dec
- 2023 04:59:13 +0000
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::5732:673b:846c:ed92]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::5732:673b:846c:ed92%4]) with mapi id 15.20.7113.010; Fri, 15 Dec 2023
- 04:59:13 +0000
-Message-ID: <871qbof4da.wl-kuninori.morimoto.gx@renesas.com>
-From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Banajit Goswami <bgoswami@quicinc.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	linux-sound@vger.kernel.org,
-	alsa-devel@alsa-project.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2EF8CA7C
+	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 05:00:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+From: Dragan Simic <dsimic@manjaro.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1702616435;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=VcoNo0KyUxk0+n8xUofO+4A/DZAwZQKaiBkiB0Y6XvI=;
+	b=RQs34OgL453y+Fw8OnOinVL2+hQ653DAsixlcz8YVzvcq5ta/5DoLGHB4FelWDXYXX5HxP
+	8hkp16MfgCV7q3HMRcrpeXRroPxlSsCUspNh6/kcuUq8YPu0PUmR3quirr/jduMRerti4w
+	D20f/fPyxft80bFjveotsRbGySIna0ynmUHg5aNnHqtSYLfXXNz2jGRVBkqhgGngq1Htd3
+	4ZGUCzYvTUs33nujuWEwE7UTQvmQJauQ/I17G5ko50sxpJgI9w2Wjvr2J8JxppEgnxbz3k
+	fJQNn/1HBfd53mC9rCxm7AmPfKtnibILN6243pJZAVXMnpwi2i3XvDICrXAROQ==
+To: linux-rockchip@lists.infradead.org
+Cc: heiko@sntech.de,
+	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org
-Subject: Re: [PATCH 3/4] ASoC: simple-card-utils: Drop GPIO include
-In-Reply-To: <20231214-gpio-descriptors-sound-misc-v1-3-e3004176bd8b@linaro.org>
-References: <20231214-gpio-descriptors-sound-misc-v1-0-e3004176bd8b@linaro.org>
-	<20231214-gpio-descriptors-sound-misc-v1-3-e3004176bd8b@linaro.org>
-User-Agent: Wanderlust/2.15.9 Emacs/27.1 Mule/6.0
-Content-Type: text/plain; charset=US-ASCII
-Date: Fri, 15 Dec 2023 04:59:13 +0000
-X-ClientProxiedBy: TYWPR01CA0021.jpnprd01.prod.outlook.com
- (2603:1096:400:aa::8) To TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11)
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	Kyle Copperfield <kmcopper@danwin1210.me>
+Subject: [PATCH] arm64: dts: rockchip: Add cache information to the SoC dtsi for RK3399
+Date: Fri, 15 Dec 2023 06:00:33 +0100
+Message-Id: <be3cbcae5c40fa72a52845d30dcc66c847a98cfa.1702616304.git.dsimic@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|TYWPR01MB10663:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7fa30d2a-72a5-4444-9775-08dbfd2a9540
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	2ApLBCMgBM1k4+VTNu0plLVmzYrjK0+fIEVG7R0b4heMVyiTBGtkb9WlU8T5QJ8j2re5znrcJmIJiCqk7haTNyP93AJCZLH72to9ZVqDx0KkDu6FgvKzeqDPjzeN1z+S3SUtEwIuKHi4dHTS+X0EaPtd9Z3TYUCK3r4uRlvOVcr88a3683akE0Ii8dtJOcvxKhwECLOqi1lIhMDHG/YXdmkCvZ+cTeDmVuUUt3rR1T8D2FEi8dTc8rAamJsvSiMl/0bzZ3Bwq3xIUxgGWi/vHUw8LC1LuaGV27Tz5LIRzDvFGYc+Q3ztjjxQ+l6GyxUwSWonIoePKosAqLgyBDUP7JiVmlPF8A/W0/5ZKbT2b8k8qWKnRJYbHhiJ2CcYahyHKtI8J9gizSJ8GhC7w7llmbi2PDpeEYT/asRMaf6ymP1dYsDSx6T8ODVuhRVjmbXHp8Kc3NvF6Zf1MWlDKnD1Vby+JrcjfhxfJb9JKlfAepLWrmJ1yMLrh3wubsiAh25qa8Aj9EnlT0/dpd59tLPrI9Tvk9Ot3bPSHWcWLMt0x/ZlaBJ3SFamo3EeOTq8M0WknOfdXb595QHZiSt+FpcRDCzn/OwwzA0/UMqdC7hEh1OoMep6dvfzY+NPOMM9V6ag
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(346002)(39860400002)(366004)(396003)(376002)(230922051799003)(451199024)(1800799012)(186009)(64100799003)(26005)(2616005)(6506007)(52116002)(6512007)(5660300002)(7416002)(4326008)(41300700001)(2906002)(4744005)(478600001)(6486002)(8676002)(8936002)(66946007)(316002)(6916009)(54906003)(66476007)(66556008)(36756003)(86362001)(38100700002)(38350700005);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?i65cAHYfC+2ewBR877cQ/Al8O6C6AxmbHmxtyYoop7F44jtcokQnNMAoN/OA?=
- =?us-ascii?Q?KjZZq2N67ioWWEYKW4VVJSmr01wk4IaLw6wCRORZY5S+KFOdk72TVzerzsG/?=
- =?us-ascii?Q?wptWXDhgNVe/afywtFc6tLA0cGrtUVtbaA6kniVFx3M+LC04OhXOvdNvPBH7?=
- =?us-ascii?Q?1nZvMPL2t9NpSnLbDQS+vEFiau45MvBEyV+ju+aWpdCJgoQO9/EhbvLwCDYy?=
- =?us-ascii?Q?HjSXoei5g51UHtdGZI1Bq9G/tgbQs7hGMgpwE6+ERrPdMNAbAp1C3wVs5mKW?=
- =?us-ascii?Q?YVNnG6Vj7CYEcPGtl0q2E64UY07EUL1iTyHfIWqp37diATBXaEC2hzKHh1tC?=
- =?us-ascii?Q?WTSY9utvZAAVlFjeh5hW6TbFTOpFqTtGA3VTVlcobkV54Ry6aVMWKMS/v6kf?=
- =?us-ascii?Q?VKIM7qXZdnx9QwCfcWYUS0DZjBxFSHxO2JcRdL5/a0mjzIXeVT29LIYSrIGy?=
- =?us-ascii?Q?hJgfd+Y9DQC6D7qLElnYhq8IkScfdrpgbkCfREhD8/yID0Elo+eLFmwKAna3?=
- =?us-ascii?Q?gvhR6DOhRwhEiyi4S5HbIZiLS6+c9nJIY+CnKiWjQ6ByF/NXRMYljHGjZp7I?=
- =?us-ascii?Q?FRvGjthVPXnNZACmcH16CeOuOfijyCdgn2Qu1DTfb0SGVewdhMRLRrFIc05E?=
- =?us-ascii?Q?3HyqHi9/PECEX2PlzPq09v9/lxt07BoZrlZFxO7ETFsAydHmyoyD4B8mVX/y?=
- =?us-ascii?Q?Ma54NLbfwCi29eO25gGhkAj9xuYWOmLN5xUHRubd0ZWgoQ+Ik5QlWH9N571x?=
- =?us-ascii?Q?5AkrgZPoed0n50eK29EWA+FDF/BFdKFfA5XIHnqC+5tQJyQUwXbqxUhQN5fJ?=
- =?us-ascii?Q?+S4k6+B7+mT1wQVUtAgYEe2eMM3ZvVCgZonlzjE4Z/iDxV0YRc/aXYZlpsme?=
- =?us-ascii?Q?7Uho5JHGmny6i801E2SNBXPz3bc4ktSnEZO+ytXtP52guldcy7kizyXUpAg7?=
- =?us-ascii?Q?2NUnMUS3r6nn57dLXMdEalC2tqMSGuAzURC8ZRPfWPTB2x8YcEfxtA9l8Ut5?=
- =?us-ascii?Q?GB4srTnMR9EOuQ578RrTomGIM74vX0ClSwO5Xvp8+61U+jfVraMr+k3w70d0?=
- =?us-ascii?Q?rYTG3+t4xn46wnGCkSYN+bH0E7YI8fCIjrMsLXQ+IveXOdCWgRXaUE2rA7RJ?=
- =?us-ascii?Q?e+GOGJ1WH5fa1tciV3eziD9lXiVM9FmTaHQjf13YW7fem5ou+br43uJDw3GZ?=
- =?us-ascii?Q?PBMi4oHOJvxUMVuGkYPYrdHLQIna+CB/DGxIq2Za9lGjCvso6gbrNHdmqa6o?=
- =?us-ascii?Q?ibryN3CvLK30dE67DYStbFOgnKctmT1rYiT4mNaBNyru3xIV4g4qaqtawqMi?=
- =?us-ascii?Q?E1C86tpVOJQTTffOQRKilBlzeVXkF4Fm18ORjeItEaHpSDlmSAreFB7GwGVG?=
- =?us-ascii?Q?wSBD0c7yJY5pGNAzDHUasOwCYlAKZBc04NItY/Km0GcnUIxmffgdGIzM9rdh?=
- =?us-ascii?Q?EZpAsDqTRel05bbkPdeClyyxfDFlcydLAbbI3QA9bTRG1GFXXBa1Qnx/JApB?=
- =?us-ascii?Q?Ck7oCyOGYP0u5UIqQmUIjh43OYsgMKejNW1YK1yve+4Ai7ayP4FUJ4dp6mB+?=
- =?us-ascii?Q?h7ns5U7abgnobUXhPdY+f6veRgYkSrEtP4U0AxEzdyRr20yQhUHQoEf+BiBr?=
- =?us-ascii?Q?PgpLCvIEIzIOm1p6PEP8n5c=3D?=
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7fa30d2a-72a5-4444-9775-08dbfd2a9540
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Dec 2023 04:59:13.8890
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9e/KOtkydkIQDl2Jg6KRwlLhrCBAM+py0BlqVpzls5s7KAewyhCyrVk6frrbV/kPIPhf2gBjwRhAUeJVWz4OyKW+YVKrxQ46HEvID4Em75GUyVlrRmB4RVsUP1m3FSLC
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWPR01MB10663
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
+Add missing cache information to the Rockchip RK3399 SoC dtsi.  The specified
+values were derived by hand from the cache size specifications available from
+the RK3399 datasheet;  for future reference, here's a brief summary:
 
-Hi
+  - Each Cortex-A72 core has 48 KB of L1 instruction cache and
+    32 KB of L1 data cache available, four-way set associative
+  - Each Cortex-A53 core core has 32 KB of instruction cache and
+    32 KB of L1 data cache available, four-way set associative
+  - The big (A72) cluster has 1 MB of unified L2 cache available
+  - The little (A53) cluster has 512 KB of unified L2 cache available
 
-> The generic card utilities are including the legacy GPIO header
-> <linux/gpio.h> but not using any symbols from it. Drop the
-> include from all files.
-> 
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
+This patch allows /proc/cpuinfo and lscpu(1) to display proper RK3399 cache
+information, and it eliminates the following error in the kernel log:
 
-Acked-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+  cacheinfo: Unable to detect cache hierarchy for CPU 0
 
-Thank you for your help !!
+While there, add a couple of somewhat useful comments, which may help a bit
+anyone going through the RK3399 SoC dtsi.
 
-Best regards
+Co-developed-by: Kyle Copperfield <kmcopper@danwin1210.me>
+Signed-off-by: Dragan Simic <dsimic@manjaro.org>
 ---
-Renesas Electronics
-Ph.D. Kuninori Morimoto
+
+Notes:
+    It's been a while since Kyle and I worked on this patch, and his email
+    address seems to no longer work.  Unfortunately, I have no idea is there
+    some other email address that he actually uses now.  However, Kyle needs
+    to be mentioned as a co-author of this patch.
+
+ arch/arm64/boot/dts/rockchip/rk3399.dtsi | 64 +++++++++++++++++++++++-
+ 1 file changed, 62 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+index da0dfb237f85..f38c27f87cc9 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+@@ -41,22 +41,22 @@ cpus {
+ 		#size-cells = <0>;
+ 
+ 		cpu-map {
+-			cluster0 {
++			cluster0 {	/* Cortex-A53 */
+ 				core0 {
+ 					cpu = <&cpu_l0>;
+ 				};
+ 				core1 {
+ 					cpu = <&cpu_l1>;
+ 				};
+ 				core2 {
+ 					cpu = <&cpu_l2>;
+ 				};
+ 				core3 {
+ 					cpu = <&cpu_l3>;
+ 				};
+ 			};
+ 
+-			cluster1 {
++			cluster1 {	/* Cortex-A72 */
+ 				core0 {
+ 					cpu = <&cpu_b0>;
+ 				};
+@@ -76,54 +76,89 @@ cpu_l0: cpu@0 {
+ 			#cooling-cells = <2>; /* min followed by max */
+ 			dynamic-power-coefficient = <100>;
+ 			cpu-idle-states = <&CPU_SLEEP &CLUSTER_SLEEP>;
++			i-cache-size = <0x8000>;
++			i-cache-line-size = <64>;
++			i-cache-sets = <256>;
++			d-cache-size = <0x8000>;
++			d-cache-line-size = <64>;
++			d-cache-sets = <128>;
++			next-level-cache = <&l2_cache_l>;
+ 		};
+ 
+ 		cpu_l1: cpu@1 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a53";
+ 			reg = <0x0 0x1>;
+ 			enable-method = "psci";
+ 			capacity-dmips-mhz = <485>;
+ 			clocks = <&cru ARMCLKL>;
+ 			#cooling-cells = <2>; /* min followed by max */
+ 			dynamic-power-coefficient = <100>;
+ 			cpu-idle-states = <&CPU_SLEEP &CLUSTER_SLEEP>;
++			i-cache-size = <0x8000>;
++			i-cache-line-size = <64>;
++			i-cache-sets = <256>;
++			d-cache-size = <0x8000>;
++			d-cache-line-size = <64>;
++			d-cache-sets = <128>;
++			next-level-cache = <&l2_cache_l>;
+ 		};
+ 
+ 		cpu_l2: cpu@2 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a53";
+ 			reg = <0x0 0x2>;
+ 			enable-method = "psci";
+ 			capacity-dmips-mhz = <485>;
+ 			clocks = <&cru ARMCLKL>;
+ 			#cooling-cells = <2>; /* min followed by max */
+ 			dynamic-power-coefficient = <100>;
+ 			cpu-idle-states = <&CPU_SLEEP &CLUSTER_SLEEP>;
++			i-cache-size = <0x8000>;
++			i-cache-line-size = <64>;
++			i-cache-sets = <256>;
++			d-cache-size = <0x8000>;
++			d-cache-line-size = <64>;
++			d-cache-sets = <128>;
++			next-level-cache = <&l2_cache_l>;
+ 		};
+ 
+ 		cpu_l3: cpu@3 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a53";
+ 			reg = <0x0 0x3>;
+ 			enable-method = "psci";
+ 			capacity-dmips-mhz = <485>;
+ 			clocks = <&cru ARMCLKL>;
+ 			#cooling-cells = <2>; /* min followed by max */
+ 			dynamic-power-coefficient = <100>;
+ 			cpu-idle-states = <&CPU_SLEEP &CLUSTER_SLEEP>;
++			i-cache-size = <0x8000>;
++			i-cache-line-size = <64>;
++			i-cache-sets = <256>;
++			d-cache-size = <0x8000>;
++			d-cache-line-size = <64>;
++			d-cache-sets = <128>;
++			next-level-cache = <&l2_cache_l>;
+ 		};
+ 
+ 		cpu_b0: cpu@100 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a72";
+ 			reg = <0x0 0x100>;
+ 			enable-method = "psci";
+ 			capacity-dmips-mhz = <1024>;
+ 			clocks = <&cru ARMCLKB>;
+ 			#cooling-cells = <2>; /* min followed by max */
+ 			dynamic-power-coefficient = <436>;
+ 			cpu-idle-states = <&CPU_SLEEP &CLUSTER_SLEEP>;
++			i-cache-size = <0xC000>;
++			i-cache-line-size = <64>;
++			i-cache-sets = <256>;
++			d-cache-size = <0x8000>;
++			d-cache-line-size = <64>;
++			d-cache-sets = <256>;
++			next-level-cache = <&l2_cache_b>;
+ 
+ 			thermal-idle {
+ 				#cooling-cells = <2>;
+@@ -142,14 +177,39 @@ cpu_b1: cpu@101 {
+ 			#cooling-cells = <2>; /* min followed by max */
+ 			dynamic-power-coefficient = <436>;
+ 			cpu-idle-states = <&CPU_SLEEP &CLUSTER_SLEEP>;
++			i-cache-size = <0xC000>;
++			i-cache-line-size = <64>;
++			i-cache-sets = <256>;
++			d-cache-size = <0x8000>;
++			d-cache-line-size = <64>;
++			d-cache-sets = <256>;
++			next-level-cache = <&l2_cache_b>;
+ 
+ 			thermal-idle {
+ 				#cooling-cells = <2>;
+ 				duration-us = <10000>;
+ 				exit-latency-us = <500>;
+ 			};
+ 		};
+ 
++		l2_cache_l: l2-cache-cluster0 {
++			compatible = "cache";
++			cache-level = <2>;
++			cache-unified;
++			cache-size = <0x80000>;
++			cache-line-size = <64>;
++			cache-sets = <512>;
++		};
++
++		l2_cache_b: l2-cache-cluster1 {
++			compatible = "cache";
++			cache-level = <2>;
++			cache-unified;
++			cache-size = <0x100000>;
++			cache-line-size = <64>;
++			cache-sets = <1024>;
++		};
++
+ 		idle-states {
+ 			entry-method = "psci";
+ 
 
