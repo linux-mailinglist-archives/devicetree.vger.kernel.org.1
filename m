@@ -1,69 +1,58 @@
-Return-Path: <devicetree+bounces-25806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D637F814985
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 14:43:03 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75111814995
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 14:48:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 14C521C23C80
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 13:43:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 132321F21321
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 13:48:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A9E42DB9A;
-	Fri, 15 Dec 2023 13:42:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="lG7viCNz"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BB402DF9C;
+	Fri, 15 Dec 2023 13:48:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 808ED30321;
-	Fri, 15 Dec 2023 13:42:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=pv0AaHgjkAy6u95Pj8OOH2/guQb3Aq8ffCZaWiu1IRg=; b=lG7viCNzqAjzgDF7gJwFPmDEJ4
-	LjsCYZjzFLR2bZTBYmuCcgLYwjT2eW9VGwCO+J8AgkzFFivO5Y7jx6u5khrCR4Kkl4tlxWeuARR2b
-	zMIyXm8Iw1VWdmpe0o5eNSF6ZWnuBYXaG/cztXM6PEZZy1ymzgxCUOZO8jZncwaeoMOr4oanxJXn0
-	ll8PMs9VoKw1NBUkvId0gijqpyLdeSttPDx6Hl4oRPmhTqnfP67dt0/H46tVkz+qs4X+J+xnZk4Bs
-	4Ai6ePEieplGWO8h2S/Ebeqd8RRMMEukMDHCztZcjftHBa+R5107awrpcm5Sl6NPywXQdXVA6PY8f
-	/E2uAr8g==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:51368)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1rE8Sd-0002hd-1H;
-	Fri, 15 Dec 2023 13:42:39 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1rE8Sc-0003em-Gu; Fri, 15 Dec 2023 13:42:38 +0000
-Date: Fri, 15 Dec 2023 13:42:38 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Jie Luo <quic_luoj@quicinc.com>
-Cc: Andrew Lunn <andrew@lunn.ch>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	hkallweit1@gmail.com, corbet@lwn.net, p.zabel@pengutronix.de,
-	f.fainelli@gmail.com, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH v8 14/14] dt-bindings: net: ar803x: add qca8084 PHY
- properties
-Message-ID: <ZXxXzm8hP68KrXYs@shell.armlinux.org.uk>
-References: <20231215074005.26976-1-quic_luoj@quicinc.com>
- <20231215074005.26976-15-quic_luoj@quicinc.com>
- <bdfba8a7-9197-4aae-a7f9-6075a375f60b@linaro.org>
- <c3391e33-e770-4c61-855e-d90e82b95f75@quicinc.com>
- <4cb2bd57-f3d3-49f9-9c02-a922fd270572@lunn.ch>
- <ed0dd288-be8a-4161-a19f-2d4d2d17b3ec@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB2A92DF98;
+	Fri, 15 Dec 2023 13:48:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f172.google.com with SMTP id 5614622812f47-3ba2dd905f9so539827b6e.2;
+        Fri, 15 Dec 2023 05:48:47 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702648127; x=1703252927;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ADnelWsbFBE1kM+VJ0XLFA7dl/I3fFumQ78mElohUE4=;
+        b=jE4ovwrLIHV2m7MaN+SaFvL26Drn/f4y7U7FMZ1nwDDuSHbGrWJ1uCbsNaszPYFX4/
+         J5cRcBG5cwNaNYnrtlEZdoNSntq6zbi25LYL4v3cd7o82PSm/llo93yaNhXi2d/T6yBb
+         EEgN1xkwVCYOuG9e8KJYECkE5RZe6Vf1BoeP/3iv4TP2rU7irKTYqVZ5Su29h6iiP3oJ
+         fpfz6EtmEOafT7BUyuWFxCslsgigXcobXnmhmzs1iq2k3axoxHF8CORqbfDTVQTmIMOZ
+         VigVRz4bQAw4V+tIGDW2BYr1gSK7STkdfREQBT/F7jFR2ICFA7VjZuNJpgYxw6XT8Kgp
+         1JxQ==
+X-Gm-Message-State: AOJu0YzGfxus4lrBVjsbokKrIp7tJK8npKFf/vQjX0vzZydb0lAMTVDg
+	FB8FgQw1zlKrmEKrPZjDmA==
+X-Google-Smtp-Source: AGHT+IGelGR0QgAaVpJOlPlGoPIFwG6d83dChGqVzOjhyhqbrUUPSxMennaB/EvfqSR/qaCnCvMhFw==
+X-Received: by 2002:a05:6808:2e4e:b0:3ba:b1f:f48f with SMTP id gp14-20020a0568082e4e00b003ba0b1ff48fmr13036693oib.63.1702648126886;
+        Fri, 15 Dec 2023 05:48:46 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id i14-20020a056808030e00b003af642cf646sm3766034oie.37.2023.12.15.05.48.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Dec 2023 05:48:46 -0800 (PST)
+Received: (nullmailer pid 3401288 invoked by uid 1000);
+	Fri, 15 Dec 2023 13:48:45 -0000
+Date: Fri, 15 Dec 2023 07:48:45 -0600
+From: Rob Herring <robh@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>, netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next PATCH v3 1/4] dt-bindings: net: phy: Document new LEDs
+ active-low property
+Message-ID: <20231215134845.GA3366586-robh@kernel.org>
+References: <20231213111322.6152-1-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,49 +61,79 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ed0dd288-be8a-4161-a19f-2d4d2d17b3ec@quicinc.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+In-Reply-To: <20231213111322.6152-1-ansuelsmth@gmail.com>
 
-On Fri, Dec 15, 2023 at 08:16:53PM +0800, Jie Luo wrote:
-> On 12/15/2023 7:25 PM, Andrew Lunn wrote:
-> > > The "maxItems: 1" of the property resets is defined in ethernet-phy.yaml
-> > > that is referenced by qca,ar803x.yaml, but i have 11 reset instances
-> > > used for qca8084 PHY
-> > 
-> > 11!?!?? Really? Why?
-> > 
-> > I assume the order and timer matters, otherwise why would you need
-> > 11? So the PHY driver needs to handle this, not phylib framework. So
-> > you will be adding vendor properties to describe all 11 of them. So
-> > ethernet-phy.yaml does not matter.
-> > 
-> > 	Andrew
+On Wed, Dec 13, 2023 at 12:13:19PM +0100, Christian Marangi wrote:
+> Document new LEDs active-low property to define if the LED require to be
+> set low to be turned on.
 > 
-> Since these resets need to be configured in the special sequence, and
-> these clocks need to be configured with different clock rate.
+> active-low can be defined in the leds node for PHY that apply the LED
+> polarity globally for each attached LED or in the specific led node for
+> PHY that supports setting the LED polarity per LED.
 > 
-> But the clock instance get, the property name is fixed to "clock-names"
-> according to the function of_parse_clkspec, and the reset property name
-> is also fixed to "reset-names" from function __of_reset_control_get.
+> Declaring both way is not supported and will result in the schema
+> getting rejected.
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+> Changes v3:
+> - Out of RFC
+> Changes v2:
+> - Add this patch
+> 
+>  .../devicetree/bindings/net/ethernet-phy.yaml | 20 +++++++++++++++++++
+>  1 file changed, 20 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> index 8fb2a6ee7e5b..9cb3981fed2a 100644
+> --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> @@ -213,6 +213,11 @@ properties:
+>        '#size-cells':
+>          const: 0
+>  
+> +      'active-low':
 
-I think you need to give more details about this.
+Don't need quotes.
 
-Where are these 11 resets located? What is the sequence? Why does the
-PHY driver need to deal with each individual reset?
+I think this should just be per LED. If the h/w only supports a global 
+setting, then they all should match.
 
-IMHO, a PHY driver should _not_ be dealing with the resets outside of
-the PHY device itself, and I find it hard to imagine that qca8084
-would have 11 external resets.
-
-If these are 11 internal resets (to qca8084) then why are you using the
-reset subsystem, and why do you need to describe them in DT? Surely if
-they are internal to the PHY, that can be encapsulated within the PHY
-driver?
-
-This is an example of why it is useful to have an _example_ of the use
-of this binding, because it would answer some of the above questions.
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+> +        type: boolean
+> +        description:
+> +          This define whether all LEDs needs to be low to be turned on.
+> +
+>      patternProperties:
+>        '^led@[a-f0-9]+$':
+>          $ref: /schemas/leds/common.yaml#
+> @@ -225,11 +230,26 @@ properties:
+>                driver dependent and required for ports that define multiple
+>                LED for the same port.
+>  
+> +          'active-low':
+> +            type: boolean
+> +            description:
+> +              This define whether the LED needs to be low to be turned on.
+> +
+>          required:
+>            - reg
+>  
+>          unevaluatedProperties: false
+>  
+> +    allOf:
+> +      - if:
+> +          required:
+> +            - active-low
+> +        then:
+> +          patternProperties:
+> +            '^led@[a-f0-9]+$':
+> +              properties:
+> +                'active-low': false
+> +
+>      additionalProperties: false
+>  
+>  required:
+> -- 
+> 2.40.1
+> 
 
