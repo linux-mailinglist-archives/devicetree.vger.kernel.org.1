@@ -1,76 +1,112 @@
-Return-Path: <devicetree+bounces-25938-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25940-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D83F8151A3
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 22:10:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B05638151B6
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 22:13:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BDF4D2866FD
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 21:10:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E30BE1C23CB1
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 21:13:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56D5447F5F;
-	Fri, 15 Dec 2023 21:10:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AD5E47F5E;
+	Fri, 15 Dec 2023 21:13:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="aQQW59io"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D35247792;
-	Fri, 15 Dec 2023 21:10:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i53875b61.versanet.de ([83.135.91.97] helo=phil.lan)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1rEFS3-0005kk-7s; Fri, 15 Dec 2023 22:10:31 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: conor+dt@kernel.org,
-	quentin.schulz@theobroma-systems.com,
-	robh+dt@kernel.org,
-	Vahe Grigoryan <vahe.grigoryan@theobroma-systems.com>,
-	krzysztof.kozlowski+dt@linaro.org
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] arm64: dts: rockchip: fix misleading comment in rk3399-puma-haikou.dts
-Date: Fri, 15 Dec 2023 22:10:28 +0100
-Message-Id: <170267443961.1167098.4412754848079382518.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231214122801.3144180-1-vahe.grigoryan@theobroma-systems.com>
-References: <20231214122801.3144180-1-vahe.grigoryan@theobroma-systems.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1040F3E49F;
+	Fri, 15 Dec 2023 21:13:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1702674794;
+	bh=4Z0A8i3BQDX4XSWXqY1AsxNZ2UXBxVUatce/rv4lcqQ=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=aQQW59ioaNIQdMzt2vbe1pPJEASAIpZfAf6FHXhPw68vkAGU+ykS3yUhdCPVM1NSb
+	 9wwk6IO6HDR5/myECbvSXLfKm5Tu1Iabzgg5CNmFx4rW+jmjwj80FBF83uWeDme4E6
+	 1tGMZeRLjHm0LxPxHWvry3YxYPwwEWoHSeQ6LPFtKaDgt7FqT1Ls1jV3RGzxpIXezZ
+	 vDrQdzgzA2tZNIFtHVeEXRklDATFU6vLymVPKRTOAIMhrGbCxZsXxCzX8B/wwE5wnL
+	 SjuVBwV09aKtYTSaLrHp/5ZV+wzmPZtj2vSaXlJ30rCvmJRVYltyXoTaZsyioLFSMq
+	 jNgqz9s408vhw==
+Received: from [100.115.223.179] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 66C133781489;
+	Fri, 15 Dec 2023 21:13:13 +0000 (UTC)
+Message-ID: <698fbb5d-0750-4f2a-857f-5429e5f589f9@collabora.com>
+Date: Fri, 15 Dec 2023 23:13:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 12/12] [UNTESTED] riscv: dts: starfive:
+ beaglev-starlight: Enable gmac
+Content-Language: en-US
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+To: Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
+ Samin Guo <samin.guo@starfivetech.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Jose Abreu <joabreu@synopsys.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Richard Cochran <richardcochran@gmail.com>,
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+References: <20231029042712.520010-1-cristian.ciocaltea@collabora.com>
+ <20231029042712.520010-13-cristian.ciocaltea@collabora.com>
+ <CAJM55Z9e=vjGKNnmURN15mvXo2bVd3igBA-3puF9q7eh5hiP+A@mail.gmail.com>
+ <2f06ce36-0dc1-495e-b6a6-318951a53e8d@collabora.com>
+In-Reply-To: <2f06ce36-0dc1-495e-b6a6-318951a53e8d@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, 14 Dec 2023 13:27:59 +0100, Vahe Grigoryan wrote:
-> Haikou is an evaluation and development platform for System on
-> Modules (SOMs).
+On 11/28/23 02:40, Cristian Ciocaltea wrote:
+> On 11/26/23 23:10, Emil Renner Berthing wrote:
+>> Cristian Ciocaltea wrote:
+>>> The BeagleV Starlight SBC uses a Microchip KSZ9031RNXCA PHY supporting
+>>> RGMII-ID.
+>>>
+
+[...]
+ 
+>> You've alse removed the phy reset gpio on the Starlight board:
+>>
+>>   snps,reset-gpios = <&gpio 63 GPIO_ACTIVE_LOW>
+>>
+>> Why?
 > 
-> The GPIO0_B1 is routed to the Wake button instead of BIOS_DISABLE,
-> update the comment to reflect that.
-> 
-> 
-> [...]
+> I missed this in v1 as the gmac handling was done exclusively in
+> jh7100-common. Thanks for noticing!
 
-Applied, thanks!
+Hi Emil,
 
-[1/3] arm64: dts: rockchip: fix misleading comment in rk3399-puma-haikou.dts
-      commit: 9050aefab15b2da2c7d65d794ca445919ae4c235
-[2/3] arm64: dts: rockchip: expose BIOS Disable feedback pin on rk3399-puma
-      commit: 39d95566231d483a1c89e74cbcadc4394bfd53ef
-[3/3] arm64: dts: rockchip: make Haikou buttons compatible with "gpio-keys"
-      commit: 4a8cd5cb583b99b06d2f3e2acb38c5957dd4e92e
+I think the reset doesn't actually trigger because "snps,reset-gpios" is
+not a valid property, it should have been "snps,reset-gpio" (without the
+trailing "s").
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+However, this seems to be deprecated now, and the recommended approach
+would be to define the reset gpio in the phy node, which I did in [1].
+
+Hopefully this won't cause any unexpected behaviour. Otherwise we should
+probably simply drop it.
+
+[1]: https://lore.kernel.org/lkml/20231215204050.2296404-8-cristian.ciocaltea@collabora.com/ 
 
