@@ -1,64 +1,54 @@
-Return-Path: <devicetree+bounces-25788-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25789-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5039581485E
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 13:45:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A090F814893
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 13:56:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8246F1C22AB3
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 12:45:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D52F28161F
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 12:56:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D9062C69E;
-	Fri, 15 Dec 2023 12:45:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41F972C6BA;
+	Fri, 15 Dec 2023 12:56:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tCiA6SMa"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="kOv2hrgI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7E6D2D78D
-	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 12:45:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-40c517d0de5so6766295e9.0
-        for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 04:45:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702644313; x=1703249113; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=M8qMxxO2sTgOsnMtfrSl6kmtLRCDScORkkwQtbVzK9A=;
-        b=tCiA6SMaMCpqjMpGTrE2NLWn+cejEX17ZWoG4oxpDDRfiCnZKBI0N8M5njiQI2Lvt/
-         J9Yx/LznOhEE8dBqGGeDF0kaCfJqOZ23Lp7y271p61x0PyOnv3/+xhBZ9w/d7eDET08s
-         uzk3HGgZJ/efvJSQFrKr0OBAj+zWrAq1Lj6i2LbjcaJ06unhHrWl8iY7KEjs4YGx87xz
-         6IyxZ1zqGTr8HXRgBS0j40bu1LCNoSArVEQTD7DC6jFbKly3ybC9OhJTBj0wXDnOVM53
-         SbQLC43Vaaemt1y3OvirlrpawqySzqAZz9TqcqHJcbEriRKAshhZi9Hdoyhp7DQxVxpa
-         cWUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702644313; x=1703249113;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=M8qMxxO2sTgOsnMtfrSl6kmtLRCDScORkkwQtbVzK9A=;
-        b=KsQ58pA3a7YEQHvd858/lt2bIgd3OSIPCrqCFThXZnF3NZxdG3Ov4hbyk7XPcuHWN6
-         i0n0CZVSq+9xROQgMEkJMUxEXhwBgx9DE582PPI+g0EhJUvhuLVnqtJUtwTJDFe8Fk4P
-         D14GCy7K4hjlpnfEMFQ+tVZXl+0tc2DKVF4PC3sh/fy9gQRQNYmyfo/CKb6UQ+L3kojf
-         fA7g8IxYr9MqodJD/7j+nrGrtKcbj0eV0Y1zyd9zWZqDDFg1vVwQofxHeknPfCKFspfe
-         V4CiDvZfohdlcpLgV5+phCfJFfNvDfVfUlsM3gPI5hdlKxSB41mdhwEK0AUcKAczURo5
-         arhw==
-X-Gm-Message-State: AOJu0YzFJqwyIOez/e64cgmfoVtt0IIsFGE82FzBs0bHXABtYWlhYUIC
-	yF01SDN4FyTrZCuEIpuHS0O3Ig==
-X-Google-Smtp-Source: AGHT+IGVZ5Ll48i4ZjJg6LkbXdr6ZbwNTBA6pOQht94m0MrCE+V3SKYwEW73wLOsIBF5OOHAxBk+gg==
-X-Received: by 2002:a05:600c:601f:b0:40c:33d9:6998 with SMTP id az31-20020a05600c601f00b0040c33d96998mr6284905wmb.132.1702644313109;
-        Fri, 15 Dec 2023 04:45:13 -0800 (PST)
-Received: from [192.168.100.102] ([37.228.218.3])
-        by smtp.gmail.com with ESMTPSA id f9-20020a05600c154900b0040c4be1af17sm17495803wmg.21.2023.12.15.04.45.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Dec 2023 04:45:12 -0800 (PST)
-Message-ID: <27cc9438-d31f-41af-b012-adb77dd4da5a@linaro.org>
-Date: Fri, 15 Dec 2023 12:45:11 +0000
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A807F2C688;
+	Fri, 15 Dec 2023 12:56:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BF7rS5o028527;
+	Fri, 15 Dec 2023 12:55:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=a25RL4rBWi5rVQZx4+IX5SPuXPWTBxME9+jb/uBmDfc=; b=kO
+	v2hrgIV9oDcnoPRj/gXdAG8IqX6WYPV4395tueZZ5W2XYXHxsMp1epBhi4/VILdc
+	K3+F6LdiMMBaaopHeYbjjV1xn6V89gCcscDw9UIGCWW31Tg3HaVnuPXI9vWmcmWC
+	zrae3m/49PMsci7rKviyA1Dve8VgLOp0N/wgz26Mm5ZPGva35hc4iT1WhECqVYvm
+	R9iyVlrl55gIVD8x/il6GdaGVm+Q9GD1pTW9YtB67dJmEp8S5S2Ug/b4qxcH8QOM
+	ITVmaooc7QI7Q6CK7hBtpM9y7Su+UQvnxDMqmuKn9sdAof7l7MAt7scsq6fQzyq4
+	fh3Dku+WCyN0a4kL6oIg==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v0jt68rce-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 15 Dec 2023 12:55:48 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BFCtlVt008724
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 15 Dec 2023 12:55:47 GMT
+Received: from [10.253.13.71] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 15 Dec
+ 2023 04:55:41 -0800
+Message-ID: <6e5b6ab5-fc89-4986-894a-62af08343859@quicinc.com>
+Date: Fri, 15 Dec 2023 20:55:39 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,75 +56,88 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 07/10] clk: qcom: Add dispcc clock driver for x1e80100
+Subject: Re: [PATCH v3 5/5] dt-bindings: net: ipq4019-mdio: Document ipq5332
+ platform
 Content-Language: en-US
-To: Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- Rajendra Nayak <quic_rjendra@quicinc.com>
-References: <20231214-x1e80100-clock-controllers-v2-0-2b0739bebd27@linaro.org>
- <20231214-x1e80100-clock-controllers-v2-7-2b0739bebd27@linaro.org>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20231214-x1e80100-clock-controllers-v2-7-2b0739bebd27@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <andrew@lunn.ch>, <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
+        <robert.marko@sartura.hr>
+CC: <linux-arm-msm@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_srichara@quicinc.com>
+References: <20231214090304.16884-1-quic_luoj@quicinc.com>
+ <20231214090304.16884-6-quic_luoj@quicinc.com>
+ <1e4c55c8-8ed6-4f2e-8328-8a173f09b62f@linaro.org>
+ <3c8e33b4-6ebc-476f-a00f-15cc8a1ad9e4@quicinc.com>
+ <b89abf8c-57f8-46a6-a071-b1591340fbdf@linaro.org>
+ <3de98516-9a28-4f58-8951-2a7752621fee@quicinc.com>
+ <1fa2d219-63d7-45cf-9e05-b85dbce24076@linaro.org>
+ <f16dfe78-2e31-45fb-b2fe-f72b7e6c51a5@quicinc.com>
+ <6acecb29-2a6c-40af-a5a3-bec3e7286df7@linaro.org>
+From: Jie Luo <quic_luoj@quicinc.com>
+In-Reply-To: <6acecb29-2a6c-40af-a5a3-bec3e7286df7@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 8MST0g6K1xkFPm_ln_-3VeMeMJSQUSEQ
+X-Proofpoint-ORIG-GUID: 8MST0g6K1xkFPm_ln_-3VeMeMJSQUSEQ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=758
+ priorityscore=1501 clxscore=1015 lowpriorityscore=0 phishscore=0
+ spamscore=0 malwarescore=0 adultscore=0 bulkscore=0 impostorscore=0
+ suspectscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2312150086
 
-On 14/12/2023 16:49, Abel Vesa wrote:
-> From: Rajendra Nayak <quic_rjendra@quicinc.com>
+
+
+On 12/15/2023 8:14 PM, Krzysztof Kozlowski wrote:
+> On 15/12/2023 13:03, Jie Luo wrote:
+>>>> If i do not declare the property "reset-assert-us" and
+>>>> "reset-deassert-us", the warning will be reported by "make
+>>>> dt_binding_check" since i
+>>>> add a example in this file.
+>>>
+>>> This argument does not make sense, sorry. Obviously if property is not
+>>> allowed, it should be removed.
+>>>
+>>> Provide rationale, in terms of hardware, why this property must be added
+>>> and why it cannot be deduced from the compatible.
+>>>
+>>> Best regards,
+>>> Krzysztof
+>>>
+>>
+>> So i can remove "reset-assert-us" and "reset-deassert-us" from the added
+>> example to avoid the dt check warning? even these two properties are
+>> needed to be defined in the device tree to make this driver working
+>> correctly.
 > 
-> Add the dispcc clock driver for x1e80100.
+> Sorry, that does not answer my question at all. First, "Driver" is not
+> hardware. My second question was simply ignored. In the v2 thread you as
+> well respond with some short, unrelated sentences not answering to the
+> real questions. It's a waste of my time. Please reach internally in
+> Qualcomm for guidance how to upstream patches and how to write bindings.
 > 
-> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
-
-> +static struct platform_driver disp_cc_x1e80100_driver = {
-> +	.probe = disp_cc_x1e80100_probe,
-> +	.driver = {
-> +		.name = "disp_cc-x1e80100",
-> +		.of_match_table = disp_cc_x1e80100_match_table,
-> +	},
-> +};
-> +
-> +static int __init disp_cc_x1e80100_init(void)
-> +{
-> +	return platform_driver_register(&disp_cc_x1e80100_driver);
-> +}
-> +subsys_initcall(disp_cc_x1e80100_init);
-> +
-> +static void __exit disp_cc_x1e80100_exit(void)
-> +{
-> +	platform_driver_unregister(&disp_cc_x1e80100_driver);
-> +}
-> +module_exit(disp_cc_x1e80100_exit);
-> +
-> +MODULE_DESCRIPTION("QTI DISPCC X1E80100 Driver");
-> +MODULE_LICENSE("GPL");
+> Best regards,
+> Krzysztof
 > 
 
-And we don't even do the odd underscore insertion consistently. For 
-whatever reason "DISPCC" instead of "DISP_CC"
+These properties "reset-assert-us" and "reset-deassert-us" are the
+general properties from mdio.yaml, which are used when the MDIO
+bus driver is registered by the MDIO framework.
+The general DT property already supports to do the correct config,
+then compatible string is not needed to be checked for doing the
+configs.
 
-Just to reiterate the underscores should be dropped from these clock 
-controller names and defines entirely, they just eat up bytes in databases.
+i will check the binding examples to avoid this kind of problems.
 
-.name = "dispcc-x1e80100"
-
-("QTI DISPCC X1E80100 Driver"); better but IMO we could just a complete 
-word here
-
-"Display Clock Controller" there's no need to abbreviate.
-
----
-bod
 
