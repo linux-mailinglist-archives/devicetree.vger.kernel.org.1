@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-25856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45114814D5A
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 17:41:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E3BF814D74
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 17:47:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 77C0B1C232D8
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 16:41:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B7A021F2437C
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 16:47:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7BC13EA98;
-	Fri, 15 Dec 2023 16:40:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CBBB3DB96;
+	Fri, 15 Dec 2023 16:47:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RBVPggKi"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="T8U2npXm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 734C63EA8D
-	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 16:40:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96EF33FE34
+	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 16:47:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-28b406a0fbfso212178a91.0
-        for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 08:40:34 -0800 (PST)
+Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-6cea0ea6817so130065b3a.1
+        for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 08:47:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702658434; x=1703263234; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1702658842; x=1703263642; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=P25CbsehI2ZDoWt8jYG9StimuRm4R3IkYru7E52Ud9o=;
-        b=RBVPggKi2BeU2nVWgeO+pAeUzkdffD5tOc+gUqzim2Z4ZTVrOJ5yFfOUjUDL49U+LT
-         gqfI/yJt6yzZDmfi6KfwL75VUzW9kCXN3G6YEoq8YPnlCm66WTrta/9TGDj/zHtJm7Vi
-         tyqhoWTG/eyawWvWmbd/gaT2lanuBzXQ/phkCgS3+troHBXu4gFj0qXtois/hr5XvNAf
-         3mIXnWydtwJYBRoou/KUF94P5jcfyxTPTYjGPdF2RGCnmUhrOifYCAqElsaBTiH1HSiO
-         ZyeY7ZH2jOS0cu2SYHfQVF/CFe48IMczv+itacU3xXe7mfuJLMFmsK5pq4hUNBMtyo7e
-         dN/Q==
+        bh=oEPp7VwVape+PRLcyc7DkdEl3azZDbUT/G2Ugu6awLc=;
+        b=T8U2npXm3qapirY0ky8a2EUhybku+uPdQ2H7bdD2uz2Bi3NNWjiLe2fXQ9Zz0ZWeLQ
+         Nd2yQ6jSKzscKqFV1NdJv7mdq6WNmhWXUmCOlnILytEARoIu+C/U5XvrSF3FxOsF2/T4
+         7uXxLnun3pUIYieo0GpHLuS5r4HJyHBS9uUHjR7wYfu2PrC4jul3BaIVBk+M08w0qsGz
+         TOCb1yJG7G4ATJnCl+dL+iDTDq8zWGkrDpJmUuCgNHS4fQK1emTyjngSLqF+a1qftHp1
+         4Kge2x2zLAL4FoaPRjrPaEU1n8seeLzbLmN6xyX4gfnoHG+CneZUkx/Rc0ALsGxQdHN6
+         Z71w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702658434; x=1703263234;
+        d=1e100.net; s=20230601; t=1702658842; x=1703263642;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=P25CbsehI2ZDoWt8jYG9StimuRm4R3IkYru7E52Ud9o=;
-        b=vEggX/4frjp3DNCzboFkYI64njA+tsqwuLkjtkKkOF+1y4Hvm69Lvx1DmmCNts+HAz
-         jOiaWKz4rQG7T4bWkqujNrtmhjI9XDKLupZ/RRVk3JjdAqUC4XZD8GeMWPjesp6eHLqk
-         XIPUPgZGXL/6M5j+m8MVf9szauj6T76PIkt3wdhYN6DFHjKXeOUCXGM4IdLbbPRJzuXq
-         0nl3UiRCEXr33myA5cUM2AKIeIHEWnsSe+8dz+6bDNZbuh/OjCMV+8QMe6zbeVUHicqa
-         E5hhijig7MnBgBv7xNcUegyQXS9tgrZhVwQctAQSLx1seXt7QPTfX8Yr0Mqhp4Ack0Oz
-         8BIg==
-X-Gm-Message-State: AOJu0Yw4FYpZVdLDfT6SDZqg7Px37YfU4Kc2fGoNfe4/PqksuAo5qIiC
-	5VtRPU/6M6YZRcT/+T2jWOtdrztE4x7zgDIzxTc=
-X-Google-Smtp-Source: AGHT+IFuSK9mMYf2tzt4qdasmJNq1qeadzqiV6T7OQnjj9RaK23eMPy4F59kvNXJlhXKl73Qd4YLnG1VowwzUkWhndA=
-X-Received: by 2002:a17:90a:578c:b0:285:cc9c:7406 with SMTP id
- g12-20020a17090a578c00b00285cc9c7406mr9402919pji.15.1702658433586; Fri, 15
- Dec 2023 08:40:33 -0800 (PST)
+        bh=oEPp7VwVape+PRLcyc7DkdEl3azZDbUT/G2Ugu6awLc=;
+        b=o40viY6bHoHPvazcZxpjXQ2ScImPS7AQYHXx3rXsW/83+/rr1Ez2CJnvbVgsRDHas0
+         MViPWTdzzOY45pR3cmDuSCAisOksxm58JmLzzpI+3ATsdXnrwOtM5emgx+5q8cZXTr/B
+         ydtB8TGoWlmyOGWEa6+jS8NAybPHzcud61efL+ECoQtJSmFw1lsK6/gDaPJSDEuD2jVH
+         8fgXFuLAsCTpOmXVN7tTuu6OoiPOorKjcIHbEmAh1mAbLTT6AgTIpnNgm2VTXyb69W7o
+         jxeFSsYz4CCCxUU1DHSAF8VjY6RrQbi50+hSwMBQRZvUhLzWPiVm4CkgVUlnqBK9T000
+         78iQ==
+X-Gm-Message-State: AOJu0YzXtUq59H1SklENA+uZv40tMDdqcUEw9+CTB55vEaZPLqFm/iEi
+	zwiKfQGsb2zOJZYM2VmVVIyN3O+4Zfb+mnN1BKk=
+X-Google-Smtp-Source: AGHT+IG6XM/cpbPyvUmpGmMVAIiaAGFLNuv+q8LFxY1OkI/0FMeQV7pk1x5j1JLtN7eqshBjH/oZ0QYQ3ZPAjrH5iWo=
+X-Received: by 2002:a05:6a00:4601:b0:6ce:72d7:1e74 with SMTP id
+ ko1-20020a056a00460100b006ce72d71e74mr25061297pfb.2.1702658841835; Fri, 15
+ Dec 2023 08:47:21 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,61 +63,53 @@ MIME-Version: 1.0
 References: <20230920171009.3193296-1-l.stach@pengutronix.de>
  <20230920171009.3193296-2-l.stach@pengutronix.de> <20230920205736.GB7723@pendragon.ideasonboard.com>
  <CAHCN7xJz=rEH_8wHaBCVOUzP0kO6cM_c=zLf6ocjW8bt1FaCBw@mail.gmail.com>
- <CAOMZO5C7_Rj-Ja0BO0D0Po+gy+XbvyMdQf-wH5YNyhAdMof2vg@mail.gmail.com> <20231215142308.GL21146@pendragon.ideasonboard.com>
-In-Reply-To: <20231215142308.GL21146@pendragon.ideasonboard.com>
-From: Adam Ford <aford173@gmail.com>
-Date: Fri, 15 Dec 2023 10:40:22 -0600
-Message-ID: <CAHCN7xJPg_Nk=o9fKwkZfVTNSB-YL0m7vY6p1O7+i=PHShp7hg@mail.gmail.com>
+ <CAOMZO5C7_Rj-Ja0BO0D0Po+gy+XbvyMdQf-wH5YNyhAdMof2vg@mail.gmail.com>
+ <20231215142308.GL21146@pendragon.ideasonboard.com> <CAHCN7xJPg_Nk=o9fKwkZfVTNSB-YL0m7vY6p1O7+i=PHShp7hg@mail.gmail.com>
+In-Reply-To: <CAHCN7xJPg_Nk=o9fKwkZfVTNSB-YL0m7vY6p1O7+i=PHShp7hg@mail.gmail.com>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Fri, 15 Dec 2023 13:47:09 -0300
+Message-ID: <CAOMZO5AGAkPpds=5H-iQj53djcQtW5GsRQrzdC_JOOrcENhvvw@mail.gmail.com>
 Subject: Re: [PATCH v3 2/2] drm/bridge: imx: add driver for HDMI TX Parallel
  Video Interface
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Fabio Estevam <festevam@gmail.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Jonas Karlman <jonas@kwiboo.se>, Liu Ying <victor.liu@nxp.com>, Sandor Yu <sandor.yu@nxp.com>, 
-	dri-devel@lists.freedesktop.org, NXP Linux Team <linux-imx@nxp.com>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, patchwork-lst@pengutronix.de, 
-	devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, 
-	Frieder Schrempf <frieder.schrempf@kontron.de>, Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Richard Leitner <richard.leitner@skidata.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, linux-arm-kernel@lists.infradead.org
+To: Adam Ford <aford173@gmail.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Jonas Karlman <jonas@kwiboo.se>, 
+	Liu Ying <victor.liu@nxp.com>, Sandor Yu <sandor.yu@nxp.com>, dri-devel@lists.freedesktop.org, 
+	NXP Linux Team <linux-imx@nxp.com>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	patchwork-lst@pengutronix.de, devicetree@vger.kernel.org, 
+	Rob Herring <robh+dt@kernel.org>, Frieder Schrempf <frieder.schrempf@kontron.de>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Richard Leitner <richard.leitner@skidata.com>, 
+	Luca Ceresoli <luca.ceresoli@bootlin.com>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Dec 15, 2023 at 8:23=E2=80=AFAM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> On Fri, Dec 15, 2023 at 10:31:27AM -0300, Fabio Estevam wrote:
-> > On Sun, Dec 10, 2023 at 2:35=E2=80=AFPM Adam Ford wrote:
-> >
-> > > Lucas,
-> > >
-> > > It's been a few months since there has been any action.  If you want,
-> > > I can help apply the suggestions that Laurent has and re-submit with
-> > > both of our names if you want.  It would be nice to get this
-> > > integrated.
-> >
-> > It would be nice if you could re-submit the series.
->
-> Yes, that would be nice. It shouldn't cause any issue, the patches will
-> retain Lucas' authorship.
+Hi Adam,
 
-I started looking into this today, but there appears to be some
-dependencies missing because the PVI is just one small portion of
-this. The PVI needs to interact with the hdmi_blk_ctrl and the hdmi
-transmitter itself.
+On Fri, Dec 15, 2023 at 1:40=E2=80=AFPM Adam Ford <aford173@gmail.com> wrot=
+e:
 
-It looks like there was at least one attempt to push the hdmi driver,
-but we're also missing some hdmi power domain information, and the dri
-patchwork lists a bunch of proposed patches for the lcdif driver.  I
-haven't looked through them all, so I don't know if they are
-necessary.  I found a git repo with Lucas' stuff, but it's based on
-the 6.0 kernel, so it's fairly old.  Either way it seems like there is
-more to the HDMI than just his one series.
+> I started looking into this today, but there appears to be some
+> dependencies missing because the PVI is just one small portion of
+> this. The PVI needs to interact with the hdmi_blk_ctrl and the hdmi
+> transmitter itself.
+>
+> It looks like there was at least one attempt to push the hdmi driver,
+> but we're also missing some hdmi power domain information, and the dri
+> patchwork lists a bunch of proposed patches for the lcdif driver.  I
+> haven't looked through them all, so I don't know if they are
+> necessary.  I found a git repo with Lucas' stuff, but it's based on
+> the 6.0 kernel, so it's fairly old.  Either way it seems like there is
+> more to the HDMI than just his one series.
 
-adam
->
-> --
-> Regards,
->
-> Laurent Pinchart
+Here is the whole patchset that I tested against 6.6:
+
+https://patchwork.freedesktop.org/patch/485391/
+https://patchwork.freedesktop.org/patch/485392/
+https://patchwork.freedesktop.org/patch/485395/
+https://patchwork.freedesktop.org/patch/515299/
+https://patchwork.freedesktop.org/patch/515300/
+https://patchwork.kernel.org/project/linux-arm-kernel/patch/20220406153402.=
+1265474-12-l.stach@pengutronix.de/
 
