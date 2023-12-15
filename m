@@ -1,131 +1,122 @@
-Return-Path: <devicetree+bounces-25987-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-26036-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59A288153D2
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 23:39:37 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E77B4815584
+	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 01:32:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3195BB2369E
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 22:39:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 846451F25A2E
+	for <lists+devicetree@lfdr.de>; Sat, 16 Dec 2023 00:32:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81E8818EAC;
-	Fri, 15 Dec 2023 22:39:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E5FA63BE;
+	Sat, 16 Dec 2023 00:23:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="FnRbQ5ZE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Dor0919s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 183D013B12E;
-	Fri, 15 Dec 2023 22:39:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BFLVMlU023006;
-	Fri, 15 Dec 2023 22:38:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=i5e3VNsHMtLdnZjKEnpBG17/DfBO8lIAIhhbJZLJYwE=; b=Fn
-	RbQ5ZEXEHBuX4ttkNQ3M26mGIGsNg+wmUPp6CqOydH0nusvg8tWBlYDjqu4R515P
-	M6JPdi1pZRKj2oiaLOB7/TbqlHISBFpqGsMY34Wyk7nOFyvNr3V+8+E2EpdRLjT7
-	TiNUDoHwPFLLMLpSoGrECEDlDeXr9OF+F8dc50JpJtoxAf+qqkxmGesOZXKZqKSz
-	8l+msL9CiH43M8XgJbHQeilIGAmXG1d/WZJYH102Z9ZmsGvHBIgkYefwo38sVoDn
-	hkgAu7M3DuOP/LBoquOzViJd1H3A5BqJKjODHH0z7yf9jJ4vimXkDJ5OJ0eIuFZb
-	thCIunEJ7q6mR+pN6Rhg==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v0m46hrg1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 15 Dec 2023 22:38:56 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BFMct9A027457
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 15 Dec 2023 22:38:55 GMT
-Received: from [10.110.36.237] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 15 Dec
- 2023 14:38:54 -0800
-Message-ID: <80111881-13dd-4b05-876a-a97eb3889726@quicinc.com>
-Date: Fri, 15 Dec 2023 14:38:53 -0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 366815675;
+	Sat, 16 Dec 2023 00:23:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-40c2718a768so11796825e9.0;
+        Fri, 15 Dec 2023 16:23:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702686186; x=1703290986; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=I2cQQHTukUtPE/uR7ah1Fmgn0krkwrRifPUQAFLRAB0=;
+        b=Dor0919sjHLJZ4NqGrIyvh5qAm604y+rPPova9ukVvqF8ot6P3u4/aSWfdxNt6MMrW
+         Qk3hO0Xzzezv/lVwrW7wCVZb7/4SGQ67Yaq9SjpvoQKNmtMKmTbmttSStdxC1ximohl3
+         S5B3hX+K5ghei03lPaS3V4D6xKxrF87pZqa3j2MmP96pWRENWoZKdL4r4cn+w2Bdqz4t
+         g6c8+Yu0jL2UFCqQ9p4yw57kR8RzSEyVkVFtbfrIEFQNv0ZccibiSYugkD7c0/LOh+R2
+         Gk9OU8mNsB5vr4x+V4YC7Qb68h+8C5hP3dHbePY4WQljEdbwNu6z3/u5MO31sU1rjqeE
+         IBdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702686186; x=1703290986;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=I2cQQHTukUtPE/uR7ah1Fmgn0krkwrRifPUQAFLRAB0=;
+        b=u0+7sde2nXevrTax6Y2YiDca6Vz8UZVb8DKEVN3+4gERtLMm8SFyo2ZpYiKk+lUNCu
+         EL+mA0kDaMSoYtQz2JtQ8bHcWnMmr2ImywXDFuTgJy3p6L3Oz+FtNISusdCBAJw2W/bM
+         XDbdvK0pzBQ4qwtBLFWrqIC7qw6e51bJ0D/GGTc3OI5w0DTEV8BpKrNnfTWcFpu+9uYX
+         E0ikI0j0GKCYC8lBFXAUh/2nWWR9JpMpSdV9CAcUK053bE8iCl6z2Xu+FsOcTIa/YexB
+         4cOSyZOA543X5cVTgxfDxU2BNaoT0TNSvXIjcjxtL21Q93X7JC8GPCjlUEBMQcFvXwC7
+         jCpA==
+X-Gm-Message-State: AOJu0YwY1UCs1ipdTjMuk3yyK63AVggP72/61NLE/p7U8x5hMC8aZJsg
+	Q3QN5jE/zwso21Gx4UB99qc=
+X-Google-Smtp-Source: AGHT+IF+9FqV+Lr9UMveMWtugElQgByzvoxFfDjtG/GBrvhJpi0XjLDpI57BBQHWqDolF7Z7Gqy9NA==
+X-Received: by 2002:a7b:c7ca:0:b0:40b:5e1b:54ac with SMTP id z10-20020a7bc7ca000000b0040b5e1b54acmr7682448wmk.56.1702686186209;
+        Fri, 15 Dec 2023 16:23:06 -0800 (PST)
+Received: from localhost.localdomain (93-34-89-13.ip49.fastwebnet.it. [93.34.89.13])
+        by smtp.googlemail.com with ESMTPSA id a15-20020a5d508f000000b0033330846e76sm1496191wrt.86.2023.12.15.16.23.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Dec 2023 16:23:05 -0800 (PST)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Tobias Waldekranz <tobias@waldekranz.com>
+Subject: [net-next PATCH v4 0/4] net: phy: generic polarity + LED support for qca808x
+Date: Fri, 15 Dec 2023 22:22:40 +0100
+Message-Id: <20231215212244.1658-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 18/41] ALSA: usb-audio: qcom: Add USB QMI definitions
-Content-Language: en-US
-To: Wesley Cheng <quic_wcheng@quicinc.com>, <srinivas.kandagatla@linaro.org>,
-        <mathias.nyman@intel.com>, <perex@perex.cz>, <conor+dt@kernel.org>,
-        <corbet@lwn.net>, <gregkh@linuxfoundation.org>, <lgirdwood@gmail.com>,
-        <andersson@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <konrad.dybcio@linaro.org>, <Thinh.Nguyen@synopsys.com>,
-        <broonie@kernel.org>, <bgoswami@quicinc.com>, <tiwai@suse.com>,
-        <robh+dt@kernel.org>, <agross@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-sound@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>
-References: <20231215214955.12110-1-quic_wcheng@quicinc.com>
- <20231215214955.12110-19-quic_wcheng@quicinc.com>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <20231215214955.12110-19-quic_wcheng@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: y0Zvylxqky0dYnXVoe0CvMAArWBxbEqy
-X-Proofpoint-ORIG-GUID: y0Zvylxqky0dYnXVoe0CvMAArWBxbEqy
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- suspectscore=0 adultscore=0 phishscore=0 mlxscore=0 clxscore=1011
- mlxlogscore=899 impostorscore=0 malwarescore=0 bulkscore=0 spamscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2312150159
+Content-Transfer-Encoding: 8bit
 
-On 12/15/2023 1:49 PM, Wesley Cheng wrote:
-> The Qualcomm USB audio offload driver utilizes the QMI protocol to
-> communicate with the audio DSP.  Add the necessary QMI header and field
-> definitions, so the QMI interface driver is able to route the QMI packet
-> received to the USB audio offload driver.
-> 
-> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
-> ---
->  sound/usb/qcom/usb_audio_qmi_v01.c | 892 +++++++++++++++++++++++++++++
->  sound/usb/qcom/usb_audio_qmi_v01.h | 162 ++++++
->  2 files changed, 1054 insertions(+)
->  create mode 100644 sound/usb/qcom/usb_audio_qmi_v01.c
->  create mode 100644 sound/usb/qcom/usb_audio_qmi_v01.h
-> 
-> diff --git a/sound/usb/qcom/usb_audio_qmi_v01.c b/sound/usb/qcom/usb_audio_qmi_v01.c
-> new file mode 100644
-> index 000000000000..bdfd67d980eb
-> --- /dev/null
-> +++ b/sound/usb/qcom/usb_audio_qmi_v01.c
-> @@ -0,0 +1,892 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#include <linux/soc/qcom/qmi.h>
-> +
-> +#include "usb_audio_qmi_v01.h"
-> +
-> +static struct qmi_elem_info mem_info_v01_ei[] = {
+This small series add LEDs support for qca808x.
 
-I believe all of the struct qmi_elem_info arrays can be const.
+Qca808x apply on PHY reset a strange polarity settings and require
+some tweak to apply a more common configuration found on devices.
+On adding support for it, it was pointed out that a similar
+feature is also being implemented for a marvell PHY where
+LED polarity is set per LED (and not global) and also have
+a special mode where the LED is tristated.
 
-At least that was the goal of commit ff6d365898d4 ("soc: qcom: qmi: use
-const for struct qmi_elem_info")
+The first 2 patch are to generalize this as we expect more PHY
+in the future to have a similar configuration.
 
-/jeff
+The implementation is extensible to support additional special
+mode in the future with minimal changes and don't create regression
+on already implemented PHY drivers.
+
+(changelog present in single patch)
+
+Christian Marangi (4):
+  dt-bindings: net: phy: Document new LEDs polarity property
+  net: phy: add support for PHY LEDs polarity modes
+  dt-bindings: net: Document QCA808x PHYs
+  net: phy: at803x: add LED support for qca808x
+
+ .../devicetree/bindings/net/ethernet-phy.yaml |  11 +
+ .../devicetree/bindings/net/qca,qca808x.yaml  |  54 +++
+ drivers/net/phy/at803x.c                      | 308 ++++++++++++++++++
+ drivers/net/phy/phy_device.c                  |  45 +++
+ include/linux/phy.h                           |  25 ++
+ 5 files changed, 443 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/qca,qca808x.yaml
+
+-- 
+2.40.1
 
 
