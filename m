@@ -1,134 +1,143 @@
-Return-Path: <devicetree+bounces-25880-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25861-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B50E0814EF0
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 18:37:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BE4F814DD8
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 18:05:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 89BE6B21D96
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 17:37:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D87731F24DA2
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 17:05:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B517A82ED4;
-	Fri, 15 Dec 2023 17:37:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 033F33EA90;
+	Fri, 15 Dec 2023 17:05:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DvHYZMzD"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="hfZM+JVn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3401430101;
-	Fri, 15 Dec 2023 17:37:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-40c6ea99429so3445655e9.3;
-        Fri, 15 Dec 2023 09:37:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702661831; x=1703266631; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=rmrj+rZPQDEb03B1/Gdj9DCEQdcm144w/bczgbq9U/U=;
-        b=DvHYZMzD3eKNtLMA/3PMq9+CXwQ4LEiiqYlaJdfj1ErgGHUEuFX1sQCL69+OM6lfKq
-         6uvLhptHp3evAhrBRm5xzCgSKcqBO1paQ8kSMUX7m7WO+4VHMJCJWWFjnOoTm0s6N/Zr
-         Rcqx5Z4m1jCS7DbiJd+5enttpGPTZtkYpHFbSY/olVhy9s0ZyTu7h2ENu6x68VzbJwPd
-         LAPQN7G5JOu7tNh759osR7RXf09SdpUANoA8ampJxSj7UqfyyOsHxVP+97IpHe053Z4J
-         ecbF0m8j8pNXg6e3JXzhk6lxOHi0qObNmlj8Vix4yLZZXvBjzWlfpyUZ2UzPtiy0RxVI
-         INHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702661831; x=1703266631;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rmrj+rZPQDEb03B1/Gdj9DCEQdcm144w/bczgbq9U/U=;
-        b=r2FK1UNvoZylh5A6ElDscY1YgxUyQgq3mLzN5wdcgonD+alYmlKSdhSULQPnWCJ8TG
-         0QAKW7F9U5pH97j013KAxM0JivwIiIKB5qRAWIIdJrW5fvJExwTbC/UVMxj0OJUSsgIv
-         uu7dEfdEgVkSPnBfUKpkUmgk0tbyYTGLrniyO1byC0UH3yqRXK+G7saPUXVi9dBVTgZU
-         S9LacAd8fdD9z17W+UGtZXwBPjYM86O7oHdYCt7pSO2mfksEXkXp1w8VWT/i6WbedDM6
-         BYk2dA7rwSqrpxsCFLPEJ2Jr0aVxyZR40C/DzXWvvpMVXb9ahNzVQEUGaxLNu+VG+mQ7
-         Jm4g==
-X-Gm-Message-State: AOJu0YzVUQMjpeRoI4JdRWFRELXaT1u+MjtS7eV4oC/eCwvCQi74aUND
-	DqF3zQ/Vu4kYOR/r24oGlyk=
-X-Google-Smtp-Source: AGHT+IHLSxSjX8Sc+Ia0bfAk77WGTCfUuon0C1mIPimKZ6zTF3NQ18hgGG7u66cBNOBTFjsKFmntZw==
-X-Received: by 2002:a05:600c:4694:b0:40c:6a86:659f with SMTP id p20-20020a05600c469400b0040c6a86659fmr523775wmo.224.1702661831139;
-        Fri, 15 Dec 2023 09:37:11 -0800 (PST)
-Received: from Ansuel-xps. (93-34-89-13.ip49.fastwebnet.it. [93.34.89.13])
-        by smtp.gmail.com with ESMTPSA id e33-20020a5d5961000000b0033346fe9b9bsm19381084wri.83.2023.12.15.09.37.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Dec 2023 09:37:10 -0800 (PST)
-Message-ID: <657c8ec6.5d0a0220.4648c.58d2@mx.google.com>
-X-Google-Original-Message-ID: <ZXxhkFUAwAKnZDJp@Ansuel-xps.>
-Date: Fri, 15 Dec 2023 15:24:16 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F3F53EA7C;
+	Fri, 15 Dec 2023 17:05:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3BFFI0le006684;
+	Fri, 15 Dec 2023 18:05:16 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:in-reply-to; s=selector1; bh=o8wmc8jZJ9HQbVCAGipp3
+	GioSJW5gynekkGKhCepGLs=; b=hfZM+JVnZHy055EPOr4149vy4dcFCg9P64LKy
+	w7wMCp0KsPFEajGZgct+AUvmr8csun7aLoSnMR1bot9pi/kfl8VNb/QnpWNRTfsq
+	bbbS5G7s5e0mJmAdA5P6wzj428bf2LxOb4D0C5rqxweIyY2m9XXuOxMTERnjCfzx
+	IgIjv2RhGmQhJ/zDy7UadhGaSAm7mIpfFuWVFapfrJBjfXHTCACWq1F9YCEqeJ7+
+	IP8N3ZH62f7fFQxDCDDqU3iOM35V8WCjmOqmsWs0ujV55HVWeJGxnBNS5mPZzP8o
+	vBZf23v2vonN7ao1Yumk6/91YGq6jfq5Y4YliW/crfQBaDWjA==
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3uvg0hag8w-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 15 Dec 2023 18:05:16 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 09BE8100052;
+	Fri, 15 Dec 2023 18:05:16 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id F1E8923BDE0;
+	Fri, 15 Dec 2023 18:05:15 +0100 (CET)
+Received: from gnbcxd0016.gnb.st.com (10.129.178.213) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 15 Dec
+ 2023 18:05:15 +0100
+Date: Fri, 15 Dec 2023 18:05:10 +0100
+From: Alain Volmat <alain.volmat@foss.st.com>
+To: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre
+ Torgue <alexandre.torgue@foss.st.com>,
+        Pierre-Yves MORDRET
+	<pierre-yves.mordret@foss.st.com>
+CC: Conor Dooley <conor@kernel.org>, <linux-i2c@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 0/7] i2c: stm32f7: enhancements and support for
+ stm32mp25
+Message-ID: <20231215170510.GA95783@gnbcxd0016.gnb.st.com>
+Mail-Followup-To: Andi Shyti <andi.shyti@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <f.fainelli@gmail.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	tobias Waldekranz <tobias@waldekranz.com>
-Subject: Re: [net-next PATCH v3 1/4] dt-bindings: net: phy: Document new LEDs
- active-low property
-References: <20231213111322.6152-1-ansuelsmth@gmail.com>
- <d63e8b6a-c0fc-4d99-b399-86f66f369176@linaro.org>
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Pierre-Yves MORDRET <pierre-yves.mordret@foss.st.com>,
+	Conor Dooley <conor@kernel.org>, linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20231215170223.95549-1-alain.volmat@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <d63e8b6a-c0fc-4d99-b399-86f66f369176@linaro.org>
+In-Reply-To: <20231215170223.95549-1-alain.volmat@foss.st.com>
+X-Disclaimer: ce message est personnel / this message is private
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-15_10,2023-12-14_01,2023-05-22_02
 
-On Fri, Dec 15, 2023 at 04:48:35PM +0100, Krzysztof Kozlowski wrote:
-> On 13/12/2023 12:13, Christian Marangi wrote:
-> > Document new LEDs active-low property to define if the LED require to be
-> > set low to be turned on.
-> > 
-> > active-low can be defined in the leds node for PHY that apply the LED
-> > polarity globally for each attached LED or in the specific led node for
-> > PHY that supports setting the LED polarity per LED.
-> > 
-> > Declaring both way is not supported and will result in the schema
-> > getting rejected.
-> > 
-> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> > ---
-> > Changes v3:
-> > - Out of RFC
-> > Changes v2:
-> > - Add this patch
-> > 
-> >  .../devicetree/bindings/net/ethernet-phy.yaml | 20 +++++++++++++++++++
-> >  1 file changed, 20 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> > index 8fb2a6ee7e5b..9cb3981fed2a 100644
-> > --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> > +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> > @@ -213,6 +213,11 @@ properties:
-> >        '#size-cells':
-> >          const: 0
-> >  
-> > +      'active-low':
+Sorry, please ignore this cover-letter, will send a new one following a
+typo in the numbering of this one: 0/7 should have been 0/9
+
+On Fri, Dec 15, 2023 at 06:02:10PM +0100, Alain Volmat wrote:
+> This series first perform enhancements in the way interrupt are handled
+> and cleanup in messages.
+> Then it adds support for the stm32mp25 which differs in that
+> it only has a single irq line for both event/error and has a
+> different handling of the FastModePlus.
+> Support is then enabled within the stm32mp25 related device-trees.
 > 
-> Drop quotes, no need for them.
+> Changelog:
+> v3: - addition of 2 commits dealing with readl_relaxed(I2C_ISR) in
+>       isr handler and a second one to use dev_err_probe during probe
+>     - correction of SOB in commit
 > 
-> As pointed out in other patchset, bool might not be enough.
-> https://lore.kernel.org/all/74cb1d1c-64b8-4fb0-9e6d-c2fad8417232@lunn.ch/
-> Anyway, both cases probably needs to be considered here.
->
-
-Hi, thanks for pointing me to that series. Leaved some message there,
-would love if you can check some ideas on how to handle the LED
-polarity thing DT wise.
-
--- 
-	Ansuel
+> v2: - correct st,stm32-i2c.yaml.  Use if then else scheme to indicate
+>       number of interrupts / interrupt-names depending on the
+>       compatible while keeping the description within the common part
+> 
+>     - correct 2 maybe-uninitialized warnings
+>           * ret in stm32f7_i2c_write_fm_plus_bits
+>           * irq_error in stm32f7_i2c_probe, move the platform_get_irq
+>             within the same if block as devm_request_threaded_irq
+> 
+> Alain Volmat (9):
+>   i2c: stm32f7: use dev_err_probe upon calls of devm_request_irq
+>   i2c: stm32f7: perform most of irq job in threaded handler
+>   i2c: stm32f7: simplify status messages in case of errors
+>   dt-bindings: i2c: document st,stm32mp25-i2c compatible
+>   i2c: stm32f7: perform I2C_ISR read once at beginning of event isr
+>   i2c: stm32f7: add support for stm32mp25 soc
+>   arm64: dts: st: add all 8 i2c nodes on stm32mp251
+>   arm64: dts: st: add i2c2/i2c8 pins for stm32mp25
+>   arm64: dts: st: add i2c2 / i2c8 properties on stm32mp257f-ev1
+> 
+>  .../devicetree/bindings/i2c/st,stm32-i2c.yaml |  28 ++
+>  arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi |  36 ++
+>  arch/arm64/boot/dts/st/stm32mp251.dtsi        |  96 +++++
+>  arch/arm64/boot/dts/st/stm32mp257f-ev1.dts    |  20 +
+>  drivers/i2c/busses/i2c-stm32f7.c              | 342 +++++++++---------
+>  5 files changed, 358 insertions(+), 164 deletions(-)
+> 
+> -- 
+> 2.25.1
+> 
 
