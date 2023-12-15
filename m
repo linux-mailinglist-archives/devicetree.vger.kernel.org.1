@@ -1,233 +1,144 @@
-Return-Path: <devicetree+bounces-25782-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25783-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D139814812
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 13:29:09 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3F5C814823
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 13:33:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 911FC1C23475
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 12:29:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 75D9BB22B0B
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 12:33:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 801842C699;
-	Fri, 15 Dec 2023 12:29:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66B061C2A9;
+	Fri, 15 Dec 2023 12:33:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bdEjYihf"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="kwsZ2WCX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62DFE24A07;
-	Fri, 15 Dec 2023 12:29:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65A90C433C7;
-	Fri, 15 Dec 2023 12:29:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702643343;
-	bh=4pl0/DwzqKssjxDsTX5F3HvTIeLO8dLjyqqjnoZWaog=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bdEjYihfa/fLoUJuG1yWmInrzDFFGwGuk886auFaEOPSTicPX2wrYv64D3z/TFLic
-	 PflG679aTjI+UlUkZRSVhfHYCBvNgRXogjmaBwf9erEcuVccfTCIV11VWBskGgtNhn
-	 m1hlKxjDWJPC1x1uMq/EYa+nxrdCLOWi2jIjIBZmbg4pxvBGsoCHQI0wbOrs5lhiiG
-	 jQeOPTygD5yQdJ7vs88/xKPjj5iJPJejuJvFYXbbV4fHBiYNm/Lf1eNjKbvz+r3lWS
-	 y0FT+Z+bP9sUnCrvLMk9QIFbCpX9BcigoGZ7Id7k9AT7eX91P9pjyY3mPvrRuRn56T
-	 oAQGEh+KXYRuA==
-Date: Fri, 15 Dec 2023 13:29:00 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Alex Bee <knaerzche@gmail.com>
-Cc: Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>, 
-	Sandy Huang <hjc@rock-chips.com>, Andy Yan <andyshrk@163.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 04/11] drm/rockchip: inno_hdmi: Correctly setup HDMI
- quantization range
-Message-ID: <33rkqgeqduzvxr24dlc4qqvhwh4fscia5v2g5kzkt3hrwdfzei@cz772d33txmh>
-References: <20231213195125.212923-1-knaerzche@gmail.com>
- <w7cj24se5gjomfynp5yindnh3s2pea4p3f46u6y7lcci7hri32@62i6hg26pheb>
- <5f4fc919-681f-44ec-bd44-5788e5b718ca@gmail.com>
- <3053311.k3LOHGUjKi@diego>
- <qr7if2k76wdqgevdcwqxj2dkcbga72owjqlk3qaazujhejjloo@cnvmuq27qqns>
- <3f970571-f454-4615-8234-64ea68a3d63c@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 002CE2C868;
+	Fri, 15 Dec 2023 12:33:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BFCQm8U022578;
+	Fri, 15 Dec 2023 12:33:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=Zem9zj92wvAtdEA8Fe7XFOaOhnvk2FMTdxZ40u2vP6E=; b=kw
+	sZ2WCXvxb0OwWIfAnMVfsBIQieYVruY+aVBoVPYq3oJx9ActuEazE1r+RSSZz0wS
+	54/n8hprq03E5GRFRVHLn4yQuK+TzO3rjI3rGRFoajo/pphnH9TygThVInqtuh1h
+	nnOe84/XQr4rGrCDPJ2qEl4Etzz8TdpFkpakuBdtmmzwCfd8NZLOqyOu4BJsrqO5
+	U3UMEsJJxpiBrINxSwyoPyNizRB4q7omoQG1SUIkzAX5nrh+Hr6nG1k5M5AyiB2e
+	8nUNlGSrouptfkKEZXvjEZtLkucVntkhGaG5AtGrkWlHtt8yPCgzBaj02qiN2YO/
+	2PxKCivnBt8OxxwwFj6A==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v0k90rkax-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 15 Dec 2023 12:33:08 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BFCX7EN013389
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 15 Dec 2023 12:33:07 GMT
+Received: from [10.253.13.71] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 15 Dec
+ 2023 04:33:03 -0800
+Message-ID: <a65ad12d-b990-4439-b196-903f4a5f096a@quicinc.com>
+Date: Fri, 15 Dec 2023 20:33:00 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="tmemrq2r5dyiivbh"
-Content-Disposition: inline
-In-Reply-To: <3f970571-f454-4615-8234-64ea68a3d63c@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 14/14] dt-bindings: net: ar803x: add qca8084 PHY
+ properties
+Content-Language: en-US
+To: Andrew Lunn <andrew@lunn.ch>
+CC: <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <hkallweit1@gmail.com>, <linux@armlinux.org.uk>, <corbet@lwn.net>,
+        <p.zabel@pengutronix.de>, <f.fainelli@gmail.com>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>
+References: <20231215074005.26976-1-quic_luoj@quicinc.com>
+ <20231215074005.26976-15-quic_luoj@quicinc.com>
+ <60b9081c-76fa-4122-b7ae-5c3dcf7229f9@lunn.ch>
+From: Jie Luo <quic_luoj@quicinc.com>
+In-Reply-To: <60b9081c-76fa-4122-b7ae-5c3dcf7229f9@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 4Uz7d0EgknsiF0Y5kIan2k8PGtrPqcmd
+X-Proofpoint-GUID: 4Uz7d0EgknsiF0Y5kIan2k8PGtrPqcmd
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
+ impostorscore=0 priorityscore=1501 malwarescore=0 clxscore=1015
+ mlxlogscore=990 adultscore=0 suspectscore=0 bulkscore=0 spamscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2312150084
 
 
---tmemrq2r5dyiivbh
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Dec 14, 2023 at 05:34:59PM +0100, Alex Bee wrote:
-> Hi Heiko, Hi Maxime,
->=20
-> Am 14.12.23 um 12:36 schrieb Maxime Ripard:
-> > On Thu, Dec 14, 2023 at 12:17:34PM +0100, Heiko St=FCbner wrote:
-> > > Am Donnerstag, 14. Dezember 2023, 12:12:08 CET schrieb Alex Bee:
-> > > > Hi Maxime
-> > > >=20
-> > > > Am 14.12.23 um 08:56 schrieb Maxime Ripard:
-> > > > > Hi Alex,
-> > > > >=20
-> > > > > Thanks for working on this!
-> > > > >=20
-> > > > > On Wed, Dec 13, 2023 at 08:51:18PM +0100, Alex Bee wrote:
-> > > > > > The display controller will always give full range RGB regardle=
-ss of the
-> > > > > > mode set, but HDMI requires certain modes to be transmitted in =
-limited
-> > > > > > range RGB. This is especially required for HDMI sinks which do =
-not support
-> > > > > > non-standard quantization ranges.
-> > > > > >=20
-> > > > > > This enables color space conversion for those modes and sets the
-> > > > > > quantization range accordingly in the AVI infoframe.
-> > > > > >=20
-> > > > > > Fixes: 412d4ae6b7a5 ("drm/rockchip: hdmi: add Innosilicon HDMI =
-support")
-> > > > > > Signed-off-by: Alex Bee <knaerzche@gmail.com>
-> > > > > > ---
-> > > > > >    drivers/gpu/drm/rockchip/inno_hdmi.c | 40 ++++++++++++++++++=
-++++------
-> > > > > >    1 file changed, 32 insertions(+), 8 deletions(-)
-> > > > > >=20
-> > > > > > diff --git a/drivers/gpu/drm/rockchip/inno_hdmi.c b/drivers/gpu=
-/drm/rockchip/inno_hdmi.c
-> > > > > > index 345253e033c5..32626a75723c 100644
-> > > > > > --- a/drivers/gpu/drm/rockchip/inno_hdmi.c
-> > > > > > +++ b/drivers/gpu/drm/rockchip/inno_hdmi.c
-> > > > > > @@ -33,6 +33,7 @@ struct hdmi_data_info {
-> > > > > >    	unsigned int enc_in_format;
-> > > > > >    	unsigned int enc_out_format;
-> > > > > >    	unsigned int colorimetry;
-> > > > > > +	bool rgb_limited_range;
-> > > > > >    };
-> > > > > >    struct inno_hdmi_i2c {
-> > > > > > @@ -308,6 +309,18 @@ static int inno_hdmi_config_video_avi(stru=
-ct inno_hdmi *hdmi,
-> > > > > >    	else
-> > > > > >    		frame.avi.colorspace =3D HDMI_COLORSPACE_RGB;
-> > > > > > +	if (hdmi->hdmi_data.enc_out_format =3D=3D HDMI_COLORSPACE_RGB=
-) {
-> > > > > > +		drm_hdmi_avi_infoframe_quant_range(&frame.avi,
-> > > > > > +						   &hdmi->connector, mode,
-> > > > > > +						   hdmi->hdmi_data.rgb_limited_range ?
-> > > > > > +						   HDMI_QUANTIZATION_RANGE_LIMITED :
-> > > > > > +						   HDMI_QUANTIZATION_RANGE_FULL);
-> > > > > > +	} else {
-> > > > > > +		frame.avi.quantization_range =3D HDMI_QUANTIZATION_RANGE_DEF=
-AULT;
-> > > > > > +		frame.avi.ycc_quantization_range =3D
-> > > > > > +			HDMI_YCC_QUANTIZATION_RANGE_LIMITED;
-> > > > > > +	}
-> > > > > > +
-> > > > > >    	return inno_hdmi_upload_frame(hdmi, rc, &frame, INFOFRAME_A=
-VI, 0, 0, 0);
-> > > > > >    }
-> > > > > > @@ -334,14 +347,22 @@ static int inno_hdmi_config_video_csc(str=
-uct inno_hdmi *hdmi)
-> > > > > >    	if (data->enc_in_format =3D=3D data->enc_out_format) {
-> > > > > >    		if ((data->enc_in_format =3D=3D HDMI_COLORSPACE_RGB) ||
-> > > > > >    		    (data->enc_in_format >=3D HDMI_COLORSPACE_YUV444)) {
-> > > > > > -			value =3D v_SOF_DISABLE | v_COLOR_DEPTH_NOT_INDICATED(1);
-> > > > > > -			hdmi_writeb(hdmi, HDMI_VIDEO_CONTRL3, value);
-> > > > > > -
-> > > > > > -			hdmi_modb(hdmi, HDMI_VIDEO_CONTRL,
-> > > > > > -				  m_VIDEO_AUTO_CSC | m_VIDEO_C0_C2_SWAP,
-> > > > > > -				  v_VIDEO_AUTO_CSC(AUTO_CSC_DISABLE) |
-> > > > > > -				  v_VIDEO_C0_C2_SWAP(C0_C2_CHANGE_DISABLE));
-> > > > > > -			return 0;
-> > > > > > +			if (data->enc_in_format =3D=3D HDMI_COLORSPACE_RGB &&
-> > > > > > +			    data->enc_out_format =3D=3D HDMI_COLORSPACE_RGB &&
-> > > > > > +			    hdmi->hdmi_data.rgb_limited_range) {
-> > > > > > +				csc_mode =3D CSC_RGB_0_255_TO_RGB_16_235_8BIT;
-> > > > > > +				auto_csc =3D AUTO_CSC_DISABLE;
-> > > > > > +				c0_c2_change =3D C0_C2_CHANGE_DISABLE;
-> > > > > > +				csc_enable =3D v_CSC_ENABLE;
-> > > > > > +			} else {
-> > > > > > +				value =3D v_SOF_DISABLE | v_COLOR_DEPTH_NOT_INDICATED(1);
-> > > > > > +				hdmi_writeb(hdmi, HDMI_VIDEO_CONTRL3, value);
-> > > > > > +				hdmi_modb(hdmi, HDMI_VIDEO_CONTRL,
-> > > > > > +					  m_VIDEO_AUTO_CSC | m_VIDEO_C0_C2_SWAP,
-> > > > > > +					  v_VIDEO_AUTO_CSC(AUTO_CSC_DISABLE) |
-> > > > > > +					  v_VIDEO_C0_C2_SWAP(C0_C2_CHANGE_DISABLE));
-> > > > > > +				return 0;
-> > > > > > +			}
-> > > > > >    		}
-> > > > > >    	}
-> > > > > > @@ -458,6 +479,9 @@ static int inno_hdmi_setup(struct inno_hdmi=
- *hdmi,
-> > > > > >    	else
-> > > > > >    		hdmi->hdmi_data.colorimetry =3D HDMI_COLORIMETRY_ITU_709;
-> > > > > > +	hdmi->hdmi_data.rgb_limited_range =3D
-> > > > > > +		drm_default_rgb_quant_range(mode) =3D=3D HDMI_QUANTIZATION_R=
-ANGE_LIMITED;
-> > > > > > +
-> > > > > This patch conflicts heavily with my inno_hdmi patches here (patc=
-hes 22 to 38):
-> > > > > https://lore.kernel.org/dri-devel/20231207-kms-hdmi-connector-sta=
-te-v5-0-6538e19d634d@kernel.org/
-> > > > I'm aware of that and I mentioned it in the cover letter. Your seri=
-es is
-> > > > not merged yet and it didn't get much feedback so far. What is the
-> > > > status there? Especially because you are removing things from inno-=
-hdmi
-> > > > driver (which aren't really required to remove there) which will I =
-have
-> > > > to reintroduce.
-> > > Sadly I haven't found the time to look closer at Maxime's series so f=
-ar,
-> > > but I got the impression that it separates into multiple cleanup steps
-> > > for a number of controllers.
-> > Yeah, one of the previous version comment was to support more
-> > controllers than vc4, which is fair. So I ended up reworking and
-> > converting multiple controllers, but most of the clean up changes can be
-> > applied outside of that series just fine.
-> >=20
-> > I just didn't find someone to test / review them yet :)
->=20
-> I'm not exactly sure how to proceed here. Do you want me to:
->=20
-> - base my patches on top of Maxime's series and reintroduce csc things (of
-> course only those which touch inno-hdmi w/o the framwork changes)
->=20
-> - only apply the patches that do not touch csc things and base my series=
-=A0 on
-> top of that
->=20
-> - adapt Maxime's patches so that RGB full to RGB limited stays in there
->=20
-> - wait with resend until Maxime's series is merged and reintroduce csc af=
-ter
-> that
->=20
-> - something else
->=20
-> ?
+On 12/15/2023 8:12 PM, Andrew Lunn wrote:
+>> +  clocks:
+>> +    items:
+>> +      - description: APB bridge clock
+>> +      - description: AHB clock
+>> +      - description: Security control clock
+>> +      - description: TLMM clock
+>> +      - description: TLMM AHB clock
+>> +      - description: CNOC AHB clock
+>> +      - description: MDIO AHB clock
+>> +      - description: MDIO master AHB clock
+>> +      - description: PCS0 system clock
+>> +      - description: PCS1 system clock
+>> +      - description: EPHY0 system clock
+>> +      - description: EPHY1 system clock
+>> +      - description: EPHY2 system clock
+>> +      - description: EPHY3 system clock
+> 
+> What exactly are you describing here? A PHY, or a PHY package?
+> 
+> The ethernet-phy.yaml describes a PHY. So does each of your 4 PHYs
+> have 14 clocks? The PHY package as a whole has 14*4 clocks?
+> 
+> This seems unlikely. You have some clocks used by the package as a
+> whole, and you have some clocks used by one specific PHY within the
+> package. So you need a hierarchical description of the hardware in DT,
+> to match the actual hierarchical of the hardware.
+> 
+> This is exactly what Christian has been working on, and you have
+> persistently ignored what he is doing. You need to work with him.
+> Nothing is going to be merged until you and Christian have one
+> consistent design for the two PHYs you are working on.
+> 
+> 
+>      Andrew
+> 
+> ---
+> pw-bot: cr
 
-2 or 3, at your discretion
+Hi Andrew,
+These clocks are for the whole PHY package including quad PHYs, since
+these clocks & resets need to be initialized at one point, i put it
+the previous MDIO driver code, these clocks & resets are configured
+after GPIO hardware reset, after these clocks and resets sequences
+configured, each PHY capabilities can be acquired correctly in the PHY
+probe function.
 
-Maxime
+Sorry for missing Christian's patches, i will look his patches and
+update qca8084 PHY driver correspondingly.
 
---tmemrq2r5dyiivbh
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZXxGjAAKCRDj7w1vZxhR
-xZEkAP9OXjRoP4RlI2fw3hcQunCUmtBq+Jyb50pU6ryvs7DVZgEAthtVXetksXVH
-4QBRhBhqWUYzI6/kbRSUx52qWVAO3Qg=
-=9VXV
------END PGP SIGNATURE-----
-
---tmemrq2r5dyiivbh--
 
