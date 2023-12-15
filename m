@@ -1,122 +1,144 @@
-Return-Path: <devicetree+bounces-25898-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25900-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85A85815009
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 20:13:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 054D6815016
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 20:19:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4222A28903E
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 19:13:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AE8C1281075
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 19:19:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CD7B3F8FE;
-	Fri, 15 Dec 2023 19:13:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B05813FE40;
+	Fri, 15 Dec 2023 19:18:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="IOv0G1P9"
+	dkim=pass (1024-bit key) header.d=PHYTEC.onmicrosoft.com header.i=@PHYTEC.onmicrosoft.com header.b="AIDw9EA3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (mail-sn1nam02on2043.outbound.protection.outlook.com [40.107.96.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 953BA4184B
-	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 19:13:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id D65383F29E
-	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 19:13:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1702667588;
-	bh=A1KQCHoagGRE/Fri7ZMPinskZZrpSG0JKrmQZH3FV6g=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type;
-	b=IOv0G1P9PEzbf4te/6MLjtI3UgxU3vysXOnk4piBBtI35gUUKNziHyGTInYKqqTMw
-	 1ZAzueeoOK4oaoFEcTYWTKvOhD9ilNSfVxKluINoohrxzjBIp+PI22viJcIAjXVZVU
-	 gdoIF3LYy4iVP7+I1A3ZOgW3q7dKjEA3pimTgDgHzIYn1ZKunPF+idDvnP91KuZ+8d
-	 hHxobp+7/aM6l9alCkLyXv/+lJM38WE6ybHW9BllungiVr+3YpAcNkU/OXoRDysmRP
-	 +p8mRHDwpv6xzSU4fXWuV+Pwwb70Rx+r7OzIqLKzGmTQeoWpYqL34twMBdpRl5XQr1
-	 lPN4GyHryywpA==
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-425c3f06bd9so15478241cf.2
-        for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 11:13:08 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702667588; x=1703272388;
-        h=content-transfer-encoding:cc:to:subject:message-id:date
-         :mime-version:references:in-reply-to:from:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=A1KQCHoagGRE/Fri7ZMPinskZZrpSG0JKrmQZH3FV6g=;
-        b=uIpIZTZdZn67+ti8da2l44wyWdtViafUMf3Hd6aKTmW8ywQVTpFh5OP8bH5XqLJMIe
-         RzXTXPxaTA+gaLW/RnnOfUvf32DesFhYIR/Ecz+kt5HK5mq1ipQgUiQoGW/EZV6RkQl8
-         MI0NyjplUnHj4w/tZLzhWFDPv2lms+qTg3aWyFJoptuYIQlx4Yn+7JS9dPRsgT5LAkr5
-         L520m2q8pxa/F11l9kFIZvBF/hTm2Q3j8b3vM9OZkCzGL46cFuog5lh7dfKFN21fLSs2
-         NF2D4HSOYXc2P1uE1nUe/T094YFXqVHCpa84ueWiH4r6CzV3KNB6UqcqpH1ztARFPP6l
-         +meQ==
-X-Gm-Message-State: AOJu0Ywm5pXj9LX2IzfU4b7P8CmGFynf8kgRsHDqhrJpeosV6b9ooZ1+
-	Moq8xcDhtce6OdxV+XRrX8XilQVyq3Mg25Igmb3C5QyAjFOTOAiZAtgZWRgr9/MHK8m5oZIx+ov
-	dkKgYiWkeKakg3WBVHQuA+K32z0mFFK88xNqsfX0hIjx3/T0BDh4bwy8=
-X-Received: by 2002:ac8:5909:0:b0:425:78fc:446d with SMTP id 9-20020ac85909000000b0042578fc446dmr16222545qty.29.1702667588055;
-        Fri, 15 Dec 2023 11:13:08 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEQ33pMMGoaNI9twd5osVzgTSarT/cVWUeo35du2j8Q7yxXEdTqukpbqrobo5IDN+bItJEQlbp48Xge01CaYl4=
-X-Received: by 2002:ac8:5909:0:b0:425:78fc:446d with SMTP id
- 9-20020ac85909000000b0042578fc446dmr16222525qty.29.1702667587843; Fri, 15 Dec
- 2023 11:13:07 -0800 (PST)
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 15 Dec 2023 11:13:07 -0800
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <CAMuHMdXwRZRvLPh3JBShQy4hRHq=2fQJmcYjTyQhKZmtBPaOuw@mail.gmail.com>
-References: <20231130151932.729708-1-emil.renner.berthing@canonical.com>
- <20231213-jester-rendering-dd876ef8e8ac@spud> <CAMuHMdXwRZRvLPh3JBShQy4hRHq=2fQJmcYjTyQhKZmtBPaOuw@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A07243FE2F;
+	Fri, 15 Dec 2023 19:18:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=n2z65RJyk9cP2lZdhvoErAeHEaSPzcaRHRTf1VFylxLSpOQF6wdzFZbOV79Q6JecTzJhzocpJTPeI/cye0owVzdwvaZliCOrOAf6D5Nmtvs+Lb+VNZfl4iCxnXcmG/vVo/OiwToK+To4U6N6QPOmJ+VqDYiT9NlMNeA/SyARmuhbfrn8fTOb7rnKxkjIakige6h1QvWzI35PyW+XAhEupkFssGcuMcO/Qpv4jLkdKsdtOTUTOdsCEsDjLPeZ5B3sekiY2aB5GH1b5Cn/OvySoelL2H+riX7K/LSMppxgiUY5KnRbfNQGuWKok6ue7LhfXrGdW8EVyVTCWkZTuZmkIQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6vS6RUGQ7ehc1eLdE8A3PYekLaSCCm+d5mKlV3mZKpg=;
+ b=YCnFhpNdbT/YlbmtDfdrY2t2L8GGAQrBTvhGwDBoeCjsFZdOzTWFkKPiWAgbJvoZLkcgxQ6tSbpRQ0dJknDCZaK/A2F903s6PGdycuyzMoyQlo0eheU1hXwnyfbP0hQWreN0SuShPlf6S3AwTs0Y8JEiK76Yo8UCgDg84cJ1/v+BhpebdT1+wV6+GRyfmCiRlm/YXSXE7lryTrXVsfMAW+BhHrUow/yhEGLJJPT+ZdkhuSK/vlBgT3+6HYjFwJ88dVqGlmfgbhHVpMhn/oXqS4OZEdz4+lAZCdPmENUljG7jB8HqMow2jREsn+6lropUeB3B8I3A3QLR7MHgbGDckw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=phytec.com; dmarc=pass action=none header.from=phytec.com;
+ dkim=pass header.d=phytec.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=PHYTEC.onmicrosoft.com; s=selector2-PHYTEC-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6vS6RUGQ7ehc1eLdE8A3PYekLaSCCm+d5mKlV3mZKpg=;
+ b=AIDw9EA3sNAmOcWI5huWVXe3lgfDE0vTQyB1alp75Zt7AEwNy7y9DLcLK811AF2dc7VCgEVb/toNhK+yKzlg0nhYf0aA3qEj82TwmTCBjr0bVS/l1CjBKPTd/qX6GgyvP3qARkbow33mcwU8B4qUi2w7S7wHE2oL4C9e2SGYaV8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=phytec.com;
+Received: from DM5PR2201MB1515.namprd22.prod.outlook.com (2603:10b6:4:36::18)
+ by CYYPR22MB4299.namprd22.prod.outlook.com (2603:10b6:930:cb::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.31; Fri, 15 Dec
+ 2023 19:18:52 +0000
+Received: from DM5PR2201MB1515.namprd22.prod.outlook.com
+ ([fe80::89be:ff90:a5ab:1821]) by DM5PR2201MB1515.namprd22.prod.outlook.com
+ ([fe80::89be:ff90:a5ab:1821%4]) with mapi id 15.20.7091.028; Fri, 15 Dec 2023
+ 19:18:51 +0000
+From: Nathan Morrisson <nmorrisson@phytec.com>
+To: nm@ti.com,
+	vigneshr@ti.com,
+	kristo@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	upstream@lists.phytec.de,
+	w.egorov@phytec.de
+Subject: [PATCH 0/2] *** Add fixed-paritions to phyCORE-AM62x and phyCORE-AM64x ***
+Date: Fri, 15 Dec 2023 11:18:36 -0800
+Message-Id: <20231215191838.1925082-1-nmorrisson@phytec.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: CH2PR15CA0025.namprd15.prod.outlook.com
+ (2603:10b6:610:51::35) To DM5PR2201MB1515.namprd22.prod.outlook.com
+ (2603:10b6:4:36::18)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Date: Fri, 15 Dec 2023 11:13:07 -0800
-Message-ID: <CAJM55Z85_qR8bpZwjEgz-fmC=WCZEJYHk5d=1bGfDE+oVMN7Fw@mail.gmail.com>
-Subject: Re: (subset) [PATCH v2 0/8] Add JH7100 errata and update device tree
-To: Geert Uytterhoeven <geert@linux-m68k.org>, Conor Dooley <conor@kernel.org>
-Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, 
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>, 
-	Conor Dooley <conor.dooley@microchip.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM5PR2201MB1515:EE_|CYYPR22MB4299:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6aa4c4a0-f7ad-49a5-5e34-08dbfda2abe4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	MoOwafdYYiMB4tnLqkvtNAOoA0a9mf99aBevj1118+s7Dx/kfuEo/gqorx+QiHcuEZLOXdhdx4NzYLe2dwLA4vh0+oC0b9YAXhQBSGcGjNvqfuFf5t98L5JymKSjHJKsp5c6WSoz3ZuwB2vNJa9nUJZPQBKQDuNhjSDpyQ7n+5/cf7/Hkjzoitw+Ty1Od9a+ecm0ezIZtBL6c1XyXtNJ0OnA8kMLc4UFTk00xIAAFHJsZv/KW9vfC95OEzLPrPRkEkC7oe9p5h15p47uM40qd/2k9NNlX4arauuWJFRmCi0wk9dlgRt/w7hSgPQVob8/lk44f+lnoQzSdGSG29lA6AFOmXH7hL+ajx+z9TuLAU665f74MwQd3ehnNhk8ZdQyedc/LBTDmLtNiiJcQZtSWtaARVZ/d4gbXvittYuI2LrOUSeplpRxzJhQMR7G7y5GSqiFlOBeNaSVr8Kmc6AuTQxmobZHLey7IPCkrTZmDyVRs4l/rDwMP3IP176vhe410bTVSZmb302TvlQVdlePPxEpa/XpuzUKWjg94q9QK9F4aAox+4RL8h3m1v4TxFFhpn50I1Yn1R6xb30yLuZ5vDvcWy/zLo8HJKYZTncn3UrlBu3UAhVZFehgTV9Ah9fq
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM5PR2201MB1515.namprd22.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(376002)(366004)(346002)(136003)(39840400004)(230922051799003)(1800799012)(186009)(64100799003)(451199024)(2906002)(4744005)(7416002)(38350700005)(36756003)(5660300002)(6666004)(6506007)(38100700002)(1076003)(52116002)(26005)(2616005)(6512007)(478600001)(66476007)(66556008)(66946007)(6486002)(41300700001)(86362001)(4326008)(8676002)(8936002)(316002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?ckvRGbpn3wGpNdtQVym6a4pAdhLDSz2W+bkYPtVJsS7rgi5JEfBQlz1ytyd/?=
+ =?us-ascii?Q?Nbce1ma739sZgQO1yrvBomtj4pLs20L8xKivLLghWa099DyheKq/hw9bvJ9O?=
+ =?us-ascii?Q?XWVw7kX0UOIyS+tfMOjyJneJocr8QWrDi55z7idLOu7E79u5gHDUI6X3H0Dq?=
+ =?us-ascii?Q?+PgdGdJucDH+B0esNpOHC9HT8BfVUkp25JkdnML77Twf1axLR+x/Q7L7atwC?=
+ =?us-ascii?Q?7uLqjkAxzP2m3jLGPgCSPkVu6+twilWStXP4ghZBeo+Aige7y1PSgUkum2h0?=
+ =?us-ascii?Q?PPhY2dLCiEv4kseUdSsuU1aVdA5VRpv090aT8ZFOH/y6DQAzaBfmdd2TrZ4e?=
+ =?us-ascii?Q?tw0aNXgVgNtS+XbkEPJJ1AanuwqbUhz/k/IkH6+eUp9vgfMuPsmg8FSTOrK2?=
+ =?us-ascii?Q?72xAD5bFVE8stlyJ6c1wukQ/zsV6+3Q2WDEdwvaHxIpuYUqEk5YrOGA3d34c?=
+ =?us-ascii?Q?SbiFeOvhFT4OzqybCOEQ5W1zEDxbhzc9TeqWxEn6AZDpHwVFKlXsuF7IUsL8?=
+ =?us-ascii?Q?jJczmGIC6JBxjE2JcCr+PQWRjyUecdjU+JPHKUTmQUbzwoH1BqrMR6RFSVSP?=
+ =?us-ascii?Q?8ow0lHyN5d2Al5GWf6c3sHeeZZfQdtOxLClWfy5N8NoqQPv1R8PimkWdxHQT?=
+ =?us-ascii?Q?jGWXurmggmeCNL/GF2LGTNCRXFqHJut9tzeC7lBw8f9qdvi4PXQnUES4RWgK?=
+ =?us-ascii?Q?9ul93HzQT7uyEzIUTpCAtIfvqm3sFL3FLTj6Gv2wYFxqq8NnIK+QuFck1b4j?=
+ =?us-ascii?Q?ZsuTFx1p29Nm+/wNjL9ibrh6bZyOuUDqZMWzz6i85yfwect37FzQBcIgURyD?=
+ =?us-ascii?Q?ahod5+w52ZC3x6uoIBJFSFLaqooOcj2pi141gT6gvR40L55gCcrWPWTk2ICv?=
+ =?us-ascii?Q?jQu+smnnicdkbmCvT9/WrLcJZIBZ6NXTW1xELgpZdXXuLA3ngg+JjsYlsFH3?=
+ =?us-ascii?Q?LmD9Y8QiDts9zbwrdI3hcjTuvPkM9q03MeDd70H1TOPdJzJLGL78pii5hwa9?=
+ =?us-ascii?Q?aUd9uMbi8i6y8I+U6dtkXFcuK/QUEh4y00/XvLVFSN07/bowxkks4wO7Znks?=
+ =?us-ascii?Q?0cCUEq99umGx/NCTJl5LAJZec7i0nwVOexJlX3NCNqKaSu0+QP3NGeG08TzL?=
+ =?us-ascii?Q?zNIcG3dWYD1mppsVjnIwhr+h416pwZaklKs1uydH6SgWRkIeK26+7TlpDrk/?=
+ =?us-ascii?Q?yM1O/HcEIGpMPUODD+pNxbkTo3s+l1tVkm8qO8s6QasSxnJYx6LFqI+shtP5?=
+ =?us-ascii?Q?HfW6AqB2Lr3zbPSNIk14p3lxyARGOkfcFxAgZwnvju4vv0pDnq6CefzMs0+9?=
+ =?us-ascii?Q?h8aB5JfuYyl+7C62psT1oZOqxphcMQnnqAMFf72nkM28XXFH/mLMsEWy8UG9?=
+ =?us-ascii?Q?OMlZTIiAjN8LzjEFI8u0Vjg3pAFJfxXhPVxEk1O4NLTXMz4pzSODOkfrbVFn?=
+ =?us-ascii?Q?NYeTJq2sTMILW231WXuovtwA5KJPiappkCgFj2ofelsIoe+ey+6YEfljTLVB?=
+ =?us-ascii?Q?nbztbQRni+12WLNu8UKOq9SogSBnooKrCZ1GRZl54AklYc7H/V41L+ojTQR5?=
+ =?us-ascii?Q?dcM6TMLQ3Du4O2nLx0D7OgDHGgwBeVh4VS9S/M7R?=
+X-OriginatorOrg: phytec.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6aa4c4a0-f7ad-49a5-5e34-08dbfda2abe4
+X-MS-Exchange-CrossTenant-AuthSource: DM5PR2201MB1515.namprd22.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Dec 2023 19:18:51.7489
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 67bcab1a-5db0-4ee8-86f4-1533d0b4b5c7
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ajQFSJnL0q7MpMJ/YDzls2+k8Ym4nmXVBy348mxN2tX0YPTF89x33O9vQZRWArPhw7Y2jyr+3BeQr8cNNlVBDQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR22MB4299
 
-Geert Uytterhoeven wrote:
-> Hi Conor,
->
-> On Wed, Dec 13, 2023 at 4:43=E2=80=AFPM Conor Dooley <conor@kernel.org> w=
-rote:
-> > From: Conor Dooley <conor.dooley@microchip.com>
-> >
-> > On Thu, 30 Nov 2023 16:19:24 +0100, Emil Renner Berthing wrote:
-> > > Now that the driver for the SiFive cache controller supports manual
-> > > flushing as non-standard cache operations[1] we can add an errata opt=
-ion
-> > > for the StarFive JH7100 SoC and update the device tree with the cache
-> > > controller, dedicated DMA pool and add MMC nodes for the SD-card and
-> > > wifi.
-> > >
-> > > This series needs the following commit in [1] to work properly:
-> > >
-> > > [...]
-> >
-> > Applied to riscv-cache-for-next, thanks!
-> >
-> > [1/8] riscv: errata: Add StarFive JH7100 errata
-> >       https://git.kernel.org/conor/c/64fc984a8a54
->
-> That's the one which also needs depends on !DMA_DIRECT_REMAP?
+Add a fixed-partitions node to the NOR flash of the phyCORE-AM62x
+and phyCORE-AM64x to enable the bootloader to fixup the partitions
+during boot.
 
-Yes, thanks. I sent a fix now:
-https://lore.kernel.org/linux-riscv/20231215190909.3722757-1-emil.renner.be=
-rthing@canonical.com/
+Nathan Morrisson (2):
+  arm64: dts: ti: k3-am62-phycore-som: Add fixed-partitions to NOR Flash
+  arm64: dts: ti: k3-am64-phycore-som: Add fixed-partitions to NOR Flash
 
-/Emil
+ arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi | 6 ++++++
+ arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi | 6 ++++++
+ 2 files changed, 12 insertions(+)
+
+-- 
+2.25.1
+
 
