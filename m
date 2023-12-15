@@ -1,127 +1,147 @@
-Return-Path: <devicetree+bounces-25860-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25879-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5147E814DC9
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 18:03:22 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C902814EEE
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 18:35:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8388E1C23E06
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 17:03:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B8213B239F8
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 17:35:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5B7D3EA9F;
-	Fri, 15 Dec 2023 17:03:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B72982EEA;
+	Fri, 15 Dec 2023 17:35:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="QbLIf5Bm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IPom+RRa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0CB03EA78;
-	Fri, 15 Dec 2023 17:03:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3BFDLSlT017503;
-	Fri, 15 Dec 2023 18:02:48 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding:content-type; s=selector1; bh=vD6h9pH
-	zJnmCBjscGPQb18sMsLi5KfISG29RwhbGxYI=; b=QbLIf5BmFBOSkCIpMkerL7K
-	93jFOZqTkajmC9EvJt+jWRyOqE+oj6zCuny5JcWWdvIviwGMcfh0f1ziVqck8DVk
-	OuuoujyjkcyA0I5zNJV32aCKMjsy6afNBIjV2bVnqDBa3g23KEu6LBbft6tACNRV
-	xiUEQQqGJg+gU+kpJE4npqDlJlyQBKVpui92RsAipq3P+a8WRS3XE1qjPYFE9uqE
-	3nHZP3QCxrjHqti6o53BojNaMP+T6nyNI6MjqVwLqLuXpsO3Dm4PsAvZgWUHPo9E
-	+IRlLR0YERGrr3PuVduuKROcboPQYK+XRIL2hPbRK/CK1FcCvcyyo0lYfbEmgsw=
-	=
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3v0cbtuhhn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 15 Dec 2023 18:02:47 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 64E4C100052;
-	Fri, 15 Dec 2023 18:02:46 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 585F4237D9B;
-	Fri, 15 Dec 2023 18:02:46 +0100 (CET)
-Received: from localhost (10.129.178.213) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 15 Dec
- 2023 18:02:46 +0100
-From: Alain Volmat <alain.volmat@foss.st.com>
-To: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre
- Torgue <alexandre.torgue@foss.st.com>,
-        Pierre-Yves MORDRET
-	<pierre-yves.mordret@foss.st.com>,
-        Alain Volmat <alain.volmat@foss.st.com>
-CC: Conor Dooley <conor@kernel.org>, <linux-i2c@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v3 0/7] i2c: stm32f7: enhancements and support for stm32mp25
-Date: Fri, 15 Dec 2023 18:02:10 +0100
-Message-ID: <20231215170223.95549-1-alain.volmat@foss.st.com>
-X-Mailer: git-send-email 2.25.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69F2030105;
+	Fri, 15 Dec 2023 17:35:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-40c256ffdbcso10611835e9.2;
+        Fri, 15 Dec 2023 09:35:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1702661717; x=1703266517; darn=vger.kernel.org;
+        h=content-disposition:mime-version:reply-to:subject:cc:to:from:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=EDM7Gyx0opqICU85pKvqZtalDyOdIzIV3Qr01aGjUvA=;
+        b=IPom+RRanUFk+XTRAUwE01vOB1PBy7r3gglB6mTiQRnJl737c9qHhR/elJWajPdnst
+         J7LQuwCzKZJrkv+JHSpBz5bnsFVy2hNaK78iAGYlueT3O9HqVD7BmS3cnh94LKIq4MhW
+         Kc+ELXftY5YtTKnoH9obsisX43a9CYsVVN+hzod/7+TFKofV7D+5aCTlkowG23A6yh5z
+         zF/bar+3TcdD/BlLWwbCeraFv107xWgReMEC5t89jKZ+2cVxC7B2ThJn8Y0fdpPV440Q
+         sYZgkruqp4P3rvyq7W/ply31rZ3xNVHT101MDH1P3krHFztanYCGHYFezQ3OQuzbjBYJ
+         XW4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702661717; x=1703266517;
+        h=content-disposition:mime-version:reply-to:subject:cc:to:from:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EDM7Gyx0opqICU85pKvqZtalDyOdIzIV3Qr01aGjUvA=;
+        b=Wfhbvs2q5klvai4j6iGOhYrXpCeNFbyBPm973d+zXc9bFZKCO5dRTP4MO7oIJa/nLq
+         okwK8hqdH9FGCf7ChVRPwIpaoxjbdIgtt51sf9/oLa29kcJbJYgu1CWHdAiym5ozXJmc
+         EhxqB22V1lSDMYJBEmfxT5AKyc1zIRV4mLXZIEO+prOIX3f4mtFC2qj0bc1L6KHXVQeK
+         MBcGIJ9IaVznf9NLV+F2c6MQ4Y0Fb93SU88XNxjlt0CHacz6fVBEYOcULgV0pDzf/i4G
+         HfsqGYAAaO/hZMaHWch/yw3ZpKji1I7hJoKJ6RdlymefL23SDPfrgSk9llmVZI8uvmHo
+         BIhw==
+X-Gm-Message-State: AOJu0Yzeavhg/2OyF9+IR1VYi1bMhiQ9Jjd0XiSpUoYlTQuE+lBbr7dW
+	+3x5ZytyzP4n9DFyidxtbR99yun5pzY=
+X-Google-Smtp-Source: AGHT+IHqbVBfuLXGSjdFKZPZywE06b2XwJVWt75FIkdl501f+QEYJYGnrSg/wCkp5xF7XPjjEClt7g==
+X-Received: by 2002:a05:600c:3107:b0:40c:32fa:4f41 with SMTP id g7-20020a05600c310700b0040c32fa4f41mr6514069wmo.142.1702661716270;
+        Fri, 15 Dec 2023 09:35:16 -0800 (PST)
+Received: from Ansuel-xps. (93-34-89-13.ip49.fastwebnet.it. [93.34.89.13])
+        by smtp.gmail.com with ESMTPSA id n10-20020a05600c500a00b004094e565e71sm29868770wmr.23.2023.12.15.09.35.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Dec 2023 09:35:15 -0800 (PST)
+Message-ID: <657c8e53.050a0220.dd6f2.9aaf@mx.google.com>
+X-Google-Original-Message-ID: <ZXxhE--t-2l9BRB-@Ansuel-xps.>
+Date: Fri, 15 Dec 2023 15:22:11 +0100
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Tobias Waldekranz <tobias@waldekranz.com>, davem@davemloft.net,
+	kuba@kernel.org, linux@armlinux.org.uk, kabel@kernel.org,
+	hkallweit1@gmail.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 4/4] dt-bindings: net: marvell10g: Document LED
+ polarity
+Reply-To: 20231214201442.660447-5-tobias@waldekranz.com
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-15_10,2023-12-14_01,2023-05-22_02
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-This series first perform enhancements in the way interrupt are handled
-and cleanup in messages.
-Then it adds support for the stm32mp25 which differs in that
-it only has a single irq line for both event/error and has a
-different handling of the FastModePlus.
-Support is then enabled within the stm32mp25 related device-trees.
+> > +        properties:
+> > +          marvell,polarity:
+> > +            description: |
+> > +              Electrical polarity and drive type for this LED. In the
+> > +              active state, hardware may drive the pin either low or
+> > +              high. In the inactive state, the pin can either be
+> > +              driven to the opposite logic level, or be tristated.
+> > +            $ref: /schemas/types.yaml#/definitions/string
+> > +            enum:
+> > +              - active-low
+> > +              - active-high
+> > +              - active-low-tristate
+> > +              - active-high-tristate
+> 
+> Christian is working on adding a generic active-low property, which
+> any PHY LED could use. The assumption being if the bool property is
+> not present, it defaults to active-high.
+> 
 
-Changelog:
-v3: - addition of 2 commits dealing with readl_relaxed(I2C_ISR) in
-      isr handler and a second one to use dev_err_probe during probe
-    - correction of SOB in commit
+Hi, it was pointed out this series sorry for not noticing before.
 
-v2: - correct st,stm32-i2c.yaml.  Use if then else scheme to indicate
-      number of interrupts / interrupt-names depending on the
-      compatible while keeping the description within the common part
+> So we should consider, how popular are these two tristate values? Is
+> this a Marvell only thing, or do other PHYs also have them? Do we want
+> to make them part of the generic PHY led binding? Also, is an enum the
+> correct representation? Maybe tristate should be another bool
+> property? Hi/Low and tristate seem to be orthogonal, so maybe two
+> properties would make it cleaner with respect to generic properties?
 
-    - correct 2 maybe-uninitialized warnings
-          * ret in stm32f7_i2c_write_fm_plus_bits
-          * irq_error in stm32f7_i2c_probe, move the platform_get_irq
-            within the same if block as devm_request_threaded_irq
+For parsing it would make it easier to have the thing split.
 
-Alain Volmat (9):
-  i2c: stm32f7: use dev_err_probe upon calls of devm_request_irq
-  i2c: stm32f7: perform most of irq job in threaded handler
-  i2c: stm32f7: simplify status messages in case of errors
-  dt-bindings: i2c: document st,stm32mp25-i2c compatible
-  i2c: stm32f7: perform I2C_ISR read once at beginning of event isr
-  i2c: stm32f7: add support for stm32mp25 soc
-  arm64: dts: st: add all 8 i2c nodes on stm32mp251
-  arm64: dts: st: add i2c2/i2c8 pins for stm32mp25
-  arm64: dts: st: add i2c2 / i2c8 properties on stm32mp257f-ev1
+But on DT I feel an enum like it's done here might be more clear.
 
- .../devicetree/bindings/i2c/st,stm32-i2c.yaml |  28 ++
- arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi |  36 ++
- arch/arm64/boot/dts/st/stm32mp251.dtsi        |  96 +++++
- arch/arm64/boot/dts/st/stm32mp257f-ev1.dts    |  20 +
- drivers/i2c/busses/i2c-stm32f7.c              | 342 +++++++++---------
- 5 files changed, 358 insertions(+), 164 deletions(-)
+Assuming the property define the LED polarity, it would make sense
+to have a single one instead of a sum of boolean.
+
+The boolean idea might be problematic in the future for device that
+devisates from what we expect.
+
+Example: A device set the LED to active-high by default and we want a
+way in DT to define active-low. With the boolean idea of having
+"active-high" and assume active-low if not defined we would have to put
+active-high in every PHY node (to reflect the default settings)
+
+Having a property instead permits us to support more case.
+
+Ideally on code side we would have an enum that map the string to the
+different modes and we would pass to a .led_set_polarity the enum.
+(or if we really want a bitmask)
+
+
+If we feel tristate is special enough we can consider leaving that
+specific to marvell (something like marvell,led-tristate)
+
+But if we notice it's more generic then we will have to keep
+compatibility for both.
+
+> 
+> Please work with Christian on this.
+
+Think since the current idea is to support this in the LED api with set
+polarity either the 2 series needs to be merged or the polarity part
+needs to be detached and submitted later until we sort the generic way
+to set it?
 
 -- 
-2.25.1
-
+	Ansuel
 
