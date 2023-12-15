@@ -1,70 +1,70 @@
-Return-Path: <devicetree+bounces-25824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25825-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04C9C814AB7
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 15:41:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A71A814ABA
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 15:41:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3ACA6B2350D
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 14:41:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 56AB8285EC9
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 14:41:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00161358BD;
-	Fri, 15 Dec 2023 14:39:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF7083C460;
+	Fri, 15 Dec 2023 14:39:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="kwcVmKtK"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="q9xpxE4w"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6912B381D3
-	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 14:39:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F5D53A8E7
+	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 14:39:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com [209.85.218.69])
+Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com [209.85.218.71])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 0D2BF3F2C9
+	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id EC0C53F2CF
 	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 14:39:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
 	s=20210705; t=1702651158;
-	bh=Ybq5UjTeoIDvQGsMjYKQSlN8FhlG+exm++rGqALpbk8=;
+	bh=KeS7bAuIUzMlkgCBNZb8n3wxD/29BdX0GI6KJUISBPU=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
 	 MIME-Version;
-	b=kwcVmKtKgGrQzD50R4KeZeC02oSkbdTKWzAKXHCMM02XTTU5/B1RTajhr0Cy6vEZ2
-	 isDz2HqM8D9aGcKHSBzVOvgG+wXDlPCH51s2j4A058LFmOINbJg1Nf2QnSZsLWQS+O
-	 agICxlcZxP1FCu+DZBoE08Ytk9D78MT/ubKhn7HNorcOdePH5FDHy60t2XITHxxrkP
-	 9i2W+QeRX7kM/4mNuiFghxE5LdY/hqhyHA+m/aLsE3lok99b/kC4R0N9GgxPSlIRAs
-	 +kaYa7Quz+HH1N7MUEwB/e71ff4BzVBO3YFBvvjw3aFmztmiNRWJEdSHPxqoT7Ntkc
-	 uvS0bvJzZcwfA==
-Received: by mail-ej1-f69.google.com with SMTP id a640c23a62f3a-a1e88d2d7faso44313366b.1
+	b=q9xpxE4w8QHRDLbWBwh7Kox/tRLUNaCHOMzZS+SnKOOeby+RYJSkIbUAiE3qfeE6M
+	 E2AbrZv46hzciIVRLBDwMFFk1KWOkkdVBE7097iBCILEAB7AvgxjFL03mLKQbO7Mva
+	 WykKNx3ocOWtiSuHnHGD5ADo+rYDey1J2FW/I82wGiG1TCEC5lkVq/aakj8YpqPUTg
+	 OBXEBmunFNlCtcR8WwkwlVz0hJDqYG5KZSQfGU72UQtaU5Tndm4aVLxr+bV6XHYF7W
+	 HRMlXKheJtk13gH+tiHvLFrWAPJN6twpoZGO2Dpcm8fNDP0Q46V5pHLvo/rHHlhjrw
+	 8sJzUHdbGgTcg==
+Received: by mail-ej1-f71.google.com with SMTP id a640c23a62f3a-a230f3b3599so42842766b.3
         for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 06:39:18 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702651157; x=1703255957;
+        d=1e100.net; s=20230601; t=1702651158; x=1703255958;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Ybq5UjTeoIDvQGsMjYKQSlN8FhlG+exm++rGqALpbk8=;
-        b=E6wLnvXUP621dG9biCEr1/1NkEMpiYddsWAzxwHNqMMIK0GseOgL/WgXIrHWqNIh8h
-         Oxe9tEgNMr39LqHD2POA/PGZFpMy+m67xcw4xmqUS59MeiHqidqRmcOtER3eqnjJY+ON
-         I2Y/rN/Ek3P3AhuA7GqHRz/shL/QpEgXBivyuxM6ORSKeUEeWJ07Ufvwfi6YA4MNp+eB
-         MnPPkBt6oQHTj4Qu9/o74zTHAItmFQlqFRI2/UC0lQ8MBJBoQSoOv+pMXdk9Xw1gwFu9
-         VGwchkF8RlgKn69Gd560SuJ8IjkrOCYRLrZTEC3qSMyfRyHcoxfTFLwL7rmM3E9wZS0O
-         49/A==
-X-Gm-Message-State: AOJu0YzP/bAitq4wsJplLBGuKiHg3dItIYQnkfrWmIYoGK0sizTYtcmN
-	X19OlfCFHtFvdFQk2iC6RUWKxXECnodOo6z+v5D6BfuG387WWEmqrM+OOOc5tC2jnLZ67n4/8Ea
-	lKuOuse+1HkwpSu2ScrZK6VTSYLl8z1OatGxdlsN+D1o2NEI=
-X-Received: by 2002:a17:906:530b:b0:a22:f068:7f6f with SMTP id h11-20020a170906530b00b00a22f0687f6fmr2487180ejo.103.1702651157457;
-        Fri, 15 Dec 2023 06:39:17 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHlQI/l2ZAFLp1q43IDXNIJcNIW2onNCcYx/a2Yji69pawtw9Ir+cUHT9Sd1e0dwlnqyRXDFQ==
-X-Received: by 2002:a17:906:530b:b0:a22:f068:7f6f with SMTP id h11-20020a170906530b00b00a22f0687f6fmr2487171ejo.103.1702651157255;
-        Fri, 15 Dec 2023 06:39:17 -0800 (PST)
+        bh=KeS7bAuIUzMlkgCBNZb8n3wxD/29BdX0GI6KJUISBPU=;
+        b=nlard5iIXnHO57YUtEkr1b9Wrq3qoBA3+6hcVyt73yldxgAIB1ekT0sOD9vQizMNX4
+         bLsdkZNK7+07r6yOaxf2LY0nMg0CYE9Xzy70T0oM9sE63DV9Az07MBEhvRMYluPNZGFW
+         pb6ifWOfqd+JLhOrMhnFbEdHoOera52gReXmGp4yFawvmY23zjhELBI/FjouzNcKMnNK
+         yE0NgdMByOrsTiJrZ1z1HYHrePGvK8yVtbYDFcj/ihW12M6c0Ri935kcdqe4aZr+ppdQ
+         gLTLfmIrqRlbkCNUrYZ9HaEXC2jhfFdmUYaH+ns9CMO6UvMj3GP9jTjeWrwkMQUb+ZLh
+         ohQw==
+X-Gm-Message-State: AOJu0YzdKnu77ZRePHO6SIrsNLXEMHFpHeCeeI9eyTA8ldtJ6y7lnZ5X
+	lKY1TI6bOcn9SkWuJbKEDiRqsmcFKOy2y5sO9CAN3dGUGIvYE5C6pmGGV1I7QjklMw9ObOnGy39
+	p/wUCvQfL0+cyYu4U8qroLF1cS5E2qlul7ohFPJ0=
+X-Received: by 2002:a17:907:9815:b0:a1e:5ea5:c5db with SMTP id ji21-20020a170907981500b00a1e5ea5c5dbmr7355319ejc.83.1702651158525;
+        Fri, 15 Dec 2023 06:39:18 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHYp9pwfbZkq5mfgtJhASrZeR58D28PvdjDO0/bhC5ViEz08OWOBS4jzY7w2oHtlQRgSLS9Lw==
+X-Received: by 2002:a17:907:9815:b0:a1e:5ea5:c5db with SMTP id ji21-20020a170907981500b00a1e5ea5c5dbmr7355304ejc.83.1702651158328;
+        Fri, 15 Dec 2023 06:39:18 -0800 (PST)
 Received: from stitch.. ([152.115.213.158])
-        by smtp.gmail.com with ESMTPSA id tm6-20020a170907c38600b00a1db955c809sm10789122ejc.73.2023.12.15.06.39.16
+        by smtp.gmail.com with ESMTPSA id tm6-20020a170907c38600b00a1db955c809sm10789122ejc.73.2023.12.15.06.39.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Dec 2023 06:39:16 -0800 (PST)
+        Fri, 15 Dec 2023 06:39:17 -0800 (PST)
 From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
 To: linux-gpio@vger.kernel.org,
 	devicetree@vger.kernel.org,
@@ -83,9 +83,9 @@ Cc: Hoan Tran <hoan@os.amperecomputing.com>,
 	Fu Wei <wefu@redhat.com>,
 	Paul Walmsley <paul.walmsley@sifive.com>,
 	Palmer Dabbelt <palmer@dabbelt.com>
-Subject: [PATCH v1 6/8] riscv: dts: thead: Adjust TH1520 GPIO labels
-Date: Fri, 15 Dec 2023 15:39:04 +0100
-Message-Id: <20231215143906.3651122-7-emil.renner.berthing@canonical.com>
+Subject: [PATCH v1 7/8] riscv: dts: thead: Add TH1520 pinctrl settings for UART0
+Date: Fri, 15 Dec 2023 15:39:05 +0100
+Message-Id: <20231215143906.3651122-8-emil.renner.berthing@canonical.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20231215143906.3651122-1-emil.renner.berthing@canonical.com>
 References: <20231215143906.3651122-1-emil.renner.berthing@canonical.com>
@@ -97,152 +97,89 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Adjust labels for the TH1520 GPIO controllers such that GPIOs can be
-referenced by the names used by the documentation. Eg.
-
-GPIO0_X  -> <&gpio0 X Y>
-GPIO1_X  -> <&gpio1 X Y>
-GPIO2_X  -> <&gpio2 X Y>
-GPIO3_X  -> <&gpio3 X Y>
-GPIO4_X  -> <&gpio4 X Y>
-AOGPIO_X -> <&aogpio X Y>
-
-Remove labels for the parent GPIO devices that shouldn't need to be
-referenced.
+Add pinctrl settings for UART0 used as the default debug console on
+both the Lichee Pi 4A and BeagleV Ahead boards.
 
 Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
 ---
- .../boot/dts/thead/th1520-beaglev-ahead.dts   |  2 ++
- .../boot/dts/thead/th1520-lichee-pi-4a.dts    |  2 ++
- arch/riscv/boot/dts/thead/th1520.dtsi         | 24 +++++++++----------
- 3 files changed, 16 insertions(+), 12 deletions(-)
+ .../boot/dts/thead/th1520-beaglev-ahead.dts   | 26 +++++++++++++++++++
+ .../boot/dts/thead/th1520-lichee-pi-4a.dts    | 26 +++++++++++++++++++
+ 2 files changed, 52 insertions(+)
 
 diff --git a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-index 70e8042c8304..91ba96588ae8 100644
+index 91ba96588ae8..54d86aab6656 100644
 --- a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
 +++ b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-@@ -17,6 +17,8 @@ aliases {
- 		gpio1 = &gpio1;
- 		gpio2 = &gpio2;
- 		gpio3 = &gpio3;
-+		gpio4 = &gpio4;
-+		gpio5 = &aogpio;
- 		serial0 = &uart0;
- 		serial1 = &uart1;
- 		serial2 = &uart2;
+@@ -58,6 +58,32 @@ &dmac0 {
+ 	status = "okay";
+ };
+ 
++&padctrl0_apsys {
++	uart0_pins: uart0-0 {
++		tx-pins {
++			pins = "UART0_TXD";
++			function = "0";
++			bias-disable;
++			drive-strength = <3>;
++			input-disable;
++			input-schmitt-disable;
++			slew-rate = <0>;
++		};
++
++		rx-pins {
++			pins = "UART0_RXD";
++			function = "0";
++			bias-disable;
++			drive-strength = <1>;
++			input-enable;
++			input-schmitt-enable;
++			slew-rate = <0>;
++		};
++	};
++};
++
+ &uart0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&uart0_pins>;
+ 	status = "okay";
+ };
 diff --git a/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts b/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
-index 9a3884a73e13..0ae2c20d5641 100644
+index 0ae2c20d5641..260aa5e0769f 100644
 --- a/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
 +++ b/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
-@@ -14,6 +14,8 @@ aliases {
- 		gpio1 = &gpio1;
- 		gpio2 = &gpio2;
- 		gpio3 = &gpio3;
-+		gpio4 = &gpio4;
-+		gpio5 = &aogpio;
- 		serial0 = &uart0;
- 		serial1 = &uart1;
- 		serial2 = &uart2;
-diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
-index d5e2378a1afa..17ca214b5a97 100644
---- a/arch/riscv/boot/dts/thead/th1520.dtsi
-+++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-@@ -206,13 +206,13 @@ uart3: serial@ffe7f04000 {
- 			status = "disabled";
- 		};
+@@ -29,6 +29,32 @@ chosen {
+ 	};
+ };
  
--		gpio2: gpio@ffe7f34000 {
-+		gpio@ffe7f34000 {
- 			compatible = "snps,dw-apb-gpio";
- 			reg = <0xff 0xe7f34000 0x0 0x1000>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 
--			portc: gpio-controller@0 {
-+			gpio2: gpio-controller@0 {
- 				compatible = "snps,dw-apb-gpio-port";
- 				gpio-controller;
- 				#gpio-cells = <2>;
-@@ -225,13 +225,13 @@ portc: gpio-controller@0 {
- 			};
- 		};
- 
--		gpio3: gpio@ffe7f38000 {
-+		gpio@ffe7f38000 {
- 			compatible = "snps,dw-apb-gpio";
- 			reg = <0xff 0xe7f38000 0x0 0x1000>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 
--			portd: gpio-controller@0 {
-+			gpio3: gpio-controller@0 {
- 				compatible = "snps,dw-apb-gpio-port";
- 				gpio-controller;
- 				#gpio-cells = <2>;
-@@ -249,13 +249,13 @@ padctrl1_apsys: pinctrl@ffe7f3c000 {
- 			reg = <0xff 0xe7f3c000 0x0 0x1000>;
- 		};
- 
--		gpio0: gpio@ffec005000 {
-+		gpio@ffec005000 {
- 			compatible = "snps,dw-apb-gpio";
- 			reg = <0xff 0xec005000 0x0 0x1000>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 
--			porta: gpio-controller@0 {
-+			gpio0: gpio-controller@0 {
- 				compatible = "snps,dw-apb-gpio-port";
- 				gpio-controller;
- 				#gpio-cells = <2>;
-@@ -268,13 +268,13 @@ porta: gpio-controller@0 {
- 			};
- 		};
- 
--		gpio1: gpio@ffec006000 {
-+		gpio@ffec006000 {
- 			compatible = "snps,dw-apb-gpio";
- 			reg = <0xff 0xec006000 0x0 0x1000>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 
--			portb: gpio-controller@0 {
-+			gpio1: gpio-controller@0 {
- 				compatible = "snps,dw-apb-gpio-port";
- 				gpio-controller;
- 				#gpio-cells = <2>;
-@@ -410,13 +410,13 @@ timer7: timer@ffffc3303c {
- 			status = "disabled";
- 		};
- 
--		ao_gpio0: gpio@fffff41000 {
-+		gpio@fffff41000 {
- 			compatible = "snps,dw-apb-gpio";
- 			reg = <0xff 0xfff41000 0x0 0x1000>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 
--			porte: gpio-controller@0 {
-+			aogpio: gpio-controller@0 {
- 				compatible = "snps,dw-apb-gpio-port";
- 				gpio-controller;
- 				#gpio-cells = <2>;
-@@ -434,13 +434,13 @@ padctrl_aosys: pinctrl@fffff4a000 {
- 			reg = <0xff 0xfff4a000 0x0 0x2000>;
- 		};
- 
--		ao_gpio1: gpio@fffff52000 {
-+		gpio@fffff52000 {
- 			compatible = "snps,dw-apb-gpio";
- 			reg = <0xff 0xfff52000 0x0 0x1000>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 
--			portf: gpio-controller@0 {
-+			gpio4: gpio-controller@0 {
- 				compatible = "snps,dw-apb-gpio-port";
- 				gpio-controller;
- 				#gpio-cells = <2>;
++&padctrl0_apsys {
++	uart0_pins: uart0-0 {
++		tx-pins {
++			pins = "UART0_TXD";
++			function = "0";
++			bias-disable;
++			drive-strength = <3>;
++			input-disable;
++			input-schmitt-disable;
++			slew-rate = <0>;
++		};
++
++		rx-pins {
++			pins = "UART0_RXD";
++			function = "0";
++			bias-disable;
++			drive-strength = <1>;
++			input-enable;
++			input-schmitt-enable;
++			slew-rate = <0>;
++		};
++	};
++};
++
+ &uart0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&uart0_pins>;
+ 	status = "okay";
+ };
 -- 
 2.40.1
 
