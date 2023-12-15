@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-25906-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25907-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D896181504B
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 20:42:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DF85815064
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 20:52:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 92BFE2832F3
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 19:42:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 646931C2394D
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 19:52:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC495405F7;
-	Fri, 15 Dec 2023 19:42:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C9F241852;
+	Fri, 15 Dec 2023 19:52:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lRBkB8ZS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="peQ01X6N"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C034041843;
-	Fri, 15 Dec 2023 19:42:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1473C433C7;
-	Fri, 15 Dec 2023 19:42:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8B694184B;
+	Fri, 15 Dec 2023 19:52:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2364CC433C7;
+	Fri, 15 Dec 2023 19:52:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702669334;
-	bh=RHN6Ed0fgIKVWx3mi/jQi+t/oJQO9mY686auJYDuwOU=;
+	s=k20201202; t=1702669967;
+	bh=DPQK7jJbge9Ks3zW2NwRo/uO5yMfC8kVDR4q2MaAGQ4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lRBkB8ZScW6ebe5uPWkKzHERuHCqWCsK/wQCvSrHSRvtrExjKLuvzgJk8EflWyiff
-	 5xyRJkWjLSOTpeAwj7KyKmodXnWJFXvK911U55pDY4IRqeIvcTB+3qGbNj0hBSX9ww
-	 rQ9Uc+2Sl4Qe8Otw4kW8QJ4o9IK60WHB8v+83oQKgL3DHb4zzNyVlMAajUYHatyXbw
-	 Ux16teJFEtotfFT6wWEdfQ+0+GoMnFiAGhAzWmhM+w40OYIY6dL7tCJQcVrfEtyGCM
-	 n8FL5BJ/T6DaRR0asFgsIg70bQSfweQTLDGBtzwNo06ccu5BwEq1vt5RTY2nu/Z6P2
-	 oSDLdMM3APNIA==
-Received: (nullmailer pid 271794 invoked by uid 1000);
-	Fri, 15 Dec 2023 19:42:10 -0000
-Date: Fri, 15 Dec 2023 13:42:10 -0600
+	b=peQ01X6NCSnBM/iLdQhIyQjwbK+fBwL2E47EA9mpGOxZrXWD5+AcOHTZg54cE7itk
+	 BRbJUkPGzledin8MibkKHQEct6FabO5nUh6pashzY/7cLREAArLONVy7fl4giGEVt0
+	 3tMrUEt+XGn1gilRPZgjS9wrHStAJfCqXqKRzTmejjG3zcQhFjDjUP7BgLzzmoBxgm
+	 krbDNRUz7NvRxCQnjFWY4NFzLdTXWUW2KsCUTWKGG7QZe/Wc7X7BUvgI6V2zwNdfl2
+	 lThCKK4aMg4vQtGdRuyX1RD7eUBKH+c//JFK8TnmhBW7C2Yifwgnuyaw/wUIpc5C41
+	 yd94z5avHdwLg==
+Received: (nullmailer pid 286256 invoked by uid 1000);
+	Fri, 15 Dec 2023 19:52:45 -0000
+Date: Fri, 15 Dec 2023 13:52:45 -0600
 From: Rob Herring <robh@kernel.org>
-To: Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: will@kernel.org, jirislaby@kernel.org, alim.akhtar@samsung.com, arnd@arndb.de, peter.griffin@linaro.org, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, s.nawrocki@samsung.com, andi.shyti@kernel.org, linux-serial@vger.kernel.org, saravanak@google.com, sboyd@kernel.org, cw00.choi@samsung.com, linux-i2c@vger.kernel.org, andre.draszik@linaro.org, robh+dt@kernel.org, willmcvicker@google.com, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, tomasz.figa@gmail.com, conor+dt@kernel.org, catalin.marinas@arm.com, linux-samsung-soc@vger.kernel.org, gregkh@linuxfoundation.org, krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com, semen.protsenko@linaro.org
-Subject: Re: [PATCH 03/13] dt-bindings: i2c: exynos5: add google,gs101-hsi2c
- compatible
-Message-ID: <170266933016.271733.6481546184634336779.robh@kernel.org>
-References: <20231214105243.3707730-1-tudor.ambarus@linaro.org>
- <20231214105243.3707730-4-tudor.ambarus@linaro.org>
+To: Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc: stable@vger.kernel.org, agross@kernel.org, broonie@kernel.org, andersson@kernel.org, robh+dt@kernel.org, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, konrad.dybcio@linaro.org, conor+dt@kernel.org, devicetree@vger.kernel.org, lgirdwood@gmail.com, krzysztof.kozlowski+dt@linaro.org
+Subject: Re: [PATCH v1 1/2] regulator: qcom_smd: Add l2, l5 sub-node to
+ mp5496 regulator
+Message-ID: <170266996013.286103.17303148912355511017.robh@kernel.org>
+References: <cover.1702618483.git.quic_varada@quicinc.com>
+ <612e9d983333560f39672bf09c2d68b1d6ff91c0.1702618483.git.quic_varada@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,17 +51,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231214105243.3707730-4-tudor.ambarus@linaro.org>
+In-Reply-To: <612e9d983333560f39672bf09c2d68b1d6ff91c0.1702618483.git.quic_varada@quicinc.com>
 
 
-On Thu, 14 Dec 2023 10:52:33 +0000, Tudor Ambarus wrote:
-> Add google,gs101-hsi2c dedicated compatible for representing
-> I2C of Google GS101 SoC.
+On Fri, 15 Dec 2023 11:07:03 +0530, Varadarajan Narayanan wrote:
+> Adding l2, l5 sub-node entry to mp5496 regulator node.
 > 
-> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
 > ---
->  Documentation/devicetree/bindings/i2c/i2c-exynos5.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml   | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
