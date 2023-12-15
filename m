@@ -1,103 +1,103 @@
-Return-Path: <devicetree+bounces-25839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25840-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DF15814BAA
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 16:23:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E29E814BAD
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 16:24:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2718C1C22140
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 15:23:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5F8CE1C20844
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 15:24:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BF27364BE;
-	Fri, 15 Dec 2023 15:22:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D74C364A7;
+	Fri, 15 Dec 2023 15:24:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bmailout2.hostsharing.net (bmailout2.hostsharing.net [83.223.78.240])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FCE72FE26;
-	Fri, 15 Dec 2023 15:22:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f49.google.com with SMTP id 46e09a7af769-6d9da137748so312121a34.1;
-        Fri, 15 Dec 2023 07:22:57 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702653777; x=1703258577;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Rw3CYoRVmGzAAcY/wyRAKNOBUN7bY7gSQi19yFERVh8=;
-        b=cGEHC7xLtq4Ko6AZh9LJ8zMO6DQqD3OIRbNwbnl9C58FtKGawuXAxr8K6V8kkcyK29
-         idCDLQrercW9LP3lACnZh6FpOwBeg3c4iuXPYaC/CjU/9iu2PuKVTINd/qvJZPhg/6aM
-         6jVY25WG3wRGeEiCYy9yHed9VJxeFK9BKdOSGAR5xlJWQxdyBVYRNe0b+QzFrZxjU9du
-         +fOEAVcxHsgMbE4YDNk+/uwOR2C0XlKxS/x/d1tCwPhUlOOsllbOC9aLBmrPnGrpDcpS
-         Q/o9RJg+w0L/tFcRnvGoM03m9/4ROqQJppC7tAuGWSaQR/vuNtPaelLMzawZqf2i5ZPg
-         s0Eg==
-X-Gm-Message-State: AOJu0Yzhc0ie8JYrKSjnhD7mZAFi9hEQDhd+6iCZnYHLKdUhHYi3Iq4C
-	ig0m5sTXEIjp8eWgC/XdBXWXsNGuPA==
-X-Google-Smtp-Source: AGHT+IHLfII0gke7uRP+LV5Ugn7EjczkP0xhnm/lpvntYGNQZQI/qUz+mfer6s8PP4+Uu4dw106EpA==
-X-Received: by 2002:a05:6830:1511:b0:6da:3273:319f with SMTP id k17-20020a056830151100b006da3273319fmr2279116otp.9.1702653777214;
-        Fri, 15 Dec 2023 07:22:57 -0800 (PST)
-Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id eq9-20020a056830490900b006da0e88aa4bsm2685520otb.64.2023.12.15.07.22.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Dec 2023 07:22:56 -0800 (PST)
-Received: (nullmailer pid 3974040 invoked by uid 1000);
-	Fri, 15 Dec 2023 15:22:55 -0000
-Date: Fri, 15 Dec 2023 09:22:55 -0600
-From: Rob Herring <robh@kernel.org>
-To: =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>, Simon Glass <sjg@chromium.org>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, Christian Marangi <ansuelsmth@gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: nvmem: add "data-size" property
-Message-ID: <20231215152255.GA3798777-robh@kernel.org>
-References: <20231213154721.5037-1-zajec5@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6A763A8C9;
+	Fri, 15 Dec 2023 15:24:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wunner.de
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=h08.hostsharing.net
+Received: from h08.hostsharing.net (h08.hostsharing.net [IPv6:2a01:37:1000::53df:5f1c:0])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
+	 client-signature RSA-PSS (4096 bits) client-digest SHA256)
+	(Client CN "*.hostsharing.net", Issuer "RapidSSL TLS RSA CA G1" (verified OK))
+	by bmailout2.hostsharing.net (Postfix) with ESMTPS id 3212C2801371D;
+	Fri, 15 Dec 2023 16:24:12 +0100 (CET)
+Received: by h08.hostsharing.net (Postfix, from userid 100393)
+	id 038C43F34A; Fri, 15 Dec 2023 16:24:11 +0100 (CET)
+Date: Fri, 15 Dec 2023 16:24:11 +0100
+From: Lukas Wunner <lukas@wunner.de>
+To: Rob Herring <robh+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jarkko Sakkinen <jarkko@kernel.org>,
+	Peter Huewe <peterhuewe@gmx.de>, Jason Gunthorpe <jgg@ziepe.ca>,
+	devicetree@vger.kernel.org, linux-integrity@vger.kernel.org,
+	Lino Sanfilippo <LinoSanfilippo@gmx.de>,
+	Nayna Jain <nayna@linux.ibm.com>,
+	Thirupathaiah Annapureddy <thiruan@microsoft.com>,
+	Sasha Levin <sashal@kernel.org>,
+	Alexander Steffen <Alexander.Steffen@infineon.com>,
+	Johannes Holland <Johannes.Holland@infineon.com>,
+	Amir Mizinski <amirmizi6@gmail.com>,
+	Benoit HOUYERE <benoit.houyere@st.com>,
+	Peter Delevoryas <peter@pjd.dev>
+Subject: Re: [PATCH v2 1/3] dt-bindings: tpm: Consolidate TCG TIS bindings
+Message-ID: <20231215152411.GA20902@wunner.de>
+References: <cover.1701093036.git.lukas@wunner.de>
+ <3f56f0a2bb90697a23e83583a21684b75dc7eea2.1701093036.git.lukas@wunner.de>
+ <CAL_JsqKwJsaJhoi07gG76TgDtrwh0i=iGtxL-_pbQbGDZ_8C3A@mail.gmail.com>
+ <20231213162319.GA31314@wunner.de>
+ <CAL_JsqJ=14b19yHZ=rnVd8uLu=kn5W9y0irk0XA983Eo+ByBnA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231213154721.5037-1-zajec5@gmail.com>
+In-Reply-To: <CAL_JsqJ=14b19yHZ=rnVd8uLu=kn5W9y0irk0XA983Eo+ByBnA@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 
-On Wed, Dec 13, 2023 at 04:47:20PM +0100, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On Wed, Dec 13, 2023 at 11:01:21AM -0600, Rob Herring wrote:
+> On Wed, Dec 13, 2023 at 10:23AM Lukas Wunner <lukas@wunner.de> wrote:
+> > Ideally the validator would match a regex against the $nodename of the
+> > parent and see if it contains "spi" or "i2c".  But I think matching
+> > against the parent's $nodename isn't possible, is it?
 > 
-> Allow specifying NVMEM device content size in case it differs from
-> device total size.
-> 
-> Cc: Christian Marangi <ansuelsmth@gmail.com>
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
->  Documentation/devicetree/bindings/nvmem/nvmem.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/nvmem/nvmem.yaml b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
-> index 4fd015d402ce..095aed4250de 100644
-> --- a/Documentation/devicetree/bindings/nvmem/nvmem.yaml
-> +++ b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
-> @@ -26,6 +26,13 @@ properties:
->    "#size-cells":
->      const: 1
->  
-> +  data-size:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      NVMEM device actual data (content) size. It may be need to be specified
-> +      if it differs by design from the total NVMEM device size and it's
-> +      impossible to determine it on runtime.
+> No. I've thought of adding something like that, but haven't.
 
-'data-size' is already defined in 
-Documentation/devicetree/bindings/eeprom/microchip,93lc46b.yaml.
+Please consider this a feature request. :)
 
-That would be fine, but it's defining bits per word. So I think it's 
-better if we call this something else. 'total-data-size' or 
-'actual-data-size'?
+It would be good if it were possible to define constraints not just
+for the $nodename of the parent, but any of its properties.
 
-I think Simon had something similar for binman.
+E.g. with i2c, the clock-frequency is set at the host controller's
+devicetree node, not at each attached i2c peripheral's node.
+For ACPI, i2c_acpi_find_bus_speed() walks the bus to find the
+highest clock speed supported by all attached i2c peripherals,
+but for OF, the onus is on the devicetree author to manually
+determine the clock.
 
-Rob
+Thus, for a TPM such as infineon,slb9635tt which only supports 100 kHz,
+I want to validate that the parent node's clock-frequency is less than
+or equal to that.
+
+In Documentation/devicetree/bindings/security/tpm/st33zp24-i2c.txt
+there's an example showing a clock-frequency property at the
+peripheral's node and I mistakenly carried that over to the yaml
+schema.  A look at the code reveals that's entirely bogus so I'll
+drop the clock-frequency property in v3.  I will retain textual
+hints that infineon,slb9635tt is limited to 100 kHz and
+infineon,slb9645tt to 400 kHz, but as it stands I can't define
+rules that would allow the validator to check that automatically.
+
+Thanks,
+
+Lukas
 
