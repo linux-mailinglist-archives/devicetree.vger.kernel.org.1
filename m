@@ -1,121 +1,73 @@
-Return-Path: <devicetree+bounces-25831-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25833-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39218814B72
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 16:15:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF19A814B91
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 16:18:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6C7281C236DC
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 15:15:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7FFDB1F23F16
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 15:18:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B05E837169;
-	Fri, 15 Dec 2023 15:12:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B35DD3A8D5;
+	Fri, 15 Dec 2023 15:16:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="JrusyhDr"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="bxskg0vQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ADC947F4F;
-	Fri, 15 Dec 2023 15:12:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=ajCDZGvijk75rbYCqf20oSN8lDe4VchzPQ8rt1SGUQo=; b=JrusyhDrivvsqoMqFLBzLU2VRm
-	AG2fVovX6NKXHUNxQhbuV/xX3x6rulTxAeHs7c9xKdlwVMiI986ar4ZG+Ub+9x8H9ZQXfvR0PB6s2
-	FqMeFZcic1Dek1hxwb4zXNlSUocCJuHbue6I1P1H9zhZTx07Y8SXDXSuD4Fby0P42UtxVqCAxvwe2
-	ayPlrb3aLfqplL20VCZO8w5pFEdxGqi/XhuGVBjU9yRgfgW5p5lXxEXOQMIwI6KeoFf+gVH30Nq1J
-	GpqZprMo39kJqjWs2KU7OEqTIQa1S7NqSTblpPqW/yGvi7bq+9aElknwD8eJwM25kIGO8DlS2moyY
-	b/uxUFww==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:38654)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1rE9rn-0002oc-1C;
-	Fri, 15 Dec 2023 15:12:44 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1rE9ro-0003iF-DD; Fri, 15 Dec 2023 15:12:44 +0000
-Date: Fri, 15 Dec 2023 15:12:44 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Tobias Waldekranz <tobias@waldekranz.com>, davem@davemloft.net,
-	kuba@kernel.org, kabel@kernel.org, hkallweit1@gmail.com,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 3/4] net: phy: marvell10g: Add LED support for
- 88X3310
-Message-ID: <ZXxs7JhgEMzp/cli@shell.armlinux.org.uk>
-References: <20231214201442.660447-1-tobias@waldekranz.com>
- <20231214201442.660447-4-tobias@waldekranz.com>
- <9e2305e5-6b04-4032-8a71-dd24db04ddab@lunn.ch>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2930A3BB30;
+	Fri, 15 Dec 2023 15:16:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1702653400;
+	bh=frcCV1k9oG9oKj3dpUqdJg1PxRT2RSN/XKdLCPjaYaY=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=bxskg0vQhA7slrajO46bihV+I0+uaTjfjUJ9LPJbFyICDyqWnNT9UL3VYraw4JhfL
+	 smPMkdX3Yc24/cpOzQDoBGD7cgyqXv/6lDFAa1NY5VC8gf0ptvgSJ2LGX7G48lEpdR
+	 WSuDQoQUI9Hvw6vif718JAO6HNv6zhLVb5UHlIC5GBRqaRZFJeUfFX2vk2kl0C/aDo
+	 ZBMWoxP7AdUo3OAEdRcN3LYJLXfnWKLzWLedKUhzv86iILyu4rTStipQdtIpo9svNG
+	 WNWSnS8VM4snAcE6vslwSt4w5/E+XhE/XOGM4xWWpyTtXW9DduwFQoH5KY6i/k09GB
+	 hhTug6I7mkSqg==
+Received: from beast.luon.net (cola.collaboradmins.com [IPv6:2a01:4f8:1c1c:5717::1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: sjoerd)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 18EBF3781FD7;
+	Fri, 15 Dec 2023 15:16:40 +0000 (UTC)
+Received: by beast.luon.net (Postfix, from userid 1000)
+	id A14E998BB175; Fri, 15 Dec 2023 16:16:39 +0100 (CET)
+Message-ID: <67f183ea01430224ce305d7e6267c9b5ef114923.camel@collabora.com>
+Subject: Re: [PATCH v2 0/3] Moxtet bus fixes
+From: Sjoerd Simons <sjoerd@collabora.com>
+To: Gregory CLEMENT <gregory.clement@bootlin.com>, Marek
+	=?ISO-8859-1?Q?Beh=FAn?=
+	 <kabel@kernel.org>
+Cc: kernel@collabora.com, Andrew Lunn <andrew@lunn.ch>, Conor Dooley
+ <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>,  Rob Herring <robh+dt@kernel.org>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org
+Date: Fri, 15 Dec 2023 16:16:39 +0100
+In-Reply-To: <87fs03cyki.fsf@BL-laptop>
+References: <20231128213536.3764212-1-sjoerd@collabora.com>
+	 <87fs0ceoif.fsf@BL-laptop> <20231208161724.5f4f626a@dellmb>
+	 <87fs03cyki.fsf@BL-laptop>
+Organization: Collabora Ltd.
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+User-Agent: Evolution 3.50.2-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9e2305e5-6b04-4032-8a71-dd24db04ddab@lunn.ch>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On Fri, Dec 15, 2023 at 03:44:07PM +0100, Andrew Lunn wrote:
-> > +static int mv3310_led_funcs_from_flags(struct mv3310_led *led,
-> > +				       unsigned long flags,
-> > +				       enum mv3310_led_func *solid,
-> > +				       enum mv3310_led_func *blink)
-> > +{
-> > +	unsigned long activity, duplex, link;
-> > +
-> > +	if (flags & ~(BIT(TRIGGER_NETDEV_LINK) |
-> > +		      BIT(TRIGGER_NETDEV_HALF_DUPLEX) |
-> > +		      BIT(TRIGGER_NETDEV_FULL_DUPLEX) |
-> > +		      BIT(TRIGGER_NETDEV_TX) |
-> > +		      BIT(TRIGGER_NETDEV_RX)))
-> > +		return -EINVAL;
-> 
-> This probably should be -EOPNOTSUPP. The trigger will then do the
-> blinking in software.
-> 
-> > +
-> > +	link = flags & BIT(TRIGGER_NETDEV_LINK);
-> > +
-> > +	duplex = flags & (BIT(TRIGGER_NETDEV_HALF_DUPLEX) |
-> > +			  BIT(TRIGGER_NETDEV_FULL_DUPLEX));
-> > +
-> > +	activity = flags & (BIT(TRIGGER_NETDEV_TX) |
-> > +			    BIT(TRIGGER_NETDEV_RX));
-> > +
-> > +	if (link && duplex)
-> > +		return -EINVAL;
-> 
-> It is an odd combination, but again, if the hardware cannot do it,
-> return -EOPNOTSUPP and leave it to the software.
 
-I don't recall how the LED triggers work (whether they logically OR
-or AND). The hardware supports indicating whether it has a half or
-full duplex link, and if the LED is programmed for that, then it will
-illuminate when it has link _and_ the duplex is of the specified type.
-If the link is down, or the duplex is of the other type, then it won't.
-
-I'm guessing that if link is set and duplex is set, then what userspace
-is asking for is the LED to be illuminated whenever the link is up _or_
-the duplex is of the specified type, which basically logically resolves
-to _only_ "link is up" (because a link that is down has no duplex.)
-
-So, I'm not sure "leaving it to software" is good, that combination is
-effectively just "has link".
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
