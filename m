@@ -1,87 +1,110 @@
-Return-Path: <devicetree+bounces-25878-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25881-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E3AA814EE9
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 18:35:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2851E814EFF
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 18:42:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0AE0E286B89
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 17:35:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D7123288FA5
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 17:42:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 129EB82EE1;
-	Fri, 15 Dec 2023 17:34:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6D4682ED4;
+	Fri, 15 Dec 2023 17:41:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="PiKYYiJA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bZ35UHN8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76B4282ED7
-	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 17:34:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2ca0f21e48cso11207101fa.2
-        for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 09:34:53 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15EF530104
+	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 17:41:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-50c0f6b1015so1035064e87.3
+        for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 09:41:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1702661691; x=1703266491; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=k/HoRgK92BjH7QovcEi8cDDtZyMd0kZkc2fCOkf2P1E=;
-        b=PiKYYiJAZ9u2GHXOzY9FlvBxLhU4Ip8yQ6ARfsWefCCgU3Ja+vOaAJGG4KFYiyLugX
-         eRJQ7obsIcdVDajKeJigv9kiaA49kF3SpU1OhZWMw1s4EaptumI2QWaXNJDtnIpDyeta
-         owwBzxvZUhRB35UtCrzaVMzqpYco3AikTi2kw2thhf30l5s6LZ/WS9yq/SQt9uyqVVC3
-         W+wV5wO3uDfBpYYEiLEdMHGprRo/JRXd5kh77M/NzCWvI2pj4NGHmGQCzrU0WCO33PqN
-         nSM6YBZsxLRPMK0nJJZAK27SCBHBjZaQBzRuWT58pb7/NaVJqomz8Xqhc017i5ll1JnA
-         5VgQ==
+        d=linaro.org; s=google; t=1702662115; x=1703266915; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9MFpXjQvg3NlP9wLRekls4ujIRGwU6ojDDoMRGZZgfg=;
+        b=bZ35UHN8zWbwRk48wSN/1GeqVA+2l1llFS/7D2tIRVfTd67KS/tBBW5MHK1M0Wj+KP
+         RvjovJucvFoTHUCSSbYHxalZcGDo9gLzmPtfqL76lMlZ2GZaYzlsUQp3cg6vqCOZkDvn
+         faZNFU8srktnqMBQtGRXd8ZLDpV2iluC9SXkMx+csG12PLmmiZD68Llpo4hGqou9mx2Y
+         LLOoPtTT/1Qc8Jhk+YOpcEd5Z4WxQ8VsrSZs04ilk5ccD6PevYpISAIY302nq+42yMxJ
+         Fj+v4+5bvXnDP2vxQgSr7JcpibzB2YswYu2iv6won6JneqoNysfcijqlBsayz78sIvUA
+         7bjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702661691; x=1703266491;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=k/HoRgK92BjH7QovcEi8cDDtZyMd0kZkc2fCOkf2P1E=;
-        b=hn3/gdGw1EAF2b2arZufyzblRvaRZV+p0qg0hGDBctTUuoDxirvQaMRwwUrz+3IFo1
-         +UZqSxaaBXtX3IVM+JAuuL+MncDB++aDMacWdrSN8GdpRqie0+jzHECE0xgYbMfm7iLF
-         hUeDUya/DZ9N5UztiTCG78tCb9m0f/tMUOTyn0Wp/s1/KMRnR8SSIf2CXVsVGawnR5W6
-         2orAmQhl4NnbQAnBVnEITsphBGoPWWdJKR7ipRkyZTUDM98bqHnv7dKg7L51UknJm2N1
-         yYVM12FQQuN44mYmXYm89xWKcQWn1XW8oA5xFROMHe//W8jHRothQWxKxqIoL8D47LIM
-         yDKg==
-X-Gm-Message-State: AOJu0YxFkiaS7Y7AN4drqHoiGxfKqBqSgxBHrCNlpUtIBQ53ZqcZZ9nh
-	3JwxP04ivtKip+Kn2Rv/bwc8MbFbJXU3WSxf0TfdyQ==
-X-Google-Smtp-Source: AGHT+IESHbjGVQ8M8Os54q2PL2fQP0wlu9xEjVWVTRt1ow4s8PhgawTd1HW3ldYOsfIs8ww2VSHVrd2vMhjQrD4K/gE=
-X-Received: by 2002:a2e:87d3:0:b0:2ca:246:752c with SMTP id
- v19-20020a2e87d3000000b002ca0246752cmr5759961ljj.70.1702661691479; Fri, 15
- Dec 2023 09:34:51 -0800 (PST)
+        d=1e100.net; s=20230601; t=1702662115; x=1703266915;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9MFpXjQvg3NlP9wLRekls4ujIRGwU6ojDDoMRGZZgfg=;
+        b=HCTKsaexN16eACUeZ9nIYBkNKcANYD0WshEhf3yYxyWsTPHT8iHTRSGqWNhWIDYZkJ
+         2VPJ8744WpaX9kUiBRP7dNIsS1pBynBqXQB/dopdxOal9p1JibbJeOlsgEGh/e2nd/hH
+         O4ANsRo1hPz/YlIoGOo1W9ePK1VYEjdz1WmbkNuINFWnsDaCiIU5piyD75uUDE2otPz3
+         bal8Zdi856Mct5LxcCDQv8Yf8ddh6cyq/mhj5HdKpBX+6S04zDTqCfqDaUOl6hy95FmU
+         nxPA6UhU8yP624EtTcXwaR6aOwmvghKrB7PqpXSIKjkjAGZrLafLArg5nLWC1S+UZrIr
+         qxcw==
+X-Gm-Message-State: AOJu0YwV9oszdh9k5ovy31ceUwoeRVYO7yArSq1TOen9G8IFeplZoB9O
+	ffk3u8N5Y7zIm/mpIsv2EB3V6Q==
+X-Google-Smtp-Source: AGHT+IFBxk4egs4dHqlwd+v+BrIEFKFxf4nHJ6mGiQE0K8RfcbD92HVmrtjH6AoZmLBaRV9aiQbA5g==
+X-Received: by 2002:ac2:4341:0:b0:50b:f334:136d with SMTP id o1-20020ac24341000000b0050bf334136dmr5265951lfl.50.1702662114997;
+        Fri, 15 Dec 2023 09:41:54 -0800 (PST)
+Received: from eriador.lumag.spb.ru (85-76-13-188-nat.elisa-mobile.fi. [85.76.13.188])
+        by smtp.gmail.com with ESMTPSA id c16-20020a056512239000b0050dff5bb793sm1389263lfv.143.2023.12.15.09.41.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Dec 2023 09:41:54 -0800 (PST)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v3 0/7] arm64: dts: qcom: sm8150-hdk: enable display output
+Date: Fri, 15 Dec 2023 19:40:32 +0200
+Message-ID: <20231215174152.315403-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231215-ad7380-mainline-v3-0-7a11ebf642b9@baylibre.com>
- <20231215-ad7380-mainline-v3-3-7a11ebf642b9@baylibre.com> <66e9fe7a-927b-465f-aafe-8aea0e5998a4@wanadoo.fr>
- <CAMknhBEPxYtZps2cFk0ZPckbcHenXJ_v4Dv+82ENg47J52gHxQ@mail.gmail.com>
-In-Reply-To: <CAMknhBEPxYtZps2cFk0ZPckbcHenXJ_v4Dv+82ENg47J52gHxQ@mail.gmail.com>
-From: David Lechner <dlechner@baylibre.com>
-Date: Fri, 15 Dec 2023 18:34:40 +0100
-Message-ID: <CAMknhBG_4JR+OhBU7WPCrS0OPb7c_jebM4AhrkPNvzfOmQ4TvA@mail.gmail.com>
-Subject: Re: [PATCH v3 3/3] iio: adc: ad7380: new driver for AD7380 ADCs
-To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Cc: broonie@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, 
-	jic23@kernel.org, krzysztof.kozlowski+dt@linaro.org, lgirdwood@gmail.com, 
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-spi@vger.kernel.org, michael.hennerich@analog.com, nuno.sa@analog.com, 
-	robh+dt@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Fri, Dec 15, 2023 at 6:31=E2=80=AFPM David Lechner <dlechner@baylibre.co=
-m> wrote:
-> it only an int and not the pointer to the regulator.
+Enable display output on the SM8150 HDK device. This includes HDMI
+output through the onboard DSI-HDMI bridge and DP output on the USB-C
+port.
 
-I missed a word, so just it case it wasn't clear:
+Changes since v2
+- Rebased on top of linux-next
+- Dropped applied patches
 
-it only *returns* an int and not the pointer to the regulator.
+Changes since v1
+- Dropped irrelevant stats patch
+- Fixed endpoint stye (Konrad)
+- Changed SVID from u32 to 16-bits value (Konrad)
+
+Dmitry Baryshkov (7):
+  arm64: dts: qcom: sm8150: make dispcc cast minimal vote on MMCX
+  arm64: dts: qcom: sm8150-hdk: enable HDMI output
+  arm64: dts: qcom: sm8150-hdk: fix SS USB regulators
+  arm64: dts: qcom: sm8150: add DisplayPort controller
+  arm64: dts: qcom: sm8150: add USB-C ports to the USB+DP QMP PHY
+  arm64: dts: qcom: sm8150: add USB-C ports to the OTG USB host
+  arm64: dts: qcom: sm8150-hdk: enable DisplayPort and USB-C altmode
+
+ arch/arm64/boot/dts/qcom/sm8150-hdk.dts | 264 +++++++++++++++++++++++-
+ arch/arm64/boot/dts/qcom/sm8150.dtsi    | 133 ++++++++++++
+ 2 files changed, 387 insertions(+), 10 deletions(-)
+
+-- 
+2.43.0
+
 
