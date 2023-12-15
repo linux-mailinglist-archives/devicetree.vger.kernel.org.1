@@ -1,54 +1,64 @@
-Return-Path: <devicetree+bounces-25783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25784-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3F5C814823
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 13:33:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C95A0814836
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 13:38:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 75D9BB22B0B
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 12:33:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 027401C2314D
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 12:38:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66B061C2A9;
-	Fri, 15 Dec 2023 12:33:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E09424A07;
+	Fri, 15 Dec 2023 12:38:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="kwsZ2WCX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sKRRPT+e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 002CE2C868;
-	Fri, 15 Dec 2023 12:33:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BFCQm8U022578;
-	Fri, 15 Dec 2023 12:33:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=Zem9zj92wvAtdEA8Fe7XFOaOhnvk2FMTdxZ40u2vP6E=; b=kw
-	sZ2WCXvxb0OwWIfAnMVfsBIQieYVruY+aVBoVPYq3oJx9ActuEazE1r+RSSZz0wS
-	54/n8hprq03E5GRFRVHLn4yQuK+TzO3rjI3rGRFoajo/pphnH9TygThVInqtuh1h
-	nnOe84/XQr4rGrCDPJ2qEl4Etzz8TdpFkpakuBdtmmzwCfd8NZLOqyOu4BJsrqO5
-	U3UMEsJJxpiBrINxSwyoPyNizRB4q7omoQG1SUIkzAX5nrh+Hr6nG1k5M5AyiB2e
-	8nUNlGSrouptfkKEZXvjEZtLkucVntkhGaG5AtGrkWlHtt8yPCgzBaj02qiN2YO/
-	2PxKCivnBt8OxxwwFj6A==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v0k90rkax-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 15 Dec 2023 12:33:08 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BFCX7EN013389
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 15 Dec 2023 12:33:07 GMT
-Received: from [10.253.13.71] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 15 Dec
- 2023 04:33:03 -0800
-Message-ID: <a65ad12d-b990-4439-b196-903f4a5f096a@quicinc.com>
-Date: Fri, 15 Dec 2023 20:33:00 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A76092DB7C
+	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 12:38:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-40c317723a8so6991295e9.3
+        for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 04:38:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702643885; x=1703248685; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BsXmPIAmJl60XYRsMDSLfbrKydUJT24PwhIFCDJUrBM=;
+        b=sKRRPT+ebjBOmZ8vzfuyi8AjPStVXjOHsM3CkR8AFc4Tet5py47NCGi6qZYyZIog3C
+         cmdQKtTLKiPJpx6/Er6IItlVAIWDn6zS9oTb5sNV9zfTCTFn6fuJ06l/KPGXw2FIPfOD
+         8BVsJgOHr13cknpKnXAXuG9rYnNBwudKjtptYaitsxgoyd+FQhOfDp5pX5k6WjuY+bmD
+         IuNnHE1B4g8ng4ed+HpvForAKQ/lrbG32l8hyFjVPfGs20V9w5Nz2GxAIAlEsh/IWGAa
+         1mq8NWnbSlYw3z86MT3fP1dHmhiXsnahsq8y4moW7hByFyBmhruTbu8JvynXOvFFfTHW
+         lTiw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702643885; x=1703248685;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BsXmPIAmJl60XYRsMDSLfbrKydUJT24PwhIFCDJUrBM=;
+        b=PHkT5OAxVF6KBda5/T1AraigkAR3PzVTwPyD+el/dTi4gBipDCNcvhtsCme2oH+XF/
+         Yhobl2msBnEl79x4t8/g5VwcA59CcjPQ5KJpOtY4crOwJR97TUiNwoUXb8ehcNh/DYxa
+         tUQvb5QIrE0YXmAhuG6iRL7xvV/WQ3pW+pBlAW9jFmjkp36f0tjmjZZOyRlb7pZ/tTPN
+         Tda8Z1sXGOjcHL+NbngovpMNIoy0U9eTcZjvFDJSJn+iBA2r+XEphCMuxtjrREi6wTq9
+         3kox2sYy2ECK7dMThgpr4dNpb9yDFDwGvQX0brfyjtYL0qmnk9vnFZVzSLqxtWDHr3HQ
+         ykWA==
+X-Gm-Message-State: AOJu0YwKzBZRWslirzPMV26QeakTOt68aSVRqJnh8HCN6bN+TlyuWmBZ
+	p+4wDCqpYqr2FYt3fNKyYKIB7w==
+X-Google-Smtp-Source: AGHT+IHBxBMgBiBWpwXzUIkpbdwQ+qcVVdthMh7pL80QCiPqI0Z2+8i9M1xYjMIM103e8Rksoud9LA==
+X-Received: by 2002:a05:600c:2804:b0:40c:3eab:d987 with SMTP id m4-20020a05600c280400b0040c3eabd987mr5514403wmb.125.1702643884813;
+        Fri, 15 Dec 2023 04:38:04 -0800 (PST)
+Received: from [192.168.100.102] ([37.228.218.3])
+        by smtp.gmail.com with ESMTPSA id g10-20020a05600c4eca00b0040c11fbe581sm28680591wmq.27.2023.12.15.04.38.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 15 Dec 2023 04:38:04 -0800 (PST)
+Message-ID: <bf4abdf4-a61c-422c-8042-69a53e62dff4@linaro.org>
+Date: Fri, 15 Dec 2023 12:38:03 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,89 +66,62 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 14/14] dt-bindings: net: ar803x: add qca8084 PHY
- properties
+Subject: Re: [PATCH v2 10/10] clk: qcom: Add camcc clock driver for x1e80100
 Content-Language: en-US
-To: Andrew Lunn <andrew@lunn.ch>
-CC: <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <hkallweit1@gmail.com>, <linux@armlinux.org.uk>, <corbet@lwn.net>,
-        <p.zabel@pengutronix.de>, <f.fainelli@gmail.com>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>
-References: <20231215074005.26976-1-quic_luoj@quicinc.com>
- <20231215074005.26976-15-quic_luoj@quicinc.com>
- <60b9081c-76fa-4122-b7ae-5c3dcf7229f9@lunn.ch>
-From: Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <60b9081c-76fa-4122-b7ae-5c3dcf7229f9@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To: Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ Rajendra Nayak <quic_rjendra@quicinc.com>
+References: <20231214-x1e80100-clock-controllers-v2-0-2b0739bebd27@linaro.org>
+ <20231214-x1e80100-clock-controllers-v2-10-2b0739bebd27@linaro.org>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20231214-x1e80100-clock-controllers-v2-10-2b0739bebd27@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 4Uz7d0EgknsiF0Y5kIan2k8PGtrPqcmd
-X-Proofpoint-GUID: 4Uz7d0EgknsiF0Y5kIan2k8PGtrPqcmd
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
- impostorscore=0 priorityscore=1501 malwarescore=0 clxscore=1015
- mlxlogscore=990 adultscore=0 suspectscore=0 bulkscore=0 spamscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2312150084
+
+On 14/12/2023 16:49, Abel Vesa wrote:
+> From: Rajendra Nayak <quic_rjendra@quicinc.com>
+> 
+> Add the camcc clock driver for x1e80100
+> 
+> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 
 
-
-On 12/15/2023 8:12 PM, Andrew Lunn wrote:
->> +  clocks:
->> +    items:
->> +      - description: APB bridge clock
->> +      - description: AHB clock
->> +      - description: Security control clock
->> +      - description: TLMM clock
->> +      - description: TLMM AHB clock
->> +      - description: CNOC AHB clock
->> +      - description: MDIO AHB clock
->> +      - description: MDIO master AHB clock
->> +      - description: PCS0 system clock
->> +      - description: PCS1 system clock
->> +      - description: EPHY0 system clock
->> +      - description: EPHY1 system clock
->> +      - description: EPHY2 system clock
->> +      - description: EPHY3 system clock
-> 
-> What exactly are you describing here? A PHY, or a PHY package?
-> 
-> The ethernet-phy.yaml describes a PHY. So does each of your 4 PHYs
-> have 14 clocks? The PHY package as a whole has 14*4 clocks?
-> 
-> This seems unlikely. You have some clocks used by the package as a
-> whole, and you have some clocks used by one specific PHY within the
-> package. So you need a hierarchical description of the hardware in DT,
-> to match the actual hierarchical of the hardware.
-> 
-> This is exactly what Christian has been working on, and you have
-> persistently ignored what he is doing. You need to work with him.
-> Nothing is going to be merged until you and Christian have one
-> consistent design for the two PHYs you are working on.
-> 
-> 
->      Andrew
-> 
 > ---
-> pw-bot: cr
+		.name = "cam_cc-x1e80100",
 
-Hi Andrew,
-These clocks are for the whole PHY package including quad PHYs, since
-these clocks & resets need to be initialized at one point, i put it
-the previous MDIO driver code, these clocks & resets are configured
-after GPIO hardware reset, after these clocks and resets sequences
-configured, each PHY capabilities can be acquired correctly in the PHY
-probe function.
+This is some very akward naming here.
 
-Sorry for missing Christian's patches, i will look his patches and
-update qca8084 PHY driver correspondingly.
+"camcc-x1e80100"
 
+Same comment with the defines not "CAM_CC_THING" just "CAMCC_THING"
+
+With those two nits fixed.
+
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Tested-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+
+
+> +		.of_match_table = cam_cc_x1e80100_match_table,
+> +	},
+> +};
+> +
+> +module_platform_driver(cam_cc_x1e80100_driver);
+> +
+> +MODULE_DESCRIPTION("QTI CAM_CC x1e80100 Driver");
+
+Again with the "CAM_CC" this should be -> "QTI Camera Clock Controller"
+
+---
+bod
 
