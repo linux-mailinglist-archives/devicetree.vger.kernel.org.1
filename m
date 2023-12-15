@@ -1,187 +1,146 @@
-Return-Path: <devicetree+bounces-25676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25678-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D06C8142E8
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 08:48:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66DCE8142F9
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 08:52:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B6E841F22883
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 07:48:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8AC3C1C21751
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 07:52:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BBFA107B8;
-	Fri, 15 Dec 2023 07:42:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39365107BD;
+	Fri, 15 Dec 2023 07:52:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="E1IqYSR/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GgQL50wf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B88C7111A8;
-	Fri, 15 Dec 2023 07:42:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 7690cc429b1d11eea5db2bebc7c28f94-20231215
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:References:CC:To:From:Subject:MIME-Version:Date:Message-ID; bh=2wAqJO6ow5pbhLNgeXDGDdT6gSCu+5ZCYT020dCWPOM=;
-	b=E1IqYSR/4K/sjc1swu8RYVPjxo6eBcVRUShSdKJi5tlB5Cooayf22p9PJn/cGjfBmJ/zPCapa+FPNkYqfnHSLgqPCGolodPU8gBH+GG4XGy/PZihUe/x5YsVY+WM+fynCiZqXV6nV0wVofBuHJtzocrLmvqLaLqvR7w9XJA4QdU=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.35,REQID:b2d86169-3ed4-4bab-8fb4-41f44379c6fb,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:5d391d7,CLOUDID:d731d373-1bd3-4f48-b671-ada88705968c,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
-	DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
-X-UUID: 7690cc429b1d11eea5db2bebc7c28f94-20231215
-Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw01.mediatek.com
-	(envelope-from <macpaul.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1126703269; Fri, 15 Dec 2023 15:42:14 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Fri, 15 Dec 2023 15:42:11 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkmbs13n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
- Transport; Fri, 15 Dec 2023 15:42:09 +0800
-Message-ID: <6a0bc9c2-a9c6-5842-b66a-f9f020bf3aa3@mediatek.com>
-Date: Fri, 15 Dec 2023 15:42:08 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C5F9107A4
+	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 07:51:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-54cde11d0f4so442676a12.2
+        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 23:51:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702626717; x=1703231517; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=w+UmIifhhd7J02PhLn10w2KreV/vi1DdOEwYftCwOVE=;
+        b=GgQL50wfTu6QwRsFV19dxZW/QmHPkT2LYi03qbHjXy1e/FVvGDMLnukqQbMDDTr5yi
+         Lv8oVgB6V38UNfJVaOHL+E/WY/v7BUHaSz12aOoXlQCFH2+f6BkhQzlkG7vO9NTbFj9K
+         X2WUUieihCeR926PCA2kjhPAyukYCcwgjMjyrW6O3eLX4Ru6FOQUAghL8FMUZfSXLxho
+         /6c4sI4zLV/eFRcq0dFi6p1p2YN+qoDa0rTeW/FEh9ErtZiFYhRKBAjXtcUfTGqA3+Ot
+         xUHtqq5bTGaxOx4j+hN7MJwyQJY+DxvG8CrMfspaTGjWA3DbqgpH9aA7yyZ762D+Xfbg
+         UN1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702626717; x=1703231517;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=w+UmIifhhd7J02PhLn10w2KreV/vi1DdOEwYftCwOVE=;
+        b=ILf3cYQ9kqRdWDLlah8+ZnUxA/52Voq2z1oQB1uu7Bnr3Zi0e4iIJn6WboXXBOsowP
+         tp2jN+VKppIz1jdnxiCfdoD2qyManyhLEiI7BfjBFb7HxCUTG6+Pd4ya+epAH0YbnH2y
+         RDW1jr5+c0KHVdOFbRGVEI5nMOCHdxblvS1cxgAy6Mtu8teSBNJ2d+V5B3MrwffAzvEH
+         B5KKinPHQJD2kHN2vmIYvFfPAKNsElox7JfkUauNY5S2pX5FwxiVKTNUA5NyXc2Cwx0k
+         qVuBnp9hIQzuV1mkVOpXnUDvZgvY2R85PKvh5H1Bv8rTiEPQLV2TUp4kj8odKnj1i8hr
+         htcA==
+X-Gm-Message-State: AOJu0Yykj98hIJK9d1ysg+eob9VBchGVL8ho1i1CRXs6dZOsJQr/4jNV
+	5jy/W/PQs+5Ju8nWECkte0I4gQ==
+X-Google-Smtp-Source: AGHT+IFPzwuk7YVPIQj75asWCZrCHArqXonr6PvWqVYefpGivEp6ScL9vW0TUJgoLyXEWzVJPiH+ww==
+X-Received: by 2002:a17:907:940b:b0:a1d:3839:a6fc with SMTP id dk11-20020a170907940b00b00a1d3839a6fcmr6728328ejc.88.1702626716893;
+        Thu, 14 Dec 2023 23:51:56 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.27])
+        by smtp.gmail.com with ESMTPSA id mt29-20020a170907619d00b00a0a5a794575sm10497533ejc.216.2023.12.14.23.51.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Dec 2023 23:51:56 -0800 (PST)
+Message-ID: <cfd27865-8d6f-498a-8991-c5a02e50c02f@linaro.org>
+Date: Fri, 15 Dec 2023 08:51:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH] arm64: mediatek: remove broken pmic interrupt property
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] media: dt-bindings: samsung,s5p-mfc: Fix iommu
+ properties schemas
 Content-Language: en-US
-From: Macpaul Lin <macpaul.lin@mediatek.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	"Arnd Bergmann" <arnd@kernel.org>, <soc@kernel.org>, Matthias Brugger
-	<matthias.bgg@gmail.com>, Ben Lok <ben.lok@mediatek.com>
-CC: Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh+dt@kernel.org>,
-	"Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
-	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, <bear.wang@mediatek.com>,
-	<pablo.sun@mediatek.com>, <wenst@chromium.org>
-References: <20231212214737.230115-1-arnd@kernel.org>
- <bc5dafe4-5487-4794-97f1-f4e4d967a665@collabora.com>
- <1ce43346-3f60-b614-cdcc-7d9db8dec758@mediatek.com>
-In-Reply-To: <1ce43346-3f60-b614-cdcc-7d9db8dec758@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--17.802600-8.000000
-X-TMASE-MatchedRID: eVEkOcJu0F4OwH4pD14DsPHkpkyUphL9Wot5Z16+u77Bs8kDsMW7wymC
-	jjsTccFFUYtkiBoupX8uAovee89QpC1Wsi+5O6Jc6ivQ8oO6nUIxXH/dlhvLv4KwF4K/wIz9x62
-	K9vpeVDElpVclvjJJDAdoZ0oEtSg00YEzPS5rM625kfgtJfb41UMYMp0ANFh5jU67CM+uPQRDvi
-	ZnrU/ym8l1PwlhNC8gii+rjsN9t6AdWKRD1iYss521GZGE81yGIR1rLBJm/M54TmuAv2jjeS2Yu
-	hoO5axHdFVDrCqWLfIQbi0n2beMrBElELPcdUQnkX71Hy/ufOYwCmrLlx+SdWjliw+xvItd+876
-	KLWQRT2+uHCFBcDhnx2NwlAFp+i1v1l2Uvx6idpWdFebWIc3VsRB0bsfrpPIfiAqrjYtFiS/RvL
-	zr5xet56fdmHAkNDU7melNaZ+qBmhqzYP1yklcn7cGd19dSFd
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--17.802600-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP: 026B01DCDDCE9116B9D54BB5E5B875CC4A12E046A3197EEE1A7B5B1A873AD7872000:8
+To: Rob Herring <robh@kernel.org>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Aakarsh Jain <aakarsh.jain@samsung.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20231214195553.862920-1-robh@kernel.org>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20231214195553.862920-1-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 12/15/23 01:54, Macpaul Lin wrote:
-> On 12/13/23 19:09, AngeloGioacchino Del Regno wrote:
->
->> Il 12/12/23 22:47, Arnd Bergmann ha scritto:
->>> From: Arnd Bergmann <arnd@arndb.de>
->>>
->>> The pmic is connected to the GIC, which uses four-cell interrupt 
->>> properties,
->>> but its interrupt is specified as two-cell that would only make 
->>> sense for
->>> the GPIO irqchip:
->>>
->>> arch/arm64/boot/dts/mediatek/mt8195.dtsi:464.4-27: Warning 
->>> (interrupts_property): /soc/i2c@11d01000/pmic@34:#interrupt-cells: 
->>> size is (8), expected multiple of 16
->>>
->>> Remove the interrupt for now to shut up the warning. When someone 
->>> figures out
->>> what the correct interrupt and parent are, we can add it back.
->>>
->>
->> Please, can anyone from MediaTek comment on that?
->
-> Sorry for late response, I've just stuck in other tasks and didn't 
-> notice this
->
-> patch is for genio-1200-evk. I've tested 6.7-rc1 but I thought it 
-> might be an issue
->
-> in origin mt8195.dtsi and not be related to board dts.
->
->> I see a mt6360_pins on PIO:
->>             pinmux = <PINMUX_GPIO17__FUNC_GPIO17>,
->>                  <PINMUX_GPIO128__FUNC_GPIO128>;
->>
->> ...and that's GPIO128, which may effectively be the IRQ pin for MT6360.
->>
->> Still, I'm not sure whether the interrupt is on GIC or PIO, please 
->> clarify,
->> otherwise we will have to get this commit upstream.
->>
-> I think it could be solved by adding
->
-> 'interrupt-parent = <&pio>;' to mt6360 node.
->
-> But currently I have no much time to verify it.
->
-> I'll try to find some time to find out the solution tomorrow.
->
->> Thanks,
->> Angelo
->>
->>> Fixes: f2b543a191b6 ("arm64: dts: mediatek: add device-tree for 
->>> Genio 1200 EVK board")
->>> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
->>> ---
->>>   arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts | 2 --
->>>   1 file changed, 2 deletions(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts 
->>> b/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
->>> index 70b465f7c6a7..a409ef998746 100644
->>> --- a/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
->>> +++ b/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
->>> @@ -238,8 +238,6 @@ &i2c6 {
->>>       mt6360: pmic@34 {
->>>           compatible = "mediatek,mt6360";
->>>           reg = <0x34>;
->>> -        interrupts = <128 IRQ_TYPE_EDGE_FALLING>;
->>> -        interrupt-names = "IRQB";
->>>           interrupt-controller;
->>>           #interrupt-cells = <1>;
->>>           pinctrl-0 = <&mt6360_pins>;
->>
->
-> Thanks for pointing out the issue! Let's see if it could be solved by 
-> adding 'interrupt-parents'.
->
-> Macpaul Lin
+On 14/12/2023 20:55, Rob Herring wrote:
+> The iommus and iommu-names property schemas have several issues. First,
+> 'iommus-names' in the if/then schemas is the wrong name. As all the names
+> are the same, they can be defined at the top level instead. Then the
+> if/then schemas just need to define how many entries. The iommus if/then
+> schemas are also redundant. Best I can tell, the desire was to require 2
+> entries for "samsung,exynos5433-mfc", "samsung,mfc-v5", "samsung,mfc-v6",
+> and "samsung,mfc-v8".
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
 
-I've send a patch to add 'interrupt-parent' for mt6360 and tested with 
-my local kernel-6.7-rc1.
-
-Link: 
-https://lore.kernel.org/linux-devicetree/20231215073252.21586-1-macpaul.lin@mediatek.com/
-
-Thanks for Angelo , Arnd, and Chen-yu's reminding.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
-
-Macpaul Lin
+Krzysztof
 
 
