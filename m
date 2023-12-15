@@ -1,95 +1,249 @@
-Return-Path: <devicetree+bounces-25915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25916-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8E8F8150F4
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 21:15:32 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86A168150FF
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 21:21:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 685491F21A5D
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 20:15:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5978AB23906
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 20:21:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B17645BE7;
-	Fri, 15 Dec 2023 20:15:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BB9E45BE8;
+	Fri, 15 Dec 2023 20:21:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="dE/u/h8q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZVdy6KWp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55AFF45976
-	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 20:15:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=EwV6
-	ANXcfpuqKizL5vgUsaHNQwbJJyivDm3DkJD6bBY=; b=dE/u/h8qJTnMc/3Bj0s5
-	BzgxKlmUWO1Bm7j2jl1ZTMzq5ZDhKO777BJ8rmj1PoqM+XOiO7wb8OVcA4ucN7LL
-	buDb1lzufAiTcdIHyvp0wM0rNH4mJqi0Hk95HdttMzMSSBdPmSOwYRJg9cVO4xMW
-	frU1Z/1wr3FnkLkCMy85yBiVRDASlF4cvkQGUWgsvjRr0FDpEblkwbDvenSQxaUu
-	pbIo4rQJGqmvjrO0kIFWKeD1The9ahLZxFC74BwKrT4dBEh97G2k7hg2b1Hre1Ny
-	rYiLjSHNoEJa2q6L8BpYpdq+ArDEZtxSRvxTvdVNNitfTVyV9iJFdjJdftpAE7Tf
-	qw==
-Received: (qmail 1358809 invoked from network); 15 Dec 2023 21:15:15 +0100
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 15 Dec 2023 21:15:15 +0100
-X-UD-Smtp-Session: l3s3148p1@LVvmDpIMfUQucvBI
-Date: Fri, 15 Dec 2023 21:15:14 +0100
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Johan Hovold <johan@kernel.org>
-Cc: linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 0/3] gnss: ubx: support the reset pin of the Neo-M8
- variant
-Message-ID: <ZXyz0l3KFqx9hliG@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Johan Hovold <johan@kernel.org>, linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20231113005152.10656-1-wsa+renesas@sang-engineering.com>
- <ZXfTwscAltoVY1lV@shikoro>
- <ZXsk4i/OTGFhiCk9@shikoro>
- <ZXwPeJFdEERbhj3b@hovoldconsulting.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C30645974;
+	Fri, 15 Dec 2023 20:21:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5A48C433C8;
+	Fri, 15 Dec 2023 20:21:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1702671700;
+	bh=rM/8QyjRP/D0wS+bczAZynutfKBikwhu7mfWM05ptaM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZVdy6KWp6p13IP8+827QHC8uref9ihr+d3wS4PJWkdCNk/QwsJZm87SyeGtR0VQP4
+	 j/DWSSNrVtaaOFSe1ByrKX+8s4xT9XZsvws9rNjcz/V5BeYFrgzGwqzjgZtoumm67o
+	 ldMA7naStAAwkNM/gtlrCmmVv7gyHMJbuWOrpJEvukd2+voiA67u14DUHABjgDZX3D
+	 Ppfd5EmULEfUrLn605qtRrTGteh0EQZ7qEvupGLL7gjkPK0UGRw8Oy46mGpu1v6TC9
+	 q3234vOuU/zlsTrZxNfN0Mqvo0y9E40T9oM+T9tX5KgxCYGSuclaYhKDwlZqMBRQgE
+	 29h4EkWXZ/Xgw==
+Received: (nullmailer pid 328118 invoked by uid 1000);
+	Fri, 15 Dec 2023 20:21:37 -0000
+Date: Fri, 15 Dec 2023 14:21:37 -0600
+From: Rob Herring <robh@kernel.org>
+To: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, Hoan Tran <hoan@os.amperecomputing.com>, Serge Semin <fancer.lancer@gmail.com>, Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Andy Shevchenko <andy@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>
+Subject: Re: [PATCH v1 1/8] dt-bindings: pinctrl: Add thead,th1520-pinctrl
+ bindings
+Message-ID: <20231215202137.GA317624-robh@kernel.org>
+References: <20231215143906.3651122-1-emil.renner.berthing@canonical.com>
+ <20231215143906.3651122-2-emil.renner.berthing@canonical.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="gQzt5N1o3G2NrJOX"
-Content-Disposition: inline
-In-Reply-To: <ZXwPeJFdEERbhj3b@hovoldconsulting.com>
-
-
---gQzt5N1o3G2NrJOX
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <20231215143906.3651122-2-emil.renner.berthing@canonical.com>
 
-> All good. Now applied for 6.8.
+On Fri, Dec 15, 2023 at 03:38:59PM +0100, Emil Renner Berthing wrote:
+> Add bindings for the pin controllers on the T-Head TH1520 RISC-V SoC.
+> 
+> Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+> ---
+>  .../pinctrl/thead,th1520-pinctrl.yaml         | 156 ++++++++++++++++++
+>  1 file changed, 156 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/thead,th1520-pinctrl.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/thead,th1520-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/thead,th1520-pinctrl.yaml
+> new file mode 100644
+> index 000000000000..1b1b446cd498
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/thead,th1520-pinctrl.yaml
+> @@ -0,0 +1,156 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/thead,th1520-pinctrl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: T-Head TH1520 SoC pin controller
+> +
+> +maintainers:
+> +  - Emil Renner Berthing <emil.renner.berthing@canonical.com>
+> +
+> +description: |
+> +  Pinmux and pinconf controller in the T-Head TH1520 RISC-V SoC.
+> +
+> +  The TH1520 has 3 groups of pads each controlled from different memory ranges.
+> +  Confusingly the memory ranges are named
+> +    PADCTRL_AOSYS  -> PAD Group 1
+> +    PADCTRL1_APSYS -> PAD Group 2
+> +    PADCTRL0_APSYS -> PAD Group 3
 
-Thank you! :)
+Are the programming models different?
 
+> +
+> +  Each pad can be muxed individually to up to 5 different functions. For most
+> +  pads only a few of those 5 configurations are valid though, and a few pads in
+> +  group 1 does not support muxing at all.
+> +
+> +  Pinconf is fairly regular except for a few pads in group 1 that either can't
+> +  be configured or has some special functions. The rest have configurable drive
+> +  strength, input enable, schmitt trigger, slew rate, pull-up and pull-down in
+> +  addition to a special strong pull up.
+> +
+> +  Certain pads in group 1 can be muxed to AUDIO_PA0 - AUDIO_PA30 functions and
+> +  are then meant to be used by the audio co-processor. Each such pad can then
+> +  be further muxed to either audio GPIO or one of 4 functions such as UART, I2C
+> +  and I2S. If the audio pad is muxed to one of the 4 functions then pinconf is
+> +  also configured in different registers. All of this is done from a different
+> +  AUDIO_IOCTRL memory range and is left to the audio co-processor for now.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - thead,th1520-group1-pinctrl
+> +      - thead,th1520-group2-pinctrl
+> +      - thead,th1520-group3-pinctrl
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +patternProperties:
+> +  '-[0-9]+$':
 
---gQzt5N1o3G2NrJOX
-Content-Type: application/pgp-signature; name="signature.asc"
+Please make this a bit more specific. "-grp-[0-9]+$"?
 
------BEGIN PGP SIGNATURE-----
+> +    type: object
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmV8s84ACgkQFA3kzBSg
-KbYQwg//bP2qP2thoiTVZrXHDShR4T7g8iJNJQKFDp7BQ2UNPeIb71VEsa1MsHJE
-BPgmKM0t6pExI0I5kZTKRxhnYbsZMD6lEyit0d4W4tY0Z0bmLPy5zoaciPgX1tsz
-ffzLa4CFcu4MC171/5UkPBOhpE893/1OdQuQvUtx2UOxOY73/QSWuh+MyTSrxLPk
-gGkah96y83Ara4qAeyeMpF/IGkrCklq8k5pEUVfWBNDF3iB1z1E6MW0wUegThCbi
-x5bUT4o3yoaJiHqxtM+FGTgBp1tYcwmlSocoAbH8otTscW311zCKgawSX6UNzivJ
-grzwRU9fVN795OZI+nlI0yiyNlSpNAKLnGfo+u0Vr+oXKHOBFT+0KRMf+PE5YWxj
-yiLFNtapPNQMyEjYRyNgZzK0npg82POB8tzrpUSh4iXzlXkwCI0fay6qo1BrJBha
-ChglGgnZ56huvX+UkIlR2H7vrvekOo5VnzWJkfnVYxD99TcgeUiZa9a6nLcpcWd+
-+h0i+ZtuhaEubtLuhLhonbgqK9Jldj/n0GG1To0GsipFeFNRn/H6ddBQYmxYCQ1H
-U0Vh95Gd+yQaBkpYyjTeqf1lcr8VMWF0EPEvLtxYSVyZjdvqPbp0SFNoYALkN3Xv
-GNTyzF6D6TW/O+x5tar7U+a73UZcNo9YTUjK9Bq0meKjt7C4iJA=
-=xa0h
------END PGP SIGNATURE-----
+blank line. And move additionalProperties here. Easier to read in the 
+indented cases.
 
---gQzt5N1o3G2NrJOX--
+> +    patternProperties:
+> +      '-pins$':
+> +        type: object
+> +        $ref: /schemas/pinctrl/pincfg-node.yaml
+> +        description:
+> +          A pinctrl node should contain at least one subnode describing one
+> +          or more pads and their associated pinmux and pinconf settings.
+> +
+> +        properties:
+> +          pins:
+> +            $ref: /schemas/types.yaml#/definitions/string-array
+
+Type is defined in pinmux-node.yaml. You need to reference it and drop 
+this.
+
+Normally the possible values are listed out.
+
+> +            description: List of pads that properties in the node apply to.
+> +
+> +          function:
+> +            $ref: /schemas/types.yaml#/definitions/string
+> +            enum: [ "0", "1", "2", "3", "4", "5" ]
+> +            description: The mux function to select for the given pins.
+> +
+> +          bias-disable: true
+> +
+> +          bias-pull-up:
+> +            type: boolean
+> +
+> +          bias-pull-down:
+> +            type: boolean
+> +
+> +          drive-strength:
+> +            enum: [ 1, 2, 3, 5, 7, 8, 10, 12, 13, 15, 16, 18, 20, 21, 23, 25 ]
+> +
+> +          input-enable: true
+> +
+> +          input-disable: true
+> +
+> +          input-schmitt-enable: true
+> +
+> +          input-schmitt-disable: true
+> +
+> +          slew-rate:
+> +            maximum: 1
+> +
+> +          thead,strong-pull-up:
+> +            oneOf:
+> +              - type: boolean
+> +              - $ref: /schemas/types.yaml#/definitions/uint32
+> +                enum: [ 0, 2100 ]
+> +            description: Enable or disable strong 2.1kOhm pull-up.
+
+bias-pull-up can already specify the strength in Ohms.
+
+> +
+> +        required:
+> +          - pins
+> +
+> +        additionalProperties: false
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    padctrl0_apsys: pinctrl@ec007000 {
+> +        compatible = "thead,th1520-group3-pinctrl";
+> +        reg = <0xec007000 0x1000>;
+> +
+> +        uart0_pins: uart0-0 {
+> +            tx-pins {
+> +                pins = "UART0_TXD";
+> +                function = "0";
+> +                bias-disable;
+> +                drive-strength = <3>;
+> +                input-disable;
+> +                input-schmitt-disable;
+> +                slew-rate = <0>;
+> +            };
+> +
+> +            rx-pins {
+> +                pins = "UART0_RXD";
+> +                function = "0";
+> +                bias-disable;
+> +                drive-strength = <1>;
+> +                input-enable;
+> +                input-schmitt-enable;
+> +                slew-rate = <0>;
+> +            };
+> +        };
+> +    };
+> +
+> +    padctrl1_apsys: pinctrl@e7f3c000 {
+> +        compatible = "thead,th1520-group2-pinctrl";
+> +        reg = <0xe7f3c000 0x1000>;
+> +
+> +        i2c5_pins: i2c5-0 {
+> +            i2c-pins {
+> +                pins = "QSPI1_CSN0",    /* I2C5_SCL */
+> +                       "QSPI1_D0_MOSI"; /* I2C5_SDA */
+> +                function = "2";
+> +                bias-disable;
+> +                drive-strength = <7>;
+> +                input-enable;
+> +                input-schmitt-enable;
+> +                slew-rate = <0>;
+> +                thead,strong-pull-up;
+> +            };
+> +        };
+> +    };
+> -- 
+> 2.40.1
+> 
 
