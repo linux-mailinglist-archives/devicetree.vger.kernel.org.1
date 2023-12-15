@@ -1,112 +1,92 @@
-Return-Path: <devicetree+bounces-25811-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25812-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92D16814A14
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 15:08:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E168814A66
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 15:23:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4ECAC286000
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 14:08:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E55E1F21503
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 14:23:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC1C43064C;
-	Fri, 15 Dec 2023 14:06:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 068BE315B2;
+	Fri, 15 Dec 2023 14:23:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=6tel.net header.i=@6tel.net header.b="WMlai898"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="G5u3tAZH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from forward501a.mail.yandex.net (forward501a.mail.yandex.net [178.154.239.81])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E92734558;
-	Fri, 15 Dec 2023 14:06:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=6tel.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=6tel.net
-Received: from mail-nwsmtp-smtp-production-main-17.iva.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-17.iva.yp-c.yandex.net [IPv6:2a02:6b8:c0c:96a1:0:640:9109:0])
-	by forward501a.mail.yandex.net (Yandex) with ESMTP id A4AE46173B;
-	Fri, 15 Dec 2023 16:56:07 +0300 (MSK)
-Received: by mail-nwsmtp-smtp-production-main-17.iva.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id VtlX2gDOoGk0-5YAYSIs1;
-	Fri, 15 Dec 2023 16:56:06 +0300
-X-Yandex-Fwd: 1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=6tel.net; s=mail;
-	t=1702648566; bh=qYb5Ttl2BmZknzLQ7LVuYyWA70iNupQuE0s2VFIsLCU=;
-	h=Message-ID:Date:In-Reply-To:Cc:Subject:References:To:From;
-	b=WMlai898TK7If/TGhvbpDx+JcGAI4X0/PR/r/hCSCS1zTNLP1qN8Hu9Gndxk8Dz58
-	 dV97EFmNU6TLin8JryskzFbryjGtdwNYjL9g8FWKevghiEwxrw/qJmPl47rc3MiAt/
-	 An2dHPUX5p+WS6tvRH4GXg/dKAechI4S3r3qdXzw=
-Authentication-Results: mail-nwsmtp-smtp-production-main-17.iva.yp-c.yandex.net; dkim=pass header.i=@6tel.net
-From: efectn@6tel.net
-To: linux-rockchip@lists.infradead.org
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	heiko@sntech.de,
-	sebastian.reichel@collabora.com,
-	jonas@kwiboo.se,
-	Muhammed Efe Cetin <efectn@protonmail.com>
-Subject: [PATCH 3/3] arm64: dts: rockchip: Add support for NanoPi R6C
-Date: Fri, 15 Dec 2023 16:55:23 +0300
-Message-ID: <923b4d9bb60fecd080e7c348ec0d4630392eb091.1702647349.git.efectn@protonmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1702647349.git.efectn@protonmail.com>
-References: <cover.1702647349.git.efectn@protonmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EFD131A6E
+	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 14:23:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 12CAEE62;
+	Fri, 15 Dec 2023 15:22:14 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1702650134;
+	bh=255u05I1bEyydD3pSYfpx7p8nZln2eziMOesnwSM610=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=G5u3tAZHWXJxNqL6UyLKpIwfqBlR1YSTlpKm9R3o9LKyYnCdqnuPbVNlDHkugxNdM
+	 wF+hcu6kmDdOMpooaDH5HPpBILcWXm3QBuu0urjEv/cmSBGWfbhwytEOw6TShXVWC3
+	 4GcKBLRciKjUWoDW9vI4XiA56r8adkjyfl2uKotI=
+Date: Fri, 15 Dec 2023 16:23:08 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: Adam Ford <aford173@gmail.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Jonas Karlman <jonas@kwiboo.se>, Liu Ying <victor.liu@nxp.com>,
+	Sandor Yu <sandor.yu@nxp.com>, dri-devel@lists.freedesktop.org,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	patchwork-lst@pengutronix.de, devicetree@vger.kernel.org,
+	Rob Herring <robh+dt@kernel.org>,
+	Frieder Schrempf <frieder.schrempf@kontron.de>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Richard Leitner <richard.leitner@skidata.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 2/2] drm/bridge: imx: add driver for HDMI TX Parallel
+ Video Interface
+Message-ID: <20231215142308.GL21146@pendragon.ideasonboard.com>
+References: <20230920171009.3193296-1-l.stach@pengutronix.de>
+ <20230920171009.3193296-2-l.stach@pengutronix.de>
+ <20230920205736.GB7723@pendragon.ideasonboard.com>
+ <CAHCN7xJz=rEH_8wHaBCVOUzP0kO6cM_c=zLf6ocjW8bt1FaCBw@mail.gmail.com>
+ <CAOMZO5C7_Rj-Ja0BO0D0Po+gy+XbvyMdQf-wH5YNyhAdMof2vg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAOMZO5C7_Rj-Ja0BO0D0Po+gy+XbvyMdQf-wH5YNyhAdMof2vg@mail.gmail.com>
 
-From: Muhammed Efe Cetin <efectn@protonmail.com>
+On Fri, Dec 15, 2023 at 10:31:27AM -0300, Fabio Estevam wrote:
+> On Sun, Dec 10, 2023 at 2:35 PM Adam Ford wrote:
+> 
+> > Lucas,
+> >
+> > It's been a few months since there has been any action.  If you want,
+> > I can help apply the suggestions that Laurent has and re-submit with
+> > both of our names if you want.  It would be nice to get this
+> > integrated.
+> 
+> It would be nice if you could re-submit the series.
 
-NanoPi R6C is mostly same as R6S variant. It has M2 port instead of a
-NIC port and different led labeling.
+Yes, that would be nice. It shouldn't cause any issue, the patches will
+retain Lucas' authorship.
 
-Signed-off-by: Muhammed Efe Cetin <efectn@protonmail.com>
----
- arch/arm64/boot/dts/rockchip/Makefile              |  3 ++-
- .../arm64/boot/dts/rockchip/rk3588s-nanopi-r6c.dts | 14 ++++++++++++++
- 2 files changed, 16 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6c.dts
-
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index ed2583dcd..261505081 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -114,4 +114,5 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-indiedroid-nova.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-khadas-edge2.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-rock-5a.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-orangepi-5.dtb
--dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-nanopi-r6s.dtb
-\ No newline at end of file
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-nanopi-r6s.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-nanopi-r6c.dtb
-\ No newline at end of file
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6c.dts b/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6c.dts
-new file mode 100644
-index 000000000..8031098c3
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s-nanopi-r6c.dts
-@@ -0,0 +1,14 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+
-+/dts-v1/;
-+
-+#include "rk3588s-nanopi-r6s.dts"
-+
-+/ {
-+	model = "FriendlyElec NanoPi R6C";
-+	compatible = "friendlyelec,nanopi-r6c", "rockchip,rk3588s";
-+};
-+
-+&lan2_led {
-+	label = "user_led";
-+};
 -- 
-2.43.0
+Regards,
 
+Laurent Pinchart
 
