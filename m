@@ -1,123 +1,312 @@
-Return-Path: <devicetree+bounces-25872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25873-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1604B814EA6
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 18:28:45 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 023C8814EC6
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 18:31:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 48E841C2433F
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 17:28:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8271F1F246DA
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 17:31:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 838D83FE3D;
-	Fri, 15 Dec 2023 17:21:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="fRuOfuZo"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAC7A82EE3;
+	Fri, 15 Dec 2023 17:27:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C87064177F;
-	Fri, 15 Dec 2023 17:21:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3BFHLCBp107022;
-	Fri, 15 Dec 2023 11:21:12 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1702660872;
-	bh=6yrAw4EhU4TedQWsadNLo1W9eYBDW8OQFUq/C6pXaeo=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=fRuOfuZoN3JrOXPfDMihnZmlQW9Ar297qdG1/Bpxnhm2ImvVZkPxJmxEiUZy0dvyV
-	 ph8IrgB9eikgv/Us6LKDgs1W3CL1VaYPdcyUZOK6c37jvkIMC6zCVHqqcKXAtc/HH7
-	 Q8oq2l9Xgf4KmE4yX/Hh/wUMzVIZPh8Mz+Bf3Nlk=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3BFHLCmP007915
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 15 Dec 2023 11:21:12 -0600
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 15
- Dec 2023 11:21:12 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 15 Dec 2023 11:21:12 -0600
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3BFHLCJJ116403;
-	Fri, 15 Dec 2023 11:21:12 -0600
-From: Nishanth Menon <nm@ti.com>
-To: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Bhavya Kapoor <b-kapoor@ti.com>
-CC: Nishanth Menon <nm@ti.com>, <conor+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
-        <kristo@kernel.org>, <vigneshr@ti.com>
-Subject: Re: [PATCH 0/3] arm64: dts: ti: Add Itap Delay Value For High Speed DDR
-Date: Fri, 15 Dec 2023 11:21:09 -0600
-Message-ID: <170266085077.3490141.14935960940418963459.b4-ty@ti.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20231201082045.790478-1-b-kapoor@ti.com>
-References: <20231201082045.790478-1-b-kapoor@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AA933012B;
+	Fri, 15 Dec 2023 17:27:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
+X-IronPort-AV: E=McAfee;i="6600,9927,10925"; a="8727217"
+X-IronPort-AV: E=Sophos;i="6.04,279,1695711600"; 
+   d="scan'208";a="8727217"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Dec 2023 09:27:07 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10925"; a="892973975"
+X-IronPort-AV: E=Sophos;i="6.04,279,1695711600"; 
+   d="scan'208";a="892973975"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Dec 2023 09:27:03 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andy@kernel.org>)
+	id 1rEBxk-00000006BAk-29KE;
+	Fri, 15 Dec 2023 19:27:00 +0200
+Date: Fri, 15 Dec 2023 19:27:00 +0200
+From: Andy Shevchenko <andy@kernel.org>
+To: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	Hoan Tran <hoan@os.amperecomputing.com>,
+	Serge Semin <fancer.lancer@gmail.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>
+Subject: Re: [PATCH v1 2/8] pinctrl: Add driver for the T-Head TH1520 SoC
+Message-ID: <ZXyMZKvREy_FIl46@smile.fi.intel.com>
+References: <20231215143906.3651122-1-emil.renner.berthing@canonical.com>
+ <20231215143906.3651122-3-emil.renner.berthing@canonical.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231215143906.3651122-3-emil.renner.berthing@canonical.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Hi Bhavya Kapoor,
+On Fri, Dec 15, 2023 at 03:39:00PM +0100, Emil Renner Berthing wrote:
+> Add pinctrl driver for the T-Head TH1520 RISC-V SoC.
 
-On Fri, 01 Dec 2023 13:50:42 +0530, Bhavya Kapoor wrote:
-> This Series adds Itap Delay Value for DDR52 speed mode for eMMC in
-> J7200 and for DDR50 speed mode for MMCSD in J721s2 and J784s4 SoC.
-> 
-> Rebased to next-20231201
-> 
-> Bhavya Kapoor (3):
->   arm64: dts: ti: k3-j7200-main: Add Itap Delay Value For DDR52 speed
->     mode
->   arm64: dts: ti: k3-j721s2-main: Add Itap Delay Value For DDR50 speed
->     mode
->   arm64: dts: ti: k3-j784s4-main: Add Itap Delay Value For DDR50 speed
->     mode
-> 
-> [...]
+...
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
++ array_size.h
++ bits.h
++ device.h
 
-[1/3] arm64: dts: ti: k3-j7200-main: Add Itap Delay Value For DDR52 speed mode
-      commit: 908999561b4340089896b89cef51dae07fc001cb
-[2/3] arm64: dts: ti: k3-j721s2-main: Add Itap Delay Value For DDR50 speed mode
-      commit: 4a52a8208568a85b0d51e5ca81be5925973ef108
-[3/3] arm64: dts: ti: k3-j784s4-main: Add Itap Delay Value For DDR50 speed mode
-      commit: 8bbe8a7dbaabb84d93321f116966af73ba6a7233
+(and so on, please make sure you follow IWYU principle --
+ "include what you use")
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+> +#include <linux/io.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+> +#include <linux/of.h>
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+Can you use device property API instead?
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+(I briefly checked, all of the used of_ ones have the respective generic
+ implementations either in fwnode_property_ or device_property_ namespace).
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+OTOH, it's used in xlate/map functions which have device_node as a parameter...
+
+> +#include <linux/platform_device.h>
+> +#include <linux/seq_file.h>
+> +#include <linux/spinlock.h>
+
+...
+
+> +#include "core.h"
+> +#include "pinmux.h"
+> +#include "pinconf.h"
+
+All of them are needed?
+
+...
+
+> +static unsigned int th1520_padcfg_shift(unsigned int pin)
+> +{
+> +	return 16 * (pin & 0x1U);
+
+BIT(0) ?
+
+> +}
+
+...
+
+> +static unsigned int th1520_muxcfg_shift(unsigned int pin)
+> +{
+> +	return 4 * (pin & 0x7U);
+
+GENMASK() ?
+
+> +}
+
+...
+
+> +			return dev_err_probe(thp->pctl->dev, -EINVAL,
+> +					     "no pins selected for %pOFn.%pOFn\n",
+> +					     np, child);
+
+> +			dev_err(thp->pctl->dev, "error parsing pin config of group %pOFn.%pOFn\n",
+> +				np, child);
+
+In the very same function you are using dev_err_probe(), please make sure
+you use the same for all error messages as it will be a unified format
+(in case of dev_err_probe() or if you explicitly do that with dev_err()
+calls).
+
+> +		}
+
+...
+
+> +static const struct pinctrl_ops th1520_pinctrl_ops = {
+> +	.get_groups_count = th1520_pinctrl_get_groups_count,
+> +	.get_group_name = th1520_pinctrl_get_group_name,
+> +	.get_group_pins = th1520_pinctrl_get_group_pins,
+
+> +	.pin_dbg_show = th1520_pin_dbg_show,
+
+Is ifdeffery needed for this one?
+
+
+> +	.dt_node_to_map = th1520_pinctrl_dt_node_to_map,
+> +	.dt_free_map = th1520_pinctrl_dt_free_map,
+
+Is ifdeffery needed for these two?
+
+> +};
+
+...
+
+> +	mask = 0xfU << shift;
+> +	value = ((uintptr_t)func->data & 0xfU) << shift;
+
+GENMASK() in both cases.
+
+> +	raw_spin_lock_irqsave(&thp->lock, flags);
+> +	value |= readl_relaxed(muxcfg) & ~mask;
+
+Instead of above, use the traditional pattern
+
+	value = read()
+	value = (value & ~mask) | (newval & mask);
+	write()
+
+where newval is defined with a proper type and you get rid of all those ugly
+castings at once.
+
+> +	writel_relaxed(value, muxcfg);
+> +	raw_spin_unlock_irqrestore(&thp->lock, flags);
+
+...
+
+> +static u16 th1520_drive_strength_from_mA(u32 arg)
+> +{
+> +	u16 v;
+> +
+> +	for (v = 0; v < ARRAY_SIZE(th1520_drive_strength_in_mA) - 1; v++) {
+
+You may drop -1 here AFAIU (see below).
+
+> +		if (arg <= th1520_drive_strength_in_mA[v])
+> +			break;
+
+return directly.
+
+> +	}
+
+> +	return v;
+
+return explicit value which will be robust against changes in the for-loop or
+elsewhere in the code.
+
+> +}
+
+...
+
+> +static int th1520_padcfg_rmw(struct th1520_pinctrl *thp, unsigned int pin,
+> +			     u16 _mask, u16 _value)
+
+Why not naming them without underscores?
+
+> +{
+> +	void __iomem *padcfg = th1520_padcfg(thp, pin);
+> +	unsigned int shift = th1520_padcfg_shift(pin);
+
+> +	u32 mask = (u32)_mask << shift;
+> +	u32 value = (u32)_value << shift;
+
+Oh, no castings, please.
+
+> +	unsigned long flags;
+> +
+> +	raw_spin_lock_irqsave(&thp->lock, flags);
+
+Use cleanup.h.
+
+> +	value |= readl_relaxed(padcfg) & ~mask;
+> +	writel_relaxed(value, padcfg);
+> +	raw_spin_unlock_irqrestore(&thp->lock, flags);
+> +	return 0;
+> +}
+
+...
+
+> +#define PIN_CONFIG_THEAD_STRONG_PULL_UP	(PIN_CONFIG_END + 1)
+
+Oh, custom flag! Linus, what is the expected approach for custom flags like this?
+I believe this is quite error prone.
+
+...
+
+> +	value = readl_relaxed(th1520_padcfg(thp, pin));
+> +	value = (value >> th1520_padcfg_shift(pin)) & 0x3ffU;
+
+GENMASK() and in many other places like this.
+
+...
+
+> +		enabled = value & TH1520_PADCFG_IE;
+> +		arg = enabled;
+
+Assigning boolean to integer... Hmm...
+
+> +		break;
+> +	case PIN_CONFIG_INPUT_SCHMITT_ENABLE:
+> +		enabled = value & TH1520_PADCFG_ST;
+> +		arg = enabled;
+> +		break;
+> +	case PIN_CONFIG_SLEW_RATE:
+> +		enabled = value & TH1520_PADCFG_SL;
+> +		arg = enabled;
+> +		break;
+
+...
+
+> +static int th1520_pinctrl_probe(struct platform_device *pdev)
+> +{
+
+	struct device *dev = &pdev->dev;
+
+may give you some benefits.
+
+> +	const struct th1520_padgroup *group = device_get_match_data(&pdev->dev);
+> +	struct th1520_pinctrl *thp;
+> +	int ret;
+> +
+> +	thp = devm_kzalloc(&pdev->dev, sizeof(*thp), GFP_KERNEL);
+> +	if (!thp)
+> +		return -ENOMEM;
+> +
+> +	thp->base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(thp->base))
+> +		return PTR_ERR(thp->base);
+> +
+> +	thp->desc.name = group->name;
+> +	thp->desc.pins = group->pins;
+> +	thp->desc.npins = group->npins;
+> +	thp->desc.pctlops = &th1520_pinctrl_ops;
+> +	thp->desc.pmxops = &th1520_pinmux_ops;
+> +	thp->desc.confops = &th1520_pinconf_ops;
+> +	thp->desc.owner = THIS_MODULE;
+> +	thp->desc.num_custom_params = ARRAY_SIZE(th1520_pinconf_custom_params);
+> +	thp->desc.custom_params = th1520_pinconf_custom_params;
+> +	thp->desc.custom_conf_items = th1520_pinconf_custom_conf_items;
+> +	mutex_init(&thp->mutex);
+> +	raw_spin_lock_init(&thp->lock);
+> +
+> +	ret = devm_pinctrl_register_and_init(&pdev->dev, &thp->desc, thp, &thp->pctl);
+> +	if (ret)
+> +		return dev_err_probe(&pdev->dev, ret, "could not register pinctrl driver\n");
+> +
+> +	return pinctrl_enable(thp->pctl);
+> +}
+
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+With Best Regards,
+Andy Shevchenko
+
 
 
