@@ -1,119 +1,125 @@
-Return-Path: <devicetree+bounces-25844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5595814BF9
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 16:41:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B033814C05
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 16:45:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E92828444B
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 15:41:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7DF9B1C21230
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 15:45:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5673374C4;
-	Fri, 15 Dec 2023 15:41:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44273374D9;
+	Fri, 15 Dec 2023 15:45:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XWAeZwBw"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="wI3ZB31k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91B7B37169;
-	Fri, 15 Dec 2023 15:41:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CB16C433C8;
-	Fri, 15 Dec 2023 15:41:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702654890;
-	bh=9eb/YXAxsUcPYKS4pAEAtfBhfAIyQkqe9AYM+SecHT4=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=XWAeZwBw01RQ5p8XwwCktMHqn1dhx41Rd+aTliosRr6XB6IzVjzhEl//DzG7rggci
-	 Xc6elGVBXYp6B0eJjqzM7hYwKyyVDxCs6YR6+0Tu8S7HXqbdwkEl1AncckNACpnZhV
-	 vF3oNXUwXww5/E1874zeWbU6XF20SoqqHyk+fGyQ84ibYQUlIn8zcJx9KUPSi//uEO
-	 0omLe0NazHtTyf8tqcCtqVhu0rBtLmo979JfU55vJIklehbJHA8Kev87w1BBkJ+8ot
-	 3ST7Anyrn+i/bU/lqXD/OuiDaYDc3xDO+YXouJ4j4ky0l2EzSpW7EUkQ0co46J8LuU
-	 1+8LcChbddzOA==
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-50be9e6427dso822168e87.1;
-        Fri, 15 Dec 2023 07:41:29 -0800 (PST)
-X-Gm-Message-State: AOJu0Yy2skKqnvIqCC2XKsVbknYgYlzIFgJlRO7Io+dLKA0BdOpeCW0H
-	ZJ0Eq6BLDeSGxCv+b1htmp/qjUU8UMx3vw5Xew==
-X-Google-Smtp-Source: AGHT+IGnAJfnE/sQ4Y8/oGYmAjDUUeKmL8J99ab6q70z2JbHalypEIVNYp+q9/np/aq6YGsP/Vl1mwpFXcp2/gLTWg4=
-X-Received: by 2002:ac2:5b50:0:b0:50b:eca9:fa18 with SMTP id
- i16-20020ac25b50000000b0050beca9fa18mr5216683lfp.118.1702654888249; Fri, 15
- Dec 2023 07:41:28 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A51232DF67;
+	Fri, 15 Dec 2023 15:45:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=WTZEU8lgYKwjH1B8Xlk6CEYwtbKUxcW+W9XW4pXoCsk=; b=wI3ZB31khOI2xk2bLZFZ3+oqnf
+	Po+GYnQ+11zp+6J1yLgxtOGj0r7VkDjBnsKzCn4J3t6Oel1WdFN+0AaetIPS/unKPhUPauTtkycAT
+	NEPAaO8oWxPqDMs7z15nfUlWwJ7PmjSr4qKdRAq7DFGMkhoDPczDRA0Li7WJT3rAo2WgrCw1+Vtpr
+	h3TPFUVyVA9nmfIVtyBlDhROyPX68lEfHElgVsOVvCBmpVZw7D/xJD1g4UEwOlz/8MUd+GsAIAjbt
+	4UomB0LJ/23I1wpxXjdLjQU78d4EOoHeIZCeZa3a+Ju5TvG5SoWMMYi+cwqy6A5y3X6KyxEyCfDfo
+	0S0BJ+vw==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:53300)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1rEAMx-0002rP-2F;
+	Fri, 15 Dec 2023 15:44:55 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1rEAMz-0003jY-7y; Fri, 15 Dec 2023 15:44:57 +0000
+Date: Fri, 15 Dec 2023 15:44:57 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Tobias Waldekranz <tobias@waldekranz.com>
+Cc: davem@davemloft.net, kuba@kernel.org, kabel@kernel.org, andrew@lunn.ch,
+	hkallweit1@gmail.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 2/4] net: phy: marvell10g: Fix power-up when
+ strapped to start powered down
+Message-ID: <ZXx0eVzJ3I1PwOa0@shell.armlinux.org.uk>
+References: <20231214201442.660447-1-tobias@waldekranz.com>
+ <20231214201442.660447-3-tobias@waldekranz.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231213232455.2248056-1-robh@kernel.org> <20231214-buzz-playlist-2f75095ef2b0@spud>
- <CAL_JsqKaGFfQNwR3HqRnVs3K7SUtevpoG6tEDntM0SNfyyp6AQ@mail.gmail.com> <e59ff8c2-caa1-4072-b86f-0446120ac49b@lunn.ch>
-In-Reply-To: <e59ff8c2-caa1-4072-b86f-0446120ac49b@lunn.ch>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 15 Dec 2023 09:41:15 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJwqQTCJmAfNpM7z+0BjusB33OwUgr7_7AxOpnQ-GwaLQ@mail.gmail.com>
-Message-ID: <CAL_JsqJwqQTCJmAfNpM7z+0BjusB33OwUgr7_7AxOpnQ-GwaLQ@mail.gmail.com>
-Subject: Re: [PATCH net-next] dt-bindings: net: marvell,orion-mdio: Drop "reg"
- sizes schema
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Conor Dooley <conor@kernel.org>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231214201442.660447-3-tobias@waldekranz.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On Fri, Dec 15, 2023 at 4:18=E2=80=AFAM Andrew Lunn <andrew@lunn.ch> wrote:
->
-> On Thu, Dec 14, 2023 at 12:12:42PM -0600, Rob Herring wrote:
-> > On Thu, Dec 14, 2023 at 10:23=E2=80=AFAM Conor Dooley <conor@kernel.org=
-> wrote:
-> > >
-> > > On Wed, Dec 13, 2023 at 05:24:55PM -0600, Rob Herring wrote:
-> > > > Defining the size of register regions is not really in scope of wha=
-t
-> > > > bindings need to cover. The schema for this is also not completely =
-correct
-> > > > as a reg entry can be variable number of cells for the address and =
-size,
-> > > > but the schema assumes 1 cell.
-> > > >
-> > > > Signed-off-by: Rob Herring <robh@kernel.org>
-> > >
-> > > Does this not also remove restrictions on what the number in the reg
-> > > entry is actually allowed to be?
-> >
-> > Yes, that's what I mean with the first sentence. We don't do this
-> > anywhere else with the exception of some I2C devices with fixed
-> > addresses. Keying off of the interrupt property also seems
-> > questionable. If the register size is different, that should be a
-> > different compatible.
->
-> Reading the code, it appears the hardware always supported interrupts,
-> however the first version of the driver never used them. It seems like
-> some DT blobs had the register space cover just the needed registers
-> for polling, and excluded the interrupt control register. When
-> interrupt support was added, all in-tree DT files were updated with
-> the extended register space, but to allow backwards compatibility, the
-> driver checks the length of the register space and will not enable
-> interrupts if its too small.
->
-> I'm guessing that since the hardware did not change, a new compatible
-> was not used when adding interrupt support. And the yaml is there to
-> help when old out of tree .dts files are merged into the tree and have
-> the old register space.
->
-> This is and old driver, and its usage of DT is from long before many
-> of the current best practices where determined, or yaml was even an
-> idea. So i'm not surprised it has a few odd quirks.
->
-> I don't see a reason not to remove these constraints, as i said, the
-> driver should do the right thing if the register space it too small
-> and YAML does not warn about it.
+On Thu, Dec 14, 2023 at 09:14:40PM +0100, Tobias Waldekranz wrote:
+> On devices which are hardware strapped to start powered down (PDSTATE
+> == 1), make sure that we clear the power-down bit on all units
+> affected by this setting.
+> 
+> Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
+> ---
+>  drivers/net/phy/marvell10g.c | 17 ++++++++++++++---
+>  1 file changed, 14 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/net/phy/marvell10g.c b/drivers/net/phy/marvell10g.c
+> index 83233b30d7b0..1c1333d867fb 100644
+> --- a/drivers/net/phy/marvell10g.c
+> +++ b/drivers/net/phy/marvell10g.c
+> @@ -344,11 +344,22 @@ static int mv3310_power_down(struct phy_device *phydev)
+>  
+>  static int mv3310_power_up(struct phy_device *phydev)
+>  {
+> +	static const u16 resets[][2] = {
+> +		{ MDIO_MMD_PCS,    MV_PCS_BASE_R    + MDIO_CTRL1 },
+> +		{ MDIO_MMD_PCS,    MV_PCS_1000BASEX + MDIO_CTRL1 },
 
-Is that an Ack? I almost read your double negative as a Nak and that's
-what the maintainers read because it is now "Rejected" in PW.
+This is not necessary. The documentation states that the power down
+bit found at each of these is the same physical bit appearing in two
+different locations. So only one is necessary.
 
-Rob
+> +		{ MDIO_MMD_PCS,    MV_PCS_BASE_T    + MDIO_CTRL1 },
+> +		{ MDIO_MMD_PMAPMD, MDIO_CTRL1 },
+> +		{ MDIO_MMD_VEND2,  MV_V2_PORT_CTRL },
+> +	};
+>  	struct mv3310_priv *priv = dev_get_drvdata(&phydev->mdio.dev);
+> -	int ret;
+> +	int i, ret;
+>  
+> -	ret = phy_clear_bits_mmd(phydev, MDIO_MMD_VEND2, MV_V2_PORT_CTRL,
+> -				 MV_V2_PORT_CTRL_PWRDOWN);
+> +	for (i = 0; i < ARRAY_SIZE(resets); i++) {
+> +		ret = phy_clear_bits_mmd(phydev, resets[i][0], resets[i][1],
+> +					 MV_V2_PORT_CTRL_PWRDOWN);
+
+While MV_V2_PORT_CTRL_PWRDOWN may correspond with the correct bit for
+the MDIO CTRL1 register, we have MDIO_CTRL1_LPOWER which describes
+this bit. Probably the simplest solution would be to leave the
+existing phy_clear_bits_mmd(), remove the vendor 2 entry from the
+table, and run through that table first.
+
+Lastly, how does this impact a device which has firmware, and the
+firmware manages the power-down state (the manual states that unused
+blocks will be powered down - I assume by the firmware.) If this
+causes blocks which had been powered down by the firmware because
+they're not being used to then be powered up, that is a regression.
+Please check that this is not the case.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
