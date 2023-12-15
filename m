@@ -1,91 +1,76 @@
-Return-Path: <devicetree+bounces-25752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25753-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABCF08146C7
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 12:24:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19A1A8146D4
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 12:25:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 67BD1282383
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 11:24:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B5DC1C231BE
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 11:25:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD18824B2F;
-	Fri, 15 Dec 2023 11:24:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDC8424B30;
+	Fri, 15 Dec 2023 11:25:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="tjU2DB2w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B3D524A03;
-	Fri, 15 Dec 2023 11:24:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 04A98C15;
-	Fri, 15 Dec 2023 03:25:05 -0800 (PST)
-Received: from [192.168.1.3] (unknown [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 401273F738;
-	Fri, 15 Dec 2023 03:24:17 -0800 (PST)
-Message-ID: <f3b32f5f-edd4-e8ba-ae8f-e84ea698cc64@arm.com>
-Date: Fri, 15 Dec 2023 11:24:16 +0000
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AE2A2C698;
+	Fri, 15 Dec 2023 11:25:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=Dw5pweRuSlfkLQEGXeQwxUMxSRNgHjntBvvtfrs4n0U=; b=tjU2DB2wYK/Xi+QtyUhuecMtcx
+	tb8gCMhXf938cdjBSYfDFdhO/eb63JT5oq0x1qXOJxIvjmIh5QVshJrEAvj5SdcBOZv+FjPEfiseu
+	35m8pJlRxXWp4CqtXr90POk7+gRqRS5hppHTFRQa00efsej/eL8C7SUjsrZ4DIiS4WKE=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rE6JR-0030zs-KA; Fri, 15 Dec 2023 12:25:01 +0100
+Date: Fri, 15 Dec 2023 12:25:01 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Jie Luo <quic_luoj@quicinc.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	hkallweit1@gmail.com, linux@armlinux.org.uk, corbet@lwn.net,
+	p.zabel@pengutronix.de, f.fainelli@gmail.com,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v8 14/14] dt-bindings: net: ar803x: add qca8084 PHY
+ properties
+Message-ID: <4cb2bd57-f3d3-49f9-9c02-a922fd270572@lunn.ch>
+References: <20231215074005.26976-1-quic_luoj@quicinc.com>
+ <20231215074005.26976-15-quic_luoj@quicinc.com>
+ <bdfba8a7-9197-4aae-a7f9-6075a375f60b@linaro.org>
+ <c3391e33-e770-4c61-855e-d90e82b95f75@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v3 8/8] coresight-tpdm: Add msr register support for CMB
-Content-Language: en-US
-To: Tao Zhang <quic_taozha@quicinc.com>,
- Suzuki K Poulose <suzuki.poulose@arm.com>
-Cc: Jinlong Mao <quic_jinlmao@quicinc.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, coresight@lists.linaro.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
- Yuanfang Zhang <quic_yuanfang@quicinc.com>,
- Trilok Soni <quic_tsoni@quicinc.com>, Song Chai <quic_songchai@quicinc.com>,
- linux-arm-msm@vger.kernel.org, andersson@kernel.org,
- Mathieu Poirier <mathieu.poirier@linaro.org>,
- Suzuki K Poulose <suzuki.poulose@arm.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Konrad Dybcio <konradybcio@gmail.com>, Mike Leach <mike.leach@linaro.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-References: <1700533494-19276-1-git-send-email-quic_taozha@quicinc.com>
- <1700533494-19276-9-git-send-email-quic_taozha@quicinc.com>
-From: James Clark <james.clark@arm.com>
-In-Reply-To: <1700533494-19276-9-git-send-email-quic_taozha@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c3391e33-e770-4c61-855e-d90e82b95f75@quicinc.com>
 
+> The "maxItems: 1" of the property resets is defined in ethernet-phy.yaml
+> that is referenced by qca,ar803x.yaml, but i have 11 reset instances
+> used for qca8084 PHY
 
+11!?!?? Really? Why?
 
-On 21/11/2023 02:24, Tao Zhang wrote:
-> Add the nodes for CMB subunit MSR(mux select register) support.
-> CMB MSRs(mux select registers) is to separate mux,arbitration,
-> ,interleaving,data packing control from stream filtering control.
-> 
-> Reviewed-by: James Clark <james.clark@arm.com>
-> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
-> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
-> ---
->  .../testing/sysfs-bus-coresight-devices-tpdm  |  8 ++
->  drivers/hwtracing/coresight/coresight-tpdm.c  | 86 +++++++++++++++++++
->  drivers/hwtracing/coresight/coresight-tpdm.h  | 16 +++-
->  3 files changed, 109 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
-> index e0b77107be13..914f3fd81525 100644
-> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
-> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
-> @@ -249,3 +249,11 @@ Description:
->  		Accepts only one of the 2 values -  0 or 1.
->  		0 : Disable the timestamp of all trace packets.
->  		1 : Enable the timestamp of all trace packets.
-> +
-> +What:		/sys/bus/coresight/devices/<tpdm-name>/cmb_msr/msr[0:31]
-> +Date:		September 2023
-> +KernelVersion	6.7
+I assume the order and timer matters, otherwise why would you need
+11? So the PHY driver needs to handle this, not phylib framework. So
+you will be adding vendor properties to describe all 11 of them. So
+ethernet-phy.yaml does not matter.
 
-This probably needs bumping now. Maybe 6.9?
+	Andrew
 
