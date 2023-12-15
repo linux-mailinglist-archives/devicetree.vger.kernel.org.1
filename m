@@ -1,89 +1,95 @@
-Return-Path: <devicetree+bounces-25914-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25915-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 553808150EF
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 21:13:34 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8E8F8150F4
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 21:15:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 114A428A2BA
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 20:13:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 685491F21A5D
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 20:15:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FED745975;
-	Fri, 15 Dec 2023 20:13:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B17645BE7;
+	Fri, 15 Dec 2023 20:15:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UL47riGq"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="dE/u/h8q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E72AC45BE1;
-	Fri, 15 Dec 2023 20:13:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67CBBC433C7;
-	Fri, 15 Dec 2023 20:13:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702671207;
-	bh=2aQpiRMUO5mKDGzE4xyj7tJtF9LOPT20cXF2V9JmSQg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UL47riGqVV/oojx2TocuGK2kRpF5mrZqYx4KQHXyDQJwdcNuc01DIgIrVvaryc4ih
-	 d4OLUrunn9tkbuIuAQpBLBw8eP9doIMmGlvH1HBTLfP8rsdZcQu/mxFwWJJJaiT+Oi
-	 RbdamAqS8Pg0cIs6JqKhl86wntnZEZw34rqO645v8BmTf+4dW9X2FxTgReuPg7pkKJ
-	 9KZKi5aQJM9zsw4YYmENPDsEUBI2hmFocWZJgM5IlKqlndPGhoHsNogsvN4ghhuG77
-	 i7pGmlR9GtGVAbvbfILwkuX/gJZ/aSO8BgOp0ia3nB3eRWe/mrqww6yj901PAebZ9k
-	 V2JZUOU+vr3tA==
-Received: (nullmailer pid 317463 invoked by uid 1000);
-	Fri, 15 Dec 2023 20:13:24 -0000
-Date: Fri, 15 Dec 2023 14:13:24 -0600
-From: Rob Herring <robh@kernel.org>
-To: efectn@6tel.net
-Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, heiko@sntech.de, sebastian.reichel@collabora.com, jonas@kwiboo.se, Muhammed Efe Cetin <efectn@protonmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: arm: rockchip: Add NanoPi R6 series
- boards
-Message-ID: <20231215201324.GA315671-robh@kernel.org>
-References: <cover.1702647349.git.efectn@protonmail.com>
- <b74f5b91693d9b1ec525fb22e06c0a8311c7cf05.1702647349.git.efectn@protonmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55AFF45976
+	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 20:15:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=EwV6
+	ANXcfpuqKizL5vgUsaHNQwbJJyivDm3DkJD6bBY=; b=dE/u/h8qJTnMc/3Bj0s5
+	BzgxKlmUWO1Bm7j2jl1ZTMzq5ZDhKO777BJ8rmj1PoqM+XOiO7wb8OVcA4ucN7LL
+	buDb1lzufAiTcdIHyvp0wM0rNH4mJqi0Hk95HdttMzMSSBdPmSOwYRJg9cVO4xMW
+	frU1Z/1wr3FnkLkCMy85yBiVRDASlF4cvkQGUWgsvjRr0FDpEblkwbDvenSQxaUu
+	pbIo4rQJGqmvjrO0kIFWKeD1The9ahLZxFC74BwKrT4dBEh97G2k7hg2b1Hre1Ny
+	rYiLjSHNoEJa2q6L8BpYpdq+ArDEZtxSRvxTvdVNNitfTVyV9iJFdjJdftpAE7Tf
+	qw==
+Received: (qmail 1358809 invoked from network); 15 Dec 2023 21:15:15 +0100
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 15 Dec 2023 21:15:15 +0100
+X-UD-Smtp-Session: l3s3148p1@LVvmDpIMfUQucvBI
+Date: Fri, 15 Dec 2023 21:15:14 +0100
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Johan Hovold <johan@kernel.org>
+Cc: linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 0/3] gnss: ubx: support the reset pin of the Neo-M8
+ variant
+Message-ID: <ZXyz0l3KFqx9hliG@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Johan Hovold <johan@kernel.org>, linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231113005152.10656-1-wsa+renesas@sang-engineering.com>
+ <ZXfTwscAltoVY1lV@shikoro>
+ <ZXsk4i/OTGFhiCk9@shikoro>
+ <ZXwPeJFdEERbhj3b@hovoldconsulting.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="gQzt5N1o3G2NrJOX"
+Content-Disposition: inline
+In-Reply-To: <ZXwPeJFdEERbhj3b@hovoldconsulting.com>
+
+
+--gQzt5N1o3G2NrJOX
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <b74f5b91693d9b1ec525fb22e06c0a8311c7cf05.1702647349.git.efectn@protonmail.com>
 
-On Fri, Dec 15, 2023 at 04:55:21PM +0300, efectn@6tel.net wrote:
-> From: Muhammed Efe Cetin <efectn@protonmail.com>
-> 
+> All good. Now applied for 6.8.
 
-Commit message missing. Perhaps some detail on what r6c is vs. r6s.
+Thank you! :)
 
 
-> Signed-off-by: Muhammed Efe Cetin <efectn@protonmail.com>
-> ---
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> index ee92f0535..07c4eb828 100644
-> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> @@ -225,6 +225,13 @@ properties:
->                - friendlyarm,nanopi-r5s
->            - const: rockchip,rk3568
->  
-> +      - description: FriendlyElec NanoPi R6 series boards
-> +        items:
-> +          - enum:
-> +              - friendlyarm,nanopi-r6c
-> +              - friendlyarm,nanopi-r6s
-> +          - const: rockchip,rk3588s
-> +
->        - description: FriendlyElec NanoPC T6
->          items:
->            - const: friendlyarm,nanopc-t6
-> -- 
-> 2.43.0
-> 
+--gQzt5N1o3G2NrJOX
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmV8s84ACgkQFA3kzBSg
+KbYQwg//bP2qP2thoiTVZrXHDShR4T7g8iJNJQKFDp7BQ2UNPeIb71VEsa1MsHJE
+BPgmKM0t6pExI0I5kZTKRxhnYbsZMD6lEyit0d4W4tY0Z0bmLPy5zoaciPgX1tsz
+ffzLa4CFcu4MC171/5UkPBOhpE893/1OdQuQvUtx2UOxOY73/QSWuh+MyTSrxLPk
+gGkah96y83Ara4qAeyeMpF/IGkrCklq8k5pEUVfWBNDF3iB1z1E6MW0wUegThCbi
+x5bUT4o3yoaJiHqxtM+FGTgBp1tYcwmlSocoAbH8otTscW311zCKgawSX6UNzivJ
+grzwRU9fVN795OZI+nlI0yiyNlSpNAKLnGfo+u0Vr+oXKHOBFT+0KRMf+PE5YWxj
+yiLFNtapPNQMyEjYRyNgZzK0npg82POB8tzrpUSh4iXzlXkwCI0fay6qo1BrJBha
+ChglGgnZ56huvX+UkIlR2H7vrvekOo5VnzWJkfnVYxD99TcgeUiZa9a6nLcpcWd+
++h0i+ZtuhaEubtLuhLhonbgqK9Jldj/n0GG1To0GsipFeFNRn/H6ddBQYmxYCQ1H
+U0Vh95Gd+yQaBkpYyjTeqf1lcr8VMWF0EPEvLtxYSVyZjdvqPbp0SFNoYALkN3Xv
+GNTyzF6D6TW/O+x5tar7U+a73UZcNo9YTUjK9Bq0meKjt7C4iJA=
+=xa0h
+-----END PGP SIGNATURE-----
+
+--gQzt5N1o3G2NrJOX--
 
