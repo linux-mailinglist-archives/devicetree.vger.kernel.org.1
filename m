@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-25732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25733-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3DCC8145B3
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 11:34:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24CCA8145B9
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 11:35:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 16B6A1C2310F
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 10:34:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D72B128214E
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 10:35:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34557199BE;
-	Fri, 15 Dec 2023 10:33:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC94C249E9;
+	Fri, 15 Dec 2023 10:34:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JWxP+l4D"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="h8hvKdis"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D097250E8
-	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 10:33:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D667F1CF95
+	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 10:34:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a22f2a28c16so68666866b.0
-        for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 02:33:50 -0800 (PST)
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-54c67b0da54so584645a12.0
+        for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 02:34:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702636429; x=1703241229; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702636455; x=1703241255; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=IDaoJlba6jXQMli7zJMW8mK2AlQWNSh15cZaBMzY3qM=;
-        b=JWxP+l4DPb8//f25onw7ynGL2mPIMYw2Ej2tR1ruqbeXUSoEYrHXKwixEBoQUwogga
-         6DeWGTWS9cRv1A9hj7xbKylXH5Vp9QLzWi6uNI80RFIObG1bdnxcNiIlKgr6e2XMmUW4
-         Mj0v0NwXJYZiYa0kbVb0djOrGHRpy22XeXv7HhWZim2mY4oRFn9Hew+WvrCEo6++R+9K
-         R9OJoedGtJ0c6pZ2USuO1DcKGey/r9xEIONEJKYKN3ZJVqyRILg7ej07uebOJZCCnBPq
-         fC7bJwDYeHlc6a3obNZhEoy2YKq5Zq7pHwwEC1R/OqEdmZMGYi5p5/Dp96/v6LeyPBV7
-         DoNg==
+        bh=WGZztFNtyQMrkAWnFa3qCndVDwm8eWj6KVWu9evzn0I=;
+        b=h8hvKdisGjwC4Ji8vYoqFk5n9AhIKBI8uv8ctKbkGc9vIk5yd0Z9Nc4eUnOYrDryhJ
+         etYGAho20sGjbdJjzLnZXTuBfdam+Ms54SlMv0RgJK4yWFjVSRnUCqawK/MbdIslRu+t
+         b9opalwFpZKfRn6ARnAsccE+A5OMUn09KoELU/UBv5XWN3qVjk1tNWBxPVmKpdTt1tju
+         SuUOw628qyWvXvzi1/pICglQIxR0DsoVfww7h4gARed3Q6JOmoOFyBPBCMa6F4c6hLwd
+         VaiB/U8g3+PzqYbIxRkkRirQi3xQn7oPaAXZmwQjNKfUhI8f8tGjO2u8OF12AaPIVJVc
+         sh4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702636429; x=1703241229;
+        d=1e100.net; s=20230601; t=1702636455; x=1703241255;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IDaoJlba6jXQMli7zJMW8mK2AlQWNSh15cZaBMzY3qM=;
-        b=f10DatpC1E8JlbJroHX8Z24zia3iwv/THXEugvcPljgWjJWooSWmiud96AbMvrD9Hi
-         3spggwqGn+D3qgorczb3gxb6yVPOEs16IwFkKijDZf6svLe7kRRq8Z04emK+JT+c7KZC
-         UVY3WK0B115V3ueZ2skM6+PhMGNWfECmDeFWy8LiFrsXkVeJyc84Q5BHGEpQ1QLedP2c
-         WTJuZ2RsiJKef7Lh7hcEanbivtRIrLlMM/Dp4jt8tdnPBWJeDvE2bJP7XiVxDez+wx8V
-         wH726I3YwUBwnC7ya5A84rOqwh0uzGO/rjfv/kRVKLQ2xb3aYsKmt8XXtqvGUB7o0aFh
-         wn+g==
-X-Gm-Message-State: AOJu0Yy1kxup/QpXOTSNPoiK0cnoX7vmgCAwQRaAK4KEFmBydhWY6q5v
-	m8iaTMLm2/rznhe5dQC2+KULGQ==
-X-Google-Smtp-Source: AGHT+IGO/brUaIKOO/Ik3whznPYqBmOO1XvBWQNMUY2UGFI2GyBboZv0bIx2VnFfuD5mCEqyZeBVDQ==
-X-Received: by 2002:a17:906:1052:b0:a23:f5e:c96c with SMTP id j18-20020a170906105200b00a230f5ec96cmr852327ejj.128.1702636428852;
-        Fri, 15 Dec 2023 02:33:48 -0800 (PST)
+        bh=WGZztFNtyQMrkAWnFa3qCndVDwm8eWj6KVWu9evzn0I=;
+        b=qOTQzT/yVSGsHPWRjdmsSJNqF8NoBnPr0Fkicf0v8zKqk2hYl28qLPQCEKZrgLZYIb
+         HWCfpYcZ43Tws794Q/1WJYaSd96bWGJAsfCjAurFxom+rr309FNABOrZbGI8rbZVEoFw
+         7lPH8V3hAmDZP/WHk/zU+//jwzch9is1WkYFJ47OHgbGugsjn3Vd+dexW6YbVVfcJwaX
+         aPRqus6r/BY8asMnuSC9MmrzirNLdHaoMyrZn84aUT7O3m2n+b9AzxmtrnX8je7iK7wo
+         yhjfOHLPwhZX4vnAS5paE8pzbZ40hnCuFlwP7FV+m5NN79xYRr9MeYPAfTV0Jct17uJl
+         L/Mw==
+X-Gm-Message-State: AOJu0Yx41uDcUXwKI5nFywl9b5K6UAsQ3YDtQjtGGRWWguCOXcN1hk5U
+	diEjigcIXd+/83i0rDDJ2V+AwA==
+X-Google-Smtp-Source: AGHT+IGiAEsceIH40ZUtIEZccrrZAHRlf8uew/1vcFulFRMjphR02+14kKY3fYXGvRYhN84Cua6f0g==
+X-Received: by 2002:a17:906:3f0a:b0:9dc:2215:1593 with SMTP id c10-20020a1709063f0a00b009dc22151593mr5423903ejj.25.1702636455129;
+        Fri, 15 Dec 2023 02:34:15 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id un5-20020a170907cb8500b009ff77c2e1dasm10496826ejc.167.2023.12.15.02.33.46
+        by smtp.gmail.com with ESMTPSA id un5-20020a170907cb8500b009ff77c2e1dasm10496826ejc.167.2023.12.15.02.34.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Dec 2023 02:33:48 -0800 (PST)
-Message-ID: <0c1c52c2-8d06-4b2e-b2ee-169a3a9b41b7@linaro.org>
-Date: Fri, 15 Dec 2023 11:33:45 +0100
+        Fri, 15 Dec 2023 02:34:14 -0800 (PST)
+Message-ID: <d4aad08a-ac3b-4a34-a48a-5e413225f0de@linaro.org>
+Date: Fri, 15 Dec 2023 11:34:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,7 +66,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: mfd: sprd: Add support for UMS9620
+Subject: Re: [PATCH 2/4] dt-bindings: arm: Add compatible strings for Unisoc's
+ UMS9620
 Content-Language: en-US
 To: Chunyan Zhang <chunyan.zhang@unisoc.com>, Rob Herring
  <robh+dt@kernel.org>, Krzysztof Kozlowski
@@ -77,7 +78,7 @@ Cc: devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
  <orsonzhai@gmail.com>, Chunyan Zhang <zhang.lyra@gmail.com>,
  LKML <linux-kernel@vger.kernel.org>
 References: <20231215085630.984892-1-chunyan.zhang@unisoc.com>
- <20231215085630.984892-2-chunyan.zhang@unisoc.com>
+ <20231215085630.984892-3-chunyan.zhang@unisoc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -123,13 +124,12 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231215085630.984892-2-chunyan.zhang@unisoc.com>
+In-Reply-To: <20231215085630.984892-3-chunyan.zhang@unisoc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 15/12/2023 09:56, Chunyan Zhang wrote:
-> Add bindings for Unisoc UMS9620 system global registers which provide
-> register maps for clocks.
+> Added bindings for Unisoc's UMS9620-2H10 board and UMS9620 SoC.
 > 
 > Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
 > ---
