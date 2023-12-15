@@ -1,146 +1,129 @@
-Return-Path: <devicetree+bounces-25678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25677-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66DCE8142F9
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 08:52:06 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8535C8142F3
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 08:50:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8AC3C1C21751
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 07:52:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F1D2EB227D8
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 07:50:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39365107BD;
-	Fri, 15 Dec 2023 07:52:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4154107BF;
+	Fri, 15 Dec 2023 07:49:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GgQL50wf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="F7ayEIDH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C5F9107A4
-	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 07:51:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-54cde11d0f4so442676a12.2
-        for <devicetree@vger.kernel.org>; Thu, 14 Dec 2023 23:51:58 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3486107BD;
+	Fri, 15 Dec 2023 07:49:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a22f59c6ae6so47200466b.1;
+        Thu, 14 Dec 2023 23:49:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702626717; x=1703231517; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=w+UmIifhhd7J02PhLn10w2KreV/vi1DdOEwYftCwOVE=;
-        b=GgQL50wfTu6QwRsFV19dxZW/QmHPkT2LYi03qbHjXy1e/FVvGDMLnukqQbMDDTr5yi
-         Lv8oVgB6V38UNfJVaOHL+E/WY/v7BUHaSz12aOoXlQCFH2+f6BkhQzlkG7vO9NTbFj9K
-         X2WUUieihCeR926PCA2kjhPAyukYCcwgjMjyrW6O3eLX4Ru6FOQUAghL8FMUZfSXLxho
-         /6c4sI4zLV/eFRcq0dFi6p1p2YN+qoDa0rTeW/FEh9ErtZiFYhRKBAjXtcUfTGqA3+Ot
-         xUHtqq5bTGaxOx4j+hN7MJwyQJY+DxvG8CrMfspaTGjWA3DbqgpH9aA7yyZ762D+Xfbg
-         UN1Q==
+        d=gmail.com; s=20230601; t=1702626539; x=1703231339; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=1FNDrj9UX9g1aWvgwvWexI55++xpGzhEI1jwvmfC1VU=;
+        b=F7ayEIDHWrL1fERkFEBlfUqw8s6d9M6RfGDqXlCFOYhRIxzRZnGRVlqY9qtFTtpbYL
+         DjAm3wqEStJIEWkRHQjJ/RHf8PQdkpIuRQ9DZ0xTTrki3AePkhFcFJn3UUSKrRQSjYRk
+         GetFauvEwjx9nnl/N9DDC8WzmWBn1ZtWUl28perTmqiB8DkE6IxyB6dQRuIuNBUiW1hY
+         pE2q6KKhjE0qzI3MIYgYcrqSWZguEfgv/3l5BrlhT8cxujqdgB4wsb6MjREkqTOZAyL+
+         ewtgpv7gVP9UBwBSMaEZuryDhpEAcXFKKFEeGiED2iH3XROgqtkui/lSdagXr4+JIfHk
+         7GxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702626717; x=1703231517;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=w+UmIifhhd7J02PhLn10w2KreV/vi1DdOEwYftCwOVE=;
-        b=ILf3cYQ9kqRdWDLlah8+ZnUxA/52Voq2z1oQB1uu7Bnr3Zi0e4iIJn6WboXXBOsowP
-         tp2jN+VKppIz1jdnxiCfdoD2qyManyhLEiI7BfjBFb7HxCUTG6+Pd4ya+epAH0YbnH2y
-         RDW1jr5+c0KHVdOFbRGVEI5nMOCHdxblvS1cxgAy6Mtu8teSBNJ2d+V5B3MrwffAzvEH
-         B5KKinPHQJD2kHN2vmIYvFfPAKNsElox7JfkUauNY5S2pX5FwxiVKTNUA5NyXc2Cwx0k
-         qVuBnp9hIQzuV1mkVOpXnUDvZgvY2R85PKvh5H1Bv8rTiEPQLV2TUp4kj8odKnj1i8hr
-         htcA==
-X-Gm-Message-State: AOJu0Yykj98hIJK9d1ysg+eob9VBchGVL8ho1i1CRXs6dZOsJQr/4jNV
-	5jy/W/PQs+5Ju8nWECkte0I4gQ==
-X-Google-Smtp-Source: AGHT+IFPzwuk7YVPIQj75asWCZrCHArqXonr6PvWqVYefpGivEp6ScL9vW0TUJgoLyXEWzVJPiH+ww==
-X-Received: by 2002:a17:907:940b:b0:a1d:3839:a6fc with SMTP id dk11-20020a170907940b00b00a1d3839a6fcmr6728328ejc.88.1702626716893;
-        Thu, 14 Dec 2023 23:51:56 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id mt29-20020a170907619d00b00a0a5a794575sm10497533ejc.216.2023.12.14.23.51.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Dec 2023 23:51:56 -0800 (PST)
-Message-ID: <cfd27865-8d6f-498a-8991-c5a02e50c02f@linaro.org>
-Date: Fri, 15 Dec 2023 08:51:55 +0100
+        d=1e100.net; s=20230601; t=1702626539; x=1703231339;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1FNDrj9UX9g1aWvgwvWexI55++xpGzhEI1jwvmfC1VU=;
+        b=QKmbUiGNxV+kSn6ROQZbNuZcPxRS+DDT3xVc/MBshxTj9aEILT1CRMjorcTDJZqMCJ
+         tLHmyBnkZB4s0WdbJ8IDmimB5R3QGmS4e9NQHCoIPQ/spvJ7yHaXe0plVWdPxfHAsHsQ
+         g107feDOyhosrywTEqmQTGTzzr7j3kh8UY3Fuzv7rW0dLAPiPecL/TDti+pYfSF9Qvhh
+         NMczZjAb/MZ37TwWACK08iEZUrNhiQvTlEevSElF4UrRW3+fUdsF3zVZrTfP23nQmb4W
+         ZBNjh2TgnDB5Mc55WoX7CRnsXgoZ+B61Bj6RO0BoJeIc2qtARXfCGZjybSeOpMIxcwYH
+         6nag==
+X-Gm-Message-State: AOJu0YxIosz3FdeE28kl0Soqtdox1f+/9xHnuciPfa1VSwJpatdtB4L5
+	yJo9orl8vAlG6Sw3RBY912c=
+X-Google-Smtp-Source: AGHT+IHlKN6sQj44Z4W8JCHTq2chQ4DY+RM0aiPu/nz7rh4i4AVo0Ozv4I13GJrONt3ijaf5etEXRA==
+X-Received: by 2002:a17:907:cb2a:b0:a19:d40a:d266 with SMTP id um42-20020a170907cb2a00b00a19d40ad266mr2318282ejc.306.1702626539097;
+        Thu, 14 Dec 2023 23:48:59 -0800 (PST)
+Received: from ?IPv6:2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47? (p200300f6ef1b2000944ccbc71e1c2c47.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47])
+        by smtp.gmail.com with ESMTPSA id tk7-20020a170907c28700b00a1d1ebc2206sm10454450ejc.72.2023.12.14.23.48.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Dec 2023 23:48:58 -0800 (PST)
+Message-ID: <4cefa6ee8770d5f5cced1ef45c0b99dbe1ed9109.camel@gmail.com>
+Subject: Re: [PATCH v3 1/8] dt-bindings: adc: ad9467: add new io-backend
+ property
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Rob Herring <robh@kernel.org>, Nuno Sa <nuno.sa@analog.com>
+Cc: devicetree@vger.kernel.org, linux-iio@vger.kernel.org, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Frank Rowand <frowand.list@gmail.com>, Jonathan
+ Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Michael
+ Hennerich <Michael.Hennerich@analog.com>,  Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+Date: Fri, 15 Dec 2023 08:52:02 +0100
+In-Reply-To: <20231214170510.GA492798-robh@kernel.org>
+References: <20231213-dev-iio-backend-v3-0-bb9f12a5c6dc@analog.com>
+	 <20231213-dev-iio-backend-v3-1-bb9f12a5c6dc@analog.com>
+	 <20231214170510.GA492798-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] media: dt-bindings: samsung,s5p-mfc: Fix iommu
- properties schemas
-Content-Language: en-US
-To: Rob Herring <robh@kernel.org>, Mauro Carvalho Chehab
- <mchehab@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Aakarsh Jain <aakarsh.jain@samsung.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231214195553.862920-1-robh@kernel.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
- m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
- HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
- XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
- mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
- v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
- cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
- rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
- qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
- aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
- gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
- dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
- NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
- hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
- oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
- H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
- yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
- 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
- 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
- +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
- FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
- 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
- DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
- oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
- 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
- Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
- qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
- /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
- qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
- EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
- KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
- fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231214195553.862920-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-On 14/12/2023 20:55, Rob Herring wrote:
-> The iommus and iommu-names property schemas have several issues. First,
-> 'iommus-names' in the if/then schemas is the wrong name. As all the names
-> are the same, they can be defined at the top level instead. Then the
-> if/then schemas just need to define how many entries. The iommus if/then
-> schemas are also redundant. Best I can tell, the desire was to require 2
-> entries for "samsung,exynos5433-mfc", "samsung,mfc-v5", "samsung,mfc-v6",
-> and "samsung,mfc-v8".
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
+On Thu, 2023-12-14 at 11:05 -0600, Rob Herring wrote:
+> On Wed, Dec 13, 2023 at 04:02:32PM +0100, Nuno Sa wrote:
+> > The ad9467 will make use of the new IIO backend framework which is a
+> > provider - consumer interface where IIO backends provide services to
+> > consumers. As such, and being this device a consumer,=C2=A0 add the new
+> > generic io-backend property to the bindings.
+> >=20
+> > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+> > ---
+> > =C2=A0Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml | 5 +++=
+++
+> > =C2=A01 file changed, 5 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml
+> > b/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml
+> > index 7aa748d6b7a0..74e6827cbd47 100644
+> > --- a/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml
+> > +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml
+> > @@ -44,6 +44,9 @@ properties:
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Pin that controls the powerdown mo=
+de of the device.
+> > =C2=A0=C2=A0=C2=A0=C2=A0 maxItems: 1
+> > =C2=A0
+> > +=C2=A0 io-backends:
+> > +=C2=A0=C2=A0=C2=A0 maxItems: 1
+> > +
+> > =C2=A0=C2=A0 reset-gpios:
+> > =C2=A0=C2=A0=C2=A0=C2=A0 description:
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Reset pin for the device.
+> > @@ -54,6 +57,7 @@ required:
+> > =C2=A0=C2=A0 - reg
+> > =C2=A0=C2=A0 - clocks
+> > =C2=A0=C2=A0 - clock-names
+> > +=C2=A0 - io-backends
+>=20
+> New required properties are an ABI break. Please justify this in the=20
+> commit message.
+>=20
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Yeah, I know... I'll further comment on the cover and depending on the
+conclusion we get I'll justify it (or not if not needed) in the message.
 
-Best regards,
-Krzysztof
-
+- Nuno S=C3=A1
 
