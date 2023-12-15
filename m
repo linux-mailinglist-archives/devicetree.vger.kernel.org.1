@@ -1,181 +1,186 @@
-Return-Path: <devicetree+bounces-25640-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25641-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58F7481417B
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 06:47:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D14D6814190
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 06:53:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8BAA81C22404
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 05:47:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C7661F23106
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 05:53:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEF416AA6;
-	Fri, 15 Dec 2023 05:47:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B5A1C8C7;
+	Fri, 15 Dec 2023 05:52:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="WHMR8htq"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="bTWau8W4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0050FD266;
-	Fri, 15 Dec 2023 05:47:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3BF5lQ2P025894;
-	Thu, 14 Dec 2023 23:47:26 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1702619246;
-	bh=7A27bnkq/YPvUJRBGKKNkhpKPuydlLKX445lS/WVm1k=;
-	h=From:To:CC:Subject:Date;
-	b=WHMR8htqybt5NPW711/q2x2BZRPV2nSot3Y5TASB4PWuw/1udMHuQo8guBqNI/OmD
-	 pb8V4w8a4xJuW6vth4cFLTgVPPSBmih+oxcY+MQfHgjo7sqxOHV0mnhAvcv6feqxfS
-	 5E668IOk4IPdYo9sXshyfNPwJtyReNn/brQ+6kIY=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3BF5lQvx005968
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 14 Dec 2023 23:47:26 -0600
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 14
- Dec 2023 23:47:26 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 14 Dec 2023 23:47:26 -0600
-Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [172.24.227.9])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3BF5lLfp076019;
-	Thu, 14 Dec 2023 23:47:22 -0600
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <danishanwar@ti.com>,
-        <r-gunasekaran@ti.com>, <srk@ti.com>, <s-vadapalli@ti.com>
-Subject: [PATCH v3] arm64: dts: ti: k3-am654-icssg2: Enable PHY interrupt for ICSSG2 PHY0
-Date: Fri, 15 Dec 2023 11:17:21 +0530
-Message-ID: <20231215054721.1975642-1-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.34.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEA28DDAD;
+	Fri, 15 Dec 2023 05:52:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BF4piv2020912;
+	Fri, 15 Dec 2023 05:52:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=Rme/5OhVSjCBq2kmTCYlSIW8T0zVGGECmOSIYy5c8Ys=; b=bT
+	Wau8W4ngt+G9V5ROW9aIdbb3R3WPqMMVe2zZHRzd0/PpmwP676FCZGFqhdDX+MBp
+	p7ejv66eGLuwvJrL8smkUQfiZ96rHeblIGgGV66HkS8sGt2aLV1I3VFC6KZs1jmF
+	n7C4vqTpYd5FAFqG4Fzg2TpXcW/C1dN5xa3KR1T8zo56wgbKnT2fn67Rfepu5u15
+	oQ5HrpzpiKHcKUHUsujGyX5dqLEpUtJy5uqeHQ+Ld4PLfOXFnbEv2JdM7Z+4cVpc
+	3u0YX4Io3iv3hN+wK6bF2hUlkWYqwlOJdQAMlpQuAq4qvxGfaqNogNSMNBMX5I2W
+	gRK7Wq30YdPfamemZF0Q==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3uynjace5m-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 15 Dec 2023 05:52:43 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BF5qflH006608
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 15 Dec 2023 05:52:41 GMT
+Received: from [10.201.3.91] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 14 Dec
+ 2023 21:52:34 -0800
+Message-ID: <356c7a26-00eb-4189-b463-8946ac5e8201@quicinc.com>
+Date: Fri, 15 Dec 2023 11:22:32 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 07/10] dt-bindings: PCI: qcom: Add IPQ5332 SoC
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <bhelgaas@google.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
+        <vkoul@kernel.org>, <kishon@kernel.org>, <mani@kernel.org>,
+        <quic_nsekar@quicinc.com>, <quic_srichara@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <quic_varada@quicinc.com>, <quic_devipriy@quicinc.com>,
+        <quic_kathirav@quicinc.com>, <quic_anusha@quicinc.com>
+References: <20231214062847.2215542-1-quic_ipkumar@quicinc.com>
+ <20231214062847.2215542-8-quic_ipkumar@quicinc.com>
+ <CAA8EJppyd5-TQmvzRB3rBhRQtMLdu=6u5aQd5rWHitRuaJXzpA@mail.gmail.com>
+From: Praveenkumar I <quic_ipkumar@quicinc.com>
+In-Reply-To: <CAA8EJppyd5-TQmvzRB3rBhRQtMLdu=6u5aQd5rWHitRuaJXzpA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: y_9pkFcntguGdLcF8mnAq_eQCS_KVja0
+X-Proofpoint-ORIG-GUID: y_9pkFcntguGdLcF8mnAq_eQCS_KVja0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
+ spamscore=0 impostorscore=0 mlxscore=0 mlxlogscore=999 lowpriorityscore=0
+ bulkscore=0 suspectscore=0 phishscore=0 classifier=spam adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2311290000
+ definitions=main-2312150034
 
-Enable interrupt mode of operation of the DP83867 Ethernet PHY which is
-used by ICSSG2. The DP83867 PHY driver already supports interrupt handling
-for interrupts generated by the PHY. Thus, add the necessary device-tree
-support to enable it.
 
-Since the GPIO1_87 line is muxed with EXT_REFCLK1 and SYNC1_OUT, update
-the pinmux to select GPIO1_87 for routing the interrupt.
 
-The GPIO1_87 interrupt line is shared by both the PHYs used by ICSSG2 due
-to the board design. Since the SoC only supports Edge-Triggered interrupts
-and Edge-Triggered interrupts cannot be shared, enable interrupt mode of
-operation for ICSSG2 PHY0 alone while ICSSG2 PHY1 shall continue operating
-in polled mode.
-
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-Reviewed-by: MD Danish Anwar <danishanwar@ti.com>
----
-Hello,
-
-This patch is based on linux-next tagged next-20231215.
-
-v2:
-https://lore.kernel.org/r/20231213080216.1710730-1-s-vadapalli@ti.com/
-Changes since v2:
-- Rebased patch on next-20231215.
-- As pointed out by Nishanth Menon <nm@ti.com> at:
-  https://lore.kernel.org/r/20231213123819.tqh3lm2ceir3qjbk@swimmer/
-  the interrupt being shared between both the PHYs is an Edge-Triggered
-  interrupt, due to which it shouldn't be shared. Thus, as discussed at:
-  https://lore.kernel.org/r/0cef8f50-6608-cf3d-ad62-1afd3f5560ea@ti.com/
-  the interrupt shall be dedicated to ICSSG2 PHY0 while ICSSG2 PHY1 shall
-  continue operating in polled mode.
-- Removed interrupt specific configuration from icssg2_phy1 which was
-  present in the v2 patch.
-- Added comment above icssg2_phy0 indicating why the interrupt mode of
-  operation is only being enabled for icssg2_phy0 and not for icssg2_phy1.
-- Updated commit message to match the new implementation.
-
-v1:
-https://lore.kernel.org/r/20231120063159.539306-1-s-vadapalli@ti.com/
-Changes since v1:
-- Rebased patch on next-20231213.
-- Collected Reviewed-by tag from
-  MD Danish Anwar <danishanwar@ti.com>
-- Moved pinctrl from MDIO node to Ethernet PHY node based on feedback from
-  Nishanth Menon <nm@ti.com>
-- Replaced the hard-coded value 0x2 with IRQ_TYPE_EDGE_FALLING for
-  setting the interrupt trigger type and level flag based on feedback from
-  Nishanth Menon <nm@ti.com>
-- Included dt-bindings/interrupt-controller/irq.h in the overlay.
-- Updated commit message with details of the pinmux resource allocation.
-
-Regards,
-Siddharth.
-
- arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso | 23 +++++++++++++++++++++
- 1 file changed, 23 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso b/arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso
-index ec8cf20ca3ac..cce3f60904f1 100644
---- a/arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso
-+++ b/arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso
-@@ -8,6 +8,7 @@
- /dts-v1/;
- /plugin/;
- 
-+#include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/net/ti-dp83867.h>
- #include "k3-pinctrl.h"
- 
-@@ -124,6 +125,15 @@ AM65X_IOPAD(0x0088, PIN_INPUT, 2) /* (AG17) PRG2_PRU0_GPO4.PRG2_RGMII1_RX_CTL */
- 	};
- };
- 
-+&main_pmx1 {
-+	/* Select GPIO1_87 for ICSSG2 PHY interrupt */
-+	icssg2_phy_irq_pins_default: icssg2-phy-irq-default-pins {
-+		pinctrl-single,pins = <
-+			AM65X_IOPAD(0x0014, PIN_INPUT, 7) /* (A22) EXT_REFCLK1.GPIO1_87 */
-+		>;
-+	};
-+};
-+
- &icssg2_mdio {
- 	status = "okay";
- 	pinctrl-names = "default";
-@@ -131,8 +141,21 @@ &icssg2_mdio {
- 	#address-cells = <1>;
- 	#size-cells = <0>;
- 
-+	/*
-+	 * icssg2_phy0 and icssg2_phy1 share the same interrupt:
-+	 * "GPIO1_87" due to the board design.
-+	 * Since the SoC only supports Edge-Triggered interrupts and
-+	 * Edge-Triggered interrupts cannot be shared, the interrupt will
-+	 * be dedicated solely for icssg2_phy0's use while icssg2_phy1
-+	 * shall continue operating in polled mode.
-+	 */
- 	icssg2_phy0: ethernet-phy@0 {
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&icssg2_phy_irq_pins_default>;
-+
- 		reg = <0>;
-+		interrupt-parent = <&main_gpio1>;
-+		interrupts = <87 IRQ_TYPE_EDGE_FALLING>;
- 		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
- 		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
- 	};
--- 
-2.34.1
-
+On 12/14/2023 12:45 PM, Dmitry Baryshkov wrote:
+> On Thu, 14 Dec 2023 at 08:30, Praveenkumar I <quic_ipkumar@quicinc.com> wrote:
+>> Add support for the PCIe controller on the Qualcomm
+>> IPQ5332 SoC to the bindings.
+>>
+>> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+>> ---
+>>   .../devicetree/bindings/pci/qcom,pcie.yaml    | 36 +++++++++++++++++++
+>>   1 file changed, 36 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+>> index eadba38171e1..af5e67d2a984 100644
+>> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+>> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+>> @@ -21,6 +21,7 @@ properties:
+>>             - qcom,pcie-apq8064
+>>             - qcom,pcie-apq8084
+>>             - qcom,pcie-ipq4019
+>> +          - qcom,pcie-ipq5332
+>>             - qcom,pcie-ipq6018
+>>             - qcom,pcie-ipq8064
+>>             - qcom,pcie-ipq8064-v2
+>> @@ -170,6 +171,7 @@ allOf:
+>>           compatible:
+>>             contains:
+>>               enum:
+>> +              - qcom,pcie-ipq5332
+>>                 - qcom,pcie-ipq6018
+>>                 - qcom,pcie-ipq8074-gen3
+>>       then:
+>> @@ -332,6 +334,39 @@ allOf:
+>>               - const: ahb # AHB reset
+>>               - const: phy_ahb # PHY AHB reset
+>>
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - qcom,pcie-ipq5332
+> As you seem to be depending on the ipq9574, could you please reuse the
+> DT entry too?
+Sure, will reuse ipq9574 entry.
+>> +    then:
+>> +      properties:
+>> +        clocks:
+>> +          minItems: 6
+>> +          maxItems: 6
+>> +        clock-names:
+>> +          items:
+>> +            - const: ahb # AHB clock
+>> +            - const: aux # Auxiliary clock
+>> +            - const: axi_m # AXI Master clock
+>> +            - const: axi_s # AXI Slave clock
+>> +            - const: axi_bridge # AXI bridge clock
+>> +            - const: rchng
+>> +        resets:
+>> +          minItems: 8
+>> +          maxItems: 8
+>> +        reset-names:
+>> +          items:
+>> +            - const: pipe # PIPE reset
+>> +            - const: sticky # Core sticky reset
+>> +            - const: axi_m_sticky # AXI master sticky reset
+>> +            - const: axi_m # AXI master reset
+>> +            - const: axi_s_sticky # AXI slave sticky reset
+>> +            - const: axi_s # AXI slave reset
+>> +            - const: ahb # AHB reset
+>> +            - const: aux # AUX reset
+>> +
+>>     - if:
+>>         properties:
+>>           compatible:
+>> @@ -790,6 +825,7 @@ allOf:
+>>                 enum:
+>>                   - qcom,pcie-apq8064
+>>                   - qcom,pcie-ipq4019
+>> +                - qcom,pcie-ipq5332
+>>                   - qcom,pcie-ipq8064
+>>                   - qcom,pcie-ipq8064v2
+>>                   - qcom,pcie-ipq8074
+>> --
+>> 2.34.1
+>>
+>>
+>
+--
+Thanks,
+Praveenkumar
 
