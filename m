@@ -1,115 +1,121 @@
-Return-Path: <devicetree+bounces-25857-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25858-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E3BF814D74
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 17:47:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC1DC814D8E
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 17:52:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B7A021F2437C
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 16:47:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 89AF9284467
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 16:52:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CBBB3DB96;
-	Fri, 15 Dec 2023 16:47:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11FA83DB9D;
+	Fri, 15 Dec 2023 16:52:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="T8U2npXm"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="f1wzshh3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96EF33FE34
-	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 16:47:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-6cea0ea6817so130065b3a.1
-        for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 08:47:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702658842; x=1703263642; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oEPp7VwVape+PRLcyc7DkdEl3azZDbUT/G2Ugu6awLc=;
-        b=T8U2npXm3qapirY0ky8a2EUhybku+uPdQ2H7bdD2uz2Bi3NNWjiLe2fXQ9Zz0ZWeLQ
-         Nd2yQ6jSKzscKqFV1NdJv7mdq6WNmhWXUmCOlnILytEARoIu+C/U5XvrSF3FxOsF2/T4
-         7uXxLnun3pUIYieo0GpHLuS5r4HJyHBS9uUHjR7wYfu2PrC4jul3BaIVBk+M08w0qsGz
-         TOCb1yJG7G4ATJnCl+dL+iDTDq8zWGkrDpJmUuCgNHS4fQK1emTyjngSLqF+a1qftHp1
-         4Kge2x2zLAL4FoaPRjrPaEU1n8seeLzbLmN6xyX4gfnoHG+CneZUkx/Rc0ALsGxQdHN6
-         Z71w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702658842; x=1703263642;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oEPp7VwVape+PRLcyc7DkdEl3azZDbUT/G2Ugu6awLc=;
-        b=o40viY6bHoHPvazcZxpjXQ2ScImPS7AQYHXx3rXsW/83+/rr1Ez2CJnvbVgsRDHas0
-         MViPWTdzzOY45pR3cmDuSCAisOksxm58JmLzzpI+3ATsdXnrwOtM5emgx+5q8cZXTr/B
-         ydtB8TGoWlmyOGWEa6+jS8NAybPHzcud61efL+ECoQtJSmFw1lsK6/gDaPJSDEuD2jVH
-         8fgXFuLAsCTpOmXVN7tTuu6OoiPOorKjcIHbEmAh1mAbLTT6AgTIpnNgm2VTXyb69W7o
-         jxeFSsYz4CCCxUU1DHSAF8VjY6RrQbi50+hSwMBQRZvUhLzWPiVm4CkgVUlnqBK9T000
-         78iQ==
-X-Gm-Message-State: AOJu0YzXtUq59H1SklENA+uZv40tMDdqcUEw9+CTB55vEaZPLqFm/iEi
-	zwiKfQGsb2zOJZYM2VmVVIyN3O+4Zfb+mnN1BKk=
-X-Google-Smtp-Source: AGHT+IG6XM/cpbPyvUmpGmMVAIiaAGFLNuv+q8LFxY1OkI/0FMeQV7pk1x5j1JLtN7eqshBjH/oZ0QYQ3ZPAjrH5iWo=
-X-Received: by 2002:a05:6a00:4601:b0:6ce:72d7:1e74 with SMTP id
- ko1-20020a056a00460100b006ce72d71e74mr25061297pfb.2.1702658841835; Fri, 15
- Dec 2023 08:47:21 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BF0A3EA69;
+	Fri, 15 Dec 2023 16:52:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id D76ABC0004;
+	Fri, 15 Dec 2023 16:52:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1702659140;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=sfWZH/svifhxC7W4M7gZ14WX8XvsD6qw/uDPo8WcvAQ=;
+	b=f1wzshh3cKH6bWa+OECXGVN61sYa1O4bSH5bKlfhN2DLchVmrRyZ9TCV2Ge7cXO2YcVn4s
+	zi9u3uP5Lr58adQe7Ay09wXGgTv3n6X1NFdjE5esgUIEpQJ3d5suPvZ3WyERoX+23s7WCv
+	GWVYN0zkuVcJEjlybJMiu62WrktEjrMy8VR9ehQTivFZ7M3Hn8Wfeaor9Qyf1D81kVx2LY
+	einWNqxjEAsTso6z8YVnIpQYFzNJ5sUQh1GPYEdKVgzz9c7KU1jxfO4yiGHDjuo52jZ83I
+	tNoBH9IRoHiK/gct1bYClQ5xeRVAQSiMK2bFKa17VCSNoziUU0CBvSSyIXjYbQ==
+From: Gregory CLEMENT <gregory.clement@bootlin.com>
+To: Jiaxun Yang <jiaxun.yang@flygoat.com>, "paulburton@kernel.org"
+ <paulburton@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, Tawfik Bayouk
+ <tawfik.bayouk@mobileye.com>, Alexandre Belloni
+ <alexandre.belloni@bootlin.com>, =?utf-8?Q?Th=C3=A9o?= Lebrun
+ <theo.lebrun@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v5 21/22] MIPS: generic: Add support for Mobileye EyeQ5
+In-Reply-To: <6b747f3b-f0d7-4e40-a331-8d2323e4874c@app.fastmail.com>
+References: <20231212163459.1923041-1-gregory.clement@bootlin.com>
+ <20231212163459.1923041-22-gregory.clement@bootlin.com>
+ <6b747f3b-f0d7-4e40-a331-8d2323e4874c@app.fastmail.com>
+Date: Fri, 15 Dec 2023 17:52:19 +0100
+Message-ID: <875y0zcssc.fsf@BL-laptop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230920171009.3193296-1-l.stach@pengutronix.de>
- <20230920171009.3193296-2-l.stach@pengutronix.de> <20230920205736.GB7723@pendragon.ideasonboard.com>
- <CAHCN7xJz=rEH_8wHaBCVOUzP0kO6cM_c=zLf6ocjW8bt1FaCBw@mail.gmail.com>
- <CAOMZO5C7_Rj-Ja0BO0D0Po+gy+XbvyMdQf-wH5YNyhAdMof2vg@mail.gmail.com>
- <20231215142308.GL21146@pendragon.ideasonboard.com> <CAHCN7xJPg_Nk=o9fKwkZfVTNSB-YL0m7vY6p1O7+i=PHShp7hg@mail.gmail.com>
-In-Reply-To: <CAHCN7xJPg_Nk=o9fKwkZfVTNSB-YL0m7vY6p1O7+i=PHShp7hg@mail.gmail.com>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Fri, 15 Dec 2023 13:47:09 -0300
-Message-ID: <CAOMZO5AGAkPpds=5H-iQj53djcQtW5GsRQrzdC_JOOrcENhvvw@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] drm/bridge: imx: add driver for HDMI TX Parallel
- Video Interface
-To: Adam Ford <aford173@gmail.com>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Jonas Karlman <jonas@kwiboo.se>, 
-	Liu Ying <victor.liu@nxp.com>, Sandor Yu <sandor.yu@nxp.com>, dri-devel@lists.freedesktop.org, 
-	NXP Linux Team <linux-imx@nxp.com>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	patchwork-lst@pengutronix.de, devicetree@vger.kernel.org, 
-	Rob Herring <robh+dt@kernel.org>, Frieder Schrempf <frieder.schrempf@kontron.de>, 
-	Andrzej Hajda <andrzej.hajda@intel.com>, Richard Leitner <richard.leitner@skidata.com>, 
-	Luca Ceresoli <luca.ceresoli@bootlin.com>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: gregory.clement@bootlin.com
 
-Hi Adam,
+"Jiaxun Yang" <jiaxun.yang@flygoat.com> writes:
 
-On Fri, Dec 15, 2023 at 1:40=E2=80=AFPM Adam Ford <aford173@gmail.com> wrot=
-e:
-
-> I started looking into this today, but there appears to be some
-> dependencies missing because the PVI is just one small portion of
-> this. The PVI needs to interact with the hdmi_blk_ctrl and the hdmi
-> transmitter itself.
+> =E5=9C=A82023=E5=B9=B412=E6=9C=8812=E6=97=A5=E5=8D=81=E4=BA=8C=E6=9C=88 =
+=E4=B8=8B=E5=8D=884:34=EF=BC=8CGregory CLEMENT=E5=86=99=E9=81=93=EF=BC=9A
+>> Introduce support for the MIPS based Mobileye EyeQ5 SoCs.
+>>
+>> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+>> ---
+>>  arch/mips/configs/generic/board-eyeq5.config | 42 ++++++++++++++++++++
+>>  arch/mips/generic/Kconfig                    | 15 +++++++
+>>  arch/mips/generic/Platform                   |  2 +
+>>  arch/mips/generic/board-epm5.its.S           | 24 +++++++++++
+>>  4 files changed, 83 insertions(+)
+>>  create mode 100644 arch/mips/configs/generic/board-eyeq5.config
+>>  create mode 100644 arch/mips/generic/board-epm5.its.S
+>>
+>> diff --git a/arch/mips/configs/generic/board-eyeq5.config=20
+>> b/arch/mips/configs/generic/board-eyeq5.config
+>> new file mode 100644
+>> index 0000000000000..d94e408145389
+>> --- /dev/null
+>> +++ b/arch/mips/configs/generic/board-eyeq5.config
+>> @@ -0,0 +1,42 @@
+>> +CONFIG_HIGH_RES_TIMERS=3Dy
+>> +CONFIG_TASKSTATS=3Dy
+>> +CONFIG_FIT_IMAGE_FDT_EPM5=3Dy
+>> +CONFIG_BOARD_EYEQ5=3Dy
+>> +CONFIG_PHYSICAL_START=3D0xa800000808000000
 >
-> It looks like there was at least one attempt to push the hdmi driver,
-> but we're also missing some hdmi power domain information, and the dri
-> patchwork lists a bunch of proposed patches for the lcdif driver.  I
-> haven't looked through them all, so I don't know if they are
-> necessary.  I found a git repo with Lucas' stuff, but it's based on
-> the 6.0 kernel, so it's fairly old.  Either way it seems like there is
-> more to the HDMI than just his one series.
+> ^ I still think by doing this you are risking overriding starting address
+> for all other generic systems. make 32r6_defconfig will load config files
+> of all boards.
 
-Here is the whole patchset that I tested against 6.6:
+I think at a point you mentioned a way to remove the eyeq5 config board
+from the 32r6_defconfig. It would be indeed a good solution.
 
-https://patchwork.freedesktop.org/patch/485391/
-https://patchwork.freedesktop.org/patch/485392/
-https://patchwork.freedesktop.org/patch/485395/
-https://patchwork.freedesktop.org/patch/515299/
-https://patchwork.freedesktop.org/patch/515300/
-https://patchwork.kernel.org/project/linux-arm-kernel/patch/20220406153402.=
-1265474-12-l.stach@pengutronix.de/
+>
+> Perhaps just provide an eqm5_defconfig will work better?
+
+So you mean a defconfig in direclty in arch/mips/configs/ and not
+anymore in arch/mips/configs/generic ?
+
+Gregory
+
+>
+> Thanks.
+> --=20
+> - Jiaxun
+
+--=20
+Gregory Clement, Bootlin
+Embedded Linux and Kernel engineering
+http://bootlin.com
 
