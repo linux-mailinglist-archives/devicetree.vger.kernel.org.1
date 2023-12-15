@@ -1,312 +1,111 @@
-Return-Path: <devicetree+bounces-25873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25874-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 023C8814EC6
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 18:31:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4397E814ED0
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 18:32:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8271F1F246DA
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 17:31:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D835D1F2146F
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 17:32:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAC7A82EE3;
-	Fri, 15 Dec 2023 17:27:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E83793F8E1;
+	Fri, 15 Dec 2023 17:30:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mhSVL1Ma"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AA933012B;
-	Fri, 15 Dec 2023 17:27:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
-X-IronPort-AV: E=McAfee;i="6600,9927,10925"; a="8727217"
-X-IronPort-AV: E=Sophos;i="6.04,279,1695711600"; 
-   d="scan'208";a="8727217"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Dec 2023 09:27:07 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10925"; a="892973975"
-X-IronPort-AV: E=Sophos;i="6.04,279,1695711600"; 
-   d="scan'208";a="892973975"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Dec 2023 09:27:03 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andy@kernel.org>)
-	id 1rEBxk-00000006BAk-29KE;
-	Fri, 15 Dec 2023 19:27:00 +0200
-Date: Fri, 15 Dec 2023 19:27:00 +0200
-From: Andy Shevchenko <andy@kernel.org>
-To: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	Hoan Tran <hoan@os.amperecomputing.com>,
-	Serge Semin <fancer.lancer@gmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>, Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>
-Subject: Re: [PATCH v1 2/8] pinctrl: Add driver for the T-Head TH1520 SoC
-Message-ID: <ZXyMZKvREy_FIl46@smile.fi.intel.com>
-References: <20231215143906.3651122-1-emil.renner.berthing@canonical.com>
- <20231215143906.3651122-3-emil.renner.berthing@canonical.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F07A44184B
+	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 17:30:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-50e23c620e8so245534e87.1
+        for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 09:30:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1702661409; x=1703266209; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=EdUQqqaWMHzQxJ+jrzxIYZWyQq/RjIiVZaz4ReZcmIY=;
+        b=mhSVL1Ma+Jnqqq5ywAlSIDb/NWgqWWUNbOmemY3rfHxrfysE6Bq2RGfuMR7+f5J64m
+         GIPu5W9UJL/xrhL8XA9iVzjLmpRTlfhv089s/6NnZTfPrzvZQEjX+LrffLaa676sRM0I
+         1z17SKGg5TimPUa3xEmzIwgE7XKvEKEiNR6jCjQtJ6jJcWUoFcN+h7ZWZ//d/Z2Uu2g2
+         Q2sf1zfCJ3mBp+XE/jCPEtQcFFGjfd+8aD5vpPZXcIHWt6Hb/3a2qODHn5WsiTKfn0Jn
+         dkrJ0/DFrSRLw9Ki1FGg1mg8eaJtqHQ5q+N50ACYhGKjSXYyrpSwkT2CyapwlhpL8VZo
+         eRog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702661409; x=1703266209;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EdUQqqaWMHzQxJ+jrzxIYZWyQq/RjIiVZaz4ReZcmIY=;
+        b=W0jXTWFlIMg8lF2JN4NZ7J+jUw5etZpTKhcnVtVg1oJUUjQdJtqSvBMsGx/e2gm7mT
+         w3+AoX5UIpzse9RDejBT+qVDYOxOjuvjJ6jEwwnPCCEDOxylTbZNDw9/cJFlR5uq/Cps
+         BjxDSBH4RVx+S0yoGGZcv+Oe0CDoJPn48EDAlKfel60uwQRTyoxaKt3dI6O9puAnlYlN
+         k25CC1n9coarsu/g//uN1jf6sWGwP7901mBJWCR0TEWxnoNAAKrxtLvNMGNmmnoon6Fz
+         MTPiB1jgGxsg5Lu9QHKRyrtjaEVBC6obJmElKAqp3FSalHN0x2rB/hcICeJMM+UMdEaM
+         B8Dw==
+X-Gm-Message-State: AOJu0YybAnZ7wf+S/9qXFtwmqymihf5yqXSGssO6U8QmJVSARx5XtwS4
+	glxSK1b76wNjjzV61PaU2JAA5w==
+X-Google-Smtp-Source: AGHT+IEpxgNeNbJ9qmCuwuVfhPnZ0zvgsZ0AHWIarVbGf9r7l8dYVujZp+q007vDsJ/4JjoLhvo+tw==
+X-Received: by 2002:a19:e001:0:b0:50c:11:4740 with SMTP id x1-20020a19e001000000b0050c00114740mr5196408lfg.29.1702661408967;
+        Fri, 15 Dec 2023 09:30:08 -0800 (PST)
+Received: from eriador.lumag.spb.ru (85-76-13-188-nat.elisa-mobile.fi. [85.76.13.188])
+        by smtp.gmail.com with ESMTPSA id g8-20020a056512118800b0050bf54b9f18sm2202274lfr.113.2023.12.15.09.30.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Dec 2023 09:30:08 -0800 (PST)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: "Rob Herring" <robh+dt@kernel.org>,
+	"Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+	"Conor Dooley" <conor+dt@kernel.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-usb@vger.kernel.org
+Subject: [PATCH RESEND v2 0/2] usb: typec: tcpm: Handle Accessory Modes
+Date: Fri, 15 Dec 2023 19:30:03 +0200
+Message-ID: <20231215173005.313422-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231215143906.3651122-3-emil.renner.berthing@canonical.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 
-On Fri, Dec 15, 2023 at 03:39:00PM +0100, Emil Renner Berthing wrote:
-> Add pinctrl driver for the T-Head TH1520 RISC-V SoC.
+Resending to be applicable on top of usb-testing, as the AltModes
+patchset was picked up.
 
-...
+In addition to Alternative Modes (see [1]), some of the TCPM-backed
+boards (e.g. Qualcomm SM8150-HDK) can support USB-C Accessory Modes
+(e.g. the Analog Audio). Add bindings and driver support for parsing
+this kind of information.
 
-+ array_size.h
-+ bits.h
-+ device.h
+Note, while it might make sense to put accessory-mode-audio and -debug
+handling to typec_get_fw_cap(), I decided against it. Several existing
+drivers use this function, while providing AccMode caps based on some
+internal logic.
 
-(and so on, please make sure you follow IWYU principle --
- "include what you use")
+[1] https://lore.kernel.org/linux-usb/20231120224919.2293730-1-dmitry.baryshkov@linaro.org/
 
-> +#include <linux/io.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/mutex.h>
+Changes since v1:
 
-> +#include <linux/of.h>
+- Initialised the `mode' variable to 0 (Sergei Shtylyov)
 
-Can you use device property API instead?
 
-(I briefly checked, all of the used of_ ones have the respective generic
- implementations either in fwnode_property_ or device_property_ namespace).
+Dmitry Baryshkov (2):
+  dt-bindings: connector: usb: add accessory mode description
+  usb: typec: tcpm: Parse Accessory Mode information
 
-OTOH, it's used in xlate/map functions which have device_node as a parameter...
-
-> +#include <linux/platform_device.h>
-> +#include <linux/seq_file.h>
-> +#include <linux/spinlock.h>
-
-...
-
-> +#include "core.h"
-> +#include "pinmux.h"
-> +#include "pinconf.h"
-
-All of them are needed?
-
-...
-
-> +static unsigned int th1520_padcfg_shift(unsigned int pin)
-> +{
-> +	return 16 * (pin & 0x1U);
-
-BIT(0) ?
-
-> +}
-
-...
-
-> +static unsigned int th1520_muxcfg_shift(unsigned int pin)
-> +{
-> +	return 4 * (pin & 0x7U);
-
-GENMASK() ?
-
-> +}
-
-...
-
-> +			return dev_err_probe(thp->pctl->dev, -EINVAL,
-> +					     "no pins selected for %pOFn.%pOFn\n",
-> +					     np, child);
-
-> +			dev_err(thp->pctl->dev, "error parsing pin config of group %pOFn.%pOFn\n",
-> +				np, child);
-
-In the very same function you are using dev_err_probe(), please make sure
-you use the same for all error messages as it will be a unified format
-(in case of dev_err_probe() or if you explicitly do that with dev_err()
-calls).
-
-> +		}
-
-...
-
-> +static const struct pinctrl_ops th1520_pinctrl_ops = {
-> +	.get_groups_count = th1520_pinctrl_get_groups_count,
-> +	.get_group_name = th1520_pinctrl_get_group_name,
-> +	.get_group_pins = th1520_pinctrl_get_group_pins,
-
-> +	.pin_dbg_show = th1520_pin_dbg_show,
-
-Is ifdeffery needed for this one?
-
-
-> +	.dt_node_to_map = th1520_pinctrl_dt_node_to_map,
-> +	.dt_free_map = th1520_pinctrl_dt_free_map,
-
-Is ifdeffery needed for these two?
-
-> +};
-
-...
-
-> +	mask = 0xfU << shift;
-> +	value = ((uintptr_t)func->data & 0xfU) << shift;
-
-GENMASK() in both cases.
-
-> +	raw_spin_lock_irqsave(&thp->lock, flags);
-> +	value |= readl_relaxed(muxcfg) & ~mask;
-
-Instead of above, use the traditional pattern
-
-	value = read()
-	value = (value & ~mask) | (newval & mask);
-	write()
-
-where newval is defined with a proper type and you get rid of all those ugly
-castings at once.
-
-> +	writel_relaxed(value, muxcfg);
-> +	raw_spin_unlock_irqrestore(&thp->lock, flags);
-
-...
-
-> +static u16 th1520_drive_strength_from_mA(u32 arg)
-> +{
-> +	u16 v;
-> +
-> +	for (v = 0; v < ARRAY_SIZE(th1520_drive_strength_in_mA) - 1; v++) {
-
-You may drop -1 here AFAIU (see below).
-
-> +		if (arg <= th1520_drive_strength_in_mA[v])
-> +			break;
-
-return directly.
-
-> +	}
-
-> +	return v;
-
-return explicit value which will be robust against changes in the for-loop or
-elsewhere in the code.
-
-> +}
-
-...
-
-> +static int th1520_padcfg_rmw(struct th1520_pinctrl *thp, unsigned int pin,
-> +			     u16 _mask, u16 _value)
-
-Why not naming them without underscores?
-
-> +{
-> +	void __iomem *padcfg = th1520_padcfg(thp, pin);
-> +	unsigned int shift = th1520_padcfg_shift(pin);
-
-> +	u32 mask = (u32)_mask << shift;
-> +	u32 value = (u32)_value << shift;
-
-Oh, no castings, please.
-
-> +	unsigned long flags;
-> +
-> +	raw_spin_lock_irqsave(&thp->lock, flags);
-
-Use cleanup.h.
-
-> +	value |= readl_relaxed(padcfg) & ~mask;
-> +	writel_relaxed(value, padcfg);
-> +	raw_spin_unlock_irqrestore(&thp->lock, flags);
-> +	return 0;
-> +}
-
-...
-
-> +#define PIN_CONFIG_THEAD_STRONG_PULL_UP	(PIN_CONFIG_END + 1)
-
-Oh, custom flag! Linus, what is the expected approach for custom flags like this?
-I believe this is quite error prone.
-
-...
-
-> +	value = readl_relaxed(th1520_padcfg(thp, pin));
-> +	value = (value >> th1520_padcfg_shift(pin)) & 0x3ffU;
-
-GENMASK() and in many other places like this.
-
-...
-
-> +		enabled = value & TH1520_PADCFG_IE;
-> +		arg = enabled;
-
-Assigning boolean to integer... Hmm...
-
-> +		break;
-> +	case PIN_CONFIG_INPUT_SCHMITT_ENABLE:
-> +		enabled = value & TH1520_PADCFG_ST;
-> +		arg = enabled;
-> +		break;
-> +	case PIN_CONFIG_SLEW_RATE:
-> +		enabled = value & TH1520_PADCFG_SL;
-> +		arg = enabled;
-> +		break;
-
-...
-
-> +static int th1520_pinctrl_probe(struct platform_device *pdev)
-> +{
-
-	struct device *dev = &pdev->dev;
-
-may give you some benefits.
-
-> +	const struct th1520_padgroup *group = device_get_match_data(&pdev->dev);
-> +	struct th1520_pinctrl *thp;
-> +	int ret;
-> +
-> +	thp = devm_kzalloc(&pdev->dev, sizeof(*thp), GFP_KERNEL);
-> +	if (!thp)
-> +		return -ENOMEM;
-> +
-> +	thp->base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(thp->base))
-> +		return PTR_ERR(thp->base);
-> +
-> +	thp->desc.name = group->name;
-> +	thp->desc.pins = group->pins;
-> +	thp->desc.npins = group->npins;
-> +	thp->desc.pctlops = &th1520_pinctrl_ops;
-> +	thp->desc.pmxops = &th1520_pinmux_ops;
-> +	thp->desc.confops = &th1520_pinconf_ops;
-> +	thp->desc.owner = THIS_MODULE;
-> +	thp->desc.num_custom_params = ARRAY_SIZE(th1520_pinconf_custom_params);
-> +	thp->desc.custom_params = th1520_pinconf_custom_params;
-> +	thp->desc.custom_conf_items = th1520_pinconf_custom_conf_items;
-> +	mutex_init(&thp->mutex);
-> +	raw_spin_lock_init(&thp->lock);
-> +
-> +	ret = devm_pinctrl_register_and_init(&pdev->dev, &thp->desc, thp, &thp->pctl);
-> +	if (ret)
-> +		return dev_err_probe(&pdev->dev, ret, "could not register pinctrl driver\n");
-> +
-> +	return pinctrl_enable(thp->pctl);
-> +}
+ .../devicetree/bindings/connector/usb-connector.yaml | 12 ++++++++++++
+ drivers/usb/typec/tcpm/tcpm.c                        |  9 +++++++++
+ 2 files changed, 21 insertions(+)
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.43.0
 
 
