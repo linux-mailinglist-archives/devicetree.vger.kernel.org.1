@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-25621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25622-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5942813F9D
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 03:12:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6786813FAE
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 03:22:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 45F0D1F216B0
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 02:12:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37F4B282BA7
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 02:22:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD66A7E4;
-	Fri, 15 Dec 2023 02:12:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF1DC7E4;
+	Fri, 15 Dec 2023 02:21:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="Z9wkLxka"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="YsnQDziG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2065.outbound.protection.outlook.com [40.107.6.65])
+Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2051.outbound.protection.outlook.com [40.107.249.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B49A468C
-	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 02:12:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A290FEBD
+	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 02:21:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UbNEALwgJIfteV3dthQiAldqe8faKh0TZtJjU+vNfXCsB1jrtq1XMeF3trQnRuYhX1ext7Aoy5ez/n9835/I3U4MeYYjr40lhLI9fkIxplDkcXNfDziGUsv9g3o4JnRp8/NxwCIbPuIT+MPFlfYQMkAtsRA7mXkKPK7IfloiFOQacqXxi7znD1SpPeyLmZx6vHUAN2PGhmrLEqdB8qQ7zrbZ3D62TcFD0Oa4X2nrNK+8czEAjP7OMvOe6CdBhq15jl0iKpivHCFF+SyGITUIIIwWshlI+671ot4C+4LuXmHBbAFZemoIN3/CjWgCBVBdu1jkL0Gqf40DjwSCOlD8hw==
+ b=n0eYLSgLd8F9+RCgoY9tfUN010gv7inDzol/w+UIfCuMVqKU5gqxrTePxgvo+oXJOcyv6CseU+NBTPRfonRHKAMxQY4mN4ryvgP7zeBUSry5qyPot3a65jfJS4wg5EbsCnmFppQZzMjeSwQckOTFyGOtp8ncaHNZGNc4QETavVuYyFFqRp7xmfRSP8ttdu1lwfHF/NCMTeXWV6WueT/7BMHSWxRUQyhKRjzPE1X1sSwP3fr0rKXI9R6qQlGuPasCTHg3N3naHlDJSxG2x9PWZIa17FL+v9lANuGZl71rM+Qh4eev1Usj03kKusjWbjy+zoyTPlaBDuokORxdVYF+RA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bIfXXWnxO5unmyejLw2TBusd4o56lX6zo2XLayzsdFg=;
- b=FnLUi5V5qld1/Z3mmkx403LG9Uigqn6pjUoElaPEEPksgXYlzAZYvX5M6ROUoxHxZWHOU/vDOCAZUeM+auKlRPzFQ23Q1rqRRUzUDaVBR5meLjTuhxJ22PPdaK5b6DmizLNLwIqNbVbTldyCYvGFgxx7IDc4pqKGCue27iS/XP1t01aaunxNP6gnjctZiKs67koE3KSZgktptAcotVAEv8aR2qAj7rV9/5HSekIO9jVaNgjHfUZJOPb4E+4/G+lR5QUdgp2L+N2wJPMUQ0XvpeqrLwGCOpzXJoopicxzWEYmAbDEtNXHB1cIogKTkt7V70TfOD9NTuicc1dMyR0+Rg==
+ bh=8a3aVjP5VSKiAAbH06IiWmdq0rNuPmiL0h4FGdhHdFc=;
+ b=dl0B5OXqOCti0SunchOgvsaDhZN7Iavwj80eG0hkqg4ifLPmPUwd7HyaSBZGHhzhs5UykBSA0cPIfGbRA7SVi8uOrFmMX65XnCX1UdLn5I0dUPNczU/AqIi+6dznWo2V2UH6o1JIUIlql9Qpg3COfOJvZwExf96IBALicyrFFNtTRcJG+FCFYfXwdqSt+W83Y+5vAJ3hHxRUCgS2uxOgTxJPOB6Le05+Ij5DW3YPt08MQ531ohqvyiT327f1WZZZ2j/U5zQYK/VsVmtcrWBRrEZ627+vWFqynJNKwcuhYmCT9hMxjyMiXFaECU58W4tQPosoU2W39krffRMgrIDuhQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bIfXXWnxO5unmyejLw2TBusd4o56lX6zo2XLayzsdFg=;
- b=Z9wkLxkaPP0cdUt7Wp3E3QDSJWKR3PFnqV9us2DVXtYSGJ+qWJPYRXNV94GQqafKkXe2Twpz8yUI5Dy4QaYaXDx3J2E3WIrMUz35zDtXyKfR51UmN8YVlnocl7uZHMGoB+XENVym+QJ7mDz9EhhXr46x23+PxODu0boeJmP6lKA=
+ bh=8a3aVjP5VSKiAAbH06IiWmdq0rNuPmiL0h4FGdhHdFc=;
+ b=YsnQDziGH2Bbx//tb196r2liaNEX1MnbISrreqt/9QW7fx0yYKxYmvbmOWtr7QfiK+XrvHFeRUhjSOG6l49QUXWeLJqipGZ3R/5LnFMQCZgbx+XVTAibDu11/Wz7RRjY7xnllsvbqGThqnKrE07HcusUv6NwVZczmvX597SI2Aw=
 Received: from DB7PR04MB5146.eurprd04.prod.outlook.com (2603:10a6:10:23::16)
- by VI1PR04MB7037.eurprd04.prod.outlook.com (2603:10a6:800:125::7) with
+ by GVXPR04MB9757.eurprd04.prod.outlook.com (2603:10a6:150:115::12) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.28; Fri, 15 Dec
- 2023 02:12:43 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.31; Fri, 15 Dec
+ 2023 02:21:52 +0000
 Received: from DB7PR04MB5146.eurprd04.prod.outlook.com
  ([fe80::709e:6876:7df0:fc30]) by DB7PR04MB5146.eurprd04.prod.outlook.com
  ([fe80::709e:6876:7df0:fc30%7]) with mapi id 15.20.7091.028; Fri, 15 Dec 2023
- 02:12:43 +0000
+ 02:21:52 +0000
 From: Xu Yang <xu.yang_2@nxp.com>
 To: Alexander Stein <alexander.stein@ew.tq-group.com>, "robh+dt@kernel.org"
 	<robh+dt@kernel.org>, "krzysztof.kozlowski+dt@linaro.org"
@@ -56,15 +56,17 @@ To: Alexander Stein <alexander.stein@ew.tq-group.com>, "robh+dt@kernel.org"
 CC: dl-linux-imx <linux-imx@nxp.com>, "devicetree@vger.kernel.org"
 	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
 	<linux-arm-kernel@lists.infradead.org>
-Subject: RE: [EXT] Re: [PATCH 3/4] arm64: dts: imx93: add usb nodes
-Thread-Topic: [EXT] Re: [PATCH 3/4] arm64: dts: imx93: add usb nodes
-Thread-Index: AQHaLn9TNtDXswxVBEWCR9xbNc0TXbCox/CAgADPBmA=
-Date: Fri, 15 Dec 2023 02:12:43 +0000
+Subject: RE: [EXT] Re: [PATCH 4/4] arm64: dts: imx93-11x11-evk: enable usb and
+ typec nodes
+Thread-Topic: [EXT] Re: [PATCH 4/4] arm64: dts: imx93-11x11-evk: enable usb
+ and typec nodes
+Thread-Index: AQHaLn9VF9d64TFuM0+cjMAn7zio9rCoyROAgADTHSA=
+Date: Fri, 15 Dec 2023 02:21:52 +0000
 Message-ID:
- <DB7PR04MB51462A079F226C6B9FCA9F7C8C93A@DB7PR04MB5146.eurprd04.prod.outlook.com>
+ <DB7PR04MB514686AD6E084BF0466422838C93A@DB7PR04MB5146.eurprd04.prod.outlook.com>
 References: <20231214112442.2412079-1-xu.yang_2@nxp.com>
- <20231214112442.2412079-3-xu.yang_2@nxp.com> <8309719.T7Z3S40VBb@steina-w>
-In-Reply-To: <8309719.T7Z3S40VBb@steina-w>
+ <20231214112442.2412079-4-xu.yang_2@nxp.com> <1952554.PYKUYFuaPT@steina-w>
+In-Reply-To: <1952554.PYKUYFuaPT@steina-w>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach:
@@ -72,46 +74,45 @@ X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nxp.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DB7PR04MB5146:EE_|VI1PR04MB7037:EE_
-x-ms-office365-filtering-correlation-id: 5b35de9b-9f60-482e-3bed-08dbfd1352a6
+x-ms-traffictypediagnostic: DB7PR04MB5146:EE_|GVXPR04MB9757:EE_
+x-ms-office365-filtering-correlation-id: 5b272f80-0119-4575-6865-08dbfd1499b3
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
 x-microsoft-antispam-message-info:
- ztj6i+Vxp3G0UHUn53mbsOhuLbJ6zzb3pRutW8jykZaiAzD06boIs7kc1n4ZrdwZtgL+7Ecm9EX6VJHIl6Yu8Z1lT/vb4Ne0u88Tm6PLBLW364nx1J2RH+XXOXk7ukVYprlm7Wm877EcfgN3/98gZBQL1iJ/zdDzpX96ceKWJr7iiOSyVwqsAQjn/jZBkm1vzrrBqaaluoIVEGmJwpBwOvzvYAIoG/oDn7lbgWLwPNz/PKLezg6h4ztN7Rde22SZbvEFa9JBfq4lzpjdRfdaMPCr8tfzzkBEx4KyY5NAV6ldUm5hMB3PozeItbmbCVrVDip+cGnNa3jUoTjkaEfcPlfhHj7BMbVLZNRi20eq+iwiZARO2fS8Fo2k8pL6vq5FaC9FlCqCmdHx3I2xJuFijlDi2US/COcojRfeKxDAWh8LheqqfF2QXMyEIOJUT5kv1GR83Tr5oZnQntMxT5ZACe1jeZ08YJJx6Y4WrWxArXFAQp1sgVza+kC4KoQSctE/qpvwxAtLW7JiQuQ3wak+DVXXdtCM+GK8sw1obzH5jvtvaaQkuHbs/GnLCBo3lCHTdYdmn8Z5uA3y+FgQS/Tsc4Jz3L7rqisY6mvHTYISfeI=
+ SeWyxLUSK3gYNwKKcFf6cFmpW7bNtiC+sYtz6NFS1jCkGarNpIzjxzZuj0D3A0uD7Yy+5pwrX/m6/2U2+7l/oBK++nn+azseuayo+sobuuF/ObthkqJegnOFr/ZDXEPVyBDvMoYsTenfxcOGSafhXnjDqSaCy+VOCgw/A8HYBpPOR0C8WxbntBT8fuys4o42DVXT2mqzvN5niaA9cPGbHDwyFdfDcVdgkhfOOasw94Mr983YU3UdAMRtCPcAsUB9kJddIJbNM/91WNtDnWtOX7vu/FrkZzbuBxzEqer6I09zl7HDtV01klCOlsBJ5+s6TlEqXmzA6rH1qjAdwU+sW4DLXWtXfC8ttqzcrhTz8aA1H7kV7zGmyHVP2zZLqnrir52NMPiBpQ6WMl6+uec0cFQXonbLBAwuAHgFk/T+wn4Vj0oBy6zNM0Fsvrld2IZuufsCSbJNtxddeu+kIA4W2Xh91sZiS3o+UhPwrOB7kX+IbFEYB/Oi1m2Jj8imqKDSjU/UrhcDdaoC00ZtVQAtx/W3lrlos6UDjWpky8p006Vaj8Z6lq2HrRMCD1O3qZvf0myqR1vHs/z/WPmtIFX3CHAH6NhmrxwBr7wjuVHVEyJxgqhU2iQg9XsRudcp4O/QXkx8SEWhv09HJ+Uh4n2rTA==
 x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR04MB5146.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(346002)(39860400002)(136003)(366004)(376002)(230922051799003)(451199024)(186009)(1800799012)(64100799003)(66574015)(122000001)(71200400001)(33656002)(41300700001)(9686003)(45080400002)(6506007)(7696005)(38070700009)(54906003)(64756008)(66446008)(66476007)(316002)(66556008)(5660300002)(66946007)(76116006)(110136005)(8936002)(8676002)(4326008)(52536014)(478600001)(966005)(38100700002)(7416002)(2906002)(86362001)(26005)(55016003)(83380400001);DIR:OUT;SFP:1101;
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR04MB5146.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(396003)(136003)(346002)(376002)(366004)(230922051799003)(64100799003)(1800799012)(451199024)(186009)(4326008)(8936002)(52536014)(8676002)(2906002)(7416002)(5660300002)(478600001)(6506007)(7696005)(9686003)(110136005)(54906003)(64756008)(66446008)(66476007)(66556008)(66946007)(76116006)(316002)(41300700001)(38100700002)(122000001)(55016003)(33656002)(86362001)(38070700009)(71200400001)(26005)(83380400001)(473944003);DIR:OUT;SFP:1101;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
 x-ms-exchange-antispam-messagedata-0:
- =?iso-8859-1?Q?owbewWzwxJ/1cXkr7b7bz8SyzFBKgMkaNo/wxMR3CQaf7kJpf8sQRpmFe6?=
- =?iso-8859-1?Q?MGZNqMojO7b4j0/jLjXUs3tZiu7kiRkXW4mLgNn9mD/n/zzkSjFvoCrVKq?=
- =?iso-8859-1?Q?bW8kc4veHOGrB1z1Kqv/IegYPx6+6xEr0zT/QDsNDmBSLNPEQWRFRi61PO?=
- =?iso-8859-1?Q?T4WVzydG617ocdyS1p6+O42iSdXFJsWreKFe9kIlSxckGQB+MDxpwa3c7i?=
- =?iso-8859-1?Q?ff5ETCpQAjafuXVBiPbSdk9U35Gsb8EkPB4avEYbnVOxO9qKkJYEeu1NpA?=
- =?iso-8859-1?Q?CnmwGzBZaqS37H2jHljrQy136VseCimyRDj0qIaYUbXI+pdiGvdElGF1+a?=
- =?iso-8859-1?Q?jfLvdYncoeeFX7wpBFmKYMO90FSTFvLwf1pe1wOeNAW4KqTm3PMfotrRba?=
- =?iso-8859-1?Q?ZTX2R36DTNMpDKn+hyaYi1FMCwHWlP5Uv91V3qtGtauQFRmI4t99TpOKZn?=
- =?iso-8859-1?Q?Tw5hMWsrfcY11h2hbJ686qhxWBx8XYSB2GI7dXmX3mDaJ3CoOaXACfXo94?=
- =?iso-8859-1?Q?z2s0BilijsFpWL8hTnXABixXi64CZUX4HUnQTM/UpOazcEwYvBdCCsi/AP?=
- =?iso-8859-1?Q?AwusgQSoR2Ej5276VfBBWhSWoHMjzbxdyRSPHS5lSzKSGzC+cM+vxjVdcP?=
- =?iso-8859-1?Q?dg3lKJpkL96dpGI+DKnvv3QDv5OJubu/LT5QOnAwHxVdd6LqxaHCr3giRO?=
- =?iso-8859-1?Q?Fu/OOv7pISmJgZWekua6/aW9uS2+pGpJKk/fmW3OdUemqo/M8bqDdCpoh7?=
- =?iso-8859-1?Q?XhkxtG+auhSML8WSn+TO7zTF1Rzt5K4swNyyIJe0hnlyFNYcKeZXgByFop?=
- =?iso-8859-1?Q?h+R7WSBeX8jSXfokESsPmonQqAZEo/fois4JAo9CGIlFpXG1wZuJgpqtGo?=
- =?iso-8859-1?Q?hK2UQnRAptsTLBLnzIVWZdj7/M/unEUuj7Xsv3h6WDFXCI04pX30Gdajas?=
- =?iso-8859-1?Q?poR1QoEzDrYvkj4uRrSphObhCGzUhGTyiyljkNod+qWFVnsJIcNINhP6I5?=
- =?iso-8859-1?Q?uncyQZqTz2rizVEHIYpACCB2r++lI04ATpMdUWFgBC9R9/eUuP72WWgsja?=
- =?iso-8859-1?Q?BgWHKO3MJrNYYzSNt8MZU98mBCT4Jj85f+DtC/C4JKNyPCZodG4VKRGnYT?=
- =?iso-8859-1?Q?N3gNIgHehzKHTFKquIzIVYwItDYVb0ig5mKiV6N8yqn1KYrqgII4vw8qjH?=
- =?iso-8859-1?Q?swaZ9WdCzS9GgnJLHIabqJemFlboM4eKsOMXwaMxCfxNbDgX9KUpjUqgim?=
- =?iso-8859-1?Q?2dDUQeyrPi+jpAfYo5LHw3wrCpB4GrCDtHNQlHT6kDE5nbtCvlGNOzhBmq?=
- =?iso-8859-1?Q?i43mk/DvjoKz9yZ2P/egZrwvnix17gpEt6NDMhZuPI4vFTMbpSOFvWKQEr?=
- =?iso-8859-1?Q?rJj48/PM29KRuOpUr/YT26zQ6I0mxD7zCQFlrNTjnwFz8TUvaOREyyvrtL?=
- =?iso-8859-1?Q?y/pS1V6Rr+l08Kg7PWjLoAntA9CAo5nSiM0ekqlt9kCaBQFlUOYYxf3bk1?=
- =?iso-8859-1?Q?8sZvJKI+xLbdSFvPDWV007vnab+GzK7Bs/zKeS6h7w+wzXgvClERleS+qR?=
- =?iso-8859-1?Q?wYDRNNPEHUhn7c6XInwvPMtWf2ChE/2AL+g7KyA9xOt/3s69vyCopRqF9A?=
- =?iso-8859-1?Q?FF14jI7Nm5jgs=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
+ =?us-ascii?Q?esKWm+Rgv3IfOX7ylsVnuyStcGTGsIvQeEbfbe83V9frTP5Y6blTDChR6Pbt?=
+ =?us-ascii?Q?o/ppUmnfnKyT5kGh/S9t/rCZ3+bKlj5/1sMHYh+CZAhwZwHrwDoKKf3Rzp6w?=
+ =?us-ascii?Q?bBagYvkOU+tjdl7Y3aIGFoN8OWDsNaUSMVDfuwwqqnYZ8/SxWPOx3f50crDq?=
+ =?us-ascii?Q?VRFrpH2d1+2b83dgAiHX3FHv0qlWjBLfOxLZvN0CGjDjsAnlt0CR6bBGH1CI?=
+ =?us-ascii?Q?PQ8EOfyXFLVrnnwo+nEH7XMzPCEYiMn/qcevArzW8zme5fpYR3ciC5o8vhsE?=
+ =?us-ascii?Q?Bkw3T1oaAzseGDUElSETx6iEJoD5VFmHlbxHMuLk6U6evicILZ+RHxsXGu1M?=
+ =?us-ascii?Q?oTbqEwdb9rM6QDeInQSHDe2i1UHltDFOAozFdp2v+Ys2f/UXnVtU/j7mu4bq?=
+ =?us-ascii?Q?9GPwCKZeNdR3O+vHXz3UBEDSxPxKMlkLje9jglz4t4CMYkrqNzm4456jCqLK?=
+ =?us-ascii?Q?ac/Tssu01d+OYAt4gqgmvZ7YODMCsprikbGV+JTjUteG3f319ueJAI9zIjhV?=
+ =?us-ascii?Q?fjh0mRie6Q/Fk6/MO5R5fIxQ9dYZFcfqnBJknZhmhcBflwTrupVRUWwEshrw?=
+ =?us-ascii?Q?xt/PB5S/N/VcAG40QYlTk5o3lS0tyyRPi9UD+FEsFUyXS5YwAQyvpUoN+PtV?=
+ =?us-ascii?Q?VN9LM4HGoIn9cylLjB0qp+bno5Wcibp0fX+kx89Lxi2ADxcpLFfemeKQBZdT?=
+ =?us-ascii?Q?JLB0Jwf7eGvxvarHIeBxsKwTBgrWPatsb17xkZd92IIyPU2xFvNUsna3/Sih?=
+ =?us-ascii?Q?uxgaoa/+Qk6BRmO25iMdpwrmHmAyZ+dL2tgc7Z8oCWbpg4AcicVHF/QupnfF?=
+ =?us-ascii?Q?1gBFxzBLx6Gs9G1k2zVgpZpqYywnRpdAWncFxzc5ofYXJdd8DFgpONk1WnpE?=
+ =?us-ascii?Q?ELqJ/7mTtekIsznXGc5jzPK0QQ/1OQGX6LRfrSsntNwEgVf/lMeziJuTP/iR?=
+ =?us-ascii?Q?Aak2Ctli15M+uwRo60r/ujAR3EuLU9N9LgGm7DfvtZMNdpH9m0boIYrcHofk?=
+ =?us-ascii?Q?PLDY17AJJl1G7w9tqcK7RPMXoX1MkNTcWbuqu4Gm7i+O1wCEVgacdT+7Y/K6?=
+ =?us-ascii?Q?Tn3JeeY3jjhYmOSRCHNbDXOZPiVHfQp9hKwg62iURIkRkaINFmJU1nRA7CRH?=
+ =?us-ascii?Q?bIjpltDnmLCY9az/1/UBQ65fIHjEgSbmsDne5vpKb+oAgOsG9/G4HjPJ4EXc?=
+ =?us-ascii?Q?Rgl1et8BXgi5fzl/RArBuXERDmGBNdZ2UkoOcI9fnY1IuiFV2tC5sJTWhHY9?=
+ =?us-ascii?Q?mwLi6/JrOItO3r4NXZEJbgMev8dyRgqQPPH8bzM+9q7mrNPCxpPCAWy+t+W9?=
+ =?us-ascii?Q?5ogR1hC4L03ppIkn6RrdFkZn/nDYVW9mdjpg1RFZOQy1st+jhTrfswTkPzY8?=
+ =?us-ascii?Q?u1iNnsOOIOaY9CXr8rqTfw3baehL0McWMPbW1BmaR72240JzjxuEhztKtV0F?=
+ =?us-ascii?Q?aP+b1nFB4zn1Yu1x3axqN9JDEpTc5O7tWlNvdWF/bH3qL+SeR5TQiIr+sg73?=
+ =?us-ascii?Q?W2sj2vEFDbPisq4ca/3dmDAIm7H2RziqwyAjIpdL9MkniDXqsPnHglpJOp+S?=
+ =?us-ascii?Q?IPJni7g3YxhZZq6cw24=3D?=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -122,179 +123,212 @@ MIME-Version: 1.0
 X-OriginatorOrg: nxp.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: DB7PR04MB5146.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5b35de9b-9f60-482e-3bed-08dbfd1352a6
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Dec 2023 02:12:43.5818
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5b272f80-0119-4575-6865-08dbfd1499b3
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Dec 2023 02:21:52.2391
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: hjj9+jj3OZUY46TIl2dLXMUjGPuWjfyG2GL2Xfziv2zfah0wbSprLVzPpHm3lpxDPtRg4dIeQhz6eFCaSp5bOw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB7037
+X-MS-Exchange-CrossTenant-userprincipalname: aY/IHW/oe/KPpivRia6nBsmzkmICnccnNbonXykodHu0BEWV5DrTZt+5WHrud95zWyz98US9w53LcVTzSyOtyQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB9757
 
 Hi Alexander,
 
->
+>=20
 > Hi,
->
+>=20
 > thanks for the patch.
->
-> Am Donnerstag, 14. Dezember 2023, 12:24:41 CET schrieb Xu Yang:
-> > There are 2 USB controllers on i.MX93. Add them.
+>=20
+> Am Donnerstag, 14. Dezember 2023, 12:24:42 CET schrieb Xu Yang:
+> > There are 2 Type-C ports and 2 USB controllers on i.MX93. Enable them.
 > >
 > > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
 > > ---
-> >  arch/arm64/boot/dts/freescale/imx93.dtsi | 58 ++++++++++++++++++++++++
-> >  1 file changed, 58 insertions(+)
+> >  .../boot/dts/freescale/imx93-11x11-evk.dts    | 108 ++++++++++++++++++
+> >  1 file changed, 108 insertions(+)
 > >
-> > diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi
-> > b/arch/arm64/boot/dts/freescale/imx93.dtsi index 34c0540276d1..bcf4861c=
-fede
-> > 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx93.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
-> > @@ -171,6 +171,20 @@ cm33: remoteproc-cm33 {
-> >               status =3D "disabled";
-> >       };
+> > diff --git a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
+> > b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts index
+> > 2b9d47716f75..42b1ea7d5220 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
+> > +++ b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
+> > @@ -5,6 +5,7 @@
 > >
-> > +     usbphynop1: usbphynop1 {
-> > +             #phy-cells =3D <0>;
-> > +             compatible =3D "usb-nop-xceiv";
->
-> compatible first.
-
-Okay.
-
->
-> > +             clocks =3D <&clk IMX93_CLK_USB_PHY_BURUNIN>;
-> > +             clock-names =3D "main_clk";
-> > +     };
-> > +
-> > +     usbphynop2: usbphynop2 {
-> > +             #phy-cells =3D <0>;
-> > +             compatible =3D "usb-nop-xceiv";
->
-> compatible first.
-
-Okay.
-
->
-> > +             clocks =3D <&clk IMX93_CLK_USB_PHY_BURUNIN>;
-> > +             clock-names =3D "main_clk";
-> > +     };
-> > +
-> >       soc@0 {
-> >               compatible =3D "simple-bus";
-> >               #address-cells =3D <1>;
-> > @@ -1059,5 +1073,49 @@ ddr-pmu@4e300dc0 {
-> >                       reg =3D <0x4e300dc0 0x200>;
-> >                       interrupts =3D <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
-> >               };
-> > +
-> > +             usbotg1: usb@4c100000 {
-> > +                     compatible =3D "fsl,imx8mm-usb", "fsl,imx7d-usb",
-> "fsl,imx27-usb";
-> > +                     reg =3D <0x4c100000 0x200>;
-> > +                     interrupts =3D <GIC_SPI 187 IRQ_TYPE_LEVEL_HIGH>;
-> > +                     clocks =3D <&clk IMX93_CLK_USB_CONTROLLER_GATE>,
-> > +                              <&clk IMX93_CLK_HSIO_32K_GATE>;
-> > +                     clock-names =3D "usb_ctrl_root_clk",
-> "usb_wakeup_clk";
->
-> drivers/usb/chipidea/ci_hdrc_imx.c uses 3 clocks: "ipg", "ahb" and "per",=
- see
-> imx_get_clks(). How is this supposed to work?
-
-I have sent another patch to get this clock.
-https://lore.kernel.org/all/20231214112622.2412321-1-xu.yang_2@nxp.com/
-
->
-> > +                     assigned-clocks =3D <&clk IMX93_CLK_HSIO>;
-> > +                     assigned-clock-parents =3D <&clk
-> IMX93_CLK_SYS_PLL_PFD1_DIV2>;
-> > +                     assigned-clock-rates =3D <133000000>;
-> > +                     fsl,usbphy =3D <&usbphynop1>;
-> > +                     fsl,usbmisc =3D <&usbmisc1 0>;
-> > +                     status =3D "disabled";
-> > +             };
-> > +
-> > +             usbmisc1: usbmisc@4c100200 {
-> > +                     compatible =3D "fsl,imx8mm-usbmisc", "fsl,imx7d-
-> usbmisc",
-> > +                                     "fsl,imx6q-usbmisc";
->
-> This means you are compatible to fsl,imx7d-usbmisc. Which means you use
-> register MX7D_USB_OTG_PHY_STATUS in USB misc (USBNC). But i.MX93 RM Rev. =
-2
-> (04/2023) lacks this and other registers.
-
-Some registers in USBNC are not shown. The internal RM has these registers.
-
->
-> > +                     #index-cells =3D <1>;
-> > +                     reg =3D <0x4c100200 0x200>;
->
-> reg after compatible.
-
-Okay.
-
->
-> > +             };
-> > +
-> > +             usbotg2: usb@4c200000 {
-> > +                     compatible =3D "fsl,imx8mm-usb", "fsl,imx7d-usb",
-> "fsl,imx27-usb";
-> > +                     reg =3D <0x4c200000 0x200>;
-> > +                     interrupts =3D <GIC_SPI 188 IRQ_TYPE_LEVEL_HIGH>;
-> > +                     clocks =3D <&clk IMX93_CLK_USB_CONTROLLER_GATE>,
-> > +                              <&clk IMX93_CLK_HSIO_32K_GATE>;
-> > +                     clock-names =3D "usb_ctrl_root_clk",
-> "usb_wakeup_clk";
->
-> The same as for usbotg1 applies here.
-
-Okay.
-
->
-> > +                     assigned-clocks =3D <&clk IMX93_CLK_HSIO>;
-> > +                     assigned-clock-parents =3D <&clk
-> IMX93_CLK_SYS_PLL_PFD1_DIV2>;
-> > +                     assigned-clock-rates =3D <133000000>;
-> > +                     fsl,usbphy =3D <&usbphynop2>;
-> > +                     fsl,usbmisc =3D <&usbmisc2 0>;
-> > +                     status =3D "disabled";
-> > +             };
-> > +
-> > +             usbmisc2: usbmisc@4c200200 {
-> > +                     compatible =3D "fsl,imx8mm-usbmisc", "fsl,imx7d-
-> usbmisc",
-> > +                                     "fsl,imx6q-usbmisc";
-> > +                     #index-cells =3D <1>;
-> > +                     reg =3D <0x4c200200 0x200>;
->
-> The same as for usbmisc1 applies here.
-
-Okay.
-
->
-> > +             };
-> >       };
+> >  /dts-v1/;
+> >
+> > +#include <dt-bindings/usb/pd.h>
+> >  #include "imx93.dtsi"
+> >
+> >  / {
+> > @@ -103,6 +104,70 @@ &mu2 {
+> >       status =3D "okay";
 > >  };
->
+> >
+> > +&lpi2c3 {
+> > +     #address-cells =3D <1>;
+> > +     #size-cells =3D <0>;
+> > +     clock-frequency =3D <400000>;
+> > +     pinctrl-names =3D "default", "sleep";
+> > +     pinctrl-0 =3D <&pinctrl_lpi2c3>;
+> > +     pinctrl-1 =3D <&pinctrl_lpi2c3>;
+> > +     status =3D "okay";
+> > +
+> > +     ptn5110: tcpc@50 {
+>=20
+> I do not know if there is already some consent, but personally I do not l=
+ike
+> tcpc for the node name. Maybe change that to usb-typec@50.
+
+It really doesn't matter. The connector node will clear say it's a typec po=
+rt.
+
+>=20
+> > +             compatible =3D "nxp,ptn5110";
+> > +             reg =3D <0x50>;
+> > +             interrupt-parent =3D <&gpio3>;
+> > +             interrupts =3D <27 IRQ_TYPE_LEVEL_LOW>;
+> > +             status =3D "okay";
+>=20
+> status not needed here, "okay" is default and node is added here.
+
+Yeah.=20
+
+>=20
+> > +
+> > +             port {
+> > +                     typec1_dr_sw: endpoint {
+> > +                             remote-endpoint =3D <&usb1_drd_sw>;
+> > +                     };
+> > +             };
+> > +
+> > +             typec1_con: connector {
+> > +                     compatible =3D "usb-c-connector";
+> > +                     label =3D "USB-C";
+> > +                     power-role =3D "dual";
+> > +                     data-role =3D "dual";
+> > +                     try-power-role =3D "sink";
+> > +                     source-pdos =3D <PDO_FIXED(5000, 3000,
+> PDO_FIXED_USB_COMM)>;
+> > +                     sink-pdos =3D <PDO_FIXED(5000, 3000,
+> PDO_FIXED_USB_COMM)
+> > +                                  PDO_VAR(5000, 20000, 3000)>;
+> > +                     op-sink-microwatt =3D <15000000>;
+> > +                     self-powered;
+> > +             };
+> > +     };
+> > +
+> > +     ptn5110_2: tcpc@51 {
+>=20
+> See above.
+>=20
+> > +             compatible =3D "nxp,ptn5110";
+> > +             reg =3D <0x51>;
+> > +             interrupt-parent =3D <&gpio3>;
+> > +             interrupts =3D <27 IRQ_TYPE_LEVEL_LOW>;
+> > +             status =3D "okay";
+>=20
+> See above.
+
+Okay.
+
+Thanks,
+Xu Yang
+
+>=20
 > Best regards,
 > Alexander
->
-> --
-> TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-> Amtsgericht M=FCnchen, HRB 105018
-> Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-> http://www.tq-/
-> group.com%2F&data=3D05%7C02%7Cxu.yang_2%40nxp.com%7C10ff5a35f53f4047ae1d0=
-8dbfca99c38%7C686ea1d3bc2b4c6fa
-> 92cd99c5c301635%7C0%7C0%7C638381577622080432%7CUnknown%7CTWFpbGZsb3d8eyJW=
-IjoiMC4wLjAwMDAiLCJQIjoiV2
-> luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&sdata=3DVlpRPcnJTmyw=
-fSamaGB1Ev8aPN2Hi596VbbRNGXF
-> yis%3D&reserved=3D0
->
+>=20
+> > +
+> > +             port {
+> > +                     typec2_dr_sw: endpoint {
+> > +                             remote-endpoint =3D <&usb2_drd_sw>;
+> > +                     };
+> > +             };
+> > +
+> > +             typec2_con: connector {
+> > +                     compatible =3D "usb-c-connector";
+> > +                     label =3D "USB-C";
+> > +                     power-role =3D "dual";
+> > +                     data-role =3D "dual";
+> > +                     try-power-role =3D "sink";
+> > +                     source-pdos =3D <PDO_FIXED(5000, 3000,
+> PDO_FIXED_USB_COMM)>;
+> > +                     sink-pdos =3D <PDO_FIXED(5000, 3000,
+> PDO_FIXED_USB_COMM)
+> > +                                  PDO_VAR(5000, 20000, 3000)>;
+> > +                     op-sink-microwatt =3D <15000000>;
+> > +                     self-powered;
+> > +             };
+> > +     };
+> > +};
+> > +
+> >  &eqos {
+> >       pinctrl-names =3D "default";
+> >       pinctrl-0 =3D <&pinctrl_eqos>;
+> > @@ -155,6 +220,42 @@ &lpuart5 {
+> >       status =3D "okay";
+> >  };
+> >
+> > +&usbotg1 {
+> > +     dr_mode =3D "otg";
+> > +     hnp-disable;
+> > +     srp-disable;
+> > +     adp-disable;
+> > +     usb-role-switch;
+> > +     disable-over-current;
+> > +     samsung,picophy-pre-emp-curr-control =3D <3>;
+> > +     samsung,picophy-dc-vol-level-adjust =3D <7>;
+> > +     status =3D "okay";
+> > +
+> > +     port {
+> > +             usb1_drd_sw: endpoint {
+> > +                     remote-endpoint =3D <&typec1_dr_sw>;
+> > +             };
+> > +     };
+> > +};
+> > +
+> > +&usbotg2 {
+> > +     dr_mode =3D "otg";
+> > +     hnp-disable;
+> > +     srp-disable;
+> > +     adp-disable;
+> > +     usb-role-switch;
+> > +     disable-over-current;
+> > +     samsung,picophy-pre-emp-curr-control =3D <3>;
+> > +     samsung,picophy-dc-vol-level-adjust =3D <7>;
+> > +     status =3D "okay";
+> > +
+> > +     port {
+> > +             usb2_drd_sw: endpoint {
+> > +                     remote-endpoint =3D <&typec2_dr_sw>;
+> > +             };
+> > +     };
+> > +};
+> > +
+> >  &usdhc1 {
+> >       pinctrl-names =3D "default", "state_100mhz", "state_200mhz";
+> >       pinctrl-0 =3D <&pinctrl_usdhc1>;
+> > @@ -221,6 +322,13 @@ MX93_PAD_ENET2_TX_CTL__ENET1_RGMII_TX_CTL        0=
+x57e
+> >
+> >               >;
+> >
+> >       };
+> >
+> > +     pinctrl_lpi2c3: lpi2c3grp {
+> > +             fsl,pins =3D <
+> > +                     MX93_PAD_GPIO_IO28__LPI2C3_SDA
+> 0x40000b9e
+> > +                     MX93_PAD_GPIO_IO29__LPI2C3_SCL
+> 0x40000b9e
+> > +             >;
+> > +     };
+> > +
+> >       pinctrl_uart1: uart1grp {
+> >               fsl,pins =3D <
+> >                       MX93_PAD_UART1_RXD__LPUART1_RX
+> 0x31e
+>=20
+>=20
 
 
