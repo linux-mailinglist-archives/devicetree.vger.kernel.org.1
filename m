@@ -1,249 +1,159 @@
-Return-Path: <devicetree+bounces-25631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25632-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CC26814119
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 06:00:51 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 093E3814120
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 06:05:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E27D11F22924
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 05:00:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 63302B21E7A
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 05:05:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4C1B6C6C0;
-	Fri, 15 Dec 2023 05:00:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BCDA1C31;
+	Fri, 15 Dec 2023 05:05:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="RQs34OgL"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="fHdM8lVo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2075.outbound.protection.outlook.com [40.107.104.75])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2EF8CA7C
-	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 05:00:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
-From: Dragan Simic <dsimic@manjaro.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1702616435;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=VcoNo0KyUxk0+n8xUofO+4A/DZAwZQKaiBkiB0Y6XvI=;
-	b=RQs34OgL453y+Fw8OnOinVL2+hQ653DAsixlcz8YVzvcq5ta/5DoLGHB4FelWDXYXX5HxP
-	8hkp16MfgCV7q3HMRcrpeXRroPxlSsCUspNh6/kcuUq8YPu0PUmR3quirr/jduMRerti4w
-	D20f/fPyxft80bFjveotsRbGySIna0ynmUHg5aNnHqtSYLfXXNz2jGRVBkqhgGngq1Htd3
-	4ZGUCzYvTUs33nujuWEwE7UTQvmQJauQ/I17G5ko50sxpJgI9w2Wjvr2J8JxppEgnxbz3k
-	fJQNn/1HBfd53mC9rCxm7AmPfKtnibILN6243pJZAVXMnpwi2i3XvDICrXAROQ==
-To: linux-rockchip@lists.infradead.org
-Cc: heiko@sntech.de,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	Kyle Copperfield <kmcopper@danwin1210.me>
-Subject: [PATCH] arm64: dts: rockchip: Add cache information to the SoC dtsi for RK3399
-Date: Fri, 15 Dec 2023 06:00:33 +0100
-Message-Id: <be3cbcae5c40fa72a52845d30dcc66c847a98cfa.1702616304.git.dsimic@manjaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7725F568C;
+	Fri, 15 Dec 2023 05:04:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=idZULi7Of9CCZ2hiQCub4SBy0JrdObw/Tl6QlS+atbIcdnS1R1yzPf95RshfOV6v57fbzvxtEv+yRHBfn7qR3OEdnPkgVHwIeJJoGXkmKi0lRJ2XiNE+wbnrhbuXiXxmtLDRQ4VRGcFkwG4+4NL0yobYEHH7SvPjCjXJlVV0W6FZZna9IVZX7J8r0KLIT1OvFLJsOxTHBOQI39EmCdDBH0d14UG43dpftEibXQJ6eNvF+D9XeuTx8VEPsKc6Kd1fPDiKDYrWMV1UAWMAmPRZeCje2XSLkp8DUfySwAM0Rt5Ub3675WeCGJm1zDw8duSYRSN+4tpqoLxIIUYJtjoDIQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9+Z0KMEgY9mk188TyBhhqCnmZ9Z1niI5ahCrn69K+jQ=;
+ b=l37gXC9HCLPWUoJEJMa4926zAYjzpcj2p2yrVkVdQ3/YS76VtmgnFoYs6jMbb6vtWSv11YDYiCQPVX/dEODvTkoWjreAlrtNF06yFpaX6jvWlsKqDZFTvnfizfgQX8ep3O6hKAsMaham71bOqR64UnUB8gw1TZ61H4Egn+VZu2ltZCw0w2qlr9Vq23rCEu5NqTB8D9gwXaNS79FwroBkwLEoDcOYUv5Us1Ef2K6r5D6qkB+4XIWEOifVI3i4QpveWETmMCxJpKI5rRK3y2UXoCT6Ciy8ovO0nUMGp3qB4+lyD1gPV5tLr+R+ZNFUzVs21a6IBpBorqcDZ7MuPKqSSg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9+Z0KMEgY9mk188TyBhhqCnmZ9Z1niI5ahCrn69K+jQ=;
+ b=fHdM8lVoB/tTiYzBE1bhpyj77QBTJ7wnwOQZtoh6JbiePSZTUGZ47oEJayycD5Shbk9xeTK3hCYeDC42VwmJOlRftSww7fAouI5FWEarpN2KuveDWc8GWGTvevq0lkjBpHhpcSeMCBeEscMdj8gMb+dgWZuSXXgYhl/ZT4ssqm8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM6PR04MB4838.eurprd04.prod.outlook.com (2603:10a6:20b:4::16)
+ by AM0PR04MB7025.eurprd04.prod.outlook.com (2603:10a6:208:19c::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.30; Fri, 15 Dec
+ 2023 05:04:55 +0000
+Received: from AM6PR04MB4838.eurprd04.prod.outlook.com
+ ([fe80::95f5:5118:258f:ee40]) by AM6PR04MB4838.eurprd04.prod.outlook.com
+ ([fe80::95f5:5118:258f:ee40%7]) with mapi id 15.20.7091.030; Fri, 15 Dec 2023
+ 05:04:55 +0000
+Date: Fri, 15 Dec 2023 00:04:45 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: krzysztof.kozlowski@linaro.org, shawnguo@kernel.org, festevam@denx.de
+Cc: devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
+	imx@lists.linux.dev, joy.zou@nxp.com,
+	krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
+	peng.fan@nxp.com, robh+dt@kernel.org, shenwei.wang@nxp.com,
+	vkoul@kernel.org
+Subject: Re: [PATCH 0/4] dmaengine: fsl-edma: fix eDMAv4 uart dma loop test
+ failure
+Message-ID: <ZXvebWSmOhHRIcZc@lizhi-Precision-Tower-5810>
+References: <20231114154824.3617255-1-Frank.Li@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231114154824.3617255-1-Frank.Li@nxp.com>
+X-ClientProxiedBy: BYAPR05CA0105.namprd05.prod.outlook.com
+ (2603:10b6:a03:e0::46) To VI1PR04MB4845.eurprd04.prod.outlook.com
+ (2603:10a6:803:51::30)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM6PR04MB4838:EE_|AM0PR04MB7025:EE_
+X-MS-Office365-Filtering-Correlation-Id: 22ef390e-d369-462e-1828-08dbfd2b604a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	rQwtQc5l5/tiG50+vWG3/JNNUJcuf20MNmOgoOv8hKiXNnDLjCTdgW0cEtOYejpscMb8mGATa55Mhsm5XAsCKDEkzXh/31MKEWcCSen+2SsMqd3ae+7tK2sDM36wmjQTtonBMlwcTcpJBSgy22eti9g3pNV6SQXRpaMvz+yGvEoHYacwYlt2ajTKxeYhEjwWbpUi/oy9eUMWCtvDSdH3bjuQTqMGs1LTEWCtu8K1bp4VnubGnA3bjxrXVC+3gYWcl2a6zi1iCivmKeFdvEs0Uzad04Y5pD+JxX/uNOdu/zKQQgkxNSDu3wlO/EUoe7Vkb4dtZEH6wNif7JD+a7hllXLJ159AAQ+7klgv33w0C3kA/gvdNqgSgPATiugNh7/+0wTRwSzHKMjUMqgFEgEYpEbyoXXTqtVzUSH9UnSxjbZIw1Gj2GfAQMVsK1UlhG+H4Mv/7GWPJmtvi1Fd2VpgpITkrQ3E+S46iK+1M2lppCNHydGsG9HR7v7bDrfQrhUdV4Pqq08kAMZ/P1YRjuiPooLiH/SeRbQm3YgrwygqkVmZNk6z/KR03lrN6KP9mJFoiC8wERUbg3ggmnuTQ6kU1w46x4rl1scHGbMviKgiSTdK5AOQKhGkumGZya6x9Pu5
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4838.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(39860400002)(396003)(136003)(346002)(376002)(366004)(230922051799003)(64100799003)(1800799012)(451199024)(186009)(4326008)(8936002)(8676002)(2906002)(7416002)(5660300002)(478600001)(6506007)(6512007)(6666004)(9686003)(52116002)(66476007)(66556008)(66946007)(316002)(6486002)(33716001)(41300700001)(38100700002)(86362001)(38350700005)(26005)(83380400001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?cuCklYpZ7n0k8fvHOG3AHqev+vNEKpCZnY0uuVCEaX7pOi3vMore45tnuj1l?=
+ =?us-ascii?Q?cC5h3ty86S538rl7+fNRD0VfNjSTBDMoaVALea5L3pf1AowkqS2k18UTWKJk?=
+ =?us-ascii?Q?nALq6VWPZfkjH5PY8I+RKzytxuNZRChKYSjxsC19EYEzOQvwe6idM2lolN/Z?=
+ =?us-ascii?Q?lCbEKnrZqYmiilHWYZHmHZShQ/2IoCU56ce8jUIf7o6Q1J6ciGPlmkhDDYDB?=
+ =?us-ascii?Q?44c3Mk83LcBlabCWiC2XmCHmVcjHOv3+xn6Wkdev57PXAoWXajDMEgPrhNhU?=
+ =?us-ascii?Q?OnjrxmXDGXhV1Ff44FzP2TD2VuNq91WdQfoe1gizCBMZHtpXiy9McBO9Hon6?=
+ =?us-ascii?Q?LKi2oHQBbNLh3JQfUqhNPUWkbIq5JeQnfHSGMGOtL45PkX/awJkUEQArEJig?=
+ =?us-ascii?Q?Odmf4cXtVhHaeUiHwa1tE9V+HhneaxdDHaPSJs3DX+WSXtdvrvcb9T/zYFQe?=
+ =?us-ascii?Q?tmtVHzneuqgZoIPKDnTFu4zuR9zKKp96pC5uI0vqfo+I7USU5jJHYqyWyTZP?=
+ =?us-ascii?Q?Z06LCHD2OlEcF47urryBIBjEAreW5af3o1JJ1IHTyM7wLl5ZwkksYA2tZgh4?=
+ =?us-ascii?Q?43PaM2aglHCJWFafKw8+/srU3t4k28T8WTINEOszRjia7ZAABHVYeT/7+Xfv?=
+ =?us-ascii?Q?souvQNXwc9qiGfBJ8+iDiL5jfgyZQscnyUxYcH8vruk3bEil9whnqi4OpLhA?=
+ =?us-ascii?Q?y/j02+gC2LewmOV4I7c2JWk+cCshJOXTD9+gA+VQ8/u58LqhaOft1lqr4Fc2?=
+ =?us-ascii?Q?dNcipHY9XO4lB1hIrDk69PSwpanRKZoSvoQ3WGjtypWfBu/RksL4XAOeOFrf?=
+ =?us-ascii?Q?LuoILqz+yXIvYxXt9c1JxqmKkN6pUfiJZXgoWTlzfBXx+cNxpgZedagxwtjp?=
+ =?us-ascii?Q?cVaHqn641GKGercPPGljYL9+IfDk89dq0s4AeodccXY7apvTMypkmV4lbvbG?=
+ =?us-ascii?Q?OzREArZB8GnH/RZsAZekfwjf6uehTY9U9/Ncl2g1jMkPbdy+BgX1SejfIvVS?=
+ =?us-ascii?Q?LssaBSQ+W0oAkVzqeG2vHZ093V0BpD2/r0WQ7xqYQ1F+x9BN8LteX1KkvoRO?=
+ =?us-ascii?Q?qCvirR3RE0EUY8hFHZo3DnBAlLqduXMC9ZPfZZEiLawBoR6WvT5HJZEr4RlK?=
+ =?us-ascii?Q?1OyefjIijSCXxZJ6YzKzW8gy5H8FTPiPIqvjT+m9tvAOQ2jiULF8XFcqyWoB?=
+ =?us-ascii?Q?5VbmSWmimFBftkkzEY5ZFl2ZNno+p5pC4eZ7FctCtS6L+ydKAZz2cdedqj65?=
+ =?us-ascii?Q?RE2pYxXpqZbMKhlOhBfGpTaoHTO5KGvh2E3r/C3VsnvhaNy1+UPCsQg+Qi7/?=
+ =?us-ascii?Q?rnsMmlGPO15tkRtu2RRACkYMNNDwjq/YCDLlbWhWHeGxdsxI6vOUqG9h7Sf2?=
+ =?us-ascii?Q?qpdbVItrcf9B1Wxc13r9AmIduWpdWbQYqVIrJXI2kjlAURSSzIsT8SWhvpXd?=
+ =?us-ascii?Q?vnuyHLH8sTDvGST31d+/LXBgiZZLXG8bKSMO+gTk3IKgNTmbgfaYjOI52Psk?=
+ =?us-ascii?Q?vcpWHuAU0LX9GsCBWAW8TiFQYcFD9sSXdJiBdV8Y/BaQgvq+29SfHW+Xx24h?=
+ =?us-ascii?Q?e6LWZfyMdv0023kI7Wo=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 22ef390e-d369-462e-1828-08dbfd2b604a
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB4845.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Dec 2023 05:04:55.5435
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: l8mD6zCkjjugoKRKihtGZp41PecBi3JFmQB2L/30bkMC/tp1kh0KQDt7gayq+lss1ZnAYvhBVQw+Lclv6+4TqQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB7025
 
-Add missing cache information to the Rockchip RK3399 SoC dtsi.  The specified
-values were derived by hand from the cache size specifications available from
-the RK3399 datasheet;  for future reference, here's a brief summary:
+On Tue, Nov 14, 2023 at 10:48:20AM -0500, Frank Li wrote:
+> The commit a725990557e7d ("arm64: dts: imx93: Fix the dmas entries order")
+> trigger a hidden eDMAv4 hardware limitation.
+> 
+> Some channel require stick to odd number, some require stick to even
+> number.
+> 
+> This fixes include 3 part.
+> 1. add limitation at eDMA driver.
+> 2. create dt-binding header file to share define between driver and dts
+> 3. add ODD and EVEN requirement for uart driver at dts file.
 
-  - Each Cortex-A72 core has 48 KB of L1 instruction cache and
-    32 KB of L1 data cache available, four-way set associative
-  - Each Cortex-A53 core core has 32 KB of instruction cache and
-    32 KB of L1 data cache available, four-way set associative
-  - The big (A72) cluster has 1 MB of unified L2 cache available
-  - The little (A53) cluster has 512 KB of unified L2 cache available
+@vkoul:
+	Did you have chance to check this patch?
 
-This patch allows /proc/cpuinfo and lscpu(1) to display proper RK3399 cache
-information, and it eliminates the following error in the kernel log:
+Frank	
 
-  cacheinfo: Unable to detect cache hierarchy for CPU 0
-
-While there, add a couple of somewhat useful comments, which may help a bit
-anyone going through the RK3399 SoC dtsi.
-
-Co-developed-by: Kyle Copperfield <kmcopper@danwin1210.me>
-Signed-off-by: Dragan Simic <dsimic@manjaro.org>
----
-
-Notes:
-    It's been a while since Kyle and I worked on this patch, and his email
-    address seems to no longer work.  Unfortunately, I have no idea is there
-    some other email address that he actually uses now.  However, Kyle needs
-    to be mentioned as a co-author of this patch.
-
- arch/arm64/boot/dts/rockchip/rk3399.dtsi | 64 +++++++++++++++++++++++-
- 1 file changed, 62 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-index da0dfb237f85..f38c27f87cc9 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-@@ -41,22 +41,22 @@ cpus {
- 		#size-cells = <0>;
- 
- 		cpu-map {
--			cluster0 {
-+			cluster0 {	/* Cortex-A53 */
- 				core0 {
- 					cpu = <&cpu_l0>;
- 				};
- 				core1 {
- 					cpu = <&cpu_l1>;
- 				};
- 				core2 {
- 					cpu = <&cpu_l2>;
- 				};
- 				core3 {
- 					cpu = <&cpu_l3>;
- 				};
- 			};
- 
--			cluster1 {
-+			cluster1 {	/* Cortex-A72 */
- 				core0 {
- 					cpu = <&cpu_b0>;
- 				};
-@@ -76,54 +76,89 @@ cpu_l0: cpu@0 {
- 			#cooling-cells = <2>; /* min followed by max */
- 			dynamic-power-coefficient = <100>;
- 			cpu-idle-states = <&CPU_SLEEP &CLUSTER_SLEEP>;
-+			i-cache-size = <0x8000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&l2_cache_l>;
- 		};
- 
- 		cpu_l1: cpu@1 {
- 			device_type = "cpu";
- 			compatible = "arm,cortex-a53";
- 			reg = <0x0 0x1>;
- 			enable-method = "psci";
- 			capacity-dmips-mhz = <485>;
- 			clocks = <&cru ARMCLKL>;
- 			#cooling-cells = <2>; /* min followed by max */
- 			dynamic-power-coefficient = <100>;
- 			cpu-idle-states = <&CPU_SLEEP &CLUSTER_SLEEP>;
-+			i-cache-size = <0x8000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&l2_cache_l>;
- 		};
- 
- 		cpu_l2: cpu@2 {
- 			device_type = "cpu";
- 			compatible = "arm,cortex-a53";
- 			reg = <0x0 0x2>;
- 			enable-method = "psci";
- 			capacity-dmips-mhz = <485>;
- 			clocks = <&cru ARMCLKL>;
- 			#cooling-cells = <2>; /* min followed by max */
- 			dynamic-power-coefficient = <100>;
- 			cpu-idle-states = <&CPU_SLEEP &CLUSTER_SLEEP>;
-+			i-cache-size = <0x8000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&l2_cache_l>;
- 		};
- 
- 		cpu_l3: cpu@3 {
- 			device_type = "cpu";
- 			compatible = "arm,cortex-a53";
- 			reg = <0x0 0x3>;
- 			enable-method = "psci";
- 			capacity-dmips-mhz = <485>;
- 			clocks = <&cru ARMCLKL>;
- 			#cooling-cells = <2>; /* min followed by max */
- 			dynamic-power-coefficient = <100>;
- 			cpu-idle-states = <&CPU_SLEEP &CLUSTER_SLEEP>;
-+			i-cache-size = <0x8000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&l2_cache_l>;
- 		};
- 
- 		cpu_b0: cpu@100 {
- 			device_type = "cpu";
- 			compatible = "arm,cortex-a72";
- 			reg = <0x0 0x100>;
- 			enable-method = "psci";
- 			capacity-dmips-mhz = <1024>;
- 			clocks = <&cru ARMCLKB>;
- 			#cooling-cells = <2>; /* min followed by max */
- 			dynamic-power-coefficient = <436>;
- 			cpu-idle-states = <&CPU_SLEEP &CLUSTER_SLEEP>;
-+			i-cache-size = <0xC000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&l2_cache_b>;
- 
- 			thermal-idle {
- 				#cooling-cells = <2>;
-@@ -142,14 +177,39 @@ cpu_b1: cpu@101 {
- 			#cooling-cells = <2>; /* min followed by max */
- 			dynamic-power-coefficient = <436>;
- 			cpu-idle-states = <&CPU_SLEEP &CLUSTER_SLEEP>;
-+			i-cache-size = <0xC000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&l2_cache_b>;
- 
- 			thermal-idle {
- 				#cooling-cells = <2>;
- 				duration-us = <10000>;
- 				exit-latency-us = <500>;
- 			};
- 		};
- 
-+		l2_cache_l: l2-cache-cluster0 {
-+			compatible = "cache";
-+			cache-level = <2>;
-+			cache-unified;
-+			cache-size = <0x80000>;
-+			cache-line-size = <64>;
-+			cache-sets = <512>;
-+		};
-+
-+		l2_cache_b: l2-cache-cluster1 {
-+			compatible = "cache";
-+			cache-level = <2>;
-+			cache-unified;
-+			cache-size = <0x100000>;
-+			cache-line-size = <64>;
-+			cache-sets = <1024>;
-+		};
-+
- 		idle-states {
- 			entry-method = "psci";
- 
+> 
+> Frank Li (4):
+>   dmaengine: fsl-edma: fix eDMAv4 channel allocation issue
+>   dt-bindings: dma: fsl-edma: Add fsl-edma.h to prevent hardcoding in
+>     dts
+>   dmaengine: fsl-edma: utilize common dt-binding header file
+>   arm64: dts: imx93: Fix EDMA transfer failure
+> 
+>  arch/arm64/boot/dts/freescale/imx93.dtsi | 13 +++++++++----
+>  drivers/dma/fsl-edma-main.c              | 17 ++++++++++-------
+>  include/dt-bindings/dma/fsl-edma.h       | 21 +++++++++++++++++++++
+>  3 files changed, 40 insertions(+), 11 deletions(-)
+>  create mode 100644 include/dt-bindings/dma/fsl-edma.h
+> 
+> -- 
+> 2.34.1
+> 
 
