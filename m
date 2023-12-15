@@ -1,188 +1,121 @@
-Return-Path: <devicetree+bounces-25832-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25831-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 887E3814B73
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 16:15:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39218814B72
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 16:15:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 08AC51F21031
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 15:15:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6C7281C236DC
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 15:15:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 945093717F;
-	Fri, 15 Dec 2023 15:13:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B05E837169;
+	Fri, 15 Dec 2023 15:12:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mPhVSq6T"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="JrusyhDr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBBD83C471;
-	Fri, 15 Dec 2023 15:13:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-33646dbedc9so663740f8f.3;
-        Fri, 15 Dec 2023 07:13:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702653204; x=1703258004; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=brYOzG3g23wL22CEoDTu8T5IzltVcQQgzthieH5Rn74=;
-        b=mPhVSq6TOcznDbqFf/FCmcrpcEXIJC2ewo8P8xGcFXLN3metR8HgNasaBE2chVsufs
-         lFDK22DsKDMi1ki0w9TYfUbRKP4180WKRIWISwwxlcRFhNN1Q2nowhMmBJW+mIN2GYJB
-         CSvlYlUfNmrM9r7PhP/OjGJsH048+QzwlZZYTKWC7muTGYRRs2TDlswqulA6xrS5BJqw
-         MU2IMzDIDED0o5Hcmhd31+t0dBpkpzRWO/u/XTxrd/Wpf6aBPiXzH0CQlJAXhlDM09CC
-         E91ZNoN9wu5GtylKERyED1yAnIxQNzgQ+V8YmyWBl0bGVxOJSZbFI1cFu+0BR5XBnLJk
-         yvXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702653204; x=1703258004;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=brYOzG3g23wL22CEoDTu8T5IzltVcQQgzthieH5Rn74=;
-        b=jN0icT0rWxUQdDRGwLcVgRf9NdsR6bfT+Uec6Fwy3dxIo5DaA/JLpGm82qqRfL8yeT
-         Gv41s75ZzTHF2dvzhsJExJszXxYZAwFnMtUDTws235ucaWczPzstJqPAWUm8W1yVF+5E
-         vh17LaKO+m0dUdj1xg78st6wUToUAb9TPPecwIQCseYMJtazCBV3tqTLIbBntzKBmsv8
-         2TuVsQSko241/kwRdFfWPGp6MxmKhrHOWaEcTPt93n3g356s7/P0vrjSQ01vMN+BC8n9
-         ZI/kok3n/tQcSzkaIdPdhfMHbcqupT8XshAZH7Trl/DFDa3mDnLwJ8Hu4kTn0oIbgeAh
-         1pRA==
-X-Gm-Message-State: AOJu0YzdytIoY0/B1DR8XCub6N/s2vy/pXKDeISLZbnBfYROKutcvxUc
-	o29OvDJoPL+abjvj84sbD3Q=
-X-Google-Smtp-Source: AGHT+IG6xfZAKkoFs/nB1j6orGlhGJ6P+tWaOcp0B83WVeZzCcdiugIKJlUguBz4lJNFDEAwHhhOIg==
-X-Received: by 2002:adf:f050:0:b0:336:3538:6636 with SMTP id t16-20020adff050000000b0033635386636mr3854305wro.86.1702653203715;
-        Fri, 15 Dec 2023 07:13:23 -0800 (PST)
-Received: from localhost.localdomain ([154.72.162.212])
-        by smtp.gmail.com with ESMTPSA id s18-20020a5d4ed2000000b00336421f1818sm6600631wrv.112.2023.12.15.07.13.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Dec 2023 07:13:22 -0800 (PST)
-From: Brandon Cheo Fusi <fusibrandon13@gmail.com>
-To: viresh.kumar@linaro.org
-Cc: aou@eecs.berkeley.edu,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	fusibrandon13@gmail.com,
-	jernej.skrabec@gmail.com,
-	krzysztof.kozlowski+dt@linaro.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	palmer@dabbelt.com,
-	paul.walmsley@sifive.com,
-	rafael@kernel.org,
-	robh+dt@kernel.org,
-	samuel@sholland.org,
-	tiny.windzz@gmail.com,
-	wens@csie.org
-Subject: Re: [PATCH 1/5] riscv: dts: allwinner: Update opp table to allow CPU frequency scaling
-Date: Fri, 15 Dec 2023 16:12:09 +0100
-Message-Id: <20231215151209.46221-1-fusibrandon13@gmail.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20231214111446.camz2krqanaieybh@vireshk-i7>
-References: <20231214111446.camz2krqanaieybh@vireshk-i7>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ADC947F4F;
+	Fri, 15 Dec 2023 15:12:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=ajCDZGvijk75rbYCqf20oSN8lDe4VchzPQ8rt1SGUQo=; b=JrusyhDrivvsqoMqFLBzLU2VRm
+	AG2fVovX6NKXHUNxQhbuV/xX3x6rulTxAeHs7c9xKdlwVMiI986ar4ZG+Ub+9x8H9ZQXfvR0PB6s2
+	FqMeFZcic1Dek1hxwb4zXNlSUocCJuHbue6I1P1H9zhZTx07Y8SXDXSuD4Fby0P42UtxVqCAxvwe2
+	ayPlrb3aLfqplL20VCZO8w5pFEdxGqi/XhuGVBjU9yRgfgW5p5lXxEXOQMIwI6KeoFf+gVH30Nq1J
+	GpqZprMo39kJqjWs2KU7OEqTIQa1S7NqSTblpPqW/yGvi7bq+9aElknwD8eJwM25kIGO8DlS2moyY
+	b/uxUFww==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:38654)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1rE9rn-0002oc-1C;
+	Fri, 15 Dec 2023 15:12:44 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1rE9ro-0003iF-DD; Fri, 15 Dec 2023 15:12:44 +0000
+Date: Fri, 15 Dec 2023 15:12:44 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Tobias Waldekranz <tobias@waldekranz.com>, davem@davemloft.net,
+	kuba@kernel.org, kabel@kernel.org, hkallweit1@gmail.com,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 3/4] net: phy: marvell10g: Add LED support for
+ 88X3310
+Message-ID: <ZXxs7JhgEMzp/cli@shell.armlinux.org.uk>
+References: <20231214201442.660447-1-tobias@waldekranz.com>
+ <20231214201442.660447-4-tobias@waldekranz.com>
+ <9e2305e5-6b04-4032-8a71-dd24db04ddab@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9e2305e5-6b04-4032-8a71-dd24db04ddab@lunn.ch>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On Thu, Dec 14, 2023 at 12:14 PM Viresh Kumar <viresh.kumar@linaro.org> wrote:
->
-> On 14-12-23, 11:33, Brandon Cheo Fusi wrote:
-> > Two OPPs are currently defined for the D1/D1s; one at 408MHz and
-> > another at 1.08GHz. Switching between these can be done with the
-> > "sun50i-cpufreq-nvmem" driver. This patch populates the opp table
-> > appropriately, with inspiration from
-> > https://github.com/Tina-Linux/linux-5.4/blob/master/arch/riscv/boot/dts/sunxi/sun20iw1p1.dtsi
-> >
-> > The supply voltages are PWM-controlled, but support for that IP
-> > is still in the works. So stick to a fixed 0.9V vdd-cpu supply,
-> > which seems to be the default on most D1 boards.
-> >
-> > Signed-off-by: Brandon Cheo Fusi <fusibrandon13@gmail.com>
-> > ---
-> >  arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi | 18 +++++++++++++++---
-> >  1 file changed, 15 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
-> > index 64c3c2e6c..e211fe4c7 100644
-> > --- a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
-> > +++ b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
-> > @@ -39,16 +39,22 @@ cpu0_intc: interrupt-controller {
-> >       };
-> >
-> >       opp_table_cpu: opp-table-cpu {
-> > -             compatible = "operating-points-v2";
-> > +             compatible = "allwinner,sun20i-d1-operating-points",
->
-> I don't think you should add a new compatible for every SoC that needs
-> to be supported by a DT bindings and cpufreq driver. Maybe you should
-> just reuse "allwinner,sun50i-h6-operating-points" and it will work
-> fine for you ?
->
-> Rob ?
->
-> > +                              "allwinner,sun50i-h6-operating-points";
-> > +             nvmem-cells = <&cpu_speed_grade>;
-> > +             nvmem-cell-names = "speed";
-> > +             opp-shared;
-> >
-> >               opp-408000000 {
-> > +                     clock-latency-ns = <244144>; /* 8 32k periods */
-> >                       opp-hz = /bits/ 64 <408000000>;
-> > -                     opp-microvolt = <900000 900000 1100000>;
-> > +                     opp-microvolt-speed0 = <900000>;
->
-> The separate property name thing was required when you could have
-> different values for different SoC instances, which can be read from
-> efuses, like in your case.
->
-> But all I see is speed0 here, why don't you always set opp-microvolt
-> then ?
->
-
-Setting opp-microvolt would be ok, but opp-microvolt-speed0 was chosen for
-consistency with the driver bindings here
-https://elixir.bootlin.com/linux/latest/source/Documentation/devicetree/bindings/opp/allwinner,sun50i-h6-operating-points.yaml#L52 
-
-> Also why degrade from min/max/target type to just target ?
->
-
-This is a mistake on my part as I thought requesting non default voltages
-was going to be a problem with lack of PWM support. Will be reverted in v2.
-
-> >               };
-> >
-> >               opp-1080000000 {
-> > +                     clock-latency-ns = <244144>; /* 8 32k periods */
-> >                       opp-hz = /bits/ 64 <1008000000>;
-> > -                     opp-microvolt = <900000 900000 1100000>;
-> > +                     opp-microvolt-speed0 = <900000>;
-> >               };
-> >       };
-> >
-> > @@ -115,3 +121,8 @@ pmu {
-> >                       <0x00000000 0x0000000f 0xffffffff 0xffffffff 0x00020000>;
-> >       };
-> >  };
+On Fri, Dec 15, 2023 at 03:44:07PM +0100, Andrew Lunn wrote:
+> > +static int mv3310_led_funcs_from_flags(struct mv3310_led *led,
+> > +				       unsigned long flags,
+> > +				       enum mv3310_led_func *solid,
+> > +				       enum mv3310_led_func *blink)
+> > +{
+> > +	unsigned long activity, duplex, link;
 > > +
-> > +&sid {
-> > +     cpu_speed_grade: cpu-speed-grade@0 {
-> > +             reg = <0x00 0x2>;
-> > +     };
-> > +};
-> > --
-> > 2.30.2
->
-> --
-> viresh
+> > +	if (flags & ~(BIT(TRIGGER_NETDEV_LINK) |
+> > +		      BIT(TRIGGER_NETDEV_HALF_DUPLEX) |
+> > +		      BIT(TRIGGER_NETDEV_FULL_DUPLEX) |
+> > +		      BIT(TRIGGER_NETDEV_TX) |
+> > +		      BIT(TRIGGER_NETDEV_RX)))
+> > +		return -EINVAL;
+> 
+> This probably should be -EOPNOTSUPP. The trigger will then do the
+> blinking in software.
+> 
+> > +
+> > +	link = flags & BIT(TRIGGER_NETDEV_LINK);
+> > +
+> > +	duplex = flags & (BIT(TRIGGER_NETDEV_HALF_DUPLEX) |
+> > +			  BIT(TRIGGER_NETDEV_FULL_DUPLEX));
+> > +
+> > +	activity = flags & (BIT(TRIGGER_NETDEV_TX) |
+> > +			    BIT(TRIGGER_NETDEV_RX));
+> > +
+> > +	if (link && duplex)
+> > +		return -EINVAL;
+> 
+> It is an odd combination, but again, if the hardware cannot do it,
+> return -EOPNOTSUPP and leave it to the software.
 
-Thank you for reviewing.
-Brandon.
+I don't recall how the LED triggers work (whether they logically OR
+or AND). The hardware supports indicating whether it has a half or
+full duplex link, and if the LED is programmed for that, then it will
+illuminate when it has link _and_ the duplex is of the specified type.
+If the link is down, or the duplex is of the other type, then it won't.
+
+I'm guessing that if link is set and duplex is set, then what userspace
+is asking for is the LED to be illuminated whenever the link is up _or_
+the duplex is of the specified type, which basically logically resolves
+to _only_ "link is up" (because a link that is down has no duplex.)
+
+So, I'm not sure "leaving it to software" is good, that combination is
+effectively just "has link".
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
