@@ -1,128 +1,160 @@
-Return-Path: <devicetree+bounces-25892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25893-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DFA3814FA2
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 19:21:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42EB0814FD1
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 19:39:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1DD94B23852
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 18:21:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CBA45286E99
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 18:39:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11CFC3011E;
-	Fri, 15 Dec 2023 18:20:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F06736B09;
+	Fri, 15 Dec 2023 18:39:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="K4D21S36"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="SiGP8hoH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC4AB3FB28;
-	Fri, 15 Dec 2023 18:20:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A6052C6A3;
+	Fri, 15 Dec 2023 18:39:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1702665563; x=1734201563;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=2KVrdVaDIOg+oxMRP1IVWmS8Xuon9rKpLe+/fBHVOiE=;
+  b=SiGP8hoH8aWgQEh995Bi/f5Y/Gv45UnRVN5OBGV4Y6UkLax7TeJrzRFt
+   Q/zqkUwEwv5arUmNxZdP+ccwObIkaU4Xb9fLnLtSO8RiGVF2JAZuD0bK8
+   JLvn5VTA4GOoyHBTb4N5sTs9RREyJk9WTie8jHgrgjp9vWtZYqgG1lcJQ
+   8WB7iXJHEfEB14hOl+tLjpLkssW+tdaiATBplFxK67oxfITLH6MMgd9M7
+   DvkdBwGPugapkUT8ipGeyMAWmkAaMejVM/M5UuADhpKMG1DFtcWQw2Hcc
+   fX5R5S1OQtFvdaWHWg2JRewFeeKt0wj4PFjEWd7tHIt8xXDyg+eX9eUSy
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10925"; a="395053537"
+X-IronPort-AV: E=Sophos;i="6.04,279,1695711600"; 
+   d="scan'208";a="395053537"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Dec 2023 10:39:22 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10925"; a="840760872"
+X-IronPort-AV: E=Sophos;i="6.04,279,1695711600"; 
+   d="scan'208";a="840760872"
+Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
+  by fmsmga008.fm.intel.com with ESMTP; 15 Dec 2023 10:39:17 -0800
+Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rED5e-0000cG-2T;
+	Fri, 15 Dec 2023 18:39:14 +0000
+Date: Sat, 16 Dec 2023 02:39:00 +0800
+From: kernel test robot <lkp@intel.com>
+To: Romain Gantois <romain.gantois@bootlin.com>, davem@davemloft.net,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev,
+	Romain Gantois <romain.gantois@bootlin.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
+	Andrew Lunn <andrew@lunn.ch>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	linux-arm-kernel@lists.infradead.org,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	Luka Perkov <luka.perkov@sartura.hr>,
+	Robert Marko <robert.marko@sartura.hr>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@somainline.org>
+Subject: Re: [PATCH net-next v3 5/8] net: qualcomm: ipqess: add bridge
+ offloading features to the IPQESS driver
+Message-ID: <202312160211.TqddYea8-lkp@intel.com>
+References: <20231114105600.1012056-6-romain.gantois@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1702664451;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=kdamCqjRtgR4H2j8cWSZZKks1yiKAdE2PPQajEtV960=;
-	b=K4D21S36po9STPxTJatpUcsaVOOhhFAeaDCcHOXV2QkyxFUv/02KPsHyvImWXz6DuZMQW+
-	YGiN8M+jUjFoBcWhThuScNK3j/QV+11ijxq5K/3RYSkbbBMyemuD2/g0gLmfxUP+Fv0Ap4
-	eD63ztjYxKsGncRkgAXqPAbSdCBWS2wgz39EkN22ImQMDFg1ExnpoSKSms3xBPW9gXc5SM
-	UbLUAOEG/v5muxM198w920kUkuxswpIrEjdPeNwf1wQSwwWxBlrH4kFggX+oJPi9aSKf8X
-	k1ixsAwmCx7KyfHD4eFIeZmz3MEaSRB4PDHMgGm00t1DlYjO6+2vny3u0ncE/w==
-Date: Fri, 15 Dec 2023 19:20:51 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Stefan Nagy <stefan.nagy@ixypsilon.net>
-Cc: Heiko Stuebner <heiko@sntech.de>, linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Increase maximum frequency of SPI
- flash for ROCK Pi 4A/B/C
-In-Reply-To: <33e632c38fa57053585c0016652ed8c8@manjaro.org>
-References: <20231215122848.59534-1-stefan.nagy@ixypsilon.net>
- <33e632c38fa57053585c0016652ed8c8@manjaro.org>
-Message-ID: <4fce0de996d6cc3056d972cd3fc3fb93@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231114105600.1012056-6-romain.gantois@bootlin.com>
 
-On 2023-12-15 19:15, Dragan Simic wrote:
-> On 2023-12-15 13:28, Stefan Nagy wrote:
->> The ROCK Pi 4A/B/C boards come with a 32 Mbit SPI NOR flash chip (XTX
->> Technology Limited XT25F32) which has a maximum clock frequency of 108
->> MHz. However, the Rockchip SPI controller driver limits the maximum
->> SPI clock frequency to 50 MHz. Use this limit for spi-max-freq.
->> 
->> This patch has been tested on ROCK Pi 4A.
->> 
->> Signed-off-by: Stefan Nagy <stefan.nagy@ixypsilon.net>
->> ---
->>  arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4a.dts | 2 +-
->>  arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts | 2 +-
->>  arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts | 2 +-
->>  3 files changed, 3 insertions(+), 3 deletions(-)
->> 
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4a.dts
->> b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4a.dts
->> index d5df8939a..30e63e62a 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4a.dts
->> +++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4a.dts
->> @@ -19,6 +19,6 @@ &spi1 {
->>  	flash@0 {
->>  		compatible = "jedec,spi-nor";
->>  		reg = <0>;
->> -		spi-max-frequency = <10000000>;
->> +		spi-max-frequency = <50000000>;
->>  	};
->>  };
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts
->> b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts
->> index bee6d7588..7122bf6c0 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts
->> +++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts
->> @@ -37,7 +37,7 @@ &spi1 {
->>  	flash@0 {
->>  		compatible = "jedec,spi-nor";
->>  		reg = <0>;
->> -		spi-max-frequency = <10000000>;
->> +		spi-max-frequency = <50000000>;
->>  	};
->>  };
->> 
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts
->> b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts
->> index de2ebe4cb..8af75bc7c 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts
->> +++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts
->> @@ -49,7 +49,7 @@ &spi1 {
->>  	flash@0 {
->>  		compatible = "jedec,spi-nor";
->>  		reg = <0>;
->> -		spi-max-frequency = <10000000>;
->> +		spi-max-frequency = <50000000>;
->>  	};
->>  };
-> 
-> It would be better to upstream these changes to the Linux kernel
-> first, and then sync them back to U-Boot.
+Hi Romain,
 
-Oops, my bad, sorry, I got confused with your other patch on the U-Boot 
-mailing list.
+kernel test robot noticed the following build warnings:
 
-Regarding the new spi-max-frequency value, it should be better to have 
-it set to what the SPI chip actually supports, and let the SPI driver do 
-its thing.
+[auto build test WARNING on net-next/main]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Romain-Gantois/dt-bindings-net-Introduce-the-Qualcomm-IPQESS-Ethernet-switch/20231114-185953
+base:   net-next/main
+patch link:    https://lore.kernel.org/r/20231114105600.1012056-6-romain.gantois%40bootlin.com
+patch subject: [PATCH net-next v3 5/8] net: qualcomm: ipqess: add bridge offloading features to the IPQESS driver
+config: arc-randconfig-r112-20231116 (https://download.01.org/0day-ci/archive/20231216/202312160211.TqddYea8-lkp@intel.com/config)
+compiler: arc-elf-gcc (GCC) 13.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20231216/202312160211.TqddYea8-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202312160211.TqddYea8-lkp@intel.com/
+
+sparse warnings: (new ones prefixed by >>)
+>> drivers/net/dsa/qca/qca8k-8xxx.c:1982:5: sparse: sparse: symbol 'qca8k_dsa_port_fdb_dump' was not declared. Should it be static?
+>> drivers/net/dsa/qca/qca8k-8xxx.c:1988:6: sparse: sparse: symbol 'qca8k_dsa_port_stp_state_set' was not declared. Should it be static?
+>> drivers/net/dsa/qca/qca8k-8xxx.c:1995:6: sparse: sparse: symbol 'qca8k_dsa_port_fast_age' was not declared. Should it be static?
+>> drivers/net/dsa/qca/qca8k-8xxx.c:2000:5: sparse: sparse: symbol 'qca8k_dsa_set_ageing_time' was not declared. Should it be static?
+>> drivers/net/dsa/qca/qca8k-8xxx.c:2005:5: sparse: sparse: symbol 'qca8k_dsa_port_vlan_filtering' was not declared. Should it be static?
+>> drivers/net/dsa/qca/qca8k-8xxx.c:2012:5: sparse: sparse: symbol 'qca8k_dsa_vlan_add' was not declared. Should it be static?
+
+vim +/qca8k_dsa_port_fdb_dump +1982 drivers/net/dsa/qca/qca8k-8xxx.c
+
+  1981	
+> 1982	int qca8k_dsa_port_fdb_dump(struct dsa_switch *ds, int port,
+  1983				    dsa_fdb_dump_cb_t *cb, void *data)
+  1984	{
+  1985		return qca8k_port_fdb_dump(ds->priv, port, cb, data);
+  1986	}
+  1987	
+> 1988	void qca8k_dsa_port_stp_state_set(struct dsa_switch *ds, int port,
+  1989					  u8 state)
+  1990	{
+  1991		qca8k_port_stp_state_set(ds->priv, port, state,
+  1992					 dsa_to_port(ds, port)->learning, true);
+  1993	}
+  1994	
+> 1995	void qca8k_dsa_port_fast_age(struct dsa_switch *ds, int port)
+  1996	{
+  1997		qca8k_port_fast_age(ds->priv, port);
+  1998	}
+  1999	
+> 2000	int qca8k_dsa_set_ageing_time(struct dsa_switch *ds, unsigned int msecs)
+  2001	{
+  2002		return qca8k_set_ageing_time(ds->priv, msecs);
+  2003	}
+  2004	
+> 2005	int qca8k_dsa_port_vlan_filtering(struct dsa_switch *ds, int port,
+  2006					  bool vlan_filtering,
+  2007					  struct netlink_ext_ack *extack)
+  2008	{
+  2009		return qca8k_port_vlan_filtering(ds->priv, port, vlan_filtering);
+  2010	}
+  2011	
+> 2012	int qca8k_dsa_vlan_add(struct dsa_switch *ds, int port,
+  2013			       const struct switchdev_obj_port_vlan *vlan,
+  2014			       struct netlink_ext_ack *extack)
+  2015	{
+  2016		return qca8k_port_vlan_add(ds->priv, port, vlan, extack);
+  2017	}
+  2018	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
