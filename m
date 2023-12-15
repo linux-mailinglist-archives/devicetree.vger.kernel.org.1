@@ -1,70 +1,146 @@
-Return-Path: <devicetree+bounces-25917-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25918-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8648815103
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 21:22:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84EA981510F
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 21:30:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 59351B23A1F
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 20:22:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 37C5B1F2430F
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 20:30:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12CFF45C1B;
-	Fri, 15 Dec 2023 20:22:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42E2D45C16;
+	Fri, 15 Dec 2023 20:30:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IJrzU5Ko"
+	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="ME9/fD+m";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="xfY1N2X0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E153845BFE;
-	Fri, 15 Dec 2023 20:22:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D101C433C7;
-	Fri, 15 Dec 2023 20:21:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1702671720;
-	bh=pI2fxOT71cP2ivmIh+q5o/w/kpsi6teiRLOD72it0Z4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IJrzU5KoTIW+HShSQYwbkxJPwTWEvjgAHRTYA0oMlaJyRQt9GRF0xRTWx0YfE/w/H
-	 QXQOEKIpIPQ02dYda7aFikVE3IViwfZ1Hlgv//o4pvuSgKqYokmm/H8uXa/GzblW8N
-	 EHs8qQE/yw78eqw0PhFXmOzSfqnlhhonF8AlCA9/tKzOKPtzAScY1OlnI0b2qn9+WA
-	 uMWFf/RIA6qJn1WH+rGi64XeiTt+cGjXLvK1SrQDS+zFcxotPDDZoXLxR7wmkNwpZK
-	 UVUYsiXuODjoaQDKaciEW4/Zh1vWwzCdtKKZBZ/Li3lxDkkrQrGwvA2IoQdXScl8gM
-	 o2l83j0l4CEYg==
-Received: (nullmailer pid 328701 invoked by uid 1000);
-	Fri, 15 Dec 2023 20:21:58 -0000
-Date: Fri, 15 Dec 2023 14:21:58 -0600
-From: Rob Herring <robh@kernel.org>
-To: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc: Fu Wei <wefu@redhat.com>, Conor Dooley <conor+dt@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Hoan Tran <hoan@os.amperecomputing.com>, Linus Walleij <linus.walleij@linaro.org>, Palmer Dabbelt <palmer@dabbelt.com>, Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org, Andy Shevchenko <andy@kernel.org>, linux-kernel@vger.kernel.org, Jisheng Zhang <jszhang@kernel.org>, Serge Semin <fancer.lancer@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Guo Ren <guoren@kernel.org>, linux-riscv@lists.infradead.org, Paul Walmsley <paul.walmsley@sifive.com>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 4/8] dt-bindings: gpio: dwapb: allow gpio-ranges
-Message-ID: <170267171586.328597.4361294916580351710.robh@kernel.org>
-References: <20231215143906.3651122-1-emil.renner.berthing@canonical.com>
- <20231215143906.3651122-5-emil.renner.berthing@canonical.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6026246424;
+	Fri, 15 Dec 2023 20:30:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flygoat.com
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+	by mailout.nyi.internal (Postfix) with ESMTP id 398955C00D1;
+	Fri, 15 Dec 2023 15:30:06 -0500 (EST)
+Received: from imap44 ([10.202.2.94])
+  by compute3.internal (MEProxy); Fri, 15 Dec 2023 15:30:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm3; t=1702672206;
+	 x=1702758606; bh=SMhiooOVHbhcDiASdTNN0KIdx/qyCgOzg/2GaHwtpJ4=; b=
+	ME9/fD+mMDJp4xyddXE1x6welE1pdOSZW9gdeW15WUEXX0jK7thCcVr9fRXbXZUa
+	pp2VOxuvMWRMc+qUVLwaNtftHAjyj2vqLABAQXhAxO+zINsnlb+eMGCzVEhPw7y0
+	flgC8s+twEU4i0onOVJqROLmlenyHMeAceKVkoryFHL8GCfqEeg71dB0voz3S/Md
+	8kD06lunS9oT4hLpxNtyNfCdjuL1+rAgj+fhTxeLWW7dL/1XVP8YueuWhE2C4yTI
+	Vvx+bUyMSxysXedFBe7QFFtewK9GYLLc/pRS0nGjKdVmI5SITj+/d7rOTkHSmJSy
+	dupQnfGRPrjRPBZiLsyxxw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1702672206; x=
+	1702758606; bh=SMhiooOVHbhcDiASdTNN0KIdx/qyCgOzg/2GaHwtpJ4=; b=x
+	fY1N2X0ZIRzJg+HXAodeQgdNKcMZ/mcPG8lai9vP/CsRj58nb7JOH6QrWxi02EAk
+	93g8yOPrKVeDfhpH6AykjFtvEsdFkQd0iZWnDAI4oD4VGnsWpaTfOjVJJfTvPI4i
+	Y3/YEzsP56bBOB6GQw12foD2hy6wceRWdmsFfZddXRSVaUJHJcK7zD1cNGAMG24W
+	depf/waZtORtw2EHNOcPaojUxSCFQ+LU6wUI4dnHxtnE1Qs3yXJ8o/p4uMsNeLXl
+	zGMGGM3aH3nthskZ75np9jAsrNXsADfGZVAhDaRSMPguNTBWSGMR3NMRJEGVATMk
+	cHeVz0eciSPJAUpaZtb/Q==
+X-ME-Sender: <xms:Tbd8ZfBKeBJ6PfOpbtFms89mSQ79lZ8GXdoErwz-Zi4XZNrfsPct-Q>
+    <xme:Tbd8ZVikwW17RC1KJEdHq3cYcwSkgH6oQus--NV5ouL55vdq2wcKKbv7g30QYWV4Q
+    7NPzcF3T8bJbnj1FHY>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrvddtvddgudefjecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefofgggkfgjfhffhffvvefutgfgsehtqhertderreejnecuhfhrohhmpedf
+    lfhirgiguhhnucgjrghnghdfuceojhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtg
+    homheqnecuggftrfgrthhtvghrnheptdeludffieeiffejtdeivdejheefvdetuefhleev
+    hffhvdehueeggfffgeelteelnecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecuve
+    hluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepjhhirgiguhhn
+    rdihrghnghesfhhlhihgohgrthdrtghomh
+X-ME-Proxy: <xmx:Tbd8Zalhmn1f8qjce_Gk5LXNSN4UlGooVq_VNW5GATruBoH8MhRLQQ>
+    <xmx:Tbd8ZRzXKAmmo_PaA0ahQ5QgW3KPUZpKw0hoRq-Rj__qJG-zbWyG5Q>
+    <xmx:Tbd8ZUSDumkV2yJErSoAvHWYp3KPn3ea-hRFyvCGGBeDDcG_wH_nig>
+    <xmx:Trd8ZZJumNgIFaDLJIbdhLqg20Z9EOdYzcm_wtv7ZWg3FxW_Ip8XWg>
+Feedback-ID: ifd894703:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id 63DDD36A0076; Fri, 15 Dec 2023 15:30:05 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-1283-g327e3ec917-fm-20231207.002-g327e3ec9
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231215143906.3651122-5-emil.renner.berthing@canonical.com>
+Message-Id: <a4b2dbe5-4d14-418d-bd91-2ad4109bdb86@app.fastmail.com>
+In-Reply-To: <875y0zcssc.fsf@BL-laptop>
+References: <20231212163459.1923041-1-gregory.clement@bootlin.com>
+ <20231212163459.1923041-22-gregory.clement@bootlin.com>
+ <6b747f3b-f0d7-4e40-a331-8d2323e4874c@app.fastmail.com>
+ <875y0zcssc.fsf@BL-laptop>
+Date: Fri, 15 Dec 2023 20:29:48 +0000
+From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
+To: "Gregory CLEMENT" <gregory.clement@bootlin.com>,
+ "paulburton@kernel.org" <paulburton@kernel.org>,
+ "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
+ "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
+ "Rob Herring" <robh+dt@kernel.org>,
+ "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: "Vladimir Kondratiev" <vladimir.kondratiev@mobileye.com>,
+ "Tawfik Bayouk" <tawfik.bayouk@mobileye.com>,
+ "Alexandre Belloni" <alexandre.belloni@bootlin.com>,
+ =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v5 21/22] MIPS: generic: Add support for Mobileye EyeQ5
+Content-Type: text/plain;charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
 
-On Fri, 15 Dec 2023 15:39:02 +0100, Emil Renner Berthing wrote:
-> Allow the generic gpio-ranges property so GPIOs can be mapped to their
-> corresponding pin. This way control of GPIO on pins that are already used
-> by other peripherals can be denied and basic pinconf can be done on pin
-> controllers that support it.
-> 
-> Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-> ---
->  Documentation/devicetree/bindings/gpio/snps,dw-apb-gpio.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
 
-Acked-by: Rob Herring <robh@kernel.org>
+=E5=9C=A82023=E5=B9=B412=E6=9C=8815=E6=97=A5=E5=8D=81=E4=BA=8C=E6=9C=88 =
+=E4=B8=8B=E5=8D=884:52=EF=BC=8CGregory CLEMENT=E5=86=99=E9=81=93=EF=BC=9A
+[...]
+>>
+>> ^ I still think by doing this you are risking overriding starting add=
+ress
+>> for all other generic systems. make 32r6_defconfig will load config f=
+iles
+>> of all boards.
+>
+> I think at a point you mentioned a way to remove the eyeq5 config board
+> from the 32r6_defconfig. It would be indeed a good solution.
+Unfortunately we don't have such mechanism for now :-(
 
+>
+>>
+>> Perhaps just provide an eqm5_defconfig will work better?
+>
+> So you mean a defconfig in direclty in arch/mips/configs/ and not
+> anymore in arch/mips/configs/generic ?
+Yep. I think that's the only fesiable way.
+
+Thanks
+>
+> Gregory
+>
+>>
+>> Thanks.
+>> --=20
+>> - Jiaxun
+>
+> --=20
+> Gregory Clement, Bootlin
+> Embedded Linux and Kernel engineering
+> http://bootlin.com
+
+--=20
+- Jiaxun
 
