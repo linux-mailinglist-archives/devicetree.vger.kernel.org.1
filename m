@@ -1,50 +1,52 @@
-Return-Path: <devicetree+bounces-25688-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25689-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5419C81434E
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 09:09:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7476881435A
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 09:11:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F11431F22E6C
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 08:09:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 30E0728422C
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 08:11:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3B1B12E49;
-	Fri, 15 Dec 2023 08:09:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5F4910A30;
+	Fri, 15 Dec 2023 08:10:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from SHSQR01.spreadtrum.com (mx1.unisoc.com [222.66.158.135])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC52711C9A
-	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 08:09:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79E7A1798E;
+	Fri, 15 Dec 2023 08:10:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=unisoc.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=unisoc.com
 Received: from dlp.unisoc.com ([10.29.3.86])
-	by SHSQR01.spreadtrum.com with ESMTP id 3BF88pRX008963;
-	Fri, 15 Dec 2023 16:08:51 +0800 (+08)
+	by SHSQR01.spreadtrum.com with ESMTP id 3BF8A7oA013798;
+	Fri, 15 Dec 2023 16:10:07 +0800 (+08)
 	(envelope-from zhifeng.tang@unisoc.com)
 Received: from SHDLP.spreadtrum.com (shmbx04.spreadtrum.com [10.0.1.214])
-	by dlp.unisoc.com (SkyGuard) with ESMTPS id 4Ss1sx5Zj5z2PDtHV;
-	Fri, 15 Dec 2023 16:02:45 +0800 (CST)
+	by dlp.unisoc.com (SkyGuard) with ESMTPS id 4Ss1vQ437qz2PDtHV;
+	Fri, 15 Dec 2023 16:04:02 +0800 (CST)
 Received: from xm9614pcu.spreadtrum.com (10.13.2.29) by shmbx04.spreadtrum.com
  (10.0.1.214) with Microsoft SMTP Server (TLS) id 15.0.1497.23; Fri, 15 Dec
- 2023 16:08:49 +0800
+ 2023 16:10:06 +0800
 From: Zhifeng Tang <zhifeng.tang@unisoc.com>
-To: Rob Herring <robh+dt@kernel.org>,
+To: Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd
+	<sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski
 	<krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>,
         Baolin Wang
 	<baolin.wang@linux.alibaba.com>,
         Chunyan Zhang <zhang.lyra@gmail.com>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Zhifeng Tang
-	<zhifeng.tang23@gmail.com>,
+CC: <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Zhifeng Tang <zhifeng.tang23@gmail.com>,
         Wenming Wu <wenming.wu@unisoc.com>
-Subject: [PATCH 3/4] arm64: dts: sprd: add reset controller driver for UMS512
-Date: Fri, 15 Dec 2023 16:08:47 +0800
-Message-ID: <20231215080847.8233-1-zhifeng.tang@unisoc.com>
+Subject: [PATCH 4/4] dt-bindings: clock: Add reset controller bindings for Unisoc's UMS512.
+Date: Fri, 15 Dec 2023 16:10:03 +0800
+Message-ID: <20231215081003.8373-1-zhifeng.tang@unisoc.com>
 X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -55,91 +57,29 @@ MIME-Version: 1.0
 Content-Type: text/plain
 X-ClientProxiedBy: SHCAS03.spreadtrum.com (10.0.1.207) To
  shmbx04.spreadtrum.com (10.0.1.214)
-X-MAIL:SHSQR01.spreadtrum.com 3BF88pRX008963
+X-MAIL:SHSQR01.spreadtrum.com 3BF8A7oA013798
 
-The reset register has the same base address as the gate register.
+Add Reset Controller bindings to clock bindings for Unisoc's UMS512.
 
 Signed-off-by: Zhifeng Tang <zhifeng.tang@unisoc.com>
 ---
- arch/arm64/boot/dts/sprd/ums512.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/sprd/ums512.dtsi b/arch/arm64/boot/dts/sprd/ums512.dtsi
-index 024be594c47d..08d0adf6624c 100644
---- a/arch/arm64/boot/dts/sprd/ums512.dtsi
-+++ b/arch/arm64/boot/dts/sprd/ums512.dtsi
-@@ -7,6 +7,7 @@
+diff --git a/Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml b/Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
+index 43d2b6c31357..6b0892d637fe 100644
+--- a/Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
++++ b/Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
+@@ -34,6 +34,9 @@ properties:
+   "#clock-cells":
+     const: 1
  
- #include <dt-bindings/clock/sprd,ums512-clk.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/reset/sprd,ums512-reset.h>
- 
- / {
- 	interrupt-parent = <&gic>;
-@@ -182,6 +183,7 @@
- 				clocks = <&ext_26m>;
- 				clock-names = "ext-26m";
- 				#clock-cells = <1>;
-+				#reset-cells = <1>;
- 			};
- 		};
- 
-@@ -316,6 +318,7 @@
- 				clocks = <&ext_26m>;
- 				clock-names = "ext-26m";
- 				#clock-cells = <1>;
-+				#reset-cells = <1>;
- 			};
- 		};
- 
-@@ -333,6 +336,7 @@
- 				clocks = <&ext_26m>;
- 				clock-names = "ext-26m";
- 				#clock-cells = <1>;
-+				#reset-cells = <1>;
- 			};
- 		};
- 
-@@ -348,6 +352,7 @@
- 				compatible = "sprd,ums512-audcpapb-gate";
- 				reg = <0x0 0x300>;
- 				#clock-cells = <1>;
-+				#reset-cells = <1>;
- 			};
- 		};
- 
-@@ -363,6 +368,7 @@
- 				compatible = "sprd,ums512-audcpahb-gate";
- 				reg = <0x0 0x300>;
- 				#clock-cells = <1>;
-+				#reset-cells = <1>;
- 			};
- 		};
- 
-@@ -380,6 +386,7 @@
- 				clock-names = "ext-26m";
- 				reg = <0x0 0x100>;
- 				#clock-cells = <1>;
-+				#reset-cells = <1>;
- 			};
- 		};
- 
-@@ -401,6 +408,7 @@
- 				compatible = "sprd,ums512-mm-gate-clk";
- 				reg = <0x0 0x3000>;
- 				#clock-cells = <1>;
-+				#reset-cells = <1>;
- 			};
- 		};
- 
-@@ -416,6 +424,7 @@
- 				compatible = "sprd,ums512-apapb-gate";
- 				reg = <0x0 0x3000>;
- 				#clock-cells = <1>;
-+				#reset-cells = <1>;
- 			};
- 		};
- 
++  "#reset-cells":
++    const: 1
++
+   clocks:
+     minItems: 1
+     maxItems: 4
 -- 
 2.17.1
 
