@@ -1,279 +1,104 @@
-Return-Path: <devicetree+bounces-25888-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25889-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B509E814F0D
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 18:42:27 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A16F814F32
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 18:51:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D93991C2453C
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 17:42:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C8ADFB2403C
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 17:51:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B0C030118;
-	Fri, 15 Dec 2023 17:42:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kT3VhiU9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46B0782EF8;
+	Fri, 15 Dec 2023 17:48:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE37B3011F
-	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 17:42:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-50e1112b95cso951900e87.0
-        for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 09:42:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702662126; x=1703266926; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CKgsVk0fjSxD37WNiVSTe954mlFL2bYCq2rQX68jkaY=;
-        b=kT3VhiU9QeQt9z22Kstvbm4CmeiQYmsTiyXzKhrycGhCPyCOAdFKhD39HUmlc7BsRg
-         tgXB+4hkY2uYVU6Pv9bqTsCl4q2VhleplgQ9+vcbqIC7ey11wdygLERnEcCMmjMiR5Un
-         PLeam/3MDjCSCe1oXABxStmuNkBy2zUi34OdWtLBRrycubda2i6C53Pfj4CihCVkTBYu
-         8hhyECtpt7+s6r7PfU62A2WeXjZ/2Lbc4dZ9POwWt1pyPx7eiWJQVA7RfAY/5POOgjdK
-         fJOEnp1e3XmJZBSrQLGqxhJBGdh2/lH6EpSF3lsOwWJC2jTU5OXieiPah4SlKg7YWkVv
-         7s1Q==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ACD83010D;
+	Fri, 15 Dec 2023 17:48:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f177.google.com with SMTP id 5614622812f47-3b9fd7b14cdso870180b6e.0;
+        Fri, 15 Dec 2023 09:48:29 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702662126; x=1703266926;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CKgsVk0fjSxD37WNiVSTe954mlFL2bYCq2rQX68jkaY=;
-        b=pN04EcGsk5+BkFvZRGggnaroFyEpe06v0QQ2A63ZpIG9qjHTCmHOPcH2nEsznYpm1f
-         GGYSusHL9eEq7uMHM8GLSAqVZz5QdIl9P/qaWUiSl6ul3InQRowetvoH4gJLswk01+xc
-         LWZ34SUVXuQUZjBq/Gzm/BEKPxASCo4XRzTDKJtjFPi5HGPvKbHE0tAcrr7/5FyaGLrm
-         Cc5qv8Hlf/XCCy49uiAahiHnoWh/zL7SKkiiGc42kNtM/1TZBbEC0KSxATxEnGiOJPjf
-         jGw5lGgDE4VZizyCmemS4KZlHLlLH3XJJvj4W3R/bgKGqNoZMX8S/amY00fUTmKpSqXA
-         MU+g==
-X-Gm-Message-State: AOJu0Yy2t6EUNMtVDVtuJ6cGAoFK8S4K97wvccTaMSr3hoMs+HN0n5yR
-	Hlzuq+wxQAHS8NfyQFdgFnIyWw==
-X-Google-Smtp-Source: AGHT+IFlvxXC5TE5auDkzGipxwETeZ8JnKAa47UPmrKiIe2mKiF+REikFN6qCk/43O/2LJaQMRKjcg==
-X-Received: by 2002:a19:4f49:0:b0:50e:2222:6ca3 with SMTP id a9-20020a194f49000000b0050e22226ca3mr175189lfk.90.1702662126180;
-        Fri, 15 Dec 2023 09:42:06 -0800 (PST)
-Received: from eriador.lumag.spb.ru (85-76-13-188-nat.elisa-mobile.fi. [85.76.13.188])
-        by smtp.gmail.com with ESMTPSA id c16-20020a056512239000b0050dff5bb793sm1389263lfv.143.2023.12.15.09.42.04
+        d=1e100.net; s=20230601; t=1702662508; x=1703267308;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pm/gpkQ1YGAavxKNC+pdEshVFcIOLkmf7mOBxigLrOk=;
+        b=VE0EaXjJQcv3ljGrrbgRSf6DgfZ2au302M/hK8e4ay5858MQSy2hhFFgH9rLvNNGo3
+         DYJtJdg6z3O7c66I9j9GOqK8bpRLGgcNZlhr92BjdWNAyCORFW0q+xSfTPYeqx4dVRgy
+         7sJTeOJm2s8bb/u6DEC/AFRaLKdzxhICFdUMKnq8jqjuLv0D+9dhvAcjCQ60HWFMTdSg
+         mOXv9nVN/xTFXypPPY6na/e9cqHM5OE2xNRY7yfFB/gLVQCqttGqXRJNUqw6ArFB4D6O
+         vc3lesjK3y7yJN1dkKVPR7iCQMmc/aT6DLyTkJJWrkWhdCxOEp5ubC6YtZVbbdbYvtCV
+         YXmw==
+X-Gm-Message-State: AOJu0YyGWub41m4KvBbRDPPlzO5qsIhre0rYt3xNDLKK7SgkQycAvxt4
+	jdSrjy56xvGD8yLFH2C4CA==
+X-Google-Smtp-Source: AGHT+IEZLXJyqXyPRgWYWbfmviLO9Q74kt/U8wStSaiATFLHpZQMquwLAHUQQTfppTSVgC00iNsCNw==
+X-Received: by 2002:a05:6808:140f:b0:3b9:d6ca:2ff4 with SMTP id w15-20020a056808140f00b003b9d6ca2ff4mr6592541oiv.3.1702662508215;
+        Fri, 15 Dec 2023 09:48:28 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id ct7-20020a056808360700b003b9fd2af1f1sm3215689oib.32.2023.12.15.09.48.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Dec 2023 09:42:05 -0800 (PST)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v3 7/7] arm64: dts: qcom: sm8150-hdk: enable DisplayPort and USB-C altmode
-Date: Fri, 15 Dec 2023 19:40:39 +0200
-Message-ID: <20231215174152.315403-8-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20231215174152.315403-1-dmitry.baryshkov@linaro.org>
-References: <20231215174152.315403-1-dmitry.baryshkov@linaro.org>
+        Fri, 15 Dec 2023 09:48:27 -0800 (PST)
+Received: (nullmailer pid 57648 invoked by uid 1000);
+	Fri, 15 Dec 2023 17:48:26 -0000
+Date: Fri, 15 Dec 2023 11:48:26 -0600
+From: Rob Herring <robh@kernel.org>
+To: Elad Nachman <enachman@marvell.com>
+Cc: wim@linux-watchdog.org, linux@roeck-us.net, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, gregory.clement@bootlin.com, chris.packham@alliedtelesis.co.nz, andrew@lunn.ch, fu.wei@linaro.org, Suravee.Suthikulpanit@amd.com, al.stone@linaro.org, timur@codeaurora.org, linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, cyuval@marvell.com
+Subject: Re: [PATCH 0/3] watchdog: sbsa_gwdt: add support for Marvell ac5
+Message-ID: <20231215174826.GA52386-robh@kernel.org>
+References: <20231214150414.1849058-1-enachman@marvell.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231214150414.1849058-1-enachman@marvell.com>
 
-Enable the USB-C related functionality for the USB-C port on this board.
-This includes OTG, PowerDelivery and DP AltMode. Also enable the
-DisplayPort itself.
+On Thu, Dec 14, 2023 at 05:04:11PM +0200, Elad Nachman wrote:
+> From: Elad Nachman <enachman@marvell.com>
+> 
+> Add support for Marvell ac5/x variant of the ARM
+> sbsa global watchdog. This watchdog deviates from
+> the standard driver by the following items:
+> 
+> 1. Registers reside in secure register section.
+>    hence access is only possible via SMC calls to ATF.
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8150-hdk.dts | 124 +++++++++++++++++++++++-
- 1 file changed, 123 insertions(+), 1 deletion(-)
+Oops.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8150-hdk.dts b/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
-index ea4d75308ac8..de670b407ef1 100644
---- a/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
-@@ -7,6 +7,7 @@
- 
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/usb/pd.h>
- #include "sm8150.dtsi"
- #include "pm8150.dtsi"
- #include "pm8150b.dtsi"
-@@ -374,6 +375,10 @@ &gmu {
- 	status = "okay";
- };
- 
-+&gpi_dma0 {
-+	status = "okay";
-+};
-+
- &gpi_dma1 {
- 	status = "okay";
- };
-@@ -382,6 +387,29 @@ &gpu {
- 	status = "okay";
- };
- 
-+&i2c4 {
-+	clock-frequency = <100000>;
-+
-+	status = "okay";
-+
-+	typec-mux@42 {
-+		compatible = "fcs,fsa4480";
-+		reg = <0x42>;
-+
-+		interrupts-extended = <&tlmm 152 IRQ_TYPE_LEVEL_LOW>;
-+
-+		vcc-supply = <&vreg_bob>;
-+		mode-switch;
-+		orientation-switch;
-+
-+		port {
-+			fsa4480_sbu_mux: endpoint {
-+				remote-endpoint = <&pm8150b_typec_sbu_out>;
-+			};
-+		};
-+	};
-+};
-+
- &i2c9 {
- 	status = "okay";
- 	clock-frequency = <400000>;
-@@ -436,6 +464,15 @@ &mdss {
- 	status = "okay";
- };
- 
-+&mdss_dp {
-+	status = "okay";
-+};
-+
-+&mdss_dp_out {
-+	data-lanes = <0 1>;
-+	remote-endpoint = <&usb_1_qmpphy_dp_in>;
-+};
-+
- &mdss_dsi0 {
- 	status = "okay";
- 	vdda-supply = <&vreg_l3c_1p2>;
-@@ -483,6 +520,65 @@ &mdss_dsi1_phy {
- 	status = "okay";
- };
- 
-+&pm8150b_vbus {
-+	regulator-min-microamp = <500000>;
-+	regulator-max-microamp = <3000000>;
-+	status = "okay";
-+};
-+
-+&pm8150b_typec {
-+	status = "okay";
-+
-+	vdd-pdphy-supply = <&vreg_l2a_3p1>;
-+
-+	connector {
-+		compatible = "usb-c-connector";
-+
-+		power-role = "source";
-+		data-role = "dual";
-+		self-powered;
-+
-+		source-pdos = <PDO_FIXED(5000, 3000,
-+					 PDO_FIXED_DUAL_ROLE |
-+					 PDO_FIXED_USB_COMM |
-+					 PDO_FIXED_DATA_SWAP)>;
-+
-+		altmodes {
-+			displayport {
-+				svid = /bits/ 16 <0xff01>;
-+				vdo = <0x00001c46>;
-+			};
-+		};
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+				pm8150b_role_switch_in: endpoint {
-+					remote-endpoint = <&usb_1_dwc3_hs>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+				pm8150b_typec_mux_in: endpoint {
-+					remote-endpoint = <&usb_1_qmpphy_out>;
-+				};
-+			};
-+
-+			port@2 {
-+				reg = <2>;
-+
-+				pm8150b_typec_sbu_out: endpoint {
-+					remote-endpoint = <&fsa4480_sbu_mux>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
- &pon_pwrkey {
- 	status = "okay";
- };
-@@ -493,6 +589,10 @@ &pon_resin {
- 	linux,code = <KEY_VOLUMEDOWN>;
- };
- 
-+&qupv3_id_0 {
-+	status = "okay";
-+};
-+
- &qupv3_id_1 {
- 	status = "okay";
- };
-@@ -568,6 +668,19 @@ &usb_1_qmpphy {
- 	status = "okay";
- 	vdda-phy-supply = <&vreg_l3c_1p2>;
- 	vdda-pll-supply = <&vreg_l18a_0p8>;
-+	orientation-switch;
-+};
-+
-+&usb_1_qmpphy_dp_in {
-+	remote-endpoint = <&mdss_dp_out>;
-+};
-+
-+&usb_1_qmpphy_out {
-+	remote-endpoint = <&pm8150b_typec_mux_in>;
-+};
-+
-+&usb_1_qmpphy_usb_ss_in {
-+	remote-endpoint = <&usb_1_dwc3_ss>;
- };
- 
- &usb_2_qmpphy {
-@@ -585,7 +698,16 @@ &usb_2 {
- };
- 
- &usb_1_dwc3 {
--	dr_mode = "peripheral";
-+	dr_mode = "otg";
-+	usb-role-switch;
-+};
-+
-+&usb_1_dwc3_hs {
-+	remote-endpoint = <&pm8150b_role_switch_in>;
-+};
-+
-+&usb_1_dwc3_ss {
-+	remote-endpoint = <&usb_1_qmpphy_usb_ss_in>;
- };
- 
- &usb_2_dwc3 {
--- 
-2.43.0
+> 2. There are couple more registers which reside in
+>    other register areas, which needs to be configured
+>    in order for the watchdog to properly generate
+>    reset through the SOC.
 
+Your firmware should configure these.
+
+> 
+>    The new Marvell compatibility string differentiates between
+>    the original sbsa mode of operation and the Marvell mode of
+>    operation.
+> 
+> 
+> Elad Nachman (3):
+>   dt-bindings: watchdog: add Marvell AC5 watchdog
+>   arm64: dts: ac5: add watchdog nodes
+>   watchdog: sbsa_gwdt: add support for Marvell ac5
+> 
+>  .../bindings/watchdog/arm,sbsa-gwdt.yaml      |  52 +++-
+>  arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi |  14 +
+>  arch/arm64/boot/dts/marvell/ac5-98dx35xx.dtsi |   8 +
+>  drivers/watchdog/sbsa_gwdt.c                  | 247 ++++++++++++++++--
+>  4 files changed, 298 insertions(+), 23 deletions(-)
+> 
+> -- 
+> 2.25.1
+> 
 
