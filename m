@@ -1,113 +1,203 @@
-Return-Path: <devicetree+bounces-25628-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25629-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21E7D8140EE
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 05:27:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17A66814107
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 05:48:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 549E81C2236B
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 04:27:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA31D1F22EDE
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 04:48:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 149C253B8;
-	Fri, 15 Dec 2023 04:27:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96B4B1C13;
+	Fri, 15 Dec 2023 04:48:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="0XwQS7wt"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="blWWs3oA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BCF25697
-	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 04:27:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 470E12C0381;
-	Fri, 15 Dec 2023 17:21:58 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1702614118;
-	bh=SVUOOR0rCQvpdqTF1+SbvUi+Db5NcfNoL6CdiMFlLV4=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-	b=0XwQS7wtY455IRqvSdYmrZyxK25QiEh6tNCgbfG+xU6M9FiyUr1DAG1A2GPNGS1O+
-	 qYqUaPzsJXWsUrnQIKAABIXp2GrQhgI0KYP2FMuJDcgVObFr5yh5T+SVsV3EDX10zb
-	 FCFVLTyFV2IR52mSwwwH2j8uheLSBnNw9Q94YjBikMgbT+b08NOFMIv/muh1gpPZPe
-	 UPR4vg7AfdCyz3GX+ZFWr0kX+x//DeAJ5+mc4W1Lq3GJ4+EYq67/wBh+AHoXSDTog4
-	 PfwC7fXg2CAd3KnFJYHx2bPP2XymZNcJuFr0Z+7j3GrR3erl/Gkp8NwKUJhmFt/H7U
-	 UDScGFPB2Tedw==
-Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B657bd4660001>; Fri, 15 Dec 2023 17:21:58 +1300
-Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) by
- svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.1118.40; Fri, 15 Dec 2023 17:21:58 +1300
-Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) by
- svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8) with Microsoft
- SMTP Server (TLS) id 15.0.1497.48; Fri, 15 Dec 2023 17:21:57 +1300
-Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
- svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
- 15.02.1118.040; Fri, 15 Dec 2023 17:21:57 +1300
-From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To: Elad Nachman <enachman@marvell.com>, "wim@linux-watchdog.org"
-	<wim@linux-watchdog.org>, "linux@roeck-us.net" <linux@roeck-us.net>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "gregory.clement@bootlin.com"
-	<gregory.clement@bootlin.com>, "andrew@lunn.ch" <andrew@lunn.ch>,
-	"fu.wei@linaro.org" <fu.wei@linaro.org>, "Suravee.Suthikulpanit@amd.com"
-	<Suravee.Suthikulpanit@amd.com>, "al.stone@linaro.org" <al.stone@linaro.org>,
-	"timur@codeaurora.org" <timur@codeaurora.org>,
-	"linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-CC: "cyuval@marvell.com" <cyuval@marvell.com>
-Subject: Re: [PATCH 0/3] watchdog: sbsa_gwdt: add support for Marvell ac5
-Thread-Topic: [PATCH 0/3] watchdog: sbsa_gwdt: add support for Marvell ac5
-Thread-Index: AQHaLp7UhCt7s/9TXkCz5F6TLW3ne7Co5U+A
-Date: Fri, 15 Dec 2023 04:21:57 +0000
-Message-ID: <cdfee2e1-8a94-4e44-b81b-0ade384fa481@alliedtelesis.co.nz>
-References: <20231214150414.1849058-1-enachman@marvell.com>
-In-Reply-To: <20231214150414.1849058-1-enachman@marvell.com>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <A5162494EBD49B49BA2701D403EFDFFB@atlnz.lc>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5DA61C31;
+	Fri, 15 Dec 2023 04:48:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3BF4ZMPm007874;
+	Thu, 14 Dec 2023 22:35:22 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1702614922;
+	bh=TqkuE3IaNsfxGluCRlbhiAbEisNRx1SSuG+cTdskFHE=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=blWWs3oAptNKU2UgSac/LIDWL3b9wJiLR8/lTyJrWJV4bmQnkBoYlz6tqF1+JdYrU
+	 KqyUJeC+A8VMiwIsoZEA6b1cx3VahgcgnBaXzcrlLARFNGFyVv8rUHv9fniRZWQtjf
+	 Ujbaw/E/ialE+vBL/V+cy5ze9CAW5XnpScOSi2cs=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3BF4ZMe0077973
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 14 Dec 2023 22:35:22 -0600
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 14
+ Dec 2023 22:35:22 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 14 Dec 2023 22:35:22 -0600
+Received: from [172.24.227.36] (a0497641-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [172.24.227.36])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3BF4ZJPW117255;
+	Thu, 14 Dec 2023 22:35:19 -0600
+Message-ID: <babed3d7-0daf-4aa0-8bab-627d585ca224@ti.com>
+Date: Fri, 15 Dec 2023 10:05:18 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=CYB2G4jl c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=75chYTbOgJ0A:10 a=IkcTkHD0fZMA:10 a=e2cXIFwxEfEA:10 a=M5GUcnROAAAA:8 a=K2GjWCfgx9wMK7TpFYYA:9 a=QEXdDO2ut3YA:10 a=OBjm3rFKGHvpk9ecZwUJ:22
-X-SEG-SpamProfiler-Score: 0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: ti: k3-j721e: Add support for DFS in J721E
+ A72
+To: Nishanth Menon <nm@ti.com>
+CC: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <vigneshr@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <a-nandan@ti.com>, <kristo@kernel.org>, <u-kumar1@ti.com>
+References: <20231214075637.176586-1-n-francis@ti.com>
+ <20231214125130.zqtq6ioj4c533wha@elbow>
+Content-Language: en-US
+From: Neha Malcom Francis <n-francis@ti.com>
+In-Reply-To: <20231214125130.zqtq6ioj4c533wha@elbow>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-DQpPbiAxNS8xMi8yMyAwNDowNCwgRWxhZCBOYWNobWFuIHdyb3RlOg0KPiBGcm9tOiBFbGFkIE5h
-Y2htYW4gPGVuYWNobWFuQG1hcnZlbGwuY29tPg0KPg0KPiBBZGQgc3VwcG9ydCBmb3IgTWFydmVs
-bCBhYzUveCB2YXJpYW50IG9mIHRoZSBBUk0NCj4gc2JzYSBnbG9iYWwgd2F0Y2hkb2cuIFRoaXMg
-d2F0Y2hkb2cgZGV2aWF0ZXMgZnJvbQ0KPiB0aGUgc3RhbmRhcmQgZHJpdmVyIGJ5IHRoZSBmb2xs
-b3dpbmcgaXRlbXM6DQo+DQo+IDEuIFJlZ2lzdGVycyByZXNpZGUgaW4gc2VjdXJlIHJlZ2lzdGVy
-IHNlY3Rpb24uDQo+ICAgICBoZW5jZSBhY2Nlc3MgaXMgb25seSBwb3NzaWJsZSB2aWEgU01DIGNh
-bGxzIHRvIEFURi4NCj4NCj4gMi4gVGhlcmUgYXJlIGNvdXBsZSBtb3JlIHJlZ2lzdGVycyB3aGlj
-aCByZXNpZGUgaW4NCj4gICAgIG90aGVyIHJlZ2lzdGVyIGFyZWFzLCB3aGljaCBuZWVkcyB0byBi
-ZSBjb25maWd1cmVkDQo+ICAgICBpbiBvcmRlciBmb3IgdGhlIHdhdGNoZG9nIHRvIHByb3Blcmx5
-IGdlbmVyYXRlDQo+ICAgICByZXNldCB0aHJvdWdoIHRoZSBTT0MuDQo+DQo+ICAgICBUaGUgbmV3
-IE1hcnZlbGwgY29tcGF0aWJpbGl0eSBzdHJpbmcgZGlmZmVyZW50aWF0ZXMgYmV0d2Vlbg0KPiAg
-ICAgdGhlIG9yaWdpbmFsIHNic2EgbW9kZSBvZiBvcGVyYXRpb24gYW5kIHRoZSBNYXJ2ZWxsIG1v
-ZGUgb2YNCj4gICAgIG9wZXJhdGlvbi4NCg0KSSBnYXZlIHRoaXMgYSBxdWljayB0cnkgb24gb3Vy
-IEFDNVggYmFzZWQgYm9hcmQgYW5kIGl0IHdvcmtlZCB3ZWxsIHdpdGggDQpib3RoIGFjdGlvbj0w
-L2FjdGlvbj0xDQoNCj4gRWxhZCBOYWNobWFuICgzKToNCj4gICAgZHQtYmluZGluZ3M6IHdhdGNo
-ZG9nOiBhZGQgTWFydmVsbCBBQzUgd2F0Y2hkb2cNCj4gICAgYXJtNjQ6IGR0czogYWM1OiBhZGQg
-d2F0Y2hkb2cgbm9kZXMNCj4gICAgd2F0Y2hkb2c6IHNic2FfZ3dkdDogYWRkIHN1cHBvcnQgZm9y
-IE1hcnZlbGwgYWM1DQo+DQo+ICAgLi4uL2JpbmRpbmdzL3dhdGNoZG9nL2FybSxzYnNhLWd3ZHQu
-eWFtbCAgICAgIHwgIDUyICsrKy0NCj4gICBhcmNoL2FybTY0L2Jvb3QvZHRzL21hcnZlbGwvYWM1
-LTk4ZHgyNXh4LmR0c2kgfCAgMTQgKw0KPiAgIGFyY2gvYXJtNjQvYm9vdC9kdHMvbWFydmVsbC9h
-YzUtOThkeDM1eHguZHRzaSB8ICAgOCArDQo+ICAgZHJpdmVycy93YXRjaGRvZy9zYnNhX2d3ZHQu
-YyAgICAgICAgICAgICAgICAgIHwgMjQ3ICsrKysrKysrKysrKysrKystLQ0KPiAgIDQgZmlsZXMg
-Y2hhbmdlZCwgMjk4IGluc2VydGlvbnMoKyksIDIzIGRlbGV0aW9ucygtKQ0KPg==
+Hi Nishanth
+
+On 14/12/23 18:21, Nishanth Menon wrote:
+> On 13:26-20231214, Neha Malcom Francis wrote:
+>> Add 2G, 1.5G, 1G, 750M, 500M and 250M as the supported frequencies for
+>> A72. This enables support for Dynamic Frequency Scaling (DFS).
+>>
+> 
+> Just curious, since I picked up the PMIC support... can we do dvfs? if
+> not, please indicate that in the commit message.
+> 
+
+DVFS is not supported on J7 devices, I'll mention that in v2.
+
+>> Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
+>> ---
+>> Boot logs:
+>> https://gist.github.com/nehamalcom/e3c3d0446f0467e7fd28706f7ffaeea8
+>>
+>> J721E SoC has three different speed grade devices (see [1], 7.5
+>> Operating Performance Points) which as of today are indiscernible in
+>> software, users of a different speed grade device must manually change
+>> the DTS to ensure their maximum speed frequency is supported.
+>>
+>> [1] https://www.ti.com/lit/gpn/tda4vm
+> This is critical info in the commit message and in documentation of
+> source.
+> 
+
+Will put that in the commit message.
+
+> I am also concerned if the table should be separated out as a dtsi and
+> included at board.dts level to prevent downstream users going crazy..
+> 
+
+Hm... could you elaborate on that more? I don't understand the reasoning of 
+including this at a board level for a SoC problem.
+
+> Are you absolutely sure this has no detection logic that can be
+> implemented? Almost all TI K3 SoCs seem to have a standard scheme to
+> detect the speed grades till date. /me wonders what the heck happened
+> here..
+> 
+
+Going through the reference manual and data sheet I didn't find anything that 
+could differentiate between speed grades, this was confirmed for J7200, I'll do 
+the needful to confirm this for J721E as well before v2.
+
+>>
+>>   arch/arm64/boot/dts/ti/k3-j721e.dtsi | 35 ++++++++++++++++++++++++++++
+>>   1 file changed, 35 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j721e.dtsi b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
+>> index a200810df54a..fe92879f5812 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j721e.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
+>> @@ -48,6 +48,9 @@ cpu0: cpu@0 {
+>>   			d-cache-line-size = <64>;
+>>   			d-cache-sets = <256>;
+>>   			next-level-cache = <&L2_0>;
+>> +			clocks = <&k3_clks 202 2>;
+>> +			clock-names = "cpu";
+>> +			operating-points-v2 = <&cpu0_opp_table>;
+>>   		};
+>>   
+>>   		cpu1: cpu@1 {
+>> @@ -62,9 +65,41 @@ cpu1: cpu@1 {
+>>   			d-cache-line-size = <64>;
+>>   			d-cache-sets = <256>;
+>>   			next-level-cache = <&L2_0>;
+>> +			clocks = <&k3_clks 203 0>;
+>> +			clock-names = "cpu";
+>> +			operating-points-v2 = <&cpu0_opp_table>;
+>>   		};
+>>   	};
+>>   
+>> +	cpu0_opp_table: opp-table {
+>> +		compatible = "operating-points-v2";
+> Don't you need opp-shared ?
+
+opp-shared would imply that the CPUs switch DFS states together... is that 
+something we want?
+
+>> +
+>> +		opp6-2000000000 {
+>> +			opp-hz = /bits/ 64 <2000000000>;
+>> +		};
+>> +
+>> +		opp5-1500000000 {
+>> +			opp-hz = /bits/ 64 <1500000000>;
+>> +		};
+>> +
+>> +		opp4-1000000000 {
+>> +			opp-hz = /bits/ 64 <1000000000>;
+>> +		};
+>> +
+>> +		opp3-750000000 {
+>> +			opp-hz = /bits/ 64 <750000000>;
+>> +		};
+>> +
+>> +		opp2-500000000 {
+>> +			opp-hz = /bits/ 64 <500000000>;
+>> +		};
+>> +
+>> +		opp1-250000000 {
+>> +			opp-hz = /bits/ 64 <250000000>;
+> Could you add clock-latency-ns ?
+
+Will add in v2.
+
+>> +		};
+>> +
+>> +	};
+>> +
+>>   	L2_0: l2-cache0 {
+>>   		compatible = "cache";
+>>   		cache-level = <2>;
+>> -- 
+>> 2.34.1
+>>
+> 
+> 
+
+Thanks for reviewing!
+
+-- 
+Thanking You
+Neha Malcom Francis
 
