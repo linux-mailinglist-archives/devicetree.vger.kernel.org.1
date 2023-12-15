@@ -1,126 +1,107 @@
-Return-Path: <devicetree+bounces-25722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51A8B814547
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 11:17:59 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 780BB81454A
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 11:18:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 082421F23B1E
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 10:17:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A8B771C22FC2
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 10:18:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D784318E33;
-	Fri, 15 Dec 2023 10:17:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D67018E28;
+	Fri, 15 Dec 2023 10:18:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mTIRw6YX"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="NJjjmzbB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85A8124B42;
-	Fri, 15 Dec 2023 10:17:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 3BF9Mqgk032346;
-	Fri, 15 Dec 2023 10:17:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=Tun7DRNtaaSLQZm0TAzmr2NH9jDXt4w0fbSSJYXmQkY=; b=mT
-	IRw6YXWH74HMQuu+Gz87bBRaA0ugHj3LKQm5JFUwFjJ5OlJZtQmzw6WnBvARAuzr
-	VObYybK4bBBD9U8RyFegpnzJiX4mM1Yq4kPY0Tu8Lv8V2PfvMjm4lptFqqQYNNzG
-	uu6E8PerIWq0TOYaq6MFRMUSIqoVLd1KciD+7ltjUYMoxVFTlpA1yuHHqKou0QgL
-	DKBREb+mUMFmxOMlSk68bFSkxEltJbAaxic+wWl97OFSsaNqLLOEFZszVjM3p5de
-	iO7tjbTRGTFIAFAtQIxtsGlj/LZn3fJQwojBDY1cVljQtUNolbr111wu6uaSbgOK
-	VDFiqoDP2kdNv7uMTbwA==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3v0m46g4gq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 15 Dec 2023 10:17:10 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3BFAGirw014118
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 15 Dec 2023 10:16:44 GMT
-Received: from [10.253.13.71] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 15 Dec
- 2023 02:16:40 -0800
-Message-ID: <c3391e33-e770-4c61-855e-d90e82b95f75@quicinc.com>
-Date: Fri, 15 Dec 2023 18:16:37 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C33F01A596;
+	Fri, 15 Dec 2023 10:18:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+	In-Reply-To:References; bh=NaKT5qoM+qCmvzKX65nbLG/srH1WrOorsHKdumObti8=; b=NJ
+	jjmzbBpViyMWjd/BWRY6PLwWucmKJSCdLtRqTA97Yfa4MiQnXnMYihg47mshv2m3yCUN7ljv5z3g3
+	ZO4cgeDx1T9i27CTcOfLNiwoqbmCkND1P/IBljgq0vA3euiwFY9gfzIbPOBJwDL1k8YH7MC4r2baQ
+	tuLD2BL8k9cUB2c=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rE5Gw-0030Yc-Ry; Fri, 15 Dec 2023 11:18:22 +0100
+Date: Fri, 15 Dec 2023 11:18:22 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Rob Herring <robh@kernel.org>
+Cc: Conor Dooley <conor@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next] dt-bindings: net: marvell,orion-mdio: Drop
+ "reg" sizes schema
+Message-ID: <e59ff8c2-caa1-4072-b86f-0446120ac49b@lunn.ch>
+References: <20231213232455.2248056-1-robh@kernel.org>
+ <20231214-buzz-playlist-2f75095ef2b0@spud>
+ <CAL_JsqKaGFfQNwR3HqRnVs3K7SUtevpoG6tEDntM0SNfyyp6AQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 14/14] dt-bindings: net: ar803x: add qca8084 PHY
- properties
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <andrew@lunn.ch>,
-        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <hkallweit1@gmail.com>, <linux@armlinux.org.uk>, <corbet@lwn.net>,
-        <p.zabel@pengutronix.de>, <f.fainelli@gmail.com>
-CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>
-References: <20231215074005.26976-1-quic_luoj@quicinc.com>
- <20231215074005.26976-15-quic_luoj@quicinc.com>
- <bdfba8a7-9197-4aae-a7f9-6075a375f60b@linaro.org>
-From: Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <bdfba8a7-9197-4aae-a7f9-6075a375f60b@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 6BPPAA1eXPd8CZFoyaMl93amoket_0Rb
-X-Proofpoint-ORIG-GUID: 6BPPAA1eXPd8CZFoyaMl93amoket_0Rb
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- suspectscore=0 adultscore=0 phishscore=0 mlxscore=0 clxscore=1015
- mlxlogscore=955 impostorscore=0 malwarescore=0 bulkscore=0 spamscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2312150069
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_JsqKaGFfQNwR3HqRnVs3K7SUtevpoG6tEDntM0SNfyyp6AQ@mail.gmail.com>
 
-
-
-On 12/15/2023 4:22 PM, Krzysztof Kozlowski wrote:
-> On 15/12/2023 08:40, Luo Jie wrote:
->> The following properties are added for qca8084 PHY.
->>
->> 1. add the compatible string "ethernet-phy-id004d.d180" since
->>     the PHY device is not accessible during MDIO bus register.
->> 2. add property "qcom,phy-addr-fixup" for customizing MDIO address.
->> 3. add property "qcom,phy-work-mode" for specifying qca8084 PHY
->>     work mode.
->> 4. add the initial clocks and resets.
+On Thu, Dec 14, 2023 at 12:12:42PM -0600, Rob Herring wrote:
+> On Thu, Dec 14, 2023 at 10:23 AM Conor Dooley <conor@kernel.org> wrote:
+> >
+> > On Wed, Dec 13, 2023 at 05:24:55PM -0600, Rob Herring wrote:
+> > > Defining the size of register regions is not really in scope of what
+> > > bindings need to cover. The schema for this is also not completely correct
+> > > as a reg entry can be variable number of cells for the address and size,
+> > > but the schema assumes 1 cell.
+> > >
+> > > Signed-off-by: Rob Herring <robh@kernel.org>
+> >
+> > Does this not also remove restrictions on what the number in the reg
+> > entry is actually allowed to be?
 > 
-> All my previous comments (sent one minute before this patchset :) )
-> apply. Please respond to them or implement them in v5 (not earlier than
-> after 24h).
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+> Yes, that's what I mean with the first sentence. We don't do this
+> anywhere else with the exception of some I2C devices with fixed
+> addresses. Keying off of the interrupt property also seems
+> questionable. If the register size is different, that should be a
+> different compatible.
 
-Sure, will update the new version after the discussion completed.
-actually i have query about the dt-bindings doc.
+Reading the code, it appears the hardware always supported interrupts,
+however the first version of the driver never used them. It seems like
+some DT blobs had the register space cover just the needed registers
+for polling, and excluded the interrupt control register. When
+interrupt support was added, all in-tree DT files were updated with
+the extended register space, but to allow backwards compatibility, the
+driver checks the length of the register space and will not enable
+interrupts if its too small.
 
-The "maxItems: 1" of the property resets is defined in ethernet-phy.yaml
-that is referenced by qca,ar803x.yaml, but i have 11 reset instances
-used for qca8084 PHY, it seems i can't overwrite maxItems of reset
-property to 11 from 1 in qca,ar803x.yaml.
+I'm guessing that since the hardware did not change, a new compatible
+was not used when adding interrupt support. And the yaml is there to
+help when old out of tree .dts files are merged into the tree and have
+the old register space.
 
-is there any method to overwrite the maxItems value?
+This is and old driver, and its usage of DT is from long before many
+of the current best practices where determined, or yaml was even an
+idea. So i'm not surprised it has a few odd quirks.
 
-Thanks,
-Jie
+I don't see a reason not to remove these constraints, as i said, the
+driver should do the right thing if the register space it too small
+and YAML does not warn about it.
+
+      Andrew
 
