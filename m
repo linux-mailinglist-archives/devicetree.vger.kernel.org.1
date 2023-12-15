@@ -1,365 +1,246 @@
-Return-Path: <devicetree+bounces-25854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25855-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15AE6814CFB
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 17:26:07 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8287B814D4C
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 17:39:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B21C1C23AF2
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 16:26:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 068DB1F235DB
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 16:39:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F04B43DB9D;
-	Fri, 15 Dec 2023 16:25:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 729AF3DB9D;
+	Fri, 15 Dec 2023 16:39:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g6U8BoVo"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="lKeaPfML"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50D663DBBB;
-	Fri, 15 Dec 2023 16:25:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-1d05199f34dso3951965ad.3;
-        Fri, 15 Dec 2023 08:25:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1702657536; x=1703262336; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=42Ib9M9xg38B/QbmBOXK61x/WxHHrbWgabum0nBmkMI=;
-        b=g6U8BoVosgfg/zWkq+TlyvMfBTes+irlvSMtE3CQmOADsxE2pPrY4RQ4qjS1i0kghG
-         mJ5r4604zuZajL1TvlQXwWRptzZc25RDWE/VrLf89hNeAPFk0+ZTuHCfkWDaO8jyGI3+
-         fb/qUDAXPaP+F+FgEB28bdtg/qj6rLLha9HY7FOuZO5G/u3HGv7XW11TrCdwqauqG07H
-         9EyYmugqVKw9X0pxqkFyTZo8x/pfMfr5tAroexdfemnZ+3jv1+qWKoMkkNPcYaFRRO7s
-         Nj02Jjv3qmHXx+0oGquuIVmNl2A2Z55ZWnDGV2mBknWRIBfR2EvET7SOKjPF/fsoUfon
-         mqAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702657536; x=1703262336;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=42Ib9M9xg38B/QbmBOXK61x/WxHHrbWgabum0nBmkMI=;
-        b=dGYqFwLh30oQd222gvi7TCSbkQeT4COrD/Wf/Vz8czWuXDbtEbkL0hIKz0eJhp7WOU
-         JuuwC5N6X/idZIwizXpgEM/2khF5a00SFswCSjq9ih9Yjd5kkcy3Ny1Hb/ypS5pSO+IP
-         inZL/5CIT5/7iKeigyRBHiB/dDy7GXkkB+PS44e+P9jApeh/YVeA3afgLSPG7NideFRO
-         cDB+te7yE9ymkDl2lXQE3SCnQ6cBF/pVgDs9BPWf+LOr1B/P9ou4i31NAIJNQ3/eqnd7
-         UNlHIwx8LqHxY/qgX5gBE3/DZz89/RJTsJ58T5RKHxokmMD8MBktxX2mTvvL7pYntuEL
-         Hvbw==
-X-Gm-Message-State: AOJu0YyjihgLK/z/iBAvy/VQqGLEX1rq81vgqk56DaigAFUQ9eWdlUEq
-	Bv0arVK+/FnrxT9G81jow+czK1N1hKNrag==
-X-Google-Smtp-Source: AGHT+IHAzlqLfSUjVD+t87pazfdcFu3bvkezL0AmisAGvfMeWZ/R/akVDuZqnZyyhmt5R+6mI2CA/Q==
-X-Received: by 2002:a17:902:9893:b0:1d3:7c16:91d6 with SMTP id s19-20020a170902989300b001d37c1691d6mr1267651plp.115.1702657536101;
-        Fri, 15 Dec 2023 08:25:36 -0800 (PST)
-Received: from localhost.localdomain ([2401:4900:581e:798e:871c:98db:5638:a4])
-        by smtp.gmail.com with ESMTPSA id s16-20020a170902989000b001bb750189desm14468665plp.255.2023.12.15.08.25.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Dec 2023 08:25:35 -0800 (PST)
-From: Anshul Dalal <anshulusr@gmail.com>
-To: linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: Anshul Dalal <anshulusr@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	linux-kernel-mentees@lists.linuxfoundation.org,
-	Jonathan Cameron <jic23@kernel.org>
-Subject: [PATCH v5 3/3] iio: chemical: add support for Aosong AGS02MA
-Date: Fri, 15 Dec 2023 21:53:11 +0530
-Message-ID: <20231215162312.143568-3-anshulusr@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20231215162312.143568-1-anshulusr@gmail.com>
-References: <20231215162312.143568-1-anshulusr@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 318DC381C3;
+	Fri, 15 Dec 2023 16:39:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 53940FF806;
+	Fri, 15 Dec 2023 16:39:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1702658380;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=qeUlAXLMOLtI+YSl2OdBGMlYsQMayvBYGrTNsjwF33E=;
+	b=lKeaPfMLgy9vmorkc8x900li09jpg//OKH5L2u7CNe0wqS8FkVW9qUwhik51WpCWL0r4Hi
+	bxx2cPJPA8I00Dm9RUm5iXqcYCcbHpLeqWWYRwaEFfYoCrENfKptoo0ZsWFWbCyBz8oZes
+	1+S2FXyU90jI/onYgWsGRKbweqxOWepLc/sEGK8HHgFfwiY+AuVYSQ57vCyjOrXZl4d8NP
+	x2aumyx3GPDFjfDo7SQEMKzce0beyo6b8t7gvAs6ECzvCo3saN8k4PA0dy8bMTNLwWn5Gz
+	+sjHAkakG5sk8ySIi7b+YDolc38FPaDf1qjDlzk43WohG2YHaC39NoB6hCly3w==
+From: Gregory CLEMENT <gregory.clement@bootlin.com>
+To:  Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc: Paul Burton <paulburton@kernel.org>, linux-mips@vger.kernel.org, Jiaxun
+ Yang <jiaxun.yang@flygoat.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Vladimir
+  Kondratiev <vladimir.kondratiev@mobileye.com>, Tawfik Bayouk
+ <tawfik.bayouk@mobileye.com>, Alexandre Belloni
+ <alexandre.belloni@bootlin.com>, =?utf-8?Q?Th=C3=A9o?= Lebrun
+ <theo.lebrun@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v5 00/22] Add support for the Mobileye EyeQ5 SoC
+In-Reply-To: <20231212163459.1923041-1-gregory.clement@bootlin.com>
+References: <20231212163459.1923041-1-gregory.clement@bootlin.com>
+Date: Fri, 15 Dec 2023 17:39:39 +0100
+Message-ID: <878r5vctdg.fsf@BL-laptop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-GND-Sasl: gregory.clement@bootlin.com
 
-A simple driver for the TVOC (Total Volatile Organic Compounds)
-sensor from Aosong: AGS02MA
+Hello Thomas,
 
-Steps in reading the VOC sensor value over i2c:
-  1. Read 5 bytes from the register `AGS02MA_TVOC_READ_REG` [0x00]
-  2. The first 4 bytes are taken as the big endian sensor data with final
-     byte being the CRC
-  3. The CRC is verified and the value is returned over an
-     `IIO_CHAN_INFO_RAW` channel as percents
+> Hello,
+>
+> The EyeQ5 SoC from Mobileye is based on the MIPS I6500 architecture
+> and features multiple controllers such as the classic UART, I2C, SPI,
+> as well as CAN-FD, PCIe, Octal/Quad SPI Flash interface, Gigabit
+> Ethernet, MIPI CSI-2, and eMMC 5.1. It also includes a Hardware
+> Security Module, Functional Safety Hardware, and MJPEG encoder.
+>
+> One peculiarity of this SoC is that the physical address of the DDDR
+> exceeds 32 bits. Given that the architecture is 64 bits, this is not
+> an issue, but it requires some changes in how the mips64 is currently
+> managed during boot.
+>
+> In this fifth version, there aren't many changes, mostly just tweaking
+> commit messages based on Sergey's feedback and fixing up the code
+> style. But, the real reason for this series is a bit of a whoopsie on
+> my end. It turns out, despite what I confidently claimed in the last
+> round, some configuration tweaks were missing. All sorted now, though!
+>
 
-Tested on Raspberry Pi Zero 2W
+A few weeks ago, you were concerned about the introduction of the
+specific kconfig CONFIG_USE_XKPHYS to support EyeQ5, and you wanted us
+to set up a new platform instead. Since then, Jiaxun proposed a series
+that was merged here to provide more generic support.
 
-Datasheet: https://asairsensors.com/wp-content/uploads/2021/09/AGS02MA.pdf
-Signed-off-by: Anshul Dalal <anshulusr@gmail.com>
----
+I had other issues in the initial series, and I think that now I've
+fixed all of them. So, I would like to know what your opinion is now
+about this series.
 
-Changes for v5:
-- Removed AGS02MA_DEVICE_NAME define
-- Saperated return value from data in
-  `ags02ma_register_read`
-- Added IIO_CHAN_INFO_SCALE for ppb to percent conversion
-- Changed `ags02ma_channels` (iio_chan_spec[1]) to
-  `ags02ma_channel` (iio_chan_spec) since only driver only
-  uses a single channel
-- Use `dev_err_probe` instead of `dev_err`
-- removed unnecessary `i2c_set_clientdata(..)`
-- Removed `of_match_ptr(..)`
+Will you accept it, or do you still think that a new platform has to be
+set up?
 
-Changes for v4:
-- Fixed warning: unused variable 'ags02ma_of_table'
-- Fixed warning: unsigned 'ret' is never less than zero in
-  `ags02ma_register_read`
+Regards,
 
-Changes for v3:
-- Added of_device_id
+Gregory
 
-Changes for v2:
-- Fixed Kconfig not selecting CRC8 (used to be `select crc8`)
-- Changed instances of asair to aosong
-- Report raw readings in percents instead of ppb
-- Added myself as maintainer for the device binding
+> To build and test the kernel, we need to run the following commands:
+>
+> make 64r6el_defconfig BOARDS=eyeq5
+> make vmlinuz.itb
+>
+> Changelog:
+>
+>  v4 -> v5:
+>
+>    - Improve commit messages for patch 3, 5, 12 and 13.
+>
+>    - Fix style in patch 9
+>
+>    - Really enable SPARSMEM and use correct address in
+>      board-eyeq5.config in patch 21
+>
+>  v3 -> v4:
+>
+>  - Fix build warning in "MIPS: Get rid of CONFIG_NO_EXCEPT_FILL":
+>    check that we are in 64bit mode before using KSEG0 that exist only
+>    in this mode.
+>
+>  - Modify "MIPS: spaces: Define a couple of handy macros" to be
+>    buildable in 32bit mode.
+>
+>  - Use correct format specifier to print address in "MIPS: traps: Give
+>    more explanations if ebase doesn't belong to KSEG0"
+>
+>  - In "MIPS: generic: Add support for Mobileye EyeQ5",remove
+>    CONFIG_ZBOOT_LOAD_ADDRESS from board-eyeq5.config, (as well as
+>    CONFIG_USE_XKPHYS that does not exist anymore) and add
+>    CONFIG_SPARSEMEM_MANUAL to enable SPARSMEM.
+>
+> v2 -> v3
+>
+>  - Added more reviewed-by and acked-by tags
+>
+>  - Fix sorting for cpus entries in
+>
+>  - Fix indentation issue in Documentation/devicetree/bindings/mips/mobileye.yaml
+>
+>  v1 -> v2
+>
+>  - Added reviewed-by and acked-by tags
+>
+>  - Fix typos reported
+>
+>  - In patch 15 use 'img' vendor string instead of mti
+>
+>  - In patch 16 modify licence
+>
+>  - In patch 17 give more explanations about the block usage.
+>
+>  - In patch 18, remove _ in node names, don't use anymore
+>    CONFIG_BUILTIN_DTB in Makefile, remove macro, modify licence.
+>
+>  - In patch 19 remove most of the bootargs and only keeps earlycon. I
+>    also split the memory in 2 part in the device tree.
+>
+>  - Integrate the series from Jiaxun Yang
+>    https://lore.kernel.org/linux-mips/20231027221106.405666-1-jiaxun.yang@flygoat.com/
+>
+>   They are patches 2 to 6 and 8 to 12
+>
+>   Then I added patch 7 to fix the cache issue visible on the Mobileye
+>   platform, I also add patch 13 to improve warning message when ebase
+>   doesn't belong to KSEG0
+>
+> Regards,
+>
+> Gregory
+>
+> Gregory CLEMENT (13):
+>   MIPS: compressed: Use correct instruction for 64 bit code
+>   MIPS: spaces: Define a couple of handy macros
+>   MIPS: Fix cache issue with mips_cps_core_entry
+>   MIPS: traps: Give more explanations if ebase doesn't belong to KSEG0
+>   dt-bindings: Add vendor prefix for Mobileye Vision Technologies Ltd.
+>   dt-bindings: mips: cpus: Sort the entries
+>   dt-bindings: mips: cpu: Add I-Class I6500 Multiprocessor Core
+>   dt-bindings: mips: Add bindings for Mobileye SoCs
+>   dt-bindings: mfd: syscon: Document EyeQ5 OLB
+>   MIPS: mobileye: Add EyeQ5 dtsi
+>   MIPS: mobileye: Add EPM5 device tree
+>   MIPS: generic: Add support for Mobileye EyeQ5
+>   MAINTAINERS: Add entry for Mobileye MIPS SoCs
+>
+> Jiaxun Yang (9):
+>   MIPS: Export higher/highest relocation functions in uasm
+>   MIPS: genex: Fix except_vec_vi for kernel in XKPHYS
+>   MIPS: Fix set_uncached_handler for ebase in XKPHYS
+>   MIPS: Refactor mips_cps_core_entry implementation
+>   MIPS: Allow kernel base to be set from Kconfig for all platforms
+>   MIPS: traps: Handle CPU with non standard vint offset
+>   MIPS: Avoid unnecessary reservation of exception space
+>   MIPS: traps: Enhance memblock ebase allocation process
+>   MIPS: Get rid of CONFIG_NO_EXCEPT_FILL
+>
+>  .../devicetree/bindings/mfd/syscon.yaml       |   1 +
+>  .../devicetree/bindings/mips/cpus.yaml        |  13 +-
+>  .../devicetree/bindings/mips/mobileye.yaml    |  32 ++
+>  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+>  MAINTAINERS                                   |  12 +
+>  arch/mips/Kconfig                             |  26 +-
+>  arch/mips/boot/compressed/head.S              |   4 +-
+>  arch/mips/boot/dts/Makefile                   |   1 +
+>  arch/mips/boot/dts/mobileye/Makefile          |   4 +
+>  arch/mips/boot/dts/mobileye/eyeq5-epm5.dts    |  24 ++
+>  .../boot/dts/mobileye/eyeq5-fixed-clocks.dtsi | 292 ++++++++++++++++++
+>  arch/mips/boot/dts/mobileye/eyeq5.dtsi        | 134 ++++++++
+>  arch/mips/configs/generic/board-eyeq5.config  |  42 +++
+>  arch/mips/generic/Kconfig                     |  15 +
+>  arch/mips/generic/Platform                    |   2 +
+>  arch/mips/generic/board-epm5.its.S            |  24 ++
+>  arch/mips/include/asm/addrspace.h             |   5 +
+>  arch/mips/include/asm/mach-generic/spaces.h   |   2 +
+>  arch/mips/include/asm/mips-cm.h               |   1 +
+>  arch/mips/include/asm/smp-cps.h               |   4 +-
+>  arch/mips/include/asm/traps.h                 |   1 -
+>  arch/mips/include/asm/uasm.h                  |   2 +
+>  arch/mips/kernel/cps-vec.S                    | 110 +++----
+>  arch/mips/kernel/cpu-probe.c                  |   5 -
+>  arch/mips/kernel/cpu-r3k-probe.c              |   2 -
+>  arch/mips/kernel/genex.S                      |  19 +-
+>  arch/mips/kernel/head.S                       |   7 +-
+>  arch/mips/kernel/smp-cps.c                    | 171 ++++++++--
+>  arch/mips/kernel/traps.c                      |  90 ++++--
+>  arch/mips/mm/uasm.c                           |   6 +-
+>  30 files changed, 894 insertions(+), 159 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mips/mobileye.yaml
+>  create mode 100644 arch/mips/boot/dts/mobileye/Makefile
+>  create mode 100644 arch/mips/boot/dts/mobileye/eyeq5-epm5.dts
+>  create mode 100644 arch/mips/boot/dts/mobileye/eyeq5-fixed-clocks.dtsi
+>  create mode 100644 arch/mips/boot/dts/mobileye/eyeq5.dtsi
+>  create mode 100644 arch/mips/configs/generic/board-eyeq5.config
+>  create mode 100644 arch/mips/generic/board-epm5.its.S
+>
+> -- 
+> 2.42.0
+>
 
-Previous versions:
-v4: https://lore.kernel.org/lkml/20231125100139.193584-3-anshulusr@gmail.com/
-v3: https://lore.kernel.org/lkml/20231121095800.2180870-3-anshulusr@gmail.com/
-v2: https://lore.kernel.org/lkml/20231115125810.1394854-3-anshulusr@gmail.com/
-v1: https://lore.kernel.org/lkml/20231107173100.62715-3-anshulusr@gmail.com/
----
- MAINTAINERS                    |   7 ++
- drivers/iio/chemical/Kconfig   |  11 +++
- drivers/iio/chemical/Makefile  |   1 +
- drivers/iio/chemical/ags02ma.c | 164 +++++++++++++++++++++++++++++++++
- 4 files changed, 183 insertions(+)
- create mode 100644 drivers/iio/chemical/ags02ma.c
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 81d5fc0bba68..ba3c950aca1b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3028,6 +3028,13 @@ S:	Supported
- W:	http://www.akm.com/
- F:	drivers/iio/magnetometer/ak8974.c
- 
-+AOSONG AGS02MA TVOC SENSOR DRIVER
-+M:	Anshul Dalal <anshulusr@gmail.com>
-+L:	linux-iio@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/iio/chemical/aosong,ags02ma.yaml
-+F:	drivers/iio/chemical/ags02ma.c
-+
- ASC7621 HARDWARE MONITOR DRIVER
- M:	George Joseph <george.joseph@fairview5.com>
- L:	linux-hwmon@vger.kernel.org
-diff --git a/drivers/iio/chemical/Kconfig b/drivers/iio/chemical/Kconfig
-index c30657e10ee1..02649ab81b3c 100644
---- a/drivers/iio/chemical/Kconfig
-+++ b/drivers/iio/chemical/Kconfig
-@@ -5,6 +5,17 @@
- 
- menu "Chemical Sensors"
- 
-+config AOSONG_AGS02MA
-+	tristate "Aosong AGS02MA TVOC sensor driver"
-+	depends on I2C
-+	select CRC8
-+	help
-+	  Say Y here to build support for Aosong AGS02MA TVOC (Total Volatile
-+	  Organic Compounds) sensor.
-+
-+	  To compile this driver as module, choose M here: the module will be
-+	  called ags02ma.
-+
- config ATLAS_PH_SENSOR
- 	tristate "Atlas Scientific OEM SM sensors"
- 	depends on I2C
-diff --git a/drivers/iio/chemical/Makefile b/drivers/iio/chemical/Makefile
-index a11e777a7a00..2f3dee8bb779 100644
---- a/drivers/iio/chemical/Makefile
-+++ b/drivers/iio/chemical/Makefile
-@@ -4,6 +4,7 @@
- #
- 
- # When adding new entries keep the list in alphabetical order
-+obj-$(CONFIG_AOSONG_AGS02MA)	+= ags02ma.o
- obj-$(CONFIG_ATLAS_PH_SENSOR)	+= atlas-sensor.o
- obj-$(CONFIG_ATLAS_EZO_SENSOR)	+= atlas-ezo-sensor.o
- obj-$(CONFIG_BME680) += bme680_core.o
-diff --git a/drivers/iio/chemical/ags02ma.c b/drivers/iio/chemical/ags02ma.c
-new file mode 100644
-index 000000000000..b2fe056083b3
---- /dev/null
-+++ b/drivers/iio/chemical/ags02ma.c
-@@ -0,0 +1,164 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Copyright (C) 2023 Anshul Dalal <anshulusr@gmail.com>
-+ *
-+ * Driver for Aosong AGS02MA
-+ *
-+ * Datasheet:
-+ *   https://asairsensors.com/wp-content/uploads/2021/09/AGS02MA.pdf
-+ * Product Page:
-+ *   http://www.aosong.com/m/en/products-33.html
-+ */
-+
-+#include <linux/crc8.h>
-+#include <linux/delay.h>
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+
-+#include <linux/iio/iio.h>
-+
-+#define AGS02MA_TVOC_READ_REG		   0x00
-+#define AGS02MA_VERSION_REG		   0x11
-+
-+#define AGS02MA_VERSION_PROCESSING_DELAY   30
-+#define AGS02MA_TVOC_READ_PROCESSING_DELAY 1500
-+
-+#define AGS02MA_CRC8_INIT		   0xff
-+#define AGS02MA_CRC8_POLYNOMIAL		   0x31
-+
-+DECLARE_CRC8_TABLE(ags02ma_crc8_table);
-+
-+struct ags02ma_data {
-+	struct i2c_client *client;
-+};
-+
-+struct ags02ma_reading {
-+	__be32 data;
-+	u8 crc;
-+} __packed;
-+
-+static int ags02ma_register_read(struct i2c_client *client, u8 reg, u16 delay,
-+				 u32 *val)
-+{
-+	int ret;
-+	u8 crc;
-+	struct ags02ma_reading read_buffer;
-+
-+	ret = i2c_master_send(client, &reg, sizeof(reg));
-+	if (ret < 0) {
-+		dev_err(&client->dev,
-+			"Failed to send data to register 0x%x: %d", reg, ret);
-+		return ret;
-+	}
-+
-+	/* Processing Delay, Check Table 7.7 in the datasheet */
-+	msleep_interruptible(delay);
-+
-+	ret = i2c_master_recv(client, (u8 *)&read_buffer, sizeof(read_buffer));
-+	if (ret < 0) {
-+		dev_err(&client->dev,
-+			"Failed to receive from register 0x%x: %d", reg, ret);
-+		return ret;
-+	}
-+
-+	crc = crc8(ags02ma_crc8_table, (u8 *)&read_buffer.data,
-+		   sizeof(read_buffer.data), AGS02MA_CRC8_INIT);
-+	if (crc != read_buffer.crc) {
-+		dev_err(&client->dev, "CRC error\n");
-+		return -EIO;
-+	}
-+
-+	*val = be32_to_cpu(read_buffer.data);
-+	return 0;
-+}
-+
-+static int ags02ma_read_raw(struct iio_dev *iio_device,
-+			    struct iio_chan_spec const *chan, int *val,
-+			    int *val2, long mask)
-+{
-+	int ret;
-+	struct ags02ma_data *data = iio_priv(iio_device);
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_RAW:
-+		ret = ags02ma_register_read(data->client, AGS02MA_TVOC_READ_REG,
-+					    AGS02MA_TVOC_READ_PROCESSING_DELAY,
-+					    val);
-+		if (ret < 0)
-+			return ret;
-+		return IIO_VAL_INT;
-+	case IIO_CHAN_INFO_SCALE:
-+		/* The sensor reads data as ppb */
-+		*val = 0;
-+		*val2 = 100;
-+		return IIO_VAL_INT_PLUS_NANO;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static const struct iio_info ags02ma_info = {
-+	.read_raw = ags02ma_read_raw,
-+};
-+
-+static const struct iio_chan_spec ags02ma_channel = {
-+	.type = IIO_CONCENTRATION,
-+	.channel2 = IIO_MOD_VOC,
-+	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) | BIT(IIO_CHAN_INFO_SCALE)
-+};
-+
-+static int ags02ma_probe(struct i2c_client *client)
-+{
-+	int ret;
-+	struct ags02ma_data *data;
-+	struct iio_dev *indio_dev;
-+	u32 version;
-+
-+	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*data));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	crc8_populate_msb(ags02ma_crc8_table, AGS02MA_CRC8_POLYNOMIAL);
-+
-+	ret = ags02ma_register_read(client, AGS02MA_VERSION_REG,
-+				    AGS02MA_VERSION_PROCESSING_DELAY, &version);
-+	if (ret < 0)
-+		return dev_err_probe(&client->dev, ret,
-+			      "Failed to read device version\n");
-+	dev_dbg(&client->dev, "Aosong AGS02MA, Version: 0x%x", version);
-+
-+	data = iio_priv(indio_dev);
-+	data->client = client;
-+	indio_dev->info = &ags02ma_info;
-+	indio_dev->channels = &ags02ma_channel;
-+	indio_dev->num_channels = 1;
-+	indio_dev->name = "ags02ma";
-+
-+	return devm_iio_device_register(&client->dev, indio_dev);
-+}
-+
-+static const struct i2c_device_id ags02ma_id_table[] = {
-+	{ "ags02ma" },
-+	{ /* Sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(i2c, ags02ma_id_table);
-+
-+static const struct of_device_id ags02ma_of_table[] = {
-+	{ .compatible = "aosong,ags02ma" },
-+	{ /* Sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, ags02ma_of_table);
-+
-+static struct i2c_driver ags02ma_driver = {
-+	.driver = {
-+		.name = "ags02ma",
-+		.of_match_table = ags02ma_of_table,
-+	},
-+	.id_table = ags02ma_id_table,
-+	.probe = ags02ma_probe,
-+};
-+module_i2c_driver(ags02ma_driver);
-+
-+MODULE_AUTHOR("Anshul Dalal <anshulusr@gmail.com>");
-+MODULE_DESCRIPTION("Aosong AGS02MA TVOC Driver");
-+MODULE_LICENSE("GPL");
 -- 
-2.43.0
-
+Gregory Clement, Bootlin
+Embedded Linux and Kernel engineering
+http://bootlin.com
 
