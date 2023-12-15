@@ -1,135 +1,275 @@
-Return-Path: <devicetree+bounces-25985-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25986-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 541E2815357
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 23:14:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8134E8153C3
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 23:36:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E9136B23065
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 22:14:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37F3A287458
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 22:36:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A115213B12B;
-	Fri, 15 Dec 2023 22:14:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 226EF18027;
+	Fri, 15 Dec 2023 22:36:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.de header.i=linosanfilippo@gmx.de header.b="hXhOymDR"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="iXFuaSqL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25F5E18EC1;
-	Fri, 15 Dec 2023 22:14:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.de; s=s31663417;
-	t=1702678425; x=1703283225; i=linosanfilippo@gmx.de;
-	bh=C06XXkJK7IZiZ0MT6MWFhD5Flfb1WACPBxOdMeCa4xw=;
-	h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
-	 In-Reply-To;
-	b=hXhOymDR1W83ZjnKPjT5KlB+DYtmkxBITeBaeFrNw3mHr6qzH3Khl0+cqN8CKApY
-	 eICFT/Hfydvt+M1uJ3vEi7gBLY71ttn2QuglHIIjmcF6hX431d5a342M+79Sb1TF5
-	 CuiFiLq1jyobFh6a3pbM4oNPn13q9DUYGo2lxLfVfuAGNnI44den2Ixyk5UmNy/Fe
-	 Z3wRSvfdYM5xj6LNZPP9aE1SQDqZfXzOXU+pkj1JLQrspU/1dhhzOo4/86E1iLb+t
-	 2vr24ANbuDwTkJ6tVh6mU3PVCeF29Rfr8MZ2cDbLmtIcLcjS43ldAwUehhaIdKTRB
-	 jzmmtOPj+D92jfuG/w==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.2.42] ([84.162.1.150]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1N0oBr-1rQRZ60MAH-00wlzn; Fri, 15
- Dec 2023 23:13:45 +0100
-Message-ID: <1b0af20c-8a2c-46ba-ab2e-d598b65fd0c1@gmx.de>
-Date: Fri, 15 Dec 2023 23:13:41 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCDF318EBF;
+	Fri, 15 Dec 2023 22:36:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1702679794; x=1734215794;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=81ICkebormZ0Z0Ct1dTYfN2Re+TIgDgSB9gIT28pAKg=;
+  b=iXFuaSqLd1s2hyXfHgq8AZegeGD8JmnE0qmwz0D3pG4LbVSp/mirfLUB
+   qeZlfp+1j5xWa+KRmfawDFlkIq5MDuQL8DTBXeIwyooDQEVLZhWbOAg0D
+   odrNwhcpqa8tqAYzH+VVgiZt8N+wkCGbqd5oYT8akdzsRcOsEyQ8RaJ9K
+   WYvzvENJN6EJmhuCcdkQOrFs7Sf0ntPZdHS4LNRFIuRKKxrKl/T3TGhx9
+   2YR713Rtb3BYsLErOnwr+XzuhzZIF2f76Z5NE2SR8wQFSolcwJNpPZK5S
+   P9zoldvuqldRX6YPEE1C3FcDg+krJieNnzqRhCi3Ovvgl+XlHQpatLCqr
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10925"; a="16891900"
+X-IronPort-AV: E=Sophos;i="6.04,280,1695711600"; 
+   d="scan'208";a="16891900"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Dec 2023 14:36:32 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10925"; a="768144404"
+X-IronPort-AV: E=Sophos;i="6.04,280,1695711600"; 
+   d="scan'208";a="768144404"
+Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
+  by orsmga007.jf.intel.com with ESMTP; 15 Dec 2023 14:36:26 -0800
+Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rEGnA-0000r2-15;
+	Fri, 15 Dec 2023 22:36:24 +0000
+Date: Sat, 16 Dec 2023 06:35:39 +0800
+From: kernel test robot <lkp@intel.com>
+To: Elad Nachman <enachman@marvell.com>, wim@linux-watchdog.org,
+	linux@roeck-us.net, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	gregory.clement@bootlin.com, chris.packham@alliedtelesis.co.nz,
+	andrew@lunn.ch, fu.wei@linaro.org, Suravee.Suthikulpanit@amd.com,
+	al.stone@linaro.org, timur@codeaurora.org,
+	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	enachman@marvell.com, cyuval@marvell.com
+Subject: Re: [PATCH 3/3] watchdog: sbsa_gwdt: add support for Marvell ac5
+Message-ID: <202312160648.h1CrZxtx-lkp@intel.com>
+References: <20231214150414.1849058-4-enachman@marvell.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: serial: rs485: add rs485-mux-gpios
- binding
-Content-Language: en-US
-To: Christoph Niedermaier <cniedermaier@dh-electronics.com>,
- Crescent CY Hsieh <crescentcy.hsieh@moxa.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Lukas Wunner <lukas@wunner.de>,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- "brenda.streiff@ni.com" <brenda.streiff@ni.com>,
- Tomas Paukrt <tomaspaukrt@email.cz>
-References: <20231120151056.148450-1-linux@rasmusvillemoes.dk>
- <20231120151056.148450-2-linux@rasmusvillemoes.dk>
- <20231122145344.GA18949@wunner.de>
- <3b8548b1-b8a9-0c9e-4040-5cfda06a85c6@gmx.de>
- <ec66d25162de4cbc92720df1e7008fe8@dh-electronics.com>
- <5c140498-69e3-4187-8703-db0c41e7ca89@gmx.de>
- <fe28eb93-daa1-41af-a005-f21aa87e1984@gmx.de>
- <ZXcJr4VS_uGr_6TV@smile.fi.intel.com>
- <ZXrX4mQXPLum0jL3@moxa-ThinkCentre-M90t>
- <b35730df8288469fbaf67b5ceae4eece@dh-electronics.com>
- <ed087928-43ac-42bc-8e4d-d1632db451b9@gmx.de>
- <cc59c5bb16574073ba8b2bf9bc59bc7c@dh-electronics.com>
-From: Lino Sanfilippo <LinoSanfilippo@gmx.de>
-In-Reply-To: <cc59c5bb16574073ba8b2bf9bc59bc7c@dh-electronics.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:DPmv0J/k0HzTMbwTgxlSJfkOv4Ktn/RCfR7VD9yMFQAhDj2mM7o
- uxQHhjhrdmjTZh75hXxE0RbAq9ucl7RIgehxEi6jO72FJUTlYyA/nHRfX3gshPGfjFdE0zl
- RdO9rHODzl6delVvUFGVCVwZtTAygSdqXQCv4OnDp3K2RVrH5MfscljgRxE3StmFRzStyNZ
- qtsuUKm0S1QJ2VQS7lhJQ==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:oiUTxF7LW/I=;01gP3CrURX/RACgl6u/hm4kcUjB
- hahsEkwwPDj+bL+6RFpCqdSOUCMivMkVRTBxjBXCIpVDk1YnsY+Qjxcy//vsoC+Fuyuqjyg+v
- qys9FiGDbQ89zVmGl1KNGvYJPEvh5RZg5vYP0H7Nsey1UEc1HlBBYjoS05d3ZdIc52hyElBcV
- F5mFo2FWQrG46ObwtdsfjyLUIlrwH7TezyA571sUx9KGzIezsqUaA9YYjynVF1GyEI3YINU7b
- AC6J9RN2XGw4VKmwucifG5nRw5f0UUrLD1hjxx4HSY+CsEhu2VNKzhM54ibNLHdLlGrrPhdKE
- MRxNxhw2RbHzm+/AT6w6PpoqqMu7qXXdzbyCVm+R5SsrU8jQGtff3+YWXEPin8wk6oP3OlmcE
- J4QesO1qu3rXpFfJrSiOLrQ5bCLwDFNdHQgpmCdJUQLHUCqolHoLVM1QdfJ0DABd6htQAu3cW
- zhOxhcoPwIPTNIjmz/6xeAyN2z3l+m6DwalMwJOgPB+CBuToATIWQnX27UzTFssebTyZUjxx2
- 16GkjF0VJoJd3xds1LamQOO2IsMBZbUzNNnSP+TG9p+WornZE4JROYNx5MmcnCZPfr9+TDV+U
- irRGE0Fhnq7Wh0HzB/qBsTopr0QuD2TGrr4HMoLF5XLsciKf6HGfi0XOSo9nocpLhWPo99wwA
- E/OpdfmVOv9lbVZXHCW6oqQuzJZEZGR/4YKDK+ey1m0pDCVwxEkc1bI8bp1y4mGHv/nAupOMJ
- qx0Lh7VhUH6cdjXVj/v9+MBwCj4eiVJvX9OoNbNciq8YitBz9C2bIPVgAh8vCmzRAxPIKmGIu
- nol3VT+rJrVGUJww/OC5nUxPZc14pR1ptI/0c/C8JXWSKHPv8LzElce8R/ZsivwvNbiQEQCty
- 5lcomLZeIUOkfD1ESG549A9alZgv7lPHXJN0Qx86feWx88VXOIELXqVyGCE7HmWivFT4tTq0y
- ji57uA==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231214150414.1849058-4-enachman@marvell.com>
 
-Hi Christoph,
+Hi Elad,
 
-On 14.12.23 15:50, Christoph Niedermaier wrote:
+kernel test robot noticed the following build errors:
 
->
-> I think we don't need to distinguish, because for a full duplex RS-485
-> transceiver also needs RTS control. For example look at the full duplex
-> RS-485 transceiver ADM3491E [1]. It's a full duplex transceiver (A/B and=
- Z/Y)
-> that has DE (Driver enable) and DI (Driver Input) pins for controlling T=
-X. I
-> think the RS-485 master doesn't need it. The DE pin could also be set
-> permanently high. But if we have more than one RS-485 slaves it's needed=
- to
-> avoid blocking of each other on the receiving wires of the RS-485 master=
-.
->
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on groeck-staging/hwmon-next linus/master v6.7-rc5 next-20231215]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Thanks for the explanation. So while still needed for the slaves, in case =
-of the
-RS485 master the RTS control is not needed, right? Is this something that =
-userspace
-should be able to configure? It could be set by clearing both the RTS_ON_S=
-END and
-RTS_AFTER_SEND flag (only if the driver supports this special RS485 mode, =
-of course).
+url:    https://github.com/intel-lab-lkp/linux/commits/Elad-Nachman/dt-bindings-watchdog-add-Marvell-AC5-watchdog/20231214-230812
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20231214150414.1849058-4-enachman%40marvell.com
+patch subject: [PATCH 3/3] watchdog: sbsa_gwdt: add support for Marvell ac5
+config: arm64-allyesconfig (https://download.01.org/0day-ci/archive/20231216/202312160648.h1CrZxtx-lkp@intel.com/config)
+compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project.git 4a5ac14ee968ff0ad5d2cc1ffa0299048db4c88a)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231216/202312160648.h1CrZxtx-lkp@intel.com/reproduce)
 
-Regards,
-Lino
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202312160648.h1CrZxtx-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/watchdog/sbsa_gwdt.c:434:11: error: incompatible integer to pointer conversion assigning to 'void *' from 'resource_size_t' (aka 'unsigned long long') [-Wint-conversion]
+     434 |                 cf_base = res->start;
+         |                         ^ ~~~~~~~~~~
+   drivers/watchdog/sbsa_gwdt.c:439:11: error: incompatible integer to pointer conversion assigning to 'void *' from 'resource_size_t' (aka 'unsigned long long') [-Wint-conversion]
+     439 |                 rf_base = res->start;
+         |                         ^ ~~~~~~~~~~
+   drivers/watchdog/sbsa_gwdt.c:444:17: error: incompatible integer to pointer conversion assigning to 'void *' from 'resource_size_t' (aka 'unsigned long long') [-Wint-conversion]
+     444 |                 cpu_ctrl_base = res->start;
+         |                               ^ ~~~~~~~~~~
+   3 errors generated.
 
 
+vim +434 drivers/watchdog/sbsa_gwdt.c
+
+   408	
+   409	static int sbsa_gwdt_probe(struct platform_device *pdev)
+   410	{
+   411		void __iomem *rf_base, *cf_base;
+   412		void __iomem *cpu_ctrl_base = NULL, *mng_base = NULL,
+   413			     *rst_ctrl_base = NULL;
+   414		struct device *dev = &pdev->dev;
+   415		struct device_node *np = pdev->dev.of_node;
+   416		struct watchdog_device *wdd;
+   417		struct sbsa_gwdt *gwdt;
+   418		struct resource *res;
+   419		int ret, irq;
+   420		bool marvell = false;
+   421		u32 status, id, val;
+   422	
+   423		gwdt = devm_kzalloc(dev, sizeof(*gwdt), GFP_KERNEL);
+   424		if (!gwdt)
+   425			return -ENOMEM;
+   426		platform_set_drvdata(pdev, gwdt);
+   427	
+   428		if (of_device_is_compatible(np, "marvell,ac5-wd")) {
+   429			marvell = true;
+   430			gwdt->soc_reg_ops = &smc_reg_ops;
+   431			res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+   432			if (IS_ERR(res))
+   433				return PTR_ERR(res);
+ > 434			cf_base = res->start;
+   435	
+   436			res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
+   437			if (IS_ERR(res))
+   438				return PTR_ERR(res);
+   439			rf_base = res->start;
+   440	
+   441			res = platform_get_resource(pdev, IORESOURCE_MEM, 2);
+   442			if (IS_ERR(res))
+   443				return PTR_ERR(res);
+   444			cpu_ctrl_base = res->start;
+   445			mng_base = devm_platform_ioremap_resource(pdev, 3);
+   446			if (IS_ERR(mng_base))
+   447				return PTR_ERR(mng_base);
+   448			rst_ctrl_base = devm_platform_ioremap_resource(pdev, 4);
+   449			if (IS_ERR(rst_ctrl_base))
+   450				return PTR_ERR(rst_ctrl_base);
+   451		} else {
+   452			gwdt->soc_reg_ops = &direct_reg_ops;
+   453			cf_base = devm_platform_ioremap_resource(pdev, 0);
+   454			if (IS_ERR(cf_base))
+   455				return PTR_ERR(cf_base);
+   456	
+   457			rf_base = devm_platform_ioremap_resource(pdev, 1);
+   458			if (IS_ERR(rf_base))
+   459				return PTR_ERR(rf_base);
+   460		}
+   461	
+   462		/*
+   463		 * Get the frequency of system counter from the cp15 interface of ARM
+   464		 * Generic timer. We don't need to check it, because if it returns "0",
+   465		 * system would panic in very early stage.
+   466		 */
+   467		gwdt->clk = arch_timer_get_cntfrq();
+   468		gwdt->refresh_base = rf_base;
+   469		gwdt->control_base = cf_base;
+   470	
+   471		wdd = &gwdt->wdd;
+   472		wdd->parent = dev;
+   473		wdd->info = &sbsa_gwdt_info;
+   474		wdd->ops = &sbsa_gwdt_ops;
+   475		wdd->min_timeout = 1;
+   476		wdd->timeout = DEFAULT_TIMEOUT;
+   477		watchdog_set_drvdata(wdd, gwdt);
+   478		watchdog_set_nowayout(wdd, nowayout);
+   479		sbsa_gwdt_get_version(wdd);
+   480		if (gwdt->version == 0)
+   481			wdd->max_hw_heartbeat_ms = U32_MAX / gwdt->clk * 1000;
+   482		else
+   483			wdd->max_hw_heartbeat_ms = GENMASK_ULL(47, 0) / gwdt->clk * 1000;
+   484	
+   485		status = gwdt->soc_reg_ops->reg_read32(cf_base + SBSA_GWDT_WCS);
+   486		if (status & SBSA_GWDT_WCS_WS1) {
+   487			dev_warn(dev, "System reset by WDT.\n");
+   488			wdd->bootstatus |= WDIOF_CARDRESET;
+   489		}
+   490		if (status & SBSA_GWDT_WCS_EN)
+   491			set_bit(WDOG_HW_RUNNING, &wdd->status);
+   492	
+   493		if (action) {
+   494			irq = platform_get_irq(pdev, 0);
+   495			if (irq < 0) {
+   496				action = 0;
+   497				dev_warn(dev, "unable to get ws0 interrupt.\n");
+   498			} else {
+   499				/*
+   500				 * In case there is a pending ws0 interrupt, just ping
+   501				 * the watchdog before registering the interrupt routine
+   502				 */
+   503				gwdt->soc_reg_ops->reg_write32(0, rf_base + SBSA_GWDT_WRR);
+   504				if (devm_request_irq(dev, irq, sbsa_gwdt_interrupt, 0,
+   505						     pdev->name, gwdt)) {
+   506					action = 0;
+   507					dev_warn(dev, "unable to request IRQ %d.\n",
+   508						 irq);
+   509				}
+   510			}
+   511			if (!action)
+   512				dev_warn(dev, "falling back to single stage mode.\n");
+   513		}
+   514		/*
+   515		 * In the single stage mode, The first signal (WS0) is ignored,
+   516		 * the timeout is (WOR * 2), so the maximum timeout should be doubled.
+   517		 */
+   518		if (!action)
+   519			wdd->max_hw_heartbeat_ms *= 2;
+   520	
+   521		watchdog_init_timeout(wdd, timeout, dev);
+   522		/*
+   523		 * Update timeout to WOR.
+   524		 * Because of the explicit watchdog refresh mechanism,
+   525		 * it's also a ping, if watchdog is enabled.
+   526		 */
+   527		sbsa_gwdt_set_timeout(wdd, wdd->timeout);
+   528	
+   529		watchdog_stop_on_reboot(wdd);
+   530		ret = devm_watchdog_register_device(dev, wdd);
+   531		if (ret)
+   532			return ret;
+   533		/*
+   534		 * Marvell AC5/X/IM: need to configure the watchdog
+   535		 * HW to trigger reset on WS1 (Watchdog Signal 1):
+   536		 *
+   537		 * 1. Configure the watchdog signal enable (routing)
+   538		 *    according to configuration
+   539		 * 2. Unmask the wd_rst input signal to the reset unit
+   540		 */
+   541		if (marvell) {
+   542			gwdt->soc_reg_ops->reg_write32(reset, cpu_ctrl_base +
+   543						       SBSA_GWDT_MARVELL_CPU_WD_RST_EN_REG);
+   544			id = readl(mng_base + SBSA_GWDT_MARVELL_MNG_ID_REG) &
+   545				   SBSA_GWDT_MARVELL_ID_MASK;
+   546	
+   547			if (id == SBSA_GWDT_MARVELL_AC5_ID)
+   548				val = SBSA_GWDT_MARVELL_AC5_RST_UNIT_WD_BIT;
+   549			else
+   550				val = SBSA_GWDT_MARVELL_IRONMAN_RST_UNIT_WD_BIT;
+   551	
+   552			writel(readl(rst_ctrl_base + SBSA_GWDT_MARVELL_RST_CTRL_REG) & ~val,
+   553			       rst_ctrl_base + SBSA_GWDT_MARVELL_RST_CTRL_REG);
+   554		}
+   555		dev_info(dev, "Initialized with %ds timeout @ %u Hz, action=%d.%s\n",
+   556			 wdd->timeout, gwdt->clk, action,
+   557			 status & SBSA_GWDT_WCS_EN ? " [enabled]" : "");
+   558	
+   559		return 0;
+   560	}
+   561	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
