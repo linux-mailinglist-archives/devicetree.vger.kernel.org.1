@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-25693-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25694-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC831814373
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 09:21:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6CB481437F
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 09:23:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3C42CB215DB
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 08:21:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C37AAB2197D
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 08:23:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4001011C99;
-	Fri, 15 Dec 2023 08:21:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10BB812E51;
+	Fri, 15 Dec 2023 08:22:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YZK0rbvb"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="isEi4w8s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97A4E11C83
-	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 08:20:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C1A21A705
+	for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 08:22:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a1c7b20f895so42386466b.2
-        for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 00:20:58 -0800 (PST)
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a1ca24776c3so289576266b.0
+        for <devicetree@vger.kernel.org>; Fri, 15 Dec 2023 00:22:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1702628457; x=1703233257; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1702628552; x=1703233352; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=dlM4QDnrNSdoWAS2SOAmDbhB3YWvezdxqVebV4zRbAE=;
-        b=YZK0rbvbmp0s1cUZmJPM8/vKiYyn+L5weUqEgU6TRKSie4h5XqKvQLrsss2AElaS9i
-         VJyi4om/Zjdf6Z67IsC0sNYrjOVdvdJqENKE4ePbj6TqFeY/MyAXOUIZm9K9TjRVR9Az
-         nt0gtFbheGsL6RnBSbnhVvNGhpM+cHEPgWb3Q+MCOp0GOpTD+92/sO2SGawGxwzc9Hrv
-         2qualJK0V4zAM5f6Txk+jz1oWPZwFHmY8FioF7InPyKeueQU+83EnX64GUb134SmHL76
-         doWi5NeHJ+hTZgsyroL2SuPDein9mk6tJXocihXdp9dRVS+t9Xi1ZnrM6eLiHOAJDiYW
-         /Tmg==
+        bh=ErSPpkKKFAjMcXdmmaCZA2SpqYGJcA4cXAU/CRTyJxQ=;
+        b=isEi4w8slWcGZ/2EqXjsAVTFaqL8KLDbOg00vPnuLD3NQ2NxaZdNQ3keEgaZWNzqPi
+         Uk+Xj5iv6ysQzVINsG9o2PB+OTc1JYnG7ur6WoJ5pd1bBOM5Hcl3TJawHUdAetAAxNyQ
+         KQnajjwExaz0QYKs3K/0L1QcAGwawJe4CC50NseZ5Lt9mo4HEl8XBwkFpgyZrmFlYSOp
+         ouVuOsa+OH6F8v0BMHHyIxc/drhfMiF0O5q374yev1Y3HRQ9v1do3iFHstUgDbtd7dve
+         LGfxCDkaNJrsrbfiOGIdJwl1uKzKg+AHikqKE4R71VBjqmLOld3UFUM+yHZ4KzJknhX0
+         5gew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1702628457; x=1703233257;
+        d=1e100.net; s=20230601; t=1702628552; x=1703233352;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dlM4QDnrNSdoWAS2SOAmDbhB3YWvezdxqVebV4zRbAE=;
-        b=cet8opkTMBIIjbkDeGJsfNj/GOwUetVl3WgHuC4TuorIryI4XrRlSkkiIvg50XxRc6
-         BiDlnZI8H8Sm6DCoshlff0oP5ovypK/6qAyIzZEc/WwLqN3tGTupZv6xzeTPc8+dwq4n
-         H4ySttD96Jj1AOdOXRV6UmpBKSfbICFy1vKkF+E0Tw6P8FG5xIUejifmHl2rZWmPxeCu
-         g4p0rPKTwEckkaTg4WO88m1YPWLM+UcDrXLxDKtrkyLWvdSxCCgNM8jxnhGhv9tU4pOO
-         /rO4IUaAgLRm3oVCKBS12WkGu4Xxb9s2RS5fvnlMfEexGHgLW1zzaGci1G6zymWJ4cRy
-         Z8qg==
-X-Gm-Message-State: AOJu0Yz9uab2gOacjZxYGkY3LzHUWPneuOKgzAPrUfh8NPTSe65qw5h5
-	BmkwDbjydSY/amCcpxfVBHYGWg==
-X-Google-Smtp-Source: AGHT+IFQTG8XXWJELe7nFvZD9WwNgR3kz4P8t0pw5L+pXzUFEqQQNNRzzeFJ1d6bdpKxnemSRkSnjg==
-X-Received: by 2002:a17:906:739d:b0:a1f:99e3:b53b with SMTP id f29-20020a170906739d00b00a1f99e3b53bmr3771496ejl.21.1702628456936;
-        Fri, 15 Dec 2023 00:20:56 -0800 (PST)
+        bh=ErSPpkKKFAjMcXdmmaCZA2SpqYGJcA4cXAU/CRTyJxQ=;
+        b=Q/bieClP0eI/b3Zozj7Hoz6Sot4++TV+apLa1uKzw+RSAc9343LeQiPm3btbUbgMDp
+         AF0OIhFj4aOgmh7K0+algr8BhzkPDBMQxnd/tyOeW0ZUsPHtChZhxdxbEK4a5QumooQl
+         nCY1ml97zvrFo+hNLtUeXZxtgl1WCn3IP/ZQPXsyFHx412DfeTU/00A18OawJQZRqyvO
+         s20nZdcfvTrvyy3ZF0gr4/7GoC/9+vdklfEl8zwZ1TkFiGvV5zsmql8dB3u5oA/ZB/Ry
+         o+vS47GyBupxbGaaHUBqWGJPJVLKsnvFjv3cisrDhXRLFrVw/OI1543TFdd+jAJAYuB9
+         iHSQ==
+X-Gm-Message-State: AOJu0YzqNGZsf91y6tSY/uJuWL0rwc3D23gPnri/MtXtrxjj0yQZVgmm
+	vLv6EYVE307k2BUm0tIVBwMktA==
+X-Google-Smtp-Source: AGHT+IEzCTseGZABorq3FoUt1Q5O2QtsC9AknikOzVMggKVq1ZKYXHm8ojXM9/4LWH+m7s688emSkQ==
+X-Received: by 2002:a17:906:fe4c:b0:a1c:4eee:3521 with SMTP id wz12-20020a170906fe4c00b00a1c4eee3521mr13916195ejb.56.1702628552522;
+        Fri, 15 Dec 2023 00:22:32 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.27])
-        by smtp.gmail.com with ESMTPSA id ry9-20020a1709068d8900b009adc77fe164sm10493875ejc.66.2023.12.15.00.20.55
+        by smtp.gmail.com with ESMTPSA id ry9-20020a1709068d8900b009adc77fe164sm10493875ejc.66.2023.12.15.00.22.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Dec 2023 00:20:56 -0800 (PST)
-Message-ID: <3162f758-1ba3-4b30-b62d-a3b4f0d162ca@linaro.org>
-Date: Fri, 15 Dec 2023 09:20:54 +0100
+        Fri, 15 Dec 2023 00:22:32 -0800 (PST)
+Message-ID: <bdfba8a7-9197-4aae-a7f9-6075a375f60b@linaro.org>
+Date: Fri, 15 Dec 2023 09:22:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,18 +66,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: reset: Add binding constants for
- Unisoc's UMS512
+Subject: Re: [PATCH v8 14/14] dt-bindings: net: ar803x: add qca8084 PHY
+ properties
 Content-Language: en-US
-To: Zhifeng Tang <zhifeng.tang@unisoc.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>,
- Baolin Wang <baolin.wang@linux.alibaba.com>,
- Chunyan Zhang <zhang.lyra@gmail.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Zhifeng Tang <zhifeng.tang23@gmail.com>, Wenming Wu <wenming.wu@unisoc.com>
-References: <20231215075927.7838-1-zhifeng.tang@unisoc.com>
+To: Luo Jie <quic_luoj@quicinc.com>, andrew@lunn.ch, davem@davemloft.net,
+ edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ hkallweit1@gmail.com, linux@armlinux.org.uk, corbet@lwn.net,
+ p.zabel@pengutronix.de, f.fainelli@gmail.com
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+References: <20231215074005.26976-1-quic_luoj@quicinc.com>
+ <20231215074005.26976-15-quic_luoj@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -123,24 +123,23 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231215075927.7838-1-zhifeng.tang@unisoc.com>
+In-Reply-To: <20231215074005.26976-15-quic_luoj@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 15/12/2023 08:59, Zhifeng Tang wrote:
-> Add device tree binding constants for Unisoc's UMS512.
+On 15/12/2023 08:40, Luo Jie wrote:
+> The following properties are added for qca8084 PHY.
 > 
-> Signed-off-by: Zhifeng Tang <zhifeng.tang@unisoc.com>
+> 1. add the compatible string "ethernet-phy-id004d.d180" since
+>    the PHY device is not accessible during MDIO bus register.
+> 2. add property "qcom,phy-addr-fixup" for customizing MDIO address.
+> 3. add property "qcom,phy-work-mode" for specifying qca8084 PHY
+>    work mode.
+> 4. add the initial clocks and resets.
 
-Fix your threading.
-
-> ---
->  include/dt-bindings/reset/sprd,ums512-reset.h | 203 ++++++++++++++++++
->  1 file changed, 203 insertions(+)
->  create mode 100644 include/dt-bindings/reset/sprd,ums512-reset.h
-
-
-This should be squashed with patch bringing the change in binding file.
+All my previous comments (sent one minute before this patchset :) )
+apply. Please respond to them or implement them in v5 (not earlier than
+after 24h).
 
 
 Best regards,
