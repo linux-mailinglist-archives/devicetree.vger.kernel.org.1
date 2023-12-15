@@ -1,58 +1,74 @@
-Return-Path: <devicetree+bounces-25840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25841-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E29E814BAD
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 16:24:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B91CC814BB3
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 16:25:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5F8CE1C20844
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 15:24:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 50F011F24836
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 15:25:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D74C364A7;
-	Fri, 15 Dec 2023 15:24:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA11239FD4;
+	Fri, 15 Dec 2023 15:25:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bmailout2.hostsharing.net (bmailout2.hostsharing.net [83.223.78.240])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6A763A8C9;
-	Fri, 15 Dec 2023 15:24:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wunner.de
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=h08.hostsharing.net
-Received: from h08.hostsharing.net (h08.hostsharing.net [IPv6:2a01:37:1000::53df:5f1c:0])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
-	 client-signature RSA-PSS (4096 bits) client-digest SHA256)
-	(Client CN "*.hostsharing.net", Issuer "RapidSSL TLS RSA CA G1" (verified OK))
-	by bmailout2.hostsharing.net (Postfix) with ESMTPS id 3212C2801371D;
-	Fri, 15 Dec 2023 16:24:12 +0100 (CET)
-Received: by h08.hostsharing.net (Postfix, from userid 100393)
-	id 038C43F34A; Fri, 15 Dec 2023 16:24:11 +0100 (CET)
-Date: Fri, 15 Dec 2023 16:24:11 +0100
-From: Lukas Wunner <lukas@wunner.de>
-To: Rob Herring <robh+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jarkko Sakkinen <jarkko@kernel.org>,
-	Peter Huewe <peterhuewe@gmx.de>, Jason Gunthorpe <jgg@ziepe.ca>,
-	devicetree@vger.kernel.org, linux-integrity@vger.kernel.org,
-	Lino Sanfilippo <LinoSanfilippo@gmx.de>,
-	Nayna Jain <nayna@linux.ibm.com>,
-	Thirupathaiah Annapureddy <thiruan@microsoft.com>,
-	Sasha Levin <sashal@kernel.org>,
-	Alexander Steffen <Alexander.Steffen@infineon.com>,
-	Johannes Holland <Johannes.Holland@infineon.com>,
-	Amir Mizinski <amirmizi6@gmail.com>,
-	Benoit HOUYERE <benoit.houyere@st.com>,
-	Peter Delevoryas <peter@pjd.dev>
-Subject: Re: [PATCH v2 1/3] dt-bindings: tpm: Consolidate TCG TIS bindings
-Message-ID: <20231215152411.GA20902@wunner.de>
-References: <cover.1701093036.git.lukas@wunner.de>
- <3f56f0a2bb90697a23e83583a21684b75dc7eea2.1701093036.git.lukas@wunner.de>
- <CAL_JsqKwJsaJhoi07gG76TgDtrwh0i=iGtxL-_pbQbGDZ_8C3A@mail.gmail.com>
- <20231213162319.GA31314@wunner.de>
- <CAL_JsqJ=14b19yHZ=rnVd8uLu=kn5W9y0irk0XA983Eo+ByBnA@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A6B536AEA;
+	Fri, 15 Dec 2023 15:24:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f52.google.com with SMTP id 46e09a7af769-6d9f7af8918so673341a34.0;
+        Fri, 15 Dec 2023 07:24:59 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1702653898; x=1703258698;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=o1KxO6deZnelp4zRShdYeXlRDuUBsn1JgcYXM2Knxlg=;
+        b=PwSl3Iunve/zkU7EPNhxvQyDkFA4RlutWQmk0FaV1xZNWoWRjJiDqyd7nwx9fTI5kk
+         RblVqCFBL64ogERGeARPBpWnINPU4vPRvZ9pjlI3NT2i6MoqLxtfFpflxqGia3ogBZpO
+         UWW5S6U790HOrUDchqwBaGXvJYieJj24mLRjp1OLpnTJ2a98tKdeLyBwd8ReR9kyx9cd
+         wK4r17mhUn2NJYaqrme4/9G13IhNV1ttbqJiFBkeaEzWWijXFVQyqCyUZhMlQOVI3KbB
+         YOOQ4SDEavjtfK/OytwKPgsgSo9XV00txciqf3lS9jXqHpVNcXzBoZuIQYCrWAj2jQV0
+         GAOw==
+X-Gm-Message-State: AOJu0YyXZAUzwytwHBov68jUq+cQjDiPfh3RSR/cJBfPX5keQ5toR8yr
+	9gFs2P4bxQk89VlV7C0BTg==
+X-Google-Smtp-Source: AGHT+IF3DdJW74bPK38SUphJlKZ+n/hKitiokKcgMWBUN3B1WSrWQktRoS8P3zNv/uR0dgu1UFGlXA==
+X-Received: by 2002:a05:6830:1107:b0:6d9:f66e:f557 with SMTP id w7-20020a056830110700b006d9f66ef557mr11375830otq.8.1702653898434;
+        Fri, 15 Dec 2023 07:24:58 -0800 (PST)
+Received: from herring.priv (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id m18-20020a9d6ad2000000b006d7e23c58b6sm3614287otq.38.2023.12.15.07.24.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Dec 2023 07:24:57 -0800 (PST)
+Received: (nullmailer pid 3989129 invoked by uid 1000);
+	Fri, 15 Dec 2023 15:24:56 -0000
+Date: Fri, 15 Dec 2023 09:24:56 -0600
+From: Rob Herring <robh@kernel.org>
+To: Robin Murphy <robin.murphy@arm.com>
+Cc: Albert Ou <aou@eecs.berkeley.edu>, "K. Y. Srinivasan" <kys@microsoft.com>, 
+	David Woodhouse <dwmw2@infradead.org>, Sudeep Holla <sudeep.holla@arm.com>, 
+	Will Deacon <will@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Frank Rowand <frowand.list@gmail.com>, 
+	Gerald Schaefer <gerald.schaefer@linux.ibm.com>, Jason Gunthorpe <jgg@ziepe.ca>, 
+	linux-arm-kernel@lists.infradead.org, Rob Herring <robh+dt@kernel.org>, 
+	Jason Gunthorpe <jgg@nvidia.com>, iommu@lists.linux.dev, Huacai Chen <chenhuacai@kernel.org>, 
+	Joerg Roedel <joro@8bytes.org>, Dexuan Cui <decui@microsoft.com>, Vineet Gupta <vgupta@kernel.org>, 
+	Jean-Philippe Brucker <jean-philippe@linaro.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Lu Baolu <baolu.lu@linux.intel.com>, Niklas Schnelle <schnelle@linux.ibm.com>, 
+	Wei Liu <wei.liu@kernel.org>, Russell King <linux@armlinux.org.uk>, 
+	Christoph Hellwig <hch@lst.de>, Hanjun Guo <guohanjun@huawei.com>, linux-acpi@vger.kernel.org, 
+	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>, Matthew Rosato <mjrosato@linux.ibm.com>, 
+	Haiyang Zhang <haiyangz@microsoft.com>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+	WANG Xuerui <kernel@xen0n.name>
+Subject: Re: [PATCH v2 4/7] dma-mapping: Add helpers for dma_range_map bounds
+Message-ID: <170265389548.3988948.144759236279201432.robh@kernel.org>
+References: <cover.1702486837.git.robin.murphy@arm.com>
+ <16d3e9100cd4a4a397641df963f416cc7f70cc4c.1702486837.git.robin.murphy@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,43 +77,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAL_JsqJ=14b19yHZ=rnVd8uLu=kn5W9y0irk0XA983Eo+ByBnA@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <16d3e9100cd4a4a397641df963f416cc7f70cc4c.1702486837.git.robin.murphy@arm.com>
 
-On Wed, Dec 13, 2023 at 11:01:21AM -0600, Rob Herring wrote:
-> On Wed, Dec 13, 2023 at 10:23AM Lukas Wunner <lukas@wunner.de> wrote:
-> > Ideally the validator would match a regex against the $nodename of the
-> > parent and see if it contains "spi" or "i2c".  But I think matching
-> > against the parent's $nodename isn't possible, is it?
+
+On Wed, 13 Dec 2023 17:17:57 +0000, Robin Murphy wrote:
+> Several places want to compute the lower and/or upper bounds of a
+> dma_range_map, so let's factor that out into reusable helpers.
 > 
-> No. I've thought of adding something like that, but haven't.
+> Reviewed-by: Christoph Hellwig <hch@lst.de>
+> Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
+> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+> ---
+> v2: fix warning for 32-bit builds
+> ---
+>  arch/loongarch/kernel/dma.c |  9 ++-------
+>  drivers/acpi/arm64/dma.c    |  8 +-------
+>  drivers/of/device.c         | 11 ++---------
+>  include/linux/dma-direct.h  | 18 ++++++++++++++++++
+>  4 files changed, 23 insertions(+), 23 deletions(-)
+> 
 
-Please consider this a feature request. :)
+Acked-by: Rob Herring <robh@kernel.org>
 
-It would be good if it were possible to define constraints not just
-for the $nodename of the parent, but any of its properties.
-
-E.g. with i2c, the clock-frequency is set at the host controller's
-devicetree node, not at each attached i2c peripheral's node.
-For ACPI, i2c_acpi_find_bus_speed() walks the bus to find the
-highest clock speed supported by all attached i2c peripherals,
-but for OF, the onus is on the devicetree author to manually
-determine the clock.
-
-Thus, for a TPM such as infineon,slb9635tt which only supports 100 kHz,
-I want to validate that the parent node's clock-frequency is less than
-or equal to that.
-
-In Documentation/devicetree/bindings/security/tpm/st33zp24-i2c.txt
-there's an example showing a clock-frequency property at the
-peripheral's node and I mistakenly carried that over to the yaml
-schema.  A look at the code reveals that's entirely bogus so I'll
-drop the clock-frequency property in v3.  I will retain textual
-hints that infineon,slb9635tt is limited to 100 kHz and
-infineon,slb9645tt to 400 kHz, but as it stands I can't define
-rules that would allow the validator to check that automatically.
-
-Thanks,
-
-Lukas
 
