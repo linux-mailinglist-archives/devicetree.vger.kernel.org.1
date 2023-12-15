@@ -1,122 +1,87 @@
-Return-Path: <devicetree+bounces-25749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-25750-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6F8A8146B1
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 12:20:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBF458146B2
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 12:20:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 161141C22BE5
-	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 11:20:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 87DB7281572
+	for <lists+devicetree@lfdr.de>; Fri, 15 Dec 2023 11:20:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69CCD200AD;
-	Fri, 15 Dec 2023 11:19:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EF9B208A0;
+	Fri, 15 Dec 2023 11:20:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Sqi3fu6w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A47B24B23;
-	Fri, 15 Dec 2023 11:19:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=artur-rojek.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=artur-rojek.eu
-Received: by mail.gandi.net (Postfix) with ESMTPA id 60F8D60005;
-	Fri, 15 Dec 2023 11:19:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BF1D24A03;
+	Fri, 15 Dec 2023 11:20:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=cSkkv/gDOzV7976l7oijQUoiqmu9XDA82nTBbDGDXy8=; b=Sqi3fu6wE10NBK76axcid39OKo
+	us+D3GH0/3EVjqrT5V/4E3SL+V38gwbPC8qFagYyy6g1ZheyXYfpOfmhUseIbxSqAWZhzaCY+Ahep
+	mbWJnuWAkze4kr3QKRn+GXtsuG0sYttYjQtFhaQ2BOU4tjW2DHT0Lra2FWxPG3kBIYnQ=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rE6EZ-0030vp-7b; Fri, 15 Dec 2023 12:19:59 +0100
+Date: Fri, 15 Dec 2023 12:19:59 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Tobias Waldekranz <tobias@waldekranz.com>
+Cc: davem@davemloft.net, kuba@kernel.org, linux@armlinux.org.uk,
+	kabel@kernel.org, hkallweit1@gmail.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 4/4] dt-bindings: net: marvell10g: Document LED
+ polarity
+Message-ID: <74cb1d1c-64b8-4fb0-9e6d-c2fad8417232@lunn.ch>
+References: <20231214201442.660447-1-tobias@waldekranz.com>
+ <20231214201442.660447-5-tobias@waldekranz.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Fri, 15 Dec 2023 12:19:51 +0100
-From: Artur Rojek <contact@artur-rojek.eu>
-To: Chris Morgan <macroalpha82@gmail.com>
-Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
- conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
- dmitry.torokhov@gmail.com, Chris Morgan <macromorgan@hotmail.com>, Paul
- Cercueil <paul@crapouillou.net>
-Subject: Re: [RFC] dt-bindings: input: Clarify that abs_min must be less than
- abs_max
-In-Reply-To: <20231215024022.122022-1-macroalpha82@gmail.com>
-References: <20231215024022.122022-1-macroalpha82@gmail.com>
-Message-ID: <03a9a56362b0559234d4a21a4de3e32e@artur-rojek.eu>
-X-Sender: contact@artur-rojek.eu
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-X-GND-Sasl: contact@artur-rojek.eu
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231214201442.660447-5-tobias@waldekranz.com>
 
-On 2023-12-15 03:40, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
-> 
-> uinput refuses to work with abs devices where the min value is greater
-> than the max value. uinput_validate_absinfo() returns -EINVAL if this
-> is the case and prevents using uinput on such a device. Since uinput
-> has worked this way since at least kernel 2.6 (or prior) I presume that
-> this is the correct way of doing things, and that this documentation
-> needs to be clarified that min must always be less than max.
-> 
-> uinput is used in my use case to bind together adc-joystick devices
-> with gpio-keys devices to create a single unified gamepad for
-> userspace.
-> 
-> Note that there are several boards that will need to be corrected,
-> all but a few of them I maintain. Submitting as an RFC for now to get
-> comments from the input team and the original author in case there is
-> something I am missing.
-> 
-> Fixes: 7956b0d4694f ("dt-bindings: input: Add docs for ADC driven 
-> joystick")
-> 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> ---
->  Documentation/devicetree/bindings/input/adc-joystick.yaml | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/input/adc-joystick.yaml
-> b/Documentation/devicetree/bindings/input/adc-joystick.yaml
-> index 6c244d66f8ce..8f5cdd5ef190 100644
-> --- a/Documentation/devicetree/bindings/input/adc-joystick.yaml
-> +++ b/Documentation/devicetree/bindings/input/adc-joystick.yaml
-> @@ -73,8 +73,9 @@ patternProperties:
->          description: >
->            Minimum and maximum values produced by the axis.
->            For an ABS_X axis this will be the left-most and right-most
-> -          inclination of the joystick. If min > max, it is left to 
-> userspace to
-> -          treat the axis as inverted.
-> +          inclination of the joystick. The axis must always be 
-> expressed as
-> +          min < max, if the axis is inverted it is left to userspace 
-> to handle
-> +          the inversion.
+> +        properties:
+> +          marvell,polarity:
+> +            description: |
+> +              Electrical polarity and drive type for this LED. In the
+> +              active state, hardware may drive the pin either low or
+> +              high. In the inactive state, the pin can either be
+> +              driven to the opposite logic level, or be tristated.
+> +            $ref: /schemas/types.yaml#/definitions/string
+> +            enum:
+> +              - active-low
+> +              - active-high
+> +              - active-low-tristate
+> +              - active-high-tristate
 
-Hi Chris,
+Christian is working on adding a generic active-low property, which
+any PHY LED could use. The assumption being if the bool property is
+not present, it defaults to active-high.
 
-Device Tree is supposed to depict the actual state of the hardware.
-I worded the adc-joytick's adc-range property specifically, so that it
-covers a case of GCW Zero hardware [1], which has a joystick,  where the
-ABS_X axis reports increasing values for the left-wards inclination of
-the joystick, and decreasing values for the right-wards inclination. You
-are saying that there are even more boards that need to be corrected -
-those are all situations, where DT depicts the actual behavior of the
-hardware.
-What you are trying to do is change hardware description, because of how
-a driver in an OS works. You should instead fix behavior of said driver,
-even if nobody stumbled upon that issue since 2.6 :) We fixed libSDL [2]
-for the same reason.
+So we should consider, how popular are these two tristate values? Is
+this a Marvell only thing, or do other PHYs also have them? Do we want
+to make them part of the generic PHY led binding? Also, is an enum the
+correct representation? Maybe tristate should be another bool
+property? Hi/Low and tristate seem to be orthogonal, so maybe two
+properties would make it cleaner with respect to generic properties?
 
-Cheers,
-Artur
+Please work with Christian on this.
 
-PS. cc'd Paul to the conversation.
-
-[1] 
-https://github.com/OpenDingux/linux/blob/jz-6.1/arch/mips/boot/dts/ingenic/gcw0.dts#L273C12-L273C12
-[2] https://github.com/libsdl-org/SDL-1.2/commit/46806790ad043
-
->            This property is interpreted as two signed 32 bit values.
-> 
->        abs-fuzz:
-
+Thanks
+	Andrew
 
